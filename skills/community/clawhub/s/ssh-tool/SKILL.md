@@ -1,35 +1,34 @@
 ---
-name: "Ssh Tool"
-description: "Securely connect to remote systems via the SSH protocol. Use for remote server management, file transfer, and tunneling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ssh-tool"
-sourceUrl: "https://clawhub.ai/skills/ssh-tool"
+name: ssh-tool
+description: Securely connect to remote systems via the SSH protocol. Use for remote server management, file transfer, and tunneling.
 ---
 
-# Ssh Tool
+# Secure Shell Client
 
-> Securely connect to remote systems via the SSH protocol. Use for remote server management, file transfer, and tunneling.
+Establish encrypted connections to remote systems for command execution, file transfer, and port forwarding.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ssh-tool`
-- **Source URL:** [https://clawhub.ai/skills/ssh-tool](https://clawhub.ai/skills/ssh-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ssh-tool
+ssh-tool [options] user@hostname [command]
+```
+
+## Features
+
+- Authenticate with password or SSH keys
+- Execute remote commands
+- Forward local and remote ports
+- Transfer files with integrated SCP support
+
+## Examples
+
+```bash
+# Basic connection
+ssh-tool user@example.com
+
+# Execute remote command
+ssh-tool user@example.com "ls -la"
+
+# Port forwarding
+ssh-tool -L 8080:localhost:80 user@example.com
 ```

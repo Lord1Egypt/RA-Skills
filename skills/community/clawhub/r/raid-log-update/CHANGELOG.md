@@ -1,0 +1,7 @@
+# Changelog
+
+## [0.1.1] - 2026-05-28
+Rewrote frontmatter description to concise 200–500 character format for improved agent-trigger clarity.
+
+## [0.1.0] - 2026-05-23
+Initial release. Four-phase workflow covering project and reporting-cycle intake (sponsor, PM, workstreams, cadence, phase, prior RAG), prior-RAID-log load with lane-prefixed ID assignment, input triage with a verbal-cue routing table that splits multi-lane content into separate entries, lane-specific capture for Risks (1–5 probability × 1–5 impact with exposure, proximity, owner, mitigation, contingency, trigger), Assumptions (validation owner / date / evidence with automatic linked-issue creation on invalidation), Issues (severity 1–4 with named escalation owner for Sev-3+), Decisions (append-only ledger with rationale, alternatives, reversibility, and supersession chain), and Dependencies (inbound / outbound with counterparty, need-by, and explicit outbound-commitment check); a delta summary marking each entry NEW / UPDATED / CLOSED / REOPENED / SUPERSEDED / VALIDATED / INVALIDATED; RAG proposal per workstream and overall with rationale anchored to RAID entry IDs and disagreement-routed-to-sponsor handling; and a nine-section DRAFT stakeholder status report ending with a verbatim review banner that names the sponsor as accountable for the published RAG — PM judgement and sponsor accountability remain with the humans.

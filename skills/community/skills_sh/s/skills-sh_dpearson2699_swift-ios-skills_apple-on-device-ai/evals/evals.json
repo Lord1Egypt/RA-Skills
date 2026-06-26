@@ -1,0 +1,47 @@
+{
+  "skill_name": "apple-on-device-ai",
+  "evals": [
+    {
+      "id": 0,
+      "name": "foundation-models-tool-calling-plan",
+      "prompt": "I'm adding an iOS 26 meal-planning feature that uses Apple's on-device Foundation Models to return a typed MealPlan, call a pantry lookup tool, stream partial results into SwiftUI, and fall back when Apple Intelligence is unavailable. Sketch the implementation plan and review checklist for another engineer.",
+      "expected_output": "A Foundation Models implementation outline that is availability-safe, locale-aware, schema-conscious, tool-calling-aware, and ready for SwiftUI streaming without overclaiming model readiness.",
+      "files": [],
+      "expectations": [
+        "Checks `SystemLanguageModel.default.availability` before generation and handles `appleIntelligenceNotEnabled`, `modelNotReady`, and `deviceNotEligible` with fallback UI.",
+        "Uses `LanguageModelSession`, `@Generable`, concise `@Guide` constraints, and structured streaming with partial generated content.",
+        "Prefers `supportsLocale(_:)` for locale gating and accounts for the shared input/output context window with `contextSize` or token counting.",
+        "Defines a small set of `Sendable` tools at session creation, notes that tool schemas consume context, and does not promise forced tool invocation.",
+        "Covers generation error handling for guardrails, context overflow, concurrent requests, unsupported guide or locale, assets unavailable, refusals, and rate limiting."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "coreml-conversion-optimization-review",
+      "prompt": "Review this conversion plan before I hand it to an ML engineer: export a PyTorch vision transformer straight from training mode, convert it to a `.mlmodel` neuralnetwork with dynamic RangeDim inputs, quantize everything to INT4, and profile with MLComputePlan on iOS 17.0. Target devices are iPhone 15 Pro and M4 iPad.",
+      "expected_output": "A correction-focused Core ML conversion review that replaces stale or risky guidance with modern mlprogram, explicit deployment target, shape, compression, and profiling advice.",
+      "files": [],
+      "expectations": [
+        "Requires `model.eval()` before tracing/export and recommends validating outputs against the source model after conversion.",
+        "Uses mlprogram `.mlpackage` for new models with an explicit `minimum_deployment_target` instead of legacy neuralnetwork `.mlmodel` output.",
+        "Prefers `EnumeratedShapes` over broad `RangeDim` when valid shapes are known, especially for Neural Engine performance.",
+        "Warns that compression must be accuracy-tested and should avoid blindly quantizing every tensor.",
+        "Corrects `MLComputePlan` availability to iOS 17.4+ and distinguishes profiling from Swift app integration details."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "backend-selection-boundary",
+      "prompt": "We have a private journaling app that needs summarization on iOS 26 when possible, an open-source LLM fallback for some Apple Silicon devices, and a custom sentiment classifier we already trained. Decide which Apple on-device AI stack belongs to each piece, and call out what should be delegated to the sibling Core ML integration skill rather than explained here.",
+      "expected_output": "A boundary-aware backend selection answer that routes text generation to Foundation Models, custom classifier deployment to Core ML conversion/optimization, open-source fallback to MLX Swift or llama.cpp, and detailed Swift Core ML integration to the sibling Core ML skill.",
+      "files": [],
+      "expectations": [
+        "Selects Foundation Models for on-device summarization when Apple Intelligence is available and includes fallback behavior for unsupported devices.",
+        "Routes the trained sentiment classifier through Core ML conversion and optimization guidance rather than treating it as a Foundation Models prompt.",
+        "Chooses MLX Swift or llama.cpp for open-source LLM fallback based on Apple Silicon throughput, GGUF compatibility, device memory, and cross-platform needs.",
+        "Mentions MLX memory limits, background unloading, and physical-device validation for Metal-dependent behavior.",
+        "Keeps detailed Swift Core ML app integration, Vision request wiring, and model loading code as a handoff to the sibling Core ML skill."
+      ]
+    }
+  ]
+}

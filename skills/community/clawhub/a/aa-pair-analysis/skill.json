@@ -1,0 +1,15 @@
+{
+  "name": "aa-pair-analysis",
+  "version": "1.1.0",
+  "summary": "蛋白质氨基酸功能类别相邻对频率分析。对任意蛋白质家族的多物种序列进行多序列比对(MSA)、共识序列提取、对型统计和配方计算，输出Top5高频对型及φ值。支持联合关键片段分析并自动生成单体配方投料表。",
+  "description": "适用于任何蛋白质家族的氨基酸对频率分析。核心流程：(1)多序列比对(MSA)获取同源位置，(2)逐位统计最高频氨基酸占比，按阈值(默认0.5)生成共识序列，(3)剔除X/A/G/P后拼接，(4)统计有向相邻对，(5)合并对称对得21种无向对型，(6)取Top5计算φ值。已通过与文献逐对型对比验证，结果完全一致。新增：联合分析包装器(run_combined_analysis.py)可同步运行关键片段预测并自动生成单体配方投料表Word文档。",
+  "tags": ["bioinformatics", "protein-analysis", "amino-acid", "MSA", "consensus", "formulation"],
+  "dependencies": {
+    "python": ">=3.8",
+    "pip": ["pandas", "biopython", "python-docx"],
+    "system": ["clustalo"]
+  },
+  "cli_matchers": ["氨基酸对", "对型频率", "配方", "氨基酸相邻对", "aa pair", "投料表", "单体配方"],
+  "author": "wuhen9nine",
+  "license": "MIT"
+}

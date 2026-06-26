@@ -1,35 +1,57 @@
 ---
-name: "Dockerfile Builder"
+name: "dockerfile-builder"
+version: "3.0.0"
 description: "Generate and lint Dockerfiles for common languages and frameworks. Use when creating container configs."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dockerfile-builder"
-sourceUrl: "https://clawhub.ai/skills/dockerfile-builder"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Dockerfile Builder
+# dockerfile-builder
 
-> Generate and lint Dockerfiles for common languages and frameworks. Use when creating container configs.
+Generate and lint Dockerfiles for common languages and frameworks. Use when creating container configs.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dockerfile-builder`
-- **Source URL:** [https://clawhub.ai/skills/dockerfile-builder](https://clawhub.ai/skills/dockerfile-builder)
+## Commands
 
-## Overview
+### `create`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dockerfile-builder
+scripts/script.sh create <language>
 ```
+
+### `lint`
+
+```bash
+scripts/script.sh lint <file>
+```
+
+### `optimize`
+
+```bash
+scripts/script.sh optimize <file>
+```
+
+### `template`
+
+```bash
+scripts/script.sh template <type>
+```
+
+### `scan`
+
+```bash
+scripts/script.sh scan <file>
+```
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/dockerfile-builder/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

@@ -1,0 +1,22 @@
+{
+  "type": "card",
+  "title": "上传合同文件",
+  "description": "请上传需要签署的合同文件，支持 PDF 格式",
+  "fields": [
+    {
+      "name": "file",
+      "type": "file",
+      "label": "合同文件",
+      "required": true,
+      "accept": ".pdf",
+      "hint": "支持 PDF 格式文件，最大 50MB"
+    }
+  ],
+  "actions": [
+    {
+      "label": "上传并继续",
+      "type": "submit",
+      "primary": true
+    }
+  ]
+}

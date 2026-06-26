@@ -1,0 +1,15 @@
+global_keywords:
+- 汽车
+- 二手车
+- 车贷
+keyword_rules:
+  mode: OR
+  case_sensitive: false
+description: '行业分类: auto — 0 个频道'
+target_count: 0
+targets:
+- id: auto_001
+  type: channel
+  identifier: dd254s2
+  note: '自动发现: xbso1 | dd254s2'
+  enabled: true

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Talent Profile Generator"
+  short_description: "Generate enterprise role talent portraits from job-market benchmarks."

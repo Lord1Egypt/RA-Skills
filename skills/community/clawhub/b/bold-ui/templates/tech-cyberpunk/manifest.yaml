@@ -1,0 +1,129 @@
+# Tech Cyberpunk — Template Manifest
+
+meta:
+  name: "Tech Cyberpunk"
+  id: tech-cyberpunk
+  version: "1.0"
+  tags: [tech, cyberpunk, neon, dark, glow, futuristic]
+  best_for:
+    - 开发者平台
+    - 数据仪表盘
+    - SaaS 工具
+    - Hackathon 项目
+  not_for:
+    - 医疗健康
+    - 家庭应用
+    - 保守品牌
+  flexibility:
+    colors: strict           # 霓虹色系是灵魂
+    typography: moderate
+    spacing: moderate
+    motion: moderate
+    layout: loose
+  icon_preferences:
+    primary_source: phosphor
+    fallback_sources: [lucide, hugeicons]
+    style: duotone
+    stroke_width: 2
+    size: 22
+
+# ====== Design Tokens ======
+tokens:
+  colors:
+    primary:
+      base: "#00F0FF"       # Neon Cyan
+      light: "#66F7FF"
+      dark: "#00B8CC"
+    secondary:
+      base: "#FF00E5"       # Neon Magenta
+      light: "#FF66F0"
+      dark: "#CC00B8"
+    accent:
+      base: "#B847FF"       # Neon Purple
+      light: "#D08FFF"
+      dark: "#8B30CC"
+    background:
+      page: "#0A0A0F"       # Deep void
+      surface: "#12121A"    # Dark card
+      elevated: "#1A1A2E"   # Floating layer
+    text:
+      primary: "#E0F0FF"
+      secondary: "#8899AA"
+      muted: "#556677"
+    border:
+      default: "#1E2D3D"
+      focus: "#00F0FF"
+      glow: "#00F0FF"       # Neon border glow
+    functional:
+      success: "#00FF88"    # Neon Green
+      warning: "#FFB800"    # Amber
+      error: "#FF3366"      # Neon Red
+      info: "#00F0FF"
+
+  typography:
+    heading_font: "'Space Grotesk', 'Inter', sans-serif"
+    body_font: "'JetBrains Mono', 'Fira Code', 'IBM Plex Mono', monospace"
+    mono_font: "'JetBrains Mono', 'Fira Code', monospace"
+    scale:
+      xs:   "0.75rem"       # 12px
+      sm:   "0.875rem"      # 14px
+      base: "1rem"          # 16px
+      lg:   "1.125rem"      # 18px
+      xl:   "1.5rem"        # 24px
+      2xl:  "2rem"          # 32px
+      3xl:  "2.5rem"        # 40px
+      4xl:  "3.5rem"        # 56px
+    weight:
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  spacing:
+    unit: 4
+    scale: [0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80]
+
+  border:
+    radius:
+      none:  "0"
+      sm:    "0.25rem"       # 4px
+      md:    "0.375rem"      # 6px
+      lg:    "0.5rem"        # 8px
+      xl:    "0.75rem"       # 12px
+      full:  "9999px"
+    width:
+      thin:  "1px"
+      normal: "1.5px"
+      thick:  "2px"
+
+  shadows:
+    none: "none"
+    sm:   "0 0 10px rgba(0, 240, 255, 0.15)"
+    md:   "0 0 20px rgba(0, 240, 255, 0.2), 0 4px 6px rgba(0, 0, 0, 0.3)"
+    lg:   "0 0 40px rgba(0, 240, 255, 0.25), 0 10px 15px rgba(0, 0, 0, 0.4)"
+    xl:   "0 0 60px rgba(0, 240, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.5)"
+    glow_cyan:   "0 0 15px rgba(0, 240, 255, 0.5)"
+    glow_magenta: "0 0 15px rgba(255, 0, 229, 0.5)"
+    glow_purple:  "0 0 15px rgba(184, 71, 255, 0.5)"
+
+  motion:
+    duration:
+      instant: "0ms"
+      fast:    "100ms"
+      normal:  "200ms"
+      slow:    "300ms"
+      gradual: "500ms"
+    easing:
+      default: "cubic-bezier(0.4, 0, 0.2, 1)"
+      in:      "cubic-bezier(0.4, 0, 1, 1)"
+      out:     "cubic-bezier(0, 0, 0.2, 1)"
+      spring:  "cubic-bezier(0.34, 1.56, 0.64, 1)"
+
+  decorations:
+    gradient_primary: "linear-gradient(135deg, #00F0FF 0%, #B847FF 50%, #FF00E5 100%)"
+    gradient_subtle: "linear-gradient(180deg, #0A0A0F 0%, #12121A 100%)"
+    grid_background: true
+    neon_borders: true
+    scanlines: true
+    glitch_effect: true
+    backdrop_blur: "4px"

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{CHART_TITLE}}</title>
+    <!-- ECharts 5.x via CDN - 异步加载，不阻塞页面渲染 -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js" async></script>
+    <!-- CryptoJS for AES encryption (ACM password encryption) -->
+    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+    <style>
+        /* 关键CSS内联，首屏快速渲染 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            color: white;
+            padding: 20px 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .page-header h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .page-header .subtitle { font-size: 13px; opacity: 0.85; }
+        .main-container { padding: 24px; max-width: 1400px; margin: 0 auto; }
+        
+        /* 骨架屏 - 加速首屏渲染 */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 4px;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .skeleton-card {
+            height: 80px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+        }
+        .skeleton-chart {
+            height: 400px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+        }
+        
+        /* 加载状态 */
+        .loading-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 9999; transition: opacity 0.3s;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #e0e0e0; border-top-color: #1a73e8;
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { margin-top: 12px; font-size: 14px; color: #666; }
+        
+        /* 错误提示 */
+        .error-panel {
+            background: #fce8e6; border: 1px solid #f28e82;
+            border-radius: 8px; padding: 16px 20px; margin: 24px auto;
+            max-width: 600px; display: none;
+        }
+        .error-panel.visible { display: block; }
+        .error-panel-title { color: #c5221f; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .error-panel-message { color: #5f6368; font-size: 13px; }
+        
+        /* 图表卡片 */
+        .chart-card {
+            background: white; border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 24px; overflow: hidden;
+        }
+        .chart-card-header {
+            padding: 16px 20px; border-bottom: 1px solid #eee;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .chart-card-title { font-size: 15px; font-weight: 600; color: #1a73e8; }
+        .chart-card-badge { font-size: 11px; background: #e8f0fe; color: #1a73e8; padding: 2px 8px; border-radius: 10px; }
+        .chart-container { height: 400px; padding: 16px; }
+        
+        /* 数据概览卡片 */
+        .summary-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px; margin-bottom: 24px;
+        }
+        .summary-card {
+            background: white; border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 16px 20px;
+        }
+        .summary-card-label { font-size: 12px; color: #5f6368; margin-bottom: 4px; }
+        .summary-card-value { font-size: 24px; font-weight: 700; color: #1a73e8; }
+        .summary-card-sub { font-size: 11px; color: #9aa0a6; margin-top: 2px; }
+        
+        /* 数据表格 */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .data-table th {
+            background: #f8f9fa; padding: 10px 12px; text-align: left;
+            font-weight: 600; color: #5f6368; border-bottom: 2px solid #e0e0e0;
+        }
+        .data-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+        .data-table tr:hover { background: #f8f9fa; }
+        
+        /* 状态标签 */
+        .status-badge {
+            display: inline-block; padding: 2px 8px; border-radius: 10px;
+            font-size: 11px; font-weight: 500;
+        }
+        .status-active { background: #e6f4ea; color: #1e8e3e; }
+        .status-close { background: #fce8e6; color: #c5221f; }
+        .status-completed { background: #e8f0fe; color: #1a73e8; }
+        .status-suspended { background: #fef7e0; color: #f9ab00; }
+        .status-presale { background: #f3e8ff; color: #9334e6; }
+        
+        /* 底部 */
+        .page-footer { text-align: center; padding: 16px; color: #9aa0a6; font-size: 12px; }
+        .timestamp { font-size: 12px; color: rgba(255,255,255,0.8); }
+
+        /* ============================================================ */
+        /* 登录弹窗样式 */
+        /* ============================================================ */
+        #loginModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #loginModal.visible { display: flex; }
+        .login-box {
+            background: #fff;
+            border-radius: 8px;
+            padding: 32px;
+            width: 360px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .login-box h2 {
+            margin: 0 0 24px;
+            font-size: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .login-box .form-group {
+            margin-bottom: 16px;
+        }
+        .login-box label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .login-box input[type="text"]:focus,
+        .login-box input[type="password"]:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+        .login-box .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1a73e8;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .login-box .login-btn:hover { background: #1557b0; }
+        .login-box .login-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .login-box .login-error {
+            color: #c5221f;
+            margin-top: 12px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+        .login-box .login-tip {
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 登录弹窗 - 独立加载时显示 -->
+    <div id="loginModal">
+        <div class="login-box">
+            <h2>登录 ACM 系统</h2>
+            <div class="form-group">
+                <label for="loginUsername">用户名</label>
+                <input type="text" id="loginUsername" value="admin@wisdomidata" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">密码</label>
+                <input type="password" id="loginPassword" placeholder="请输入密码">
+            </div>
+            <button id="loginSubmitBtn" class="login-btn">登录</button>
+            <div id="loginError" class="login-error"></div>
+            <div class="login-tip">独立加载HTML页面时需登录<br>若在ACM前端上下文中加载，将自动使用已有Token</div>
+        </div>
+    </div>
+
+    <!-- 骨架屏 - 首屏快速渲染 -->
+    <div id="skeletonScreen">
+        <div class="page-header">
+            <h1>{{CHART_TITLE}}</h1>
+            <div class="subtitle">ACM项目管理驾驶舱 · <span class="timestamp">加载中...</span></div>
+        </div>
+        <div class="main-container">
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-chart"></div>
+        </div>
+    </div>
+
+    <!-- 加载状态 -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在加载数据...</div>
+    </div>
+
+    <!-- 页头 -->
+    <div class="page-header" id="pageHeader" style="display:none;">
+        <h1>{{CHART_TITLE}}</h1>
+        <div class="subtitle">ACM项目管理驾驶舱 · <span class="timestamp" id="timestamp"></span></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="main-container" id="mainContainer" style="display:none;">
+        <div id="errorPanel" class="error-panel">
+            <div class="error-panel-title">⚠️ 数据加载失败</div>
+            <div class="error-panel-message" id="errorMessage"></div>
+        </div>
+        <div class="summary-cards" id="summaryCards"></div>
+        {{CHARTS_CONFIG}}
+    </div>
+
+    <!-- 底部 -->
+    <div class="page-footer" id="pageFooter" style="display:none;">
+        ACM NL2SQL Dashboard · Generated by AI Agent
+    </div>
+
+    <script>
+        // ============================================================
+        // 配置区（由技能在生成时填充）
+        // ============================================================
+        const API_BASE = '{{API_BASE}}';
+        const API_AUTH_BASE = '{{API_AUTH_BASE}}';
+        const ENCRYPTED_SQL = '{{ENCRYPTED_SQL}}';
+        const IV = '{{IV}}';
+        
+        // 枚举映射表（由技能根据字段类型自动生成）
+        // 格式: { FIELD_NAME: { value1: '显示名称1', value2: '显示名称2', ... } }
+        const ENUM_MAP = {{ENUM_MAP}};
+        
+        // 字段中文名映射
+        const FIELD_LABELS = {{FIELD_LABELS}};
+        
+        // 分组统计配置（由技能根据SQL字段自动生成）
+        // 格式: [{ field: 'STATUS', type: 'enum', label: '状态' }, { field: 'COMPLETE_PCT', type: 'numeric', label: '完成率' }]
+        const GROUP_STATS_CONFIG = {{GROUP_STATS_CONFIG}};
+        // ============================================================
+
+        // ============================================================
+        // Token 管理：复用 ACM 前端 sessionStorage，兜底弹窗登录
+        // ============================================================
+        const TOKEN_KEY = 'token';  // ACM 前端使用的 sessionStorage key
+
+        let jwtToken = null;
+        let tokenPromise = null;  // 防止并发重复请求
+
+        /**
+         * ACM 前端 AES-128-CBC 加密（与后端登录接口兼容）
+         * 密钥和IV与 ACM 前端 utils/AesUtil.js 保持一致
+         */
+        function aesEncrypt(password) {
+            const key = CryptoJS.enc.Utf8.parse("ABCDEFGHIJKL_KEY");   // 16字节
+            const iv = CryptoJS.enc.Utf8.parse("ABCDEFGHUJKLM_IV");   // 16字节
+            const encrypted = CryptoJS.AES.encrypt(
+                CryptoJS.enc.Utf8.parse(password),
+                key,
+                { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
+            );
+            return String(encrypted).trim();
+        }
+
+        /**
+         * 统一获取 Token
+         * 优先级：
+         *   1. 已有缓存 jwtToken → 直接返回
+         *   2. sessionStorage 有 ACM token → 复用
+         *   3. 均无 → 显示登录弹窗
+         */
+        async function getToken() {
+            // 1. 已有缓存 token → 直接返回
+            if (jwtToken) return jwtToken;
+
+            // 2. 并发保护
+            if (tokenPromise) return tokenPromise;
+
+            // 3. 尝试 ACM 前端 sessionStorage
+            const acmToken = sessionStorage.getItem(TOKEN_KEY);
+            if (acmToken) {
+                console.log('[Token] 使用 ACM 前端 sessionStorage token');
+                jwtToken = acmToken;
+                return jwtToken;
+            }
+
+            // 4. 无缓存 → 弹登录窗
+            console.log('[Token] 独立页面模式，显示登录弹窗');
+            return await showLoginAndGetToken();
+        }
+
+        /**
+         * 显示登录弹窗并等待用户登录
+         */
+        function showLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) modal.classList.add('visible');
+        }
+
+        function hideLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) modal.classList.remove('visible');
+        }
+
+        async function showLoginAndGetToken() {
+            showLoginModal();
+
+            // 等待登录完成（由 loginSubmitBtn 的事件处理 resolve）
+            return new Promise((resolve, reject) => {
+                window._loginResolve = resolve;
+                window._loginReject = reject;
+            });
+        }
+
+        /**
+         * 执行登录
+         */
+        async function doLogin(username, password) {
+            const encryptedPassword = aesEncrypt(password);
+            const response = await fetch(`${API_AUTH_BASE}/jwt/token`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userName: username,
+                    password: encryptedPassword,
+                    lastTenantId: null
+                })
+            });
+            const result = await response.json();
+            if (!result.data) {
+                throw new Error(result.message || '登录失败');
+            }
+            // 同时写入 sessionStorage，与 ACM 前端 token 机制保持一致
+            sessionStorage.setItem('token', result.data);
+            return result.data;
+        }
+
+        /**
+         * 登录表单事件绑定
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const submitBtn = document.getElementById('loginSubmitBtn');
+            const errorDiv = document.getElementById('loginError');
+            const passwordInput = document.getElementById('loginPassword');
+
+            // 回车触发表单提交
+            passwordInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter') submitBtn.click();
+            });
+
+            submitBtn.addEventListener('click', async () => {
+                const username = document.getElementById('loginUsername').value.trim();
+                const password = passwordInput.value;
+
+                if (!username || !password) {
+                    errorDiv.textContent = '请输入用户名和密码';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = '登录中...';
+                errorDiv.style.display = 'none';
+
+                try {
+                    const token = await doLogin(username, password);
+                    hideLoginModal();
+                    jwtToken = token;
+                    if (window._loginResolve) window._loginResolve(token);
+                } catch (err) {
+                    errorDiv.textContent = err.message || '登录失败，请检查账号密码';
+                    errorDiv.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '登录';
+                    if (window._loginReject) window._loginReject(err);
+                }
+            });
+        });
+
+        // ============================================================
+        // 隐藏骨架屏，显示正式内容
+        // ============================================================
+        function showRealContent() {
+            document.getElementById('skeletonScreen').style.display = 'none';
+            document.getElementById('pageHeader').style.display = 'block';
+            document.getElementById('mainContainer').style.display = 'block';
+            document.getElementById('pageFooter').style.display = 'block';
+        }
+
+        // 时间戳
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('zh-CN');
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+        function showError(message) {
+            hideLoading();
+            const panel = document.getElementById('errorPanel');
+            document.getElementById('errorMessage').textContent = message;
+            panel.classList.add('visible');
+        }
+
+        // 获取枚举显示值
+        function getEnumDisplay(field, value) {
+            if (!value || !ENUM_MAP || !ENUM_MAP[field]) return value;
+            return ENUM_MAP[field][value] || value;
+        }
+
+        // 获取字段中文名
+        function getFieldLabel(field) {
+            return FIELD_LABELS[field] || field;
+        }
+
+        /**
+         * 调用后端NL2SQL执行接口
+         */
+        async function fetchData() {
+            showLoading();
+            try {
+                // 使用缓存的 token
+                const jwt = await getToken();
+
+                const response = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': jwt
+                    },
+                    body: JSON.stringify({ encryptedSql: ENCRYPTED_SQL, iv: IV })
+                });
+
+                const result = await response.json();
+                if (result.error) throw new Error(result.error);
+                hideLoading();
+                showRealContent();
+                // API 返回结构: { status, data: { data: [...], fields: [...], total, executionTime } }
+                // {{API_DATA_PATH}} 由生成器注入正确的路径
+                return {{API_DATA_PATH}};
+            } catch (err) {
+                console.error('数据获取失败:', err);
+                showError('数据加载失败: ' + err.message);
+                throw err;
+            }
+        }
+
+        /**
+         * 自动生成分组统计卡片
+         * 根据 GROUP_STATS_CONFIG 自动识别枚举字段生成分组统计
+         */
+        function renderAutoStats(data, fields) {
+            if (!data || data.length === 0 || !GROUP_STATS_CONFIG) return;
+            
+            const container = document.getElementById('summaryCards');
+            let html = '';
+            
+            for (const config of GROUP_STATS_CONFIG) {
+                if (config.type === 'enum') {
+                    // 枚举类型：生成分组统计
+                    const counts = {};
+                    data.forEach(row => {
+                        const val = row[config.field] || '(空)';
+                        counts[val] = (counts[val] || 0) + 1;
+                    });
+                    
+                    // 添加"全部"统计
+                    html += `
+                        <div class="summary-card">
+                            <div class="summary-card-label">${config.label} - 全部</div>
+                            <div class="summary-card-value">${data.length}</div>
+                        </div>
+                    `;
+                    
+                    // 添加各状态统计
+                    for (const [val, count] of Object.entries(counts)) {
+                        const displayName = getEnumDisplay(config.field, val);
+                        html += `
+                            <div class="summary-card">
+                                <div class="summary-card-label">${config.label} - ${displayName}</div>
+                                <div class="summary-card-value">${count}</div>
+                            </div>
+                        `;
+                    }
+                } else if (config.type === 'numeric') {
+                    // 数值类型：根据 agg 类型计算 sum 或 avg
+                    const values = data.map(row => Number(row[config.field])).filter(v => !isNaN(v));
+                    if (values.length > 0) {
+                        if (config.agg === 'avg') {
+                            // 平均值（如百分比）
+                            const avg = values.reduce((a, b) => a + b, 0) / values.length;
+                            const suffix = config.field.includes('PCT') || config.label.includes('率') ? '%' : '';
+                            html += `
+                                <div class="summary-card">
+                                    <div class="summary-card-label">${config.label} - 平均</div>
+                                    <div class="summary-card-value">${avg.toFixed(2)}${suffix}</div>
+                                </div>
+                            `;
+                        } else {
+                            // 求和
+                            const sum = values.reduce((a, b) => a + b, 0);
+                            html += `
+                                <div class="summary-card">
+                                    <div class="summary-card-label">${config.label} - 合计</div>
+                                    <div class="summary-card-value">${sum.toLocaleString('zh-CN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                </div>
+                            `;
+                        }
+                    }
+                }
+            }
+            
+            if (html) {
+                container.innerHTML = html;
+            }
+        }
+
+        /**
+         * 初始化ECharts
+         */
+        function initChart(dom, option) {
+            if (typeof echarts === 'undefined') {
+                // ECharts未加载完成，等待一下
+                setTimeout(() => initChart(dom, option), 100);
+                return;
+            }
+            const chart = echarts.init(dom);
+            chart.setOption(option);
+            window.addEventListener('resize', () => chart.resize());
+            return chart;
+        }
+
+        // 页面加载后自动获取数据并渲染
+        (async function() {
+            try {
+                const result = await fetchData();
+                const { data = [], fields = [] } = result;
+                
+                // 渲染统计卡片
+                renderAutoStats(data, fields);
+                
+                // 渲染内容
+                renderContent(data, fields);
+            } catch(e) {
+                console.error(e);
+            }
+        })();
+        
+        // 渲染内容（支持表格和图表）
+        function renderContent(data, fields) {
+            // 表格渲染器
+            const thead = document.getElementById('tableHead');
+            const tbody = document.getElementById('tableBody');
+            
+            if (thead && tbody) {
+                thead.innerHTML = '<tr>' + fields.map(f => 
+                    '<th>' + getFieldLabel(f) + '</th>'
+                ).join('') + '</tr>';
+                
+                tbody.innerHTML = data.slice(0, 100).map(row => {
+                    return '<tr>' + fields.map(f => {
+                        let val = row[f];
+                        if (val === null || val === undefined) val = '';
+                        const displayVal = getEnumDisplay(f, val);
+                        
+                        // 枚举值显示为标签
+                        if (ENUM_MAP && ENUM_MAP[f] && ENUM_MAP[f][val]) {
+                            const statusClass = 'status-' + val.toLowerCase().replace(/\s/g, '-');
+                            return '<td><span class="status-badge ' + statusClass + '">' + displayVal + '</span></td>';
+                        }
+                        
+                        // 数值类型保留2位小数
+                        if (!isNaN(Number(val)) && val !== '') {
+                            const num = Number(val);
+                            if (f.includes('PCT') || f.includes('RATE') || f.includes('RATIO')) {
+                                return '<td>' + num.toFixed(2) + '%</td>';
+                            }
+                            return '<td>' + num.toLocaleString('zh-CN', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</td>';
+                        }
+                        
+                        return '<td>' + displayVal + '</td>';
+                    }).join('') + '</tr>';
+                }).join('');
+            }
+        }
+    </script>
+</body>
+</html>

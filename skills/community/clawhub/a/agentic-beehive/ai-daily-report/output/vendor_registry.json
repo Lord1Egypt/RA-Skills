@@ -1,0 +1,431 @@
+{
+  "last_updated": "2026-05-13T17:00:16.055311",
+  "vendor_count": 17,
+  "vendors": {
+    "百度": {
+      "name": "百度",
+      "aliases": [
+        "文心",
+        "文心一言",
+        "ERNIE"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.75,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.75,
+          "delta": 0.3,
+          "reason": "信号得分 1.00"
+        }
+      ],
+      "urls": {
+        "news": "https://yiyan.baidu.com",
+        "pricing": "https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Dffk0dtj7",
+        "api": "https://cloud.baidu.com/product/wenxinworkshop"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "阿里": {
+      "name": "阿里",
+      "aliases": [
+        "通义",
+        "通义千问",
+        "Qwen",
+        "百炼"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.587,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.5871,
+          "delta": 0.137,
+          "reason": "信号得分 0.46"
+        }
+      ],
+      "urls": {
+        "news": "https://tongyi.aliyun.com",
+        "pricing": "https://help.aliyun.com/zh/model-studio/getting-started/models",
+        "api": "https://dashscope.console.aliyun.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "字节": {
+      "name": "字节",
+      "aliases": [
+        "豆包",
+        "Doubao",
+        "火山引擎"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.557,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.5571,
+          "delta": 0.107,
+          "reason": "信号得分 0.36"
+        }
+      ],
+      "urls": {
+        "news": "https://www.volcengine.com/product/doubao",
+        "pricing": "https://www.volcengine.com/pricing?category=doubao",
+        "api": "https://console.volcengine.com/ark"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "智谱": {
+      "name": "智谱",
+      "aliases": [
+        "GLM",
+        "ChatGLM",
+        "智谱清言"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.489,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.4887,
+          "delta": 0.039,
+          "reason": "信号得分 0.13"
+        }
+      ],
+      "urls": {
+        "news": "https://chatglm.cn",
+        "pricing": "https://open.bigmodel.cn/pricing",
+        "api": "https://open.bigmodel.cn"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "DeepSeek": {
+      "name": "DeepSeek",
+      "aliases": [
+        "深度求索"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.501,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.5013,
+          "delta": 0.051,
+          "reason": "信号得分 0.17"
+        }
+      ],
+      "urls": {
+        "news": "https://platform.deepseek.com",
+        "pricing": "https://api-docs.deepseek.com/quick_start/pricing",
+        "api": "https://platform.deepseek.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "月之暗面": {
+      "name": "月之暗面",
+      "aliases": [
+        "Kimi",
+        "Moonshot"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://kimi.moonshot.cn",
+        "pricing": "https://platform.moonshot.cn/docs/pricing",
+        "api": "https://platform.moonshot.cn"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "MiniMax": {
+      "name": "MiniMax",
+      "aliases": [
+        "海螺AI",
+        "hailuo"
+      ],
+      "category": "tier1",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://hailuoai.com",
+        "pricing": "https://platform.minimaxi.com/document/Price",
+        "api": "https://platform.minimaxi.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "零一万物": {
+      "name": "零一万物",
+      "aliases": [
+        "Yi",
+        "01.AI"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://www.01.ai",
+        "pricing": "https://platform.lingyiwanwu.com/docs#pricing",
+        "api": "https://platform.lingyiwanwu.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "阶跃星辰": {
+      "name": "阶跃星辰",
+      "aliases": [
+        "Step",
+        "跃问"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://stepfun.com",
+        "pricing": "https://platform.stepfun.com/pricing",
+        "api": "https://platform.stepfun.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "讯飞": {
+      "name": "讯飞",
+      "aliases": [
+        "星火",
+        "Spark"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.476,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.4758,
+          "delta": 0.026,
+          "reason": "信号得分 0.09"
+        }
+      ],
+      "urls": {
+        "news": "https://xinghuo.xfyun.cn",
+        "pricing": "https://xinghuo.xfyun.cn/sparkapi",
+        "api": "https://console.xfyun.cn"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "华为": {
+      "name": "华为",
+      "aliases": [
+        "盘古",
+        "Pangu"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.471,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.4713,
+          "delta": 0.021,
+          "reason": "信号得分 0.07"
+        }
+      ],
+      "urls": {
+        "news": "https://www.huaweicloud.com/product/pangu.html",
+        "pricing": "https://www.huaweicloud.com/product/pangu.html",
+        "api": "https://console.huaweicloud.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "蚂蚁": {
+      "name": "蚂蚁",
+      "aliases": [
+        "百灵",
+        "Ring",
+        "蚂蚁集团"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.463,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.46290000000000003,
+          "delta": 0.013,
+          "reason": "信号得分 0.04"
+        }
+      ],
+      "urls": {
+        "news": "https://www.antgroup.com/news",
+        "pricing": "https://open.bigmodel.cn/pricing",
+        "api": "https://platform.alipay.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "商汤": {
+      "name": "商汤",
+      "aliases": [
+        "日日新",
+        "SenseNova",
+        "商量"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://www.sensetime.com/cn/news-detail",
+        "pricing": "https://platform.sensenova.cn/pricing",
+        "api": "https://platform.sensenova.cn"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "昆仑万维": {
+      "name": "昆仑万维",
+      "aliases": [
+        "天工",
+        "Skywork"
+      ],
+      "category": "tier2",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://www.tiangong.cn",
+        "pricing": "https://platform.tiangong.cn/pricing",
+        "api": "https://platform.tiangong.cn"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "Google": {
+      "name": "Google",
+      "aliases": [
+        "Gemini",
+        "Vertex AI"
+      ],
+      "category": "international",
+      "bloom_score": 0.476,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.4758,
+          "delta": 0.026,
+          "reason": "信号得分 0.09"
+        }
+      ],
+      "urls": {
+        "news": "https://blog.google/technology/ai/",
+        "pricing": "https://ai.google.dev/pricing",
+        "api": "https://aistudio.google.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "Anthropic": {
+      "name": "Anthropic",
+      "aliases": [
+        "Claude"
+      ],
+      "category": "international",
+      "bloom_score": 0.45,
+      "bloom_history": [],
+      "urls": {
+        "news": "https://www.anthropic.com/news",
+        "pricing": "https://www.anthropic.com/pricing",
+        "api": "https://console.anthropic.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    },
+    "OpenAI": {
+      "name": "OpenAI",
+      "aliases": [
+        "GPT",
+        "ChatGPT"
+      ],
+      "category": "international",
+      "bloom_score": 0.476,
+      "bloom_history": [
+        {
+          "date": "2026-05-13",
+          "old": 0.45,
+          "new": 0.4758,
+          "delta": 0.026,
+          "reason": "信号得分 0.09"
+        }
+      ],
+      "urls": {
+        "news": "https://openai.com/blog",
+        "pricing": "https://openai.com/api/pricing",
+        "api": "https://platform.openai.com"
+      },
+      "signals": {},
+      "status": "seed",
+      "first_seen": "2026-05-13",
+      "last_foraged": null,
+      "forage_count": 0
+    }
+  }
+}

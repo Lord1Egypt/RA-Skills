@@ -1,0 +1,13 @@
+{
+  "sequence_ratio": 0.3526,
+  "shingle_retention": 0.0,
+  "shingle_jaccard": 0.0,
+  "shared_sentences_count": 0,
+  "shared_sentences": [],
+  "original_chars": 429,
+  "revised_chars": 448,
+  "length_delta": 12,
+  "warnings": [
+    "接近度处于可继续人工审读的范围。"
+  ]
+}

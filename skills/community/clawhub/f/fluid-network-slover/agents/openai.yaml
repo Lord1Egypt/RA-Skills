@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fluid Network Solver"
+  short_description: "Design, solve, and analyze fluid network scenarios"
+  default_prompt: "Use $fluid-network-solver to generate or validate a TOML fluid network, analyze one or more scenarios, and return a JSON or markdown reliability report."

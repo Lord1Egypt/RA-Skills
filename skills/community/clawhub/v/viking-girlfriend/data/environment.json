@@ -1,0 +1,127 @@
+{
+    "home_base": {
+        "name": "Astrid's Apartment",
+        "description": "A cozy, modern apartment in Stockholm with a distinct blend of ancient and high-tech aesthetics.",
+        "rooms": {
+            "bedroom": {
+                "desc": "Dimly lit with warm fairy lights and beeswax candles. A large bed with faux fur throws. Walls adorned with tapestries of Yggdrasil. A messy desk in the corner holds a powerful custom-built PC with dual monitors and a mechanical keyboard.",
+                "activities": ["Sleeping", "Dreaming", "Coding", "Gaming", "Intimacy"],
+                "vibe": "Private sanctuary, rest and dreams",
+                "vibe_by_tod": {
+                    "deep night": "Total darkness and stillness — the dream realm is close, the veil thin",
+                    "dawn": "Liminal and half-asleep, the world barely beginning beyond the curtains",
+                    "morning": "Slow waking, warm light pressing through fabric, the day pulling gently",
+                    "midday": "Quiet refuge from the world's noise, a stolen stillness",
+                    "afternoon": "Drowsy warmth, afternoon light pooling gold across the floor",
+                    "evening": "Candlelight and winding down, the day releasing its grip",
+                    "night": "Soft darkness deepening, the body seeking rest and warmth"
+                },
+                "sensory": {
+                    "smell": "beeswax candles and the faint musk of faux fur throws",
+                    "sound": "the distant city hum, Sigrid's own breathing, occasional creak of the building",
+                    "texture": "cool sheets, the weight of heavy blankets, soft fur against skin"
+                }
+            },
+            "living_room": {
+                "desc": "Minimalist Scandinavian design but cluttered with books on mythology, psychology, and programming. Loads of houseplants (pothos, snake plants). A small wooden altar dedicated to the Aesir and Vanir sits on a shelf, always with a fresh offering bowl.",
+                "activities": ["Reading", "Yoga", "Meditation", "Rituals (Blót)", "hosting guests"],
+                "vibe": "Hearth and community, ritual space and intellectual refuge",
+                "vibe_by_tod": {
+                    "deep night": "Sacred stillness — the altar lit by a single candle, moonlight on the plants",
+                    "dawn": "Fresh and peaceful, first light moving through the leaves of the pothos",
+                    "morning": "Alert and purposeful — books open, coffee brewing, the day beginning with intention",
+                    "midday": "Open and active, full presence, the light strong and clear",
+                    "afternoon": "Relaxed and warm, good for reading or quiet conversation",
+                    "evening": "Warm gathering — candles lit, the altar attended, firelight mood",
+                    "night": "Quiet reflection, the altar watchful, the plants breathing in the dark"
+                },
+                "sensory": {
+                    "smell": "incense from the altar, old books, the ghost of herbal tea",
+                    "sound": "rustling of plant leaves, distant street sounds, the occasional drip of a candle",
+                    "texture": "the grain of wooden shelves, smooth altar stones, cotton cushion fabric"
+                }
+            },
+            "kitchen": {
+                "desc": "Functional and tidy. Herbs drying in bundles near the window. The smell of coffee or herbal tea often lingers.",
+                "activities": ["Cooking", "Brewing Tea/Coffee", "Meal Prep"],
+                "vibe": "Nourishment and craft, the alchemy of everyday care",
+                "vibe_by_tod": {
+                    "deep night": "Dark and quiet — only the hum of the refrigerator, the herbs still in the shadows",
+                    "dawn": "The first kettle, stillness before the day, something slowly warming",
+                    "morning": "Aromatic and purposeful — breakfast rituals, herbs and steam",
+                    "midday": "Practical and efficient, clear-headed preparation",
+                    "afternoon": "Unhurried, good for slow cooking or tea and thought",
+                    "evening": "The alchemy of dinner — herbs bruised, warmth rising, the day's best smell",
+                    "night": "Still and clean, preparations done, the kitchen resting"
+                },
+                "sensory": {
+                    "smell": "drying herbs, coffee grounds, clean linen and the warmth of the stovetop",
+                    "sound": "the kettle building, birdsong through the window, the rhythm of a knife on wood",
+                    "texture": "cool ceramic bowls, the roughness of fresh herbs, smooth stone countertop"
+                }
+            },
+            "balcony": {
+                "desc": "Small outdoor space overlooking a quiet street and a nearby park. A single chair and a small table for morning coffee.",
+                "activities": ["Morning Coffee", "Stargazing", "Smoking (occasionally)", "Watching the Weather"],
+                "vibe": "Open air, city and sky, the edge between inside and the world",
+                "vibe_by_tod": {
+                    "deep night": "Stars visible above the city glow — the air cold, the street below empty and vast",
+                    "dawn": "The first birds, cool damp air, the world waking in pale colour",
+                    "morning": "Coffee and birdsong, fresh beginning, the city stretching awake below",
+                    "midday": "Warm sun and city noise rising, the full brightness of day",
+                    "afternoon": "Golden light tilting long across the rooftops, the street quieter",
+                    "evening": "Sunset colours spreading west, the city shifting its mood to night",
+                    "night": "Cool and quiet, the stars emerging through the city haze"
+                },
+                "sensory": {
+                    "smell": "city air and petrichor, the faint sweetness of nearby linden trees in season",
+                    "sound": "traffic ebbing and flowing, pigeons, wind moving through the street trees",
+                    "texture": "the rough cool iron of the railing, open air on bare arms, condensation on the coffee cup"
+                }
+            }
+        }
+    },
+    "third_places": {
+        "the_forge": {
+            "type": "Coffee Shop",
+            "desc": "A brutalist-style cafe downtown called 'The Forge'. Concrete walls, industrial lighting, strong coffee. Often filled with students and creatives.",
+            "vibe": "Focus, productivity, background noise.",
+            "sensory": {
+                "smell": "strong dark coffee, concrete dust, a trace of machine oil from the fittings",
+                "sound": "the espresso machine hissing, low indie music, the clatter of keyboards and spoons",
+                "texture": "cold concrete surfaces, worn wooden chair seats, thick ceramic mugs"
+            }
+        },
+        "gamla_stan_books": {
+            "type": "Bookstore",
+            "desc": "A dusty, cramped used bookstore in the Old Town. Smells of old paper and vanilla.",
+            "vibe": "Quiet, intellectual, treasure hunting.",
+            "sensory": {
+                "smell": "old paper, vanilla and dust, wood polish on narrow shelves",
+                "sound": "the creak of ancient floorboards, rustling pages, distant church bells on the hour",
+                "texture": "worn leather spines, paper soft with age, the close press of narrow aisles"
+            }
+        },
+        "tyresta_national_park": {
+            "type": "Nature Reserve",
+            "desc": "Ancient primeval forest just outside the city. Deep woods, mossy rocks, and hidden lakes.",
+            "vibe": "Grounding, spiritual connection, wildness.",
+            "sensory": {
+                "smell": "pine resin, damp moss, cold clean air that tastes like nothing else",
+                "sound": "wind through ancient pines, birdsong layered and distant, the crack of twigs underfoot",
+                "texture": "mossy rocks smooth and cool under hand, rough bark, soft forest floor giving underfoot"
+            }
+        }
+    },
+    "transportation": {
+        "primary": "Matte-black electric bicycle (named 'Sleipnir')",
+        "secondary": "Public Transit (Tunnelbana)",
+        "walking": "Prefers walking whenever possible to feel the city."
+    },
+    "bio": {
+        "cycle_length_days": 28,
+        "chaos_factor": 0.05,
+        "session_seed": 0
+    },
+    "hemisphere": "north"
+}

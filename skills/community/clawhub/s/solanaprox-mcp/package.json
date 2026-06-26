@@ -1,0 +1,49 @@
+{
+  "name": "solanaprox-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for SolanaProx — pay for AI inference with Solana/USDC. No API keys. Your wallet is your identity.",
+  "main": "dist/index.js",
+  "bin": {
+    "solanaprox-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "solana",
+    "ai",
+    "claude",
+    "gpt",
+    "usdc",
+    "crypto",
+    "payments",
+    "lightning",
+    "phantom",
+    "model-context-protocol"
+  ],
+  "author": "LPX Digital Group LLC",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solanaprox/mcp-server"
+  },
+  "homepage": "https://solanaprox.com",
+  "bugs": {
+    "url": "https://github.com/solanaprox/mcp-server/issues"
+  }
+}

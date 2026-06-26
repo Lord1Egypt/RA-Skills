@@ -1,0 +1,7 @@
+{
+  "kitchen": "switch.kitchen_light_relay",
+  "bedroom": "light.bedroom_led_strip",
+  "thermostat": "climate.living_room",
+  "tv": "switch.tv_power",
+  "garage": "switch.garage_door"
+}

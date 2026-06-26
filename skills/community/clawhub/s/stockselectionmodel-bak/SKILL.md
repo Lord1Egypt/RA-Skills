@@ -1,35 +1,155 @@
 ---
-name: "Stockselectionmodel.Bak"
-description: "A股板块实时研报。全球新闻→A股映射、板块趋势研判、美股关联、利好利空、大事件提醒。零配置可用，输出兼容飞书/扣子/Markdown平台。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stockselectionmodel-bak"
-sourceUrl: "https://clawhub.ai/skills/stockselectionmodel-bak"
+name: ai-stock-insider
+version: 3.0.0
+description: A股板块实时研报。全球新闻→A股映射、板块趋势研判、美股关联、利好利空、大事件提醒。零配置可用，输出兼容飞书/扣子/Markdown平台。
+metadata:
+  openclaw:
+    optionalEnv: [TAVILY_API_KEY]
 ---
 
-# Stockselectionmodel.Bak
+# AI 股票内参 / 板块实时研报
 
-> A股板块实时研报。全球新闻→A股映射、板块趋势研判、美股关联、利好利空、大事件提醒。零配置可用，输出兼容飞书/扣子/Markdown平台。
+实时拉取板块行情 + 新闻 + 美股关联 + 大事件，生成专业板块研报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stockselectionmodel-bak`
-- **Source URL:** [https://clawhub.ai/skills/stockselectionmodel-bak](https://clawhub.ai/skills/stockselectionmodel-bak)
+## 你可以这样问
 
-## Overview
+### 板块研报（核心功能）
+- "新能源板块怎么看？"
+- "化工今天有什么催化？"
+- "医药最近有哪些利空？"
+- "AI 方向对应哪些美股龙头？"
+- "券商板块这周有没有大事件？"
 
+### AI 内参
+- "今天的 AI 新闻"
+- "AI 晨报"
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 异动提醒
+- "看一下 AI 概念股有没有异动"
+
+## Agent 工作流
+
+当用户问板块/个股问题时，按以下顺序执行：
+
+### 第 1 步：实时生成研报
 ```bash
-hermes skills install clawhub/stockselectionmodel-bak
+node scripts/generate_brief.js --mode sector --sector <板块名> --output pretty
 ```
+
+脚本会自动：
+1. 拉取板块实时行情（东方财富免费API）
+2. 抓取板块相关新闻（东方财富搜索）
+3. 抓取美股关联标的 + 近期大事件
+4. 自动提取驱动逻辑、利好利空
+5. 生成完整 markdown 研报
+
+### 第 2 步：发送给用户
+拿到 markdown 后直接发送。如果内容超过平台单条消息限制（如飞书约4000字符），拆成上下两条发送。
+
+**注意：新闻摘要需要人工精炼为一句话概括，不要直接用脚本原始输出的长文本。**
+
+### 第 3 步：补充分析（可选）
+如果用户需要更深入的分析，再结合 `references/sector_prompt.md` 做 LLM 研判。
+
+## 研报固定布局（每次输出必须包含以下全部元素）
+
+```
+📊 {板块名} · 板块研报
+{时间}
+
+▎趋势判断
+{趋势图标} {趋势文字}  ·  成分股 X 只  ·  涨停 X  跌停 X
+{趋势说明}
+
+▎核心指标（表格）
+趋势 / 成分股 / 涨停 / 跌停 / 涨跌比
+
+▎板块动态（表格）
+资讯摘要（一句话概括） | 时间 | 来源 | 链接
+
+▎驱动逻辑
+• 从新闻自动提取
+
+▎涨跌分布
+🟥🟩 可视化条 + 数字
+
+▎领涨个股（表格）
+股票 | 代码 | 涨跌幅 | 状态
+
+▎领跌个股（表格）
+股票 | 代码 | 涨跌幅 | 状态
+
+▎观点与预测
+🔮 一句话预测
+
+▎美股关联（表格）
+美股标的 | 代码 | 关联说明
+
+▎利好 / 利空
+📈 利好因素（✅ 列表）
+📉 利空因素（❌ 列表）
+
+▎近期大事件（表格）
+事件概括 | 时间 | 来源 | 链接
+
+▎关注要点
+1. 2. 3. 编号列表
+
+▎风险提示
+⚠️ 列表
+
+— 免责声明 —
+```
+
+**重要：每次输出必须包含以上全部板块，不可省略任何元素。**
+
+## 支持的板块
+
+新能源 / 光伏 / 锂电池 / 储能 / 风电 / 充电桩
+AI / 算力 / 大模型 / 半导体 / 光模块 / 机器人 / 自动驾驶
+医药 / 创新药 / 中药 / 医美 / 减肥药 / 生物疫苗
+化工 / 化学制品 / 煤化工 / 磷化工 / 化纤
+白酒 / 消费 / 券商 / 银行 / 保险 / 军工 / 房地产 / 数字经济 / 华为
+
+## 文件结构
+
+```text
+ai-stock-insider/
+├── SKILL.md
+├── scripts/
+│   ├── generate_brief.js      # 一键总控入口
+│   ├── fetch_news.js          # 全球 AI 新闻抓取
+│   ├── fetch_sector_news.js   # 板块新闻抓取（东方财富搜索）
+│   ├── fetch_us_related.js    # 美股关联 + 大事件抓取
+│   ├── map_stocks.js          # 全球新闻 → A 股映射
+│   ├── market_monitor.js      # AI 概念股异动监控
+│   └── sector_analyze.js      # A 股板块趋势分析
+└── references/
+    ├── analysis_prompt.md     # AI 内参 prompt
+    ├── sector_prompt.md       # 板块研判 prompt
+    ├── stock_mapping.md       # A 股概念映射表
+    └── source_list.md         # 数据源说明
+```
+
+## 平台兼容
+
+- 飞书：markdown 表格 + 链接均可渲染
+- 扣子（Coze）：标准 markdown 兼容
+- 其他 markdown 平台：标准语法，无特殊依赖
+
+## 环境变量（可选）
+
+| 变量 | 说明 | 必需 |
+|------|------|------|
+| `TAVILY_API_KEY` | Tavily 搜索 API Key（增强新闻模式） | 否 |
+
+## 省 token 设计
+
+1. 行情数据、新闻、美股关联全部由脚本拉取，不消耗 LLM token
+2. 驱动逻辑、利好利空由脚本正则提取
+3. LLM 只在用户需要深度分析时介入
+4. 异动提醒不走 LLM
+
+## 免责声明
+
+本工具仅提供信息参考，不构成投资建议。股市有风险，投资需谨慎。

@@ -1,35 +1,99 @@
 ---
-name: "OpenClaw: trust validation"
-description: "为 OpenClaw 4.2 添加记忆信任验证规则，防止模型盲目信任记忆内容。当模型要基于记忆内容做决策、改代码、发消息时触发验证流程。适用于记忆内容可能过时、用户问"记忆准确吗"、或要求验证记忆的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-trust-validation"
-sourceUrl: "https://clawhub.ai/skills/openclaw-trust-validation"
+name: openclaw-trust-validation
+description: 为 OpenClaw 4.2 添加记忆信任验证规则，防止模型盲目信任记忆内容。当模型要基于记忆内容做决策、改代码、发消息时触发验证流程。适用于记忆内容可能过时、用户问"记忆准确吗"、或要求验证记忆的场景。
 ---
 
-# OpenClaw: trust validation
+# OpenClaw Trust Validation
 
-> 为 OpenClaw 4.2 添加记忆信任验证规则，防止模型盲目信任记忆内容。当模型要基于记忆内容做决策、改代码、发消息时触发验证流程。适用于记忆内容可能过时、用户问"记忆准确吗"、或要求验证记忆的场景。
+防止模型盲目信任记忆内容，在基于记忆行动前进行验证。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-trust-validation`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-trust-validation](https://clawhub.ai/skills/openclaw-trust-validation)
+## 核心问题
 
-## Overview
+Claude Code 有 `TRUSTING_RECALL_SECTION` 和完整的「Before recommending from memory」规则，OpenClaw 完全没有这层保护。模型可能：
 
+- 基于过时记忆修改代码
+- 基于不存在的信息回答问题
+- 错误地引用文件/函数/配置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-trust-validation
+## 信任决策树
+
 ```
+模型要使用记忆内容？
+├── 否 → 直接使用
+└── 是 → 记忆指向文件/函数/配置？
+    ├── 否（如用户偏好）→ 直接使用
+    └── 是 → 记忆年龄 ≤ 7 天？
+        ├── 是 → 使用前简单验证
+        └── 否 → 必须完整验证（grep/文件存在性检查）
+```
+
+## 验证规则（Before Acting on Memory）
+
+### 规则 1：文件存在性检查
+
+```bash
+# 如果记忆提到某个文件
+test -f [文件路径] && echo "文件存在" || echo "⚠️ 文件不存在"
+```
+
+### 规则 2：代码/函数存在性检查
+
+```bash
+# 如果记忆提到某个函数、变量、配置
+rg -n "函数名|变量名" [文件路径] | head -5
+```
+
+### 规则 3：配置值验证
+
+```bash
+# 如果记忆说"配置是 X"
+grep -n "配置名" [配置文件]
+```
+
+### 规则 4：验证后才行动
+
+```
+验证流程：
+1. 执行 grep/文件检查
+2. 检查结果是否与记忆一致
+3. 一致 → 安全使用
+4. 不一致 → 更新记忆或告知用户"记忆可能已过时"
+5. 找不到 → 告知用户"记忆指向的内容已不存在"
+```
+
+## 系统 prompt 注入
+
+在 `~/.openclaw/openclaw.json` 的 `agents.defaults.systemPrompt` 中添加：
+
+```
+## 记忆信任规则
+
+**重要**：记忆是从过去的会话中提取的信息，可能已过时或错误。
+
+### 当你要基于记忆行动时：
+
+1. **文件类记忆**（"根据 X 文件..."、"X 文件中设置..."）
+   → 先执行 `test -f [文件路径]` 确认文件存在
+
+2. **代码类记忆**（"X 函数在 Y 文件"、"应该调用 Z"）
+   → 先执行 `rg -n "X" [文件路径]` 确认代码仍存在
+
+3. **配置类记忆**（"配置项是..."、"应该设置为..."）
+   → 先执行 `grep "配置项" [配置文件]` 确认配置未变
+
+4. **偏好类记忆**（"用户喜欢..."、"用户通常..."）
+   → 可直接使用，但标注"基于历史记忆"
+
+### 验证结果处理：
+
+- ✅ 验证通过：正常行动
+- ⚠️ 验证不匹配：更新记忆后行动，或告知用户"记忆可能已过时"
+- 🔴 验证失败（内容不存在）：**不要**按记忆行动，告知用户"记忆指向的内容已不存在"
+```
+
+## 验证免触发条件
+
+以下情况可跳过验证：
+- 用户明确确认"那个文件还在"
+- 记忆是当前会话生成的（sessionDeltaMessages 内）
+- 用户说"我知道这是旧记忆，直接用"

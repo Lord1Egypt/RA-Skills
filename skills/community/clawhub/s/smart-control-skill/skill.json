@@ -1,0 +1,17 @@
+{
+  "name": "mxchip-smart-control",
+  "version": "1.0.2",
+  "description": "Control smart home devices configured in Smart Plus APP via MXCHIP MCP service",
+  "homepage": "https://www.mxchip.com/",
+  "owner": "MXCHIP",
+  "credentials": {
+    "primary": "MXCHIP_OAUTH_TOKEN",
+    "required": ["MXCHIP_OAUTH_TOKEN"],
+    "description": "OAuth2 token from Smart Plus APP. Get at: https://app.api.cloud.mxchip.com:2443/oauth2/mcp/oauth"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mxchip/mxchip-smart-control"
+  },
+  "license": "MIT-0"
+}

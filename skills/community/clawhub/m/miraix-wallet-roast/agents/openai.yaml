@@ -1,0 +1,8 @@
+interface:
+  display_name: "Miraix Wallet Roast"
+  short_description: "Roast Solana wallets and return rebalance ideas."
+  brand_color: "#16110c"
+  default_prompt: "Use $miraix-wallet-roast to analyze a Solana wallet, explain the risks, and include a share card URL in the result."
+
+policy:
+  allow_implicit_invocation: true

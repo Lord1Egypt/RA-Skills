@@ -1,0 +1,48 @@
+name: nwo-robotics
+display_name: NWO Robotics
+version: 1.0.2
+description: Control robots and IoT devices through natural language using the NWO Robotics API
+author: NWO Capital
+homepage: https://nworobotics.cloud
+repository: https://huggingface.co/spaces/PUBLICAE/nwo-robotics-api-demo
+license: MIT-0
+tags:
+  - robotics
+  - iot
+  - vision
+  - automation
+  - api
+
+required_env_vars:
+  - NWO_API_KEY
+  - NWO_USER_ID
+
+requirements:
+  env:
+    NWO_API_KEY:
+      description: Your NWO Robotics API key - get it at https://nwo.capital/webapp/api-key.php
+      required: true
+      secret: true
+    NWO_USER_ID:
+      description: Your NWO Robotics user ID
+      required: true
+    NWO_API_URL:
+      description: API base URL
+      required: false
+      default: https://nwo.capital/webapp
+
+config:
+  rate_limit:
+    requests_per_minute: 60
+  timeout: 30000
+  
+permissions:
+  - http_request
+  - env_read
+
+examples:
+  - "Check robot status"
+  - "Move robot to position x:10 y:20"
+  - "What's the temperature in the warehouse?"
+  - "Scan for objects"
+  - "Emergency stop all robots"

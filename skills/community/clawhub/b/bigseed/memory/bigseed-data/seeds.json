@@ -1,0 +1,58 @@
+{
+  "seeds": [
+    {
+      "id": "2b60eadf-74b2-4466-b50c-7c651969b0f8",
+      "timestamp": "2026-06-01T21:57:08+08:00",
+      "content": "跟朋友聚餐碰杯，清蒸鱼、红烧肉摆了一桌，我穿黑衬衫",
+      "type": "日常",
+      "emotion": "开心",
+      "tags": [
+        "朋友",
+        "聚餐",
+        "美食",
+        "方燕彬"
+      ],
+      "attachments": [
+        "63087HOME/.openclaw/media/inbound/85d79fed-2b53-4fbf-bf64-fdef5c9aaa2e.jpg"
+      ]
+    },
+    {
+      "id": "c2781f8d-c2f1-4120-961c-e1b8ed69c211",
+      "timestamp": "2026-06-01T21:56:50+08:00",
+      "content": "跟朋友聚餐碰杯，清蒸鱼、红烧肉摆了一桌，笑得很开心",
+      "type": "日常",
+      "emotion": "开心",
+      "tags": [
+        "朋友",
+        "聚餐",
+        "美食"
+      ],
+      "attachments": [
+        "63081HOME/.openclaw/media/inbound/85d79fed-2b53-4fbf-bf64-fdef5c9aaa2e.jpg"
+      ]
+    },
+    {
+      "id": "2de19228-5b70-4abb-ac25-4e7e71d4142d",
+      "timestamp": "2026-05-27T22:25:11+08:00",
+      "content": "跑通了，修复存储问题",
+      "type": "日常",
+      "emotion": "平静",
+      "tags": [
+        "fix",
+        "bigseed"
+      ],
+      "attachments": []
+    },
+    {
+      "id": "cd3b2d92-ed97-4f9c-8c61-e4f3014f0167",
+      "timestamp": "2026-05-27T22:25:11+08:00",
+      "content": "测试种子",
+      "type": "日常",
+      "emotion": "平静",
+      "tags": [
+        "测试"
+      ],
+      "attachments": []
+    }
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Electronic Information Industry Development Institute, National Bureau of Statistics, China Audio Industry Association",
+    "industry_scale_2026_target": "¥15.2 trillion revenue",
+    "growth_rate_target": "5.8% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Consumer Electronics Industry Overview (2026)",
+    "summary": "China is the world's largest producer and market for consumer electronics, encompassing smartphones, tablets, wearables, audio devices, smart home appliances, and gaming hardware. In 2026, the industry is projected to exceed ¥15.2 trillion in revenue, driven by 5G/6G adoption, AI integration, foldable devices, smart home ecosystems, and the rapid expansion of IoT and wearable health tech. The industry continues to lead in innovation, supply chain integration, and export volumes.",
+    "key_policy_initiatives": [
+      {
+        "name": "Digital China Development Plan (2024-2026)",
+        "issuing_authorities": ["State Council", "MIIT", "NDRC"],
+        "key_measures": [
+          "Promote 5G+8K ultra-high-definition video applications",
+          "Support domestic semiconductor and display panel production",
+          "Establish 10 national-level smart manufacturing demonstration bases for consumer electronics",
+          "Accelerate the development of AIoT (AI + IoT) platforms",
+          "Implement unified charging standards (USB-C) for all portable devices"
+        ]
+      },
+      {
+        "name": "Action Plan for High-End Consumer Electronics Upgrading",
+        "issuing_authorities": ["MIIT", "Ministry of Commerce"],
+        "key_measures": [
+          "Subsidize R&D in foldable displays, AR/VR, and advanced wearables",
+          "Promote 'Made in China' premium brands globally",
+          "Support cross-border e-commerce of consumer electronics",
+          "Enhance cybersecurity and data privacy standards for smart devices"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥14.4 trillion",
+      "share_of_electronics_industry_value_added": "42.3%",
+      "key_drivers": ["5G smartphones", "TWS earbuds", "smart watches", "AI smart speakers", "foldable devices"],
+      "automation_rate": "72% (assembly lines in large factories)",
+      "export_value": "$850 billion",
+      "R&D_intensity": "3.8% of revenue (average across top 10 companies)"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Consumer Electronics Supply Chain Structure",
+    "upstream": {
+      "description": "Core components, materials, and design/IP",
+      "categories": [
+        {
+          "name": "Semiconductors & ICs",
+          "items": ["application processors (AP)", "memory (DRAM, NAND)", "power management ICs", "RF chips", "sensor ICs", "audio codecs"],
+          "key_suppliers": ["HiSilicon", "Unisoc", "GigaDevice", "Yangtze Memory", "GalaxyCore", "Goodix"]
+        },
+        {
+          "name": "Display Panels",
+          "items": ["OLED (flexible, foldable)", "LCD", "Mini-LED", "micro-LED"],
+          "key_suppliers": ["BOE", "TCL CSOT", "Visionox", "Tianma", "AUO China"]
+        },
+        {
+          "name": "Batteries",
+          "items": ["Li-ion cells", "battery packs", "wireless charging modules"],
+          "key_suppliers": ["Amperex (ATL)", "Desay", "Sunwoda", "Ganfeng"]
+        },
+        {
+          "name": "Camera Modules",
+          "items": ["CMOS image sensors", "lens sets", "actuators", "camera modules"],
+          "key_suppliers": ["O-film", "Luxshare", "Q Technology", "Sunny Optical"]
+        },
+        {
+          "name": "Passive & Mechanical",
+          "items": ["connectors", "antennas", "speakers", "microphones", "housings", "PCBs"],
+          "key_suppliers": ["Luxshare", "AAC Technologies", "Goertek", "Foxconn Interconnect"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Product design, assembly, and testing",
+      "subsectors": [
+        "smartphones (including foldables)",
+        "tablets and laptops",
+        "wearables (smart watches, bands, rings)",
+        "TWS earbuds and audio devices",
+        "smart home devices (speakers, displays, hubs)",
+        "gaming consoles and accessories",
+        "AR/VR/MR headsets",
+        "power banks and chargers"
+      ],
+      "key_companies_by_subsector": {
+        "smartphones": ["Huawei", "Xiaomi", "OPPO", "vivo", "Honor", "Transsion", "ZTE"],
+        "tablets_laptops": ["Lenovo", "Huawei", "Xiaomi"],
+        "wearables": ["Huawei", "Xiaomi", "BBK (Imoo)", "Zepp Health (Amazfit)"],
+        "audio": ["Xiaomi", "Huawei", "Edifier", "1MORE", "Soundcore (Anker)"],
+        "smart_home": ["Xiaomi", "Huawei", "Alibaba (Tmall Genie)", "JD (Jingyao)", "Tuya"],
+        "gaming": ["Razer China", "Lenovo Legion", "Black Shark (Tencent)"],
+        "AR_VR": ["PICO (ByteDance)", "Nreal (XREAL)", "DPVR"],
+        "accessories": ["Anker Innovations", "Baseus", "Ugreen", "Momax"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "online retail (Tmall, JD.com, Pinduoduo, Douyin)",
+        "offline retail (mixc, Suning, Gome, brand stores)",
+        "telecom carrier channels",
+        "cross-border e-commerce (Amazon, AliExpress, Shopee)",
+        "export to overseas markets (EU, Southeast Asia, Latin America, Africa)"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Shenzhen", "Dongguan", "Huizhou", "Guangzhou"],
+      "share_of_industry": "48% of national output",
+      "specializations": [
+        "smartphone assembly and components",
+        "TWS earbuds and audio devices",
+        "power banks and chargers",
+        "smart wearables",
+        "consumer electronics accessories"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shenzhen",
+          "specialization": "Smartphone R&D, assembly, components, ecosystem hub",
+          "supplier_example": "Huawei Consumer BG – R&D center and flagship smartphones; also Foxconn, BYD Electronics for ODM/OEM"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Smartphone assembly, audio products, accessories",
+          "supplier_example": "BBK Group (OPPO, vivo) production bases; also Luxshare Precision for AirPods assembly"
+        },
+        {
+          "city": "Huizhou",
+          "specialization": "Batteries, chargers, audio",
+          "supplier_example": "Sunwoda Electronic – battery packs for smartphones and wearables"
+        }
+      ],
+      "strengths": [
+        "Complete supply chain ecosystem",
+        "Fast prototyping and high-volume production",
+        "Proximity to Hong Kong for logistics"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Jiangsu", "Zhejiang", "Shanghai"],
+      "share_of_industry": "28% of national output",
+      "specializations": [
+        "laptop and tablet manufacturing",
+        "display panels",
+        "smart home devices",
+        "semiconductors (IC design)",
+        "wearables (smart watches)"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shanghai",
+          "specialization": "IC design, R&D, premium smart home",
+          "supplier_example": "Xiaomi Smart Home R&D; also NIO (smart devices), but focus on electronics"
+        },
+        {
+          "city": "Kunshan (Jiangsu)",
+          "specialization": "Laptop/tablet assembly, display modules",
+          "supplier_example": "Wistron, Compal, Qisda (ODM for laptops), BOE display module plant"
+        },
+        {
+          "city": "Hangzhou (Zhejiang)",
+          "specialization": "Smart home, IoT devices",
+          "supplier_example": "Tuya Smart – IoT platform; also Tmall Genie (Alibaba)"
+        }
+      ],
+      "strengths": [
+        "Strong semiconductor and panel base",
+        "High-end manufacturing capability",
+        "Proximity to leading e-commerce companies"
+      ]
+    },
+    {
+      "region": "Chengdu-Chongqing (Western China)",
+      "provinces_cities": ["Sichuan", "Chongqing"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "laptop assembly",
+        "smartphone manufacturing",
+        "wearables",
+        "power banks"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chengdu",
+          "specialization": "Laptop and tablet assembly, IC design",
+          "supplier_example": "Foxconn Chengdu – iPad assembly; also Unisoc IC design center"
+        },
+        {
+          "city": "Chongqing",
+          "specialization": "Laptop assembly, smartphone manufacturing",
+          "supplier_example": "Vivo Chongqing plant; also HP, Acer laptop assembly by Compal"
+        }
+      ],
+      "strengths": [
+        "Lower labor costs",
+        "Government incentives for western development",
+        "Growing component supplier base"
+      ]
+    },
+    {
+      "region": "Beijing-Tianjin-Hebei",
+      "provinces_cities": ["Beijing", "Tianjin", "Hebei"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "R&D and design",
+        "AR/VR headsets",
+        "high-end audio",
+        "smart home hubs"
+      ],
+      "key_hubs": [
+        {
+          "city": "Beijing",
+          "specialization": "R&D, AR/VR, smart home",
+          "supplier_example": "PICO (ByteDance) – VR headsets; Xiaomi R&D"
+        },
+        {
+          "city": "Tianjin",
+          "specialization": "Laptop assembly (OEM)",
+          "supplier_example": "Foxconn Tianjin – servers and laptops"
+        }
+      ],
+      "strengths": [
+        "Strong R&D talent",
+        "Proximity to government policy makers",
+        "Emerging AR/VR cluster"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "smartphones": {
+      "description": "Includes flagship, mid-range, and budget smartphones, as well as foldable devices. China produces over 1 billion smartphones annually, accounting for 80% of global production.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "5G/6G adoption",
+        "Foldable and rollable displays",
+        "AI-powered camera and performance",
+        "Battery life improvement",
+        "Ecosystem integration (IoT)"
+      ],
+      "market_trends": "Consolidation of brands; shift to premium foldables; on-device AI; satellite connectivity.",
+      "domestic_brand_share": "85% of domestic market"
+    },
+    "wearables": {
+      "description": "Smart watches, fitness bands, smart rings, and AR glasses. Growing health monitoring features and seamless connectivity with smartphones.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Health awareness (ECG, blood pressure, blood glucose)",
+        "Integration with smartphones",
+        "Battery life improvements",
+        "Fashion and customization"
+      ],
+      "key_players": ["Huawei", "Xiaomi", "Zepp Health (Amazfit)", "BBK (Imoo)", "Oppo"]
+    },
+    "audio_devices": {
+      "description": "TWS earbuds, wireless headphones, soundbars, smart speakers. China dominates global audio production.",
+      "key_clusters": ["Pearl River Delta"],
+      "growth_drivers": [
+        "ANC (active noise cancellation) adoption",
+        "Spatial audio",
+        "Voice assistant integration",
+        "Gaming headsets"
+      ],
+      "market_trends": "LDAC/LHDC codecs; hearables with health sensors; AI noise reduction.",
+      "key_players": ["Edifier", "1MORE", "Soundcore (Anker)", "Xiaomi", "Huawei", "QCY"]
+    },
+    "smart_home_devices": {
+      "description": "Smart speakers, smart displays, smart lighting, smart plugs, home security cameras, smart appliances.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Matter protocol adoption",
+        "Voice control",
+        "Energy saving",
+        "Aging-in-place technology"
+      ],
+      "policy_support": [
+        "Smart home subsidy programs",
+        "IoT standardization"
+      ],
+      "key_players": ["Xiaomi", "Huawei", "Alibaba (Tmall Genie)", "JD (Jingyao)", "Tuya", "Aqara"]
+    },
+    "AR_VR": {
+      "description": "Virtual reality headsets, augmented reality glasses, mixed reality devices. Emerging growth segment.",
+      "key_clusters": ["Beijing-Tianjin-Hebei", "Pearl River Delta"],
+      "growth_drivers": [
+        "Metaverse applications",
+        "Enterprise training and simulation",
+        "Gaming",
+        "Remote collaboration"
+      ],
+      "market_trends": "Lightweight AR glasses; 5G streaming; inside-out tracking.",
+      "key_players": ["PICO (ByteDance)", "Nreal (XREAL)", "DPVR", "Xiaomi"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001 (baseline), ISO 14001, QC 080000 (RoHS), IATF 16949 (for automotive-grade products)"
+      },
+      {
+        "metric": "Product compliance",
+        "target": "CE, FCC, RoHS, REACH, WEEE, California Proposition 65, CCC"
+      },
+      {
+        "metric": "Manufacturing capability",
+        "target": "SMT lines, assembly automation, testing facilities, cleanroom if required"
+      },
+      {
+        "metric": "R&D capability",
+        "target": "In-house engineering, industrial design, software development"
+      },
+      {
+        "metric": "Supply chain transparency",
+        "target": "Component traceability, conflict minerals policy, sustainability report"
+      }
+    ],
+    "verification_methods": [
+      "Request ISO certificates and test reports (EMC, safety, environmental)",
+      "Order samples for functional testing, drop test, battery safety",
+      "Conduct factory audit (ESD control, quality process, labor conditions)",
+      "Review BOM and component sources",
+      "Check customer references and brand partnerships"
+    ],
+    "communication_best_practices": [
+      "Provide detailed product specifications (features, performance metrics, certifications required)",
+      "Discuss customization options (branding, packaging, software)",
+      "Clarify warranty and after-sales support",
+      "Establish quality agreement (AQL levels, inspection criteria)",
+      "Request references for similar products"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment. For large ODM projects: 30% deposit, 40% after sample approval, 30% before shipment.",
+    "lead_times": {
+      "prototypes": "15-30 days (for simple electronics)",
+      "samples": "20-40 days (including tooling for housing)",
+      "bulk_production": "30-60 days after sample approval"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for consumer electronics in China?",
+      "answer": "For standard products like power banks, MOQ can be 500-1000 units. For branded smartphones, MOQ may start at 1000-5000 units. For ODM projects, MOQ often relates to minimum order for custom tooling (e.g., 10,000 units per year). Some suppliers offer low MOQs for sample orders (50-200 units)."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom branding and packaging?",
+      "answer": "Yes, most suppliers offer OEM/ODM services. They can apply your logo on the product and create custom packaging (gift boxes, retail packaging). Minimum quantities for custom printing vary (500-2000 units)."
+    },
+    {
+      "question": "How can I ensure product safety (battery, charger)?",
+      "answer": "Request IEC 62133 (battery safety), UL 2054, or other relevant certifications. Suppliers should provide UN38.3 for lithium batteries. Use third-party testing labs (SGS, TÜV, Intertek) to verify compliance."
+    },
+    {
+      "question": "What is the best way to protect my design/IP when sourcing in China?",
+      "answer": "Sign an NDA before sharing sensitive information. Register your design patent in China (important!). Work with reputable suppliers, and consider using a sourcing agent to monitor production. Avoid sharing full BOM until trust is established."
+    },
+    {
+      "question": "Can I get software customization for my devices (e.g., custom UI)?",
+      "answer": "Yes, many ODMs offer software customization, including boot logo, UI themes, pre-installed apps, and localization. Discuss requirements early, as software development takes additional time."
+    }
+  ],
+  "glossary": {
+    "ANC": "Active Noise Cancellation – reduces ambient noise.",
+    "AP": "Application Processor – main CPU in a smartphone.",
+    "AR": "Augmented Reality – overlays digital content on real world.",
+    "BOM": "Bill of Materials – list of components.",
+    "CE": "Conformité Européenne – EU safety mark.",
+    "FCC": "Federal Communications Commission – US compliance.",
+    "IC": "Integrated Circuit – chip.",
+    "IoT": "Internet of Things – connected devices.",
+    "NRE": "Non-Recurring Engineering – one-time development cost.",
+    "ODM": "Original Design Manufacturer – designs and makes product for another brand.",
+    "OEM": "Original Equipment Manufacturer – makes product per specifications.",
+    "PCB": "Printed Circuit Board.",
+    "SMT": "Surface-Mount Technology – automated component placement.",
+    "TWS": "True Wireless Stereo – earbuds without wires.",
+    "VR": "Virtual Reality – immersive digital environment."
+  },
+  "factories": [
+    {"name": "Foxconn Shenzhen", "location": "Shenzhen, Guangdong", "specialization": "Smartphones, tablets, consumer electronics OEM", "capacity": "500,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "sales@foxconn.com"},
+    {"name": "BYD Electronics", "location": "Shenzhen, Guangdong", "specialization": "Smartphones, laptops, automotive electronics", "capacity": "300,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "IATF 16949"], "contact": "business@bydelectronics.com"},
+    {"name": "Luxshare Precision", "location": "Dongguan, Guangdong", "specialization": "Connectors, cables, AirPods assembly", "capacity": "200,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "sales@luxshare.com.cn"},
+    {"name": "Goertek Electronics", "location": "Weifang, Shandong", "specialization": "Acoustic components, VR headsets, smart speakers", "capacity": "150,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "business@goertek.com"},
+    {"name": "TCL Technology", "location": "Huizhou, Guangdong", "specialization": "TVs, displays, home appliances", "capacity": "100,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@tcl.com"},
+    {"name": "Hisense Manufacturing", "location": "Qingdao, Shandong", "specialization": "TVs, refrigerators, air conditioners", "capacity": "80,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "factory@hisense.com"},
+    {"name": "Skyworth Digital", "location": "Shenzhen, Guangdong", "specialization": "TVs, set-top boxes, displays", "capacity": "70,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "manufacturing@skyworth.com"},
+    {"name": "Haier Electronics", "location": "Qingdao, Shandong", "specialization": "Smart home appliances, IoT devices", "capacity": "120,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "factory@haier.com"},
+    {"name": "ZTE Manufacturing", "location": "Shenzhen, Guangdong", "specialization": "Smartphones, 5G equipment, routers", "capacity": "180,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "TL 9000"], "contact": "sales@zte.com.cn"},
+    {"name": "Huawei Device", "location": "Dongguan, Guangdong", "specialization": "Smartphones, tablets, wearables", "capacity": "250,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "manufacturing@huawei.com"},
+    {"name": "Xiaomi Manufacturing", "location": "Beijing", "specialization": "Smartphones, IoT devices, home appliances", "capacity": "200,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "factory@xiaomi.com"},
+    {"name": "OPPO Mobile", "location": "Dongguan, Guangdong", "specialization": "Smartphones, accessories", "capacity": "220,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "manufacturing@oppo.com"},
+    {"name": "vivo Manufacturing", "location": "Dongguan, Guangdong", "specialization": "Smartphones, accessories", "capacity": "210,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "factory@vivo.com.cn"},
+    {"name": "DJI Innovation", "location": "Shenzhen, Guangdong", "specialization": "Drones, gimbals, imaging systems", "capacity": "30,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@dji.com"},
+    {"name": "Hikvision Digital", "location": "Hangzhou, Zhejiang", "specialization": "Security cameras, surveillance systems", "capacity": "150,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "ISO 27001"], "contact": "factory@hikvision.com"},
+    {"name": "Dahua Technology", "location": "Hangzhou, Zhejiang", "specialization": "Security cameras, IoT devices", "capacity": "120,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "manufacturing@dahuatech.com"},
+    {"name": "TP-Link Technologies", "location": "Shenzhen, Guangdong", "specialization": "Routers, networking equipment", "capacity": "100,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "sales@tp-link.com"},
+    {"name": "Lenovo Manufacturing", "location": "Shenzhen, Guangdong", "specialization": "Laptops, tablets, PCs", "capacity": "80,000 units/day", "certifications": ["ISO 9001", "ISO 14001", "BSCI"], "contact": "factory@lenovo.com"},
+    {"name": "Acer Electronics", "location": "Suzhou, Jiangsu", "specialization": "Laptops, monitors, projectors", "capacity": "60,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "manufacturing@acer.com.cn"},
+    {"name": "Asus Technology", "location": "Suzhou, Jiangsu", "specialization": "Laptops, motherboards, graphics cards", "capacity": "50,000 units/day", "certifications": ["ISO 9001", "ISO 14001"], "contact": "factory@asus.com.cn"},
+    {"name": "Intel Products Chengdu", "location": "Chengdu, Sichuan", "specialization": "Semiconductor packaging, processors", "capacity": "Millions of units/month", "certifications": ["ISO 9001", "ISO 14001", "ISO 45001"], "contact": "sales@intel.com"},
+    {"name": "Samsung China Semiconductor", "location": "Xi'an, Shaanxi", "specialization": "NAND flash memory, SSDs", "capacity": "Millions of units/month", "certifications": ["ISO 9001", "ISO 14001", "ISO 45001"], "contact": "business@samsung.com"}
+  ]
+}

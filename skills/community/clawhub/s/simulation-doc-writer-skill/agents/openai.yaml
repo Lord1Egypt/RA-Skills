@@ -1,0 +1,4 @@
+interface:
+  display_name: "通信仿真文档写作"
+  short_description: "面向通信系统仿真的中文程序说明文档写作与审阅助手工具"
+  default_prompt: "Use $simulation-doc-writer to draft a Chinese communication simulation program specification."

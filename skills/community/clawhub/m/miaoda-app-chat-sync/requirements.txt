@@ -1,0 +1,6 @@
+# GitHub Code Sync Skill - Dependencies
+# Python 3.8+ required
+# Git must be installed and available in PATH
+
+# No additional Python packages required
+# This skill uses only Python standard library and Git CLI

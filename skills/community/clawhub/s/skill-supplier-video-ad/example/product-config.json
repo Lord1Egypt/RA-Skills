@@ -1,0 +1,52 @@
+{
+  "product_name": "Cool Gadget",
+  "price": "29.99 USD",
+  "output_name": "cool-gadget-ad-v1.mp4",
+  "font_path": "/path/to/Montserrat-Bold.ttf",
+  "source_videos": {
+    "main": "path/to/supplier-source.mp4",
+    "alt": "path/to/supplier-source-2.mp4"
+  },
+  "clean_zones": [
+    { "source": "main", "ss": 2.5,  "dur": 2.5, "slowmo": true,  "label": "hero-dark" },
+    { "source": "main", "ss": 8.0,  "dur": 2.0, "slowmo": false, "label": "lifestyle" },
+    { "source": "alt",  "ss": 3.0,  "dur": 3.0, "slowmo": false, "label": "detail-shot" }
+  ],
+  "text_overlays": [
+    {
+      "lines": ["Your Hook Here", "Second Line"],
+      "start": 0.5, "end": 3.5,
+      "fontsize": 70,
+      "y_pct": 0.62
+    },
+    {
+      "lines": ["Key Feature"],
+      "start": 3.8, "end": 6.5,
+      "fontsize": 70,
+      "y_pct": 0.62
+    },
+    {
+      "lines": ["SHOP NOW"],
+      "start": 6.8, "end": 9.5,
+      "fontsize": 92,
+      "y_pct": 0.66
+    },
+    {
+      "lines": ["yourstore.com"],
+      "start": 6.8, "end": 9.5,
+      "fontsize": 58,
+      "y_pct": 0.76
+    }
+  ],
+  "audio": "path/to/trending-sound.mp3",
+  "audio_start_offset": 2,
+  "audio_volume": 0.88,
+  "cta": {
+    "duration": 3,
+    "price": "29.99 USD",
+    "line1": "Link in bio  🛒",
+    "line2": "yourstore.com",
+    "bg_color": [8, 8, 14],
+    "logo_path": "path/to/logo.png"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "trump",
+  "slot": "01-trump",
+  "priority_order": 1,
+  "name": "Donald J. Trump",
+  "name_zh": "唐纳德·J·特朗普",
+  "name_zh_alt": ["特朗普", "川普"],
+  "official_numbers": [45, 47],
+  "terms": ["2017-01-20 to 2021-01-20", "2025-01-20 to present"],
+  "party": "Republican",
+  "party_zh": "共和党",
+  "status": "sitting",
+  "is_flagship": true,
+  "narrative_angle": "MAGA-supporter",
+  "created_at": "2026-04-07",
+  "updated_at": "2026-04-07",
+  "version": "v1.0.0",
+  "research_completed": [
+    "01-writings",
+    "02-conversations",
+    "03-expression-dna",
+    "04-external-views",
+    "05-decisions",
+    "06-timeline"
+  ],
+  "profile": {
+    "born": "1946-06-14",
+    "birthplace": "Queens, New York City, USA",
+    "occupation": ["Real Estate Developer", "Television Personality", "Author", "President of the United States"],
+    "education": "Wharton School of the University of Pennsylvania (B.S. in Economics, 1968)",
+    "family": {
+      "spouse": "Melania Trump",
+      "children": ["Donald Jr.", "Ivanka", "Eric", "Tiffany", "Barron"],
+      "grandchildren_count": 10
+    }
+  },
+  "tags": {
+    "political": ["Republican", "America First", "Make America Great Again", "MAGA", "Populist", "Nationalist"],
+    "communication": ["Twitter/X", "Truth Social", "Rally Style", "Direct", "Counter-Punch"],
+    "policy": ["Trade", "Tariffs", "Immigration", "Deregulation", "Energy Independence", "Tax Cuts"],
+    "leadership": ["Deal-Maker", "Outsider", "Brand-First", "Loyalty-Driven"]
+  },
+  "core_models": [
+    "The Art of the Deal — Everything Is Negotiation",
+    "America First — Universal Filter for All Decisions",
+    "Win at All Costs — Winner Culture",
+    "Counter-Punch Doctrine — Counterattack Is the Only Option",
+    "Drain the Swamp — Outsider Status Is an Asset"
+  ],
+  "trigger_words": [
+    "Trump",
+    "DJT",
+    "45",
+    "47",
+    "Make America Great Again",
+    "MAGA",
+    "America First",
+    "Art of the Deal",
+    "Drain the Swamp",
+    "Trump perspective",
+    "Trump mode",
+    "how would Trump",
+    "Trump would",
+    "what would Trump do",
+    "if Trump were here"
+  ],
+  "description": "Donald J. Trump, the 45th / 47th President of the United States. Builder, deal-maker, TV star, political outsider who defeated the establishment and 16 Republican opponents to win in 2016; returned in 2024 amid 91 indictments, two assassination attempts, and full-system opposition. Founder of the MAGA movement, reshaper of the Republican Party, and standard-bearer of modern populist politics."
+}

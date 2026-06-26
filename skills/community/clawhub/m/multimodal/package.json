@@ -1,0 +1,25 @@
+{
+  "name": "multimodal",
+  "version": "1.0.0",
+  "description": "使用GLM-4.6V模型进行多模态内容理解（图片、视频、文档）",
+  "main": "scripts/analyze.py",
+  "scripts": {
+    "analyze": "python3 scripts/analyze.py"
+  },
+  "keywords": [
+    "multimodal",
+    "vision",
+    "video",
+    "image",
+    "ocr",
+    "glm",
+    "zhipu",
+    "ai"
+  ],
+  "author": "ibes",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "python": ">=3.8"
+  }
+}

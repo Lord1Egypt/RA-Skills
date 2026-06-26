@@ -1,0 +1,239 @@
+{
+  "tutorial_id": "solo_first_run",
+  "title": "First Time Setup: Environment → Calibration → Teleop",
+  "description": "Complete first-run flow for a new Solo CLI user. Covers env setup, install, motor configuration, calibration, and first teleop session.",
+  "domains_used": ["environment", "device", "teleoperation"],
+  "entry_point": "detect_os",
+
+  "nodes": {
+    "detect_os": {
+      "type": "branch",
+      "instruction": "What operating system are you on?",
+      "branches": {
+        "macos": "install_uv_mac",
+        "linux": "install_uv_linux",
+        "windows": "install_uv_windows"
+      }
+    },
+
+    "install_uv_mac": {
+      "type": "action",
+      "action": "install_uv",
+      "params": { "os_platform": "macos" },
+      "instruction": "Run this to install the uv package manager. It's fast and handles Python versions automatically.",
+      "on_success": "create_venv",
+      "on_failure": {
+        "error": "curl not found",
+        "recovery": "install_homebrew_first",
+        "fallback": "manual_uv_install"
+      }
+    },
+
+    "install_uv_linux": {
+      "type": "action",
+      "action": "install_uv",
+      "params": { "os_platform": "linux" },
+      "instruction": "Run this to install uv on Linux.",
+      "on_success": "setup_usb_linux",
+      "on_failure": { "recovery": "manual_uv_install" }
+    },
+
+    "setup_usb_linux": {
+      "type": "action",
+      "action": "setup_usb_permissions",
+      "instruction": "On Linux, you need to grant serial port access for the robot arm. Run this once and then log out and back in.",
+      "on_success": "create_venv",
+      "on_failure": { "recovery": "check_sudo_access" }
+    },
+
+    "install_uv_windows": {
+      "type": "action",
+      "action": "install_uv",
+      "params": { "os_platform": "windows" },
+      "instruction": "Run this in PowerShell (as admin if needed).",
+      "on_success": "create_venv",
+      "on_failure": { "recovery": "manual_uv_install" }
+    },
+
+    "create_venv": {
+      "type": "action",
+      "action": "create_venv",
+      "instruction": "Create an isolated Python 3.12 environment. This keeps solo-cli dependencies separate from the rest of your system.",
+      "on_success": "activate_venv",
+      "on_failure": {
+        "error": "Python 3.12 not found",
+        "recovery": "uv will auto-fetch it — try again and wait for the download"
+      }
+    },
+
+    "activate_venv": {
+      "type": "action",
+      "action": "activate_venv",
+      "instruction": "Activate the venv. Your terminal prompt should show (.venv) after this.",
+      "validation_prompt": "Do you see (.venv) at the start of your terminal prompt?",
+      "on_success": "install_solo_cli",
+      "on_failure": {
+        "error": "No prompt change",
+        "recovery": "Ensure you're in the same directory where you ran uv venv. Try: ls .venv/"
+      }
+    },
+
+    "install_solo_cli": {
+      "type": "branch",
+      "instruction": "How do you want to install solo-cli? Recommended: GitHub source install (gets you the latest code and lets you stay up to date with pulls).",
+      "branches": {
+        "source": "install_from_source",
+        "mac_script": "install_mac_script",
+        "pypi": "install_from_pypi"
+      }
+    },
+
+    "install_from_source": {
+      "type": "action",
+      "action": "install_solo_cli",
+      "params": { "install_method": "from_source" },
+      "instruction": "Clone solo-cli from GitHub and install in editable mode. Run: git clone https://github.com/GetSoloTech/solo-cli.git && cd solo-cli && uv pip install -e .\n\nEditable mode means updates are as simple as `git pull` — no reinstall needed.",
+      "on_success": "verify_install",
+      "on_failure": { "recovery": "ensure_venv_activated" }
+    },
+
+    "install_mac_script": {
+      "type": "action",
+      "action": "install_solo_cli",
+      "params": { "install_method": "from_source" },
+      "instruction": "Run the Mac automated installer: ./install_mac.sh — this clones from GitHub and installs from source in editable mode automatically.",
+      "on_success": "verify_install",
+      "on_failure": { "recovery": "ensure_venv_activated" }
+    },
+
+    "install_from_pypi": {
+      "type": "action",
+      "action": "install_solo_cli",
+      "params": { "install_method": "from_pypi" },
+      "instruction": "Install solo-cli from PyPI: uv pip install solo-cli\n\nNote: this installs a release snapshot. For the latest code, use the GitHub source method instead.",
+      "on_success": "verify_install",
+      "on_failure": { "recovery": "ensure_venv_activated" }
+    },
+
+    "verify_install": {
+      "type": "validation",
+      "instruction": "Let's confirm solo-cli is installed. Run: solo --help",
+      "validation": {
+        "type": "command_check",
+        "rule": "Output must list commands including: setup, robo, serve, status, list, test, stop, download, setup-usb"
+      },
+      "on_success": "check_arm_motors",
+      "on_failure": { "recovery": "activate_venv — solo may not be in PATH if venv is inactive" }
+    },
+
+    "check_arm_motors": {
+      "type": "branch",
+      "instruction": "Did your arm come pre-configured from Solo Tech? (Most do)",
+      "branches": {
+        "yes_preconfigured": "calibrate_all",
+        "no_need_motor_setup": "setup_motors_all",
+        "not_sure": "try_calibrate_first"
+      }
+    },
+
+    "try_calibrate_first": {
+      "type": "action",
+      "action": "calibrate_arm",
+      "params": { "scope": "all" },
+      "instruction": "Open terminal popup with scope='all'. If the terminal output shows a 'missing motor ids' error, proceed to setup_motors_all. Otherwise confirm success.",
+      "on_success": "teleop_ready",
+      "on_failure": {
+        "error": "missing motor ids",
+        "recovery": "setup_motors_all"
+      }
+    },
+
+    "setup_motors_all": {
+      "type": "action",
+      "action": "setup_motors",
+      "params": { "scope": "all" },
+      "instruction": "Open terminal popup immediately (no pre-flight needed — scope is 'all'). Tell user the terminal will ask them to unplug and replug each arm for port detection — follow prompts exactly.",
+      "on_success": "calibrate_all",
+      "on_failure": {
+        "error": "Port detection failed",
+        "recovery": "scan_motors_diagnostic"
+      }
+    },
+
+    "scan_motors_diagnostic": {
+      "type": "action",
+      "action": "scan_motors",
+      "instruction": "Let's scan what's visible on serial ports to diagnose the issue.",
+      "on_success": "setup_motors_all",
+      "on_failure": {
+        "recovery": "check_hardware_connections",
+        "message": "Check: USB cable to arm, power supply voltage (12V follower, 5V leader), and all 3-pin motor cables are seated"
+      }
+    },
+
+    "calibrate_all": {
+      "type": "action",
+      "action": "calibrate_arm",
+      "params": { "scope": "all" },
+      "instruction": "Open terminal popup immediately (scope is 'all', no pre-flight needed). Tell user the terminal will ask them to move each joint to its limit and press Enter — keep workspace clear and move slowly.",
+      "on_success": "teleop_ready",
+      "on_failure": {
+        "error": "Single arm failed",
+        "recovery": "calibrate_failed_arm_only",
+        "message": "Can re-run calibration for just the arm that failed"
+      }
+    },
+
+    "calibrate_failed_arm_only": {
+      "type": "branch",
+      "instruction": "Which arm failed calibration?",
+      "branches": {
+        "leader": "calibrate_leader_only",
+        "follower": "calibrate_follower_only"
+      }
+    },
+
+    "calibrate_leader_only": {
+      "type": "action",
+      "action": "calibrate_arm",
+      "params": { "scope": "leader" },
+      "instruction": "Open terminal popup with scope='leader'. Tell user to follow on-screen joint movement prompts.",
+      "on_success": "teleop_ready",
+      "on_failure": {
+        "recovery": "scan_motors_diagnostic",
+        "message": "If calibration fails again, run scan_motors via Shell tool to check hardware"
+      }
+    },
+
+    "calibrate_follower_only": {
+      "type": "action",
+      "action": "calibrate_arm",
+      "params": { "scope": "follower" },
+      "instruction": "Open terminal popup with scope='follower'. Tell user to follow on-screen joint movement prompts.",
+      "on_success": "teleop_ready",
+      "on_failure": {
+        "recovery": "scan_motors_diagnostic",
+        "message": "If calibration fails again, run scan_motors via Shell tool to check hardware"
+      }
+    },
+
+    "teleop_ready": {
+      "type": "action",
+      "action": "start_teleop",
+      "instruction": "Apply PRE-FLIGHT PROTOCOL: if robot type, leader arm ID, or follower arm ID are unknown, ask all of them in ONE message. Check ~/.solo/ via Shell tool if arm IDs are unclear. Then construct the full teleop command with all params as flags and open terminal popup. Tell user: move the leader arm and the follower will mirror it — press Ctrl+C in the terminal to stop.",
+      "validation_prompt": "Does the follower arm move when you move the leader?",
+      "on_success": "tutorial_complete",
+      "on_failure": {
+        "error": "Connection error",
+        "message": "Tool auto-retries port detection once. Executor will run solo robo --scan if still failing.",
+        "recovery": "scan_motors_diagnostic"
+      }
+    },
+
+    "tutorial_complete": {
+      "type": "terminal",
+      "instruction": "You've completed the first-run setup. You can now record datasets with: solo robo --record",
+      "next_tutorials": ["solo_record_to_train"]
+    }
+  }
+}

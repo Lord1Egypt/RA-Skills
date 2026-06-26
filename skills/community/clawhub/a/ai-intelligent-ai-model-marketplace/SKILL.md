@@ -1,35 +1,51 @@
 ---
-name: "Ai Intelligent Ai Model Marketplace"
-description: "AI 模型市场，模型交易 + 模型评估。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-intelligent-ai-model-marketplace"
-sourceUrl: "https://clawhub.ai/skills/ai-intelligent-ai-model-marketplace"
+name: ai-intelligent-ai-model-marketplace
+version: 1.0.1
+description: AI 模型市场，模型交易 + 模型评估。
+metadata:
+  openclaw:
+    emoji: "🤖"
+    requires:
+      bins: []
 ---
 
-# Ai Intelligent Ai Model Marketplace
+# AI 智能模型市场
 
-> AI 模型市场，模型交易 + 模型评估。
+## 描述
+AI 模型市场，模型交易 + 模型评估。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-intelligent-ai-model-marketplace`
-- **Source URL:** [https://clawhub.ai/skills/ai-intelligent-ai-model-marketplace](https://clawhub.ai/skills/ai-intelligent-ai-model-marketplace)
+## 功能
+- 模型上架（模型发布）
+- 模型评估（性能评估）
+- 模型交易（在线交易）
+- 模型部署（一键部署）
+- 收益分成（自动结算）
 
-## Overview
+## 定价
+- 基础版：¥199/月（10 模型）
+- 专业版：¥999/月（100 模型）
+- 企业版：¥2999/月（无限模型）
 
+## 适用场景
+- 模型交易
+- 模型分享
+- 模型评估
+- 模型部署
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 技术栈
+- Python + FastAPI
+- 模型存储
+- 交易系统
+- 部署引擎
+
+## 安装
 ```bash
-hermes skills install clawhub/ai-intelligent-ai-model-marketplace
+git clone https://github.com/openclaw-skills/ai-intelligent-ai-model-marketplace
+cd ai-intelligent-ai-model-marketplace
+pip install -r requirements.txt
+python app.py
 ```
+
+---
+创建：2026-03-13
+作者：OpenClaw Skills Team

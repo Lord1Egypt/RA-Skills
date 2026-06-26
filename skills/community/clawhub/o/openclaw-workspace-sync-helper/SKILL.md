@@ -1,35 +1,53 @@
+# OpenClaw Workspace Sync Helper
+
+## Skill 类型
+运维 / 开发辅助（DevOps Helper）
+
+## 简介
+本 Skill 用于指导用户将 **云端 OpenClaw 工作区**
+安全、实时地同步到本地电脑进行开发、调试或备份。
+
+Skill 不会自动执行任何系统命令，
+而是根据用户环境生成 **可复制执行的同步方案与命令**。
+
 ---
-name: "OpenClaw 云端工作区同步助手"
-description: "提供针对云端 OpenClaw 工作区到本地的安全实时同步方案及命令，支持多系统与同步方式选择。"
-category: "devops"
-source: "ClawHub"
-tags: [devops, openclaw, sync, workspace]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-workspace-sync-helper"
-sourceUrl: "https://clawhub.ai/skills/openclaw-workspace-sync-helper"
+
+## 适用场景
+- 云端 OpenClaw 开发，本地查看 / 编辑文件
+- Skill 开发调试
+- 工作区实时同步
+- 云端 → 本地备份
+
 ---
 
-# OpenClaw 云端工作区同步助手
+## 支持的同步方案
 
-> 提供针对云端 OpenClaw 工作区到本地的安全实时同步方案及命令，支持多系统与同步方式选择。
+### 方案一：rsync + inotify（Linux / Mac）
+适合服务器端 Linux，追求高性能与实时性。
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-workspace-sync-helper`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-workspace-sync-helper](https://clawhub.ai/skills/openclaw-workspace-sync-helper)
+### 方案二：sshfs 挂载
+将云端工作区挂载为本地目录，像操作本地文件一样使用。
 
-## Overview
+### 方案三：Syncthing
+P2P 实时同步，适合多设备或隐私要求高的用户。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-workspace-sync-helper
-```
+## 使用方式
+用户只需描述：
+- 云端系统（Linux）
+- 本地系统（Mac / Windows / Linux）
+- 是否需要实时同步
+- 是否可接受后台常驻进程
+
+Skill 将生成：
+- 推荐同步方案
+- 完整命令示例
+- 注意事项与风险提示
+
+---
+
+## 安全声明
+- 本 Skill 不读取、不修改用户系统
+- 不执行任何自动化命令
+- 所有操作需用户手动确认并执行

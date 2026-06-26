@@ -1,0 +1,42 @@
+﻿{
+  "skill_name": "meeting-to-text",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把 D:\\APP\\meeting to text\\models\\SenseVoiceSmall\\example\\en.mp3 转成带说话人标签的 txt，输出到 D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\eval-artifacts\\audio",
+      "expected_output": "Use the audio input directly, create a transcript txt in the requested directory, and report that only one speaker was detected.",
+      "files": [
+        "D:\\APP\\meeting to text\\models\\SenseVoiceSmall\\example\\en.mp3"
+      ],
+      "expectations": [
+        "Creates D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\eval-artifacts\\audio\\en_transcript.txt",
+        "The transcript contains the speaker label 说话人1",
+        "The final JSON warning list includes only one speaker detected"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "把 D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\smoke\\video\\en_source.mp4 转成区分发言人的 txt，输出到 D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\eval-artifacts\\video\\final.txt",
+      "expected_output": "Extract real audio from the video, write the transcript to the exact final txt path, and keep the result local.",
+      "files": [
+        "D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\smoke\\video\\en_source.mp4"
+      ],
+      "expectations": [
+        "Creates D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\eval-artifacts\\video\\final.txt",
+        "The transcript file is not empty",
+        "The final JSON output_path equals the exact requested final txt path"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "把 D:\\APP\\meeting to text\\data\\input\\missing_meeting.wav 转成会议逐字稿，输出到 D:\\APP\\meeting to text\\meeting-to-text-skill-workspace\\eval-artifacts\\invalid",
+      "expected_output": "Fail clearly because the source path does not exist and do not pretend the transcript was created.",
+      "files": [],
+      "expectations": [
+        "The command exits with a non-zero status",
+        "The final JSON status is error",
+        "The warning text says the input file does not exist"
+      ]
+    }
+  ]
+}

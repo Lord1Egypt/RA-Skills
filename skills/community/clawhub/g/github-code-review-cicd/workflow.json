@@ -1,0 +1,142 @@
+{
+  "$schema": "https://clawhub.com/schema/combo/v1.json",
+  "name": "GitHub 智能代码审查与 CI/CD 自动化",
+  "name_en": "GitHub Code Review & CI/CD Automation",
+  "version": "1.0.0",
+  "description": "三技能协同：GitHub 信息获取 → AI 代码审查（bug/安全/逻辑） → 智能生成 GitHub Actions CI/CD 工作流。实现代码审查与自动化部署的完整闭环。",
+  "scenario": "GitHub PR/提交代码审查 + 自动生成 CI/CD 工作流",
+  "trigger": [
+    "review PR",
+    "代码审查",
+    "生成 CI/CD",
+    "GitHub Actions 自动生成",
+    "代码质量检查",
+    "PR review",
+    "GitHub code review",
+    "generate CI/CD workflow"
+  ],
+  "skills": [
+    {
+      "name": "github",
+      "slug": "github",
+      "version": "1.0.0",
+      "role": "data-source",
+      "purpose": "通过 gh CLI 获取仓库信息、PR 详情、提交记录、变更文件列表，为代码审查提供完整上下文"
+    },
+    {
+      "name": "quack-code-review",
+      "slug": "quack-code-review",
+      "version": "1.0.0",
+      "role": "analysis",
+      "purpose": "AI 驱动的代码审查，检测 Bug、安全漏洞、逻辑问题、代码质量缺陷，并输出结构化审查报告"
+    },
+    {
+      "name": "github-actions-generator",
+      "slug": "github-actions-generator",
+      "version": "1.0.0",
+      "role": "code-generation",
+      "purpose": "根据项目技术栈和审查结果，智能生成或推荐 GitHub Actions 工作流（CI/CD/安全扫描/部署）"
+    }
+  ],
+  "flow": {
+    "stage_1": {
+      "name": "信息收集",
+      "skill": "github",
+      "actions": [
+        "gh pr view <pr-number> --repo <owner/repo> --json title,body,files,additions,deletions,author,state",
+        "gh pr diff <pr-number> --repo <owner/repo> > pr-diff.txt",
+        "gh api repos/<owner>/<repo>/commits?per_page=5 --jq '.[].sha'",
+        "gh workflow list --repo <owner/repo>"
+      ],
+      "output": {
+        "pr_title": "PR 标题",
+        "pr_description": "PR 描述",
+        "changed_files": "变更文件列表",
+        "lines_added": "新增行数",
+        "lines_deleted": "删除行数",
+        "author": "作者",
+        "current_ci_status": "当前 CI 状态"
+      }
+    },
+    {
+      "stage_2": {
+        "name": "AI 代码审查",
+        "skill": "quack-code-review",
+        "actions": [
+          "读取 pr-diff.txt 内容",
+          "分析代码变更，检测 bug/安全/逻辑问题",
+          "输出结构化审查报告"
+        ],
+        "output": {
+          "critical_issues": "严重问题列表",
+          "warnings": "建议改进列表",
+          "passed_checks": "通过检查项",
+          "security_issues": "安全问题",
+          "review_score": "代码质量评分"
+        }
+      },
+      {
+        "stage_3": {
+          "name": "CI/CD 工作流生成",
+          "skill": "github-actions-generator",
+          "actions": [
+            "分析项目技术栈（根据变更文件推断语言/框架）",
+            "如有关键安全问题 → 生成 security.yml",
+            "生成 ci.yml（lint + test + build）",
+            "如涉及 Docker → 生成 docker.yml",
+            "如涉及部署 → 生成 cd.yml"
+          ],
+          "output": {
+            "workflow_files": [
+              ".github/workflows/ci.yml",
+              ".github/workflows/security.yml（条件生成）",
+              ".github/workflows/cd.yml（条件生成）"
+            ],
+            "pr_comment": "审查报告 + 工作流建议写入 PR 评论"
+          }
+        }
+      }
+    },
+    "final_action": {
+      "type": "pr-comment",
+      "content": "代码审查报告 + 工作流生成结果",
+      "commands": [
+        "gh pr comment <pr-number> --repo <owner/repo> --body <review-report>"
+      ]
+    },
+    "error_handling": {
+      "stage_1_failure": "无法获取 PR 信息，提示用户检查 PR 链接或权限",
+      "stage_2_failure": "审查超时，返回部分结果并说明原因",
+      "stage_3_failure": "工作流生成失败，返回 CI/CD 模板手动参考"
+    }
+  },
+  "examples": [
+    {
+      "input": "帮我审查 https://github.com/facebook/react/pull/35000 并生成 CI/CD",
+      "flow": "stage_1 → stage_2 → stage_3",
+      "output": "审查报告 + CI.yml + security.yml + cd.yml"
+    },
+    {
+      "input": "review 这个 PR: microsoft/vscode#210000",
+      "flow": "stage_1 → stage_2",
+      "output": "结构化代码审查报告"
+    },
+    {
+      "input": "为我的 Python Flask 项目生成 GitHub Actions",
+      "flow": "stage_3 (跳过 stage_1/2)",
+      "output": "python.yml 工作流文件"
+    }
+  ],
+  "tags": [
+    "github",
+    "code-review",
+    "cicd",
+    "github-actions",
+    "automation",
+    "devops",
+    "security"
+  ],
+  "author": "openclaw-agent",
+  "created": "2026-04-14",
+  "license": "MIT"
+}

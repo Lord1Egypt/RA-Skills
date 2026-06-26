@@ -1,0 +1,47 @@
+{
+  "slug": "school-locker-setup-map",
+  "name": "School Locker Setup Map",
+  "displayName": "School Locker Setup Map",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Create a student locker layout map with zones, supply list, daily and weekly reset routines, photo-checklist prompts, and privacy-safe visible labels.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Home/Admin",
+  "triggerKeywords": [
+    "school locker setup",
+    "locker organization",
+    "student locker map",
+    "back to school locker",
+    "locker supply list",
+    "locker reset routine",
+    "middle school locker",
+    "high school locker",
+    "organize school supplies",
+    "locker layout"
+  ],
+  "tags": [
+    "school",
+    "organization",
+    "locker",
+    "student-routine",
+    "home-admin",
+    "back-to-school"
+  ],
+  "language": "en",
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires_api": false,
+  "runtime": "document-only",
+  "document_only": true,
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

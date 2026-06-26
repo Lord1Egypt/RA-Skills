@@ -1,35 +1,39 @@
 ---
-name: "analyze-ci"
-description: "Analyze failed GitHub Action jobs for a pull request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fix-build-agentops-analyze-ci"
-sourceUrl: "https://clawhub.ai/skills/fix-build-agentops-analyze-ci"
+name: analyze-ci
+description: Analyze failed GitHub Action jobs for a pull request.
+allowed-tools:
+  - Bash(uv run skills analyze-ci:*)
 ---
 
-# analyze-ci
+# Analyze CI Failures
 
-> Analyze failed GitHub Action jobs for a pull request.
+This skill analyzes logs from failed GitHub Action jobs using Claude.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fix-build-agentops-analyze-ci`
-- **Source URL:** [https://clawhub.ai/skills/fix-build-agentops-analyze-ci](https://clawhub.ai/skills/fix-build-agentops-analyze-ci)
+## Prerequisites
 
-## Overview
+- **GitHub Token**: Auto-detected via `gh auth token`, or set `GITHUB_TOKEN` env var
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/fix-build-agentops-analyze-ci
+# Analyze all failed jobs in a PR
+uv run skills analyze-ci <pr_url>
+
+# Analyze specific job URLs directly
+uv run skills analyze-ci <job_url> [job_url ...]
+
+# Show debug info (tokens and costs)
+uv run skills analyze-ci <pr_url> --debug
+```
+
+Output: A concise failure summary with root cause, error messages, test names, and relevant log snippets.
+
+## Examples
+
+```bash
+# Analyze CI failures for a PR
+uv run skills analyze-ci https://github.com/mlflow/mlflow/pull/19601
+
+# Analyze specific job URLs directly
+uv run skills analyze-ci https://github.com/mlflow/mlflow/actions/runs/12345/job/67890
 ```

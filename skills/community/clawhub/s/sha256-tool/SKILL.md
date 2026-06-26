@@ -1,35 +1,20 @@
 ---
-name: "Sha256 Tool"
-description: "Compute SHA-256 cryptographic hash values for files and text. Use for secure data verification and integrity checks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sha256-tool"
-sourceUrl: "https://clawhub.ai/skills/sha256-tool"
+name: sha256-tool
+description: Compute SHA-256 cryptographic hash values for files and text. Use for secure data verification and integrity checks.
 ---
+# SHA256 - SHA-256 Hash Calculator
 
-# Sha256 Tool
+Generate 256-bit (32-byte) SHA-256 hash values. Industry-standard for file integrity verification, software distribution checksums, and data authentication.
 
-> Compute SHA-256 cryptographic hash values for files and text. Use for secure data verification and integrity checks.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sha256-tool`
-- **Source URL:** [https://clawhub.ai/skills/sha256-tool](https://clawhub.ai/skills/sha256-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sha256-tool
+sha256-tool [options] <file>
+```
+
+## Examples
+
+```bash
+sha256-tool downloaded.iso
+sha256-tool important.pdf
+echo "verify me" | sha256-tool
 ```

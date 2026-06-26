@@ -1,0 +1,3 @@
+interface:
+  display_name: "OpenClaw Network Diagnostics"
+  short_description: "Diagnose OpenClaw-to-Telegram network issues"

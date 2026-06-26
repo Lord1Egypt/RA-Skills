@@ -1,0 +1,10 @@
+{
+  "name": "doc-scraper",
+  "version": "1.0.0",
+  "description": "Documentation extraction and indexing with workspace-db integration",
+  "main": "SKILL.md",
+  "openclaw": {
+    "skill": true,
+    "category": "documentation"
+  }
+}

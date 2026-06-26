@@ -1,0 +1,5 @@
+{
+  "max_position_size": 100,
+  "max_daily_loss": 500,
+  "dry_run": false
+}

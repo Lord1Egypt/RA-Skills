@@ -1,0 +1,80 @@
+{
+  "emoji": "📈",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aionmarket-sdk"],
+    "env": ["AION_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "Your AION SDK API key from https://pm-t1.bxingupdate.com/agents"
+    },
+    {
+      "name": "AION_BASE_URL",
+      "required": false,
+      "description": "AION API base URL override (default: https://pm-t1.bxingupdate.com/bvapi)"
+    },
+    {
+      "name": "WALLET_ADDRESS",
+      "required": false,
+      "description": "Your wallet address for user-scoped briefing and live order submission"
+    },
+    {
+      "name": "AION_SIGNED_ORDER_JSON",
+      "required": false,
+      "description": "Pre-signed EIP712 order payload JSON string; required only for --live trading"
+    },
+    {
+      "name": "MARKET_QUERY",
+      "required": false,
+      "description": "Market search query filter (default: bitcoin)"
+    },
+    {
+      "name": "MODEL_PROBABILITY",
+      "required": false,
+      "description": "Fair YES probability estimate 0-1 (default: 0.60)"
+    },
+    {
+      "name": "MAX_MARKETS",
+      "required": false,
+      "description": "Max markets to scan per cycle (default: 25)"
+    },
+    {
+      "name": "MAX_STAKE_USD",
+      "required": false,
+      "description": "Max stake per trade in USD (default: 50)"
+    },
+    {
+      "name": "MIN_EDGE",
+      "required": false,
+      "description": "Minimum edge threshold to consider (default: 0.03)"
+    },
+    {
+      "name": "MAX_SLIPPAGE_PCT",
+      "required": false,
+      "description": "Max slippage tolerance fraction (default: 0.15)"
+    },
+    {
+      "name": "STARTING_BALANCE_USD",
+      "required": false,
+      "description": "Fallback bankroll for dry-run when account balance unavailable (default: 1000)"
+    },
+    {
+      "name": "AION_KELLY_MULTIPLIER",
+      "required": false,
+      "description": "Kelly fraction multiplier for risk control (default: 0.25)"
+    },
+    {
+      "name": "AION_MIN_EV",
+      "required": false,
+      "description": "Minimum expected value for Kelly sizing (default: 0.03)"
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "edge_trader.py"
+  }
+}

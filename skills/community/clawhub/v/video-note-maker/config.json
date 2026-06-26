@@ -1,0 +1,15 @@
+{
+  "whisper_model": "small",
+  "language": "zh",
+  "segment_duration": 900,
+  "audio_quality": {
+    "sample_rate": 44100,
+    "channels": 2,
+    "format": "pcm_s16le"
+  },
+  "temp_dir": "tmp",
+  "output_dir": "done",
+  "detailed_mode": true,
+  "feishu_webhook": "",
+  "description": "视频转笔记工具 - 支持飞书实时进度展示"
+}

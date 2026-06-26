@@ -1,0 +1,35 @@
+plugin_job:
+  mode: native-provider-plugin
+  identity:
+    name: acme-model-provider
+    display_name: ACME Model Provider
+    plugin_id: acme-model-provider
+    folder_name: acme-model-provider
+  summary:
+    purpose: >-
+      Add a provider integration for ACME hosted models using API-key authentication.
+    target_runtime_role: Provider plugin.
+  behavior:
+    public_surface:
+      - Registers one provider namespace for ACME chat and embedding models.
+    constraints:
+      - Use environment variables for credentials.
+    side_effects:
+      - Outbound HTTPS requests.
+  configuration:
+    env_vars:
+      - ACME_API_KEY
+    config_fields:
+      - name: apiBase
+        type: string
+        required: false
+        description: Optional API base URL override.
+      - name: timeoutMs
+        type: number
+        required: false
+        description: Optional request timeout.
+  output_preferences:
+    language: typescript
+    module_system: esm
+    include_tests: false
+    include_env_example: true

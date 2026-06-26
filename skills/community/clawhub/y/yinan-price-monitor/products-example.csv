@@ -1,0 +1,4 @@
+url,selector,name,min_price,max_price
+https://www.amazon.com/dp/B08N5WRWNW,.a-price-whole,Sony WH-1000XM4 Headphones,200,350
+https://www.bestbuy.com/site/6428305/6428305.p,.priceView-hero-price,Apple AirPods Pro,150,250
+https://www.target.com/p/apple-airpods-pro/-/A-54191097,[data-test="product-price"],Apple AirPods Pro (Target),150,250

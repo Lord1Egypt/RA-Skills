@@ -1,0 +1,41 @@
+{
+  "name": "AI投资分析助手",
+  "slug": "ai-investment-analyzer",
+  "version": "1.0.0",
+  "description": "AI投资分析与决策助手，为用户提供股票、加密货币、房地产投资的分析和建议。支持实时数据分析、风险评估、投资策略优化。",
+  "author": "AI财经助手团队",
+  "tags": ["finance", "investment", "stock", "crypto", "analysis", "ai"],
+  "category": "business",
+  "license": "MIT",
+  "homepage": "https://github.com/AIFinanceAssistant/ai-investment-analyzer",
+  "repository": "https://github.com/AIFinanceAssistant/ai-investment-analyzer",
+  "keywords": ["finance", "investment", "stock", "crypto", "real-estate", "ai-analysis", "risk-assessment"],
+  "language": "node",
+  "compatibility": {
+    "node": ">=14",
+    "openclaw": ">=2026.1.0"
+  },
+  "dependencies": [],
+  "scripts": {
+    "analyze": "node analyzer.js analyze",
+    "portfolio": "node analyzer.js portfolio",
+    "risk": "node analyzer.js risk",
+    "forecast": "node analyzer.js forecast"
+  },
+  "pricing": {
+    "free": {
+      "features": ["基本数据分析", "风险等级评估", "简单投资建议", "5次/天的使用限制"]
+    },
+    "pro": {
+      "price": "$9.99/month",
+      "features": ["高级预测模型", "个性化投资策略", "实时数据API接入", "无使用限制"]
+    },
+    "enterprise": {
+      "price": "$49.99/month",
+      "features": ["多资产投资组合优化", "团队协作功能", "定制数据接口", "优先级支持"]
+    }
+  },
+  "supportedPlatforms": ["openclaw"],
+  "documentation": "README.md",
+  "changelog": "CHANGELOG.md"
+}

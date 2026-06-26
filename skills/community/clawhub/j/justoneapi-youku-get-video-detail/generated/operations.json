@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/youku/get-video-detail/v1 for YOUKU Video Details through JustOneAPI with videoId.",
+  "displayName": "YOUKU Video Details",
+  "endpointPath": "get-video-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get YOUKU video Details data, including video ID, title, and description, for fetching comprehensive metadata for a single video, tracking engagement metrics like play counts and likes, and integrating detailed video info into third-party dashboards.",
+      "method": "GET",
+      "operationId": "getYoukuVideoDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for the video.",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/youku/get-video-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "YOUKU"
+      ]
+    }
+  ],
+  "platformKey": "youku",
+  "primaryTag": "YOUKU",
+  "skillName": "justoneapi_youku_get_video_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-youku-get-video-detail",
+  "sourceTitle": "OpenAPI definition"
+}

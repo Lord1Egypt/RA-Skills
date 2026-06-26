@@ -1,0 +1,24 @@
+{
+  "name": "mal-anime-tracker",
+  "version": "1.8.11",
+  "description": "Track anime/manga lists on MyAnimeList (MAL) and receive automatic notifications via OpenClaw/Telegram.",
+  "author": "Joseph",
+  "main": "api.py",
+  "python": {
+    "dependencies": [
+      "requests==2.31.0",
+      "python-dotenv==1.0.0"
+    ]
+  },
+  "env": {
+    "ACCESS_TOKEN": { "description": "OAuth2 access token for MAL API" },
+    "REFRESH_TOKEN": { "description": "OAuth2 refresh token for MAL API" },
+    "CLIENT_ID": { "description": "MAL Application Client ID" },
+    "CLIENT_SECRET": { "description": "MAL Application Client Secret" }
+  },
+  "capabilities": [
+    "auth.oauth2",
+    "network.external",
+    "notify.message"
+  ]
+}

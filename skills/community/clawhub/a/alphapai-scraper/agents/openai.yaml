@@ -1,0 +1,7 @@
+interface:
+  display_name: "AlphaPai 评论抓取"
+  short_description: "抓取或检索 AlphaPai 点评并生成摘要"
+  default_prompt: "Use $alphapai-scraper to log into AlphaPai, scrape recent comments or query the indexed archive with hybrid retrieval, then generate a mobile-friendly summary."
+
+policy:
+  allow_implicit_invocation: true

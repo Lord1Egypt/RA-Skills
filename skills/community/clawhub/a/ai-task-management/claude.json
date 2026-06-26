@@ -1,0 +1,42 @@
+{
+  "name": "task-management",
+  "description": "零依赖、高性能的任务管理技能。当用户需要创建、查询、更新、删除任务或获取任务统计时使用此技能。",
+  "version": "0.4.3",
+  "command": "./task-skill",
+  "cwd": "~/.agents/skills/task-management",
+  "input": {
+    "type": "json",
+    "schema": {
+      "function": {
+        "type": "string",
+        "enum": [
+          "create_task",
+          "query_tasks",
+          "claim_task",
+          "submit_initial_review",
+          "review_task",
+          "approve_task",
+          "cancel_task",
+          "get_task_detail",
+          "get_version",
+          "get_dashboard_stats",
+          "recycle_tasks"
+        ]
+      },
+      "parameters": {
+        "type": "object"
+      }
+    }
+  },
+  "output": {
+    "type": "json"
+  },
+  "triggers": [
+    "创建任务", "新建任务", "添加任务",
+    "查询任务", "查看任务", "我的任务",
+    "更新任务", "提交初审", "取消任务",
+    "任务统计", "任务概况",
+    "任务详情",
+    "回收任务"
+  ]
+}

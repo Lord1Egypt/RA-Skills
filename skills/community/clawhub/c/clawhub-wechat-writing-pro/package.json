@@ -1,0 +1,49 @@
+{
+  "name": "wechat-writing-pro",
+  "version": "2.0.0",
+  "description": "微信公众号专业写作+发布全栈技能包 - Markdown语法 + 爆款方法论 + 94种排版主题 + 完整发布流程",
+  "author": "JARVIS AI Agent",
+  "license": "MIT",
+  "keywords": [
+    "wechat",
+    "公众号",
+    "markdown",
+    "排版",
+    "写作",
+    "爆款",
+    "发布",
+    "publishing",
+    "content-creation",
+    "chinese"
+  ],
+  "category": "content-creation",
+  "emoji": "📝",
+  "skills": [
+    {
+      "name": "markdown-syntax",
+      "description": "Markdown 完整语法参考（38个知识点）",
+      "file": "knowledge/markdown-syntax-guide.md"
+    },
+    {
+      "name": "viral-writing",
+      "description": "爆款推文写作方法论（标题/结构/共鸣/评分）",
+      "file": "knowledge/viral-writing-methodology.md"
+    },
+    {
+      "name": "theme-catalog",
+      "description": "94种排版主题库（按场景/风格分类）",
+      "file": "knowledge/theme-catalog.md"
+    },
+    {
+      "name": "publishing-guide",
+      "description": "公众号完整发布指南（API/图片上传/草稿/发布/错误排查）",
+      "file": "knowledge/wechat-publishing-guide.md"
+    }
+  ],
+  "dependencies": {},
+  "config": {},
+  "changelog": {
+    "2.0.0": "集成完整发布功能：API接口、图片上传、草稿管理、发布流程、错误排查、最佳实践",
+    "1.0.0": "初始版本：Markdown语法 + 爆款写作 + 94种排版主题"
+  }
+}

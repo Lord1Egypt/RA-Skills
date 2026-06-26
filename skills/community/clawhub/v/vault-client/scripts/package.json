@@ -1,0 +1,10 @@
+{
+  "name": "vault-client",
+  "version": "1.0.0",
+  "description": "Hashicorp Vault client for OpenClaw agents",
+  "main": "vault.js",
+  "bin": { "vault": "./vault.js" },
+  "scripts": {},
+  "dependencies": {},
+  "engines": { "node": ">=18" }
+}

@@ -1,35 +1,66 @@
 ---
-name: "Book Dance Lessons"
-description: "Book dance-lessons services through Lokuli MCP. Use when user needs to find and book dance-lessons. Triggers on requests like "book a dance-lessons", "find dance-lessons near me", or any dance-lessons service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-dance-lessons"
-sourceUrl: "https://clawhub.ai/skills/book-dance-lessons"
+name: book-dance-lessons
+description: Book dance-lessons services through Lokuli MCP. Use when user needs to find and book dance-lessons. Triggers on requests like "book a dance-lessons", "find dance-lessons near me", or any dance-lessons service request.
 ---
 
-# Book Dance Lessons
+# uook dance lessons
 
-> Book dance-lessons services through Lokuli MCP. Use when user needs to find and book dance-lessons. Triggers on requests like "book a dance-lessons", "find dance-lessons near me", or any dance-lessons service request.
+Book dance-lessons services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-dance-lessons`
-- **Source URL:** [https://clawhub.ai/skills/book-dance-lessons](https://clawhub.ai/skills/book-dance-lessons)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-dance-lessons
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "dance-lessons",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

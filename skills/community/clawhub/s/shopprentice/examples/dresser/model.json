@@ -1,0 +1,92 @@
+{
+  "deps": [
+    {
+      "body": "Kick_Front",
+      "ref": "origin"
+    },
+    {
+      "body": "Kick_Left",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Kick_Right",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Kick_Back",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "BottomBoard",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Side_Left",
+      "ref": "BottomBoard"
+    },
+    {
+      "body": "Side_Right",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "TopBoard",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "BackPanel",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "dd_Front",
+      "ref": "BottomBoard"
+    },
+    {
+      "body": "dd_Back",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Left",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Right",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Bottom",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "Body5",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Body6",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "Body7",
+      "ref": "Kick_Back"
+    },
+    {
+      "body": "Body8",
+      "ref": "Kick_Back"
+    },
+    {
+      "body": "KB_F0",
+      "ref": "Kick_Front"
+    },
+    {
+      "body": "KB_L0",
+      "ref": "Kick_Left"
+    },
+    {
+      "body": "KB_R0",
+      "ref": "Kick_Right"
+    },
+    {
+      "body": "KB_B0",
+      "ref": "Kick_Back"
+    }
+  ]
+}

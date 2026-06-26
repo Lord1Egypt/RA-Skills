@@ -1,0 +1,135 @@
+{
+  "name": "Research Knowledge Graph",
+  "description": "Ontology for academic publications and researcher information",
+  "prefixes": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dc": "http://purl.org/dc/terms/",
+    "dbo": "http://dbpedia.org/ontology/",
+    "dbp": "http://dbpedia.org/property/",
+    "schema": "http://schema.org/"
+  },
+  "classes": [
+    {
+      "name": "Person",
+      "uri": "http://xmlns.com/foaf/0.1/Person",
+      "labels": ["Person", "人", "Researcher", "研究者"],
+      "synonyms": ["Individual", "Author", "科学家", "学者"]
+    },
+    {
+      "name": "Organization",
+      "uri": "http://schema.org/Organization",
+      "labels": ["Organization", "机构", "Company", "公司", "University", "大学"]
+    },
+    {
+      "name": "Paper",
+      "uri": "http://schema.org/ScholarlyArticle",
+      "labels": ["Paper", "论文", "Publication", "出版物", "Article", "文章"]
+    },
+    {
+      "name": "Conference",
+      "uri": "http://schema.org/Event",
+      "labels": ["Conference", "会议", "Workshop", "研讨会"]
+    },
+    {
+      "name": "ResearchField",
+      "uri": "http://dbpedia.org/ontology/AcademicSubject",
+      "labels": ["Research Field", "研究领域", "Topic", "主题"]
+    }
+  ],
+  "properties": [
+    {
+      "name": "name",
+      "uri": "http://xmlns.com/foaf/0.1/name",
+      "labels": ["name", "姓名", "title"],
+      "domain": "Person",
+      "range": "string"
+    },
+    {
+      "name": "founder",
+      "uri": "http://dbpedia.org/ontology/founder",
+      "labels": ["founder", "创始人", "founded by", "创立于"],
+      "domain": "Organization",
+      "range": "Person"
+    },
+    {
+      "name": "ceo",
+      "uri": "http://dbpedia.org/ontology/keyPerson",
+      "labels": ["CEO", "首席执行官", "leader", "领导者"],
+      "domain": "Organization",
+      "range": "Person"
+    },
+    {
+      "name": "author",
+      "uri": "http://purl.org/dc/terms/creator",
+      "labels": ["author", "作者", "written by", "撰写者"],
+      "domain": "Paper",
+      "range": "Person"
+    },
+    {
+      "name": "publishedIn",
+      "uri": "http://purl.org/dc/terms/isPartOf",
+      "labels": ["published in", "发表于", "venue"],
+      "domain": "Paper",
+      "range": "Conference"
+    },
+    {
+      "name": "researchField",
+      "uri": "http://purl.org/dc/terms/subject",
+      "labels": ["research field", "研究领域", "topic", "主题", "about"],
+      "domain": "Paper",
+      "range": "ResearchField"
+    },
+    {
+      "name": "affiliation",
+      "uri": "http://schema.org/affiliation",
+      "labels": ["affiliation", "所属机构", "works at", "工作于"],
+      "domain": "Person",
+      "range": "Organization"
+    },
+    {
+      "name": "citationCount",
+      "uri": "http://schema.org/citationCount",
+      "labels": ["citation count", "引用次数", "citations"],
+      "domain": "Paper",
+      "range": "integer"
+    }
+  ],
+  "relationships": [
+    {
+      "predicate": "http://dbpedia.org/ontology/founder",
+      "domain": "http://schema.org/Organization",
+      "range": "http://xmlns.com/foaf/0.1/Person",
+      "description": "Links an organization to its founder(s)"
+    },
+    {
+      "predicate": "http://purl.org/dc/terms/creator",
+      "domain": "http://schema.org/ScholarlyArticle",
+      "range": "http://xmlns.com/foaf/0.1/Person",
+      "description": "Links a paper to its author(s)"
+    },
+    {
+      "predicate": "http://purl.org/dc/terms/subject",
+      "domain": "http://schema.org/ScholarlyArticle",
+      "range": "http://dbpedia.org/ontology/AcademicSubject",
+      "description": "Links a paper to its research field/topic"
+    }
+  ],
+  "sample_entities": {
+    "persons": [
+      {"uri": "http://dbpedia.org/resource/Bill_Gates", "label": "Bill Gates", "labels_zh": "比尔·盖茨"},
+      {"uri": "http://dbpedia.org/resource/Paul_Allen", "label": "Paul Allen", "labels_zh": "保罗·艾伦"},
+      {"uri": "http://dbpedia.org/resource/Steve_Jobs", "label": "Steve Jobs", "labels_zh": "史蒂夫·乔布斯"},
+      {"uri": "http://dbpedia.org/resource/Elon_Musk", "label": "Elon Musk", "labels_zh": "埃隆·马斯克"}
+    ],
+    "organizations": [
+      {"uri": "http://dbpedia.org/resource/Microsoft", "label": "Microsoft", "labels_zh": "微软"},
+      {"uri": "http://dbpedia.org/resource/Apple_Inc.", "label": "Apple Inc.", "labels_zh": "苹果公司"},
+      {"uri": "http://dbpedia.org/resource/Tesla,_Inc.", "label": "Tesla, Inc.", "labels_zh": "特斯拉"}
+    ],
+    "research_fields": [
+      {"uri": "http://dbpedia.org/resource/Artificial_intelligence", "label": "Artificial Intelligence", "labels_zh": "人工智能"},
+      {"uri": "http://dbpedia.org/resource/Machine_learning", "label": "Machine Learning", "labels_zh": "机器学习"},
+      {"uri": "http://dbpedia.org/resource/Natural_language_processing", "label": "Natural Language Processing", "labels_zh": "自然语言处理"}
+    ]
+  }
+}

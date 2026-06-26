@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业财务分析工具 - 标准版</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 24px; font-weight: 700; }
+        .header p { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+        .pro-badge {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+        }
+        .pro-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5); }
+        
+        /* Main Container */
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            background: var(--card);
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .tab:hover { background: #f8fafc; color: var(--text); }
+        .tab.active { background: var(--primary); color: white; }
+        
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header h3 { font-size: 16px; font-weight: 600; }
+        .card-body { padding: 20px; }
+        
+        /* Input Form */
+        .input-section { display: none; }
+        .input-section.active { display: block; }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .form-group input {
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .year-header {
+            font-weight: 600;
+            color: var(--primary);
+            padding: 12px 0 8px;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        .year-column { display: none; }
+        .year-column.active { display: block; }
+        
+        /* Buttons */
+        .btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: #059669; }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
+        .btn-outline:hover { background: #f8fafc; }
+        .btn-group { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+        
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .metric-card h4 { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+        .metric-value { font-size: 24px; font-weight: 700; color: var(--primary); }
+        .metric-change { font-size: 12px; margin-top: 4px; }
+        .metric-change.positive { color: var(--success); }
+        .metric-change.negative { color: var(--danger); }
+        
+        /* Chart Container */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+        .chart-box {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .chart-box h3 { font-size: 15px; font-weight: 600; margin-bottom: 16px; }
+        .chart-wrapper { position: relative; height: 300px; }
+        
+        /* Table */
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td {
+            padding: 10px 12px;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+        .data-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: sticky;
+            top: 0;
+        }
+        .data-table th:first-child, .data-table td:first-child { text-align: left; }
+        .data-table tr:hover { background: #f8fafc; }
+        
+        /* Pro Banner */
+        .pro-banner {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .pro-banner h3 { color: #92400e; font-size: 18px; }
+        .pro-banner p { color: #a16207; font-size: 14px; margin-top: 4px; }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .footer a { color: var(--primary); text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chart-grid { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; gap: 12px; text-align: center; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { animation: fadeIn 0.3s ease; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div>
+                <h1>📊 企业财务分析工具</h1>
+                <p>输入财务数据 · 自动计算指标 · 可视化分析 · 趋势预测</p>
+            </div>
+            <a href="https://keto.bh-jk.com" target="_blank" class="pro-badge">🔓 解锁专业版</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('input')">📝 数据录入</button>
+            <button class="tab" onclick="switchTab('results')">📊 分析结果</button>
+            <button class="tab" onclick="switchTab('charts')">📈 可视化图表</button>
+            <button class="tab" onclick="switchTab('table')">📋 数据总表</button>
+        </div>
+
+        <!-- Pro Banner -->
+        <div class="pro-banner">
+            <div>
+                <h3>💎 想要更多功能？升级专业版！</h3>
+                <p>杜邦分析 · 同行对比 · 智能预测 · 一键导出报告 · 更多示例数据</p>
+            </div>
+            <a href="https://keto.bh-jk.com" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #f59e0b, #f97316);">立即升级 →</a>
+        </div>
+
+        <!-- Input Section -->
+        <div id="section-input" class="input-section active">
+            <div class="card">
+                <div class="card-header">
+                    <h3>📊 三大财务报表录入</h3>
+                    <div>
+                        <button class="btn btn-outline" onclick="loadExample()">📥 加载茅台示例</button>
+                        <button class="btn btn-outline" onclick="clearAll()">🗑️ 清空数据</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Year Selection -->
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: 500; margin-right: 12px;">选择分析年份：</label>
+                        <input type="number" id="year1" value="2021" style="width: 80px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;">
+                        <input type="number" id="year2" value="2022" style="width: 80px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;">
+                        <input type="number" id="year3" value="2023" style="width: 80px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;">
+                        <input type="number" id="year4" value="2024" style="width: 80px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;">
+                        <button class="btn btn-outline" onclick="updateYears()" style="margin-left: 12px;">确认年份</button>
+                    </div>
+
+                    <!-- Income Statement -->
+                    <h4 class="year-header">💰 利润表</h4>
+                    <div class="form-grid" id="income-form">
+                        <!-- Generated by JS -->
+                    </div>
+
+                    <!-- Balance Sheet -->
+                    <h4 class="year-header" style="margin-top: 24px;">🏦 资产负债表</h4>
+                    <div class="form-grid" id="balance-form">
+                        <!-- Generated by JS -->
+                    </div>
+
+                    <!-- Cash Flow Statement -->
+                    <h4 class="year-header" style="margin-top: 24px;">💧 现金流量表</h4>
+                    <div class="form-grid" id="cashflow-form">
+                        <!-- Generated by JS -->
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="analyze()">🚀 开始分析</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="section-results" class="input-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3>📊 核心财务指标</h3>
+                    <button class="btn btn-outline" onclick="switchTab('input')">← 返回修改数据</button>
+                </div>
+                <div class="card-body">
+                    <div class="results-grid" id="metrics-grid">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div id="section-charts" class="input-section">
+            <div class="chart-grid">
+                <div class="chart-box">
+                    <h3>📈 营业收入与净利润趋势</h3>
+                    <div class="chart-wrapper"><canvas id="chart-revenue"></canvas></div>
+                </div>
+                <div class="chart-box">
+                    <h3>📊 盈利能力指标</h3>
+                    <div class="chart-wrapper"><canvas id="chart-profitability"></canvas></div>
+                </div>
+                <div class="chart-box">
+                    <h3>🏦 资产负债结构</h3>
+                    <div class="chart-wrapper"><canvas id="chart-balance"></canvas></div>
+                </div>
+                <div class="chart-box">
+                    <h3>💧 现金流分析</h3>
+                    <div class="chart-wrapper"><canvas id="chart-cashflow"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div id="section-table" class="input-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3>📋 财务数据总表</h3>
+                </div>
+                <div class="card-body" style="overflow-x: auto;">
+                    <table class="data-table" id="data-table">
+                        <!-- Generated by JS -->
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>企业财务分析工具 · 标准版 | 专业版功能请访问 <a href="https://keto.bh-jk.com" target="_blank">keto.bh-jk.com</a></p>
+            <p style="margin-top: 8px; font-size: 12px; color: #94a3b8;">⚠️ 本工具仅供学习参考，不构成投资建议。数据准确性由使用者负责。</p>
+        </div>
+    </div>
+
+    <script>
+        // Data structure
+        let years = [2021, 2022, 2023, 2024];
+        let formData = {};
+        let charts = {};
+
+        const incomeItems = [
+            { key: 'revenue', label: '营业收入' },
+            { key: 'cost', label: '营业成本' },
+            { key: 'grossProfit', label: '毛利润' },
+            { key: 'operatingExpense', label: '期间费用' },
+            { key: 'operatingProfit', label: '营业利润' },
+            { key: 'netProfit', label: '净利润' }
+        ];
+        const balanceItems = [
+            { key: 'totalAssets', label: '总资产' },
+            { key: 'currentAssets', label: '流动资产' },
+            { key: 'totalLiabilities', label: '总负债' },
+            { key: 'currentLiabilities', label: '流动负债' },
+            { key: 'equity', label: '股东权益' }
+        ];
+        const cashflowItems = [
+            { key: 'operatingCashflow', label: '经营活动现金流' },
+            { key: 'investingCashflow', label: '投资活动现金流' },
+            { key: 'financingCashflow', label: '筹资活动现金流' }
+        ];
+
+        // Initialize form
+        function initForm() {
+            generateForm('income-form', incomeItems);
+            generateForm('balance-form', balanceItems);
+            generateForm('cashflow-form', cashflowItems);
+        }
+
+        function generateForm(containerId, items) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            years.forEach(year => {
+                const col = document.createElement('div');
+                col.className = 'form-group';
+                col.innerHTML = `<div class="year-column active"><strong>${year}年</strong></div>`;
+                items.forEach(item => {
+                    col.innerHTML += `
+                        <label>${item.label}</label>
+                        <input type="number" id="${containerId}-${item.key}-${year}" placeholder="单位：亿元" step="0.01">
+                    `;
+                });
+                container.appendChild(col);
+            });
+        }
+
+        function updateYears() {
+            years = [
+                parseInt(document.getElementById('year1').value),
+                parseInt(document.getElementById('year2').value),
+                parseInt(document.getElementById('year3').value),
+                parseInt(document.getElementById('year4').value)
+            ].filter(y => !isNaN(y));
+            initForm();
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.input-section').forEach(s => s.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`section-${tab}`).classList.add('active');
+        }
+
+        function getData() {
+            const data = {};
+            years.forEach(year => {
+                data[year] = {};
+                [...incomeItems, ...balanceItems, ...cashflowItems].forEach(item => {
+                    const input = document.getElementById(`income-form-${item.key}-${year}`) || 
+                                  document.getElementById(`balance-form-${item.key}-${year}`) ||
+                                  document.getElementById(`cashflow-form-${item.key}-${year}`);
+                    if (input) data[year][item.key] = parseFloat(input.value) || 0;
+                });
+            });
+            return data;
+        }
+
+        function loadExample() {
+            // 贵州茅台 2021-2024 数据（单位：亿元）
+            const moutai = {
+                2021: { revenue: 1061.14, cost: 91.24, grossProfit: 969.90, operatingExpense: 264.00, operatingProfit: 717.00, netProfit: 524.60, totalAssets: 2186.00, currentAssets: 1865.00, totalLiabilities: 682.00, currentLiabilities: 678.00, equity: 1504.00, operatingCashflow: 611.00, investingCashflow: -115.00, financingCashflow: -465.00 },
+                2022: { revenue: 1275.54, cost: 109.00, grossProfit: 1166.54, operatingExpense: 305.00, operatingProfit: 886.00, netProfit: 627.16, totalAssets: 2543.00, currentAssets: 2180.00, totalLiabilities: 782.00, currentLiabilities: 778.00, equity: 1761.00, operatingCashflow: 740.00, investingCashflow: -130.00, financingCashflow: -530.00 },
+                2023: { revenue: 1505.60, cost: 126.00, grossProfit: 1379.60, operatingExpense: 358.00, operatingProfit: 1050.00, netProfit: 747.34, totalAssets: 2980.00, currentAssets: 2580.00, totalLiabilities: 890.00, currentLiabilities: 885.00, equity: 2090.00, operatingCashflow: 880.00, investingCashflow: -150.00, financingCashflow: -610.00 },
+                2024: { revenue: 1740.00, cost: 145.00, grossProfit: 1595.00, operatingExpense: 410.00, operatingProfit: 1210.00, netProfit: 860.00, totalAssets: 3450.00, currentAssets: 3000.00, totalLiabilities: 1020.00, currentLiabilities: 1015.00, equity: 2430.00, operatingCashflow: 1020.00, investingCashflow: -180.00, financingCashflow: -700.00 }
+            };
+            years.forEach(year => {
+                if (moutai[year]) {
+                    Object.keys(moutai[year]).forEach(key => {
+                        const input = document.getElementById(`income-form-${key}-${year}`) || 
+                                      document.getElementById(`balance-form-${key}-${year}`) ||
+                                      document.getElementById(`cashflow-form-${key}-${year}`);
+                        if (input) input.value = moutai[year][key];
+                    });
+                }
+            });
+        }
+
+        function clearAll() {
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                if (!input.id.startsWith('year')) input.value = '';
+            });
+        }
+
+        function calculateMetrics(data) {
+            const metrics = {};
+            years.forEach(year => {
+                const d = data[year];
+                metrics[year] = {
+                    grossMargin: d.revenue > 0 ? (d.grossProfit / d.revenue * 100) : 0,
+                    netMargin: d.revenue > 0 ? (d.netProfit / d.revenue * 100) : 0,
+                    roe: d.equity > 0 ? (d.netProfit / d.equity * 100) : 0,
+                    roa: d.totalAssets > 0 ? (d.netProfit / d.totalAssets * 100) : 0,
+                    debtRatio: d.totalAssets > 0 ? (d.totalLiabilities / d.totalAssets * 100) : 0,
+                    currentRatio: d.currentLiabilities > 0 ? (d.currentAssets / d.currentLiabilities) : 0,
+                    cashProfitRatio: d.netProfit > 0 ? (d.operatingCashflow / d.netProfit) : 0
+                };
+            });
+            // YoY growth
+            for (let i = 1; i < years.length; i++) {
+                const prev = data[years[i-1]];
+                const curr = data[years[i]];
+                metrics[years[i]].revenueGrowth = prev.revenue > 0 ? ((curr.revenue - prev.revenue) / prev.revenue * 100) : 0;
+                metrics[years[i]].profitGrowth = prev.netProfit > 0 ? ((curr.netProfit - prev.netProfit) / prev.netProfit * 100) : 0;
+            }
+            return metrics;
+        }
+
+        function analyze() {
+            const data = getData();
+            const metrics = calculateMetrics(data);
+            renderMetrics(metrics);
+            renderCharts(data, metrics);
+            renderTable(data, metrics);
+            switchTabDirect('results');
+        }
+
+        function switchTabDirect(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.input-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab')[['input','results','charts','table'].indexOf(tab)].classList.add('active');
+            document.getElementById(`section-${tab}`).classList.add('active');
+        }
+
+        function renderMetrics(metrics) {
+            const grid = document.getElementById('metrics-grid');
+            const items = [
+                { key: 'grossMargin', label: '毛利率', unit: '%' },
+                { key: 'netMargin', label: '净利率', unit: '%' },
+                { key: 'roe', label: 'ROE', unit: '%' },
+                { key: 'debtRatio', label: '资产负债率', unit: '%' },
+                { key: 'currentRatio', label: '流动比率', unit: '' },
+                { key: 'cashProfitRatio', label: '现金流/净利润', unit: '' }
+            ];
+            grid.innerHTML = items.map(item => {
+                const values = years.map(y => metrics[y]?.[item.key]).filter(v => v !== undefined);
+                const latest = values[values.length - 1] || 0;
+                const change = values.length > 1 ? values[values.length - 1] - values[values.length - 2] : 0;
+                const changeClass = change > 0 ? 'positive' : (change < 0 ? 'negative' : '');
+                const changeText = change > 0 ? '↑' : (change < 0 ? '↓' : '→');
+                return `
+                    <div class="metric-card">
+                        <h4>${item.label}</h4>
+                        <div class="metric-value">${latest.toFixed(2)}${item.unit}</div>
+                        <div class="metric-change ${changeClass}">
+                            ${changeText} 同比变化 ${change > 0 ? '+' : ''}${change.toFixed(2)}${item.unit}
+                        </div>
+                        <div style="font-size: 11px; color: #94a3b8; margin-top: 8px;">
+                            ${years.map((y, i) => `${y}: ${values[i]?.toFixed(2)}${item.unit}`).join(' | ')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderCharts(data, metrics) {
+            // Destroy existing charts
+            Object.values(charts).forEach(c => c.destroy());
+            charts = {};
+
+            const labels = years.map(String);
+            const colors = { blue: '#3b82f6', green: '#10b981', purple: '#8b5cf6', orange: '#f59e0b', red: '#ef4444', cyan: '#06b6d4' };
+
+            // Revenue & Profit Chart
+            charts.revenue = new Chart(document.getElementById('chart-revenue'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '营业收入', data: years.map(y => data[y]?.revenue), backgroundColor: colors.blue + 'cc', borderRadius: 6 },
+                        { label: '净利润', data: years.map(y => data[y]?.netProfit), backgroundColor: colors.green + 'cc', borderRadius: 6 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+
+            // Profitability Chart
+            charts.profitability = new Chart(document.getElementById('chart-profitability'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '毛利率(%)', data: years.map(y => metrics[y]?.grossMargin), borderColor: colors.blue, tension: 0.3, fill: false },
+                        { label: '净利率(%)', data: years.map(y => metrics[y]?.netMargin), borderColor: colors.green, tension: 0.3, fill: false },
+                        { label: 'ROE(%)', data: years.map(y => metrics[y]?.roe), borderColor: colors.purple, tension: 0.3, fill: false }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+
+            // Balance Structure Chart
+            charts.balance = new Chart(document.getElementById('chart-balance'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '总资产', data: years.map(y => data[y]?.totalAssets), backgroundColor: colors.blue + 'cc' },
+                        { label: '总负债', data: years.map(y => data[y]?.totalLiabilities), backgroundColor: colors.red + 'cc' },
+                        { label: '股东权益', data: years.map(y => data[y]?.equity), backgroundColor: colors.green + 'cc' }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+
+            // Cash Flow Chart
+            charts.cashflow = new Chart(document.getElementById('chart-cashflow'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '经营现金流', data: years.map(y => data[y]?.operatingCashflow), borderColor: colors.green, backgroundColor: colors.green + '33', fill: true, tension: 0.3 },
+                        { label: '投资现金流', data: years.map(y => data[y]?.investingCashflow), borderColor: colors.red, tension: 0.3, fill: false },
+                        { label: '筹资现金流', data: years.map(y => data[y]?.financingCashflow), borderColor: colors.orange, tension: 0.3, fill: false }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+            });
+        }
+
+        function renderTable(data, metrics) {
+            const table = document.getElementById('data-table');
+            let html = '<thead><tr><th>指标</th>';
+            years.forEach(y => html += `<th>${y}年</th>`);
+            html += '</tr></thead><tbody>';
+
+            const rows = [
+                { label: '营业收入', key: 'revenue' },
+                { label: '营业成本', key: 'cost' },
+                { label: '毛利润', key: 'grossProfit' },
+                { label: '净利润', key: 'netProfit' },
+                { label: '总资产', key: 'totalAssets' },
+                { label: '总负债', key: 'totalLiabilities' },
+                { label: '股东权益', key: 'equity' },
+                { label: '经营现金流', key: 'operatingCashflow' },
+                { label: '', separator: true },
+                { label: '毛利率', key: 'grossMargin', suffix: '%' },
+                { label: '净利率', key: 'netMargin', suffix: '%' },
+                { label: 'ROE', key: 'roe', suffix: '%' },
+                { label: '资产负债率', key: 'debtRatio', suffix: '%' },
+                { label: '流动比率', key: 'currentRatio' },
+                { label: '营收增速', key: 'revenueGrowth', suffix: '%' },
+                { label: '净利润增速', key: 'profitGrowth', suffix: '%' },
+            ];
+
+            rows.forEach(row => {
+                if (row.separator) {
+                    html += '<tr><td colspan="' + (years.length + 1) + '" style="background:#f1f5f9; font-weight:600;"></td></tr>';
+                    return;
+                }
+                html += `<tr><td style="font-weight:500;">${row.label}</td>`;
+                years.forEach(y => {
+                    let val;
+                    if (metrics[y]?.[row.key] !== undefined) {
+                        val = (metrics[y][row.key] || 0).toFixed(2);
+                    } else {
+                        val = (data[y]?.[row.key] || 0).toFixed(2);
+                    }
+                    html += `<td>${val}${row.suffix || ''}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody>';
+            table.innerHTML = html;
+        }
+
+        // Initialize on load
+        initForm();
+        loadExample();
+    </script>
+</body>
+</html>

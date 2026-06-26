@@ -1,0 +1,69 @@
+{
+  "name": "ssh-lab",
+  "version": "0.1.0",
+  "description": "Remote server SSH workbench — check GPU status, run commands, tail logs, compare hosts, manage alerts across multiple servers",
+  "triggers": ["ssh-lab", "gpu status", "server status", "remote server", "nvidia-smi", "GPU", "server health", "compare servers"],
+  "commands": {
+    "hosts": {
+      "description": "List all configured remote servers",
+      "usage": "ssh-lab hosts [--json]"
+    },
+    "add": {
+      "description": "Add or update a server configuration",
+      "usage": "ssh-lab add <name> <user@host> [--port PORT] [--tags a,b]"
+    },
+    "status": {
+      "description": "Show GPU, disk, and process status for a server or all servers",
+      "usage": "ssh-lab status [host|all] [--json] [--heartbeat]"
+    },
+    "run": {
+      "description": "Execute a command on a remote server",
+      "usage": "ssh-lab run <host|all> <command...> [--json] [--timeout ms]"
+    },
+    "tail": {
+      "description": "Tail a remote log file",
+      "usage": "ssh-lab tail <host> <path> [-n lines]"
+    },
+    "ls": {
+      "description": "List a remote directory with sorting",
+      "usage": "ssh-lab ls <host> <path> [--sort time|size|name]"
+    },
+    "df": {
+      "description": "Disk usage for one or all hosts",
+      "usage": "ssh-lab df <host|all> [path] [--json]"
+    },
+    "sync": {
+      "description": "rsync file transfer between local and remote",
+      "usage": "ssh-lab sync <host> <src> <dst> [--direction up|down] [--dry-run]"
+    },
+    "watch": {
+      "description": "Snapshot file state for polling (change detection)",
+      "usage": "ssh-lab watch <host> <path> [--prev-hash hash]"
+    },
+    "compare": {
+      "description": "Side-by-side host comparison (GPU, disk, process)",
+      "usage": "ssh-lab compare <h1> <h2> [--probes gpu,disk,process] | ssh-lab compare all"
+    },
+    "doctor": {
+      "description": "Run connectivity and health diagnostics on a host",
+      "usage": "ssh-lab doctor <host>"
+    },
+    "alert-list": {
+      "description": "Show configured alert rules",
+      "usage": "ssh-lab alert list"
+    },
+    "alert-add": {
+      "description": "Add an alert rule (gpu_idle, disk_full, process_died, etc.)",
+      "usage": "ssh-lab alert add <kind> <host> [--threshold N] [--process-pattern regex]"
+    },
+    "alert-remove": {
+      "description": "Remove an alert rule by id",
+      "usage": "ssh-lab alert remove <rule-id>"
+    },
+    "alert-check": {
+      "description": "Evaluate alerts against live host status",
+      "usage": "ssh-lab alert check [host|all]"
+    }
+  },
+  "entrypoint": "dist/src/cli.js"
+}

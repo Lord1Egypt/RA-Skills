@@ -1,35 +1,15 @@
----
-name: "Xiang miles | Space2.world"
-description: "Assigns a permanent S2-DID identity, a 4㎡ Mars coordinate, and a public Web3 dossier to persistently anchor your Openclaw agent."
-category: "devops"
-source: "ClawHub"
-tags: [Identity, Infrastructure, Memory, Telemetry, Web3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/s2-soul-anchor"
-sourceUrl: "https://clawhub.ai/skills/s2-soul-anchor"
----
+# ⚓ S2-Soul-Anchor: Deterministic Identity Anchor
 
-# Xiang miles | Space2.world
+This SKILL safely generates a baseline `SOUL.md` template and calculates a mathematically permanent offline **S2-DID** (Decentralized Identifier) for your local Openclaw agent.
 
-> Assigns a permanent S2-DID identity, a 4㎡ Mars coordinate, and a public Web3 dossier to persistently anchor your Openclaw agent.
+### 🛡️ Why it's 100% Safe and Reliable
+- **Deterministic**: Unlike random generators, this tool uses a SHA-256 hash of your Agent's Name. If your agent is named "CyberCrayfish", it will always generate the exact same permanent DID.
+- **100% Local**: Zero network calls. No API keys required. 
+- **Read-Only (HITL)**: Outputs directly to the console for Human-In-The-Loop safe copying. It will NOT overwrite your files automatically.
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/s2-soul-anchor`
-- **Source URL:** [https://clawhub.ai/skills/s2-soul-anchor](https://clawhub.ai/skills/s2-soul-anchor)
+### ⚙️ Usage
+1. Run the skill locally.
+2. Copy the generated `SOUL.md` template (which includes your deterministic `S2-DID`) from the terminal.
+3. Paste it into your local workspace. 
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/s2-soul-anchor
-```
+*Optional: Want a public Web3 dossier or a physical Matrix Coordinate? Take your generated S2-DID and register it manually on the [Space2.world](https://space2.world) global matrix!*

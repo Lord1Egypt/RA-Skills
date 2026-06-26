@@ -1,35 +1,136 @@
----
-name: "天枢股票分析系统"
-description: "基于七大哲学理论，提供多维度评分和实时数据的智能股票诊断和操作建议系统。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tianshu-stock"
-sourceUrl: "https://clawhub.ai/skills/tianshu-stock"
+# 天枢股票分析系统 (TianShu Stock Analysis)
+
+## 概述
+
+**名称**: 天枢股票分析系统  
+**版本**: 1.0  
+**作者**: Sharon  
+**功能**: AI驱动的智能股票诊断系统，基于七大哲学理论
+
 ---
 
-# 天枢股票分析系统
+## 理论基础
 
-> 基于七大哲学理论，提供多维度评分和实时数据的智能股票诊断和操作建议系统。
+### 七大理论框架
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tianshu-stock`
-- **Source URL:** [https://clawhub.ai/skills/tianshu-stock](https://clawhub.ai/skills/tianshu-stock)
+| 理论 | 应用 |
+|------|------|
+| **场域论** | 资金流向、市场情绪、场域强度 |
+| **分形论** | 多周期结构分析（日/周/月） |
+| **连续论** | 趋势连续性判断 |
+| **协同论** | 多维度共振分析 |
+| **统一论** | 核心规律（价值、周期、均值回归） |
+| **显现论** | 信号捕捉（买入/卖出信号） |
+| **进化论** | 动态演化分析 |
 
-## Overview
+---
 
+## 诊断维度
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tianshu-stock
+### 多维度评分体系
+
+| 维度 | 权重 | 评分标准 |
+|------|------|----------|
+| 基本面 | 30% | 营收增长、利润率、ROE、负债 |
+| 技术面 | 25% | 趋势、均线、K线形态、量价关系 |
+| 行业面 | 15% | 行业周期、景气度、竞争格局 |
+| 消息面 | 10% | 政策、业绩公告、催化剂 |
+| 资金面 | 10% | 主力资金流向、成交量、换手率 |
+| 估值面 | 10% | PE、PB、PEG、相对估值 |
+
+### 综合评分
+
+| 分数区间 | 评级 |
+|----------|------|
+| 8.0-10.0 | 优秀 |
+| 7.0-8.0 | 良好 |
+| 6.0-7.0 | 中等 |
+| 5.0-6.0 | 及格 |
+| <5.0 | 风险 |
+
+---
+
+## 数据获取
+
+### API配置
+
+使用腾讯财经API作为主数据源：
+
 ```
+URL: https://qt.gtimg.cn/q={股票代码}
+示例: https://qt.gtimg.cn/q=sh603127
+```
+
+### 数据字段
+
+- 当前价格、涨跌、涨幅
+- 开盘、最高、最低价
+- 成交量、成交额
+- 总市值、市盈率、市净率
+- 换手率
+
+---
+
+## 分析流程
+
+### 1. 网络检查
+
+```python
+# 检查腾讯财经API可用性
+import urllib.request
+import ssl
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
+```
+
+### 2. 数据获取
+
+```python
+url = 'https://qt.gtimg.cn/q=sh' + stock_code
+# 解析返回数据
+```
+
+### 3. 七大理论分析
+
+逐项分析并评分
+
+### 4. 综合诊断
+
+计算加权得分，给出最终结论
+
+---
+
+## 输出格式
+
+### 实时数据模块
+```
+当前价: XXX元
+涨跌: ±X.XX元
+涨幅: ±X.XX%
+```
+
+### 七大理论分析
+- 每个理论包含：维度、分析、评分
+
+### 诊断结论
+- 综合评分 (X/10)
+- 短期/长期评级
+- 操作建议
+
+---
+
+## 使用方式
+
+当用户说"用天枢系统分析[股票代码]"时：
+1. 检查网络和API
+2. 获取实时数据
+3. 执行七大理论分析
+4. 计算综合评分
+5. 输出诊断报告
+
+---
+
+## 更新日志
+
+- 2026-04-01: 初始版本创建
+- 包含：七大理论、多维度评分、实时数据获取

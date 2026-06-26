@@ -1,35 +1,74 @@
+﻿---
+name: industry-scenario-generator
+description: >
+  行业场景方案自动生成。输入行业+产品方向，自动输出行业痛点分析+典型场景用例+PPT素材MD+交流话术。
+  触发词：行业场景、场景方案、给客户讲场景、行业方案、场景用例。
+version: 1.0.2
+author: Dick Dunkel
+license: MIT-0
+tags: [sales, scenarios, industry, ppt]
+category: sales
+created_by: agent
 ---
-name: "Industry Scenario Generator"
-description: "行业场景方案自动生成。输入行业+产品方向，自动输出行业痛点分析+典型场景用例+PPT素材MD+交流话术。 触发词：行业场景、场景方案、给客户讲场景、行业方案、场景用例。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/industry-scenario-generator"
-sourceUrl: "https://clawhub.ai/skills/industry-scenario-generator"
----
 
-# Industry Scenario Generator
+# 行业场景方案自动生成
 
-> 行业场景方案自动生成。输入行业+产品方向，自动输出行业痛点分析+典型场景用例+PPT素材MD+交流话术。 触发词：行业场景、场景方案、给客户讲场景、行业方案、场景用例。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/industry-scenario-generator`
-- **Source URL:** [https://clawhub.ai/skills/industry-scenario-generator](https://clawhub.ai/skills/industry-scenario-generator)
+用户提到以下意图时触发：
+- "给我一些XX行业的场景"
+- "我要见XX行业的客户，准备一些场景方案"
+- "帮我做一份XX行业的方案"
+- "XX行业+ONN/IOC/EA 怎么讲"
 
-## Overview
+## 必需输入
 
+| 输入项 | 必需 | 说明 |
+|--------|------|------|
+| 行业 | ✅ | 公安/金融/高校/运营商/交通/制造/能源等 |
+| 产品方向 | ✅ | ONN（本体问数）/ IOC（运营中心）/ EA（企业架构）/ 数字孪生 |
+| 客户角色 | 推荐 | 拜访的是什么部门（科信处/数据团队/IT管理层等） |
+| 深度要求 | 可选 | 概览（1-2页PPT素材）/ 详细（完整方案） |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/industry-scenario-generator
-```
+## 输出规范
+
+### 输出结构
+
+#### 一、行业痛点分析（3-5个痛点）
+每个痛点包含：痛点描述 / 具体表现 / 对业务的影响
+
+#### 二、产品方案定位（1段）
+- 一句话价值主张 + 核心差异化
+
+#### 三、典型场景用例（4-6个场景）
+每个场景包含：场景名称 / 用户角色 / 使用场景 / 解决的问题 / 价值
+
+#### 四、差异化优势对比表
+
+#### 五、交流话术
+- 开场白（30秒版）/ 价值锚点（3个）/ 引导性问题（3-5个）
+
+#### 六、PPT素材（如要求）
+- 按页输出标题、要点、配图建议
+
+### 输出格式
+- 默认 MD 文本；如要求 PPT 则调用 document-pro 技能；如要求精简仅输出场景+话术
+
+## 已沉淀的行业场景库
+
+优先引用以下已有知识文档，在此基础上补充和定制：
+- 公安行业：`knowleadge/02-onn/11-ps-scenarios.md`
+- 金融行业：`knowleadge/02-onn/10-finance-scenarios.md`
+- 高校/校园：`knowleadge/01-thingjs/08-ioc-phase2.md`
+- EA方向：`knowleadge/01-thingjs/07-ea-ai-capability.md`
+
+对于未覆盖的行业，基于产品通用能力 + 联网搜索行业信息进行生成。
+
+## 质量标准
+
+- ❌ 不输出与行业无关的通用场景
+- ❌ 不编造不存在的客户案例
+- ✅ 每个场景必须贴合该行业的真实业务流程
+- ✅ 痛点必须是该行业特有的，不是万金油
+- ✅ 话术必须可直接使用
+- ✅ 如有真实案例（如友邦POC），优先引用

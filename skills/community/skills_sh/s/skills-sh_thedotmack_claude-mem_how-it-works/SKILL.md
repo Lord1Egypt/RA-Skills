@@ -1,35 +1,22 @@
 ---
-name: "how-it-works"
-description: "Indexed by skills.sh from thedotmack/claude-mem"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "thedotmack"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/thedotmack/claude-mem/how-it-works"
-sourceUrl: "https://skills.sh/thedotmack/claude-mem/how-it-works"
+name: how-it-works
+description: Explain how claude-mem captures observations, when memory injection kicks in, and where data lives. Use when the user asks "how does claude-mem work?" or "what is this thing doing?".
 ---
 
-# how-it-works
+# How claude-mem works
 
-> Indexed by skills.sh from thedotmack/claude-mem
+## What it does
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** thedotmack
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/thedotmack/claude-mem/how-it-works`
-- **Source URL:** [https://skills.sh/thedotmack/claude-mem/how-it-works](https://skills.sh/thedotmack/claude-mem/how-it-works)
+Every Read, Edit, and Bash that Claude makes turns into a compressed observation. Observations get summarized at session end. Relevant ones get auto-injected into future prompts so the next session starts with context from the last one — no re-explaining the codebase, no re-discovering decisions.
 
-## Overview
+## When it kicks in
 
+Memory injection starts on your second session in a project.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/thedotmack/claude-mem/how-it-works
-```
+The first session in a fresh project seeds memory; subsequent sessions receive auto-injected context for relevant past work. Run `/learn-codebase` if you want to front-load the entire repo into memory in a single pass (~5 minutes, optional).
+
+## Where data lives
+
+Everything stays in ~/.claude-mem on this machine.
+
+Nothing leaves your machine except calls to whichever AI provider you configured for compression (Claude / OpenRouter / Gemini). The SQLite database, vector index, logs, and settings all live under that directory and are removed cleanly on `npx claude-mem uninstall`.

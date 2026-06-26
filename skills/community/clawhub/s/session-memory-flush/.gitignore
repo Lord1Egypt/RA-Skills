@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.tmp
+
+# Local OpenClaw runtime data must not be published with the skill.
+*.jsonl
+*.trajectory.jsonl
+*.sqlite
+*.sqlite-*
+*.db
+*.log
+
+# Keep the shipped state file empty; do not commit local runtime snapshots.
+state/*.tmp
+state/*.bak
+state/*.local
+
+# Do not package copied OpenClaw user data.
+openclaw.json
+memory/
+sessions/
+logs/
+workspace/

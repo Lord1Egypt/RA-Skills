@@ -1,0 +1,7 @@
+{
+  "action": "compliance",
+  "payload": {
+    "script": "这个项目百分百有效，谁做谁变年轻。",
+    "outputProfile": "full_compliance"
+  }
+}

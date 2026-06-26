@@ -1,0 +1,20 @@
+{
+  "pages": ["pages/index/index"],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fafaf6",
+    "navigationBarTitleText": "火一五 · 商品",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f0eee8"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#d97706",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/index/index", "text": "我的" }
+    ]
+  }
+}

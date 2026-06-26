@@ -1,35 +1,27 @@
 ---
-name: "Feather"
-description: "Apache Feather/Arrow IPC format reference. V1 vs V2 format differences, pyarrow.feather read/write with compression, R arrow package integration, Arrow type..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feather"
-sourceUrl: "https://clawhub.ai/skills/feather"
+name: "feather"
+version: "1.0.0"
+description: "Apache Feather/Arrow IPC format reference. V1 vs V2 format differences, pyarrow.feather read/write with compression, R arrow package integration, Arrow type system, Feather vs Parquet benchmarks, pandas DataFrame caching, LZ4/ZSTD compression options, and pipeline best practices."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [feather, arrow, ipc, columnar, pandas, dataframe, data]
+category: "data"
 ---
 
 # Feather
 
-> Apache Feather/Arrow IPC format reference. V1 vs V2 format differences, pyarrow.feather read/write with compression, R arrow package integration, Arrow type...
+Apache Feather/Arrow IPC format reference — fast columnar DataFrame I/O.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feather`
-- **Source URL:** [https://clawhub.ai/skills/feather](https://clawhub.ai/skills/feather)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feather
-```
+| Command | Description |
+|---------|-------------|
+| `intro` | Feather overview, V1 vs V2, key properties |
+| `python` | pyarrow.feather read/write, benchmarks |
+| `r-lang` | R arrow package, Python↔R interop |
+| `schema` | Arrow types, nested types, metadata |
+| `vs-parquet` | Speed vs compression tradeoffs |
+| `pandas` | pd.read_feather, caching patterns |
+| `compression` | LZ4/ZSTD options, when to use each |
+| `best-practices` | Pipeline patterns, file size guidelines |

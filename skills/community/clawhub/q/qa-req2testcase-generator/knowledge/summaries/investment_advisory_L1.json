@@ -1,0 +1,46 @@
+{
+  "domain": "投顾域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_advisory.md",
+  "key_terms": [
+    {"term": "投资顾问", "definition": "持有证券投资顾问执业资格，为客户提供投资建议的专业人员"},
+    {"term": "基金投顾", "definition": "买方投顾模式，客户授权投顾代为做出投资决策并执行交易"},
+    {"term": "组合策略", "definition": "投顾团队构建的模型组合，客户签约后可跟随投资"},
+    {"term": "调仓", "definition": "投顾对组合持仓进行调整的操作，分定期/事件驱动/止盈止损等"},
+    {"term": "冷静期", "definition": "签约后24小时冷静期，期满后回访确认方可生效"},
+    {"term": "高水位法", "definition": "业绩报酬仅在净值创新高时计提的计算方法"},
+    {"term": "全权委托", "definition": "客户授权投顾代为执行交易决策，无需逐笔确认"},
+    {"term": "利益冲突", "definition": "投顾个人交易与投资建议方向相反等利益冲突情形"},
+    {"term": "适当性匹配", "definition": "组合风险等级必须与客户风险承受能力匹配"},
+    {"term": "留痕管理", "definition": "投资建议、服务记录保存不少于5年"}
+  ],
+  "core_entities": [
+    {"name": "投顾服务", "description": "投顾为客户提供的投资建议服务关系"},
+    {"name": "组合策略", "description": "投顾构建的模型组合，含持仓和调仓规则"},
+    {"name": "签约合同", "description": "客户与投顾服务的签约关系"},
+    {"name": "调仓指令", "description": "投顾发起的组合调仓操作指令"},
+    {"name": "投资建议", "description": "投顾发布的买入/卖出/持有建议"},
+    {"name": "费用记录", "description": "管理费、业绩报酬等费用计提和扣收记录"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "持证上岗", "description": "投顾人员必须持有证券投资顾问执业资格"},
+    {"rule": "适当性匹配", "description": "投资建议/组合风险等级与客户风险承受能力匹配"},
+    {"rule": "风险揭示", "description": "充分揭示投资风险，不得承诺收益"},
+    {"rule": "留痕管理", "description": "投资建议、服务记录保存不少于5年"},
+    {"rule": "禁止代客理财", "description": "传统投顾模式下不得代客户做出投资决策(基金投顾除外)"},
+    {"rule": "利益冲突管理", "description": "投顾个人交易需申报，不得与建议方向相反"},
+    {"rule": "公平对待", "description": "同一投资建议需同时向所有签约客户发布"},
+    {"rule": "冷静期", "description": "签约后不少于24小时冷静期+回访确认"}
+  ],
+  "common_missing_items": [
+    {"item": "冷静期内损益处理", "description": "冷静期内撤回签约时是否承担期间损益"},
+    {"item": "调仓执行偏差处理", "description": "客户资金不足无法完全跟随调仓的部分执行逻辑"},
+    {"item": "费用扣收失败联动", "description": "管理费扣收失败后的重试机制和服务暂停联动"},
+    {"item": "解约时停牌标的处理", "description": "解约清算时标的停牌无法卖出的延迟处理"},
+    {"item": "自动续约通知", "description": "合同自动续约前的明确通知和确认机制"},
+    {"item": "止损与调仓冲突", "description": "止损触发时恰好有调仓指令的优先级处理"},
+    {"item": "调仓市场冲击控制", "description": "大量客户同时调仓的分批执行机制"},
+    {"item": "投顾离职客户交接", "description": "投顾离职后名下客户的自动交接流程"}
+  ]
+}

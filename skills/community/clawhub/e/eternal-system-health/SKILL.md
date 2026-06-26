@@ -1,35 +1,37 @@
 ---
-name: "Eternal System Health"
-description: "System health monitoring and reports"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eternal-system-health"
-sourceUrl: "https://clawhub.ai/skills/eternal-system-health"
+name: system-health
+description: System health monitoring and reports
 ---
 
-# Eternal System Health
+# system-health
 
-> System health monitoring and reports
+Monitor system health: CPU, memory, disk, processes, and network. Generate health reports.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eternal-system-health`
-- **Source URL:** [https://clawhub.ai/skills/eternal-system-health](https://clawhub.ai/skills/eternal-system-health)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/eternal-system-health
+# Quick health check
+python3 scripts/syshealth.py check
+
+# Generate a full report
+python3 scripts/syshealth.py report
+
+# Continuous monitoring
+python3 scripts/syshealth.py monitor --interval 60
+
+# Specific checks
+python3 scripts/syshealth.py check --category disk
 ```
+
+## Commands
+
+- `check` — Run a quick health check
+- `report` — Generate a detailed system report
+- `monitor` — Continuous monitoring with periodic checks
+
+## Options
+
+- `--category` — Check specific category: `cpu`, `memory`, `disk`, `network`, `processes`
+- `--interval` — Monitoring interval in seconds (default: 60)
+- `--output, -o` — Write report to file
+- `--threshold` — Alert threshold percentage for disk/memory (default: 80)

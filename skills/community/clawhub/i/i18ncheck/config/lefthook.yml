@@ -1,0 +1,21 @@
+# I18nCheck -- lefthook configuration
+# Installed by: i18ncheck hook install
+# Documentation: https://i18ncheck.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    i18ncheck-i18n-scan:
+      run: |
+        I18NCHECK_SKILL_DIR="${I18NCHECK_SKILL_DIR:-$HOME/.openclaw/skills/i18ncheck}"
+        if [[ -f "$I18NCHECK_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$I18NCHECK_SKILL_DIR/scripts/patterns.sh"
+          source "$I18NCHECK_SKILL_DIR/scripts/analyzer.sh"
+          hook_i18n_scan
+        else
+          echo "[I18nCheck] Skill not found at $I18NCHECK_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Internationalization issues detected in staged files!
+        Run 'i18ncheck scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

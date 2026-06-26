@@ -1,0 +1,7 @@
+{
+  "name": "cn-client-investigation-references",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "Local CommonJS scope for cn-lexicon.js. Overrides the parent plugin's top-level package.json type:module declaration so the CommonJS module.exports contract works for slide-NN.js consumers that `require()` this lexicon."
+}

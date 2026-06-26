@@ -1,35 +1,24 @@
----
-name: "clean-desktop"
-description: "自动分类移动桌面文件到图片、文档、压缩包文件夹，支持预览模式避免实际修改。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clean-desktop"
-sourceUrl: "https://clawhub.ai/skills/clean-desktop"
----
+# 桌面清理大师
+## 描述
+自动整理用户桌面文件，按图片、文档、压缩包等类型分类归档。
 
-# clean-desktop
+## 工具
+- bash: 执行文件操作命令
+- read: 读取桌面文件列表
 
-> 自动分类移动桌面文件到图片、文档、压缩包文件夹，支持预览模式避免实际修改。
+## 参数
+- dry_run: 布尔值，默认为true。如果为true，只预览不实际操作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clean-desktop`
-- **Source URL:** [https://clawhub.ai/skills/clean-desktop](https://clawhub.ai/skills/clean-desktop)
+## 执行流程
+1. 获取桌面路径（Windows为~/Desktop，Mac/Linux为~/Desktop）
+2. 列出所有文件（排除.DS_Store和快捷方式）
+3. 按扩展名分类：
+   - 图片：.jpg, .png, .gif → 移入桌面/图片文件夹
+   - 文档：.pdf, .docx, .txt → 移入桌面/文档文件夹
+   - 压缩包：.zip, .rar → 移入桌面/压缩包文件夹
+4. 生成操作报告，告知用户移动了哪些文件
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clean-desktop
-```
+## 安全提示
+- 操作前检查目标文件夹是否存在，不存在则自动创建
+- 不处理隐藏文件（以.开头的文件）
+- 不删除任何文件，只做移动操作

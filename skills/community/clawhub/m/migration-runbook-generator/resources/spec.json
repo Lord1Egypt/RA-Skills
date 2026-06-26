@@ -1,0 +1,37 @@
+{
+  "slug": "migration-runbook-generator",
+  "title": "迁移 Runbook 生成器",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "structured_brief",
+  "summary": "把迁移方案整理成 runbook，补齐切换窗口、前置检查、回滚与验收信号。",
+  "inputHint": "迁移范围、窗口、依赖、回滚要求",
+  "sections": [
+    "前置检查",
+    "迁移步骤",
+    "切换窗口",
+    "验证信号",
+    "回滚方案",
+    "责任分工"
+  ],
+  "useCases": [
+    "系统迁移",
+    "数据迁移",
+    "平台切换"
+  ],
+  "positiveExamples": [
+    "把迁移计划整理成 runbook",
+    "补齐回滚和验证"
+  ],
+  "negativeExamples": [
+    "不要执行数据库改动",
+    "不要忽略回滚条件"
+  ],
+  "risk": "只生成文档，不直接操作系统。",
+  "tags": [
+    "migration",
+    "runbook",
+    "rollback",
+    "operations"
+  ]
+}

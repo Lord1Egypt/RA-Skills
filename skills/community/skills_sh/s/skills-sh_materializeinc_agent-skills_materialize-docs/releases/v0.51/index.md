@@ -1,0 +1,50 @@
+# Materialize v0.51
+## v0.51.0
+
+#### Sources and sinks
+
+* Add support for replicating tables from specific schemas in the
+  [PostgreSQL source](/sql/create-source/postgres/), using the new `FOR SCHEMAS(...)`
+  option:
+
+  ```mzsql
+  CREATE SOURCE mz_source
+    FROM POSTGRES CONNECTION pg_connection (PUBLICATION 'mz_source')
+    FOR SCHEMAS (public, finance)
+    WITH (SIZE = '3xsmall');
+  ```
+
+  With this option, only tables that are part of the publication _and_
+  namespaced with the specified schema(s) will be replicated.
+
+#### SQL
+
+* Add `disk_bytes` to the `mz_internal.mz_cluster_replica_{metrics, sizes}`
+  system catalog tables. This column is currently `NULL`.
+
+* Add the `translate` [string function](/sql/functions/#string-functions), which
+  replaces a set of characters in a string with another set of characters
+  (one by one, regardless of the order of those characters):
+
+  ```mzsql
+  SELECT translate('12345', '134', 'ax');
+
+	 translate
+	-----------
+	 a2x5
+  ```
+
+* Add new configuration parameters:
+
+  | Configuration parameter      | Scope    | Description                                                                             |
+  | ---------------------------- | -------- | --------------------------------------------------------------------------------------- |
+  | `enable_session_rbac_checks` | Session  | **Read-only.** Boolean flag indicating whether RBAC is enabled for the current session. |
+  | `enable_rbac_checks`         | System   | Boolean flag indicating whether to apply RBAC checks before executing statements. Setting this parameter requires _superuser_ privileges. |
+
+  This is part of the work to enable **Role-based access control** (RBAC) in a
+  future release ([#11579](https://github.com/MaterializeInc/materialize/issues/11579)).
+
+#### Bug fixes and other improvements
+
+* Improve the reliability of SSH tunnel connections in the presence of short
+  idle TCP connection timeouts.

@@ -1,35 +1,41 @@
 ---
-name: "auth-sec"
-description: "Indexed by skills.sh from yaklang/hack-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yaklang"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yaklang/hack-skills/auth-sec"
-sourceUrl: "https://skills.sh/yaklang/hack-skills/auth-sec"
+name: auth-sec
+description: >-
+  Entry P1 category router for authentication and authorization. Use when
+  testing login flows, sessions, object authorization, JWT, OAuth, CORS, CSRF,
+  and enterprise SSO weaknesses before any deeper auth topic skill.
 ---
 
-# auth-sec
+# Authentication and Authorization Router
 
-> Indexed by skills.sh from yaklang/hack-skills
+This is the routing entry point for authentication, sessions, and authorization boundaries.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yaklang
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yaklang/hack-skills/auth-sec`
-- **Source URL:** [https://skills.sh/yaklang/hack-skills/auth-sec](https://skills.sh/yaklang/hack-skills/auth-sec)
+Use it to decide whether the issue is mainly login mechanics, object-level authorization, browser trust boundaries, or identity protocols such as OAuth/JWT/SAML before going deeper.
 
-## Overview
+## When to Use
 
+- The target includes login, registration, password reset, 2FA, sessions, JWT, OAuth, or SSO
+- You suspect object authorization flaws, cross-tenant access, cross-origin reads, CSRF, or protocol misconfiguration
+- You need to decide whether to test authentication or authorization first
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yaklang/hack-skills/auth-sec
-```
+## Skill Map
+
+- [Authentication Bypass](../authbypass-authentication-flaws/SKILL.md): login bypass, password reset, 2FA, enumeration, brute-force protections
+- [IDOR Broken Object Authorization](../idor-broken-object-authorization/SKILL.md): IDOR, BOLA, BFLA, missing object permissions
+- [JWT OAuth Token Attacks](../jwt-oauth-token-attacks/SKILL.md): algorithm confusion, key trust issues, claim abuse, token forgery
+- [OAuth OIDC Misconfiguration](../oauth-oidc-misconfiguration/SKILL.md): redirect URI, state, nonce, PKCE, account binding
+- [CSRF Cross Site Request Forgery](../csrf-cross-site-request-forgery/SKILL.md): CSRF tokens, SameSite, JSON CSRF, login CSRF
+- [CORS Cross Origin Misconfiguration](../cors-cross-origin-misconfiguration/SKILL.md): reflected Origin, credentialed cross-origin reads, allowlist bypass
+- [SAML SSO Assertion Attacks](../saml-sso-assertion-attacks/SKILL.md): assertion wrapping, signature validation, audience, ACS boundaries
+
+## Recommended Flow
+
+1. First confirm the authentication model and session boundaries
+2. Then confirm object-level and function-level authorization
+3. Then move to token, cross-origin, and protocol details
+4. If enterprise federation exists, continue with OAuth, OIDC, or SAML topics
+
+## Related Categories
+
+- [api-sec](../api-sec/SKILL.md)
+- Default credentials, username variants, wordlist sizing, and port focus are consolidated in [authbypass-authentication-flaws](../authbypass-authentication-flaws/SKILL.md)

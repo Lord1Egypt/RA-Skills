@@ -1,0 +1,4 @@
+{
+  "fallback_model": "llama-3.1-8b-instant",
+  "fallback_rate_limit": 6000
+}

@@ -1,35 +1,56 @@
 ---
-name: "蜡烛图分析"
-description: "使用akshare获取股票数据，按Steve Nison《日本蜡烛图技术》逻辑识别形态，生成深色盯盘风格K线图（含信号带+成交量）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/candle-chart"
-sourceUrl: "https://clawhub.ai/skills/candle-chart"
+name: 蜡烛图分析
+description: 使用akshare获取股票数据，按Steve Nison《日本蜡烛图技术》逻辑识别形态，生成深色盯盘风格K线图（含信号带+成交量）
 ---
 
-# 蜡烛图分析
+# 蜡烛图分析技能
 
-> 使用akshare获取股票数据，按Steve Nison《日本蜡烛图技术》逻辑识别形态，生成深色盯盘风格K线图（含信号带+成交量）
+## 使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/candle-chart`
-- **Source URL:** [https://clawhub.ai/skills/candle-chart](https://clawhub.ai/skills/candle-chart)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/candle-chart
+# 默认60天
+python3 ~/.openclaw/scripts/蜡烛图工具.py 600585
+
+# 指定天数
+python3 ~/.openclaw/scripts/蜡烛图工具.py 600585 90
 ```
+
+## 核心逻辑
+
+### 1. 形态识别（8种）
+| 形态 | 标注 | 判断条件 |
+|------|----------|----------|
+| 看涨吞没 | 吞↑ | 颜色相反+完全包覆+前一天实体>16% |
+| 看跌吞没 | 吞↓ | 颜色相反+完全包覆+前一天实体>16% |
+| 乌云盖顶 | 乌 | 高开+收盘<前一天实体50%+前一天实体>16% |
+| 刺透形态 | 刺 | 低开+收盘>前一天实体50%+前一天实体>16% |
+| 早晨之星 | 早 | 3日形态：下跌→星线→上涨+第一天实体>16% |
+| 黄昏之星 | 昏 | 3日形态：上涨→星线→下跌+第一天实体>16% |
+| 锤子线 | 锤 | 身体<3%+下影线>2.5倍身体 |
+| 流星线 | 流 | 身体<3%+上影线>2.5倍身体 |
+
+### 2. 防误判规则
+- 前一天实体必须>16%（避免纺锤线干扰）
+- 吞没/乌云/刺透/早晨/黄昏都应用此规则
+
+### 3. 图表结构（三层）
+- **K线区域**：蜡烛图 + MA5/10/20均线 + 早晨/黄昏/吞没特殊标注（五角星/箭头）
+- **信号带**：独立区域，文字标注各形态，括号标注最后交易日预警
+- **成交量区域**：副图柱状图
+
+### 4. 视觉风格
+- 背景：深蓝黑 `#1A1A2E`（盯盘风格）
+- 上涨K线：珊瑚红 `#FF6B6B`
+- 下跌K线：青绿色 `#4ECDC4`
+- 均线：MA5(红) / MA10(黄) / MA20(青)
+- 每10天有分割线便于定位
+
+### 5. 数据来源
+- 使用 `akshare` 腾讯接口获取日线数据
+- 自动动态计算日期范围（近180天）
+
+## 文件位置
+- 主脚本：`~/.openclaw/scripts/蜡烛图工具.py`
+
+## 与蜡烛图形态分析的关系
+⚠️ `蜡烛图形态分析`（workspace/skills/蜡烛图形态分析/）是**同一脚本的旧副本**（3月16日），已废弃，统一使用本技能。

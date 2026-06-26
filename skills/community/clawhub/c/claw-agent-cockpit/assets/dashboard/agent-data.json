@@ -1,0 +1,20 @@
+[
+  {
+    "id": "main",
+    "name": "Main Agent",
+    "role": "Default Agent",
+    "emoji": "🧠",
+    "status": "ok",
+    "task": "General tasks",
+    "progress": 50,
+    "lastActive": 0,
+    "model": "default",
+    "tokens": 0,
+    "contextWindow": 1000000,
+    "contextPct": 0,
+    "statusText": null,
+    "restReason": null,
+    "idleReason": null,
+    "lostReason": null
+  }
+]

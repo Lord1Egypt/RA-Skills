@@ -1,35 +1,19 @@
 ---
-name: "next-intl-add-language"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/next-intl-add-language"
-sourceUrl: "https://skills.sh/github/awesome-copilot/next-intl-add-language"
+name: next-intl-add-language
+description: 'Add new language to a Next.js + next-intl application'
 ---
 
-# next-intl-add-language
+This is a guide to add a new language to a Next.js project using next-intl for internationalization,
 
-> Indexed by skills.sh from github/awesome-copilot
+- For i18n, the application uses next-intl.
+- All translations are in the directory `./messages`.
+- The UI component is `src/components/language-toggle.tsx`.
+- Routing and middleware configuration are handled in:
+  - `src/i18n/routing.ts`
+  - `src/middleware.ts`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/next-intl-add-language`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/next-intl-add-language](https://skills.sh/github/awesome-copilot/next-intl-add-language)
+When adding a new language:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/next-intl-add-language
-```
+- Translate all the content of `en.json` to the new language. The goal is to have all the JSON entries in the new language for a complete translation.
+- Add the path in `routing.ts` and `middleware.ts`.
+- Add the language to `language-toggle.tsx`.

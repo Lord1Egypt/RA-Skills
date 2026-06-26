@@ -1,0 +1,34 @@
+name: review
+description: Code review workflow
+start: read
+
+nodes:
+  read:
+    task: |
+      Read the code changes:
+      - Review PR description and context
+      - Examine modified files line by line
+      - Understand the intent of changes
+      - Note any files that need special attention
+    next: analyze
+
+  analyze:
+    task: |
+      Analyze code quality and correctness:
+      - Check logic for correctness
+      - Verify error handling
+      - Review test coverage
+      - Check for security issues
+      - Evaluate performance implications
+      - Assess code style and readability
+    next: feedback
+
+  feedback:
+    task: |
+      Provide constructive feedback:
+      - Document findings (issues, suggestions, questions)
+      - Prioritize critical vs. minor issues
+      - Suggest improvements where appropriate
+      - Highlight good patterns
+      - Write clear, actionable review comments
+    terminal: true

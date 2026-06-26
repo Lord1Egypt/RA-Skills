@@ -1,0 +1,104 @@
+{
+  "string_patterns": {
+    "email": {
+      "pattern": "user{n}@test.com",
+      "n_range": [1, 10000]
+    },
+    "phone": {
+      "pattern": "1{prefix}{number}",
+      "prefixes": ["3", "5", "7", "8", "9"],
+      "number_length": 9
+    },
+    "name": {
+      "values": ["张三", "李四", "王五", "赵六", "钱七", "孙八", "周九", "吴十"]
+    },
+    "address": {
+      "pattern": "{city}{district}{street}{number}号",
+      "cities": ["北京市", "上海市", "广州市", "深圳市", "杭州市"],
+      "districts": ["朝阳区", "浦东新区", "天河区", "南山区", "西湖区"],
+      "streets": ["建国路", "南京路", "中山大道", "科技园路", "文三路"],
+      "number_range": [1, 999]
+    },
+    "url": {
+      "domains": ["test.example.com", "staging.company.com", "localhost:8080"],
+      "protocols": ["http", "https"]
+    }
+  },
+  "number_ranges": {
+    "age": {"min": 18, "max": 70},
+    "price": {"min": 1, "max": 10000, "decimals": 2},
+    "quantity": {"min": 1, "max": 100},
+    "stock": {"min": 0, "max": 1000},
+    "status": {"min": 0, "max": 1},
+    "rating": {"min": 1, "max": 5},
+    "score": {"min": 0, "max": 100}
+  },
+  "date_ranges": {
+    "past_days": 365,
+    "future_days": 30,
+    "business_hours": {"start": 9, "end": 18}
+  },
+  "boolean_weights": {
+    "is_active": {"true": 80, "false": 20},
+    "is_verified": {"true": 70, "false": 30},
+    "is_deleted": {"true": 5, "false": 95},
+    "is_premium": {"true": 20, "false": 80}
+  },
+  "business_domains": {
+    "user": {
+      "username_pattern": "user{n}",
+      "username_range": [1000, 9999],
+      "gender_values": ["M", "F", "Other"],
+      "status_values": ["active", "inactive", "banned"]
+    },
+    "product": {
+      "sku_pattern": "SKU{n}",
+      "sku_range": [100000, 999999],
+      "status_values": ["active", "inactive", "out_of_stock"]
+    },
+    "order": {
+      "order_number_pattern": "ORD{timestamp}{n}",
+      "status_values": ["pending", "paid", "shipped", "completed", "cancelled"],
+      "payment_methods": ["credit_card", "paypal", "bank_transfer", "alipay", "wechat"]
+    },
+    "article": {
+      "categories": ["tech", "life", "news", "entertainment", "business"],
+      "tags": ["python", "java", "database", "web", "mobile", "ai", "cloud"],
+      "status_values": ["draft", "published", "archived"]
+    },
+    "transaction": {
+      "transaction_id_pattern": "TXN{timestamp}{n}",
+      "types": ["deposit", "withdrawal", "transfer", "payment"],
+      "status_values": ["pending", "completed", "failed", "cancelled"],
+      "currencies": ["CNY", "USD", "EUR"]
+    }
+  },
+  "generation_settings": {
+    "batch_size": 100,
+    "null_probability": 0.15,
+    "unicode_enabled": true,
+    "emoji_enabled": true,
+    "special_chars_enabled": true,
+    "deterministic_seed": null
+  },
+  "volume_guidelines": {
+    "development": {
+      "users": "100-1000",
+      "products": "500-2000",
+      "orders": "1000-5000",
+      "comments": "500-2000"
+    },
+    "staging": {
+      "users": "1000-10000",
+      "products": "2000-10000",
+      "orders": "10000-50000",
+      "comments": "5000-20000"
+    },
+    "performance": {
+      "users": "100000+",
+      "products": "50000+",
+      "orders": "1000000+",
+      "comments": "100000+"
+    }
+  }
+}

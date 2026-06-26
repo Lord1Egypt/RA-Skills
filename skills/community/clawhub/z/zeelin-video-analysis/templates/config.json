@@ -1,0 +1,7 @@
+{
+  "skill_name": "视频分析技能",
+  "skill_version": "1.0.0",
+  "service_url": "http://47.98.180.113:8083",
+  "Zeelin_App_Key": "你的真实AppKey",
+  "description": "视频角色档案生成，支持本地文件上传"
+}

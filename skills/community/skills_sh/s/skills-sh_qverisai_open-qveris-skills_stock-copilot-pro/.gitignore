@@ -1,0 +1,7 @@
+.evolution/run*.json
+.cache/*.json
+.env
+.env.local
+../.env.local
+cursor/
+.cursor/

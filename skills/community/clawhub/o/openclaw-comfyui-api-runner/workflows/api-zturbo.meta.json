@@ -1,0 +1,14 @@
+{
+  "positive_prompt_node": "6",
+  "positive_prompt_input": "text",
+  "seed_node": "7",
+  "negative_prompt_node": null,
+  "model": { "node": "1", "input": "model_name" },
+  "extra": {
+    "steps": { "node": "7", "input": "steps" },
+    "cfg": { "node": "7", "input": "cfg" },
+    "sampler_name": { "node": "7", "input": "sampler_name" },
+    "scheduler": { "node": "7", "input": "scheduler" },
+    "denoise": { "node": "7", "input": "denoise" }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Collection"
+  short_description: "云端优先的网页采集、上手与排障"
+  default_prompt: "使用 $web-collection 回答首次上手和 QA 问题，或通过云端优先、本地兜底的流程执行浏览器数据采集任务。"

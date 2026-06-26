@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦞 双小龙虾架构图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        .feature-card h4 {
+            color: #333;
+            margin-top: 0;
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦞 + 🦞 = 双小龙虾架构</h1>
+        <p class="subtitle">Thomas 先生的智能助理系统</p>
+
+        <div class="info-box">
+            <h3>📌 核心概念</h3>
+            <p>在同一用户的不同设备上部署多个 OpenClaw 实例，通过飞书消息实现协作和记忆同步。</p>
+        </div>
+
+        <h2>🏗️ 架构图</h2>
+        <div class="mermaid">
+graph TD
+    subgraph "Thomas 先生 👤"
+        U[📱 飞书客户端]
+    end
+
+    subgraph "电脑 A 🏢 公司"
+        A1[🦞 Claw-A<br/>工作助手]
+        A2[💼 工作任务<br/>- 周报<br/>- 会议记录<br/>- 数据分析]
+        A3[📁 工作记忆<br/>独立存储]
+    end
+
+    subgraph "电脑 B 🏠 家里"
+        B1[🦞 Claw-B<br/>创业助手]
+        B2[🚀 创业任务<br/>- 流量号<br/>- Agent 系统<br/>- 学习]
+        B3[📁 个人记忆<br/>主记忆库]
+    end
+
+    subgraph "同步机制 🔄"
+        S1[📦 Git 仓库<br/>私有同步]
+        S2[☁️ 云盘同步<br/>OneDrive/坚果云]
+    end
+
+    U -->|消息 | A1
+    U -->|消息 | B1
+    A1 --> A2
+    A1 --> A3
+    B1 --> B2
+    B1 --> B3
+    A3 -.->|可选同步 | S1
+    B3 -.->|可选同步 | S1
+    S1 -.->|可选同步 | A3
+    S1 -.->|可选同步 | B3
+
+    style U fill:#4caf50,stroke:#388e3c,color:white
+    style A1 fill:#ff9800,stroke:#f57c00,color:white
+    style B1 fill:#2196f3,stroke:#1976d2,color:white
+    style A2 fill:#fff3e0,stroke:#ffb74d
+    style B2 fill:#e3f2fd,stroke:#64b5f6
+    style A3 fill:#ffebee,stroke:#e57373
+    style B3 fill:#e8f5e9,stroke:#81c784
+    style S1 fill:#f3e5f5,stroke:#ba68c8
+    style S2 fill:#f3e5f5,stroke:#ba68c8
+        </div>
+
+        <h2>🎯 使用场景</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><span class="emoji">🏢</span>公司电脑</h4>
+                <ul>
+                    <li><strong>定位：</strong>工作助手</li>
+                    <li><strong>任务：</strong>周报、会议记录、数据分析</li>
+                    <li><strong>模型：</strong>GLM-4-Flash（便宜）</li>
+                    <li><strong>记忆：</strong>工作相关，独立存储</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4><span class="emoji">🏠</span>家里电脑</h4>
+                <ul>
+                    <li><strong>定位：</strong>创业助手 + 主脑</li>
+                    <li><strong>任务：</strong>流量号、Agent 系统、学习</li>
+                    <li><strong>模型：</strong>Qwen3.5-Plus（强大）</li>
+                    <li><strong>记忆：</strong>个人记忆，主记忆库</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4><span class="emoji">💻</span>笔记本（可选）</h4>
+                <ul>
+                    <li><strong>定位：</strong>移动助手</li>
+                    <li><strong>任务：</strong>临时查询、快速记录</li>
+                    <li><strong>模型：</strong>Ollama 本地（免费）</li>
+                    <li><strong>记忆：</strong>临时，可同步回家里</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>🔄 记忆同步方案</h2>
+        <div class="mermaid">
+sequenceDiagram
+    participant A as 🦞 Claw-A<br/>公司
+    participant G as 📦 Git 仓库
+    participant B as 🦞 Claw-B<br/>家里
+
+    Note over A: 工作时间
+    A->>A: 写入工作记忆
+    Note over B: 24 小时运行
+    B->>B: 写入个人记忆
+
+    Note over A,G: 下班时同步
+    A->>G: git push<br/>上传工作记忆
+    G->>B: 自动触发
+    B->>G: git pull<br/>下载工作记忆
+
+    Note over B,A: 第二天上班前
+    B->>G: git push<br/>上传个人记忆
+    G->>A: 自动触发
+    A->>G: git pull<br/>下载个人记忆
+
+    Note over A,B: 结果：两只小龙虾<br/>共享必要记忆
+        </div>
+
+        <h2>💡 配置建议</h2>
+        <div class="info-box">
+            <h3>✅ 推荐配置</h3>
+            <ul>
+                <li><strong>公司那只：</strong>只处理工作，记忆独立，便宜模型</li>
+                <li><strong>家里那只：</strong>主脑，处理创业 + 个人，好模型</li>
+                <li><strong>同步内容：</strong>只同步 USER.md 和基础偏好</li>
+                <li><strong>不同步：</strong>API Key、敏感配置</li>
+            </ul>
+        </div>
+
+        <h2>🚀 下一步</h2>
+        <div class="mermaid">
+graph LR
+    A[开始] --> B{有第二台电脑吗？}
+    B -->|有 | C[部署第二只小龙虾]
+    B -->|没有 | D[先用好当前这只]
+    C --> E[配置 Git 同步]
+    D --> F[等工作需要再部署]
+    E --> G[测试记忆同步]
+    F --> H[继续优化当前配置]
+    G --> I[✅ 完成]
+    H --> I
+
+    style A fill:#4caf50,stroke:#388e3c,color:white
+    style I fill:#4caf50,stroke:#388e3c,color:white
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee; color: #999;">
+            <p>🐾 生成时间：2026-03-05 14:07 | 你的智能助理 Claw</p>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+        });
+    </script>
+</body>
+</html>

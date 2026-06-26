@@ -1,0 +1,43 @@
+{
+  "description": "C 盘扫描阈值配置",
+  "largeFileSizeMB": 100,
+  "largeFileTopN": 20,
+  "duplicateMinSizeMB": 1,
+  "tempFileMaxAgeDays": 30,
+  "scanDepth": 5,
+  "categories": {
+    "tempFiles": {
+      "paths": [
+        "C:\\Windows\\Temp",
+        "C:\\Users\\*\\AppData\\Local\\Temp",
+        "C:\\Users\\*\\AppData\\Local\\Microsoft\\Windows\\INetCache",
+        "C:\\$Recycle.Bin"
+      ],
+      "safeToDelete": true,
+      "requireConfirm": true
+    },
+    "updateCache": {
+      "paths": [
+        "C:\\Windows\\SoftwareDistribution\\Download",
+        "C:\\Windows\\Installer\\$PatchCache$"
+      ],
+      "safeToDelete": true,
+      "requireConfirm": true
+    },
+    "logs": {
+      "paths": [
+        "C:\\Windows\\Logs",
+        "C:\\Users\\*\\AppData\\Local\\CrashDumps"
+      ],
+      "safeToDelete": false,
+      "requireConfirm": true
+    }
+  },
+  "notes": [
+    "largeFileSizeMB: 大于此大小的文件被视为大文件",
+    "largeFileTopN: 只展示前 N 个大文件",
+    "duplicateMinSizeMB: 小于此大小的文件不进行重复检测",
+    "tempFileMaxAgeDays: 只扫描超过此天数的临时文件",
+    "scanDepth: 目录扫描深度（避免过深导致超时）"
+  ]
+}

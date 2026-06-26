@@ -1,0 +1,7 @@
+interface:
+  display_name: "Twexapi CLI"
+  short_description: "Help with twexapi CLI tasks and credential-aware workflows"
+  default_prompt: "Use $twexapi-cli to install, configure, and run twexapi commands in this repository, including its local config and environment-variable workflow."
+
+policy:
+  allow_implicit_invocation: true

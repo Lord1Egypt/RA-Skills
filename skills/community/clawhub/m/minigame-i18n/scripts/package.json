@@ -1,0 +1,16 @@
+{
+  "name": "minigame-i18n-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "微信小游戏国际化工具脚本依赖",
+  "dependencies": {
+    "@babel/parser": "^7.24.0",
+    "@babel/traverse": "^7.24.0",
+    "@typescript-eslint/typescript-estree": "^7.0.0",
+    "esprima": "^4.0.1",
+    "json-source-map": "^0.6.1",
+    "papaparse": "^5.4.0",
+    "pinyin": "^4.0.0",
+    "yaml": "^2.4.0"
+  }
+}

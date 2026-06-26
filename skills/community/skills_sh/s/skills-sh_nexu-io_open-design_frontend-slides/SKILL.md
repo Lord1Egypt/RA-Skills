@@ -1,35 +1,43 @@
 ---
-name: "frontend-slides"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/frontend-slides"
-sourceUrl: "https://skills.sh/nexu-io/open-design/frontend-slides"
+name: frontend-slides
+description: |
+  Generate animation-rich HTML presentations with visual style previews. Useful for online keynotes, embedded talks, and interactive briefs.
+triggers:
+  - "html slides"
+  - "animation slides"
+  - "interactive deck"
+  - "web ppt"
+  - "reveal slides"
+od:
+  mode: deck
+  category: slides
+  upstream: "https://github.com/zarazhangrui/frontend-slides"
 ---
 
 # frontend-slides
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from @zarazhangrui.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/frontend-slides`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/frontend-slides](https://skills.sh/nexu-io/open-design/frontend-slides)
+## What it does
 
-## Overview
+Generate animation-rich HTML presentations with visual style previews. Useful for online keynotes, embedded talks, and interactive briefs.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/zarazhangrui/frontend-slides
+- Category: `slides`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/frontend-slides
+# Inspect the upstream README for exact paths
+open https://github.com/zarazhangrui/frontend-slides
 ```
+
+Then ask the agent to invoke this skill by name (`frontend-slides`) or with
+one of the trigger phrases listed in this skill's frontmatter.

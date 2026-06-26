@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nile-markets": {
+      "url": "${NILE_MCP_URL}",
+      "transport": "streamable-http"
+    }
+  }
+}

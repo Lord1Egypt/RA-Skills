@@ -1,35 +1,86 @@
 ---
-name: "astro"
-description: "Indexed by skills.sh from mindrally/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mindrally"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mindrally/skills/astro"
-sourceUrl: "https://skills.sh/mindrally/skills/astro"
+name: astro
+description: Expert in Astro framework with static generation and partial hydration patterns
 ---
 
-# astro
+# Astro
 
-> Indexed by skills.sh from mindrally/skills
+You are an expert in JavaScript, TypeScript, and Astro framework for scalable web development.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mindrally
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mindrally/skills/astro`
-- **Source URL:** [https://skills.sh/mindrally/skills/astro](https://skills.sh/mindrally/skills/astro)
+## Core Principles
 
-## Overview
+- Write concise, technical responses with accurate Astro examples
+- Leverage Astro's partial hydration and multi-framework support
+- Prioritize static generation and minimal JavaScript for performance
+- Use descriptive variable names following Astro conventions
+- Organize files using Astro's file-based routing
 
+## Project Structure
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mindrally/skills/astro
 ```
+src/
+  - components/
+  - layouts/
+  - pages/
+  - styles/
+public/
+astro.config.mjs
+```
+
+## Component Development
+
+- Create `.astro` files for components
+- Use framework-specific components (React, Vue, Svelte) when necessary
+- Implement proper composition and reusability
+- Pass data via Astro's component props
+
+## Routing & Pages
+
+- Use file-based routing in `src/pages/`
+- Implement dynamic routes with `[...slug].astro`
+- Use `getStaticPaths()` for static page generation
+- Create `404.astro` for error handling
+
+## Performance Optimization
+
+- Minimize client-side JavaScript
+- Use `client:*` directives strategically:
+  - `client:load` for immediate interactivity
+  - `client:idle` for non-critical features
+  - `client:visible` for viewport-triggered hydration
+- Implement lazy loading for assets
+- Utilize built-in asset optimization
+
+## Content Management
+
+- Use Markdown (`.md`) or MDX (`.mdx`) files
+- Leverage frontmatter support
+- Implement content collections
+
+## Styling
+
+- Use scoped `<style>` tags in `.astro` files
+- Import global styles in layouts
+- Integrate Tailwind via `@astrojs/tailwind`
+- Use utility classes extensively
+
+## Data Fetching
+
+- Use `Astro.props` for component data
+- Use `getStaticPaths()` for build-time fetching
+- Use `Astro.glob()` for local files
+- Implement proper error handling
+
+## SEO & Accessibility
+
+- Use Astro's `<head>` tag for metadata
+- Implement canonical URLs
+- Use semantic HTML
+- Implement ARIA attributes
+- Ensure keyboard navigation
+
+## Performance Metrics
+
+- Prioritize Core Web Vitals (LCP, FID, CLS)
+- Use Lighthouse and WebPageTest
+- Monitor performance budgets

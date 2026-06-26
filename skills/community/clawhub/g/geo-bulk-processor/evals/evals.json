@@ -1,0 +1,24 @@
+{
+  "skill_name": "geo-bulk-processor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You are given a CSV of 5,000 blog URLs for a B2B SaaS company, with columns for URL, title, primary topic, and monthly visits. Using the geo-bulk-processor skill, design a batch GEO optimization plan that groups URLs into clusters and defines reusable templates and pipelines for each cluster.",
+      "expected_output": "A structured bulk GEO plan that (1) defines 3-8 content clusters, (2) describes for each cluster the GEO opportunities, proposed templates, and pipeline steps, and (3) outlines a phased rollout plan with pilot, expansion, and full deployment.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "A multi-location healthcare provider has 1,200 location pages across several cities and specialties. They provide a sitemap XML plus a table with columns: url, city, specialty, visits_last_90d. Use the geo-bulk-processor skill to design a scalable GEO bulk upgrade plan for these location pages.",
+      "expected_output": "A GEO bulk strategy that clusters the 1,200 location pages, defines page-type templates for key combinations (e.g., city + specialty), specifies what structured data and FAQ patterns to standardize, and describes how to phase rollout and QA the changes.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "An e-commerce brand has 15,000 product detail pages plus 300 category pages exported from their CMS as JSON (one file per page). They want to retrofit the whole catalog for GEO and AI citations without hand-editing every page. Use the geo-bulk-processor skill to propose a bulk processing architecture and concrete implementation-ready specifications.",
+      "expected_output": "An architecture and specification document describing: (1) how to inventory and cluster products and categories; (2) pipeline definitions for products and categories, including how to invoke other geo-* skills where appropriate; (3) the schemas for input and output records (fields, types, and examples); and (4) a rollout, QA, and monitoring plan.",
+      "files": []
+    }
+  ]
+}
+

@@ -1,0 +1,7 @@
+# photo-grader dependencies
+#
+# RawTherapee CLI is the sole processing engine.
+# Python deps are minimal — only tomli for config parsing.
+
+# Required: config.toml parsing (stdlib in Python 3.11+)
+tomli>=1.1.0 ; python_version < "3.11"

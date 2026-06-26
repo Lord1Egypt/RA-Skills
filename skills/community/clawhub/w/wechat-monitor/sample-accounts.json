@@ -1,0 +1,19 @@
+{
+  "accounts": [
+    {
+      "name": "示例公众号1",
+      "fakeid": "fakeid_example_1",
+      "category": "官方"
+    },
+    {
+      "name": "示例公众号2",
+      "fakeid": "fakeid_example_2",
+      "category": "竞品"
+    },
+    {
+      "name": "示例公众号3",
+      "fakeid": "fakeid_example_3",
+      "category": "行业媒体"
+    }
+  ]
+}

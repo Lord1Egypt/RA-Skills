@@ -1,0 +1,2 @@
+name: pogo-pvp
+description: Pokémon GO PvP 数据查询技能。基于 PvPoke GitHub 真实 rankings JSON，提供 PvP 对战查询与培养参考。不做评分、不做强弱判断、不编造数据。触发词：/pvp 培养、pvp 培养、PvP、宝可梦对战。

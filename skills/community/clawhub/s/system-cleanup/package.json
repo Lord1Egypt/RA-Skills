@@ -1,0 +1,23 @@
+{
+  "name": "system-cleanup",
+  "version": "1.0.0",
+  "description": "系统清理技能：定期清理和维护OpenClaw系统的临时文件、备份文件、日志文件",
+  "main": "SKILL.md",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "cleanup",
+    "maintenance",
+    "system",
+    "temporary-files",
+    "backup"
+  ],
+  "author": "Mickey",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "requires": {
+      "bins": ["openclaw"]
+    }
+  }
+}

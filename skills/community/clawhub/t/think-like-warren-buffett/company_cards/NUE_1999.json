@@ -1,0 +1,54 @@
+{
+  "ticker": "NUE",
+  "company": "Nucor Corporation",
+  "analysis_year": 2000,
+  "data_source": "Nucor FY1999 10-K complete submission, SEC EDGAR; Berkshire 13F-HR/A for quarter ended 2000-03-31",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.131, "metric_used": "ROE", "years_averaged": "1997-1999", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.94, "fcf": 230.1, "net_income": 244.6, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": -0.39, "pass": true },
+    "g4_revenue_trend": { "description": "Sales slipped from $4.18B in 1997 to $4.15B in 1998 to $4.01B in 1999, but this was cyclical steel pricing pressure rather than evidence that Nucor's business model was structurally deteriorating.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin compressed from about 14.5% in 1997 to 13.5% in 1998 to 13.2% in 1999 as steel conditions softened. That is a real two-year decline, even if it was cyclical rather than existential.", "declining_2plus_years": true, "pass": false },
+    "g6_earnings_yield": { "value": 0.059, "net_income_m": 244.6, "ev_m": 4175, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "Nucor had a real moat by steel standards: a low-cost mini-mill footprint, decentralized operating culture, flexible labor model, and management discipline that let it outperform integrated competitors across cycles. The moat was real, but it was still a moat inside a cyclical commodity business, not a tollbooth immune to price swings.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "quality_multiple_note": {
+      "summary": "Nucor was not actually expensive in an absolute sense, but the earnings-yield hurdle still failed once enterprise value was adjusted for the market price implied by Berkshire's disclosed Q1 2000 holding.",
+      "reason_for_low_yield": "The sub-6% yield did not reflect hype. It reflected a fair price for the best operator in a cyclical steel industry whose margins were already compressing.",
+      "decision_impact": "This note reinforces the PASS rather than softening it. Nucor was an admirable steel company, but not the kind of high-certainty compounding franchise the framework wants to underwrite as a Buffett-grade long hold."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "Management quality and culture were strengths, not concerns. The issue was industry economics and valuation discipline, not trust."
+    }
+  },
+
+  "metrics_snapshot": {
+    "net_sales_1999_usd_m": 4009.3,
+    "net_earnings_1999_usd_m": 244.6,
+    "operating_cash_flow_1999_usd_m": 604.8,
+    "capital_expenditures_1999_usd_m": 374.7,
+    "cash_1999_usd_m": 572.2,
+    "long_term_debt_1999_usd_m": 390.5,
+    "shareholders_equity_1999_usd_m": 2262.2,
+    "berkshire_shares_2000_m": 1.268,
+    "berkshire_market_value_2000_usd_m": 63.4
+  },
+
+  "control_groups": [
+    { "ticker": "X", "company": "United States Steel Corporation", "year": 2000, "gates_failed": ["g1_roe_roic", "g7_moat"], "conclusion": "PASS — an integrated steelmaker with weaker economics, less flexible cost structure, and no Nucor-style operating moat." },
+    { "ticker": "AKS", "company": "AK Steel Holding Corporation", "year": 2000, "gates_failed": ["g3_leverage", "g5_gross_margin_trend", "g7_moat"], "conclusion": "PASS — more leveraged sheet-steel exposure with lower resilience and no clear Nucor-equivalent culture advantage." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "By March 31, 2000 Berkshire disclosed 1,267,900 Nucor shares valued at about $63.4M via a confidential-treatment 13F amendment.",
+  "actual_result": "Nucor remained the best-managed major U.S. steelmaker and later had strong cycles, but it did not become a defining Berkshire-style long-duration compounding franchise.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "The best company in a cyclical commodity industry can still be a pass if margin compression and only-fair valuation leave too little room for Buffett-style long-hold certainty."
+}

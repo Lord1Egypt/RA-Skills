@@ -1,35 +1,35 @@
 ---
-name: "Quant Finance"
+name: "quant-finance"
+version: "2.0.3"
 description: "Reference tool for devtools — covers intro, formulas, regulations and more. Quick lookup for Quant Finance concepts, best practices, and implementation patte..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quant-finance"
-sourceUrl: "https://clawhub.ai/skills/quant-finance"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [quant,finance, reference]
+category: "devtools"
 ---
 
 # Quant Finance
 
-> Reference tool for devtools — covers intro, formulas, regulations and more. Quick lookup for Quant Finance concepts, best practices, and implementation patte...
+Reference tool for devtools — covers intro, formulas, regulations and more. Quick lookup for Quant Finance concepts, best practices, and implementation patte... No API keys or credentials required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quant-finance`
-- **Source URL:** [https://clawhub.ai/skills/quant-finance](https://clawhub.ai/skills/quant-finance)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `formulas` | formulas reference |
+| `regulations` | regulations reference |
+| `risks` | risks reference |
+| `instruments` | instruments reference |
+| `strategies` | strategies reference |
+| `glossary` | glossary reference |
+| `checklist` | checklist reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quant-finance
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

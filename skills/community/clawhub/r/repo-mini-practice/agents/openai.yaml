@@ -1,0 +1,6 @@
+interface:
+  display_name: "Repo Mini Practice"
+  short_description: "Build runnable mini versions of repositories"
+  default_prompt: "Use $repo-mini-practice to study this repository by creating a runnable mini-practice version of its core mechanism."
+policy:
+  allow_implicit_invocation: true

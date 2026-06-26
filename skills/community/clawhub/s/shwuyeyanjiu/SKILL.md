@@ -1,35 +1,305 @@
 ---
-name: "Shwuyeyanjiu"
-description: "上海物业招标公告研究工具。从上海住宅物业网(962121.fgj.sh.gov.cn)获取招标公告、中标公告、评标结果公告，使用 OCR 提取项目信息（项目面积、物业费标准、停车位数量、停车管理费等），并计算饱和收入。**当以下情况时使用此 Skill**：(1) 用户要求查找某个项目的物业中标信息；(2) 用户..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shwuyeyanjiu"
-sourceUrl: "https://clawhub.ai/skills/shwuyeyanjiu"
+name: shwuyeyanjiu
+description: 上海物业招标公告研究工具。从上海住宅物业网(962121.fgj.sh.gov.cn)获取招标公告、中标公告、评标结果公告，使用 OCR 提取项目信息（项目面积、物业费标准、停车位数量、停车管理费等），并计算饱和收入。**当以下情况时使用此 Skill**：(1) 用户要求查找某个项目的物业中标信息；(2) 用户要求查询物业费标准；(3) 用户要求计算项目的饱和收入；(4) 用户提到"上海物业"、"招标公告"、"中标公告"、"物业费"、"饱和收入"； (5) 需要从上海物业网站获取项目信息。
 ---
 
-# Shwuyeyanjiu
+# 上海物业招标公告研究工具
 
-> 上海物业招标公告研究工具。从上海住宅物业网(962121.fgj.sh.gov.cn)获取招标公告、中标公告、评标结果公告，使用 OCR 提取项目信息（项目面积、物业费标准、停车位数量、停车管理费等），并计算饱和收入。**当以下情况时使用此 Skill**：(1) 用户要求查找某个项目的物业中标信息；(2) 用户...
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shwuyeyanjiu`
-- **Source URL:** [https://clawhub.ai/skills/shwuyeyanjiu](https://clawhub.ai/skills/shwuyeyanjiu)
+当用户要求查找项目信息时，按以下步骤操作：
 
-## Overview
+### 1. 搜索公告
 
+访问招标列表页面，搜索项目名称：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/shwuyeyanjiu
+uv run --with requests --with beautifulsoup4 python3 << 'EOF'
+import requests
+from bs4 import BeautifulSoup
+
+# 搜索项目名称
+project_name = "协和城"  # 替换为实际项目名称
+url = 'https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greenmorelist.jsp?id=A000000000000000&twoid=A000B00400000000&thrid=A000B004C0010000'
+
+response = requests.get(url)
+response.encoding = 'GBK'
+soup = BeautifulSoup(response.text, 'html.parser')
+
+links = soup.find_all('a')
+for link in links:
+    text = link.get_text()
+    if project_name in text:
+        href = link.get('href', '')
+        print(f'{text}')
+        print(f'链接: {href}')
+        print('---')
+EOF
 ```
+
+### 2. 下载公告 PDF
+
+公告链接格式：`https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greedetail.jsp?infoid=XXXXXXX&id=...`
+
+PDF 文件地址格式：`https://962121.fgj.sh.gov.cn/wyweb//web/UploadFiles/pdf/XXXXXXX.pdf`
+
+**注意**：PDF 文件的 ID 通常是 `infoid` 减 1。
+
+```bash
+curl -L -o /tmp/project.pdf "https://962121.fgj.sh.gov.cn/wyweb//web/UploadFiles/pdf/XXXXXXX.pdf"
+```
+
+### 3. OCR 识别 PDF
+
+使用 pdf2image + pytesseract 进行 OCR 识别：
+
+```bash
+uv run --with pdf2image --with pytesseract --with pillow python3 << 'EOF'
+from pdf2image import convert_from_path
+import pytesseract
+
+images = convert_from_path('/tmp/project.pdf', dpi=200)
+for i, image in enumerate(images):
+    text = pytesseract.image_to_string(image, lang='chi_sim+eng')
+    print(f'=== 第 {i+1} 页 ===')
+    print(text)
+EOF
+```
+
+**依赖**：需要安装 poppler（macOS: `brew install poppler`）
+
+## 关键信息提取
+
+从 OCR 结果中提取以下信息：
+
+| 信息项 | 关键词 | 示例 |
+|--------|--------|------|
+| 项目名称 | "项目名称:" | 《协和城》 |
+| 总建筑面积 | "总建筑面积" | 64000.00平方米 |
+| 住宅建筑面积 | "住宅建筑面积" | 31152.16平方米 |
+| 非住宅建筑面积 | "非住宅建筑面积" | 32381.30平方米 |
+| 住宅物业费 | "商品房高层.*物业费标准" | 5.00元/平方米/月 |
+| 商业物业费 | "商业.*物业费标准" | 12.00元/平方米/月 |
+| 地下停车位 | "地下停车位" | 125个 |
+| 停车管理费 | "停车管理费" | 需查看物业服务合同 |
+
+## 饱和收入计算
+
+### 计算公式
+
+**月度饱和收入** = 住宅建筑面积 × 住宅物业费标准 + 非住宅建筑面积 × 商业物业费标准 + 地下停车位 × 停车管理费
+
+**年度饱和收入** = 月度饱和收入 × 12
+
+### 计算示例
+
+```
+项目名称：《协和城》
+住宅建筑面积：31,152.16 平方米
+非住宅建筑面积：32,381.30 平方米
+地下停车位：125 个
+
+物业费标准：
+- 住宅：5.00元/平方米/月
+- 商业：12.00元/平方米/月
+- 停车管理费：（需用户提供，假设 100 元/月/个）
+
+计算：
+- 住宅物业费收入：31,152.16 × 5.00 = 155,760.80元/月
+- 商业物业费收入：32,381.30 × 12.00 = 388,575.60元/月
+- 停车管理费收入：125 × 100 = 12,500元/月
+- 月度总饱和收入：155,760.80 + 388,575.60 + 12,500 = 556,836.40元/月
+- 年度总饱和收入：556,836.40 × 12 = 6,682,036.80元/年
+```
+
+## 公告类型
+
+上海物业网站有以下公告类型：
+
+| 公告类型 | 说明 |
+|----------|------|
+| 【公开招标】| 包含项目面积、物业费标准上限、停车位数量 |
+| 【评标结果公告】| 包含中标候选人排序 |
+| 【中标公告】| 包含最终中标单位、最终物业费标准 |
+
+**建议**：下载所有三种公告，获取完整信息。
+
+### 公告优先级（重要改进）
+
+**预估合同起始时间的依据**：
+
+1. **中标公告**（最优先）
+   - 包含正式中标日期
+   - 可靠性最高
+
+2. **评标结果公告**（次优先）
+   - 包含评标日期
+   - 可靠性中等
+   - 很多项目只有评标结果公告，没有中标公告
+
+3. **招标公告**（最低优先）
+   - 只包含发布日期
+   - 可靠性最低
+
+**处理逻辑**：
+- 如果同时存在中标公告和评标结果公告，**优先使用中标公告**
+- 如果只有评标结果公告，则使用评标结果公告
+- 如果都没有，则无法预估合同起始时间
+
+**统计数据**：
+- 评标结果公告：3014 个
+- 中标公告：878 个
+- 很多项目（约 70%）只有评标结果公告，没有中标公告
+
+**实现示例**：
+```python
+# 优先级：中标公告 > 评标结果公告
+date_source = None
+ann = None
+
+if announcements['中标公告']:
+    # 有中标公告，优先使用
+    ann = announcements['中标公告'][0]
+    date_source = '中标公告'
+elif announcements['评标结果公告']:
+    # 没有中标公告，但有评标结果公告
+    ann = announcements['评标结果公告'][0]
+    date_source = '评标结果公告'
+
+if ann:
+    # 提取日期
+    bidding_date = extract_bidding_date(ocr_pdf(ann['pdf_id']))
+    # 记录日期来源
+    result['备注'] = f'日期来源: {date_source}'
+```
+
+## 注意事项
+
+1. **停车管理费**：通常不在招标公告中，需要查看物业服务合同或询问用户
+2. **PDF 文件 ID**：通常是 URL 中 `infoid` 减 1
+3. **编码问题**：网站使用 GBK 编码，需要 `response.encoding = 'GBK'`
+4. **OCR 准确性**：有些数字可能识别错误，需要人工核对
+5. **⚠️ 重要：住宅物业费优先使用中标公告的价格**
+   - 招标公告的物业费是"上限"
+   - 中标公告的物业费是"最终价格"
+   - 必须取最大值（中标公告 ≥ 招标公告上限）
+6. **⚠️ 重要：非住宅建筑面积可能跨行**
+   - OCR 识别结果中，"32381." 和 "30平方米" 可能分成两行
+   - 需要支持跨行匹配：`r'非住宅建筑面积\s*(\d+[.,]?\d*)\s*\n\s*(\d+)\s*平方米'`
+7. **⚠️ 重要：饱和收入必须包含所有收入来源**
+   - 饱和收入 = 住宅物业费 + 商业物业费 + 停车管理费
+   - 不要遗漏商业物业费收入
+
+## 常见错误
+
+| 错误 | 原因 | 解决方案 |
+|------|------|----------|
+| 住宅物业费错误（3.0 而非 5.0） | 招标公告的值覆盖了中标公告的值 | 取最大值，优先使用中标公告的价格 |
+| 非住宅建筑面积提取失败 | OCR 识别结果跨行 | 支持跨行匹配 |
+| 商业物业费收入为 0 | 非住宅建筑面积提取失败 | 修复跨行匹配后自动解决 |
+| 缺少中标单位/日期 | 只有评标结果公告，没有中标公告 | 提示用户等待中标公告发布 |
+
+## 关键经验总结
+
+### 1. 公告处理顺序
+
+**正确顺序**：先处理招标公告，再处理中标公告
+
+**原因**：
+- 招标公告包含项目基本信息（面积、停车位）
+- 中标公告包含最终价格（物业费、中标单位）
+- 后处理的公告会覆盖前处理的公告（对于相同字段）
+
+### 2. 物业费提取原则
+
+**原则**：住宅物业费取最大值，优先使用中标公告的价格
+
+**原因**：
+- 招标公告的物业费是"上限"（最低标准）
+- 中标公告的物业费是"最终价格"（实际标准）
+- 中标公告的价格通常 ≥ 招标公告的上限
+
+**实现**：
+```python
+# 住宅物业费：取最大值
+if key == '住宅物业费':
+    if key not in all_info or value > all_info[key]:
+        all_info[key] = value
+```
+
+### 3. 非住宅建筑面积跨行匹配
+
+**问题**：OCR 识别结果可能跨行，特别是数字和单位
+
+**示例**：
+```
+非住宅建筑面积2270
+1.96平方米
+```
+
+**解决方案**：
+```python
+# 先尝试单行匹配
+match = re.search(r'非住宅建筑面积\s*(\d+[.,]?\d*)\s*平方米', text)
+if match:
+    info['非住宅建筑面积'] = float(match.group(1).replace(',', '.'))
+else:
+    # 尝试跨行匹配
+    match = re.search(r'非住宅建筑面积\s*(\d+[.,]?\d*)\s*\n\s*(\d+[.,]?\d*)\s*平方米', text)
+    if match:
+        num1 = match.group(1).replace(',', '.')
+        num2 = match.group(2).replace(',', '.')
+        if '.' in num1:
+            info['非住宅建筑面积'] = float(num1)
+        else:
+            info['非住宅建筑面积'] = float(num1 + num2)
+```
+
+### 4. 饱和收入计算完整性
+
+**公式**：饱和收入 = 住宅物业费 + 商业物业费 + 停车管理费
+
+**关键**：
+- 必须确保非住宅建筑面积正确提取
+- 必须确保商业物业费正确提取
+- 三项收入缺一不可
+
+### 5. 中标日期和合同期限提取
+
+**中标日期**：
+- 位置：公告底部
+- 格式：`2026年03月07日` 或 `2026年3月7日`
+- 正则：`r'(\d{4})年(\d{1,2})月(\d{1,2})日?\s*$'`
+
+**合同期限**：
+- 位置：招标公告
+- 格式：`物业服务合同期限 3年`
+- 正则：`r'物业服务合同期限\s*(\d+)\s*年'`
+
+**合同到期时间**：
+- 计算：中标日期 + 合同期限
+- 工具：`dateutil.relativedelta`
+
+### 6. 公告类型识别
+
+| 公告类型 | 关键特征 | 可提取信息 |
+|----------|----------|------------|
+| 【公开招标】| "招标公告" | 项目面积、物业费上限、停车位、合同期限 |
+| 【评标结果公告】| "评标结果排序第一名" | 候选中标单位、评标日期 |
+| 【中标公告】| "中标企业" | 最终中标单位、最终物业费、中标日期 |
+
+**注意**：评标结果公告 ≠ 中标公告，评标结果只是公示，还不是正式中标。
+
+### 7. 测试覆盖
+
+**测试时需要使用不同的 PDF 样本**：
+- 有中标公告的项目（如协和城）
+- 只有评标结果公告的项目（如源花城）
+- 不同面积规模的项目
+- 不同物业费标准的项目
+
+**目的**：确保脚本能够处理各种情况，覆盖各种边界条件。
+
+## 快速脚本
+
+参见 `scripts/fetch_project.py` 脚本，一键获取项目信息并计算饱和收入。

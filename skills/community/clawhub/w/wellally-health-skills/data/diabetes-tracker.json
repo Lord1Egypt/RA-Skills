@@ -1,0 +1,75 @@
+{
+  "diabetes_management": {
+    "type": null,
+    "diagnosis_date": null,
+    "duration_years": null,
+
+    "glucose_readings": [],
+
+    "hba1c": {
+      "history": [],
+      "target": "<7.0",
+      "achievement": null
+    },
+
+    "target_glucose": {
+      "fasting": {
+        "target": "4.4-7.0",
+        "unit": "mmol/L"
+      },
+      "postprandial_2h": {
+        "target": "<10.0",
+        "unit": "mmol/L"
+      },
+      "bedtime": {
+        "target": "6.0-9.0",
+        "unit": "mmol/L"
+      }
+    },
+
+    "tir": {
+      "percentage": null,
+      "target": ">70",
+      "time_in_range_hours": null,
+      "time_above_range_hours": null,
+      "time_below_range_hours": null,
+      "measurement_period": null
+    },
+
+    "hypoglycemia_episodes": [],
+
+    "complications_screening": {
+      "retinopathy": {
+        "status": "not_assessed",
+        "last_exam": null,
+        "next_exam": null
+      },
+      "nephropathy": {
+        "status": "not_assessed",
+        "uacr": null,
+        "egfr": null,
+        "ckd_stage": null,
+        "last_assessment": null
+      },
+      "neuropathy": {
+        "status": "not_assessed",
+        "monofilament_test": null,
+        "last_assessment": null
+      },
+      "foot": {
+        "status": "not_assessed",
+        "pulses_present": null,
+        "ulcer": null,
+        "wagner_grade": null,
+        "last_assessment": null
+      }
+    },
+
+    "medications": [],
+
+    "metadata": {
+      "created_at": null,
+      "last_updated": null
+    }
+  }
+}

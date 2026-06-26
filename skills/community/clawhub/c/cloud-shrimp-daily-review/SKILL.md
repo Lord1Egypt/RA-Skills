@@ -1,35 +1,151 @@
----
-name: "Daily Review Assistant"
-description: "手动触发每日复盘，查询历史复盘记录，生成复盘统计报告及导出复盘内容，支持多时间范围操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloud-shrimp-daily-review"
-sourceUrl: "https://clawhub.ai/skills/cloud-shrimp-daily-review"
+# daily-review-assistant【自研系统技能】
+
+**版本**：v0.1.0  
+**定位**：每日复盘助手 - 手动触发复盘、查询复盘记录
+
 ---
 
-# Daily Review Assistant
+## 📖 技能说明
 
-> 手动触发每日复盘，查询历史复盘记录，生成复盘统计报告及导出复盘内容，支持多时间范围操作。
+这是「每日复盘系统」的手动调用接口，让你可以：
+- 立即触发复盘（不等待 23:00）
+- 查询历史复盘记录
+- 生成复盘统计报告
+- 导出复盘内容
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloud-shrimp-daily-review`
-- **Source URL:** [https://clawhub.ai/skills/cloud-shrimp-daily-review](https://clawhub.ai/skills/cloud-shrimp-daily-review)
+**对应的系统**：每日复盘系统（Cron 任务每日 23:00 自动运行）
 
-## Overview
+---
 
+## 🎯 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cloud-shrimp-daily-review
+| 场景 | 示例 |
+|------|------|
+| 立即复盘 | 「立即复盘今天的对话」 |
+| 查询历史 | 「查询上周的复盘记录」 |
+| 生成统计 | 「生成本月的复盘统计」 |
+| 导出内容 | 「导出今日的复盘内容」 |
+
+---
+
+## 🚀 使用方法
+
+### 1. 立即复盘
+
 ```
+立即复盘 [时间范围]
+
+示例：
+- 立即复盘今天的对话
+- 立即复盘过去 3 天的对话
+- 立即复盘本周的对话
+```
+
+### 2. 查询历史
+
+```
+查询 [时间范围] 的复盘记录
+
+示例：
+- 查询上周的复盘记录
+- 查询本月的复盘记录
+- 查询关于技能创建的复盘
+```
+
+### 3. 生成统计
+
+```
+生成 [时间范围] 的复盘统计
+
+示例：
+- 生成本月的复盘统计
+- 生成本周的复盘统计
+- 生成技能创建统计
+```
+
+### 4. 导出内容
+
+```
+导出 [时间范围] 的复盘内容
+
+示例：
+- 导出今日的复盘内容
+- 导出本周的复盘内容
+- 导出关于变现的复盘内容
+```
+
+---
+
+## 📋 复盘维度
+
+**每日复盘包含**：
+1. 今日对话与成果
+2. 可复用性评估（S/A/B/C/D 级）
+3. 高标准达成情况
+4. IP 素材积累
+5. 人生思考与原认知
+6. 生态位与资产
+7. 明日计划
+
+---
+
+## 📊 复盘记录位置
+
+```
+memory/evolution/daily-review/
+├── YYYY-MM-DD-review.md    # 每日复盘报告
+└── ...
+```
+
+---
+
+## 🔗 与 Cron 任务的关系
+
+**Cron 任务**（自动运行）：
+- 每日复盘（23:00）
+
+**本技能**（手动调用）：
+- 立即触发复盘
+- 查询历史记录
+- 生成统计报告
+
+---
+
+**创建时间**：2026-03-27 22:03  
+**维护者**：王的奴隶 · 严谨专业版  
+**标签**：#自研系统 #每日复盘 #知识管理
+
+---
+
+## 💰 购买与授权
+
+**本技能版本**：v0.1.0
+
+**授权类型**：
+- **个人版**：$29.9（永久使用，个人非商业用途）
+- **商业版**：$99.9（永久使用，商业用途）
+
+**购买后获得**：
+- ✅ 技能完整源码
+- ✅ 使用文档
+- ✅ 1 年免费更新
+- ✅ 邮件支持
+
+**购买方式**：
+1. 访问 ClawHub 技能页面
+2. 选择授权类型
+3. 支付（支付宝/微信/PayPal）
+4. 自动获得授权码
+
+**联系方式**：
+- 📧 邮箱：support@cloud-shrimp.com
+- 💬 微信：CloudShrimpSupport（备注：技能名称）
+
+**企业定制**：
+- 请联系：business@cloud-shrimp.com
+
+---
+
+**技能版本**：v0.1.0  
+**创建时间**：2026-03-27  
+**维护者**：王的奴隶 · 严谨专业版

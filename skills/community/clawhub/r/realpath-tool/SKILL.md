@@ -1,35 +1,26 @@
 ---
-name: "Realpath Tool"
-description: "Resolve relative paths and symbolic links to absolute canonical paths. Use for getting the full, unambiguous file path."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/realpath-tool"
-sourceUrl: "https://clawhub.ai/skills/realpath-tool"
+name: realpath-tool
+description: Resolve relative paths and symbolic links to absolute canonical paths. Use for getting the full, unambiguous file path.
 ---
+# Realpath - Absolute Path Resolver
 
-# Realpath Tool
+Convert relative paths and symlinks to absolute canonical paths. Useful for scripts that need the full path of files, directories, or symlinked resources.
 
-> Resolve relative paths and symbolic links to absolute canonical paths. Use for getting the full, unambiguous file path.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/realpath-tool`
-- **Source URL:** [https://clawhub.ai/skills/realpath-tool](https://clawhub.ai/skills/realpath-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/realpath-tool
+realpath-tool [options] <path...>
+```
+
+## Options
+
+- `-s`: Don't expand symlinks (show logical path)
+- `-m`: Path doesn't need to exist
+- `--relative-to=DIR`: Show path relative to DIR
+
+## Examples
+
+```bash
+realpath-tool ./relative/path
+realpath-tool -s symlink_path
+realpath-tool --relative-to=/home file.txt
 ```

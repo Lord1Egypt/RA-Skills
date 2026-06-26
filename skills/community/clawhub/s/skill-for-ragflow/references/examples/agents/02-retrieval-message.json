@@ -1,0 +1,147 @@
+{
+  "components": {
+    "begin": {
+      "obj": {
+        "component_name": "Begin",
+        "params": {
+          "mode": "conversational",
+          "prologue": "Hi! Ask me about the dataset."
+        }
+      },
+      "downstream": [
+        "retrieval:0"
+      ],
+      "upstream": []
+    },
+    "retrieval:0": {
+      "obj": {
+        "component_name": "Retrieval",
+        "params": {
+          "query": "{sys.query}",
+          "similarity_threshold": 0.2,
+          "keywords_similarity_weight": 0.3,
+          "top_n": 8,
+          "top_k": 1024,
+          "kb_ids": [
+            "your-dataset-id"
+          ],
+          "rerank_id": "",
+          "empty_response": "No relevant chunks found.",
+          "use_kg": false,
+          "toc_enhance": false,
+          "cross_languages": [],
+          "retrieval_from": "dataset"
+        }
+      },
+      "downstream": [
+        "message:0"
+      ],
+      "upstream": [
+        "begin"
+      ]
+    },
+    "message:0": {
+      "obj": {
+        "component_name": "Message",
+        "params": {
+          "content": [
+            "{retrieval:0@formalized_content}"
+          ]
+        }
+      },
+      "downstream": [],
+      "upstream": [
+        "retrieval:0"
+      ]
+    }
+  },
+  "history": [],
+  "path": [],
+  "retrieval": [],
+  "variables": {},
+  "globals": {
+    "sys.query": "",
+    "sys.user_id": "",
+    "sys.conversation_turns": 0,
+    "sys.files": [],
+    "sys.history": [],
+    "sys.date": ""
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "begin",
+        "type": "beginNode",
+        "position": {
+          "x": 50,
+          "y": 200
+        },
+        "data": {
+          "label": "Begin",
+          "name": "begin",
+          "form": {
+            "mode": "conversational",
+            "prologue": "Hi! Ask me about the dataset."
+          }
+        }
+      },
+      {
+        "id": "retrieval:0",
+        "type": "retrievalNode",
+        "position": {
+          "x": 320,
+          "y": 200
+        },
+        "data": {
+          "label": "Retrieval",
+          "name": "retrieval_0",
+          "form": {
+            "query": "{sys.query}",
+            "similarity_threshold": 0.2,
+            "keywords_similarity_weight": 0.3,
+            "top_n": 8,
+            "top_k": 1024,
+            "kb_ids": [
+              "your-dataset-id"
+            ],
+            "rerank_id": "",
+            "empty_response": "No relevant chunks found.",
+            "use_kg": false,
+            "toc_enhance": false,
+            "cross_languages": [],
+            "retrieval_from": "dataset"
+          }
+        }
+      },
+      {
+        "id": "message:0",
+        "type": "messageNode",
+        "position": {
+          "x": 610,
+          "y": 200
+        },
+        "data": {
+          "label": "Message",
+          "name": "message_0",
+          "form": {
+            "content": [
+              "{retrieval:0@formalized_content}"
+            ]
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "begin-retrieval:0",
+        "source": "begin",
+        "target": "retrieval:0"
+      },
+      {
+        "id": "retrieval:0-message:0",
+        "source": "retrieval:0",
+        "target": "message:0"
+      }
+    ]
+  }
+}

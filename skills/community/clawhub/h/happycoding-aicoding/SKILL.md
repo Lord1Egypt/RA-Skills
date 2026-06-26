@@ -1,35 +1,89 @@
----
-name: "HappyCoding AI Coding"
-description: "Facilitates full-cycle coding workflow in HappyCoding AI Coding: from requirement discussion, code edits, preview, to saving, publishing, and evidence docume..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/happycoding-aicoding"
-sourceUrl: "https://clawhub.ai/skills/happycoding-aicoding"
----
+**xiaochang-ai-coding Skills（教学版）**
 
-# HappyCoding AI Coding
+**xiaochang-ai-coding Skills（教学版）**
 
-> Facilitates full-cycle coding workflow in HappyCoding AI Coding: from requirement discussion, code edits, preview, to saving, publishing, and evidence docume...
+_用途：给"另外的AI"做教学时，复用这套在小畅AI Coding平台上的标准工作流。_
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/happycoding-aicoding`
-- **Source URL:** [https://clawhub.ai/skills/happycoding-aicoding](https://clawhub.ai/skills/happycoding-aicoding)
+**0\. Skill定位**
 
-## Overview
+- **名称**：xiaochang-ai-coding
+- **目标**：在小畅AI Coding里完成从需求沟通、代码修改、预览验证、证据留档到发布的闭环。
+- **适用场景**：任何需要在"小畅AI Coding"中实现或迭代功能的任务。
 
+**1\. 平台入口与会话**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/happycoding-aicoding
-```
+- 入口：<https://aicoding.aigcuniversity.com/>
+- 账号：小畅openclaw（通常已登录，失效再处理）
+- 建议先确认页面状态（项目列表/当前项目/编辑器是否可用）
+
+**2\. 标准流程（最重要）**
+
+- **需求交流区先行**：先在"需求交流区"描述需求，等平台生成修改建议。
+- **自动建议优先**：用"继续完善/添加更多功能/帮我美化"等按钮迭代。
+- **必要时再手改代码**：自动补丁无效或细节不到位时，进入代码区精修。
+- **运行验证**：运行后看预览区是否满足需求。
+- **保存到项目**：必须点左侧"我的项目"下方绿色保存（这是项目级提交）。
+- **发布并回传链接**：发布成功后记录分享链接与关键截图。
+
+_原则：优先保留"需求→修改→验证"的审计链，不要一上来就脱离平台流程硬改代码。_
+
+**3\. 代码区操作要点**
+
+**3.1 读取当前代码**
+
+JavaScript  
+window.editorManager.editor.state.doc.toString()
+
+**3.2 批量覆盖代码（推荐）**
+
+- 先清空编辑器，再按3~4KB分块插入新代码。
+- 局部replace可用，但整页覆盖更稳定。
+
+**3.3 运行与保存**
+
+- 运行按钮触发后，检查预览区。
+- **最终一定要点项目级绿色"保存"**，否则只在当前会话生效。
+
+**4\. 发布规范**
+
+- 点击顶部发布
+- **必须选择项目类型**（常用"工具"）
+- 确认名称后发布
+- 拿到云端链接（如 <https://t.istemedu.com/&lt;slug&gt;）并回传>
+
+**5\. 作画智能体（ID 10）API（项目常用）**
+
+- Endpoint：<https://ainet.aigcuniversity.com/api/v1/tank/custom_gpt/10/execute>
+- Header：
+- x-api-key: {{your key}}
+- Content-Type: application/json
+- 请求体核心：messages\[\] + stream:false
+- 返回重点：result.images（Base64 PNG）
+- 图生图：上传文件后转base64并写入init_image
+- 错误处理：检查 response.ok、result.images 是否存在，异常时给UI状态提示
+
+**6\. UI/交互约束（当前多模态助手项目）**
+
+- 视觉：柔和紫色风格
+- 布局：左侧输入，右侧"生成记录区 + 示例图片区"分离
+- 交互：
+- Ctrl+Enter 快速生成
+- 历史记录存 localStorage.imageHistory（最多10条）
+- 空状态引导明确
+
+**7\. 证据留档要求**
+
+- 保存页面快照/截图（结构与结果）
+- 记录发布链接
+- 记录关键改动点（例如：生成区与示例区分离）
+
+**8\. 常见问题排查**
+
+- 编辑器无响应：刷新页面/重开代码面板/等待 editorManager 加载
+- AI修改偏离：撤销后回到需求区重新约束
+- 发布失败：检查项目类型是否已选、表单是否完整
+
+**9\. 对外教学的一句话总结**
+
+先走"**需求交流**"，再做"**必要代码修正**"，最后完成"**运行验证+项目级保存+发布回传**"。  
+这套流程比单纯改代码更稳定，也更容易复盘教学过程。

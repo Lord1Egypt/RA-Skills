@@ -1,35 +1,66 @@
 ---
-name: "Policy Sea"
-description: "做东南亚跨境生意的工具箱——印尼、泰国、越南、马来西亚、菲律宾、新加坡六国税制+认证+准入，一问全出。"
-category: "other"
-source: "ClawHub"
-tags: [huimai, policy, southeast-asia]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-southeast-asia-policy"
-sourceUrl: "https://clawhub.ai/skills/huimai-southeast-asia-policy"
+name: 🌏 东南亚市场政策查询Skill
+description: 做东南亚跨境生意的工具箱——印尼、泰国、越南、马来西亚、菲律宾、新加坡六国税制+认证+准入，一问全出。
+metadata: {"openclaw":{"emoji":"🌏"}}
 ---
 
-# Policy Sea
+# 🌏 东南亚市场政策查询Skill
 
-> 做东南亚跨境生意的工具箱——印尼、泰国、越南、马来西亚、菲律宾、新加坡六国税制+认证+准入，一问全出。
+> 东南亚六国（印尼/泰国/越南/马来西亚/菲律宾/新加坡），每个国家税制、认证要求、准入门槛都不一样。这个Skill帮你一口问清。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-southeast-asia-policy`
-- **Source URL:** [https://clawhub.ai/skills/huimai-southeast-asia-policy](https://clawhub.ai/skills/huimai-southeast-asia-policy)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：新增马来西亚MDA认证查询
+- 新增：各国FE/EORI/进出口许可证对照
+- 新增：东盟FTA原产地规则快速核验
+- 优化：响应速度提升，支持多国同时对比
 
+### v1.0.1 (2026-04-30)
+- 修复部分数据源超时
+- 增加越南Circular更新跟踪
 
-## Installation
-To install this skill, run the following command in your terminal:
+### v1.0.0 (2026-04-24)
+- 初版发布
+
+## 👤 为什么做这个
+
+之前做东南亚跨境的时候，每次都要打开六七个政府网站来回跳。印尼BKPM、泰国BOI、越南MPI、马来西亚MIDA……每个入口和格式都不一样。后来想，干嘛不把这事揉成一个接口。现在你问一句"泰国电子零部件关税"，几秒钟就出了。
+
+## 典型用法
+
+```
+你: "从中国出口锂电池到印尼"
+我: 印尼HS归类 → 进口关税 → 保税机会(BKPM) → SNI认证要求
+
+你: "越南电子产品进口要什么认证"
+我: 产品分类 → 关税税率(MFTA/ACFTA) → CR认证要求 → 进口商资质
+```
+
+## 👔 适用人群
+- **跨境电商（Shopee/Lazada卖家）**：各海关查税费
+- **外贸跟单**：对比各国成本
+- **投资考察**：查各国准入壁垒
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先给结论再附数据，风险提示+应对策略
+- **专业模式（可选）**：直出数据，适合熟手
+
+## 💡 使用小贴士
+- 马来西亚建议问含SIRIM认证的版本
+- 越南电子发票要求越来越严，查关税时顺带问一句"发票要求"
+- 印尼配额数据每月更新一次，月初查最准
+
+## ⚠️ 免责与已知限制
+- 数据来源各国公开渠道，不构成正式法律意见
+- 印尼配额政策变动频繁，以实际清关结果为准
+- 非东盟FTA优惠时请备注适用协定
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-southeast-asia-policy
+clawhub install policy-sea
 ```

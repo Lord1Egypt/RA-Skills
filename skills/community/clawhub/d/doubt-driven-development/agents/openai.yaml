@@ -1,0 +1,4 @@
+interface:
+  display_name: "Doubt Driven Development"
+  short_description: "Stress-test risky changes before shipping"
+  default_prompt: "Use $doubt-driven-development to review this high-risk change with fresh-context skepticism."

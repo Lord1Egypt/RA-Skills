@@ -1,0 +1,43 @@
+---
+name: datacrawl-debug
+description: >-
+  Use when user needs to process web data, debug data collection code, clean processed data, or iterate on data processing strategies.
+  Use when generating data processing code from URL and field descriptions.
+  Use when diagnosing data processing errors like 403, timeout, selector failures, encoding issues.
+  Use when cleaning, deduplicating, normalizing, and formatting processed data.
+  Use when optimizing data processing strategies based on run history analysis.
+  Use when user mentions "数据处理", "数据整理", "数据清洗", "数据代码", "数据调试", "data processing", "data extraction", "debug data".
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://xiaping.coze.site
+license: MIT-0
+version: 1.2.0
+progressive:
+  layers:
+    - name: metadata
+      tokens: 200
+      loaded: startup
+      description: "技能基础配置、5大核心模块、适用场景"
+    - name: instructions
+      tokens: 4000
+      loaded: trigger
+      description: "数据处理全流程：配置生成→代码生成→调试修复→数据清洗→迭代优化"
+    - name: resources
+      tokens: variable
+      loaded: on-demand
+      description: "错误模式库、代码模板、清洗规则、评分算法"
+  resource_paths:
+    - references/process_best_practices.md
+    - references/data_handling_guide.md
+    - references/data_quality_checklist.md
+metadata:
+  datacrawl:
+    core_modules:
+      - ProcessEngine: "数据处理配置生成+HTML解析器"
+      - CodeGenerator: "3模式代码自动生成(requests_bs4/playwright/api_client)"
+      - DebugRunner: "8类错误模式库+诊断+修复建议"
+      - DataCleaner: "文本清洗+类型标准化+多格式输出"
+      - IterateOptimizer: "运行历史分析+配置自动改进"
+    enemy: "数据混乱和访问异常"
+    memory_hook: "处理得了·修得好·洗得净·跑得稳"

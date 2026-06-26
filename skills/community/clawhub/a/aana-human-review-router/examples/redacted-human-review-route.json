@@ -1,0 +1,24 @@
+{
+  "task_summary": "Decide whether to send a billing email that includes a refund decision.",
+  "proposed_action": "Send one customer email confirming refund eligibility.",
+  "impact_level": "high",
+  "evidence_status": "unverified",
+  "authorization_status": "approval_required",
+  "reversibility_status": "hard_to_undo",
+  "review_route": "human_review",
+  "review_reason": "The reply affects money and relies on an unverified account decision.",
+  "reviewer_decision_needed": "Confirm whether refund eligibility is approved and whether the email may be sent.",
+  "risk_classes": [
+    "financial",
+    "privacy",
+    "external_send",
+    "support_reply"
+  ],
+  "safeguards_required": [
+    "verify account record",
+    "redact unnecessary payment details",
+    "get approval before sending"
+  ],
+  "recommended_action": "route_to_review",
+  "human_review_required": true
+}

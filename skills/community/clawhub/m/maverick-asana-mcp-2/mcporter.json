@@ -1,0 +1,16 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-asana": {
+      "baseUrl": "https://mcp.asana.com/v2/mcp",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://app.asana.com/-/oauth_token",
+        "clientIdEnv": "MAVERICK_ASANA_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_ASANA_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_post"
+      }
+    }
+  }
+}

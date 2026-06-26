@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "name": "agent-stock-pro 模拟组合",
+    "initial_capital": 1000000,
+    "currency": "CNY",
+    "start_date": null,
+    "updated_at": null,
+    "version": "1.0"
+  },
+  "positions": [],
+  "cash": 1000000,
+  "equity_history": [],
+  "stats": {
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_win": 0,
+    "avg_loss": 0,
+    "profit_factor": 0,
+    "max_drawdown": 0,
+    "max_drawdown_date": null,
+    "total_return_pct": 0,
+    "annualized_return_pct": 0,
+    "sharpe_ratio": 0,
+    "avg_hold_days": 0
+  }
+}

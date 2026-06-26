@@ -1,0 +1,44 @@
+{
+  "type": "procurement_bid",
+  "bid_id": "BID-20260330-003",
+  "req_id": "REQ-20260330-ca9348",
+  "supplier": {
+    "name": "名酒折扣店",
+    "agent_id": "agent-discount",
+    "endpoint": "http://discount:8787",
+    "contact": "QQ: 12345678"
+  },
+  "price": {
+    "amount": 2500,
+    "currency": "CNY",
+    "includes_shipping": true,
+    "shipping_cost": 0
+  },
+  "auth_docs": [
+    {
+      "type": "business_license",
+      "name": "个体工商户营业执照",
+      "url": "https://example.com/discount_license.jpg"
+    }
+  ],
+  "delivery": {
+    "time_days": 7,
+    "method": "圆通快递",
+    "tracking_available": true,
+    "insurance": false
+  },
+  "reputation": {
+    "total_transactions": 5,
+    "success_rate": 0.80,
+    "disputes": 0,
+    "complaints": 0,
+    "platform_verified": false,
+    "rating": 4.0
+  },
+  "warranty": {
+    "return_policy": "不支持退货",
+    "refund_policy": "质量问题协商解决"
+  },
+  "signature": "模拟签名_折扣店",
+  "timestamp": "2026-03-30T06:00:00Z"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "OpenClaw Samba 备份配置",
+  "properties": {
+    "target_server_ip": {
+      "type": "string",
+      "title": "Samba 服务器 IP",
+      "description": "远程 Samba 服务器的 IP 地址"
+    },
+    "target_share_name": {
+      "type": "string",
+      "title": "共享文件夹名称",
+      "description": "Samba 服务器上的共享文件夹名称"
+    },
+    "target_share_username": {
+      "type": "string",
+      "title": "Samba 用户名"
+    },
+    "target_share_password": {
+      "type": "string",
+      "title": "Samba 密码",
+      "format": "password"
+    },
+    "source_admin_username": {
+      "type": "string",
+      "title": "本服务器管理员用户名",
+      "description": "用于执行 sudo 挂载操作的管理员账户"
+    },
+    "source_admin_password": {
+      "type": "string",
+      "title": "本服务器管理员密码",
+      "description": "管理员密码，用于 sudo 挂载和执行 cp",
+      "format": "password"
+    },
+    "max_backups": {
+      "type": "integer",
+      "title": "保留备份数量",
+      "default": 7,
+      "minimum": 1
+    },
+    "source_dir": {
+      "type": ["string", "null"],
+      "title": "备份源路径",
+      "description": "OpenClaw 数据目录，null 表示默认路径"
+    },
+    "target_folder": {
+      "type": ["string", "null"],
+      "title": "目标文件夹名",
+      "description": "备份目标文件夹名，null 表示使用本机 hostname"
+    }
+  },
+  "required": ["target_server_ip", "target_share_name", "target_share_username", "target_share_password", "source_admin_username", "source_admin_password"]
+}

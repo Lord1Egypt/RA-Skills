@@ -1,35 +1,27 @@
----
-name: "Gpu Check"
-description: "Automatically polls and displays memory usage and online status of RTX 3090 and 4090 AI compute nodes in the local network."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gpu-check"
-sourceUrl: "https://clawhub.ai/skills/gpu-check"
----
+# GPU 状态检查 (gpu_check)
 
-# Gpu Check
+实时获取局域网内分布式 AI 算力节点的显存占用情况。
 
-> Automatically polls and displays memory usage and online status of RTX 3090 and 4090 AI compute nodes in the local network.
+## 功能
+* 自动轮询 3090 (192.168.2.236) 和 4090 (192.168.2.164) 的显存状态
+* 输出带进度条的 Markdown 表格
+* 监控各节点 API 服务在线情况
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gpu-check`
-- **Source URL:** [https://clawhub.ai/skills/gpu-check](https://clawhub.ai/skills/gpu-check)
+## 依赖
+* Node.js 环境（已内置）
+* axios 库（需安装）
 
-## Overview
+## 安装
+1. 在技能目录安装依赖：
+   ```bash
+   cd ~/.openclaw/workspace/skills/gpu_check
+   npm init -y
+   npm install axios
+   ```
+2. 确保 GPU 节点 API 已启动（需在 192.168.2.236 和 192.168.2.164 运行支持 `/gpu` 端点的服务）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gpu-check
-```
+## 使用
+在聊天中发送：
+- `/gpu`
+- `@机器人 显卡状态`
+- `查看 GPU 占用`

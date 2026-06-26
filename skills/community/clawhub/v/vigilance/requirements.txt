@@ -1,0 +1,13 @@
+# agent-eval-engine — Python dependencies
+# Install with: pip3 install -r requirements.txt
+
+# ── LLM provider SDKs (at least one required for LLM-as-judge dimensions) ──
+anthropic>=0.49.0          # Anthropic Claude API (default judge provider)
+openai>=1.68.0             # OpenAI API (optional; pass --provider openai)
+
+# ── Environment / config ─────────────────────────────────────────────────────
+python-dotenv>=1.0.0       # Load ANTHROPIC_API_KEY / OPENAI_API_KEY from .env
+
+# ── Standard library only below this line ────────────────────────────────────
+# argparse, json, os, re, sys, time, difflib — all ship with Python 3.8+
+# No additional dependencies required for rule-based dimensions.

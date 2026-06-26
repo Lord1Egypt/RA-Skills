@@ -1,0 +1,153 @@
+{
+  "repeatIdentical": true,
+  "runs": [
+    {
+      "source": "sitemap (http://stable.test/sitemap.xml)",
+      "runtimeUrl": "http://stable.test",
+      "originPolicy": "same-origin",
+      "discoveredOrigins": [
+        "http://stable.test"
+      ],
+      "blockedFetches": [],
+      "totalPages": 8,
+      "selectedPages": 2,
+      "coverageRatio": "1 template groups, 2 pages selected",
+      "fingerprintedGroups": 1,
+      "apiManifest": null,
+      "groups": [
+        {
+          "pattern": "blog/*",
+          "count": 8,
+          "selected": [
+            "http://stable.test/blog/post-2",
+            "http://stable.test/blog/post-7"
+          ],
+          "reason": "2 of 8 — by DOM complexity (scores: 6→2)",
+          "fingerprints": [
+            {
+              "url": "http://stable.test/blog/post-2",
+              "score": 6,
+              "elements": {
+                "form": 1,
+                "input": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-4",
+              "score": 6,
+              "elements": {
+                "form": 1,
+                "input": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-8",
+              "score": 6,
+              "elements": {
+                "form": 1,
+                "input": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-3",
+              "score": 4,
+              "elements": {
+                "table": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-6",
+              "score": 4,
+              "elements": {
+                "table": 1,
+                "h1": 1
+              }
+            }
+          ]
+        }
+      ],
+      "scanList": [
+        "http://stable.test/blog/post-2",
+        "http://stable.test/blog/post-7"
+      ]
+    },
+    {
+      "source": "sitemap (http://stable.test/sitemap.xml)",
+      "runtimeUrl": "http://stable.test",
+      "originPolicy": "same-origin",
+      "discoveredOrigins": [
+        "http://stable.test"
+      ],
+      "blockedFetches": [],
+      "totalPages": 8,
+      "selectedPages": 2,
+      "coverageRatio": "1 template groups, 2 pages selected",
+      "fingerprintedGroups": 1,
+      "apiManifest": null,
+      "groups": [
+        {
+          "pattern": "blog/*",
+          "count": 8,
+          "selected": [
+            "http://stable.test/blog/post-2",
+            "http://stable.test/blog/post-7"
+          ],
+          "reason": "2 of 8 — by DOM complexity (scores: 6→2)",
+          "fingerprints": [
+            {
+              "url": "http://stable.test/blog/post-2",
+              "score": 6,
+              "elements": {
+                "form": 1,
+                "input": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-4",
+              "score": 6,
+              "elements": {
+                "form": 1,
+                "input": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-8",
+              "score": 6,
+              "elements": {
+                "form": 1,
+                "input": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-3",
+              "score": 4,
+              "elements": {
+                "table": 1,
+                "h1": 1
+              }
+            },
+            {
+              "url": "http://stable.test/blog/post-6",
+              "score": 4,
+              "elements": {
+                "table": 1,
+                "h1": 1
+              }
+            }
+          ]
+        }
+      ],
+      "scanList": [
+        "http://stable.test/blog/post-2",
+        "http://stable.test/blog/post-7"
+      ]
+    }
+  ]
+}

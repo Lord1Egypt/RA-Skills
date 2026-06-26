@@ -1,0 +1,162 @@
+{
+  "name": "research-paper-figure-skill-factory",
+  "display_name": "Research Paper Figure Skill Factory",
+  "version": "1.0.1",
+  "license": "MIT-0",
+  "entrypoint": "SKILL.md",
+  "description": "A research-paper figure Skill Factory for generating reusable specialized paper-figure-making skills from lawful corpus evidence, then using those generated skills for concrete target papers. Version 1.0.1 requires generated skills to include an explicit text-candidate to visual-candidate setup to IMAGE_ONLY candidate-board generation to candidate-review/selection bridge after every multi-option figure decision.",
+  "openclaw": {
+    "skillKey": "research-paper-figure-skill-factory"
+  },
+  "tags": [
+    "research-figure",
+    "paper-figure",
+    "figure-skill-builder",
+    "figure-skill-factory",
+    "figure-taxonomy",
+    "scientific-illustration",
+    "image-prompt",
+    "imagegen",
+    "chatgpt-images-2",
+    "clawhub",
+    "openclaw",
+    "visual-style",
+    "meta-skill",
+    "figure-studio",
+    "candidate-image-bridge",
+    "startup-no-image",
+    "text-image-separation",
+    "full-feasible-corpus"
+  ],
+  "compatibility": [
+    "ChatGPT web",
+    "Codex",
+    "OpenClaw",
+    "ClawHub marketplace",
+    "skills.sh"
+  ],
+  "features": [
+    "specialized-skill-first-builder",
+    "full-feasible-local-pdf-coverage",
+    "evidence-backed-taxonomy",
+    "strict-text-image-turn-separation",
+    "mandatory-candidate-image-bridge",
+    "chatgpt-web-create-image-chatgpt-images-2",
+    "codex-imagegen-first",
+    "sample-image-transfer"
+  ],
+  "builder_corpus_coverage_policy": {
+    "default_scope": "all_accessible_relevant_pdfs",
+    "fixed_small_sample_allowed": false,
+    "pilot_sample_allowed_only_with_user_or_resource_reason": true,
+    "sampling_must_not_claim_full_taxonomy": true,
+    "chunked_processing_allowed": true,
+    "representative_pages_are_audit_aids_only": true,
+    "multi_label_classification_required_when_applicable": true,
+    "production_grade_requires_full_feasible_coverage_or_recorded_exception": true
+  },
+  "generated_skill_candidate_policy": {
+    "text_candidates_default": 6,
+    "text_candidates_min": 4,
+    "text_candidates_max": 6,
+    "image_candidates_default": 6,
+    "image_candidates_min": 4,
+    "image_candidates_max": 6,
+    "if_user_says_generate_without_count": "default_to_6_images",
+    "single_image_only_when_explicit": true,
+    "always_prompt_for_multi_candidate_images": true,
+    "candidate_image_bridge_required_after_multi_option_text": true,
+    "required_bridge_steps": [
+      "TEXT_ONLY_candidate_board_setup",
+      "IMAGE_ONLY_candidate_board_generation",
+      "TEXT_ONLY_candidate_review_and_direction_lock"
+    ],
+    "multi_option_next_prompt_default": "ask_to_generate_or_display_6_candidate_images_or_schematic_boards",
+    "key_visual_decision_default": "recommend_6_generated_candidate_images_before_locking_direction",
+    "rendering_route_for_candidate_images": "ChatGPT web Create image through ChatGPT Images 2.0; Codex $imagegen skill first; if unavailable, ChatGPT Images 2.0 API or another approved image-generation API.",
+    "svg_or_code_visual_candidates_allowed": false,
+    "native_image_generation_required": true,
+    "native_generated_bitmap_exports_allowed": true,
+    "allowed_native_bitmap_output_formats": [
+      "png",
+      "jpg",
+      "jpeg",
+      "webp"
+    ],
+    "code_rendered_visual_substitutes_allowed": false,
+    "forbidden_generated_visual_outputs": [
+      "svg",
+      "mermaid",
+      "tikz",
+      "graphviz",
+      "html_css_diagram",
+      "canvas_diagram",
+      "matplotlib_figure",
+      "code_generated_figure"
+    ]
+  },
+  "generated_skill_required_production_steps": [
+    {
+      "step": "P1",
+      "mode": "TEXT_ONLY",
+      "purpose": "material_intake"
+    },
+    {
+      "step": "P2",
+      "mode": "TEXT_ONLY",
+      "purpose": "figure_need_diagnosis_and_routing"
+    },
+    {
+      "step": "P3",
+      "mode": "TEXT_ONLY",
+      "purpose": "reader_effect_and_text_candidates"
+    },
+    {
+      "step": "P4",
+      "mode": "TEXT_ONLY",
+      "purpose": "visual_candidate_board_setup"
+    },
+    {
+      "step": "P5",
+      "mode": "IMAGE_ONLY",
+      "purpose": "candidate_board_generation"
+    },
+    {
+      "step": "P6",
+      "mode": "TEXT_ONLY",
+      "purpose": "candidate_review_and_direction_lock"
+    },
+    {
+      "step": "P7",
+      "mode": "TEXT_ONLY",
+      "purpose": "final_image_brief"
+    },
+    {
+      "step": "P8",
+      "mode": "IMAGE_ONLY",
+      "purpose": "formal_generation"
+    },
+    {
+      "step": "P9",
+      "mode": "TEXT_ONLY",
+      "purpose": "review_caption_body_text"
+    }
+  ],
+  "generated_skill_requirements": {
+    "first_reply_plan_only_no_result": true,
+    "no_image_on_first_reply": true,
+    "no_text_and_image_same_turn": true,
+    "image_turn_has_no_prose": true,
+    "all_steps_current_position_footer": true,
+    "session_history_state_source_default": "active_session_history",
+    "recommended_prompt_prefix": "请使用**<当前skill名称>**，执行，根据当前状态，下一步执行：",
+    "unknown_next_prompt": "请使用**<当前skill名称>**，根据当前状态，提供下一步提问建议。",
+    "after_multi_option_text_first_prompt": "请使用**<当前skill名称>**，执行，根据当前状态，下一步执行：生成 6 张候选图/示意图供我比较选择。",
+    "candidate_bridge_lock_test_required": true
+  },
+  "rendering_route": {
+    "chatgpt_web": "Use Create image through ChatGPT Images 2.0",
+    "codex_priority": "$imagegen skill first",
+    "codex_fallback": "ChatGPT Images 2.0 API or another approved image-generation API"
+  }
+}

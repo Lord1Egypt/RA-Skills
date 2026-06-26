@@ -1,0 +1,34 @@
+{
+  "name": "hotspot-aggregator",
+  "version": "1.0.0",
+  "description": "全网热点聚合 - 微博/知乎/抖音/新闻热榜自动抓取，生成 AI 友好格式的每日热点日报",
+  "main": "install.sh",
+  "scripts": {
+    "install": "./install.sh",
+    "fetch": "node scripts/fetch-hotspots.js",
+    "report": "node scripts/generate-daily-report.js",
+    "daily": "npm run fetch && npm run report -- --send"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lin-yac/hotspot-aggregator.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "hotspot",
+    "news",
+    "trending",
+    "聚合",
+    "热点"
+  ],
+  "author": "linzmin1927",
+  "license": "MIT-0",
+  "clawhub": {
+    "type": "skill",
+    "category": "news",
+    "tags": ["news", "trending", "aggregator", "ai-ready"],
+    "platform": "openclaw-weixin",
+    "minOpenClawVersion": "2026.3.13"
+  }
+}

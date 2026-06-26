@@ -1,0 +1,204 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/chinese-chan",
+  "preset": "Chinese Chan",
+  "family": "contemplative-editorial-serif",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=0.0.0 <3.0.0",
+  "producer_version_tested": "unknown",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/chinese-chan.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/chinese-chan-zh.html",
+    "demos/chinese-chan-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/chinese-chan.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/chinese-chan-zh.html",
+    "source_snapshot/demos/chinese-chan-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [
+    {
+      "selector": "body::before",
+      "kind": "ink-wash",
+      "export_strategy": "background-layer"
+    }
+  ],
+  "component_selectors": {
+    "rule": [
+      ".zen-rule"
+    ],
+    "rule_line": [
+      ".zen-rule-line"
+    ],
+    "card": [
+      ".zen-card"
+    ],
+    "list": [
+      ".zen-list"
+    ],
+    "stat": [
+      ".zen-stat"
+    ],
+    "command": [
+      ".cmd"
+    ],
+    "ghost_kanji": [
+      ".zen-ghost-kanji"
+    ],
+    "seal": [
+      ".zen-seal"
+    ]
+  },
+  "component_slot_models": {
+    "card": {
+      "layout": "stack_card",
+      "slots": [
+        "title",
+        "body",
+        "footer"
+      ]
+    },
+    "stat": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label"
+      ]
+    },
+    "command": {
+      "layout": "inline_command_row",
+      "slots": [
+        "command"
+      ]
+    }
+  },
+  "layout_variations": [
+    "editorial-cover",
+    "narrow-column-sermon",
+    "serif-stats",
+    "closing-command"
+  ],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {
+    "cn_font_stack": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC",
+      "STSong",
+      "SimSun",
+      "Georgia",
+      "serif"
+    ],
+    "en_font_stack": [
+      "EB Garamond",
+      "Crimson Text",
+      "Georgia",
+      "serif"
+    ],
+    "font_features": [
+      "palt"
+    ],
+    "role_selectors": {
+      "title": [
+        ".zen-title",
+        ".zen-h2",
+        ".zen-subtitle",
+        ".zen-caption",
+        ".zen-accent",
+        ".zen-ghost-kanji"
+      ],
+      "body": [
+        ".zen-body",
+        ".zen-list"
+      ],
+      "command": [
+        ".cmd"
+      ],
+      "metric": [
+        ".num",
+        ".label"
+      ]
+    },
+    "title": {
+      "family_mode": "cn_serif",
+      "weight": 400,
+      "line_height": 1.3,
+      "letter_spacing": "0.08em"
+    },
+    "body": {
+      "family_mode": "cn_serif",
+      "weight": 300,
+      "line_height": 1.9,
+      "letter_spacing": "0.05em"
+    },
+    "command": {
+      "family_mode": "en_serif",
+      "line_height": 1.6
+    },
+    "metric": {
+      "family_mode": "en_serif",
+      "weight": 600
+    }
+  },
+  "line_break_contract": {
+    "break_policy": {
+      ".zen-title": "prefer_preserve",
+      ".zen-body": "preserve",
+      ".cmd": "preserve"
+    },
+    "shrink_forbidden_for": [
+      ".zen-title",
+      ".zen-body",
+      ".cmd"
+    ],
+    "overflow_strategy": "expand_container_first"
+  },
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Chinese Chan",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "a-body",
+    "a-label",
+    "a-subtitle",
+    "a-title",
+    "cmd",
+    "label",
+    "pill",
+    "stat",
+    "zen-accent",
+    "zen-body",
+    "zen-caption",
+    "zen-ghost-kanji",
+    "zen-h2",
+    "zen-rule",
+    "zen-seal",
+    "zen-stat",
+    "zen-subtitle",
+    "zen-title",
+    "zen-vline"
+  ]
+}

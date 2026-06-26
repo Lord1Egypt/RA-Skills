@@ -1,0 +1,19 @@
+{
+  "name": "douyin-skill",
+  "version": "2.0.0",
+  "description": "Douyin video upload skill - self-contained",
+  "type": "module",
+  "bin": {
+    "douyin-login": "./scripts/login.js",
+    "douyin-upload": "./scripts/upload.js",
+    "douyin-manage": "./scripts/manage.js"
+  },
+  "scripts": {
+    "login": "node scripts/login.js",
+    "upload": "node scripts/upload.js",
+    "manage": "node scripts/manage.js"
+  },
+  "dependencies": {
+    "puppeteer": "^23.11.1"
+  }
+}

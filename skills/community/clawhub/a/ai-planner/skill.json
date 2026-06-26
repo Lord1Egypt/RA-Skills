@@ -1,0 +1,34 @@
+{
+  "name": "ai-planner",
+  "displayName": "🧠 AI 策划师",
+  "version": "1.0.0",
+  "description": "电商图片创作团队的大脑，负责需求分析、创意构思、Prompt 优化",
+  "author": "AI Image Team",
+  "tags": ["ai", "image", "planner", "ecommerce", "design"],
+  "category": "image-generation",
+  "visible": true,
+  "icon": "brain",
+  "order": 1,
+  "entry": "agent.py",
+  "capabilities": [
+    "需求深度分析",
+    "创意简报生成",
+    "Prompt 优化",
+    "工具推荐",
+    "电商场景识别"
+  ],
+  "input": {
+    "type": "text",
+    "language": "zh-CN",
+    "format": "自然语言需求描述"
+  },
+  "output": {
+    "type": "json",
+    "format": "创意简报"
+  },
+  "config": {
+    "default_language": "zh-CN",
+    "auto_ask_clarification": true,
+    "quality_threshold": 0.6
+  }
+}

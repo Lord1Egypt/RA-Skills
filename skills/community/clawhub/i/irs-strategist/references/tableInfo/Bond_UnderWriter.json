@@ -1,0 +1,162 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "MainCode",
+        "columnChiName": "债券内部代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "债券内部编码（MainCode）：与“债券代码对照表（Bond_Code）”中的“统一内部编码（MainCode）”关联，得到债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "IssueAndListType",
+        "columnChiName": "发行与上市类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "发行与上市类别(IssueAndListType)与(CT_SystemConst)表中的DM字段关联，令LB = 1016 AND DM IN (4,8,10,12,16)，得到发行与上市类别的具体描述：4-可转换债券，8-企业债券，10-金融债券，12-资产支持证券，16-可交换公司债券。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InitialInfoPublDate",
+        "columnChiName": "首次信息发布时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "AgentType",
+        "columnChiName": "机构类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "机构类别(AgentType)与(CT_SystemConst)表中的DM字段关联，令LB = 2177 AND DM IN (1,2,3,5)，得到机构类别的具体描述：1-主承销商，2-副主承销商，3-分销商，5-联席主承销商。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "SN",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "AgentCode",
+        "columnChiName": "机构编号",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "机构编号（AgentCode）：与“机构基本资料（LC_InstiArchive）”中的“企业编号（CompanyCode）”关联，得到承销或分销机构的具体名称、基本信息等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "FullName",
+        "columnChiName": "机构全称",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnChiName": "废弃字段",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "UnderwritingVol",
+        "columnChiName": "承销数量(张)",
+        "columnType": "decimal(16,0)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "UnderwritingSum",
+        "columnChiName": "承销/包销金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "UnderwritingRatio",
+        "columnChiName": "承销比例(%)",
+        "columnType": "decimal(9,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "0.0"
+    }
+]

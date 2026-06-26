@@ -1,0 +1,16 @@
+{
+  "name": "neckr0ik-etl-builder",
+  "version": "1.0.0",
+  "description": "Build data pipelines for ETL (Extract, Transform, Load). Connect databases, APIs, files, and cloud storage.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "etl",
+    "data",
+    "pipeline",
+    "extract",
+    "transform",
+    "load"
+  ],
+  "dependencies": {}
+}

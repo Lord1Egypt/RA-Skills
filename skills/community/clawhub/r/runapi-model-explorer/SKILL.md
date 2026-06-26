@@ -1,35 +1,28 @@
 ---
-name: "RunAPI Model Explorer"
-description: "Use when the user asks what RunAPI models are available, compares models, needs pricing, asks for required fields, searches by modality, or wants a recommend..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/runapi-model-explorer"
-sourceUrl: "https://clawhub.ai/skills/runapi-model-explorer"
+name: RunAPI Model Explorer
+description: >-
+  Use when the user asks what RunAPI models are available, compares models,
+  needs pricing, asks for required fields, searches by modality, or wants a
+  recommendation. Triggers include "what models", "compare models", "cheapest",
+  "pricing", "required params", "有哪些模型", "比较模型", and "价格".
+version: 0.1.0
 ---
 
 # RunAPI Model Explorer
 
-> Use when the user asks what RunAPI models are available, compares models, needs pricing, asks for required fields, searches by modality, or wants a recommend...
+Use RunAPI catalog and pricing tools for discovery.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/runapi-model-explorer`
-- **Source URL:** [https://clawhub.ai/skills/runapi-model-explorer](https://clawhub.ai/skills/runapi-model-explorer)
+## Workflow
 
-## Overview
+1. Call `mcp__runapi__list_models` with modality, service, or action filters when possible.
+2. For a specific model, call `mcp__runapi__get_model_info`; when service/action are known, include them to get the exact endpoint constraints.
+3. For cost questions, call `mcp__runapi__check_pricing`.
+4. Summarize as a compact table.
+5. End with one recommended service/action/model triple when the user wants to generate.
 
+## Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/runapi-model-explorer
-```
+- Do not quote stale prices.
+- Do not mention hidden infrastructure providers.
+- Do not overwhelm the user with the whole catalog unless they ask.
+- Keep model slugs exactly as returned by tools.

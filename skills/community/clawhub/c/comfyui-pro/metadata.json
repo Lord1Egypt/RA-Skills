@@ -1,0 +1,69 @@
+{
+  "name": "comfyui-pro",
+  "displayName": "ComfyUI Pro - 本地图像生成",
+  "version": "2.0.0",
+  "description": "ComfyUI 本地图像生成专业版 - 自动服务器管理 | WebSocket 实时进度 | 飞书静默发送 | 空闲自动关闭",
+  "summary": "专业版 ComfyUI 图像生成技能，整合 ClawHub 优秀技能优点。自动启停服务器、WebSocket 实时进度、飞书静默发送、30 分钟空闲自动关闭、GPU 显存监控、多工作流支持。",
+  "author": "机械之神",
+  "license": "MIT",
+  "category": "image-generation",
+  "tags": [
+    "comfyui",
+    "image-generation",
+    "ai-art",
+    "stable-diffusion",
+    "text-to-image",
+    "feishu",
+    "auto-management",
+    "websocket"
+  ],
+  "emoji": "🜃",
+  "requires": {
+    "bins": ["python3"],
+    "python_packages": ["websocket-client"]
+  },
+  "config": {
+    "server": {
+      "host": "127.0.0.1",
+      "port": 8000,
+      "auto_start": true,
+      "auto_stop_idle_minutes": 30,
+      "startup_timeout_seconds": 60
+    },
+    "defaults": {
+      "width": 1024,
+      "height": 1024,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler": "res_multistep"
+    }
+  },
+  "workflows": [
+    {
+      "name": "text-to-image",
+      "file": "assets/text-to-image.json",
+      "description": "文生图 - 纯文字生成图像"
+    },
+    {
+      "name": "image-to-image",
+      "file": "assets/image-to-image.json",
+      "description": "图生图 - 基于现有图片修改"
+    },
+    {
+      "name": "controlnet",
+      "file": "assets/controlnet.json",
+      "description": "ControlNet - 精确控制构图"
+    }
+  ],
+  "triggers": [
+    "生成图片",
+    "画图",
+    "绘制",
+    "文生图",
+    "图生图",
+    "AI 绘画",
+    "AI 创作",
+    "画一个",
+    "生成一张"
+  ]
+}

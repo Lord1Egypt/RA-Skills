@@ -1,0 +1,73 @@
+name: 创意大胆
+description: 前卫设计感，适合设计、创意、灵感类文章
+keywords:
+  - 创意
+  - 设计
+  - 灵感
+  - 脑洞
+  - 创新
+  - 独特
+  - 前卫
+  - 艺术设计
+  - 视觉
+  - 品牌
+colors:
+  primary: "#18181b"
+  accent: "#ec4899"
+  text: "#27272a"
+  text_light: "#52525b"
+  background: "#ffffff"
+  code_bg: "#fafafa"
+  blockquote_bg: "#fafafa"
+  border: "#e4e4e7"
+styles:
+  body:
+    font_size: "15px"
+    line_height: "1.75"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "22px"
+    font_weight: "900"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    letter_spacing: "-0.5px"
+  h2:
+    font_size: "17px"
+    font_weight: "700"
+    margin: "20px 0 12px 0"
+    padding: "0 16px 8px 16px"
+    border_left: "4px solid #ec4899"
+  h3:
+    font_size: "15px"
+    font_weight: "600"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "14px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "4px solid #ec4899"
+    line_height: "1.7"
+  code_inline:
+    font_size: "13px"
+    padding: "2px 5px"
+    border_radius: "2px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "4px"
+    border: "1px solid #e4e4e7"
+    line_height: "1.6"
+  list:
+    font_size: "15px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.75"
+  separator:
+    border_top: "2px solid #18181b"
+    margin: "24px 10%"
+  image:
+    border_radius: "4px"

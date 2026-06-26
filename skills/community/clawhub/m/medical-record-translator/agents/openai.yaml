@@ -1,0 +1,4 @@
+interface:
+  display_name: "Medical Record Translator"
+  short_description: "Structure-preserving Chinese-first doctor-readable translation of medical records to constrained Markdown and PDF export."
+  default_prompt: "Use $medical-record-translator to translate the provided medical record into a structure-preserving Chinese-first doctor-readable constrained Markdown document and export it as a PDF."

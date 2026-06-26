@@ -1,35 +1,33 @@
 ---
-name: "business-logic-vuln"
-description: "Indexed by skills.sh from yaklang/hack-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yaklang"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yaklang/hack-skills/business-logic-vuln"
-sourceUrl: "https://skills.sh/yaklang/hack-skills/business-logic-vuln"
+name: business-logic-vuln
+description: >-
+  Entry P1 category router for business logic testing. Use when workflow abuse,
+  race conditions, pricing flaws, or multi-step state attacks matter more than
+  parser-level input injection.
 ---
 
-# business-logic-vuln
+# Business Logic Router
 
-> Indexed by skills.sh from yaklang/hack-skills
+This is the routing entry point for business-logic and state-machine issues.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yaklang
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yaklang/hack-skills/business-logic-vuln`
-- **Source URL:** [https://skills.sh/yaklang/hack-skills/business-logic-vuln](https://skills.sh/yaklang/hack-skills/business-logic-vuln)
+## When to Use
 
-## Overview
+- The target involves coupons, inventory, payment, approvals, quotas, invites, trials, or state transitions
+- The issue is not parser-level; it is about when checks happen and which business conditions are checked
+- You suspect race conditions, workflow bypass, price tampering, negative values, stacked discounts, or multi-step flaws
 
+## Skill Map
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yaklang/hack-skills/business-logic-vuln
-```
+- [Business Logic Vulnerabilities](../business-logic-vulnerabilities/SKILL.md)
+
+## Recommended Flow
+
+1. First map key business states and one-time actions
+2. Then check for check-then-act windows, sequence dependencies, or missing cross-step authorization
+3. If the chain depends on APIs, uploads, or object permissions, return to the corresponding router skill to complete the path
+
+## Related Categories
+
+- [api-sec](../api-sec/SKILL.md)
+- [auth-sec](../auth-sec/SKILL.md)
+- [file-access-vuln](../file-access-vuln/SKILL.md)

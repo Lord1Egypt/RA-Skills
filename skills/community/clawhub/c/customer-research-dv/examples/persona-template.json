@@ -1,0 +1,64 @@
+{
+  "name": "Tech PM High Earner",
+  "demographics": {
+    "age_range": "30-45",
+    "income": "$200K+",
+    "job_title": "Product Manager, Senior PM, Director of Product",
+    "industry": "Tech, SaaS",
+    "location": "Urban, tech hubs (SF, NYC, Seattle, Austin)"
+  },
+  "pain_points": [
+    "Too many tools, fragmented workflow",
+    "Difficult to track tax deductions for side projects",
+    "Tax optimization takes too much time during filing season",
+    "Uncertainty about RSU/stock option tax implications",
+    "Missing deductions due to lack of awareness",
+    "Expensive CPA fees for relatively straightforward situations"
+  ],
+  "goals": [
+    "Maximize tax efficiency without spending hours researching",
+    "Automate deduction tracking throughout the year",
+    "Understand tax impact of compensation (equity, bonuses, etc.)",
+    "Reduce stress during tax season",
+    "Save money on tax preparation fees"
+  ],
+  "current_solutions": [
+    "TurboTax or H&R Block",
+    "Manual spreadsheet tracking",
+    "Hiring a CPA (expensive)",
+    "Google searches for tax questions"
+  ],
+  "behaviors": {
+    "tech_savvy": true,
+    "willing_to_pay": true,
+    "prefers_automation": true,
+    "time_constrained": true,
+    "data_driven": true
+  },
+  "quote": "I make good money, but I feel like I'm overpaying on taxes because I don't have time to optimize. I know there are deductions I'm missing, but researching them feels overwhelming.",
+  "frustrations": [
+    "Tax software feels outdated and clunky",
+    "CPAs are expensive for what should be straightforward",
+    "Don't know what I don't know (missing deductions)",
+    "Tax planning is reactive, not proactive"
+  ],
+  "desires": [
+    "Set it and forget it tax optimization",
+    "Proactive reminders about tax-saving opportunities",
+    "Integration with payroll and investment accounts",
+    "Clear, jargon-free explanations",
+    "Confidence that I'm not leaving money on the table"
+  ],
+  "willingness_to_pay": {
+    "monthly_range": "$25-$100",
+    "annual_range": "$200-$1000",
+    "value_perception": "Pays for itself if it saves more than it costs"
+  },
+  "decision_factors": [
+    "Time saved",
+    "Money saved",
+    "Ease of use",
+    "Trust and security (handling financial data)",
+    "Accuracy and audit protection"
+  ]
+}

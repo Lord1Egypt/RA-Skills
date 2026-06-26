@@ -1,0 +1,18 @@
+{
+  "name": "aavegotchi-sprites-generator-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AAIgotchi wrapper skill for generating Aavegotchi game sprites with gotchi-generator.",
+  "type": "module",
+  "scripts": {
+    "render": "node ./scripts/render-gotchi-sprite.mjs",
+    "test:sample": "node ./scripts/render-gotchi-sprite.mjs --input ./Requests.sample.json --output-dir ./output/sample"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "gifenc": "^1.0.3",
+    "gotchi-generator": "1.1.3"
+  }
+}

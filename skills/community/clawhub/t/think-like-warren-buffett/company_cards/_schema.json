@@ -1,0 +1,88 @@
+{
+  "_description": "Schema for Buffett Oracle company cards. One file per company per analysis year.",
+  "_filename_convention": "TICKER_YEAR.json (e.g., AAPL_2015.json, BAC_2010.json)",
+
+  "ticker": "string — stock ticker or identifier",
+  "company": "string — full company name",
+  "analysis_year": "integer — year of Buffett's decision",
+  "data_source": "string — e.g. 'FY2021 10-K, SEC EDGAR'",
+  "analyzed_date": "string — ISO date when this card was created",
+
+  "hard_gates": {
+    "g1_roe_roic": {
+      "value": "float — e.g. 0.46 for 46%",
+      "metric_used": "string — 'ROE' or 'ROIC' (use ROIC if equity is negative/distorted)",
+      "years_averaged": "string — e.g. '2019-2021'",
+      "pass": "boolean"
+    },
+    "g2_fcf_to_ni": {
+      "value": "float — FCF divided by Net Income",
+      "fcf": "float — free cash flow in millions USD",
+      "net_income": "float — net income in millions USD",
+      "pass": "boolean"
+    },
+    "g3_leverage": {
+      "metric_used": "string — 'Net Debt/EBITDA' or 'Tier1' for banks",
+      "value": "float",
+      "pass": "boolean"
+    },
+    "g4_revenue_trend": {
+      "description": "string — brief description of trend",
+      "structural_decline": "boolean — true means FAIL",
+      "pass": "boolean"
+    },
+    "g5_gross_margin_trend": {
+      "description": "string",
+      "declining_2plus_years": "boolean — true means FAIL",
+      "pass": "boolean"
+    },
+    "g6_earnings_yield": {
+      "value": "float — Net Income / EV",
+      "net_income_m": "float — in millions USD",
+      "ev_m": "float — enterprise value in millions USD",
+      "exemption": "string or null — 'INFRA_EXEMPTION' if applied",
+      "pass": "boolean"
+    },
+    "g7_moat": {
+      "verdict": "string — 'PASS', 'FAIL', or 'SPLIT'",
+      "moat_type": "string or null — 'brand', 'network_effect', 'switching_cost', 'cost_advantage', 'monopoly', 'ip'",
+      "description": "string — one paragraph explanation",
+      "pass": "boolean"
+    }
+  },
+
+  "special_channel": "string or null — 'CRISIS_PREFERRED', 'INFRA_EXEMPTION', 'GROWTH_EXCEPTION', or null",
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "string — required when g2 fails but the moat still passes",
+      "maintenance_vs_growth_view": "string — distinguish maintenance capex from expansion capex",
+      "decision_impact": "string — explain whether the raw g2 fail still stands or looks too blunt"
+    },
+    "quality_multiple_note": {
+      "summary": "string — required when g6 fails but the moat still passes",
+      "reason_for_low_yield": "string — explain whether the low yield reflects genuine quality, strategic scarcity, or simple overpayment",
+      "decision_impact": "string — explain whether the raw g6 fail still stands or looks too blunt"
+    },
+    "management_veto": {
+      "status": "string — 'clear', 'watch', or 'fail'",
+      "summary": "string — integrity / capital-allocation assessment"
+    }
+  },
+
+  "control_groups": [
+    {
+      "ticker": "string",
+      "company": "string",
+      "year": "integer",
+      "gates_failed": ["string — list of gates that triggered, e.g. 'g1_roe_roic', 'g4_revenue_trend'"],
+      "conclusion": "PASS"
+    }
+  ],
+
+  "conclusion": "string — 'BUY' or 'PASS'",
+  "buffett_action": "string — what Buffett actually did",
+  "actual_result": "string — brief outcome",
+  "verdict": "string — '✅ aligned', '⭐ framework_wins', or '❌ framework_wrong'",
+  "key_insight": "string — one sentence summary of the main lesson"
+}

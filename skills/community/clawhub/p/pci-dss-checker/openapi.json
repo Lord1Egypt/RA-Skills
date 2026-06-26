@@ -1,0 +1,299 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PCI DSS Compliance Checker",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/pci-compliance": {
+      "post": {
+        "summary": "Pci Dss Compliance Check",
+        "operationId": "pci_dss_compliance_check_pci_compliance_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PCIAssessment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PCIAssessment": {
+        "properties": {
+          "organization_name": {
+            "type": "string",
+            "title": "Organization Name"
+          },
+          "business_type": {
+            "type": "string",
+            "title": "Business Type"
+          },
+          "company_size": {
+            "type": "string",
+            "title": "Company Size"
+          },
+          "transaction_volume": {
+            "type": "string",
+            "title": "Transaction Volume"
+          },
+          "card_brands": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Card Brands"
+          },
+          "processing_methods": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Processing Methods"
+          },
+          "stores_card_data": {
+            "type": "boolean",
+            "title": "Stores Card Data"
+          },
+          "transmits_card_data": {
+            "type": "boolean",
+            "title": "Transmits Card Data"
+          },
+          "processes_card_data": {
+            "type": "boolean",
+            "title": "Processes Card Data"
+          },
+          "ecommerce_website": {
+            "type": "boolean",
+            "title": "Ecommerce Website"
+          },
+          "physical_locations_pos": {
+            "type": "boolean",
+            "title": "Physical Locations Pos"
+          },
+          "mobile_payments": {
+            "type": "boolean",
+            "title": "Mobile Payments"
+          },
+          "third_party_processors": {
+            "type": "boolean",
+            "title": "Third Party Processors"
+          },
+          "cloud_services": {
+            "type": "boolean",
+            "title": "Cloud Services"
+          },
+          "firewall_installed": {
+            "type": "boolean",
+            "title": "Firewall Installed"
+          },
+          "default_passwords_changed": {
+            "type": "boolean",
+            "title": "Default Passwords Changed"
+          },
+          "network_segmentation": {
+            "type": "boolean",
+            "title": "Network Segmentation"
+          },
+          "card_data_protected": {
+            "type": "boolean",
+            "title": "Card Data Protected"
+          },
+          "transmission_encrypted": {
+            "type": "boolean",
+            "title": "Transmission Encrypted"
+          },
+          "cryptographic_keys": {
+            "type": "boolean",
+            "title": "Cryptographic Keys"
+          },
+          "antivirus_installed": {
+            "type": "boolean",
+            "title": "Antivirus Installed"
+          },
+          "secure_systems_development": {
+            "type": "boolean",
+            "title": "Secure Systems Development"
+          },
+          "vulnerability_management": {
+            "type": "boolean",
+            "title": "Vulnerability Management"
+          },
+          "access_controls_by_role": {
+            "type": "boolean",
+            "title": "Access Controls By Role"
+          },
+          "unique_user_ids": {
+            "type": "boolean",
+            "title": "Unique User Ids"
+          },
+          "multifactor_auth": {
+            "type": "boolean",
+            "title": "Multifactor Auth"
+          },
+          "physical_access_restricted": {
+            "type": "boolean",
+            "title": "Physical Access Restricted"
+          },
+          "media_securely_handled": {
+            "type": "boolean",
+            "title": "Media Securely Handled"
+          },
+          "access_logged": {
+            "type": "boolean",
+            "title": "Access Logged"
+          },
+          "logs_regularly_reviewed": {
+            "type": "boolean",
+            "title": "Logs Regularly Reviewed"
+          },
+          "log_integrity_protected": {
+            "type": "boolean",
+            "title": "Log Integrity Protected"
+          },
+          "vulnerability_scans": {
+            "type": "boolean",
+            "title": "Vulnerability Scans"
+          },
+          "penetration_testing": {
+            "type": "boolean",
+            "title": "Penetration Testing"
+          },
+          "network_monitoring": {
+            "type": "boolean",
+            "title": "Network Monitoring"
+          },
+          "security_policy_maintained": {
+            "type": "boolean",
+            "title": "Security Policy Maintained"
+          },
+          "security_awareness_program": {
+            "type": "boolean",
+            "title": "Security Awareness Program"
+          },
+          "incident_response_plan": {
+            "type": "boolean",
+            "title": "Incident Response Plan"
+          },
+          "service_provider_monitoring": {
+            "type": "boolean",
+            "title": "Service Provider Monitoring"
+          }
+        },
+        "type": "object",
+        "required": [
+          "organization_name",
+          "business_type",
+          "company_size",
+          "transaction_volume",
+          "card_brands",
+          "processing_methods",
+          "stores_card_data",
+          "transmits_card_data",
+          "processes_card_data",
+          "ecommerce_website",
+          "physical_locations_pos",
+          "mobile_payments",
+          "third_party_processors",
+          "cloud_services",
+          "firewall_installed",
+          "default_passwords_changed",
+          "network_segmentation",
+          "card_data_protected",
+          "transmission_encrypted",
+          "cryptographic_keys",
+          "antivirus_installed",
+          "secure_systems_development",
+          "vulnerability_management",
+          "access_controls_by_role",
+          "unique_user_ids",
+          "multifactor_auth",
+          "physical_access_restricted",
+          "media_securely_handled",
+          "access_logged",
+          "logs_regularly_reviewed",
+          "log_integrity_protected",
+          "vulnerability_scans",
+          "penetration_testing",
+          "network_monitoring",
+          "security_policy_maintained",
+          "security_awareness_program",
+          "incident_response_plan",
+          "service_provider_monitoring"
+        ],
+        "title": "PCIAssessment"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

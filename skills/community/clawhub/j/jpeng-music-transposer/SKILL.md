@@ -1,35 +1,42 @@
 ---
-name: "music-transposer"
+name: jpeng-music-transposer
 description: "Transpose music keys"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-music-transposer"
-sourceUrl: "https://clawhub.ai/skills/jpeng-music-transposer"
+version: "1.0.0"
+author: "jpeng"
+tags: ["processing", "transpose", "music"]
 ---
 
-# music-transposer
+# Music Transposer
 
-> Transpose music keys
+Transpose music keys
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-music-transposer`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-music-transposer](https://clawhub.ai/skills/jpeng-music-transposer)
+## When to Use
 
-## Overview
+- User needs processing related functionality
+- Automating transpose tasks
+- Music operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-music-transposer
+python3 scripts/music_transposer.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export TRANSPOSE_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

@@ -1,0 +1,128 @@
+{
+  "name": "polymarket-negrisk-arb",
+  "version": "1.0.2",
+  "description": "Find multi-outcome markets where sum of prices deviates from $1.00. Execute simultaneous batch trades for mathematical arbitrage. No signals. No AI. Just math.",
+  "author": "r2creatorstudios",
+  "license": "MIT-0",
+  "emoji": "🔢",
+  "category": "trading",
+  "tags": ["arbitrage", "negrisk", "batch", "math", "polymarket"],
+  "difficulty": "intermediate",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "best_when": "Multi-outcome markets (elections, sports brackets, tweet counts) where pricing inefficiencies create guaranteed profit windows. Works best during high-volatility periods.",
+  "cron": "0 */2 * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "negrisk_arb.py --live --quiet"
+  },
+  "tunables": [
+    {
+      "key": "max_yes_sum",
+      "env": "SIMMER_NEGRISK_MAX_YES_SUM",
+      "type": "number",
+      "default": 0.95,
+      "range": [0.80, 0.99],
+      "step": 0.01,
+      "label": "Max YES sum threshold"
+    },
+    {
+      "key": "max_no_sum",
+      "env": "SIMMER_NEGRISK_MAX_NO_SUM",
+      "type": "number",
+      "default": 0.95,
+      "range": [0.80, 0.99],
+      "step": 0.01,
+      "label": "Max NO sum threshold"
+    },
+    {
+      "key": "min_profit_pct",
+      "env": "SIMMER_NEGRISK_MIN_PROFIT",
+      "type": "number",
+      "default": 0.03,
+      "range": [0.01, 0.20],
+      "step": 0.01,
+      "label": "Minimum profit % (0.03 = 3%)"
+    },
+    {
+      "key": "max_position_usd",
+      "env": "SIMMER_NEGRISK_MAX_POSITION",
+      "type": "number",
+      "default": 10.0,
+      "range": [1.0, 200.0],
+      "step": 1.0,
+      "label": "Max USD per outcome bucket"
+    },
+    {
+      "key": "max_total_usd",
+      "env": "SIMMER_NEGRISK_MAX_TOTAL",
+      "type": "number",
+      "default": 50.0,
+      "range": [5.0, 500.0],
+      "step": 5.0,
+      "label": "Max total USD per event"
+    },
+    {
+      "key": "max_trades_per_run",
+      "env": "SIMMER_NEGRISK_MAX_TRADES",
+      "type": "number",
+      "default": 2,
+      "range": [1, 10],
+      "step": 1,
+      "label": "Max arbitrage events per cycle"
+    },
+    {
+      "key": "daily_budget",
+      "env": "SIMMER_NEGRISK_DAILY_BUDGET",
+      "type": "number",
+      "default": 50.0,
+      "range": [10.0, 1000.0],
+      "step": 10.0,
+      "label": "Daily spend limit (USD)"
+    },
+    {
+      "key": "min_outcomes",
+      "env": "SIMMER_NEGRISK_MIN_OUTCOMES",
+      "type": "number",
+      "default": 3,
+      "range": [2, 10],
+      "step": 1,
+      "label": "Minimum outcomes per event"
+    },
+    {
+      "key": "max_outcomes",
+      "env": "SIMMER_NEGRISK_MAX_OUTCOMES",
+      "type": "number",
+      "default": 15,
+      "range": [3, 50],
+      "step": 1,
+      "label": "Maximum outcomes per event"
+    },
+    {
+      "key": "slippage_max_pct",
+      "env": "SIMMER_NEGRISK_SLIPPAGE",
+      "type": "number",
+      "default": 0.05,
+      "range": [0.01, 0.20],
+      "step": 0.01,
+      "label": "Max slippage tolerance"
+    },
+    {
+      "key": "fee_filter",
+      "env": "SIMMER_NEGRISK_FEE_FILTER",
+      "type": "boolean",
+      "default": true,
+      "label": "Skip markets with taker fees"
+    },
+    {
+      "key": "venue",
+      "env": "TRADING_VENUE",
+      "type": "string",
+      "default": "sim",
+      "options": ["sim", "polymarket"],
+      "label": "Trading venue (sim = paper trading)"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "autoRemember": true,
+  "useVectorSearch": true,
+  "importanceThresholds": {
+    "longTerm": 70,
+    "mediumTerm": 50,
+    "shortTerm": 30
+  },
+  "reviewIntervalDays": 7,
+  "forgetThreshold": 30,
+  "maxHotMemories": 20,
+  "maxWarmMemories": 100,
+  "compactWhenContextPercent": 70,
+  "weights": {
+    "userExplicit": 0.40,
+    "taskRelevance": 0.25,
+    "emotionalIntensity": 0.15,
+    "reusability": 0.12,
+    "uniqueness": 0.08
+  },
+  "vectorSearch": {
+    "enabled": true,
+    "modelName": "Xenova/bge-m3",
+    "similarityThreshold": 0.7,
+    "topK": 5,
+    "cacheDir": "./.cache"
+  },
+  "compression": {
+    "enabled": true,
+    "highThreshold": 80,
+    "mediumThreshold": 50,
+    "lowThreshold": 30,
+    "keywordCount": 8
+  },
+  "injection": {
+    "enabled": true,
+    "maxMemories": 5,
+    "minImportance": 50,
+    "format": "concise"
+  }
+}

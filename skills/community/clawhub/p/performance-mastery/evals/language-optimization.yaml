@@ -1,0 +1,101 @@
+# Evaluation: 编程语言性能优化
+# 验证 AI 是否能正确应用各语言的性能优化知识
+
+tests:
+# --- Python ---
+  - name: "python-slow-lookup"
+    input: "我的 Python 程序有一个循环检查元素是否在一个大列表中，很慢，怎么优化？"
+    expected_keywords:
+      - "set"
+      - "O(1)"
+      - "dict"
+    expected_not:
+      - "多线程"
+
+  - name: "python-string-concat"
+    input: "Python 中大量字符串拼接很慢，怎么办？"
+    expected_keywords:
+      - "join"
+      - "StringIO"
+      - "列表"
+      - "f-string"
+    expected_not:
+      - "+="
+
+  - name: "python-profiling"
+    input: "怎么找到 Python 程序的性能瓶颈？"
+    expected_keywords:
+      - "cProfile"
+      - "py-spy"
+      - "line_profiler"
+
+# --- Go ---
+  - name: "go-slice-allocation"
+    input: "我的 Go 程序 pprof 显示大量 alloc_objects，该怎么优化？"
+    expected_keywords:
+      - "make"
+      - "预分配"
+      - "sync.Pool"
+      - "capacity"
+
+  - name: "go-gc-container"
+    input: "Go 服务跑在 Kubernetes 容器里经常 OOM kill，怎么调 GC？"
+    expected_keywords:
+      - "GOMEMLIMIT"
+      - "80%"
+      - "90%"
+
+# --- Java ---
+  - name: "java-gc-latency"
+    input: "Java 服务延迟抖动严重，怀疑是 GC 暂停导致的，该用什么 GC？"
+    expected_keywords:
+      - "ZGC"
+      - "Shenandoah"
+      - "低延迟"
+
+  - name: "java-profiling"
+    input: "生产环境的 Java 服务怎么做 CPU 性能分析？"
+    expected_keywords:
+      - "async-profiler"
+      - "JFR"
+      - "火焰图"
+
+# --- Rust ---
+  - name: "rust-unnecessary-clone"
+    input: "Rust 代码中有大量 .clone() 调用导致性能差，有什么替代方案？"
+    expected_keywords:
+      - "借用"
+      - "&str"
+      - "Cow"
+      - "Arc"
+      - "引用"
+
+# --- C++ ---
+  - name: "cpp-cache-friendly"
+    input: "C++ 程序处理大量 Point 对象，性能不好，可能是什么原因？"
+    expected_keywords:
+      - "缓存"
+      - "vector"
+      - "连续内存"
+      - "指针追逐"
+      - "数据布局"
+
+# --- Node.js ---
+  - name: "nodejs-event-loop-block"
+    input: "Node.js 服务在高并发时响应变慢，怀疑事件循环被阻塞了，怎么排查和优化？"
+    expected_keywords:
+      - "clinic"
+      - "event loop"
+      - "Worker"
+      - "异步"
+      - "CPU 密集"
+    expected_not:
+      - "多线程锁"
+
+  - name: "nodejs-memory-leak"
+    input: "Node.js 应用运行一段时间后内存持续增长不释放，怎么定位内存泄漏？"
+    expected_keywords:
+      - "heapdump"
+      - "Chrome DevTools"
+      - "--inspect"
+      - "内存快照"

@@ -1,0 +1,20 @@
+{
+  "name": "next-from-knowledge",
+  "version": "1.0.0",
+  "description": "知识行动官 NextFromKnowledge - 把笔记、调研、会议纪要和知识图谱结果，转成下一步动作、计划、决策或最小实验",
+  "keywords": [
+    "next-from-knowledge",
+    "knowledge-to-action",
+    "action-plan",
+    "decision-support",
+    "research-to-action",
+    "meeting-notes",
+    "knowledge-graph",
+    "execution",
+    "chief-of-staff",
+    "planning"
+  ],
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/openclaw-skill-next-from-knowledge"
+}

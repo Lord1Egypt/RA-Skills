@@ -1,0 +1,95 @@
+{
+  "version": "1.0.0",
+  "patterns": {
+    "coding": {
+      "keywords": ["code", "programming", "debug", "git", "commit", "PR", "pull request", "merge", "deploy", "function", "API", "endpoint", "refactor", "test", "lint", "build", "compile", "npm", "pip", "docker", "kubernetes", "TypeScript", "Python", "JavaScript", "React", "Next.js", "Tailwind", "frontend", "backend", "fullstack", "repo", "branch", "push", "clone", "diff", "patch"],
+      "tools": ["github", "gitlab", "vscode", "cursor", "neovim", "codex", "claude-code", "copilot"],
+      "file_patterns": ["*.py", "*.js", "*.ts", "*.tsx", "*.go", "*.rs", "package.json", "Dockerfile", "*.jsx", "*.vue", "*.svelte"],
+      "skill_indicators": ["coding-agent", "github", "gh-issues", "auto-pr-merger"]
+    },
+    "communication": {
+      "keywords": ["email", "slack", "discord", "telegram", "whatsapp", "message", "send", "reply", "inbox", "thread", "DM", "notification", "channel", "group chat", "signal", "iMessage"],
+      "tools": ["gmail", "outlook", "slack", "discord", "telegram", "whatsapp", "signal"],
+      "file_patterns": [],
+      "skill_indicators": ["slack", "discord", "himalaya", "gog", "imsg", "wacli"]
+    },
+    "writing": {
+      "keywords": ["blog", "article", "post", "draft", "edit", "content", "SEO", "headline", "copy", "newsletter", "publish", "Substack", "Medium", "ghostwrite", "proofread", "marketing copy", "landing page"],
+      "tools": ["wordpress", "ghost", "substack", "medium", "hashnode", "webflow"],
+      "file_patterns": ["*.md", "*.txt", "*.docx"],
+      "skill_indicators": ["ghostwriter", "aeo-content-free"]
+    },
+    "finance": {
+      "keywords": ["trade", "stock", "crypto", "bitcoin", "portfolio", "invoice", "expense", "budget", "revenue", "profit", "loss", "price", "market", "exchange", "options", "covered call", "dividend", "ETF", "IBKR", "QuantConnect", "Stripe"],
+      "tools": ["stripe", "binance", "coinbase", "quickbooks", "tastytrade", "IBKR", "QuantConnect"],
+      "file_patterns": ["*.csv", "*.xlsx"],
+      "skill_indicators": ["accounting-workflows"]
+    },
+    "research": {
+      "keywords": ["search", "find", "research", "summarize", "compare", "analyze", "investigate", "source", "reference", "paper", "study", "web search", "scrape", "crawl", "fetch"],
+      "tools": ["perplexity", "tavily", "google", "brave-search", "firecrawl"],
+      "file_patterns": [],
+      "skill_indicators": ["summarize", "xurl", "academic-research", "airadar"]
+    },
+    "devops": {
+      "keywords": ["deploy", "server", "uptime", "monitor", "log", "alert", "CI", "CD", "pipeline", "container", "docker", "kubernetes", "nginx", "SSL", "DNS", "VPS", "Vercel", "AWS", "Cloudflare", "launchctl", "systemd", "crontab"],
+      "tools": ["vercel", "aws", "digitalocean", "cloudflare", "github-actions", "docker", "nginx"],
+      "file_patterns": ["Dockerfile", "docker-compose.yml", ".github/workflows/*", "nginx.conf", "vercel.json"],
+      "skill_indicators": ["healthcheck", "agentic-devops"]
+    },
+    "data": {
+      "keywords": ["data", "database", "SQL", "query", "table", "chart", "graph", "visualization", "CSV", "spreadsheet", "pandas", "analytics", "Supabase", "Postgres", "MongoDB", "GA4"],
+      "tools": ["postgres", "mysql", "mongodb", "supabase", "airtable", "google-sheets", "bigquery"],
+      "file_patterns": ["*.csv", "*.sql", "*.xlsx", "*.parquet", "*.json"],
+      "skill_indicators": ["biz-reporter", "agent-analytics"]
+    },
+    "productivity": {
+      "keywords": ["task", "todo", "project", "deadline", "schedule", "calendar", "meeting", "agenda", "plan", "organize", "priority", "kanban", "sprint", "backlog"],
+      "tools": ["notion", "todoist", "asana", "trello", "linear", "jira", "google-calendar", "things"],
+      "file_patterns": [],
+      "skill_indicators": ["notion", "trello", "things-mac", "apple-reminders", "agent-daily-planner"]
+    },
+    "automation": {
+      "keywords": ["automate", "cron", "schedule", "scrape", "webhook", "trigger", "workflow", "bot", "recurring", "batch", "browser automation", "headless"],
+      "tools": ["n8n", "zapier", "make", "ifttt", "puppeteer", "playwright"],
+      "file_patterns": [],
+      "skill_indicators": ["agent-browser", "airtable-automation"]
+    },
+    "security": {
+      "keywords": ["password", "credential", "encrypt", "vault", "audit", "vulnerability", "backup", "2FA", "SSH", "key", "secret", "scan", "malicious", "injection"],
+      "tools": ["bitwarden", "1password", "dashlane", "virustotal", "snyk"],
+      "file_patterns": [".env", "*.pem", "*.key"],
+      "skill_indicators": ["clawspa", "1password", "arc-security-audit", "azhua-skill-vetter", "agentguard"]
+    },
+    "media": {
+      "keywords": ["image", "photo", "video", "audio", "podcast", "thumbnail", "design", "edit", "generate", "DALL-E", "midjourney", "stable diffusion", "ffmpeg", "transcribe", "whisper", "music", "spotify"],
+      "tools": ["figma", "canva", "ffmpeg", "imagemagick", "DALL-E", "midjourney"],
+      "file_patterns": ["*.png", "*.jpg", "*.jpeg", "*.mp4", "*.mp3", "*.wav", "*.webp"],
+      "skill_indicators": ["openai-image-gen", "video-frames", "openai-whisper", "sonoscli", "spotify-player"]
+    },
+    "social": {
+      "keywords": ["twitter", "X", "linkedin", "instagram", "tiktok", "youtube", "post", "follower", "engagement", "hashtag", "content calendar", "Reddit", "karma", "upvote", "subreddit"],
+      "tools": ["twitter", "linkedin", "buffer", "hootsuite", "reddit"],
+      "file_patterns": [],
+      "skill_indicators": ["ai-hunter-pro"]
+    },
+    "home": {
+      "keywords": ["smart home", "home assistant", "IoT", "light", "thermostat", "sensor", "automation", "zigbee", "mqtt", "Hue", "Sonos"],
+      "tools": ["home-assistant", "homekit", "alexa", "google-home", "hue"],
+      "file_patterns": [],
+      "skill_indicators": ["openhue", "adguard"]
+    },
+    "knowledge": {
+      "keywords": ["note", "wiki", "documentation", "obsidian", "notion", "roam", "zettelkasten", "PKM", "knowledge base", "second brain", "bear", "logseq"],
+      "tools": ["obsidian", "notion", "logseq", "roam", "bear"],
+      "file_patterns": ["*.md"],
+      "skill_indicators": ["obsidian", "bear-notes", "apple-notes", "2nd-brain", "notion"]
+    },
+    "maintenance": {
+      "keywords": ["cleanup", "optimize", "memory", "context", "health", "maintenance", "audit", "prune", "bloat", "token", "compaction", "stale", "backup"],
+      "tools": [],
+      "file_patterns": [],
+      "skill_indicators": ["clawspa", "active-maintenance", "alex-session-wrap-up", "agent-self-reflection"]
+    }
+  }
+}

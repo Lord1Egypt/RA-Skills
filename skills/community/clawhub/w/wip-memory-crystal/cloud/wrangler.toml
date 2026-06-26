@@ -1,0 +1,30 @@
+name = "memory-crystal-cloud"
+main = "../src/cloud/index.ts"
+compatibility_date = "2024-12-01"
+
+# D1 — OAuth state + user accounts (Tier 1), memory storage (Tier 2)
+[[d1_databases]]
+binding = "DB"
+database_name = "memory-crystal-cloud"
+database_id = "" # Fill after: wrangler d1 create memory-crystal-cloud
+migrations_dir = "migrations"
+
+# R2 — Access the existing relay bucket for encrypted drops
+[[r2_buckets]]
+binding = "RELAY"
+bucket_name = "memory-crystal-relay"
+
+# Vectorize — Vector search for Tier 2 cloud search (enable later)
+# [[vectorize]]
+# binding = "VECTORS"
+# index_name = "memory-crystal-vectors"
+
+[vars]
+OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
+MCP_SERVER_NAME = "memory-crystal"
+MCP_SERVER_VERSION = "0.1.0"
+
+# Secrets (set via `wrangler secret put`):
+#   OPENAI_API_KEY          — for Tier 2 embedding generation
+#   CRYSTAL_RELAY_KEY       — shared encryption key (base64, 32 bytes)
+#   OAUTH_SIGNING_SECRET    — for token signing

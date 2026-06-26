@@ -1,0 +1,29 @@
+{
+  "skill_name": "git-helper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "怎么撤销上一次的 commit，但是保留我修改的代码？",
+      "expected_output": "A Chinese explanation of using `git reset HEAD~1` or `--mixed`, including the goal, the command, detailed explanation, and safety warnings/pro tips.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "What does git rebase do?",
+      "expected_output": "An English explanation of `git rebase`, including the goal, commands, a detailed explanation of rewriting history, and safety warnings about not rebasing public branches.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我不小心 git reset --hard 删除了我刚写的一大堆代码，还能救回来吗？",
+      "expected_output": "A Chinese guide explaining how to use `git reflog` to recover lost commits after a hard reset, including steps, commands, and a clear explanation.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "How do I squash my last 3 commits into one before making a pull request?",
+      "expected_output": "An English step-by-step guide on using `git rebase -i HEAD~3` to squash commits, explaining the interactive rebase process and providing the exact commands.",
+      "files": []
+    }
+  ]
+}

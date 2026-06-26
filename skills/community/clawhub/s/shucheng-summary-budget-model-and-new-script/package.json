@@ -1,0 +1,33 @@
+{
+  "name": "summary-budget-model-and-new-script",
+  "version": "1.0.0",
+  "description": "用于持续更新和迭代预算数据模型及脚本技能。当用户发出总结指令时，自动从对话历史中提取新的脚本写法和数据模型，更新到相关技能中。",
+  "author": "Lan2898408767",
+  "license": "MIT",
+  "tags": ["summary", "update", "budget", "script", "automation", "knowledge-management"],
+  "homepage": "https://clawhub.com/skills/summary-budget-model-and-new-script",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "技能更新",
+    "知识管理",
+    "自动总结",
+    "预算系统",
+    "脚本模板",
+    "持续迭代"
+  ],
+  "category": "Productivity",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  }
+}

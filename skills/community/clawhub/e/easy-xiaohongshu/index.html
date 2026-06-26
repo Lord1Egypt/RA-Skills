@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Easy-xiaohongshu：小红书 AI 图文自动发布技能，支持提示词优化、图文生成与一键发布。" />
+  <title>Easy-xiaohongshu | 小红书 AI 图文自动发布</title>
+</head>
+<body style="margin:0;background:#f7f8fc;color:#1a1d29;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;line-height:1.7;">
+  <div style="background:radial-gradient(120% 120% at 0% 0%, #8d73ff 0%, #5f3fe9 54%, #2c1e72 100%);padding:72px 20px;color:#ffffff;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:inline-block;padding:6px 12px;border:1px solid rgba(255,255,255,0.45);border-radius:999px;font-size:13px;margin-bottom:12px;">Easy-xiaohongshu</div>
+      <div style="font-size:44px;font-weight:700;line-height:1.2;margin-bottom:14px;">小红书 AI 图文自动发布</div>
+      <div style="font-size:20px;max-width:820px;color:rgba(255,255,255,0.92);margin-bottom:20px;">从创意到发布，全自动完成：提示词优化 → 图文生成 → 一键发布</div>
+      <div>
+        <a href="#quick-start" style="display:inline-block;padding:10px 18px;border:1px solid rgba(255,255,255,0.5);border-radius:10px;color:#ffffff;text-decoration:none;margin-right:10px;">快速开始</a>
+        <a href="#capabilities" style="display:inline-block;padding:10px 18px;border:1px solid rgba(255,255,255,0.5);border-radius:10px;color:#ffffff;text-decoration:none;">查看核心能力</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="capabilities" style="padding:52px 20px 16px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-size:32px;font-weight:700;margin-bottom:18px;">核心能力</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(40,56,120,0.10);">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">智能提示词优化</div>
+          <div style="color:#5a6075;">根据账号定位自动匹配最佳风格，内置 13 种预设，减少调参成本。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(40,56,120,0.10);">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">图文生成</div>
+          <div style="color:#5a6075;">文案、排版与 AI 成品图一站式生成，默认产出 8 页图文方案。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(40,56,120,0.10);">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">自动发布</div>
+          <div style="color:#5a6075;">对接 MCP 服务，一键发布到小红书；首次扫码后可长期复用登录状态。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:14px;padding:18px;box-shadow:0 10px 28px rgba(40,56,120,0.10);">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">发布文案生成</div>
+          <div style="color:#5a6075;">自动产出标题、正文和标签，减少手动编辑时间并提升发布效率。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quick-start" style="padding:36px 20px 52px;background:linear-gradient(180deg, rgba(117,130,255,0.08), rgba(117,130,255,0.02));">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="font-size:32px;font-weight:700;margin-bottom:18px;">快速开始（保留原安装流程）</div>
+      <div style="display:grid;gap:12px;">
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:12px;padding:14px 16px;">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Step 1：获取 API Key</div>
+          <div style="color:#5a6075;">在 z.3i0.cn 注册后充值，在令牌管理中添加令牌并复制 API Key。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:12px;padding:14px 16px;">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Step 2：安装技能</div>
+          <div style="color:#5a6075;margin-bottom:8px;">在项目目录执行安装脚本（会检查 Python、安装依赖、引导配置并检查 MCP 状态）。</div>
+          <div style="margin-top:8px;padding:12px;border-radius:10px;background:#131627;color:#f7f8ff;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace;font-size:13px;">cd ~/clawd/skills/Easy-xiaohongshu<br>bash install.sh</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:12px;padding:14px 16px;">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Step 3：发送创作主题</div>
+          <div style="color:#5a6075;">示例：我想发一篇主题为【xxxxxx】的小红书，帮我制作内容。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:12px;padding:14px 16px;">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Step 4：确认文案</div>
+          <div style="color:#5a6075;">系统会生成 8 页图文方案，以及发布文案（标题 + 正文 + 标签）。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:12px;padding:14px 16px;">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Step 5：确认图片</div>
+          <div style="color:#5a6075;">系统会逐张生成 8 张成品图供预览，确认后进入发布阶段。</div>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e3e7f5;border-radius:12px;padding:14px 16px;">
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Step 6：发布到小红书</div>
+          <div style="color:#5a6075;">通过 MCP 服务自动发布；首次需扫码登录，发布前会再次确认。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:0 20px 46px;">
+    <div style="max-width:1100px;margin:0 auto;background:#f1f4ff;border:1px dashed #ccd5ff;border-radius:16px;padding:22px;">
+      <div style="font-size:30px;font-weight:700;margin-bottom:10px;">能力卖点补充</div>
+      <div style="color:#5a6075;">覆盖科技、亲子、美妆、健身、美食、学习、旅行、职场、漫画、摄影、穿搭、游戏、音乐共 13 种账号风格预设，开箱即用。</div>
+    </div>
+  </div>
+
+  <div style="padding:12px 20px 28px;text-align:center;color:#5a6075;font-size:14px;">Easy-xiaohongshu · MIT License</div>
+</body>
+</html>

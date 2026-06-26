@@ -1,0 +1,74 @@
+# Competitor Targets Configuration
+
+competitors:
+  - name: "Competitor A"
+    label: "CompA (Main Rival)"
+    website: "https://competitor-a.com"
+    pricing_url: "https://competitor-a.com/pricing"
+    blog_url: "https://competitor-a.com/blog"
+    changelog_url: "https://competitor-a.com/changelog"
+    careers_url: "https://competitor-a.com/careers"
+    social:
+      twitter: "@CompA"
+      linkedin: "https://linkedin.com/company/comp-a"
+      facebook: "CompAOfficial"
+      youtube: "@CompA"
+    review_sites:
+      hellopeter: "https://www.hellopeter.com/competitor-a"
+      g2: "https://www.g2.com/products/competitor-a"
+      trustpilot: "https://www.trustpilot.com/review/competitor-a.com"
+      google_reviews: "ChIJ..."  # Google Place ID
+    monitoring:
+      pricing_check_interval_minutes: 1440    # daily
+      social_check_interval_minutes: 1440     # daily
+      reviews_check_interval_minutes: 10080   # weekly
+      product_check_interval_minutes: 10080   # weekly
+
+  - name: "Competitor B"
+    label: "CompB (New Entrant)"
+    website: "https://competitor-b.io"
+    pricing_url: "https://competitor-b.io/#pricing"  # JS-anchored page, uses Playwright
+    social:
+      twitter: "@CompB"
+      linkedin: "https://linkedin.com/company/comp-b"
+    review_sites:
+      hellopeter: "https://www.hellopeter.com/competitor-b"
+      g2: "https://www.g2.com/products/competitor-b"
+    monitoring:
+      pricing_check_interval_minutes: 1440
+      social_check_interval_minutes: 1440
+      reviews_check_interval_minutes: 10080
+      product_check_interval_minutes: 1440  # Watch closely — new entrant
+
+  - name: "Competitor C"
+    label: "CompC (Discount Player)"
+    website: "https://competitor-c.co.za"
+    pricing_url: "https://competitor-c.co.za/pricing"
+    social: {}  # No active social presence detected
+    review_sites:
+      cacx: "https://www.cacx.co.za/business/competitor-c"
+      google_reviews: "ChIJ..."
+    monitoring:
+      pricing_check_interval_minutes: 1440
+      social_check_interval_minutes: 10080   # Weekly since no presence
+      reviews_check_interval_minutes: 10080
+      product_check_interval_minutes: 10080
+
+# Our own pricing for comparison
+our_company:
+  name: "OurCompany"
+  website: "https://ourcompany.com"
+  pricing_url: "https://ourcompany.com/pricing"
+  products:
+    - name: "Starter"
+      monthly_price: 299
+      annual_price: 2990
+      features: ["basic reporting", "email support", "5 users"]
+    - name: "Professional"
+      monthly_price: 599
+      annual_price: 5990
+      features: ["advanced reporting", "priority support", "20 users", "API access"]
+    - name: "Enterprise"
+      monthly_price: 1499
+      annual_price: 14990
+      features: ["full platform", "dedicated support", "unlimited users", "custom integrations"]

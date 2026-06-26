@@ -1,0 +1,10 @@
+node_modules/
+build/
+*.js.map
+*.d.ts.map
+
+feedback-history*.json
+
+*.log
+.env
+role.md

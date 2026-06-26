@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: star-office-ui
+    runtime: docker
+    repo: https://github.com/ringhyacinth/Star-Office-UI
+    plan: free
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: ASSET_DRAWER_PASS
+        value: 1234
+    healthCheckPath: /health
+    buildFilter:
+      paths:
+        - Dockerfile
+        - backend/**
+        - frontend/**
+      ignoredPaths:
+        - '*.md'
+        - 'docs/**'

@@ -1,0 +1,170 @@
+[
+  {
+    "code": "ths_actual_issue_scale_obcm",
+    "name": "实际发行规模",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_additional_subscription_obcm",
+    "name": "追加认购",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fee_rate_calculation_standard_obcm",
+    "name": "费率计提标准",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_float_manage_rate_obcm",
+    "name": "浮动管理费率",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_max_issue_scale_obcm",
+    "name": "预计最大发行规模",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_manager_current_obcm",
+    "name": "(现任)",
+    "description": "基本资料投资经理",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_objective_obcm",
+    "name": "投资目标",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_ed_obcm",
+    "name": "发行终止日期",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_manage_fee_rate_obcm",
+    "name": "管理费率",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_pension_product_invest_type_obcm",
+    "name": "养老金产品投资类型",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_product_full_name_obcm",
+    "name": "产品全称",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_pur_fee_rate_explain_obcm",
+    "name": "申购费率说明",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_registrant_obcm",
+    "name": "注册登记人",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_surplus_duration_obcm",
+    "name": "剩余存续期",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unit_nv_grow_obcm",
+    "name": "累计单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unit_nv_obcm",
+    "name": "累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unitnvg_obcm",
+    "name": "累计单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjust_unit_nvg_since_founded_obcm",
+    "name": "自成立日起复权单位净值增长率",
+    "description": "净值指标净值指标 复权单位净值 ths_adjustment_nv_obcm 交易日期(100-最新)",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_obcm",
+    "name": "复权单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_ratio_obcm",
+    "name": "复权单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_dividendnvg_obcm",
+    "name": "现金分红净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_accum_unit_nv_int_obcm",
+    "name": "区间最高累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_adjustment_unit_nv_int_obcm",
+    "name": "区间最高复权单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_unit_nv_int_obcm",
+    "name": "区间最高单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_latest_nv_date_obcm",
+    "name": "最新净值日期",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_accum_unit_nv_int_obcm",
+    "name": "区间最低累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_adjustment_unit_nv_int_obcm",
+    "name": "区间最低复权单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_unit_nv_obcm",
+    "name": "截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末)净值指标单位净值",
+    "description": "起始交易日期(100-截止日前一交易日,101-",
+    "params": ""
+  }
+]

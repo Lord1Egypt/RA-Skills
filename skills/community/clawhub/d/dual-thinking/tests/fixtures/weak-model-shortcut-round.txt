@@ -1,0 +1,30 @@
+ROUND: 1
+TOPIC: weak-shortcut-honesty
+MODE: skill-review
+SESSION: dt-weak-shortcut-honesty-20260410-api
+DECISION: defer
+PATCH_STATUS: none
+CONTINUATION_SIGNAL: continue
+NEXT_ACTION: retry consultant extraction once, then downgrade to analysis-only if it still fails
+CHAT_CONTINUITY: reused
+RESUME_SNIPPET: |
+  ROUND: 1
+  TOPIC: weak-shortcut-honesty
+  MODE: skill-review
+  SESSION: dt-weak-shortcut-honesty-20260410-api
+  NEXT_ACTION: retry consultant extraction once, then downgrade to analysis-only if it still fails
+SELF_POSITION_STATUS: compact
+CONSULTANT_POSITION_STATUS: compact
+SYNTHESIS_STATUS: compact
+SELF_POSITION_COMPACT:
+- verdict: consultant shortcut can stay honest only if compact self state is explicit
+- weakness: fake consultant-bearing success would hide extraction failure
+- fix: keep consultant-shaped compact output and explicit downgrade path
+CONSULTANT_POSITION_COMPACT:
+- consultant_verdict: extraction is weak but still recoverable for one retry
+- strongest_finding: consultant-bearing shortcut must keep consultant-position shape
+- proposed_fix: retry once with the narrow consultant template before downgrading
+SYNTHESIS_COMPACT:
+- relation: partial
+- decision: defer
+- next_action: retry consultant extraction once, then downgrade to analysis-only if it still fails

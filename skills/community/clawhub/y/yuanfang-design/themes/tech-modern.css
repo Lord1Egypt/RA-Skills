@@ -1,0 +1,38 @@
+/* themes/tech-modern.css — extracted from 05-tech-modern */
+
+[data-theme="tech-modern"] {
+  --bg: #0F172A;
+  --bg-soft: #1E293B;
+  --surface: #1E293B;
+  --surface-2: #16213E;
+  --border: rgba(226,232,240,.10);
+  --border-strong: rgba(226,232,240,.20);
+  --text-1: #E2E8F0;
+  --text-2: #94A3B8;
+  --text-3: #64748B;
+  --text: var(--text-1);
+  --accent: #4FACFE;
+  --secondary: var(--text-2);
+  --bg-alt: var(--bg-soft);
+
+  --font-title: "JetBrains Mono", "Inter", system-ui, -apple-system, "PingFang SC", monospace;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+
+  --title-size-v: 130px;
+  --title-size-s: 100px;
+  --title-size-w: 82px;
+  --title-size-c: 60px;
+  --content-size: 36px;
+  --qr-size: 64px;
+
+  --decor-tl: none;
+  --decor-tr: radial-gradient(circle at 100% 0%, rgba(79,172,254,.20), transparent 50%);
+  --decor-bl: radial-gradient(circle, rgba(79,172,254,.10), transparent 70%);
+  --decor-br: none;
+
+  --accent-line: none;
+  --accent-block: none;
+  --terminal-bar: flex;
+  --grid-bg: block;
+  --seal: "";
+}

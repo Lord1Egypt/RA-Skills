@@ -1,0 +1,78 @@
+{
+  "templates": {
+    "landing": {
+      "name": "Landing Page Hero",
+      "description": "SaaS/产品官网首页主视觉",
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "2K",
+      "prompt_suffix": "Modern landing page hero image, clean composition, professional corporate look, suitable for website homepage, high conversion design, minimal distractions, strong focal point",
+      "style_hints": ["tech", "corporate", "modern", "clean"]
+    },
+    "ad": {
+      "name": "Ad Creative",
+      "description": "社交媒体/投放广告素材",
+      "default_aspect_ratio": "1:1",
+      "default_resolution": "1K",
+      "prompt_suffix": "Social media ad creative, eye-catching design, optimized for conversion, clear call-to-action space, engaging visual, professional advertising style",
+      "style_hints": ["vibrant", "promotional", "engaging"]
+    },
+    "blog": {
+      "name": "Blog Cover",
+      "description": "博客文章封面图",
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "1K",
+      "prompt_suffix": "Blog cover image, editorial style, readable negative space for title overlay, professional content marketing look, clean modern design",
+      "style_hints": ["editorial", "content", "readable"]
+    },
+    "ecommerce": {
+      "name": "E-commerce Product",
+      "description": "电商商品主图/白底图",
+      "default_aspect_ratio": "1:1",
+      "default_resolution": "2K",
+      "prompt_suffix": "E-commerce product image, pure white background, professional studio lighting, clean minimal composition, Amazon/Taobao compliant, high-end product photography",
+      "style_hints": ["studio", "white-background", "product"]
+    }
+  },
+  "smart_recommendations": {
+    "instagram_post": {
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "size_px": "1080x1080"
+    },
+    "instagram_story": {
+      "aspect_ratio": "9:16",
+      "resolution": "1K",
+      "size_px": "1080x1920"
+    },
+    "facebook_ad": {
+      "aspect_ratio": "1.91:1",
+      "resolution": "1K",
+      "size_px": "1200x628"
+    },
+    "twitter_card": {
+      "aspect_ratio": "1.91:1",
+      "resolution": "1K",
+      "size_px": "1200x628"
+    },
+    "linkedin_ad": {
+      "aspect_ratio": "1.91:1",
+      "resolution": "1K",
+      "size_px": "1200x627"
+    },
+    "blog_cover": {
+      "aspect_ratio": "1.91:1",
+      "resolution": "1K",
+      "size_px": "1200x630"
+    },
+    "youtube_thumbnail": {
+      "aspect_ratio": "16:9",
+      "resolution": "1K",
+      "size_px": "1280x720"
+    },
+    "app_store": {
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "size_px": "1920x1080"
+    }
+  }
+}

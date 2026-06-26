@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目运营周报 Demo</title>
+<style>
+:root {
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --green: #059669;
+    --green-light: #ECFDF5;
+    --yellow: #D97706;
+    --yellow-light: #FFFBEB;
+    --red: #DC2626;
+    --red-light: #FEF2F2;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --text: #111827;
+    --bg: #FFFFFF;
+    --border: #E5E7EB;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background: #F8FAFC;
+    line-height: 1.6;
+}
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 32px;
+}
+.header {
+    background: linear-gradient(135deg, var(--blue), #1E40AF);
+    color: white;
+    border-radius: 24px;
+    padding: 44px 48px;
+    margin-bottom: 28px;
+}
+.header h1 {
+    margin: 0 0 12px;
+    font-size: 34px;
+    letter-spacing: -0.03em;
+}
+.header .subtitle {
+    margin: 0 0 16px;
+    font-size: 17px;
+    opacity: 0.92;
+}
+.header .meta {
+    font-size: 13px;
+    opacity: 0.78;
+}
+.summary-banner {
+    background: var(--blue-light);
+    color: var(--blue);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px 22px;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+.stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.stat-card {
+    background: var(--gray-light);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+}
+.stat-card .number {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--blue);
+}
+.stat-card .label {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 6px;
+}
+.section {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 24px;
+}
+.section h2 {
+    font-size: 21px;
+    margin: 0 0 16px;
+}
+.section h3 {
+    font-size: 16px;
+    color: var(--gray);
+    margin: 20px 0 8px;
+}
+.section p {
+    font-size: 14px;
+    margin: 0 0 12px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+th, td {
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background: var(--gray-light);
+    color: var(--gray);
+    font-size: 12px;
+}
+.badge {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 3px 9px;
+    font-size: 12px;
+    font-weight: 700;
+}
+.badge-done { background: var(--green-light); color: var(--green); }
+.badge-risk { background: var(--red-light); color: var(--red); }
+.badge-pending { background: var(--yellow-light); color: var(--yellow); }
+.timeline {
+    position: relative;
+    padding-left: 22px;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--border);
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+}
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -21px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--blue);
+}
+.timeline-item.done::before { background: var(--green); }
+.timeline-item.pending::before { background: var(--yellow); }
+.timeline-item .t-date {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 700;
+}
+.timeline-item .t-content {
+    font-size: 14px;
+    margin-top: 4px;
+}
+.next-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.next-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+}
+.next-card .num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--blue);
+}
+.next-card .desc {
+    font-size: 14px;
+    font-weight: 700;
+}
+.next-card .detail {
+    font-size: 12px;
+    color: var(--gray);
+}
+.footer {
+    color: var(--gray);
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0;
+}
+</style>
+</head>
+<body>
+<article class="container">
+    <header class="header">
+        <h1>项目运营周报 Demo</h1>
+        <p class="subtitle">一个用于测试 html-visual-editor 的匿名报告页面，覆盖标题、卡片、表格、时间轴和渐变背景。</p>
+        <div class="meta">周期：2026 Q2 · 版本：公开示例 · 负责人：项目组</div>
+    </header>
+
+    <div class="summary-banner">本周重点：完成核心功能验收，进入公开包打包阶段；下周聚焦文档、示例和发布验证。</div>
+
+    <section class="stat-row">
+        <div class="stat-card"><div class="number">86%</div><div class="label">任务完成率</div></div>
+        <div class="stat-card"><div class="number">24</div><div class="label">用户反馈</div></div>
+        <div class="stat-card"><div class="number">6</div><div class="label">内置主题</div></div>
+        <div class="stat-card"><div class="number">34</div><div class="label">自动检查项</div></div>
+    </section>
+
+    <section class="section">
+        <h2>一、阶段进展</h2>
+        <p>团队已经完成从原型验证到可复用工具的过渡，重点修复了字号覆盖、渐变色提取、预设映射和文字可编辑覆盖率。</p>
+        <h3>关键变化</h3>
+        <ul>
+            <li>所有 font-size 规则都会自动生成字号滑块。</li>
+            <li>页面文字元素会被批量标记为可编辑。</li>
+            <li>预设主题会自动映射到 host HTML 的真实 CSS 变量。</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>二、任务看板</h2>
+        <table>
+            <thead><tr><th>模块</th><th>状态</th><th>负责人</th><th>说明</th></tr></thead>
+            <tbody>
+                <tr><td>自动适配</td><td><span class="badge badge-done">已完成</span></td><td>Agent A</td><td>支持颜色、字号、布局和预设。</td></tr>
+                <tr><td>视觉验收</td><td><span class="badge badge-pending">进行中</span></td><td>Agent B</td><td>继续抽查边界页面。</td></tr>
+                <tr><td>发布打包</td><td><span class="badge badge-risk">待确认</span></td><td>Agent C</td><td>确认 zip 解压后独立可用。</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>三、时间轴</h2>
+        <div class="timeline">
+            <div class="timeline-item done"><div class="t-date">Day 1</div><div class="t-content">完成金版逆向，建立 canonical spec。</div></div>
+            <div class="timeline-item done"><div class="t-date">Day 2</div><div class="t-content">修复预设映射、布局跳转和可编辑覆盖率。</div></div>
+            <div class="timeline-item pending"><div class="t-date">Day 3</div><div class="t-content">完成公开包打包、自检和交付。</div></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>四、下一步计划</h2>
+        <div class="next-grid">
+            <div class="next-card"><div class="num">01</div><div class="desc">完善 README</div><div class="detail">让首次使用者三分钟内跑通。</div></div>
+            <div class="next-card"><div class="num">02</div><div class="desc">补充 Demo</div><div class="detail">覆盖报告、卡片、表格、时间轴。</div></div>
+            <div class="next-card"><div class="num">03</div><div class="desc">发布验证</div><div class="detail">zip 解压后在独立目录运行。</div></div>
+        </div>
+    </section>
+
+    <footer class="footer">html-visual-editor demo · 内容为匿名示例，不含真实业务数据</footer>
+</article>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "name": "team-collab",
+  "version": "1.3.0",
+  "description": "多模型团队协作系统 v1.3.0 - 8人专业团队，三种模式（角色扮演/模型切换/混合模式），推荐混合模式兼顾效率与质量",
+  "author": "Jarvis",
+  "license": "MIT",
+  "keywords": [
+    "team",
+    "collaboration",
+    "multi-agent",
+    "ai-team",
+    "product-manager",
+    "developer",
+    "designer",
+    "tester",
+    "legal",
+    "art",
+    "market",
+    "hybrid-mode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidme6/team-collab"
+  },
+  "skills": {
+    "modes": ["roleplay", "model-switch", "hybrid"],
+    "recommended_mode": "hybrid",
+    "roles": [
+      {
+        "id": "product_manager",
+        "name": "产品经理",
+        "model": "bailian/qwen-plus",
+        "hybrid_mode": "auto"
+      },
+      {
+        "id": "developer",
+        "name": "程序员",
+        "model": "bailian/glm-5",
+        "hybrid_mode": "main_session"
+      },
+      {
+        "id": "designer",
+        "name": "设计师",
+        "model": "bailian/qwen3.5-plus",
+        "hybrid_mode": "main_session"
+      },
+      {
+        "id": "tester",
+        "name": "测试工程师",
+        "model": "deepseek-coder",
+        "hybrid_mode": "spawn"
+      },
+      {
+        "id": "reviewer",
+        "name": "代码审查员",
+        "model": "bailian/qwen-max",
+        "hybrid_mode": "spawn"
+      },
+      {
+        "id": "legal_advisor",
+        "name": "法律顾问",
+        "model": "bailian/qwen-max",
+        "hybrid_mode": "spawn"
+      },
+      {
+        "id": "art_expert",
+        "name": "艺术专家",
+        "model": "bailian/qwen3.5-plus",
+        "hybrid_mode": "main_session"
+      },
+      {
+        "id": "market_analyst",
+        "name": "市场分析专家",
+        "model": "bailian/qwen-plus",
+        "hybrid_mode": "spawn"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-ad-optimization",
+  "version": "1.0.0",
+  "description": "广告投放优化助手 - 自动优化广告、A/B测试、ROI分析",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "advertising", "optimization", "marketing", "chinese"],
+  "category": "marketing",
+  "license": "MIT"
+}

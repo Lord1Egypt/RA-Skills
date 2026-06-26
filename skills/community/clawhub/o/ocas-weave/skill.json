@@ -1,0 +1,36 @@
+{
+  "name": "ocas-weave",
+  "version": "2.3.0",
+  "description": "Weave: private provenance-backed social graph. Maintains queryable records of people, relationships, preferences, and shared experiences for recall, gifting, hosting, introductions, and serendipity. Trigger phrases: 'who do I know in', 'what does X like', 'add this person', 'relationship with', 'gift ideas for', 'sync contacts', 'prepare for meeting with', 'update weave'. Use when storing or retrieving facts about a person, recording a relationship, or discovering connections between people.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "requires": {
+    "credentials": [
+      {
+        "name": "google_contacts_oauth",
+        "description": "Google People API v1 OAuth credentials for contact sync",
+        "required": false,
+        "scope": "https://www.googleapis.com/auth/contacts"
+      },
+      {
+        "name": "clay_api_key",
+        "description": "Clay REST API Bearer token for CRM sync",
+        "required": false
+      }
+    ]
+  },
+  "platform_dependencies_note": "Python examples in references/ are illustrative. Dependencies (real_ladybug, googleapiclient, requests) are provided by the OpenClaw platform runtime.",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-weave/",
+      "~/openclaw/journals/ocas-weave/",
+      "~/openclaw/db/ocas-weave/",
+      "~/openclaw/db/ocas-elephas/chronicle.lbug"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-weave/",
+      "~/openclaw/journals/ocas-weave/",
+      "~/openclaw/db/ocas-weave/"
+    ]
+  }
+}

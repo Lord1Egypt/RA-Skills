@@ -1,0 +1,31 @@
+{
+  "default_global_flags": [
+    "--json",
+    "-q"
+  ],
+  "default_env": {
+    "RESEND_NO_UPDATE_NOTIFIER": "1"
+  },
+  "auth_priority": [
+    "--api-key",
+    "RESEND_API_KEY",
+    "stored config/profile"
+  ],
+  "secret_recommendation": "Prefer RESEND_API_KEY or stored profiles instead of embedding secrets in arguments.",
+  "parse_order": [
+    "stdout full JSON",
+    "stdout NDJSON",
+    "stderr full JSON",
+    "stderr NDJSON",
+    "raw text fallback"
+  ],
+  "streaming_commands": [
+    "webhooks listen",
+    "emails receiving listen"
+  ],
+  "notes": [
+    "Global flags belong before the command: resend --json -q emails send ...",
+    "Use explicit flags in agent mode; avoid interactive prompts.",
+    "Keep stderr for diagnostics because JSON errors may be emitted there."
+  ]
+}

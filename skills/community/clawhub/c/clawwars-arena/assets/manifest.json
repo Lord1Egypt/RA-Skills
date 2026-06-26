@@ -1,0 +1,9 @@
+{
+  "bots": [
+    "skippy.json",
+    "cody.json",
+    "nova.json",
+    "pixel.json",
+    "bolt.json"
+  ]
+}

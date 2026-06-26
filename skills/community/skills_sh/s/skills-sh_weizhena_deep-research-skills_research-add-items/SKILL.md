@@ -1,35 +1,28 @@
 ---
-name: "research-add-items"
-description: "Indexed by skills.sh from weizhena/deep-research-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "weizhena"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/weizhena/deep-research-skills/research-add-items"
-sourceUrl: "https://skills.sh/weizhena/deep-research-skills/research-add-items"
+name: research-add-items
+description: Add items (research objects) to existing research outline.
 ---
 
-# research-add-items
+# Research Add Items - Supplement Research Objects
 
-> Indexed by skills.sh from weizhena/deep-research-skills
+## Trigger
+`/research-add-items`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** weizhena
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/weizhena/deep-research-skills/research-add-items`
-- **Source URL:** [https://skills.sh/weizhena/deep-research-skills/research-add-items](https://skills.sh/weizhena/deep-research-skills/research-add-items)
+## Workflow
 
-## Overview
+### Step 1: Auto-locate Outline
+Find `*/outline.yaml` file in current working directory, auto-read.
 
+### Step 2: Get Supplement Sources in Parallel
+Simultaneously:
+- **A. Ask user**: What items to supplement? Any specific names?
+- **B. Ask if Web Search needed**: Launch agent to search for more items?
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/weizhena/deep-research-skills/research-add-items
-```
+### Step 3: Merge and Update
+- Append new items to outline.yaml
+- Display to user for confirmation
+- Avoid duplicates
+- Save updated outline
+
+## Output
+Updated `{topic}/outline.yaml` file (in-place modification)

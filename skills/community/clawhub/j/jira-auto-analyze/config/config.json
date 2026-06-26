@@ -1,0 +1,52 @@
+{
+  "rules": [
+    {
+      "rule_name": "星舰工单",
+      "keywords": ["星舰"],
+      "assignee": "崔征明",
+      "jira_username": "cuizhengming",
+      "reply_message": "星舰工单请及时处理，有问题可沟通",
+      "priority": 10
+    },
+    {
+      "rule_name": "认证相关工单",
+      "keywords": ["认证", "勾选", "授权", "权限", "token", "登录", "Auth"],
+      "assignee": "张献文",
+      "jira_username": "zhangxianwen",
+      "reply_message": "请献文协助处理此工单",
+      "priority": 5
+    },
+    {
+      "rule_name": "乐企相关工单",
+      "keywords": ["乐企", "leqi", "LEQI"],
+      "assignee": "付强",
+      "jira_username": "fuqiang",
+      "reply_message": "请付强协助处理此工单",
+      "priority": 5
+    },
+    {
+      "rule_name": "综服通道相关工单",
+      "keywords": ["综服", "通道", "银行", "工行", "中行", "农行", "建行", "招行"],
+      "assignee": "魏旭峰",
+      "jira_username": "weixufeng",
+      "reply_message": "请旭峰协助处理此工单",
+      "priority": 5
+    },
+    {
+      "rule_name": "其他工单",
+      "keywords": [],
+      "assignee": "刘巍",
+      "jira_username": "liuwei1",
+      "reply_message": "收到，我会及时处理，请稍后",
+      "priority": 1
+    }
+  ],
+  "config": {
+    "jira_url": "http://jira.51baiwang.com",
+    "filter_id": "13123",
+    "username": "liuwei1",
+    "password": "Lw@123456",
+    "rejection_message": "请依据工单提交规范提交，规范文档链接：http://confluence.51baiwang.com/pages/viewpage.action?pageId=80049485\n\n请补充以下信息：环境（星舰、飞船、云）、通道类型（web连接器、rpa、乐企）、项目版本号、相关日志",
+    "check_new_only": true
+  }
+}

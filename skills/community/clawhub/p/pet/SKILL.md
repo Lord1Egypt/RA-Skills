@@ -1,35 +1,43 @@
 ---
-name: "pet"
-description: "Simple command-line snippet manager. Use it to save and reuse complex commands."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pet"
-sourceUrl: "https://clawhub.ai/skills/pet"
+name: pet
+description: Simple command-line snippet manager. Use it to save and reuse complex commands.
+metadata: {"clawdbot":{"emoji":"🐘","requires":{"bins":["pet"]}}}
 ---
 
-# pet
+# pet (Simple Command-Line Snippet Manager)
 
-> Simple command-line snippet manager. Use it to save and reuse complex commands.
+Pet acts as a CLI snippet manager. It helps you save complex commands and reuse them.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pet`
-- **Source URL:** [https://clawhub.ai/skills/pet](https://clawhub.ai/skills/pet)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Create a new snippet
 ```bash
-hermes skills install clawhub/pet
+pet new
 ```
+This opens an editor. Enter the command and a description.
+Format:
+```toml
+[[snippets]]
+  command = "echo 'hello'"
+  description = "say hello"
+  output = ""
+```
+
+### Search and List snippets
+```bash
+pet search
+```
+
+### Execute a snippet directly
+```bash
+pet exec
+```
+
+### Sync with Gist (Optional)
+If configured in `~/.config/pet/config.toml`, you can sync snippets to a GitHub Gist:
+```bash
+pet sync
+```
+
+## Storage
+Snippets are stored in `~/.config/pet/snippet.toml`.

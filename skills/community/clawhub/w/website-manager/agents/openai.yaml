@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website Manager"
+  short_description: "Create and manage Notion-backed websites, blogs, widgets, and lightweight publishing workflows."
+  default_prompt: "Use $website-manager to build or improve a website, structure Notion as the CMS, add widgets or filters, improve SEO, and manage lightweight publishing over time."

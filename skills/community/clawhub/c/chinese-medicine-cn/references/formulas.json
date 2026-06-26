@@ -1,0 +1,245 @@
+{
+  "formulas": [
+    {
+      "id": "si_jun_zi_tang",
+      "name_cn": "四君子汤",
+      "name_pinyin": "Si Jun Zi Tang",
+      "name_en": "Four Gentlemen Decoction",
+      "source": "《太平惠民和剂局方》",
+      "category": "Tonify Qi",
+      "composition": [
+        {"herb": "Ren Shen", "dosage": "9g", "role": "Chief (君)", "purpose": "Powerfully tonifies Spleen and Stomach Qi"},
+        {"herb": "Bai Zhu", "dosage": "9g", "role": "Deputy (臣)", "purpose": "Strengthens Spleen, dries dampness"},
+        {"herb": "Fu Ling", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Drains dampness, strengthens Spleen"},
+        {"herb": "Zhi Gan Cao", "dosage": "6g", "role": "Envoy (使)", "purpose": "Harmonizes, tonifies Qi"}
+      ],
+      "functions": [
+        "Tonifies Qi",
+        "Strengthens Spleen"
+      ],
+      "indications": {
+        "pattern": "Spleen Qi deficiency",
+        "symptoms": ["Poor appetite", "Loose stools", "Weak voice", "Fatigue", "Pale complexion"],
+        "tongue": "Pale with tooth marks",
+        "pulse": "Weak, empty"
+      },
+      "modifications": [
+        {"name": "Liu Jun Zi Tang (六君子汤)", "changes": "+ Chen Pi, Ban Xia", "indication": "Spleen Qi deficiency with phlegm"},
+        {"name": "Xiang Sha Liu Jun Zi Tang (香砂六君子汤)", "changes": "+ Mu Xiang, Sha Ren", "indication": "Spleen Qi deficiency with Qi stagnation"},
+        {"name": "Yi Gong San (异功散)", "changes": "+ Chen Pi", "indication": "Spleen Qi deficiency with mild Qi stagnation"}
+      ],
+      "related_formulas": [
+        {"name": "Si Wu Tang", "relationship": "Four Substances - tonifies Blood instead of Qi"},
+        {"name": "Ba Zhen Tang", "relationship": "Eight Treasures - combines Si Jun Zi and Si Wu to tonify Qi and Blood"}
+      ],
+      "clinical_applications": "Foundation formula for Qi deficiency; used for chronic fatigue, poor digestion, weak immunity",
+      "research_notes": "Widely studied for digestive function and immune modulation",
+      "search_keywords": ["qi tonic formula", "digestive weakness", "fatigue remedy", "spleen tonic"]
+    },
+    {
+      "id": "si_wu_tang",
+      "name_cn": "四物汤",
+      "name_pinyin": "Si Wu Tang",
+      "name_en": "Four Substances Decoction",
+      "source": "《太平惠民和剂局方》",
+      "category": "Tonify Blood",
+      "composition": [
+        {"herb": "Shu Di Huang", "dosage": "12g", "role": "Chief (君)", "purpose": "Nourishes Blood and Yin"},
+        {"herb": "Dang Gui", "dosage": "9g", "role": "Deputy (臣)", "purpose": "Nourishes and moves Blood"},
+        {"herb": "Bai Shao", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Nourishes Blood, preserves Yin"},
+        {"herb": "Chuan Xiong", "dosage": "6g", "role": "Assistant (佐)", "purpose": "Moves Blood, prevents stagnation"}
+      ],
+      "functions": [
+        "Nourishes Blood",
+        "Regulates menstruation"
+      ],
+      "indications": {
+        "pattern": "Blood deficiency",
+        "symptoms": ["Pale complexion", "Dizziness", "Blurred vision", "Irregular menstruation", "Dry skin"],
+        "tongue": "Pale, thin",
+        "pulse": "Thin, weak"
+      },
+      "modifications": [
+        {"name": "Tao Hong Si Wu Tang (桃红四物汤)", "changes": "+ Tao Ren, Hong Hua", "indication": "Blood deficiency with stasis"},
+        {"name": "Xiong Gui Jiao Ai Tang (芎归胶艾汤)", "changes": "+ E Jiao, Ai Ye, Gan Cao", "indication": "Bleeding during pregnancy"}
+      ],
+      "related_formulas": [
+        {"name": "Si Jun Zi Tang", "relationship": "Four Gentlemen - tonifies Qi"},
+        {"name": "Ba Zhen Tang", "relationship": "Eight Treasures - combines both formulas"}
+      ],
+      "clinical_applications": "Foundation formula for Blood deficiency; widely used for menstrual disorders, anemia, postpartum recovery",
+      "research_notes": "Studied for hematopoietic effects and menstrual regulation",
+      "search_keywords": ["blood tonic", "menstrual formula", "anemia remedy", "womens tonic"]
+    },
+    {
+      "id": "gui_pi_tang",
+      "name_cn": "归脾汤",
+      "name_pinyin": "Gui Pi Tang",
+      "name_en": "Restore the Spleen Decoction",
+      "source": "《济生方》",
+      "category": "Tonify Qi and Blood",
+      "composition": [
+        {"herb": "Ren Shen", "dosage": "6g", "role": "Chief (君)", "purpose": "Tonifies Spleen Qi"},
+        {"herb": "Huang Qi", "dosage": "12g", "role": "Chief (君)", "purpose": "Tonifies Qi, raises Yang"},
+        {"herb": "Bai Zhu", "dosage": "9g", "role": "Deputy (臣)", "purpose": "Strengthens Spleen"},
+        {"herb": "Dang Gui", "dosage": "9g", "role": "Deputy (臣)", "purpose": "Nourishes Blood"},
+        {"herb": "Fu Ling", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Strengthens Spleen, calms Shen"},
+        {"herb": "Suan Zao Ren", "dosage": "12g", "role": "Assistant (佐)", "purpose": "Nourishes Blood, calms Shen"},
+        {"herb": "Long Yan Rou", "dosage": "12g", "role": "Assistant (佐)", "purpose": "Nourishes Blood, calms Shen"},
+        {"herb": "Mu Xiang", "dosage": "6g", "role": "Assistant (佐)", "purpose": "Regulates Qi, prevents stagnation"},
+        {"herb": "Zhi Gan Cao", "dosage": "3g", "role": "Envoy (使)", "purpose": "Harmonizes"}
+      ],
+      "functions": [
+        "Tonifies Qi and Blood",
+        "Strengthens Spleen",
+        "Nourishes Heart",
+        "Calms Shen"
+      ],
+      "indications": {
+        "pattern": "Heart and Spleen deficiency",
+        "symptoms": ["Insomnia", "Poor memory", "Palpitations", "Fatigue", "Poor appetite", "Pale complexion"],
+        "tongue": "Pale, thin coating",
+        "pulse": "Thin, weak"
+      },
+      "modifications": [
+        {"name": "Jia Wei Gui Pi Tang", "changes": "+ Yuan Zhi, Shi Chang Pu", "indication": "More pronounced Shen disturbance"}
+      ],
+      "related_formulas": [
+        {"name": "Si Jun Zi Tang", "relationship": "Base Qi tonic"},
+        {"name": "Tian Wang Bu Xin Dan", "relationship": "More emphasis on Heart Yin deficiency"}
+      ],
+      "clinical_applications": "Insomnia from overthinking, anxiety, chronic fatigue, bleeding disorders from Spleen not governing Blood",
+      "research_notes": "Studied for insomnia, anxiety, and cognitive function",
+      "search_keywords": ["insomnia formula", "anxiety remedy", "heart spleen tonic", "overthinking"]
+    },
+    {
+      "id": "xiao_yao_san",
+      "name_cn": "逍遥散",
+      "name_pinyin": "Xiao Yao San",
+      "name_en": "Free and Easy Wanderer Powder",
+      "source": "《太平惠民和剂局方》",
+      "category": "Regulate Liver Qi",
+      "composition": [
+        {"herb": "Chai Hu", "dosage": "9g", "role": "Chief (君)", "purpose": "Spreads Liver Qi, relieves stagnation"},
+        {"herb": "Dang Gui", "dosage": "9g", "role": "Deputy (臣)", "purpose": "Nourishes Blood, softens Liver"},
+        {"herb": "Bai Shao", "dosage": "9g", "role": "Deputy (臣)", "purpose": "Nourishes Blood, preserves Yin"},
+        {"herb": "Bai Zhu", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Strengthens Spleen"},
+        {"herb": "Fu Ling", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Strengthens Spleen"},
+        {"herb": "Bo He", "dosage": "3g", "role": "Assistant (佐)", "purpose": "Assists Chai Hu in spreading Liver Qi"},
+        {"herb": "Sheng Jiang", "dosage": "3g", "role": "Assistant (佐)", "purpose": "Harmonizes Stomach"},
+        {"herb": "Zhi Gan Cao", "dosage": "6g", "role": "Envoy (使)", "purpose": "Harmonizes"}
+      ],
+      "functions": [
+        "Spreads Liver Qi",
+        "Strengthens Spleen",
+        "Nourishes Blood"
+      ],
+      "indications": {
+        "pattern": "Liver Qi stagnation with Spleen deficiency",
+        "symptoms": ["Irritability", "Mood swings", "Chest tightness", "Fatigue", "Poor appetite", "Irregular menstruation"],
+        "tongue": "Normal or slightly red sides",
+        "pulse": "Wiry, weak"
+      },
+      "modifications": [
+        {"name": "Jia Wei Xiao Yao San (加味逍遥散)", "changes": "+ Mu Dan Pi, Zhi Zi", "indication": "Liver Qi stagnation with heat"},
+        {"name": "Hei Xiao Yao San (黑逍遥散)", "changes": "+ Sheng Di Huang", "indication": "More Blood deficiency"}
+      ],
+      "related_formulas": [
+        {"name": "Chai Hu Shu Gan San", "relationship": "Stronger Qi-moving action"},
+        {"name": "Yue Ju Wan", "relationship": "More focused on Qi stagnation"}
+      ],
+      "clinical_applications": "Stress, anxiety, PMS, depression, digestive issues from emotional causes",
+      "research_notes": "Widely studied for mood disorders and stress response",
+      "search_keywords": ["stress relief formula", "liver qi stagnation", "PMS remedy", "mood support"]
+    },
+    {
+      "id": "liu_wei_di_huang_wan",
+      "name_cn": "六味地黄丸",
+      "name_pinyin": "Liu Wei Di Huang Wan",
+      "name_en": "Six-Ingredient Pill with Rehmannia",
+      "source": "《小儿药证直诀》",
+      "category": "Tonify Yin",
+      "composition": [
+        {"herb": "Shu Di Huang", "dosage": "24g", "role": "Chief (君)", "purpose": "Nourishes Kidney Yin and Essence"},
+        {"herb": "Shan Zhu Yu", "dosage": "12g", "role": "Deputy (臣)", "purpose": "Nourishes Liver and Kidney"},
+        {"herb": "Shan Yao", "dosage": "12g", "role": "Deputy (臣)", "purpose": "Tonifies Spleen and Kidney"},
+        {"herb": "Ze Xie", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Drains Kidney dampness, prevents Shu Di from being cloying"},
+        {"herb": "Mu Dan Pi", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Clears heat, prevents Shan Zhu Yu from being too warm"},
+        {"herb": "Fu Ling", "dosage": "9g", "role": "Assistant (佐)", "purpose": "Drains dampness, strengthens Spleen"}
+      ],
+      "functions": [
+        "Nourishes Kidney Yin"
+      ],
+      "indications": {
+        "pattern": "Kidney Yin deficiency",
+        "symptoms": ["Low back pain", "Night sweats", "Five palm heat", "Tinnitus", "Dizziness", "Dry mouth"],
+        "tongue": "Red, little coating",
+        "pulse": "Thin, rapid"
+      },
+      "modifications": [
+        {"name": "Zhi Bai Di Huang Wan (知柏地黄丸)", "changes": "+ Zhi Mu, Huang Bai", "indication": "Kidney Yin deficiency with fire"},
+        {"name": "Qi Ju Di Huang Wan (杞菊地黄丸)", "changes": "+ Gou Qi Zi, Ju Hua", "indication": "Liver and Kidney Yin deficiency with eye problems"},
+        {"name": "Mai Wei Di Huang Wan (麦味地黄丸)", "changes": "+ Mai Dong, Wu Wei Zi", "indication": "Kidney and Lung Yin deficiency"},
+        {"name": "Fu Gui Di Huang Wan (桂附地黄丸)", "changes": "+ Fu Zi, Rou Gui", "indication": "Kidney Yang deficiency"}
+      ],
+      "related_formulas": [
+        {"name": "Zuo Gui Wan", "relationship": "Pure tonification without draining"},
+        {"name": "Da Bu Yin Wan", "relationship": "Stronger Yin tonic with heat-clearing"}
+      ],
+      "clinical_applications": "Menopausal symptoms, chronic low back pain, diabetes support, aging-related Yin deficiency",
+      "research_notes": "Extensively studied for menopausal symptoms, diabetes, and kidney function",
+      "search_keywords": ["kidney yin tonic", "menopause formula", "night sweats remedy", "aging support"]
+    },
+    {
+      "id": "ban_xia_bai_zhu_tian_ma_tang",
+      "name_cn": "半夏白术天麻汤",
+      "name_pinyin": "Ban Xia Bai Zhu Tian Ma Tang",
+      "name_en": "Pinellia, Atractylodes, and Gastrodia Decoction",
+      "source": "《医学心悟》",
+      "category": "Transform Phlegm",
+      "composition": [
+        {"herb": "Ban Xia", "dosage": "9g", "role": "Chief (君)", "purpose": "Dries dampness, transforms phlegm, stops vomiting"},
+        {"herb": "Tian Ma", "dosage": "6g", "role": "Chief (君)", "purpose": "Extinguishes wind, stops dizziness"},
+        {"herb": "Bai Zhu", "dosage": "15g", "role": "Deputy (臣)", "purpose": "Strengthens Spleen, dries dampness"},
+        {"herb": "Fu Ling", "dosage": "6g", "role": "Assistant (佐)", "purpose": "Strengthens Spleen, drains dampness"},
+        {"herb": "Chen Pi", "dosage": "6g", "role": "Assistant (佐)", "purpose": "Regulates Qi, transforms phlegm"},
+        {"herb": "Gan Cao", "dosage": "3g", "role": "Envoy (使)", "purpose": "Harmonizes"},
+        {"herb": "Sheng Jiang", "dosage": "3g", "role": "Assistant (佐)", "purpose": "Harmonizes Stomach"},
+        {"herb": "Da Zao", "dosage": "2 pieces", "role": "Assistant (佐)", "purpose": "Tonifies Spleen"}
+      ],
+      "functions": [
+        "Dries dampness",
+        "Transforms phlegm",
+        "Extinguishes wind",
+        "Stops dizziness"
+      ],
+      "indications": {
+        "pattern": "Wind-phlegm disturbing the head",
+        "symptoms": ["Dizziness", "Headache", "Nausea", "Chest congestion", "Profuse white phlegm"],
+        "tongue": "Swollen, white greasy coating",
+        "pulse": "Slippery, wiry"
+      },
+      "modifications": [
+        {"name": "With more headache", "changes": "+ Qiang Huo, Man Jing Zi", "indication": "More pronounced headache"}
+      ],
+      "related_formulas": [
+        {"name": "Er Chen Tang", "relationship": "Base phlegm-transforming formula"},
+        {"name": "Ling Gui Zhu Gan Tang", "relationship": "Focuses on phlegm-fluid in chest"}
+      ],
+      "clinical_applications": "Vertigo, Meniere's disease, hypertension with phlegm-damp pattern, chronic headache",
+      "research_notes": "Studied for vertigo and hypertension",
+      "search_keywords": ["dizziness remedy", "vertigo formula", "phlegm headache", "meniere support"]
+    }
+  ],
+  "formula_categories": [
+    "Tonify Qi",
+    "Tonify Blood",
+    "Tonify Yang",
+    "Tonify Yin",
+    "Regulate Qi",
+    "Transform Phlegm",
+    "Clear Heat",
+    "Drain Dampness",
+    "Nourish Heart and Calm Shen"
+  ]
+}

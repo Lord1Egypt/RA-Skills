@@ -1,35 +1,61 @@
 ---
-name: "Boof"
-description: "Convert PDFs and documents to markdown, index them locally for RAG retrieval, and analyze them token-efficiently. Use when asked to: read/analyze/summarize a..."
-category: "productivity"
-source: "ClawHub"
-tags: [documents, pdf, rag, research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/boof"
-sourceUrl: "https://clawhub.ai/skills/boof"
+name: boof
+description: "Convert PDFs and documents to markdown, index them locally for RAG retrieval, and analyze them token-efficiently. Use when asked to: read/analyze/summarize a PDF, process a document, boof a file, extract information from papers/decks/NOFOs, or when you need to work with large documents without filling the context window. Supports batch processing and cross-document queries."
 ---
 
-# Boof
+# Boof 🍑
 
-> Convert PDFs and documents to markdown, index them locally for RAG retrieval, and analyze them token-efficiently. Use when asked to: read/analyze/summarize a...
+Local-first document processing: PDF → markdown → RAG index → token-efficient analysis.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/boof`
-- **Source URL:** [https://clawhub.ai/skills/boof](https://clawhub.ai/skills/boof)
+Documents stay local. Only relevant chunks go to the LLM. Maximum knowledge absorption, minimum token burn.
 
-## Overview
+Powered by [opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) — #1 in PDF parsing benchmarks (0.90 overall, 0.93 table accuracy). CPU-only, no GPU required.
 
+## Quick Reference
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Convert + index a document
 ```bash
-hermes skills install clawhub/boof
+bash {SKILL_DIR}/scripts/boof.sh /path/to/document.pdf
 ```
+
+### Convert with custom collection name
+```bash
+bash {SKILL_DIR}/scripts/boof.sh /path/to/document.pdf --collection my-project
+```
+
+### Query indexed content
+```bash
+qmd query "your question" -c collection-name
+```
+
+## Core Workflow
+
+1. **Boof it:** Run `boof.sh` on a PDF. This converts it to markdown via opendataloader-pdf (local Java engine, no API, no GPU) and indexes it into QMD for semantic search.
+
+2. **Query it:** Use `qmd query` to retrieve only the relevant chunks. Send those chunks to the LLM — not the entire document.
+
+3. **Analyze it:** The LLM sees focused, relevant excerpts. No wasted tokens, no lost-in-the-middle problems.
+
+## When to Use Each Approach
+
+**"Analyze this specific aspect of the paper"** → Boof + query (cheapest, most focused)
+
+**"Summarize this entire document"** → Boof, then read the markdown section by section. Summarize each section individually, then merge summaries. See [advanced-usage.md](references/advanced-usage.md).
+
+**"Compare findings across multiple papers"** → Boof all papers into one collection, then query across them.
+
+**"Find where the paper discusses X"** → `qmd search "X" -c collection` for exact match, `qmd query "X" -c collection` for semantic match.
+
+## Output Location
+
+Converted markdown files are saved to `knowledge/boofed/` by default (override with `--output-dir`).
+
+## Setup
+
+If `boof.sh` reports missing dependencies, see [setup-guide.md](references/setup-guide.md) for installation instructions (Java + opendataloader-pdf + QMD).
+
+## Environment
+
+- `ODL_ENV` — Path to opendataloader-pdf Python venv (default: `~/.openclaw/tools/odl-env`)
+- `QMD_BIN` — Path to qmd binary (default: `~/.bun/bin/qmd`)
+- `BOOF_OUTPUT_DIR` — Default output directory (default: `~/.openclaw/workspace/knowledge/boofed`)

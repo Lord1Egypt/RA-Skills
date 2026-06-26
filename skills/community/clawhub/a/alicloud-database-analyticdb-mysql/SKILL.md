@@ -1,35 +1,84 @@
 ---
-name: "Alicloud Database Analyticdb Mysql"
-description: "Manage Alibaba Cloud AnalyticDB for MySQL (ADB) via OpenAPI/SDK. Use whenever the user needs AnalyticDB resource lifecycle and configuration operations, stat..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alicloud-database-analyticdb-mysql"
-sourceUrl: "https://clawhub.ai/skills/alicloud-database-analyticdb-mysql"
+name: alicloud-database-analyticdb-mysql
+description: Manage Alibaba Cloud AnalyticDB for MySQL (ADB) via OpenAPI/SDK. Use whenever the user needs AnalyticDB resource lifecycle and configuration operations, status checks, or troubleshooting ADB API and cluster workflow issues.
+version: 1.0.0
 ---
 
-# Alicloud Database Analyticdb Mysql
+Category: service
 
-> Manage Alibaba Cloud AnalyticDB for MySQL (ADB) via OpenAPI/SDK. Use whenever the user needs AnalyticDB resource lifecycle and configuration operations, stat...
+# AnalyticDB for MySQL
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alicloud-database-analyticdb-mysql`
-- **Source URL:** [https://clawhub.ai/skills/alicloud-database-analyticdb-mysql](https://clawhub.ai/skills/alicloud-database-analyticdb-mysql)
+Use Alibaba Cloud OpenAPI (RPC) with official SDKs or OpenAPI Explorer to manage resources for AnalyticDB for MySQL.
 
-## Overview
+## Workflow
 
+1) Confirm region, resource identifiers, and desired action.
+2) Discover API list and required parameters (see references).
+3) Call API with SDK or OpenAPI Explorer.
+4) Verify results with describe/list APIs.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## AccessKey priority (must follow)
+
+1) Environment variables: `ALICLOUD_ACCESS_KEY_ID` / `ALICLOUD_ACCESS_KEY_SECRET` / `ALICLOUD_REGION_ID`
+Region policy: `ALICLOUD_REGION_ID` is an optional default. If unset, decide the most reasonable region for the task; if unclear, ask the user.
+2) Shared config file: `~/.alibabacloud/credentials`
+
+## API discovery
+
+- Product code: `adb`
+- Default API version: `2021-12-01`
+- Use OpenAPI metadata endpoints to list APIs and get schemas (see references).
+
+## High-frequency operation patterns
+
+1) Inventory/list: prefer `List*` / `Describe*` APIs to get current resources.
+2) Change/configure: prefer `Create*` / `Update*` / `Modify*` / `Set*` APIs for mutations.
+3) Status/troubleshoot: prefer `Get*` / `Query*` / `Describe*Status` APIs for diagnosis.
+
+## Minimal executable quickstart
+
+Use metadata-first discovery before calling business APIs:
+
 ```bash
-hermes skills install clawhub/alicloud-database-analyticdb-mysql
+python scripts/list_openapi_meta_apis.py
 ```
+
+Optional overrides:
+
+```bash
+python scripts/list_openapi_meta_apis.py --product-code <ProductCode> --version <Version>
+```
+
+The script writes API inventory artifacts under the skill output directory.
+
+## Output policy
+
+If you need to save responses or generated artifacts, write them under:
+`output/alicloud-database-analyticdb-mysql/`
+
+## Validation
+
+```bash
+mkdir -p output/alicloud-database-analyticdb-mysql
+for f in skills/database/analyticdb/alicloud-database-analyticdb-mysql/scripts/*.py; do
+  python3 -m py_compile "$f"
+done
+echo "py_compile_ok" > output/alicloud-database-analyticdb-mysql/validate.txt
+```
+
+Pass criteria: command exits 0 and `output/alicloud-database-analyticdb-mysql/validate.txt` is generated.
+
+## Output And Evidence
+
+- Save artifacts, command outputs, and API response summaries under `output/alicloud-database-analyticdb-mysql/`.
+- Include key parameters (region/resource id/time range) in evidence files for reproducibility.
+
+## Prerequisites
+
+- Configure least-privilege Alibaba Cloud credentials before execution.
+- Prefer environment variables: `ALICLOUD_ACCESS_KEY_ID`, `ALICLOUD_ACCESS_KEY_SECRET`, optional `ALICLOUD_REGION_ID`.
+- If region is unclear, ask the user before running mutating operations.
+
+## References
+
+- Sources: `references/sources.md`

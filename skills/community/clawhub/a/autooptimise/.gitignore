@@ -1,0 +1,17 @@
+# Personal run data — never commit these
+runner/experiment_log.md
+results/
+
+# Local overrides
+*.local.*
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.*

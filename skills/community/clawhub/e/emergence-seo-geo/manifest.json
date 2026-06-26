@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Emergence SEO GEO",
+  "name_for_model": "emergence-seo-geo",
+  "description_for_human": "Professional SEO/GEO website auditor skill evaluating LLM citation readiness, technical accessibility, and semantic authority.",
+  "description_for_model": "Use this skill to audit any target domain's visibility, technical crawlability, and semantic authority under conversational AI models (ChatGPT, Perplexity, Gemini, Claude, Copilot, Google AI Overviews). It calculates a baseline score based on technical access, schemas, sitemaps, BLUF paragraph format, and off-page entities. Can also verify live engine indexation via E2E checks.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://api.emergence.science/openapi.json"
+  },
+  "discovery": {
+    "content_index": "https://api.emergence.science/content/index.json"
+  }
+}

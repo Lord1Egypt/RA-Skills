@@ -1,0 +1,502 @@
+{
+  "name": "Software Lead Weekly Tweets",
+  "description": "Inspiring tweets from Oren Ellenbogen's Software Lead Weekly newsletter, issues #681-#657 (Dec 2025 - Jul 2025)",
+  "quotes": [
+    {
+      "text": "The older I get, the more I realize preparation always beats planning. Planning is based on the expectation of order. Preparation is based on the expectation of chaos.",
+      "author": "@SahilBloom",
+      "url": "https://x.com/SahilBloom/status/1998760888783045023",
+      "category": "Mindset",
+      "tags": [
+        "wisdom",
+        "preparation",
+        "planning"
+      ]
+    },
+    {
+      "text": "Most of coding was never about writing code. AI is just making this more obvious. You no longer need to recall syntax, function structure, boilerplate code, or even API endpoints. The hard part was never typing. It was always thinking. And it still is.",
+      "author": "@Prathkum",
+      "url": "https://x.com/Prathkum/status/1998304627243057363",
+      "category": "AI & Tech",
+      "tags": [
+        "ai",
+        "thinking",
+        "coding"
+      ]
+    },
+    {
+      "text": "Never send an LLM to do a linter's job. LLMs are comparably expensive and incredibly slow compared to traditional linters and formatters. We think you should always use deterministic tools whenever you can.",
+      "author": "@disco_lu",
+      "url": "https://x.com/disco_lu/status/1995604736725426543",
+      "category": "AI & Tech",
+      "tags": [
+        "ai",
+        "tools",
+        "engineering"
+      ]
+    },
+    {
+      "text": "Creation manifests through those who want it badly enough.",
+      "author": "@naval",
+      "url": "https://x.com/naval/status/1995443913126256683",
+      "category": "Philosophy",
+      "tags": [
+        "creation",
+        "wisdom"
+      ]
+    },
+    {
+      "text": "The best are always learning. Read like crazy. Think alone. Keep a journal. Write stuff down the moment you see it. Review regularly. Memorize the big ideas to fluency. Attack your best ideas. And never get high on your own supply. You don't have to be gifted. You do have to be deliberate.",
+      "author": "@shaneparrish",
+      "url": "https://x.com/shaneparrish/status/1992655745863635398",
+      "category": "Mindset",
+      "tags": [
+        "learning",
+        "deliberate-practice"
+      ]
+    },
+    {
+      "text": "One of my favorite lessons I've learnt from working with smart people: Action produces information. If you're unsure of what to do, just do anything, even if it's the wrong thing. This will give you information about what you should actually be doing.",
+      "author": "@brian_armstrong",
+      "url": "https://x.com/brian_armstrong/status/1990073384022020290",
+      "category": "Leadership",
+      "tags": [
+        "action",
+        "decision-making"
+      ]
+    },
+    {
+      "text": "Human in the loop and UX are still key. You must design workflows where a human stays in the loop just enough to handle risk, but not so much that you lose the efficiency.",
+      "author": "@garrytan",
+      "url": "https://x.com/garrytan/status/1991509338830365012",
+      "category": "AI & Tech",
+      "tags": [
+        "ai",
+        "ux",
+        "leadership"
+      ]
+    },
+    {
+      "text": "Evan Spiegel lists himself as \"VP of Product at Meta\" because of how many Snapchat ideas ended up shaping Meta's products 😂",
+      "author": "@Ar_boian",
+      "url": "https://x.com/Ar_boian/status/1987100609687007249",
+      "category": "Humor",
+      "tags": [
+        "humor",
+        "tech"
+      ]
+    },
+    {
+      "text": "You are the author of your own life, and it's never too late to replace the stories you tell yourself and the world. It's never too late to begin a new chapter, add a surprise twist, or change genres entirely.",
+      "author": "@tferriss",
+      "url": "https://x.com/tferriss/status/1986814306680291788",
+      "category": "Philosophy",
+      "tags": [
+        "life",
+        "authorship"
+      ]
+    },
+    {
+      "text": "Shamelessly promote your work. Shamelessly promote your ideas. Shamelessly promote your offers. Shamelessly promote your content. Shamelessly promote your products. Nobody else will do it for you.",
+      "author": "@stijnnoorman",
+      "url": "https://x.com/stijnnoorman/status/1985331189033353261",
+      "category": "Career",
+      "tags": [
+        "promotion",
+        "career"
+      ]
+    },
+    {
+      "text": "Warren Buffett once said: \"You are only looking for 3 qualities in people (you hire): Enthusiasm, Intelligence, and Integrity.\" Rare to find all 3. Snag them up.",
+      "author": "@drgurner",
+      "url": "https://x.com/drgurner/status/1986158700977926399",
+      "category": "Leadership",
+      "tags": [
+        "hiring",
+        "leadership"
+      ]
+    },
+    {
+      "text": "I always tried to keep a good relationship with the CEOs of HubSpot's competitors, like Salesforce, Zendesk, Marketo, Eloqua, Mailchimp, etc. It served us well. I recommend founders do the same.",
+      "author": "@bhalligan",
+      "url": "https://x.com/bhalligan/status/1982136301039096308",
+      "category": "Building",
+      "tags": [
+        "relationships",
+        "business"
+      ]
+    },
+    {
+      "text": "\"Forward deployed engineer\" is the best Silicon Valley rebranding for a \"sales engineer,\" ever.",
+      "author": "@jspujji",
+      "url": "https://x.com/jspujji/status/1981941382593007617",
+      "category": "Humor",
+      "tags": [
+        "humor",
+        "tech"
+      ]
+    },
+    {
+      "text": "The happiest people I know don't have perfect lives. But they do have one thing in common: They've mastered the art of moving on. They don't keep score, they don't cling to what if, they don't dwell. There's a hell of a lot of progress hiding in not staying stuck in the past.",
+      "author": "@blakeaburge",
+      "url": "https://x.com/blakeaburge/status/1980608684053950587",
+      "category": "Philosophy",
+      "tags": [
+        "happiness",
+        "moving-on"
+      ]
+    },
+    {
+      "text": "I have a mental illness that makes me think that people will change their minds if I present the correct arguments with the appropriate facts and data.",
+      "author": "@DemosKratosCA",
+      "url": "https://x.com/DemosKratosCA/status/1979155997378728403",
+      "category": "Humor",
+      "tags": [
+        "humor",
+        "psychology"
+      ]
+    },
+    {
+      "text": "Seeking explanations before data, not vice versa.",
+      "author": "@DavidDeutschOxf",
+      "url": "https://x.com/DavidDeutschOxf/status/1976718993261314338",
+      "category": "Philosophy",
+      "tags": [
+        "thinking",
+        "explanation"
+      ]
+    },
+    {
+      "text": "If you're good at something, please talk more about it; your audience will find you. Hiding and silence never opened any door. Ever.",
+      "author": "@Er_dward",
+      "url": "https://x.com/Er_dward/status/1973815808553095507",
+      "category": "Career",
+      "tags": [
+        "promotion",
+        "career",
+        "confidence"
+      ]
+    },
+    {
+      "text": "Some days you move a mountain. Some days you move a pebble. Both count. Keep moving.",
+      "author": "@alexisohanian",
+      "url": "https://x.com/alexisohanian/status/1974461775610606018",
+      "category": "Mindset",
+      "tags": [
+        "persistence",
+        "progress"
+      ]
+    },
+    {
+      "text": "The purpose of knowledge is action.",
+      "author": "@RyanHoliday",
+      "url": "https://x.com/RyanHoliday/status/1974142445547065754",
+      "category": "Philosophy",
+      "tags": [
+        "knowledge",
+        "action"
+      ]
+    },
+    {
+      "text": "The most brilliant life hack is very simple: Decide what matters and ignore everything else. Then, execute on that daily until reality catches up with your vision.",
+      "author": "@thejustinwelsh",
+      "url": "https://x.com/thejustinwelsh/status/1973357742803874240",
+      "category": "Mindset",
+      "tags": [
+        "focus",
+        "meaningful-work"
+      ]
+    },
+    {
+      "text": "Go workout. Tell no one. Go for a run. Tell no one. Eat clean. Tell no one. Read a book. Tell no one. Travel. Tell no one. Whoever guards his mouth and tongue keeps his soul from troubles.",
+      "author": "@AditiRajasthan",
+      "url": "https://x.com/AditiRajasthan/status/1972534055909638424",
+      "category": "Mindset",
+      "tags": [
+        "discipline",
+        "privacy"
+      ]
+    },
+    {
+      "text": "Unpopular advice for early career folks: Don't worry about prioritizing. Just do everything.",
+      "author": "@zebriez",
+      "url": "https://x.com/zebriez/status/1970272133298430153",
+      "category": "Career",
+      "tags": [
+        "career",
+        "early-career"
+      ]
+    },
+    {
+      "text": "Burnout doesn't come from hard work. It comes from working on things that don't matter. Stop trying to do less and start trying to do only what counts. Your energy comes rushing back when your work has meaning.",
+      "author": "@thejustinwelsh",
+      "url": "https://x.com/thejustinwelsh/status/1970096252231581995",
+      "category": "Mindset",
+      "tags": [
+        "focus",
+        "burnout",
+        "meaningful-work"
+      ]
+    },
+    {
+      "text": "Developers switch between coding agents every week like they were switching between JavaScript frameworks before. Ironically losing productivity gains because of the switch itself and talking about it.",
+      "author": "@DmytroKrasun",
+      "url": "https://x.com/DmytroKrasun/status/1968056225389797555",
+      "category": "AI & Tech",
+      "tags": [
+        "ai",
+        "productivity",
+        "humor"
+      ]
+    },
+    {
+      "text": "The best VC name would be \"Last Round Capital\"",
+      "author": "@auren",
+      "url": "https://x.com/auren/status/1967295173723119671",
+      "category": "Humor",
+      "tags": [
+        "humor",
+        "vc"
+      ]
+    },
+    {
+      "text": "A few months ago, we made a strange decision @boomaero: we put a superstar engineer in charge of recruiting. The recruiting engine took a little to spool up but now it's working: This month Boom is growing 10% in one month. And with an extremely high talent bar.",
+      "author": "@bscholl",
+      "url": "https://x.com/bscholl/status/1965572058403987855",
+      "category": "Building",
+      "tags": [
+        "recruiting",
+        "engineering"
+      ]
+    },
+    {
+      "text": "Don't think about strategy when you haven't built anything yet! When you're starting, it's much better to focus on a specific customer (even better if you're the customer!) and making them extremely happy— than to go through the motions playing startup while worrying about TAM",
+      "author": "@garrytan",
+      "url": "https://x.com/garrytan/status/1964043659072196860",
+      "category": "Building",
+      "tags": [
+        "startups",
+        "strategy",
+        "building"
+      ]
+    },
+    {
+      "text": "Product is half the equation. Distribution is the other half. Ignore it, and you'll spend years building something nobody wants.",
+      "author": "@hnshah",
+      "url": "https://x.com/hnshah/status/1963659075675386109",
+      "category": "Building",
+      "tags": [
+        "product",
+        "distribution",
+        "building"
+      ]
+    },
+    {
+      "text": "The richest people I know are miserable. The happiest people I know figured out what \"enough\" looks like and optimized for it.",
+      "author": "@thejustinwelsh",
+      "url": "https://x.com/thejustinwelsh/status/1963589639689601290",
+      "category": "Mindset",
+      "tags": [
+        "focus",
+        "meaningful-work"
+      ]
+    },
+    {
+      "text": "\"Three decisions determine 90% of your life outcomes: who you're with, what you do, and where you live.\" - @naval",
+      "author": "@readswithravi",
+      "url": "https://x.com/readswithravi/status/1960065326974153005",
+      "category": "Philosophy",
+      "tags": [
+        "life-decisions",
+        "wisdom"
+      ]
+    },
+    {
+      "text": "Most \"lucky\" people try more stuff than everyone else. They throw volume at uncertainty and learn fast. It looks like luck, but it's really just reps.",
+      "author": "@thejustinwelsh",
+      "url": "https://x.com/thejustinwelsh/status/1958516198565445921",
+      "category": "Mindset",
+      "tags": [
+        "luck",
+        "action"
+      ]
+    },
+    {
+      "text": "When you tell people your goals, you get a bunch of dopamine. Usually, your brain gives it out when you've accomplished a hard task you planned on achieving. By telling people your goals, your brain thinks you've already accomplished them, So no need for motivation.",
+      "author": "@ActionableMind",
+      "url": "https://x.com/ActionableMind/status/1956697420898643978",
+      "category": "Mindset",
+      "tags": [
+        "goals",
+        "dopamine",
+        "motivation"
+      ]
+    },
+    {
+      "text": "Build what people are already paying for, not what you're just hoping they might want someday.",
+      "author": "@alexcooldev",
+      "url": "https://x.com/alexcooldev/status/1955665026020446600",
+      "category": "Building",
+      "tags": [
+        "building",
+        "product"
+      ]
+    },
+    {
+      "text": "When we're young, we'll waste hours or use inefficient tools, to save a few bucks. When we're older, we wisely spend money to save time. It's not necessarily \"dumb\" to do that when young, however. We do have more time than money, and \"doing\" yields \"learning,\" which we need.",
+      "author": "@asmartbear",
+      "url": "https://x.com/asmartbear/status/1955456024594268482",
+      "category": "Career",
+      "tags": [
+        "learning",
+        "time-money",
+        "career"
+      ]
+    },
+    {
+      "text": "The easiest way to do marketing is to use it every day yourself and share with others how you use it effectively.",
+      "author": "@alexcooldev",
+      "url": "https://x.com/alexcooldev/status/1955470434868338781",
+      "category": "Building",
+      "tags": [
+        "building",
+        "marketing"
+      ]
+    },
+    {
+      "text": "So much advantage in life comes from being willing to look like an idiot in the short term.",
+      "author": "@ShaneAParrish",
+      "url": "https://x.com/ShaneAParrish/status/1951989157540004058",
+      "category": "Mindset",
+      "tags": [
+        "advantage",
+        "courage"
+      ]
+    },
+    {
+      "text": "Your parents mean well. But their advice is shaped by a world with pensions, gatekeepers, and safe jobs. Follow it now and you'll play a game that no longer exists.",
+      "author": "@thejustinwelsh",
+      "url": "https://x.com/thejustinwelsh/status/1952701634171097268",
+      "category": "Career",
+      "tags": [
+        "career",
+        "advice"
+      ]
+    },
+    {
+      "text": "Work with interesting people. On interesting things. That's the goal.",
+      "author": "@harris",
+      "category": "Mindset",
+      "tags": [
+        "work",
+        "meaningful-work"
+      ]
+    },
+    {
+      "text": "Sometimes the problem is that you are not optimistic enough.",
+      "author": "@reidhoffman",
+      "category": "Mindset",
+      "tags": [
+        "mindset",
+        "wisdom"
+      ]
+    },
+    {
+      "text": "Consumption is ephemeral. Curation and creation compound. One erodes attention, the other earns it.",
+      "author": "@hnshah",
+      "category": "Mindset",
+      "tags": [
+        "creation",
+        "focus"
+      ]
+    },
+    {
+      "text": "Simple advice from a coach I once had: 'If it doesn't challenge you, it's very unlikely to change you.' The comfort zone is a beautiful place, but nothing ever grows there.",
+      "author": "@blakeaburge",
+      "category": "Mindset",
+      "tags": [
+        "courage",
+        "growth"
+      ]
+    },
+    {
+      "text": "Building Netflix taught me that your first idea is rarely your best idea. We started mailing DVDs, not streaming movies. But we learned. We adapted. We evolved. The best companies are built on feedback loops, not first instincts.",
+      "author": "@mbrandolph",
+      "category": "Building",
+      "tags": [
+        "building",
+        "innovation",
+        "startups"
+      ]
+    },
+    {
+      "text": "The biggest AI Agent opportunities are going to be in categories of work where there could be a 10X or 100X increase in demand if the cost was 10-100X cheaper. The demand elasticity of software is about to get wild.",
+      "author": "@levie",
+      "category": "AI & Tech",
+      "tags": [
+        "ai",
+        "building",
+        "product"
+      ]
+    },
+    {
+      "text": "Men will literally consume 10,000 hours of podcasts, read 100 self-improvement books and spend 4 hours on a fully optimized morning routine instead of doing the thing.",
+      "author": "@waronweakness",
+      "category": "Mindset",
+      "tags": [
+        "action",
+        "humor",
+        "discipline"
+      ]
+    },
+    {
+      "text": "Generic words are a sure sign of lazy writing. Lazy writing is boring to read, and isn't remembered.",
+      "author": "@asmartbear",
+      "category": "Building",
+      "tags": [
+        "writing",
+        "simplicity"
+      ]
+    },
+    {
+      "text": "98% of ppl won't get you, won't care to, & won't ever try. that's not tragic. it's just stats. the goal isn't universal appreciation. it's resonance with the 2% who see the world the way you do. find them. build with them. ignore the rest.",
+      "author": "@signulll",
+      "category": "Mindset",
+      "tags": [
+        "focus",
+        "mindset",
+        "building"
+      ]
+    },
+    {
+      "text": "Underrated life skill: Pausing. Life doesn't slow down on its own. You have to intentionally create space to think, reflect, and reset. The people who thrive long-term aren't the ones who never stop — they're the ones who know when to.",
+      "author": "@blakeaburge",
+      "category": "Mindset",
+      "tags": [
+        "discipline",
+        "wisdom",
+        "focus"
+      ]
+    },
+    {
+      "text": "Stop trying to be extraordinary at everything. (1) Be ordinary at most things. (2) Be exceptional at one thing. (3) Be consistent in all things. That's the formula.",
+      "author": "@thejustinwelsh",
+      "category": "Mindset",
+      "tags": [
+        "focus",
+        "excellence",
+        "discipline"
+      ]
+    },
+    {
+      "text": "The greatest sin I regularly commit against life is to wish away the present moment in favor of a future moment. To treat now as merely the entrance fee to later.",
+      "author": "@mmay3r",
+      "category": "Philosophy",
+      "tags": [
+        "philosophy",
+        "wisdom",
+        "mindset"
+      ]
+    }
+  ]
+}

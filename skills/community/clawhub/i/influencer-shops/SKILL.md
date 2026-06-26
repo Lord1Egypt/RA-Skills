@@ -1,35 +1,27 @@
 ---
 name: "网红小店"
 description: "提供关于网红小店的推荐清单、打卡路线与指南。用户搜索网红小店或规划相关出行时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/influencer-shops"
-sourceUrl: "https://clawhub.ai/skills/influencer-shops"
 ---
 
 # 网红小店
 
-> 提供关于网红小店的推荐清单、打卡路线与指南。用户搜索网红小店或规划相关出行时调用。
+## 筛选项
+- 风格偏好（国潮/复古/二次元/汉服等）
+- 价格区间/正品保障/是否限量发售
+- 服务（改造/试妆/预约）/拍摄友好度
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/influencer-shops`
-- **Source URL:** [https://clawhub.ai/skills/influencer-shops](https://clawhub.ai/skills/influencer-shops)
+## 返回字段
+- 店铺/项目名称/亮点/价格/评分/人流
+- 地址/营业时间/预约方式/拍摄与试穿规则
+- 活动/快闪/联名信息/社交平台热度
 
-## Overview
+## 示例请求
+- “广州 网红小店 国潮清单（学生友好）”
+- “成都 网红小店 小众手作TOP30（可定制）”
 
+## 更新频率
+- 每周迭代，结合新热度与口碑反馈
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/influencer-shops
-```
+## 注意事项
+- 高峰期排队较久，建议提前预约或错峰
+- 部分项目有拍摄限制或最低消费，按现场规则执行

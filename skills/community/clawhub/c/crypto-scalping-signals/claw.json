@@ -1,0 +1,8 @@
+{
+  "name": "crypto-scalping-signals",
+  "version": "1.0.0",
+  "description": "Crypto futures scalping signals with 10+ research-backed strategies. Covers liquidity sweeps, break of structure, VWAP pullbacks, RSI/Bollinger combos, order flow delta, and kill zone timing. Optimized for MEXC and low-fee exchanges.",
+  "author": "AvidTheKing",
+  "license": "MIT",
+  "tags": ["crypto", "trading", "scalping", "signals", "futures", "mexc", "analysis"]
+}

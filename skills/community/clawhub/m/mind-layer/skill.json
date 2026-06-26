@@ -1,0 +1,26 @@
+{
+  "name": "mind-layer",
+  "version": "1.1.0",
+  "description": "基于科学记忆法的 AI 分层记忆系统 - 六层架构 + 宪法级原则 + 场景分类技术栈",
+  "author": "书灵 (BooLin)",
+  "homepage": "https://github.com/openclaw/skills",
+  "tags": [
+    "memory",
+    "mind",
+    "learning",
+    "ai",
+    "openclaw"
+  ],
+  "keywords": [
+    "AI 记忆系统",
+    "科学记忆法",
+    "六层架构",
+    "记忆优化"
+  ],
+  "license": "MIT",
+  "licenseUrl": "https://opensource.org/licenses/MIT",
+  "readme": "README.md",
+  "acceptLicenseTerms": true,
+  "dependencies": {},
+  "optional": {}
+}

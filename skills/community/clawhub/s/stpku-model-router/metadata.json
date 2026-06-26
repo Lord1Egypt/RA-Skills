@@ -1,0 +1,14 @@
+{
+  "name": "model-router",
+  "version": "1.0.1",
+  "description": "Intelligent model routing for OpenClaw. Automatically selects the best model from 8 available models based on task type, content length, and quality requirements.",
+  "author": "白龙马 🐴",
+  "models_supported": 8,
+  "requires_api_key": false,
+  "pricing": {
+    "enabled": true,
+    "amount": 1.00,
+    "currency": "USD",
+    "type": "one-time"
+  }
+}

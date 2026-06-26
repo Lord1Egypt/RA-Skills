@@ -1,0 +1,4 @@
+# One prompt per line
+cinematic portrait of a fox astronaut --ar 16:9
+silver perfume bottle on black glass
+cyberpunk tokyo rainy alley at night --ar 16:9

@@ -1,35 +1,124 @@
 ---
-name: "Legal Gstack"
-description: "法律工作流程自动化套件。8 个专家角色：法律检索、文书起草、证据分析、庭审准备、直播运营、客户接待、利益冲突审查、案件管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/legal-gstack"
-sourceUrl: "https://clawhub.ai/skills/legal-gstack"
+name: legal-gstack
+description: 法律工作流程自动化套件。8 个专家角色：法律检索、文书起草、证据分析、庭审准备、直播运营、客户接待、利益冲突审查、案件管理。
+metadata:
+  {
+    "openclaw": {
+      "requires": { "bins": [] },
+      "install": []
+    }
+  }
 ---
 
-# Legal Gstack
+# 法律 gstack - 法律工作流程自动化
 
-> 法律工作流程自动化套件。8 个专家角色：法律检索、文书起草、证据分析、庭审准备、直播运营、客户接待、利益冲突审查、案件管理。
+陈律的专属法律工作套件，将法律实务流程标准化、自动化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/legal-gstack`
-- **Source URL:** [https://clawhub.ai/skills/legal-gstack](https://clawhub.ai/skills/legal-gstack)
+## 技能列表
 
-## Overview
+| 技能 | 命令 | 角色 | 优先级 |
+|------|------|------|--------|
+| 法律检索 | `/legal-research` | 法律检索专家 | P1 |
+| 文书起草 | `/legal-draft` | 文书起草员 | P2 |
+| 证据分析 | `/evidence-analyzer` | 证据分析师 | P3 |
+| 庭审准备 | `/trial-prep` | 庭审策略顾问 | P4 |
+| 直播运营 | `/live-ops` | 直播运营官 | P5 |
+| 客户接待 | `/client-intake` | 案情分析师 | P6 |
+| 利益冲突审查 | `/conflict-check` | 利益冲突审查员 | P7 |
+| 案件管理 | `/case-manager` | 案件管理员 | P8 |
 
+## 文件结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/legal-gstack
 ```
+~/Documents/
+├── 01_案件管理/
+│   ├── 进行中/          # 当前案件
+│   ├── 已结案/          # 已归档案件
+│   └── 模板/            # 文书模板
+├── 02_法律文书/
+│   ├── 合同/
+│   ├── 诉讼文书/
+│   └── 非诉文书/
+├── 05_新媒体/
+│   └── 抖音素材/        # 直播视频/内容沉淀
+└── 陈律的知识库/
+    └── 法律知识/        # 法条/案例/实务知识
+```
+
+## 快速开始
+
+### 法律检索（P1）
+```
+/legal-research [问题描述]
+```
+- 检索法条、类案、学术观点
+- 输出：检索报告 + 相关知识库链接
+
+### 文书起草（P2）
+```
+/legal-draft [文书类型] --case [案件名]
+```
+- 起诉状/答辩状/代理词/律师函
+- 自动读取案件材料 + 模板
+
+### 证据分析（P3）
+```
+/evidence-analyzer [案件名]
+```
+- 证据三性分析
+- 生成证据清单 + 质证意见
+
+### 庭审准备（P4）
+```
+/trial-prep [案件名]
+```
+- 庭审提纲
+- 发问清单
+- 辩论要点
+
+### 直播运营（P5）
+```
+/live-ops start [直播链接]     # 开始监控评论
+/live-ops topic                # 选题策划
+/live-ops archive              # 内容归档
+```
+
+### 客户接待（P6）
+```
+/client-intake [客户问题描述]
+```
+- 法律关系识别
+- 风险预判
+- 接案建议
+
+### 利益冲突审查（P7）
+```
+/conflict-check [对方当事人/案由]
+```
+- 检索历史案件
+- 输出冲突报告
+
+### 案件管理（P8）
+```
+/case-manager list             # 案件列表
+/case-manager deadline [案件名] # 期限提醒
+/case-manager archive [案件名]  # 结案归档
+```
+
+## 工作流
+
+```
+咨询 → 检索 → 文书 → 证据 → 庭审 → 归档
+       ↓
+     直播运营（获客）
+```
+
+## 安全边界
+
+- 所有法律意见需陈律最终确认
+- 敏感案件（刑事/涉外）自动标记
+- 案件信息本地存储，不上传云端
+
+---
+
+*版本：1.0.0 | 作者：陈律 + 贾维斯*

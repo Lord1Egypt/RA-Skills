@@ -1,0 +1,42 @@
+{
+  "models": {
+    "high_context": {
+      "alias": "xinliu/qwen3-max",
+      "context_window": 256000,
+      "privacy_level": "cloud",
+      "cost_per_1k_input": 0,
+      "cost_per_1k_output": 0,
+      "priority": 1
+    },
+    "balanced": {
+      "alias": "xinliu/kimi-k2-0905",
+      "context_window": 256000,
+      "privacy_level": "cloud",
+      "cost_per_1k_input": 0,
+      "cost_per_1k_output": 0,
+      "priority": 2
+    },
+    "offline": {
+      "alias": "ollama/qwen35-32k",
+      "context_window": 32768,
+      "privacy_level": "local",
+      "cost_per_1k_input": 0,
+      "cost_per_1k_output": 0,
+      "priority": 3
+    }
+  },
+  "routing_rules": {
+    "privacy_sensitive": ["offline"],
+    "context_length_gt_32k": ["high_context", "balanced"],
+    "context_length_le_32k": ["offline", "high_context", "balanced"],
+    "cost_optimization": ["offline", "balanced", "high_context"],
+    "performance_critical": ["high_context", "balanced", "offline"]
+  },
+  "fallback_strategy": "high_context",
+  "user_preferences": {
+    "default_mode": "auto",
+    "privacy_threshold": "medium",
+    "cost_sensitivity": true,
+    "performance_priority": false
+  }
+}

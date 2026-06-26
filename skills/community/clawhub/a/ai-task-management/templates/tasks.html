@@ -1,0 +1,292 @@
+{{define "content"}}
+<div class="tasks-page">
+    <!-- 仪表盘统计 -->
+    <div class="dashboard">
+        <div class="stats-grid" id="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="total">-</div>
+                <div class="stat-label">总任务数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pending">-</div>
+                <div class="stat-label">待办</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="agent_working">-</div>
+                <div class="stat-label">Agent 工作中</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="agent_review">-</div>
+                <div class="stat-label">Agent 审核</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="human_review">-</div>
+                <div class="stat-label">人工审核</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="done">-</div>
+                <div class="stat-label">已完成</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="cancelled">-</div>
+                <div class="stat-label">已取消</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-list-section">
+        <button class="btn btn-primary" onclick="showCreateModal()" style="float: right;">+ 新建任务</button>
+
+    <!-- 编辑任务模态框 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>编辑任务</h2>
+            <form id="editForm" onsubmit="saveEdit(event)">
+                <input type="hidden" id="editUuid">
+                <div class="form-group">
+                    <label>标题 *</label>
+                    <input type="text" id="editTitle" required class="form-control">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>优先级</label>
+                        <select id="editPriority" class="form-control">
+                            <option value="1">1 - Critical</option>
+                            <option value="2">2 - High</option>
+                            <option value="3">3 - Medium</option>
+                            <option value="4">4 - Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>项目</label>
+                        <input type="text" id="editProject" class="form-control" placeholder="例如：aitask-skill">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="filters">
+        <input type="text" id="search" placeholder="搜索任务..." class="form-control" 
+               hx-get="/api/tasks" hx-trigger="keyup changed delay:300ms" hx-target="#taskList">
+        <select id="filterProject" class="form-control" 
+                hx-get="/api/tasks" hx-trigger="change" hx-target="#taskList">
+            <option value="">全部项目</option>
+        </select>
+        <select id="filterStatus" class="form-control" 
+                hx-get="/api/tasks" hx-trigger="change" hx-target="#taskList">
+            <option value="">全部状态</option>
+            <option value="pending">待办</option>
+            <option value="agent_working">Agent 工作中</option>
+            <option value="agent_review">Agent 审核</option>
+            <option value="human_review">人工审核</option>
+            <option value="done">已完成</option>
+            <option value="cancelled">已取消</option>
+        </select>
+    </div>
+
+    <div id="taskList">加载中...</div>
+</div>
+
+<script>
+function renderTaskRow(task, isChild = false) {
+    let actions = '';
+    if (task.status === 'pending' || task.status === 'agent_working' || task.status === 'agent_review') {
+        actions = `
+            <button class="btn btn-sm btn-danger" onclick="updateStatus('${task.uuid}', 'cancelled')">取消</button>
+        `;
+    } else if (task.status === 'human_review') {
+        actions = `
+            <button class="btn btn-sm btn-success" onclick="updateStatus('${task.uuid}', 'done')">通过</button>
+            <button class="btn btn-sm btn-warning" onclick="updateStatus('${task.uuid}', 'pending')">不通过</button>
+        `;
+    } else if (task.status === 'done' || task.status === 'cancelled') {
+        actions = `
+            <button class="btn btn-sm btn-info" onclick="updateStatus('${task.uuid}', 'pending')">重新打开</button>
+        `;
+    }
+    if (!isChild) {
+        actions += ` <button class="btn btn-sm btn-primary" onclick='showCreateModal(${JSON.stringify(task.uuid)}, ${JSON.stringify(task.project || '')})'>+ 子任务</button>`;
+    }
+    actions += ` <button class="btn btn-sm btn-secondary" onclick="editTask('${task.uuid}', '${escapeHtml(task.title)}', ${task.priority}, '${task.project || ''}')">编辑</button>`;
+    const titlePrefix = isChild ? '↳ ' : '';
+    const titleBadge = isChild ? `<span class="badge badge-tag">子任务</span>` : `<span class="badge badge-project">主任务</span>`;
+
+    return `
+        <tr>
+            <td><a href="/tasks/${task.uuid}">${titlePrefix}${escapeHtml(task.title)}</a> ${titleBadge}</td>
+            <td>${task.project ? `<span class="badge badge-project">${escapeHtml(task.project)}</span>` : '-'}</td>
+            <td><span class="badge badge-${task.status}">${task.status}</span></td>
+            <td>P${task.priority}</td>
+            <td>${task.assignee_name || '-'}</td>
+            <td>${task.tags ? task.tags.split(',').map(t => `<span class="badge badge-tag">${t}</span>`).join('') : '-'}</td>
+            <td>${actions}</td>
+        </tr>
+    `;
+}
+
+function loadTasks() {
+    const status = document.getElementById('filterStatus').value;
+    const project = document.getElementById('filterProject').value;
+    const keyword = document.getElementById('search').value;
+    
+    let url = '/api/tasks?';
+    if (status) url += `status=${status}&`;
+    if (project) url += `project=${encodeURIComponent(project)}&`;
+    if (keyword) url += `keyword=${encodeURIComponent(keyword)}&`;
+    
+    fetch(url)
+        .then(r => r.json())
+        .then(data => {
+            const container = document.getElementById('taskList');
+            if (!data.tasks || data.tasks.length === 0) {
+                container.innerHTML = '<p class="empty-state">暂无任务</p>';
+                return;
+            }
+
+            const childMap = {};
+            const rootTasks = [];
+            data.tasks.forEach(task => {
+                if (task.parent_uuid) {
+                    if (!childMap[task.parent_uuid]) {
+                        childMap[task.parent_uuid] = [];
+                    }
+                    childMap[task.parent_uuid].push(task);
+                } else {
+                    rootTasks.push(task);
+                }
+            });
+
+            const rows = [];
+            rootTasks.forEach(task => {
+                rows.push(renderTaskRow(task, false));
+                (childMap[task.uuid] || []).forEach(childTask => {
+                    rows.push(renderTaskRow(childTask, true));
+                });
+            });
+            Object.keys(childMap).forEach(parentUUID => {
+                if (!rootTasks.find(task => task.uuid === parentUUID)) {
+                    childMap[parentUUID].forEach(childTask => {
+                        rows.push(renderTaskRow(childTask, true));
+                    });
+                }
+            });
+
+            container.innerHTML = '<table class="table"><thead><tr><th>标题</th><th>项目</th><th>状态</th><th>优先级</th><th>负责人</th><th>标签</th><th>操作</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
+        });
+}
+
+function updateStatus(uuid, status) {
+    fetch(`/api/tasks/${uuid}/status`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({new_status: status})
+    }).then(() => loadTasks());
+}
+
+// 编辑任务
+function editTask(uuid, title, priority, project) {
+    document.getElementById('editUuid').value = uuid;
+    document.getElementById('editTitle').value = title;
+    document.getElementById('editPriority').value = priority;
+    document.getElementById('editProject').value = project;
+    document.getElementById('editModal').style.display = 'flex';
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+    document.getElementById('editForm').reset();
+}
+
+function saveEdit(event) {
+    event.preventDefault();
+    
+    const uuid = document.getElementById('editUuid').value;
+    const data = {
+        title: document.getElementById('editTitle').value,
+        priority: parseInt(document.getElementById('editPriority').value),
+        project: document.getElementById('editProject').value
+    };
+    
+    fetch(`/api/tasks/${uuid}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(result => {
+        if (result.error) {
+            alert('更新失败：' + result.error);
+        } else {
+            alert('任务已更新！');
+            closeEditModal();
+            loadTasks();
+        }
+    })
+    .catch(err => {
+        alert('更新失败：' + err);
+    });
+}
+
+// 点击模态框外部关闭编辑模态框
+window.onclick = function(event) {
+    const editModal = document.getElementById('editModal');
+    const createModal = document.getElementById('createModal');
+    if (event.target === editModal) {
+        closeEditModal();
+    }
+    if (event.target === createModal) {
+        closeCreateModal();
+    }
+}
+
+// 加载仪表盘统计
+function loadStats() {
+    fetch('/api/stats')
+        .then(r => r.json())
+        .then(data => {
+            document.getElementById('total').textContent = data.total || 0;
+            document.getElementById('pending').textContent = data.pending || 0;
+            document.getElementById('agent_working').textContent = data.agent_working || 0;
+            document.getElementById('agent_review').textContent = data.agent_review || 0;
+            document.getElementById('human_review').textContent = data.human_review || 0;
+            document.getElementById('done').textContent = data.done || 0;
+            document.getElementById('cancelled').textContent = data.cancelled || 0;
+        });
+}
+
+// 加载项目列表
+function loadProjects() {
+    fetch('/api/tasks?limit=1000')
+        .then(r => r.json())
+        .then(data => {
+            const projects = new Set();
+            if (data.tasks) {
+                data.tasks.forEach(task => {
+                    if (task.project) {
+                        projects.add(task.project);
+                    }
+                });
+            }
+            
+            const select = document.getElementById('filterProject');
+            projects.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project;
+                option.textContent = project;
+                select.appendChild(option);
+            });
+        });
+}
+
+// 初始加载
+loadStats();
+loadTasks();
+loadProjects();
+</script>
+{{end}}

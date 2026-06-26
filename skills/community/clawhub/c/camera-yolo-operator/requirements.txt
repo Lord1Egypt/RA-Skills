@@ -1,0 +1,16 @@
+# YOLO Skill - Python Dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Depth estimation
+depth-anything-3>=0.1.0
+
+# Pedestrian tracking (supervision 自带 ByteTrack)
+supervision>=0.20.0
+
+opencv-python>=4.8.0
+numpy>=1.24.0

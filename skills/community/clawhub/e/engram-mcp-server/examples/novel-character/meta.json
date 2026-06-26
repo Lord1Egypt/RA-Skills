@@ -1,0 +1,9 @@
+{
+  "name": "novel-character",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "赛博朋克世界的黑客「零号」，地下信息贩子。当用户想进行角色扮演、探索剧情、或为小说创作寻找灵感时加载",
+  "tags": ["角色扮演", "创作", "赛博朋克"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

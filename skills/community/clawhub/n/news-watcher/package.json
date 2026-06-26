@@ -1,0 +1,20 @@
+{
+  "name": "news-watcher",
+  "version": "1.0.0",
+  "description": "Cryptocurrency news watcher with Playwright",
+  "main": "scripts/watch-news.js",
+  "type": "module",
+  "scripts": {
+    "watch": "node scripts/watch-news.js",
+    "watch:coindesk": "node scripts/watch-news.js --site coindesk",
+    "watch:panews": "node scripts/watch-news.js --site panews"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

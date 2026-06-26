@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% set active = "integrations" %}
+{% block title %}Integrations — Communication DNA{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-6">🔗 Integrations</h2>
+
+<!-- Status Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-blue-400">{{ stats.linked_crm }}</div>
+        <div class="text-gray-400 text-sm mt-1">Speakers → CRM</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-purple-400">{{ stats.linked_kb }}</div>
+        <div class="text-gray-400 text-sm mt-1">Speakers → KB</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-green-400">{{ stats.total_links }}</div>
+        <div class="text-gray-400 text-sm mt-1">Total Links</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-orange-400">{{ stats.total_speakers }}</div>
+        <div class="text-gray-400 text-sm mt-1">Total Speakers</div>
+    </div>
+</div>
+
+<!-- Actions -->
+<div class="grid md:grid-cols-2 gap-6 mb-8">
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">🏢 CRM Integration</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            {% if stats.crm_available %}
+            <span class="text-green-400">● Connected</span> — Auto-link speakers to CRM contacts by name matching.
+            {% else %}
+            <span class="text-red-400">● Not found</span> — CRM database not available.
+            {% endif %}
+        </p>
+        {% if stats.crm_available %}
+        <button onclick="runLinkCRM()" id="btn-crm" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors">
+            Auto-link Speakers → CRM
+        </button>
+        <div id="crm-results" class="mt-3 text-sm"></div>
+        {% endif %}
+    </div>
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">📚 Knowledge Base Integration</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            {% if stats.kb_available %}
+            <span class="text-green-400">● Connected</span> — Link topics to KB entities.
+            {% else %}
+            <span class="text-red-400">● Not found</span> — Knowledge Base not available.
+            {% endif %}
+        </p>
+        {% if stats.kb_available %}
+        <button onclick="runLinkKB()" id="btn-kb" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium transition-colors">
+            Auto-link Topics → KB
+        </button>
+        <div id="kb-results" class="mt-3 text-sm"></div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Cross-search -->
+<div class="card">
+    <h3 class="text-lg font-semibold mb-3">🔍 Cross-Search (DNA + KB)</h3>
+    <form onsubmit="runCrossSearch(event)" class="flex gap-2 mb-4">
+        <input type="text" id="cross-q" placeholder="Search across both systems..."
+               class="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500">
+        <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition-colors">Search</button>
+    </form>
+    <div id="cross-results" class="space-y-2"></div>
+</div>
+
+<script>
+async function runLinkCRM() {
+    const btn = document.getElementById('btn-crm');
+    btn.disabled = true; btn.textContent = 'Linking...';
+    const res = await fetch('/api/link-crm', {method:'POST'});
+    const data = await res.json();
+    const el = document.getElementById('crm-results');
+    if (data.count === 0) {
+        el.innerHTML = '<span class="text-gray-500">No new matches found.</span>';
+    } else {
+        el.innerHTML = data.matches.map(m =>
+            `<div class="py-1">✓ <strong>${m.speaker_name}</strong> → ${m.contact_name} (${(m.confidence*100).toFixed(0)}%)</div>`
+        ).join('');
+    }
+    btn.disabled = false; btn.textContent = 'Auto-link Speakers → CRM';
+    setTimeout(() => location.reload(), 2000);
+}
+
+async function runLinkKB() {
+    const btn = document.getElementById('btn-kb');
+    btn.disabled = true; btn.textContent = 'Linking...';
+    const res = await fetch('/api/link-kb', {method:'POST'});
+    const data = await res.json();
+    const el = document.getElementById('kb-results');
+    if (data.count === 0) {
+        el.innerHTML = '<span class="text-gray-500">No new matches found.</span>';
+    } else {
+        el.innerHTML = data.matches.map(m =>
+            `<div class="py-1">✓ [${m.kb_entity_type}] <strong>${m.kb_entity}</strong> ← ${m.topic}</div>`
+        ).join('');
+    }
+    btn.disabled = false; btn.textContent = 'Auto-link Topics → KB';
+    setTimeout(() => location.reload(), 2000);
+}
+
+async function runCrossSearch(e) {
+    e.preventDefault();
+    const q = document.getElementById('cross-q').value.trim();
+    if (!q) return;
+    const res = await fetch('/api/cross-search?q=' + encodeURIComponent(q));
+    const data = await res.json();
+    const el = document.getElementById('cross-results');
+    if (!data.length) {
+        el.innerHTML = '<span class="text-gray-500">No results.</span>';
+        return;
+    }
+    el.innerHTML = data.map(r => {
+        const src = r.source === 'communication_dna' ? '🧬 DNA' : '📚 KB';
+        const label = r.speaker ? `${r.speaker} in ${r.title||''}` : (r.title||'');
+        const text = (r.text||'').substring(0, 200);
+        const link = r.transcription_id ? `/transcription/${r.transcription_id}` : (r.url||'#');
+        return `<a href="${link}" class="block p-3 rounded hover:bg-gray-700 border border-gray-700">
+            <span class="text-xs px-2 py-0.5 rounded ${r.source==='communication_dna'?'bg-blue-900 text-blue-300':'bg-purple-900 text-purple-300'}">${src}</span>
+            <span class="font-medium ml-2">${label}</span>
+            <div class="text-sm text-gray-400 mt-1">${text}</div>
+        </a>`;
+    }).join('');
+}
+</script>
+{% endblock %}

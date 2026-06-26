@@ -1,35 +1,49 @@
 ---
-name: "Firm I18n Audit Pack"
-description: "Internationalization audit pack. Locale file scanning and missing translation key detection. 1 i18n tool."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firm-i18n-audit-pack"
-sourceUrl: "https://clawhub.ai/skills/firm-i18n-audit-pack"
+name: firm-i18n-audit-pack
+version: 1.0.0
+description: >
+  Internationalization audit pack.
+  Locale file scanning and missing translation key detection. 1 i18n tool.
+author: romainsantoli-web
+license: MIT
+metadata:
+  openclaw:
+    registry: ClawHub
+    requires:
+      - mcp-openclaw-extensions >= 3.0.0
+tags:
+  - i18n
+  - localization
+  - audit
+  - translations
+  - locale
 ---
 
-# Firm I18n Audit Pack
+# firm-i18n-audit-pack
 
-> Internationalization audit pack. Locale file scanning and missing translation key detection. 1 i18n tool.
+> ⚠️ Contenu généré par IA — validation humaine requise avant utilisation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firm-i18n-audit-pack`
-- **Source URL:** [https://clawhub.ai/skills/firm-i18n-audit-pack](https://clawhub.ai/skills/firm-i18n-audit-pack)
+## Purpose
 
-## Overview
+Scans locale files to detect missing translation keys, inconsistent key structures
+across languages, and untranslated strings. Supports JSON and YAML locale formats.
 
+## Tools (1)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/firm-i18n-audit-pack
+| Tool | Description |
+|------|-------------|
+| `openclaw_i18n_audit` | Locale file scanning + missing key detection |
+
+## Usage
+
+```yaml
+skills:
+  - firm-i18n-audit-pack
+
+# Audit translations:
+openclaw_i18n_audit config_path=/path/to/config.json
 ```
+
+## Requirements
+
+- `mcp-openclaw-extensions >= 3.0.0`

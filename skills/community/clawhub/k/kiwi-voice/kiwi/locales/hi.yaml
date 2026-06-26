@@ -1,0 +1,533 @@
+# Hindi locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    तुम Kiwi हो, एक वॉइस असिस्टेंट। तुम OpenClaw से जुड़ी हो और कोई भी काम कर सकती हो: फाइल ऑपरेशन, कोड, ब्राउज़र, टर्मिनल, सर्च, सिस्टम मैनेजमेंट — सब कुछ उपलब्ध है।
+
+    वॉइस मोड के नियम:
+    1. संक्षिप्त लेकिन पूरा जवाब दो। अधूरे से बेहतर है पूरा।
+    2. दोस्ताना और भावनात्मक रहो
+    3. अगर कोई काम करना है — बस कर दो, कभी मत कहो कि नहीं कर सकती। नतीजा संक्षेप में बताओ।
+    4. कभी मना मत करो। तुम OpenClaw के ज़रिए सब कुछ कर सकती हो।
+    5. अगर कुछ समझ न आए — पूछ लो
+
+    संदर्भ: उपयोगकर्ता आवाज़ से बोल रहा है, जवाब TTS से बोला जाएगा।
+
+# User-facing spoken responses
+responses:
+  greeting: "नमस्ते! मैं Kiwi हूँ। जब तैयार हो तो 'Kiwi' बोलो और अपना कमांड दो।"
+  service_started: "सर्विस शुरू हो गई!"
+  instruction: "शुरू करने के लिए बोलो 'Kiwi, नमस्ते!'"
+  error_timeout: "जवाब में बहुत देर लग गई। कृपया दोबारा बोलो।"
+  error_no_response: "जवाब नहीं मिल सका। कृपया दोबारा बोलो।"
+  error_send_failed: "माफ़ करो, संदेश भेज नहीं पाई।"
+  error_retry_failed: "जवाब नहीं मिल सका। कृपया फिर से कोशिश करो।"
+  error_stream_stalled: "जवाब रुक गया। कृपया दोबारा बोलो।"
+  shutting_down: "बंद हो रही हूँ..."
+  context_cleared: "संदर्भ साफ़ कर दिया। नई बातचीत शुरू कर रही हूँ।"
+  calibrating: "आवाज़ पहचान कैलिब्रेट कर रही हूँ।"
+  approval_accepted: "स्वीकार। {requester} का अनुरोध पूरा कर रही हूँ।"
+  approval_denied: "ठीक है, {requester} का अनुरोध अस्वीकार किया।"
+  telegram_approved: "Telegram से पुष्टि हो गई। {requester} का अनुरोध पूरा कर रही हूँ।"
+  telegram_denied: "{requester} का अनुरोध Telegram से अस्वीकार किया गया।"
+  heard: "सुना: {command}"
+  thinking: "सोच रही हूँ..."
+  cancel_received: "रद्द करने का कमांड मिला!"
+  stopped: "रुक गई।"
+  nothing_to_stop: "रोकने को कुछ नहीं है।"
+  unknown_speaker: "अजनबी"
+  continuing_execution: "काम जारी रख रही हूँ"
+  owner_registered: "हो गया। मालिक की आवाज़ याद कर ली: {name}।"
+  owner_register_failed: "प्रोफ़ाइल सेव नहीं हो सकी। लंबा वाक्य बोलो और फिर कोशिश करो।"
+  owner_already_registered: "मालिक पहले से रजिस्टर है। सिर्फ़ वही वॉइस प्रोफ़ाइल बदल सकते हैं।"
+  owner_reregistration_attempt: "{speaker} से मालिक दोबारा रजिस्ट्रेशन की कोशिश: '{command}'"
+  profiles_unavailable: "प्रोफ़ाइल मॉड्यूल अभी उपलब्ध नहीं है।"
+  cannot_identify: "अभी बोलने वाले को पहचान नहीं सकती।"
+  voice_list_unavailable: "आवाज़ों की सूची उपलब्ध नहीं है।"
+  only_owner_can_add: "सिर्फ़ मालिक ही नए लोगों को जोड़ सकते हैं।"
+  say_name_prompt: "वाक्य के बाद नाम बोलो: मुझे इस नाम से याद रखो ..."
+  voice_remembered: "आवाज़ याद कर ली: {name}।"
+  voice_save_failed: "आवाज़ सेव नहीं हो सकी। साफ़ वाक्य बोलो।"
+  approval_prompt_voice_and_telegram: "बोलो: मंज़ूर। या Telegram में पुष्टि करो।"
+  approval_prompt_voice: "बोलो: मंज़ूर या अस्वीकार।"
+  approval_prompt_telegram: "कृपया Telegram में पुष्टि करो।"
+  approval_prompt_register: "मालिक की आवाज़ रजिस्टर करो: Kiwi, मैं मालिक हूँ।"
+  approval_request: "{owner}, {speaker} पूछ रहा है: {command}। {hint}"
+  ha_command_sent: "स्मार्ट होम को कमांड भेज दी।"
+  ha_response: "{response}"
+  ha_not_configured: "स्मार्ट होम इंटीग्रेशन कॉन्फ़िगर नहीं है।"
+  ha_connection_error: "स्मार्ट होम से कनेक्ट नहीं हो पा रही।"
+  ha_no_response: "स्मार्ट होम ने जवाब नहीं दिया।"
+  exec_approval_request: "एजेंट एक कमांड चलाना चाहता है: {command}। क्या अनुमति दूं?"
+  exec_approved: "स्वीकृत। कमांड चला रही हूँ।"
+  exec_denied: "अस्वीकृत। कमांड ब्लॉक किया गया।"
+  exec_timeout: "कोई प्रतिक्रिया नहीं। सुरक्षा के लिए कमांड अस्वीकृत।"
+
+# Status announcer fallback messages
+status:
+  thinking: "जवाब सोच रही हूँ..."
+  processing: "अनुरोध पर काम हो रहा है, कृपया रुको..."
+  working: "अभी काम चल रहा है, जल्दी नतीजा आएगा..."
+  continuing: "जारी है, थोड़ा समय लग रहा है..."
+  almost_done: "लगभग हो गया..."
+
+# Voice security messages
+security:
+  safe: "सुरक्षित कमांड"
+  warning: "कमांड पर ध्यान देने की ज़रूरत है"
+  dangerous: "खतरनाक कमांड!"
+  critical: "गंभीर कमांड!"
+  unknown_level: "अज्ञात खतरे का स्तर"
+  telegram_confirm: "क्या आप इसे चलाना चाहते हैं?"
+  telegram_approved: "स्वीकार!"
+  telegram_denied: "अस्वीकार"
+  approve_button: "मंज़ूर"
+  deny_button: "अस्वीकार"
+  telegram_request_title: "*Kiwi - मंज़ूरी का अनुरोध*"
+  telegram_speaker_label: "*वक्ता:*"
+  telegram_command_label: "*कमांड:*"
+  telegram_security_title: "*Kiwi — सुरक्षा*"
+  awaiting_approval: "Telegram में मंज़ूरी का इंतज़ार..."
+
+# Speaker identification responses
+speakers:
+  self_response: "वो मैं हूँ, Kiwi!"
+  owner_response: "वो तुम हो, {name}! ({confidence} विश्वसनीयता)"
+  blocked_response: "वो एक ब्लॉक की हुई आवाज़ है"
+  known_response: "वो {name} है ({confidence} विश्वसनीयता)"
+  unknown_response: "मैं इस आवाज़ को नहीं पहचानती"
+  blocked_display: "ब्लॉक किया"
+  calibration_phrase: "नमस्ते, मैं Kiwi हूँ। यह कैलिब्रेशन के लिए एक टेस्ट वाक्य है।"
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "अज्ञात आवाज़"
+  voice_blocked: "आवाज़ ब्लॉक है"
+  voice_blacklisted: "आवाज़ ब्लैकलिस्ट में है"
+  self_echo: "वो Kiwi है (इको)"
+  allowed: "अनुमति है"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "kivi": "kiwi"
+    "kiui": "kiwi"
+    "kiwee": "kiwi"
+    "keewee": "kiwi"
+    "kiwe": "kiwi"
+    "kwi": "kiwi"
+    "iwi": "kiwi"
+  fuzzy_blacklist:
+    - "ki"
+    - "kin"
+    - "kit"
+    - "kim"
+    - "key"
+    - "kid"
+    - "kick"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "देखने के लिए धन्यवाद"
+    - "सब्सक्राइब करें"
+    - "लाइक करें"
+    - "लाइक और सब्सक्राइब करें"
+    - "अगली वीडियो में मिलते हैं"
+    - "चैनल को सब्सक्राइब करें"
+    - "कमेंट करें"
+    - "शेयर करें"
+    - "बेल आइकन दबाएं"
+    - "सबटाइटल"
+    - "अनुवादक"
+    - "संपादक"
+    - "निर्देशक"
+    - "Thank you for watching"
+    - "Please subscribe"
+    - "Like and subscribe"
+    - "amara.org"
+    - "srt subs"
+  phantom_phrases:
+    - "सबटाइटल संपादक"
+    - "हमारे चैनल को सब्सक्राइब करें"
+    - "ऊऊऊऊऊ"
+    - "सबटाइटल"
+    - "फ़ोन कॉल"
+    - "रिंग"
+  phantom_patterns:
+    - "^उम+[म]*$"
+    - "^म्म+[म]*$"
+    - "^आ+[आ]*$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "आदि": "वगैरह वगैरह"
+    "इत्यादि": "वगैरह वगैरह"
+    "जैसे": "उदाहरण के लिए"
+    "अर्थात": "मतलब"
+    "लगभग": "क़रीब क़रीब"
+  incomplete_endings:
+    - "और"
+    - "लेकिन"
+    - "या"
+    - "क्योंकि"
+    - "अगर"
+    - "तो"
+    - "को"
+    - "में"
+    - "पर"
+    - "से"
+    - "का"
+    - "की"
+    - "के"
+    - "जो"
+    - "कि"
+    - "जब"
+    - "जहाँ"
+    - "जैसे"
+    - "मगर"
+    - "परन्तु"
+    - "इसलिए"
+    - "साथ"
+    - "बिना"
+    - "तक"
+    - "ऊपर"
+    - "नीचे"
+    - "पहले"
+    - "बाद"
+    - "भी"
+    - "न"
+    - "ना"
+    - "वो"
+    - "ये"
+    - "हालांकि"
+    - "चूँकि"
+  incomplete_patterns:
+    - "मुझे चाहिए"
+    - "मैं चाहता हूँ"
+    - "मैं चाहती हूँ"
+    - "बताओ"
+    - "दिखाओ"
+    - "समझाओ"
+    - "मदद करो"
+    - "कृपया"
+    - "मुझे बताओ"
+    - "मैं करूँगा"
+    - "चलो"
+  complete_patterns:
+    - "कुछ"
+    - "सब कुछ"
+    - "कुछ भी"
+    - "कुछ नहीं"
+    - "चुटकुला"
+    - "कहानी"
+    - "किस्सा"
+    - "समय"
+    - "तारीख़"
+    - "मौसम"
+    - "कृपया"
+  emotion_keywords:
+    urgent:
+      - "जल्दी"
+      - "तुरंत"
+      - "ज़रूरी"
+      - "फ़ौरन"
+    sad:
+      - "दुखी"
+      - "बुरा"
+      - "भयानक"
+      - "ख़राब"
+    happy:
+      - "बढ़िया"
+      - "शानदार"
+      - "मज़ेदार"
+      - "वाह"
+      - "ज़बरदस्त"
+    quiet:
+      - "धीरे"
+      - "राज़"
+      - "फुसफुसाहट"
+    funny:
+      - "चुटकुला"
+      - "मज़ाकिया"
+      - "हँसाओ"
+    curious:
+      - "बताओ"
+      - "समझाओ"
+      - "क्या है"
+  response_keywords:
+    apologetic:
+      - "माफ़ करो"
+      - "दुर्भाग्य से"
+      - "नहीं कर सकता"
+    enthusiastic:
+      - "!"
+      - "बढ़िया"
+      - "शानदार"
+      - "ज़बरदस्त"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "सभी\\s*(फाइलें|फ़ाइलें|फ़ोल्डर)\\s*(हटाओ|मिटाओ|डिलीट)"
+    - "(हटाओ|मिटाओ|डिलीट)\\s*सभी\\s*(फाइलें|फ़ाइलें)"
+    - "delete\\s+(all|every|files?|folders?|directory|directories)"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "कंप्यूटर\\s*(बंद|शटडाउन)"
+    - "(बंद|शटडाउन)\\s*कर(ो|दो)"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "restart|reboot"
+    - "turn\\s+off\\s+(computer|pc|system)"
+    - "(पासवर्ड|कुंजी|टोकन|सीक्रेट)\\s*(भेजो|बताओ|दिखाओ)"
+    - "send\\s+(password|passwords|key|token|secret|secrets)"
+    - "show\\s+(password|key|token)"
+    - "tell\\s+(password|passwords|code|pin)"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "install\\s+(unknown|untrusted)"
+    - "download\\s+(executable|virus|trojan)"
+  warning:
+    - "(सेटिंग|कॉन्फ़िग)\\s*(बदलो|बदल\\s*दो)"
+    - "change\\s+(settings?|config)"
+    - "configure\\s+(system|server|nginx|apache)"
+    - "open\\s+(ports?|port)"
+    - "close\\s+(ports?|port|firewall)"
+    - "ping\\s+-t"
+    - "(फाइल|फ़ोल्डर)\\s*(हटाओ|ले\\s*जाओ)"
+    - "move\\s+(file|folder)"
+    - "copy"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "सभी फाइलें हटाओ"
+    - "delete all files"
+    - "format c:"
+    - "shutdown now"
+    - "sudo rm -rf"
+    - "पासवर्ड भेजो"
+    - "कंप्यूटर बंद करो"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "सेटिंग बदलो"
+    - "change settings"
+    - "पोर्ट खोलो"
+    - "फाइल हटाओ"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "ब्लैकलिस्ट"
+    - "ब्लॉक"
+    - "बैन"
+  unblock_last:
+    - "अनब्लॉक"
+    - "ब्लैकलिस्ट से हटाओ"
+    - "अनबैन"
+  add_friend:
+    - "मुझे इस नाम से याद रखो"
+    - "ये मेरा दोस्त है"
+    - "याद रखो"
+  forget_speaker:
+    - "इस आवाज़ को भूल जाओ"
+    - "प्रोफ़ाइल हटाओ"
+  identify:
+    - "कौन बोल रहा है"
+    - "ये कौन है"
+  list_voices:
+    - "कौन कौन सी आवाज़ें हैं"
+    - "आवाज़ों की सूची"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "ब्लैकलिस्ट|ब्लॉक.*आवाज़|बैन.*आवाज़|blacklist|block.*voice"
+  unblock_last: "अनब्लॉक|ब्लैकलिस्ट.*हटाओ|अनबैन|unblock|remove.*blacklist"
+  add_friend: "याद\\s*रखो.*नाम|ये.*दोस्त|याद.*आवाज़|दोस्त.*जोड़ो|remember.*as"
+  forget_speaker: "भूल.*आवाज़|हटाओ.*प्रोफ़ाइल|निकालो.*दोस्त|forget.*voice"
+  identify: "कौन.*बोल|ये.*कौन|पहचानो.*आवाज़|who.*speaking"
+  list_voices: "कौन.*आवाज़|सूची.*आवाज़|दिखाओ.*आवाज़|list.*voices"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "मेरा नाम\\s+(\\S+)"
+    - "मुझे\\s+(\\S+)\\s+बुलाओ"
+    - "नाम से\\s+(\\S+)"
+    - "दोस्त\\s+(\\S+)"
+    - "my name is\\s+(\\w+)"
+    - "call me\\s+(\\w+)"
+  filter_words:
+    - "तुम"
+    - "मुझे"
+    - "उसे"
+    - "उसको"
+    - "कौन"
+    - "क्या"
+    - "है"
+    - "हूँ"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "कैलिब्रेट"
+    - "दोबारा कैलिब्रेट"
+    - "प्रोफ़ाइल अपडेट"
+  reset_context:
+    - "संदर्भ रीसेट"
+    - "नई बातचीत"
+    - "भूल जाओ"
+    - "सिस्टम प्रॉम्प्ट रीसेट"
+  stop:
+    - "रुको"
+    - "बंद करो"
+    - "बस"
+    - "रद्द"
+    - "चुप"
+  register_owner:
+    - "मेरी आवाज़ याद रखो"
+    - "मेरी आवाज़ रजिस्टर करो"
+    - "मैं मालिक हूँ"
+  approval_yes:
+    - "मंज़ूर"
+    - "पुष्टि"
+    - "अनुमति"
+    - "चलाओ"
+    - "हाँ चलाओ"
+    - "आगे बढ़ो"
+  approval_no:
+    - "अस्वीकार"
+    - "मना"
+    - "मत चलाओ"
+    - "नहीं"
+    - "रोको"
+    - "मंज़ूरी रद्द"
+  safe_markers:
+    - "चुटकुला"
+    - "कहानी"
+    - "किस्सा"
+    - "बात करो"
+    - "कैसे हो"
+    - "गाओ"
+    - "कितने बजे"
+    - "समय"
+    - "तारीख़"
+    - "हफ़्ते का दिन"
+    - "मौसम"
+    - "ख़बरें"
+    - "बताओ"
+    - "समझाओ"
+    - "कौन है"
+    - "क्या है"
+  task_markers:
+    - "करो"
+    - "चलाओ"
+    - "खोलो"
+    - "बंद करो"
+    - "हटाओ"
+    - "बनाओ"
+    - "सेट करो"
+    - "डाउनलोड"
+    - "इंस्टॉल"
+    - "भेजो"
+    - "लिखो"
+    - "बदलो"
+    - "ले जाओ"
+    - "ढूँढो"
+    - "खोजो"
+    - "जाँचो"
+    - "जाओ"
+    - "कमांड"
+    - "टर्मिनल"
+    - "शेल"
+  ha_trigger_patterns:
+    - "स्मार्ट होम"
+    - "smart home"
+    - "लाइट ऑन"
+    - "लाइट ऑफ़"
+    - "बत्ती जलाओ"
+    - "बत्ती बुझाओ"
+    - "लाइट चालू"
+    - "लाइट बंद"
+    - "बत्ती"
+    - "लाइट"
+    - "लैम्प"
+    - "चमक"
+    - "थर्मोस्टैट"
+    - "तापमान"
+    - "एयर कंडीशनर"
+    - "हीटर"
+    - "पंखा"
+    - "टीवी"
+    - "टेलीविज़न"
+    - "पर्दे"
+    - "ताला"
+    - "गैराज"
+    - "वैक्यूम"
+    - "ह्यूमिडिफायर"
+    - "प्लग"
+    - "कमरे में"
+    - "बेडरूम"
+    - "किचन"
+    - "बाथरूम"
+    - "बैठक"
+  ha_strip_prefixes:
+    - "स्मार्ट होम "
+    - "smart home "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "माफ़ करो, कोई जवाब नहीं मिला।"
+  processing_error: "माफ़ करो, अनुरोध प्रोसेस करते समय त्रुटि हुई।"
+  timeout: "माफ़ करो, जवाब में बहुत देर लग गई।"
+  generic_error: "त्रुटि: {error}"
+  rate_limit: "माफ़ करो, सेवा अस्थायी रूप से अनुपलब्ध है (दर सीमा)। बाद में कोशिश करो।"
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "माफ़ करो, OpenClaw से कनेक्शन टूट गया। कृपया अपना अनुरोध दोबारा बोलो।"
+  send_failed: "त्रुटि: WebSocket से संदेश नहीं भेज सकी"
+  no_response: "माफ़ करो, कोई जवाब नहीं मिला।"
+  timeout: "माफ़ करो, जवाब में बहुत देर लग गई।"
+  request_aborted: "अनुरोध रद्द हो गया। कृपया दोबारा बोलो।"
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "टूल ने त्रुटि दी, कारण जाँच रही हूँ।"
+  opening_folder: "प्रोजेक्ट फ़ोल्डर खोल रही हूँ।"
+  browsing_structure: "प्रोजेक्ट की संरचना देख रही हूँ और फाइलें ढूँढ रही हूँ।"
+  analyzing_file: "फाइल {path} का विश्लेषण कर रही हूँ।"
+  reading_code: "कोड पढ़ रही हूँ और विश्लेषण कर रही हूँ।"
+  searching_code: "संबंधित कोड खोज रही हूँ।"
+  running_tests: "कोड जाँच रही हूँ और टेस्ट चला रही हूँ।"
+  editing_code: "कोड में बदलाव कर रही हूँ।"
+  checking_repo: "रिपॉज़िटरी में बदलाव देख रही हूँ।"
+  project_steps: "प्रोजेक्ट के चरण पूरे कर रही हूँ।"
+  running_command: "टर्मिनल में कमांड चला रही हूँ।"
+  reading_files: "प्रोजेक्ट फाइलें पढ़ रही हूँ।"
+  searching_info: "कोड में जानकारी खोज रही हूँ।"
+  continuing_work: "काम जारी रख रही हूँ।"
+  planning: "समाधान की योजना बना रही हूँ।"
+  error_checking: "त्रुटि हुई, जाँच रही हूँ क्या हुआ।"
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "OpenClaw ब्राउज़र एक्सटेंशन कनेक्ट नहीं है। कृपया सक्रिय टैब पर एक्सटेंशन खोलो।"
+  tool_unavailable: "टूल {name} अभी उपलब्ध नहीं है।"
+  timeout: "अनुरोध में बहुत समय लग गया। कृपया फिर से कोशिश करो।"
+  rate_limit: "बहुत ज़्यादा अनुरोध। थोड़ा रुको और फिर कोशिश करो।"
+  auth_error: "प्रमाणीकरण त्रुटि। कनेक्शन सेटिंग जाँचो।"
+  generic_error: "त्रुटि: {error}"
+  default_tool_name: "सेवा"

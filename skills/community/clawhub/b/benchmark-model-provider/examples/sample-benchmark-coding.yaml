@@ -1,0 +1,19 @@
+name: coding-assistant-benchmark
+version: v1
+mode: prompt_only
+context_profile:
+  purpose: debugging, code review, and feature implementation
+  domain: software engineering
+  usage_frequency: many times per day
+models:
+  - example/model-a
+  - example/model-b
+questions:
+  - id: q1
+    title: Debug root cause
+    task_type: debugging
+    prompt: "Given a Python stack trace for a failing API request, identify the likely root cause and propose the smallest safe fix."
+  - id: q2
+    title: Review patch
+    task_type: code-review
+    prompt: "Review a pull request that improves performance but may weaken input validation. Explain the trade-offs and recommend a final decision."

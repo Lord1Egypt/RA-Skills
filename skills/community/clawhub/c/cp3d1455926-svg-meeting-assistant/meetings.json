@@ -1,0 +1,29 @@
+{
+  "meetings": [
+    {
+      "id": "mtg_20260318212548",
+      "title": "会议纪要",
+      "date": "2026-03-18 21:25",
+      "host": "未指定",
+      "location": "未指定",
+      "attendees": [
+        "参会人员",
+        "张三",
+        "李四",
+        "王五"
+      ],
+      "absent": [],
+      "agenda": [
+        "1. 上周工作回顾",
+        "2. 本周工作计划",
+        "3. 问题讨论"
+      ],
+      "discussion": "",
+      "decisions": [],
+      "action_items": [],
+      "next_meeting": {},
+      "created": "2026-03-18T21:25:48.447257"
+    }
+  ],
+  "tasks": []
+}

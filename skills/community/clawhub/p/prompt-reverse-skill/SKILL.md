@@ -1,35 +1,94 @@
 ---
-name: "AI Prompt Reverse Engine"
-description: "Convert image to structured prompts for multiple AI models"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, computer-vision, multimodal, prompt-engineering, stable-diffusion]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-reverse-skill"
-sourceUrl: "https://clawhub.ai/skills/prompt-reverse-skill"
+name: prompt-reverse-skill
+description: Convert image to structured prompts for multiple AI models
+version: 1.0.0
+tags: ["ai", "multimodal", "prompt", "image"]
 ---
 
-# AI Prompt Reverse Engine
+# Prompt Reverse Skill
 
-> Convert image to structured prompts for multiple AI models
+## Description
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-reverse-skill`
-- **Source URL:** [https://clawhub.ai/skills/prompt-reverse-skill](https://clawhub.ai/skills/prompt-reverse-skill)
+Convert an image into structured prompts using a category-aware prompt generation system.
 
-## Overview
+This skill performs:
 
+- Image understanding (multimodal analysis)
+- Structured feature extraction (JSON)
+- Visual type classification
+- Style-aware prompt generation
+- Multi-model prompt adaptation
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-reverse-skill
-```
+---
+
+## Visual Category System
+
+This skill uses a **7-category visual classification framework**:
+
+1. Photography  
+2. Illustration  
+3. 3D Render  
+4. Typography / Logo  
+5. Landscape  
+6. Character Design  
+7. General (fallback)
+
+Each category applies **specialized prompt strategies**.
+
+---
+
+## Prompt Strategy by Category
+
+### Photography
+- camera lens (50mm, wide angle)
+- lighting (cinematic, HDR)
+- depth of field
+- realism emphasis
+
+### Illustration
+- drawing style (anime, digital art)
+- line quality
+- color palette
+
+### 3D Render
+- rendering engine (octane, blender)
+- material (PBR)
+- lighting & shadows
+
+### Typography / Logo
+- layout design
+- font style
+- vector graphics
+
+### Landscape
+- composition (wide angle, perspective)
+- atmospheric depth
+- natural lighting
+
+### Character Design
+- face details
+- pose and expression
+- stylization
+
+---
+
+## Inputs
+
+### image_path
+Path to the input image.
+
+---
+
+## Outputs
+
+### structured_data
+
+```json
+{
+  "subject": "...",
+  "style": "...",
+  "lighting": "...",
+  "color": "...",
+  "composition": "...",
+  "details": "..."
+}

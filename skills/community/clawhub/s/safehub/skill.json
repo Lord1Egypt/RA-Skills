@@ -1,0 +1,30 @@
+{
+  "name": "safehub",
+  "version": "1.0.2",
+  "description": "Scans OpenClaw skills for malware and security issues before you install them. Uses Semgrep and Docker sandbox for static and dynamic analysis.",
+  "author": "safehub",
+  "license": "MIT",
+  "main": "index.js",
+  "permissions": [
+    "filesystem",
+    "network"
+  ],
+  "commands": [
+    {
+      "name": "scan",
+      "description": "Scan a skill by name, path, or GitHub URL for security issues",
+      "usage": "openclaw run safehub scan <skill-name|path|github-url>"
+    },
+    {
+      "name": "report",
+      "description": "Show the last scan report for a skill without rescanning",
+      "usage": "openclaw run safehub report <skill-name>"
+    },
+    {
+      "name": "update",
+      "description": "Pull the latest Semgrep scanner rules from the SafeHub repo",
+      "usage": "openclaw run safehub update"
+    }
+  ],
+  "config": {}
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "农历生日提醒"
+  short_description: "处理中文生日提醒、身份证生日提取与农历公历换算"
+  default_prompt: "使用 $birthday 管理生日记录、从身份证提取生日并检查提醒。"

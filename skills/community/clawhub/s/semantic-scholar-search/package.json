@@ -1,0 +1,15 @@
+{
+  "name": "semantic-scholar-search",
+  "version": "1.0.0",
+  "description": "Semantic Scholar academic search skill - free, high-quality paper search",
+  "main": "semantic_scholar.py",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["academic", "search", "paper", "semantic-scholar", "openclaw-skill"],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.31.0"
+  }
+}

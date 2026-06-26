@@ -1,35 +1,47 @@
 ---
-name: "cron"
-description: "Indexed by skills.sh from volcengine/openviking"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "volcengine"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/volcengine/openviking/cron"
-sourceUrl: "https://skills.sh/volcengine/openviking/cron"
+name: cron
+description: Schedule reminders and recurring tasks.
 ---
 
-# cron
+# Cron
 
-> Indexed by skills.sh from volcengine/openviking
+Use the `cron` tool to schedule reminders or recurring tasks.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** volcengine
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/volcengine/openviking/cron`
-- **Source URL:** [https://skills.sh/volcengine/openviking/cron](https://skills.sh/volcengine/openviking/cron)
+## Three Modes
 
-## Overview
+1. **Reminder** - message is sent directly to user
+2. **Task** - message is a task description, agent executes and sends result
+3. **One-time** - runs once at a specific time, then auto-deletes
 
+## Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/volcengine/openviking/cron
+Fixed reminder:
 ```
+cron(action="add", message="Time to take a break!", every_seconds=1200)
+```
+
+Dynamic task (agent executes each time):
+```
+cron(action="add", message="Check HKUDS/vikingbot GitHub stars and report", every_seconds=600)
+```
+
+One-time scheduled task (compute ISO datetime from current time):
+```
+cron(action="add", message="Remind me about the meeting", at="<ISO datetime>")
+```
+
+List/remove:
+```
+cron(action="list")
+cron(action="remove", job_id="abc123")
+```
+
+## Time Expressions
+
+| User says | Parameters |
+|-----------|------------|
+| every 20 minutes | every_seconds: 1200 |
+| every hour | every_seconds: 3600 |
+| every day at 8am | cron_expr: "0 8 * * *" |
+| weekdays at 5pm | cron_expr: "0 17 * * 1-5" |
+| at a specific time | at: ISO datetime string (compute from current time) |

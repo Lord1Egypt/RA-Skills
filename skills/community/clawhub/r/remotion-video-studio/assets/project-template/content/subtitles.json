@@ -1,0 +1,69 @@
+{
+  "_comment": "傅里叶变换科普视频 — Fourier Transform explainer",
+  "title": "傅里叶变换：从时域到频域的魔法",
+  "slides": [
+    {
+      "id": "slide_01",
+      "title": "什么是傅里叶变换",
+      "text": "你有没有想过,一段复杂的音乐,其实可以拆解成一个个简单的音符? 傅里叶变换,就是做这件事的数学工具. 它能把任意复杂的信号,分解成不同频率的正弦波的叠加.",
+      "speaker": "default",
+      "notes": "Opening — hook the audience with a relatable analogy"
+    },
+    {
+      "id": "slide_02",
+      "title": "时域与频域",
+      "text": "我们日常看到的信号,比如声音的波形图,是在时域里观察的,横轴是时间,纵轴是振幅. 而傅里叶变换把信号搬到了频域,横轴变成了频率,纵轴变成了每个频率分量的强度. 同一个信号,两种完全不同的视角.",
+      "speaker": "default",
+      "notes": "Core concept — time domain vs frequency domain"
+    },
+    {
+      "id": "slide_03",
+      "title": "直觉理解",
+      "text": "想象你站在一个交响乐团面前. 你的耳朵听到的是混合在一起的声音,这是时域. 但你的大脑能分辨出小提琴、钢琴和鼓的声音,这就是你的大脑在做傅里叶变换,把混合信号拆成了不同频率的成分.",
+      "speaker": "default",
+      "notes": "Intuitive explanation with orchestra analogy"
+    },
+    {
+      "id": "slide_04",
+      "title": "数学表达",
+      "text": "傅里叶变换的数学公式看起来很复杂,但核心思想很简单. 它用积分的方式,计算原始信号和每一个频率的正弦波之间的相似度. 相似度越高,说明这个频率在原信号中占的比重越大.",
+      "speaker": "default",
+      "notes": "Brief math intuition without scaring the audience"
+    },
+    {
+      "id": "slide_05",
+      "title": "离散傅里叶变换",
+      "text": "在计算机中,我们处理的是离散的数据点,而不是连续的函数. 所以实际使用的是离散傅里叶变换,简称DFT. 而快速傅里叶变换,也就是FFT,是一种高效的计算DFT的算法,把计算复杂度从N的平方降到了N乘以log N.",
+      "speaker": "default",
+      "notes": "DFT and FFT — practical computation"
+    },
+    {
+      "id": "slide_06",
+      "title": "应用：音频处理",
+      "text": "傅里叶变换在音频领域无处不在. MP3压缩就是先做傅里叶变换,找出人耳听不到的频率分量,然后丢掉它们来减小文件大小. 均衡器调节低音和高音,本质上也是在频域里操作信号.",
+      "speaker": "default",
+      "notes": "Application — audio processing"
+    },
+    {
+      "id": "slide_07",
+      "title": "应用：图像处理",
+      "text": "图像也可以做傅里叶变换. 图像中的边缘和细节对应高频分量,平滑区域对应低频分量. JPEG压缩就利用了这个原理. 去噪、锐化、模糊,这些图像操作都可以在频域中高效完成.",
+      "speaker": "default",
+      "notes": "Application — image processing"
+    },
+    {
+      "id": "slide_08",
+      "title": "应用：更多领域",
+      "text": "除了音频和图像,傅里叶变换还广泛应用于通信系统中的信号调制、医学影像中的CT和MRI重建、量子力学中的波函数分析,甚至金融领域的周期性分析. 可以说,只要涉及到信号和波,就离不开傅里叶变换.",
+      "speaker": "default",
+      "notes": "Broader applications"
+    },
+    {
+      "id": "slide_09",
+      "title": "总结",
+      "text": "傅里叶变换是人类最伟大的数学发现之一. 它告诉我们,任何复杂的信号都可以用简单的正弦波来表示. 从时域到频域,它为我们打开了一扇全新的窗户,让我们看到了信号背后隐藏的结构. 感谢观看!",
+      "speaker": "default",
+      "notes": "Summary and closing"
+    }
+  ]
+}

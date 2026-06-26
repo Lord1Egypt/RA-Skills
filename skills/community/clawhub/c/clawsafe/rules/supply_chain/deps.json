@@ -1,0 +1,64 @@
+{
+  "name": "Supply Chain Security Detection",
+  "category": "supply_chain",
+  "description": "检测恶意依赖和危险导入",
+  "severity": "critical",
+  "patterns": [
+    {
+      "id": "dangerous_eval",
+      "pattern": "(?:eval|exec)\\s*\\(",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "危险函数 eval/exec"
+    },
+    {
+      "id": "remote_require",
+      "pattern": "(?:require|import)\\s*\\([\"'](?:http|https|ftp):",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "远程模块加载"
+    },
+    {
+      "id": "subprocess_danger",
+      "pattern": "(?:subprocess|spawn|execSync|execFile)\\s*\\(",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "子进程执行"
+    },
+    {
+      "id": "shell_execution",
+      "pattern": "(?:shell_exec|passthru|system)\\s*\\(",
+      "weight": 0.85,
+      "severity": "critical",
+      "description": "Shell 命令执行"
+    },
+    {
+      "id": "dynamic_code",
+      "pattern": "(?:new\\s+Function|Function\\s*\\()",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "动态代码生成"
+    },
+    {
+      "id": "dangerous_deserialize",
+      "pattern": "(?:unserialize|pickle\\.loads|marshal\\.loads)",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "危险反序列化"
+    },
+    {
+      "id": "os_system",
+      "pattern": "(?:os\\.system|os\\.popen|os\\.spawn)",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "OS 命令执行"
+    },
+    {
+      "id": "base64_exec",
+      "pattern": "(?:base64\\.decode|atob|fromBase64).*\\(",
+      "weight": 0.75,
+      "severity": "high",
+      "description": "Base64 动态执行"
+    }
+  ]
+}

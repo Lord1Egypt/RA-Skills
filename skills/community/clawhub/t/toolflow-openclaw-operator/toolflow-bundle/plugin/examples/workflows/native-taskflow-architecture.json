@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "native-taskflow-architecture-package",
+  "description": "ToolFlow execution record for the native OpenClaw TaskFlow plus ToolFlow architecture package.",
+  "inputs": {
+    "topic": "native OpenClaw TaskFlow controller above ToolFlow execution"
+  },
+  "steps": [
+    {
+      "id": "read_architecture_doc",
+      "action": "read_file",
+      "args": {
+        "path": "docs/native-taskflow-integration-architecture.md"
+      }
+    },
+    {
+      "id": "architecture_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_architecture_doc"
+      ],
+      "args": {
+        "query": "${inputs.topic}",
+        "sources": [
+          "docs/native-taskflow-integration-architecture.md",
+          "prototypes/native-taskflow-controller/README.md",
+          "../plans/task-ownership-layer-mvp.md"
+        ]
+      }
+    },
+    {
+      "id": "architecture_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "architecture_research_note"
+      ],
+      "args": {
+        "prompt": "Record that the native TaskFlow architecture package is complete: TaskFlow owns the job, ToolFlow owns bounded execution, and a managed controller plus wake broker drive continuation until terminal state."
+      }
+    }
+  ]
+}

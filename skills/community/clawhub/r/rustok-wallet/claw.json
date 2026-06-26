@@ -1,0 +1,12 @@
+{
+  "name": "rustok-wallet",
+  "version": "0.3.2",
+  "description": "Self-custody Ethereum agent wallet. Runs entirely on your machine (one Docker image, MCP over stdio); private keys never leave it. Read wallet context and balances, track DeFi positions (Aave v3, ERC-4626), preview and execute ETH sends, and sign messages. You assume all risk for funds held by the agent wallet.",
+  "author": "rustok-org",
+  "license": "MIT-0",
+  "permissions": ["network"],
+  "entry": "SKILL.md",
+  "tags": ["crypto", "ethereum", "wallet", "defi", "agent-wallet", "mcp", "self-custody"],
+  "minOpenClawVersion": "0.8.0",
+  "homepage": "https://github.com/rustok-org/mcp"
+}

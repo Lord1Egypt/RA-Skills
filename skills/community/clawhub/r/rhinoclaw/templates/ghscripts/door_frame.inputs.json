@@ -1,0 +1,8 @@
+[
+  { "name": "Lichthoehe",  "type": "number", "default": 2010, "min": 1800, "max": 2600, "step": 10 },
+  { "name": "Lichtbreite", "type": "number", "default": 900,  "min": 600,  "max": 1400, "step": 10 },
+  { "name": "Zargenbreite","type": "number", "default": 65,   "min": 40,   "max": 120,  "step": 5 },
+  { "name": "Zargentiefe", "type": "number", "default": 100,  "min": 60,   "max": 300,  "step": 5 },
+  { "name": "Falzbreite",  "type": "number", "default": 12,   "min": 0,    "max": 30,   "step": 1 },
+  { "name": "Falztiefe",   "type": "number", "default": 15,   "min": 0,    "max": 30,   "step": 1 }
+]

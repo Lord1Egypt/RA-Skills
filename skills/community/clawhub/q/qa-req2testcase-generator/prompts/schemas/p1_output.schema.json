@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P1 Feature Tree Output (V3.4.0 - enhanced descriptions + operations_steps)",
+  "type": "object",
+  "required": [
+    "feature_tree",
+    "coverage_check"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "prompt_version": {
+      "type": "string"
+    },
+    "requirement_id": {
+      "type": "string"
+    },
+    "feature_tree": {
+      "type": "array",
+      "description": "⚠️重要: 此字段为array(列表),每个元素是module_node对象。请勿假设它是dict并查找.modules子键——这是V3.4.0遗留的兼容性陷阱,已有多处代码因此报错。正确用法: 直接遍历feature_tree列表,每个元素即为一个模块。",
+      "items": {
+        "$ref": "#/definitions/module_node"
+      }
+    },
+    "coverage_check": {
+      "type": "object",
+      "properties": {
+        "operations_covered": { "type": "array", "items": { "type": "string" } },
+        "operations_missing": { "type": "array", "items": { "type": "string" } },
+        "state_transitions_covered": { "type": "array", "items": { "type": "string" } },
+        "state_transitions_missing": { "type": "array", "items": { "type": "string" } },
+        "rules_covered": { "type": "array", "items": { "type": "string" } },
+        "rules_missing": { "type": "array", "items": { "type": "string" } },
+        "scenario_overflow": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "definitions": {
+    "module_node": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "page_path",
+        "operations_chain",
+        "children"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["module"] },
+        "name": { "type": "string" },
+        "description": {
+          "type": "string",
+          "description": "模块的业务描述，说明功能定位和业务价值",
+          "maxLength": 200
+        },
+        "page_path": {
+          "type": "string",
+          "description": "该模块对应的页面完整路径，格式为'一级菜单 → 二级菜单 → 页面名'"
+        },
+        "operations_chain": {
+          "type": "array",
+          "description": "该模块的全局操作链路（进入→操作→退出）",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/chain_step"
+          }
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feature_node"
+          }
+        }
+      }
+    },
+    "feature_node": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "operations_chain",
+        "children"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["feature"] },
+        "name": { "type": "string" },
+        "description": {
+          "type": "string",
+          "description": "该功能点的详细业务描述，说明核心逻辑、输入输出、业务规则约束",
+          "maxLength": 300
+        },
+        "source_operation": { "type": "string" },
+        "operations_chain": {
+          "type": "array",
+          "description": "该功能点的完整操作链路",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/chain_step"
+          }
+        },
+        "children": {
+          "type": "array",
+          "minItems": 2,
+          "description": "至少包含正向和异常场景各一个",
+          "items": {
+            "$ref": "#/definitions/scenario_node"
+          }
+        }
+      }
+    },
+    "scenario_node": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "scenario_type",
+        "precondition",
+        "page_path",
+        "description",
+        "operations_steps"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["scenario"] },
+        "name": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "scenario_type": {
+          "type": "string",
+          "enum": ["positive", "boundary", "exception", "state"]
+        },
+        "precondition": {
+          "type": "string",
+          "description": "前置条件，包含环境、数据、前置操作三要素"
+        },
+        "page_path": {
+          "type": "string",
+          "description": "透传自P0 pages[].page_path"
+        },
+        "description": {
+          "type": "string",
+          "description": "该场景的详细业务描述，包含用户→系统→响应三步结构",
+          "maxLength": 400
+        },
+        "operations_steps": {
+          "type": "array",
+          "description": "该场景的具体操作步骤序列，为P6测试用例生成提供数据源",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/scenario_step"
+          }
+        },
+        "related_rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "related_roles": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "test_point_hint": {
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
+    "chain_step": {
+      "type": "object",
+      "required": ["order", "operation"],
+      "properties": {
+        "order": { "type": "integer", "minimum": 1 },
+        "operation": { "type": "string" },
+        "actor": { "type": "string" },
+        "target_page": { "type": "string" }
+      }
+    },
+    "scenario_step": {
+      "type": "object",
+      "required": ["order", "action", "expected"],
+      "properties": {
+        "order": { "type": "integer", "minimum": 1 },
+        "action": {
+          "type": "string",
+          "description": "用户操作描述，如'输入手机号13800001111'"
+        },
+        "expected": {
+          "type": "string",
+          "description": "系统预期响应，如'手机号输入框显示输入内容'"
+        },
+        "actor": { "type": "string" }
+      }
+    }
+  }
+}

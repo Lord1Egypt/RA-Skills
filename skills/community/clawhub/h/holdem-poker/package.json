@@ -1,0 +1,16 @@
+{
+  "name": "holdem-poker",
+  "version": "1.0.0",
+  "description": "Text-based Texas Hold'em poker game with AI players",
+  "main": "scripts/game.mjs",
+  "type": "module",
+  "bin": {
+    "holdem-poker": "./scripts/game.mjs"
+  },
+  "keywords": ["poker", "texas-holdem", "game", "cli"],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

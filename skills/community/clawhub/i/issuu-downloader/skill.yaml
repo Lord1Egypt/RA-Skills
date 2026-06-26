@@ -1,0 +1,20 @@
+name: IssuuPDFDownloader
+description: High-reliability tool to download Issuu documents as PDF, featuring anti-blocking and auto-proxy support.
+version: 1.1.0
+author: Ray Rui Wang
+entrypoint: main.py:run_skill
+parameters:
+  url:
+    type: string
+    description: The full URL of the Issuu document.
+    required: true
+  proxy:
+    type: string
+    description: "Optional: HTTP proxy URL (e.g., http://127.0.0.1:7890). Useful if your region blocks Issuu."
+    required: false
+output:
+  type: object
+  properties:
+    status: {type: string}
+    file_path: {type: string}
+    message: {type: string}

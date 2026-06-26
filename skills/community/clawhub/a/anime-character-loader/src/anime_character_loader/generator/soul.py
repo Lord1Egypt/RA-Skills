@@ -1,0 +1,1 @@
+"""SOUL generator scaffold."""

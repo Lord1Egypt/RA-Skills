@@ -1,0 +1,44 @@
+{
+  "name": "@opendolph/conversation-analyzer",
+  "version": "1.0.0",
+  "description": "Intelligent conversation analysis, summarization, and conclusion recording for OpenClaw agents",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "analysis",
+    "conversation",
+    "memory",
+    "task-tracking",
+    "user-profile"
+  ],
+  "author": "opendolph",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opendolph/skills.git",
+    "directory": "conversation-analyzer"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "locales/"
+  ],
+  "clawSkill": {
+    "name": "conversation-analyzer",
+    "displayName": {
+      "en": "Conversation Analyzer",
+      "zh": "对话分析总结器"
+    },
+    "description": {
+      "en": "Analyze conversations, summarize conclusions, track tasks, and write to memory files",
+      "zh": "分析对话，总结结论，追踪任务，写入记忆文件"
+    },
+    "emoji": "🧠",
+    "category": "productivity",
+    "languages": ["en", "zh"]
+  }
+}

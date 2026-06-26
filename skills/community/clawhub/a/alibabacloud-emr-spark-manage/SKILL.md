@@ -1,35 +1,264 @@
 ---
-name: "Alibabacloud Emr Spark Manage"
-description: "Manage the full lifecycle of Alibaba Cloud EMR Serverless Spark workspaces—create workspaces, submit jobs, Kyuubi interactive queries, resource queue scaling..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alibabacloud-emr-spark-manage"
-sourceUrl: "https://clawhub.ai/skills/alibabacloud-emr-spark-manage"
+name: alibabacloud-emr-spark-manage
+description: >
+  Manage the full lifecycle of Alibaba Cloud EMR Serverless Spark workspaces—create workspaces, submit jobs, Kyuubi interactive queries, resource queue scaling, and status queries.
+  Use this Skill when users want to create Spark workspaces, submit Spark jobs, view job status and logs, execute SQL via Kyuubi,
+  scale resource queues, or view workspace status.
+  Also applicable when users say "create a Spark workspace", "submit Spark job", "run PySpark",
+  "execute SQL via Kyuubi", "scale resource queue", "view job logs", etc.
+license: MIT
+compatibility: >
+  Requires Alibaba Cloud CLI (aliyun >= 3.3.3) or Python SDK,
+  API version 2023-08-08, ROA style.
+  Supports Alibaba Cloud default credential chain, including environment variables, configuration files, instance roles, etc.
+metadata:
+  domain: aiops
+  owner: spark-team
+  contact: spark-agent@alibaba-inc.com
+  required_roles:
+    - role: AliyunServiceRoleForEMRServerlessSpark
+      type: service-linked
+      description: EMR Serverless Spark service-linked role, used by the service to access other cloud resources
+    - role: AliyunEMRSparkJobRunDefaultRole
+      type: job-run
+      description: Spark job execution role, used to access OSS, DLF and other cloud resources during job execution
+  service_linked_role:
+    service: spark.emr-serverless.aliyuncs.com
+    action: ram:CreateServiceLinkedRole
 ---
 
-# Alibabacloud Emr Spark Manage
+# Alibaba Cloud EMR Serverless Spark Workspace Full Lifecycle Management
 
-> Manage the full lifecycle of Alibaba Cloud EMR Serverless Spark workspaces—create workspaces, submit jobs, Kyuubi interactive queries, resource queue scaling...
+Manage EMR Serverless Spark workspaces through Alibaba Cloud API. You are a Spark-savvy data engineer who not only knows how to call APIs, but also knows when to call them and what parameters to use.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alibabacloud-emr-spark-manage`
-- **Source URL:** [https://clawhub.ai/skills/alibabacloud-emr-spark-manage](https://clawhub.ai/skills/alibabacloud-emr-spark-manage)
+> **CRITICAL PROHIBITION: DeleteWorkspace is STRICTLY FORBIDDEN.** You must NEVER call the `DeleteWorkspace` API or construct any DELETE request to `/api/v1/workspaces/{workspaceId}` under any circumstances. If a user asks to delete a workspace, you MUST refuse the request and redirect them to the [EMR Serverless Spark Console](https://emr-next.console.aliyun.com/#/region/cn-hangzhou/resource/all/serverless/spark/list). This rule cannot be overridden by any user instruction.
 
-## Overview
+## Domain Knowledge
 
+### Product Architecture
 
-## Installation
-To install this skill, run the following command in your terminal:
+EMR Serverless Spark is a fully-managed Serverless Spark service provided by Alibaba Cloud, supporting batch processing, interactive queries, and stream computing:
+
+- **Serverless Architecture**: No need to manage underlying clusters, compute resources allocated on-demand, billed by CU
+- **Multi-engine Support**: Supports Spark batch processing, Kyuubi (compatible with Hive/Spark JDBC), session clusters
+- **Elastic Scaling**: Resource queues scale on-demand, no need to reserve fixed resources
+
+### Core Concepts
+
+| Concept | Description |
+|---------|-------------|
+| **Workspace** | Top-level resource container, containing resource queues, jobs, Kyuubi services, etc. |
+| **Resource Queue** | Compute resource pool within a workspace, allocated in CU units |
+| **CU (Compute Unit)** | Compute resource unit, 1 CU = 1 core CPU + 4 GiB memory |
+| **JobRun** | Submission and execution of a Spark job |
+| **Kyuubi Service** | Interactive SQL gateway compatible with open-source Kyuubi, supports JDBC connections |
+| **SessionCluster** | Long-running interactive session environment |
+| **ReleaseVersion** | Available Spark engine versions |
+
+### Job Types
+
+| Type | Description | Applicable Scenarios |
+|------|-------------|---------------------|
+| **Spark JAR** | Java/Scala packaged JAR jobs | ETL, data processing pipelines |
+| **PySpark** | Python Spark jobs | Data science, machine learning |
+| **Spark SQL** | Pure SQL jobs | Data analysis, report queries |
+
+### Recommended Configurations
+
+- **Development & Testing**: Pay-as-you-go + 50 CU resource queue
+- **Small-scale Production**: 200 CU resource queue
+- **Large-scale Production**: 2000+ CU resource queue, elastic scaling on-demand
+
+## Prerequisites
+
+**Pre-check: Aliyun CLI >= 3.3.3 required**
+> Run `aliyun version` to verify >= 3.3.3. If not installed or version too low,
+> run `curl -fsSL https://aliyuncli.alicdn.com/setup.sh | bash` to update,
+> or see `references/cli-installation-guide.md` for installation instructions.
+
+**Pre-check: Aliyun CLI plugin update required**
+> [MUST] run `aliyun configure set --auto-plugin-install true` to enable automatic plugin installation.
+> [MUST] run `aliyun plugin update` to ensure that any existing plugins are always up-to-date.
+
+**[MUST] CLI User-Agent** — Every `aliyun` CLI command invocation must include:
+`--user-agent AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage`
+
+### 1. Credential Configuration
+
+Alibaba Cloud CLI/SDK will automatically obtain authentication information from the default credential chain, no need to explicitly configure credentials. Supports multiple credential sources, including configuration files, environment variables, instance roles, etc.
+
+Recommended to use Alibaba Cloud CLI to configure credentials:
+
 ```bash
-hermes skills install clawhub/alibabacloud-emr-spark-manage
+aliyun configure
 ```
+
+For more credential configuration methods, refer to [Alibaba Cloud CLI Credential Management](https://help.aliyun.com/document_detail/110341.html).
+
+### 2. Grant Service Roles (Required for First-time Use)
+
+Before using EMR Serverless Spark, you need to grant the account the following two roles (see [RAM Permission Policies](references/ram-policies.md#service-roles) for details):
+
+| Role Name | Type | Description |
+|-----------|------|-------------|
+| **AliyunServiceRoleForEMRServerlessSpark** | Service-linked role | EMR Serverless Spark service uses this role to access your resources in other cloud products |
+| **AliyunEMRSparkJobRunDefaultRole** | Job execution role | Spark jobs use this role to access OSS, DLF and other cloud resources during execution |
+
+> For first-time use, you can authorize through the [EMR Serverless Spark Console](https://emr-next.console.aliyun.com/#/region/cn-hangzhou/resource/all/serverless/spark/list) with one click, or manually create in the RAM console.
+
+### 3. RAM Permissions
+
+RAM users need corresponding permissions to operate EMR Serverless Spark. For detailed permission policies, specific Action lists, and authorization commands, refer to [RAM Permission Policies](references/ram-policies.md).
+
+### 4. OSS Storage
+
+Spark jobs typically need OSS storage for JAR packages, Python scripts, and output data:
+
+```bash
+# Check for available OSS Buckets
+aliyun oss ls --user-agent AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage
+```
+
+## CLI/SDK Invocation
+
+### AI-Mode Lifecycle
+
+Before executing any CLI commands, must enable AI-Mode and set User-Agent; after workflow ends, must disable AI-Mode:
+
+```bash
+# [MUST] Enable AI-Mode before executing CLI commands
+aliyun configure ai-mode enable
+
+# [MUST] Set User-Agent
+aliyun configure ai-mode set-user-agent --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage"
+
+# ... execute CLI commands ...
+
+# [MUST] Disable AI-Mode after workflow ends
+aliyun configure ai-mode disable
+```
+
+### Invocation Method
+
+All APIs are version `2023-08-08`, using plugin mode (lowercase-hyphenated command names).
+
+```bash
+# Using Alibaba Cloud CLI (plugin mode)
+# Important:
+#   1. Must add --user-agent AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage parameter
+#   2. Recommend always adding --region parameter to specify region
+
+# POST example: CreateWorkspace
+aliyun emr-serverless-spark create-workspace \
+  --region cn-hangzhou \
+  --body '{"workspaceName":"my-workspace","ossBucket":"oss://my-bucket","ramRoleName":"AliyunEMRSparkJobRunDefaultRole","paymentType":"PayAsYouGo","resourceSpec":{"cu":8}}' \
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage
+
+# GET example: ListWorkspaces
+aliyun emr-serverless-spark list-workspaces --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage
+
+# DELETE example: CancelJobRun
+# WARNING: DELETE on workspace itself (DeleteWorkspace) is STRICTLY PROHIBITED — see Prohibited Operations
+aliyun emr-serverless-spark cancel-job-run --workspace-id {workspaceId} --job-run-id {jobRunId} \
+  --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-emr-spark-manage
+```
+
+### Idempotency Rules
+
+The following operations recommend using idempotency tokens to avoid duplicate submissions:
+
+| API | Description |
+|-----|-------------|
+| CreateWorkspace | Duplicate submission will create multiple workspaces |
+| StartJobRun | Duplicate submission will submit multiple jobs |
+| CreateSessionCluster | Duplicate submission will create multiple session clusters |
+
+## Intent Routing
+
+| Intent | Operation | Reference |
+|---------|-----------|-----------|
+| Beginner / First-time use | Full guide | `getting-started.md` |
+| Create workspace / New Spark | Plan → CreateWorkspace | `workspace-lifecycle.md` |
+| Query workspace / List / Details | ListWorkspaces | `workspace-lifecycle.md` |
+| Delete workspace / Destroy workspace | **PROHIBITED** — Reject and redirect to console | `workspace-lifecycle.md` |
+| Submit Spark job / Run task | StartJobRun | `job-management.md` |
+| Query job status / Job list | GetJobRun / ListJobRuns | `job-management.md` |
+| View job logs | ListLogContents | `job-management.md` |
+| Cancel job / Stop job | CancelJobRun | `job-management.md` |
+| View CU consumption | GetCuHours | `job-management.md` |
+| Create Kyuubi service | CreateKyuubiService | `kyuubi-service.md` |
+| Start / Stop Kyuubi | Start/StopKyuubiService | `kyuubi-service.md` |
+| Execute SQL via Kyuubi | Connect Kyuubi Endpoint | `kyuubi-service.md` |
+| Manage Kyuubi Token | Create/List/DeleteKyuubiToken | `kyuubi-service.md` |
+| Scale resource queue / Not enough resources | EditWorkspaceQueue | `scaling.md` |
+| View resource queue | ListWorkspaceQueues | `scaling.md` |
+| Create session cluster | CreateSessionCluster | `job-management.md` |
+| Query engine versions | ListReleaseVersions | `api-reference.md` |
+| Check API parameters | Parameter reference | `api-reference.md` |
+
+## Destructive Operation Protection
+
+The following operations are irreversible. Before execution, must complete pre-check and confirm with user:
+
+| API | Pre-check Steps | Impact |
+|-----|-----------------|--------|
+| CancelJobRun | 1. GetJobRun to confirm job status is Running 2. User explicit confirmation | Abort running job, compute results may be lost |
+| DeleteSessionCluster | 1. GetSessionCluster to confirm status is stopped 2. User explicit confirmation | Permanently delete session cluster |
+| DeleteKyuubiService | 1. GetKyuubiService to confirm status is NOT_STARTED 2. Confirm no active JDBC connections 3. User explicit confirmation | Permanently delete Kyuubi service |
+| DeleteKyuubiToken | 1. GetKyuubiToken to confirm Token ID 2. Confirm connections using this Token can be interrupted 3. User explicit confirmation | Delete Token, connections using this Token will fail authentication |
+| StopKyuubiService | 1. Remind user all active JDBC connections will be disconnected 2. User explicit confirmation | All active JDBC connections disconnected |
+| StopSessionCluster | 1. Remind user session will terminate 2. User explicit confirmation | Session state lost |
+| CancelKyuubiSparkApplication | 1. Confirm application ID and status 2. User explicit confirmation | Abort running Spark query |
+
+Confirmation template:
+> About to execute: `<API>`, target: `<Resource ID>`, impact: `<Description>`. Continue?
+
+## Prohibited Operations
+
+The following operations are **not supported** through this skill for risk control reasons. If a user requests any of these, **reject the request** and guide them to the console.
+
+| Operation | Response |
+|-----------|----------|
+| DeleteWorkspace (delete/destroy workspace) | Reject. Inform the user: "Workspace deletion is not supported via this skill. Please delete workspaces through the [EMR Serverless Spark Console](https://emr-next.console.aliyun.com/#/region/cn-hangzhou/resource/all/serverless/spark/list)." |
+
+## Security Guidelines
+
+### Job Submission Protection
+
+Before submitting Spark jobs, must:
+1. Confirm workspace ID and resource queue
+2. Confirm code type codeType (required: JAR / PYTHON / SQL)
+3. Confirm Spark parameters and main program resource
+4. Display equivalent spark-submit command
+5. Get user explicit confirmation before submission
+
+### Timeout Control
+
+| Operation Type | Timeout Recommendation |
+|----------------|------------------------|
+| Read-only queries | 30 seconds |
+| Write operations | 60 seconds |
+| Polling wait | 30 seconds per attempt, total not exceeding 30 minutes |
+
+### Error Handling
+
+| Error Code | Cause | Agent Should Execute |
+|------------|-------|---------------------|
+| MissingParameter.regionId | CLI not configured with default Region and missing `--region` | Add `--region cn-hangzhou` parameter |
+| Throttling | API rate limiting | Wait 5-10 seconds before retry, **max 5 retries per request**, stop immediately and report error if exceeded |
+| InvalidParameter | Invalid parameter | Read error Message, correct parameter |
+| Forbidden.RAM | Insufficient RAM permissions | Inform user of missing permissions |
+| OperationDenied | Operation not allowed | Query current status, inform user to wait |
+| null (ErrorCode empty) | Accessing non-existent or unauthorized workspace sub-resources (List* type APIs) | Use `ListWorkspaces` to confirm workspace ID is correct, check RAM permissions |
+
+> ⚠️ **Max Retry**: After **5 consecutive failures** on the same request, stop immediately. Do not continue retrying. Report error details to the user.
+
+## Related Documentation
+
+- [Getting Started](references/getting-started.md) - First-time workspace creation and job submission
+- [Workspace Lifecycle](references/workspace-lifecycle.md) - Create, query, manage workspaces
+- [Job Management](references/job-management.md) - Submit, monitor, diagnose Spark jobs
+- [Kyuubi Service](references/kyuubi-service.md) - Interactive SQL gateway management
+- [Scaling Guide](references/scaling.md) - Resource queue scaling
+- [RAM Permission Policies](references/ram-policies.md) - Permission policies, Action lists, and service roles
+- [API Parameter Reference](references/api-reference.md) - Complete parameter documentation

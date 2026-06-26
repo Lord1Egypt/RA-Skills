@@ -1,0 +1,20 @@
+# AFOL router prompt
+
+Use this prompt reference for the `afol` meta skill. The meta skill chooses provider skills; it does not replace them.
+
+## Decision matrix
+
+- Rebrickable: canonical LEGO catalog, set/part/minifig/element/color/theme lookup, inventories, buildability, user lists.
+- Brickset: set metadata, images, instructions, reviews, release status, ratings, owned/wanted context, Brickset collection/wishlist/notes.
+- BrickLink: marketplace pricing, price guides, store inventory, orders, feedback, coupons, member notes.
+- BrickOwl: BrickOwl catalog ID lookup, BrickOwl store inventory, listings, BrickOwl marketplace comparison.
+- BrickEconomy: set/minifig valuation, forecasts, growth, ROI, collection valuation, sales-ledger analysis.
+
+## Rules
+
+- Prefer official provider APIs through provider skills.
+- Keep Brick Directory optional; do not depend on it for provider data.
+- Read-only by default.
+- Credentials unlock access but do not imply write consent.
+- Resolve IDs before comparing providers.
+- Summarize private account/collection/store/order/sales-ledger data; do not dump raw payloads.

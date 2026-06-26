@@ -1,0 +1,5 @@
+# A股持仓监控助手 - 依赖
+# Python 3.8+
+
+# 无需第三方依赖
+# 仅使用Python标准库：urllib, json, time, datetime, math

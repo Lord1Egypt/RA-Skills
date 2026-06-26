@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>claude-session-warmer — align your Claude usage window to your working hours</title>
+<meta name="description" content="A tiny scheduled primer through the official Claude Code CLI that opens your 5-hour usage window early, so resets line up with your day. Timezone-aware, zero dependencies, never bypasses any limit.">
+<meta property="og:title" content="claude-session-warmer">
+<meta property="og:description" content="Align your Claude Pro/Max usage window to your working hours.">
+<meta property="og:image" content="assets/hero.png">
+<style>
+  :root{
+    --bg:#1c1c1a; --bg2:#262624; --card:#2d2d2a; --line:#3c3c38;
+    --clay:#d97757; --clay-d:#b35c40; --blue:#6b9bd1; --green:#7fb069;
+    --text:#edeae3; --muted:#9a988f; --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--clay);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  code,pre{font-family:var(--mono)}
+
+  /* top bar */
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(28,28,26,.85);backdrop-filter:blur(8px);z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:920px;margin:0 auto}
+  .brand{font-family:var(--mono);font-weight:700;color:var(--text)}
+  .brand .dot{color:var(--clay)}
+  .nav a{color:var(--muted);margin-left:20px;font-size:14px}
+  .nav a:hover{color:var(--text);text-decoration:none}
+
+  /* hero */
+  .hero{text-align:center;padding:72px 0 40px}
+  .hero h1{font-size:clamp(34px,6vw,56px);letter-spacing:-1px;line-height:1.05}
+  .hero h1 .accent{color:var(--clay)}
+  .hero p.tag{color:var(--muted);font-size:clamp(17px,2.4vw,21px);margin-top:18px}
+  .pills{margin-top:22px}
+  .pill{display:inline-block;border:1px solid var(--clay);color:var(--clay);border-radius:20px;
+        font-family:var(--mono);font-size:13px;padding:5px 14px;margin:4px}
+  .cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 26px;border-radius:10px;font-weight:600;font-size:15px}
+  .btn.primary{background:var(--clay);color:#1c1c1a}
+  .btn.primary:hover{background:var(--clay-d);color:#fff;text-decoration:none}
+  .btn.ghost{border:1px solid var(--line);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--clay);text-decoration:none}
+
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.5px;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:26px;font-size:17px;max-width:680px}
+
+  /* animated demo */
+  .demo{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:30px 26px}
+  .track{position:relative;margin:10px 0 4px}
+  .track .row{position:relative;height:58px;margin:14px 0}
+  .axis{position:absolute;left:0;right:0;top:42px;height:2px;background:var(--line)}
+  .tick{position:absolute;top:36px;width:1px;height:12px;background:#55534d}
+  .tick span{position:absolute;top:14px;left:-8px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .win{position:absolute;top:6px;height:30px;border-radius:5px;display:flex;align-items:center;
+       padding-left:9px;font-family:var(--mono);font-size:12px;font-weight:700;color:#1c1c1a;
+       white-space:nowrap;overflow:hidden}
+  .win.blue{background:var(--blue);color:#fff}
+  .win.clay{background:var(--clay)}
+  .rowlabel{font-weight:700;font-size:14px;margin-bottom:2px}
+  .rowlabel.b{color:var(--blue)} .rowlabel.c{color:var(--clay)}
+  .rowsub{color:var(--muted);font-size:13px}
+  .primer{position:absolute;top:-2px;width:0;height:0;border-left:6px solid transparent;
+          border-right:6px solid transparent;border-top:9px solid var(--clay)}
+  /* grow animation for the "with" windows */
+  .grow{animation:grow 1.1s ease forwards;transform-origin:left}
+  @keyframes grow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+  .fade{opacity:0;animation:fade .5s ease forwards}
+  @keyframes fade{to{opacity:1}}
+  .gifwrap{text-align:center;margin-top:30px}
+  .gifwrap img{max-width:620px;width:100%;border-radius:12px;border:1px solid var(--line)}
+
+  /* steps */
+  .steps{display:grid;gap:18px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+  .step h3{font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+       border-radius:50%;background:var(--clay);color:#1c1c1a;font-family:var(--mono);font-weight:700;font-size:14px}
+  pre{background:#141413;border:1px solid var(--line);border-radius:9px;padding:14px 16px;overflow-x:auto;
+      font-size:13.5px;line-height:1.7;color:#d8d5cd}
+  pre .c{color:var(--muted)} pre .k{color:var(--clay)}
+
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:6px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  td code{background:#141413;border:1px solid var(--line);border-radius:5px;padding:2px 6px;font-size:13px;color:var(--clay)}
+
+  .callout{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);
+           border-radius:10px;padding:20px 22px}
+  .callout .yes{color:var(--green);font-weight:700}
+  .callout .no{color:#d98a8a;font-weight:700}
+  .callout ul{margin:10px 0 0 18px;color:var(--muted)}
+  .callout li{margin:5px 0}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <span class="brand">claude-session-warmer<span class="dot">.</span></span>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#setup">Setup</a>
+      <a href="#config">Config</a>
+      <a href="https://github.com/DecisionVex/claude-session-warmer">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Align your Claude window<br>to <span class="accent">your</span> working hours.</h1>
+    <p class="tag">Your 5-hour usage window is anchored to your first message. A tiny scheduled
+      primer opens it early — so your resets line up with your day.</p>
+    <div class="pills">
+      <span class="pill">official Claude CLI</span>
+      <span class="pill">timezone-aware</span>
+      <span class="pill">zero dependencies</span>
+      <span class="pill">never bypasses limits</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#setup">Get started</a>
+      <a class="btn ghost" href="https://github.com/DecisionVex/claude-session-warmer">View on GitHub →</a>
+    </div>
+  </div>
+
+  <section id="how">
+    <h2>How it works</h2>
+    <p class="lead">Send one trivial prompt through the official <code>claude</code> CLI at chosen
+      anchor times on an always-on box. Each primer opens a fresh 5-hour window, so the day's
+      windows track your schedule instead of whenever your first prompt happened to land.</p>
+
+    <div class="demo">
+      <div class="track" id="track"></div>
+    </div>
+
+    <div class="gifwrap">
+      <p class="rowsub" style="margin-bottom:12px">Three commands, start to finish:</p>
+      <img src="assets/demo.gif" alt="Demo: check, schedule, warm">
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>Setup — 1, 2, 3</h2>
+    <p class="lead">Run on the always-on box that already has the official Claude Code CLI logged in
+      (the same VPS you develop with). If <code>claude -p "hi"</code> answers there, you're ready.</p>
+    <div class="steps">
+      <div class="step">
+        <h3><span class="num">1</span> Set your timezone &amp; start time</h3>
+<pre><span class="c"># copy the example, then edit config.json</span>
+cp config.example.json config.json
+<span class="c"># set "timezone" (e.g. "Africa/Johannesburg"),</span>
+<span class="c"># your "anchor" start (e.g. "05:00"), then "enabled": true</span></pre>
+      </div>
+      <div class="step">
+        <h3><span class="num">2</span> Check the box &amp; preview the plan</h3>
+<pre>node bin/session-warmer.mjs <span class="k">check</span>     <span class="c"># claude installed + logged in?</span>
+node bin/session-warmer.mjs <span class="k">schedule</span>  <span class="c"># 05:00  10:05  15:10  20:15</span></pre>
+      </div>
+      <div class="step">
+        <h3><span class="num">3</span> Schedule it</h3>
+<pre>node bin/session-warmer.mjs <span class="k">install</span>   <span class="c"># prints a ready-to-paste cron block</span>
+crontab -e                            <span class="c"># paste it, save — done</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="config">
+    <h2>Configuration</h2>
+    <p class="lead">One small <code>config.json</code>. All clock math is timezone-aware via
+      <code>Intl</code> — set your IANA timezone and DST is handled automatically.</p>
+    <table>
+      <tr><th>Field</th><th>Meaning</th><th>Default</th></tr>
+      <tr><td><code>enabled</code></td><td>Must be true to actually send (opt-in)</td><td><code>false</code></td></tr>
+      <tr><td><code>dry_run</code></td><td>Log what would be sent, without sending</td><td><code>false</code></td></tr>
+      <tr><td><code>timezone</code></td><td>IANA tz for all clock math — <strong>set this</strong></td><td><code>UTC</code></td></tr>
+      <tr><td><code>anchor</code></td><td>First primer of the day (HH:MM)</td><td><code>05:00</code></td></tr>
+      <tr><td><code>day_end</code></td><td>Stop priming after this local time</td><td><code>22:00</code></td></tr>
+      <tr><td><code>window_minutes</code></td><td>Claude window length</td><td><code>300</code></td></tr>
+      <tr><td><code>buffer_minutes</code></td><td>Fire this long after a window closes</td><td><code>5</code></td></tr>
+      <tr><td><code>prompt</code></td><td>The trivial primer text</td><td><code>ping…</code></td></tr>
+    </table>
+  </section>
+
+  <section id="commands">
+    <h2>Commands</h2>
+    <table>
+      <tr><th>Command</th><th>What it does</th></tr>
+      <tr><td><code>check</code></td><td>Verify the CLI is installed <strong>and logged in</strong> on this box (run first)</td></tr>
+      <tr><td><code>schedule</code></td><td>Print today's primer times (no side effects)</td></tr>
+      <tr><td><code>warm</code></td><td>Fire one primer now (respects <code>enabled</code> + <code>dry_run</code>) — this is what cron runs</td></tr>
+      <tr><td><code>install</code></td><td>Print cron / scheduled-task lines (<code>--cron-only</code> is pipeable)</td></tr>
+      <tr><td><code>status</code></td><td>Show config + the next primer time</td></tr>
+    </table>
+  </section>
+
+  <section id="allowed">
+    <h2>Is this allowed?</h2>
+    <p class="lead">Yes — when the primer goes through the official <code>claude</code> CLI, logged in
+      on your own box, on your own subscription. It only changes <em>when</em> the window opens;
+      it never exceeds the 5-hour or weekly cap.</p>
+    <div class="callout">
+      <p><span class="yes">✓ Permitted</span> — a scheduled <code>claude -p</code> primer: the official
+        CLI is Anthropic's own product, built and documented for scripted, piped and scheduled use.</p>
+      <p style="margin-top:12px"><span class="no">✗ Not this skill</span> — and never:</p>
+      <ul>
+        <li>extracting or copying OAuth tokens between machines</li>
+        <li>spoofing or impersonating the Claude Code client</li>
+        <li>routing the primer through the Agent SDK with subscription auth, or any third-party harness</li>
+      </ul>
+      <p style="margin-top:12px;color:var(--muted)">Keep it single-user and low-volume (a few tiny prompts
+        a day). Full reasoning &amp; sources →
+        <a href="https://github.com/DecisionVex/claude-session-warmer/blob/main/references/tos.md">references/tos.md</a>.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>MIT licensed · built for <a href="https://github.com/DecisionVex">DecisionVex</a> ·
+       <a href="https://github.com/DecisionVex/claude-session-warmer">source on GitHub</a></p>
+    <p style="margin-top:8px;font-size:13px">Not affiliated with Anthropic. Not legal advice — terms change.</p>
+  </div>
+</footer>
+
+<script>
+// Build the animated window-alignment demo (05:00 -> 22:00 axis).
+const track = document.getElementById('track');
+const START=5, END=22, SPAN=END-START;
+function pct(h){return ((h-START)/SPAN)*100;}
+function axis(){
+  const a=document.createElement('div');a.className='axis';
+  const holder=document.createElement('div');holder.style.position='relative';holder.style.height='100%';
+  holder.appendChild(a);
+  for(let h=START;h<=END;h+=2){
+    const t=document.createElement('div');t.className='tick';t.style.left=pct(h)+'%';
+    const s=document.createElement('span');s.textContent=String(h).padStart(2,'0');t.appendChild(s);
+    holder.appendChild(t);
+  }
+  return holder;
+}
+function fmt(h){const m=Math.round((h%1)*60);return String(Math.floor(h)).padStart(2,'0')+':'+String(m).padStart(2,'0');}
+function win(h,cls,delay,grow,primer){
+  const w=document.createElement('div');w.className='win '+cls+(grow?' grow':' fade');
+  w.style.left=pct(h)+'%';w.style.width=(Math.min(5,END-h)/SPAN*100)+'%';
+  w.style.animationDelay=delay+'s';w.textContent=fmt(h);
+  const frag=document.createDocumentFragment();frag.appendChild(w);
+  if(primer){const p=document.createElement('div');p.className='primer fade';
+    p.style.left='calc('+pct(h)+'% - 6px)';p.style.animationDelay=delay+'s';frag.appendChild(p);}
+  return frag;
+}
+function buildRow(label,labelCls,sub,wins){
+  const r=document.createElement('div');
+  const lab=document.createElement('div');lab.className='rowlabel '+labelCls;lab.textContent=label;
+  const sb=document.createElement('div');sb.className='rowsub';sb.textContent=sub;
+  const row=document.createElement('div');row.className='row';
+  row.appendChild(axis());
+  wins.forEach(w=>row.appendChild(w));
+  r.appendChild(lab);r.appendChild(sb);r.appendChild(row);
+  return r;
+}
+// Without
+track.appendChild(buildRow('Without the warmer','b','first prompt lands at 09:40 — resets stuck on a random clock',
+  [win(9.67,'blue',0,false,false),win(14.67,'blue',.15,false,false),win(19.67,'blue',.3,false,false)]));
+// spacer
+const sp=document.createElement('div');sp.style.height='12px';track.appendChild(sp);
+// With (animated grow + primer ticks, staggered)
+track.appendChild(buildRow('With claude-session-warmer','c','a 05:00 primer opens the window early — resets line up with your day',
+  [win(5,'clay',.5,true,true),win(10.08,'clay',1.4,true,true),win(15.17,'clay',2.3,true,true),win(20.25,'clay',3.2,true,true)]));
+</script>
+</body>
+</html>

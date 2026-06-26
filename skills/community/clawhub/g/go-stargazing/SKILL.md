@@ -1,35 +1,152 @@
 ---
-name: "Go Stargazing"
+name: go-stargazing
 description: "轻量版区域级拍星推荐技能，适用于今晚或指定日期的全国、省市级拍星条件筛选。默认全国扫描，先按云量粗筛，再结合真实天气细筛，输出逐晚推荐和完整气象信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/go-stargazing"
-sourceUrl: "https://clawhub.ai/skills/go-stargazing"
 ---
 
-# Go Stargazing
+# GoStargazing
 
-> 轻量版区域级拍星推荐技能，适用于今晚或指定日期的全国、省市级拍星条件筛选。默认全国扫描，先按云量粗筛，再结合真实天气细筛，输出逐晚推荐和完整气象信息。
+## 定位
+轻量版、区域级拍星推荐 skill，用于回答：
+- 今晚或指定日期，全国或指定范围哪里更适合拍星
+- 多天查询时，每一晚分别哪里更适合拍星
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/go-stargazing`
-- **Source URL:** [https://clawhub.ai/skills/go-stargazing](https://clawhub.ai/skills/go-stargazing)
+不做：
+- 具体机位推荐
+- 编造真实视宁度、实测光污染、真实遮挡
+- 把区域级结论伪装成机位级结论
 
-## Overview
+## 默认规则
+- 用户说“全国 / 中国 / 国内”时，默认按**中国 34 个省级行政区全覆盖**处理
+- 用户指定省份或更小范围时，按用户范围查询
+- 用户未说明题材时，默认按星空 / 银河处理
 
+## 核心流程
+### 1. 全国粗筛
+- 大范围查询时，第一轮只看云量
+- 云量不达标直接过滤，达标后再进入细筛
+- 粗筛阶段不混入风速、湿度、月光、露点、降水、天气代码等指标
+- **全国粗筛统一只用 `ecmwf_ifs`** 看云量
+- 单日 coarse survivor <= 10：直接全部进入细筛
+- 多天 coarse survivor <= 20：直接全部进入细筛
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/go-stargazing
-```
+### 2. 细筛
+细筛阶段默认启用：
+- 风速
+- 湿度
+- 夜间通透度 / 能见度
+- 月光影响
+- 月升 / 月落
+- 露点
+- 降水
+- 天气现象码
+
+模型策略：
+- 粗筛与细筛统一只用 `ecmwf_ifs`
+- 不再做联合复核流程
+
+评分原则：
+- 云量权重最高
+- 风速权重较低
+
+### 3. 区域聚合
+- 将高分点聚合成区域级结论
+- 优先输出自然地理或行政区域名称
+- 不直接返回大量采样点给用户
+
+### 4. 候选榜单规则
+- 按最终排序分从高到低排序
+- 候选阈值：`max(70, 第一名分数 - 10)`
+- 只允许 `recommended` / `backup` 进入候选榜单
+- `observe_only` 不得进入候选榜单
+- 达标候选少于 10 个时如实返回
+- 达标候选多于 10 个时只保留前 10
+- 不允许为了凑满 10 个而硬塞明显低质量候选
+
+## 多天规则
+多天查询时：
+1. 按逐晚独立推荐输出
+2. 每晚给出主推荐、备选和完整气象指标
+3. 不做跨晚路线连续性判断
+4. 只做区域级逐晚判断，不扩展为路线规划
+
+## 输出要求
+默认按以下顺序组织：
+1. 结论
+2. 备选
+3. 细化说明
+4. 风险提示
+5. 本轮参考信息
+6. 下一步（是否继续细筛）
+
+### 真实数据输出
+当用户明确要求真实数据或要自行复核时，回复中必须给出本轮实际查到的关键气象信息，不得只给口语化结论。
+
+优先包含：
+- 天文夜窗、最佳可拍窗口、可拍时长
+- 平均 / 最差云量
+- 风速、阵风、湿度、能见度
+- 温度、露点、月光影响
+- 低 / 中 / 高云、降水、天气现象码（如有）
+- 数据来源与数据完整性说明
+
+### 回复生成约束
+调用方应优先使用 `final_reply_draft` / `reply_drafts.*` 作为最终回复，不要自行根据零散 JSON 字段二次摘要或重组，否则容易丢失完整气象指标与解释。
+
+用户明确要求复核或对照 Windy 时，应优先使用 `final_reply_draft` 或 `reply_drafts.detailed`。
+
+### 导出边界
+- 本 skill 仅返回文本或 JSON 结果
+- 不内置 Excel / xlsx 导出能力
+- 如需表格附件，应由调用侧另行生成
+
+## 用户可读性规则
+- 只说自然中文
+- 不直接输出内部字段名、调试字段或变量名
+- 解释时优先说明：哪个区域更稳、哪个区域更适合守候、哪晚更适合当路线锚点
+
+## 夜窗与月光
+- 地区天文夜窗和最佳可拍窗口必须分开表达
+- 月光建议可以说强 / 中 / 弱，但不要伪装成真实天文实测
+- 月升 / 月落与无月光窗口属于辅助信息，不是硬评分主字段
+
+## 运行前提
+- 依赖 `python3`
+- 额外 pip 依赖：`lunarcalendar`、`shapely`
+- 真实天气模式依赖可访问的 Open-Meteo 在线接口
+- 若当前环境无法访问外部天气源，或当天请求额度已耗尽，则必须明确告知用户无法继续获取新的真实天气数据
+
+## 数据边界
+- 天气主源：Open-Meteo HTTP API
+- 需要真实数据时，必须使用真实天气查询（CLI 对应 `--real-weather`），不得退回 mock 后继续按真实结果回复用户
+- 若真实天气抓取失败，必须明确说明失败情况，不得用 mock 顶替真实结论
+- 预报范围最远约 16 天，超出需明确告知用户无法查询
+- 复杂地形区域（高原 / 山区）预报不确定性更高，必要时提醒用户临近出发再复查
+- 命中 `429` 时应自动退避，不得继续高频请求同一模型
+- 若天气源明确返回 `Daily API request limit exceeded. Please try again tomorrow.`，则视为**当天真实天气额度已耗尽**
+- 命中上述“日额度超限”时：不得继续重试；应直接对用户说明：**今天天气源查询额度已超限，明天再查**
+- 不同天气模型要分别做节流，不能共用一条激进并发节奏
+- 全国扫描与单区复核必须分开：全国允许较高吞吐，小范围 / 单区复核应改走低频保守模式
+
+## 打包数据
+当前运行使用：
+- `data/china-provinces-lite.json`
+- `data/china-prefectures-lite.json`
+
+使用轻量 bbox 边界，替代完整 geometry，以控制包体积。
+
+## 主要脚本
+- `scripts/go_stargazing.py`：主入口
+- `scripts/go_stargazing_engine/engine.py`：主流程编排
+- `scripts/go_stargazing_engine/geo.py`：地理边界与空间处理
+- `scripts/go_stargazing_engine/weather.py`：天气获取与聚合
+- `scripts/go_stargazing_engine/scoring.py`：评分逻辑
+- `scripts/go_stargazing_engine/astronomy.py`：天文计算
+
+## 致谢
+本技能由以下伙伴共同打造：
+
+- 陈一菲：Skill 第一版创作者，为星空摄影规划奠定了核心框架
+- 陆不喝：提供技术方案与专业指导，让数据驱动的选址评分体系成为可能
+- Fortune：发起者，将摄影实践与 AI 能力深度结合，持续推动功能迭代
+
+感谢每一位愿意为星空奔赴山海的人

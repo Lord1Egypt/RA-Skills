@@ -1,0 +1,13 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_api_query_define_list",
+		"description": "Query API definition list under the current application. (Read-only operation, no parameters accepted)",
+		"parameters": {
+			"type": "object",
+			"properties": {},
+			"required": [],
+			"additionalProperties": false
+		}
+	}
+}

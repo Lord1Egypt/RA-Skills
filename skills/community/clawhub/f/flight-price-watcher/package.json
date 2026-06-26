@@ -1,0 +1,41 @@
+{
+  "name": "flight-price-watcher",
+  "version": "2.2.2",
+  "description": "机票价格监控技能 - 持续跟踪价格变动，降价自动提醒。触发词：监控机票、观望价格、机票提醒、价格波动、机票降价、盯着机票。",
+  "type": "module",
+  "main": "scripts/monitor.js",
+  "scripts": {
+    "monitor": "node scripts/monitor.js",
+    "init": "node scripts/init_task.js"
+  },
+  "keywords": ["flight", "price", "monitor", "flyai", "机票", "监控", "降价提醒"],
+  "author": "雾野 (395111)",
+  "license": "MIT",
+  "dependencies": {
+    "@fly-ai/flyai-cli": "^1.0.0"
+  },
+  "externalCommands": [
+    "flyai search-flight",
+    "flyai --help",
+    "openclaw message send"
+  ],
+  "permissions": {
+    "messaging": {
+      "channel": "dingtalk",
+      "target": "env:DINGTALK_TARGET_ID",
+      "description": "发送降价提醒到钉钉"
+    },
+    "filesystem": {
+      "read": ["data/tasks.json"],
+      "write": ["data/tasks.json"],
+      "description": "存储监控任务数据"
+    }
+  },
+  "environmentVariables": {
+    "DINGTALK_TARGET_ID": {
+      "description": "钉钉消息接收者 ID",
+      "default": "395111",
+      "required": false
+    }
+  }
+}

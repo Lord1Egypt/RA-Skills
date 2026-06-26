@@ -1,0 +1,23 @@
+{
+  "name": "subscription-cancel-call-script",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "language": "en",
+  "hasExecutableCode": false,
+  "triggerKeywords": [
+    "subscriptionCancelCall",
+    "cancelCallScript",
+    "subscriptionCancellation",
+    "cancelSubscriptionCall",
+    "serviceCancelScript",
+    "cancelCallBuilder",
+    "subscriptionCallScript"
+  ],
+  "execution": "noExec",
+  "promptOnly": true,
+  "requires_api": false,
+  "no_network": true,
+  "no_credentials": true,
+  "no_code_execution": true,
+  "contentType": "document-only"
+}

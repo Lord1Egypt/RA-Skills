@@ -1,0 +1,24 @@
+{
+  "name": "NXT Pulse Agent",
+  "version": "0.5.0",
+  "description": "An adaptive proactive agent skill that manages user energy levels and task prioritization using semantic pulse checks.",
+  "type": "skill",
+  "author": "adnXone <https://github.com/adnxone>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adnxone/nxt-pulse-agent"
+  },
+  "metadata": {
+    "openclaw": {
+      "emoji": "💓",
+      "tags": [
+        "proactivity",
+        "performance",
+        "energy-management",
+        "nxt-agent"
+      ],
+      "language": "en"
+    }
+  }
+}

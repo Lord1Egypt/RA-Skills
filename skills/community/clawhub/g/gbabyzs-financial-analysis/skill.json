@@ -1,0 +1,9 @@
+{
+  "name": "financial-analysis",
+  "version": "1.0.0",
+  "description": "财务分析工具 - PE/PB/ROE/DCF 估值/财务健康度",
+  "main": "financial_analysis.py",
+  "exports": ["calculate_pe", "calculate_pb", "calculate_roe", "dcf_valuation", "financial_health_score"],
+  "dependencies": ["akshare", "pandas", "numpy"],
+  "targetAgents": ["aifundamentals", "aidata"]
+}

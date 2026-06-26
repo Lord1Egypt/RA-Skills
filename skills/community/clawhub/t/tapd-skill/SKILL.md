@@ -1,35 +1,82 @@
 ---
-name: "TAPD"
-description: "当用户需要查询、修改 TAPD 项目中需求、缺陷、任务、迭代等信息时，如修改状态、添加评论等，通过调用 TAPD MCP 提供相应的服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tapd-skill"
-sourceUrl: "https://clawhub.ai/skills/tapd-skill"
+name: tapd-skill
+description: 当用户需要查询、修改 TAPD 项目中需求、缺陷、任务、迭代等信息时，如修改状态、添加评论等，通过调用 TAPD MCP 提供相应的服务。
+allowed-tools: # 可选，指定允许使用的工具
+disable: false # 可选，是否禁用
 ---
 
-# TAPD
-
-> 当用户需要查询、修改 TAPD 项目中需求、缺陷、任务、迭代等信息时，如修改状态、添加评论等，通过调用 TAPD MCP 提供相应的服务。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tapd-skill`
-- **Source URL:** [https://clawhub.ai/skills/tapd-skill](https://clawhub.ai/skills/tapd-skill)
-
-## Overview
+# TAPD 项目管理和研发管理 Skill
+- 研发、测试、项目管理、leader 等各角色希望获取、更新其在 TAPD 平台上的项目（空间）、需求、缺陷、任务、迭代、测试用例、配置信息等时，可使用此 Skill。
+- Skill 结合 TAPD MCP 使用，方便调用 open api 与 TAPD 交互。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tapd-skill
-```
+## MCP 说明
+- 当要求时发送消息到企业微信时，通过 send_qiwei_message 发送。
+
+
+## 何时使用
+### 个人工作
+#### 缺陷跟进
+适合角色：研发
+
+场景：
+- 跟进分配给自己的 bug 单
+
+要做什么：
+- 调用 get_bug 接口查询，例如：查询最近一周分配给我的 bug 单，则查询处理人为我，创建时间为最近一周的缺陷
+
+
+### 质量管理
+#### 需求下 bug 跟进
+适合角色：研发、测试
+
+场景：
+- 当研发想查看自己开发完成的需求在测试阶段还有多少未解决的 bug 时；
+- 当测试想查看自己负责测试的需求的 bug 解决进度时：产生了多少，修复了多少，还有多少待修复，处理人是谁。
+
+要做什么：
+- 调用 get_releated_bugs 接口，传入需求 ID 参数，获取信息
+
+
+#### 当天产生/修复 bug 情况
+适合角色：研发 leader、测试、项目管理
+
+场景：
+- 看产品质量情况：今天产生了多少 bug 单，修复了多少 bug 单
+
+要做什么：
+- 调用 get_bug 接口查询创建时间是今天的 bug 单
+- 调用 get_bug 接口查询状态为已结束状态，最近修改时间为今天的 bug 单
+
+
+### 短线日
+适合角色：开发人员、测试、研发 leader
+
+场景：
+- 列出今天待解决的 bug 单及对应处理人
+
+要做什么：
+- 调用 get_bug 接口查询状态为非结束状态，预计结束时间是今天的 bug 单
+
+
+### 工作总结
+#### 获取更新日志
+适合角色：研发 leader、项目管理
+
+场景：
+- 这迭代完成了哪些需求，总结归纳，便于发布迭代总结，更新发布日志
+
+要做什么：
+- 调用 get_iterations 接口，获取迭代
+- 调用 get_stories_or_tasks 获取迭代内需求和任务
+
+
+#### 个人工作总结
+适合角色：开发人员
+
+场景：
+- 我今天/昨天完成了哪些需求，解决了哪些 bug，还有哪些待办，用于更新日报，或站会时同步
+
+要做什么：
+- 查询我的已办工作：调用 get_stories_or_tasks 查询开发人员是我，最近修改时间是今天/昨天的需求和任务
+- 查询我的待办工作：调用 get_todo 接口查询

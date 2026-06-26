@@ -1,0 +1,20 @@
+{
+  "name": "code-refactor",
+  "version": "0.1.0",
+  "description": "智能代码重构助手 - 分析代码质量并自动应用重构建议",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/refactor.test.js"
+  },
+  "keywords": [
+    "refactoring",
+    "code-quality",
+    "analysis",
+    "openclaw-skill"
+  ],
+  "author": "小蒲萄 (Clawd)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

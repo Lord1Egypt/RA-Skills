@@ -1,0 +1,23 @@
+{
+  "skill_name": "js-to-java",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我把这段 JS 代码转成 Java：\n\nconst users = [\n  { name: '张三', age: 25, city: '北京' },\n  { name: '李四', age: 30, city: '上海' },\n  { name: '王五', age: 28, city: '北京' }\n];\n\nconst beijingUsers = users.filter(u => u.city === '北京');\nconst avgAge = beijingUsers.reduce((sum, u) => sum + u.age, 0) / beijingUsers.length;\nconsole.log(`北京用户数: ${beijingUsers.length}, 平均年龄: ${avgAge}`);",
+      "expected_output": "应该输出完整的 Spring Boot 代码（DTO + Service + Controller），包含详细的学习注释，以及 JS↔Java 语法对照表和学习思考题",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我需要一个订单查询接口，传入订单号，返回订单信息。包括订单号、金额、创建时间、订单状态。订单状态如果是 'paid' 就显示 '已支付'，其他显示 '处理中'。用 Java 怎么写？",
+      "expected_output": "应该输出完整的 Spring Boot 代码，包含订单 DTO、OrderService、OrderController，用自然语言描述的需求也要翻译成完整代码",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "教我 Java：\n\nfunction calculatePrice(products, discount) {\n  let total = products.reduce((sum, p) => sum + p.price * p.quantity, 0);\n  return total * (1 - discount);\n}\n\nconst products = [\n  { name: '苹果', price: 5, quantity: 3 },\n  { name: '香蕉', price: 3, quantity: 2 }\n];\n\nconsole.log(calculatePrice(products, 0.1));",
+      "expected_output": "应该翻译成 Java 代码并添加详细注释解释每处语法差异，特别是 reduce 对应 Java 的什么写法",
+      "files": []
+    }
+  ]
+}

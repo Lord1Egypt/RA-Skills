@@ -1,0 +1,12 @@
+{
+  "name": "find-skills-vercel",
+  "version": "1.0.0",
+  "description": "Find and discover skills from various sources",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["skills", "discovery", "search"],
+  "author": "vercel-labs",
+  "license": "MIT"
+}

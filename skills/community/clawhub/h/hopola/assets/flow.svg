@@ -1,0 +1,21 @@
+<svg width="1400" height="360" viewBox="0 0 1400 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="360" fill="#F6F8FF"/>
+  <rect x="60" y="120" width="180" height="100" rx="20" fill="#5B8CFF"/>
+  <text x="105" y="178" fill="#FFFFFF" font-size="30" font-family="Arial, sans-serif">Search</text>
+  <rect x="300" y="120" width="180" height="100" rx="20" fill="#7E5BFF"/>
+  <text x="338" y="178" fill="#FFFFFF" font-size="30" font-family="Arial, sans-serif">Generate</text>
+  <rect x="540" y="70" width="180" height="70" rx="16" fill="#14A3FF"/>
+  <text x="602" y="114" fill="#FFFFFF" font-size="24" font-family="Arial, sans-serif">Image</text>
+  <rect x="540" y="155" width="180" height="70" rx="16" fill="#2E84FF"/>
+  <text x="604" y="199" fill="#FFFFFF" font-size="24" font-family="Arial, sans-serif">Video</text>
+  <rect x="540" y="240" width="180" height="70" rx="16" fill="#4A6BFF"/>
+  <text x="632" y="284" fill="#FFFFFF" font-size="24" font-family="Arial, sans-serif">3D</text>
+  <rect x="800" y="120" width="180" height="100" rx="20" fill="#5B8CFF"/>
+  <text x="850" y="178" fill="#FFFFFF" font-size="30" font-family="Arial, sans-serif">Upload</text>
+  <rect x="1040" y="120" width="180" height="100" rx="20" fill="#7E5BFF"/>
+  <text x="1088" y="178" fill="#FFFFFF" font-size="30" font-family="Arial, sans-serif">Report</text>
+  <line x1="240" y1="170" x2="300" y2="170" stroke="#5261A8" stroke-width="6"/>
+  <line x1="480" y1="170" x2="540" y2="170" stroke="#5261A8" stroke-width="6"/>
+  <line x1="720" y1="170" x2="800" y2="170" stroke="#5261A8" stroke-width="6"/>
+  <line x1="980" y1="170" x2="1040" y2="170" stroke="#5261A8" stroke-width="6"/>
+</svg>

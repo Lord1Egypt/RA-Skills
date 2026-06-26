@@ -1,0 +1,24 @@
+{
+  "dutyTable": {
+    "architect": {
+      "model": "o3",
+      "reasoning": "high",
+      "description": "Complex design, architecture decisions, integration review"
+    },
+    "builder": {
+      "model": "codex-mini",
+      "reasoning": "medium",
+      "description": "Fast coding workhorse, feature implementation"
+    },
+    "reviewer": {
+      "model": "o3",
+      "reasoning": "medium",
+      "description": "Code review with deep reasoning"
+    },
+    "integrator": {
+      "model": "o3",
+      "reasoning": "high",
+      "description": "Cross-branch merging, conflict resolution"
+    }
+  }
+}

@@ -1,35 +1,18 @@
 ---
-name: "subreddit-scout"
-description: "Find high-fit subreddits for a product, summarize rules, and suggest value-first posting angles."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/subreddit-scout"
-sourceUrl: "https://clawhub.ai/skills/subreddit-scout"
+name: subreddit-scout
+description: Find high-fit subreddits for a product, summarize rules, and suggest value-first posting angles.
 ---
 
-# subreddit-scout
+# Subreddit Scout
 
-> Find high-fit subreddits for a product, summarize rules, and suggest value-first posting angles.
+Use this skill when launching a product via Reddit.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/subreddit-scout`
-- **Source URL:** [https://clawhub.ai/skills/subreddit-scout](https://clawhub.ai/skills/subreddit-scout)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/subreddit-scout
-```
+## Steps
+1. Identify niche keywords and adjacent problem keywords.
+2. Collect 15-30 candidate subreddits.
+3. Summarize each subreddit rule/profile:
+   - self-promo policy
+   - preferred content style
+   - allowed post frequency
+4. Rank by fit score (audience match + promo tolerance + activity).
+5. Output top 5 with tailored post angles.

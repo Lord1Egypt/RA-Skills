@@ -1,0 +1,8 @@
+{
+  "id": "optimize_web_components",
+  "prompt": "请优化 /Users/mars/.openclaw/workspace/claude-code-source/web/components/layout/ 目录下的组件文件：\n\n1. ChatHistory.tsx - 添加聊天历史功能，支持显示会话列表\n2. FileExplorer.tsx - 添加文件浏览功能，支持目录树结构  \n3. QuickActions.tsx - 添加实际的快速操作功能\n\n使用现有的 Claude Code 组件库和样式，保持代码风格一致。\n确保组件能够正常工作并集成到现有布局中。",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T10:17:41.221365",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/optimize_web_components.json"
+}

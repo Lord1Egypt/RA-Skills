@@ -1,0 +1,4 @@
+interface:
+  display_name: "weclone-init-twin"
+  short_description: "Scaffold the persona files for a digital twin"
+  default_prompt: "Use $weclone-init-twin to create or refresh the markdown persona pack that $weclone-twin-reply will read."

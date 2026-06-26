@@ -1,0 +1,23 @@
+{
+  "name": "ffmpeg-chinese-subtitle",
+  "version": "1.0.0",
+  "description": "Windows 上使用 ffmpeg 正确生成中文字幕的解决方案",
+  "main": "ffmpeg_subtitle.py",
+  "keywords": [
+    "ffmpeg",
+    "subtitle",
+    "chinese",
+    "中文字幕",
+    "视频字幕",
+    "字幕烧录"
+  ],
+  "author": "systiger",
+  "license": "MIT",
+  "dependencies": {
+    "Pillow": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/systiger/ffmpeg-chinese-subtitle"
+  }
+}

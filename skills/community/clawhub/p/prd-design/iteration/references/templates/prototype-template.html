@@ -1,0 +1,430 @@
+<!--
+迭代原型模板 v3.0
+用于展示新增/调整/删除模块的before/after对比
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迭代原型 - [产品名称]</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    }
+    
+    .badge-new {
+      background: #10b981;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .badge-modify {
+      background: #3b82f6;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .badge-deleted {
+      background: #ef4444;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .highlight-new {
+      position: relative;
+      animation: highlight-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes highlight-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    }
+    
+    .comparison-divider {
+      width: 2px;
+      background: linear-gradient(to bottom, #e5e7eb 0%, #3b82f6 50%, #e5e7eb 100%);
+    }
+    
+    .change-annotation {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 8px 12px;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // 主应用组件
+    function App() {
+      const [selectedModule, setSelectedModule] = useState('overview');
+
+      // 模块配置（根据实际调整清单填充）
+      const modules = {
+        new: [
+          // { id: 'M6', name: '规则引擎', component: NewRuleEngineModule }
+        ],
+        modify: [
+          // { id: 'M2', name: '任务管理', component: ModifyTaskManagementModule }
+        ],
+        delete: [
+          // { id: 'M4', name: '质量审核', component: DeletedQualityAuditModule }
+        ]
+      };
+
+      return (
+        <div className="flex h-screen bg-gray-50">
+          {/* 左侧导航 */}
+          <Sidebar 
+            modules={modules} 
+            selectedModule={selectedModule}
+            onSelect={setSelectedModule}
+          />
+          
+          {/* 主内容区 */}
+          <MainContent 
+            selectedModule={selectedModule}
+            modules={modules}
+          />
+        </div>
+      );
+    }
+
+    // 侧边栏组件
+    function Sidebar({ modules, selectedModule, onSelect }) {
+      return (
+        <nav className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <div className="p-6">
+            <h1 className="text-xl font-bold text-gray-900 mb-2">
+              迭代原型
+            </h1>
+            <p className="text-sm text-gray-500">
+              v[版本号]
+            </p>
+          </div>
+
+          <div className="px-3 pb-6">
+            {/* 概览 */}
+            <button
+              onClick={() => onSelect('overview')}
+              className={`w-full text-left px-3 py-2 rounded-lg mb-2 ${
+                selectedModule === 'overview' 
+                  ? 'bg-blue-50 text-blue-700 font-medium' 
+                  : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              📊 迭代概览
+            </button>
+
+            {/* 新增模块 */}
+            {modules.new.length > 0 && (
+              <div className="mt-6">
+                <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  ✨ 新增模块
+                </h3>
+                {modules.new.map(module => (
+                  <button
+                    key={module.id}
+                    onClick={() => onSelect(module.id)}
+                    className={`w-full text-left px-3 py-2 rounded-lg mb-1 ${
+                      selectedModule === module.id 
+                        ? 'bg-green-50 text-green-700 font-medium' 
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    {module.id} {module.name}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* 调整模块 */}
+            {modules.modify.length > 0 && (
+              <div className="mt-6">
+                <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  🔄 调整模块
+                </h3>
+                {modules.modify.map(module => (
+                  <button
+                    key={module.id}
+                    onClick={() => onSelect(module.id)}
+                    className={`w-full text-left px-3 py-2 rounded-lg mb-1 ${
+                      selectedModule === module.id 
+                        ? 'bg-blue-50 text-blue-700 font-medium' 
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    {module.id} {module.name}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* 删除模块 */}
+            {modules.delete.length > 0 && (
+              <div className="mt-6">
+                <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  🗑️ 删除模块
+                </h3>
+                {modules.delete.map(module => (
+                  <button
+                    key={module.id}
+                    onClick={() => onSelect(module.id)}
+                    className={`w-full text-left px-3 py-2 rounded-lg mb-1 ${
+                      selectedModule === module.id 
+                        ? 'bg-red-50 text-red-700 font-medium' 
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    {module.id} {module.name}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* 流程对比 */}
+            <div className="mt-6">
+              <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                📋 流程对比
+              </h3>
+              <button
+                onClick={() => onSelect('flow-comparison')}
+                className={`w-full text-left px-3 py-2 rounded-lg ${
+                  selectedModule === 'flow-comparison' 
+                    ? 'bg-purple-50 text-purple-700 font-medium' 
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                调整前后流程
+              </button>
+            </div>
+          </div>
+        </nav>
+      );
+    }
+
+    // 主内容区组件
+    function MainContent({ selectedModule, modules }) {
+      // 概览页面
+      if (selectedModule === 'overview') {
+        return <OverviewPage modules={modules} />;
+      }
+
+      // 流程对比页面
+      if (selectedModule === 'flow-comparison') {
+        return <FlowComparisonPage />;
+      }
+
+      // 查找对应的模块组件
+      const allModules = [...modules.new, ...modules.modify, ...modules.delete];
+      const module = allModules.find(m => m.id === selectedModule);
+      
+      if (module && module.component) {
+        return <module.component />;
+      }
+
+      return (
+        <div className="flex-1 p-8">
+          <p className="text-gray-500">请选择左侧模块查看详情</p>
+        </div>
+      );
+    }
+
+    // 概览页面
+    function OverviewPage({ modules }) {
+      return (
+        <div className="flex-1 p-8 overflow-y-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            迭代概览
+          </h2>
+          <p className="text-gray-600 mb-8">
+            本次迭代涉及的模块和调整内容
+          </p>
+
+          <div className="grid grid-cols-3 gap-6 mb-8">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+              <div className="text-4xl font-bold text-green-600 mb-2">
+                {modules.new.length}
+              </div>
+              <div className="text-green-800 font-medium">
+                新增模块
+              </div>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <div className="text-4xl font-bold text-blue-600 mb-2">
+                {modules.modify.length}
+              </div>
+              <div className="text-blue-800 font-medium">
+                调整模块
+              </div>
+            </div>
+
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+              <div className="text-4xl font-bold text-red-600 mb-2">
+                {modules.delete.length}
+              </div>
+              <div className="text-red-800 font-medium">
+                删除模块
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">
+              调整清单
+            </h3>
+            
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">
+                    模块编号
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">
+                    模块名称
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">
+                    调整类型
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">
+                    调整说明
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {modules.new.map(m => (
+                  <tr key={m.id} className="border-b border-gray-100">
+                    <td className="py-3 px-4 text-sm">{m.id}</td>
+                    <td className="py-3 px-4 text-sm">{m.name}</td>
+                    <td className="py-3 px-4">
+                      <span className="badge-new">新增</span>
+                    </td>
+                    <td className="py-3 px-4 text-sm text-gray-600">
+                      {m.description || '新增功能模块'}
+                    </td>
+                  </tr>
+                ))}
+                {modules.modify.map(m => (
+                  <tr key={m.id} className="border-b border-gray-100">
+                    <td className="py-3 px-4 text-sm">{m.id}</td>
+                    <td className="py-3 px-4 text-sm">{m.name}</td>
+                    <td className="py-3 px-4">
+                      <span className="badge-modify">调整</span>
+                    </td>
+                    <td className="py-3 px-4 text-sm text-gray-600">
+                      {m.description || '功能调整'}
+                    </td>
+                  </tr>
+                ))}
+                {modules.delete.map(m => (
+                  <tr key={m.id} className="border-b border-gray-100">
+                    <td className="py-3 px-4 text-sm">{m.id}</td>
+                    <td className="py-3 px-4 text-sm">{m.name}</td>
+                    <td className="py-3 px-4">
+                      <span className="badge-deleted">删除</span>
+                    </td>
+                    <td className="py-3 px-4 text-sm text-gray-600">
+                      {m.description || '移除此模块'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    // 流程对比页面（示例）
+    function FlowComparisonPage() {
+      return (
+        <div className="flex-1 p-8 overflow-y-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            流程对比
+          </h2>
+
+          <div className="grid grid-cols-2 gap-8">
+            {/* Before */}
+            <div>
+              <h3 className="text-xl font-bold text-gray-700 mb-4">
+                调整前流程
+              </h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <ol className="space-y-3">
+                  {/* 这里填入Step 1收集的现有主流程 */}
+                  <li className="flex items-start">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-sm font-medium mr-3">
+                      1
+                    </span>
+                    <span className="text-gray-700">
+                      [步骤1描述]
+                    </span>
+                  </li>
+                  {/* 更多步骤... */}
+                </ol>
+              </div>
+            </div>
+
+            {/* After */}
+            <div>
+              <h3 className="text-xl font-bold text-gray-700 mb-4">
+                调整后流程
+              </h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <ol className="space-y-3">
+                  {/* 这里填入调整后的主流程 */}
+                  <li className="flex items-start">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center text-sm font-medium mr-3">
+                      1
+                    </span>
+                    <span className="text-gray-700">
+                      [步骤1描述]
+                    </span>
+                  </li>
+                  {/* 新增步骤标记 */}
+                  <li className="flex items-start">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-medium mr-3">
+                      2
+                    </span>
+                    <div>
+                      <span className="text-gray-700">
+                        [新增步骤描述]
+                      </span>
+                      <span className="ml-2 badge-new">NEW</span>
+                    </div>
+                  </li>
+                  {/* 更多步骤... */}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 渲染应用
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,975 @@
+[
+  {
+    "id": "normal_qna_compact_output",
+    "mode": "normal",
+    "user_message": "Explain our memory pipeline in simple terms",
+    "expected_task_type": "qna",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Explain our memory pipeline in simple terms",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "qna",
+        "derived_queries": [
+          "always_on topic catalog retrieval compression context pack",
+          "memory design now open-loops automation topics"
+        ],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/context.md:10-14",
+          "path": "memory/topics/context.md",
+          "start_line": 10,
+          "end_line": 14,
+          "citation": "memory/topics/context.md:10",
+          "text": "The context pipeline routes the message, retrieves snippets, compresses them, and lints the result.",
+          "score": 0.91,
+          "tags": ["context-pipeline"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "qna",
+      "must_follow": [
+        {
+          "rule": "Load always-on policy before routing.",
+          "why": "It contains invariants for every run.",
+          "sources": ["S1"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The pipeline routes, retrieves, compresses, and lints before reasoning.",
+          "why": "This answers the user's conceptual question.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  },
+  {
+    "id": "debug_ops_artifacts",
+    "mode": "debug",
+    "user_message": "I didn't receive the daily briefing again",
+    "expected_task_type": "ops",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "I didn't receive the daily briefing again",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "ops",
+        "derived_queries": [
+          "Daily AI Briefing cron delivery discord",
+          "openclaw ops discord provider delivery",
+          "automation registry daily briefing"
+        ],
+        "caps": {
+          "top_k_snippets": 14,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/automation.md:22-28",
+          "path": "memory/topics/automation.md",
+          "start_line": 22,
+          "end_line": 28,
+          "citation": "memory/topics/automation.md:22",
+          "text": "Daily briefing delivery issues should retrieve automation and Discord delivery context.",
+          "score": 0.94,
+          "tags": ["automation", "briefing"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "ops",
+      "must_follow": [
+        {
+          "rule": "Do not claim delivery checks ran unless the required evidence exists.",
+          "why": "Ops issues need proof of execution.",
+          "sources": ["S1"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "Daily briefing delivery issues should inspect automation and Discord delivery context.",
+          "why": "The user reports a missed daily briefing.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "answer_stub"],
+      "forbidden_transcript_keys": ["receipt_ledger"]
+    }
+  },
+  {
+    "id": "debug_planning_compression_drops",
+    "mode": "debug",
+    "user_message": "Implement the rollout plan for the context pipeline",
+    "expected_task_type": "planning",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Implement the rollout plan for the context pipeline",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "planning",
+        "derived_queries": [
+          "always_on topic catalog retrieval compression context pack",
+          "memory design now open-loops automation topics"
+        ],
+        "caps": {
+          "top_k_snippets": 12,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/context.md:40-45",
+          "path": "memory/topics/context.md",
+          "start_line": 40,
+          "end_line": 45,
+          "citation": "memory/topics/context.md:40",
+          "text": "Rollout planning should preserve the compact default mode while exposing debug and audit evidence only when requested.",
+          "score": 0.93,
+          "tags": ["planning", "context-pipeline"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": [
+        {
+          "path": "memory/topics/old-rollout-notes.md",
+          "reason": "Dropped due to retrieval cap after compression prioritization."
+        }
+      ]
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "planning",
+      "must_follow": [
+        {
+          "rule": "Keep normal mode compact while debug and audit expose evidence.",
+          "why": "This is a rollout invariant for the pipeline.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The always-on policy must still be loaded before any routing or planning step.",
+          "why": "The planning answer must preserve the pipeline invariant.",
+          "sources": ["S1"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": ["memory/topics/old-rollout-notes.md"]
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed",
+        "expected_dropped_paths": ["memory/topics/old-rollout-notes.md"],
+        "expected_dropped_due_to_limits": ["memory/topics/old-rollout-notes.md"]
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "answer_stub"],
+      "forbidden_transcript_keys": ["receipt_ledger"]
+    }
+  },
+  {
+    "id": "normal_qna_lint_fallback",
+    "mode": "normal",
+    "user_message": "Why do we need snippet IDs in the context pack?",
+    "expected_task_type": "qna",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Why do we need snippet IDs in the context pack?",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "qna",
+        "derived_queries": [
+          "always_on topic catalog retrieval compression context pack",
+          "memory design now open-loops automation topics"
+        ],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/context.md:55-60",
+          "path": "memory/topics/context.md",
+          "start_line": 55,
+          "end_line": 60,
+          "citation": "memory/topics/context.md:55",
+          "text": "Context Pack sources must be snippet IDs only so the downstream model keeps exact provenance without path leakage.",
+          "score": 0.95,
+          "tags": ["context-pack", "provenance"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "qna",
+      "must_follow": [
+        {
+          "rule": "Use snippet IDs instead of file paths in Context Pack sources.",
+          "why": "That is required by the pipeline contract.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "Snippet IDs preserve provenance while keeping the prompt structure compact.",
+          "why": "This is the intended answer, even though the fixture will force lint fallback.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "failed",
+      "errors": ["sources must reference snippet IDs only; found non-schema-compliant path evidence"],
+      "fallback_used": true
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "fallback",
+        "expected_lint_status": "failed",
+        "lint_errors_contains": ["sources must reference snippet IDs only; found non-schema-compliant path evidence"]
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  },
+  {
+    "id": "audit_doc_review_receipts",
+    "mode": "audit",
+    "user_message": "Review this customer-facing claim for accuracy",
+    "expected_task_type": "doc_review",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Review this customer-facing claim for accuracy",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "doc_review",
+        "derived_queries": ["doc review mode untrusted claims validation questions"],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/docs.md:5-9",
+          "path": "memory/topics/docs.md",
+          "start_line": 5,
+          "end_line": 9,
+          "citation": "memory/topics/docs.md:5",
+          "text": "Customer-facing claims require validation questions when the source evidence is not present.",
+          "score": 0.89,
+          "tags": ["doc-review"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "doc_review",
+      "must_follow": [
+        {
+          "rule": "Flag customer-facing claims that lack source evidence.",
+          "why": "Accuracy review should not invent validation.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The always-on policy was loaded before routing.",
+          "why": "Audit mode needs proof for every pipeline step.",
+          "sources": ["S1"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [
+        {
+          "question": "What source evidence supports the customer-facing claim?",
+          "why_needed": "The fixture intentionally lacks the underlying source claim."
+        }
+      ],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed",
+        "require_unknowns_to_confirm": true
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json", "receipt_ledger.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "receipt_ledger", "answer_stub"],
+      "forbidden_transcript_keys": [],
+      "receipt_artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"]
+    }
+  },
+  {
+    "id": "normal_qna_briefing_overlap",
+    "mode": "normal",
+    "user_message": "What is the daily briefing?",
+    "expected_task_type": "qna",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "What is the daily briefing?",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "qna",
+        "derived_queries": [],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/briefing.md:1-5",
+          "path": "memory/topics/briefing.md",
+          "start_line": 1,
+          "end_line": 5,
+          "citation": "memory/topics/briefing.md:1",
+          "text": "The daily briefing is a recurring AI update delivered to Daniel.",
+          "score": 0.9,
+          "tags": ["briefing"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "qna",
+      "must_follow": [
+        {
+          "rule": "Answer the direct question without inflating it into an operations workflow.",
+          "why": "The user is asking for an explanation, not reporting a failure.",
+          "sources": ["S1"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The daily briefing is a recurring AI update delivered to Daniel.",
+          "why": "This is the direct answer to the question.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  },
+  {
+    "id": "normal_planning_briefing_overlap",
+    "mode": "normal",
+    "user_message": "What should we do about the daily briefing rollout?",
+    "expected_task_type": "planning",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "What should we do about the daily briefing rollout?",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "planning",
+        "derived_queries": [],
+        "caps": {
+          "top_k_snippets": 12,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/briefing.md:20-25",
+          "path": "memory/topics/briefing.md",
+          "start_line": 20,
+          "end_line": 25,
+          "citation": "memory/topics/briefing.md:20",
+          "text": "Briefing rollout work should be treated as a planning task when the user asks for strategy.",
+          "score": 0.92,
+          "tags": ["planning", "briefing"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "planning",
+      "must_follow": [
+        {
+          "rule": "Treat explicit rollout strategy requests as planning, even when they mention a briefing topic.",
+          "why": "Intent should beat topic overlap.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "Briefing rollout work should be handled as a planning task.",
+          "why": "The user is asking what to do next.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  },
+  {
+    "id": "normal_doc_review_briefing_overlap",
+    "mode": "normal",
+    "user_message": "Review this customer-facing briefing wording for accuracy",
+    "expected_task_type": "doc_review",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Review this customer-facing briefing wording for accuracy",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "doc_review",
+        "derived_queries": ["doc review mode untrusted claims validation questions"],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/docs.md:12-18",
+          "path": "memory/topics/docs.md",
+          "start_line": 12,
+          "end_line": 18,
+          "citation": "memory/topics/docs.md:12",
+          "text": "Customer-facing briefing wording should be reviewed as documentation rather than treated as a briefing request.",
+          "score": 0.91,
+          "tags": ["doc-review", "briefing"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "doc_review",
+      "must_follow": [
+        {
+          "rule": "Keep customer-facing wording review in doc-review mode.",
+          "why": "The user is asking for wording accuracy.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "Customer-facing briefing wording should be handled as documentation review.",
+          "why": "This request is about wording and accuracy.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  },
+  {
+    "id": "normal_briefing_topic_fallback",
+    "mode": "normal",
+    "user_message": "Daily briefing please",
+    "expected_task_type": "briefing",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Daily briefing please",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "briefing",
+        "derived_queries": [
+          "Daily AI Briefing cron delivery discord",
+          "openclaw ops discord provider delivery",
+          "automation registry daily briefing"
+        ],
+        "caps": {
+          "top_k_snippets": 12,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/briefing.md:30-35",
+          "path": "memory/topics/briefing.md",
+          "start_line": 30,
+          "end_line": 35,
+          "citation": "memory/topics/briefing.md:30",
+          "text": "A plain daily briefing request should stay in briefing mode.",
+          "score": 0.93,
+          "tags": ["briefing"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "briefing",
+      "must_follow": [
+        {
+          "rule": "Keep plain briefing requests in briefing mode.",
+          "why": "No stronger intent class is present.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "A plain daily briefing request should stay in briefing mode.",
+          "why": "This preserves topical fallback behavior.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  },
+  {
+    "id": "normal_planning_daily_log_trigger",
+    "mode": "normal",
+    "user_message": "What did we decide about the rollout plan yesterday?",
+    "expected_task_type": "planning",
+    "expected_snippet_ids": ["S1", "S2"],
+    "expected_daily_log_trigger": true,
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "What did we decide about the rollout plan yesterday?",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "planning",
+        "derived_queries": [],
+        "caps": {
+          "top_k_snippets": 12,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/context.md:70-75",
+          "path": "memory/topics/context.md",
+          "start_line": 70,
+          "end_line": 75,
+          "citation": "memory/topics/context.md:70",
+          "text": "When the user asks what was decided yesterday, planning retrieval may need daily logs.",
+          "score": 0.9,
+          "tags": ["planning", "daily-logs"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "planning",
+      "must_follow": [
+        {
+          "rule": "Use the daily-log trigger when the user asks what was decided yesterday.",
+          "why": "The question is explicitly about recent prior decisions.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "Recent planning decisions may require daily logs when the message asks about yesterday.",
+          "why": "This preserves the router's recency behavior.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": [],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
+    }
+  }
+]

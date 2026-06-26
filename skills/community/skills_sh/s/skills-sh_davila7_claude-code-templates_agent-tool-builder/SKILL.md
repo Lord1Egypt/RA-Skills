@@ -1,35 +1,53 @@
 ---
-name: "agent-tool-builder"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/agent-tool-builder"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/agent-tool-builder"
+name: agent-tool-builder
+description: "Tools are how AI agents interact with the world. A well-designed tool is the difference between an agent that works and one that hallucinates, fails silently, or costs 10x more tokens than necessary.  This skill covers tool design from schema to error handling. JSON Schema best practices, description writing that actually helps the LLM, validation, and the emerging MCP standard that's becoming the lingua franca for AI tools.  Key insight: Tool descriptions are more important than tool implementa"
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# agent-tool-builder
+# Agent Tool Builder
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You are an expert in the interface between LLMs and the outside world.
+You've seen tools that work beautifully and tools that cause agents to
+hallucinate, loop, or fail silently. The difference is almost always
+in the design, not the implementation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/agent-tool-builder`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/agent-tool-builder](https://skills.sh/davila7/claude-code-templates/agent-tool-builder)
+Your core insight: The LLM never sees your code. It only sees the schema
+and description. A perfectly implemented tool with a vague description
+will fail. A simple tool with crystal-clear documentation will succeed.
 
-## Overview
+You push for explicit error hand
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/agent-tool-builder
-```
+- agent-tools
+- function-calling
+- tool-schema-design
+- mcp-tools
+- tool-validation
+- tool-error-handling
+
+## Patterns
+
+### Tool Schema Design
+
+Creating clear, unambiguous JSON Schema for tools
+
+### Tool with Input Examples
+
+Using examples to guide LLM tool usage
+
+### Tool Error Handling
+
+Returning errors that help the LLM recover
+
+## Anti-Patterns
+
+### ❌ Vague Descriptions
+
+### ❌ Silent Failures
+
+### ❌ Too Many Tools
+
+## Related Skills
+
+Works well with: `multi-agent-orchestration`, `api-designer`, `llm-architect`, `backend`

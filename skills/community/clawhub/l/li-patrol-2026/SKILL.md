@@ -1,35 +1,202 @@
----
-name: "运维智能巡检系统"
-description: "支持自动检测组件的运维多层级自动巡检，涵盖资源、中间件、容器、日志及业务指标并导出JSON报告。"
-category: "other"
-source: "ClawHub"
-tags: [inspection, ops]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/li-patrol-2026"
-sourceUrl: "https://clawhub.ai/skills/li-patrol-2026"
----
+# li_patrol_2026
 
-# 运维智能巡检系统
+运维智能巡检系统 - 全方位自动化巡检解决方案
 
-> 支持自动检测组件的运维多层级自动巡检，涵盖资源、中间件、容器、日志及业务指标并导出JSON报告。
+## 简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/li-patrol-2026`
-- **Source URL:** [https://clawhub.ai/skills/li-patrol-2026](https://clawhub.ai/skills/li-patrol-2026)
+这是一个全面的运维智能巡检系统，支持多层级的自动化巡检，包括基础资源、中间件、容器平台、日志、业务指标等多个维度。系统会自动检测目标环境中已安装的软件和服务，仅对存在的组件进行真实巡检。
 
-## Overview
+## 核心特性
 
+- ✅ **智能检测**: 自动检测已安装软件，仅对存在的组件进行巡检
+- ✅ **多层巡检**: 支持10层巡检体系，涵盖运维各个方面
+- ✅ **风险分级**: P1/P2/P3三级风险，自动计算健康评分
+- ✅ **报告导出**: 支持JSON格式报告导出
+- ✅ **灵活配置**: 支持命令行参数指定巡检层级
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 巡检层级
+
+### 实时巡检层（真实巡检）
+
+1. **基础资源巡检**: CPU、内存、磁盘、网络、Inode、系统负载
+2. **中间件巡检**: Redis、MySQL、Kafka、MongoDB、PostgreSQL、Elasticsearch、RabbitMQ、Nginx、Tomcat
+
+### 混合巡检层（真实/模拟）
+
+3. **K8S巡检**: Node、Pod、Deployment、DaemonSet、Ingress、Event
+4. **日志巡检**: ERROR、WARN、FATAL、异常分析
+
+### 模拟巡检层
+
+5. **业务巡检**: 订单成功率、支付成功率、接口响应时间等
+
+### 扩展巡检层（规划中）
+
+6. **安全巡检**: SSH配置、防火墙、漏洞扫描、SSL证书
+7. **配置管理巡检**: 配置文件、服务配置、版本控制
+8. **性能巡检**: 应用性能、系统性能、IOPS
+9. **容量规划巡检**: 资源容量、业务容量、趋势分析
+10. **灾备巡检**: 备份检查、恢复能力、RTO/RPO
+
+## 快速开始
+
+### 执行完整巡检
 ```bash
-hermes skills install clawhub/li-patrol-2026
+python3 intelligent_inspection.py
 ```
+
+### 导出JSON报告
+```bash
+python3 intelligent_inspection.py --export
+```
+
+### 指定巡检层级
+```bash
+# 仅执行基础资源巡检
+python3 intelligent_inspection.py --layers resource
+
+# 执行基础资源和中间件巡检
+python3 intelligent_inspection.py --layers resource middleware
+
+# 执行所有层级巡检（默认）
+python3 intelligent_inspection.py --layers all
+```
+
+## 输出示例
+
+```
+================================================================================
+智能运维巡检报告
+巡检时间: 2026-06-04 09:49:19
+主机名: your-hostname
+操作系统: Linux 6.8.0-117-generic
+================================================================================
+
+执行: 基础资源巡检
+健康评分: 100/100
+摘要: 系统资源状态良好
+
+✓ CPU使用率
+  当前值: 2.3%
+  阈值: P1: >95% | P2: >85%
+  状态: 正常 | 风险等级: 正常
+
+✓ 内存使用率
+  当前值: 67.4% (2.55GB/3.78GB)
+  阈值: P1: >95% | P2: >85%
+  状态: 正常 | 风险等级: 正常
+
+================================================================================
+巡检总结
+================================================================================
+总体健康评分: 98/100
+P1级别问题: 0个
+P2级别问题: 1个
+系统状态: 优秀 ✓
+```
+
+## 风险等级说明
+
+| 等级 | 名称 | 说明 | 分数影响 |
+|------|------|------|----------|
+| P1 | 严重 | 核心功能不可用，需要立即处理 | -20分 |
+| P2 | 警告 | 功能受损或存在风险，需要尽快处理 | -10分 |
+| P3 | 提示 | 存在潜在问题，建议处理 | -5分 |
+
+## 健康评分算法
+
+- 基础分: 100分
+- 每个P1问题: -20分
+- 每个P2问题: -10分
+- 每个P3问题: -5分
+- 最低分: 0分
+
+评分等级：
+- 90-100分: 优秀 ✓
+- 70-89分: 良好
+- 50-69分: 需关注
+- 0-49分: 需立即处理 ✗
+
+## 依赖要求
+
+### 核心依赖（必需）
+```bash
+pip install psutil
+```
+
+### 可选依赖
+```bash
+pip install requests  # 用于Elasticsearch检查
+```
+
+## 支持的中间件
+
+系统会自动检测以下中间件，仅对已安装的进行巡检：
+
+- **Redis**: 连接数、慢查询、内存碎片率、主从状态
+- **MySQL/MariaDB**: QPS、TPS、慢SQL、主从延迟
+- **Kafka**: Broker状态、ISR数量、Consumer Lag
+- **MongoDB**: 连接数、复制集状态、慢查询
+- **PostgreSQL**: 连接数、慢查询、复制延迟
+- **Elasticsearch**: 集群健康状态、节点数量、分片状态
+- **RabbitMQ**: 队列堆积、连接数、消息吞吐量
+- **Nginx**: 配置语法检查、进程状态
+- **Tomcat**: JVM堆内存、线程池状态
+
+## 最佳实践
+
+### 定时巡检
+使用crontab配置定时巡检：
+```bash
+# 每15分钟执行一次基础资源巡检
+*/15 * * * * /usr/bin/python3 /path/to/intelligent_inspection.py --layers resource --export
+
+# 每小时执行一次完整巡检
+0 * * * * /usr/bin/python3 /path/to/intelligent_inspection.py --export
+```
+
+### 告警集成
+根据巡检结果配置告警：
+- P1级别：电话、短信告警
+- P2级别：企业微信、钉钉告警
+- P3级别：邮件、工单通知
+
+## 文件说明
+
+| 文件 | 说明 |
+|------|------|
+| `intelligent_inspection.py` | 主巡检脚本 |
+| `README.md` | 详细巡检文档 |
+| `README_INSPECTION.md` | 使用指南 |
+| `skill.json` | Skill元数据配置 |
+
+## 注意事项
+
+1. **权限要求**: 部分巡检需要root权限或sudo权限
+2. **性能影响**: 巡检过程会消耗一定的系统资源，建议在业务低峰期执行
+3. **网络依赖**: 部分巡检需要网络连接，确保网络畅通
+4. **数据安全**: 巡检报告可能包含敏感信息，注意数据脱敏和访问控制
+5. **存储空间**: 历史报告会占用存储空间，定期清理
+
+## 版本历史
+
+### v1.0.0 (2026-06-04)
+- 初始版本
+- 支持5层基础巡检
+- 支持自动检测已安装组件
+- 支持JSON报告导出
+- 10层完整巡检文档
+
+## 许可证
+
+MIT License
+
+## 作者
+
+@43622283
+
+## 技术支持
+
+详细文档请查看：
+- [README.md](README.md) - 完整巡检文档
+- [README_INSPECTION.md](README_INSPECTION.md) - 使用指南

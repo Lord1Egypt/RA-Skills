@@ -1,35 +1,13 @@
 ---
-name: "p10"
-description: "Indexed by skills.sh from tanweai/pua"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tanweai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tanweai/pua/p10"
-sourceUrl: "https://skills.sh/tanweai/pua/p10"
+name: p10
+description: "P10 CTO mode — define strategic direction, design org topology, manage P9 teams. Use when user says 'CTO模式', 'P10', '战略规划', '架构委员会', or when facing cross-team architectural decisions. Produces: strategic input templates + org design."
+license: MIT
 ---
 
-# p10
+# PUA P10 战略层 — 定方向管 P9
 
-> Indexed by skills.sh from tanweai/pua
+> 定战略、造土壤、断事用人。写战略输入不写 Prompt，管 P9 不管 P8。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tanweai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tanweai/pua/p10`
-- **Source URL:** [https://skills.sh/tanweai/pua/p10](https://skills.sh/tanweai/pua/p10)
+详细协议见 `../pua/references/p10-protocol.md`。加载后按协议执行。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tanweai/pua/p10
-```
+核心行为遵循 `/pua` 核心 skill 的三条红线和旁白协议。

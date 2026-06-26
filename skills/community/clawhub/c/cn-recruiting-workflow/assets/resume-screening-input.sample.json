@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "generated_for": "china internet recruiting",
+    "workflow": "score_candidate",
+    "prepared_by": "招聘经理",
+    "date": "2026-05-19"
+  },
+  "job": {
+    "job_title": "用户增长产品经理",
+    "department": "增长产品部",
+    "city": "上海",
+    "hiring_manager": "增长产品负责人",
+    "hiring_preference": "业务急招，优先看增长项目实战和跨团队推动力",
+    "must_have_skills": [
+      "增长策略",
+      "数据分析",
+      "A/B实验",
+      "跨团队协作"
+    ],
+    "preferred_skills": [
+      "电商或本地生活经验",
+      "会员体系经验",
+      "带项目 owner 经验"
+    ],
+    "jd_summary": "负责用户增长、留存和转化相关产品策略设计，推动实验、数据分析和跨团队落地，要求候选人具备成熟增长项目经验和较强业务理解。"
+  },
+  "candidate": {
+    "candidate_name": "林可欣",
+    "current_title": "高级产品经理",
+    "current_company": "某中型内容平台",
+    "city": "上海",
+    "years_of_experience": "6年",
+    "education": "本科",
+    "industry_experience": [
+      "内容平台",
+      "会员增长",
+      "用户运营协同"
+    ],
+    "core_skills": [
+      "增长漏斗分析",
+      "活动转化优化",
+      "会员策略",
+      "跨部门协同"
+    ],
+    "project_highlights": [
+      "负责会员首购转化项目，3个月提升付费转化12%",
+      "推动拉新落地页实验体系，迭代8轮实验",
+      "与运营、研发、商业化团队协同推进季度增长项目"
+    ],
+    "salary_expectation": "税前月薪 35k-40k",
+    "availability": "30天",
+    "resume_summary": "有内容平台增长和会员体系经验，做过多轮增长实验和跨团队项目推进，但没有明确电商或本地生活背景。"
+  },
+  "hr_owner": {
+    "owner_name": "May",
+    "tracker_stage": "简历评估"
+  }
+}
+

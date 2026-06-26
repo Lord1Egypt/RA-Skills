@@ -1,0 +1,16 @@
+name: Release Drafter
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      # Drafts your Next Release Notes as Pull Requests are merged into "main"
+      - uses: release-drafter/release-drafter@v6
+        with:
+          # Default: false
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

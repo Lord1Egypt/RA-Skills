@@ -1,0 +1,14 @@
+{
+  "name": "gworkspace",
+  "version": "3.2.1",
+  "description": "G.workspace plugin for OpenClaw — shared file space via REST API",
+  "type": "module",
+  "main": "index.ts",
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.3.0"
+  }
+}

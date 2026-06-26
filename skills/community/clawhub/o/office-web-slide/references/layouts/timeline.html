@@ -1,0 +1,96 @@
+<!--
+  Layout: timeline
+  时间线/流程页 — 有序节点展示
+  Agent 根据实际节点数增减 timeline-item（3-6 个为佳，7 个在默认 padding 下可能超出可视区域被裁切）
+-->
+<section class="slide slide--timeline" data-slide="{{N}}">
+  <h2 class="timeline-title">{{页面标题}}</h2>
+  <div class="timeline-track">
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-body">
+        <h3 class="timeline-heading">{{节点标题，如年份/步骤名}}</h3>
+        <p class="timeline-desc">{{节点描述}}</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-body">
+        <h3 class="timeline-heading">{{节点标题}}</h3>
+        <p class="timeline-desc">{{节点描述}}</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-body">
+        <h3 class="timeline-heading">{{节点标题}}</h3>
+        <p class="timeline-desc">{{节点描述}}</p>
+      </div>
+    </div>
+    <!-- Agent 根据内容增减 timeline-item -->
+  </div>
+</section>
+
+<style>
+.slide--timeline {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+.slide--timeline .timeline-title {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-md);
+}
+.slide--timeline .timeline-track {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  align-self: center;
+  position: relative;
+  min-height: 0;
+  padding-top: 4px;           /* marker ring shadow 不被裁切 */
+  overflow: visible;           /* 允许 marker 装饰元素超出 */
+}
+.slide--timeline .timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+}
+.slide--timeline .timeline-item {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.slide--timeline .timeline-marker {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 0 0 2px var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  flex-shrink: 0;
+}
+.slide--timeline .timeline-body {
+  padding: var(--spacing-sm);
+}
+.slide--timeline .timeline-heading {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-primary);
+}
+.slide--timeline .timeline-desc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+</style>

@@ -1,0 +1,12 @@
+{
+  "name": "Mobile Commerce UX Auditor",
+  "slug": "mobile-commerce-ux-auditor",
+  "version": "1.0.0",
+  "description": "Audit mobile commerce user experience, evaluate page speed, checkout flow, navigation, and provide UX improvement recommendations.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["mobile", "ux", "ecommerce", "audit", "conversion-rate"],
+  "language": "en",
+  "outputs": "markdown",
+  "requires_api": false,
+  "readiness": "stable"
+}

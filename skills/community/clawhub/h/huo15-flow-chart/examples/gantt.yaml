@@ -1,0 +1,21 @@
+type: gantt
+title: 火一五 Q2 产品路线图
+dateFormat: YYYY-MM-DD
+axisFormat: "%m-%d"
+
+sections:
+  - name: 基建
+    tasks:
+      - { name: 服务器扩容,   id: infra1, status: done,    start: 2026-04-01, duration: 5d }
+      - { name: 监控升级,     id: infra2, status: active,  start: 2026-04-06, duration: 10d }
+
+  - name: 功能迭代
+    tasks:
+      - { name: OpenClaw Enhance v2026.4, id: f1, status: done,   start: 2026-04-01, duration: 14d }
+      - { name: 知识库 shared scope,      id: f2, status: active, start: 2026-04-15, duration: 7d }
+      - { name: 小红书选题技能,            id: f3, status: "",     start: 2026-04-22, duration: 5d }
+
+  - name: 发布
+    tasks:
+      - { name: v2026.4.11 RC,  id: r1, status: crit, start: 2026-04-18, duration: 3d }
+      - { name: v2026.4.11 GA,  id: r2, status: milestone, start: 2026-04-24, duration: 0d }

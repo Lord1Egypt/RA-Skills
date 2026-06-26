@@ -1,35 +1,129 @@
----
-name: "Countdown Timer - 倒计时助手"
-description: "提供倒计时管理、重要日子提醒、番茄钟工作休息定时及自定义提醒功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/countdown-timer"
-sourceUrl: "https://clawhub.ai/skills/countdown-timer"
----
+# ⏱️ Countdown Timer - 倒计时助手
 
-# Countdown Timer - 倒计时助手
+## 触发规则
 
-> 提供倒计时管理、重要日子提醒、番茄钟工作休息定时及自定义提醒功能。
+**关键词：**
+- 倒计时、还有多少天
+- 距离 XXX 还有多久
+- 重要日子、纪念日
+- 番茄钟、定时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/countdown-timer`
-- **Source URL:** [https://clawhub.ai/skills/countdown-timer](https://clawhub.ai/skills/countdown-timer)
+**场景：**
+- 用户想知道距离节日还有多久
+- 用户需要重要日子提醒
+- 用户需要番茄钟/定时功能
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/countdown-timer
+1. **倒计时管理**
+   - 添加倒计时
+   - 查看倒计时
+   - 删除倒计时
+
+2. **重要日子**
+   - 生日倒计时
+   - 纪念日
+   - 节假日
+
+3. **番茄钟**
+   - 25 分钟工作
+   - 5 分钟休息
+   - 自定义时长
+
+4. **定时提醒**
+   - 一次性提醒
+   - 周期性提醒
+   - 自定义提醒
+
+## 权限需求
+
+- [x] 文件读写（倒计时存储）
+- [x] 定时任务（提醒）
+
+## 示例对话
+
 ```
+用户：距离春节还有多少天
+助手：🎉 **距离春节倒计时**
+
+📅 目标日期：2026-01-29
+⏱️ 剩余：289 天
+📆 日期：星期四
+
+用户：记住我的生日是 5 月 20 日
+助手：✅ 生日已记录
+
+🎂 生日倒计时
+📅 日期：5 月 20 日
+⏱️ 距离下次生日：65 天
+🎉 到时候我会提醒你！
+
+用户：添加倒计时：距离发工资还有 10 天
+助手：✅ 倒计时已添加
+
+💰 距离发工资
+📅 目标：2026-03-26
+⏱️ 剩余：10 天
+🔔 提醒：开启
+
+用户：我的倒计时列表
+助手：⏱️ **倒计时列表**
+
+1. 💰 发工资 - 10 天 (3/26)
+2. 🎂 我的生日 - 65 天 (5/20)
+3. ✈️ 旅行 - 30 天 (4/15)
+4. 🎄 圣诞节 - 284 天 (12/25)
+
+用户：开启番茄钟
+助手：🍅 **番茄钟已启动**
+
+⏱️ 工作：25 分钟
+💡 提示：专注工作，不要分心！
+
+25 分钟后我会提醒你休息~
+
+用户：10 分钟后提醒我关火
+助手：⏰ 定时提醒已设置
+
+📝 任务：关火
+⏱️ 时间：10 分钟后
+🔔 提醒方式：消息推送
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/countdown-timer/countdowns.json
+{
+  "countdowns": [
+    {
+      "title": "发工资",
+      "target_date": "2026-03-26",
+      "icon": "💰",
+      "reminder": true
+    },
+    {
+      "title": "我的生日",
+      "target_date": "2026-05-20",
+      "icon": "🎂",
+      "yearly": true
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 倒计时管理
+- [ ] 重要日子
+- [ ] 番茄钟
+- [ ] 定时提醒
+- [ ] 桌面小部件
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

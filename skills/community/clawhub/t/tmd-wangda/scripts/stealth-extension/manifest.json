@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Stealth Anti-DevTools",
+  "version": "1.0",
+  "description": "Bypass anti-devtools detection on web pages",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["stealth.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}

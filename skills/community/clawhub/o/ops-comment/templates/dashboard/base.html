@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书养号数据看板 - {date_range}</title>
+    <style>
+        :root {
+            --primary: #ff2442;
+            --primary-light: #ff244220;
+            --bg: #f5f5f7;
+            --card-bg: #ffffff;
+            --text: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --border: #e5e5e7;
+            --success: #34c759;
+            --warning: #ff9500;
+            --danger: #ff3b30;
+            --info: #007aff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 24px 0;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .header .last-updated {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); }
+        .card h3 {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .card .value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+        .card .sub {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+        .card .progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .card .progress-bar .fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: width 0.5s;
+        }
+
+        .chart-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .chart-section h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        .health-indicator {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+        .health-score {
+            font-size: 48px;
+            font-weight: 700;
+            min-width: 80px;
+            text-align: center;
+        }
+        .health-score.good { color: var(--success); }
+        .health-score.warn { color: var(--warning); }
+        .health-score.bad { color: var(--danger); }
+        .health-details { flex: 1; }
+        .health-details h3 { font-size: 16px; margin-bottom: 4px; }
+        .health-details p { font-size: 13px; color: var(--text-secondary); }
+
+        .footer {
+            text-align: center;
+            padding: 24px 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>养号数据看板</h1>
+        <div class="subtitle">{account_name} · {date_range}</div>
+        <div class="last-updated">生成时间：<span id="gen-time"></span></div>
+    </div>
+
+    <!-- 健康度 -->
+    <div class="health-indicator">
+        <div class="health-score" id="health-score-display"></div>
+        <div class="health-details">
+            <h3>账号健康度</h3>
+            <p id="health-message"></p>
+        </div>
+    </div>
+
+    <!-- 今日概览 -->
+    <div class="grid" id="overview-cards"></div>
+
+    <!-- 图表区域 -->
+    <div class="chart-section">
+        <h3>近 7 天互动趋势</h3>
+        <canvas id="trendChart" height="80"></canvas>
+    </div>
+
+    <div class="two-col">
+        <div class="chart-section">
+            <h3>动作类型分布</h3>
+            <canvas id="actionPieChart" height="200"></canvas>
+        </div>
+        <div class="chart-section">
+            <h3>时段分布</h3>
+            <canvas id="hourlyChart" height="200"></canvas>
+        </div>
+    </div>
+
+    <div class="footer">
+        xhs-nurture v1.0 · 数据仅供参考
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <script>
+        const DATA = {json_data_placeholder};
+
+        // 生成时间
+        document.getElementById('gen-time').textContent = new Date().toLocaleString('zh-CN');
+
+        // 健康度
+        (function() {
+            const score = DATA.health_score;
+            const el = document.getElementById('health-score-display');
+            el.textContent = score;
+            el.className = 'health-score ' + (score > 70 ? 'good' : score > 30 ? 'warn' : 'bad');
+
+            const msg = document.getElementById('health-message');
+            if (score > 70) msg.textContent = '账号状态良好，可正常执行互动任务';
+            else if (score > 30) msg.textContent = '近期出现风控信号，建议降低互动频率';
+            else msg.textContent = '账号状态异常，建议暂停自动互动 24-48 小时';
+        })();
+
+        // 概览卡片
+        (function() {
+            const cards = [
+                { title: '点赞', value: DATA.today.likes, limit: DATA.limits.likes, color: '#ff2442' },
+                { title: '收藏', value: DATA.today.collects, limit: DATA.limits.collects, color: '#ff9500' },
+                { title: '关注', value: DATA.today.follows, limit: DATA.limits.follows, color: '#34c759' },
+                { title: '评论', value: DATA.today.comments, limit: DATA.limits.comments, color: '#007aff' },
+                { title: '总动作', value: DATA.today.total, limit: DATA.limits.total, color: '#5856d6' },
+                { title: '成功率', value: (DATA.today.success_rate * 100).toFixed(0) + '%', limit: null, color: '#34c759' },
+                { title: '运行时长', value: DATA.today.duration_minutes + 'min', limit: null, color: '#ff9500' },
+                { title: '会话数', value: DATA.today.sessions || '-', limit: null, color: '#007aff' },
+            ];
+
+            const container = document.getElementById('overview-cards');
+            cards.forEach(card => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                let progressHtml = '';
+                if (card.limit) {
+                    const pct = Math.min(100, (card.value / card.limit) * 100);
+                    progressHtml = `
+                        <div class="sub">${card.value} / ${card.limit}</div>
+                        <div class="progress-bar"><div class="fill" style="width:${pct}%;background:${card.color}"></div></div>
+                    `;
+                }
+                div.innerHTML = `
+                    <h3>${card.title}</h3>
+                    <div class="value" style="color:${card.color}">${card.limit ? card.value : card.value}</div>
+                    ${progressHtml}
+                `;
+                container.appendChild(div);
+            });
+        })();
+
+        // 趋势图
+        (function() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: DATA.trend.dates.map(d => d.slice(5)),
+                    datasets: [
+                        { label: '点赞', data: DATA.trend.likes, borderColor: '#ff2442', backgroundColor: '#ff244420', fill: true, tension: 0.4 },
+                        { label: '收藏', data: DATA.trend.collects, borderColor: '#ff9500', backgroundColor: '#ff950020', fill: true, tension: 0.4 },
+                        { label: '关注', data: DATA.trend.follows, borderColor: '#34c759', backgroundColor: '#34c75920', fill: true, tension: 0.4 },
+                        { label: '评论', data: DATA.trend.comments, borderColor: '#007aff', backgroundColor: '#007aff20', fill: true, tension: 0.4 },
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { intersect: false, mode: 'index' },
+                    plugins: { legend: { position: 'bottom' } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        })();
+
+        // 动作占比
+        (function() {
+            const ctx = document.getElementById('actionPieChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['点赞', '收藏', '关注', '评论'],
+                    datasets: [{
+                        data: [DATA.today.likes, DATA.today.collects, DATA.today.follows, DATA.today.comments],
+                        backgroundColor: ['#ff2442', '#ff9500', '#34c759', '#007aff'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '60%',
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        })();
+
+        // 时段分布
+        (function() {
+            const ctx = document.getElementById('hourlyChart').getContext('2d');
+            const hours = DATA.hourly_distribution || new Array(24).fill(0);
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Array.from({length: 24}, (_, i) => `${i}h`),
+                    datasets: [{
+                        data: hours,
+                        backgroundColor: hours.map((_, i) => {
+                            if ((i >= 9 && i <= 11) || (i >= 14 && i <= 15) || (i >= 20 && i <= 22))
+                                return '#ff244480';
+                            return '#ff244420';
+                        }),
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "expression-coach",
+  "version": "1.0.0",
+  "description": "表达教练 - 分析文字表达，指出问题，给出优化建议，帮你把话说清楚",
+  "author": "Spark ⚡",
+  "license": "MIT",
+  "type": "module",
+  "keywords": ["expression", "coach", "writing", "communication", "feishu"],
+  "files": ["SKILL.md"]
+}

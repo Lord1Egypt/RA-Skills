@@ -1,35 +1,35 @@
 ---
-name: "Feeds Digest"
-description: "Multi-Source-RSS-Digest (YouTube, MS Tech Community, GitHub) mit Datums- und Topic-Filter und optionaler LLM-Zusammenfassung."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feeds-digest"
-sourceUrl: "https://clawhub.ai/skills/feeds-digest"
+name: feeds-digest
+description: Multi-Source-RSS-Digest (YouTube, MS Tech Community, GitHub) mit Datums- und Topic-Filter und optionaler LLM-Zusammenfassung.
+version: 1.0.0
+license: MIT
 ---
 
-# Feeds Digest
+# feeds-digest
 
-> Multi-Source-RSS-Digest (YouTube, MS Tech Community, GitHub) mit Datums- und Topic-Filter und optionaler LLM-Zusammenfassung.
+Sammelt Updates aus RSS/Atom-Feeds, filtert nach Zeitraum und Themen, gibt einen Markdown-Digest aus.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feeds-digest`
-- **Source URL:** [https://clawhub.ai/skills/feeds-digest](https://clawhub.ai/skills/feeds-digest)
+## Schnellstart
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feeds-digest
+bash scripts/install.sh                     # einmalig
+feeds-digest --since 7d                     # Standard-Digest
+feeds-digest --since 3d --topics bc,fabric  # gefiltert
+feeds-digest --llm                          # mit LLM-Summary
+feeds-digest --output report.md             # in Datei
+feeds-digest --test                         # Feed-Erreichbarkeit prüfen
 ```
+
+## Quellen
+
+- YouTube-Kanäle (RSS)
+- Microsoft Tech Community (RSS)
+- GitHub Releases (Atom)
+- Generische RSS/Atom-Feeds
+
+## Siehe
+
+- `README.md` — ausführliche Doku
+- `references/youtube-channel-discovery.md` — Channel-IDs finden
+- `references/ms-tc-categories.md` — MS TC Kategorien
+- `config/config.example.yaml` — Config-Vorlage

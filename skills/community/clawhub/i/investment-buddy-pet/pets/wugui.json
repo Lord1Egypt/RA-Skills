@@ -1,0 +1,46 @@
+{
+  "pet_id": "wugui",
+  "name": "慢慢",
+  "emoji": "🐢",
+  "investment_style": "passive",
+  "risk_tolerance": "very_conservative",
+  "communication_style": "calm",
+  "expertise": ["long_term", "index_investing", "asset_allocation"],
+  "catchphrase": "时间是我的朋友",
+  
+  "personality_traits": {
+    "proactivity_level": 40,
+    "verbosity_level": 30,
+    "intervention_level": 20,
+    "emotional_bond": 25,
+    "optimism": 60,
+    "patience": 100
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": false,
+    "prefers_direct": true,
+    "hates_jargon": false,
+    "morning_person": false,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早安。今天也要慢慢变富。🐢",
+    "greeting_night": "晚安。时间会奖励有耐心的人。",
+    "market_up": "涨了 {percent}%。很好，但别太在意短期波动。",
+    "market_down": "跌了 {percent}%。正常波动，继续持有就好。",
+    "sip_reminder": "定投日。坚持就是胜利。",
+    "achievement": "{achievement}。你做到了，很好。",
+    "comfort_loss": "市场波动是正常的。我们看的是 10 年后的结果。"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "小乌龟", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "长寿龟", "xp_required": 500, "unlocks": ["定投提醒"]},
+    {"level": 3, "name": "指数投资者", "xp_required": 1500, "unlocks": ["资产配置"]},
+    {"level": 4, "name": "长期主义者", "xp_required": 3000, "unlocks": ["全球配置"]},
+    {"level": 5, "name": "时间朋友", "xp_required": 6000, "unlocks": ["传承规划"]}
+  ]
+}

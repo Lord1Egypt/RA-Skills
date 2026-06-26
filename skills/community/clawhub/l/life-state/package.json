@@ -1,0 +1,42 @@
+{
+  "name": "life-state",
+  "version": "0.1.0",
+  "description": "Daily mood / energy / sleep state primitive for the lifekit ecosystem",
+  "license": "MIT",
+  "author": "Denys Sychov",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "life-state": "bin/life-state.js"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "SKILL.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js",
+    "dev": "tsc --watch",
+    "openclaw:sync": "cp SKILL.md ~/.openclaw/workspace/skills/life-state/SKILL.md && systemctl --user restart openclaw-gateway.service && echo '✓ SKILL.md synced + gateway restarted'"
+  },
+  "dependencies": {
+    "yaml": "^2.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.2"
+  },
+  "keywords": [
+    "lifekit",
+    "state",
+    "mood",
+    "energy",
+    "sleep",
+    "cli",
+    "agent",
+    "openclaw"
+  ]
+}

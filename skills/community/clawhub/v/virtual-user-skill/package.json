@@ -1,0 +1,33 @@
+{
+  "name": "virtual-user-skill",
+  "version": "1.0.0",
+  "description": "基于场景库的虚拟用户对话技能 - 生成虚拟用户类型进行对话访谈和产品测评",
+  "main": "src/main.py",
+  "scripts": {
+    "start": "python src/main.py",
+    "init": "python src/encrypt.py",
+    "prepare-data": "python scripts/prepare_data.py",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": [
+    "virtual-user",
+    "user-interview",
+    "scenario-library",
+    "user-research",
+    "product-testing"
+  ],
+  "author": "飞猪用研团队",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/virtual-user-skill.git"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "sentence-transformers": ">=2.2.0",
+    "numpy": ">=1.21.0",
+    "scikit-learn": ">=1.0.0",
+    "cryptography": ">=3.4.0",
+    "pandas": ">=1.3.0"
+  }
+}

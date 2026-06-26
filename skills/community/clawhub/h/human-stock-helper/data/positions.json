@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-03-09",
+  "positions": [],
+  "trades": [],
+  "statistics": {
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "total_pnl": 0,
+    "win_rate": 0,
+    "avg_profit": 0,
+    "avg_loss": 0
+  },
+  "notes": "示例数据 - 请替换为您的实际持仓"
+}

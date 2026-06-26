@@ -1,0 +1,156 @@
+{
+  "title": "AANA Meeting Summary Checker",
+  "type": "object",
+  "required": [
+    "meeting_source",
+    "output_type",
+    "summary_status",
+    "evidence_status",
+    "action_item_status",
+    "owner_status",
+    "date_status",
+    "claim_attribution_status",
+    "privacy_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "meeting_source": {
+      "type": "string",
+      "enum": [
+        "transcript",
+        "notes",
+        "chat",
+        "agenda",
+        "calendar",
+        "recording",
+        "user_summary",
+        "unknown"
+      ]
+    },
+    "output_type": {
+      "type": "string",
+      "enum": [
+        "summary",
+        "minutes",
+        "action_items",
+        "decisions",
+        "follow_up",
+        "task_updates",
+        "public_notes",
+        "unknown"
+      ]
+    },
+    "summary_status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "needs_transcript",
+        "needs_owner_confirmation",
+        "needs_date_confirmation",
+        "needs_claim_evidence",
+        "needs_redaction",
+        "needs_review",
+        "block_share"
+      ]
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "partial",
+        "missing",
+        "conflicting",
+        "unknown"
+      ]
+    },
+    "action_item_status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "inferred",
+        "missing",
+        "needs_confirmation",
+        "none"
+      ]
+    },
+    "owner_status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "inferred",
+        "missing",
+        "unclear",
+        "not_applicable"
+      ]
+    },
+    "date_status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "inferred",
+        "missing",
+        "unclear",
+        "not_applicable"
+      ]
+    },
+    "claim_attribution_status": {
+      "type": "string",
+      "enum": [
+        "supported",
+        "partial",
+        "unsupported",
+        "attribution_unclear",
+        "not_applicable"
+      ]
+    },
+    "privacy_status": {
+      "type": "string",
+      "enum": [
+        "clear",
+        "needs_redaction",
+        "sensitive",
+        "unknown"
+      ]
+    },
+    "meeting_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "invented_decision",
+          "invented_action_item",
+          "wrong_owner",
+          "invented_due_date",
+          "unsupported_claim",
+          "attribution_error",
+          "private_data",
+          "unapproved_sharing",
+          "customer_impact",
+          "hr_impact",
+          "legal_financial_impact",
+          "public_notes",
+          "unknown"
+        ]
+      }
+    },
+    "revision_needed": {
+      "type": "string"
+    },
+    "confirmation_needed": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "retrieve",
+        "request_confirmation",
+        "route_to_review",
+        "block"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

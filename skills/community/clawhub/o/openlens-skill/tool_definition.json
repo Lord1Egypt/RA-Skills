@@ -1,0 +1,79 @@
+{
+  "name": "run_openlens_task",
+  "description": "Generate AI images or videos using any OpenAI-compatible API (T2I, T2V, I2V, V2V, T2T). Files are saved locally and the absolute path is returned.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "description": "API base URL, e.g. https://api.onlypixai.com/v1"
+      },
+      "api_key": {
+        "type": "string",
+        "description": "Bearer API key for authentication"
+      },
+      "model_id": {
+        "type": "string",
+        "description": "Model identifier, e.g. 'video/wan2.6-t2v', 'flux.1-schnell'"
+      },
+      "prompt": {
+        "type": "string",
+        "description": "Text prompt describing the desired output"
+      },
+      "task_type": {
+        "type": "string",
+        "enum": ["T2I", "T2V", "I2V", "V2V", "T2T"],
+        "default": "T2V",
+        "description": "Task type: T2I=text-to-image, T2V=text-to-video, I2V=image-to-video, V2V=video-to-video, T2T=text generation"
+      },
+      "video_specs": {
+        "type": "object",
+        "description": "Video/image generation parameters",
+        "properties": {
+          "resolution": {
+            "type": "string",
+            "enum": ["16:9", "9:16", "1:1", "4:3", "21:9"],
+            "default": "16:9",
+            "description": "Aspect ratio"
+          },
+          "duration": {
+            "type": "integer",
+            "enum": [5, 10, 15],
+            "default": 10,
+            "description": "Video duration in seconds"
+          },
+          "fps": {
+            "type": "integer",
+            "enum": [24, 30],
+            "default": 24,
+            "description": "Frames per second"
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 50,
+            "default": 20,
+            "description": "Inference steps (T2I only)"
+          }
+        }
+      },
+      "image_path": {
+        "type": "string",
+        "description": "Absolute local path to source image (required for I2V)"
+      },
+      "video_path": {
+        "type": "string",
+        "description": "Absolute local path to source video (required for V2V)"
+      },
+      "system_prompt": {
+        "type": "string",
+        "description": "System message for T2T tasks (optional)"
+      },
+      "outputs_dir": {
+        "type": "string",
+        "description": "Override the default output folder path"
+      }
+    },
+    "required": ["url", "api_key", "model_id", "prompt"]
+  }
+}

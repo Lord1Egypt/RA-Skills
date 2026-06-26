@@ -1,0 +1,38 @@
+{
+  "mysql": {
+    "driver_class": "com.mysql.cj.jdbc.Driver",
+    "patterns": [
+      "{skill_root}/drivers/mysql/*.jar",
+      "{home}/.m2/repository/com/mysql/mysql-connector-j/*/mysql-connector-j-*.jar",
+      "{home}/.m2/repository/mysql/mysql-connector-java/*/mysql-connector-java-*.jar",
+      "{home}/environment/mavenRepository/com/mysql/mysql-connector-j/*/mysql-connector-j-*.jar",
+      "{home}/environment/mavenRepository/mysql/mysql-connector-java/*/mysql-connector-java-*.jar"
+    ]
+  },
+  "oracle": {
+    "driver_class": "oracle.jdbc.OracleDriver",
+    "patterns": [
+      "{skill_root}/drivers/oracle/*.jar",
+      "{home}/.m2/repository/com/oracle/database/jdbc/ojdbc8/*/ojdbc8-*.jar",
+      "{home}/.m2/repository/com/oracle/database/jdbc/ojdbc11/*/ojdbc11-*.jar",
+      "{home}/environment/mavenRepository/com/oracle/database/jdbc/ojdbc8/*/ojdbc8-*.jar",
+      "{home}/environment/mavenRepository/com/oracle/database/jdbc/ojdbc11/*/ojdbc11-*.jar"
+    ]
+  },
+  "postgresql": {
+    "driver_class": "org.postgresql.Driver",
+    "patterns": [
+      "{skill_root}/drivers/postgresql/*.jar",
+      "{home}/.m2/repository/org/postgresql/postgresql/*/postgresql-*.jar",
+      "{home}/environment/mavenRepository/org/postgresql/postgresql/*/postgresql-*.jar"
+    ]
+  },
+  "sqlserver": {
+    "driver_class": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+    "patterns": [
+      "{skill_root}/drivers/sqlserver/*.jar",
+      "{home}/.m2/repository/com/microsoft/sqlserver/mssql-jdbc/*/mssql-jdbc-*.jar",
+      "{home}/environment/mavenRepository/com/microsoft/sqlserver/mssql-jdbc/*/mssql-jdbc-*.jar"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+# weather-longli 配置示例（如需扩展）
+# 将此文件复制为 config.yaml 并修改相应值
+
+# 天气数据源（目前仅支持中国天气网）
+weather_source:
+  url: "http://www.weather.com.cn/weather/101260408.shtml"
+  timeout: 10
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+# 穿衣建议规则（可自定义温度阈值）
+dress_rules:
+  hot_threshold: 28      # ≥28℃ 为炎热
+  warm_threshold: 22     # ≥22℃ 为温暖
+  cool_threshold: 15     # ≥15℃ 为凉爽
+  cold_threshold: 8      # ≥8℃ 为寒冷
+  # <8℃ 为严寒
+
+# 消息模板
+message_template:
+  # 可用变量：{date}, {temp}, {weather}, {wind}, {advice}
+  header: "{weather_emoji} 龙里县今日天气（{date}）"
+  line_temp: "温度：{temp}"
+  line_weather: "天气：{weather}"
+  line_wind: "风力：{wind}"
+  footer: "👔 穿衣建议：{advice}"
+
+# 日志设置
+logging:
+  enabled: true
+  path: "~/.openclaw/workspace/weather_log.jsonl"
+  max_entries: 1000  # 最多保留条数
+
+# 失败处理
+fallback:
+  enabled: true
+  message: "⚠️ 今日天气数据获取失败，请手动查看中国天气网（龙里县）。"
+  retry_count: 2
+  retry_delay: 5  # 秒
+
+# 注意：当前版本为简单爬虫，若中国天气网改版需更新 crawl_longli_weather.py

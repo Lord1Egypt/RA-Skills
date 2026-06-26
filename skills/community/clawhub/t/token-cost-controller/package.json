@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-skill-token-cost-controller",
+  "version": "2.1.1",
+  "description": "OpenClaw Token省钱管家 - 智能缓存、动态路由、实时监控",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

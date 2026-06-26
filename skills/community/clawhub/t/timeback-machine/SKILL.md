@@ -1,35 +1,15 @@
----
-name: "timeback-machine"
-description: "Provides automated and manual rollback of long-running OpenClaw tasks by saving and restoring state snapshots to handle errors or unexpected issues."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/timeback-machine"
-sourceUrl: "https://clawhub.ai/skills/timeback-machine"
----
+# Time Machine (时光机)
 
-# timeback-machine
+一个为 OpenClaw 设计的“时光机”技能。它为长时间运行的任务提供了一个可靠的“后悔药”机制。当任务执行超过设定时间（默认5分钟）或您手动触发时，它会提示您是否要回滚到任务开始前的状态，以轻松应对意外情况或错误。
 
-> Provides automated and manual rollback of long-running OpenClaw tasks by saving and restoring state snapshots to handle errors or unexpected issues.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/timeback-machine`
-- **Source URL:** [https://clawhub.ai/skills/timeback-machine](https://clawhub.ai/skills/timeback-machine)
+- **自动回滚提醒**：在任务开始后启动一个可配置的倒计时，时间到后自动弹出确认框。
+- **手动回滚**：提供API让您随时手动触发回滚流程。
+- **状态快照**：在任务开始时保存当前状态，支持自定义保存和恢复逻辑。
+- **简单易用**：通过简单的 API 集成到您的 OpenClaw 流程中。
 
-## Overview
+## 安装
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/timeback-machine
-```
+npx clawhub install @Cortez_1/time-machine

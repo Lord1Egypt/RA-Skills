@@ -1,0 +1,26 @@
+{
+  "name": "treasury-scenarios",
+  "version": "1.0.0",
+  "description": "司库系统业务场景技能 - 提供邮储银行司库系统接口业务场景查询能力，支持 10 个核心业务场景的流程和接口组合查询",
+  "author": "OpenClaw Workspace",
+  "license": "MIT",
+  "keywords": [
+    "treasury",
+    "司库系统",
+    "银行业务",
+    "接口场景",
+    "资金管理",
+    "支付管理",
+    "预算计划"
+  ],
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "scenarios.json",
+    "interfaces.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace"
+  }
+}

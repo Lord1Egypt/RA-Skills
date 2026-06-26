@@ -1,0 +1,115 @@
+# Coding Agent Entity Registry
+
+Entity registry for AI coding agents and developer assistant platforms (agents under major labs such as Claude Code, Codex CLI, GitHub Copilot are handled by the ai-labs group).
+
+---
+
+## Assigned Entity List
+
+### 1. Cursor
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@cursor_ai](https://x.com/cursor_ai) |
+| **Key People** | [@mntruell](https://x.com/mntruell) - Michael Truell, CEO<br>[@ericzakariasson](https://x.com/ericzakariasson) - Eric Zakariasson |
+| **Changelog** | https://cursor.com/changelog |
+| **Reddit Keywords** | Cursor AI |
+| **Reddit Community** | [r/cursor](https://www.reddit.com/r/cursor/) |
+| **HN Keywords** | Cursor |
+
+### 2. Cline
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@cline](https://x.com/cline) |
+| **Key People** | [@sdrzn](https://x.com/sdrzn) - Saoud Rizwan, CEO<br>[@nickbaumann_](https://x.com/nickbaumann_) - Nick Baumann |
+| **GitHub Releases** | https://github.com/cline/cline/releases |
+| **Reddit Keywords** | Cline AI |
+| **Reddit Community** | [r/ClineAI](https://www.reddit.com/r/ClineAI/) |
+
+### 3. OpenCode
+
+| Attribute | Info |
+|------|------|
+| **Key People** | [@thdxr](https://x.com/thdxr) - Dax Raad, Founder<br>[@fanjiewang](https://x.com/fanjiewang) - Fanjie Wang |
+| **GitHub Releases** | https://github.com/sst/opencode/releases |
+
+### 4. Droid (Factory AI)
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@FactoryAI](https://x.com/FactoryAI) |
+| **CLI Changelog** | https://docs.factory.ai/changelog/cli-updates |
+
+### 5. OpenClaw (formerly Clawd/Moltbot)
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@openclaw](https://x.com/openclaw) |
+| **Key People** | [@steipete](https://x.com/steipete) - Peter Steinberger, Founder |
+| **Official Website** | https://openclaw.ai |
+| **Docs** | https://docs.openclaw.ai |
+| **Blog** | https://openclaws.io/blog |
+| **Changelog** | https://openclawai.io/changelog |
+| **GitHub** | https://github.com/openclaw/openclaw |
+| **GitHub Releases** | https://github.com/openclaw/openclaw/releases |
+| **Reddit Keywords** | OpenClaw |
+| **Reddit Community** | [r/OpenClaw](https://www.reddit.com/r/OpenClaw/) |
+
+### 6. Windsurf (Codeium)
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@windsurf](https://x.com/windsurf) |
+| **Official Blog** | https://windsurf.com/blog |
+| **Changelog** | https://windsurf.com/changelog |
+| **Reddit Keywords** | Windsurf, Codeium |
+| **Reddit Community** | [r/Windsurf](https://www.reddit.com/r/Windsurf/) |
+
+### 7. Augment Code
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@AugmentCode](https://x.com/AugmentCode) |
+| **Official Blog** | https://www.augmentcode.com/blog |
+
+### 8. Aider
+
+| Attribute | Info |
+|------|------|
+| **Key People** | Paul Gauthier, Creator |
+| **Official Website** | https://aider.chat |
+| **GitHub** | https://github.com/Aider-AI/aider |
+| **GitHub Releases** | https://github.com/Aider-AI/aider/releases |
+
+### 9. Devin (Cognition)
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@cognition](https://x.com/cognition) |
+| **Official Blog** | https://cognition.ai/blog |
+| **Reddit Keywords** | Devin AI |
+| **Reddit Community** | [r/DevinAI](https://www.reddit.com/r/DevinAI/) |
+
+### 10. browser-use
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@browser_use](https://x.com/browser_use) |
+| **Key People** | [@gregpr07](https://x.com/gregpr07), [@larsencc](https://x.com/larsencc) |
+| **Official Website** | https://browser-use.com |
+| **Changelog** | https://browser-use.com/changelog |
+| **GitHub** | https://github.com/browser-use/browser-use |
+| **GitHub Releases** | https://github.com/browser-use/browser-use/releases |
+
+### 11. Hermes Agent (Nous Research)
+
+| Attribute | Info |
+|------|------|
+| **X Official Account** | [@NousResearch](https://x.com/NousResearch) |
+| **Official Website** | https://hermes-agent.nousresearch.com |
+| **Docs** | https://hermes-agent.nousresearch.com/docs |
+| **GitHub** | https://github.com/NousResearch/hermes-agent |
+
+---
+

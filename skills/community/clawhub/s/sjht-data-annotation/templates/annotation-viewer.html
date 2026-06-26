@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据标注查看器</title>
+<style>
+  :root {
+    --sidebar-w: 260px;
+    --data-w: 45%;
+    --result-w: calc(55% - var(--sidebar-w));
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --border: #e2e5ea;
+    --text: #1a1a2e;
+    --text2: #6b7280;
+    --accent: #4f8cff;
+    --accent-hover: #3a75e6;
+    --success: #34c759;
+    --danger: #ff3b30;
+    --warning: #ff9500;
+    --radius: 8px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; }
+  
+  /* Top Bar */
+  .topbar { height: 52px; background: var(--card); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-shrink: 0; }
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+  .topbar-title { font-size: 1.05rem; font-weight: 600; }
+  .topbar-stats { display: flex; gap: 16px; font-size: 0.82rem; color: var(--text2); }
+  .topbar-stats span { background: #f0f2f5; padding: 3px 10px; border-radius: 12px; }
+  .topbar-stats .done { color: var(--success); }
+  .topbar-stats .fail { color: var(--danger); }
+  .save-btn { background: var(--accent); color: #fff; border: none; padding: 7px 20px; border-radius: 6px; cursor: pointer; font-size: 0.88rem; font-weight: 500; transition: background 0.2s; }
+  .save-btn:hover { background: var(--accent-hover); }
+  .save-btn.saved { background: var(--success); }
+  .save-msg { font-size: 0.82rem; color: var(--success); margin-right: 8px; opacity: 0; transition: opacity 0.3s; }
+  .save-msg.show { opacity: 1; }
+
+  /* Main Layout */
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  /* Sidebar */
+  .sidebar { width: var(--sidebar-w); background: var(--card); border-right: 1px solid var(--border); overflow-y: auto; flex-shrink: 0; }
+  .sidebar-header { padding: 12px 16px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); font-weight: 600; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--card); z-index: 1; }
+  .dir-item { padding: 10px 16px; cursor: pointer; border-bottom: 1px solid #f0f2f5; display: flex; align-items: center; gap: 8px; font-size: 0.88rem; transition: background 0.15s; }
+  .dir-item:hover { background: #f5f7fa; }
+  .dir-item.active { background: #e8f0fe; color: var(--accent); font-weight: 500; }
+  .dir-item .icon { opacity: 0.6; width: 18px; text-align: center; flex-shrink: 0; }
+  .dir-item .count { margin-left: auto; font-size: 0.75rem; color: var(--text2); background: #f0f2f5; padding: 1px 8px; border-radius: 10px; }
+  .dir-item.active .count { background: #d2e3fc; color: var(--accent); }
+
+  /* Content Area */
+  .content { flex: 1; display: flex; overflow: hidden; }
+
+  /* Data Panel */
+  .data-panel { width: 50%; overflow-y: auto; padding: 20px; border-right: 1px solid var(--border); background: var(--bg); }
+  .data-panel-header { font-size: 0.92rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .data-panel-header .filename { color: var(--text2); font-weight: 400; font-size: 0.82rem; }
+  .data-image { max-width: 100%; max-height: 60vh; border-radius: var(--radius); object-fit: contain; background: #e8eaed; display: block; margin: 0 auto; }
+  .data-video { max-width: 100%; border-radius: var(--radius); display: block; margin: 0 auto; }
+  .data-text { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; font-size: 0.92rem; line-height: 1.7; white-space: pre-wrap; max-height: 70vh; overflow-y: auto; }
+  .data-placeholder { text-align: center; color: var(--text2); margin-top: 100px; font-size: 0.95rem; }
+
+  /* Result Panel */
+  .result-panel { width: 50%; overflow-y: auto; padding: 20px; background: var(--card); }
+  .result-header { font-size: 0.92rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .result-header .badge { background: var(--success); color: #fff; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; }
+  .result-header .badge.pending { background: var(--warning); }
+  
+  /* JSON Tree */
+  .json-tree { font-family: "SF Mono", "Fira Code", monospace; font-size: 0.85rem; }
+  .json-key { color: var(--accent); cursor: pointer; user-select: none; }
+  .json-key:hover { text-decoration: underline; }
+  .json-string { color: #0d904f; }
+  .json-number { color: #9c5700; }
+  .json-bool { color: #8b5cf6; }
+  .json-null { color: #999; }
+  .json-bracket { color: var(--text2); }
+  .json-row { padding: 3px 0; padding-left: 20px; border-left: 2px solid #f0f2f5; margin-left: 6px; }
+  .json-row:hover { background: #fafbfc; }
+  .json-row .edit-area { display: none; margin-top: 4px; }
+  .json-row.editing .edit-area { display: block; }
+  .json-row .value-text { cursor: text; padding: 1px 4px; border-radius: 3px; }
+  .json-row .value-text:hover { background: #e8f0fe; outline: 1px solid var(--accent); }
+  .json-row .edit-input { width: 100%; padding: 6px 10px; border: 1px solid var(--accent); border-radius: 4px; font-family: inherit; font-size: inherit; }
+  .json-row .edit-actions { margin-top: 4px; display: flex; gap: 6px; }
+  .json-row .edit-actions button { padding: 3px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.78rem; }
+  .json-row .edit-actions .ok { background: var(--success); color: #fff; }
+  .json-row .edit-actions .cancel { background: #f0f2f5; color: var(--text2); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sidebar { width: 200px; }
+    .data-panel, .result-panel { width: 100%; }
+    .content { flex-direction: column; }
+    .data-panel { border-right: none; border-bottom: 1px solid var(--border); max-height: 40vh; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-title">🏷️ 数据标注查看器</span>
+    <div class="topbar-stats">
+      <span>总计: <b id="stat-total">0</b></span>
+      <span class="done">已标注: <b id="stat-done">0</b></span>
+      <span class="fail">失败: <b id="stat-fail">0</b></span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span class="save-msg" id="saveMsg">✓ 已保存</span>
+    <button class="save-btn" id="saveBtn" onclick="saveAll()">保存</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="sidebar-header">📁 数据目录</div>
+    <div id="dirTree"></div>
+  </div>
+  <div class="content">
+    <div class="data-panel" id="dataPanel">
+      <div class="data-placeholder">← 选择左侧数据项查看内容</div>
+    </div>
+    <div class="result-panel" id="resultPanel">
+      <div class="data-placeholder">← 选择数据后查看标注结果</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Config (injected by generator) ──
+const CONFIG = __CONFIG_PLACEHOLDER__;
+// Expected: { dataDir, resultsFile, apiBase, files: [{path, type, annotation: {...}}] }
+
+let currentFileIdx = -1;
+let annotations = {};
+
+// ── Init ──
+async function init() {
+  const resp = await fetch(CONFIG.apiBase + '?action=list&dir=' + encodeURIComponent(CONFIG.dataDir));
+  const data = await resp.json();
+  if (data.files) CONFIG.files = data.files;
+  if (data.annotations) annotations = data.annotations;
+  renderSidebar();
+  updateStats();
+}
+
+// ── Sidebar ──
+function renderSidebar() {
+  const tree = document.getElementById('dirTree');
+  tree.innerHTML = '';
+  const dirs = {};
+  CONFIG.files.forEach((f, i) => {
+    const parts = f.path.split('/');
+    const dir = parts.slice(0, -1).join('/') || '/';
+    if (!dirs[dir]) dirs[dir] = [];
+    dirs[dir].push({ ...f, idx: i });
+  });
+  Object.keys(dirs).sort().forEach(dir => {
+    dirs[dir].forEach(f => {
+      const item = document.createElement('div');
+      item.className = 'dir-item' + (f.idx === currentFileIdx ? ' active' : '');
+      const icon = f.type === 'image' ? '🖼' : f.type === 'video' ? '🎬' : '📄';
+      item.innerHTML = `<span class="icon">${icon}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${f.path}">${f.name || f.path.split('/').pop()}</span>`;
+      item.onclick = () => selectFile(f.idx);
+      tree.appendChild(item);
+    });
+  });
+}
+
+// ── Select File ──
+async function selectFile(idx) {
+  currentFileIdx = idx;
+  const file = CONFIG.files[idx];
+  renderSidebar();
+  renderData(file);
+  renderResult(file);
+}
+
+// ── Render Data ──
+function renderData(file) {
+  const panel = document.getElementById('dataPanel');
+  const url = CONFIG.apiBase + '?action=file&path=' + encodeURIComponent(file.path);
+  let content = '';
+  switch (file.type) {
+    case 'image':
+      content = `<div class="data-panel-header">📷 数据预览 <span class="filename">${file.name || file.path}</span></div><img class="data-image" src="${url}" alt="preview">`;
+      break;
+    case 'video':
+      content = `<div class="data-panel-header">🎬 视频预览 <span class="filename">${file.name || file.path}</span></div><video class="data-video" controls src="${url}"></video>`;
+      break;
+    case 'text':
+      content = `<div class="data-panel-header">📄 文本内容 <span class="filename">${file.name || file.path}</span></div><div class="data-text" id="dataText">加载中...</div>`;
+      break;
+    default:
+      content = `<div class="data-panel-header">📎 文件 <span class="filename">${file.name || file.path}</span></div><div class="data-placeholder">不支持的预览类型</div>`;
+  }
+  panel.innerHTML = content;
+  if (file.type === 'text') {
+    fetch(url).then(r => r.text()).then(t => {
+      const el = document.getElementById('dataText');
+      if (el) el.textContent = t;
+    });
+  }
+}
+
+// ── Render Result ──
+function renderResult(file) {
+  const panel = document.getElementById('resultPanel');
+  const ann = annotations[file.path] || file.annotation || null;
+  if (!ann) {
+    panel.innerHTML = `<div class="result-header">📋 标注结果 <span class="badge pending">待标注</span></div><div class="data-placeholder">暂无标注数据</div>`;
+    return;
+  }
+  panel.innerHTML = `<div class="result-header">📋 标注结果 <span class="badge">已标注</span></div><div class="json-tree" id="jsonTree"></div>`;
+  renderJson(document.getElementById('jsonTree'), ann, file.path);
+}
+
+function renderJson(container, obj, path, depth = 0) {
+  if (typeof obj !== 'object' || obj === null) {
+    renderValue(container, obj, path, depth);
+    return;
+  }
+  if (Array.isArray(obj)) {
+    obj.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'json-row';
+      renderJson(row, item, path + '[' + i + ']', depth + 1);
+      container.appendChild(row);
+    });
+  } else {
+    Object.keys(obj).forEach(key => {
+      const row = document.createElement('div');
+      row.className = 'json-row';
+      const val = obj[key];
+      if (typeof val === 'object' && val !== null) {
+        const keySpan = document.createElement('span');
+        keySpan.className = 'json-key';
+        keySpan.textContent = key;
+        const bracket = document.createElement('span');
+        bracket.className = 'json-bracket';
+        bracket.textContent = Array.isArray(val) ? '[...]' : '{...}';
+        row.appendChild(keySpan);
+        row.appendChild(document.createTextNode(': '));
+        row.appendChild(bracket);
+        const childContainer = document.createElement('div');
+        childContainer.className = 'json-row';
+        renderJson(childContainer, val, path + '.' + key, depth + 1);
+        row.appendChild(childContainer);
+      } else {
+        const keySpan = document.createElement('span');
+        keySpan.className = 'json-key';
+        keySpan.textContent = key;
+        row.appendChild(keySpan);
+        row.appendChild(document.createTextNode(': '));
+        renderValue(row, val, path + '.' + key, depth);
+      }
+      container.appendChild(row);
+    });
+  }
+}
+
+function renderValue(container, val, path, depth) {
+  const span = document.createElement('span');
+  span.className = 'value-text';
+  const cls = typeof val === 'string' ? 'json-string' : typeof val === 'number' ? 'json-number' : typeof val === 'boolean' ? 'json-bool' : 'json-null';
+  span.className += ' ' + cls;
+  span.textContent = JSON.stringify(val);
+  span.title = '点击编辑';
+  span.contentEditable = true;
+  span.onblur = function() {
+    try {
+      const newVal = JSON.parse(this.textContent);
+      setNestedValue(annotations, path, newVal);
+    } catch {}
+  };
+  container.appendChild(span);
+}
+
+function setNestedValue(obj, path, value) {
+  const keys = path.replace(/^\./, '').split('.');
+  let target = obj;
+  for (let i = 0; i < keys.length - 1; i++) {
+    const k = keys[i].replace(/\[(\d+)\]/, '.$1');
+    if (target[k] === undefined) target[k] = {};
+    target = target[k];
+  }
+  const lastKey = keys[keys.length - 1].replace(/\[(\d+)\]/, '$1');
+  target[lastKey] = value;
+}
+
+// ── Stats ──
+function updateStats() {
+  const total = CONFIG.files.length;
+  let done = 0, fail = 0;
+  CONFIG.files.forEach(f => {
+    const ann = annotations[f.path] || f.annotation;
+    if (ann) done++;
+  });
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-done').textContent = done;
+  document.getElementById('stat-fail').textContent = fail;
+}
+
+// ── Save ──
+async function saveAll() {
+  const btn = document.getElementById('saveBtn');
+  const msg = document.getElementById('saveMsg');
+  btn.disabled = true;
+  btn.textContent = '保存中...';
+  try {
+    const resp = await fetch(CONFIG.apiBase, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'save', annotations: annotations, file: CONFIG.resultsFile })
+    });
+    if (resp.ok) {
+      btn.textContent = '✓ 已保存';
+      btn.classList.add('saved');
+      msg.classList.add('show');
+      setTimeout(() => { btn.textContent = '保存'; btn.classList.remove('saved'); msg.classList.remove('show'); btn.disabled = false; }, 2000);
+    } else {
+      btn.textContent = '保存失败';
+      setTimeout(() => { btn.textContent = '保存'; btn.disabled = false; }, 2000);
+    }
+  } catch (e) {
+    btn.textContent = '保存失败';
+    setTimeout(() => { btn.textContent = '保存'; btn.disabled = false; }, 2000);
+  }
+}
+
+// ── Boot ──
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

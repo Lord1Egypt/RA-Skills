@@ -1,0 +1,166 @@
+{
+  "date": "2026-05-13",
+  "total_models": 18,
+  "models": [
+    {
+      "vendor": "OpenAI",
+      "model": "gpt-4.1",
+      "input_price_per_million": 14.4,
+      "output_price_per_million": 57.6,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 2.0,
+        "output": 8.0
+      }
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "gpt-4.1-mini",
+      "input_price_per_million": 2.88,
+      "output_price_per_million": 11.52,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 0.4,
+        "output": 1.6
+      }
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "gpt-4.1-nano",
+      "input_price_per_million": 0.72,
+      "output_price_per_million": 2.88,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 0.1,
+        "output": 0.4
+      }
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "gpt-4o",
+      "input_price_per_million": 18.0,
+      "output_price_per_million": 72.0,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 2.5,
+        "output": 10.0
+      }
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "gpt-4o-mini",
+      "input_price_per_million": 1.08,
+      "output_price_per_million": 4.32,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 0.15,
+        "output": 0.6
+      }
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "o3",
+      "input_price_per_million": 72.0,
+      "output_price_per_million": 288.0,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 10.0,
+        "output": 40.0
+      }
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "o4-mini",
+      "input_price_per_million": 8.64,
+      "output_price_per_million": 34.56,
+      "source": "deep_forage",
+      "original_usd": {
+        "input": 1.2,
+        "output": 4.8
+      }
+    },
+    {
+      "vendor": "智谱",
+      "model": "GLM-ASR-2512",
+      "input_price_per_million": 16.0,
+      "output_price_per_million": 16.0,
+      "source": "deep_forage",
+      "spec": "语音识别"
+    },
+    {
+      "vendor": "智谱",
+      "model": "GLM-4-Voice",
+      "input_price_per_million": 80.0,
+      "output_price_per_million": 80.0,
+      "source": "deep_forage",
+      "spec": "语音模型"
+    },
+    {
+      "vendor": "智谱",
+      "model": "GLM-4V-Plus",
+      "input_price_per_million": 4.0,
+      "output_price_per_million": 4.0,
+      "source": "deep_forage",
+      "spec": "8K"
+    },
+    {
+      "vendor": "智谱",
+      "model": "GLM-4V",
+      "input_price_per_million": 50.0,
+      "output_price_per_million": 50.0,
+      "source": "deep_forage",
+      "spec": "8K"
+    },
+    {
+      "vendor": "智谱",
+      "model": "GLM-4",
+      "input_price_per_million": 100.0,
+      "output_price_per_million": 100.0,
+      "source": "deep_forage",
+      "spec": "128K"
+    },
+    {
+      "vendor": "智谱",
+      "model": "GLM-4-Air",
+      "input_price_per_million": 0.5,
+      "output_price_per_million": 0.5,
+      "source": "deep_forage",
+      "spec": "128K"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-4.0-ultra",
+      "input_price_per_million": 50,
+      "output_price_per_million": 50,
+      "source": "deep_forage_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-3.5-max",
+      "input_price_per_million": 30,
+      "output_price_per_million": 30,
+      "source": "deep_forage_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-3.5-pro",
+      "input_price_per_million": 4,
+      "output_price_per_million": 4,
+      "source": "deep_forage_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-3.5-lite",
+      "input_price_per_million": 2,
+      "output_price_per_million": 2,
+      "source": "deep_forage_verified"
+    },
+    {
+      "vendor": "讯飞",
+      "model": "spark-lite",
+      "input_price_per_million": 0,
+      "output_price_per_million": 0,
+      "source": "deep_forage_verified"
+    }
+  ]
+}

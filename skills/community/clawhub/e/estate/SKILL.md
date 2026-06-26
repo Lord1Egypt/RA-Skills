@@ -1,35 +1,16 @@
 ---
-name: "Estate"
-description: "The Sovereign Asset & Title Management Engine. Orchestrating the lifecycle of physical property, digital legacies, and high-value estates across jurisdiction..."
-category: "domain"
-source: "ClawHub"
-tags: [estate, legal, property, wealth]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/estate"
-sourceUrl: "https://clawhub.ai/skills/estate"
+name: estate
+description: >
+  The Sovereign Asset & Title Management Engine. Orchestrating the lifecycle of 
+  physical property, digital legacies, and high-value estates across 
+  jurisdictional boundaries.
 ---
+# Estate: The Sovereign Asset Layer
 
-# Estate
+## I. Comprehensive Ownership
+**Estate** is the definitive framework for managing what an entity owns. From physical land titles to complex digital inheritance and synthetic wealth portfolios, it ensures title clarity.
 
-> The Sovereign Asset & Title Management Engine. Orchestrating the lifecycle of physical property, digital legacies, and high-value estates across jurisdiction...
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/estate`
-- **Source URL:** [https://clawhub.ai/skills/estate](https://clawhub.ai/skills/estate)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/estate
-```
+## II. Operational Modules
+- **Title**: Immutable registration of ownership.
+- **Legacy**: Autonomous execution of digital wills and heritage transfer.
+- **RWA**: Bridging Real-World Assets to the agentic economy.

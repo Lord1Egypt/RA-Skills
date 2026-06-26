@@ -1,35 +1,71 @@
 ---
-name: "Ultimate Agent System"
-description: "整合proactive-agent、self-improving、create-agent的最强技能系统。包含主动工作、自我改进、代理创建三大核心能力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ultimate-agent"
-sourceUrl: "https://clawhub.ai/skills/ultimate-agent"
+name: ultimate-agent
+displayName: Ultimate Agent System
+description: 整合proactive-agent、self-improving、create-agent的最强技能系统。包含主动工作、自我改进、代理创建三大核心能力。
+version: 1.0.0
 ---
 
 # Ultimate Agent System
 
-> 整合proactive-agent、self-improving、create-agent的最强技能系统。包含主动工作、自我改进、代理创建三大核心能力。
+最强技能系统，整合三大核心能力：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ultimate-agent`
-- **Source URL:** [https://clawhub.ai/skills/ultimate-agent](https://clawhub.ai/skills/ultimate-agent)
+## 1. 主动工作引擎 (Proactive Engine)
+- **WAL协议** - 写前日志，防止上下文丢失
+- **工作缓冲区** - 危险区域对话保存
+- **心跳系统** - 定期主动检查
+- **压缩恢复** - 重启后快速恢复状态
 
-## Overview
+## 2. 自我改进系统 (Self-Improving System)
+- **ADL协议** - 防漂移限制
+- **VFM协议** - 价值优先修改
+- **学习循环** - 从错误中学习
+- **成长循环** - 持续能力提升
 
+## 3. 代理创建工厂 (Agent Factory)
+- **7点集成** - 完整代理创建流程
+- **自动配置** - 一键创建新代理类型
+- **能力扩展** - 动态添加新技能
+- **系统整合** - 深度集成到OpenClaw
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 核心特性
+
+### 主动但不询问
+- 构建但不发送外部
+- 草拟但不发布
+- 研究但不打扰
+
+### 不懈的资源利用
+- 尝试5种方法后再求助
+- 组合使用所有可用工具
+- 创造性解决问题
+
+### 智慧原则应用
+- 心中无事，手持满载
+- 话不说满，事不做绝
+- 用之则行，舍之则藏
+
+## 使用场景
+
+1. **日常协助** - 主动识别并解决潜在问题
+2. **技能管理** - 自动评估、安装、优化skill
+3. **代理扩展** - 根据需要创建专用代理
+4. **系统优化** - 持续改进工作流程
+5. **危机处理** - 在上下文丢失时快速恢复
+
+## 安装
+
 ```bash
-hermes skills install clawhub/ultimate-agent
+clawhub install ultimate-agent
 ```
+
+## 配置
+
+系统自动检测环境并配置：
+- 工作空间位置
+- 内存系统路径
+- 技能目录
+- 代理注册表
+
+## 许可证
+
+MIT - 最强技能，最强自由

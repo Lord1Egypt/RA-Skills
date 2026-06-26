@@ -1,0 +1,18 @@
+{
+  "slug": "sevo-p0-l3-verifier",
+  "description": "SEVO P0 fix — L3 runtime verifier and clean-install verification defaults",
+  "parentProject": "sevo-pipeline",
+  "createdAt": "2026-05-21T15:59:13.113Z",
+  "stages": [
+    "spec",
+    "spec-review-gate",
+    "implement",
+    "review",
+    "smoke-test",
+    "ux-acceptance",
+    "pm-commercial-review",
+    "publish-generalization-gate",
+    "deploy",
+    "ledger"
+  ]
+}

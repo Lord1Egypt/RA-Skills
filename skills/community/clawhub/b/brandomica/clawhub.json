@@ -1,0 +1,11 @@
+{
+  "slug": "brandomica",
+  "name": "Brandomica Lab",
+  "version": "1.0.5",
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "description": "Check brand name safety across domains, social handles, trademarks, app stores, and SaaS channels.",
+  "homepage": "https://www.brandomica.com/mcp-server",
+  "repository": "https://github.com/BRNDMK/brandomica-mcp-server",
+  "tags": ["brand", "trademark", "domain", "mcp", "safety"]
+}

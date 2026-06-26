@@ -1,0 +1,47 @@
+{
+  "name": "memory-optimizer",
+  "displayName": "Memory Optimizer",
+  "version": "1.0.0",
+  "description": "为 OpenClaw Agent 提供高效的记忆管理系统 — SHA-256 去重、实时监听、季度归档",
+  "author": "Sirius (小虾米)",
+  "license": "MIT",
+  "category": "memory",
+  "tags": [
+    "memory",
+    "optimization",
+    "performance",
+    "deduplication",
+    "archive"
+  ],
+  "repository": "https://github.com/SiriuSM00N/openclaw",
+  "homepage": "https://openclawmp.cc/skills/memory-optimizer",
+  "files": [
+    "scripts/memory-dedup.py",
+    "scripts/memory-watcher.py",
+    "scripts/memory-archive.sh",
+    "docs/README.md"
+  ],
+  "install": {
+    "script": "install.sh",
+    "dependencies": [
+      "watchdog"
+    ],
+    "commands": [
+      "pip3 install watchdog",
+      "chmod +x scripts/*.py scripts/*.sh"
+    ]
+  },
+  "usage": {
+    "quickstart": "python3 scripts/memory-watcher.py ./memory/ &",
+    "manual": "python3 scripts/memory-dedup.py ./memory/",
+    "archive": "bash scripts/memory-archive.sh"
+  },
+  "config": {
+    "defaultChunkSize": 500,
+    "defaultArchiveAge": 90,
+    "debounceSeconds": 1.5
+  },
+  "scripts": {
+    "test": "python3 scripts/memory-dedup.py ./memory/ --stats"
+  }
+}

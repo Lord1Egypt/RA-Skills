@@ -1,0 +1,13 @@
+{
+  "emoji": "🏆",
+  "version": "0.2.0",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "scripts/group_repricer.py"
+  }
+}

@@ -1,0 +1,687 @@
+openapi: 3.0.3
+
+info:
+  title: Quantitative interface Open API
+  description: 量化交易接口
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com
+    description: test env t2 server
+
+paths:
+  /security/get_token:
+    get:
+      security: []
+      tags:
+        - security token
+      parameters:
+        - name: group_no
+          in: query
+          required: true
+          description: 组织编码
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 每个请求需要在authorization Bearer 中添加
+          content:
+            text/plain:
+              schema:
+                type: string
+    delete:
+      security: [ ]
+      tags:
+        - security token
+      parameters:
+        - name: group_no
+          in: query
+          required: true
+          description: 组织编码
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 删除当前group_no 的token
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /rank/get_stock_rank:
+    get:
+      summary: 获取排行榜数据
+      tags:
+        - Rank Data
+      parameters:
+        - name: market_codes
+          in: query
+          required: true
+          description: 市场代码
+          schema:
+            $ref: 'enum.yaml#/Markets'
+        - name: rank_field
+          in: query
+          required: true
+          description: 排行字段
+          schema:
+            $ref: 'enum.yaml#/QuoteSortField'
+        - name: ascend
+          in: query
+          required: true
+          description: 排行顺序
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          description: 页码
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          required: true
+          description: 每页数据
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 RankResp
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+
+  /infos/shareholder_inc_red_hold:
+    get:
+      summary: 股东增减持明细榜单按市场范围
+      tags:
+        - F10 Infos
+      parameters:
+        - name: current_page
+          in: query
+          required: true
+          description: 页码
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          required: true
+          description: 页数
+          schema:
+            type: integer
+        - name: market
+          in: query
+          required: true
+          description: 市场
+          schema:
+            $ref: 'enum.yaml#/Markets'
+        - name: shareholder
+          in: query
+          required: true
+          description: 排序字段
+          schema:
+            $ref: 'enum.yaml#/ShareholderRedHoldEnum'
+        - name: order_code
+          in: query
+          required: true
+          description: 排序顺序
+          schema:
+            $ref: 'enum.yaml#/SortDir'
+      responses:
+        '200':
+          description:  成功，详细信息，元素类型 MxShareholderOpenApiIncRedHoldResp
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+
+  /infos/shareholder_inc_red_hold_by_date:
+    get:
+      summary: 股东增减持明细榜单按时间范围
+      tags:
+        - F10 Infos
+      parameters:
+        - name: current_page
+          in: query
+          required: true
+          description: 页码
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          required: true
+          description: 页数
+          schema:
+            type: integer
+        - name: market
+          in: query
+          required: true
+          description: 市场
+          schema:
+            $ref: 'enum.yaml#/Markets'
+        - name: from
+          in: query
+          required: true
+          description: 开始日期 yyyyMMdd
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: true
+          description: 结束日期 yyyyMMdd
+          schema:
+            type: string
+      responses:
+        '200':
+          description:  成功，详细信息，元素类型 MxShareholderOpenApiIncRedHoldResp
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+
+  /infos/shareholder_inc_red_hold_by_ucode:
+    get:
+      summary: 股东增减持明细榜单按股票代码范围
+      tags:
+        - F10 Infos
+      parameters:
+        - name: current_page
+          in: query
+          required: true
+          description: 页码
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          required: true
+          description: 页数
+          schema:
+            type: integer
+        - name: stock_code
+          in: query
+          required: true
+          description: 股票代码
+          schema:
+            type: string
+        - name: shareholder
+          in: query
+          required: true
+          description: 排序字段
+          schema:
+            $ref: 'enum.yaml#/ShareholderRedHoldEnum'
+        - name: order_code
+          in: query
+          required: true
+          description: 排序顺序
+          schema:
+            $ref: 'enum.yaml#/SortDir'
+      responses:
+        '200':
+          description: 成功，详细信息，元素类型 MxShareholderOpenApiIncRedHoldResp
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+
+  /infos/get_finance_us_infos:
+    get:
+      summary: 获取美股财务数据
+      tags:
+        - F10 Infos
+      parameters:
+        - name: stock_code
+          in: query
+          required: true
+          description: 股票代码
+          schema:
+            type: string
+        - name: type_code
+          in: query
+          required: true
+          description: 数据类型
+          schema:
+            $ref: 'enum.yaml#/DateTypeConvertUtil'
+        - name: year
+          in: query
+          required: true
+          description: 年份
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功，详细信息，元素类型 USStockFinancial
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseData'
+
+  /infos/get_finance_hk_infos:
+    get:
+      summary: 获取港股财务数据
+      tags:
+        - F10 Infos
+      parameters:
+        - name: stock_code
+          in: query
+          required: true
+          description: 股票代码
+          schema:
+            type: string
+        - name: type_code
+          in: query
+          required: true
+          description: 数据类型
+          schema:
+            $ref: 'enum.yaml#/DateTypeConvertUtil'
+        - name: year
+          in: query
+          required: true
+          description: 年份
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功，详细信息，元素类型 HKStockFinancial
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseData'
+
+  /infos/get_us_analysis:
+    get:
+      summary: 获取美股分析信息
+      tags:
+        - F10 Infos
+      parameters:
+        - name: stock_code
+          in: query
+          required: true
+          description: 股票代码
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功，详细信息，元素类型 AnalysisUSStocks
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseData'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /infos/get_capital_flow:
+    get:
+      summary: 获取个股资金流向
+      tags:
+        - Basic Data
+      parameters:
+        - name: stock_code
+          in: query
+          required: true
+          description: 股票代码
+          schema:
+            type: string
+        - name: num
+          in: query
+          description: 数量
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 CapitalFlowItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /infos/get_market_state:
+    get:
+      summary: 获取股票对应市场的市场状态
+      tags:
+        - Basic Data
+      parameters:
+        - name: code_list
+          in: query
+          required: true
+          schema:
+            $ref: 'entity.yaml#/components/schemas/CodeList'
+
+      responses:
+        '200':
+          description: 返回对应市场的市场状态，data 为列表，元素类型 MarketStatus
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quotes/get_market_snapshot:
+    get:
+      summary: 获取市场快照信息
+      tags:
+        - Real Time Quotes
+      parameters:
+        - name: code_list
+          in: query
+          required: true
+          schema:
+            $ref: 'entity.yaml#/components/schemas/CodeList'
+
+      responses:
+        '200':
+          description: 成功返回市场快照信息，data 为列表，元素类型 MarketQuote
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quotes/get_rt_data:
+    get:
+      summary: 获取实时分时
+      tags:
+        - Real Time Quotes
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 StockTimeData
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quotes/get_cur_kline:
+    get:
+      summary: 获取实时 K 线
+      tags:
+        - Real Time Quotes
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: num
+          in: query
+          required: true
+          description: K线个数, 负数为向前查询
+          schema:
+            type: integer
+        - name: ktype
+          in: query
+          required: true
+          schema:
+            $ref: 'enum.yaml#/KLType'
+        - name: autype
+          in: query
+          required: true
+          schema:
+            $ref: 'enum.yaml#/AuType'
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 KlineItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quotes/get_cur_kline_date:
+    get:
+      summary: 获取实时 K 线,根据时间范围筛选
+      tags:
+        - Real Time Quotes
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: from
+          in: query
+          required: true
+          description: 时间范围查询 yyyyMMddHHmmssSSS
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: true
+          description: 时间范围查询 yyyyMMddHHmmssSSS
+          schema:
+            type: string
+        - name: ktype
+          in: query
+          required: true
+          schema:
+            $ref: 'enum.yaml#/KLType'
+        - name: autype
+          in: query
+          required: true
+          schema:
+            $ref: 'enum.yaml#/AuType'
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 CandleOpenApiDotResp
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quotes/get_rt_ticker:
+    get:
+      summary: 获取实时逐笔
+      tags:
+        - Real Time Quotes
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: num
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 TickerItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quotes/get_broker_queue:
+    get:
+      summary: 获取实时经纪队列
+      tags:
+        - Real Time Quotes
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功，data 为单个对象（非列表），类型 BrokerQueue
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseData'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  # ---------- 衍生品（参考 Futu OpenAPI 文档） ----------
+
+  /quote/get_stock_basicinfo:
+    get:
+      tags:
+        - Market
+      summary: 获取指定市场中特定类型或特定股票的基本信息
+      description: 对应 Futu get_stock_basicinfo / GetStaticInfo
+      operationId: getStockBasicInfo
+      parameters:
+        - name: market
+          in: query
+          required: true
+          description: 市场
+          schema:
+            $ref: 'enum.yaml#/Market'
+        - name: stock_type
+          in: query
+          required: false
+          description: 证券类型，不传则返回全部
+          schema:
+            $ref: 'enum.yaml#/SecurityType'
+        - name: code_list
+          in: query
+          required: false
+          description: 股票代码列表，逗号分隔；不传则返回该市场该类型下全部
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 StockBasicInfoItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quote/get_ipo_list:
+    get:
+      tags:
+        - Market
+      summary: 获取指定市场的 IPO 列表
+      description: 对应 Futu get_ipo_list / GetIpoList
+      operationId: getIpoList
+      parameters:
+        - name: market
+          in: query
+          required: true
+          description: 市场
+          schema:
+            $ref: 'enum.yaml#/Market'
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 IpoItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quote/get_global_state:
+    get:
+      tags:
+        - Market
+      summary: 获取全局市场状态
+      description: 对应 Futu get_global_state / GetGlobalState
+      operationId: getGlobalState
+      parameters: [ ]
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 GlobalStateItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+  /quote/request_trading_days:
+    get:
+      tags:
+        - Market
+      summary: 获取交易日历
+      description: 对应 Futu request_trading_days / RequestTradeDate
+      operationId: requestTradingDays
+      parameters:
+        - name: market
+          in: query
+          required: true
+          description: 市场
+          schema:
+            $ref: 'enum.yaml#/Market'
+        - name: start
+          in: query
+          required: true
+          description: 开始日期 yyyyMMdd
+          schema:
+            type: string
+        - name: end
+          in: query
+          required: true
+          description: 结束日期 yyyyMMdd
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功，data 为列表，元素类型 TradingDayItem
+          content:
+            application/json:
+              schema:
+                $ref: 'entity.yaml#/components/schemas/SecResponseList'
+        '500':
+          description: 服务器内部错误
+        '404':
+          description: 查询数据不存在
+
+security:
+  - bearerAuth: [ ]
+

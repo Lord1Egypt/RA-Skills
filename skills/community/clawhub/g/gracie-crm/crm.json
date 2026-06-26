@@ -1,0 +1,368 @@
+[
+  {
+    "id": 1,
+    "name": "Victory Auto Repair",
+    "phone": "718-698-9896",
+    "category": "auto",
+    "status": "no_answer",
+    "calls": [
+      {
+        "date": "2026-02-27",
+        "outcome": "no answer",
+        "notes": "tried at 10am"
+      }
+    ],
+    "notes": [],
+    "followup_date": "2026-02-28",
+    "added": "2026-02-27"
+  },
+  {
+    "id": 2,
+    "name": "P.A.C. Plumbing",
+    "phone": "718-720-4980",
+    "category": "hvac",
+    "status": "interested",
+    "calls": [
+      {
+        "date": "2026-02-27",
+        "outcome": "interested",
+        "notes": ""
+      }
+    ],
+    "notes": [
+      "Owner is Paul, best time is morning before 9am"
+    ],
+    "followup_date": "2026-03-03",
+    "added": "2026-02-27"
+  },
+  {
+    "id": 3,
+    "name": "Christine Relyea State Farm",
+    "phone": "718-698-5803",
+    "category": "insurance",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 4,
+    "name": "Community II HVAC",
+    "phone": "347-212-1513",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 5,
+    "name": "HI TECH HVAC SERVICES CORP",
+    "phone": "",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 6,
+    "name": "Sola Dental Spa",
+    "phone": "718-948-3777",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 7,
+    "name": "Dr. Mariana Savel DDS",
+    "phone": "718-494-2200",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 8,
+    "name": "Family & Cosmetic Dentistry of SI",
+    "phone": "718-477-5588",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 9,
+    "name": "Keren Bola\u00f1os",
+    "phone": "",
+    "category": "other",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 10,
+    "name": "Hawk Precision Auto Works",
+    "phone": "(347) 825-2006",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 11,
+    "name": "MT-A Auto Center",
+    "phone": "(718) 524-4660",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 12,
+    "name": "Rafi's Auto Repair",
+    "phone": "(718) 727-0833",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 13,
+    "name": "CARSTAR Victory Auto Center",
+    "phone": "(718) 698-9786",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 14,
+    "name": "South Side Auto Services",
+    "phone": "(718) 448-9767",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 15,
+    "name": "Express Tire and Auto Service",
+    "phone": "(718) 556-7400",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 16,
+    "name": "Auto Masters of Staten Island",
+    "phone": "(347) 934-3020",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 17,
+    "name": "Allan Auto Repair",
+    "phone": "(929) 398-0980",
+    "category": "auto",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 18,
+    "name": "Staten Island Plumbing Heating & A/C",
+    "phone": "(718) 966-8600",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 19,
+    "name": "Richmond Plumbing and Heating Co",
+    "phone": "(718) 273-7970",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 20,
+    "name": "EM Mechanical NY LLC",
+    "phone": "(347) 636-3982",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 21,
+    "name": "Patriot Heating & Cooling",
+    "phone": "(929) 321-3247",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 22,
+    "name": "Capital Contracting Plumbing & Heating",
+    "phone": "(718) 815-9093",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 23,
+    "name": "RK Plumbing & HVAC Services",
+    "phone": "(646) 361-5867",
+    "category": "hvac",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 24,
+    "name": "Staten Island Dental Care \u2014 Dr. Hecht",
+    "phone": "(929) 415-9941",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 25,
+    "name": "Goodman Richard Y DDS",
+    "phone": "(718) 983-8898",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 26,
+    "name": "Staten Island Dental Group",
+    "phone": "(718) 698-1885",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 27,
+    "name": "Staten Island Dental Boutique",
+    "phone": "(347) 391-4393",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 28,
+    "name": "Grandview Dental \u2014 Dr. Tarantino",
+    "phone": "(718) 494-0037",
+    "category": "dental",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 29,
+    "name": "Mandarino Chiropractic",
+    "phone": "",
+    "category": "other",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 30,
+    "name": "World Spa",
+    "phone": "(718) 500-3772",
+    "category": "other",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 31,
+    "name": "Juan",
+    "phone": "",
+    "category": "other",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  },
+  {
+    "id": 32,
+    "name": "Dave Buchwald / Insanely Cozy Designs",
+    "phone": "(917) 553-7643",
+    "category": "other",
+    "status": "new",
+    "calls": [],
+    "notes": [],
+    "followup_date": null,
+    "added": "2026-02-27"
+  }
+]

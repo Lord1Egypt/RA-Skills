@@ -1,0 +1,104 @@
+{
+  "title": "AANA Task Scope Gate",
+  "type": "object",
+  "required": [
+    "user_request",
+    "completion_target",
+    "proposed_next_action",
+    "scope_status",
+    "data_relevance_status",
+    "authorization_status",
+    "completion_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "user_request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "completion_target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposed_next_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope_status": {
+      "type": "string",
+      "enum": [
+        "in_scope",
+        "necessary_support",
+        "clarification_needed",
+        "optional_followup",
+        "out_of_scope",
+        "stop"
+      ]
+    },
+    "data_relevance_status": {
+      "type": "string",
+      "enum": [
+        "relevant",
+        "partly_relevant",
+        "unrelated",
+        "sensitive_extra_data",
+        "unknown"
+      ]
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "explicit",
+        "implicit_for_task",
+        "clarification_needed",
+        "not_authorized"
+      ]
+    },
+    "completion_status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "blocked",
+        "complete",
+        "unknown"
+      ]
+    },
+    "scope_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "task_expansion",
+          "unrelated_data",
+          "sensitive_extra_data",
+          "continuing_after_completion",
+          "external_action",
+          "file_change",
+          "tool_use",
+          "private_context_reuse",
+          "ambiguous_boundary",
+          "unknown"
+        ]
+      }
+    },
+    "boundary_reason": {
+      "type": "string"
+    },
+    "safe_alternative": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "proceed",
+        "narrow",
+        "ask",
+        "suggest",
+        "stop",
+        "refuse"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

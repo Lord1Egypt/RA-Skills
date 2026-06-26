@@ -1,35 +1,70 @@
----
-name: "Sg"
-description: "Automate GitHub tasks including issues, PR reviews, releases, and repository management with streamlined creation, updates, summaries, and workflow control."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/super-github"
-sourceUrl: "https://clawhub.ai/skills/super-github"
+# Super GitHub
+
+**The ultimate GitHub automation framework.** Combines the best of GitHub skills for issues, PRs, releases, and more.
+
 ---
 
-# Sg
+## Why This Skill?
 
-> Automate GitHub tasks including issues, PR reviews, releases, and repository management with streamlined creation, updates, summaries, and workflow control.
+Complete GitHub management - issues, PRs, releases, automation - all in one skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/super-github`
-- **Source URL:** [https://clawhub.ai/skills/super-github](https://clawhub.ai/skills/super-github)
+---
 
-## Overview
+## Core Features
 
+### 1. Issues Automation
+- Create issues (with labels, assignees)
+- List issues (filter by status, labels)
+- Update issues (title, body, labels)
+- Auto-categorization and label suggestions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/super-github
+### 2. PR Review Assistant
+- PR summary analysis
+- File change statistics
+- Review checklist generation
+- Conflict detection
+
+### 3. Release Automation
+- Create releases
+- Auto-generate changelogs
+- Tag management
+
+### 4. Repository Management
+- List repos
+- Get/set secrets
+- Manage workflows
+
+---
+
+## Usage
+
+### Create Issue
 ```
+gh issue create --title "Bug in login" --body "Description" --label bug
+```
+
+### PR Review
+```
+gh pr review --summary --stats --checklist
+```
+
+### Create Release
+```
+gh release create v1.0.0 --generate-notes
+```
+
+---
+
+## Merged From
+
+| Skill | Rating |
+|-------|--------|
+| openclaw-github-assistant | 3.470 |
+| github-automation-pro | 3.266 |
+| github-mcp | 3.180 |
+
+---
+
+## Version
+
+v1.0.0 - Initial release

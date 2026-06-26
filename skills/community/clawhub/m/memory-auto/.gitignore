@@ -1,0 +1,17 @@
+.github/
+  ISSUE_TEMPLATE/
+    bug-report.md
+    feature-request.md
+  workflows/
+    ci.yml
+    release.yml
+dist/
+  # compiled JavaScript
+src/
+  # TypeScript source
+tests/
+  # integration tests
+package.json
+tsconfig.json
+README.md
+LICENSE

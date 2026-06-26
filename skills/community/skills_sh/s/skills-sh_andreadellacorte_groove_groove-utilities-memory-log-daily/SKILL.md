@@ -1,35 +1,35 @@
 ---
-name: "groove-utilities-memory-log-daily"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-memory-log-daily"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-utilities-memory-log-daily"
+name: groove-utilities-memory-log-daily
+description: "Write the daily memory log entry. Use at end of day to record what happened."
+license: MIT
+allowed-tools: Read Write Edit Glob Grep Bash(git:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
 
 # groove-utilities-memory-log-daily
 
-> Indexed by skills.sh from andreadellacorte/groove
+## Outcome
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-memory-log-daily`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-utilities-memory-log-daily](https://skills.sh/andreadellacorte/groove/groove-utilities-memory-log-daily)
+`.groove/memory/daily/YYYY-MM-DD.md` is created or updated with a structured end entry. The file may already exist from daily start (start-of-day structure); if so, append the closeout sections. The file is written so that the next daily start can verify yesterday had an end.
 
-## Overview
+## Acceptance Criteria
 
+- File exists at `.groove/memory/daily/YYYY-MM-DD.md` after command completes
+- "Done today" section contains granular multi-level bullets sourced from completed tasks and git diff
+- Git section summarises commits and changed files for the day
+- Tasks section shows task summary by status
+- Learnings section is populated (not blank)
+- Open/Next section captures carry-forward items
+- If file already exists, content is updated/appended rather than overwritten
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-memory-log-daily
-```
+## Constraints
+
+- Memory path is always `.groove/memory/`
+- Write at daily end only — never called at daily start. File may already exist from daily start; append closeout sections rather than overwriting.
+- "Done today" must be sourced from: completed tasks (date-matched) and `git diff` output — not from incomplete work
+- **Pending capture**: if `.groove/.cache/pending-capture.md` exists (staged by the `session-capture` Stop hook), use it to pre-fill the "Done today" and "Git" sections — its commits/working-changes are the raw material, so the user reviews and edits a draft rather than starting blank. After the daily log is written successfully, delete `.groove/.cache/pending-capture.md`.
+- If a completed task has no resolution in its body, ask user for a summary before writing the bullet
+- Use template at `skills/groove-utilities-memory-log-daily/templates/daily.md` for file structure
+- If the directory `.groove/memory/daily/` does not exist, create it before writing
+- Vague entries ("worked on stuff") should trigger a clarification ask before writing

@@ -1,0 +1,12 @@
+{
+  "_comment": "Robot5 Navigation Waypoints - Cartographer坐标系",
+  "_usage": "使用 waypoints_manager.py add/list/get/remove 管理航点",
+  "_note": "地图: my_map.pbstream (Cartographer), 坐标系与wpr_simulation不同",
+  "waypoints": {
+    "出发点": {
+      "x": -29.254,
+      "y": 14.565,
+      "yaw": -1.489
+    }
+  }
+}

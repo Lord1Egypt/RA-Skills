@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  proxy:
+    build: .
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - BAILIAN_API_KEY=${BAILIAN_API_KEY}
+      - BAILIAN_BASE_URL=${BAILIAN_BASE_URL:-https://dashscope.aliyuncs.com/compatible-mode/v1}
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./data/bailian_proxy.db}
+      - REDIS_URL=${REDIS_URL:-}
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/admin/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 可选：MySQL数据库
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
+      - MYSQL_DATABASE=bailian_proxy
+      - MYSQL_USER=bailian
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-bailianpassword}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    profiles:
+      - with-mysql
+
+  # 可选：Redis缓存
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    profiles:
+      - with-redis
+
+volumes:
+  mysql_data:

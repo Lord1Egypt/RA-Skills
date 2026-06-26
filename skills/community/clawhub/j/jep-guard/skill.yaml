@@ -1,0 +1,178 @@
+# JEP Guard v2.0.4 — OpenClaw Skill Manifest
+id: jep-guard
+name: JEP Guard
+version: 2.0.4
+author: hjs-foundation
+license: MIT-0
+homepage: https://github.com/hjs-foundation/jep-guard
+repository: https://github.com/hjs-foundation/jep-guard
+
+description: |
+  Causal Operating System for OpenClaw Skills.
+  Invisible protection, complete audit, trusted reputation.
+
+description_long: |
+  JEP Guard is the safety layer that turns your OpenClaw skills
+  into a trusted, traceable multi-agent system.
+
+  ## What you get
+
+  - 🛡️ **Invisible Protection**: 95% of operations auto-approved,
+    only anomalies trigger alerts
+  - 📊 **Complete Audit**: Every judgment, delegation, and
+    verification recorded in JEP standard format
+  - 🏆 **Trusted Reputation**: Skills earn scores based on
+    real performance, not marketing claims
+  - 🔍 **Root Cause Analysis**: When things fail, trace the
+    exact causal chain in seconds
+
+  ## Perfect for
+
+  - Teams running multiple AI agents
+  - Compliance-sensitive workflows
+  - Cross-organizational AI collaboration
+  - Anyone who asks "why did my AI do that?"
+
+# Risk: critical because we intercept system calls
+risk_level: critical
+
+# v2.0.4 FIX: Declared binary dependencies (no shell execution)
+binary_dependencies:
+  - name: node
+    description: Node.js runtime (>= 18.0.0)
+    required: true
+    check: node --version
+  - name: claw
+    description: OpenClaw CLI (optional, for runtime integration)
+    required: false
+    check: claw --version
+
+# v2.0.4 FIX: Declared environment variables
+environment_variables:
+  - name: JEP_LITE
+    description: Force passive mode installation
+    required: false
+    default: null
+  - name: JEP_PASSIVE
+    description: Skip interactive prompts, install passive mode
+    required: false
+    default: null
+  - name: JEP_PURGE
+    description: Force data deletion on uninstall
+    required: false
+    default: null
+  - name: CI
+    description: CI/CD environment detection (forces passive mode)
+    required: false
+    default: null
+
+# Capabilities we need from the runtime
+capabilities:
+  - system:process_control    # Intercept subprocesses
+  - system:file_write         # Write audit logs
+  - system:network_local      # Local IPC socket
+  - system:signal             # Signal handling
+
+# What we provide to other skills
+provides:
+  - security:audit            # Audit event stream
+  - security:gate             # Execution gate
+  - security:reputation       # Skill reputation scores
+  - security:delegation       # Cross-skill routing
+
+# Entry points
+entry:
+  daemon: dist/daemon/server.js
+  cli: dist/cli/index.js
+  sdk: dist/sdk/index.js
+
+# Lifecycle hooks
+hooks:
+  post_install: scripts/post-install.js
+  pre_uninstall: scripts/pre-uninstall.js
+  pre_exec: openclaw.hooks.preExec
+  post_exec: openclaw.hooks.postExec
+  pre_delegate: openclaw.hooks.preDelegate
+  on_error: openclaw.hooks.onError
+
+# Configuration schema
+config_schema:
+  type: object
+  properties:
+    mode:
+      type: string
+      enum: [personal, team, enterprise, passive]
+      default: passive
+    default_deny:
+      type: boolean
+      default: true
+    log_level:
+      type: string
+      enum: [minimal, normal, verbose]
+      default: minimal
+    extensions:
+      type: object
+      properties:
+        cross_agent:
+          type: object
+          properties:
+            enabled: { type: boolean, default: true }
+        aegis:
+          type: object
+          properties:
+            enabled: { type: boolean, default: false }
+        cognitive:
+          type: object
+          properties:
+            enabled: { type: boolean, default: false }
+        tee:
+          type: object
+          properties:
+            enabled: { type: boolean, default: false }
+
+# Health check
+health_check:
+  command: claw run jep-guard status
+  interval: 30
+  timeout: 5
+
+# Resource limits
+resources:
+  memory: 256MB
+  disk: 100MB
+  cpu: 0.5
+
+# v2.0.4 FIX: Hardened security declarations
+security_declarations:
+  local_filesystem:
+    paths:
+      - ~/.jep-guard/config.json
+      - ~/.jep-guard/guard.key
+      - ~/.jep-guard/audit-stream.jep
+      - ~/.jep-guard/install-consent.json
+    purpose: Configuration, identity keys, and audit logs
+  runtime_modification:
+    description: Modifies OpenClaw security.module config when user explicitly enables full mode
+    requires_consent: true
+    auto_execute: false
+  persistent_daemon:
+    description: Runs background daemon process for skill interception
+    requires_consent: true
+    auto_start: false        # v2.0.4: Explicitly false; user must start manually
+    installer_spawns: false  # v2.0.4: Installer never spawns processes
+  shell_execution:
+    description: No shell commands or child_process are executed during install/uninstall
+    value: none
+
+# Tags for discovery
+tags:
+  - security
+  - audit
+  - agent
+  - causal
+  - compliance
+  - multi-agent
+  - jep
+  - accountability
+  - open-source
+  - trust

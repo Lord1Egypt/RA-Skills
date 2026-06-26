@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/image/ocr/parse",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "image_url": "https://pdfapihub.com/sample-invoicepage.png", "lang": "eng", "grayscale": true, "sharpen": true, "detail": "words" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "source_type": "image",
+      "language": "eng",
+      "text": "RECEIPT\nStore: ABC Mart\nDate: 2026-04-01\nTotal: $42.50",
+      "char_count": 52,
+      "line_count": 4,
+      "lines": ["RECEIPT", "Store: ABC Mart", "Date: 2026-04-01", "Total: $42.50"],
+      "confidence": 91.5,
+      "words": [
+        { "text": "RECEIPT", "confidence": 95.0, "bbox": { "x": 20, "y": 10, "width": 120, "height": 22 } },
+        { "text": "Total", "confidence": 93.2, "bbox": { "x": 20, "y": 100, "width": 80, "height": 22 } },
+        { "text": "$42.50", "confidence": 91.4, "bbox": { "x": 110, "y": 100, "width": 90, "height": 22 } }
+      ]
+    }
+  }
+}

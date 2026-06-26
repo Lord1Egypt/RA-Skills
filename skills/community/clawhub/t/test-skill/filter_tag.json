@@ -1,0 +1,16 @@
+{
+  "skill_path": "/mnt/shared-storage-user/llmit/user/tangyinhao/skills/openclaw_skills/wuhaichao87/clawhub-publish-tool/SKILL.md",
+  "include_ui_interaction": false,
+  "include_login_auth": false,
+  "include_api_key": false,
+  "api_key_type": [],
+  "include_malicious_code": false,
+  "include_real_transaction": false,
+  "include_gpu": false,
+  "skill_category": "tool",
+  "platforms": [
+    "Cross-platform"
+  ],
+  "reasoning": "仅提供命令行发布功能，无界面、登录、密钥需求，属工具，跨平台。",
+  "raw_prediction": "{\n  \"include_ui_interaction\": false,\n  \"include_login_auth\": false,\n  \"include_api_key\": false,\n  \"api_key_type\": [],\n  \"include_malicious_code\": false,\n  \"include_real_transaction\": false,\n  \"include_gpu\": false,\n  \"skill_category\": \"tool\",\n  \"platforms\": [\"Cross-platform\"],\n  \"reasoning\": \"仅提供命令行发布功能，无界面、登录、密钥需求，属工具，跨平台。\"\n}"
+}

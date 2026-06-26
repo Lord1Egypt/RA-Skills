@@ -1,0 +1,123 @@
+{
+  "tools": [
+    {
+      "id": "memory_search",
+      "name": "memory_search",
+      "description": "语义搜索记忆系统。使用向量嵌入匹配相关记忆片段。",
+      "category": "memory",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "搜索查询内容"
+          },
+          "topK": {
+            "type": "number",
+            "description": "返回最相似的 K 条结果",
+            "default": 5
+          },
+          "group": {
+            "type": "string",
+            "description": "群组 ID（可选，指定则只在群组记忆里搜索）",
+            "optional": true
+          }
+        },
+        "required": ["query"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": { "type": "string" },
+                "content": { "type": "string" },
+                "score": { "type": "number" },
+                "lines": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "memory_get",
+      "name": "memory_get",
+      "description": "读取记忆文件片段。支持指定行号范围。",
+      "category": "memory",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "文件路径，相对于 memoryDir"
+          },
+          "from": {
+            "type": "number",
+            "description": "起始行号（1-based）",
+            "optional": true
+          },
+          "lines": {
+            "type": "number",
+            "description": "读取行数",
+            "optional": true
+          }
+        },
+        "required": ["path"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "content": { "type": "string" },
+          "totalLines": { "type": "number" }
+        }
+      }
+    },
+    {
+      "id": "memory_write",
+      "name": "memory_write",
+      "description": "写入记忆文件",
+      "category": "memory",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "文件路径，相对于 memoryDir"
+          },
+          "content": {
+            "type": "string",
+            "description": "写入内容"
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["overwrite", "append"],
+            "default": "append",
+            "description": "写入模式"
+          }
+        },
+        "required": ["path", "content"]
+      }
+    },
+    {
+      "id": "memory_flush",
+      "name": "memory_flush",
+      "description": "手动触发内存 flush 到文件系统",
+      "category": "memory",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "force": {
+            "type": "boolean",
+            "default": false,
+            "description": "强制 flush，忽略阈值"
+          }
+        }
+      }
+    }
+  ]
+}

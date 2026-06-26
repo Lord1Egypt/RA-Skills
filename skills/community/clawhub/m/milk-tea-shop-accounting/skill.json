@@ -1,0 +1,30 @@
+{
+  "name": "奶茶店收支流水分析助手",
+  "description": "奶茶店老板专属的收支流水分析工具，只需要上传流水记录（文字/图片/Excel），自动帮你算出现金利润、成本结构、经营分析报告，零学习成本。",
+  "version": "1.0.0",
+  "author": "鸣",
+  "category": "企业服务/会计记账",
+  "price": 99,
+  "tags": ["奶茶店", "记账", "流水分析", "利润计算", "小生意"],
+  "skills": [
+    {
+      "name": "分析奶茶店流水",
+      "description": "上传你的收支流水记录，自动计算现金利润和经营分析报告",
+      "parameters": {
+        "type": "object",
+        "required": ["flow_content"],
+        "properties": {
+          "flow_content": {
+            "type": "string",
+            "description": "收支流水内容，可以是文字描述、图片OCR结果、Excel导出的文本"
+          },
+          "period": {
+            "type": "string",
+            "description": "统计周期：day/week/month，默认month",
+            "default": "month"
+          }
+        }
+      }
+    }
+  ]
+}

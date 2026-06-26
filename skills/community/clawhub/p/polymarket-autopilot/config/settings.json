@@ -1,0 +1,19 @@
+{
+  "polymarket": {
+    "apiKey": "YOUR_POLYMARKET_API_KEY",
+    "baseUrl": "https://clob.polymarket.com"
+  },
+  "discord": {
+    "channel": "discord",
+    "to": "channel:1478698808631361647"
+  },
+  "trading": {
+    "maxPositions": 10,
+    "stopLoss": 0.05,
+    "takeProfit": 0.10,
+    "startingCapital": 10000
+  },
+  "schedule": {
+    "reportTime": "08:00"
+  }
+}

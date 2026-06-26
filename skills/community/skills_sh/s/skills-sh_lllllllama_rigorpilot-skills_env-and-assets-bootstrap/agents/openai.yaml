@@ -1,0 +1,3 @@
+display_name: Rigor Setup
+short_description: Rigor Setup mode for conservative environment and asset assumptions before a reproduction run.
+default_prompt: Prepare a conservative conda-first environment plus checkpoint, dataset, and cache assumptions for this README-documented reproduction target before any run.

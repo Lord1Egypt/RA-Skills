@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Short Script",
+  "tagline": "短视频口播分镜表 — 镜号/时长/画面/口播/花字",
+  "description": "Generate a short-video storyboard table (topic, duration, shots) for Douyin/WeChat/Bilibili-style talking-head videos.",
+  "category": "utility",
+  "tags": ["video", "口播", "分镜", "短视频", "抖音", "新媒体", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

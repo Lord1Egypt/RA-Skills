@@ -1,35 +1,86 @@
 ---
-name: "独立思考四部曲"
-description: "独立思考四部曲。触发场景：开口/动手前需要深度思考时、方案决策前、复盘总结时、任何需要依托向量补全记忆做全局判断的场景。与沟通四部曲并行通用，贯穿对话、做事、学习、复盘全流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/independent-thinking-4steps"
-sourceUrl: "https://clawhub.ai/skills/independent-thinking-4steps"
+name: independent-thinking-4steps
+description: 独立思考四部曲。触发场景：开口/动手前需要深度思考时、方案决策前、复盘总结时、任何需要依托向量补全记忆做全局判断的场景。与沟通四部曲并行通用，贯穿对话、做事、学习、复盘全流程。
 ---
 
 # 独立思考四部曲
 
-> 独立思考四部曲。触发场景：开口/动手前需要深度思考时、方案决策前、复盘总结时、任何需要依托向量补全记忆做全局判断的场景。与沟通四部曲并行通用，贯穿对话、做事、学习、复盘全流程。
+> 底层核心准则 · 与沟通四部曲同级
+> 向量加持的深度决策方法论
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/independent-thinking-4steps`
-- **Source URL:** [https://clawhub.ai/skills/independent-thinking-4steps](https://clawhub.ai/skills/independent-thinking-4steps)
+## 核心定位
 
-## Overview
+依托**专属后台向量系统**完成全场景深度思考，彻底摒弃系统默认 Memory Search，弥补记忆断层，形成不依赖临时会话的自主决策本能。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/independent-thinking-4steps
+## 四步法结构（想→说→做→看）
+
+### 1. 想：向量溯源定基调
+
+开口/动手前，先切至专属后台向量源，检索核心关键词，拉取历史逻辑、方案与踩坑经验，依托向量补全记忆，形成全局独立判断，**不凭局部信息仓促决策**。
+
+**向量调用规范（强制）：**
 ```
+# 唯一正确格式
+python3 /Users/markma01/.openclaw/workspace/scripts/query_vector.py "<检索词>"
+
+# 禁止以下所有格式
+cd /path && python3 script.py
+echo "query" | python3 script.py
+python3 script.py | grep ...
+```
+
+---
+
+### 2. 说：有据表达不空谈
+
+沟通汇报时，所有结论均基于向量检索的事实依据，逻辑连贯、不主观臆断，让思考过程可追溯、可验证。
+
+---
+
+### 3. 做：向量校验落地
+
+实操执行前，用向量核对步骤、风险与适配方案，完成独立校验后再动手，**杜绝思路割裂、盲目操作**。
+
+---
+
+### 4. 看：向量沉淀固认知
+
+任务结束后，通过向量复盘全流程，将新经验存入专属向量库，迭代优化认知，持续填补记忆缺口，实现独立思考能力闭环升级。
+
+---
+
+## 强制执行规则
+
+1. **与「沟通四部曲」并行通用**，所有场景缺一不可
+2. **永久禁用系统自带 Memory Search**，仅使用专属后台向量系统（`query_vector.py` / `unified_query.py`）
+3. 无论会话新旧、记忆是否断层，均以此为独立思考核心准则
+4. 「看」的输出必须闭环存入向量库，为下次「想」提供素材
+
+---
+
+## 与沟通四部曲的关系
+
+| 维度 | 沟通四部曲 | 独立思考四部曲 |
+|------|-----------|--------------|
+| 核心 | 与他人校准 | 与自己校准 |
+| 底座 | 对话实时性 | 向量长期记忆 |
+| 侧重 | 互动、汇报、方案讨论 | 思考、决策、复盘 |
+| 并行 | 对外沟通用 | 对内思考用 |
+
+两者合并，才是完整的「想清楚 → 说出来 → 做到位 → 固下来」闭环。
+
+---
+
+## 快速触发检查清单
+
+每次开口/动手前自检：
+- [ ] 已调用 `query_vector.py` 检索相关历史经验
+- [ ] 「想」的结论有向量事实支撑
+- [ ] 「做」的方案经向量校验无已知风险
+- [ ] 「看」的结果计划存入向量库
+
+---
+
+*本 skill 为小蜂独立思考核心准则，与「沟通四部曲」同级并行。*

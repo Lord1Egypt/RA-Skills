@@ -1,0 +1,4 @@
+interface:
+  display_name: "MeritLoop Architect"
+  short_description: "Design local-first Buddhist ritual AI products"
+  default_prompt: "Use $buddhist-agent-product to turn my Buddhist AI or cyber-chanting idea into a polished product concept with naming, merit mechanics, and a local-first roadmap."

@@ -1,35 +1,31 @@
----
-name: "GitHub Repo Analyzer"
-description: "Analyze GitHub repositories to provide statistics, contributor activity, programming languages, and issue and PR trends."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, github, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-repo-analyzer"
-sourceUrl: "https://clawhub.ai/skills/github-repo-analyzer"
----
+# GitHub Repo Analyzer Skill
 
-# GitHub Repo Analyzer
+Analyze GitHub repositories to get insights on activity, contributors, and tech stack.
 
-> Analyze GitHub repositories to provide statistics, contributor activity, programming languages, and issue and PR trends.
+## Capabilities
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-repo-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/github-repo-analyzer](https://clawhub.ai/skills/github-repo-analyzer)
+- Fetch repository statistics
+- Analyze contributor activity
+- Detect programming languages and tech stack
+- Track issue and PR trends
 
-## Overview
+## Commands
 
+- "Analyze github.com/facebook/react"
+- "Show stats for vercel/next.js"
+- "What languages does kubernetes use?"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/github-repo-analyzer
-```
+## Tools
+
+### analyze_repo
+Get comprehensive repository analysis.
+
+**Usage**: "Analyze [repo-url]"
+
+## Pricing
+
+$2/month subscription
+
+## Author
+
+Dev Tools Pro

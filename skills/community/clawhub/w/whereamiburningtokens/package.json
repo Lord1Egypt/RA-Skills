@@ -1,0 +1,11 @@
+{
+  "name": "whereamiburningtokens",
+  "version": "1.1.0",
+  "description": "See exactly where your tokens and money are going across all OpenClaw sessions",
+  "author": "whooshinglander",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whooshinglander/whereamiburningtokens.git"
+  }
+}

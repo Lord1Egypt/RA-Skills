@@ -1,0 +1,34 @@
+{
+  "name": "@design-llm/qoderwork-ppt-skill",
+  "version": "1.0.0",
+  "description": "AI agent skill: Generate QoderWork-style presentations. 14 templates, outputs editable .pptx",
+  "type": "module",
+  "keywords": [
+    "cursor",
+    "skill",
+    "ppt",
+    "presentation",
+    "qoderwork",
+    "ai-agent"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "rules",
+    "templates",
+    "scripts",
+    "package.json"
+  ],
+  "scripts": {
+    "fill-template": "node scripts/fill-template.js",
+    "html-to-pptx-dom": "node scripts/html-to-pptx-dom.js",
+    "validate-slides": "node scripts/validate-slides.js",
+    "run-pipeline": "node scripts/run-pipeline.js"
+  },
+  "dependencies": {
+    "dom-to-pptx": "^1.1.4",
+    "jsdom": "^24.0.0",
+    "lucide-static": "^0.468.0",
+    "puppeteer": "^24.36.1"
+  }
+}

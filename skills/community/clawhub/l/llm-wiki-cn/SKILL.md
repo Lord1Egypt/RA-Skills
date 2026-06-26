@@ -1,35 +1,523 @@
 ---
-name: "使用 LLM 动态构建和维护知识库"
-description: "用于构建、维护、查询、归档和体检一个由 LLM 持续维护的 Markdown / Obsidian 知识 Wiki。使用场景包括：初始化个人知识库；把 source/ 下按来源分组的原始资料导入 wiki/；整理文章、论文、书摘、访谈、会议记录；维护资料页、实体页、概念页、综合页、对比页、查询归档页；更新 ind..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/llm-wiki-cn"
-sourceUrl: "https://clawhub.ai/skills/llm-wiki-cn"
+name: llm-wiki
+description: 用于构建、维护、查询、归档和体检一个由 LLM 持续维护的 Markdown / Obsidian 知识 Wiki。使用场景包括：初始化个人知识库；把 source/ 下按来源分组的原始资料导入 wiki/；整理文章、论文、书摘、访谈、会议记录；维护资料页、实体页、概念页、综合页、对比页、查询归档页；更新 index.md 和 log.md；基于 Wiki 回答问题并把有长期价值的回答归档；检查断链、孤立页、重复概念、过时结论、未标注矛盾、乱码和组织混乱。
 ---
 
-# 使用 LLM 动态构建和维护知识库
+# LLM Wiki
 
-> 用于构建、维护、查询、归档和体检一个由 LLM 持续维护的 Markdown / Obsidian 知识 Wiki。使用场景包括：初始化个人知识库；把 source/ 下按来源分组的原始资料导入 wiki/；整理文章、论文、书摘、访谈、会议记录；维护资料页、实体页、概念页、综合页、对比页、查询归档页；更新 ind...
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/llm-wiki-cn`
-- **Source URL:** [https://clawhub.ai/skills/llm-wiki-cn](https://clawhub.ai/skills/llm-wiki-cn)
+维护一个可积累、可链接、可演化的 Markdown / Obsidian Wiki。每次导入或回答问题时，不只是生成摘要，而是把新知识编译进已有页面：更新实体、概念、综合判断、对比和查询归档，让 Wiki 随使用持续增值。
 
-## Overview
+## 默认三层结构
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/llm-wiki-cn
+```text
+source/          # 原始资料层：事实来源，默认只读
+wiki/            # 知识编译层：LLM 维护的结构化 Wiki
+schema/SKILL.md  # 约定层：本 skill / schema
 ```
+
+
+### Knowledge 根目录
+
+`Knowledge/` 根目录只放少量结构性入口和工具文件，不放普通知识页。
+
+推荐根目录内容：
+
+```text
+Knowledge/
+  source/
+  wiki/
+  schema/
+  verify_wiki.py   # 可选：兼容性 wrapper，委托到 schema/scripts/verify_wiki.py
+  README.md        # 可选：极简入口
+```
+
+根目录不建议放：
+
+- 单篇资料摘要；
+- 概念页；
+- 综合页；
+- 主题地图；
+- 临时整理报告。
+
+如需根目录入口，可创建极简 `Knowledge/README.md`，只链接：
+
+- `[[Knowledge/wiki/README]]`
+- `[[Knowledge/wiki/index]]`
+- `[[Knowledge/wiki/综合/Knowledge Wiki主题地图]]`
+- `[[Knowledge/wiki/log]]`
+- `[[Knowledge/source]]`
+
+原则：根目录负责“入口”，`wiki/` 负责“知识”。
+
+### source/
+
+- 原始资料默认只读，不改写正文。
+- 保留原始标题、作者、URL、日期、剪藏元数据、图片引用等。
+- 如需重命名原始资料或补元数据，先征求用户确认。
+
+### wiki/
+
+默认目录使用中文：
+
+```text
+wiki/
+  index.md      # 主索引，保留英文文件名
+  log.md        # 操作日志，保留英文文件名
+  README.md     # Wiki 说明，保留英文文件名
+  资料/
+  实体/
+  概念/
+  综合/
+  对比/
+  查询/
+```
+
+约定：
+
+- 除 `index.md`、`log.md`、`README.md` 和 `schema/SKILL.md` 等约定文件外，目录名和文件名尽可能使用中文。
+- 术语型专名可保留英文或中英混排，例如 `AI Agent.md`、`OpenClaw.md`、`Claude Code.md`、`Harness Engineering.md`。
+- 不创建英文复数目录，如 `sources/`、`concepts/`、`entities/`；若发现历史残留且为空，清理；若有内容，迁移到中文目录并更新链接。
+- 文件名应可读、可点击、可长期维护，避免 `source-*`、`concept-*`、`synthesis-*` 这类机器前缀。
+
+## 页面类型
+
+### 资料页：`wiki/资料/`
+
+用于单篇来源的摘要和定位。应包含：
+
+- 来源信息：原始文件、URL、作者、日期。
+- 一句话摘要。
+- 这篇资料解决的问题：必须从原文中提取独特问题，**禁止跨页复用通用描述**。
+- 关键结构 / 章节线索。
+- 可沉淀的知识点：必须是从原文抽取的具体判断，**禁止使用"若文章讨论 X，应优先连接到 Y"这类通用指引**。
+- 相关概念 / 实体 / 综合页。
+- 后续精读任务。
+
+### 实体页：`wiki/实体/`
+
+人物、组织、产品、项目、工具等。实体页承接事实和背景，不承载过长论证。
+
+- 实体页只为"知识对象"建档：人物、组织、产品、项目、工具等只有在其本身是分析对象或承接可复用事实时才进入实体页；不要仅因某人是资料作者而创建实体页，也不要在实体页维护文章作者清单。作者信息保留在资料页来源信息或 source 元数据中。
+
+推荐结构：`定位 → 关键信息（结构化事实表） → 核心能力/产品特征 → 在知识库中的作用 → 相关来源 → 相关页面`
+
+### 概念页：`wiki/概念/`
+
+方法、模式、理论、问题意识、框架等。概念页应优先复用和更新，避免同义重复。
+
+推荐结构：`定义 → 核心理解/判断 → 与相邻概念的关系 → 相关来源 → 相关页面`
+
+**反模板规则**：
+- 每个概念页的"与相邻概念的关系"必须逐一写明具体关联，**禁止使用"它把分散在多篇来源中的观点汇聚为可复用概念"等通用模板段落**。
+- 每个概念页至少应包含：清晰定义、2+ 条独特核心判断、与 2+ 个相关概念的关系说明。
+
+### 综合页：`wiki/综合/`
+
+跨来源形成的判断、框架、主题综述、案例矩阵、架构分析等。
+
+每个综合页至少应包含：核心判断、多来源综合（非单来源复述）、与 3+ 篇资料页的交叉引用。
+
+### 对比页：`wiki/对比/`
+
+用于区分容易混淆的概念、产品、范式、方案，如 `Reasoner与Agent.md`。
+
+推荐结构：
+
+1. 一句话结论；
+2. 对比对象定义；
+3. 对比表；
+4. 判断方法 / 使用场景；
+5. 常见误区；
+6. 与知识库主线的关系；
+7. 相关来源；
+8. 相关页面。
+
+最低质量要求：
+
+- 对比表中的列名不能使用泛泛的 `A / B`，必须写清具体对象；
+- 必须说明“什么时候选 A，什么时候选 B”；
+- 必须链接至少 2 个概念页或综合页；
+- 禁止复用通用段落，例如“当讨论模型能力时，先判断……”这类可套用到任何对比页的文字。
+
+
+### 主题地图页：`wiki/综合/`
+
+主题地图页属于综合页的一种，用于组织 Wiki 的长期阅读路径和主题主线，不放在 `Knowledge/` 根目录。
+
+推荐位置：
+
+- `wiki/综合/Knowledge Wiki主题地图.md`
+- 或按专题命名，如 `wiki/综合/Agent工程主题地图.md`
+
+主题地图应包含：
+
+- 当前 Wiki 的核心问题；
+- 3-9 条主题主线；
+- 每条主线的推荐阅读顺序；
+- 入口概念页、关键综合页、核心资料页、相关对比页；
+- 页面类型使用说明；
+- 后续整理优先级。
+
+与 `index.md` 的分工：
+
+- `index.md` 保留全量入口和页面清单；
+- 主题地图负责知识结构、阅读路径和主题导航；
+- 不要让 `index.md` 承担过多解释性内容，避免变成长文。
+
+### 查询页：`wiki/查询/`
+
+把有长期价值的问答归档成可复用页面。查询页应回答明确问题，并链接回相关资料、概念和综合页。
+
+## 核心工作流
+
+### 初始化 Wiki
+
+1. 扫描 `source/` 的目录、文件类型和来源分组。
+2. 创建或更新 `wiki/index.md`、`wiki/log.md`、`wiki/README.md`。
+3. 为首批资料创建资料页。
+4. 抽取实体、概念、综合和对比页面。
+5. 更新索引和日志。
+6. 检查断链、乱码、重复目录和空目录。
+
+### 导入资料
+
+1. 先读 `wiki/index.md` 定位已有相关页。
+2. 阅读新来源，提取摘要、关键结构、实体、概念和可复用判断。
+3. 创建或更新资料页。
+4. 更新已有实体页、概念页、综合页；优先更新，不轻易新建重复概念。
+5. 标注关系：支持、补充、修正、矛盾、待验证。
+6. 更新 `wiki/index.md` 和 `wiki/log.md`。
+7. 运行断链与乱码检查。
+
+
+### 专题批次导入
+
+当一次导入同一主题下 5 篇以上资料时，不应只创建多个资料页，还应建立专题结构。
+
+步骤：
+
+1. 判断是否已有对应综合页或主题地图入口；
+2. 为每篇来源创建资料页；
+3. 建立或更新一个专题综合页，例如：
+   - `Claude Code源码架构地图`
+   - `Agent时代创业方法论`
+4. 抽取共用概念和实体，避免每篇资料重复建概念；
+5. 在 `index.md` 中分组呈现；
+6. 在主题地图中补充该专题的阅读路径；
+7. 在 `log.md` 中按专题批次记录，而不是逐篇流水账。
+
+### 基于 Wiki 回答问题
+
+1. 先读 `wiki/index.md`。
+2. 再读取相关页面，不要默认全文扫描整个 Wiki。
+3. 回答时引用 Wiki 页面链接。
+4. 如果回答有长期价值，归档到 `wiki/查询/` 或更新综合页。
+5. 更新 `wiki/log.md`。
+
+
+### Wiki 层重整 / 主题重构
+
+适用场景：当 `source/` 已经导入较多资料，`wiki/` 页面数量变多，用户希望提升可导航性、主题聚合度和长期维护性。
+
+步骤：
+
+1. 先运行体检脚本或等价检查，确认：
+   - source 覆盖率；
+   - 断链；
+   - index 覆盖；
+   - UTF-8 异常；
+   - 薄页 / 模板残留。
+2. 读取 `wiki/index.md`、`wiki/README.md`、`wiki/log.md` 和已有综合页。
+3. 判断当前 Wiki 的主题主线，而不是按来源目录机械整理。
+4. 如页面数量较多，应创建或更新主题地图页，例如：`wiki/综合/Knowledge Wiki主题地图.md`。
+5. 明确 `index.md` 与主题地图的分工：
+   - `index.md`：全量目录；
+   - 主题地图：阅读路径、主题主线、知识架构。
+6. 优先重构：
+   - 薄弱对比页；
+   - 薄概念页；
+   - 缺少主线归属的综合页；
+   - index 中难以导航的长列表。
+7. 更新 `README.md`、`index.md`、`log.md`。
+8. 最后重新运行断链、覆盖、索引和编码检查。
+
+### 充实已有页面
+
+1. 读取目标页面和相关来源。
+2. 如果来源信息不足以支撑完整概念，可搜索外部信息补充（标注来源）。
+3. 补充后更新页面的 `updated` 日期。
+4. 检查双向链接完整性。
+
+
+## 页面质量体检
+
+定期检查薄页和模板残留。页面通过断链检查不代表知识质量合格。
+
+### 薄页识别
+
+以下页面应优先复查：
+
+- 概念页少于 800 字符；
+- 实体页少于 800 字符；
+- 综合页少于 1200 字符；
+- 对比页少于 1000 字符；
+- 资料页只有摘要，没有“解决的问题”和“可沉淀知识点”。
+
+薄页不一定必须扩写，但需要判断：
+
+- 是否只是临时占位；
+- 是否应合并到已有页面；
+- 是否应升级为完整概念页；
+- 是否只需要从 index 或主题地图中降低优先级。
+
+### 模板残留检查
+
+重点搜索：
+
+- “它回答了一个长期问题”；
+- “若文章讨论”；
+- “为什么重要”但内容泛泛；
+- “待补充”；
+- “TODO”；
+- `A / B` 占位列名；
+- 通用“如何使用这个对比”段落。
+
+发现模板残留时，优先基于原始资料和相关页面重写为具体判断；不要只删除标题。
+
+## 体检脚本
+
+当前 Knowledge Wiki 的可发布体检脚本位于：
+
+```bash
+python3 Knowledge/schema/scripts/verify_wiki.py
+```
+
+为了兼容既有命令，本 vault 也保留根目录 wrapper：
+
+```bash
+python3 Knowledge/verify_wiki.py
+```
+
+发布 skill 时，应将 `Knowledge/schema/scripts/verify_wiki.py` 作为 skill 包内的 `scripts/verify_wiki.py` 随 `SKILL.md` 一起打包；根目录 wrapper 只属于当前 vault 的便利入口。
+
+每次批量导入、重构、重命名或主题地图更新后，都应运行。
+
+合格标准：
+
+- `Sources without ziliao: 0`
+- `Broken wikilinks: 0`
+- `Pages not in index.md: 0`
+- `UTF-8 issues: 0`
+
+如果脚本结果与人工判断冲突，以人工检查为准，但必须在 `wiki/log.md` 中记录原因。
+
+不要为了通过脚本而机械创建低质量资料页；资料页仍应满足资料页最低质量标准。
+
+## index.md 规范
+
+`wiki/index.md` 是导航入口。建议结构：
+
+```markdown
+# Knowledge Wiki Index
+
+## 快速入口
+
+## 资料
+
+## 实体
+
+## 概念
+
+## 综合
+
+## 对比
+
+## 查询
+```
+
+每条记录尽量包含：
+
+```markdown
+- [[Knowledge/wiki/概念/上下文工程]] — 一句话说明；状态：evolving。
+```
+
+## log.md 规范
+
+`wiki/log.md` 是按日期维护的阶段性时间线，不做过细流水账。更新原则：
+
+- **按日期合并**：同一天的导入、重构、查询、维护尽量合并到 `## YYYY-MM-DD｜主题概览` 下，用 `###` 按主题分组。
+- **记录阶段性结果**：保留关键来源、关键新增/更新页面、核心结论、重要维护决策；不要为每个小操作都追加独立条目。
+- **细节另建记录页**：大批量映射、长体检清单、图片迁移表、复杂实验日志等放在对应综合页或 `wiki/查询/` 中，`log.md` 只链接摘要。
+- **当天多次更新时改写当天段落**：优先编辑/合并当天已有段落，而不是继续追加碎片条目。
+- **保留后续方向**：末尾可维护“当前待办 / 后续方向”，但保持短清单。
+
+推荐格式：
+
+```markdown
+## YYYY-MM-DD｜主题概览
+
+### 主题一
+
+- 导入/更新范围：...
+- 新增/更新：[[Knowledge/wiki/...]]、[[Knowledge/wiki/...]]
+- 关键结论：...
+
+### 主题二
+
+- ...
+
+## 当前待办 / 后续方向
+
+- [ ] ...
+```
+
+常见主题：
+
+- 初始化与结构调整。
+- 资料专题导入。
+- 概念/综合页深化。
+- 查询归档。
+- 体检与维护。
+- Schema / skill 规则更新。
+
+## Frontmatter 建议
+
+资料页：
+
+```yaml
+---
+type: source
+tags: [source-summary]
+source_file: "[[Knowledge/source/...]]"
+source_name:
+author:
+url:
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+status: initialized
+---
+```
+
+实体页：
+
+```yaml
+---
+type: entity
+tags: [entity]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+status: evolving
+---
+```
+
+概念页：
+
+```yaml
+---
+type: concept
+tags: [concept]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+status: evolving
+---
+```
+
+综合页：
+
+```yaml
+---
+type: synthesis
+tags: [synthesis]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+status: evolving
+---
+```
+
+对比页：
+
+```yaml
+---
+type: comparison
+tags: [comparison]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+status: evolving
+---
+```
+
+查询页：
+
+```yaml
+---
+type: query
+tags: [query]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+status: archived
+---
+```
+
+
+## 外部搜索边界
+
+默认优先使用 `Knowledge/source/` 和 `Knowledge/wiki/` 内部资料，不主动用外部搜索替代已有来源。
+
+可以使用外部搜索的情况：
+
+- 用户明确要求查最新；
+- 概念页需要补充标准定义或官方文档；
+- 资料中的事实具有时效性，且会影响结论；
+- 需要核对产品、模型、公司、论文或法规的最新状态。
+
+使用外部搜索时：
+
+- 优先使用官方来源、论文、原始公告；
+- 在页面中标注外部来源链接；
+- 区分“来源原文观点”和“外部验证后的事实”；
+- 不要把未经验证的网络信息混入稳定结论。
+
+## 链接规则
+
+- 使用 Obsidian Wiki 链接：`[[Knowledge/wiki/概念/上下文工程]]`。
+- 链接到 vault 文件时使用相对 vault 根路径，不使用绝对路径。
+- 重命名文件后必须批量更新所有 `[[...]]`。
+- 响应用户时也尽量使用可点击 wikilink。
+- **双向链接原则**：当概念 A 引用概念 B 时，B 的页面也应包含对 A 的反向引用。边界模糊的概念对（如 Harness/环境、Vibe Coding/Agentic coding）应在各自页面中互相说明关系。
+
+## 编码安全规则
+
+中文内容必须按 UTF-8 写入。当前 Windows / PowerShell 环境中，直接用 PowerShell here-string、`Add-Content`、`Set-Content` 写中文容易产生问号乱码。
+
+优先使用：
+
+- `apply_patch` 修改 Markdown；
+- 或创建 `.py` 脚本文件，再用 `Path.write_text(..., encoding="utf-8")` 写入；
+- 或用 Python `read_text(..., encoding="utf-8")` 验证文件内容。
+
+避免：
+
+- 在 PowerShell 命令字符串中直接写大段中文；
+- 用终端显示结果判断文件是否乱码。
+
+每次批量写入后检查：
+
+- 连续问号；
+- Unicode 替换字符；
+- 典型 mojibake 标记；
+- 断链。
+
+## 图片与附件
+
+- `source/` 中的外部图片默认不批量下载，除非用户要求或该图对长期理解很关键。
+- 如需本地化图片，下载到 vault 附件位置，并把 Markdown 改为 Obsidian 图片嵌入：`![[image.png]]`。
+- 原始资料层默认只读；图片本地化或改写原始资料前应确认。
+
+## 安全原则
+
+- 不覆盖用户原始资料。
+- 不删除非空目录，除非确认内容已迁移或用户明确要求。
+- 批量移动、重命名前先制定映射；执行后检查断链。
+- 用户明确偏好优先于本 schema，例如目录命名、报告是否保留、README 是否保留英文名。

@@ -1,0 +1,31 @@
+[
+  {
+    "candidate_index": 0,
+    "title": "Gateway token mismatch fix",
+    "bullets": [
+      "Resolved `unauthorized: gateway token mismatch` by updating `gateway.cmd` and the related env variables.",
+      "Next time a similar error appears, check token and env alignment first."
+    ],
+    "action": "add"
+  },
+  {
+    "candidate_index": 1,
+    "title": "Telegram inline button rules",
+    "bullets": [
+      "Inline keyboards use a single-row, 3-button layout.",
+      "Cancel button always sits on the rightmost slot."
+    ],
+    "action": "merge",
+    "merge_target_title": "Telegram UI conventions",
+    "reason": "Two new rules belong to the same existing topic."
+  },
+  {
+    "candidate_index": 2,
+    "title": "Sprint planning notes",
+    "bullets": [
+      "Team agreed to focus on six items during sprint planning."
+    ],
+    "action": "skip",
+    "reason": "Temporary plan, no lasting value."
+  }
+]

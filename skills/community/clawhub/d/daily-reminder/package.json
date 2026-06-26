@@ -1,0 +1,9 @@
+{
+  "name": "daily-reminder",
+  "version": "1.0.0",
+  "description": "每日提醒、倒计时、纪念日管理工具",
+  "main": "index.js",
+  "author": "黄豆豆",
+  "license": "MIT",
+  "keywords": ["提醒", "工具", "日程管理"]
+}

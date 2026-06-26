@@ -1,0 +1,194 @@
+{
+  "category": "行业主题",
+  "sub_category": "周期产业",
+  "description": "理财通行业主题-周期产业指数名单",
+  "count": 31,
+  "indices": [
+    {
+      "code": "000066.SH",
+      "name": "上证大宗商品股票指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000066"
+    },
+    {
+      "code": "000068.SH",
+      "name": "上证自然资源指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000068"
+    },
+    {
+      "code": "000689.SH",
+      "name": "上证科创板新材料指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000689"
+    },
+    {
+      "code": "000805.CSI",
+      "name": "中证A股资源产业指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000805"
+    },
+    {
+      "code": "000811.CSI",
+      "name": "中证细分有色金属产业主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000811"
+    },
+    {
+      "code": "000813.CSI",
+      "name": "中证细分化工产业主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000813"
+    },
+    {
+      "code": "000819.SH",
+      "name": "中证申万有色金属指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000819"
+    },
+    {
+      "code": "000823.SH",
+      "name": "中证800有色金属指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000823"
+    },
+    {
+      "code": "000928.SH",
+      "name": "中证能源指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000928"
+    },
+    {
+      "code": "000944.CSI",
+      "name": "中证内地资源主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000944"
+    },
+    {
+      "code": "000961.CSI",
+      "name": "中证上游资源产业指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000961"
+    },
+    {
+      "code": "000979.CSI",
+      "name": "中证大宗商品股票指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000979"
+    },
+    {
+      "code": "000986.SH",
+      "name": "中证全指能源指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000986"
+    },
+    {
+      "code": "000987.SH",
+      "name": "中证全指原材料指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000987"
+    },
+    {
+      "code": "399395.SZ",
+      "name": "国证有色指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399395"
+    },
+    {
+      "code": "399439.SZ",
+      "name": "国证石油天然气指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399439"
+    },
+    {
+      "code": "399440.SZ",
+      "name": "国证钢铁行业",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399440"
+    },
+    {
+      "code": "399990.SZ",
+      "name": "中证煤炭等权指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399990"
+    },
+    {
+      "code": "399998.SZ",
+      "name": "中证煤炭指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399998"
+    },
+    {
+      "code": "930598.CSI",
+      "name": "中证稀土产业指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930598"
+    },
+    {
+      "code": "930606.CSI",
+      "name": "中证钢铁指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930606"
+    },
+    {
+      "code": "930632.CSI",
+      "name": "中证稀有金属主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930632"
+    },
+    {
+      "code": "930708.CSI",
+      "name": "中证有色金属指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930708"
+    },
+    {
+      "code": "931009.CSI",
+      "name": "中证全指建筑材料指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931009"
+    },
+    {
+      "code": "931238.CSI",
+      "name": "中证沪深港黄金产业股票指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931238"
+    },
+    {
+      "code": "931248.CSI",
+      "name": "中证油气资源指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931248"
+    },
+    {
+      "code": "931892.CSI",
+      "name": "中证有色金属矿业主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931892"
+    },
+    {
+      "code": "h11057.CSI",
+      "name": "中证石化产业指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11057"
+    },
+    {
+      "code": "h11059.CSI",
+      "name": "中证工业有色金属主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11059"
+    },
+    {
+      "code": "h30198.CSI",
+      "name": "中证油气产业指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30198"
+    },
+    {
+      "code": "h30597.CSI",
+      "name": "中证新材料主题指数",
+      "sub_category": "周期产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30597"
+    }
+  ]
+}

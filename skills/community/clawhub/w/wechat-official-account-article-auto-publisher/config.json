@@ -1,0 +1,28 @@
+{
+  "wechat": {
+    "app_id": "",
+    "app_secret": "",
+    "author": "",
+    "default_template": "business",
+    "open_comment": true,
+    "fans_only_comment": false
+  },
+  "image_generation": {
+    "provider": "doubao",
+    "size": "1536x1024",
+    "quality": "standard",
+    "doubao": {
+      "api_key": "",
+      "model": "",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3"
+    },
+    "qwen": {
+      "api_key": "",
+      "model": "wanx2.1-t2i-turbo",
+      "base_url": "https://dashscope.aliyuncs.com/api/v1"
+    }
+  },
+  "workspace": {
+    "output_dir": "outputs"
+  }
+}

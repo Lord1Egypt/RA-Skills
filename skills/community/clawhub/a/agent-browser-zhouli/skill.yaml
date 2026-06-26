@@ -1,0 +1,25 @@
+name: agent-browser
+version: 1.0.0
+description: 基于Rust的无头浏览器自动化CLI。快速、可靠，支持导航、点击、输入、截图等操作。
+author: clawd
+homepage: https://clawhub.com/skills/agent-browser
+
+triggers:
+  - 浏览器自动化
+  - 网页操作
+  - 自动化浏览
+  - browser automation
+  - web scraping
+  - headless browser
+
+features:
+  - 导航和加载页面
+  - 点击和输入操作
+  - 截图和快照
+  - 表单填写
+  - 多标签页支持
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

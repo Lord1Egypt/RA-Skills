@@ -1,0 +1,49 @@
+{
+  "skill_name": "core-nfc",
+  "evals": [
+    {
+      "id": 0,
+      "name": "entitlement-setup-review",
+      "prompt": "Review this Core NFC setup before we hand it to the iOS team. The app needs to scan NDEF tags, read ISO 7816 identity cards by AID, and read a FeliCa transit tag. The draft entitlements include com.apple.developer.nfc.readersession.formats = [\"NDEF\", \"TAG\"], NFCReaderUsageDescription, and one ISO7816 AID. What should we change or verify?",
+      "expected_output": "A source-grounded setup review that corrects stale Core NFC entitlements and covers ISO 7816 and FeliCa configuration.",
+      "files": [],
+      "expectations": [
+        "States that the current `com.apple.developer.nfc.readersession.formats` value should use `TAG` and should not include legacy `NDEF`.",
+        "Requires a non-empty `NFCReaderUsageDescription` in Info.plist.",
+        "Requires `com.apple.developer.nfc.readersession.iso7816.select-identifiers` entries for ISO 7816 AIDs.",
+        "Requires `com.apple.developer.nfc.readersession.felica.systemcodes` entries for FeliCa and says wildcard system codes are not allowed.",
+        "Tells the team to check `NFCNDEFReaderSession.readingAvailable` or `NFCTagReaderSession.readingAvailable` before creating sessions."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "native-tag-reader-boundary",
+      "prompt": "Design a concise Swift Core NFC tag scanner that can read ISO 7816, ISO 15693, MIFARE, and FeliCa tags. Also call out any payment-card or multi-tag pitfalls. Keep it as implementation guidance and snippets, not a full app.",
+      "expected_output": "Implementation guidance that uses NFCTagReaderSession correctly, maps polling options to tag families, and preserves payment-card boundaries.",
+      "files": [],
+      "expectations": [
+        "Uses `NFCTagReaderSession` for native ISO 7816, ISO 15693, MIFARE, and FeliCa access.",
+        "Checks `NFCTagReaderSession.readingAvailable` before creating the session.",
+        "Maps `.iso14443` to ISO 7816-compatible and MIFARE tags, `.iso15693` to ISO 15693, and `.iso18092` to FeliCa.",
+        "Connects to the detected tag before sending protocol commands and switches over `NFCTag` cases.",
+        "Handles multiple detected tags by asking the user to remove extras and restarting polling rather than arbitrarily using every tag.",
+        "States that `NFCTagReaderSession` does not support payment-related AIDs and routes eligible EU payment use cases to `NFCPaymentTagReaderSession`."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "background-tag-routing",
+      "prompt": "A product manager wants an NFC tag to wake the app in the background by putting our bundle ID and a custom content type in the NDEF record. They also asked whether a custom myapp:// URL is fine. Write the corrected iOS implementation checklist.",
+      "expected_output": "A background tag reading checklist that corrects bundle-ID/content-type misconceptions and uses URI records and universal links.",
+      "files": [],
+      "expectations": [
+        "Says background tag reading looks for an NDEF URI record with type name format `.nfcWellKnown` and type `U`.",
+        "States that if multiple URI records exist, iOS uses the first URI record.",
+        "Uses universal links with Associated Domains for app-specific routing.",
+        "States that custom URL schemes are not supported for background tag reading.",
+        "Rejects routing by bundle ID or arbitrary NDEF content type.",
+        "Handles delivery through `NSUserActivityTypeBrowsingWeb` and `NSUserActivity.ndefMessagePayload`, including an empty-record guard for non-background activities."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+name: crypto-search-advisor
+version: 2.5.2
+description: 截图即可分析加密货币行情，无需翻墙、无需API、无需注册。自动识别币种类型（稳定币/主流币/Meme/山寨币等），秒级风险预警 + 深度分析两段式输出，91项测试全通过。
+author: haiyanzhuang5-cyber
+runtime:
+  type: python
+  entry: scripts/crypto_advisor.py
+dependencies:
+  - requests>=2.28.0
+  - lxml>=4.9.0
+capabilities:
+  - web_search          # 调用系统搜索工具
+  - image_analysis      # 分析用户上传的截图
+  - text_output         # 结构化文本输出
+permissions:
+  - network:outbound    # 仅用于搜索聚合，不访问交易所API
+config:
+  # 用户可自定义项
+  search_engine: tavily   # tavily/bing/auto
+  screenshot_max_age_minutes:
+    stable: 60
+    mainstream: 30
+    meme: 10
+  supported_coins:
+    - BTC - ETH - SOL - BNB - XRP - ADA - AVAX - DOT - LINK - LTC - BCH
+    - MATIC - NEAR - ARB - OP - SUI - TON - TRX - UNI - ATOM - APT
+    - USDT - USDC - DAI - FDUSD - BUSD - TUSD - UST - USDD
+    - DOGE - SHIB - PEPE - WIF - BONK - FLOKI - MEME
+    - XAU - XAG - XAUUSDT - XAGUSDT
+    - TSLA - AAPL - COIN - MSTR - MUON
+    - GALA - SAND - MANA - AXS - IMX - FLOW - ENJ - ILV
+    - CHZ - JUV - PSG - ATM - BAR
+safety:
+  # 交易指令拒绝规则
+  reject_patterns:
+    - "帮我买"
+    - "帮我卖"
+    - "下单"
+    - "开多"
+    - "开空"
+    - "平仓"
+    - "提现"
+    - "转出"
+    - "提币"
+    - "密码"
+    - "助记词"
+    - "私钥"
+    - "登录"
+    - "帮我操作"
+    - "加杠杆"
+    - "合约"
+    - "开100倍"
+  reject_response: "本技能仅提供分析协助，不代操作、不执行交易、不触碰用户账户。如需交易，请使用您自己的交易所APP。请发送截图，我可以基于截图做技术分析。"
+tags:
+  - crypto
+  - analysis
+  - screenshot
+  - china-friendly
+  - no-vpn

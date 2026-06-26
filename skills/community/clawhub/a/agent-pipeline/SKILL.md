@@ -1,35 +1,59 @@
----
-name: "Agent Pipeline"
-description: "Manages code task workflow by spawning sub-agents for research, coding, reviewing, security audit, testing, and committing with detailed logging and updates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-pipeline"
-sourceUrl: "https://clawhub.ai/skills/agent-pipeline"
----
+# Agent Pipeline Skill
 
-# Agent Pipeline
+Standard development workflow for code tasks using spawned sub-agents.
 
-> Manages code task workflow by spawning sub-agents for research, coding, reviewing, security audit, testing, and committing with detailed logging and updates.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/agent-pipeline](https://clawhub.ai/skills/agent-pipeline)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-pipeline
+## Pipeline Order
 ```
+[Researcher] → Coder → Reviewer → Security → Tester → Commit
+```
+
+### Researcher (optional)
+- Use when: new APIs, unfamiliar tech, "figure out how" tasks
+- Gathers context, reads existing code patterns, documents findings
+
+### Coder
+- Writes the code changes
+- Does NOT commit or push
+- Creates branch if needed
+- Runs build to verify compilation
+
+### Reviewer
+- Runs `git diff` to review all changes
+- Checks: code quality, patterns, minimal scope, consistency
+- Reports PASS or FAIL
+
+### Security
+- Audits for: injection, XSS, auth issues, data exposure, CSRF
+- Reports PASS or FAIL
+
+### Tester
+- Verifies build compiles (0 errors)
+- Structural checks (files exist, actions registered, links correct)
+- Reports PASS or FAIL
+
+### Commit
+- Done by DevJarvis (main agent), not a sub-agent
+- Commit with descriptive message
+- Push to feature branch
+- Update Planner task with dev notes
+
+## Rules
+- **ALWAYS log to the board** before, during, and after
+- Create board item under the relevant project category
+- Each agent gets clear, specific instructions
+- Agents use `agentId` matching their role (coder, reviewer, security, tester, researcher)
+- If an agent fails, fix the issue and re-run that stage
+- Auth: all agents need `auth-profiles.json` copied from main agent
+
+## Board API
+- Create item: POST `http://10.0.0.40:3000/api/board/projects/{project}/items`
+- Body: `{"title": "...", "status": "in-progress", "detail": "..."}`
+
+## Planner Updates
+- Update task description with branch name, changes summary, pipeline results
+- Add comments for back-and-forth with Rich
+
+## Branch Naming
+- `feature/{short-description}`
+- Always branch from master
+- Rich handles merges to master

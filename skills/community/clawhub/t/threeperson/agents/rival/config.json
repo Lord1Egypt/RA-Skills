@@ -1,0 +1,14 @@
+{
+  "agentId": "rival",
+  "model": "claude-sonnet",
+  "soul": "SOUL.md",
+  "workspace": {
+    "isolated": true,
+    "path": "workspace-rival"
+  },
+  "memory": {
+    "enabled": true,
+    "scope": "agent"
+  },
+  "description": "死敌角色 Agent，独立记忆，独立人设"
+}

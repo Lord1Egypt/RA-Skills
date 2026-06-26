@@ -1,0 +1,52 @@
+# 记忆秘书依赖说明
+# Memory Secretary Dependencies
+
+## 核心依赖
+记忆秘书仅使用 Python 标准库，无需安装任何外部依赖。
+
+## Python 版本要求
+- 最低版本：Python 3.8
+- 推荐版本：Python 3.10+
+
+## 标准库模块
+记忆秘书使用以下 Python 标准库模块：
+- os - 系统操作
+- json - JSON 处理
+- sqlite3 - 数据库（可选）
+- hashlib - 哈希计算
+- datetime - 日期时间
+- pathlib - 路径操作
+- re - 正则表达式
+- collections - 数据结构
+- difflib - 差异比较
+- typing - 类型注解
+- unittest - 单元测试
+
+## 可选依赖（开发）
+如需运行测试或开发，可安装以下工具：
+```bash
+# 代码格式化
+pip install black autopep8
+
+# 代码检查
+pip install flake8 pylint
+
+# 测试运行
+pip install pytest pytest-cov
+
+# 文档生成
+pip install pdoc3
+```
+
+## 零依赖优势
+- ✅ 部署简单 - 无需 pip install
+- ✅ 体积小 - 无外部依赖包
+- ✅ 兼容性好 - 不受第三方库版本影响
+- ✅ 维护成本低 - 无需更新依赖
+- ✅ 安全性高 - 无外部代码风险
+
+## 系统要求
+- 操作系统：Linux / macOS / Windows
+- Python: 3.8+
+- 内存：>50MB
+- 磁盘空间：>1MB

@@ -1,0 +1,23 @@
+{
+  "name": "linux-installer",
+  "displayName": "Linux Installer",
+  "version": "1.0.0",
+  "description": "Resolve and install Linux desktop apps through the safest supported package source",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "commands": [
+    "resolve",
+    "install",
+    "run-info",
+    "run",
+    "uninstall"
+  ],
+  "binaries": {
+    "linux-installer": "main:main"
+  },
+  "openclaw": {
+    "compatible": true,
+    "minVersion": "1.0.0"
+  },
+  "install": "cd ~/.openclaw/skills/linux-installer && pip install -e ."
+}

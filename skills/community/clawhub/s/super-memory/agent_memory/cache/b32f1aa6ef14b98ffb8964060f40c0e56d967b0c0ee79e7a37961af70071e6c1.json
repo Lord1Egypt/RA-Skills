@@ -1,0 +1,53 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 0,
+    "primary": [],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {},
+    "query": "",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_6072db037b80",
+      "query": "Rust",
+      "result_summary": "found 0 results via tempr_4way, top_score=0.000",
+      "confidence": 0.3,
+      "sources_consulted": [],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=True, semantic=False, strategy=auto",
+          "timestamp": 1779786032.5746
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 0 results",
+          "timestamp": 1779786032.5746
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=20)",
+          "timestamp": 1779786032.5746
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 0 results (hits: {'structured': 0, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 0}, multi: 0)",
+          "timestamp": 1779786032.5746
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 0 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786032.5746
+    },
+    "status": "no_results"
+  },
+  "expires_at": 1779786092.5746,
+  "created_at": 1779786032.5746,
+  "_hmac": "ce2da351ce2a7e5723c22d4bab5e03f4d65f9c452cd30790a7a8f3561b88e339"
+}

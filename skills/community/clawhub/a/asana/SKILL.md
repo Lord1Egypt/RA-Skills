@@ -1,35 +1,98 @@
 ---
-name: "Asana"
+name: asana
 description: "Manage Asana via the Asana REST API. Use when you need to list workspaces, projects, tasks, search tasks, comment, update, complete, or create tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/asana"
-sourceUrl: "https://clawhub.ai/skills/asana"
+metadata:
+  openclaw:
+    homepage: "https://developers.asana.com/docs"
+    primaryEnv: "ASANA_PAT"
+    requires:
+      bins: ["node"]
+      env: []
 ---
 
 # Asana
 
-> Manage Asana via the Asana REST API. Use when you need to list workspaces, projects, tasks, search tasks, comment, update, complete, or create tasks.
+This skill provides a lightweight Asana CLI for OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/asana`
-- **Source URL:** [https://clawhub.ai/skills/asana](https://clawhub.ai/skills/asana)
+## Auth
 
-## Overview
+Recommended auth is **PAT-first**.
 
+Priority order:
+1. `--token` or `ASANA_PAT`
+2. `~/.openclaw/asana/config.json` with `{ "pat": "..." }`
+3. OAuth token at `~/.openclaw/asana/token.json`
 
-## Installation
-To install this skill, run the following command in your terminal:
+OAuth remains supported for advanced use, but PAT is the preferred local/operator setup.
+
+## Setup
+
+### PAT mode (recommended)
+
 ```bash
-hermes skills install clawhub/asana
+node scripts/configure.mjs --mode pat --pat "$ASANA_PAT"
 ```
+
+Or set `ASANA_PAT` in OpenClaw skill config.
+
+### OAuth mode (optional)
+
+```bash
+node scripts/configure.mjs --mode oauth --client-id "$ASANA_CLIENT_ID" --client-secret "$ASANA_CLIENT_SECRET"
+node scripts/oauth_oob.mjs authorize --client-id "$ASANA_CLIENT_ID"
+node scripts/oauth_oob.mjs token --client-id "$ASANA_CLIENT_ID" --client-secret "$ASANA_CLIENT_SECRET" --code "..."
+```
+
+## Storage
+
+This skill stores local state under:
+
+- `~/.openclaw/asana/config.json`
+- `~/.openclaw/asana/token.json`
+
+## Commands
+
+Core CLI:
+
+```bash
+node scripts/asana_api.mjs me
+node scripts/asana_api.mjs list-workspaces
+node scripts/asana_api.mjs set-default-workspace --workspace <gid>
+node scripts/asana_api.mjs projects --workspace <gid>
+node scripts/asana_api.mjs tasks-in-project --project <gid>
+node scripts/asana_api.mjs tasks-assigned --workspace <gid> --assignee me
+node scripts/asana_api.mjs search-tasks --workspace <gid> --text "quote"
+node scripts/asana_api.mjs task <task_gid>
+node scripts/asana_api.mjs update-task <task_gid> --name "New name"
+node scripts/asana_api.mjs complete-task <task_gid>
+node scripts/asana_api.mjs comment <task_gid> --text "Done"
+node scripts/asana_api.mjs create-task --workspace <gid> --name "New task"
+```
+
+PAT helpers:
+
+```bash
+node scripts/asana_api.mjs set-pat <asana_pat>
+node scripts/asana_api.mjs clear-pat
+```
+
+## OpenClaw config
+
+Recommended skill config:
+
+```json
+{
+  "skills": {
+    "entries": {
+      "asana": {
+        "enabled": true,
+        "env": {
+          "ASANA_PAT": "<your-pat>"
+        }
+      }
+    }
+  }
+}
+```
+
+For local/private use, PAT is the best default. Use OAuth only when you specifically need that flow.

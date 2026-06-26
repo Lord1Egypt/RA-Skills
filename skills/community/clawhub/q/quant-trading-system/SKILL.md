@@ -1,35 +1,57 @@
 ---
-name: "Quant Trading System"
-description: "Automated Trading System with Multi-Strategy Voting"
-category: "blockchain"
-source: "ClawHub"
-tags: [auto, automated, quant, trading, agents, ai, api, multi, paper, portfolio, realtime, simple, system, v2, v3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quant-trading-system"
-sourceUrl: "https://clawhub.ai/skills/quant-trading-system"
+name: quant-trading-system
+description: Automated Trading System with Multi-Strategy Voting
+metadata:
+  clawdbot:
+    emoji: "📈"
+    homepage: "https://clawhub.com/quant-trading-system"
 ---
 
-# Quant Trading System
+# 📈 Quant Trading System
 
-> Automated Trading System with Multi-Strategy Voting
+## 🏗️ Automated Trading
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quant-trading-system`
-- **Source URL:** [https://clawhub.ai/skills/quant-trading-system](https://clawhub.ai/skills/quant-trading-system)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quant-trading-system
 ```
+System
+├── Multi-Strategy Voting (4 strategies)
+├── Auto Position Management
+├── Risk Control (SL/TP)
+└── Paper Trading
+```
+
+## 🤖 Automated Features
+
+✅ **自动开单** - 根据策略自动交易
+✅ 多策略投票 - 4个策略共识
+✅ 止损/止盈 - 5%/10%
+✅ 实时市场数据
+
+## 支持币种
+
+BTC, ETH, SOL, XRP
+
+## 策略
+
+- momentum
+- mean_reversion  
+- macd_cross
+- supertrend
+
+## Usage
+
+```bash
+# 查看状态
+python3 trading_system.py status
+
+# 自动交易
+python3 trading_system.py run
+```
+
+## 模式
+
+| 参数 | 值 |
+|------|-----|
+| 模式 | 自动交易 |
+| 资金 | $10,000 (虚拟) |
+| 数据 | 真实市场 |
+

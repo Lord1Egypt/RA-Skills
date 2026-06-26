@@ -1,0 +1,29 @@
+rules:
+  - from: "cli"
+    to: "PlannerAgent"
+    allowed_types: ["user.request"]
+  - from: "DispatcherAgent"
+    to: "orchestrator"
+    allowed_types: ["dispatch.completed"]
+  - from: "PlannerAgent"
+    to: "DrafterAgent"
+    allowed_types: ["plan.task.graph"]
+  - from: "DrafterAgent"
+    to: "ValidatorAgent"
+    allowed_types: ["draft.complete"]
+  - from: "ValidatorAgent"
+    to: "DispatcherAgent"
+    allowed_types: ["validate.result"]
+  - from: "DispatcherAgent"
+    to: "worker-*"
+    allowed_types: ["task.assign"]
+  - from: "worker-*"
+    to: "DispatcherAgent"
+    allowed_types: ["task.result", "task.error"]
+  - from: "worker-*"
+    to: "WorkerManager"
+    allowed_types: ["worker.heartbeat"]
+  - from: "Worker"
+    to: "Worker"
+    allowed_types: ["distributed.consensus"]
+    allowed_modes: ["distributed", "hybrid"]

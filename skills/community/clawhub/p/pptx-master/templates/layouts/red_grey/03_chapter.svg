@@ -1,0 +1,18 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1280" height="720" fill="#F5F5F5"/>
+  
+  <!-- 底部灰色条 -->
+  <rect x="0" y="680" width="1280" height="40" fill="#E0E0E0"/>
+  <text x="80" y="705" font-family="思源黑体, Arial, sans-serif" font-size="14" fill="#666666">{{COPYRIGHT}}</text>
+  <text x="1200" y="705" font-family="思源黑体, Arial, sans-serif" font-size="14" fill="#666666" text-anchor="end">{{LOGO}}</text>
+  
+  <!-- 左上角红色竖条 -->
+  <rect x="0" y="0" width="5" height="50" fill="#D9001B"/>
+  
+  <!-- 章节序号 -->
+  <text x="80" y="320" font-family="思源黑体, Arial, sans-serif" font-size="200" font-weight="bold" fill="#333333">{{CHAPTER_NUM}}</text>
+  
+  <!-- 章节标题 -->
+  <text x="80" y="420" font-family="思源黑体, Arial, sans-serif" font-size="32" font-weight="bold" fill="#333333">{{CHAPTER_TITLE}}</text>
+</svg>

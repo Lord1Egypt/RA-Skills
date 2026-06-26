@@ -1,0 +1,80 @@
+{
+  "normalized_data": {
+    "meta": {
+      "workflow": "review_compensation_band_and_offer",
+      "prepared_by": "HRBP",
+      "date": "2026-05-19",
+      "legal_entity": "上海某科技有限公司"
+    },
+    "position": {
+      "job_title": "高级用户增长产品经理",
+      "job_family": "产品",
+      "level": "P7",
+      "city": "上海"
+    },
+    "band": {
+      "currency": "CNY",
+      "monthly_base_min": 32000,
+      "monthly_base_mid": 38000,
+      "monthly_base_max": 45000
+    },
+    "market_benchmark": {
+      "sample_scope": "上海 互联网 / 产品增长 / P7",
+      "p25": 34000,
+      "p50": 39000,
+      "p75": 46000,
+      "notes": "市场样本以近 12 个月互联网增长产品岗位为主，头部平台给价更高。"
+    },
+    "candidate": {
+      "candidate_name": "周子涵",
+      "current_title": "增长产品负责人",
+      "current_company": "某内容平台",
+      "current_monthly_base": 36000,
+      "expected_monthly_base": 42000,
+      "target_role_reason": "有会员增长、增长实验和跨团队主导经验，业务方反馈较强，属于重点候选人。"
+    },
+    "internal_reference": {
+      "same_level_employees": [
+        {
+          "employee_name": "A",
+          "monthly_base": 36500,
+          "note": "P7，增长产品，司龄 2 年"
+        },
+        {
+          "employee_name": "B",
+          "monthly_base": 38800,
+          "note": "P7，用户增长，司龄 1 年"
+        },
+        {
+          "employee_name": "C",
+          "monthly_base": 41000,
+          "note": "P7，核心增长岗，历史调薪后"
+        }
+      ]
+    }
+  },
+  "missing_information": [
+    "缺少预算范围"
+  ],
+  "risk_summary": "候选人期望明显高于内部同级平均水平",
+  "priority_issues": [
+    "候选人期望明显高于内部同级平均水平"
+  ],
+  "next_action": "先补齐 缺少预算范围，再决定是否进入正式定薪审批。",
+  "message_draft": "周子涵 的期望薪资与岗位 band、市场分位及内部参考已完成比对，本次属于“弱建议”，建议 建议按 band 中高位定薪。",
+  "record_update": {
+    "candidate_name": "周子涵",
+    "target_role": "高级用户增长产品经理",
+    "suggested_base": 42000,
+    "recommendation_strength": "弱建议"
+  },
+  "data_sources_used": {
+    "has_band": true,
+    "has_paid_survey_data": true,
+    "has_internal_reference": true,
+    "has_budget": false,
+    "has_current_pay": true,
+    "has_public_market_signal": false
+  },
+  "compliance_warning_if_any": []
+}

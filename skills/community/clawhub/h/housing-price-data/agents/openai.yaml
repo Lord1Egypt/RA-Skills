@@ -1,0 +1,4 @@
+interface:
+  display_name: "China Housing Price Data"
+  short_description: "Fetch official China 70-city housing price index data"
+  default_prompt: "Use $housing-price-data to fetch official housing price index data for a Chinese city."

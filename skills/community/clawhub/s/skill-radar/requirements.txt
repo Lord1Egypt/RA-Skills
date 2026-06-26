@@ -1,0 +1,2 @@
+# No external Python dependencies required
+# This skill uses only Python standard library

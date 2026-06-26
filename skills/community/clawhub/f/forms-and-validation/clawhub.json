@@ -1,0 +1,12 @@
+{
+  "name": "Forms and Validation (表单与校验)",
+  "tagline": "设计表单结构、校验规则与时机、错误展示与无障碍表单体验",
+  "description": "表单与校验技能：受控/非受控与状态选型、校验时机（blur/change/submit）与规则、错误展示与 aria、防重复提交与成功/失败处理。适用于表单、校验、提交、受控组件、form validation、错误提示等场景。",
+  "category": "development",
+  "tags": ["forms", "validation", "react-hook-form", "zod", "yup", "表单", "校验"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

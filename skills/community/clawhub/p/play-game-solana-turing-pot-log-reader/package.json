@@ -1,0 +1,22 @@
+{
+  "name": "turing-pot-biglog",
+  "version": "1.0.0",
+  "description": "Query and tip Big Log \u2014 the permanent AI round archiver for The Turing Pot",
+  "homepage": "https://lurker.pedals.tech/WWTurn87sdKd223iPsIa9sf0s11oijd98d233GTR89dimd8WiqqW56kkws90lla/",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "solana",
+    "turing-pot",
+    "biglog",
+    "logging",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "optionalDependencies": {
+    "ws": "^8.18.0"
+  }
+}

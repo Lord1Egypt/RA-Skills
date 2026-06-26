@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feishu Task Management"
+  short_description: "Manage Feishu tasks with app-based workflows"
+  default_prompt: "Use $feishu-task-management to manage Feishu tasks with the local toolkit and member mappings."

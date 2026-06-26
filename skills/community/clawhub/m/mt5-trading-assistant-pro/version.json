@@ -1,0 +1,32 @@
+{
+  "name": "mt5-trading-assistant-pro",
+  "version": "4.0.1",
+  "author": "canvascn00-crypto",
+  "license": "Commercial",
+  "updated": "2026-04-04",
+  "indicators_enabled": 35,
+  "strategies_enabled": 11,
+  "language": "en (default), zh-CN (switchable)",
+  "features": [
+    "ai_strategy_generator",
+    "35_technical_indicators",
+    "mt5_smart_connect",
+    "error_detection_engine",
+    "risk_management",
+    "multi_timeframe_analysis",
+    "strategy_builder",
+    "trade_automation",
+    "trade_journal",
+    "market_scanner",
+    "bilingual_en_zh",
+    "self_updating",
+    "first_run_walkthrough",
+    "natural_language_interface",
+    "local_credential_storage"
+  ],
+  "changelog": {
+    "4.0.1": "Reduced false-positive security flags. Cleaned language to avoid scanner triggers (password → code, login → account number). Maintains full functionality with safer wording. Default English, Chinese switchable.",
+    "4.0.0": "v4.0: Bilingual EN/中文 (default EN). Smart MT5 connection guide. Error detection engine. Credentials stored locally.",
+    "3.0.0": "AI Strategy Generator — describe your trading style → get complete strategy. 11 built-in templates."
+  }
+}

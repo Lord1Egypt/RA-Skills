@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.ai/schemas/rep/signed_divergence_violation_record.json",
+  "title": "Signed Divergence Violation Record",
+  "description": "Document when intended and actual behaviors diverge",
+  "type": "object",
+  "required": ["artifact_type", "divergence_id", "s1_behavior", "s2_behavior", "divergence_type", "severity", "signatures", "resolved"],
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "signed_divergence_violation_record"
+    },
+    "divergence_id": {
+      "type": "string"
+    },
+    "s1_behavior": {
+      "type": "string"
+    },
+    "s2_behavior": {
+      "type": "string"
+    },
+    "divergence_type": {
+      "type": "string",
+      "enum": ["output", "timing", "scope", "other"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "signatures": {
+      "type": "object",
+      "required": ["detector"],
+      "properties": {
+        "detector": {
+          "type": "object",
+          "required": ["actor_id", "signed_at", "signature"],
+          "properties": {
+            "actor_id": { "type": "string" },
+            "signed_at": { "type": "string", "format": "date-time" },
+            "signature": { "type": "string" }
+          }
+        },
+        "reviewer": {
+          "type": "object",
+          "required": ["actor_id", "signed_at", "signature"],
+          "properties": {
+            "actor_id": { "type": "string" },
+            "signed_at": { "type": "string", "format": "date-time" },
+            "signature": { "type": "string" }
+          }
+        }
+      }
+    },
+    "remediation": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "resolved": {
+      "type": "boolean"
+    }
+  }
+}

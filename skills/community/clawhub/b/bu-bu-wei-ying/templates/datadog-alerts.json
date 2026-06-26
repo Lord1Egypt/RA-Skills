@@ -1,0 +1,201 @@
+{
+  "version": 2,
+  "created_at": "2026-04-17T00:00:00.000Z",
+  "monitors": [
+    {
+      "id": 999999999,
+      "type": "metric alert",
+      "name": "[步步为营] 应用错误率过高",
+      "message": "应用 5xx 错误率超过 5%，当前值: {{threshold}}%\n\n{{#is_alert}}请检查应用日志并评估是否需要回滚{{/is_alert}}\n\n{{#is_recovery}}错误率已恢复{{/is_recovery}}",
+      "tags": ["bu-bu-wei-ying", "app", "error-rate"],
+      "query": "min(last_5m):sum:http_requests_total{status:5xx}.as_rate() / sum:http_requests_total.as_rate() * 100 > 5",
+      "options": {
+        "thresholds": {
+          "critical": 5,
+          "warning": 2
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 5,
+        "renotify_interval": 60,
+        "silenced": {}
+      },
+      "priority": 2
+    },
+    {
+      "id": 999999998,
+      "type": "metric alert",
+      "name": "[步步为营] 应用响应延迟过高",
+      "message": "P95 响应时间超过 1 秒，当前值: {{threshold}}ms\n\n建议检查:\n- 数据库查询性能\n- 外部服务调用\n- 缓存命中情况",
+      "tags": ["bu-bu-wei-ying", "app", "latency"],
+      "query": "min(last_5m):p95:http_request_duration_seconds{*}.as_count() * 1000 > 1000",
+      "options": {
+        "thresholds": {
+          "critical": 1000,
+          "warning": 500
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 5,
+        "renotify_interval": 60,
+        "silenced": {}
+      },
+      "priority": 3
+    },
+    {
+      "id": 999999997,
+      "type": "metric alert",
+      "name": "[步步为营] 服务健康检查失败",
+      "message": "服务健康检查端点返回非 200 状态\n\n{{#is_alert}}请立即检查:\n1. 应用进程是否存活\n2. 健康检查端点日志\n3. 相关依赖服务状态{{/is_alert}}",
+      "tags": ["bu-bu-wei-ying", "app", "health-check"],
+      "query": "min(last_2m):max:health_check{*} by {instance} <= 0",
+      "options": {
+        "thresholds": {
+          "critical": 0
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 2,
+        "renotify_interval": 5,
+        "silenced": {}
+      },
+      "priority": 1
+    },
+    {
+      "id": 999999996,
+      "type": "metric alert",
+      "name": "[步步为营] CPU 使用率过高",
+      "message": "CPU 使用率超过 80%，当前值: {{threshold}}%",
+      "tags": ["bu-bu-wei-ying", "infra", "cpu"],
+      "query": "min(last_10m):max:system.cpu.user{*} by {host} > 80",
+      "options": {
+        "thresholds": {
+          "critical": 80,
+          "warning": 70
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 10,
+        "renotify_interval": 60,
+        "silenced": {}
+      },
+      "priority": 3
+    },
+    {
+      "id": 999999995,
+      "type": "metric alert",
+      "name": "[步步为营] 内存使用率过高",
+      "message": "内存使用率超过 85%，当前值: {{threshold}}%",
+      "tags": ["bu-bu-wei-ying", "infra", "memory"],
+      "query": "min(last_10m):max:system.mem.used{*} by {host} / max:system.mem.total{*} by {host} * 100 > 85",
+      "options": {
+        "thresholds": {
+          "critical": 85,
+          "warning": 75
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 10,
+        "renotify_interval": 60,
+        "silenced": {}
+      },
+      "priority": 3
+    },
+    {
+      "id": 999999994,
+      "type": "metric alert",
+      "name": "[步步为营] 磁盘使用率过高",
+      "message": "磁盘使用率超过 90%，当前值: {{threshold}}%",
+      "tags": ["bu-bu-wei-ying", "infra", "disk"],
+      "query": "min(last_5m):max:system.disk.in_use{*} by {host,device} > 0.9",
+      "options": {
+        "thresholds": {
+          "critical": 0.9,
+          "warning": 0.8
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 5,
+        "renotify_interval": 60,
+        "silenced": {}
+      },
+      "priority": 2
+    },
+    {
+      "id": 999999993,
+      "type": "metric alert",
+      "name": "[步步为营] 日志错误激增",
+      "message": "检测到日志中错误数量激增\n\n{{#is_alert}}建议检查最近的代码变更和部署情况{{/is_alert}}",
+      "tags": ["bu-bu-wei-ying", "app", "logs"],
+      "query": "min(last_5m):sum:log.error{*}.as_count() > 100",
+      "options": {
+        "thresholds": {
+          "critical": 100,
+          "warning": 50
+        },
+        "notify_audit": true,
+        "notify_no_data": true,
+        "no_data_timeframe": 5,
+        "renotify_interval": 30,
+        "silenced": {}
+      },
+      "priority": 2
+    }
+  ],
+  "dashboards": [
+    {
+      "title": "步步为营 - 应用概览",
+      "description": "应用核心指标监控仪表板",
+      "widgets": [
+        {
+          "definition": {
+            "type": "timeseries",
+            "title": "请求率",
+            "requests": [
+              {
+                "q": "sum:http_requests_total{*}.as_rate()"
+              }
+            ]
+          },
+          "layout": {"x": 0, "y": 0, "width": 6, "height": 4}
+        },
+        {
+          "definition": {
+            "type": "timeseries",
+            "title": "响应延迟 (P95)",
+            "requests": [
+              {
+                "q": "p95:http_request_duration_seconds{*}.as_count() * 1000"
+              }
+            ]
+          },
+          "layout": {"x": 6, "y": 0, "width": 6, "height": 4}
+        },
+        {
+          "definition": {
+            "type": "timeseries",
+            "title": "错误率",
+            "requests": [
+              {
+                "q": "sum:http_requests_total{status:5xx}.as_rate() / sum:http_requests_total.as_rate() * 100"
+              }
+            ]
+          },
+          "layout": {"x": 0, "y": 4, "width": 6, "height": 4}
+        },
+        {
+          "definition": {
+            "type": "timeseries",
+            "title": "活跃连接数",
+            "requests": [
+              {
+                "q": "sum:http_connections_active{*}"
+              }
+            ]
+          },
+          "layout": {"x": 6, "y": 4, "width": 6, "height": 4}
+        }
+      ]
+    }
+  ]
+}

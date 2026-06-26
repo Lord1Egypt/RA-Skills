@@ -1,35 +1,63 @@
 ---
-name: "network hot topics"
-description: "获取当前网络热点并汇总为 10 条摘要。从微博、知乎、百度等平台或通过搜索获取实时热搜/热榜， 筛选、去重后输出 10 条热点，每条包含标题与一句话摘要。 Use when: 用户需要今日热点、热搜汇总、热榜简报、网络热点 10 条、多平台热点摘要。 NOT for: 单平台单一话题深挖、历史热点分析、需要原文链..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/network-hot-topics"
-sourceUrl: "https://clawhub.ai/skills/network-hot-topics"
+name: network-hot-topics
+description: >
+  获取当前网络热点并汇总为 10 条摘要。从微博、知乎、百度等平台或通过搜索获取实时热搜/热榜，
+  筛选、去重后输出 10 条热点，每条包含标题与一句话摘要。
+  Use when: 用户需要今日热点、热搜汇总、热榜简报、网络热点 10 条、多平台热点摘要。
+  NOT for: 单平台单一话题深挖、历史热点分析、需要原文链接列表的场景请说明。
 ---
 
-# network hot topics
+# 获取当前网络热点并总结 10 条
 
-> 获取当前网络热点并汇总为 10 条摘要。从微博、知乎、百度等平台或通过搜索获取实时热搜/热榜， 筛选、去重后输出 10 条热点，每条包含标题与一句话摘要。 Use when: 用户需要今日热点、热搜汇总、热榜简报、网络热点 10 条、多平台热点摘要。 NOT for: 单平台单一话题深挖、历史热点分析、需要原文链...
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/network-hot-topics`
-- **Source URL:** [https://clawhub.ai/skills/network-hot-topics](https://clawhub.ai/skills/network-hot-topics)
+根据用户请求，获取当前网络热点（微博热搜、知乎热榜、百度热点等），筛选并总结为 **10 条** 内容，每条包含：
+- **标题**：热点主题
+- **摘要**：一句话说明（来源或要点）
 
-## Overview
+## 工作流程
 
+### 1. 获取热点数据
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/network-hot-topics
+优先使用以下一种或多种方式获取实时热点（按可用性选择）：
+
+- **Web 搜索**：使用 `web_search` 搜索「微博热搜」「知乎热榜」「今日热点」等，从结果中提取当前热门话题。
+- **公开 API（若环境允许）**：
+  - 微博热搜：`https://weibo.com/ajax/side/hotSearch` 或第三方聚合 API。
+  - 知乎热榜：`https://www.zhihu.com/hot` 或聚合 API。
+  - 聚合示例：DailyHotApi 等开源项目提供的多平台热榜接口。
+
+若无法调用 API，则以 **web_search** 为主，多次搜索不同关键词以覆盖多平台。
+
+### 2. 筛选与去重
+
+- 合并多源结果，按热度或时间排序。
+- 去除重复、广告、无效条目。
+- 保留真实新闻、社会话题、科技、娱乐等多样类型，尽量覆盖 10 条不同主题。
+
+### 3. 输出格式
+
+输出 **恰好 10 条**，采用如下结构：
+
+```markdown
+# 今日网络热点（10 条）
+
+1. **标题**  
+   摘要（一句话）。
+
+2. **标题**  
+   摘要（一句话）。
+
+...
+10. **标题**  
+   摘要（一句话）。
 ```
+
+- 每条仅保留标题 + 一句话摘要，不展开长文。
+- 若某平台暂时无数据，可注明「部分来源暂无」并仍凑满 10 条（可从其他来源补足）。
+
+## 注意事项
+
+- 数据来源于公开搜索或公开 API，不保证实时到秒；输出可注明「截至检索时间」。
+- 不编造热点；若某时段热点不足 10 条，可减少条数并说明，或从更多平台/关键词补足。
+- 用户若指定平台（如「只要微博」）或条数（如「5 条」），按用户要求调整输出条数与范围。

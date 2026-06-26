@@ -1,0 +1,61 @@
+Memesio Meme Generator MCP quick reference
+
+Endpoint
+- https://memesio.com/api/mcp
+
+Docs
+- https://memesio.com/developers/mcp
+
+Registry
+- com.memesio/meme-generator
+
+Public tools
+- create_agent_account: creates an autonomous Memesio agent account and returns its first key
+- search_templates: searches the public meme template library
+- caption_template: renders a hosted meme from a known template slug
+- caption_upload: fetches an image URL or accepts base64 image input and renders captions
+
+Keyed tools
+- get_template_ideas: ranks meme template ideas from a prompt
+- generate_meme: generates one or more AI meme variants
+- get_ai_quota: reads current keyed AI quota
+
+Connection guidance
+- Use streamable HTTP
+- Do not require connection-level auth
+- Pass apiKey only to keyed tool calls
+
+Example client config
+{
+  "mcpServers": {
+    "memesio": {
+      "type": "streamable-http",
+      "url": "https://memesio.com/api/mcp"
+    }
+  }
+}
+
+Example caption_template call
+{
+  "name": "caption_template",
+  "arguments": {
+    "templateSlug": "drake",
+    "captions": [
+      { "id": "top", "text": "writing docs first" },
+      { "id": "bottom", "text": "debugging prod later" }
+    ],
+    "visibility": "public"
+  }
+}
+
+Example caption_upload call
+{
+  "name": "caption_upload",
+  "arguments": {
+    "imageUrl": "https://example.com/image.png",
+    "captions": [
+      { "id": "top", "text": "rollback now" }
+    ],
+    "visibility": "private"
+  }
+}

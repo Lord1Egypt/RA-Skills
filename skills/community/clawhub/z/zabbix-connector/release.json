@@ -1,0 +1,5 @@
+{
+  "name": "zabbix-connector",
+  "version": "1.0.4",
+  "description": "Skill for Zabbix API monitoring and interaction."
+}

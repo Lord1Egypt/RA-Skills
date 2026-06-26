@@ -1,0 +1,37 @@
+{
+  "slug": "crm-next-action",
+  "title": "CRM 下一步动作生成器",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "为机会池或客户列表逐条生成下一步动作、跟进理由和不推进原因。",
+  "inputHint": "机会列表、阶段、最近互动",
+  "sections": [
+    "机会摘要",
+    "下一步动作",
+    "行动理由",
+    "不推进原因",
+    "风险与阻塞",
+    "优先级"
+  ],
+  "useCases": [
+    "机会管理",
+    "客户成功",
+    "销售节奏"
+  ],
+  "positiveExamples": [
+    "为这批机会生成下一步动作",
+    "同时给出不推进理由"
+  ],
+  "negativeExamples": [
+    "不要伪造客户互动记录",
+    "不要擅自发消息"
+  ],
+  "risk": "只生成建议，不直接写回 CRM。",
+  "tags": [
+    "crm",
+    "next-action",
+    "sales",
+    "pipeline"
+  ]
+}

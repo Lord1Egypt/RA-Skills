@@ -1,0 +1,31 @@
+{
+  "name": "academic-presentation",
+  "version": "2.0.0",
+  "displayName": "学术汇报全自动化",
+  "tagline": "将论文转化为翻译稿、总结、PPT、演讲稿，自动发送到微信",
+  "description": "## 简介\n学术汇报全自动化是一个端到端的论文处理工作流。只需提供论文（PDF 或文本），即可自动生成翻译稿、总结稿、PPT 和演讲稿，所有文件完成后自动发送到微信。\n\n## 特性\n- 6阶段自动工作流\n- Word 文档输出（翻译稿 + 总结稿）\n- PPT 生成（支持 anygen、gamma 等多平台）\n- 逐字演讲稿撰写\n- 微信自动发送文件\n- API Key 由用户自行配置，安全私密\n\n## 支持的 PPT 平台\n- anygen.io（推荐）\n- gamma.app\n- 跳过（仅生成文档）\n\n## 触发词\n学术汇报、论文汇报、帮我做PPT、论文转PPT、做学术汇报",
+  "category": "productivity",
+  "tags": ["academic", "presentation", "ppt", "word", "document", "automation", "research", "paper"],
+  "license": "MIT",
+  "author": {
+    "name": "Clawhub User"
+  },
+  "repository": "https://github.com/yourname/academic-presentation",
+  "homepage": "https://clawhub.ai/academic-presentation",
+  "platform": "openclaw",
+  "minOpenclawVersion": "2026.1.0",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json"
+  ],
+  "screenshots": [],
+  "config": {
+    "ppt_provider": {
+      "type": "string",
+      "enum": ["anygen", "gamma", "skip"],
+      "default": "anygen",
+      "description": "PPT 生成平台"
+    }
+  }
+}

@@ -1,35 +1,12 @@
 ---
-name: "Learned Workflows"
-description: "Reusable workflow notes for repeatable tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learned-workflows"
-sourceUrl: "https://clawhub.ai/skills/learned-workflows"
+name: learned-workflows
+description: Reusable workflow notes for repeatable tasks.
 ---
 
 # Learned Workflows
 
-> Reusable workflow notes for repeatable tasks.
+## Workflow
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learned-workflows`
-- **Source URL:** [https://clawhub.ai/skills/learned-workflows](https://clawhub.ai/skills/learned-workflows)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learned-workflows
-```
+- Sender (untrusted metadata): ```json { "label": "openclaw-control-ui", "id": "openclaw-control-ui" } ``` [Wed 2026-05-06 17:48 EDT] Minor layout modifications: I like the stats card row, but for the listing I prefer a list view (datatable view) with pagination instead of a card list layout
+- Verify the result before final reply.
+- Record durable pitfalls as short bullets; avoid copying transcript noise.

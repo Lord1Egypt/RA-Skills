@@ -1,0 +1,69 @@
+{
+  "type": "page",
+  "title": "搜索",
+  "body": [
+    {
+      "type": "form",
+      "name": "searchForm",
+      "mode": "horizontal",
+      "target": "dataTable",
+      "submitOnChange": true,
+      "body": [
+        {
+          "type": "input-text",
+          "name": "keyword",
+          "label": "关键词",
+          "placeholder": "输入搜索关键词"
+        },
+        {
+          "type": "select",
+          "name": "category",
+          "label": "分类",
+          "options": [
+            { "label": "全部", "value": "" },
+            { "label": "分类A", "value": "a" },
+            { "label": "分类B", "value": "b" }
+          ]
+        },
+        {
+          "type": "select",
+          "name": "status",
+          "label": "状态",
+          "options": [
+            { "label": "全部", "value": "" },
+            { "label": "启用", "value": "1" },
+            { "label": "禁用", "value": "0" }
+          ]
+        },
+        {
+          "type": "date-range",
+          "name": "date_range",
+          "label": "日期范围"
+        },
+        {
+          "type": "button",
+          "label": "搜索",
+          "actionType": "submit",
+          "level": "primary"
+        },
+        {
+          "type": "button",
+          "label": "重置",
+          "actionType": "reset"
+        }
+      ]
+    },
+    {
+      "type": "crud",
+      "name": "dataTable",
+      "api": "/api/data",
+      "columns": [
+        { "name": "id", "label": "ID" },
+        { "name": "name", "label": "名称" },
+        { "name": "category", "label": "分类" },
+        { "name": "status", "label": "状态" },
+        { "name": "created_at", "label": "创建时间" }
+      ]
+    }
+  ]
+}

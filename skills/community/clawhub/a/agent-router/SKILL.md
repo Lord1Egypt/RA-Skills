@@ -1,35 +1,13 @@
----
-name: "Agent Router"
-description: "Routes user commands to the most suitable sub-agent based on intent, coordinates task execution priority, and tracks overall task status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-router"
-sourceUrl: "https://clawhub.ai/skills/agent-router"
----
+# SKILL.md - Agent Router
 
-# Agent Router
+参考 EvoMap 逻辑，实现多 Agent 间的指令精准路由与消息分发。
 
-> Routes user commands to the most suitable sub-agent based on intent, coordinates task execution priority, and tracks overall task status.
+## Capabilities
+- **指令分发**：根据用户输入的意图，将任务路由至最合适的子 Agent 或技能。
+- **冲突协调**：当多个技能触发时，根据优先级（Priority）决定执行顺序。
+- **状态追踪**：监控各子任务的执行状态，汇总结果后统一回复。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-router`
-- **Source URL:** [https://clawhub.ai/skills/agent-router](https://clawhub.ai/skills/agent-router)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-router
-```
+## Triggers
+- "路由此任务至对应技能"
+- "协调多 Agent 协作"
+- "检查技能响应优先级"

@@ -1,0 +1,42 @@
+<svg width="1600" height="920" viewBox="0 0 1600 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="130" y1="80" x2="1470" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6E8D0"/>
+      <stop offset="0.5" stop-color="#E6C08F"/>
+      <stop offset="1" stop-color="#A75A32"/>
+    </linearGradient>
+    <filter id="shadow" x="90" y="100" width="1420" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="26" flood-color="#6E3818" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="920" fill="url(#bg)"/>
+  <text x="130" y="120" fill="#6A3517" font-size="62" font-family="Georgia, 'Times New Roman', serif" font-weight="700">MeritLoop Product Story</text>
+  <text x="132" y="166" fill="#8E4E27" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">A local-first ritual companion that turns practice into daily momentum</text>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="220" width="400" height="520" rx="30" fill="#FFF8EF"/>
+    <rect x="600" y="220" width="400" height="520" rx="30" fill="#FFF8EF"/>
+    <rect x="1080" y="220" width="400" height="520" rx="30" fill="#FFF8EF"/>
+  </g>
+
+  <text x="160" y="296" fill="#A25A31" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">1. Ritual Starts</text>
+  <text x="160" y="356" fill="#5B3017" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">The device reminds you at a set time,</text>
+  <text x="160" y="390" fill="#5B3017" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">opens a chanting session, and sets the tone.</text>
+  <rect x="160" y="450" width="200" height="48" rx="24" fill="#A95A32"/>
+  <text x="208" y="481" fill="#FFF8F0" font-size="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Morning Bell</text>
+
+  <text x="640" y="296" fill="#A25A31" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">2. Practice Completes</text>
+  <text x="640" y="356" fill="#5B3017" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">Chanting, reading, sitting, and dedication</text>
+  <text x="640" y="390" fill="#5B3017" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">are logged locally with zero server dependence.</text>
+  <rect x="640" y="450" width="220" height="48" rx="24" fill="#E2B56E"/>
+  <text x="682" y="481" fill="#6A3517" font-size="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Dedication Saved</text>
+
+  <text x="1120" y="296" fill="#A25A31" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">3. Merit Summary</text>
+  <text x="1120" y="356" fill="#5B3017" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">At night, the robot speaks your score,</text>
+  <text x="1120" y="390" fill="#5B3017" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">streak, and the best practice window.</text>
+  <rect x="1120" y="450" width="196" height="48" rx="24" fill="#F2E2C9"/>
+  <text x="1170" y="481" fill="#6A3517" font-size="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">128 Points</text>
+
+  <text x="130" y="835" fill="#6A3517" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">English-first UI. Localized ritual packs. Future-ready for temples, family sync, and global Buddhist communities.</text>
+</svg>

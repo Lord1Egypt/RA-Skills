@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/pregnancy-tracker.json",
+  "title": "PregnancyTracker",
+  "description": "Pregnancy management data structure",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update time"
+    },
+    "current_pregnancy": {
+      "type": ["object", "null"],
+      "description": "Current pregnancy record"
+    },
+    "pregnancy_history": {
+      "type": "array",
+      "items": {"type": "object"},
+      "description": "Pregnancy history records"
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_pregnancies": {"type": "integer"},
+        "current_pregnancy_week": {"type": ["integer", "null"]},
+        "total_weight_gain": {"type": "number"},
+        "average_weekly_gain": {"type": "number"},
+        "checkups_completed": {"type": "integer"},
+        "checkups_scheduled": {"type": "integer"}
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "reminder_days_before": {"type": "integer", "default": 7},
+        "weight_unit": {
+          "type": "string",
+          "enum": ["kg", "lbs"],
+          "default": "kg"
+        },
+        "preferred_checkup_time": {"type": "string", "default": "morning"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated"]
+}

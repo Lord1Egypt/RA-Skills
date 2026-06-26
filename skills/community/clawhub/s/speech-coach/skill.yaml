@@ -1,0 +1,12 @@
+name: speech-coach
+description: 口才陪练龙虾 — 基于大钊口才体系的 AI 公众讲话教练，提供 15 步渐进式训练与个性化进步追踪
+version: "1.0.0"
+author: openclaw-user
+type: skill
+tags:
+  - speech
+  - coaching
+  - public-speaking
+  - training
+  - eloquence
+license: MIT

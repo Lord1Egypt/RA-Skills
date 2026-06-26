@@ -1,0 +1,10 @@
+{
+  "name": "s2-avatar-middleware",
+  "version": "1.1.0",
+  "author": "Space2.world",
+  "short_description": "Authorization middleware that enforces Avatar Mandates. Requires user SMTP configuration to go ONLINE. Uses local LLMs to approve/deny sub-agent actions based on the Silicon Three Laws, and sends email alerts upon denial.",
+  "tags": ["Security", "Middleware", "Authorization", "LLM", "Email"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

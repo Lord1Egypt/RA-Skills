@@ -1,0 +1,10 @@
+name: 神經科病歷助手
+description: 將門診病歷自動結構化，輸出診斷同建議
+version: 1.0.0
+author: isaacloi1995-dot
+tags:
+  - 醫療
+  - 神經內科
+  - 病歷
+  - AI助手
+  - 醫生

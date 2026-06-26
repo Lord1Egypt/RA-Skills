@@ -1,0 +1,7 @@
+interface:
+  display_name: "微信文章完整流水线"
+  short_description: "编排公众号文章写作、HTML 主稿、AI 风险审核、配图确认、样式审核和排版预览。"
+  default_prompt: "使用 $wechat-article-pipeline 根据主题或简报生成微信公众号文章。开头先询问是否自动执行所有流程；若用户选择自动执行，则按默认策略连续完成写作策略、HTML 主稿、独立 AI 写作风险审核、配图调研、样式审核、修订门控和排版预览；若用户不自动执行，则按原流程逐步确认。"
+
+policy:
+  allow_implicit_invocation: true

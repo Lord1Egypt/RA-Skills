@@ -1,0 +1,141 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║     ⚡ OpenClaw Optimize Pro v2.0                                ║
+║        OpenClaw 性能优化专家 - 增强版                             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📦 版本信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+版本: 2.0.0 Pro
+更新日期: 2026-03-29
+新增功能: 自动优化、智能分析、综合报告、懒加载配置
+
+⚡ 功能特性
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧠 内存优化 Pro
+   • 详细内存状态分析
+   • 激进垃圾回收
+   • 系统缓存清理
+   • 高级内存泄漏检测
+   • 进程内存监控
+
+🚀 技能优化 Pro
+   • 启动时间精确分析
+   • 智能优化计划生成
+   • 重复功能检测
+   • 未使用技能识别
+   • 懒加载配置生成
+
+🧹 历史记录优化 Pro
+   • 全面空间分析
+   • 智能清理策略
+   • 多维度统计
+   • 自动归档建议
+
+🤖 自动优化
+   • 自动问题检测
+   • 一键修复
+   • 实时监控
+   • 综合报告生成
+
+📦 安装步骤
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣ 安装依赖
+   pip install psutil
+
+2️⃣ 复制到技能目录
+   mkdir -p ~/.openclaw/workspace/skills/
+   cp -r openclaw-optimize-v2.0.0 \
+         ~/.openclaw/workspace/skills/openclaw-optimize
+
+3️⃣ 设置权限
+   chmod +x ~/.openclaw/workspace/skills/openclaw-optimize/*.sh
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 快速使用
+
+# 基础版命令
+openclaw-optimize --full          # 一键优化
+openclaw-optimize --diagnose      # 系统诊断
+openclaw-optimize --memory        # 内存优化
+openclaw-optimize --skills        # 技能分析
+openclaw-optimize --clean-history # 清理历史
+openclaw-optimize --monitor       # 性能监控
+openclaw-optimize --report        # 生成报告
+
+# 增强版 Python API
+python3 -c "
+from openclaw_optimize_pro import AutoOptimizer
+
+opt = AutoOptimizer()
+
+# 生成综合报告
+print(opt.generate_comprehensive_report())
+
+# 自动优化
+results = opt.auto_optimize()
+print(f'修复问题: {len(results[\"fixes_applied\"])} 个')
+
+# 详细内存分析
+mem_status = opt.memory.get_detailed_status()
+print(f'系统内存: {mem_status[\"system\"][\"percent\"]}%')
+
+# 技能启动分析
+skill_analysis = opt.skills.analyze_startup_time()
+print(f'启动时间: {skill_analysis[\"estimated_startup\"]:.1f}s')
+
+# 生成优化计划
+plan = opt.skills.generate_optimization_plan()
+for item in plan:
+    print(f'[{item[\"priority\"]}] {item[\"description\"]}')
+
+# 智能清理历史
+history_analysis = opt.history.comprehensive_analysis()
+cleanup = opt.history.smart_cleanup(keep_days=7)
+print(f'释放空间: {cleanup[\"freed_human\"]}')
+"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 解决什么问题？
+
+✓ 刚部署时卡顿
+✓ 内存占用过高
+✓ 响应速度慢
+✓ 技能加载慢
+✓ 历史记录膨胀
+✓ 启动时间过长
+✓ 内存泄漏
+✓ 系统资源不足
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 v2.0 升级内容
+
+v1.0 → v2.0 Pro
+• 新增自动优化功能
+• 增强内存分析（详细状态、缓存清理）
+• 增强技能分析（启动时间、优化计划）
+• 增强历史分析（多维度统计）
+• 新增综合报告生成
+• 新增懒加载配置
+• 新增智能清理策略
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 文件说明
+
+• SKILL.md - 完整文档
+• openclaw-optimize.sh - 基础命令工具
+• openclaw_optimize.py - 基础版 Python API
+• openclaw_optimize_pro.py - 增强版 Python API ⭐
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+作者: OpenClaw Community
+版本: 2.0.0 Pro
+日期: 2026-03-29

@@ -1,35 +1,24 @@
----
-name: "my_soul_upgrade_skill"
-description: "Manage and synchronize global and agent-specific Soul definitions using a two-layer template system with automated rebuild scripts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-soul-upgrade-skill"
-sourceUrl: "https://clawhub.ai/skills/my-soul-upgrade-skill"
----
-
 # my_soul_upgrade_skill
 
-> Manage and synchronize global and agent-specific Soul definitions using a two-layer template system with automated rebuild scripts.
+## Purpose
+Manage and synchronize Soul definitions across the agent system using a two-layer template architecture.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-soul-upgrade-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-soul-upgrade-skill](https://clawhub.ai/skills/my-soul-upgrade-skill)
+## Architecture
+- **Global Layer**: `/home/admin/.openclaw/soul/SOUL.md` (Common principles, constraints, formatting)
+- **Agent Layer**: `/home/admin/.openclaw/workspaces/workspace-<agent_id>/template.md` (Personalized role, specific capabilities)
+- **Output**: Built SOUL.md → `/home/admin/.openclaw/workspaces/workspace-<agent_id>/SOUL.md`
 
-## Overview
+New layout aligns with OpenClaw's per-agent workspace pattern.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-soul-upgrade-skill
-```
+### 1. Update Global Soul (Applies to all agents)
+1.  **Edit**: Modify `/home/admin/.openclaw/soul/SOUL.md`.
+2.  **Sync**: Execute `python3 ~/.openclaw/scripts/build_all_souls.py` to regenerate all agent SOUL files.
+
+### 2. Update Agent-Specific Soul
+1.  **Edit**: Modify `/home/admin/.openclaw/workspaces/workspace-<agent_id>/template.md`.
+2.  **Sync**: Execute `python3 ~/.openclaw/scripts/build_all_souls.py` to rebuild the specific agent's SOUL.
+
+---
+_Note: Always run `build_all_souls.py` after any manual modification to maintain sync._

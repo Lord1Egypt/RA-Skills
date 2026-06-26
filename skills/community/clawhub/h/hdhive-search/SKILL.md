@@ -1,35 +1,28 @@
----
-name: "Hdhive Search"
-description: "快速构造 HDHive 影视搜索链接，优先返回官方 TMDB 影视详情页，避免复杂直链操作与爬虫限制。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hdhive-search"
-sourceUrl: "https://clawhub.ai/skills/hdhive-search"
----
+# HDHive 影视资源搜索技能
 
-# Hdhive Search
+## 适用场景
+当用户要求在 HDHive (https://hdhive.com) 搜索电影/电视剧资源时，直接使用 URL 构造跳转，避免交互式操作失败。
 
-> 快速构造 HDHive 影视搜索链接，优先返回官方 TMDB 影视详情页，避免复杂直链操作与爬虫限制。
+## 标准流程
+1. **构造搜索 URL**  
+   `https://hdhive.com/search?query={关键词}&type=multi&page=1`  
+   （自动编码关键词，如「琅琊榜」→ `%E7%90%85%E7%90%8A%E6%A6%9C`）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hdhive-search`
-- **Source URL:** [https://clawhub.ai/skills/hdhive-search](https://clawhub.ai/skills/hdhive-search)
+2. **定位目标影视**  
+   - 从搜索结果中选择匹配的影视条目（优先选 TMDB 官方数据）
+   - 直接跳转到详情页：`https://hdhive.com/tmdb/{类型}/{TMDB_ID}`  
+     （类型：`movie` 或 `tv`）
 
-## Overview
+3. **提供资源页面**  
+   - **不再提取具体网盘链接**，而是直接返回 HDHive 详情页 URL  
+   - 用户可自行在页面内点击资源条目跳转（避免直链失效问题）
 
+4. **特殊情况处理**  
+   - 若用户明确要求直链，需说明：  
+     - 115CDN 直链需通过 HDHive 页面内点击后使用插件提取  
+     - OpenClaw 无法直接生成有效直链（受 115 反爬限制）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hdhive-search
-```
+## 注意事项
+- 避免点击页面上的「搜索」按钮或手动输入，直接 URL 跳转更稳定
+- 若搜索结果不明确，优先选择带 TMDB ID 的官方条目
+- 115 网盘资源可能需要登录账号或消耗积分

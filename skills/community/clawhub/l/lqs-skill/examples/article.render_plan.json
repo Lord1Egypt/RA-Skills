@@ -1,0 +1,68 @@
+{
+  "entity": "Article",
+  "module": "Admin",
+  "artifacts": ["controller", "model", "view", "migration"],
+  "outputs": [
+    {
+      "artifact": "controller",
+      "template": ".skill/templates/generated/admin_controller.txt",
+      "target": "application/modules/Admin/controllers/Article.php",
+      "variables": {
+        "module": "Admin",
+        "Entity": "Article",
+        "entity": "article",
+        "base_controller": "BackendBaseController",
+        "pk": "id",
+        "model_class": "ArticleModel",
+        "index_assignments": "",
+        "list_item_mapping": "",
+        "search_where_logic": "",
+        "format_key_logic": "",
+        "log_desc": "文章管理",
+        "desc_logic": "return '';"
+      }
+    },
+    {
+      "artifact": "model",
+      "template": ".skill/templates/generated/admin_model.txt",
+      "target": "application/models/ArticleModel.php",
+      "variables": {
+        "Entity": "Article",
+        "table": "typecho_articles",
+        "pk": "id",
+        "timestamps": "true",
+        "fillable_lines": "    'title',\n    'content',\n    'author_id',\n    'status',",
+        "casts_lines": "",
+        "relations_block": ""
+      }
+    },
+    {
+      "artifact": "view",
+      "template": ".skill/templates/generated/admin_index_view.txt",
+      "target": "application/modules/Admin/views/article/index.tpl",
+      "variables": {
+        "page_title": "文章管理",
+        "entity": "article",
+        "Entity": "Article",
+        "search_fields_block": "",
+        "table_columns_block": "",
+        "toolbar_buttons_block": "",
+        "operate_buttons_block": "",
+        "form_fields_block": ""
+      }
+    },
+    {
+      "artifact": "migration",
+      "template": ".skill/templates/generated/migration_create_table.txt",
+      "target": "migrations/202603170001_create_typecho_articles.php",
+      "variables": {
+        "table": "typecho_articles",
+        "class_name": "Migration202603170001_create_typecho_articles",
+        "fields_block": "",
+        "fields_json": "[]",
+        "indexes_block": "",
+        "down_drop_table": ""
+      }
+    }
+  ]
+}

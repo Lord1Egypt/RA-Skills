@@ -1,35 +1,21 @@
 ---
-name: "lin-skill-demo"
-description: "收费技能示例模板 - 带授权验证，演示如何在 ClawHub 发布付费技能"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lin-skill-demo"
-sourceUrl: "https://clawhub.ai/skills/lin-skill-demo"
+name: paid-skill-demo
+description: 收费技能示例模板 - 带授权验证，演示如何在 ClawHub 发布付费技能
+license:
 ---
 
-# lin-skill-demo
+# 收费技能示例 (paid-skill-demo)
 
-> 收费技能示例模板 - 带授权验证，演示如何在 ClawHub 发布付费技能
+这是一个演示**如何在 ClawHub 发布收费技能**的模板。展示了授权验证的实现方式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lin-skill-demo`
-- **Source URL:** [https://clawhub.ai/skills/lin-skill-demo](https://clawhub.ai/skills/lin-skill-demo)
+## 商业模式
 
-## Overview
+- **技能本身公开免费，但核心功能需要有效的授权码
+- 用户购买后获得授权码，通过环境变量配置即可使用
+- 支持单用户授权，验证通过才能使用完整功能
 
+## 配置方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/lin-skill-demo
-```
+# 设置授权码（购买后获得）
+export SKILL_LICENSE_KEY=your-purchased-license-key

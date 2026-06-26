@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Dehydrator"
+  short_description: "Diagnose hidden overlap and rebuild cleaner Web3 allocations."
+  default_prompt: "Use $web3-portfolio-optimizer to analyze a Web3 portfolio, expose hidden overlap, and generate evidence-based allocation advice using correlation, Sortino, Calmar, and maximum drawdown."

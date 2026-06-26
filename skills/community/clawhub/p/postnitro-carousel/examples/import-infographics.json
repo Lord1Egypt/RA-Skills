@@ -1,0 +1,73 @@
+{
+  "postType": "CAROUSEL",
+  "templateId": "YOUR_TEMPLATE_ID",
+  "brandId": "YOUR_BRAND_ID",
+  "responseType": "PNG",
+  "slides": [
+    {
+      "type": "starting_slide",
+      "heading": "Social Media Platform Comparison",
+      "sub_heading": "2026 Edition",
+      "description": "Which platforms deserve your time and budget? Let's break it down.",
+      "cta_button": "Swipe for the data"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Audience & Reach",
+      "description": "Compare the key metrics across top platforms.",
+      "layoutType": "infographic",
+      "layoutConfig": {
+        "columnCount": 2,
+        "columnDisplay": "grid",
+        "displayCounterAs": "counter",
+        "hasHeader": true,
+        "columnData": [
+          {
+            "header": "Best for B2B",
+            "content": [
+              { "title": "LinkedIn", "description": "930M+ members. Highest B2B conversion rate at 2.74%." },
+              { "title": "X (Twitter)", "description": "Best for real-time industry conversations and thought leadership." }
+            ]
+          },
+          {
+            "header": "Best for B2C",
+            "content": [
+              { "title": "Instagram", "description": "2B+ monthly users. Carousel posts get 1.4x more reach than single images." },
+              { "title": "TikTok", "description": "1.5B+ users. Highest organic reach potential for new accounts." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "body_slide",
+      "heading": "Content Strategy Steps",
+      "description": "Follow this process to maximize your social media ROI.",
+      "layoutType": "infographic",
+      "layoutConfig": {
+        "columnCount": 1,
+        "columnDisplay": "cycle",
+        "displayCounterAs": "counter",
+        "hasHeader": true,
+        "columnData": [
+          {
+            "header": "Your Action Plan",
+            "content": [
+              { "title": "Audit Current Performance", "description": "Review last 90 days of analytics across all platforms." },
+              { "title": "Identify Top 2 Platforms", "description": "Focus where your audience is most active and engaged." },
+              { "title": "Create Platform-Specific Content", "description": "Adapt format, length, and tone for each platform." },
+              { "title": "Measure Weekly", "description": "Track engagement rate, reach, and conversions every 7 days." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "ending_slide",
+      "heading": "Start Optimizing Today",
+      "sub_heading": "Data-driven social media strategy",
+      "description": "Save this carousel and share it with your marketing team.",
+      "cta_button": "Share & Save"
+    }
+  ]
+}

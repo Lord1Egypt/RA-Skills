@@ -1,0 +1,18 @@
+{
+  "slug": "demo",
+  "description": "测试描述",
+  "parentProject": "unnamed",
+  "createdAt": "2026-05-24T02:02:27.762Z",
+  "stages": [
+    "spec",
+    "spec-review-gate",
+    "implement",
+    "review",
+    "smoke-test",
+    "ux-acceptance",
+    "pm-commercial-review",
+    "publish-generalization-gate",
+    "deploy",
+    "ledger"
+  ]
+}

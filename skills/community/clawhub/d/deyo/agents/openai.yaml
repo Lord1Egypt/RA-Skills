@@ -1,0 +1,7 @@
+interface:
+  display_name: "Deyo"
+  short_description: "使用已安装的 deyo 命令发起链接转写，并在执行过程中向用户同步任务进度"
+  default_prompt: "Use $deyo to install, configure, or run the published deyo transcription CLI, and keep the user updated on task progress."
+
+policy:
+  allow_implicit_invocation: true

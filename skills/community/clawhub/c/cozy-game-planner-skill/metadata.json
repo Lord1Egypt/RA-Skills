@@ -1,0 +1,19 @@
+{
+  "slug": "cozy-game-planner-skill",
+  "name": "Cozy Game Planner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "cozy-game-planner",
+    "game",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Genres",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-06",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

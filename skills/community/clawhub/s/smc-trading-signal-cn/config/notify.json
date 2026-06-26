@@ -1,0 +1,10 @@
+{
+  "channels": ["qqbot"],
+  "notify_on_signal": true,
+  "min_risk_reward": 1.5,
+  "max_signals_per_day": 5,
+  "quiet_hours": {
+    "start": "23:00",
+    "end": "08:00"
+  }
+}

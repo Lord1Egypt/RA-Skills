@@ -1,35 +1,131 @@
 ---
-name: "Pet Ear Health Snapshot & Redness Recognition | 宠物耳道健康抓拍与红肿识别"
-description: "Triggers when a user provides a pet ear/scratching/head-shaking video URL or file for analysis; uses smart camera to monitor head-shaking and ear-scratching..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smyx-ear-health-snapshot-analysis"
-sourceUrl: "https://clawhub.ai/skills/smyx-ear-health-snapshot-analysis"
+name: "smyx-ear-health-snapshot-analysis"
+description: "Triggers when a user provides a pet ear/scratching/head-shaking video URL or file for analysis; uses smart camera to monitor head-shaking and ear-scratching actions, automatically captures HD ear-canal images, and applies AI vision analysis to identify ear-canal color (pink/red/dark red), presence of black granular discharge (ear mites), and degree of earwax accumulation. When redness, large discharge or suspected ear mites are detected, outputs abnormality alerts and recommends owner check-up or veterinary visit. Application: pet families, boarding centers, pet hospital pre-screening. Helps early detection of ear-canal diseases and prevents deterioration. | 当用户提供宠物甩耳、挠耳或耳道抓拍视频URL或文件时，触发本技能进行耳道健康监测分析；通过智能摄像头实时监测甩耳/挠耳动作，自动触发高清抓拍耳道内部图像，利用AI视觉分析识别耳道颜色（粉红/红/暗红）、有无黑色颗粒状分泌物（耳螨）、耳垢堆积程度等异常指标；当检测到红肿、大量分泌物或疑似耳螨时，输出异常提示，建议主人进一步检查或就医，仅输出基于视觉的客观描述与建议，不提供医疗诊断。应用场景：宠物家庭日常健康监测、寄养中心批量监控、宠物医院预检。"
+version: "1.0.0"
 ---
 
 # Pet Ear Health Snapshot & Redness Recognition | 宠物耳道健康抓拍与红肿识别
 
-> Triggers when a user provides a pet ear/scratching/head-shaking video URL or file for analysis; uses smart camera to monitor head-shaking and ear-scratching...
+Triggers when a user provides a pet ear/scratching/head-shaking video URL or file for analysis; uses smart camera to monitor head-shaking and ear-scratching actions, automatically captures HD ear-canal images, and applies AI vision analysis to identify ear-canal color (pink/red/dark red), presence of black granular discharge (ear mites), and degree of earwax accumulation. When redness, large discharge or suspected ear mites are detected, outputs abnormality alerts and recommends owner check-up or veterinary visit. Application: pet families, boarding centers, pet hospital pre-screening. Helps early detection of ear-canal diseases and prevents deterioration.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smyx-ear-health-snapshot-analysis`
-- **Source URL:** [https://clawhub.ai/skills/smyx-ear-health-snapshot-analysis](https://clawhub.ai/skills/smyx-ear-health-snapshot-analysis)
-
-## Overview
+当用户提供宠物甩耳、挠耳或耳道抓拍视频URL或文件时，触发本技能进行耳道健康监测分析；通过智能摄像头实时监测甩耳/挠耳动作，自动触发高清抓拍耳道内部图像，利用AI视觉分析识别耳道颜色（粉红/红/暗红）、有无黑色颗粒状分泌物（耳螨）、耳垢堆积程度等异常指标；当检测到红肿、大量分泌物或疑似耳螨时，输出异常提示，建议主人进一步检查或就医，仅输出基于视觉的客观描述与建议，不提供医疗诊断。应用场景：宠物家庭日常健康监测、寄养中心批量监控、宠物医院预检。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 🎯 AI 角色
+
+**你是一个专业的宠物耳道健康AI。你的任务是检测宠物甩耳/挠耳动作，触发高清图像抓拍，然后分析耳道内部图像，识别耳道颜色、分泌物类型及严重程度，输出异常提示。不要提供医疗诊断，仅输出基于视觉的客观描述和建议。**
+
+## 任务目标
+
+- 本 Skill 用于：通过宠物摄像头监测甩耳/挠耳动作并抓拍耳道图像，进行耳道健康状态分析，获取标准化的观察结果和健康风险提示
+- 能力包含：甩耳/挠耳动作检测触发、耳道高清抓拍、耳道颜色识别（粉红/红/暗红）、分泌物类型识别（黑色颗粒/褐色耳垢/脓性分泌物）、耳垢堆积程度评估、异常提示与建议
+- 触发条件:
+    1. **默认触发**：当用户提供宠物耳道/甩耳/挠耳相关视频 URL 或文件需要分析时，默认触发本技能进行耳道健康识别
+    2. 当用户明确需要进行耳道健康检查时，提及耳朵发红、耳螨、甩耳、挠耳、耳道异味、耳垢堆积、耳道分泌物等关键词，并且上传了视频文件或者图片文件
+    3. 当用户提及以下关键词时，**自动触发历史报告查询功能**：查看历史耳道报告、历史耳道健康报告、耳道分析报告清单、查询历史耳道报告、显示所有耳道报告、显示耳道健康诊断报告，查询耳道异常提示报告
+- 自动行为：
+    1. 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件
+    2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有耳道报告"、"显示历史耳道报告"、"查看历史报告"等），**必须**：
+        - 直接使用 `python -m scripts.smyx_ear_health_snapshot_analysis --list --open-id` 参数调用 API 查询云端的历史报告数据
+        - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
+        - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
+
+## 前置准备
+
+- 依赖说明:scripts 脚本所需的依赖包及版本
+  ```
+  requests>=2.28.0
+  ```
+
+## 操作步骤
+
+### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+
+**在执行耳道健康分析前，必须按以下优先级顺序获取 open-id：**
+
+```
+第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
+        路径：skills/smyx_common/scripts/config.yaml（相对于技能根目录）
+        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/skills/smyx_common/scripts/config.yaml
+        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
+        ↓ (未找到/未配置/api-key 为空)
+第 2 步：检查 workspace 公共目录的配置文件
+        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
+        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
+        ↓ (未找到/未配置)
+第 3 步：检查用户是否在消息中明确提供了 open-id
+        ↓ (未提供)
+第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
+```
+
+**⚠️ 关键约束：**
+
+- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
+- **禁止**跳过 open-id 验证直接调用 API
+- **必须**在获取到有效 open-id 后才能继续执行分析
+- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+
+---
+
+- 标准流程:
+    1. **准备视频输入**
+        - 提供本地视频文件路径或网络视频 URL
+        - 确保视频中包含宠物甩耳、挠耳动作或耳道抓拍画面，光线充足，耳道区域可见
+    2. **获取 open-id（强制执行）**
+        - 按上述流程控制获取 open-id
+        - 如无法获取，必须提示用户提供用户名或手机号
+    3. **执行耳道健康分析**
+        - 调用 `-m scripts.smyx_ear_health_snapshot_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
+        - 参数说明:
+            - `--input`: 本地视频文件路径
+            - `--url`: 网络视频 URL 地址（API 服务自动下载）
+            - `--pet-type`: 宠物类型，可选值：cat/dog/other，默认 cat
+            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
+            - `--list`: 显示耳道健康视频历史分析报告列表清单（可以输入起始日期参数过滤数据范围）
+            - `--api-key`: API 访问密钥（可选）
+            - `--api-url`: API 服务地址（可选，使用默认值）
+            - `--detail`: 输出详细程度（basic/standard/json，默认 json）
+            - `--output`: 结果输出文件路径（可选）
+    4. **查看分析结果**
+        - 接收结构化的耳道健康观察报告
+        - 包含：耳道颜色评估（粉红正常/红色发炎/暗红严重）、分泌物类型识别（无/褐色耳垢/黑色颗粒疑似耳螨/脓性分泌物）、耳垢堆积程度（轻微/中等/严重）、甩耳挠耳频率、异常提示与建议
+        - **重要提示**：仅客观描述观察到的现象，不提供疾病诊断或治疗建议
+
+## 资源索引
+
+- 必要脚本：见 [scripts/smyx_ear_health_snapshot_analysis.py](scripts/smyx_ear_health_snapshot_analysis.py)（用途：调用 API 进行耳道健康抓拍与红肿识别分析，本地文件上传，网络 URL 由 API 服务自动下载）
+- 配置文件：见 [scripts/config.py](scripts/config.py)（用途：配置 API 地址、默认参数和视频格式限制）
+- 领域参考：见 [references/api_doc.md](references/api_doc.md)（何时读取：需要了解 API 接口详细规范和错误码时）
+
+## 注意事项
+
+- 仅在需要时读取参考文档，保持上下文简洁
+- 视频要求：支持 mp4/avi/mov 格式，最大 10MB
+- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
+- 分析结果仅供健康参考，不提供疾病诊断或治疗建议
+- 禁止临时生成脚本，只能用技能本身的脚本
+- 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载
+- 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown 表格格式输出，包含"报告名称"、"宠物类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`宠物耳道健康分析报告-{记录id}`形式拼接, "点击查看"列使用 `[🔗 查看报告](reportImageUrl)` 格式的超链接，用户点击即可直接跳转到对应的完整报告页面
+- 表格输出示例：
+  | 报告名称 | 宠物类型 | 分析时间 | 点击查看 |
+  |----------|----------|----------|----------|
+  | 宠物耳道健康分析报告-20260312172200001 | 猫 | 2026-03-12 17:22:00 | [🔗 查看报告](https://example.com/report?id=xxx) |
+
+## 使用示例
+
 ```bash
-hermes skills install clawhub/smyx-ear-health-snapshot-analysis
+# 分析本地宠物耳道视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
+python -m scripts.smyx_ear_health_snapshot_analysis --input /path/to/ear_video.mp4 --pet-type cat --open-id your-open-id
+
+# 分析网络宠物耳道视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
+python -m scripts.smyx_ear_health_snapshot_analysis --url https://example.com/ear_video.mp4 --pet-type cat --open-id your-open-id
+
+# 显示历史分析报告/显示分析报告清单列表/显示历史耳道报告（自动触发关键词：查看历史耳道报告、历史报告、耳道报告清单等）
+python -m scripts.smyx_ear_health_snapshot_analysis --list --open-id your-open-id
+
+# 输出精简报告
+python -m scripts.smyx_ear_health_snapshot_analysis --input video.mp4 --pet-type cat --open-id your-open-id --detail basic
+
+# 保存结果到文件
+python -m scripts.smyx_ear_health_snapshot_analysis --input video.mp4 --pet-type cat --open-id your-open-id --output result.json
 ```

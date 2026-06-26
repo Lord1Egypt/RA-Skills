@@ -1,0 +1,101 @@
+{
+  "name": "Loft Bunk Bed",
+  "deps": [
+    {
+      "body": "Post_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Post_FR",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BL",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BR",
+      "ref": "Post_FR"
+    },
+    {
+      "body": "SideRail_L",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "SideRail_R",
+      "ref": "Post_FR"
+    },
+    {
+      "body": "EndRail_Head",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "EndRail_Foot",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "GuardRail_R",
+      "ref": "Post_FR"
+    },
+    {
+      "body": "GuardRail_Head",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "GuardRail_Foot",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "GuardRail_Front",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "FenceSupport",
+      "ref": "GuardRail_Front"
+    },
+    {
+      "body": "Ledger_L",
+      "ref": "SideRail_L"
+    },
+    {
+      "body": "Ledger_R",
+      "ref": "SideRail_R"
+    },
+    {
+      "body": "Slat",
+      "ref": "Ledger_L"
+    },
+    {
+      "body": "DeskLeg_L",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "DeskLeg_R",
+      "ref": "DeskLeg_L"
+    },
+    {
+      "body": "DeskRail_Front",
+      "ref": "DeskLeg_L"
+    },
+    {
+      "body": "DeskRail_Back",
+      "ref": "Post_FR"
+    },
+    {
+      "body": "DeskTop",
+      "ref": "DeskRail_Front"
+    },
+    {
+      "body": "LadderSide_L",
+      "ref": "SideRail_L"
+    },
+    {
+      "body": "LadderSide_R",
+      "ref": "SideRail_L"
+    },
+    {
+      "body": "Rung_5",
+      "ref": "LadderSide_L"
+    }
+  ]
+}

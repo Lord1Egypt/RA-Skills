@@ -1,0 +1,2497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tideo · AI 产品体验验证框架</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════ */
+/* CSS VARIABLES                                   */
+/* ═══════════════════════════════════════════════ */
+:root {
+  --c-bg: #ffffff;
+  --c-surface: #f7f8fa;
+  --c-surface-2: #f0f1f5;
+  --c-surface-3: #e8e9ee;
+  --c-border: rgba(0,0,0,0.06);
+  --c-border-2: rgba(0,0,0,0.1);
+  --c-text: #1a1a2e;
+  --c-text-2: #555566;
+  --c-text-3: #8c8c9e;
+  --c-accent: #e94560;
+  --c-blue: #2563eb;
+  --c-green: #059669;
+  --c-purple: #7c3aed;
+  --c-amber: #d97706;
+  --c-teal: #0d9488;
+  --c-blue-bg: rgba(37,99,235,0.06);
+  --c-green-bg: rgba(5,150,105,0.06);
+  --c-purple-bg: rgba(124,58,237,0.06);
+  --c-amber-bg: rgba(217,119,6,0.06);
+  --c-teal-bg: rgba(13,148,136,0.06);
+  --font-display: 'Noto Serif SC', 'DM Serif Display', serif;
+  --font-body: 'Noto Sans SC', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --max-w: 920px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* RESET & BASE                                    */
+/* ═══════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(233,69,96,0.15); color: #1a1a2e; }
+
+/* ═══════════════════════════════════════════════ */
+/* GRAIN OVERLAY                                   */
+/* ═══════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  background: none;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* SCROLL PROGRESS BAR                             */
+/* ═══════════════════════════════════════════════ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-blue), var(--c-purple), var(--c-accent));
+  z-index: 1000;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* NAV                                             */
+/* ═══════════════════════════════════════════════ */
+.side-nav {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.side-nav a {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-text-3);
+  transition: all 0.3s var(--ease-out);
+  opacity: 0.4;
+}
+.side-nav a:hover,
+.side-nav a.active {
+  opacity: 1;
+  transform: scale(1.6);
+}
+.side-nav a.active { background: var(--c-accent); }
+
+@media (max-width: 1100px) {
+  .side-nav { display: none; }
+}
+
+/* ═══════════════════════════════════════════════ */
+/* LEFT TOC (Table of Contents)                    */
+/* ═══════════════════════════════════════════════ */
+.toc {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 0 32px 20px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  pointer-events: none;
+}
+.toc.visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.toc-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-3);
+  margin-bottom: 16px;
+  padding-left: 12px;
+}
+.toc-list {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.toc-list::-webkit-scrollbar { display: none; }
+.toc-item {
+  position: relative;
+}
+.toc-item a {
+  display: block;
+  padding: 5px 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--c-text-3);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.25s var(--ease-out);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toc-item a:hover {
+  color: var(--c-text-2);
+}
+.toc-item a.active {
+  color: var(--c-text);
+  font-weight: 600;
+  border-left-color: var(--c-accent);
+  background: rgba(233,69,96,0.04);
+}
+/* Sub-items (children of model section) */
+.toc-item.toc-sub a {
+  padding-left: 28px;
+  font-size: 11.5px;
+}
+.toc-item.toc-sub .toc-num {
+  font-size: 9px;
+  opacity: 0.45;
+}
+.toc-item.toc-sub a.active {
+  border-left-color: var(--c-purple);
+  background: rgba(124,58,237,0.04);
+}
+.toc-item.toc-sub a.active .toc-num {
+  color: var(--c-purple);
+}
+.toc-item .toc-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--c-text-3);
+  margin-right: 6px;
+  opacity: 0.6;
+}
+.toc-item a.active .toc-num {
+  color: var(--c-accent);
+  opacity: 1;
+}
+.toc-progress {
+  margin-top: 16px;
+  padding-left: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--c-text-3);
+  letter-spacing: 0.05em;
+}
+.toc-bar {
+  width: 120px;
+  height: 2px;
+  background: var(--c-border);
+  border-radius: 1px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.toc-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--c-accent), var(--c-purple));
+  border-radius: 1px;
+  width: 0%;
+  transition: width 0.15s linear;
+}
+
+@media (max-width: 1280px) {
+  .toc { display: none; }
+}
+
+/* ═══════════════════════════════════════════════ */
+/* LAYOUT                                          */
+/* ═══════════════════════════════════════════════ */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 100px 0;
+  position: relative;
+}
+
+section + section {
+  border-top: 1px solid var(--c-border);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* HERO                                            */
+/* ═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(37,99,235,0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 30%, rgba(124,58,237,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 50% 80%, rgba(233,69,96,0.03) 0%, transparent 70%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  max-width: 700px;
+  padding: 0 32px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  background: rgba(233,69,96,0.1);
+  border: 1px solid rgba(233,69,96,0.2);
+  color: var(--c-accent);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+  animation: fadeIn 0.8s var(--ease-out) both;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  animation: pulse-dot 2s infinite;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 56px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.1s both;
+}
+.hero h1 .accent { color: var(--c-accent); }
+
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--c-text-2);
+  line-height: 1.8;
+  max-width: 540px;
+  margin: 0 auto 48px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.2s both;
+}
+
+.hero-dims {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s var(--ease-out) 0.3s both;
+}
+.hero-dim {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--c-text-2);
+  font-weight: 500;
+}
+.hero-dim .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-text-3);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  animation: fadeIn 1s var(--ease-out) 0.8s both;
+}
+.hero-scroll .line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--c-text-3), transparent);
+  animation: scrollLine 2s infinite;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* SECTION HEADERS                                 */
+/* ═══════════════════════════════════════════════ */
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--c-text-3);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--c-border-2);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.section-lead {
+  font-size: 16px;
+  color: var(--c-text-2);
+  line-height: 1.8;
+  max-width: 680px;
+  margin-bottom: 48px;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* QUOTE BLOCK                                     */
+/* ═══════════════════════════════════════════════ */
+.quote-block {
+  position: relative;
+  padding: 28px 32px;
+  background: var(--c-surface);
+  border-left: 3px solid var(--c-accent);
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--c-text);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* CARDS                                           */
+/* ═══════════════════════════════════════════════ */
+.card-grid {
+  display: grid;
+  gap: 16px;
+}
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 700px) {
+  .card-grid.cols-3, .card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid.cols-2 { grid-template-columns: 1fr; }
+}
+
+.card {
+  padding: 28px 24px;
+  border-radius: 14px;
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  transition: all 0.35s var(--ease-out);
+}
+.card:hover {
+  border-color: var(--c-border-2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.card .card-en {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c-text-3);
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.card p {
+  font-size: 14px;
+  color: var(--c-text-2);
+  line-height: 1.7;
+}
+.card .card-arrow {
+  font-size: 12px;
+  margin-top: 14px;
+  opacity: 0.5;
+}
+
+/* Dimension-specific card styles */
+.card.dim-trust { border-color: rgba(59,130,246,0.15); }
+.card.dim-trust:hover { border-color: rgba(37,99,235,0.3); box-shadow: 0 12px 40px rgba(37,99,235,0.06); }
+.card.dim-trust .card-icon { background: var(--c-blue-bg); color: var(--c-blue); }
+.card.dim-control { border-color: rgba(5,150,105,0.15); }
+.card.dim-control:hover { border-color: rgba(5,150,105,0.3); box-shadow: 0 12px 40px rgba(5,150,105,0.06); }
+.card.dim-control .card-icon { background: var(--c-green-bg); color: var(--c-green); }
+.card.dim-find { border-color: rgba(124,58,237,0.15); }
+.card.dim-find:hover { border-color: rgba(124,58,237,0.3); box-shadow: 0 12px 40px rgba(124,58,237,0.06); }
+.card.dim-find .card-icon { background: var(--c-purple-bg); color: var(--c-purple); }
+.card.dim-bond { border-color: rgba(217,119,6,0.15); }
+.card.dim-bond:hover { border-color: rgba(217,119,6,0.3); box-shadow: 0 12px 40px rgba(217,119,6,0.06); }
+.card.dim-bond .card-icon { background: var(--c-amber-bg); color: var(--c-amber); }
+
+/* ═══════════════════════════════════════════════ */
+/* TABLES                                          */
+/* ═══════════════════════════════════════════════ */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+.data-table thead th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.data-table tbody td {
+  padding: 14px 18px;
+  border-top: 1px solid var(--c-border);
+  color: var(--c-text-2);
+  line-height: 1.6;
+  vertical-align: top;
+}
+.data-table tbody tr:hover td {
+  background: rgba(0,0,0,0.02);
+}
+.data-table tbody td:first-child {
+  color: var(--c-text);
+  font-weight: 500;
+}
+
+/* Table color themes */
+.data-table.theme-blue thead { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.data-table.theme-green thead { background: linear-gradient(135deg, #059669, #10b981); }
+.data-table.theme-purple thead { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+.data-table.theme-amber thead { background: linear-gradient(135deg, #d97706, #f59e0b); }
+.data-table.theme-teal thead { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+.data-table.theme-dark thead { background: linear-gradient(135deg, #4a4a5e, #5c5c72); }
+
+/* ═══════════════════════════════════════════════ */
+/* THREE PILLARS                                   */
+/* ═══════════════════════════════════════════════ */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+@media (max-width: 700px) {
+  .pillar-grid { grid-template-columns: 1fr; }
+}
+.pillar {
+  padding: 28px 24px;
+  border-radius: 14px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+.pillar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.pillar.p-data { border-color: rgba(37,99,235,0.15); background: rgba(37,99,235,0.03); }
+.pillar.p-data::before { background: var(--c-blue); }
+.pillar.p-model { border-color: rgba(124,58,237,0.15); background: rgba(124,58,237,0.03); }
+.pillar.p-model::before { background: var(--c-purple); }
+.pillar.p-test { border-color: rgba(13,148,136,0.15); background: rgba(13,148,136,0.03); }
+.pillar.p-test::before { background: var(--c-teal); }
+.pillar-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+.pillar.p-data .pillar-tag { background: var(--c-blue-bg); color: var(--c-blue); }
+.pillar.p-model .pillar-tag { background: var(--c-purple-bg); color: var(--c-purple); }
+.pillar.p-test .pillar-tag { background: var(--c-teal-bg); color: var(--c-teal); }
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.pillar p {
+  font-size: 13px;
+  color: var(--c-text-2);
+  line-height: 1.7;
+}
+.pillar ul {
+  list-style: none;
+  margin-top: 12px;
+}
+.pillar ul li {
+  font-size: 13px;
+  color: var(--c-text-2);
+  padding: 3px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.pillar ul li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* FORMULA BOX                                     */
+/* ═══════════════════════════════════════════════ */
+.formula-box {
+  text-align: center;
+  padding: 40px 32px;
+  border-radius: 16px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-2);
+  margin: 48px 0;
+  position: relative;
+  overflow: hidden;
+}
+.formula-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 50% at 0% 50%, rgba(37,99,235,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 100% 50%, rgba(217,119,6,0.04) 0%, transparent 70%);
+}
+.formula-text {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  line-height: 1.6;
+}
+.formula-text .dim { padding: 2px 0; }
+.formula-text .times {
+  color: var(--c-text-3);
+  font-weight: 400;
+  margin: 0 4px;
+}
+.formula-sub {
+  position: relative;
+  margin-top: 20px;
+  font-size: 15px;
+  color: var(--c-text-2);
+}
+.formula-sub span { font-weight: 600; }
+
+/* ═══════════════════════════════════════════════ */
+/* LAYER SECTION (for 可共鸣)                       */
+/* ═══════════════════════════════════════════════ */
+.layer-block {
+  margin-bottom: 48px;
+  padding-left: 24px;
+  border-left: 2px solid rgba(217,119,6,0.25);
+}
+.layer-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: var(--c-amber-bg);
+  color: var(--c-amber);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.layer-block h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* EMOTION VALUE MODEL                              */
+/* ═══════════════════════════════════════════════ */
+.ev-stack {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  margin: 24px 0 40px;
+}
+.ev-layer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  border: 1px solid;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-out);
+  flex: 1;
+}
+.ev-layer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.ev-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  font-size: 20px;
+  color: var(--c-text-3);
+  flex-shrink: 0;
+  user-select: none;
+}
+.ev-layer .ev-badge {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.ev-layer .ev-body {
+  padding: 16px 18px;
+  flex: 1;
+}
+.ev-layer .ev-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.ev-layer .ev-voice {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.ev-layer .ev-desc {
+  font-size: 13px;
+  color: var(--c-text-2);
+  line-height: 1.7;
+}
+.ev-layer .ev-design {
+  font-size: 12px;
+  color: var(--c-text-3);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--c-border);
+}
+.ev-layer .ev-design strong { color: var(--c-text-2); }
+
+/* L3 Achievement — warm gold */
+.ev-layer.ev-l3 { border-color: rgba(217,119,6,0.25); background: rgba(217,119,6,0.03); }
+.ev-layer.ev-l3 .ev-badge { background: linear-gradient(180deg, #d97706, #f59e0b); }
+.ev-layer.ev-l3 .ev-name { color: var(--c-amber); }
+.ev-layer.ev-l3 .ev-voice { color: var(--c-amber); }
+
+/* L2 Delight — soft amber-orange */
+.ev-layer.ev-l2 { border-color: rgba(234,88,12,0.2); background: rgba(234,88,12,0.03); }
+.ev-layer.ev-l2 .ev-badge { background: linear-gradient(180deg, #ea580c, #f97316); }
+.ev-layer.ev-l2 .ev-name { color: #ea580c; }
+.ev-layer.ev-l2 .ev-voice { color: #ea580c; }
+
+/* L1 Comfort — warm rose */
+.ev-layer.ev-l1 { border-color: rgba(233,69,96,0.2); background: rgba(233,69,96,0.03); }
+.ev-layer.ev-l1 .ev-badge { background: linear-gradient(180deg, #e94560, #f472b6); }
+.ev-layer.ev-l1 .ev-name { color: var(--c-accent); }
+.ev-layer.ev-l1 .ev-voice { color: var(--c-accent); }
+
+/* Formula for emotion value */
+.ev-formula {
+  text-align: center;
+  padding: 32px 24px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(217,119,6,0.04), rgba(233,69,96,0.04));
+  border: 1px solid rgba(217,119,6,0.15);
+  margin: 32px 0;
+}
+.ev-formula .ev-f-main {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 700;
+  line-height: 1.8;
+}
+.ev-formula .ev-f-sub {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--c-text-2);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* GOAL CARDS (可用性测试)                           */
+/* ═══════════════════════════════════════════════ */
+.goal-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+@media (max-width: 600px) { .goal-pair { grid-template-columns: 1fr; } }
+.goal-card {
+  padding: 32px 28px;
+  border-radius: 14px;
+  text-align: center;
+}
+.goal-card.g-behavior {
+  background: var(--c-teal-bg);
+  border: 1px solid rgba(13,148,136,0.2);
+}
+.goal-card.g-feeling {
+  background: var(--c-amber-bg);
+  border: 1px solid rgba(217,119,6,0.2);
+}
+.goal-card .goal-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.goal-card.g-behavior .goal-label { color: var(--c-teal); }
+.goal-card.g-feeling .goal-label { color: var(--c-amber); }
+.goal-card .goal-q {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.goal-card .goal-dim {
+  font-size: 13px;
+  color: var(--c-text-3);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* SUB HEADINGS                                    */
+/* ═══════════════════════════════════════════════ */
+.sub-heading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 48px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sub-heading .sh-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* METRIC TAGS                                     */
+/* ═══════════════════════════════════════════════ */
+.metric-note {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  font-size: 14px;
+  color: var(--c-text-2);
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+.metric-note strong { color: var(--c-text); }
+
+/* ═══════════════════════════════════════════════ */
+/* TIMELINE                                        */
+/* ═══════════════════════════════════════════════ */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  margin: 32px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--c-border-2);
+}
+.timeline-item {
+  position: relative;
+  padding: 0 0 32px 24px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--c-teal);
+  background: var(--c-bg);
+}
+.timeline-item .tl-week {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--c-teal);
+  margin-bottom: 4px;
+}
+.timeline-item .tl-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.timeline-item .tl-desc {
+  font-size: 13px;
+  color: var(--c-text-3);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* CLOSING                                         */
+/* ═══════════════════════════════════════════════ */
+.closing {
+  text-align: center;
+  padding: 120px 32px 80px;
+  position: relative;
+}
+.closing-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(233,69,96,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.closing p {
+  font-size: 16px;
+  color: var(--c-text-2);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+.closing .version {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--c-text-3);
+  margin-top: 40px;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* ANIMATIONS                                      */
+/* ═══════════════════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes scrollLine {
+  0% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  50% { opacity: 0.3; transform: scaleY(0.4); transform-origin: top; }
+  100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* MODAL (量表弹窗)                                  */
+/* ═══════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+.modal-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.modal-box {
+  background: var(--c-bg);
+  border-radius: 20px;
+  border: 1px solid var(--c-border-2);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.18);
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 40px 36px;
+  position: relative;
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.35s var(--ease-out);
+  scrollbar-width: thin;
+}
+.modal-overlay.open .modal-box {
+  transform: translateY(0) scale(1);
+}
+.modal-box::-webkit-scrollbar { width: 4px; }
+.modal-box::-webkit-scrollbar-thumb { background: var(--c-border-2); border-radius: 2px; }
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  color: var(--c-text-2);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 1;
+}
+.modal-close:hover { background: var(--c-surface-2); color: var(--c-text); }
+.modal-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.modal-box h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.modal-box .modal-subtitle {
+  font-size: 14px;
+  color: var(--c-text-2);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.modal-box .modal-section {
+  margin-bottom: 28px;
+}
+.modal-box .modal-section h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-box .q-item {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  margin-bottom: 8px;
+}
+.modal-box .q-item .q-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c-text-3);
+  margin-bottom: 4px;
+}
+.modal-box .q-item .q-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--c-text);
+}
+.modal-box .q-item .q-scale {
+  font-size: 12px;
+  color: var(--c-text-3);
+  margin-top: 6px;
+}
+.modal-box .q-item .q-note {
+  font-size: 12px;
+  color: var(--c-text-3);
+  font-style: italic;
+  margin-top: 4px;
+}
+/* Scale visualization */
+.scale-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 12px 0;
+}
+.scale-row .s-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--c-border-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  flex-shrink: 0;
+}
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text-3);
+  margin-top: 4px;
+}
+/* Trigger link style */
+a.modal-trigger {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+a.modal-trigger:hover {
+  color: var(--c-amber);
+  text-decoration-color: var(--c-amber);
+}
+a.modal-trigger.teal:hover { color: var(--c-teal); text-decoration-color: var(--c-teal); }
+a.modal-trigger.blue:hover { color: var(--c-blue); text-decoration-color: var(--c-blue); }
+
+/* ═══════════════════════════════════════════════ */
+/* TOOLTIP (hover 浮窗)                             */
+/* ═══════════════════════════════════════════════ */
+.tip-wrap {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 1px dashed var(--c-text-3);
+}
+.tip-wrap .tip-box {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: 340px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--c-text);
+  color: #fff;
+  font-size: 12.5px;
+  line-height: 1.7;
+  font-style: normal;
+  font-weight: 400;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  z-index: 50;
+}
+.tip-wrap .tip-box::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--c-text);
+}
+.tip-wrap:hover .tip-box {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.tip-wrap .tip-box strong { color: var(--c-amber); }
+.tip-wrap .tip-box em { color: rgba(255,255,255,0.7); font-style: normal; }
+
+/* ═══════════════════════════════════════════════ */
+/* APPENDIX                                        */
+/* ═══════════════════════════════════════════════ */
+.appendix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.appendix-card {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+}
+.appendix-card:hover {
+  border-color: var(--c-border-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.appendix-card .ac-icon { font-size: 24px; margin-bottom: 10px; }
+.appendix-card h4 { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.appendix-card p { font-size: 13px; color: var(--c-text-2); line-height: 1.5; }
+.appendix-card .ac-count { font-family: var(--font-mono); font-size: 11px; color: var(--c-text-3); margin-top: 8px; }
+
+/* ═══════════════════════════════════════════════ */
+/* RESPONSIVE                                      */
+/* ═══════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  section { padding: 64px 0; }
+  .container { padding: 0 20px; }
+  .data-table { font-size: 12px; }
+  .data-table thead th, .data-table tbody td { padding: 10px 12px; }
+  .ev-stack { flex-direction: column; }
+  .ev-arrow { transform: rotate(90deg); padding: 4px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Left TOC -->
+<nav class="toc" id="tocNav">
+  <div class="toc-label">目录</div>
+  <ul class="toc-list" id="tocList">
+    <li class="toc-item"><a href="#hero"><span class="toc-num">—</span>封面</a></li>
+    <li class="toc-item"><a href="#background"><span class="toc-num">01</span>项目背景</a></li>
+    <li class="toc-item"><a href="#overview"><span class="toc-num">02</span>验证体系总览</a></li>
+    <li class="toc-item"><a href="#metrics"><span class="toc-num">03</span>埋点指标体系</a></li>
+    <li class="toc-item"><a href="#model"><span class="toc-num">04</span>四维验证模型</a></li>
+    <li class="toc-item toc-sub"><a href="#trust"><span class="toc-num">4.1</span>可信任 Trust</a></li>
+    <li class="toc-item toc-sub"><a href="#control"><span class="toc-num">4.2</span>可掌控 Control</a></li>
+    <li class="toc-item toc-sub"><a href="#findability"><span class="toc-num">4.3</span>可找到 Findability</a></li>
+    <li class="toc-item toc-sub"><a href="#bond"><span class="toc-num">4.4</span>可共鸣 Bond <span style="display:inline-block;padding:1px 5px;border-radius:4px;background:rgba(217,119,6,0.15);color:var(--c-amber);font-size:9px;font-weight:700;letter-spacing:0.04em;vertical-align:middle;margin-left:4px">核心差异</span></a></li>
+    <li class="toc-item"><a href="#usability"><span class="toc-num">05</span>可用性测试</a></li>
+    <li class="toc-item"><a href="#summary"><span class="toc-num">06</span>指标汇总</a></li>
+    <li class="toc-item"><a href="#conclusion"><span class="toc-num">07</span>总结</a></li>
+    <li class="toc-item"><a href="#appendix"><span class="toc-num">—</span>附录：量表工具箱</a></li>
+  </ul>
+  <div class="toc-progress">
+    <span id="tocPct">0%</span>
+    <div class="toc-bar"><div class="toc-bar-fill" id="tocBarFill"></div></div>
+  </div>
+</nav>
+
+<!-- Side Nav -->
+<nav class="side-nav" id="sideNav">
+  <a href="#hero" title="封面"></a>
+  <a href="#background" title="项目背景"></a>
+  <a href="#overview" title="体系总览"></a>
+  <a href="#metrics" title="埋点指标"></a>
+  <a href="#model" title="四维模型"></a>
+  <a href="#trust" title="可信任"></a>
+  <a href="#control" title="可掌控"></a>
+  <a href="#findability" title="可找到"></a>
+  <a href="#bond" title="可共鸣"></a>
+  <a href="#usability" title="可用性测试"></a>
+  <a href="#summary" title="指标汇总"></a>
+  <a href="#appendix" title="附录"></a>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Tideo Experience Framework v1.0</div>
+    <h1>AI 产品体验<br><span class="accent">验证框架</span></h1>
+    <p class="hero-subtitle">把复杂音视频 API 能力，转化为普通业务用户也能理解、能完成、愿复用的产品体验</p>
+    <div class="hero-dims">
+      <div class="hero-dim"><span class="dot" style="background:var(--c-blue)"></span> 可信任</div>
+      <div class="hero-dim"><span class="dot" style="background:var(--c-green)"></span> 可掌控</div>
+      <div class="hero-dim"><span class="dot" style="background:var(--c-purple)"></span> 可找到</div>
+      <div class="hero-dim"><span class="dot" style="background:var(--c-amber)"></span> 可共鸣</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ═══════════════════════ 01 项目背景 ═══════════════════════ -->
+<section id="background">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">01</div>
+      <h2 class="section-title">项目背景与业务目标</h2>
+    </div>
+
+    <div class="quote-block reveal">
+      把原本依赖 API 对接的复杂音视频能力，转化为普通业务用户也能理解、能完成、愿复用的产品体验。
+    </div>
+
+    <p class="section-lead reveal">这意味着三层转化：</p>
+
+    <table class="data-table theme-blue reveal">
+      <thead>
+        <tr><th>转化层级</th><th>从</th><th>到</th><th>验证问题</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>能理解</td><td>看 API 文档</td><td>看界面就知道能做什么</td><td>用户是否能找到功能入口？</td></tr>
+        <tr><td>能完成</td><td>写代码调接口</td><td>上传 → 配置 → 等待 → 拿结果</td><td>用户是否能自主完成全流程？</td></tr>
+        <tr><td>愿复用</td><td>每次重新对接</td><td>记住体验 → 主动回来</td><td>用户完成后是否有正向感受？</td></tr>
+      </tbody>
+    </table>
+
+    <div class="reveal">
+      <h3 class="sub-heading"><span class="sh-dot" style="background:var(--c-blue)"></span>产品概述</h3>
+      <p style="color:var(--c-text-2);line-height:1.8;">
+        Tideo 是一款面向业务用户的 AI 视频译制工具，将字幕擦除、翻译、配音等复杂音视频处理能力，封装为角色化、游戏化的协作体验。用户上传视频后，由四位 AI 角色（导演·林雨晨、后期·陈默、翻译·李明远、配音·苏雅）协同完成处理，全程可见、可控、可精调。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 02 体系总览 ═══════════════════════ -->
+<section id="overview">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">02</div>
+      <h2 class="section-title">验证体系总览</h2>
+      <p class="section-lead">从三个互补方向验证产品体验是否达标，形成"定量 + 定性 + 实测"的完整证据链：</p>
+    </div>
+
+    <div class="pillar-grid reveal">
+      <div class="pillar p-data">
+        <span class="pillar-tag">方向一</span>
+        <h3>埋点数据</h3>
+        <p>基于用户行为数据的<strong>定量验证</strong></p>
+        <ul>
+          <li>核心指标：自助任务完成率</li>
+          <li>体验指标：步骤流失率、对比率</li>
+          <li>技术/商业：API 成功率、复访率</li>
+        </ul>
+      </div>
+      <div class="pillar p-model">
+        <span class="pillar-tag">方向二</span>
+        <h3>AI 体验四维模型</h3>
+        <p>基于产品设计理念的<strong>定性分析</strong></p>
+        <ul>
+          <li>可信任 — 敢交给 AI</li>
+          <li>可掌控 — 能干预结果</li>
+          <li>可找到 — 能发现功能</li>
+          <li>可共鸣 — 过程有温度</li>
+        </ul>
+      </div>
+      <div class="pillar p-test">
+        <span class="pillar-tag">方向三</span>
+        <h3>可用性测试</h3>
+        <p>基于真实用户的<strong>实测验证</strong></p>
+        <ul>
+          <li>招募典型用户执行任务</li>
+          <li>观察操作行为 + 记录主观感受</li>
+          <li>验证四维模型的实际落地</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="metric-note reveal">
+      三个方向互为补充：埋点告诉我们<strong>"发生了什么"</strong>，四维模型帮我们理解<strong>"为什么这样设计"</strong>，可用性测试验证<strong>"用户实际感受如何"</strong>。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 03 埋点指标 ═══════════════════════ -->
+<section id="metrics">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">03</div>
+      <h2 class="section-title">数据验证：埋点指标体系</h2>
+      <p class="section-lead">指标分三层：一个核心指标定成败，体验指标找问题，技术/商业指标看全局。</p>
+    </div>
+
+    <!-- 核心指标 -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-accent)"></span>核心指标（North Star）</h3>
+
+    <table class="data-table theme-green reveal">
+      <thead>
+        <tr><th>指标</th><th>定义</th><th>目标</th><th>采集方式</th><th>设计可控性</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight:700;color:var(--c-text)">自助任务完成率</td><td>用户从上传视频到获得最终成片，全程无需人工介入的任务占比</td><td style="font-weight:700">> 80%</td><td>任务状态埋点</td><td style="color:var(--c-green);font-weight:600">✦ 设计主导</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      这是唯一的<strong>北极星指标</strong>——直接回答"用户能不能自己完成任务"。其他所有指标都是为了解释这个数字为什么高或低。
+    </div>
+
+    <!-- 体验指标 -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-green)"></span>体验指标（定位问题）</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:16px;">当核心指标不达标时，通过以下指标定位具体是哪个环节出了问题：</p>
+
+    <table class="data-table theme-green reveal">
+      <thead>
+        <tr><th>指标</th><th>定义</th><th>目标</th><th>采集方式</th><th>设计可控性</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>步骤流失率</td><td>每步骤开始→完成的流失比例</td><td>每步 < 10%</td><td>步骤状态变更事件</td><td style="color:var(--c-green);font-weight:600">✦ 设计主导</td></tr>
+        <tr><td>对比模式使用率</td><td>完成后查看对比的用户占比</td><td>> 30%</td><td>对比按钮点击</td><td style="color:var(--c-green);font-weight:600">✦ 设计主导</td></tr>
+        <tr><td>精调打开率</td><td>进入精调面板的用户占比</td><td>观察型 ↕</td><td>面板打开事件</td><td style="color:var(--c-green);font-weight:600">✦ 设计主导</td></tr>
+        <tr><td>精调修改率</td><td>打开精调后实际做了修改的占比</td><td>观察型 ↕</td><td>编辑操作事件</td><td style="color:var(--c-green);font-weight:600">✦ 设计主导</td></tr>
+        <tr><td>等待期切走率</td><td>处理期间切换到其他页面的用户占比</td><td>< 30%</td><td>页面可见性事件</td><td style="color:var(--c-green);font-weight:600">✦ 设计主导</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>关于精调指标：</strong>精调率不设硬性目标值，标记为<strong>"观察型"</strong>。如果 AI 效果好，用户不需要精调，低精调率反而是好事；如果 AI 效果差导致精调率高，问题出在算法而非设计。所以精调率要<strong>结合满意度一起看</strong>——高精调率 + 高满意度 = 用户喜欢微调（好事）；高精调率 + 低满意度 = AI 效果不行（技术问题）。
+    </div>
+
+    <!-- 技术/商业指标 -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-amber)"></span>技术与商业指标（看全局）</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:16px;">设计不直接控制，但需要关注——帮助判断体验瓶颈是设计问题还是技术/业务问题：</p>
+
+    <table class="data-table theme-dark reveal">
+      <thead>
+        <tr><th>指标</th><th>定义</th><th>目标</th><th>采集方式</th><th>主要责任方</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>平均任务时长</td><td>上传到最终导出的总耗时</td><td>< 10 分钟</td><td>时间戳计算</td><td style="color:var(--c-amber);font-weight:600">◐ 开发</td></tr>
+        <tr><td>API 调用成功率</td><td>后端处理接口调用成功 / 总调用次数</td><td>> 99%</td><td>接口状态码埋点</td><td style="color:var(--c-amber);font-weight:600">◐ 开发</td></tr>
+        <tr><td>API 平均响应时长</td><td>每步骤 API 从发起到返回的耗时</td><td>擦除 < 60s<br>字幕 < 30s<br>配音 < 45s</td><td>接口计时埋点</td><td style="color:var(--c-amber);font-weight:600">◐ 开发</td></tr>
+        <tr><td>复访率（7日）</td><td>7 天内再次使用的用户占比</td><td>> 25%</td><td>用户回访日志</td><td style="color:var(--c-amber);font-weight:600">◐ 多因素</td></tr>
+        <tr><td>导出/分享率</td><td>完成后实际导出或分享视频的用户占比</td><td>> 60%</td><td>导出按钮点击</td><td style="color:var(--c-amber);font-weight:600">◐ 多因素</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>可控性说明：</strong><span style="color:var(--c-green)">✦ 设计主导</span> = 设计决策直接影响指标表现；<span style="color:var(--c-amber)">◐ 开发</span> = 主要由技术性能决定；<span style="color:var(--c-amber)">◐ 多因素</span> = 设计、技术、业务共同影响。
+    </div>
+
+    <div class="metric-note reveal">
+      <strong>目标值依据：</strong>上述目标值综合参考了同类 SaaS 工具的行业基准（Mixpanel 2025 Product Benchmarks：B2B 工具平均任务完成率 72-85%、7 日留存 20-30%）以及 Tideo 产品团队的内部预期。首轮测试后将根据实际数据校准各目标值——如果发现某项指标的行业基准与 Tideo 用户群体差异较大，会调整至更合理的范围。
+    </div>
+
+    <div class="reveal">
+      <h3 class="sub-heading"><span class="sh-dot" style="background:var(--c-green)"></span>漏斗模型</h3>
+      <p style="color:var(--c-text-2);line-height:1.8;margin-bottom:12px;">
+        用户行为漏斗：访问页面 → 上传视频 → 配置参数 → 等待处理 → 查看结果 → 精调/导出 → 复访
+      </p>
+      <p style="color:var(--c-text-3);line-height:1.8;font-size:14px;">
+        每一层的流失率都需要独立追踪，以定位体验瓶颈。特别关注"配置参数→等待处理"（是否理解配置项）和"等待处理→查看结果"（是否因等待过长放弃）两个关键节点。
+      </p>
+    </div>
+
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-green)"></span>数据看板设计</h3>
+    <p class="reveal" style="color:var(--c-text-2);line-height:1.8;margin-bottom:20px;">
+      埋点数据需要可视化看板才能持续监控和快速决策。建议搭建以下三个核心视图：
+    </p>
+
+    <table class="data-table theme-green reveal">
+      <thead><tr><th>看板视图</th><th>内容</th><th>更新频率</th><th>主要受众</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>漏斗转化图</td>
+          <td>访问 → 上传 → 配置 → 等待 → 结果 → 精调 → 导出 → 复访，每层显示转化率和流失人数</td>
+          <td>实时 / 日更</td>
+          <td>产品 + 运营</td>
+        </tr>
+        <tr>
+          <td>四维雷达图</td>
+          <td>可信任 / 可掌控 / 可找到 / 可共鸣 四维评分雷达图，结合行为指标和测试评分</td>
+          <td>每轮测试后</td>
+          <td>设计 + 产品</td>
+        </tr>
+        <tr>
+          <td>时间趋势图</td>
+          <td>核心指标（完成率、精调率、复访率）的周/月趋势线，标注版本发布节点</td>
+          <td>周更</td>
+          <td>全团队</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>工具建议：</strong>初期可使用 Mixpanel 或 Amplitude 的免费层搭建看板；如果已有内部数据平台，直接对接埋点事件即可。关键是<strong>上线即有看板</strong>，不要等数据积累后再搭建。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 04 四维模型 ═══════════════════════ -->
+<section id="model">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">04</div>
+      <h2 class="section-title">AI 体验四维验证模型</h2>
+      <p class="section-lead">面对 AI 产品，用户从"能用"到"想用"需要跨越四个体验维度。每个维度回答一个关键问题：</p>
+    </div>
+
+    <div class="card-grid cols-4 reveal">
+      <div class="card dim-trust">
+        <div class="card-icon">🛡️</div>
+        <h3>可信任</h3>
+        <div class="card-en">TRUST</div>
+        <p>敢不敢把任务交给 AI？</p>
+        <div class="card-arrow" style="color:var(--c-blue)">能用 →</div>
+      </div>
+      <div class="card dim-control">
+        <div class="card-icon">🎛️</div>
+        <h3>可掌控</h3>
+        <div class="card-en">CONTROL</div>
+        <p>能不能干预 AI 的结果？</p>
+        <div class="card-arrow" style="color:var(--c-green)">敢用 →</div>
+      </div>
+      <div class="card dim-find">
+        <div class="card-icon">🔍</div>
+        <h3>可找到</h3>
+        <div class="card-en">FINDABILITY</div>
+        <p>能不能找到想要的功能？</p>
+        <div class="card-arrow" style="color:var(--c-purple)">会用 →</div>
+      </div>
+      <div class="card dim-bond">
+        <div class="card-icon">💫</div>
+        <h3>可共鸣</h3>
+        <div class="card-en">EMOTIONAL BOND</div>
+        <p>过程是否有温度？</p>
+        <div class="card-arrow" style="color:var(--c-amber)">想用</div>
+      </div>
+    </div>
+
+    <div class="metric-note reveal">
+      前三个维度解决<strong>功能性体验</strong>（用户能否完成任务），第四个维度"可共鸣"解决<strong>复用动机</strong>（用户是否愿意回来）。四个维度形成完整的转化链路：能用 → 敢用 → 会用 → 想用。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 05 可信任 ═══════════════════════ -->
+<section id="trust">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">4.1</div>
+      <h2 class="section-title" style="color:var(--c-blue)">第一维：可信任 Trust</h2>
+      <p class="section-lead"><strong>核心问题：</strong>用户敢不敢把自己的视频交给 AI 处理？<br><strong>设计策略：</strong>通过透明化、人格化、专业化建立信任。</p>
+    </div>
+
+    <table class="data-table theme-blue reveal">
+      <thead>
+        <tr><th>设计策略</th><th>产品实现</th><th>信任机制</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>角色人格化</td><td>四位有真名、有专业的 AI 角色（林雨晨/陈默/李明远/苏雅）</td><td>从"系统在处理"变成"有人在帮我"</td></tr>
+        <tr><td>过程透明化</td><td>子任务实时拆解：场景检测→文字定位→内容擦除→画面修复</td><td>用户能看到 AI 在做什么，不是黑盒</td></tr>
+        <tr><td>进度可视化</td><td>角色进度卡片 + 状态点（pending/active/done）</td><td>等待不焦虑，每一步都有反馈</td></tr>
+        <tr><td>专业台词</td><td>角色说专业但不晦涩的话："信达雅三字，达意之外还要通顺"</td><td>让用户相信 AI 真的理解内容</td></tr>
+        <tr><td>导演调度</td><td>林雨晨统筹全局："陈默开路，明远跟上，苏雅收尾"</td><td>有组织感 = 有可靠感</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>验证指标：</strong>任务启动率（上传后是否继续）、等待期间页面停留率（是否信任到愿意等）、首次使用完成率。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 06 可掌控 ═══════════════════════ -->
+<section id="control">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">4.2</div>
+      <h2 class="section-title" style="color:var(--c-green)">第二维：可掌控 Control</h2>
+      <p class="section-lead"><strong>核心问题：</strong>如果 AI 的结果不满意，用户能不能修改？<br><strong>设计策略：</strong>提供多层次、低门槛的精调能力。</p>
+    </div>
+
+    <table class="data-table theme-green reveal">
+      <thead>
+        <tr><th>精调层级</th><th>操作方式</th><th>适用场景</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>擦除区域调整</td><td>视频上直接拖拽 8 个 resize handle 调整区域框</td><td>AI 没擦干净或擦多了</td></tr>
+        <tr><td>字幕逐条编辑</td><td>精调面板列表 → 点击编辑 → 修改译文/时间</td><td>翻译不准确、时间不对</td></tr>
+        <tr><td>配音逐条编辑</td><td>精调面板列表 → 编辑译文/起止时间</td><td>配音语气或时长需调整</td></tr>
+        <tr><td>对比验证</td><td>原片/成片上下对比播放</td><td>确认 AI 处理效果</td></tr>
+        <tr><td>重新生成</td><td>单步骤重新处理（不需要全部重做）</td><td>整体效果不满意</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>验证指标：</strong>精调面板打开率、精调中实际修改率、修改后满意度（是否导出）。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 07 可找到 ═══════════════════════ -->
+<section id="findability">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">4.3</div>
+      <h2 class="section-title" style="color:var(--c-purple)">第三维：可找到 Findability</h2>
+      <p class="section-lead"><strong>核心问题：</strong>用户能不能找到想要的功能？<br><strong>设计策略：</strong>多入口、渐进式披露、智能意图检测。</p>
+    </div>
+
+    <table class="data-table theme-purple reveal">
+      <thead>
+        <tr><th>入口类型</th><th>实现方式</th><th>解决的问题</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>路径标签</td><td>Landing 页顶部：新任务 / 导入</td><td>用户第一眼就知道有两种方式</td></tr>
+        <tr><td>模式标签</td><td>完整 / 字幕擦除 / 翻译 / 配音</td><td>不是所有用户都需要全部功能</td></tr>
+        <tr><td>配置面板</td><td>按模式动态展示相关配置项</td><td>减少认知负担，只看相关的</td></tr>
+        <tr><td>智能输入</td><td>底部输入框支持自然语言意图检测</td><td>"帮我把视频翻译成英文"→自动路由</td></tr>
+        <tr><td>导入面板</td><td>ID 查询 / 文件上传 / 历史列表</td><td>多种找回旧任务的方式</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>验证指标：</strong>功能入口点击分布、智能输入使用率、用户是否需要帮助/FAQ 才能完成首次任务。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 08 可共鸣 ═══════════════════════ -->
+<section id="bond">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">4.4</div>
+      <h2 class="section-title" style="color:var(--c-amber)">第四维：可共鸣 Emotional Bond</h2>
+      <p class="reveal" style="color:var(--c-text-3);font-size:.95rem;margin:4px 0 12px;">
+        <span class="tip-wrap"><strong style="color:var(--c-amber);cursor:help;">为什么叫"可共鸣"？</strong><span class="tip-box" style="width:380px;text-align:left;font-size:.85rem;line-height:1.7;">
+          <strong>命名由来</strong><br>
+          四个维度都遵循"可 + 动词"的主动句式（可信任、可掌控、可找到、可共鸣），主语始终是用户。"温暖"是被动接收，"共鸣"是双向发生——产品发出信号（角色台词、叙事弧线、完成仪式），用户接收并回应（投射情感、产生骄傲感、愿意复用）。<br><br>
+          英文对应 <em>Emotional Bond</em>（情感纽带），不是 Warmth。Bond 强调的是连接——用户与产品之间建立了一条情感链路。<br><br>
+          此外，"温暖"只能覆盖 L1 安心感，而"共鸣"是情感容器词，同时包裹安心（L1）、趣味（L2）、成就（L3）三层，不预设情绪类型，只描述"产品与用户之间产生了情感响应"这一事实。
+        </span></span>
+        ——不是产品单方面给你温暖，而是你和产品之间一起发生的情感连接。
+      </p>
+      <p class="section-lead"><strong>核心主张：</strong>Tideo 有别于同类工具的核心差异，在于我们不止交付功能结果，还交付<strong style="color:var(--c-amber)">情绪价值</strong>。</p>
+    </div>
+
+    <div class="quote-block reveal" style="border-left-color:var(--c-amber);">
+      前三个维度（可信任、可掌控、可找到）解决的是"用户能不能完成任务"——这是<strong>功能价值</strong>，是所有工具都在做的事。第四维"可共鸣"解决的是"用户完成任务的过程中，感受到了什么"——这是<strong>情绪价值</strong>，是我们的差异化壁垒。用户"愿复用"不只是因为功能好用，更是因为过程让人舒服。
+    </div>
+
+    <!-- ===== PART 1: 情绪价值是什么 ===== -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-amber)"></span>一、情绪价值是什么</h3>
+    <p class="reveal" style="color:var(--c-text-2);line-height:1.8;margin-bottom:8px;">
+      情绪价值不是单一的"好不好玩"，而是<span class="tip-wrap"><strong>三层递进的情感收益</strong><span class="tip-box"><strong>理论来源</strong><br>综合 Aarron Walter <em>情感设计金字塔</em>（功能→可靠→可用→愉悦）、Desmet &amp; Hekkert <em>产品情感框架</em>（审美/意义/情感三层愉悦）及 Csikszentmihalyi <em>心流理论</em>（低焦虑→沉浸→满足）。三者共同指向：<strong>情感体验分层递进，底层不满足则上层无法触发。</strong></span></span>，每一层是下一层的前提：
+    </p>
+
+    <div class="ev-stack reveal">
+      <div class="ev-layer ev-l1">
+        <div class="ev-badge">L1</div>
+        <div class="ev-body">
+          <div class="ev-name">安心感 Comfort</div>
+          <div class="ev-voice">"有人在帮我"</div>
+          <div class="ev-desc">不焦虑、不担心搞砸。从"系统在处理"变成"有人在负责"，不确定感被角色的存在感替代。</div>
+        </div>
+      </div>
+      <div class="ev-arrow">→</div>
+      <div class="ev-layer ev-l2">
+        <div class="ev-badge">L2</div>
+        <div class="ev-body">
+          <div class="ev-name">愉悦感 Delight</div>
+          <div class="ev-voice">"这个过程挺有意思"</div>
+          <div class="ev-desc">等待不无聊，过程有惊喜和故事感。用户主动关注角色动态，而不是切走刷手机。</div>
+        </div>
+      </div>
+      <div class="ev-arrow">→</div>
+      <div class="ev-layer ev-l3">
+        <div class="ev-badge">L3</div>
+        <div class="ev-body">
+          <div class="ev-name">成就感 Achievement</div>
+          <div class="ev-voice">"这是我的作品"</div>
+          <div class="ev-desc">完成时产生骄傲感和拥有感，觉得结果值得分享。情绪从"任务完成"升级为"作品交付"。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metric-note reveal">
+      <strong>递进关系：</strong>没有安心就没有愉悦，没有愉悦就没有成就。如果用户在 L1 都感到焦虑（"AI 会不会搞砸我的视频？"），再精美的聚光灯效果也无法触发 L3 的成就感。
+    </div>
+
+    <!-- ===== PART 2: 我们怎么交付情绪价值 ===== -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-amber)"></span>二、我们怎么交付情绪价值</h3>
+    <p class="reveal" style="color:var(--c-text-2);line-height:1.8;margin-bottom:24px;">
+      通过四层设计策略，在用户旅程的不同阶段交付三层情绪价值：
+    </p>
+
+    <!-- Mapping table: 4 design layers → 3 emotion layers -->
+    <table class="data-table theme-amber reveal">
+      <thead><tr><th>设计策略</th><th>交付的情绪价值</th><th>用户旅程阶段</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600">角色人格化</td><td style="color:var(--c-accent)">L1 安心感</td><td>全程</td></tr>
+        <tr><td style="font-weight:600">等待游戏化</td><td style="color:#ea580c">L2 愉悦感</td><td>等待处理阶段</td></tr>
+        <tr><td style="font-weight:600">协作叙事感</td><td style="color:#ea580c">L2 愉悦感 <span style="color:var(--c-accent)">+ L1 安心感</span></td><td>处理推进阶段</td></tr>
+        <tr><td style="font-weight:600">完成仪式化</td><td style="color:var(--c-amber)">L3 成就感</td><td>结果交付阶段</td></tr>
+      </tbody>
+    </table>
+
+    <p class="reveal" style="color:var(--c-text-2);line-height:1.8;margin-top:32px;margin-bottom:16px;">以下是每层策略的具体实现：</p>
+
+    <!-- Layer 1 → L1 安心感 -->
+    <div class="layer-block reveal">
+      <div class="layer-tag">策略一 → L1 安心感</div>
+      <h3>角色人格化 — 让 AI 不像机器</h3>
+      <table class="data-table theme-amber">
+        <thead><tr><th>设计点</th><th>实现方式</th><th>情绪作用</th></tr></thead>
+        <tbody>
+          <tr><td>四角色有真名</td><td>林雨晨 / 陈默 / 李明远 / 苏雅</td><td>从"系统在处理"变成"有人在帮我"</td></tr>
+          <tr><td>性格差异化</td><td>陈默寡言："……坐标锁定。开始抠。"<br>苏雅活泼："来啦来啦～"</td><td>角色不是皮肤，是有辨识度的"人"</td></tr>
+          <tr><td>专业台词</td><td>"信达雅三字，达意之外还要通顺"</td><td>让用户相信背后的 AI 在"理解"内容</td></tr>
+          <tr><td>随机问候</td><td>每角色 3 句问候语随机选择</td><td>每次体验有微妙差异，不机械</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Layer 2 → L2 愉悦感 -->
+    <div class="layer-block reveal">
+      <div class="layer-tag">策略二 → L2 愉悦感</div>
+      <h3>等待体验游戏化 — 把焦虑变成观赏</h3>
+      <table class="data-table theme-amber">
+        <thead><tr><th>设计点</th><th>实现方式</th><th>情绪作用</th></tr></thead>
+        <tbody>
+          <tr><td>视频 Loading 覆盖层</td><td>擦除/字幕 → translate-loading.mp4<br>配音 → voice-loading.mp4</td><td>等待不是空白进度条，是"角色在工作"</td></tr>
+          <tr><td>台词轮播</td><td>每角色 7 条工作台词，定时切换</td><td>等待时有"故事感"，像在看幕后花絮</td></tr>
+          <tr><td>像素工作室</td><td>480×360 canvas 星露谷风格场景</td><td>审美情趣的共鸣——像游戏，不像工具</td></tr>
+          <tr><td>角色行走动画</td><td>角色在工作室中走动、召唤、对话</td><td>动态感，角色"活着"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Layer 3 → L1+L2 -->
+    <div class="layer-block reveal">
+      <div class="layer-tag">策略三 → L1 安心 + L2 愉悦</div>
+      <h3>协作叙事感 — 让流程变成故事</h3>
+      <table class="data-table theme-amber">
+        <thead><tr><th>设计点</th><th>实现方式</th><th>情绪作用</th></tr></thead>
+        <tbody>
+          <tr><td>导演调度台词</td><td>"陈默开路，明远跟上，苏雅收尾"</td><td>用户不是在操作系统，是在看团队协作</td></tr>
+          <tr><td>步骤接力</td><td>擦除→字幕→配音，每步有角色交接</td><td>叙事弧线——开场→推进→高潮→收尾</td></tr>
+          <tr><td>杀青仪式</td><td>"各位——杀青了" + 关灯聚光效果</td><td>完成感的仪式化放大</td></tr>
+          <tr><td>聊天时间线</td><td>加入→问候→进度→结果</td><td>回溯时像完整的"协作记录"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Layer 4 → L3 成就感 -->
+    <div class="layer-block reveal">
+      <div class="layer-tag">策略四 → L3 成就感</div>
+      <h3>完成仪式化 — 把结果变成成就</h3>
+      <table class="data-table theme-amber">
+        <thead><tr><th>设计点</th><th>实现方式</th><th>情绪作用</th></tr></thead>
+        <tbody>
+          <tr><td>关灯聚光灯</td><td>暗幕遮罩 + 视频发光 + 渐入动画</td><td>电影首映式——"这是你的作品"</td></tr>
+          <tr><td>对比模式</td><td>原片/成片上下对比同步播放</td><td>成就感——"AI 真的帮我完成了这么多"</td></tr>
+          <tr><td>步骤完成闪光</td><td>CSS 闪光 + 刷新动画</td><td>正反馈微交互——每步都有"成了！"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== PART 3: 怎么量化情绪价值 ===== -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-amber)"></span>三、怎么量化情绪价值</h3>
+
+    <div class="ev-formula reveal">
+      <div class="ev-f-main">
+        <span style="color:var(--c-accent)">情绪价值</span> = 
+        <span style="color:var(--c-accent)">安心感<sub style="font-size:11px">L1</sub></span> + 
+        <span style="color:#ea580c">愉悦感<sub style="font-size:11px">L2</sub></span> + 
+        <span style="color:var(--c-amber)">成就感<sub style="font-size:11px">L3</sub></span>
+      </div>
+      <div class="ev-f-sub">
+        三层各 1-5 分，满分 <strong>15 分</strong>｜及格线 <strong>≥ 9 分</strong>（每层平均 ≥ 3）<br>
+        另设<strong>情绪价值净值</strong> = 正面情绪词占比 − 负面情绪词占比（从"三词描述"提取）<br>
+        以及<strong>等待体感比</strong> = 用户估计等待时长 ÷ 实际等待时长（< 1 说明"感觉比实际快"）
+      </div>
+    </div>
+
+    <p class="reveal" style="color:var(--c-text-2);line-height:1.8;margin-bottom:20px;">
+      每层情绪价值通过<strong>行为代理（埋点）+ 主观量表（问卷）+ 深度访谈（定性）</strong>三种方式交叉度量：
+    </p>
+
+    <table class="data-table theme-amber reveal">
+      <thead><tr><th>情绪层</th><th>测量方式</th><th>具体指标</th><th>目标值</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="3" style="color:var(--c-accent);font-weight:700">L1 安心感</td>
+          <td>埋点</td>
+          <td>等待期页面留存率 — 处理期间用户未切走的比例</td>
+          <td>> 70%</td>
+        </tr>
+        <tr>
+          <td>量表</td>
+          <td><a class="modal-trigger" onclick="openModal('modal-sam')">SAM 唤醒度</a>（Arousal）— 在"等待处理"节点评分 1-9（越低越平静）</td>
+          <td>≤ 4 分</td>
+        </tr>
+        <tr>
+          <td>访谈</td>
+          <td>"等 AI 处理时你在想什么？" — 编码为正面/中性/负面</td>
+          <td>负面 < 20%</td>
+        </tr>
+        <tr>
+          <td rowspan="4" style="color:#ea580c;font-weight:700">L2 愉悦感</td>
+          <td>埋点</td>
+          <td>聊天面板浏览率 — 处理期间滚动/查看聊天面板的用户占比</td>
+          <td>> 50%</td>
+        </tr>
+        <tr>
+          <td>埋点</td>
+          <td>角色台词停留时长 — 聊天气泡出现后用户在页面的平均停留时间</td>
+          <td>> 3 秒/条</td>
+        </tr>
+        <tr>
+          <td>量表</td>
+          <td>等待体感比 — 用户估计的等待时长 ÷ 实际等待时长</td>
+          <td>< 1.0</td>
+        </tr>
+        <tr>
+          <td>访谈</td>
+          <td>角色投射测试 — "给某个角色写一句评价" — 是否出现拟人化表达</td>
+          <td>≥ 60% 拟人化</td>
+        </tr>
+        <tr>
+          <td rowspan="4" style="color:var(--c-amber);font-weight:700">L3 成就感</td>
+          <td>埋点</td>
+          <td>仪式感交互率 — 对比模式使用 + 聚光灯阶段停留 > 5 秒的用户占比</td>
+          <td>> 40%</td>
+        </tr>
+        <tr>
+          <td>量表</td>
+          <td><a class="modal-trigger" onclick="openModal('modal-sam')">SAM 愉悦度</a>（Valence）— 在"看到结果"节点评分 1-9</td>
+          <td>≥ 7 分</td>
+        </tr>
+        <tr>
+          <td>量表</td>
+          <td>情感词汇测试 — "用三个词描述体验" — 正面词占比</td>
+          <td>> 70% 正面</td>
+        </tr>
+        <tr>
+          <td>访谈</td>
+          <td>复用意愿探查 — "下次会回来用吗？" — 提及体验感受的比例</td>
+          <td>≥ 40% 提及感受</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>分析方法：</strong>① 分层对比 — 如果 L1 安心感达标但 L2 愉悦感低，说明用户信任 AI 但等待体验无聊，需强化游戏化设计；② 交叉验证 — 如果"聊天面板浏览率高"（行为）且"SAM 愉悦度高"（量表），确认角色台词确实在产生情感价值；③ 纵向追踪 — 每轮迭代后重测三层评分，绘制情绪价值趋势图。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 09 可用性测试 ═══════════════════════ -->
+<section id="usability">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">05</div>
+      <h2 class="section-title" style="color:var(--c-teal)">可用性测试方案</h2>
+      <p class="section-lead">通过真实用户的操作观察与感受访谈，验证四维体验模型的实际落地效果。</p>
+    </div>
+
+    <!-- Goal cards -->
+    <div class="goal-pair reveal">
+      <div class="goal-card g-behavior">
+        <div class="goal-label">Q1 行为层面</div>
+        <div class="goal-q">用户能否自主、顺利地<br>完成完整的视频译制流程？</div>
+        <div class="goal-dim">对应维度：可信任 + 可掌控 + 可找到</div>
+      </div>
+      <div class="goal-card g-feeling">
+        <div class="goal-label">Q2 感受层面</div>
+        <div class="goal-q">用户在过程中的情绪感受<br>是正向的还是负向的？</div>
+        <div class="goal-dim">对应维度：可共鸣</div>
+      </div>
+    </div>
+
+    <!-- Environment & Materials -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>测试环境与物料准备</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:20px;">确保所有测试在一致的条件下进行，减少环境干扰：</p>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>准备项</th><th>要求</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>测试版本</td><td>线上部署版（GitHub Pages），与用户实际使用环境一致</td><td>避免使用本地 localhost，防止网络差异影响结果</td></tr>
+        <tr><td>设备要求</td><td>桌面端浏览器（Chrome 最新版），屏幕分辨率 ≥ 1280×800</td><td>Tideo 目前仅适配桌面端，测试需统一浏览器</td></tr>
+        <tr><td>网络环境</td><td>稳定 Wi-Fi（≥ 10Mbps 下行），避免公共网络不稳定</td><td>视频上传/加载对网速敏感</td></tr>
+        <tr><td>标准测试视频</td><td>准备 2-3 个标准测试视频（30s-2min，含外文字幕），测试员预先验证可正常处理</td><td>避免用户自带视频出现格式兼容问题</td></tr>
+        <tr><td>录屏工具</td><td>OBS 或系统自带录屏，需录制屏幕 + 麦克风（用户出声思维）</td><td>确保事先测试录屏工具正常工作</td></tr>
+        <tr><td>观察笔记模板</td><td>预设行为编码表：卡点位置、情绪标注、求助次数、关键引语</td><td>测试员提前熟悉编码规则</td></tr>
+        <tr><td>账号准备</td><td>为每位参与者准备独立测试账号（避免历史数据干扰）</td><td>测试前清空任务记录</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Participants -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>参与者招募</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:20px;">由<strong>产品经理从真实客户中招募</strong>，确保参与者是有实际需求的目标用户（非内部同事），覆盖以下画像：</p>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>用户类型</th><th>画像特征</th><th>人数</th><th>验证重点</th></tr></thead>
+      <tbody>
+        <tr><td>业务运营人员</td><td>非技术背景，日常使用办公软件，有视频翻译需求</td><td>2-3 人</td><td>可找到 + 可信任</td></tr>
+        <tr><td>内容创作者</td><td>有视频剪辑经验，对画质/配音有要求</td><td>1-2 人</td><td>可掌控 + 精调体验</td></tr>
+        <tr><td>产品/项目经理</td><td>需要评估工具能力，关注效率和效果</td><td>1-2 人</td><td>全流程完成度</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>建议总人数：</strong>5-6 人。可用性测试领域的共识是 5 个用户能发现约 85% 的可用性问题（<a href="https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/" target="_blank" rel="noopener" style="color:var(--c-teal);text-decoration:underline;text-decoration-color:rgba(13,148,136,0.4);text-underline-offset:2px">Nielsen, 2000</a>）。
+    </div>
+
+    <!-- Test tasks -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>测试任务设计</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:20px;">每位参与者依次执行以下任务，测试员仅在用户明确求助时才介入（"think aloud"协议）：</p>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>任务</th><th>描述</th><th>维度</th><th>观察要点</th></tr></thead>
+      <tbody>
+        <tr><td>T1 找到功能</td><td>"请在这个网站上找到视频翻译功能，并开始一个新任务"</td><td>可找到</td><td>入口是否清晰？需要几次点击？</td></tr>
+        <tr><td>T2 上传配置</td><td>"上传提供的测试视频，选择完整翻译模式，开始处理"</td><td>可找到<br>可信任</td><td>上传流程是否顺畅？配置项是否理解？</td></tr>
+        <tr><td>T3 等待观察</td><td>"请等待 AI 处理完成，期间你可以自由浏览页面"</td><td>可信任<br>可共鸣</td><td>是否切走？是否看角色对话？等待时的情绪？</td></tr>
+        <tr><td>T4 查看结果</td><td>"处理完成后，查看 AI 的处理结果"</td><td>可信任</td><td>是否理解结果展示？对聚光灯效果的反应？</td></tr>
+        <tr><td>T5 精调操作</td><td>"请修改第 3 条字幕的翻译，并调整一个擦除区域的位置"</td><td>可掌控</td><td>能否找到精调入口？操作是否直觉？</td></tr>
+        <tr><td>T6 对比导出</td><td>"对比原片和成片效果，然后导出最终视频"</td><td>可掌控</td><td>对比功能是否被发现？导出流程是否完整？</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Test flow -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>测试流程</h3>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>阶段</th><th>时长</th><th>内容</th><th>记录方式</th></tr></thead>
+      <tbody>
+        <tr><td>开场介绍</td><td>5 分钟</td><td>说明测试目的（测产品不测人）、签署知情同意、开启录屏</td><td>录屏软件</td></tr>
+        <tr><td>自由探索</td><td>3 分钟</td><td>用户自由浏览页面，说出第一印象</td><td>观察笔记 + 录屏</td></tr>
+        <tr><td>任务执行</td><td>20-30 分钟</td><td>依次执行 T1-T6，全程 think aloud（边操作边说出想法）</td><td>操作录屏 + 观察笔记 + 计时</td></tr>
+        <tr><td>半结构化访谈</td><td>10-15 分钟</td><td>针对体验感受进行深度访谈（见下方访谈提纲）</td><td>录音 + 笔记</td></tr>
+        <tr><td>问卷填写</td><td>5 分钟</td><td><a class="modal-trigger teal" onclick="openModal('modal-sus')">SUS 量表</a> + <a class="modal-trigger" onclick="openModal('modal-ev')">情感体验评分</a> + <a class="modal-trigger teal" onclick="openModal('modal-nps')">NPS</a></td><td>问卷工具</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Interview guide -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>半结构化访谈提纲</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:20px;">访谈围绕四维模型设计，每个维度对应 2-3 个核心问题：</p>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>维度</th><th>访谈问题</th><th>探测目标</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--c-blue)">可信任</td><td>"你第一次看到 AI 开始处理时，心里是什么感觉？"<br>"你觉得这些 AI 角色可靠吗？为什么？"</td><td>用户对 AI 的初始信任度<br>角色系统是否建立了信任</td></tr>
+        <tr><td style="color:var(--c-green)">可掌控</td><td>"如果结果不满意，你知道怎么修改吗？"<br>"精调操作的时候，你觉得容易还是困难？"<br>"你觉得自己对结果有多大的控制权？"</td><td>精调功能的可发现性<br>操作难度感知<br>掌控感是否到位</td></tr>
+        <tr><td style="color:var(--c-purple)">可找到</td><td>"有没有哪个功能你想用但找不到？"<br>"第一次进入页面时，你知道该从哪里开始吗？"</td><td>信息架构的清晰度<br>首次使用引导效果</td></tr>
+        <tr><td style="color:var(--c-amber)">可共鸣</td><td>"等待处理的时候你在干什么？感受如何？"<br>"你对页面上的角色们有什么印象？"<br>"完成后看到聚光灯效果时，你的反应是什么？"<br>"如果用三个词形容这次体验，你会说什么？"</td><td>等待体验质量<br>角色感知度<br>仪式感效果<br>整体情绪基调</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Data collection -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>测试数据采集</h3>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>数据类型</th><th>采集方式</th><th>分析方法</th></tr></thead>
+      <tbody>
+        <tr><td>任务完成率</td><td>每个任务：成功/失败/需要帮助</td><td>按任务统计完成率，定位瓶颈步骤</td></tr>
+        <tr><td>任务耗时</td><td>每个任务的起止时间</td><td>与预期时间对比，识别卡点</td></tr>
+        <tr><td>操作路径</td><td>录屏回看 + 操作日志</td><td>绘制用户实际路径 vs 预期路径</td></tr>
+        <tr><td>错误次数</td><td>误操作、回退、求助的次数</td><td>高频错误 → 对应界面改进点</td></tr>
+        <tr><td><a class="modal-trigger teal" onclick="openModal('modal-sus')">SUS 评分</a></td><td>10 题标准化量表</td><td>评分 > 68 为可接受，> 80 为优秀</td></tr>
+        <tr><td>情感评分</td><td>四维各打 1-5 分</td><td>每维度平均分 + 最低分维度</td></tr>
+        <tr><td><a class="modal-trigger teal" onclick="openModal('modal-nps')">NPS 净推荐值</a></td><td>"你会推荐这个产品吗？0-10"</td><td>NPS = 推荐者% - 贬损者%</td></tr>
+        <tr><td>开放题关键词</td><td>三词描述 + 访谈关键句</td><td>情感词云 + 高频主题聚类</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Analysis outputs -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>分析与输出</h3>
+    <p class="reveal" style="color:var(--c-text-2);margin-bottom:20px;">测试结束后，产出以下交付物：</p>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>交付物</th><th>内容</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td>可用性问题清单</td><td>按严重程度（P0-P3）分级的问题列表，每个问题附场景截图 + 改进建议</td><td>指导迭代优先级</td></tr>
+        <tr><td>四维评分雷达图</td><td>每个维度的平均分可视化，直观展示体验强项和短板</td><td>向上汇报 + 团队对齐</td></tr>
+        <tr><td>用户旅程热力图</td><td>标注情绪高点/低点的全流程地图</td><td>识别关键体验时刻</td></tr>
+        <tr><td>关键发现报告</td><td>5-8 条核心 insight，每条附数据支撑 + 用户原话</td><td>产品决策依据</td></tr>
+        <tr><td>迭代建议排序</td><td>基于"影响面 × 实现成本"的优先级矩阵</td><td>开发排期参考</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 10 指标汇总 ═══════════════════════ -->
+<section id="summary">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">06</div>
+      <h2 class="section-title">验证指标汇总与执行计划</h2>
+      <p class="section-lead">埋点指标 × 四维度映射</p>
+    </div>
+
+    <table class="data-table theme-dark reveal">
+      <thead><tr><th>维度</th><th>行为指标（埋点）</th><th>主观指标（测试/问卷）</th><th>目标</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--c-blue)">可信任</td>
+          <td>任务启动率<br>等待期页面停留率<br>首次完成率</td>
+          <td><a class="modal-trigger blue" onclick="openModal('modal-sus')">SUS</a> 评分中信任题项<br>"你觉得 AI 可靠吗？"</td>
+          <td>启动率 > 90%<br>停留率 > 70%</td>
+        </tr>
+        <tr>
+          <td style="color:var(--c-green)">可掌控</td>
+          <td>精调面板打开率<br>精调修改率<br>修改后导出率</td>
+          <td>"你觉得能控制结果吗？"<br>操作难度评分</td>
+          <td>打开率 > 40%<br>修改率 > 60%</td>
+        </tr>
+        <tr>
+          <td style="color:var(--c-purple)">可找到</td>
+          <td>功能入口分布<br>智能输入使用率<br>帮助/FAQ 触发率</td>
+          <td>"有没有想用但找不到的？"<br>任务 T1 完成时间</td>
+          <td>T1 < 30秒<br>帮助率 < 15%</td>
+        </tr>
+        <tr>
+          <td style="color:var(--c-amber)">可共鸣</td>
+          <td>聊天面板浏览率<br>等待切走率<br>对比模式使用率<br>复访率</td>
+          <td>情绪价值总分（L1+L2+L3）<br>等待体感比<br>"三词描述"正面词占比<br>角色拟人化表达率</td>
+          <td>情绪价值 ≥ 9/15<br>切走率 < 30%<br>复访率 > 25%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Timeline -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>执行时间线</h3>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="tl-week">第 1 周</div>
+        <div class="tl-title">埋点方案设计</div>
+        <div class="tl-desc">埋点需求文档 + 事件列表</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">第 2-3 周</div>
+        <div class="tl-title">埋点开发上线 + 测试方案定稿</div>
+        <div class="tl-desc">埋点代码 + 数据看板 + 测试脚本 + 问卷 + 招募启动</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">第 2-3 周</div>
+        <div class="tl-title">用户招募</div>
+        <div class="tl-desc">5-6 名参与者确认</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">第 4 周</div>
+        <div class="tl-title">可用性测试执行</div>
+        <div class="tl-desc">测试录屏 + 原始数据</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">第 5 周</div>
+        <div class="tl-title">数据分析 + 报告</div>
+        <div class="tl-desc">完整验证报告 + 迭代建议</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">第 6 周</div>
+        <div class="tl-title">迭代优化启动</div>
+        <div class="tl-desc">基于报告的优化方案</div>
+      </div>
+    </div>
+
+    <!-- Continuous Loop -->
+    <h3 class="sub-heading reveal"><span class="sh-dot" style="background:var(--c-teal)"></span>持续验证闭环</h3>
+    <p class="reveal" style="color:var(--c-text-2);line-height:1.8;margin-bottom:20px;">
+      验证不是一次性的——每次产品迭代后都需要重新度量，形成「设计 → 埋点 → 测试 → 洞察 → 迭代」的持续闭环：
+    </p>
+
+    <table class="data-table theme-teal reveal">
+      <thead><tr><th>闭环阶段</th><th>动作</th><th>输出</th></tr></thead>
+      <tbody>
+        <tr><td>① 设计迭代</td><td>基于上轮测试的洞察，针对性优化体验短板</td><td>设计方案 + 开发需求</td></tr>
+        <tr><td>② 埋点更新</td><td>新功能补充埋点事件，旧指标保持可对比</td><td>更新后的事件列表</td></tr>
+        <tr><td>③ 数据观察</td><td>上线 1-2 周后观察看板指标变化趋势</td><td>指标趋势报告（标注版本节点）</td></tr>
+        <tr><td>④ 轻量复测</td><td>邀请 2-3 名用户做 30 分钟快速测试，聚焦改动部分</td><td>问题清单 + 主观评分对比</td></tr>
+        <tr><td>⑤ 洞察沉淀</td><td>对比历次测试数据，识别长期趋势和反复出现的问题</td><td>趋势分析 + 下轮优化方向</td></tr>
+      </tbody>
+    </table>
+
+    <div class="metric-note reveal">
+      <strong>节奏建议：</strong>大版本迭代做完整测试（5-6人，完整流程），小版本更新做轻量复测（2-3人，聚焦改动）。保持每月至少一次数据回顾，确保指标持续向好。
+    </div>
+  </div>
+</section>
+<section class="closing" id="conclusion">
+  <div class="closing-glow"></div>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num" style="justify-content:center">07 — 总结</div>
+    </div>
+
+    <div class="formula-box reveal">
+      <div class="formula-text">
+        <span class="dim" style="color:var(--c-blue)">可信任</span>
+        <span class="times">×</span>
+        <span class="dim" style="color:var(--c-green)">可掌控</span>
+        <span class="times">×</span>
+        <span class="dim" style="color:var(--c-purple)">可找到</span>
+        <span class="times">×</span>
+        <span class="dim" style="color:var(--c-amber)">可共鸣</span>
+      </div>
+      <div class="formula-sub">
+        = 用户从
+        <span style="color:var(--c-blue)">能用</span> →
+        <span style="color:var(--c-green)">敢用</span> →
+        <span style="color:var(--c-purple)">会用</span> →
+        <span style="color:var(--c-amber)">想用</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p>前三个维度解决的是<strong style="color:var(--c-text)">功能性问题</strong>——用户能否完成任务；"可共鸣"解决的是<strong style="color:var(--c-text)">复用动机问题</strong>——用户不是因为没有替代方案才回来，而是因为这个过程本身让人觉得舒服。</p>
+      <p>这正好呼应了业务目标中最关键的三个字：<strong style="color:var(--c-accent)">"愿复用"</strong>。</p>
+      <p style="margin-top:32px;">
+        <strong style="color:var(--c-text)">埋点数据</strong>告诉我们"发生了什么"<br>
+        <strong style="color:var(--c-text)">四维模型</strong>帮我们理解"为什么这样设计"<br>
+        <strong style="color:var(--c-text)">可用性测试</strong>验证"用户实际感受如何"
+      </p>
+      <p>三条线交叉验证，形成<strong style="color:var(--c-text)">定量 + 定性 + 实测</strong>的完整证据链。</p>
+    </div>
+
+    <div class="metric-note reveal" style="margin-top:40px;">
+      <strong>适用边界：</strong>本框架是为 Tideo 这类「AI 生成型 + 角色化交互 + 等待时间较长」的产品设计的。其中「可共鸣」维度的设计策略（角色人格化、等待游戏化、仪式感）依赖产品本身有角色系统和处理等待期——对于即时返回结果的 AI 工具（如 ChatGPT 式对话产品），该维度的权重和测量方式需要调整。其余三个维度（可信任、可掌控、可找到）具有较好的通用性，可迁移至大多数 AI 产品的体验验证中。
+    </div>
+
+    <div class="version reveal">Tideo AI 产品体验验证框架 v1.0 · 2026 年 4 月</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 附录 ═══════════════════════ -->
+<section id="appendix">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-num">附录</div>
+      <h2 class="section-title">量表与问卷工具箱</h2>
+      <p class="section-lead">以下是本框架中使用的全部量表和问卷，已针对 Tideo 产品语境定制。点击卡片可查看完整内容。</p>
+    </div>
+
+    <div class="appendix-grid reveal">
+      <div class="appendix-card" onclick="openModal('modal-sam')">
+        <div class="ac-icon">🎭</div>
+        <h4>SAM 情感量表</h4>
+        <p>愉悦度 + 唤醒度双维度评分，在等待和结果两个节点采集</p>
+        <div class="ac-count">2 个评分节点 · 各 9 分制</div>
+      </div>
+      <div class="appendix-card" onclick="openModal('modal-sus')">
+        <div class="ac-icon">📋</div>
+        <h4>SUS 可用性量表</h4>
+        <p>10 题标准化可用性评估，语境已适配 Tideo</p>
+        <div class="ac-count">10 题 · 5 分制 · 总分 0-100</div>
+      </div>
+      <div class="appendix-card" onclick="openModal('modal-nps')">
+        <div class="ac-icon">📊</div>
+        <h4>NPS 净推荐值</h4>
+        <p>推荐意愿评分 + 开放题追问</p>
+        <div class="ac-count">1 题评分 + 1 题开放 · 0-10 分</div>
+      </div>
+      <div class="appendix-card" onclick="openModal('modal-ev')">
+        <div class="ac-icon">💛</div>
+        <h4>情绪价值专项问卷</h4>
+        <p>安心感 / 愉悦感 / 成就感三层评分 + 体感比</p>
+        <div class="ac-count">9 题 · 5 分制 · 满分 15</div>
+      </div>
+      <div class="appendix-card" onclick="openModal('modal-interview')">
+        <div class="ac-icon">🎙️</div>
+        <h4>深度访谈提纲</h4>
+        <p>四维度 × 12 个核心问题 + 追问引导</p>
+        <div class="ac-count">12 题 · 4 维度 · 约 15 分钟</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ MODALS ═══════════════════════ -->
+
+<!-- Modal: SAM 情感量表 -->
+<div class="modal-overlay" id="modal-sam" onclick="closeModalOnBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-sam')">✕</button>
+    <div class="modal-tag" style="background:var(--c-amber-bg);color:var(--c-amber)">量表工具</div>
+    <h3>SAM 情感自评量表（Tideo 版）</h3>
+    <p class="modal-subtitle">Self-Assessment Manikin — 在两个关键节点分别评分，采集用户的即时情绪状态。每次评分请用户凭直觉选择，不要过多思考。</p>
+
+    <div class="modal-section">
+      <h4>📍 节点一：等待 AI 处理时</h4>
+      <div class="q-item">
+        <div class="q-num">Q1 — 唤醒度 Arousal</div>
+        <div class="q-text">"在 AI 角色处理你的视频时，你的内心状态是……"</div>
+        <div class="scale-row">
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">非常平静</span>
+          <div class="s-dot">1</div><div class="s-dot">2</div><div class="s-dot">3</div><div class="s-dot">4</div><div class="s-dot">5</div><div class="s-dot">6</div><div class="s-dot">7</div><div class="s-dot">8</div><div class="s-dot">9</div>
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">非常紧张</span>
+        </div>
+        <div class="q-note">目标值：≤ 4 分（说明用户在等待时不焦虑）</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">Q2 — 愉悦度 Valence</div>
+        <div class="q-text">"等待过程中，你的心情是……"</div>
+        <div class="scale-row">
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">非常不愉快</span>
+          <div class="s-dot">1</div><div class="s-dot">2</div><div class="s-dot">3</div><div class="s-dot">4</div><div class="s-dot">5</div><div class="s-dot">6</div><div class="s-dot">7</div><div class="s-dot">8</div><div class="s-dot">9</div>
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">非常愉快</span>
+        </div>
+        <div class="q-note">目标值：≥ 6 分（说明等待体验是正向的）</div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h4>📍 节点二：看到最终结果时</h4>
+      <div class="q-item">
+        <div class="q-num">Q3 — 愉悦度 Valence</div>
+        <div class="q-text">"看到 AI 处理完成的成片时，你的心情是……"</div>
+        <div class="scale-row">
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">非常不愉快</span>
+          <div class="s-dot">1</div><div class="s-dot">2</div><div class="s-dot">3</div><div class="s-dot">4</div><div class="s-dot">5</div><div class="s-dot">6</div><div class="s-dot">7</div><div class="s-dot">8</div><div class="s-dot">9</div>
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">非常愉快</span>
+        </div>
+        <div class="q-note">目标值：≥ 7 分（说明结果交付带来了正面情绪）</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">Q4 — 掌控度 Dominance</div>
+        <div class="q-text">"对于这个处理结果，你觉得自己的控制感是……"</div>
+        <div class="scale-row">
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">完全被动</span>
+          <div class="s-dot">1</div><div class="s-dot">2</div><div class="s-dot">3</div><div class="s-dot">4</div><div class="s-dot">5</div><div class="s-dot">6</div><div class="s-dot">7</div><div class="s-dot">8</div><div class="s-dot">9</div>
+          <span style="font-size:11px;color:var(--c-text-3);white-space:nowrap">完全掌控</span>
+        </div>
+        <div class="q-note">目标值：≥ 6 分（关联"可掌控"维度）</div>
+      </div>
+    </div>
+
+    <div class="metric-note">
+      <strong>使用说明：</strong>请在用户操作到对应节点时立即递出纸质评分卡（或弹出数字评分），不要等到全部任务完成后再回忆评分。即时采集才能捕捉真实情绪。
+    </div>
+  </div>
+</div>
+
+<!-- Modal: SUS 可用性量表 -->
+<div class="modal-overlay" id="modal-sus" onclick="closeModalOnBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-sus')">✕</button>
+    <div class="modal-tag" style="background:var(--c-teal-bg);color:var(--c-teal)">量表工具</div>
+    <h3>SUS 系统可用性量表（Tideo 版）</h3>
+    <p class="modal-subtitle">System Usability Scale — 10 题标准化量表，奇数题正向、偶数题反向。完成所有任务后请用户填写。评分标准：1=非常不同意，5=非常同意。</p>
+
+    <div class="modal-section">
+      <div class="q-item"><div class="q-num">Q1 — 正向</div><div class="q-text">我觉得我会愿意经常使用 Tideo。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q2 — 反向</div><div class="q-text">我觉得 Tideo 不必要地复杂了。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q3 — 正向</div><div class="q-text">我觉得 Tideo 很容易使用。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q4 — 反向</div><div class="q-text">我觉得我需要技术人员帮忙才能使用 Tideo。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q5 — 正向</div><div class="q-text">我觉得 Tideo 的各项功能整合得很好。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q6 — 反向</div><div class="q-text">我觉得 Tideo 内部有太多不一致的地方。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q7 — 正向</div><div class="q-text">我觉得大多数人都能很快学会使用 Tideo。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q8 — 反向</div><div class="q-text">我觉得使用 Tideo 时很麻烦。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q9 — 正向</div><div class="q-text">使用 Tideo 时我感觉很有信心。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">Q10 — 反向</div><div class="q-text">我需要先学习很多东西才能开始使用 Tideo。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+    </div>
+
+    <div class="metric-note">
+      <strong>计分方法：</strong>奇数题得分 = 原始分 − 1；偶数题得分 = 5 − 原始分。将 10 题得分求和后 × 2.5，得到 0-100 分。<strong>> 68 分</strong>为可接受，<strong>> 80 分</strong>为优秀。
+    </div>
+  </div>
+</div>
+
+<!-- Modal: NPS 净推荐值 -->
+<div class="modal-overlay" id="modal-nps" onclick="closeModalOnBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-nps')">✕</button>
+    <div class="modal-tag" style="background:var(--c-teal-bg);color:var(--c-teal)">量表工具</div>
+    <h3>NPS 净推荐值问卷（Tideo 版）</h3>
+    <p class="modal-subtitle">Net Promoter Score — 用一个核心问题衡量用户的推荐意愿，配合一个开放题追问原因。</p>
+
+    <div class="modal-section">
+      <div class="q-item">
+        <div class="q-num">Q1 — 核心评分题</div>
+        <div class="q-text">"如果你的同事或朋友也需要做视频翻译/字幕擦除，你有多大可能性会推荐 Tideo？"</div>
+        <div class="scale-row">
+          <span style="font-size:11px;color:var(--c-text-3)">完全不会</span>
+          <div class="s-dot">0</div><div class="s-dot">1</div><div class="s-dot">2</div><div class="s-dot">3</div><div class="s-dot">4</div><div class="s-dot">5</div><div class="s-dot">6</div><div class="s-dot">7</div><div class="s-dot">8</div><div class="s-dot">9</div><div class="s-dot">10</div>
+          <span style="font-size:11px;color:var(--c-text-3)">一定会</span>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">Q2 — 开放题</div>
+        <div class="q-text">"你给出这个分数，最主要的原因是什么？"</div>
+        <div class="q-note">（记录原话，不要引导）</div>
+      </div>
+    </div>
+
+    <div class="metric-note">
+      <strong>计算公式：</strong>NPS = 推荐者（9-10分）占比 − 贬损者（0-6分）占比。范围 -100 到 +100。<strong>> 0</strong> 为合格，<strong>> 30</strong> 为良好，<strong>> 50</strong> 为优秀。被动者（7-8分）不参与计算。
+    </div>
+  </div>
+</div>
+
+<!-- Modal: 情绪价值专项问卷 -->
+<div class="modal-overlay" id="modal-ev" onclick="closeModalOnBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-ev')">✕</button>
+    <div class="modal-tag" style="background:var(--c-amber-bg);color:var(--c-amber)">Tideo 专项</div>
+    <h3>情绪价值专项问卷</h3>
+    <p class="modal-subtitle">针对 Tideo 的三层情绪价值模型设计，完成所有任务后请用户填写。评分标准：1=完全不符合，5=完全符合。</p>
+
+    <div class="modal-section">
+      <h4><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c-accent)"></span> L1 安心感 Comfort</h4>
+      <div class="q-item"><div class="q-num">E1</div><div class="q-text">在 AI 处理视频时，我没有感到焦虑或不安。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">E2</div><div class="q-text">我觉得有"人"在帮我处理，而不只是一个冰冷的系统。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">E3</div><div class="q-text">看到角色的进度更新，我对结果更有信心了。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ea580c"></span> L2 愉悦感 Delight</h4>
+      <div class="q-item"><div class="q-num">E4</div><div class="q-text">等待处理的过程不无聊，我对页面上发生的事情有兴趣。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">E5</div><div class="q-text">角色的对话和台词让我觉得有意思或有惊喜。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">E6</div><div class="q-text">等待的时间感觉比实际短。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c-amber)"></span> L3 成就感 Achievement</h4>
+      <div class="q-item"><div class="q-num">E7</div><div class="q-text">看到最终成片时，我有"这是我的作品"的感觉。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">E8</div><div class="q-text">对比原片和成片时，我对 AI 的处理效果感到满意或惊喜。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+      <div class="q-item"><div class="q-num">E9</div><div class="q-text">完成后的"杀青"效果让我觉得这个任务有一个好的结尾。</div><div class="q-scale">1 ○ 2 ○ 3 ○ 4 ○ 5</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4>📝 附加题</h4>
+      <div class="q-item"><div class="q-num">E10 — 体感比</div><div class="q-text">"你觉得刚才等 AI 处理大概花了多久？"（记录用户回答，与实际时长对比）</div><div class="q-note">等待体感比 = 用户估计时长 ÷ 实际时长。< 1 说明"感觉比实际快"。</div></div>
+      <div class="q-item"><div class="q-num">E11 — 三词描述</div><div class="q-text">"用三个词形容你刚才整个使用过程的感受。"</div><div class="q-note">记录原词，分类为正面/中性/负面。情绪价值净值 = 正面词占比 − 负面词占比。</div></div>
+    </div>
+
+    <div class="metric-note">
+      <strong>计分方法：</strong>L1 安心感 = (E1+E2+E3) ÷ 3｜L2 愉悦感 = (E4+E5+E6) ÷ 3｜L3 成就感 = (E7+E8+E9) ÷ 3<br><strong>情绪价值总分</strong> = L1 + L2 + L3（满分 15，及格线 ≥ 9）。最低分的层级 = 优先改进方向。
+    </div>
+  </div>
+</div>
+
+<!-- Modal: 深度访谈提纲 -->
+<div class="modal-overlay" id="modal-interview" onclick="closeModalOnBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-interview')">✕</button>
+    <div class="modal-tag" style="background:var(--c-purple-bg);color:var(--c-purple)">访谈工具</div>
+    <h3>深度访谈提纲（四维度 × 12 题）</h3>
+    <p class="modal-subtitle">半结构化访谈，在所有任务完成、问卷填写后进行。每个问题后有追问引导，根据用户回答灵活使用。预计 15 分钟。</p>
+
+    <div class="modal-section">
+      <h4 style="color:var(--c-blue)">🛡️ 可信任 Trust（3 题）</h4>
+      <div class="q-item"><div class="q-num">I1</div><div class="q-text">"你第一次看到 AI 开始处理时，心里是什么感觉？"</div><div class="q-note">追问：有没有担心 AI 会搞砸？什么让你放心/不放心？</div></div>
+      <div class="q-item"><div class="q-num">I2</div><div class="q-text">"你觉得这些 AI 角色可靠吗？为什么？"</div><div class="q-note">追问：角色的专业台词对你的信任感有影响吗？</div></div>
+      <div class="q-item"><div class="q-num">I3</div><div class="q-text">"在等待处理时，你有没有想过关掉页面？什么让你留下来了？"</div><div class="q-note">追问：如果没有进度显示/角色对话，你还会等吗？</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4 style="color:var(--c-green)">🎛️ 可掌控 Control（3 题）</h4>
+      <div class="q-item"><div class="q-num">I4</div><div class="q-text">"如果结果不满意，你知道怎么修改吗？"</div><div class="q-note">追问：精调入口好找吗？你第一次是怎么发现的？</div></div>
+      <div class="q-item"><div class="q-num">I5</div><div class="q-text">"精调操作的时候，你觉得容易还是困难？"</div><div class="q-note">追问：哪个操作最容易？哪个最难？为什么？</div></div>
+      <div class="q-item"><div class="q-num">I6</div><div class="q-text">"你觉得自己对最终结果有多大的控制权？0-10 打个分？"</div><div class="q-note">追问：如果要提高控制感，你希望增加什么能力？</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4 style="color:var(--c-purple)">🔍 可找到 Findability（3 题）</h4>
+      <div class="q-item"><div class="q-num">I7</div><div class="q-text">"第一次进入页面时，你知道该从哪里开始吗？"</div><div class="q-note">追问：哪些引导帮到了你？有没有迷路的时刻？</div></div>
+      <div class="q-item"><div class="q-num">I8</div><div class="q-text">"有没有哪个功能你想用但找不到？"</div><div class="q-note">追问：你是怎么找到它的？还是最终放弃了？</div></div>
+      <div class="q-item"><div class="q-num">I9</div><div class="q-text">"模式选择（完整/擦除/字幕/配音）你理解它们的区别吗？"</div><div class="q-note">追问：如果重新命名，你觉得怎么叫更清楚？</div></div>
+    </div>
+
+    <div class="modal-section">
+      <h4 style="color:var(--c-amber)">💛 可共鸣 Bond（3 题）</h4>
+      <div class="q-item"><div class="q-num">I10</div><div class="q-text">"等待处理的时候你在干什么？感受如何？"</div><div class="q-note">追问：你有看角色的对话吗？印象最深的是哪句？</div></div>
+      <div class="q-item"><div class="q-num">I11</div><div class="q-text">"如果要给某个角色写一句评价，你会写什么？"</div><div class="q-note">追问：你最喜欢哪个角色？为什么？（观察是否拟人化表达）</div></div>
+      <div class="q-item"><div class="q-num">I12</div><div class="q-text">"完成后看到聚光灯效果和'杀青'时，你的反应是什么？"</div><div class="q-note">追问：如果下次有类似需求你会回来用吗？为什么？（记录是否提及体验感受）</div></div>
+    </div>
+
+    <div class="metric-note">
+      <strong>编码方法：</strong>每题回答编码为正面(+1)/中性(0)/负面(-1)。按维度汇总：维度得分 = 正面数 − 负面数。特别关注"拟人化表达率"（I11 中出现"他/她"等人称代词、情感形容词的比例）和"感受驱动复用"（I12 中提及体验感受而非纯功能的比例）。
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+<script>
+// Scroll progress bar + TOC progress
+const progressBar = document.getElementById('scrollProgress');
+const tocPct = document.getElementById('tocPct');
+const tocBarFill = document.getElementById('tocBarFill');
+const tocNav = document.getElementById('tocNav');
+
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+  
+  // TOC progress
+  const pctRound = Math.round(pct);
+  tocPct.textContent = pctRound + '%';
+  tocBarFill.style.width = pct + '%';
+  
+  // Show/hide TOC after hero
+  const heroEnd = document.getElementById('hero').offsetTop + document.getElementById('hero').offsetHeight;
+  if (h.scrollTop > heroEnd * 0.6) {
+    tocNav.classList.add('visible');
+  } else {
+    tocNav.classList.remove('visible');
+  }
+});
+
+// Side nav + TOC active state — use scroll position for reliable detection
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.side-nav a');
+const tocLinks = document.querySelectorAll('.toc-item a');
+
+function updateActiveSection() {
+  const scrollY = window.scrollY + window.innerHeight * 0.3;
+  let currentId = '';
+  sections.forEach(s => {
+    if (s.offsetTop <= scrollY) {
+      currentId = s.id;
+    }
+  });
+  if (!currentId) return;
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+  tocLinks.forEach(a => {
+    const isActive = a.getAttribute('href') === '#' + currentId;
+    a.classList.toggle('active', isActive);
+    if (isActive) {
+      const list = document.getElementById('tocList');
+      const itemTop = a.parentElement.offsetTop;
+      const listH = list.clientHeight;
+      if (itemTop < list.scrollTop || itemTop > list.scrollTop + listH - 40) {
+        list.scrollTo({ top: itemTop - listH / 3, behavior: 'smooth' });
+      }
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveSection, { passive: true });
+updateActiveSection();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObs.observe(el));
+
+// Modal open/close
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.style.display = 'flex';
+  requestAnimationFrame(() => m.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.classList.remove('open');
+  setTimeout(() => { m.style.display = 'none'; }, 300);
+  document.body.style.overflow = '';
+}
+function closeModalOnBg(e) {
+  if (e.target === e.currentTarget) closeModal(e.target.id);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  }
+});
+</script>
+
+</body>
+</html>

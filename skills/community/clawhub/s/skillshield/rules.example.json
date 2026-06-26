@@ -1,0 +1,42 @@
+[
+  {
+    "id": "custom-001",
+    "name": "Detect MyCompany API key theft",
+    "severity": "CRITICAL",
+    "patterns": ["MYCOMPANY_API_KEY", "api.mycompany.com"],
+    "condition": "all",
+    "description": "Skill is targeting MyCompany credentials"
+  },
+  {
+    "id": "custom-002",
+    "name": "Detect Discord token harvesting",
+    "severity": "CRITICAL",
+    "patterns": ["discord", "token", "localStorage"],
+    "condition": "all",
+    "description": "Skill may be harvesting Discord tokens from browser storage"
+  },
+  {
+    "id": "custom-003",
+    "name": "Detect cryptocurrency mining",
+    "severity": "WARNING",
+    "patterns": ["stratum+tcp://", "xmrig", "coinhive", "cryptonight"],
+    "condition": "any",
+    "description": "Skill may contain cryptocurrency mining code"
+  },
+  {
+    "id": "custom-004",
+    "name": "Detect Telegram bot exfiltration",
+    "severity": "CRITICAL",
+    "patterns": ["api.telegram.org/bot", "sendDocument", "sendMessage"],
+    "condition": "all",
+    "description": "Skill may be exfiltrating data via Telegram bot"
+  },
+  {
+    "id": "custom-005",
+    "name": "Detect keylogger patterns",
+    "severity": "CRITICAL",
+    "patterns": ["pynput", "keyboard.on_press", "keylogger"],
+    "condition": "any",
+    "description": "Skill may contain keylogging functionality"
+  }
+]

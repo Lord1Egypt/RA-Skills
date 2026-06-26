@@ -1,0 +1,22 @@
+hardware_tier: l4-edge-inference
+objective: efficient low-power inference
+
+precision:
+  baseline: fp16_or_bf16_if_supported_by_stack
+  tf32_matmul: high
+  fp8_candidate: false
+
+serving:
+  paged_kv_cache: evaluate
+  chunked_prefill: evaluate
+  inflight_batching: true
+  speculative_decoding: only_if_acceptance_rate_is_healthy
+
+constraints:
+  prioritize_power_efficiency: true
+  prioritize_density: true
+  prioritize_memory_fit: true
+
+notes:
+  - Use L4 when deployment density and power efficiency matter more than frontier-scale throughput.
+  - Validate latency under the actual scheduler and prompt mix, not only with single-request kernels.

@@ -1,0 +1,49 @@
+name: Bug report
+description: Report prompt behavior mismatch or compatibility issue
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please include enough details to reproduce.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Cursor
+        - Claude
+        - OpenClaw
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: prompt_file
+    attributes:
+      label: Prompt file used
+      description: Example: prompts/claude-project.md
+      placeholder: prompts/...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Use this input...
+        2. Observe output...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true

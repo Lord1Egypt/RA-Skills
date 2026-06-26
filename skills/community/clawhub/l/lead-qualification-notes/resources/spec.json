@@ -1,0 +1,37 @@
+{
+  "slug": "lead-qualification-notes",
+  "title": "线索资格判断笔记官",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "把销售线索信息整理成资格判断、关键问题、风险项与下一步建议。",
+  "inputHint": "线索背景、痛点、预算、时机",
+  "sections": [
+    "线索摘要",
+    "资格判断",
+    "关键问题",
+    "风险项",
+    "建议动作",
+    "不推进理由"
+  ],
+  "useCases": [
+    "售前筛选",
+    "销售准备",
+    "会议前整理"
+  ],
+  "positiveExamples": [
+    "帮我判断这条线索值不值得继续跟",
+    "生成下一步问题清单"
+  ],
+  "negativeExamples": [
+    "不要虚构客户预算",
+    "不要替代 CRM 主数据"
+  ],
+  "risk": "输出为销售辅助笔记。",
+  "tags": [
+    "sales",
+    "lead-qualification",
+    "crm",
+    "notes"
+  ]
+}

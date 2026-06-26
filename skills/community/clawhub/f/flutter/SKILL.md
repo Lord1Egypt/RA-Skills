@@ -1,35 +1,33 @@
 ---
-name: "Flutter"
-description: "Build performant cross-platform apps with Flutter widgets, state management, and platform integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flutter"
-sourceUrl: "https://clawhub.ai/skills/flutter"
+name: Flutter
+slug: flutter
+version: 1.0.1
+description: Build reliable Flutter apps avoiding state loss, widget rebuild traps, and async pitfalls.
+metadata: {"clawdbot":{"emoji":"🐦","requires":{"bins":["flutter"]},"os":["linux","darwin","win32"]}}
 ---
 
-# Flutter
+## Quick Reference
 
-> Build performant cross-platform apps with Flutter widgets, state management, and platform integration.
+| Topic | File |
+|-------|------|
+| setState, state loss, keys | `state.md` |
+| build method, context, GlobalKey | `widgets.md` |
+| FutureBuilder, dispose, mounted | `async.md` |
+| Context after pop, deep linking | `navigation.md` |
+| const, rebuilds, performance | `performance.md` |
+| Platform channels, null safety | `platform.md` |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flutter`
-- **Source URL:** [https://clawhub.ai/skills/flutter](https://clawhub.ai/skills/flutter)
+## Critical Rules
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flutter
-```
+- `setState` after dispose — check `mounted` before calling, crashes otherwise
+- Key missing on list items — reordering breaks state, always use keys
+- FutureBuilder rebuilds on parent rebuild — triggers future again, cache the Future
+- BuildContext after async gap — context may be invalid, check `mounted` first
+- `const` constructor — prevents rebuilds, use for static widgets
+- `StatefulWidget` recreated — key change or parent rebuild creates new state
+- GlobalKey expensive — don't use just to access state, pass callbacks instead
+- `dispose` incomplete — cancel timers, subscriptions, controllers
+- Navigator.pop with result — returns Future, don't ignore errors
+- ScrollController not disposed — memory leak
+- Image caching — use `cached_network_image`, default doesn't persist
+- PlatformException not caught — platform channel calls can throw

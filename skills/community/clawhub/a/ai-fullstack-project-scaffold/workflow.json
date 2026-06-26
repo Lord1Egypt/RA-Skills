@@ -1,0 +1,122 @@
+{
+  "name": "ai-fullstack-project-scaffold",
+  "version": "1.0.0",
+  "description": "AI 全栈项目脚手架工厂 — 从需求描述到可运行项目，一键生成代码框架、Makefile、任务追踪和 Docker 部署配置",
+  "category": "AI",
+  "triggers": [
+    "创建项目",
+    "初始化项目",
+    "项目脚手架",
+    "代码生成",
+    "新项目",
+    "全栈开发",
+    "快速开发",
+    "项目模板"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "name": "需求解析 & 任务规划",
+      "skill": "dev-task",
+      "input": {
+        "projectName": "{{projectName}}",
+        "stack": "{{stack}}",
+        "description": "{{description}}"
+      },
+      "output": {
+        "VERSION.md": "版本规划文档",
+        "TODO.md": "任务清单"
+      },
+      "description": "解析项目需求，生成版本规划与任务清单，确定技术栈选型"
+    },
+    {
+      "order": 2,
+      "name": "生成完整项目代码框架",
+      "skill": "kimi-cli",
+      "input": {
+        "projectName": "{{projectName}}",
+        "stack": "{{stack}}",
+        "description": "{{description}}",
+        "port": "{{port}}"
+      },
+      "output": {
+        "src/": "核心业务代码目录",
+        "package.json": "或 requirements.txt / go.mod",
+        "config.*": "配置文件",
+        "*.config.*": "框架配置"
+      },
+      "description": "调用 Kimi Code CLI 生成完整项目目录结构、前端+后端+数据库代码骨架"
+    },
+    {
+      "order": 3,
+      "name": "生成标准化 Makefile",
+      "skill": "makefile-generator",
+      "input": {
+        "projectName": "{{projectName}}",
+        "language": "{{languageFromStack}}",
+        "port": "{{port}}"
+      },
+      "output": {
+        "Makefile": "标准化构建脚本"
+      },
+      "description": "生成跨平台标准化 Makefile，包含 dev/test/build/run/deploy 等命令"
+    },
+    {
+      "order": 4,
+      "name": "生成生产级 Docker 配置",
+      "skill": "docker-expert",
+      "input": {
+        "projectName": "{{projectName}}",
+        "language": "{{languageFromStack}}",
+        "hasCompose": true
+      },
+      "output": {
+        "Dockerfile": "多阶段构建生产镜像",
+        "docker-compose.yml": "开发+生产环境编排",
+        ".dockerignore": "构建优化"
+      },
+      "description": "生成生产级 Dockerfile 和 docker-compose.yml，支持多阶段构建和安全加固"
+    }
+  ],
+  "dependencies": [
+    "dev-task",
+    "kimi-cli",
+    "makefile-generator",
+    "docker-expert"
+  ],
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "required": true,
+      "description": "项目名称（英文，无空格）"
+    },
+    "stack": {
+      "type": "string",
+      "required": true,
+      "description": "技术栈，如 nodejs+postgres、python+redis、go+minio"
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "description": "项目一句话描述（中文即可，AI 自动解析）"
+    },
+    "port": {
+      "type": "number",
+      "required": false,
+      "default": 3000,
+      "description": "服务端口"
+    }
+  },
+  "output": {
+    "structure": "完整的可运行项目目录",
+    "files": [
+      "Makefile",
+      "Dockerfile",
+      "docker-compose.yml",
+      ".dockerignore",
+      "README.md",
+      "package.json 或 requirements.txt 或 go.mod",
+      "src/ 目录（含完整代码骨架）"
+    ]
+  }
+}

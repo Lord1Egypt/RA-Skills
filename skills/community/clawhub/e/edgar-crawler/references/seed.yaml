@@ -1,0 +1,3597 @@
+meta:
+  id: finance-bp-114-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-114
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:54.950360+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  upgraded_from: finance-bp-114-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:30.751233+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-114--edgar-crawler/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-114--edgar-crawler/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-DATA-SOURCING-001
+  title: Missing or invalid User-Agent headers for SEC API requests
+  description: SEC EDGAR requires valid User-Agent identity with contact information in headers. Without this, requests are
+    rejected with 403 Forbidden errors, completely blocking all filing access. Both edgartools and edgar-crawler enforce this
+    constraint as fundamental to any data retrieval operation.
+  project_source: finance-bp-070--edgartools, finance-bp-114--edgar-crawler
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-002
+  title: Ignoring external API rate limits causing IP blocking
+  description: Multiple financial data sources (SEC EDGAR, Sina, Eastmoney, TuShare) enforce strict rate limits (10 req/sec,
+    120 calls/minute). Exceeding these triggers temporary IP blocks lasting 10-60 minutes, causing complete data unavailability.
+    Immediate retry attempts during blocks extend the block duration significantly.
+  project_source: finance-bp-070--edgartools, finance-bp-079--akshare, finance-bp-084--eastmoney, finance-bp-114--edgar-crawler
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-003
+  title: No HTTP timeout configuration causing indefinite hangs
+  description: HTTP requests to external financial data sources (Yahoo, Sina, Eastmoney) without timeout values can hang indefinitely
+    on blocked connections. This freezes the entire application and prevents data collection from all other sources, creating
+    cascading failures across the system.
+  project_source: finance-bp-079--akshare
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-004
+  title: Invalidating XBRL period types for balance sheet analysis
+  description: Balance sheets represent point-in-time snapshots (instant periods), not ranges (duration periods). Using duration
+    periods for balance sheet statements causes stockholder equity and other line items to show nonsensical date ranges, corrupting
+    financial calculations that depend on accurate period associations.
+  project_source: finance-bp-070--edgartools
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-005
+  title: Malformed or empty JSON responses causing silent failures
+  description: Financial API responses containing malformed JSON raise unhandled ValueError exceptions, crashing downstream
+    processing. Similarly, empty JSON responses (empty dict, list, null) masquerading as valid data cause silent failures
+    producing empty DataFrames or misleading results in financial analysis.
+  project_source: finance-bp-079--akshare
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-006
+  title: Source-specific symbol mapping errors causing data corruption
+  description: Stock symbols require source-specific formatting (sh/sz prefixes for Sina, numeric codes for THS, etc.). Incorrect
+    symbol mapping causes API calls to return empty results or wrong data, corrupting financial datasets with missing records
+    or entirely incorrect tickers being stored.
+  project_source: finance-bp-079--akshare
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-007
+  title: Using unsupported DataFrame types with time-series storage
+  description: ArcticDB does not support MultiIndex columns, PyArrow-backed pandas DataFrames, or timedelta64 columns. Attempting
+    to write these DataFrame types raises ArcticDbNotYetImplemented exceptions, causing write failures and permanent data
+    loss if not properly handled before storage operations.
+  project_source: finance-bp-103--ArcticDB
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-008
+  title: Non-atomic storage writes causing concurrent access corruption
+  description: Storage backends without atomic write_if_none operations can cause data corruption under concurrent multi-writer
+    access. Similarly, updating reference keys before atom keys complete allows readers to access incomplete or missing data,
+    breaking version chain integrity.
+  project_source: finance-bp-103--ArcticDB
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-009
+  title: Missing timezone-aware DatetimeIndex causing DST offset errors
+  description: Price history DataFrames returned without timezone-aware DatetimeIndex cause incorrect timestamp interpretation
+    when combined with other timezone-aware data. This leads to 23-25 hour offset errors during daylight saving time transitions,
+    corrupting historical price calculations.
+  project_source: finance-bp-128--yfinance
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-010
+  title: 8-K filing item numbering scheme mismatch for historical filings
+  description: 8-K filings use obsolete item numbering (1-12) before 2004-08-23 and new numbering (1.01-9.01) after. Using
+    the wrong numbering scheme causes no matches for historical filings, resulting in empty item sections and complete extraction
+    failure for pre-2004 data.
+  project_source: finance-bp-114--edgar-crawler
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-011
+  title: Yahoo Finance missing crumb authentication causing 401/403 errors
+  description: Yahoo Finance API requires crumb and cookie authentication with every request. Without proper crumb management,
+    API calls return 401 Unauthorized or HTML error pages instead of JSON data, breaking all downstream price and financial
+    data processing.
+  project_source: finance-bp-128--yfinance
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-012
+  title: Large document parsing without streaming causing OOM errors
+  description: SEC filings can exceed 160MB, and parsing large documents in memory without streaming causes OOM errors that
+    crash the entire service for all users. Documents exceeding 10MB require switching to streaming parsers to prevent extreme
+    memory usage.
+  project_source: finance-bp-070--edgartools
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-013
+  title: Column mapping length mismatch causing DataFrame errors
+  description: Column mapping constants with length mismatch against actual API response columns cause ValueError exceptions
+    during DataFrame construction. Raw field names (f1, f2, f12) must be mapped to meaningful names (最新价, 涨跌幅) with exact
+    column count alignment.
+  project_source: finance-bp-079--akshare
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-014
+  title: Pruning snapshot-protected versions breaking point-in-time recovery
+  description: Deleting or pruning versions that are referenced by existing snapshots breaks historical data access. Snapshots
+    provide point-in-time recovery capabilities, and removing their referenced versions causes read failures when users attempt
+    to access data from specific snapshots.
+  project_source: finance-bp-103--ArcticDB
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+cross_project_wisdom:
+- wisdom_id: CW-DATA-SOURCING-001
+  source_project: finance-bp-079--akshare, finance-bp-114--edgar-crawler
+  pattern_name: Exponential backoff retry with rate limit detection
+  description: Implement retry logic with exponential backoff specifically for HTTP 429 rate limit responses. Retrying immediately
+    on rate limit errors worsens the block situation. Separate retry logic for transient network errors (TimeoutError, ConnectionError)
+    from permanent errors (ValueError, KeyError) prevents resource waste and masks underlying bugs.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-002
+  source_project: finance-bp-070--edgartools, finance-bp-079--akshare, finance-bp-084--eastmoney
+  pattern_name: Strict date format validation and standardization
+  description: Validate date formats strictly (YYYY-MM-DD pattern with leap year and month-end checks) before processing XBRL
+    or API data. Convert date strings between formats (YYYYMMDD to YYYY-MM-DD) when storing to databases. Invalid dates corrupt
+    downstream financial calculations.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-003
+  source_project: finance-bp-070--edgartools, finance-bp-114--edgar-crawler
+  pattern_name: XBRL fact attribute completeness enforcement
+  description: Extract and validate all essential XBRL fact attributes (concept, value, period, unit) from every fact. Missing
+    attributes cause financial analysis queries to return incomplete or misleading results. Period type (instant vs duration)
+    must be correctly distinguished for accurate balance sheet rendering.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-004
+  source_project: finance-bp-070--edgartools, finance-bp-128--yfinance
+  pattern_name: Streaming parser threshold for large documents
+  description: Implement streaming parser activation when documents exceed configurable thresholds (10MB default). This prevents
+    OOM errors on large NPORT-P filings or bulk document downloads. Also require timezone information for time-series data
+    to prevent DST offset corruption.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-005
+  source_project: finance-bp-079--akshare, finance-bp-128--yfinance, finance-bp-097--OpenBB
+  pattern_name: Data accuracy disclaimer requirements
+  description: Always present scraped or third-party financial data with proper caveats about accuracy limitations and delays.
+    Claims of guaranteed accuracy, real-time capabilities, or Yahoo/provider affiliation violate terms of service and can
+    lead to user financial losses from reliance on delayed or incorrect data.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-006
+  source_project: finance-bp-103--ArcticDB
+  pattern_name: Atomic write ordering for versioned storage
+  description: Write atom keys (TABLE_DATA, TABLE_INDEX, VERSION) before updating mutable reference keys (VERSION_REF, SNAPSHOT_REF).
+    Never modify atom keys after writing to preserve content-addressed storage invariants. This prevents readers from accessing
+    incomplete data in multi-writer scenarios.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-007
+  source_project: finance-bp-079--akshare, finance-bp-097--OpenBB
+  pattern_name: HTTP status code validation before data processing
+  description: Always validate HTTP response status codes before processing response data. Error responses (404, 500) may
+    contain HTML error pages that corrupt downstream JSON parsing. Explicitly check for HTTP 429 and raise RateLimitError
+    for proper handling by callers.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-008
+  source_project: finance-bp-084--eastmoney
+  pattern_name: Quality gates for financial recommendations
+  description: Apply fundamental quality filters (ROE thresholds, OCF/Profit ratios, debt ratios) before generating financial
+    recommendations. Without quality gates, low-quality stocks may be recommended for positions, leading to investment losses.
+    Separate on-demand computation from scheduled pre-computation to handle API rate limits.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+domain_constraints_injected:
+- id: SHARED-DS-RL-001
+  statement: 'Rate Limit + 指数退避重试：所有外部数据 API 调用必须实施速率限制控制 和指数退避重试（Exponential Backoff with Jitter）。收到 429/503 响应后 立即重试是反模式，会加剧服务端压力并触发
+    IP 封禁。 最大重试次数 3-5 次，退避基数 1-2 秒，最大退避 60 秒。
+
+    '
+  severity: fatal
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: all external API calls must implement exponential backoff retry with jitter
+  evidence_refs:
+  - type: community_validated
+    ref: AWS《重试行为最佳实践》；akshare 文档限速说明；tushare 文档请求频率限制
+    url: https://docs.aws.amazon.com/general/latest/gr/api-retries.html
+  reference_code:
+    bad_example: "# BAD: 立即重试，不退避，加剧 429\nfor attempt in range(5):\n    try:\n        data = api.get(symbol)\n        break\n\
+      \    except RateLimitError:\n        time.sleep(0.1)  # 100ms 立即重试，会加剧问题\n"
+    good_example: "# GOOD: 指数退避 + Jitter 重试\nimport random\n\ndef fetch_with_retry(func, *args, max_retries=5, base_delay=1.0):\n\
+      \    for attempt in range(max_retries):\n        try:\n            return func(*args)\n        except (RateLimitError,\
+      \ TimeoutError) as e:\n            if attempt == max_retries - 1:\n                raise\n            delay = min(base_delay\
+      \ * (2 ** attempt), 60)\n            delay += random.uniform(0, delay * 0.1)  # +10% Jitter\n            time.sleep(delay)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-RL-002
+  statement: '批量 API 调用必须控制并发数（max_workers），不可无限制并行。 免费 API（akshare/tushare 免费版）通常限制为 1-3 并发； 付费 API 也有并发上限（tushare 积分制，不同积分对应不同并发）。
+    超出并发限制会触发 429 或 IP 封禁。推荐使用 asyncio.Semaphore 或 ThreadPoolExecutor 的 max_workers 参数显式控制。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: concurrent API calls must be bounded by explicit max_workers/semaphore
+  evidence_refs:
+  - type: community_validated
+    ref: tushare 文档积分与频率限制；akshare 文档接口说明；MiniMax 并发踩坑记录（Doramagic内部记忆）
+  reference_code:
+    bad_example: "# BAD: 无并发限制，触发 429\nwith ThreadPoolExecutor() as executor:\n    results = list(executor.map(fetch_stock,\
+      \ stock_list))\n    # 默认 max_workers 可能创建几十个线程，立即触发 429\n"
+    good_example: "# GOOD: 显式限制并发（akshare 免费版建议 max_workers=2）\nfrom concurrent.futures import ThreadPoolExecutor\nMAX_WORKERS\
+      \ = 2  # 根据 API 文档调整\n\nwith ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:\n    results = list(executor.map(fetch_stock,\
+      \ stock_list))\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-RL-003
+  statement: 'API Token / 凭证安全：数据源 API key（tushare token / akshare 无需 token 但 其他商业数据源需要）不可硬编码在代码中，必须通过环境变量或配置文件读取。 硬编码 token
+    提交到 Git 会导致 token 泄露和费用损失。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: API tokens must be loaded from environment variables, not hardcoded
+  evidence_refs:
+  - type: community_validated
+    ref: tushare 文档 token 管理；GitHub Secret Scanning 最佳实践
+    url: https://tushare.pro/document/2
+  reference_code:
+    bad_example: '# BAD: Token 硬编码，提交到 Git 后泄露
+
+      ts.set_token(''abc123def456your_token_here'')
+
+      pro = ts.pro_api()
+
+      '
+    good_example: "# GOOD: 从环境变量读取 token\nimport os\ntoken = os.environ.get('TUSHARE_TOKEN')\nif not token:\n    raise ValueError(\"\
+      TUSHARE_TOKEN environment variable not set\")\nts.set_token(token)\npro = ts.pro_api()\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-RL-004
+  statement: '请求节流（Throttling）：对同一 API 的批量请求应在请求间插入最小间隔 （akshare 部分接口要求 ≥ 0.5s；tushare 免费版每分钟 200 次）。 纯代码 sleep 不如令牌桶（Token
+    Bucket）算法精确，推荐使用 ratelimit 或 slowapi 等成熟库。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: per-request minimum interval must be enforced between API calls
+  evidence_refs:
+  - type: community_validated
+    ref: akshare 官方文档接口说明；知乎《量化数据采集：如何优雅处理限速》
+    url: https://akshare.akfamily.xyz/
+  reference_code:
+    bad_example: "# BAD: 固定 sleep 不准确，高并发下失效\nfor code in stock_list:\n    data = ak.stock_zh_a_hist(symbol=code)\n    time.sleep(0.1)\
+      \  # 可能不够，也可能太保守\n"
+    good_example: "# GOOD: 使用 ratelimit 装饰器精确控制\nfrom ratelimit import limits, sleep_and_retry\n\n@sleep_and_retry\n@limits(calls=200,\
+      \ period=60)  # tushare 免费版: 200次/分钟\ndef fetch_daily(code, start, end):\n    return ts.pro_bar(ts_code=code, start_date=start,\
+      \ end_date=end)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-001
+  statement: '停牌日数据缺失策略：停牌股票在停牌期间无成交数据，数据库中会出现日期缺口。 缺失日期不可使用 forward-fill（会产生虚假成交量）； 应在数据库中以 is_suspended=True 标记，量和成交额填 0，价格保留前一日收盘价。
+    因子计算时必须过滤 is_suspended=True 的行。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+    - backtesting
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+    - data_filtering
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: suspended trading days must be explicitly marked with is_suspended=True, not silently forward-filled
+  evidence_refs:
+  - type: community_validated
+    ref: tushare 文档 daily 接口停牌标志；qlib 文档 suspended stock handling
+    url: https://tushare.pro/document/2?doc_id=28
+  reference_code:
+    bad_example: '# BAD: forward-fill 停牌日，量保持前一日非零值
+
+      df = df.reindex(all_trading_days).fillna(method=''ffill'')
+
+      # volume 被填充为非零值，停牌变"正常交易"
+
+      '
+    good_example: "# GOOD: 停牌日明确标记\nfull_index = pd.MultiIndex.from_product(\n    [all_stocks, all_trading_days], names=['stock',\
+      \ 'date'])\ndf_full = df.reindex(full_index)\ndf_full['is_suspended'] = df_full['volume'].isna()\ndf_full['volume']\
+      \ = df_full['volume'].fillna(0)\ndf_full['amount'] = df_full['amount'].fillna(0)\ndf_full['close'] = df_full['close'].fillna(method='ffill')\
+      \  # 价格 ffill\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-002
+  statement: '新上市股票的历史数据边界：新股上市首日开始在数据库中出现，但其上市前 无历史数据。若因子计算的 lookback 期超过上市天数，会产生所有 NaN 因子值。 采集时应记录每只股票的上市日期（list_date），采集逻辑应以上市日期为起点，
+    不以固定开始日期。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: data collection start date must be bounded by stock listing date, not a fixed start date
+  evidence_refs:
+  - type: community_validated
+    ref: tushare stock_basic 接口 list_date 字段；akshare stock_info_a_code_name 接口
+    url: https://tushare.pro/document/2?doc_id=25
+  reference_code:
+    bad_example: "# BAD: 统一从 2010-01-01 开始，新股有大量 NaN\nfor code in stock_list:\n    df = fetch(code, start='2010-01-01', end=today)\n"
+    good_example: "# GOOD: 从上市日期开始采集\nstock_info = ts.get_stock_basics()  # 含 list_date\nfor code in stock_list:\n    list_date\
+      \ = stock_info.loc[code, 'list_date']\n    df = fetch(code, start=list_date, end=today)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-003
+  statement: '退市股票的数据完整性：已退市股票在主流数据源（akshare/tushare）中依然 可以查询历史数据（退市前的历史），但退市日期后无数据。 历史股票池构建时必须包含已退市股票（否则幸存者偏差）， 且采集时需明确处理退市日截止边界。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+    - backtesting
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: delisted stocks must be included in historical universe; delist_date must be recorded
+  evidence_refs:
+  - type: community_validated
+    ref: tushare stock_basic 接口 delist_date 字段；qlib 文档 Delisted Stock Handling
+    url: https://tushare.pro/document/2?doc_id=25
+  reference_code:
+    bad_example: '# BAD: 只采集当前上市股票，遗漏已退市股票
+
+      stock_list = ts.get_stock_basics()  # 只含当前上市股票
+
+      '
+    good_example: "# GOOD: 采集全量股票（含已退市）\nall_stocks = pro.stock_basic(\n    exchange='', list_status='L',  # 上市\n)\ndelisted\
+      \ = pro.stock_basic(\n    exchange='', list_status='D',  # 退市\n)\nfull_universe = pd.concat([all_stocks, delisted])\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-004
+  statement: '多数据源数据对账（Cross-Source Reconciliation）：同一数据（如收盘价） 从不同数据源（akshare/tushare/baostock）获取可能存在细微差异 （不同复权方式/不同节假日处理/除息调整时间不同）。
+    应在 pipeline 中实施多源对账检查，差异超阈值（如 0.1%）时记录告警并人工确认。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: when using multiple data sources, cross-source price reconciliation must be performed
+  evidence_refs:
+  - type: community_validated
+    ref: 雪球量化社区《数据质量：多数据源对账实践》；知乎《量化数据质量保障》
+  reference_code:
+    bad_example: '# BAD: 切换数据源不做对账，静默吞下差异
+
+      df_primary = akshare_fetch(code)
+
+      df_backup = baostock_fetch(code)
+
+      # 如果主源失败，直接用备源，不验证一致性
+
+      '
+    good_example: "# GOOD: 双源对账，价格差异超 0.5% 告警\ntolerance = 0.005\nmerged = df_primary.join(df_backup, lsuffix='_ak', rsuffix='_bs')\n\
+      diff = (merged['close_ak'] - merged['close_bs']).abs() / merged['close_ak']\nanomalies = diff[diff > tolerance]\nif\
+      \ len(anomalies) > 0:\n    logger.warning(f\"Price discrepancy > {tolerance:.1%}: {len(anomalies)} rows\")\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-TIME-001
+  statement: '时间戳精度与类型一致性：数据库中时间戳应使用统一的数据类型 （timestamp 而非 varchar/int）。混用字符串日期（''2024-01-15''）和 Timestamp 对象是比较、索引、merge 出现细微
+    bug 的常见来源， 应在 pipeline 入口处强制转换。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: all date/time fields must be normalized to pd.Timestamp at data ingestion boundary
+  evidence_refs:
+  - type: community_validated
+    ref: pandas 文档 to_datetime 最佳实践；SQLAlchemy TIMESTAMP 类型说明
+    url: https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
+  reference_code:
+    bad_example: '# BAD: 存储为字符串，比较出错
+
+      df[''date''] = ''2024-01-15''  # 字符串
+
+      latest = df[df[''date''] == ''2024-01-15'']  # 字符串比较，效率低
+
+      '
+    good_example: '# GOOD: 统一转换为 Timestamp
+
+      df[''date''] = pd.to_datetime(df[''date''])
+
+      latest = df[df[''date''] == pd.Timestamp(''2024-01-15'')]
+
+      '
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-TIME-002
+  statement: '交易时间与自然时间的区分：日线数据的"日期"通常对应交易日（T日）， 而新闻/公告数据的"时间"是自然时间。合并两类数据时，必须将自然时间 映射到下一个可用交易日（next available trading day），
+    否则会产生"公告在T日，但T日盘中已经可用"的 lookahead 问题。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+    - backtesting
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+    - data_filtering
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: announcement timestamps must be mapped to next trading day open, not announcement date
+  evidence_refs:
+  - type: community_validated
+    ref: 知乎《量化数据时间戳处理：交易日与自然日的转换》；qlib 文档 point-in-time data
+    url: https://qlib.readthedocs.io/
+  reference_code:
+    bad_example: '# BAD: 公告日当天即可用于交易信号（可能是盘后公告）
+
+      signals = df.merge(announcements, on=''date'')  # 公告日 = 交易日
+
+      '
+    good_example: "# GOOD: 盘后公告映射到下一交易日\nimport exchange_calendars as xcals\ncal = xcals.get_calendar('XSHG')\n\ndef announcement_to_trade_date(ann_dt,\
+      \ market_close_hour=15):\n    date = pd.Timestamp(ann_dt)\n    if date.hour >= market_close_hour:\n        # 盘后公告 →\
+      \ 下一交易日生效\n        return cal.next_session(date.date())\n    else:\n        return date.date()\n\nannouncements['trade_date']\
+      \ = announcements['ann_datetime'].apply(\n    announcement_to_trade_date)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-TIME-003
+  statement: '夏令时（DST）处理：采集美股/欧洲股市数据时，夏令时切换日（3月/11月） 会导致同一 HH:MM 时刻对应不同的 UTC 时间，若未处理，当日时序数据 会出现1小时的漂移。应始终以 UTC 存储，展示时按市场本地时区转换。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags:
+    markets:
+    - cn-astock
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: DST transitions must be handled when collecting US/EU market data; store as UTC
+  evidence_refs:
+  - type: community_validated
+    ref: pytz 文档 DST 处理；exchange_calendars 文档
+    url: https://pytz.sourceforge.net/
+  reference_code:
+    bad_example: '# BAD: 用 naive datetime，夏令时切换日漂移
+
+      df[''datetime''] = pd.to_datetime(df[''time_str''])  # no timezone
+
+      '
+    good_example: "# GOOD: 以 UTC 存储，展示时转本地时区\nimport pytz\neastern = pytz.timezone('America/New_York')\ndf['datetime_utc']\
+      \ = pd.to_datetime(df['time_str']\n    ).dt.tz_localize(eastern, ambiguous='NaT'\n    ).dt.tz_convert('UTC')\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-001
+  statement: '增量更新幂等性：数据更新脚本必须是幂等的（多次运行结果相同）。 若脚本因网络中断在中途失败，重新运行时不应产生重复数据或数据缺口。 实现方式：先写入临时表，校验后 UPSERT 到主表，不直接 INSERT/APPEND。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: 'data update scripts must be idempotent: use UPSERT, not INSERT/APPEND'
+  evidence_refs:
+  - type: community_validated
+    ref: SQLite UPSERT 文档（INSERT OR REPLACE）；知乎《量化数据库设计：幂等更新》
+    url: https://www.sqlite.org/lang_upsert.html
+  reference_code:
+    bad_example: '# BAD: 直接 APPEND，重跑产生重复数据
+
+      df_new.to_sql(''daily_prices'', con=engine, if_exists=''append'', index=False)
+
+      '
+    good_example: "# GOOD: UPSERT（主键冲突则更新）\nfor _, row in df_new.iterrows():\n    engine.execute(\"\"\"\n        INSERT OR\
+      \ REPLACE INTO daily_prices\n        (stock_code, date, open, high, low, close, volume)\n        VALUES (?, ?, ?, ?,\
+      \ ?, ?, ?)\n    \"\"\", row.to_list())\n# SQLAlchemy 版本：使用 on_conflict_do_update\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-002
+  statement: '数据完整性检验（数据校验和/行数检查）：每次数据更新后， 应对关键字段做完整性检验：行数是否在预期范围内、价格是否为正数、 日期是否连续（无缺失交易日）。缺少自动校验的数据管道是"沉默腐烂"的根源。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: 'post-update data quality checks must run automatically: row count, price positivity, date continuity'
+  evidence_refs:
+  - type: community_validated
+    ref: Great Expectations 文档；知乎《量化数据质量治理：如何发现数据腐烂》
+    url: https://docs.greatexpectations.io/
+  reference_code:
+    bad_example: '# BAD: 更新后不做任何检验
+
+      update_daily_prices(date=today)
+
+      print("Update done")  # 不知道是否成功，不知道有无缺漏
+
+      '
+    good_example: '# GOOD: 更新后自动校验
+
+      update_daily_prices(date=today)
+
+
+      # 检验1: 行数合理（A股约5000只股票）
+
+      row_count = db.count("SELECT COUNT(*) FROM daily_prices WHERE date = ?", today)
+
+      assert 4000 <= row_count <= 6000, f"Unexpected row count: {row_count}"
+
+
+      # 检验2: 无零价格或负价格
+
+      invalid = db.count("SELECT COUNT(*) FROM daily_prices WHERE close <= 0")
+
+      assert invalid == 0, f"Found {invalid} invalid prices"
+
+
+      # 检验3: 无日期缺口（检查最近 5 个交易日连续性）
+
+      check_no_date_gaps(db, last_n_trading_days=5)
+
+      '
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-003
+  statement: '数据版本化：数据管道的输出数据应版本化管理（data versioning）。 当数据源更新了历史数据（如修订调整后的财务数据）， 旧版本数据应保留可追溯，不应静默覆盖，以便对比版本间差异及复现历史回测。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: historical data revisions must be versioned; silent overwrites are prohibited
+  evidence_refs:
+  - type: community_validated
+    ref: ArcticDB 文档数据版本化；DVC (Data Version Control) 文档
+    url: https://arcticdb.io/
+  reference_code:
+    bad_example: '# BAD: 覆盖写入，历史版本丢失
+
+      df_revised.to_csv(''financial_data.csv'', index=False)  # 覆盖旧版本
+
+      '
+    good_example: '# GOOD: 带时间戳的版本化存储（使用 ArcticDB 或简单目录版本）
+
+      version = datetime.now().strftime(''%Y%m%d_%H%M%S'')
+
+      df_revised.to_parquet(f''data/financial_data_v{version}.parquet'')
+
+      # 软链接指向最新版本
+
+      # ln -sf financial_data_v{version}.parquet financial_data_latest.parquet
+
+
+      # 或使用 ArcticDB（内置版本化）:
+
+      import arcticdb as adb
+
+      lib = adb.Arctic(''lmdb:///data/arctic_store'').get_library(''finance'')
+
+      lib.write(''financial_data'', df_revised)  # 自动版本化
+
+      '
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-004
+  statement: '数据对齐到交易日历边界：采集完成后，应验证所有股票/资产的数据覆盖 完整性与交易日历的一致性。每只股票在每个交易日都应有一行数据 （停牌标记，不是缺失）。通过 pivot_table 检查 NaN 比例是有效的快速诊断手段。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+    - data_filtering
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: data completeness vs trading calendar must be verified after each ingestion
+  evidence_refs:
+  - type: community_validated
+    ref: qlib 文档 data quality inspection；tushare 文档 daily 接口完整性说明
+    url: https://qlib.readthedocs.io/
+  reference_code:
+    bad_example: '# BAD: 不检验数据完整性，静默忽略缺失
+
+      df = load_all_stocks(start_date, end_date)
+
+      run_backtest(df)
+
+      '
+    good_example: "# GOOD: pivot 矩阵检验覆盖率\nprice_matrix = df.pivot_table(\n    index='date', columns='stock_code', values='close')\n\
+      coverage = 1 - price_matrix.isna().mean().mean()\nprint(f\"Data coverage: {coverage:.1%}\")\nif coverage < 0.95:\n \
+      \   logger.warning(f\"Low coverage: {coverage:.1%}, check for missing stocks\")\n# 找出缺失严重的股票\nmissing_stocks = price_matrix.isna().mean()\n\
+      bad_stocks = missing_stocks[missing_stocks > 0.05].index.tolist()\nif bad_stocks:\n    logger.warning(f\"Stocks with\
+      \ >5% missing days: {bad_stocks}\")\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-005
+  statement: '缓存策略（Caching）：频繁读取的静态/低频更新数据（如股票信息、行业分类、 指数成分股）应本地缓存，避免每次运行重复 API 调用。 缓存必须设置过期时间（TTL），防止使用过期的行业分类或已失效的成分股信息。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: static/low-frequency data must be cached locally with TTL to avoid unnecessary API calls
+  evidence_refs:
+  - type: community_validated
+    ref: akshare 文档建议本地缓存；functools.lru_cache 文档；joblib.Memory 文档
+    url: https://akshare.akfamily.xyz/
+  reference_code:
+    bad_example: "# BAD: 每次运行都重新获取行业分类（慢且消耗配额）\ndef get_industry(stock):\n    return ak.stock_board_industry_name_em()  #\
+      \ 每次调用 API\n"
+    good_example: "# GOOD: 缓存行业分类，每日刷新一次\nfrom joblib import Memory\nfrom datetime import date\n\ncache_dir = './data_cache'\n\
+      memory = Memory(cache_dir, verbose=0)\n\n@memory.cache\ndef get_industry_cached(cache_date: str):  # cache_date 作为缓存\
+      \ key\n    return ak.stock_board_industry_name_em()\n\n# 每日刷新：用今日日期作为 key，自动使旧缓存失效\nindustry_df = get_industry_cached(str(date.today()))\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: tests/test_extract_items.py
+  business_problem: Extracts and processes SEC EDGAR filings (10-K annual reports, 10-Q quarterly reports) from compressed
+    ZIP archives for downstream financial analysis and document processing workflows.
+  intent_keywords:
+  - EDGAR
+  - SEC filings
+  - 10-K extraction
+  - annual report parsing
+  - document extraction
+  stage: data_collection
+  data_domain: financial_data
+  type: data_pipeline
+component_capability_map:
+  project: finance-bp-114--edgar-crawler
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 4
+    total_classes: 16
+    total_functions: 0
+    total_stages: 4
+  modules:
+    index_download_stage:
+      class_count: 4
+      stage_id: index_download
+      stage_order: 1
+      responsibility: Downloads SEC EDGAR index files (TSV) for specified years/quarters. Provides the master list of available
+        filings for downstream filtering. This stage exists because SEC EDGAR provides quarterly indices that must be fetched
+        incrementally to avoid redundant network calls and enable efficient updates.
+      classes:
+      - name: download_indices
+        file: index_download_stage/download-indices.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: get_specific_indices
+        file: index_download_stage/get-specific-indices.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: requests_retry_session
+        file: index_download_stage/requests-retry-session.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: user_agent
+        file: index_download_stage/user-agent.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    crawl_and_download_stage:
+      class_count: 3
+      stage_id: crawl_and_download
+      stage_order: 2
+      responsibility: Parses HTML index pages from SEC EDGAR, extracts filing metadata (SIC, state, fiscal year), and downloads
+        actual filing documents to local storage. This stage bridges index information to raw document files for downstream
+        parsing.
+      classes:
+      - name: crawl
+        file: crawl_and_download_stage/crawl.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: download
+        file: crawl_and_download_stage/download.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: iXBRL URL handling
+        file: crawl_and_download_stage/ixbrl-url-handling.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    document_parsing_stage:
+      class_count: 8
+      stage_id: document_parsing
+      stage_order: 3
+      responsibility: Extracts structured items from raw HTML/text filings using regex pattern matching. Handles tables, spans,
+        and filing-specific item structures for 10-K, 10-Q, and 8-K filings. This is the core NLP extraction engine that transforms
+        unstructured documents into machine-readable JSON.
+      classes:
+      - name: ExtractItems.extract
+        file: document_parsing_stage/extractitems-extract.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: HtmlStripper.feed
+        file: document_parsing_stage/htmlstripper-feed.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: determine_items_to_extract
+        file: document_parsing_stage/determine-items-to-extract.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: parse_item
+        file: document_parsing_stage/parse-item.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: get_10q_parts
+        file: document_parsing_stage/get-10q-parts.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: remove_tables
+        file: document_parsing_stage/remove-tables.py
+        line: 0
+        kind: replaceable_point
+      - name: items_to_extract
+        file: document_parsing_stage/items-to-extract.py
+        line: 0
+        kind: replaceable_point
+      - name: skip_extracted_filings
+        file: document_parsing_stage/skip-extracted-filings.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 8
+    logging_infrastructure:
+      class_count: 1
+      stage_id: logging
+      stage_order: 4
+      responsibility: Centralized logging infrastructure providing timestamped log files and console output filtering. Enables
+        debugging of specific execution windows and post-run forensics.
+      classes:
+      - name: Logger.__init__
+        file: logging_infrastructure/logger-init.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 2
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.32926829268292684
+    evidence_invalid: 55
+    evidence_verified: 27
+    evidence_auto_fixed: 0
+    audit_coverage: 45/45 (100%)
+    audit_pass_rate: 1/45 (2%)
+    audit_fail_total: 29
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 1
+      warn: 15
+      fail: 29
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-114. Evidence verify ratio
+    = 32.9% and audit fail total = 29. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-114-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: SEC EDGAR Filing Extraction
+    positive_terms:
+    - EDGAR
+    - SEC filings
+    - 10-K extraction
+    - annual report parsing
+    - document extraction
+    data_domain: financial_data
+    negative_terms:
+    - trading strategy
+    - backtesting
+    - stock screening
+    - live trading
+    - factor computation
+    - machine learning prediction
+    ambiguity_question: Are you looking to extract raw SEC EDGAR filings (10-K, 10-Q, 8-K) from compressed archives for document
+      processing? Or do you need a different financial data pipeline task?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 92
+    fatal_constraints_count: 31
+    non_fatal_constraints_count: 139
+    use_cases_count: 1
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 36 source groups: 10-Q Bug
+        Detection(1), 10-Q Processing(1), 8-K Processing(1), Caching Strategy(1), Directory Setup(3), Error Handling(1), and
+        30 more.'
+      key_decisions: 92 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-057
+      type: B/BA
+      summary: 10-Q part separation bug detected when PART I is only mentioned in ToC and PART II is much longer
+    - id: BD-038
+      type: B/RC
+      summary: '10-Q documents parsed in two parts: Part I (Items 1-4) and Part II (Items 1-6)'
+    - id: BD-039
+      type: B/RC
+      summary: 8-K item format uses decimal notation (1.01, 2.01, 5.01) not simple numbers
+    - id: BD-045
+      type: B/RC
+      summary: Company info cached in JSON file (companies_info.json) to avoid redundant API calls
+    - id: BD-017
+      type: B/BA
+      summary: Dataset directory (DATASET_DIR) is created alongside __init__.py in a 'datasets' subfolder rather than allowing
+        user specification
+    - id: BD-018
+      type: B
+      summary: Logging directory (LOGGING_DIR) is created alongside __init__.py in a 'logs' subfolder rather than allowing
+        user specification
+    - id: BD-019
+      type: B
+      summary: Directories are created at import time in __init__.py rather than lazily or on-demand
+    - id: BD-051
+      type: B/DK
+      summary: If each items are null after extraction, log warning and return None to skip filing
+    - id: BD-046
+      type: B/DK
+      summary: 'Downloaded filename format: {CIK}_{FILING_TYPE}_{YEAR}_{ACCESSION_NUM}.{EXT}'
+    - id: BD-056
+      type: B/RC
+      summary: File reading uses errors='backslashreplace' to handle encoding issues gracefully
+    - id: BD-048
+      type: B
+      summary: CSV metadata written to temporary file first, then moved to final location to prevent data loss
+    - id: BD-023
+      type: B/RC
+      summary: 8-K item naming change from simple numbers (1, 2, 3) to decimal format (1.01, 2.01, 5.01) occurred on August
+        23, 2004
+    - id: BD-026
+      type: B
+      summary: HTML closing tags (div, tr, p, li) replaced with two newline characters during stripping
+    - id: BD-027
+      type: B
+      summary: <br> tags replaced with two newline characters during HTML stripping
+    - id: BD-028
+      type: B
+      summary: TH/TD closing tags replaced with spaces rather than newlines during HTML stripping
+    - id: BD-034
+      type: B/RC
+      summary: Item patterns adjusted to insert optional whitespace before trailing letters (A, B, C) for flexible matching
+    - id: BD-035
+      type: B/BA
+      summary: 'SIGNATURE section allows variations: SIGNATURE, SIGNATURES, or Signature(s)'
+    - id: BD-064
+      type: B/BA
+      summary: Item index pattern includes word boundary characters ([.*~-:\s\(]) after item number
+    - id: BD-052
+      type: B/BA
+      summary: If no items_to_extract specified, each items for the filing type are extracted
+    - id: BD-043
+      type: B/DK
+      summary: Retry mechanism uses 5 retries with exponential backoff factor of 0.2 for network requests
+    - id: BD-062
+      type: B
+      summary: Exponential backoff status codes include 400, 401, 403, 500, 502, 503, 504, 505
+    - id: BD-050
+      type: B/BA
+      summary: Process pool uses 1 worker process for parallel extraction
+    - id: BD-065
+      type: B/BA
+      summary: Whitespace (but not newlines) matched as [\^\S\r\n] in patterns to preserve line breaks
+    - id: BD-044
+      type: B/RC
+      summary: SEC rate limit response detected by checking for 'will be managed until action is taken' text
+    - id: BD-036
+      type: B/BA
+      summary: Item section extraction selects longest matching section between item markers
+    - id: BD-037
+      type: B/RC
+      summary: SIGNATURE extraction uses last occurrence in document rather than first
+    - id: BD-063
+      type: B/RC
+      summary: Case-sensitive search attempted first before falling back to case-insensitive for item matching
+    - id: BD-053
+      type: B/BA
+      summary: SIGNATURE section excluded by default; enabled via include_signature config flag
+    - id: BD-033
+      type: B
+      summary: Horizontal span margins replaced with single space, vertical margins with single newline
+    - id: BD-054
+      type: B/BA
+      summary: Tables removed by default during extraction; disabled via remove_tables config flag
+    - id: BD-031
+      type: B/RC
+      summary: 'Non-blank background colors (not white, transparent, none, or #fff) trigger table removal'
+    - id: BD-032
+      type: B
+      summary: Tables containing item index headers (Item 1, Item 1A, etc.) are preserved even if they have background colors
+    - id: BD-029
+      type: B/RC
+      summary: Multiple consecutive newlines and spaces normalized to single newline, then multiple spaces to single space
+    - id: BD-030
+      type: B/RC
+      summary: Special Unicode characters (smart quotes, em-dashes, various Unicode dashes) normalized to ASCII equivalents
+    - id: BD-060
+      type: B/RC
+      summary: Page numbers and headers removed during text cleanup using regex patterns
+    - id: BD-061
+      type: B/RC
+      summary: Table of Contents, Index to Financial Statements, Back to Contents, Quicklinks headers removed
+    - id: BD-066
+      type: B
+      summary: Whitespace normalization function preserves structure while removing excessive spacing
+    - id: BD-022
+      type: B/BA
+      summary: Regex flags set to IGNORECASE | DOTALL | MULTILINE for each item pattern matching
+    - id: BD-041
+      type: B/BA
+      summary: Index URLs created by prepending 'https://www.sec.gov/Archives/' to relative paths
+    - id: BD-004
+      type: B/RC
+      summary: Parse Document Format Files table for .htm/.html links; fall back to complete submission text file
+    - id: BD-005
+      type: M/BA
+      summary: Store company metadata in companies_info.json to reduce per-filing lookups
+    - id: BD-006
+      type: BA/DK
+      summary: 'Filename convention: {CIK}_{Type}_{Year}_{accession}.{ext}'
+    - id: BD-047
+      type: B/BA
+      summary: 'Incremental download: existing files are skipped but new filings are downloaded'
+    - id: BD-074
+      type: BA
+      summary: HtmlStripper sets convert_charrefs=True and strict=False - affects HTML parsing
+    - id: BD-007
+      type: B/RC
+      summary: Detect HTML vs plain text by checking for <td> and <tr> elements
+    - id: BD-008
+      type: M/BA
+      summary: Remove numerical tables but preserve text-containing tables via background-color detection
+    - id: BD-009
+      type: BA
+      summary: Handle 10-Q two-part structure by splitting text before item extraction
+    - id: BD-010
+      type: B/BA
+      summary: Adjust regex patterns for Roman numerals to capture both I,II and 1,2 formats
+    - id: BD-011
+      type: M/BA
+      summary: Select longest matching section when multiple candidates exist (handles TOC interference)
+    - id: BD-012
+      type: M/BA
+      summary: Process filings in parallel via ProcessPool
+    - id: BD-013
+      type: B/RC
+      summary: '8-K items renamed after August 23, 2004 (old: 1-12, new: 1.01-9.01)'
+    - id: BD-014
+      type: M/BA
+      summary: Set recursion limit to 30000 to handle deeply nested HTML
+    - id: BD-020
+      type: B/BA
+      summary: Python recursion limit increased from default 1000 to 30000 to handle deeply nested HTML structures
+    - id: BD-024
+      type: B/RC
+      summary: Roman numeral mapping (1-20) used for converting numeric parts to Roman numerals for 10-Q parsing
+    - id: BD-025
+      type: B/RC
+      summary: HTML document detected by presence of both <td> AND <tr> elements (not just one)
+    - id: BD-055
+      type: B/RC
+      summary: Embedded PDF sections (<PDF>...</PDF>) stripped from HTML documents
+    - id: BD-058
+      type: B
+      summary: HTMLParser used for HTML stripping with custom data handler that accumulates text
+    - id: BD-067
+      type: B/BA
+      summary: Date threshold for 8-K form version detection
+    - id: BD-068
+      type: B/BA
+      summary: Background color filtering for table removal decision
+    - id: BD-069
+      type: B/RC
+      summary: Special character Unicode normalization
+    - id: BD-070
+      type: B/BA
+      summary: Ignore-matches counter for ToC filtering
+    - id: BD-083
+      type: BA
+      summary: 'INTERACTION: BD-076 (global recursion limit 30000) × BD-074 (HtmlStripper HTMLParser settings) × BD-014 (recursion
+        limit declaration) → StackOverflow risk cascade in deeply nested documents'
+    - id: BD-084
+      type: BA
+      summary: 'INTERACTION: BD-001 (incremental download) × BD-047 (skip existing files) × BD-077 (CSV format contract) →
+        Amplified efficiency gains with silent failure risk'
+    - id: BD-085
+      type: B/BA
+      summary: 'INTERACTION: BD-072 (8-K cutoff invariant) × BD-067 (date threshold) × BD-013 (8-K item naming) → Critical
+        invariant with contradictory implementation risk'
+    - id: BD-086
+      type: B/RC
+      summary: 'INTERACTION: BD-003 (exponential backoff) × BD-044 (rate limit text detection) × BD-062 (status_forcelist)
+        → Redundant error handling with partial coverage'
+    - id: BD-087
+      type: B
+      summary: 'INTERACTION: BD-009 (10-Q two-part structure) × BD-038 (10-Q item naming) × BD-075 (part-item delimiter) ×
+        BD-079 (Roman numeral map) → Cascading dependency on parsing sequence'
+    - id: BD-088
+      type: B
+      summary: 'INTERACTION: BD-017 (DATASET_DIR fixed) × BD-018 (LOGGING_DIR fixed) × BD-019 (eager directory creation) →
+        Deployment rigidity causing permission errors in restricted environments'
+    - id: BD-089
+      type: BA
+      summary: 'INTERACTION: BD-045 (company info cache) × BD-002 (CIK lookup cache) → Duplicate caching mechanisms with stale
+        data amplification risk'
+    - id: BD-090
+      type: B
+      summary: 'INTERACTION: BD-007 (HTML detection) × BD-025 (td+tr detection) × BD-058 (HtmlStripper) → Detection failure
+        cascades to extraction failure on edge-case documents'
+    - id: BD-001
+      type: BA
+      summary: Download indices per-quarter to enable incremental updates without re-fetching each history
+    - id: BD-002
+      type: M/BA
+      summary: Use separate company_info.json cache to avoid redundant CIK lookups
+    - id: BD-003
+      type: BA
+      summary: Exponential backoff with 5 retries on each HTTP requests
+    - id: BD-040
+      type: B/RC
+      summary: 'Quarterly indices stored as TSV files with pipe delimiter, columns: CIK, Company, Type, Date, links, etc.'
+    - id: BD-042
+      type: B/DK
+      summary: EDGAR indices downloaded by year and quarter (e.g., 2023_QTR1.tsv, 2023_QTR2.tsv)
+    - id: BD-059
+      type: B/DK
+      summary: Skip future quarters when downloading indices (based on current date)
+    - id: BD-GAP-001
+      type: DK
+      summary: 'Missing: Stale data detection and expiry policy'
+    - id: BD-GAP-002
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-080
+      type: DK
+      summary: HtmlStripper inherits from HTMLParser - users may not realize this dependency
+    - id: BD-072
+      type: RC
+      summary: 8-K obsolete cutoff date 2004-08-23 must match between code and tests
+    - id: BD-075
+      type: RC
+      summary: 10-Q item naming convention uses '__' delimiter to encode part-item relationship
+    - id: BD-077
+      type: RC
+      summary: FILINGS_METADATA.csv format is implicit contract between download and extract
+    - id: BD-079
+      type: RC
+      summary: roman_numeral_map keys (1-20) must match part numbers in item_list_10q
+    - id: BD-015
+      type: M/DK
+      summary: Timestamp log filenames for run-level isolation
+    - id: BD-016
+      type: M
+      summary: Console shows INFO+, file captures DEBUG+
+    - id: BD-021
+      type: B/RC
+      summary: CSS utils logging is suppressed at CRITICAL level to avoid noise from the library
+    - id: BD-049
+      type: B/BA
+      summary: Console logging set to INFO level (not DEBUG) to reduce noise during execution
+    - id: BD-071
+      type: B
+      summary: process_filing MUST call determine_items_to_extract BEFORE extract_items
+    - id: BD-073
+      type: B/RC
+      summary: 10-Q extraction requires parts parsed before items - get_10q_parts before item loop
+    - id: BD-076
+      type: B/BA
+      summary: Global recursion limit 30000 set at module load - affects each imports
+    - id: BD-081
+      type: BA
+      summary: Logger instantiated at module level before config.json loaded
+    - id: BD-078
+      type: BA/DK
+      summary: 10-Q bug recovery modifies self.items_list state then restores it
+    - id: BD-082
+      type: BA
+      summary: 10-Q length_difference threshold 5000 chars drives retry loop
+resources:
+  packages:
+  - name: beautifulsoup4==4.8.2
+    version_pin: latest
+  - name: lxml==4.9.1
+    version_pin: latest
+  - name: requests==2.31.0
+    version_pin: latest
+  - name: pandas==1.5.3
+    version_pin: latest
+  - name: click==7.0
+    version_pin: latest
+  - name: tqdm==4.42.1
+    version_pin: latest
+  - name: numpy==1.24.4
+    version_pin: latest
+  - name: cssutils==1.0.2
+    version_pin: latest
+  - name: pathos==0.2.9
+    version_pin: latest
+  - name: urllib3==1.26.7
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install beautifulsoup4==4.8.2
+    - python3 -m pip install lxml==4.9.1
+    - python3 -m pip install requests==2.31.0
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-006
+    when: When requesting data from SEC EDGAR
+    action: include a valid User-Agent header identifying the requester with contact information
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: SEC EDGAR will reject requests without valid User-Agent identification with 403 Forbidden errors, preventing
+      any data downloads
+    stage_ids:
+    - index_download
+  - id: finance-C-017
+    when: When constructing SEC EDGAR index URLs
+    action: 'use the official SEC EDGAR full-index URL pattern: https://www.sec.gov/Archives/edgar/full-index/{year}/QTR{quarter}/master.zip'
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Using incorrect URL patterns will result in 404 errors and complete download failure
+    stage_ids:
+    - index_download
+  - id: finance-C-021
+    when: When downloading SEC EDGAR filings via HTTP requests
+    action: declare a valid User-Agent header containing contact information (name and email)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: SEC EDGAR will block or throttle requests without a valid User-Agent header, causing downloads to fail with
+      HTTP 403 errors
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-028
+    when: When downloading filings from SEC EDGAR API endpoints
+    action: implement retry logic with exponential backoff to handle rate limiting responses (HTTP 429) and transient errors
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: SEC EDGAR enforces rate limits; without retry-backoff, repeated requests will trigger temporary IP blocks,
+      halting all subsequent downloads
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-030
+    when: When generating filenames for downloaded filing documents
+    action: use the convention {CIK}_{FilingTypeName}_{Year}_{accession}.{ext} to verify uniqueness per filing
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-unique filenames cause subsequent downloads to overwrite existing files, resulting in data loss and incorrect
+      filing-to-metadata associations
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-032
+    when: When requesting SEC EDGAR index files
+    action: respect SEC EDGAR's rate limit of 10 requests per second to avoid triggering automated IP blocks
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Exceeding rate limits causes SEC EDGAR to temporarily block the IP address, preventing all subsequent downloads
+      until the block expires (typically 15-60 minutes)
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-037
+    when: When creating the FILINGS_METADATA.csv output file
+    action: 'include each required columns: cik, company, filing_type, filing_date, period_of_report, sic, state_of_inc, htm_filing_link,
+      filename'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing columns in the metadata CSV breaks downstream parsing stages that expect specific field names, causing
+      KeyError exceptions in extract_items.py
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-041
+    when: When extracting items from SEC filings
+    action: Detect HTML vs plain text by checking for <td> and <tr> table elements presence
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect format detection causes HTML tags to appear in extracted text or structured data to be lost, corrupting
+      the extracted JSON output with malformed content
+    stage_ids:
+    - document_parsing
+  - id: finance-C-042
+    when: When removing HTML tables from filings
+    action: Preserve unstyled tables that may contain item listings while removing styled financial tables
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Removing all tables indiscriminately causes item section headers and listing tables to be deleted, resulting
+      in incomplete extraction of filing content
+    stage_ids:
+    - document_parsing
+  - id: finance-C-043
+    when: When processing 10-Q filings
+    action: Separate document text into Part I and Part II before extracting items to prevent cross-contamination
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without part separation, identical item names in different parts (e.g., Item 1 in Part I vs Item 1 in Part
+      II) cause content to be mixed or incorrectly attributed, corrupting the extracted data
+    stage_ids:
+    - document_parsing
+  - id: finance-C-046
+    when: When processing 8-K filings
+    action: Use obsolete item numbering (1-12) for filings before 2004-08-23 and new numbering (1.01-9.01) for later filings
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using wrong item numbering scheme causes no matches to be found for historical filings, resulting in empty
+      item sections and complete extraction failure
+    stage_ids:
+    - document_parsing
+  - id: finance-C-047
+    when: When parsing deeply nested HTML documents
+    action: Set Python recursion limit to 30000 to handle SEC filings with deeply nested tables and div elements
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Default recursion limit of 1000 causes StackOverflow errors on malformed or deeply nested HTML documents,
+      preventing extraction from completing
+    stage_ids:
+    - document_parsing
+  - id: finance-C-051
+    when: When generating JSON output from filings
+    action: Name 10-K/8-K items as item_1, item_1A, item_2 and 10-Q items as part_1_item_1, part_2_item_1A per filing type
+      convention
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent item naming prevents downstream NLP applications from reliably locating specific sections, causing
+      feature extraction failures
+    stage_ids:
+    - document_parsing
+  - id: finance-C-052
+    when: When writing JSON output files
+    action: Create filing type subdirectories (10-K, 10-Q, 8-K) before writing extracted JSON files
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing directories cause FileNotFoundError during JSON write operations, preventing extracted data from
+      being persisted to disk
+    stage_ids:
+    - document_parsing
+  - id: finance-C-062
+    when: When configuring the logging infrastructure
+    action: Set the file logging level below DEBUG
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Setting file level below DEBUG will exclude DEBUG messages including request details needed for post-run
+      forensics, violating the acceptance criteria that log files must contain DEBUG-level messages
+    stage_ids:
+    - logging
+  - id: finance-C-063
+    when: When configuring console logging output
+    action: Set console handler level to INFO or higher
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Setting console level below INFO will cause DEBUG-level spam in stdout, violating the acceptance criterion
+      that console output shows INFO-level messages only
+    stage_ids:
+    - logging
+  - id: finance-C-064
+    when: When generating log filenames
+    action: Include timestamp in format YYYY_MM_DD_HH_MM_SS for run-level isolation
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without timestamp in the filename, multiple runs will overwrite each other's log files, preventing debugging
+      of specific execution windows
+    stage_ids:
+    - logging
+  - id: finance-C-076
+    when: When configuring the SEC EDGAR API connection
+    action: Set user_agent to a valid contact string containing name and email (e.g., 'John Doe john@example.com')
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: SEC EDGAR will block requests without a proper User-Agent header, causing all index downloads and crawls
+      to fail with traffic management messages
+  - id: finance-C-078
+    when: When processing TSV index files into DataFrames
+    action: Treat each CSV/TSV fields as strings using dtype=str to prevent numeric coercion of CIK and numeric identifiers
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: CIK values like '0000320193' get coerced to integers 320193, causing file path mismatches and missing filing
+      metadata lookups downstream
+  - id: finance-C-079
+    when: When transferring DataFrame between index_download and crawl_and_download stages
+    action: 'Include each required columns: CIK, Company, Type, Date, complete_text_file_link, html_index, Filing Date, Period
+      of Report, SIC, htm_file_link, State of Inc, State location, Fiscal Year End, filename'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: document_parsing stage expects specific columns to build JSON structure; missing columns cause KeyError exceptions
+      during extraction
+  - id: finance-C-083
+    when: When SEC EDGAR returns a 200 response with traffic management HTML
+    action: Treat such responses as successful downloads; the content must be validated for expected HTML structure
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Traffic management pages get saved as raw filings, corrupting the dataset with invalid HTML that causes extraction
+      failures in document_parsing stage
+  - id: finance-C-087
+    when: When reading raw filing documents from disk
+    action: Construct file path as {raw_filings_folder}/{Type}/{filename} matching the directory structure created during
+      download
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect file path causes FileNotFoundError, preventing document_parsing stage from processing downloaded
+      filings
+  - id: finance-C-095
+    when: When reading or writing FILINGS_METADATA.csv between download and extract stages
+    action: 'Verify CSV column names match exactly: CIK, Company, Type, Date, complete_text_file_link, html_index, Filing
+      Date, Period of Report, SIC, htm_file_link, State of Inc, State location, Fiscal Year End, filename'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Extract stage fails with KeyError when accessing metadata columns that have mismatched names, causing the
+      entire extraction pipeline to crash
+  - id: finance-C-111
+    when: When implementing 8-K filing extraction logic in extract_items.py
+    action: Verify the 8-K obsolete cutoff date 2004-08-23 is consistent across both production code and test assertions to
+      correctly identify which 8-K filings are obsolete under SEC filing rules
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent cutoff date between code and tests creates false confidence scenarios where test validation
+      passes but production fails, violating SEC regulatory requirements for 8-K filing extraction
+    derived_from_bd_id: BD-072
+  - id: finance-C-114
+    when: When implementing or modifying document type detection logic for SEC filings
+    action: Detect HTML vs plain text by checking for <td> and <tr> elements — this specific check distinguishes structured
+      HTML from plain text with embedded tags
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using extension-based detection or other heuristics causes incorrect parsing of .txt files containing HTML
+      content, corrupting extracted SEC filing data
+    derived_from_bd_id: BD-007
+  - id: finance-C-118
+    when: When implementing 10-Q item extraction parsing logic
+    action: Use '__' as the delimiter when encoding part-item relationships in SEC filing section names — the parsing logic
+      at line 927 depends on split('__') to correctly separate section numbers from item numbers
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using a different delimiter breaks the hierarchical mapping between SEC filing sections and extracted items,
+      causing structural corruption of the parsed 10-Q document tree
+    derived_from_bd_id: BD-075
+  - id: finance-C-119
+    when: When modifying the FILINGS_METADATA.csv production or consumption logic in extract_items.py
+    action: Maintain exact column names, ordering, and data types as specified in the implicit contract between download module
+      (lines 424-439) and extract module (line 1199) — any change requires coordinated updates to both modules
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If download changes CSV column names, ordering, or data types without coordinating with extract, downstream
+      extraction will fail silently or produce incorrect filing metadata, corrupting all subsequent SEC filing analysis
+    derived_from_bd_id: BD-077
+  - id: finance-C-120
+    when: When implementing part extraction logic for SEC 10-Q filings in extract_items.py
+    action: Verify roman_numeral_map keys (I-XX, defined at lines 32-53) exactly match the PART regex pattern (line 540) —
+      any mismatch causes part extraction to silently skip or misidentify SEC section boundaries
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If roman_numeral_map keys do not align with PART regex pattern, part extraction will silently skip or misidentify
+      SEC section boundaries, causing item content to be attributed to wrong sections in 10-Q filings
+    derived_from_bd_id: BD-079
+  - id: finance-C-121
+    when: When implementing 8-K item extraction logic in extract_items.py
+    action: 'Apply date-based pattern switching for 8-K item numbering: use decimal notation (1.01-9.01) for filings on or
+      after August 23, 2004, and sequential integers (1-12) for filings before that date'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using only one pattern causes complete parsing failure for pre-2004 8-K filings — SEC mandated item numbering
+      format change on August 23, 2004, and historical filings must use the old format
+    derived_from_bd_id: BD-013
+  - id: finance-C-141
+    when: When implementing or testing 8-K filing format detection logic
+    action: Centralize the 8-K cutoff date 2004-08-23 as a single shared constant with import-time validation — both BD-067
+      and BD-013 implementations must reference the same constant to prevent timezone-related or rounding discrepancies
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without centralized date handling, tests and production code may use slightly different date representations
+      for the 2004-08-23 8-K cutoff, causing silent incorrect extraction of pre-2004 8-K filings without any error indication
+    derived_from_bd_id: BD-085
+  - id: finance-C-168
+    when: When implementing SEC EDGAR data retrieval with rate limit handling
+    action: 'Verify rate limit detection operates as OR logic across each three mechanisms: (1) BD-044 HTML text detection
+      (''will be managed until action is taken''), (2) BD-062 HTTP status codes (403/429), and (3) BD-003 exponential backoff
+      retries — each three paths must independently trigger rate limit response'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incomplete rate limit detection causes SEC EDGAR requests to fail silently or return partial data. This violates
+      regulatory data access reliability requirements and may result in gaps in mandatory financial disclosures used for trading
+      decisions
+    derived_from_bd_id: BD-086
+  regular:
+  - id: finance-C-001
+    when: When parsing SEC EDGAR master.idx file content
+    action: decode content using latin-1 encoding to preserve original byte values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect encoding (e.g., utf-8) will corrupt company names and paths containing non-ASCII characters,
+      resulting in missing or malformed filing records in the index
+    stage_ids:
+    - index_download
+  - id: finance-C-002
+    when: When processing SEC EDGAR master.idx file header
+    action: skip the first 10 lines containing header/metadata before parsing data rows
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Including header lines in the parsed data will cause downstream processing to fail when attempting to parse
+      header text as filing records
+    stage_ids:
+    - index_download
+  - id: finance-C-003
+    when: When validating quarter parameters for SEC EDGAR index download
+    action: pass invalid quarter values other than 1, 2, 3, or 4 to the download function
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Invalid quarter values will cause the download to fail with an exception, preventing any index files from
+      being retrieved
+    stage_ids:
+    - index_download
+  - id: finance-C-004
+    when: When downloading indices for the current calendar year
+    action: skip quarters that have not yet occurred based on current month calculation
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Attempting to download future quarters will result in 404 errors and failed index downloads, wasting network
+      bandwidth and causing incorrect failure tracking
+    stage_ids:
+    - index_download
+  - id: finance-C-005
+    when: When naming the downloaded SEC EDGAR index TSV files
+    action: use the naming convention {year}_QTR{quarter}.tsv as required by downstream processing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect file naming will cause downstream stages to fail when searching for index files, breaking the entire
+      crawling pipeline
+    stage_ids:
+    - index_download
+  - id: finance-C-007
+    when: When making HTTP requests to SEC EDGAR
+    action: implement retry logic with exponential backoff for handling rate limits and transient failures
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without retry logic, rate-limited requests (403 errors) will cause immediate download failures, preventing
+      successful index retrieval
+    stage_ids:
+    - index_download
+  - id: finance-C-008
+    when: When retrying failed SEC EDGAR requests
+    action: include HTTP 403 in the list of status codes that trigger automatic retry
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Excluding 403 from retry status codes will cause rate-limit errors to fail immediately instead of being retried,
+      breaking downloads
+    stage_ids:
+    - index_download
+  - id: finance-C-009
+    when: When processing already-downloaded SEC EDGAR indices
+    action: enable skip_present_indices option to avoid redundant network calls and API rate limit consumption
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Re-downloading existing indices wastes bandwidth, consumes SEC EDGAR API rate limits, and extends execution
+      time unnecessarily
+    stage_ids:
+    - index_download
+  - id: finance-C-010
+    when: When downloading SEC EDGAR master.zip archives
+    action: extract and process the master.idx file from within the downloaded zip archive
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Failing to extract from the zip archive will cause the download to fail when trying to read the raw zip bytes
+      as text
+    stage_ids:
+    - index_download
+  - id: finance-C-011
+    when: When processing SEC EDGAR index file paths
+    action: convert .txt file references to -index.html references for proper HTML index access
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using .txt references instead of -index.html will cause downstream document downloads to fail, as SEC EDGAR
+      HTML indices are the standard access method
+    stage_ids:
+    - index_download
+  - id: finance-C-012
+    when: When saving processed index files to disk
+    action: use pipe-delimiter format preserving CIK|Company|Form|Date|Path|HTML_Index structure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect delimiter or missing fields will cause downstream parsing to fail when expecting the standard SEC
+      EDGAR index format
+    stage_ids:
+    - index_download
+  - id: finance-C-013
+    when: When making claims about SEC EDGAR data coverage
+    action: claim that downloaded indices represent complete real-time data without regulatory delays
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: SEC EDGAR data has inherent delays and filing deadlines; presenting the data as real-time would mislead users
+      about data freshness
+    stage_ids:
+    - index_download
+  - id: finance-C-014
+    when: When handling failed SEC EDGAR index downloads
+    action: track failed indices separately and prompt user for retry decision instead of silently continuing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Silently continuing after download failures will result in incomplete index coverage, causing downstream
+      processing to miss filings from failed periods
+    stage_ids:
+    - index_download
+  - id: finance-C-015
+    when: When setting SEC EDGAR API request backoff parameters
+    action: use backoff_factor of 0.2 or higher to avoid overwhelming SEC EDGAR rate limits
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Too-aggressive backoff (or no backoff) will cause repeated 403 rate-limit errors, potentially resulting in
+      temporary or permanent IP blocking by SEC EDGAR
+    stage_ids:
+    - index_download
+  - id: finance-C-016
+    when: When verifying downloaded index file existence
+    action: check file existence using os.path.exists before deciding to skip or download
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping the existence check will cause incorrect behavior when skip_present_indices is True but files are
+      missing
+    stage_ids:
+    - index_download
+  - id: finance-C-018
+    when: When configuring the index download stage
+    action: set start_year greater than end_year as this creates an empty download range
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Invalid year range will cause the download loop to execute zero iterations, producing no index files and
+      silent failure
+    stage_ids:
+    - index_download
+  - id: finance-C-019
+    when: When using this tool for financial analysis or regulatory compliance
+    action: claim this tool provides official SEC filings or guaranteed regulatory compliance verification
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting scraped EDGAR data as official or compliant could lead to legal liability and incorrect financial
+      decisions based on potentially outdated or incomplete data
+    stage_ids:
+    - index_download
+  - id: finance-C-020
+    when: When considering skipping the retry mechanism
+    action: skip the exponential backoff retry logic even when encountering transient network errors
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Skipping retries will cause single transient failures to become complete download failures, wasting previous
+      successful requests in the batch
+    stage_ids:
+    - index_download
+  - id: finance-C-022
+    when: When crawling HTML index pages from SEC EDGAR
+    action: extract the Period of Report field from the filing page; return None if it cannot be found
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Filings without a Period of Report cannot be properly categorized by year, causing incorrect temporal ordering
+      and potential duplication of financial data
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-023
+    when: When processing EDGAR master.idx index files
+    action: decode index file content using latin-1 encoding before processing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect encoding (e.g., UTF-8) will cause character decoding errors for non-ASCII company names,
+      resulting in corrupted or truncated metadata entries
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-024
+    when: When downloading filing documents from SEC EDGAR
+    action: prefer HTML (.htm/.html) document links over complete submission text files as primary download target
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Falling back directly to complete submission text files without attempting HTML parsing produces unstructured
+      data that downstream parsers cannot process correctly
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-025
+    when: When encountering iXBRL document links (ix?doc= prefix) during filing download
+    action: strip the ix?doc=/ prefix from URLs before downloading to obtain valid document URLs
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Downloading with ix?doc=/ prefixed URLs will result in 404 errors or invalid content, causing the filing
+      document to be missing from the dataset
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-026
+    when: When downloading indices for the current year
+    action: skip quarters that have not yet elapsed to avoid requesting non-existent data
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Requesting future quarters will return empty or 404 responses, wasting network bandwidth and potentially
+      corrupting index state
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-027
+    when: When storing filing metadata and downloaded files
+    action: write CSV metadata to a temporary file first, then atomically move to final location
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Writing directly to the metadata CSV risks data loss if the process is interrupted (e.g., Ctrl+C), leaving
+      an incomplete or corrupted metadata file
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-029
+    when: When organizing downloaded raw filing documents
+    action: store files in subdirectories named after the filing type (e.g., RAW_FILINGS/10-K/)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Storing all filing types in a single directory causes file name collisions and makes downstream parsing select
+      the wrong document for each filing type
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-031
+    when: When fetching company metadata (SIC, state, fiscal year) for multiple filings
+    action: cache company metadata in companies_info.json to avoid redundant HTTP requests per filing
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Fetching company metadata for each filing causes N redundant HTTP requests per company, multiplying API load
+      and slowing down bulk downloads significantly
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-033
+    when: When processing Document Format Files table in EDGAR HTML indexes
+    action: validate that tr.contents[7] exists and matches target filing types before extracting document links
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Accessing index 7 without bounds checking causes IndexError exceptions that crash the crawl process, leaving
+      subsequent filings unprocessed
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-034
+    when: When validating quarter values in configuration
+    action: reject quarter values outside the range [1, 2, 3, 4] with a descriptive error
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid quarter values cause unpredictable behavior in index filtering, potentially downloading wrong quarter
+      data or returning empty result sets
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-035
+    when: When extracting company metadata from SEC EDGAR company pages
+    action: handle missing HTML elements gracefully using try-except blocks and fall back to cached values
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Parsing failures for SIC/state/fiscal year without fallback cause NaN values in metadata CSV, breaking downstream
+      financial analysis that requires SIC codes for industry filtering
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-036
+    when: When downloading documents via HTTP requests
+    action: check for SEC EDGAR rate-limit error messages in response text before proceeding
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Ignoring rate-limit responses allows the script to continue requesting blocked endpoints, extending the IP
+      block duration significantly
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-038
+    when: When downloading filings for multiple years and quarters
+    action: skip validation that filings already exist locally before initiating new downloads
+    severity: medium
+    kind: operational_lesson
+    modality: must_not
+    consequence: Redownloading existing filings wastes bandwidth and API quota, and risks overwriting files that may have
+      been manually curated or have different content
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-039
+    when: When providing filing types to the download module
+    action: specify at least one valid filing type; reject empty filing type lists
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: An empty filing type list causes the script to exit silently without downloading anything, wasting time on
+      index downloads that serve no purpose
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-040
+    when: When using SEC EDGAR as a data source for financial analysis
+    action: claim that downloaded filings represent real-time or current data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: SEC EDGAR has inherent processing delays of 1-5 business days between filing submission and availability;
+      presenting data as current misleads financial analysts about data freshness
+    stage_ids:
+    - crawl_and_download
+  - id: finance-C-044
+    when: When matching item patterns in filing text
+    action: Match both Roman numerals (I, II, III) and Arabic numerals (1, 2, 3) for item numbering
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Single-format matching causes extraction failures for filings using alternative numbering conventions, resulting
+      in missing or empty item sections in the output JSON
+    stage_ids:
+    - document_parsing
+  - id: finance-C-045
+    when: When selecting section boundaries between items
+    action: Select the longest matching section when multiple candidates exist to prefer actual content over TOC entries
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Selecting shorter TOC entries over actual section content causes only table of contents text to be extracted,
+      leaving item sections empty or incomplete
+    stage_ids:
+    - document_parsing
+  - id: finance-C-048
+    when: When processing CPU-bound text parsing operations
+    action: Use ProcessPool (process-based parallelism) instead of thread-based parallelism to bypass the Global Interpreter
+      Lock
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Thread-based parallelism suffers from GIL contention on CPU-bound parsing, causing severe performance degradation
+      and extended processing times
+    stage_ids:
+    - document_parsing
+  - id: finance-C-049
+    when: When extracting from 10-Q reports
+    action: Apply heuristics to detect and correct part separation errors in malformed filings
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: 10-Q filings with formatting bugs (missing PART I markers, PART I containing only ToC) cause incorrect part
+      attribution, mixing financial data with narrative content
+    stage_ids:
+    - document_parsing
+  - id: finance-C-050
+    when: When handling embedded content in old filings
+    action: Remove embedded PDF sections and handle legacy .txt format without <DOCUMENT> tags
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Unprocessed PDF tags and missing <DOCUMENT> wrappers cause corrupted output or complete extraction failure
+      for historical filings predating standardized EDGAR formatting
+    stage_ids:
+    - document_parsing
+  - id: finance-C-053
+    when: When handling edge cases in item extraction
+    action: Return empty string for missing items rather than omitting keys from JSON output
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing keys in JSON output cause KeyError exceptions in downstream consumers expecting consistent schema
+      across all filings
+    stage_ids:
+    - document_parsing
+  - id: finance-C-054
+    when: When logging extraction status
+    action: Log warnings when 10-Q part separation encounters known formatting issues
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Silent failures in part extraction produce corrupted data without user awareness, causing downstream analysis
+      to use incomplete or misattributed content
+    stage_ids:
+    - document_parsing
+  - id: finance-C-055
+    when: When verifying extracted filing data
+    action: Validate that at least one item section was successfully extracted before returning JSON
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Returning JSON with all empty item sections provides no usable data while appearing successful, causing silent
+      failures in data pipelines
+    stage_ids:
+    - document_parsing
+  - id: finance-C-056
+    when: When configuring extraction for production use
+    action: Enable skip_extracted_filings option to support incremental and resumable extraction
+    severity: low
+    kind: operational_lesson
+    modality: should
+    consequence: Re-extracting already processed filings wastes CPU cycles on redundant parsing operations, increasing processing
+      time proportionally to already-completed work
+    stage_ids:
+    - document_parsing
+  - id: finance-C-057
+    when: When processing filings for financial NLP research
+    action: Remove financial/numerical tables from extracted text to facilitate text-only analysis workflows
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Including numerical tables in text extraction corrupts NLP training data with tabular noise, degrading model
+      performance on narrative financial text analysis
+    stage_ids:
+    - document_parsing
+  - id: finance-C-058
+    when: When validating input filing metadata
+    action: Reject unsupported filing types with an exception listing available types
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Processing unsupported filing types produces no useful output while consuming resources, with cryptic failures
+      if user doesn't understand why extraction isn't working
+    stage_ids:
+    - document_parsing
+  - id: finance-C-059
+    when: When cleaning extracted text
+    action: Normalize Unicode special characters and fix broken section headers caused by OCR or transmission errors
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Non-normalized special characters (smart quotes, em-dashes, non-breaking spaces) cause encoding issues and
+      text matching failures in downstream NLP processing
+    stage_ids:
+    - document_parsing
+  - id: finance-C-060
+    when: When using extracted filing data for analysis
+    action: Claim that extracted content is complete or free of parsing errors
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: SEC filings frequently contain formatting bugs, inconsistent numbering, and encoding issues that cause extraction
+      to fail for some items; presenting results as complete misleads users about data quality
+    stage_ids:
+    - document_parsing
+  - id: finance-C-061
+    when: When instantiating the Logger class
+    action: Pass a name parameter to identify the logging context
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without a name parameter, the logger lacks proper identification in log entries, making it difficult to trace
+      which component generated log messages during debugging
+    stage_ids:
+    - logging
+  - id: finance-C-065
+    when: When creating log directories
+    action: Verify the logs/ directory exists before writing log files
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without ensuring the logs directory exists, log file writes will fail causing the logging system to malfunction
+      and lose critical debugging information
+    stage_ids:
+    - logging
+  - id: finance-C-066
+    when: When suppressing third-party library logs
+    action: Set urllib3 and cssutils log levels to CRITICAL to reduce noise
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Without suppressing third-party library noise, log files become polluted with irrelevant HTTP and CSS parsing
+      messages, obscuring important application-level logging
+    stage_ids:
+    - logging
+  - id: finance-C-067
+    when: When selecting timestamp timezone
+    action: Use gmtime() for UTC-based timestamps to verify cross-timezone consistency
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Using localtime instead of gmtime will cause timestamp confusion when debugging logs across different timezones,
+      making it difficult to correlate events from distributed runs
+    stage_ids:
+    - logging
+  - id: finance-C-068
+    when: When defining the LOGGING_DIR constant
+    action: Place the logs directory relative to the package root
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using an absolute path or wrong directory location will cause log file writes to fail or place logs in unexpected
+      locations
+    stage_ids:
+    - logging
+  - id: finance-C-069
+    when: When configuring the file handler format
+    action: Include asctime, name, levelname, and message in the log format for debugging
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without comprehensive log format fields, post-run forensics becomes difficult as log entries lack context
+      about timing, source component, and severity
+    stage_ids:
+    - logging
+  - id: finance-C-070
+    when: When configuring the console handler format
+    action: Use simplified message-only format for console output
+    severity: low
+    kind: resource_boundary
+    modality: must
+    consequence: Including verbose format fields in console output clutters the terminal with redundant information during
+      real-time monitoring
+    stage_ids:
+    - logging
+  - id: finance-C-071
+    when: When storing log files in version control
+    action: Commit log files to version control
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Committing log files to version control causes repository bloat and exposes potentially sensitive information
+      about system internals
+    stage_ids:
+    - logging
+  - id: finance-C-072
+    when: When instantiating Logger for a new module
+    action: Pass a descriptive name based on the module or operation context
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without a descriptive name parameter, log entries become ambiguous about which module or operation generated
+      them, hampering debugging
+    stage_ids:
+    - logging
+  - id: finance-C-073
+    when: When using the filemode parameter
+    action: Use append mode ('a') to preserve log history across runs
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using write mode ('w') would overwrite existing logs, losing valuable historical debugging information from
+      previous runs
+    stage_ids:
+    - logging
+  - id: finance-C-074
+    when: When adding a console handler to the root logger
+    action: Add the console handler to the root logger to capture each module logs
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Adding console handler to a non-root logger will cause duplicate output or miss logs from other modules that
+      don't explicitly use the same logger name
+    stage_ids:
+    - logging
+  - id: finance-C-075
+    when: When documenting the logging infrastructure
+    action: Claim the logging system provides real-time streaming or live monitoring
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: The logging system uses polling-based StreamHandler for console output and does not provide true real-time
+      streaming capabilities, so such claims would be misleading
+    stage_ids:
+    - logging
+  - id: finance-C-077
+    when: When downloading EDGAR indices for future quarters
+    action: Request indices for quarters beyond the current calendar quarter
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: SEC EDGAR returns 404 errors for future quarter indices, causing download_indices() to fail repeatedly and
+      waste API quota
+  - id: finance-C-080
+    when: When SEC EDGAR blocks requests due to rate limiting
+    action: Wait and retry with exponential backoff (up to 5 retries with 0.2 backoff factor) before failing
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without retry logic, rate-limited requests fail immediately, causing incomplete index downloads and missing
+      filing data
+  - id: finance-C-081
+    when: When appending new filings to FILINGS_METADATA.csv
+    action: Write to a temporary file first (.tmp), then atomically move it to the final location using shutil.move
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Direct writes can corrupt the CSV if interrupted (e.g., Ctrl+C), leaving metadata in an inconsistent state
+      and causing duplicate downloads on retry
+  - id: finance-C-082
+    when: When missing company metadata is encountered during crawl
+    action: Fill missing values (SIC, State of Inc, State location, Fiscal Year End) from companies_info.json cache keyed
+      by CIK
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incomplete metadata causes downstream document_parsing to produce JSON with empty or null fields, reducing
+      data utility for NLP research
+  - id: finance-C-084
+    when: When processing 8-K filings dated before August 23, 2004
+    action: Use obsolete 8-K item naming convention (items 1-12) instead of modern dot-notation (items 1.01-9.01)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using wrong item pattern causes zero items to be extracted from pre-2004 8-K filings, resulting in incomplete
+      NLP datasets
+  - id: finance-C-085
+    when: When extracting filing content from raw HTML/text documents
+    action: Detect HTML structure via <td> and <tr> tags to determine whether to use BeautifulSoup parsing or plain text regex
+      extraction
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect parsing mode causes garbled text extraction, breaking NLP tokenization and analysis downstream
+  - id: finance-C-086
+    when: When replacing NaN values in DataFrames read from CSV
+    action: Convert np.nan to Python None for consistent null value handling across each downstream JSON serialization
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: np.nan values serialize as 'NaN' strings in JSON, breaking schema validation and causing downstream parsing
+      errors
+  - id: finance-C-088
+    when: When SEC EDGAR's bulk index files use .zip format
+    action: Extract master.zip archive and parse master.idx file starting from line 11 (skipping EDGAR header lines)
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Parsing from line 1 includes EDGAR header metadata, corrupting the index DataFrame with invalid filing records
+  - id: finance-C-089
+    when: When handling iXBRL documents in SEC filings
+    action: Strip ix?doc=/ prefix from URLs before downloading to get valid .htm file links
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Invalid iXBRL URLs cause HTTP 404 errors, leaving raw filings missing and metadata pointing to non-existent
+      files
+  - id: finance-C-090
+    when: When writing extracted filing JSON output
+    action: Store JSON with UTF-8 encoding (ensure_ascii=False) to preserve special characters in financial text
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: ASCII encoding mangles non-ASCII characters (e.g., trademark symbols, em-dashes, currency symbols), corrupting
+      financial text for NLP training
+  - id: finance-C-091
+    when: When presenting EDGAR-CRAWLER as a data source for financial analysis
+    action: Claim the extracted JSON structure is semantically equivalent to the original SEC filing documents
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: HTML parsing can miss or incorrectly extract content; tables are optionally removed; the tool is designed
+      for NLP research, not regulatory compliance
+  - id: finance-C-092
+    when: When using crawled SEC filing data for trading or investment decisions
+    action: Treat EDGAR-CRAWLER output as real-time or authoritative financial data suitable for live trading
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: EDGAR has inherent reporting delays (8-K within 4 business days); crawled data reflects historical filings,
+      not current market conditions
+  - id: finance-C-093
+    when: When encountering extraction failures for individual items
+    action: Skip investigation and assume the source filing lacks that section content
+    severity: medium
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Many 10-Q filings have formatting bugs (missing PART headers, ToC interference); skipping investigation leads
+      to systematically incomplete NLP datasets
+  - id: finance-C-094
+    when: When implementing file paths across download and extract stages
+    action: Use {DATASET_DIR} as root directory for each file paths, as defined in __init__.py:2
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: File operations write to unintended directories, causing data loss or retrieval failures because files are
+      not in the expected canonical location
+  - id: finance-C-096
+    when: When reading filings metadata CSV from any stage
+    action: Use dtype=str in pd.read_csv to prevent pandas type coercion on numeric fields like CIK, and replace np.nan with
+      None
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: CIK values lose leading zeros (e.g., 0000320193 becomes 320193), causing mismatches between downloaded file
+      names and metadata references
+  - id: finance-C-097
+    when: When processing 8-K filings with dates around the historical transition point
+    action: Use cutoff date '2004-08-23' consistently between extract_items.py and test_extract_items.py to determine whether
+      to use item_list_8k or item_list_8k_obsolete
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Pre-2004-08-23 8-K filings use wrong item pattern matching (modern item names instead of obsolete), causing
+      all items to extract as empty strings
+  - id: finance-C-098
+    when: When extracting items from 10-Q filings
+    action: Use roman_numeral_map keys (1-20) that match part numbers in item_list_10q to enable dual-format matching (Roman
+      and Arabic numerals) for PART detection
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: PART I and PART 1 sections fail to match correctly, causing entire 10-Q parts to be missed during extraction
+  - id: finance-C-099
+    when: When presenting or reporting this system's extracted financial data to users
+    action: Claim that extracted filing data equals real-time trading signals, calculated financial metrics, or live market
+      data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users build automated trading systems based on stale EDGAR filings (8-K/10-Q/10-K are delayed disclosures),
+      leading to trades on outdated information and potential regulatory violations
+  - id: finance-C-100
+    when: When building financial analysis systems using this toolkit's output
+    action: Claim that parsed 10-K/10-Q/8-K item text provides calculated financial metrics such as P/E ratios, EPS, or ROI
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users make investment decisions based on uncalculated text strings, leading to incorrect financial analysis
+      and potential financial losses
+  - id: finance-C-101
+    when: When deploying this toolkit in enterprise document processing pipelines
+    action: Claim that extracted JSON output includes schema validation, data quality guarantees, or completeness verification
+      for production-grade compliance systems
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Compliance systems accept unvalidated JSON with empty item fields as complete, leading to regulatory reporting
+      gaps and audit failures
+  - id: finance-C-102
+    when: When processing non-SEC financial documents
+    action: Claim support for extracting structured data from non-SEC financial data sources such as company press releases,
+      earnings call transcripts, or international regulatory filings
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users attempt to parse non-SEC documents with SEC-specific item pattern matching, producing malformed JSON
+      with missing or incorrect field mappings
+  - id: finance-C-103
+    when: When downloading filings from SEC EDGAR
+    action: Declare a valid User-Agent string in HTTP requests to SEC EDGAR to comply with their access policy and avoid IP
+      blocking
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: SEC EDGAR blocks requests without proper User-Agent identification, causing downloads to fail with traffic
+      management messages
+    stage_ids:
+    - index_download
+  - id: finance-C-104
+    when: When naming extracted JSON keys for 10-Q items
+    action: 'Use ''__'' delimiter to encode part-item relationship in JSON keys: {part}_item_{number} format (e.g., part_1_item_1,
+      part_2_item_1A)'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Downstream NLP systems expecting standard part_item_N format receive mismatched key names, causing schema
+      validation failures and data ingestion errors
+  - id: finance-C-105
+    when: When naming extracted JSON keys for 10-K and 8-K items
+    action: 'Use ''item_'' prefix for each item keys: item_{number} format (e.g., item_1, item_1A, item_2.01, item_9A)'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Downstream systems expecting standard item_N key format receive malformed key names, breaking data pipeline
+      integration
+  - id: finance-C-106
+    when: When implementing or modifying SEC filing item extraction regex patterns in extract_items.py
+    action: Maintain regex patterns that capture both Roman numeral (I, II, III) and Arabic numeral (1, 2, 3) formats for
+      item numbering to verify comprehensive extraction from historical SEC filings with heterogeneous numbering conventions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Single-format matching causes extraction failures for historical filings with non-standard numbering conventions,
+      leading to incomplete data extraction and missing critical disclosure items from the SEC corpus
+    derived_from_bd_id: BD-010
+  - id: finance-C-107
+    when: When implementing SEC filing document parsing logic in download_filings.py
+    action: Parse HTML document format tables for .htm/.html links first, then fall back to complete submission TXT files
+      for older filings to verify full coverage from 1994 to present
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: HTML-only parsing misses older TXT-based SEC submissions, creating gaps in filing history and incomplete
+      coverage of historical regulatory filings prior to SEC standardization
+    derived_from_bd_id: BD-004
+  - id: finance-C-108
+    when: When configuring logging levels in logger.py
+    action: Set console output to INFO+ level for clean operational indicators without DEBUG noise, and file logging to DEBUG+
+      level to capture complete diagnostic information for post-run forensics
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Single log level either clutters console output with DEBUG noise during batch operations or loses critical
+      diagnostic information needed for failure investigation and performance debugging
+    derived_from_bd_id: BD-016
+  - id: finance-C-109
+    when: When implementing CIK lookup and company metadata retrieval logic
+    action: Maintain a persistent company_info.json cache file for company metadata to avoid redundant SEC EDGAR API calls
+      during bulk operations, reducing API overhead by approximately 80%
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Per-filing CIK lookups trigger excessive API requests, increasing rate-limit risk and causing significant
+      throughput degradation in bulk download scenarios with repeated CIK access patterns
+    derived_from_bd_id: BD-002
+  - id: finance-C-110
+    when: When configuring log file naming in the logging setup
+    action: Use timestamped log filenames to verify unique log files per execution run, preventing overwrites and enabling
+      post-hoc debugging of specific execution windows
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Static log filenames cause overwrites between execution runs, making it impossible to diagnose issues in
+      long-running bulk operations and losing critical forensic evidence
+    derived_from_bd_id: BD-015
+  - id: finance-C-112
+    when: When implementing or refactoring directory initialization logic
+    action: Change the eager directory creation pattern in __init__.py to lazy/on-demand creation — directories must be created
+      at import time, not on first file write
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Lazy directory creation introduces FileNotFoundError during file operations when imports occur without triggering
+      creation, breaking SEC filing downloads in production environments
+    derived_from_bd_id: BD-019
+  - id: finance-C-113
+    when: When configuring dataset directory paths for SEC filing extraction
+    action: Verify that DATASET_DIR path matches deployment requirements — if a custom location is needed, modify the hardcoded
+      'datasets' subfolder path in __init__.py before running extraction workflows
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Hardcoded DATASET_DIR causes extraction failures when the 'datasets' subfolder location doesn't match user
+      expectations or deployment environment paths
+    derived_from_bd_id: BD-017
+  - id: finance-C-115
+    when: When implementing HTTP request retry logic for SEC EDGAR downloads
+    action: Use exponential backoff with 5 retries for HTTP requests — SEC EDGAR enforces strict rate limits and returns 403
+      errors when exceeded
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without sufficient retry logic, bulk downloads fail prematurely on rate-limited requests, requiring manual
+      restart and failing to complete large SEC filing batches
+    derived_from_bd_id: BD-003
+  - id: finance-C-116
+    when: When modifying 10-Q extraction logic that uses state modification and restoration
+    action: Preserve the state modification/restoration pattern for bug recovery — if refactoring, use a context manager or
+      equivalent atomic pattern to verify self.items_list is always restored after temporary assignment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing the state restoration pattern causes self.items_list to retain incorrect intermediate state after
+      extraction failures, corrupting subsequent filing data in the batch
+    derived_from_bd_id: BD-078
+  - id: finance-C-117
+    when: When implementing company metadata caching for SEC EDGAR downloads
+    action: Cache company metadata (SIC codes, state of incorporation, fiscal year) in companies_info.json — caching eliminates
+      redundant HTTP requests and prevents rate-limit pressure during bulk operations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without metadata caching, each filing triggers redundant HTTP requests for constant company information,
+      causing approximately 50x increase in API calls and potential rate-limit failures
+    derived_from_bd_id: BD-005
+  - id: finance-C-122
+    when: When extracting items from SEC 10-Q filings in extract_items.py
+    action: Split document text into Part I (financial statements) and Part II (management discussion) before item extraction
+      to prevent Item 1A contamination between sections
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without part-level separation, Item 1A in Part I (risk factors) mixes with Item 1A in Part II (controls discussion),
+      corrupting downstream analysis by mixing financial risk disclosures with management assessment content
+    derived_from_bd_id: BD-009
+  - id: finance-C-123
+    when: When implementing table filtering logic in extract_items.py
+    action: Remove only tables with background-color or background-image attributes; preserve each other tables regardless
+      of their visual appearance — do not assume each tables are data tables
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Removing all tables destroys item listings and narrative content that appear in unstyled HTML tables, losing
+      critical information from SEC filing management discussions and risk disclosures
+    derived_from_bd_id: BD-008
+  - id: finance-C-124
+    when: When implementing section boundary detection in extract_items.py
+    action: Select the longest matching section when multiple candidates share identical headers — this disambiguates Table
+      of Contents entries (shorter) from actual item content (longer)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without longest-match selection, Table of Contents entries match first and cause premature section termination,
+      truncating actual item content and losing 2-5% of critical SEC filing disclosure text per document
+    derived_from_bd_id: BD-011
+  - id: finance-C-125
+    when: When implementing any randomized behavior in the SEC EDGAR download pipeline
+    action: Assume the framework handles random seed configuration for reproducible downloads — the framework does not implement
+      random seed management, leading to non-deterministic download sequences across runs
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without random seed management, download sequences vary between runs causing inconsistent file ordering,
+      potential duplicate downloads, and non-reproducible audit trails that fail regulatory compliance requirements
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-126
+    when: When implementing reproducibility requirements in the SEC EDGAR download pipeline
+    action: Implement random seed configuration by setting numpy.random.seed() and random.seed() before any randomized operations
+      in index_download, and document the seed value used for each download session in logs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit random seed handling, retry logic and shuffling operations produce different results each
+      run, preventing audit reproducibility and making it impossible to reproduce exact download sequences for regulatory
+      verification
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-127
+    when: When using HtmlStripper for HTML parsing in SEC document extraction
+    action: Verify that convert_charrefs=True and strict=False are documented in system configuration; if implementing custom
+      HTML parsing, verify equivalent entity conversion and malformed HTML tolerance behavior to maintain consistency with
+      extraction pipeline
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: HtmlStripper with convert_charrefs=True automatically converts HTML character references like &amp; to Unicode
+      characters, potentially creating inconsistencies if downstream processing expects raw entities; strict=False silently
+      tolerates malformed HTML which could mask parser errors
+    derived_from_bd_id: BD-074
+  - id: finance-C-128
+    when: When implementing or configuring parallel filing processing in SEC document extraction
+    action: Use ProcessPool for parallel filing processing due to Python GIL limitations on CPU-bound parallelism; ThreadPool
+      is insufficient for text parsing workloads; verify processes >= 2 for actual parallelism benefit
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using ThreadPool for CPU-bound HTML parsing and regex matching provides no parallelism benefit due to Python
+      GIL; single-process execution becomes a bottleneck when processing large batches of SEC filings, causing linear scaling
+      degradation
+    derived_from_bd_id: BD-012
+  - id: finance-C-129
+    when: When implementing Roman numeral conversion for SEC 10-Q document parsing
+    action: Verify roman_numeral_map covers values 1-20 for bidirectional conversion between numeric and Roman numeral Part/Item
+      identifiers in 10-Q filings; values exceeding 20 will return '?' placeholder and cause section identification to fail
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: SEC 10-Q filings use Roman numerals for Parts and Items (I, II, III, IV, V, VI, VII, VIII, IX, X, etc.).
+      When a 10-Q contains Part X or higher, roman_numeral_map returns '?' placeholder, causing downstream section matching
+      to fail silently and missing critical financial disclosures
+    derived_from_bd_id: BD-024
+  - id: finance-C-130
+    when: When extracting SEC filing content from HTML documents
+    action: Require presence of both <td> AND <tr> HTML elements to classify a document as HTML; documents containing only
+      one element type should not be classified as full HTML documents
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Some SEC documents contain embedded HTML snippets that don't represent full document structure. Misclassifying
+      a document as HTML when it only has partial table elements causes incorrect parsing logic to be applied, resulting in
+      garbled or incomplete extraction of filing content
+    derived_from_bd_id: BD-025
+  - id: finance-C-131
+    when: When implementing table extraction from SEC filing documents
+    action: Preserve tables containing item index patterns (Item 1, Item 1A, Item 2, etc.) regardless of background color
+      styling; do not filter or remove tables based solely on visual CSS attributes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Item index tables are critical for document structure and navigation. Removing tables with colored backgrounds
+      during document cleaning causes critical SEC filing section headers to be lost, breaking downstream content extraction
+      and document structure analysis
+    derived_from_bd_id: BD-032
+  - id: finance-C-132
+    when: When processing span elements in extracted SEC document content
+    action: Replace horizontal span margins (CSS margin-left/margin-right) with single space character, and vertical span
+      margins (CSS margin-top/margin-bottom) with single newline character; this rule applies to margin CSS properties only,
+      not padding or other spacing
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Span margin replacement preserves intended word separation and line breaks in SEC documents. Without proper
+      spacing rules, merged words lose boundaries horizontally and paragraph structure is lost vertically, causing content
+      to become unreadable or misinterpreted
+    derived_from_bd_id: BD-033
+  - id: finance-C-133
+    when: When constructing absolute URLs from SEC EDGAR index relative paths for filing downloads
+    action: Prepend 'https://www.sec.gov/Archives/' to relative file paths to construct valid absolute URLs; validate or handle
+      broken paths before URL construction to prevent 404 errors on downloads
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: SEC EDGAR indices contain relative file paths that require base URL prepending. Broken or malformed relative
+      paths result in 404 errors causing complete download failures with no indication of which filings were missed in batch
+      processing
+    derived_from_bd_id: BD-041
+  - id: finance-C-134
+    when: When implementing or refactoring logging initialization in SEC document extraction modules
+    action: Instantiate logger after config.json is loaded and its logging configuration is available; do not create module-level
+      LOGGER objects before configuration is loaded as this prevents custom logging settings from being applied
+    severity: medium
+    kind: operational_lesson
+    modality: should_not
+    consequence: Logger instantiated at module level before config.json loads creates temporal ordering dependency. The logger
+      operates with default configuration throughout the module load phase, logging at incorrect levels or to wrong handlers
+      until configuration is eventually applied, causing debugging visibility gaps
+    derived_from_bd_id: BD-081
+  - id: finance-C-135
+    when: When configuring or adjusting 10-Q extraction retry loop parameters
+    action: Verify length_difference threshold of 5000 chars matches actual document size expectations before using; setting
+      threshold too high risks accepting incomplete extractions, while too low may cause unnecessary retries or valid partial
+      extractions to be rejected
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: The 5000-character length_difference threshold determines when the 10-Q extraction retry mechanism continues
+      or terminates. Wrong threshold causes either incomplete content acceptance (high threshold) or valid extraction rejections
+      (low threshold), both leading to unreliable backtest data quality
+    derived_from_bd_id: BD-082
+  - id: finance-C-136
+    when: When processing deeply nested SEC EDGAR HTML documents with HtmlStripper and BeautifulSoup
+    action: Investigate how recursion limit (30000), HTMLParser settings (convert_charrefs=True, strict=False), and BeautifulSoup
+      tree traversal interact; implement graceful fallback mechanism for documents that may trigger RecursionError before
+      hitting configured recursion limit
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Deeply nested malformed HTML combined with lenient HTMLParser settings and recursive BeautifulSoup traversal
+      creates a risk cascade where RecursionError occurs before hitting the configured 30000 limit, causing complete extraction
+      failure instead of graceful degradation on pathological documents
+    derived_from_bd_id: BD-083
+  - id: finance-C-137
+    when: When processing SEC EDGAR filings with deeply nested HTML tables and divs
+    action: Set sys.setrecursionlimit to 30000 at module initialization before BeautifulSoup tree traversal; the recursion
+      limit provides headroom for pathological nesting depth while bounding maximum stack depth to prevent resource exhaustion
+      on extremely malformed documents
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: SEC EDGAR filings can contain deeply nested tables, divs, and spans that exceed Python's default recursion
+      limit of 1000. Without elevated recursion limit, BeautifulSoup tree traversal triggers StackOverflow on malformed documents,
+      causing complete extraction failure
+    derived_from_bd_id: BD-014
+  - id: finance-C-138
+    when: When implementing table extraction logic for SEC financial documents
+    action: Apply background color filtering threshold before table removal decisions — do not remove tables that have colored
+      backgrounds (RGB-based threshold) as these typically represent financial data tables with visual hierarchy
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without color-based filtering, financial tables rendered with colored backgrounds (for visual hierarchy in
+      SEC filings) will be incorrectly discarded, causing loss of critical numerical data like balance sheets and income statements
+    derived_from_bd_id: BD-068
+  - id: finance-C-139
+    when: When implementing Table of Contents matching logic in SEC document extraction
+    action: Maintain the ignore-matches counter threshold for ToC filtering to prevent infinite loops on malformed documents
+      — the counter MUST stop ToC-based matching and fall back to content extraction after reaching the threshold
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without the ignore counter, malformed SEC documents with malformed ToC entries will cause unbounded iteration,
+      leading to extraction process hangs or denial-of-service on crafted inputs
+    derived_from_bd_id: BD-070
+  - id: finance-C-140
+    when: When importing the extract_items module in SEC filing extraction
+    action: Set sys.setrecursionlimit(30000) as a global process-wide change at module load time — instead, use a context
+      manager, specific function scope, or subprocess isolation to localize recursion limit changes
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Global recursion limit changes at module import permanently alter process behavior, masking stack overflow
+      bugs in unrelated code running in the same interpreter and causing unexpected truncation of legitimate deep recursion
+    derived_from_bd_id: BD-076
+  - id: finance-C-142
+    when: When implementing page number and header removal in SEC document text cleanup
+    action: Use comprehensive regex patterns covering each page number format variations (standalone numbers, with 'Page',
+      with dashes, Roman numerals) and validate removal effectiveness with post-processing checks
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Incomplete regex patterns for page number removal will leave page artifacts in extracted text, degrading
+      downstream analysis quality and potentially confusing content identification algorithms
+    derived_from_bd_id: BD-060
+  - id: finance-C-143
+    when: When implementing section header matching in SEC filing extraction
+    action: Apply case-sensitive matching before case-insensitive as priority order — when case-sensitive match exists anywhere
+      in document, use it regardless of position, not just as tiebreaker
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without correct case-sensitive-first priority, SEC filings with non-canonical section header casing will
+      match case-insensitive variants first, potentially extracting wrong sections and corrupting document structure analysis
+    derived_from_bd_id: BD-063
+  - id: finance-C-144
+    when: When processing SEC filings that contain embedded PDF content within HTML wrappers
+    action: Strip embedded PDF sections (<PDF>...</PDF>) from HTML documents during extraction — actual PDF content is lost;
+      do not treat these as extractable text items
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Embedded PDF content within HTML wrappers is not parseable as text; without stripping, raw PDF bytes contaminate
+      text extraction and corrupt downstream analysis with unreadable content
+    derived_from_bd_id: BD-055
+  - id: finance-C-145
+    when: When reading SEC filing files with inconsistent encoding from various sources
+    action: Use errors='backslashreplace' for file reading to handle encoding issues gracefully — do not use UTF-8 strict
+      mode which will crash on malformed encodings
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without backslashreplace encoding handling, SEC filings with invalid UTF-8 sequences will cause file read
+      exceptions, preventing extraction from completing on documents that could yield valid content
+    derived_from_bd_id: BD-056
+  - id: finance-C-146
+    when: When implementing text cleanup that removes navigation elements from SEC filings
+    action: Remove 'Table of Contents', 'Index to Financial Statements', 'Back to Contents', and 'Quicklinks' navigation headers
+      — but validate these as navigation elements using positional context (appear at document start/mid-section) before removal,
+      not just phrase matching alone
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Phrase-only matching removes section headers that legitimately contain these phrases in substantive content,
+      causing silent loss of actual document sections disguised as navigation elements
+    derived_from_bd_id: BD-061
+  - id: finance-C-147
+    when: When implementing Unicode normalization for special character handling in SEC filings
+    action: Normalize Unicode representations (em-dashes, smart quotes, accented characters) to standard ASCII equivalents
+      for consistent text matching — but document this normalization for downstream consumers and verify semantic preservation
+      when normalization is applied
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without documented normalization, downstream systems may not expect ASCII-converted characters, causing subtle
+      semantic changes in financial terminology and company names that affect matching accuracy
+    derived_from_bd_id: BD-069
+  - id: finance-C-148
+    when: When implementing file download and persistence logic for SEC filings
+    action: Write CSV metadata to a temporary file first, then move to the final location using atomic rename — do not write
+      directly to the target path
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Direct writes risk leaving partial data if the process is interrupted, corrupting the index file and causing
+      downstream data retrieval failures
+    derived_from_bd_id: BD-048
+  - id: finance-C-149
+    when: When processing SEC filing downloads with incremental update logic
+    action: Verify that existing file detection relies on exact naming format matching as implemented in the codebase — do
+      not assume alternative detection methods (checksums, manifest files) are used unless explicitly configured
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: If the naming format convention changes or files are renamed externally, the detection logic may incorrectly
+      skip existing files or re-download unnecessarily, causing data duplication or gaps
+    derived_from_bd_id: BD-047
+  - id: finance-C-150
+    when: When implementing or modifying the SEC filing download module (BD-077 CSV format contract)
+    action: Implement explicit schema validation at the CSV format contract boundary between download and extract modules
+      to detect any format changes before they cause silent failures or corrupted metadata
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without schema validation, a modified CSV format causes the extract module to silently fail or produce corrupted
+      company metadata, leading to incorrect financial data in backtesting results
+    derived_from_bd_id: BD-084
+  - id: finance-C-151
+    when: When implementing CIK lookup or company info caching with incremental download (BD-002) and skip-existing (BD-047)
+    action: Implement unified caching with TTL-based invalidation to verify company data reflects recent changes (e.g., new
+      SIC codes, post-merger name changes), and validate that cached CIK lookups are consistent with current company_info
+      records
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Duplicate cache mechanisms (companies_info.json vs company_info.json) with stale data cause CIK lookups to
+      reference outdated company information, resulting in extraction of wrong company filings or missing updated company
+      data in backtest
+    derived_from_bd_id: BD-089
+  - id: finance-C-152
+    when: When implementing table extraction logic from SEC documents
+    action: 'Check for non-blank background colors (any color that is not white, transparent, none, or #fff) and remove tables
+      with such backgrounds — colored backgrounds often indicate navigation elements, disclaimers, or other non-content tables'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Preserving tables with colored backgrounds causes extraction of non-content elements like navigation menus
+      and disclaimers, contaminating the extracted data and reducing analysis quality
+    derived_from_bd_id: BD-031
+  - id: finance-C-153
+    when: When implementing SEC item section pattern matching logic
+    action: Insert optional whitespace (zero or more spaces) before trailing letters (A, B, C) in item patterns to match variations
+      like Item 1A and Item 1 B in SEC documents
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Strict whitespace requirements in item patterns cause missed matches for sub-sections with extra whitespace,
+      resulting in incomplete document extraction and missing risk factors
+    derived_from_bd_id: BD-034
+  - id: finance-C-154
+    when: When implementing SIGNATURE section extraction from SEC filings
+    action: Extract the SIGNATURE block from the last occurrence in the document, not the first — table of contents entries
+      may appear before the actual signature block
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Extracting the first SIGNATURE occurrence captures TOC entries instead of the genuine signature block, resulting
+      in incomplete or incorrect signer information extraction
+    derived_from_bd_id: BD-037
+  - id: finance-C-155
+    when: When implementing 10-Q document parsing and item extraction
+    action: 'Parse 10-Q documents in two parts: Part I (Items 1-4, financial information) and Part II (Items 1-6, non-financial
+      information) — Items 5-6 only appear in Part II'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Single-section 10-Q extraction misses Items 5-6 that appear only in Part II, resulting in incomplete regulatory
+      filings and potential compliance failures
+    derived_from_bd_id: BD-038
+  - id: finance-C-156
+    when: When implementing text extraction cleanup from SEC HTML documents
+    action: Normalize whitespace by removing excessive spaces while preserving paragraph and list structure — excessive HTML
+      whitespace creates noise in extracted text
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without whitespace normalization, excessive spacing in HTML causes corrupted extracted text with irregular
+      formatting, making downstream analysis unreliable
+    derived_from_bd_id: BD-066
+  - id: finance-C-157
+    when: When implementing the process_filing function or refactoring filing processing logic
+    action: Call determine_items_to_extract BEFORE calling extract_items to verify item selection logic executes before extraction
+      begins
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Violating the function call order causes KeyError exceptions when extract_items attempts to access items
+      that have not been pre-identified by determine_items_to_extract, resulting in runtime failures
+    derived_from_bd_id: BD-071
+  - id: finance-C-158
+    when: When implementing 10-Q parsing logic or refactoring filing extraction components
+    action: 'Preserve the cascading parsing sequence: (1) BD-009 split 10-Q into Part I and Part II first, (2) BD-038 applies
+      item mapping within correct part context (Part I=Items 1-4, Part II=Items 1-6), (3) BD-075 uses ''__'' as part-item
+      delimiter for encoding, (4) BD-079 uses Roman numeral map for part numbering — do not modify any single point without
+      validating the full cascade'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: 'Breaking the cascade at any point causes cascading failures: changing BD-075 delimiter breaks split logic,
+      incomplete BD-079 map fails part identification, BD-009 separation failure causes BD-038 to extract items in wrong context,
+      all resulting in incorrect filing output'
+    derived_from_bd_id: BD-087
+  - id: finance-C-159
+    when: When using the framework's default item extraction behavior without specifying items_to_extract
+    action: Verify that extracting each available items aligns with your use case; if targeting specific items for analysis,
+      explicitly specify items_to_extract parameter to avoid processing large filings with unnecessary items and potential
+      performance degradation
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default behavior extracts all available items, which may cause significant processing time on large filings
+      and introduce noise in analysis when only specific items are needed for targeted research
+    derived_from_bd_id: BD-052
+  - id: finance-C-160
+    when: When extracting SEC filing content using default configuration without explicit include_signature setting
+    action: Verify that SIGNATURE sections containing personal signer information are not needed for your analysis; for compliance
+      or audit use cases, set include_signature=true to capture signer details
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default exclusion of SIGNATURE sections silently removes relevant signer information that may be required
+      for compliance verification, audit trails, or forensic analysis use cases
+    derived_from_bd_id: BD-053
+  - id: finance-C-161
+    when: When extracting SEC filing content using default configuration without explicit remove_tables setting
+    action: Verify that tabular data including numerical content, financial tables, and structured information is not needed
+      for your analysis; for quantitative research, set remove_tables=false to preserve table content
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default table removal silently discards legitimate tabular content including financial data, numerical schedules,
+      and structured information that may be critical for quantitative analysis and backtesting strategies
+    derived_from_bd_id: BD-054
+  - id: finance-C-162
+    when: When implementing or refactoring directory initialization and file path handling logic in deployment scenarios
+    action: Verify directory paths remain configurable or writable in restricted environments (shared servers, containers,
+      cloud functions); must not assume the package directory is always writable
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Hardcoded package-relative directory paths cause immediate import failures in restricted deployment environments
+      where the package directory lacks write permissions, preventing any trading functionality from loading
+    derived_from_bd_id: BD-088
+  - id: finance-C-163
+    when: When implementing or refactoring HTML detection and parsing logic for document extraction
+    action: Preserve the multi-criteria HTML detection logic requiring BOTH <td> AND <tr> elements before selecting HtmlStripper
+      parsing strategy; must not simplify detection to require only <td> or only <tr>
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Simplifying HTML detection to require only partial table elements causes wrong parsing strategy selection,
+      leading to extraction failure or corrupted output on edge-case documents that contain partial table structures
+    derived_from_bd_id: BD-090
+  - id: finance-C-164
+    when: When parsing 10-Q SEC documents using section separation logic
+    action: 'Implement length-based validation to detect parsing anomalies: flag documents where PART I appears only in ToC
+      without substantive section body, or where PART II is disproportionately longer indicating section boundary detection
+      failure'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: The section separation heuristic silently fails on 10-Q filings where PART I is listed in ToC but lacks a
+      separate section, causing parsing to skip or misalign critical financial disclosure content
+    derived_from_bd_id: BD-057
+  - id: finance-C-165
+    when: When implementing or refactoring item number matching patterns in SEC document extraction
+    action: Preserve the explicit boundary character set [.*~-:\s\(] after item numbers in regex patterns; must not remove
+      these separator characters or replace with simpler word boundary assertions only
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Simplifying item number patterns to use only word boundaries causes items followed by unexpected separator
+      characters to fail matching, silently skipping important SEC disclosure items in extracted content
+    derived_from_bd_id: BD-064
+  - id: finance-C-166
+    when: When implementing or refactoring whitespace handling in SEC document text processing patterns
+    action: Preserve the explicit whitespace definition [^\S\r\n] (matching whitespace but explicitly excluding newlines and
+      carriage returns); must not replace with standard \s or broader character classes that include line breaks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Replacing the custom whitespace pattern with standard \s causes newlines to be treated as ordinary whitespace,
+      destroying line-oriented document structure and breaking pattern matching that depends on line boundaries for SEC document
+      parsing
+    derived_from_bd_id: BD-065
+  - id: finance-C-167
+    when: When implementing 10-Q extraction workflow
+    action: Call get_10q_parts to populate the parts dictionary with section boundaries before entering the item extraction
+      loop — verify parts['metadata'], parts['financial_statements'], etc. are available for regex pattern matching
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Skipping get_10q_parts causes item regex patterns to operate on unparsed raw content, producing malformed
+      or missing item data that corrupts downstream financial analysis and reporting
+    derived_from_bd_id: BD-073
+  - id: finance-C-169
+    when: When processing HTTP responses from SEC EDGAR during data retrieval
+    action: Assume rate limit detection is complete based on any single mechanism — BD-044 text detection alone is insufficient
+      (only catches 'will be managed until action is taken'), BD-062 status codes alone miss 200 responses with embedded rate-limit
+      content, BD-003 retry logic alone lacks explicit rate limit awareness
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Relying on incomplete rate limit detection causes the framework to miss rate limit errors and retry non-rate-limit
+      failures, or fail to retry when rate-limited — resulting in corrupted or missing market data that propagates into incorrect
+      trading signals
+    derived_from_bd_id: BD-086
+  - id: finance-C-170
+    when: When handling HTTP 200 responses with embedded content during SEC EDGAR retrieval
+    action: Implement explicit content scanning for rate-limit indicators within 200 OK responses — BD-003 retry mechanism
+      and BD-062 status code detection do not trigger for 200 status, so BD-044 HTML text detection is the only safeguard
+      against rate-limited pages returned as successful responses
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Rate-limited pages returned as 200 OK bypass all error handling, causing the framework to treat rate-limited
+      content as valid data. Trading strategies then execute on empty or placeholder content, leading to incorrect position
+      sizing and significant financial losses
+    derived_from_bd_id: BD-086
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-114 / SEC EDGAR Filing Extraction
+    version: v5.3
+    intent_keywords:
+    - EDGAR
+    - SEC filings
+    - 10-K extraction
+    - annual report parsing
+    - document extraction
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-101
+          name: SEC EDGAR Filing Extraction
+          short_description: 'Extracts and processes SEC EDGAR filings (10-K annual reports, 10-Q quarterly reports) from
+            compressed ZIP archives for downstream financial analysis '
+          sample_triggers:
+          - EDGAR
+          - SEC filings
+          - 10-K extraction
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try sec edgar filing extraction
+      auto_selected: true
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    - uc_id: UC-101
+      beginner_prompt: Try capability UC-101
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 1 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - SEC EDGAR Filing Extraction
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+    - Custom Transformer + Accumulator factor with per-entity rolling state
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

@@ -1,0 +1,17 @@
+{
+  "name": "bookmark-organize-clawhub-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-contained ClawHub skill package for AI-assisted Chrome bookmark organization.",
+  "type": "module",
+  "scripts": {
+    "setup": "node bridges/setup.mjs",
+    "bridge:server": "node bridges/local-bridge-server.mjs",
+    "bridge:preflight": "node bridges/preflight.mjs",
+    "bridge:ensure-live": "node bridges/ensure-live.mjs",
+    "test:local": "npm run setup && npm run bridge:preflight"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}

@@ -1,35 +1,144 @@
 ---
-name: "AI Mood Journal - 情绪日记"
-description: "AI情绪日记。每天记录情绪，AI分析长期心理趋势、触发因素、应对策略。你的个人心理咨询师。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, mood, psychology]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-mood-journal"
-sourceUrl: "https://clawhub.ai/skills/ai-mood-journal"
+name: mood-journal
+description: AI情绪日记。每天记录情绪，AI分析长期心理趋势、触发因素、应对策略。你的个人心理咨询师。
+version: 1.0.0
+tags:
+  - 情绪
+  - 日记
+  - 心理
+  - 健康
+metadata:
+  openclaw:
+    version: "1.0.0"
+    author: "008"
+    license: "MIT"
 ---
 
-# AI Mood Journal - 情绪日记
+# Mood Journal — 你的AI心理咨询师
 
-> AI情绪日记。每天记录情绪，AI分析长期心理趋势、触发因素、应对策略。你的个人心理咨询师。
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-mood-journal`
-- **Source URL:** [https://clawhub.ai/skills/ai-mood-journal](https://clawhub.ai/skills/ai-mood-journal)
+当用户想记录情绪、分析心理状态、追踪情绪变化时，执行以下流程。
 
-## Overview
+## 第一步：情绪记录
 
+让用户回答以下问题（不必全部，自然对话即可）：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-mood-journal
+1. **今天的情绪是什么？**（用1-10分描述强度）
+2. **什么触发了这个情绪？**（事件、人、想法）
+3. **身体有什么感觉？**（胸闷、头痛、轻松、紧绷）
+4. **你做了什么应对？**（逃避、面对、倾诉、压抑）
+5. **效果如何？**
+
+## 第二步：情绪分析
+
+### 情绪分类表
+
+| 情绪 | 强度 | 触发因素 | 身体反应 | 应对方式 |
+|------|------|---------|---------|---------|
+| 焦虑 | 1-10 | | | |
+| 愤怒 | 1-10 | | | |
+| 悲伤 | 1-10 | | | |
+| 快乐 | 1-10 | | | |
+| 恐惧 | 1-10 | | | |
+| 平静 | 1-10 | | | |
+
+### 分析维度
+
+1. **情绪模式** — 最近一周/月的情绪趋势
+2. **触发因素** — 什么最容易引发负面情绪
+3. **应对效果** — 哪些应对方式有效，哪些无效
+4. **身体关联** — 情绪和身体反应的关联
+5. **时间规律** — 是否有时间规律（如周一焦虑、晚上低落）
+
+## 第三步：洞察输出
+
+```json
+{
+  "mood_score": "7/10",
+  "primary_emotion": "焦虑",
+  "trigger": "工作压力",
+  "pattern": "每周一焦虑加重",
+  "insight": "你的焦虑主要来自对失控的恐惧",
+  "suggestion": "尝试周一早上做10分钟冥想",
+  "trend": "本周比上周好2分"
+}
+```
+
+## 输出模板
+
+```
+# 情绪日记 — {date}
+
+## 今日情绪
+**主要情绪**：{emotion}（{intensity}/10）
+**触发因素**：{trigger}
+
+## 身体反应
+{body_sensation}
+
+## 应对方式
+{coping} → 效果：{effectiveness}
+
+## AI 洞察
+{insight}
+
+## 建议
+{suggestion}
+
+## 情绪趋势
+{trend}
+```
+
+## 长期追踪
+
+每次记录后，更新用户的情绪档案：
+
+```json
+{
+  "user_id": "user_001",
+  "total_entries": 30,
+  "average_mood": 6.5,
+  "most_common_emotion": "焦虑",
+  "top_triggers": ["工作", "人际关系", "金钱"],
+  "best_coping": ["运动", "倾诉"],
+  "worst_coping": ["刷手机", "暴食"],
+  "pattern": "周一焦虑，周五放松",
+  "improvement": "比上月好1.5分"
+}
+```
+
+## 分析原则
+
+1. **不评判** — 不说"你不应该这样想"
+2. **给希望** — 每次至少给一个可执行的改善建议
+3. **看趋势** — 不只看一天，要看长期变化
+4. **识别模式** — 帮用户发现他们自己没注意到的规律
+
+## 示例
+
+**用户输入：** "今天心情很糟糕，老板又骂我了"
+
+**分析结果：**
+
+# 情绪日记 — 2026-05-22
+
+## 今日情绪
+**主要情绪**：愤怒 + 委屈（7/10）
+**触发因素**：被老板当众批评
+
+## 身体反应
+胸口紧绷，拳头不自觉握紧
+
+## 应对方式
+沉默接受 → 效果：差（情绪没释放）
+
+## AI 洞察
+这不是第一次了。过去一个月，你有4次因为老板批评而情绪低落。你的模式是：**压抑 → 爆发 → 自责**。
+
+## 建议
+下次被批评时，先深呼吸3秒，然后说："我理解你的反馈，我需要一点时间消化。"
+
+## 情绪趋势
+本周比上周差1分。需要关注。
 ```

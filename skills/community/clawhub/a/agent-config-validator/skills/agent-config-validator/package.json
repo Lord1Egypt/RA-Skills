@@ -1,0 +1,39 @@
+{
+  "name": "@openclaw/agent-config-validator",
+  "version": "1.0.0",
+  "description": "OpenClaw Agent配置验证器 - 自动检查配置一致性，检测过时引用，支持安全自动修复",
+  "type": "agentskill",
+  "keywords": [
+    "agent-skill",
+    "openclaw",
+    "config-validator",
+    "agent-management",
+    "configuration",
+    "validation"
+  ],
+  "author": {
+    "name": "Star助手",
+    "email": "star@openclaw.local"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/agent-config-validator.git"
+  },
+  "homepage": "https://github.com/openclaw/agent-config-validator#readme",
+  "files": [
+    "SKILL.md",
+    "README.md"
+  ],
+  "agentskill": {
+    "entry": "SKILL.md",
+    "category": "configuration",
+    "tags": [
+      "config-validation",
+      "agent-management",
+      "configuration-check",
+      "maintenance",
+      "security"
+    ]
+  }
+}

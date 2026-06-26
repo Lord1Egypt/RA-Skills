@@ -1,35 +1,62 @@
 ---
-name: "Anime Ebook Reader"
-description: "动漫轻小说、电子书阅读助手。支持TXT、PDF、EPUB、MOBI等格式。用于阅读动漫小说、整理书单、管理阅读进度、提取章节内容。触发场景：用户上传动漫电子书/轻小说文件、询问书单推荐、整理阅读笔记、提取小说章节。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anime-ebook-reader"
-sourceUrl: "https://clawhub.ai/skills/anime-ebook-reader"
+name: anime-ebook-reader
+version: 1.0.0
+description: 动漫轻小说、电子书阅读助手。支持TXT、PDF、EPUB、MOBI等格式。用于阅读动漫小说、整理书单、管理阅读进度、提取章节内容。触发场景：用户上传动漫电子书/轻小说文件、询问书单推荐、整理阅读笔记、提取小说章节。
 ---
 
-# Anime Ebook Reader
+# 动漫电子书阅读助手
 
-> 动漫轻小说、电子书阅读助手。支持TXT、PDF、EPUB、MOBI等格式。用于阅读动漫小说、整理书单、管理阅读进度、提取章节内容。触发场景：用户上传动漫电子书/轻小说文件、询问书单推荐、整理阅读笔记、提取小说章节。
+## 支持格式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anime-ebook-reader`
-- **Source URL:** [https://clawhub.ai/skills/anime-ebook-reader](https://clawhub.ai/skills/anime-ebook-reader)
+| 格式 | 处理方式 |
+|------|----------|
+| TXT | 直接读取文本内容 |
+| PDF | 提取文字/图片 |
+| EPUB | 解析EPUB结构 |
+| HTML | 转换网页内容 |
 
-## Overview
+## 核心功能
 
+### 1. 读取书籍
+- 用户上传文件 → 使用 read 工具读取
+- 识别书籍基本信息（书名、作者、章节数）
+- 提取目录结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anime-ebook-reader
+### 2. 章节导航
+- 列出全部章节列表
+- 用户指定章节 → 跳转读取
+- 支持"继续阅读"（记住上次位置）
+
+### 3. 内容总结
+- 长章节自动分段
+- 提取本章关键情节
+- 生成章节摘要
+
+### 4. 书单管理
+- 记录用户正在阅读的书单
+- 记录阅读进度（第X章/共Y章）
+- 推荐相关书籍
+
+## 输出格式
+
 ```
+📖 《书名》- 作者
+
+📑 目录
+第1章 标题
+第2章 标题
+...
+
+📖 当前：第X章 标题
+━━━━━━━━━━━━━━━━
+
+[本章内容...]
+
+━━━━━━━━━━━━━━━━
+📝 本章小结：...
+```
+
+## 重要规则
+- **中文优先**：优先使用中文书名和内容
+- **保持原味**：动漫轻小说风格不改变
+- **记住进度**：在对话中记录用户阅读位置

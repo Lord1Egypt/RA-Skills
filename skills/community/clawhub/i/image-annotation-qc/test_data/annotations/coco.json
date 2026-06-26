@@ -1,0 +1,28 @@
+{
+  "images": [
+    {"id": "img_001", "file_name": "road_01.jpg", "width": 1920, "height": 1080},
+    {"id": "img_002", "file_name": "road_02.jpg", "width": 1920, "height": 1080},
+    {"id": "img_003", "file_name": "road_03.jpg", "width": 1920, "height": 1080},
+    {"id": "img_004", "file_name": "road_04.jpg", "width": 1920, "height": 1080},
+    {"id": "img_005", "file_name": "road_05.jpg", "width": 1920, "height": 1080}
+  ],
+  "annotations": [
+    {"id": 1, "image_id": "img_001", "category_id": 0, "bbox": [100, 200, 80, 120], "area": 9600},
+    {"id": 2, "image_id": "img_001", "category_id": 1, "bbox": [500, 300, 60, 100], "area": 6000},
+    {"id": 3, "image_id": "img_002", "category_id": 0, "bbox": [200, 150, 90, 130], "area": 11700},
+    {"id": 4, "image_id": "img_002", "category_id": 2, "bbox": [800, 400, 40, 40], "area": 1600},
+    {"id": 5, "image_id": "img_003", "category_id": 0, "bbox": [150, 180, 85, 115], "area": 9775},
+    {"id": 6, "image_id": "img_003", "category_id": 1, "bbox": [450, 250, 70, 90], "area": 6300},
+    {"id": 7, "image_id": "img_004", "category_id": 0, "bbox": [300, 200, 75, 125], "area": 9375},
+    {"id": 8, "image_id": "img_004", "category_id": 1, "bbox": [600, 350, 55, 95], "area": 5225},
+    {"id": 9, "image_id": "img_004", "category_id": 0, "bbox": [600, 350, 55, 95], "area": 5225},
+    {"id": 10, "image_id": "img_005", "category_id": 0, "bbox": [120, 160, 88, 118], "area": 10384},
+    {"id": 11, "image_id": "img_005", "category_id": 3, "bbox": [900, 200, 50, 80], "area": 4000}
+  ],
+  "categories": [
+    {"id": 0, "name": "car"},
+    {"id": 1, "name": "person"},
+    {"id": 2, "name": "truck"},
+    {"id": 3, "name": "bus"}
+  ]
+}

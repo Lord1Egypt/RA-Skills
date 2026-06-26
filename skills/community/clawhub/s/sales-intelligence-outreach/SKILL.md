@@ -1,35 +1,144 @@
 ---
-name: "sales-intelligence-outreach"
-description: "AI销售情报与客户触达助手 — 智能检索目标客户信息、生成个性化销售文案、一键发布至多个社交平台，实现销售线索发掘到首次触达的全流程自动化"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sales-intelligence-outreach"
-sourceUrl: "https://clawhub.ai/skills/sales-intelligence-outreach"
+name: sales-intelligence-outreach
+description: AI销售情报与客户触达助手 — 智能检索目标客户信息、生成个性化销售文案、一键发布至多个社交平台，实现销售线索发掘到首次触达的全流程自动化
+category: AI|自动化
+triggers: 销售线索, 客户触达, 智能拓客, B2B销售, 获客, 开发信, 发掘客户
 ---
 
-# sales-intelligence-outreach
+# Sales Intelligence & Outreach Combo
 
-> AI销售情报与客户触达助手 — 智能检索目标客户信息、生成个性化销售文案、一键发布至多个社交平台，实现销售线索发掘到首次触达的全流程自动化
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sales-intelligence-outreach`
-- **Source URL:** [https://clawhub.ai/skills/sales-intelligence-outreach](https://clawhub.ai/skills/sales-intelligence-outreach)
+本 Combo 整合三大核心能力：**销售情报检索 → 个性化文案生成 → 多平台精准触达**，将传统需要数小时手动操作的客户开发流程，压缩为 AI 自动执行的端到端工作流。
 
-## Overview
+适用于 B2B 销售团队、外贸业务员、销售创业者，帮助快速建立高质量潜在客户列表并完成首次触达。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sales-intelligence-outreach
+## 工作流程
+
 ```
+┌──────────────────────────────────────────────────────────────┐
+│                    Sales Intelligence Pipeline                │
+│                                                              │
+│  ① 情报检索                                                  │
+│     Agent-Reach → 搜索目标客户/公司/行业新闻                  │
+│     ↓                                                        │
+│  ② 情报分析 & 客户档案生成                                   │
+│     AI 分析客户背景、痛点、近期动态                           │
+│     ↓                                                        │
+│  ③ 个性化文案生成                                            │
+│     nano-banana-pro → 生成专属销售素材（图片+文案）          │
+│     ↓                                                        │
+│  ④ 多平台精准触达                                           │
+│     Agent-Reach → 小红书/微信文章/LinkedIn 发布               │
+│     xiaohongshu-mcp → 小红书精准种草                         │
+│     公众号助手 → 微信公众号深度文章                          │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 模块说明
+
+### 模块一：销售情报检索（Agent-Reach）
+
+**能力：**
+- 全网搜索目标客户公司、行业动态、关键决策人
+- 抓取公司最近的新闻、融资动态、产品发布
+- LinkedIn / 微博 / 小红书 多平台情报收集
+
+**触发方式：**
+```
+搜索 [客户名称/行业] 最近的新闻动态
+查找 [公司名] 的决策人信息
+搜集 [行业] 最近的热点事件
+```
+
+### 模块二：客户画像分析与文案生成（nano-banana-pro）
+
+**能力：**
+- 根据客户情报生成个性化销售图片素材
+- 批量生成多款风格不同的销售钩子图
+- 支持赛博朋克、Mac Pro、知识卡片等多种风格
+
+**触发方式：**
+```
+生成[行业]销售钩子图
+为[客户]制作一张[风格]风格的触达素材
+```
+
+### 模块三：多平台精准触达
+
+**平台与工具：**
+| 平台 | 工具 | 用途 |
+|------|------|------|
+| 小红书 | xiaohongshu-mcp | 种草笔记、案例分享 |
+| 微信公众号 | 公众号助手 | 深度文章、价值输出 |
+| LinkedIn | Agent-Reach | B2B专业触达 |
+| 微博 | Agent-Reach | 热点借势营销 |
+
+**触发方式：**
+```
+发布小红书种草内容
+发布公众号文章
+在LinkedIn发布[内容]
+```
+
+---
+
+## 典型使用场景
+
+### 场景一：B2B 外贸客户开发
+
+```
+用户：「帮我找10家做智能家居的海外品牌，做一套开发信素材」
+AI 执行：
+  1. Agent-Reach 搜索 "smart home brands 2025" / 行业展会名单
+  2. 抓取各公司官网最新产品动态
+  3. nano-banana-pro 生成10张风格统一的销售钩子图
+  4. 生成对应个性化开发信文案
+  5. 发布至小红书记录过程 + 微信群发触达
+```
+
+### 场景二：销售朋友圈素材自动化
+
+```
+用户：「搜集本周新能源行业热点，生成一套朋友圈素材」
+AI 执行：
+  1. Agent-Reach 搜索本周新能源行业热点新闻
+  2. nano-banana-pro 生成5张热点借势海报
+  3. 搭配文案一键发布至小红书/微信朋友圈
+```
+
+### 场景三：客户首次触达全流程
+
+```
+用户：「帮我触达这家AI公司，我可以给他们提供什么服务」
+AI 执行：
+  1. Agent-Reach 深入调研目标公司（融资、产品、团队）
+  2. 分析对方可能的痛点和服务切入点
+  3. nano-banana-pro 生成触达专用知识卡片
+  4. 生成个性化邮件/微信话术
+  5. 提供可直接使用的触达文案
+```
+
+---
+
+## 使用限制与注意事项
+
+- **发布前请务必检查**生成内容是否符合平台社区规范
+- 涉及联系方式和隐私信息时，请遵守当地法律法规
+- 建议结合实际业务场景调整文案，不要直接照搬 AI 生成内容
+- 不同平台有不同的内容策略，建议针对平台特性调整风格
+
+---
+
+## 技能编排
+
+| 技能 | 作用 |
+|------|------|
+| Agent-Reach | 全网情报检索、多平台内容发布 |
+| nano-banana-pro | 个性化销售素材图片生成 |
+| xiaohongshu-mcp | 小红书内容发布与互动 |
+| 公众号助手 | 微信公众号深度内容创作 |

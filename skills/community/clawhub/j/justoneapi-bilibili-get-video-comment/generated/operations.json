@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/bilibili/get-video-comment/v2 for Bilibili Video Comments through JustOneAPI with aid.",
+  "displayName": "Bilibili Video Comments",
+  "endpointPath": "get-video-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Bilibili video Comments data, including commenter profiles, text, and likes, for sentiment analysis and comment moderation workflows.",
+      "method": "GET",
+      "operationId": "getVideoCommentV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Bilibili Archive ID (AID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "aid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/bilibili/get-video-comment/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Comments",
+      "tags": [
+        "Bilibili"
+      ]
+    }
+  ],
+  "platformKey": "bilibili",
+  "primaryTag": "Bilibili",
+  "skillName": "justoneapi_bilibili_get_video_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-bilibili-get-video-comment",
+  "sourceTitle": "OpenAPI definition"
+}

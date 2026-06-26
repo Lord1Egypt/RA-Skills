@@ -1,0 +1,1421 @@
+version: 5.2.0
+base_dir: ${SKILL_ROOT:-.}
+
+# ============================================================
+# GPU Acceleration & Ligand Topology (v5.2 新增)
+# ============================================================
+gpu:
+  installation:
+    name: GPU GROMACS 源码编译安装
+    description: 从源码编译 GPU 加速版 GROMACS，含 CUDA Toolkit 配置
+    reference: references/gpu/gpu-installation.md
+    key_topics:
+      - CUDA_toolkit_setup
+      - CMake_version_requirements
+      - CUDA_architecture_selection (sm_120 Blackwell 等)
+      - FFTW_auto_build
+      - env_script_creation
+  execution:
+    name: GPU MD 运行避坑指南
+    description: GPU 加速策略、各阶段兼容性、OMP 冲突、性能调优
+    reference: references/gpu/gpu-md-execution.md
+    key_topics:
+      - GPU_PME_EM_incompatibility
+      - OMP_NUM_THREADS_conflict
+      - background_nohup_execution
+      - performance_benchmarks
+  ligand_topology:
+    name: 配体 GAFF2 拓扑生成
+    description: acpype + obabel + GAFF2 完整工作流，含库依赖修复
+    reference: references/gpu/ligand-topology.md
+    key_topics:
+      - acpype_installation_and_library_fixes
+      - MOL2_generation_with_obabel
+      - GAFF2_vs_CGenFF_selection
+      - charge_method_comparison
+  cross_forcefield:
+    name: 跨力场复合物体系构建
+    description: AMBER蛋白 + GAFF配体统一拓扑，含 include 顺序铁律
+    reference: references/gpu/cross-forcefield-system.md
+    key_topics:
+      - topology_include_order (defaults→atomtypes→moleculetype)
+      - duplicate_include_detection
+      - insert_molecules_workflow
+      - forcefield_compatibility_matrix
+
+master_workflow:
+  name: 统一主控
+  description: 单命令端到端MD工作流，自动检测体系状态+断点续跑+全自动分析
+  script: automd-master.sh
+  features:
+    - auto_detect: pdb/topology/prepared 三状态自动识别
+    - checkpoint_resume: 自动检测.cpt智能续跑
+    - phase_skip: 已完成阶段跳过
+    - integrated_analysis: 自动RMSD/RMSF/Rg/PCA/聚类
+smart_production:
+  name: 智能生产
+  description: 断点续跑+实时监控+自动调参
+  script: scripts/basic/smart-production.sh
+  features:
+    - auto_checkpoint: 检测.cpt续跑,完工跳过
+    - realtime_monitor: 每30s报告step+ns/day
+    - auto_cores: 自动检测CPU核数
+analysis_extended:
+  name: 扩展分析(Python)
+  description: MSD/残基距离/Chi角 — 用MDAnalysis替代GROMACS2026 conda-forge的selection bug
+  script: scripts/analysis/analysis-extended.sh
+  dependencies: [MDAnalysis, numpy, tidynamics]
+  modules:
+    - msd: 均方位移+扩散系数D
+    - distance: 残基COM距离时间序列
+    - chi: Chi1/Chi2侧链二面角
+
+basic:
+  setup:
+    name: 系统准备
+    description: 从 PDB 到可模拟系统 (pdb2gmx → editconf → solvate → genion)
+    script: scripts/basic/setup.sh
+    troubleshoot: references/troubleshoot/setup-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - forcefield_selection
+      - box_size
+      key_params:
+      - 'forcefield: amber99sb-ildn (protein), charmm36 (membrane)'
+      - 'water: tip3p (fast) / tip4p (accurate)'
+      - 'box: dodecahedron (省 29% 空间)'
+      - 'distance: 1.0 nm (min), 1.5-2.0 nm (pull)'
+      output:
+      - protein.gro
+      - topol.top
+      - posre.itp
+      - em.gro
+  equilibration:
+    name: 系统平衡
+    description: 能量最小化 → NVT → NPT
+    script: scripts/basic/equilibration.sh
+    troubleshoot: references/troubleshoot/equilibration-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - em_convergence
+      - nvt_stability
+      - npt_stability
+      key_params:
+      - 'em: 50000 steps, emtol 1000 kJ/mol/nm'
+      - 'nvt: 100 ps, 300K, V-rescale, tau_t 0.1'
+      - 'npt: 100 ps, 1 bar, Parrinello-Rahman, tau_p 2.0'
+      - 'posres: 4000 → 2000 → 1000 → 0 kJ/mol/nm²'
+      output:
+      - em.gro
+      - nvt.gro
+      - npt.gro
+      - npt.cpt
+  analysis:
+    name: 基础分析
+    description: RMSD, RMSF, Rg, 能量, 氢键
+    script: scripts/basic/analysis.sh
+    troubleshoot: references/troubleshoot/analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - group_selection
+      key_params:
+      - 'rmsd: Backbone/C-alpha, < 0.3 nm 稳定'
+      - 'rmsf: C-alpha, 高值=柔性 (loop)'
+      - 'rg: 紧密度, 稳定=平坦曲线'
+      - 'hbond: -r 0.35 -a 30 (距离 < 0.35 nm, 角度 < 30°)'
+      output:
+      - rmsd.xvg
+      - rmsf.xvg
+      - gyrate.xvg
+      - hbond.xvg
+      - sasa.xvg
+advanced:
+  freeenergy:
+    name: 自由能计算
+    description: 配体结合自由能 (TI/FEP/BAR) - 完整流程
+    script: scripts/advanced/freeenergy.sh
+    troubleshoot: references/troubleshoot/freeenergy-errors.md
+    examples: examples/freeenergy/
+    quick_ref:
+      dependencies:
+      - gmx
+      - acpype
+      auto_install: true
+      auto_fix:
+      - acpype 缺失 → 自动安装 acpype / 尝试 antechamber
+      - 配体拓扑缺失 → 多方案参数化
+      key_params:
+      - 'lambda_windows: 13 (非均匀)'
+      - 'lambda_values: 端点密集 (0.0, 0.05, 0.1, ..., 0.9, 0.95, 1.0)'
+      - 'sc-alpha: 0.5 (0.3-0.7, 带电系统 → 0.5-0.7)'
+      - 'sc-power: 1'
+      - 'sc-sigma: 0.3 nm'
+      - 'cutoff: 1.2 nm (最小 1.0 nm)'
+      - 'max_parallel: 4 (避免资源耗尽)'
+      common_errors:
+      - 'ERROR-001: gmx/文件缺失 → 检查安装 & 路径'
+      - 'ERROR-002: acpype 缺失 → auto-install'
+      - 'ERROR-003: 参数化失败 → 检查配体格式 / 手动提供拓扑'
+      output: ΔG ± error (kJ/mol), BAR 分析, 报告
+  umbrella:
+    name: 伞状采样
+    description: PMF 计算 (自动窗口设置 → 并行模拟 → WHAM 分析)
+    script: scripts/advanced/umbrella.sh
+    troubleshoot: references/troubleshoot/umbrella-errors.md
+    examples: examples/umbrella/
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - window_retry
+      - wham_convergence
+      key_params:
+      - 'pull_rate: 0.005-0.01 nm/ps (慢速)'
+      - 'window_spacing: 0.05-0.1 nm'
+      - 'window_k: 1000 kJ/mol/nm²'
+      - 'sample_time: 5-10 ns/window'
+      - 'overlap: > 30% (相邻窗口)'
+      common_errors:
+      - 'ERROR-001: grompp 失败 → 检查拉力组定义'
+      - 'ERROR-002: 拉力模拟失败 → 减小 pull_rate'
+      - 'ERROR-003: 构象提取失败 → 检查轨迹文件'
+      - 'ERROR-004: WHAM 失败 → 检查窗口重叠'
+      output:
+      - pmf.xvg
+      - hist.xvg
+      - window trajectories
+  membrane:
+    name: 膜蛋白模拟
+    description: 膜构建 → 蛋白插入 → 平衡 → 膜性质分析
+    script: scripts/advanced/membrane.sh
+    troubleshoot: references/troubleshoot/membrane-errors.md
+    examples: examples/membrane/
+    quick_ref:
+      dependencies:
+      - gmx
+      - insane
+      auto_install: true
+      auto_fix:
+      - insane 缺失 → 自动安装 / 提示 CHARMM-GUI
+      - 膜构建失败 → 尝试 insane / 提供预构建系统
+      key_params:
+      - 'membrane_type: POPC (常用), POPE (细菌), DPPC (凝胶相)'
+      - 'temperature: 310 K (生理温度)'
+      - 'pressure: semi-isotropic (XY & Z 独立)'
+      - 'restraint_stages: 3 (分阶段释放约束)'
+      - 'restraint_fc: 4000 → 2000 → 1000 (逐步减半)'
+      common_errors:
+      - 'ERROR-001: 拓扑生成失败 → 检查 PDB 格式'
+      - 'ERROR-002: 蛋白质定位失败 → 检查结构完整性'
+      - 'ERROR-004: 膜构建失败 → auto-install insane / 用 CHARMM-GUI'
+      output: 平衡后膜蛋白系统, 分阶段轨迹, 报告
+  ligand:
+    name: 配体-蛋白质复合物
+    description: 小分子参数化 → 对接后 MD → MM-PBSA 结合能
+    script: scripts/advanced/ligand.sh
+    troubleshoot: references/troubleshoot/ligand-errors.md
+    examples: examples/ligand/
+    quick_ref:
+      dependencies:
+      - gmx
+      - acpype
+      auto_install: true
+      auto_fix:
+      - acpype 缺失 → 自动安装 acpype / 尝试 antechamber
+      - 配体拓扑缺失 → 多方案参数化
+      key_params:
+      - 'force_field: amber99sb-ildn (蛋白质)'
+      - 'water_model: tip3p'
+      - 'box_distance: 1.0 nm'
+      - 'ion_concentration: 0.15 M'
+      - 'temperature: 300 K'
+      - 'restraint: 可选 (蛋白质/配体)'
+      common_errors:
+      - 'ERROR-001: 拓扑生成失败 → 检查 PDB 格式'
+      - 'ERROR-002: 配体参数化失败 → auto-install / 手动提供'
+      - 'ERROR-003: 配体文件缺失 → 提供 ligand.gro & ligand.itp'
+      - 'ERROR-004: 盒子/溶剂化失败 → 检查结构 & 参数'
+      output: 平衡后复合物, 轨迹, 结合分析脚本, 报告
+  production:
+    name: 生产模拟
+    description: 运行生产 MD 模拟 (mdrun)
+    script: scripts/basic/production.sh
+    troubleshoot: references/troubleshoot/production-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - checkpoint_recovery
+      key_params:
+      - 'time: 1000 ps (1 ns)'
+      - 'dt: 0.002 ps (2 fs)'
+      - 'temperature: 300 K'
+      - 'pressure: 1 bar'
+      output:
+      - md.xtc
+      - md.edr
+      - md.log
+      - md.cpt
+  preprocess:
+    name: 预处理
+    description: grompp - 生成 TPR 文件
+    script: scripts/basic/preprocess.sh
+    troubleshoot: references/troubleshoot/preprocess-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - parameter_check
+      key_params:
+      - 'mdp: 模拟参数文件'
+      - 'coord: 坐标文件'
+      - 'topology: 拓扑文件'
+      output:
+      - output.tpr
+  utils_tools:
+    name: 实用工具
+    description: trjconv, editconf, make_ndx
+    script: scripts/basic/utils.sh
+    troubleshoot: references/troubleshoot/utils-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - format_detection
+      key_params:
+      - 'action: convert|center|fit|pbc|index'
+      - 'format: pdb|gro|xtc|trr'
+      output:
+      - 转换后的文件
+  trajectory_analysis:
+    name: 轨迹分析
+    description: 轨迹对齐/叠加/PCA/聚类/自由能景观/MSM/TPT - 完整高级分析流程
+    script: scripts/analysis/trajectory-analysis.sh
+    troubleshoot: references/troubleshoot/trajectory-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - python3
+      - numpy
+      auto_install: false
+      auto_fix:
+      - group_selection
+      - cluster_cutoff_validation
+      - pca_range_check
+      key_params:
+      - 'analysis_mode: all/align/pca/cluster/fel/msm/tpt'
+      - 'fit_group: Backbone/C-alpha (对齐参考)'
+      - 'pca_group: C-alpha (推荐用于蛋白质)'
+      - 'pca_first: 1, pca_last: 10 (本征向量范围)'
+      - 'cluster_method: gromos (推荐) / linkage / jarvis-patrick'
+      - 'cluster_cutoff: 0.15 nm (蛋白质), 0.1 nm (配体)'
+      - 'fel_bins: 50 (自由能网格)'
+      - 'fel_temp: 300 K (室温) / 310 K (生理)'
+      common_errors:
+      - 'ERROR-001: PBC移除失败 → 检查组名称'
+      - 'ERROR-003: 协方差计算失败 → 调整PCA_GROUP'
+      - 'ERROR-007: 聚类失败 → 调整CLUSTER_CUTOFF'
+      - 'ERROR-008: FEL计算失败 → 安装numpy'
+      output:
+      - traj_fit.xtc
+      - eigenval.xvg
+      - projection_2d.xvg
+      - clusters.pdb
+      - fel.dat
+      - msm_*.dat
+      - tpt_paths.dat
+      analysis_types:
+        align: 轨迹对齐和叠加 (PBC移除 + 结构叠合)
+        pca: 主成分分析 (协方差矩阵 + 本征向量 + 投影)
+        cluster: 结构聚类 (识别代表性构象)
+        fel: 自由能景观 (PC1-PC2 投影的能量面)
+        msm: 马尔可夫状态模型 (转换矩阵 + 平衡分布)
+        tpt: 转换路径理论 (主要转换路径识别)
+      theory_background:
+      - 'PCA: 识别主要运动模式, 降维到本质自由度'
+      - 'Clustering: 基于RMSD的构象分类'
+      - 'FEL: F = -kT ln(P), 能量盆地=稳定态'
+      - 'MSM: 离散态马尔可夫链, P(i→j) = N(i→j)/N(i)'
+      - 'TPT: 通量 f(i→j) = π(i)P(i→j)q(j)'
+  pca:
+    name: 主成分分析
+    description: PCA - covar, anaeig, 2dproj
+    script: scripts/advanced/pca.sh
+    troubleshoot: references/troubleshoot/pca-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      key_params:
+      - 'trajectory: md.xtc'
+      - 'structure: md.tpr'
+      output:
+      - eigenval.xvg
+      - eigenvec.trr
+      - 2dproj.xvg
+  advanced_analysis:
+    name: 高级结构分析
+    description: PCA/聚类/二面角/接触图/DCCM/FEL - 一站式高级分析
+    script: scripts/analysis/advanced-analysis.sh
+    troubleshoot: references/troubleshoot/advanced-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - selection_validation
+      - cluster_cutoff_validation
+      - contact_cutoff_validation
+      key_params:
+      - 'analysis_type: pca,cluster,dihedral,contact,dccm,fel (可多选)'
+      - 'selection: C-alpha (默认) / Backbone / Protein'
+      - 'pca_ncomp: 10 (主成分数量)'
+      - 'cluster_method: gromos (推荐) / linkage / jarvis-patrick'
+      - 'cluster_cutoff: 0.15 nm (RMSD截断)'
+      - 'dihedral_type: rama,chi (Ramachandran + Chi角)'
+      - 'contact_cutoff: 0.6 nm (接触距离)'
+      - 'dccm_selection: C-alpha (动态交叉相关)'
+      - 'fel_pc1/pc2: 1,2 (自由能景观的PC)'
+      - 'fel_bins: 50 (FEL分辨率)'
+      - 'fel_temp: 300 K (温度)'
+      common_errors:
+      - 'ERROR-001: covar失败 → 检查选择组'
+      - 'ERROR-002: RMSD计算失败 → 验证轨迹和选择'
+      - 'ERROR-003: Ramachandran失败 → 确保系统含蛋白质'
+      - 'ERROR-004: 距离矩阵失败 → 减小选择或跳帧'
+      - 'ERROR-005: 协方差失败 → 使用C-alpha或减少帧数'
+      - 'ERROR-006: PC投影失败 → 先运行PCA'
+      output:
+      - pca/
+      - cluster/
+      - dihedral/
+      - contact/
+      - dccm/
+      - fel/
+      - ANALYSIS_REPORT.md
+      analysis_types:
+        pca:
+          description: 主成分分析 - 识别主要构象运动
+          output: eigenval.xvg, eigenvec.trr, proj_pc*.xvg, extreme_pc1.pdb
+          interpretation: PC1捕获最大方差,前2-3个PC通常解释60-80%方差
+        cluster:
+          description: 聚类分析 - 识别代表性构象
+          output: clusters.xpm, clusters.pdb, rmsd_matrix.xpm
+          interpretation: 少量簇表示稳定构象,多簇表示高度动态
+        dihedral:
+          description: 二面角分析 - Ramachandran图和Chi角
+          output: ramachandran.xvg, chi_angles.xvg
+          interpretation: '>90%在允许区域为良好结构,异常值可能表示问题'
+        contact:
+          description: 接触图分析 - 原子间距离和接触
+          output: mean_dist.xpm, min_dist.xvg, num_contacts.xvg
+          interpretation: 持久接触(>80%)表示稳定相互作用
+        dccm:
+          description: 动态交叉相关矩阵 - 原子运动相关性
+          output: dccm.dat, covar.xpm
+          interpretation: 正相关(>0.7)表示协同运动,负相关(<-0.7)表示反相关
+        fel:
+          description: 自由能景观 - 基于PCA的能量面
+          output: gibbs.xpm, prob.xpm, proj_2d.xvg
+          interpretation: 能量最小值表示稳定态,势垒表示过渡态
+  protein:
+    name: 蛋白质专用
+    description: 二级结构 (DSSP), SASA
+    script: scripts/advanced/protein.sh
+    troubleshoot: references/troubleshoot/protein-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - dssp
+      key_params:
+      - 'trajectory: md.xtc'
+      - 'structure: md.tpr'
+      output:
+      - dssp.xpm
+      - sasa.xvg
+  protein_special_analysis:
+    name: 蛋白特化分析
+    description: DSSP/增强 Ramachandran-Chi/螺旋几何/盐桥/多螺旋束/关键残基/自动报告
+    script: scripts/analysis/protein-special-analysis.sh
+    troubleshoot: references/troubleshoot/protein-special-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - dssp (recommended)
+      auto_fix:
+      - salt_bridge_cutoff_clamp
+      - partial_module_degradation
+      - report_generation_after_partial_failures
+      key_params:
+      - 'analysis_type: dssp,dihedral,helix,saltbridge,bundle,keyres,report'
+      - 'protein_group/backbone_group/calpha_group: Protein / Backbone / C-alpha'
+      - 'helix_group: helical subset preferred; wheel 建议配合 --helix-residues'
+      - 'salt_cutoff: 0.40 nm (自动夹紧到合理范围)'
+      - 'bundle_nhelices: 2-6 常见，多螺旋束需明确定义'
+      - 'time_window: -b/-e 聚焦构象转变时段可显著提升判读质量'
+      common_errors:
+      - 'DSSP skipped: 未安装 dssp/mkdssp → 仍可生成部分报告'
+      - gmx rama failed → 检查 Backbone 组或系统是否为蛋白
+      - gmx chi sparse/failed → Gly/Ala-rich 或侧链信息有限，不一定是错误
+      - gmx helix/helixorient failed → 改用连续螺旋核心残基
+      - gmx saltbr failed → 检查带电残基和组定义
+      - gmx bundle failed → 单螺旋系统请跳过 bundle
+      output:
+      - dssp/ - 二级结构演化与统计
+      - dihedral/ - Ramachandran 与 chi 增强统计
+      - helix/ - helix/helixorient/wheel 结果
+      - saltbridge/ - 盐桥计数与距离
+      - bundle/ - 多螺旋束倾斜/距离
+      - keyres/ - 关键残基总结
+      - PROTEIN_SPECIAL_REPORT.md - 自动化蛋白分析报告
+      workflow_hint:
+      - 先用 basic analysis 看 RMSD/RMSF/Rg
+      - 再用 advanced-analysis 看 PCA/cluster/FEL
+      - 最后用 protein-special-analysis 做机制级蛋白判读
+      interpretation_rules:
+      - 'DSSP下降 + Rama outlier上升: 常见于骨架重排/局部解折叠'
+      - 'Helix tilt升高但 DSSP 稳定: 更像功能呼吸或门控运动'
+      - 'Salt bridge 先断后 RMSF 升高: 早期失稳或状态转换信号'
+      - 'Bundle opening 无大规模二级结构丢失: 倾向构象切换而非全局塌陷'
+  binding_analysis:
+    name: 结合分析
+    description: 蛋白-配体结合分析：MM-PBSA/MM-GBSA、结合口袋、相互作用指纹、能量分解
+    script: scripts/analysis/binding-analysis.sh
+    troubleshoot: references/troubleshoot/binding-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - gmx_MMPBSA (可选)
+      auto_install: false
+      auto_fix:
+      - ligand_auto_detection
+      - mmpbsa_fallback
+      - pocket_identification
+      - contact_analysis
+      key_params:
+      - 'commands: mmpbsa/pocket/interact/decomp/hbond/hydrophobic/cluster'
+      - 'mmpbsa: MM-PBSA/MM-GBSA 自由能计算 (需 gmx_MMPBSA)'
+      - 'pocket: 结合口袋识别 (0.5 nm cutoff)'
+      - 'interact: 相互作用指纹 (H-bond + 疏水 + 静电)'
+      - 'decomp: 残基能量贡献分解 (需 gmx_MMPBSA)'
+      - 'hbond: 氢键分析 (-r 0.35 nm, -a 30°)'
+      - 'hydrophobic: 疏水接触 (ALA/VAL/LEU/ILE/MET/PHE/TRP/PRO)'
+      - 'cluster: 结合模式聚类 (RMSD-based)'
+      - 'ligand_detect: 自动检测 LIG/MOL/UNK/DRG/INH'
+      common_errors:
+      - 'ERROR-001: gmx_MMPBSA 不可用 → pip install gmx_MMPBSA 或使用简化分析'
+      - 'ERROR-002: 配体自动检测失败 → 手动指定 --ligand resname'
+      - 'ERROR-003: 口袋识别失败 → 检查配体-蛋白质距离 < 0.5 nm'
+      - 'ERROR-004: 氢键数为零 → 检查氢原子存在 / 放宽标准 -r 0.40 -a 35'
+      - 'ERROR-005: 接触图失败 → 减小轨迹长度或使用子集'
+      - 'ERROR-006: 聚类无结果 → 增大 cutoff (0.15 → 0.25 nm)'
+      - 'ERROR-007: 疏水接触为空 → 增大 cutoff (0.5 → 0.6 nm)'
+      - 'ERROR-008: 能量分解不详细 → 安装 gmx_MMPBSA'
+      - 'ERROR-009: MM-PBSA 太慢 → 减少帧数 --frames 50 或用 GB'
+      - 'ERROR-010: 相互作用指纹不完整 → 逐个运行命令检查错误'
+      output:
+      - mmpbsa_results.dat - 结合自由能
+      - pocket_residues.ndx - 口袋残基索引
+      - pocket_sasa.xvg - 口袋表面积 vs 时间
+      - interactions.dat - 相互作用摘要
+      - hbond_count.xvg - 氢键数 vs 时间
+      - hbond_dist.xvg - 氢键距离分布
+      - hbond_angle.xvg - 氢键角度分布
+      - mindist_pl.xvg - 最小距离 vs 时间
+      - contact_mean.xpm - 接触图
+      - hydrophobic_dist.xvg - 疏水接触距离
+      - cluster_centers.pdb - 聚类中心结构
+      - cluster_dist.xvg - 聚类大小分布
+      analysis_workflow:
+      - '1. 基础检查: binding-analysis hbond + hydrophobic'
+      - '2. 口袋分析: binding-analysis pocket'
+      - '3. 相互作用: binding-analysis interact'
+      - '4. 结合模式: binding-analysis cluster'
+      - '5. 自由能 (可选): binding-analysis mmpbsa (需 gmx_MMPBSA)'
+      - '6. 能量分解 (可选): binding-analysis decomp (需 gmx_MMPBSA)'
+      validation_tips:
+      - '配体稳定性: RMSD < 0.3 nm'
+      - '蛋白-配体距离: < 0.5 nm (结合)'
+      - '氢键数: 2-5 个 (典型)'
+      - '疏水接触: 3-8 个残基 (典型)'
+      - '采样时间: > 10 ns (推荐)'
+      - '轨迹预处理: 居中 + PBC 校正'
+  property_analysis:
+    name: 物理性质分析
+    description: 扩散系数、粘度、介电常数、热力学性质、表面张力、RDF、密度分布
+    script: scripts/analysis/property-analysis.sh
+    troubleshoot: references/troubleshoot/property-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - group_auto_detection
+      - property_validation
+      - edr_requirement_check
+      key_params:
+      - 'property: diffusion/viscosity/dielectric/thermodynamic/surface/rdf/density'
+      - 'diffusion: D = <r²>/(6t), trestart=10 ps, need >10 ns'
+      - 'viscosity: Green-Kubo η=V/(kT)∫<P_xy(t)P_xy(0)>dt, need EDR, >50 ns'
+      - 'dielectric: ε = 1 + <M²>/(3ε₀VkT), water~80, need >10 ns'
+      - 'thermodynamic: Cp = <(ΔH)²>/(kT²), need EDR, >10 ns'
+      - 'surface: γ = Lz/2*(P_zz-(P_xx+P_yy)/2), need EDR, semi-isotropic'
+      - 'rdf: g(r), cutoff=2.0 nm, first peak=coordination shell'
+      - 'density: ρ(z), useful for interfaces/membranes'
+      common_errors:
+      - 'ERROR-001: 文件缺失 → 检查 TPR/TRJ/EDR 路径'
+      - 'ERROR-002: property 未指定 → 添加 --property <type>'
+      - 'ERROR-003: EDR 缺失 → viscosity/thermodynamic/surface 需要 -e md.edr'
+      - 'ERROR-004: 组选择失败 → 使用 auto-detect 或检查组名'
+      - 'ERROR-005: 扩散系数提取失败 → 轨迹太短(<10ns) 或系统未平衡'
+      - 'ERROR-006: 粘度计算不完整 → 需要 NEMD 或手动 Green-Kubo'
+      - 'ERROR-007: 介电常数异常 → 检查系统极性、轨迹长度、PME'
+      - 'ERROR-008: 表面张力失败 → 需要界面、z轴垂直、semi-isotropic'
+      - 'ERROR-009: RDF 无结构 → 增大 cutoff、检查组距离'
+      - 'ERROR-010: 密度噪声大 → 延长轨迹、增大 bin size'
+      output:
+        diffusion:
+        - msd.xvg
+        - diffusion_coeff.txt
+        viscosity:
+        - pressure_tensor.xvg
+        - pxy.xvg
+        - viscosity.txt
+        dielectric:
+        - dipole.xvg
+        - epsilon.xvg
+        - dielectric_constant.txt
+        thermodynamic:
+        - thermodynamic.xvg
+        - enthalpy.xvg
+        - heat_capacity.txt
+        - thermal_expansion.txt
+        surface:
+        - surface_data.xvg
+        - surface_tension.txt
+        rdf:
+        - rdf.xvg
+        - rdf_cn.xvg
+        - rdf_analysis.txt
+        density:
+        - density.xvg
+        - density_analysis.txt
+      physics_formulas:
+      - 'Diffusion (Einstein): D = lim(t→∞) <|r(t)-r(0)|²> / (6t)'
+      - 'Viscosity (Green-Kubo): η = V/(kT) ∫₀^∞ <P_αβ(t)P_αβ(0)> dt'
+      - 'Viscosity (Einstein/NEMD): η = σ_xy / γ̇'
+      - 'Dielectric: ε = 1 + <M²>/(3ε₀VkT) - <M>²/(3ε₀VkT)'
+      - 'Heat Capacity: Cp = <(ΔH)²> / (kT²)'
+      - 'Surface Tension: γ = Lz/2 * (P_zz - (P_xx + P_yy)/2)'
+      - 'RDF: g(r) = <ρ(r)> / <ρ_bulk>'
+      typical_values:
+        diffusion:
+        - 'Water (298K): 2.3 × 10⁻⁵ cm²/s'
+        - 'Small molecules: 0.5-5 × 10⁻⁵ cm²/s'
+        - 'Proteins: 0.01-0.1 × 10⁻⁵ cm²/s'
+        viscosity:
+        - 'Water (298K): 0.89 mPa·s'
+        - 'Ethanol (298K): 1.07 mPa·s'
+        - 'Glycerol (298K): 1412 mPa·s'
+        dielectric:
+        - 'Water (298K): 78-80'
+        - 'Methanol: 33'
+        - 'Ethanol: 25'
+        - 'Hexane: 2'
+        surface:
+        - 'Water/air (298K): 72 mN/m'
+        - 'Ethanol/air: 22 mN/m'
+        - 'Hexane/air: 18 mN/m'
+  membrane_analysis:
+    name: 膜体系分析
+    description: 脂尾有序参数、双层厚度、z密度分布、2D密度图、取向分析、胆固醇/脂组分分布、自动总结报告
+    script: scripts/analysis/membrane-analysis.sh
+    troubleshoot: references/troubleshoot/membrane-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - axis_plane_validation
+      - bins_grid_validation
+      - centered_trajectory_preprocessing
+      key_params:
+      - 'type: order/thickness/density/densmap/orientation/composition/all'
+      - 'lipid_group: Membrane (默认)'
+      - 'water_group: Water/SOL'
+      - 'protein_group: Protein'
+      - 'tail_groups: sn1/sn2 或自定义脂尾索引组'
+      - 'axis: z (标准双层法向)'
+      - 'plane: xy (标准膜平面)'
+      - 'bins: 100-200 (厚度/密度)'
+      - 'grid: 80-120 (densmap)'
+      - 'component: CHOL/POPC/POPE/DPPC 等 residue name'
+      - 'center: 建议开启, 先做 PBC 清理和居中'
+      common_errors:
+      - 'ERROR-001: tail group 不存在 → 检查 sn1/sn2 或自定义 index'
+      - 'ERROR-002: 厚度异常 → 使用 --center 或改用头基原子组'
+      - 'ERROR-003: density 噪声大 → 增大采样窗口/减小 bins/skip 帧'
+      - 'ERROR-004: densmap 失败 → 检查 GROMACS 版本或组定义'
+      - 'ERROR-005: sorient/densorder 失败 → 确认法向轴和接口组'
+      - 'ERROR-006: CHOL/组分分布异常 → 检查 residue name'
+      output:
+        order:
+        - order/order_sn1.xvg
+        - order/order_sn2.xvg
+        - order/order_summary.txt
+        thickness:
+        - thickness/lipid_density.xvg
+        - thickness/thickness_summary.txt
+        density:
+        - density/density_lipid.xvg
+        - density/density_water.xvg
+        - density/density_protein.xvg
+        densmap:
+        - densmap/densmap_lipid.dat
+        - densmap/densmap_*.dat
+        - densmap/densmap_summary.txt
+        orientation:
+        - orientation/sorient_water.xvg
+        - orientation/densorder_lipid.xvg
+        - orientation/orientation_summary.txt
+        composition:
+        - composition/density_*.xvg
+        - composition/densmap_*.dat
+        - composition/composition_summary.txt
+        report:
+        - MEMBRANE_ANALYSIS_REPORT.md
+      analysis_notes:
+      - 'order: |S_CD| 越大表示脂尾越有序; 胆固醇通常提高有序度'
+      - 'thickness: 推荐以头基峰间距定义; 脚本默认用密度峰近似'
+      - 'density: lipid/water/protein 的 z-profile 是膜稳定性首要 sanity check'
+      - 'densmap: 识别横向富集、微区和蛋白 annular shell'
+      - 'orientation: sorient 看溶剂界面取向, densorder 看取向+空间分布'
+      - 'composition: 需先确认 CHOL/POPC/POPE 等 residue naming'
+      - 'workflow: 先 density/thickness, 再 order, 最后 densmap/composition'
+  property_extended:
+    name: 扩展蛋白性质分析
+    description: 偶极矩/静电势/自由体积/水合层序参数/最小距离 — 补充 GROMACS 官方分析
+    script: scripts/analysis/property-extended.sh
+    troubleshoot: references/troubleshoot/property-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - index_auto_create
+      key_params:
+      - 'analyses: dipoles,potential,freevolume,h2order,mindist,sasa'
+      - 'dipoles: 总偶极矩涨落 + 介电常数估算'
+      - 'potential: 沿盒子 Z 轴静电势分布'
+      - 'freevolume: 分子体积 + 自由体积分数'
+      - 'h2order: 水分子取向序参数'
+      - 'mindist: 基团间最小距离监测'
+      common_errors:
+      - 'ERROR-001: 需要 index 文件 → auto-create via make_ndx'
+      - 'ERROR-002: 部分分析可能非致命失败 → 继续执行其余'
+      output:
+      - properties/dipoles.xvg
+      - properties/epsilon.xvg
+      - properties/potential.xvg
+      - properties/freevolume.xvg
+      - properties/h2order.xvg
+      - properties/mindist.xvg
+      - properties/PROPERTIES_REPORT.md
+  free_energy_analysis:
+    name: 自由能结果分析
+    description: BAR/FEP、WHAM/PMF、AWH 结果整理与质量评估总控
+    script: scripts/analysis/free-energy-analysis.sh
+    troubleshoot: references/troubleshoot/free-energy-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - python3
+      auto_fix:
+      - fallback_to_existing_results
+      - wham_bootstrap_retry
+      - cross_method_summary
+      key_params:
+      - 'mode: all/bar/wham/awh/summary'
+      - 'bar_pattern: lambda_*/dhdl*.xvg (FEP/BAR 常用)'
+      - 'wham_tpr_list + wham_pullf_list: 复算 PMF/bootstrap 所需'
+      - 'series: pullx.xvg / dhdl.xvg / awh time series (block averaging)'
+      - 'bootstrap: 200-1000 (快速到稳健)'
+      - 'quality thresholds: overlap > 0.30, |baseline drift| < 5 kJ/mol'
+      common_errors:
+      - 'ERROR-001: gmx 不可用 → 退化为读取已有结果文件'
+      - 'ERROR-002: BAR 输入不足 → 提供多个 lambda 邻接窗口'
+      - 'ERROR-003: WHAM 不收敛 → 延长窗口采样/减小间距'
+      - 'ERROR-004: PMF 粗糙/漂移 → 先检查 overlap 再延长采样'
+      - 'ERROR-005: bootstrap 缺失 → 提供 tpr/pullf 列表重新运行 gmx wham'
+      - 'ERROR-006: block averaging 无结果 → 显式提供 --series'
+      - 'ERROR-007: AWH 仅有日志 → 至少提供 md.edr 或现成 awh PMF'
+      output:
+      - FREE_ENERGY_ANALYSIS_REPORT.md
+      - bar/bar_summary.txt
+      - wham/pmf.xvg, wham/hist.xvg, wham/bsres.xvg
+      - awh/awh_summary.txt
+      - block_average.env
+      integration:
+      - freeenergy.sh → BAR/FEP 后处理
+      - umbrella.sh → WHAM/PMF 与窗口质量复核
+      - metadynamics.sh (AWH) → AWH 阶段判读
+      - enhanced-sampling.sh → 扩展系综 BAR 汇总
+  workflow:
+    name: 完整工作流
+    description: 端到端自动化
+    script: scripts/advanced/workflow.sh
+    troubleshoot: references/troubleshoot/workflow-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - checkpoint_recovery
+      key_params:
+      - 'input: protein.pdb'
+      - 'time: 100 ps'
+      output:
+      - 完整模拟结果
+  replica_exchange:
+    name: 副本交换分子动力学
+    description: REMD - 温度/哈密顿副本交换增强采样
+    script: scripts/advanced/replica-exchange.sh
+    troubleshoot: references/troubleshoot/replica-exchange-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - demux.pl
+      auto_fix:
+      - replica_count_validation
+      - temperature_range_check
+      - exchange_interval_optimization
+      - failed_replica_restart
+      key_params:
+      - 'remd_type: temperature/hamiltonian/both'
+      - 'num_replicas: 8-32 (T-REMD), 8-20 (H-REMD)'
+      - 'temp_range: T_max/T_min < 2.0'
+      - 'temp_distribution: 指数 T_i=T_min*(T_max/T_min)^(i/(N-1))'
+      - 'exchange_interval: 100-1000 步'
+      - 'acceptance_rate: 20-30% (最优)'
+      - 'lambda_type: vdw/coul/vdw-q/bonded/restraint'
+      - 'sc-alpha: 0.5'
+      common_errors:
+      - 'ERROR-001: TPR失败 → 检查温度组/lambda'
+      - 'ERROR-004: 接受率低 → 增加副本/减小温度范围'
+      - 'ERROR-005: 接受率高 → 减少副本/增大温度范围'
+      output:
+      - replica_*/md.xtc
+      - exchange.log
+      - REMD_REPORT.md
+  metadynamics:
+    name: 元动力学模拟
+    description: Metadynamics - 自由能面计算 (PLUMED/AWH)
+    script: scripts/advanced/metadynamics.sh
+    troubleshoot: references/troubleshoot/metadynamics-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - plumed (可选)
+      auto_fix:
+      - plumed_availability_check
+      - cv_params_validation
+      - metad_params_validation
+      - checkpoint_recovery
+      key_params:
+      - 'method: plumed (传统) / awh (GROMACS内置)'
+      - 'metad_type: standard / well-tempered (推荐)'
+      - 'cv_type: distance/angle/dihedral/rmsd'
+      - 'hill_height: 1.0-5.0 kJ/mol (well-tempered可稍大)'
+      - 'hill_width: CV范围的1-5%'
+      - 'hill_pace: 100-1000 步 (推荐500)'
+      - 'biasfactor: 5-20 (well-tempered, 越大越保守)'
+      - 'cv_range: 留10-20%余量'
+      common_errors:
+      - 'ERROR-001: PLUMED不可用 → 重编译GROMACS或用AWH'
+      - 'ERROR-002: CV定义错误 → 检查原子索引和数量'
+      - 'ERROR-003: 高斯峰参数不合理 → auto-fix到推荐范围'
+      - 'ERROR-004: CV范围错误 → auto-fix交换min/max'
+      - 'ERROR-006: 不收敛 → 增加时间/用well-tempered'
+      output:
+      - HILLS/awh.xvg
+      - COLVAR
+      - fes.dat
+      - METADYNAMICS_REPORT.md
+  steered_md:
+    name: 牵引分子动力学
+    description: Steered MD - 力-距离曲线和PMF预备 (Pull Code)
+    script: scripts/advanced/steered-md.sh
+    troubleshoot: references/troubleshoot/steered-md-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - pull_geometry_validation
+      - pull_rate_validation
+      - init_distance_detection
+      - index_file_validation
+      - checkpoint_recovery
+      key_params:
+      - 'pull_geometry: distance (最常用) / direction / cylinder / angle / dihedral'
+      - 'pull_mode: constant-velocity (PMF预备) / constant-force / umbrella'
+      - 'pull_rate: 0.001-0.01 nm/ps (velocity) / 100-1000 kJ/mol/nm (force)'
+      - 'pull_k: 1000 kJ/mol/nm² (弹簧常数)'
+      - 'pull_init: 自动检测或手动指定'
+      - 'cylinder_r: < 盒子最小边长的40%'
+      - 'geometry_groups: distance(2) / angle(3) / dihedral(6)'
+      common_errors:
+      - 'ERROR-001: 拉力组不存在 → 检查索引文件/重新生成'
+      - 'ERROR-002: 拉力速率不合理 → auto-fix到推荐范围'
+      - 'ERROR-003: 几何配置错误 → 检查组数量'
+      - 'ERROR-004: 初始距离检测失败 → 手动指定PULL_INIT'
+      - 'ERROR-005: 拉力方向未定义 → 指定PULL_VEC'
+      - 'ERROR-006: 圆柱半径过大 → 减小CYLINDER_R'
+      - 'ERROR-007: LINCS警告 → 减小速率/时间步长'
+      - 'ERROR-008: 拉力数据缺失 → 检查模拟完成/磁盘空间'
+      output:
+      - pullf.xvg
+      - pullx.xvg
+      - pull.xtc
+      - umbrella_windows.dat
+      - STEERED_MD_REPORT.md
+  accelerated_md:
+    name: 加速分子动力学
+    description: Accelerated MD - PLUMED aMD / Metadynamics 增强采样替代方案
+    script: scripts/advanced/accelerated-md.sh
+    troubleshoot: references/troubleshoot/accelerated-md-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - plumed
+      auto_install: true
+      auto_fix:
+      - plumed 缺失 → 自动切换到 metadynamics 方法
+      - aMD 参数 auto → 自动执行预运行计算阈值
+      - 检查点恢复
+      key_params:
+      - 'amd_method: plumed (推荐) / metadynamics (备选)'
+      - 'amd_type: dual (双加速) / dihedral (二面角) / total (总能量)'
+      - 'amd_e_dihed: auto (自动计算) / 手动指定 (kJ/mol)'
+      - 'amd_alpha_dihed: auto / 手动指定加速因子'
+      - 'amd_e_tot: auto / 手动指定总能量阈值'
+      - 'amd_alpha_tot: auto / 手动指定总能量加速因子'
+      - 'prerun_time: 100 ps (推荐预运行时间)'
+      - 'sim_time: 10-100 ns (推荐)'
+      common_errors:
+      - 'ERROR-001: PLUMED 未安装 → auto-fix 切换到 metadynamics'
+      - 'ERROR-002: GROMACS 不含 PLUMED 支持 → auto-fix 切换方法'
+      - 'ERROR-003: aMD 参数未提供 → auto-fix 执行预运行'
+      - 'ERROR-004: 预运行失败 → 手动指定参数或延长预运行时间'
+      - 'ERROR-005: 模拟崩溃 → 检查能量阈值参数'
+      output:
+      - amd.xtc
+      - amd.edr
+      - amd.log
+      - ACCELERATED_MD_REPORT.md
+  electric_field:
+    name: 电场模拟
+    description: Electric Field - 恒定/振荡/脉冲电场模拟
+    script: scripts/advanced/electric-field.sh
+    troubleshoot: references/troubleshoot/electric-field-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - field_strength_validation
+      - oscillation_params_validation
+      - field_direction_parsing
+      - field_config_validation
+      - checkpoint_recovery
+      key_params:
+      - 'field_type: constant (恒定) / oscillating (振荡) / pulsed (脉冲)'
+      - 'field_direction: x/y/z/xy/xz/yz/xyz'
+      - 'field_strength: 0.001-0.1 V/nm (生物), 0.1-2.0 V/nm (材料)'
+      - 'field_omega: 10-500 ps⁻¹ (振荡/脉冲)'
+      - 'field_t0: 模拟中点 (脉冲中心时间)'
+      - 'field_sigma: SIM_TIME/10 - SIM_TIME/4 (脉冲宽度)'
+      - 'mdp_format: E0 omega t0 sigma (4个参数)'
+      - 'pbc_effect: 有效场强 > 施加场强 (修正因子 > 1)'
+      common_errors:
+      - 'ERROR-001: 电场强度不合理 → auto-fix到推荐范围'
+      - 'ERROR-002: 振荡参数错误 → 检查omega/t0范围'
+      - 'ERROR-003: 脉冲宽度不合理 → auto-fix到SIM_TIME/10'
+      - 'ERROR-004: 电场方向配置错误 → 根据FIELD_DIRECTION自动设置'
+      - 'ERROR-005: MDP参数格式错误 → 确保4个参数'
+      - 'ERROR-006: 系统不稳定 → 减小场强/时间步长'
+      - 'ERROR-007: 偶极矩分析失败 → 检查系统电荷分布'
+      - 'ERROR-008: PBC效应 → 使用更大盒子/考虑修正因子'
+      output:
+      - efield.xtc
+      - efield.edr
+      - energy.xvg
+      - dipole.xvg
+      - ELECTRIC_FIELD_REPORT.md
+  enhanced_sampling:
+    name: 增强采样方法
+    description: Enhanced Sampling - Simulated Annealing & Expanded Ensemble
+    script: scripts/advanced/enhanced-sampling.sh
+    troubleshoot: references/troubleshoot/enhanced-sampling-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - annealing_params_validation
+      - expanded_params_validation
+      - temperature_range_check
+      - lambda_distribution_optimization
+      - checkpoint_recovery
+      key_params:
+      - 'sampling_method: annealing (退火) / expanded (扩展系综) / both'
+      - 'annealing_type: single (单次) / periodic (周期) / no'
+      - 'temp_range: 300-600 K (蛋白质), 300-800 K (小分子)'
+      - 'annealing_points: 5-10 (控制点数)'
+      - 'num_lambda: 7-21 (lambda状态数)'
+      - 'lambda_type: vdw/coul/vdw-q/bonded'
+      - 'nstexpanded: 100-500 步 (lambda尝试间隔)'
+      - 'wl-scale: 0.5-0.8 (Wang-Landau缩放)'
+      - 'wl-ratio: 0.5-0.8 (收敛判据)'
+      - 'lambda_distribution: 端点密集 (0.0, 0.05, 0.1, ..., 0.95, 1.0)'
+      common_errors:
+      - 'ERROR-001: annealing参数不匹配 → 检查npoints与数组长度'
+      - 'ERROR-002: 温度过高系统崩溃 → 限制到800 K或减小dt'
+      - 'ERROR-003: lambda不跳跃 → 减小nstexpanded到100-500'
+      - 'ERROR-004: Wang-Landau不收敛 → 降低wl-ratio,增加时间'
+      - 'ERROR-005: lambda访问不均 → 端点密集分布'
+      - 'ERROR-006: 检查点错误 → 避免-update gpu (已知bug)'
+      - 'ERROR-007: 退火后不稳定 → 增加降温时间/控制点'
+      - 'ERROR-008: 内存不足 → 减少输出频率'
+      output:
+      - enhanced.xtc
+      - enhanced.edr
+      - energy.xvg
+      - lambda.xvg
+      - ENHANCED_SAMPLING_REPORT.md
+  coarse_grained:
+    name: 粗粒化模拟
+    description: Coarse-Grained - MARTINI力场、AA↔CG转换、多尺度模拟
+    script: scripts/advanced/coarse-grained.sh
+    troubleshoot: references/troubleshoot/coarse-grained-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - martinize2/martinize.py
+      - backward.py (反向映射)
+      auto_install: true
+      auto_fix:
+      - martini_forcefield_download
+      - martinize_installation
+      - timestep_validation
+      - checkpoint_recovery
+      key_params:
+      - 'mode: aa2cg (全原子→粗粒化) / cg (直接CG) / backmapping (CG→全原子) / multiscale (多尺度)'
+      - 'martini_version: 2 (MARTINI 2.x) / 3 (MARTINI 3.x, 推荐)'
+      - 'dt: 0.020-0.030 ps (20-30 fs, 比全原子大10倍)'
+      - 'cg_water: W (标准) / PW (极性) / SW (小珠子)'
+      - 'rcoulomb/rvdw: 1.1 nm (MARTINI标准)'
+      - 'coulombtype: reaction-field (ε_r=15, ε_rf=0)'
+      - 'tau_t: 1.0 ps (V-rescale)'
+      - 'tau_p: 12.0 ps (Parrinello-Rahman, 比全原子大)'
+      - 'compressibility: 3e-4 bar⁻¹ (比全原子小)'
+      - 'elastic_network: -ef 500 -el 0.5 -eu 0.9 (martinize参数)'
+      common_errors:
+      - 'ERROR-001: MARTINI力场不可用 → auto-download或手动安装'
+      - 'ERROR-002: martinize未找到 → pip install vermouth-martinize'
+      - 'ERROR-003: AA→CG转换失败 → 检查PDB格式/残基类型'
+      - 'ERROR-004: 时间步长不合理 → auto-fix到20-30 fs'
+      - 'ERROR-005: 溶剂化失败 → 创建CG水模型/使用insane'
+      - 'ERROR-006: 离子添加失败 → 使用W组/MARTINI离子名'
+      - 'ERROR-007: EM不收敛 → 增加步数/放宽标准'
+      - 'ERROR-008: NVT/NPT不稳定 → 减小dt/延长平衡'
+      - 'ERROR-009: 反向映射失败 → 安装backward.py/CG2AT'
+      - 'ERROR-010: 截断距离警告 → 增大盒子/使用1.1 nm'
+      - 'ERROR-011: 静电处理错误 → 使用reaction-field (ε_r=15)'
+      - 'ERROR-012: 压力振荡 → 增大tau_p到12-20 ps'
+      - 'ERROR-013: 虚拟位点问题 → 使用-elastic选项'
+      - 'ERROR-014: 多尺度失败 → 分步执行各阶段'
+      output:
+      - cg_protein.pdb
+      - cg_topol.top
+      - em.gro
+      - nvt.gro
+      - npt.gro
+      - md.xtc
+      - CG_REPORT.md
+  non_equilibrium:
+    name: 非平衡分子动力学
+    description: Non-Equilibrium MD - 流动/剪切/热流模拟，粘度测量
+    script: scripts/advanced/non-equilibrium.sh
+    troubleshoot: references/troubleshoot/non-equilibrium-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      auto_fix:
+      - cosine_accel_validation
+      - deform_params_validation
+      - acceleration_groups_validation
+      - wall_params_validation
+      - checkpoint_recovery
+      key_params:
+      - 'nemd_type: cosine (余弦加速) / deform (盒子变形) / acceleration (恒定加速) / walls (壁面驱动)'
+      - 'cos_accel: 0.01-1.0 nm/ps² (余弦加速振幅)'
+      - 'deform_rate: 0.001-0.01 nm/ps (变形速率)'
+      - 'deform_axis: xy (b(x)剪切) / xz (c(x)剪切) / yz (c(y)剪切)'
+      - 'accel_x/y/z: 0.01-1.0 nm/ps² (恒定加速度)'
+      - 'wall_speed: 0.001-0.1 nm/ps (壁面速度)'
+      - 'shear_rate: < 0.1 ps⁻¹ (简单液体), < 0.001 ps⁻¹ (聚合物)'
+      - 'comm-mode: None (禁用质心运动移除)'
+      - 'pcoupl: no (禁用压力耦合，deform方法)'
+      - 'viscosity_formula: η = σ_xy / γ̇ (deform) 或自动计算 (cosine)'
+      common_errors:
+      - 'ERROR-001: 余弦加速仅支持md积分器 → 确保integrator=md'
+      - 'ERROR-002: 加速度过大系统崩溃 → 减小到0.01-0.1'
+      - 'ERROR-003: 变形与压力耦合冲突 → pcoupl=no'
+      - 'ERROR-004: 变形速率过大 → 减小到0.001-0.01'
+      - 'ERROR-005: 加速组不存在 → 检查索引文件/组名'
+      - 'ERROR-006: 质心漂移 → comm-mode=None'
+      - 'ERROR-007: 壁面位置限制缺失 → 生成posre文件'
+      - 'ERROR-008: LINCS警告 → 减小驱动力/时间步长'
+      - 'ERROR-009: 粘度异常 → 检查剪切率/延长时间'
+      - 'ERROR-010: 速度剖面不符合预期 → 延长模拟达到稳态'
+      - 'ERROR-011: 剪切变稀 → 运行多个剪切率外推'
+      output:
+      - nemd.xtc
+      - nemd.edr
+      - viscosity.xvg
+      - pressure_tensor.xvg
+      - NON_EQUILIBRIUM_REPORT.md
+      method_comparison:
+        cosine:
+          pros: 简单、自动计算粘度、盒子不变形
+          cons: 仅适合简单液体
+          use_case: 快速粘度估计
+        deform:
+          pros: 直接模拟剪切、适用范围广
+          cons: 需要手动计算粘度
+          use_case: 一般流变学研究
+        acceleration:
+          pros: 灵活、可控制特定组
+          cons: 需要控制质心运动
+          use_case: 复杂流动、多组分系统
+        walls:
+          pros: 真实边界条件、研究壁面效应
+          cons: 设置复杂
+          use_case: 受限流体、摩擦研究
+      physics_background:
+      - '非平衡态: 系统偏离热力学平衡，存在宏观流动/热流/电流'
+      - '粘度测量: η = σ_xy / γ̇ (牛顿流体)'
+      - '剪切变稀: η(γ̇) = η₀ / (1 + (λγ̇)ⁿ)'
+      - '推荐剪切率: γ̇ << 1/τ_relax (避免非线性效应)'
+      - '余弦加速: a_x(z) = A cos(2πz/L_z) → v_x(z) = V cos(2πz/L_z)'
+      - '速度剖面振幅: V = A (ρ/η) (L_z/2π)²'
+  qmmm:
+    name: QM/MM 混合模拟
+    description: QM/MM Hybrid Simulation - CP2K/ORCA 接口，量子力学/分子力学混合模拟
+    script: scripts/advanced/qmmm.sh
+    troubleshoot: references/troubleshoot/qmmm-errors.md
+    quick_ref:
+      dependencies:
+      - gmx
+      - cp2k (推荐) / orca
+      auto_install: false
+      auto_fix:
+      - qm_software_check
+      - qm_region_validation
+      - basis_set_validation
+      - link_atom_handling
+      - convergence_check
+      - timestep_validation
+      key_params:
+      - 'qm_software: auto/cp2k/orca (auto=自动检测)'
+      - 'qm_method: PBE/B3LYP/BLYP/PBE0/CAM-B3LYP/WB97X'
+      - 'qm_dispersion: none/D3/D3BJ (色散校正)'
+      - 'qm_basis: DZVP-MOLOPT-SR-GTH (CP2K) / def2-SVP (ORCA)'
+      - 'qm_selection: auto/residue/index/manual'
+      - 'qm_charge: 0 (QM区域总电荷)'
+      - 'qm_multiplicity: 1 (自旋多重度)'
+      - 'link_atom_method: auto/hydrogen/none'
+      - 'mm_embedding: electrostatic/mechanical'
+      - 'dt: 0.0005-0.001 ps (0.5-1 fs, 比纯MM小)'
+      - 'mm_forcefield: amber99sb-ildn/charmm36/oplsaa'
+      common_errors:
+      - 'ERROR-001: QM软件不可用 → 安装CP2K/ORCA或重编译GROMACS'
+      - 'ERROR-002: QM区域定义错误 → 检查QM_RESIDUES或QM_ATOMS'
+      - 'ERROR-003: 索引文件生成失败 → 验证残基名称和原子索引'
+      - 'ERROR-004: pdb2gmx失败 → 检查PDB格式和力场选择'
+      - 'ERROR-005: SCF不收敛 → 增加迭代次数或调整收敛标准'
+      - 'ERROR-006: grompp失败 → 检查拓扑和MDP参数'
+      - 'ERROR-007: 能量最小化失败 → 检查系统结构和QM/MM配置'
+      - 'ERROR-008: NVT平衡失败 → 减小时间步长或检查温度耦合'
+      - 'ERROR-009: NPT平衡失败 → 检查压力耦合参数'
+      - 'ERROR-010: 生产模拟失败 → 检查模拟参数和系统稳定性'
+      output:
+      - em.gro
+      - nvt.gro
+      - npt.gro
+      - md.xtc
+      - md.edr
+      - energy.xvg
+      - rmsd.xvg
+      - rmsd_qm.xvg
+      - QMMM_REPORT.md
+      qm_software_comparison:
+        cp2k:
+          pros: GROMACS内置支持、开源、GPU加速
+          cons: 编译复杂、文档较少
+          use_case: 推荐用于生产模拟
+        orca:
+          pros: 功能丰富、易用、文档完善
+          cons: 外部接口、性能较低
+          use_case: 方法开发和测试
+      qm_region_guidelines:
+      - 包含反应中心、配体、关键残基
+      - 避免切断共价键 (使用Link atom)
+      - 'QM区域大小: 30-100原子 (平衡精度和效率)'
+      - 边界距离活性位点 > 0.5 nm
+      - 检查电荷和多重度
+      performance_tips:
+      - 减小QM区域 (只包含关键原子)
+      - 使用GPU加速MM部分
+      - 并行化QM计算 (QM_NPROC)
+      - 使用更快的泛函 (PBE > B3LYP)
+      - 使用更小的基组 (DZVP > TZVP)
+      - 时间步长 0.5-1 fs (平衡稳定性和速度)
+  scattering_analysis:
+    name: 散射分析
+    description: SAXS/SANS/Experiment Comparison - gmx saxs/gmx sans + q-range、对比因子、Guinier/Kratky 与实验对照摘要
+    script: scripts/analysis/scattering-analysis.sh
+    troubleshoot: references/troubleshoot/scattering-analysis-errors.md
+    quick_ref:
+      dependencies:
+      - gmx (SAXS/SANS 计算可选)
+      - python3
+      - matplotlib (可选)
+      auto_install: false
+      auto_fix:
+      - curve_normalization
+      - q_overlap_check
+      - unit_hint_for_1A_to_1nm
+      - guinier_window_screening
+      - graceful_plot_fallback
+      key_params:
+      - 'mode: saxs/sans/compare/interpret/report/all'
+      - 'group: System (默认) / Protein / 自定义索引组'
+      - 'curve: 已有模拟曲线文件 (q I [err])'
+      - 'exp: 实验曲线文件 (q I [err])'
+      - 'sans: 已有 SANS/scattering 曲线文件'
+      - 'qmin/qmax: q 范围建议；实验对照时优先使用公共区间'
+      - 'qpoints: 200 (生成 q 网格点数)'
+      - 'contrast: SANS 对比因子记录/报告字段'
+      - 'buffer_density: 缓冲液密度提示字段'
+      - 'skip/begin/end: 轨迹抽帧与时间窗口'
+      common_errors:
+      - 'ERROR-001: gmx 不可用 → 安装 GROMACS 或改用 --curve/--sans 导入'
+      - 'ERROR-002: sans/scattering 命令缺失 → 使用现有 SANS 数据文件导入'
+      - 'ERROR-003: 缺少模拟曲线 → 提供 --curve 或先运行计算'
+      - 'ERROR-004: 缺少实验曲线 → 提供 --exp'
+      - 'ERROR-005: 没有可解释曲线 → 提供 --curve/--exp/--sans'
+      - q overlap insufficient → 对齐单位并限制到公共 q 区间
+      - Guinier 异常 → 检查低 q 聚集/单位/背景扣除
+      - 无图输出 → 安装 matplotlib，文本报告仍可用
+      output:
+      - curves/*.dat
+      - compare/curve_comparison.tsv
+      - compare/deviation_summary.txt
+      - interpret/guinier_summary.txt
+      - interpret/kratky_summary.txt
+      - figures/scattering_plot.png
+      - export/scattering_export.tsv
+      - export/scattering_export.json
+      - SCATTERING_REPORT.md
+      experiment_compare_guidance:
+      - '低 q 偏差主导: 优先检查整体尺寸、聚集、浓度效应、溶剂扣除'
+      - '高 q 偏差主导: 优先检查局部堆积、水化层、力场和 form factor'
+      - SANS 解读必须同时记录 D2O/H2O 比例、同位素标记和 contrast
+      - 若实验 q 单位为 1/A，比较前先转换到 1/nm (乘以 10)
+      interpretation_rules:
+        guinier:
+          rule: 仅在 qRg < 1.3 时可靠
+          output: Rg、I(0)、拟合窗口、R^2
+        kratky:
+          folded_hint: 峰接近 qRg=sqrt(3), 高度约 3 → 紧凑球状
+          flexible_hint: 高 q 尾部偏高/变宽 → 柔性、无序或异质性增加
+      downstream_export:
+        publication_viz: 提供 curves/*.dat 或 export/scattering_export.tsv
+        automd_viz: automd-viz --type data --input scattering-analysis/export/ --style nature
+  publication_viz:
+    name: 发表级可视化
+    description: Publication-Quality Visualization - 分子结构/数据图表/轨迹可视化，支持 Nature/Science/Cell 风格
+    script: scripts/visualization/publication-viz.sh
+    troubleshoot: references/troubleshoot/publication-viz-errors.md
+    quick_ref:
+      dependencies:
+      - pymol (可选)
+      - vmd (可选)
+      - python3
+      - matplotlib
+      - seaborn
+      - numpy
+      auto_install: false
+      auto_fix:
+      - tool_availability_check
+      - format_validation
+      - data_preprocessing
+      - graceful_degradation
+      key_params:
+      - 'viz_type: structure/plot/trajectory/report'
+      - 'output_format: png/svg/pdf/eps (矢量图推荐 svg/pdf)'
+      - 'output_dpi: 300 (标准) / 600 (高质量)'
+      - 'structure_style: cartoon/surface/sticks/spheres'
+      - 'structure_color: spectrum/chainbow/hydrophobicity'
+      - 'plot_type: timeseries/heatmap/violin/3dsurface/ramachandran'
+      - 'plot_style: nature/science/cell (期刊风格)'
+      - 'plot_layout: 2x2/3x2/1x3 (多面板)'
+      - 'traj_method: pca/tsne/umap/fel'
+      - 'traj_dims: 2/3 (维度)'
+      common_errors:
+      - 'ERROR-001: 工具不可用 → 安装 PyMOL/VMD/Python 库'
+      - 'ERROR-002: PyMOL 失败 → 检查结构格式/版本兼容性'
+      - 'ERROR-003: Python 绘图失败 → 检查数据格式/清理 XVG'
+      - 'ERROR-004: 轨迹可视化失败 → 先运行 PCA 分析'
+      - 'ERROR-005: 格式不支持 → 使用 png/svg/pdf/eps'
+      - 'ERROR-006: DPI 无效 → 使用 150-600'
+      - 'ERROR-007: 内存不足 → 跳帧/降低分辨率'
+      - 'ERROR-008: 期刊风格错误 → 使用 nature/science/cell'
+      - 'ERROR-009: 颜色不合适 → 使用色盲友好配色'
+      - 'ERROR-010: 布局失败 → 使用 GridSpec/tight_layout'
+      output:
+      - structure.png/svg/pdf
+      - plot.png/svg/pdf
+      - trajectory_pca.png
+      - figures/ (report 模式)
+      visualization_types:
+        structure:
+          description: 分子结构可视化 (PyMOL/VMD)
+          tools: PyMOL (推荐) / VMD
+          output: 高质量光线追踪渲染图
+          use_case: 蛋白质卡通图、表面图、配体结合位点
+        plot:
+          description: 数据图表 (Matplotlib/Seaborn)
+          tools: Python (matplotlib/seaborn)
+          output: 发表级统计图表
+          use_case: RMSD/RMSF 时间序列、热图、小提琴图
+        trajectory:
+          description: 轨迹可视化 (PCA/t-SNE/UMAP)
+          tools: Python + GROMACS
+          output: 降维投影、自由能景观
+          use_case: 构象空间探索、转换路径
+        report:
+          description: 自动生成完整图表集
+          tools: All
+          output: 完整 figures/ 目录
+          use_case: 一键生成所有可视化
+      journal_requirements:
+        nature:
+          font: Arial, 8pt
+          linewidth: 0.5 pt
+          figsize: 单栏 89mm (3.5"), 双栏 183mm (7.2")
+          dpi: 300-600
+        science:
+          font: Helvetica, 9pt
+          linewidth: 0.8 pt
+          figsize: 单栏 5.5cm, 双栏 12cm
+          dpi: '300'
+        cell:
+          font: Arial, 7pt
+          linewidth: 0.5 pt
+          figsize: 单栏 85mm, 双栏 180mm
+          dpi: 300-600
+      best_practices:
+      - 矢量图优先 (SVG/PDF/EPS) - 无损缩放
+      - 使用色盲友好配色 (ColorBrewer/Seaborn colorblind)
+      - 高 DPI (300+) 用于位图格式
+      - 多面板使用 GridSpec 对齐
+      - 添加误差带 (fill_between)
+      - 标注清晰 (xlabel/ylabel/legend)
+      - PyMOL 光线追踪 (ray_trace_mode=1)
+      - 检查期刊具体要求
+      advanced_features:
+      - 'PyMOL: 静电势、疏水性、配体结合位点高亮'
+      - 'VMD: 轨迹动画、密度图、矢量场'
+      - 'Matplotlib: 多面板组合 (2x2, 3x2)、3D 表面图'
+      - 'Seaborn: 统计分布 (violin/box)、相关矩阵热图'
+      - '自由能景观: 2D/3D 等高线图'
+      - 'Ramachandran 图: 密度等高线'
+      - '氢键网络: NetworkX 图'
+      - 'LaTeX 格式引用: 自动生成 \includegraphics'
+utils:
+  preprocess_helper:
+    description: 预处理辅助工具
+    script: scripts/utils/preprocess.sh
+  common_utils:
+    description: 通用辅助工具
+    script: scripts/utils/utils.sh
+decision:
+  method_selector:
+    name: 方法选择器
+    description: 在执行前进行 method routing，输出 Recommended / Why / Avoid / Next
+    script: scripts/decision/method-selector.py
+    references:
+    - references/METHOD_SELECTION_INDEX.yaml
+    - references/design/decision-target-map.md
+    quick_ref:
+      input:
+      - goal
+      - system_type
+      - target_observable
+      output:
+      - Recommended
+      - Why
+      - Avoid
+      - Next
+usage: 'AI 使用流程:
+
+  1. 读取此索引文件 (SKILLS_INDEX.yaml)
+
+  2. 根据用户需求匹配 skill
+
+  3. 查看 quick_ref 了解关键参数和常见错误
+
+  4. 执行对应的 script (脚本内置自动修复)
+
+  5. 如果出错, 读取 troubleshoot 文档
+
+  6. 按需读取 references
+
+
+  示例:
+
+  用户: "帮我做配体结合自由能计算"
+
+  → 匹配: advanced.freeenergy
+
+  → 查看: quick_ref (了解 lambda 分布、软核参数)
+
+  → 执行: scripts/advanced/freeenergy.sh --complex complex.pdb --ligand ligand.mol2
+
+  → 脚本自动: 检查依赖 → 尝试安装 acpype → 多方案参数化 → 运行计算
+
+  → 如果出错: 读取 references/troubleshoot/freeenergy-errors.md
+
+
+  关键改进 (Skills 2.0):
+
+  - 脚本内置自动修复 (auto_install_dependencies, 多方案尝试)
+
+  - 错误信息精简且可执行 ([ERROR-XXX] + Fix: 命令)
+
+  - 手册关键事实内嵌到脚本注释 (lambda 分布、软核参数等)
+
+  - 注释面向 AI (简洁、结构化)
+
+  - quick_ref 提供最小上下文 (省 token)
+
+
+  Token 节省 (v2.0.2+):
+
+  - 正常流程: 70-85% (从 ~11,000 → ~1,500-3,500 tokens)
+
+  - 出错流程: 40% (从 ~25,000 → ~15,000 tokens)
+
+  - 对比 1.0: 82-89% (从 39-65 KB → 7-15 KB)
+
+  '

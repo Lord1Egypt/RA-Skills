@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>空压机系统节能审计报告 — 萤火虫空压机（广州市萤火虫智能装备技术有限公司）</title>
+  <style>
+    :root {
+      --color-primary: #1B8C3A;
+      --color-primary-light: #e8f5e9;
+      --color-secondary: #1565C0;
+      --color-accent: #F57C00;
+      --color-bg: #f8faf9;
+      --color-card: #ffffff;
+      --color-text: #333333;
+      --color-text-light: #666666;
+      --color-border: #e0e0e0;
+      --color-header-bg: #1a1a2e;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Cover ===== */
+    .cover {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.06);
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: -60px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.04);
+    }
+
+    .cover__logo {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__logo span {
+      color: #4caf50;
+    }
+
+    .cover__title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__divider {
+      width: 60px;
+      height: 3px;
+      background: var(--color-primary);
+      margin: 24px auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__meta {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Sections ===== */
+    .section {
+      padding: 36px 0;
+    }
+
+    .section__title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-primary);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--color-primary);
+      margin-bottom: 24px;
+    }
+
+    .section__subtitle {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-secondary);
+      margin: 20px 0 12px;
+    }
+
+    /* ===== Info Grid ===== */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-item {
+      background: var(--color-card);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    .info-item__label {
+      font-size: 12px;
+      color: var(--color-text-light);
+      margin-bottom: 4px;
+    }
+
+    .info-item__value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    /* ===== Tables ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: var(--color-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    thead th {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 14px;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    .table-highlight {
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    /* ===== Callout ===== */
+    .callout {
+      padding: 18px 22px;
+      border-radius: var(--radius);
+      margin: 18px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .callout--warning {
+      background: #fff3e0;
+      border-left: 4px solid var(--color-accent);
+      color: #e65100;
+    }
+
+    .callout--success {
+      background: #e8f5e9;
+      border-left: 4px solid var(--color-primary);
+      color: #1b5e20;
+    }
+
+    .callout--info {
+      background: #e3f2fd;
+      border-left: 4px solid var(--color-secondary);
+      color: #0d47a1;
+    }
+
+    /* ===== KPI Cards ===== */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .kpi-card {
+      background: var(--color-card);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .kpi-card__number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .kpi-card__number--blue {
+      color: var(--color-secondary);
+    }
+
+    .kpi-card__number--orange {
+      color: var(--color-accent);
+    }
+
+    .kpi-card__label {
+      font-size: 13px;
+      color: var(--color-text-light);
+      margin-top: 6px;
+    }
+
+    /* ===== ROI Gauge ===== */
+    .roi-gauge {
+      margin: 18px 0;
+    }
+
+    .roi-gauge__bar {
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(to right, #4caf50 0%, #4caf50 20%, #2196f3 20%, #2196f3 40%, #ff9800 40%, #ff9800 60%, #f44336 60%, #f44336 100%);
+      position: relative;
+    }
+
+    .roi-gauge__marker {
+      position: absolute;
+      top: -6px;
+      width: 16px;
+      height: 24px;
+      background: #333;
+      border-radius: 4px;
+      transform: translateX(-50%);
+    }
+
+    .roi-gauge__labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--color-text-light);
+    }
+
+    /* ===== Footer ===== */
+    .report-footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.7);
+      padding: 30px 24px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 2;
+      margin-top: 40px;
+    }
+
+    .report-footer strong {
+      color: #4caf50;
+    }
+
+    .report-footer__divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.15);
+      margin: 16px auto;
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body {
+        background: #fff;
+        font-size: 12pt;
+      }
+
+      .cover {
+        page-break-after: always;
+        padding: 60px 40px;
+      }
+
+      .section {
+        page-break-inside: avoid;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .kpi-row {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .info-grid, .kpi-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cover__title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== COVER ========== -->
+  <div class="cover">
+    <div class="cover__logo"><span>萤</span>火虫空压机</div>
+    <div class="cover__title">空压机系统节能审计报告</div>
+    <div class="cover__subtitle">Compressed Air System Energy Audit Report</div>
+    <div class="cover__divider"></div>
+    <div class="cover__meta">
+      <div>项目名称：{{PROJECT_NAME}}</div>
+      <div>报告日期：{{REPORT_DATE}}</div>
+      <div>报告编号：YHC-SA-{{REPORT_NO}}</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ========== 1. 项目概况 ========== -->
+    <div class="section">
+      <h2 class="section__title">一、项目概况</h2>
+
+      <p>广州市萤火虫智能装备技术有限公司（萤火虫空压机）坐落于广州市，是一家集设计、研发、生产、销售及服务为一体的空气压缩机专业供应商。主要产品包括空气压缩机、余热回收机、制氮机、激光干燥机、冷冻干燥机、精密过滤器、排水器、智能控制系统及成套设备整体综合解决方案。公司秉承"为客户节资、为环境减排"的设计理念，长期将提高能源利用效果放在研发首位。</p>
+
+      <p style="margin-top:10px;">本报告基于客户提供的运行参数进行初步能效分析，旨在为客户识别节能空间并推荐最佳解决方案。<strong>精确数据以现场实测为准。</strong></p>
+
+      <h3 class="section__subtitle">客户基本信息</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-item__label">压缩机类型</div>
+          <div class="info-item__value">{{COMPRESSOR_TYPE}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">总装机功率</div>
+          <div class="info-item__value">{{INSTALLED_POWER}} kW</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">运行压力</div>
+          <div class="info-item__value">{{OPERATING_PRESSURE}} bar</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">年运行小时</div>
+          <div class="info-item__value">{{ANNUAL_HOURS}} h</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">平均负载率</div>
+          <div class="info-item__value">{{LOAD_RATE}}%</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">电费单价</div>
+          <div class="info-item__value">{{ELECTRICITY_PRICE}} 元/kWh</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">运行台数</div>
+          <div class="info-item__value">{{UNIT_COUNT}} 台</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__label">设备年限</div>
+          <div class="info-item__value">{{EQUIPMENT_AGE}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 2. 现状分析 ========== -->
+    <div class="section">
+      <h2 class="section__title">二、现状分析</h2>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__number">{{ANNUAL_KWH}}</div>
+          <div class="kpi-card__label">年用电量（万kWh）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__number kpi-card__number--blue">{{ANNUAL_COST}}</div>
+          <div class="kpi-card__label">年电费支出（万元）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__number kpi-card__number--orange">{{SPECIFIC_POWER}}</div>
+          <div class="kpi-card__label">估算比功率 kW/(m³/min)</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>指标</th>
+            <th>当前值</th>
+            <th>参考基准</th>
+            <th>评价</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>估算比功率</td>
+            <td>{{SPECIFIC_POWER}} kW/(m³/min)</td>
+            <td>≤6.5 (8 bar / 螺杆)</td>
+            <td>{{SP_EVALUATION}}</td>
+          </tr>
+          <tr>
+            <td>GB 19153 能效等级</td>
+            <td>{{GB19153_GRADE}}</td>
+            <td>2级及以上</td>
+            <td>{{GRADE_EVALUATION}}</td>
+          </tr>
+          <tr>
+            <td>年用电量</td>
+            <td>{{ANNUAL_KWH}} 万kWh</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>年电费支出</td>
+            <td>{{ANNUAL_COST}} 万元</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>电机效率等级</td>
+            <td>{{MOTOR_EFFICIENCY}}</td>
+            <td>IE4+</td>
+            <td>{{MOTOR_EVALUATION}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {{WARNING_CALLOUT}}
+    </div>
+
+    <!-- ========== 3. 推荐方案 ========== -->
+    <div class="section">
+      <h2 class="section__title">三、推荐节能方案</h2>
+
+      <h3 class="section__subtitle">首选方案：{{PRIMARY_SOLUTION}}</h3>
+      <p>{{PRIMARY_SOLUTION_DESC}}</p>
+      <p style="margin-top:8px;"><strong>预期节能率：{{PRIMARY_SAVINGS_RATE}}%</strong></p>
+
+      {{SECONDARY_SOLUTION_BLOCK}}
+
+      <div class="callout callout--success">
+        <strong>综合预期</strong><br>
+        综合节能率：<strong>{{COMBINED_SAVINGS_RATE}}%</strong><br>
+        预计年节省电费：<strong>{{ANNUAL_SAVINGS_WAN}} 万元</strong><br>
+        预计年节省电量：<strong>{{ANNUAL_SAVINGS_KWH}} 万kWh</strong><br>
+        预计 CO₂ 减排：<strong>{{CO2_REDUCTION}} 吨/年</strong>
+      </div>
+    </div>
+
+    <!-- ========== 4. 节能估算 ========== -->
+    <div class="section">
+      <h2 class="section__title">四、节能估算</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>指标</th>
+            <th>改造前</th>
+            <th>改造后</th>
+            <th>变化</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>年用电量（万kWh）</td>
+            <td>{{BASELINE_KWH}}</td>
+            <td>{{POST_KWH}}</td>
+            <td class="table-highlight">↓ {{SAVED_KWH}} 万kWh</td>
+          </tr>
+          <tr>
+            <td>年电费（万元）</td>
+            <td>{{BASELINE_COST}}</td>
+            <td>{{POST_COST}}</td>
+            <td class="table-highlight">↓ {{SAVED_COST}} 万元</td>
+          </tr>
+          <tr>
+            <td>估算比功率</td>
+            <td>{{BASELINE_SP}}</td>
+            <td>{{POST_SP}}</td>
+            <td>{{SP_CHANGE}}</td>
+          </tr>
+          <tr>
+            <td>能效等级</td>
+            <td>{{BASELINE_GRADE}}</td>
+            <td>{{POST_GRADE}}</td>
+            <td>{{GRADE_CHANGE}}</td>
+          </tr>
+          <tr>
+            <td>年 CO₂ 排放（吨）</td>
+            <td>{{BASELINE_CO2}}</td>
+            <td>{{POST_CO2}}</td>
+            <td class="table-highlight">↓ {{SAVED_CO2}} 吨</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ========== 5. 投资分析 ========== -->
+    <div class="section">
+      <h2 class="section__title">五、投资分析</h2>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__number">{{INVESTMENT_COST}}</div>
+          <div class="kpi-card__label">预计投资（万元）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__number kpi-card__number--blue">{{PAYBACK_YEARS}}</div>
+          <div class="kpi-card__label">静态回收期（年）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__number kpi-card__number--orange">{{ANNUAL_ROI}}%</div>
+          <div class="kpi-card__label">年化投资回报率</div>
+        </div>
+      </div>
+
+      <div class="roi-gauge">
+        <div class="roi-gauge__bar">
+          <div class="roi-gauge__marker" style="left: {{ROI_GAUGE_POS}}%;"></div>
+        </div>
+        <div class="roi-gauge__labels">
+          <span>&lt;12月 (极佳)</span>
+          <span>12-18月 (良好)</span>
+          <span>18-24月 (达标)</span>
+          <span>24-36月 (边际)</span>
+          <span>&gt;36月 (不推荐)</span>
+        </div>
+      </div>
+
+      <div class="callout callout--info">
+        <strong>行业对标</strong><br>
+        {{BENCHMARK_COMPARISON}}
+      </div>
+
+      <h3 class="section__subtitle">五年现金流预测</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>年份</th>
+            <th>年节省（万元）</th>
+            <th>累计节省（万元）</th>
+            <th>净收益（万元）</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{CASHFLOW_ROWS}}
+        </tbody>
+      </table>
+
+      <div class="callout callout--success">
+        <strong>投资建议</strong><br>
+        {{RECOMMENDATION_TEXT}}
+      </div>
+    </div>
+
+    <!-- ========== 6. 案例参考 ========== -->
+    <div class="section">
+      <h2 class="section__title">六、案例参考</h2>
+      <p>以下为萤火虫已完成类似项目的节能量化参考（客户信息已匿名处理）：</p>
+      {{CASE_REFERENCES_HTML}}
+    </div>
+
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <div class="report-footer">
+    <strong>萤火虫空压机</strong> &nbsp;|&nbsp; 广州市萤火虫智能装备技术有限公司<br>
+    服务热线：<strong>13825202084</strong>（邹先生）&nbsp;|&nbsp; 网址：www.fireflies.net.cn<br>
+    邮箱：aifirefly@163.com &nbsp;|&nbsp; 地址：广州市
+    <div class="report-footer__divider"></div>
+    本报告由 AI 辅助生成，仅供参考。精确数据以现场检测为准。<br>
+    &copy; {{CURRENT_YEAR}} 广州市萤火虫智能装备技术有限公司 版权所有
+  </div>
+
+</body>
+</html>

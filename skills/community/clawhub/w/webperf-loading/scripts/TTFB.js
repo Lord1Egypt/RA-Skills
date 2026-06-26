@@ -1,0 +1,2 @@
+// snippets/Loading/TTFB.js | sha256:78a42758919e6967 | https://github.com/nucliweb/webperf-snippets/blob/main/snippets/Loading/TTFB.js
+(()=>{new PerformanceObserver(e=>{const[r]=e.getEntriesByType("navigation"),t=r.responseStart;let n,o;t<=800?(n="Good",o="#22c55e"):t<=1800?(n="Needs Improvement",o="#f59e0b"):(n="Poor",o="#ef4444")}).observe({type:"navigation",buffered:!0});const[e]=performance.getEntriesByType("navigation");if(!e)return{script:"TTFB",status:"error",error:"No navigation entry"};Math.round(e.responseStart)})();

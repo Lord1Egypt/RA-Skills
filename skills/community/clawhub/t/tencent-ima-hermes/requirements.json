@@ -1,0 +1,32 @@
+{
+  "name": "tencent-ima-hermes",
+  "displayName": "腾讯 IMA (Hermes Edition)",
+  "version": "1.1.7-hermes.1",
+  "upstream": {
+    "name": "腾讯 IMA OpenAPI 技能",
+    "version": "1.1.7",
+    "url": "https://app-dl.ima.qq.com/skills/ima-skills-1.1.7.zip"
+  },
+  "summary": "腾讯 IMA OpenAPI 的 Hermes Agent 适配版。基于腾讯官方 v1.1.7 包改造：OpenClaw 风格 → Hermes 风格 + 增加 bin/ima.sh CLI 桥接 + 探针发现 5 个未文档化端点。22 个子命令覆盖 16 个原版端点 + 1 个 upload-file 便利封装。",
+  "required_binaries": [
+    {
+      "name": "node",
+      "min_version": "18.0.0",
+      "reason": "运行 .cjs 脚本（preflight-check.cjs / cos-upload.cjs）和 bin/ima.sh 内的 node 内联调用做 JSON 解析"
+    },
+    {
+      "name": "python3",
+      "min_version": "3.6",
+      "reason": "bin/ima.sh upload-file / COS 上传流水线用 python3 做字段提取（不要求解释器复杂库）"
+    }
+  ],
+  "required_env": [
+    "IMA_OPENAPI_CLIENTID",
+    "IMA_OPENAPI_APIKEY"
+  ],
+  "allowed_domains": [
+    "ima.qq.com",
+    "*.myqcloud.com"
+  ],
+  "license": "MIT-0 (本仓)；原版 ima-skills-1.1.7.zip 内容沿用腾讯 IMA OpenAPI 使用条款"
+}

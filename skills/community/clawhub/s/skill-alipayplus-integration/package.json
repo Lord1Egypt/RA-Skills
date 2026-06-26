@@ -1,0 +1,43 @@
+{
+  "name": "skill-alipayplus-integration",
+  "version": "1.0.0",
+  "description": "Alipay+ Payment Integration Assistant for OpenClaw - Supports ACQP and MPP payment modes",
+  "type": "openclaw-skill",
+  "main": "SKILL.md",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "clawhub",
+    "alipay",
+    "alipayplus",
+    "payment",
+    "acqp",
+    "mpp",
+    "e-wallets"
+  ],
+  "author": "qinfeng <wypride@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "alipayplus-install": "./scripts/install.js"
+  },
+  "scripts": {
+    "install": "node scripts/install.js",
+    "postinstall": "echo '✅ Alipay+ Integration Skill installed! See README.md for setup.'"
+  },
+  "clawhub": {
+    "category": "payment",
+    "tags": ["alipayplus", "payment", "acqp", "mpp", "e-wallets"],
+    "displayName": "Alipay+ Payment Integration",
+    "icon": "💳"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "references/"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Sermon Outline (OpenClaw Church)",
+  "tagline": "Generate preach-ready sermon outlines with scripture references and applications.",
+  "description": "Produces a sermon outline from a scripture passage or theme: Introduction, Main Points (each with scripture references), Applications, Conclusion. Every point has at least one verse citation; structure is ready for preaching. Default: ESV, Evangelical; plain text. For pastors and preachers. Related: Bible QA, Pastoral Prayer, Church Announcement skills by OpenClaw Church.",
+  "category": "utility",
+  "tags": ["sermon", "sermon outline", "preaching", "homiletics", "bible teaching", "sermon prep", "church", "openclaw", "ministry", "pastor", "congregation"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://github.com/cheniOS/bible-church-ministry-skills"
+}

@@ -1,0 +1,8 @@
+{
+  "apiKey": "your_api_key_here",
+  "apiSecurity": "your_api_security_here",
+  "apps": {
+    "59892f08310c9307b60023d0": "APM_Demo_iOS",
+    "another_appkey_here": "MyAndroidApp"
+  }
+}

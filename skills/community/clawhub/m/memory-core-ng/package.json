@@ -1,0 +1,36 @@
+{
+  "name": "memory-core",
+  "version": "1.0.0",
+  "description": "智能记忆核心系统，支持多平台 embeddings/reranker 和 Flomo 集成",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node examples/quick-start.js",
+    "test": "node tests/integration.test.js"
+  },
+  "keywords": [
+    "memory",
+    "embeddings",
+    "vector-search",
+    "flomo",
+    "openclaw",
+    "ai",
+    "semantic-search"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "entry.js",
+    "index.js",
+    "config/",
+    "src/",
+    "examples/",
+    "tests/"
+  ],
+  "openclaw": {
+    "skill": true,
+    "entry": "entry.js",
+    "config": "config/openclaw.json"
+  }
+}

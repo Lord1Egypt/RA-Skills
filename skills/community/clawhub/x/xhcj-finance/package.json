@@ -1,0 +1,24 @@
+{
+  "name": "xhcj-finance",
+  "version": "1.0.8",
+  "description": "财经数据查询",
+  "main": "index.js",
+  "bin": {
+    "xhcj-finance": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "jindongyi",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "commander": "^14.0.3"
+  }
+}

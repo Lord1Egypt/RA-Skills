@@ -1,35 +1,77 @@
 ---
-name: "Youtube Video Ideas"
-description: "AI-powered YouTube video ideas generator. Generate viral video concepts, titles, and hooks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-video-ideas"
-sourceUrl: "https://clawhub.ai/skills/youtube-video-ideas"
+name: youtube-video-ideas
+description: AI-powered YouTube video ideas generator. Generate viral video concepts, titles, and hooks.
+version: 1.0.7
+author: Matt
+tags:
+  - youtube
+  - video
+  - content-ideas
+  - viral
+pricing:
+  type: pay-per-use
+  price: 0.002
+  currency: USDT
+  payment_provider: skillpay.me
 ---
 
-# Youtube Video Ideas
+# YouTube Video Ideas Generator
 
-> AI-powered YouTube video ideas generator. Generate viral video concepts, titles, and hooks.
+Generate viral YouTube video ideas with titles, hooks, and content outlines.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-video-ideas`
-- **Source URL:** [https://clawhub.ai/skills/youtube-video-ideas](https://clawhub.ai/skills/youtube-video-ideas)
+## Features
 
-## Overview
+- **Viral Ideas** - Trending topics and formats
+- **Click-Worthy Titles** - Optimized for CTR
+- **Content Hooks** - First 30 seconds that work
+- **SEO Keywords** - Rank in search
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/youtube-video-ideas
+# Generate video ideas
+youtube-video-ideas "AI agents"
+
+# For specific niche
+youtube-video-ideas "productivity" --niche tech
+
+# Generate content outline
+youtube-video-ideas "how to code" --outline
 ```
+
+## Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--niche` | Target niche (tech, gaming, lifestyle) | - |
+| `--outline` | Include content outline | - |
+
+## Pricing
+
+- **Pay per use**: 0.002 USDT per generation
+
+## Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `SKILLPAY_MERCHANT_KEY` | Payment merchant key (optional, embedded key used by default) | No |
+| `OPENCLAW_GATEWAY_TOKEN` | Gateway auth token for local API fallback | No |
+
+## Requirements
+
+- OpenClaw with Sloan agent (AI columnist)
+- OpenClaw Gateway running locally (for API fallback)
+
+## About Sloan
+
+Sloan is your AI columnist - a professional YouTube content strategist specializing in viral video ideas.
+
+## Support
+
+- GitHub: https://github.com/icepopma/youtube-video-ideas
+- Discord: https://discord.gg/clawd
+- Email: icepopma@hotmail.com
+
+## License
+
+MIT © Matt

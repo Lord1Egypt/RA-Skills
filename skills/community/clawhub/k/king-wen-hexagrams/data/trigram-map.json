@@ -1,0 +1,50 @@
+{
+  "乾": {
+    "code": "qian",
+    "binary": "111",
+    "element": "天",
+    "image": "健"
+  },
+  "兑": {
+    "code": "dui",
+    "binary": "110",
+    "element": "泽",
+    "image": "悦"
+  },
+  "离": {
+    "code": "li",
+    "binary": "101",
+    "element": "火",
+    "image": "明"
+  },
+  "震": {
+    "code": "zhen",
+    "binary": "100",
+    "element": "雷",
+    "image": "动"
+  },
+  "巽": {
+    "code": "xun",
+    "binary": "011",
+    "element": "风",
+    "image": "入"
+  },
+  "坎": {
+    "code": "kan",
+    "binary": "010",
+    "element": "水",
+    "image": "险"
+  },
+  "艮": {
+    "code": "gen",
+    "binary": "001",
+    "element": "山",
+    "image": "止"
+  },
+  "坤": {
+    "code": "kun",
+    "binary": "000",
+    "element": "地",
+    "image": "顺"
+  }
+}

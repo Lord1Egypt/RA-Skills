@@ -1,35 +1,118 @@
 ---
-name: "每日Get笔记智能盘点"
-description: "每日Get笔记智能盘点 - 扫描+分类+自动处理+CRM更新"
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, crm, notes, productivity, scanner]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-scanner"
-sourceUrl: "https://clawhub.ai/skills/daily-scanner"
+name: daily-scanner
+description: 每日Get笔记智能盘点 - 扫描+分类+自动处理+CRM更新
+trigger: "每日盘点|今天有什么|扫描录音|分类整理|今日待处理"
 ---
 
-# 每日Get笔记智能盘点
+# 每日Get笔记智能盘点专家
 
-> 每日Get笔记智能盘点 - 扫描+分类+自动处理+CRM更新
+全自动化处理：扫描 → 分类 → 自动处理 → CRM更新 → 输出报告
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-scanner`
-- **Source URL:** [https://clawhub.ai/skills/daily-scanner](https://clawhub.ai/skills/daily-scanner)
+## 核心功能
 
-## Overview
+### 1. 扫描新增录音
+- 路径：`~/Desktop/Obsidian/sky的知识库/00-Inbox/录音文件/Get笔记/`
+- 范围：最近24小时新增的录音
 
+### 2. 自动分类（6类）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-scanner
+| 类别 | 关键词 | 自动处理 |
+|------|--------|----------|
+| 客户沟通 | 客户、报价、合同、合作、GEO、培训、需求 | 调用sales-analyzer诊断 → 更新飞书CRM |
+| 内部会议 | 内部、会议、对齐、分工、进度、团队 | 生成待办+决策记录 → 同步到滴答清单 |
+| 渠道合作 | 渠道、推荐、介绍、联盟、合作 | 更新飞书渠道表 → 生成渠道报告 |
+| 投资决策 | 投资、融资、BP、估值、股权 | 生成投资分析报告 |
+| 灵感/想法 | 灵感、想法、思路、感悟、启发 | 存入素材库 → 生成选题 |
+| 内容创作 | 短视频、脚本、素材、选题、公众号 | 存入选题库 → 生成内容大纲 |
+
+### 3. 自动处理流程
+
 ```
+输入 → 分类 → 判断是否有价值 → 
+  ├─ 有价值 → 调用对应skill处理
+  │   ├─ 客户沟通 → sales-analyzer → 飞书CRM
+  │   ├─ 内部会议 → 生成待办 → 滴答清单
+  │   ├─ 渠道合作 → 飞书渠道表
+  │   ├─ 投资决策 → 投资分析报告
+  │   ├─ 灵感 → 素材库+选题
+  │   └─ 内容 → 选题库
+  │
+  └─ 无价值 → 跳过
+
+ → 输出汇总报告
+```
+
+### 4. CRM自动更新
+
+- **客户商机表**：新增客户自动录入飞书
+- **渠道管理表**：新增渠道自动录入飞书
+- **跟进记录**：自动追加最新沟通记录
+
+## 输出格式
+
+```
+═══════════════════════════════════════
+📋 每日智能盘点报告 - [日期]
+═══════════════════════════════════════
+
+【概览】
+- 扫描范围：最近24小时
+- 新增录音：X条
+- 有价值录音：X条
+- 已自动处理：X条
+- 已更新CRM：X条
+
+【分类统计】
+├─ 客户沟通：X条
+│  ├─ [客户1] → 已诊断 + 已更新CRM
+│  └─ [客户2] → 已诊断 + 已更新CRM
+├─ 内部会议：X条 → 已生成待办
+├─ 渠道合作：X条 → 已更新渠道表
+├─ 投资决策：X条 → 已生成报告
+├─ 灵感/想法：X条 → 已存素材库
+└─ 内容创作：X条 → 已存选题库
+
+【CRM更新详情】
+├─ 新增客户：X个
+│  ├─ [客户名] - 业务线 - 阶段 - 金额
+│  └─ ...
+├─ 新增渠道：X个
+│  ├─ [渠道名] - 类型 - 关键人
+│  └─ ...
+└─ 跟进记录更新：X条
+
+【待办事项】（来自内部会议）
+1. [ ] [待办1] - @负责人 - 截止xxx
+2. [ ] [待办2] - @负责人 - 截止xxx
+
+【高优先级提醒】
+- [客户/事项] - 原因：xxx - 建议动作
+
+【今日小结】
+- 处理完成：X条
+- 待人工处理：X条
+```
+
+## 使用方式
+
+**触发词**：
+- "每日盘点"
+- "今天有什么新录音"
+- "扫描Get笔记"
+- "分类整理"
+- "今日待处理"
+
+**定时任务**：
+- 每天早上9点自动执行
+- 每天午夜0点执行深度盘点
+
+## 关联Skill
+
+| 类别 | 调用Skill | 输出 |
+|------|-----------|------|
+| 客户沟通 | sales-analyzer | 销售诊断报告+CRM更新 |
+| 内部会议 | meeting-analyzer | 待办+决策记录 |
+| 渠道合作 | channel-scanner | 渠道档案 |
+| 投资决策 | 投资分析 | 投资报告 |
+| 灵感/想法 | 灵感处理器 | 素材+选题 |
+| 内容创作 | 内容工作流 | 选题+大纲 |

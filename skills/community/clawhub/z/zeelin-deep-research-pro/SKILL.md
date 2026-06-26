@@ -1,35 +1,106 @@
 ---
-name: "ZeeLin Deep Research 深度研究"
+name: ZeeLin Deep Research 深度研究
 description: "ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径。从快速信息梳理、系统分析到超万字专家报告全流程覆盖，依托多轮推理与多源数据整合，高效完成企业分析、市场洞察、招商研究等复杂任务，一站式提升研究效率与决策质量。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zeelin-deep-research-pro"
-sourceUrl: "https://clawhub.ai/skills/zeelin-deep-research-pro"
+metadata: { "openclaw": { "emoji": "🔍", "requires": { "bins": ["python3"], "pip": ["requests"] } } }
 ---
 
 # ZeeLin Deep Research 深度研究
 
 > ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径。从快速信息梳理、系统分析到超万字专家报告全流程覆盖，依托多轮推理与多源数据整合，高效完成企业分析、市场洞察、招商研究等复杂任务，一站式提升研究效率与决策质量。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zeelin-deep-research-pro`
-- **Source URL:** [https://clawhub.ai/skills/zeelin-deep-research-pro](https://clawhub.ai/skills/zeelin-deep-research-pro)
+## 功能特点
 
-## Overview
+- ✅ **自动推送**：任务完成后自动发送 PDF下载链接 给用户
+- ✅ **后台执行**：通过子代理执行，不阻塞主会话
+- ✅ **自动配置**：首次使用时自动获取用户渠道和 ID
 
+## 没有 API Key？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zeelin-deep-research-pro
+前往 https://skills.zeelin.cn/console/apps 免费注册获取
+
+获取后，编辑 skill 目录下的 `config.json` 文件：
+
+```json
+{
+  "api_key": "你的API_KEY"
+}
 ```
+
+**配置文件位置**：`config.json`
+
+## thinking 参数
+
+| 模式 | 用途 |
+|-----|-----|
+| `deep` | 概念解释、信息聚合、快速调研 |
+| `major` | 行业分析、企业研究、万字报告 |
+
+
+### 模式选择指南
+
+**使用深度模式 (deep) 的场景**：
+- 概念解释/知识梳理 — "什么是 XXX"、"XXX 的原理是什么"
+- 事件/趋势分析 — 某个热点事件的来龙去脉、发展趋势
+- 信息聚合 — 围绕某个话题汇总多方信息和观点
+- 快速调研 — 用户没有明确要求深度报告的一般性研究问题
+
+**使用专家模式 (major) 的场景**：
+- 行业/市场分析 — 涉及特定行业的全景分析、市场格局、竞争态势
+- 企业/公司研究 — 某个企业的财务分析、战略评估、业务拆解
+- 政策/法规研究 — 需要系统梳理政策影响、合规要求
+- 技术/产品深度对比 — 多维度的技术路线对比、产品竞品分析
+- 投资/商业决策 — 需要数据支撑的投资分析、可行性评估
+
+**如果不确定使用哪种模式**：可以询问用户确认
+
+## 使用方式
+
+### spawn 子代理执行
+
+```
+spawn 执行 python3 scripts/zeelin_start.py "调研内容" deep
+```
+
+**示例**：
+```
+spawn 执行 python3 scripts/zeelin_start.py "调研合肥地理位置分析" deep
+```
+
+## 工作流程
+
+```
+用户发送调研请求
+        ↓
+spawn 子代理执行 zeelin_start.py
+        ↓
+创建 ZeeLin 任务，获取 session_id
+        ↓
+后台监控任务状态（每30秒检查）
+        ↓
+状态变为完成（status=2）
+        ↓
+自动推送PDF下载链接到用户
+```
+
+## 文件位置
+
+- 配置文件：`config.json`
+- 启动脚本：`scripts/zeelin_start.py`
+- 监控脚本：`scripts/zeelin_watch.py`
+
+## 状态码
+
+| 状态码 | 含义 |
+|-------|------|
+| 1 | 进行中 |
+| 2 | ✅ 完成 |
+| 3 | 用户终止 |
+| 4 | ❌ 失败 |
+| 5 | 排队中 |
+
+## 常见错误
+
+| 错误 | 解决方法 |
+|-------|---------|
+| code=315 当前接口调用已超限 | ⚠️ 请等待当前任务执行完成后再提交新任务 |
+| code=315 试用已超限 | 前往 https://skills.zeelin.cn/console/recharge 充值 |

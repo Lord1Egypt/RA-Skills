@@ -1,35 +1,20 @@
 ---
-name: "air_train_ev"
-description: "Provides flight prices, public transport/train journeys, and nearby EV charge points using Amadeus, Navitia, and Open Charge Map APIs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/air-train-ev-alias"
-sourceUrl: "https://clawhub.ai/skills/air-train-ev-alias"
+name: air_train_ev
+description: Alias of air-train-ev. Unified travel + mobility skill: (1) flight pricing with Amadeus (flight offers), (2) public transport/train journey planning with Navitia (journeys, departures), and (3) find nearby EV charge points using Open Charge Map. Use when Alessandro asks for flight prices, train itineraries/schedules, or EV charging stations.
 ---
 
-# air_train_ev
+# Alias — air_train_ev → air-train-ev
 
-> Provides flight prices, public transport/train journeys, and nearby EV charge points using Amadeus, Navitia, and Open Charge Map APIs.
+This skill is an **alias** for the canonical skill:
+- `skills/air-train-ev/SKILL.md`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/air-train-ev-alias`
-- **Source URL:** [https://clawhub.ai/skills/air-train-ev-alias](https://clawhub.ai/skills/air-train-ev-alias)
+Use the same scripts (do not duplicate logic):
+- Flights (Amadeus): `skills/air-train-ev/scripts/flight_offers.py`
+- Train/PT (Navitia): `skills/air-train-ev/scripts/navitia.py`
+- EV charge points (Open Charge Map): `skills/air-train-ev/scripts/ev_charge_points.py`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/air-train-ev-alias
-```
+## Credentials (env)
+Same as `air-train-ev`:
+- `AMADEUS_CLIENT_ID`, `AMADEUS_CLIENT_SECRET`
+- `NAVITIA_TOKEN`
+- `OPENCHARGEMAP_API_KEY`

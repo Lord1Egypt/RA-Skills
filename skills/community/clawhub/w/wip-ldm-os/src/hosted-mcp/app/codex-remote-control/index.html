@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Codex remote control</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #FFFDF5;
+    --bg-event: #F5F3ED;
+    --bg-tool: #F0EDE6;
+    --text: #1a1a1a;
+    --text-muted: #8a8580;
+    --accent: #0033FF;
+    --danger: #b00020;
+    --border: #E0DDD6;
+    --user-bubble: #E8F0FE;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  html, body { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
+  body { display: flex; flex-direction: column; }
+  header { padding: 12px 16px; padding-top: calc(12px + env(safe-area-inset-top, 0px)); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  header .id { flex: 1; font-size: 13px; color: var(--text-muted); font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  header .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); }
+  header .dot.online { background: #2ea44f; }
+  header .dot.offline { background: var(--danger); }
+  main { flex: 1; overflow-y: auto; padding: 16px; padding-bottom: 0; -webkit-overflow-scrolling: touch; }
+  .event { margin-bottom: 12px; padding: 12px 14px; border-radius: 10px; background: var(--bg-event); font-size: 14px; line-height: 1.45; }
+  .event .meta { font-size: 11px; color: var(--text-muted); font-family: var(--mono); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .event.user { background: var(--user-bubble); }
+  .event.agent_message { background: var(--bg); border: 1px solid var(--border); }
+  .event.command_execution { background: var(--bg-tool); font-family: var(--mono); white-space: pre-wrap; word-break: break-all; }
+  .event.command_execution.failed { border-left: 3px solid var(--danger); }
+  .event.error { background: #fff0f0; border: 1px solid #f0c0c0; color: var(--danger); }
+  .event.system { background: transparent; color: var(--text-muted); font-size: 12px; padding: 6px 0; text-align: center; }
+  .event pre { font-family: var(--mono); white-space: pre-wrap; word-break: break-word; font-size: 13px; }
+  footer { padding: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--border); background: var(--bg); }
+  .composer { display: flex; gap: 8px; align-items: flex-end; }
+  textarea {
+    flex: 1; min-height: 44px; max-height: 120px; padding: 12px;
+    border: 1px solid var(--border); border-radius: 10px;
+    background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px;
+    resize: none;
+  }
+  textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  button { padding: 12px 16px; border: none; border-radius: 10px; font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  button:active { transform: scale(0.97); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-send { background: var(--accent); color: white; }
+  .btn-stop { background: var(--danger); color: white; }
+</style>
+</head>
+<body>
+<header>
+  <div class="dot" id="presence" title="connecting"></div>
+  <div class="id" id="threadId">...</div>
+  <button id="stopBtn" class="btn-stop" type="button" disabled>Stop</button>
+</header>
+<main id="log"></main>
+<footer>
+  <form class="composer" id="composer">
+    <textarea id="prompt" rows="1" placeholder="Tell Codex what to do..." autocomplete="off"></textarea>
+    <button type="submit" class="btn-send" id="sendBtn">Send</button>
+  </form>
+</footer>
+<script>
+function getApiKey() { return sessionStorage.getItem("wip_api_key"); }
+function getHandle() { return sessionStorage.getItem("wip_handle") || ""; }
+
+function ensureSignedIn() {
+  if (!getApiKey()) {
+    location.href = "/app/login.html?next=" + encodeURIComponent(location.pathname);
+    return false;
+  }
+  return true;
+}
+
+function parsePath() {
+  // /:handle/codex-remote-control/:threadId
+  const m = location.pathname.match(/^\/([^/]+)\/codex-remote-control\/([^/]+)\/?$/);
+  if (!m) return null;
+  return { handle: decodeURIComponent(m[1]), threadId: decodeURIComponent(m[2]) };
+}
+
+function setPresence(state) {
+  const dot = document.getElementById("presence");
+  dot.classList.remove("online", "offline");
+  if (state === "online") dot.classList.add("online");
+  if (state === "offline") dot.classList.add("offline");
+  dot.title = state;
+}
+
+function appendEvent(html, kind) {
+  const log = document.getElementById("log");
+  const div = document.createElement("div");
+  div.className = "event " + (kind || "");
+  div.innerHTML = html;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+  return div;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+}
+
+function renderItem(item) {
+  if (item.type === "agent_message") {
+    return appendEvent('<div class="meta">codex</div>' + escapeHtml(item.text || "").replace(/\n/g, "<br>"), "agent_message");
+  }
+  if (item.type === "command_execution") {
+    const status = (item.status || "").toString();
+    const out = item.aggregated_output ? '\n\n' + item.aggregated_output : "";
+    return appendEvent(
+      '<div class="meta">$ ' + escapeHtml(status) + (item.exit_code != null ? " (exit " + item.exit_code + ")" : "") + '</div>' +
+      '<pre>' + escapeHtml(item.command || "") + escapeHtml(out) + '</pre>',
+      "command_execution" + (status === "failed" ? " failed" : ""),
+    );
+  }
+  if (item.type === "reasoning") {
+    return appendEvent('<div class="meta">reasoning</div>' + escapeHtml(item.text || ""), "reasoning");
+  }
+  return appendEvent('<div class="meta">' + escapeHtml(item.type || "item") + '</div><pre>' + escapeHtml(JSON.stringify(item, null, 2)) + '</pre>', "item");
+}
+
+let ws = null;
+let pendingId = 1;
+
+function send(req) {
+  if (!ws || ws.readyState !== WebSocket.OPEN) return;
+  ws.send(JSON.stringify(req));
+}
+
+function connect(threadId) {
+  const apiKey = getApiKey();
+  const proto = location.protocol === "https:" ? "wss:" : "ws:";
+  const url = proto + "//" + location.host + "/api/codex-relay/web/" + encodeURIComponent(threadId) + "?token=" + encodeURIComponent(apiKey);
+  ws = new WebSocket(url);
+
+  ws.addEventListener("open", () => {
+    setPresence("online");
+    appendEvent("connected. open this thread in Codex on your Mac if it's not already.", "system");
+  });
+
+  ws.addEventListener("close", (ev) => {
+    setPresence("offline");
+    appendEvent("disconnected (code " + ev.code + ")", "system");
+  });
+
+  ws.addEventListener("error", () => {
+    setPresence("offline");
+  });
+
+  ws.addEventListener("message", (ev) => {
+    let msg;
+    try { msg = JSON.parse(ev.data); } catch { return; }
+    if (msg.type === "session.started") {
+      // Daemon assigned a temp id; the real thread id will arrive in thread.started.
+      return;
+    }
+    if (msg.type === "session.event") {
+      const evt = msg.event || {};
+      if (evt.type === "thread.started") {
+        // ok
+        return;
+      }
+      if (evt.type === "turn.started") {
+        document.getElementById("stopBtn").disabled = false;
+        return;
+      }
+      if (evt.type === "item.completed" && evt.item) {
+        renderItem(evt.item);
+        return;
+      }
+      if (evt.type === "item.started") {
+        return; // skip; we render on completed for now
+      }
+      if (evt.type === "turn.completed") {
+        document.getElementById("stopBtn").disabled = true;
+        const u = evt.usage;
+        if (u) appendEvent("turn complete (" + (u.input_tokens || 0) + " in / " + (u.output_tokens || 0) + " out)", "system");
+        else appendEvent("turn complete", "system");
+        return;
+      }
+      if (evt.type === "turn.failed") {
+        document.getElementById("stopBtn").disabled = true;
+        appendEvent("turn failed: " + (evt.error && evt.error.message ? evt.error.message : "unknown"), "error");
+        return;
+      }
+      return;
+    }
+    if (msg.type === "ack") return;
+    if (msg.type === "error") {
+      appendEvent("error: " + (msg.message || ""), "error");
+      return;
+    }
+  });
+}
+
+function init() {
+  if (!ensureSignedIn()) return;
+  const parsed = parsePath();
+  if (!parsed) {
+    appendEvent("Invalid URL. Expected /<handle>/codex-remote-control/<thread-id>.", "error");
+    return;
+  }
+  document.getElementById("threadId").textContent = parsed.threadId;
+  connect(parsed.threadId);
+
+  // Open or attach to the session on the daemon. session.start returns a temp
+  // sessionId; the actual thread.id arrives via thread.started in the stream.
+  setTimeout(() => {
+    send({ type: "session.start", id: "open-" + (pendingId += 1) });
+  }, 250);
+
+  document.getElementById("composer").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const input = document.getElementById("prompt");
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+    appendEvent('<div class="meta">you</div>' + escapeHtml(text), "user");
+    send({
+      type: "session.send",
+      id: "send-" + (pendingId += 1),
+      sessionId: parsed.threadId,
+      prompt: text,
+    });
+  });
+
+  document.getElementById("stopBtn").addEventListener("click", () => {
+    send({ type: "session.interrupt", id: "stop-" + (pendingId += 1), sessionId: parsed.threadId });
+  });
+
+  // Submit on Cmd+Enter / Ctrl+Enter; auto-resize.
+  const ta = document.getElementById("prompt");
+  ta.addEventListener("input", () => {
+    ta.style.height = "auto";
+    ta.style.height = Math.min(120, ta.scrollHeight) + "px";
+  });
+  ta.addEventListener("keydown", (ev) => {
+    if ((ev.metaKey || ev.ctrlKey) && ev.key === "Enter") {
+      ev.preventDefault();
+      document.getElementById("composer").requestSubmit();
+    }
+  });
+}
+
+init();
+</script>
+</body>
+</html>

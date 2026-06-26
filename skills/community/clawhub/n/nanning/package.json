@@ -1,0 +1,23 @@
+{
+  "name": "nanning",
+  "version": "1.0.0",
+  "description": "全面介绍南宁市的技能包：景点、美食、交通、文化、购物、宜居信息一网打尽",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [
+    "nanning",
+    "南宁",
+    "广西",
+    "绿城",
+    "旅游",
+    "美食",
+    "城市指南"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

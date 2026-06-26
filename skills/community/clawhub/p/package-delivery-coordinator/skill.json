@@ -1,0 +1,43 @@
+{
+  "slug": "package-delivery-coordinator",
+  "name": "Package Delivery Coordinator",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Coordinate several expected deliveries using a user-provided watchlist, conflict check, follow-up plan, and message templates for neighbors or front desk staff.",
+  "category": "Home & Admin",
+  "tags": [
+    "deliveries",
+    "packages",
+    "home-admin",
+    "schedule-coordination",
+    "message-templates",
+    "errand-planning"
+  ],
+  "trigger_keywords": [
+    "package deliveries",
+    "missed package",
+    "delivery watchlist",
+    "several packages",
+    "front desk package",
+    "neighbor package pickup",
+    "track deliveries",
+    "delivery coordination"
+  ],
+  "use_cases": [
+    "Build a watchlist from user-provided delivery details.",
+    "Map arrival windows and spot conflicts with the user's schedule.",
+    "Draft polite notices for neighbors, front desk, building staff, or household members.",
+    "Set follow-up checkpoints so packages are not forgotten or misplaced."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "hasExecutableCode": false,
+  "contentType": "document-only",
+  "language": "en",
+  "license": "MIT-0",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tools User Research Report — minimal Theme Example</title>
+
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/highlight.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ── Theme: minimal ────────────────────────────────────────── */
+    :root {
+      --primary: #111827; --primary-light: #F3F4F6; --accent: #6B7280;
+      --bg: #FFFFFF; --surface: #F9FAFB; --text: #374151; --text-muted: #9CA3AF;
+      --border: #E5E7EB; --success: #065F46; --warning: #92400E; --danger: #991B1B;
+      --font-sans: 'Georgia', serif;
+      --font-mono: 'Courier New', monospace; --radius: 4px;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.6; font-variant-numeric: lining-nums tabular-nums; }
+    h1 { font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: -.02em; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.35rem; font-weight: 700; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: .4rem; margin-top: 1.75rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-top: 1.1rem; }
+    p { margin: .6rem 0; } a { color: var(--primary); text-decoration: underline; }
+    strong { font-weight: 700; } blockquote { border-left: 2px solid var(--border); margin: .75rem 0; padding: .5rem 1.25rem; font-style: italic; color: var(--text-muted); }
+
+    /* ── Shared Components ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.2; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-variant-numeric: lining-nums tabular-nums; }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--report-surface, var(--surface)); border-bottom: 2px solid var(--report-structure, var(--primary)); padding: .7rem 1rem; text-align: left; font-weight: 600; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note    { background: #EFF6FF; border-color: #3B82F6; }
+    .callout--tip     { background: #F0FDF4; border-color: #22C55E; }
+    .callout--warning { background: #FFFBEB; border-color: #F59E0B; }
+    .callout--danger  { background: #FEF2F2; border-color: #EF4444; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+
+    /* Image */
+    .report-image { margin: 1.1rem 0; }
+    .report-image img { max-width: 100%; border-radius: var(--radius); }
+    .report-image figcaption { font-size: .82rem; color: var(--text-muted); text-align: center; margin-top: .4rem; }
+    .report-image--full { width: 100%; display: block; }
+    .report-image--left { float: left; max-width: 40%; margin-right: 1.5rem; margin-bottom: .5rem; }
+    .report-image--right { float: right; max-width: 40%; margin-left: 1.5rem; margin-bottom: .5rem; }
+    .clearfix::after { content: ''; display: table; clear: both; }
+    .image-placeholder { display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 200px; color: var(--text-muted); font-size: .9rem; font-family: var(--font-sans); }
+    .image-placeholder-sm { height: 130px; font-size: .82rem; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--surface); padding: .35rem 1rem; font-size: .78rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; }
+
+    /* Lists */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; }
+    .styled-list li { margin-bottom: .25rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+    .chart-container { position: relative; height: 280px; }
+
+    /* Animation */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TOC ───────────────────────────────────────────────────── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.15); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .78rem; opacity: .85; }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle { position: fixed; top: .75rem; left: .75rem; z-index: 200; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Section separator */
+    section { padding-top: .5rem; }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 Print / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 Save PNG (Desktop)</button>
+    <button class="export-item" id="export-png-mobile">📱 Save PNG (Mobile)</button>
+    <button class="export-item" id="export-im-share">💬 IM Image</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="Export">↓ Export</button>
+
+
+<!-- TOC toggle button -->
+<button class="toc-toggle" id="toc-toggle-btn" aria-expanded="false" aria-label="Contents">☰</button>
+
+<!-- Floating TOC sidebar -->
+<nav class="toc-sidebar" id="toc-sidebar" aria-label="Table of Contents">
+  <h4>Contents</h4>
+  <a href="#section-findings"    data-section="findings">Key Findings</a>
+  <a href="#section-trends"      data-section="trends">Satisfaction Trends</a>
+  <a href="#section-profile"     data-section="profile">Respondent Profile</a>
+  <a href="#section-timeline"    data-section="timeline">Research Timeline</a>
+  <a href="#section-workflow"    data-section="workflow">Research Workflow</a>
+  <a href="#section-code"        data-section="code">Analysis Code</a>
+  <a href="#section-limitations" data-section="limitations">Limitations &amp; Recommendations</a>
+  <a href="#section-images"      data-section="images">Image Example</a>
+  <a href="#section-summary"     data-section="summary">Executive Summary</a>
+</nav>
+
+<!-- AI Summary JSON (machine-readable) -->
+<script type="application/json" id="report-summary">
+{
+  "title": "minimal Theme — Full Component Showcase",
+  "subtitle": "AI Tools User Research Report",
+  "generated": "2026-03-16",
+  "sections": [
+    "Key Findings",
+    "Satisfaction Trends",
+    "Respondent Profile",
+    "Research Timeline",
+    "Research Workflow",
+    "Analysis Code",
+    "Limitations & Recommendations",
+    "Image Example",
+    "Executive Summary"
+  ],
+  "kpis": [
+    { "label": "Sample Size",    "value": "1,200",  "trend": "—",    "direction": "neutral" },
+    { "label": "Satisfaction",   "value": "78%",    "trend": "+6%",  "direction": "up" },
+    { "label": "AI Adoption",    "value": "64%",    "trend": "+9%",  "direction": "up" },
+    { "label": "NPS",            "value": "42",     "trend": "+5",   "direction": "up" }
+  ]
+}
+</script>
+
+<main class="main-with-toc">
+  <div class="report-wrapper">
+
+    <!-- ── Header ──────────────────────────────────────────────── -->
+    <h1>AI Tools User Research Report</h1>
+    <p class="report-meta">
+      User Research Team &nbsp;·&nbsp; November 20, 2024 &nbsp;·&nbsp; Wave 3
+    </p>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §1  Key Findings                                         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-findings" data-section="findings">
+      <h2>Key Findings</h2>
+      <p>This wave surveyed 1,200 users of AI coding tools between September and November 2024, using stratified random sampling across four user segments. The four metrics below summarize the overall health of the user base.</p>
+
+      <div class="kpi-grid fade-in-up" data-component="kpi-grid" data-summary="Core KPIs">
+        <div class="kpi-card">
+          <div class="kpi-label">Sample Size</div>
+          <div class="kpi-value" data-kpi-target="1200" data-kpi-format="comma">0</div>
+          <div class="kpi-trend kpi-trend--neutral">participants</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Satisfaction</div>
+          <div class="kpi-value" data-kpi-target="78" data-kpi-format="percent">0%</div>
+          <div class="kpi-trend kpi-trend--up">▲ +6% vs. last wave</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">AI Adoption</div>
+          <div class="kpi-value" data-kpi-target="64" data-kpi-format="percent">0%</div>
+          <div class="kpi-trend kpi-trend--up">▲ +9% vs. last wave</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">NPS</div>
+          <div class="kpi-value" data-kpi-target="42" data-kpi-format="integer">0</div>
+          <div class="kpi-trend kpi-trend--up">▲ +5 vs. last wave</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §2  Satisfaction Trends                                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-trends" data-section="trends">
+      <h2>Satisfaction Trends</h2>
+
+      <h3>Monthly Satisfaction Score (last 6 months)</h3>
+      <p>Overall satisfaction has climbed steadily since May, reaching 78% in October — the highest score recorded across all three research waves. The 70% baseline is the industry benchmark for this category.</p>
+      <div data-component="chart" data-summary="Monthly satisfaction vs 70% baseline">
+        <div class="chart-container fade-in-up">
+          <canvas id="chart-satisfaction-trend"></canvas>
+        </div>
+      </div>
+
+      <h3>Feature Satisfaction Scores</h3>
+      <p>Code completion and intelligent suggestions score highest; batch processing and export capabilities score lowest and represent the clearest improvement opportunities.</p>
+      <div data-component="chart" data-summary="Feature satisfaction scores (7 features)">
+        <div class="chart-container fade-in-up">
+          <canvas id="chart-feature-scores"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §3  Respondent Profile                                   -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-profile" data-section="profile">
+      <h2>Respondent Profile</h2>
+      <p>Respondents were segmented by role and organizational context. Enterprise developers report the highest satisfaction; students show the highest churn risk.</p>
+
+      <div class="table-wrapper fade-in-up" data-component="table" data-summary="Respondent segments">
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Segment</th>
+              <th>Count</th>
+              <th>Share</th>
+              <th>Avg. Satisfaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Enterprise Developers</td>
+              <td>396</td>
+              <td>33%</td>
+              <td><strong>84%</strong></td>
+            </tr>
+            <tr>
+              <td>Freelance / Independent Devs</td>
+              <td>312</td>
+              <td>26%</td>
+              <td>80%</td>
+            </tr>
+            <tr>
+              <td>Academic Researchers</td>
+              <td>276</td>
+              <td>23%</td>
+              <td>75%</td>
+            </tr>
+            <tr>
+              <td>Students</td>
+              <td>216</td>
+              <td>18%</td>
+              <td>69%</td>
+            </tr>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td><strong>1,200</strong></td>
+              <td><strong>100%</strong></td>
+              <td><strong>78%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Top 5 Improvement Requests</h3>
+      <div class="report-list fade-in-up" data-component="list" data-summary="Top improvement requests">
+        <ol class="styled-list">
+          <li><strong>Faster response times at peak hours</strong> — cited by 68% of power users as the top friction point</li>
+          <li><strong>Higher batch processing limits</strong> — freelancers and enterprise teams need to process 50+ files at once</li>
+          <li><strong>Richer export formats</strong> — support for Excel, JSON, and Notion integration was frequently requested</li>
+          <li><strong>Better conversation history management</strong> — search and categorization across past sessions</li>
+          <li><strong>More transparent pricing tiers</strong> — lightweight users feel the entry plan does not reflect their actual usage</li>
+        </ol>
+      </div>
+
+      <h3>Data Sources</h3>
+      <div class="report-list fade-in-up" data-component="list" data-summary="Research data sources">
+        <ul class="styled-list">
+          <li>In-app survey distributed via push notification and email invitation</li>
+          <li>Product telemetry (anonymized usage logs, session duration, feature activation)</li>
+          <li>Five focus-group sessions (n = 8 per session) conducted over video call</li>
+          <li>Support ticket tagging and NLP classification (5,200 tickets, Sep–Oct 2024)</li>
+          <li>Publicly available developer sentiment data from Stack Overflow and GitHub Discussions</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §4  Research Timeline                                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-timeline" data-section="timeline">
+      <h2>Research Timeline</h2>
+      <p>The study followed a standard UX research process from study design through report delivery over approximately ten weeks.</p>
+
+      <div class="timeline fade-in-up" data-component="timeline" data-summary="Research timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 2, 2024</div>
+          <div class="timeline-content">
+            <strong>Study Design</strong><br>
+            Research team drafted objectives based on the Wave 2 retrospective and current product roadmap. Defined key research questions and selected methodology (mixed-methods: survey + focus groups).
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 9, 2024</div>
+          <div class="timeline-content">
+            <strong>Survey Creation</strong><br>
+            Designed a 38-question structured questionnaire covering satisfaction scales, feature ratings, and open-ended questions. Pilot-tested with 20 internal volunteers; revised 6 items.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 16, 2024</div>
+          <div class="timeline-content">
+            <strong>Recruit Participants</strong><br>
+            Distributed invitations via in-app notification and email to active users. Applied stratified quota sampling to match target segment ratios. Recruited 1,347 respondents.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Sep 16 — Sep 30, 2024</div>
+          <div class="timeline-content">
+            <strong>Online Survey</strong><br>
+            Survey open for two weeks. Collected 1,347 raw responses; completion rate 89.1% (vs. 83.4% in Wave 2). Focus groups ran in parallel across the same window.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Oct 7, 2024</div>
+          <div class="timeline-content">
+            <strong>Data Cleaning</strong><br>
+            Removed 147 invalid responses (straight-liners, completion time &lt; 90 s, &gt; 30% missing). Final valid sample: 1,200 (valid rate 89.1%). Normalized Likert scales and encoded segment labels.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--border);"></div>
+          <div class="timeline-date">Nov 20, 2024</div>
+          <div class="timeline-content">
+            <strong>Analysis &amp; Report</strong><br>
+            Descriptive statistics, variance analysis, and cluster modeling completed. Report reviewed by Product, Engineering, and Strategy leads; finalized and distributed to all stakeholders.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §5  Research Workflow                                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-workflow" data-section="workflow">
+      <h2>Research Workflow</h2>
+      <p>The diagram below maps the full methodological lifecycle, from study design through final report delivery. Each stage has a hard dependency on the one before it.</p>
+
+      <div class="diagram-wrapper fade-in-up" data-component="diagram" data-summary="Research workflow flowchart">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 130" width="840" height="130" role="img" aria-label="Research Workflow Diagram"
+             style="font-family: 'Georgia', serif; max-width: 100%;">
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#9CA3AF"/>
+            </marker>
+          </defs>
+          <!-- Node backgrounds -->
+          <rect x="4"   y="40" width="108" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <rect x="124" y="40" width="108" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <rect x="244" y="40" width="116" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <rect x="372" y="40" width="108" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <rect x="492" y="40" width="108" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <rect x="612" y="40" width="100" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+          <rect x="724" y="40" width="110" height="44" rx="4" fill="#111827"  stroke="#111827" stroke-width="1.5"/>
+          <!-- Arrows -->
+          <line x1="112" y1="62" x2="122" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="232" y1="62" x2="242" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="360" y1="62" x2="370" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="480" y1="62" x2="490" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="600" y1="62" x2="610" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="712" y1="62" x2="722" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+          <!-- Labels -->
+          <text x="58"  y="58" text-anchor="middle" font-size="11" fill="#374151">Study Design</text>
+          <text x="58"  y="73" text-anchor="middle" font-size="10" fill="#9CA3AF">Step 1</text>
+          <text x="178" y="58" text-anchor="middle" font-size="11" fill="#374151">Survey Creation</text>
+          <text x="178" y="73" text-anchor="middle" font-size="10" fill="#9CA3AF">Step 2</text>
+          <text x="302" y="58" text-anchor="middle" font-size="11" fill="#374151">Recruit Participants</text>
+          <text x="302" y="73" text-anchor="middle" font-size="10" fill="#9CA3AF">Step 3</text>
+          <text x="426" y="58" text-anchor="middle" font-size="11" fill="#374151">Online Survey</text>
+          <text x="426" y="73" text-anchor="middle" font-size="10" fill="#9CA3AF">Step 4</text>
+          <text x="546" y="58" text-anchor="middle" font-size="11" fill="#374151">Data Cleaning</text>
+          <text x="546" y="73" text-anchor="middle" font-size="10" fill="#9CA3AF">Step 5</text>
+          <text x="662" y="58" text-anchor="middle" font-size="11" fill="#374151">Analysis</text>
+          <text x="662" y="73" text-anchor="middle" font-size="10" fill="#9CA3AF">Step 6</text>
+          <text x="779" y="58" text-anchor="middle" font-size="11" fill="#FFFFFF">Report</text>
+          <text x="779" y="73" text-anchor="middle" font-size="10" fill="#D1D5DB">Step 7</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §6  Analysis Code                                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-code" data-section="code">
+      <h2>Analysis Code</h2>
+      <p>The script below is the actual data cleaning pipeline used in this study. It handles outlier removal, missing-value imputation, Likert scale normalization, and per-segment aggregation.</p>
+
+      <div class="code-wrapper fade-in-up" data-component="code" data-summary="Python data cleaning script">
+        <div class="code-title">python · Data Cleaning Script</div>
+        <pre><code class="language-python">import pandas as pd
+import numpy as np
+
+# Load raw survey responses
+df = pd.read_csv("survey_raw_wave3.csv", encoding="utf-8-sig")
+
+# ── 1. Remove invalid responses ────────────────────────────────
+# Drop straight-liners (zero variance across all Likert items)
+likert_cols = [c for c in df.columns if c.startswith("q_sat_")]
+df = df[df[likert_cols].std(axis=1) > 0]
+
+# Drop responses completed in under 90 seconds (speed-clicking)
+df = df[df["completion_seconds"] >= 90]
+
+# Drop rows missing more than 30% of questions
+threshold = int(df.shape[1] * 0.30)
+df.dropna(thresh=df.shape[1] - threshold, inplace=True)
+
+print(f"Valid responses after cleaning: {len(df)}")  # → 1200
+
+# ── 2. Normalize Likert scales (1–5 → 0–100%) ─────────────────
+df[likert_cols] = (df[likert_cols] - 1) / 4 * 100
+
+# ── 3. Compute weighted satisfaction index ─────────────────────
+weights = {
+    "q_sat_feature":  0.40,
+    "q_sat_support":  0.30,
+    "q_sat_overall":  0.30,
+}
+df["satisfaction_index"] = sum(df[col] * w for col, w in weights.items())
+
+# ── 4. Outlier removal via IQR ─────────────────────────────────
+Q1  = df["satisfaction_index"].quantile(0.25)
+Q3  = df["satisfaction_index"].quantile(0.75)
+IQR = Q3 - Q1
+df  = df[
+    (df["satisfaction_index"] >= Q1 - 1.5 * IQR) &
+    (df["satisfaction_index"] <= Q3 + 1.5 * IQR)
+]
+
+# ── 5. Encode segment labels ───────────────────────────────────
+segment_map = {
+    1: "Enterprise Developers",
+    2: "Freelance Developers",
+    3: "Academic Researchers",
+    4: "Students",
+}
+df["segment_label"] = df["user_segment"].map(segment_map)
+
+# ── 6. Export clean dataset ────────────────────────────────────
+df.to_csv("survey_clean_wave3.csv", index=False, encoding="utf-8-sig")
+print("Data cleaning complete. Output: survey_clean_wave3.csv")
+
+# ── 7. Per-segment summary ─────────────────────────────────────
+summary = (
+    df.groupby("segment_label")["satisfaction_index"]
+    .agg(["mean", "std", "count"])
+    .round(2)
+)
+print(summary)
+</code></pre>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §7  Limitations & Recommendations                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-limitations" data-section="limitations">
+      <h2>Limitations &amp; Recommendations</h2>
+
+      <div class="callout callout--note fade-in-up" data-component="callout" data-summary="Statistical methodology note">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Methodology Note</strong><br>
+          All reported satisfaction scores are based on the clean sample (n = 1,200). The sampling error at a 95% confidence level is ±2.8 percentage points. All statistical tests use two-tailed hypotheses with a significance threshold of &alpha; = 0.05.
+        </div>
+      </div>
+
+      <div class="callout callout--tip fade-in-up" data-component="callout" data-summary="Recommendation for next wave">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>Recommendation for Wave 4</strong><br>
+          Enrich the analysis by fusing survey responses with behavioral telemetry (session logs, feature activation). This will reduce self-report bias and enable longitudinal tracking of satisfaction trajectories across waves.
+        </div>
+      </div>
+
+      <div class="callout callout--warning fade-in-up" data-component="callout" data-summary="Voluntary response bias warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Voluntary Response Bias</strong><br>
+          Only active users were invited to participate; churned users are not represented. Overall satisfaction figures likely overstate the true user-base average. Always disclose this limitation when citing these results externally.
+        </div>
+      </div>
+
+      <div class="callout callout--danger fade-in-up" data-component="callout" data-summary="Privacy and data handling requirements">
+        <span class="callout-icon">🔒</span>
+        <div class="callout-body">
+          <strong>Privacy &amp; Data Handling</strong><br>
+          All raw survey responses are protected under GDPR and applicable privacy law. Individual-level data has been anonymized. Any re-identification attempt is a compliance violation. Access to raw data requires a formal request to the Data Governance Committee and written approval.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §8  Image Example                                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-images" data-section="images">
+      <h2>Image Example</h2>
+      <p>Reports support three image layouts: <code>full</code> (full-width), <code>left</code> (left-float with text wrap), and <code>right</code> (right-float). Placeholders demonstrate each below.</p>
+
+      <!-- Full-width -->
+      <figure class="report-image fade-in-up" data-component="image" data-summary="Full-width satisfaction heatmap">
+        <img src="https://placehold.co/860x400/F3F4F6/9CA3AF?text=Satisfaction+Heatmap"
+             alt="Satisfaction Heatmap" class="report-image--full">
+        <figcaption>Fig. 1 — Satisfaction heatmap by segment and feature (replace with actual visualization)</figcaption>
+      </figure>
+
+      <!-- Left-float with text wrap -->
+      <div class="clearfix fade-in-up" data-component="image" data-summary="Left-float image with text wrap">
+        <figure class="report-image report-image--left" style="max-width:38%; margin-bottom:.5rem;">
+          <div class="image-placeholder image-placeholder-sm">
+            Left-float — layout: left
+          </div>
+          <figcaption>Fig. 2 — Survey interface screenshot</figcaption>
+        </figure>
+        <p>
+          When <code>layout=left</code> is used, the image floats to the left and body text wraps to the right — suitable for embedding explanatory screenshots or diagrams inline. The online survey used a responsive design optimized for both desktop and mobile. Each of the five pages contained eight to ten questions, with branching logic at key decision points to ensure each respondent received questions relevant to their usage scenario.</p>
+        <p>
+          The median completion time was 7 minutes 52 seconds. Introduction of a progress indicator and auto-save reduced the mid-survey drop-off rate from 18.3% (Wave 2) to 9.7% (Wave 3), contributing to the record-high valid sample count.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- §9  Executive Summary                                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section id="section-summary" data-section="summary">
+      <h2>Executive Summary</h2>
+
+      <p>
+        Across 1,200 valid responses, overall satisfaction with AI coding tools reached 78% — a new high for the three-wave study series. NPS rose to 42, and daily AI feature adoption climbed to 64%. These gains are most pronounced among enterprise developers and independent freelancers, both of whom report satisfaction above the overall average and strong retention intent.
+      </p>
+      <p>
+        Two structural constraints cap further satisfaction growth. First, system latency during peak hours is the top-cited pain point regardless of user segment. Second, batch-processing limits and limited export formats prevent heavy users from integrating the tool into professional workflows. Churn risk among students remains elevated at 18%, requiring a dedicated product and pricing strategy.
+      </p>
+
+      <blockquote>
+        "If the batch limit went from 10 files to 50, I would upgrade to the Pro plan immediately. For our team, that is a genuine productivity leap — not a nice-to-have."<br>
+        <em>— Enterprise Developer, Wave 3 focus group, October 2024</em>
+      </blockquote>
+
+      <h3>Key Conclusions &amp; Action Items</h3>
+      <ul class="styled-list">
+        <li>
+          <strong>Prioritize technical stability</strong>
+          <ul class="styled-list" style="margin-top:.25rem;">
+            <li>Peak-hour latency must be addressed through capacity planning and caching before Q1 2025</li>
+            <li>Hallucination-rate targets should be added as a core KPI in the next model evaluation cycle</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Raise the ceiling for power users</strong>
+          <ul class="styled-list" style="margin-top:.25rem;">
+            <li>Increase batch processing limit to 50 files on the Pro plan; remove the cap on Enterprise</li>
+            <li>Add export support for Excel, JSON, and Notion to reduce workflow integration friction</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Develop a student retention strategy</strong>
+          <ul class="styled-list" style="margin-top:.25rem;">
+            <li>Introduce an academic-verified pricing tier with a lower paid conversion threshold</li>
+            <li>Elevate learning-focused features (essay assistance, knowledge organization) on the product roadmap</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:.82rem; color:var(--text-muted); text-align:center;">
+      AI Tools User Research Report &nbsp;·&nbsp; minimal theme &nbsp;·&nbsp; Generated by kai-report-creator &nbsp;·&nbsp; 2026-03-16
+    </footer>
+
+  </div><!-- /.report-wrapper -->
+</main>
+
+<!-- ───────────────────────────────────────────────────────────
+     Scripts
+─────────────────────────────────────────────────────────────── -->
+<script>
+/* ── highlight.js ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+});
+
+/* ── TOC: hover-to-open, click-to-lock ── */
+const tocBtn     = document.getElementById('toc-toggle-btn');
+const tocSidebar = document.getElementById('toc-sidebar');
+if (tocBtn && tocSidebar) {
+  let locked = false, closeTimer;
+  function openToc()       { clearTimeout(closeTimer); tocSidebar.classList.add('open'); tocBtn.setAttribute('aria-expanded','true'); }
+  function scheduleClose() { closeTimer = setTimeout(() => { if (!locked) { tocSidebar.classList.remove('open'); tocBtn.setAttribute('aria-expanded','false'); } }, 150); }
+  tocBtn.addEventListener('mouseenter', openToc);
+  tocSidebar.addEventListener('mouseenter', openToc);
+  tocBtn.addEventListener('mouseleave', scheduleClose);
+  tocSidebar.addEventListener('mouseleave', scheduleClose);
+  tocBtn.addEventListener('click', () => {
+    locked = !locked;
+    tocBtn.classList.toggle('locked', locked);
+    if (locked) openToc(); else scheduleClose();
+  });
+  document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => {
+    if (!locked) scheduleClose();
+  }));
+}
+
+/* ── TOC active section highlight ── */
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const id   = e.target.dataset.section;
+    const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+    if (link) link.classList.toggle('active', e.isIntersecting);
+  });
+}, { rootMargin: '-10% 0px -60% 0px' });
+document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+
+// Auto-reveal in headless/screenshot environments
+if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+/* ── fade-in-up animation ── */
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+/* ── KPI counter animation ── */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.kpiTarget);
+  const fmt    = el.dataset.kpiFormat;
+  const dur    = 1200;
+  const start  = performance.now();
+  function step(now) {
+    const t    = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const val  = target * ease;
+    if      (fmt === 'comma')   el.textContent = Math.round(val).toLocaleString('en-US');
+    else if (fmt === 'percent') el.textContent = val.toFixed(0) + '%';
+    else                        el.textContent = Math.round(val).toString();
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const kpiObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-kpi-target]').forEach(animateCounter);
+      kpiObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.kpi-grid').forEach(g => kpiObserver.observe(g));
+
+/* ── Chart.js: Satisfaction Trend ── */
+window.addEventListener('load', () => {
+  const satCtx = document.getElementById('chart-satisfaction-trend');
+  if (satCtx) {
+    new Chart(satCtx, {
+      type: 'line',
+      data: {
+        labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        datasets: [
+          {
+            label: 'Satisfaction (%)',
+            data: [65, 67, 70, 72, 75, 78],
+            borderColor: 'rgba(17,24,39,0.8)',
+            backgroundColor: 'rgba(17,24,39,0.06)',
+            tension: 0.35,
+            fill: true,
+            pointRadius: 5,
+            pointBackgroundColor: 'rgba(17,24,39,0.8)',
+          },
+          {
+            label: 'Baseline (70%)',
+            data: [70, 70, 70, 70, 70, 70],
+            borderColor: 'rgba(156,163,175,0.6)',
+            backgroundColor: 'transparent',
+            borderDash: [6, 4],
+            tension: 0,
+            pointRadius: 0,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 55,
+            max: 90,
+            ticks: { callback: v => v + '%' }
+          }
+        }
+      }
+    });
+  }
+
+  /* ── Chart.js: Feature Satisfaction ── */
+  const featCtx = document.getElementById('chart-feature-scores');
+  if (featCtx) {
+    new Chart(featCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Code Completion', 'Smart Suggestions', 'Refactoring', 'Documentation', 'Testing', 'Batch Processing', 'Export'],
+        datasets: [{
+          label: 'Avg. Satisfaction (out of 5)',
+          data: [4.4, 4.1, 3.9, 3.8, 3.6, 3.1, 2.8],
+          backgroundColor: [
+            'rgba(17,24,39,0.80)',
+            'rgba(17,24,39,0.72)',
+            'rgba(17,24,39,0.60)',
+            'rgba(107,114,128,0.65)',
+            'rgba(107,114,128,0.55)',
+            'rgba(146,64,14,0.70)',
+            'rgba(153,27,27,0.70)',
+          ],
+          borderRadius: 2,
+          borderSkipped: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+          y: {
+            beginAtZero: false,
+            min: 2.5,
+            max: 5.0,
+            ticks: { stepSize: 0.5 }
+          }
+        }
+      }
+    });
+  }
+});
+</script>
+
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

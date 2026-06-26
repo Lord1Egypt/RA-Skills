@@ -1,0 +1,369 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "last_updated": "2025-03-31",
+    "description": "火山引擎TTS 2.0音色配置，支持SeedTTS 2.0 (Uranus)和Saturn系列",
+    "resource_mapping": {
+      "uranus": "seed-tts-2.0",
+      "saturn": "volc.megatts.default"
+    },
+    "notes": {
+      "default_pair": "A(男声)=少年梓辛 2.0(zh_male_shaonianzixin_uranus_bigtts)，B(女声)=VV 2.0(zh_female_vv_uranus_bigtts)",
+      "recommendations": {
+        "年轻男性": "少年梓辛 2.0 (zh_male_shaonianzixin_uranus_bigtts)",
+        "专业男性": "刘飞 2.0 (zh_male_liufei_uranus_bigtts)",
+        "温柔女声": "小何 2.0 (zh_female_xiaohe_uranus_bigtts)",
+        "知性女声": "知性灿灿 2.0 (zh_female_cancan_uranus_bigtts)",
+        "磁性女声": "魅力苏菲 2.0 (zh_male_sophie_uranus_bigtts)。注意：voice_type含male是官方历史命名遗留，实际为女声"
+      }
+    }
+  },
+  "recommended_pairs": {
+    "default": {
+      "host_a": "zh_male_shaonianzixin_uranus_bigtts",
+      "host_b": "zh_female_vv_uranus_bigtts",
+      "description": "默认男女双主持人配置"
+    },
+    "professional": {
+      "host_a": "zh_male_liufei_uranus_bigtts",
+      "host_b": "zh_female_cancan_uranus_bigtts",
+      "description": "知性专业风格"
+    },
+    "casual": {
+      "host_a": "zh_male_taocheng_uranus_bigtts",
+      "host_b": "zh_female_shuangkuaisisi_uranus_bigtts",
+      "description": "轻松休闲风格"
+    },
+    "english": {
+      "host_a": "en_male_tim_uranus_bigtts",
+      "host_b": "en_female_dacey_uranus_bigtts",
+      "description": "英文播客配置"
+    }
+  },
+  "voices": {
+    "zh_female_vv_uranus_bigtts": {
+      "name": "Vivi 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文", "日文", "印尼", "墨西哥西班牙语"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "多语言女声，表现力丰富"
+    },
+    "zh_female_xiaohe_uranus_bigtts": {
+      "name": "小何 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "温柔女声"
+    },
+    "zh_male_m191_uranus_bigtts": {
+      "name": "云舟 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "沉稳男声"
+    },
+    "zh_male_taocheng_uranus_bigtts": {
+      "name": "小天 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "亲和男声"
+    },
+    "zh_male_liufei_uranus_bigtts": {
+      "name": "刘飞 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "专业男声，适合知识类内容"
+    },
+    "zh_male_sophie_uranus_bigtts": {
+      "name": "魅力苏菲 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "磁性女声（注意：voice_type含'male'是官方历史命名遗留，实际为女声）"
+    },
+    "zh_female_qingxinnvsheng_uranus_bigtts": {
+      "name": "清新女声 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "清新自然女声"
+    },
+    "zh_female_cancan_uranus_bigtts": {
+      "name": "知性灿灿 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "知性女声，适合专业讨论"
+    },
+    "zh_female_sajiaoxuemei_uranus_bigtts": {
+      "name": "撒娇学妹 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "活泼可爱女声"
+    },
+    "zh_female_tianmeixiaoyuan_uranus_bigtts": {
+      "name": "甜美小源 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "甜美女声"
+    },
+    "zh_female_tianmeitaozi_uranus_bigtts": {
+      "name": "甜美桃子 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "温柔甜美女声"
+    },
+    "zh_female_shuangkuaisisi_uranus_bigtts": {
+      "name": "爽快思思 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "爽朗直率女声"
+    },
+    "zh_female_peiqi_uranus_bigtts": {
+      "name": "佩奇猪 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "卡通风格女声"
+    },
+    "zh_female_linjianvhai_uranus_bigtts": {
+      "name": "邻家女孩 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "亲切邻家女声"
+    },
+    "zh_male_shaonianzixin_uranus_bigtts": {
+      "name": "少年梓辛/Brayan 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "年轻自信男声，适合科技类播客"
+    },
+    "zh_male_sunwukong_uranus_bigtts": {
+      "name": "猴哥 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "搞怪风格男声"
+    },
+    "zh_female_yingyujiaoxue_uranus_bigtts": {
+      "name": "Tina老师 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "教育场景",
+      "languages": ["中文", "英式英语"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "英语教学风格女声"
+    },
+    "zh_female_kefunvsheng_uranus_bigtts": {
+      "name": "暖阳女声 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "客服场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "温暖客服女声"
+    },
+    "zh_female_xiaoxue_uranus_bigtts": {
+      "name": "儿童绘本 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "有声阅读",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "儿童故事风格女声"
+    },
+    "zh_male_dayi_uranus_bigtts": {
+      "name": "大壹 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "解说风格男声"
+    },
+    "zh_female_mizai_uranus_bigtts": {
+      "name": "黑猫侦探社咪仔 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "侦探风格女声"
+    },
+    "zh_female_jitangnv_uranus_bigtts": {
+      "name": "鸡汤女 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "情感语录风格女声"
+    },
+    "zh_female_meilinvyou_uranus_bigtts": {
+      "name": "魅力女友 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "通用场景",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "温柔女友风格女声"
+    },
+    "zh_female_liuchangnv_uranus_bigtts": {
+      "name": "流畅女声 2.0",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "流畅自然女声"
+    },
+    "zh_male_ruyayichen_uranus_bigtts": {
+      "name": "儒雅逸辰 2.0",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "视频配音",
+      "languages": ["中文"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "儒雅古风男声"
+    },
+    "en_male_tim_uranus_bigtts": {
+      "name": "Tim",
+      "gender": "male",
+      "type": "uranus",
+      "scene": "多语种",
+      "languages": ["美式英语"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "美式英语男声"
+    },
+    "en_female_dacey_uranus_bigtts": {
+      "name": "Dacey",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "多语种",
+      "languages": ["美式英语"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "美式英语女声"
+    },
+    "en_female_stokie_uranus_bigtts": {
+      "name": "Stokie",
+      "gender": "female",
+      "type": "uranus",
+      "scene": "多语种",
+      "languages": ["美式英语"],
+      "features": ["情感变化", "指令遵循", "ASMR"],
+      "description": "美式英语女声"
+    },
+    "saturn_zh_female_keainvsheng_tob": {
+      "name": "可爱女生",
+      "gender": "female",
+      "type": "saturn",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["指令遵循", "COT/QA功能"],
+      "description": "可爱风格女声"
+    },
+    "saturn_zh_female_tiaopigongzhu_tob": {
+      "name": "调皮公主",
+      "gender": "female",
+      "type": "saturn",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["指令遵循", "COT/QA功能"],
+      "description": "公主风格女声"
+    },
+    "saturn_zh_male_shuanglangshaonian_tob": {
+      "name": "爽朗少年",
+      "gender": "male",
+      "type": "saturn",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["指令遵循", "COT/QA功能"],
+      "description": "少年风格男声"
+    },
+    "saturn_zh_male_tiancaitongzhuo_tob": {
+      "name": "天才同桌",
+      "gender": "male",
+      "type": "saturn",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["指令遵循", "COT/QA功能"],
+      "description": "学霸风格男声"
+    },
+    "saturn_zh_female_cancan_tob": {
+      "name": "知性灿灿",
+      "gender": "female",
+      "type": "saturn",
+      "scene": "角色扮演",
+      "languages": ["中文"],
+      "features": ["指令遵循", "COT/QA功能"],
+      "description": "知性风格女声"
+    },
+    "saturn_zh_female_qingyingduoduo_cs_tob": {
+      "name": "轻盈朵朵 2.0",
+      "gender": "female",
+      "type": "saturn",
+      "scene": "客服场景",
+      "languages": ["中文"],
+      "features": ["指令遵循"],
+      "description": "轻盈客服女声"
+    },
+    "saturn_zh_female_wenwanshanshan_cs_tob": {
+      "name": "温婉珊珊 2.0",
+      "gender": "female",
+      "type": "saturn",
+      "scene": "客服场景",
+      "languages": ["中文"],
+      "features": ["指令遵循"],
+      "description": "温婉客服女声"
+    },
+    "saturn_zh_female_reqingaina_cs_tob": {
+      "name": "热情艾娜 2.0",
+      "gender": "female",
+      "type": "saturn",
+      "scene": "客服场景",
+      "languages": ["中文"],
+      "features": ["指令遵循"],
+      "description": "热情客服女声"
+    }
+  }
+}

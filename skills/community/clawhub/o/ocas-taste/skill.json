@@ -1,0 +1,17 @@
+{
+  "name": "ocas-taste",
+  "version": "3.0.1",
+  "description": "Taste: behavior-driven taste model built from real consumption signals. Scans user's email and calendar for consumption data (restaurant reservations, food delivery, hotel bookings, purchases), enriches entities with taste-relevant attributes via Google Maps, and generates discovery-focused recommendations that respect dietary restrictions. Trigger phrases: 'recommend', 'what would I like', 'based on what I've liked', 'suggest something similar', 'my taste', 'what should I try', 'scan my email', 'what have I been eating', 'restaurant recommendations', 'update taste'. Do not use for generic search, editorial top-10 lists, or ad-copy generation.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-taste/",
+      "~/openclaw/journals/ocas-taste/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-taste/",
+      "~/openclaw/journals/ocas-taste/"
+    ]
+  }
+}

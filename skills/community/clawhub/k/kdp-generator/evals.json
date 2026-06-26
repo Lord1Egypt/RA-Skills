@@ -1,0 +1,168 @@
+{
+  "_comment": "KDP Generator Skill - Eval Loop 测试用例",
+  "test_cases": [
+    {
+      "name": "低内容书生成 - 引导日记",
+      "description": "测试生成guided_journal类型的内页PDF",
+      "query": "帮我生成一本创业者日记的内页PDF，108页",
+      "expected": "生成引导日记内页PDF，包含interior.pdf和metadata",
+      "expected_tokens_with": 1500,
+      "expected_tokens_without": 5000,
+      "baseline_should_pass": false,
+      "assertions": [
+        {
+          "type": "contains",
+          "description": "输出包含 interior PDF 相关信息",
+          "expected": "interior"
+        },
+        {
+          "type": "contains",
+          "description": "提到引导日记类型",
+          "expected": "guided_journal"
+        },
+        {
+          "type": "contains",
+          "description": "提到页数108",
+          "expected": "108"
+        }
+      ]
+    },
+    {
+      "name": "批量生成书籍",
+      "description": "测试批量创建多本不同类型的日记本",
+      "query": "批量创建3本不同的日记本",
+      "expected": "使用batch_create批量生成3本书的配置",
+      "expected_tokens_with": 1800,
+      "expected_tokens_without": 6000,
+      "baseline_should_pass": false,
+      "assertions": [
+        {
+          "type": "contains",
+          "description": "提到批量生成",
+          "expected": "batch"
+        },
+        {
+          "type": "contains",
+          "description": "使用BookConfig配置",
+          "expected": "BookConfig"
+        },
+        {
+          "type": "contains",
+          "description": "提到KDPBookFactory",
+          "expected": "KDPBookFactory"
+        }
+      ]
+    },
+    {
+      "name": "AI封面Prompt生成",
+      "description": "测试生成AI绘画封面提示词（Midjourney/即梦）",
+      "query": "给这本书生成Midjourney封面提示词",
+      "expected": "生成Midjourney或即梦可用的封面提示词",
+      "expected_tokens_with": 1200,
+      "expected_tokens_without": 4000,
+      "baseline_should_pass": true,
+      "assertions": [
+        {
+          "type": "contains",
+          "description": "提到封面提示词",
+          "expected": "cover_prompt"
+        },
+        {
+          "type": "contains",
+          "description": "提到Midjourney",
+          "expected": "midjourney"
+        },
+        {
+          "type": "contains",
+          "description": "提到预留裁切去水印",
+          "expected": "裁切"
+        }
+      ]
+    },
+    {
+      "name": "电子书EPUB转换",
+      "description": "测试Markdown转EPUB电子书",
+      "query": "帮我把这本书转成Kindle格式",
+      "expected": "使用md2epub.py转换Markdown为EPUB",
+      "expected_tokens_with": 1200,
+      "expected_tokens_without": 4000,
+      "baseline_should_pass": false,
+      "assertions": [
+        {
+          "type": "contains",
+          "description": "提到EPUB格式",
+          "expected": "epub"
+        },
+        {
+          "type": "contains",
+          "description": "使用md2epub脚本",
+          "expected": "md2epub.py"
+        },
+        {
+          "type": "contains",
+          "description": "提到Kindle/KDP",
+          "expected": "Kindle"
+        }
+      ]
+    },
+    {
+      "name": "生成书籍封面",
+      "description": "测试生成符合KDP规格的封面",
+      "query": "生成Amazon KDP用的封面",
+      "expected": "生成2560x1600或300DPI的封面图片",
+      "expected_tokens_with": 1000,
+      "expected_tokens_without": 3500,
+      "baseline_should_pass": true,
+      "assertions": [
+        {
+          "type": "contains",
+          "description": "提到封面生成脚本",
+          "expected": "generate_cover.py"
+        },
+        {
+          "type": "contains",
+          "description": "提到KDP规格",
+          "expected": "KDP"
+        },
+        {
+          "type": "contains",
+          "description": "提到尺寸规格",
+          "expected": "2560"
+        }
+      ]
+    },
+    {
+      "name": "生成书籍元数据",
+      "description": "测试生成KDP元数据（关键词/分类/定价）",
+      "query": "帮我生成这本书的KDP元数据",
+      "expected": "生成包含keywords/categories/price的JSON",
+      "expected_tokens_with": 1000,
+      "expected_tokens_without": 3000,
+      "baseline_should_pass": false,
+      "assertions": [
+        {
+          "type": "contains",
+          "description": "提到元数据脚本",
+          "expected": "generate_metadata.py"
+        },
+        {
+          "type": "contains",
+          "description": "提到关键词",
+          "expected": "keywords"
+        },
+        {
+          "type": "contains",
+          "description": "提到分类",
+          "expected": "categories"
+        }
+      ]
+    }
+  ],
+  "assertion_types_reference": {
+    "contains": "检查输出是否包含指定文本",
+    "not_contains": "检查输出是否不包含指定文本",
+    "time_under": "检查执行时间是否在指定秒数内",
+    "matches_regex": "检查输出是否匹配正则表达式",
+    "json_valid": "检查输出是否为有效JSON"
+  }
+}

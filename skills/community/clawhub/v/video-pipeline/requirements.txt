@@ -1,0 +1,22 @@
+# Python dependencies for video pipeline
+edge-tts>=6.0.0
+requests>=2.25.0
+dashscope>=1.13.0
+mutagen>=1.45.0
+asyncio
+pathlib
+argparse
+json
+re
+shutil
+subprocess
+sys
+time
+io
+os
+
+# Note: Also requires Node.js packages installed via npm:
+# - remotion
+# - @remotion/cli
+# Additional system requirements:
+# - FFmpeg

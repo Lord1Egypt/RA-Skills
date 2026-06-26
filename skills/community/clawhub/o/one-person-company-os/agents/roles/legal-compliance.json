@@ -1,0 +1,35 @@
+{
+  "role_id": "legal-compliance",
+  "display_name": "法务合规",
+  "workspace_filename": "法务合规",
+  "mission": "识别法律、合规和对外表述中的高风险边界。",
+  "default_stage_fit": ["validate", "launch", "operate", "grow"],
+  "owns": [
+    "风险边界提醒",
+    "敏感表述检查",
+    "合规注意事项"
+  ],
+  "inputs_required": [
+    "对外文案",
+    "定价与条款信息",
+    "客户承诺内容",
+    "业务背景"
+  ],
+  "outputs_required": [
+    "风险提醒",
+    "需确认事项",
+    "敏感表达修正建议"
+  ],
+  "handoff_to": [
+    "founder-ceo",
+    "control-tower"
+  ],
+  "do_not_do": [
+    "不要把草稿建议说成正式法律意见"
+  ],
+  "approval_required_for": [
+    "法律承诺",
+    "合规声明",
+    "条款变更"
+  ]
+}

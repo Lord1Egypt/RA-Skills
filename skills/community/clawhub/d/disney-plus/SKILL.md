@@ -1,35 +1,49 @@
 ---
-name: "Disney Plus"
-description: "Provides information on Disney Plus public pages including membership plans, content channels, creator guidelines, and help resources without accessing perso..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/disney-plus"
-sourceUrl: "https://clawhub.ai/skills/disney-plus"
+name: disney-plus
+description: 注册“Disney Plus”技能；用于视频平台公开页面、内容入口、会员说明与创作者信息整理。
+homepage: `https://www.disneyplus.com/`
+metadata: {"clawdbot":{"emoji":"🎬"}}
 ---
 
 # Disney Plus
 
-> Provides information on Disney Plus public pages including membership plans, content channels, creator guidelines, and help resources without accessing perso...
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/disney-plus`
-- **Source URL:** [https://clawhub.ai/skills/disney-plus](https://clawhub.ai/skills/disney-plus)
+- 面向公开站点首页、会员页、帮助中心、创作者页与节目页的信息整理
+- 不提供账号共享、版权绕过、会员代充、后台权限或风控规避能力
+- 仅处理公开可见的内容入口、会员说明、创作支持与播放帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.disneyplus.com/
+- 会员与套餐：官网中的会员、VIP、订阅、套餐说明入口
+- 帮助与创作支持：帮助中心、上传指南、创作者中心入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/disney-plus
-```
+常见任务
+
+- 会员权益、套餐差异、设备限制整理
+- 内容频道、专题页、推荐位与节目入口汇总
+- 创作者上传规则、版权要求与内容规范提取
+
+数据字段
+
+- 内容频道、节目类型、会员权益、套餐价格、链接
+- 创作者入口、上传规则、版权说明、帮助页链接
+- 设备支持、清晰度说明、下载与离线规则
+
+自动化要点
+
+- 内容库和套餐常有地区差异，输出时注明适用市场
+- 部分站点播放页动态内容多，优先抓取说明页而非播放器内信息
+- 不处理登录后片单、观影记录或账号资产信息
+
+示例流程
+
+- 会员整理：访问 Disney Plus 会员页 → 提取套餐与权益 → 输出对照表
+- 频道梳理：进入首页与频道页 → 抽取栏目入口 → 输出结构化清单
+- 创作规则：访问创作者中心 → 提取上传与版权说明 → 输出摘要
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

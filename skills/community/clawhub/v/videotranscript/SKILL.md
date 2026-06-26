@@ -1,35 +1,56 @@
 ---
-name: "video-transcript"
-description: "将视频链接转换为文字讲稿。支持 YouTube、Bilibili 等平台。自动提取字幕，非中文视频提供原文 + 中文翻译。当用户分享视频链接、要求获取视频文字稿/字幕/讲稿时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/videotranscript"
-sourceUrl: "https://clawhub.ai/skills/videotranscript"
+name: video-transcript
+description: 将视频链接转换为文字讲稿。支持 YouTube、Bilibili 等平台。自动提取字幕，非中文视频提供原文 + 中文翻译。当用户分享视频链接、要求获取视频文字稿/字幕/讲稿时使用此技能。
 ---
 
-# video-transcript
+# Video Transcript - 视频转录技能（基础版）
 
-> 将视频链接转换为文字讲稿。支持 YouTube、Bilibili 等平台。自动提取字幕，非中文视频提供原文 + 中文翻译。当用户分享视频链接、要求获取视频文字稿/字幕/讲稿时使用此技能。
+将视频链接转换为文字讲稿。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/videotranscript`
-- **Source URL:** [https://clawhub.ai/skills/videotranscript](https://clawhub.ai/skills/videotranscript)
+## 支持平台
 
-## Overview
+- YouTube
+- Bilibili (B 站)
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/videotranscript
+用户提供视频链接，例如：
+- "帮我把这个视频转成文字稿：https://youtube.com/watch?v=xxx"
+- "https://bilibili.com/video/BVxxx 这个视频的讲稿"
+
+## 工作流程
+
+1. **下载字幕** - 使用 yt-dlp 提取视频字幕
+2. **转换为纯文本** - 移除时间轴和序号
+3. **翻译** - 如原文非中文，翻译为中文
+4. **输出** - 返回原文 + 中文翻译（如需要）
+
+## 输出格式
+
 ```
+═══════════════════════════════════════
+视频讲稿 - [视频标题]
+═══════════════════════════════════════
+
+📝 原文讲稿:
+[文字稿内容...]
+
+───────────────────────────────────────
+
+📖 中文翻译:
+[中文翻译内容...] (如原文非中文)
+
+═══════════════════════════════════════
+```
+
+## 依赖
+
+```bash
+pip install yt-dlp
+```
+
+## 注意事项
+
+1. 视频需要有内置字幕
+2. 无字幕视频需要语音识别（暂不支持）
+3. 讲稿仅供个人学习使用

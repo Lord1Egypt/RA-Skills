@@ -1,0 +1,6 @@
+{
+  "name": "server-watchdog",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "tags": ["monitoring", "server", "ssh", "pm2", "mongodb", "devops", "watchdog"]
+}

@@ -1,35 +1,17 @@
 ---
-name: "Dynamic Tool"
-description: "Intent-based tool selection. Activate when you want to know which tools are relevant for the current user message (weather→exec, document→feishu_doc, search→..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tooldyn"
-sourceUrl: "https://clawhub.ai/skills/tooldyn"
+name: dynamic-tool-policy
+description: |
+  Intent-based tool selection. Activate when you want to know which tools are relevant for the current user message (weather→exec, document→feishu_doc, search→web_search). Reduces context and avoids tool loops.
 ---
 
-# Dynamic Tool
+# Dynamic Tool Policy
 
-> Intent-based tool selection. Activate when you want to know which tools are relevant for the current user message (weather→exec, document→feishu_doc, search→...
+**When to use:** Before calling many tools, or when the user message is about weather, search, documents, or Feishu — call `get_recommended_tools` with the latest user message to get a short list of recommended tools and a hint.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tooldyn`
-- **Source URL:** [https://clawhub.ai/skills/tooldyn](https://clawhub.ai/skills/tooldyn)
+**Intent mapping:**
+- 天气 / weather / wttr → use **exec** (e.g. `curl wttr.in/<city>?format=3`)
+- 搜索 / search → use **web_search** once, then reply; do not call web_search again in the same turn
+- 文档 / create doc / 飞书文档 → use **feishu_doc** only when the user explicitly asks for a document
+- 读文件 / read file → **read**; 写/编辑 → **write**
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tooldyn
-```
+**Tool:** `get_recommended_tools({ user_message })` → returns `recommended_tools` (array of tool names) and `hint` (short instruction).

@@ -1,35 +1,31 @@
----
-name: "Pipeworx qrcode"
-description: "Generate QR code images from text or URLs and decode QR codes from public image URLs without configuration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-qrcode"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-qrcode"
----
+# QR Code
 
-# Pipeworx qrcode
+Generate and decode QR codes. Two tools, zero configuration.
 
-> Generate QR code images from text or URLs and decode QR codes from public image URLs without configuration.
+`create_qr` encodes any text or URL into a QR code image URL (10px to 1000px). `read_qr` decodes a QR code from any publicly accessible image URL.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-qrcode`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-qrcode](https://clawhub.ai/skills/pipeworx-qrcode)
+## Quick start
 
-## Overview
+Generate a QR code for a URL:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-qrcode
+curl -X POST https://gateway.pipeworx.io/qrcode/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"create_qr","arguments":{"data":"https://example.com","size":300}}}'
+```
+
+The response contains a `url` field you can embed directly in `<img>` tags or download.
+
+## Decoding
+
+Pass any image URL containing a QR code to `read_qr` and get the decoded text back. Works with PNGs, JPEGs, and most common image formats.
+
+```json
+{
+  "mcpServers": {
+    "qrcode": {
+      "url": "https://gateway.pipeworx.io/qrcode/mcp"
+    }
+  }
+}
 ```

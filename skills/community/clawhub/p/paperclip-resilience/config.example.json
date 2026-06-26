@@ -1,0 +1,52 @@
+{
+  "$schema": "./config.schema.json",
+  "$doc": "Configuration for spawn-with-fallback. Copy to config.json and customize.",
+
+  "aliases": {
+    "$doc": "Map short names to full provider/model strings. Case-insensitive lookup.",
+    "haiku": "anthropic/claude-haiku-4-5",
+    "sonnet": "anthropic/claude-sonnet-4-6",
+    "sonnet45": "anthropic/claude-sonnet-4-20250514",
+    "opus": "anthropic/claude-opus-4-6",
+    "opus46": "anthropic/claude-opus-4-6",
+    "opus45": "anthropic/claude-opus-4-5",
+    "flash": "openrouter/google/gemini-2.0-flash-001",
+    "flash-lite": "openrouter/google/gemini-2.0-flash-lite-001",
+    "codex": "openai-codex/gpt-5.3-codex"
+  },
+
+  "fallbacks": {
+    "$doc": "Map full model strings to their fallback. When the primary fails a retriable pattern, the fallback is tried once.",
+    "openai-codex/gpt-5.3-codex": "anthropic/claude-sonnet-4-6",
+    "openai-codex/gpt-5.2": "anthropic/claude-sonnet-4-6",
+    "anthropic/claude-sonnet-4-6": "openai-codex/gpt-5.3-codex",
+    "anthropic/claude-sonnet-4-20250514": "openai-codex/gpt-5.3-codex",
+    "anthropic/claude-opus-4-6": "openai-codex/gpt-5.3-codex",
+    "anthropic/claude-opus-4-5": "openai-codex/gpt-5.3-codex",
+    "anthropic/claude-haiku-4-5": "openrouter/google/gemini-2.0-flash-lite-001",
+    "openrouter/google/gemini-2.0-flash-lite-001": "anthropic/claude-haiku-4-5",
+    "openrouter/google/gemini-2.0-flash-001": "anthropic/claude-sonnet-4-6"
+  },
+
+  "failurePatterns": {
+    "$doc": "Regex patterns (as strings) that indicate a retriable provider failure in spawn output. Matched case-insensitively.",
+    "patterns": [
+      "credits",
+      "quota",
+      "402",
+      "insufficient_quota",
+      "billing",
+      "rate[\\s_-]?limit",
+      "no credits",
+      "payment required",
+      "provider error",
+      "credits_exhausted",
+      "quota_exceeded"
+    ]
+  },
+
+  "failureStopReasons": {
+    "$doc": "stop_reason values in JSON output that indicate a retriable failure.",
+    "reasons": ["error", "credits_exhausted", "quota_exceeded"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "facebook-page-manager",
+  "version": "1.0.0",
+  "description": "Manage and auto-post content to Facebook Fanpage via Graph API. Supports text/photo posts, carousel (multi-image), video, Reels, Story (photo/video), scheduled publishing, edit/delete scheduled posts, comment on posts, reply to comments, and delete comments.",
+  "description_vi": "Quản lý và đăng nội dung tự động lên Facebook Fanpage qua Graph API. Hỗ trợ đầy đủ: post text/ảnh, carousel (nhiều ảnh), video, Reels, Story (ảnh/video), hẹn giờ đăng bài, xem/sửa/xóa bài đã hẹn giờ, comment, reply comment, xóa comment.",
+  "author": "Bằng",
+  "tags": ["facebook", "social-media", "automation", "content", "fanpage"],
+  "category": "social-media"
+}

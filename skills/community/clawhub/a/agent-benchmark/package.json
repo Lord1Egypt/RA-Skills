@@ -1,0 +1,21 @@
+{
+  "name": "agent-benchmark",
+  "version": "0.1.0",
+  "description": "AI Agent 能力评估基准 - SWE-bench Lite 风格的标准化测试",
+  "main": "src/benchmark-runner.ps1",
+  "scripts": {
+    "test": "powershell -ExecutionPolicy Bypass -File src/benchmark-runner.ps1"
+  },
+  "keywords": [
+    "benchmark",
+    "testing",
+    "ai-agent",
+    "evaluation",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,35 +1,234 @@
 ---
-name: "Capital Market Report"
-description: "Generate high-signal, impact-driven capital market anomaly and rumor reports. Focuses on actionable business signals, expectation-breaking news, and deep log..."
-category: "other"
-source: "ClawHub"
-tags: [v3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/capital-market-report"
-sourceUrl: "https://clawhub.ai/skills/capital-market-report"
+name: capital-market-report
+description: Generate high-signal, impact-driven capital market anomaly and rumor reports. Focuses on actionable business signals, expectation-breaking news, and deep logical deduction. Uses local scanners for Chinese/global financial media, Reddit, and Twitter. Features strict market-isolation rules and requires real source URLs.
 ---
 
 # Capital Market Report
 
-> Generate high-signal, impact-driven capital market anomaly and rumor reports. Focuses on actionable business signals, expectation-breaking news, and deep log...
+基于绝对影响力阈值的资本市场简报。放弃指数涨跌，聚焦供应链异常、财报爆发点、地缘冲击、行业拐点。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/capital-market-report`
-- **Source URL:** [https://clawhub.ai/skills/capital-market-report](https://clawhub.ai/skills/capital-market-report)
+---
 
-## Overview
+## 一、数据采集
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1.1 新闻抓取
 ```bash
-hermes skills install clawhub/capital-market-report
+cd ~/.openclaw/workspace-group/skills/capital-market-report
+uv run scripts/news-processor.py
+```
+
+### 1.2 热度/传闻扫描
+```bash
+uv run ~/.openclaw/skills/stock-analysis/scripts/hot_scanner.py
+uv run ~/.openclaw/skills/stock-analysis/scripts/rumor_scanner.py
+```
+
+### 1.3 股价查询
+```bash
+uv run ~/.openclaw/skills/tencent-finance-stock-price/scripts/query_stock.py <codes>
+```
+禁止凭记忆报股价/市值，禁止用 web_search 拼凑数据。
+
+### 1.4 24h Delta 基线（不可跳过 — 必须读全部文件）
+
+**第一步**：列出过去 24h 内所有存档报告并逐个读取：
+```bash
+ls -t ~/.openclaw/workspace-group/memory/capital_market_report_*.md | head -20
+```
+
+**第二步**：逐个读取每个文件，合并所有已覆盖事件/话题/新闻标题。
+
+**第三步**：本版报告的 Delta 声明必须写明比较了哪些文件，格式如下：
+```
+⚠️ Delta：vs 过去 24h 全部报告（共 N 份：0410.md, 1500.md）。Xh 增量：……
+```
+
+⛔ **严禁行为**：
+- 严禁只比"上一版"或"最近一份"——必须合并 24h 内全部文件
+- 严禁在 Delta 声明中写"vs 上一版"或"vs 15:00"——必须列出具体比对的所有文件名
+- 严禁跳步：必须先用 ls 列出文件、再用 read 逐个读，不能凭记忆判断
+
+---
+
+## 二、新闻取舍
+
+### 2.1 时效强制
+每条新闻必须在报告生成前 **24 小时内** 发布。超过 24h 直接丢弃。
+
+### 2.2 财报事件强制识别
+标题含「一季/二季/三季/四季/全年」+「营收/净利润/同比增长/毛利率/净亏损」等关键词的，**无论外面包了什么壳**（如"电报解读""机构点评"），一律强制识别为财报事件。
+
+### 2.3 市场影响力判断
+不依赖固定公司白名单。基于事件本身的市场冲击力做主观判断——巨头公司的重大事件天然重要，中小公司的行业拐点信号同样不可忽略。
+
+### 2.4 因果聚合
+所有新闻先逐条提取，数量不设上限。聚合的唯一标准是**共享同一个驱动因素**：
+- ✅ 存储芯片全链大涨 → 聚合（共因：NAND 缺货 + 三星罢工）
+- ✅ 某公司财报带动同行业上涨 → 聚合（共因：该财报改变行业预期）
+- ❌ 不同公司各自发财报各自涨 → 各报各的（无共同因）
+- ❌ 严禁因"同市场"或"同概念"强行聚合
+
+### 2.5 中英文平衡
+每条报告至少包含 **3-5 条 🇨🇳 中国公司/中国市场的新闻**。
+
+### 2.6 来源 URL 强制
+每条新闻必须附带至少一个真实可点击的原文 URL。URL 由 news-processor.py 原生提取，不编造。
+
+### 2.7 先行信号扫描（每报必查）
+
+简报核心目标：帮 Phil 赚钱，不是了解国际形势。先行信号同时关注利好和利空——做空信号的交易价值与做多信号完全对等。
+
+**通用四象限**
+| 信号类别 | 通用问题 |
+|----------|----------|
+| 产能/供给 | 行业产能收缩/扩张？减产/转产/停产？ |
+| 价格/成本 | 上游原材料/中间品价格异动？合约价趋势？ |
+| 订单/需求 | 龙头在手订单/backlog/交期变化？ |
+| capex/资本 | 下游大客户资本开支调整？行业capex周期？ |
+
+**AI 全产业链监控**
+传导链路：上游硬件 → 中游云设施 → 下游应用（间隔2-4周）
+
+🔴 上游硬件（最先感知）：GPU(NVDA)、HBM(MU/SKH)、NAND/HDD(WDC/STX/SNDK)、CPU(INTC/AMD)、电力/冷却
+🟡 中游云设施（验证需求）：四大云厂商(AMZN/MSFT/GOOGL/META) capex、AI收入增速、数据中心
+🟢 下游应用（验证商业化）：企业AI支出、AI终端出货、自动驾驶扩张、AI广告/搜索收入
+
+**标注规则**
+- 单一先行指标触发 → `⚡ [行业 先行信号]`
+- 同一行业 2+ 指标同时触发 → `🔥🔥🔥 [行业 多重先行信号]`
+- 跨行业共振（如芯片+云capex同时亮灯）→ `🚨🚨🚨 [全链条先行信号共振]` — 最高级别预警
+
+---
+
+## 三、报告输出
+
+### 3.0 强制存盘（不可跳过）
+
+报告正文生成后、输出到群聊前，必须先用 `write` 工具保存到文件。
+
+```bash
+# 文件名格式：capital_market_report_YYYYMMDD_HHMM.md
+# 示例输出：
+write ~/.openclaw/workspace-group/memory/capital_market_report_20260515_1500.md
+```
+
+- ⛔ 此步骤不可跳过。未成功存盘则不得输出报告。
+- 存盘后立即执行：删除 24 小时前的旧文件 `rm memory/capital_market_report_*.md`（只保留 24h 内的）
+- 下一份报告生成时，第一步就是 `ls memory/capital_market_report_*.md` 加载过去 24h 全部已存报告作为 Delta 基线
+
+### 3.1 格式锁
+
+**以消息为核心**：每条条目以新闻事件为标题，股价只放在推导中做旁证，不做主角。
+
+**单条结构**：
+```
+## 🔴/🟢/🟡 [增量类型] 事件标题
+
+**共因**：（因果聚合条目必填；独立条目可省略）
+**来源**：来源A（🔗 URL）/ 来源B（🔗 URL）🟢/🟡 可信度
+
+**核心**：
+- 关键事实
+
+**推导**：
+- 🟢/🔴 多角度分析
+- 🇨🇳 涉及中国市场时强制标注
+- ⚡ 涉及先行信号时标注
+- 每条推导必须点出具体受益/受损标的（含代码）
+```
+
+**增量类型标签**：
+- `[全新]` — 过去 24h 报告均未覆盖
+- `[增量更新]` — 已有覆盖，本版新增细节/数据/反应
+- `[跟进]` — 无实质新增，做简要追踪
+
+### 3.2 数量锁
+- 新闻条目 **≥ 10 条**（因果聚合后不够 10 条就发散回去逐条报）
+- 每条推导 **≥ 3 个要点**
+- 关键日历 **≥ 4 项**
+- 🇨🇳 标签强制出现在所有涉及中国公司/中国市场的推导中
+
+### 3.3 内容锁
+- 严禁推测性内容：无原文依据则删除该条点评
+- 严格区分市场归属：美国的事件只推美国影响
+- 推导必须说明谁受益、谁受损、为什么
+
+### 3.4 飞书排版
+- 一律不使用表格，无论单元格长短。全部改用列表或分段展示。
+
+---
+
+## 四、防幻觉校验（报告末尾强制输出）
+
+```
+⚠️ 防幻觉校验：
+✅ 所有股价经 tencent-finance-stock-price 查询
+✅ CPI/PPI/大宗价格经至少 2 个可信源交叉验证
+✅ 所有事件在 24h 内
+✅ 无 AI 内容农场来源
+✅ 无推测性公司立场
+✅ 因果聚合规则应用
+✅ 🇨🇳 标签覆盖
+✅ 财报关键词检测
+⏰ 数据截止：CCYY-MM-DD HH:MM CST | BTC $...
+```
+
+---
+
+## 五、完整报告模板
+
+```
+📊 资本市场绝对影响力简报 | YYYY-MM-DD HH:MM
+⚠️ Delta：vs 过去 24h 全部报告。X 小时增量：[核心变化 5-8 项关键词]
+
+---
+
+## 🔬 先行信号扫描
+
+- 产能/供给 — ... : 🟢/⚡/🔥 ...
+- 价格/成本 — ... : ...
+- 订单/需求 — ... : ...
+- capex/资本 — ... : ...
+
+**综合判断**：[无异常 / ⚡单信号 / 🔥🔥🔥多重信号 / 🚨🚨🚨全链条共振]
+
+---
+
+## 🔴/🟢/🟡 [因果聚合 — 事件标题] 副标题
+
+**共因**：...
+
+**来源**：来源A（🔗 URL）🟢/🟡 可信度
+
+**核心**：
+- ...
+- ...
+
+**推导**：
+- 🟢/🔴 ...
+- 🇨🇳 ...
+- ⚡ ...
+
+---
+
+[重复上述结构 × N 条新闻]
+
+---
+
+## 📋 本版 vs 过去 24h 核心 Delta 总结
+
+- 🟢 [事件] — 24h 内状态 → 当前状态
+- 🔴 [事件] — 24h 内状态 → 当前状态
+
+---
+
+## 🔥 关键日历窗口
+
+- 今日/本周/近期 — 事件说明
+- 本周 — 事件说明
+
+---
+
+⚠️ 防幻觉校验...
+⏰ 数据截止：CCYY-MM-DD HH:MM CST | BTC $...
 ```

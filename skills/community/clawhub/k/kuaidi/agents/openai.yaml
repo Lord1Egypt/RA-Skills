@@ -1,0 +1,7 @@
+interface:
+  display_name: "快递助手"
+  short_description: "查询快递公司电话、异常件处理和投诉下一步。"
+  default_prompt: "Use $kuaidi to answer Chinese courier questions, including official customer-service hotlines, complaint routes, delivery exceptions, and practical next-step checklists."
+
+policy:
+  allow_implicit_invocation: true

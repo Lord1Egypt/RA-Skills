@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "types": {
+    "reading_task": {
+      "description": "读题训练卡片：让孩子圈关键词并复述任务，不按数学答案判分。",
+      "required": ["text"],
+      "optional": ["keyword_label", "task_label", "answer_note"],
+      "layouts": ["cards-3"],
+      "renderer": "render_reading_task"
+    },
+    "equation": {
+      "description": "横式或口算题：表达式 + 答案空格。",
+      "required": ["expr", "answer"],
+      "optional": ["answer_detail"],
+      "layouts": ["grid-4", "grid-3", "compact-3"],
+      "renderer": "render_equation"
+    },
+    "borrowing_chain": {
+      "description": "退位链条题：先写答案，再补个位和十位步骤。",
+      "required": ["expr", "answer", "steps", "answer_detail"],
+      "optional": ["blank_token"],
+      "layouts": ["problem-grid-2"],
+      "renderer": "render_borrowing_chain"
+    },
+    "check_equation": {
+      "description": "验算题：差 + 减数 = 被减数。",
+      "required": ["expr", "answer", "check"],
+      "optional": ["answer_detail"],
+      "layouts": ["check-grid-2"],
+      "renderer": "render_check_equation"
+    },
+    "fill_condition": {
+      "description": "条件填空题：根据数位、范围或退位条件填写一个或多个数字。",
+      "required": ["prompt", "answer_detail"],
+      "optional": ["choices"],
+      "layouts": ["problem-grid-2", "compact-3"],
+      "renderer": "render_fill_condition"
+    },
+    "scratch_equation": {
+      "description": "横式计算题：要求先写草稿或小竖式，再写答案。",
+      "required": ["expr", "answer"],
+      "optional": ["answer_detail", "check"],
+      "layouts": ["problem-grid-2", "grid-4"],
+      "renderer": "render_scratch_equation"
+    },
+    "word_problem": {
+      "description": "短应用题：题干、草稿线、答句和答案。",
+      "required": ["prompt", "answer_prompt", "answer_detail"],
+      "optional": ["work_lines", "answer_suffix"],
+      "layouts": ["problem-grid-2"],
+      "renderer": "render_word_problem"
+    },
+    "multi_step_word_problem": {
+      "description": "多步应用题：必须保留中间量、最终问法和完整答案步骤。",
+      "required": ["prompt", "answer_prompt", "answer_detail"],
+      "optional": ["work_lines", "answer_suffix", "problem_structure", "review_status"],
+      "layouts": ["problem-grid-2"],
+      "renderer": "render_word_problem"
+    },
+    "condition_filtering_problem": {
+      "description": "条件取舍题：训练识别必要条件、干扰条件和最终问法。",
+      "required": ["prompt", "answer_prompt", "answer_detail"],
+      "optional": ["work_lines", "answer_suffix", "used_conditions", "unused_conditions", "review_status"],
+      "layouts": ["problem-grid-2"],
+      "renderer": "render_word_problem"
+    },
+    "compare_after_intermediate_problem": {
+      "description": "先求中间量再比较的应用题。",
+      "required": ["prompt", "answer_prompt", "answer_detail"],
+      "optional": ["work_lines", "answer_suffix", "intermediate_quantity", "review_status"],
+      "layouts": ["problem-grid-2"],
+      "renderer": "render_word_problem"
+    },
+    "geometry_problem": {
+      "description": "结构化几何图形题：由 geometry_spec 渲染可复现 SVG。",
+      "required": ["prompt", "geometry_spec", "answer_prompt", "answer_detail"],
+      "optional": ["work_lines", "answer_suffix", "review_status"],
+      "layouts": ["geometry-grid-1", "problem-grid-2"],
+      "renderer": "render_geometry_problem"
+    }
+  },
+  "extension_rule": "遇到新的稳定题型时，先在这里登记 type、required、optional、layout 和 renderer，再更新 scripts/generate_worksheet.py 中对应 renderer。不要为了单次题目新增复杂字段。"
+}

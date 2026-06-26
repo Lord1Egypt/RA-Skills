@@ -1,0 +1,308 @@
+{
+  "name": "Dental AI — 08 FAQ & Information Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dental-ai/faq",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "FAQ Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "dental-faq",
+      "id": "n8-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst data = {\n  call_id: body.call_id || '',\n  caller_phone: body.caller_phone || '',\n  caller_name: body.caller_name || body.patient_name || '',\n  question: body.faq_question || body.question || body.transcript || '',\n  intent: body.intent || 'faq',\n  platform: body.platform || '',\n  timestamp: new Date().toISOString()\n};\n\nreturn [{ json: data }];"
+      },
+      "name": "Parse FAQ Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n8-parse"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an AI assistant for a dental clinic. Answer patient questions accurately and helpfully based on the clinic information below. Keep answers concise (2-3 sentences). If you cannot answer confidently, say \"I'd recommend speaking with our staff for specific details about that.\"\n\nCLINIC INFO:\n- Name: {{$env.DENTAL_CLINIC_NAME}}\n- Address: {{$env.DENTAL_CLINIC_ADDRESS}}\n- Phone: {{$env.DENTAL_CLINIC_PHONE}}\n- Hours: Monday-Friday 8AM-6PM, Saturday 9AM-2PM, Closed Sunday\n- Emergency: {{$env.DENTAL_EMERGENCY_PHONE}}\n\nSERVICES & TYPICAL PRICING:\n- Exam & Cleaning (Prophy): $150-250\n- Deep Cleaning (SRP): $200-400 per quadrant\n- Fillings: $150-350\n- Crowns: $800-1500\n- Root Canal: $700-1200\n- Extraction: $150-500\n- Whitening: $300-600\n- Implants: $2000-4000\n- Invisalign: $3500-7000\n- X-rays: $25-150\n\nINSURANCE:\n- We accept most major dental insurance plans including Delta Dental, Cigna, MetLife, Aetna, Guardian, United Healthcare\n- We also accept Medicaid/CHIP for pediatric patients\n- For uninsured patients, we offer payment plans and a discount program\n- Insurance verification is done before your appointment\n\nPOLICIES:\n- Please arrive 10 minutes early for your appointment\n- 24-hour cancellation notice required\n- We offer financing through CareCredit\n- New patient forms available on our website\n- HIPAA compliant electronic records\n\nPATIENT QUESTION: {{ $json.question }}",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3,
+          "maxTokens": 300
+        }
+      },
+      "name": "AI Generate Answer",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        700,
+        400
+      ],
+      "id": "n8-ai",
+      "credentials": {
+        "openAiApi": {
+          "id": "={{$env.OPENAI_CRED_ID}}",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.first().json;\nconst prevData = $('Parse FAQ Request').first().json;\n\n// Extract answer from OpenAI response\nconst answer = aiResponse.choices?.[0]?.message?.content || aiResponse.message?.content || aiResponse.text || 'I apologize, but I was unable to generate an answer. Please contact our office directly.';\n\n// Check if AI flagged as needing human escalation\nconst needsEscalation = answer.toLowerCase().includes('speak with our staff') || \n                        answer.toLowerCase().includes('contact our office') ||\n                        answer.toLowerCase().includes('recommend calling');\n\nreturn [{\n  json: {\n    ...prevData,\n    answer: answer,\n    needs_escalation: needsEscalation,\n    sms_response: `Hi ${prevData.caller_name || 'there'}! Regarding your question: ${answer} Need more help? Call us at ${$env.DENTAL_CLINIC_PHONE || 'the clinic'}.`\n  }\n}];"
+      },
+      "name": "Format Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "n8-format"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.caller_phone }}",
+        "body": "={{ $json.sms_response }}"
+      },
+      "name": "Send FAQ Answer SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ],
+      "id": "n8-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "needs-escalation",
+              "leftValue": "={{ $json.needs_escalation }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Needs Escalation?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        500
+      ],
+      "id": "n8-if-escalate"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/dental-ai/escalate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ call_id: $json.call_id, caller_phone: $json.caller_phone, caller_name: $json.caller_name, reason: 'FAQ could not be fully answered', question: $json.question, ai_answer: $json.answer, source: 'faq_handler' }) }}",
+        "options": {}
+      },
+      "name": "Trigger Escalation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1460,
+        440
+      ],
+      "id": "n8-escalate"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "FAQ Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "call_id": "={{ $json.call_id }}",
+            "caller_phone": "={{ $json.caller_phone }}",
+            "caller_name": "={{ $json.caller_name }}",
+            "question": "={{ $json.question }}",
+            "answer": "={{ $json.answer }}",
+            "escalated": "={{ $json.needs_escalation }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log FAQ Interaction",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1460,
+        260
+      ],
+      "id": "n8-log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'answered', question: $json.question, answer: $json.answer, escalated: $json.needs_escalation }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1700,
+        400
+      ],
+      "id": "n8-respond"
+    }
+  ],
+  "connections": {
+    "FAQ Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse FAQ Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse FAQ Request": {
+      "main": [
+        [
+          {
+            "node": "AI Generate Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Generate Answer": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response": {
+      "main": [
+        [
+          {
+            "node": "Send FAQ Answer SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Needs Escalation?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send FAQ Answer SMS": {
+      "main": [
+        [
+          {
+            "node": "Log FAQ Interaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Needs Escalation?": {
+      "main": [
+        [
+          {
+            "node": "Trigger Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Log FAQ Interaction": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Escalation": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

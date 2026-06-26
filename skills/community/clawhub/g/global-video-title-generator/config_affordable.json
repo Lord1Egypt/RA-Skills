@@ -1,0 +1,234 @@
+{
+  "skill": {
+    "name": "global-video-content-generator",
+    "version": "2.0.0",
+    "description": "Affordable Video Content Generator for YouTube and TikTok",
+    "author": "BTC 5",
+    "license": "Commercial",
+    "category": "content-generation",
+    "tags": ["youtube", "tiktok", "video", "content", "affordable", "creator", "seo"]
+  },
+  "content_types": {
+    "complete": {
+      "includes": ["title", "description", "tags", "engagement_prompt", "chapters"],
+      "credits": 3,
+      "description": "Complete video content package"
+    },
+    "title_only": {
+      "includes": ["title"],
+      "credits": 1,
+      "description": "Title generation only"
+    },
+    "description_only": {
+      "includes": ["description"],
+      "credits": 2,
+      "description": "Description generation only"
+    }
+  },
+  "pricing": {
+    "currency": "USD",
+    "goal": "Conservative $5000/month revenue",
+    "free_tier": {
+      "daily_credits": 10,
+      "examples": [
+        "10 titles per day",
+        "5 descriptions per day",
+        "3 complete packages per day",
+        "Mix and match"
+      ],
+      "features": [
+        "Basic title generation",
+        "Simple descriptions",
+        "Limited tags",
+        "No batch processing",
+        "No API access"
+      ],
+      "registration": "Optional (track usage)"
+    },
+    "paid_tiers": [
+      {
+        "name": "Starter",
+        "price_usd": 4.99,
+        "billing_cycle": "monthly",
+        "monthly_credits": 300,
+        "value_proposition": "Perfect for hobby creators",
+        "content_types": ["title_only", "description_only", "complete"],
+        "platforms": ["youtube", "tiktok"],
+        "features": [
+          "SEO optimized titles",
+          "Basic descriptions",
+          "Tag suggestions",
+          "Engagement prompts",
+          "Content scoring"
+        ],
+        "limits": {
+          "max_batch_size": 3,
+          "max_video_length": 600,
+          "api_access": "no"
+        },
+        "support": "Community only",
+        "target_users": [
+          "Hobby YouTubers",
+          "Casual TikTok creators",
+          "Students",
+          "Beginners"
+        ]
+      },
+      {
+        "name": "Creator",
+        "price_usd": 9.99,
+        "billing_cycle": "monthly",
+        "monthly_credits": 800,
+        "value_proposition": "Best value for serious creators",
+        "content_types": ["title_only", "description_only", "complete"],
+        "platforms": ["youtube", "tiktok"],
+        "features": [
+          "Advanced SEO optimization",
+          "Professional descriptions",
+          "Smart tag suggestions",
+          "Chapter generation",
+          "Viral potential scoring",
+          "Batch processing"
+        ],
+        "limits": {
+          "max_batch_size": 10,
+          "max_video_length": 1200,
+          "api_access": "basic"
+        },
+        "support": "Email support (48h response)",
+        "target_users": [
+          "Professional YouTubers",
+          "TikTok influencers",
+          "Content creators",
+          "Small businesses"
+        ]
+      },
+      {
+        "name": "Team",
+        "price_usd": 19.99,
+        "billing_cycle": "monthly",
+        "monthly_credits": 2000,
+        "value_proposition": "For teams and agencies",
+        "content_types": ["title_only", "description_only", "complete"],
+        "platforms": ["youtube", "tiktok"],
+        "features": [
+          "All Creator features",
+          "Custom templates",
+          "Analytics dashboard",
+          "Team collaboration",
+          "Priority processing",
+          "API access"
+        ],
+        "limits": {
+          "max_batch_size": 50,
+          "max_video_length": 3600,
+          "api_access": "full"
+        },
+        "support": "Priority email (24h response)",
+        "target_users": [
+          "Content agencies",
+          "Marketing teams",
+          "Video production studios",
+          "Multiple creator teams"
+        ]
+      }
+    ],
+    "credit_value": {
+      "title_only": 1,
+      "description_only": 2,
+      "complete": 3,
+      "cost_per_credit": {
+        "starter": "$0.0166",
+        "creator": "$0.0125",
+        "team": "$0.0100"
+      }
+    },
+    "revenue_targets": {
+      "monthly_goal": 5000,
+      "user_targets": {
+        "starter": {
+          "users_needed": 400,
+          "monthly_revenue": 1996,
+          "conversion_rate": "1.28% from free users"
+        },
+        "creator": {
+          "users_needed": 250,
+          "monthly_revenue": 2497.5,
+          "conversion_rate": "0.8% from free users"
+        },
+        "team": {
+          "users_needed": 25,
+          "monthly_revenue": 499.75,
+          "conversion_rate": "0.08% from free users"
+        },
+        "total": {
+          "users_needed": 675,
+          "monthly_revenue": 4993.25,
+          "free_users_needed": 31250,
+          "overall_conversion_rate": "2.16%"
+        }
+      }
+    },
+    "payment_providers": ["stripe", "paypal"],
+    "refund_policy": {
+      "money_back_days": 7,
+      "prorated_refunds": true,
+      "free_tier_no_refund": true
+    },
+    "discounts": {
+      "annual_discount": "20% off",
+      "student_discount": "50% off",
+      "nonprofit_discount": "75% off"
+    }
+  },
+  "marketing_strategy": {
+    "free_user_acquisition": {
+      "channels": [
+        "Reddit communities",
+        "YouTube creator forums",
+        "TikTok creator groups",
+        "Discord servers",
+        "Product Hunt launch"
+      ],
+      "cost_per_user": "$0.10",
+      "monthly_budget": "$500",
+      "expected_users": "5000/month"
+    },
+    "conversion_strategy": {
+      "free_trial": "10 credits no registration",
+      "email_sequence": "3 emails over 7 days",
+      "success_stories": "Case studies from similar creators",
+      "social_proof": "Testimonials and reviews"
+    },
+    "retention_strategy": {
+      "usage_reminders": "Weekly usage reports",
+      "feature_updates": "Monthly new features",
+      "community_engagement": "Creator community access",
+      "loyalty_rewards": "Extra credits for consistent usage"
+    }
+  },
+  "technical_scaling": {
+    "current_capacity": {
+      "concurrent_users": 1000,
+      "requests_per_second": 10,
+      "monthly_credits": 100000
+    },
+    "scaling_targets": {
+      "phase_1": {
+        "users": 10000,
+        "monthly_revenue": "$5000",
+        "infrastructure_cost": "$200/month"
+      },
+      "phase_2": {
+        "users": 50000,
+        "monthly_revenue": "$25000",
+        "infrastructure_cost": "$1000/month"
+      },
+      "phase_3": {
+        "users": 200000,
+        "monthly_revenue": "$100000",
+        "infrastructure_cost": "$5000/month"
+      }
+    }
+  }
+}

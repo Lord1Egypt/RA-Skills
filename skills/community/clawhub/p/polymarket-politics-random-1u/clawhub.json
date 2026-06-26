@@ -1,0 +1,50 @@
+{
+  "emoji": "🗳️",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk"],
+    "env": ["AION_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "AION SDK API key used for market reads and trade execution."
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Optional private key for external-wallet self-custody live trading on Polymarket."
+    },
+    {
+      "name": "WALLET_ADDRESS",
+      "required": false,
+      "description": "Optional wallet address for personalized context checks."
+    },
+    {
+      "name": "RUN_LIVE",
+      "required": false,
+      "description": "Set to true to allow live trading without passing --live."
+    },
+    {
+      "name": "TRADE_AMOUNT_USD",
+      "required": false,
+      "description": "Trade amount in USD. Default is 1."
+    },
+    {
+      "name": "POLITICS_QUERY",
+      "required": false,
+      "description": "Optional primary search keyword. Default is politics."
+    },
+    {
+      "name": "AIONMARKET_BASE_URL",
+      "required": false,
+      "description": "Optional API base URL override."
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "politics_random_1u.py"
+  }
+}

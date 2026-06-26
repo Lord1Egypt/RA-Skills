@@ -1,35 +1,37 @@
 ---
-name: "Openssl"
-description: "Generate secure random strings, passwords, and cryptographic tokens using OpenSSL. Use when creating passwords, API keys, secrets, or any secure random data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openssl"
-sourceUrl: "https://clawhub.ai/skills/openssl"
+name: openssl
+description: Generate secure random strings, passwords, and cryptographic tokens using OpenSSL. Use when creating passwords, API keys, secrets, or any secure random data.
 ---
 
-# Openssl
+# OpenSSL Secure Generation
 
-> Generate secure random strings, passwords, and cryptographic tokens using OpenSSL. Use when creating passwords, API keys, secrets, or any secure random data.
+Generate cryptographically secure random data using `openssl rand`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openssl`
-- **Source URL:** [https://clawhub.ai/skills/openssl](https://clawhub.ai/skills/openssl)
+## Password/Secret Generation
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openssl
+# 32 random bytes as base64 (43 chars, URL-safe with tr)
+openssl rand -base64 32 | tr '+/' '-_' | tr -d '='
+
+# 24 random bytes as hex (48 chars)
+openssl rand -hex 24
+
+# alphanumeric password (32 chars)
+openssl rand -base64 48 | tr -dc 'a-zA-Z0-9' | head -c 32
 ```
+
+## Common Lengths
+
+| Use Case | Command |
+|----------|---------|
+| Password (strong) | `openssl rand -base64 24` |
+| API key | `openssl rand -hex 32` |
+| Session token | `openssl rand -base64 48` |
+| Short PIN (8 digits) | `openssl rand -hex 4 | xxd -r -p | od -An -tu4 | tr -d ' ' | head -c 8` |
+
+## Notes
+
+- `-base64` outputs ~1.33x the byte count in characters
+- `-hex` outputs 2x the byte count in characters
+- Pipe through `tr -dc` to filter character sets
+- Always use at least 16 bytes (128 bits) for secrets

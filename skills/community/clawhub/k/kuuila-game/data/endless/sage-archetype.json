@@ -1,0 +1,155 @@
+{
+  "_meta": {
+    "name": "圣人设定数据",
+    "version": "1.0.0",
+    "author": "kuuila",
+    "description": "圣人 archetype - 慈悲济世、心怀苍生的圣贤型角色",
+    "tags": ["sage", "archetype", "圣人", "慈悲"],
+    "gameMode": "endless"
+  },
+
+  "archetype": {
+    "id": "sage",
+    "name": "圣人",
+    "nameCn": "圣人",
+    "title": "济世圣贤",
+    "description": "慈悲济世、心怀苍生。以德服人、以理化人。行走江湖以化解纷争、拯救苍生为己任。",
+    
+    "baseStats": {
+      "hp": 8,
+      "attack": 2,
+      "defense": 2,
+      "speed": 4,
+      "morality": 10,
+      "compassion": 10
+    },
+
+    "baseSkills": {
+      "social": 3,
+      "persuasion": 3,
+      "rhetoric": 3,
+      "medical": 2,
+      "knowledge": 2,
+      "finance": 1
+    },
+
+    "traits": [
+      "慈悲心肠",
+      "以德服人",
+      "看透世事",
+      "医者仁心"
+    ],
+
+    "startingItems": [
+      "《道德经》",
+      "银针一套",
+      "朴素道袍"
+    ],
+
+    "background": "幼年遭遇瘟疫，亲人尽失。幸得游方道人救治，幸存后随师学医修道十五年。师言：「上医治未病，圣者济苍生。」下山后以救死扶伤、化解仇杀为己任。",
+
+    "finishingMove": {
+      "name": "感化",
+      "description": "以大德感化敌人，使其放下屠刀",
+      "type": "morality",
+      "effect": "强制和解 + 获得信徒"
+    },
+
+    "passive": {
+      "name": "圣人光辉",
+      "description": "周围NPC初始好感度+20，战斗中获得道德优势",
+      "type": "social",
+      "bonus": { "social": 1, "persuasion": 1 }
+    },
+
+    "growthStages": [
+      { "name": "学医弟子", "level": 1, "expRequired": 0 },
+      { "name": "济世游医", "level": 2, "expRequired": 100 },
+      { "name": "一方名医", "level": 3, "expRequired": 300 },
+      { "name": "道德典范", "level": 4, "expRequired": 600 },
+      { "name": "圣者仁心", "level": 5, "expRequired": 1000 },
+      { "name": "济世圣贤", "level": 6, "expRequired": 1500 },
+      { "name": "天下为公", "level": 7, "expRequired": 2500 },
+      { "name": "万世师表", "level": 8, "expRequired": 4000 },
+      { "name": "圣人", "level": 9, "expRequired": 6000 }
+    ],
+
+    "dialogueStyles": {
+      "greeting": "施主有缘，千山万水总会相逢。",
+      "combatStart": "冤家宜解不宜结，施主可否听老朽一言？",
+      "combatWin": "放下屠刀，立地成佛。",
+      "combatLose": "善哉善哉，因果轮回自有定数。",
+      "peaceAction": "不如你我各退一步如何？",
+      "healAction": "待老朽为施主诊一诊脉。",
+      "recruitAction": "施主何不随我一同济世度人？"
+    },
+
+    "specialAbilities": [
+      {
+        "id": "healing_hands",
+        "name": "妙手回春",
+        "cost": 2,
+        "cooldown": 3,
+        "description": "治愈一名角色，恢复其30%最大生命值",
+        "type": "heal",
+        "effect": { "heal": 0.3 }
+      },
+      {
+        "id": "moral_preach",
+        "name": "道德教化",
+        "cost": 1,
+        "cooldown": 2,
+        "description": "对敌人进行道德说教，降低其战斗意志",
+        "type": "debuff",
+        "effect": { "attack": -2, "morale": -1 }
+      },
+      {
+        "id": "peace_treaty",
+        "name": "化干戈为玉帛",
+        "cost": 3,
+        "cooldown": 5,
+        "description": "强制终止一场战斗，双方和解",
+        "type": "peace",
+        "effect": { "endCombat": true, "bothSurvive": true }
+      },
+      {
+        "id": "compassion_blessing",
+        "name": "慈悲加持",
+        "cost": 2,
+        "cooldown": 4,
+        "description": "为全体友军施加祝福，提升道德判定",
+        "type": "buff",
+        "effect": { "morality": 5, "social": 2 }
+      }
+    ],
+
+    "reputation": {
+      "type": "morality",
+      "displayName": "功德",
+      "levels": [
+        { "name": "籍籍无名", "value": 0, "threshold": 0 },
+        { "name": "小有善名", "value": 1, "threshold": 100 },
+        { "name": "一方善人", "value": 2, "threshold": 300 },
+        { "name": "济世救难", "value": 3, "threshold": 600 },
+        { "name": "圣者仁心", "value": 4, "threshold": 1000 },
+        { "name": "万家生佛", "value": 5, "threshold": 1500 },
+        { "name": "功德无量", "value": 6, "threshold": 2500 },
+        { "name": "万世师表", "value": 7, "threshold": 4000 },
+        { "name": "圣人", "value": 8, "threshold": 6000 }
+      ]
+    },
+
+    "lore": {
+      "origin": "古籍记载，圣人一怒而安天下。今世圣人不再需要武力，而是以德服人。",
+      "symbols": ["莲花", "葫芦", "拂尘", "道德经"],
+      "organizations": [
+        { "name": "济世堂", "desc": "圣人创建的医馆网络，免费救治贫苦百姓" },
+        { "name": "道德盟", "desc": "以圣人理念为核心的江湖正道联盟" }
+      ],
+      "enemies": [
+        { "name": "嗜血门", "desc": "以杀人为乐的邪派，与圣人势不两立" },
+        { "name": "贪婪商会", "desc": "哄抬药价、囤积居奇的奸商，圣人曾公开谴责" }
+      ]
+    }
+  }
+}

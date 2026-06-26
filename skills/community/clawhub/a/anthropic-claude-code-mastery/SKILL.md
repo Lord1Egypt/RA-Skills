@@ -1,35 +1,102 @@
 ---
-name: "Claude Code Mastery"
-description: "Complete guide to mastering Claude Code CLI — installation to production workflows"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anthropic-claude-code-mastery"
-sourceUrl: "https://clawhub.ai/skills/anthropic-claude-code-mastery"
+name: Claude Code Mastery
+slug: claude-code-mastery-pro
+version: 1.0.0
+description: Complete guide to mastering Claude Code CLI — installation to production workflows
 ---
 
-# Claude Code Mastery
+# Claude Code Mastery — Complete Guide
 
-> Complete guide to mastering Claude Code CLI — installation to production workflows
+## Tagline
+Go from "what is this?" to "this is my most powerful tool" in 2 hours.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anthropic-claude-code-mastery`
-- **Source URL:** [https://clawhub.ai/skills/anthropic-claude-code-mastery](https://clawhub.ai/skills/anthropic-claude-code-mastery)
+## Problem
+100K+ developers downloaded Claude Code. Most are stuck at:
+- "It works but I don't know how to use it properly"
+- "How do I set up custom commands?"
+- "What's MCP and how do I use it?"
+- "Why isn't it reading my project files?"
 
-## Overview
+## Solution
+A comprehensive, battle-tested guide to mastering Claude Code CLI — from installation to production workflows.
 
+## What's Inside
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anthropic-claude-code-mastery
-```
+### 1. Getting Started (Free Preview)
+- Installation for Mac/Linux/Windows (WSL)
+- First run: What to expect
+- Basic conversation patterns
+- Key commands: /番茄, /edit, /review, /multi
+
+### 2. Configuration Deep Dive
+- `.claude/settings.json` — complete reference
+- `CLAUDE.md` — project-specific instructions
+- Custom command patterns
+- Environment variables that matter
+
+### 3. MCP Server Setup (HIGH VALUE)
+- What is MCP and why you need it
+- Installing pre-built MCP servers
+- Patterns for building custom MCP servers
+- Troubleshooting patterns for MCP connections
+- Best MCP servers for:
+  - Database access
+  - GitHub/GitLab integration
+  - API testing
+  - File system operations
+
+### 4. Project Templates
+- JavaScript/TypeScript project setup
+- Python project setup  
+- Full-stack project structure
+- Monorepo patterns
+
+### 5. Advanced Workflows
+- Multi-file editing sessions
+- Code review workflows
+- Testing strategies with Claude
+- Debugging assistance patterns
+
+### 6. Troubleshooting (Most Requested)
+- "Claude won't read my files"
+- "It keeps ignoring my instructions"
+- "How do I stop it from doing X?"
+- API key issues
+- Rate limit handling
+
+## Deliverables
+- 50+ page SKILL.md guide
+- 10 ready-to-use command templates
+- 5 MCP server setup patterns
+- Sample CLAUDE.md files for different project types
+
+## Pricing
+**$49** (vs $199 Udemy courses, free YouTube tutorials)
+
+## Why This Sells
+- Claude Code is NEW — most resources are outdated within weeks
+- Free content is shallow — this is production-ready
+- Developers will pay $49 to save 10 hours of fumbling
+- No competition — most Claude Code content is 5-minute YouTube videos
+
+## Target Customer
+- Junior devs who want to level up
+- Senior devs who tried it once and got frustrated
+- Engineering managers rolling out AI tools to teams
+- Anyone who heard "Claude Code is amazing" but doesn't know where to start
+
+## Competitive Advantage
+- Updated for latest Claude Code version
+- Real-world patterns from production use
+- Troubleshooting section (most needed, least covered)
+- MCP setup guide (almost no free resources exist)
+
+## Quick Stats
+- 100K+ Claude Code downloads
+- 500K+ developers using AI coding assistants
+- Market growing 20% month-over-month
+
+---
+Created: 2026-04-06
+Price: $49
+Author: Abhi (OpenClaw creator, production AI agent workflows)

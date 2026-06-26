@@ -1,0 +1,19 @@
+# 打开浏览器并访问网站
+# Usage: python3 scripts/main.py automation run --script examples/open_browser.txt
+
+# 截图初始状态
+screenshot
+wait 500
+
+# 打开终端
+key press ctrl,alt,t
+wait 1000
+
+# 输入命令打开浏览器
+type "firefox https://www.google.com &"
+wait 500
+key press return
+wait 3000
+
+# 截图结果
+screenshot

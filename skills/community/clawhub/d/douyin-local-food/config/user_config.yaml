@@ -1,0 +1,45 @@
+# 用户配置模板
+# 请根据您的餐厅实际情况修改
+
+restaurant:
+  name: "我的餐厅"
+  type: "hotpot"  # hotpot/bbq/sichuan/japanese/tea/dessert
+  city: "深圳"
+  district: "南山区"
+  address: "XX路XX号"
+  avg_ticket: 120  # 平均客单价
+  
+  signature_dishes:
+    - "招牌酸菜鱼"
+    - "鲜毛肚"
+    - "手工虾滑"
+  
+  opening_hours:
+    - "11:30-13:30"
+    - "17:30-21:00"
+
+douyin:
+  account_id: ""  # 抖音账号ID
+  poi_id: ""      # 店铺POI ID（在抖音商家后台查看）
+  shop_name: ""   # 抖音店铺名称
+
+target:
+  monthly_revenue: 50000   # 月营收目标（元）
+  monthly_orders: 500      # 月订单目标
+  monthly_exposure: 100000 # 月曝光目标
+
+# 团购配置
+groupon:
+  引流款_margin: [0.20, 0.35]  # 引流款毛利率范围
+  profit_margin: [0.45, 0.55]  # 利润款毛利率范围
+  image_margin: [0.30, 0.40]   # 形象款毛利率范围
+
+# 内容配置
+content:
+  video_frequency: 7  # 每周发布视频数
+  dou_plus_budget: 500  # 每月DOU+预算（元）
+  focus_themes:
+    - "菜品展示"
+    - "制作过程"
+    - "食客反应"
+    - "环境探店"

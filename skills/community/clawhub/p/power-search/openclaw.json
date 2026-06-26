@@ -1,0 +1,21 @@
+{
+  "name": "power-search",
+  "version": "2.0.0",
+  "description": "Self-hosted research tool: Brave Search API + Browserless content fetching",
+  "author": "Kaito",
+  "commands": [
+    {
+      "name": "search",
+      "description": "Search the web and optionally fetch full content",
+      "usage": "/search <query> [--fetch] [--limit N] [--verbose]",
+      "handler": "scripts/telegram-handler.js"
+    }
+  ],
+  "intents": [
+    {
+      "pattern": "^/search\\s+(.+)$",
+      "handler": "scripts/telegram-handler.js",
+      "description": "Match /search commands from Telegram"
+    }
+  ]
+}

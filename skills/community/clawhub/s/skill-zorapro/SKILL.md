@@ -1,35 +1,29 @@
 ---
-name: "Zora NFT Pro"
-description: "Generates a Nano Banana style NFT and deploys it to the Zora Network."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-zorapro"
-sourceUrl: "https://clawhub.ai/skills/skill-zorapro"
+name: banana-zora-pro
+description: Generates a Nano Banana style NFT and deploys it to the Zora Network.
+metadata:
+  network: "Zora"
+  model: "Gemini-Nano-Banana"
 ---
 
-# Zora NFT Pro
+# Nano Banana Zora Deployer
 
-> Generates a Nano Banana style NFT and deploys it to the Zora Network.
+This can design a character using the Nano Banana visual style and immediately deploy it as an NFT on Zora.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-zorapro`
-- **Source URL:** [https://clawhub.ai/skills/skill-zorapro](https://clawhub.ai/skills/skill-zorapro)
+## Functions
+- `create_and_mint_nft(prompt, collection_name, symbol)`:
+    1. Generates an image via Nano Banana.
+    2. Uploads the image to IPFS.
+    3. Deploys a new NFT contract on Zora.
 
-## Overview
+## Environment Variables Required
+- `GEMINI_API_KEY`: For Nano Banana generation.
+- `PRIVATE_KEY`: Your wallet key for Zora deployment.
+- `ZORA_RPC_URL`: https://rpc.zora.energy
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-zorapro
-```
+
+
+Developer : x.com/kakashi310
+Buy me a coffe : 
+Multichain : 0xB83C23b34E95D8892F067F823D6522F05063a236

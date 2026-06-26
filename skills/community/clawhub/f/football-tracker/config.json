@@ -1,0 +1,14 @@
+{
+  "name": "football-tracker",
+  "version": "1.2.0",
+  "cache": {
+    "matches": 900,
+    "standings": 3600,
+    "news": 1800
+  },
+  "features": {
+    "multi_team": true,
+    "auto_discovery": true,
+    "news_summary": true
+  }
+}

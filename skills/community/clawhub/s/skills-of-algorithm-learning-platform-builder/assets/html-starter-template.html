@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithm Learning Page</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']]
+      },
+      svg: { fontCache: 'global' },
+      startup: { typeset: false }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#faf8f3;
+      --card:#fffdf9;
+      --gold:#c6a66b;
+      --gold-deep:#a98345;
+      --text:#2d2a25;
+      --muted:#736a60;
+      --line:#e8dfcf;
+      --shadow:0 14px 40px rgba(112,92,63,.08);
+      --radius:24px;
+      --max:1320px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+      background:linear-gradient(180deg,#fcfbf8 0%, #f8f4eb 100%);
+      color:var(--text);
+      line-height:1.7;
+    }
+    .container{width:min(var(--max), calc(100% - 40px));margin:0 auto}
+    .section{padding:84px 0}
+    .card{
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .section-title{font-size:38px;line-height:1.2;margin:0}
+    .section-kicker{font-size:13px;letter-spacing:3px;color:var(--gold-deep);text-transform:uppercase;margin-bottom:10px}
+    .section-desc{margin:12px 0 0;color:var(--muted);max-width:900px}
+    .equation-block{
+      margin-top:16px;padding:16px 18px;border-radius:18px;
+      background:rgba(249,245,237,.92);border:1px solid var(--line);overflow:auto;
+    }
+    .table-wrap{overflow:auto;margin-top:14px}
+    table{
+      width:100%;min-width:720px;border-collapse:collapse;
+      background:#fff;border-radius:16px;overflow:hidden;font-size:14px;
+    }
+    th,td{border:1px solid #eadfcb;padding:10px 12px;text-align:center;vertical-align:middle}
+    th{background:#fbf7ee;color:#4f473d;font-weight:700}
+    .chart-box{
+      background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:24px;
+      box-shadow:var(--shadow);padding:18px;min-height:360px;
+    }
+    .chart-box canvas{width:100% !important;height:300px !important}
+    @media (max-width:900px){
+      .grid-2{grid-template-columns:1fr}
+      .container{width:min(var(--max), calc(100% - 24px))}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-kicker">Algorithm Demo</div>
+        <h1 class="section-title">Algorithm Learning Page</h1>
+        <p class="section-desc">Replace this scaffold with algorithm-specific teaching content.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card">
+          <h3>Formula Block</h3>
+          <div class="equation-block">
+            $$y = ax + b$$
+          </div>
+        </div>
+        <div class="card">
+          <h3>Chart Block</h3>
+          <div class="chart-box">
+            <canvas id="demoChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const ctx = document.getElementById('demoChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['A', 'B', 'C'],
+        datasets: [{
+          label: 'Demo',
+          data: [1, 2, 3]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+
+    if(window.MathJax && window.MathJax.typesetPromise){
+      window.MathJax.typesetPromise();
+    }
+  </script>
+</body>
+</html>

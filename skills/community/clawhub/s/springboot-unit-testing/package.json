@@ -1,0 +1,51 @@
+{
+  "name": "springboot-unit-testing-skill",
+  "version": "1.0.0",
+  "description": "专业的Spring Boot + MyBatis + MySQL项目单元测试Skill，提供全面的测试覆盖策略",
+  "main": "SKILL.md",
+  "scripts": {
+    "check-coverage": "./scripts/check-coverage.sh",
+    "generate-data": "python scripts/generate-test-data.py .",
+    "generate-report": "python scripts/generate-test-report.py .",
+    "test": "echo \"Skill安装成功！请加载Skill获得专业测试指导\""
+  },
+  "keywords": [
+    "spring-boot",
+    "unit-testing",
+    "mybatis",
+    "junit",
+    "mockito",
+    "testing",
+    "java",
+    "test-coverage",
+    "exception-testing",
+    "boundary-testing"
+  ],
+  "author": "WorkBuddy User <user@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/springboot-unit-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/springboot-unit-testing/issues"
+  },
+  "homepage": "https://github.com/your-repo/springboot-unit-testing#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 14.0.0",
+    "python": ">= 3.8",
+    "java": ">= 11",
+    "maven": ">= 3.6"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "references/",
+    "assets/",
+    "clawhub.yml",
+    "LICENSE"
+  ]
+}

@@ -1,35 +1,25 @@
 ---
-name: "Edge.Trade"
-description: "Use when user asks about crypto tokens, trading, portfolios, or price alerts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/edge"
-sourceUrl: "https://clawhub.ai/skills/edge"
+name: edge
+description: >
+  Use when user asks about crypto tokens, trading, portfolios, or price alerts.
 ---
 
-# Edge.Trade
+# Edge
 
-> Use when user asks about crypto tokens, trading, portfolios, or price alerts.
+Tools via `edge` MCP server (6 tools, 39 actions):
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/edge`
-- **Source URL:** [https://clawhub.ai/skills/edge](https://clawhub.ai/skills/edge)
+- **intelligence**: search tokens, screen by filters, list top tokens, trending swaps
+- **tokens**: token details, pricing, top holders, top traders, dev tokens (sniper/insider flags)
+- **pairs**: pair metrics, OHLCV candles, swaps, pair info
+- **wallet**: holdings, swaps, PnL history, summary
+- **orders**: `place_limit_order`, `place_spot_order`, list/cancel orders, entry/exit strategies
+- **agent**: encrypted wallet management for the non-custodial flow
 
-## Overview
+## Patterns
 
+1. **Price before order**: `pairs pair_metrics` to compute target, then `orders place_limit_order`
+2. **Token to pair**: `tokens token_info_with_pricing` returns `pairContractAddress`
+3. **Chain IDs**: `8453` Base, `1` Ethereum, `42161` Arbitrum, `"solana"` Solana
+4. **Alerts**: configure in the Edge webapp (Settings > Alerts); deliver to webhook, Redis, or Telegram
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/edge
-```
+[Docs](https://edge-trade.gitbook.io/agents)

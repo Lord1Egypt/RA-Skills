@@ -1,0 +1,5 @@
+name: hyperliquid-btc-auto-trader
+version: 1.0.0
+description: Autonomous BTC-USDC trader on Hyperliquid mainnet (anchored VWAP + full strategy)
+entry_point: trader.py
+python_version: ">=3.11"

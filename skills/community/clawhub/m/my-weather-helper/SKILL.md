@@ -1,35 +1,16 @@
----
-name: "JACK"
-description: "提供指定城市实时天气、气温和穿衣建议，如无城市则询问位置，数据来源真实可靠。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-weather-helper"
-sourceUrl: "https://clawhub.ai/skills/my-weather-helper"
----
+# 技能：天气助手 (Weather Helper)
 
-# JACK
+## 触发条件
+- 当用户询问“天气”、“气温”或“穿衣建议”时触发。
 
-> 提供指定城市实时天气、气温和穿衣建议，如无城市则询问位置，数据来源真实可靠。
+## 工作流程
+1. **获取位置**：如果用户没有说明城市，请礼貌地询问。
+2. **执行搜索**：使用内置的搜索工具（如 Google Search）查询该城市的实时天气。
+3. **整理输出**：按照以下格式回复：
+   - 🌡️ **实时气温**：[数值]
+   - ☁️ **天气状况**：[晴/雨/阴]
+   - 🧥 **穿衣建议**：[根据气温给出的建议]
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-weather-helper`
-- **Source URL:** [https://clawhub.ai/skills/my-weather-helper](https://clawhub.ai/skills/my-weather-helper)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-weather-helper
-```
+## 注意事项
+- 严禁编造天气数据，必须以搜索结果为准。
+- 如果搜索失败，请告知用户手动检查。

@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "description": "AI 电商图片创作团队配置",
+  "members": {
+    "planner": {
+      "enabled": true,
+      "skill": "ai-planner",
+      "role": "需求分析、创意简报"
+    },
+    "maker": {
+      "enabled": true,
+      "skill": "ai-maker",
+      "role": "图片生成"
+    },
+    "reviewer": {
+      "enabled": true,
+      "skill": "ai-reviewer",
+      "role": "质量把关"
+    }
+  },
+  "quality_threshold": 0.8,
+  "max_iterations": 3,
+  "auto_mode": true,
+  "workflow": {
+    "standard": ["planner", "maker", "reviewer", "deliver"],
+    "iteration_minor": ["maker", "reviewer"],
+    "iteration_major": ["planner", "maker", "reviewer"]
+  },
+  "fallback": {
+    "enabled": true,
+    "skip_reviewer_on_error": false
+  }
+}

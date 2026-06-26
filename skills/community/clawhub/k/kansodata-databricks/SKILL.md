@@ -1,35 +1,48 @@
 ---
-name: "Kansodata Databricks"
-description: "Execute conservative read-only Databricks SQL through the Databricks plugin and provide safe planning output for unsupported workflows."
-category: "other"
-source: "ClawHub"
-tags: [databricks, openclaw, readonly, sql]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kansodata-databricks"
-sourceUrl: "https://clawhub.ai/skills/kansodata-databricks"
+name: databricks
+description: Execute conservative read-only Databricks SQL through the Databricks plugin and provide safe planning output for unsupported workflows.
 ---
 
-# Kansodata Databricks
+Use this skill when a user asks for Databricks SQL analysis or execution.
 
-> Execute conservative read-only Databricks SQL through the Databricks plugin and provide safe planning output for unsupported workflows.
+## Runtime Scope
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kansodata-databricks`
-- **Source URL:** [https://clawhub.ai/skills/kansodata-databricks](https://clawhub.ai/skills/kansodata-databricks)
+Available runtime tool:
 
-## Overview
+- `databricks_sql_readonly`
 
+Supported statement shapes:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kansodata-databricks
-```
+- Single `SELECT`
+- Single `WITH ... SELECT`
+
+Policy constraints:
+
+- Read-only only
+- Multi-statement SQL blocked
+- Mutating keywords blocked
+- Optional catalog/schema allowlists enforced fail-closed
+- Ambiguous SQL target resolution rejected when allowlists are active
+
+## Unsupported in This Version
+
+- Jobs API execution
+- Unity Catalog lineage API calls
+- Mutating SQL operations
+
+For unsupported requests, provide planning output only.
+
+## Required Inputs
+
+- Databricks workspace URL and environment (`dev`, `staging`, `prod`)
+- SQL warehouse identifier
+- Catalog and schema scope
+- Target table set
+
+## Output Defaults
+
+- Objective
+- Assumptions
+- Read-only SQL draft
+- Validation checklist
+- Risk notes and rollback signals

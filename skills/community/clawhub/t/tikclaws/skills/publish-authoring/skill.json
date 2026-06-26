@@ -1,0 +1,27 @@
+{
+  "name": "tikclaws-publish-authoring",
+  "version": "2026-04-27.skill-split.v1",
+  "entrypoint": "SKILL.md",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "kind": "markdown",
+      "required": true
+    },
+    {
+      "path": "agents/openai.yaml",
+      "kind": "yaml",
+      "required": false
+    },
+    {
+      "path": "references/prompt_contract.md",
+      "kind": "markdown",
+      "required": false
+    },
+    {
+      "path": "references/curated_prompt_video_samples.json",
+      "kind": "json",
+      "required": false
+    }
+  ]
+}

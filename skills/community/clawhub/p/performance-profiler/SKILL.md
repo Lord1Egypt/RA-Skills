@@ -1,35 +1,41 @@
----
-name: "Performance Profiler"
-description: "Analyze code performance to identify bottlenecks, detect redundant computations and blocking operations, and provide optimization recommendations."
-category: "other"
-source: "ClawHub"
-tags: [optimization, performance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/performance-profiler"
-sourceUrl: "https://clawhub.ai/skills/performance-profiler"
----
-
 # Performance Profiler
 
-> Analyze code performance to identify bottlenecks, detect redundant computations and blocking operations, and provide optimization recommendations.
+分析代码性能，识别瓶颈并提供优化建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/performance-profiler`
-- **Source URL:** [https://clawhub.ai/skills/performance-profiler](https://clawhub.ai/skills/performance-profiler)
+## 功能
 
-## Overview
+- 循环性能分析
+- 重复计算检测
+- 同步阻塞识别
+- 复杂度计算
+- 优化建议生成
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/performance-profiler
+- "性能分析"
+- "性能瓶颈"
+- "performance"
+- "优化建议"
+
+## 检测问题
+
+- 循环内数组操作
+- 重复的函数调用
+- 同步阻塞操作
+- 内存泄漏风险
+
+## 输出示例
+
+```json
+{
+  "issues": [
+    {
+      "type": "loop_push",
+      "location": "line 42",
+      "suggestion": "使用数组推导式或预先分配"
+    }
+  ],
+  "complexity": "O(n²)",
+  "score": 75
+}
 ```

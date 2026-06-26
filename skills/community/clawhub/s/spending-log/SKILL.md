@@ -1,35 +1,130 @@
 ---
-name: "spending-log"
-description: "个人支出记账。当用户提到记账、花了、消费、支出、账单、开销、统计消费、月度报表时触发。支持自然语言记账、自动分类、月度统计、预算提醒和月度报表生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/spending-log"
-sourceUrl: "https://clawhub.ai/skills/spending-log"
+name: spending-log
+description: 个人支出记账。当用户提到记账、花了、消费、支出、账单、开销、统计消费、月度报表时触发。支持自然语言记账、自动分类、月度统计、预算提醒和月度报表生成。
+version: 1.0.0
 ---
 
-# spending-log
+# 消费记录
 
-> 个人支出记账。当用户提到记账、花了、消费、支出、账单、开销、统计消费、月度报表时触发。支持自然语言记账、自动分类、月度统计、预算提醒和月度报表生成。
+个人支出记账技能，数据存储在 `data/expenses.json`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/spending-log`
-- **Source URL:** [https://clawhub.ai/skills/spending-log](https://clawhub.ai/skills/spending-log)
+## 数据文件
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/spending-log
+- `data/expenses.json` — 所有支出记录，格式如下：
+```json
+[
+  {
+    "id": "becd186675a34bb0",
+    "amount": 35.0,
+    "category": "餐饮",
+    "description": "午饭",
+    "date": "2026-04-08",
+    "timestamp": 1772952046769
+  }
+]
 ```
+- `data/config.json` — 配置（月预算等）：
+```json
+{ "monthly_budget": 2000 }
+```
+
+## 分类
+
+餐饮、交通、购物、娱乐、医疗、房租、日用、社交、其他
+
+根据用户输入内容智能归类，无法判断时归为"其他"并标注。
+
+## 操作
+
+### 记账
+
+用户用自然语言说，例如：
+- "午饭35" "今天打车花了25" "昨天买日用品60" "充话费50"
+
+解析规则：
+1. **金额**：从文本中提取数字，默认单位为元。支持大写数字（壹/贰/叁等）和口语化表达（"一块五" "两块钱"），自动转换为小数
+2. **日期**：今天/昨天/前天/具体日期，省略则默认今天
+3. **分类**：根据描述关键词自动归类
+4. **描述**：提取金额和日期后的剩余内容作为描述
+5. **多金额歧义**：文本中出现多个数字时，优先取最大值作为金额并标注；若明显不可能是金额（如日期中的数字）则跳过
+
+解析后追加到 `data/expenses.json`，回复确认信息：金额、分类、描述、日期。
+
+### 删除记录
+
+"删除刚才那条" / "删掉午餐那条" — 找到最近匹配的记录删除，确认后执行。
+
+### 修改记录
+
+通过 `scripts/crud.py edit` 命令修改已有记录的金额、分类、描述或日期：
+```bash
+python3 scripts/crud.py edit --id <记录ID> --amount 40 --description "午饭加菜"
+```
+
+### 月度统计
+
+"这个月花了多少" / "4月餐饮花了多少" / "本月交通支出"
+
+**必须使用 `scripts/query.py` 脚本计算，禁止心算。**
+
+```bash
+# 查某分类当月支出
+python3 scripts/query.py --category 餐饮
+
+# 查当月总支出（省略分类）
+python3 scripts/query.py
+
+# 查指定月份
+python3 scripts/query.py --month 2026-03
+
+# 最近7天详细明细
+python3 scripts/query.py --days 7 --format detail
+
+# 指定日期范围（场景：出差/旅行期间的花费）
+python3 scripts/query.py --from 2026-04-10 --to 2026-04-15
+
+# 查全量数据
+python3 scripts/query.py --all
+```
+
+默认按日期倒序排列。`--days` 使用精确的日期边界（当天 00:00 起），避免模糊区间。`--month` 和 `--days` 同时传时优先 `--month`。
+
+脚本会返回：笔数、合计金额、逐笔明细。直接将结果呈现给用户即可。
+
+### 预算检查
+
+每次记账后自动检查：**当月累计支出是否超过月预算（默认2000元）**。超过时主动提醒用户。
+
+用户也可主动问"预算还剩多少"来查询。
+
+### 月度报表
+
+用户说"月度报表" / "生成报表" / "本月账单"时，使用 `scripts/report.py` 生成 HTML 报表。
+
+## 报表生成
+
+```bash
+python3 scripts/report.py --month 2026-04
+python3 scripts/report.py --month 2026-04 --force   # 强制重新生成
+python3 scripts/report.py --month 2026-04 --csv
+```
+
+将生成的 HTML 通过消息发送给用户（使用 `<qqmedia>` 标签发送文件）。同时备份到 `/volume2/Download/OpenClaw/reports/` 目录。
+
+**禁止使用 canvas 展示报表。**
+
+生成的报表包含：
+- 月度总支出和预算环形进度对比
+- 分类支出 SVG 交互饼图（悬浮/点击可查看分类详情）
+- 分类详情卡片（带进度条，点击可联动筛选明细）
+- 每日支出 SVG 柱状趋势图（悬浮/点击显示日期金额，点击联动筛选明细）
+- 消费明细列表（支持按分类+日期交叉筛选，超过5笔自动折叠，可展开/收起）
+- 环比对比（有上月数据时自动显示，含各分类涨跌变化）
+- 月份快速导航（顶部箭头切换相邻月份报表）
+- 饼图/图例/趋势柱/分类卡片之间联动交互：点击任一分类元素自动筛选明细并滚动定位
+
+报表支持 PC/手机自适应布局，自动为其他月份生成报表文件。
+
+## 月底提醒
+
+通过 `openclaw cron` 设置每月1日早上8点自动生成上月报表并发送给用户。首次设置记账后触发配置。

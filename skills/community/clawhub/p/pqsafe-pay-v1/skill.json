@@ -1,0 +1,299 @@
+{
+  "id": "pqsafe.pay.v1",
+  "version": "0.1.0",
+  "name": "PQSafe Post-Quantum Payment",
+  "description": "Create, verify, and revoke ML-DSA-65 post-quantum signed SpendEnvelopes for AI agent autonomous payments. Implements the PQSafe AgentPay AP2-PQ profile over Airwallex, Wise, Stripe, USDC-Base, and x402 payment rails. Signatures are quantum-resistant per NIST FIPS 204.",
+  "provider": {
+    "name": "PQSafe",
+    "url": "https://pqsafe.xyz",
+    "contact": "dev@pqsafe.xyz",
+    "privacyPolicy": "https://pqsafe.xyz/privacy",
+    "termsOfService": "https://pqsafe.xyz/terms"
+  },
+  "license": "Apache-2.0",
+  "tags": [
+    "payment",
+    "post-quantum",
+    "ai-agent",
+    "ap2-pq",
+    "pqc",
+    "ml-dsa",
+    "fips-204",
+    "spend-envelope",
+    "x402",
+    "crypto"
+  ],
+  "security": {
+    "algorithm": "ML-DSA-65",
+    "standard": "NIST FIPS 204",
+    "publicKeyBytes": 1952,
+    "secretKeyBytes": 4032,
+    "signatureBytes": 3309,
+    "securityLevel": "NIST Level 3",
+    "quantumResistant": true,
+    "hardnessProblem": "Module Learning With Errors (MLWE)"
+  },
+  "operations": [
+    {
+      "id": "create_envelope",
+      "name": "Create Spend Envelope",
+      "description": "Build and ML-DSA-65 sign a SpendEnvelope authorizing an agent to spend up to maxAmount on the specified payment rail within the TTL. The secret key never leaves the caller's environment — signing is done locally.",
+      "input": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": ["issuer", "agent", "maxAmount", "currency", "allowedRecipients"],
+        "additionalProperties": false,
+        "properties": {
+          "issuer": {
+            "type": "string",
+            "description": "PQSafe address of the human issuer (pq1 + 20-byte keccak hex of ML-DSA-65 pubkey).",
+            "pattern": "^pq1[0-9a-f]{40}$",
+            "examples": ["pq1a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b"]
+          },
+          "agent": {
+            "type": "string",
+            "description": "Agent identifier — free-form string identifying the calling AI agent.",
+            "minLength": 1,
+            "maxLength": 128,
+            "examples": ["travel-agent-v1", "procurement-bot"]
+          },
+          "maxAmount": {
+            "type": "number",
+            "description": "Maximum total amount the agent may spend in the given currency. Must be positive.",
+            "exclusiveMinimum": 0,
+            "examples": [10, 500.00, 0.50]
+          },
+          "currency": {
+            "type": "string",
+            "description": "ISO 4217 currency code or crypto token symbol (3–5 chars).",
+            "minLength": 3,
+            "maxLength": 5,
+            "examples": ["USDC", "USD", "HKD", "EUR"]
+          },
+          "allowedRecipients": {
+            "type": "array",
+            "description": "Allowlist of payment recipients. Rail-specific format (IBAN, crypto address, Stripe customer ID, etc.). Must contain at least one entry.",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "examples": [["GB29NWBK60161331926819"], ["0xabc...def"], ["cus_stripe_123"]]
+          },
+          "startsInSeconds": {
+            "type": "integer",
+            "description": "Seconds before the envelope becomes active (default: 0 = immediately).",
+            "minimum": 0,
+            "examples": [0, 60]
+          },
+          "ttlSeconds": {
+            "type": "integer",
+            "description": "Time-to-live in seconds from now (default: 3600 = 1 hour, max: 86400).",
+            "minimum": 30,
+            "maximum": 86400,
+            "examples": [300, 3600]
+          },
+          "rail": {
+            "type": "string",
+            "description": "Constrain envelope to a specific payment rail. Omit to allow the PQSafe router to choose.",
+            "enum": ["airwallex", "wise", "stripe", "usdc-base", "x402"],
+            "examples": ["x402", "wise"]
+          },
+          "dsaSecretKey": {
+            "type": "string",
+            "description": "Hex-encoded ML-DSA-65 secret key (4032 bytes = 8064 hex chars). Required in production. Not needed when PQSAFE_TEST_MODE=true.",
+            "pattern": "^[0-9a-f]{8064}$"
+          },
+          "dsaPublicKey": {
+            "type": "string",
+            "description": "Hex-encoded ML-DSA-65 public key (1952 bytes = 3904 hex chars). Required in production. Not needed when PQSAFE_TEST_MODE=true.",
+            "pattern": "^[0-9a-f]{3904}$"
+          }
+        }
+      },
+      "output": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": ["envelopeJson", "signature", "dsaPublicKey"],
+        "properties": {
+          "envelopeJson": {
+            "type": "string",
+            "description": "Canonical deterministic JSON of the SpendEnvelope (RFC 8785 JCS, UTF-8). This is the exact byte sequence that was signed."
+          },
+          "signature": {
+            "type": "string",
+            "description": "ML-DSA-65 signature over envelopeJson bytes, hex-encoded (3309 bytes = 6618 hex chars).",
+            "pattern": "^[0-9a-f]{6618}$"
+          },
+          "dsaPublicKey": {
+            "type": "string",
+            "description": "ML-DSA-65 public key of the issuer, hex-encoded (1952 bytes = 3904 hex chars).",
+            "pattern": "^[0-9a-f]{3904}$"
+          }
+        }
+      },
+      "errors": [
+        {"code": "MISSING_SECRET_KEY", "description": "dsaSecretKey is required but was not provided"},
+        {"code": "MISSING_PUBLIC_KEY", "description": "dsaPublicKey is required but was not provided"},
+        {"code": "INVALID_KEY_FORMAT", "description": "dsaSecretKey or dsaPublicKey is not valid hex at the expected length"},
+        {"code": "SCHEMA_VALIDATION_FAILED", "description": "SpendEnvelope fields failed Zod schema validation"},
+        {"code": "SIGNING_FAILED", "description": "ML-DSA-65 signing operation failed"}
+      ]
+    },
+    {
+      "id": "verify_envelope",
+      "name": "Verify Spend Envelope",
+      "description": "Verify the ML-DSA-65 signature of a SpendEnvelope and confirm it has not expired or become not-yet-active. Verification is fully local — no network call required.",
+      "input": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": ["envelope"],
+        "additionalProperties": false,
+        "properties": {
+          "envelope": {
+            "type": "object",
+            "description": "The full SignedEnvelope to verify.",
+            "required": ["envelopeJson", "signature", "dsaPublicKey"],
+            "properties": {
+              "envelopeJson": { "type": "string" },
+              "signature": { "type": "string" },
+              "dsaPublicKey": { "type": "string" }
+            }
+          },
+          "dsaPublicKey": {
+            "type": "string",
+            "description": "Optional: override the public key to verify against (hex-encoded). If omitted, the embedded dsaPublicKey from the envelope is used."
+          }
+        }
+      },
+      "output": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": ["valid", "agent", "issuer", "validUntil"],
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "description": "True if signature is valid and envelope is within its validity window."
+          },
+          "agent": {
+            "type": "string",
+            "description": "Agent identifier parsed from the envelope."
+          },
+          "issuer": {
+            "type": "string",
+            "description": "Issuer PQSafe address parsed from the envelope."
+          },
+          "validUntil": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 UTC expiry of the envelope."
+          },
+          "reason": {
+            "type": "string",
+            "description": "If valid=false, human-readable reason for rejection.",
+            "enum": [
+              "SIGNATURE_INVALID",
+              "ENVELOPE_EXPIRED",
+              "ENVELOPE_NOT_YET_ACTIVE",
+              "MALFORMED_ENVELOPE"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "revoke_envelope",
+      "name": "Revoke Spend Envelope",
+      "description": "Submit a revocation request for a SpendEnvelope to the PQSafe revocation registry. Once revoked, the envelope will fail verify_envelope checks. Revocation is immediate and irreversible. Requires network access to the PQSafe API.",
+      "input": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": ["envelope"],
+        "additionalProperties": false,
+        "properties": {
+          "envelope": {
+            "type": "object",
+            "description": "The full SignedEnvelope to revoke.",
+            "required": ["envelopeJson", "signature", "dsaPublicKey"],
+            "properties": {
+              "envelopeJson": { "type": "string" },
+              "signature": { "type": "string" },
+              "dsaPublicKey": { "type": "string" }
+            }
+          },
+          "reason": {
+            "type": "string",
+            "description": "Optional human-readable reason for revocation (stored in audit log).",
+            "maxLength": 256
+          }
+        }
+      },
+      "output": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": ["revoked", "revokedAt", "httpStatus"],
+        "properties": {
+          "revoked": {
+            "type": "boolean",
+            "description": "True if the envelope was successfully added to the revocation registry."
+          },
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 UTC timestamp of when revocation was recorded."
+          },
+          "httpStatus": {
+            "type": "integer",
+            "description": "HTTP status code from the revocation endpoint (0 in test mode)."
+          }
+        }
+      },
+      "errors": [
+        {"code": "REVOCATION_API_ERROR", "description": "PQSafe revocation endpoint returned a non-2xx response"},
+        {"code": "REVOCATION_TIMEOUT", "description": "Request to revocation endpoint timed out"}
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "name": "Create a $10 USDC envelope for x402 micropayment",
+      "description": "Agent creates a 5-minute envelope to pay for an x402-gated API call",
+      "operation": "create_envelope",
+      "input": {
+        "issuer": "pq1a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b",
+        "agent": "content-fetcher-v1",
+        "maxAmount": 10,
+        "currency": "USDC",
+        "allowedRecipients": ["0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"],
+        "ttlSeconds": 300,
+        "rail": "x402"
+      }
+    },
+    {
+      "name": "Create a $500 USD envelope for Wise international transfer",
+      "description": "Agent creates a 1-hour envelope for a supplier payment via Wise",
+      "operation": "create_envelope",
+      "input": {
+        "issuer": "pq1a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b",
+        "agent": "procurement-bot",
+        "maxAmount": 500,
+        "currency": "USD",
+        "allowedRecipients": ["GB29NWBK60161331926819"],
+        "ttlSeconds": 3600,
+        "rail": "wise"
+      }
+    }
+  ],
+  "rateLimit": {
+    "defaultRequestsPerMinute": 60,
+    "burstLimit": 10
+  },
+  "sdkPackage": {
+    "npm": "@pqsafe/openclaw",
+    "version": "^0.1.0",
+    "installCommand": "npm install @pqsafe/openclaw"
+  },
+  "documentation": {
+    "quickStart": "https://docs.pqsafe.xyz/agent-pay/openclaw",
+    "apiReference": "https://docs.pqsafe.xyz/agent-pay/api",
+    "securityModel": "https://docs.pqsafe.xyz/agent-pay/security",
+    "ap2PqRfc": "https://pqsafe.xyz/ap2-pq-rfc"
+  }
+}

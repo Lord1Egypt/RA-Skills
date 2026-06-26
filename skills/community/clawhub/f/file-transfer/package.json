@@ -1,0 +1,76 @@
+{
+  "name": "file-transfer",
+  "version": "0.2.0-beta.0",
+  "description": "Context-aware file transfer library for AI agents. Supports Telegram with intelligent context detection.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:e2e": "jest tests/e2e",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.js tests/**/*.js",
+    "lint:fix": "eslint src/**/*.js tests/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.js\" \"tests/**/*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\" \"tests/**/*.js\"",
+    "build": "npm run lint && npm run test",
+    "prepare": "husky install || true",
+    "docs": "jsdoc -c jsdoc.json",
+    "release": "standard-version"
+  },
+  "keywords": [
+    "file-transfer",
+    "ai-agent",
+    "context-aware",
+    "telegram",
+    "chatbot",
+    "automation",
+    "openclaw",
+    "claude",
+    "openai"
+  ],
+  "author": "Ghostwritten <ghostwritten01>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ghostwritten/file-transfer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ghostwritten/file-transfer/issues"
+  },
+  "homepage": "https://github.com/Ghostwritten/file-transfer#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "mime-types": "^2.1.35"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.0",
+    "eslint": "^8.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.0",
+    "eslint-plugin-jest": "^27.0.0",
+    "prettier": "^3.0.0",
+    "nodemon": "^3.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0",
+    "jsdoc": "^4.0.0",
+    "standard-version": "^9.5.0"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "SKILL.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

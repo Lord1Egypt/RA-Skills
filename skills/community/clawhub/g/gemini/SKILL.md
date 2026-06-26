@@ -1,35 +1,23 @@
 ---
-name: "Gemini"
-description: "Gemini CLI for one-shot Q&A, summaries, and generation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gemini"
-sourceUrl: "https://clawhub.ai/skills/gemini"
+name: gemini
+description: Gemini CLI for one-shot Q&A, summaries, and generation.
+homepage: https://ai.google.dev/
+metadata: {"clawdbot":{"emoji":"♊️","requires":{"bins":["gemini"]},"install":[{"id":"brew","kind":"brew","formula":"gemini-cli","bins":["gemini"],"label":"Install Gemini CLI (brew)"}]}}
 ---
 
-# Gemini
+# Gemini CLI
 
-> Gemini CLI for one-shot Q&A, summaries, and generation.
+Use Gemini in one-shot mode with a positional prompt (avoid interactive mode).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gemini`
-- **Source URL:** [https://clawhub.ai/skills/gemini](https://clawhub.ai/skills/gemini)
+Quick start
+- `gemini "Answer this question..."`
+- `gemini --model <name> "Prompt..."`
+- `gemini --output-format json "Return JSON"`
 
-## Overview
+Extensions
+- List: `gemini --list-extensions`
+- Manage: `gemini extensions <command>`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gemini
-```
+Notes
+- If auth is required, run `gemini` once interactively and follow the login flow.
+- Avoid `--yolo` for safety.

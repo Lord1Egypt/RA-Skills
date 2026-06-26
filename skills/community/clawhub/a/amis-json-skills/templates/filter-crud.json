@@ -1,0 +1,133 @@
+/**
+ * 带过滤搜索的CRUD模板
+ * 适用场景：需要条件搜索的数据列表
+ * 核心组件：CRUD + filter
+ */
+{
+  "type": "page",
+  "title": "数据列表",
+  "body": {
+    "type": "crud",
+    "name": "dataTable",
+    "api": "/api/data",
+    "syncLocation": true,
+    "filter": {
+      "title": "筛选",
+      "mode": "horizontal",
+      "submitOnChange": true,
+      "controls": [
+        {
+          "type": "input-text",
+          "name": "keyword",
+          "label": "关键词",
+          "placeholder": "搜索名称"
+        },
+        {
+          "type": "select",
+          "name": "status",
+          "label": "状态",
+          "options": [
+            {"label": "全部", "value": ""},
+            {"label": "启用", "value": "1"},
+            {"label": "禁用", "value": "0"}
+          ]
+        },
+        {
+          "type": "date",
+          "name": "start_date",
+          "label": "开始日期"
+        },
+        {
+          "type": "date",
+          "name": "end_date",
+          "label": "结束日期"
+        },
+        {
+          "type": "button",
+          "label": "搜索",
+          "actionType": "submit",
+          "level": "primary"
+        },
+        {
+          "type": "button",
+          "label": "重置",
+          "actionType": "reset"
+        }
+      ]
+    },
+    "columns": [
+      {
+        "name": "id",
+        "label": "ID",
+        "width": 60
+      },
+      {
+        "name": "name",
+        "label": "名称",
+        "sortable": true,
+        "searchable": true
+      },
+      {
+        "name": "status",
+        "label": "状态",
+        "type": "mapping",
+        "map": {
+          "1": "<span class=\"label label-success\">启用</span>",
+          "0": "<span class=\"label label-default\">禁用</span>"
+        }
+      },
+      {
+        "name": "created_at",
+        "label": "创建时间",
+        "type": "date",
+        "sortable": true
+      },
+      {
+        "type": "operation",
+        "label": "操作",
+        "buttons": [
+          {
+            "label": "编辑",
+            "type": "button",
+            "actionType": "drawer",
+            "drawer": {
+              "title": "编辑",
+              "body": {
+                "type": "form",
+                "api": "put:/api/data/${id}",
+                "controls": [
+                  {"type": "text", "name": "name", "label": "名称", "required": true}
+                ]
+              }
+            }
+          },
+          {
+            "label": "删除",
+            "type": "button",
+            "actionType": "ajax",
+            "confirmText": "确认删除？",
+            "api": "delete:/api/data/${id}"
+          }
+        ]
+      }
+    ],
+    "headerToolbar": [
+      {
+        "type": "button",
+        "label": "新增",
+        "actionType": "dialog",
+        "level": "primary",
+        "dialog": {
+          "title": "新增",
+          "body": {
+            "type": "form",
+            "api": "post:/api/data",
+            "controls": [
+              {"type": "text", "name": "name", "label": "名称", "required": true}
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

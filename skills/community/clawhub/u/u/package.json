@@ -1,0 +1,32 @@
+{
+  "name": "u",
+  "version": "1.0.0",
+  "description": "Universal Utility Toolkit - 全能实用工具包",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "utility",
+    "toolkit",
+    "converter",
+    "generator",
+    "formatter",
+    "uuid",
+    "url",
+    "unicode",
+    "json",
+    "yaml",
+    "hash",
+    "password",
+    "color",
+    "unit",
+    "conversion",
+    "usdt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

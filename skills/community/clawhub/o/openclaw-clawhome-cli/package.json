@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-clawhome-cli",
+  "version": "1.0.0",
+  "description": "Lightweight installer for the OpenClaw Clawhome channel plugin",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "clawhome-installer": "cli.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deskbird-Automator"
+  short_description: "Deskbird-Automation mit Cron und Reauth-Flow"
+  default_prompt: "Nutze $deskbird-automator, um eine sichere Deskbird-Cron-Session mit Telegram-Updates einzurichten."

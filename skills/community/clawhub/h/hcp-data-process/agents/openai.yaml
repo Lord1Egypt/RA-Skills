@@ -1,0 +1,2 @@
+name: hcp-lqc-extractor
+description: 从 HCP LQC 原始结果文件中提取 Group 汇总，并生成新的 Excel 汇总 Sheet。

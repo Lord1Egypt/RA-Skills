@@ -1,0 +1,9 @@
+{
+  "name": "code-stats",
+  "version": "1.0.0",
+  "description": "Analyze code repository statistics",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}

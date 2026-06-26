@@ -1,0 +1,23 @@
+{
+  "name": "youbike-mcp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/test-integration.js",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "axios": "^1.13.6",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

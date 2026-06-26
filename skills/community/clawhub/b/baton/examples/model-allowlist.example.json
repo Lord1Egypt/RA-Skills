@@ -1,0 +1,134 @@
+{
+  "version": 2,
+  "updatedAt": "2026-06-13T00:00:00.000Z",
+  "allowedModels": [
+    "openai/gpt-5-mini",
+    "anthropic/claude-sonnet-4-6"
+  ],
+  "blockedModels": [],
+  "tiers": {
+    "fast": {
+      "models": [
+        "openai/gpt-5-mini"
+      ],
+      "fallback": "balanced",
+      "maxAttempts": 2
+    },
+    "balanced": {
+      "models": [
+        "anthropic/claude-sonnet-4-6"
+      ],
+      "fallback": "strong_reasoning",
+      "maxAttempts": 2
+    },
+    "code": {
+      "models": [
+        "anthropic/claude-sonnet-4-6"
+      ],
+      "fallback": "strong_reasoning",
+      "maxAttempts": 2
+    },
+    "long_context": {
+      "models": [
+        "anthropic/claude-sonnet-4-6"
+      ],
+      "fallback": "strong_reasoning",
+      "maxAttempts": 2
+    },
+    "strong_reasoning": {
+      "models": [
+        "anthropic/claude-sonnet-4-6"
+      ],
+      "fallback": null,
+      "maxAttempts": 2
+    },
+    "creative": {
+      "models": [
+        "anthropic/claude-sonnet-4-6"
+      ],
+      "fallback": "balanced",
+      "maxAttempts": 2
+    },
+    "multimodal": {
+      "models": [],
+      "fallback": "long_context",
+      "maxAttempts": 1
+    }
+  },
+  "roles": {
+    "planner_orchestrator": {
+      "preferredTier": "strong_reasoning"
+    },
+    "planner": {
+      "preferredTier": "strong_reasoning"
+    },
+    "researcher": {
+      "preferredTier": "balanced"
+    },
+    "deep_researcher": {
+      "preferredTier": "strong_reasoning"
+    },
+    "fact_checker": {
+      "preferredTier": "strong_reasoning"
+    },
+    "writer": {
+      "preferredTier": "creative"
+    },
+    "copywriter": {
+      "preferredTier": "creative"
+    },
+    "social_media_manager": {
+      "preferredTier": "creative"
+    },
+    "community_manager": {
+      "preferredTier": "fast"
+    },
+    "growth_marketer": {
+      "preferredTier": "balanced"
+    },
+    "seo_specialist": {
+      "preferredTier": "balanced"
+    },
+    "paid_ads_specialist": {
+      "preferredTier": "creative"
+    },
+    "email_marketer": {
+      "preferredTier": "creative"
+    },
+    "customer_support_agent": {
+      "preferredTier": "balanced"
+    },
+    "product_manager": {
+      "preferredTier": "strong_reasoning"
+    },
+    "data_analyst": {
+      "preferredTier": "strong_reasoning"
+    },
+    "ai_agent": {
+      "preferredTier": "strong_reasoning"
+    },
+    "browser_agent": {
+      "preferredTier": "strong_reasoning"
+    },
+    "tool_operator": {
+      "preferredTier": "code"
+    },
+    "automation_agent": {
+      "preferredTier": "code"
+    },
+    "validator": {
+      "preferredTier": "strong_reasoning",
+      "preferDifferentProviderFrom": "worker"
+    },
+    "compliance_reviewer": {
+      "preferredTier": "strong_reasoning"
+    },
+    "security_reviewer": {
+      "preferredTier": "strong_reasoning"
+    },
+    "synthesiser": {
+      "preferredTier": "strong_reasoning"
+    }
+  },
+  "batonVersion": "1.7.0"
+}

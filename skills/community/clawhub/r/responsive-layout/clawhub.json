@@ -1,0 +1,12 @@
+{
+  "name": "Responsive Layout (响应式与布局)",
+  "tagline": "断点与策略、Flex/Grid 布局、rem/vw 单位与移动端安全区适配",
+  "description": "响应式与布局技能：断点与移动优先/桌面优先、Flex 与 Grid 选型、单位与缩放（rem/vw）、移动端安全区与触控。适用于响应式、布局、移动端适配、flex、grid、断点、rem、vw 等场景。",
+  "category": "development",
+  "tags": ["responsive", "layout", "flex", "grid", "mobile", "breakpoint", "rem", "vw", "响应式"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

@@ -1,0 +1,305 @@
+<div class="content">
+  <h2 class="section-title page-break" id="part6">
+    <span class="num">§06</span> 数据埋点
+  </h2>
+  <p class="section-en">Data Tracking</p>
+  <p class="section-intro">指标体系与埋点方案</p>
+
+  <h3>6.1 指标体系</h3>
+
+  <h4>6.1.1 用户规模指标</h4>
+  <table>
+    <tr>
+      <th>指标名称</th>
+      <th>定义</th>
+      <th>计算方式</th>
+      <th>目标值</th>
+    </tr>
+    <tr>
+      <td>DAU</td>
+      <td>日活跃用户数</td>
+      <td>当日至少启动1次的去重用户数</td>
+      <td>【目标】</td>
+    </tr>
+    <tr>
+      <td>MAU</td>
+      <td>月活跃用户数</td>
+      <td>当月至少启动1次的去重用户数</td>
+      <td>【目标】</td>
+    </tr>
+    <tr>
+      <td>新增用户</td>
+      <td>首次使用产品的用户</td>
+      <td>当日首次启动的去重用户数</td>
+      <td>【目标】</td>
+    </tr>
+    <tr>
+      <td>次日留存</td>
+      <td>新用户次日回访比例</td>
+      <td>次日回访用户数/当日新增用户数</td>
+      <td>【目标】</td>
+    </tr>
+    <tr>
+      <td>7日留存</td>
+      <td>新用户7日回访比例</td>
+      <td>7日回访用户数/当日新增用户数</td>
+      <td>【目标】</td>
+    </tr>
+  </table>
+
+  <h4>6.1.2 功能使用指标</h4>
+  <table>
+    <tr>
+      <th>指标名称</th>
+      <th>定义</th>
+      <th>计算方式</th>
+    </tr>
+    <tr>
+      <td>功能渗透率</td>
+      <td>使用某功能的用户占比</td>
+      <td>使用该功能的用户数/总用户数</td>
+    </tr>
+    <tr>
+      <td>功能使用频次</td>
+      <td>人均使用次数</td>
+      <td>功能使用总次数/使用人数</td>
+    </tr>
+    <tr>
+      <td>功能完成率</td>
+      <td>完成核心流程的比例</td>
+      <td>完成人数/开始人数</td>
+    </tr>
+  </table>
+
+  <h4>6.1.3 业务指标</h4>
+  <table>
+    <tr>
+      <th>指标名称</th>
+      <th>定义</th>
+      <th>计算方式</th>
+    </tr>
+    <tr>
+      <td>转化率</td>
+      <td>目标行为完成比例</td>
+      <td>完成目标用户数/进入漏斗用户数</td>
+    </tr>
+    <tr>
+      <td>ARPU</td>
+      <td>每用户平均收入</td>
+      <td>总收入/用户数</td>
+    </tr>
+    <tr>
+      <td>LTV</td>
+      <td>用户生命周期价值</td>
+      <td>用户累计贡献价值</td>
+    </tr>
+  </table>
+
+  <h3>6.2 埋点方案</h3>
+
+  <h4>6.2.1 通用属性</h4>
+  <p>所有事件都包含以下通用属性：</p>
+  <table>
+    <tr>
+      <th>属性名</th>
+      <th>类型</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>event_id</td>
+      <td>string</td>
+      <td>事件唯一标识</td>
+    </tr>
+    <tr>
+      <td>event_time</td>
+      <td>timestamp</td>
+      <td>事件发生时间</td>
+    </tr>
+    <tr>
+      <td>user_id</td>
+      <td>string</td>
+      <td>用户ID（未登录使用设备ID）</td>
+    </tr>
+    <tr>
+      <td>device_id</td>
+      <td>string</td>
+      <td>设备唯一标识</td>
+    </tr>
+    <tr>
+      <td>platform</td>
+      <td>string</td>
+      <td>iOS/Android/Web</td>
+    </tr>
+    <tr>
+      <td>app_version</td>
+      <td>string</td>
+      <td>App版本号</td>
+    </tr>
+    <tr>
+      <td>os_version</td>
+      <td>string</td>
+      <td>操作系统版本</td>
+    </tr>
+    <tr>
+      <td>device_model</td>
+      <td>string</td>
+      <td>设备型号</td>
+    </tr>
+    <tr>
+      <td>network_type</td>
+      <td>string</td>
+      <td>WiFi/4G/5G</td>
+    </tr>
+  </table>
+
+  <h4>6.2.2 事件埋点清单</h4>
+
+  <h5>基础事件</h5>
+  <table>
+    <tr>
+      <th>事件ID</th>
+      <th>事件名称</th>
+      <th>触发时机</th>
+      <th>特殊属性</th>
+    </tr>
+    <tr>
+      <td>app_launch</td>
+      <td>App启动</td>
+      <td>冷启动/热启动</td>
+      <td>launch_type: cold/hot</td>
+    </tr>
+    <tr>
+      <td>app_exit</td>
+      <td>App退出</td>
+      <td>切后台超过30秒或杀死进程</td>
+      <td>duration: 使用时长</td>
+    </tr>
+    <tr>
+      <td>page_view</td>
+      <td>页面浏览</td>
+      <td>页面可见时</td>
+      <td>page_name, page_url, referer</td>
+    </tr>
+    <tr>
+      <td>page_exit</td>
+      <td>页面离开</td>
+      <td>页面不可见时</td>
+      <td>duration: 停留时长</td>
+    </tr>
+    <tr>
+      <td>button_click</td>
+      <td>按钮点击</td>
+      <td>点击按钮时</td>
+      <td>button_name, button_id</td>
+    </tr>
+  </table>
+
+  <h5>业务事件</h5>
+  <table>
+    <tr>
+      <th>事件ID</th>
+      <th>事件名称</th>
+      <th>触发时机</th>
+      <th>特殊属性</th>
+    </tr>
+    <tr>
+      <td>login_click</td>
+      <td>点击登录</td>
+      <td>点击登录按钮</td>
+      <td>login_type: password/sms/wechat</td>
+    </tr>
+    <tr>
+      <td>login_success</td>
+      <td>登录成功</td>
+      <td>登录接口返回成功</td>
+      <td>duration_ms, login_type</td>
+    </tr>
+    <tr>
+      <td>login_fail</td>
+      <td>登录失败</td>
+      <td>登录接口返回失败</td>
+      <td>fail_reason, fail_count</td>
+    </tr>
+    <tr>
+      <td>register_success</td>
+      <td>注册成功</td>
+      <td>完成注册流程</td>
+      <td>register_channel, duration_ms</td>
+    </tr>
+  </table>
+
+  <h4>6.2.3 用户属性</h4>
+  <table>
+    <tr>
+      <th>属性名</th>
+      <th>类型</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>user_type</td>
+      <td>string</td>
+      <td>new/returning/churned</td>
+    </tr>
+    <tr>
+      <td>register_date</td>
+      <td>date</td>
+      <td>注册日期</td>
+    </tr>
+    <tr>
+      <td>channel</td>
+      <td>string</td>
+      <td>获客渠道</td>
+    </tr>
+    <tr>
+      <td>vip_level</td>
+      <td>number</td>
+      <td>会员等级</td>
+    </tr>
+  </table>
+
+  <h3>6.3 数据看板规划</h3>
+
+  <h4>6.3.1 实时看板</h4>
+  <ul>
+    <li>当前在线用户数</li>
+    <li>今日新增用户</li>
+    <li>今日活跃用户趋势（小时级）</li>
+    <li>接口错误率</li>
+  </ul>
+
+  <h4>6.3.2 每日报表</h4>
+  <ul>
+    <li>DAU/MAU趋势</li>
+    <li>新增/留存数据</li>
+    <li>核心功能使用次数</li>
+    <li>崩溃率统计</li>
+  </ul>
+
+  <h4>6.3.3 转化漏斗</h4>
+  <table>
+    <tr>
+      <th>漏斗名称</th>
+      <th>步骤</th>
+      <th>目标</th>
+    </tr>
+    <tr>
+      <td>注册漏斗</td>
+      <td>浏览注册页 → 开始注册 → 完成注册</td>
+      <td>提升注册转化率</td>
+    </tr>
+    <tr>
+      <td>【核心漏斗】</td>
+      <td>【步骤1 → 步骤2 → 步骤3】</td>
+      <td>【目标】</td>
+    </tr>
+  </table>
+
+  <h3>6.4 数据安全与隐私</h3>
+  <ul>
+    <li>敏感数据（手机号、密码等）不脱敏不上报</li>
+    <li>用户行为数据匿名化处理</li>
+    <li>数据存储符合 GDPR/个保法要求</li>
+    <li>提供用户数据导出和删除接口</li>
+  </ul>
+
+</div>

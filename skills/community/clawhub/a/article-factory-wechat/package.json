@@ -1,0 +1,23 @@
+{
+  "name": "article-factory-wechat",
+  "version": "3.0.0",
+  "description": "微信公众号文章生产全流程SOP - 使用html-pages-to-images + multi-search-engine版本",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node scripts/generate-image.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "puppeteer": "^22.0.0"
+  },
+  "keywords": [
+    "wechat",
+    "article",
+    "选题",
+    "文章",
+    "公众号"
+  ],
+  "author": "",
+  "license": "MIT"
+}

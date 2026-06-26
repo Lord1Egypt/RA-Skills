@@ -1,0 +1,17 @@
+{
+  "skill_name": "batch-send-mail",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "使用 examples/example_contacts.csv 和 examples/example_template.txt 进行干运行预览，邮件主题是\"您好 {v1}，欢迎参加我们的活动\"，SMTP 配置使用 smtp.qq.com 端口 587，发件人 test@qq.com，密码 123456，只预览不发送",
+      "expected_output": "正确读取 CSV 文件，替换 {variable1} 和 {variable2}，输出4个收件人的预览内容",
+      "files": ["examples/example_contacts.csv", "examples/example_template.txt"]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我检查 batch-send-mail 技能，验证脚本能正确处理变量替换，用示例文件生成预览",
+      "expected_output": "脚本成功运行，显示所有邮件预览输出",
+      "files": []
+    }
+  ]
+}

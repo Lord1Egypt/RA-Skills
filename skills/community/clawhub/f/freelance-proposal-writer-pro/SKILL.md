@@ -1,35 +1,78 @@
----
-name: "Freelance Proposal Writer"
-description: "AI-powered generator that crafts tailored freelance proposals with key insights, examples, pricing, and platform-specific formats to boost success rates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/freelance-proposal-writer-pro"
-sourceUrl: "https://clawhub.ai/skills/freelance-proposal-writer-pro"
----
+# Freelance-Proposal-Writer Skill
 
-# Freelance Proposal Writer
+自由职业提案生成器 - AI 生成定制化投标提案，提高中标成功率。
 
-> AI-powered generator that crafts tailored freelance proposals with key insights, examples, pricing, and platform-specific formats to boost success rates.
+**Slug**: freelance-proposal-writer-pro
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/freelance-proposal-writer-pro`
-- **Source URL:** [https://clawhub.ai/skills/freelance-proposal-writer-pro](https://clawhub.ai/skills/freelance-proposal-writer-pro)
+## 功能
 
-## Overview
+- **智能分析**: 分析项目需求，提取关键信息
+- **定制生成**: 根据项目特点生成个性化提案
+- **成功率优化**: 使用经过验证的高转化率模板
+- **多平台支持**: 支持 Upwork、Fiverr、Freelancer 等平台
+- **案例展示**: 自动匹配相关作品集案例
+- **定价建议**: 基于市场和经验给出合理报价
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
+当用户提到以下关键词时使用此技能：
+- "写提案"
+- "投标"
+- "freelance proposal"
+- "upwork 提案"
+- "fiverr 投标"
+- "自由职业"
+- "接项目"
+- "写标书"
+- "proposal writer"
+- "投标模板"
+
+## 使用方法
+
+### 生成提案
+
 ```bash
-hermes skills install clawhub/freelance-proposal-writer-pro
+clawhub run freelance-proposal-writer generate --project "项目描述" --skills "技能列表"
 ```
+
+### 优化现有提案
+
+```bash
+clawhub run freelance-proposal-writer optimize --file proposal.txt
+```
+
+### 分析中标率
+
+```bash
+clawhub run freelance-proposal-writer analyze --history
+```
+
+## 配置
+
+在 `TOOLS.md` 中添加以下配置：
+
+```markdown
+### Freelance Proposal Writer
+
+- 个人简介：(你的专业背景)
+- 核心技能：(技能列表)
+- 代表案例：(案例链接)
+- 小时费率：$XX/hr
+- 目标平台：upwork/fiverr/freelancer
+```
+
+## 输出格式
+
+生成结构化的投标提案，包含：
+- 个性化开场白
+- 需求理解说明
+- 解决方案概述
+- 相关案例展示
+- 时间线和报价
+- 行动号召
+
+## 注意事项
+
+- 提案应该真诚、具体、有针对性
+- 避免使用过于模板化的语言
+- 根据平台特点调整语气和格式

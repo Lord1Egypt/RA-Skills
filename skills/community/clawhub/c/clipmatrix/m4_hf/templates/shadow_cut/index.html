@@ -1,0 +1,267 @@
+<!doctype html>
+<!-- Shadow Cut v3 — Route Timeline style with SVG route drawing animation -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  
+  :root {
+    --amber: #F59E0B; --amber-glow: #FBBF24;
+    --font-sans: 'Helvetica Neue','Arial',sans-serif;
+    --font-serif: 'Georgia','Times New Roman',serif;
+  }
+  
+  .scene-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  
+  #vignette {
+    position: absolute; inset: 0; pointer-events: none; z-index: 5;
+    background: radial-gradient(ellipse at 30% center, transparent 20%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.7) 92%);
+  }
+  
+  /* ═══ Route timeline — left side ═══ */
+  #route-frame {
+    position: absolute; top: 100px; bottom: 100px; left: 48px;
+    width: 40px; z-index: 15;
+  }
+  #route-svg { width: 40px; height: 100%; }
+  .route-path {
+    fill: none; stroke: rgba(245,158,11,0.35);
+    stroke-width: 2; stroke-linecap: round;
+  }
+  .route-path-active {
+    fill: none; stroke: var(--amber-glow);
+    stroke-width: 2.5; stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(245,158,11,0.5));
+  }
+  
+  /* ═══ Stop content — right of timeline ═══ */
+  .stop-block {
+    position: absolute; left: 116px; z-index: 20; opacity: 0;
+    width: calc(100% - 156px);
+  }
+  .stop-num {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 16px; color: var(--amber-glow);
+    letter-spacing: 0.22em; text-transform: uppercase;
+    text-shadow: 0 0 14px rgba(245,158,11,0.5);
+    display: block; margin-bottom: 8px;
+  }
+  .stop-city {
+    font-family: var(--font-serif); font-weight: 700;
+    color: #FFF; display: block;
+    text-shadow: 0 0 20px rgba(245,158,11,0.25), 0 3px 12px rgba(0,0,0,0.9);
+    letter-spacing: 0.03em; line-height: 1.05;
+    will-change: transform, opacity; backface-visibility: hidden;
+  }
+  .stop-divider {
+    display: block; width: 60px; height: 3px;
+    background: var(--amber-glow);
+    border-radius: 2px; margin: 10px 0 12px 0;
+    box-shadow: 0 0 8px rgba(245,158,11,0.4);
+  }
+  .stop-sub {
+    font-family: var(--font-sans); font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    display: block; line-height: 1.45;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  }
+  .stop-sub .hl { color: var(--amber-glow); font-weight: 700; text-shadow: 0 0 10px rgba(245,158,11,0.3); }
+  
+  /* Progress */
+  #pwrap { position: absolute; top: 8px; left: 30px; right: 30px; height: 3px; z-index: 50; }
+  #pbar { width: 100%; height: 100%; background: var(--amber); transform-origin: left; transform: scaleX(0); border-radius: 2px; opacity: 0.8; }
+  
+  #dots { position: absolute; top: 18px; right: 30px; display: flex; gap: 6px; z-index: 50; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  .dot.on { background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.4); }
+  
+  /* CTA */
+  #cta {
+    position: absolute; top: 82%; left: 50%;
+    transform: translate(-50%, -50%); z-index: 25; opacity: 0;
+  }
+  .cta-btn {
+    font-family: var(--font-sans); font-weight: 700; font-size: 22px;
+    color: #000; background: var(--amber-glow);
+    padding: 12px 32px; border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(245,158,11,0.4);
+  }
+  
+  #bbar {
+    position: absolute; top: calc(82% + 44px); left: 50%;
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+    z-index: 25; opacity: 0;
+    background: rgba(0,0,0,0.4); padding: 6px 20px; border-radius: 6px;
+    border: 1px solid rgba(245,158,11,0.15);
+  }
+  .b-emoji { font-size: 20px; }
+  .b-domain { font-family: var(--font-sans); font-weight: 600; font-size: 16px; color: #FFF; }
+  .b-follow { font-family: var(--font-sans); font-weight: 700; font-size: 15px; color: var(--amber-glow); border: 1.5px solid rgba(245,158,11,0.35); padding: 2px 10px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+  <div id="vignette"></div>
+  <div id="pwrap"><div id="pbar"></div></div>
+  <div id="dots"></div>
+  
+  <div id="route-frame">
+    <svg id="route-svg" viewBox="0 0 40 1720" preserveAspectRatio="none">
+      <line id="route-base" class="route-path" x1="20" y1="0" x2="20" y2="1720"/>
+      <line id="route-progress" class="route-path-active" x1="20" y1="0" x2="20" y2="0"/>
+    </svg>
+  </div>
+  
+  <div id="stops-layer"></div>
+  
+  <div id="cta"><div class="cta-btn" id="cta-txt">🗺️ DM us for this route</div></div>
+  <div id="bbar">
+    <span class="b-emoji" id="b-emoji">🐼</span>
+    <span class="b-domain" id="b-site">Panda-Journeys.com</span>
+    <span class="b-follow" id="b-follow">+ Follow 🌏</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  window.__timelines = window.__timelines || {};
+  
+  var dataEl = document.getElementById('hf-data');
+  if (!dataEl) return;
+  var D = JSON.parse(dataEl.textContent.trim());
+  
+  var scenes = D.scenes || [];
+  var cta = D.cta || {};
+  var brand = D.brand || {};
+  var totalDur = D.duration || 10;
+  var root = document.getElementById('root');
+  var H = D.height || 1920;
+  var W = D.width || 1080;
+  var isLandscape = W > H;
+  
+  try {
+    if (D.width) root.setAttribute('data-width', D.width);
+    if (D.height) root.setAttribute('data-height', D.height);
+  } catch(e) {}
+  
+  var dots = document.getElementById('dots');
+  scenes.forEach(function(_, i) {
+    var d = document.createElement('span'); d.className = 'dot'; d.id = 'd'+i;
+    dots.appendChild(d);
+  });
+  
+  var KW_RE = /secret|hidden|best|only|never|free|save|unlock|must|amazing|stunning|breathtaking|skip|forget|wrong|stop|don't|nobody|everyone|tourists|local|real/gi;
+  
+  var stopsLayer = document.getElementById('stops-layer');
+  var baseY = isLandscape ? 35 : 28;
+  var gapY = isLandscape ? 14 : 16;
+  
+  var trackIdx = 20;
+  
+  scenes.forEach(function(s, i) {
+    var t = s.start, td = s.duration;
+    var headline = s.headline || s.name || '';
+    var subtitle = s.subtitle || '';
+    
+    // ═══ Stop block ═══
+    var block = document.createElement('div');
+    block.className = 'stop-block clip';
+    block.id = 'sb'+i;
+    
+    var citySize = isLandscape ? 76 : 84;
+    var subSize = isLandscape ? 28 : 34;
+    
+    // Highlight keywords in subtitle
+    var subHTML = subtitle.replace(KW_RE, function(m) { return '<span class="hl">'+m+'</span>'; });
+    
+    block.innerHTML = 
+      '<span class="stop-num">Stop ' + (i+1) + ' of ' + scenes.length + '</span>' +
+      '<span class="stop-city" style="font-size:' + citySize + 'px">' + headline + '</span>' +
+      '<span class="stop-divider"></span>' +
+      '<span class="stop-sub" style="font-size:' + subSize + 'px">' + subHTML + '</span>';
+    
+    var topPct = baseY + i * gapY;
+    block.style.top = topPct + '%';
+    block.setAttribute('data-start', t);
+    block.setAttribute('data-duration', td);
+    block.setAttribute('data-track-index', trackIdx++);
+    stopsLayer.appendChild(block);
+  });
+  
+  document.getElementById('cta-txt').textContent = cta.text || '🗺️ DM us for this route';
+  document.getElementById('b-emoji').textContent = brand.emoji || '🐼';
+  document.getElementById('b-site').textContent = brand.domain || 'Panda-Journeys.com';
+  document.getElementById('b-follow').textContent = brand.follow || '+ Follow 🌏';
+  
+  /* ═══ GSAP ═══ */
+  var tl = gsap.timeline({ paused: true });
+  
+  tl.fromTo('#vignette', {opacity:0}, {opacity:1,duration:0.5}, 0);
+  tl.fromTo('#pbar', {scaleX:0}, {scaleX:1,duration:totalDur,ease:'none'}, 0);
+  
+  var routeLineH = 1720; // SVG viewBox height
+  
+  scenes.forEach(function(s, i) {
+    var t = s.start + 0.05, te = s.start + s.duration;
+    var isLast = (i === scenes.length - 1);
+    var isFirst = (i === 0);
+    
+    // Calculate route line progress — stroke y2 advances to next stop
+    var stopY = (i + 1) / scenes.length * routeLineH;
+    
+    // ═══ Route line draws down ═══
+    tl.fromTo('#route-progress', 
+      {attr:{y2: (i / scenes.length * routeLineH)}},
+      {attr:{y2: stopY}, duration: 0.5, ease: 'power2.inOut'}, t);
+    
+    // ═══ Stop block enters — slide from right ═══
+    tl.fromTo('#sb'+i, 
+      {opacity:0, x: 60},
+      {opacity:1, x: 0, duration: 0.5, ease: 'power3.out'}, t + 0.1);
+    
+    // Divider draws (scaleX 0→1)
+    var divider = document.querySelector('#sb'+i + ' .stop-divider');
+    if (divider) {
+      tl.fromTo(divider, {scaleX:0}, {scaleX:1, duration: 0.4, ease: 'power2.out'}, t + 0.25);
+    }
+    
+    // City name scale pop
+    var cityEl = document.querySelector('#sb'+i + ' .stop-city');
+    if (cityEl) {
+      tl.fromTo(cityEl, {opacity:0, scale:0.9, y: 8}, {opacity:1, scale:1, y: 0, duration: 0.45, ease: 'power3.out'}, t + 0.15);
+    }
+    
+    // Subtitle fade up
+    var subEl = document.querySelector('#sb'+i + ' .stop-sub');
+    if (subEl) {
+      tl.fromTo(subEl, {opacity:0, y: 10}, {opacity:1, y: 0, duration: 0.4, ease: 'power2.out'}, t + 0.35);
+    }
+    
+    // ═══ Exit — slide left ═══
+    if (!isLast) {
+      tl.to('#sb'+i, {opacity:0, x: -40, duration: 0.3, ease: 'power2.in'}, te - 0.35);
+    }
+    
+    // Dot
+    if (i > 0) tl.set('#d'+(i-1), {background:'rgba(255,255,255,0.2)',boxShadow:'none'}, t);
+    tl.set('#d'+i, {background:'#F59E0B',boxShadow:'0 0 8px rgba(245,158,11,0.4)'}, t);
+  });
+  
+  var ct = cta.start || Math.max(0, totalDur - 3.5);
+  tl.fromTo('#cta', {opacity:0,scale:0.85,y:20}, {opacity:1,scale:1,y:0,duration:0.5,ease:'back.out(1.5)'}, ct);
+  tl.fromTo('#bbar', {opacity:0,y:10}, {opacity:1,y:0,duration:0.35,ease:'power3.out'}, ct+0.3);
+  
+  tl.set({}, {}, totalDur);
+  window.__timelines['main'] = tl;
+  window.__hf = { duration: totalDur, seek: function(t) { if(window.__timelines&&window.__timelines['main']) window.__timelines['main'].seek(t); } };
+})();
+</script>
+</body>
+</html>

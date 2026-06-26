@@ -1,35 +1,166 @@
----
-name: "Memory Bridge"
-description: "Enables AI to retain and access previous session context across restarts by automatically saving and loading user identity, tasks, and preferences from memor..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-bridge"
-sourceUrl: "https://clawhub.ai/skills/memory-bridge"
+# memory-bridge Skill
+
+> **新会话重启后，AI 还知道上次在聊什么。**
+> 
+> 装一次，记忆永远在。不会因为重启窗口就全忘了。
+
+触发关键词："初始化记忆"、"开启记忆"、"记忆系统"、"帮我建记忆"、"让AI记住我"
+
 ---
 
-# Memory Bridge
+## 这是什么
 
-> Enables AI to retain and access previous session context across restarts by automatically saving and loading user identity, tasks, and preferences from memor...
+这是一个让 AI 拥有持久记忆的技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-bridge`
-- **Source URL:** [https://clawhub.ai/skills/memory-bridge](https://clawhub.ai/skills/memory-bridge)
+**核心价值：** 即使开新会话、清上下文，AI 也能通过记忆文件知道：
+- 你是谁
+- 上次在聊什么
+- 任务做到哪一步了
 
-## Overview
+**我们不碰：** 你已有的人设（SOUL.md）、行为规范（AGENTS.md）、工具配置（TOOLS.md）
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 如何使用
+
+### 安装
+
 ```bash
-hermes skills install clawhub/memory-bridge
+clawhub install memory-system
 ```
+
+### 启动（自动的！）
+
+装完后**不用手动启动**，AI 下次唤醒时会自动检测：
+
+```
+检测到 MEMORY.md 不存在
+  → 主动引导用户初始化（问"我来帮你建好吗？"）
+
+检测到 MEMORY.md 已存在
+  → 自动读取索引（10行以内）
+  → 知道：你是谁、在做什么
+  → 主动告诉你"我记得你..."
+```
+
+**你只需要：开新窗口，AI 就会自动帮你搞定。**
+
+### 手动触发（如果需要）
+
+如果 AI 没有自动启动，你可以手动触发：
+
+```
+对我说："初始化记忆系统" 或 "帮我开启记忆"
+```
+
+---
+
+## 首次激活（引导式）
+
+当你被唤醒，发现 workspace 中没有 `MEMORY.md` 时：
+
+### 第一步：说明价值
+
+> 🤍 你好！我发现你还没有开启记忆系统。
+> 
+> 现在每次新会话，AI 就把之前聊过的东西全忘了。
+> 开了记忆系统之后就不一样了——
+> **即使你开新窗口，我也能知道上次在聊什么。**
+> 
+> 我来帮你建好吗？
+
+### 第二步：逐步构建
+
+```
+Step 1 - 建索引文件
+  检查 ~/.openclaw/workspace/MEMORY.md
+  → 不存在：从 templates/MEMORY.md 复制
+  → 已存在：跳过
+
+Step 2 - 建记忆目录
+  检查 ~/.openclaw/workspace/memory/
+  → 不存在：创建目录，复制模板文件
+  → 已存在：跳过
+
+Step 3 - 建学习记录目录
+  检查 ~/.openclaw/workspace/.learnings/
+  → 不存在：创建目录，复制模板文件
+  → 已存在：跳过
+
+Step 4 - 建用户档案（如果还没有）
+  检查 ~/.openclaw/workspace/USER.md
+  → 不存在：从 templates/USER.md 复制
+  → 已存在：跳过
+```
+
+### 第三步：完成
+
+> ✅ 记忆系统已就绪！
+> 试试看：开一个新窗口，问我"我们上次在聊什么？"
+
+---
+
+## 每次新会话的执行流程
+
+这是本 skill 的核心——每次 AI 醒来都执行这套流程：
+
+```
+1. 读取 MEMORY.md（索引，8行以内）
+   → 知道：用户是谁、偏好是什么、当前任务在哪
+
+2. 检查是否有当前任务
+   → 如果索引里有 "当前任务：memory/current-handoff.md"
+   → 读取 current-handoff.md
+   → 知道：在做什么、进度如何、下一步是什么
+
+3. 检查是否有最近教训
+   → 如果索引里有 "教训/错误：.learnings/"
+   → 读取 .learnings/ERRORS.md（只读前20行）
+   → 知道：之前踩过什么坑
+
+4. 主动告知主人
+   → "我记得你叫xxx，上次我们在聊xxx，继续吗？"
+```
+
+---
+
+## 日常对话中的记录规则
+
+当发生以下情况时，写入对应文件：
+
+| 发生了什么 | 写入哪里 |
+|-----------|---------|
+| 主人说了一个偏好 | MEMORY.md 的"偏好"行 |
+| 主人开始新任务 | memory/current-handoff.md |
+| 主人纠正了我的错误 | .learnings/ERRORS.md |
+| 主人教了我新东西 | .learnings/LEARNINGS.md |
+| 遇到重要的人/项目/工具 | memory/entities.md |
+
+### 精简原则
+
+> **记忆不是写日记，是建索引。**
+
+- MEMORY.md 保持在 **10 行以内**（这是唯一自动加载的文件）
+- 其他文件按需读取，写多少都不影响初始 token
+- 过时信息主动清理
+
+---
+
+## 文件结构
+
+```
+~/.openclaw/workspace/
+├── MEMORY.md                ← 索引（新会话唯一自动加载的，8行）
+├── USER.md                  ← 用户档案（按需读取）
+├── memory/
+│   ├── current-handoff.md   ← 任务卡（按需读取）
+│   ├── entities.md          ← 人物/项目/工具（按需读取）
+│   ├── SESSION-STATE.md     ← 临时日志
+│   └── working-buffer.md    ← 上下文缓冲
+└── .learnings/
+    ├── LEARNINGS.md         ← 教训（按需读取）
+    ├── ERRORS.md            ← 错误（按需读取）
+    └── FEATURE_REQUESTS.md  ← 功能需求
+```
+
+**只有 MEMORY.md 在新会话时自动加载，其他全部按需读取。**

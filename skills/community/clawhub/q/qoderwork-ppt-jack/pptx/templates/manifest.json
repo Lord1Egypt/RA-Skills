@@ -1,0 +1,217 @@
+{
+  "templates": [
+    {
+      "id": "cover",
+      "file": "01-cover.html",
+      "purpose": "封面/标题页",
+      "figmaNodeId": "101-2468",
+      "slots": [
+        { "id": "coverBackground", "selector": "[data-slot='coverBackground']", "type": "image", "optional": true, "hint": "【勿主动填】封面背景使用模板默认。仅当用户明确要求自定义封面图时才填 URL 或 output/images/xxx.png" },
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "description", "selector": "[data-slot='description']", "type": "richtext", "optional": true },
+        { "id": "footer", "selector": "[data-slot='footer']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "contents",
+      "file": "02-contents.html",
+      "purpose": "目录页",
+      "figmaNodeId": "101-2476",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 40 },
+        { "id": "intro", "selector": "[data-slot='intro']", "type": "text", "optional": true },
+        { "id": "chapter1", "selector": "[data-slot='chapter1']", "type": "text", "optional": true },
+        { "id": "chapter2", "selector": "[data-slot='chapter2']", "type": "text", "optional": true },
+        { "id": "chapter3", "selector": "[data-slot='chapter3']", "type": "text", "optional": true },
+        { "id": "chapter4", "selector": "[data-slot='chapter4']", "type": "text", "optional": true },
+        { "id": "chapter5", "selector": "[data-slot='chapter5']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "section-divider",
+      "file": "03-section-divider.html",
+      "purpose": "章节分隔页",
+      "figmaNodeId": "101-2485",
+      "slots": [
+        { "id": "chapterNumber", "selector": "[data-slot='chapterNumber']", "type": "text", "maxLength": 4 },
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "statement", "selector": "[data-slot='statement']", "type": "text", "optional": true },
+        { "id": "image", "selector": "[data-slot='image']", "type": "image", "optional": true, "aiGeneratable": true, "hint": "【尽量勿填】使用模板默认插图。仅当用户明确要求更换章节配图时才填 URL 或 output/images/xxx.png" }
+      ]
+    },
+    {
+      "id": "content-left-text-right-image",
+      "file": "04-content-left-text-right-image.html",
+      "purpose": "左文右图内容页",
+      "figmaNodeId": "101-2493",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "block1Heading", "selector": "[data-slot='block1Heading']", "type": "text", "optional": true },
+        { "id": "block1Copy", "selector": "[data-slot='block1Copy']", "type": "text", "optional": true },
+        { "id": "block2Heading", "selector": "[data-slot='block2Heading']", "type": "text", "optional": true },
+        { "id": "block2Copy", "selector": "[data-slot='block2Copy']", "type": "text", "optional": true },
+        { "id": "block3Heading", "selector": "[data-slot='block3Heading']", "type": "text", "optional": true },
+        { "id": "block3Copy", "selector": "[data-slot='block3Copy']", "type": "text", "optional": true },
+        { "id": "image", "selector": "[data-slot='image']", "type": "image", "aiGeneratable": true, "hint": "MUST generate or search a contextual image — do NOT leave the default placeholder. Use generate_image based on slide title+content, or web_search for a relevant photo. Save to output/images/ and fill the local path." }
+      ]
+    },
+    {
+      "id": "content-one-columns",
+      "file": "05-content-one-columns.html",
+      "purpose": "单项内容页（双栏卡片）",
+      "figmaNodeId": "101-2526",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "block1Heading", "selector": "[data-slot='block1Heading']", "type": "text", "optional": true },
+        { "id": "block1Copy", "selector": "[data-slot='block1Copy']", "type": "richtext", "optional": true },
+        { "id": "block2Heading", "selector": "[data-slot='block2Heading']", "type": "text", "optional": true },
+        { "id": "block2Copy", "selector": "[data-slot='block2Copy']", "type": "richtext", "optional": true }
+      ]
+    },
+    {
+      "id": "content-two-columns",
+      "file": "06-content-two-columns.html",
+      "purpose": "双栏内容页（带图标卡片）",
+      "figmaNodeId": "101-2509",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "block1Image", "selector": "[data-slot='block1Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block1Heading", "selector": "[data-slot='block1Heading']", "type": "text", "optional": true },
+        { "id": "block1Copy", "selector": "[data-slot='block1Copy']", "type": "text", "optional": true },
+        { "id": "block2Image", "selector": "[data-slot='block2Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block2Heading", "selector": "[data-slot='block2Heading']", "type": "text", "optional": true },
+        { "id": "block2Copy", "selector": "[data-slot='block2Copy']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "content-three-columns",
+      "file": "07-content-three-columns.html",
+      "purpose": "三栏内容页（带图标卡片）",
+      "figmaNodeId": "101-2538",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "block1Image", "selector": "[data-slot='block1Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block1Heading", "selector": "[data-slot='block1Heading']", "type": "text", "optional": true },
+        { "id": "block1Copy", "selector": "[data-slot='block1Copy']", "type": "text", "optional": true },
+        { "id": "block2Image", "selector": "[data-slot='block2Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block2Heading", "selector": "[data-slot='block2Heading']", "type": "text", "optional": true },
+        { "id": "block2Copy", "selector": "[data-slot='block2Copy']", "type": "text", "optional": true },
+        { "id": "block3Image", "selector": "[data-slot='block3Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block3Heading", "selector": "[data-slot='block3Heading']", "type": "text", "optional": true },
+        { "id": "block3Copy", "selector": "[data-slot='block3Copy']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "content-four-columns",
+      "file": "08-content-four-columns.html",
+      "purpose": "四栏内容页（2x2 带图标卡片）",
+      "figmaNodeId": "101-2561",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "block1Image", "selector": "[data-slot='block1Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block1Heading", "selector": "[data-slot='block1Heading']", "type": "text", "optional": true },
+        { "id": "block1Copy", "selector": "[data-slot='block1Copy']", "type": "text", "optional": true },
+        { "id": "block2Image", "selector": "[data-slot='block2Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block2Heading", "selector": "[data-slot='block2Heading']", "type": "text", "optional": true },
+        { "id": "block2Copy", "selector": "[data-slot='block2Copy']", "type": "text", "optional": true },
+        { "id": "block3Image", "selector": "[data-slot='block3Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block3Heading", "selector": "[data-slot='block3Heading']", "type": "text", "optional": true },
+        { "id": "block3Copy", "selector": "[data-slot='block3Copy']", "type": "text", "optional": true },
+        { "id": "block4Image", "selector": "[data-slot='block4Image']", "type": "image", "optional": true, "aiGeneratable": true },
+        { "id": "block4Heading", "selector": "[data-slot='block4Heading']", "type": "text", "optional": true },
+        { "id": "block4Copy", "selector": "[data-slot='block4Copy']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "data-highlight",
+      "file": "09-data-highlight.html",
+      "purpose": "数据展示页（黑底高亮数字）",
+      "figmaNodeId": "101-2591",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "data1Num", "selector": "[data-slot='data1Num']", "type": "text", "maxLength": 8 },
+        { "id": "data1Desc", "selector": "[data-slot='data1Desc']", "type": "text", "optional": true },
+        { "id": "data2Num", "selector": "[data-slot='data2Num']", "type": "text", "maxLength": 8 },
+        { "id": "data2Desc", "selector": "[data-slot='data2Desc']", "type": "text", "optional": true },
+        { "id": "data3Num", "selector": "[data-slot='data3Num']", "type": "text", "maxLength": 8 },
+        { "id": "data3Desc", "selector": "[data-slot='data3Desc']", "type": "text", "optional": true },
+        { "id": "slogan", "selector": "[data-slot='slogan']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "quote",
+      "file": "10-quote.html",
+      "purpose": "金句/引用页（黑底绿字）",
+      "figmaNodeId": "101-2605",
+      "slots": [
+        { "id": "quote", "selector": "[data-slot='quote']", "type": "richtext", "maxLength": 500 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "timeline",
+      "file": "11-timeline.html",
+      "purpose": "时间轴/流程页（3 步骤）",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "step1Number", "selector": "[data-slot='step1Number']", "type": "text", "maxLength": 4 },
+        { "id": "step1Heading", "selector": "[data-slot='step1Heading']", "type": "text", "optional": true },
+        { "id": "step1Copy", "selector": "[data-slot='step1Copy']", "type": "text", "optional": true },
+        { "id": "step2Number", "selector": "[data-slot='step2Number']", "type": "text", "maxLength": 4 },
+        { "id": "step2Heading", "selector": "[data-slot='step2Heading']", "type": "text", "optional": true },
+        { "id": "step2Copy", "selector": "[data-slot='step2Copy']", "type": "text", "optional": true },
+        { "id": "step3Number", "selector": "[data-slot='step3Number']", "type": "text", "maxLength": 4 },
+        { "id": "step3Heading", "selector": "[data-slot='step3Heading']", "type": "text", "optional": true },
+        { "id": "step3Copy", "selector": "[data-slot='step3Copy']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "full-image",
+      "file": "12-full-image.html",
+      "purpose": "全图声明页（背景大图 + 文字叠加）",
+      "slots": [
+        { "id": "image", "selector": "[data-slot='image']", "type": "image", "aiGeneratable": true, "hint": "MUST generate or search a full-bleed background image. Use generate_image or web_search, save to output/images/." },
+        { "id": "statement", "selector": "[data-slot='statement']", "type": "text", "maxLength": 120 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "tag", "selector": "[data-slot='tag']", "type": "text", "optional": true, "maxLength": 30 }
+      ]
+    },
+    {
+      "id": "comparison",
+      "file": "13-comparison.html",
+      "purpose": "对比页（左右两栏对比）",
+      "slots": [
+        { "id": "title", "selector": "[data-slot='title']", "type": "text", "maxLength": 80 },
+        { "id": "subtitle", "selector": "[data-slot='subtitle']", "type": "text", "optional": true },
+        { "id": "leftLabel", "selector": "[data-slot='leftLabel']", "type": "text", "maxLength": 40 },
+        { "id": "leftItem1", "selector": "[data-slot='leftItem1']", "type": "text", "optional": true },
+        { "id": "leftItem2", "selector": "[data-slot='leftItem2']", "type": "text", "optional": true },
+        { "id": "leftItem3", "selector": "[data-slot='leftItem3']", "type": "text", "optional": true },
+        { "id": "leftItem4", "selector": "[data-slot='leftItem4']", "type": "text", "optional": true },
+        { "id": "rightLabel", "selector": "[data-slot='rightLabel']", "type": "text", "maxLength": 40 },
+        { "id": "rightItem1", "selector": "[data-slot='rightItem1']", "type": "text", "optional": true },
+        { "id": "rightItem2", "selector": "[data-slot='rightItem2']", "type": "text", "optional": true },
+        { "id": "rightItem3", "selector": "[data-slot='rightItem3']", "type": "text", "optional": true },
+        { "id": "rightItem4", "selector": "[data-slot='rightItem4']", "type": "text", "optional": true }
+      ]
+    },
+    {
+      "id": "thank-you",
+      "file": "14-thank-you.html",
+      "purpose": "致谢页（仅底部描述可改）",
+      "figmaNodeId": "101-2609",
+      "slots": [
+        { "id": "description", "selector": "[data-slot='description']", "type": "text", "optional": true }
+      ]
+    }
+  ]
+}

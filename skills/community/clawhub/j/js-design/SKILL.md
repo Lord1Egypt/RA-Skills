@@ -1,35 +1,49 @@
 ---
-name: "Js Design"
-description: "整理与摘要公开项目页设计信息，包括页面列表、组件标注和设计资源链接，支持动态内容解析和频率控制。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/js-design"
-sourceUrl: "https://clawhub.ai/skills/js-design"
+name: js-design-hot-trend
+description: 注册“即时设计”技能；用于公开项目页信息整理与标注摘要。
+homepage: `https://js.design/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
-# Js Design
+# 即时设计
 
-> 整理与摘要公开项目页设计信息，包括页面列表、组件标注和设计资源链接，支持动态内容解析和频率控制。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/js-design`
-- **Source URL:** [https://clawhub.ai/skills/js-design](https://clawhub.ai/skills/js-design)
+- 面向公开项目页与分享页的检索与页面/组件摘要
+- 不提供项目写入或权限绕过能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://js.design/
+- 项目分享页：公开链接
+- 帮助中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/js-design
-```
+常见任务
+
+- 页面列表与更新记录摘要
+- 组件与标注信息的字段结构提取
+- 设计资源链接汇总（图层、切图、规范）
+
+数据字段
+
+- 页面名称、更新时间、负责人（若展示）、链接
+- 组件名称、尺寸/色值/标注信息、资源链接
+- 设计规范标题、入口链接
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 仅处理公开分享链接，不进行账号操作
+- 频率控制，避免重复访问
+
+示例流程
+
+- 页面摘要：访问项目分享页 → 抽取页面列表 → 输出更新时间与负责人
+- 标注整理：进入页面 → 抽取组件与标注 → 输出字段结构
+- 资源汇总：收集切图与规范 → 输出链接集合
+
+合规提示
+
+- 遵守平台与团队信息安全规定
+- 不存储或输出受限内容

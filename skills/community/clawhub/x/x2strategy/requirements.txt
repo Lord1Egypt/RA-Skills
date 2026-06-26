@@ -1,0 +1,11 @@
+# Core
+litellm>=1.40
+PyMuPDF>=1.24
+pymupdf4llm>=0.0.10
+python-dotenv>=1.0
+
+# Optional: Mode B (agent mode with FAISS semantic search)
+# langchain-community>=0.2
+# langchain-text-splitters>=0.2
+# sentence-transformers>=2.2
+# faiss-cpu>=1.7

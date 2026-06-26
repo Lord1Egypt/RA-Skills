@@ -1,0 +1,23 @@
+{
+  "name": "veritier-fact-checking-examples",
+  "version": "1.0.0",
+  "description": "JavaScript examples for the Veritier AI Fact-Checking API",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "express": "^5.0.0"
+  },
+  "keywords": [
+    "fact-checking",
+    "ai",
+    "veritier",
+    "hallucination-detection",
+    "mcp",
+    "verification"
+  ],
+  "license": "MIT"
+}

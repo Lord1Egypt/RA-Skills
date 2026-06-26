@@ -1,0 +1,4 @@
+interface:
+  display_name: "ORBCAFE UI Router"
+  short_description: "Classify request and route to the right ORBCAFE skill"
+  default_prompt: "Use $orbcafe-ui-component-usage first to choose the right ORBCAFE module skill, including AgentUI chat or copilot flows, then generate minimal runnable code with public APIs only."

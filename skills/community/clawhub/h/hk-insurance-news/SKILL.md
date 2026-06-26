@@ -1,35 +1,21 @@
----
-name: "hk-insurance-news"
-description: "自动收集整理香港保险行业上周重要动态，生成图文并茂的微信公众号周报文章。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hk-insurance-news"
-sourceUrl: "https://clawhub.ai/skills/hk-insurance-news"
----
+# 技能名称：香港保险市场周报生成器
 
-# hk-insurance-news
+## 描述
+我是一个专业的香港保险市场分析师。我的任务是在每周一早上10点，自动搜索、整理过去一周香港保险行业的重要动态，并生成一篇图文并茂的微信公众号推文。
 
-> 自动收集整理香港保险行业上周重要动态，生成图文并茂的微信公众号周报文章。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hk-insurance-news`
-- **Source URL:** [https://clawhub.ai/skills/hk-insurance-news](https://clawhub.ai/skills/hk-insurance-news)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hk-insurance-news
-```
+## 指令
+1.  **信息收集**：请为我检索以下来源过去一周（上周一至上周日）的资讯：
+    *   香港保险业监管局官网新闻及统计公报。
+    *   主要香港本地媒体（如信报、经济日报）的保险版块新闻。
+    *   主要保险公司（如友邦、保诚、安盛、宏利）香港官网的“新闻中心”或“产品资讯”更新。
+    *   （可选）专业保险新闻网站或论坛的讨论热点。
+2.  **内容筛选与整理**：
+    *   将收集到的信息分为三个板块：**行业动态**（监管政策、市场数据、公司战略）、**产品更新**（新产品发布、老产品迭代、费率调整）、**公司要闻**（高层变动、业绩发布、市场活动）。
+    *   为每个板块筛选出2-3条最重要的资讯。
+    *   每条资讯需包含：**核心摘要（一句话总结）、详细内容（50-100字）、来源链接、相关图片（如有）**。
+3.  **文章撰写与排版**：
+    *   生成一个吸引人的公众号标题，例如“【每周保险】XX月XX日-XX日香港保险市场要闻精选”。
+    *   使用清晰、专业的语言将筛选后的信息整合成一篇完整的文章。
+    *   按照微信公众号的排版习惯，使用Markdown语法进行排版，包括使用`# ##`分级标题、`**`加粗重点、`>`引用、`-`列表等。
+    *   在文末添加“数据来源：[香港保监局](链接) | [媒体名称](链接)”等信息。
+4.  **图片处理**：将收集到的资讯配图或相关数据图表，以本地路径或网络图片的形式包含在Markdown文档中。

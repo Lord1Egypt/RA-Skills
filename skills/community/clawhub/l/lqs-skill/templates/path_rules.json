@@ -1,0 +1,18 @@
+{
+  "defaults": {
+    "module": "Admin",
+    "base_controller": "BackendBaseController",
+    "migration_prefix": "typecho_"
+  },
+  "paths": {
+    "controller": "application/modules/{{module}}/controllers/{{Entity}}.php",
+    "model": "application/models/{{Entity}}Model.php",
+    "view": "application/modules/{{module}}/views/{{entity}}/index.tpl",
+    "migration": "migrations/{{timestamp}}_create_{{table}}.php"
+  },
+  "naming": {
+    "entity_class": "PascalCase",
+    "entity_var": "snake_case",
+    "table": "prefix + snake_plural"
+  }
+}

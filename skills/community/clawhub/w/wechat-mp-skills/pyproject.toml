@@ -1,0 +1,19 @@
+[project]
+name = "wechat-mp-skills"
+version = "1.0.0"
+description = "微信公众号自动发布技能 - 支持AI写作、本地文件、爬虫伪原创"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.28.0",
+]
+
+[project.scripts]
+wechat-mp = "scripts.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["scripts"]
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"

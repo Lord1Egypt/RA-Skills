@@ -1,0 +1,14 @@
+{
+  "name": "ask-claude",
+  "version": "1.1.0",
+  "description": "Run Claude Code CLI from inside OpenClaw with persistent sessions \u2014 captures output and reports back automatically",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "cli",
+    "delegation",
+    "automation"
+  ],
+  "author": "0xManel",
+  "license": "MIT"
+}

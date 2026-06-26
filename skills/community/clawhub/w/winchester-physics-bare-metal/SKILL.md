@@ -1,35 +1,16 @@
----
-name: "Winchester Physics Bare Metal"
-description: "Optimized unsandboxed configuration for Ryzen 9 5900XT and RX 6600XT with 48GB RAM, enabling balanced GPU/CPU usage for theoretical physics research."
-category: "other"
-source: "ClawHub"
-tags: [amd, bare-metal, local-ai, physics]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/winchester-physics-bare-metal"
-sourceUrl: "https://clawhub.ai/skills/winchester-physics-bare-metal"
----
+# Winchester Physics Bare Metal
+    Optimized for Ryzen 9 5900XT and RX 6600XT with 48GB RAM.
+    This is an unsandboxed gemma4 configuration for theoretical physics.
 
 # Winchester Physics Bare Metal
 
-> Optimized unsandboxed configuration for Ryzen 9 5900XT and RX 6600XT with 48GB RAM, enabling balanced GPU/CPU usage for theoretical physics research.
+**Hardware Profile:** 
+- CPU: AMD Ryzen 9 5900XT
+- GPU: AMD Radeon RX 6600XT (8GB VRAM)
+- RAM: 48GB
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/winchester-physics-bare-metal`
-- **Source URL:** [https://clawhub.ai/skills/winchester-physics-bare-metal](https://clawhub.ai/skills/winchester-physics-bare-metal)
+**Optimized Setup:**
+This "Soul" is configured for a stable 54/46 GPU/CPU split using `gemma4` and `nomi-embed-text`. It is fully unsandboxed and tuned for theoretical physics research (Probability-Cycle theory) and local LLM performance.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/winchester-physics-bare-metal
-```
+**Usage:**
+Intended for high-RAM local workstations. Fixes common `no_re` errors by balancing event-loop priority.

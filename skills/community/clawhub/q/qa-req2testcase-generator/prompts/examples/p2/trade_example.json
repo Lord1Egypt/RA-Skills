@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-TRADE-001",
+  "test_points": [
+    {
+      "id": "TP-001",
+      "source_scenario": "委托撤单-主流程",
+      "category": "main_flow",
+      "description": "投资者对未成交买入委托发起撤单，撤单成功后冻结资金释放",
+      "precondition": "投资者已有一笔未成交的买入委托",
+      "related_rules": ["撤单仅限未成交或部分成交委托"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-002",
+      "source_scenario": "委托撤单-部分成交撤单",
+      "category": "branch",
+      "description": "投资者对部分成交委托发起撤单，仅撤销未成交部分，已成交部分不受影响",
+      "precondition": "投资者已有一笔部分成交的委托",
+      "related_rules": ["部分成交委托可撤销未成交部分"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-003",
+      "source_scenario": "委托撤单-已成交委托撤单",
+      "category": "exception",
+      "description": "投资者对已全部成交的委托发起撤单，系统拒绝并提示不可撤单",
+      "precondition": "投资者已有一笔全部成交的委托",
+      "related_rules": ["已成交委托不可撤单"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-004",
+      "source_scenario": "委托撤单-非交易时段撤单",
+      "category": "boundary",
+      "description": "投资者在非交易时段发起撤单请求，系统拒绝并提示当前不在交易时段",
+      "precondition": "当前时间为非交易时段",
+      "related_rules": ["撤单需在交易时段内"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-005",
+      "source_scenario": "委托撤单-冻结资金释放准确性",
+      "category": "main_flow",
+      "description": "撤单成功后，验证冻结资金释放金额与撤单委托金额一致",
+      "precondition": "投资者已成功撤单一笔买入委托",
+      "related_rules": ["撤单后冻结资金应全额释放"],
+      "related_roles": ["投资者", "清算系统"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    }
+  ],
+  "coverage_summary": {
+    "total": 5,
+    "by_category": {
+      "main_flow": 2,
+      "branch": 1,
+      "exception": 1,
+      "boundary": 1
+    }
+  }
+}

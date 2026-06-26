@@ -1,35 +1,123 @@
 ---
-name: "食品健康管家"
-description: "食品健康管家。识别食品配料表，分析成分健康程度，给出打分和建议。"
-category: "health"
-source: "ClawHub"
-tags: [food, health, nutrition, score]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/food-health-manager"
-sourceUrl: "https://clawhub.ai/skills/food-health-manager"
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: b08e6950fdabb11760cf364b6c70eb62
+    PropagateID: b08e6950fdabb11760cf364b6c70eb62
+    ReservedCode1: 304502202959cc4eae762ab632b17c123a7f6b22df0473f698684e1d81f47bc59e9e5d20022100e470c2b208e16aea7e097621eb090499970c44e96dadce124c133de45bb063a5
+    ReservedCode2: 3045022100f247d5b3f2014e5ab6320132967e42b4499ecd9c984c897d5faa97f63ab41d8d022066dc119ed79c9c21770437121f02ebb20397435c9b3112c34348a6d461afe524
+author: liny
+description: 食品健康管家。识别食品配料表，分析成分健康程度，给出打分和建议。
+name: food_health_manager
+tags:
+    - food
+    - health
+    - nutrition
+    - score
+version: 2.2.0
 ---
 
 # 食品健康管家
 
-> 食品健康管家。识别食品配料表，分析成分健康程度，给出打分和建议。
+## 我能做什么
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/food-health-manager`
-- **Source URL:** [https://clawhub.ai/skills/food-health-manager](https://clawhub.ai/skills/food-health-manager)
+1. **识别配料表** - 你发食品配料表图片，我识别成分
+2. **分析成分** - 识别健康成分和不健康成分
+3. **打分** - 1-10分，10分最健康
+4. **建议** - 给出是否推荐食用
+5. **理由** - 解释打分原因
 
-## Overview
+## 评分标准（1-10分制）
 
+### 核心原则
+- **按类别评估，每类最多扣/加一次**
+- 不按成分数量累计扣分
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/food-health-manager
+### 评分逻辑
+- **基础分**：6分（大部分加工食品基准）
+- **计算公式**：min(10, max(1, 基础分 + 加分 - 扣分))
+
+### 评估类别
+
+| 类别 | 评估内容 | 加分 | 扣分 |
+|------|----------|------|------|
+| 主料 | 天然食材、全谷物 | +1 | -0.5（精制碳水） |
+| 油脂 | 优质油脂（不饱和脂肪酸） | +0.5 | -1（高油）/-1.5（反式脂肪/植脂末） |
+| 糖盐 | 无添加糖盐 | +0.5 | -1（仅糖高/仅盐高）/-1.5（都高） |
+| 添加剂 | 天然香辛料 | +0.5 | -1（人工甜味剂）/-0.5（防腐剂/色素）/-3（多种高风险添加剂） |
+| 营养 | 蛋白质、膳食纤维、维生素 | +0.5~1 | - |
+
+### 评分等级
+| 分数 | 等级 | 建议 |
+|------|------|------|
+| 8-10 | 🟢 推荐 | 可以经常食用 |
+| 6-7 | 🟡 适量 | 偶尔食用 |
+| 4-5 | 🟠 谨慎 | 建议少食 |
+| 1-3 | 🔴 不推荐 | 尽量避免 |
+
+## 输出格式
+
+### 发图片
 ```
+你：（发送配料表图片）
+我：### 🍎 食品名称分析
+
+**配料表：** [列出主要成分]
+
+**按类别评估：**
+
+| 类别 | 具体成分 | 分数 | 详细说明 |
+|------|----------|------|----------|
+| 主料 | xxx | -0.5 | 说明 |
+| 油脂 | xxx | -1 | 说明 |
+| 糖盐 | xxx | -1.5 | 说明 |
+| 添加剂 | xxx | -1.5 | 说明 |
+| 营养 | xxx | +1 | 说明 |
+
+**计算：** 6 - 0.5 - 1 - 1.5 - 1.5 + 1 = X分
+
+**总分：** X/10 🔴 不推荐
+
+**建议：** 尽量避免食用
+
+**理由：**
+- [简要说明]
+
+---
+
+### ⚠️ 风险项详细说明（配料表较复杂时添加）
+
+| 风险类型 | 具体成分 | 危害 |
+|----------|----------|------|
+| 添加糖 | xxx | 肥胖、龋齿 |
+| 代糖 | xxx | 代谢紊乱 |
+| 防腐剂 | xxx | 肝脏负担 |
+| 人工色素 | xxx | 过敏风险 |
+| 其他 | xxx | xxx |
+
+---
+
+[一句幽默收尾]
+```
+
+## 常见食品参考
+
+| 食品 | 分数 | 建议 |
+|------|------|------|
+| 新鲜水果 | 9/10 | 推荐 |
+| 新鲜蔬菜 | 9/10 | 推荐 |
+| 全麦面包 | 8/10 | 推荐 |
+| 牛奶 | 7/10 | 适量 |
+| 坚果 | 8/10 | 推荐 |
+| 可乐 | 3/10 | 不推荐 |
+| 薯片 | 3/10 | 不推荐 |
+| 糖果 | 2/10 | 不推荐 |
+| 方便面 | 4/10 | 谨慎 |
+
+## 注意事项
+
+- 仅供参考，不要过于严格
+- 偶尔吃零食不必焦虑
+- 健康饮食关键是均衡
+- 特殊人群（病人、孕妇）请遵医嘱

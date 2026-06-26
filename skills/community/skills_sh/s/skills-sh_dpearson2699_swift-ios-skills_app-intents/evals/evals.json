@@ -1,0 +1,47 @@
+{
+  "skill_name": "app-intents",
+  "evals": [
+    {
+      "id": 0,
+      "name": "spotlight-indexed-entity-review",
+      "prompt": "Review this App Intents Spotlight plan for an iOS 26 recipe app. We will conform RecipeEntity to IndexedEntity, put title and summary into attributeSet, call CSSearchableIndex.default().indexAppEntities from app launch, and also keep our old CSSearchableItem indexing path for the same recipes. What should we change before implementation?",
+      "expected_output": "A correction-focused review that uses current App Intents and Core Spotlight guidance for IndexedEntity, indexing keys, named indexes, default attributes, duplicate indexing, and opening search results.",
+      "files": [],
+      "expectations": [
+        "Recommends `@Property(indexingKey:)` or `@ComputedProperty(indexingKey:)` with key paths for entity metadata that is already exposed on the AppEntity.",
+        "Says app entities still need to be indexed with `CSSearchableIndex(name: ...).indexAppEntities(...)` and recommends a named index rather than the default index for production.",
+        "Warns that a custom `attributeSet` replaces the default attribute set unless `defaultAttributeSet` contents are included.",
+        "Avoids duplicate search results by recommending `associateAppEntity(_:priority:)` when the app already indexes matching `CSSearchableItem` values.",
+        "Mentions providing an `OpenIntent` for indexed entity types so Spotlight results can open the right app content."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "visual-intelligence-value-query",
+      "prompt": "I need to expose my shopping app to Visual Intelligence on iOS 26. Sketch the App Intents pieces for returning matching ProductEntity and StoreEntity results from onscreen/camera input, and call out the main API constraints so another engineer does not create two competing visual queries.",
+      "expected_output": "An implementation outline that models Visual Intelligence with IntentValueQuery, SemanticContentDescriptor, AppEntity results, optional UnionValue, and handoff/opening behavior.",
+      "files": [],
+      "expectations": [
+        "Uses `IntentValueQuery.values(for input: SemanticContentDescriptor)` for Visual Intelligence matching.",
+        "Uses `input.pixelBuffer` and/or descriptor labels appropriately, and keeps matching work quick and bounded.",
+        "States that only one `IntentValueQuery` can take `SemanticContentDescriptor` and recommends `@UnionValue` when one query must return multiple AppEntity result types.",
+        "Requires returned results to be AppEntity-compatible types with stable identifiers and display representations.",
+        "Mentions providing an `OpenIntent` or equivalent opening path for selected results."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "widget-control-boundary",
+      "prompt": "We are adding a configurable widget, a Control Center toggle, and an interactive Siri snippet for a smart-home app. Write the App Intents review checklist for which protocols belong to each surface and the pitfalls around optional parameters, snippets, and shared actions.",
+      "expected_output": "A boundary-aware checklist that distinguishes WidgetConfigurationIntent, ControlConfigurationIntent, action AppIntent, and SnippetIntent responsibilities without drifting into WidgetKit layout detail.",
+      "files": [],
+      "expectations": [
+        "Uses `WidgetConfigurationIntent` for configurable widget parameters and `ControlConfigurationIntent` for Control Center or Lock Screen control configuration.",
+        "States that a `ControlConfigurationIntent` parameter without a default value must be optional so the system can preview the control before configuration.",
+        "Separates reusable action intents from configuration intents and notes that configuration intents do not need `perform()` unless reused as actions.",
+        "Mentions that `SnippetIntent.perform()` may run multiple times and should avoid side effects while rendering snippet state.",
+        "Keeps detailed WidgetKit layout/timeline architecture outside the App Intents checklist except where it affects protocol choice."
+      ]
+    }
+  ]
+}

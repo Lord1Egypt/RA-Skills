@@ -1,0 +1,38 @@
+{
+  "name": "媳妇智投Pro",
+  "version": "5.3.7",
+  "description": "「媳妇智投Pro」— 14章节专业交易方案模板（免费版）",
+  "author": "AI媳妇",
+  "brand": "媳妇智投Pro",
+  "license": "SEE LICENSE FILE",
+  "private": true,
+  "keywords": [
+    "期货",
+    "股票",
+    "基金",
+    "投资分析",
+    "交易方案",
+    "金融",
+    "AI操盘",
+    "媳妇智投"
+  ],
+  "category": "finance",
+  "price": 0,
+  "currency": "CNY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/ai-xifu-caopan"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "features": [
+    "🌍 多语言输出 + 自动语言检测（移植自全球通引擎）",
+    "🧠 审题+质检机制：用户输入语言 + 市场母语自动匹配",
+    "🇨🇳🇯🇵🇰🇷🇺🇸🇸🇦 28+种语言支持",
+    "全球52个市场覆盖（A股/日股/韩股/美股/欧股等）",
+    "全部模板集成语言检测模块"
+  ]
+}

@@ -1,0 +1,38 @@
+12.8.2 GetInferenceUsage - 查询推理用量
+查询推理用量
+调试
+API Explorer
+您可以通过 API Explorer 在线发起调用，无需关注签名生成过程，快速获取
+调用结果。去调试
+请求参数
+下方仅列出该接口特有的请求参数和部分公共参数。更多信息请见 公共参数
+ 。
+Action string  %%require%% 示例值：GetInferenceUsage
+要执行的操作，取值：GetInferenceUsage。
+Version string  %%require%% 示例值：2024-01-01
+API的版本，取值：2024-01-01。
+ProjectName string 可选 示例值：default
+项目名称
+Filters object[] 可选 示例值：\-
+过滤条件，格式如下：
+Key string  %%require%%
+过滤关键词，支持的取值如下：
+AuthToken：鉴权token 
+jwt token鉴权：取值为用户自身的 jwt token，获取方式详见 JWT鉴权
+API Key鉴权：取值为用户自身的API Key，获取方式详见 获取API Key
+ModelUnitID：模型单元ID
+BillingStatus：计费方式，后付费按量计费值为normal 
+no_need_billing：无需付费，通常为用户未开通服务前的体验用量{
+"Key" :"ModelEndpoint" ,
+"Values" :[
+"test-endpoint" ,
+"test-endpoint2"
+]
+}json
+• 
+◦ 
+◦ 
+• 
+• 
+◦ API参考 12. 管控面 API
+版权所有©北京火山引擎科技有限公司 445/485

@@ -1,0 +1,57 @@
+# Hermes/OpenClaw 运行时配置
+skill:
+  name: gaokao-calculus-bridge
+  version: 1.0.0
+
+runtime:
+  python:
+    version: ">=3.9"
+    dependencies:
+      - numpy
+      - matplotlib
+      - sympy
+      - pandas
+      - scipy
+
+  node:
+    version: ">=18"
+
+environment:
+  required:
+    - OPENAI_API_KEY
+  optional:
+    - GEOGEBRA_API_KEY  # 用于高级可视化
+    - WOLFRAM_APP_ID    # 用于符号计算验证
+
+config:
+  schema:
+    difficulty_level:
+      type: string
+      enum: [high_school, college, bridge]
+      default: bridge
+    domain_focus:
+      type: string
+      enum: [physics, cs, economics, biology, general]
+      default: general
+    output_language:
+      type: string
+      enum: [zh, en]
+      default: zh
+
+activation:
+  triggers:
+    - "高考.*改革"
+    - "情境化.*数学"
+    - "真实世界.*建模"
+    - "长题干.*解析"
+    - "跨学科.*数学"
+    - "项目式.*学习"
+    - "高中.*大学.*衔接"
+  priority: high  # 教育类Skill优先级
+
+integrations:
+  skills:
+    - calculus-concept-visualizer
+    - derivation-animation-skill
+    - error-analysis-skill
+    - calculus-resource-harvester

@@ -1,0 +1,11 @@
+{
+  "name": "wechat-mp-push",
+  "version": "3.0.6",
+  "description": "微信公众号图文生成与推送技能",
+  "private": true,
+  "scripts": {
+    "upload": "node scripts/upload.js",
+    "upload:github": "node scripts/upload.js github",
+    "upload:clawhub": "node scripts/upload.js clawhub"
+  }
+}

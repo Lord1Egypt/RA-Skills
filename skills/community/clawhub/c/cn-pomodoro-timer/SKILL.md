@@ -1,35 +1,71 @@
 ---
-name: "Cn Pomodoro Timer"
-description: "中文番茄钟专注计时工具。开始25分钟专注时段，统计今日完成数量，本地存储无需账号。支持开始、暂停、继续、查看状态、统计等功能。"
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-pomodoro-timer"
-sourceUrl: "https://clawhub.ai/skills/cn-pomodoro-timer"
+slug: cn-pomodoro-timer
+name: 番茄专注计时
+description: 中文番茄钟专注计时工具。开始25分钟专注时段，统计今日完成数量，本地存储无需账号。支持开始、暂停、继续、查看状态、统计等功能。
+keywords: 番茄钟, 专注, 计时, pomodoro, 专注力, 时间管理, 番茄工作法
+version: "1.0.0"
+author: 千策
 ---
 
-# Cn Pomodoro Timer
+# 番茄专注计时
 
-> 中文番茄钟专注计时工具。开始25分钟专注时段，统计今日完成数量，本地存储无需账号。支持开始、暂停、继续、查看状态、统计等功能。
+中文番茄钟专注计时工具，帮助你高效管理专注时间。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-pomodoro-timer`
-- **Source URL:** [https://clawhub.ai/skills/cn-pomodoro-timer](https://clawhub.ai/skills/cn-pomodoro-timer)
+## 功能特性
 
-## Overview
+- 🍅 标准25分钟专注时段
+- ⏸️ 支持暂停和继续
+- 📊 今日完成数量统计
+- 💾 本地数据存储，无需账号
+- 🔔 专注完成提醒
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-pomodoro-timer
+### 开始专注
+
 ```
+开始专注
+开始番茄钟
+```
+
+### 查看状态
+
+```
+查看专注状态
+番茄钟状态
+```
+
+### 暂停/继续
+
+```
+暂停专注
+继续专注
+```
+
+### 统计数据
+
+```
+今日专注
+专注统计
+```
+
+## 数据存储
+
+专注记录保存在本地 `~/.qclaw/data/pomodoro.json`，包含：
+- 开始时间
+- 结束时间
+- 是否完成
+- 暂停时长
+
+## 适用场景
+
+- 需要提高专注力的工作/学习
+- 番茄工作法实践者
+- 时间管理爱好者
+- 需要专注时间统计的用户
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

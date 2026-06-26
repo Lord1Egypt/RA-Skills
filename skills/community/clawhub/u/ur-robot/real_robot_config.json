@@ -1,0 +1,55 @@
+{
+  "_comment": "UR Robot 真机配置文件",
+  "_warning": "此配置文件用于真机，使用前必须确认所有参数！",
+  "_tested": "此配置仅在 URSim 仿真中测试，未在真机验证",
+  
+  "robot_type": "UR5e",
+  "controller": "e-Series",
+  
+  "connection": {
+    "host": "192.168.1.100",
+    "port": 30003,
+    "rtde_port": 30004,
+    "timeout": 5.0
+  },
+  
+  "safety": {
+    "max_speed": 0.3,
+    "max_acceleration": 0.2,
+    "emergency_stop_pin": 0,
+    "workspace_limits": {
+      "x_min": -0.3,
+      "x_max": 0.6,
+      "y_min": -0.6,
+      "y_max": 0.6,
+      "z_min": 0.0,
+      "z_max": 0.5
+    },
+    "singularities_protection": true,
+    "collision_detection": true
+  },
+  
+  "tool": {
+    "mass": 0.5,
+    "center_of_gravity": [0, 0, 0.1],
+    "tool_io_config": {
+      "digital_outputs": 2,
+      "digital_inputs": 2
+    }
+  },
+  
+  "motion": {
+    "default_speed": 0.2,
+    "default_acceleration": 0.1,
+    "blend_radius": 0.05,
+    "home_position": [0, -1.57, 1.57, -1.57, -1.57, 0]
+  },
+  
+  "checks_before_move": {
+    "ping_robot": true,
+    "check_status": true,
+    "check_workspace": true,
+    "check_singularity": true,
+    "manual_confirm": true
+  }
+}

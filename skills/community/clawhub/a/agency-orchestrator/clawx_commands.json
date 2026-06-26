@@ -1,0 +1,29 @@
+{
+  "commands": [
+    {
+      "name": "agency-execute",
+      "description": "使用多 Agent 协作执行复杂任务",
+      "usage": "agency-execute <任务描述>",
+      "examples": [
+        "agency-execute 设计一个现代化的电商网站",
+        "agency-execute 制定社交媒体营销策略",
+        "agency-execute 开发一个用户管理系统"
+      ]
+    },
+    {
+      "name": "agency-list",
+      "description": "列出可用的 Agent",
+      "usage": "agency-list [分类名称]",
+      "examples": [
+        "agency-list",
+        "agency-list design",
+        "agency-list engineering"
+      ]
+    },
+    {
+      "name": "agency-status",
+      "description": "查看 Agent 系统状态",
+      "usage": "agency-status"
+    }
+  ]
+}

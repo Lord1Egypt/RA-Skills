@@ -1,0 +1,49 @@
+name: qwryai-agent-access
+description: Connect OpenClaw to a paid QwryAI workspace through the read-only QwryAI MCP and public API integration surface.
+version: 0.1.0
+homepage: https://qwryai.com
+category: productivity
+keywords:
+  - qwryai
+  - mcp
+  - openclaw
+  - claude
+  - customer-support
+  - analytics
+environment:
+  - name: QWRYAI_API_KEY
+    required: true
+    sensitive: true
+    description: Read-only QwryAI tenant API key generated from Settings > Security > Developer & Agent Access.
+  - name: QWRYAI_MCP_URL
+    required: false
+    default: https://api.qwryai.com/mcp
+    description: QwryAI MCP endpoint.
+  - name: QWRYAI_API_URL
+    required: false
+    default: https://api.qwryai.com/public/v1
+    description: QwryAI public REST API endpoint.
+permissions:
+  network:
+    - https://api.qwryai.com
+security:
+  readOnly: true
+  storesSecrets: false
+  requiresPaidQwryAiWorkspace: true
+  billing: existing-qwryai-plan
+  externalWrites: false
+  forbiddenActions:
+    - send_replies
+    - resolve_conversations
+    - create_update_delete
+    - manage_users
+    - manage_billing
+capabilities:
+  - get_account_context
+  - list_chatbots
+  - get_chatbot
+  - list_conversations
+  - get_conversation
+  - get_conversation_messages
+  - search_knowledge
+  - get_analytics_overview

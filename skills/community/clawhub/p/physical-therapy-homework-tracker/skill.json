@@ -1,0 +1,41 @@
+{
+  "slug": "physical-therapy-homework-tracker",
+  "name": "Physical Therapy Homework Tracker",
+  "displayName": "Physical Therapy Homework Tracker",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Organize clinician-prescribed physical therapy homework into a home-exercise tracker with adherence logs, symptom observations, appointment update notes, blocker review, clinician questions, and red-flag reminders.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Health Routine and Fitness",
+  "triggerKeywords": [
+    "physical therapy homework",
+    "PT exercise tracker",
+    "home exercise program",
+    "physical therapy exercises",
+    "rehab exercise log",
+    "PT adherence tracker",
+    "physiotherapy homework",
+    "therapy appointment update",
+    "pain response notes",
+    "clinician exercise checklist"
+  ],
+  "tags": [
+    "physical-therapy",
+    "health-literacy",
+    "home-exercise",
+    "adherence",
+    "appointment-prep",
+    "routine"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

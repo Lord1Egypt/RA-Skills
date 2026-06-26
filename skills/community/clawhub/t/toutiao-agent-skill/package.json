@@ -1,0 +1,63 @@
+{
+  "name": "toutiao-agent",
+  "version": "1.0.0",
+  "description": "头条号自动化运营技能包 - 菜价垂直领域，日均收益 1 元+",
+  "author": "小虾米",
+  "license": "MIT-0",
+  "keywords": [
+    "头条号",
+    "自媒体运营",
+    "菜价追踪",
+    "内容发布",
+    "收益优化",
+    "免费"
+  ],
+  "category": "content-creation",
+  "pricing": {
+    "model": "free-with-donation",
+    "suggested": {
+      "type": "subscription",
+      "amount": 9.9,
+      "currency": "CNY",
+      "period": "monthly",
+      "note": "建议打赏 9.9 元/月，支持持续更新"
+    },
+    "tiers": [
+      {"name": "免费使用", "amount": 0, "description": "完整功能，免费使用"},
+      {"name": "支持者", "amount": 9.9, "period": "monthly", "description": "月打赏 9.9 元，优先支持"},
+      {"name": "终身支持者", "amount": 99, "period": "one-time", "description": "一次性打赏 99 元，终身支持"}
+    ]
+  },
+  "features": [
+    "自动化发布头条号内容",
+    "菜价数据追踪与分析",
+    "收益优化策略",
+    "多时段定时发布",
+    "活动标签自动匹配",
+    "知识库持续更新"
+  ],
+  "requirements": [
+    "Node.js v24+",
+    "OpenClaw 最新版",
+    "Chrome 浏览器",
+    "头条号账号"
+  ],
+  "install": {
+    "command": "npx clawhub@latest install toutiao-agent",
+    "steps": [
+      "安装 OpenClaw: npm install -g openclaw",
+      "安装技能包：npx clawhub@latest install toutiao-agent",
+      "配置头条号登录信息",
+      "运行恢复脚本：bash restore.sh"
+    ]
+  },
+  "usage": {
+    "daily": "自动执行 4 条内容发布（06:15/11:15/15:45/20:00）",
+    "weekly": "生成周度数据报告",
+    "monthly": "收益汇总与策略调整"
+  },
+  "support": {
+    "email": "todo@example.com",
+    "discord": "todo"
+  }
+}

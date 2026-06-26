@@ -1,35 +1,48 @@
 ---
-name: "Session Snapshot"
-description: "会话快照 - 定期保存会话状态，支持断点恢复"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/session-snapshot"
-sourceUrl: "https://clawhub.ai/skills/session-snapshot"
+name: session-snapshot
+description: 会话快照 - 定期保存会话状态，支持断点恢复
 ---
 
-# Session Snapshot
+# Session Snapshot - 会话快照
 
-> 会话快照 - 定期保存会话状态，支持断点恢复
+## 功能
+定期保存当前会话状态，支持断点恢复和回溯。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/session-snapshot`
-- **Source URL:** [https://clawhub.ai/skills/session-snapshot](https://clawhub.ai/skills/session-snapshot)
+## 快照内容
+| 内容 | 说明 |
+|------|------|
+| 对话历史 | 最近N条消息 |
+| 任务状态 | 进行中的任务及进度 |
+| 上下文 | 当前工作目录、关键变量 |
+| 时间戳 | 快照时间 |
 
-## Overview
+## 保存时机
+1. **定时保存**: 每30分钟
+2. **关键节点**: 任务开始/完成时
+3. **手动保存**: 用户说"保存快照"
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/session-snapshot
+## 恢复机制
 ```
+用户说"恢复上一个快照"
+    ↓
+加载最近快照
+    ↓
+恢复对话上下文
+    ↓
+继续工作
+```
+
+## 文件格式
+```json
+{
+  "timestamp": "2026-04-04T01:57:00+08:00",
+  "session_id": "xxx",
+  "messages": [...],
+  "tasks": [...],
+  "context": {...}
+}
+```
+
+## 使用方式
+- 自动执行（每30分钟）
+- 手动：说"保存快照"或"恢复快照"

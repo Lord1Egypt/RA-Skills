@@ -1,0 +1,9 @@
+{
+  "name": "fwquant-skills",
+  "version": "1.0.0",
+  "description": "FWQuant 量化分析技能包，提供专业的量化策略分析和信号生成功能",
+  "author": "FWQuant Team",
+  "category": "trading",
+  "tags": ["quant", "trading", "strategy", "analysis", "FWQuant"],
+  "main": "main.py"
+}

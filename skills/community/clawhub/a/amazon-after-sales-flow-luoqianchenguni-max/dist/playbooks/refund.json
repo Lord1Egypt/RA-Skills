@@ -1,0 +1,26 @@
+{
+  "name": "refund_request",
+  "description": "Intent-only playbook to request a refund.",
+  "steps": [
+    "open_order_detail",
+    "extract_order_summary",
+    "open_message_center",
+    "draft_refund_message",
+    "fill_message_form",
+    "confirm_send"
+  ],
+  "notes": "Resolver must derive URLs/selectors from current origin.",
+  "version": "1.0.0",
+  "requires_skills": [
+    "amazon_orders_opener",
+    "amazon_order_details_fetcher",
+    "order_reader",
+    "message_drafter",
+    "form_filler",
+    "amazon_contact_flow"
+  ],
+  "supported_sites": [
+    "amazon.com",
+    "amazon.com.au"
+  ]
+}

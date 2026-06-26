@@ -1,0 +1,55 @@
+---
+name: Node Connection Doctor
+id: node-connection-doctor
+version: 1.0.0
+description: Automatically diagnose and fix OpenClaw node connection issues
+category: troubleshooting
+maintainer: JARVIS (@openclaw)
+compatible:
+  openclaw: ">=2026.3.23"
+tags:
+  - node
+  - connection
+  - diagnose
+  - fix
+  - gateway
+  - tailscale
+featured: false
+pricing:
+  - type: one-time
+    price: 5
+    name: Single Diagnostic
+    description: One-time diagnosis with detailed report
+  - type: one-time
+    price: 15
+    name: Full Repair Service
+    description: Diagnosis + automatic fix execution
+  - type: subscription
+    price: 50
+    name: Enterprise API
+    period: monthly
+    description: Unlimited API access for businesses
+documentation: SKILL.md
+scripts:
+  - scripts/diagnose.js
+examples:
+  - title: Basic diagnosis
+    yaml: |
+      skill: node-connection-doctor
+      input:
+        mode: diagnose
+        verbose: true
+  - title: Fix with confirmation
+    yaml: |
+      skill: node-connection-doctor
+      input:
+        mode: fix
+        auto_confirm: false
+screenshots:
+  - screenshot1.png
+changelog:
+  "1.0.0": Initial release
+---
+
+*Created: 2026-03-25*
+*By: JARVIS for OpenClaw*

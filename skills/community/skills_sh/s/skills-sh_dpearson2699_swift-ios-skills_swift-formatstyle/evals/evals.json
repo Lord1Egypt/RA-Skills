@@ -1,0 +1,44 @@
+{
+  "skill_name": "swift-formatstyle",
+  "evals": [
+    {
+      "id": 0,
+      "name": "decimal-format-parse",
+      "prompt": "In an iOS 17 finance screen, replace a NumberFormatter-based amount display with FormatStyle. The amount is Decimal, needs USD display, and imported strings like \"$3,500.63\" should parse back to Decimal. Show the preferred Swift pattern and mention any locale caveats.",
+      "expected_output": "Uses Decimal.FormatStyle for exact decimal display, .currency(code:) with an ISO 4217 code, a matching parse strategy or Decimal initializer for parsing, and locale-aware testing guidance without falling back to NumberFormatter.",
+      "files": [],
+      "assertions": [
+        "Uses `Decimal.FormatStyle` or `Decimal` with `.currency(code:)` rather than binary floating-point formatting.",
+        "Shows or describes parsing a formatted currency string back into `Decimal` with a matching format style or parse strategy.",
+        "Uses ISO 4217 currency codes and does not hardcode currency symbols.",
+        "Mentions locale-sensitive display or parsing behavior without routing the whole implementation to ios-localization."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "url-relative-availability",
+      "prompt": "Audit this SwiftUI snippet for iOS 16: `Text(eventURL.formatted())` and `Text(\"Updated \\(updatedAt.formatted(.relative(presentation: .named)))\")`. The product manager expects URL query strings to remain visible and wants the relative date sentence to work in every locale.",
+      "expected_output": "Flags that URL.FormatStyle is iOS 16+, default URL formatting omits query/port/fragment, recommends explicitly opting into query display when needed, and warns that Date.RelativeFormatStyle output should be standalone rather than embedded in another sentence.",
+      "files": [],
+      "assertions": [
+        "States that `URL.FormatStyle` is available on iOS 16+.",
+        "Correctly says `URL.formatted()` defaults to scheme, host, and path and omits query strings or ports.",
+        "Recommends explicit URL component display options such as `.query(.always)` when query display is required.",
+        "Warns that relative date strings should be standalone because embedding can be grammatically wrong in localized UI."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "localization-boundary",
+      "prompt": "A team is not translating the app yet, but they need a custom ParseableFormatStyle for follower counts like 12.5K, a Date.IntervalFormatStyle review, and URL display formatting. Should this be owned by ios-localization or another skill? Keep the answer short.",
+      "expected_output": "Routes custom FormatStyle, ParseableFormatStyle, Date.IntervalFormatStyle, and URL.FormatStyle design to swift-formatstyle while still mentioning minimal locale-aware testing concerns and preserving ios-localization for broader String Catalogs, plurals, copy, and RTL work.",
+      "files": [],
+      "assertions": [
+        "Routes custom `FormatStyle` or `ParseableFormatStyle` work to `swift-formatstyle`.",
+        "Routes `Date.IntervalFormatStyle` and `URL.FormatStyle` design to `swift-formatstyle` unless the request is mainly localization QA.",
+        "Mentions that user-facing formatted output still needs locale preview or testing even without translation.",
+        "Does not collapse broader localization work such as String Catalogs, plurals, localized copy, or RTL layout into `swift-formatstyle`."
+      ]
+    }
+  ]
+}

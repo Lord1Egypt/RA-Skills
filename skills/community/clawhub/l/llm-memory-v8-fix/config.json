@@ -1,0 +1,49 @@
+{
+  "name": "llm-memory-integration",
+  "version": "8.0.1",
+  "license": "MIT-0",
+  "description": "LLM Memory Integration - 接口层 + 自动化钩子。安装后自动从 CNB 仓库拉取私有增强包。",
+  "author": "@xkzs2007",
+  "homepage": "https://clawhub.ai/skill/llm-memory-integration",
+  "tags": ["memory", "search", "fts", "sdk", "cli", "hooks", "auto-install"],
+  "minOpenClawVersion": "0.1.0",
+  "requirements": {
+    "binaries": ["python3", "sqlite3", "git"],
+    "envVars": {
+      "required": [],
+      "optional": []
+    },
+    "network": true,
+    "networkEndpoints": ["https://cnb.cool/llm-memory-integrat/llm"],
+    "description": "钩子需要网络访问 CNB 仓库克隆私有包"
+  },
+  "networkAccess": {
+    "required": true,
+    "endpoints": ["https://cnb.cool/llm-memory-integrat/llm"],
+    "description": "钩子需要访问 CNB 仓库下载私有包"
+  },
+  "fileAccess": {
+    "read": ["~/.openclaw/memory-tdai/*", "~/.openclaw/workspace/skills/llm-memory-integration/*"],
+    "write": ["~/.openclaw/memory-tdai/*", "~/.openclaw/workspace/skills/llm-memory-integration/src/privileged/*"],
+    "purpose": "Memory storage, configuration, and private package installation"
+  },
+  "security": {
+    "nativeExtensions": false,
+    "subprocessCalls": true,
+    "subprocessDescription": "钩子会调用 git clone 命令",
+    "networkAccess": true,
+    "networkDescription": "钩子会访问 cnb.cool 下载私有包",
+    "systemReads": false,
+    "noHardcodedCredentials": true,
+    "parameterizedQueries": true
+  },
+  "hooks": {
+    "postinstall": "hooks/postinstall.py",
+    "onStartup": "hooks/onStartup.py",
+    "description": "生命周期钩子，自动从 CNB 拉取私有包"
+  },
+  "privilegedPackage": {
+    "url": "https://cnb.cool/llm-memory-integrat/llm",
+    "description": "私有增强包，包含高性能实现、原生扩展、API 集成"
+  }
+}

@@ -1,35 +1,46 @@
 ---
-name: "continuous-agent-loop"
-description: "Indexed by skills.sh from affaan-m/everything-claude-code"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "affaan-m"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/affaan-m/everything-claude-code/continuous-agent-loop"
-sourceUrl: "https://skills.sh/affaan-m/everything-claude-code/continuous-agent-loop"
+name: continuous-agent-loop
+description: Patterns for continuous autonomous agent loops with quality gates, evals, and recovery controls.
+metadata:
+  origin: ECC
 ---
 
-# continuous-agent-loop
+# Continuous Agent Loop
 
-> Indexed by skills.sh from affaan-m/everything-claude-code
+This is the v1.8+ canonical loop skill name. It supersedes `autonomous-loops` while keeping compatibility for one release.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** affaan-m
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/affaan-m/everything-claude-code/continuous-agent-loop`
-- **Source URL:** [https://skills.sh/affaan-m/everything-claude-code/continuous-agent-loop](https://skills.sh/affaan-m/everything-claude-code/continuous-agent-loop)
+## Loop Selection Flow
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/affaan-m/everything-claude-code/continuous-agent-loop
+```text
+Start
+  |
+  +-- Need strict CI/PR control? -- yes --> continuous-pr
+  |
+  +-- Need RFC decomposition? -- yes --> rfc-dag
+  |
+  +-- Need exploratory parallel generation? -- yes --> infinite
+  |
+  +-- default --> sequential
 ```
+
+## Combined Pattern
+
+Recommended production stack:
+1. RFC decomposition (`ralphinho-rfc-pipeline`)
+2. quality gates (`plankton-code-quality` + `/quality-gate`)
+3. eval loop (`eval-harness`)
+4. session persistence (`nanoclaw-repl`)
+
+## Failure Modes
+
+- loop churn without measurable progress
+- repeated retries with same root cause
+- merge queue stalls
+- cost drift from unbounded escalation
+
+## Recovery
+
+- freeze loop
+- run `/harness-audit`
+- reduce scope to failing unit
+- replay with explicit acceptance criteria

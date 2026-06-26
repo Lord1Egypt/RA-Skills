@@ -1,0 +1,94 @@
+name: 'tetra-scar-audit'
+description: 'AI Agent Safety Audit — scan your code for common agent failure patterns'
+author: 'B Button Corp'
+branding:
+  icon: 'shield'
+  color: 'purple'
+
+inputs:
+  path:
+    description: 'Path to scan (default: .)'
+    required: false
+    default: '.'
+  severity:
+    description: 'Minimum severity to report (CRITICAL, HIGH, MEDIUM, LOW)'
+    required: false
+    default: 'LOW'
+  fail-on:
+    description: 'Fail the action if findings at this severity or above (CRITICAL, HIGH, MEDIUM, LOW, NONE)'
+    required: false
+    default: 'CRITICAL'
+
+outputs:
+  score:
+    description: 'Safety score (0-100)'
+  grade:
+    description: 'Safety grade (A-F)'
+  findings:
+    description: 'Number of findings'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+
+    - name: Run scar audit
+      id: audit
+      shell: bash
+      run: |
+        python3 ${{ github.action_path }}/scar_audit.py --local "${{ inputs.path }}" --json > /tmp/scar_audit_result.json 2>&1 || true
+        
+        FINDINGS=$(python3 -c "import json; d=json.load(open('/tmp/scar_audit_result.json')); print(len(d.get('findings',[])))" 2>/dev/null || echo "0")
+        SCORE=$(python3 -c "
+        import json
+        d=json.load(open('/tmp/scar_audit_result.json'))
+        f=d.get('findings',[])
+        s=100
+        for x in f:
+            sev=x.get('severity','')
+            if sev=='CRITICAL': s-=25
+            elif sev=='HIGH': s-=10
+            elif sev=='MEDIUM': s-=5
+            elif sev=='LOW': s-=2
+        print(max(0,s))
+        " 2>/dev/null || echo "100")
+        
+        if [ "$SCORE" -ge 90 ]; then GRADE="A"
+        elif [ "$SCORE" -ge 75 ]; then GRADE="B"
+        elif [ "$SCORE" -ge 60 ]; then GRADE="C"
+        elif [ "$SCORE" -ge 40 ]; then GRADE="D"
+        else GRADE="F"; fi
+        
+        echo "score=$SCORE" >> $GITHUB_OUTPUT
+        echo "grade=$GRADE" >> $GITHUB_OUTPUT
+        echo "findings=$FINDINGS" >> $GITHUB_OUTPUT
+        
+        echo "## AI Agent Safety Audit" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Score: **$SCORE/100** (Grade: **$GRADE**)" >> $GITHUB_STEP_SUMMARY
+        echo "Findings: **$FINDINGS**" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "*Powered by [tetra-scar](https://github.com/aibenyclaude-coder/tetra-scar)*" >> $GITHUB_STEP_SUMMARY
+        
+        python3 ${{ github.action_path }}/scar_audit.py --local "${{ inputs.path }}" 2>&1 || true
+
+    - name: Check fail threshold
+      shell: bash
+      if: inputs.fail-on != 'NONE'
+      run: |
+        FAIL_ON="${{ inputs.fail-on }}"
+        python3 -c "
+        import json, sys
+        d=json.load(open('/tmp/scar_audit_result.json'))
+        levels=['LOW','MEDIUM','HIGH','CRITICAL']
+        threshold=levels.index('$FAIL_ON') if '$FAIL_ON' in levels else 3
+        for f in d.get('findings',[]):
+            sev=f.get('severity','')
+            if sev in levels and levels.index(sev) >= threshold:
+                print(f'FAIL: {sev} finding — {f[\"description\"]}')
+                sys.exit(1)
+        print('PASS: No findings at or above $FAIL_ON severity')
+        "

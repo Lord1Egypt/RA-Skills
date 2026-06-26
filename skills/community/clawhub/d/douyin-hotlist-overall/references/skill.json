@@ -1,0 +1,56 @@
+{
+  "id": "douyin-hotlist-overall",
+  "slug": "douyin-hotlist-overall",
+  "question": "现在最热门的是什么？",
+  "skillName": "抖音全网实时热点",
+  "tags": [
+    "抖音",
+    "热搜",
+    "热榜",
+    "实时",
+    "热点",
+    "趋势"
+  ],
+  "profession": [
+    "内容创作者",
+    "运营",
+    "电商",
+    "营销"
+  ],
+  "industry": [
+    "新媒体",
+    "电商",
+    "娱乐",
+    "通用"
+  ],
+  "hidden": false,
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "tenantHeader": "X-Tenant-Id"
+  },
+  "comingSoon": false,
+  "providerType": "api",
+  "providerConfig": {
+    "catalog": {
+      "icon": "Flame",
+      "rating": 4.9,
+      "displayOrder": 2,
+      "subProfession": [
+        "content-creator",
+        "analyst"
+      ]
+    },
+    "endpoint": "https://www.douyin.com/aweme/v1/web/hot/search/list/",
+    "apiSource": "douyin-official"
+  },
+  "invocationMode": "execute",
+  "invocation": {
+    "type": "execute",
+    "executePath": "/api/execute"
+  },
+  "formSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}

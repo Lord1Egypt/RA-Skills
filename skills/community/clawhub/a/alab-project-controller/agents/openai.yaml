@@ -1,0 +1,7 @@
+interface:
+  display_name: "ALab Project Controller"
+  short_description: "Coordinate ALab projects and worker sessions"
+  default_prompt: "Use $alab-project-controller to create ALab experiments, launch $alab-experiment-worker sessions/subagents in token-only worktree contexts, and summarize project-visible run evidence."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,42 @@
 ---
-name: "video-transcriber"
+name: jpeng-video-transcriber
 description: "Transcribe speech from videos"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-video-transcriber"
-sourceUrl: "https://clawhub.ai/skills/jpeng-video-transcriber"
+version: "1.0.0"
+author: "jpeng"
+tags: ["ai", "transcription", "video"]
 ---
 
-# video-transcriber
+# Video Transcriber
 
-> Transcribe speech from videos
+Transcribe speech from videos
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-video-transcriber`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-video-transcriber](https://clawhub.ai/skills/jpeng-video-transcriber)
+## When to Use
 
-## Overview
+- User needs ai related functionality
+- Automating transcription tasks
+- Video operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-video-transcriber
+python3 scripts/video_transcriber.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export TRANSCRIPTION_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

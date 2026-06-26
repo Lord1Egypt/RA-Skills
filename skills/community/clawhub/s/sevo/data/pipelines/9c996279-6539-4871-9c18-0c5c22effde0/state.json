@@ -1,0 +1,162 @@
+{
+  "pipelineId": "9c996279-6539-4871-9c18-0c5c22effde0",
+  "taskId": "task-sevo-mou11uxp",
+  "level": "L0",
+  "requiredStages": [
+    "implement",
+    "review",
+    "regression",
+    "verify",
+    "ledger"
+  ],
+  "skippedStages": [
+    {
+      "stage": "spec",
+      "reason": "L0 微小改动，直接进入 Implement"
+    },
+    {
+      "stage": "spec-review-gate",
+      "reason": "L0 无 Spec 阶段，无需 Spec Review Gate"
+    },
+    {
+      "stage": "test-case-authoring",
+      "reason": "L0 微小改动，无需独立测试用例编写"
+    },
+    {
+      "stage": "ux-acceptance-authoring",
+      "reason": "L0 微小改动，无需 UX 开箱即用评测"
+    },
+    {
+      "stage": "commercial-acceptance-authoring",
+      "reason": "L0 微小改动，无需商用评测"
+    },
+    {
+      "stage": "contract",
+      "reason": "L0 微小改动，无需架构契约"
+    },
+    {
+      "stage": "contract-review-gate",
+      "reason": "L0 无 Contract 阶段，无需 Contract Review Gate"
+    },
+    {
+      "stage": "smoke-test",
+      "reason": "L0 微小改动，无需 Smoke Test"
+    },
+    {
+      "stage": "ux-acceptance",
+      "reason": "L0 微小改动，无需 UX 视觉验收"
+    },
+    {
+      "stage": "pm-commercial-review",
+      "reason": "L0 微小改动，无需 PM 商用就绪评审"
+    },
+    {
+      "stage": "publish-generalization-gate",
+      "reason": "L0 微小改动，无需发布通用化门禁"
+    },
+    {
+      "stage": "deploy",
+      "reason": "L0 微小改动，无需正式发布流程"
+    },
+    {
+      "stage": "post-release-validation",
+      "reason": "L0 微小改动，无需发布后验证"
+    }
+  ],
+  "stages": {
+    "implement": {
+      "stageId": "implement",
+      "status": "active",
+      "artifacts": [],
+      "startedAt": "2026-05-06T12:22:17.833Z"
+    },
+    "review": {
+      "stageId": "review",
+      "status": "pending",
+      "artifacts": []
+    },
+    "regression": {
+      "stageId": "regression",
+      "status": "pending",
+      "artifacts": []
+    },
+    "verify": {
+      "stageId": "verify",
+      "status": "pending",
+      "artifacts": []
+    },
+    "ledger": {
+      "stageId": "ledger",
+      "status": "pending",
+      "artifacts": []
+    },
+    "spec": {
+      "stageId": "spec",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "spec-review-gate": {
+      "stageId": "spec-review-gate",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "test-case-authoring": {
+      "stageId": "test-case-authoring",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "ux-acceptance-authoring": {
+      "stageId": "ux-acceptance-authoring",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "commercial-acceptance-authoring": {
+      "stageId": "commercial-acceptance-authoring",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "contract": {
+      "stageId": "contract",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "contract-review-gate": {
+      "stageId": "contract-review-gate",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "smoke-test": {
+      "stageId": "smoke-test",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "ux-acceptance": {
+      "stageId": "ux-acceptance",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "pm-commercial-review": {
+      "stageId": "pm-commercial-review",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "publish-generalization-gate": {
+      "stageId": "publish-generalization-gate",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "deploy": {
+      "stageId": "deploy",
+      "status": "skipped",
+      "artifacts": []
+    },
+    "post-release-validation": {
+      "stageId": "post-release-validation",
+      "status": "skipped",
+      "artifacts": []
+    }
+  },
+  "currentStage": "implement",
+  "createdAt": "2026-05-06T12:22:17.831Z",
+  "updatedAt": "2026-05-06T12:22:17.833Z"
+}

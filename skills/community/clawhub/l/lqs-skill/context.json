@@ -1,0 +1,110 @@
+{
+  "project": "lqs",
+  "scanTime": "2026-03-17T00:00:00Z",
+  "summary": {
+    "models_count": 155,
+    "modules_controllers_count": 159,
+    "modules": [
+      { "name": "Api", "controllers_sample": ["HomeController", "UserController", "OrderController", "NotifyController", "ContentsController"] },
+      { "name": "Admin", "controllers_sample": ["IndexController", "PostController", "MembersController", "OrdersController", "SettingController"] },
+      { "name": "Script", "controllers_sample": ["ImageController", "CronController", "ImportController"] },
+      { "name": "Transit", "controllers_sample": ["IndexController"] },
+      { "name": "Pro", "controllers_sample": ["IndexController"] },
+      { "name": "Index", "controllers_sample": ["IndexController"] },
+      { "name": "Web", "controllers_sample": ["WebController"] },
+      { "name": "Home", "controllers_sample": ["HomeController"] }
+    ],
+    "base_controllers": [
+      "BackendBaseController",
+      "WebBaseController",
+      "RemoteBaseController",
+      "Controller_Abstract",
+      "\\Yaf\\Controller_Abstract"
+    ],
+    "entry_scripts": ["api.php", "web.php", "m.php", "t.php", "admin.php", "d.php", "index.php"],
+    "router_plugin": {
+      "path": "application/plugins/Router.php",
+      "notes": "script-name routing logic + theme controller override + module/controller/action rewrite"
+    },
+    "bootstrap": "application/bootstrap/Bootstrap.php",
+    "notes": "multi-module Yaf app; CLI routes to Index/Command/index"
+  },
+  "databases": [
+    { "section": "common", "database": "lqs", "prefix": "typecho_", "note": "credentials removed" },
+    { "section": "im", "database": "im_duoshan", "prefix": "im_", "note": "credentials removed" },
+    { "section": "mhsync", "database": "down_dm", "prefix": "wyw_", "note": "credentials removed" },
+    { "section": "tbr", "database": "t_bure", "prefix": "tbr_", "note": "credentials removed" }
+  ],
+  "defaults": {
+    "new_backoffice_module": "Admin",
+    "new_backoffice_base_controller": "BackendBaseController",
+    "migration_prefix": "typecho_"
+  },
+  "nl_analysis_policy": {
+    "mode": "pure-natural-language",
+    "no_executor": true,
+    "no_code_required": true,
+    "no_command_required": true,
+    "no_builtin_google_doc_fetch": true,
+    "principles": [
+      "context first, inference second",
+      "always output assumptions/evidence/confidence",
+      "allow ambiguity but keep an explicit ambiguity backlog",
+      "improve a little every iteration"
+    ]
+  },
+  "inference_memory": {
+    "confidence_scale": {
+      "high": "evidence from user requirement + project pattern both support",
+      "medium": "evidence from one side only, another side inferred",
+      "low": "weak evidence, temporary assumption"
+    },
+    "domain_glossary": {
+      "后台": "Admin module pages and actions",
+      "列表": "index page + listAjax data API + pagination",
+      "保存": "save action handling create/update",
+      "删除": "delete/delAction style destructive action",
+      "预览": "dry-run diff before write"
+    },
+    "known_preference_order": [
+      "match existing Admin conventions first",
+      "prefer low-risk defaults when requirement is ambiguous",
+      "mark unresolved items explicitly instead of overfitting"
+    ],
+    "ambiguity_backlog": [
+      {
+        "id": "AMB-001",
+        "topic": "status 字段语义",
+        "why": "不同业务使用 draft/active 或 0/1，表达不一致",
+        "default_resolution": "优先沿用需求原词；若缺失则使用 enum 并在 assumptions 标记",
+        "confidence": "medium"
+      },
+      {
+        "id": "AMB-002",
+        "topic": "删除行为是软删还是硬删",
+        "why": "现有模块行为不完全统一",
+        "default_resolution": "默认按现有模式输出 delAction 风格删除动作，并在 constraints 中显式标记",
+        "confidence": "medium"
+      },
+      {
+        "id": "AMB-003",
+        "topic": "列表筛选优先 where 还是 like",
+        "why": "字段类型与业务意图常缺失",
+        "default_resolution": "id/status 用 where，标题类文本用 like",
+        "confidence": "high"
+      }
+    ],
+    "iteration_log_template": {
+      "new_evidence": [],
+      "fixed_misjudgements": [],
+      "new_patterns": [],
+      "remaining_ambiguities": []
+    }
+  },
+  "generation_guidelines": {
+    "db_migrations": "Generate migration files only; do not execute automatically.",
+    "controllers": "Respect existing base controllers and module paths.",
+    "preview_mode": "Always support dry-run and produce diffs before write.",
+    "safety": "Never include credentials in prompts/cache/artifacts."
+  }
+}

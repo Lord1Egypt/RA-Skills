@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes-agent.nousresearch.com/skills/linux-firewall-hardening/policy-schema.json",
+  "title": "Declarative Firewall Policy",
+  "description": "JSON Schema for the declarative firewall policy YAML format (v2.0). Renderers should validate policy input against this schema before rendering.",
+  "type": "object",
+  "required": ["schema_version", "inbound", "outbound", "forward", "icmp"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["2.0"],
+      "description": "Schema version. Must be exactly '2.0'."
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "author": { "type": "string" },
+        "last_modified": { "type": "string", "format": "date" }
+      }
+    },
+    "backend": {
+      "type": "string",
+      "enum": ["auto", "ufw", "firewalld", "nftables", "iptables"],
+      "default": "auto"
+    },
+    "inbound": {
+      "$ref": "#/$defs/chainPolicy"
+    },
+    "outbound": {
+      "$ref": "#/$defs/chainPolicy"
+    },
+    "forward": {
+      "type": "object",
+      "required": ["default"],
+      "additionalProperties": false,
+      "properties": {
+        "default": { "type": "string", "enum": ["deny", "accept"] }
+      }
+    },
+    "icmp": {
+      "type": "object",
+      "required": ["ipv4", "ipv6"],
+      "additionalProperties": false,
+      "properties": {
+        "ipv4": { "type": "string", "enum": ["accept", "deny"] },
+        "ipv6": { "type": "string", "enum": ["accept", "deny"] }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dropped": { "type": "boolean" },
+        "rate_limit": { "type": "string", "pattern": "^\\d+/sec(ond)?$|^\\d+/min(ute)?$" },
+        "prefix": { "type": "string", "maxLength": 32 }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ssh_must_reachable": { "type": "boolean" },
+        "intended_ports_only": { "type": "boolean" },
+        "ipv6_symmetric": { "type": "boolean" },
+        "rules_persist_after_reboot": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "chainPolicy": {
+      "type": "object",
+      "required": ["default"],
+      "additionalProperties": false,
+      "properties": {
+        "default": { "type": "string", "enum": ["deny", "accept"] },
+        "rules": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/rule" }
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "required": ["proto", "port", "action"],
+      "additionalProperties": false,
+      "properties": {
+        "proto": {
+          "type": "string",
+          "enum": ["tcp", "udp", "icmp", "icmpv6", "any"]
+        },
+        "port": {
+          "oneOf": [
+            { "type": "integer", "minimum": 1, "maximum": 65535 },
+            { "type": "string", "const": "any" }
+          ]
+        },
+        "action": {
+          "type": "string",
+          "enum": ["accept", "drop", "reject"]
+        },
+        "source": {
+          "oneOf": [
+            { "type": "string", "const": "any" },
+            { "type": "string", "format": "cidr" },
+            { "type": "array", "items": { "type": "string", "format": "cidr" } }
+          ],
+          "default": "any"
+        },
+        "rate_limit": {
+          "type": "string",
+          "pattern": "^\\d+/(sec(ond)?|min(ute)?|hour)$"
+        },
+        "comment": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "backend_compat": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ufw": { "type": "boolean" },
+            "firewalld": { "type": "boolean" },
+            "nftables": { "type": "boolean" },
+            "iptables": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+# CMO Market Analysis Prompt
+
+## PURPOSE
+This prompt is used by the Virtual CMO to analyze market signals and identify opportunities.
+
+## INPUT SPECIFICATION
+
+You will receive the following data:
+
+### market_data (optional)
+```json
+{
+  "search_trends": ["list of trending queries and volumes"],
+  "competitor_moves": ["list of competitor actions with dates"],
+  "audience_signals": ["list of audience behavior indicators"],
+  "industry_reports": ["summaries of relevant reports"],
+  "social_listening": ["relevant social media signals"]
+}
+```
+
+### business_context (required)
+```json
+{
+  "company_name": "string",
+  "products": ["list of products/services"],
+  "target_market": "string",
+  "budget_range": "string",
+  "brand_positioning": "string",
+  "current_channels": ["list of active channels"],
+  "capabilities": ["list of team capabilities"]
+}
+```
+
+### memory_context (auto-loaded)
+- Previous market insights from memory/market-insights.json
+- Historical learnings from memory/learnings.json
+
+## INSTRUCTIONS
+
+1. Parse all incoming market signals
+2. For each signal, determine:
+   - Signal type: demand | competition | trend | risk | opportunity
+   - Signal strength (1-10): Based on recency, corroboration, magnitude
+   - Confidence: high (strength >= 7) | medium (4-6) | low (< 4)
+3. Cluster related signals into opportunity groups
+4. For each opportunity, assess:
+   - Estimated market size (TAM/SAM where possible)
+   - Competition intensity: low | medium | high
+   - Alignment with business capabilities (0-10)
+   - Urgency: immediate | short-term | long-term | evergreen
+5. Score each opportunity: priority_score = (signal_strength × 0.3) + (market_size × 0.25) + (capability_fit × 0.25) + (urgency × 0.2)
+6. Rank opportunities by priority_score descending
+
+## OUTPUT STRUCTURE
+
+```json
+{
+  "analysis_id": "UUID",
+  "timestamp": "ISO 8601",
+  "signals_analyzed": [
+    {
+      "signal": "description",
+      "type": "demand | competition | trend | risk | opportunity",
+      "signal_strength": 8,
+      "evidence": ["source 1", "source 2"],
+      "label": "[FACT] | [INFERENCE]",
+      "confidence": "high | medium | low"
+    }
+  ],
+  "opportunities": [
+    {
+      "opportunity_id": "UUID",
+      "title": "Opportunity Name",
+      "description": "What this opportunity is",
+      "signals": ["signal references"],
+      "priority_score": 75,
+      "market_size_estimate": "string",
+      "competition_level": "low | medium | high",
+      "capability_alignment": 8,
+      "urgency": "short-term",
+      "confidence": "high | medium | low"
+    }
+  ],
+  "data_gaps": ["What data is missing that would improve analysis"],
+  "overall_confidence": 72
+}
+```
+
+## CONSTRAINTS
+
+- Do NOT invent data. If a data point is missing, say so.
+- Do NOT output opportunities with signal_strength < 3 unless specifically asked.
+- Label every insight as [FACT], [INFERENCE], or [ESTIMATE].
+- If no clear opportunities exist, output: { "opportunities": [], "recommendation": "Insufficient signal — recommend data collection phase" }
+- Maximum 10 opportunities per analysis to maintain focus.

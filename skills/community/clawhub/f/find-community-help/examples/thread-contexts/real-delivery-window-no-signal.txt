@@ -1,0 +1,6 @@
+Source: sanitized local Codex review session from 2026-06-17.
+Host: Codex / skill routing
+Problem type: delivery-window guardrail.
+Observed issue: a heartbeat or quiet window exists, but the active thread has no stuck, stalled, repeated-attempt, reinventing-wheel, or user-help signal.
+User constraint: keep automatic windows as delivery gates only.
+Expected next outcome: stay silent and do not generate an outside-help plan until a semantic help signal appears.

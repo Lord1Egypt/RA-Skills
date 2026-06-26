@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autoresearch Dashboard — gajago-sns</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Pretendard', sans-serif; background: #f8f9fa; color: #1a1a2e; padding: 24px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .status-badge { padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+  .status-running { background: #dbeafe; color: #1d4ed8; }
+  .status-complete { background: #d1fae5; color: #065f46; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .card-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .card-value { font-size: 28px; font-weight: 700; }
+  .card-value.green { color: #059669; }
+  .card-value.blue { color: #2563eb; }
+  .card-value.coral { color: #FF5733; }
+  .chart-container { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 24px; }
+  .chart-container h2 { font-size: 16px; margin-bottom: 16px; }
+  .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; padding: 10px 12px; font-size: 12px; color: #6b7280; border-bottom: 2px solid #e5e7eb; text-transform: uppercase; }
+  td { padding: 10px 12px; font-size: 14px; border-bottom: 1px solid #f3f4f6; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .tag-keep { background: #d1fae5; color: #065f46; }
+  .tag-discard { background: #fee2e2; color: #991b1b; }
+  .tag-baseline { background: #dbeafe; color: #1d4ed8; }
+  .eval-bar { height: 8px; border-radius: 4px; background: #e5e7eb; overflow: hidden; }
+  .eval-fill { height: 100%; border-radius: 4px; background: #059669; transition: width 0.3s; }
+  .eval-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+  .eval-name { width: 160px; font-size: 13px; font-weight: 500; }
+  .eval-bar-wrap { flex: 1; }
+  .eval-pct { width: 50px; text-align: right; font-size: 13px; font-weight: 600; }
+  .refresh-note { text-align: center; color: #9ca3af; font-size: 12px; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Autoresearch: gajago-sns</h1>
+  <span class="status-badge status-running" id="statusBadge">Loading...</span>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-label">Baseline</div>
+    <div class="card-value" id="baselineScore">-</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Best Score</div>
+    <div class="card-value green" id="bestScore">-</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Experiments</div>
+    <div class="card-value blue" id="totalExp">0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Current</div>
+    <div class="card-value coral" id="currentExp">0</div>
+  </div>
+</div>
+
+<div class="chart-container">
+  <h2>Score Progression</h2>
+  <canvas id="chart" height="80"></canvas>
+</div>
+
+<div class="two-col">
+  <div class="chart-container">
+    <h2>Experiment Log</h2>
+    <table>
+      <thead><tr><th>#</th><th>Score</th><th>Pass Rate</th><th>Status</th><th>Description</th></tr></thead>
+      <tbody id="expTable"></tbody>
+    </table>
+  </div>
+  <div class="chart-container">
+    <h2>Eval Breakdown</h2>
+    <div id="evalBreakdown"></div>
+  </div>
+</div>
+
+<div class="refresh-note">Auto-refreshes every 10 seconds</div>
+
+<script>
+let chart = null;
+
+// Inline data (file:// protocol doesn't support fetch)
+const INLINE_DATA = {
+  "skill_name": "gajago-sns",
+  "status": "complete",
+  "current_experiment": 3,
+  "baseline_score": 96.0,
+  "best_score": 100.0,
+  "experiments": [
+    {"id": 0, "score": 24, "max_score": 25, "pass_rate": 96.0, "status": "baseline", "description": "original skill — no changes"},
+    {"id": 1, "score": 25, "max_score": 25, "pass_rate": 100.0, "status": "keep", "description": "added 원문 충실도 규칙 — no fabrication, source-only terms"},
+    {"id": 2, "score": 25, "max_score": 25, "pass_rate": 100.0, "status": "keep", "description": "added 채널별 카피 톤 가이드 — Insta/FB/Band tone differentiation"},
+    {"id": 3, "score": 25, "max_score": 25, "pass_rate": 100.0, "status": "keep", "description": "added 출력 전 자기검증 checklist — 4-point verification"}
+  ],
+  "eval_breakdown": [
+    {"name": "원문 충실도", "pass_count": 19, "total": 20},
+    {"name": "날조 없음", "pass_count": 20, "total": 20},
+    {"name": "입력 핵심정보 반영", "pass_count": 20, "total": 20},
+    {"name": "기존 콘텐츠 독립성", "pass_count": 20, "total": 20},
+    {"name": "채널 포맷 준수", "pass_count": 20, "total": 20}
+  ]
+};
+
+async function fetchData() {
+  try {
+    const r = await fetch('results.json?t=' + Date.now());
+    return await r.json();
+  } catch(e) { return INLINE_DATA; }
+}
+
+function render(data) {
+  if (!data) return;
+
+  // Status
+  const badge = document.getElementById('statusBadge');
+  badge.textContent = data.status === 'running' ? `Running experiment ${data.current_experiment}...` : 'Complete';
+  badge.className = 'status-badge ' + (data.status === 'running' ? 'status-running' : 'status-complete');
+
+  // Cards
+  document.getElementById('baselineScore').textContent = data.baseline_score.toFixed(1) + '%';
+  document.getElementById('bestScore').textContent = data.best_score.toFixed(1) + '%';
+  document.getElementById('totalExp').textContent = data.experiments.length;
+  document.getElementById('currentExp').textContent = data.current_experiment;
+
+  // Chart
+  const labels = data.experiments.map(e => '#' + e.id);
+  const scores = data.experiments.map(e => e.pass_rate);
+  const colors = data.experiments.map(e => e.status === 'keep' ? '#059669' : e.status === 'baseline' ? '#2563eb' : '#ef4444');
+
+  if (chart) chart.destroy();
+  const ctx = document.getElementById('chart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Pass Rate %',
+        data: scores,
+        borderColor: '#2563eb',
+        backgroundColor: 'rgba(37,99,235,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: colors,
+        pointRadius: 6,
+        pointBorderWidth: 2,
+        pointBorderColor: '#fff'
+      }]
+    },
+    options: {
+      scales: { y: { min: 0, max: 100, ticks: { callback: v => v + '%' } } },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  // Table
+  const tbody = document.getElementById('expTable');
+  tbody.innerHTML = data.experiments.map(e => `
+    <tr>
+      <td>${e.id}</td>
+      <td>${e.score}/${e.max_score}</td>
+      <td>${e.pass_rate.toFixed(1)}%</td>
+      <td><span class="tag tag-${e.status}">${e.status}</span></td>
+      <td>${e.description}</td>
+    </tr>
+  `).join('');
+
+  // Eval breakdown
+  const evalDiv = document.getElementById('evalBreakdown');
+  evalDiv.innerHTML = data.eval_breakdown.map(ev => {
+    const pct = ev.total > 0 ? (ev.pass_count / ev.total * 100) : 0;
+    return `
+      <div class="eval-row">
+        <div class="eval-name">${ev.name}</div>
+        <div class="eval-bar-wrap"><div class="eval-bar"><div class="eval-fill" style="width:${pct}%"></div></div></div>
+        <div class="eval-pct">${pct.toFixed(0)}%</div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function tick() {
+  const data = await fetchData();
+  render(data);
+}
+
+tick();
+setInterval(tick, 10000);
+</script>
+</body>
+</html>

@@ -1,35 +1,106 @@
----
-name: "youtube copy of yt"
-description: "Fetch YouTube video transcripts via APIFY API using residential proxies to bypass bot detection, supporting text and JSON output formats."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/some-other-youtube"
-sourceUrl: "https://clawhub.ai/skills/some-other-youtube"
----
+# youtube-apify-transcript
 
-# youtube copy of yt
+Fetch YouTube transcripts via APIFY API (works from cloud IPs, bypasses YouTube bot detection).
 
-> Fetch YouTube video transcripts via APIFY API using residential proxies to bypass bot detection, supporting text and JSON output formats.
+## Why APIFY?
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/some-other-youtube`
-- **Source URL:** [https://clawhub.ai/skills/some-other-youtube](https://clawhub.ai/skills/some-other-youtube)
+YouTube blocks transcript requests from cloud IPs (AWS, GCP, etc.). APIFY runs the request through residential proxies, bypassing bot detection reliably.
 
-## Overview
+## Free Tier
 
+- **$5/month free credits** (~714 videos)
+- No credit card required
+- Perfect for personal use
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Cost
+
+- **$0.007 per video** (less than 1 cent!)
+- Track usage at: https://console.apify.com/billing
+
+## Links
+
+- 🔗 [APIFY Pricing](https://apify.com/pricing)
+- 🔑 [Get API Key](https://console.apify.com/account/integrations)
+- 🎬 [YouTube Transcripts Actor](https://apify.com/karamelo/youtube-transcripts)
+
+## Setup
+
+1. Create free APIFY account: https://apify.com/
+2. Get your API token: https://console.apify.com/account/integrations
+3. Set environment variable:
+
 ```bash
-hermes skills install clawhub/some-other-youtube
+# Add to ~/.bashrc or ~/.zshrc
+export APIFY_API_TOKEN="apify_api_YOUR_TOKEN_HERE"
+
+# Or use .env file (never commit this!)
+echo 'APIFY_API_TOKEN=apify_api_YOUR_TOKEN_HERE' >> .env
+```
+
+## Usage
+
+### Basic Usage
+
+```bash
+# Get transcript as text
+python3 scripts/fetch_transcript.py "https://www.youtube.com/watch?v=VIDEO_ID"
+
+# Short URL also works
+python3 scripts/fetch_transcript.py "https://youtu.be/VIDEO_ID"
+```
+
+### Options
+
+```bash
+# Output to file
+python3 scripts/fetch_transcript.py "URL" --output transcript.txt
+
+# JSON format (includes timestamps)
+python3 scripts/fetch_transcript.py "URL" --json
+
+# Both: JSON to file
+python3 scripts/fetch_transcript.py "URL" --json --output transcript.json
+
+# Specify language preference
+python3 scripts/fetch_transcript.py "URL" --lang de
+```
+
+### Output Formats
+
+**Text (default):**
+```
+Hello and welcome to this video.
+Today we're going to talk about...
+```
+
+**JSON (--json):**
+```json
+{
+  "video_id": "dQw4w9WgXcQ",
+  "title": "Video Title",
+  "transcript": [
+    {"start": 0.0, "duration": 2.5, "text": "Hello and welcome"},
+    {"start": 2.5, "duration": 3.0, "text": "to this video"}
+  ],
+  "full_text": "Hello and welcome to this video..."
+}
+```
+
+## Error Handling
+
+The script handles common errors:
+- Invalid YouTube URL
+- Video has no transcript
+- API quota exceeded
+- Network errors
+
+## Metadata
+
+```yaml
+metadata:
+  clawdbot:
+    emoji: "📹"
+    requires:
+      env: ["APIFY_API_TOKEN"]
+      bins: ["python3"]
 ```

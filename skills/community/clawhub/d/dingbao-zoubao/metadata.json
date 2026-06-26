@@ -1,0 +1,11 @@
+{
+  "name": "daily-briefing",
+  "version": "1.0.0",
+  "displayName": "定时早报生成",
+  "description": "每天定时生成个性化早报，推送到飞书。支持综合、财经、科技、AI等多场景",
+  "author": "肥肥🐶",
+  "tags": ["早报", "资讯", "飞书", "定时推送"],
+  "platform": "openclaw",
+  "channels": ["feishu"],
+  "entry": "scripts/handler.js"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1780713692430-da89c3c4",
+  "type": "correction",
+  "content": "lark-channel bridge 的 run.post-done-exit-timeout 问题：后台任务完成时 bridge 通知 agent，但 agent 没有自动读取输出并回传用户，等了 2000ms 超时放弃。用户每次都要主动问完成了吗。",
+  "context": "user_correction",
+  "trigger": "heartflow",
+  "importance": 5,
+  "frequency": 1,
+  "createdAt": "2026-06-06T02:41:32.430Z",
+  "lastSeen": "2026-06-06T02:41:32.430Z",
+  "sessionId": null,
+  "retentionScore": 5.5
+}

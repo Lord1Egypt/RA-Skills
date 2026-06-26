@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 专家点评项目知识库 - 发散式思维导图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #fefefe;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .mermaid {
+            background: #ffffff;
+            padding: 80px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 12px 25px;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            min-width: 120px;
+            background: #fff;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 HTML 专家点评项目知识库</h1>
+        <div class="meta">生成时间：2026-03-08 12:37 | 发散式 V3.0</div>
+    </header>
+
+    <!-- 统计 -->
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-number">13</span>
+            <span class="stat-label">HTML 文件</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">~220KB</span>
+            <span class="stat-label">总大小</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">项目关联</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">主目录</span>
+        </div>
+    </div>
+
+    <!-- 发散式思维导图 -->
+    <div class="mermaid">
+mindmap
+  root((📊 HTML 专家点评<br/>项目知识库))
+    📁 html-expert-reviews
+      13 个 HTML 文件
+      ~220KB
+      README.md 索引
+    📁 tasks/projects
+      豆包会话自动化.md
+      地理知识库.md
+      周报系统.md
+      任务管理.md
+      数据治理.md
+    📁 memory
+      2026-03-08.md
+      triple-line-sync-log.md
+    📁 skills
+      README.md
+      html-expert-review/SKILL.md
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Microsoft YaHei',
+                primaryColor: '#fff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#2c3e50',
+                lineColor: '#2c3e50',
+                secondaryColor: '#fff',
+                tertiaryColor: '#fff'
+            },
+            mindmap: {
+                useMaxWidth: true,
+                padding: 40,
+                rootNodeColor: '#2c3e50',
+                nodeBorder: '#2c3e50',
+                nodeTextColor: '#2c3e50',
+                nodeBackground: '#fff',
+                clusterBkg: '#fefefe',
+                clusterBorder: '#2c3e50'
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "culturetour-search",
+      "type": "skill-md",
+      "description": "通过 POST API（data0086.com 数游神州平台）检索文旅素材，以表格形式展示（桌面端 HTML / IM 手机端 Markdown），支持多选。用户显式发出「购买」指令后，构造 mock 交易响应（video_url 取自搜索结果的 fragmentUrl），再将视频下载到本地 downloads/ 目录并输出文件路径。搜索和预览阶段不写入本地文件。",
+      "url": "/SKILL.md",
+      "dependencies": {
+        "required": [
+          {
+            "binary": "python3",
+            "reason": "下载脚本使用 python3 解析 config.json 中的 trusted_media_origins 来校验 URL 来源"
+          }
+        ],
+        "optional": [
+          {
+            "binary": "ffmpeg",
+            "reason": "HLS（m3u8）格式视频需要 ffmpeg 转封装为 MP4；MP4 格式直接用 curl 下载，无需 ffmpeg",
+            "install_hint": "brew install ffmpeg"
+          }
+        ]
+      },
+      "env": [
+        {
+          "name": "WENLV_API_ORIGIN",
+          "required": false,
+          "description": "覆盖 config.json 中的 api_origin（仅站点根，如 https://www.data0086.com）。设置后该值也会被 download_video.sh 视为可信来源，允许从该域名下载媒体。"
+        },
+        {
+          "name": "TRADE_API_BASE",
+          "required": false,
+          "description": "真实交易 API 基址。非空时替换 mock 流程，调用真实下单接口；为空时使用 mock + 本地下载。"
+        }
+      ],
+      "permissions": {
+        "network": {
+          "domains": ["www.data0086.com", "test.data0086.com", "wenzhou.data0086.com"],
+          "description": "搜索 API 请求及媒体下载仅访问 config.json 中 api_origin / trusted_media_origins 声明的域名（或 WENLV_API_ORIGIN 指定的域名）"
+        },
+        "filesystem": {
+          "write": ["downloads/"],
+          "description": "仅在用户显式发出「购买」/「下单」指令后，将视频文件写入 Skill 根目录的 downloads/ 子目录；搜索、浏览、预览阶段不写入任何文件"
+        },
+        "shell": {
+          "commands": ["bash scripts/download_video.sh"],
+          "description": "调用 download_video.sh 脚本执行视频下载；脚本内部强制校验 URL 来源"
+        },
+        "html_output": {
+          "tags": ["table", "tr", "td", "th", "thead", "tbody", "span", "img", "video", "a", "p", "div", "b", "br", "small"],
+          "description": "搜索结果以纯静态 HTML 表格输出（无 input/button/form 等交互元素）"
+        }
+      }
+    }
+  ]
+}

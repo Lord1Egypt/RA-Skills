@@ -1,0 +1,14 @@
+{
+  "allowlist": [
+    {
+      "type": "email",
+      "kind": "exact",
+      "value": "support@example.com"
+    },
+    {
+      "type": "ipAddress",
+      "kind": "regex",
+      "value": "10\\.0\\.\\d+\\.\\d+"
+    }
+  ]
+}

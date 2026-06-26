@@ -1,35 +1,15 @@
 ---
-name: "monitor-stream"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/monitor-stream"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/monitor-stream"
+name: monitor-stream
+description: Stream live swarm events using the Monitor tool for real-time observability
+argument-hint: ""
+allowed-tools: Bash(npx *) mcp__claude-flow__swarm_status mcp__claude-flow__swarm_health Monitor
 ---
+Use the Monitor tool to stream swarm events in real time instead of polling:
 
-# monitor-stream
+Run via Monitor: `npx @claude-flow/cli@latest swarm watch --stream`
 
-> Indexed by skills.sh from ruvnet/ruflo
+This streams NDJSON events for agent spawns, task completions, memory writes, and health checks. Each stdout line triggers a notification.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/monitor-stream`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/monitor-stream](https://skills.sh/ruvnet/ruflo/monitor-stream)
+For one-shot status, use MCP: `mcp__claude-flow__swarm_status` or `mcp__claude-flow__swarm_health`.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/monitor-stream
-```
+Prefer Monitor over polling `swarm status` in a loop. See ADR-091 for rationale.

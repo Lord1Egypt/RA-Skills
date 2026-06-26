@@ -1,0 +1,33 @@
+{
+  "name": "first-principle-analyzer",
+  "version": "2.4.1",
+  "description": "First principles thinking enhancement tool for complex problem analysis",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "analysis",
+    "first-principles",
+    "problem-solving",
+    "decision-making",
+    "meta-skill"
+  ],
+  "author": "pagoda111king",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "first-principle-analyzer",
+    "name": "First Principle Analyzer",
+    "tags": [
+      "analysis",
+      "first-principles",
+      "problem-solving",
+      "decision-making",
+      "meta-skill"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}

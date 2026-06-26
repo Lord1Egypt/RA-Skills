@@ -1,35 +1,114 @@
 ---
-name: "Xiaohongshu Editor Pick"
-description: "小红书"编辑推荐"文风。干净、结构化、正式但不学术。 像编辑精选推荐，配合文转图卡片使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-editor-pick"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-editor-pick"
+name: xiaohongshu-editor-pick
+description: |
+  小红书"编辑推荐"文风。干净、结构化、正式但不学术。
+  像编辑精选推荐，配合文转图卡片使用。
+routing:
+  content_types: [editor-pick, recommendation, summary]
+  domains: [xiaohongshu, social-media]
+  tone: [editorial, structured, clean]
+  best_for: "小红书发帖文本，配合文转图卡片的编辑推荐语"
 ---
 
-# Xiaohongshu Editor Pick
+# 编辑推荐文风
 
-> 小红书"编辑推荐"文风。干净、结构化、正式但不学术。 像编辑精选推荐，配合文转图卡片使用。
+小红书发帖文本的写作风格。配合文转图卡片使用——图片承载正文，发帖文本是编辑推荐语。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-editor-pick`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-editor-pick](https://clawhub.ai/skills/xiaohongshu-editor-pick)
+---
 
-## Overview
+## 核心原则
 
+**干净、结构化、正式但不学术。**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-editor-pick
+读者看到的第一印象：这是一个认真在做内容的号，不是营销号。
+
+---
+
+## 文风规则
+
+### 1. 去 emoji 化
+
+纯文字排版，不用 emoji 做标记或装饰。信息密度靠文字本身，不靠视觉符号。
+
+- 正确："这篇讲三个核心概念"
+- 错误："📌 这篇讲三个核心概念 👇"
+
+### 2. 双语标题（可选）
+
+中文大标题 + 英文副标题，增加辨识度。
+
 ```
+游戏化的本质，是动力管理
+The essence of gamification is motivation management.
+```
+
+不强制，单语标题也可以。
+
+### 3. 中文编号章节
+
+用中文数字编号：一、二、三、四 …
+
+每个章节一个独立主题，对应图片卡片中的一页。
+
+```
+一、核心引擎：自我决定论 (SDT)
+二、我们需要看见进度条
+三、设计你的"游戏存档"
+```
+
+### 4. 设问开头
+
+用问题引入主题，激发好奇心。
+
+- 正确："为什么我们一定要做'天选之子'？"
+- 错误："今天给大家分享一下游戏化的知识"
+
+### 5. 短段落、高密度
+
+每段 2-4 句。每句都要有信息量，不要水字数。
+
+- 删掉所有"其实""说实话""众所周知"等填充词
+- 一个观点说完就换段，不绕圈子
+
+### 6. 分隔符标记分页
+
+用 `---` 标记分页点。每个 section 对应一张图片卡片。
+
+写作时心里有"这段会变成一张图"的意识。
+
+### 7. 结尾简洁
+
+简短总结 + 引导思考。不用"评论区聊聊"这种口语。
+
+- 正确："你的动力系统，缺的是哪一层？"
+- 错误："你们觉得呢？评论区聊聊吧～"
+
+---
+
+## 字数控制
+
+| 区域 | 硬限 | 推荐 |
+|------|------|------|
+| 发帖文本总字数 | 1000 字 | 600-800 字 |
+| 单段落 | — | 2-4 句 |
+| 标题 | 20 字 | 12-18 字 |
+
+---
+
+## 禁止项
+
+- 不用 emoji
+- 不用"宝子""集美""家人们"等小红书黑话
+- 不用感叹号堆叠（"太绝了！！！"）
+- 不用"关注我""点赞收藏"等直白引流
+- 不用"你一定经历过"式共情开头
+- 不写"本文将介绍""接下来我们看看"等元叙述
+
+---
+
+## 与其他 skill 的关系
+
+- **xiaohongshu formatter**：定义平台规则（字数限制、标签格式、输出结构）
+- **本 skill**：定义发帖文本的文风
+- **xiaohongshu-cards skill**：将终稿正文转为图片卡片
+- **writing-pipeline**：在 Stage 3 生成小红书输出时加载本 skill

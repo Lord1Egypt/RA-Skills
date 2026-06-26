@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chapter Verification Report",
+  "description": "Unified Phase 5 + Phase 6 verification output for docx-chapter pipeline",
+  "type": "object",
+  "required": ["metadata", "pass1_extraction", "pass2_verification", "phase6_screenshots"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["generated_at", "chapter_file", "docx_file", "total_footnotes"],
+      "properties": {
+        "generated_at": {"type": "string", "format": "date-time"},
+        "chapter_file": {"type": "string"},
+        "docx_file": {"type": "string"},
+        "total_footnotes": {"type": "integer", "minimum": 0},
+        "total_claims": {"type": "integer", "minimum": 0}
+      }
+    },
+    "pass1_extraction": {
+      "type": "object",
+      "required": ["total_claims", "type_distribution", "claims"],
+      "properties": {
+        "total_claims": {"type": "integer"},
+        "type_distribution": {
+          "type": "object",
+          "properties": {
+            "Statistic": {"type": "integer"},
+            "Comparative": {"type": "integer"},
+            "Temporal": {"type": "integer"},
+            "Attribution": {"type": "integer"},
+            "Causal": {"type": "integer"},
+            "Existence": {"type": "integer"},
+            "Ranking": {"type": "integer"},
+            "Quote": {"type": "integer"}
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "text", "claim_type"],
+            "properties": {
+              "claim_id": {"type": "string", "pattern": "^C\\d{3}$"},
+              "text": {"type": "string"},
+              "claim_type": {
+                "type": "string",
+                "enum": ["Statistic", "Comparative", "Temporal", "Attribution", "Causal", "Existence", "Ranking", "Quote"]
+              },
+              "footnote_ids": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "location": {"type": "string", "description": "section heading context"}
+            }
+          }
+        }
+      }
+    },
+    "pass2_verification": {
+      "type": "object",
+      "required": ["summary", "verified", "numerical_errors", "hallucinations", "unverified", "misleading", "structural_issues"],
+      "properties": {
+        "summary": {
+          "type": "object",
+          "properties": {
+            "verified": {"type": "integer"},
+            "numerical_errors": {"type": "integer"},
+            "hallucinations": {"type": "integer"},
+            "unverified": {"type": "integer"},
+            "misleading": {"type": "integer"},
+            "citation_not_found": {"type": "integer"},
+            "overall_status": {"type": "string", "enum": ["PASS", "FAIL"]}
+          }
+        },
+        "verified": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "source_url", "confidence"],
+            "properties": {
+              "claim_id": {"type": "string"},
+              "claim_text": {"type": "string"},
+              "source_url": {"type": "string"},
+              "source_quote": {"type": "string"},
+              "confidence": {"type": "string", "enum": ["exact", "paraphrase", "interpretation"]},
+              "source_authority": {"type": "string", "enum": ["primary", "government", "peer_reviewed", "industry_report", "news", "secondary"]},
+              "multi_source_count": {"type": "integer", "minimum": 1}
+            }
+          }
+        },
+        "numerical_errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "source_value", "claimed_value", "deviation"],
+            "properties": {
+              "claim_id": {"type": "string"},
+              "source_value": {"type": "string"},
+              "claimed_value": {"type": "string"},
+              "deviation": {"type": "string"},
+              "source_location": {"type": "string"},
+              "suggested_fix": {"type": "string"}
+            }
+          }
+        },
+        "hallucinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "issue", "source_says"],
+            "properties": {
+              "claim_id": {"type": "string"},
+              "claim_text": {"type": "string"},
+              "issue": {"type": "string"},
+              "source_says": {"type": "string"},
+              "source_url": {"type": "string"}
+            }
+          }
+        },
+        "unverified": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "issue"],
+            "properties": {
+              "claim_id": {"type": "string"},
+              "claim_text": {"type": "string"},
+              "issue": {"type": "string"},
+              "searches_attempted": {"type": "integer"}
+            }
+          }
+        },
+        "misleading": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "issue", "missing_context"],
+            "properties": {
+              "claim_id": {"type": "string"},
+              "claim_text": {"type": "string"},
+              "issue": {"type": "string"},
+              "missing_context": {"type": "string"},
+              "source_url": {"type": "string"}
+            }
+          }
+        },
+        "structural_issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "footnote", "severity"],
+            "properties": {
+              "type": {"type": "string", "enum": ["url_duplication", "url_no_hyperlink", "missing_footnoteRef", "font_issue", "hyperlink_no_style", "footnote_gap"]},
+              "footnote": {"type": "string"},
+              "severity": {"type": "string", "enum": ["error", "warning"]},
+              "detail": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "phase6_screenshots": {
+      "type": "object",
+      "required": ["total_screenshots", "results"],
+      "properties": {
+        "total_screenshots": {"type": "integer"},
+        "successful": {"type": "integer"},
+        "skipped": {"type": "integer"},
+        "failed": {"type": "integer"},
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "url", "status", "grade"],
+            "properties": {
+              "id": {"type": "string"},
+              "url": {"type": "string"},
+              "status": {"type": "string", "enum": ["ok", "skipped", "error", "timeout"]},
+              "grade": {"type": "string", "enum": ["A", "B", "C", "F", "N/A"], "description": "A=高亮有效, B=高亮不足或无高亮, C=页面加载但无相关正文, F=加载失败/超时, N/A=跳过"},
+              "output": {"type": "string"},
+              "highlighted_count": {"type": "integer"},
+              "claim_alignments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "claim_id": {"type": "string"},
+                    "matched_text": {"type": "string", "description": "verbatim text found on page"},
+                    "match_type": {"type": "string", "enum": ["exact", "paraphrase", "not_found"]}
+                  }
+                }
+              },
+              "keywords_used": {"type": "array", "items": {"type": "string"}},
+              "error": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "sources_consulted": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {"type": "string"},
+          "citation": {"type": "string"},
+          "type": {"type": "string", "enum": ["journal", "conference", "arxiv", "report", "website", "official"]},
+          "url": {"type": "string"},
+          "used_for_claims": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

@@ -1,35 +1,113 @@
 ---
-name: "Openclaw Local Storage"
+name: "openclaw-local-storage"
 description: "使用Node.js实现本地文件存储数据，支持增删改查功能。第一次使用时自动分析数据字段，之后可通过一句话命令进行操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-local-storage"
-sourceUrl: "https://clawhub.ai/skills/openclaw-local-storage"
 ---
 
-# Openclaw Local Storage
+# OpenClaw 本地存储技能
 
-> 使用Node.js实现本地文件存储数据，支持增删改查功能。第一次使用时自动分析数据字段，之后可通过一句话命令进行操作。
+## 功能介绍
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-local-storage`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-local-storage](https://clawhub.ai/skills/openclaw-local-storage)
+本技能使用Node.js实现本地文件存储数据，支持以下功能：
 
-## Overview
+1. **自动字段分析**：第一次使用时，根据用户输入的内容自动分析数据结构和字段
+2. **增删改查**：支持通过一句话命令进行数据的添加、删除、修改和查询操作
+3. **本地文件存储**：数据存储在本地JSON文件中，无需外部数据库
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-local-storage
+### 第一次使用
+
+当您第一次使用本技能时，系统会要求您输入要存储的内容，以便自动分析数据字段。例如：
+
+```
+存储一条用户信息：{"name": "张三", "age": 25, "email": "zhangsan@example.com"}
+```
+
+系统会自动分析出数据包含name、age、email三个字段，并创建相应的存储结构。
+
+### 数据操作
+
+之后，您可以通过一句话命令进行数据的增删改查操作：
+
+#### 添加数据
+
+```
+添加一条用户信息：name为李四，age为30，email为lisi@example.com
+```
+
+#### 查询数据
+
+```
+查询所有用户信息
+```
+
+```
+查询name为张三的用户信息
+```
+
+#### 修改数据
+
+```
+修改name为张三的用户信息，age改为26
+```
+
+#### 删除数据
+
+```
+删除name为李四的用户信息
+```
+
+## 技术实现
+
+本技能使用以下技术：
+
+- **Node.js**：运行环境
+- **JSON文件**：本地存储格式
+- **自动字段分析**：根据首次输入的数据结构自动生成字段定义
+- **自然语言处理**：解析用户的一句话命令，提取操作类型和参数
+
+## 注意事项
+
+1. 数据存储在本地JSON文件中，确保文件权限正确
+2. 首次使用时，请提供完整的数据结构，以便系统正确分析字段
+3. 操作命令应清晰明确，包含操作类型和必要的参数
+4. 支持的数据类型包括字符串、数字、布尔值和简单对象
+
+## 示例
+
+### 首次使用
+
+用户输入：
+```
+存储一条商品信息：{"id": 1, "name": "手机", "price": 3999, "stock": 100}
+```
+
+系统分析出字段：id、name、price、stock
+
+### 添加数据
+
+用户输入：
+```
+添加一条商品信息：id为2，name为电脑，price为5999，stock为50
+```
+
+### 查询数据
+
+用户输入：
+```
+查询所有商品信息
+```
+
+### 修改数据
+
+用户输入：
+```
+修改id为1的商品信息，price改为3499
+```
+
+### 删除数据
+
+用户输入：
+```
+删除id为2的商品信息
 ```

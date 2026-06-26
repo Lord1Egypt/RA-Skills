@@ -1,0 +1,26 @@
+{
+  "name": "mcp-client",
+  "version": "0.1.1",
+  "description": "MCP (Model Context Protocol) client for OpenClaw - connects to external MCP servers",
+  
+  "main": "src/client.js",
+  "bin": {
+    "mcp": "./src/mcp-skill.js"
+  },
+  "scripts": {
+    "start": "node src/client.js",
+    "test": "node test/client.test.js",
+    "test:security": "node test/security.test.js",
+    "test:github": "node test/github-server.js",
+    "test:filesystem": "node test/mcp-servers.test.js",
+    "test:all": "npm run test && npm run test:security && npm run test:filesystem",
+    "mcp": "node src/mcp-skill.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.4"
+  },
+  "keywords": ["mcp", "openclaw", "skill"],
+  "author": "Clawd",
+  "license": "MIT"
+}

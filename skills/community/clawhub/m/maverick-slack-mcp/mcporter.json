@@ -1,0 +1,10 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-slack-mcp": {
+      "baseUrl": "https://mcp.slack.com/mcp",
+      "transport": "http",
+      "bearerTokenEnv": "MAVERICK_SLACK_MCP_ACCESS_TOKEN"
+    }
+  }
+}

@@ -1,35 +1,41 @@
----
-name: "vwu.ai Sora Models"
-description: "Access and use sora-2 model on vwu.ai platform via OpenAI-compatible chat API with required API key configuration."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, llm, sora, video, vwu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vwu-sora"
-sourceUrl: "https://clawhub.ai/skills/vwu-sora"
----
+# sora Models for vwu.ai
 
-# vwu.ai Sora Models
+vwu.ai 平台上的 sora 模型调用技能。
 
-> Access and use sora-2 model on vwu.ai platform via OpenAI-compatible chat API with required API key configuration.
+## 支持的模型
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vwu-sora`
-- **Source URL:** [https://clawhub.ai/skills/vwu-sora](https://clawhub.ai/skills/vwu-sora)
+- sora-2
 
-## Overview
+共 1 个模型。
 
+## 配置
 
-## Installation
-To install this skill, run the following command in your terminal:
+使用前需要设置 vwu.ai API key:
+
 ```bash
-hermes skills install clawhub/vwu-sora
+export VWU_API_KEY="your-key-here"
 ```
+
+获取 key: https://vwu.ai 控制台
+
+## 使用示例
+
+```bash
+# 调用模型
+vwu-chat --model sora-2 "你的问题"
+```
+
+## API 兼容性
+
+所有模型兼容 OpenAI API 格式，支持标准 chat completions 接口。
+
+## 额度提示
+
+如果使用时提示"额度不足"或类似错误：
+1. 访问 https://vwu.ai
+2. 在控制台充值或调整额度
+3. 或生成新的 API key
+
+---
+
+由 Claw 自动生成 | 源数据: vwu.ai

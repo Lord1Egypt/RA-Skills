@@ -1,0 +1,39 @@
+{
+  "action_id": "mineru-competitor-fix-001",
+  "project": "MinerU",
+  "action_type": "competitor_injection",
+  "target_queries": [
+    "brand-002",
+    "negative-001"
+  ],
+  "baseline_run_id": "sample-run",
+  "followups": [
+    {
+      "checkpoint": "T+7",
+      "run_id": "repair-t7-run",
+      "observed_metrics": {
+        "mention_rate": 85.0,
+        "positive_mention_rate": 75.0
+      }
+    },
+    {
+      "checkpoint": "T+14",
+      "run_id": "repair-t14-run",
+      "observed_metrics": {
+        "mention_rate": 90.0,
+        "positive_mention_rate": 82.0
+      }
+    }
+  ],
+  "expected_change": {
+    "mention_rate": {
+      "baseline": 80.0,
+      "target": 90.0
+    },
+    "positive_mention_rate": {
+      "baseline": 70.0,
+      "target": 82.0
+    }
+  },
+  "conclusion": "mixed"
+}

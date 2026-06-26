@@ -1,0 +1,675 @@
+#!/bin/bash
+# GROMACS Metadynamics Simulation
+# 元动力学模拟 - 增强采样方法
+# 支持 PLUMED 和 AWH 两种实现方式
+
+set -e
+
+# ============================================
+# 配置参数
+# ============================================
+
+# 输入文件
+INPUT_GRO="${INPUT_GRO:-system.gro}"       # 平衡后的结构
+INPUT_TOP="${INPUT_TOP:-topol.top}"        # 拓扑文件
+INPUT_CPT="${INPUT_CPT:-npt.cpt}"          # 检查点文件(可选)
+
+# 输出目录
+OUTPUT_DIR="${OUTPUT_DIR:-metadynamics}"
+
+# 元动力学方法
+METHOD="${METHOD:-plumed}"                 # plumed/awh
+METAD_TYPE="${METAD_TYPE:-well-tempered}"  # standard/well-tempered
+
+# 集合变量 (Collective Variables)
+CV_TYPE="${CV_TYPE:-distance}"             # distance/angle/dihedral/rmsd
+CV_ATOMS="${CV_ATOMS:-}"                   # 原子索引 (逗号分隔)
+CV_MIN="${CV_MIN:-0.0}"                    # CV 最小值
+CV_MAX="${CV_MAX:-3.0}"                    # CV 最大值
+
+# Metadynamics 参数
+HILL_HEIGHT="${HILL_HEIGHT:-1.2}"          # 高斯峰高度 (kJ/mol)
+HILL_WIDTH="${HILL_WIDTH:-0.05}"           # 高斯峰宽度 (CV单位)
+HILL_PACE="${HILL_PACE:-500}"              # 添加高斯峰间隔 (步数)
+BIASFACTOR="${BIASFACTOR:-10}"             # Well-tempered 偏置因子
+
+# 模拟参数
+SIM_TIME="${SIM_TIME:-100000}"             # 模拟时间(ps)
+DT="${DT:-0.002}"                          # 时间步长(ps)
+NSTEPS=$(awk "BEGIN{printf "%d", $SIM_TIME / $DT}" )
+TEMPERATURE="${TEMPERATURE:-300}"          # 温度(K)
+
+# 计算资源
+NTOMP="${NTOMP:-4}"                        # OpenMP线程数
+GPU_ID="${GPU_ID:-}"                       # GPU ID(可选)
+
+# ============================================
+# 函数定义
+# ============================================
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >&2
+}
+
+error() {
+    echo "[ERROR] $*" >&2
+    exit 1
+}
+
+check_file() {
+    [[ -f "$1" ]] || error "文件不存在: $1"
+}
+
+# ============================================
+# 自动修复函数
+# ============================================
+
+# 检查并安装 PLUMED
+check_plumed() {
+    if [[ "$METHOD" == "plumed" ]]; then
+        if ! command -v plumed &> /dev/null; then
+            log "[WARN] PLUMED 未安装"
+            log "[AUTO-FIX] 尝试安装 PLUMED..."
+            
+            # 检查 GROMACS 是否编译了 PLUMED 支持
+            if gmx mdrun -h 2>&1 | grep -q "plumed"; then
+                log "[OK] GROMACS 已编译 PLUMED 支持"
+                return 0
+            fi
+            
+            log "[ERROR] GROMACS 未编译 PLUMED 支持"
+            log "解决方案:"
+            log "1. 重新编译 GROMACS: cmake -DGMX_USE_PLUMED=ON"
+            log "2. 或使用 AWH 方法: METHOD=awh"
+            error "PLUMED 不可用"
+        fi
+        
+        log "[OK] PLUMED 版本: $(plumed --version | head -1)"
+    fi
+}
+
+# 验证 CV 参数
+validate_cv_params() {
+    if [[ -z "$CV_ATOMS" ]]; then
+        log "[WARN] 未指定 CV_ATOMS"
+        log "[AUTO-FIX] 使用默认原子组 (前两个原子)"
+        CV_ATOMS="1,2"
+    fi
+    
+    # 检查 CV 范围
+    if (( $(echo "$CV_MIN >= $CV_MAX" | bc -l) )); then
+        log "[WARN] CV 范围无效 (min >= max)"
+        log "[AUTO-FIX] 交换 min 和 max"
+        local tmp=$CV_MIN
+        CV_MIN=$CV_MAX
+        CV_MAX=$tmp
+    fi
+}
+
+# 验证 metadynamics 参数
+validate_metad_params() {
+    # 检查高斯峰高度
+    if (( $(echo "$HILL_HEIGHT < 0.1" | bc -l) )); then
+        log "[WARN] 高斯峰高度过小 ($HILL_HEIGHT < 0.1 kJ/mol)"
+        log "[AUTO-FIX] 增加到 1.0 kJ/mol"
+        HILL_HEIGHT=1.0
+    fi
+    
+    if (( $(echo "$HILL_HEIGHT > 10.0" | bc -l) )); then
+        log "[WARN] 高斯峰高度过大 ($HILL_HEIGHT > 10.0 kJ/mol)"
+        log "[AUTO-FIX] 减少到 5.0 kJ/mol"
+        HILL_HEIGHT=5.0
+    fi
+    
+    # 检查添加间隔
+    if (( HILL_PACE < 100 )); then
+        log "[WARN] 添加间隔过小 ($HILL_PACE < 100)"
+        log "[AUTO-FIX] 增加到 500"
+        HILL_PACE=500
+    fi
+    
+    # 检查 well-tempered 参数
+    if [[ "$METAD_TYPE" == "well-tempered" ]]; then
+        if (( BIASFACTOR < 2 )); then
+            log "[WARN] 偏置因子过小 ($BIASFACTOR < 2)"
+            log "[AUTO-FIX] 增加到 10"
+            BIASFACTOR=10
+        fi
+    fi
+}
+
+# 自动生成索引文件
+generate_index() {
+    log "生成索引文件..."
+    
+    # 解析 CV_ATOMS
+    IFS=',' read -ra atoms <<< "$CV_ATOMS"
+    
+    cat > index.ndx << EOF
+[ CV_atoms ]
+EOF
+    
+    for atom in "${atoms[@]}"; do
+        echo "$atom" >> index.ndx
+    done
+    
+    log "[OK] 索引文件已生成"
+}
+
+# 失败重启
+restart_from_checkpoint() {
+    if [[ -f "md.cpt" ]]; then
+        log "[AUTO-FIX] 从检查点重启模拟"
+        
+        if [[ "$METHOD" == "plumed" ]]; then
+            gmx mdrun -v -deffnm md -cpi md.cpt -plumed plumed.dat \
+                -ntomp $NTOMP ${GPU_ID:+-gpu_id $GPU_ID} 2>&1 | tee -a md.log
+        else
+            gmx mdrun -v -deffnm md -cpi md.cpt \
+                -ntomp $NTOMP ${GPU_ID:+-gpu_id $GPU_ID} 2>&1 | tee -a md.log
+        fi
+        
+        return $?
+    fi
+    
+    return 1
+}
+
+# ============================================
+# PLUMED 配置生成
+# ============================================
+
+generate_plumed_config() {
+    log "生成 PLUMED 配置文件..."
+    
+    cat > plumed.dat << EOF
+# PLUMED Configuration for Metadynamics
+# Generated by AutoMD-GROMACS
+
+# 定义集合变量
+EOF
+
+    # 根据 CV 类型生成配置
+    IFS=',' read -ra atoms <<< "$CV_ATOMS"
+    
+    case "$CV_TYPE" in
+        distance)
+            cat >> plumed.dat << EOF
+d1: DISTANCE ATOMS=${atoms[0]},${atoms[1]}
+EOF
+            CV_NAME="d1"
+            ;;
+        angle)
+            cat >> plumed.dat << EOF
+a1: ANGLE ATOMS=${atoms[0]},${atoms[1]},${atoms[2]}
+EOF
+            CV_NAME="a1"
+            ;;
+        dihedral)
+            cat >> plumed.dat << EOF
+t1: TORSION ATOMS=${atoms[0]},${atoms[1]},${atoms[2]},${atoms[3]}
+EOF
+            CV_NAME="t1"
+            ;;
+        rmsd)
+            cat >> plumed.dat << EOF
+r1: RMSD REFERENCE=reference.pdb TYPE=OPTIMAL
+EOF
+            CV_NAME="r1"
+            ;;
+        *)
+            error "不支持的 CV 类型: $CV_TYPE"
+            ;;
+    esac
+    
+    # 添加 metadynamics 偏置
+    if [[ "$METAD_TYPE" == "well-tempered" ]]; then
+        cat >> plumed.dat << EOF
+
+# Well-Tempered Metadynamics
+METAD ...
+  ARG=$CV_NAME
+  PACE=$HILL_PACE
+  HEIGHT=$HILL_HEIGHT
+  SIGMA=$HILL_WIDTH
+  FILE=HILLS
+  BIASFACTOR=$BIASFACTOR
+  TEMP=$TEMPERATURE
+  GRID_MIN=$CV_MIN
+  GRID_MAX=$CV_MAX
+  GRID_BIN=200
+... METAD
+EOF
+    else
+        cat >> plumed.dat << EOF
+
+# Standard Metadynamics
+METAD ...
+  ARG=$CV_NAME
+  PACE=$HILL_PACE
+  HEIGHT=$HILL_HEIGHT
+  SIGMA=$HILL_WIDTH
+  FILE=HILLS
+  GRID_MIN=$CV_MIN
+  GRID_MAX=$CV_MAX
+  GRID_BIN=200
+... METAD
+EOF
+    fi
+    
+    # 输出 CV 值
+    cat >> plumed.dat << EOF
+
+# 输出集合变量
+PRINT ARG=$CV_NAME FILE=COLVAR STRIDE=100
+
+# 输出自由能
+FES ...
+  ARG=$CV_NAME
+  GRID_MIN=$CV_MIN
+  GRID_MAX=$CV_MAX
+  GRID_BIN=200
+  FILE=fes.dat
+  STRIDE=5000
+... FES
+EOF
+
+    log "[OK] PLUMED 配置已生成: plumed.dat"
+}
+
+# ============================================
+# AWH 配置生成
+# ============================================
+
+generate_awh_mdp() {
+    log "生成 AWH MDP 配置..."
+    
+    cat > md.mdp << EOF
+; Metadynamics with AWH
+; Generated by AutoMD-GROMACS
+
+; Run control
+integrator              = md
+nsteps                  = $NSTEPS
+dt                      = $DT
+
+; Output control
+nstxout                 = 0
+nstvout                 = 0
+nstfout                 = 0
+nstlog                  = 5000
+nstxout-compressed      = 5000
+compressed-x-grps       = System
+
+; Neighbor searching
+cutoff-scheme           = Verlet
+nstlist                 = 10
+ns_type                 = grid
+pbc                     = xyz
+
+; Electrostatics
+coulombtype             = PME
+rcoulomb                = 1.0
+pme_order               = 4
+fourierspacing          = 0.12
+
+; Van der Waals
+vdwtype                 = Cut-off
+rvdw                    = 1.0
+DispCorr                = EnerPres
+
+; Temperature coupling
+tcoupl                  = V-rescale
+tc-grps                 = System
+tau_t                   = 0.1
+ref_t                   = $TEMPERATURE
+
+; Pressure coupling
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = isotropic
+tau_p                   = 2.0
+ref_p                   = 1.0
+compressibility         = 4.5e-5
+
+; Velocity generation
+gen_vel                 = no
+
+; Constraints
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+
+; Pull code (定义集合变量)
+pull                    = yes
+pull-ncoords            = 1
+pull-ngroups            = 2
+EOF
+
+    # 根据 CV 类型配置 pull code
+    IFS=',' read -ra atoms <<< "$CV_ATOMS"
+    
+    cat >> md.mdp << EOF
+pull-group1-name        = CV_group1
+pull-group2-name        = CV_group2
+pull-coord1-type        = external-potential
+pull-coord1-potential-provider = awh
+pull-coord1-geometry    = distance
+pull-coord1-groups      = 1 2
+pull-coord1-dim         = Y Y Y
+pull-coord1-start       = yes
+
+; AWH adaptive biasing
+awh                     = yes
+awh-potential           = convolved
+awh-share-multisim      = no
+awh-seed                = -1
+awh-nstout              = 5000
+awh-nstsample           = 10
+awh-nsamples-update     = 100
+awh-nbias               = 1
+
+; AWH bias 1
+awh1-error-init         = 10.0
+awh1-growth             = exp-linear
+awh1-equilibrate-histogram = yes
+awh1-target             = constant
+awh1-target-beta-scaling = 0.0
+awh1-target-cutoff      = 0.0
+awh1-user-data          = no
+
+; AWH dimension 1
+awh1-ndim               = 1
+awh1-dim1-coord-provider = pull
+awh1-dim1-coord-index   = 1
+awh1-dim1-start         = $CV_MIN
+awh1-dim1-end           = $CV_MAX
+awh1-dim1-force-constant = 10000
+awh1-dim1-diffusion     = 1e-5
+awh1-dim1-cover-diameter = 0.1
+EOF
+
+    log "[OK] AWH MDP 配置已生成: md.mdp"
+}
+
+# ============================================
+# 前置检查
+# ============================================
+
+log "开始元动力学模拟"
+log "方法: $METHOD ($METAD_TYPE)"
+log "集合变量: $CV_TYPE"
+
+check_file "$INPUT_GRO"
+check_file "$INPUT_TOP"
+
+# 验证参数
+check_plumed
+validate_cv_params
+validate_metad_params
+
+# 创建输出目录
+mkdir -p "$OUTPUT_DIR"
+cd "$OUTPUT_DIR"
+
+# 复制输入文件
+cp "../$INPUT_GRO" .
+cp "../$INPUT_TOP" .
+[[ -f "../$INPUT_CPT" ]] && cp "../$INPUT_CPT" .
+
+# ============================================
+# Phase 1: 生成配置文件
+# ============================================
+
+log "Phase 1: 生成配置文件"
+
+if [[ "$METHOD" == "plumed" ]]; then
+    generate_plumed_config
+    
+    # 生成标准 MDP (不含 AWH)
+    cat > md.mdp << EOF
+; Metadynamics with PLUMED
+integrator              = md
+nsteps                  = $NSTEPS
+dt                      = $DT
+nstxout-compressed      = 5000
+nstlog                  = 5000
+tcoupl                  = V-rescale
+ref_t                   = $TEMPERATURE
+tau_t                   = 0.1
+tc-grps                 = System
+pcoupl                  = Parrinello-Rahman
+ref_p                   = 1.0
+tau_p                   = 2.0
+compressibility         = 4.5e-5
+constraints             = h-bonds
+cutoff-scheme           = Verlet
+coulombtype             = PME
+rcoulomb                = 1.0
+rvdw                    = 1.0
+EOF
+else
+    generate_awh_mdp
+    generate_index
+fi
+
+# ============================================
+# Phase 2: 预处理
+# ============================================
+
+log "Phase 2: 预处理 (grompp)"
+
+if [[ -f "$INPUT_CPT" ]]; then
+    gmx grompp -f md.mdp -c "$INPUT_GRO" -p "$INPUT_TOP" -t "$INPUT_CPT" \
+        -o md.tpr -maxwarn 1 2>&1 | grep -E "WARNING|ERROR|Fatal" || true
+else
+    gmx grompp -f md.mdp -c "$INPUT_GRO" -p "$INPUT_TOP" \
+        -o md.tpr -maxwarn 1 2>&1 | grep -E "WARNING|ERROR|Fatal" || true
+fi
+
+[[ -f "md.tpr" ]] || error "TPR 生成失败"
+
+# ============================================
+# Phase 3: 运行模拟
+# ============================================
+
+log "Phase 3: 运行元动力学模拟"
+log "模拟时间: $SIM_TIME ps"
+
+if [[ "$METHOD" == "plumed" ]]; then
+    log "使用 PLUMED..."
+    gmx mdrun -v -deffnm md -plumed plumed.dat \
+        -ntomp $NTOMP ${GPU_ID:+-gpu_id $GPU_ID} 2>&1 | tee md.log || {
+        log "[ERROR] 模拟失败,尝试重启..."
+        restart_from_checkpoint || error "重启失败"
+    }
+else
+    log "使用 AWH..."
+    gmx mdrun -v -deffnm md \
+        -ntomp $NTOMP ${GPU_ID:+-gpu_id $GPU_ID} 2>&1 | tee md.log || {
+        log "[ERROR] 模拟失败,尝试重启..."
+        restart_from_checkpoint || error "重启失败"
+    }
+fi
+
+# ============================================
+# Phase 4: 分析结果
+# ============================================
+
+log "Phase 4: 分析结果"
+
+if [[ "$METHOD" == "plumed" ]]; then
+    # PLUMED 分析
+    if [[ -f "HILLS" ]]; then
+        log "计算自由能面..."
+        plumed sum_hills --hills HILLS --outfile fes_final.dat \
+            --min $CV_MIN --max $CV_MAX --bin 200 2>&1 | tee sum_hills.log || {
+            log "[WARN] sum_hills 失败,使用 PLUMED 内置 FES"
+        }
+    fi
+    
+    if [[ -f "COLVAR" ]]; then
+        log "分析集合变量..."
+        # 提取 CV 统计
+        awk '{sum+=$2; sumsq+=$2*$2; n++} END {
+            avg=sum/n; 
+            std=sqrt(sumsq/n - avg*avg); 
+            print "CV 平均值:", avg; 
+            print "CV 标准差:", std
+        }' COLVAR > cv_stats.txt
+    fi
+else
+    # AWH 分析
+    if [[ -f "md.edr" ]]; then
+        log "提取 AWH 数据..."
+        echo "AWH" | gmx energy -f md.edr -o awh.xvg 2>&1 | tee energy.log || {
+            log "[WARN] AWH 数据提取失败"
+        }
+    fi
+fi
+
+# ============================================
+# Phase 5: 生成报告
+# ============================================
+
+log "Phase 5: 生成报告"
+
+cat > METADYNAMICS_REPORT.md << EOF
+# Metadynamics 模拟报告
+
+## 模拟参数
+
+- **方法**: $METHOD
+- **类型**: $METAD_TYPE
+- **集合变量**: $CV_TYPE
+- **CV 范围**: $CV_MIN - $CV_MAX
+- **模拟时间**: $SIM_TIME ps
+- **温度**: $TEMPERATURE K
+
+## Metadynamics 参数
+
+- **高斯峰高度**: $HILL_HEIGHT kJ/mol
+- **高斯峰宽度**: $HILL_WIDTH
+- **添加间隔**: $HILL_PACE 步
+EOF
+
+if [[ "$METAD_TYPE" == "well-tempered" ]]; then
+    cat >> METADYNAMICS_REPORT.md << EOF
+- **偏置因子**: $BIASFACTOR
+EOF
+fi
+
+cat >> METADYNAMICS_REPORT.md << EOF
+
+## 输出文件
+
+EOF
+
+if [[ "$METHOD" == "plumed" ]]; then
+    cat >> METADYNAMICS_REPORT.md << EOF
+- \`HILLS\` - 高斯峰记录
+- \`COLVAR\` - 集合变量轨迹
+- \`fes.dat\` - 自由能面 (实时)
+- \`fes_final.dat\` - 最终自由能面
+- \`md.xtc\` - 轨迹文件
+- \`md.edr\` - 能量文件
+- \`plumed.dat\` - PLUMED 配置
+
+## 后续分析
+
+### 1. 可视化自由能面
+\`\`\`bash
+# 使用 gnuplot
+gnuplot << PLOT
+set xlabel "CV"
+set ylabel "Free Energy (kJ/mol)"
+plot "fes_final.dat" with lines
+PLOT
+\`\`\`
+
+### 2. 分析收敛性
+\`\`\`bash
+# 计算不同时间段的 FES
+plumed sum_hills --hills HILLS --outfile fes_0-50ns.dat --stride 1 --mintozero \\
+    --min $CV_MIN --max $CV_MAX --bin 200 --kt $(echo "$TEMPERATURE * 0.008314" | bc -l)
+\`\`\`
+
+### 3. 提取最小能量构象
+\`\`\`bash
+# 从 COLVAR 找到最小 FES 对应的时间
+# 然后从轨迹提取
+gmx trjconv -s md.tpr -f md.xtc -o min_structure.pdb -dump <time>
+\`\`\`
+EOF
+else
+    cat >> METADYNAMICS_REPORT.md << EOF
+- \`md.edr\` - 能量文件 (含 AWH 数据)
+- \`md.xtc\` - 轨迹文件
+- \`awh.xvg\` - AWH 偏置势
+- \`md.mdp\` - AWH 配置
+
+## 后续分析
+
+### 1. 提取 PMF
+\`\`\`bash
+gmx awh -f md.edr -o pmf.xvg -more
+\`\`\`
+
+### 2. 分析收敛性
+\`\`\`bash
+# AWH 会自动输出收敛信息到 md.log
+grep "AWH" md.log
+\`\`\`
+
+### 3. 可视化 PMF
+\`\`\`bash
+# 使用 xmgrace 或 gnuplot
+xmgrace pmf.xvg
+\`\`\`
+EOF
+fi
+
+cat >> METADYNAMICS_REPORT.md << EOF
+
+## 参考文献
+
+- Laio & Parrinello (2002). Escaping free-energy minima. PNAS 99, 12562-12566.
+- Barducci et al. (2008). Well-tempered metadynamics. PRL 100, 020603.
+- Lindahl et al. (2015). Accelerated weight histogram method. JCTC 11, 3447-3454.
+
+## 质量检查
+
+EOF
+
+# 检查模拟是否完成
+if grep -q "Finished mdrun" md.log 2>/dev/null; then
+    echo "✅ 模拟成功完成" >> METADYNAMICS_REPORT.md
+else
+    echo "⚠️ 模拟可能未完成,检查 md.log" >> METADYNAMICS_REPORT.md
+fi
+
+# 检查输出文件
+if [[ "$METHOD" == "plumed" ]]; then
+    if [[ -f "HILLS" ]] && [[ -s "HILLS" ]]; then
+        hill_count=$(wc -l < HILLS)
+        echo "✅ 添加了 $hill_count 个高斯峰" >> METADYNAMICS_REPORT.md
+    else
+        echo "⚠️ HILLS 文件缺失或为空" >> METADYNAMICS_REPORT.md
+    fi
+    
+    if [[ -f "fes_final.dat" ]]; then
+        echo "✅ 自由能面已计算" >> METADYNAMICS_REPORT.md
+    else
+        echo "⚠️ 自由能面计算失败" >> METADYNAMICS_REPORT.md
+    fi
+fi
+
+log "报告已生成: METADYNAMICS_REPORT.md"
+
+# ============================================
+# 完成
+# ============================================
+
+log "元动力学模拟完成!"
+log "输出目录: $OUTPUT_DIR"
+log "查看报告: $OUTPUT_DIR/METADYNAMICS_REPORT.md"
+
+exit 0

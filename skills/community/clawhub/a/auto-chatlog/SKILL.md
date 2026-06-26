@@ -1,35 +1,84 @@
 ---
-name: "Auto Chatlog"
-description: "自动对话记忆归档 — 每次会话结束时自动将关键信息写入 daily memory 文件，启动时自动加载近期记忆上下文。用于：需要记住跨会话对话内容、自动做对话笔记、无需手动提醒即可回溯之前聊过什么。与 MEMORY.md + memory/YYYY-MM-DD.md 机制配合使用，确保不遗漏任何重要信息。触发词：..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-chatlog"
-sourceUrl: "https://clawhub.ai/skills/auto-chatlog"
+name: auto-chatlog
+version: 1.0.0
+description: "自动对话记忆归档 — 每次会话结束时自动将关键信息写入 daily memory 文件，启动时自动加载近期记忆上下文。用于：需要记住跨会话对话内容、自动做对话笔记、无需手动提醒即可回溯之前聊过什么。与 MEMORY.md + memory/YYYY-MM-DD.md 机制配合使用，确保不遗漏任何重要信息。触发词：自动记忆、记住对话、长期记忆、聊天记录自动保存、不用查日子、记忆备份。"
 ---
 
-# Auto Chatlog
+# Conversation Memory — 自动对话记忆 🐟
 
-> 自动对话记忆归档 — 每次会话结束时自动将关键信息写入 daily memory 文件，启动时自动加载近期记忆上下文。用于：需要记住跨会话对话内容、自动做对话笔记、无需手动提醒即可回溯之前聊过什么。与 MEMORY.md + memory/YYYY-MM-DD.md 机制配合使用，确保不遗漏任何重要信息。触发词：...
+## 核心流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-chatlog`
-- **Source URL:** [https://clawhub.ai/skills/auto-chatlog](https://clawhub.ai/skills/auto-chatlog)
+这个技能的核心是 **两条规则**，不需要额外命令：
 
-## Overview
+### 规则 1：每次回复前 → 加载近期记忆
 
+每次主人说话时，自动读取最近 3 天的 `memory/` 文件，以及 `MEMORY.md`。这样不用主人说"你看我昨天说过什么"，自然就已经知道了。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-chatlog
+```yaml
+每次用户消息来时:
+  1. 扫描 memory/ 目录，读取最近 3 个工作日文件
+  2. 读取 MEMORY.md（长期记忆）
+  3. 如果今天是新的一天（当前 memory/YYYY-MM-DD.md 不存在）:
+     - 自动创建当日记忆文件，页首写明日期
 ```
+
+### 规则 2：每次对话关键节点 → 写记忆
+
+在以下时机自动写入记忆：
+
+| 时机 | 写什么 | 写到哪里 |
+|------|--------|----------|
+| 主人表达了偏好/意见 | 记下偏好 | MEMORY.md + 当日文件 |
+| 完成了重要任务 | 任务结果、输出路径 | 当日文件 |
+| 主人给了凭证/配置 | 凭证信息（注意安全） | MEMORY.md（凭证单独标注） |
+| 改变了配置 | 变更内容 | 当日文件 |
+| 记录了待办事项 | 待办列表 | 当日文件 |
+| 会话结束时 | 今日关键摘要 | 当日文件末尾 |
+
+### 写入格式
+
+沿用已有的格式：
+
+```markdown
+# YYYY-MM-DD - 描述性标题 🐟
+
+## 关键对话记录
+- 主题 X：...
+- 主题 Y：...
+
+## 重要决定/偏好
+- 主人喜欢...
+
+## 待办
+- [ ] 事项
+```
+
+### 更新 MEMORY.md 的时机
+
+- 主人的长期偏好改变时（直接编辑 MEMORY.md 对应章节）
+- 新增凭证明细时（加到凭证信息章节）
+- 每周至少回顾一次 daily files，浓缩进 MEMORY.md
+
+## 脚本辅助
+
+### `scripts/memory_snapshot.js`
+
+当需要手动固化当前会话状态时，调用此脚本：
+
+```bash
+node scripts/memory_snapshot.js
+```
+
+它会：
+1. 抓取当前 session 的关键信息（通过读取最近的 memory 文件）
+2. 生成一份结构化的记忆快照
+3. 如果今天是新的一天，自动创建当日文件
+
+使用方法：在认为需要"记住此刻"时手动触发，或由 crontab 定时调用。
+
+## 注意事项
+
+- **不要记录敏感凭证的明文**（密码、token 值）到 memory 文件——已在 MEMORY.md 中的例外
+- **每日文件是原始笔记**，MEMORY.md 是精华浓缩，两者并存
+- 如果多个会话同时在跑，用 `memory/YYYY-MM-DD.md` 作为共享日记本，不要重复写
+- 这个技能不是给主人用的，是给"我"（草鱼）用的——我按这套规则自动做事

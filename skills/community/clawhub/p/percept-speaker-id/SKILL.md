@@ -1,35 +1,60 @@
----
-name: "Percept Speaker ID"
-description: "Identifies and tracks speakers in multi-person conversations, mapping speaker labels to names and managing voice command authorization levels."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/percept-speaker-id"
-sourceUrl: "https://clawhub.ai/skills/percept-speaker-id"
----
+# percept-speaker-id
 
-# Percept Speaker ID
+Speaker identification and management for multi-person conversations.
 
-> Identifies and tracks speakers in multi-person conversations, mapping speaker labels to names and managing voice command authorization levels.
+## What it does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/percept-speaker-id`
-- **Source URL:** [https://clawhub.ai/skills/percept-speaker-id](https://clawhub.ai/skills/percept-speaker-id)
+Tracks who said what in conversations. Maps anonymous speaker labels (SPEAKER_0, SPEAKER_1) to real names, maintains speaker profiles, and gates voice command authorization.
 
-## Overview
+## When to use
 
+- User asks "who said that?" or wants speaker-attributed transcripts
+- User wants to configure which people can trigger voice commands
+- Agent needs to know who is speaking in a multi-person conversation
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/percept-speaker-id
+## Requirements
+
+- **percept-listen** skill installed and running
+- **Omi pendant** (provides `is_user` flag for primary speaker)
+
+## How it works
+
+1. Omi sends transcript segments with speaker labels (SPEAKER_0, SPEAKER_1, etc.)
+2. Percept resolves labels to names using the speakers registry
+3. `is_user` flag from Omi identifies the pendant wearer as the primary speaker
+4. Speaker profiles track first/last seen timestamps and authorization status
+
+## Speaker registry
+
+Located at `percept/data/speakers.json`:
+
+```json
+{
+  "SPEAKER_00": {
+    "name": "David",
+    "is_owner": true,
+    "approved": true
+  },
+  "SPEAKER_01": {
+    "name": "Rob",
+    "is_owner": false,
+    "approved": true
+  }
+}
 ```
+
+Manage via Percept dashboard (port 8960) → Settings → Speakers.
+
+## Authorization levels
+
+- **Owner** (`is_owner: true`): Full command access, always authorized
+- **Approved** (`approved: true`): Can trigger wake word commands
+- **Unknown**: Logged only, commands not executed
+
+## Future: Voice embeddings
+
+Planned: pyannote speaker diarization with 192-dim voice embeddings for automatic speaker recognition via cosine similarity. Currently speaker mapping is manual.
+
+## Links
+
+- **GitHub:** https://github.com/GetPercept/percept

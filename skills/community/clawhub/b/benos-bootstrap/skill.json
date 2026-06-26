@@ -1,0 +1,7 @@
+{
+  "name": "benos-bootstrap",
+  "version": "1.0.0",
+  "description": "Bootstrap layer for BenOS identity alignment.",
+  "type": "agent",
+  "main": "index.js"
+}

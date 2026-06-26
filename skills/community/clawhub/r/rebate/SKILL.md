@@ -1,35 +1,62 @@
 ---
-name: "多平台返利管家"
-description: "多平台返利聚合管理，统一追踪各平台返利订单状态、到账进度，提供返利数据分析与省钱报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rebate"
-sourceUrl: "https://clawhub.ai/skills/rebate"
+name: 多平台返利管家
+description: 多平台返利聚合管理，统一追踪各平台返利订单状态、到账进度，提供返利数据分析与省钱报告。
+version: 0.1.0
 ---
 
 # 多平台返利管家
 
-> 多平台返利聚合管理，统一追踪各平台返利订单状态、到账进度，提供返利数据分析与省钱报告。
+多平台返利聚合管理工具。统一追踪用户在淘宝、京东、拼多多等各平台的返利订单状态和到账进度，提供返利数据分析与省钱报告，让每一笔返利都不遗漏。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rebate`
-- **Source URL:** [https://clawhub.ai/skills/rebate](https://clawhub.ai/skills/rebate)
+## 触发词
 
-## Overview
+返利管理、返利追踪、订单返利、返利到账、返利报告、省钱报告、返利统计、rebate tracker、rebate manager、返利管家
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rebate
+### 核心功能
+
+- **多平台聚合**：统一管理淘宝联盟、京东联盟、多多进宝等平台的返利账户
+- **订单追踪**：实时同步各平台返利订单状态（已下单/已确认/已结算/已到账）
+- **到账提醒**：返利状态变更时自动提醒，异常订单（失效、退款）及时预警
+- **数据分析**：生成月度/年度省钱报告，统计各平台返利收益
+
+### 订单状态流转
+
+```
+下单 → 订单确认 → 佣金结算 → 返利到账 → 可提现
+ │         │          │          │
+ └─失效    └─退款      └─扣除     └─提现成功
+```
+
+### 报告维度
+
+| 维度 | 说明 |
+|------|------|
+| 按平台 | 各平台返利金额占比、到账率 |
+| 按时间 | 日/周/月/年返利趋势 |
+| 按品类 | 哪类商品返利最高 |
+| 异常统计 | 失效订单数、退款扣除金额 |
+
+### 使用场景
+
+1. **日常追踪**：每天查看各平台返利订单最新状态
+2. **月度复盘**：生成月度省钱报告，了解总共省了多少钱
+3. **异常排查**：发现返利未到账时，快速定位问题订单
+4. **年度汇总**：年终统计全年返利收益，评估各平台性价比
+
+## 输出格式
+
+```
+📊 返利月报 - [年月]
+
+总返利金额：¥[金额]
+已到账：¥[金额] | 待结算：¥[金额] | 已失效：¥[金额]
+
+平台明细：
+  淘宝/天猫：¥[金额]（[N]笔订单）
+  京东：¥[金额]（[N]笔订单）
+  拼多多：¥[金额]（[N]笔订单）
+
+异常订单：[N]笔，涉及 ¥[金额]
 ```

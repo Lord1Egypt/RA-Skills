@@ -1,0 +1,10 @@
+interface:
+  display_name: "JMCAI Comfypet"
+  short_description: "调用已配置的 ComfyUI 图片/视频工作流"
+  icon_small: "./assets/icon-small.png"
+  icon_large: "./assets/icon-large.png"
+  brand_color: "#f5adc0"
+  default_prompt: "使用 $comfypet-jmcai-skill 查询可用工作流，并通过 JMCAI Workflow Bridge 运行合适的图片或视频工作流。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,18 @@
+{
+  "name": "clause-redraft",
+  "version": "1.0.0",
+  "description": "Redraft unclear or risky contract clauses into clearer, more balanced language. Use when the user asks about 条款改写、改合同、条款优化、合同措辞、改写这句话、条款润色, or wants to improve specific contract language.",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": ["contract", "clause", "redraft", "legal", "条款", "改写"],
+  "category": "legal",
+  "homepage": "https://github.com/openclaw/skills/tree/main/clause-redraft",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git"
+  },
+  "openclaw": {
+    "skill": true,
+    "minVersion": "2026.3.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "upwork-proposal-writer",
+  "version": "1.0.0",
+  "description": "Generate winning Upwork proposals for automation, bot development, and freelance tech jobs. Analyzes job postings and crafts personalized, high-converting proposals with pricing strategy.",
+  "author": "GIA Digital",
+  "tags": ["upwork", "freelance", "proposals", "automation", "sales"],
+  "category": "business"
+}

@@ -1,0 +1,37 @@
+plugin_job:
+  mode: native-channel-plugin
+  identity:
+    name: webhook-channel-plugin
+    display_name: Webhook Channel Plugin
+    plugin_id: webhook-channel-plugin
+    folder_name: webhook-channel-plugin
+  summary:
+    purpose: >-
+      Add a simple webhook-backed channel for receiving inbound messages and emitting outbound responses.
+    target_runtime_role: Channel plugin.
+  behavior:
+    public_surface:
+      - Receives inbound webhook payloads.
+      - Maps payloads into channel messages.
+    constraints:
+      - Keep initial lifecycle minimal.
+      - Avoid speculative retry machinery in v1.
+    side_effects:
+      - Network listener / webhook handling.
+  configuration:
+    env_vars:
+      - WEBHOOK_SHARED_SECRET
+    config_fields:
+      - name: port
+        type: number
+        required: false
+        description: Listener port.
+      - name: path
+        type: string
+        required: false
+        description: Webhook path.
+  output_preferences:
+    language: typescript
+    module_system: esm
+    include_tests: false
+    include_env_example: true

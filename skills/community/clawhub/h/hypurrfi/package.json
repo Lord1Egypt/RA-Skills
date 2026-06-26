@@ -1,0 +1,37 @@
+{
+  "name": "hypurrfi-skill",
+  "version": "1.0.0",
+  "description": "HypurrFi DeFi lending skill for AI agents on Hyperliquid",
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "deposit": "node scripts/deposit.js",
+    "withdraw": "node scripts/withdraw.js",
+    "borrow": "node scripts/borrow.js",
+    "repay": "node scripts/repay.js",
+    "positions": "node scripts/positions.js",
+    "health": "node scripts/health.js"
+  },
+  "keywords": [
+    "hypurrfi",
+    "hyperliquid",
+    "defi",
+    "lending",
+    "ai-agent",
+    "openclaw",
+    "skill"
+  ],
+  "author": "HypurrFi",
+  "license": "MIT",
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hypurrfi/hypurrfi-skill.git"
+  },
+  "homepage": "https://hypurr.fi"
+}

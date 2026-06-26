@@ -1,35 +1,109 @@
 ---
-name: "xiaohongshu-auto-poster"
-description: "小红书自动发帖套装。输入主题，自动生成文案并发布到小红书。包含 MCP 配置、内容模板、自动化工作流。适用于已配置好本地 MCP 服务的用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-auto-poster"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-auto-poster"
+name: xiaohongshu-auto-poster
+description: 小红书自动发帖套装。输入主题，自动生成文案并发布到小红书。包含 MCP 配置、内容模板、自动化工作流。适用于已配置好本地 MCP 服务的用户。
 ---
 
-# xiaohongshu-auto-poster
+# 小红书自动发帖套装（Auto Poster）
 
-> 小红书自动发帖套装。输入主题，自动生成文案并发布到小红书。包含 MCP 配置、内容模板、自动化工作流。适用于已配置好本地 MCP 服务的用户。
+## 这是什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-auto-poster`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-auto-poster](https://clawhub.ai/skills/xiaohongshu-auto-poster)
+一套让 AI 自动发小红书的工作流。配置好后，对我说「发小红书：xxx 主题」，我就会：
+1. 生成适合小红书的标题 + 正文
+2. 自动发布到你的小红书账号
 
-## Overview
+---
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第一步：检查 MCP 服务状态
+
 ```bash
-hermes skills install clawhub/xiaohongshu-auto-poster
+curl -s -X POST http://localhost:18060/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"initialize","params":{},"id":1}'
 ```
+
+看到返回 `{"protocolVersion":"2025-06-18"...}` 即表示服务正常运行。
+
+### 第二步：确认登录状态
+
+让我帮你检查登录状态。对我说：**「检查小红书登录状态」**
+
+### 第三步：开始自动发帖
+
+对我说：
+
+> **发小红书：分享一个提升效率的 AI 工具**
+
+我会自动生成文案并发布。
+
+---
+
+## 指令参考
+
+| 你说 | 我做 |
+|------|------|
+| `发小红书：[主题]` | 生成并发布一篇图文笔记 |
+| `发小红书视频：[主题]` | 生成并发布一篇视频笔记 |
+| `小红书文案：[主题]` | 只生成文案，不发布（供你预览） |
+| `检查小红书登录状态` | 检查账号是否正常登录 |
+| `小红书置顶：[笔记链接]` | 将指定笔记置顶 |
+| `小红书数据：[链接]` | 查看指定笔记的阅读/点赞数据 |
+
+---
+
+## 内容规范（我会自动遵守）
+
+- **标题**：12-20字，含关键词，吸引眼球
+- **正文**：300-800字，分段清晰，适当 emoji
+- **标签**：5-10个相关话题标签
+- **图片**：配图 1-9 张（图文的流量优于视频）
+
+---
+
+## 常见问题
+
+**Q: MCP 服务没运行？**
+```bash
+cd ~/xiaohongshu-mcp
+./bin/xiaohongshu-mcp-darwin-arm64 > mcp.log 2>&1 &
+```
+
+**Q: 需要重新登录？**
+对我说「小红书重新登录」，我会帮你获取新的二维码。
+
+**Q: 每天发多少合适？**
+建议每天 1-3 篇，避免被限流。套装内置了发布间隔保护。
+
+---
+
+## 包含内容
+
+```
+xiaohongshu-auto-poster/
+├── SKILL.md              # 本文件（工作流说明）
+├── references/
+│   ├── setup.md          # MCP 服务安装配置详解
+│   ├── content-templates.md  # 20+ 发帖文案模板
+│   └──运营知识.md         # 小红书运营技巧汇总
+└── README.md             # 买家使用指南
+```
+
+---
+
+## 适用人群
+
+- 想要稳定更新小红书的创作者
+- 想用 AI 提升发帖效率的个人/商家
+- 有一定动手能力，能跟随教程配置 MCP 服务
+
+## 不适用
+
+- 完全没有技术基础的用户（需要配置本地环境）
+- 需要发布视频内容的用户（模板以图文为主）
+
+---
+
+## 支持与更新
+
+如遇问题，请检查 references/troubleshooting.md 或重新阅读 setup.md。

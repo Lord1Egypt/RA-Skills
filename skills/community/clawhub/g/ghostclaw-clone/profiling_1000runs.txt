@@ -1,0 +1,26 @@
+Generating 1000 mock analysis runs...
+Generated 1000 runs; DB now has 1000 records.
+
+Starting benchmarks...
+
+=== Profiling Memory Search ===
+  Query 'complexity' (limit=20): 5.36ms avg (n=50), hits=20
+  Query 'coupling' (limit=15): 5.15ms avg (n=50), hits=15
+  Query 'type hints' (limit=15): 8.12ms avg (n=50), hits=15
+  Query 'god object' (limit=10): 5.06ms avg (n=50), hits=10
+  Query 'naming' (limit=15): 5.04ms avg (n=50), hits=15
+  Query 'unused' (limit=10): 4.58ms avg (n=50), hits=10
+  Total average per query variant: 33.31ms
+
+=== Profiling Knowledge Graph ===
+  Knowledge graph: 7.54ms avg (n=30), recurring_issues=10
+
+=== Profiling Get Run ===
+  Get run: 0.58ms avg (n=50), issues=0
+
+=== Summary ===
+Memory search avg: 5.55ms
+Knowledge graph avg: 7.54ms
+Get run avg: 0.58ms
+
+Profiling complete.

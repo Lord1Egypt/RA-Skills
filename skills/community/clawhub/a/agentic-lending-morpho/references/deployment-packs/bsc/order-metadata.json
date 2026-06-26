@@ -1,0 +1,23 @@
+{
+  "chain": { "name": "bsc", "chainId": 56 },
+  "status": "template-pack",
+  "preferredOrder": [
+    "preflight-morpho-market",
+    "ensure-feeds-and-deploy-morpho-market",
+    "explain-next",
+    "verify-feed-to-market-handoff"
+  ],
+  "rpcRequirements": {
+    "chainIdMustMatch": 56,
+    "requireExplicitRpcForLive": true
+  },
+  "liveExecutionGuards": {
+    "requiresAcknowledgement": "I_UNDERSTAND_THIS_WILL_SEND_TRANSACTIONS",
+    "rejectPlaceholders": true,
+    "requirePreflightSafeToRun": true
+  },
+  "notes": [
+    "Fill chain-specific Morpho core, IRM, LLTV, and token addresses before use.",
+    "Do not treat this template as a validated deployment pack until chain-specific addresses are confirmed."
+  ]
+}

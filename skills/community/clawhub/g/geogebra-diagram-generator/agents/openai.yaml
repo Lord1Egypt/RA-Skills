@@ -1,0 +1,4 @@
+interface:
+  display_name: "GeoGebra Diagram Generator"
+  short_description: "Generate precise GeoGebra geometry diagrams from Execute scripts."
+  default_prompt: "Use $geogebra-diagram-generator to create a GeoGebra construction for this geometry problem."

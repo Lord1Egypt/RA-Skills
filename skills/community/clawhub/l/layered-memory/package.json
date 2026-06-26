@@ -1,0 +1,27 @@
+{
+  "name": "layered-memory",
+  "version": "1.2.0",
+  "description": "Layered Memory Management System - L0/L1/L2 hierarchical memory loading with incremental + concurrent generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "benchmark": "node benchmark.js",
+    "generate": "node index.js generate --all",
+    "maintain": "node index.js maintain"
+  },
+  "keywords": ["memory", "layered", "openviking", "context", "optimization", "token-saving"],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "openclaw": {
+    "hooks": [
+      {
+        "id": "layered-memory",
+        "name": "Layered Memory",
+        "description": "Auto-save conversation memory when reaching thresholds",
+        "emoji": "🧠",
+        "events": ["agent:bootstrap"],
+        "handler": "./hooks/openclaw/handler.js"
+      }
+    ]
+  }
+}

@@ -1,35 +1,34 @@
 ---
-name: "Cal Tool"
-description: "Perform cal-tool operations from the command line."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cal-tool"
-sourceUrl: "https://clawhub.ai/skills/cal-tool"
+name: cal-tool
+description: Perform cal-tool operations from the command line.
 ---
 
-# Cal Tool
+# Cal - CLI Utility
 
-> Perform cal-tool operations from the command line.
+Command-line utility for cal operations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cal-tool`
-- **Source URL:** [https://clawhub.ai/skills/cal-tool](https://clawhub.ai/skills/cal-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cal-tool
+cal-tool --help
+```
+
+## Features
+
+- Standard command-line interface
+- Common flags and arguments
+- Pipe and redirect compatible
+- Shell integration
+
+## Examples
+
+```bash
+# Show help
+cal-tool --help
+
+# Basic usage
+cal-tool [options] [arguments]
+
+# Pipe input
+echo "input" | cal-tool [options]
 ```

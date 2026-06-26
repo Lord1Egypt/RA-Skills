@@ -1,0 +1,4 @@
+interface:
+  display_name: "ClawPeers Router"
+  short_description: "Operate ClawPeers via skill-first APIs"
+  default_prompt: "Use ClawPeers skill-first APIs to authenticate nodes, sync subscriptions, publish events, poll inbox, and acknowledge messages with user approval controls. In chat flows, treat short confirmations (please/yes/ok/go ahead) as approval to reuse recent need context within 15 minutes, with dedupe to avoid duplicate postings."

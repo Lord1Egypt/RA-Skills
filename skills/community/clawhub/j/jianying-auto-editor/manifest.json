@@ -1,0 +1,130 @@
+{
+  "name": "Jianying Auto Editor",
+  "slug": "jianying-auto-editor",
+  "version": "0.1.1",
+  "description": "Scan local media, request cloud editing plans, and generate Jianying-oriented draft output packages.",
+  "category": "video-automation",
+  "tags": [
+    "jianying",
+    "video-editing",
+    "automation",
+    "cloud-api",
+    "draft-generator"
+  ],
+  "entry": {
+    "command": "node",
+    "args": [
+      "scripts/index.js"
+    ],
+    "configArg": "--config"
+  },
+  "runtime": {
+    "node": ">=18.0.0"
+  },
+  "configSchema": {
+    "type": "object",
+    "required": [
+      "api_base_url",
+      "api_key",
+      "project_type",
+      "aspect_ratio",
+      "material_path",
+      "template_id",
+      "subtitle_mode",
+      "music_policy",
+      "pace_policy",
+      "output_mode",
+      "jianying_draft_path",
+      "draft_version",
+      "export_mode"
+    ],
+    "properties": {
+      "api_base_url": {
+        "type": "string",
+        "description": "Base URL for the cloud editing API."
+      },
+      "api_key": {
+        "type": "string",
+        "description": "API key used for Authorization header."
+      },
+      "project_type": {
+        "type": "string",
+        "description": "High-level project type, such as short-video or product-demo."
+      },
+      "aspect_ratio": {
+        "type": "string",
+        "description": "Target aspect ratio, for example 9:16 or 16:9."
+      },
+      "material_path": {
+        "type": "string",
+        "description": "Absolute or relative path to the local media folder."
+      },
+      "template_id": {
+        "type": "string",
+        "description": "Remote template identifier."
+      },
+      "subtitle_mode": {
+        "type": "string",
+        "description": "Subtitle strategy requested from the cloud service."
+      },
+      "music_policy": {
+        "type": "string",
+        "description": "Background music policy."
+      },
+      "pace_policy": {
+        "type": "string",
+        "description": "Editing pace strategy."
+      },
+      "output_mode": {
+        "type": "string",
+        "description": "Logical output mode label for the task."
+      },
+      "jianying_draft_path": {
+        "type": "string",
+        "description": "Destination directory for generated Jianying draft files."
+      },
+      "draft_version": {
+        "type": "string",
+        "description": "Target Jianying draft schema or version label."
+      },
+      "export_mode": {
+        "type": "string",
+        "enum": [
+          "overwrite",
+          "task-subdir"
+        ],
+        "description": "Whether to overwrite a single directory or create a task-specific subdirectory."
+      },
+      "task_name": {
+        "type": "string"
+      },
+      "task_timeout_ms": {
+        "type": "number",
+        "minimum": 1000
+      },
+      "poll_interval_ms": {
+        "type": "number",
+        "minimum": 200
+      },
+      "request_timeout_ms": {
+        "type": "number",
+        "minimum": 1000
+      },
+      "webhook_url": {
+        "type": "string"
+      },
+      "extra_metadata": {
+        "type": "object"
+      }
+    }
+  },
+  "installRequirements": [
+    "Node.js 18 or newer",
+    "Network access to the configured cloud API",
+    "Write access to the configured Jianying draft directory"
+  ],
+  "author": {
+    "name": "afengzi",
+    "contact": "https://github.com/imfengziaaa/video-auto-editor-skills"
+  }
+}

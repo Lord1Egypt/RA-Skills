@@ -1,0 +1,57 @@
+{
+  "id": "openclaw-msteams-bot-elvatis",
+  "name": "OpenClaw Teams Connector (Elvatis)",
+  "version": "0.1.3",
+  "description": "Microsoft Teams connector for OpenClaw Gateway. Bridges Teams channels to OpenClaw sessions with per-channel system prompts.",
+  "main": "dist/src/index.js",
+  "configSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "port": {
+        "type": "number",
+        "default": 3978,
+        "description": "Port for Bot Framework webhook endpoint"
+      },
+      "appId": {
+        "type": "string",
+        "description": "Microsoft App ID from Azure Bot registration"
+      },
+      "appPassword": {
+        "type": "string",
+        "description": "Microsoft App Password from Azure Bot registration"
+      },
+      "appTenantId": {
+        "type": "string",
+        "description": "Azure AD Tenant ID for single-tenant bots"
+      },
+      "channels": {
+        "type": "object",
+        "description": "Per-channel configuration keyed by Teams channel name or ID",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "systemPrompt": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "appId",
+      "appPassword"
+    ]
+  }
+}

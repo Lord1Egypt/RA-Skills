@@ -1,0 +1,16 @@
+{
+  "package_name": "feishu-calendar-scheduler.zip",
+  "size_bytes": 15451,
+  "sha256_hash": "3c5101521441ff9cee5a6ea2e88d796ea6baca8d8663df0c62fdd54501237729",
+  "version": "1.0.0",
+  "build_time": "2026-03-16T19:03:43.095631",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.sh",
+    "scripts/recommend.py",
+    "scripts/simple_test.py",
+    "scripts/packager.py",
+    "scripts/"
+  ]
+}

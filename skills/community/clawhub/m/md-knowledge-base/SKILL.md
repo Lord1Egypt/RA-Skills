@@ -1,35 +1,283 @@
 ---
-name: "Knowledge-Base"
-description: "结构化 Markdown 知识库管理协议。在知识库中新增、整理、搜索笔记和项目。匹配：在知识库中记笔记/归档/整理/搜索/创建项目/写日报/写周报/记录外部来源/沉淀概念或问题模型/知识库体检。当用户提到知识库操作、笔记管理、知识库健康检查时触发。默认推荐结构见正文，实际目录/命名/脚本等由 references..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/md-knowledge-base"
-sourceUrl: "https://clawhub.ai/skills/md-knowledge-base"
+name: knowledge-base
+description: "结构化 Markdown 知识库管理协议。在知识库中新增、整理、搜索笔记和项目。匹配：在知识库中记笔记/归档/整理/搜索/创建项目/写日报/写周报/记录外部来源/沉淀概念或问题模型/知识库体检。当用户提到知识库操作、笔记管理、知识库健康检查时触发。默认推荐结构见正文，实际目录/命名/脚本等由 references/ 配置文件定义。"
 ---
 
-# Knowledge-Base
+# Knowledge-Base 知识库协议
 
-> 结构化 Markdown 知识库管理协议。在知识库中新增、整理、搜索笔记和项目。匹配：在知识库中记笔记/归档/整理/搜索/创建项目/写日报/写周报/记录外部来源/沉淀概念或问题模型/知识库体检。当用户提到知识库操作、笔记管理、知识库健康检查时触发。默认推荐结构见正文，实际目录/命名/脚本等由 references...
+结构化 Markdown 知识库的最小公共管理协议，通过 references/ 适配具体知识库。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/md-knowledge-base`
-- **Source URL:** [https://clawhub.ai/skills/md-knowledge-base](https://clawhub.ai/skills/md-knowledge-base)
+本文档分为两层：
+- **核心协议**：所有知识库都应遵守的最小公共约定
+- **推荐实践**：默认最佳实现，可由 references 覆盖或替换
 
-## Overview
+## 知识库根路径
 
+由 references/ 配置文件定义。默认参考：[references/hansphere.md](references/hansphere.md)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/md-knowledge-base
+## 目录约定
+
+### 默认推荐结构
+
+默认推荐采用以下分层结构，具体路径和目录命名以 references 配置为准：
+
 ```
+知识库根目录/
+├── README.md              # 仓库总览
+└── Notes/
+    ├── 00-Inbox/          # 临时收集箱
+    ├── 01-Daily/          # 日报/工作日志
+    ├── 02-Sources/        # 外部来源
+    │   └── Fulltext/      # 全文存档
+    ├── 03-Concepts/       # 通用概念
+    ├── 04-Issues/         # 问题模型
+    ├── 05-Projects/       # 项目资料
+    ├── 06-Architecture/   # 架构设计
+    ├── 07-Patterns/       # 工作方法
+    ├── 08-Reviews/        # 复盘总结
+    ├── 09-Indexes/        # 索引导航
+    ├── 10-Operations/     # 操作日志+体检
+    ├── 98-Templates/      # 模板库
+    └── 99-Archive/        # 归档区
+```
+
+各目录职责：
+- **Inbox** → 临时收集，定期清理
+- **Daily** → 当天事实记录
+- **Sources** → 外部文章/资料（摘要+全文）
+- **Concepts** → 可复用知识点
+- **Issues** → 故障排查记录
+- **Projects** → 项目资料（个人+公司统一管理）
+- **Architecture** → 架构决策/ADR
+- **Patterns** → 工作方法/SOP
+- **Reviews** → 周报/月报/阶段复盘
+- **Indexes** → 索引导航
+- **Operations** → 操作日志+体检报告
+- **Templates** → 笔记模板
+- **Archive** → 长期归档
+
+> 上述目录结构与职责为默认推荐映射，实际目录和职责边界以 references 配置为准。
+
+## 执行流
+
+### 轻量流
+
+**适用**：Daily / Inbox / 已知文件更新 / 小修订
+
+```
+1. 判断目标文件
+2. 套用已有模板/结构
+3. 写入或更新
+4. 回写 updated
+5. 核心必检 6 项
+6. 必要时补 ops
+```
+
+### 标准流
+
+**适用**：新建 Issue/Concept/Pattern/Project / 归档/迁移 / 批量整理 / 建索引
+
+```
+1. 搜索防重复
+2. 判断类型
+3. 读取规则（首次进入该类型时读目录 README + 模板；同会话内沿用上下文）
+4. 创建/更新
+5. 补关联字段
+6. 回写 updated
+7. 追加 ops（按工作批次收口）
+8. 判断索引更新（延迟触发）
+9. 完整质量清单
+```
+
+### 规则上下文缓存
+
+- 首次处理某类型笔记时，读取目录 README 和模板
+- 同会话内同类型连续处理，沿用上下文，不重复读取
+
+## 核心协议
+
+以下规则适用于所有知识库：
+
+### 1. 语义类型判定
+
+新输入按以下语义角色判断类型（语义类型到实际目录的映射由 references 定义）：
+
+| 语义角色 | 含义 | 默认目录 |
+| --- | --- | --- |
+| **时序记录** | 当天/当期事实记录 | Daily |
+| **临时收集** | 尚未分类的新输入 | Inbox |
+| **来源资料** | 外部文章、书籍、课程 | Sources |
+| **概念知识** | 可复用的原理/机制 | Concepts |
+| **问题排查** | 具体故障的排查结论 | Issues |
+| **项目资料** | 项目需求、设计、变更记录 | Projects |
+| **决策设计** | 架构决策、技术选型 | Architecture |
+| **方法流程** | 可复用的工作方法/SOP | Patterns |
+| **复盘总结** | 周期性归纳和回顾 | Reviews |
+| **导航索引** | 专题汇总、快速跳转 | Indexes |
+
+**边界裁决**：
+- 问题排查 围绕"具体故障/排查结论"；概念知识 围绕"原理/机制"
+- 外部文章即使和项目强相关，仍先进 Sources，再在 `related` 关联项目
+- 临时收集 内容 7 天内必须归档或删除
+- 时序记录 中出现可复用结论/排障闭环/架构决策/流程优化时，必须升格为长期笔记
+
+### 2. 防重复搜索
+
+新建**长期知识类**笔记前必须搜索同主题已有内容：
+
+| 风险级别 | 语义类型 | 要求 |
+| --- | --- | --- |
+| **长期知识类（必须搜索）** | 问题排查 / 概念知识 / 方法流程 / 项目正式文档 | 文件名 + 正文 |
+| **中期资料类（推荐搜索）** | 来源资料 / 决策设计 / 复盘总结 | 文件名 |
+| **临时记录类（可跳过）** | 时序记录 / 临时收集 / 已知更新 | 不强制 |
+
+已有内容高度重合 → 更新旧文档，不新建。
+
+### 3. 相对链接
+
+- 知识库内部使用可点击的 Markdown 相对链接：`[简短说明](相对路径)`
+- 禁止使用绝对本地路径
+
+### 4. 更新回写
+
+- 每次修改笔记必须回写 `updated` 字段为当天日期
+- `created` 仅在首次创建时设置，后续不修改
+
+### 5. 不写敏感信息
+
+- 不写入密码、Token、API Key、基础设施私钥、客户隐私或商业机密
+
+### 6. 核心必检 6 项
+
+每次写入后检查：
+
+- [ ] 路径符合类型判定规则
+- [ ] 文件名符合命名约定（见 references）
+- [ ] Front Matter 完整（id/title/type 必填）
+- [ ] `updated` 已回写
+- [ ] 不出现敏感信息
+- [ ] 无明显重复（按搜索规则执行；可跳过类型无需强制搜索）
+
+## 推荐实践
+
+以下实践为默认最佳方案，可由 references 覆盖。
+
+> 以下类型名（Source/Issue/Concept 等）采用默认实现命名，仅作为推荐实践示例。
+
+### 命名约定
+
+文件名应体现**类型前缀 + 主题/描述 + 日期**，确保可读且可排序。
+
+具体命名格式见 references 配置。参考实现：
+
+| 类型 | HanSphere 格式 |
+| --- | --- |
+| Daily | `DAILY-YYYY-MM-DD.md` |
+| Source | `SRC-Topic-YYYY-MM-DD.md` |
+| Concept | `CONCEPT-Domain-Topic.md` |
+| Issue | `ISSUE-System-Problem.md` |
+| Project | `PRJ-Project-Name/` |
+| Pattern | `PATTERN-Scenario.md` |
+| Review | `YYYY-Www-WeeklyReview-MMDD-MMDD.md` |
+
+### Front Matter 标准字段
+
+| 字段 | 说明 |
+| --- | --- |
+| `id` | 唯一标识，与文件名主干关联 |
+| `title` | 与正文 H1 一致 |
+| `type` | 笔记类型 |
+| `status` | 当前状态 |
+| `domain` | 领域 |
+| `project` | 所属项目 |
+| `tags` | 标签，推荐 3~7 个 |
+| `related` | 关联笔记，数组格式 |
+| `source` | 资料来源，数组格式 |
+| `created` | 首次写入时间 |
+| `updated` | 最后更新时间（每次修改必更新） |
+| `review_cycle` | 回顾周期（Source/Concept/Issue/Pattern 推荐） |
+
+**原则**：没有事实依据的字段宁可留空，不要猜。
+
+`related` / `source` 默认规则：
+- 默认实践中，来源资料 应提供 `source` 字段
+- 默认实践中，问题排查 应尽量关联相关笔记；首次记录无关联对象可暂空，验证闭环前补齐
+- 时序记录 / 孤立输入 允许都没有
+
+### 生命周期
+
+使用 `status` 字段管理笔记状态：
+
+| 类型 | 状态流 |
+| --- | --- |
+| Source | `captured` → `processed` → `distilled` → `archived` |
+| Project | `active` → `paused` → `archived` |
+| Issue | `open` → `diagnosed` → `fixed` → `verified` → `archived` |
+| Concept | `draft` → `stable` |
+
+### 最小正文骨架
+
+必须章节可简写，但不得省略核心信息。
+
+| 类型 | 必须章节 |
+| --- | --- |
+| Issue | 现象、排查过程、根因、解决方案 |
+| Concept | 定义、核心机制、相关链接 |
+| Source | 来源信息、核心观点、关键事实、相关链接 |
+| Pattern | 适用场景、执行步骤、参考资料 |
+| Architecture | 背景、问题、方案、决策、相关链接 |
+| Review | 本期目标、实际进展、关键问题、相关链接 |
+
+建议章节（可选）见完整模板。
+
+### 归档规则
+
+`archived` 状态与物理移动到 Archive 目录是两个独立动作：
+- 仅改状态：短期不再活跃
+- 移动到 Archive：长期不再维护，须同时更新关联链接和索引
+
+禁止只移动文件而不修复相关链接。归档后原路径保留简短说明 **或** 更新索引标注（二选一）。
+
+### 索引生成
+
+触发条件：某主题 ≥ 5 篇 / 项目跨多模块 / 问题链路涉及多类型文档。
+
+延迟触发：仅明确新建索引/用户要求/批量操作时立即更新，其他场景延后统一处理。
+
+### 操作日志
+
+按**工作批次**收口，30 分钟内同主题多次修改合并为一条。仅记录有意义的知识动作（新建/结构调整/归档/体检等），不记录格式清理。
+
+### 项目目录
+
+项目目录应包含稳定入口文件（如 `00-Index/INDEX.md`），可按需要包含以下分层：Overview / Requirements / Architecture / Modules / Interfaces / Data / Environments / Issues / Change-Logs / Todos / Decisions / Reviews。
+
+实际目录结构由 references 定义。
+
+### 知识库体检
+
+定期体检应覆盖：结构完整性、链接健康、命名规范、孤立页面、终端页面、报告输出。
+
+具体评分权重和体检工具由 references 配置。
+
+## 安全边界
+
+不写入认证信息（密码、Token、API Key）、基础设施私钥、客户隐私或商业机密。敏感值使用占位符。
+
+## 配置扩展机制
+
+通过 `references/<kb-name>.md` 定义具体知识库的实现配置。reference 文件可定义以下维度：
+
+| 维度 | 说明 |
+| --- | --- |
+| 根目录路径 | 知识库在文件系统中的位置 |
+| 正文语言 | 笔记正文使用的自然语言 |
+| 目录结构 | 实际目录路径、层级和职责映射 |
+| 命名规范 | 各类型的具体文件名格式 |
+| 字段默认值 | 各类型默认 `status`、`review_cycle` 等 |
+| 操作日志路径和模板 | ops 日志和体检日志的存储位置与格式 |
+| 体检脚本路径 | 链接扫描等体检工具的执行命令 |
+| Git/版本控制约定 | 提交信息规范、同步流程 |
+| 项目目录结构 | 项目内部的子目录层级和入口约定 |
+
+当前配置：[references/hansphere.md](references/hansphere.md)

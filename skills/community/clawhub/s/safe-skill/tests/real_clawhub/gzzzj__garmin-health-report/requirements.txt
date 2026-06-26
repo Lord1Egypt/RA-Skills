@@ -1,0 +1,5 @@
+# Garmin Health Report - Python Dependencies
+# This file lists Python packages required for garmin-health-report
+
+# Garmin Connect authentication and API library
+garth>=0.4.0

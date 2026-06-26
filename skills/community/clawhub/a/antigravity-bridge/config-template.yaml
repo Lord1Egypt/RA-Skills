@@ -1,0 +1,56 @@
+# Antigravity Bridge — Configuration Template
+# Copy this file to ~/.openclaw/workspace/antigravity-bridge.yaml and customize.
+#
+# One-way sync: Antigravity/Gemini projects → OpenClaw workspace
+# Synced .md files are indexed via memorySearch.extraPaths for memory_search.
+
+# ─── Projects ─────────────────────────────────────────────────────────────────
+# List your Antigravity-managed repos here.
+# Each project gets its own subfolder under <destination>/<name>/
+
+projects:
+  - name: acme-platform
+    # Path to the root of your Antigravity project repo
+    repo: ~/repo/acme-corp/acme-platform
+    # Paths to sync (relative to repo root)
+    # Directories: recursively syncs all *.md files
+    # Files:       synced directly (must end in .md)
+    paths:
+      - .agent/memory      # Lessons learned, session notes
+      - .agent/rules       # Coding rules and conventions
+      - .agent/skills      # Antigravity skill definitions
+      - .agent/sessions    # Session handoff notes
+      - .agent/tasks.md    # Task tracker
+      - .gemini/GEMINI.md  # Root Gemini config/context
+      - docs               # Project documentation
+    # Also sync *.md files at the repo root (e.g. README.md, CHANGELOG.md)
+    include_root_md: true
+
+# Add more projects as needed:
+#
+#  - name: another-project
+#    repo: ~/repo/my-org/another-project
+#    paths:
+#      - .agent/memory
+#      - .agent/tasks.md
+#      - docs
+#    include_root_md: false
+
+# ─── Knowledge Sources ────────────────────────────────────────────────────────
+# Standalone knowledge directories outside of project repos.
+# Useful for Gemini's global knowledge store.
+
+knowledge:
+  - name: gemini-knowledge
+    # Path to Gemini/Antigravity global knowledge directory
+    path: ~/.gemini/antigravity/knowledge
+
+# ─── Destination ──────────────────────────────────────────────────────────────
+# Subfolder within the OpenClaw workspace where synced files land.
+# Full path: <OPENCLAW_WORKSPACE>/<destination>/
+# Default: antigravity
+#
+# This folder should be added to memorySearch.extraPaths in OpenClaw config
+# so that synced .md files are automatically embedded and indexed.
+
+destination: antigravity

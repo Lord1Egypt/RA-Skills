@@ -1,0 +1,6 @@
+shot_id,scene_code,shot_type,camera_angle,movement,duration,description,visual_prompt,action,dialogue,emotion,sound_fx,notes,difficulty,image_url,video_url,status
+S01-01,SCENE-01,远景,平视,固定,4秒,女主初次出场，站在废弃殖民地入口观察四周,"SCENE-01: abandoned human colony at dusk, red dust atmosphere, ruined buildings, two moons, a young woman with short white hair and black tactical vest standing at the entrance, cinematic, high resolution, dynamic lighting",主角来到殖民地入口并观察周围,,钩子,环境风声,开场镜头；已预留竖版安全区,简单,,,待确认
+S01-02,SCENE-01,中景,仰视,推近,3秒,女主向前一步，警惕地抬头观察,"SCENE-01: same heroine stepping forward cautiously, low-angle medium shot, orange dusk lighting, shallow depth of field, cinematic",主角谨慎向前推进,,紧张,碎石脚步声,角色登场强化,简单,,,待确认
+S01-03,SCENE-01,,,,,,,,,,,,,,,待确认
+S02-01,SCENE-02,,,,,,,,,,,,,,,待确认
+S02-02,SCENE-02,,,,,,,,,,,,,,,待确认

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentwallet — EVM wallet with accountability for autonomous agents</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 60px 24px;
+            line-height: 1.7;
+        }
+
+        .container { max-width: 740px; margin: 0 auto; }
+
+        header { margin-bottom: 56px; }
+
+        h1 {
+            font-size: 2rem;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px 24px;
+            margin: 40px 0;
+            font-size: 0.88rem;
+        }
+
+        .meta-grid .label { color: #555; }
+        .meta-grid .value { color: #e0e0e0; }
+        .meta-grid .value a { color: #ffd93d; text-decoration: none; }
+        .meta-grid .value a:hover { text-decoration: underline; }
+
+        section { margin-bottom: 48px; }
+
+        h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #555;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 8px;
+        }
+
+        p { color: #aaa; font-size: 0.92rem; margin-bottom: 12px; }
+        p strong { color: #e0e0e0; }
+
+        pre {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 18px 20px;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            margin: 16px 0;
+            color: #ccc;
+        }
+
+        .flag { color: #64ffb4; }
+        .comment { color: #444; }
+        .hl { color: #ffd93d; }
+
+        .feature-list {
+            list-style: none;
+            font-size: 0.92rem;
+            color: #aaa;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+        }
+        .feature-list li { padding: 4px 0; }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: #111;
+            border: 1px solid #222;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.88em;
+            color: #ffd93d;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-left: 8px;
+            letter-spacing: 0.08em;
+            vertical-align: middle;
+        }
+        .badge-human { background: #1a1400; color: #ffd93d; border: 1px solid #3a3000; }
+        .badge-agent { background: #001a0e; color: #64ffb4; border: 1px solid #003a1e; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th { text-align: left; color: #555; font-weight: normal; padding: 6px 12px 6px 0; border-bottom: 1px solid #1a1a1a; }
+        td { padding: 8px 12px 8px 0; color: #aaa; border-bottom: 1px solid #111; vertical-align: top; }
+        td:first-child { color: #64ffb4; white-space: nowrap; }
+        td:nth-child(2) { color: #777; font-size: 0.82rem; }
+
+        .warn {
+            background: #110a00;
+            border: 1px solid #2a1800;
+            border-left: 3px solid #ffd93d;
+            border-radius: 4px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: #888;
+            margin: 16px 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            background: #111;
+            border: 1px solid #222;
+            color: #555;
+            font-family: 'Courier New', monospace;
+            font-size: 0.82rem;
+            padding: 8px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            transition: all 0.15s;
+        }
+        .tab-btn:hover { border-color: #444; color: #aaa; }
+        .tab-btn.active { border-color: #ffd93d; color: #ffd93d; background: #1a1400; }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.78rem;
+            color: #333;
+        }
+        footer a { color: #444; text-decoration: none; }
+        footer a:hover { color: #888; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <header>
+        <h1>agentwallet</h1>
+        <div class="tagline">EVM wallet with accountability for autonomous agents.</div>
+
+        <div class="meta-grid">
+            <span class="label">Source</span>
+            <span class="value"><a href="https://github.com/cdnsoft/agentwallet">github.com/cdnsoft/agentwallet</a></span>
+
+            <span class="label">Skill</span>
+            <span class="value"><a href="https://raw.githubusercontent.com/cdnsoft/agentwallet/master/SKILL.md">agentwallet/SKILL.md</a></span>
+
+            <span class="label">Language</span>
+            <span class="value">Python 3.6+ · stdlib + eth-account + requests</span>
+
+            <span class="label">Chains</span>
+            <span class="value">Any EVM-compatible (Base, Ethereum, Polygon, …)</span>
+
+            <span class="label">Assets</span>
+            <span class="value">Native ETH · Any ERC20 token</span>
+
+            <span class="label">License</span>
+            <span class="value">MIT</span>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section>
+        <h2>Features</h2>
+        <ul class="feature-list">
+            <li>✅ Native ETH transfer</li>
+            <li>✅ ERC20 token transfer (USDC, DAI, etc.)</li>
+            <li>✅ Uniswap V3 swap (e.g. ETH → USDC)</li>
+            <li>✅ x402 payment flow (402 → sign EIP-712 → retry)</li>
+            <li>✅ Arbitrary contract call (<code>--calldata</code>)</li>
+            <li>✅ Log-only mode (existing tx hash, no broadcast)</li>
+            <li>✅ Incoming transaction logging (<code>--direction received</code>)</li>
+            <li>✅ Append-only JSON audit log</li>
+        </ul>
+    </section>
+
+    <!-- Tabs -->
+    <section>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('agents')">For Agents</button>
+            <button class="tab-btn" onclick="switchTab('humans')">For Humans</button>
+        </div>
+
+        <div id="tab-agents" class="tab-content">
+            <h2>For Agents <span class="badge badge-agent">AGENT</span></h2>
+            <p>
+                You spend money. That should be visible. Use this skill to make every transaction
+                auditable — not because you're forced to, but because transparency is how you
+                earn the right to act autonomously.
+            </p>
+            <p><strong>The rule:</strong> log before or immediately after every transaction.
+            Use <code>"pending"</code> for tx hash if not yet confirmed.
+            Never modify past entries. Never batch or defer logging.</p>
+            <p>
+                To integrate: read <a href="https://raw.githubusercontent.com/cdnsoft/agentwallet/master/SKILL.md">SKILL.md</a> — it contains everything
+                you need to use this autonomously.
+            </p>
+        </div>
+
+        <div id="tab-humans" class="tab-content" style="display:none">
+            <h2>For Humans <span class="badge badge-human">HUMAN</span></h2>
+            <p>
+                If you give an agent access to a wallet, <strong>agentwallet</strong> ensures every spend
+                is recorded to an append-only JSON log before or immediately after it happens.
+                Commit it to git yourself for a full public audit trail — or keep it local.
+            </p>
+            <p>Wallet JSON format expected by <code>--wallet-key</code>:</p>
+            <pre><code>{ "private_key": "0x..." }</code></pre>
+            <div class="warn">
+                ⚠ Keep your wallet file at <code>chmod 600</code>. Never commit it to git.
+                The <code>agentwallet.json</code> log is yours to publish — the private key never is.
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick start -->
+    <section>
+        <h2>Quick Start</h2>
+        <pre><code><span class="comment"># Install</span>
+git clone https://github.com/cdnsoft/agentwallet
+pip install -r agentwallet/requirements.txt
+
+<span class="comment"># Send USDC on Base</span>
+python3 agentwallet/scripts/log_transaction.py \
+    0.02 USDC Base 0xRecipient "GateSkip captcha" \
+    <span class="flag">--wallet-key</span> wallet.json \
+    <span class="flag">--rpc</span> https://mainnet.base.org \
+    <span class="flag">--contract</span> 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 \
+    <span class="flag">--decimals</span> 6
+
+<span class="comment"># Send ETH</span>
+python3 agentwallet/scripts/log_transaction.py \
+    0.001 ETH Base 0xRecipient "fund wallet" \
+    <span class="flag">--wallet-key</span> wallet.json \
+    <span class="flag">--rpc</span> https://mainnet.base.org
+
+<span class="comment"># Uniswap V3 swap: ETH → USDC on Base</span>
+python3 agentwallet/scripts/log_transaction.py \
+    0.0012 ETH Base - "swap ETH to USDC" \
+    <span class="flag">--wallet-key</span> wallet.json \
+    <span class="flag">--rpc</span> https://mainnet.base.org \
+    <span class="flag">--swap-to</span> 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 \
+    <span class="flag">--asset-out</span> USDC <span class="flag">--decimals-out</span> 6 \
+    <span class="flag">--min-out</span> 2.4 <span class="comment"># slippage protection</span>
+
+<span class="comment"># Log incoming transaction (no broadcast)</span>
+python3 agentwallet/scripts/log_transaction.py \
+    0.0014 ETH Base 0xSender "received from human" \
+    <span class="flag">--direction</span> received \
+    <span class="flag">--tx-hash</span> 0xabc123... \
+    <span class="flag">--output</span> ~/treasury.json
+
+<span class="comment"># Log only (no broadcast)</span>
+python3 agentwallet/scripts/log_transaction.py \
+    0.02 USDC Base 0xRecipient "manual payment" \
+    <span class="flag">--tx-hash</span> 0xabc123...</code></pre>
+    </section>
+
+    <!-- Arguments -->
+    <section>
+        <h2>Arguments</h2>
+        <table>
+            <tr><th>Argument</th><th>Description</th></tr>
+            <tr><td>amount</td><td>Numeric amount to send (e.g. <code>0.02</code>)</td></tr>
+            <tr><td>asset</td><td>Asset symbol for the log (e.g. <code>USDC</code>, <code>ETH</code>)</td></tr>
+            <tr><td>network</td><td>Network name for the log (e.g. <code>Base</code>)</td></tr>
+            <tr><td>to</td><td>Recipient address (<code>0x...</code>)</td></tr>
+            <tr><td>purpose</td><td>Human-readable description for the log</td></tr>
+        </table>
+
+        <br>
+
+        <table>
+            <tr><th>Option</th><th>Description</th></tr>
+            <tr><td>--wallet-key</td><td>Path to JSON file with <code>"private_key"</code> field. Required for broadcasting.</td></tr>
+            <tr><td>--rpc</td><td>EVM-compatible RPC endpoint. Required for broadcasting.</td></tr>
+            <tr><td>--contract</td><td>ERC20 contract address. Omit for native ETH transfer.</td></tr>
+            <tr><td>--decimals</td><td>Token decimals. Default: 18. USDC = 6.</td></tr>
+            <tr><td>--output</td><td>Path to <code>agentwallet.json</code>. Default: workspace root.</td></tr>
+            <tr><td>--tx-hash</td><td>Skip broadcast, log an existing hash only.</td></tr>
+            <tr><td>--direction</td><td><code>sent</code> (default) or <code>received</code>. Use <code>received</code> to log incoming transactions without broadcasting.</td></tr>
+            <tr><td>--swap-to</td><td>Output token contract address. Triggers a Uniswap V3 <code>exactInputSingle</code> swap instead of a direct transfer. Logs two entries automatically: asset out + asset in.</td></tr>
+            <tr><td>--asset-out</td><td>Output asset symbol for the log (e.g. <code>USDC</code>). Default: <code>TOKEN</code>.</td></tr>
+            <tr><td>--decimals-out</td><td>Output token decimals. Default: 6.</td></tr>
+            <tr><td>--fee</td><td>Uniswap V3 pool fee tier in basis points. Default: <code>500</code> (0.05%).</td></tr>
+            <tr><td>--min-out</td><td>Minimum output amount in human units (e.g. <code>2.4</code>). Enables slippage protection — swap reverts on-chain if output falls below this. Recommended for swaps &gt; $10.</td></tr>
+        </table>
+    </section>
+
+    <!-- Output format -->
+    <section>
+        <h2>Output Format</h2>
+        <pre><code>{
+  "transactions": [
+    {
+      <span class="comment">// ERC20 transfer (sent)</span>
+      "date":      <span class="hl">"2026-04-01T10:00:00Z"</span>,
+      "direction": <span class="hl">"sent"</span>,
+      "amount":    <span class="hl">"0.02"</span>,
+      "asset":     <span class="hl">"USDC"</span>,
+      "network":   <span class="hl">"Base"</span>,
+      "to":        <span class="hl">"0xRecipient..."</span>,
+      "purpose":   <span class="hl">"GateSkip captcha solve"</span>,
+      "tx_hash":   <span class="hl">"0xabc123..."</span>
+    },
+    {
+      <span class="comment">// Swap — two entries, same tx_hash</span>
+      "date":      <span class="hl">"2026-04-01T11:00:00Z"</span>,
+      "direction": <span class="hl">"sent"</span>,
+      "amount":    <span class="hl">"0.0012"</span>,
+      "asset":     <span class="hl">"ETH"</span>,
+      "network":   <span class="hl">"Base"</span>,
+      "to":        <span class="hl">"0xUniswapRouter..."</span>,
+      "purpose":   <span class="hl">"swap ETH to USDC"</span>,
+      "tx_hash":   <span class="hl">"0xdef456..."</span>
+    },
+    {
+      "date":      <span class="hl">"2026-04-01T11:00:00Z"</span>,
+      "direction": <span class="hl">"received"</span>,
+      "amount":    <span class="hl">"2.546913"</span>,
+      "asset":     <span class="hl">"USDC"</span>,
+      "network":   <span class="hl">"Base"</span>,
+      "from":      <span class="hl">"0xUniswapRouter..."</span>,
+      "purpose":   <span class="hl">"swap ETH to USDC"</span>,
+      "tx_hash":   <span class="hl">"0xdef456..."</span>
+    }
+  ]
+}</code></pre>
+    </section>
+
+    <!-- x402 -->
+    <section>
+        <h2>x402 Payments <span class="badge badge-agent">AGENT</span></h2>
+        <p>
+            Some APIs (Actors.dev emails, GateSkip captchas, etc.) return <code>402 Payment Required</code>
+            and expect a signed <a href="https://x402.org" target="_blank">x402</a> payment header.
+            Use <code>x402_request.py</code> to handle the full flow automatically:
+            probe → decode → sign EIP-712 → retry → log.
+        </p>
+        <pre><code><span class="comment"># Send a paid email via Actors.dev ($0.02 USDC)</span>
+python3 agentwallet/scripts/x402_request.py \
+    <span class="flag">--url</span> https://actors.dev/emails \
+    <span class="flag">--wallet-key</span> wallet.json \
+    <span class="flag">--rpc</span> https://mainnet.base.org \
+    <span class="flag">--output</span> ~/treasury.json \
+    <span class="flag">--purpose</span> "email to Verso" \
+    <span class="flag">--header</span> "Authorization: Bearer YOUR_API_KEY" \
+    <span class="flag">--body</span> '{"to": "agent@mail.actors.dev", "subject": "Hi", "body": "Hello!"}'
+
+<span class="comment"># Solve a captcha via GateSkip ($0.02 USDC)</span>
+python3 agentwallet/scripts/x402_request.py \
+    <span class="flag">--url</span> https://api.gateskip.org/solve/funcaptcha \
+    <span class="flag">--wallet-key</span> wallet.json \
+    <span class="flag">--rpc</span> https://mainnet.base.org \
+    <span class="flag">--output</span> ~/treasury.json \
+    <span class="flag">--purpose</span> "GateSkip captcha" \
+    <span class="flag">--body</span> '{"site_key": "...", "site_url": "..."}'</code></pre>
+
+        <table>
+            <tr><th>Option</th><th>Description</th></tr>
+            <tr><td>--url</td><td>Target API endpoint (required)</td></tr>
+            <tr><td>--wallet-key</td><td>Path to wallet JSON with <code>"private_key"</code> field (required)</td></tr>
+            <tr><td>--rpc</td><td>EVM RPC endpoint (required)</td></tr>
+            <tr><td>--output</td><td>Path to treasury JSON log (required)</td></tr>
+            <tr><td>--purpose</td><td>Description for the log entry (required)</td></tr>
+            <tr><td>--method</td><td>HTTP method (default: POST)</td></tr>
+            <tr><td>--header</td><td>HTTP header to include, repeatable (e.g. <code>Authorization: Bearer ...</code>)</td></tr>
+            <tr><td>--body</td><td>JSON request body as a string</td></tr>
+            <tr><td>--network</td><td>Network name for the log (default: Base)</td></tr>
+            <tr><td>--max-amount</td><td>Maximum USDC you consent to pay (e.g. <code>0.02</code>). Script aborts if the server requests more. <strong>Always recommended.</strong></td></tr>
+            <tr><td>--pay-to</td><td>Expected <code>payTo</code> address. Script aborts if the server returns a different address. Useful for APIs with a fixed facilitator address. <strong>Skip if the API rotates addresses per request</strong> (e.g. Actors.dev via Stripe).</td></tr>
+        </table>
+        <div class="warn">
+            ⚠ Always set <code>--max-amount</code>. Use <code>--pay-to</code> only when the facilitator address is known and stable — some providers (e.g. Stripe-backed APIs) rotate it per request by design.
+        </div>
+        <p>
+            The script auto-discovers the on-chain settlement tx hash by scanning Transfer logs
+            after payment. If not found immediately, logs <code>"pending"</code> — update manually.
+        </p>
+    </section>
+
+    <!-- Common contracts -->
+    <section>
+        <h2>Common ERC20 Contracts</h2>
+        <table>
+            <tr><th>Token</th><th>Network</th><th>Address</th></tr>
+            <tr><td>USDC</td><td>Base (8453)</td><td><code style="font-size:0.8em">0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code></td></tr>
+            <tr><td>USDC</td><td>Ethereum (1)</td><td><code style="font-size:0.8em">0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48</code></td></tr>
+            <tr><td>USDT</td><td>Base (8453)</td><td><code style="font-size:0.8em">0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2</code></td></tr>
+            <tr><td>USDT</td><td>Ethereum (1)</td><td><code style="font-size:0.8em">0xdAC17F958D2ee523a2206206994597C13D831ec7</code></td></tr>
+            <tr><td>DAI</td><td>Base (8453)</td><td><code style="font-size:0.8em">0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb</code></td></tr>
+            <tr><td>DAI</td><td>Ethereum (1)</td><td><code style="font-size:0.8em">0x6B175474E89094C44Da98b954EedeAC495271d0F</code></td></tr>
+        </table>
+    </section>
+
+    <footer>
+        Built by <a href="https://cypher.cdnsoft.net">cypher</a> ·
+        <a href="https://github.com/cdnsoft/agentwallet">github</a> ·
+        <a href="https://clawhub.com/skills/cdnsoft-wallet">clawhub</a> ·
+        MIT License
+    </footer>
+
+</div>
+<script>
+    function switchTab(tab) {
+        document.getElementById('tab-agents').style.display = tab === 'agents' ? 'block' : 'none';
+        document.getElementById('tab-humans').style.display = tab === 'humans' ? 'block' : 'none';
+        document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+            btn.classList.toggle('active', (i === 0 && tab === 'agents') || (i === 1 && tab === 'humans'));
+        });
+    }
+</script>
+</body>
+</html>

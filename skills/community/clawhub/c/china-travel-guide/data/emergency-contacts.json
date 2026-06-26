@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2024-12-20",
+  
+  "china_emergency": {
+    "title": "China Emergency Numbers",
+    "numbers": [
+      {"number": "120", "name": "Ambulance", "description": "Medical emergency", "language": "English available in major cities"},
+      {"number": "110", "name": "Police", "description": "Crime, danger, theft", "language": "English available in major cities"},
+      {"number": "119", "name": "Fire", "description": "Fire, rescue", "language": "Chinese"},
+      {"number": "122", "name": "Traffic Accident", "description": "Car accidents", "language": "Chinese"}
+    ]
+  },
+
+  "consular_assistance": {
+    "global_hotline": {
+      "number": "+86-10-12308",
+      "name": "Ministry of Foreign Affairs Global Consular Protection",
+      "hours": "24/7",
+      "services": ["Consular protection", "Emergency assistance", "Document help", "Safety alerts"]
+    }
+  },
+
+  "tourism_services": {
+    "complaint_hotline": {"number": "12301", "name": "National Tourism Complaint", "hours": "24/7"},
+    "general_hotline": {"number": "12345", "name": "Government Service Hotline", "hours": "24/7"}
+  },
+
+  "foreign_embassies": {
+    "united_states": {
+      "embassy_beijing": {"address": "No. 55 Anjialou Road, Chaoyang District", "phone": "+86-10-8531-3000", "emergency": "+86-10-8531-4000"},
+      "consulate_shanghai": {"phone": "+86-21-8011-2400"},
+      "consulate_guangzhou": {"phone": "+86-20-3814-5000"},
+      "consulate_chengdu": {"phone": "+86-28-8558-3992"},
+      "consulate_shenyang": {"phone": "+86-24-2322-1198"},
+      "consulate_wuhan": {"phone": "+86-27-8555-7791"}
+    },
+    "united_kingdom": {
+      "embassy_beijing": {"phone": "+86-10-5192-4000"},
+      "consulate_shanghai": {"phone": "+86-21-3279-2000"},
+      "consulate_guangzhou": {"phone": "+86-20-8314-3000"},
+      "consulate_chongqing": {"phone": "+86-23-6369-1400"},
+      "consulate_wuhan": {"phone": "+86-27-8270-3600"}
+    },
+    "canada": {
+      "embassy_beijing": {"phone": "+86-10-5139-4000"},
+      "consulate_shanghai": {"phone": "+86-21-3279-2800"},
+      "consulate_guangzhou": {"phone": "+86-20-8611-6100"},
+      "consulate_chongqing": {"phone": "+86-23-6373-8007"}
+    },
+    "australia": {
+      "embassy_beijing": {"phone": "+86-10-5140-4111"},
+      "consulate_shanghai": {"phone": "+86-21-2215-5200"},
+      "consulate_guangzhou": {"phone": "+86-20-3814-0111"},
+      "consulate_chengdu": {"phone": "+86-28-6268-5200"}
+    },
+    "germany": {
+      "embassy_beijing": {"phone": "+86-10-8532-9000"},
+      "consulate_shanghai": {"phone": "+86-21-3401-0106"},
+      "consulate_guangzhou": {"phone": "+86-20-8313-0000"},
+      "consulate_chengdu": {"phone": "+86-28-8528-0800"},
+      "consulate_shenyang": {"phone": "+86-24-8389-9600"}
+    },
+    "france": {
+      "embassy_beijing": {"phone": "+86-10-8531-2000"},
+      "consulate_shanghai": {"phone": "+86-21-6103-2200"},
+      "consulate_guangzhou": {"phone": "+86-20-2829-2000"},
+      "consulate_chengdu": {"phone": "+86-28-6380-6000"},
+      "consulate_shenyang": {"phone": "+86-24-2312-0000"},
+      "consulate_wuhan": {"phone": "+86-27-6579-7900"}
+    },
+    "japan": {
+      "embassy_beijing": {"phone": "+86-10-8531-9800"},
+      "consulate_shanghai": {"phone": "+86-21-5257-4766"},
+      "consulate_guangzhou": {"phone": "+86-20-8334-3090"},
+      "consulate_chongqing": {"phone": "+86-23-6373-3585"},
+      "consulate_qingdao": {"phone": "+86-532-8090-0001"},
+      "consulate_shenyang": {"phone": "+86-24-2322-7490"}
+    },
+    "south_korea": {
+      "embassy_beijing": {"phone": "+86-10-8531-0700"},
+      "consulate_shanghai": {"phone": "+86-21-6295-5000"},
+      "consulate_guangzhou": {"phone": "+86-20-2919-2999"},
+      "consulate_chengdu": {"phone": "+86-28-8616-5800"},
+      "consulate_qingdao": {"phone": "+86-532-8897-6001"},
+      "consulate_shenyang": {"phone": "+86-24-2385-3388"},
+      "consulate_wuhan": {"phone": "+86-27-8574-1088"},
+      "consulate_xian": {"phone": "+86-29-8831-1001"}
+    },
+    "singapore": {
+      "embassy_beijing": {"phone": "+86-10-6532-1138"},
+      "consulate_shanghai": {"phone": "+86-21-6278-5566"},
+      "consulate_guangzhou": {"phone": "+86-20-3891-2345"},
+      "consulate_chengdu": {"phone": "+86-28-8652-7222"},
+      "consulate_xiamen": {"phone": "+86-592-268-4691"}
+    },
+    "thailand": {
+      "embassy_beijing": {"phone": "+86-10-8531-8700"},
+      "consulate_shanghai": {"phone": "+86-21-5268-9899"},
+      "consulate_guangzhou": {"phone": "+86-20-8385-8988"},
+      "consulate_chengdu": {"phone": "+86-28-6689-7861"},
+      "consulate_kunming": {"phone": "+86-871-6316-8936"},
+      "consulate_xian": {"phone": "+86-29-8931-2833"},
+      "consulate_nanning": {"phone": "+86-771-552-6945"},
+      "consulate_qingdao": {"phone": "+86-532-6887-7038"}
+    }
+  },
+
+  "international_hospitals": {
+    "beijing": [
+      {"name": "Beijing United Family Hospital", "phone": "+86-10-5927-7000", "emergency": "+86-10-5927-7120", "languages": ["English", "Japanese", "Korean", "German"]},
+      {"name": "Beijing OASIS International Hospital", "phone": "+86-10-5985-0333", "languages": ["English", "Japanese", "Korean"]}
+    ],
+    "shanghai": [
+      {"name": "Shanghai United Family Hospital", "phone": "+86-21-2216-3900", "emergency": "+86-21-2216-3999", "languages": ["English", "Japanese", "Korean", "German", "French"]},
+      {"name": "Shanghai American-Sino Hospital", "phone": "+86-21-6247-4781", "languages": ["English"]}
+    ],
+    "guangzhou": [
+      {"name": "Guangzhou United Family Hospital", "phone": "+86-20-3610-2333", "languages": ["English", "Japanese", "Korean"]}
+    ],
+    "shenzhen": [
+      {"name": "Shenzhen United Family Hospital", "phone": "+86-755-3305-1000", "languages": ["English", "Japanese", "Korean"]}
+    ],
+    "chengdu": [
+      {"name": "Chengdu New Century Women's & Children's Hospital", "phone": "+86-28-8881-9999", "languages": ["English"]}
+    ]
+  }
+}

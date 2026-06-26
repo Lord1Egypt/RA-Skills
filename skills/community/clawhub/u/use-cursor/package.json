@@ -1,0 +1,68 @@
+{
+  "name": "use-cursor",
+  "version": "1.0.4",
+  "description": "Manage Cursor CLI tasks via tmux with security hardening",
+  "author": "Bruce + 凤雏",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/use-cursor"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "keywords": [
+    "cursor",
+    "cli",
+    "agent",
+    "openclaw",
+    "tmux",
+    "background-task",
+    "coding"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=2026.3.0"
+  },
+  "scripts": {
+    "doctor": "bash scripts/doctor.sh",
+    "test": "echo 'Run use_cursor_doctor tool in OpenClaw'"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "SECURITY.md",
+    "scripts/",
+    "extensions/"
+  ],
+  "required": {
+    "binaries": ["tmux", "agent"],
+    "env": ["CURSOR_API_KEY"]
+  },
+  "clawhub": {
+    "required": {
+      "env": ["CURSOR_API_KEY (optional, or login via 'agent login')"],
+      "binaries": ["tmux", "agent (cursor-agent)"]
+    },
+    "security": {
+      "autonomous": false,
+      "always": false,
+      "userInvocable": true,
+      "permissions": {
+        "shell": true,
+        "filesystem": {"read": ["~/.cursor/cli-config.json"], "write": []},
+        "network": false,
+        "env": ["CURSOR_API_KEY", "CURSOR_NO_ANALYTICS"]
+      },
+      "notes": [
+        "Reads ~/.cursor/cli-config.json for auth status (email redacted)",
+        "Captures tmux pane output (may contain workspace data)",
+        "All shell arguments escaped using single-quote method",
+        "ALL tmux send-keys use -l flag (literal mode)",
+        "Newlines/control chars sanitized to prevent tmux injection",
+        "Does not download remote code at install time"
+      ]
+    }
+  }
+}

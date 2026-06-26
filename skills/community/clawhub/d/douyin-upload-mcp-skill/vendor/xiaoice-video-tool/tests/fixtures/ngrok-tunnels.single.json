@@ -1,0 +1,12 @@
+{
+  "tunnels": [
+    {
+      "name": "video-callback",
+      "public_url": "https://current-public.ngrok-free.app",
+      "proto": "https",
+      "config": {
+        "addr": "http://127.0.0.1:3105"
+      }
+    }
+  ]
+}

@@ -1,35 +1,38 @@
 ---
-name: "validation-utils"
-description: "Provides data validation and type checking utilities for validating inputs and data structures. Use when you need to validate data types, check constraints,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-validation-utils"
-sourceUrl: "https://clawhub.ai/skills/jpeng-validation-utils"
+name: validation-utils
+description: Provides data validation and type checking utilities for validating inputs and data structures. Use when you need to validate data types, check constraints, or verify data integrity.
 ---
 
-# validation-utils
+# Validation Utils
 
-> Provides data validation and type checking utilities for validating inputs and data structures. Use when you need to validate data types, check constraints,...
+Provides data validation and type checking utilities.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-validation-utils`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-validation-utils](https://clawhub.ai/skills/jpeng-validation-utils)
+## Usage
 
-## Overview
+```javascript
+const v = require('./skills/validation-utils');
 
+// Type checking
+if (v.isString(value)) { ... }
+if (v.isArray(value)) { ... }
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jpeng-validation-utils
+// Validation
+const result = v.validate(user, {
+  name: v.required(v.isString),
+  age: v.optional(v.isNumber),
+  email: v.required(v.isEmail)
+});
+
+// Assert
+v.assert(v.isPositive(5), 'Must be positive');
 ```
+
+## Features
+
+- Type checking utilities
+- Required/optional validators
+- Email, URL, UUID validation
+- Number range validation
+- String pattern validation
+- Object schema validation
+- Assertion helpers

@@ -1,0 +1,17 @@
+{
+  "name": "daily-screport-analysis",
+  "version": "1.0.0",
+  "description": "网销开通数据邮件排名分析 - 读取 screport@shouqianba.com 邮件，解析团队/个人排名",
+  "main": "scripts/daily-screport-analysis.js",
+  "scripts": {
+    "start": "node scripts/daily-screport-analysis.js"
+  },
+  "dependencies": {
+    "imap": "^0.8.19",
+    "imapflow": "^1.2.10",
+    "mailparser": "^3.9.3"
+  },
+  "keywords": ["screport", "网销", "排名分析", "收钱吧", "email-analysis"],
+  "author": "Aibp claw",
+  "license": "MIT-0"
+}

@@ -1,0 +1,24 @@
+# 文章模式 — 默认样式（白底灰字 + 棕橘胶囊标题）
+# 适用场景：技术实践、深度文章
+# 触发词：默认 / 默认样式 / 白色 / 白底 / 常规 / 简洁 / 干净 / 基础
+style:
+    article:
+        bg: "#ffffff"
+        text: "rgb(85,85,85)"
+        accent: "rgb(198,110,73)"
+        hero_bg: "rgb(198,110,73)"
+        hero_title_color: "#ffffff"
+        bold: "rgb(51,51,51)"
+        rule: "#ddd"
+        caption: "#888"
+        title_font_size: "22px"
+        text_font_size: "16px"
+        h2_font_size: "18px"
+        cover_label: "AI 实践观察"
+        footer: ""
+        ending_lines:
+            - "—End—"
+            - "如果觉得不错 随手点个 <span style=\"color:#ff4c41\">赞</span>、<span style=\"color:#ff2941\">在看</span>、<span style=\"color:#ff4c41\">转发</span> 三连吧"
+            - "<span style=\"color:#ff2941\">关注+星标</span> 可第一时间收到更多精彩思考和总结"
+            - "您的支持是我继续写下去的动力"
+            - "注：原创不易，合作请在公众号后台留言，未经许可，不得随意修改及盗用原文。"

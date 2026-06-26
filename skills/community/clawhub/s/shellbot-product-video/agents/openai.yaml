@@ -1,0 +1,4 @@
+interface:
+  display_name: "ShellBot Product Video"
+  short_description: "Build AIDA product videos in Remotion"
+  default_prompt: "Use $shellbot-product-video to plan and produce a product marketing video with Remotion and ancillary Freepik assets."

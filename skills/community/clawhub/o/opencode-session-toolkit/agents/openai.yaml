@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenCode Session Toolkit"
+  short_description: "Query and export local OpenCode sessions safely."
+  default_prompt: "Use $opencode-session-toolkit to list, inspect, and export local OpenCode sessions safely."
+
+policy:
+  allow_implicit_invocation: true

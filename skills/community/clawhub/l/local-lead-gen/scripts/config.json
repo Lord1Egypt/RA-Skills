@@ -1,0 +1,10 @@
+{
+  "scoreThreshold": 40,
+  "fromEmail": "hello@yourdomain.com",
+  "fromName": "Your Name",
+  "emailSubject": "Quick question about {business_name}'s website",
+  "emailBody": "Hi,\n\nI was looking at {business_name}'s website and noticed a few things that might be costing you customers: {issues_found}.\n\nI help local businesses in {city} modernize their online presence. Would you be open to a quick chat about what an upgrade could look like?\n\nBest,\n{sender_name}",
+  "suppressionList": [],
+  "targetNiches": ["restaurants", "auto repair", "salons", "contractors", "law offices", "dentists", "plumbers", "real estate agents"],
+  "targetCities": ["Austin TX", "San Antonio TX", "Corsicana TX", "Weatherford TX", "Bastrop TX"]
+}

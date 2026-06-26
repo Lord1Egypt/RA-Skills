@@ -1,0 +1,24 @@
+{
+  "_comment": "price-check 配置示例。实际配置写到 ~/.openclaw/data/price-check/config.json。该文件 OPTIONAL —— 不存在时所有字段走默认值，skill 仍可用。",
+
+  "_doc_storage": "本地 SQLite 缓存与历史价配置",
+  "storage": {
+    "cache_ttl_seconds": 1800
+  },
+
+  "_doc_history_provider": "历史价数据源。type=local_db 用本地 SQLite 积累的快照（默认）；type=noop 完全关闭历史价。",
+  "history_provider": {
+    "type": "local_db",
+    "min_query_history": 3,
+    "min_goods_history": 2,
+    "lookback_days": 90
+  },
+
+  "_doc_feishu_sync": "飞书多维表格同步（OPT-IN）。默认 enabled=false，不需要的人完全不用动。启用方式：跑 `uv run bin/setup_feishu.py <feishu_base_url>`，会自动建字段 + 写本节配置。",
+  "feishu_sync": {
+    "enabled": false,
+    "base_token": "你的飞书 base token (URL 里 /base/XXX 那段)",
+    "table_id": "你的飞书表 id (一般是 tbl 开头)",
+    "lark_cli_profile": null
+  }
+}

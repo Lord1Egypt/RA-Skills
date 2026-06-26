@@ -1,0 +1,71 @@
+# ClawHub Skill Manifest
+# 文档：https://clawhub.com/docs/skill-manifest
+
+name: wsl-chrome-cdp
+version: 1.0.0
+description: WSL2 自动访问 Windows Chrome 浏览器（CDP 远程调试）
+author: 杏子
+license: MIT
+
+# 技能标签
+tags:
+  - wsl2
+  - chrome
+  - browser
+  - cdp
+  - automation
+  - windows
+
+# 适用系统
+platforms:
+  - windows+wsl2
+
+# 依赖
+dependencies:
+  - google-chrome
+  - powershell
+
+# 入口脚本
+entry: enable-browser.sh
+
+# 需要执行的权限
+permissions:
+  - exec:scripts/enable-browser.sh
+  - exec:scripts/start-chrome-debug.bat
+  - write:~/.openclaw/openclaw.json
+
+# 安装后钩子（可选）
+hooks:
+  post-install: |
+    echo "技能安装成功！"
+    echo ""
+    echo "使用方法："
+    echo "  在 OpenClaw 对话中说：打开百度"
+    echo ""
+    echo "或手动启用："
+    echo "  ./skills/wsl-chrome-cdp/enable-browser.sh"
+    echo ""
+
+# 技能分类
+category: automation
+
+# 技能图标（可选）
+icon: 🌐
+
+# 技能封面图（可选）
+# cover: assets/cover.png
+
+# 相关技能（可选）
+related:
+  - browser-use
+  - webapp-testing
+
+# 变更日志
+changelog:
+  - version: 1.0.0
+    date: 2026-03-11
+    changes:
+      - 初始版本发布
+      - 全自动 Chrome 启动
+      - WSL2 网络自动检测
+      - 故障排查指南

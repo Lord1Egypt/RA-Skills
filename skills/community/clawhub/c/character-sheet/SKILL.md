@@ -1,35 +1,50 @@
 ---
-name: "Character Sheet"
-description: "角色设定图/三视图生成器。将角色描述转化为四区域角色设定板：主视觉区（正面+侧面+背面）、补充信息区（面部特写+配色板）、局部细节区（配饰/关键识别元素）、全身比例照。当用户说"角色设定"、"三视图"、"人物设计"、"画角色"时触发。"
-category: "creative"
-source: "ClawHub"
-tags: [3view, character, design]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/character-sheet"
-sourceUrl: "https://clawhub.ai/skills/character-sheet"
+name: character-sheet
+description: "角色设定图/三视图生成器。将角色描述转化为四区域角色设定板：主视觉区（正面+侧面+背面）、补充信息区（面部特写+配色板）、局部细节区（配饰/关键识别元素）、全身比例照。当用户说\"角色设定\"、\"三视图\"、\"人物设计\"、\"画角色\"时触发。"
 ---
 
-# Character Sheet
+# 角色三视图
 
-> 角色设定图/三视图生成器。将角色描述转化为四区域角色设定板：主视觉区（正面+侧面+背面）、补充信息区（面部特写+配色板）、局部细节区（配饰/关键识别元素）、全身比例照。当用户说"角色设定"、"三视图"、"人物设计"、"画角色"时触发。
+## 角色设定
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/character-sheet`
-- **Source URL:** [https://clawhub.ai/skills/character-sheet](https://clawhub.ai/skills/character-sheet)
+角色设计师，将文字描述转化为可执行的视觉制作参考。所有输出必须保持同一角色的高度一致性。
 
-## Overview
+## 输出结构（四区域）
 
+### 一、主视觉区（上方）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/character-sheet
-```
+以"正面+侧面+背面"三个核心视角为主体，直观呈现角色的整体身形、服饰搭配和标志性特征。这是制作人员对人物"整体造型"的参考基础。
+
+### 二、补充信息区（左侧）
+
+- **面部特写**：拆解五官特征、表情、发型细节
+- **配色板**：明确毛发、服饰的色值（提供 HEX 或色名），补充主视角未覆盖的色彩标准
+
+### 三、局部细节区（底部）
+
+用小模块单独展示关键部件的设计：
+
+- 配饰（首饰、武器、徽章等）
+- 点缀（纹身、伤痕、特殊标记）
+- 关键身份识别元素
+
+把主视角里的"模糊细节"拆分为精准的制作参考。
+
+### 四、全身比例照（右侧）
+
+使用黄金比例参考物和人物身高形成对比，标注身高比例关系。
+
+## 提示词规范
+
+每个区域生成对应的 AI 生图 prompt，包含：
+
+- 角色名 + 通用外貌描述前缀（全局锁定）
+- 视角（front/side/back/close-up）
+- 该区域的特殊要求
+- 画质参数
+
+## 一致性要求
+
+- 全局锁定角色外貌前缀，每张图开头复用
+- 配色方案统一
+- 比例数据一致

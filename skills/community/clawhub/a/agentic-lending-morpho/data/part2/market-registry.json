@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "markets": [
+    {
+      "canonicalHash": "sha256:evk-arbitrum-weth-usdc-core",
+      "marketId": "evk-arbitrum-weth-usdc-core",
+      "protocol": "evk",
+      "chainId": 42161,
+      "displayName": "Euler WETH/USDC Core",
+      "riskPreset": "core",
+      "status": "active",
+      "collateralAssets": [
+        {
+          "symbol": "WETH",
+          "role": "collateral"
+        }
+      ],
+      "borrowAssets": [
+        {
+          "symbol": "USDC",
+          "role": "borrow"
+        }
+      ],
+      "borrowOptions": [
+        "USDC"
+      ],
+      "supplyOptions": [
+        "WETH"
+      ]
+    },
+    {
+      "canonicalHash": "sha256:evk-arbitrum-wbtc-usdc-isolated",
+      "marketId": "evk-arbitrum-wbtc-usdc-isolated",
+      "protocol": "evk",
+      "chainId": 42161,
+      "displayName": "Euler WBTC/USDC Isolated",
+      "riskPreset": "isolated",
+      "status": "draft",
+      "collateralAssets": [
+        {
+          "symbol": "WBTC",
+          "role": "collateral"
+        }
+      ],
+      "borrowAssets": [
+        {
+          "symbol": "USDC",
+          "role": "borrow"
+        }
+      ],
+      "borrowOptions": [
+        "USDC"
+      ],
+      "supplyOptions": [
+        "WBTC"
+      ]
+    },
+    {
+      "canonicalHash": "sha256:evk-base-weth-usdc-core",
+      "marketId": "evk-base-weth-usdc-core",
+      "protocol": "evk",
+      "chainId": 8453,
+      "displayName": "Euler Base WETH/USDC Core",
+      "riskPreset": "core",
+      "status": "draft",
+      "collateralAssets": [
+        {
+          "symbol": "WETH",
+          "role": "collateral"
+        }
+      ],
+      "borrowAssets": [
+        {
+          "symbol": "USDC",
+          "role": "borrow"
+        }
+      ],
+      "borrowOptions": [
+        "USDC"
+      ],
+      "supplyOptions": [
+        "WETH"
+      ]
+    }
+  ]
+}

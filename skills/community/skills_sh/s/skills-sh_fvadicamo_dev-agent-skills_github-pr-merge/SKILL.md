@@ -1,35 +1,189 @@
 ---
-name: "github-pr-merge"
-description: "Indexed by skills.sh from fvadicamo/dev-agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "fvadicamo"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/fvadicamo/dev-agent-skills/github-pr-merge"
-sourceUrl: "https://skills.sh/fvadicamo/dev-agent-skills/github-pr-merge"
+name: github-pr-merge
+description: Merges GitHub Pull Requests after validating pre-merge checklist. Use when user wants to merge PR, close PR, finalize PR, complete merge, approve and merge, or execute merge. Runs pre-merge validation (tests, lint, CI, comments), confirms with user, merges with proper format, handles post-merge cleanup.
 ---
 
-# github-pr-merge
+# GitHub PR merge
 
-> Indexed by skills.sh from fvadicamo/dev-agent-skills
+Merges Pull Requests after validating pre-merge checklist and handling post-merge cleanup.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** fvadicamo
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/fvadicamo/dev-agent-skills/github-pr-merge`
-- **Source URL:** [https://skills.sh/fvadicamo/dev-agent-skills/github-pr-merge](https://skills.sh/fvadicamo/dev-agent-skills/github-pr-merge)
+## Current PR
 
-## Overview
+!`gh pr view --json number,title,state -q '"PR #\(.number): \(.title) (\(.state))"' 2>/dev/null`
 
+## Core workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Check comments status
+
+Verify all review comments have at least one reply:
+
 ```bash
-hermes skills install skills-sh/fvadicamo/dev-agent-skills/github-pr-merge
+REPO=$(gh repo view --json nameWithOwner -q '.nameWithOwner')
+PR=$(gh pr view --json number -q '.number')
+
+# Find unreplied comment IDs
+gh api repos/$REPO/pulls/$PR/comments --jq '
+  [.[] | select(.in_reply_to_id) | .in_reply_to_id] as $replied |
+  [.[] | select(.in_reply_to_id == null) | select(.id | IN($replied[]) | not) | .id]
+'
 ```
+
+**If unreplied comments exist:**
+- **STOP** the merge process
+- Inform user: "Found unreplied comments: [IDs]. Run github-pr-review first."
+- **NEVER** reply to comments from this skill
+
+### 2. Check milestone
+
+```bash
+gh pr view $PR --json milestone -q '.milestone.title // "none"'
+```
+
+- If milestone is assigned: include it in the checklist summary (step 5)
+- If no milestone: check for open milestones and warn the user
+
+```bash
+gh api repos/$REPO/milestones --jq '[.[] | select(.state=="open")] | length'
+```
+
+If open milestones exist but the PR has none, surface a warning in the checklist:
+`- Milestone: ⚠ not assigned (open milestones exist)`
+
+Do NOT block the merge for a missing milestone. It is a warning only.
+
+### 3. Run validation
+
+Run tests, linting, and verify CI checks. All **MUST** pass before proceeding.
+
+```bash
+gh pr checks $PR
+```
+
+### 4. Verify changelog completeness
+
+Skip if the repo has no `CHANGELOG.md`. Otherwise make sure every commit this merge will publish is reflected in the changelog, so a release-promotion merge (`develop` → `main`) never leaves commits unlogged.
+
+List the commits this PR brings into the base, and the changelog lines it adds:
+
+```bash
+BASE=$(gh pr view $PR --json baseRefName -q .baseRefName)
+HEAD=$(gh pr view $PR --json headRefName -q .headRefName)
+git log --oneline origin/$BASE..origin/$HEAD
+git diff origin/$BASE...origin/$HEAD -- CHANGELOG.md
+```
+
+- Every commit that changes shipped behavior (`feat`/`fix`/`perf`, behavior-affecting `refactor`) **MUST** have a matching changelog line; pure `chore`/`docs`/`test` commits that do not change shipped behavior may be omitted.
+- For a release-promotion merge, also confirm the version was bumped (the top `## [x.y.z]` entry is new) and matches the manifest version(s).
+- **If any behavior-changing commit is missing from the changelog: STOP.** Report the unlogged commits and ask the user to update the changelog and version before merging. **NEVER** edit the changelog from this skill.
+
+### 5. Confirm with user
+
+**ALWAYS show checklist summary and ask before merging:**
+
+```
+Pre-merge checklist:
+- Comments: all replied
+- Tests: passing
+- Lint: passing
+- CI: green
+- Milestone: v0.1.0 (or ⚠ not assigned)
+- Changelog: complete (or n/a)
+
+Ready to merge PR #X. Proceed?
+```
+
+### 6. Execute merge
+
+First determine the merge direction. It decides whether the head branch may be deleted:
+
+```bash
+gh pr view $PR --json baseRefName,headRefName -q '"\(.headRefName) -> \(.baseRefName)"'
+```
+
+**Branch deletion rule:**
+- **Topic branch → `develop`** (head is a `feature`/`fix`/etc. branch): the branch is spent. Propose deleting it and merge with `--delete-branch`.
+- **`develop` → `main`** (or any long-lived branch as head): **NEVER** delete the head branch. `develop` and `main` are permanent. Omit `--delete-branch` and do not propose deletion.
+
+```bash
+# Add --delete-branch ONLY for a topic branch merging into develop.
+gh pr merge $PR --merge --delete-branch --body "$(cat <<'EOF'
+- Key change 1
+- Key change 2
+- Key change 3
+
+Reviews: N/N addressed
+Tests: X passed (Y% cov)
+Refs: Task N, Req M
+EOF
+)"
+```
+
+For a `develop` → `main` merge, run the same command **without** `--delete-branch`.
+
+**Merge strategy**: always `--merge` (merge commit), never squash or rebase.
+
+### 7. Post-merge cleanup
+
+Sync the branch that received the merge (the PR base), not always `develop`:
+
+```bash
+BASE=$(gh pr view $PR --json baseRefName -q .baseRefName)
+git checkout "$BASE" && git pull origin "$BASE"
+```
+
+### 8. Check milestone completion
+
+If the PR had a milestone, check whether all items are now closed:
+
+```bash
+MILESTONE=$(gh pr view $PR --json milestone -q '.milestone.number // empty')
+if [ -n "$MILESTONE" ]; then
+  gh api repos/$REPO/milestones/$MILESTONE \
+    --jq '"Open: \(.open_issues) | Closed: \(.closed_issues) | \(.title)"'
+fi
+```
+
+- If `open_issues == 0`: inform the user and ask whether to close the milestone
+
+```bash
+gh api repos/$REPO/milestones/$MILESTONE --method PATCH --field state="closed"
+```
+
+- If `open_issues > 0`: report remaining open items count. No action needed.
+- **NEVER** close a milestone automatically without explicit user confirmation.
+
+## Merge message format
+
+Concise format for a clean git log:
+
+```
+- Key change 1 (what was added/fixed)
+- Key change 2
+- Key change 3
+
+Reviews: 7/7 addressed (Gemini 5, Codex 2)
+Tests: 628 passed (88% cov)
+Refs: Task 8, Req 14-15
+```
+
+- 3-5 bullet points max for changes
+- One line each for reviews summary, test results, and task references
+- No headers (##), no verbose sections
+- Total: ~10 lines max
+
+## Important rules
+
+- **ALWAYS** run tests, lint, and CI checks before merging
+- **ALWAYS** verify all review comments have replies
+- **ALWAYS** check milestone assignment before merging (warn if missing, do not block)
+- **ALWAYS** (repos with a CHANGELOG) verify it accounts for every behavior-changing commit this merge publishes; STOP and report any that are missing
+- **ALWAYS** confirm with user before executing merge
+- **ALWAYS** use merge commit (`--merge`), never squash/rebase
+- **ALWAYS** delete the head branch only when merging a topic branch (`feature`/`fix`/etc.) into `develop`
+- **NEVER** delete `develop` or `main`. On a `develop` → `main` merge, omit `--delete-branch` and never propose deletion
+- **ALWAYS** check milestone completion after merge and report open items count
+- **NEVER** merge with failing tests, lint, or CI checks
+- **NEVER** skip user confirmation
+- **NEVER** close a milestone without explicit user confirmation
+- **NEVER** reply to PR comments from this skill - use github-pr-review instead
+- **STOP** merge if unreplied comments exist and direct user to review skill

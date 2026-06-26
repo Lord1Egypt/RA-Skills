@@ -1,0 +1,82 @@
+{
+  "zh": {
+    "title": "职业教育政策信息抓取工具",
+    "description": "自动抓取教育部、人社部及各省教育厅官网的职业教育政策文件和课题申报信息",
+    "messages": {
+      "success": "操作成功",
+      "error": "操作失败",
+      "no_results": "未找到符合条件的文件",
+      "fetching": "正在抓取数据...",
+      "parsing": "正在解析页面...",
+      "saving": "正在保存结果...",
+      "loading": "加载中..."
+    },
+    "categories": {
+      "policy": "政策文件",
+      "project": "课题申报",
+      "achievement": "教学成果奖",
+      "integration": "产教融合",
+      "certificate": "1+X证书",
+      "double_high": "双高计划"
+    },
+    "output": {
+      "title": "抓取结果",
+      "summary": "抓取摘要",
+      "files_found": "找到文件",
+      "websites_scraped": "抓取网站",
+      "errors": "错误信息"
+    },
+    "error_types": {
+      "network": "网络错误",
+      "parse": "解析错误",
+      "file": "文件错误",
+      "config": "配置错误"
+    },
+    "help": {
+      "usage": "使用方法",
+      "keywords": "关键词筛选",
+      "sources": "数据源",
+      "schedule": "定期抓取"
+    }
+  },
+  "en": {
+    "title": "Vocational Education Policy Scraper",
+    "description": "Automatically scrape vocational education policy documents and project announcements from Ministry of Education, Ministry of Human Resources, and provincial education departments",
+    "messages": {
+      "success": "Operation successful",
+      "error": "Operation failed",
+      "no_results": "No files found matching criteria",
+      "fetching": "Fetching data...",
+      "parsing": "Parsing page...",
+      "saving": "Saving results...",
+      "loading": "Loading..."
+    },
+    "categories": {
+      "policy": "Policy Documents",
+      "project": "Project Applications",
+      "achievement": "Teaching Achievement Awards",
+      "integration": "Industry-Education Integration",
+      "certificate": "1+X Certificates",
+      "double_high": "Double High Plan"
+    },
+    "output": {
+      "title": "Scraping Results",
+      "summary": "Summary",
+      "files_found": "Files Found",
+      "websites_scraped": "Websites Scraped",
+      "errors": "Errors"
+    },
+    "error_types": {
+      "network": "Network error",
+      "parse": "Parse error",
+      "file": "File error",
+      "config": "Configuration error"
+    },
+    "help": {
+      "usage": "Usage",
+      "keywords": "Keyword Filtering",
+      "sources": "Data Sources",
+      "schedule": "Scheduled Scraping"
+    }
+  }
+}

@@ -1,35 +1,29 @@
 ---
-name: "Agent Autonomy Kit Zh"
-description: "Stop waiting for prompts. Keep working. (Chinese localized version)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-autonomy-kit-zh"
-sourceUrl: "https://clawhub.ai/skills/agent-autonomy-kit-zh"
+name: agent-autonomy-kit-zh
+version: 1.0.1
+description: Stop waiting for prompts. Keep working. (Chinese localized version)
+homepage: https://github.com/itskai-dev/agent-autonomy-kit
+metadata:
+  openclaw:
+    emoji: "🚀"
+    category: productivity
 ---
 
-# Agent Autonomy Kit Zh
+# Agent Autonomy Kit
 
-> Stop waiting for prompts. Keep working. (Chinese localized version)
+Transform your agent from reactive to proactive.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-autonomy-kit-zh`
-- **Source URL:** [https://clawhub.ai/skills/agent-autonomy-kit-zh](https://clawhub.ai/skills/agent-autonomy-kit-zh)
+## Quick Start
 
-## Overview
+1. Create `tasks/QUEUE.md` with Ready/In Progress/Blocked/Done sections
+2. Update `HEARTBEAT.md` to pull from queue and do work
+3. Set up cron jobs for overnight work and daily reports
+4. Watch work happen without prompting
 
+## Key Concepts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-autonomy-kit-zh
-```
+- **Task Queue** — Always have work ready
+- **Proactive Heartbeat** — Do work, don't just check
+- **Continuous Operation** — Work until limits hit
+
+See README.md for full documentation.

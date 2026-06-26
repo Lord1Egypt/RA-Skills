@@ -1,0 +1,54 @@
+{
+  "id": "rune",
+  "name": "Rune",
+  "kind": "skills",
+  "description": "64-skill mesh for AI coding assistants. Routes all code tasks through specialized skills. 203 sync connections + 40 async signals, 14 extension packs.",
+  "version": "2.18.1",
+  "skills": [
+    "./skills"
+  ],
+  "artifactConvention": {
+    "outputDirPriority": [
+      "--out-dir <path>",
+      "<SKILL>_OUT_DIR",
+      "OPENCLAW_OUTPUT_DIR",
+      "OPENCLAW_AGENT_DIR/artifacts/<skill>",
+      "OPENCLAW_STATE_DIR/artifacts/<skill>",
+      "./.rune/<skill>/"
+    ],
+    "outputContract": {
+      "stdout": "one artifact path per line (default) or JSON (--json mode)",
+      "stderr": "diagnostics + warnings",
+      "exitCodes": {
+        "0": "success",
+        "1": "execution failed (retryable)",
+        "2": "usage error (bug)",
+        "3": "data-integrity error (halt)",
+        "4": "timeout with partial results (accept)",
+        "124": "timeout with zero results (retry or abort)"
+      }
+    }
+  },
+  "configSchema": {
+    "jsonSchema": {
+      "type": "object",
+      "properties": {
+        "disabledSkills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Skills to disable (by name)",
+          "default": []
+        }
+      },
+      "additionalProperties": false
+    },
+    "uiHints": {
+      "disabledSkills": {
+        "label": "Disabled Skills",
+        "help": "Comma-separated list of skill names to exclude from routing"
+      }
+    }
+  }
+}

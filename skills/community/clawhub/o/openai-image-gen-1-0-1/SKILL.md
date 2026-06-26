@@ -1,35 +1,35 @@
 ---
-name: "Openai Image Gen 1.0.1"
-description: "Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openai-image-gen-1-0-1"
-sourceUrl: "https://clawhub.ai/skills/openai-image-gen-1-0-1"
+name: openai-image-gen
+description: Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery.
 ---
 
-# Openai Image Gen 1.0.1
+# OpenAI Image Gen
 
-> Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery.
+Generate a handful of “random but structured” prompts and render them via OpenAI Images API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openai-image-gen-1-0-1`
-- **Source URL:** [https://clawhub.ai/skills/openai-image-gen-1-0-1](https://clawhub.ai/skills/openai-image-gen-1-0-1)
+## Setup
 
-## Overview
+- Needs env: `OPENAI_API_KEY`
 
+## Run
 
-## Installation
-To install this skill, run the following command in your terminal:
+From any directory (outputs to `~/Projects/tmp/...` when present; else `./tmp/...`):
+
 ```bash
-hermes skills install clawhub/openai-image-gen-1-0-1
+python3 ~/Projects/agent-scripts/skills/openai-image-gen/scripts/gen.py
+open ~/Projects/tmp/openai-image-gen-*/index.html
 ```
+
+Useful flags:
+
+```bash
+python3 ~/Projects/agent-scripts/skills/openai-image-gen/scripts/gen.py --count 16 --model gpt-image-1.5
+python3 ~/Projects/agent-scripts/skills/openai-image-gen/scripts/gen.py --prompt "ultra-detailed studio photo of a lobster astronaut" --count 4
+python3 ~/Projects/agent-scripts/skills/openai-image-gen/scripts/gen.py --size 1536x1024 --quality high --out-dir ./out/images
+```
+
+## Output
+
+- `*.png` images
+- `prompts.json` (prompt ↔ file mapping)
+- `index.html` (thumbnail gallery)

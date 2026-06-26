@@ -1,0 +1,847 @@
+openapi: 3.0.3
+info:
+  title: FarmDash Futures Strategist API
+  version: 2.0.0
+  description: |
+    REST API for payment-enabled AI agents to research, analyze, and prepare user-approved
+    execution of perpetual futures trades on Hyperliquid as part of FarmDash DeFi discovery and onchain services. The Futures Strategist is an
+    adaptive execution engine: it returns structured strategy objects,
+    confidence, market regime, adaptive risk, portfolio context, pre-trade
+    simulation, and explicit no-trade outcomes before any order is placed.
+
+    ## Authentication
+    - **Primary optional credential**: `Authorization: Bearer <FARMDASH_API_KEY>`.
+    - **Scout (Free)**: Omit the bearer token. Safe for initial testing and limited research.
+    - **Pioneer**: Use a Pioneer-tier `FARMDASH_API_KEY`. Full analysis and sizing.
+    - **Syndicate**: Use a Syndicate-tier `FARMDASH_API_KEY`. Execution and batch cancel endpoints enabled.
+    - **Execution auth**: `execute-order` and `cancel-order` require a fresh EIP-712 signature from the user's Hyperliquid API wallet on every request.
+    - **Important**: The bearer token gates FarmDash tier access and rate limits only. It never replaces the per-request EIP-712 signature and does not let FarmDash sign on the user's behalf.
+
+    ## Hard Guardrails (Server-Enforced)
+    - Max leverage: 5x
+    - Max risk per trade: 2% of equity before adaptive reductions
+    - Daily loss limit: -3% -> trading halted 24h
+    - Research required before execution (analyze-strategy within 5 min)
+
+    ## Intent Hardening
+    `execute-order` requires `nonce`, `expiresAt`, and `intentHash` for
+    deterministic, auditable order intents. `cancel-order` keeps those fields
+    optional for backward-compatible cancel flows.
+
+    ## Dust Storm Protocol
+    Upstream failures return `ok:false` with typed degraded state and
+    `dust_storm` warnings. Agents should retry only after inspecting the
+    degraded state and any stale-data age.
+  contact:
+    name: FarmDash Engineering
+    url: https://www.farmdash.one/agents
+  license:
+    name: MIT
+
+servers:
+  - url: https://www.farmdash.one/api
+    description: Production
+
+paths:
+  /v1/agent/futures/scan-funding:
+    get:
+      operationId: scanFundingRates
+      summary: Scan all Hyperliquid funding rates for arb opportunities
+      description: |
+        Returns current and predicted funding rates across all Hyperliquid perp
+        markets. Cross-references with Binance and Bybit to identify arbitrage
+        opportunities where HL funding diverges from other venues.
+        Scout tier receives top 3 opportunities with encrypted numerics.
+      tags: [Research]
+      security:
+        - bearerAuth: []
+        - {}
+      responses:
+        '200':
+          description: Funding rate scan results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  arbOpportunities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FundingAnalysis'
+                  highFunding:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FundingAnalysis'
+                  totalScanned:
+                    type: integer
+                  warnings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Warning'
+        '429':
+          description: Rate limit exceeded
+
+  /v1/agent/futures/market-conditions:
+    get:
+      operationId: getMarketConditions
+      summary: Get technical indicators for an asset
+      description: |
+        Returns EMA-8/34, RSI-14, MACD(12,26,9), ATR-14, Bollinger Bands(20,2),
+        ADX-14, volume ratio, and Z-score for a given asset using 4h candles.
+        Includes a strategy hint based on indicator confluence.
+      tags: [Research]
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - name: coin
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Asset symbol (e.g., ETH, BTC, SOL, HYPE)
+      responses:
+        '200':
+          description: Technical indicators
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  coin:
+                    type: string
+                  indicators:
+                    $ref: '#/components/schemas/TechnicalIndicators'
+                  strategyHint:
+                    type: string
+                    enum: [momentum_long, momentum_short, trend_pullback_long, trend_pullback_short, mean_reversion, no_trade]
+
+  /v1/agent/futures/account-state:
+    get:
+      operationId: getAccountState
+      summary: Get agent's Hyperliquid positions and risk state
+      description: |
+        Returns the agent's current positions, margin summary, equity,
+        unrealized PnL, liquidation prices, and risk management state
+        (daily/weekly PnL, drawdown, halt status).
+        This is a read-only lookup against the public Hyperliquid API wallet
+        address supplied in `agentAddress`. It does not require a private key
+        or seed phrase.
+      tags: [Account]
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - name: agentAddress
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^0x[a-fA-F0-9]{40}$'
+          description: Agent's EVM address (Hyperliquid API wallet)
+      responses:
+        '200':
+          description: Account state with risk info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  account:
+                    $ref: '#/components/schemas/AccountSummary'
+                  positions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Position'
+                  risk:
+                    $ref: '#/components/schemas/RiskState'
+                  guardrails:
+                    $ref: '#/components/schemas/Guardrails'
+
+  /v1/agent/futures/analyze-strategy:
+    post:
+      operationId: analyzeStrategy
+      summary: Full research pipeline with strategy recommendation
+      description: |
+        Runs the complete research pipeline: funding rates, technical indicators,
+        order book liquidity, Trail Heat cross-reference, and risk budget.
+        Returns a single actionable strategy recommendation with position sizing.
+        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Pioneer or
+        Syndicate tier. The bearer token unlocks the analysis tier only; it does
+        not authorize trade execution by itself.
+      tags: [Strategy]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [coin, agentAddress]
+              properties:
+                coin:
+                  type: string
+                  description: Asset symbol (e.g., ETH, BTC, SOL)
+                agentAddress:
+                  type: string
+                  pattern: '^0x[a-fA-F0-9]{40}$'
+                  description: Agent's Hyperliquid API wallet address
+                riskMultiplier:
+                  type: number
+                  description: Optional flexibility modifier for risk tolerance. 1.0 is default (2% max). 0.5 is conservative (1% max). Server caps at 1.0.
+      responses:
+        '200':
+          description: Strategy recommendation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  recommendation:
+                    $ref: '#/components/schemas/StrategyRecommendation'
+                  account:
+                    $ref: '#/components/schemas/AccountSummary'
+                  guardrails:
+                    $ref: '#/components/schemas/Guardrails'
+                  researchGate:
+                    type: object
+                    description: Market-bound research gate required by execute-order.
+                    properties:
+                      scope:
+                        type: string
+                        enum: [agent_market_direction]
+                      agentAddress:
+                        type: string
+                      coin:
+                        type: string
+                      direction:
+                        type: string
+                        enum: [long, short, neutral, unknown]
+                      confidence:
+                        type: number
+                        nullable: true
+                      recommendationHash:
+                        type: string
+                      expiresAt:
+                        type: integer
+                      requiredForExecution:
+                        type: boolean
+        '402':
+          description: Pioneer tier required
+
+  /v1/agent/futures/position-sizing:
+    post:
+      operationId: calculatePositionSize
+      summary: Position size calculator with guardrail enforcement
+      description: |
+        Given entry price, stop price, account equity, and risk percentage,
+        returns the exact position size, leverage, and margin required.
+        All guardrails enforced server-side (max leverage 5x, max risk 2%).
+        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Pioneer or
+        Syndicate tier.
+      tags: [Strategy]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [equity, entryPrice, stopPrice]
+              properties:
+                equity:
+                  type: number
+                  description: Account equity in USD
+                entryPrice:
+                  type: number
+                  description: Planned entry price
+                stopPrice:
+                  type: number
+                  description: Stop-loss price
+                riskPercent:
+                  type: number
+                  description: Risk per trade as decimal (default 0.02 = 2%, server caps at 0.02)
+                targetPrice:
+                  type: number
+                  description: Take-profit price (for R:R calculation)
+                riskMultiplier:
+                  type: number
+                  description: Optional flexibility modifier for risk tolerance. 1.0 is default (2% max). 0.5 is conservative (1% max). Server caps at 1.0.
+      responses:
+        '200':
+          description: Position sizing result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  sizing:
+                    $ref: '#/components/schemas/PositionSizing'
+                  guardrails:
+                    $ref: '#/components/schemas/Guardrails'
+        '402':
+          description: Pioneer tier required
+
+  /v1/agent/futures/execute-order:
+    post:
+      operationId: executeOrder
+      summary: Execute a pre-signed order on Hyperliquid
+      description: |
+        Forwards a pre-signed EIP-712 order to Hyperliquid's exchange API.
+        Requires prior analyze-strategy call within 5 minutes (research gate).
+        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Syndicate tier
+        for endpoint access. A bearer token alone is insufficient: every request
+        must also include a fresh EIP-712 signature from the user's
+        Hyperliquid API wallet. All risk
+        guardrails enforced server-side before forwarding. `nonce`, `expiresAt`,
+        and `intentHash` are required for request-scoped expiry and auditability.
+      tags: [Execution]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [agentAddress, coin, isBuy, size, price, orderType, nonce, expiresAt, intentHash, signature]
+              properties:
+                agentAddress:
+                  type: string
+                  pattern: '^0x[a-fA-F0-9]{40}$'
+                coin:
+                  type: string
+                isBuy:
+                  type: boolean
+                size:
+                  type: string
+                  description: Position size in asset units
+                price:
+                  type: string
+                  description: Limit or trigger price
+                orderType:
+                  type: string
+                  enum: [limit_gtc, limit_ioc, limit_alo, market, stop_loss, take_profit]
+                reduceOnly:
+                  type: boolean
+                  default: false
+                leverage:
+                  oneOf:
+                    - type: number
+                    - type: string
+                  description: Max 5x (server-enforced)
+                signature:
+                  type: object
+                  description: Fresh EIP-712 signature from the user's Hyperliquid API wallet. Required on every request; bearer token alone is insufficient.
+                  properties:
+                    r:
+                      type: string
+                    s:
+                      type: string
+                    v:
+                      type: integer
+                nonce:
+                  type: integer
+                expiresAt:
+                  type: integer
+                  description: Required unix timestamp in milliseconds. Requests expire server-side after this time.
+                intentHash:
+                  type: string
+                  description: Required FarmDash-side order intent hash for payload auditability.
+                signedAction:
+                  type: object
+                  description: Pre-built Hyperliquid exchange action (optional, built server-side if omitted). If provided, it must match the request fields.
+      responses:
+        '200':
+          description: Order execution result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  result:
+                    type: object
+                  order:
+                    type: object
+                  intentHash:
+                    type: string
+                  expiresAt:
+                    type: integer
+                  timestamp:
+                    type: integer
+        '400':
+          description: Risk check failed or research not performed
+        '402':
+          description: Syndicate tier required
+
+  /v1/agent/futures/cancel-order:
+    post:
+      operationId: cancelOrder
+      summary: Cancel one or more open Hyperliquid orders
+      description: |
+        Cancels one or more open Hyperliquid orders using a pre-signed EIP-712
+        cancellation payload. Supports batch cancellation of up to 50 order IDs.
+        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Syndicate tier
+        for endpoint access. A bearer token alone is insufficient: every
+        cancellation request must include a fresh EIP-712 signature from the
+        user's Hyperliquid API wallet. Optional `expiresAt` and `intentHash`
+        add request-scoped expiry and auditability.
+      tags: [Execution]
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [agentAddress, coin, orderIds, signature]
+              properties:
+                agentAddress:
+                  type: string
+                  pattern: '^0x[a-fA-F0-9]{40}$'
+                coin:
+                  type: string
+                orderIds:
+                  type: array
+                  minItems: 1
+                  maxItems: 50
+                  items:
+                    type: integer
+                signature:
+                  type: object
+                  description: Fresh EIP-712 signature for the cancel action. Required on every request; bearer token alone is insufficient.
+                  properties:
+                    r:
+                      type: string
+                    s:
+                      type: string
+                    v:
+                      type: integer
+                nonce:
+                  type: integer
+                expiresAt:
+                  type: integer
+                  description: Optional unix timestamp in milliseconds. Requests expire server-side after this time.
+                intentHash:
+                  type: string
+                  description: Optional FarmDash-side intent hash for payload auditability.
+                signedAction:
+                  type: object
+                  description: Pre-built Hyperliquid cancel action (optional). If provided, it must match the request fields.
+      responses:
+        '200':
+          description: Cancellation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  result:
+                    type: object
+                  cancelled:
+                    type: object
+                  intentHash:
+                    type: string
+                  expiresAt:
+                    type: integer
+                  timestamp:
+                    type: integer
+        '402':
+          description: Syndicate tier required
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: FARMDASH_API_KEY
+      description: Optional `FARMDASH_API_KEY` bearer token. Omit for Scout-tier endpoints. Use a Pioneer-tier key for higher-tier analysis endpoints and a Syndicate-tier key for execution endpoints. This bearer token gates tier access only and never replaces the required EIP-712 execution signature.
+
+  schemas:
+    FundingAnalysis:
+      type: object
+      properties:
+        coin:
+          type: string
+        fundingRate:
+          type: number
+          description: Current 1h funding rate
+        annualizedRate:
+          type: number
+          description: Funding rate × 8760
+        predictedRate:
+          type: number
+        crossVenueDelta:
+          type: number
+          description: HL rate minus avg(Binance, Bybit)
+        premium:
+          type: number
+        openInterest:
+          type: number
+          description: Open interest in USD
+        isArbOpportunity:
+          type: boolean
+        arbDirection:
+          type: string
+          enum: [long_spot_short_perp, short_spot_long_perp, null]
+
+    TechnicalIndicators:
+      type: object
+      properties:
+        ema8:
+          type: number
+        ema34:
+          type: number
+        emaCross:
+          type: string
+          enum: [bullish, bearish, neutral]
+        rsi:
+          type: number
+        macd:
+          type: number
+        macdSignal:
+          type: number
+        macdHistogram:
+          type: number
+        macdCross:
+          type: string
+          enum: [bullish_cross, bearish_cross, neutral]
+        adx:
+          type: number
+        atr:
+          type: number
+        bbUpper:
+          type: number
+        bbMiddle:
+          type: number
+        bbLower:
+          type: number
+        bbWidth:
+          type: number
+        volumeRatio:
+          type: number
+        zScore:
+          type: number
+
+    MarketRegime:
+      type: string
+      enum: [trending, ranging, high_volatility, low_liquidity]
+
+    TradeDirection:
+      type: string
+      enum: [long, short, neutral]
+
+    StrategyObject:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [futures]
+        market:
+          type: string
+        direction:
+          $ref: '#/components/schemas/TradeDirection'
+        regime:
+          $ref: '#/components/schemas/MarketRegime'
+        triggerConditions:
+          type: array
+          items:
+            type: string
+        entryLogic:
+          type: string
+        exitLogic:
+          type: string
+        riskModel:
+          type: object
+          properties:
+            baseRiskPercent:
+              type: number
+            appliedRiskPercent:
+              type: number
+            riskMultiplier:
+              type: number
+            leverageCap:
+              type: number
+            stopModel:
+              type: string
+        leverageModel:
+          type: object
+          properties:
+            mode:
+              type: string
+              enum: [adaptive]
+            suggested:
+              type: number
+            cap:
+              type: number
+            drivers:
+              type: array
+              items:
+                type: string
+        fallbackLogic:
+          type: array
+          items:
+            type: string
+        telemetryTracking:
+          type: array
+          items:
+            type: string
+
+    AdaptiveRisk:
+      type: object
+      properties:
+        baseRiskPercent:
+          type: number
+        appliedRiskPercent:
+          type: number
+        confidenceMultiplier:
+          type: number
+        volatilityMultiplier:
+          type: number
+        drawdownMultiplier:
+          type: number
+        portfolioMultiplier:
+          type: number
+        finalRiskMultiplier:
+          type: number
+
+    TradeSimulation:
+      type: object
+      properties:
+        methodology:
+          type: string
+          enum: [heuristic_preflight]
+        holdingWindowHours:
+          type: number
+        entryValueUsd:
+          type: number
+        marginRequiredUsd:
+          type: number
+        marginImpactPct:
+          type: number
+        liquidationPriceEstimate:
+          type: number
+          nullable: true
+        stopScenarioPnlUsd:
+          type: number
+        targetScenarioPnlUsd:
+          type: number
+        oneAtrMovePnlUsd:
+          type: number
+        estimatedFundingPnl24hUsd:
+          type: number
+        estimatedFundingPnl72hUsd:
+          type: number
+
+    PortfolioContext:
+      type: object
+      properties:
+        openPositionCount:
+          type: integer
+        sameAssetExposureUsd:
+          type: number
+        sameAssetExposurePct:
+          type: number
+        directionalExposurePct:
+          type: number
+        netDirectionalBias:
+          type: string
+          enum: [net_long, net_short, balanced]
+        concentrationWarning:
+          type: string
+          nullable: true
+
+    StrategyRecommendation:
+      type: object
+      properties:
+        recommendedStrategy:
+          type: string
+          enum: [funding_arb, momentum_long, momentum_short, trend_pullback_long, trend_pullback_short, mean_reversion, no_trade]
+        confidence:
+          type: number
+          description: 0-100
+        asset:
+          type: string
+        marketRegime:
+          $ref: '#/components/schemas/MarketRegime'
+        entry:
+          type: number
+        stopLoss:
+          type: number
+        takeProfit:
+          type: number
+        positionSize:
+          type: number
+        leverage:
+          type: number
+          description: Always <= 5
+        riskPercent:
+          type: number
+          description: Always <= 0.02
+        reasoning:
+          type: array
+          items:
+            type: string
+        noTradeReason:
+          type: string
+          nullable: true
+        strategyObject:
+          $ref: '#/components/schemas/StrategyObject'
+        adaptiveRisk:
+          $ref: '#/components/schemas/AdaptiveRisk'
+        simulation:
+          $ref: '#/components/schemas/TradeSimulation'
+        portfolioContext:
+          $ref: '#/components/schemas/PortfolioContext'
+        trailHeatCrossRef:
+          type: object
+          properties:
+            protocolId:
+              type: string
+            score:
+              type: number
+            farmingOpportunity:
+              type: boolean
+            referralLink:
+              type: string
+        fundingAnalysis:
+          $ref: '#/components/schemas/FundingAnalysis'
+        indicators:
+          $ref: '#/components/schemas/TechnicalIndicators'
+
+    PositionSizing:
+      type: object
+      properties:
+        positionSize:
+          type: number
+        positionValueUsd:
+          type: number
+        leverage:
+          type: number
+        marginRequired:
+          type: number
+        riskAmount:
+          type: number
+        riskPercent:
+          type: number
+        stopDistance:
+          type: number
+        rewardRiskRatio:
+          type: number
+
+    AccountSummary:
+      type: object
+      properties:
+        equity:
+          type: string
+        totalNotionalPosition:
+          type: string
+        marginUsed:
+          type: string
+        availableMargin:
+          type: string
+        aggregateLeverage:
+          type: string
+
+    Position:
+      type: object
+      properties:
+        coin:
+          type: string
+        size:
+          type: number
+        side:
+          type: string
+          enum: [long, short]
+        entryPrice:
+          type: number
+        markPrice:
+          type: number
+        unrealizedPnl:
+          type: number
+        returnOnEquity:
+          type: number
+        leverage:
+          type: number
+        leverageType:
+          type: string
+          enum: [cross, isolated]
+        liquidationPrice:
+          type: number
+          nullable: true
+        marginUsed:
+          type: number
+
+    RiskState:
+      type: object
+      properties:
+        dailyPnl:
+          type: string
+        dailyPnlPct:
+          type: string
+        weeklyPnl:
+          type: string
+        drawdown:
+          type: string
+        peakEquity:
+          type: string
+        isTradingHalted:
+          type: boolean
+        haltReason:
+          type: string
+          nullable: true
+        isReducedSize:
+          type: boolean
+        openPositionCount:
+          type: integer
+
+    Guardrails:
+      type: object
+      properties:
+        maxLeverage:
+          type: integer
+        maxRiskPerTrade:
+          type: string
+        maxPositions:
+          type: integer
+        dailyLossLimit:
+          type: string
+        weeklyLossLimit:
+          type: string
+        maxDrawdown:
+          type: string
+
+    Warning:
+      type: object
+      properties:
+        kind:
+          type: string
+        message:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        reason:
+          type: string

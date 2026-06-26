@@ -1,0 +1,27 @@
+name: documentation-generator
+version: 1.0.0
+description: Analyzes source code to automatically generate technical documentation and architecture diagrams. Use to maintain up-to-date API references and onboarding materials for engineering teams.
+inputs:
+  source_path:
+    type: string
+    required: true
+  output_format:
+    type: string
+    enum: [markdown, html, json]
+    default: markdown
+outputs:
+  documentation_content:
+    type: string
+capabilities:
+  - Docstring extraction.
+  - Mermaid.js diagram generation.
+  - Example inference from tests.
+constraints:
+  - Accuracy depends on code clarity.
+security:
+  - No code upload; local formatting only.
+examples:
+  - input:
+      source_path: "./lib"
+    output:
+      documentation_content: "# API Reference"

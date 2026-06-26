@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "title": "skills.video demo",
+    "outputBasename": "skills-video-demo",
+    "viewport": {
+      "width": 1600,
+      "height": 1200,
+      "deviceScaleFactor": 1
+    }
+  },
+  "steps": [
+    {
+      "type": "goto",
+      "url": "http://skills.video/",
+      "holdMs": 2800,
+      "note": "Homepage hero"
+    },
+    {
+      "type": "move",
+      "points": [
+        { "x": 1320, "y": 165, "waitMs": 260 },
+        { "x": 1190, "y": 250, "waitMs": 260 },
+        { "x": 1000, "y": 335, "waitMs": 260 },
+        { "x": 810, "y": 410, "waitMs": 260 },
+        { "x": 630, "y": 485, "waitMs": 900 }
+      ],
+      "note": "Sweep hero lightly"
+    },
+    {
+      "type": "click",
+      "target": {
+        "selector": "a[href]",
+        "tag": "A",
+        "text": "Explore Video Skills - Free"
+      },
+      "waitForNavigation": true,
+      "holdMs": 4200,
+      "note": "Enter hub from hero CTA"
+    },
+    {
+      "type": "scroll",
+      "target": {
+        "selector": "h1,h2,h3,h4,h5,h6,a,div,span",
+        "text": "AI Image"
+      },
+      "offsetY": -260,
+      "durationMs": 1500,
+      "holdMs": 3200,
+      "note": "Show featured area"
+    },
+    {
+      "type": "click",
+      "target": {
+        "selector": "a[href]",
+        "href": "https://skills.video/"
+      },
+      "waitForNavigation": true,
+      "holdMs": 800,
+      "note": "Back home"
+    },
+    {
+      "type": "scroll",
+      "target": {
+        "selector": "input",
+        "tag": "INPUT",
+        "textIncludes": "Search skills"
+      },
+      "offsetY": -420,
+      "durationMs": 1300,
+      "holdMs": 300,
+      "note": "Bring search box into view"
+    },
+    {
+      "type": "type",
+      "target": {
+        "selector": "input",
+        "tag": "INPUT",
+        "textIncludes": "Search skills"
+      },
+      "text": "youtube",
+      "delay": 140,
+      "holdMs": 700,
+      "note": "Type youtube"
+    },
+    {
+      "type": "evaluate",
+      "note": "Force same-tab search flow",
+      "code": "() => { const form = document.querySelector('#skills-hub-search')?.form || document.querySelector('form'); if (form) form.target = '_self'; }"
+    },
+    {
+      "type": "click",
+      "target": {
+        "selector": "button",
+        "tag": "BUTTON",
+        "text": "Search"
+      },
+      "waitForNavigation": true,
+      "waitUntil": "domcontentloaded",
+      "waitForUrlIncludes": "/search?q=youtube",
+      "holdMs": 4200,
+      "note": "Open hub search results"
+    },
+    {
+      "type": "click",
+      "target": {
+        "selector": "a[href]",
+        "href": "https://skills.video/"
+      },
+      "waitForNavigation": true,
+      "holdMs": 700,
+      "note": "Back home again"
+    },
+    {
+      "type": "scroll",
+      "target": {
+        "selector": "input",
+        "tag": "INPUT",
+        "textIncludes": "Search skills"
+      },
+      "offsetY": -420,
+      "durationMs": 1200,
+      "holdMs": 300,
+      "note": "Bring featured/categories into frame"
+    },
+    {
+      "type": "move",
+      "points": [
+        {
+          "target": { "selector": "h1,h2,h3", "text": "Featured Skills" },
+          "waitMs": 700
+        },
+        {
+          "target": { "selector": "a[href]", "text": "Download YouTube Video" },
+          "waitMs": 700
+        },
+        {
+          "target": { "selector": "a[href]", "text": "Add Subtitles" },
+          "waitMs": 700
+        },
+        {
+          "target": { "selector": "a[href]", "text": "AI Video Generation" },
+          "waitMs": 2200
+        }
+      ],
+      "note": "Glide over featured and category entries"
+    },
+    {
+      "type": "scroll",
+      "targetY": 0,
+      "durationMs": 1500,
+      "holdMs": 300,
+      "note": "Return to hero for ending"
+    },
+    {
+      "type": "move",
+      "target": {
+        "selector": "a[href]",
+        "href": "https://skills.video/create"
+      },
+      "steps": 28,
+      "holdMs": 3600,
+      "note": "Hover near create entry for ending"
+    }
+  ]
+}

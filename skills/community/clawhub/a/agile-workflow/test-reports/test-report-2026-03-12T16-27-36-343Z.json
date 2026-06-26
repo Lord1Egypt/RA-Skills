@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "passRate": "100.0",
+    "duration": 25,
+    "timestamp": "2026-03-12T16:27:36.344Z"
+  },
+  "results": [
+    {
+      "id": "IT-001",
+      "name": "质量验证器集成测试",
+      "passed": true,
+      "duration": 4,
+      "timestamp": "2026-03-12T16:27:36.330Z"
+    },
+    {
+      "id": "IT-002",
+      "name": "创造性评分集成测试",
+      "passed": true,
+      "duration": 4,
+      "timestamp": "2026-03-12T16:27:36.334Z"
+    },
+    {
+      "id": "IT-003",
+      "name": "Token 控制器集成测试",
+      "passed": true,
+      "duration": 2,
+      "timestamp": "2026-03-12T16:27:36.336Z"
+    },
+    {
+      "id": "IT-004",
+      "name": "Agent 管理器集成测试",
+      "passed": true,
+      "duration": 3,
+      "timestamp": "2026-03-12T16:27:36.339Z"
+    },
+    {
+      "id": "IT-005",
+      "name": "熔断恢复器集成测试",
+      "passed": true,
+      "duration": 1,
+      "timestamp": "2026-03-12T16:27:36.340Z"
+    },
+    {
+      "id": "E2E-001",
+      "name": "端到端完整流程测试",
+      "passed": true,
+      "duration": 3,
+      "timestamp": "2026-03-12T16:27:36.343Z"
+    }
+  ]
+}

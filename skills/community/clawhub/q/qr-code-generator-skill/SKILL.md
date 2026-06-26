@@ -1,35 +1,31 @@
 ---
-name: "QR Code Generator"
+name: qr-generator
 description: "A precision utility to generate QR code images from URLs or text using Python."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qr-code-generator-skill"
-sourceUrl: "https://clawhub.ai/skills/qr-code-generator-skill"
+version: "1.0.0"
+author: "YourName"
+tags: [utility, images, tools, qr]
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+      pip:
+        - qrcode[pil]
 ---
 
-# QR Code Generator
+# QR Code Generator Skill
 
-> A precision utility to generate QR code images from URLs or text using Python.
+This skill empowers the OpenClaw agent to generate and save QR code images locally.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qr-code-generator-skill`
-- **Source URL:** [https://clawhub.ai/skills/qr-code-generator-skill](https://clawhub.ai/skills/qr-code-generator-skill)
+## Logic & Constraints
+- **Library:** Uses the `qrcode` Python library with `Pillow` (PIL) support.
+- **Output Format:** High-resolution PNG.
+- **Default Path:** If no path is specified, save to the current working directory as `qrcode.png`.
+- **Error Handling:** If `qrcode` is missing, the agent should first attempt `pip install qrcode[pil]`.
 
-## Overview
+## Execution Instructions
+When the user requests a QR code, execute a Python one-liner to perform the generation. 
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Implementation Template:
 ```bash
-hermes skills install clawhub/qr-code-generator-skill
-```
+python3 -c "import qrcode; img = qrcode.QRCode(version=1, box_size=10, border=5); img.add_data('USER_TEXT_HERE'); img.make(fit=True); img.make_image(fill_color='black', back_color='white').save('FILE_NAME.png')"

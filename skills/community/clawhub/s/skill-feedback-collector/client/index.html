@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Collector</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0a0e14;
+    --surface:#111820;
+    --surface-2:#1a2130;
+    --border:#1e2a3a;
+    --border-focus:#2c6def;
+    --text:#c8d6e5;
+    --text-bright:#f0f4f8;
+    --text-dim:#5c6e83;
+    --primary:#2c6def;
+    --primary-soft:rgba(44,109,239,.1);
+    --green:#34d399;
+    --red:#f87171;
+    --radius:10px;
+    --radius-lg:14px;
+  }
+  html{height:100%}
+  body{
+    min-height:100%;
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:32px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .app{width:100%;max-width:580px;display:flex;flex-direction:column;gap:16px}
+
+  .brand{display:flex;align-items:center;gap:12px;padding:4px 0 8px}
+  .brand-icon{width:36px;height:36px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .brand-text h1{font-size:16px;font-weight:700;color:var(--text-bright);letter-spacing:-.3px;line-height:1.3}
+  .brand-text p{font-size:11px;color:var(--text-dim);font-weight:500;letter-spacing:.3px;text-transform:uppercase}
+
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap}
+  .toolbar-item{
+    display:flex;align-items:center;gap:8px;
+    padding:8px 14px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    font-size:12px;font-weight:500;color:var(--text-dim);
+    flex:1;min-width:0;
+  }
+  .conn-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .conn-dot.ok{background:var(--green)}
+  .conn-dot.err{background:var(--red)}
+  .conn-dot.wait{background:var(--primary);animation:blink 1.4s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+  .toggle{position:relative;width:36px;height:20px;cursor:pointer;flex-shrink:0}
+  .toggle input{display:none}
+  .toggle-track{position:absolute;inset:0;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;transition:background .2s,border-color .2s}
+  .toggle input:checked + .toggle-track{background:var(--primary);border-color:var(--primary)}
+  .toggle-knob{position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .2s;pointer-events:none}
+  .toggle input:checked ~ .toggle-knob{transform:translateX(16px)}
+
+  .btn-icon{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:8px 12px;color:var(--text-dim);font-size:12px;font-family:inherit;
+    cursor:pointer;transition:border-color .15s,color .15s;white-space:nowrap;
+  }
+  .btn-icon:hover{border-color:var(--primary);color:var(--primary)}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .25s ease}
+  .panel.live{border-color:var(--primary)}
+
+  .panel-label{
+    padding:12px 18px;font-size:11px;font-weight:600;color:var(--text-dim);
+    letter-spacing:.6px;text-transform:uppercase;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:6px;
+  }
+  .panel-label .tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:.3px}
+  .tag-idle{background:var(--surface-2);color:var(--text-dim)}
+  .tag-active{background:var(--primary-soft);color:var(--primary)}
+
+  .q-zone{padding:20px 18px;min-height:72px;display:flex;align-items:flex-start}
+  .q-empty{color:var(--text-dim);font-size:13px;font-style:italic}
+  .q-text{
+    font-size:14px;line-height:1.75;color:var(--text-bright);
+    white-space:pre-wrap;word-break:break-word;width:100%;
+  }
+  .q-text code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-size:12px;font-family:"JetBrains Mono",monospace}
+  .q-text strong{color:var(--primary);font-weight:600}
+
+  .input-area{display:flex;gap:8px;padding:12px 18px 14px;border-top:1px solid var(--border);align-items:flex-end}
+  .input-area textarea{
+    flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+    padding:9px 12px;color:var(--text-bright);font-size:13px;font-family:inherit;
+    line-height:1.5;resize:none;min-height:40px;max-height:160px;outline:none;
+    transition:border-color .2s ease;
+  }
+  .input-area textarea:focus{border-color:var(--border-focus)}
+  .input-area textarea::placeholder{color:var(--text-dim)}
+  .input-area textarea:disabled{opacity:.4;cursor:not-allowed}
+
+  .btn-send{
+    height:40px;padding:0 20px;background:var(--primary);color:#fff;border:none;
+    border-radius:8px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;
+    transition:opacity .15s ease,transform .1s ease;white-space:nowrap;flex-shrink:0;
+  }
+  .btn-send:hover:not(:disabled){opacity:.85}
+  .btn-send:active:not(:disabled){transform:scale(.96)}
+  .btn-send:disabled{opacity:.35;cursor:not-allowed}
+
+  .quick-bar{display:none;gap:6px;padding:0 18px 12px;flex-wrap:wrap}
+  .quick-bar.show{display:flex}
+  .chip{
+    padding:5px 14px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:20px;font-size:12px;font-weight:500;color:var(--text);cursor:pointer;
+    transition:border-color .15s ease,color .15s ease;font-family:inherit;
+  }
+  .chip:hover{border-color:var(--primary);color:var(--primary)}
+
+  .log{max-height:280px;overflow-y:auto}
+  .log::-webkit-scrollbar{width:5px}
+  .log::-webkit-scrollbar-track{background:transparent}
+  .log::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+  .log-empty{padding:20px 18px;text-align:center;color:var(--text-dim);font-size:12px;font-style:italic}
+  .log-item{padding:10px 18px;border-bottom:1px solid var(--border);font-size:12px;line-height:1.6}
+  .log-item:last-child{border-bottom:none}
+  .log-role{font-weight:600;font-size:11px;letter-spacing:.3px;margin-bottom:2px}
+  .log-role.is-ai{color:var(--primary)}
+  .log-role.is-user{color:var(--green)}
+  .log-msg{color:var(--text-dim);white-space:pre-wrap;word-break:break-word}
+
+  .panel-label .spacer{flex:1}
+  .export-link{
+    font-size:10px;font-weight:500;color:var(--text-dim);text-decoration:none;
+    letter-spacing:0;text-transform:none;transition:color .15s;cursor:pointer;
+    background:none;border:none;font-family:inherit;
+  }
+  .export-link:hover{color:var(--primary)}
+
+  /* Task Queue */
+  .queue-body{padding:0}
+  .queue-input-row{display:flex;gap:8px;padding:12px 18px;border-bottom:1px solid var(--border)}
+  .queue-input-row input{
+    flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+    padding:8px 12px;color:var(--text-bright);font-size:13px;font-family:inherit;outline:none;
+    transition:border-color .2s;
+  }
+  .queue-input-row input:focus{border-color:var(--border-focus)}
+  .queue-input-row input::placeholder{color:var(--text-dim)}
+  .queue-input-row button{
+    padding:8px 16px;background:var(--primary);color:#fff;border:none;border-radius:8px;
+    font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;
+    transition:opacity .15s;
+  }
+  .queue-input-row button:hover{opacity:.85}
+  .queue-list{list-style:none;max-height:200px;overflow-y:auto}
+  .queue-list::-webkit-scrollbar{width:5px}
+  .queue-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+  .queue-item{
+    display:flex;align-items:center;gap:8px;
+    padding:8px 18px;border-bottom:1px solid var(--border);
+    font-size:12px;color:var(--text);
+  }
+  .queue-item:last-child{border-bottom:none}
+  .queue-item .q-num{
+    font-size:10px;font-weight:700;color:var(--text-dim);
+    min-width:18px;text-align:center;
+  }
+  .queue-item .q-task{flex:1;word-break:break-word}
+  .queue-item .q-del{
+    background:none;border:none;color:var(--text-dim);cursor:pointer;
+    font-size:14px;padding:2px 6px;border-radius:4px;transition:color .15s;
+  }
+  .queue-item .q-del:hover{color:var(--red)}
+  .queue-empty{padding:16px 18px;text-align:center;color:var(--text-dim);font-size:12px;font-style:italic}
+  .queue-actions{display:flex;gap:6px;padding:8px 18px;border-top:1px solid var(--border)}
+  .queue-actions button{
+    padding:5px 12px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:6px;font-size:11px;font-weight:500;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;transition:border-color .15s,color .15s;
+  }
+  .queue-actions button:hover{border-color:var(--primary);color:var(--primary)}
+  .queue-actions .spacer{flex:1}
+  .queue-count{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:18px;height:18px;padding:0 5px;
+    background:var(--primary-soft);color:var(--primary);
+    border-radius:9px;font-size:10px;font-weight:700;
+  }
+
+  .foot{text-align:center;font-size:11px;color:var(--text-dim);padding:4px 0}
+  .foot a{color:var(--primary);text-decoration:none}
+
+  @media(max-width:480px){
+    body{padding:16px 12px}
+    .q-zone{padding:16px 14px}
+    .input-area{padding:10px 14px 12px}
+    .panel-label{padding:10px 14px}
+    .log-item{padding:10px 14px}
+    .quick-bar{padding:0 14px 10px}
+  }
+</style>
+</head>
+<body>
+  <div class="app">
+    <div class="brand">
+      <div class="brand-icon">💬</div>
+      <div class="brand-text">
+        <h1>Feedback Collector</h1>
+        <p>Human-in-the-Loop MCP Console</p>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-item" style="flex:2">
+        <div class="conn-dot err" id="dot"></div>
+        <span id="connLabel">Connecting...</span>
+      </div>
+      <div class="toolbar-item" style="flex:1;justify-content:space-between">
+        <span>Feedback <span id="modeText">ON</span></span>
+        <label class="toggle">
+          <input type="checkbox" id="modeToggle" checked>
+          <div class="toggle-track"></div>
+          <div class="toggle-knob"></div>
+        </label>
+      </div>
+      <button class="btn-icon" id="notifBtn" title="Enable browser notifications">🔔 Notify</button>
+    </div>
+
+    <div class="panel" id="panel">
+      <div class="panel-label">
+        <span>AI Message</span>
+        <span class="tag tag-idle" id="stateTag">IDLE</span>
+      </div>
+      <div class="q-zone">
+        <div class="q-empty" id="qText">Waiting for AI...</div>
+      </div>
+      <div class="quick-bar" id="quickBar">
+        <button class="chip" data-v="继续">继续</button>
+        <button class="chip" data-v="好的，没问题">好的</button>
+        <button class="chip" data-v="请重新做一遍">重做</button>
+        <button class="chip" data-v="结束本轮对话">结束</button>
+      </div>
+      <div class="input-area">
+        <textarea id="input" placeholder="Type your feedback..." rows="1" disabled></textarea>
+        <button class="btn-send" id="sendBtn" disabled>Send</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">
+        <span>Task Queue</span>
+        <span class="queue-count" id="queueCount">0</span>
+        <span class="spacer"></span>
+      </div>
+      <div class="queue-body">
+        <div class="queue-input-row">
+          <input type="text" id="queueInput" placeholder="Add a task to the queue...">
+          <button id="queueAddBtn">Add</button>
+        </div>
+        <ul class="queue-list" id="queueList">
+          <li class="queue-empty">Queue is empty</li>
+        </ul>
+        <div class="queue-actions">
+          <button id="queueClearBtn">Clear All</button>
+          <span class="spacer"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">
+        <span>History</span>
+        <span class="spacer"></span>
+        <button class="export-link" id="exportBtn">Export JSON</button>
+      </div>
+      <div class="log" id="log">
+        <div class="log-empty">No messages yet</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <a href="https://clawhub.ai/" target="_blank">OpenClaw</a> &middot; skill-feedback-collector v1.0.0
+    </div>
+  </div>
+
+<script>
+(function(){
+  var dot        = document.getElementById("dot");
+  var connLabel  = document.getElementById("connLabel");
+  var panel      = document.getElementById("panel");
+  var stateTag   = document.getElementById("stateTag");
+  var qText      = document.getElementById("qText");
+  var quickBar   = document.getElementById("quickBar");
+  var input      = document.getElementById("input");
+  var sendBtn    = document.getElementById("sendBtn");
+  var log        = document.getElementById("log");
+  var modeToggle = document.getElementById("modeToggle");
+  var modeText   = document.getElementById("modeText");
+  var notifBtn    = document.getElementById("notifBtn");
+  var exportBtn   = document.getElementById("exportBtn");
+  var queueInput  = document.getElementById("queueInput");
+  var queueAddBtn = document.getElementById("queueAddBtn");
+  var queueList   = document.getElementById("queueList");
+  var queueCount  = document.getElementById("queueCount");
+  var queueClearBtn = document.getElementById("queueClearBtn");
+
+  var ws = null;
+  var hasHistory = false;
+  var transport = "none";
+  var pollSeq = 0;
+  var pollActive = false;
+  var currentPending = false;
+  var notifEnabled = false;
+
+  var baseUrl = location.origin;
+  var wsUrl = (location.protocol === "https:" ? "wss:" : "ws:") + "//" + location.host;
+
+  // --- Notification sound (short beep via Web Audio API) ---
+  var audioCtx = null;
+  function playNotifSound(){
+    try{
+      if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.frequency.value = 880;
+      osc.type = "sine";
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + 0.4);
+    }catch(e){}
+  }
+
+  // --- Browser notification ---
+  notifBtn.addEventListener("click", function(){
+    if(!("Notification" in window)){
+      alert("This browser does not support notifications.");
+      return;
+    }
+    Notification.requestPermission().then(function(p){
+      if(p === "granted"){
+        notifEnabled = true;
+        notifBtn.textContent = "🔔 ON";
+        notifBtn.style.borderColor = "var(--primary)";
+        notifBtn.style.color = "var(--primary)";
+        new Notification("Feedback Collector", { body: "Notifications enabled!", icon: "data:," });
+      }
+    });
+  });
+
+  function sendBrowserNotif(text){
+    if(!notifEnabled || Notification.permission !== "granted") return;
+    var body = text.length > 120 ? text.slice(0, 120) + "..." : text;
+    try{ new Notification("AI needs your feedback", { body: body, tag: "fc-question" }); }catch(e){}
+  }
+
+  // --- Minimal Markdown: bold, inline code, line breaks ---
+  function renderMarkdown(text){
+    var escaped = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+    return escaped
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  }
+
+  // --- Core UI ---
+  function setConn(state, label){
+    dot.className = "conn-dot " + state;
+    connLabel.textContent = label;
+  }
+
+  function setEditable(on){
+    input.disabled = !on;
+    sendBtn.disabled = !on;
+    if(on) input.focus();
+  }
+
+  function pushLog(role, text, ts){
+    if(!hasHistory){ log.innerHTML = ""; hasHistory = true; }
+    var el = document.createElement("div");
+    el.className = "log-item";
+    var r = document.createElement("div");
+    r.className = "log-role " + (role === "ai" ? "is-ai" : "is-user");
+    var timeStr = ts ? new Date(ts).toLocaleString() : new Date().toLocaleString();
+    r.textContent = (role === "ai" ? "AI" : "YOU") + "  ·  " + timeStr;
+    var m = document.createElement("div");
+    m.className = "log-msg";
+    m.textContent = text;
+    el.appendChild(r);
+    el.appendChild(m);
+    log.insertBefore(el, log.firstChild);
+  }
+
+  function loadHistory(){
+    fetch(baseUrl + "/api/history")
+      .then(function(r){ return r.json(); })
+      .then(function(items){
+        if(!items || !items.length) return;
+        items.reverse().forEach(function(e){
+          pushLog(e.role === "ai" ? "ai" : "user", e.text, e.timestamp);
+        });
+      })
+      .catch(function(){});
+  }
+  loadHistory();
+
+  function syncMode(enabled){
+    modeToggle.checked = enabled;
+    modeText.textContent = enabled ? "ON" : "OFF";
+  }
+
+  function showQuestion(reason){
+    if(currentPending) return;
+    currentPending = true;
+    qText.className = "q-text";
+    qText.innerHTML = renderMarkdown(reason);
+    panel.classList.add("live");
+    stateTag.className = "tag tag-active";
+    stateTag.textContent = "WAITING";
+    quickBar.classList.add("show");
+    setConn("wait", "AI is waiting for your feedback" + (transport === "poll" ? " [HTTP]" : ""));
+    setEditable(true);
+    pushLog("ai", reason);
+    playNotifSound();
+    sendBrowserNotif(reason);
+    document.title = "⚡ AI Waiting — Feedback Collector";
+  }
+
+  function clearQuestion(){
+    currentPending = false;
+    qText.className = "q-empty";
+    qText.textContent = "Waiting for AI...";
+    panel.classList.remove("live");
+    stateTag.className = "tag tag-idle";
+    stateTag.textContent = "IDLE";
+    quickBar.classList.remove("show");
+    var mode = transport === "ws" ? "" : " [HTTP]";
+    setConn("ok", "Connected" + mode);
+    setEditable(false);
+    input.value = "";
+    document.title = "Feedback Collector";
+  }
+
+  function sendFeedback(){
+    var t = input.value.trim();
+    if(!t) return;
+    if(transport === "ws" && ws && ws.readyState === WebSocket.OPEN){
+      ws.send(JSON.stringify({ type: "feedback", text: t }));
+      pushLog("user", t);
+      clearQuestion();
+    } else {
+      fetch(baseUrl + "/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: t })
+      }).then(function(r){ return r.json(); })
+        .then(function(d){ if(d.ok){ pushLog("user", t); clearQuestion(); } })
+        .catch(function(){});
+    }
+  }
+
+  function toggleMode(enabled){
+    if(transport === "ws" && ws && ws.readyState === WebSocket.OPEN){
+      ws.send(JSON.stringify({ type: "toggle", enabled: enabled }));
+    } else {
+      fetch(baseUrl + "/api/toggle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ enabled: enabled })
+      }).catch(function(){});
+    }
+  }
+
+  // --- Events ---
+  sendBtn.addEventListener("click", sendFeedback);
+  input.addEventListener("keydown", function(e){
+    if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendFeedback(); }
+  });
+  input.addEventListener("input", function(){
+    this.style.height = "auto";
+    this.style.height = Math.min(this.scrollHeight, 160) + "px";
+  });
+  quickBar.addEventListener("click", function(e){
+    var chip = e.target.closest(".chip");
+    if(!chip) return;
+    input.value = chip.dataset.v;
+    sendFeedback();
+  });
+  modeToggle.addEventListener("change", function(){
+    var enabled = modeToggle.checked;
+    modeText.textContent = enabled ? "ON" : "OFF";
+    toggleMode(enabled);
+  });
+  exportBtn.addEventListener("click", function(){
+    window.open(baseUrl + "/api/history/export", "_blank");
+  });
+
+  // --- Task Queue ---
+  var localQueue = [];
+
+  function renderQueue(tasks){
+    localQueue = tasks || [];
+    queueCount.textContent = localQueue.length;
+    if(localQueue.length === 0){
+      queueList.innerHTML = '<li class="queue-empty">Queue is empty — add tasks for auto-execution</li>';
+      return;
+    }
+    queueList.innerHTML = "";
+    localQueue.forEach(function(task, i){
+      var li = document.createElement("li");
+      li.className = "queue-item";
+      li.innerHTML = '<span class="q-num">#' + (i+1) + '</span><span class="q-task"></span><button class="q-del" data-idx="' + i + '">×</button>';
+      li.querySelector(".q-task").textContent = task;
+      queueList.appendChild(li);
+    });
+  }
+
+  function sendQueueAction(action, extra){
+    var msg = Object.assign({ type: "queue", action: action }, extra || {});
+    if(transport === "ws" && ws && ws.readyState === WebSocket.OPEN){
+      ws.send(JSON.stringify(msg));
+    } else {
+      fetch(baseUrl + "/api/queue", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(msg)
+      }).then(function(r){ return r.json(); })
+        .then(function(d){ if(d.tasks) renderQueue(d.tasks); })
+        .catch(function(){});
+    }
+  }
+
+  queueAddBtn.addEventListener("click", function(){
+    var t = queueInput.value.trim();
+    if(!t) return;
+    sendQueueAction("add", { task: t });
+    queueInput.value = "";
+  });
+  queueInput.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      e.preventDefault();
+      queueAddBtn.click();
+    }
+  });
+  queueClearBtn.addEventListener("click", function(){
+    sendQueueAction("clear");
+  });
+  queueList.addEventListener("click", function(e){
+    var del = e.target.closest(".q-del");
+    if(!del) return;
+    var idx = parseInt(del.dataset.idx, 10);
+    sendQueueAction("remove", { index: idx });
+  });
+
+  // --- WebSocket transport ---
+  var wsFails = 0;
+
+  function connectWs(){
+    if(ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
+    setConn("err", "Connecting (WebSocket)...");
+    try{ ws = new WebSocket(wsUrl); }catch(e){ fallbackToPoll(); return; }
+
+    var openTimer = setTimeout(function(){
+      if(ws.readyState !== WebSocket.OPEN){ ws.close(); fallbackToPoll(); }
+    }, 5000);
+
+    ws.onopen = function(){
+      clearTimeout(openTimer);
+      wsFails = 0;
+      transport = "ws";
+      setConn("ok", "Connected");
+    };
+    ws.onmessage = function(evt){
+      try{
+        var d = JSON.parse(evt.data);
+        if(d.type === "question" && d.reason) showQuestion(d.reason);
+        else if(d.type === "resolved") clearQuestion();
+        else if(d.type === "mode") syncMode(!!d.enabled);
+        else if(d.type === "queue") renderQueue(d.tasks);
+      }catch(e){}
+    };
+    ws.onclose = function(){
+      clearTimeout(openTimer);
+      wsFails++;
+      if(wsFails >= 3){ fallbackToPoll(); }
+      else { setConn("err", "Reconnecting..."); setEditable(false); setTimeout(connectWs, 2000); }
+    };
+    ws.onerror = function(){ ws.close(); };
+  }
+
+  // --- HTTP Polling fallback ---
+  function fallbackToPoll(){
+    transport = "poll";
+    setConn("ok", "Connected [HTTP]");
+    if(!pollActive){ pollActive = true; poll(); }
+  }
+
+  function poll(){
+    if(transport !== "poll"){ pollActive = false; return; }
+    fetch(baseUrl + "/api/poll?seq=" + pollSeq)
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        pollSeq = d.seq || pollSeq;
+        syncMode(!!d.enabled);
+        if(d.pending && d.reason && !currentPending) showQuestion(d.reason);
+        else if(!d.pending && currentPending) clearQuestion();
+        if(!d.pending && !currentPending) setConn("ok", "Connected [HTTP]");
+        setTimeout(poll, 100);
+      })
+      .catch(function(){
+        setConn("err", "Connection lost — retrying...");
+        setTimeout(poll, 3000);
+      });
+  }
+
+  connectWs();
+})();
+</script>
+</body>
+</html>

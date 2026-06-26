@@ -1,0 +1,26 @@
+/* ===== HEATMAP TABLE ===== */
+.heatmap-wrap{overflow-x:auto;margin-bottom:0}
+.heatmap{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;border-radius:0;overflow:hidden;border:1px solid var(--border)}
+.heatmap th{background:#f7f8fa;padding:10px 12px;font-size:11px;font-weight:700;color:#666;text-align:center;white-space:nowrap;border-bottom:2px solid var(--border)}
+.heatmap th.subject-col{text-align:left;width:60px}
+.heatmap td{padding:10px 12px;text-align:center;border-bottom:1px solid #f0f0f0;position:relative}
+.heatmap tr:last-child td{border-bottom:none}
+.heatmap td.subject-name{text-align:left;font-weight:700;font-size:13px;width:60px}
+.heatmap td.score{font-weight:700;font-size:14px;min-width:48px}
+.heatmap td.s-lv1{background:#f8d7da;color:#922}
+.heatmap td.s-lv2{background:#fce4d6;color:#a44}
+.heatmap td.s-lv3{background:#fef9e7;color:#856404}
+.heatmap td.s-lv4{background:#d4edda;color:#155724}
+.heatmap td.s-lv5{background:#b8e6c8;color:#0a5016}
+.heatmap td.change{font-weight:700;font-size:14px;min-width:70px}
+.heatmap td.change.pos{color:var(--green)}
+.heatmap td.change.neg{color:var(--red)}
+.heatmap td.change.neutral{color:#999}
+.trend-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:0;font-weight:600;white-space:nowrap}
+.trend-badge.up{background:var(--green-bg);color:var(--green)}
+.trend-badge.down{background:var(--red-bg);color:var(--red)}
+.trend-badge.flat{background:#eef2f7;color:#888}
+.heatmap td.rate{font-weight:700;font-size:13px}
+.heatmap td.rate.high{color:var(--green)}
+.heatmap td.rate.mid{color:var(--yellow)}
+.heatmap td.rate.low{color:var(--red)}

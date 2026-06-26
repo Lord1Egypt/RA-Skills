@@ -1,35 +1,22 @@
----
-name: "Visa Business Planner"
-description: "Helps create Japanese Business Manager Visa business plans with templates, revenue projection scripts, market analysis, legal info, and example plans."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/visa-business-planner"
-sourceUrl: "https://clawhub.ai/skills/visa-business-planner"
----
-
-# Visa Business Planner
-
-> Helps create Japanese Business Manager Visa business plans with templates, revenue projection scripts, market analysis, legal info, and example plans.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/visa-business-planner`
-- **Source URL:** [https://clawhub.ai/skills/visa-business-planner](https://clawhub.ai/skills/visa-business-planner)
+# Visa Business Planner Skill
 
 ## Overview
+This skill helps users create comprehensive business plans for obtaining a Japanese Business Manager Visa. It includes templates, examples, resources, and tools for market analysis, revenue projections, and legal requirements. Tailored for backgrounds in tech, media, and consulting.
 
+## Key Features
+- **Business Plan Template**: A customizable template with sections for executive summary, market analysis, financial projections, legal requirements, etc.
+- **Financial Projection Script**: A simple Python script to generate revenue projections.
+- **Resources**: Links to visa templates, Japanese market data, and official guidelines.
+- **Examples**: Concrete examples, such as a bilingual vlogging agency with IT coaching.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/visa-business-planner
-```
+## Usage
+To use this skill:
+1. Load the skill in your agent.
+2. Use commands like: Generate business plan for [business idea].
+3. Run the financial projection script with inputs.
+
+For detailed instructions, see the files in this directory.
+
+## Requirements
+- Python 3 for the projection script.
+- Access to web for latest market data.

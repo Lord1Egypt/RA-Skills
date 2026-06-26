@@ -1,0 +1,9 @@
+{
+  "name": "openviking-korean",
+  "version": "3.1.0",
+  "description": "TokenSaver v3.1 - 한영겸용 AI 토큰 절약. 한국어 95-96%, 영어 85-90% 비용 절감. Async + orjson + LRU 캐싱. JVM-free.",
+  "author": "dorongss",
+  "license": "MIT",
+  "tags": ["korean", "english", "bilingual", "nlp", "context", "memory", "token-saver", "async", "ai-cost-reduction"],
+  "compatibility": "Python 3.8+"
+}

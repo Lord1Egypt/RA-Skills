@@ -1,0 +1,59 @@
+{
+  "name": "@openclaw-community/skill-library-book-monitor",
+  "version": "1.0.0",
+  "description": "Monitor library book availability and get notified when books become available for borrowing. Supports Shenzhen Library and extensible for other libraries.",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "library",
+    "book",
+    "monitor",
+    "availability",
+    "shenzhen-library",
+    "notification",
+    "python"
+  ],
+  "author": "openclaw-community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw-community/skill-library-book-monitor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-community/skill-library-book-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-community/skill-library-book-monitor/issues"
+  },
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "__init__.py",
+    "config.py",
+    "book_manager.py",
+    "library_scraper.py",
+    "notifier.py",
+    "scheduler.py",
+    "config.yaml.example",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "openclaw": {
+    "skill": true,
+    "minVersion": "1.0.0",
+    "category": "productivity",
+    "triggers": [
+      "library",
+      "book monitor",
+      "图书馆",
+      "book availability",
+      "借书",
+      "书籍监控"
+    ]
+  }
+}

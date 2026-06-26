@@ -1,0 +1,8 @@
+interface:
+  display_name: "Command Guardian"
+  short_description: "Safety preflight for risky shell and infra commands"
+  default_prompt: "Use $command-guardian to review this command before execution and suggest a safer version."
+  brand_color: "#DC2626"
+
+policy:
+  allow_implicit_invocation: true

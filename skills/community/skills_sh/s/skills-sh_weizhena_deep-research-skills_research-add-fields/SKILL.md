@@ -1,35 +1,30 @@
 ---
-name: "research-add-fields"
-description: "Indexed by skills.sh from weizhena/deep-research-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "weizhena"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/weizhena/deep-research-skills/research-add-fields"
-sourceUrl: "https://skills.sh/weizhena/deep-research-skills/research-add-fields"
+name: research-add-fields
+description: Add field definitions to existing research outline.
 ---
 
-# research-add-fields
+# Research Add Fields - Supplement Research Fields
 
-> Indexed by skills.sh from weizhena/deep-research-skills
+## Trigger
+`/research-add-fields`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** weizhena
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/weizhena/deep-research-skills/research-add-fields`
-- **Source URL:** [https://skills.sh/weizhena/deep-research-skills/research-add-fields](https://skills.sh/weizhena/deep-research-skills/research-add-fields)
+## Workflow
 
-## Overview
+### Step 1: Auto-locate Fields File
+Find `*/fields.yaml` file in current working directory, auto-read existing fields definitions.
 
+### Step 2: Get Supplement Source
+Ask user to choose:
+- **A. User direct input**: User provides field names and descriptions
+- **B. Web Search**: Launch agent to search common fields in this domain
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/weizhena/deep-research-skills/research-add-fields
-```
+### Step 3: Display and Confirm
+- Display suggested new fields list
+- User confirms which fields to add
+- User specifies field category and detail_level
+
+### Step 4: Save Update
+Append confirmed fields to fields.yaml, save file.
+
+## Output
+Updated `{topic}/fields.yaml` file (in-place modification, requires user confirmation)

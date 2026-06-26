@@ -1,0 +1,21 @@
+{
+  "name": "life-scheduler",
+  "version": "1.0.0",
+  "description": "拟人化生活状态生成器 — 让 AI Agent 每天自动拥有穿搭、日程和心情，像真人一样在过日子",
+  "keywords": ["persona", "roleplay", "companion", "daily", "immersive", "schedule", "outfit", "mood", "life", "character"],
+  "author": "tchen001",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/T-Chen-CN/openclaw-life-scheduler"
+  },
+  "openclaw": {
+    "skill": true,
+    "entry": "SKILL.md",
+    "requirements": {
+      "bins": [],
+      "env": [],
+      "config": []
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "_doc": "BOSS home device registry. Lookup by Chinese name to find did/siid/piid.",
+  "devices": {
+    "厕所灯": {"did": "946635824", "model": "xiaomi.switch.2wpro3", "type": "3-way-switch"},
+    "客厅灯": {"did": "946633803", "model": "xiaomi.switch.2wpro3", "type": "3-way-switch"},
+    "入户门开关": {"did": "946796488", "model": "xiaomi.switch.2wpro3", "type": "3-way-switch"},
+    "客厅中间开关": {"did": "946360216", "model": "xiaomi.switch.2wpro3", "type": "3-way-switch"},
+    "次卧门口": {"did": "946625036", "model": "xiaomi.switch.2wpro3", "type": "3-way-switch"},
+    "主卧左开关": {"did": "946293001", "model": "xiaomi.switch.2pro3", "type": "3-way-switch"},
+    "主卧右开关": {"did": "946658849", "model": "xiaomi.switch.2pro3", "type": "3-way-switch"},
+    "小米智能开关Pro3": {"did": "946271120", "model": "xiaomi.switch.2pro3", "type": "3-way-switch"},
+    "家政间灯": {"did": "1034720433", "model": "zimi.switch.dhkg01", "type": "switch"},
+    "浴霸": {"did": "927361805", "model": "xiaomi.bhf_light.s1", "type": "bath-heater",
+      "notes": "siid:2=照明, siid:3=PTC暖风(piid:1=mode 0关/1暖风/2干燥/3吹风/4换气, piid:5=温度档), siid:10 piid:1=浴室温度"},
+    "热水器": {"did": "965879649", "model": "xiaomi.waterheater.ymm6", "type": "water-heater",
+      "notes": "siid:2 piid:1=开关(uint8 0/1), piid:2=目标温度, piid:3=当前水温"},
+    "主卧空调": {"did": "871747012", "model": "xiaomi.airc.arf1r1", "type": "ac"},
+    "客厅空调": {"did": "871759920", "model": "xiaomi.airc.arf1r1", "type": "ac"},
+    "次卧空调": {"did": "871783853", "model": "xiaomi.airc.arf1r1", "type": "ac"},
+    "客厅景观灯": {"did": "2042397495", "model": "lemesh.light.wy0d02", "type": "light"},
+    "小米电视EA": {"did": "613985952", "model": "xiaomi.tv.eaffh1", "type": "tv"},
+    "小爱触屏音箱": {"did": "100783118", "model": "xiaomi.wifispeaker.l04m", "type": "speaker"},
+    "智能门锁2 Pro": {"did": "1175215651", "model": "loock.lock.t3pul", "type": "lock"},
+    "智能鱼缸": {"did": "2026943875", "model": "hfjh.fishbowl.m100", "type": "fishbowl",
+      "notes": "siid:2=鱼缸(piid:1=开关, piid:2=水泵, piid:4=水温, piid:5=喂食量1-3), action siid:2 aiid:1=喂食(in:[份数], 不是{piid:5,value:N}格式)"},
+    "净烟机P1": {"did": "917614267", "model": "cykj.hood.jyj22", "type": "hood"},
+    "路由器": {"did": "miwifi.4405b803-d717-7957-d8a3-2807e4477844", "model": "xiaomi.router.ra72", "type": "router"},
+    "燃气热水器P10": {"did": "965879649", "model": "xiaomi.waterheater.ymm6", "type": "water-heater"}
+  },
+  "home_id": 159001331072,
+  "scenes": {
+    "洗澡模式": {
+      "temp_threshold": 28,
+      "bath_heater_target": 30,
+      "water_heater_target": 43
+    },
+    "出门自动喂鱼": {
+      "method": "OpenClaw cron polling lock events",
+      "trigger": "门锁自动锁门(action=1)",
+      "cron": "fish-auto-feed (every 5min)",
+      "state_file": "~/.fish_feed_state.json"
+    }
+  }
+}

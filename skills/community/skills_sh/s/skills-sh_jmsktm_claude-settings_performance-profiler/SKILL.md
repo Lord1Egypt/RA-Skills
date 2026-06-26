@@ -1,35 +1,45 @@
 ---
-name: "performance-profiler"
-description: "Indexed by skills.sh from jmsktm/claude-settings"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jmsktm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/performance-profiler"
-sourceUrl: "https://skills.sh/jmsktm/claude-settings/performance-profiler"
+name: Performance Profiler
+slug: performance-profiler
+description: Profile application performance, identify bottlenecks, and optimize for speed
+category: technical
+complexity: advanced
+version: "1.0.0"
+author: "ID8Labs"
+triggers:
+  - "profile performance"
+  - "find bottlenecks"
+  - "optimize speed"
+tags:
+  - performance
+  - profiling
+  - optimization
 ---
 
-# performance-profiler
+# Performance Profiler
 
-> Indexed by skills.sh from jmsktm/claude-settings
+Identify and eliminate performance bottlenecks. From CPU profiling to database query optimization, systematically improve application speed and efficiency.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jmsktm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/performance-profiler`
-- **Source URL:** [https://skills.sh/jmsktm/claude-settings/performance-profiler](https://skills.sh/jmsktm/claude-settings/performance-profiler)
+## Core Workflows
 
-## Overview
+### Workflow 1: Application Profiling
+1. **Baseline** - Establish current performance metrics
+2. **Profiling** - Run CPU, memory, and I/O profilers
+3. **Hotspot Analysis** - Identify slow code paths
+4. **Optimization** - Implement targeted improvements
+5. **Verification** - Measure improvement
 
+### Workflow 2: Database Optimization
+1. **Query Analysis** - Identify slow queries
+2. **Explain Plans** - Analyze query execution
+3. **Index Review** - Optimize indexes
+4. **Query Rewriting** - Improve query structure
+5. **Connection Pooling** - Optimize connections
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jmsktm/claude-settings/performance-profiler
-```
+## Quick Reference
+
+| Action | Command |
+|--------|---------|
+| Profile app | "Profile [application] performance" |
+| Find bottlenecks | "Identify performance bottlenecks" |
+| Optimize queries | "Optimize slow database queries" |

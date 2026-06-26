@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sony TV 浏览器能力检测</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      padding: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #0066ff;
+      padding-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      font-size: 16px;
+      color: #0066ff;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+    }
+
+    .item .label {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .item .value {
+      font-size: 13px;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #111;
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pass .value { color: #34c759; }
+    .fail .value { color: #ff3b30; }
+    .warn .value { color: #ff9500; }
+
+    .detail {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .header-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    #clock {
+      font-size: 14px;
+      color: #888;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .raw-log {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 14px;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 12px;
+      color: #888;
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #e8e8e8;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .btn:active { background: #333; }
+
+    .summary {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: #1a1a1a;
+      border-radius: 8px;
+    }
+
+    .summary-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .summary-item .num {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .summary-item .num.pass { color: #34c759; }
+    .summary-item .num.fail { color: #ff3b30; }
+    .summary-item .num.warn { color: #ff9500; }
+    .summary-item .label {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-info">
+    <h1>Sony TV 浏览器能力检测</h1>
+    <span id="clock"></span>
+  </div>
+  <div class="subtitle">在 Sony Bravia TV 内置浏览器中运行此页面，检测各项能力和 API 支持情况</div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="runAll()">重新检测</button>
+    <button class="btn" onclick="copyResults()">复制结果</button>
+    <button class="btn" onclick="toggleRaw()">显示原始日志</button>
+  </div>
+
+  <div class="summary" id="summary">
+    <div class="summary-item">
+      <div class="num pass" id="passCount">0</div>
+      <div class="label">通过</div>
+    </div>
+    <div class="summary-item">
+      <div class="num fail" id="failCount">0</div>
+      <div class="label">不支持</div>
+    </div>
+    <div class="summary-item">
+      <div class="num warn" id="warnCount">0</div>
+      <div class="label">部分支持</div>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="section" id="rawSection" style="display:none;">
+    <h2>原始日志</h2>
+    <div class="raw-log" id="rawLog"></div>
+  </div>
+
+  <script>
+    var results = [];
+    var rawLines = [];
+
+    function log(label, status, detail) {
+      results.push({ label: label, status: status, detail: detail || '' });
+      rawLines.push('[' + status.toUpperCase() + '] ' + label + (detail ? ' -> ' + detail : ''));
+    }
+
+    function test(name, fn) {
+      try {
+        var result = fn();
+        if (result === true) {
+          log(name, 'pass');
+        } else if (result === false) {
+          log(name, 'fail');
+        } else if (typeof result === 'string') {
+          log(name, 'pass', result);
+        } else if (result && result.status) {
+          log(name, result.status, result.detail || '');
+        } else {
+          log(name, 'warn', String(result));
+        }
+      } catch (e) {
+        log(name, 'fail', e.message);
+      }
+    }
+
+    // ===== Browser Engine =====
+    function detectEngine() {
+      var ua = navigator.userAgent;
+      if (ua.indexOf('Chrome') > -1 && ua.indexOf('Edg') === -1) return 'Chrome';
+      if (ua.indexOf('Edg') > -1) return 'Edge';
+      if (ua.indexOf('Safari') > -1 && ua.indexOf('Chrome') === -1) return 'Safari';
+      if (ua.indexOf('Firefox') > -1) return 'Firefox';
+      if (ua.indexOf('Opera') > -1 || ua.indexOf('OPR') > -1) return 'Opera';
+      return 'Unknown (' + ua.substring(0, 80) + ')';
+    }
+
+    // ===== Core Tests =====
+    function runCore() {
+      var ua = navigator.userAgent;
+
+      test('User Agent', function() { return ua.substring(0, 120); });
+      test('浏览器引擎', function() { return detectEngine(); });
+      test('语言', function() { return navigator.language + (navigator.languages ? ' / ' + navigator.languages.join(', ') : ''); });
+      test('屏幕分辨率', function() { return screen.width + 'x' + screen.height + ' @' + (window.devicePixelRatio || 1) + 'x'; });
+      test('视口尺寸', function() { return window.innerWidth + 'x' + window.innerHeight; });
+      test('颜色深度', function() { return screen.colorDepth + '-bit'; });
+      test('在线状态', function() { return navigator.onLine ? '在线' : '离线'; });
+    }
+
+    // ===== JavaScript APIs =====
+    function testJSAPIs() {
+      test('Promise', function() { return typeof Promise !== 'undefined' && typeof Promise.resolve === 'function'; });
+      test('async/await 支持', function() {
+        try { new Function('return (async function(){})()'); return true; } catch(e) { return false; }
+      });
+      test('Fetch API', function() { return typeof fetch !== 'undefined'; });
+      test('XMLHttpRequest', function() { return typeof XMLHttpRequest !== 'undefined'; });
+      test('Web Workers', function() { return typeof Worker !== 'undefined'; });
+      test('Service Worker', function() { return 'serviceWorker' in navigator; });
+      test('IntersectionObserver', function() { return typeof IntersectionObserver !== 'undefined'; });
+      test('MutationObserver', function() { return typeof MutationObserver !== 'undefined'; });
+      test('requestAnimationFrame', function() { return typeof requestAnimationFrame !== 'undefined'; });
+      test('requestIdleCallback', function() { return typeof requestIdleCallback !== 'undefined'; });
+      test('Intl (国际化)', function() { return typeof Intl !== 'undefined'; });
+      test('WebAssembly', function() { return typeof WebAssembly !== 'undefined'; });
+      test('Proxy 对象', function() { return typeof Proxy !== 'undefined'; });
+      test('WeakMap / WeakSet', function() { return typeof WeakMap !== 'undefined' && typeof WeakSet !== 'undefined'; });
+      test('Map / Set', function() { return typeof Map !== 'undefined' && typeof Set !== 'undefined'; });
+      test('Symbol', function() { return typeof Symbol !== 'undefined'; });
+      test('ArrayBuffer / TypedArray', function() { return typeof ArrayBuffer !== 'undefined'; });
+      test('BigInt', function() { return typeof BigInt !== 'undefined'; });
+    }
+
+    // ===== Storage =====
+    function testStorage() {
+      test('localStorage', function() {
+        try { localStorage.setItem('_test', '1'); localStorage.removeItem('_test'); return true; } catch(e) { return false; }
+      });
+      test('sessionStorage', function() {
+        try { sessionStorage.setItem('_test', '1'); sessionStorage.removeItem('_test'); return true; } catch(e) { return false; }
+      });
+      test('IndexedDB', function() { return typeof indexedDB !== 'undefined'; });
+      test('Cookies', function() { return typeof navigator.cookieEnabled !== 'undefined' && navigator.cookieEnabled; });
+    }
+
+    // ===== Media =====
+    function testMedia() {
+      test('Audio API', function() {
+        try {
+          var a = new Audio();
+          var mp3 = a.canPlayType('audio/mpeg');
+          var ogg = a.canPlayType('audio/ogg');
+          return mp3 || ogg ? 'MP3:' + (mp3 || 'no') + ' OGG:' + (ogg || 'no') : false;
+        } catch(e) { return false; }
+      });
+      test('Video API', function() {
+        try {
+          var v = document.createElement('video');
+          var h264 = v.canPlayType('video/mp4; codecs="avc1.42E01E"');
+          var vp9 = v.canPlayType('video/webm; codecs="vp9"');
+          var hls = v.canPlayType('application/vnd.apple.mpegurl');
+          return {
+            status: (h264 || vp9) ? 'pass' : 'fail',
+            detail: 'H.264:' + (h264 || 'no') + ' VP9:' + (vp9 || 'no') + ' HLS:' + (hls || 'no')
+          };
+        } catch(e) { return false; }
+      });
+      test('Canvas 2D', function() {
+        try {
+          var c = document.createElement('canvas');
+          var ctx = c.getContext('2d');
+          return ctx ? '支持' : false;
+        } catch(e) { return false; }
+      });
+      test('WebGL', function() {
+        try {
+          var c = document.createElement('canvas');
+          var gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+          if (gl) {
+            var debug = gl.getExtension('WEBGL_debug_renderer_info');
+            if (debug) {
+              return gl.getParameter(debug.UNMASKED_RENDERER_WEBGL).substring(0, 60);
+            }
+            return 'WebGL 支持';
+          }
+          return false;
+        } catch(e) { return false; }
+      });
+    }
+
+    // ===== Network =====
+    function testNetwork() {
+      test('XMLHttpRequest (跨域)', function() {
+        return { status: 'warn', detail: '取决于 CORS 配置' };
+      });
+      test('WebSocket', function() { return typeof WebSocket !== 'undefined'; });
+      test('EventSource (SSE)', function() { return typeof EventSource !== 'undefined'; });
+      test('Beacon API', function() { return typeof navigator.sendBeacon !== 'undefined'; });
+    }
+
+    // ===== Sony TV Specific =====
+    function testSonyTV() {
+      var ua = navigator.userAgent;
+      test('Sony Bravia TV', function() {
+        if (ua.indexOf('BRAVIA') > -1 || ua.indexOf('Sony') > -1) {
+          return '确认是 Sony Bravia';
+        }
+        return { status: 'warn', detail: 'UA 中未检测到 Bravia 标识' };
+      });
+      test('TV 浏览器特征', function() {
+        if (ua.indexOf('Maple') > -1) return 'Maple (Samsung)';
+        if (ua.indexOf('SmartTV') > -1) return 'SmartTV';
+        if (ua.indexOf('Android') > -1) return 'Android TV';
+        if (ua.indexOf('CrKey') > -1) return 'Chromecast';
+        return { status: 'warn', detail: ua.substring(0, 60) };
+      });
+
+      // --- WebAppRuntime ---
+      test('WebAppRuntime', function() {
+        return typeof sony !== 'undefined' ? '检测到 sony 命名空间' : { status: 'warn', detail: '未检测到 WebAppRuntime' };
+      });
+
+      // --- SystemEvents ---
+      test('sony.tv.systemevents', function() {
+        if (typeof sony !== 'undefined' && sony.tv && sony.tv.systemevents) {
+          var events = sony.tv.systemevents;
+          var methods = [];
+          if (typeof events.addListener === 'function') methods.push('addListener');
+          if (typeof events.removeListener === 'function') methods.push('removeListener');
+          return methods.length > 0 ? methods.join(', ') : false;
+        }
+        return false;
+      });
+
+      // --- PictureMode ---
+      test('sony.tv.picturemode', function() {
+        if (typeof sony !== 'undefined' && sony.tv && sony.tv.picturemode) {
+          var pm = sony.tv.picturemode;
+          var methods = [];
+          if (typeof pm.getPictureMode === 'function') methods.push('getPictureMode');
+          if (typeof pm.setPictureMode === 'function') methods.push('setPictureMode');
+          return methods.length > 0 ? methods.join(', ') : false;
+        }
+        return false;
+      });
+
+      // --- DirectoryReader ---
+      test('sony.tv.DirectoryReader', function() {
+        if (typeof sony !== 'undefined' && sony.tv && typeof sony.tv.DirectoryReader === 'function') {
+          return '支持 USB 存储读取';
+        }
+        return false;
+      });
+
+      // --- decimated-video object (HDMI embed) ---
+      test('decimated-video (HDMI 嵌入)', function() {
+        try {
+          var obj = document.createElement('object');
+          obj.setAttribute('type', 'application/x-decimated-video');
+          obj.setAttribute('width', '1');
+          obj.setAttribute('height', '1');
+          document.body.appendChild(obj);
+          var hasOpen = typeof obj.open === 'function';
+          var hasClose = typeof obj.close === 'function';
+          var hasSetWideMode = typeof obj.setWideMode === 'function';
+          document.body.removeChild(obj);
+          if (hasOpen || hasClose || hasSetWideMode) {
+            var features = [];
+            if (hasOpen) features.push('open');
+            if (hasClose) features.push('close');
+            if (hasSetWideMode) features.push('setWideMode');
+            return features.join(', ');
+          }
+          return false;
+        } catch(e) {
+          return { status: 'fail', detail: e.message };
+        }
+      });
+
+      // --- multicast-video object ---
+      test('multicast-video (组播视频)', function() {
+        try {
+          var obj = document.createElement('object');
+          obj.setAttribute('type', 'application/x-multicast-video');
+          obj.setAttribute('width', '1');
+          obj.setAttribute('height', '1');
+          document.body.appendChild(obj);
+          var hasShow = typeof obj.show === 'function';
+          var hasClose = typeof obj.close === 'function';
+          document.body.removeChild(obj);
+          if (hasShow || hasClose) {
+            var features = [];
+            if (hasShow) features.push('show');
+            if (hasClose) features.push('close');
+            return features.join(', ');
+          }
+          return false;
+        } catch(e) {
+          return { status: 'fail', detail: e.message };
+        }
+      });
+
+      // --- 4k-photo object (高清图片) ---
+      test('4k-photo (高清图片)', function() {
+        try {
+          var obj = document.createElement('object');
+          obj.setAttribute('type', 'application/x-4k-photo');
+          obj.setAttribute('width', '1');
+          obj.setAttribute('height', '1');
+          document.body.appendChild(obj);
+          var hasOpen = typeof obj.open === 'function';
+          var hasShow = typeof obj.show === 'function';
+          var hasPreload = typeof obj.preload === 'function';
+          document.body.removeChild(obj);
+          if (hasOpen || hasShow || hasPreload) {
+            var features = [];
+            if (hasOpen) features.push('open');
+            if (hasShow) features.push('show');
+            if (hasPreload) features.push('preload');
+            return features.join(', ');
+          }
+          return false;
+        } catch(e) {
+          return { status: 'fail', detail: e.message };
+        }
+      });
+
+      // --- VK_* Key codes ---
+      test('TV 遥控器键码', function() {
+        var codes = [];
+        if (typeof VK_RED !== 'undefined') codes.push('VK_RED=' + VK_RED);
+        if (typeof VK_GREEN !== 'undefined') codes.push('VK_GREEN=' + VK_GREEN);
+        if (typeof VK_YELLOW !== 'undefined') codes.push('VK_YELLOW=' + VK_YELLOW);
+        if (typeof VK_BLUE !== 'undefined') codes.push('VK_BLUE=' + VK_BLUE);
+        if (typeof VK_PLAY !== 'undefined') codes.push('VK_PLAY=' + VK_PLAY);
+        if (typeof VK_PAUSE !== 'undefined') codes.push('VK_PAUSE=' + VK_PAUSE);
+        if (typeof VK_STOP !== 'undefined') codes.push('VK_STOP=' + VK_STOP);
+        if (typeof VK_PICTURE !== 'undefined') codes.push('VK_PICTURE=' + VK_PICTURE);
+        return codes.length > 0 ? codes.join(' ') : { status: 'warn', detail: '未检测到 TV 专用键码' };
+      });
+
+      // --- localStorage limit ---
+      test('localStorage 容量', function() {
+        try {
+          var size = 0;
+          var data = '';
+          for (var i = 0; i < 20; i++) data += '0123456789'; // 200 bytes per iteration
+          for (var j = 0; j < 50; j++) {
+            localStorage.setItem('_capacity_test', data);
+            size += data.length;
+            data += data;
+            if (data.length > 1000000) break;
+          }
+          localStorage.removeItem('_capacity_test');
+          return size + ' bytes (~' + Math.round(size / 1024) + ' KB)';
+        } catch(e) {
+          return { status: 'warn', detail: '达到上限' };
+        }
+      });
+    }
+
+    // ===== Performance =====
+    function testPerformance() {
+      test('Performance API', function() { return typeof performance !== 'undefined'; });
+
+      test('页面加载时间', function() {
+        if (performance && performance.timing) {
+          var t = performance.timing;
+          var loadTime = t.loadEventEnd - t.navigationStart;
+          if (loadTime > 0) return loadTime + 'ms';
+          return { status: 'warn', detail: '尚未完成加载' };
+        }
+        return false;
+      });
+
+      test('DOM Ready 时间', function() {
+        if (performance && performance.timing) {
+          var t = performance.timing;
+          var domReady = t.domContentLoadedEventEnd - t.navigationStart;
+          if (domReady > 0) return domReady + 'ms';
+          return { status: 'warn', detail: '尚未完成' };
+        }
+        return false;
+      });
+
+      // FPS test
+      if (typeof requestAnimationFrame !== 'undefined') {
+        var frames = 0;
+        var start = Date.now();
+        function countFrame() {
+          frames++;
+          if (Date.now() - start < 1000) {
+            requestAnimationFrame(countFrame);
+          } else {
+            // Update the result
+            for (var i = 0; i < results.length; i++) {
+              if (results[i].label === 'FPS (1秒)') {
+                results[i].detail = frames + ' fps';
+                results[i].status = frames >= 50 ? 'pass' : frames >= 30 ? 'warn' : 'fail';
+                break;
+              }
+            }
+            renderResults();
+          }
+        }
+        requestAnimationFrame(countFrame);
+        log('FPS (1秒)', 'warn', '测试中...');
+      }
+    }
+
+    // ===== Input / Events =====
+    function testInput() {
+      test('Touch Events', function() {
+        return 'ontouchstart' in window || navigator.maxTouchPoints > 0
+          ? '支持 (maxTouchPoints: ' + navigator.maxTouchPoints + ')'
+          : false;
+      });
+      test('Keyboard Events', function() { return true; });
+      test('Gamepad API', function() { return typeof navigator.getGamepads !== 'undefined'; });
+    }
+
+    // ===== Security =====
+    function testSecurity() {
+      test('HTTPS', function() {
+        return location.protocol === 'https:' ? true : { status: 'warn', detail: '当前是 ' + location.protocol };
+      });
+      test('CSP (Content Security Policy)', function() {
+        var meta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+        return meta ? meta.content.substring(0, 50) : { status: 'warn', detail: '未设置' };
+      });
+    }
+
+    // ===== Render =====
+    function renderResults() {
+      var html = '';
+      var sections = {
+        '系统信息': [],
+        'JavaScript API': [],
+        '存储能力': [],
+        '媒体能力': [],
+        '网络能力': [],
+        'Sony TV 特征': [],
+        '性能测试': [],
+        '输入设备': [],
+        '安全': []
+      };
+
+      var sectionKeys = Object.keys(sections);
+      var sectionMap = {};
+      sectionKeys.forEach(function(k) { sections[k] = []; });
+      sectionMap['User Agent'] = '系统信息';
+      sectionMap['浏览器引擎'] = '系统信息';
+      sectionMap['语言'] = '系统信息';
+      sectionMap['屏幕分辨率'] = '系统信息';
+      sectionMap['视口尺寸'] = '系统信息';
+      sectionMap['颜色深度'] = '系统信息';
+      sectionMap['在线状态'] = '系统信息';
+
+      sectionMap['Promise'] = 'JavaScript API';
+      sectionMap['async/await 支持'] = 'JavaScript API';
+      sectionMap['Fetch API'] = 'JavaScript API';
+      sectionMap['XMLHttpRequest'] = 'JavaScript API';
+      sectionMap['Web Workers'] = 'JavaScript API';
+      sectionMap['Service Worker'] = 'JavaScript API';
+      sectionMap['IntersectionObserver'] = 'JavaScript API';
+      sectionMap['MutationObserver'] = 'JavaScript API';
+      sectionMap['requestAnimationFrame'] = 'JavaScript API';
+      sectionMap['requestIdleCallback'] = 'JavaScript API';
+      sectionMap['Intl (国际化)'] = 'JavaScript API';
+      sectionMap['WebAssembly'] = 'JavaScript API';
+      sectionMap['Proxy 对象'] = 'JavaScript API';
+      sectionMap['WeakMap / WeakSet'] = 'JavaScript API';
+      sectionMap['Map / Set'] = 'JavaScript API';
+      sectionMap['Symbol'] = 'JavaScript API';
+      sectionMap['ArrayBuffer / TypedArray'] = 'JavaScript API';
+      sectionMap['BigInt'] = 'JavaScript API';
+
+      sectionMap['localStorage'] = '存储能力';
+      sectionMap['sessionStorage'] = '存储能力';
+      sectionMap['IndexedDB'] = '存储能力';
+      sectionMap['Cookies'] = '存储能力';
+
+      sectionMap['Audio API'] = '媒体能力';
+      sectionMap['Video API'] = '媒体能力';
+      sectionMap['Canvas 2D'] = '媒体能力';
+      sectionMap['WebGL'] = '媒体能力';
+
+      sectionMap['XMLHttpRequest (跨域)'] = '网络能力';
+      sectionMap['WebSocket'] = '网络能力';
+      sectionMap['EventSource (SSE)'] = '网络能力';
+      sectionMap['Beacon API'] = '网络能力';
+
+      sectionMap['Sony Bravia TV'] = 'Sony TV 特征';
+      sectionMap['TV 浏览器特征'] = 'Sony TV 特征';
+      sectionMap['WebAppRuntime'] = 'Sony TV 特征';
+      sectionMap['sony.tv.systemevents'] = 'Sony TV 特征';
+      sectionMap['sony.tv.picturemode'] = 'Sony TV 特征';
+      sectionMap['sony.tv.DirectoryReader'] = 'Sony TV 特征';
+      sectionMap['decimated-video (HDMI 嵌入)'] = 'Sony TV 特征';
+      sectionMap['multicast-video (组播视频)'] = 'Sony TV 特征';
+      sectionMap['4k-photo (高清图片)'] = 'Sony TV 特征';
+      sectionMap['TV 遥控器键码'] = 'Sony TV 特征';
+      sectionMap['localStorage 容量'] = '存储能力';
+
+      sectionMap['Performance API'] = '性能测试';
+      sectionMap['页面加载时间'] = '性能测试';
+      sectionMap['DOM Ready 时间'] = '性能测试';
+      sectionMap['FPS (1秒)'] = '性能测试';
+
+      sectionMap['Touch Events'] = '输入设备';
+      sectionMap['Keyboard Events'] = '输入设备';
+      sectionMap['Gamepad API'] = '输入设备';
+
+      sectionMap['HTTPS'] = '安全';
+      sectionMap['CSP (Content Security Policy)'] = '安全';
+
+      results.forEach(function(r) {
+        var section = sectionMap[r.label] || '其他';
+        if (!sections[section]) sections[section] = [];
+        sections[section].push(r);
+      });
+
+      // Count
+      var passCount = 0, failCount = 0, warnCount = 0;
+      results.forEach(function(r) {
+        if (r.status === 'pass') passCount++;
+        else if (r.status === 'fail') failCount++;
+        else warnCount++;
+      });
+      document.getElementById('passCount').textContent = passCount;
+      document.getElementById('failCount').textContent = failCount;
+      document.getElementById('warnCount').textContent = warnCount;
+
+      sectionKeys.forEach(function(key) {
+        var items = sections[key];
+        if (items.length === 0) return;
+        html += '<div class="section"><h2>' + key + '</h2><div class="grid">';
+        items.forEach(function(r) {
+          html += '<div class="item ' + r.status + '">'
+            + '<span class="label">' + r.label + '</span>'
+            + '<span class="value">' + (r.detail || r.status) + '</span>'
+            + '</div>';
+        });
+        html += '</div></div>';
+      });
+
+      document.getElementById('results').innerHTML = html;
+      document.getElementById('rawLog').textContent = rawLines.join('\n');
+    }
+
+    function runAll() {
+      results = [];
+      rawLines = [];
+      runCore();
+      testJSAPIs();
+      testStorage();
+      testMedia();
+      testNetwork();
+      testSonyTV();
+      testPerformance();
+      testInput();
+      testSecurity();
+      renderResults();
+    }
+
+    function copyResults() {
+      var text = results.map(function(r) {
+        return '[' + r.status.toUpperCase() + '] ' + r.label + (r.detail ? ' -> ' + r.detail : '');
+      }).join('\n');
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          alert('结果已复制到剪贴板');
+        });
+      } else {
+        // Fallback
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          alert('结果已复制');
+        } catch(e) {
+          alert('复制失败，请手动选择文本');
+        }
+        document.body.removeChild(ta);
+      }
+    }
+
+    function toggleRaw() {
+      var el = document.getElementById('rawSection');
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Clock - run safely
+    var clockEl = document.getElementById('clock');
+    setInterval(function() {
+      if (clockEl) {
+        try {
+          clockEl.textContent = new Date().toLocaleTimeString('zh-CN', { hour12: false });
+        } catch (e) {
+          clockEl.textContent = new Date().toLocaleTimeString();
+        }
+      }
+    }, 1000);
+
+    // Run tests immediately (script is at bottom of body, DOM is ready)
+    function startTests() {
+      try {
+        runAll();
+        // Send results back to server
+        sendResultsToServer();
+      } catch (e) {
+        var resultsDiv = document.getElementById('results');
+        if (resultsDiv) {
+          resultsDiv.innerHTML =
+            '<div class="section"><h2>运行错误</h2><p style="color:#ff3b30;font-family:monospace;word-break:break-all;">' +
+            e.message + '</p></div>';
+        }
+        // Send error to server
+        sendErrorToServer(e.message);
+      }
+    }
+
+    // Send test results back to the server
+    function sendResultsToServer() {
+      try {
+        var data = JSON.stringify({
+          results: results,
+          ua: navigator.userAgent,
+          url: location.href,
+          time: new Date().toISOString()
+        });
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', location.origin + '/api/diag-results');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(data);
+      } catch (e) {
+        // Silently fail - don't break the page
+      }
+    }
+
+    function sendErrorToServer(msg) {
+      try {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', location.origin + '/api/diag-results');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({ error: msg, ua: navigator.userAgent, time: new Date().toISOString() }));
+      } catch (e) {}
+    }
+
+    startTests();
+  </script>
+</body>
+</html>

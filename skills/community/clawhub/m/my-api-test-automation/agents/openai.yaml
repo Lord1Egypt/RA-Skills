@@ -1,0 +1,4 @@
+interface:
+  display_name: "接口自动化测试"
+  short_description: "根据接口文档生成测试用例，支持前置脚本、后置断言、按环境执行并输出测试报告"
+  default_prompt: "Use $api-test-automation to generate complete automated API test cases from interface docs, configure pre-request and post-assertion scripts, execute them in the user-provided environment, and produce a complete test report."

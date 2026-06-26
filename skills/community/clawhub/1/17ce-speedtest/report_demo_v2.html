@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>17CE 测速报告</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;padding:24px 16px;line-height:1.5}
+  .container{max-width:1000px;margin:0 auto}
+  
+  /* 头部区域 */
+  .header{margin-bottom:24px}
+  h1{font-size:22px;font-weight:700;background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+  .url-box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px 16px;font-size:14px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;word-break:break-all}
+  .url-box .u{color:#38bdf8;font-weight:500;flex:1 1 100%}
+  .url-box .t{color:#64748b;font-size:12px}
+  
+  /* 统计卡片 */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px}
+  @media(min-width:600px){ .cards{grid-template-columns:repeat(4,1fr);gap:16px} .url-box .u{flex:1} }
+  .card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px}
+  .card .val{font-size:24px;font-weight:700;line-height:1.2}
+  .card .unit{font-size:13px;font-weight:400;opacity:0.7;margin-left:2px}
+  .card .lbl{font-size:12px;color:#94a3b8;margin-top:4px}
+  .green{color:#22c55e}.yellow{color:#eab308}.red{color:#ef4444}.blue{color:#38bdf8}
+  
+  /* 图表区域 */
+  .chart-box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:24px}
+  .chart-title{font-size:14px;font-weight:600;color:#cbd5e1;margin-bottom:16px}
+  .chart-row{display:flex;align-items:center;margin-bottom:10px;font-size:12px}
+  .chart-lbl{width:90px;flex-shrink:0;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:8px}
+  .chart-bar-wrap{flex:1;display:flex;align-items:center;gap:8px}
+  .chart-bar{height:10px;border-radius:5px;min-width:4px;transition:width 0.5s ease-out}
+  .chart-val{font-weight:600}
+  
+  @media(min-width:600px){ .chart-lbl{width:120px;font-size:13px} .chart-bar{height:12px;border-radius:6px} }
+
+  /* 表格区域 (移动端适配) */
+  .table-wrap{background:#1e293b;border:1px solid #334155;border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;min-width:600px;border-collapse:collapse;text-align:left}
+  thead{background:#0f172a80}
+  th{padding:14px 16px;font-size:12px;color:#94a3b8;font-weight:600;white-space:nowrap}
+  td{padding:14px 16px;border-top:1px solid #33415580;font-size:14px;vertical-align:middle;white-space:nowrap}
+  tr:hover td{background:#fbbf240a}
+  
+  .loc{color:#f8fafc;font-weight:500}
+  .bar-wrap{width:80px;background:#334155;border-radius:4px;overflow:hidden;margin-bottom:4px}
+  .bar-fill{height:4px}
+  .badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;margin-left:6px;vertical-align:middle}
+  .code{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700}
+  .ok{background:#22c55e20;color:#4ade80}
+  .err{background:#ef444420;color:#f87171}
+  .fade{color:#64748b}
+  .ip-col{font-size:13px}
+
+  footer{text-align:center;color:#475569;font-size:12px;margin-top:32px;padding-bottom:16px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🚀 17CE 测速报告</h1>
+    <div class="url-box">
+      <span class="fade">目标</span>
+      <span class="u">http://example.com/api/test</span>
+      <span class="t">2026-03-20 11:42:09</span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="val yellow">139<span class="unit">ms</span></div>
+      <div class="lbl">平均响应时间</div>
+    </div>
+    <div class="card">
+      <div class="val green">45<span class="unit">ms</span></div>
+      <div class="lbl">最快节点</div>
+    </div>
+    <div class="card">
+      <div class="val yellow">250<span class="unit">ms</span></div>
+      <div class="lbl">最慢节点</div>
+    </div>
+    <div class="card">
+      <div class="val red">3 / 5</div>
+      <div class="lbl">连通节点数</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">📊 节点响应时间对比 (越短越好)</div>
+    
+            <div class="chart-row">
+                <div class="chart-lbl">北京联通</div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="width:16%; background:#22c55e"></div>
+                    <div class="chart-val" style="color:#22c55e">45.2ms</div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="chart-lbl">上海电信</div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="width:43%; background:#eab308"></div>
+                    <div class="chart-val" style="color:#eab308">120.5ms</div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="chart-lbl">广东移动</div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="width:90%; background:#f97316"></div>
+                    <div class="chart-val" style="color:#f97316">250.0ms</div>
+                </div>
+            </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>节点位置</th>
+          <th>总耗时 (ms)</th>
+          <th>首字节 (ms)</th>
+          <th>DNS (ms)</th>
+          <th>HTTP</th>
+          <th>解析IP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="loc">北京联通</span></td>
+          <td>
+            <div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#22c55e"></div></div>
+            <span style="color:#22c55e;font-weight:600">45.2</span>
+            <span class="badge" style="background:#22c55e20;color:#22c55e">极快</span>
+          </td>
+          <td class="fade">44.1</td>
+          <td class="fade">12.0</td>
+          <td><span class="code ok">200</span></td>
+          <td class="fade ip-col">1.1.1.1</td>
+        </tr>
+        <tr>
+          <td><span class="loc">上海电信</span></td>
+          <td>
+            <div class="bar-wrap"><div class="bar-fill" style="width:43%;background:#eab308"></div></div>
+            <span style="color:#eab308;font-weight:600">120.5</span>
+            <span class="badge" style="background:#eab30820;color:#eab308">正常</span>
+          </td>
+          <td class="fade">110.1</td>
+          <td class="fade">8.5</td>
+          <td><span class="code ok">200</span></td>
+          <td class="fade ip-col">2.2.2.2</td>
+        </tr>
+        <tr>
+          <td><span class="loc">广东移动</span></td>
+          <td>
+            <div class="bar-wrap"><div class="bar-fill" style="width:90%;background:#f97316"></div></div>
+            <span style="color:#f97316;font-weight:600">250.0</span>
+            <span class="badge" style="background:#f9731620;color:#f97316">慢</span>
+          </td>
+          <td class="fade">240.0</td>
+          <td class="fade">30.0</td>
+          <td><span class="code ok">200</span></td>
+          <td class="fade ip-col">3.3.3.3</td>
+        </tr>
+        <tr>
+          <td><span class="loc">海外多线</span></td>
+          <td>
+            <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ef444455"></div></div>
+            <span style="color:#ef4444;font-weight:600">--</span>
+            <span class="badge" style="background:#ef444420;color:#ef4444">错误 503</span>
+          </td>
+          <td class="fade">--</td>
+          <td class="fade">--</td>
+          <td><span class="code err">503</span></td>
+          <td class="fade ip-col">8.8.8.8</td>
+        </tr>
+        <tr>
+          <td><span class="loc">新疆电信</span></td>
+          <td>
+            <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ef444455"></div></div>
+            <span style="color:#ef4444;font-weight:600">--</span>
+            <span class="badge" style="background:#ef444420;color:#ef4444">超时/阻断</span>
+          </td>
+          <td class="fade">--</td>
+          <td class="fade">--</td>
+          <td><span class="code err">-</span></td>
+          <td class="fade ip-col">-</td>
+        </tr></tbody>
+    </table>
+  </div>
+
+  <footer>17CE WebSocket API · 5 节点 · 由 OpenClaw 生成</footer>
+</div>
+</body>
+</html>

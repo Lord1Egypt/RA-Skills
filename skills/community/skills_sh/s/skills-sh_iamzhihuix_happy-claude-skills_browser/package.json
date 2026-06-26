@@ -1,0 +1,12 @@
+{
+  "name": "browser-tools",
+  "version": "1.0.0",
+  "description": "Minimal Chrome DevTools Protocol tools for browser automation",
+  "type": "module",
+  "scripts": {
+    "postinstall": "chmod +x scripts/*.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

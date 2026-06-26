@@ -1,0 +1,37 @@
+{
+  "slug": "doc-gap-finder",
+  "title": "文档缺口发现器",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "directory_audit",
+  "summary": "扫描文档目录、标题结构与文件分布，找缺失章节、重复内容和过时区域。",
+  "inputHint": "文档目录或文件夹路径",
+  "sections": [
+    "目录概览",
+    "疑似缺口",
+    "重复与近似章节",
+    "建议补写内容",
+    "建议删除内容",
+    "优先级"
+  ],
+  "useCases": [
+    "文档治理",
+    "知识库整理",
+    "发布前审查"
+  ],
+  "positiveExamples": [
+    "扫描 docs 目录找缺口",
+    "帮我看哪些文档可能过期或重复"
+  ],
+  "negativeExamples": [
+    "不要用来读取无权限目录",
+    "不要直接修改原文档"
+  ],
+  "risk": "默认只读扫描，不会删除或改写文件。",
+  "tags": [
+    "docs",
+    "audit",
+    "knowledge",
+    "gap-analysis"
+  ]
+}

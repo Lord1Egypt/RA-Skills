@@ -1,35 +1,140 @@
 ---
-name: "主题声明锁定"
+name: planner-theme-lock
 description: "主题声明锁定：在进入任何创意展开之前，先锁定项目相信什么。验证主题声明的深度、不可替代性和可持续性。触发词：主题声明、theme statement、它相信什么、价值观锚点、theme lock。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/planner-theme-lock"
-sourceUrl: "https://clawhub.ai/skills/planner-theme-lock"
+metadata:
+  tier1_summary: "Boundary Lock后、Pitch Draft前强制执行：提取→验证→锁定Theme Statement，未通过不得进入创意展开"
 ---
 
-# 主题声明锁定
+# Planner Theme Lock（主题声明锁定）
 
-> 主题声明锁定：在进入任何创意展开之前，先锁定项目相信什么。验证主题声明的深度、不可替代性和可持续性。触发词：主题声明、theme statement、它相信什么、价值观锚点、theme lock。
+**触发条件**：Boundary Lock（节点 2）完成后，Pitch Draft（节点 4）之前。是 Pitch Draft 的强制前置门控。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/planner-theme-lock`
-- **Source URL:** [https://clawhub.ai/skills/planner-theme-lock](https://clawhub.ai/skills/planner-theme-lock)
+**核心使命**：在进入任何创意展开之前，先回答一个问题——**"这个故事相信什么？"**
 
-## Overview
+Theme Statement 不是 logline（一句话故事），不是卖点（为什么好看），不是主题词（友情、勇气）。它是**价值观锚点**——这个故事向世界传达的信念。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/planner-theme-lock
+## 为什么 Theme Lock 在 Pitch Draft 之前？
+
+1. **没有锚点的创意会漂移**：先写 pitch 再找主题 = 先盖楼再打地基，每一集都在飘
+2. **主题指导选择**：当面临"走A线还是B线"时，Theme Statement 是决策依据——哪条线更忠于我们的信念？
+3. **皮克斯标准**：皮克斯每个项目在 greenlight 之前必须明确"这部电影相信什么"
+
+---
+
+## 执行步骤
+
+### Step 1: 提取主题种子
+
+从用户的输入（灵感、点子、概念）中提取**主题种子**——用户可能没有明说，但隐含了什么信念？
+
+**提取方法**：
+
+1. 读取用户原始输入 + Boundary Lock 的约束卡
+2. 识别输入中的情感内核："这个故事为什么触动了你？"
+3. 将情感内核提炼为一句话信念声明
+
+**示例**：
+
+| 用户输入 | 情感内核 | Theme Statement |
+|---------|---------|----------------|
+| "我想做一个小机器人被遗弃后找回家的故事" | 被遗弃者的渴望 | "被需要是比被制造更重要的存在理由" |
+| "一群动物开餐厅" | 小人物的尊严 | "谁都不配定义你的天花板" |
+| "穿越到过去的猫咪改变历史" | 遗憾与选择 | "真正的勇气不是修正过去，而是接受当下" |
+
+### Step 2: 验证主题声明的深度
+
+对提取的 Theme Statement 执行四项验证：
+
+#### 2.1 非陈词滥调验证
+
+**问题**：这个信念是不是所有故事都能套上的空话？
+
+| 判断 | 示例 | 处理 |
+|------|------|------|
+| ❌ 陈词滥调 | "友情很重要"、"勇敢面对困难"、"相信自己" | 拒绝，要求重新提炼 |
+| ✅ 有深度 | "悲伤和快乐一样重要"、"被需要比被制造更重要" | 通过 |
+
+**检验方法**：把 Theme Statement 套到《猫和老鼠》上，如果也能成立 → 太空泛。
+
+#### 2.2 不可替代性验证
+
+**问题**：换一个不同的故事，还能表达同一个信念吗？
+
+- 如果**只有这个故事**才能最有力地表达这个信念 → 通过
+- 如果任何故事都能表达 → 信念与故事没有有机联系 → 需要重新提炼
+
+#### 2.3 可持续性验证
+
+**问题**：这个信念能支撑 50 集以上的不同探讨吗？
+
+- "被需要是存在理由" → 可以从被家人需要、被社会需要、被敌人需要等不同角度反复探讨 → ✅
+- "要勇敢" → 探讨空间有限 → ❌
+
+#### 2.4 情感承诺验证
+
+**问题**：这个信念暗示了什么情感体验？
+
+- 信念 → 必然伴随某种情感 → 这个情感能成为系列的承诺吗？
+- "悲伤和快乐一样重要" → 承诺观众会经历悲伤但最终获得治愈 → ✅
+
+### Step 3: 锁定 Theme Statement
+
+如果四项验证全部通过：
+
+1. 将 Theme Statement 写入项目约束卡
+2. 在项目文件夹根目录创建 `theme-lock.md`：
+
+```markdown
+# Theme Lock
+
+## Theme Statement
+{一句话信念声明}
+
+## 为什么这个故事最有力地表达了这个信念
+{论证}
+
+## 这个信念如何指导后续创作选择
+{3-5 条具体决策规则}
+
+## 验证记录
+- [x] 非陈词滥调验证
+- [x] 不可替代性验证
+- [x] 可持续性验证
+- [x] 情感承诺验证
 ```
+
+3. 在 todo list 中标记 "Theme Lock ✓"
+
+### Step 4: 未通过时的处理
+
+任何一项验证未通过：
+
+1. 向用户报告未通过项及原因
+2. 提出 2-3 个替代方向供选择
+3. **不得自行决定 Theme Statement 并继续**——主题锁定必须得到验证通过，不能绕过
+4. 如果多次提炼仍无法通过 → 调用 `help_requested`
+
+---
+
+## 与下游的关系
+
+| 下游节点 | Theme Lock 如何影响它 |
+|---------|---------------------|
+| Pitch Draft | Theme Statement 是 pitch 的核心章节；Emotional Promise 从 Theme Statement 派生 |
+| Pitch Review | 五维评分卡中 Emotional Promise 维度以 Theme Statement 为评判依据 |
+| Pitch Stress Test | 对抗式审查时，攻击者必须尝试证明 Theme Statement 与故事脱节 |
+| Character Arc | 每个核心角色的 Need 必须与 Theme Statement 呼应 |
+| World Design | 世界规则必须能产生与 Theme Statement 相关的困境 |
+| Pilot Forge | Pilot 必须在第一集就建立对 Theme Statement 的探索 |
+
+---
+
+## 硬规则
+
+1. **Theme Lock 是 Pitch Draft 的前置门控**——未锁定主题的项目不得进入创意展开
+2. **Theme Statement 必须通过四项验证**——缺一项不通过
+3. **陈词滥调一律拒绝**——"友情/勇气/相信自己"级别的主题不允许通过
+4. **Theme Statement 一旦锁定，后续流程不可更改**——可以深化，不可以漂移。如需修改，必须回到本节点重新执行
+5. **不得跳过验证直接锁定**——"我觉得这个主题挺好的"不是通过验证的理由

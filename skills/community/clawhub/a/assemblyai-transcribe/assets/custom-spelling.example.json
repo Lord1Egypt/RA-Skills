@@ -1,0 +1,18 @@
+[
+  {
+    "from": [
+      "open claw",
+      "openclaw",
+      "open-claw"
+    ],
+    "to": "OpenClaw"
+  },
+  {
+    "from": [
+      "assembly a i",
+      "assembly a.i.",
+      "assembly ai"
+    ],
+    "to": "AssemblyAI"
+  }
+]

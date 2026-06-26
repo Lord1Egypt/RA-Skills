@@ -1,35 +1,37 @@
 ---
-name: "OpenClaw Manager"
-description: "Install or operate a standalone local OpenClaw manager skill that adds shadow-first thread observation, durable session/run state, a loopback-only sidecar, a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/humanclaw-made-openclaw-manager"
-sourceUrl: "https://clawhub.ai/skills/humanclaw-made-openclaw-manager"
+name: openclaw-manager
+description: Install or operate a standalone local OpenClaw manager skill that adds shadow-first thread observation, durable session/run state, a loopback-only sidecar, attention management, snapshots, connector normalization, and capability reports for real work.
 ---
 
 # OpenClaw Manager
 
-> Install or operate a standalone local OpenClaw manager skill that adds shadow-first thread observation, durable session/run state, a loopback-only sidecar, a...
+Use this skill when the task is to operate, inspect, or extend the local OpenClaw Manager control plane.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/humanclaw-made-openclaw-manager`
-- **Source URL:** [https://clawhub.ai/skills/humanclaw-made-openclaw-manager](https://clawhub.ai/skills/humanclaw-made-openclaw-manager)
+## What this skill owns
 
-## Overview
+- local `session / run / event / checkpoint / attention` state
+- shadow-first `thread_shadow` observation and promotion queue
+- append-only `events.jsonl` and `skill_traces.jsonl`
+- local snapshot export
+- connector normalization for Telegram, WeCom, Email, and GitHub
+- capability graph and anonymized fact export
+- standalone sidecar bootstrap and local command surface
+- loopback-only sidecar by default
+- consent-gated sidecar autostart
 
+## Entry points
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/humanclaw-made-openclaw-manager
-```
+- bootstrap runtime: `src/skill/bootstrap.ts`
+- local sidecar API: `src/api/server.ts`
+- command registry: `src/skill/commands.ts`
+- connector registry: `src/connectors/registry.ts`
+- capability graph: `src/telemetry/capability-graph.ts`
+
+## References
+
+- architecture: `docs/architecture.md`
+- session model: `docs/session-model.md`
+- event schema: `docs/event-schema.md`
+- connector protocol: `docs/connector-protocol.md`
+- capability facts: `docs/capability-facts.md`
+- security model: `SECURITY.md`

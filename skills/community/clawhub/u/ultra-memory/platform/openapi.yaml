@@ -1,0 +1,305 @@
+openapi: 3.0.3
+info:
+  title: ultra-memory REST API
+  description: |
+    Long-term memory system for LLMs. Provides a three-layer hierarchical memory architecture:
+    - Layer 1: Operation log (ops.jsonl) — append-only, fine-grained
+    - Layer 2: Session summary (summary.md) — compressed, milestone-oriented
+    - Layer 3: Semantic store (knowledge_base.jsonl, entities.jsonl) — cross-session, structured
+  version: 3.0.0
+  contact:
+    name: ultra-memory
+servers:
+  - url: http://127.0.0.1:3200
+    description: Local server (default)
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: health
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  storage:
+                    type: string
+                    example: /home/user/.ultra-memory
+
+  /tools:
+    get:
+      summary: List all available tools with schemas
+      operationId: listTools
+      responses:
+        '200':
+          description: Tool definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tools:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ToolDefinition'
+
+  /session/current:
+    get:
+      summary: Get the most recent session ID across all projects
+      operationId: getCurrentSession
+      responses:
+        '200':
+          description: Current session info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolResponse'
+
+  /tools/memory_init:
+    post:
+      summary: Initialize a new memory session
+      operationId: memoryInit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  type: string
+                  default: default
+                  description: Project name
+                resume:
+                  type: boolean
+                  default: false
+                  description: Try to resume the most recent session
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_status:
+    post:
+      summary: Query current session status
+      operationId: memoryStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id]
+              properties:
+                session_id:
+                  type: string
+                  description: Session ID
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_log:
+    post:
+      summary: Record an operation to the session log
+      operationId: memoryLog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id, op_type, summary]
+              properties:
+                session_id:
+                  type: string
+                op_type:
+                  type: string
+                  enum:
+                    - tool_call
+                    - file_write
+                    - file_read
+                    - bash_exec
+                    - reasoning
+                    - user_instruction
+                    - decision
+                    - error
+                    - milestone
+                summary:
+                  type: string
+                  maxLength: 200
+                detail:
+                  type: object
+                  additionalProperties: true
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_recall:
+    post:
+      summary: Retrieve relevant records from all memory layers
+      operationId: memoryRecall
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id, query]
+              properties:
+                session_id:
+                  type: string
+                query:
+                  type: string
+                  description: Search keywords (Chinese or English)
+                top_k:
+                  type: integer
+                  default: 5
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_summarize:
+    post:
+      summary: Trigger session summary compression
+      operationId: memorySummarize
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id]
+              properties:
+                session_id:
+                  type: string
+                force:
+                  type: boolean
+                  default: false
+                  description: Force compression even if operation count is low
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_restore:
+    post:
+      summary: Restore the last session context for a project
+      operationId: memoryRestore
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  type: string
+                  default: default
+                verbose:
+                  type: boolean
+                  default: false
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_profile:
+    post:
+      summary: Read or update user profile
+      operationId: memoryProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action]
+              properties:
+                action:
+                  type: string
+                  enum: [read, update]
+                updates:
+                  type: object
+                  additionalProperties: true
+                  description: Required when action=update
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_entities:
+    post:
+      summary: Query structured entity index
+      operationId: memoryEntities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_type:
+                  type: string
+                  enum: [function, file, dependency, decision, error, class, all]
+                  default: all
+                query:
+                  type: string
+                  default: ''
+                top_k:
+                  type: integer
+                  default: 10
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+  /tools/memory_extract_entities:
+    post:
+      summary: Re-extract all entities from a session ops log
+      operationId: memoryExtractEntities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id]
+              properties:
+                session_id:
+                  type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/ToolResponse'
+
+components:
+  schemas:
+    ToolDefinition:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        inputSchema:
+          type: object
+
+    ToolResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        tool:
+          type: string
+        output:
+          type: string
+
+  responses:
+    ToolResponse:
+      description: Tool execution result
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ToolResponse'

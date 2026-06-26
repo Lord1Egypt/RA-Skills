@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% set active = "transcriptions" %}
+{% block title %}{{ t.title }} — Communication DNA{% endblock %}
+{% block content %}
+<div class="mb-6">
+    <h2 class="text-2xl font-bold">{{ t.title or 'Untitled' }}</h2>
+    <div class="flex gap-4 mt-2 text-sm text-gray-400">
+        <span>{{ t.date or 'No date' }}</span>
+        <span>{{ t.context or '' }}</span>
+        <span>{{ "{:,}".format(t.word_count or 0) }} words</span>
+        {% if t.duration_seconds %}<span>{{ (t.duration_seconds // 60) }}m {{ t.duration_seconds % 60 }}s</span>{% endif %}
+    </div>
+    <div class="flex gap-2 mt-2">
+        {% for s in speakers %}
+        <a href="/speaker/{{ s.id }}" class="text-sm px-2 py-1 rounded" style="background:{{ speaker_colors[speaker_map.get(s.id, 0)] }}20; color:{{ speaker_colors[speaker_map.get(s.id, 0)] }}; border:1px solid {{ speaker_colors[speaker_map.get(s.id, 0)] }}40">{{ s.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Sentiment Arc -->
+{% if arc %}
+<div class="card mb-6">
+    <h3 class="text-lg font-semibold mb-3">Sentiment Arc</h3>
+    <div class="flex items-end gap-px h-16">
+        {% for a in arc %}
+        {% set h = (a.score|abs * 50 + 2)|int %}
+        <div style="height:{{ h }}px; flex:1; min-width:2px"
+             class="rounded-t {% if a.score > 0.1 %}bg-green-500{% elif a.score < -0.1 %}bg-red-500{% else %}bg-gray-600{% endif %}"
+             title="Seg {{ loop.index }}: {{ '%.2f'|format(a.score) }} — {{ a.text_preview[:40] }}"></div>
+        {% endfor %}
+    </div>
+    <div class="flex justify-between text-xs text-gray-500 mt-1">
+        <span>Start</span><span>End</span>
+    </div>
+</div>
+{% endif %}
+
+<!-- Transcript -->
+<div class="card mb-6">
+    <h3 class="text-lg font-semibold mb-3">Transcript</h3>
+    <div class="space-y-2 max-h-96 overflow-y-auto">
+        {% for seg in segments %}
+        <div class="flex gap-3 text-sm">
+            <span class="font-medium shrink-0 w-28 text-right" style="color:{{ speaker_colors[speaker_map.get(seg.speaker_id, 0)] }}">{{ seg.speaker_name or 'Unknown' }}</span>
+            <span class="text-gray-300">{{ seg.text }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Extractions -->
+<div class="grid md:grid-cols-3 gap-4">
+    <div class="card">
+        <h3 class="font-semibold mb-2">✅ Commitments ({{ commitments|length }})</h3>
+        {% for c in commitments %}
+        <div class="text-sm border-l-2 border-green-500 pl-2 py-1 mb-2">
+            <span class="text-gray-400">{{ c.speaker_name }}:</span> {{ c.content[:120] }}
+        </div>
+        {% endfor %}
+        {% if not commitments %}<p class="text-gray-500 text-sm">None found</p>{% endif %}
+    </div>
+    <div class="card">
+        <h3 class="font-semibold mb-2">🎯 Decisions ({{ decisions|length }})</h3>
+        {% for d in decisions %}
+        <div class="text-sm border-l-2 border-blue-500 pl-2 py-1 mb-2">
+            <span class="text-gray-400">{{ d.speaker_name }}:</span> {{ d.content[:120] }}
+        </div>
+        {% endfor %}
+        {% if not decisions %}<p class="text-gray-500 text-sm">None found</p>{% endif %}
+    </div>
+    <div class="card">
+        <h3 class="font-semibold mb-2">❓ Questions ({{ questions|length }})</h3>
+        {% for q in questions %}
+        <div class="text-sm border-l-2 border-purple-500 pl-2 py-1 mb-2">
+            <span class="text-gray-400">{{ q.speaker_name }}:</span> {{ q.content[:120] }}
+        </div>
+        {% endfor %}
+        {% if not questions %}<p class="text-gray-500 text-sm">None found</p>{% endif %}
+    </div>
+</div>
+{% endblock %}

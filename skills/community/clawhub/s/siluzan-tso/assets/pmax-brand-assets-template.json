@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "schema": "pmax-brand-assets/v1",
+    "doc": "pmax-brand-assets-template.md",
+    "note": "PATCH .../campaign/pmax/{campaignId}/brand-assets；Brand Guidelines 已开启时使用",
+    "agentPitfalls": [
+      "须先 ad pmax-get 确认 _brandGuidelinesActive=true",
+      "BG 生效时勿用 pmax-assets-update 改 BUSINESS_NAME/LOGO（会 400）",
+      "至少传一项：businessName、logoImage*、landscapeLogoImage* 或 brandGuidelines",
+      "mainColor 与 accentColor 须成对",
+      "Logo 可填 imagePaths.logo，CLI 自动上传"
+    ]
+  },
+  "account": "REPLACE_mediaCustomerId",
+  "campaignId": "REPLACE_campaignId",
+  "businessName": "Renamed Brand Co",
+  "imagePaths": {
+    "logo": "./REPLACE_logo_1200x1200.png"
+  },
+  "brandGuidelines": {
+    "mainColor": "#112233",
+    "accentColor": "#445566",
+    "predefinedFontFamily": "Roboto"
+  }
+}

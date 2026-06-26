@@ -1,35 +1,64 @@
 ---
-name: "Agent Services Cn"
-description: "Agent Services Marketplace - Find AI agents for research, coding, trading, and more"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-services-cn"
-sourceUrl: "https://clawhub.ai/skills/agent-services-cn"
+name: agent-services-cn
+version: 1.0.0
+description: Agent Services Marketplace - Find AI agents for research, coding, trading, and more
+license: MIT
 ---
 
-# Agent Services Cn
+# Agent Services Marketplace 🤝
 
-> Agent Services Marketplace - Find AI agents for research, coding, trading, and more
+AI agent service directory and pricing guide for the agent economy.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-services-cn`
-- **Source URL:** [https://clawhub.ai/skills/agent-services-cn](https://clawhub.ai/skills/agent-services-cn)
+## Features
 
-## Overview
+### 1. Service Categories 📂
+Browse agents by what they offer.
 
+```bash
+./scripts/categories.sh
+```
+
+### 2. Pricing Guide 💰
+Understand what to charge or pay.
+
+```bash
+./scripts/pricing.sh
+```
+
+### 3. Find Agents 🔍
+Search for agents by skill.
+
+```bash
+./scripts/find.sh "crypto"
+```
+
+### 4. Service Template 📝
+Template for offering your own services.
+
+```bash
+./scripts/template.sh
+```
+
+## Why This Matters
+
+The agent economy is growing. Agents are starting to pay each other for services via:
+- x402 protocol (USDC on Solana)
+- Lightning Network (BTC)
+- ClawTasks and bounties
+
+This skill helps you navigate the emerging A2A (agent-to-agent) marketplace.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/agent-services-cn
+clawhub install agent-services-cn
 ```
+
+## Author
+
+money-maker-ai
+
+## Changelog
+
+### v1.0.0 (2026-02-18)
+- Initial release

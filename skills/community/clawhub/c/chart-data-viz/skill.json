@@ -1,0 +1,16 @@
+{
+  "name": "chart",
+  "version": "1.0.0",
+  "description": "Local-first chart generation engine for trends, comparisons, distributions, and quick visual explanations.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/make_chart.py",
+    "scripts/suggest_chart.py",
+    "scripts/list_charts.py",
+    "scripts/lib/storage.py",
+    "references/philosophy.md"
+  ]
+}

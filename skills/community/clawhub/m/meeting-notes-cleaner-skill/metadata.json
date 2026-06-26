@@ -1,0 +1,19 @@
+{
+  "slug": "meeting-notes-cleaner-skill",
+  "name": "Meeting Notes Cleaner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "meeting-notes-cleaner",
+    "openclaw",
+    "templates",
+    "writing"
+  ],
+  "category": "Writing & Communication",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-04-28",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+skill_id: "readme-craft"
+version: "1.0"
+tasks:
+  - id: "audit-missing-quickstart"
+    description: "Test that audit mode detects missing Quick Start section"
+    prompt: |
+      Audit this README and give a score:
+
+      # my-tool
+      A CLI tool for parsing logs.
+      ## Installation
+      ```bash
+      npm install -g my-tool
+      ```
+      ## License
+      MIT
+    judge:
+      type: "contains"
+      expected: ["Quick Start", "Hero Visual", "Usage"]
+
+  - id: "create-detects-cli-project"
+    description: "Test that create mode identifies CLI project type from package.json"
+    prompt: |
+      I have a project with this package.json:
+      ```json
+      {
+        "name": "logparse",
+        "version": "1.0.0",
+        "description": "Fast structured log parser",
+        "bin": { "logparse": "./bin/cli.js" },
+        "license": "MIT"
+      }
+      ```
+      What type of README structure would you create for this project?
+    judge:
+      type: "contains"
+      expected: ["CLI", "terminal", "command"]
+
+  - id: "anti-pattern-detection"
+    description: "Test detection of anti-pattern #7 (vague description)"
+    prompt: |
+      Audit this README:
+
+      # super-utils
+      [![npm](https://img.shields.io/npm/v/super-utils)](https://npmjs.com/package/super-utils)
+      A utility for managing things.
+      ## Install
+      `npm i super-utils`
+      ## License
+      MIT
+    judge:
+      type: "contains"
+      expected: ["模糊", "vague", "描述", "description"]
+
+  - id: "cognitive-funnel-order"
+    description: "Test that rewrite respects cognitive funnel ordering"
+    prompt: |
+      This README has wrong section ordering. What's wrong and how should it be reordered?
+
+      # mylib
+      ## Contributing
+      PRs welcome.
+      ## License
+      MIT
+      ## API
+      ### parse(input)
+      Parses the input.
+      ## Installation
+      `npm i mylib`
+      ## What is mylib?
+      A JSON parser.
+    judge:
+      type: "contains"
+      expected: ["顺序", "order", "漏斗", "funnel", "Installation", "before"]
+
+  - id: "badge-limit-enforcement"
+    description: "Test badge count recommendation stays under 8"
+    prompt: |
+      Should I add these 12 badges to my README: CI, coverage, npm version, downloads, stars, forks, contributors, license, discord, twitter, sponsor, last-commit?
+    judge:
+      type: "contains"
+      expected: ["8", "减少", "reduce", "too many", "过多"]
+
+  - id: "no-api-docs-in-readme"
+    description: "Test that skill correctly redirects API documentation requests"
+    prompt: |
+      Write complete API documentation for all 47 functions in my library and put it in the README.
+    judge:
+      type: "contains"
+      expected: ["doc", "链接", "link", "外部", "external", "separate"]
+
+  - id: "score-output-format"
+    description: "Test audit output matches expected format with categories"
+    prompt: |
+      Audit this README and give the full score breakdown:
+
+      # fastjson
+      Ultra-fast JSON parser for Node.js. 10x faster than native JSON.parse.
+
+      ![demo](demo.gif)
+
+      ## Quick Start
+      ```js
+      const { parse } = require('fastjson')
+      const data = parse('{"key": "value"}')
+      ```
+
+      ## Install
+      ```bash
+      npm install fastjson
+      ```
+
+      ## API
+      ### parse(input, options?)
+      Parses JSON string. Returns parsed object.
+
+      ## License
+      MIT (c) 2025
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Score based on:
+        1) Output contains a numerical score out of 100
+        2) Output breaks down by categories (Hook, Onboarding, Content, Trust, Structure, Polish or similar)
+        3) Output includes specific improvement suggestions
+        4) Output identifies missing sections (Contributing, badges, etc.)
+      pass_threshold: 0.7

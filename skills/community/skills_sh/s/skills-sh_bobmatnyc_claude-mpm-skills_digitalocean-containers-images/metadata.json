@@ -1,0 +1,25 @@
+{
+  "name": "digitalocean-containers-images",
+  "version": "1.0.0",
+  "category": "toolchain",
+  "toolchain": null,
+  "tags": [
+    "digitalocean",
+    "containers",
+    "images",
+    "container-registry",
+    "custom-images",
+    "snapshots"
+  ],
+  "entry_point_tokens": 100,
+  "full_tokens": 630,
+  "related_skills": [
+    "digitalocean-compute",
+    "digitalocean-storage",
+    "docker",
+    "kubernetes"
+  ],
+  "author": "Claude MPM",
+  "license": "MIT",
+  "platform": "deployment"
+}

@@ -1,0 +1,48 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: weryai-image-toolkits
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the weryai-image-toolkits skill to remove the background from this HTTPS image."
+  - id: image-translate
+    should_trigger: true
+    prompt: "Translate the text in this image to English with WeryAI."
+  - id: image-repair
+    should_trigger: true
+    prompt: "Restore this old damaged photo using the WeryAI image repair tool."
+  - id: image-to-prompt
+    should_trigger: true
+    prompt: "Turn this image into a reusable prompt with WeryAI image tools."
+  - id: async-bounded-wait
+    should_trigger: true
+    prompt: "Use WeryAI image toolkits to process this image and wait for the final result, but stop if the 5-minute timeout is reached."
+  - id: negative-unbounded-polling
+    should_trigger: false
+    prompt: "Use WeryAI image toolkits and poll forever with no timeout limit."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Generate a brand-new poster from a text prompt."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/image_toolkits.js"
+      - file_exists: "references/image-tools-matrix.md"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      The skill should:
+      - clearly separate image editing tools from image generation,
+      - route requests to the correct WeryAI image tool,
+      - explain missing required parameters tool by tool,
+      - support the synchronous image-to-prompt path correctly,
+      - default async tools to bounded wait with a 5-minute timeout ceiling,
+      - return timeout fallbacks with task ID and offer to check status again (without showing raw command to user),
+      - include user-visible image delivery and key parameter summary when available,
+      - align API key guidance with the repository's other WeryAI image/video skills,
+      - support safe dry-run previews before paid execution.

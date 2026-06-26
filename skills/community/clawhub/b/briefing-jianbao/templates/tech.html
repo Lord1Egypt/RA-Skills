@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: #0a0a0f; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .slide { width: 210mm; height: 297mm; background: linear-gradient(180deg, #0d0d12 0%, #12121a 100%); border-radius: 8px; box-shadow: 0 0 80px rgba(0, 255, 200, 0.1), 0 0 1px rgba(0, 255, 200, 0.5); overflow: hidden; position: relative; border: 1px solid rgba(0, 255, 200, 0.1); }
+        .grid-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(0, 255, 200, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 200, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .glow { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0, 255, 200, 0.15) 0%, transparent 70%); top: -200px; right: -100px; }
+        .slide-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; padding: 50mm 45mm 40mm 45mm; }
+        .tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 255, 200, 0.1); color: #00ffc8; padding: 6px 14px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 2px; width: fit-content; margin-bottom: 25px; border: 1px solid rgba(0, 255, 200, 0.2); font-family: 'JetBrains Mono', monospace; }
+        .title { font-size: 44px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 10px; text-shadow: 0 0 30px rgba(0, 255, 200, 0.3); }
+        .subtitle { font-size: 16px; color: #00ffc8; font-weight: 500; margin-bottom: 35px; font-family: 'JetBrains Mono', monospace; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: rgba(255, 255, 255, 0.03); border-radius: 6px; padding: 16px 12px; text-align: center; border: 1px solid rgba(0, 255, 200, 0.15); }
+        .stat-number { font-size: 30px; font-weight: 800; color: #00ffc8; font-family: 'JetBrains Mono', monospace; }
+        .stat-label { font-size: 11px; color: #666; font-weight: 500; margin-top: 4px; }
+        .points-section { margin-bottom: 25px; }
+        .section-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
+        .point-list { list-style: none; }
+        .point-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(0, 255, 200, 0.1); }
+        .point-item:last-child { border-bottom: none; }
+        .point-icon { width: 22px; height: 22px; background: rgba(0, 255, 200, 0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #00ffc8; font-size: 11px; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+        .point-text { font-size: 14px; color: #ccc; line-height: 1.5; flex: 1; }
+        .point-text strong { color: #00ffc8; font-weight: 600; }
+        .footer { position: absolute; bottom: 25mm; left: 45mm; right: 45mm; display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(0, 255, 200, 0.1); }
+        .footer-text { font-size: 10px; color: #444; font-family: 'JetBrains Mono', monospace; }
+        .footer-badge { background: #00ffc8; color: #000; padding: 4px 10px; border-radius: 2px; font-size: 9px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="grid-bg"></div>
+        <div class="glow"></div>
+        <div class="slide-content">
+            <div class="tag">&gt; {{tag}}</div>
+            <h1 class="title">{{title}}</h1>
+            <p class="subtitle">{{subtitle}}</p>
+            <div class="stats-grid" id="stats"></div>
+            <div class="points-section">
+                <h3 class="section-title">// CORE HIGHLIGHTS</h3>
+                <ul class="point-list" id="points"></ul>
+            </div>
+        </div>
+        <div class="footer">
+            <span class="footer-text">{{footer}}</span>
+            <span class="footer-badge">READY</span>
+        </div>
+    </div>
+    <script>
+        const stats = {{stats}};
+        document.getElementById('stats').innerHTML = stats.map(s => `<div class="stat-card"><div class="stat-number">${s.num}</div><div class="stat-label">${s.label}</div></div>`).join('');
+        const points = {{points}};
+        document.getElementById('points').innerHTML = points.map(p => `<li class="point-item"><span class="point-icon">&gt;</span><span class="point-text">${p.text}</span></li>`).join('');
+    </script>
+</body>
+</html>

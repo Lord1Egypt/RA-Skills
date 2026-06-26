@@ -1,0 +1,61 @@
+# 示例配置 - 完整配置
+# 复制为 config.yaml 使用
+
+# 工作目录配置
+workspace:
+  default: ./workspace
+  auto_detect: true
+
+# 核心配置文件
+core_files:
+  - MEMORY.md
+  - IDENTITY.md
+  - USER.md
+  - TOOLS.md
+  - SOUL.md
+  - AGENTS.md
+  - BOOTSTRAP.md
+  - HEARTBEAT.md
+
+# 备份配置
+backup:
+  enabled: true
+  directory: .backup
+  retain_days: 7
+  max_backups: 10
+
+# 日志配置
+logging:
+  enabled: true
+  directory: logs
+  level: INFO
+  format: "%(asctime)s - %(levelname)s - %(message)s"
+  file_format: self_learning_%Y%m%d.log
+
+# 安全配置
+safety:
+  require_confirm_for_delete: false
+  max_delete_count: 10
+  validate_after_update: true
+  verify_backup: true
+
+# AI 配置
+ai:
+  timeout: 90
+  max_conversations: 100
+  max_content_length: 500
+
+# 执行历史
+history:
+  enabled: true
+  directory: .history
+  retain_days: 30
+
+# 通知配置
+notification:
+  enabled: false
+  on_complete: true
+  on_error: true
+  channels:
+    - telegram
+    - dingtalk

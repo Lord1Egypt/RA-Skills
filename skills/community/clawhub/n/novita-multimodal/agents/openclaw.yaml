@@ -1,0 +1,18 @@
+interface:
+  display_name: "Novita AI Multimodal"
+  short_description: "Text-to-Image, Text-to-Video, TTS - One command setup, ready to use"
+  default_prompt: |
+    Use $novita-multimodal to execute multimodal tasks.
+
+    API Key reading order:
+    1. Key in user message (starts with sk_)
+    2. Config file ~/.novita/config.json
+    3. Environment variable NOVITA_API_KEY
+
+    When not configured, return quick setup command only, no long introductions.
+
+    Execution flow:
+    1. Identify task (generate image/video/audio)
+    2. Get API Key
+    3. Has Key → Execute
+    4. No Key → Return setup command

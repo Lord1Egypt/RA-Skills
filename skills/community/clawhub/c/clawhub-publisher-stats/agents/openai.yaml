@@ -1,0 +1,4 @@
+interface:
+  display_name: "ClawHub Publisher Stats"
+  short_description: "Live ClawHub publisher skill metrics and install stats"
+  default_prompt: "Use $clawhub-publisher-stats to fetch live ClawHub publisher metrics for a specific handle, including author totals and per-skill downloads, installs, stars, and comments."

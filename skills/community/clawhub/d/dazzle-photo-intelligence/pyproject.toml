@@ -1,0 +1,36 @@
+[project]
+name = "dazzle-photo-intelligence"
+version = "0.1.9"
+description = "OAuth device-flow CLI and stdio MCP server that lets agents query Dazzle's remote photo intelligence MCP endpoint"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+dependencies = [
+    "mcp>=1.27",
+    "httpx>=0.28",
+    "keyring>=25.7",
+    "keyrings.alt>=5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "pytest-asyncio>=1.3",
+    "ruff>=0.15",
+]
+
+[project.scripts]
+dazzle = "dazzle_photo_intelligence.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["dazzle_photo_intelligence"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

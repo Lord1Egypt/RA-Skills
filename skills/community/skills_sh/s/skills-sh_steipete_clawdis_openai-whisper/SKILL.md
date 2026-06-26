@@ -1,35 +1,38 @@
 ---
-name: "openai-whisper"
-description: "Indexed by skills.sh from steipete/clawdis"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "steipete"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/steipete/clawdis/openai-whisper"
-sourceUrl: "https://skills.sh/steipete/clawdis/openai-whisper"
+name: openai-whisper
+description: "Local speech-to-text with the Whisper CLI (no API key)."
+homepage: https://openai.com/research/whisper
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎤",
+        "requires": { "bins": ["whisper"] },
+        "install":
+          [
+            {
+              "id": "brew",
+              "kind": "brew",
+              "formula": "openai-whisper",
+              "bins": ["whisper"],
+              "label": "Install OpenAI Whisper (brew)",
+            },
+          ],
+      },
+  }
 ---
 
-# openai-whisper
+# Whisper (CLI)
 
-> Indexed by skills.sh from steipete/clawdis
+Use `whisper` to transcribe audio locally.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** steipete
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/steipete/clawdis/openai-whisper`
-- **Source URL:** [https://skills.sh/steipete/clawdis/openai-whisper](https://skills.sh/steipete/clawdis/openai-whisper)
+Quick start
 
-## Overview
+- `whisper /path/audio.mp3 --model medium --output_format txt --output_dir .`
+- `whisper /path/audio.m4a --task translate --output_format srt`
 
+Notes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/steipete/clawdis/openai-whisper
-```
+- Models download to `~/.cache/whisper` on first run.
+- `--model` defaults to `turbo` on this install.
+- Use smaller models for speed, larger for accuracy.

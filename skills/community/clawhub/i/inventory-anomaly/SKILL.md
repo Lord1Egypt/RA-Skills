@@ -1,35 +1,245 @@
 ---
-name: "inventory-anomaly"
-description: "库存异常检测和需求预测系统生成工具。当用户需要搭建库存管理系统、实现异常检测算法、开发需求预测功能（如ARIMA模型）、创建库存预警系统时使用此skill。特别适用于制造业、零售业、备件管理等场景，需要处理Excel数据、检测库存异常、预测未来需求并生成报告的情况。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/inventory-anomaly"
-sourceUrl: "https://clawhub.ai/skills/inventory-anomaly"
+name: inventory-anomaly-prediction
+description: 库存异常检测和需求预测系统生成工具。当用户需要搭建库存管理系统、实现异常检测算法、开发需求预测功能（如ARIMA模型）、创建库存预警系统时使用此skill。特别适用于制造业、零售业、备件管理等场景，需要处理Excel数据、检测库存异常、预测未来需求并生成报告的情况。
 ---
 
-# inventory-anomaly
+# 库存异常检测和需求预测系统
 
-> 库存异常检测和需求预测系统生成工具。当用户需要搭建库存管理系统、实现异常检测算法、开发需求预测功能（如ARIMA模型）、创建库存预警系统时使用此skill。特别适用于制造业、零售业、备件管理等场景，需要处理Excel数据、检测库存异常、预测未来需求并生成报告的情况。
+这个skill帮助你快速搭建一个完整的库存异常检测和需求预测系统，类似于电梯配件库存备货提醒系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/inventory-anomaly`
-- **Source URL:** [https://clawhub.ai/skills/inventory-anomaly](https://clawhub.ai/skills/inventory-anomaly)
+## 系统架构
 
-## Overview
+系统采用模块化设计，包含以下核心模块：
 
+### 1. 数据管理模块 (data_manager.py)
+- 读取和写入Excel数据
+- 管理配件信息、库存数据、订单历史
+- 提供统一的数据查询接口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/inventory-anomaly
+### 2. 库存查询模块 (inventory.py)
+- 查询单个或所有配件库存
+- 判断库存状态（正常/不足/严重缺货）
+- 生成库存预警信息
+
+### 3. 需求计算模块 (demand_calculator.py)
+- 基于订单历史计算需求统计
+- 计算日均、周均、月均需求
+- 生成补货建议
+
+### 4. 异常检测模块 (anomaly_detector.py)
+- 检测库存异常（库存不足、严重缺货）
+- 检测需求异常（超过3倍标准差）
+- 评估异常严重程度
+
+### 5. 需求预测模块 (predictor.py)
+- 使用ARIMA模型预测未来需求
+- 每周滚动预测
+- 检测预测异常（超过3倍标准差）
+- 生成紧急补货建议
+
+### 6. 数据生成模块 (generate_fake_data.py)
+- 生成包含各种异常情况的测试数据
+- 支持每天运行一次的数据更新机制
+- 生成正常库存、库存不足、库存超量、需求异常增多等场景
+
+### 7. 主程序 (main.py)
+- 整合所有功能模块
+- 生成综合报告（TXT格式）
+- 实现每日自动更新机制
+
+## 使用步骤
+
+### 步骤1：创建项目结构
+
+首先创建标准的项目目录结构：
+
 ```
+your-project/
+├── src/                    # 源代码目录
+├── test/                   # 测试目录
+├── data/                   # 数据目录
+├── output/                  # 输出目录
+└── spec/                    # 规格说明目录
+    ├── ME2AI/             # 人类维护的规格
+    └── AI2AI/             # AI维护的代码状态
+```
+
+### 步骤2：生成核心模块
+
+根据你的业务需求，生成以下模块：
+
+1. **data_manager.py** - 数据管理核心
+2. **inventory.py** - 库存查询功能
+3. **demand_calculator.py** - 需求计算功能
+4. **anomaly_detector.py** - 异常检测功能
+5. **predictor.py** - 需求预测功能（ARIMA模型）
+6. **generate_fake_data.py** - 测试数据生成
+7. **main.py** - 主程序入口
+
+### 步骤3：配置业务参数
+
+根据你的具体业务，调整以下参数：
+
+- **配件信息**：配件ID、名称、规格、单价
+- **库存参数**：当前库存、安全库存、最大库存
+- **时间范围**：订单历史天数（默认90天）
+- **预测周期**：预测未来周数（默认4周）
+- **异常阈值**：标准差倍数（默认3倍）
+- **更新频率**：每天运行一次
+
+### 步骤4：生成测试数据
+
+使用generate_fake_data.py生成测试数据：
+
+- 配件数量：20个（可调整）
+- 订单历史：680条（最近90天）
+- 异常分布：
+  - 严重缺货（库存=0）：3个配件
+  - 库存不足：3个配件
+  - 库存超量：4个配件
+  - 正常库存：10个配件
+  - 需求异常增多：3个配件
+
+### 步骤5：运行系统
+
+执行主程序：
+
+```bash
+python src/main.py
+```
+
+系统会：
+1. 检查是否需要更新数据
+2. 如果需要，生成新的测试数据
+3. 执行库存查询、异常检测、需求预测
+4. 生成TXT格式报告
+5. 保存报告到output/report.txt
+
+## 报告格式
+
+生成的报告包含以下部分：
+
+### 1. 库存概览
+- 总配件数
+- 异常库存数量
+
+### 2. 异常检测
+- 库存异常数量
+- 每个异常配件的详细信息：
+  - 配件ID和名称
+  - 异常类型
+  - 现有库存、需求数量、缺货数量
+
+### 3. 需求预测（未来4周）
+- 成功预测的配件数量
+- 异常提醒的配件数量
+- 每个异常配件的详细信息：
+  - 配件ID
+  - 预测周次
+  - 异常类型和Z分数
+
+### 4. 紧急补货建议
+- 需要紧急补货的配件数量
+- 每个配件的缺口数量
+
+## 技术栈
+
+- **数据处理**：pandas
+- **数值计算**：numpy
+- **时间序列预测**：statsmodels (ARIMA模型)
+- **Excel操作**：openpyxl
+
+## 依赖安装
+
+```bash
+pip install pandas numpy statsmodels openpyxl
+```
+
+## 扩展建议
+
+### 自定义配件类型
+
+修改generate_fake_data.py中的配件信息：
+
+```python
+parts_info = pd.DataFrame({
+    '配件ID': [f'P{i:03d}' for i in range(1, 21)],
+    '配件名称': ['你的配件名称1', '你的配件名称2', ...],
+    '规格': ['规格1', '规格2', ...],
+    '单价': np.random.randint(50, 500, 20)
+})
+```
+
+### 调整异常检测阈值
+
+修改anomaly_detector.py中的标准差倍数：
+
+```python
+threshold = 3 * std_demand  # 改为其他值
+```
+
+### 修改预测模型
+
+predictor.py支持多种预测模型，可以替换ARIMA为：
+
+- Prophet
+- LSTM
+- XGBoost
+- 其他时间序列模型
+
+### 自定义报告格式
+
+修改main.py中的generate_txt_report函数，调整报告格式和内容。
+
+## 常见问题
+
+### Q: 如何使用真实的Excel数据？
+
+A: 将你的Excel文件放到data/目录，命名为spare_parts.xlsx，包含三个工作表：
+- 配件信息：配件ID、名称、规格、单价
+- 库存：配件ID、当前库存、安全库存、最大库存
+- 订单历史：订单ID、配件ID、数量、日期
+
+### Q: 如何调整预测周期？
+
+A: 修改main.py中的调用参数：
+
+```python
+predictions = system.predict_demand(weeks_ahead=8)  # 预测8周
+```
+
+### Q: 如何添加新的异常类型？
+
+A: 在anomaly_detector.py中添加新的检测逻辑，例如：
+
+```python
+if current_stock > max_stock:
+    anomalies.append({
+        '配件ID': part_id,
+        '异常类型': '库存超量',
+        ...
+    })
+```
+
+### Q: 如何集成到现有系统？
+
+A: 这个系统设计为独立运行，可以通过以下方式集成：
+
+1. **API集成**：将各模块封装为REST API
+2. **数据库集成**：将data_manager改为使用数据库
+3. **定时任务**：使用cron或Windows任务计划器定时运行
+4. **消息通知**：添加邮件、短信、钉钉等通知功能
+
+## 性能优化建议
+
+1. **数据缓存**：频繁读取的数据可以缓存到内存
+2. **批量处理**：使用向量化操作替代循环
+3. **并行计算**：多配件预测可以并行处理
+4. **增量更新**：只处理新增的订单数据
+
+## 安全注意事项
+
+1. **数据备份**：定期备份Excel数据
+2. **权限控制**：限制数据文件的访问权限
+3. **日志记录**：记录系统运行日志
+4. **异常处理**：完善错误处理和恢复机制

@@ -1,0 +1,17 @@
+<!-- chapter-cover — 白底 + 左侧渐变竖线 + PART编号 + 章节标题 -->
+<section class="slide" data-page="{{page}}" data-layout="chapter-cover">
+  <div class="ppt-slide" style="display:flex;align-items:center;background:var(--color-bg);position:relative;overflow:hidden">
+    <!-- 左侧渐变竖线 -->
+    <div style="width:6px;height:60%;background:linear-gradient(180deg, var(--color-primary), var(--color-accent));border-radius:3px;margin:0 80px 0 80px;flex-shrink:0" aria-hidden="true"></div>
+    <!-- 内容 -->
+    <div style="z-index:1;display:flex;flex-direction:column">
+      <span style="font-family:var(--font);font-size:18px;font-weight:500;color:var(--color-text-secondary);letter-spacing:3px;margin-bottom:8px">PART {{number}}</span>
+      <h1 style="font-family:var(--font);font-size:48px;font-weight:700;color:var(--color-primary);margin:0 0 12px 0">{{title}}</h1>
+      {{#if desc}}
+      <p style="font-family:var(--font);font-size:20px;font-weight:300;color:var(--color-text-secondary);margin:0">{{desc}}</p>
+      {{/if}}
+    </div>
+    <!-- 右上角装饰 -->
+    <div style="position:absolute;top:-80px;right:-80px;width:200px;height:200px;border-radius:50%;background:var(--color-primary-light);opacity:0.5" aria-hidden="true"></div>
+  </div>
+</section>

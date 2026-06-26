@@ -1,35 +1,71 @@
 ---
-name: "小红书评论策略生成器"
-description: "小红书评论策略生成器 - 智能生成高互动率评论，帮助涨粉和建立人设。 基于真实运营经验，避免营销感，提升账号活跃度。 触发词："生成评论"、"写小红书评论"、"评论互动"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-comment-strategy"
-sourceUrl: "https://clawhub.ai/skills/xhs-comment-strategy"
+name: xhs-comment-strategy
+description: >
+  小红书评论策略生成器 - 智能生成高互动率评论，帮助涨粉和建立人设。
+  基于真实运营经验，避免营销感，提升账号活跃度。
+  触发词："生成评论"、"写小红书评论"、"评论互动"
+metadata:
+  version: "1.0.0"
+  author: "数据派奶爸"
+  tags: ["xiaohongshu", "comment", "engagement", "social-media"]
+  pricing: "free"
 ---
 
 # 小红书评论策略生成器
 
-> 小红书评论策略生成器 - 智能生成高互动率评论，帮助涨粉和建立人设。 基于真实运营经验，避免营销感，提升账号活跃度。 触发词："生成评论"、"写小红书评论"、"评论互动
+智能生成高互动率评论，帮助创作者高效涨粉、建立真实人设。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-comment-strategy`
-- **Source URL:** [https://clawhub.ai/skills/xhs-comment-strategy](https://clawhub.ai/skills/xhs-comment-strategy)
+## 功能特性
 
-## Overview
+- ✅ **个性化评论** - 根据笔记内容生成针对性评论
+- ✅ **多种风格** - 共情型、经验分享型、提问互动型
+- ✅ **人设一致** - 保持账号定位，建立真实感
+- ✅ **涨粉导向** - 评论设计引导主页访问
+- ✅ **安全合规** - 避免营销感，降低风险
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xhs-comment-strategy
+### 方式1：基于笔记内容
 ```
+分析这篇小红书笔记，生成3条评论：
+[粘贴笔记内容]
+```
+
+### 方式2：指定互动目标
+```
+我想在这篇笔记下评论，目标是涨粉：
+[笔记内容]
+我的人设是：[定位]
+```
+
+### 方式3：批量生成
+```
+生成5条针对育儿笔记的评论，风格：真诚共情
+```
+
+## 评论类型
+
+| 类型 | 适用场景 | 效果 |
+|------|----------|------|
+| 共情型 | 吐槽、焦虑类笔记 | 建立情感连接 |
+| 经验分享型 | 干货、教程类笔记 | 展示专业性 |
+| 提问互动型 | 讨论、求助类笔记 | 引发对话 |
+| 幽默风趣型 | 轻松、娱乐类笔记 | 增加记忆点 |
+
+## 💼 定制服务
+
+需要更个性化的评论策略？
+
+- **账号人设设计** - 打造独特个人IP
+- **评论SOP制定** - 团队运营标准化
+- **自动化工具开发** - 安全高效互动
+- **数据分析优化** - 追踪评论效果
+
+**📩 联系：** syzxkmm@gmail.com
+
+## 更新日志
+
+### v1.0.0
+- 🎉 首次发布
+- ✨ 智能评论生成
+- ✨ 多种风格适配

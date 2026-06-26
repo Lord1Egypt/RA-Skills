@@ -1,0 +1,4 @@
+qe-connector==1.0.27
+requests==2.32.5
+pandas==2.2.3
+openpyxl==3.1.5

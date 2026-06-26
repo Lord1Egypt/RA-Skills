@@ -1,35 +1,33 @@
 ---
-name: "my_stock_decide_execute_skill"
-description: "当且仅当用户明确要求“交易决策并执行”或提到“my_stock_decide_execute_skill”时触发。这是一个严格流程控制的编排型交易执行技能，强制按照“决策 -> 交易挂单 -> 日志记录”三步顺序执行，且每步都要求显式输出结果并由用户确认或自动串联。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-stock-decide-execute-skill"
-sourceUrl: "https://clawhub.ai/skills/my-stock-decide-execute-skill"
+name: my_stock_decide_execute_skill
+description: 当且仅当用户明确要求“交易决策并执行”或提到“my_stock_decide_execute_skill”时触发。这是一个严格流程控制的编排型交易执行技能，强制按照“决策 -> 交易挂单 -> 日志记录”三步顺序执行，且每步都要求显式输出结果并由用户确认或自动串联。
 ---
 
 # my_stock_decide_execute_skill
 
-> 当且仅当用户明确要求“交易决策并执行”或提到“my_stock_decide_execute_skill”时触发。这是一个严格流程控制的编排型交易执行技能，强制按照“决策 -> 交易挂单 -> 日志记录”三步顺序执行，且每步都要求显式输出结果并由用户确认或自动串联。
+## Purpose (目的)
+实现从“宏观/个股决策分析”到“长桥证券真实挂单”，再到“系统操作日志归档”的全自动化端到端闭环执行。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-stock-decide-execute-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-stock-decide-execute-skill](https://clawhub.ai/skills/my-stock-decide-execute-skill)
+## Core Rules & Triggers (触发条件与核心规则)
+1. **触发条件**：只有在用户输入中**明确包含**“交易决策并执行”字眼，或直接呼叫本技能名称“`my_stock_decide_execute_skill`”时，才允许启动本流程。严禁在常规闲聊或仅询问分析时触发实际交易。
+2. **强制串行执行 (Sequential Execution)**：流程必须严格按照以下三步进行。任何一步失败，必须立即终止并向老大报告，禁止跳步。
+3. **分步显式输出 (Explicit Output per Step)**：每一步执行完毕后，必须在返回给老大的消息中明确列出该步的输出结果。
 
-## Overview
+## Execution Flow (执行流程)
 
+### Step 1: 交易决策 (Decision Making)
+*   **动作**：调用 `my_stock_decide_skill`，根据老大提供的持仓列表或特定标的进行分析。
+*   **强制输出**：必须提取并向老大输出该技能的决策步骤及结论（包括：标的代码、操作方向买/卖、情绪、目标价格、目标仓位比例/股数，以及详尽的操作原因）。
+*   *等待确认/串联*：确认决策结论已生成且包含有效操作建议。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-stock-decide-execute-skill
-```
+### Step 2: 交易操作 (Trade Execution)
+*   **动作**：提取 Step 1 中的交易参数（代码、方向、价格、股数），严格按照这些参数调用 `my_stock_longbridge_skill` 进行实际的长桥证券挂单操作。
+*   **强制输出**：必须向老大输出交易操作的**挂单结果**。这必须包括长桥返回的成功/失败状态，若是成功，需包含订单号（Order ID）或挂单回执；若是失败，需包含具体的错误原因（如余额不足、价格偏离过大等）。
+
+### Step 3: 日志记录 (Log Archiving)
+*   **动作**：将 Step 1 的决策详情和 Step 2 的挂单结果（包含成功状态及订单号）整合，调用 `my_stock_log_skill` 写入系统的交易操作日志中。
+*   **强制输出**：必须向老大输出“完成日志记录的条数”及简要的记录摘要（确认已成功入库）。
+
+## Security & Verification (安全与校验)
+*   在执行 Step 2（实际交易）之前，智能体必须在内部逻辑上核实提取的参数完整且合法，绝不允许市价盲打（除非策略中明确要求市价单且参数正确）。
+*   本技能作为编排控制器，不负责具体的策略计算、长桥 API 鉴权或数据库连接，只负责准确调度相关基础技能。

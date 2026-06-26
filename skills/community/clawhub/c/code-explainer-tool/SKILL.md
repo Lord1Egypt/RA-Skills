@@ -1,35 +1,51 @@
 ---
-name: "Code Explainer Tool"
-description: "Explain any code snippet or file in plain English. Paste code → get a clear explanation of what it does, how it works, and key concepts. Use when the user sh..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-explainer-tool"
-sourceUrl: "https://clawhub.ai/skills/code-explainer-tool"
+name: code-explainer-tool
+description: Explain any code snippet or file in plain English. Paste code → get a clear explanation of what it does, how it works, and key concepts. Use when the user shares code and wants to understand it, learn from it, or review it.
 ---
 
-# Code Explainer Tool
+# Code Explainer
 
-> Explain any code snippet or file in plain English. Paste code → get a clear explanation of what it does, how it works, and key concepts. Use when the user sh...
+Transform code into plain-English explanations. Perfect for learning, reviewing, or understanding unfamiliar code.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-explainer-tool`
-- **Source URL:** [https://clawhub.ai/skills/code-explainer-tool](https://clawhub.ai/skills/code-explainer-tool)
+## Usage
 
-## Overview
+```
+explain this code
+what does this do?
+explain: [paste code]
+```
 
+## How it works
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-explainer-tool
+1. Analyzes code structure and syntax
+2. Identifies key operations and patterns
+3. Explains in plain English with technical accuracy
+4. Highlights important concepts and potential issues
+
+## Supported Languages
+
+All major languages supported:
+- Python, JavaScript, TypeScript
+- Go, Rust, Java, C/C++, C#
+- Ruby, PHP, Swift, Kotlin
+- SQL, Shell/Bash, YAML, JSON
+- And more...
+
+## Output Format
+
+- **Summary**: What the code does
+- **Breakdown**: Step-by-step explanation
+- **Key Concepts**: Important patterns/techniques used
+- **Notes**: Warnings, best practices, or improvements
+
+## Script
+
+```python
+python scripts/explain_code.py <path/to/file>
+```
+
+Or pipe code:
+
+```
+cat myfile.py | python scripts/explain_code.py -
 ```

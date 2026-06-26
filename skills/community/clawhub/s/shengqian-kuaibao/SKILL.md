@@ -1,35 +1,33 @@
 ---
-name: "省钱快报返利助手"
-description: "省钱快报优惠信息聚合与CPS返利工具，实时推送高性价比商品和大额优惠券，覆盖淘宝京东拼多多等全平台。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shengqian-kuaibao"
-sourceUrl: "https://clawhub.ai/skills/shengqian-kuaibao"
+name: 省钱快报返利助手
+description: 省钱快报优惠信息聚合与CPS返利工具，实时推送高性价比商品和大额优惠券，覆盖淘宝京东拼多多等全平台。
+version: 0.1.0
 ---
 
 # 省钱快报返利助手
 
-> 省钱快报优惠信息聚合与CPS返利工具，实时推送高性价比商品和大额优惠券，覆盖淘宝京东拼多多等全平台。
+省钱快报优惠信息聚合与CPS返利工具。实时推送各平台高性价比商品、限时秒杀和大额优惠券信息，覆盖淘宝、京东、拼多多等全平台，帮助用户发现真正的好价好物。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shengqian-kuaibao`
-- **Source URL:** [https://clawhub.ai/skills/shengqian-kuaibao](https://clawhub.ai/skills/shengqian-kuaibao)
+## 触发词
 
-## Overview
+省钱快报、省钱快报返利、shengqian kuaibao、省钱优惠、快报优惠、每日好价
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shengqian-kuaibao
+- **实时优惠推送**：高性价比商品和限时秒杀信息
+- **大额优惠券**：全平台大额隐藏优惠券汇总
+- **历史低价标注**：标注商品是否为历史低价
+- **分类浏览**：按品类、平台、折扣力度分类查看
+
+## 输出格式
+
+```
+📰 省钱快报推荐
+
+商品：[商品名称]
+平台：[电商平台]
+原价：¥[价格] → 券后价：¥[金额]
+优惠券：[券描述]
+返利：[X]%（¥[金额]）
+历史低价：[是/否]
 ```

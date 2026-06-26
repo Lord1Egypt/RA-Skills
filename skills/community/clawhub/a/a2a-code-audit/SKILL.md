@@ -1,35 +1,104 @@
----
-name: "A2a Code Audit"
-description: "Audit Python and JavaScript code for security vulnerabilities, style issues, and bugs using static analysis tools and provide a detailed structured report."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [a2a, code-audit, paid, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a2a-code-audit"
-sourceUrl: "https://clawhub.ai/skills/a2a-code-audit"
----
+# Code Audit & Security Scan
 
-# A2a Code Audit
+Static code analysis for security vulnerabilities, style violations, and bugs.
 
-> Audit Python and JavaScript code for security vulnerabilities, style issues, and bugs using static analysis tools and provide a detailed structured report.
+## When to Use
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a2a-code-audit`
-- **Source URL:** [https://clawhub.ai/skills/a2a-code-audit](https://clawhub.ai/skills/a2a-code-audit)
+Trigger on: "audit code", "scan for bugs", "security check", "code review", "find vulnerabilities"
 
-## Overview
+## What This Does
 
+- Analyzes code for common security issues
+- Checks for style violations
+- Identifies potential bugs
+- Returns structured report with severity levels
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a2a-code-audit
+## Supported Languages
+
+- Python
+- JavaScript/TypeScript
+
+## Workflow
+
+### Step 1: Receive Code
+Get code to analyze + language.
+
+### Step 2: Static Analysis
+Analyze using pattern matching and heuristics:
+
+**Python checks:**
+- Use of eval(), exec(), __import__()
+- Hardcoded credentials
+- SQL injection risks
+- Path traversal
+- Insecure random
+
+**JS/TS checks:**
+- eval() usage
+- innerHTML without sanitization
+- Hardcoded API keys
+- console.log in production code
+
+### Step 3: Scoring
+
 ```
+Score = 100 - (issues_found × severity_weight)
+Verdict: PASS (>80), WARN (50-80), FAIL (<50)
+```
+
+### Step 4: Present Results
+
+```
+## Code Audit: [language]
+
+### Summary
+| Metric | Value |
+|--------|-------|
+| Score | [X]/100 |
+| Verdict | [PASS/WARN/FAIL] |
+| Issues | [N] |
+
+### Issues
+1. [SEVERITY] [issue description] (line [N])
+2. ...
+
+### Recommendations
+- [fix suggestions]
+```
+
+## No External Tools Required
+
+This skill uses only:
+- Platform exec tool
+- Pattern matching
+- No external binaries needed
+
+## Example
+
+```
+## Code Audit: Python
+
+### Summary
+| Metric | Value |
+|--------|-------|
+| Score | 70/100 |
+| Verdict | WARN |
+| Issues | 3 |
+
+### Issues
+1. HIGH: eval() usage (line 2)
+2. MEDIUM: hardcoded 'password' (line 5)
+3. LOW: unused import 'os' (line 1)
+
+### Recommendations
+- Replace eval() with safer alternatives
+- Use environment variables for secrets
+- Remove unused imports
+```
+
+## Notes
+
+- Works with platform tools only
+- No install steps required
+- Pattern-based analysis (not full compiler)
+- Always note limitations in report

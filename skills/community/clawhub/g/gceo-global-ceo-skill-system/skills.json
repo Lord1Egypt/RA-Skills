@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "name": "GCCEO",
+    "full_name": "Global CEO Mastery System",
+    "full_name_zh": "全球CEO帝王学技能体系",
+    "version": "4.0.0",
+    "date": "2026-04-30",
+    "author": "GCCEO Consortium",
+    "creator": {
+      "name_en": "Wang Dong Jie",
+      "name_zh": "王东杰",
+      "title": "CFO 首席财务官 | 资深复合型战略财务专家 | 上市公司资本运作操盘手 | 集团化财务管控与风险治理高级工程师",
+      "email": "Wdj_@163.com",
+      "phone": "13952453499"
+    },
+    "license": "MIT",
+    "total_skills": 91,
+    "total_domains": 10,
+    "inspiration": [
+      "HKU Global CEO Programme 2026",
+      "HKU ICB AI Strategic Entrepreneurship (AIBT)",
+      "HKU ICB Mingde Global Expansion (GEM)",
+      "CEIBS Global CEO Programme",
+      "McKinsey Problem Solving",
+      "Morgan Stanley Research",
+      "BlackRock Investment Institute",
+      "KKR / Blackstone / Carlyle"
+    ]
+  },
+  "domains": [
+    {
+      "id": 1,
+      "name_en": "AI & Big Data",
+      "name_zh": "人工智能与大数据",
+      "icon": "🤖",
+      "skills": [
+        {"id": "gceo-ai-strategy", "name_en": "AI Strategic Decision-Making", "name_zh": "AI战略决策", "difficulty": 5, "cert": "McKinsey Digital"},
+        {"id": "gceo-gen-ai-mastery", "name_en": "Generative AI Mastery", "name_zh": "生成式AI精通", "difficulty": 5, "cert": "Google AI"},
+        {"id": "gceo-big-data-analytics", "name_en": "Big Data Analytics for Executives", "name_zh": "大数据分析决策", "difficulty": 4, "cert": "DELL EMC"},
+        {"id": "gceo-ml-ops-leadership", "name_en": "MLOps Leadership", "name_zh": "ML运维领导力", "difficulty": 4, "cert": "AWS ML"},
+        {"id": "gceo-data-driven-culture", "name_en": "Data-Driven Culture Building", "name_zh": "数据驱动文化", "difficulty": 3, "cert": "McKinsey Digital"},
+        {"id": "gceo-ai-risk-governance", "name_en": "AI Risk & Governance", "name_zh": "AI风险与治理", "difficulty": 5, "cert": "IEEE AI"},
+        {"id": "gceo-digital-twin", "name_en": "Digital Twin & Simulation", "name_zh": "数字孪生与仿真", "difficulty": 4, "cert": "Siemens"},
+        {"id": "gceo-quantum-computing", "name_en": "Quantum Computing Foresight", "name_zh": "量子计算前瞻", "difficulty": 5, "cert": "IBM Quantum"},
+        {"id": "gceo-ai-strategic-entrepreneur", "name_en": "AI Strategic Entrepreneurship", "name_zh": "AI战略企业家", "difficulty": 5, "cert": "HKU ICB AIBT"},
+        {"id": "gceo-ai-business-transformation", "name_en": "AI & Business Transformation", "name_zh": "AI商业转型", "difficulty": 5, "cert": "HKU ICB AIBT"}
+      ]
+    },
+    {
+      "id": 2,
+      "name_en": "Cybersecurity",
+      "name_zh": "网络与网络空间安全",
+      "icon": "🔒",
+      "skills": [
+        {"id": "gceo-cyber-strategy", "name_en": "Cybersecurity Strategy", "name_zh": "网络安全战略", "difficulty": 5, "cert": "CISSP"},
+        {"id": "gceo-threat-intelligence", "name_en": "Threat Intelligence & Situational Awareness", "name_zh": "威胁情报与态势感知", "difficulty": 4, "cert": "GCTI"},
+        {"id": "gceo-cyber-risk-quant", "name_en": "Cyber Risk Quantification", "name_zh": "网络风险量化", "difficulty": 5, "cert": "CRISC"},
+        {"id": "gceo-cloud-security", "name_en": "Cloud Security Architecture", "name_zh": "云安全架构", "difficulty": 4, "cert": "CCSP"},
+        {"id": "gceo-data-privacy", "name_en": "Data Privacy & Compliance", "name_zh": "数据隐私与合规", "difficulty": 5, "cert": "CIPP"},
+        {"id": "gceo-incident-response", "name_en": "Cyber Incident Response", "name_zh": "网络事件响应", "difficulty": 5, "cert": "GCIH"},
+        {"id": "gceo-secure-devops", "name_en": "Secure DevOps (DevSecOps)", "name_zh": "安全开发运维", "difficulty": 4, "cert": "CSSLP"},
+        {"id": "gceo-cyber-boardroom", "name_en": "Cybersecurity in the Boardroom", "name_zh": "董事会网络安全沟通", "difficulty": 4, "cert": "NACD"}
+      ]
+    },
+    {
+      "id": 3,
+      "name_en": "Technology Literacy",
+      "name_zh": "技术素养",
+      "icon": "💻",
+      "skills": [
+        {"id": "gceo-cloud-native", "name_en": "Cloud-Native Architecture", "name_zh": "云原生架构", "difficulty": 4, "cert": "AWS/Azure"},
+        {"id": "gceo-api-economy", "name_en": "API Economy & Platform Strategy", "name_zh": "API经济与平台战略", "difficulty": 4, "cert": "Postman"},
+        {"id": "gceo-iot-edge", "name_en": "IoT & Edge Computing", "name_zh": "物联网与边缘计算", "difficulty": 4, "cert": "AWS IoT"},
+        {"id": "gceo-blockchain-web3", "name_en": "Blockchain & Web3", "name_zh": "区块链与Web3", "difficulty": 4, "cert": "BCA"},
+        {"id": "gceo-devops-culture", "name_en": "DevOps & Agile Culture", "name_zh": "DevOps与敏捷文化", "difficulty": 3, "cert": "SAFe"},
+        {"id": "gceo-tech-due-diligence", "name_en": "Tech Due Diligence", "name_zh": "技术尽职调查", "difficulty": 5, "cert": "McKinsey Digital"},
+        {"id": "gceo-digital-transformation", "name_en": "Digital Transformation Methodology", "name_zh": "数字化转型方法论", "difficulty": 5, "cert": "Prosci"},
+        {"id": "gceo-emerging-tech-radar", "name_en": "Emerging Tech Radar", "name_zh": "新兴技术雷达", "difficulty": 4, "cert": "Gartner"}
+      ]
+    },
+    {
+      "id": 4,
+      "name_en": "Creative Thinking",
+      "name_zh": "创造性思维",
+      "icon": "💡",
+      "skills": [
+        {"id": "gceo-design-thinking", "name_en": "Design Thinking", "name_zh": "设计思维", "difficulty": 4, "cert": "IDEO"},
+        {"id": "gceo-lateral-thinking", "name_en": "Lateral Thinking & Boundary-Breaking Innovation", "name_zh": "横向思维与破界创新", "difficulty": 4, "cert": "de Bono"},
+        {"id": "gceo-blue-ocean", "name_en": "Blue Ocean Strategy Innovation", "name_zh": "蓝海战略创新", "difficulty": 5, "cert": "INSEAD"},
+        {"id": "gceo-business-model-innovation", "name_en": "Business Model Innovation", "name_zh": "商业模式创新", "difficulty": 5, "cert": "Strategyzer"},
+        {"id": "gceo-narrative-leadership", "name_en": "Narrative Leadership", "name_zh": "叙事领导力", "difficulty": 4, "cert": "Harvard"},
+        {"id": "gceo-cross-pollination", "name_en": "Cross-Pollination Innovation", "name_zh": "跨界融合创新", "difficulty": 4, "cert": "Frans Johansson"},
+        {"id": "gceo-creative-problem-solving", "name_en": "Creative Problem Solving", "name_zh": "创造性问题解决", "difficulty": 4, "cert": "Buffalo"},
+        {"id": "gceo-future-back-planning", "name_en": "Future-Back Planning", "name_zh": "未来回溯规划", "difficulty": 5, "cert": "McKinsey"},
+        {"id": "gceo-disruptive-renewal", "name_en": "Disruptive Renewal & Paradigm Innovation", "name_zh": "鼑新万象", "difficulty": 5, "cert": "HKU CEO"}
+      ]
+    },
+    {
+      "id": 5,
+      "name_en": "Resilience, Flexibility & Agility",
+      "name_zh": "韧性、灵活性与敏捷性",
+      "icon": "🛡️",
+      "skills": [
+        {"id": "gceo-organizational-resilience", "name_en": "Organizational Resilience", "name_zh": "组织韧性", "difficulty": 5, "cert": "BCI"},
+        {"id": "gceo-strategic-agility", "name_en": "Strategic Agility", "name_zh": "战略敏捷", "difficulty": 5, "cert": "McKinsey"},
+        {"id": "gceo-crisis-leadership", "name_en": "Crisis Leadership", "name_zh": "危机领导力", "difficulty": 5, "cert": "HBS"},
+        {"id": "gceo-supply-chain-resilience", "name_en": "Supply Chain Resilience", "name_zh": "供应链韧性", "difficulty": 5, "cert": "APICS"},
+        {"id": "gceo-change-management", "name_en": "Change Management", "name_zh": "变革管理", "difficulty": 4, "cert": "Prosci"},
+        {"id": "gceo-antifragility", "name_en": "Antifragility", "name_zh": "反脆弱力", "difficulty": 5, "cert": "NYU"},
+        {"id": "gceo-scenario-planning", "name_en": "Scenario Planning", "name_zh": "情景规划", "difficulty": 5, "cert": "Oxford"},
+        {"id": "gceo-business-continuity", "name_en": "Business Continuity Management", "name_zh": "业务连续性管理", "difficulty": 4, "cert": "DRI"},
+        {"id": "gceo-geopolitical-agility", "name_en": "Geopolitical Agility", "name_zh": "地缘政治敏捷", "difficulty": 5, "cert": "Eurasia Group"},
+        {"id": "gceo-strategic-breakthrough", "name_en": "Strategic Breakthrough", "name_zh": "应势破局", "difficulty": 5, "cert": "HKU CEO"}
+      ]
+    },
+    {
+      "id": 6,
+      "name_en": "Curiosity & Lifelong Learning",
+      "name_zh": "好奇心与终身学习",
+      "icon": "🔬",
+      "skills": [
+        {"id": "gceo-learning-organization", "name_en": "Learning Organization", "name_zh": "学习型组织", "difficulty": 4, "cert": "MIT"},
+        {"id": "gceo-cognitive-diversity", "name_en": "Cognitive Diversity", "name_zh": "认知多样性", "difficulty": 4, "cert": "Harvard"},
+        {"id": "gceo-reflective-practice", "name_en": "Reflective Practice", "name_zh": "反思性实践", "difficulty": 3, "cert": "Schön"},
+        {"id": "gceo-knowledge-ecosystem", "name_en": "Knowledge Ecosystem Building", "name_zh": "知识生态构建", "difficulty": 4, "cert": "APQC"},
+        {"id": "gceo-global-immersion", "name_en": "Global Immersion Learning", "name_zh": "全球沉浸学习", "difficulty": 5, "cert": "HKU/CEIBS"},
+        {"id": "gceo-unlearning-mastery", "name_en": "Unlearning Mastery", "name_zh": "深度归零学习", "difficulty": 5, "cert": "INSEAD"},
+        {"id": "gceo-socratic-inquiry", "name_en": "Socratic Inquiry", "name_zh": "苏格拉底式探询", "difficulty": 4, "cert": "Oxford"},
+        {"id": "gceo-mental-models", "name_en": "Mental Models Upgrade", "name_zh": "心智模型升级", "difficulty": 5, "cert": "Berkshire"},
+        {"id": "gceo-neuro-leadership", "name_en": "Neuro-Leadership", "name_zh": "神经领导力", "difficulty": 5, "cert": "NLI"}
+      ]
+    },
+    {
+      "id": 7,
+      "name_en": "Leadership & Social Influence",
+      "name_zh": "领导力与社会影响力",
+      "icon": "👑",
+      "skills": [
+        {"id": "gceo-visionary-leadership", "name_en": "Visionary Leadership", "name_zh": "愿景型领导力", "difficulty": 5, "cert": "HBS"},
+        {"id": "gceo-servant-leadership", "name_en": "Servant Leadership", "name_zh": "仆人式领导", "difficulty": 4, "cert": "GLI"},
+        {"id": "gceo-cross-cultural-leadership", "name_en": "Cross-Cultural Leadership", "name_zh": "跨文化领导力", "difficulty": 5, "cert": "INSEAD"},
+        {"id": "gceo-stakeholder-capitalism", "name_en": "Stakeholder Capitalism", "name_zh": "利益相关者资本主义", "difficulty": 5, "cert": "WEF"},
+        {"id": "gceo-political-intelligence", "name_en": "Political Intelligence", "name_zh": "政治智慧", "difficulty": 5, "cert": "HKS"},
+        {"id": "gceo-executive-presence", "name_en": "Executive Presence & Influence", "name_zh": "高管气场与影响力", "difficulty": 4, "cert": "CCL"},
+        {"id": "gceo-board-governance", "name_en": "Board Governance", "name_zh": "董事会治理", "difficulty": 5, "cert": "IFC"},
+        {"id": "gceo-legacy-building", "name_en": "Legacy Building & Succession", "name_zh": "基业长青与传承", "difficulty": 5, "cert": "Stanford"},
+        {"id": "gceo-social-entrepreneurship", "name_en": "Social Entrepreneurship", "name_zh": "社会企业家精神", "difficulty": 4, "cert": "Skoll"},
+        {"id": "gceo-mingde-global-leadership", "name_en": "Mingde Global Expansion Leadership", "name_zh": "明德出海领导力", "difficulty": 5, "cert": "HKU ICB"}
+      ]
+    },
+    {
+      "id": 8,
+      "name_en": "Talent Management",
+      "name_zh": "人才管理",
+      "icon": "🎯",
+      "skills": [
+        {"id": "gceo-talent-strategy", "name_en": "Talent Strategy", "name_zh": "人才战略", "difficulty": 5, "cert": "McKinsey"},
+        {"id": "gceo-executive-compensation", "name_en": "Executive Compensation Design", "name_zh": "高管薪酬设计", "difficulty": 5, "cert": "Mercer"},
+        {"id": "gceo-organizational-design", "name_en": "Organizational Design", "name_zh": "组织设计", "difficulty": 5, "cert": "Deloitte"},
+        {"id": "gceo-employer-branding", "name_en": "Employer Branding & Talent Attraction", "name_zh": "雇主品牌与人才吸引", "difficulty": 4, "cert": "LinkedIn"},
+        {"id": "gceo-leadership-development", "name_en": "Leadership Development", "name_zh": "领导力发展", "difficulty": 5, "cert": "CCL"},
+        {"id": "gceo-culture-engineering", "name_en": "Culture Engineering", "name_zh": "文化工程", "difficulty": 5, "cert": "Deloitte"},
+        {"id": "gceo-diversity-inclusion", "name_en": "DEI (Diversity, Equity & Inclusion)", "name_zh": "多元包容与公平", "difficulty": 4, "cert": "SHRM"},
+        {"id": "gceo-hr-tech-analytics", "name_en": "HR Tech & People Analytics", "name_zh": "HR科技与分析", "difficulty": 4, "cert": "Visier"},
+        {"id": "gceo-gig-economy", "name_en": "Gig Economy & Future of Work", "name_zh": "灵活用工与未来工作", "difficulty": 4, "cert": "Gartner"}
+      ]
+    },
+    {
+      "id": 9,
+      "name_en": "Analytical Thinking",
+      "name_zh": "分析思维",
+      "icon": "📈",
+      "skills": [
+        {"id": "gceo-mckinsey-problem-solving", "name_en": "McKinsey Problem Solving", "name_zh": "麦肯锡问题解决", "difficulty": 5, "cert": "McKinsey"},
+        {"id": "gceo-investment-analysis", "name_en": "Investment Banking Analysis", "name_zh": "投行级投资分析", "difficulty": 5, "cert": "Morgan Stanley"},
+        {"id": "gceo-financial-modeling", "name_en": "Advanced Financial Modeling", "name_zh": "高级财务建模", "difficulty": 5, "cert": "CFA"},
+        {"id": "gceo-decision-science", "name_en": "Decision Science", "name_zh": "决策科学", "difficulty": 5, "cert": "Kahneman"},
+        {"id": "gceo-competitive-intelligence", "name_en": "Competitive Intelligence", "name_zh": "竞争情报分析", "difficulty": 5, "cert": "SCIP"},
+        {"id": "gceo-systems-thinking", "name_en": "Systems Thinking", "name_zh": "系统思维", "difficulty": 5, "cert": "MIT"},
+        {"id": "gceo-behavioral-economics", "name_en": "Behavioral Economics Application", "name_zh": "行为经济学应用", "difficulty": 4, "cert": "UChicago"},
+        {"id": "gceo-quantitative-reasoning", "name_en": "Quantitative Reasoning", "name_zh": "定量推理", "difficulty": 4, "cert": "Stanford"},
+        {"id": "gceo-strategic-valuation", "name_en": "Strategic Valuation", "name_zh": "战略估值", "difficulty": 5, "cert": "McKinsey"}
+      ]
+    },
+    {
+      "id": 10,
+      "name_en": "Environmental Stewardship",
+      "name_zh": "环境管理",
+      "icon": "🌱",
+      "skills": [
+        {"id": "gceo-esg-strategy", "name_en": "ESG Strategy", "name_zh": "ESG战略", "difficulty": 5, "cert": "CFA ESG"},
+        {"id": "gceo-carbon-transition", "name_en": "Carbon Transition", "name_zh": "碳中和转型", "difficulty": 5, "cert": "GHG Protocol"},
+        {"id": "gceo-circular-economy", "name_en": "Circular Economy", "name_zh": "循环经济", "difficulty": 4, "cert": "EMF"},
+        {"id": "gceo-nature-positive", "name_en": "Nature-Positive Business", "name_zh": "自然正向", "difficulty": 4, "cert": "TNFD"},
+        {"id": "gceo-green-finance", "name_en": "Green Finance", "name_zh": "绿色金融", "difficulty": 5, "cert": "ICMA"},
+        {"id": "gceo-climate-risk", "name_en": "Climate Risk Management", "name_zh": "气候风险管理", "difficulty": 5, "cert": "NGFS"},
+        {"id": "gceo-sustainable-supply-chain", "name_en": "Sustainable Supply Chain", "name_zh": "可持续供应链", "difficulty": 4, "cert": "CDP"},
+        {"id": "gceo-biodiversity-strategy", "name_en": "Biodiversity Strategy", "name_zh": "生物多样性战略", "difficulty": 4, "cert": "IUCN"},
+        {"id": "gceo-just-transition", "name_en": "Just Transition", "name_zh": "公正转型", "difficulty": 4, "cert": "ILO"}
+      ]
+    }
+  ],
+  "supplementary": {
+    "name_en": "Investment Banking & Private Equity Skills",
+    "name_zh": "全球顶级投行私募技能",
+    "skills": [
+      {"id": "gceo-ipo-readiness", "name_en": "IPO Readiness & Execution", "name_zh": "IPO筹备与执行", "source": "Goldman Sachs"},
+      {"id": "gceo-ma-integration", "name_en": "M&A Integration Management", "name_zh": "并购整合管理", "source": "McKinsey"},
+      {"id": "gceo-pe-value-creation", "name_en": "PE Value Creation", "name_zh": "私募价值创造", "source": "KKR"},
+      {"id": "gceo-leveraged-buyout", "name_en": "Leveraged Buyout Analysis", "name_zh": "杠杆收购分析", "source": "Blackstone"},
+      {"id": "gceo-distressed-turnaround", "name_en": "Distressed Turnaround", "name_zh": "困境企业扭转", "source": "Houlihan Lokey"},
+      {"id": "gceo-cross-border-ma", "name_en": "Cross-Border M&A", "name_zh": "跨境并购", "source": "Morgan Stanley"},
+      {"id": "gceo-cap-markets", "name_en": "Capital Markets Strategy", "name_zh": "资本市场策略", "source": "JPMorgan"},
+      {"id": "gceo-shareholder-activism", "name_en": "Shareholder Activism Defense", "name_zh": "股东积极主义防御", "source": "Goldman Sachs"},
+      {"id": "gceo-pe-fundraising", "name_en": "PE Fundraising", "name_zh": "私募基金募集", "source": "Carlyle"},
+      {"id": "gceo-real-assets", "name_en": "Real Assets Investment", "name_zh": "实物资产投资", "source": "Brookfield"}
+    ]
+  },
+  "ai_superpowers": [
+    {"id": "ai-strategic-advisor", "name_en": "AI Strategic Advisor", "name_zh": "AI战略顾问"},
+    {"id": "ai-investment-analyst", "name_en": "AI Investment Analyst", "name_zh": "AI投资分析师"},
+    {"id": "ai-risk-radar", "name_en": "AI Risk Radar", "name_zh": "AI风险雷达"},
+    {"id": "ai-innovation-partner", "name_en": "AI Innovation Partner", "name_zh": "AI创新伙伴"},
+    {"id": "ai-learning-coach", "name_en": "AI Learning Coach", "name_zh": "AI学习教练"},
+    {"id": "ai-org-diagnostician", "name_en": "AI Org Diagnostician", "name_zh": "AI组织诊断师"},
+    {"id": "ai-esg-compliance", "name_en": "AI ESG Compliance Officer", "name_zh": "AI ESG合规官"},
+    {"id": "ai-decision-copilot", "name_en": "AI Decision Copilot", "name_zh": "AI决策副驾"}
+  ],
+  "globalization": {
+    "name_en": "Enterprise Globalization & Expansion Skills",
+    "name_zh": "企业出海战略专项",
+    "inspiration": "HKU ICB Mingde Global Expansion (GEM) & HKU CEO Programme",
+    "hk_advantage": {
+      "three_hard_pillars": [
+        {"pillar": "Capital Engine", "zh": "资本引擎", "desc": "国际金融中心+自由港，全球融资、资金流动零阻力"},
+        {"pillar": "Institutional Shield", "zh": "制度护盾", "desc": "普通法体系+一国两制，无隙适配多国合规要求"},
+        {"pillar": "Super Hub", "zh": "超级枢纽", "desc": "背靠内地大市场，联通全球资源，双向赋能"}
+      ],
+      "hku_advantage": [
+        {"aspect": "Top Academia", "zh": "顶尖学府", "desc": "世界一流学府教授+实战派产业导师，融合全球规则与中国智慧"},
+        {"aspect": "Ecosystem Network", "zh": "生态网络", "desc": "直通东盟工业园、硅谷实验室和国家政策智库，资源一键触达"},
+        {"aspect": "Strategic Execution", "zh": "战略落地", "desc": "政府闭门会、专业服务咨询、项目路演，把思考变成可执行的战术"}
+      ],
+      "soft_power_toolkit": "软实力三件套：顶尖学府 + 生态网络 + 战略落地"
+    },
+    "course_stages": [
+      {"stage": 1, "name_zh": "战略锚点", "name_en": "Strategic Anchoring", "location": "香港", "focus": "全球视野与战略布局，植根香港看世界"},
+      {"stage": 2, "name_zh": "增长引擎", "name_en": "Growth Engine", "location": "东盟", "focus": "新兴市场深耕与全球产业链重构"},
+      {"stage": 3, "name_zh": "创新高地", "name_en": "Innovation Frontier", "location": "美国", "focus": "AI前沿与科技生态"},
+      {"stage": 4, "name_zh": "归航与升维", "name_en": "Return & Elevation", "location": "香港", "focus": "全球布局香港落地，构建出海总部生态"}
+    ],
+    "skills": [
+      {"id": "gceo-global-market-anchoring", "name_en": "Global Market Anchoring", "name_zh": "全球市场锚定", "source": "HKU ICB GEM"},
+      {"id": "gceo-cross-border-compliance", "name_en": "Cross-Border Compliance Building", "name_zh": "跨境合规构建", "source": "HKU ICB GEM"},
+      {"id": "gceo-global-tax-optimization", "name_en": "Global Tax & Treasury Optimization", "name_zh": "跨境财税链路优化", "source": "HKU ICB GEM"},
+      {"id": "gceo-local-operations", "name_en": "Local Operations Excellence", "name_zh": "本地化运营提效", "source": "HKU ICB GEM"},
+      {"id": "gceo-hk-super-connector", "name_en": "HK Super-Connector Strategy", "name_zh": "香港超级联系人战略", "source": "HKU CEO"},
+      {"id": "gceo-belt-road-strategy", "name_en": "Belt & Road Business Strategy", "name_zh": "一带一路商业战略", "source": "HKU CEO"},
+      {"id": "gceo-emerging-market-entry", "name_en": "Emerging Market Entry Strategy", "name_zh": "新兴市场进入策略", "source": "HKU CEO"},
+      {"id": "gceo-global-ip-protection", "name_en": "Global IP Protection & Monetization", "name_zh": "全球知识产权保护", "source": "WIPO"},
+      {"id": "gceo-cultural-intelligence-expansion", "name_en": "Cultural Intelligence for Expansion", "name_zh": "出海文化智商", "source": "HKU ICB"},
+      {"id": "gceo-global-crisis-reputation", "name_en": "Global Crisis & Reputation Management", "name_zh": "全球危机与声誉管理", "source": "HKU CEO"}
+    ]
+  },
+  "global_footprint": [
+    {"country": "JP", "cities": ["Tokyo", "Kyoto"], "focus": "Eastern Business Civilization & Lean Mastery"},
+    {"country": "EU", "cities": ["Paris", "Berlin", "Zurich"], "focus": "European Heritage & Innovation"},
+    {"country": "GB", "cities": ["London", "Oxford", "Cambridge"], "focus": "Cradle of Western Commerce"},
+    {"country": "US", "cities": ["NYC", "Silicon Valley", "Boston"], "focus": "Global Innovation & Capital"},
+    {"country": "ZA", "cities": ["Johannesburg", "Nairobi"], "focus": "Emerging Market Frontiers"},
+    {"country": "CN", "cities": ["Shanghai", "Beijing", "Shenzhen"], "focus": "Chinese Model & New Departures"},
+    {"country": "SG", "cities": ["Singapore"], "focus": "Asian Financial Hub"},
+    {"country": "HK", "cities": ["Hong Kong"], "focus": "Super Connector"},
+    {"country": "SA", "cities": ["Riyadh"], "focus": "Middle East Energy & Sovereign Capital"},
+    {"country": "AE", "cities": ["Dubai"], "focus": "Middle East Trade & Innovation Hub"},
+    {"country": "ID", "cities": ["Jakarta"], "focus": "Southeast Asia Manufacturing & Consumer"},
+    {"country": "VN", "cities": ["Ho Chi Minh City"], "focus": "Southeast Asia Supply Chain"},
+    {"country": "BR", "cities": ["São Paulo"], "focus": "Latin America Nearshoring & Resources"}
+  ]
+}

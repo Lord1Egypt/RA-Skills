@@ -1,0 +1,55 @@
+{
+  "id": "fec-legacy-web-standard",
+  "name": "传统前端规范",
+  "category": "legacy-migration",
+  "tags": [
+    "jquery",
+    "mpa",
+    "legacy",
+    "vanilla-js"
+  ],
+  "summary": "Frontend Craft skill for 传统前端规范.",
+  "version": "2.4.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "legacy-migration",
+    "jquery",
+    "mpa",
+    "legacy",
+    "vanilla-js"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include 传统前端, 原生 JS, jQuery.",
+  "source": "skills/fec-legacy-web-standard",
+  "references": [
+    "references/legacy-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-legacy-to-modern-migration",
+      "fec-security-review",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use a migration workflow for inventory, strategy, and staged migration to React, Vue, or TypeScript.",
+      "Use a security review workflow for XSS, CSRF, open redirect, and third-party script risks in legacy projects.",
+      "Use a validation workflow for existing lint, test, build, or manual verification scripts."
+    ],
+    "capabilityTags": [
+      "legacy",
+      "migration",
+      "quality"
+    ]
+  }
+}

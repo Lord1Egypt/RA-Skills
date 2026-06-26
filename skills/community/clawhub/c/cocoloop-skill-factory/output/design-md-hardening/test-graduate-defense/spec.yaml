@@ -1,0 +1,274 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: "cocoloop-graduate-defense-ppt"
+  display_name: "Graduate Defense PPT"
+  id: "graduate-defense-ppt-skill"
+  name: "Graduate Defense PPT Skill"
+  version: "0.1.0"
+  owner: "tanshow"
+  homepage: "local://cocoloop-skill-factory/output/design-md-hardening/test-graduate-defense"
+  target_platforms:
+    - platform: "codex"
+      support_level: "supported_public"
+      standard_source: "https://developers.openai.com/codex/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin"
+      note: "测试渲染平台"
+    - platform: "claude_code"
+      support_level: "supported_public"
+      standard_source: "https://docs.anthropic.com/en/docs/claude-code/sub-agents"
+      validation_mode: "public_validator"
+      publish_mode: "manual_install"
+      note: "兼容渲染平台"
+
+intent:
+  goal: "帮助用户制作研究生毕业答辩 PPT，并提供稳定的设计背景与页级内容结构"
+  target_user: "需要准备毕业答辩材料的研究生"
+  use_scenarios:
+    - "生成毕业答辩 PPT 结构"
+    - "确定答辩页面视觉方向"
+    - "整理答辩讲稿与实验结果"
+
+scope:
+  must_have:
+    - "答辩大纲建议"
+    - "页级内容结构"
+    - "默认 DESIGN.md 预设"
+    - "示例 slides 结果"
+    - "明确的文字层级"
+    - "方法流程图、结果对比图和指标卡"
+  nice_to_have:
+    - "可编辑 `.pptx` 导出"
+  excluded:
+    - "不负责自动搜集论文原始数据"
+
+inputs:
+  - name: "thesis_topic"
+    required: true
+    description: "论文题目或答辩主题"
+    constraints:
+      note: "需要能支撑完整答辩主线"
+      type: "text"
+      allowed_values: []
+      source: "user_provided"
+  - name: "research_materials"
+    required: true
+    description: "实验结果、图表、结论与摘要材料"
+    constraints:
+      note: "至少包含背景、方法、实验与结论"
+      type: "document_bundle"
+      allowed_values: []
+      source: "user_provided"
+
+outputs:
+  - name: "defense_outline"
+    format: "markdown"
+    description: "答辩 PPT 大纲"
+    minimum_contents:
+      - "背景"
+      - "问题"
+      - "方法"
+      - "实验"
+      - "结论"
+  - name: "visual_design_input"
+    format: "markdown"
+    description: "默认设计背景"
+    minimum_contents:
+      - "references/design.md"
+  - name: "infographic_slide_set"
+    format: "pptx_or_markdown"
+    description: "包含流程、对比和指标卡的答辩版式结果"
+    minimum_contents:
+      - "process diagram"
+      - "comparison view"
+      - "metric cards"
+
+output_profile:
+  has_visual_output: true
+  visual_output_types:
+    - "ppt"
+
+research_gate:
+  skill_identity:
+    status: "ready"
+    cocoloop_checked: true
+    clawhub_checked: true
+    slug_available: true
+    note: "测试样例名称已完成双源去重"
+  target_environment:
+    status: "ready"
+    current_environment: "codex authoring workspace on macOS"
+    target_environment: "codex authoring workspace on macOS"
+    current_environment_is_target: true
+    note: "当前样例先验证本地结构化产物与渲染链"
+  implementation_approach:
+    status: "ready"
+    selected_execution_plane: "Skill + CLI"
+    note: "通过 Skill 入口加本地 builder / validator 完成样例生成"
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+success_criteria:
+  - "答辩结构完整"
+  - "视觉风格稳定"
+  - "输出可继续渲染为演示稿"
+  - "不是纯文本堆砌"
+  - "文字层级与信息图元素清楚可见"
+
+failure_modes:
+  - mode: "missing_materials"
+    description: "缺少实验结果或核心结论"
+    user_impact: "无法形成完整答辩页"
+
+fallback_policy:
+  allowed: true
+  summary: "缺少可编辑 PPT 依赖时，先交付结构化 slides 结果"
+  fallback_outputs:
+    - "markdown slides"
+
+dependencies:
+  - name: "slides"
+    kind: "reference"
+    required: false
+    note: "如环境允许，可进一步导出可编辑演示稿"
+
+design_md:
+  enabled: true
+  applies_to:
+    - "ppt"
+  source_mode: "preset"
+  preset_id: "apple"
+  preset_ref: "cocoloop-skill-factory/ref/design-md/apple.md"
+  user_provided_ref: ""
+  custom_style_notes:
+    - "需要正式、简洁、适合投影答辩"
+    - "强调大标题、强留白与图示节奏"
+    - "每个章节至少包含一种信息图元素"
+    - "每页都要有清楚的文字层级"
+  official_library_ref: "cocoloop-skill-factory/ref/design-md/index.md"
+  prompt_user_to_use_first: true
+  output_path: "references/design.md"
+
+visual_storytelling:
+  enabled: true
+  artifact_family: "visual_narrative_artifact"
+  story_units:
+    - "cover"
+    - "agenda"
+    - "problem"
+    - "contribution"
+    - "method"
+    - "experiment"
+    - "result"
+    - "analysis"
+    - "closing"
+  text_hierarchy:
+    required_layers:
+      - "kicker"
+      - "headline"
+      - "summary"
+      - "body"
+      - "metric"
+      - "annotation"
+    emphasis_modes:
+      - "size_contrast"
+      - "summary_line"
+      - "metric_cards"
+  infographic_elements:
+    required: true
+    minimum_per_artifact: 3
+    allowed_types:
+      - "process_flow"
+      - "comparison_block"
+      - "matrix"
+      - "metric_cards"
+  output_adapters:
+    - "ppt"
+  editability_target: "editable"
+  validation_checks:
+    - "not_text_heavy"
+    - "has_text_hierarchy"
+    - "has_infographic_elements"
+
+research_evidence:
+  coverage_status:
+    status: "covered"
+    note: "测试范围覆盖 spec 到 skill 的完整渲染链"
+  evidence_refs:
+    - source_type: "workspace_doc"
+      mechanism: "presentation_capability"
+      solution_name: "presentation-generation"
+      ref: "cocoloop-skill-factory/atomic-capability/presentation-generation/index.md"
+      note: "答辩 PPT 的流程参考"
+    - source_type: "workspace_doc"
+      mechanism: "design_preset"
+      solution_name: "apple"
+      ref: "cocoloop-skill-factory/ref/design-md/apple.md"
+      note: "默认设计背景"
+  open_gaps:
+    - gap_type: "editable_ppt_export"
+      impact_level: "medium"
+      note: "当前环境缺少 `.pptx` 生成依赖"
+
+primary_domain: "document_artifacts"
+peer_domains:
+  - "frontend_design"
+
+domain_supplements:
+  engineering_delivery: {}
+  frontend_design:
+    style_constraints:
+      - "优先使用 Apple 风格的高留白答辩视觉"
+  browser_ui_testing: {}
+  document_artifacts:
+    style_constraints:
+      - "必须先读 references/design.md 再做高保真演示稿"
+  docs_research: {}
+  workflow_integration: {}
+  deploy_platform_ops: {}
+  security_risk_review: {}
+
+adapters:
+  codex:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+      - "references/design.md"
+    mapping_notes:
+      - "以 DESIGN.md 作为默认视觉输入"
+    known_gaps: []
+  claude_code:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  openclaw:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  copaw:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  molili:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+    source_root: ""
+    active_root: ""
+    activation_strategy: ""
+    verification_steps: []
+  hermes_agent:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []

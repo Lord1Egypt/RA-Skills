@@ -1,0 +1,9 @@
+{
+  "topic": "AI Agent 发展趋势",
+  "output": "AI_Agent_Report.pptx",
+  "slidesCount": 10,
+  "searchContent": true,
+  "generateInsights": true,
+  "doGenerateOutline": true,
+  "writeContent": true
+}

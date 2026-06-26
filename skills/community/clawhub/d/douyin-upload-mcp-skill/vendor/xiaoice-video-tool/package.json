@@ -1,0 +1,23 @@
+{
+  "name": "xiaoice-video-tool",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone XiaoIce video task service and MCP server bootstrap.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/service/cli.js",
+    "service": "node src/service/cli.js",
+    "dev:service": "node scripts/dev-service.js",
+    "dev:ngrok": "node scripts/dev-ngrok.js",
+    "dev:ngrok:status": "node scripts/dev-ngrok-status.js",
+    "dev:callback:sync": "node scripts/dev-callback-sync.js",
+    "dev:up": "node scripts/dev-up.js",
+    "dev:doctor": "node scripts/dev-doctor.js",
+    "mcp": "node src/mcp/cli.js",
+    "start:bootstrap": "node src/index.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

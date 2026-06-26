@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "event_kind": "scheduled",
+  "now": "2026-04-20T12:00:00+00:00",
+  "last_thread_activity": "2026-04-20T08:00:00+00:00",
+  "last_user_action": "2026-04-19T21:00:00+00:00",
+  "last_agent_action": "2026-04-20T10:00:00+00:00",
+  "scheduled_trigger_managed_by_host": true,
+  "scheduled_prompt_origin": "host",
+  "scheduled_prompt_emotion": "neutral",
+  "thread_runs_today": 0,
+  "user_runs_today": 0,
+  "suspected_reinventing_wheel": true,
+  "host": "Claude Code",
+  "symptom": "scheduled log review misses task failure patterns",
+  "constraint": "cron prompt is host generated and must stay neutral",
+  "desired_outcome": "bounded query plan for official docs plus one community workflow"
+}

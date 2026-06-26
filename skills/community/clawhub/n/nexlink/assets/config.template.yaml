@@ -1,0 +1,67 @@
+# NexLink Configuration Template
+# Copy this file to config.yaml and fill in your values
+
+# Exchange Server Configuration (required for Email, Calendar, Tasks)
+exchange:
+  # EWS endpoint URL
+  server: https://mail.example.com/EWS/Exchange.asmx
+
+  # Authentication credentials
+  # Option 1: Use environment variables (recommended for security)
+  username: ${EXCHANGE_USERNAME}
+  password: ${EXCHANGE_PASSWORD}
+  email: ${EXCHANGE_EMAIL}
+
+  # Option 2: Hardcode values (NOT recommended for production)
+  # username: your-username
+  # password: your-password
+  # email: your-email@example.com
+
+  # SSL verification (set to false for self-signed certificates)
+  verify_ssl: true
+
+# Nextcloud Configuration (optional, for File operations)
+nextcloud:
+  # Nextcloud base URL
+  url: https://cloud.example.com
+
+  # Authentication (use app password, not your main password)
+  # Generate from: Nextcloud -> Settings -> Security -> Create new app password
+  username: ${NEXTCLOUD_USERNAME}
+  app_password: ${NEXTCLOUD_APP_PASSWORD}
+
+# Logging Configuration (optional)
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+
+  # Log format (JSON or TEXT)
+  format: JSON
+
+  # Log to file (optional)
+  # file: /var/log/nexlink.log
+
+# Task Sync Configuration (optional)
+task_sync:
+  # State file for tracking sync state
+  # Ensure parent directory has 0o700 permissions.
+  state_file: ~/.openclaw/workspace/memory/task-sync-state.json
+
+  # Reminder settings
+  reminders:
+    # Hours ahead to send reminders for upcoming tasks
+    hours_ahead: 24
+
+    # Include overdue tasks in reminders
+    include_overdue: true
+
+# Workflow Defaults (optional)
+workflows:
+  # Default calendar event duration in minutes
+  default_event_duration: 60
+
+  # Default task priority (low, normal, high)
+  default_task_priority: normal
+
+  # Default reminder minutes before event
+  default_reminder: 15

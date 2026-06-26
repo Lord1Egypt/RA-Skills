@@ -1,35 +1,93 @@
 ---
-name: "grimoire-aave"
-description: "Indexed by skills.sh from franalgaba/grimoire"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "franalgaba"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/franalgaba/grimoire/grimoire-aave"
-sourceUrl: "https://skills.sh/franalgaba/grimoire/grimoire-aave"
+name: grimoire-aave
+description: Fetches Aave V3 public market data using the Grimoire venue CLI. Use when you need Aave health checks, chain listings, market metadata, or reserve info.
 ---
 
-# grimoire-aave
+# Grimoire Aave Skill
 
-> Indexed by skills.sh from franalgaba/grimoire
+Use this skill to query Aave V3 metadata and reserve snapshots for strategy inputs.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** franalgaba
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/franalgaba/grimoire/grimoire-aave`
-- **Source URL:** [https://skills.sh/franalgaba/grimoire/grimoire-aave](https://skills.sh/franalgaba/grimoire/grimoire-aave)
+Preferred invocations:
 
-## Overview
+- `grimoire venue aave ...`
+- `npx -y @grimoirelabs/cli venue aave ...` (no-install)
+- `bun run packages/cli/src/index.ts venue aave ...` (repo-local)
+- `grimoire-aave ...` (direct binary from `@grimoirelabs/venues`)
 
+Recommended preflight:
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `grimoire venue doctor --adapter aave --chain 1 --rpc-url <rpc> --json`
+
+## Commands
+
+- `grimoire venue aave health` — check Aave protocol health
+- `grimoire venue aave chains` — list supported chains
+- `grimoire venue aave markets --chain <id> [--user <address>]` — list markets on a chain (optionally with user positions)
+- `grimoire venue aave market --chain <id> --address <market> [--user <address>]` — single market details
+- `grimoire venue aave reserve --chain <id> --market <address> --token <address>` — single reserve details
+- `grimoire venue aave reserves --chain <id> [--market <address>] [--asset <symbol|address>]` — list reserves with optional filters
+- `grimoire venue aave reserves-snapshot --chain <id> [--market <address>] [--asset <symbol|address>]` — generate spell `params:` block for reserves (agent-only)
+
+## Examples
+
 ```bash
-hermes skills install skills-sh/franalgaba/grimoire/grimoire-aave
+grimoire venue aave health
+grimoire venue aave health --format table
+grimoire venue aave chains
+grimoire venue aave markets --chain 1 --format table
+grimoire venue aave market --chain 1 --address 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2
+grimoire venue aave reserve --chain 1 --market 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2 --token 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48
+grimoire venue aave reserves --chain 1 --asset USDC --format table
+grimoire venue aave reserves --chain 1 --asset USDC --format spell
+grimoire venue aave reserves-snapshot --chain 1 --asset USDC
 ```
+
+Use `reserves-snapshot` to emit a `params:` block for spell inputs. This is an agent-only command (output suppressed in interactive mode).
+
+## Supported Chains
+
+| Chain | Market Address |
+|-------|---------------|
+| Ethereum (1) | `0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2` |
+| Base (8453) | `0xA238Dd80C259a72e81d7e4664a9801593F98d1c5` |
+
+## Spell Constraints
+
+Aave V3 actions do not currently support runtime constraints (`max_slippage`, `min_output`, etc.). The adapter handles approvals and amount conversion automatically.
+
+```spell
+aave_v3.lend(USDC, params.amount)
+aave_v3.withdraw(USDC, params.amount)
+aave_v3.borrow(USDC, params.amount)
+aave_v3.repay(USDC, params.amount)
+```
+
+## Metric Surface (Spell Comparisons)
+
+Aave exposes the `apy` metric surface for comparisons:
+
+```spell
+aave_apy = apy(aave, USDC)
+aave_apy_generic = metric("apy", aave, USDC)
+```
+
+Use this in conditional logic (for example, compare against Morpho APY before reallocating).
+
+## Amount Format
+
+The `@aave/client` SDK uses different amount formats per action:
+
+| Action | Format | Example (0.1 USDC) |
+|--------|--------|---------------------|
+| supply | `value: "0.1"` | Human-readable BigDecimal |
+| borrow | `value: "0.1"` | Human-readable BigDecimal |
+| withdraw | `value: { exact: "100000" }` | Raw amount in `exact` wrapper |
+| repay | `value: { exact: "100000" }` | Raw amount in `exact` wrapper |
+
+The adapter handles this conversion automatically.
+
+## Notes
+
+- Read-only metadata endpoints only.
+- Outputs JSON/table; `reserves` also supports `--format spell`.
+- Prefer `--format json` in automation; use table for quick interactive checks.

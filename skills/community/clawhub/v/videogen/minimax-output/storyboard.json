@@ -1,0 +1,100 @@
+{
+  "mode": "A",
+  "topic": "Cloud Code源码泄露：最强编码Agent的Harness工程实现",
+  "panels": [
+    {
+      "panel_number": 1,
+      "scene_type": "过渡页",
+      "shot_type": "远景/建立景",
+      "camera_move": "固定镜头",
+      "description": "大字标题：Cloud Code源码泄露：最强编码Agent的Harne，深色背景，简洁大气",
+      "video_prompt": "establishing shot, wide angle, static camera, 大字标题：Cloud Code源码泄露：最强编码Agent的Harne，深色背景，简洁大气, subtle motion, elegant transition, clean movement, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "",
+      "duration": 3,
+      "transition": "淡入淡出"
+    },
+    {
+      "panel_number": 2,
+      "scene_type": "数据展示",
+      "shot_type": "中景",
+      "camera_move": "固定镜头",
+      "description": "图表页：核心要点1，清晰的数据可视化，深蓝背景+金色数字",
+      "video_prompt": "medium shot, static camera, 图表页：核心要点1，清晰的数据可视化，深蓝背景+金色数字, data visualization animation, chart elements fade in smoothly, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "核心要点1",
+      "duration": 10,
+      "transition": "硬切"
+    },
+    {
+      "panel_number": 3,
+      "scene_type": "知识讲解",
+      "shot_type": "中景",
+      "camera_move": "推进（推镜头）",
+      "description": "讲解画面：核心要点1的核心内容，极简背景",
+      "video_prompt": "medium shot, slow push-in, cinematic, 讲解画面：核心要点1的核心内容，极简背景, subtle motion, elegant transition, clean movement, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "【旁白】核心要点1",
+      "duration": 2,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 4,
+      "scene_type": "数据展示",
+      "shot_type": "中景",
+      "camera_move": "固定镜头",
+      "description": "图表页：核心要点2，清晰的数据可视化，深蓝背景+金色数字",
+      "video_prompt": "medium shot, static camera, 图表页：核心要点2，清晰的数据可视化，深蓝背景+金色数字, data visualization animation, chart elements fade in smoothly, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "核心要点2",
+      "duration": 10,
+      "transition": "硬切"
+    },
+    {
+      "panel_number": 5,
+      "scene_type": "知识讲解",
+      "shot_type": "中景",
+      "camera_move": "推进（推镜头）",
+      "description": "讲解画面：核心要点2的核心内容，极简背景",
+      "video_prompt": "medium shot, slow push-in, cinematic, 讲解画面：核心要点2的核心内容，极简背景, subtle motion, elegant transition, clean movement, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "【旁白】核心要点2",
+      "duration": 2,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 6,
+      "scene_type": "数据展示",
+      "shot_type": "中景",
+      "camera_move": "固定镜头",
+      "description": "图表页：核心要点3，清晰的数据可视化，深蓝背景+金色数字",
+      "video_prompt": "medium shot, static camera, 图表页：核心要点3，清晰的数据可视化，深蓝背景+金色数字, data visualization animation, chart elements fade in smoothly, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "核心要点3",
+      "duration": 10,
+      "transition": "硬切"
+    },
+    {
+      "panel_number": 7,
+      "scene_type": "知识讲解",
+      "shot_type": "中景",
+      "camera_move": "推进（推镜头）",
+      "description": "讲解画面：核心要点3的核心内容，极简背景",
+      "video_prompt": "medium shot, slow push-in, cinematic, 讲解画面：核心要点3的核心内容，极简背景, subtle motion, elegant transition, clean movement, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "【旁白】核心要点3",
+      "duration": 2,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 8,
+      "scene_type": "过渡页",
+      "shot_type": "特写",
+      "camera_move": "固定镜头",
+      "description": "金句收尾：大字金句，白色字体，光芒效果，关注引导",
+      "video_prompt": "close-up shot, shallow depth of field, static camera, 金句收尾：大字金句，白色字体，光芒效果，关注引导, subtle motion, elegant transition, clean movement, modern minimalist style, clean presentation, tech aesthetic, 9:16 vertical video",
+      "narration": "感谢观看，关注我获取更多干货",
+      "duration": 5,
+      "transition": "淡入淡出"
+    }
+  ],
+  "summary": {
+    "total_panels": 8,
+    "total_duration": 44,
+    "mode": "A",
+    "mode_description": "纯干货型"
+  }
+}

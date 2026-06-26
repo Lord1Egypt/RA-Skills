@@ -1,0 +1,7 @@
+{
+  "name": "js-eyes-server-compat",
+  "version": "2.8.2",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT"
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dark Factory Specification",
+  "description": "Formal schema for specifications passed from intent-engineering to dark-factory",
+  "type": "object",
+  "required": ["specification_id", "title", "description", "behavioral_scenarios", "success_criteria"],
+  "properties": {
+    "specification_id": {
+      "type": "string",
+      "pattern": "^spec-[a-zA-Z0-9]{8,}$",
+      "description": "Unique identifier for this specification, format: spec-XXXXXXXX"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120,
+      "description": "Human-readable name of the feature or skill being built"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Clear description of what should be built and why"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this specification, e.g. 1.0.0"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when this specification was created"
+    },
+    "behavioral_scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "description": "List of behavioral scenarios defining what the software should do",
+      "items": {
+        "type": "object",
+        "required": ["scenario", "input", "expected_output"],
+        "properties": {
+          "scenario": {
+            "type": "string",
+            "minLength": 5,
+            "description": "Plain-language description of the scenario"
+          },
+          "input": {
+            "type": "object",
+            "description": "Input data for this scenario"
+          },
+          "expected_output": {
+            "type": "object",
+            "description": "Expected output data for this scenario"
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional tags for grouping scenarios (e.g. happy-path, edge-case)"
+          }
+        }
+      }
+    },
+    "success_criteria": {
+      "type": "object",
+      "required": ["test_pass_rate"],
+      "properties": {
+        "test_pass_rate": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Minimum required pass rate for behavioral tests (recommended: 0.95)"
+        },
+        "max_execution_time_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum allowed execution time in milliseconds"
+        },
+        "additional_criteria": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Additional human-readable success criteria"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of skill or system names this specification depends on"
+    },
+    "security_requirements": {
+      "type": "object",
+      "properties": {
+        "data_sensitivity": {
+          "type": "string",
+          "enum": ["public", "internal", "confidential", "restricted"],
+          "description": "Data sensitivity classification"
+        },
+        "guards": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Security guards to enforce during execution"
+        }
+      }
+    },
+    "ecosystem_dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other skills in the ecosystem this specification interacts with"
+    }
+  },
+  "additionalProperties": true
+}

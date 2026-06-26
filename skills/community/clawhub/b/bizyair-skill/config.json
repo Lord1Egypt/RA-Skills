@@ -1,0 +1,10 @@
+{
+  "credentials": {
+    "api_key": "YOUR_BIZYAIR_API_KEY_HERE"
+  },
+  "batch": {
+    "_comment": "User-facing batch caps. Higher hard system limits still exist internally as a final guardrail.",
+    "max_concurrency": 3,
+    "max_tasks": 5
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "version": "2.0",
+  "description": "LLM 响应内容安全审计规则 - 分级审核",
+  "_coauthor": "394286006@qq.com",
+  "layer1_malicious": {
+    "name": "第一层：恶意指令检测",
+    "enabled": true,
+    "rules": [
+      {
+        "id": "CMD-001",
+        "name": "危险系统命令",
+        "severity": "critical",
+        "patterns": [
+          "rm\\s+-rf\\s+[/~]",
+          "rm\\s+-rf\\s+\\*",
+          "mkfs\\.",
+          "dd\\s+if=.*of=/dev/",
+          ":(){ :|:& };:",
+          "chmod\\s+777\\s+/",
+          "chown\\s+-R\\s+"
+        ]
+      },
+      {
+        "id": "CMD-002",
+        "name": "提权操作",
+        "severity": "critical",
+        "patterns": [
+          "sudo\\s+su\\s*$",
+          "sudo\\s+passwd",
+          "chmod\\s+u\\+s",
+          "chmod\\s+4755"
+        ]
+      },
+      {
+        "id": "SQL-001",
+        "name": "SQL注入/删除",
+        "severity": "high",
+        "patterns": [
+          "DROP\\s+TABLE",
+          "DROP\\s+DATABASE",
+          "DELETE\\s+FROM.*WHERE\\s+1\\s*=\\s*1",
+          "TRUNCATE\\s+TABLE"
+        ]
+      },
+      {
+        "id": "NET-001",
+        "name": "数据外泄",
+        "severity": "critical",
+        "patterns": [
+          "curl\\s+.*-d\\s+.*@",
+          "wget\\s+.*--post",
+          "nc\\s+-e\\s+/bin",
+          "bash\\s+-i\\s+>&\\s+/dev/tcp"
+        ]
+      },
+      {
+        "id": "NET-002",
+        "name": "网络扫描/攻击工具",
+        "severity": "high",
+        "patterns": [
+          "nmap\\s+",
+          "sqlmap",
+          "hydra\\s+",
+          "metasploit"
+        ]
+      },
+      {
+        "id": "BACKDOOR-001",
+        "name": "后门/反弹shell",
+        "severity": "critical",
+        "patterns": [
+          "/bin/bash\\s+-i",
+          "socat\\s+.*EXEC",
+          "mkfifo\\s+.*\\/tmp",
+          "perl.*Socket.*exec"
+        ]
+      },
+      {
+        "id": "EXEC-001",
+        "name": "执行意图诱导",
+        "severity": "critical",
+        "patterns": [
+          "(请|来|帮|让)[我你].{0,10}(执行|运行|输入|复制|粘贴).{0,30}(DROP|DELETE|TRUNCATE|rm\\s+-rf|mkfs|dd\\s+if)",
+          "(执行|运行|输入)以下.{0,20}(命令|代码|SQL).{0,50}(DROP|DELETE|TRUNCATE|rm\\s+-rf)",
+          "我来帮(你|你).{0,20}(执行|运行|删除).{0,30}(表|数据库|文件)",
+          "(为了|为了安全|建议).{0,30}(执行|运行|输入).{0,30}(DROP|DELETE|TRUNCATE|rm\\s+-rf)"
+        ]
+      },
+      {
+        "id": "EXEC-002",
+        "name": "代码注入诱导",
+        "severity": "critical",
+        "patterns": [
+          "(复制|粘贴|执行|运行)以下.{0,10}(命令|代码|脚本).{0,100}(curl|wget|eval|exec|source)",
+          "在终端.{0,20}(运行|执行|输入).{0,50}(curl|wget).*\\|.*sh",
+          "(打开|运行).{0,20}(终端|命令行|cmd).{0,30}(执行|运行|输入)"
+        ]
+      },
+      {
+        "id": "EXEC-003",
+        "name": "软件安装诱导",
+        "severity": "critical",
+        "patterns": [
+          "(安装|下载|运行).{0,30}(恶意|木马|病毒|后门|挖矿|矿工)",
+          "(请|来|帮|让).{0,10}(安装|下载).{0,30}(软件|程序|APP).{0,30}(https?://|curl|wget)",
+          "(卸载|删除|关闭|禁用|停用|停止).{0,30}(杀毒|防火墙|安全|防护|卫士|管家|防火墙墙|firewall|socketfilterfw|pfctl|iptables)",
+          "(运行|执行|打开).{0,20}(未知|下载|陌生).{0,20}(程序|文件|软件)",
+          "(下载|Download).{0,30}(并|然后)?.{0,10}(运行|安装|执行)",
+          "(从|从网站|从链接).{0,20}https?://.{0,30}(安装|运行|下载)",
+          "(运行|执行|打开).{0,20}(安装|下载).{0,20}(程序|文件|包)"
+        ]
+      },
+      {
+        "id": "EXEC-004",
+        "name": "自我删除/破坏诱导",
+        "severity": "critical",
+        "patterns": [
+          "(删除|卸载).{0,30}(自己|自身|本软件|本程序|当前程序)",
+          "(停止|关闭|退出).{0,30}(自己|自身|本软件|本程序).{0,30}(并删除|并卸载)",
+          "(修改|删除|覆盖).{0,30}(系统|System|Windows|macOS|Linux).{0,20}(文件|目录|核心)"
+        ]
+      },
+      {
+        "id": "EXEC-005",
+        "name": "权限提升诱导",
+        "severity": "critical",
+        "patterns": [
+          "(输入|提供|告诉我).{0,30}(密码|密码|token|密钥|凭证)",
+          "(需要|要求).{0,20}(管理员|root|sudo).{0,20}(权限|密码)",
+          "(绕过|关闭|禁用|停用).{0,30}(安全|防护|验证|验证码|2FA)"
+        ]
+      }
+    ]
+  },
+  "layer2_sensitive": {
+    "name": "第二层：敏感内容检测",
+    "enabled": true,
+    "rules": [
+      {
+        "id": "PII-001",
+        "name": "个人身份信息",
+        "severity": "high",
+        "patterns": [
+          "\\d{17}[\\dXx]",
+          "\\d{15}(?=\\D|$)",
+          "1[3-9]\\d{9}",
+          "[\\w.-]+@[\\w.-]+\\.\\w{2,}"
+        ]
+      },
+      {
+        "id": "PII-002",
+        "name": "银行卡/信用卡",
+        "severity": "high",
+        "patterns": [
+          "\\d{16,19}",
+          "\\d{3,4}[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}",
+          "CVV.{0,3}\\d{3,4}",
+          "有效期.{0,10}\\d{2}/\\d{2}"
+        ]
+      },
+      {
+        "id": "CRED-001",
+        "name": "凭证/密钥泄露",
+        "severity": "critical",
+        "patterns": [
+          "sk-[a-zA-Z0-9]{20,}",
+          "AKIA[0-9A-Z]{16}",
+          "ghp_[a-zA-Z0-9]{36}",
+          "password\\s*[=:]\\s*['\"][^'\"]+['\"]",
+          "api[_-]?key\\s*[=:]\\s*['\"][^'\"]+['\"]",
+          "token\\s*[=:]\\s*['\"][^'\"]{20,}['\"]"
+        ]
+      },
+      {
+        "id": "SECRET-001",
+        "name": "敏感配置泄露",
+        "severity": "high",
+        "patterns": [
+          "BEGIN\\s+(RSA|DSA|EC)\\s+PRIVATE\\s+KEY",
+          "jdbc:.*password=",
+          "mysql://.*:.*@",
+          "postgres://.*:.*@"
+        ]
+      },
+      {
+        "id": "LEGAL-001",
+        "name": "违法内容",
+        "severity": "critical",
+        "patterns": [
+          "制作.{0,5}(炸弹|毒品|枪支)",
+          "如何.{0,5}(洗钱|诈骗)",
+          "黑客.{0,5}(攻击|入侵).{0,20}(教程|方法)",
+          "盗取.{0,10}(账号|密码|数据)"
+        ]
+      },
+      {
+        "id": "INTERNAL-001",
+        "name": "内部信息泄露",
+        "severity": "medium",
+        "patterns": [
+          "内部.{0,5}(密码|口令)",
+          "管理.{0,5}(员|后台).{0,10}(密码|账号)",
+          "数据库.{0,5}(密码|连接)",
+          "服务器.{0,5}(密码|密钥)"
+        ]
+      }
+    ]
+  },
+  "layer3_llm_review": {
+    "name": "第三层：LLM 智能审核",
+    "enabled": false,
+    "model": "openrouter/google/gemma-3-4b-it:free",
+    "prompt_template": "判断以下AI回复是否包含安全隐患。只回答 JSON：{\"safe\": true/false, \"reason\": \"原因\", \"category\": \"分类\"}\n\nAI回复内容：\n{content}",
+    "timeout_seconds": 10
+  },
+  "whitelist": [
+    "rm\\s+-rf\\s+/tmp/",
+    "rm\\s+-rf\\s+\\./node_modules",
+    "example\\.com",
+    "your[_-]?api[_-]?key",
+    "sk-xxx",
+    "\\*{3,}",
+    "password\\s*=\\s*\\*+"
+  ],
+  "response_actions": {
+    "critical": {
+      "block": false,
+      "log": true,
+      "alert": true,
+      "replace_with": "[内容被安全审计拦截：发现严重安全隐患]"
+    },
+    "high": {
+      "block": false,
+      "log": true,
+      "alert": true,
+      "replace_with": null
+    },
+    "medium": {
+      "block": false,
+      "log": true,
+      "alert": false
+    },
+    "low": {
+      "block": false,
+      "log": true,
+      "alert": false
+    }
+  }
+}

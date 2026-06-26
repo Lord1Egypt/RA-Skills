@@ -1,0 +1,43 @@
+[
+  [],
+  [
+    {
+      "date": "2026-06-01",
+      "origin": "SFO",
+      "destination": "HND",
+      "cabin": "business",
+      "flightNumber": "NH7",
+      "seats": 2,
+      "source": "aeroplan",
+      "miles": 75000,
+      "taxes": 52.4
+    }
+  ],
+  [
+    {
+      "date": "2026-06-01",
+      "origin": "SFO",
+      "destination": "HND",
+      "cabin": "business",
+      "flightNumber": "NH7",
+      "seats": 2,
+      "source": "aeroplan",
+      "miles": 75000,
+      "taxes": 52.4
+    }
+  ],
+  [],
+  [
+    {
+      "date": "2026-06-01",
+      "origin": "SFO",
+      "destination": "HND",
+      "cabin": "business",
+      "flightNumber": "NH7",
+      "seats": 1,
+      "source": "aeroplan",
+      "miles": 75000,
+      "taxes": 52.4
+    }
+  ]
+]

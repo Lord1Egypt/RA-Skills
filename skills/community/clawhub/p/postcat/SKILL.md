@@ -1,35 +1,49 @@
 ---
-name: "Postcat"
-description: "整理公开产品与文档页信息，提供功能摘要、版本说明、开源链接及文档目录查询服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/postcat"
-sourceUrl: "https://clawhub.ai/skills/postcat"
+name: postcat-hot-trend
+description: 注册“Postcat”技能；用于公开产品与文档页信息整理。
+homepage: `https://postcat.com/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
 # Postcat
 
-> 整理公开产品与文档页信息，提供功能摘要、版本说明、开源链接及文档目录查询服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/postcat`
-- **Source URL:** [https://clawhub.ai/skills/postcat](https://clawhub.ai/skills/postcat)
+- 面向公开产品页与文档的检索与内容摘要
+- 不提供账号操作、项目写入或接口逆向能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://postcat.com/
+- 文档与示例：站点入口或GitHub开源页
+- 公告与版本更新：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/postcat
-```
+常见任务
+
+- 功能与版本说明摘要（接口测试/Mock/自动化）
+- 开源仓库入口与示例链接汇总
+- 文档目录与部署指南提取
+
+数据字段
+
+- 功能条目、版本差异、适用场景、链接
+- 开源仓库链接、示例入口
+- 文档标题、目录链接、部署指南入口
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 不进行项目写入或接口调用
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 功能摘要：访问产品页 → 抽取功能与版本 → 输出摘要
+- 开源入口：收集仓库链接 → 汇总示例 → 输出清单
+- 文档目录：进入文档中心 → 抽取目录 → 输出链接集合
+
+合规提示
+
+- 遵守平台与开源协议
+- 不存储或输出敏感信息

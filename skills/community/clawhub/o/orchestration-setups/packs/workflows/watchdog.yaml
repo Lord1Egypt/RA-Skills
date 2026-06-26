@@ -1,0 +1,19 @@
+workflow_id: watchdog
+goal: Detect stale, blocked, or risky orchestration runs and recommend the next action
+entry_conditions:
+  - at least one active run exists
+phases:
+  - id: inspect_runs
+    agent: ops
+    output: health_report
+  - id: classify_risk
+    agent: reviewer
+    output: risk_classification
+  - id: route_recovery
+    orchestrator_decision: true
+retry_modes:
+  stale_run: inspect_runs
+retry_targets:
+  stale_run: inspect_runs
+completion_conditions:
+  - risk_classification_exists

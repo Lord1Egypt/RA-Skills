@@ -1,35 +1,60 @@
 ---
-name: "Cn Timestamp Converter"
-description: "Unix时间戳与日期互转工具。支持秒/毫秒级时间戳、多时区转换、批量处理、相对时间计算。纯Python标准库，无需API Key。"
-category: "other"
-source: "ClawHub"
-tags: [tools]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-timestamp-converter"
-sourceUrl: "https://clawhub.ai/skills/cn-timestamp-converter"
+slug: cn-timestamp-converter
+name: 时间戳转换器
+version: "1.2.1"
+author: 千策
 ---
 
-# Cn Timestamp Converter
+# 时间戳转换器
 
-> Unix时间戳与日期互转工具。支持秒/毫秒级时间戳、多时区转换、批量处理、相对时间计算。纯Python标准库，无需API Key。
+Unix时间戳转可读日期。开发调试必备。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-timestamp-converter`
-- **Source URL:** [https://clawhub.ai/skills/cn-timestamp-converter](https://clawhub.ai/skills/cn-timestamp-converter)
+## 功能
 
-## Overview
+- **时间戳→日期**：将Unix时间戳转为可读日期
+- **秒/毫秒自动识别**：10位秒级 vs 13位毫秒级自动判断
+- **时区支持**：UTC自动转换，显示本地时间
+- **当前时间戳**：不传参数时自动获取当前时间戳
 
+## 安装要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Python 3.6+
+- 无外部依赖（纯标准库）
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/cn-timestamp-converter
+# 时间戳转日期（10位秒级）
+python3 scripts/timestamp_converter.py "1745800000"
+
+# 时间戳转日期（13位毫秒级，自动识别）
+python3 scripts/timestamp_converter.py "1745800000000"
+
+# 不传参数，获取当前时间戳
+python3 scripts/timestamp_converter.py
 ```
+
+## 输出格式
+
+```json
+{
+  "unix": 1745800000,
+  "utc": "2025-04-28T07:46:40+00:00",
+  "local": "2025-04-28 15:46:40",
+  "readable": "2025年04月28日 15:46:40"
+}
+```
+
+## 分类
+
+开发工具
+
+## 关键词
+
+时间戳, timestamp, 日期转换, 时区, datetime, unix
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

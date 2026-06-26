@@ -1,35 +1,62 @@
 ---
-name: "Near Dca"
-description: "Dollar-cost averaging for NEAR tokens with flexible scheduling, performance tracking, and cancellation support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/near-dca"
-sourceUrl: "https://clawhub.ai/skills/near-dca"
+name: near-dca
+description: Dollar-cost averaging for NEAR tokens with flexible scheduling, performance tracking, and cancellation support.
 ---
+# NEAR DCA Skill
 
-# Near Dca
+Dollar-Cost Averaging implementation for NEAR tokens.
 
-> Dollar-cost averaging for NEAR tokens with flexible scheduling, performance tracking, and cancellation support.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/near-dca`
-- **Source URL:** [https://clawhub.ai/skills/near-dca](https://clawhub.ai/skills/near-dca)
+This skill provides DCA functionality with flexible scheduling and performance tracking. Set up recurring NEAR token purchases and track performance over time.
 
-## Overview
+## Features
 
+- Create DCA plans
+- Cancel DCA plans
+- List all DCA plans
+- Track DCA performance
+- Flexible scheduling (daily, weekly, etc.)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
+
+### `near-dca create <token> <amount> <schedule> [account]`
+Create a new DCA plan.
+
+**Parameters:**
+- `token` - Token to buy (e.g., NEAR, USDT)
+- `amount` - Amount per purchase
+- `schedule` - Schedule: daily, weekly, biweekly, monthly
+- `account` - Account ID (optional, uses default)
+
+**Example:**
 ```bash
-hermes skills install clawhub/near-dca
+near-dca create USDT 10 daily myaccount.near
 ```
+
+### `near-dca list [account]`
+List all DCA plans for an account.
+
+### `near-dca cancel <plan_id>`
+Cancel a DCA plan.
+
+### `near-dca performance <plan_id>`
+Show performance for a DCA plan.
+
+### `near-dca history <plan_id>`
+Show purchase history for a plan.
+
+## Configuration
+
+DCA plans are stored in `~/.near-dca/plans.json`.
+
+## Notes
+
+- DCA execution requires integration with a DEX (e.g., Ref Finance)
+- Scheduling requires cron or a job scheduler
+- Track performance vs lump-sum investment
+
+## References
+
+- NEAR DeFi: https://near.org/defi/
+- Ref Finance: https://ref.finance/

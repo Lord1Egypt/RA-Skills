@@ -1,0 +1,12 @@
+{
+  "name": "Memória Persistente",
+  "tagline": "Sistema de memória em 3 camadas para agentes IA que persistem entre sessões",
+  "description": "Arquitetura de memória hierárquica com 3 camadas: curto prazo (contexto), médio prazo (logs diários), longo prazo (conhecimento estruturado). Garante que memórias importantes sejam preservadas entre sessões. Inclui categorias para conceitos, workflows, preferências e ferramentas. Essencial para desenvolvedores brasileiros que querem agentes com memória durável.",
+  "category": "memory",
+  "tags": ["memoria", "memory", "persistencia", "portugues", "brasil", "contexto", "conhecimento"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/eve-agent/memoria-persistente/issues",
+  "homepage": "https://github.com/eve-agent/memoria-persistente"
+}

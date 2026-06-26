@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_dashboard_list_designer",
+		"description": "Query basic information of all dashboard modules in the application. Returns: JSON string containing dashboard ID, name, and introduction",
+		"parameters": {
+      		"type": "object",
+      		"properties": {}
+     	}
+	}
+}

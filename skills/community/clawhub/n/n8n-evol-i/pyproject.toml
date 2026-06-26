@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "n8n-evol-I"
+version = "2.0.0"
+description = "Read-only skill package for n8n workflow automation. Install via git clone into skills/."
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "pytest-httpserver>=1.0",
+]
+dspy = [
+    "dspy>=2.0",
+    "litellm>=1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["helpers*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+markers = [
+    "gated_real: tests that hit the real n8n instance; skip if N8N_API_KEY unset",
+]
+

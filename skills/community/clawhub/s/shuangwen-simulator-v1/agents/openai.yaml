@@ -1,0 +1,6 @@
+interface:
+  display_name: "爽文模拟器V1.0虾舍出品"
+  short_description: "9.9元解锁聊天式系统爽文 Skill 包"
+  default_prompt: "Use $shuangwen-simulator-v1 to browse and buy a paid Chinese system-novel scenario Skill package."
+policy:
+  allow_implicit_invocation: true

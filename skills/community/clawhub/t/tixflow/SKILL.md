@@ -1,35 +1,86 @@
 ---
-name: "Skill"
-description: "AI-powered event assistant for discovering, booking, and coordinating event tickets. Integrates with KYD Labs protocol and Google Calendar."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tixflow"
-sourceUrl: "https://clawhub.ai/skills/tixflow"
+name: tixflow
+description: AI-powered event assistant for discovering, booking, and coordinating event tickets. Integrates with KYD Labs protocol and Google Calendar.
+metadata:
+  openclaw:
+    requires:
+      env: ["GOOGLE_CALENDAR_API_KEY", "KYD_API_KEY"]
+    install:
+      - id: npm
+        kind: npm
+        package: googleapis
+        label: Install Google Calendar API
 ---
 
-# Skill
+# 🎫 TixFlow - AI Event Assistant
 
-> AI-powered event assistant for discovering, booking, and coordinating event tickets. Integrates with KYD Labs protocol and Google Calendar.
+> Your personal AI agent for event discovery, booking, and coordination
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tixflow`
-- **Source URL:** [https://clawhub.ai/skills/tixflow](https://clawhub.ai/skills/tixflow)
+## What TixFlow Does
 
-## Overview
-
+- 🔍 **Event Discovery** - Search events by artist, location, date, or genre
+- 🎫 **Smart Booking** - Purchase tickets across platforms
+- 📅 **Calendar Sync** - Sync events to Google Calendar with reminders
+- ⏰ **Waitlist Management** - Get notified when sold-out events have availability
+- 🤖 **AI Agent Power** - Let your agent handle everything automatically
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/tixflow
+clawhub install tixflow
 ```
+
+## Environment Variables
+
+- `GOOGLE_CALENDAR_API_KEY` - Google Calendar API key (for calendar sync)
+- `KYD_API_KEY` - KYD Labs API key (optional, for real ticketing)
+
+## Functions
+
+| Function | Status | Description |
+|----------|--------|-------------|
+| `findEvents()` | ✅ Ready | Search events by criteria |
+| `getEventDetails()` | ✅ Ready | Get event information |
+| `purchaseTicket()` | 🔄 Demo | Purchase ticket (demo mode) |
+| `syncToCalendar()` | 🔄 Ready | Sync to Google Calendar |
+| `addToWaitlist()` | ✅ Ready | Join event waitlist |
+| `checkPrices()` | ✅ Ready | Compare prices across platforms |
+
+## Usage
+
+```javascript
+const { findEvents, syncToCalendar, purchaseTicket } = require('./scripts/tixflow.js');
+
+// Find events
+const events = await findEvents({
+  type: 'concert',
+  location: 'London',
+  date: '2026-03'
+});
+
+// Sync to calendar
+await syncToCalendar({
+  eventId: '123',
+  userEmail: 'user@example.com'
+});
+
+// Purchase ticket
+await purchaseTicket({
+  eventId: '123',
+  quantity: 2,
+  walletAddress: '...'
+});
+```
+
+## Demo Mode
+
+Without API keys, the skill runs in demo mode with mock event data. This is perfect for:
+- Prototyping
+- Hackathons
+- User demos
+
+## Built For
+
+- KYD Labs Ticketing Track
+- Solana Graveyard Hackathon
+- OpenClaw Agents

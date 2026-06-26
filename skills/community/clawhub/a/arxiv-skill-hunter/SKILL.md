@@ -1,35 +1,26 @@
 ---
-name: "arxiv-skill-hunter"
-description: "Patrol latest arXiv papers and auto-generate Node.js learned skills through hunter to extractor pipeline."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arxiv-skill-hunter"
-sourceUrl: "https://clawhub.ai/skills/arxiv-skill-hunter"
+name: arxiv-skill-hunter
+description: Patrol latest arXiv papers and auto-generate Node.js learned skills through hunter to extractor pipeline.
+metadata:
+  {"openclaw":{"requires":{"bins":["node"]}}}
 ---
 
-# arxiv-skill-hunter
+# ArXiv Skill Hunter
 
-> Patrol latest arXiv papers and auto-generate Node.js learned skills through hunter to extractor pipeline.
+## What it does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arxiv-skill-hunter`
-- **Source URL:** [https://clawhub.ai/skills/arxiv-skill-hunter](https://clawhub.ai/skills/arxiv-skill-hunter)
+- Pulls latest papers from `arxiv-paper-reviews`
+- Selects a candidate paper
+- Writes `memory/evolution/pending_skill_task.json`
+- Triggers `arxiv-skill-extractor` to generate a runnable Node.js skill
 
-## Overview
+## Run
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/arxiv-skill-hunter
+node skills/arxiv-skill-hunter/index.js
 ```
+
+## Output
+
+- Pending/extracted task state: `memory/evolution/pending_skill_task.json`
+- Generated skills: `skills/arxiv-learned-*`

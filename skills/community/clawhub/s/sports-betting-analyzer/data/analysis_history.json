@@ -1,0 +1,338 @@
+[
+  {
+    "timestamp": "2026-04-02T01:52:55.983701",
+    "report": {
+      "timestamp": "2026-04-02T01:52:55.983646",
+      "sport": "NBA",
+      "match": "湖人 vs 勇士",
+      "match_date": "2026-04-02",
+      "venue": "湖人主场",
+      "summary": "🏆 NBA 比赛分析：湖人 vs 勇士\n\n🎯 预测结果：勇士 胜\n📊 置信度：51.5%\n⚠️ 风险等级：high\n\n💡 建议投注：1.0%\n",
+      "data_overview": {
+        "team1": {
+          "name": "湖人",
+          "season_win_rate": 0.452,
+          "recent_5_games": [
+            "W",
+            "L",
+            "L",
+            "W",
+            "L"
+          ],
+          "key_players_status": [
+            "doubtful",
+            "doubtful"
+          ]
+        },
+        "team2": {
+          "name": "勇士",
+          "season_win_rate": 0.613,
+          "recent_5_games": [
+            "L",
+            "W",
+            "L",
+            "W",
+            "L"
+          ],
+          "key_players_status": [
+            "doubtful",
+            "doubtful"
+          ]
+        },
+        "head_to_head": {
+          "total_games": 10,
+          "team1_wins": 5,
+          "team2_wins": 4,
+          "draws": 0
+        },
+        "average_odds": {
+          "team1": 2.53,
+          "team2": 1.85,
+          "spread": 3.04
+        }
+      },
+      "prediction": {
+        "result": "team2",
+        "confidence": 0.515,
+        "probabilities": {
+          "湖人": "48.5%",
+          "勇士": "51.5%"
+        }
+      },
+      "betting_recommendation": {
+        "action": "观望",
+        "bet_percentage": 0,
+        "reason": "置信度 51.5% 低于阈值 60%",
+        "betting_options": []
+      },
+      "risk_assessment": {
+        "risk_level": "high",
+        "confidence": 0.515,
+        "value_bet": false,
+        "suggested_bet_percentage": 1.0
+      },
+      "explanation": "📊 预测依据：\n\n1. 实力对比： 客队实力明显优势（-16.10%）\n\n2. 主客场优势： 客场劣势明显（-6.10%）\n\n3. 近期状态： 近期状态相近\n\n4. 综合评估：模型综合考虑了实力、主客场、近期状态、历史对战、伤病等多个因素，得出当前预测结果。置信度 51.5% 代表模型对预测结果的信心程度。",
+      "factors_analysis": {
+        "strength": {
+          "name": "实力对比",
+          "value": -0.16099999999999998,
+          "importance": "高",
+          "description": "基于赛季胜率、积分排名等综合实力评估"
+        },
+        "home_advantage": {
+          "name": "主客场优势",
+          "value": -0.06099999999999994,
+          "importance": "高",
+          "description": "主场球队通常有统计优势"
+        },
+        "recent_form": {
+          "name": "近期状态",
+          "value": 0.0,
+          "importance": "中",
+          "description": "基于最近5场比赛的表现"
+        },
+        "h2h": {
+          "name": "历史对战",
+          "value": 0.0,
+          "importance": "中",
+          "description": "历史交锋记录的心理优势"
+        },
+        "injuries": {
+          "name": "伤病影响",
+          "value": 0,
+          "importance": "中",
+          "description": "关键球员伤病对球队实力的影响"
+        }
+      },
+      "data_sources": [
+        "模拟数据（MVP版本）"
+      ],
+      "disclaimer": "⚠️ 重要提示：\n\n1. 本分析仅供参考，不构成投注建议\n2. 体育比赛存在不确定性，预测不保证准确\n3. 请理性投注，控制风险，量力而行\n4. 不要过度依赖单一分析工具\n5. 请遵守当地法律法规\n\n数据来源：当前版本使用模拟数据，实际应用应接入真实数据源。"
+    }
+  },
+  {
+    "timestamp": "2026-04-02T01:53:01.123195",
+    "report": {
+      "timestamp": "2026-04-02T01:53:01.123049",
+      "sport": "Football",
+      "match": "巴萨 vs 皇马",
+      "match_date": "2026-04-02",
+      "venue": "巴萨主场",
+      "summary": "🏆 Football 比赛分析：巴萨 vs 皇马\n\n🎯 预测结果：皇马 胜\n📊 置信度：46.6%\n⚠️ 风险等级：high\n\n💡 建议投注：1.0%\n",
+      "data_overview": {
+        "team1": {
+          "name": "巴萨",
+          "season_win_rate": 0.538,
+          "recent_5_games": [
+            "L",
+            "W",
+            "L",
+            "W",
+            "L"
+          ],
+          "key_players_status": [
+            "active",
+            "injured"
+          ]
+        },
+        "team2": {
+          "name": "皇马",
+          "season_win_rate": 0.347,
+          "recent_5_games": [
+            "W",
+            "L",
+            "L",
+            "D",
+            "L"
+          ],
+          "key_players_status": [
+            "doubtful",
+            "doubtful"
+          ]
+        },
+        "head_to_head": {
+          "total_games": 8,
+          "team1_wins": 4,
+          "team2_wins": 0,
+          "draws": 4
+        },
+        "average_odds": {
+          "team1": 2.68,
+          "draw": 3.67,
+          "team2": 3.08,
+          "over_2_5": 1.91,
+          "under_2_5": 1.89
+        }
+      },
+      "prediction": {
+        "result": "team2",
+        "confidence": 0.466,
+        "probabilities": {
+          "巴萨": "39.1%",
+          "皇马": "46.6%",
+          "平局": "14.4%"
+        }
+      },
+      "betting_recommendation": {
+        "action": "观望",
+        "bet_percentage": 0,
+        "reason": "置信度 46.6% 低于阈值 60%",
+        "betting_options": []
+      },
+      "risk_assessment": {
+        "risk_level": "high",
+        "confidence": 0.466,
+        "value_bet": false,
+        "suggested_bet_percentage": 1.0
+      },
+      "explanation": "📊 预测依据：\n\n1. 实力对比： 主队实力明显优势（+19.10%）\n\n2. 主客场优势： 主场优势明显（+27.10%）\n\n3. 近期状态： 近期状态相近\n\n4. 综合评估：模型综合考虑了实力、主客场、近期状态、历史对战、伤病等多个因素，得出当前预测结果。置信度 46.6% 代表模型对预测结果的信心程度。",
+      "factors_analysis": {
+        "injuries": {
+          "name": "伤病影响",
+          "value": 2,
+          "importance": "中",
+          "description": "关键球员伤病对球队实力的影响"
+        },
+        "home_advantage": {
+          "name": "主客场优势",
+          "value": 0.271,
+          "importance": "高",
+          "description": "主场球队通常有统计优势"
+        },
+        "strength": {
+          "name": "实力对比",
+          "value": 0.19100000000000006,
+          "importance": "高",
+          "description": "基于赛季胜率、积分排名等综合实力评估"
+        },
+        "recent_form": {
+          "name": "近期状态",
+          "value": 0.10000000000000003,
+          "importance": "中",
+          "description": "基于最近5场比赛的表现"
+        },
+        "h2h": {
+          "name": "历史对战",
+          "value": 0.0,
+          "importance": "中",
+          "description": "历史交锋记录的心理优势"
+        }
+      },
+      "data_sources": [
+        "模拟数据（MVP版本）"
+      ],
+      "disclaimer": "⚠️ 重要提示：\n\n1. 本分析仅供参考，不构成投注建议\n2. 体育比赛存在不确定性，预测不保证准确\n3. 请理性投注，控制风险，量力而行\n4. 不要过度依赖单一分析工具\n5. 请遵守当地法律法规\n\n数据来源：当前版本使用模拟数据，实际应用应接入真实数据源。"
+    }
+  },
+  {
+    "timestamp": "2026-04-02T01:53:09.638027",
+    "report": {
+      "timestamp": "2026-04-02T01:53:09.637786",
+      "sport": "NBA",
+      "match": "凯尔特人 vs 尼克斯",
+      "match_date": "2026-04-02",
+      "venue": "凯尔特人主场",
+      "summary": "🏆 NBA 比赛分析：凯尔特人 vs 尼克斯\n\n🎯 预测结果：尼克斯 胜\n📊 置信度：53.2%\n⚠️ 风险等级：high\n\n💡 建议投注：1.0%\n",
+      "data_overview": {
+        "team1": {
+          "name": "凯尔特人",
+          "season_win_rate": 0.466,
+          "recent_5_games": [
+            "L",
+            "W",
+            "L",
+            "L",
+            "W"
+          ],
+          "key_players_status": [
+            "doubtful",
+            "active"
+          ]
+        },
+        "team2": {
+          "name": "尼克斯",
+          "season_win_rate": 0.591,
+          "recent_5_games": [
+            "L",
+            "L",
+            "L",
+            "W",
+            "W"
+          ],
+          "key_players_status": [
+            "injured",
+            "doubtful"
+          ]
+        },
+        "head_to_head": {
+          "total_games": 5,
+          "team1_wins": 3,
+          "team2_wins": 1,
+          "draws": 0
+        },
+        "average_odds": {
+          "team1": 2.36,
+          "team2": 2.16,
+          "spread": 0.68
+        }
+      },
+      "prediction": {
+        "result": "team2",
+        "confidence": 0.532,
+        "probabilities": {
+          "凯尔特人": "46.8%",
+          "尼克斯": "53.2%"
+        }
+      },
+      "betting_recommendation": {
+        "action": "观望",
+        "bet_percentage": 0,
+        "reason": "置信度 53.2% 低于阈值 60%",
+        "betting_options": []
+      },
+      "risk_assessment": {
+        "risk_level": "high",
+        "confidence": 0.532,
+        "value_bet": false,
+        "suggested_bet_percentage": 1.0
+      },
+      "explanation": "📊 预测依据：\n\n1. 实力对比： 客队实力明显优势（-12.50%）\n\n2. 主客场优势： 主客场影响不大\n\n3. 近期状态： 近期状态相近\n\n4. 综合评估：模型综合考虑了实力、主客场、近期状态、历史对战、伤病等多个因素，得出当前预测结果。置信度 53.2% 代表模型对预测结果的信心程度。",
+      "factors_analysis": {
+        "injuries": {
+          "name": "伤病影响",
+          "value": 1,
+          "importance": "中",
+          "description": "关键球员伤病对球队实力的影响"
+        },
+        "strength": {
+          "name": "实力对比",
+          "value": -0.12499999999999994,
+          "importance": "高",
+          "description": "基于赛季胜率、积分排名等综合实力评估"
+        },
+        "h2h": {
+          "name": "历史对战",
+          "value": 0.09999999999999998,
+          "importance": "中",
+          "description": "历史交锋记录的心理优势"
+        },
+        "home_advantage": {
+          "name": "主客场优势",
+          "value": -0.025000000000000022,
+          "importance": "高",
+          "description": "主场球队通常有统计优势"
+        },
+        "recent_form": {
+          "name": "近期状态",
+          "value": 0.0,
+          "importance": "中",
+          "description": "基于最近5场比赛的表现"
+        }
+      },
+      "data_sources": [
+        "模拟数据（MVP版本）"
+      ],
+      "disclaimer": "⚠️ 重要提示：\n\n1. 本分析仅供参考，不构成投注建议\n2. 体育比赛存在不确定性，预测不保证准确\n3. 请理性投注，控制风险，量力而行\n4. 不要过度依赖单一分析工具\n5. 请遵守当地法律法规\n\n数据来源：当前版本使用模拟数据，实际应用应接入真实数据源。"
+    }
+  }
+]

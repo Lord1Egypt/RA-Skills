@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>最全待产包清单</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  height: 1440px;
+  /* 米色背景 */
+  background: #F5EDE0;
+  font-family: "PingFang SC", "Microsoft YaHei", "STKaiti", "Kaiti SC", serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 外层米色背景卡片 */
+.page {
+  width: 1000px;
+  height: 1380px;
+  background: #FBF6EE;
+  border-radius: 40px;
+  position: relative;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+/* 标题区 */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 0 8px;
+}
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.illust-pregnant {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, #FFF0E8, #FFE4EC);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44px;
+  border: 2px solid #F5D0D0;
+}
+.header-text { flex: 1; }
+.main-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #2A2A2A;
+  letter-spacing: 3px;
+  line-height: 1.2;
+  /* 模拟手绘/书法风格 */
+  font-family: "STKaiti", "Kaiti SC", "STSong", "SimSun", serif;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.08);
+}
+.main-title span { color: #C85050; }
+.sub-title {
+  font-size: 20px;
+  color: #C85050;
+  margin-top: 4px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.header-emoji { font-size: 48px; flex-shrink: 0; }
+
+/* 主体三列 */
+.main-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+/* 虚线框 */
+.dashed-box {
+  border: 2.5px dashed #D4BC96;
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: white;
+  position: relative;
+}
+/* 三列里面的三个小区块（第三列） */
+.third-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.small-box {
+  border: 2.5px dashed #D4BC96;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: white;
+  flex: 1;
+}
+/* 区块标题 */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2A2A2A;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.5px;
+}
+.section-title .illust { font-size: 22px; }
+/* 列表项 */
+.item-list { list-style: none; }
+.item-list li {
+  font-size: 13.5px;
+  color: #2A2A2A;
+  line-height: 1.7;
+  display: flex;
+  gap: 4px;
+}
+.item-list li .num { color: #888; flex-shrink: 0; min-width: 20px; }
+.item-list li .name {}
+.item-list li .qty { color: #888; }
+
+/* 底部 */
+.footer {
+  text-align: center;
+  padding: 0 8px 4px;
+  position: relative;
+}
+.footer-text {
+  font-size: 26px;
+  font-weight: 700;
+  color: #C85050;
+  font-family: "STKaiti", "Kaiti SC", "STSong", serif;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.footer-illust { font-size: 40px; position: absolute; right: 10px; bottom: -4px; }
+/* 水印 */
+.watermark {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 11px;
+  color: #C4A882;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- 标题区 -->
+  <div class="header">
+    <div class="header-left">
+      <div class="illust-pregnant">🤰</div>
+    </div>
+    <div class="header-text">
+      <div class="main-title">2025最全<span>待产包清单</span></div>
+      <div class="sub-title">预产期1月的赶紧来抄</div>
+    </div>
+    <div class="header-emoji">🍼👶🛒</div>
+  </div>
+
+  <!-- 三列主体 -->
+  <div class="main-body">
+    <!-- 第一列：妈妈住院包 -->
+    <div class="dashed-box">
+      <div class="section-title">
+        🤱 妈妈住院包
+        <span class="illust">👙</span>
+      </div>
+      <ul class="item-list">
+        <li><span class="num">1.</span><span class="name">月子服</span><span class="qty"> 2套</span></li>
+        <li><span class="num">2.</span><span class="name">哺乳内衣</span><span class="qty"> 2件</span></li>
+        <li><span class="num">3.</span><span class="name">长筒袜</span><span class="qty"> 2双</span></li>
+        <li><span class="num">4.</span><span class="name">防滑拖鞋</span><span class="qty"> 1双</span></li>
+        <li><span class="num">5.</span><span class="name">月子帽</span><span class="qty"> 1顶</span></li>
+        <li><span class="num">6.</span><span class="name">毛巾</span><span class="qty"> 2张</span></li>
+        <li><span class="num">7.</span><span class="name">收腹带</span><span class="qty"> 1个</span></li>
+        <li><span class="num">8.</span><span class="name">产褥垫</span><span class="qty"> 2包</span></li>
+        <li><span class="num">9.</span><span class="name">刀纸</span><span class="qty"> 2包</span></li>
+        <li><span class="num">10.</span><span class="name">超长夜用卫生巾</span><span class="qty"> 1包</span></li>
+        <li><span class="num">11.</span><span class="name">安睡裤</span><span class="qty"> 2包</span></li>
+        <li><span class="num">12.</span><span class="name">一次性内裤</span><span class="qty"> 10条</span></li>
+        <li><span class="num">13.</span><span class="name">一次性马桶垫</span><span class="qty"> 1包</span></li>
+        <li><span class="num">14.</span><span class="name">护肤品</span><span class="qty"> 1套</span></li>
+        <li><span class="num">15.</span><span class="name">牙膏牙刷</span><span class="qty"> 1套</span></li>
+        <li><span class="num">16.</span><span class="name">吸奶器</span><span class="qty"> 1套</span></li>
+        <li><span class="num">17.</span><span class="name">储奶袋</span><span class="qty"> 10个</span></li>
+        <li><span class="num">18.</span><span class="name">防溢乳垫</span><span class="qty"> 10个</span></li>
+        <li><span class="num">19.</span><span class="name">吸管杯</span><span class="qty"> 1个</span></li>
+        <li><span class="num">20.</span><span class="name">脸盆</span><span class="qty"> 2个</span></li>
+        <li><span class="num">21.</span><span class="name">会阴清洗器</span><span class="qty"> 1个</span></li>
+        <li><span class="num">22.</span><span class="name">出院衣物</span><span class="qty"> 1套</span></li>
+      </ul>
+    </div>
+
+    <!-- 第二列：宝宝住院包 -->
+    <div class="dashed-box">
+      <div class="section-title">
+        👶 宝宝住院包
+        <span class="illust">🍼</span>
+      </div>
+      <ul class="item-list">
+        <li><span class="num">1.</span><span class="name">包被</span><span class="qty"> 2条</span></li>
+        <li><span class="num">2.</span><span class="name">浴巾</span><span class="qty"> 2条</span></li>
+        <li><span class="num">3.</span><span class="name">52码衣服</span><span class="qty"> 2-3套</span></li>
+        <li><span class="num">4.</span><span class="name">袜子</span><span class="qty"> 2双</span></li>
+        <li><span class="num">5.</span><span class="name">胎帽</span><span class="qty"> 2顶</span></li>
+        <li><span class="num">6.</span><span class="name">口水巾</span><span class="qty"> 2条</span></li>
+        <li><span class="num">7.</span><span class="name">碗/硅胶勺</span><span class="qty"> 1套</span></li>
+        <li><span class="num">8.</span><span class="name">小罐奶粉</span><span class="qty"> 1个</span></li>
+        <li><span class="num">9.</span><span class="name">玻璃120ml奶瓶</span><span class="qty"> 1个</span></li>
+        <li><span class="num">10.</span><span class="name">奶瓶清洗剂</span><span class="qty"> 1瓶</span></li>
+        <li><span class="num">11.</span><span class="name">奶瓶刷</span><span class="qty"> 1套</span></li>
+        <li><span class="num">12.</span><span class="name">一次性隔尿垫</span><span class="qty"> 1包</span></li>
+        <li><span class="num">13.</span><span class="name">NB码尿不湿</span><span class="qty"> 1包</span></li>
+        <li><span class="num">14.</span><span class="name">棉签</span><span class="qty"> 1盒</span></li>
+        <li><span class="num">15.</span><span class="name">肚脐贴</span><span class="qty"> 1盒</span></li>
+        <li><span class="num">16.</span><span class="name">棉柔巾</span><span class="qty"> 2包</span></li>
+        <li><span class="num">17.</span><span class="name">云柔巾</span><span class="qty"> 2包</span></li>
+        <li><span class="num">18.</span><span class="name">婴儿湿巾</span><span class="qty"> 2包</span></li>
+        <li><span class="num">19.</span><span class="name">折叠盆</span><span class="qty"> 2个</span></li>
+        <li><span class="num">20.</span><span class="name">护臀膏</span><span class="qty"> 1支</span></li>
+        <li><span class="num">21.</span><span class="name">触油/身体乳</span><span class="qty"> 1瓶</span></li>
+        <li><span class="num">22.</span><span class="name">洗衣液、衣架</span><span class="qty"> 各1</span></li>
+      </ul>
+    </div>
+
+    <!-- 第三列：三个小框 -->
+    <div class="third-col">
+      <!-- 证件包 -->
+      <div class="small-box">
+        <div class="section-title">
+          📁 证件包
+          <span class="illust">📋</span>
+        </div>
+        <ul class="item-list">
+          <li><span class="num">1.</span>母子手册</li>
+          <li><span class="num">2.</span>产检资料</li>
+          <li><span class="num">3.</span>准生证</li>
+          <li><span class="num">4.</span>双方身份证原件</li>
+          <li><span class="num">5.</span>双方结婚证原件</li>
+          <li><span class="num">6.</span>医保卡</li>
+          <li><span class="num">7.</span>少量现金</li>
+        </ul>
+      </div>
+      <!-- 妈妈产房包 -->
+      <div class="small-box">
+        <div class="section-title">
+          🤱 妈妈产房包
+          <span class="illust">🧵</span>
+        </div>
+        <ul class="item-list">
+          <li><span class="num">1.</span>功能性饮料</li>
+          <li><span class="num">2.</span>面包/牛奶</li>
+          <li><span class="num">3.</span>手机</li>
+          <li><span class="num">4.</span>产褥垫 1包</li>
+          <li><span class="num">5.</span>刀纸 1包</li>
+          <li><span class="num">6.</span>吸管杯</li>
+          <li><span class="num">7.</span>安睡裤/姨妈巾</li>
+          <li><span class="num">8.</span>一次性内裤</li>
+        </ul>
+      </div>
+      <!-- 宝宝产房包 -->
+      <div class="small-box">
+        <div class="section-title">
+          👶 宝宝产房包
+          <span class="illust">🧸</span>
+        </div>
+        <ul class="item-list">
+          <li><span class="num">1.</span>52码和尚衣 1件</li>
+          <li><span class="num">2.</span>胎帽 1件</li>
+          <li><span class="num">3.</span>包被 1件</li>
+          <li><span class="num">4.</span>NB码纸尿裤 1片</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-text">赶紧来抄作业啦</div>
+    <div class="footer-illust">👶🍼</div>
+  </div>
+
+  <div class="watermark">@小红书</div>
+</div>
+</body>
+</html>

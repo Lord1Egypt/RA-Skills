@@ -1,35 +1,54 @@
 ---
-name: "Ledger Image Entry"
-description: "通过图片识别 receipt、订单或发票内容，提取商家、日期、金额和商品明细， 并转换为可入账的结构化记录。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ledger-image-entry"
-sourceUrl: "https://clawhub.ai/skills/ledger-image-entry"
+name: ledger-image-entry
+description: |
+  通过图片识别 receipt、订单或发票内容，提取商家、日期、金额和商品明细，
+  并转换为可入账的结构化记录。
 ---
 
-# Ledger Image Entry
+# Skill: 图片记账 (Receipt Image Entry)
 
-> 通过图片识别 receipt、订单或发票内容，提取商家、日期、金额和商品明细， 并转换为可入账的结构化记录。
+通过图片识别 receipt/订单/发票，自动提取商品明细并逐条记账。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ledger-image-entry`
-- **Source URL:** [https://clawhub.ai/skills/ledger-image-entry](https://clawhub.ai/skills/ledger-image-entry)
+## 使用场景
 
-## Overview
+- 用户发送 receipt/订单/发票 图片
+- 需要从图片中提取商家、日期、金额、商品明细
 
+## 识别工具
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ledger-image-entry
-```
+图片由框架 imageModel（`yunwu/gpt-5-mini`）自动处理，agent 直接看到图片内容。
+
+收到图片时，从图片中提取所有消费明细：商家名称、日期、每个商品名称和实付金额。
+
+## 识别后处理
+
+1. 提取商家名称、日期（从图片中获取）、实付金额
+2. 如果图片中没有明确日期 → 使用当前日期（执行 `date "+%Y-%m-%d"` 获取）
+3. 如果是多个商品，逐条记账
+4. 每条记录格式：`日期 | 分类 | 金额 | 备注（商家+商品名称）`
+
+## 分类建议
+
+根据商品类型自动归类：
+- 食品、饮料、食材 → `买菜做饭`
+- 日用品（漱口水、纸巾等）→ `日用品`
+- 餐饮外卖 → `外卖`
+- 不确定时询问用户
+
+## 输出格式
+
+记账后给用户确认表格：
+
+| 日期 | 分类 | 金额 | 备注 |
+|------|------|------|------|
+| 2026-03-01 | 买菜做饭 | ¥17.22 | 盒马 - 有机葵花籽油 200ml |
+| ... | ... | ... | ... |
+
+**合计：¥XX.XX**
+
+## 注意事项
+
+- 没说日期默认今天
+- 分类只能选一个，不要多个
+- 金额保留两位小数
+- 如果图片模糊或识别不清，询问用户确认

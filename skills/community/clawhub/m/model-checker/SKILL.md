@@ -1,35 +1,21 @@
 ---
-name: "Model Checker"
-description: "查询公司内部可用AI模型列表。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-checker"
-sourceUrl: "https://clawhub.ai/skills/model-checker"
+name: model-checker
+description: 查询公司内部可用AI模型列表。
 ---
 
 # Model Checker
 
-> 查询公司内部可用AI模型列表。
+通过调用公司 API 查询当前可用的 AI 模型列表。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-checker`
-- **Source URL:** [https://clawhub.ai/skills/model-checker](https://clawhub.ai/skills/model-checker)
+## 使用方法
 
-## Overview
+在 OpenClaw 中直接询问：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/model-checker
 ```
+查询模型列表
+显示可用的AI模型
+```
+
+## 实现
+
+调用端点：https://cwork-api-test.xgjktech.com.cn/filegpt/t_ai/nologin/aiTypeList

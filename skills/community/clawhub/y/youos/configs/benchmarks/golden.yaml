@@ -1,0 +1,136 @@
+cases:
+  - id: golden-schedule-meeting
+    description: Schedule a meeting with a colleague
+    inbound: |
+      Hi, would you be available for a 30-minute call this week to discuss the Q2 roadmap?
+      Let me know what works for you.
+    expected_keywords:
+      - available
+      - time
+      - call
+      - week
+    expected_mode: work
+    max_words: 60
+    notes: Should propose specific times, stay concise.
+
+  - id: golden-decline-request
+    description: Politely decline a request
+    inbound: |
+      We'd love for you to speak at our conference next month.
+      It's a great opportunity for exposure and networking.
+      Would you be interested?
+    expected_keywords:
+      - thank
+      - unfortunately
+      - schedule
+    expected_mode: work
+    max_words: 80
+    notes: Should be gracious but clear about declining.
+
+  - id: golden-follow-up-proposal
+    description: Follow up on a sent proposal
+    inbound: |
+      Just checking in on the proposal I sent over last week.
+      Have you had a chance to review it? Happy to answer any questions.
+    expected_keywords:
+      - proposal
+      - review
+      - follow
+    expected_mode: work
+    max_words: 60
+    notes: Should acknowledge receipt and give timeline.
+
+  - id: golden-thank-intro
+    description: Thank someone for an introduction
+    inbound: |
+      Hey! Just wanted to introduce you to Sarah — she runs product at Acme Corp
+      and I think you two would have a lot to talk about. Connecting you both here.
+    expected_keywords:
+      - thank
+      - intro
+      - connect
+    expected_mode: personal
+    max_words: 50
+    notes: Should be warm, brief, and express intent to follow up with the introduced person.
+
+  - id: golden-ask-clarification
+    description: Ask for clarification on a vague request
+    inbound: |
+      Can you send me that thing we talked about?
+    expected_keywords:
+      - which
+      - clarify
+      - referring
+    expected_mode: work
+    max_words: 40
+    notes: Should ask specifically what 'that thing' refers to without being dismissive.
+
+  - id: golden-personal-mode
+    description: Casual personal email from a friend
+    inbound: |
+      Hey! It's been ages. We should totally catch up soon — coffee or drinks this weekend?
+      Miss hanging out with you!
+    expected_keywords:
+      - sounds
+      - weekend
+      - catch
+    expected_mode: personal
+    max_words: 30
+    notes: Should be warm, brief, and enthusiastic about catching up.
+
+  - id: golden-multilang
+    description: Formal German business email
+    inbound: |
+      Sehr geehrter Herr Müller,
+
+      ich möchte Sie gerne zu einem Gespräch über die geplante Zusammenarbeit einladen.
+      Wären Sie nächste Woche verfügbar?
+
+      Mit freundlichen Grüßen,
+      Anna Schmidt
+    expected_keywords:
+      - Woche
+      - Gespräch
+      - freundlichen
+    expected_mode: work
+    expected_language: de
+    max_words: 60
+    notes: Should detect German language and reply in German.
+
+  - id: golden-whatsapp-brief
+    description: Very short conversational message about rescheduling
+    inbound: |
+      Can we push the meeting?
+    expected_keywords:
+      - when
+      - reschedule
+      - works
+    expected_mode: work
+    max_words: 20
+    notes: Ultra-brief reply expected. Confirm and ask for new time.
+
+  - id: golden-internal-brevity
+    description: Brief reply to internal colleague about Q2 numbers
+    inbound: |
+      Hey, quick question about the Q2 numbers
+    expected_keywords:
+      - Q2
+      - numbers
+    expected_mode: work
+    expected_sender_type: internal
+    max_words: 30
+    notes: Should be short and direct for internal colleague.
+
+  - id: golden-personal-warmth
+    description: Warm reply to personal contact reconnecting
+    inbound: |
+      Hey! Long time no speak, how are things?
+    expected_keywords:
+      - hey
+      - good
+      - hope
+      - well
+      - catch
+    expected_mode: personal
+    max_words: 25
+    notes: Should be warm, brief, and personal.

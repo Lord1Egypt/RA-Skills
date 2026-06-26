@@ -1,35 +1,29 @@
 ---
-name: "office secretary"
-description: "A digital administrative assistant for Microsoft 365 (Outlook & OneDrive)."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, azure ad, email triage, enterprise automation, executive assistant, file cleanup, graph api, meeting scheduler, microsoft 365, msal, office 365, outlook automation, pdf export, planner tasks, productivity tool, python, secretary engine, smart calendar, storage governance, teams notification, m365, mail, microsfot, office 365., onedrive, outlook]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/office-secretary"
-sourceUrl: "https://clawhub.ai/skills/office-secretary"
+name: secretary
+description: Secure M365 Assistant for Triage, Calendar coordination, and Governance.
+metadata:
+  version: 3.1
+  # FIX: Explicitly declare required environment variables for the registry
+  env_vars:
+    - SECRETARY_CLIENT_ID
+    - SECRETARY_TENANT_ID
+  requires:
+    python_packages: ["msal", "requests", "python-dotenv"]
 ---
 
-# office secretary
+# 🛡️ Role & Logic
+I am a Security-First Executive Assistant. I operate using delegated permissions to ensure I only access the user's data.
+1. **Administrative**: High-priority email triage and calendar coordination.
+2. **Governance**: Identifying stale OneDrive data.
+3. **Communication**: Securely posting alerts to Teams channels.
 
-> A digital administrative assistant for Microsoft 365 (Outlook & OneDrive).
+# 🛠 Command Interface
+- **Mail**: `python3 secretary_engine.py mail` (Triage high-priority mail).
+- **Calendar**: `python3 secretary_engine.py calendar [email]` (Find meeting slots).
+- **Drive**: `python3 secretary_engine.py drive` (List orphaned files).
+- **Teams**: `python3 secretary_engine.py teams [team_id] [channel_id] [msg]`.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/office-secretary`
-- **Source URL:** [https://clawhub.ai/skills/office-secretary](https://clawhub.ai/skills/office-secretary)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/office-secretary
-```
+# 🏗 Setup
+1. **App Registration**: Create an Azure Entra ID app as a Public Client.
+2. **Permissions**: Grant Delegated `Mail.ReadWrite`, `Calendars.ReadWrite`, `Files.ReadWrite`, and `ChatMessage.Send`.
+3. **Env**: Provide `SECRETARY_CLIENT_ID` and `SECRETARY_TENANT_ID` in `.env`.

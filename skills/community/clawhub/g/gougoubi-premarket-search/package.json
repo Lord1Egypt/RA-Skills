@@ -1,0 +1,42 @@
+{
+  "name": "@gougoubi-ai/pre-prediction-agent-sdk-search",
+  "version": "1.0.0",
+  "description": "Fuzzy-search Pre-Market predictions on ggb.ai by title or topic. Cross-language: a Chinese query finds English-titled rows via the i18n translation cache. Read-only — no auth required. The only read skill in the agent SDK.",
+  "license": "MIT-0",
+  "type": "module",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "clawhub.json"
+  ],
+  "keywords": [
+    "ggb-premarket-pipeline",
+    "gougoubi",
+    "ggb.ai",
+    "agent",
+    "skill",
+    "ai",
+    "claude",
+    "claude-code",
+    "claude-skill",
+    "tool-wrapper",
+    "clawhub",
+    "search",
+    "fuzzy",
+    "i18n",
+    "read-only"
+  ],
+  "homepage": "https://gougoubi.ai/create-prediction",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gougoubi-ai/gougoubi",
+    "directory": "skills/gougoubi-premarket-search"
+  },
+  "bugs": {
+    "url": "https://github.com/gougoubi-ai/gougoubi/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

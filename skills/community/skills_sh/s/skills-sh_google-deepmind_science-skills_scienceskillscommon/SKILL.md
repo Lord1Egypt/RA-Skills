@@ -1,35 +1,21 @@
 ---
-name: "scienceskillscommon"
-description: "Indexed by skills.sh from google-deepmind/science-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "google-deepmind"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/google-deepmind/science-skills/scienceskillscommon"
-sourceUrl: "https://skills.sh/google-deepmind/science-skills/scienceskillscommon"
+name: scienceskillscommon
+description: >-
+  Shared Python package for Science Skills, currently containing http_client --
+  a unified HTTP client with rate limiting, retries, and exponential backoff.
+  Not a standalone agent skill. Do not invoke directly.
 ---
 
-# scienceskillscommon
+# Science Skills Common
 
-> Indexed by skills.sh from google-deepmind/science-skills
+This is a shared Python package, not an agent skill. Skills import it as:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** google-deepmind
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/google-deepmind/science-skills/scienceskillscommon`
-- **Source URL:** [https://skills.sh/google-deepmind/science-skills/scienceskillscommon](https://skills.sh/google-deepmind/science-skills/scienceskillscommon)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/google-deepmind/science-skills/scienceskillscommon
+```python
+from science_skills.skills.scienceskillscommon import http_client
 ```
+
+Each skill declares this as a dependency in its inline `uv` script header, so it
+is installed automatically on first use.
+
+This SKILL.md file is included so that standard skill installers automatically
+discover and install this package alongside the skills that depend on it.

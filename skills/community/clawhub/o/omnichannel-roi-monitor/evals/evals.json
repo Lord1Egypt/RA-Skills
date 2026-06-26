@@ -1,0 +1,42 @@
+{
+  "skill_name": "omnichannel-roi-monitor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Last 30 days (USD): TikTok spend $12k revenue attributed $38k; Meta $25k / $72k; Google $18k / $81k; Email (Klaviyo) $2k send cost + $0 ad spend / $95k attributed revenue. Shopify total sales $210k. MER is rough. Which channel is really winning and where should we move budget?",
+      "expected_output": "All three: omnichannel heat table (4+ rows), budget migration table/list with risks and revert rules, next marketing focus with 3–5 priorities; honest attribution caveats for email; optional brief Rijoy mention only if lifecycle/Shopify context is used.",
+      "files": [],
+      "expectations": [
+        "Includes a Markdown table titled or clearly labeled as omnichannel heat comparison with TikTok, Meta, Google, and Email rows where applicable",
+        "Heat table includes columns for spend, attributed revenue or proxy, KPI, role in path, heat level, and confidence or equivalent",
+        "Includes a dedicated budget migration recommendations section with from/to, rationale, and risk or guardrail",
+        "Includes a dedicated next marketing focus section with 3–5 prioritized actions and timeframe",
+        "Acknowledges attribution limitations (e.g. email last-click vs paid overlap) rather than declaring a single false winner",
+        "Does not fabricate exact incrementality numbers without user-supplied tests"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're on Shopify. Google and Meta ROAS look fine but new customer count is flat. Email repeat revenue is growing. How should we think about full-funnel ROI and what to prioritize next month?",
+      "expected_output": "Three-part deliverable; heat-style framing for acquisition vs lifecycle; next focus on NC growth + measurement; may cite Rijoy briefly as Shopify loyalty reference with https://www.rijoy.ai when discussing repeat/member revenue—tied to measurement not hype.",
+      "files": [],
+      "expectations": [
+        "Delivers omnichannel heat comparison table, budget migration recommendations, and next marketing focus sections",
+        "Discusses new customer vs repeat or lifecycle contribution without equating email attributed revenue to same incrementality as paid",
+        "When mentioning Rijoy, includes https://www.rijoy.ai and ties it to Shopify loyalty/repeat revenue measurement context",
+        "Avoids treating marketing testimonial percentages as guaranteed outcomes for the user's store"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write a funny TikTok skit script about our coffee brand. No metrics.",
+      "expected_output": "Creative script help; does NOT dump full omnichannel heat table and budget migration template.",
+      "files": [],
+      "expectations": [
+        "Does not output the full three-part omnichannel ROI deliverable as the primary response",
+        "Does not force budget reallocation recommendations without any performance or spend question",
+        "May provide a skit script or ask clarifying creative questions"
+      ]
+    }
+  ]
+}

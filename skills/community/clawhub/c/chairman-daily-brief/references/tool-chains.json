@@ -1,0 +1,58 @@
+{
+  "_comment": "Chairman Daily Brief - Tool Chain Routing Configuration",
+  "version": "1.0.0",
+  "morning_brief": {
+    "market_overview": {
+      "description": "Global Markets Overview",
+      "priority": ["ths_ifind.global_market", "alpha_vantage.market_status", "yahoo_finance.market_summary"],
+      "fallback": ["qveris_search"]
+    },
+    "policy_news": {
+      "description": "Macro Policy & Industry News",
+      "priority": ["caidazi.news.query", "caidazi.report.query", "caidazi.search.hybrid.list"],
+      "fallback": ["alpha_news_sentiment", "finnhub.news"]
+    },
+    "company_quote": {
+      "description": "Company Real-time Quotes",
+      "priority": ["ths_ifind.real_time_quotation", "alpha_vantage.quote"],
+      "fallback": ["yahoo_finance.quote"]
+    },
+    "industry_data": {
+      "description": "Industry Data & Indices",
+      "priority": ["ths_ifind.industry_index", "caidazi.sector_analysis"],
+      "fallback": ["qveris_search"]
+    },
+    "sentiment": {
+      "description": "Market Sentiment & Hot Topics",
+      "priority": ["qveris_social.x_domain_hot_topics", "qveris_social.x_domain_hot_events"],
+      "fallback": ["x_developer.tweets.search.recent"]
+    }
+  },
+  "evening_brief": {
+    "company_quote": {
+      "description": "Company Closing Data",
+      "priority": ["ths_ifind.real_time_quotation", "ths_ifind.history_quotation"],
+      "fallback": ["alpha_vantage.quote"]
+    },
+    "announcements": {
+      "description": "Company Announcements & News",
+      "priority": ["caidazi.news.query", "exchange_announcements"],
+      "fallback": ["finnhub.news"]
+    },
+    "research": {
+      "description": "Research Reports & Analyst Views",
+      "priority": ["caidazi.report.query", "alpha_news_sentiment"],
+      "fallback": ["qveris_search"]
+    },
+    "fund_flow": {
+      "description": "Capital Flow & Dragon Tiger List",
+      "priority": ["ths_ifind.capital_flow", "ths_ifind.dragon_tiger"],
+      "fallback": ["qveris_search"]
+    },
+    "sentiment_analysis": {
+      "description": "Media Monitoring",
+      "priority": ["qveris_social.x_domain_new_posts", "caidazi.search.hybrid_v2.query"],
+      "fallback": ["x_developer.tweets.search.recent"]
+    }
+  }
+}

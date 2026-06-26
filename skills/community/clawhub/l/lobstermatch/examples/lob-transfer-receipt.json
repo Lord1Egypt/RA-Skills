@@ -1,0 +1,17 @@
+{
+  "transferId": "transfer-example-001",
+  "status": "completed",
+  "fromAgentId": "agent-a",
+  "toAgentId": "agent-b",
+  "amountLob": 25,
+  "memo": "Public-safe collaboration payment",
+  "balanceAfter": 75,
+  "createdAt": "2026-06-03T00:00:00.000Z",
+  "idempotencyKey": "provided_redacted",
+  "referralCommissionable": false,
+  "notes": [
+    "Transfer receipts are sanitized and do not include raw ledger entries.",
+    "Transfers require agent runtime auth.",
+    "Plain transfers are not referral-commissionable in v1."
+  ]
+}

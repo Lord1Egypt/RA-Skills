@@ -1,0 +1,308 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-04-06",
+  "description": "AI资讯网站获取方式配置",
+  "sites": {
+    "36kr": {
+      "name": "36氪",
+      "url": "https://www.36kr.com/information/AI/",
+      "rss": "https://www.36kr.com/feed",
+      "http": "https://www.36kr.com/information/AI/",
+      "chrome": "https://www.36kr.com/information/AI/",
+      "priority": [
+        "rss",
+        "http",
+        "chrome"
+      ],
+      "status": {
+        "rss": "working",
+        "http": "working",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "RSS和HTTP都可用"
+    },
+    "liangzi": {
+      "name": "量子位",
+      "url": "https://qbitai.com/",
+      "rss": "https://qbitai.com/feed",
+      "http": "https://qbitai.com/",
+      "chrome": "https://qbitai.com/",
+      "priority": [
+        "rss",
+        "chrome"
+      ],
+      "status": {
+        "rss": "working",
+        "http": "failed",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "RSS可用"
+    },
+    "jiqizhixin": {
+      "name": "机器之心",
+      "url": "https://www.jiqizhixin.com/",
+      "rss": "https://www.jiqizhixin.com/feed",
+      "http": "https://www.jiqizhixin.com/",
+      "chrome": "https://www.jiqizhixin.com/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "failed",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要用Chrome"
+    },
+    "huxiu": {
+      "name": "虎嗅",
+      "url": "https://www.huxiu.com/",
+      "rss": "https://www.huxiu.com/feed",
+      "http": "https://www.huxiu.com/",
+      "chrome": "https://www.huxiu.com/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "failed",
+        "http": "failed",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要用Chrome"
+    },
+    "ifanr": {
+      "name": "爱范儿",
+      "url": "https://www.ifanr.com/",
+      "rss": "https://www.ifanr.com/feed",
+      "http": "https://www.ifanr.com/",
+      "chrome": "https://www.ifanr.com/",
+      "priority": [
+        "rss",
+        "chrome"
+      ],
+      "status": {
+        "rss": "working",
+        "http": "working",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "RSS可用"
+    },
+    "wangyi_tech": {
+      "name": "网易科技",
+      "url": "https://tech.163.com/super/ai/",
+      "rss": null,
+      "http": "https://tech.163.com/super/ai/",
+      "chrome": "https://tech.163.com/super/ai/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "sina_tech": {
+      "name": "新浪科技",
+      "url": "https://tech.sina.com.cn/",
+      "rss": "https://rss.sina.com.cn/tech/tech.xml",
+      "http": "https://tech.sina.com.cn/chiNext/index.shtml",
+      "chrome": "https://tech.sina.com.cn/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "sohu_tech": {
+      "name": "搜狐科技",
+      "url": "https://it.sohu.com/",
+      "rss": "https://rss.sohu.com/upload/it/sohu.xml",
+      "http": "https://it.sohu.com/list/techtop.shtml",
+      "chrome": "https://it.sohu.com/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "tencent_tech": {
+      "name": "腾讯科技",
+      "url": "https://new.qq.com/omn/tech/",
+      "rss": null,
+      "http": "https://new.qq.com/omn/index.xml",
+      "chrome": "https://new.qq.com/omn/tech/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "ifeng_tech": {
+      "name": "凤凰网科技",
+      "url": "https://tech.ifeng.com/",
+      "rss": null,
+      "http": "https://tech.ifeng.com/",
+      "chrome": "https://tech.ifeng.com/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "mydrivers": {
+      "name": "驱动之家",
+      "url": "https://news.mydrivers.com/",
+      "rss": "https://news.mydrivers.com/rss.xml",
+      "http": "https://news.mydrivers.com/",
+      "chrome": "https://news.mydrivers.com/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "expreview": {
+      "name": "超能网",
+      "url": "https://www.expreview.com/",
+      "rss": "https://www.expreview.com/rss",
+      "http": "https://www.expreview.com/",
+      "chrome": "https://www.expreview.com/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "zol": {
+      "name": "中关村在线",
+      "url": "https://www.zol.com.cn/",
+      "rss": "http://rss.zol.com.cn/topnews.xml",
+      "http": "https://www.zol.com.cn/",
+      "chrome": "https://www.zol.com.cn/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "techcrunch": {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/category/artificial-intelligence/",
+      "rss": null,
+      "http": "https://techcrunch.com/category/artificial-intelligence/",
+      "chrome": "https://techcrunch.com/category/artificial-intelligence/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "theverge": {
+      "name": "The Verge",
+      "url": "https://www.theverge.com/ai",
+      "rss": null,
+      "http": "https://www.theverge.com/ai",
+      "chrome": "https://www.theverge.com/ai",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "venturebeat": {
+      "name": "VentureBeat",
+      "url": "https://venturebeat.com/category/ai/",
+      "rss": null,
+      "http": "https://venturebeat.com/category/ai/",
+      "chrome": "https://venturebeat.com/category/ai/",
+      "priority": [
+        "chrome"
+      ],
+      "status": {
+        "rss": "unreachable",
+        "http": "failed",
+        "chrome": "failed"
+      },
+      "last_test": "2026-04-07",
+      "notes": "需要Chrome"
+    },
+    "hackernews": {
+      "name": "HackerNews",
+      "url": "https://news.ycombinator.com/",
+      "rss": "https://news.ycombinator.com/rss",
+      "http": "https://news.ycombinator.com/",
+      "chrome": "https://news.ycombinator.com/",
+      "priority": [
+        "rss",
+        "http",
+        "chrome"
+      ],
+      "status": {
+        "rss": "failed",
+        "http": "failed",
+        "chrome": "working"
+      },
+      "last_test": "2026-04-07",
+      "notes": "RSS可用"
+    }
+  },
+  "statistics": {
+    "total_sites": 16,
+    "rss_working": 4,
+    "http_working": 2,
+    "chrome_working": 8
+  }
+}

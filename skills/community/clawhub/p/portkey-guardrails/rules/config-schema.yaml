@@ -1,0 +1,155 @@
+# agent-config.schema.yaml
+# JSON Schema (YAML format) for per-agent AgentConfig validation
+# Phase 2 · Portkey Gateway Integration
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "agent-config-schema"
+title: "AgentConfig"
+description: "Per-agent declarative configuration for Portkey Gateway Integration"
+type: object
+required:
+  - version
+  - agent
+  - reliability
+  - cache
+  - guardrails
+  - budget
+additionalProperties: false
+
+properties:
+  version:
+    type: string
+    description: "Config schema version — must be '1'"
+    enum: ["1"]
+
+  agent:
+    type: string
+    description: "Agent identifier — must match the agentId used when loading"
+    minLength: 1
+
+  reliability:
+    type: object
+    required:
+      - timeout_ms
+      - retry
+      - fallback
+    additionalProperties: false
+    properties:
+      timeout_ms:
+        type: number
+        description: "Request timeout in milliseconds"
+        minimum: 1000
+        maximum: 600000
+
+      retry:
+        type: object
+        required:
+          - max_attempts
+          - backoff
+          - retry_on
+        additionalProperties: false
+        properties:
+          max_attempts:
+            type: number
+            description: "Maximum retry attempts (0 = no retries)"
+            minimum: 0
+            maximum: 10
+          backoff:
+            type: string
+            description: "Backoff strategy between retries"
+            enum: [exponential, fixed, none]
+          retry_on:
+            type: array
+            description: "Error codes / conditions that trigger a retry"
+            items:
+              type: string
+            uniqueItems: true
+
+      fallback:
+        type: object
+        required:
+          - on_failure
+        additionalProperties: false
+        properties:
+          on_failure:
+            type: string
+            description: "Action when all retries are exhausted"
+            enum: [escalate_to_loki, skip, use_cached, queue]
+          escalate_message:
+            type: string
+            description: "Human-readable message to include when escalating to Loki"
+
+  cache:
+    type: object
+    required:
+      - mode
+      - ttl_seconds
+      - similarity_threshold
+    additionalProperties: false
+    properties:
+      mode:
+        type: string
+        description: "Caching strategy"
+        enum: [semantic, exact, none]
+      ttl_seconds:
+        type: number
+        description: "Cache TTL in seconds"
+        minimum: 0
+      similarity_threshold:
+        type: number
+        description: "Cosine similarity threshold for semantic cache hits (0.0–1.0)"
+        minimum: 0.0
+        maximum: 1.0
+
+  guardrails:
+    type: object
+    required:
+      - inherit_defaults
+      - overrides
+    additionalProperties: false
+    properties:
+      inherit_defaults:
+        type: boolean
+        description: "Whether to inherit the global default-guardrails.yaml rule settings"
+      overrides:
+        type: array
+        description: "Per-rule overrides applied on top of default settings"
+        items:
+          type: object
+          required:
+            - id
+          additionalProperties: false
+          properties:
+            id:
+              type: string
+              description: "Guardrail rule ID (e.g. G-01)"
+            enabled:
+              type: boolean
+              description: "Override enabled/disabled state"
+            severity:
+              type: string
+              description: "Override severity level"
+              enum: [block, redact, flag, warn, pass]
+
+  budget:
+    type: object
+    required:
+      - daily_limit_output_tokens
+      - yellow_threshold
+      - red_threshold
+    additionalProperties: false
+    properties:
+      daily_limit_output_tokens:
+        type: number
+        description: "Maximum output tokens per day"
+        minimum: 0
+      yellow_threshold:
+        type: number
+        description: "Fraction of daily limit that triggers a yellow warning (0.0–1.0)"
+        minimum: 0.0
+        maximum: 1.0
+      red_threshold:
+        type: number
+        description: "Fraction of daily limit that triggers a red block (0.0–1.0)"
+        minimum: 0.0
+        maximum: 1.0

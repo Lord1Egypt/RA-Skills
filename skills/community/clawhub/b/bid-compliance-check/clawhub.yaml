@@ -1,0 +1,17 @@
+name: bid-compliance-check
+version: 1.0.0
+description: 投标文件合规检查 - 输入招标文件+投标文件成稿，自动提取要求清单并逐项核对，输出合规矩阵+缺失项+风险提示
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/bid-compliance-check
+license: MIT-0
+tags:
+  - sales
+  - bid
+  - compliance
+  - checklist
+  - verification
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

@@ -1,0 +1,49 @@
+{
+  "name": "tophant-clawvault-openclaw-alerts",
+  "version": "0.1.0",
+  "description": "Push high-risk ClawVault security events and daily security reports through OpenClaw agent messaging.",
+  "author": "Tophant SPAI Lab",
+  "homepage": "https://github.com/tophant-ai/ClawVault",
+  "repository": "https://github.com/tophant-ai/ClawVault",
+  "main": "clawvault_openclaw_alerts.py",
+  "permissions": ["execute_command", "write_files", "read_files", "network"],
+  "permissions_rationale": {
+    "execute_command": "Required to invoke openclaw agent messaging and manage the background alert daemon",
+    "write_files": "Stores alert configuration, PID, deduplication state, and rate-limit state under ~/.ClawVault/openclaw-alerts/",
+    "read_files": "Reads local alert configuration and daemon state",
+    "network": "Reads local ClawVault dashboard REST API endpoints"
+  },
+  "tags": ["security", "alerts", "openclaw", "notifications", "daily-report"],
+  "requirements": ["pyyaml", "requests"],
+  "python_version": ">=3.10",
+  "commands": {
+    "configure": {
+      "description": "Configure OpenClaw alert delivery settings.",
+      "usage": "configure [--agent main] [--session-id clawvault-alerts] [--dashboard-url http://127.0.0.1:8766] [--risk-threshold 7.0] [--daily-time 09:00] [--deliver] [--channel slack] [--reply-to <target>]"
+    },
+    "start": {
+      "description": "Start background high-risk security event monitoring.",
+      "usage": "start [--foreground] [--config <path>]"
+    },
+    "stop": {
+      "description": "Stop background security event monitoring.",
+      "usage": "stop [--force] [--config <path>]"
+    },
+    "status": {
+      "description": "Show alert daemon and delivery status.",
+      "usage": "status [--json] [--config <path>]"
+    },
+    "send-test": {
+      "description": "Send a test notification through OpenClaw.",
+      "usage": "send-test [--message <text>] [--json] [--config <path>]"
+    },
+    "run-once": {
+      "description": "Poll ClawVault once and send eligible high-risk alerts.",
+      "usage": "run-once [--dry-run] [--json] [--config <path>]"
+    },
+    "daily-report": {
+      "description": "Generate and send today's ClawVault security report.",
+      "usage": "daily-report [--date YYYY-MM-DD] [--dry-run] [--json] [--config <path>]"
+    }
+  }
+}

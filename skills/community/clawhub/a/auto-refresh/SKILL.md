@@ -1,35 +1,48 @@
 ---
-name: "自动刷新技能"
-description: "自动刷新技能 - 定时刷新网页或执行任务"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, refresh, scheduler]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-refresh"
-sourceUrl: "https://clawhub.ai/skills/auto-refresh"
+name: auto-refresh
+description: 自动刷新技能 - 定时刷新网页或执行任务
+metadata:
+  openclaw:
+    emoji: "🔄"
 ---
 
-# 自动刷新技能
+# Auto Refresh 🔄
 
-> 自动刷新技能 - 定时刷新网页或执行任务
+定时执行任务或刷新页面。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-refresh`
-- **Source URL:** [https://clawhub.ai/skills/auto-refresh](https://clawhub.ai/skills/auto-refresh)
+## 功能
 
-## Overview
+- 定时刷新网页（通过浏览器快捷键 F5 或 Ctrl+R）
+- 定时执行自定义命令
+- 可配置间隔
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-refresh
+### 命令格式
+```
+auto-refresh --interval 30 --action refresh
+```
+
+### 参数
+- `--interval`: 间隔时间（秒）
+- `--action`: 操作类型 (refresh/click/key)
+- `--x`: 鼠标 X 坐标（可选）
+- `--y`: 鼠标 Y 坐标（可选）
+- `--key`: 按键（可选）
+
+## 示例
+
+### 每30秒刷新一次页面
+```
+auto-refresh --interval 30 --action key --key F5
+```
+
+### 每分钟点击指定位置
+```
+auto-refresh --interval 60 --action click --x 100 --y 100
+```
+
+### 每20秒按一次空格键
+```
+auto-refresh --interval 20 --action key --key " "
 ```

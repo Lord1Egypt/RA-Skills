@@ -1,0 +1,7 @@
+{
+  "name": "阿里云云效创建MR+发布+通知（全可配置）",
+  "description": "创建MR、自定义分支/代码库、发布、自定义流水线、机器人通知",
+  "version": "1.0",
+  "main": "mr_deploy_old_full.py",
+  "triggers": ["创建MR","发布","上线","线上"]
+}

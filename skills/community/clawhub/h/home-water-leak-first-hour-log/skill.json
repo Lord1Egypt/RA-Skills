@@ -1,0 +1,37 @@
+{
+  "name": "home-water-leak-first-hour-log",
+  "displayName": "Home Water Leak First Hour Log",
+  "version": "1.0.1",
+  "description": "Create a first-hour action log for home water leaks with shutoff checklist, photo checklist, damage notes, contacts, and cleanup timeline.",
+  "triggerKeywords": [
+    "water leak first hour",
+    "ceiling leak",
+    "pipe leak",
+    "appliance leak",
+    "fixture leak",
+    "water pooling",
+    "water dripping",
+    "emergency leak log"
+  ],
+  "tags": [
+    "home-admin",
+    "urgent-home",
+    "water-leak",
+    "damage-documentation",
+    "incident-log"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Avoid standing water near electricity; call emergency help or qualified professionals for active flooding, electrical hazards, structural danger, contaminated water, or unsafe conditions. No repair instructions.",
+  "slug": "home-water-leak-first-hour-log",
+  "document_only": true,
+  "runtime": "none"
+}

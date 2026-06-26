@@ -1,35 +1,38 @@
 ---
-name: "voice-output"
-description: "Use when Tony says voice reply or asks to speak. Speaks the response aloud via Doubao TTS to MOMAX BS6."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/voice-output"
-sourceUrl: "https://clawhub.ai/skills/voice-output"
+name: voice-output
+description: Use when Tony says voice reply or asks to speak. Speaks the response aloud via Doubao TTS to MOMAX BS6.
 ---
 
-# voice-output
+# voice-output skill
 
-> Use when Tony says voice reply or asks to speak. Speaks the response aloud via Doubao TTS to MOMAX BS6.
+Speaks responses aloud when Tony requests voice reply.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/voice-output`
-- **Source URL:** [https://clawhub.ai/skills/voice-output](https://clawhub.ai/skills/voice-output)
+## Trigger conditions
 
-## Overview
+When Tony says:
+- 「语音回复」
+- 「用话说」
+- 「voice reply」
+- 「语音」
+- Or any similar request to hear the response
 
+## How to trigger
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Generate the full text response
+2. Call voice_speak.py to speak it aloud:
+
 ```bash
-hermes skills install clawhub/voice-output
+python3 /Users/tony/.openclaw/workspace/skills/voice-output/scripts/voice_speak.py "text to speak"
 ```
+
+## Default voice
+
+- Model: zh_female_xiaohe_uranus_bigtts (小何)
+- TTS: Doubao TTS 2.0
+- Player: afplay (routes to MOMAX BS6)
+
+## Dependencies
+
+- Python3 (urllib, base64 built-in)
+- afplay (macOS built-in)
+- Doubao TTS credentials (APPID: 8982709936)

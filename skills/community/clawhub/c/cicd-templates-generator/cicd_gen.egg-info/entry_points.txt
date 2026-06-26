@@ -1,0 +1,3 @@
+[console_scripts]
+cicd-gen = cicd_gen.cli:main
+

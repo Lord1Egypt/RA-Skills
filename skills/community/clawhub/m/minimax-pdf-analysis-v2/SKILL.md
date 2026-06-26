@@ -1,35 +1,44 @@
 ---
-name: "MiniMax PDF Analysis V2"
-description: "Analyze PDF files using MiniMax API. Supports text extraction, keyword search, and image-based VLM analysis (converts PDF pages to images first). Requires Mi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/minimax-pdf-analysis-v2"
-sourceUrl: "https://clawhub.ai/skills/minimax-pdf-analysis-v2"
+name: minimax-pdf-analysis
+description: Analyze PDF files using MiniMax API. Supports text extraction, keyword search, and image-based VLM analysis (converts PDF pages to images first). Requires MiniMax Coding Plan API key (sk-cp-*).
+metadata: {"openclaw":{"emoji":"📄","requires":{"bins":["python","node"],"env":["MINIMAX_API_KEY"]}}}
 ---
 
-# MiniMax PDF Analysis V2
+# MiniMax PDF Analysis
 
-> Analyze PDF files using MiniMax API. Supports text extraction, keyword search, and image-based VLM analysis (converts PDF pages to images first). Requires Mi...
+使用 MiniMax API 分析 PDF，支援三種模式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/minimax-pdf-analysis-v2`
-- **Source URL:** [https://clawhub.ai/skills/minimax-pdf-analysis-v2](https://clawhub.ai/skills/minimax-pdf-analysis-v2)
+## 三種分析模式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 萃取文字 `extract`
 ```bash
-hermes skills install clawhub/minimax-pdf-analysis-v2
+python scripts/analyze_pdf.py extract input.pdf
+python scripts/analyze_pdf.py extract input.pdf --output out.txt
+python scripts/analyze_pdf.py extract input.pdf --pages 1-3
 ```
+
+### 2. 搜尋關鍵字 `search`
+```bash
+python scripts/analyze_pdf.py search input.pdf "PID"
+python scripts/analyze_pdf.py search input.pdf "error" --ignore-case
+python scripts/analyze_pdf.py search input.pdf "regex.*pattern" --regex
+```
+
+### 3. VLM 圖片分析 `vision`
+```bash
+# 需要 MINIMAX_API_KEY 環境變數
+export MINIMAX_API_KEY=sk-cp-xxx
+
+# 分析整份 PDF（每頁轉圖片後分析）
+python scripts/analyze_pdf.py vision input.pdf "摘要這張投影片的內容"
+
+# 只分析特定頁面
+python scripts/analyze_pdf.py vision input.pdf "摘要" --pages 1-3 --dpi 200
+```
+
+## 環境需求
+
+| 套件 | 安裝方式 |
+|------|---------|
+| PyMuPDF | `pip install pymupdf` |
+| MiniMax API Key | `MINIMAX_API_KEY=sk-cp-xxx` |

@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+scripts/freeswitch.py
+scripts/repair.py
+scripts/modelpool_free.egg-info/PKG-INFO
+scripts/modelpool_free.egg-info/SOURCES.txt
+scripts/modelpool_free.egg-info/dependency_links.txt
+scripts/modelpool_free.egg-info/entry_points.txt
+scripts/modelpool_free.egg-info/top_level.txt

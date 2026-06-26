@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-homedepot-data",
+  "portal_api_id": "realtime_homedepot_data",
+  "rapidapi_host": "realtime-homedepot-data.p.rapidapi.com",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_homedepot_data.yaml",
+  "last_updated_yaml": "2026-06-24T00:00:00.000Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/realtime-homedepot-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/realtime-homedepot-data",
+  "notes": "rapidapi_host is best-effort (verify against the live RapidAPI listing). The spec's RapidAPI host is 'real-time-home-depot-data.p.rapidapi.com'. /search, /products-by-category, /item-lookup are page-number paginated (page 1-30, items_per_page 1-48, default 24); products live at data.products[]. /product-reviews is page-number paginated (page 1-51, items_per_page 1-100, default 20); reviews live at data.reviews[]. /product-details is a single call (no pagination), keyed by item_id or url."
+}

@@ -1,0 +1,23 @@
+name: quant_pipeline
+description: Complete quant research pipeline
+
+steps:
+  - agent: DataAgent
+    skill: market_data_skill
+    description: Collect market data
+    
+  - agent: FactorAgent
+    skill: factor_mining_skill
+    description: Generate technical factors
+    
+  - agent: StrategyAgent
+    skill: strategy_generation_skill
+    description: Generate trading strategy
+    
+  - agent: BacktestAgent
+    skill: backtest_skill
+    description: Backtest strategy
+    
+  - agent: EvaluationAgent
+    skill: evaluation_skill
+    description: Evaluate performance

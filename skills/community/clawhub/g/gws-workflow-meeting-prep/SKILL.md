@@ -1,35 +1,48 @@
 ---
-name: "Gws Workflow Meeting Prep"
+name: gws-workflow-meeting-prep
 description: "Google Workflow: Prepare for your next meeting: agenda, attendees, and linked docs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-workflow-meeting-prep"
-sourceUrl: "https://clawhub.ai/skills/gws-workflow-meeting-prep"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws workflow +meeting-prep --help"
 ---
 
-# Gws Workflow Meeting Prep
+# workflow +meeting-prep
 
-> Google Workflow: Prepare for your next meeting: agenda, attendees, and linked docs.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-workflow-meeting-prep`
-- **Source URL:** [https://clawhub.ai/skills/gws-workflow-meeting-prep](https://clawhub.ai/skills/gws-workflow-meeting-prep)
+Prepare for your next meeting: agenda, attendees, and linked docs
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-workflow-meeting-prep
+gws workflow +meeting-prep
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--calendar` | — | primary | Calendar ID (default: primary) |
+| `--format` | — | — | Output format: json (default), table, yaml, csv |
+
+## Examples
+
+```bash
+gws workflow +meeting-prep
+gws workflow +meeting-prep --calendar Work
+```
+
+## Tips
+
+- Read-only — never modifies data.
+- Shows the next upcoming event with attendees and description.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-workflow](../gws-workflow/SKILL.md) — All cross-service productivity workflows commands

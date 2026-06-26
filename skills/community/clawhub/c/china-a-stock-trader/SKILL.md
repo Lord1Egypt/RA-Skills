@@ -1,35 +1,190 @@
 ---
-name: "China A Stock Trader"
-description: "中国A股实战分析Skill。用于分析A股、给出买卖建议、规避风险。包含实时行情、技术分析、基本面筛选、情绪周期判断、龙虎榜、量化工具。触发场景：问股票、分析行情、选股推荐、风险提示。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-a-stock-trader"
-sourceUrl: "https://clawhub.ai/skills/china-a-stock-trader"
+name: a-stock-trader
+description: 中国A股实战分析Skill。用于分析A股、给出买卖建议、规避风险。包含实时行情、技术分析、基本面筛选、情绪周期判断、龙虎榜、量化工具。触发场景：问股票、分析行情、选股推荐、风险提示。
 ---
 
-# China A Stock Trader
+# A股实战分析 Skill
 
-> 中国A股实战分析Skill。用于分析A股、给出买卖建议、规避风险。包含实时行情、技术分析、基本面筛选、情绪周期判断、龙虎榜、量化工具。触发场景：问股票、分析行情、选股推荐、风险提示。
+> 最接近实战的A股分析工具，不只是数据展示，是真正的实战决策辅助。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-a-stock-trader`
-- **Source URL:** [https://clawhub.ai/skills/china-a-stock-trader](https://clawhub.ai/skills/china-a-stock-trader)
+## 核心能力
 
-## Overview
+| 模块 | 能力 | 数据来源 |
+|------|------|---------|
+| 📊 **实时行情** | 腾讯/新浪API实时价格 | 腾讯财经 |
+| 📈 **技术分析** | 均线/KDJ/MACD/布林带 | 计算得出 |
+| 💰 **基本面筛选** | PE/ROE/营收增速/排雷 | akshare |
+| 🔥 **情绪周期** | 冰点/启动/发酵/高潮/退潮 | 市场情绪判断 |
+| 🐉 **龙头战法** | 连板/妖股/首阴/分歧转一致 | 实战逻辑 |
+| ⚠️ **避坑指南** | 杀猪盘/庄家出货/ST退市 | 血泪教训 |
+| 🏆 **龙虎榜** | 营业部买卖数据 | 东方财富 |
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/china-a-stock-trader
+- "帮我分析XXXX股票"
+- "这个股票能买吗"
+- "最近的热点板块是什么"
+- "XXXX有什么风险"
+- "帮我选一只股票"
+- "大盘今天怎么样"
+
+## 工作流程
+
+### 股票分析流程
+
+```
+1. 获取实时行情（腾讯API）
+2. 计算技术指标（均线/KDJ/MACD）
+3. 查询基本面（PE/ROE/业绩）
+4. 判断情绪周期（冰点/启动/发酵/高潮/退潮）
+5. 应用龙头战法（连板/首阴/分歧转一致）
+6. 避坑检查（ST/减持/商誉雷）
+7. 给出建议（买入/持有/卖出）
+```
+
+### 选股推荐流程
+
+```
+1. 判断当前情绪周期阶段
+2. 筛选热门板块（涨幅排行）
+3. 基本面过滤（ROE>15%，PE<50）
+4. 技术面确认（沿5日线上涨/放量）
+5. 龙头战法验证（板块龙头/连板）
+6. 给出推荐（代码+价格+逻辑）
+```
+
+## 股票代码格式
+
+| 市场 | 格式 | 示例 |
+|------|------|------|
+| 上交所 | sh + 6位 | sh600519 |
+| 深交所 | sz + 6位 | sz000001 |
+| 创业板 | sz + 6位 | sz300750 |
+| 科创板 | sh + 6位 | sh688981 |
+
+## 数据获取
+
+### 实时行情
+```python
+from a_stock_trader import get_stock_quote
+
+# 单股
+quote = get_stock_quote('sz000001')
+
+# 批量
+quotes = get_stock_quotes(['sh600519', 'sz000858', 'sz300750'])
+```
+
+### 技术指标
+```python
+from a_stock_trader import get_technical_indicators
+
+# 获取技术指标
+indicators = get_technical_indicators('sz000001')
+# 返回: {ma5, ma10, ma20, kdj, macd, boll}
+```
+
+### 基本面筛选
+```python
+from a_stock_trader import screen_stocks
+
+# 筛选条件
+result = screen_stocks(pe_max=50, roe_min=15, growth_min=30)
+# 返回: [符合条件股票列表]
+```
+
+### 情绪判断
+```python
+from a_stock_trader import get_market_sentiment
+
+# 获取市场情绪
+sentiment = get_market_sentiment()
+# 返回: {phase: '冰点/启动/发酵/高潮/分歧/退潮', score: 0-100}
+```
+
+## 分析报告模板
+
+```
+## 📊 {股票名称}({代码}) 实战分析
+
+### 📈 实时行情
+| 指标 | 数值 | 信号 |
+|------|------|------|
+| 现价 | XX元 | 🟢涨/🔴跌 |
+| 涨幅 | X% | - |
+| 换手率 | X% | 高/低 |
+| 成交量 | X万手 | 放量/缩量 |
+
+### 📉 技术面
+- 短期趋势：{沿5日线/跌破5日线}
+- 中期趋势：{多头排列/空头排列}
+- 关键位：{支撑位} / {压力位}
+
+### 💰 基本面
+- PE：{X}（{高/中/低}）
+- ROE：{X}%（{合格/优秀}）
+- 营收增速：{X}%（{加速/放缓}）
+
+### 🔥 情绪周期
+- 当前阶段：{启动期/发酵期/高潮期}
+- 板块联动：{是/否}
+
+### 🐉 龙头战法
+- 龙头特征：{符合/不符合}
+- 买点信号：{出现/未出现}
+- 风险信号：{无/有}
+
+### ⚠️ 避坑检查
+- ST风险：{无/有}
+- 减持风险：{无/有}
+- 商誉雷：{无/有}
+
+### 💡 结论
+**建议：{买入/持有/卖出}**
+- 买入逻辑：{X}
+- 止损位：{X元(-8%)}
+- 持有逻辑：{X}
+```
+
+## 风险提示
+
+每次分析必须包含：
+
+```
+⚠️ 风险提示
+- 本分析仅供参考，不构成投资建议
+- 市场有风险，投资需谨慎
+- 亏损8%请无条件止损
+```
+
+## 数据维护
+
+- 实时行情：交易时间段自动更新
+- 基本面数据：akshare实时获取
+- 情绪数据：每日收盘后更新
+
+## v1.0.1 更新（2026-03-21）
+
+### 新增功能
+- `get_stock_financial_report()` - 获取个股财务报告
+- `get_market_heat()` - 获取市场热度（涨幅榜/概念板块）
+- `get_dragon_tiger()` - 获取龙虎榜数据
+
+### 基本面筛选升级
+- 接入akshare真实财务数据
+- 支持实时选股（PE/换手率/市净率筛选）
+- 失败时自动回退到示例数据
+
+### 使用示例
+```python
+from a_stock_trader import get_stock_financial_report, get_market_heat, get_dragon_tiger
+
+# 获取个股财务报告
+report = get_stock_financial_report('sh600519')
+
+# 获取市场热度
+heat = get_market_heat()
+
+# 获取龙虎榜
+tiger = get_dragon_tiger()
 ```

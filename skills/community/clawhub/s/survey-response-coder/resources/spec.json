@@ -1,0 +1,37 @@
+{
+  "slug": "survey-response-coder",
+  "title": "问卷开放题编码器",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "csv_audit",
+  "summary": "将开放式问卷回答编码成主题、情绪与标签，并生成可复核手册。",
+  "inputHint": "CSV 文本列或逐条回答",
+  "sections": [
+    "样本概览",
+    "主题编码",
+    "情绪分布",
+    "编码规则",
+    "疑难样本",
+    "后续分析建议"
+  ],
+  "useCases": [
+    "问卷分析",
+    "用户研究",
+    "主题编码"
+  ],
+  "positiveExamples": [
+    "把这些开放题回答做主题编码",
+    "生成可复核的编码手册"
+  ],
+  "negativeExamples": [
+    "不要把少量样本当总体结论",
+    "不要暴露受访者隐私"
+  ],
+  "risk": "适合定性整理，不替代严谨研究设计。",
+  "tags": [
+    "survey",
+    "coding",
+    "qualitative",
+    "analysis"
+  ]
+}

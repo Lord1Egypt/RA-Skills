@@ -1,35 +1,304 @@
 ---
-name: "SDD Plan Human Verify"
+name: sdd-plan-human-verify
 description: "从已完成的 spec-plan.md 生成验收清单，包含 [A]/[H] 子步骤，覆盖所有验证项用于 AI 驱动验收。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sdd-plan-human-verify"
-sourceUrl: "https://clawhub.ai/skills/sdd-plan-human-verify"
 ---
 
-# SDD Plan Human Verify
-
-> 从已完成的 spec-plan.md 生成验收清单，包含 [A]/[H] 子步骤，覆盖所有验证项用于 AI 驱动验收。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sdd-plan-human-verify`
-- **Source URL:** [https://clawhub.ai/skills/sdd-plan-human-verify](https://clawhub.ai/skills/sdd-plan-human-verify)
+# SDD Plan Human Verify — 生成验收清单
 
 ## Overview
 
+读取已完成的（或部分完成的）spec-plan.md 及其关联的 spec-design.md，提取**所有**验证项，生成详细的验收清单，其中每个项目预分解为 `[A]`（自动化）和 `[H]`（人工）子步骤。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sdd-plan-human-verify
+AI 将在验收期间自主执行 `[A]` 步骤；`[H]` 步骤是精确的微指令，人类只需回答是/否。
+
+**启动时声明：** "我正在使用 sdd-plan-human-verify 技能来生成验收清单。"
+
+## 关键概念
+
+- **工作区 (Workspace)：** 通过 `.sdd-workspace` 配置文件中 `workspace_path` 指定的根目录
+- **Spec 目录：** 所有 SDD 文档存储在 `{workspace}/spec/` 下
+
+## Step 0: 读取工作区配置
+
+在任何操作之前，必须读取工作区配置：
+
+1. 检查当前 OpenClaw workspace 中是否存在 `.sdd-workspace`
+2. 如果存在，读取 `workspace_path` 作为工作区根目录 `{workspace}`
+3. 如果不存在，显示错误："请先运行 `/sdd-global-init` 初始化工作区。" 并**停止**
+
+验证工作区目录存在，如果不存在提示用户重新初始化。
+
+## Step 1: 模型检查
+
+检查当前模型是否为 Opus。如果不是 Opus，显示建议：
+
 ```
+⚠️ 当前模型不是 Opus，建议切换到 Opus 以获得最佳验收清单质量。输入 /model 切换模型。
+```
+
+这是非阻塞的 — 无论如何都继续。
+
+## Step 1: 计划选择
+
+### 如果提供了路径参数
+- 直接使用它作为计划文件路径
+- 读取文件并继续 Step 2
+
+### 如果没有提供路径参数
+1. 扫描 `{workspace}/spec/` 中所有匹配 `feature_*/spec-plan.md` 的文件
+2. 按目录名排序（feature 目录包含日期，所以字母排序 = 时间顺序）
+3. 通过 `AskUserQuestion` 展示**最新的 3 个**计划：
+   - 每个选项显示目录名和计划标题（第一个标题）
+   - 用户也可以通过 "Other" 输入自定义路径
+   - 所有问题文本和选项用中文
+4. 读取选中的 spec-plan.md
+
+## Step 2: 源分析
+
+从同一目录读取两个文件：
+
+### 2.1 从 spec-plan.md — 收集所有验证项
+
+- 从所有 Task 的 `**检查步骤:**` 部分收集**所有**项目
+- 从 `**End-to-end verification:**` 部分收集**所有**项目
+- 对于每个项目，记录：Task 编号、步骤描述、关联的命令和预期结果
+- **不要按任何标签过滤** — 收集所有内容
+
+### 2.2 从 spec-design.md — 提取可验证行为
+
+- 收集验收标准、功能需求和任何可验证的行为描述
+- 包括 UI 行为、API 契约、错误处理、边界情况
+- **不要用关键词白名单过滤** — 包含所有可验证的项目
+
+### 2.3 交叉引用去重
+
+合并计划项目和设计文档项目；移除重复项（相同的验证意图 = 重复）。
+
+### 2.4 将每个项目分解为 [A]/[H] 子步骤
+
+对于每个验收项，确定每个操作步骤是否可以自动化：
+
+- **可自动化** → 标记为 `[A]`，包含可执行命令和预期结果
+- **需要人工** → 标记为 `[H]`，写为精确的微指令（具体 URL + 具体观察点 + 是/否判断）
+
+#### 分解原则：
+
+- **默认为 `[A]`**。只有当步骤**必须**依赖人工视觉/物理交互时才标记为 `[H]`
+- 单个验收项可以是：纯 `[A]`（完全自动化）、纯 `[H]`（完全人工）或混合 `[A]` + `[H]`
+- `[H]` 步骤必须是精确的微指令：告诉人类具体要看哪里和检查什么；人类只需回答是/否
+
+#### 何时使用 `[H]`：
+1. **视觉/UI 检查** — 布局、样式、颜色、动画、响应式
+2. **浏览器交互** — 点击真实用户流程、表单交互
+3. **浏览器 DevTools** — Network 面板、Application/Storage 面板、Console 面板
+4. **主观体验** — 感知的加载速度、动画流畅度
+5. **跨浏览器/设备** — 不同浏览器、移动端、响应式
+6. **可访问性** — 屏幕阅读器、键盘导航
+
+#### 何时使用 `[A]`：
+1. **HTTP 请求** — curl、wget、任何 API 调用
+2. **Shell 命令** — grep、find、diff、cat、文件存在性检查
+3. **构建/编译** — npm run build、tsc、cargo test
+4. **JSON/输出比较** — 检查响应结构、状态码
+5. **进程/端口检查** — ss、lsof、ps
+
+### 边界情况
+
+- **所有项目都是纯 [A]（不需要 [H] 步骤）**：
+  告知用户："所有验收项均可自动化验证，无需人类参与。仍将生成清单用于自动执行。" 并继续生成。
+
+- **未找到 spec-design.md**：
+  仅基于 spec-plan.md 继续分析；警告用户："未找到 spec-design.md，仅基于 spec-plan.md 生成清单。"
+
+## Step 3: 生成验收清单
+
+在 spec-plan.md 所在的同一目录生成 `spec-human-verify.md` 的内容。
+
+### 详细程度要求
+
+- 为零项目知识的人撰写
+- 每个 `[A]` 步骤包含：反引号中的精确命令和 `→ 期望:` 后的预期结果
+- 每个 `[H]` 步骤包含：精确 URL、精确观察点、是/否问题格式
+- 包括从零开始的环境设置（服务启动命令、浏览器说明）
+- 包括每个项目的故障排查指南
+
+### 分组：按业务场景
+
+按业务场景分组验证项（例如"用户登录流程"、"管理员操作"、"数据展示"）。
+每个场景是一个 `### 场景 N` 部分。
+
+### 准备项标签定义
+
+供 sdd-start-human-verify 用于自主执行。每个准备项**必须**有以下标签之一：
+
+- `[AUTO]` — 一次性命令，直接执行并检查退出码。格式：`- [ ] [AUTO] description: \`command\``
+- `[AUTO/SERVICE]` — 长运行服务，后台启动 + 端口检测 + 就绪等待。格式**必须**包含 `(port: NNNN)`：`- [ ] [AUTO/SERVICE] description: \`command\` (port: NNNN)`
+- `[MANUAL]` — 需要人工操作，**无法**表达为 shell 命令。仅用于：需要目视观察 UI、需要操作物理设备或外部硬件、需要操作第三方 GUI 系统、需要人类主观判断。
+
+**分类原则：默认为 `[AUTO]`**。如果准备步骤可以通过 shell 命令验证或执行，**必须**是 `[AUTO]`，不是 `[MANUAL]`。
+
+以下类别**始终**是 `[AUTO]`，永不是 `[MANUAL]`：
+- **文件/配置检查** — 文件是否存在、配置项是否包含某值、环境变量是否设置 → `grep`, `test -f`, `env | grep`
+- **版本/依赖检查** — 运行时版本、包是否安装、工具是否可用 → `node -v`, `npm ls`, `which xxx`
+- **编译/构建** — 任何 build、compile、transpile 命令 → `npm run build`, `tsc`, `make`
+- **安装依赖** — `npm install`, `pip install`, `apt-get install`
+- **数据库/迁移** — schema 迁移、seed 数据 → `npx prisma migrate`, `python manage.py migrate`
+
+`[MANUAL]` 仅用于以下场景：
+- 需要在浏览器中目视观察 UI
+- 需要操作物理设备或外部硬件
+- 需要在第三方 GUI 系统中操作（如在云控制台创建资源）
+- 需要人类主观判断（如审查设计稿）
+
+### 模板格式
+
+使用以下模板 — 注意项目标题使用 `#### - [ ] N.M` 格式（h4 + 复选框）：
+
+````markdown
+# [功能名称] 人工验收清单
+
+**生成时间:** YYYY-MM-DD HH:mm
+**关联计划:** [spec-plan.md 相对路径]
+**关联设计:** [spec-design.md 相对路径]
+
+---
+
+## 验收前准备
+
+### 环境要求
+- [ ] [AUTO] 检查 Node.js >= 18: `node -v`
+- [ ] [AUTO] 编译后端: `cd key-portal/server && npx tsc`
+- [ ] [AUTO/SERVICE] 启动后端服务: `cd key-portal/server && NODE_ENV=development node dist/index.js` (port: 3001)
+- [ ] [AUTO/SERVICE] 启动前端开发服务器: `cd key-portal/web && npm run dev` (port: 5173)
+- [ ] [AUTO] 检查 .env 包含必要变量: `grep -q 'NODE_ENV=development' .env && grep -q 'ADMIN_MIPS=' .env`
+- [ ] [MANUAL] [手动准备项说明，无可执行命令]
+
+### 测试数据准备
+- [ ] [具体测试数据，如: 准备测试账号 testuser / password123]
+
+---
+
+## 验收项目
+
+### 场景 1：[场景名称]
+
+#### - [ ] 1.1 验收项名称
+- **来源:** Task N 检查步骤 / spec-design.md
+- **操作步骤:**
+  1. [A] `curl -s http://localhost:3001/api/auth/me -H 'X-Dev-UserCode: chenwx57'` → 期望: 返回 JSON 含 userCode: "chenwx57"
+  2. [A] `curl -s http://localhost:3001/api/tokens -H 'X-Dev-UserCode: chenwx57'` → 期望: HTTP 200
+  3. [H] 打开 http://localhost:5173，查看右上角是否显示 "chenwx57" → 是/否
+- **异常排查:**
+  - 如果 [具体异常]: 检查 [排查方向和命令]
+
+#### - [ ] 1.2 验收项名称
+- **来源:** ...
+- **操作步骤:**
+  1. [A] `command` → 期望: ...
+  2. [H] 微指令 → 是/否
+- **异常排查:**
+  - ...
+
+### 场景 2：[场景名称]
+
+#### - [ ] 2.1 验收项名称
+...
+
+---
+
+## 验收结果汇总
+
+| 场景 | 序号 | 验收项 | 自动步骤 | 人工步骤 | 结果 | 备注 |
+|------|------|--------|----------|----------|------|------|
+| 场景 1 | 1.1 | [名称] | N 个 | M 个 | ⬜ | |
+
+**验收结论:** ⬜ 全部通过 / ⬜ 存在问题
+````
+
+### 与旧模板的关键格式差异：
+- **移除** `**类型:**` 字段（不再分类为 UI 检查/浏览器调试等）
+- **移除** 独立的 `**预期结果:**` 块（预期结果与每个步骤内联，在 `→ 期望:` 后）
+- `[A]` 步骤：反引号命令 + `→ 期望:` 描述预期输出
+- `[H]` 步骤：精确微指令 + `→ 是/否`
+- 汇总表包含自动/人工步骤数的单独列
+
+## Step 4: 确认流程
+
+**不要直接写入文件。** 而是先展示给用户确认：
+
+### 4.1 显示汇总表
+
+```
+## 验收清单预览
+
+| 统计项 | 数量 |
+|--------|------|
+| 场景数 | N |
+| 验收项数 | M |
+| 自动步骤 [A] | X 个 |
+| 人工步骤 [H] | Y 个 |
+| 纯自动项（无需人类） | Z 个 |
+```
+
+### 4.2 显示项目列表表
+
+```
+| 场景 | 序号 | 验收项 | [A] 步骤 | [H] 步骤 | 来源 |
+|------|------|--------|----------|----------|------|
+| 场景 1 | 1.1 | [名称] | 2 | 1 | Task 3 |
+| ... | ... | ... | ... | ... | ... |
+```
+
+### 4.3 询问确认
+
+使用 `AskUserQuestion` 提供两个选项：
+- **「确认写入」** — 写入文件
+- **「需要修改」** — 收集反馈并重新生成
+
+### 4.4 处理 "需要修改"
+
+如果用户选择 "需要修改"：
+1. 通过 "Other" 文本输入或后续问题收集反馈
+2. 重新生成包含反馈的清单
+3. 重新显示汇总和项目列表
+4. 再次询问确认（循环直到确认或用户取消）
+
+### 4.5 处理现有文件
+
+写入前，检查目标目录是否已存在 `spec-human-verify.md`：
+- 如果存在 → `AskUserQuestion`: 「覆盖现有文件」/「取消」
+- 如果用户取消 → 不写入，停止
+
+### 4.6 写入文件
+
+确认后，将 `spec-human-verify.md` 写入与 spec-plan.md 相同的目录。
+
+## Step 5: 生成后
+
+向用户显示汇总：
+
+```
+## 验收清单已生成
+- 文件: [path to spec-human-verify.md]
+- 场景数: N
+- 验收项数量: M 项
+- 自动步骤 [A]: X 个
+- 人工步骤 [H]: Y 个
+- 纯自动项（无需人类参与）: Z 个
+- 💡 **建议下一步：** 运行 `/sdd-start-human-verify` 开始执行验收
+```
+
+## 规则
+
+- **无外部技能依赖** — 完全独立
+- **无 git 操作** — 不进行 branch、commit、merge、push
+- **中文输出** — 验收清单和所有用户-facing 信息用中文
+- **英文指令** — SKILL.md 内部逻辑用英文
+- **极度详细** — 每个步骤必须可以在没有项目先验知识的情况下执行
+- **完整覆盖** — 从 spec-plan.md 和 spec-design.md 收集所有验证项，不仅是 [HUMAN] 标记的
+- **[A]/[H] 分解** — 每个验收项必须有预标记为 [A] 或 [H] 的子步骤
+- **默认为 [A]** — 仅在真正需要人工视觉/物理交互时使用 [H]
+- **精确的 [H] 微指令** — 告诉人类具体要看哪里、要观察什么、只需回答是/否
+- **复选框格式** — 项目标题**必须**使用 `#### - [ ] N.M` 格式以兼容 sdd-start-human-verify
+- **按场景分组** — 项目**必须**按业务场景分组，而非平铺
+- **写入前确认** — 永远不要在没有用户确认的情况下写入文件

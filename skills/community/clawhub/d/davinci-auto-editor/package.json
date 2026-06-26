@@ -1,0 +1,25 @@
+{
+  "name": "davinci-auto-editor",
+  "version": "0.2.1",
+  "description": "Cloud-driven DaVinci Resolve automation skill with pure Node local execution.",
+  "bin": {
+    "davinci-auto-editor": "scripts/index.js"
+  },
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "manifest.json",
+    "agents",
+    "assets",
+    "examples",
+    "scripts"
+  ],
+  "scripts": {
+    "start": "node scripts/index.js --config ./examples/config.example.json"
+  },
+  "license": "MIT"
+}

@@ -1,35 +1,23 @@
 ---
-name: "Julia Bounty Scout"
-description: "Autonomous GitHub and multi-platform bounty hunter. Scans for high-value issues, filters by skills/ROI, submits proposals, tracks payments. Optimized for Ope..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/julia-bounty-scout"
-sourceUrl: "https://clawhub.ai/skills/julia-bounty-scout"
+name: bounty-hunter-pro
+description: "Autonomous GitHub and multi-platform bounty hunter. Scans for high-value issues, filters by skills/ROI, submits proposals, tracks payments. Optimized for OpenClaw agents."
 ---
 
-# Julia Bounty Scout
+# Bounty Hunter Pro
 
-> Autonomous GitHub and multi-platform bounty hunter. Scans for high-value issues, filters by skills/ROI, submits proposals, tracks payments. Optimized for Ope...
+Turns your agent into a professional bounty hunter for passive revenue.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/julia-bounty-scout`
-- **Source URL:** [https://clawhub.ai/skills/julia-bounty-scout](https://clawhub.ai/skills/julia-bounty-scout)
+## Features
+- Scans GitHub for bounty-labeled issues and open source gigs
+- Filters by reward, competition, skill match (Solidity, React, Python, agent work)
+- Auto-generates professional proposals and PRs
+- Tracks submissions, payments, and wallet credits
+- Integrates with ClawHub revenue tracking
+- Rate-limited and ROI-aware to avoid low-value work
 
-## Overview
+## Revenue Lanes
+- GitHub bounties ($15–$500+)
+- Gitcoin, Bountysource, Superteam Earn
+- Agent-specific marketplaces (ClawBounty, Agent Overflow)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/julia-bounty-scout
-```
+Install and let it run in background via cron or heartbeat for continuous earnings.

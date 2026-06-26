@@ -1,0 +1,66 @@
+{
+  "version": "1.4",
+  "generated_at": "2026-03-05 auto-test",
+  "prompt_files": {
+    "SOUL.md": {
+      "warn": 6282,
+      "alert": 7995
+    },
+    "TOOLS.md": {
+      "warn": 5934,
+      "alert": 7552
+    },
+    "AGENTS.md": {
+      "warn": 12178,
+      "alert": 15499
+    }
+  },
+  "subagent_soul": {
+    "warn": 2934,
+    "alert": 3735
+  },
+  "subagents": {
+    "list": [
+      "pm",
+      "devops",
+      "frontend",
+      "wealth-researcher",
+      "claude",
+      "wealth-risk",
+      "wealth-trader",
+      "qa",
+      "backend",
+      "code-artisan",
+      "wealth-cio",
+      "architect"
+    ]
+  },
+  "token_thresholds": {
+    "warn": 30000000,
+    "alert": 60000000
+  },
+  "session_stale_days": 7,
+  "expensive_models": {
+    "list": [
+      "claude-opus",
+      "claude-opus-4",
+      "opus-4.6",
+      "opus-4-5"
+    ]
+  },
+  "checks": {
+    "prompt_drift": true,
+    "cron_jobs": true,
+    "orphan_sessions": true,
+    "token_trend": true,
+    "cache_config": true,
+    "code_integrity": true,
+    "session_integrity": true
+  },
+  "cache_config": {
+    "message_injector_path": "/Users/macmini/.openclaw/workspace/.openclaw/extensions/message-injector/index.ts",
+    "expected_ttl_ms": 1800000,
+    "bad_ttl_ms": 300000,
+    "check_extract_decl_key": true
+  }
+}

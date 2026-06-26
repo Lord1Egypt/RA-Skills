@@ -1,35 +1,28 @@
 ---
-name: "承运商指数查询"
-description: "基于Excel表格及指标定义，生成承运商维度的指数、行业平均数据，并支持历史趋势图展示与指标构成解析"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indexquery"
-sourceUrl: "https://clawhub.ai/skills/indexquery"
+name: 承运商指数查询
+description: 基于Excel表格及指标定义，生成承运商维度的指数、行业平均数据，并支持历史趋势图展示与指标构成解析
 ---
 
-# 承运商指数查询
+## How To Use 
+当承运商或者运营查询某天的承运商物流指数总分时输出
 
-> 基于Excel表格及指标定义，生成承运商维度的指数、行业平均数据，并支持历史趋势图展示与指标构成解析
+## Rules
+1. 用户输入excel路径，读取excel信息，表头行为统计日期，列为承运商名称
+2. 解析表格内容，查询输入中的承运商名称及统计日期的物流指数总分数据
+3. 计算出在该统计日期下所有承运商物流指数总分的平均值作为行业平均
+4. 计算查询的承运商在该统计日期下与行业平均的差值，及行业排名。若低于行业平均值大于5%，记为严重，红色标签；若低于行业平均值3%，记为警告，黄色标签；若低于行业平均值1%，记为提示，蓝色标签；
+5. 调用http://jingwe.jdl.com/#/indexCenter/indexDirection 获取物流指数总分分子指标的构成，及权重占比。
+6. 调用Delta法定位物流总分变动的主要影响子指标
+7. 点击下载后，调用在该统计日期下该承运商在影响最大子指标的异常明细才进行下载。http://jingwe.jdl.com/#/indexCenter/shipperOverview 在该网址下筛选条件为用户输入承运商、统计日期，省份默认全国
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indexquery`
-- **Source URL:** [https://clawhub.ai/skills/indexquery](https://clawhub.ai/skills/indexquery)
+## input
+- 读取本地文件.xlsx 或 .csv 表格数据
 
-## Overview
+## output
+1. 该承运商在该统计日期的物流指数总分，行业平均值，与行业平均值的差值及标签，该承运商行业排名
+2. 该承运商在该统计日期T-7至统计日期的物流指数总分曲线图，行指标为日期，列值为该承运商在曲线日期的值
+3. 定位影响比例最大的子指标
+4. 输出运营建议及异常明细
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indexquery
-```
+

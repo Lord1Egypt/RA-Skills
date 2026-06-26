@@ -1,0 +1,9 @@
+{
+  "name": "worth-buying",
+  "version": "1.0.0",
+  "description": "什么值得买 - 帮用户看单品和品类全网比价，判断最低到手价、真实折扣和最值得买的选择",
+  "keywords": ["worth-buying", "什么值得买", "shopping", "price-compare", "best-value", "discount", "ecommerce", "3c", "grocery", "pork", "deal"],
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/worth-buying"
+}

@@ -1,35 +1,22 @@
 ---
-name: "home-assistant-custom-integration"
-description: "Indexed by skills.sh from bradsjm/hassio-addons"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "bradsjm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/bradsjm/hassio-addons/home-assistant-custom-integration"
-sourceUrl: "https://skills.sh/bradsjm/hassio-addons/home-assistant-custom-integration"
+name: home-assistant-custom-integration
+description: Example scaffolding and checklists for developing Home Assistant custom integrations. Use when building or reviewing a custom integration based on the included example templates.
 ---
 
-# home-assistant-custom-integration
+# Home Assistant Custom Integration Examples
 
-> Indexed by skills.sh from bradsjm/hassio-addons
+## Workflow
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** bradsjm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/bradsjm/hassio-addons/home-assistant-custom-integration`
-- **Source URL:** [https://skills.sh/bradsjm/hassio-addons/home-assistant-custom-integration](https://skills.sh/bradsjm/hassio-addons/home-assistant-custom-integration)
+- Read the official docs overview first.
+- Use the practical checklist while building.
+- Start from the template example, then layer in complexity with the intermediate and push-data examples.
 
-## Overview
+## References
 
+All reference and script files are relative to the location of this SKILL.md file.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/bradsjm/hassio-addons/home-assistant-custom-integration
-```
+- Official docs overview: `references/official-docs.md`
+- Build checklist: `references/checklist.md`
+- Template example: `references/msp_integration_101_template`
+- Intermediate example: `references/msp_integration_101_intermediate`
+- Push-data example: `references/msp_push_data_example`

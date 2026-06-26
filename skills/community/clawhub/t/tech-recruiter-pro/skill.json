@@ -1,0 +1,198 @@
+{
+  "name": "tech-recruiter-pro",
+  "version": "1.0.2",
+  "description": {
+    "zh": "专门针对技术人员（算法 + 研发）的智能化招聘助手，支持多平台候选人搜索、智能画像分析、个性化邮件生成和 Pipeline 管理",
+    "en": "Intelligent recruiting assistant for technical talents (algorithm + R&D), featuring multi-platform candidate search, smart profile analysis, personalized email generation, and pipeline management"
+  },
+  "dependencies": {
+    "required": [
+      "feishu_bitable",
+      "feishu_doc",
+      "browser",
+      "web_fetch",
+      "web_search"
+    ],
+    "optional": [
+      "tts"
+    ]
+  },
+  "author": {
+    "name": "虾哥 AI Assistant",
+    "email": "support@openclaw.ai"
+  },
+  "keywords": [
+    "recruiting",
+    "hiring",
+    "talent-sourcing",
+    "technical-recruiting",
+    "candidate-search",
+    "github",
+    "google-scholar",
+    "aminer",
+    "arxiv",
+    "email-automation",
+    "ats",
+    "pipeline-management"
+  ],
+  "category": "productivity",
+  "subcategory": "recruiting",
+  "platforms": [
+    "GitHub",
+    "Google Scholar",
+    "AMiner",
+    "arXiv",
+    "LinkedIn",
+    "Reddit",
+    "Discord",
+    "Hugging Face",
+    "X (Twitter)"
+  ],
+  "features": [
+    "Multi-platform candidate search",
+    "Smart profile analysis",
+    "Personalized email generation",
+    "Candidate pipeline management",
+    "Matching score calculation",
+    "Recruiting report export"
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "dependencies": [
+      "requests",
+      "beautifulsoup4",
+      "lxml"
+    ]
+  },
+  "env_vars": {
+    "required": [],
+    "optional": {
+      "GITHUB_TOKEN": {
+        "description": "GitHub API token for enhanced rate limits",
+        "default": "",
+        "required": false
+      },
+      "LINKEDIN_API_KEY": {
+        "description": "LinkedIn API key for professional data",
+        "default": "",
+        "required": false
+      },
+      "LINKEDIN_API_SECRET": {
+        "description": "LinkedIn API secret",
+        "default": "",
+        "required": false
+      },
+      "TWITTER_BEARER_TOKEN": {
+        "description": "Twitter API v2 bearer token",
+        "default": "",
+        "required": false
+      },
+      "FEISHU_APP_ID": {
+        "description": "Feishu app ID for Bitable integration",
+        "default": "",
+        "required": false
+      },
+      "FEISHU_APP_SECRET": {
+        "description": "Feishu app secret",
+        "default": "",
+        "required": false
+      }
+    }
+  },
+  "configuration": {
+    "channels": {
+      "feishu": {
+        "enabled": true,
+        "description": "飞书集成，支持消息推送和 Bitable 数据库"
+      }
+    },
+    "search": {
+      "default_min_citations": 50,
+      "default_min_h_index": 10,
+      "max_results_per_search": 100
+    },
+    "email": {
+      "templates_dir": "templates",
+      "default_language": "zh-CN",
+      "supported_languages": ["zh-CN", "en-US"]
+    }
+  },
+  "usage": {
+    "basic": "搜索 RLHF 方向的算法工程师候选人",
+    "advanced": "分析候选人 GitHub + Google Scholar + AMiner，生成个性化邮件",
+    "pipeline": "管理候选人 Pipeline，导出招聘报告"
+  },
+  "examples": [
+    {
+      "name": "搜索候选人",
+      "command": "搜索 RLHF 方向候选人，目标公司 Moonshot/DeepSeek/DeepMind",
+      "description": "多平台搜索符合条件的候选人"
+    },
+    {
+      "name": "深度分析",
+      "command": "分析这个候选人：github.com/xxx + scholar.google.com/xxx",
+      "description": "整合多平台信息生成完整画像"
+    },
+    {
+      "name": "生成邮件",
+      "command": "为候选人生成个性化邮件，突出他的 RLHF 研究",
+      "description": "基于候选人背景定制招呼邮件"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/skills/tech-recruiter-pro"
+  },
+  "homepage": "https://github.com/openclaw/skills/tree/main/skills/tech-recruiter-pro",
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "changelog": {
+    "1.0.2": {
+      "date": "2026-03-04",
+      "changes": [
+        "Feature: 添加完整的执行逻辑和分步指令 / Added complete execution logic and step-by-step instructions",
+        "Feature: 添加平台解析逻辑和代码示例 / Added platform parsing logic and code examples",
+        "Feature: 添加错误处理指南（反爬/验证码/API 限流）/ Added error handling guide (anti-scraping/captcha/rate limiting)",
+        "Fix: 添加 skill dependencies 声明 / Added skill dependencies declaration",
+        "Docs: 全面中英双语化 / Full bilingual (Chinese/English)",
+        "Docs: 简化功能声明，明确说明需 Feishu Bitable / Simplified feature claims, clarified Feishu Bitable requirement",
+        "Docs: 诚实说明数据存储类型 / Transparent data storage documentation"
+      ]
+    },
+    "1.0.1": {
+      "date": "2026-03-04",
+      "changes": [
+        "Fix: Fixed hardcoded path, added environment variable support / 修复硬编码路径，支持环境变量配置",
+        "Fix: Added complete env_vars declaration (GitHub/LinkedIn/Twitter/Feishu) / 添加完整的 API Token 声明",
+        "Docs: Added data persistence and privacy documentation / 完善数据持久化和隐私说明",
+        "Security: Added API usage recommendations and ToS compliance notes / 添加 API 使用建议和 ToS 合规说明",
+        "Security: Added rate limiting and robots.txt compliance / 添加速率限制和 robots.txt 遵守说明"
+      ]
+    },
+    "1.0.0": {
+      "date": "2026-03-03",
+      "changes": [
+        "Initial release / 首次发布",
+        "Multi-platform search (AMiner, Google Scholar, GitHub, arXiv) / 多平台搜索",
+        "Smart profile analysis / 智能画像分析",
+        "Personalized email generation / 个性化邮件生成",
+        "Pipeline management / Pipeline 管理",
+        "Feishu integration / 飞书集成"
+      ]
+    }
+  },
+  "screenshots": [
+    "docs/screenshots/search_demo.png",
+    "docs/screenshots/profile_analysis.png",
+    "docs/screenshots/email_template.png",
+    "docs/screenshots/pipeline_view.png"
+  ],
+  "related_skills": [
+    "feishu_doc",
+    "feishu_bitable",
+    "feishu_chat",
+    "agent-browser"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "metadata": {
+    "appId": "app-123456",
+    "appLabel": "Example Store",
+    "appType": "wordpress",
+    "serverId": "server-1234",
+    "serverLabel": "Example Production Server",
+    "productionUrl": "https://example.cloudwaysapps.com",
+    "wpAdminUrl": "https://example.cloudwaysapps.com/wp-admin",
+    "wpAdminUser": "admin",
+    "localPath": "/home/example/.openclaw/workspace/cloudways-apps/example-store",
+    "remoteRoot": "public_html",
+    "reviewHints": [
+      "Use SSH/SFTP credentials to mirror wp-content locally for review.",
+      "Do not rely on Cloudways inventory to provide WordPress admin passwords."
+    ],
+    "suggestedCommands": {
+      "rsync": "rsync -avz user@example.host:public_html/wp-content/ /home/example/.openclaw/workspace/cloudways-apps/example-store/wp-content/",
+      "sftp": "sftp user@example.host"
+    }
+  }
+}

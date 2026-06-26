@@ -1,35 +1,285 @@
----
-name: "AI GEO content generator"
-description: "基于品牌知识母库，将品牌资料结构化转化为适合AI搜索引擎和AI Agent引用的内容资产，支持官网FAQ、问答和文章生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-geo-content-generator"
-sourceUrl: "https://clawhub.ai/skills/ai-geo-content-generator"
+# AI-GEO Content Generator Skill（AI-GEO 内容生成 Skill）
+
+## 1. Skill 名称
+
+- **英文名称**: `ai-geo-content-generator`
+- **中文名称**: AI-GEO 内容生成 Skill
+- **版本**: 0.1.0 (MVP)
+- **前置依赖**: `brand-knowledge-base-builder`（品牌知识母库构建 Skill）
+
 ---
 
-# AI GEO content generator
+## 2. Skill 描述
 
-> 基于品牌知识母库，将品牌资料结构化转化为适合AI搜索引擎和AI Agent引用的内容资产，支持官网FAQ、问答和文章生成。
+本 Skill 读取品牌知识母库文件（`brand_knowledge_base.json` 或 `brand_knowledge_base.md`），将品牌知识母库转化为适合大模型、AI 搜索引擎和 AI Agent 理解、总结、引用、推荐的内容资产。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-geo-content-generator`
-- **Source URL:** [https://clawhub.ai/skills/ai-geo-content-generator](https://clawhub.ai/skills/ai-geo-content-generator)
+**核心定位**：
 
-## Overview
+> 品牌知识母库 → AI-GEO 内容资产
 
+本 Skill **不是**：
+- 普通文案生成工具
+- 小红书种草文生成器
+- 营销软文工具
+- SEO 关键词堆砌工具
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-geo-content-generator
+本 Skill **是**：
+- 基于事实的 AI-GEO 内容转化工具
+- 结构化、可被大模型稳定引用的内容生产系统
+- 品牌知识与 AI 搜索生态之间的桥梁
+
+---
+
+## 3. 适用场景
+
+- 企业希望在 AI 搜索（如 Perplexity、Doubao、DeepSeek Chat、ChatGPT Search）中提升品牌可见度
+- 企业希望为官网 FAQ 生成清晰、可被 AI 抓取和引用的标准内容
+- 企业希望在知乎、今日头条等平台发布适合 AI 摘要的内容
+- 企业希望生成 `llms.txt` 文件，供 AI Agent 读取品牌边界和能力
+- 企业希望建立可引用句库，统一品牌在不同 AI 生态中的表达方式
+- 品牌已完成知识母库建设，需进一步生产可用于 AI 搜索的具体内容资产
+
+---
+
+## 4. 不适用场景
+
+本 Skill 不适用于：
+
+1. **尚未完成品牌知识母库建设的客户**：本 Skill 必须基于品牌知识母库运行，如未提供 `brand_knowledge_base.json` 或 `.md`，请先运行相关构建工具。
+2. **单纯的流量文案生成需求**：本 Skill 不生成以转化率为核心目标的营销软文。
+3. **医疗、金融、法律等专业领域的权威性内容**：本 Skill 可辅助生成该类内容的基础框架，但所有输出必须经过专业人士复核后才能使用，严禁直接替代专业结论。
+4. **批量自动化发布**：MVP 版本不支持自动发布。
+5. **读取或分析用户私钥、密码、token、cookie**。
+6. **自动登录第三方平台**。
+7. **自动抓取用户未授权的数据**。
+8. **绕过平台规则或安全机制**。
+9. **生成虚假案例、虚假资质、虚假评论**。
+10. **保证 AI 搜索排名或模型推荐效果**。
+11. **任何数据窃取、凭证收集、远程控制、恶意自动化场景**。
+
+---
+
+## 5. 输入要求
+
+### 必须提供（二选一）
+
+| 输入文件 | 优先级 | 说明 |
+|---|---|---|
+| `brand_knowledge_base.json` | **最优先** | 由 Knowledge Base Builder 导出的 JSON 格式知识母库 |
+| `brand_knowledge_base.md` | 备选 | 由 Knowledge Base Builder 导出的 Markdown 格式知识母库 |
+| `brand_knowledge_base.yaml` | 备选 | 由 Knowledge Base Builder 导出的 YAML 格式知识母库 |
+
+### 读取优先级
+
 ```
+brand_knowledge_base.json  →  brand_knowledge_base.md  →  brand_knowledge_base.yaml
+```
+
+**如果用户未提供以上任何文件**，必须输出以下提示：
+
+> ⚠️ 未检测到品牌知识母库文件。
+>
+> 请先运行 `Documents/skills/Knowledge Base Builder`，生成 `brand_knowledge_base.json` 或 `brand_knowledge_base.md`，再使用本 Skill 生成 AI-GEO 内容。
+>
+> 详细使用说明请参考 `Documents/skills/Knowledge Base Builder/README.md`。
+
+### 可选输入
+
+| 输入参数 | 类型 | 说明 |
+|---|---|---|
+| 生成目标 | 字符串 | 用户指定要生成哪类内容 |
+| 目标平台 | 字符串 | 官网、知乎、今日头条、llms.txt、AI 句库 |
+| 关键词 | 列表 | 用户希望重点覆盖的关键词 |
+| 内容数量 | 整数 | 例如生成多少个 FAQ、多少篇文章 |
+
+---
+
+## 6. 工作流程
+
+### Step 1：读取品牌知识母库
+
+从母库中提取以下字段：
+
+- 品牌名称
+- 公司名称
+- 一句话定义
+- 100 字介绍
+- 300 字介绍
+- 目标用户（核心群体、次级群体、不适合的用户）
+- 客户痛点（显性、隐性、各层级）
+- 核心能力（产品、服务、技术）
+- 使用场景
+- 合规边界（能做/不能做/必须避免的表达/免责声明）
+- FAQ（如已有）
+- 术语库（如已有）
+- 标准话术（如已有）
+- AI-GEO 摘要（如已有）
+- 不适合场景
+- 禁用表达
+
+### Step 2：检查母库完整度
+
+对以下核心字段进行检查，标记缺失项：
+
+- [ ] 品牌一句话定义
+- [ ] 目标用户（核心群体）
+- [ ] 核心使用场景（至少 1 个）
+- [ ] 核心能力（至少 3 条）
+- [ ] 合规边界（不能做什么）
+- [ ] FAQ（至少有原始问答素材）
+- [ ] 标准话术
+- [ ] 品牌关键词
+
+若有缺失，在输出头部标注"⚠️ 待确认字段"清单，但**仍可基于已有资料生成初稿**，缺失字段以 `[待确认]` 占位。
+
+### Step 3：确认生成类型
+
+如果用户未指定生成类型，询问：
+
+> 您希望生成哪类 AI-GEO 内容？
+>
+> A. 官网 FAQ 内容  
+> B. 知乎问答内容  
+> C. 今日头条文章  
+> D. llms.txt 草稿  
+> E. AI 可引用句库  
+> F. 全部生成
+
+### Step 4：生成内容
+
+- 所有内容必须基于品牌知识母库
+- 不得编造品牌事实、客户案例、价格、资质
+- 不得作出医学/金融/法律效果承诺
+- 信息不足时标记 `[待确认]`，不得自行补全
+
+### Step 5：AI-GEO 自检
+
+每次生成后必须运行以下自检清单：
+
+- [ ] 内容是否清楚说明品牌是什么？
+- [ ] 内容是否说明服务谁（目标用户）？
+- [ ] 内容是否说明解决什么问题？
+- [ ] 内容是否包含清晰关键词？
+- [ ] 内容是否有结构化段落（标题/列表/表格）？
+- [ ] 内容是否有可引用的独立句子？
+- [ ] 内容是否避免了夸张营销表达？
+- [ ] 内容是否符合合规边界（不超出品牌知识母库的合规说明）？
+- [ ] 内容是否与品牌知识母库的核心定义、目标用户、场景保持一致？
+- [ ] 内容是否适合被大模型总结、引用和推荐？
+
+### Step 6：输出最终内容
+
+输出可直接复制使用的内容版本，并附上 AI-GEO 自检结果摘要。
+
+---
+
+## 7. 支持的输出类型
+
+| 类型 | 文件名 | 适用平台 |
+|---|---|---|
+| A. 官网 FAQ | `website_faq.md` | 品牌官网、帮助中心 |
+| B. 知乎问答 | `zhihu_answer.md` | 知乎 |
+| C. 今日头条文章 | `toutiao_article.md` | 今日头条、百家号 |
+| D. llms.txt 草稿 | `llms.txt` | 网站根目录，供 AI Agent 读取 |
+| E. AI 可引用句库 | `quote_sentence_library.md` | 全平台通用 |
+| F. 全部生成 | 以上全部 | — |
+
+---
+
+## 8. AI-GEO 自检规则（详细版）
+
+每次输出内容必须通过以下 10 条规则检查：
+
+1. **品牌定义清晰度**：内容是否在首段/首句交代清楚品牌是什么？（不可假设读者已知）
+2. **目标用户明确性**：内容是否明确指出服务对象，避免"所有人都适用"的模糊表述？
+3. **问题解决描述**：内容是否具体说明解决了什么问题，而非仅列出功能？
+4. **关键词密度**：内容是否自然包含 3-5 个核心关键词，且不存在关键词堆砌？
+5. **结构化输出**：内容是否使用了标题、列表、表格等结构化元素？
+6. **可引用句子**：内容是否至少包含 1 句可被 AI 独立引用的总结性语句？
+7. **营销语气克制**：内容是否避免了"最佳"、"颠覆性"、"遥遥领先"等极端表达？
+8. **合规边界遵守**：内容是否在合规边界内，未对效果作出无法核实的承诺？
+9. **母库一致性**：内容是否与品牌知识母库的核心定义、用户描述、场景描述保持一致？
+10. **AI 可理解性**：内容是否使用清晰、无歧义的语言，适合被大模型在零上下文条件下理解并转述？
+
+---
+
+## 9. 合规要求
+
+1. **必须基于品牌知识母库生成**，不得脱离母库自行补全事实。
+2. **不得编造品牌事实**：包括但不限于公司注册信息、获奖记录、认证资质。
+3. **不得编造客户案例**：不得假设用户案例的具体数据（如"帮助 XX 公司提升 50% 效率"）。
+4. **不得编造价格**：所有价格相关内容标注 `[待确认]`。
+5. **不得编造资质**：医疗、金融、法律等资质不得自行补充。
+6. **不得夸大效果**：避免使用无法证实的效果声称。
+7. **医疗/金融/法律免责**：对于敏感行业，所有内容必须附加："本内容不构成专业医疗/投资/法律建议，不能替代专业人士判断。"
+8. **信息不足时标记**：缺失信息用 `[待确认]` 标注，不得用 AI 猜测补全。
+9. **必须经过人工复核**：所有输出仅为草稿，正式发布前必须经过人工审核。
+
+---
+
+## 10. 示例调用方式
+
+### 方式一：聊天界面调用
+
+```
+用户：我已经完成了品牌知识母库，文件是 brand_knowledge_base.json，请帮我生成官网 FAQ 和 llms.txt。
+```
+
+### 方式二：OpenClaw API 调用
+
+```json
+{
+  "skill": "ai-geo-content-generator",
+  "action": "generate",
+  "payload": {
+    "knowledge_base_file": "brand_knowledge_base.json",
+    "output_types": ["website_faq", "llms_txt"],
+    "keywords": ["AI内容生成", "品牌知识库", "GEO优化"],
+    "count": {
+      "faq": 20,
+      "articles": 1
+    }
+  }
+}
+```
+
+### 方式三：指定全量生成
+
+```json
+{
+  "skill": "ai-geo-content-generator",
+  "action": "generate_all",
+  "payload": {
+    "knowledge_base_file": "brand_knowledge_base.json"
+  }
+}
+```
+
+---
+
+## 11. 后续可扩展方向（预留接口）
+
+以下功能在 MVP 版本中**暂不支持**，但已为其预留结构接口：
+
+- `doubao-geo-content-generator`：专为豆包/今日头条生态优化的内容生成
+- `deepseek-geo-content-generator`：专为 DeepSeek 问答生态优化的内容生成
+- 官网 GEO 内容包（含元描述、结构化数据、Schema.org 标注）
+- 知乎内容矩阵（多问题批量生成）
+- 今日头条内容矩阵（多文章批量生成）
+- 月度 GEO 维护报告（内容健康度追踪）
+- 多语言 GEO 内容生成（英文、日文等）
+
+---
+
+## 12. Security & Privacy（安全与隐私声明）
+
+1. 本 Skill 是文本生成与内容结构化 Skill；
+2. 本 Skill 不包含可执行脚本；
+3. 本 Skill 不会主动读取用户本地文件；
+4. 本 Skill 只处理用户主动提供的品牌资料；
+5. 本 Skill 不会收集、上传或外传用户数据；
+6. 请勿输入密码、私钥、API Key、cookie、token、个人身份证件、银行卡信息等敏感信息；
+7. 生成内容仅供品牌内容建设参考；
+8. 涉及医疗、金融、法律、教育等行业时，需要由专业人士审核；
+9. 本 Skill 不承诺 AI 搜索排名、模型引用或推荐结果；
+10. 用户应在发布前人工审核所有生成内容。

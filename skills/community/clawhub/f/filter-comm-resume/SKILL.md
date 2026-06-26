@@ -1,35 +1,42 @@
----
-name: "筛选沟通简历"
-description: "从BOSS直聘沟通列表筛选符合全日制本科、2-8年经验、主用React且优先熟练AI工具的候选人简历。"
-category: "other"
-source: "ClawHub"
-tags: [boss, recruit, resume]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/filter-comm-resume"
-sourceUrl: "https://clawhub.ai/skills/filter-comm-resume"
----
+# 筛选沟通简历 Skill
 
-# 筛选沟通简历
+从BOSS直聘沟通列表中筛选符合招聘要求的候选人。
 
-> 从BOSS直聘沟通列表筛选符合全日制本科、2-8年经验、主用React且优先熟练AI工具的候选人简历。
+## 招聘要求（必须严格遵守）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/filter-comm-resume`
-- **Source URL:** [https://clawhub.ai/skills/filter-comm-resume](https://clawhub.ai/skills/filter-comm-resume)
+- **学历**：统招全日制本科（不含成人教育/自学考试/函授/网络教育）
+- **经验**：2-8年
+- **技术栈**：React作为主技术栈（可用Vue但必须主React）
+- **AI要求**：熟练AI工具优先（cursor、claude、AI agent、大模型、LLM、智能客服、copilot等）
 
-## Overview
+## 筛选流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/filter-comm-resume
+### 1. 打开BOSS直聘沟通列表
 ```
+https://www.zhipin.com/web/chat/index
+```
+
+### 2. 逐个点开候选人查看详情
+- 使用上下键导航，按Enter打开详情
+- **必须查看的内容**：
+  - 教育背景（确认是统招全日制本科）
+  - 工作经历（确认经验年限）
+  - 技术栈（确认主React）
+  - 期望薪资
+
+### 3. 记录符合要求的候选人
+- 姓名
+- 学历/毕业院校
+- 经验年限
+- 期望薪资
+- 技术栈
+
+### 4. 通过钉钉发送给用户
+使用message工具发送到用户的钉钉账号
+
+## 注意事项
+- 每次只筛选当前页面可见的候选人
+- 如果页面有未读红点，优先处理
+- 筛选结果必须和页面上显示的**完全一致**，不要自己猜测
+- 经验超8年或不满2年的直接跳过
+- 大专学历直接跳过

@@ -1,0 +1,14 @@
+{
+  "name": "prompt-buttons",
+  "version": "1.0.0",
+  "description": "A helper skill that wraps agent prompts with short, consistent button menus (Yes/No or single digits) for tappable interactions.",
+  "author": "jin",
+  "license": "MIT",
+  "keywords": ["openclaw", "skill", "buttons", "prompts", "telegram", "ux"],
+  "main": "index.js",
+  "clawhub": {
+    "slug": "prompt-buttons",
+    "tags": ["ux", "buttons", "prompts", "telegram", "interaction"],
+    "visibility": "public"
+  }
+}

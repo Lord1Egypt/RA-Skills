@@ -1,35 +1,97 @@
 ---
-name: "terraform-infrastructure"
-description: "Indexed by skills.sh from aj-geddes/useful-ai-prompts"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aj-geddes"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aj-geddes/useful-ai-prompts/terraform-infrastructure"
-sourceUrl: "https://skills.sh/aj-geddes/useful-ai-prompts/terraform-infrastructure"
+name: terraform-infrastructure
+description: >
+  Infrastructure as Code using Terraform with modular components, state
+  management, and multi-cloud deployments. Use for provisioning and managing
+  cloud resources.
 ---
 
-# terraform-infrastructure
+# Terraform Infrastructure
 
-> Indexed by skills.sh from aj-geddes/useful-ai-prompts
+## Table of Contents
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aj-geddes
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aj-geddes/useful-ai-prompts/terraform-infrastructure`
-- **Source URL:** [https://skills.sh/aj-geddes/useful-ai-prompts/terraform-infrastructure](https://skills.sh/aj-geddes/useful-ai-prompts/terraform-infrastructure)
+- [Overview](#overview)
+- [When to Use](#when-to-use)
+- [Quick Start](#quick-start)
+- [Reference Guides](#reference-guides)
+- [Best Practices](#best-practices)
 
 ## Overview
 
+Build scalable infrastructure as code with Terraform, managing AWS, Azure, GCP, and on-premise resources through declarative configuration, remote state, and automated provisioning.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aj-geddes/useful-ai-prompts/terraform-infrastructure
+## When to Use
+
+- Cloud infrastructure provisioning
+- Multi-environment management (dev, staging, prod)
+- Infrastructure versioning and code review
+- Cost tracking and resource optimization
+- Disaster recovery and environment replication
+- Automated infrastructure testing
+- Cross-region deployments
+
+## Quick Start
+
+Minimal working example:
+
+```hcl
+# terraform/main.tf
+terraform {
+  required_version = ">= 1.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  # Remote state configuration
+  backend "s3" {
+    bucket         = "terraform-state-prod"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-locks"
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+
+  default_tags {
+// ... (see reference guides for full implementation)
 ```
+
+## Reference Guides
+
+Detailed implementations in the `references/` directory:
+
+| Guide | Contents |
+|---|---|
+| [AWS Infrastructure Module](references/aws-infrastructure-module.md) | AWS Infrastructure Module |
+| [Variables and Outputs](references/variables-and-outputs.md) | Variables and Outputs |
+| [Terraform Deployment Script](references/terraform-deployment-script.md) | Terraform Deployment Script |
+
+## Best Practices
+
+### ✅ DO
+
+- Use remote state (S3, Terraform Cloud)
+- Implement state locking (DynamoDB)
+- Organize code into modules
+- Use workspaces for environments
+- Apply tags consistently
+- Use variables for flexibility
+- Implement code review before apply
+- Keep sensitive data in separate variable files
+
+### ❌ DON'T
+
+- Store state files locally in git
+- Use hardcoded values
+- Mix environments in single state
+- Skip terraform plan review
+- Use root module for everything
+- Store secrets in code
+- Disable state locking

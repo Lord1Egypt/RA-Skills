@@ -1,0 +1,66 @@
+name: yunlv-pod-agent
+version: 1.1.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to build or optimize a POD (Print on Demand) business
+  using AI Agents. Use when generating POD operation strategies and recommendations
+  like product listing, design generation, and customer service. Use when selecting
+  AI tools for POD design, store optimization advice, or sales strategy. Use when
+  user mentions "POD策略", "按需打印", "AI辅助运营", "POD设计", "上架建议", "爆款裂变",
+  "POD智能体", "POD智能化", "print on demand AI".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI TradeGPT API
+  url: https://api.yunlvai.com
+  purpose: POD运营策略建议与工具推荐
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: e-commerce-automation
+tags:
+- POD
+- 按需打印
+- AI Agent
+- POD策略
+- AI助手
+- 电商智能化
+- POD设计
+- 店群策略
+triggers:
+- POD策略
+- 按需打印
+- AI辅助运营
+- POD设计
+- 上架建议
+- 爆款裂变
+- POD智能体
+- POD智能化
+- print on demand
+- POD AI agent
+pricing:
+  free:
+    features:
+    - 基础POD策略咨询
+    - 工具推荐
+    - 设计公式指南
+  basic:
+    price: 199
+    currency: CNY
+    period: month
+    features:
+    - 完整工具矩阵
+    - 运营清单
+    - 设计优化建议
+  pro:
+    price: 599
+    currency: CNY
+    period: month
+    features:
+    - 全链路搭建指导
+    - 店群运营策略
+    - 定制化方案

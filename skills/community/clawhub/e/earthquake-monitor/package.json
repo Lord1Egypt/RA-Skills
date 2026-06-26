@@ -1,0 +1,28 @@
+{
+  "name": "earthquake-monitor",
+  "version": "1.1.1",
+  "description": "Real-time earthquake monitoring for China, Taiwan, and Japan. v1.1.1 - Multi-language support, enhanced location matching, security & performance optimization",
+  "author": {
+    "name": "fungjcode",
+    "github": "https://github.com/fungjcode"
+  },
+  "keywords": [
+    "earthquake",
+    "seismic",
+    "CENC",
+    "JMA",
+    "CWA",
+    "monitor",
+    "alert",
+    "i18n"
+  ],
+  "homepage": "https://github.com/fungjcode/earthquake-monitor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fungjcode/earthquake-monitor.git"
+  },
+  "readme": "SKILL.md",
+  "dependencies": {
+    "ws": "^8.19.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "license_key": "eyJwcm9kdWN0X2lkIjoiZmVpc2h1LWNhbGVuZGFyLXNjaGVkdWxlciIsInVzZXJfaWQiOiJvdV80YWZlOTUzMjA1YWU4ZDYzYmYyMTJhMTcyZmQxNTNkYiIsInVzZXJfbmFtZSI6Ilx1Njg4MVx1NjcxZFx1NGYxZiIsInBsYW4iOiJwcm9mZXNzaW9uYWwiLCJpc3N1ZV9kYXRlIjoiMjAyNi0wMy0xNlQxOTowNjoxOS44MTE4MjEiLCJleHBpcnlfZGF0ZSI6IjIwMjctMDMtMTFUMTk6MDY6MTkuODExODI4IiwiZmVhdHVyZXMiOnsibWF4X21lZXRpbmdzIjoxMDAsIm1heF91c2VycyI6MTAsImZlYXR1cmVzIjpbInNtYXJ0X3NjaGVkdWxpbmciLCJiYXRjaF9tYW5hZ2VtZW50IiwiYWR2YW5jZWRfcmVwb3J0cyIsImFwaV9hY2Nlc3MiXSwic3VwcG9ydF9sZXZlbCI6ImVtYWlsIn19.fdbbc9c6178b2966b1598a43816c5403c79b326c6986dd7023575b9254c4c92c",
+  "license_data": {
+    "product_id": "feishu-calendar-scheduler",
+    "user_id": "ou_4afe953205ae8d63bf212a172fd153db",
+    "user_name": "梁朝伟",
+    "plan": "professional",
+    "issue_date": "2026-03-16T19:06:19.811821",
+    "expiry_date": "2027-03-11T19:06:19.811828",
+    "features": {
+      "max_meetings": 100,
+      "max_users": 10,
+      "features": [
+        "smart_scheduling",
+        "batch_management",
+        "advanced_reports",
+        "api_access"
+      ],
+      "support_level": "email"
+    }
+  },
+  "generated_at": "2026-03-16T19:06:19.811875"
+}

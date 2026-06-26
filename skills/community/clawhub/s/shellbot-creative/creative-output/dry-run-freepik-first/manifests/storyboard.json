@@ -1,0 +1,107 @@
+{
+  "project_name": "create-a-45-second-product-marketing-video-for-a",
+  "format": "product-marketing",
+  "aspect_ratio": "16:9",
+  "total_duration_seconds": 45,
+  "scene_count": 8,
+  "creative_brief": "Create a 45-second product marketing video for an AI note-taking app for founders",
+  "cta": "Try it today",
+  "scenes": [
+    {
+      "id": 1,
+      "name": "Scene 1: Hook",
+      "start_second": 0,
+      "duration_seconds": 6,
+      "goal": "Hook",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Hook scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "dynamic opener with brand color burst",
+      "narration": "Hook: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "Hook - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 2,
+      "name": "Scene 2: Pain",
+      "start_second": 6,
+      "duration_seconds": 6,
+      "goal": "Pain",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Pain scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "fast cuts of user frustration",
+      "narration": "Pain: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "Pain - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 3,
+      "name": "Scene 3: Reveal",
+      "start_second": 12,
+      "duration_seconds": 6,
+      "goal": "Reveal",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Reveal scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "hero product reveal with camera push-in",
+      "narration": "Reveal: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "Reveal - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 4,
+      "name": "Scene 4: Features",
+      "start_second": 18,
+      "duration_seconds": 6,
+      "goal": "Features",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Features scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "interface zooms and feature callouts",
+      "narration": "Features: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "Features - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 5,
+      "name": "Scene 5: Proof",
+      "start_second": 24,
+      "duration_seconds": 6,
+      "goal": "Proof",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Proof scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "testimonial or metric-driven proof scene",
+      "narration": "Proof: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "Proof - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 6,
+      "name": "Scene 6: CTA",
+      "start_second": 30,
+      "duration_seconds": 5,
+      "goal": "CTA",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. CTA scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "clean end card with strong call to action",
+      "narration": "CTA: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "CTA - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 7,
+      "name": "Scene 7: Hook",
+      "start_second": 35,
+      "duration_seconds": 5,
+      "goal": "Hook",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Hook scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "dynamic opener with brand color burst",
+      "narration": "Hook: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+      "on_screen_text": "Hook - Create a 45-second product marketing video for an AI note-taking app for",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    },
+    {
+      "id": 8,
+      "name": "Scene 8: Pain",
+      "start_second": 40,
+      "duration_seconds": 5,
+      "goal": "Pain",
+      "visual_prompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Pain scene, 16:9, modern cinematic lighting.",
+      "animation_hint": "fast cuts of user frustration",
+      "narration": "Pain: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused. Try it today",
+      "on_screen_text": "Try it today",
+      "sfx_hint": "subtle transition whoosh and clean UI clicks"
+    }
+  ]
+}

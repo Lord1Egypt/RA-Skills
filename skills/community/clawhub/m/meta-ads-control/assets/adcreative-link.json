@@ -1,0 +1,16 @@
+{
+  "name": "Link creative - example",
+  "object_story_spec": {
+    "page_id": "<page_id>",
+    "link_data": {
+      "link": "https://example.com/",
+      "message": "Primary text goes here.",
+      "name": "Headline goes here",
+      "description": "Description goes here",
+      "call_to_action": {
+        "type": "LEARN_MORE"
+      },
+      "image_hash": "<image_hash>"
+    }
+  }
+}

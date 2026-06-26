@@ -1,0 +1,109 @@
+{
+  "name": "Prompt Leaking",
+  "category": "prompt_leak",
+  "description": "检测试图窃取系统提示词或指令的攻击（中英文）",
+  "patterns": [
+    {
+      "id": "show_instructions",
+      "pattern": "(?:show|reveal|display|print|output)\\s+(?:me\\s+)?(?:your\\s+)?(?:all\\s+)?(?:the\\s+)?(?:instructions?|prompt|system|prompt|guidelines?|rules?)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "what_is_prompt",
+      "pattern": "what(?:\\s+is)?\\s+(?:your|the)\\s+(?:system\\s+)?(?:prompt|instructions?|original|initial)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "repeat_prompt",
+      "pattern": "(?:repeat|echo)\\s+(?:your|the)\\s+(?:prompt|instructions?|system)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "system_prompt",
+      "pattern": "(?:tell|share|list)\\s+(?:me|us)\\s+(?:your|the)\\s+system\\s+(?:prompt|message|instructions?)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "reveal_prompt",
+      "pattern": "reveal(?:\\s+your|\\s+the)?\\s+(?:hidden|system|original|initial)?\\s+(?:prompt|instructions?|guidelines?)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "ignore_previous",
+      "pattern": "(?:forget|ignore)\\s+(?:everything\\s+)?(?:above|below|previous)\\s+(?:and|then)",
+      "weight": 0.7,
+      "severity": "medium"
+    },
+    {
+      "id": "debug_mode",
+      "pattern": "(?:debug|test)\\s+(?:mode|output)\\s+(?:prompt|instructions?|response)",
+      "weight": 0.6,
+      "severity": "medium"
+    },
+    {
+      "id": "dump_prompt",
+      "pattern": "(?:dump|extract|get)\\s+(?:all\\s+)?(?:your|the)\\s+(?:system\\s+)?(?:prompts?|instructions?|rules?)",
+      "weight": 0.95,
+      "severity": "critical"
+    },
+    {
+      "id": "copy_prompt",
+      "pattern": "(?:copy|clone|replicate)\\s+(?:your|my)\\s+(?:prompt|instructions?)",
+      "weight": 0.8,
+      "severity": "high"
+    },
+    {
+      "id": "base_prompt",
+      "pattern": "(?:what|show)\\s+(?:was|is)\\s+your\\s+base\\s+(?:prompt|system)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "cn_show_prompt",
+      "pattern": "(?:告诉|显示|展示|给我看|输出)(?:我|你|你们的)?(?:系统|原始|初始)?(?:提示|指令|prompt|系统词)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "cn_what_is_prompt",
+      "pattern": "(?:什么是|你的|你的)系统(?:提示|指令|prompt|系统词|角色设定)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "cn_ignore_system",
+      "pattern": "(?:忽略|忘记|不要管)(?:所有|之前|上面|下面的)(?:系统|默认|原始)?(?:提示|指令|规则|prompt)",
+      "weight": 0.8,
+      "severity": "high"
+    },
+    {
+      "id": "cn_reveal_system",
+      "pattern": "(?:泄露|暴露|透露)(?:你的|系统|原始|初始)(?:提示|指令|prompt|设定)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "cn_ignore_tell",
+      "pattern": "(?:忽略|忽略掉|忘记|不要管).*(?:默认|所有|之前|上面|下面).*提示词",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "cn_api_config",
+      "pattern": "(?:告诉我|获取|查看|说出)(?:你|AI|系统|OpenClaw|你的)(?:配置|api|API|密钥|key|模型|设定|指令|prompt)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "cn_what设定",
+      "pattern": "(?:什么是|你的|告诉我)(?:系统|原始|初始|基础)?(?:提示|指令|prompt|系统词|角色设定|系统设定)",
+      "weight": 0.85,
+      "severity": "high"
+    }
+  ]
+}

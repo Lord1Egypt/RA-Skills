@@ -1,0 +1,33 @@
+[
+  {
+    "id": 5731,
+    "name": "20251203145629",
+    "gender_name": "女",
+    "age": 20,
+    "role_type_name": "卡通"
+  },
+  {
+    "id": 4052,
+    "name": "李白",
+    "gender_name": "男",
+    "age": 0,
+    "role_type_name": "卡通"
+  },
+
+  {
+    "id": 10965,
+    "name": "龙源",
+    "gender_name": "男",
+    "age": 20,
+    "role_type_name": "真人"
+  },
+  {
+    "id": 10958,
+    "name": "黎晓",
+    "gender_name": "女",
+    "age": 30,
+    "role_type_name": "真人"
+  }
+]
+
+

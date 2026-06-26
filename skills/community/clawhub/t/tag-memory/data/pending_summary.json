@@ -1,0 +1,27 @@
+{
+  "period": "2026-03 ~ 2026-03",
+  "decisions": [
+    "我选择了 PostgreSQL 数据库，因为性能好",
+    "用户选择了 PostgreSQL 而不是 MongoDB，原因是性能更好"
+  ],
+  "preferences": [
+    "我喜欢用 tabs 缩进，不喜欢 spaces",
+    "测试记忆：用户偏好 tabs 缩进"
+  ],
+  "projects": [
+    "我的项目叫电商平台，用 React + Node.js"
+  ],
+  "learned": [
+    "Node.js 测试记忆",
+    "我正在学习 Python 编程"
+  ],
+  "events": [],
+  "issues": [],
+  "other": [
+    "Final Node.js 集成测试记忆",
+    "通过 Node.js API 存储的记忆",
+    "项目经理是张三，他很专业"
+  ],
+  "verified": false,
+  "created_at": "2026-03-30T15:18:30.246896"
+}

@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "backupDir": "~/.openclaw/backups",
+  "maxBackups": 30,
+  "autoBackup": true,
+  "watchFiles": [
+    "~/.openclaw/openclaw.json",
+    "~/.openclaw/workspace/SESSION-STATE.md",
+    "~/.openclaw/workspace/MEMORY.md",
+    "~/.openclaw/workspace/USER.md",
+    "~/.openclaw/workspace/SOUL.md",
+    "~/.openclaw/workspace/AGENTS.md",
+    "~/.openclaw/workspace/HEARTBEAT.md",
+    "~/.openclaw/workspace/IDENTITY.md",
+    "~/.openclaw/workspace/TOOLS.md",
+    "~/.openclaw/workspace/proactive-tracker.md"
+  ],
+  "excludePatterns": [
+    "*.log",
+    "*.tmp",
+    "cache/*",
+    "skills/*",
+    "memory/working-buffer.md",
+    "backups/*"
+  ],
+  "compression": true,
+  "encryption": false,
+  "encryptionNote": "当前版本不支持加密。敏感信息请自行加密或使用外部加密工具。"
+}

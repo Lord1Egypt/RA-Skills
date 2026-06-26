@@ -1,0 +1,140 @@
+{
+  "version": "1.0",
+  "description": "知乎页面选择器配置（primary + fallbacks 结构）",
+  "notes": "前端改版时更新此文件，fallbacks 按优先级排列",
+  "login": {
+    "avatar": {
+      "primary": ".AppHeader-profileAvatar",
+      "fallbacks": [
+        ".Avatar",
+        "img[data-za-detail-view-path-module*='Avatar']"
+      ]
+    },
+    "signinButton": {
+      "primary": ".SignContainer-accountLogin",
+      "fallbacks": [
+        ".SignFlow-accountInput",
+        "button:contains('登录')"
+      ]
+    }
+  },
+  "article_editor": {
+    "url": "https://zhuanlan.zhihu.com/write",
+    "titleInput": {
+      "primary": "textarea[placeholder*='标题']",
+      "fallbacks": [
+        ".WriteIndex-titleInput input",
+        ".WriteIndex-titleInput textarea"
+      ]
+    },
+    "contentEditor": {
+      "primary": "[contenteditable]",
+      "fallbacks": [
+        ".ProseMirror",
+        "[contenteditable='true']"
+      ]
+    },
+    "publishSettingsButton": {
+      "primary": "button:has-text('发布设置')",
+      "fallbacks": [
+        ".WriteIndex-submitButton"
+      ]
+    },
+    "publishButton": {
+      "primary": ".PublishPanel-submitButton",
+      "fallbacks": [
+        "button:has-text('发布')",
+        ".Modal button:has-text('发布')"
+      ]
+    },
+    "coverUpload": {
+      "primary": "input[type='file'][accept='image/*']"
+    }
+  },
+  "thought": {
+    "trigger": {
+      "primary": "button:has-text('发想法')",
+      "fallbacks": [
+        ".TopstoryItem-createButton",
+        "button:has-text('想法')"
+      ]
+    },
+    "input": {
+      "primary": "[contenteditable='true']",
+      "fallbacks": [
+        ".RichTextEditor-inner",
+        ".Editable-UniToolbar",
+        ".MomentEditor-editor"
+      ]
+    },
+    "publishButton": {
+      "primary": "button:has-text('发布')",
+      "fallbacks": [
+        ".Button:has-text('发布')",
+        ".Card-button"
+      ]
+    }
+  },
+  "answer": {
+    "editor": {
+      "primary": ".AnswerForm-editor .ProseMirror",
+      "fallbacks": [
+        ".ProseMirror",
+        "[contenteditable='true']"
+      ]
+    },
+    "submit": {
+      "primary": ".AnswerForm-submit",
+      "fallbacks": [
+        "button:contains('提交回答')"
+      ]
+    }
+  },
+  "ask": {
+    "titleInput": {
+      "primary": ".QuestionForm-title input",
+      "fallbacks": [
+        "input[placeholder*='请写下你的问题']"
+      ]
+    },
+    "detailInput": {
+      "primary": ".QuestionForm-detail .ProseMirror",
+      "fallbacks": [
+        "[contenteditable='true']"
+      ]
+    },
+    "submitButton": {
+      "primary": ".QuestionForm-submit",
+      "fallbacks": [
+        "button:contains('提交问题')"
+      ]
+    }
+  },
+  "interaction": {
+    "likeButton": {
+      "primary": ".VoteButton",
+      "fallbacks": [
+        "button:contains('赞同')",
+        ".LikeButton"
+      ]
+    },
+    "commentInput": {
+      "primary": ".CommentEditor-input",
+      "fallbacks": [
+        "[placeholder*='写下你的评论']"
+      ]
+    },
+    "commentSubmit": {
+      "primary": ".CommentEditor-submit",
+      "fallbacks": [
+        "button:contains('发布评论')"
+      ]
+    },
+    "followButton": {
+      "primary": ".FollowButton",
+      "fallbacks": [
+        "button:contains('关注')"
+      ]
+    }
+  }
+}

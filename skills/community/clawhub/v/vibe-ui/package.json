@@ -1,0 +1,41 @@
+{
+  "name": "vibe-ui",
+  "version": "1.1.0",
+  "private": false,
+  "description": "Local-first DESIGN.md workflow skill for AI UI generation and design consistency checks.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "vibe-ui": "./scripts/design.mjs"
+  },
+  "scripts": {
+    "design": "node scripts/design.mjs",
+    "design:workflow": "node scripts/design.mjs workflow",
+    "design:list": "node scripts/design.mjs list",
+    "design:search": "node scripts/design.mjs search",
+    "design:recommend": "node scripts/design.mjs recommend",
+    "design:read": "node scripts/design.mjs read",
+    "design:use": "node scripts/design.mjs use",
+    "design:like": "node scripts/design.mjs like",
+    "design:generate": "node scripts/design.mjs generate",
+    "design:template": "node scripts/design.mjs template",
+    "design:invariants": "node scripts/design.mjs invariants",
+    "design:brief-check": "node scripts/design.mjs brief-check",
+    "design:check": "node scripts/design.mjs check",
+    "design:preview": "node scripts/design.mjs preview",
+    "design:browse": "node scripts/design.mjs browse",
+    "design:submit": "node scripts/design.mjs submit",
+    "design:extract-url": "node scripts/design.mjs extract-url",
+    "design:import": "node scripts/design.mjs import",
+    "design:report": "node scripts/design.mjs report",
+    "design:critique": "node scripts/design.mjs critique",
+    "design:polish": "node scripts/design.mjs polish",
+    "sync:open-design": "node scripts/sync-open-design.mjs",
+    "publish:kit": "node scripts/publish-kit.mjs",
+    "release:check": "npm test && node --check scripts/design.mjs && node --check scripts/publish-kit.mjs && node --check scripts/sync-open-design.mjs && node scripts/publish-kit.mjs --platform all --package minimal --check && node scripts/publish-kit.mjs --platform all --package standard --check && node scripts/publish-kit.mjs --platform all --package offline-full --check",
+    "release:dry-run": "node scripts/publish-kit.mjs --platform all --package minimal --dry-run && node scripts/publish-kit.mjs --platform all --package standard --dry-run && node scripts/publish-kit.mjs --platform all --package offline-full --dry-run",
+    "release:zip": "npm run release:check && node scripts/publish-kit.mjs --platform all --package minimal && node scripts/publish-kit.mjs --platform all --package standard && node scripts/publish-kit.mjs --platform all --package offline-full",
+    "release:smoke": "root=$(pwd) && tmp=$(mktemp -d) && node scripts/design.mjs list && node scripts/design.mjs workflow landing --design linear --template open-design:saas-landing && cd \"$tmp\" && node \"$root/scripts/design.mjs\" use linear && node \"$root/scripts/design.mjs\" read \"AI release governance landing for healthcare compliance teams\" --page landing --design linear --template open-design:saas-landing && node \"$root/scripts/design.mjs\" brief-check landing --design linear --template open-design:saas-landing && node \"$root/scripts/design.mjs\" generate landing --template open-design:saas-landing && node \"$root/scripts/design.mjs\" report DESIGN.md && node \"$root/scripts/design.mjs\" critique DESIGN.md && node \"$root/scripts/design.mjs\" polish DESIGN.md",
+    "test": "node --test"
+  }
+}

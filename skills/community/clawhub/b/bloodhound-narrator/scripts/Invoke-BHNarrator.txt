@@ -1,0 +1,147 @@
+<#
+.SYNOPSIS
+    BloodHound Narrator — local attack-path analysis and dual-layer reporting.
+
+.DESCRIPTION
+    Ingests BloodHound Cypher export JSON, classifies every attack path by
+    severity (Critical / High / Medium / Low), and generates a Markdown report
+    with two layers:
+      1. CISO executive prose — risk context, business impact, severity summary.
+      2. Technical remediation appendix — step-by-step hardening playbook.
+
+    Pure local PowerShell — no API calls, no data leaves the network.
+
+.PARAMETER InputFile
+    Path to the BloodHound Cypher export JSON file.
+
+.PARAMETER OutputFile
+    Path for the generated Markdown report. Defaults to
+    BH-Narrator-Report-<timestamp>.md in the current directory.
+
+.PARAMETER MinSeverity
+    Minimum severity to include in the report. Defaults to 'Low' (all paths).
+    Valid values: Critical, High, Medium, Low.
+
+.PARAMETER PassThru
+    When set, also returns the classified path objects to the pipeline.
+
+.EXAMPLE
+    .\Invoke-BHNarrator.ps1 -InputFile .\export.json
+
+.EXAMPLE
+    .\Invoke-BHNarrator.ps1 -InputFile .\export.json -OutputFile .\report.md -MinSeverity High
+
+.EXAMPLE
+    .\Invoke-BHNarrator.ps1 -InputFile .\export.json -PassThru | Format-Table
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory, Position = 0, HelpMessage = 'Path to BloodHound Cypher export JSON')]
+    [ValidateScript({ Test-Path $_ -PathType Leaf })]
+    [string]$InputFile,
+
+    [Parameter(Position = 1)]
+    [string]$OutputFile,
+
+    [Parameter()]
+    [ValidateSet('Critical','High','Medium','Low')]
+    [string]$MinSeverity = 'Low',
+
+    [switch]$PassThru
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+# ── Resolve script root for loading modules ──
+# Support both direct invocation and temp-copy via bh-narrator.sh (BH_NARRATOR_DIR env var)
+$scriptRoot = $env:BH_NARRATOR_DIR
+if (-not $scriptRoot) { $scriptRoot = $PSScriptRoot }
+if (-not $scriptRoot) { $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition }
+if (-not $scriptRoot) { $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path }
+
+# ── Load modules ──
+. ([ScriptBlock]::Create((Get-Content -Path (Join-Path $scriptRoot 'lib' 'SeverityClassifier.txt') -Raw)))
+. ([ScriptBlock]::Create((Get-Content -Path (Join-Path $scriptRoot 'lib' 'NarrativeTemplates.txt') -Raw)))
+
+# ── Severity ordering for filtering ──
+$severityOrder = @{ Critical = 4; High = 3; Medium = 2; Low = 1 }
+$minLevel = $severityOrder[$MinSeverity]
+
+# ── Default output path ──
+if (-not $OutputFile) {
+    $ts = Get-Date -Format 'yyyyMMdd-HHmmss'
+    $OutputFile = Join-Path (Get-Location) "BH-Narrator-Report-${ts}.md"
+}
+
+# ── Ingest ──
+Write-Host '[*] Reading BloodHound export...' -ForegroundColor Cyan
+$raw = Get-Content -Path $InputFile -Raw | ConvertFrom-Json
+
+if (-not $raw.paths -or @($raw.paths).Count -eq 0) {
+    Write-Warning 'No attack paths found in the input file.'
+    return
+}
+
+$domain     = if ($raw.meta.domain) { $raw.meta.domain } else { 'UNKNOWN' }
+$exportDate = if ($raw.meta.PSObject.Properties.Match('exportDate').Count -gt 0) { $raw.meta.exportDate } else { $null }
+$bhVersion  = if ($raw.meta.PSObject.Properties.Match('bloodhoundVersion').Count -gt 0) { $raw.meta.bloodhoundVersion } else { $null }
+
+Write-Host "[*] Domain: $domain | Paths: $(@($raw.paths).Count)" -ForegroundColor Cyan
+
+# ── Classify ──
+Write-Host '[*] Classifying attack paths...' -ForegroundColor Cyan
+$classified = Invoke-SeverityClassification -Paths $raw.paths
+
+# ── Filter by minimum severity ──
+$filtered = $classified | Where-Object { $severityOrder[$_.Severity] -ge $minLevel }
+
+if ($filtered.Count -eq 0) {
+    Write-Warning "No paths meet the minimum severity threshold of $MinSeverity."
+    return
+}
+
+# ── Console summary ──
+Write-Host ''
+Write-Host '  ┌─────────────────────────────────────────┐' -ForegroundColor DarkGray
+Write-Host '  │       BloodHound Narrator Results        │' -ForegroundColor White
+Write-Host '  └─────────────────────────────────────────┘' -ForegroundColor DarkGray
+Write-Host ''
+
+foreach ($p in $filtered) {
+    $color = switch ($p.Severity) {
+        'Critical' { 'Red' }
+        'High'     { 'Yellow' }
+        'Medium'   { 'DarkYellow' }
+        'Low'      { 'Green' }
+    }
+    $tag = "[$($p.Severity.ToUpper().PadRight(8))]"
+    Write-Host "  $tag " -ForegroundColor $color -NoNewline
+    Write-Host "$($p.Description)" -ForegroundColor White
+    Write-Host "           $($p.SourceNode) -> $($p.TargetNode)  ($($p.EdgeChain))" -ForegroundColor DarkGray
+}
+
+Write-Host ''
+
+# ── Generate report ──
+Write-Host '[*] Generating Markdown report...' -ForegroundColor Cyan
+$report = New-BHNarratorReport `
+    -Classified $filtered `
+    -Domain     $domain `
+    -ExportDate $exportDate `
+    -BHVersion  $bhVersion
+
+$report | Out-File -FilePath $OutputFile -Encoding utf8
+
+Write-Host "[+] Report written to: $OutputFile" -ForegroundColor Green
+
+$critCount = @($filtered | Where-Object Severity -eq 'Critical').Count
+$highCount = @($filtered | Where-Object Severity -eq 'High').Count
+$medCount  = @($filtered | Where-Object Severity -eq 'Medium').Count
+$lowCount  = @($filtered | Where-Object Severity -eq 'Low').Count
+Write-Host "[+] Summary: $critCount Critical, $highCount High, $medCount Medium, $lowCount Low" -ForegroundColor Green
+
+# ── PassThru ──
+if ($PassThru) {
+    $filtered
+}

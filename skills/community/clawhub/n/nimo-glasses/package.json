@@ -1,0 +1,22 @@
+{
+  "name": "nimo-glasses",
+  "version": "0.1.0",
+  "description": "Nimo AI Glasses plugin for OpenClaw \u2014 connect AI glasses via Companion App",
+  "license": "MIT",
+  "main": "index.ts",
+  "openclaw": {
+    "extensions": {
+      "nimo-glasses": "index.ts"
+    }
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "nimo",
+    "ai-glasses",
+    "smart-glasses"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "model_repo": "shibing624/text2vec-base-chinese",
+  "files": {
+    "int8":  {"candidate": "onnx/model_qint8_avx512_vnni.onnx", "local_name": "model_qint8_avx512_vnni.onnx"}
+  },
+  "embedding_dim": 768,
+  "max_seq_length": 128,
+  "int8_size_mb": 98,
+  "int8_accuracy_loss": "<1.5% cosine similarity (官方预量化)",
+  "sha256": {
+    "model_qint8_avx512_vnni.onnx": "1bff7bee81bc16d5683c6040b28d6feac6d73d7c973ea119e3ee66e81d25e100"
+  },
+  "download_sources": [
+    {"name": "HF-Mirror",   "base_url": "https://hf-mirror.com/shibing624/text2vec-base-chinese/resolve/main",  "path_type": "repo"},
+    {"name": "腾讯云COS",   "base_url": "https://tools-1307431188.cos.ap-chongqing.myqcloud.com/model",           "path_type": "flat"},
+    {"name": "HuggingFace", "base_url": "https://huggingface.co/shibing624/text2vec-base-chinese/resolve/main",  "path_type": "repo"}
+  ],
+  "cos_structure_note": "腾讯云COS为平铺结构: model_qint8_avx512_vnni.onnx（vocab.txt和config.json已内置，无需上传）",
+  "description": "text2vec-base-chinese，官方INT8 QInt8量化版，768维中文语义向量"
+}

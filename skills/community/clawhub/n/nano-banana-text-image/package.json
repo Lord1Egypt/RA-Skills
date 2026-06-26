@@ -1,0 +1,17 @@
+{
+  "name": "atlas-banana-textimage",
+  "version": "1.0.0",
+  "description": "Generate images from text prompts using AtlasCloud Nanobanana model",
+  "main": "generate.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node test.js",
+    "generate": "node generate.js --params-file params.json"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": ["atlascloud", "nanobanana", "text-to-image", "ai", "image-generation"],
+  "license": "MIT",
+  "dependencies": {}
+}

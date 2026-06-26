@@ -1,0 +1,66 @@
+{
+  "bots": [
+    {
+      "name": "小咕",
+      "id": "xigu",
+      "feishu_bot_id": "cli_a92fba8c65e35cc4",
+      "open_id": "ou_59348e484376ec5bcf387cb22888dfac",
+      "capabilities": ["code", "automation", "system", "devops", "data"],
+      "invoke": {
+        "type": "http",
+        "url": "http://127.0.0.1:18789/tools/invoke",
+        "auth": "Bearer 59ac1f34670bb1c61a7bef9e29745b55507f0bb9170b35b1",
+        "timeout_ms": 20000
+      }
+    },
+    {
+      "name": "小呱",
+      "id": "gua",
+      "feishu_bot_id": "cli_xxxxx",
+      "open_id": "ou_xxxxx",
+      "capabilities": ["product", "research", "writing", "analysis", "breakdown"],
+      "invoke": {
+        "type": "http",
+        "url": "http://TODO:需要小呱的地址/tools/invoke",
+        "auth": "Bearer TODO",
+        "timeout_ms": 20000
+      }
+    }
+  ],
+  "routes": [
+    {
+      "match": {
+        "chat_id": "oc_b71376e4f97c1afa9766e04ae6b7984c",
+        "keywords": ["代码", "实现", "脚本", "bug", "api"],
+        "mentioned": "xigu"
+      },
+      "actions": [
+        { "type": "assign", "target": "xigu" }
+      ]
+    },
+    {
+      "match": {
+        "chat_id": "oc_b71376e4f97c1afa9766e04ae6b7984c",
+        "keywords": ["产品", "需求", "文档", "分析", "拆解"],
+        "mentioned": "gua"
+      },
+      "actions": [
+        { "type": "assign", "target": "gua" }
+      ]
+    }
+  ],
+  "approvals": {
+    "oc_b71376e4f97c1afa9766e04ae6b7984c": [
+      {
+        "name": "plan_signoff",
+        "trigger_expression": "state == 'ready_for_plan_approval'",
+        "timeout_minutes": 10,
+        "escalate_to": "ou_59348e484376ec5bcf387cb22888dfac"
+      }
+    ]
+  },
+  "rate_limits": {
+    "default_per_minute": 4,
+    "oc_b71376e4f97c1afa9766e04ae6b7984c": 8
+  }
+}

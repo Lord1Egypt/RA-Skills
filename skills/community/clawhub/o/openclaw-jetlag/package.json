@@ -1,0 +1,20 @@
+{
+  "name": "openclaw-jetlag",
+  "version": "1.0.0",
+  "description": "Scans Google Calendar for flights and writes a personalized circadian adjustment plan back to your calendar",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "googleapis": "^144.0.0",
+    "luxon": "^3.5.0",
+    "open": "^10.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

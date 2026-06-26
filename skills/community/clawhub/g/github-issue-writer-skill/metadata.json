@@ -1,0 +1,19 @@
+{
+  "slug": "github-issue-writer-skill",
+  "name": "GitHub Issue Writer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "developer",
+    "github-issue-writer",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Developer Experience",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-21",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

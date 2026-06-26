@@ -1,0 +1,41 @@
+{
+  "profile": {
+    "style_guide": "ap",
+    "tone": "professional",
+    "vocabulary_level": "standard",
+    "sentence_length_target": 18,
+    "active_voice_preference": "moderate",
+    "context_overrides": {
+      "email": { "tone": "conversational" },
+      "report": { "tone": "formal" },
+      "blog": { "tone": "conversational", "vocabulary_level": "simple" },
+      "academic": { "tone": "formal", "vocabulary_level": "advanced" }
+    },
+    "custom_rules": []
+  },
+  "readability_targets": {
+    "default_grade_level": 9,
+    "default_reading_ease": 60,
+    "max_passive_voice_pct": 15,
+    "max_adverb_density": 5,
+    "max_sentence_length": 35
+  },
+  "feedback": {
+    "default_mode": "quick_review",
+    "auto_review_outgoing_email": false,
+    "show_readability_on_quick": false,
+    "max_suggestions_per_review": 20,
+    "suppress_after_rejections": 3
+  },
+  "dashboard": {
+    "enabled": true,
+    "sync_after_each_session": true,
+    "progress_report_interval_sessions": 10
+  },
+  "learning": {
+    "enabled": true,
+    "min_signals_to_learn": 3,
+    "style_fingerprint_after_sessions": 10,
+    "track_acceptance_rates": true
+  }
+}

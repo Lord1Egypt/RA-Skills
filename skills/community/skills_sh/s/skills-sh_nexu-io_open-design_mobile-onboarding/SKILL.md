@@ -1,35 +1,53 @@
 ---
-name: "mobile-onboarding"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/mobile-onboarding"
-sourceUrl: "https://skills.sh/nexu-io/open-design/mobile-onboarding"
+name: mobile-onboarding
+description: |
+  A multi-screen mobile onboarding flow rendered as three phone frames
+  side by side — splash, value-prop, sign-in. Status bar, swipe dots,
+  primary CTA. Use when the brief mentions "mobile onboarding", "iOS
+  onboarding", "phone signup", or "移动端引导".
+triggers:
+  - "mobile onboarding"
+  - "ios onboarding"
+  - "android onboarding"
+  - "phone signup"
+  - "app onboarding"
+  - "移动端引导"
+od:
+  mode: prototype
+  platform: mobile
+  scenario: design
+  preview:
+    type: html
+    entry: index.html
+  design_system:
+    requires: true
+    sections: [color, typography, layout, components]
+  craft:
+    requires: [state-coverage, animation-discipline, accessibility-baseline, form-validation, laws-of-ux]
+  example_prompt: "Design a 3-screen mobile onboarding flow for a meditation app — welcome, value props, sign-in."
 ---
 
-# mobile-onboarding
+# Mobile Onboarding Skill
 
-> Indexed by skills.sh from nexu-io/open-design
+Produce a three-screen mobile onboarding flow on a single HTML page.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/mobile-onboarding`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/mobile-onboarding](https://skills.sh/nexu-io/open-design/mobile-onboarding)
+## Workflow
 
-## Overview
+1. Read DESIGN.md.
+2. Identify the app + audience.
+3. Layout: three phone frames side by side. Each phone:
+   - Status bar (time, battery, signal).
+   - Hero artwork or icon.
+   - Headline + supporting paragraph.
+   - 3-dot pagination.
+   - Primary CTA (full-width pill button).
+   - "Skip" or alt action top-right.
+4. Last phone is the sign-in / continue-with options screen.
+5. Strong typography, gentle gradients, accessible contrast.
 
+## Output contract
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/nexu-io/open-design/mobile-onboarding
+```
+<artifact identifier="mobile-onboarding-name" type="text/html" title="Mobile Onboarding">
+<!doctype html>...</artifact>
 ```

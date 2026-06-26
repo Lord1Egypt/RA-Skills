@@ -1,0 +1,17 @@
+{
+  "name": "system-maintenance",
+  "version": "1.3.2",
+  "description": "Complete maintenance system for OpenClaw with unified architecture, filesystem governance, and cross-platform design",
+  "main": "entry.js",
+  "keywords": ["openclaw", "maintenance", "monitoring", "automation", "cron", "security", "quality", "cross-platform", "macos", "linux", "windows", "governance", "filesystem"],
+  "author": "Claw (OpenClaw AI Assistant)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jazzqi/openclaw-system-maintenance.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jazzqi/openclaw-system-maintenance/issues"
+  },
+  "homepage": "https://github.com/jazzqi/openclaw-system-maintenance#readme"
+}

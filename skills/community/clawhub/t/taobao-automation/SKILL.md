@@ -1,35 +1,174 @@
----
-name: "Taobao Automation"
-description: "实现淘宝店铺运营选品分析、标题优化、数据监控、竞品监控及营销文案自动生成与推送。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taobao-automation"
-sourceUrl: "https://clawhub.ai/skills/taobao-automation"
+# 淘宝店铺运营自动化技能
+
+**技能名称**: taobao-automation
+**版本**: 1.0.0
+**功能**: 淘宝店铺运营全流程自动化
+**适用**: 电商运营、店铺管理、数据监控
+
 ---
 
-# Taobao Automation
+## 概述
 
-> 实现淘宝店铺运营选品分析、标题优化、数据监控、竞品监控及营销文案自动生成与推送。
+本技能将 OpenClaw 能力与淘宝店铺运营结合，实现：
+- **选品分析自动化**
+- **数据监控定时提醒**
+- **竞品分析**
+- **营销文案生成**
+- **运营报告自动推送**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taobao-automation`
-- **Source URL:** [https://clawhub.ai/skills/taobao-automation](https://clawhub.ai/skills/taobao-automation)
+---
 
-## Overview
+## 能力映射
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taobao-automation
+### 1. 选品分析 (Web Search + Fetch)
 ```
+用户: "帮我分析茶叶类目"
+↓
+OpenClaw:
+  1. web_search: 搜索淘宝茶叶竞品数据
+  2. web_fetch: 抓取分析页面
+  3. 生成选品建议报告
+```
+
+### 2. 标题优化助手 (AI分析)
+```
+用户: "帮我优化连衣裙标题"
+↓
+OpenClaw:
+  1. 分析产品核心卖点
+  2. 生成关键词组合
+  3. 建议标题模板
+```
+
+### 3. 数据监控 (Cron + Feishu通知)
+```
+定时任务:
+  1. 每日9:00 查询店铺关键指标
+  2. 生成数据简报
+  3. 推送到飞书/微信
+```
+
+### 4. 竞品监控 (Web自动抓取)
+```
+用户: "监控竞店价格"
+↓
+OpenClaw:
+  1. 定期抓取竞品页面
+  2. 对比价格/销量变化
+  3. 异常预警
+```
+
+### 5. 营销文案生成 (TTS + Canvas)
+```
+用户: "生成产品推广语音"
+↓
+OpenClaw:
+  1. 分析产品卖点
+  2. 生成营销文案
+  3. TTS语音输出
+```
+
+### 6. 运营日程管理 (Feishu Calendar)
+```
+功能:
+  1. 大促时间节点提醒
+  2. 上新计划日历
+  3. 推广预算提醒
+```
+
+---
+
+## 自动化场景
+
+### 场景1: 每日数据播报
+```bash
+# Cron: 每天 09:00, 18:00
+# 动作:
+#   1. 获取昨日核心指标
+#   2. 对比数据变化
+#   3. 推送飞书消息
+```
+
+### 场景2: 竞品监控
+```bash
+# Cron: 每4小时
+# 动作:
+#   1. 抓取竞品价格/销量
+#   2. 记录变化趋势
+#   3. 异常时预警
+```
+
+### 场景3: 标题优化
+```bash
+# 用户触发
+# 动作:
+#   1. 分析产品属性
+#   2. 推荐关键词组合
+#   3. 生成3个标题选项
+```
+
+---
+
+## 使用命令
+
+| 功能 | 命令/触发 |
+|------|----------|
+| 选品分析 | "分析[品类]市场" |
+| 标题优化 | "优化[产品]标题" |
+| 数据报告 | "生成昨日数据报告" |
+| 竞品监控 | "监控[竞店名]" |
+| 营销文案 | "生成[产品]推广文案" |
+| 设置提醒 | "每天[时间]提醒数据" |
+
+---
+
+## 技术栈
+
+- **Web**: 搜索、爬取竞品数据
+- **Feishu API**: 消息推送、日历提醒
+- **Cron**: 定时任务
+- **TTS**: 语音合成
+- **Canvas**: 图片/海报生成
+
+---
+
+## 示例对话
+
+**用户**: 帮我分析茶叶店选品
+
+**OpenClaw**:
+```
+📊 茶叶类目分析报告
+
+## 市场规模
+- 月销: 50万+ 件
+- 均价: 89-168元
+
+## 热门品类
+1. 红茶礼盒 (送礼场景)
+2. 绿茶新茶 (季节性)
+3. 普洱茶 (收藏属性)
+
+## 竞争分析
+- Top10店铺: 专业茶企旗舰店
+- 差异化机会: 年轻化包装、私域流量
+
+## 建议
+- 主推: 轻便装口粮茶
+- 定价: 59-99元区间
+- 卖点: 便捷冲泡、健康天然
+```
+
+---
+
+## 注意事项
+
+1. **合规性**: 遵守淘宝平台规则，不采集敏感数据
+2. **频率限制**: 合理控制API调用频率
+3. **数据准确**: 第三方数据仅供参考
+
+---
+
+## 更新日志
+
+- 2026-03-24: v1.0.0 初始版本

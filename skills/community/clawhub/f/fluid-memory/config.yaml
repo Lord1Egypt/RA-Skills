@@ -1,0 +1,5 @@
+decay_rate: 0.05  # 遗忘速度
+boost_factor: 0.2 # 强化力度
+archive_threshold: 0.3 # 低于此分归档
+auto_learn: false  # 自动学习模式：依赖OpenClaw原生flush触发，不再自动存储
+summarize_threshold: 999  # 禁用自动触发（依赖原生flush）

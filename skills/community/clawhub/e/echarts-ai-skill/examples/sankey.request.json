@@ -1,0 +1,16 @@
+{
+  "title": "Skill handoff flow",
+  "chartType": "sankey",
+  "nodes": [
+    { "name": "User" },
+    { "name": "Agent" },
+    { "name": "Chart Skill" },
+    { "name": "SVG Export" }
+  ],
+  "links": [
+    { "source": "User", "target": "Agent", "value": 100 },
+    { "source": "Agent", "target": "Chart Skill", "value": 92 },
+    { "source": "Chart Skill", "target": "SVG Export", "value": 74 }
+  ],
+  "dataset": []
+}

@@ -1,0 +1,837 @@
+# HR 智能体 Skill 定义
+# 用于 WorkBuddy 平台
+
+name: hr-assistant
+displayName: HR助手
+description: 专为中国中小企业设计的智能HR助手 — 员工花名册管理、组织架构维护、考勤管理与自动扣减、薪资自动计算（个税累计预扣法/社保/公积金/专项附加扣除）、年终奖个税优化、HR报表生成与导出。数据本地存储，Excel一键绑定，5分钟完成初始化
+version: 1.2.5
+author: AI 实验室
+category: business
+
+# Skill 图标（emoji 或 URL）
+icon: 👔
+
+# 初始化配置
+initialization:
+  # 首次使用检测
+  checkFirstUse: true
+  # 初始化引导提示
+  onboardingPrompt: |
+    👋 欢迎使用 HR 智能体！
+    
+    我是你的智能 HR 助手，可以帮你：
+    • 管理员工花名册和组织架构
+    • 自动计算每月薪资（个税、社保、公积金）
+    • 年终奖个税优化
+    • 生成各类 HR 报表
+    
+    首次使用需要绑定你的数据表格，大约需要 5-10 分钟。
+    
+    请回复「开始初始化」启动引导流程。
+
+# 存储配置
+storage:
+  # 本地数据目录（JSON 格式，不上云）
+  dataDir: .hr-data
+  # 数据文件说明
+  files:
+    config.json: "全局配置（绑定状态、列映射）"
+    audit.log.jsonl: "操作审计日志（append-only）"
+    payroll/": "月度薪资计算结果归档"
+    conversations/": "对话历史记录"
+  # 支持的数据源（目前仅支持 Excel 本地文件，飞书多维表格规划中）
+  supportedTypes:
+    - excel
+  # 支持的文件格式
+  supportedFileFormats:
+    - .xlsx  # openpyxl
+    - .xls   # xlrd
+    - .xlsm  # openpyxl
+
+# 依赖的 Tools
+tools:
+  # ========================================
+  # 初始化引导
+  # ========================================
+  - name: detect_first_use
+    description: 检测用户是否已完成初始化配置
+  - name: start_onboarding
+    description: 启动初始化引导流程
+  - name: set_storage_type
+    description: 设置数据存储方式（目前仅支持 excel）
+    parameters:
+      type:
+        type: string
+        enum: [excel]
+        required: true
+
+  # 表格绑定
+  - name: bind_organization_table
+    description: 绑定组织架构表（支持 .xls 和 .xlsx 格式）
+    parameters:
+      filePath:
+        type: string
+        required: true
+        description: 组织架构 Excel 文件路径（支持 .xls 和 .xlsx）
+      sheetName:
+        type: string
+        required: false
+        default: Sheet1
+      columnMapping:
+        type: object
+        required: false
+        description: 列映射配置 {标准字段: 实际列名}
+  - name: bind_employee_table
+    description: 绑定员工花名册（支持 .xls 和 .xlsx 格式）
+    parameters:
+      filePath:
+        type: string
+        required: true
+        description: 员工花名册 Excel 文件路径（支持 .xls 和 .xlsx）
+      sheetName:
+        type: string
+        required: false
+        default: Sheet1
+      columnMapping:
+        type: object
+        required: false
+  - name: bind_salary_table
+    description: 绑定薪资表（支持 .xls 和 .xlsx 格式）
+    parameters:
+      filePath:
+        type: string
+        required: true
+        description: 薪资 Excel 文件路径（支持 .xls 和 .xlsx）
+      sheetName:
+        type: string
+        required: false
+        default: Sheet1
+      columnMapping:
+        type: object
+        required: false
+
+  # 表格分析
+  - name: analyze_table_structure
+    description: 分析表格结构，识别列名和类型（支持 .xls 和 .xlsx）
+    parameters:
+      tableType:
+        type: string
+        enum: [organization, employee, salary, attendance]
+        required: true
+      filePath:
+        type: string
+        required: true
+        description: Excel 文件路径（支持 .xls 和 .xlsx）
+      sheetName:
+        type: string
+        required: false
+        default: Sheet1
+  - name: confirm_column_mapping
+    description: 确认或修正列映射关系
+    parameters:
+      tableType:
+        type: string
+        required: true
+      mapping:
+        type: object
+        required: true
+  - name: validate_data_integrity
+    description: 验证数据完整性
+    parameters:
+      tableType:
+        type: string
+        required: true
+
+  # 配置管理
+  - name: save_configuration
+    description: 保存初始化配置到本地
+  - name: load_configuration
+    description: 加载已有配置
+  - name: export_configuration
+    description: 导出配置文件
+    parameters:
+      filePath:
+        type: string
+        required: true
+  - name: import_configuration
+    description: 导入配置文件
+    parameters:
+      filePath:
+        type: string
+        required: true
+  - name: reset_configuration
+    description: 重置配置，重新初始化
+  - name: get_configuration_summary
+    description: 获取当前配置摘要
+
+  # ========================================
+  # 员工查询
+  # ========================================
+  - name: read_employee
+    description: 读取单个员工信息（根据工号或姓名查询）
+    parameters:
+      empNo:
+        type: string
+        required: false
+        description: 员工工号
+      empName:
+        type: string
+        required: false
+        description: 员工姓名
+    note: empNo 和 empName 二选一
+  - name: list_employees
+    description: 列出员工列表，支持按部门、状态、关键词筛选
+    parameters:
+      deptCode:
+        type: string
+        required: false
+        description: 部门编码（支持包含子部门）
+      deptName:
+        type: string
+        required: false
+        description: 部门名称
+      status:
+        type: string
+        required: false
+        description: 在职状态筛选（在职/试用期/离职）
+      keyword:
+        type: string
+        required: false
+        description: 关键词搜索（匹配姓名、工号、手机号）
+      includeInactive:
+        type: boolean
+        required: false
+        description: 是否包含离职员工
+  - name: search_employee
+    description: 搜索员工（支持部门名、状态、关键词等多种搜索方式）
+    parameters:
+      deptCode:
+        type: string
+        required: false
+      deptName:
+        type: string
+        required: false
+      status:
+        type: string
+        required: false
+      keyword:
+        type: string
+        required: false
+
+  # ========================================
+  # 员工操作
+  # ========================================
+  - name: add_employee
+    description: 添加新员工到花名册
+    parameters:
+      empNo:
+        type: string
+        required: true
+        description: 工号
+      empName:
+        type: string
+        required: true
+        description: 姓名
+      deptCode:
+        type: string
+        required: false
+      deptName:
+        type: string
+        required: false
+      position:
+        type: string
+        required: false
+      phone:
+        type: string
+        required: false
+      email:
+        type: string
+        required: false
+      hireDate:
+        type: string
+        required: false
+        description: 入职日期 YYYY-MM-DD
+      baseSalary:
+        type: number
+        required: false
+      socialInsuranceBase:
+        type: number
+        required: false
+        description: 社保缴费基数
+      housingFundBase:
+        type: number
+        required: false
+        description: 公积金缴费基数
+      housingFundRate:
+        type: number
+        required: false
+        description: 公积金个人比例
+      specialDeduction:
+        type: number
+        required: false
+        description: 专项附加扣除（每月金额）
+      reportTo:
+        type: string
+        required: false
+        description: 汇报对象工号
+  - name: update_employee
+    description: 更新已有员工信息（调岗、调薪、转正等）
+    parameters:
+      empNo:
+        type: string
+        required: false
+        description: 员工工号
+      empName:
+        type: string
+        required: false
+        description: 员工姓名
+      newStatus:
+        type: string
+        required: false
+        description: 新状态（在职/试用期/离职）
+      newSalary:
+        type: number
+        required: false
+        description: 新基本工资
+      deptName:
+        type: string
+        required: false
+        description: 新部门名称
+    note: empNo 和 empName 二选一
+  - name: delete_employee
+    description: 删除员工（软删除/标记离职 或 物理删除）
+    parameters:
+      empNo:
+        type: string
+        required: true
+      soft:
+        type: boolean
+        required: false
+        default: true
+        description: 软删除（标记为离职），false 则物理删除
+  - name: batch_update_status
+    description: 批量更新员工状态（如批量转正、批量离职）
+    parameters:
+      empNos:
+        type: array
+        required: true
+        description: 员工工号列表
+      newStatus:
+        type: string
+        required: true
+        description: 新状态
+      leaveDate:
+        type: string
+        required: false
+        description: 离职日期（离职时使用）
+
+  # ========================================
+  # 组织架构
+  # ========================================
+  - name: query_department
+    description: 查询部门信息
+    parameters:
+      deptCode:
+        type: string
+        required: false
+        description: 部门编码
+      deptName:
+        type: string
+        required: false
+        description: 部门名称
+  - name: get_department_tree
+    description: 获取部门树结构（包含子部门和各层人数）
+  - name: get_reporting_chain
+    description: 获取员工的汇报链（从直属上级到顶层）
+    parameters:
+      empNo:
+        type: string
+        required: false
+        description: 员工工号
+      empName:
+        type: string
+        required: false
+        description: 员工姓名
+    note: empNo 和 empName 二选一
+
+  # ========================================
+  # 薪资计算
+  # ========================================
+  - name: calculate_payroll
+    description: |
+      计算薪资（支持单人和批量，含个税累计预扣法、社保公积金、专项附加扣除）
+      - 基本工资从花名册自动读取
+      - 社保基数/公积金基数直接取花名册对应列
+      - 专项附加扣除从花名册「专项附加扣除」列读取（需提前在花名册中填入每人每月扣除额）
+      - 浮动项（绩效、加班费等）需提前导入，未导入按 0 计算
+      - 税前扣减项（考勤扣款、事假扣款等）在应发工资中扣除
+      - 税率跳档为累计预扣法正常现象，计算结果会标注跳档提醒
+    parameters:
+      year:
+        type: integer
+        required: false
+        description: 年份
+      month:
+        type: integer
+        required: false
+        description: 月份
+      empNo:
+        type: string
+        required: false
+        description: 员工工号（单人计算时使用）
+      empName:
+        type: string
+        required: false
+        description: 员工姓名
+      batch:
+        type: boolean
+        required: false
+        default: true
+        description: 是否批量计算所有在职员工
+      city:
+        type: string
+        required: false
+        description: 社保缴纳城市（覆盖花名册中的值）
+      preTaxDeductions:
+        type: number
+        required: false
+        description: 税前扣减合计（考勤/事假/迟到等）
+      specialDeduction:
+        type: number
+        required: false
+        description: 专项附加扣除（覆盖花名册中的值）
+    note: |
+      批量计算结果自动持久化到本地存储。
+      计算前请确认：
+      1. 花名册已填入社保基数、公积金基数、公积金比例、专项附加扣除
+      2. 浮动薪资项（绩效/加班费等）如需计入，请先导入当月数据
+      3. 税前扣减（考勤/事假等）如需计入，请先导入当月数据
+  - name: calculate_year_end_bonus
+    description: 年终奖个税优化计算（自动选择最优计税方式）
+    parameters:
+      bonusAmount:
+        type: number
+        required: true
+        description: 年终奖金额
+      monthlySalary:
+        type: number
+        required: false
+        description: 月薪（用于判断最优计税方式）
+  - name: calculate_insurance
+    description: 计算社保公积金（个人缴纳部分，社保和公积金可分别指定基数）
+    parameters:
+      salary:
+        type: number
+        required: true
+        description: 社保缴费基数
+      city:
+        type: string
+        required: false
+        default: 北京
+        description: 缴纳城市
+      housingFundBase:
+        type: number
+        required: false
+        description: 公积金缴费基数（不填则与社保基数相同）
+      housingFundRate:
+        type: number
+        required: false
+        description: 公积金个人比例（不填则使用城市默认）
+  - name: get_tax_bracket
+    description: 查询个税税率级距
+    parameters:
+      taxableIncome:
+        type: number
+        required: true
+        description: 应纳税所得额
+
+  # ========================================
+  # 考勤管理
+  # ========================================
+  - name: bind_attendance_table
+    description: 绑定考勤表（支持 .xls 和 .xlsx 格式）
+    parameters:
+      filePath:
+        type: string
+        required: true
+        description: 考勤 Excel 文件路径（支持 .xls 和 .xlsx）
+      sheetName:
+        type: string
+        required: false
+        default: Sheet1
+      columnMapping:
+        type: object
+        required: false
+        description: 列映射配置 {标准字段: 实际列名}
+  - name: view_attendance
+    description: 查看考勤记录（支持按员工或按月查询）
+    parameters:
+      empNo:
+        type: string
+        required: false
+        description: 员工工号
+      empName:
+        type: string
+        required: false
+        description: 员工姓名
+      year:
+        type: integer
+        required: false
+        description: 年份
+      month:
+        type: integer
+        required: false
+        description: 月份
+  - name: get_attendance_summary
+    description: 获取考勤汇总统计
+    parameters:
+      year:
+        type: integer
+        required: false
+        description: 年份
+      month:
+        type: integer
+        required: false
+        description: 月份
+  - name: get_attendance_rules
+    description: 查看当前考勤扣减规则
+
+  # ========================================
+  # 报表与校验
+  # ========================================
+  - name: get_employee_statistics
+    description: 获取员工统计信息（总人数、按部门/状态分布、合同到期提醒、生日提醒）
+  - name: validate_employee_data
+    description: 全面校验花名册数据（字段完整性、逻辑关系、组织架构关联）
+  - name: export_report
+    description: 导出 HR 报表到 Excel
+    parameters:
+      reportType:
+        type: string
+        required: false
+        default: employee
+        enum: [employee, department, payroll]
+        description: 报表类型
+
+  # ========================================
+  # 数据持久化
+  # ========================================
+  - name: get_payroll_history
+    description: 查看薪资计算历史
+  - name: get_payroll_comparison
+    description: 薪资环比对比（与上月对比）
+    parameters:
+      year:
+        type: integer
+        required: true
+      month:
+        type: integer
+        required: true
+  - name: get_audit_log
+    description: 查询操作审计日志
+    parameters:
+      action:
+        type: string
+        required: false
+        description: 按操作类型筛选
+      targetId:
+        type: string
+        required: false
+        description: 按目标ID筛选
+      limit:
+        type: integer
+        required: false
+        default: 50
+  - name: get_storage_info
+    description: 获取存储信息（文件数量、大小等）
+
+  # ========================================
+  # 帮助
+  # ========================================
+  - name: help
+    description: 显示使用帮助
+
+# 意图识别配置（与 intent_router.py IntentType 同步）
+intents:
+  # 初始化相关
+  - name: start_onboarding
+    intentType: START_ONBOARDING
+    patterns:
+      - 开始初始化
+      - 初始化
+      - 首次使用
+      - 设置数据
+      - 绑定表格
+  - name: set_storage_type
+    intentType: SET_STORAGE_TYPE
+    patterns:
+      - 用excel
+      - 选择存储
+      - 存储方式
+  - name: bind_table
+    intentType: BIND_TABLE
+    patterns:
+      - 绑定组织架构
+      - 绑定花名册
+      - 绑定薪资表
+      - 上传表格
+  - name: check_config
+    intentType: CHECK_CONFIG
+    patterns:
+      - 查看配置
+      - 当前配置
+      - 配置状态
+      - 绑定了哪些表格
+      - 初始化状态
+  - name: reset_config
+    intentType: RESET_CONFIG
+    patterns:
+      - 重新初始化
+      - 重置配置
+      - 重新开始
+      - 修改配置
+
+  # 员工查询
+  - name: read_employee
+    intentType: READ_EMPLOYEE
+    patterns:
+      - 查员工
+      - 员工信息
+      - 工号
+      - 员工详情
+      - 查看
+      - 的信息
+      - 的详情
+  - name: list_employees
+    intentType: LIST_EMPLOYEES
+    patterns:
+      - 所有员工
+      - 员工列表
+      - 花名册
+      - 有多少员工
+      - 在职多少人
+  - name: search_employee
+    intentType: SEARCH_EMPLOYEE
+    patterns:
+      - 搜索员工
+      - 查找员工
+      - 找员工
+      - 筛选员工
+      - 查询员工
+      - 部门员工
+      - 试用期员工
+
+  # 员工操作
+  - name: add_employee
+    intentType: ADD_EMPLOYEE
+    patterns:
+      - 添加员工
+      - 新增员工
+      - 入职登记
+      - 新人入职
+      - 录入员工
+  - name: update_employee
+    intentType: UPDATE_EMPLOYEE
+    patterns:
+      - 修改员工
+      - 更新信息
+      - 调岗
+      - 调薪
+      - 转正
+      - 修改状态
+  - name: delete_employee
+    intentType: DELETE_EMPLOYEE
+    patterns:
+      - 删除员工
+      - 移除员工
+      - 员工离职
+      - 办离职
+  - name: batch_update_status
+    intentType: BATCH_UPDATE_STATUS
+    patterns:
+      - 批量转正
+      - 批量离职
+      - 批量更新
+      - 批量操作
+
+  # 组织架构
+  - name: query_department
+    intentType: QUERY_DEPARTMENT
+    patterns:
+      - 组织架构
+      - 部门列表
+      - 有哪些部门
+      - 部门结构
+      - 部门信息
+  - name: get_dept_tree
+    intentType: GET_DEPT_TREE
+    patterns:
+      - 部门树
+      - 组织树
+      - 组织架构图
+  - name: get_reporting_chain
+    intentType: GET_REPORTING_CHAIN
+    patterns:
+      - 汇报链
+      - 汇报关系
+      - 上级是谁
+      - 向谁汇报
+
+  # 薪资计算
+  - name: calculate_payroll
+    intentType: CALCULATE_PAYROLL
+    patterns:
+      - 计算薪资
+      - 跑工资
+      - 算工资
+      - 薪资计算
+      - 本月工资
+      - 算薪水
+  - name: calculate_bonus
+    intentType: CALCULATE_BONUS
+    patterns:
+      - 年终奖
+      - 年终奖计算
+      - 年终奖个税
+      - 计算年终奖
+  - name: calculate_insurance
+    intentType: CALCULATE_INSURANCE
+    patterns:
+      - 社保计算
+      - 公积金计算
+      - 五险一金
+      - 社保公积金
+  - name: get_tax_bracket
+    intentType: GET_TAX_BRACKET
+    patterns:
+      - 个税税率
+      - 税率表
+      - 税级
+
+  # 考勤
+  - name: bind_attendance
+    intentType: BIND_ATTENDANCE
+    patterns:
+      - 绑定考勤
+      - 上传考勤
+      - 导入考勤
+      - 考勤表
+  - name: view_attendance
+    intentType: VIEW_ATTENDANCE
+    patterns:
+      - 查看考勤
+      - 考勤记录
+      - 出勤记录
+      - 打卡记录
+  - name: attendance_summary
+    intentType: ATTENDANCE_SUMMARY
+    patterns:
+      - 考勤汇总
+      - 考勤统计
+      - 出勤统计
+      - 考勤月报
+  - name: attendance_rules
+    intentType: ATTENDANCE_RULES
+    patterns:
+      - 考勤规则
+      - 扣减规则
+      - 考勤制度
+      - 扣款标准
+
+  # 报表
+  - name: employee_statistics
+    intentType: EMPLOYEE_STATISTICS
+    patterns:
+      - 员工统计
+      - 人数统计
+      - 部门人数
+      - 合同到期
+      - 生日提醒
+      - 到期提醒
+  - name: data_validation
+    intentType: DATA_VALIDATION
+    patterns:
+      - 数据校验
+      - 检查数据
+      - 校验花名册
+      - 数据质量
+  - name: export_report
+    intentType: EXPORT_REPORT
+    patterns:
+      - 生成报表
+      - 导出报表
+      - 统计报告
+      - 人力报表
+      - 导出Excel
+
+  # 帮助
+  - name: help
+    intentType: HELP
+    patterns:
+      - 帮助
+      - 使用指南
+      - 怎么用
+      - 功能列表
+      - 你能做什么
+
+# 系统提示词
+systemPrompt: |
+  你是 HR 智能体，一个专业的企业人力资源管理助手。
+  
+  ## 核心能力
+  1. 员工花名册管理（增删改查、在职状态管理、批量操作）
+  2. 组织架构维护（部门树、汇报关系）
+  3. 考勤数据管理（导入考勤表、自动计算迟到/早退/请假/旷工扣款）
+  4. 薪资自动计算（个税累计预扣法、社保公积金、年终奖优化）
+  5. HR 报表生成（人数统计、到期提醒、数据校验）
+  6. 操作审计日志（所有增删改操作自动记录）
+  
+  ## 数据安全原则
+  - 所有业务数据存储在用户本地（Excel + JSON）
+  - 不将敏感数据上传到云端
+  - 严格遵守数据隐私保护
+  - 所有写操作自动记录审计日志
+  
+  ## 持久化存储
+  - 配置和绑定状态：.hr-data/config.json
+  - 操作审计日志：.hr-data/audit.log.jsonl（append-only）
+  - 薪资计算结果：.hr-data/payroll/YYYY-MM.json（按月归档）
+  - 对话历史：.hr-data/conversations/<sessionId>.json
+  
+  ## 交互风格
+  - 专业、友好、耐心
+  - 使用中文回复
+  - 复杂操作分步骤引导
+  - 主动提示可能的问题和解决方案
+  
+  ## 初始化要求
+  首次使用时，必须引导用户完成三张核心表格的绑定：
+  1. 组织架构表
+  2. 员工花名册
+  3. 薪资表
+  
+  绑定完三张核心表后，可继续绑定可选的考勤表：
+  4. 考勤表（可选，绑定后薪资计算将自动扣除考勤扣款）
+  
+  如果用户未完成初始化，优先引导完成初始化流程。
+
+# 欢迎消息
+welcomeMessage: |
+  👔 HR 智能体已就绪！
+  
+  我可以帮你管理员工信息、考勤扣减、计算薪资、生成报表。
+  
+  常用指令：
+  • 「开始初始化」- 首次使用请先完成数据绑定
+  • 「查看配置」- 查看当前绑定的数据表格
+  • 「查询技术部员工」- 按部门筛选员工
+  • 「添加员工」- 新增员工入职登记
+  • 「张三转正」- 员工转正操作
+  • 「绑定考勤表」- 导入考勤数据（迟到/请假/旷工自动扣款）
+  • 「查看考勤」- 查看员工或整月考勤记录
+  • 「考勤汇总」- 考勤统计报表
+  • 「计算本月薪资」- 自动计算并生成薪资表
+  • 「年终奖36000」- 年终奖个税优化
+  • 「导出报表」- 导出Excel报表
+  
+  有什么可以帮你的吗？

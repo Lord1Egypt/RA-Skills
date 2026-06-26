@@ -1,0 +1,11 @@
+{
+  "action": "topics",
+  "payload": {
+    "industry": "医美",
+    "direction": "机构经营",
+    "targetAudience": "医美老板",
+    "count": 10,
+    "style": "观点型",
+    "outputProfile": "default_topics"
+  }
+}

@@ -1,0 +1,50 @@
+name: moviefetch
+description: Download, track, and remove movies across Plex, Radarr, and qBittorrent from chat.
+
+tools:
+  - name: check_plex
+    description: Check if a movie is already available in the Plex library. Always call this before requesting a download.
+    entrypoint: scripts/check_plex.py
+    input_schema:
+      type: object
+      properties:
+        movie_title:
+          type: string
+          description: The movie title to search for in Plex (e.g. "Inception")
+      required: [movie_title]
+
+  - name: request_movie
+    description: Add a movie to Radarr to automatically search, download via qBittorrent, and deliver to Plex.
+    entrypoint: scripts/request_movie.py
+    input_schema:
+      type: object
+      properties:
+        movie_title:
+          type: string
+          description: The movie title to download (e.g. "The Dark Knight")
+      required: [movie_title]
+
+  - name: check_download
+    description: Check the current download progress and status of a movie in qBittorrent.
+    entrypoint: scripts/check_download.py
+    input_schema:
+      type: object
+      properties:
+        movie_title:
+          type: string
+          description: The movie title to check progress for
+      required: [movie_title]
+
+  - name: remove_movie
+    description: Remove a movie from the Radarr queue and/or library. Use when user wants to cancel or delete.
+    entrypoint: scripts/remove_movie.py
+    input_schema:
+      type: object
+      properties:
+        movie_title:
+          type: string
+          description: The movie title to remove
+        delete_files:
+          type: boolean
+          description: Whether to also delete downloaded files from Plex and Torrent. Default true when deleting a movie.
+      required: [movie_title]

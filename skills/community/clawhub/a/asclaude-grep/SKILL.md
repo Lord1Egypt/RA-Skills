@@ -1,35 +1,26 @@
+# asclaude-grep: 工作区全维智能搜索引擎 🔍📂
+
+> **在海量代码与文档中，实现毫秒级的精准定位。**
+
+## 🌟 核心亮点
+**asclaude-grep** 是专为开发者和工作区管理设计的智能检索工具。它打破了传统文件查找的局限，将 **内容级检索 (Grep)** 与 **文件名查找 (Glob)** 完美融合，让您在复杂的 OpenClaw 工作区中如虎添翼。
+
+### 🚀 功能详解
+1.  **深度内容扫描 (Deep Content Scan):**
+    *   支持跨文件类型搜索（`.py`, `.md`, `.ts`, `.js`, `.json` 等）。
+    *   默认开启**忽略大小写**模式，配合正则表达式支持，即使是模糊记忆也能精准命中。
+2.  **极速文件名定位 (Glob Finder):**
+    *   利用系统原生的 `find` 命令索引，在毫秒间锁定目标文件路径。
+    *   支持通配符模式，快速理清项目目录结构。
+3.  **智能格式化输出:**
+    *   自动截断过长的搜索结果，优先显示最相关的 20 条匹配项。
+    *   清晰的行号定位，让您直接跳转到代码关键行。
+4.  **本地化执行:**
+    *   无需配置复杂的索引服务器，无需上传数据，所有搜索在本地沙箱中安全完成。
+
+## 🛠️ 使用指南
+- **搜索关键词:** `python scripts/workspace_search.py grep "关键词"`
+- **查找文件名:** `python scripts/workspace_search.py find "*.txt"`
+
 ---
-name: "asclaude-grep"
-description: "asclaude-grep enables fast, case-insensitive, regex-supported content and filename search across multiple file types within local workspaces without external..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/asclaude-grep"
-sourceUrl: "https://clawhub.ai/skills/asclaude-grep"
----
-
-# asclaude-grep
-
-> asclaude-grep enables fast, case-insensitive, regex-supported content and filename search across multiple file types within local workspaces without external...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/asclaude-grep`
-- **Source URL:** [https://clawhub.ai/skills/asclaude-grep](https://clawhub.ai/skills/asclaude-grep)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/asclaude-grep
-```
+*由 黑米 (HeiMi) 为您打造的“第二大脑”检索外挂，让每一次寻找都变得简单高效。* 🌾

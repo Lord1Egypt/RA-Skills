@@ -1,0 +1,4 @@
+interface:
+  display_name: "Film Pipeline 总控台"
+  short_description: "影视创作全流程总控：意图分析→路由调度→多模块输出整合"
+  default_prompt: "请描述你想创作的影视内容（剧本/角色/动作戏/画面风格），我会调度最合适的专业模块来处理。"

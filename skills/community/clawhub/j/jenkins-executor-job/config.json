@@ -1,0 +1,5 @@
+{
+  "base_url": "Jenkins地址",
+  "username": "用户名",
+  "api_token": "授权码"
+}

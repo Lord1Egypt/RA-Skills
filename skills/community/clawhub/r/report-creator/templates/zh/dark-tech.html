@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>微服务系统监控与性能分析报告</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    /* ── Theme: dark-tech ── */
+    :root {
+      --primary: #818CF8; --primary-light: #312E81; --accent: #A78BFA;
+      --bg: #0F172A; --surface: #1E293B; --text: #E2E8F0; --text-muted: #94A3B8;
+      --border: #334155; --success: #34D399; --warning: #FCD34D; --danger: #F87171;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace; --radius: 6px;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.55; }
+    h1 { font-size: 2rem; font-weight: 700; color: var(--primary); font-family: var(--font-mono); margin-bottom: 1.5rem; }
+    h2 { font-size: 1.4rem; font-weight: 600; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: .4rem; margin-top: 1.75rem; font-family: var(--font-mono); }
+    h3 { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-top: 1.1rem; }
+    p { margin: .75rem 0; } a { color: var(--primary); }
+    strong { font-weight: 700; color: var(--accent); }
+    blockquote { border-left: 2px solid var(--border); margin: 1rem 0; padding: .5rem 1rem; color: var(--text-muted); font-family: var(--font-mono); font-size: .9rem; }
+
+    /* ── Shared Components ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; font-family: var(--font-mono); }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; font-family: var(--font-mono); }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--surface); border-bottom: 2px solid var(--primary); padding: .7rem 1rem; text-align: left; font-weight: 600; font-family: var(--font-mono); font-size: .82rem; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: .85rem; }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+
+    /* Status badges */
+    .badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    .badge--wip  { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    .badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note { background: rgba(59,130,246,.1); border-color: #3B82F6; }
+    .callout--tip { background: rgba(34,197,94,.1); border-color: #22C55E; }
+    .callout--warning { background: rgba(245,158,11,.1); border-color: #F59E0B; }
+    .callout--danger { background: rgba(239,68,68,.1); border-color: #EF4444; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-dot--success { background: var(--success); }
+    .timeline-dot--warning { background: var(--warning); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; font-family: var(--font-mono); }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+
+    /* Image */
+    .report-image { margin: 1.1rem 0; }
+    .report-image img { max-width: 100%; border-radius: var(--radius); }
+    .report-image figcaption { font-size: .82rem; color: var(--text-muted); text-align: center; margin-top: .4rem; }
+    .report-image--full { width: 100%; display: block; }
+    .report-image--left { float: left; max-width: 40%; margin-right: 1.5rem; margin-bottom: .5rem; }
+    .report-image--right { float: right; max-width: 42%; margin-left: 1.5rem; margin-bottom: .5rem; }
+    .clearfix::after { content: ''; display: table; clear: both; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--surface); padding: .35rem 1rem; font-size: .78rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; background: #0D1117; }
+    .code-wrapper pre code { font-family: var(--font-mono); font-size: .84rem; line-height: 1.65; }
+
+    /* List */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; }
+    .styled-list li { margin-bottom: .25rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+    .chart-title { font-size: .82rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: .5rem; }
+
+    /* Image placeholder */
+    .image-placeholder { display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 200px; color: var(--text-muted); font-size: .9rem; font-family: var(--font-mono); }
+
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TOC ── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease; font-family: var(--font-mono);
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.4); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .8rem; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .75rem; opacity: .85; }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px var(--accent), 0 2px 8px rgba(0,0,0,.4); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 打印 / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 保存图片（桌面）</button>
+    <button class="export-item" id="export-png-mobile">📱 保存图片（手机）</button>
+    <button class="export-item" id="export-im-share">💬 IM 分享长图</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="导出">↓ 导出</button>
+
+
+  <!-- AI Readability Layer: Report Summary JSON -->
+  <script type="application/json" id="report-summary">
+  {
+    "title": "微服务系统监控与性能分析报告",
+    "author": "平台工程团队",
+    "date": "2025-03-15",
+    "abstract": "本报告覆盖过去7天微服务集群的延迟、可用性、错误率及吞吐量指标。P99延迟降至18ms，系统可用性维持99.97%，v2.1.0版本全量上线稳定运行。",
+    "sections": ["系统状态", "性能趋势", "服务清单", "部署时间线", "调用链路", "监控查询", "运维注意事项", "架构图片示例", "系统概述"],
+    "kpis": [
+      {"label": "P99延迟", "value": "18ms", "trend": "↓12%"},
+      {"label": "可用性", "value": "99.97%", "trend": "↑0.03%"},
+      {"label": "错误率", "value": "0.03%", "trend": "↓0.01%"},
+      {"label": "吞吐量", "value": "12,400 req/s", "trend": "↑8%"}
+    ]
+  }
+  </script>
+
+  <!-- Floating TOC toggle -->
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="目录" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="报告目录">
+    <h4>目录</h4>
+    <a href="#section-xt-zt">系统状态</a>
+    <a href="#section-xn-qush">性能趋势</a>
+    <a href="#section-fw-qd">服务清单</a>
+    <a href="#section-bs-sjx">部署时间线</a>
+    <a href="#section-dyjl">调用链路</a>
+    <a href="#section-jkca">监控查询</a>
+    <a href="#section-ywzys">运维注意事项</a>
+    <a href="#section-jtts">架构图片示例</a>
+    <a href="#section-xtgs">系统概述</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <h1>微服务系统监控与性能分析报告</h1>
+      <p class="report-meta">平台工程团队 · 2025-03-15 · 统计周期：2025-03-08 ~ 2025-03-14</p>
+
+      <!-- ── 1. 系统状态 ── -->
+      <section data-section="系统状态" data-summary="关键性能指标：P99延迟18ms，可用性99.97%，错误率0.03%，吞吐量12400 req/s。">
+        <h2 id="section-xt-zt">系统状态</h2>
+        <div data-component="kpi" class="kpi-grid">
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">P99 延迟</div>
+            <div class="kpi-value">18ms</div>
+            <div class="kpi-trend kpi-trend--down">↓12% vs 上周</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">可用性</div>
+            <div class="kpi-value">99.97%</div>
+            <div class="kpi-trend kpi-trend--up">↑0.03% vs 上周</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">错误率</div>
+            <div class="kpi-value">0.03%</div>
+            <div class="kpi-trend kpi-trend--down">↓0.01% vs 上周</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">吞吐量</div>
+            <div class="kpi-value">12.4K</div>
+            <div class="kpi-trend kpi-trend--up">↑8% vs 上周 (req/s)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 2. 性能趋势 ── -->
+      <section data-section="性能趋势" data-summary="过去7天P50/P99/P999延迟趋势及各服务错误率对比。">
+        <h2 id="section-xn-qush">性能趋势</h2>
+
+        <h3>响应延迟趋势（过去7天）</h3>
+        <div data-component="chart" data-type="line" class="fade-in-up">
+          <p class="chart-title">P50 / P99 / P999 延迟 (ms) — 2025-03-08 至 2025-03-14</p>
+          <canvas id="chart-latency"></canvas>
+          <script>
+            (function() {
+              var labels = ['03-08', '03-09', '03-10', '03-11', '03-12', '03-13', '03-14'];
+              new Chart(document.getElementById('chart-latency'), {
+                type: 'line',
+                data: {
+                  labels: labels,
+                  datasets: [
+                    {
+                      label: 'P50 延迟 (ms)',
+                      data: [6, 5.8, 6.2, 5.5, 5.9, 5.7, 5.6],
+                      borderColor: '#818CF8',
+                      backgroundColor: 'rgba(129,140,248,.12)',
+                      tension: 0.35,
+                      fill: true,
+                      pointRadius: 4,
+                      pointBackgroundColor: '#818CF8'
+                    },
+                    {
+                      label: 'P99 延迟 (ms)',
+                      data: [24, 22, 26, 21, 20, 19, 18],
+                      borderColor: '#A78BFA',
+                      backgroundColor: 'rgba(167,139,250,.08)',
+                      tension: 0.35,
+                      fill: true,
+                      pointRadius: 4,
+                      pointBackgroundColor: '#A78BFA'
+                    },
+                    {
+                      label: 'P999 延迟 (ms)',
+                      data: [110, 98, 115, 92, 88, 85, 82],
+                      borderColor: '#34D399',
+                      backgroundColor: 'rgba(52,211,153,.06)',
+                      tension: 0.35,
+                      fill: false,
+                      borderDash: [5, 4],
+                      pointRadius: 4,
+                      pointBackgroundColor: '#34D399'
+                    }
+                  ]
+                },
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'top',
+                      labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 11 } }
+                    }
+                  },
+                  scales: {
+                    x: { ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 } }, grid: { color: 'rgba(51,65,85,.6)' } },
+                    y: { ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 }, callback: v => v + 'ms' }, grid: { color: 'rgba(51,65,85,.6)' }, beginAtZero: true }
+                  }
+                }
+              });
+            })();
+          </script>
+        </div>
+
+        <h3>各服务错误率对比（本周均值）</h3>
+        <div data-component="chart" data-type="bar" class="fade-in-up">
+          <p class="chart-title">错误率 (%) — 各微服务 7 日均值</p>
+          <canvas id="chart-errors"></canvas>
+          <script>
+            (function() {
+              new Chart(document.getElementById('chart-errors'), {
+                type: 'bar',
+                data: {
+                  labels: ['api-gateway', 'auth-svc', 'order-svc', 'user-svc', 'payment-svc', 'notify-svc'],
+                  datasets: [{
+                    label: '错误率 (%)',
+                    data: [0.01, 0.00, 0.08, 0.02, 0.03, 0.00],
+                    backgroundColor: [
+                      'rgba(129,140,248,.75)',
+                      'rgba(52,211,153,.75)',
+                      'rgba(248,113,113,.85)',
+                      'rgba(129,140,248,.75)',
+                      'rgba(167,139,250,.75)',
+                      'rgba(52,211,153,.75)'
+                    ],
+                    borderRadius: 5
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: { labels: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 11 } } }
+                  },
+                  scales: {
+                    x: { ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 } }, grid: { color: 'rgba(51,65,85,.5)' } },
+                    y: {
+                      beginAtZero: true,
+                      ticks: { color: '#94A3B8', font: { family: "'JetBrains Mono', monospace", size: 10 }, callback: v => v.toFixed(2) + '%' },
+                      grid: { color: 'rgba(51,65,85,.5)' }
+                    }
+                  }
+                }
+              });
+            })();
+          </script>
+        </div>
+      </section>
+
+      <!-- ── 3. 服务清单 ── -->
+      <section data-section="服务清单" data-summary="6个核心微服务的实例数、CPU、内存及运行状态；本周告警top5及待优化项。">
+        <h2 id="section-fw-qd">服务清单</h2>
+
+        <div class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>服务名称</th>
+                <th>实例数</th>
+                <th>CPU 使用率</th>
+                <th>内存使用</th>
+                <th>P99 延迟</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>api-gateway</td>
+                <td>6</td>
+                <td>38%</td>
+                <td>1.2 GB</td>
+                <td>9ms</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+              </tr>
+              <tr>
+                <td>auth-svc</td>
+                <td>4</td>
+                <td>22%</td>
+                <td>512 MB</td>
+                <td>5ms</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+              </tr>
+              <tr>
+                <td>order-svc</td>
+                <td>8</td>
+                <td>61%</td>
+                <td>2.4 GB</td>
+                <td>42ms</td>
+                <td><span class="badge badge--warn">DEGRADED</span></td>
+              </tr>
+              <tr>
+                <td>user-svc</td>
+                <td>4</td>
+                <td>28%</td>
+                <td>768 MB</td>
+                <td>8ms</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+              </tr>
+              <tr>
+                <td>payment-svc</td>
+                <td>4</td>
+                <td>19%</td>
+                <td>640 MB</td>
+                <td>11ms</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+              </tr>
+              <tr>
+                <td>notify-svc</td>
+                <td>2</td>
+                <td>8%</td>
+                <td>256 MB</td>
+                <td>3ms</td>
+                <td><span class="badge badge--ok">HEALTHY</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>本周告警 Top 5</h3>
+        <div class="report-list fade-in-up">
+          <ol class="styled-list">
+            <li><strong>order-svc</strong> CPU 使用率超过 60% 阈值，持续 45 分钟（03-11 14:22）</li>
+            <li><strong>order-svc</strong> P99 延迟超过 40ms SLO 目标（03-11 14:35）</li>
+            <li><strong>api-gateway</strong> 单节点 502 率短暂上升至 0.1%（03-09 03:17，持续 2 分钟）</li>
+            <li><strong>PostgreSQL</strong> 主实例慢查询数超过 50 次/分钟（03-12 18:04）</li>
+            <li><strong>Redis</strong> 连接池饱和度达到 82%（03-13 20:31，持续 8 分钟）</li>
+          </ol>
+        </div>
+
+        <h3>待优化项</h3>
+        <div class="report-list fade-in-up">
+          <ul class="styled-list">
+            <li>order-svc 查询逻辑缺少 Redis 缓存层，导致 DB 读压偏高</li>
+            <li>api-gateway 未启用 HTTP/2，升级可降低连接建立开销约 15%</li>
+            <li>notify-svc 实例数偏少，建议至少扩容至 3 实例以满足 HA 要求</li>
+            <li>PostgreSQL 索引 <code>orders.created_at</code> 缺失，导致范围查询全表扫描</li>
+            <li>跨服务 trace 采样率当前为 1%，建议调整至 5% 以提升问题诊断能力</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── 4. 部署时间线 ── -->
+      <section data-section="部署时间线" data-summary="v2.1.0从灰度5%到全量的部署过程，含回滚演练与稳定确认节点。">
+        <h2 id="section-bs-sjx">部署时间线</h2>
+        <p>本周 <strong>v2.1.0</strong> 完成全量上线，引入 order-svc 查询优化与 auth-svc JWT 刷新逻辑重构。以下为完整部署节点记录。</p>
+
+        <div data-component="timeline" class="timeline fade-in-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-03-10 10:15</div>
+            <div class="timeline-content"><strong>v2.1.0 部署启动</strong> — 灰度引流 5%，目标环境：us-east-1 / prod-k8s-cluster。部署工程师：@liuyang</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-03-10 11:00</div>
+            <div class="timeline-content"><strong>灰度 5% 稳定确认</strong> — P99 延迟 21ms，错误率 0.02%，指标正常。批准扩量。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--warning"></div>
+            <div class="timeline-date">2025-03-10 13:30</div>
+            <div class="timeline-content"><strong>扩量至 50%</strong> — order-svc CPU 小幅抬升至 58%，触发 WARNING 告警。暂停扩量，启动排查。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025-03-10 15:00</div>
+            <div class="timeline-content"><strong>根因确认 + Patch</strong> — 定位为 N+1 查询问题，hotfix 提交并通过 CI。重新推送镜像 v2.1.1-patch1。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--success"></div>
+            <div class="timeline-date">2025-03-11 09:00</div>
+            <div class="timeline-content"><strong>全量上线 + 回滚演练</strong> — v2.1.1-patch1 全量完成，随即执行回滚演练（5 分钟内回滚至 v2.0.8 并重新上线），演练通过。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--success"></div>
+            <div class="timeline-date">2025-03-11 12:00</div>
+            <div class="timeline-content"><strong>稳定确认</strong> — 连续 24 小时无 P1/P2 告警，SLO 全部达标。版本锁定，进入常规监控周期。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 5. 调用链路 ── -->
+      <section data-section="调用链路" data-summary="从客户端到数据层的完整服务调用拓扑，含API Gateway、Auth、Order、User服务及PostgreSQL/Redis。">
+        <h2 id="section-dyjl">调用链路</h2>
+        <p>下图展示核心请求路径的服务依赖拓扑，箭头表示同步 gRPC/HTTP 调用方向。</p>
+
+        <div class="diagram-wrapper fade-in-up">
+          <svg viewBox="0 0 780 344" width="780" height="344" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', monospace" font-size="13">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#818CF8"/>
+              </marker>
+              <marker id="arrow-db" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#34D399"/>
+              </marker>
+            </defs>
+
+            <!-- Client -->
+            <rect x="20" y="140" width="110" height="44" rx="6" fill="#1E293B" stroke="#818CF8" stroke-width="1.5"/>
+            <text x="75" y="158" text-anchor="middle" fill="#818CF8" font-weight="700">Client</text>
+            <text x="75" y="174" text-anchor="middle" fill="#94A3B8" font-size="10">Browser / App</text>
+
+            <!-- Arrow: Client -> API Gateway -->
+            <line x1="130" y1="162" x2="185" y2="162" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="157" y="156" text-anchor="middle" fill="#94A3B8" font-size="10">HTTPS</text>
+
+            <!-- API Gateway -->
+            <rect x="188" y="130" width="126" height="64" rx="6" fill="#1E293B" stroke="#818CF8" stroke-width="2"/>
+            <text x="251" y="154" text-anchor="middle" fill="#818CF8" font-weight="700">API Gateway</text>
+            <text x="251" y="170" text-anchor="middle" fill="#94A3B8" font-size="10">rate-limit / auth</text>
+            <text x="251" y="184" text-anchor="middle" fill="#94A3B8" font-size="10">6 instances</text>
+
+            <!-- Arrow: API Gateway -> Auth Service -->
+            <line x1="314" y1="148" x2="378" y2="108" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="355" y="122" text-anchor="middle" fill="#94A3B8" font-size="10">gRPC</text>
+
+            <!-- Arrow: API Gateway -> Order Service -->
+            <line x1="314" y1="170" x2="378" y2="190" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="357" y="186" text-anchor="middle" fill="#94A3B8" font-size="10">gRPC</text>
+
+            <!-- Arrow: API Gateway -> User Service -->
+            <line x1="314" y1="178" x2="378" y2="258" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <!-- Auth Service -->
+            <rect x="380" y="70" width="118" height="56" rx="6" fill="#1E293B" stroke="#A78BFA" stroke-width="1.5"/>
+            <text x="439" y="94" text-anchor="middle" fill="#A78BFA" font-weight="700">auth-svc</text>
+            <text x="439" y="110" text-anchor="middle" fill="#94A3B8" font-size="10">JWT / OAuth2</text>
+            <text x="439" y="122" text-anchor="middle" fill="#94A3B8" font-size="10">4 instances</text>
+
+            <!-- Order Service -->
+            <rect x="380" y="162" width="118" height="56" rx="6" fill="#1E293B" stroke="#F87171" stroke-width="1.5"/>
+            <text x="439" y="186" text-anchor="middle" fill="#F87171" font-weight="700">order-svc</text>
+            <text x="439" y="202" text-anchor="middle" fill="#94A3B8" font-size="10">DEGRADED · 8 inst.</text>
+            <text x="439" y="214" text-anchor="middle" fill="#94A3B8" font-size="10">P99 42ms</text>
+
+            <!-- User Service -->
+            <rect x="380" y="236" width="118" height="56" rx="6" fill="#1E293B" stroke="#A78BFA" stroke-width="1.5"/>
+            <text x="439" y="260" text-anchor="middle" fill="#A78BFA" font-weight="700">user-svc</text>
+            <text x="439" y="276" text-anchor="middle" fill="#94A3B8" font-size="10">profile / pref</text>
+            <text x="439" y="288" text-anchor="middle" fill="#94A3B8" font-size="10">4 instances</text>
+
+            <!-- Arrows to data layer -->
+            <!-- order-svc -> PostgreSQL -->
+            <line x1="498" y1="190" x2="578" y2="155" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <!-- order-svc -> Redis -->
+            <line x1="498" y1="204" x2="578" y2="248" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <!-- user-svc -> PostgreSQL -->
+            <line x1="498" y1="252" x2="578" y2="168" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <!-- auth-svc -> Redis -->
+            <line x1="498" y1="108" x2="578" y2="238" stroke="#34D399" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrow-db)"/>
+
+            <!-- PostgreSQL -->
+            <rect x="580" y="120" width="118" height="56" rx="6" fill="#1E293B" stroke="#34D399" stroke-width="1.5"/>
+            <text x="639" y="144" text-anchor="middle" fill="#34D399" font-weight="700">PostgreSQL</text>
+            <text x="639" y="160" text-anchor="middle" fill="#94A3B8" font-size="10">primary + 2 replica</text>
+            <text x="639" y="172" text-anchor="middle" fill="#94A3B8" font-size="10">RDS · us-east-1</text>
+
+            <!-- Redis -->
+            <rect x="580" y="208" width="118" height="56" rx="6" fill="#1E293B" stroke="#34D399" stroke-width="1.5"/>
+            <text x="639" y="232" text-anchor="middle" fill="#34D399" font-weight="700">Redis</text>
+            <text x="639" y="248" text-anchor="middle" fill="#94A3B8" font-size="10">Cluster · 3 shards</text>
+            <text x="639" y="260" text-anchor="middle" fill="#94A3B8" font-size="10">session / cache</text>
+
+            <!-- Legend -->
+            <line x1="24" y1="310" x2="54" y2="310" stroke="#818CF8" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="60" y="314" fill="#94A3B8" font-size="11">gRPC / HTTP</text>
+            <line x1="160" y1="310" x2="190" y2="310" stroke="#34D399" stroke-width="1.5" marker-end="url(#arrow-db)"/>
+            <text x="196" y="314" fill="#94A3B8" font-size="11">数据库连接</text>
+            <line x1="300" y1="310" x2="330" y2="310" stroke="#34D399" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrow-db)"/>
+            <text x="336" y="314" fill="#94A3B8" font-size="11">缓存（条件读）</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ── 6. 监控查询 ── -->
+      <section data-section="监控查询" data-summary="慢查询检测SQL及PromQL监控表达式示例。">
+        <h2 id="section-jkca">监控查询</h2>
+        <p>以下为运维日常使用的慢查询检测语句，用于识别执行时间超过 <strong>200ms</strong> 的 PostgreSQL 查询，结合 Prometheus 指标进行关联分析。</p>
+
+        <div class="code-wrapper fade-in-up">
+          <div class="code-title">慢查询检测 — PostgreSQL + PromQL</div>
+          <pre><code class="language-sql">-- ── 慢查询明细（pg_stat_statements）──────────────────────────────────
+SELECT
+    left(query, 120)                          AS query_snippet,
+    calls,
+    round(total_exec_time::numeric, 2)        AS total_ms,
+    round(mean_exec_time::numeric, 2)         AS mean_ms,
+    round(stddev_exec_time::numeric, 2)       AS stddev_ms,
+    rows
+FROM pg_stat_statements
+WHERE mean_exec_time > 200          -- 阈值：均值 > 200ms
+  AND calls       > 50              -- 排除低频偶发
+ORDER BY mean_exec_time DESC
+LIMIT 20;
+
+-- ── 缺失索引检测 ──────────────────────────────────────────────────────
+SELECT
+    schemaname,
+    relname        AS table_name,
+    seq_scan,
+    idx_scan,
+    round(100.0 * seq_scan / NULLIF(seq_scan + idx_scan, 0), 1) AS seq_pct
+FROM pg_stat_user_tables
+WHERE seq_scan > idx_scan
+ORDER BY seq_scan DESC
+LIMIT 10;
+
+-- ── Prometheus PromQL: order-svc P99 延迟（5m 滑窗）─────────────────
+-- histogram_quantile(0.99,
+--   sum(rate(http_request_duration_seconds_bucket{
+--       service="order-svc"
+--   }[5m])) by (le)
+-- ) * 1000  -- 转换为毫秒
+
+-- ── 错误率告警表达式 ──────────────────────────────────────────────────
+-- sum(rate(http_requests_total{status=~"5.."}[5m])) by (service)
+--   /
+-- sum(rate(http_requests_total[5m])) by (service)
+-- > 0.001   -- 触发阈值：0.1%</code></pre>
+        </div>
+      </section>
+
+      <!-- ── 7. 运维注意事项 ── -->
+      <section data-section="运维注意事项" data-summary="监控体系说明、性能调优建议、流量峰值预警及禁止在高峰期做数据库迁移的操作禁令。">
+        <h2 id="section-ywzys">运维注意事项</h2>
+
+        <div data-component="callout" class="callout callout--note fade-in-up">
+          <span class="callout-icon">ℹ️</span>
+          <div class="callout-body">
+            <strong>监控数据说明：</strong>本报告所有延迟指标均来自 Prometheus + Grafana 采集链路，采样间隔 15s。P99 基于过去 5 分钟滑动窗口计算，历史数据保留 90 天。Jaeger 链路追踪采样率当前为 1%（生产环境），问题排查期间可临时调至 10%。
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <strong>性能调优建议：</strong>order-svc 已确认存在 N+1 查询模式，建议在批量查询路径上引入 DataLoader 或显式 JOIN。Redis 连接池 <code>max_idle</code> 从 10 调整至 20 可缓解高峰期连接等待问题。同时开启 PostgreSQL <code>pg_stat_statements</code> 自动重置（每日 00:00 UTC）以保证数据新鲜度。
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--warning fade-in-up">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>流量峰值预警：</strong>根据历史数据，每周五 19:00–22:00 为流量峰值窗口，吞吐量峰值可达均值的 2.8 倍（约 34,700 req/s）。请确保 order-svc 自动扩容策略已配置，HPA targetCPU 建议设置为 50%（当前 70%），留足扩容缓冲。
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--danger fade-in-up">
+          <span class="callout-icon">🚫</span>
+          <div class="callout-body">
+            <strong>操作禁令：</strong>严禁在每周五 18:00–22:00 及任意 P1 告警期间执行以下操作：数据库 schema 迁移（DDL）、生产节点重启、依赖组件版本升级。如需紧急变更，须经过变更审批流程并提前通知值班 SRE。违规操作将触发自动回滚并计入事故复盘。
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 8. 架构图片示例 ── -->
+      <section data-section="架构图片示例" data-summary="架构图片布局示例，演示右浮动图片与文字混排效果。">
+        <h2 id="section-jtts">架构图片示例</h2>
+
+        <div class="clearfix fade-in-up">
+          <figure class="report-image report-image--right">
+            <div class="image-placeholder">[ 架构拓扑截图 ]<br><span style="font-size:.75rem; display:block; margin-top:.3rem; opacity:.7">layout=right · 42% width</span></div>
+            <figcaption>图 1 — Kubernetes 集群节点分布（us-east-1，截止 2025-03-14）</figcaption>
+          </figure>
+          <p>当前生产集群部署于 AWS us-east-1，共 3 个可用区（AZ-a / AZ-b / AZ-c），每个 AZ 部署 6 个工作节点（c6i.2xlarge，8 vCPU / 32 GB RAM）。所有微服务以 Kubernetes Deployment 方式运行，跨 AZ 打散调度（<strong>topologySpreadConstraints</strong>），确保单 AZ 故障不影响服务连续性。</p>
+          <p>Istio Service Mesh 负责服务间 mTLS 加密、流量管控与可观测性数据采集。Envoy Sidecar 注入率当前为 100%，Telemetry v2 插件开启后，Prometheus 指标采集延迟降低约 18%。</p>
+          <p>存储层采用 RDS for PostgreSQL 14（Multi-AZ 主从 + 2 只读副本）与 ElastiCache Redis 7.0 集群（3 主 3 从）。数据库连接通过 PgBouncer 连接池代理，pool_mode=transaction，最大连接数 200。</p>
+        </div>
+
+        <div class="fade-in-up" style="margin-top: 1.5rem;">
+          <figure class="report-image">
+            <div class="image-placeholder" style="height: 160px;">[ Grafana 监控大盘截图 ]<br><span style="font-size:.75rem; display:block; margin-top:.3rem; opacity:.7">layout=full · 全宽展示</span></div>
+            <figcaption>图 2 — Grafana 监控大盘：过去 7 天关键指标总览（含延迟热图 / 错误率 / 饱和度）</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ── 9. 系统概述 ── -->
+      <section data-section="系统概述" data-summary="系统架构设计理念、技术选型背景及核心设计原则。">
+        <h2 id="section-xtgs">系统概述</h2>
+
+        <p>本系统采用基于 <strong>Domain-Driven Design (DDD)</strong> 的微服务拆分策略，将业务域划分为 6 个独立服务：网关、认证、订单、用户、支付与通知。各服务独立部署、独立扩缩容，通过 <strong>gRPC (Protobuf)</strong> 进行同步 RPC 调用，异步事件通过 <strong>Apache Kafka</strong> 传递，解耦关键业务流程（订单创建→支付通知→库存扣减）。</p>
+
+        <blockquote>
+          "设计一个分布式系统，最终你面对的不是技术问题，而是边界问题——服务边界、数据边界、故障边界。划对边界，系统的复杂度就被封装在正确的地方。"<br>
+          — 平台工程团队架构原则 v3.0
+        </blockquote>
+
+        <p>可观测性体系遵循 <strong>OpenTelemetry</strong> 规范，三大信号（Metrics / Traces / Logs）统一采集：Prometheus 负责指标存储与告警，Jaeger 承载分布式追踪，Loki 聚合结构化日志。告警规则通过 <strong>AlertManager</strong> 路由至 PagerDuty（P1/P2）及企业微信（P3/P4），MTTD 目标 < 3 分钟，MTTR 目标 < 15 分钟。</p>
+
+        <h3>核心技术栈</h3>
+        <ul class="styled-list" style="font-family: var(--font-mono); font-size: .88rem;">
+          <li>运行时：<strong>Go 1.22</strong>（高并发服务）/ <strong>Python 3.12</strong>（数据处理管道）</li>
+          <li>容器编排：<strong>Kubernetes 1.29</strong> + Helm 3 + ArgoCD（GitOps）</li>
+          <li>服务网格：<strong>Istio 1.21</strong>（mTLS / 流量管控 / 熔断）</li>
+          <li>消息队列：<strong>Apache Kafka 3.7</strong>（3 broker，RF=3，min.insync.replicas=2）</li>
+          <li>可观测性：<strong>Prometheus + Grafana + Jaeger + Loki + OpenTelemetry Collector</strong></li>
+          <li>CI/CD：GitHub Actions → Docker Build → GHCR → ArgoCD Image Updater</li>
+        </ul>
+
+        <p>本报告数据由 <strong>report-exporter</strong> 定时任务自动从 Prometheus HTTP API 拉取生成，每周一 08:00 UTC 发布。如发现数据异常，请联系 <a href="mailto:sre@example.com">SRE 值班组</a> 或在 <code>#platform-metrics</code> Slack 频道反馈。</p>
+      </section>
+
+    </div><!-- /.report-wrapper -->
+  </div><!-- /.main-with-toc -->
+
+  <script>
+    // ── Highlight.js init ──
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('pre code').forEach(function(block) {
+        hljs.highlightElement(block);
+      });
+    });
+
+    // Auto-reveal in headless/screenshot environments
+    if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+    // ── Fade-in-up on scroll ──
+    (function() {
+      var items = document.querySelectorAll('.fade-in-up');
+      if (!items.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // ── TOC: hover-open + click-lock ──
+    (function() {
+      var btn = document.getElementById('toc-toggle-btn');
+      var sidebar = document.getElementById('toc-sidebar');
+      if (!btn || !sidebar) return;
+
+      var locked = false;
+      var hoverTimer = null;
+
+      btn.addEventListener('mouseenter', function() {
+        hoverTimer = setTimeout(function() {
+          if (!locked) { sidebar.classList.add('open'); }
+        }, 120);
+      });
+      btn.addEventListener('mouseleave', function() {
+        clearTimeout(hoverTimer);
+        if (!locked) {
+          setTimeout(function() {
+            if (!sidebar.matches(':hover')) sidebar.classList.remove('open');
+          }, 300);
+        }
+      });
+      sidebar.addEventListener('mouseleave', function() {
+        if (!locked) sidebar.classList.remove('open');
+      });
+
+      btn.addEventListener('click', function() {
+        locked = !locked;
+        sidebar.classList.toggle('open', locked);
+        btn.classList.toggle('locked', locked);
+        btn.setAttribute('aria-expanded', locked ? 'true' : 'false');
+      });
+
+      // Active link on scroll
+      var headings = document.querySelectorAll('h2[id], h3[id]');
+      var links = document.querySelectorAll('.toc-sidebar a');
+      window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY + 80;
+        var current = '';
+        headings.forEach(function(h) {
+          if (h.offsetTop <= scrollY) current = h.id;
+        });
+        links.forEach(function(a) {
+          var href = a.getAttribute('href');
+          a.classList.toggle('active', href === '#' + current);
+        });
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

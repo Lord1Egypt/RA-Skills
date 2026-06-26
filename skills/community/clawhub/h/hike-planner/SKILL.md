@@ -1,35 +1,128 @@
 ---
-name: "Hike Planner"
-description: "一站式徒步出行规划。根据用户明确指令生成行程计划（含徒步路线/交通/住宿/人文/装备）。支持查询票务/酒店信息，不执行订票/下单/候补/支付。多源交叉验证（12306/两步路/高德/小红书/GPX/KML文件）。行程状态持久化到本地文件，编辑命令自动写入，短信解析需用户确认。"
-category: "domain"
-source: "ClawHub"
-tags: [hiking, planner, planning, travel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hike-planner"
-sourceUrl: "https://clawhub.ai/skills/hike-planner"
+name: Hike Planner
+description: 一站式徒步出行规划。根据用户明确指令生成行程计划（含徒步路线/交通/住宿/人文/装备）。支持查询票务/酒店信息，不执行订票/下单/候补/支付。多源交叉验证（12306/两步路/高德/小红书/GPX/KML文件）。行程状态持久化到本地文件，编辑命令自动写入，短信解析需用户确认。
+permissions:
+  filesystem: 在用户指定的 outputDir 下读写行程状态文件
+  network: restapi.amap.com, is.autonavi.com, a.amap.com, wikipedia.org, 2bulu.com, xiaohongshu.com, bilibili.com, unpkg.com
+  environment: AMAP_WEBSERVICE_KEY
+  execution: curl, python3, node
 ---
 
-# Hike Planner
+# hike-planner
 
-> 一站式徒步出行规划。根据用户明确指令生成行程计划（含徒步路线/交通/住宿/人文/装备）。支持查询票务/酒店信息，不执行订票/下单/候补/支付。多源交叉验证（12306/两步路/高德/小红书/GPX/KML文件）。行程状态持久化到本地文件，编辑命令自动写入，短信解析需用户确认。
+> 从0开始逐步完善的智能行程规划工具。**需要用户明确提供出行日期、目的地和活动类型**才会开始规划。详细执行规范见 `hike-planner-sop.md`。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hike-planner`
-- **Source URL:** [https://clawhub.ai/skills/hike-planner](https://clawhub.ai/skills/hike-planner)
+## 能力
 
-## Overview
+| 能力维度 | 说明 |
+|---------|------|
+| 🚀 便捷 | 输入日期、目的地、活动类型，10 分钟内生成含大交通、酒店、徒步路线、人文介绍、装备清单的完整计划 |
+| 🔍 可靠 | 12306 / flyai 校验机票火车票，两步路 / 小红书查询路线，接受 GPX/KML 轨迹文件补充，高德地图保证里程准确 |
+| ⏱️ 精准 | 锁定大交通时间 + 锁定徒步路线时间为双锚点，按时间顺排倒排，确保节点衔接无冲突 |
+| 🗺️ 可视 | 每日行程自动生成高德地图链接，节点标注 + 交通路线一目了然。GPX/KML 轨迹渲染为交互式地图，支持多路线对比分析 |
+| 📚 有料 | 人文信息按目的地特性自动分类检索，与行程强关联（诗词对应徒步路段，美食定位补给点） |
 
+### 内置能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hike-planner
+| 能力 | 说明 |
+|------|------|
+| 徒步路线搜索 | 两步路 + 小红书攻略 + B站视频（搜索策略详见 SOP §3.1）|
+| 行程地图渲染 | 高德地图可视化链接（依赖 amap-lbs-skill）。⚠️ 行程站点名称会通过网络发送给高德地图（Amap）API。 |
+| 人文信息收集 | Wikipedia + web_search + xiaohongshu |
+| 行程计划生成 | 按 PLAN_TEMPLATE 标准格式输出 |
+| 行中记录/行后汇总 | 实际 vs 计划对比 + 归档 |
+
+## 命令
+
+| 命令 | 说明 |
+|------|------|
+| `hike [目的地] [活动?]` | 查询目的地介绍+推荐经典徒步路线。不创建行程、不管理状态。示例：`hike 四姑娘山` |
+| `hike-init [日期] [目的地] [活动]` | 启动规划。日期/目的地/活动为必填，直接从参数解析。首次使用将征得您同意确认保存到 outputDir。示例：`hike-init 2026-06-01 古蜀道 徒步+文化探访`。若未提供完整参数则交互补问缺失项。 |
+| `hike-list` | 列出所有未完成行程；`hike-list <tripId>` 归档并汇总指定行程 |
+| `hike-select output <路径>` | 设置/切换默认输出目录（持久化到 `{skillDir}/planner/config.json`） |
+| `hike-select baseurl <URL>` | 设置 Web 基础 URL（用于轨迹地图链接，默认 `http://localhost`）。不传参数查看当前值。 |
+| `hike-select <行程名>` | 激活/选择某个行程进行管理。匹配 tripId 或目的地关键词（模糊匹配）。选择后 hike-status/today/log 都作用于该行程。 |
+| `hike-status` | 查看当前行程状态与概览（作用于 hike-select 选中的行程） |
+| `hike-log [内容]` | 记录行程最新信息：🚄 订好车票 / ✈️ 订好机票 / 🏨 订了酒店 / 💰 支出花销。粘贴 12306/航司/酒店 OTA 订单短信自动解析并更新行程。⚠️ 解析前会弹窗确认，仅提取订单关键字段（车次/航班/站点/日期），不保留原始短信全文。 |
+| `hike-today` | 查看今日计划（时间线 + 地图，作用于选中行程） |
+| `hike-add [dayN] [路线A-B]` | 添加 A-B 行程段到 DayN，后续行程自动推后 |
+| `hike-del [dayN]` | ⚠️ 删除 DayN 整个日程，立即写入磁盘且不可撤销。后续日程自动移前。 |
+| `hike-reorder [dayN] after\|before\|to [dayM]` | ⚠️ 重排日程顺序，立即写入磁盘。将 DayN 移到 DayM 之后/之前，或让 DayN 成为新的 DayM。 |
+| `todo [N] done` | ✅ 通过编号快速完成待办。示例：`todo 1 done`、`TODO 3 done`。 |
+
+## 示例
+
+```text
+hike 四姑娘山 徒步
 ```
+
+> 纯查询模式，不创建行程。返回目的地文化介绍（地理/历史/人文/美食等 3-5 个分类）和经典徒步路线详情（路线名/距离/爬升/难度/关键节点/提示）。
+
+```text
+hike-init 2026-06-01 古蜀道 徒步+文化探访
+```
+
+Agent 交互收集需求后，自动执行搜索与生成。以「古蜀道 5/13-5/16」真实输出为例：
+
+**总览**：
+
+| 日期 | 星期 | 行程概要 | 出行方式 | 班次/车牌 | 住宿酒店 | 含早 | 天气 |
+|------|------|---------|---------|---------|---------|------|------|
+| 5/13 | 周三 | 抵达成都，逛宽窄巷子/锦里 | ✈️ | CA4117 北京→成都 | 维也纳国际酒店(成都东站) | 否 | 晴 |
+| 5/14 | 周四 | 成都东→剑门关→小娅子徒步→普安镇 | 🚄+🚗+🥾 | D2008+包车 | 剑阁瑞山酒店 | 是 | ☀️31°C/16°C |
+| 5/15 | 周五 | 汉阳镇→普安镇徒步10km | 🥾+🚗 | 包车+徒步 | 剑阁瑞山酒店 | 是 | 多云28°C/18°C |
+| 5/16 | 周六 | 拦马墙→剑门关→成都→北京 | 🥾+🚄+✈️ | D1973+CA4117 | | | 晴29°C/17°C |
+
+**DAY 3 — 5/16（周六）：拦马墙→返程北京**：
+
+| 时间 | 区间 | 节点详情 | 费用 | 备注 |
+|------|------|---------|------|------|
+| 07:00 | 起床退房 | 行李寄存前台 | | 必须早起 |
+| 07:00-07:30 | 早餐 | 酒店含早 | | |
+| 07:30-07:40 | 🚗 包车 | 酒店→拦马墙起点 | ¥30-50 | 约10min |
+| 07:40-10:10 | 🥾 徒步 | 拦马墙→普安镇（折返） | | 7.5km，约2.5h |
+| 10:10-10:30 | 取行李+简餐 | 普安镇 | ¥15 | 20min |
+| 10:30-11:00 | 🚗 包车 | 普安镇→剑门关站 | ¥80-100 | |
+| 11:00 | 到达剑门关站 | 候车29分钟 | | 🟢 刚好 |
+| 11:29-12:56 | 🚄 D1973 | 剑门关→成都东 | ¥104 | 已购票 |
+| 12:56 | 抵达成都东 | | | |
+| 13:00-15:00 | 午餐 | 苏坦土耳其餐厅（玉林店） | ¥100 | 请上海来的朋友 |
+| 15:00-15:40 | 🚇 地铁 | 东站→双流机场（7号线） | ¥8-9 | |
+| 17:00-20:00 | ✈️ CA4117 | 双流→首都T3 | 已购票 | 2h24m |
+
+> ⚠️ 时间紧，务必早起！候车不超过30分钟
+> 🗺️ [查看地图](https://a.amap.com/...)
+> 💰 本日费用：约¥300-400（包车+午餐+地铁）
+
+**徒步路线详情 — 路线二：汉阳镇→普安镇**：
+
+| 项目 | 数据 |
+|------|------|
+| 距离 | 10.05km |
+| 爬升 | 286m |
+| 下降 | 327m |
+| 预计用时 | 3.5-4小时 |
+| 路线类型 | 古道+乡村公路 |
+| 关键节点 | 汉阳镇体育中心→石洞沟→抄手铺→碑梁村→卧龙社区→普安镇 |
+| ⚠️ 提示 | 石洞沟、抄手铺有补给；抄手铺的钟婆婆抄手售咖啡 |
+
+## 外部依赖
+
+以下 Skill 为可选依赖。hike-init 启动时自动检测，若未安装则提示用户。
+
+| 依赖 | 用途 | 安装 |
+|------|------|------|
+| `12306-train-assistant` | 火车票余票/价格/时刻查询 | `npx clawhub install 12306-train-assistant` |
+| `amap-lbs-skill` | 距离/路线/地图 | `npx clawhub install amap-lbs-skill` |
+| `flyai` | 机票/酒店查询 | `npx clawhub install flyai`（安装后需到 [open.fly.ai](https://open.fly.ai/console) 获取 API Key） |
+| `xiaohongshu` | 小红书攻略搜索（需先登录） | `npx clawhub install xiaohongshu` |
+
+> 💡 hike-init 时会检测依赖可用性。缺失时提示用户安装或手动输入信息。不可用时的保底策略见 `hike-planner-sop.md`。
+
+## 不做
+
+- 🔒 自动订票 / 下单 / 支付
+
+> ⚠️ 不执行订票、下单、候补、支付等操作，但会保存行程、目的地、出行时间等信息。
+
+

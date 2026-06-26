@@ -1,0 +1,18 @@
+{
+  "slug": "multi-agent-deployment",
+  "name": "Multi-Agent Deployment Skill for OpenClaw",
+  "version": "1.0.2",
+  "description": "Deploy a production-ready multi-agent OpenClaw fleet with proven workspace scaffolding, routing, memory sync, and VPS deployment patterns.",
+  "author": "Abhinas Neupane",
+  "tags": [
+    "agents",
+    "multi-agent",
+    "deployment",
+    "openclaw",
+    "ai"
+  ],
+  "pricing": {
+    "type": "one-time",
+    "value": 99
+  }
+}

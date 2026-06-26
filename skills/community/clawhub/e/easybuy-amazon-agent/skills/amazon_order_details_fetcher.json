@@ -1,0 +1,39 @@
+{
+  "name": "amazon_order_details_fetcher",
+  "version": "1.0.0",
+  "description": "Fetches order detail data like ASIN and buy price.",
+  "allowedTools": [
+    "browser.get_dom",
+    "browser.query"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "detailsUrl": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "detailsUrl"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "asin": {
+        "type": "string"
+      },
+      "buy_price": {
+        "type": "string"
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "notes": "In production this is implemented by SW fetch against detailsUrl.",
+  "id": "amazon_order_details_fetcher"
+}

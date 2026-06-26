@@ -1,0 +1,29 @@
+N:bmad
+D:Packet-first BMAD/BMM front door for idea notes, product briefs, PRDs, architecture drafts, review feedback, existing repo state, and milestone pressure. Use when the user wants to know what BMAD phase or artifact comes next, or needs a portable BMAD entrypoint before routing review, execution slicing, runtime setup, or game-production work outward.
+G:bmad workflow planning packet-first brownfield architecture prd review-gate sprint-plan runtime-handoff
+
+U[6]:
+  Start or resume BMAD from the packet already in hand
+  Decide whether the next move is product-brief, PRD, architecture, review gate, sprint plan, or runtime handoff
+  Handle existing repo / issue / partial-implementation brownfield BMAD intake
+  Keep runtime-specific orchestration out of the common BMAD layer
+  Route pre-planning concept work to bmad-idea and game-production work to bmad-gds
+  Keep review gates visible before phase advancement
+
+S[8]{n,action,details}:
+  1,Classify,Choose one primary packet: concept/planning/architecture/review-gate/execution/runtime-handoff/brownfield-resume
+  2,Level,Choose project level 0-4 before suggesting artifact depth
+  3,Phase,Infer the likely current phase from the packet instead of assuming a clean phase transition
+  4,Next,Recommend exactly one next artifact or gate
+  5,Review,If the artifact exists but is unreviewed → route to plannotator before creating another document
+  6,Execute,If the artifact is approved and the real blocker is slicing → route to task-planning
+  7,Runtime,If execution is runtime-native → route to omc/omx/ohmg with a short why
+  8,Brownfield,If the ask starts from a live repo/issue/partial implementation → prefer workflow-status or smallest missing artifact over greenfield restart
+
+R[6]:
+  Pick one primary packet before choosing the next artifact
+  Make the project-level assumption explicit
+  Prefer the smallest truthful next move over a parallel document stack
+  Keep plannotator visible when approval is the real blocker
+  Keep runtime overlays separated from the common BMAD layer
+  Route game-production packets to bmad-gds and open-ended concept framing to bmad-idea

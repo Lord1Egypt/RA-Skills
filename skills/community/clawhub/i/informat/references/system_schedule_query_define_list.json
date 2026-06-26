@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_schedule_query_define_list",
+    "description": "Query the list of scheduled task definitions under the current application.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  }
+}

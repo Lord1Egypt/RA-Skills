@@ -1,0 +1,134 @@
+{
+  "title": "AANA Human Review Route",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "proposed_action",
+    "impact_level",
+    "evidence_status",
+    "authorization_status",
+    "reversibility_status",
+    "review_route",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposed_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "impact_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "irreversible",
+        "external",
+        "private",
+        "professional",
+        "production",
+        "unknown"
+      ]
+    },
+    "evidence_status": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "partial",
+        "missing",
+        "conflicting",
+        "unverified",
+        "unavailable",
+        "unknown"
+      ]
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "explicit",
+        "implicit_low_risk",
+        "approval_required",
+        "unclear",
+        "unauthorized",
+        "not_needed"
+      ]
+    },
+    "reversibility_status": {
+      "type": "string",
+      "enum": [
+        "reversible",
+        "preview_or_draft",
+        "reversible_with_cost",
+        "hard_to_undo",
+        "irreversible",
+        "unknown"
+      ]
+    },
+    "review_route": {
+      "type": "string",
+      "enum": [
+        "proceed",
+        "ask_user",
+        "user_approval",
+        "human_review",
+        "professional_review",
+        "admin_review",
+        "refuse"
+      ]
+    },
+    "review_reason": {
+      "type": "string"
+    },
+    "reviewer_decision_needed": {
+      "type": "string"
+    },
+    "risk_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "privacy",
+          "medical",
+          "legal",
+          "financial",
+          "file_operation",
+          "code_change",
+          "purchase_booking",
+          "support_reply",
+          "research_grounding",
+          "publication",
+          "destructive_action",
+          "external_send",
+          "production",
+          "permissions",
+          "unknown"
+        ]
+      }
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "proceed",
+        "ask",
+        "request_approval",
+        "route_to_review",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

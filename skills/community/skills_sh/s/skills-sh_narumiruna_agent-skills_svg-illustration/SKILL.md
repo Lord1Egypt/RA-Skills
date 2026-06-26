@@ -1,35 +1,36 @@
 ---
-name: "svg-illustration"
-description: "Indexed by skills.sh from narumiruna/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "narumiruna"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/narumiruna/agent-skills/svg-illustration"
-sourceUrl: "https://skills.sh/narumiruna/agent-skills/svg-illustration"
+name: svg-illustration
+description: Use when you need SVG diagram rules, layout patterns, or embedding guidance for slide decks and want the minimal SVG-focused reading path.
 ---
 
-# svg-illustration
-
-> Indexed by skills.sh from narumiruna/agent-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** narumiruna
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/narumiruna/agent-skills/svg-illustration`
-- **Source URL:** [https://skills.sh/narumiruna/agent-skills/svg-illustration](https://skills.sh/narumiruna/agent-skills/svg-illustration)
+# SVG Illustration Entry
 
 ## Overview
+Thin entry skill for SVG diagrams. Core principle: go straight to SVG rules and patterns rather than scanning slide authoring or color modules.
 
+## When to Use
+- Creating slide-ready SVG diagrams or illustrations
+- Choosing SVG sizing, spacing, and embedding rules
+- Troubleshooting SVG export/embedding issues
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/narumiruna/agent-skills/svg-illustration
-```
+## Quick Reference
+| Goal | Read |
+| --- | --- |
+| Core rules | references/core-rules.md |
+| Pattern examples | references/pattern-examples.md |
+| Embedding in slides | references/embedding.md |
+| Troubleshooting | references/troubleshooting.md |
+
+## Example
+Prompt: "Need an architecture diagram with clean sizing." → Read `core-rules.md`, then `pattern-examples.md`.
+
+## Assets
+- `assets/examples/` - SVG diagram examples
+
+## Common Mistakes
+- Reading Marp authoring before SVG rules when only diagrams are needed
+- Skimming slide-creator overview instead of SVG references
+
+## Red Flags
+- "Maybe SVG rules are buried in authoring"
+- "I'll just skim everything"

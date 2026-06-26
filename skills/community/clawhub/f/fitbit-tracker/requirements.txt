@@ -1,0 +1,6 @@
+# No external dependencies required
+# Uses Python standard library only:
+# - urllib.request
+# - json
+# - datetime
+# - zoneinfo (Python 3.9+)

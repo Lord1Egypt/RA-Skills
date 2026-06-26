@@ -1,0 +1,5 @@
+{
+  "name": "Evolver Plus",
+  "description": "Agent 自我进化引擎，让 Agent 能够主动识别自身能力短板、生成改进方案、在安全门控制下执行进化，并积累为可度量的Gene资产。",
+  "version": "1.0.2"
+}

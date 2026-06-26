@@ -1,35 +1,33 @@
 ---
-name: "Pipeworx poetry"
-description: "Poetry MCP — PoetryDB API (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-poetry"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-poetry"
+name: pipeworx-poetry
+description: Poetry MCP — PoetryDB API (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/poetry
 ---
 
-# Pipeworx poetry
+# pipeworx-poetry
 
-> Poetry MCP — PoetryDB API (free, no auth)
+Poetry MCP — PoetryDB API (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-poetry`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-poetry](https://clawhub.ai/skills/pipeworx-poetry)
+## Tools
 
-## Overview
+- `search_poems`
+- `poems_by_author`
+- `random_poems`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-poetry
+```json
+{
+  "mcpServers": {
+    "pipeworx-poetry": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/poetry/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/poetry](https://pipeworx.io/packs/poetry)

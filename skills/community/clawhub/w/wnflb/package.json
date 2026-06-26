@@ -1,0 +1,19 @@
+{
+  "name": "wnflb-scraper",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "Scrape wnflb forum list and threads with JS redirect decoding.",
+  "main": "main.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "scrape": "node main.js scrape",
+    "checkin": "node main.js checkin"
+  },
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "undici": "^7.15.0"
+  }
+}

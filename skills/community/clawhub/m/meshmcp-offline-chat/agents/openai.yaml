@@ -1,0 +1,4 @@
+interface:
+  display_name: "Offline Message Test Planner"
+  short_description: "Plan owned-device offline message tests"
+  default_prompt: "Use $meshmcp-offline-chat to prepare a consent-based offline message test plan, sample non-sensitive messages, and a manual verification checklist."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "圆桌派"
+  short_description: "把一个问题变成一场真实讨论的中文三人圆桌技能"
+  default_prompt: "用 $roundtable-pai 把我的问题变成一场真实讨论，让最合适的三位人物围绕它展开辩论。"

@@ -1,0 +1,26 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "alimail",
+    "version": "1.0.6"
+  },
+  "paths": {
+    "/search": {
+      "get": {
+        "operationId": "search_alimail_user",
+        "description": "Search user by name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    }
+  }
+}

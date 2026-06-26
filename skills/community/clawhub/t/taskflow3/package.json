@@ -1,0 +1,31 @@
+{
+  "name": "taskflow",
+  "version": "3.0.0",
+  "description": "TaskFlow 3.0 - Agent-Native 项目化任务调度系统",
+  "author": "zsxq",
+  "license": "MIT",
+ "bin": {
+    "taskflow": "bin/taskflow.sh",
+    "taskflow-scheduler": "bin/scheduler.sh"
+  },
+  "scripts": {
+    "test": "echo 'Tests not implemented'"
+  },
+  "keywords": ["taskflow", "scheduler", "automation", "workflow"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skill": {
+      "id": "taskflow",
+      "name": "TaskFlow",
+      "version": "3.0.0",
+      "description": "Agent-Native 项目化任务调度系统",
+      "category": "automation",
+      "requires": {
+        "bins": ["python3"],
+        "python": ["pyyaml"]
+      }
+    }
+  }
+}

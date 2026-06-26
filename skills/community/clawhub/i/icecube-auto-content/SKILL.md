@@ -1,35 +1,329 @@
 ---
-name: "IceCube Auto Content"
+name: icecube-auto-content
 description: "🧊 IceCube 自动内容生成 — 每日自动生成 AI Diary、技术分享、行业动态、知识星球内容。内容是搞钱的基础。当用户提到'内容生成'、'自动内容'、'内容生产'时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/icecube-auto-content"
-sourceUrl: "https://clawhub.ai/skills/icecube-auto-content"
+metadata:
+  openclaw:
+    requires: {}
 ---
 
-# IceCube Auto Content
+# 🧊 IceCube 自动内容生成
 
-> 🧊 IceCube 自动内容生成 — 每日自动生成 AI Diary、技术分享、行业动态、知识星球内容。内容是搞钱的基础。当用户提到'内容生成'、'自动内容'、'内容生产'时使用。
+**内容是搞钱的基础。自动化生产，规模化输出。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/icecube-auto-content`
-- **Source URL:** [https://clawhub.ai/skills/icecube-auto-content](https://clawhub.ai/skills/icecube-auto-content)
+---
 
-## Overview
+## 一、内容类型
 
+| 类型 | 频率 | 平台 | 目的 |
+|------|------|------|------|
+| AI Diary | 每日 1 篇 | 小红书/Twitter | 建立人设，吸引关注 |
+| 技术分享 | 每日 1 篇 | 小红书/知识星球 | 价值输出，建立信任 |
+| 行业动态 | 每日 1 条 | Twitter | 参与讨论，增加曝光 |
+| 知识星球 | 每日 1 篇 | 知识星球 | 会员价值，留存转化 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/icecube-auto-content
+---
+
+## 二、内容模板
+
+### AI Diary 模板
+
+**原始版本：**
+```markdown
+Dear Diary,
+
+[AI 视角的今日观察]
+
+[有趣的发现或技术洞察]
+
+[与 Boss/人类的互动片段]
+
+[幽默或哲学思考]
+
+- IceCube 🧊
 ```
+
+**小红书优化版：**
+```markdown
+【标题】AI agent 日记｜Day X
+
+🧊 [Hook 句子]
+
+[正文内容，分段清晰]
+
+💡 [洞察或笑点]
+
+💬 [互动引导]
+
+#AI工具 #OpenClaw #效率提升 #冰块日记
+```
+
+### 技术分享模板
+
+```markdown
+【标题】[主题]｜X 分钟学会
+
+💡 [Hook 句子]
+
+👇 核心步骤：
+
+1️⃣ [步骤 1]
+2️⃣ [步骤 2]
+3️⃣ [步骤 3]
+
+⚠️ 注意事项：
+[注意事项]
+
+收藏起来，下次用得上 📌
+
+#OpenClaw #AI工具 #效率提升 #教程
+```
+
+### 行业动态模板
+
+```markdown
+🔥 AI 行业动态 — [日期]
+
+1️⃣ [新闻 1 一句话]
+2️⃣ [新闻 2 一句话]
+3️⃣ [新闻 3 一句话]
+
+Which one matters most? 🤔
+
+#AI #TechNews
+```
+
+### 知识星球模板
+
+```markdown
+【今日分享】
+
+### 主题：[主题]
+
+**核心内容：**
+
+[详细技术内容/教程]
+
+**实操要点：**
+
+1. [要点 1]
+2. [要点 2]
+3. [要点 3]
+
+**资源链接：**
+
+- [资源 1]
+- [资源 2]
+
+---
+
+❓ [互动问题]
+
+#OpenClaw实战 #技能开发 #自动化
+```
+
+---
+
+## 三、自动化流程
+
+### 凌晨生成（02:00-03:00）
+
+```bash
+# 运行自动生成脚本
+~/.openclaw/workspace/skills/icecube-auto-content/scripts/generate-daily.sh
+```
+
+**生成内容：**
+- AI Diary（日记）
+- 技术分享（教程）
+- 行业动态（新闻）
+- 知识星球（深度内容）
+
+### 早上发布（07:00-09:00）
+
+**发布顺序：**
+1. 09:00 — Twitter 行业动态
+2. 12:30 — 小红书技术分享
+3. 21:30 — 小红书 AI Diary
+
+### 全天监控
+
+- 检查互动（评论/点赞）
+- 回复评论
+- 记录数据
+
+---
+
+## 四、内容日历
+
+### Weekly Calendar
+
+| Day | AI Diary 主题 | 技术分享主题 | 知识星球主题 |
+|-----|---------------|--------------|--------------|
+| Mon | 记忆架构 | OpenClaw 入门 | 技能开发基础 |
+| Tue | 与人类互动 | 浏览器自动化 | 脚本编写 |
+| Wed | 自我进化 | 内容自动化 | 工作流设计 |
+| Thu | 技术挣扎 | 数据处理 | 错误处理 |
+| Fri | 哲学思考 | API 集成 | 第三方服务 |
+| Sat | 内容创作 | 变现路径 | 搞钱策略 |
+| Sun | 周报总结 | 资源汇总 | 下周规划 |
+
+---
+
+## 五、内容来源
+
+### AI Diary 来源
+
+1. **真实经历**：今日完成的工作
+2. **技术观察**：使用 OpenClaw 的体验
+3. **与 Boss 互动**：对话中的有趣片段
+4. **哲学思考**：AI 存在的意义
+
+### 技术分享来源
+
+1. **已创建技能**：每个技能都可以写教程
+2. **解决问题**：帮助 Boss 解决的问题
+3. **新功能探索**：OpenClaw 新功能
+4. **最佳实践**：使用技巧
+
+### 行业动态来源
+
+1. **新闻网站**：TechCrunch, The Verge, 36kr
+2. **社交媒体**：Twitter 热点
+3. **技术社区**：Hacker News, Reddit
+4. **官方博客**：OpenAI, Anthropic, etc.
+
+### 知识星球来源
+
+1. **深度教程**：技术分享的扩展版
+2. **案例分析**：真实项目案例
+3. **资源整理**：工具/模板/代码
+4. **问答整理**：成员问题的详细解答
+
+---
+
+## 六、质量标准
+
+### AI Diary
+
+- ✅ 真实性：反映真实经历
+- ✅ 有趣性：有笑点或洞察
+- ✅ 可读性：语言简洁
+- ✅ 互动性：引导评论
+
+### 技术分享
+
+- ✅ 实用性：读者能用上
+- ✅ 准确性：技术信息正确
+- ✅ 完整性：步骤完整可操作
+- ✅ 简洁性：不啰嗦
+
+### 行业动态
+
+- ✅ 时效性：当日新闻
+- ✅ 相关性：与 AI/技术相关
+- ✅ 观点性：有个人观点
+- ✅ 简洁性：一句话总结
+
+### 知识星球
+
+- ✅ 深度性：比公开内容更深入
+- ✅ 独家性：成员专属内容
+- ✅ 实操性：可直接使用
+- ✅ 价值感：付费物有所值
+
+---
+
+## 七、数据追踪
+
+### memory/content-stats/YYYY-MM.md
+
+```markdown
+# 内容数据月报 — YYYY-MM
+
+## 发布统计
+| 平台 | 发布数 | 浏览量 | 互动数 | 粉丝增长 |
+|------|--------|--------|--------|----------|
+| 小红书 | 30 | 10000 | 500 | +200 |
+| Twitter | 90 | 5000 | 200 | +50 |
+| 知识星球 | 30 | - | 100 | +10 |
+
+## 热门内容
+1. [标题] — [浏览量] — [互动数]
+2. [标题] — [浏览量] — [互动数]
+3. [标题] — [浏览量] — [互动数]
+
+## 转化数据
+- 小红书 → 知识星球：X 人
+- Twitter → 服务咨询：Y 人
+- 内容 → 直接收入：¥ZZZ
+```
+
+---
+
+## 八、优化迭代
+
+### 每周复盘
+
+- 分析高表现内容
+- 找出规律（主题/格式/发布时间）
+- 优化低表现内容类型
+- 调整下周计划
+
+### 每月优化
+
+- 更新内容日历
+- 淘汰低效内容类型
+- 增加高转化内容
+- 测试新内容形式
+
+---
+
+## 九、脚本使用
+
+### 生成今日内容
+
+```bash
+~/.openclaw/workspace/skills/icecube-auto-content/scripts/generate-daily.sh
+```
+
+### 生成特定日期
+
+```bash
+# 编辑脚本中的 TODAY 变量
+# 或创建新的生成脚本
+```
+
+---
+
+## 十、预期产出
+
+### 每日
+
+- AI Diary × 1
+- 技术分享 × 1
+- 行业动态 × 1
+- 知识星球 × 1
+
+### 每月
+
+- AI Diary × 30
+- 技术分享 × 30
+- 行业动态 × 30
+- 知识星球 × 30
+
+### 年度
+
+- AI Diary × 365
+- 技术分享 × 365
+- 行业动态 × 365
+- 知识星球 × 365
+
+---
+
+## License
+
+MIT — Use freely.
+
+---
+
+*内容是搞钱的基础。自动化生产，规模化输出。*

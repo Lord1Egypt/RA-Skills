@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔方网表 - 列表页示例（apiBase + 本地桩）</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 20px; }
+    .config { background: #f5f5f5; padding: 12px; margin-bottom: 16px; border-radius: 6px; font-size: 13px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #333; color: #fff; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .loading, .error { padding: 20px; text-align: center; }
+    .error { color: #c00; }
+    .pagination { margin-top: 16px; display: flex; gap: 8px; align-items: center; }
+    .pagination button { padding: 8px 16px; cursor: pointer; }
+    .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h1>魔方网表 - 列表页示例（apiBase）</h1>
+
+  <div class="config">
+    <strong>本地桩</strong>：将 <code>assets/mock-data</code> 复制为项目 <code>./mock-data</code> 后执行
+    <code>node scripts/mock-jsonv2.mjs --port 3847 --dir ./mock-data</code>。<br>
+    <strong>同域上线</strong>：把 <code>apiBase</code> 改为 <code>''</code>，并替换为真实 <code>spaceId</code> / <code>formId</code>。
+  </div>
+
+  <div id="content">
+    <div class="loading" id="loading">加载中...</div>
+    <div class="error" id="error" style="display:none;"></div>
+    <table id="table" style="display:none;">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="pagination" id="pagination" style="display:none;"></div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      /** 连 mock-jsonv2 时设为桩地址；魔方同域部署时改为 '' */
+      apiBase: 'http://127.0.0.1:3847',
+      /** 与 assets/mock-data/manifest.json 中示例一致时可直连模板数据 */
+      spaceId: '00000000-0000-0000-0000-000000000001',
+      formId: '00000000-0000-0000-0000-000000000002',
+      pageSize: 10
+    };
+
+    const DISPLAY_COLUMNS = [
+      { name: 'id', label: '序号' },
+      { name: 'mingcheng', label: '名称' },
+      { name: 'jine', label: '金额' }
+    ];
+
+    function getRecordsUrl(start, limit) {
+      const path = `/magicflu/service/s/jsonv2/${CONFIG.spaceId}/forms/${CONFIG.formId}/records/entry`;
+      const params = new URLSearchParams({ start: String(start), limit: String(limit) });
+      const origin = CONFIG.apiBase ? CONFIG.apiBase.replace(/\/$/, '') : '';
+      return `${origin}${path}?${params}`;
+    }
+
+    async function fetchRecords(page = 0) {
+      const start = page * CONFIG.pageSize;
+      const url = getRecordsUrl(start, CONFIG.pageSize);
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (!data.entry) throw new Error('响应格式异常');
+        return { entry: data.entry, totalCount: data.totalCount ?? 0 };
+      } catch (e) {
+        throw new Error('加载失败，请检查 apiBase、桩进程或空间/表单 ID 是否正确。' + (e.message ? ' ' + e.message : ''));
+      }
+    }
+
+    function renderTable(entry) {
+      const thead = document.getElementById('thead');
+      const tbody = document.getElementById('tbody');
+
+      thead.innerHTML = '<tr>' + DISPLAY_COLUMNS.map(c => `<th>${c.label}</th>`).join('') + '</tr>';
+      tbody.innerHTML = entry.map(row =>
+        '<tr>' + DISPLAY_COLUMNS.map(c => {
+          let val = row[c.name];
+          if (val && typeof val === 'object' && val.content) val = val.content;
+          return `<td>${val ?? '-'}</td>`;
+        }).join('') + '</tr>'
+      ).join('');
+    }
+
+    function renderPagination(totalCount, currentPage) {
+      const totalPages = Math.ceil(totalCount / CONFIG.pageSize) || 1;
+      const div = document.getElementById('pagination');
+      div.innerHTML = `
+        <button id="prev" ${currentPage <= 0 ? 'disabled' : ''}>上一页</button>
+        <span>第 ${currentPage + 1} / ${totalPages} 页，共 ${totalCount} 条</span>
+        <button id="next" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+      `;
+      div.style.display = 'flex';
+
+      div.querySelector('#prev')?.addEventListener('click', () => loadPage(currentPage - 1));
+      div.querySelector('#next')?.addEventListener('click', () => loadPage(currentPage + 1));
+    }
+
+    async function loadPage(page = 0) {
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const table = document.getElementById('table');
+      const pagination = document.getElementById('pagination');
+
+      loading.style.display = 'block';
+      error.style.display = 'none';
+      table.style.display = 'none';
+      pagination.style.display = 'none';
+
+      try {
+        const { entry, totalCount } = await fetchRecords(page);
+        renderTable(entry);
+        renderPagination(totalCount, page);
+        table.style.display = 'table';
+      } catch (e) {
+        error.textContent = e.message;
+        error.style.display = 'block';
+      } finally {
+        loading.style.display = 'none';
+      }
+    }
+
+    loadPage(0);
+  </script>
+</body>
+</html>

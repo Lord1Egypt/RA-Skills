@@ -1,0 +1,4 @@
+# pymysql：jiji_ali_search SQL 补充 + openclaw_rfq save_rfq 落库（勿删）
+requests>=2.31.0
+PyYAML>=6.0.1
+pymysql>=1.1.0

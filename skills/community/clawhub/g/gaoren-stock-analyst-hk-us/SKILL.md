@@ -1,35 +1,185 @@
 ---
-name: "港股美股分析"
-description: "智能股票分析系统 v2.1 - 港股/美股/A股实时行情 + 富途数据源 + 技术指标 + 综合报告(7大板块)"
-category: "domain"
-source: "ClawHub"
-tags: [HK, US, finance, market, stock]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gaoren-stock-analyst-hk-us"
-sourceUrl: "https://clawhub.ai/skills/gaoren-stock-analyst-hk-us"
+name: stock-analyst
+description: 智能股票分析系统 v2.1 - 港股/美股/A股实时行情 + 富途数据源 + 技术指标 + 综合报告(7大板块)
+emoji: "📊"
+author: 
+  name: gaoren36-arch
+  github: gaoren36
+tags:
+  - stock
+  - finance
+  - market
+  - hk-stock
+  - us-stock
+  - a-stock
+  - 行情
+  - 股票
+  - 港股
+  - 美股
+  - A股
+  - 富途
+  - futu
+  - RSI
+  - MACD
+triggers:
+  - "分析股票"
+  - "查股票"
+  - "股票分析"
+  - "行情"
+  - "持仓"
+  - "report"
+  - "全面分析"
+  - "港股"
+user-invocable: true
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+        - curl
+      os:
+        - win32
+        - darwin
+        - linux
+    capabilities:
+      - browser
+    version: "2.1.0"
 ---
 
-# 港股美股分析
+# Stock Analyst - 智能股票分析系统 v2.1
 
-> 智能股票分析系统 v2.1 - 港股/美股/A股实时行情 + 富途数据源 + 技术指标 + 综合报告(7大板块)
+## 简介
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gaoren-stock-analyst-hk-us`
-- **Source URL:** [https://clawhub.ai/skills/gaoren-stock-analyst-hk-us](https://clawhub.ai/skills/gaoren-stock-analyst-hk-us)
+智能股票分析助手，支持港股、美股和A股实时行情查询，采用富途(Futu)作为主要数据源，确保数据准确可靠。
 
-## Overview
+## 数据源说明
 
+### 港股数据 (推荐)
+- **主要数据源**: 富途牛牛 (futunn.com)
+- **数据特点**: 实时准确，经过验证
+- **URL格式**: https://www.futunn.com/stock/{code}-HK
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gaoren-stock-analyst-hk-us
+### 美股数据
+- **数据源**: Finnhub API
+- **备用**: 富途牛牛
+
+### A股数据
+- **数据源**: 腾讯财经API
+
+## 功能特性
+
+### 1. 实时行情 (富途核实)
+- 当前价格、涨跌幅
+- 总市值、市盈率
+- 52周高低点
+- 资金流向
+
+### 2. 技术指标
+- RSI(14)、MACD
+- 均线(MA5/10/20)
+- 支撑位/阻力位
+
+### 3. 分析师评级
+- 强力推荐/买入/持有/卖出比例
+- 目标价(最高/平均/最低)
+- 上涨空间计算
+
+### 4. 综合报告 (7大板块)
+1. 基本信息
+2. 实时行情
+3. 技术指标
+4. 同类公司对比
+5. 行业背景
+6. 综合判断
+7. 操作建议
+
+## 支持的股票代码
+
+### 港股 (5位数代码)
+| 股票 | 代码 |
+|------|------|
+| 波司登 | 03998 |
+| 平安好医生 | 01833 |
+| 众安在线 | 06060 |
+| 京东物流 | 02618 |
+| 腾讯 | 00700 |
+| 阿里巴巴 | 09988 |
+| 美团 | 03690 |
+
+### 美股 (英文代码)
+| 股票 | 代码 |
+|------|------|
+| 京东 | JD |
+| 阿里巴巴 | BABA |
+| 特斯拉 | TSLA |
+| 苹果 | AAPL |
+| 英伟达 | NVDA |
+
+### A股 (6位数代码)
+| 股票 | 代码 |
+|------|------|
+| 中国石油 | 601857 |
+| 贵州茅台 | 600519 |
+| 宁德时代 | 300750 |
+| 比亚迪 | 002594 |
+
+## 使用方式
+
+### 直接对话分析港股
 ```
+分析 03998 波司登
+查一下01833
+分析港股 00700
+```
+
+### 命令行
+```bash
+python analyze_stock.py 03998
+```
+
+## 响应示例
+
+```
+=================================================================
+  波司登 (03998.HK) 全面分析报告
+=================================================================
+
+【基本信息】
+  股票名称: 波司登国际控股有限公司
+  股票代码: 03998.HK
+  行业: 服装/羽绒服
+
+【实时行情】
+  当前价格:  HK$4.13
+  涨跌额:    +HK$0.04 (+0.98%)
+  总市值:    HK$482.53亿
+  市盈率TTM: 12.33
+
+【技术指标】
+  日涨跌幅: +0.98% (小幅上涨)
+  距目标价: +39% (HK$5.74)
+
+【同类公司对比】
+  (服装板块对比数据)
+
+【行业背景】
+  羽绒服高端化趋势
+  国产品牌崛起
+
+【综合判断】
+  分析师: 强力推荐 91.43%
+  评分: 70/100
+
+【操作建议】
+  评级: 建议买入
+  目标价: HK$5.74
+  止损: HK$3.80
+
+=================================================================
+```
+
+## 版本历史
+
+- v2.1.0: 新增富途数据源，港股数据准确可靠
+- v2.0.0: 整合技术指标和新闻分析
+- v1.0.0: 初始版本，支持港股/美股行情查询

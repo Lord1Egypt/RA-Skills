@@ -1,0 +1,75 @@
+# JF Open Pro AI Smart Search - Skill Registry Metadata
+# This file defines the skill's requirements for ClawHub registry
+
+name: jf-open-pro-ai-smart-search
+version: 1.0.0
+description: JF Tech Pro AI 智搜技能。根据语义内容（如"带帽子的人"、"车"、"狗"）搜索杰峰云存报警视频，获取匹配的视频片段列表。
+
+# Runtime requirements
+runtime:
+  language: python
+  minVersion: "3.8"
+
+# Required environment variables (credentials)
+requiredEnvVars:
+  - name: JF_UUID
+    description: 杰峰开放平台用户唯一标识
+    source: https://open.jftech.com/
+  - name: JF_APPKEY
+    description: 杰峰开放平台应用 Key
+    source: https://open.jftech.com/
+  - name: JF_APPSECRET
+    description: 杰峰开放平台应用密钥
+    source: https://open.jftech.com/
+  - name: JF_MOVECARD
+    description: 签名算法偏移量 (0-9)，用于时间戳偏移增加签名安全性
+    source: https://open.jftech.com/
+  - name: JF_SN
+    description: 设备序列号
+    source: 杰峰设备机身标签或管理后台
+
+# Optional environment variables
+optionalEnvVars:
+  - name: JF_USER
+    description: 用户 ID
+    default: admin
+  - name: JF_ENDPOINT
+    description: API 端点
+    default: api.jftechws.com
+
+# Network endpoints (for firewall/security configuration)
+endpoints:
+  - url: https://api.jftechws.com
+    description: 杰峰官方 API (国际)
+  - url: https://api-cn.jftech.com
+    description: 杰峰官方 API (中国大陆)
+
+# Security declarations
+security:
+  credentialsRequired: true
+  envVarsOnly: true
+  networkAccess:
+    - api.jftechws.com
+    - api-cn.jftech.com
+  fileAccess: none
+
+# Entry points
+scripts:
+  - name: search_video.py
+    description: AI 智搜 - 搜索云存报警视频
+    entryPoint: scripts/search_video.py
+  - name: get_playback_url.py
+    description: 获取云存回放地址
+    entryPoint: scripts/get_playback_url.py
+  - name: ai_search_playback.py
+    description: 完整流程 - AI 智搜 + 播放地址
+    entryPoint: scripts/ai_search_playback.py
+
+# Tags for discovery
+tags:
+  - jf-tech
+  - 杰峰
+  - ai-search
+  - video-search
+  - cloud-storage
+  - 云存搜索

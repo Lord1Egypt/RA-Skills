@@ -1,35 +1,106 @@
 ---
-name: "Livestream Script Generator"
-description: "直播带货脚本生成，话术设计、节奏把控、互动环节、促单技巧。适合直播主播、电商运营、MCN 机构。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/livestream-script-generator"
-sourceUrl: "https://clawhub.ai/skills/livestream-script-generator"
+name: livestream-script-generator
+version: 1.0.0
+description: 直播带货脚本生成，话术设计、节奏把控、互动环节、促单技巧。适合直播主播、电商运营、MCN 机构。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎬",
+        "requires": { "bins": ["node"] },
+        "install": [],
+      },
+  }
 ---
 
-# Livestream Script Generator
+# 直播脚本生成技能
 
-> 直播带货脚本生成，话术设计、节奏把控、互动环节、促单技巧。适合直播主播、电商运营、MCN 机构。
+生成直播带货脚本，设计话术、把控节奏、互动环节、促单技巧。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/livestream-script-generator`
-- **Source URL:** [https://clawhub.ai/skills/livestream-script-generator](https://clawhub.ai/skills/livestream-script-generator)
+## 功能
 
-## Overview
+1. **脚本生成**: 根据产品生成完整直播脚本
+2. **话术设计**: 设计引入、介绍、促单话术
+3. **节奏把控**: 规划直播节奏和时间分配
+4. **互动环节**: 设计抽奖、问答、福利环节
+5. **促单技巧**: 设计限时、限量、限价促单策略
+6. **问题应对**: 准备常见问题应答话术
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/livestream-script-generator
 ```
+帮我生成一个 2 小时的直播带货脚本，卖护肤品
+```
+
+```
+设计一个促单话术，产品是¥299 的精华液
+```
+
+```
+直播冷场了，给我一些互动话术
+```
+
+```
+准备 10 个常见问题的应答话术
+```
+
+## 输出示例
+
+```
+🎬 直播带货脚本
+
+📋 基础信息：
+├─ 直播时长：2 小时
+├─ 产品数量：8 个
+├─ 产品类型：护肤品
+└─ 目标 GMV: ¥50,000
+
+⏰ 时间规划：
+├─ 0-10 分钟：开场热身 + 福利预告
+├─ 10-30 分钟：产品 1-2（引流款）
+├─ 30-60 分钟：产品 3-5（利润款）
+├─ 60-80 分钟：互动环节 + 抽奖
+├─ 80-110 分钟：产品 6-8（爆款）
+└─ 110-120 分钟：返场 + 最后促单
+
+📝 开场话术：
+"欢迎新进直播间的宝宝们！
+今天是我们的护肤专场，准备了 8 款超好用的产品！
+先给大家预告一下今天的福利：
+- 全场满¥299 减¥30
+- 前 100 名下单送同款小样
+- 整点还有抽奖送正装！
+喜欢的宝宝先点个关注，我们马上开始！"
+
+💰 促单话术：
+"这款精华液日常价¥399，今天直播间只要¥299！
+而且前 50 名下单再送价值¥99 的眼霜小样！
+现在库存只剩 30 件了，抢完就没有了！
+3、2、1，上链接！"
+
+🎁 互动环节：
+- 抽奖：评论"想要"抽 3 人送正装
+- 问答：护肤知识问答送优惠券
+- 投票：下一款想看哪个产品
+
+❓ 常见问题应答：
+Q: 敏感肌能用吗？
+A: "这款是专为敏感肌设计的，无酒精无香精..."
+
+Q: 多久能看到效果？
+A: "一般使用 7 天能看到明显变化..."
+
+Q: 保质期多久？
+A: "未开封 3 年，开封后 12 个月内用完..."
+```
+
+## 变现模式
+
+- 免费：每日 2 个脚本
+- 付费 (¥69/月)：无限脚本 + 话术库 + 数据分析
+- 付费 (¥149/月)：+ 定制脚本 + 直播诊断
+
+---
+
+**声明**: 脚本效果因主播执行和流量而异。

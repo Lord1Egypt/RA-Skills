@@ -1,35 +1,31 @@
 ---
-name: "Release Package"
-description: "Feishu Bitable Storage Manager - Integrated tool for item storage, retrieval, and location updates"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/release-package"
-sourceUrl: "https://clawhub.ai/skills/release-package"
+name: Storage Manager
+description: Feishu Bitable Storage Manager - Integrated tool for item storage, retrieval, and location updates
+read_when:
+  - Need to record item storage locations
+  - Need to find item locations
+  - Need to update item locations
+  - Need to manage personal item storage
+metadata: {"clawdbot":{"emoji":"box","requires":{"bins":["python3"]}}}
+allowed-tools: Bash(storage-manager:*)
 ---
 
-# Release Package
+# Storage Manager
 
-> Feishu Bitable Storage Manager - Integrated tool for item storage, retrieval, and location updates
+Intelligent storage management tool based on Feishu Bitable.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/release-package`
-- **Source URL:** [https://clawhub.ai/skills/release-package](https://clawhub.ai/skills/release-package)
+## Core Features
+1. Item Storage (add_storage_item)
+2. Item Retrieval (search_storage_item)
+3. Location Update (update_storage_location)
 
-## Overview
+## Usage
+- storage-manager add [item] [location]
+- storage-manager search [item]
+- storage-manager update [item] [new_location]
 
+## Requirements
+- Python 3.6+
+- requests >= 2.25.0
+- Feishu app credentials
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/release-package
-```

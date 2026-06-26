@@ -1,0 +1,13 @@
+{
+  "name": "html-ppt-to-pdf",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "HTML slide deck to vector PDF via Playwright.",
+  "bin": {
+    "html-to-pdf": "./html-to-pdf.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "skills": [
+    { "name": "order_reader", "file": "order_reader.json" },
+    { "name": "evidence_builder", "file": "evidence_builder.json" },
+    { "name": "message_drafter", "file": "message_drafter.json" },
+    { "name": "form_filler", "file": "form_filler.json" },
+    { "name": "amazon_product_detector", "file": "amazon_product_detector.json" },
+    { "name": "amazon_orders_scraper", "file": "amazon_orders_scraper.json" },
+    { "name": "amazon_orders_opener", "file": "amazon_orders_opener.json" },
+    { "name": "amazon_order_details_fetcher", "file": "amazon_order_details_fetcher.json" },
+    { "name": "amazon_price_checker", "file": "amazon_price_checker.json" },
+    { "name": "amazon_review_scraper", "file": "amazon_review_scraper.json" },
+    { "name": "amazon_contact_flow", "file": "amazon_contact_flow.json" },
+    { "name": "message_monitor", "file": "message_monitor.json" },
+    { "name": "price_alert_manager", "file": "price_alert_manager.json" },
+    { "name": "case_exporter", "file": "case_exporter.json" }
+  ]
+}

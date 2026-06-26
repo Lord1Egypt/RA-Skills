@@ -1,0 +1,11 @@
+{
+  "name": "agentpulse",
+  "version": "1.0.0",
+  "description": "AI-powered infrastructure monitoring — thin agent, smart cloud. Install in one command, get alerts, baseline learning, and auto-remediation.",
+  "main": "SKILL.md",
+  "clawhub": {
+    "type": "skill",
+    "price": "0.00",
+    "category": "devops"
+  }
+}

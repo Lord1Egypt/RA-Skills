@@ -1,0 +1,153 @@
+{
+  "indicators": {
+    "涨停板": {
+      "name": "涨停板",
+      "description": "连板数量、封板率、炸板率",
+      "keywords": ["涨停", "连板", "封板"],
+      "analysis": "关注涨停次数、封板质量、炸板率"
+    },
+    "龙虎榜": {
+      "name": "龙虎榜",
+      "description": "机构买入、游资动向",
+      "keywords": ["龙虎榜", "机构买入", "游资"],
+      "analysis": "机构买入多为价值型，游资操作偏短线"
+    },
+    "融资融券": {
+      "name": "融资融券",
+      "description": "融资余额、融券余量",
+      "keywords": ["融资", "融券", "两融"],
+      "analysis": "融资余额增加说明市场看好"
+    },
+    "股东人数": {
+      "name": "股东人数",
+      "description": "筹码集中度变化",
+      "keywords": ["股东", "筹码", "集中度"],
+      "analysis": "股东人数减少说明筹码集中"
+    },
+    "限售股解禁": {
+      "name": "限售股解禁",
+      "description": "解禁时间表",
+      "keywords": ["解禁", "限售"],
+      "analysis": "解禁前注意抛压"
+    },
+    "股权质押": {
+      "name": "股权质押",
+      "description": "质押比例、预警线",
+      "keywords": ["质押", "平仓"],
+      "analysis": "质押比例过高有平仓风险"
+    },
+    "商誉减值": {
+      "name": "商誉减值",
+      "description": "商誉占净资产比",
+      "keywords": ["商誉", "减值"],
+      "analysis": "商誉占比高小心减值风险"
+    },
+    "ST风险": {
+      "name": "ST/*ST风险",
+      "description": "风险警示、退市风险",
+      "keywords": ["ST", "*ST", "退市"],
+      "analysis": "ST股票风险大，建议回避"
+    }
+  },
+  "technical_indicators": {
+    "布林线": {
+      "name": "布林线",
+      "description": "boll指标，判断超买超卖",
+      "formula": "中轨+2*标准差为上轨，中轨-2*标准差为下轨"
+    },
+    "均线": {
+      "name": "均线",
+      "description": "MA5/MA10/MA20/MA60",
+      "analysis": "多头排列看涨，空头排列看跌"
+    },
+    "MACD": {
+      "name": "MACD",
+      "description": "指数平滑异同移动平均线",
+      "analysis": "金叉买入，死叉卖出"
+    },
+    "RSI": {
+      "name": "RSI",
+      "description": "相对强弱指标",
+      "analysis": "RSI>70超买，RSI<30超卖"
+    },
+    "KDJ": {
+      "name": "KDJ",
+      "description": "随机指标",
+      "analysis": "K值>D值买入，D值>K值卖出"
+    },
+    "动量因子": {
+      "name": "动量因子",
+      "description": "过去N日涨跌幅",
+      "analysis": "动量效应：涨的股票还会涨"
+    }
+  },
+  "financial_indicators": {
+    "PE": {
+      "name": "市盈率",
+      "description": "Price/Earnings，每股收益与股价的比值",
+      "analysis": "PE低说明估值低，但也要看行业平均"
+    },
+    "PB": {
+      "name": "市净率",
+      "description": "Price/Book，每股净资产与股价的比值",
+      "analysis": "PB低说明相对便宜，重资产行业看PB"
+    },
+    "ROE": {
+      "name": "净资产收益率",
+      "description": "净利润/净资产",
+      "analysis": "ROE>15%说明盈利能力较强"
+    },
+    "ROA": {
+      "name": "总资产收益率",
+      "description": "净利润/总资产",
+      "analysis": "ROA>5%说明资产利用效率较好"
+    },
+    "毛利率": {
+      "name": "毛利率",
+      "description": "(营业收入-营业成本)/营业收入",
+      "analysis": "毛利率高说明产品有竞争力"
+    },
+    "净利率": {
+      "name": "净利率",
+      "description": "净利润/营业收入",
+      "analysis": "净利率反映公司盈利能力"
+    },
+    "资产负债率": {
+      "name": "资产负债率",
+      "description": "总负债/总资产",
+      "analysis": "资产负债率过高有财务风险"
+    },
+    "营收增长": {
+      "name": "营收增长率",
+      "description": "本期营收/上期营收-1",
+      "analysis": "营收增长说明公司在扩张"
+    },
+    "净利润增长": {
+      "name": "净利润增长率",
+      "description": "本期净利润/上期净利润-1",
+      "analysis": "净利润增长说明盈利在改善"
+    }
+  },
+  "risk_indicators": {
+    "质押比例": {
+      "threshold": 50,
+      "risk": "高",
+      "description": "股权质押比例超过50%有较大风险"
+    },
+    "商誉占比": {
+      "threshold": 30,
+      "risk": "中",
+      "description": "商誉占净资产比超过30%需注意减值"
+    },
+    "ST": {
+      "threshold": 0,
+      "risk": "高",
+      "description": "ST/*ST股票有退市风险"
+    },
+    "亏损": {
+      "threshold": 0,
+      "risk": "中",
+      "description": "连续亏损有ST风险"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WildIdea · {TITLE}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0c0c0e;
+    color: #e8e8ed;
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    padding: 32px 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container { max-width: 780px; width: 100%; }
+
+  .header { text-align: center; margin-bottom: 16px; }
+  .header .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, {BADGE_COLOR}33, {BADGE_COLOR}11);
+    border: 1px solid {BADGE_COLOR}44;
+    color: {BADGE_ACCENT};
+    padding: 3px 14px;
+    border-radius: 18px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 900;
+    background: {GRADIENT};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .header .sub { color: #6a6a7a; font-size: 11px; font-weight: 400; }
+
+  .quarantine {
+    background: #12121a;
+    border: 1px dashed #2a2a3a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+  }
+  .q-row { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+  .q-row:last-child { margin-bottom: 0; }
+  .q-label {
+    font-size: 10px; font-weight: 600; color: #6a6a7a; white-space: nowrap;
+    background: #1a1a24; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+  }
+  .q-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .q-tag { font-size: 9px; color: #4a4a5a; padding: 1px 6px; border-radius: 3px; background: #181822; text-decoration: line-through; }
+
+  .meta { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; flex-wrap: wrap; }
+  .meta span { font-size: 10px; padding: 3px 10px; border-radius: 12px; background: #181822; }
+  .meta .ok { color: #2dd4bf; border: 1px solid #2dd4bf44; }
+  .meta .fail { color: #f87171; border: 1px solid #f8717144; }
+  .meta .warn { color: #fbbf24; border: 1px solid #fbbf2444; }
+
+  .grid { display: grid; gap: 10px; margin-bottom: 12px; }
+
+  .card {
+    background: linear-gradient(145deg, #16161e, #1a1a24);
+    border: 1px solid #2a2a36;
+    border-radius: 10px;
+    padding: 14px 16px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; }
+
+  .card .src { font-size: 10px; font-weight: 600; color: #6a6a7e; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .card .src em { font-style: normal; color: {BADGE_ACCENT}; font-weight: 700; }
+  .nail { font-size: 12px; color: #b0b0c0; line-height: 1.6; margin-bottom: 8px; padding-left: 8px; border-left: 2px solid #2a2a3e; }
+  .match { font-size: 13px; font-weight: 500; line-height: 1.6; padding: 8px 10px; background: linear-gradient(135deg, #ffffff08, #ffffff04); border-radius: 6px; margin-bottom: 4px; }
+  .match strong { color: #fbbf24; }
+  .badge-row { display: flex; gap: 6px; font-size: 9px; margin-top: 6px; }
+  .badge-row .b { padding: 1px 8px; border-radius: 8px; background: #181822; }
+  .badge-row .pass { color: #2dd4bf; border: 1px solid #2dd4bf33; }
+  .badge-row .check { color: #a78bfa; border: 1px solid #a78bfa33; }
+  .badge-row .ban { color: #f87171; border: 1px solid #f8717133; }
+
+  .insight {
+    background: linear-gradient(135deg, {INSIGHT_BG_1}, {INSIGHT_BG_2});
+    border: 1px solid {INSIGHT_BORDER};
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .insight .icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .insight .content h3 { font-size: 12px; font-weight: 700; color: {INSIGHT_HEADING}; margin-bottom: 4px; }
+  .insight .content p { font-size: 11px; color: #b0b0c0; line-height: 1.7; }
+  .insight .content p strong { color: #fbbf24; }
+
+  .footer { text-align: center; margin-top: 14px; color: #3a3a4a; font-size: 9px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="badge">{BADGE_TEXT}</div>
+    <h1>{TITLE}</h1>
+    <div class="sub">{FOCUS}</div>
+  </div>
+
+  {QUARANTINE_HTML}
+  {META_HTML}
+  {CARD_ROWS}
+  {SUMMARY}
+
+  <div class="footer">wildIdea V{VER} · {SOURCES} · {BAN_COUNT}条已ban</div>
+</div>
+</body>
+</html>

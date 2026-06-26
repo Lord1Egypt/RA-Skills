@@ -1,0 +1,187 @@
+# 选股因子配置
+# 三大类因子：基本面 / 技术面 / 资金面
+# 权重之和必须等于 1.0
+
+# ==================== 因子权重 ====================
+weights:
+  fundamentals: 0.50    # 基本面权重
+  technical: 0.35       # 技术面权重
+  sentiment: 0.15       # 资金面权重
+
+# ==================== 基本面因子 ====================
+fundamentals:
+
+  valuation:            # 估值因子
+    pe:
+      min: 0
+      max: 60           # PE上限（排除高估值）
+      weight: 0.20
+    pb:
+      min: 0
+      max: 10           # PB上限
+      weight: 0.10
+    ps:
+      min: 0
+      max: 20           # PS上限
+      weight: 0.05
+
+  profitability:        # 盈利因子
+    roe:
+      min: 8            # ROE下限（%）
+      weight: 0.20
+    gross_margin:
+      min: 20           # 毛利率下限（%）
+      weight: 0.10
+    net_margin:
+      min: 5            # 净利率下限（%）
+      weight: 0.10
+
+  growth:               # 成长因子
+    revenue_growth_yoy:
+      min: 5            # 营收同比增速下限（%）
+      weight: 0.15
+    profit_growth_yoy:
+      min: 5            # 净利润同比增速下限（%）
+      weight: 0.15
+    eps_growth_yoy:
+      min: 0            # EPS同比增速下限（%）
+      weight: 0.10
+
+  quality:              # 质量因子
+    debt_ratio:
+      max: 70           # 资产负债率上限（%）
+      weight: 0.10
+    current_ratio:
+      min: 1.0          # 流动比率下限
+      weight: 0.05
+
+# ==================== 技术面因子 ====================
+technical:
+
+  trend:                # 趋势因子
+    ma20_above:
+      enabled: true     # 股价在20日均线上方
+      weight: 0.20
+    ma60_above:
+      enabled: true     # 股价在60日均线上方
+      weight: 0.15
+    macd_golden_cross:
+      enabled: true     # MACD金叉
+      weight: 0.15
+
+  momentum:             # 动量因子
+    rsi:
+      min: 40
+      max: 70           # RSI范围（避免超买超卖）
+      weight: 0.15
+    price_change_5d:
+      min: -5
+      max: 10           # 5日涨幅范围（%）
+      weight: 0.10
+    price_change_20d:
+      min: -10
+      max: 20           # 20日涨幅范围（%）
+      weight: 0.10
+
+  volume:               # 量价因子
+    volume_ratio:
+      min: 1.0          # 量比下限（相对5日均量）
+      weight: 0.10
+    turnover_rate:
+      min: 0.5
+      max: 15           # 换手率范围（%）
+      weight: 0.05
+
+  pattern:              # 形态因子
+    break_20d_high:
+      enabled: false    # 突破20日新高
+      weight: 0.10
+    golden_cross_5_20:
+      enabled: true     # 5日均线上穿20日均线
+      weight: 0.10
+
+# ==================== 资金面因子 ====================
+sentiment:
+
+  north_money:          # 北向资金
+    net_inflow_3d:
+      min: 0            # 近3日净流入下限（万元）
+      weight: 0.30
+    net_inflow_10d:
+      min: 0            # 近10日净流入下限（万元）
+      weight: 0.20
+
+  margin:               # 融资融券
+    margin_balance_change:
+      min: 0            # 融资余额变化下限（%）
+      weight: 0.20
+
+  institution:          # 机构动向
+    analyst_rating:
+      min_buy_ratio: 0.6  # 买入评级占比下限
+      weight: 0.15
+
+  big_order:            # 大单资金流
+    net_inflow_ratio:
+      min: 0            # 大单净流入占比下限（%）
+      weight: 0.15
+
+# ==================== 过滤规则 ====================
+filters:
+  # 硬性过滤（不满足直接排除）
+  hard:
+    exclude_st: true              # 排除ST股
+    exclude_new_ipo: 60           # 排除上市不足N天新股
+    min_market_cap: 20            # 最小市值（亿元）
+    min_daily_volume: 3000        # 最小日均成交额（万元）
+    exclude_limit_up: true        # 排除当日涨停
+    exclude_suspended: true       # 排除停牌股
+    max_price: 500                # 最大股价（元，排除高价股）
+    min_price: 2                  # 最小股价（元，排除仙股）
+
+  # 软性过滤（降低得分但不排除）
+  soft:
+    high_pe_penalty: 0.8          # PE>50时得分乘以0.8
+    low_volume_penalty: 0.9       # 成交额<5000万时得分乘以0.9
+
+# ==================== 策略模板 ====================
+strategies:
+
+  momentum:             # 动量策略
+    description: "追涨强势股，适合趋势行情"
+    weights_override:
+      fundamentals: 0.30
+      technical: 0.55
+      sentiment: 0.15
+    extra_filters:
+      price_change_20d_min: 5     # 近20日涨幅>5%
+
+  value:                # 价值策略
+    description: "低估值高质量，适合震荡行情"
+    weights_override:
+      fundamentals: 0.70
+      technical: 0.20
+      sentiment: 0.10
+    extra_filters:
+      pe_max: 30                  # PE<30
+      roe_min: 12                 # ROE>12%
+
+  growth:               # 成长策略
+    description: "高成长高景气，适合牛市"
+    weights_override:
+      fundamentals: 0.50
+      technical: 0.30
+      sentiment: 0.20
+    extra_filters:
+      revenue_growth_min: 20      # 营收增速>20%
+      profit_growth_min: 20       # 净利润增速>20%
+
+  break_through:        # 突破策略
+    description: "突破关键位，适合行情启动初期"
+    weights_override:
+      fundamentals: 0.20
+      technical: 0.65
+      sentiment: 0.15
+    extra_filters:
+      break_20d_high: true        # 突破20日新高
+      volume_ratio_min: 1.5       # 量比>1.5

@@ -1,0 +1,31 @@
+# RSS feeds and WordPress URLs to watch for auto-repurposing
+sources:
+  blog_feeds:
+    - url: "https://myblog.com/feed.xml"
+      label: "Main blog"
+      format: "article"
+      last_fetched: null
+      fetch_interval_minutes: 60
+
+  podcast_feeds:
+    - url: "https://mypodcast.libsyn.com/rss"
+      label: "Weekly podcast"
+      format: "podcast"
+      max_episodes: 1
+      transcribe: true
+      fetch_interval_minutes: 1440  # daily
+
+  youtube_channels:
+    - channel_id: "UCXXXX"
+      label: "Product demos"
+      format: "video"
+      max_videos: 1
+      transcribe: true
+      fetch_interval_minutes: 1440
+
+  wordpress_sites:
+    - url: "https://myblog.com/wp-json/wp/v2/posts"
+      label: "WordPress blog"
+      format: "article"
+      api_key: ""
+      fetch_interval_minutes: 30

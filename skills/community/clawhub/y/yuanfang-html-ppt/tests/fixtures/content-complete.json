@@ -1,0 +1,100 @@
+{
+  "brand": "产品团队",
+  "theme": "pitch-deck-vc",
+  "title": "OpenClaw 2026 战略发布",
+  "author": "产品团队",
+  "date": "2026-06-07",
+  "slides": [
+    {
+      "layout": "cover",
+      "kicker": "KEYNOTE · 2026",
+      "title": "OpenClaw 2026 <span class=\"gradient-text\">战略发布</span>",
+      "subtitle": "从工具到生态 —— 一次彻底的产品进化",
+      "tags": ["Vision", "Roadmap", "Beta"],
+      "author": "产品团队"
+    },
+    {
+      "layout": "toc",
+      "kicker": "目录",
+      "title": "今天讲的三件事",
+      "items": [
+        { "title": "市场洞察", "desc": "过去 12 个月我们看到了什么" },
+        { "title": "战绩", "desc": "ARR、留存、NPS 三组数字" },
+        { "title": "未来 12 个月", "desc": "三步走的路线图" }
+      ]
+    },
+    {
+      "layout": "stat",
+      "kicker": "Traction",
+      "title": "我们已经验证的",
+      "stats": [
+        { "value": "$1.2M", "label": "ARR", "context": "首次商业化即盈利" },
+        { "value": "82K", "label": "日活 Agent", "context": "月环比 +12%" },
+        { "value": "74%", "label": "留存率", "context": "行业平均 41%" }
+      ]
+    },
+    {
+      "layout": "content",
+      "kicker": "Why now",
+      "title": "三个不变的趋势",
+      "lede": "我们的产品方向，根植于三个持续加速的产业变化。",
+      "points": [
+        "AI Agent 渗透率从 8% 增长到 47%",
+        "企业从\"采购工具\"转向\"编排生态\"",
+        "开发者偏好一体化平台"
+      ]
+    },
+    {
+      "layout": "comparison",
+      "kicker": "对比",
+      "title": "OpenClaw 与传统方案",
+      "leftLabel": "传统工具链",
+      "rightLabel": "OpenClaw 平台",
+      "items": [
+        { "left": "5+ 工具需要分别学习", "right": "一个 API，一个 Dashboard" },
+        { "left": "数据孤岛，跨工具无上下文", "right": "全链路 trace & context 透传" },
+        { "left": "团队协作靠人肉传话", "right": "Multi-agent 原生协作" },
+        { "left": "按月订阅 + 集成费", "right": "按用量付费，无最低门槛" }
+      ]
+    },
+    {
+      "layout": "section",
+      "kicker": "Part · 02",
+      "title": "<span class=\"gradient-text\">产品蓝图</span>",
+      "subtitle": "未来 12 个月的三个里程碑",
+      "sectionNumber": "02"
+    },
+    {
+      "layout": "process",
+      "kicker": "Roadmap",
+      "title": "从平台到生态",
+      "lede": "我们分三步走：先把引擎做透，再开放给生态，最后走向市场。",
+      "steps": [
+        { "title": "引擎 2.0", "desc": "Q3 2026 · 多模态原生支持，向量数据库内置", "tag": "Q3 '26" },
+        { "title": "生态开放", "desc": "Q4 2026 · Plugin SDK + Marketplace 上线", "tag": "Q4 '26" },
+        { "title": "行业版", "desc": "Q1 2027 · 金融、医疗、教育三大行业方案 GA", "tag": "Q1 '27" }
+      ]
+    },
+    {
+      "layout": "big-quote",
+      "quote": "我们用 OpenClaw 替代了 4 个内部系统，三个月回本，团队产出的 feature 量翻了三倍。",
+      "attribution": "张伟",
+      "role": "数禾科技 CTO"
+    },
+    {
+      "layout": "summary",
+      "kicker": "Next",
+      "title": "下一步",
+      "points": [
+        "7 月 15 日 · 开放 Beta 申请",
+        "8 月 · 首批 50 家合作伙伴内测",
+        "9 月 18 日 · GA 大会 · 上海"
+      ]
+    },
+    {
+      "layout": "thanks",
+      "subtitle": "感谢聆听 —— 欢迎在 Q&A 继续交流",
+      "points": ["yuanfang@openclaw.dev", "github.com/yuanfang", "2026 · MIT"]
+    }
+  ]
+}

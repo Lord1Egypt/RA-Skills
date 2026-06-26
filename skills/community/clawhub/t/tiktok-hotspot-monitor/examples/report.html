@@ -1,0 +1,2741 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok 热点分析报告</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..700&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:#000; --surface:#111; --surface-raised:#1A1A1A; --border:#222; --border-visible:#333;
+      --text-disabled:#666; --text-secondary:#999; --text-primary:#E8E8E8; --text-display:#FFF;
+      --accent:#D71921; --success:#4A9E5C; --warning:#D4A843;
+      --space-sm:8px; --space-md:16px; --space-lg:24px; --space-xl:32px; --space-2xl:48px; --space-3xl:64px;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; background:var(--black); color:var(--text-primary); font-family:'Space Grotesk', system-ui, sans-serif;
+      background-image:radial-gradient(circle, var(--border) .5px, transparent .5px); background-size:12px 12px;
+    }
+    a { color:var(--text-display); text-decoration:none; }
+    .page { max-width:1440px; margin:0 auto; padding:40px clamp(20px,4vw,56px) 72px; }
+    header { display:grid; grid-template-columns:1.2fr .8fr; gap:var(--space-2xl); align-items:end; min-height:360px; }
+    .eyebrow,.section-label,.metric-label,.source,.status,th,.stat-row span,.chip,.meta {
+      font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-secondary);
+    }
+    h1 { margin:12px 0 0; font-family:'Doto','Space Mono',monospace; font-size:clamp(54px,8vw,112px); line-height:.9; letter-spacing:-.04em; color:var(--text-display); font-weight:700; }
+    .hero-subtitle { max-width:680px; margin-top:var(--space-lg); color:var(--text-secondary); font-size:18px; line-height:1.45; }
+    .hero-metric { border-left:2px solid var(--accent); padding-left:var(--space-lg); }
+    .hero-number { font-family:'Space Mono',monospace; font-size:clamp(44px,6vw,84px); line-height:1; color:var(--text-display); letter-spacing:-.05em; }
+    .hero-label { margin-top:var(--space-sm); font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.08em; color:var(--accent); text-transform:uppercase; }
+    .grid-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin:var(--space-3xl) 0; }
+    .metric { background:var(--black); padding:var(--space-lg); min-height:132px; display:flex; flex-direction:column; justify-content:space-between; }
+    .metric-value { font-family:'Space Mono',monospace; color:var(--text-display); font-size:32px; letter-spacing:-.04em; }
+    .metric-value span { margin-left:4px; font-size:11px; color:var(--text-secondary); letter-spacing:.08em; }
+    .section-head { display:flex; justify-content:space-between; gap:var(--space-lg); align-items:end; margin:var(--space-3xl) 0 var(--space-lg); }
+    .section-head h2 { margin:0; color:var(--text-display); font-size:32px; line-height:1.1; letter-spacing:-.02em; }
+    .section-head p { margin:0; max-width:460px; color:var(--text-secondary); line-height:1.5; }
+    .video-stack { display:grid; gap:var(--space-md); }
+    .video-card { display:grid; grid-template-columns:72px 1fr 360px; gap:var(--space-lg); padding:var(--space-lg); background:rgba(17,17,17,.92); border:1px solid var(--border); border-radius:16px; }
+    .bucket-panel { margin-top:var(--space-lg); }
+    .rank { font-family:'Space Mono',monospace; color:var(--text-disabled); font-size:28px; letter-spacing:-.05em; }
+    .video-topline { display:flex; flex-wrap:wrap; gap:var(--space-sm); margin-bottom:var(--space-md); }
+    .status { border:1px solid var(--border-visible); border-radius:999px; padding:3px 9px; display:inline-flex; align-items:center; white-space:nowrap; }
+    .status-hot { color:var(--accent); border-color:var(--accent); }
+    .status-warm { color:var(--warning); border-color:var(--warning); }
+    .status-muted { color:var(--text-disabled); }
+    .status-unknown { color:var(--text-secondary); }
+    .video-main { min-width:0; }
+    h3 { margin:0 0 var(--space-md); font-size:22px; line-height:1.25; color:var(--text-display); font-weight:500; overflow-wrap:anywhere; word-break:break-word; }
+    .chip-row { display:flex; flex-wrap:wrap; gap:var(--space-sm); margin-top:var(--space-lg); }
+    .chip { border:1px solid var(--border-visible); border-radius:999px; padding:4px 10px; color:var(--text-secondary); }
+    .muted { color:var(--text-disabled); border-color:var(--border); }
+    .video-data { display:grid; align-content:start; border-top:1px solid var(--border); }
+    .stat-row { display:flex; justify-content:space-between; gap:var(--space-md); padding:12px 0; border-bottom:1px solid var(--border); }
+    .stat-row strong { font-family:'Space Mono',monospace; color:var(--text-primary); font-size:13px; text-align:right; font-weight:400; max-width:210px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .stat-row.emphasis strong { color:var(--accent); font-size:18px; }
+    .lower-grid { display:grid; grid-template-columns:1fr; gap:var(--space-lg); margin-top:var(--space-lg); }
+    .wide-panel { margin-top:var(--space-lg); }
+    .panel { background:rgba(17,17,17,.92); border:1px solid var(--border); border-radius:16px; padding:var(--space-lg); overflow:auto; }
+    .panel-note { margin:10px 0 20px; max-width:860px; color:var(--text-secondary); line-height:1.5; }
+    .signal-bucket { margin-top:var(--space-lg); overflow:visible; }
+    .signal-columns { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--space-lg); margin-top:var(--space-md); }
+    .signal-group { display:grid; gap:var(--space-md); }
+    .signal-list { display:grid; gap:10px; }
+    .signal-card { display:grid; grid-template-columns:40px minmax(0,1fr); gap:var(--space-md); align-items:start; padding:14px 0; border-top:1px solid var(--border); }
+    .signal-card:first-child { border-top:1px solid var(--border-visible); }
+    .signal-rank { font-family:'Space Mono',monospace; color:var(--text-disabled); font-size:16px; }
+    .signal-main { min-width:0; }
+    .signal-name { color:var(--text-display); font-size:18px; line-height:1.25; overflow-wrap:anywhere; word-break:break-word; }
+    .signal-age { margin-top:4px; font-family:'Space Mono',monospace; color:var(--text-secondary); font-size:11px; letter-spacing:.04em; }
+    .signal-metrics { grid-column:2; display:flex; flex-wrap:wrap; justify-content:flex-start; gap:8px; margin-top:8px; }
+    .signal-metrics span { border:1px solid var(--border-visible); border-radius:999px; padding:4px 9px; font-family:'Space Mono',monospace; color:var(--text-secondary); font-size:11px; white-space:nowrap; }
+    .novelty-badge { border-radius:999px; padding:2px 8px; font-size:10px; font-family:'Space Mono',monospace; letter-spacing:.06em; margin-left:8px; vertical-align:middle; display:inline-block; }
+    .novelty-badge.first-seen { background:var(--accent); color:#FFF; border:1px solid var(--accent); }
+    .signal-empty { padding:var(--space-lg); }
+    table { width:100%; border-collapse:collapse; min-width:760px; }
+    th { text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--border-visible); font-weight:400; }
+    td { padding:14px 12px; border-bottom:1px solid var(--border); color:var(--text-primary); }
+    td:nth-child(2) { max-width:420px; overflow-wrap:anywhere; word-break:break-word; }
+    td:first-child, td:nth-child(n+3) { font-family:'Space Mono',monospace; color:var(--text-secondary); }
+    td:nth-child(n+3), th:nth-child(n+3) { text-align:right; }
+    .empty { border:1px solid var(--border-visible); border-radius:16px; padding:var(--space-2xl); color:var(--text-secondary); font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.04em; }
+    footer { margin-top:var(--space-3xl); padding-top:var(--space-lg); border-top:1px solid var(--border); color:var(--text-disabled); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; }
+    @media (max-width:1100px) { header,.video-card,.lower-grid,.signal-columns { grid-template-columns:1fr; } .video-data { margin-top:var(--space-md); } }
+    @media (max-width:760px) { .grid-metrics { grid-template-columns:1fr 1fr; } .page { padding-top:24px; } header { min-height:auto; } .signal-card { grid-template-columns:36px 1fr; } .signal-metrics { grid-column:2; justify-content:flex-start; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <div class="eyebrow">TIKTOK 热点分析 / 美区女装</div>
+        <h1>热点<br>此刻</h1>
+        <p class="hero-subtitle">这是一份静态热点报告，用发布时间分桶识别新近热点，用长期热词区块观察老词是否仍在扩散。</p>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-number">19.2M</div>
+        <div class="hero-label">累计播放最高</div>
+        <p class="meta">sakeena097 / 视频年龄 838.64 小时 / 两周以前</p>
+      </div>
+    </header>
+
+    <section class="grid-metrics">
+      
+    <div class="metric">
+      <div class="metric-label">有效视频数</div>
+      <div class="metric-value">406<span></span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">前序命中数</div>
+      <div class="metric-value">8<span></span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">分析窗口</div>
+      <div class="metric-value">166.09<span>小时</span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">重复率</div>
+      <div class="metric-value">18.1%<span></span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">计划运行数</div>
+      <div class="metric-value">50<span></span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">失败窗口</div>
+      <div class="metric-value">1<span></span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">请求总量</div>
+      <div class="metric-value">500<span></span></div>
+    </div>
+    
+      
+    <div class="metric">
+      <div class="metric-label">数据来源</div>
+      <div class="metric-value">关键词 406<span></span></div>
+    </div>
+    
+    </section>
+    <p class="panel-note" style="margin:-24px 0 24px;font-size:11px;">Apify cost depends on Actor pricing, planned runs, returned results, compute duration, memory, proxy usage, retries, add-ons, and account plan; verify exact cost in the Apify usage dashboard.</p>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="section-label">新近视频 / 发布时间分桶</div>
+          <h2>按发布时间分级的热点视频</h2>
+        </div>
+        <p>这里不依赖前后两轮是否抓到同一条视频，而是直接按视频发布时间分成近一天、三天、七天和两周，每个分级最多展示 5 条热视频。</p>
+      </div>
+      
+            <section class="bucket-panel">
+              <div class="section-label">近一天 / 最多 5 条</div>
+              <div class="video-stack">
+    <article class="video-card">
+      <div class="rank">01</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / try on haul women</span>
+          <span class="status status-hot">近一天</span>
+        </div>
+        <h3>Here’s my cooking essentials haul from @Amazon.eg Dont miss out on the Amazon Mega Sale! Shop deals and Save up to 50% From the 12th of May to the 18th of May\ud83d\ude0d #مهرجان_عروض_امازون
+#AmazonMegaSale</h3>
+        <a href="https://www.tiktok.com/@palactapus/video/7636753343192272149" target="_blank" rel="noreferrer">@palactapus</a>
+        <div class="chip-row"><span class="chip">#مهرجان_عروض_امازون</span><span class="chip">#amazonmegasale</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>1.5M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>1.6M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>15.62 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>0.2%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - palactapus — Palactapus</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">02</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-hot">近一天</span>
+        </div>
+        <h3>the fashion here is no joke😍 #modestfashion #fashion #outfits #honeymoon #japan </h3>
+        <a href="https://www.tiktok.com/@frishtaxx/video/7636776847493156118" target="_blank" rel="noreferrer">@frishtaxx</a>
+        <div class="chip-row"><span class="chip">#modestfashion</span><span class="chip">#fashion</span><span class="chip">#outfits</span><span class="chip">#honeymoon</span><span class="chip">#japan</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>224.9K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>481.3K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>14.1 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>9.5%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - playgrndseries — playgrndseries</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">03</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / plus size fashion</span>
+          <span class="status status-hot">近一天</span>
+        </div>
+        <h3>Dubai Princess Plus Size Beauty Slaying Ethnic Fashion 💃✨❤️ #Dubaiprincess #Lifestyle #Husbandwife #Shaikhamahra #Fashion </h3>
+        <a href="https://www.tiktok.com/@girlstop52/video/7636624162181729550" target="_blank" rel="noreferrer">@girlstop52</a>
+        <div class="chip-row"><span class="chip">#dubaiprincess</span><span class="chip">#lifestyle</span><span class="chip">#husbandwife</span><span class="chip">#shaikhamahra</span><span class="chip">#fashion</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>371.8K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>410.9K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>23.97 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>0.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - girlstop52 — girlstop</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">04</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-hot">近一天</span>
+        </div>
+        <h3>Me 🫶🏼 Euro summer #eurosummer #Chanel #outfitinspo #Pucci #summeroutfit </h3>
+        <a href="https://www.tiktok.com/@chanelmcclarty/video/7636694053790272786" target="_blank" rel="noreferrer">@chanelmcclarty</a>
+        <div class="chip-row"><span class="chip">#eurosummer</span><span class="chip">#chanel</span><span class="chip">#outfitinspo</span><span class="chip">#pucci</span><span class="chip">#summeroutfit</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>69.7K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>267.8K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>19.46 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>22.8%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>Yamore by MoBlack Benja Franc Fala — Deep House Bible</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">05</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / work outfits women</span>
+          <span class="status status-hot">近一天</span>
+        </div>
+        <h3>They found that attractive women… get treated differently. \ud83e\udd14
+Not just in dating —
+in opportunities, attention, and perception.
+
+But here’s what most people miss…
+Attraction isn’t just looks.
+It’s energy. It’s confidence. It’s standards.
+Because the most “attractive” women
+aren’t chasing validation…
+they become it.
+
+They walk with certainty.
+They speak with intention.
+They don’t beg — they choose. \ud83d\udc51
+And that’s what sets them apart.
+No insecurity. No overgiving. Just self-worth. \ud83d\udd25
+Because real attraction isn’t built in the mirror…
+it’s built in the mind.
+
+So tell me… are you becoming or just comparing? \ud83e\udd14
+
+\ud83d\udce9 Ready to level up your confidence and presence? DM me — let’s talk.
+
+\ud83d\udcf8 Credit: @jayshetty
+| DM for credit or removal 
+| Credit goes to respective owner
+
+#Confidence #FeminineEnergy #SelfWorth #Attraction #MindsetShift     
+
+attractive women mindset, confidence building, feminine energy, self worth, attraction psychology, high value woman, personal growth, mindset shift, inner confidence, self improvement, glow up mindset</h3>
+        <a href="https://www.tiktok.com/@ark.is.ark/video/7636662582039858454" target="_blank" rel="noreferrer">@ark.is.ark</a>
+        <div class="chip-row"><span class="chip">#confidence</span><span class="chip">#feminineenergy</span><span class="chip">#selfworth</span><span class="chip">#attraction</span><span class="chip">#mindsetshift</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>128.8K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>259.3K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>21.49 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>8.0%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - ark.is.ark — Ark</strong></div>
+      </div>
+    </article>
+    </div>
+            </section>
+            
+            <section class="bucket-panel">
+              <div class="section-label">近三天 / 最多 5 条</div>
+              <div class="video-stack">
+    <article class="video-card">
+      <div class="rank">01</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / wedding guest dress</span>
+          <span class="status status-hot">近三天</span>
+        </div>
+        <h3>Not me fighting for my life trying to get this dress on for the 2nd part of my friend’s wedding 😭 #grwm #weddingguestdress #weddingguest #weddingoutfit #westernwedding </h3>
+        <a href="https://www.tiktok.com/@lizzymwong/video/7636538548878871839" target="_blank" rel="noreferrer">@lizzymwong</a>
+        <div class="chip-row"><span class="chip">#grwm</span><span class="chip">#weddingguestdress</span><span class="chip">#weddingguest</span><span class="chip">#weddingoutfit</span><span class="chip">#westernwedding</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>772.2K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>1.9M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>29.51 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>14.6%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - lizzymwong — Lizzy Wong</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">02</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / summer dresses</span>
+          <span class="status status-hot">近三天</span>
+        </div>
+        <h3>this on my summer holiday&gt;😍 #mypartnerratesmyoutfit #mypartnerratesasummerdress #mypartnerhelpingmefindholidaydresses #haul #OOTD </h3>
+        <a href="https://www.tiktok.com/@livpreston/video/7636091654566432022" target="_blank" rel="noreferrer">@livpreston</a>
+        <div class="chip-row"><span class="chip">#mypartnerratesmyoutfit</span><span class="chip">#mypartnerratesasummerdress</span><span class="chip">#mypartnerhelpingmefindholidaydresses</span><span class="chip">#haul</span><span class="chip">#ootd</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>774.9K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>1.4M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>58.42 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>6.6%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - livpreston — Olivia Preston</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">03</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / wedding guest dress</span>
+          <span class="status status-hot">近三天</span>
+        </div>
+        <h3>UPDATE THE INVITE SAYS “morning dress or lounge suit” and the bride loves the blue dress with the coat I got!
+Things to note:
+- bride told me only old people will be fully dressed to code \u0026 definitely not to wear a hat lol
+- bride is from the US (PA) groom is from the UK — her family will likely be dressed on the more casual side.
+- wedding is 12-5 in a church with a reception in his family’s garden at their cottage 
+- bride is incredibly stylish and used to work for @Lingua Franca as one of their day one employees 
+- I have already decided to buy a tan colored cashmere wrap no matter the dress choice for the church. 
+
+@STAUD @Cara Cara NYC @BadgleyMischka #FashionAdvice #weddingguest #ukwedding </h3>
+        <a href="https://www.tiktok.com/@mackinstyle/video/7636154604387912973" target="_blank" rel="noreferrer">@mackinstyle</a>
+        <div class="chip-row"><span class="chip">#FashionAdvice</span><span class="chip">#weddingguest</span><span class="chip">#ukwedding</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>747.0K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>1.3M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>54.34 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>6.4%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>Orange Afternoon — Bossa Nova Terrace</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">04</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / summer dresses</span>
+          <span class="status status-hot">近三天</span>
+        </div>
+        <h3>H\u0026M New In Summer Dresses \ud83e\udd0d☀️✨
+
+How gorgeous are these summer dresses from @H\u0026M the black fitted dress is unreal and so comfortable, the blue embroidered is so pretty for holiday and a denim dress is so perfect to wear with flats in the summer \ud83e\udef6✨
+
+All linked on my @LTK link in bio \ud83e\udd0d
+
+#hm #hmhaul #fashiontiktok #summerdress #SummerFashion </h3>
+        <a href="https://www.tiktok.com/@lucinda.fashion/video/7636119470532087062" target="_blank" rel="noreferrer">@lucinda.fashion</a>
+        <div class="chip-row"><span class="chip">#hm</span><span class="chip">#hmhaul</span><span class="chip">#fashiontiktok</span><span class="chip">#summerdress</span><span class="chip">#summerfashion</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>398.4K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>649.2K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>56.62 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>3.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>Beauty And A Beat — Justin Bieber</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">05</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-hot">近三天</span>
+        </div>
+        <h3>Stop ✋ scrolling most requested tour or vacation outfits page suggestion ⭐️🎀#creatorsearchinsights #explorepage #fyp </h3>
+        <a href="https://www.tiktok.com/@strawcherry07/video/7636004418864893200" target="_blank" rel="noreferrer">@strawcherry07</a>
+        <div class="chip-row"><span class="chip">#creatorsearchinsights</span><span class="chip">#explorepage</span><span class="chip">#fyp</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>259.2K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>527.1K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>64.05 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>7.0%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - strawcherry07 — 🍓Strawcherry🍒</strong></div>
+      </div>
+    </article>
+    </div>
+            </section>
+            
+            <section class="bucket-panel">
+              <div class="section-label">近七天 / 最多 5 条</div>
+              <div class="video-stack">
+    <article class="video-card">
+      <div class="rank">01</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / try on haul women</span>
+          <span class="status status-warm">近七天</span>
+        </div>
+        <h3>@alo aloversary try on haul! if you&#x27;ve been eyeing anything from ALO, now is the perfect time to shop while they&#x27;re doing 30% off sitewide!</h3>
+        <a href="https://www.tiktok.com/@talia.hannosh/video/7635287825738485022" target="_blank" rel="noreferrer">@talia.hannosh</a>
+        <div class="chip-row"><span class="chip muted">暂无标签</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>9.1M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>9.4M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>108.01 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>0.2%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - talia.hannosh — talia 🧸</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">02</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / target finds fashion</span>
+          <span class="status status-warm">近七天</span>
+        </div>
+        <h3>New lace cami \ud83d\ude0d
+@target 
+#target #targetstyle #targetfinds #apparel </h3>
+        <a href="https://www.tiktok.com/@findssbyyjess/video/7634705036005739790" target="_blank" rel="noreferrer">@findssbyyjess</a>
+        <div class="chip-row"><span class="chip">#target</span><span class="chip">#targetstyle</span><span class="chip">#targetfinds</span><span class="chip">#apparel</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>335.0K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>797.4K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>148.09 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>10.6%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>Kitten — Not For Radio</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">03</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / summer dresses</span>
+          <span class="status status-warm">近七天</span>
+        </div>
+        <h3>cute summer dress ˖°𓇼🌊</h3>
+        <a href="https://www.tiktok.com/@jenbarangan/video/7634878430466690311" target="_blank" rel="noreferrer">@jenbarangan</a>
+        <div class="chip-row"><span class="chip muted">暂无标签</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>452.3K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>767.7K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>136.88 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>5.8%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - jenbarangan — Jen Barangan-David</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">04</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / brunch outfit</span>
+          <span class="status status-warm">近七天</span>
+        </div>
+        <h3>sunday outfit🦥🤙🏼 | ig: monaaleuu #fürdich #girly #sundayvibes #brunchfit #outfitoftheday </h3>
+        <a href="https://www.tiktok.com/@monaaleuu/video/7635762933477182753" target="_blank" rel="noreferrer">@monaaleuu</a>
+        <div class="chip-row"><span class="chip">#fürdich</span><span class="chip">#girly</span><span class="chip">#sundayvibes</span><span class="chip">#brunchfit</span><span class="chip">#outfitoftheday</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>264.0K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>767.4K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>79.68 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>16.1%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - drewqdnd — drew</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">05</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-warm">近七天</span>
+        </div>
+        <h3>SHEIN is getting to good.\ud83c\udf68\ud83e\udee7\ud83e\uddd8\ud83c\udffd‍♀️Download the SHEIN App to check out the amazing store Avantive and unlock the latest fashion trends anytime, anywhere! Search \u0026 follow Avantive on SHEIN and use; 4SPUSsophienelsonnnnn034 to enjoy exclusive discounts! ✨
+@sheinofficial @shein_us @SHEIN US 
+#SHEINtrends #ad
+#sheinhaul #summersheinhaul #vacationoutfits </h3>
+        <a href="https://www.tiktok.com/@sophienelsonnnnn/video/7634700999801769246" target="_blank" rel="noreferrer">@sophienelsonnnnn</a>
+        <div class="chip-row"><span class="chip">#sheintrends</span><span class="chip">#ad</span><span class="chip">#sheinhaul</span><span class="chip">#summersheinhaul</span><span class="chip">#vacationoutfits</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>234.6K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>549.3K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>148.36 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>10.2%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - timeshareexits — Timeshare Cancellation Experts</strong></div>
+      </div>
+    </article>
+    </div>
+            </section>
+            
+            <section class="bucket-panel">
+              <div class="section-label">近两周 / 最多 5 条</div>
+              <div class="video-stack">
+    <article class="video-card">
+      <div class="rank">01</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / wedding guest dress</span>
+          <span class="status status-warm">近两周</span>
+        </div>
+        <h3>summer wedding guest dresses 🩵✨ comment your faveee 🫶🏼 #weddingguest #weddingguestdress #summerdress #occasionwear #babyboo </h3>
+        <a href="https://www.tiktok.com/@abbiexhooper/video/7632024805646060803" target="_blank" rel="noreferrer">@abbiexhooper</a>
+        <div class="chip-row"><span class="chip">#weddingguest</span><span class="chip">#weddingguestdress</span><span class="chip">#summerdress</span><span class="chip">#occasionwear</span><span class="chip">#babyboo</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>1.2M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>2.7M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>321.44 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>10.4%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - coolazzshamon673 — CoolAzzShamon673</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">02</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / date night outfit</span>
+          <span class="status status-warm">近两周</span>
+        </div>
+        <h3>Who wants to be my dinner date? #date #OOTD #fypシ #xy </h3>
+        <a href="https://www.tiktok.com/@purpl3_rat/video/7632812812426939661" target="_blank" rel="noreferrer">@purpl3_rat</a>
+        <div class="chip-row"><span class="chip">#date</span><span class="chip">#ootd</span><span class="chip">#fypシ</span><span class="chip">#xy</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>176.4K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>763.0K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>270.47 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>25.2%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - suhofiles — suhofiles</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">03</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / try on haul women</span>
+          <span class="status status-warm">近两周</span>
+        </div>
+        <h3>mi lugar favorito #haul #tryon #ross </h3>
+        <a href="https://www.tiktok.com/@rzmelanie/video/7632357852417363214" target="_blank" rel="noreferrer">@rzmelanie</a>
+        <div class="chip-row"><span class="chip">#haul</span><span class="chip">#tryon</span><span class="chip">#ross</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>283.5K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>709.5K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>299.89 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>12.2%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - nic_ttrx — 𝕹𝖎𝖈𝖈</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">04</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / amazon fashion finds</span>
+          <span class="status status-warm">近两周</span>
+        </div>
+        <h3>Link in my bio to AMAZON #viral #Summer #gadget #amazon #product </h3>
+        <a href="https://www.tiktok.com/@amazproducts601/video/7632594033289825558" target="_blank" rel="noreferrer">@amazproducts601</a>
+        <div class="chip-row"><span class="chip">#viral</span><span class="chip">#summer</span><span class="chip">#gadget</span><span class="chip">#amazon</span><span class="chip">#product</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>541.3K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>673.3K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>284.63 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>1.2%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>MONTAGEM TOMADA (Slowed) — MXZI</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">05</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / try on haul women</span>
+          <span class="status status-warm">近两周</span>
+        </div>
+        <h3>Brandy had STEPPED UP their game lately?? they’re clearing targeting the chic, cotton wearing, zen, yoga baddies\ud83e\uddd8\ud83c\udffb‍♀️
+
+#brandymelvillehaul #tryonhaul #yogaaesthetic #yogawear #cottonclothing </h3>
+        <a href="https://www.tiktok.com/@fairyjadyn/video/7633527626375777567" target="_blank" rel="noreferrer">@fairyjadyn</a>
+        <div class="chip-row"><span class="chip">#brandymelvillehaul</span><span class="chip">#tryonhaul</span><span class="chip">#yogaaesthetic</span><span class="chip">#yogawear</span><span class="chip">#cottonclothing</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>263.6K</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>672.2K</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>224.24 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>12.5%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>Chopin Nocturne No. 2 Piano Mono — moshimo sound design</strong></div>
+      </div>
+    </article>
+    </div>
+            </section>
+            
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="section-label">累计热度 / 总量排行</div>
+          <h2>累计热视频</h2>
+        </div>
+        <p>这一部分按总播放和互动加权排序，可能包含早就已经很热的长尾视频，需要结合视频年龄和时效状态一起判断。</p>
+      </div>
+      <div class="video-stack">
+    <article class="video-card">
+      <div class="rank">01</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / plus size fashion</span>
+          <span class="status status-muted">两周以前</span>
+        </div>
+        <h3>Dubai Princess Plus Size Beauty Slaying Ethnic Fashion💃✨❤️ #ranikumari #princess #Lifestyle #fashion #beautifulgirl </h3>
+        <a href="https://www.tiktok.com/@sakeena097/video/7624027786172255519" target="_blank" rel="noreferrer">@sakeena097</a>
+        <div class="chip-row"><span class="chip">#ranikumari</span><span class="chip">#princess</span><span class="chip">#lifestyle</span><span class="chip">#fashion</span><span class="chip">#beautifulgirl</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>19.2M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>24.3M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>838.64 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>1.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - sakeena097 — Sakeena ❤️</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">02</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / brunch outfit</span>
+          <span class="status status-muted">两周以前</span>
+        </div>
+        <h3>outfit of the day 🫐 mom wanted me to wear blue for dads birthday brunch so here we go ✨ #OOTD #outfitoftheday #outfitinspo #outfitideas #brunch #falloutfits #fallfashion #autumnoutfits #autumn </h3>
+        <a href="https://www.tiktok.com/@lisa.rdna/video/7428560924841233696" target="_blank" rel="noreferrer">@lisa.rdna</a>
+        <div class="chip-row"><span class="chip">#ootd</span><span class="chip">#outfitoftheday</span><span class="chip">#outfitinspo</span><span class="chip">#outfitideas</span><span class="chip">#brunch</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>6.2M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>19.7M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>13480.5 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>17.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - augustc0ast — 𝑖𝑠𝑎𝑏𝑒𝑙𝑙𝑎 ˚୨୧⋆</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">03</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / amazon fashion finds</span>
+          <span class="status status-muted">两周以前</span>
+        </div>
+        <h3>PART 23 of my amazon addiction !!! #amazonfinds #amazonmusthaves #amazonfashion #amazon LINKS ARE IN MY BIO</h3>
+        <a href="https://www.tiktok.com/@annamoraan/video/6844234291535154438" target="_blank" rel="noreferrer">@annamoraan</a>
+        <div class="chip-row"><span class="chip">#amazonfinds</span><span class="chip">#amazonmusthaves</span><span class="chip">#amazonfashion</span><span class="chip">#amazon</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>4.6M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>19.0M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>51271.94 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>29.1%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - annamoraan — Anna</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">04</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-muted">两周以前</span>
+        </div>
+        <h3>Duo vacation fits🌺💖👭🏻ig:9anei #fyp #summervibes #outfitideas </h3>
+        <a href="https://www.tiktok.com/@9anei/video/7560300279988571404" target="_blank" rel="noreferrer">@9anei</a>
+        <div class="chip-row"><span class="chip">#fyp</span><span class="chip">#summervibes</span><span class="chip">#outfitideas</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>6.5M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>18.8M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>4960.24 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>14.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - 9anei — Sabrina ☆*</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">05</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-muted">两周以前</span>
+        </div>
+        <h3>girl thing #fyp #vacation #vacationoutfits #travel </h3>
+        <a href="https://www.tiktok.com/@celine_jea/video/7527743868662467862" target="_blank" rel="noreferrer">@celine_jea</a>
+        <div class="chip-row"><span class="chip">#fyp</span><span class="chip">#vacation</span><span class="chip">#vacationoutfits</span><span class="chip">#travel</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>5.7M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>16.5M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>7065.83 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>15.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>original sound - wyn_cutie — wyn_cutie</strong></div>
+      </div>
+    </article>
+    
+    <article class="video-card">
+      <div class="rank">06</div>
+      <div class="video-main">
+        <div class="video-topline">
+          <span class="source">关键词 / vacation outfits</span>
+          <span class="status status-muted">两周以前</span>
+        </div>
+        <h3>✨✨ #shein #fyp #sheinhaul </h3>
+        <a href="https://www.tiktok.com/@marjoriekiim/video/7534816800945704198" target="_blank" rel="noreferrer">@marjoriekiim</a>
+        <div class="chip-row"><span class="chip">#shein</span><span class="chip">#fyp</span><span class="chip">#sheinhaul</span></div>
+      </div>
+      <div class="video-data">
+        <div class="stat-row emphasis"><span>总播放</span><strong>7.5M</strong></div>
+        <div class="stat-row "><span>热度分</span><strong>15.1M</strong></div>
+        <div class="stat-row "><span>视频年龄</span><strong>6608.39 小时</strong></div>
+        <div class="stat-row "><span>互动率</span><strong>6.9%</strong></div>
+        <div class="stat-row "><span>音乐</span><strong>Doo wop — Speed_songz.1</strong></div>
+      </div>
+    </article>
+    </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="section-label">新晋趋势信号 / 发布时间分桶</div>
+          <h2>新晋关键词与 TikTok 标签</h2>
+        </div>
+        <p>按一天、三天、七天、两周和一个月分桶；每个时间段分热度排行和覆盖排行两列展示。带有<span style="color:var(--accent)">新见</span>标记的词在该时间段出现，但在更长时间段（如近七天 / 近两周 / 近一个月）的样本中未出现，代表它可能是本轮新冒出的信号。覆盖分（video_count × log(1 + avg_score_per_video)）用于衡量一个词出现在多少视频中且有基础互动。</p>
+      </div>
+      
+            <section class="panel signal-bucket">
+              <div class="section-label">近一天 / 趋势信号</div>
+              <div class="signal-columns">
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">here</div>
+        <div class="signal-age">最早 15.6 小时 / 最新 4.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 52</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">the amazon mega sale<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 15.6 小时 / 最新 15.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">dont miss out<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 15.6 小时 / 最新 15.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">shop deals and save<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 15.6 小时 / 最新 15.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">may<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 15.6 小时 / 最新 15.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">what</div>
+        <div class="signal-age">最早 14.9 小时 / 最新 1.0 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 8</span>
+        <span>播放 18.8K</span>
+        <span>热度 35.5K</span>
+        <span>覆盖 67</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">here</div>
+        <div class="signal-age">最早 15.6 小时 / 最新 4.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 52</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">bio</div>
+        <div class="signal-age">最早 19.9 小时 / 最新 0.5 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 6</span>
+        <span>播放 13.5K</span>
+        <span>热度 22.4K</span>
+        <span>覆盖 49</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">all</div>
+        <div class="signal-age">最早 22.6 小时 / 最新 4.2 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 62.7K</span>
+        <span>热度 150.4K</span>
+        <span>覆盖 42</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">haul</div>
+        <div class="signal-age">最早 22.0 小时 / 最新 0.9 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 21.1K</span>
+        <span>热度 42.2K</span>
+        <span>覆盖 37</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">amazonmegasale<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 15.6 小时 / 最新 15.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">مهرجان_عروض_امازون<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 15.6 小时 / 最新 15.6 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.5M</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">outfits</div>
+        <div class="signal-age">最早 14.1 小时 / 最新 7.9 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 246.7K</span>
+        <span>热度 513.3K</span>
+        <span>覆盖 36</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">honeymoon<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 14.1 小时 / 最新 14.1 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 224.9K</span>
+        <span>热度 481.3K</span>
+        <span>覆盖 13</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">japan<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 14.1 小时 / 最新 14.1 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 224.9K</span>
+        <span>热度 481.3K</span>
+        <span>覆盖 13</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">ootd</div>
+        <div class="signal-age">最早 18.5 小时 / 最新 1.0 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 26</span>
+        <span>播放 58.5K</span>
+        <span>热度 112.5K</span>
+        <span>覆盖 218</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">outfitinspo</div>
+        <div class="signal-age">最早 20.2 小时 / 最新 3.0 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 19</span>
+        <span>播放 88.9K</span>
+        <span>热度 306.7K</span>
+        <span>覆盖 184</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">haul</div>
+        <div class="signal-age">最早 20.4 小时 / 最新 0.5 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 16</span>
+        <span>播放 90.0K</span>
+        <span>热度 176.9K</span>
+        <span>覆盖 149</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress</div>
+        <div class="signal-age">最早 22.6 小时 / 最新 1.4 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 14</span>
+        <span>播放 28.8K</span>
+        <span>热度 57.8K</span>
+        <span>覆盖 117</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">outfit</div>
+        <div class="signal-age">最早 19.0 小时 / 最新 3.7 小时</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 14</span>
+        <span>播放 12.8K</span>
+        <span>热度 45.1K</span>
+        <span>覆盖 113</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+              </div>
+            </section>
+            
+            <section class="panel signal-bucket">
+              <div class="section-label">近三天 / 趋势信号</div>
+              <div class="signal-columns">
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">wedding<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 2.3 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 1.5M</span>
+        <span>热度 3.2M</span>
+        <span>覆盖 29</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">part<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 1.4 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 784.9K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 28</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">fighting for<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 1.2 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 772.2K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">life trying<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 1.2 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 772.2K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">friend<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 1.2 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 772.2K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">bio</div>
+        <div class="signal-age">最早 2.4 天 / 最新 1.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 472.7K</span>
+        <span>热度 845.6K</span>
+        <span>覆盖 38</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">wedding<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 2.3 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 1.5M</span>
+        <span>热度 3.2M</span>
+        <span>覆盖 29</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">part<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 1.4 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 784.9K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 28</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">all linked<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 2.4 天 / 最新 2.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 411.4K</span>
+        <span>热度 676.0K</span>
+        <span>覆盖 25</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">perfect</div>
+        <div class="signal-age">最早 2.4 天 / 最新 1.1 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 405.2K</span>
+        <span>热度 659.3K</span>
+        <span>覆盖 25</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguest</div>
+        <div class="signal-age">最早 2.3 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 1.6M</span>
+        <span>热度 3.3M</span>
+        <span>覆盖 42</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress</div>
+        <div class="signal-age">最早 1.6 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 908.7K</span>
+        <span>热度 2.1M</span>
+        <span>覆盖 53</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">grwm</div>
+        <div class="signal-age">最早 2.5 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 788.4K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 40</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">westernwedding<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 1.2 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 772.2K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingoutfit</div>
+        <div class="signal-age">最早 1.2 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 772.2K</span>
+        <span>热度 1.9M</span>
+        <span>覆盖 14</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">targetfinds</div>
+        <div class="signal-age">最早 2.8 天 / 最新 1.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 7</span>
+        <span>播放 312.0K</span>
+        <span>热度 666.3K</span>
+        <span>覆盖 80</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">ootd</div>
+        <div class="signal-age">最早 2.5 天 / 最新 1.1 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 6</span>
+        <span>播放 812.7K</span>
+        <span>热度 1.5M</span>
+        <span>覆盖 75</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">amazonfashion</div>
+        <div class="signal-age">最早 2.8 天 / 最新 1.1 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 6</span>
+        <span>播放 202.4K</span>
+        <span>热度 368.8K</span>
+        <span>覆盖 66</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress</div>
+        <div class="signal-age">最早 1.6 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 908.7K</span>
+        <span>热度 2.1M</span>
+        <span>覆盖 53</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">haul</div>
+        <div class="signal-age">最早 2.4 天 / 最新 1.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 841.8K</span>
+        <span>热度 1.6M</span>
+        <span>覆盖 52</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+              </div>
+            </section>
+            
+            <section class="panel signal-bucket">
+              <div class="section-label">近七天 / 趋势信号</div>
+              <div class="signal-columns">
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">the perfect time<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 4.5 天 / 最新 4.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 9.1M</span>
+        <span>热度 9.4M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">off sitewide<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 4.5 天 / 最新 4.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 9.1M</span>
+        <span>热度 9.4M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">haul<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 4.5 天 / 最新 4.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 9.1M</span>
+        <span>热度 9.4M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">you&#x27;ve been eyeing anything<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 4.5 天 / 最新 4.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 9.1M</span>
+        <span>热度 9.4M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">aloversary try<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 4.5 天 / 最新 4.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 9.1M</span>
+        <span>热度 9.4M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">ltk<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 6.8 天 / 最新 4.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 386.1K</span>
+        <span>热度 594.6K</span>
+        <span>覆盖 48</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">bio</div>
+        <div class="signal-age">最早 6.5 天 / 最新 4.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 145.5K</span>
+        <span>热度 214.3K</span>
+        <span>覆盖 44</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">all<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 6.3 天 / 最新 3.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 95.6K</span>
+        <span>热度 151.9K</span>
+        <span>覆盖 32</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">here<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 3.3 天 / 最新 3.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 84.2K</span>
+        <span>热度 478.0K</span>
+        <span>覆盖 25</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">the top<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 6.3 天 / 最新 3.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 155.7K</span>
+        <span>热度 219.2K</span>
+        <span>覆盖 23</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">targetfinds</div>
+        <div class="signal-age">最早 6.8 天 / 最新 3.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 9</span>
+        <span>播放 907.2K</span>
+        <span>热度 1.8M</span>
+        <span>覆盖 110</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">amazonfashion</div>
+        <div class="signal-age">最早 6.8 天 / 最新 3.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 5</span>
+        <span>播放 608.5K</span>
+        <span>热度 955.1K</span>
+        <span>覆盖 61</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">targetstyle<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 6.2 天 / 最新 5.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 416.2K</span>
+        <span>热度 921.7K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">target</div>
+        <div class="signal-age">最早 6.4 天 / 最新 6.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 385.4K</span>
+        <span>热度 885.4K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">sheinhaul<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 6.2 天 / 最新 4.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 309.3K</span>
+        <span>热度 798.7K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">targetfinds</div>
+        <div class="signal-age">最早 6.8 天 / 最新 3.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 9</span>
+        <span>播放 907.2K</span>
+        <span>热度 1.8M</span>
+        <span>覆盖 110</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">outfitinspo</div>
+        <div class="signal-age">最早 6.3 天 / 最新 3.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 9</span>
+        <span>播放 130.9K</span>
+        <span>热度 312.0K</span>
+        <span>覆盖 94</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">ootd</div>
+        <div class="signal-age">最早 6.3 天 / 最新 3.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 8</span>
+        <span>播放 188.0K</span>
+        <span>热度 365.8K</span>
+        <span>覆盖 86</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">amazonfashion</div>
+        <div class="signal-age">最早 6.8 天 / 最新 3.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 5</span>
+        <span>播放 608.5K</span>
+        <span>热度 955.1K</span>
+        <span>覆盖 61</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">vacationoutfits<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 6.3 天 / 最新 4.2 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 5</span>
+        <span>播放 280.0K</span>
+        <span>热度 618.8K</span>
+        <span>覆盖 59</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+              </div>
+            </section>
+            
+            <section class="panel signal-bucket">
+              <div class="section-label">近两周 / 趋势信号</div>
+              <div class="signal-columns">
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">comment your faveee<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.2M</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">summer wedding guest dresses<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.2M</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">bio<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 11.9 天 / 最新 8.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 624.8K</span>
+        <span>热度 819.9K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">link<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 11.9 天 / 最新 8.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 624.8K</span>
+        <span>热度 819.9K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">summer</div>
+        <div class="signal-age">最早 10.4 天 / 最新 8.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 587.6K</span>
+        <span>热度 787.0K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">bio<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 11.9 天 / 最新 8.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 624.8K</span>
+        <span>热度 819.9K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">link<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 11.9 天 / 最新 8.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 624.8K</span>
+        <span>热度 819.9K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">summer</div>
+        <div class="signal-age">最早 10.4 天 / 最新 8.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 587.6K</span>
+        <span>热度 787.0K</span>
+        <span>覆盖 26</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">try<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 9.3 天 / 最新 7.1 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 125.7K</span>
+        <span>热度 264.3K</span>
+        <span>覆盖 24</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">comment your faveee<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.2M</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress</div>
+        <div class="signal-age">最早 13.4 天 / 最新 10.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 1.7M</span>
+        <span>热度 3.7M</span>
+        <span>覆盖 42</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguest<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 1.5M</span>
+        <span>热度 3.3M</span>
+        <span>覆盖 29</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">babyboo<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.2M</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">summerdress</div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.2M</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">occasionwear<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.4 天 / 最新 13.4 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 1.2M</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">ootd</div>
+        <div class="signal-age">最早 11.3 天 / 最新 7.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 4</span>
+        <span>播放 429.4K</span>
+        <span>热度 1.3M</span>
+        <span>覆盖 51</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress</div>
+        <div class="signal-age">最早 13.4 天 / 最新 10.6 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 1.7M</span>
+        <span>热度 3.7M</span>
+        <span>覆盖 42</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">haul<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 13.3 天 / 最新 9.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 693.3K</span>
+        <span>热度 1.5M</span>
+        <span>覆盖 39</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">target</div>
+        <div class="signal-age">最早 11.5 天 / 最新 7.1 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 336.9K</span>
+        <span>热度 758.0K</span>
+        <span>覆盖 37</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">targetfinds</div>
+        <div class="signal-age">最早 11.5 天 / 最新 7.1 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 336.9K</span>
+        <span>热度 758.0K</span>
+        <span>覆盖 37</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+              </div>
+            </section>
+            
+            <section class="panel signal-bucket">
+              <div class="section-label">近一个月 / 趋势信号</div>
+              <div class="signal-columns">
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">dubai princess plus size<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.0 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 10.3M</span>
+        <span>热度 14.2M</span>
+        <span>覆盖 46</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">beauty slaying ethnic fashion<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 28.7 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 8.4M</span>
+        <span>热度 12.0M</span>
+        <span>覆盖 31</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">this dress<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 18.5 天 / 最新 18.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 2.3M</span>
+        <span>热度 6.9M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">outfitters<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 26.3 天 / 最新 16.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 1.1M</span>
+        <span>热度 3.2M</span>
+        <span>覆盖 29</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">happy friday<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 26.3 天 / 最新 26.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 847.7K</span>
+        <span>热度 2.7M</span>
+        <span>覆盖 15</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">内容关键词 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">dubai princess plus size<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.0 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 10.3M</span>
+        <span>热度 14.2M</span>
+        <span>覆盖 46</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">what<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 27.9 天 / 最新 15.7 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 125.9K</span>
+        <span>热度 327.2K</span>
+        <span>覆盖 35</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">beauty slaying ethnic fashion<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 28.7 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 8.4M</span>
+        <span>热度 12.0M</span>
+        <span>覆盖 31</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">outfitters<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 26.3 天 / 最新 16.3 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 1.1M</span>
+        <span>热度 3.2M</span>
+        <span>覆盖 29</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">summer<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 25.5 天 / 最新 14.0 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 1.3M</span>
+        <span>热度 1.7M</span>
+        <span>覆盖 27</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 热度排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">beautifulgirl<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.0 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 10.3M</span>
+        <span>热度 14.2M</span>
+        <span>覆盖 46</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.6 天 / 最新 14.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 5</span>
+        <span>播放 3.7M</span>
+        <span>热度 9.7M</span>
+        <span>覆盖 72</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">dubaiprincess<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.0 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 2</span>
+        <span>播放 6.2M</span>
+        <span>热度 9.1M</span>
+        <span>覆盖 31</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">maxidress<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 18.5 天 / 最新 18.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 2.3M</span>
+        <span>热度 6.9M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">datenightoutfit<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 18.5 天 / 最新 18.5 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 1</span>
+        <span>播放 2.3M</span>
+        <span>热度 6.9M</span>
+        <span>覆盖 16</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+                
+    <div class="signal-group">
+      <div class="section-label">TikTok 标签 · 覆盖排行</div>
+      <div class="signal-list">
+    <article class="signal-card">
+      <div class="signal-rank">01</div>
+      <div class="signal-main">
+        <div class="signal-name">ootd<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 27.1 天 / 最新 14.9 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 6</span>
+        <span>播放 1.8M</span>
+        <span>热度 3.7M</span>
+        <span>覆盖 80</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">02</div>
+      <div class="signal-main">
+        <div class="signal-name">weddingguestdress<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.6 天 / 最新 14.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 5</span>
+        <span>播放 3.7M</span>
+        <span>热度 9.7M</span>
+        <span>覆盖 72</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">03</div>
+      <div class="signal-main">
+        <div class="signal-name">targetfinds<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.8 天 / 最新 15.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 5</span>
+        <span>播放 1.9M</span>
+        <span>热度 4.8M</span>
+        <span>覆盖 69</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">04</div>
+      <div class="signal-main">
+        <div class="signal-name">beautifulgirl<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.0 天 / 最新 22.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 10.3M</span>
+        <span>热度 14.2M</span>
+        <span>覆盖 46</span>
+      </div>
+    </article>
+    
+    <article class="signal-card">
+      <div class="signal-rank">05</div>
+      <div class="signal-main">
+        <div class="signal-name">streetstyleluxe<span class="novelty-badge first-seen">新见</span></div>
+        <div class="signal-age">最早 29.8 天 / 最新 15.8 天</div>
+      </div>
+      <div class="signal-metrics">
+        <span>视频 3</span>
+        <span>播放 1.7M</span>
+        <span>热度 4.1M</span>
+        <span>覆盖 42</span>
+      </div>
+    </article>
+    </div>
+    </div>
+    
+              </div>
+            </section>
+            
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="section-label">长期热词 / 扩散监控</div>
+          <h2>长期热门关键词</h2>
+        </div>
+        <p>长期热词与新近关键词分开：只有长期热词才看“是否仍在扩散”，新近词优先看出现时间和短期热度。</p>
+      </div>
+      
+    <section class="panel wide-panel">
+      <div class="section-label">长期热门内容关键词 / 扩散监控</div>
+      <p class="panel-note">这里只放最早命中的样本视频已经超过一个月的长期信号。扩散状态不再依赖前序快照是否命中，而是看当前快照内的视频年龄分布：近 7 天视频占比达到 10% 且最新视频在 7 天内才算“正在扩散”；最新视频在 7-30 天内为“成熟或持平”；最新视频超过 30 天为“已冷却”。覆盖分（video_count × log(1 + avg_score_per_video)）用于衡量一个词出现在多少视频中且每条都有基础互动。</p>
+      <table>
+        <thead><tr><th>#</th><th>名称</th><th>扩散状态</th><th>视频数</th><th>样本视频数</th><th>近24h视频</th><th>近7d视频</th><th>覆盖分</th><th>热度分</th><th>最早视频年龄</th><th>最新视频年龄</th></tr></thead>
+        <tbody>
+            <tr>
+              <td>01</td>
+              <td>dubai princess plus size</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>8</td>
+              <td>8</td>
+              <td>2</td>
+              <td>3</td>
+              <td>123</td>
+              <td>39.2M</td>
+              <td>34.9 天</td>
+              <td>21.8 小时</td>
+            </tr>
+            
+            <tr>
+              <td>02</td>
+              <td>beauty slaying ethnic fashion</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>6</td>
+              <td>6</td>
+              <td>1</td>
+              <td>2</td>
+              <td>94</td>
+              <td>36.9M</td>
+              <td>34.9 天</td>
+              <td>24.0 小时</td>
+            </tr>
+            
+            <tr>
+              <td>03</td>
+              <td>here</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>7</td>
+              <td>7</td>
+              <td>4</td>
+              <td>6</td>
+              <td>105</td>
+              <td>21.7M</td>
+              <td>561.7 天</td>
+              <td>4.6 小时</td>
+            </tr>
+            
+            <tr>
+              <td>04</td>
+              <td>part</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>5</td>
+              <td>5</td>
+              <td>2</td>
+              <td>4</td>
+              <td>76</td>
+              <td>21.0M</td>
+              <td>2136.3 天</td>
+              <td>1.3 小时</td>
+            </tr>
+            
+            <tr>
+              <td>05</td>
+              <td>bio</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>16</td>
+              <td>16</td>
+              <td>6</td>
+              <td>13</td>
+              <td>225</td>
+              <td>20.9M</td>
+              <td>2136.3 天</td>
+              <td>0.5 小时</td>
+            </tr>
+            
+            <tr>
+              <td>06</td>
+              <td>outfit</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>7</td>
+              <td>7</td>
+              <td>4</td>
+              <td>5</td>
+              <td>104</td>
+              <td>20.8M</td>
+              <td>765.4 天</td>
+              <td>1.9 小时</td>
+            </tr>
+            
+            <tr>
+              <td>07</td>
+              <td>the day</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>4</td>
+              <td>4</td>
+              <td>1</td>
+              <td>2</td>
+              <td>62</td>
+              <td>20.7M</td>
+              <td>765.4 天</td>
+              <td>10.3 小时</td>
+            </tr>
+            
+            <tr>
+              <td>08</td>
+              <td>mom wanted</td>
+              <td><span class="status status-warm">已冷却</span></td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>17</td>
+              <td>19.7M</td>
+              <td>561.7 天</td>
+              <td>561.7 天</td>
+            </tr>
+            </tbody>
+      </table>
+    </section>
+    
+      
+    <section class="panel wide-panel">
+      <div class="section-label">长期热门 TikTok 标签 / 扩散监控</div>
+      <p class="panel-note">这里只放最早命中的样本视频已经超过一个月的长期信号。扩散状态不再依赖前序快照是否命中，而是看当前快照内的视频年龄分布：近 7 天视频占比达到 10% 且最新视频在 7 天内才算“正在扩散”；最新视频在 7-30 天内为“成熟或持平”；最新视频超过 30 天为“已冷却”。覆盖分（video_count × log(1 + avg_score_per_video)）用于衡量一个词出现在多少视频中且每条都有基础互动。</p>
+      <table>
+        <thead><tr><th>#</th><th>名称</th><th>扩散状态</th><th>视频数</th><th>样本视频数</th><th>近24h视频</th><th>近7d视频</th><th>覆盖分</th><th>热度分</th><th>最早视频年龄</th><th>最新视频年龄</th></tr></thead>
+        <tbody>
+            <tr>
+              <td>01</td>
+              <td>outfitideas</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>21</td>
+              <td>21</td>
+              <td>8</td>
+              <td>11</td>
+              <td>309</td>
+              <td>51.2M</td>
+              <td>765.4 天</td>
+              <td>0.5 小时</td>
+            </tr>
+            
+            <tr>
+              <td>02</td>
+              <td>weddingguestdress</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>33</td>
+              <td>33</td>
+              <td>14</td>
+              <td>21</td>
+              <td>469</td>
+              <td>49.2M</td>
+              <td>1042.2 天</td>
+              <td>1.4 小时</td>
+            </tr>
+            
+            <tr>
+              <td>03</td>
+              <td>beautifulgirl</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>7</td>
+              <td>7</td>
+              <td>1</td>
+              <td>2</td>
+              <td>109</td>
+              <td>38.8M</td>
+              <td>34.9 天</td>
+              <td>21.8 小时</td>
+            </tr>
+            
+            <tr>
+              <td>04</td>
+              <td>amazonfinds</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>24</td>
+              <td>24</td>
+              <td>14</td>
+              <td>20</td>
+              <td>343</td>
+              <td>38.7M</td>
+              <td>2263.5 天</td>
+              <td>0.5 小时</td>
+            </tr>
+            
+            <tr>
+              <td>05</td>
+              <td>outfitinspo</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>41</td>
+              <td>41</td>
+              <td>19</td>
+              <td>32</td>
+              <td>563</td>
+              <td>37.5M</td>
+              <td>765.4 天</td>
+              <td>3.0 小时</td>
+            </tr>
+            
+            <tr>
+              <td>06</td>
+              <td>amazon</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>10</td>
+              <td>10</td>
+              <td>5</td>
+              <td>6</td>
+              <td>150</td>
+              <td>33.2M</td>
+              <td>2263.5 天</td>
+              <td>0.5 小时</td>
+            </tr>
+            
+            <tr>
+              <td>07</td>
+              <td>ootd</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>54</td>
+              <td>54</td>
+              <td>26</td>
+              <td>40</td>
+              <td>717</td>
+              <td>31.4M</td>
+              <td>765.4 天</td>
+              <td>1.0 小时</td>
+            </tr>
+            
+            <tr>
+              <td>08</td>
+              <td>amazonfashion</td>
+              <td><span class="status status-warm">正在扩散</span></td>
+              <td>17</td>
+              <td>17</td>
+              <td>1</td>
+              <td>12</td>
+              <td>245</td>
+              <td>31.1M</td>
+              <td>2136.3 天</td>
+              <td>5.8 小时</td>
+            </tr>
+            </tbody>
+      </table>
+    </section>
+    
+    </section>
+
+    <section class="lower-grid">
+      
+    <section class="panel">
+      <div class="section-label">热门音乐</div>
+      <p class="panel-note">热度分 = 使用该音乐的样本视频热度分累加。单条视频热度分按播放量、点赞、评论、分享和收藏加权计算，因此这里更偏累计热度，不等同于当前增速。</p>
+      <table>
+        <thead><tr><th>#</th><th>名称</th><th>视频数</th><th>播放量</th><th>热度分</th></tr></thead>
+        <tbody>
+            <tr>
+              <td>01</td>
+              <td>original sound - sakeena097</td>
+              <td>1</td>
+              <td>19.2M</td>
+              <td>24.3M</td>
+            </tr>
+            
+            <tr>
+              <td>02</td>
+              <td>original sound - augustc0ast</td>
+              <td>1</td>
+              <td>6.2M</td>
+              <td>19.7M</td>
+            </tr>
+            
+            <tr>
+              <td>03</td>
+              <td>original sound - annamoraan</td>
+              <td>1</td>
+              <td>4.6M</td>
+              <td>19.0M</td>
+            </tr>
+            
+            <tr>
+              <td>04</td>
+              <td>original sound - 9anei</td>
+              <td>1</td>
+              <td>6.5M</td>
+              <td>18.8M</td>
+            </tr>
+            
+            <tr>
+              <td>05</td>
+              <td>original sound - wyn_cutie</td>
+              <td>1</td>
+              <td>5.7M</td>
+              <td>16.5M</td>
+            </tr>
+            
+            <tr>
+              <td>06</td>
+              <td>Doo wop</td>
+              <td>1</td>
+              <td>7.5M</td>
+              <td>15.1M</td>
+            </tr>
+            
+            <tr>
+              <td>07</td>
+              <td>original sound - itsmilla.com</td>
+              <td>1</td>
+              <td>7.1M</td>
+              <td>10.6M</td>
+            </tr>
+            
+            <tr>
+              <td>08</td>
+              <td>Tadow</td>
+              <td>1</td>
+              <td>4.1M</td>
+              <td>10.5M</td>
+            </tr>
+            </tbody>
+      </table>
+    </section>
+    
+      
+    <section class="panel">
+      <div class="section-label">热门达人</div>
+      <p class="panel-note">热度分 = 该达人在样本中命中的视频热度分累加。单条视频热度分按播放量、点赞、评论、分享和收藏加权计算，因此这里更偏累计热度，不等同于当前增速。</p>
+      <table>
+        <thead><tr><th>#</th><th>名称</th><th>视频数</th><th>播放量</th><th>热度分</th></tr></thead>
+        <tbody>
+            <tr>
+              <td>01</td>
+              <td>sakeena097</td>
+              <td>1</td>
+              <td>19.2M</td>
+              <td>24.3M</td>
+            </tr>
+            
+            <tr>
+              <td>02</td>
+              <td>lisa.rdna</td>
+              <td>1</td>
+              <td>6.2M</td>
+              <td>19.7M</td>
+            </tr>
+            
+            <tr>
+              <td>03</td>
+              <td>annamoraan</td>
+              <td>1</td>
+              <td>4.6M</td>
+              <td>19.0M</td>
+            </tr>
+            
+            <tr>
+              <td>04</td>
+              <td>9anei</td>
+              <td>1</td>
+              <td>6.5M</td>
+              <td>18.8M</td>
+            </tr>
+            
+            <tr>
+              <td>05</td>
+              <td>celine_jea</td>
+              <td>1</td>
+              <td>5.7M</td>
+              <td>16.5M</td>
+            </tr>
+            
+            <tr>
+              <td>06</td>
+              <td>marjoriekiim</td>
+              <td>1</td>
+              <td>7.5M</td>
+              <td>15.1M</td>
+            </tr>
+            
+            <tr>
+              <td>07</td>
+              <td>itsmilla.com</td>
+              <td>1</td>
+              <td>7.1M</td>
+              <td>10.6M</td>
+            </tr>
+            
+            <tr>
+              <td>08</td>
+              <td>shandarogers_</td>
+              <td>1</td>
+              <td>4.1M</td>
+              <td>10.5M</td>
+            </tr>
+            </tbody>
+      </table>
+    </section>
+    
+    </section>
+
+    <footer>
+      生成时间 2026-05-07T08:35:48.282567+00:00 / 当前快照 2026-05-07T04:00:49+00:00 / 前序快照 2026-04-30T05:55:13+00:00
+    </footer>
+  </main>
+</body>
+</html>

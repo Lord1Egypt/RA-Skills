@@ -1,35 +1,220 @@
----
-name: "金融日报推送技能"
-description: "自动推送A股科技板块金融日报，含实时行情、重要消息解读和独立个股推荐，覆盖早报、晚报与周报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-daily-push"
-sourceUrl: "https://clawhub.ai/skills/finance-daily-push"
----
+# 💰 金融日报推送技能 (Finance Daily Push)
 
-# 金融日报推送技能
+## 📋 技能描述
 
-> 自动推送A股科技板块金融日报，含实时行情、重要消息解读和独立个股推荐，覆盖早报、晚报与周报。
+自动推送 A 股科技方向的金融日报，包含早报、晚报和周报，聚焦科技板块（半导体、AI、消费电子、新能源等），提供实时行情、重要消息解读和个股推荐。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-daily-push`
-- **Source URL:** [https://clawhub.ai/skills/finance-daily-push](https://clawhub.ai/skills/finance-daily-push)
+## 🎯 使用场景
 
-## Overview
+- 每日定时推送 A 股科技板块行情和消息
+- 盘前/盘后快速了解市场动态
+- 获取有独立分析的个股推荐
+- 跟踪科技行业重要事件
 
+## 📦 文件结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-daily-push
 ```
+finance-daily-push/
+├── SKILL.md              # 技能说明文件（本文件）
+├── prompt-早报.md         # 早报推送模板
+├── prompt-晚报.md         # 晚报推送模板
+├── prompt-周报.md         # 周报推送模板
+└── scripts/
+    └── fetch-quote.py    # 行情数据获取脚本
+```
+
+## 🚀 使用方法
+
+### 方式一：定时推送（推荐）
+
+使用 cron 设置定时任务，自动推送：
+
+```bash
+# 早报（工作日 8:00）
+cron add --schedule "0 8 * * 1-5" --prompt "prompt-早报.md"
+
+# 晚报（工作日 20:00）
+cron add --schedule "0 20 * * 1-5" --prompt "prompt-晚报.md"
+
+# 周报（周日 20:00）
+cron add --schedule "0 20 * * 0" --prompt "prompt-周报.md"
+```
+
+### 方式二：手动调用
+
+直接调用对应的 prompt 模板：
+
+```
+请整理一份科技方向的金融日报（晚报版）...
+```
+
+## 📊 数据来源
+
+### 主要数据源
+
+| 数据类型 | 主要来源 | 增强来源 | 说明 |
+|----------|---------|---------|------|
+| **实时行情** | 腾讯财经 API | - | 大盘指数、个股行情 |
+| **历史统计** | - | TuShare API | 5 日/10 日/20 日统计（需 2000 分） |
+| **宏观数据** | - | TuShare API | LPR、SHIBOR 利率（120 分可用） |
+| **重要消息** | 同花顺/东方财富 | - | 行业政策、公司公告 |
+| **行业新闻** | 财联社/证券时报 | - | 科技板块动态 |
+
+### TuShare 增强功能
+
+**120 分可用（基础版）：**
+- ✅ LPR 贷款市场报价利率
+- ✅ SHIBOR 银行间拆借利率
+- ✅ HIBOR 港币拆借利率
+- ✅ 市场流动性分析
+
+**2000 分可用（完整版）：**
+- ✅ 指数历史统计（5 日/10 日/20 日）
+- ✅ 板块涨跌统计
+- ✅ 资金流向分析
+- ✅ 技术面因子
+
+## ✅ 内容标准
+
+| 项目 | 标准 |
+|------|------|
+| 行情数据 | 腾讯财经 API 实时获取，标注来源和时间 |
+| 重要消息 | 15-20 条精选，权威来源 |
+| 个股推荐 | 3-5 只，带逻辑分析 |
+| 独立分析 | 每条消息标注利好/利空/中性 |
+
+## ❌ 不收录的内容
+
+- 北向资金（非实时数据）
+- 超过 24 小时的旧闻
+- 无法验证的自媒体内容
+- 对 A 股无直接影响的消息
+
+## 📝 输出格式
+
+### 早报结构
+1. 隔夜外盘对 A 股影响
+2. A 股科技板块预告
+3. 重要政策/消息（15-20 条）
+4. 今日关注（解禁、财报、会议）
+5. 个股推荐（3-5 只）
+
+### 晚报结构
+1. 今日 A 股科技板块表现
+2. 重要消息解读（15-20 条）
+3. 外盘预告
+4. 明日关注
+5. 个股推荐（3-5 只）
+
+### 周报结构
+1. 本周 A 股科技板块回顾
+2. 下周重要事件
+3. 外围影响因素
+4. 机会与风险
+5. 个股推荐（3-5 只）
+
+## 🔧 配置说明
+
+### TuShare 配置（可选增强）
+
+1. **获取 Token**
+   - 访问 https://tushare.pro/register 注册
+   - 获取 Token：https://tushare.pro/user/token
+
+2. **设置环境变量**
+   ```bash
+   export TUSHARE_TOKEN=your_token
+   ```
+
+3. **测试增强脚本**
+   ```bash
+   cd ~/.openclaw/workspace/skills/finance-daily-push
+   python3 scripts/tushare_enhance.py
+   ```
+
+4. **积分说明**
+   - 120 分：基础宏观数据（LPR、SHIBOR）
+   - 2000 分：完整功能（历史统计、板块分析）
+   - 获取积分：完善资料 +20 分，每日签到 +5 分
+
+### cron 任务配置示例
+
+```json
+{
+  "name": "科技金融晚报",
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 20 * * 1-5",
+    "tz": "Asia/Shanghai"
+  },
+  "payload": {
+    "kind": "agentTurn",
+    "message": "请整理一份科技方向的金融日报（晚报版）...",
+    "timeoutSeconds": 180
+  },
+  "sessionTarget": "isolated",
+  "delivery": {
+    "mode": "announce"
+  }
+}
+```
+
+## 📌 注意事项
+
+1. **数据准确性**：所有行情数据必须来自腾讯财经 API，标注实时时间
+2. **消息时效性**：只收录 24 小时内的新消息
+3. **独立分析**：每条消息必须有独立判断（利好/利空/中性）
+4. **个股推荐**：必须说明推荐逻辑和风险等级
+5. **免责声明**：每条推送必须包含免责声明
+
+## 🔄 更新日志
+
+### v1.1 (2026-03-17) - TuShare 增强版 ⭐
+
+**新增功能：**
+- ✅ 新增 TuShare 宏观数据（LPR、SHIBOR、HIBOR 利率）
+- ✅ 新增个股推荐功能（基于 TuShare daily 接口）
+- ✅ 自动技术面分析（20 日统计、趋势判断）
+- ✅ 自动风险等级评估
+- ✅ 自动生成操作建议
+
+**更新文件：**
+- ✅ 新增 `scripts/tushare_enhance.py` 增强脚本
+- ✅ 更新 `prompt-早报.md` - 增加宏观利率和个股推荐
+- ✅ 更新 `prompt-晚报.md` - 增加宏观利率和个股推荐
+- ✅ 更新 `prompt-周报.md` - 增加宏观利率和个股推荐
+- ✅ 更新 `SKILL.md` - 增加 TuShare 配置说明
+
+**使用说明：**
+```bash
+# 获取宏观数据
+python3 scripts/tushare_enhance.py --macro
+
+# 获取个股推荐
+python3 scripts/tushare_enhance.py --recommend
+
+# 获取 JSON 格式
+python3 scripts/tushare_enhance.py --json
+```
+
+**权限说明：**
+- 120 分：宏观利率数据可用
+- 2000 分：解锁历史统计、板块分析等完整功能
+
+---
+
+### v1.0 (2026-03-17): 初始版本
+
+- 包含早报、晚报、周报模板
+- 腾讯财经 API 行情获取
+- 完整的使用说明文档
+
+## 📞 维护者
+
+- 创建者：旺仔的小助手
+- 更新日期：2026-03-17
+- 当前版本：v1.1
+
+## ⚠️ 免责声明
+
+本技能提供的信息仅供参考，不构成投资建议。市场有风险，投资需谨慎。

@@ -1,0 +1,29 @@
+{
+  "filesystem": {
+    "id": "filesystem",
+    "name": "Filesystem Server",
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-filesystem",
+      "C:\\Users\\99236\\.openclaw\\workspace"
+    ],
+    "env": {},
+    "description": "本地文件系统访问 - 工作目录"
+  },
+  "github": {
+    "id": "github",
+    "name": "GitHub Server",
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-github"
+    ],
+    "env": {
+      "GITHUB_TOKEN": "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"
+    },
+    "description": "GitHub API 集成 - 需配置 token"
+  }
+}

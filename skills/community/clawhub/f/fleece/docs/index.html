@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Fleece — Credit Card Research CLI & Rewards Optimizer</title>
+  <meta name="description" content="Fleece is a free, open-source CLI that researches credit cards with live data. Compare Chase, Amex, Citi, and Capital One cards — earning rates, transfer partners, statement credits, ROI, and MCC-level merchant lookup. pip install fleece-cli." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Yuan Chen" />
+  <link rel="canonical" href="https://getfleece.io/" />
+  <meta name="google-site-verification" content="9DkACCiooe0-omtkzGJUZJPqoG0HAj4QejFEom9wrGA" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getfleece.io/" />
+  <meta property="og:title" content="Fleece — Credit Card Research CLI & Rewards Optimizer" />
+  <meta property="og:description" content="Research credit cards with live data. Compare Chase, Amex, Citi, Capital One — earning rates, transfer partners, ROI, MCC lookup, and award flight search. Free and open source." />
+  <meta property="og:site_name" content="Fleece" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Fleece — Credit Card Research CLI & Rewards Optimizer" />
+  <meta name="twitter:description" content="Research credit cards with live data. Compare Chase, Amex, Citi, Capital One — earning rates, transfer partners, ROI, MCC lookup, and award flight search. Free and open source." />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fleece",
+    "alternateName": "fleece-cli",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "macOS, Linux, Windows",
+    "programmingLanguage": "Python",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Fleece is an open-source credit card research CLI. Look up earning rates, transfer partners, statement credits, annual fees, and first-year ROI for Chase, Amex, Citi, Capital One, and all major US issuers. Includes offline MCC merchant category lookup and PointsYeah award flight and hotel search.",
+    "url": "https://getfleece.io/",
+    "downloadUrl": "https://pypi.org/project/fleece-cli/",
+    "softwareVersion": "0.3.0",
+    "license": "https://github.com/chenyuan99/fleece/blob/main/LICENSE",
+    "codeRepository": "https://github.com/chenyuan99/fleece",
+    "author": {
+      "@type": "Person",
+      "name": "Yuan Chen"
+    },
+    "keywords": "credit card research, rewards optimizer, transfer partners, MCC lookup, Chase Sapphire, Amex Gold, Citi, Capital One, points miles cash back"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFD100;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray:   #F5F5F3;
+      --mid:    #555555;
+      --border: #E0E0E0;
+      --font-head: 'Oswald', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-links .btn-pill {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.45rem 1.25rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .nav-links .btn-pill:hover { background: #e6bc00; color: var(--black); }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      background: var(--black);
+      padding: 7rem 2.5rem 6rem;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span { color: var(--yellow); }
+
+    .hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-pill-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.65rem 1.75rem;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn-pill-dark:hover { background: #e6bc00; }
+
+    .btn-pill-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      padding: 0.65rem 1.75rem;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-pill-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* hero right: install box */
+    .hero-install-box {
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 12px;
+      padding: 2.5rem;
+    }
+
+    .hero-install-box h2 {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--yellow);
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .install-cmd {
+      background: #0d0d0d;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 0.9rem 1.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      color: var(--yellow);
+      margin-bottom: 1.75rem;
+    }
+
+    .install-cmd span { color: #555; margin-right: 0.5rem; }
+
+    .hero-install-box p {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* ── ICON CARDS SECTION ───────────────────── */
+    .cards-section {
+      background: var(--white);
+      padding: 5.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cards-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .cards-inner { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 3rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: var(--black); }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      color: var(--black);
+    }
+
+    .card h3 {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .btn-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.6rem 1.5rem;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+
+    .btn-arrow:hover { background: #e6bc00; }
+
+    .btn-arrow svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── ANNOUNCEMENT SECTION ─────────────────── */
+    .announcement {
+      background: var(--gray);
+      padding: 5.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .announcement-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .announcement h2 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--mid);
+      margin-bottom: 1.25rem;
+    }
+
+    .announcement p {
+      font-size: 1.1rem;
+      color: var(--black);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    /* ── CONTACT SPLIT ────────────────────────── */
+    .contact-section {
+      background: var(--white);
+      padding: 5.5rem 2.5rem;
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .contact-section h2 {
+      font-family: var(--font-head);
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-section > .contact-inner > div > p {
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+
+    .cmd-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .cmd-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cmd-row:first-child { border-top: 1px solid var(--border); }
+
+    .cmd-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+      min-width: 160px;
+    }
+
+    .cmd-desc {
+      font-size: 0.9rem;
+      color: var(--mid);
+    }
+
+    .contact-left h2 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .link-block {
+      margin-bottom: 2.25rem;
+    }
+
+    .link-block h3 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.6rem;
+    }
+
+    .link-block a {
+      font-size: 0.95rem;
+      color: var(--mid);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      display: block;
+      line-height: 1.6;
+    }
+
+    .link-block a:hover { color: var(--black); }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-copy {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.85rem;
+    }
+
+    .footer-right a {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.85rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-right a:hover { color: var(--yellow); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Fleece</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#workflows">Workflows</a></li>
+    <li><a href="#agents">Agents</a></li>
+    <li><a href="#commands">CLI</a></li>
+    <li><a href="https://github.com/chenyuan99/fleece" target="_blank" class="btn-pill">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div style="display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap;">
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--yellow);color:var(--black);font-family:var(--font-head);font-size:0.7rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:4px 11px;border-radius:3px;">#1 Credit Card Research <sup style="font-size:0.6em;">†</sup></span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--yellow);color:var(--black);font-family:var(--font-head);font-size:0.7rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:4px 11px;border-radius:3px;">#1 Credit Card Redemption <sup style="font-size:0.6em;">†</sup></span>
+      </div>
+      <h1>Credit card research for <span>deal saviors</span></h1>
+      <p>AI-powered credit card research and award redemption. Live data via Brave Search, PointsYeah flight and hotel search — every command outputs clean JSON, built for humans and AI agents alike.</p>
+      <div class="hero-actions">
+        <a class="btn-pill-dark" href="https://github.com/chenyuan99/fleece" target="_blank">
+          Get Started
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn-pill-outline" href="#commands">See the CLI</a>
+      </div>
+    </div>
+    <div class="hero-install-box">
+      <h2>Install CLI</h2>
+      <div class="install-cmd"><span>$</span> pip install fleece-cli</div>
+      <div style="display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap;">
+        <span style="background:#1e1e1e;border:1px solid #333;color:#aaa;font-family:'Courier New',monospace;font-size:0.72rem;padding:3px 10px;border-radius:20px;">v0.4.0</span>
+        <span style="background:#1e1e1e;border:1px solid #333;color:#aaa;font-family:'Courier New',monospace;font-size:0.72rem;padding:3px 10px;border-radius:20px;">Python 3.11+</span>
+        <span style="background:#1e1e1e;border:1px solid #333;color:#aaa;font-family:'Courier New',monospace;font-size:0.72rem;padding:3px 10px;border-radius:20px;">MIT</span>
+      </div>
+      <p><code style="color:rgba(255,255,255,0.5);font-size:0.85em">BRAVE_API_KEY</code> is optional — <code style="color:rgba(255,255,255,0.5);font-size:0.85em">mcc</code>, <code style="color:rgba(255,255,255,0.5);font-size:0.85em">flights</code>, and <code style="color:rgba(255,255,255,0.5);font-size:0.85em">hotels</code> work fully offline. Live research commands require it. Requires Python 3.11+.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="cards-section" id="features">
+  <div class="cards-inner" style="grid-template-columns: repeat(3, 1fr);">
+
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="10" width="52" height="36" rx="4" stroke="black" stroke-width="2.5"/>
+        <path d="M15 26h6M15 32h12M35 26l4 4-4 4" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="42" cy="30" r="1.5" fill="black"/>
+        <path d="M22 46v4M38 46v4M16 50h28" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <h3>Chatbot</h3>
+      <p>Conversational AI assistant for credit card research. Maintains entity memory across turns, supports multiple OpenAI models, and downloads full conversation history.</p>
+      <a class="btn-arrow" href="https://github.com/chenyuan99/fleece" target="_blank">
+        Learn More
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="8" width="52" height="40" rx="4" stroke="black" stroke-width="2.5"/>
+        <path d="M14 22l8 8-8 8M26 38h14" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>CLI Research</h3>
+      <p>Nine commands backed by live Brave Search data. Full card reports, wallet analysis, transfer partners, ROI estimates, and more — with JSON output for AI agents.</p>
+      <a class="btn-arrow" href="https://pypi.org/project/fleece-cli/" target="_blank">
+        pip install
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 38l10-16 6 8 8-12 6 8 10-14" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 44h48" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M38 28l8-4-2 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Redemption</h3>
+      <p>Look up any merchant category code to find your best card at checkout. Generate PointsYeah search URLs for award flights and hotels. No API key needed for either — works fully offline.</p>
+      <a class="btn-arrow" href="#commands" >
+        See commands
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div style="background:var(--black);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;border-top:1px solid #222;border-bottom:1px solid #222;">
+  <div style="text-align:center;">
+    <div style="font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:var(--yellow);letter-spacing:-0.5px;">13</div>
+    <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px;text-transform:uppercase;letter-spacing:1px;">CLI commands</div>
+  </div>
+  <div style="width:1px;height:32px;background:#333;"></div>
+  <div style="text-align:center;">
+    <div style="font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:var(--yellow);letter-spacing:-0.5px;">981</div>
+    <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px;text-transform:uppercase;letter-spacing:1px;">MCC codes bundled</div>
+  </div>
+  <div style="width:1px;height:32px;background:#333;"></div>
+  <div style="text-align:center;">
+    <div style="font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:var(--yellow);letter-spacing:-0.5px;">0</div>
+    <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px;text-transform:uppercase;letter-spacing:1px;">keys for offline commands</div>
+  </div>
+  <div style="width:1px;height:32px;background:#333;"></div>
+  <div style="text-align:center;">
+    <div style="font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:var(--yellow);letter-spacing:-0.5px;">MIT</div>
+    <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px;text-transform:uppercase;letter-spacing:1px;">open source</div>
+  </div>
+</div>
+
+<!-- WORKFLOWS -->
+<section class="cards-section" id="workflows" style="background:var(--gray);border-bottom:1px solid var(--border);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 0 2rem;">
+    <p class="section-label" style="color:var(--mid);font-size:0.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.6rem;">Real workflows</p>
+    <h2 style="font-family:var(--font-head);font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;letter-spacing:-0.5px;margin-bottom:0.75rem;">What you can do with Fleece</h2>
+    <p style="font-size:1rem;color:var(--mid);max-width:540px;margin-bottom:2.5rem;">End-to-end examples — from a question to a decision.</p>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem;">
+
+    <div style="background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--font-head);font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);background:var(--black);display:inline-block;padding:3px 10px;border-radius:3px;">At the checkout</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.6;">Which card earns most at AMC Theatres?</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.78rem;background:#f7f7f5;border:1px solid var(--border);border-radius:5px;padding:1rem;line-height:1.9;">
+        <div><span style="color:#999">$</span> fleece mcc 7832</div>
+        <div style="color:#999">→ Motion Picture Theaters</div>
+        <div><span style="color:#999">$</span> fleece mcc 7832 --wallet</div>
+        <div style="color:#999">→ Best card: Capital One Savor (3x)</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--font-head);font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);background:var(--black);display:inline-block;padding:3px 10px;border-radius:3px;">Card research</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.6;">Is the Amex Gold worth it for a $600/mo dining spender?</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.78rem;background:#f7f7f5;border:1px solid var(--border);border-radius:5px;padding:1rem;line-height:1.9;">
+        <div><span style="color:#999">$</span> fleece profile set dining_monthly 600</div>
+        <div><span style="color:#999">$</span> fleece roi "Amex Gold"</div>
+        <div style="color:#999">→ First-year value: ~$1,340</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--font-head);font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);background:var(--black);display:inline-block;padding:3px 10px;border-radius:3px;">Wallet gaps</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.6;">What's missing from my Amex Gold + CSP wallet?</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.78rem;background:#f7f7f5;border:1px solid var(--border);border-radius:5px;padding:1rem;line-height:1.9;">
+        <div><span style="color:#999">$</span> fleece wallet</div>
+        <div style="color:#999">→ Gap: gas (1x), entertainment (1x)</div>
+        <div><span style="color:#999">$</span> fleece mcc 5541 --wallet</div>
+        <div style="color:#999">→ Add: Citi Custom Cash (5x gas)</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-family:var(--font-head);font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);background:var(--black);display:inline-block;padding:3px 10px;border-radius:3px;">Redemption</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.6;">Find business class flights from JFK to Tokyo.</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.78rem;background:#f7f7f5;border:1px solid var(--border);border-radius:5px;padding:1rem;line-height:1.9;">
+        <div><span style="color:#999">$</span> fleece partners "Amex Gold"</div>
+        <div style="color:#999">→ ANA, JAL, Singapore Airlines</div>
+        <div><span style="color:#999">$</span> fleece flights JFK NRT \</div>
+        <div><span style="color:#999">&nbsp;&nbsp;</span>--date 2026-06-01 --cabin business --open</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="announcement">
+  <div class="announcement-inner">
+    <h2>About Fleece</h2>
+    <p>Fleece is a free, open-source credit card research tool built for people who take rewards seriously. Unlike chatbots that rely on stale training data, Fleece pulls live information from the web on every query — so you always get current fees, earning rates, and benefit details.</p>
+    <p style="margin-top:1rem;">The CLI is designed to work seamlessly with AI agents: every command supports <code style="font-size:0.95em;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px">--json</code> output and reads from stdin. Install it in Claude Code, OpenClaw, or Codex with a single command — or run it from your terminal.</p>
+    <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
+      <a class="btn-arrow" href="https://github.com/chenyuan99/fleece" target="_blank" style="background:var(--black);color:var(--white);">
+        View on GitHub
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn-arrow" href="https://github.com/chenyuan99/fleece/issues" target="_blank" style="background:transparent;color:var(--black);border:1.5px solid var(--black);">
+        Open an issue
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT INTEGRATION -->
+<section class="cards-section" id="agents" style="border-top: 1px solid var(--border);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 0 2rem;">
+    <p class="section-label" style="color:var(--mid);font-size:0.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.6rem;">Agent Integration</p>
+    <h2 style="font-family:var(--font-head);font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;letter-spacing:-0.5px;margin-bottom:0.75rem;">Works with your AI agent</h2>
+    <p style="font-size:1rem;color:var(--mid);max-width:540px;margin-bottom:2.5rem;">Install once and every supported agent gains access to all 12 Fleece commands — research, wallet analysis, MCC lookup, and award redemption.</p>
+  </div>
+
+  <div class="cards-inner" style="grid-template-columns: repeat(3, 1fr);">
+
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="44" height="44" rx="8" stroke="black" stroke-width="2.5"/>
+        <path d="M20 30h20M20 22h12M20 38h16" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <h3>Claude Code</h3>
+      <p>Install 13 slash commands directly into your Claude Code session. Use <code style="font-size:0.85em;background:#f0f0f0;padding:1px 4px;border-radius:3px">/fleece-wallet</code>, <code style="font-size:0.85em;background:#f0f0f0;padding:1px 4px;border-radius:3px">/fleece-profile</code>, <code style="font-size:0.85em;background:#f0f0f0;padding:1px 4px;border-radius:3px">/fleece-mcc</code>, and more without leaving the terminal.</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.8rem;background:#f7f7f5;border:1px solid var(--border);border-radius:6px;padding:0.9rem 1rem;line-height:1.8;">
+        <div><span style="color:var(--mid)">$</span> bash install.sh --claude</div>
+        <div style="color:var(--mid);font-size:0.75rem;margin-top:4px">/fleece-card &nbsp;/fleece-wallet &nbsp;/fleece-profile</div>
+        <div style="color:var(--mid);font-size:0.75rem">/fleece-mcc &nbsp;/fleece-flights &nbsp;+8 more</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="22" stroke="black" stroke-width="2.5"/>
+        <path d="M22 30c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="30" cy="30" r="3" fill="black"/>
+      </svg>
+      <h3>OpenClaw &amp; Codex</h3>
+      <p>Install the agent skill to give OpenClaw or Codex full Fleece capability — card research, wallet gaps, MCC lookup, and redemption, all in one skill.</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.8rem;background:#f7f7f5;border:1px solid var(--border);border-radius:6px;padding:0.9rem 1rem;line-height:1.8;">
+        <div><span style="color:var(--mid)">$</span> bash install.sh --agents</div>
+        <div style="color:var(--mid);font-size:0.75rem;margin-top:4px">.agents/skills/fleece/SKILL.md</div>
+        <div style="color:var(--mid);font-size:0.75rem">or: clawhub install fleece</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 20l20-10 20 10v20L30 50 10 40V20z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M30 40V20M10 20l20 10 20-10" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <h3>ClawHub Registry</h3>
+      <p>Fleece is published on ClawHub. Any agent that supports the ClawHub registry can install and use it with a single command — no git clone required.</p>
+      <div style="font-family:'Courier New',monospace;font-size:0.8rem;background:#f7f7f5;border:1px solid var(--border);border-radius:6px;padding:0.9rem 1rem;line-height:1.8;">
+        <div><span style="color:var(--mid)">$</span> clawhub install fleece</div>
+        <div style="color:var(--mid);font-size:0.75rem;margin-top:4px">fleece@1.4.0 &nbsp;·&nbsp; MIT-0</div>
+        <div style="color:var(--mid);font-size:0.75rem">clawhub search "credit card research"</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMMANDS + LINKS -->
+<section class="contact-section" id="commands">
+  <div class="contact-inner">
+
+    <div class="contact-left">
+      <h2>Links</h2>
+
+      <div class="link-block">
+        <h3>Install</h3>
+        <a href="https://pypi.org/project/fleece-cli/" target="_blank">PyPI — fleece-cli</a>
+        <a href="https://github.com/chenyuan99/fleece" target="_blank">GitHub — chenyuan99/fleece</a>
+      </div>
+
+      <hr class="divider">
+
+      <div class="link-block">
+        <h3>Skills</h3>
+        <a href="https://github.com/chenyuan99/fleece/tree/main/.claude/skills" target="_blank">Claude Code slash commands</a>
+        <a href="https://github.com/chenyuan99/fleece/tree/main/.agents/skills/fleece" target="_blank">ClawHub agent skill</a>
+      </div>
+
+      <hr class="divider">
+
+      <div class="link-block">
+        <h3>Contact</h3>
+        <a href="https://github.com/chenyuan99/fleece/issues" target="_blank">Open an issue on GitHub</a>
+      </div>
+    </div>
+
+    <div>
+      <h2>CLI Commands</h2>
+      <p>All commands support <code style="font-size:0.9em;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:3px">--json</code> output. <span style="color:var(--yellow);font-weight:600;">Highlighted</span> commands require no API key.</p>
+
+      <div class="cmd-list">
+        <div class="cmd-row"><span class="cmd-name">fleece card</span><span class="cmd-desc">Full card report — fees, welcome offer, rates, credits, benefits</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece rates</span><span class="cmd-desc">Earning rates by spend category</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece partners</span><span class="cmd-desc">Transfer partners, ratios, and timing</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece credits</span><span class="cmd-desc">Statement credits and perks</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece news</span><span class="cmd-desc">Recent changes in the past month</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece compare</span><span class="cmd-desc">Side-by-side card comparison</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece wallet</span><span class="cmd-desc">Portfolio analysis — coverage, overlaps, gaps</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece roi</span><span class="cmd-desc">First-year ROI estimate by spend profile</span></div>
+        <div class="cmd-row"><span class="cmd-name">fleece recommend</span><span class="cmd-desc">Card recommendations for a spending profile</span></div>
+        <div class="cmd-row"><span class="cmd-name" style="color:var(--yellow)">fleece mcc</span><span class="cmd-desc">Look up a merchant category code — find your best card at checkout</span></div>
+        <div class="cmd-row"><span class="cmd-name" style="color:var(--yellow)">fleece flights</span><span class="cmd-desc">PointsYeah award flight search URL — no API key needed</span></div>
+        <div class="cmd-row"><span class="cmd-name" style="color:var(--yellow)">fleece hotels</span><span class="cmd-desc">PointsYeah award hotel search URL — no API key needed</span></div>
+        <div class="cmd-row"><span class="cmd-name" style="color:var(--yellow)">fleece profile</span><span class="cmd-desc">Manage spending profile — auto-enriches wallet, roi, and recommend</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTNOTE -->
+<div style="background:var(--black);border-top:1px solid #1e1e1e;padding:1rem 2.5rem;">
+  <p style="font-size:0.75rem;color:#444;max-width:1100px;margin:0 auto;line-height:1.6;">
+    <sup>†</sup> Ranked #1 for "credit card research" and "credit card redemption" on the <a href="https://clawhub.ai" target="_blank" style="color:#555;text-decoration:underline;text-underline-offset:2px;">ClawHub</a> AI agent skill registry (vector search, May 2026). Rankings reflect the Fleece agent skill (<code style="font-size:0.9em">fleece@1.5.0</code>) and may change as the registry grows. &nbsp;·&nbsp; The yellow and black color theme is used in honor of <a href="https://www.spiritrestructuring.com/" target="_blank" style="color:#555;text-decoration:underline;text-underline-offset:2px;">Spirit Airlines</a>, whose ultra-low-cost spirit inspired this project.
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#">Fleece</a>
+  <div class="footer-right">
+    <span class="footer-copy">© 2026 Fleece. Built by Yuan Chen.</span>
+    <a href="https://github.com/chenyuan99/fleece/blob/main/LICENSE" target="_blank">MIT License</a>
+  </div>
+</footer>
+
+</body>
+</html>

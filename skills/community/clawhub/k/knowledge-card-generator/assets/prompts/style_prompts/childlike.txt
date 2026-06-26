@@ -1,0 +1,101 @@
+# 儿童简笔画风格 — 生图 Prompt 片段
+
+> 加载到 base_prompt.md 基础框架的 {STYLE_PROMPT_FRAGMENT} 位置
+
+## 核心风格指令
+
+STYLE_NAME = "儿童简笔画风（手绘教科书风格）"
+
+**STYLE_PROMPT_FRAGMENT:**
+
+```
+=== STYLE: 儿童简笔画风 ===
+
+STYLE REQUIREMENTS - CRITICAL:
+- Hand-drawn / crayon / colored pencil texture throughout
+- Rough grainy texture like real crayon on paper
+- Light cream/beige paper background (#FFF8E7) with visible paper grain
+- White rounded rectangle sticker cards with subtle drop shadows
+- Hand-drawn arrows, dashed lines, wavy connectors
+- Slightly uneven watercolor-style color fills
+- Bright but soft pastel colors - NO neon/dark
+- Bold rounded titles with white outline
+- Childlike warm friendly educational vibe
+- Cute expressive cartoon icons
+
+=== COLOR PALETTE ===
+Background: warm cream #FFF8E7 with paper grain
+Soft colors ONLY:
+  - Blue: #74B9FF
+  - Teal: #81ECEC
+  - Purple: #A29BFE
+  - Green: #55EFC4 / #81C784
+  - Orange: #FFEAA7 / #FFB74D
+  - Pink: #FD79A8 / #F48FB1
+  - Red/coral: #FF7675
+  - Yellow: #FDCB6E
+Card shadows: soft gray rgba(0,0,0,0.1)
+Title text: dark navy #2C3E50 with white 2px outline
+Body text: dark gray #444
+
+=== TYPOGRAPHY ===
+- Title: bold, rounded, hand-drawn feel, white outline for pop
+- Body: clean, slightly childlike handwriting style
+- Badges/labels: marker/highlighter effect
+
+=== DECORATIVE ELEMENTS ===
+- Stars, sparkles, small doodles as accents
+- Hand-drawn arrows (dashed, wavy)
+- Wavy divider lines
+- Cute mascot character (relevant to topic, or friendly animal)
+- Sticker-style cards with white border and lift shadow
+```
+
+## 典型内容区块写法示例
+
+### 标题区
+```
+[HEADER - top 10-12%]
+- Small cream/beige badge pill at top center with subtle border
+- Text: '{DATE} · 知识卡片'
+- Main title: '{TITLE}' - large (60-70px), bold, rounded, Orbitron or similar rounded font with 2px white outline, dark navy color
+- Subtitle below in smaller cute font with slight letter-spacing
+- Cute cartoon mascot (friendly lobster or topic-relevant character) waving, big friendly eyes, with tiny star decorations
+- Hand-drawn wavy divider line in gradient (soft purple → soft blue)
+```
+
+### 模块卡片
+```
+[CARD BLOCK]
+- Each info card is a ROUNDED WHITE STICKER with subtle gray shadow
+- Card header: emoji + bold title (white outline)
+- Body: description in childlike handwriting font
+- Tags: small rounded pill labels at bottom
+- Hand-drawn dashed line or arrow connecting to next card
+- Color-coded by theme
+```
+
+### 流程步骤
+```
+[WORKFLOW]
+- 6 numbered circles/bubbles in snake/curved flow
+- Each: number inside colored circle + short label
+- Hand-drawn arrow between each step
+- Small icon/emoji per step
+```
+
+### 底部
+```
+[FOOTER]
+- Decorative wave line
+- 'KNOWLEDGE CARD' or topic label in small cute handwriting
+- Small mascot giving thumbs up or celebrating
+```
+
+## 负面约束（禁止出现）
+
+- 禁止 neon 霓虹色
+- 禁止深色背景
+- 禁止过于写实的人脸
+- 禁止精细的光影效果
+- 禁止无手绘质感的平滑图形

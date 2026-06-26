@@ -1,0 +1,27 @@
+{
+  "name": "linkedcareer",
+  "version": "1.0.0",
+  "description": "Career management and resume generation skill",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "keywords": ["openclaw", "career", "resume"],
+  "author": "LinkedCareer Team",
+  "license": "MIT",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaginaAa2023/LinkedCareer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MaginaAa2023/LinkedCareer/issues"
+  },
+  "homepage": "https://github.com/MaginaAa2023/LinkedCareer#readme",
+  "dependencies": {
+    "docx": "8.5.0"
+  }
+}

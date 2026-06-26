@@ -1,35 +1,29 @@
 ---
-name: "Taipei Bus & Coach"
-description: "查詢台北市、新北市公車及公路客運動態資訊、路線圖及預估到站時間。當用戶詢問公車動態、特定公車路線、或提供台北市公車動態網址（pda5284.gov.taipei）或公路客運網址（taiwanbus.tw）時使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taipei-bus"
-sourceUrl: "https://clawhub.ai/skills/taipei-bus"
+name: taipei-bus
+description: 查詢台北市、新北市公車及公路客運動態資訊、路線圖及預估到站時間。當用戶詢問公車動態、特定公車路線、或提供台北市公車動態網址（pda5284.gov.taipei）或公路客運網址（taiwanbus.tw）時使用。
 ---
 
-# Taipei Bus & Coach
+# 公車與客運動態查詢
 
-> 查詢台北市、新北市公車及公路客運動態資訊、路線圖及預估到站時間。當用戶詢問公車動態、特定公車路線、或提供台北市公車動態網址（pda5284.gov.taipei）或公路客運網址（taiwanbus.tw）時使用。
+本技能提供雙北公車及全台公路客運的即時資訊。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taipei-bus`
-- **Source URL:** [https://clawhub.ai/skills/taipei-bus](https://clawhub.ai/skills/taipei-bus)
+## 查詢流程
 
-## Overview
+### 1. 台北市/新北市區公車
+- **開啟網站**：使用瀏覽器工具開啟台北市公車動態資訊系統：
+  `https://pda5284.gov.taipei/MQS/routelist.jsp`
+- **定位路線**：根據路線類型（一般、幹線、捷運接駁等）在下拉選單選擇或使用「快速查詢」輸入路線編號。
+- **取得資訊**：讀取「預估到站時間」或「將到站」等即時狀態。
 
+### 2. 公路客運 (四碼編號路線，如 1962)
+- **開啟網站**：使用公路客運即時動態資訊網：
+  `https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=[路線編號]&lan=C`
+- **直接定位**：將 `[路線編號]` 替換為四位數編號（如 19620）。
+- **取得資訊**：讀取各站點的「預估到站時間」與「車輛目前位置」。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/taipei-bus
-```
+## 注意事項
+
+- **精確性要求**：直接讀取網頁顯示的原始數據（如「3 分」、「將到站」、「日新里」），禁止自行將其轉換為時間區間或模糊描述。
+- **幹線公車**：若查詢「仁愛幹線」，應在「選擇幹線公車」下拉選單尋找。
+- **更新時間**：公路客運通常 15 秒更新一次，注意頁面顯示的「最後更新時間」。
+- **查無路線**：若在特定選單找不到，請優先嘗試「公路客運」查詢方式。

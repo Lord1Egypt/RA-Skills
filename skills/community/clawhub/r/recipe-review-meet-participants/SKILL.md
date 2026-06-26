@@ -1,35 +1,27 @@
 ---
-name: "Recipe Review Meet Participants"
+name: recipe-review-meet-participants
 description: "Review who attended a Google Meet conference and for how long."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-review-meet-participants"
-sourceUrl: "https://clawhub.ai/skills/recipe-review-meet-participants"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-meet
 ---
 
-# Recipe Review Meet Participants
+# Review Google Meet Attendance
 
-> Review who attended a Google Meet conference and for how long.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-meet`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-review-meet-participants`
-- **Source URL:** [https://clawhub.ai/skills/recipe-review-meet-participants](https://clawhub.ai/skills/recipe-review-meet-participants)
+Review who attended a Google Meet conference and for how long.
 
-## Overview
+## Steps
 
+1. List recent conferences: `gws meet conferenceRecords list --format table`
+2. List participants: `gws meet conferenceRecords participants list --params '{"parent": "conferenceRecords/CONFERENCE_ID"}' --format table`
+3. Get session details: `gws meet conferenceRecords participants participantSessions list --params '{"parent": "conferenceRecords/CONFERENCE_ID/participants/PARTICIPANT_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-review-meet-participants
-```

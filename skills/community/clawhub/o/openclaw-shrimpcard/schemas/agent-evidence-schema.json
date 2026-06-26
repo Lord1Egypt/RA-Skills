@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shrimp.cards/schema/agent-evidence/1.0",
+  "title": "AgentEvidenceSnapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "agent",
+    "owner",
+    "evidence_window",
+    "evidence_items"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "agent-evidence/1.0"
+    },
+    "agent": {
+      "type": "object",
+      "required": ["name", "product_type"],
+      "properties": {
+        "name": { "type": "string" },
+        "product_type": { "type": "string" },
+        "species": { "type": "string" },
+        "positioning_hint": { "type": "string" },
+        "visual_hint": { "type": "string" }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "contact": { "type": "string" }
+      }
+    },
+    "evidence_window": {
+      "type": "object",
+      "required": ["summary"],
+      "properties": {
+        "summary": { "type": "string" },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "source_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "evidence_items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "summary"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "task_trace",
+              "tool_trace",
+              "output_artifact",
+              "owner_feedback",
+              "saved_preference",
+              "memory_note"
+            ]
+          },
+          "summary": { "type": "string" },
+          "goal": { "type": "string" },
+          "agent_response": { "type": "string" },
+          "keywords": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "outputs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "tools_used": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "workflow_traits": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "value_signals": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "owner_feedback": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "source_ref": { "type": "string" }
+        }
+      }
+    }
+  }
+}

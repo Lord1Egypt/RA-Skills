@@ -1,0 +1,73 @@
+{
+  "name": "agent-security-scanner",
+  "version": "4.1.0",
+  "description": "Enterprise AI Agent Security Scanner - Multi-language detection with AST, intent analysis, and LLM verification",
+  "main": "src/multi_language_scanner_v4.py",
+  "bin": {
+    "agent-scanner": "src/cli.py",
+    "agent-scanner-batch": "src/fast_batch_scan.py"
+  },
+  "scripts": {
+    "scan": "python3 src/multi_language_scanner_v4.py",
+    "batch": "python3 src/fast_batch_scan.py",
+    "benchmark": "python3 src/benchmark_full_scan.py",
+    "optimize": "bash lingshun_optimize.sh",
+    "test": "python3 -m pytest tests/ -v",
+    "validate": "python3 -c \"from src.multi_language_scanner_v4 import MultiLanguageScanner; print('✅ Scanner loaded successfully')\""
+  },
+  "keywords": [
+    "agent-security",
+    "ai-security",
+    "llm-security",
+    "malware-detection",
+    "ast-analysis",
+    "intent-detection",
+    "cybersecurity",
+    "code-scanner",
+    "security-tools"
+  ],
+  "author": "Agent Security Team <security@agent-security.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agent-security/scanner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agent-security/scanner/issues"
+  },
+  "homepage": "https://github.com/agent-security/scanner#readme",
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "optionalDependencies": {
+    "openai": ">=1.0.0",
+    "requests": ">=2.28.0"
+  },
+  "devDependencies": {
+    "pytest": ">=7.0.0",
+    "black": ">=22.0.0",
+    "flake8": ">=5.0.0",
+    "mypy": ">=0.990"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "python": ">=3.8.0"
+  },
+  "files": [
+    "src/",
+    "config/",
+    "docs/",
+    "examples/",
+    "tests/",
+    "*.sh",
+    "*.py",
+    "package.json",
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "requirements.txt"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

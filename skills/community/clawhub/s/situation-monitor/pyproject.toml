@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "monitoring-the-situation-openclaw"
+version = "0.1.0"
+description = "Situation Monitor: an OpenClaw skill for turning noisy Discord traffic and Kubernetes incidents into ranked operational briefs."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "apify-client>=1.8.1",
+  "discord.py>=2.5.2",
+  "openai>=1.68.2",
+  "python-dotenv>=1.0.1",
+  "redis>=5.2.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3.5"]
+
+[project.scripts]
+mts = "monitoring_the_situation.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

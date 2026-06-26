@@ -1,35 +1,32 @@
 ---
-name: "smart-auto-note"
-description: "语义智能识别自动分类写入Obsidian笔记，支持待办自动归档"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-auto-note"
-sourceUrl: "https://clawhub.ai/skills/smart-auto-note"
+name: smart-auto-note
+description: 语义智能识别自动分类写入Obsidian笔记，支持待办自动归档
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# smart-auto-note
+## 核心功能
+1.  语义识别用户输入，自动拆分多内容，分类写入对应Obsidian笔记
+2.  支持工作待办/生活待办/工作记录/灵感4类内容分类
+3.  工作待办标记完成后，自动归档到对应工作记录
+4.  防误触、重复内容拦截、自动创建缺失文件兜底
 
-> 语义智能识别自动分类写入Obsidian笔记，支持待办自动归档
+## 权限要求
+- filesystem（文件系统读写权限）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-auto-note`
-- **Source URL:** [https://clawhub.ai/skills/smart-auto-note](https://clawhub.ai/skills/smart-auto-note)
+## 触发规则
+- 仅待办事项、工作记录、灵感备忘类内容触发技能
+- 提问、闲聊、系统指令等非记录类内容不触发
+- 分类置信度＜90%，会发起固定话术的分类确认，不擅自写入
 
-## Overview
+## 分类说明
+1.  工作待办：未来需完成的工作相关任务，需跟进闭环
+2.  生活待办：未来需完成的个人生活相关事务，需跟进闭环
+3.  工作记录：已完成的工作相关事项、流水、复盘，无需跟进
+4.  灵感笔记：无明确执行要求的想法、创意、备忘，仅留存
 
+## 写入格式
+所有内容均为文件末尾追加写入，不覆盖原有内容，按分类自带日期、时间、标准化格式。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-auto-note
-```
+## 触发方式
+自然对话直接触发，无需固定前缀。

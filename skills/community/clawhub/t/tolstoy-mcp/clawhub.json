@@ -1,0 +1,12 @@
+{
+  "name": "Tolstoy MCP",
+  "tagline": "Connect OpenClaw to Tolstoy's video commerce platform — create widgets, AI videos, and publish to Shopify.",
+  "description": "This skill configures OpenClaw to use Tolstoy's MCP server. Tolstoy is the video commerce platform for e-commerce brands, powering shopper widgets, AI-generated product videos, and publishing to Shopify, Instagram, TikTok Shop, and Meta Ads.\n\nOnce installed and authenticated via OAuth, you can use natural language to create and manage widgets, search your media library, generate AI images and videos, run templates, and publish content to your store.\n\nRequires a Tolstoy account at platform.gotolstoy.com.",
+  "category": "integrations",
+  "tags": ["mcp", "tolstoy", "video-commerce", "e-commerce", "shopify", "ai-video", "widgets", "oauth"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://platform.gotolstoy.com/settings/integrations/mcp",
+  "homepage": "https://gotolstoy.com"
+}

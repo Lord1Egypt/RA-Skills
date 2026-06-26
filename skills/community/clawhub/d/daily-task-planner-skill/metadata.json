@@ -1,0 +1,19 @@
+{
+  "slug": "daily-task-planner-skill",
+  "name": "Daily Task Planner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "daily-task-planner",
+    "openclaw",
+    "planning",
+    "templates"
+  ],
+  "category": "Planning & Productivity",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-19",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

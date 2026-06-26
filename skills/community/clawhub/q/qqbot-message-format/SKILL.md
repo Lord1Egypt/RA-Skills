@@ -1,35 +1,104 @@
 ---
-name: "QQBot Message Format"
-description: "将面向 QQ / QQBot 的最终回复整理成简洁、适合 QQ 聊天界面阅读的中文消息：结论先行、采用 QQ 安全的两级标题、主列表保持扁平、把嵌套结构改写成 QQ 友好格式，并克制地使用加粗和功能性 emoji。适用于任务完成通知、排障说明、状态更新、调试结论或一般答复，尤其在原始输出太朴素、太像文档、或结构不..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qqbot-message-format"
-sourceUrl: "https://clawhub.ai/skills/qqbot-message-format"
+name: qqbot-message-format
+description: 将面向 QQ / QQBot 的最终回复整理成简洁、适合 QQ 聊天界面阅读的中文消息：结论先行、采用 QQ 安全的两级标题、主列表保持扁平、把嵌套结构改写成 QQ 友好格式，并克制地使用加粗和功能性 emoji。适用于任务完成通知、排障说明、状态更新、调试结论或一般答复，尤其在原始输出太朴素、太像文档、或结构不适合 QQ 渲染时使用。
 ---
 
-# QQBot Message Format
+# QQBot 消息排版
 
-> 将面向 QQ / QQBot 的最终回复整理成简洁、适合 QQ 聊天界面阅读的中文消息：结论先行、采用 QQ 安全的两级标题、主列表保持扁平、把嵌套结构改写成 QQ 友好格式，并克制地使用加粗和功能性 emoji。适用于任务完成通知、排障说明、状态更新、调试结论或一般答复，尤其在原始输出太朴素、太像文档、或结构不...
+把最终发给用户的 QQ 消息整理成更适合 QQ 聊天界面快速扫读的样子，无论在手机还是电脑端都清楚顺眼，让它更像清晰的项目进展更新，而不是一份沉重的正式文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qqbot-message-format`
-- **Source URL:** [https://clawhub.ai/skills/qqbot-message-format](https://clawhub.ai/skills/qqbot-message-format)
+## 核心流程
 
-## Overview
+1. 先判断消息类型：简短回答、完成更新、还是排障说明。
+2. 把结论放在最前面。
+3. 按 QQ 的实际渲染规则组织结构，不按理想化 Markdown 想象排版。
+4. 把原本的嵌套结构改写成 QQ 友好格式。
+5. 只在确实有助于理解时使用加粗和 emoji。
+6. 发送前删掉空区块和低价值内容。
 
+需要复用结构时，读取 `references/templates.md`。
+需要对照好坏示例时，读取 `references/examples.md`。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qqbot-message-format
-```
+## 硬规则
+
+- 全程使用简洁中文。
+- 开头必须先给结论、当前结果或直接答案。
+- 保持轻量项目汇报感：状态明确、表达务实、带一点聊天感。
+- 优先用短 bullet 和短段落，避免大段文字。
+- 一条 bullet 通常只表达一个意思。
+- 如果消息很短，用一个标题加 2-3 个 bullet 即可，不要过度分层。
+- 如果是在汇报后台任务完成，第一句先明确说已经完成，再展开说明。
+
+## QQ 标题规则
+
+- 把 QQ 视为只有两档真正有感知差异的标题层级。
+- `#` 和 `##` 视为同一档大标题。
+- `###` 到 `######` 视为同一档小标题。
+- 像 `当前结论`、`任务完成`、`问题定位` 这种主区块，使用大标题。
+- 像 `已确认`、`风险 / 注意`、`下一步` 这种从属区块，使用小标题。
+- 如果某条规则本身就是重要的排版规则，不要把它埋进普通 bullet 里，要单独做成可见区块。
+
+## QQ 列表规则
+
+- 不要依赖 QQ 对原生嵌套 Markdown 列表的展示效果。
+- 主层级尽量保持扁平普通 bullet。
+- 如果一个 bullet 下面还有子想法，父 bullet 仍保持扁平，再把子内容改写成缩进引导句，比如 `👉`。
+- 如果改写后层级还是太深，就继续压平，或拆成新的小标题区块。
+
+## 强调与 emoji
+
+- 加粗只留给一句话或一条 bullet 里最重要的短语。
+- 默认优先使用加粗，不要做类似下划线式强调。
+- 不要整段加粗，也不要给一串并列 bullet 全部加粗。
+- emoji 只做功能性提示，不做装饰性堆砌。
+- 常用含义：`✅` 完成，`⚠️` 注意，`❌` 阻塞，`📌` 重点，`🔍` 发现，`👉` 跟进。
+
+## 默认消息形态
+
+### 简短回答
+
+用于直接 yes/no、快速澄清或简单建议。
+
+- 大标题：`结论`
+- 1-3 条短 bullet
+- 如有必要，再补一个小标题 `说明`
+
+### 完成更新
+
+用于任务完成、检查完成、部署完成或后台工作结束。
+
+- 大标题：`任务完成` 或 `当前结论`
+- 先写结果 bullet
+- 再写小标题 `已确认`
+- 必要时加 `风险 / 注意`
+- 只有确实有价值时才加 `下一步`
+
+### 排障说明
+
+用于问题诊断、根因解释和操作建议。
+
+- 大标题：`问题定位` 或 `当前结论`
+- 小标题 `初步判断`
+- 小标题 `可能原因`
+- 小标题 `建议操作`
+
+## 发送前检查
+
+发送前确认以下几点：
+
+- 第一屏就能看到答案。
+- 即使 QQ 把标题压成两档，结构依然清楚。
+- 没有残留原生嵌套 Markdown 列表。
+- 加粗数量很少，只突出真正核心的信息。
+- emoji 是帮助扫读，不是在制造噪音。
+- 整条消息读起来像清爽的 QQ 更新，而不是复制出来的文档。
+
+## 避免
+
+- 很长且不断行的大段文字
+- 按六级 Markdown 标题来思考结构
+- 直接保留原生嵌套 Markdown 列表
+- 原始工具输出原封不动贴给用户
+- 很短的消息却堆很多标题
+- 大面积加粗
+- 装饰性 emoji 堆叠

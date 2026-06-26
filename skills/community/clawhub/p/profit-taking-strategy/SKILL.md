@@ -1,35 +1,48 @@
 ---
-name: "a-stock-profit-taking"
-description: "用分批止盈锁定利润，不追求卖在最高点。用于A股卖股策略。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/profit-taking-strategy"
-sourceUrl: "https://clawhub.ai/skills/profit-taking-strategy"
+name: profit-taking-strategy
+description: 用分批止盈锁定利润，不追求卖在最高点。用于A股卖股策略。
 ---
 
-# a-stock-profit-taking
+# 分批止盈 Skill
 
-> 用分批止盈锁定利润，不追求卖在最高点。用于A股卖股策略。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/profit-taking-strategy`
-- **Source URL:** [https://clawhub.ai/skills/profit-taking-strategy](https://clawhub.ai/skills/profit-taking-strategy)
+不追求卖在最高点，而是用分批止盈锁定利润。
 
-## Overview
+## 止盈规则
 
+### 第一止盈点
+- 盈利 10% 时
+- 卖出 50% 仓位
+- **锁定一半利润**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/profit-taking-strategy
-```
+### 第二止盈点
+- 盈利 20% 时
+- 卖出剩余 30% 仓位
+- **锁定大部分利润**
+
+### 留底仓
+- 保留 20% 仓位
+- 跟随趋势直到破位
+- **避免踏空**
+
+## 止盈原则
+
+1. 不贪心，卖在次高点也可以
+2. 分批卖出，锁定利润同时保留可能性
+3. 破关键均线必须走
+4. 放量滞涨必须走
+
+## 实战案例
+
+个股盈利12%时：
+- 先卖出一半仓位锁定利润
+- 剩下的仓位继续持有
+- 既避免踏空，又不会因为贪心导致利润回吐
+
+## 触发场景
+
+- "这个票要不要卖"
+- "盈利了怎么止盈"
+- "卖多少合适"
+- "还能持有吗"

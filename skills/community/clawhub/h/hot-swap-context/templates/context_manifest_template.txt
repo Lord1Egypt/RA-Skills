@@ -1,0 +1,87 @@
+version: 1
+context_system_name: "[NAME]"
+ownership_mode: "personal" # personal | team | enterprise
+primary_actor: "[PRIMARY USER, TEAM, OR ORG OWNER]"
+primary_goal: "[WHAT THE SYSTEM SHOULD ENABLE]"
+portability_target:
+  source_runtime: "[CURRENT TOOL OR STACK]"
+  target_runtime: "[TARGET TOOL OR STACK]"
+  export_format: "typed markdown objects plus bundle manifest"
+interfaces:
+  - type: "mcp"
+    status: "active"
+    entrypoint: "./mcp_server/server.py"
+  - type: "filesystem"
+    status: "active"
+    entrypoint: "./memory_objects"
+context_components:
+  context_vault:
+    storage_backend: "[FILESYSTEM | DATABASE | OBJECT STORE]"
+    owner: "[USER | TEAM | ORG]"
+    path: "./memory_objects"
+  artifact_store:
+    enabled: true
+    location: "./artifacts"
+  retrieval_router:
+    strategy: "just_in_time"
+    token_budget: "[LIMIT]"
+    freshness_policy: "[RULE]"
+  writeback_engine:
+    enabled: true
+    review_required: true
+  policy_layer:
+    deletion_supported: true
+    export_supported: true
+    audit_logging: true
+  mcp_server:
+    implementation: "FastMCP Python server"
+    default_transport: "stdio"
+    requirements_file: "./mcp_server/requirements.txt"
+    bundle_builder: "./tools/build_context_bundle.py"
+memory_taxonomy:
+  - type: identity
+    enabled: true
+    retrieval_form: summary
+  - type: preference
+    enabled: true
+    retrieval_form: preference_sheet
+  - type: workflow
+    enabled: true
+    retrieval_form: checklist
+  - type: domain
+    enabled: true
+    retrieval_form: retrieval_chunk
+  - type: relationship
+    enabled: true
+    retrieval_form: behavioral_contract
+  - type: artifact
+    enabled: true
+    retrieval_form: link_or_summary
+  - type: execution
+    enabled: true
+    retrieval_form: state_object
+  - type: evaluative
+    enabled: true
+    retrieval_form: scorecard
+routing_rules:
+  default_task:
+    retrieve:
+      - identity
+      - preference
+      - workflow
+feedback_loop:
+  enabled: true
+  log_file: "./feedback_log.md"
+governance:
+  personal_vs_org_boundary: "[RULE]"
+  retention_policy: "[RULE]"
+  deletion_path: "[RULE]"
+  redaction_policy: "[RULE]"
+  approval_workflow: "[RULE]"
+evaluation_targets:
+  cold_start_reduction: "[TARGET]"
+  retrieval_precision: "[TARGET]"
+  portability_success_rate: "[TARGET]"
+  delete_integrity: "[TARGET]"
+notes: |
+  [ADDITIONAL DESIGN NOTES]

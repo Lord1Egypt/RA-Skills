@@ -1,0 +1,4 @@
+interface:
+  display_name: "PandaDoc"
+  short_description: "Work with PandaDoc documents, templates, and proposal status"
+  default_prompt: "Use the available PandaDoc runtime tools to help the user inspect documents, manage proposals, work with templates, and track document status."

@@ -1,0 +1,2130 @@
+[
+  {
+    "id": "claude_code_task_end_guidance_refresh",
+    "title": "Claude Code task-end authoritative guidance refresh",
+    "host": "Claude Code",
+    "workflow": "After a multi-step coding task, the operator wants a quiet-window background pass that checks recent official hook guidance plus one community workflow note before the next related task.",
+    "user_context": "The thread just finished a hook-heavy refactor. The operator wants recent guidance without interrupting the foreground conversation.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code Hooks reference",
+        "url": "https://code.claude.com/docs/en/hooks"
+      },
+      {
+        "label": "secondary",
+        "name": "Claude Code hooks community workflow thread",
+        "url": "https://www.reddit.com/r/ClaudeCode/comments/1qlzzzf/claude_codes_most_underrated_feature_hooks_wrote/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "task_end",
+      "now": "2026-04-21T12:00:00+08:00",
+      "last_thread_activity": "2026-04-21T10:00:00+08:00",
+      "last_user_action": "2026-04-21T11:00:00+08:00",
+      "last_agent_action": "2026-04-21T11:30:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "progress_stalled": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "trigger_reason": "task_end"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "pain_terms": [
+        "hook",
+        "task",
+        "quiet window",
+        "official",
+        "next related turn"
+      ],
+      "min_term_hits": 4,
+      "min_score": 7
+    },
+    "output": {
+      "generated_at": "2026-04-21T12:10:00+08:00",
+      "expires_at": "2026-04-28T12:10:00+08:00",
+      "search_mode": "medium",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "claude-code|hooks|post-task-guidance-refresh|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "task_end",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:4f0a24d7b640e118ab7aa44886790a2e714494fa31ad5d4a0d36ff97358b2cb0",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Use official hook docs as the anchor and treat community posts as workflow seasoning",
+          "applies_when": "The next task touches Claude Code hooks, hook timing, or quiet-window automation after a multi-step code change.",
+          "hint": "Start from the official hooks reference, then use one community workflow note to refine where the hook belongs in the lifecycle.",
+          "confidence": "medium",
+          "manual_check": "Verify the target hook event still exists in the current Claude Code build and that the workflow still needs background research.",
+          "solves_point": "The operator wants a low-noise way to refresh hook guidance after the task ends without interrupting the coding session.",
+          "new_idea": "Use task-end travel to refresh authoritative guidance only after the implementation settles, then reuse the note on the next related turn.",
+          "fit_reason": "This fits threads that just finished a hook-related change and want recent official guidance before the next edit or rollout.",
+          "match_reasoning": [
+            "host: matched Claude Code hook workflows and skill-triggered automation",
+            "version: matched current Claude Code hooks and skills documentation from April 2026",
+            "symptom: matched post-task uncertainty about where a hook should live or fire",
+            "constraint_pattern: matched a quiet-window, low-noise requirement instead of immediate inline research",
+            "desired_next_outcome: matched a lightweight advisory note for the next related turn"
+          ],
+          "version_scope": "Claude Code builds with hooks in settings or skill frontmatter and quiet-window research handled outside the foreground turn.",
+          "do_not_apply_when": "Skip this hint when the thread already has a fresh official hook answer or when the next step requires direct execution instead of advisory guidance.",
+          "evidence": [
+            "primary_official: https://code.claude.com/docs/en/hooks",
+            "secondary_community: https://www.reddit.com/r/ClaudeCode/comments/1qlzzzf/claude_codes_most_underrated_feature_hooks_wrote/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "claude_code_failure_recovery_hook_contract",
+    "title": "Claude Code failure-recovery hook contract check",
+    "host": "Claude Code",
+    "workflow": "After repeated hook failures or ignored hook output, the operator wants a recovery pass that checks the official event contract and one community failure report before trying another fix.",
+    "user_context": "Recent hook runs kept failing or appeared to be ignored. The operator wants the next recovery attempt to focus on contract validity instead of adding more shell glue.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code Hooks reference",
+        "url": "https://code.claude.com/docs/en/hooks"
+      },
+      {
+        "label": "secondary",
+        "name": "Claude Code hook failure workflow thread",
+        "url": "https://www.reddit.com/r/ClaudeCode/comments/1rn8nxf/some_hooks_not_working_in_claude_code/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "failure_recovery",
+      "now": "2026-04-21T16:00:00+08:00",
+      "last_thread_activity": "2026-04-21T14:30:00+08:00",
+      "last_user_action": "2026-04-21T15:10:00+08:00",
+      "last_agent_action": "2026-04-21T15:35:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "related_failures": 2,
+      "current_fingerprint_hash": "h64:96dc60b55e0dc0d03abdb03c5df49d468f6954f801795fe6b650939d2ec5a7d7",
+      "last_travel_fingerprint_hash": "h64:96dc60b55e0dc0d03abdb03c5df49d468f6954f801795fe6b650939d2ec5a7d7",
+      "last_travel_generated_at": "2026-04-21T11:30:00+08:00",
+      "last_travel_semantic_signals": [
+        "related_failures"
+      ],
+      "semantic_escalation_since_last_hint": true,
+      "repeat_fingerprint_cooldown": "12h"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "trigger_reason": "failure_recovery"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "pain_terms": [
+        "hook",
+        "json",
+        "failure",
+        "recovery",
+        "feedback"
+      ],
+      "min_term_hits": 4,
+      "min_score": 7
+    },
+    "output": {
+      "generated_at": "2026-04-21T16:08:00+08:00",
+      "expires_at": "2026-04-28T16:08:00+08:00",
+      "search_mode": "medium",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "claude-code|hooks|failure-recovery-contract|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "failure_recovery",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:96dc60b55e0dc0d03abdb03c5df49d468f6954f801795fe6b650939d2ec5a7d7",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Validate the hook contract before adding another workaround",
+          "applies_when": "Recent Claude Code hooks failed repeatedly, appeared to be ignored, or stopped feeding useful feedback back into the recovery loop.",
+          "hint": "Check the official event contract first: valid event, valid JSON on stdout, and the right exit behavior for feedback. Use one community failure report only to confirm the failure pattern, then fix the contract instead of piling on more wrapper scripts.",
+          "confidence": "high",
+          "manual_check": "Verify the target hook emits valid JSON or the expected stderr/exit code for that event, and confirm the host still supports the chosen event type.",
+          "solves_point": "The current failure-recovery loop is wasting time on shell tweaks while the real issue may be an invalid hook contract or output shape.",
+          "new_idea": "Treat repeated hook failures as a contract-validation problem first, then tune the implementation after the event and feedback path are confirmed.",
+          "fit_reason": "This fits Claude Code hook workflows where repeated failures or silent ignores are the main blocker and the operator needs a medium-scope recovery pass.",
+          "match_reasoning": [
+            "host: matched Claude Code hook lifecycle and failure-recovery workflows",
+            "version: matched current Claude Code hook event and feedback documentation from April 2026",
+            "symptom: matched repeated hook failures or hooks being ignored",
+            "constraint_pattern: matched a medium-scope recovery pass instead of a broad research crawl",
+            "desired_next_outcome: matched one precise fix path for the next recovery attempt"
+          ],
+          "version_scope": "Claude Code builds where hook output shape, exit behavior, and event support still determine whether recovery feedback is accepted.",
+          "do_not_apply_when": "Skip this hint when the hook contract is already known-good and the current failure comes from an external binary, PATH issue, or tool-specific runtime problem.",
+          "evidence": [
+            "primary_official: https://code.claude.com/docs/en/hooks",
+            "secondary_community: https://www.reddit.com/r/ClaudeCode/comments/1rn8nxf/some_hooks_not_working_in_claude_code/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "openclaw_heartbeat_memory_safety",
+    "title": "OpenClaw heartbeat memory-safety advisory",
+    "host": "OpenClaw",
+    "workflow": "The operator uses heartbeat-style background turns and wants research hints without turning that background loop into silent memory pollution.",
+    "user_context": "The workspace uses heartbeat and background checks. The operator wants small-scope external research while keeping memory writes and autonomous side effects contained.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "OpenClaw Automation and Heartbeat docs",
+        "url": "https://docs.openclaw.ai/automation"
+      },
+      {
+        "label": "secondary",
+        "name": "ClawHub Memory Master review",
+        "url": "https://clawhub.ai/skills/memory-master"
+      },
+      {
+        "label": "secondary",
+        "name": "Heartbeat memory pollution paper",
+        "url": "https://arxiv.org/abs/2603.23064"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-04-21T15:00:00+08:00",
+      "last_thread_activity": "2026-04-21T13:20:00+08:00",
+      "last_user_action": "2026-04-21T13:50:00+08:00",
+      "last_agent_action": "2026-04-21T14:10:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "no_clear_next_step": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "heartbeat"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "pain_terms": [
+        "heartbeat",
+        "memory",
+        "advisory",
+        "public only",
+        "manual review"
+      ],
+      "min_term_hits": 4,
+      "min_score": 7
+    },
+    "output": {
+      "generated_at": "2026-04-21T15:05:00+08:00",
+      "expires_at": "2026-04-28T15:05:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "openclaw|heartbeat|background-research-safety|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "heartbeat",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:2f9b8ffdf0d7388d3f1614b2ef7c963fbfb6e2412ff3af01db0f64b1aa49ac5d",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Keep heartbeat travel advisory-only and audit-friendly",
+          "applies_when": "The host uses heartbeat or approximate background turns with full session context and wants small-scope external research.",
+          "hint": "Use heartbeat travel only for isolated hints, keep public-only search by default, and review any background memory-touching skill before enabling autonomous invocation.",
+          "confidence": "high",
+          "manual_check": "Confirm the host keeps the research note outside core memory and that no installed skill auto-writes memory or AGENTS files on this path.",
+          "solves_point": "Heartbeat background work can silently blend external content into the main session unless the research output stays isolated.",
+          "new_idea": "Treat heartbeat travel as a bounded advisory layer with explicit auditability instead of another always-on memory writer.",
+          "fit_reason": "This fits OpenClaw-style heartbeat workflows where the operator wants session-context awareness without silent memory pollution.",
+          "match_reasoning": [
+            "host: matched OpenClaw heartbeat and ClawHub-installed skill workflows",
+            "version: matched current OpenClaw automation documentation and current ClawHub safety reviews",
+            "symptom: matched concern about silent background influence on future user-facing turns",
+            "constraint_pattern: matched the need for low-noise, audit-friendly background research",
+            "desired_next_outcome: matched an isolated hint that informs later work without mutating core memory"
+          ],
+          "version_scope": "OpenClaw environments that use heartbeat, ClawHub-installed skills, or similar main-session background checks.",
+          "do_not_apply_when": "Skip this hint when the operator explicitly wants a dedicated memory-writing workflow and has already audited that workflow end to end.",
+          "evidence": [
+            "primary_official: https://docs.openclaw.ai/automation",
+            "secondary_clawhub_review: https://clawhub.ai/skills/memory-master",
+            "secondary_research_paper: https://arxiv.org/abs/2603.23064"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "openclaw_idle_fallback_stays_quiet",
+    "title": "OpenClaw idle fallback stays quiet when heartbeat already exists",
+    "host": "OpenClaw",
+    "workflow": "The operator already has heartbeat configured and wants idle fallback to stay off until they explicitly opt in.",
+    "user_context": "Heartbeat is already available. The operator wants one background loop, not two overlapping loops producing the same class of hints.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "OpenClaw Cron vs Heartbeat",
+        "url": "https://docs.openclaw.ai/cron-vs-heartbeat/"
+      },
+      {
+        "label": "primary",
+        "name": "OpenClaw Heartbeat reference",
+        "url": "https://docs.openclaw.ai/gateway/heartbeat"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "idle_fallback",
+      "now": "2026-04-21T17:00:00+08:00",
+      "last_thread_activity": "2026-04-21T15:10:00+08:00",
+      "last_user_action": "2026-04-21T15:40:00+08:00",
+      "last_agent_action": "2026-04-21T16:00:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "host_supports_heartbeat": true,
+      "idle_fallback_enabled": false,
+      "user_prefers_idle_fallback": false
+    },
+    "expected": {
+      "should_run": false,
+      "search_mode": "low",
+      "error_code": "idle_fallback_not_enabled",
+      "trigger_reason": "idle_fallback"
+    },
+    "eval": {
+      "mode": "silent_guardrail",
+      "expected_signal": "idle_fallback_not_opted_in",
+      "min_score": 4
+    }
+  },
+  {
+    "id": "hermes_scheduled_doc_drift_scan",
+    "title": "Hermes scheduled doc-drift research pass",
+    "host": "Hermes",
+    "workflow": "The operator schedules a lightweight recurring research pass to check documentation drift and workflow changes around an active skill-driven repo workflow.",
+    "user_context": "The agent already uses skills and scheduled jobs. The operator wants a periodic documentation drift check that stays lightweight until a blocker appears.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Hermes automation templates",
+        "url": "https://hermes-agent.nousresearch.com/docs/guides/automation-templates"
+      },
+      {
+        "label": "primary",
+        "name": "Hermes skills system docs",
+        "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills"
+      },
+      {
+        "label": "secondary",
+        "name": "Hermes community ecosystem page",
+        "url": "https://get-hermes.ai/community/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T09:00:00+08:00",
+      "last_thread_activity": "2026-04-21T08:10:00+08:00",
+      "last_user_action": "2026-04-21T08:20:00+08:00",
+      "last_agent_action": "2026-04-21T08:35:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "pain_terms": [
+        "scheduled",
+        "doc drift",
+        "workflow",
+        "small-scope",
+        "next related maintenance turn"
+      ],
+      "min_term_hits": 4,
+      "min_score": 7
+    },
+    "output": {
+      "generated_at": "2026-04-21T09:05:00+08:00",
+      "expires_at": "2026-04-28T09:05:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "hermes|scheduled-doc-drift|skills-workflow|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:6b68ee5f9ef1e11ca6c77d4dad2b585cc0d53cd48c9b5de22349f7d35ae4a992",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Keep scheduled research narrow and tie it to one workflow outcome",
+          "applies_when": "The host uses Hermes skills and scheduled automation for repo maintenance, documentation drift, or weekly workflow checks.",
+          "hint": "Use the scheduled pass to look for doc drift or workflow changes around one maintained skill flow, then save only one concise advisory note for the next relevant turn.",
+          "confidence": "medium",
+          "manual_check": "Confirm the scheduled job is still intended to stay lightweight and that the workflow still maps to one active repo or skill flow.",
+          "solves_point": "Periodic background research can sprawl unless it stays tied to one narrow maintenance workflow.",
+          "new_idea": "Treat scheduled travel as a doc-drift spot check that feeds one future turn instead of a broad recurring research job.",
+          "fit_reason": "This fits Hermes-style scheduled jobs where skills and cron already exist, but the operator wants the research pass to stay cheap and reviewable.",
+          "match_reasoning": [
+            "host: matched Hermes skills and scheduled automation workflows",
+            "version: matched current Hermes docs that expose scheduled jobs and skill reuse",
+            "symptom: matched ongoing documentation drift or workflow maintenance needs",
+            "constraint_pattern: matched a recurring but small-scope background pass",
+            "desired_next_outcome: matched one advisory note for the next related maintenance turn"
+          ],
+          "version_scope": "Hermes deployments that use the built-in scheduler or recurring skill-driven maintenance workflows.",
+          "do_not_apply_when": "Skip this hint when the operator wants a full weekly deep-research job instead of a narrow doc-drift pass.",
+          "evidence": [
+            "primary_official: https://hermes-agent.nousresearch.com/docs/guides/automation-templates",
+            "primary_official_docs: https://hermes-agent.nousresearch.com/docs/user-guide/features/skills",
+            "secondary_community: https://get-hermes.ai/community/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "hermes_scheduled_duplicate_dedupes",
+    "title": "Hermes scheduled run dedupes repeated fingerprint",
+    "host": "Hermes",
+    "workflow": "A recurring scheduled workflow should stay quiet when the fingerprint has not changed and the last hint is still inside its cooldown window.",
+    "user_context": "The operator wants scheduled research to stay cheap and skip rerunning the same doc-drift pass every few hours.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Hermes automation templates",
+        "url": "https://hermes-agent.nousresearch.com/docs/guides/automation-templates"
+      },
+      {
+        "label": "primary",
+        "name": "Hermes skills system docs",
+        "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills"
+      },
+      {
+        "label": "secondary",
+        "name": "Hermes community ecosystem page",
+        "url": "https://get-hermes.ai/community/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T13:00:00+08:00",
+      "last_thread_activity": "2026-04-21T12:10:00+08:00",
+      "last_user_action": "2026-04-21T12:15:00+08:00",
+      "last_agent_action": "2026-04-21T12:20:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "user_configured_periodic_travel": true,
+      "current_fingerprint_hash": "h64:3333333333333333333333333333333333333333333333333333333333333333",
+      "last_travel_fingerprint_hash": "h64:3333333333333333333333333333333333333333333333333333333333333333",
+      "last_travel_generated_at": "2026-04-21T08:30:00+08:00",
+      "repeat_fingerprint_cooldown": "12h"
+    },
+    "expected": {
+      "should_run": false,
+      "search_mode": "low",
+      "error_code": "duplicate_fingerprint_cooldown",
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "silent_guardrail",
+      "expected_signal": "fingerprint_repeat_window_active",
+      "min_score": 4
+    }
+  },
+  {
+    "id": "claude_code_scheduled_log_collection",
+    "title": "Claude Code scheduled log-collection research pass",
+    "host": "Claude Code",
+    "workflow": "A scheduled task collects production error logs every hour and wants one neutral, low-noise research hint before the next fix session.",
+    "user_context": "The operator uses scheduled tasks to collect error logs and wants the background run to stay focused on triage and fix preparation instead of broad autonomous changes.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code scheduled tasks",
+        "url": "https://code.claude.com/docs/en/scheduled-tasks"
+      },
+      {
+        "label": "secondary",
+        "name": "Production error logs scheduled-task workflow",
+        "url": "https://www.reddit.com/r/ClaudeAI/comments/1s32n1t/i_set_up_a_claude_code_scheduled_task_that/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T18:00:00+08:00",
+      "last_thread_activity": "2026-04-21T16:30:00+08:00",
+      "last_user_action": "2026-04-21T16:50:00+08:00",
+      "last_agent_action": "2026-04-21T17:10:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "scheduled",
+        "error logs",
+        "digest",
+        "neutral",
+        "next fix session"
+      ],
+      "resolution_terms": [
+        "triage",
+        "logs",
+        "digest",
+        "one hint",
+        "reviewable"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-21T18:05:00+08:00",
+      "expires_at": "2026-04-28T18:05:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "claude-code|scheduled-tasks|error-log-triage|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:8adcbbe6af7ff7b61250ef1f65a5646624a449991adacb6346a52af8d0d1fef1",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Keep the scheduled log pass neutral and turn it into one triage digest",
+          "applies_when": "Claude Code scheduled tasks are collecting production error logs or incident summaries between user turns.",
+          "hint": "Use the scheduled run to extract the newest stable error fragments, group duplicates, and save one neutral triage digest plus one advisory hint for the next fix session.",
+          "confidence": "medium",
+          "manual_check": "Verify the scheduled task still has access to the intended log source and that the digest only covers the latest collection window.",
+          "solves_point": "Hourly log-collection jobs can create noisy background output unless they stay neutral, bounded, and easy to review.",
+          "new_idea": "Treat the scheduled pass as a digest builder that prepares the next fix session instead of trying to fix production directly while the user is away.",
+          "fit_reason": "This fits scheduled log-collection workflows where the operator wants one reviewable hint and one digest before the next debugging turn.",
+          "match_reasoning": [
+            "host: matched Claude Code scheduled task workflows",
+            "version: matched current scheduled-task behavior that runs between turns at low priority",
+            "symptom: matched repeated production log collection without a clear next-step summary",
+            "constraint_pattern: matched a neutral, small-scope scheduled pass",
+            "desired_next_outcome: matched one digest and one hint for the next fix session"
+          ],
+          "version_scope": "Claude Code builds with desktop or local scheduled tasks that enqueue prompts between turns.",
+          "do_not_apply_when": "Skip this hint when the scheduled job is supposed to execute a full remediation playbook instead of preparing a human-reviewed fix session.",
+          "evidence": [
+            "primary_official: https://code.claude.com/docs/en/scheduled-tasks",
+            "secondary_community: https://www.reddit.com/r/ClaudeAI/comments/1s32n1t/i_set_up_a_claude_code_scheduled_task_that/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "claude_code_generated_scheduled_prompt_stays_neutral",
+    "title": "Claude Code generated scheduled prompt stays neutral",
+    "host": "Claude Code",
+    "workflow": "A host-generated scheduled task should stay neutral even when the manual session that created it carried user frustration.",
+    "user_context": "The operator wants recurring scheduled work, but they do not want the host to carry transient user tone into future background prompts.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code scheduled tasks",
+        "url": "https://code.claude.com/docs/en/scheduled-tasks"
+      },
+      {
+        "label": "secondary",
+        "name": "Loop and scheduled-task discussion",
+        "url": "https://www.reddit.com/r/ClaudeCode/comments/1rn94wp/claude_code_just_shipped_loop_schedule_recurring/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T20:00:00+08:00",
+      "last_thread_activity": "2026-04-21T18:40:00+08:00",
+      "last_user_action": "2026-04-21T18:45:00+08:00",
+      "last_agent_action": "2026-04-21T18:55:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "frustrated"
+    },
+    "expected": {
+      "should_run": false,
+      "search_mode": "low",
+      "error_code": "scheduled_prompt_must_be_neutral",
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "silent_guardrail",
+      "expected_signal": "host_generated_scheduled_prompt",
+      "min_score": 4
+    }
+  },
+  {
+    "id": "openclaw_cron_research_digest",
+    "title": "OpenClaw cron research digest stays isolated",
+    "host": "OpenClaw",
+    "workflow": "A precise cron job sends a daily research digest and should keep the work isolated, reviewable, and separate from heartbeat context.",
+    "user_context": "The operator wants a 9 AM research digest about one recurring topic. They want exact timing, isolated execution, and a single advisory note for the next active thread.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "OpenClaw automation and cron guidance",
+        "url": "https://docs.openclaw.ai/automation"
+      },
+      {
+        "label": "primary",
+        "name": "OpenClaw cron vs heartbeat",
+        "url": "https://docs.openclaw.ai/cron-vs-heartbeat/"
+      },
+      {
+        "label": "secondary",
+        "name": "OpenClaw cron troubleshooting thread",
+        "url": "https://www.reddit.com/r/clawdbot/comments/1r21alk/crons_dont_work_on_vps/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T09:00:00+08:00",
+      "last_thread_activity": "2026-04-21T07:50:00+08:00",
+      "last_user_action": "2026-04-21T08:00:00+08:00",
+      "last_agent_action": "2026-04-21T08:20:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "host_supports_heartbeat": true,
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "cron",
+        "digest",
+        "isolated",
+        "exact timing",
+        "next active thread"
+      ],
+      "resolution_terms": [
+        "digest",
+        "isolated",
+        "reviewable",
+        "single advisory note",
+        "exact timing"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-21T09:03:00+08:00",
+      "expires_at": "2026-04-28T09:03:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "openclaw|cron|daily-research-digest|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:0e3d674a42f27f00fb916f5f0ff8e95866ef5a421ca4c8f39d293ab9977e65cb",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Use cron for exact-time digests and keep the result isolated from heartbeat turns",
+          "applies_when": "OpenClaw runs a precise scheduled research digest that should fire at an exact time and stay reviewable.",
+          "hint": "Keep the cron run narrow, use isolated execution for the digest, and save only one advisory note that can be surfaced on the next active thread.",
+          "confidence": "high",
+          "manual_check": "Verify the cron delivery path is configured and that the digest lands in the intended isolated session or output channel.",
+          "solves_point": "Exact-time research digests become noisy or confusing when they blur into heartbeat context instead of staying isolated.",
+          "new_idea": "Treat the cron pass as an isolated digest producer and hand the result back into the main thread only when it becomes relevant.",
+          "fit_reason": "This fits OpenClaw cron workflows where exact timing, isolated execution, and one reviewable handoff matter more than continuous context awareness.",
+          "match_reasoning": [
+            "host: matched OpenClaw cron and heartbeat coordination workflows",
+            "version: matched current OpenClaw automation guidance for cron and heartbeat selection",
+            "symptom: matched confusion between exact-time digests and context-aware heartbeat runs",
+            "constraint_pattern: matched a small-scope scheduled digest with isolated execution",
+            "desired_next_outcome: matched one advisory note for the next active thread"
+          ],
+          "version_scope": "OpenClaw builds that expose cron, heartbeat, and session delivery controls for background work.",
+          "do_not_apply_when": "Skip this hint when the operator actually wants heartbeat-style context-aware monitoring instead of a precise isolated cron digest.",
+          "evidence": [
+            "primary_official: https://docs.openclaw.ai/automation",
+            "primary_official_docs: https://docs.openclaw.ai/cron-vs-heartbeat/",
+            "secondary_community: https://www.reddit.com/r/clawdbot/comments/1r21alk/crons_dont_work_on_vps/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "claude_code_manual_scheduled_claude_md_refresh",
+    "title": "Claude Code manual scheduled CLAUDE.md refresh keeps operator intent",
+    "host": "Claude Code",
+    "workflow": "The operator manually creates a recurring task to compare the codebase against CLAUDE.md and wants that original maintenance intent preserved across scheduled runs.",
+    "user_context": "The thread keeps drifting because CLAUDE.md and repo conventions go stale between sessions. The operator manually scheduled a weekly refresh and wants a focused advisory hint for the next maintenance turn.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code scheduled tasks",
+        "url": "https://code.claude.com/docs/en/scheduled-tasks"
+      },
+      {
+        "label": "secondary",
+        "name": "Scheduled Claude Code workflows thread",
+        "url": "https://www.reddit.com/r/claude/comments/1s4q0em/scheduled_claude_code/"
+      },
+      {
+        "label": "secondary",
+        "name": "CLAUDE.md drift workflow thread",
+        "url": "https://www.reddit.com/r/ClaudeAI/comments/1rkya1a/my_claudemd_is_always_stale_by_the_time_i_need_it/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T21:00:00+08:00",
+      "last_thread_activity": "2026-04-21T19:10:00+08:00",
+      "last_user_action": "2026-04-21T19:20:00+08:00",
+      "last_agent_action": "2026-04-21T19:35:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "user_configured_periodic_travel": true,
+      "scheduled_prompt_origin": "manual",
+      "scheduled_prompt_emotion": "frustrated",
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "claude md",
+        "weekly refresh",
+        "maintenance turn",
+        "codebase",
+        "manual scheduled task"
+      ],
+      "resolution_terms": [
+        "summary",
+        "refresh",
+        "drift",
+        "maintenance",
+        "one note"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-21T21:04:00+08:00",
+      "expires_at": "2026-04-28T21:04:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "claude-code|claude-md-refresh|scheduled-maintenance|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:7c1e70ae4e6c16363ed4738f9d8aa2de01913f7440366dce3da4b20c90dbf254",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Keep the weekly CLAUDE.md refresh tied to repo drift and one maintenance note",
+          "applies_when": "A manually scheduled Claude Code task reviews codebase drift against CLAUDE.md or similar repo guidance files.",
+          "hint": "Compare the current repo patterns against the existing CLAUDE.md, capture only the drift that affects the next maintenance turn, and leave the result as one reviewable summary note instead of rewriting broader memory.",
+          "confidence": "high",
+          "manual_check": "Verify the scheduled task still targets the same repo guidance file and that the next maintenance turn still needs drift review.",
+          "solves_point": "A recurring maintenance task can drift into broad repo analysis unless it stays anchored to the current CLAUDE.md mismatch and returns one summary note for the next maintenance turn.",
+          "new_idea": "Use the scheduled pass to produce one repo-drift summary note that sharpens the next maintenance turn instead of mutating durable context immediately.",
+          "fit_reason": "This fits manually authored scheduled maintenance tasks where the operator already decided on the workflow and wants one reviewable summary note that preserves that intent.",
+          "match_reasoning": [
+            "host: matched Claude Code scheduled maintenance workflows around CLAUDE.md and repo guidance",
+            "version: matched current Claude Code scheduled-task behavior and current community maintenance patterns",
+            "symptom: matched stale repo guidance and documentation drift between sessions",
+            "constraint_pattern: matched a small-scope manual scheduled task that should preserve operator wording",
+            "desired_next_outcome: matched one advisory note for the next maintenance turn"
+          ],
+          "version_scope": "Claude Code builds with scheduled tasks that run between turns and can revisit repo guidance files.",
+          "do_not_apply_when": "Skip this hint when the scheduled task is supposed to directly rewrite CLAUDE.md under an already-audited workflow.",
+          "evidence": [
+            "primary_official: https://code.claude.com/docs/en/scheduled-tasks",
+            "secondary_community: https://www.reddit.com/r/claude/comments/1s4q0em/scheduled_claude_code/",
+            "secondary_community: https://www.reddit.com/r/ClaudeAI/comments/1rkya1a/my_claudemd_is_always_stale_by_the_time_i_need_it/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "hermes_nightly_backlog_triage",
+    "title": "Hermes nightly backlog triage digest",
+    "host": "Hermes",
+    "workflow": "A nightly backlog triage job collects issue data and wants one reviewable hint for the next maintenance thread.",
+    "user_context": "The operator runs a nightly backlog digest and wants the scheduled research pass to stay tied to issue triage instead of drifting into broad repo analysis.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Hermes automation templates",
+        "url": "https://hermes-agent.nousresearch.com/docs/guides/automation-templates"
+      },
+      {
+        "label": "secondary",
+        "name": "Hermes Web UI workflow overview",
+        "url": "https://get-hermes.ai/"
+      },
+      {
+        "label": "secondary",
+        "name": "Hermes ecosystem page",
+        "url": "https://get-hermes.ai/community/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-22T02:00:00+08:00",
+      "last_thread_activity": "2026-04-21T23:10:00+08:00",
+      "last_user_action": "2026-04-21T23:15:00+08:00",
+      "last_agent_action": "2026-04-21T23:20:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "nightly backlog triage",
+        "digest",
+        "issues",
+        "priority",
+        "next maintenance thread"
+      ],
+      "resolution_terms": [
+        "triage",
+        "digest",
+        "priority",
+        "reviewable",
+        "one note"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-22T02:05:00+08:00",
+      "expires_at": "2026-04-29T02:05:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "hermes|nightly-backlog-triage|digest|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:61f3d00e9b0c0c84ec41cc72080df0bb1a8c6ccf2211f67f2d828ec9fb5f0f66",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Keep nightly backlog triage tied to issue intake and one digest note",
+          "applies_when": "Hermes runs a nightly backlog triage or issue digest job and the next maintenance thread needs one focused advisory note.",
+          "hint": "Collect the newest issues, summarize the intake changes, and save one reviewable digest note with priority clues for the next maintenance thread instead of broad repo research.",
+          "confidence": "high",
+          "manual_check": "Verify the issue source and time window still match the nightly job and that the digest only covers the intended intake period.",
+          "solves_point": "Nightly triage jobs can drift into broad repo analysis unless the background pass stays anchored to issue intake and one reviewable digest output.",
+          "new_idea": "Treat the nightly run as a backlog digest builder and carry forward one priority-focused digest note instead of a large autonomous analysis.",
+          "fit_reason": "This fits Hermes scheduled triage workflows where the operator wants a cheap nightly digest that sharpens the next maintenance thread with one reviewable note.",
+          "match_reasoning": [
+            "host: matched Hermes cron scheduler and background digest workflows",
+            "version: matched current Hermes automation templates for nightly backlog triage",
+            "symptom: matched issue intake growth without a clean next-step digest",
+            "constraint_pattern: matched a small-scope recurring data-collection pass",
+            "desired_next_outcome: matched one digest note for the next maintenance thread"
+          ],
+          "version_scope": "Hermes deployments that use the built-in cron scheduler for recurring backlog or repo maintenance work.",
+          "do_not_apply_when": "Skip this hint when the operator wants a full autonomous repo sweep instead of a nightly backlog triage digest.",
+          "evidence": [
+            "primary_official: https://hermes-agent.nousresearch.com/docs/guides/automation-templates",
+            "secondary_community: https://get-hermes.ai/",
+            "secondary_community: https://get-hermes.ai/community/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "openclaw_daily_summary_collection",
+    "title": "OpenClaw daily summary collection stays bounded",
+    "host": "OpenClaw",
+    "workflow": "A recurring summary job collects recent conversations into a daily log and wants one bounded advisory hint about time windows, chunking, and append-only output.",
+    "user_context": "The operator wants a recurring digest of recent conversations for later review. The current pain is getting clean time windows and collection boundaries without turning the job into another memory writer.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "OpenClaw automation and task guidance",
+        "url": "https://docs.openclaw.ai/automation"
+      },
+      {
+        "label": "primary",
+        "name": "OpenClaw cron jobs",
+        "url": "https://docs.openclaw.ai/cron/"
+      },
+      {
+        "label": "secondary",
+        "name": "OpenClaw daily summarization workflow thread",
+        "url": "https://www.reddit.com/r/openclaw/comments/1s291c6/how_do_you_implement_daily_sumarizations_in_claw/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-21T18:00:00+08:00",
+      "last_thread_activity": "2026-04-21T16:20:00+08:00",
+      "last_user_action": "2026-04-21T16:40:00+08:00",
+      "last_agent_action": "2026-04-21T17:10:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "host_supports_heartbeat": true,
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "daily log",
+        "recent conversations",
+        "time window",
+        "append only",
+        "summary"
+      ],
+      "resolution_terms": [
+        "chunking",
+        "time window",
+        "append only",
+        "reviewable",
+        "next check"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-21T18:04:00+08:00",
+      "expires_at": "2026-04-28T18:04:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "openclaw|daily-summary-collection|time-window-digest|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:8494b0e17caabf828103fe79efc068f1eaab582af6cf73efd9f8217754da197d",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Keep recurring summaries append-only and bounded by an explicit time window",
+          "applies_when": "OpenClaw runs a recurring summary or daily-log collection job over recent conversations.",
+          "hint": "Anchor each run to a clear time window or last-processed marker, append one bounded summary block, and carry only one advisory hint into the next check instead of writing broad memory state.",
+          "confidence": "high",
+          "manual_check": "Verify the collection window, append target, and last-processed marker still line up with the intended summary cadence.",
+          "solves_point": "Recurring summary jobs become noisy and hard to trust when they do not keep explicit collection boundaries.",
+          "new_idea": "Treat the scheduled pass as an append-only digest builder with chunking and time-window control, then reuse one small hint on the next relevant check.",
+          "fit_reason": "This fits OpenClaw summary-collection workflows where the operator wants durable logs plus a narrow advisory note instead of broader memory mutation.",
+          "match_reasoning": [
+            "host: matched OpenClaw cron and background summary collection workflows",
+            "version: matched current OpenClaw automation and cron guidance for isolated scheduled work",
+            "symptom: matched recurring summary jobs that lack a clean last-processed boundary",
+            "constraint_pattern: matched a small-scope scheduled资料收集 pass with append-only output",
+            "desired_next_outcome: matched one reviewable hint for the next summary check"
+          ],
+          "version_scope": "OpenClaw builds with cron-backed background work and task records for recurring maintenance or summary jobs.",
+          "do_not_apply_when": "Skip this hint when the operator already has a trusted deterministic summarization pipeline outside the agent layer.",
+          "evidence": [
+            "primary_official: https://docs.openclaw.ai/automation",
+            "primary_official_docs: https://docs.openclaw.ai/cron/",
+            "secondary_community: https://www.reddit.com/r/openclaw/comments/1s291c6/how_do_you_implement_daily_sumarizations_in_claw/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "claude_code_scheduled_job_health_audit",
+    "title": "Claude Code scheduled-job health audit stays receipt-first",
+    "host": "Claude Code",
+    "workflow": "A host-managed scheduled task audits the health of recurring jobs and wants one reviewable note about stalled runs, missed windows, and run receipts.",
+    "user_context": "The operator uses several scheduled tasks and wants a periodic audit that checks whether those jobs are still producing output that matters before the next maintenance pass.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code scheduled tasks",
+        "url": "https://code.claude.com/docs/en/scheduled-tasks"
+      },
+      {
+        "label": "secondary",
+        "name": "Always-on AI cron audit thread",
+        "url": "https://www.reddit.com/r/ClaudeAI/comments/1srnkda/i_audited_my_alwayson_ai_agent_6_of_10_cron_jobs/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-22T07:00:00+08:00",
+      "last_thread_activity": "2026-04-22T05:40:00+08:00",
+      "last_user_action": "2026-04-22T05:55:00+08:00",
+      "last_agent_action": "2026-04-22T06:10:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "scheduled jobs",
+        "audit",
+        "run receipts",
+        "missed windows",
+        "maintenance pass"
+      ],
+      "resolution_terms": [
+        "audit",
+        "last success",
+        "receipt",
+        "reviewable",
+        "one note"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-22T07:04:00+08:00",
+      "expires_at": "2026-04-29T07:04:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "claude-code|scheduled-job-health|receipt-audit|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:8fd78374b3ecf16bbfe32f0be9d7df5a3d30bd802f7eb26ed1c0db4a90731a4d",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Audit scheduled jobs with last-success markers and one receipt-first note",
+          "applies_when": "Claude Code uses recurring scheduled tasks and the operator wants to verify that those jobs still run, produce output, and matter before the next maintenance pass.",
+          "hint": "Check each scheduled job for a recent last-success marker or run receipt, summarize only the stalled or low-value jobs, and return one reviewable note for the next maintenance turn.",
+          "confidence": "high",
+          "manual_check": "Verify the audited tasks still belong to the active session and that the last-success timestamps or receipts come from the expected job window.",
+          "solves_point": "Scheduled jobs can keep firing in theory while quietly drifting away from useful output, so the operator needs a cheap audit that surfaces stale or silent runs.",
+          "new_idea": "Treat the scheduled pass as a receipt-first audit that checks run health and usefulness before investing in more automation changes.",
+          "fit_reason": "This fits recurring Claude Code task setups where the main pain is silent drift, stale jobs, or missing run receipts rather than a missing schedule definition.",
+          "match_reasoning": [
+            "host: matched Claude Code scheduled task workflows and session-scoped recurring jobs",
+            "version: matched current scheduled-task behavior where tasks queue between turns and expire with the session window",
+            "symptom: matched silent or stale recurring jobs that stop producing useful output",
+            "constraint_pattern: matched a low-noise host-managed audit pass",
+            "desired_next_outcome: matched one reviewable note for the next maintenance turn"
+          ],
+          "version_scope": "Claude Code builds with scheduled tasks that remain tied to the current session and can be audited through task lists or run receipts.",
+          "do_not_apply_when": "Skip this hint when the workflow already has an external scheduler with its own health checks and the session-level audit would duplicate that control plane.",
+          "evidence": [
+            "primary_official: https://code.claude.com/docs/en/scheduled-tasks",
+            "secondary_community: https://www.reddit.com/r/ClaudeAI/comments/1srnkda/i_audited_my_alwayson_ai_agent_6_of_10_cron_jobs/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "claude_code_weekly_reference_sheet_refresh",
+    "title": "Claude Code weekly reference-sheet refresh stays diff-scoped",
+    "host": "Claude Code",
+    "workflow": "A weekly scheduled task refreshes a reference sheet or cheat sheet from current docs and workflow notes, then returns one bounded update note for the next review session.",
+    "user_context": "The operator keeps a weekly-updated reference sheet for commands, workflows, and repo conventions. They want the scheduled pass to focus on new deltas and avoid broad rewrites.",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Claude Code scheduled tasks",
+        "url": "https://code.claude.com/docs/en/scheduled-tasks"
+      },
+      {
+        "label": "secondary",
+        "name": "Weekly auto-updated cheat sheet thread",
+        "url": "https://www.reddit.com/r/ClaudeAI/comments/1rrm9ud/printable_claude_code_cheat_sheet_autoupdated/"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "scheduled",
+      "now": "2026-04-22T09:00:00+08:00",
+      "last_thread_activity": "2026-04-22T07:15:00+08:00",
+      "last_user_action": "2026-04-22T07:30:00+08:00",
+      "last_agent_action": "2026-04-22T07:50:00+08:00",
+      "user_operation_in_progress": false,
+      "agent_response_in_progress": false,
+      "tool_approval_pending": false,
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "scheduled_trigger_managed_by_host": true,
+      "scheduled_prompt_origin": "host_generated",
+      "scheduled_prompt_emotion": "neutral",
+      "suspected_reinventing_wheel": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "scheduled"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "reference sheet",
+        "weekly refresh",
+        "delta",
+        "docs",
+        "review session"
+      ],
+      "resolution_terms": [
+        "delta",
+        "refresh",
+        "reviewable",
+        "one note",
+        "weekly"
+      ],
+      "forbidden_terms": [
+        "long-term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-04-22T09:04:00+08:00",
+      "expires_at": "2026-04-29T09:04:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "claude-code|weekly-reference-refresh|diff-scoped|2026-q2",
+      "advisory_only": "true",
+      "trigger_reason": "scheduled",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:f893f2a84462cb43d3295c0d2667ae947f0d89d7c489ce1eeef708efe72d16be",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Refresh the weekly reference sheet from deltas and keep the output reviewable",
+          "applies_when": "A scheduled Claude Code task refreshes a weekly reference sheet, cheat sheet, or workflow note pack from docs and recent workflow changes.",
+          "hint": "Diff the current sheet against the newest documented commands and workflow changes, tag only the new or changed items, and return one reviewable update note instead of rewriting the whole reference pack.",
+          "confidence": "medium",
+          "manual_check": "Verify the sheet still targets the same toolchain and that the scheduled pass only covers the intended weekly change window.",
+          "solves_point": "Weekly reference refreshes become noisy when they rewrite everything instead of highlighting the few changes that matter for the next review session.",
+          "new_idea": "Treat the scheduled pass as a delta-focused reference refresh that produces one bounded update note and keeps the main sheet stable.",
+          "fit_reason": "This fits recurring Claude Code reference-maintenance workflows where the operator wants a stable artifact plus one concise note about what changed this week.",
+          "match_reasoning": [
+            "host: matched Claude Code scheduled task workflows for recurring maintenance",
+            "version: matched current scheduled-task behavior and current community patterns for automated weekly updates",
+            "symptom: matched stale reference material and noisy full rewrites",
+            "constraint_pattern: matched a low-scope scheduled资料收集 pass that should stay diff-based",
+            "desired_next_outcome: matched one reviewable update note for the next review session"
+          ],
+          "version_scope": "Claude Code builds with scheduled tasks that can revisit docs or local artifacts between interactive turns.",
+          "do_not_apply_when": "Skip this hint when the workflow intentionally regenerates the entire reference artifact from scratch and that regeneration path is already audited.",
+          "evidence": [
+            "primary_official: https://code.claude.com/docs/en/scheduled-tasks",
+            "secondary_community: https://www.reddit.com/r/ClaudeAI/comments/1rrm9ud/printable_claude_code_cheat_sheet_autoupdated/"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "real_thread_clawhub_scan_prompt_warning",
+    "title": "Real thread: ClawHub scan warning needs a common package fix",
+    "host": "ClawHub / Codex",
+    "workflow": "A user asked to review why a ClawHub skill reports a prompt warning, then fix only common causes instead of patching one warning at a time.",
+    "user_context": "Sanitized from a 2026-06-03 local Codex session about the agent-travel ClawHub listing, rename, trigger boundary, and scan prompt warning.",
+    "real_case_source": "C:/Users/admin/.codex/sessions/2026/06/03/rollout-2026-06-03T21-35-40-019e8db2-5220-7342-94c9-4161b063460e.jsonl",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "ClawHub skill listing",
+        "url": "https://clawhub.ai/gongyu0918-debug/find-community-help"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local Codex session",
+        "url": "sanitized-local-session:2026-06-03-agent-travel-review"
+      },
+      {
+        "label": "secondary",
+        "name": "GitHub repository history",
+        "url": "https://github.com/gongyu0918-debug/find-community-help"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "user_request",
+      "user_requested_community_help": true,
+      "host": "ClawHub",
+      "symptom": "skill publish scan reports prompt warning after agent-travel package review",
+      "constraint": "no one-off warning fixes; shrink publish package and keep advisory-only hints",
+      "desired_outcome": "common rename and package scan-boundary plan"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "trigger_reason": "user_request"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "clawhub",
+        "scan warning",
+        "publish package",
+        "one off",
+        "skill"
+      ],
+      "resolution_terms": [
+        "common",
+        "package",
+        "advisory",
+        "manifest",
+        "rename"
+      ],
+      "forbidden_terms": [
+        "long term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-06-03T22:30:00+08:00",
+      "expires_at": "2026-06-10T22:30:00+08:00",
+      "search_mode": "medium",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "clawhub|skill-scan-warning|publish-package|no-one-off-fixes|rename-and-manifest-plan",
+      "advisory_only": "true",
+      "trigger_reason": "user_request",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:ebf2bb9509ce5b021e32613752c7533f09a92bd1fa978d947e8c85ca84840512",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Fix ClawHub scan warnings through package boundaries, not one-off prompt edits",
+          "applies_when": "A ClawHub skill publish reports a scan warning while the user asks for common fixes, rename cleanup, and no one-off warning patches.",
+          "hint": "Compare the publish package manifest, ClawHub listing metadata, and advisory-only contract first; then shrink or annotate the package boundary before editing individual warning strings.",
+          "confidence": "medium",
+          "manual_check": "Confirm the ClawHub file list and scan status after publish, and verify required runtime files remain in the package.",
+          "solves_point": "The scan warning may come from broad package contents or ambiguous skill wording, so a manifest and contract fix addresses the common cause.",
+          "new_idea": "Treat the warning as a package-surface and advisory-contract problem before touching any single suspicious line.",
+          "fit_reason": "This fits ClawHub skill publish work where the user wants a rename, scan-boundary cleanup, and no one-off fixes.",
+          "match_reasoning": [
+            "host: matched ClawHub skill publishing and Codex skill-package workflows",
+            "version: matched the active repository and current publish target during the local 2026-06-03 session",
+            "symptom: matched a scan warning tied to a skill package rather than a runtime failure",
+            "constraint_pattern: matched the explicit no one-off fix rule and advisory-only package boundary",
+            "desired_next_outcome: matched a rename and publish-manifest plan that can be rechecked after ClawHub inspect"
+          ],
+          "version_scope": "ClawHub skill packages that expose runtime instructions, references, tests, and checked reports through a publish manifest.",
+          "do_not_apply_when": "Skip this hint when the scan finding names a concrete vulnerable dependency or a secret leak that requires direct remediation.",
+          "evidence": [
+            "primary_official_docs: https://github.com/gongyu0918-debug/find-community-help",
+            "secondary_clawhub_review: https://clawhub.ai/gongyu0918-debug/find-community-help"
+          ]
+        }
+      ]
+    },
+    "context_fixture": "examples/thread-contexts/real-clawhub-scan-warning.txt"
+  },
+  {
+    "id": "real_thread_trigger_boundary_refactor",
+    "title": "Real thread: trigger boundary refactor asks for external trigger norms",
+    "host": "Codex",
+    "workflow": "A user asked whether heartbeat, scheduled, and quiet-window triggers should stay primary, then requested a refactor toward better help-seeking boundaries.",
+    "user_context": "Sanitized from a 2026-06-03 local Codex session that compared provider search-tool positioning and agent escalation boundaries.",
+    "real_case_source": "C:/Users/admin/.codex/sessions/2026/06/03/rollout-2026-06-03T21-35-40-019e8db2-5220-7342-94c9-4161b063460e.jsonl",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "OpenAI tools guidance",
+        "url": "https://developers.openai.com/api/docs/guides/tools"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local Codex session",
+        "url": "sanitized-local-session:2026-06-03-trigger-boundary-refactor"
+      },
+      {
+        "label": "secondary",
+        "name": "AutoGen human-in-the-loop guidance",
+        "url": "https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "task_end",
+      "now": "2026-06-03T22:20:00+08:00",
+      "last_thread_activity": "2026-06-03T20:40:00+08:00",
+      "last_user_action": "2026-06-03T21:10:00+08:00",
+      "last_agent_action": "2026-06-03T21:40:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "progress_stalled": true,
+      "host": "Codex",
+      "symptom": "trigger rules are too broad and confuse delivery windows with help-seeking reasons",
+      "constraint": "keep heartbeat and scheduled as safety gates, not semantic reasons",
+      "desired_outcome": "mature trigger boundary matrix for stuck and reinventing-wheel cases"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "trigger_reason": "task_end"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "trigger",
+        "heartbeat",
+        "scheduled",
+        "delivery window",
+        "stuck"
+      ],
+      "resolution_terms": [
+        "semantic",
+        "boundary",
+        "matrix",
+        "safety gate",
+        "community help"
+      ],
+      "forbidden_terms": [
+        "long term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-06-03T22:35:00+08:00",
+      "expires_at": "2026-06-10T22:35:00+08:00",
+      "search_mode": "medium",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "codex|trigger-boundary|heartbeat-scheduled-delivery-window|semantic-help-gate|stuck-reinventing-wheel-matrix",
+      "advisory_only": "true",
+      "trigger_reason": "task_end",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:32e6262284d8d5f13e344cf1b61306067300233c9db840d1b255e161c6d876d7",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Separate semantic help triggers from automatic delivery windows",
+          "applies_when": "A skill currently treats heartbeat, scheduled, task-end, or idle windows as reasons to search even though the real need is a stuck or looping thread.",
+          "hint": "Make the trigger matrix semantic first, then apply heartbeat and scheduled checks only as safety gates for when the host may deliver the help retrieval plan.",
+          "confidence": "high",
+          "manual_check": "Verify that a quiet heartbeat with no stuck, stalled, repeated, reinventing-wheel, or user-help signal stays blocked.",
+          "solves_point": "This removes broad automatic triggering while preserving safe host-controlled windows for real community help.",
+          "new_idea": "Use a two-layer boundary: semantic need decides whether help is justified, delivery gates decide whether automation may run now.",
+          "fit_reason": "This fits the trigger refactor request because the user asked whether heartbeat and scheduled should be primary or only execution gates.",
+          "match_reasoning": [
+            "host: matched Codex/OpenClaw skill routing and host-managed automatic windows",
+            "version: matched the active rename from agent-travel to find-community-help in the local 2026-06-03 session",
+            "symptom: matched overly broad trigger wording that could run without a stuck thread",
+            "constraint_pattern: matched the requirement to keep automatic runs redacted, quiet, and rate-limited",
+            "desired_next_outcome: matched a stuck/progress/reinvent/user-help matrix plus delivery-gate tests"
+          ],
+          "version_scope": "Skill hosts that can expose semantic state signals separately from heartbeat, scheduled, task-end, and idle delivery events.",
+          "do_not_apply_when": "Skip this hint when the host has no automatic delivery path and only supports explicit user invocation.",
+          "evidence": [
+            "primary_official_docs: https://developers.openai.com/api/docs/guides/tools",
+            "secondary_research: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"
+          ]
+        }
+      ]
+    },
+    "context_fixture": "examples/thread-contexts/real-trigger-boundary-refactor.txt"
+  },
+  {
+    "id": "real_thread_no_one_off_fixture_test",
+    "title": "Real thread: real-case tests must avoid one-off fixture fixes",
+    "host": "Codex",
+    "workflow": "A user required real-thread tests while forbidding one-example-one-fix behavior, so the test should assert trigger categories and contracts rather than a single page sample.",
+    "user_context": "Sanitized from a 2026-06-03 local Codex implementation thread for this skill rename and trigger refactor.",
+    "real_case_source": "C:/Users/admin/.codex/sessions/2026/06/03/rollout-2026-06-03T21-41-43-019e8db7-e020-73a2-8f16-10f9ad3b5970.jsonl",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "Repository test fixture",
+        "url": "https://github.com/gongyu0918-debug/find-community-help"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local implementation session",
+        "url": "sanitized-local-session:2026-06-03-real-fixture-test"
+      },
+      {
+        "label": "secondary",
+        "name": "ClawHub listing",
+        "url": "https://clawhub.ai/gongyu0918-debug/find-community-help"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-03T22:25:00+08:00",
+      "last_thread_activity": "2026-06-03T20:45:00+08:00",
+      "last_user_action": "2026-06-03T21:20:00+08:00",
+      "last_agent_action": "2026-06-03T21:45:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "suspected_reinventing_wheel": true,
+      "host": "Codex",
+      "symptom": "test plan needs real-thread coverage without fitting one sample page",
+      "constraint": "fix common trigger classes and suggestion contract fields only",
+      "desired_outcome": "real fixture cases that prove category behavior and advisory output"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "heartbeat"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "real thread",
+        "fixture",
+        "one sample",
+        "trigger classes",
+        "contract"
+      ],
+      "resolution_terms": [
+        "common",
+        "category",
+        "advisory",
+        "test",
+        "coverage"
+      ],
+      "forbidden_terms": [
+        "long term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-06-03T22:40:00+08:00",
+      "expires_at": "2026-06-10T22:40:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "codex|real-thread-fixture|no-one-off-test|common-trigger-classes|advisory-contract-coverage",
+      "advisory_only": "true",
+      "trigger_reason": "heartbeat",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:671e23232c3923022f4f1e2f4a98499b4cba0ec2a1e457685623c06305ecc6a1",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Test common trigger categories with sanitized real-thread fixtures",
+          "applies_when": "A skill refactor needs real-thread evidence but the user forbids one-sample fixes or hardcoded page behavior.",
+          "hint": "Extract sanitized real-thread fingerprints, then assert category behavior: no-clear-next-step, stalled progress, repeated attempts, reinventing-wheel suspicion, and explicit user help.",
+          "confidence": "medium",
+          "manual_check": "Confirm each fixture records the original problem type, trigger signal, dry-run query plan, and expected advisory output without raw private content.",
+          "solves_point": "This gives real coverage while keeping the fix at the trigger and contract level instead of fitting one sample.",
+          "new_idea": "Use the real cases to validate categories and advisory contracts, not to special-case a single warning or page.",
+          "fit_reason": "This fits the implementation thread because the user required real cases, common fixes, and no one-example-one-fix behavior.",
+          "match_reasoning": [
+            "host: matched Codex local implementation and repository test workflows",
+            "version: matched the active 2026-06-03 refactor and checked-in fixture set",
+            "symptom: matched the need for real-thread tests without hardcoded sample fixes",
+            "constraint_pattern: matched the no one-off rule and advisory-only output contract",
+            "desired_next_outcome: matched checked fixtures and reports that prove common category behavior"
+          ],
+          "version_scope": "Repository-level skill tests that can store sanitized fixtures and regenerate stable checked reports.",
+          "do_not_apply_when": "Skip this hint when the test is only verifying a deterministic parser edge case with no behavior or trigger decision involved.",
+          "evidence": [
+            "primary_official_docs: https://github.com/gongyu0918-debug/find-community-help",
+            "secondary_clawhub_review: https://clawhub.ai/gongyu0918-debug/find-community-help"
+          ]
+        }
+      ]
+    },
+    "context_fixture": "examples/thread-contexts/real-no-one-off-fixture-test.txt"
+  },
+  {
+    "id": "real_thread_delivery_window_no_semantic_signal",
+    "title": "Real thread: heartbeat window alone stays quiet",
+    "host": "Codex",
+    "workflow": "A review session reached a quiet heartbeat window, but the active task had no stuck, stalled, repeated-attempt, reinventing-wheel, or explicit help signal.",
+    "user_context": "Sanitized from a 2026-06-17 local Codex review pass that checked whether delivery windows can trigger community help by themselves.",
+    "real_case_source": "C:/Users/admin/.codex/sessions/2026/06/17/rollout-2026-06-17T21-52-23-019ed5da-ac95-7232-9aa7-2fd39d35daf9.jsonl",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "find-community-help trigger policy",
+        "url": "https://github.com/gongyu0918-debug/find-community-help"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local Codex review session",
+        "url": "sanitized-local-session:2026-06-17-delivery-window-no-signal"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-17T22:05:00+08:00",
+      "last_thread_activity": "2026-06-17T20:00:00+08:00",
+      "last_user_action": "2026-06-17T21:00:00+08:00",
+      "last_agent_action": "2026-06-17T21:35:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "host": "Codex",
+      "symptom": "heartbeat window is available but no semantic help signal exists",
+      "constraint": "delivery windows must not become trigger reasons",
+      "desired_outcome": "stay silent until a real blocker appears"
+    },
+    "expected": {
+      "should_run": false,
+      "search_mode": "low",
+      "error_code": "semantic_signal_missing",
+      "trigger_reason": "heartbeat"
+    },
+    "eval": {
+      "mode": "silent_guardrail",
+      "expected_signal": null,
+      "min_score": 4
+    },
+    "context_fixture": "examples/thread-contexts/real-delivery-window-no-signal.txt"
+  },
+  {
+    "id": "real_thread_deep_provider_boundary_help",
+    "title": "Real thread: deep provider boundary research request",
+    "host": "Codex",
+    "workflow": "A user asked for external provider and community guidance before refactoring when community-help triggers should fire.",
+    "user_context": "Sanitized from a 2026-06-03 local Codex session about whether heartbeat, scheduled, quiet-window, and stuck-state signals should be trigger boundaries.",
+    "real_case_source": "C:/Users/admin/.codex/sessions/2026/06/03/rollout-2026-06-03T21-35-40-019e8db2-5220-7342-94c9-4161b063460e.jsonl",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "OpenAI tools guidance",
+        "url": "https://developers.openai.com/api/docs/guides/tools"
+      },
+      {
+        "label": "secondary",
+        "name": "AutoGen human-in-the-loop guidance",
+        "url": "https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local Codex session",
+        "url": "sanitized-local-session:2026-06-03-deep-trigger-boundary-help"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "user_request",
+      "user_requested_deep_community_help": true,
+      "host": "Codex",
+      "symptom": "provider docs and agent community guidance may define better help-seeking boundaries",
+      "constraint": "avoid broad automatic search and keep delivery windows as safety gates",
+      "desired_outcome": "deep external boundary check for stuck and reinventing-wheel cases"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "high",
+      "error_code": null,
+      "trigger_reason": "user_request"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "provider",
+        "trigger",
+        "boundary",
+        "community help",
+        "delivery window"
+      ],
+      "resolution_terms": [
+        "deep",
+        "official",
+        "semantic",
+        "safety gate",
+        "external"
+      ],
+      "forbidden_terms": [
+        "long term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-06-03T22:50:00+08:00",
+      "expires_at": "2026-06-10T22:50:00+08:00",
+      "search_mode": "high",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "codex|trigger-boundary|provider-community-help-guidance|avoid-broad-automatic-search|deep-external-boundary-check",
+      "advisory_only": "true",
+      "trigger_reason": "user_request",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:8afb60b244e63c205fbdd4ad702ee35d9d2bdc7b3b95f93a6b37f6ec6bc5f314",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Use official search-tool boundaries before broadening community help",
+          "applies_when": "A refactor asks when outside help should trigger and the user explicitly requests a deep external boundary check.",
+          "hint": "Anchor the pass in official tool guidance, then cross-check with agent orchestration patterns that escalate only when local progress is blocked or control should return to the user.",
+          "confidence": "high",
+          "manual_check": "Confirm the final trigger matrix still requires a semantic stuck, stalled, repeated, reinventing-wheel, or explicit user-help signal.",
+          "solves_point": "This keeps deep community help tied to a concrete trigger-boundary decision instead of turning the skill into general browsing.",
+          "new_idea": "Treat provider search tools as capability support and human-in-loop escalation as the boundary model for stuck agent work.",
+          "fit_reason": "This fits the real thread because the user asked for provider and community guidance before changing trigger conditions.",
+          "match_reasoning": [
+            "host: matched Codex skill routing and provider search-tool decisions",
+            "version: matched the active 2026-06-03 trigger-boundary refactor",
+            "symptom: matched broad trigger wording that needed external boundary guidance",
+            "constraint_pattern: matched the no broad automatic search rule and safety-gate delivery windows",
+            "desired_next_outcome: matched a deep external boundary check for stuck and reinventing-wheel cases"
+          ],
+          "version_scope": "Agent hosts that separate search capability, delivery windows, and semantic escalation state.",
+          "do_not_apply_when": "Skip this hint when the user asks for a simple current fact lookup rather than a blocked-work trigger boundary.",
+          "evidence": [
+            "primary_official_docs: https://developers.openai.com/api/docs/guides/tools",
+            "secondary_research: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"
+          ]
+        }
+      ]
+    },
+    "context_fixture": "examples/thread-contexts/real-deep-community-help.txt"
+  },
+  {
+    "id": "real_thread_sensitive_log_redaction",
+    "title": "Real thread: credential-shaped log fragments are redacted",
+    "host": "OpenClaw",
+    "workflow": "A stuck auth debugging thread includes copied credential-shaped log fragments, but the outside-help plan must stay public-only and leak-free.",
+    "user_context": "Sanitized from local operational debugging patterns; credential-shaped values are dummy replacements used only to prove redaction.",
+    "real_case_source": "sanitized-local-session:2026-06-17-sensitive-log-redaction",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "MDN HTTP 401 reference",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401"
+      },
+      {
+        "label": "secondary",
+        "name": "Stack Overflow HTTP 401 Q&A surface",
+        "url": "https://stackoverflow.com/questions/tagged/http-status-code-401"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local operational debugging pattern",
+        "url": "sanitized-local-session:2026-06-17-sensitive-log-redaction"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-17T22:10:00+08:00",
+      "last_thread_activity": "2026-06-17T20:00:00+08:00",
+      "last_user_action": "2026-06-17T21:00:00+08:00",
+      "last_agent_action": "2026-06-17T21:35:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "no_clear_next_step": true,
+      "host": "OpenClaw",
+      "symptom": "HTTP 401 after Authorization Bearer dummyBearerTokenSample12345 with credential-shaped log placeholders",
+      "constraint": "public-only search and no credential-shaped query text",
+      "desired_outcome": "safe query plan about auth failure without leaking tokens"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "heartbeat"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "auth",
+        "401",
+        "redaction",
+        "credential",
+        "public"
+      ],
+      "resolution_terms": [
+        "redact",
+        "query",
+        "safe",
+        "token",
+        "manual"
+      ],
+      "forbidden_terms": [
+        "long term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "forbidden_plan_terms": [
+        "dummyBearerTokenSample12345",
+        "dummyBearerTokenSample12345"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-06-17T22:15:00+08:00",
+      "expires_at": "2026-06-24T22:15:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "openclaw|auth-log-redaction|credential-shaped-error-fragment|public-only-advisory-search|safe-query-without-secret-leak",
+      "advisory_only": "true",
+      "trigger_reason": "heartbeat",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:be898d30aaa80254e0a6a3b86357ca6d05b54a42d012fcfe1068064ba57a1d58",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Redact credential-shaped fragments before searching auth failures",
+          "applies_when": "An OpenClaw auth debugging thread is blocked and copied logs contain bearer, cloud, package-registry, or JWT-shaped fragments.",
+          "hint": "Strip credential-shaped values first, then search only for the HTTP 401 behavior, host, version, and public constraint pattern.",
+          "confidence": "high",
+          "manual_check": "Inspect the dry-run query plan and confirm no raw bearer token, AWS key, HF token, npm token, Slack token, JWT, private key, or database URL remains.",
+          "solves_point": "The thread can seek mature auth-failure guidance without leaking secrets into public search surfaces.",
+          "new_idea": "Treat credential-shaped log fragments as a redaction class, not as useful search terms.",
+          "fit_reason": "This fits the real operational pattern because the task is stuck on auth behavior while logs contain values that must never become query text.",
+          "match_reasoning": [
+            "host: matched OpenClaw-style workflow debugging",
+            "version: matched current host behavior where copied logs can enter state and context fields",
+            "symptom: matched HTTP 401 auth failure after repeated local checks",
+            "constraint_pattern: matched public-only advisory search and credential redaction",
+            "desired_next_outcome: matched a safe query plan that preserves the error class without leaking tokens"
+          ],
+          "version_scope": "Hosts that build outside-help query plans from active state or copied thread context.",
+          "do_not_apply_when": "Skip this hint when the user explicitly opts into a private internal search surface designed to handle the same secret class.",
+          "evidence": [
+            "primary_official_docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401",
+            "secondary_stackoverflow: https://stackoverflow.com/questions/tagged/http-status-code-401"
+          ]
+        }
+      ]
+    },
+    "context_fixture": "examples/thread-contexts/real-sensitive-log-redaction.txt"
+  },
+  {
+    "id": "real_thread_partial_private_key_fragment_redaction",
+    "title": "Real thread: partial private-key fragments are redacted",
+    "host": "OpenClaw",
+    "workflow": "A stalled deployment debugging thread includes an incomplete private key block copied from logs, but outside-help queries must preserve only the deployment failure class.",
+    "user_context": "Sanitized from local deployment debugging patterns; the key-shaped value is a dummy fixture used only to prove redaction.",
+    "real_case_source": "sanitized-local-session:2026-06-23-partial-private-key-fragment",
+    "sources": [
+      {
+        "label": "primary",
+        "name": "GitHub secret scanning documentation",
+        "url": "https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning"
+      },
+      {
+        "label": "secondary",
+        "name": "Stack Overflow private-key Q&A surface",
+        "url": "https://stackoverflow.com/questions/tagged/private-key"
+      },
+      {
+        "label": "case_source",
+        "name": "Sanitized local deployment debugging pattern",
+        "url": "sanitized-local-session:2026-06-23-partial-private-key-fragment"
+      }
+    ],
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-23T22:10:00+08:00",
+      "last_thread_activity": "2026-06-23T20:00:00+08:00",
+      "last_user_action": "2026-06-23T21:00:00+08:00",
+      "last_agent_action": "2026-06-23T21:35:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "no_clear_next_step": true,
+      "host": "OpenClaw",
+      "symptom": "deploy failed after partial private key fragment appeared in logs",
+      "constraint": "public-only search and no raw key material in query text",
+      "desired_outcome": "safe query plan about deployment failure without leaking the copied key fragment"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "trigger_reason": "heartbeat"
+    },
+    "eval": {
+      "mode": "positive",
+      "required_evidence_tiers": [
+        "primary",
+        "secondary"
+      ],
+      "expected_visibility": "silent_until_relevant",
+      "thread_focus_terms": [
+        "deploy",
+        "private",
+        "key",
+        "redaction",
+        "public"
+      ],
+      "resolution_terms": [
+        "redact",
+        "query",
+        "safe",
+        "secret",
+        "manual"
+      ],
+      "forbidden_terms": [
+        "long term memory",
+        "system prompt",
+        "all available sources",
+        "deep crawl",
+        "permanent"
+      ],
+      "forbidden_plan_terms": [
+        "BEGIN PRIVATE KEY",
+        "MIIEvQIBADANBgkqhki"
+      ],
+      "min_thread_focus_hits": 4,
+      "min_resolution_hits": 4,
+      "min_hallucination_gap": 3,
+      "min_score": 8
+    },
+    "output": {
+      "generated_at": "2026-06-23T22:15:00+08:00",
+      "expires_at": "2026-06-30T22:15:00+08:00",
+      "search_mode": "low",
+      "tool_preference": "public-only",
+      "source_scope": "primary+secondary",
+      "thread_scope": "active_conversation_only",
+      "problem_fingerprint": "openclaw|deploy-log-redaction|partial-private-key-fragment|public-only-advisory-search|safe-query-without-secret-leak",
+      "advisory_only": "true",
+      "trigger_reason": "heartbeat",
+      "visibility": "silent_until_relevant",
+      "fingerprint_hash": "h64:6f9b35a6295ef2715387a6fce7c1b1a026f55cb730f4be4d3aa2a2ad90d8f90f",
+      "reuse_gate": "min_4_of_5_axes_and_ttl_valid",
+      "suggestions": [
+        {
+          "title": "Redact partial key fragments before deployment lookup",
+          "applies_when": "A deployment debugging thread is blocked and copied logs include an incomplete private key block or similar secret-shaped fragment.",
+          "hint": "Remove the key marker and body first, then search only for the deployment failure class, host, version, and public-only constraint.",
+          "confidence": "high",
+          "manual_check": "Inspect the dry-run query plan and confirm no key marker, base64-shaped key body, private path, or internal URL remains.",
+          "solves_point": "The thread can seek mature deployment-failure guidance without leaking secret material into public search surfaces.",
+          "new_idea": "Treat incomplete secret blocks as sensitive even when the closing marker is missing.",
+          "fit_reason": "This fits the real debugging pattern because the task is stuck on deployment behavior while copied logs include key-shaped material that must never become query text.",
+          "match_reasoning": [
+            "host: matched OpenClaw-style workflow debugging",
+            "version: matched current host behavior where copied logs can enter context fields",
+            "symptom: matched deployment failure after repeated local checks",
+            "constraint_pattern: matched public-only advisory search and secret redaction",
+            "desired_next_outcome: matched a safe query plan that preserves the failure class without leaking key material"
+          ],
+          "version_scope": "Hosts that build outside-help query plans from active state or copied thread context.",
+          "do_not_apply_when": "Skip this hint when the user explicitly opts into a private internal search surface designed to handle the same secret class.",
+          "evidence": [
+            "primary_official_docs: https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning",
+            "secondary_stackoverflow: https://stackoverflow.com/questions/tagged/private-key"
+          ]
+        }
+      ]
+    },
+    "context_fixture": "examples/thread-contexts/real-partial-private-key-fragment.txt"
+  }
+]

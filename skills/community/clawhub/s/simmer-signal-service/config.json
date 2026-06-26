@@ -1,0 +1,5 @@
+{
+  "asset": "BTC",
+  "min_confidence": 60,
+  "price_per_call_tokens": 1
+}

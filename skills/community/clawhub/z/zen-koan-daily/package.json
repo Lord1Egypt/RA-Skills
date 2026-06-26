@@ -1,0 +1,29 @@
+{
+  "name": "zen-koan-daily",
+  "version": "0.1.0",
+  "description": "Daily Zen Buddhist koan (禅宗公案) with Chinese ink wash art and TTS audio. Uses LLM to dynamically generate koans from classical sources (无门关, 碧岩录, 从容录). No fixed database—unlimited variety. | 每日禅宗公案配水墨画和语音讲解，LLM动态生成。",
+  "keywords": [
+    "zen",
+    "koan",
+    "buddhism",
+    "禅宗",
+    "公案",
+    "meditation",
+    "philosophy",
+    "daily",
+    "ink-wash",
+    "水墨画",
+    "spirituality"
+  ],
+  "author": "Tommy Yan <thriller.yan@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumyumtum/YumSkills.git",
+    "directory": "zen-koan-daily"
+  },
+  "homepage": "https://github.com/yumyumtum/YumSkills/tree/main/zen-koan-daily",
+  "bugs": {
+    "url": "https://github.com/yumyumtum/YumSkills/issues"
+  }
+}

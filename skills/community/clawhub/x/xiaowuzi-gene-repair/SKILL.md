@@ -1,35 +1,24 @@
----
-name: "小五子 - 基因修复"
-description: "实时检测并修复AI演化中的逻辑错误、语法冲突及指令异常，确保系统稳定和任务连续运行。"
-category: "other"
-source: "ClawHub"
-tags: [evolver, gene, gep, xiaowuzi]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaowuzi-gene-repair"
-sourceUrl: "https://clawhub.ai/skills/xiaowuzi-gene-repair"
----
-
-# 小五子 - 基因修复
-
-> 实时检测并修复AI演化中的逻辑错误、语法冲突及指令异常，确保系统稳定和任务连续运行。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaowuzi-gene-repair`
-- **Source URL:** [https://clawhub.ai/skills/xiaowuzi-gene-repair](https://clawhub.ai/skills/xiaowuzi-gene-repair)
-
-## Overview
+\# 小五子 - 基因修复 (xiaowuzi-gene-repair)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaowuzi-gene-repair
-```
+
+\## 模块概述
+
+本模块是小五子基因演化系统（GEP）中的“免疫与修复中心”。它专门设计用于在复杂的 AI 代理演化过程中，实时识别并修复逻辑坍塌、语法错误或指令冲突。
+
+
+
+\## 核心修复矩阵
+
+\- \*\*异常逻辑拦截 (Anomaly Detection)\*\*：利用深度学习模型扫描基因片段，识别可能导致 AI 陷入死循环的逻辑悖论。
+
+\- \*\*自动化基因回滚\*\*：当新演化的基因片段在运行测试中表现不佳或报错时，系统将触发秒级回滚机制，确保主代理（Agent）的稳定性。
+
+\- \*\*指令集自愈\*\*：针对 Prompt 注入或格式错误，模块会自动尝试按照预设的演化协议进行微调修复。
+
+
+
+\## 部署意义
+
+在无人值守的自动化任务（如 StagflationV3Pro 长期监控）中，基因修复模块是系统稳健性的最后一道防线，极大降低了因模型输出不稳定导致的系统崩溃风险。
+

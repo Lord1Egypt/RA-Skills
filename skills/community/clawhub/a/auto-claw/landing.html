@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Claw — Your 24/7 AI WordPress Teammate</title>
+    <meta name="description" content="Autonomous WordPress operations. SEO, performance, A/B testing, competitor monitoring — all automated. Zero human intervention.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #1a1a2e; line-height: 1.6; }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        
+        .hero { padding: 100px 0 80px; text-align: center; background: linear-gradient(180deg, #f8f9ff 0%, #fff 100%); }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.02em; }
+        .hero h1 span { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero .tagline { font-size: 1.5rem; color: #64748b; margin-bottom: 32px; font-weight: 400; }
+        .hero .cta { display: inline-block; background: #667eea; color: white; padding: 16px 40px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(102,126,234,0.3); }
+        
+        .demo-section { background: #0f0f1a; padding: 60px 0; text-align: center; }
+        .demo-section h2 { color: white; font-size: 1.5rem; margin-bottom: 24px; }
+        .terminal { background: #1a1a2e; border-radius: 12px; max-width: 700px; margin: 0 auto; padding: 24px; text-align: left; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.85rem; color: #a5b4fc; }
+        .terminal .line { margin-bottom: 8px; }
+        .terminal .prompt { color: #667eea; }
+        .terminal .output { color: #86efac; }
+        .terminal .comment { color: #64748b; }
+        
+        .stats { padding: 60px 0; background: white; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; }
+        .stat h3 { font-size: 3rem; color: #667eea; margin-bottom: 8px; }
+        .stat p { color: #64748b; }
+        
+        .features { padding: 80px 0; }
+        .features h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .feature { background: #f8f9ff; padding: 24px; border-radius: 12px; }
+        .feature h3 { font-size: 1.1rem; margin-bottom: 8px; color: #1a1a2e; }
+        .feature p { color: #64748b; font-size: 0.95rem; }
+        .feature .icon { font-size: 1.5rem; margin-bottom: 8px; }
+        
+        .security { padding: 60px 0; background: #f8f9ff; }
+        .security h2 { text-align: center; font-size: 2rem; margin-bottom: 32px; }
+        .security-list { max-width: 600px; margin: 0 auto; }
+        .security-item { background: white; padding: 16px 24px; border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .security-item .check { color: #667eea; font-weight: 700; }
+        
+        .pricing { padding: 80px 0; text-align: center; }
+        .pricing h2 { font-size: 2rem; margin-bottom: 48px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+        .price-card { background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 32px; }
+        .price-card.featured { border-color: #667eea; transform: scale(1.05); box-shadow: 0 8px 24px rgba(102,126,234,0.15); }
+        .price-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .price-card .price { font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 16px; }
+        .price-card .price span { font-size: 1rem; color: #64748b; font-weight: 400; }
+        .price-card ul { list-style: none; text-align: left; margin-bottom: 24px; }
+        .price-card li { padding: 8px 0; color: #475569; }
+        .price-card li::before { content: "✓ "; color: #667eea; font-weight: 700; }
+        
+        .cta-section { padding: 80px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); text-align: center; color: white; }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 16px; }
+        .cta-section p { margin-bottom: 32px; opacity: 0.9; }
+        .cta-section .email-form { max-width: 400px; margin: 0 auto; }
+        .cta-section a.beta-btn { display: inline-block; background: white; color: #667eea; padding: 16px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+        .cta-section a.beta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        
+        footer { padding: 40px 0; text-align: center; color: #64748b; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .tagline { font-size: 1.1rem; }
+            .stats-grid, .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .price-card.featured { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>Auto-Claw</h1>
+            <p class="tagline">Your 24/7 AI WordPress Teammate</p>
+            <p style="color: #64748b; max-width: 600px; margin: 0 auto 32px;">Autonomous WordPress operations. SEO, performance, A/B testing, competitor monitoring — all automated. Zero human intervention.</p>
+            <a href="/auto-claw-beta-application/" class="cta">Join Beta — Free</a>
+        </div>
+    </section>
+    
+    <section class="demo-section">
+        <div class="container">
+            <h2>Watch it work (30 seconds)</h2>
+            <div class="terminal">
+                <div class="line"><span class="comment"># Full site audit — 19 capabilities</span></div>
+                <div class="line"><span class="prompt">$</span> python3 cli.py full-audit --url yours.com</div>
+                <div class="line">&nbsp;</div>
+                <div class="line"><span class="output">✅ SEO: 65/100 | 42 issues found</span></div>
+                <div class="line"><span class="output">✅ Performance: 40/100 | 4 severe pages</span></div>
+                <div class="line"><span class="output">✅ Content: 65/100 | E-E-A-T analyzed</span></div>
+                <div class="line"><span class="output">✅ Cache: 3/4 enabled</span></div>
+                <div class="line"><span class="output">✅ A/B Test: Live (exit intent)</span></div>
+                <div class="line"><span class="output">✅ Competitor Monitor: 3 competitors</span></div>
+                <div class="line">&nbsp;</div>
+                <div class="line"><span class="comment"># Auto-fix what it can:</span></div>
+                <div class="line"><span class="prompt">$</span> python3 cli.py seo-fix --auto</div>
+                <div class="line"><span class="output">✅ Injected Schema.org JSON-LD</span></div>
+                <div class="line"><span class="output">✅ Set meta descriptions (6 pages)</span></div>
+                <div class="line"><span class="output">✅ Enabled OG tags via Yoast SEO</span></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3>19</h3>
+                    <p>Capabilities implemented</p>
+                </div>
+                <div class="stat">
+                    <h3>7,100+</h3>
+                    <p>Lines of production code</p>
+                </div>
+                <div class="stat">
+                    <h3>24/7</h3>
+                    <p>Autonomous operation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2>What it does</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="icon">🔍</div>
+                    <h3>SEO Scanner & Fixer</h3>
+                    <p>40+ point scan. Generates WP-CLI commands. Injects Schema.org JSON-LD automatically.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">⚡</div>
+                    <h3>Performance Diagnostic</h3>
+                    <p>Core Web Vitals, TTFB, LCP, CLS analysis. Recommends and implements cache strategies.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">🧪</div>
+                    <h3>A/B Testing Engine</h3>
+                    <p>Bayesian significance. Exit-intent popups. Auto-selects winning variant.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">🌍</div>
+                    <h3>GEO Targeting</h3>
+                    <p>IP-based location. Dynamic pricing by currency. Smart landing pages.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">📊</div>
+                    <h3>Competitor Monitor</h3>
+                    <p>Tracks price/content changes. Alerts on opportunities. Never misses a move.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">✍️</div>
+                    <h3>AI Content Generator</h3>
+                    <p>Blog posts, product descriptions, landing pages. E-E-A-T optimized.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="security">
+        <div class="container">
+            <h2>Built for safety</h2>
+            <div class="security-list">
+                <div class="security-item">
+                    <span class="check">✓</span>
+                    <span>Credentials never touch AI context (Vault isolation)</span>
+                </div>
+                <div class="security-item">
+                    <span class="check">✓</span>
+                    <span>Destructive actions require approval (Gate Pipeline)</span>
+                </div>
+                <div class="security-item">
+                    <span class="check">✓</span>
+                    <span>Soft deletes only — everything recoverable</span>
+                </div>
+                <div class="security-item">
+                    <span class="check">✓</span>
+                    <span>Full JSONL audit trail — you see everything</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">$500<span>/mo</span></div>
+                    <ul>
+                        <li>SEO scanner + fixer</li>
+                        <li>Performance monitoring</li>
+                        <li>Daily audits</li>
+                        <li>1 site</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <h3>Growth</h3>
+                    <div class="price">$1,000<span>/mo</span></div>
+                    <ul>
+                        <li>Everything in Starter</li>
+                        <li>A/B testing</li>
+                        <li>Competitor monitoring</li>
+                        <li>GEO targeting</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$2,000<span>/mo</span></div>
+                    <ul>
+                        <li>All 19 capabilities</li>
+                        <li>AI content generation</li>
+                        <li>Multi-site support</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section" id="waitlist">
+        <div class="container">
+            <h2>Early Beta — Free Access</h2>
+            <p>We're onboarding 10 D2C brands. Zero cost. Full access.</p>
+            <a href="/auto-claw-beta-application/" class="beta-btn">Apply for Beta Access →</a>
+            <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.7;">Or email us directly: hello@autoclaw.ai</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>🦶 Auto-Claw — AI-driven WordPress operations</p>
+            <p style="margin-top: 8px;">Built with OpenClaw | <a href="https://github.com/nicepkg/auto-company">View on GitHub</a></p>
+        </div>
+    </footer>
+</body>
+</html>

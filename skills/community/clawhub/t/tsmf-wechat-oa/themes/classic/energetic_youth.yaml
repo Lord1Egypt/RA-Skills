@@ -1,0 +1,73 @@
+name: 青春活力
+description: 年轻动感风格，适合校园、职场新人、正能量类文章
+keywords:
+  - 青春
+  - 校园
+  - 职场新人
+  - 励志
+  - 正能量
+  - 成长
+  - 奋斗
+  - 梦想
+  - 热血
+  - 年轻
+colors:
+  primary: "#f43f5e"
+  accent: "#fb7185"
+  text: "#1f2937"
+  text_light: "#4b5563"
+  background: "#ffffff"
+  code_bg: "#fff1f2"
+  blockquote_bg: "#fff1f2"
+  border: "#fecdd3"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.75"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "21px"
+    font_weight: "bold"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    text_align: "center"
+  h2:
+    font_size: "17px"
+    font_weight: "bold"
+    margin: "20px 0 12px 0"
+    padding: "0 16px 0 10px 16px"
+    border_left: "3px solid #f43f5e"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "3px solid #fb7185"
+    line_height: "1.7"
+  code_inline:
+    font_size: "14px"
+    padding: "1px 4px"
+    border_radius: "4px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "8px"
+    border: "1px solid #fecdd3"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.75"
+  separator:
+    border_top: "2px solid #fecdd3"
+    margin: "24px 20%"
+  image:
+    border_radius: "12px"

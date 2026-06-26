@@ -1,0 +1,32 @@
+{
+  "phases": ["PLAN", "PRD", "EXEC", "VERIFY", "FIX", "SUMMARY"],
+  "timeout": {
+    "PLAN": 300,
+    "PRD": 300,
+    "EXEC": 900,
+    "VERIFY": 600,
+    "FIX": 600,
+    "SUMMARY": 180
+  },
+  "owner": {
+    "PLAN": "CEO",
+    "PRD": "PM",
+    "EXEC": "牢A",
+    "VERIFY": "牢B",
+    "FIX": "牢A",
+    "SUMMARY": "CEO"
+  },
+  "checkpoints": {
+    "PLAN": ["子任务明确", "负责人分配", "优先级标注"],
+    "PRD": ["指令具体", "输入输出明确", "依赖关系标注"],
+    "EXEC": ["代码可运行", "符合规范", "有测试"],
+    "VERIFY": ["通过验证", "问题记录", "是否需要FIX"],
+    "FIX": ["问题修复", "是否重新VERIFY", "重试次数≤2"],
+    "SUMMARY": ["完成情况", "Token统计", "经验总结"]
+  },
+  "retry_policy": {
+    "max_retries": 2,
+    "backoff": "exponential",
+    "fallback_agent": "PM"
+  }
+}

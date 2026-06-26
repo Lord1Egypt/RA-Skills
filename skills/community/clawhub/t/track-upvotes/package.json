@@ -1,0 +1,20 @@
+{
+  "name": "@modelfitai/track-upvotes",
+  "version": "1.0.0",
+  "description": "Track Product Hunt launch upvotes, comments, and daily ranking in real-time — get Telegram alerts when you move up the leaderboard.",
+  "keywords": ["openclaw", "skill", "product-hunt", "launch", "tracking", "upvotes", "growth"],
+  "author": "ModelFitAI <skills@modelfitai.com>",
+  "license": "MIT",
+  "homepage": "https://modelfitai.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelfitai/openclaw-skills"
+  },
+  "main": "track-upvotes.js",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "openclaw": {
+    "skill": true,
+    "requires": {}
+  }
+}

@@ -1,0 +1,36 @@
+# Skill Meta Data
+# 技能元数据
+
+meta:
+  name: "strategy-consultant"
+  version: "1.0.0"
+  description: "战略顾问技能库 - 包含专家库、工具、模板"
+  
+  # 归属信息
+  owner_agent: "strategy-advisor"
+  managed_by: "sub-agent-registry"
+  
+  # 同步策略
+  sync:
+    auto_sync: true
+    version_check: "strict"
+    backup_old_version: true
+  
+  # 依赖
+  dependencies:
+    required: []
+    optional: []
+  
+  # 资源需求
+  resources:
+    disk_space: "2MB"
+    memory_runtime: "5MB"
+
+# 更新日志
+changelog:
+  - version: "1.0.0"
+    date: "2026-02-18"
+    changes:
+      - "初始版本"
+      - "集成专家库"
+      - "包含战略分析工具"

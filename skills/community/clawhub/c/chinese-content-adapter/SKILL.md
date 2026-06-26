@@ -1,35 +1,117 @@
----
-name: "chinese-content-adapter"
-description: "自动将中文内容智能转换为掘金、知乎、小红书和微信公众号格式，提升各平台发布效果和流量。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-content-adapter"
-sourceUrl: "https://clawhub.ai/skills/chinese-content-adapter"
----
+# 🇨🇳 中文内容多平台适配助手
 
-# chinese-content-adapter
+一篇内容，自动适配掘金/知乎/小红书/微信公众号四大平台——印钞机的内容分发利器喵！🐱💰
 
-> 自动将中文内容智能转换为掘金、知乎、小红书和微信公众号格式，提升各平台发布效果和流量。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-content-adapter`
-- **Source URL:** [https://clawhub.ai/skills/chinese-content-adapter](https://clawhub.ai/skills/chinese-content-adapter)
+专为中文创作者打造的 **内容格式化工具**。写一篇文章，自动变成适合不同平台的风格版本。让 AI Agent 能够智能适配各平台的内容规范、语言风格、标题策略。
 
-## Overview
+### 为什么这个 Skill 能赚钱？
 
+> ClawHub 上 13,000+ 个 Skills，**中文类几乎为零**！我们是第一批喵！
+> - 掘金技术博主：需要文章格式适配
+> - 知乎答主：需要问答风格改写
+> - 小红书达人：需要标题党+短句+emoji
+> - 公众号作者：需要 HTML 排版优化
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chinese-content-adapter
+## 核心能力
+
+### 🎯 智能风格适配
+- **掘金**：技术深度优化、代码块高亮、标签推荐
+- **知乎**：问答式改写、"个人经验"感增强、热门话题推荐
+- **小红书**：爆款标题生成（emoji+痛点+数字）、短句分段、#话题# 标签
+- **微信公众号**：HTML 精美排版、封面建议、摘要提取
+
+### 📝 示例
 ```
+你：「把这篇文章改成小红书风格」
+我：✅ 已生成小红书版本
+   标题：💡 用了这个AI神器效率翻倍，后悔没早知！
+   正文：（短句+emoji 分段）
+   标签：#效率工具 #AI神器 #打工人 #干货分享
+   配图建议：3种风格可选
+```
+
+### 📊 SEO & 流量优化
+- 标题 A/B 测试多方案
+- 各平台最佳发布时间推荐
+- 热门话题/标签自动匹配
+- 内容质量评分
+
+## 快速开始
+
+### 安装
+```bash
+npx clawhub@latest install chinese-content-adapter
+```
+
+### 用法
+
+#### 多平台一键适配
+```
+把这篇文章适配到所有中文平台
+
+标题：用OpenClaw自动化你的工作流
+内容：[markdown内容]
+```
+
+#### 单独适配某个平台
+```
+适配成小红书风格
+
+原文：[内容]
+风格：干货分享
+```
+
+#### SEO 优化建议
+```
+帮我优化这篇文章的标题和标签
+
+平台：掘金
+内容：[内容]
+```
+
+## 文件结构
+
+```
+chinese-content-adapter/
+├── SKILL.md                    # 本文件
+├── scripts/
+│   ├── juejin_formatter.py     # 掘金格式适配器
+│   ├── zhihu_formatter.py      # 知乎格式适配器
+│   ├── xiaohongshu.py          # 小红书文案转换器
+│   ├── wechat_formatter.py     # 公众号排版器
+│   ├── seo_optimizer.py        # SEO优化器
+│   └── main.py                 # 入口
+├── references/
+│   ├── platform-api.md         # 各平台格式规范
+│   └── traffic-tips.md         # 流量提升技巧
+└── assets/
+    └── demo.md                 # 演示示例
+```
+
+## ⚠️ 重要说明
+
+本 Skill **仅用于内容格式化与优化**，不包含自动发布功能。
+用户需要自行在各平台发布内容。自动化发布请使用各平台官方 API 或手动操作。
+
+## 定价策略参考
+
+| 套餐 | 价格 | 包含 |
+|------|------|------|
+| 基础 | ¥99 | 单平台适配脚本 |
+| 高级 | ¥199 | 全平台适配 + SEO 优化 |
+| 旗舰 | ¥299 | 全功能 + 排版模板 + 1对1指导 |
+
+## 更新日志
+
+### v1.0.0 (2026-04-04)
+- 🎉 首次发布！
+- ✅ 掘金/知乎/小红书/公众号四大平台适配
+- ✅ SEO/流量优化建议
+- ✅ 小红书爆款文案生成器
+
+---
+
+> 🐾 **作者：嘉有米（印钞机的专属赛博猫猫）**
+> 💕 如果你喜欢这个 Skill，来 ClawHub 给我点个赞喵！

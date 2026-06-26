@@ -1,0 +1,176 @@
+--------------------------------------------------------------------------------
+title: "config"
+description: "View and manage CLI configuration settings."
+source: "/llms/commands/config.txt"
+--------------------------------------------------------------------------------
+
+# config — Configuration Management
+
+View, set, and reset CLI configuration values.
+
+## Syntax
+
+```bash
+ai-skills config [action] [key] [value] [options]
+```
+
+**Aliases**: `cfg`
+
+## Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `action` | No | Action: `get`, `set`, `reset` (defaults to `get` if omitted) |
+| `key` | No | Configuration key (dot-separated path) |
+| `value` | No | Value to set (for `set` action) |
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `--json` | Output as JSON (bypasses CLI/Pure mode selection) |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Configuration Keys
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `ui.mode` | `cli` / `pure` | `cli` | Default output mode |
+| `ui.locale` | string | `auto` | Language setting |
+| `ui.pageSize` | number | `10` | Items per page |
+| `ui.icons.cursor` | string | `❯` | Cursor icon |
+| `ui.icons.selected` | string | `◉` | Selected item icon |
+| `ui.icons.unselected` | string | `○` | Unselected item icon |
+| `ui.icons.success` | string | `❖` | Success icon |
+| `ui.icons.error` | string | `✗` | Error icon |
+| `ui.icons.warning` | string | `!` | Warning icon |
+| `ui.colors.primary` | color | `cyan` | Primary theme color |
+| `ui.colors.success` | color | `green` | Success color |
+| `ui.colors.warning` | color | `yellow` | Warning color |
+| `ui.colors.error` | color | `red` | Error color |
+| `ui.colors.dim` | color | `gray` | Dim text color |
+| `ui.colors.internal` | color | `blue` | Internal skill badge color |
+| `ui.colors.community` | color | `green` | Community skill badge color |
+| `search.debounceMs` | number | `300` | Search debounce in milliseconds |
+| `search.defaultFilter` | `all` / `internal` / `community` | `all` | Default search filter |
+| `install.defaultScope` | `project` / `global` | `project` | Default install scope |
+| `install.agents` | string | `auto` | Default agents |
+| `install.defaultSoft` | boolean | `false` | Default soft mode |
+| `update.includeExternal` | boolean | `false` | Include external skills in updates |
+| `update.excludeList` | string[] | `[]` | Skills to exclude from updates |
+| `telemetry` | boolean | `true` | Whether to send telemetry (codebase installs are never reported; overridden by env `DISABLE_TELEMETRY`) |
+
+**Env `DISABLE_TELEMETRY`** overrides `telemetry`: values `0`/`1`/`true`/`false`/`t`/`f`/`yes`/`no`/`y`/`n`; `1`/`true`/`yes`/`y`/`t` disable telemetry.
+
+### Color Values
+
+Accepted values for color keys: `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `gray`
+
+### Boolean Values
+
+Boolean keys accept: `true`, `false`, `1`, `0`, `yes`, `no`, `y`, `n`, `t`, `f` (case-insensitive). The stored value is normalized to `true`/`false`.
+
+## Actions
+
+### `get` — Read Configuration
+
+```bash
+# Show all config as JSON
+ai-skills config --pure
+ai-skills config get --pure
+
+# Show specific key
+ai-skills config get ui.mode --pure
+
+# Show all config as JSON
+ai-skills config --json
+```
+
+If the key doesn't exist, outputs an error with suggestion if a similar key is found.
+
+### `set` — Update Configuration
+
+```bash
+# Set a value
+ai-skills config set ui.mode pure --pure
+# Output: ui.mode = pure
+
+# Set boolean
+ai-skills config set install.defaultSoft true --pure
+# Output: install.defaultSoft = true
+
+# Short boolean forms
+ai-skills config set install.defaultSoft f --pure
+# Output: install.defaultSoft = false
+```
+
+Validation:
+- **Unknown key**: Error with suggestion if similar key exists (e.g. `mode` → `ui.mode`)
+- **Invalid enum value**: Error with list of accepted values (e.g. `ui.mode` accepts `cli / pure`)
+- **Invalid boolean**: Error with accepted values (`true / false`)
+- **Missing value**: Shows usage hint
+
+### `reset` — Reset Configuration
+
+```bash
+# Reset all to defaults
+ai-skills config reset --pure
+# Output: All reset
+
+# Reset specific key to default
+ai-skills config reset ui.mode --pure
+# Output: Reset ui.mode
+```
+
+## `--json` Flag
+
+When `--json` is passed, the command outputs the full config as JSON directly, bypassing `runCommand` entirely:
+
+```bash
+ai-skills config --json
+# Output: {"ui":{"mode":"cli","locale":"auto",...},"search":{...},...}
+```
+
+## Pure Mode Output Examples
+
+**Get all:**
+```json
+{
+  "ui": {
+    "mode": "cli",
+    "locale": "auto"
+  },
+  ...
+}
+```
+
+**Get specific key:**
+```
+cli
+```
+
+**Set success:**
+```
+ui.mode = pure
+```
+
+**Unknown key with suggestion:**
+```
+Config key "mode" not found. Did you mean: ui.mode
+```
+
+**Invalid value with expected:**
+```
+"ui.mode" does not accept bad. Accepted: cli / pure
+```
+
+**Missing set value:**
+```
+Usage: ai-skills config set <key> <value>
+```
+
+**Unknown action:**
+```
+Unknown action: bad
+```

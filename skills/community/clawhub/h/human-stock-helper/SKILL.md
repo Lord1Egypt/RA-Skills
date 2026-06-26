@@ -1,35 +1,236 @@
 ---
-name: "Human Stock Helper"
-description: "为股票交易者提供理性分析、技术计算和策略执行提醒。基于AKShare、yfinance、pandas-ta等工具，帮助用户冰冷、果决地执行交易决策。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/human-stock-helper"
-sourceUrl: "https://clawhub.ai/skills/human-stock-helper"
+name: human-stock-helper
+description: 为股票交易者提供理性分析、技术计算和策略执行提醒。基于AKShare、yfinance、pandas-ta等工具，帮助用户冰冷、果决地执行交易决策。
+homepage: https://github.com/openclaw/skills/human-stock-helper
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📈",
+        "requires": { "bins": ["python3"], "py_packages": ["akshare", "yfinance", "pandas", "pandas-ta"] },
+        "install":
+          [
+            {
+              "id": "pip",
+              "kind": "pip",
+              "packages": ["akshare", "yfinance", "pandas-ta"],
+              "label": "Install Python dependencies",
+            },
+          ],
+      },
+  }
 ---
 
-# Human Stock Helper
+# human-stock-helper
 
-> 为股票交易者提供理性分析、技术计算和策略执行提醒。基于AKShare、yfinance、pandas-ta等工具，帮助用户冰冷、果决地执行交易决策。
+**通用股票交易辅助工具** - 适用于任何A股/港股/美股。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/human-stock-helper`
-- **Source URL:** [https://clawhub.ai/skills/human-stock-helper](https://clawhub.ai/skills/human-stock-helper)
+> 为 Max 主人设计的冰冷交易机器。摒弃情感，纯粹理性，积小利。
+>
+> **能力升级(2026-03-02)：** 新增 Tavily 搜索 + stock-strategy-backtester 回测
 
-## Overview
+---
 
+## 🚀 工具调用能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/human-stock-helper
+| 工具 | 命令 | 用途 |
+|------|------|------|
+| AKShare | `python3 akshare` | A股实时/历史数据 |
+| Tavily搜索 | `mcporter call tavily.tavily_search` | 市场消息、目标价 |
+| Tavily研究 | `mcporter call tavily.tavily_research` | 深度研究报告 |
+| 回测工具 | `python scripts/backtest_strategy.py` | SMA/RSI策略回测 |
+
+### 增强分析流程
 ```
+1. Tavily搜索 → 获取最新消息和分析师目标价
+2. AKShare获取历史K线
+3. stock-strategy-backtester → 回测验证
+4. 综合给出策略建议
+```
+
+---
+
+## 核心功能
+
+1. **股票数据获取** - A股/港股/美股实时及历史行情
+2. **技术指标计算** - MACD、RSI、布林带等130+指标
+3. **交易策略分析** - 基于基本面+技术面+宏观面的综合决策
+4. **止盈止损计算** - 分批止盈、移动止损位设定
+5. **持仓跟踪** - 记录交易历史，持续优化策略
+
+## 使用场景
+
+### 场景1：买入前分析（任何股票）
+```
+"分析贵州茅台(600519)，准备买入"
+"分析腾讯控股(00700)，建仓价400港币，买100股"
+"分析特斯拉(TSLA)，当前适合买入吗？"
+```
+→ 执行完整分析：行业研究 → 基本面 → 技术面 → 给出操作建议
+
+### 场景2：持仓管理（任何持仓）
+```
+"我持有比亚迪(002594)，成本200元，现在怎么办？"
+"分析我的英伟达(NVDA)持仓"
+"中概互联ETF持仓分析"
+```
+→ 计算止盈位、止损位，给出分批减仓策略
+
+### 场景3：复盘记录
+```
+"记录今天卖出100股特变电工，价格31.50"
+"更新持仓：加仓茅台50股，价格1800"
+"清仓隆基绿能，记录收益"
+```
+→ 更新持仓记录，计算实际收益，记录交易日志
+
+---
+
+## 支持市场
+
+| 市场 | 代码格式 | 数据来源 |
+|------|---------|---------|
+| **中国A股** | 600089、000001、300750 | AKShare |
+| **港股** | 00700、09988、03690 | yfinance |
+| **美股** | AAPL、TSLA、NVDA | yfinance |
+
+---
+
+## 首个验证案例：特变电工(600089)
+
+### 场景2：持仓管理
+```
+"我持有特变电工，已经盈利6%，下一步怎么办？"
+```
+→ 计算止盈位、止损位，给出分批减仓策略
+
+### 场景3：复盘记录
+```
+"记录今天卖出100股特变电工，价格31.50"
+```
+→ 更新持仓记录，计算实际收益，记录交易日志
+
+## 分析框架
+
+### 1. 宏观环境
+- 政策面（行业政策、国家投资计划）
+- 资金面（市场流动性、北向资金）
+- 国际市场（美股、汇率、大宗商品）
+
+### 2. 行业分析
+- 产业链位置（上游原材料、下游客户）
+- 竞争格局（市场份额、护城河）
+- 行业周期（成长期、成熟期、衰退期）
+
+### 3. 公司基本面
+- 主营业务构成
+- 财务指标（营收、利润、毛利率、ROE）
+- 订单情况（在手订单、合同负债）
+- 风险因素
+
+### 4. 技术面分析
+- 趋势判断（均线、通道）
+- 支撑阻力位
+- 技术指标（MACD、RSI、KDJ、布林带）
+- 量价关系
+
+### 5. 交易策略
+- 仓位管理（轻仓试探→加仓→满仓）
+- 分批止盈（三档止盈位）
+- 移动止损（保本→成本线下方→盈利保护）
+- 时间止损（设定持有期限）
+
+## 核心原则
+
+1. **不贪恋** - 到达止盈位坚决减仓
+2. **不悔恨** - 止损后不再回头看
+3. **冰冷执行** - 预设策略，机械执行
+4. **积小利** - 不求暴利，稳定复利
+
+## 策略管理与执行分析工具
+
+### strategy_manager.py - 策略管理与交易纪律评估
+
+**核心功能：**
+- 保存完整交易策略（止盈/止损/执行计划）
+- 记录每笔交易执行
+- 自动对比实际执行 vs 策略建议
+- 计算交易纪律评分
+
+**命令：**
+```bash
+# 查看策略详情
+python3 strategy_manager.py strategy <code>
+
+# 记录执行并分析一致性
+python3 strategy_manager.py execute <code> <action> <price> <shares> [notes]
+
+# 查看执行分析
+python3 strategy_manager.py analysis [code]
+
+# 关闭策略（目标达成/止损）
+python3 strategy_manager.py close <code>
+```
+
+**示例：**
+```bash
+# 查看特变电工策略
+python3 strategy_manager.py strategy 600089
+
+# 记录到达第一止盈位的减仓操作
+python3 strategy_manager.py execute 600089 减仓 31.50 100 "到达第一止盈位"
+
+# 查看交易纪律评分
+python3 strategy_manager.py analysis
+```
+
+**执行一致性分析示例：**
+```
+📊 策略一致性分析
+------------------------------------------------------------
+✅ 执行与策略一致
+
+策略建议: 第1档止盈: 31.5元减仓100股
+实际操作: 减仓 100股 @ 31.5元
+
+分析: 完美执行第1档止盈策略
+------------------------------------------------------------
+```
+
+**偏离策略分析示例：**
+```
+📊 策略一致性分析
+------------------------------------------------------------
+⚠️  执行与策略有偏差
+
+策略建议: 等待 31.5元 再减仓
+实际操作: 减仓 100股 @ 30.8元
+
+偏差类型: 提前减仓
+分析: 未到达第一止盈位(31.5元)就减仓，可能错失后续涨幅
+
+💡 改进建议:
+   1. 如果担心回调，可考虑减仓更少（如50股而非100股）
+   2. 或设置移动止损，而非提前止盈
+------------------------------------------------------------
+```
+
+**数据存储：**
+- `memory/stock-strategies.json` - 策略定义
+- `memory/stock-executions.json` - 执行记录与纪律评分
+
+## 数据存储总览
+
+| 文件 | 用途 |
+|------|------|
+| `memory/stock-analysis-{code}.md` | 详细分析报告 |
+| `memory/stock-positions.json` | 当前持仓 |
+| `memory/stock-trades.json` | 交易历史 |
+| `memory/stock-strategies.json` | 策略定义 |
+| `memory/stock-executions.json` | 执行记录与纪律评分 |
+
+## 版本记录
+
+- v0.1.2 (2026-02-28) - 新增策略管理模块，支持策略-执行对比分析和交易纪律评分
+- v0.1.1 (2026-02-28) - 新增持仓管理系统，支持增删改查和盈亏计算
+- v0.1.0 (2026-02-28) - 初始版本，完成首笔交易分析（特变电工600089）

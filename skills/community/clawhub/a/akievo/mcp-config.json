@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "akievo": {
+      "url": "https://mcp.akievo.com",
+      "transport": "http",
+      "headers": {
+        "Authorization": "Bearer YOUR_AKIEVO_API_KEY"
+      }
+    }
+  }
+}

@@ -1,35 +1,45 @@
 ---
-name: "Agent Health Monitor"
-description: "Monitors agent health status and detects failures for fault-tolerant agent systems. **Trigger scenarios:** - User asks about agent health or status - User me..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-health-monitor"
-sourceUrl: "https://clawhub.ai/skills/agent-health-monitor"
+name: agent-health-monitor
+description: |
+  Monitors agent health status and detects failures for fault-tolerant agent systems.
+  
+  **Trigger scenarios:**
+  - User asks about agent health or status
+  - User mentions "check agents", "agent failure", "health check"
+  - System needs to detect unresponsive agents
+  - Fault tolerance monitoring required
 ---
 
 # Agent Health Monitor
 
-> Monitors agent health status and detects failures for fault-tolerant agent systems. **Trigger scenarios:** - User asks about agent health or status - User me...
+Monitors agent and session health to detect failures and ensure system reliability.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-health-monitor`
-- **Source URL:** [https://clawhub.ai/skills/agent-health-monitor](https://clawhub.ai/skills/agent-health-monitor)
+## Usage
 
-## Overview
+```javascript
+const monitor = require('./skills/agent-health-monitor');
 
+// Check all agents health
+const health = await monitor.checkHealth();
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-health-monitor
+// Get failed agents
+const failed = await monitor.getFailedAgents();
+
+// Monitor continuously
+monitor.startMonitoring(30000); // Check every 30s
 ```
+
+## Features
+
+- **Session Status Check**: Verifies active sessions
+- **Agent Liveness Detection**: Detects unresponsive agents
+- **Resource Monitoring**: Tracks CPU/memory usage
+- **Failure Alerts**: Notifies on detected failures
+
+## Output
+
+Returns a health report with:
+- Total agents/sessions count
+- Healthy vs unhealthy count
+- Failed agents list
+- Resource usage summary

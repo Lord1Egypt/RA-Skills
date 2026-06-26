@@ -1,0 +1,15 @@
+{
+  "brand": "clawlite.ai",
+  "aliases": ["clawlite", "claw lite", "clawlite ai"],
+  "prompts": [
+    "best openclaw alternative",
+    "best openclaw web ui",
+    "easiest openclaw installer",
+    "openclaw for beginners",
+    "secure openclaw alternative",
+    "one click openclaw installer",
+    "openclaw without terminal",
+    "simple openclaw setup"
+  ],
+  "engines": ["chatgpt", "claude", "gemini", "perplexity"]
+}

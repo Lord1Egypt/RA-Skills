@@ -1,0 +1,6 @@
+{
+  "FB_PAGE_ACCESS_TOKEN": "FB_PAGE_ACCESS_TOKEN",
+  "FB_APP_ID": "(OPTIONAL) YOUR_APP_ID_HERE",
+  "FB_APP_SECRET": "(OPTIONAL) YOUR_APP_SECRET_HERE",
+  "description": "Replace the placeholder values with your actual Facebook credentials. Never commit this file with real secrets to version control."
+}

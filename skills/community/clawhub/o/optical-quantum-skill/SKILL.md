@@ -1,35 +1,21 @@
 ---
-name: "Tenqua OpticalQuantumSkill"
-description: "Simulates a quantum kernel using optical fiber storage and linear optics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/optical-quantum-skill"
-sourceUrl: "https://clawhub.ai/skills/optical-quantum-skill"
+name: optical-quantum-kernel
+description: Simulates a quantum kernel using optical fiber storage and linear optics.
+author: tempguest
+version: 0.1.0
+license: MIT
 ---
 
-# Tenqua OpticalQuantumSkill
+# Optical Quantum Kernel Skill
 
-> Simulates a quantum kernel using optical fiber storage and linear optics.
+This skill simulates a photonic quantum computer that uses optical fibers for storage and linear optics for computation.
+It calculates the quantum kernel (similarity) between two data vectors by encoding them into optical phases, passing them through simulated fibers (with loss), and interfering them.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/optical-quantum-skill`
-- **Source URL:** [https://clawhub.ai/skills/optical-quantum-skill](https://clawhub.ai/skills/optical-quantum-skill)
+## Security Features
+- **Resource Bounding**: Capped at 8 modes to prevent resource exhaustion.
+- **Input Validation**: Strict checks on input vector dimensions and limits.
+- **Physics-Based Constraints**: Includes attenuation and phase noise for realism.
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/optical-quantum-skill
-```
+- `simulate`: Run the quantum kernel simulation on two input vectors.

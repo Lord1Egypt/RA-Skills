@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content-inner > *:not(.text) {
+    flex-shrink: 0;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: calc(var(--spacing) * 2);
+}
+
+.title {
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: calc(var(--spacing) * 4);
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > * {
+    margin: 0;
+}
+
+.card-footer {
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5);
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: calc(var(--spacing) * 3);
+}
+
+/* Apple Notes Theme */
+.card-apple-notes {
+  --notes-bg: #ffffff;
+  --notes-text: #333333;
+  --notes-title-color: rgb(248, 199, 68);
+  --notes-accent: #c7212d;
+  --notes-border: rgba(0, 0, 0, 0.1);
+  --notes-quote-color: #666666;
+  --notes-code-bg: rgba(0, 0, 0, 0.05);
+  --notes-mark-bg: rgb(254, 225, 115);
+}
+
+.card-apple-notes {
+  background-color: var(--notes-bg);
+  color: var(--notes-text);
+  padding: calc(var(--spacing) * 5);
+  position: relative;
+  font-size: calc(var(--spacing) * 4);
+}
+
+/* Header - 备忘录导航栏 */
+.card-apple-notes .card-header {
+  color: var(--notes-title-color);
+  font-size: calc(var(--spacing) * 4);
+  height: calc(var(--spacing) * 7.5);
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.card-apple-notes .card-header-left {
+  display: flex;
+  gap: calc(var(--spacing) * 1.5);
+  align-items: center;
+}
+
+.card-apple-notes .card-header-right {
+  display: flex;
+  gap: calc(var(--spacing) * 3);
+  align-items: center;
+}
+
+.card-apple-notes .card-header .text {
+  height: calc(var(--spacing) * 6);
+  line-height: calc(var(--spacing) * 6);
+  font-weight: 400;
+}
+
+.card-apple-notes .card-header .arrow,
+.card-apple-notes .card-header .share,
+.card-apple-notes .card-header .more {
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+}
+
+.card-apple-notes .card-header svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card-apple-notes h1 strong {
+  color: var(--notes-accent);
+}
+
+.card-apple-notes h2 {
+  color: var(--notes-text);
+}
+
+.card-apple-notes h3 {
+  color: var(--notes-text);
+  font-size: calc(var(--spacing) * 4);
+}
+
+.card-apple-notes ul > li {
+  margin-top: calc(var(--spacing) * 2);
+  list-style: disc;
+}
+
+.card-apple-notes blockquote {
+  padding: calc(var(--spacing) * 0.25) 0;
+  border-left: 3px solid var(--notes-border);
+  padding-left: calc(var(--spacing) * 4);
+  margin-top: calc(var(--spacing) * 4);
+  color: var(--notes-quote-color);
+  font-style: italic;
+}
+
+.card-apple-notes pre {
+  background-color: var(--notes-code-bg);
+  border-radius: 6px;
+  padding: calc(var(--spacing) * 3);
+  font-size: calc(var(--spacing) * 3.25);
+  overflow-x: auto;
+}
+
+.card-apple-notes code:not(pre code) {
+  background-color: var(--notes-code-bg);
+  padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+  border-radius: 4px;
+  font-size: calc(var(--spacing) * 3.6);
+}
+
+.card-apple-notes mark {
+  background: var(--notes-mark-bg);
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+    </style>
+</head>
+<body>
+    <div class="card card-apple-notes">
+        <section class="card-header">
+            <section class="card-header-left">
+                <section class="arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </section>
+                <section class="text">备忘录</section>
+            </section>
+            <section class="card-header-right">
+                <section class="share">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v13" />
+                        <path d="m16 6-4-4-4 4" />
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                    </svg>
+                </section>
+                <section class="more">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M17 12h.01" />
+                        <path d="M12 12h.01" />
+                        <path d="M7 12h.01" />
+                    </svg>
+                </section>
+            </section>
+        </section>
+        <section class="card-content">
+            {{MAIN_TITLE}}
+            {{TITLE}}
+            <div class="text">{{TEXT}}</div>
+        </section>
+        <section class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </section>
+    </div>
+</body>
+</html>

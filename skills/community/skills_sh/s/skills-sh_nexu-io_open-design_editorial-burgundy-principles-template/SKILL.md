@@ -1,35 +1,71 @@
 ---
-name: "editorial-burgundy-principles-template"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/editorial-burgundy-principles-template"
-sourceUrl: "https://skills.sh/nexu-io/open-design/editorial-burgundy-principles-template"
+name: editorial-burgundy-principles-template
+description: |
+  Editorial studio deck template in burgundy / blush / muted-gold palette.
+  Use when users ask for premium manifesto or culture slides with pill tags,
+  large typographic statements, principle cards, and guided keyboard/click navigation.
+triggers:
+  - "editorial burgundy template"
+  - "studio salon deck"
+  - "principles manifesto slides"
+  - "pink burgundy premium presentation"
+  - "酒红粉金编辑风模板"
+od:
+  mode: template
+  surface: video
+  type: hyperframes
+  platform: desktop
+  preview:
+    type: html
+    entry: index.html
+    reload: debounce-100
+  outputs:
+    primary: index.html
+    secondary:
+      - template.html
+      - example.html
+  example_prompt: "Create a premium editorial deck in burgundy and blush with a tag cloud slide and an eight-principles card grid."
+  capabilities_required:
+    - file_write
 ---
 
-# editorial-burgundy-principles-template
+# Editorial Burgundy Principles Template
 
-> Indexed by skills.sh from nexu-io/open-design
+A three-slide editorial deck for culture narratives, strategy storytelling, and internal manifestos.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/editorial-burgundy-principles-template`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/editorial-burgundy-principles-template](https://skills.sh/nexu-io/open-design/editorial-burgundy-principles-template)
+## Resource map
 
-## Overview
+```text
+editorial-burgundy-principles-template/
+├── SKILL.md
+├── assets/
+│   └── template.html
+├── references/
+│   └── checklist.md
+└── example.html
+```
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/nexu-io/open-design/editorial-burgundy-principles-template
+1. Start from `assets/template.html`.
+2. Keep the 3-slide sequence:
+   - numeric headline
+   - studio tags + title lockup
+   - eight-principles card grid
+3. Replace copy while preserving card and tag hierarchy.
+4. Keep interactions:
+   - Prev / Next buttons
+   - dot navigation
+   - keyboard navigation (`ArrowLeft` / `ArrowRight`)
+5. Keep HTML self-contained and sandbox-safe.
+
+## Output contract
+
+Emit one concise orientation sentence and one HTML artifact:
+
+```xml
+<artifact identifier="editorial-burgundy-principles" type="text/html" title="Editorial Burgundy Principles Deck">
+<!doctype html>
+<html>...</html>
+</artifact>
 ```

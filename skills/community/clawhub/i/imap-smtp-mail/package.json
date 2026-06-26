@@ -1,0 +1,32 @@
+{
+  "name": "imap-smtp-mail-skill",
+  "version": "1.0.4",
+  "description": "IMAP/SMTP email tool for OpenClaw. Works with Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, vip.188.com, and any standard IMAP/SMTP server.",
+  "main": "scripts/imap.js",
+  "scripts": {
+    "check": "node scripts/imap.js check",
+    "fetch": "node scripts/imap.js fetch",
+    "search": "node scripts/imap.js search"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "imap": "^0.8.19",
+    "mailparser": "^3.9.3",
+    "nodemailer": "^7.0.13",
+    "pdf-parse": "^2.4.5",
+    "xlsx": "^0.18.5"
+  },
+  "keywords": [
+    "imap",
+    "smtp",
+    "email",
+    "163.com",
+    "126.com",
+    "188.com",
+    "gmail",
+    "outlook",
+    "skill"
+  ],
+  "author": "Mohamed HAMMANE",
+  "license": "MIT"
+}

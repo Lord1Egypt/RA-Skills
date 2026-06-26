@@ -1,0 +1,2 @@
+# Python dependencies for paper trading scripts
+# No external packages needed — all scripts use stdlib only

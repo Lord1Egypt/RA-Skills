@@ -1,0 +1,14 @@
+Slug:
+xiaohongshu-founder-growth-writer
+
+Display name:
+Xiaohongshu Founder Growth Writer
+
+Version:
+1.3.0
+
+Tags:
+xiaohongshu, rednote, founder-marketing, chinese-copywriting, localization, social-media, personal-brand, content-writing
+
+Changelog:
+Reformatted the skill to match stronger top-listing patterns with a sharper first screen, new “Use when” and “Output” sections, and a more skimmable tool-like structure.

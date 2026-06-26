@@ -1,35 +1,322 @@
 ---
-name: "paddleocr-vl-locally"
-description: "Complex document parsing with PaddleOCR. Intelligently converts complex PDFs and document images into Markdown and JSON files that preserve the original stru..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paddleocr-vl-locally"
-sourceUrl: "https://clawhub.ai/skills/paddleocr-vl-locally"
+name: paddleocr-vl-locally
+description: Complex document parsing with PaddleOCR. Intelligently converts complex PDFs and document images into Markdown and JSON files that preserve the original structure.
+metadata:
+  openclaw:
+    requires:
+      env:
+        - PADDLEOCR_DOC_PARSING_API_URL
+      bins:
+        - python
+    primaryEnv: PADDLEOCR_DOC_PARSING_API_URL
+    emoji: "📄"
 ---
 
-# paddleocr-vl-locally
+# PaddleOCR Document Parsing Skill
 
-> Complex document parsing with PaddleOCR. Intelligently converts complex PDFs and document images into Markdown and JSON files that preserve the original stru...
+## When to Use This Skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paddleocr-vl-locally`
-- **Source URL:** [https://clawhub.ai/skills/paddleocr-vl-locally](https://clawhub.ai/skills/paddleocr-vl-locally)
+**Use Document Parsing for**:
+- Documents with tables (invoices, financial reports, spreadsheets)
+- Documents with mathematical formulas (academic papers, scientific documents)
+- Documents with charts and diagrams
+- Multi-column layouts (newspapers, magazines, brochures)
+- Complex document structures requiring layout analysis
+- Any document requiring structured understanding
 
-## Overview
-
+**Use Text Recognition instead for**:
+- Simple text-only extraction
+- Quick OCR tasks where speed is critical
+- Screenshots or simple images with clear text
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+Install Python dependencies before using this skill. From the skill directory (`skills/paddleocr-doc-parsing`):
+
 ```bash
-hermes skills install clawhub/paddleocr-vl-locally
+pip install -r scripts/requirements.txt
 ```
+
+**Optional** — for document optimization and `split_pdf.py` (page extraction):
+
+```bash
+pip install -r scripts/requirements-optimize.txt
+```
+
+## How to Use This Skill
+
+**⛔ MANDATORY RESTRICTIONS - DO NOT VIOLATE ⛔**
+
+1. **ONLY use PaddleOCR Document Parsing API** - Execute the script `python scripts/vl_caller.py`
+2. **NEVER parse documents directly** - Do NOT parse documents yourself
+3. **NEVER offer alternatives** - Do NOT suggest "I can try to analyze it" or similar
+4. **IF API fails** - Display the error message and STOP immediately
+5. **NO fallback methods** - Do NOT attempt document parsing any other way
+
+If the script execution fails (API not configured, network error, etc.):
+- Show the error message to the user
+- Do NOT offer to help using your vision capabilities
+- Do NOT ask "Would you like me to try parsing it?"
+- Simply stop and wait for user to fix the configuration
+
+### Basic Workflow
+
+1. **Execute document parsing**:
+   ```bash
+   python scripts/vl_caller.py --file-url "URL provided by user" --pretty
+   ```
+   Or for local files:
+   ```bash
+   python scripts/vl_caller.py --file-path "file path" --pretty
+   ```
+
+   **Optional: explicitly set file type**:
+   ```bash
+   python scripts/vl_caller.py --file-url "URL provided by user" --file-type 0 --pretty
+   ```
+   - `--file-type 0`: PDF
+   - `--file-type 1`: image
+   - If omitted, the service can infer file type from input.
+
+   **Default behavior: save raw JSON to a temp file**:
+   - If `--output` is omitted, the script saves automatically under the system temp directory
+   - Default path pattern: `<system-temp>/paddleocr/doc-parsing/results/result_<timestamp>_<id>.json`
+   - If `--output` is provided, it overrides the default temp-file destination
+   - If `--stdout` is provided, JSON is printed to stdout and no file is saved
+   - In save mode, the script prints the absolute saved path on stderr: `Result saved to: /absolute/path/...`
+   - In default/custom save mode, read and parse the saved JSON file before responding
+   - In save mode, always tell the user the saved file path and that full raw JSON is available there
+   - Use `--stdout` only when you explicitly want to skip file persistence
+
+2. **The output JSON contains COMPLETE content** with all document data:
+   - Headers, footers, page numbers
+   - Main text content
+   - Tables with structure
+   - Formulas (with LaTeX)
+   - Figures and charts
+   - Footnotes and references
+   - Seals and stamps
+   - Layout and reading order
+
+   **Input type note**:
+   - Supported file types depend on the model and endpoint configuration.
+   - Always follow the file type constraints documented by your endpoint API.
+
+3. **Extract what the user needs** from the output JSON using these fields:
+   - Top-level `text`
+   - `result[n].markdown`
+   - `result[n].prunedResult`
+
+### IMPORTANT: Complete Content Display
+
+**CRITICAL**: You must display the COMPLETE extracted content to the user based on their needs.
+
+- The output JSON contains ALL document content in a structured format
+- In save mode, the raw provider result can be inspected in the saved JSON file
+- **Display the full content requested by the user**, do NOT truncate or summarize
+- If user asks for "all text", show the entire `text` field
+- If user asks for "tables", show ALL tables in the document
+- If user asks for "main content", filter out headers/footers but show ALL body text
+
+**What this means**:
+- **DO**: Display complete text, all tables, all formulas as requested
+- **DO**: Present content using these fields: top-level `text`, `result[n].markdown`, and `result[n].prunedResult`
+- **DON'T**: Truncate with "..." unless content is excessively long (>10,000 chars)
+- **DON'T**: Summarize or provide excerpts when user asks for full content
+- **DON'T**: Say "Here's a preview" when user expects complete output
+
+**Example - Correct**:
+```
+User: "Extract all the text from this document"
+Agent: I've parsed the complete document. Here's all the extracted text:
+
+[Display entire text field or concatenated regions in reading order]
+
+Document Statistics:
+- Total regions: 25
+- Text blocks: 15
+- Tables: 3
+- Formulas: 2
+Quality: Excellent (confidence: 0.92)
+```
+
+**Example - Incorrect**:
+```
+User: "Extract all the text"
+Agent: "I found a document with multiple sections. Here's the beginning:
+'Introduction...' (content truncated for brevity)"
+```
+
+### Understanding the JSON Response
+
+The output JSON uses an envelope wrapping the raw API result:
+
+```json
+{
+  "ok": true,
+  "text": "Full markdown/HTML text extracted from all pages",
+  "result": { ... },  // raw provider response
+  "error": null
+}
+```
+
+**Key fields**:
+- `text` — extracted markdown text from all pages (use this for quick text display)
+- `result` - raw provider response object
+- `result[n].prunedResult` - structured parsing output for each page (layout/content/confidence and related metadata)
+- `result[n].markdown` — full rendered page output in markdown/HTML
+
+> Raw result location (default): the temp-file path printed by the script on stderr
+
+### Usage Examples
+
+**Example 1: Extract Full Document Text**
+```bash
+python scripts/vl_caller.py \
+  --file-url "https://example.com/paper.pdf" \
+  --pretty
+```
+
+Then use:
+- Top-level `text` for quick full-text output
+- `result[n].markdown` when page-level output is needed
+
+**Example 2: Extract Structured Page Data**
+```bash
+python scripts/vl_caller.py \
+  --file-path "./financial_report.pdf" \
+  --pretty
+```
+
+Then use:
+- `result[n].prunedResult` for structured parsing data (layout/content/confidence)
+- `result[n].markdown` for rendered page content
+
+**Example 3: Print JSON Without Saving**
+```bash
+python scripts/vl_caller.py \
+  --file-url "URL" \
+  --stdout \
+  --pretty
+```
+
+Then return:
+- Full `text` when user asks for full document content
+- `result[n].prunedResult` and `result[n].markdown` when user needs complete structured page data
+
+### First-Time Configuration
+
+**When API is not configured**:
+
+The error will show:
+```
+CONFIG_ERROR: PADDLEOCR_DOC_PARSING_API_URL not configured. Set it to your Triton endpoint, e.g.: http://10.0.0.1:8020/v2/models/layout-parsing/infer
+```
+
+**Configuration workflow**:
+
+1. **Show the exact error message** to the user.
+
+2. **Guide the user to configure**:
+   - Set `PADDLEOCR_DOC_PARSING_API_URL` to the full Triton inference endpoint URL.
+     Format: `http://<host>:<port>/v2/models/layout-parsing/infer`
+     Example: `http://10.0.133.33:8020/v2/models/layout-parsing/infer`
+   - If the service is behind an nginx with Basic Auth, also set:
+     - `PADDLEOCR_BASIC_AUTH_USER` — nginx username (e.g. `ocr_admin`)
+     - `PADDLEOCR_BASIC_AUTH_PASSWORD` — nginx password
+   - `PADDLEOCR_ACCESS_TOKEN` is **not required** for local deployments. Leave it empty or omit it.
+   - Optionally set `PADDLEOCR_DOC_PARSING_TIMEOUT` (default: 600 seconds).
+   - In OpenClaw, set environment variables in `~/.openclaw/openclaw.json`:
+     ```json
+     {
+       "skills": {
+         "entries": {
+           "paddleocr-doc-parsing": {
+             "enabled": true,
+             "env": {
+               "PADDLEOCR_DOC_PARSING_API_URL": "http://10.0.133.33:8020/v2/models/layout-parsing/infer",
+               "PADDLEOCR_BASIC_AUTH_USER": "ocr_admin",
+               "PADDLEOCR_BASIC_AUTH_PASSWORD": "your_password"
+             }
+           }
+         }
+       }
+     }
+     ```
+
+3. **Ask the user to confirm the environment is configured**.
+
+4. **Retry only after confirmation**:
+   - Once the user confirms the environment variables are set, retry the original parsing task.
+
+### Handling Large Files
+
+There is no file size limit for the API. For PDFs, the maximum is 100 pages per request.
+
+**Tips for large files**:
+
+#### Use URL for Large Local Files (Recommended)
+For very large local files, prefer `--file-url` over `--file-path` to avoid base64 encoding overhead:
+```bash
+python scripts/vl_caller.py --file-url "https://your-server.com/large_file.pdf"
+```
+
+#### Process Specific Pages (PDF Only)
+If you only need certain pages from a large PDF, extract them first:
+```bash
+# Extract pages 1-5
+python scripts/split_pdf.py large.pdf pages_1_5.pdf --pages "1-5"
+
+# Mixed ranges are supported
+python scripts/split_pdf.py large.pdf selected_pages.pdf --pages "1-5,8,10-12"
+
+# Then process the smaller file
+python scripts/vl_caller.py --file-path "pages_1_5.pdf"
+```
+
+### Error Handling
+
+**Service unreachable**:
+```
+error: API request failed: ...
+```
+→ Check that the Triton service is running and `PADDLEOCR_DOC_PARSING_API_URL` is correct
+
+**Request timeout**:
+```
+error: API request timed out after 600s
+```
+→ Increase `PADDLEOCR_DOC_PARSING_TIMEOUT` or check server load
+
+**Unsupported format**:
+```
+error: Unsupported file format
+```
+→ File format not supported, convert to PDF/PNG/JPG
+
+## Important Notes
+
+- **The script NEVER filters content** - It always returns complete data
+- **The AI agent decides what to present** - Based on user's specific request
+- **All data is always available** - Can be re-interpreted for different needs
+- **No information is lost** - Complete document structure preserved
+
+## Reference Documentation
+
+- `references/output_schema.md` - Output format specification
+
+> **Note**: Model version and capabilities are determined by your Triton deployment (`PADDLEOCR_DOC_PARSING_API_URL`).
+
+Load these reference documents into context when:
+- Debugging complex parsing issues
+- Need to understand output format
+- Working with provider API details
+
+## Testing the Skill
+
+To verify the skill is working properly:
+```bash
+python scripts/smoke_test.py
+```
+
+This tests configuration and optionally API connectivity.

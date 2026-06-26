@@ -1,35 +1,87 @@
+﻿---
+name: customer-visit-prep
+description: >
+  客户拜访一站式准备。输入客户名+背景+拜访目的，自动输出客户调研报告+拜访策略+话术+注意事项。
+  触发词：拜访准备、见客户、拜访建议、拜访策略、约访准备。
+version: 1.0.1
+author: Dick Dunkel
+license: MIT-0
+tags: [sales, meddic, visit-prep, preparation]
+category: sales
+created_by: agent
 ---
-name: "Customer Visit Prep"
-description: "客户拜访一站式准备。输入客户名+背景+拜访目的，自动输出客户调研报告+拜访策略+话术+注意事项。 触发词：拜访准备、见客户、拜访建议、拜访策略、约访准备。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/customer-visit-prep"
-sourceUrl: "https://clawhub.ai/skills/customer-visit-prep"
----
 
-# Customer Visit Prep
+# 客户拜访一站式准备
 
-> 客户拜访一站式准备。输入客户名+背景+拜访目的，自动输出客户调研报告+拜访策略+话术+注意事项。 触发词：拜访准备、见客户、拜访建议、拜访策略、约访准备。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/customer-visit-prep`
-- **Source URL:** [https://clawhub.ai/skills/customer-visit-prep](https://clawhub.ai/skills/customer-visit-prep)
+用户提到以下意图时触发：
+- "我要拜访XX客户"
+- "帮我准备一下拜访XX的材料"
+- "明天见XX客户，给我一些建议"
+- "给我做个拜访准备"
 
-## Overview
+## 必需输入
 
+| 输入项 | 必需 | 说明 |
+|--------|------|------|
+| 客户名称 | ✅ | 公司全称或简称 |
+| 联系人/部门 | 推荐 | 拜访谁、什么部门 |
+| 拜访背景 | 推荐 | 首次/回访、前期交流内容、项目阶段 |
+| 拜访目的 | 推荐 | 本次想达成的目标 |
+| 我方产品方向 | 推荐 | ONN/IOC/EA/数字孪生等 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/customer-visit-prep
-```
+如果用户未提供推荐项，主动追问 1-2 个关键信息后再输出。
+
+## 输出规范
+
+### 输出结构（按顺序）
+
+#### 一、客户速览（1段）
+- 公司概况、行业地位、近期动态
+- 来源：优先使用记忆中的客户信息，不足时联网搜索补充
+
+#### 二、拜访策略（结构化）
+
+| 维度 | 内容 |
+|------|------|
+| 拜访目标 | 本次要达成的 1-3 个具体目标 |
+| 开场话术 | 针对客户角色的开场白模板 |
+| 需求探询 | 基于 MEDDIC 的 3-5 个关键问题 |
+| 价值呈现 | FABE 法则：Feature → Advantage → Benefit → Evidence |
+| 预判异议 | 客户可能提出的 2-3 个疑虑及应对 |
+| 推进承诺 | 本次拜访结束时要争取的"下一步" |
+
+#### 三、注意事项
+- 讲什么 / 不讲什么
+- 禁忌话题
+- 客户决策链分析（如有信息）
+
+#### 四、参考材料清单
+- 需要带的方案/PPT/案例
+- 需要提前准备的演示内容
+
+### 输出格式
+- 默认输出 MD 文本，直接在对话中呈现
+- 如用户要求文档，生成 Word/MD 文件并通过企微发送
+
+## 联网搜索策略
+
+当客户信息不足时，搜索以下内容：
+1. `{客户名} 数字化` / `{客户名} 信息化建设`
+2. `{客户名} 招标 采购` — 了解近期采购动态
+3. `{客户名} 组织架构` / `{客户名} IT部门`
+4. `{客户名} {我方产品关键词}` — 是否已有竞品合作
+
+## 记忆联动
+
+- 拜访准备前，先检索 `memory/customers/{客户名}.md` 获取历史交互
+- 拜访完成后，提醒用户做拜访复盘（联动 Sales Review Manager 的 review-visit 场景）
+- 将本次拜访准备内容自动追加到客户记忆文件
+
+## 质量标准
+
+- ❌ 不输出空泛的通用建议（如"了解客户需求"）
+- ✅ 每条建议必须结合客户具体情况
+- ✅ 话术必须可直接使用，不需要用户二次加工
+- ✅ 异议应对必须给出具体话术，不是"需要灵活应对"

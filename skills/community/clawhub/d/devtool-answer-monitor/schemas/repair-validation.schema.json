@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Repair Validation",
+  "type": "object",
+  "required": ["action_id", "project", "action_type", "target_queries", "baseline_run_id", "followups", "conclusion"],
+  "properties": {
+    "action_id": {"type": "string"},
+    "project": {"type": "string"},
+    "action_type": {"type": "string"},
+    "target_queries": {"type": "array", "items": {"type": "string"}},
+    "baseline_run_id": {"type": "string"},
+    "followups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["checkpoint", "run_id", "observed_metrics"],
+        "properties": {
+          "checkpoint": {"enum": ["T+7", "T+14", "T+30"]},
+          "run_id": {"type": "string"},
+          "observed_metrics": {"type": "object"}
+        }
+      }
+    },
+    "expected_change": {"type": "object"},
+    "conclusion": {"enum": ["success", "mixed", "failed"]}
+  }
+}

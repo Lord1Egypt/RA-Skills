@@ -1,35 +1,179 @@
 ---
-name: "Meeting Prep Brief - 会前材料制作"
+name: meeting-prep
 description: "为重要会议制作结构化的会前材料（HTML网页 + 腾讯文档）。当用户提到「会前材料」「会议准备」「会前briefing」「meeting prep」「会议摘要」，或需要为即将到来的会议整理背景信息、议程、待确认事项时使用此 skill。适用于合作洽谈、商务拜访、项目评审、产学研对接等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-prep-brief"
-sourceUrl: "https://clawhub.ai/skills/meeting-prep-brief"
+description_zh: "结构化会前材料制作（背景调研 → HTML网页 → 腾讯文档）"
+description_en: "Create structured meeting prep briefs with research, agenda, and action items"
+version: 1.0.0
+author: Monica
 ---
 
-# Meeting Prep Brief - 会前材料制作
+# 会前材料制作 Skill
 
-> 为重要会议制作结构化的会前材料（HTML网页 + 腾讯文档）。当用户提到「会前材料」「会议准备」「会前briefing」「meeting prep」「会议摘要」，或需要为即将到来的会议整理背景信息、议程、待确认事项时使用此 skill。适用于合作洽谈、商务拜访、项目评审、产学研对接等场景。
+为重要会议制作**专业、结构化、可操作**的会前材料。输出为精美的 HTML 网页（可本地预览）+ 可选同步到腾讯文档（方便会中记录）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-prep-brief`
-- **Source URL:** [https://clawhub.ai/skills/meeting-prep-brief](https://clawhub.ai/skills/meeting-prep-brief)
+## 何时使用
 
-## Overview
+- 用户要参加一个重要会议，需要提前了解对方背景
+- 用户需要整理会议议程、待确认事项、沟通策略
+- 用户提到"会前材料"、"会议准备"、"briefing"等关键词
+- 商务合作洽谈、产学研对接、项目评审等正式场景
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meeting-prep-brief
+### Phase 1：需求理解
+
+1. **确认会议基本信息**
+   - 会议时间、对方机构/人员、我方参会人
+   - 会议目的和核心诉求
+   - 用户手头已有的资料（邮件、邀请函、往期材料、PPT等）
+
+2. **明确材料范围**
+   - 需要调研的背景信息有哪些？
+   - 有几个核心议题/合作机会需要分析？
+   - 是否需要沟通策略建议？
+
+### Phase 2：信息采集与整理
+
+1. **读取用户提供的资料**
+   - PDF、PPTX、DOCX 等文件 → 提取关键信息
+   - 使用 `python-pptx`、`PyPDF2` 等工具解析文件内容
+   - 如果用户提供了网页链接，使用 `web_fetch` 获取内容
+
+2. **在线调研补充**（按需）
+   - 使用 `web_search` 搜索对方机构/赛事/项目的公开信息
+   - 搜索相关行业背景、竞品信息等
+   - 验证和交叉核实关键事实
+
+3. **结构化整理**
+   - 提炼关键事实，去掉冗余
+   - 按逻辑分层组织（背景 → 关键信息 → 机会分析 → 行动项）
+   - 标注信息来源和确定性程度
+
+### Phase 3：生成会前材料
+
+#### 输出格式：HTML 网页
+
+使用精美的 HTML 模板，包含以下模块（根据实际情况裁剪）：
+
 ```
+会前材料结构
+├── 标题区（会议主题、时间、双方参会人）
+├── 一、对方背景速览
+│   ├── 基本面表格（名称、主办方、规模等）
+│   ├── 组织架构/关键人物
+│   └── 与我方已有的合作基础
+├── 二、核心议题/关键信息
+│   ├── 议题表格（时间、地点、规模等）
+│   ├── 议程结构
+│   └── 与我方直接相关的环节（高亮标注）
+├── 三、合作机会分析
+│   ├── 机会 A：（形式、价值、投入评估）
+│   ├── 机会 B：（形式、价值、投入评估）
+│   └── 历史参考（往期类似合作案例）
+├── 四、建议/选题方向（如适用）
+│   └── 方向对比表格（选题、切入点、差异化）
+├── 五、合作切入思路（如适用）
+│   └── 参与方式表格（方式、内容、投入）
+├── 六、会上待确认事项清单 ★ 核心
+│   ├── 🔴 紧急确认项（Checklist）
+│   ├── 🟢 探讨了解项（Checklist）
+│   └── 🔵 后续跟进项（Checklist）
+├── 七、沟通策略备忘
+│   └── 谈判要点、注意事项、双赢锚点
+└── 页脚（整理时间、内部使用标记）
+```
+
+#### HTML 设计规范
+
+```css
+/* 设计原则 */
+- 字体：系统字体栈（-apple-system, PingFang SC, Microsoft YaHei）
+- 背景：#f5f5f7 浅灰
+- 主色调：深蓝渐变 header + 白色卡片
+- 卡片：白底 + 圆角(12px) + 微阴影
+- 表格：斑马纹 + 圆角
+- 标签：彩色标签区分不同类型（蓝/绿/紫/橙/红）
+- Checklist：可勾选的待确认事项
+- 响应式：max-width 900px 居中
+- 字号：正文 15px，行高 1.7
+```
+
+**关键设计要素：**
+- 标题区使用深色渐变背景，一眼看到会议核心信息
+- 每个模块用白色卡片包裹，结构清晰
+- 重要信息用 `callout` 框高亮（背景色 + 左边框）
+- 待确认事项用 checkbox 格式，方便会后打勾
+- 沟通策略用引用块 + 警告图标
+- 表格使用斑马纹提高可读性
+
+### Phase 4：同步到腾讯文档（可选）
+
+如果用户需要在会中做记录：
+
+1. 将 HTML 内容转化为 Markdown 格式
+2. 通过腾讯文档 MCP（`create_smartcanvas_by_mdx`）创建智能文档
+3. 将文档链接提供给用户
+
+**注意**：需要用户已配置腾讯文档 MCP Token。
+
+### Phase 5：预览与迭代
+
+1. 启动本地 HTTP 服务器预览 HTML
+2. 向用户展示结果，收集修改意见
+3. 快速迭代调整
+
+## 信息采集技巧
+
+### 从 PPTX 提取信息
+
+```python
+from pptx import Presentation
+prs = Presentation('file.pptx')
+for slide in prs.slides:
+    for shape in slide.shapes:
+        if hasattr(shape, 'text') and shape.text.strip():
+            print(shape.text)
+```
+
+### 从 PDF 提取信息
+
+```python
+import PyPDF2
+reader = PyPDF2.PdfReader('file.pdf')
+for page in reader.pages:
+    print(page.extract_text())
+```
+
+### 网络搜索模式
+
+```
+# 搜索赛事/会议信息
+"{赛事名}" site:ccf.org.cn
+"{会议名}" 2026 议程
+
+# 搜索机构/人物背景
+"{机构名}" 官网 简介
+"{人名}" {机构名} 职位
+```
+
+## 写作风格
+
+- **信息密度高**：每一句话都要有信息量，不凑字数
+- **结构清晰**：用标题、表格、列表组织，不写长段落
+- **重点突出**：用标签、颜色、callout 突出关键信息
+- **可操作**：待确认事项写成 checklist，沟通策略给具体建议
+- **客观中性**：不过度美化或贬低任何一方
+- **标注不确定性**：对未证实的信息标注"待确认"
+
+## 注意事项
+
+- ⚠️ **时效性**：注意标注"距今 X 天"等时间提示
+- ⚠️ **竞争信息**：如果涉及竞品（如"腾讯 vs 网易"二选一），要在策略建议中特别提醒
+- ⚠️ **内部使用**：页脚标注"内部使用"，避免外泄
+- ⚠️ **信息分级**：区分"已确认"和"待确认"的信息，不要混淆
+- ⚠️ **双赢思维**：沟通策略应以双赢为导向，不是零和博弈
+
+## 参考资料
+
+- `references/html-template-guide.md` — HTML 模板设计规范与代码参考
+- `assets/meeting-prep-template.html` — 可直接使用的 HTML 模板骨架

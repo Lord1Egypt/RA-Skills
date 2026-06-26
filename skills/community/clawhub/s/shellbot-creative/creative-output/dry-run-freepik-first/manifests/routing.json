@@ -1,0 +1,158 @@
+{
+  "provider_order": [
+    "freepik",
+    "fal",
+    "nano-banana-2"
+  ],
+  "recommended": {
+    "image": {
+      "provider": "freepik",
+      "model": "/v1/ai/mystic",
+      "reason": "High-fidelity product marketing stills."
+    },
+    "edit": {
+      "provider": "freepik",
+      "model": "/v1/ai/text-to-image/seedream-v4-5-edit",
+      "reason": "Deterministic instruction-based revision flow."
+    },
+    "video": {
+      "provider": "freepik",
+      "model": "/v1/ai/video/kling-v3-omni-pro",
+      "reason": "Best quality default for cinematic hero scenes."
+    },
+    "voice": {
+      "provider": "freepik",
+      "model": "/v1/ai/voiceover/elevenlabs-turbo-v2-5",
+      "reason": "Direct ElevenLabs voiceover workflow."
+    },
+    "music": {
+      "provider": "freepik",
+      "model": "/v1/ai/music-generation",
+      "reason": "Simple text-to-music for ad and explainer videos."
+    }
+  },
+  "base_router_output": {
+    "image": {
+      "goal": "image",
+      "priority": "quality",
+      "recommendation": {
+        "provider": "freepik",
+        "model_or_endpoint": "/v1/ai/mystic",
+        "reason": "Best default for high-end photoreal product visuals.",
+        "required_env": [
+          "FREEPIK_API_KEY"
+        ],
+        "command_hint": "curl -s -X POST https://api.freepik.com/v1/ai/mystic -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"...\",\"resolution\":\"2k\"}'"
+      },
+      "pipeline_sequence": [
+        "Plan storyboard",
+        "Generate reusable assets",
+        "Generate hero motion scenes",
+        "Generate narration and music",
+        "Assemble + render in Remotion"
+      ]
+    },
+    "edit": {
+      "goal": "edit",
+      "priority": "quality",
+      "recommendation": {
+        "provider": "freepik",
+        "model_or_endpoint": "/v1/ai/image-upscaler-precision-v2",
+        "reason": "High-fidelity edits and upscale with minimal hallucination.",
+        "required_env": [
+          "FREEPIK_API_KEY"
+        ],
+        "command_hint": "curl -s -X POST https://api.freepik.com/v1/ai/image-upscaler-precision-v2 -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"image\":\"https://...\",\"scale\":4}'"
+      },
+      "pipeline_sequence": [
+        "Plan storyboard",
+        "Generate reusable assets",
+        "Generate hero motion scenes",
+        "Generate narration and music",
+        "Assemble + render in Remotion"
+      ]
+    },
+    "video": {
+      "goal": "video",
+      "priority": "quality",
+      "recommendation": {
+        "provider": "freepik",
+        "model_or_endpoint": "/v1/ai/video/kling-v3-omni-pro",
+        "reason": "Best quality default for cinematic multi-shot outputs.",
+        "required_env": [
+          "FREEPIK_API_KEY"
+        ],
+        "command_hint": "curl -s -X POST https://api.freepik.com/v1/ai/video/kling-v3-omni-pro -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"...\",\"duration\":5}'"
+      },
+      "pipeline_sequence": [
+        "Plan storyboard",
+        "Generate reusable assets",
+        "Generate hero motion scenes",
+        "Generate narration and music",
+        "Assemble + render in Remotion"
+      ]
+    },
+    "voice": {
+      "goal": "voice",
+      "priority": "quality",
+      "recommendation": {
+        "provider": "freepik",
+        "model_or_endpoint": "/v1/ai/voiceover/elevenlabs-turbo-v2-5",
+        "reason": "Direct ElevenLabs voiceover access with clean integration.",
+        "required_env": [
+          "FREEPIK_API_KEY"
+        ],
+        "command_hint": "curl -s -X POST https://api.freepik.com/v1/ai/voiceover/elevenlabs-turbo-v2-5 -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"text\":\"...\",\"voice_id\":\"21m00Tcm4TlvDq8ikWAM\"}'"
+      },
+      "pipeline_sequence": [
+        "Plan storyboard",
+        "Generate reusable assets",
+        "Generate hero motion scenes",
+        "Generate narration and music",
+        "Assemble + render in Remotion"
+      ]
+    },
+    "music": {
+      "goal": "music",
+      "priority": "quality",
+      "recommendation": {
+        "provider": "freepik",
+        "model_or_endpoint": "/v1/ai/music-generation",
+        "reason": "Simple text-to-music for short-form marketing and explainer cuts.",
+        "required_env": [
+          "FREEPIK_API_KEY"
+        ],
+        "command_hint": "curl -s -X POST https://api.freepik.com/v1/ai/music-generation -H 'x-freepik-api-key: $FREEPIK_API_KEY' -H 'Content-Type: application/json' -d '{\"prompt\":\"upbeat cinematic\",\"music_length_seconds\":30}'"
+      },
+      "pipeline_sequence": [
+        "Plan storyboard",
+        "Generate reusable assets",
+        "Generate hero motion scenes",
+        "Generate narration and music",
+        "Assemble + render in Remotion"
+      ]
+    },
+    "full_video": {
+      "goal": "full-video",
+      "priority": "quality",
+      "recommendation": {
+        "provider": "pipeline",
+        "model_or_endpoint": "multi-provider",
+        "reason": "Use staged workflow for polished final output.",
+        "required_env": [
+          "FREEPIK_API_KEY",
+          "FAL_KEY",
+          "INFERENCE_API_KEY or infsh login"
+        ],
+        "command_hint": "python3 scripts/creative_brief_to_storyboard.py --brief '...' --duration 45 --out storyboard.json"
+      },
+      "pipeline_sequence": [
+        "Plan storyboard",
+        "Generate reusable assets",
+        "Generate hero motion scenes",
+        "Generate narration and music",
+        "Assemble + render in Remotion"
+      ]
+    }
+  }
+}

@@ -1,35 +1,173 @@
 ---
-name: "tc特价机票查询"
-description: "同程特价机票查询与价格监控技能。通过第三方旅行平台API查询机票价格，支持自然语言解析、价格监控、降价推送（飞书）。当用户需要查询机票价格、监控特定航班价格波动、设置价格提醒时使用此技能。"
-category: "domain"
-source: "ClawHub"
-tags: [cheap-flights, flight, monitor, price, tongcheng, travel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tc-cheapflights"
-sourceUrl: "https://clawhub.ai/skills/tc-cheapflights"
+name: tongcheng-cheap-flights
+description: 同程特价机票查询与价格监控技能。通过第三方旅行平台API查询机票价格，支持自然语言解析、价格监控、降价推送（飞书）。当用户需要查询机票价格、监控特定航班价格波动、设置价格提醒时使用此技能。
 ---
 
-# tc特价机票查询
+# 同程特价机票查询
 
-> 同程特价机票查询与价格监控技能。通过第三方旅行平台API查询机票价格，支持自然语言解析、价格监控、降价推送（飞书）。当用户需要查询机票价格、监控特定航班价格波动、设置价格提醒时使用此技能。
+## 概述
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tc-cheapflights`
-- **Source URL:** [https://clawhub.ai/skills/tc-cheapflights](https://clawhub.ai/skills/tc-cheapflights)
+本技能提供第三方旅行平台特价机票查询与价格监控功能。支持自然语言输入（如"帮我查一下3.16日北京到成都的机票价格"或"监控一下CA1611航班的价格波动情况"），自动解析查询参数，通过API获取实时价格，并支持价格订阅、定时监控和降价推送。
 
-## Overview
+## 核心功能
 
+### 1. 自然语言解析
+- **触发语句**：
+  - "帮我查一下3.16日北京到成都的机票价格"
+  - "监控一下CA1611航班的价格波动情况"
+  - "订阅上海到广州的机票价格，监控一周"
+  - "查询明天北京到深圳的机票"
+- **解析参数**：
+  - 出发城市（支持中文城市名）
+  - 到达城市（支持中文城市名）
+  - 日期（今天、明天、后天、具体日期如3.16、2026-03-16）
+  - 航班号（如CA1611）
+  - 操作类型（查询/订阅/监控）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tc-cheapflights
+### 2. 机票价格查询
+- **查询方式**：通过第三方旅行平台API查询实时价格
+- **返回数据**：航班号、航空公司、起降时间、价格、折扣信息
+- **价格分析**：自动计算最便宜航班、价格范围、平均价格，提供购买建议
+
+### 3. 价格监控与订阅
+- **订阅创建**：保存查询条件为订阅任务
+- **定时监控**：每天定时查询价格变化（使用EasyClaw cron任务）
+- **降价判断**：降价≥5元触发推送
+- **价格历史**：记录每次查询的价格，支持价格趋势分析
+
+### 4. 降价推送（飞书）
+- **推送方式**：飞书webhook消息
+- **推送内容**：包含原价、现价、降价幅度、购买链接
+- **推送目标**：可配置飞书群或个人
+
+## 使用流程
+
+### 场景1：查询机票价格
 ```
+用户：帮我查一下3.16日北京到成都的机票价格
+技能：1. 解析参数（北京→成都，2026-03-16，机票）
+      2. 调用API查询价格
+      3. 返回格式化结果（航班列表、价格分析）
+      4. 询问是否创建订阅
+```
+
+### 场景2：创建价格监控
+```
+用户：监控一下CA1611航班的价格波动情况
+技能：1. 解析参数（航班号CA1611，自动识别起降城市）
+      2. 查询当前价格
+      3. 创建订阅任务
+      4. 设置定时监控（默认每天查询一次）
+      5. 确认订阅成功
+```
+
+### 场景3：降价推送
+```
+技能：1. 定时查询订阅任务
+      2. 发现价格从850元降至830元（降价20元）
+      3. 发送飞书推送：
+         【机票降价提醒】
+         航班：CA1611 北京→成都
+         日期：2026-03-16
+         原价：850元
+         现价：830元（降价20元，2.4%）
+         立即购买：[购买链接]
+```
+
+## 技术实现
+
+### 1. 三模式查询系统
+#### EasyClaw封装模式（推荐）
+- **文件**：`easyclaw_query.py`
+- **调用方式**：直接调用封装函数，返回格式化结果
+- **优势**：集成度高、使用简单、包含价格分析
+- **功能**：自然语言解析、价格查询、结果格式化、智能分析
+
+#### API查询模式（标准）
+- **查询方式**：调用第三方旅行平台价格查询API
+- **数据提取**：解析返回的JSON/HTML数据提取航班信息
+- **优势**：速度快、资源消耗低
+- **文件**：`scripts/tongcheng_api.py`
+
+#### 浏览器自动化模式（备用）
+- **驱动**：ChromeDriver + Chrome浏览器
+- **页面交互**：模拟用户操作查询价格
+- **数据提取**：XPath/CSS选择器提取航班信息
+- **反爬策略**：随机延迟、User-Agent轮换
+- **文件**：`scripts/query_prices.py`
+
+### 2. 数据存储
+- `subscriptions.json`：存储所有订阅任务
+- `price_history.json`：存储价格历史记录
+- `config.json`：存储配置（飞书webhook等）
+
+### 3. 定时任务
+使用EasyClaw的cron功能设置定时监控任务。
+
+### 4. 飞书集成
+通过飞书webhook发送降价通知。
+
+## 文件结构
+
+```
+tongcheng-cheap-flights/
+├── SKILL.md (本文件)
+├── scripts/
+│   ├── natural_language_parser.py  # 自然语言解析
+│   ├── tongcheng_api.py           # 核心API查询类
+│   ├── query_prices.py            # 价格查询脚本（兼容旧格式）
+│   ├── create_subscription.py     # 创建订阅脚本
+│   ├── monitor_prices.py          # 定时监控脚本
+│   └── send_notification.py       # 发送通知脚本
+├── easyclaw_query.py              # EasyClaw封装查询脚本（最推荐）
+├── references/
+│   ├── api_documentation.md       # API参数说明
+│   ├── city_airport_codes.md      # 城市与机场代码映射
+│   └── natural_language_examples.md # 自然语言示例
+└── assets/
+    ├── example_response.json      # 查询响应示例
+    └── config_template.json       # 配置文件模板
+```
+
+## 快速开始
+
+### 1. 首次配置
+1. 复制 `assets/config_template.json` 为 `config.json`
+2. 配置飞书webhook地址（可选）
+3. 运行测试查询：`python scripts/tongcheng_api.py "北京到上海机票"`
+
+### 2. 在EasyClaw中使用
+```python
+# 在EasyClaw会话中直接调用
+from easyclaw_query import query_tongcheng_prices
+result = query_tongcheng_prices("帮我查一下北京到上海的机票")
+print(result)
+```
+
+### 3. 创建订阅
+```bash
+python scripts/create_subscription.py "监控北京到上海机票价格"
+```
+
+## 安全与限制
+
+1. **隐私保护**：不存储用户身份证、手机号等敏感信息
+2. **频率限制**：查询间隔≥30分钟，避免对目标网站造成压力
+3. **错误处理**：处理网络异常、页面结构变化等情况
+4. **合规使用**：仅用于个人价格查询，不用于商业爬虫
+
+## 常见问题
+
+**Q: 查询不到数据怎么办？**
+A: 1) 检查网络连接；2) 确认城市名正确；3) 尝试使用浏览器自动化模式
+
+**Q: 如何修改监控频率？**
+A: 编辑 `config.json` 中的 `monitor_interval_hours` 设置
+
+**Q: 飞书推送没收到？**
+A: 1) 检查webhook地址是否正确；2) 查看日志文件 `logs/monitor.log`
+
+## 更新日志
+
+- **v1.1.0** (2026-03-12): 更新API格式，优化隐私保护说明
+- **v1.0.0** (2026-03-12): 初始版本，支持基础查询和监控功能

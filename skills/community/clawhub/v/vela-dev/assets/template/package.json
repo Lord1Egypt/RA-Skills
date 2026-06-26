@@ -1,0 +1,10 @@
+{
+  "name": "vela-app-template",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "aiot build"
+  },
+  "devDependencies": {
+    "aiot-toolkit": "^2.0.5"
+  }
+}

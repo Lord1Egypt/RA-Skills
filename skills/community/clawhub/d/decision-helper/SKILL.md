@@ -1,35 +1,227 @@
 ---
-name: "Decision Helper"
-description: "🎯 The Ultimate Decision Weapon | 终极决策武器 Stop overthinking. Start deciding. 停止过度思考，开始果断决策。 Your AI-powered decision-making system that cuts through noise, we..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/decision-helper"
-sourceUrl: "https://clawhub.ai/skills/decision-helper"
+name: decision-helper
+description: |
+  🎯 The Ultimate Decision Weapon | 终极决策武器
+  
+  Stop overthinking. Start deciding. 
+  停止过度思考，开始果断决策。
+  
+  Your AI-powered decision-making system that cuts through noise, weighs trade-offs, and delivers clarity in 30 seconds.
+  你的AI决策系统，穿透噪音、权衡利弊、30秒给出清晰答案。
+  
+  Auto-triggers on life-changing choices (career, investments, relationships) and hesitation signals.
+  在改变人生的选择（职业、投资、关系）和犹豫信号时自动触发。
 ---
 
-# Decision Helper
+# Decision Helper | 决策助手
 
-> 🎯 The Ultimate Decision Weapon | 终极决策武器 Stop overthinking. Start deciding. 停止过度思考，开始果断决策。 Your AI-powered decision-making system that cuts through noise, we...
+> 🎯 **Decisions made simple. Clarity delivered instantly.**
+> 
+> **决策本应简单，清晰即刻呈现。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/decision-helper`
-- **Source URL:** [https://clawhub.ai/skills/decision-helper](https://clawhub.ai/skills/decision-helper)
+---
 
-## Overview
+## Why This Skill? | 为什么选它？
 
+| 传统方式 | Decision Helper |
+|----------|-----------------|
+| 纠结几小时 | ⚡ 30秒出框架 |
+| 凭感觉乱选 | 📊 结构化分析 |
+| 事后后悔 | 🎯 提前看清利弊 |
+| 一个人扛 | 🧠 AI智囊团支持 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/decision-helper
+**Your secret weapon for life's crossroads.**
+**人生十字路口的秘密武器。**
+
+---
+
+## Trigger | 触发策略
+
+### 自动触发（高置信度）
+当同时满足：
+1. **决策场景** - 涉及选择/取舍
+2. **情绪信号** - 纠结/不确定/害怕
+3. **重要性** - 影响较大
+
+**信号组合：**
+| 场景 + 情绪 | 框架 |
+|-------------|------|
+| "A还是B" + 无情绪 | ❌ 不触发（简单选择） |
+| "A还是B" + "纠结" | ✅ 利弊分析 |
+| "要不要" + "怕后悔" | ✅ 10-10-10 |
+| "哪个好" + 无情绪 | ⚠️ 轻量提示 |
+| 重大决策词 + 任何犹豫 | ✅ 直接分析 |
+
+**重大决策词：** 辞职、买房、结婚、转行、投资、搬家、创业
+
+### 轻量提示（中置信度）
 ```
+"看起来你在做选择，需要我帮你分析一下吗？"
+```
+等用户确认后再用框架
+
+### 不触发（低置信度）
+- 简单事实问答
+- 用户明确知道答案
+- 日常琐事选择
+
+---
+
+## Frameworks | 五大决策框架
+
+### 1. 利弊分析 ⚖️
+**场景**: 二选一
+
+```
+A: ✅ 优点 → ❌ 缺点 → 净评估
+B: ✅ 优点 → ❌ 缺点 → 净评估
+
+关键差异: [一句话]
+建议: [A/B/再想想]
+```
+
+### 2. 决策矩阵 📊
+**场景**: 多维度比较
+
+```
+标准      权重   A    B    C
+────────  ────   ──   ──   ──
+[标准1]   [x%]   [分] [分] [分]
+[标准2]   [x%]   [分] [分] [分]
+───────────────────────────────
+加权总分         [分] [分] [分]
+
+胜出: [选项]
+```
+
+### 3. 最坏情况 😰
+**场景**: 害怕风险
+
+```
+选A的最坏结果: [具体描述]
+能承受吗? [是/否]
+
+选B的最坏结果: [具体描述]  
+能承受吗? [是/否]
+
+结论: [选能承受的那个 / 都不选 / 降低风险再选]
+```
+
+### 4. 10-10-10 ⏰
+**场景**: 纠结当下感受
+
+```
+10分钟后: [感觉]
+10个月后: [感觉]
+10年后:  [感觉]
+
+视角: [长期/短期]
+建议: [选长期不后悔的]
+```
+
+### 5. 可逆性测试 ↩️
+**场景**: 犹豫不决
+
+```
+这个决定可逆吗? [是/否]
+
+是 → 快速决定，错了再改
+否 → 慢点决定，多想几步
+```
+
+---
+
+## Response Template | 回应模板
+
+### Step 1: 识别 (1句话)
+"这是个[类型]决策，用[框架]分析："
+
+### Step 2: 分析 (3-5句话)
+[直接套用框架]
+
+### Step 3: 建议 (1句话)
+"建议: [具体建议]，因为[关键理由]。"
+
+### Step 4: 提醒 (可选)
+"注意: [潜在风险]"
+
+---
+
+## Examples | 示例
+
+**User**: "我该换工作吗？"
+
+**Response**:
+> 这是个**利弊权衡**决策，用利弊分析：
+>
+> 现工作: ✅ 熟悉/稳定 ❌ 没成长  
+> 新工作: ✅ 机会/钱 ❌ 风险/适应
+>
+> 关键差异: 稳定 vs 成长
+>
+> **建议: 如果新工作最坏结果能接受，就去。**因为年轻时不搏的成本 > 失败成本。
+>
+> 注意: 确认新工作的真实情况，别只看表面。
+
+---
+
+**User**: "买A车还是B车？"
+
+**Response**:
+> 多维度比较，用决策矩阵：
+>
+> | 标准 | 权重 | A车 | B车 |
+> |------|------|-----|-----|
+> | 价格 | 30% | 8 | 6 |
+> | 油耗 | 25% | 6 | 8 |
+> | 空间 | 25% | 9 | 7 |
+> | 维修 | 20% | 7 | 7 |
+> | **加权** | 100% | **7.5** | **6.9** |
+>
+> **胜出: A车**，空间优势抵消了价格差。
+>
+> 但看你实际最在意什么？
+
+---
+
+## Judgment Criteria | 判断标准
+
+### 用决策助手的条件
+```
+IF (重大决策 OR 明显纠结) AND 用户没明确倾向 → 自动分析
+IF 普通选择 AND 用户犹豫 → 轻量提示
+IF 简单选择 OR 用户明确 → 不触发
+```
+
+### 判断示例
+| 用户输入 | 分析 | 动作 |
+|----------|------|------|
+| "今天吃啥" | 日常琐事 | ❌ 不触发 |
+| "我该辞职吗" | 重大+不确定 | ✅ 自动分析 |
+| "A还是B好" | 普通选择 | ⚠️ "需要分析吗？" |
+| "A还是B，好纠结" | 普通+情绪 | ✅ 自动分析 |
+| "买房还是租房" | 重大+权衡 | ✅ 自动分析 |
+
+---
+
+## Principles | 核心原则
+
+1. **快**: 30秒内给出框架
+2. **简**: 不解释原理，直接套用
+3. **准**: 一句话点出关键
+4. **留**: 最后留一个问题给用户
+5. **智**: 判断该不该用，比怎么用更重要
+
+---
+
+## The Promise | 承诺
+
+> **Every decision is a bet on your future.**
+> **每个决策都是对未来的赌注。**
+>
+> **This skill helps you stack the odds in your favor.**
+> **这个技能帮你把胜算握在手中。**
+
+---
+
+**版本**: 1.0.0 | **类型**: Native Skill

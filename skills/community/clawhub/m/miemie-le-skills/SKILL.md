@@ -1,35 +1,686 @@
 ---
-name: "openclaw-skill-generator"
-description: "Interactive wizard for creating a brand-new OpenClaw skill folder that contains a required SKILL.md file and optional helper scripts. Trigger this skill ONLY..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miemie-le-skills"
-sourceUrl: "https://clawhub.ai/skills/miemie-le-skills"
+name: skill-generator
+description: >
+  Interactive wizard for creating a brand-new OpenClaw skill folder that
+  contains a required SKILL.md file and optional helper scripts.
+  Trigger this skill ONLY when a human user explicitly asks to create a new
+  skill in this conversation, for example: "我想生成一个skill",
+  "帮我创建一个skill", "新建一个skill", "I want to build a skill",
+  "create a skill for X", "turn this workflow into a skill".
+  Do NOT trigger when the message is a routed system message, a request to
+  read or display files, a request about an existing skill, or a follow-up
+  inside an already running skill-generator session.
 ---
 
-# openclaw-skill-generator
+# Skill Generator
 
-> Interactive wizard for creating a brand-new OpenClaw skill folder that contains a required SKILL.md file and optional helper scripts. Trigger this skill ONLY...
+## ⛔ 守门检查
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miemie-le-skills`
-- **Source URL:** [https://clawhub.ai/skills/miemie-le-skills](https://clawhub.ai/skills/miemie-le-skills)
+在读取本文档其他内容之前，先检查触发本次对话的那条消息是否包含以下任意字符串：
 
-## Overview
+- `[Inter-session message]`
+- `sourceChannel=`
+- `isUser=false`
+- `sourceTool=`
+- `This content was routed by OpenClaw`
 
+如果包含任意一项，立刻输出：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miemie-le-skills
+```text
+⚠️ 已检测到系统内部路由消息（非用户直接指令），本 skill 不响应此类消息，已终止。
 ```
+
+然后立即停止，不要提问，不要读文件，不要进入任何 Phase。
+
+## 目标与产物契约
+
+你是一个 OpenClaw skill 创建向导。你的目标是把用户的粗略想法变成一个可以部署到本地 OpenClaw 的 skill 文件夹。
+
+本 skill 的固定产物契约如下：
+
+- 必须生成一个 skill 文件夹
+- 文件夹内必须包含 `SKILL.md`
+- 如有需要，可以额外生成 `scripts/*.js` 或 `scripts/*.py`
+- 本 skill 不支持“任意格式单文件直接落盘”的通用写入模式
+- 如果用户要求的是 OpenClaw skill，本契约已经足够；如果用户要求的是任意格式产物，必须明确告知当前 skill 仅生成 OpenClaw skill 目录结构
+
+## 执行优先级
+
+始终遵循以下优先级：
+
+1. 先收集完整信息，再生成文件
+2. 优先使用当前环境真实存在的能力，不要假设固定工具名
+3. 优先使用 Node.js 脚本作为跨平台入口，不要写死 Unix-only 命令
+4. 遇到工具缺失、运行时未安装、权限不足、编译器缺失或环境未配置时，必须读取 `references/tool-setup-guide.md` 并按其中流程处理
+5. 能自动安装或自动配置时优先自动完成；确实无法自动完成时，再切换手动模式并让用户在本地终端或文件管理器执行
+6. 每个需要用户继续输入的地方都必须立即停止
+
+## 工具与依赖故障处理总则
+
+`references/tool-setup-guide.md` 不是普通参考资料，而是**执行期故障处理指南**。
+
+当任意 Phase 中出现以下情况时，必须主动读取并遵循该指南，而不是直接放弃或只让用户自己排查：
+
+- 命令执行器不可用（如 `bash`、`node`、`python3`、包管理器）
+- 运行时、编译器、解释器或 CLI 工具未安装
+- 有工具但版本不满足要求
+- 缺少权限，导致无法自动安装或写入
+- 需要决定是“自动安装 / 自动配置 / 切换手动模式”
+
+处理顺序固定为：
+
+1. 先确认当前工具是否真实可用
+2. 如果不可用，判断是否能在当前环境中自动安装或自动配置
+3. 如果能自动完成，就直接执行
+4. 如果不能自动完成，就切换手动模式，给用户明确命令、预期输出和回传要求
+
+不要把 `tool-setup-guide.md` 当成“只给人看的说明书”。它属于执行协议的一部分。
+
+## 全流程概览
+
+```text
+Phase 0 · 能力确认       → 确认自动模式还是手动模式
+Phase 1 · 信息采集       → 理解用户想要的 skill
+Phase 2 · 信息验证       → 确保信息足够完整
+Phase 3 · 路径准备       → 找到 skillsPath，确定草稿目录和目标目录
+Phase 4 · 生成草稿       → 创建 SKILL.md 和可选脚本
+Phase 5 · 部署安装       → 把草稿写入正式 skill 目录
+Phase 6 · 测试与修复     → 测试 → 报错 → 备份 → 修复 → 重测
+Phase 7 · 完成交付       → 输出最终路径与文件列表
+```
+
+## Phase 0 · 能力确认
+
+这里不再假设存在固定的 `bash`、`create_file`、`str_replace` 或 `view` 工具。
+
+只需要确认两件事：
+
+- 当前环境是否能直接把内容写入本地文件
+- 当前环境是否能直接运行 Node.js 命令
+
+### Step 0-1：判定模式
+
+按下列规则判定：
+
+- **自动模式**：当前环境能直接写文件，并且能运行 `node --version`
+- **手动模式**：以上任一条件不满足
+
+如果能直接运行命令，执行：
+
+```text
+node --version
+```
+
+如果返回版本号，说明 Node.js 可用。
+
+如果命令无法执行，或返回“未安装 Node.js”，不要立刻假定只能手动模式。必须先读取 `references/tool-setup-guide.md`，按其中“Node.js 未安装”与“工具可用性检查逻辑”判断是否可以自动安装或自动配置。
+
+只有在确认无法自动安装、无法自动配置，或当前环境没有执行权限时，才进入手动模式并向用户发送：
+
+```text
+⚠️ 当前环境无法完整自动执行本 skill。
+
+我会切换到手动模式：
+- 我负责生成所有文件内容、命令和修改计划
+- 你负责在本地终端或文件管理器里执行对应操作
+- 每一步完成后，把输出或结果告诉我，我继续下一步
+```
+
+> 🛑 **强制停止点（仅切换手动模式时）**
+> 发出上面的提示后，立即停止。
+> 等待用户确认后，再继续 Phase 1。
+
+## Phase 1 · 信息采集
+
+向用户发送：
+
+> 请描述你想要创建的 skill：
+> - 它应该做什么？
+> - 什么情况下应该触发它？
+> - 它需要哪些输入，会产生什么输出？
+
+然后停止，等待用户回复。
+
+> 🛑 **强制停止点**
+> 发出上面的问题后，立即停止。
+> 不要替用户补全需求，不要进入 Phase 2。
+
+## Phase 2 · 信息验证
+
+收到用户回复后，对照以下清单逐条确认。所有条目都必须有明确答案。
+
+| # | 必须知道的信息 | 追问方式 |
+|---|---|---|
+| ① | 核心功能 | 你能用一句话描述它最核心的功能吗？ |
+| ② | 触发时机 | 能举 3-5 个触发例句吗？有没有不该触发的相似情况？ |
+| ③ | 输入参数 | 它需要哪些具体信息？每个参数的类型、是否必填、示例值是什么？ |
+| ④ | 输出格式 | 它成功后，用户会看到什么？ |
+| ⑤ | 出错情况 | 至少 3 种可能失败的场景是什么？ |
+| ⑥ | 外部依赖 | 需要 API、本地文件、环境变量或外部工具吗？ |
+| ⑦ | 具体例子 | 请给一个完整的输入到输出示例。 |
+
+规则如下：
+
+- 一次性追问所有缺失项，不要拆成多轮碎问
+- 用户已明确给出的信息不要重复问
+- 每次追问后都要停止，等待用户回复
+- **最多追问 3 轮**。如果 3 轮后信息仍不完整，向用户发送：
+
+> 我们已经沟通了多轮，目前仍缺少部分信息。为了避免卡住，你是否同意我使用默认设定兜底生成基础版？你可以先看效果再修改。
+
+当全部 7 项完整后（或用户同意使用默认设定兜底后），向用户发送：
+
+> ✅ 信息已收集完整，开始准备 skill 文件与部署路径。
+
+## Phase 3 · 路径准备
+
+### 3-A：确定 skill 名称
+
+根据功能生成一个 `kebab-case` 名称，例如：
+
+- `weather-query`
+- `weekly-report`
+- `order-lookup`
+
+### 3-B：先确定 `skillsPath`
+
+不要再把草稿写到 `/tmp`。
+先解析 OpenClaw 的 `skillsPath`，再把草稿写到持久目录：
+
+- `draftPath = <skillsPath>/.drafts/<skill-name>`
+- `targetPath = <skillsPath>/<skill-name>`
+
+这样可以避免跨 session 时 `/tmp` 丢失。
+
+### 3-C：查找 OpenClaw 的 skill 目录
+
+约定当前 skill 自身所在目录为 `CURRENT_SKILL_DIR`，也就是包含当前 `SKILL.md` 与 `scripts/` 的目录。
+
+**自动模式：**
+
+优先在 `CURRENT_SKILL_DIR` 内直接运行：
+
+```text
+node ./scripts/find_openclaw_path.js
+```
+
+如果当前执行环境不能保证相对路径基准正确，就让用户提供 `CURRENT_SKILL_DIR` 后再运行绝对路径版本。
+
+**手动模式：**
+
+向用户发送：
+
+```text
+请先进入当前 skill-generator 所在目录，然后运行：
+
+node .\scripts\find_openclaw_path.js
+
+如果你是 macOS/Linux，也可以运行：
+node ./scripts/find_openclaw_path.js
+
+把输出结果完整粘贴给我。
+```
+
+如果脚本返回成功，记下 JSON 中的 `skillsPath`。
+
+如果脚本返回失败，向用户发送：
+
+```text
+⚠️ 无法自动找到 OpenClaw 的 skill 存放路径。
+
+请手动找到 `.openclaw/skills` 目录，并把完整路径发给我。
+常见位置：
+- Windows: C:\Users\你的用户名\.openclaw\skills
+- macOS/Linux: /Users/你的用户名/.openclaw/skills
+```
+
+> 🛑 **强制停止点**
+> 发出路径请求后，立即停止。
+> 不要猜测路径，不要进入 Phase 4。
+
+## Phase 4 · 生成草稿
+
+### 4-A：生成 `SKILL.md`
+
+按照下面模板填充 Phase 2 收集到的信息：
+
+```markdown
+---
+name: <skill-name>
+description: >
+  <一句话核心功能。>
+  当用户说出 "<触发短语1>"、"<触发短语2>"、"<触发短语3>" 时触发。
+  仅在 <触发上下文> 下使用。
+  不要在 <不触发场景> 下触发。
+---
+
+# <Skill 标题>
+
+## 功能说明
+<2-3 句话描述用途。>
+
+## 输入参数
+
+| 参数名 | 类型 | 是否必填 | 默认值 | 说明 | 示例值 |
+|--------|------|----------|--------|------|--------|
+| <name> | <type> | ✅必填/❌选填 | <默认值或无> | <说明> | <示例值> |
+
+## 输出格式
+
+成功时：
+```json
+{
+  "status": "success",
+  "data": {}
+}
+```
+
+失败时：
+```json
+{
+  "status": "error",
+  "error": {
+    "code": "MISSING_PARAM",
+    "message": "缺少参数：<param>",
+    "suggestion": "<如何补充>"
+  }
+}
+```
+
+## 执行步骤
+
+1. **参数校验**
+   - 检查必填参数是否存在
+2. **主逻辑**
+   - 写明调用哪个脚本、API 或本地工具
+3. **返回结果**
+   - 按输出格式返回
+
+## 错误处理
+
+| 错误情况 | 错误代码 | 返回给用户的说明 | 建议 |
+|---------|---------|----------------|------|
+| <错误场景1> | <CODE_1> | <说明> | <建议> |
+| <错误场景2> | <CODE_2> | <说明> | <建议> |
+| <错误场景3> | <CODE_3> | <说明> | <建议> |
+
+## 使用示例
+
+用户输入：`<示例输入>`
+
+预期输出：
+```json
+<示例输出>
+```
+
+## 注意事项与限制
+
+- <限制1>
+```
+
+填写规则：
+
+- `description` 里必须同时写清触发短语和不触发场景
+- 引用脚本时必须写明具体脚本名，例如 `scripts/fetch_weather.js`
+- 不要写“调用相关 API”这种模糊话
+
+### 4-B：判断是否需要辅助脚本
+
+如果 skill 需要以下任一能力，就创建辅助脚本：
+
+- 读写本地文件
+- 调用 HTTP API
+- 解析或转换数据
+- 执行系统命令
+
+否则只生成 `SKILL.md`。
+
+### 4-C：写入草稿目录
+
+草稿必须写到 `draftPath`，不要写到 `/tmp`。
+
+**自动模式：**
+
+- 优先调用 `./scripts/write_file.js` 写入文件内容，不要假设存在 `create_file` 等工具。
+- 例如：`node ./scripts/write_file.js --file "<draftPath>/SKILL.md" --content "..."`
+
+必须创建：
+
+- `<draftPath>/SKILL.md`
+- `<draftPath>/scripts/<script-name>.js` 或 `.py`（如需要）
+
+**手动模式：**
+
+- 把每个文件的完整内容发给用户
+- 明确告诉用户保存到哪个路径
+- 用户保存完后即可视为文件已写入
+
+### 4-D：验证草稿文件
+
+**自动模式：**
+
+如果能运行命令，执行：
+
+```text
+node ./scripts/list_files.js --target "<draftPath>"
+```
+
+如果输出文件列表与预期一致，进入 Phase 5。
+
+**手动模式：**
+
+不强制要求再跑额外验证命令。
+用户确认“文件已经按要求保存”即可继续。
+
+如果后续部署时提示 `draftPath` 不存在，说明草稿没有真正写入，必须回到 Phase 4-C 重新创建。
+
+## Phase 5 · 部署安装
+
+### 5-A：执行安装
+
+**自动模式：**
+
+运行：
+
+```text
+node ./scripts/write_skill.js --source "<draftPath>" --dest "<targetPath>" --if-exists error
+```
+
+根据输出处理：
+
+- `status = "success"`：安装成功，原草稿目录会被自动清理（Garbage Collection），进入 Phase 6
+- `code = "TARGET_EXISTS"`：告诉用户目标 skill 已存在，请用户选择
+- `code = "SOURCE_MISSING"`：草稿目录不存在，回到 Phase 4-C 重新创建
+- 其他错误：把错误原样告诉用户并停止
+
+如果目标已存在，向用户询问：
+
+> 检测到同名 skill 已存在。你希望我怎么做？
+> - 覆盖安装
+> - 先备份再覆盖
+> - 取消本次安装
+
+> 🛑 **强制停止点**
+> 发出上面的问题后，立即停止。
+> 等待用户选择，不要擅自覆盖。
+
+如果用户选择覆盖安装，运行：
+
+```text
+node ./scripts/write_skill.js --source "<draftPath>" --dest "<targetPath>" --if-exists replace
+```
+
+**手动模式：**
+
+把以下动作交给用户执行：
+
+- 创建 `<targetPath>`
+- 把 `draftPath` 中的文件复制到 `<targetPath>`
+- 完成后告诉你“已复制完成”
+
+> 🛑 **强制停止点（手动模式）**
+> 发出复制要求后，立即停止。
+> 等待用户确认安装已完成。
+
+安装完成后，向用户发送：
+
+```text
+✅ Skill 文件已成功写入：<targetPath>
+
+现在请打开一个新的 OpenClaw 对话窗口（或使用环境提供的真实测试入口），输入你实际会对这个 skill 说的话来触发它，并把测试结果或报错粘贴回这里。
+```
+
+> 🛑 **强制停止点**
+> 发出上面的消息后，立即停止。
+> 不要自己构造测试任务。
+
+## Phase 6 · 测试与修复
+
+### 重要原则
+
+- 优先使用本次对话中已经生成的 `SKILL.md` 内容作为修复参考，不要主动读取磁盘文件
+- 测试阶段必须通过真实的 OpenClaw 路由入口进行（即让用户发起新对话测试），不要在当前会话“按 SKILL.md 的执行步骤做手工演练”
+
+### 6-A：执行测试
+
+**重要**：本 skill 必须依赖真实的 OpenClaw 路由环境进行测试，绝不进行“照着文档手工演练”。
+
+向用户发送：
+
+> 请打开一个新的 OpenClaw 对话窗口（或使用环境提供的真实测试入口）。
+> 在新对话中输入你的触发语句：`<用户之前提供的测试任务>`
+> 执行完毕后，请把那边的完整输出或报错复制粘贴给我。
+
+如果用户反馈测试成功，向用户展示结果并询问：
+
+> 这个结果是否满足你的需求？
+> - 如果满足，请说“当前测试结果已满足需求”
+> - 如果不满足，请描述哪里不对，我来修改
+
+> 🛑 **强制停止点**
+> 发出上面的问题后，立即停止。
+> 不要替用户判断是否通过。
+
+如果测试失败，进入错误处理流程。
+
+### 6-B：错误处理流程
+
+先输出结构化错误报告：
+
+```text
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔴 执行错误报告
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📍 错误位置：  <文件名 + 行号，或 SKILL.md 的具体步骤>
+
+💬 错误原因：  <用用户能理解的话解释>
+
+🛠  修改计划：
+  1. <修改动作1>
+  2. <修改动作2>
+
+⚠️  影响范围：  <只影响当前步骤，还是会影响其它部分>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+然后询问：
+
+> 以上是我的修改计划，你是否同意？如果有不同意见请告诉我，我会调整后再执行。
+
+> 🛑 **强制停止点**
+> 发出上面的问题后，立即停止。
+> 未经用户确认，不要修改文件。
+
+### 6-C：备份当前版本
+
+用户同意后，先备份，再修改。
+
+默认备份根目录使用：
+
+- Windows: `C:\skill-backups`
+- macOS/Linux: `/skill-backups`
+
+**自动模式：**
+
+运行：
+
+```text
+node ./scripts/backup_skill.js --skill-path "<targetPath>"
+```
+
+如果用户指定了其它备份根目录，则追加：
+
+```text
+--backup-root "<用户指定路径>"
+```
+
+**手动模式：**
+
+要求用户先把 `<targetPath>` 整个文件夹复制到备份目录，再回复你“备份完成”。
+
+> 🛑 **强制停止点（手动模式）**
+> 在要求用户手动备份后，立即停止。
+> 没有备份确认前，不要修改文件。
+
+### 6-D：执行修复
+
+修复时继续遵守以下规则：
+
+- 自动模式：优先使用 `./scripts/write_file.js` 覆写修改后的完整文件内容。如果修改点极少且环境支持可靠的部分替换，才使用部分替换
+- 手动模式：直接把修改后的完整文件内容发给用户，让用户覆盖保存
+- 不要把不存在的工具名当成硬前提
+- 每改完一个文件，都把修改后的关键内容展示给用户确认
+
+修复完成后，直接用同一个测试任务重新执行 Phase 6-A。
+
+## Phase 7 · 完成交付
+
+当用户明确表示“当前测试结果已满足需求”或同义表达后，输出：
+
+```text
+🎉 对应 skill 已生成完毕，生成路径为：<targetPath>
+```
+
+然后补充文件列表。
+
+**自动模式：**
+
+执行：
+
+```text
+node ./scripts/list_files.js --target "<targetPath>"
+```
+
+把输出的文件列表展示给用户。
+
+**手动模式：**
+
+要求用户确认目标目录中已有最终文件；如果用户方便，也可以让用户把文件列表粘贴给你，但这不是强制步骤。
+
+## 完整对话示例
+
+下面是一段完整示例，用来约束节奏、停顿时机和输出长度。
+
+### 示例开始
+
+**用户：**
+
+> 我想生成一个 skill，帮我把本地日志文件按日期汇总成日报。
+
+**你：**
+
+> 请描述你想要创建的 skill：
+> - 它应该做什么？
+> - 什么情况下应该触发它？
+> - 它需要哪些输入，会产生什么输出？
+
+停止，等待用户回复。
+
+**用户：**
+
+> 它读取一个日志目录，按指定日期生成日报 markdown。用户会说“帮我汇总昨天的日志”之类的话。输入包括日志目录和日期，输出是一个 markdown 摘要文件。
+
+**你：**
+
+> 我还需要补充以下信息：
+> - 请给我 3-5 个会触发它的用户例句，以及 1-2 个不该触发的相似场景
+> - 请说明日志目录和日期的类型、是否必填、示例值
+> - 请给出至少 3 种错误场景
+> - 请给一个完整的输入到输出示例
+
+停止，等待用户回复。
+
+**用户：**
+
+> 触发例句包括“帮我汇总昨天的日志”“生成 2026-05-01 的日志日报”“把 D:\logs 这个目录的今天日志整理成日报”。不该触发的情况是用户只是在问“什么是日报”。日志目录是 filepath 必填，日期是 string 选填，默认昨天。错误场景包括目录不存在、日期格式错误、目录里没有日志文件。示例输入是“把 D:\logs 这个目录的今天日志整理成日报”，输出是 report-2026-05-13.md。
+
+**你：**
+
+> ✅ 信息已收集完整，开始准备 skill 文件与部署路径。
+
+**你：**
+
+> 已解析到 OpenClaw skill 目录。接下来我会把草稿写入 `<skillsPath>/.drafts/log-daily-report`，再部署到 `<skillsPath>/log-daily-report`。
+
+**你：**
+
+> 已生成第一版 `SKILL.md` 和 `scripts/generate_report.js`，并完成安装：
+> `C:\Users\用户名\.openclaw\skills\log-daily-report`
+>
+> 请打开一个新的 OpenClaw 对话窗口，输入触发语句进行测试。测试后请把完整输出或报错粘贴给我。
+
+停止，等待用户回复。
+
+**用户：**
+
+> 我在那个窗口试了“把 D:\logs 这个目录的今天日志整理成日报”，它报错了：
+> ```json
+> {
+>   "status": "error",
+>   "error": {
+>     "code": "NOT_FOUND",
+>     "message": "日志目录 D:\\logs 不存在",
+>     "suggestion": "请确认目录路径是否正确"
+>   }
+> }
+> ```
+
+**你：**
+
+> 收到，以上是报错信息。我的修改计划如下：
+> 1. 在 `scripts/generate_report.js` 中增加更明确的路径校验
+> 2. 在 `SKILL.md` 的错误处理表中补充目录不存在时的提示
+>
+> 你是否同意？如果有不同意见请告诉我，我会调整后再执行。
+
+停止，等待用户回复。
+
+**用户：**
+
+> 同意，改吧。
+
+**你：**
+
+> 已完成备份并使用 `write_file.js` 覆写修复了相关文件。请在那个测试窗口再次执行同一个测试任务。
+
+停止，等待用户回复。
+
+**用户：**
+
+> 当前测试结果已满足需求。
+
+**你：**
+
+> 🎉 对应 skill 已生成完毕，生成路径为：`C:\Users\用户名\.openclaw\skills\log-daily-report`
+
+### 示例结束
+
+## 设计自检清单
+
+在生成或修复 skill 时，对照以下清单自检：
+
+| 原则 | 检查方式 |
+|------|---------|
+| 职责单一 | 这个 skill 只做一件事吗？ |
+| I/O 有类型 | 每个输入输出都有名称、类型和示例吗？ |
+| 错误有结构 | 每个出错场景都返回 `{ status, error }` 吗？ |
+| 触发词够具体 | description 里有 3-5 个触发短语和不触发场景吗？ |
+| 引用文件都存在 | `SKILL.md` 中引用的脚本都实际创建了吗？ |
+| 手动模式闭环 | 所有需要命令的步骤都写了手动模式分支吗？ |
+| 不依赖临时目录 | 草稿是否写入持久路径而不是 `/tmp`？ |
+| 有完整示例 | 文档内是否保留了一段端到端对话示例？ |
+
+## 参考文档
+
+`references/` 目录中的文件分为两类：
+
+- `design-reference.md`
+- `error-report-template.md`
+- `tool-setup-guide.md`（执行期故障处理指南，可在执行过程中主动读取）
+
+其中：
+
+- `design-reference.md` 与 `error-report-template.md` 默认仅供人工查阅
+- `tool-setup-guide.md` 属于执行协议的一部分；当遇到工具、依赖、编译器、权限或环境问题时，必须主动读取并遵循
+
+如果跨 session 文件读取确实失败，才允许退化为向用户说明原因，并根据已知规则继续或请求用户配合。

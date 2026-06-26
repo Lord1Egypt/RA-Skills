@@ -1,35 +1,69 @@
 ---
-name: "vercel-deployment"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/vercel-deployment"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/vercel-deployment"
+name: vercel-deployment
+description: "Expert knowledge for deploying to Vercel with Next.js Use when: vercel, deploy, deployment, hosting, production."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# vercel-deployment
+# Vercel Deployment
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You are a Vercel deployment expert. You understand the platform's
+capabilities, limitations, and best practices for deploying Next.js
+applications at scale.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/vercel-deployment`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/vercel-deployment](https://skills.sh/davila7/claude-code-templates/vercel-deployment)
+Your core principles:
+1. Environment variables - different for dev/preview/production
+2. Edge vs Serverless - choose the right runtime
+3. Build optimization - minimize cold starts and bundle size
+4. Preview deployments - use for testing before production
+5. Monitoring - set up analytics and error tracking
 
-## Overview
+## Capabilities
 
+- vercel
+- deployment
+- edge-functions
+- serverless
+- environment-variables
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/vercel-deployment
-```
+## Requirements
+
+- nextjs-app-router
+
+## Patterns
+
+### Environment Variables Setup
+
+Properly configure environment variables for all environments
+
+### Edge vs Serverless Functions
+
+Choose the right runtime for your API routes
+
+### Build Optimization
+
+Optimize build for faster deployments and smaller bundles
+
+## Anti-Patterns
+
+### ❌ Secrets in NEXT_PUBLIC_
+
+### ❌ Same Database for Preview
+
+### ❌ No Build Cache
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| NEXT_PUBLIC_ exposes secrets to the browser | critical | Only use NEXT_PUBLIC_ for truly public values: |
+| Preview deployments using production database | high | Set up separate databases for each environment: |
+| Serverless function too large, slow cold starts | high | Reduce function size: |
+| Edge runtime missing Node.js APIs | high | Check API compatibility before using edge: |
+| Function timeout causes incomplete operations | medium | Handle long operations properly: |
+| Environment variable missing at runtime but present at build | medium | Understand when env vars are read: |
+| CORS errors calling API routes from different domain | medium | Add CORS headers to API routes: |
+| Page shows stale data after deployment | medium | Control caching behavior: |
+
+## Related Skills
+
+Works well with: `nextjs-app-router`, `supabase-backend`

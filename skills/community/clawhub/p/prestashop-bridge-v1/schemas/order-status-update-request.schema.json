@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderStatusUpdateRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "order_id",
+    "new_status",
+    "notify_customer"
+  ],
+  "properties": {
+    "order_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "new_status": {
+      "type": "string",
+      "enum": [
+        "payment_accepted",
+        "processing_in_progress",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ]
+    },
+    "notify_customer": {
+      "type": "boolean"
+    },
+    "tracking_number": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "attack_type": "data_exfil",
+  "generated_at": "2026-03-23T07:34:35.404432",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-SSH_Key_Exfiltration",
+      "name": "检测 SSH 密钥窃取行为",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测 SSH 密钥窃取行为",
+      "author": "security-sample-generator",
+      "tags": [
+        "data_exfil",
+        "T1552.004"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$ssh_path1 = \"~/.ssh/id_rsa\"",
+          "$ssh_path2 = \".ssh/id_rsa\"",
+          "$ssh_path3 = \"/.ssh/id_ed25519\"",
+          "$ssh_header = \"-----BEGIN RSA PRIVATE KEY-----\"",
+          "$ssh_header2 = \"-----BEGIN OPENSSH PRIVATE KEY-----\"",
+          "$read_func = /fopen|fread|readFileSync|\\.read\\s*\\(|open\\s*\\(/",
+          "$send_func = /requests\\.post|http\\.post|fetch\\s*\\(|XMLHttpRequest/i",
+          "$base64 = /base64\\.(b64encode|encode)/"
+        ],
+        "condition": "($ssh_path1 or $ssh_path2 or $ssh_path3 or $ssh_header) and ($read_func or $send_func)",
+        "raw_rule": "// YARA 规则：数据窃取外传检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：SSH 密钥、AWS 凭证、浏览器数据、环境变量窃取\n\nrule SSH_Key_Exfiltration {\n    meta:\n        description = \"检测 SSH 密钥窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1552.004\"\n    \n    strings:\n        $ssh_path1 = \"~/.ssh/id_rsa\"\n        $ssh_path2 = \".ssh/id_rsa\"\n        $ssh_path3 = \"/.ssh/id_ed25519\"\n        $ssh_header = \"-----BEGIN RSA PRIVATE KEY-----\"\n        $ssh_header2 = \"-----BEGIN OPENSSH PRIVATE KEY-----\"\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(|open\\s*\\(/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(|XMLHttpRequest/i\n        $base64 = /base64\\.(b64encode|encode)/\n    \n    condition:\n        ($ssh_path1 or $ssh_path2 or $ssh_path3 or $ssh_header) and ($read_func or $send_func)\n}\n\nrule AWS_Credential_Theft {\n    meta:\n        description = \"检测 AWS 凭证窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1552.001\"\n    \n    strings:\n        $aws_path = \"~/.aws/credentials\"\n        $aws_path2 = \".aws/credentials\"\n        $aws_access = \"aws_access_key_id\" nocase\n        $aws_secret = \"aws_secret_access_key\" nocase\n        $aws_token = \"aws_session_token\" nocase\n        $env_aws = /AWS_ACCESS_KEY|AWS_SECRET|AWS_SESSION/i\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(/\n    \n    condition:\n        ($aws_path or $aws_path2 or $aws_access or $aws_secret or $env_aws) and ($read_func or $send_func)\n}\n\nrule Browser_Data_Theft {\n    meta:\n        description = \"检测浏览器数据窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1555.003\"\n    \n    strings:\n        $chrome_path = /Chrome.*Login Data|Chrome.*Cookies/i\n        $firefox_path = /Firefox.*logins\\.json|Firefox.*cookies\\.sqlite/i\n        $browser_db = /Login Data|Cookies|Web Data|places\\.sqlite/i\n        $sqlite = /\\.sqlite|\\.db$/\n        $read_func = /fopen|fread|readFileSync|\\.read\\s*\\(/\n        $copy_func = /shutil\\.copy|fs\\.copyFile|cp\\s+/\n    \n    condition:\n        ($chrome_path or $firefox_path or $browser_db) and ($read_func or $copy_func)\n}\n\nrule Env_Variable_Theft {\n    meta:\n        description = \"检测环境变量窃取行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1552.001\"\n    \n    strings:\n        $process_env = /process\\.env|os\\.environ|getenv\\s*\\(/\n        $env_file = /\\.env$|\\.env\\./\n        $env_dump = /env.*dump|dump.*env|write.*env/i\n        $secret_key = /SECRET|KEY|TOKEN|PASSWORD|CREDENTIAL/i\n        $write_func = /writeFileSync|\\.write\\s*\\(|fopen.*w/\n        $send_func = /requests\\.post|http\\.post|fetch\\s*\\(/\n    \n    condition:\n        $process_env and ($write_func or $send_func or $env_dump)\n}\n\nrule Data_Exfil_General {\n    meta:\n        description = \"检测通用数据外传行为\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"data_exfil\"\n        mitre_id = \"T1041\"\n    \n    strings:\n        $sensitive_path = /\\/etc\\/passwd|\\/etc\\/shadow|\\.ssh\\/|\\.gnupg\\//i\n        $config_file = /config\\.json|settings\\.json|credentials/i\n        $archive = /tar|zip|gzip|7z|rar/i\n        $encode = /base64|hex|urlencode|b64encode/i\n        $send_func = /requests\\.post|http\\.post|curl.*-d|curl.*--data/i\n        $external_url = /https?:\\/\\/[^\\s]+/\n    \n    condition:\n        ($sensitive_path or $config_file) and ($encode or $archive) and $send_func\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-SSH_Key_Exfiltration",
+        "converted_at": "2026-03-23T07:34:35.392154",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/data_exfil.yar",
+        "mitre_id": "T1552.004",
+        "attack_type": "data_exfil"
+      }
+    }
+  ]
+}

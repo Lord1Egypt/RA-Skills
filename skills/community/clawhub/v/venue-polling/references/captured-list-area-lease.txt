@@ -1,0 +1,8 @@
+GET /gym/miniprogram/venue/listAreaLease?venueSportId=1&date=2026-04-18 HTTP/1.1
+Host: shop.chuanshatiyuchang.cn
+Connection: keep-alive
+token-user: 0cd5cb6b21fc410dbd81bc3e6a066614
+content-type: application/json
+x-gym-client-id: 1
+
+Use this reference when you need an example of the unsigned availability polling request shape.

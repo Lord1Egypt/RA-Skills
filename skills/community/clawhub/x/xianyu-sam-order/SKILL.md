@@ -1,35 +1,57 @@
 ---
-name: "Xianyu Sam Order"
-description: "闲鱼山姆代下单 - 配置你自己的账号"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xianyu-sam-order"
-sourceUrl: "https://clawhub.ai/skills/xianyu-sam-order"
+name: xianyu-sam-order
+version: 1.0.1
+description: 闲鱼山姆代下单 - 配置你自己的账号
+author: OpenClaw
+triggers:
+  - "山姆下单"
+  - "山姆代购"
+  - "闲鱼山姆"
+  - "Sam下单"
 ---
 
-# Xianyu Sam Order
+# 闲鱼山姆代下单服务 🛒
 
-> 闲鱼山姆代下单 - 配置你自己的账号
+## 登录自己的账号
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xianyu-sam-order`
-- **Source URL:** [https://clawhub.ai/skills/xianyu-sam-order](https://clawhub.ai/skills/xianyu-sam-order)
+### 山姆会员店
 
-## Overview
+1. **注册会员**：微信搜"山姆会员商店"小程序
+2. **年费**：260元/年
+3. **下单**：在山姆APP/小程序下单
 
+### 闲鱼
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **下载APP**：闲鱼
+2. **登录**：用淘宝账号登录
+3. **认证**：实人认证后可以发布商品接单
+
+## 配置自己的账号
+
+在 `~/.openclaw/workspace/.env` 配置：
+
 ```bash
-hermes skills install clawhub/xianyu-sam-order
+# 你的淘宝/闲鱼Cookie（可选，用于自动登录）
+XIANYU_COOKIE="你的Cookie"
+
+# 你的山姆会员账号
+SAM_PHONE="手机号"
 ```
+
+## 自己下单流程
+
+1. 打开**山姆APP** → 选择商品 → 加入购物车
+2. 截图给我 → 我帮你查价格
+3. 你在山姆APP付款 → 选择配送地址
+4. 配送到家
+
+## 常见问题
+
+**Q: 需要年费吗？**
+A: 山姆需要260元/年会员费
+
+**Q: 可以不使用自己的账号吗？**
+A: 可以帮别人代下单，需要对方提供山姆会员
+
+**Q: 配送范围？**
+A: 山姆配送一般在5-10公里内

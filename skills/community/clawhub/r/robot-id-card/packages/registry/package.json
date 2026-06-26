@@ -1,0 +1,31 @@
+{
+  "name": "@robot-id-card/registry",
+  "version": "0.2.0",
+  "description": "Central registry server for Robot ID Card — SQLite-backed bot identity database with Ed25519 verification",
+  "homepage": "https://github.com/Cosmofang/robot-id-card",
+  "repository": { "type": "git", "url": "https://github.com/Cosmofang/robot-id-card", "directory": "packages/registry" },
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "node ../../node_modules/vitest/vitest.mjs run src"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/rate-limit": "^10.3.0",
+    "@noble/ed25519": "^2.1.0",
+    "@noble/hashes": "^2.0.1",
+    "better-sqlite3": "^12.8.0",
+    "fastify": "^5.8.2",
+    "nanoid": "^5.0.6",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "1.6.1"
+  }
+}

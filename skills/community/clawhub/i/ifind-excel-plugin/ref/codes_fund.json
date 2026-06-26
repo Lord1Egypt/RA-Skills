@@ -1,0 +1,3944 @@
+[
+  {
+    "code": "ths_middle_annual_report_dd_fund",
+    "name": "中、年报披露日期",
+    "description": "财务报表(新准则)",
+    "params": ""
+  },
+  {
+    "code": "ths_fanv_chg_by_oa_the_term_np_fund",
+    "name": "本期经营活动产生的基金净值变动数(本期净利润)",
+    "description": "财务报表(新准则)/基金净值变动表",
+    "params": ""
+  },
+  {
+    "code": "ths_fanv_chg_by_profit_allocate_fund",
+    "name": "本期向基金份额持有人分配利润产生的基金净值变动数",
+    "description": "财务报表(新准则)/基金净值变动表",
+    "params": ""
+  },
+  {
+    "code": "ths_fanv_chg_by_trading_the_term_fund",
+    "name": "本期基金份额交易产生的基金净值变动数",
+    "description": "财务报表(新准则)/基金净值变动表",
+    "params": ""
+  },
+  {
+    "code": "ths_final_owner_income_f_nv_fund",
+    "name": "期末所有者权益(基金净值)",
+    "description": "财务报表(新准则)/基金净值变动表",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_pur_amt_fund",
+    "name": "基金申购款",
+    "description": "财务报表(新准则)/基金净值变动表",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_redemp_amt_fund",
+    "name": "基金赎回款",
+    "description": "财务报表(新准则)/基金净值变动表",
+    "params": ""
+  },
+  {
+    "code": "ths_initial_owner_equity_f_nv_fund",
+    "name": "期初所有者权益(基金净值)",
+    "description": "财务报表(新准则)/基金净值变动表财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_invest_fv_chg_income_fund",
+    "name": "资产支持证券投资公允价值变动收益资产支持证券投资收益",
+    "description": "财务报表(新准则)/基金利润表财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_fv_chg_income_fund",
+    "name": "债券投资公允价值变动收益",
+    "description": "财务报表(新准则)/基金利润表 债券利息收入 ths_bond_interest_income_fund 基金报告期(101-中报,100-年报)财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_buy_resale_finan_asset_income_fund",
+    "name": "买入返售金融资产收入",
+    "description": "财务报表(新准则)/基金利润表 债券投资收益 ths_bond_invest_income_fund 基金报告期(101-中报,100-年报)财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_cost_fund",
+    "name": "费用",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_deposit_interest_income_fund",
+    "name": "存款利息收入",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_invest_fv_chg_income_fund",
+    "name": "基金投资公允价值变动收益",
+    "description": "财务报表(新准则)/基金利润表 股利收益 ths_dividend_income_fund 基金报告期(101-中报,100-年报)财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_fv_chg_income_fund",
+    "name": "公允价值变动收益",
+    "description": "财务报表(新准则)/基金利润表 基金投资收益 ths_fund_invest_income_fund 基金报告期(101-中报,100-年报)财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_income_fund",
+    "name": "收入",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_interest_payout_fund",
+    "name": "利息支出",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_income_fund",
+    "name": "投资收益",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_other_revenues_fund",
+    "name": "其他收入",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_sell_repur_finan_asset_cost_fund",
+    "name": "卖出回购金融资产支出",
+    "description": "财务报表(新准则)/基金利润表 销售服务费 ths_sales_service_fee_new_fund 基金报告期(101-中报,100-年报)财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_invest_fv_chg_income_fund",
+    "name": "股票投资公允价值变动收益",
+    "description": "财务报表(新准则)/基金利润表财务报表(新准则)/基金利润表 股票投资收益 ths_stock_invest_income_fund 基金报告期(101-中报,100-年报)",
+    "params": ""
+  },
+  {
+    "code": "ths_supervisor_payment_fund",
+    "name": "管理人报酬",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_td_fee_fund",
+    "name": "交易费用",
+    "description": "则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_warrant_invest_fv_chg_income_fund",
+    "name": "权证投资公允价值变动收益",
+    "description": "财务报表(新准则)/基金利润表 托管费 ths_trustee_fee_fund 基金报告期(101-中报,100-年报)财务报表(新准则)/基金利润表",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_invest_fund",
+    "name": "资产支持证券投资",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_new_fund",
+    "name": "银行存款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_cost_fund",
+    "name": "债券投资成本",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_fund",
+    "name": "债券投资",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_buy_resale_fnncl_assets_fund",
+    "name": "买入返售金融资产",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_derivative_fnncl_assets_fund",
+    "name": "衍生金融资产",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_derivative_fnncl_liab_fund",
+    "name": "衍生金融负债",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_dividend_receivable_fund",
+    "name": "应收股利",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_fnncl_assets_sold_for_repur_fund",
+    "name": "卖出回购金融资产款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_invest_cost_fund",
+    "name": "基金投资成本",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_invest_fund",
+    "name": "基金投资",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_interest_payable_fund",
+    "name": "应付利息",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_interest_receivable_fund",
+    "name": "应收利息",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_manage_payable_fund",
+    "name": "应付管理人报酬",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_other_assets_new_fund",
+    "name": "其他资产",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_othr_liab_fund",
+    "name": "其他负债",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_paid_deposit_fund",
+    "name": "存出保证金",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_payable_tax_fund",
+    "name": "应付税费",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_profit_payable_fund",
+    "name": "应付利润",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_receivables_pur_amt_fund",
+    "name": "应收申购款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_recevied_fund_fund",
+    "name": "实收基金",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_payable_fund",
+    "name": "应付赎回款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_sales_service_fee_payable_fund",
+    "name": "应付销售服务费",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_sec_settle_accounts_receivable_fund",
+    "name": "应收证券清算款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_of_sec_payable_fund",
+    "name": "应付证券清算款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_reserves_fund",
+    "name": "结算备付金",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_st_loan_fund",
+    "name": "短期借款",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_beta_fund",
+    "name": "债表绩效评估/风险收益指标Beta",
+    "description": "则)/基金资产负",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_invest_cost_fund",
+    "name": "股票投资成本",
+    "description": "则)/基金资产负",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_invest_fund",
+    "name": "股票投资",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_td_payable_fund",
+    "name": "应付交易费用",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_asset_fund",
+    "name": "资产合计",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_liab_and_holder_equity_fund",
+    "name": "负债及持有人权益合计",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_liab_fund",
+    "name": "负债合计",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_total_owner_equity_fund",
+    "name": "所有者权益合计",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_tradable_fnncl_assets_fund",
+    "name": "交易性金融资产",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_tradable_fnncl_liab_fund",
+    "name": "交易性金融负债",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_trustee_fee_payable_fund",
+    "name": "应付托管费",
+    "description": "财务报表(新准则)/基金资产负债表",
+    "params": ""
+  },
+  {
+    "code": "ths_undstrbtd_profit_fund",
+    "name": "未分配利润",
+    "description": "财务报表(新准则)/基金资产负债表财务指标(新准则)",
+    "params": ""
+  },
+  {
+    "code": "ths_allocatable_share_profit_eorp_fund",
+    "name": "报告期末可供分配基金份额利润基金加权平均净值利润率",
+    "description": "财务指标(新准则)财务指标(新准则)",
+    "params": ""
+  },
+  {
+    "code": "ths_profit_deduct_fv_chg_gal_rp_fund",
+    "name": "报告期利润扣减当期公允价值变动损益后的净额",
+    "description": "财务指标(新准则)",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_share_profit_rp_fund",
+    "name": "报告期加权平均份额利润",
+    "description": "财务指标(新准则) 报告期利润 ths_profit_rp_fund 报告期(101-中报,100-年报)财务指标(新准则)",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_anv_eorp_fund",
+    "name": "报告期期末基金资产净值",
+    "description": "财务指标(新准则)/季度财务指标",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_profit_q_fund",
+    "name": "季度基金利润",
+    "description": "财务指标(新准则)/季度财务指标",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_share_nv_eorp_fund",
+    "name": "报告期期末基金份额净值",
+    "description": "财务指标(新准则)/季度财务指标",
+    "params": ""
+  },
+  {
+    "code": "ths_profit_deduct_fv_chggal_fund",
+    "name": "本期利润扣减公允价值变动损益后的净额",
+    "description": "财务指标(新准则)/季度财务指标",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_fund_share_profit_fund",
+    "name": "加权平均基金份额本期利润",
+    "description": "财务指标(新准则)/季度财务指标持有人结构 平均每户持有基金份额 ths_avg_fund_hold_share_fund 报告期(101-中报,100-年报)",
+    "params": ""
+  },
+  {
+    "code": "ths_fm_held_account_num_fund",
+    "name": "基金份额持有人户数",
+    "description": "持有人结构",
+    "params": ""
+  },
+  {
+    "code": "ths_individual_investor_held_fund",
+    "name": "个人投资者持有份额",
+    "description": "持有人结构",
+    "params": ""
+  },
+  {
+    "code": "ths_org_investor_held_shares_fund",
+    "name": "机构投资者持有份额",
+    "description": "持有人结构",
+    "params": ""
+  },
+  {
+    "code": "ths_supervisor_staff_held_ratio_fund",
+    "name": "管理人员工持有比例",
+    "description": "持有人结构",
+    "params": ""
+  },
+  {
+    "code": "ths_supervisor_staff_held_shares_fund",
+    "name": "管理人员工持有份额",
+    "description": "持有人结构",
+    "params": ""
+  },
+  {
+    "code": "ths_single_investor_hold_ratio_fund",
+    "name": "单一投资者报告期末持有比例合计",
+    "description": "持有人结构/持有者持有基金份额比例超20%",
+    "params": ""
+  },
+  {
+    "code": "ths_single_investor_hold_stat_fund",
+    "name": "单一投资者报告期末持有份额合计",
+    "description": "持有人结构/持有者持有基金份额比例超20%",
+    "params": ""
+  },
+  {
+    "code": "ths_rankn_holder_holding_ratio_fund",
+    "name": "第N 名持有人持有比例",
+    "description": "持有人结构/前十大持有人(货币市场基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_rankn_holder_holding_shares_fund",
+    "name": "第N 名持有人持有份额",
+    "description": "持有人结构/前十大持有人(货币市场基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_rankn_holder_type_fund",
+    "name": "第N 名持有人类别",
+    "description": "报告期(101-中报,100-年报),排名(0-前10名,1-第1 名,2-第2 名,3-第3 名,4-第4名,5-第5 名,6-第6 名,7-第7 名,8-第8名,9-第9 名,10-第10 名) 持有人结构/前十大持有人(货币市场基金)持有人结构/前十大持有人(货币市场基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_top10_holding_share_sum_fund",
+    "name": "前十大持有人持有份额合计",
+    "description": "持有人结构/前十大持有人(货币市场基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_the_n_holder_held_ratio_close_fund",
+    "name": "第N 名持有人持有比例",
+    "description": "持有人结构/前十大持有人(上市基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_the_n_holder_held_share_close_fund",
+    "name": "第N 名持有人持有份额",
+    "description": "持有人结构/前十大持有人(上市基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_the_n_holder_name_close_fund",
+    "name": "第N 名持有人名称",
+    "description": "报告期(101-中报,100-年报),排名(0-前10名,1-第1 名,2-第2 名,3-第3 名,4-第4名,5-第5 名,6-第6 名,7-第7 名,8-第8名,9-第9 名,10-第10 名) 持有人结构/前十大持有人(上市基金)持有人结构/前十大持有人(上市基金)",
+    "params": ""
+  },
+  {
+    "code": "ths_total_top10_held_share_closed_fund",
+    "name": "前十大持有人持有份额合计",
+    "description": "持有人结构/前十大持有人(上市基金)发行指标 基金发行协调人 ths_fund_issue_coordinator_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_listing_recommended_fund",
+    "name": "基金上市推荐人",
+    "description": "发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_reg_and_registrant_fund",
+    "name": "基金注册与过户登记人",
+    "description": "发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_sponsor_related_org_fund",
+    "name": "基金发起人",
+    "description": "发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_object_fund",
+    "name": "发行对象",
+    "description": "发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cef_listed_date_fund",
+    "name": "封闭式基金上市日期",
+    "description": "发行指标/封闭式基金发行发行指标/封闭式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_cef_over_subscription_rate_fund",
+    "name": "封闭式基金超额认购倍数",
+    "description": "发行指标/封闭式基金发行发行指标/封闭式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_fund_on_debut_fund",
+    "name": "基金上市首日涨跌幅",
+    "description": "发行指标/封闭式基金发行发行指标/封闭式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_fund_on_debut_fund",
+    "name": "基金上市首日换手率",
+    "description": "发行指标/封闭式基金发行发行指标/封闭式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_close_period_oi_pur_method_fund",
+    "name": "封闭期机构投资者认购方式",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_close_period_org_invest_pur_ul_fund",
+    "name": "封闭期机构投资者认购上限",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行 发行封闭期 ths_issue_closeduration_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_net_pur_share_condition_fund",
+    "name": "成立条件-净认购份额",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_org_investor_set_pur_ed_fund",
+    "name": "机构投资者设立认购终止日",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_personal_investor_pur_amt_dl_fund",
+    "name": "个人投资者认购金额下限",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_personal_investor_pur_ed_fund",
+    "name": "个人投资者认购终止日",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_personal_investor_pur_sd_fund",
+    "name": "个人投资者认购起始日",
+    "description": "发行指标/开放式基金发行发行指标/开放式基金发行",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_large_purchase_limit_fund",
+    "name": "单日大额申购限额",
+    "description": "发行指标/开放式基金发行 募集份额上限 ths_raise_shares_ul_fund发行指标/开放式基金申购赎回",
+    "params": ""
+  },
+  {
+    "code": "ths_pur_amt_dl_fund",
+    "name": "式基金申购赎回申购金额下限",
+    "description": "发行指标/开放",
+    "params": ""
+  },
+  {
+    "code": "ths_pur_sd_fund",
+    "name": "式基金申购赎回申购起始日",
+    "description": "发行指标/开放",
+    "params": ""
+  },
+  {
+    "code": "ths_repur_draw_date_fund",
+    "name": "式基金申购赎回赎回划款日",
+    "description": "发行指标/开放",
+    "params": ""
+  },
+  {
+    "code": "ths_single_redemp_share_dl_fund",
+    "name": "单笔赎回份额下限",
+    "description": "发行指标/开放式基金申购赎回",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_dividend_times_fund",
+    "name": "累计分红次数",
+    "description": "分红指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_dividend_total_amt_fund",
+    "name": "累计分红总额",
+    "description": "分红指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dividend_times_y_fund",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末)分红指标年度分红次数",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_dividend_total_amt_y_fund",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末)分红指标年度分红总额",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_unit_dividend_y_fund",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末)分红指标单位年度分红",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_y_fund",
+    "name": "年成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_premium_rate_y_fund",
+    "name": "年均贴水率",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_y_fund",
+    "name": "年均价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_turnover_rate_y_fund",
+    "name": "年平均换手率",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_y_fund",
+    "name": "年涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_y_fund",
+    "name": "年涨跌",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_y_fund",
+    "name": "年收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_compare_chg_ratio_y_fund",
+    "name": "年相对大盘涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_y_fund",
+    "name": "年最高收盘价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_y_fund",
+    "name": "年最高收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_y_fund",
+    "name": "年最高价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_y_fund",
+    "name": "年最高价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_y_fund",
+    "name": "年最低收盘价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_y_fund",
+    "name": "年最低收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_y_fund",
+    "name": "年最低价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_y_fund",
+    "name": "年最低价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_y_fund",
+    "name": "年开盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_y_fund",
+    "name": "年前收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_y_fund",
+    "name": "年振幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_trans_num_y_fund",
+    "name": "年成交笔数",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_y_fund",
+    "name": "年换手率",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_y_fund",
+    "name": "年成交量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_int_fund",
+    "name": "区间成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_premium_int_fund",
+    "name": "区间均贴水",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_premium_rate_int_fund",
+    "name": "区间均贴水率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_int_fund",
+    "name": "区间成交均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_int_fund",
+    "name": "区间涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_int_fund",
+    "name": "区间收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_int_fund",
+    "name": "区间日均成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_chg_ratio_int_fund",
+    "name": "区间日均涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_trans_num_int_fund",
+    "name": "区间日均成交笔数",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_turnover_int_fund",
+    "name": "区间日均换手率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_int_fund",
+    "name": "区间日均成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_int_fund",
+    "name": "区间最高收盘价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_int_fund",
+    "name": "区间最高收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_int_fund",
+    "name": "区间最高价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_int_fund",
+    "name": "区间最高价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_int_chg_ratio_fund",
+    "name": "区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_int_fund",
+    "name": "区间最低收盘价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_int_fund",
+    "name": "区间最低收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_int_fund",
+    "name": "区间最低价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_int_fund",
+    "name": "区间最低价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_int_fund",
+    "name": "区间开盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_int_fund",
+    "name": "区间前收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_relative_chg_ratio_int_fund",
+    "name": "相对大盘区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_int_fund",
+    "name": "区间振幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_trans_days_int_fund",
+    "name": "区间成交天数",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_trans_num_int_fund",
+    "name": "区间成交笔数",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_int_fund",
+    "name": "区间换手率",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_int_fund",
+    "name": "区间成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_fund",
+    "name": "成交额",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_fund",
+    "name": "均价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_fund",
+    "name": "涨跌",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_fund",
+    "name": "涨跌幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_price_fund",
+    "name": "收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_price_fund",
+    "name": "最高价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_fund",
+    "name": "最低价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_price_fund",
+    "name": "开盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_fund",
+    "name": "前收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_premium_fund",
+    "name": "贴水",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_premium_rate_fund",
+    "name": "贴水率",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_fund",
+    "name": "振幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_trans_num_fund",
+    "name": "成交笔数",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_fund",
+    "name": "换手率",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_fund",
+    "name": "成交量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_financing_repay_fund",
+    "name": "融资偿还量",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_leveraged_buyout_quantity_fund",
+    "name": "融资买入量",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_amtb_fund",
+    "name": "融资融券余额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_balance_fund",
+    "name": "融资余额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_margin_fund",
+    "name": "融资余量",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_repay_amt_fund",
+    "name": "融资偿还额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_margin_trading_sell_amt_fund",
+    "name": "融资买入额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_amtb_fund",
+    "name": "融券余额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_payment_vol_fund",
+    "name": "融券偿还量",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_repay_fund",
+    "name": "融券偿还额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_sell_amt_fund",
+    "name": "融券卖出额",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_sell_vol_fund",
+    "name": "融券卖出量",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_short_selling_vol_balance_fund",
+    "name": "融券余量",
+    "description": "行情指标/融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_financing_buy_amt_int_fund",
+    "name": "区间融资买入额",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_financing_payment_amt_int_fund",
+    "name": "区间融资偿还额",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_payment_amt_int_fund",
+    "name": "区间融券偿还额",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_payment_vol_int_fund",
+    "name": "区间融券偿还量",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_sell_amt_int_fund",
+    "name": "区间融券卖出额",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_sell_vol_int_fund",
+    "name": "区间融券卖出量",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_ss_balance_mean_fund",
+    "name": "区间融资融券余额均值",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_mtb_int_mean_fund",
+    "name": "区间融资余额均值",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_ss_balance_int_mean_fund",
+    "name": "区间融券余额均值",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_ss_vol_balance_int_mean_fund",
+    "name": "区间融券余量均值",
+    "description": "行情指标/融资融券/区间融资融券",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_m_fund",
+    "name": "月成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_premium_m_fund",
+    "name": "月均贴水",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_m_fund",
+    "name": "月均价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_turnover_rate_m_fund",
+    "name": "月平均换手率",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_m_fund",
+    "name": "月涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chgm_fund",
+    "name": "月涨跌",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_m_fund",
+    "name": "月收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_compare_chg_ratio_m_fund",
+    "name": "月相对大盘涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_m_fund",
+    "name": "月最高收盘价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_m_fund",
+    "name": "月最高收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_m_fund",
+    "name": "月最高价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_m_fund",
+    "name": "月最高价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_m_fund",
+    "name": "月最低收盘价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_m_fund",
+    "name": "月最低收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_m_fund",
+    "name": "月最低价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_m_fund",
+    "name": "月最低价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_m_fund",
+    "name": "月开盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_m_fund",
+    "name": "月前收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swingm_fund",
+    "name": "月振幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_td_num_m_fund",
+    "name": "月成交笔数",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_m_fund",
+    "name": "月换手率",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_m_fund",
+    "name": "月成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_premium_rate_w_fund",
+    "name": "周均贴水率",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_premium_w_fund",
+    "name": "周均贴水",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_w_fund",
+    "name": "周均价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_turnover_rate_w_fund",
+    "name": "周平均换手率",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_w_fund",
+    "name": "周涨跌幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_w_fund",
+    "name": "周涨跌",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_w_fund",
+    "name": "周收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_w_fund",
+    "name": "周最高收盘价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_w_fund",
+    "name": "周最高收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_w_fund",
+    "name": "周最高价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_w_fund",
+    "name": "周最高价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_w_fund",
+    "name": "周最低收盘价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_w_fund",
+    "name": "周最低收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_w_fund",
+    "name": "周最低价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_w_fund",
+    "name": "周最低价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_w_fund",
+    "name": "周开盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_w_fund",
+    "name": "周前收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_w_fund",
+    "name": "周振幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_td_num_w_fund",
+    "name": "周成交笔数",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_turnover_ratio_w_fund",
+    "name": "周换手率",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_yield_7d_fund",
+    "name": "7 日年化收益率",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一) 货币市场基金收益行情指标/周行情 周成交量 ths_vol_w_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_yield_mean_7d_int_fund",
+    "name": "区间7 日年化收益率均值",
+    "description": "货币市场基金收益",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_yield_var_7d_int_fund",
+    "name": "区间7 日年化收益率方差",
+    "description": "货币市场基金收益",
+    "params": ""
+  },
+  {
+    "code": "ths_income_mean_per10k_int_fund",
+    "name": "区间万份基金单位收益均值",
+    "description": "货币市场基金收益",
+    "params": ""
+  },
+  {
+    "code": "ths_income_var_per10k_int_fund",
+    "name": "区间万份基金单位收益方差",
+    "description": "货币市场基金收益",
+    "params": ""
+  },
+  {
+    "code": "ths_total_income_per10k_int_fund",
+    "name": "区间万份基金单位收益总值",
+    "description": "起始交易日期(100-截止日前一交易日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末) 货币市场基金收益货币市场基金收益",
+    "params": ""
+  },
+  {
+    "code": "ths_unit_income_per10k_fund",
+    "name": "万份基金单位收益",
+    "description": "起始交易日期(100-截止日前一交易日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末) 货币市场基金收益货币市场基金收益",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_replace_ul_etf_fund",
+    "name": "ETF 申购赎回现金替代比例上限(%)",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一) 基本资料/ETF 基本资料 上市日期 ths_etf_listed_date_fund基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_etf_listed_td_share_fund",
+    "name": "上市交易份额",
+    "description": "基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_etf_min_unit_nv_fund",
+    "name": "ETF 申购赎回最小申购赎回单位资产净值ETF 基金溢价率",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一) 基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fore_cash_part_etf_fund",
+    "name": "ETF 申购赎回预估现金部分",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一) 基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_shares_convert_ratio_fund",
+    "name": "基金份额折算比例",
+    "description": "基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_mini_pur_and_redemp_unit_etf_fund",
+    "name": "ETF 申购赎回最小申购赎回单元网下现金认购截止日",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一) 基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_cash_pur_sd_fund",
+    "name": "网下现金认购起始日",
+    "description": "基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_stock_pur_ed_fund",
+    "name": "网下股票认购截止日",
+    "description": "基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_offline_stock_pur_vol_dl_fund",
+    "name": "网下股票认购份额下限",
+    "description": "基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_online_cash_buy_share_ul_fund",
+    "name": "网上现金认购份额上限",
+    "description": "基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_online_cash_pur_sd_fund",
+    "name": "网上现金认购起始日",
+    "description": "基本资料/ETF 基本资料基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_pm_fund_code_fund",
+    "name": "一级市场基金代码",
+    "description": "基本资料/ETF 基本资料 申购赎回简称 ths_par_short_name_fund基本资料/ETF 基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_lof_listed_date_fund",
+    "name": "上市日期",
+    "description": "基本资料/LOF基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_lof_listed_td_share_fund",
+    "name": "上市交易份额",
+    "description": "基本资料/LOF基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_aboard_mandator_fund",
+    "name": "境外托管人",
+    "description": "基本资料/QDII基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_main_invest_district_explain_fund",
+    "name": "主要投资区域说明",
+    "description": "基本资料/QDII基本资料基本资料/保本基金基本资料 保本费率 ths_break_even_fee_rate_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_break_even_period_fund",
+    "name": "基金基本资料保本周期",
+    "description": "基本资料/保本",
+    "params": ""
+  },
+  {
+    "code": "ths_agreed_yield_expression_fund",
+    "name": "约定收益率表达式",
+    "description": "基本资料/保本基金基本资料 保证人 ths_guarantor_fund基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_down_contact_convert_clause_fund",
+    "name": "向下触点折算条款",
+    "description": "基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_down_convert_mother_fund_fall_fund",
+    "name": "下折母基金需跌",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 基本资料/分级基金基本资料 向下折算阀值 ths_down_convert_threshold_fund基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_gf_fore_yield_adjust_date_fund",
+    "name": "分级基金预计收益率调整日",
+    "description": "基本资料/分级基金基本资料基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_gf_leverage_to_td_price_fund",
+    "name": "分级基金相对交易价格杠杆率",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 基本资料/分级基金基本资料 分级A 代码 ths_grade_a_code_fund基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grade_b_code_fund",
+    "name": "基金基本资料分级B 代码",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_grade_fund_agreed_yield_fund",
+    "name": "分级基金约定收益率",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 基本资料/分级基金基本资料基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grade_fund_initial_ab_ratio_fund",
+    "name": "分级基金初始份额配比(A:B)",
+    "description": "基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grade_fund_leverage_to_nv_fund",
+    "name": "分级基金相对净值杠杆率",
+    "description": "基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grade_fund_premium_fund",
+    "name": "分级基金折溢价",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 基本资料/分级基金基本资料基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_grade_fund_type_fund",
+    "name": "基金基本资料分级基金类别",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_is_pairing_conversion_fund",
+    "name": "基金基本资料是否配对转换",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_isdown_convert_fund",
+    "name": "基金基本资料是否向下折算",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_next_contract_revenue_fund",
+    "name": "基金基本资料下期约定收益",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_original_lever_fund",
+    "name": "基金基本资料初始杠杆",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_overall_discount_premium_rate_fund",
+    "name": "基金基本资料整体折溢价率",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_premium_ratio_deviation_co_fund",
+    "name": "折溢价比例偏离系数",
+    "description": "基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_regular_convert_item_fund",
+    "name": "基金基本资料定期折算条款",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_surplus_convert_days_fund",
+    "name": "基金基本资料剩余折算天数",
+    "description": "基本资料/分级",
+    "params": ""
+  },
+  {
+    "code": "ths_up_contact_convert_clause_fund",
+    "name": "向上触点折算条款",
+    "description": "基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_up_convert_mother_fund_raise_fund",
+    "name": "上折母基金需涨",
+    "description": "交易日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 基本资料/分级基金基本资料 向上折算阀值 ths_up_convert_threshold_fund基本资料/分级基金基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_high_pur_fee_rate_fund",
+    "name": "最高申购费率",
+    "description": "基本资料/基金费率",
+    "params": ""
+  },
+  {
+    "code": "ths_isdiscount_fund",
+    "name": "是否费率优惠",
+    "description": "基本资料/基金费率",
+    "params": ""
+  },
+  {
+    "code": "ths_managementfeeexplain_fund",
+    "name": "管理费率说明",
+    "description": "基本资料/基金费率",
+    "params": ""
+  },
+  {
+    "code": "ths_minifixedinvestdiscount_fund",
+    "name": "最低定投折扣",
+    "description": "基本资料/基金费率",
+    "params": ""
+  },
+  {
+    "code": "ths_purchasefee_fund",
+    "name": "认购费",
+    "description": "基本资料/基金费率",
+    "params": ""
+  },
+  {
+    "code": "ths_sales_service_fee_fund",
+    "name": "销售服务费率",
+    "description": "基本资料/基金费率",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_invest_type_fund",
+    "name": "基金投资类型",
+    "description": "基本资料/基金分类",
+    "params": ""
+  },
+  {
+    "code": "ths_galaxy_classi_fund",
+    "name": "银河分类",
+    "description": "基本资料/基金分类",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_type_first_classi_fund",
+    "name": "投资类型(一级分类)",
+    "description": "基本资料/基金分类 投资风格 ths_invest_style_fund基本资料/基金分类",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_type_second_classi_fund",
+    "name": "投资类型(二级分类)",
+    "description": "基本资料/基金分类基本资料/基金分类 是否初始基金 ths_is_original_fund_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_isgradingfund_fund",
+    "name": "是否分级基金",
+    "description": "基本资料/基金分类",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_volatility_threshold_pb_fund",
+    "name": "年化跟踪误差阀值(业绩基准)货币基金收益计算方式",
+    "description": "基本资料/基金概况基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_tdthreshold_pb_fund",
+    "name": "日均跟踪偏离度阀值(业绩基准)",
+    "description": "基本资料/基金概况 面值 ths_coupon_value_fund基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_back_code_fund",
+    "name": "基金后端代码",
+    "description": "基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_full_name_fund",
+    "name": "基金全称",
+    "description": "基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_jensen_fund",
+    "name": "概况绩效评估/风险收益指标Jensen",
+    "description": "基本资料/基金",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_manager_current_fund",
+    "name": "基金经理(现任)",
+    "description": "基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_scale_fund",
+    "name": "基金规模",
+    "description": "基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_thscode_fund",
+    "name": "基金同花顺代码",
+    "description": "基本资料/基金概况 基金交易货币 ths_fund_td_currency_fund基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_his_fm_service_return_fund",
+    "name": "历任基金经理任职年化回报",
+    "description": "排名(1-第1 名,2-第2 名,3-第3 名,4-第4名,5-第5 名,6-第6 名,7-第7 名,8-第8名,9-第9 名,10-第10 名) 基本资料/基金概况 收益结转方式 ths_income_transfer_method_fund基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_objective_fund",
+    "name": "投资目标",
+    "description": "基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_is_anv_merge_data_fund",
+    "name": "资产净值是否为合并数据",
+    "description": "基本资料/基金概况 投资范围 ths_invest_socpe_fund基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_mergesize_fund",
+    "name": "基金规模(合并)",
+    "description": "基本资料/基金概况基本资料/基金概况 业绩比较基准 ths_perf_comparative_benchmark_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_related_etf_thscode_fund",
+    "name": "关联ETF 同花顺代码",
+    "description": "日期(100-最新,101-前一交易日,102-1 周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日) 基本资料/基金概况基本资料/基金概况 申购赎回状态 ths_pur_and_redemp_status_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_scale_similar_rank_fund",
+    "name": "规模同类排名",
+    "description": "基本资料/基金概况",
+    "params": ""
+  },
+  {
+    "code": "ths_similar_fund_avg_scale_fund",
+    "name": "规模",
+    "description": "同类基金平均",
+    "params": ""
+  },
+  {
+    "code": "ths_five_star_fund_ratio_fund",
+    "name": "五星基金占比",
+    "description": "基本资料/基金公司",
+    "params": ""
+  },
+  {
+    "code": "ths_fs_short_name_fund",
+    "name": "基金管理人简称",
+    "description": "月份(1-1 月,2-2 月,3-3 月,4-4 月,5-5月,6-6 月,7-7 月,8-8 月,9-9 月,10-10月,11-11 月,12-12 月),评级机构(101-银河,102-上海证券) 基本资料/基金公司基本资料/基金公司 四星基金占比 ths_four_star_fund_ratio_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_manager_avg_years_fund",
+    "name": "基金经理平均年限",
+    "description": "基本资料/基金公司基本资料/基金公司",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_manager_max_years_fund",
+    "name": "基金经理最大年限",
+    "description": "基本资料/基金公司基本资料/基金公司 基金经理数 ths_fund_manager_num_fund",
+    "params": ""
+  },
+  {
+    "code": "ths_funds_num_fund",
+    "name": "旗下基金数",
+    "description": "基本资料/基金公司",
+    "params": ""
+  },
+  {
+    "code": "ths_team_stability_fund",
+    "name": "公司/基本资料基本资料/基金公司团队稳定性",
+    "description": "基本资料/基金",
+    "params": ""
+  },
+  {
+    "code": "ths_fs_cn_name_fund",
+    "name": "基金管理人中文名称",
+    "description": "基本资料/基金公司/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fs_en_name_fund",
+    "name": "基金管理人英文名称",
+    "description": "基本资料/基金公司/基本资料基本资料/基金公司/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fs_general_manager_fund",
+    "name": "基金管理人总经理",
+    "description": "基本资料/基金公司/基本资料基本资料/基金公司/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fs_office_address_fund",
+    "name": "基金管理人办公地址",
+    "description": "基本资料/基金公司/基本资料基本资料/基金公司/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_fs_tel_fund",
+    "name": "基金管理人电话",
+    "description": "基本资料/基金公司/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_aa_annual_yeild_over_benchmark_fund",
+    "name": "超越基准算数平均年化收益率",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_aa_position_annual_yeild_fund",
+    "name": "算数平均任职年化回报",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_birthday_fund",
+    "name": "出生年月",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_departuredate_fund",
+    "name": "离职日期",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_education_fund",
+    "name": "学历",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_employ_max_return_fund",
+    "name": "任职期间最大回报率",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_manager_avg_ages_fund",
+    "name": "基金经理平均年限",
+    "description": "基本资料/基金经理基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_ga_annual_yeild_over_benchmark_fund",
+    "name": "超越基准几何平均年化收益率",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_geoavg_service_annual_return_fund",
+    "name": "几何平均任职年化回报",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_name_fund",
+    "name": "姓名",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_name_position_ages_fund",
+    "name": "姓名(任职年限)",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_nationality_fund",
+    "name": "国籍",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_natural_service_years_fund",
+    "name": "自然任职年限",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_service_duration_annual_return_fund",
+    "name": "任职期间年化回报",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_service_funds_num_fund",
+    "name": "任职基金总数",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_service_max_retrace_fund",
+    "name": "任职期间最大回撤率",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_service_sd_fund",
+    "name": "任职起始日",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_service_term_fund",
+    "name": "任职期限",
+    "description": "基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_total_return_over_benchmark_fund",
+    "name": "超越基准总回报",
+    "description": "任职状态(100-现任,101-历任),任职年化回报排名(1-第1 名,2-第2 名,3-第3 名,4-第4 名,5-第5 名,6-第6 名,7-第7 名,8-第8名,9-第9 名,10-第10 名),是否显示经理名称(100-是,101-否) 基本资料/相关机构 基金托管人 ths_fund_mandator_fund基本资料/基金经理",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_sponsor_related_org_fund",
+    "name": "基金发起人",
+    "description": "基本资料/相关机构",
+    "params": ""
+  },
+  {
+    "code": "ths_found_years_fund",
+    "name": "成立年限",
+    "description": "基本资料/重要日期",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_establishment_date_fund",
+    "name": "基金成立日",
+    "description": "基本资料/重要日期",
+    "params": ""
+  },
+  {
+    "code": "ths_mandate_ed_fund",
+    "name": "托管结束日期",
+    "description": "基本资料/重要日期",
+    "params": ""
+  },
+  {
+    "code": "ths_redemp_sd_fund",
+    "name": "赎回起始日",
+    "description": "基本资料/重要日期",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_shares_chg_fund",
+    "name": "基金份额变化",
+    "description": "基金份额",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_shares_fund",
+    "name": "基金份额",
+    "description": "基金份额",
+    "params": ""
+  },
+  {
+    "code": "ths_sq_pur_and_redemp_net_amt_fund",
+    "name": "单季度申购赎回净额",
+    "description": "基金份额",
+    "params": ""
+  },
+  {
+    "code": "ths_sq_total_redemp_share_fund",
+    "name": "单季度总赎回份额",
+    "description": "基金份额",
+    "params": ""
+  },
+  {
+    "code": "ths_total_redemp_share_rp_fund",
+    "name": "报告期总赎回份额",
+    "description": "基金份额",
+    "params": ""
+  },
+  {
+    "code": "ths_alpha_annual_fund",
+    "name": "Alpha(年化)",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_volatility_fund",
+    "name": "年化波动率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_annual_yield_fund",
+    "name": "年化收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_risk_yield_fund",
+    "name": "平均风险收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_yield_fund",
+    "name": "平均收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_decisive_coefficient_fund",
+    "name": "可决系数",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_downside_risk_fund",
+    "name": "下行风险",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_downside_standard_deviation_fund",
+    "name": "下行标准差",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_geoavg_risk_yield_fund",
+    "name": "几何平均风险收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_geoavg_yield_fund",
+    "name": "几何平均收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_income_standard_deviation_fund",
+    "name": "收益标准差",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_jensen_annual_fund",
+    "name": "Jensen（年化）",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_max_retrace_rate_fund",
+    "name": "最大回撤率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_non_system_risk_fund",
+    "name": "非系统风险",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_retracement_fund",
+    "name": "回撤(相对前期高点)",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sharp_annual_fund",
+    "name": "Sharpe(年化)",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sharp_fund",
+    "name": "Sharpe",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sortino_annul_fund",
+    "name": "Sortino(年化)",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_treynor_annual_fund",
+    "name": "Treynor（年化）",
+    "description": "起始交易日期(100-截止日前一交易日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末),计算周期(100-日,101-周,102-月,103-年),收益率计算方法(101-普通收益率,100-对数收益率),无风险收益率(100-一年定存利率（税前）,101-一年定存利率（税后）,102-一年期国债收益率,103-最新发行的一年期央票利率,104-银行间市场七日回购利率),标的指数(000001.SH-上证综合指数,000016.SH-上证50 指数,000010.SH-上证180 指数,399001.SZ-深证成份指数,399106.SZ-深证综合指数,399903.SZ-中证100 指数,000300.SH-沪深300 指数,000906.SH-中证800 指数,000935.SH-中证信息技术指数,000933.SH-中证医药卫生指数,000012.SH-上证国债指数,H11001.CSI-中证全债指数,133333.MI-MSCI CHINA A 指数) 绩效评估/基金评级 招商证券评级 ths_cms_rating_fund 交易日期(100-最新)绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cost_lipper_3y_rating_fund",
+    "name": "理柏3 年评级(费用)",
+    "description": "月份(1-1 月,2-2 月,3-3 月,4-4 月,5-5月,6-6 月,7-7 月,8-8 月,9-9 月,10-10月,11-11 月,12-12 月) 绩效评估/基金评级 银河3 年评级 ths_galaxy_rating_3y_fund 交易日期(100-最新)绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_galaxy_rating_4y_fund",
+    "name": "银河4 年评级",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_jajx_compre_rating_fund",
+    "name": "济安金信综合评级",
+    "description": "绩效评估/基金评级 海通证券评级 ths_hts_rating_fund 交易日期(100-最新)绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_mkt_compre_rating_fund",
+    "name": "市场综合评级",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_preservation_lipper_3y_rating_fund",
+    "name": "理柏3 年评级(保本能力)",
+    "description": "月份(1-1 月,2-2 月,3-3 月,4-4 月,5-5月,6-6 月,7-7 月,8-8 月,9-9 月,10-10月,11-11 月,12-12 月) 绩效评估/基金评级绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_shs_rating_3y_sec_select_fund",
+    "name": "上海证券3 年评级(选证能力)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_shs_rating_3y_sharpe_rate_fund",
+    "name": "上海证券3 年评级(夏普比率)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_shs_rating_3y_time_select_fund",
+    "name": "上海证券3 年评级(择时能力)上海证券5 年评级",
+    "description": "绩效评估/基金评级绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_shs_rating_5y_sec_select_fund",
+    "name": "上海证券5 年评级(选证能力)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_shs_rating_5y_sharpe_rate_fund",
+    "name": "上海证券5 年评级(夏普比率)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_shs_rating_5y_time_select_fund",
+    "name": "上海证券5 年评级(择时能力)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_stable_return_lipper_3y_rating_fund",
+    "name": "理柏3 年评级(稳定回报)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_total_return_lipper_3y_rating_fund",
+    "name": "理柏3 年评级(总回报)",
+    "description": "绩效评估/基金评级",
+    "params": ""
+  },
+  {
+    "code": "ths_avgincome_fund",
+    "name": "平均收益",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_avgloss_fund",
+    "name": "平均损失",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_consecutivefallmonths_fund",
+    "name": "连跌月数",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_consecutiverisemonths_fund",
+    "name": "连涨月数",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_highestmonthlyreturn_fund",
+    "name": "最高单月回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_longestconsecutivefallmonths_fund",
+    "name": "最长连续下跌月数",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_longestconsecutiverisemonths_fund",
+    "name": "最长连续上涨月数",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_longestcontinuousfallratio_fund",
+    "name": "最长连续下跌整月涨幅",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_longestcontinuousriseratio_fund",
+    "name": "最长连续上涨整月涨幅",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_lowestmonthlyreturn_fund",
+    "name": "最低单月回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_maxnmreturn_fund",
+    "name": "最高连续N月回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_maxquarterlyreturn_fund",
+    "name": "最高季度回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_mininmreturn_fund",
+    "name": "最差连续N月回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_miniquarterlyreturn_fund",
+    "name": "最低季度回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_monthlyavgreturn_fund",
+    "name": "平均月度回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_monthlycompoundreturn_fund",
+    "name": "月度复合回报",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_profitratio_fund",
+    "name": "盈利百分比",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_risetofallmonthlyratio_fund",
+    "name": "上涨/下跌月数比",
+    "description": "绩效评估/绝对收益",
+    "params": ""
+  },
+  {
+    "code": "ths_info_ratio_fund",
+    "name": "信息比率",
+    "description": "绩效评估/选股选时能力",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_select_ability_fund",
+    "name": "选股能力",
+    "description": "绩效评估/选股选时能力",
+    "params": ""
+  },
+  {
+    "code": "ths_timing_ability_fund",
+    "name": "选时能力",
+    "description": "绩效评估/选股选时能力",
+    "params": ""
+  },
+  {
+    "code": "ths_tracking_error_annual_fund",
+    "name": "跟踪误差(年化)",
+    "description": "绩效评估/选股选时能力",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unit_nv_fund",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末),计算周期(100-日,101-周,102-月,103-年),收益率计算方法(101-普通收益率,100-对数收益率),标的指数(000001.SH-上证综合指数,000016.SH-上证50 指数,000010.SH-上证180 指数,399001.SZ-深证成份指数,399106.SZ-深证综合指数,399903.SZ-中证100 指数,000300.SH-沪深300 指数,000906.SH-中证800 指数,000935.SH-中证信息技术指数,000933.SH-中证医药卫生指数,000012.SH-上证国债指数,H11001.CSI-中证全债指数,133333.MI-MSCI CHINA A指数)净值指标累计单位净值",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unit_nv_grow_fund",
+    "name": "累计单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unitnvg_fund",
+    "name": "累计单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjust_unit_nvg_since_founded_fund",
+    "name": "自成立日起复权单位净值增长率",
+    "description": "净值指标净值指标 复权单位净值 ths_adjustment_nv_fund 交易日期(100-最新)",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_fund",
+    "name": "复权单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_ratio_fund",
+    "name": "复权单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_to_mkt_fund",
+    "name": "复权单位净值相对大盘增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_dividendnvg_fund",
+    "name": "现金分红净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_accum_unit_nv_int_fund",
+    "name": "区间最高累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_adjustment_unit_nv_int_fund",
+    "name": "区间最高复权单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_unit_nv_int_fund",
+    "name": "区间最高单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_interval_nv_over_by_frequency_fund",
+    "name": "区间净值超越基准收益频率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_intervalbenchmarkgrowthrate_fund",
+    "name": "区间业绩基准增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_intervaloverbenchmarkgrowthrate_fund",
+    "name": "区间净值超越基准增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_accum_unit_nv_int_fund",
+    "name": "区间最低累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_adjustment_unit_nv_int_fund",
+    "name": "区间最低复权单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_nv_date_fund",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末)净值指标净值日期",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_same_type_fund_quart_rank_fund",
+    "name": "同类基金区间四分位排名",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_similar_fund_int_avg_yield_fund",
+    "name": "同类基金区间平均收益率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_similar_fund_int_income_rank_fund",
+    "name": "同类基金区间收益排名",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_similar_fund_int_rank_pct_fund",
+    "name": "同类基金区间收益排名(百分比)",
+    "description": "起始交易日期(100-截止日前一交易日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末),基金分类(100-封闭式/开放式,101-一级分类,102-二级分类,103-概念分类) 净值指标 单位净值币种 ths_unit_nv_currency_fund 净值指标 单位净值 ths_unit_nv_fund 交易日期(100-最新)净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_unit_nv_grow_fund",
+    "name": "单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_unit_nvg_fund",
+    "name": "单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_nvg_rp_fund",
+    "name": "报告期净值增长率",
+    "description": "净值指标/报告期净值表现",
+    "params": ""
+  },
+  {
+    "code": "ths_nvg_standard_variance_rp_fund",
+    "name": "报告期净值增长率标准差",
+    "description": "净值指标/报告期净值表现",
+    "params": ""
+  },
+  {
+    "code": "ths_nvg_sv_minus_bsv_rp_fund",
+    "name": "报告期净值增长率标准差减基准标准差",
+    "description": "净值指标/报告期净值表现",
+    "params": ""
+  },
+  {
+    "code": "ths_nvgminus_benchmark_growth_rp_fund",
+    "name": "报告期净值增长率减基准增长率",
+    "description": "净值指标/报告期净值表现",
+    "params": ""
+  },
+  {
+    "code": "ths_pcb_growth_rp_fund",
+    "name": "报告期业绩比较基准增长率",
+    "description": "净值指标/报告期净值表现",
+    "params": ""
+  },
+  {
+    "code": "ths_pcb_growth_sv_rp_fund",
+    "name": "报告期业绩比较基准增长率标准差",
+    "description": "净值指标/报告期净值表现",
+    "params": ""
+  },
+  {
+    "code": "ths_td_commi_brokers_detail_fund",
+    "name": "交易佣金(分券商明细)",
+    "description": "券商佣金",
+    "params": ""
+  },
+  {
+    "code": "ths_td_commi_total_fund",
+    "name": "交易佣金(合计值)",
+    "description": "券商佣金",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_mm_chg_qdii_fund",
+    "name": "重仓持仓市值变化(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_mm_qdii_fund",
+    "name": "重仓持仓市值(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_mm_to_fund_anv_qdii_fund",
+    "name": "重仓持仓市值占基金资产净值比例(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_qdii_fund",
+    "name": "重仓持仓数量(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_code_qdii_fund",
+    "name": "重仓证券代码(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_listed_exchange_qdii_fund",
+    "name": "重仓证券上市地点(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_name_qdii_fund",
+    "name": "重仓证券名称(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_respond_country_qdii_fund",
+    "name": "重仓证券所属国家(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_type_qdii_fund",
+    "name": "重仓证券类型(QDII)",
+    "description": "投资组合/QDII基金/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_bi_invest_mv_to_fanv_qdii_fund",
+    "name": "分行业投资市值占基金资产净值比例(QDII)",
+    "description": "投资组合/QDII基金/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_branch_industry_invest_mv_qdii_fund",
+    "name": "分行业投资市值(QDII)",
+    "description": "投资组合/QDII基金/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_invest_mv_qdii_fund",
+    "name": "重仓行业投资市值(QDII)",
+    "description": "投资组合/QDII基金/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_mv_to_fnv_qdii_fund",
+    "name": "重仓行业投资市值占基金资产净值比例(QDII)",
+    "description": "投资组合/QDII基金/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_name_qdii_fund",
+    "name": "重仓行业名称(QDII)",
+    "description": "投资组合/QDII基金/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_mv_qdii_fund",
+    "name": "国家地区投资市值(QDII)",
+    "description": "投资组合/QDII基金/区域配置",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_mv_to_fanv_qdii_fund",
+    "name": "国家地区投资市值占基金资产净值比例(QDII)",
+    "description": "投资组合/QDII基金/区域配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_num_of_heavily_held_sec_fund",
+    "name": "持有重仓证券的基金数量",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_top_sec_mv_to_fanv_fund",
+    "name": "前N 名重仓证券市值合计占基金资产净值比",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_top_stock_mv_to_si_mv_fund",
+    "name": "前N 名重仓证券市值合计占证券投资市值比",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_chg_ratio_fund",
+    "name": "重仓证券涨跌幅",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_code_fund",
+    "name": "重仓证券代码",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_held_change_fund",
+    "name": "重仓证券持仓变动",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_held_mv_fund",
+    "name": "重仓证券持仓数量",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_held_num_fund",
+    "name": "重仓证券持仓市值",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_mv_to_fnv_fund",
+    "name": "重仓证券市值占基金资产总值比",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_mv_to_ftv_fund",
+    "name": "重仓证券市值占证券投资市值比",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_mv_to_stock_invest_mv_fund",
+    "name": "重仓证券市值占基金资产净值比",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_name_fund",
+    "name": "重仓证券名称",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_sec_type_fund",
+    "name": "重仓证券类型",
+    "description": "投资组合/持仓明细",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_num_of_heavily_held_stock_fund",
+    "name": "持有重仓股票的基金数量",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_held_stock_num_eorp_fund",
+    "name": "报告期末持有股票个数(中报、年报)",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_change_fund",
+    "name": "重仓股持仓变动",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_mv_fund",
+    "name": "重仓股持股市值",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_num_fund",
+    "name": "重仓股持股数量",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_stock_code_fund",
+    "name": "重仓股股票代码",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_stock_name_fund",
+    "name": "重仓股股票名称",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_to_float_shares_fund",
+    "name": "重仓股持仓占流通股比例",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_top_stock_mv_to_fanv_fund",
+    "name": "前N 名重仓股票市值合计占基金资产净值比",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_chg_ratio_fund",
+    "name": "重仓股涨跌幅",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_mv_ratio_fund",
+    "name": "重仓股市值占股票投资市值比",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_mv_to_fnv_fund",
+    "name": "重仓股市值占基金资产净值比",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_mv_to_ftv_fund",
+    "name": "重仓股市值占基金资产总值比",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-最新一期(MRQ),105-去年一季,106-去年中报,107-去年三季),排名(1-第1 名,2-第2 名,3-第3名,4-第4 名,5-第5 名,6-第6 名,7-第7名,8-第8 名,9-第9 名,10-第10 名) 投资组合/持股明细投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_total_buy_stock_cost_rp_fund",
+    "name": "报告期买入股票总成本",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_chg_ratio_fund",
+    "name": "重仓基金涨跌幅",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_code_fund",
+    "name": "重仓基金代码",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_chg_fund",
+    "name": "重仓基金持仓变动",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_fund_num_fund",
+    "name": "重仓基金持有基金数",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_mv_fund",
+    "name": "重仓基金持有市值",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_sortino_fund",
+    "name": "Sortino",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_num_fund",
+    "name": "重仓基金持仓数量",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_to_fanv_fund",
+    "name": "重仓基金市值占基金资产净值比",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_to_fatv_fund",
+    "name": "重仓基金市值占基金资产总值比",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_holding_to_fimv_fund",
+    "name": "重仓基金市值占基金投资市值比",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_fund_name_fund",
+    "name": "重仓基金名称",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_fund_mv_to_fanv_fund",
+    "name": "前N 名重仓基金市值合计占基金资产净值比",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_fund_mv_to_fimv_fund",
+    "name": "前N 名重仓基金市值合计占基金投资市值比",
+    "description": "投资组合/持基明细",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_num_of_heavily_held_bond_fund",
+    "name": "持有重仓债券的基金数量",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_chg_ratio_fund",
+    "name": "重仓债券涨跌幅",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_code_fund",
+    "name": "重仓债券代码",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_held_change_fund",
+    "name": "重仓债券持仓变动",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_held_mv_fund",
+    "name": "重仓债券持有市值",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_held_num_fund",
+    "name": "重仓债券持仓数量",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_mv_to_fnv_fund",
+    "name": "重仓债券市值占基金资产总值比",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_mv_to_ftv_fund",
+    "name": "重仓债券市值占债券投资市值比",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_mv_to_stock_invest_mv_fund",
+    "name": "重仓债券市值占基金资产净值比",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_bond_name_fund",
+    "name": "重仓债券名称",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_top_bondk_mv_to_fanv_fund",
+    "name": "前N 名重仓债券市值合计占基金资产净值比",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_top_stock_mv_to_bi_mv_fund",
+    "name": "前N 名重仓债券市值合计占债券投资市值比",
+    "description": "投资组合/持债明细",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_credit_level_fund",
+    "name": "债券信用等级",
+    "description": "投资组合/持债明细/债券信用等级分类",
+    "params": ""
+  },
+  {
+    "code": "ths_fv_fund",
+    "name": "公允价值",
+    "description": "投资组合/持债明细/债券信用等级分类",
+    "params": ""
+  },
+  {
+    "code": "ths_to_fund_nav_ratio_fund",
+    "name": "占基金资产净值比例",
+    "description": "投资组合/持债明细/债券信用等级分类",
+    "params": ""
+  },
+  {
+    "code": "ths_bi_mv_to_stock_invest_mv_fund",
+    "name": "分行业市值占股票投资市值比",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_branch_industry_invest_mv_fund",
+    "name": "分行业投资市值",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_branch_industry_mv_growth_fund",
+    "name": "分行业市值增长率",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_branch_industry_mv_to_fanv_fund",
+    "name": "分行业市值占基金资产净值比",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_branch_industry_mv_to_fanvg_fund",
+    "name": "分行业市值占基金资产净值比增长",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_branch_industry_mv_to_fatv_fund",
+    "name": "分行业市值占基金资产总值比",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_code_fund",
+    "name": "重仓行业代码",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_mv_fund",
+    "name": "重仓行业市值",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_mv_ratio_fund",
+    "name": "重仓行业市值占股票投资市值比",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_mv_the_fund_corp_fund",
+    "name": "所属基金公司重仓行业市值",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_mv_to_fnv_fund",
+    "name": "重仓行业市值占基金资产净值比",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_mv_to_ftv_fund",
+    "name": "重仓行业市值占基金资产总值比",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_top_industry_name_fund",
+    "name": "重仓行业名称",
+    "description": "投资组合/行业分布",
+    "params": ""
+  },
+  {
+    "code": "ths_different_assets_to_fanv_fund",
+    "name": "各期限资产占基金资产净值比例",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-最新一期(MRQ),105-去年一季,106-去年中报,107-去年三季),组合剩余期限(100-30 天以内,101-30 天以内(剩余存续期超过397 天的浮动利率债),102-30 天(含)-60 天,103-30 天(含)-60 天(剩余存续期超过397 天的浮动利率债),104-60 天(含)-90 天,105-60天(含)-90 天(剩余存续期超过397 天的浮动利率债),110-90(含)-120 天,111-90 天(含)-120 天(剩余存续期超过397 天的浮动利率债),112-120 天(含)-397 天,113-120天(含)-397 天(剩余存续期超过397 天的浮动利率债),106-90 天(含)-180 天,107-90天(含)-180 天(剩余存续期超过397 天的浮动利率债),108-180 天(含)-397 天,109-180天(含)-397 天(剩余存续期超过397 天的浮动利率债)) 投资组合/货币市场基金/报告期末基金资产组合投资组合/货币市场基金",
+    "params": ""
+  },
+  {
+    "code": "ths_bd_and_clear_provision_fund",
+    "name": "银行存款和清算备付金",
+    "description": "报告期(100-去年年报,101-今年一季,102-今年中报,103-今年三季,104-最新一期(MRQ),105-去年一季,106-去年中报,107-去年三季),组合剩余期限(100-30 天以内,101-30 天以内(剩余存续期超过397 天的浮动利率债),102-30 天(含)-60 天,103-30 天(含)-60 天(剩余存续期超过397 天的浮动利率债),104-60 天(含)-90 天,105-60天(含)-90 天(剩余存续期超过397 天的浮动利率债),110-90(含)-120 天,111-90 天(含)-120 天(剩余存续期超过397 天的浮动利率债),112-120 天(含)-397 天,113-120天(含)-397 天(剩余存续期超过397 天的浮动利率债),106-90 天(含)-180 天,107-90天(含)-180 天(剩余存续期超过397 天的浮动利率债),108-180 天(含)-397 天,109-180天(含)-397 天(剩余存续期超过397 天的浮动利率债)) 投资组合/货币市场基金/报告期末基金资产组合投资组合/货币市场基金",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_amt_fund",
+    "name": "债券投资金额",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_to_fav_ratio_fund",
+    "name": "债券投资占基金资产总值的比例",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_buy_resale_sec_amt_fund",
+    "name": "买入返售证券金额",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_buy_resale_sec_to_fatv_fund",
+    "name": "买入返售证券占基金资产总值的比例",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_to_fatv_eorp_fund",
+    "name": "其他资产占基金资产总值的比例",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_assets_eorp_fund",
+    "name": "其他资产",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_total_bdcp_to_fanv_fund",
+    "name": "银行存款和清算备付金合计占基金资产总值的比例",
+    "description": "投资组合/货币市场基金/报告期末基金资产组合",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_repur_mtb_fund",
+    "name": "报告期末债券回购融资余额",
+    "description": "投资组合/货币市场基金/报告期债券回购融资情况",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_repur_mtb_rp_fund",
+    "name": "报告期内债券回购融资余额",
+    "description": "投资组合/货币市场基金/报告期债券回购融资情况",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_repur_mtb_to_fanv_drp_fund",
+    "name": "报告期内债券回购融资余额占基金资产净值比例",
+    "description": "投资组合/货币市场基金/报告期债券回购融资情况",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_repur_mtb_to_fanv_eorp_fund",
+    "name": "报告期末债券回购融资余额占基金资产净值比例",
+    "description": "投资组合/货币市场基金/报告期债券回购融资情况",
+    "params": ""
+  },
+  {
+    "code": "ths_ip_avg_surplus_high_rp_fund",
+    "name": "报告期内投资组合平均剩余期限最高值",
+    "description": "投资组合/货币市场基金/基金投资组合平均剩余期限",
+    "params": ""
+  },
+  {
+    "code": "ths_ip_avg_surplus_low_rp_fund",
+    "name": "报告期内投资组合平均剩余期限最低值",
+    "description": "投资组合/货币市场基金/基金投资组合平均剩余期限",
+    "params": ""
+  },
+  {
+    "code": "ths_ip_avg_surplus_term_eorp_fund",
+    "name": "报告期末投资组合平均剩余期限",
+    "description": "投资组合/货币市场基金/基金投资组合平均剩余期限",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_deviation_abs_saa_fund",
+    "name": "报告期内每个工作日偏离度的绝对值的简单平均值",
+    "description": "投资组合/货币市场基金/基金资产净值的偏离",
+    "params": ""
+  },
+  {
+    "code": "ths_deviation_high_rp_fund",
+    "name": "报告期内偏离度的最高值",
+    "description": "投资组合/货币市场基金/基金资产净值的偏离",
+    "params": ""
+  },
+  {
+    "code": "ths_deviation_in_fixed_int_times_fund",
+    "name": "报告期内偏离度的绝对值在0.25%(含)-0.5%间的次数",
+    "description": "投资组合/货币市场基金/基金资产净值的偏离",
+    "params": ""
+  },
+  {
+    "code": "ths_deviation_low_rp_fund",
+    "name": "报告期内偏离度的最低值",
+    "description": "投资组合/货币市场基金/基金资产净值的偏离",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_mv_fund",
+    "name": "可转债市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_mv_growth_fund",
+    "name": "可转债市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_mv_to_bond_invest_mv_fund",
+    "name": "可转债市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_mv_to_fanv_fund",
+    "name": "可转债市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_mv_to_fanvg_fund",
+    "name": "可转债市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cb_mv_to_fatv_fund",
+    "name": "可转债市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cbb_mv_fund",
+    "name": "央行票据市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cbb_mv_growth_fund",
+    "name": "央行票据市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cbb_to_bond_invest_mv_fund",
+    "name": "央行票据市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cbb_to_fanv_fund",
+    "name": "央行票据市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cbb_to_fanvg_fund",
+    "name": "央行票据市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_cbb_to_fatv_fund",
+    "name": "央行票据市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_fund",
+    "name": "企业债市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_growth_fund",
+    "name": "企业债市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_to_bond_invest_mv_fund",
+    "name": "企业债市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_to_fanv_fund",
+    "name": "企业债市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_to_fanv_growth_fund",
+    "name": "企业发行债券市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_to_fanvg_fund",
+    "name": "企业债市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_bond_mv_to_fatv_fund",
+    "name": "企业债市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_issue_bond_mv_fund",
+    "name": "企业发行债券市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_issue_bond_mv_growth_fund",
+    "name": "企业发行债券市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_issue_bond_mv_to_bimv_fund",
+    "name": "企业发行债券市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_issue_bond_mv_to_fanv_fund",
+    "name": "企业发行债券市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corp_issue_bond_mv_to_fatv_fund",
+    "name": "企业发行债券市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corpst_finan_bond_mv_fund",
+    "name": "企业短期融资券市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corpst_finan_bond_mv_growth_fund",
+    "name": "企业短期融资券市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corpst_finan_bond_mv_to_bi_mv_fund",
+    "name": "企业短期融资债券市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corpst_finan_bond_mv_to_fanv_fund",
+    "name": "企业短期融资券市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corpst_finan_bond_mv_to_fanvg_fund",
+    "name": "企业短期融资券市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_corpst_finan_bond_mv_to_fatv_fund",
+    "name": "企业短期融资券市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_fb_mv_growth_fund",
+    "name": "金融债市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_fb_mv_to_bond_invest_mv_ratio_fund",
+    "name": "金融债市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_fb_mv_to_fanv_ratio_fund",
+    "name": "金融债市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_fb_mv_to_fanv_ratio_growth_fund",
+    "name": "金融债市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_fb_mv_to_fatv_ratio_fund",
+    "name": "金融债市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_fnncl_bond_fv_fund",
+    "name": "金融债市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_frb_mv_dur_over397_fund",
+    "name": "剩余存续期超过397 天的浮动利率债券市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_frb_mv_growth_dur_over397_fund",
+    "name": "剩余存续期超过397 天的浮动利率债券市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_frb_mv_to_bi_mv_dur_over397_fund",
+    "name": "剩余存续期超过397 天的浮动利率债券市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_frb_mv_to_fanv_dur_over397_fund",
+    "name": "剩余存续期超过397 天的浮动利率债券市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_frb_mv_to_fanvg_dur_over397_fund",
+    "name": "剩余存续期超过397 天的浮动利率债券市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_frb_mv_to_fatv_dur_over397_fund",
+    "name": "剩余存续期超过397 天的浮动利率债券市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_bill_mv_fund",
+    "name": "中期票据市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_bill_mv_growth_fund",
+    "name": "中期票据市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_bill_mv_to_bond_invest_fund",
+    "name": "中期票据市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_bill_mv_to_fanvg_fund",
+    "name": "中期票据市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_bill_mv_to_fund_anv_fund",
+    "name": "中期票据市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_mt_bill_mv_to_fund_atv_fund",
+    "name": "中期票据市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_nb_mv_growth_fund",
+    "name": "国债市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_nb_mv_to_bond_invest_mv_fund",
+    "name": "国债市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_nb_mv_to_fanv_fund",
+    "name": "国债市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_nb_mv_to_fanvg_fund",
+    "name": "国债市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_nb_mv_to_fatv_fund",
+    "name": "国债市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_ncd_mv_fund",
+    "name": "同业存单市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_ncd_mv_growth_fund",
+    "name": "同业存单市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_ncd_mv_to_bond_invest_mv_fund",
+    "name": "同业存单市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_ncd_mv_to_fanv_mv_fund",
+    "name": "同业存单市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_ncd_mv_to_fanv_mv_growth_fund",
+    "name": "同业存单市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_ncd_mv_to_fatv_mv_fund",
+    "name": "同业存单市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_bond_mv_growth_fund",
+    "name": "其他债券市值增长率",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_bond_mv_to_bi_mv_fund",
+    "name": "其他债券市值占债券投资市值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_bond_mv_to_fanv_fund",
+    "name": "其他债券市值占基金资产净值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_bond_mv_to_fanvg_fund",
+    "name": "其他债券市值占基金资产净值比例增长",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_bond_mv_to_fatv_fund",
+    "name": "其他债券市值占基金资产总值比",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_other_bonds_value_fund",
+    "name": "其他债券市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_tb_mv_fund",
+    "name": "国债市值",
+    "description": "投资组合/券种组合",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_mv_fund",
+    "name": "资产支持证券市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_mv_growth_fund",
+    "name": "资产支持证券市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_mv_to_fanv_growth_fund",
+    "name": "资产支持证券市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_mv_to_fund_anv_fund",
+    "name": "资产支持证券市值占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_abs_mv_to_fund_atv_fund",
+    "name": "资产支持证券市值占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_fund",
+    "name": "银行存款",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_mv_growth_fund",
+    "name": "银行存款市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_mv_to_fanvg_fund",
+    "name": "银行存款市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_to_fanv_fund",
+    "name": "银行存款占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_to_fatv_fund",
+    "name": "银行存款占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_mv_fund",
+    "name": "债券投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_mv_growth_fund",
+    "name": "债券市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_mv_to_fanv_fund",
+    "name": "债券市值占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_mv_to_fanv_ratio_growth_fund",
+    "name": "债券市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_mv_to_fatv_fund",
+    "name": "债券市值占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_cmi_mv_fund",
+    "name": "货币市场工具市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_cmi_mv_growth_fund",
+    "name": "货币市场工具市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_treynor_fund",
+    "name": "Treynor",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cmi_mv_to_fanv_growth_fund",
+    "name": "货币市场工具市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_cmi_mv_to_fund_anv_fund",
+    "name": "货币市场工具市值占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_cmi_mv_to_fund_atv_fund",
+    "name": "货币市场工具市值占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fanv_chg_fund",
+    "name": "基金资产净值变动",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fanv_chg_rate_fund",
+    "name": "基金资产净值变动率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fanv_fund",
+    "name": "基金资产净值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fatv_chg_fund",
+    "name": "基金资产总值变动",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fatv_chg_rate_fund",
+    "name": "基金资产总值变动率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fatv_fund",
+    "name": "基金资产总值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fnv_to_fatv_fund",
+    "name": "基金净值占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_invest_value_fund",
+    "name": "基金投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_mv_growth_fund",
+    "name": "基金市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_mv_to_fanv_fund",
+    "name": "基金市值占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_mv_to_fanvg_fund",
+    "name": "基金市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_mv_to_fatv_fund",
+    "name": "基金市值占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_mkt_outlook_fund",
+    "name": "市场展望",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_mv_growth_fund",
+    "name": "其他资产市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_mv_to_fanvg_fund",
+    "name": "其他资产市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_to_fanv_fund",
+    "name": "其他资产占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_to_fatv_fund",
+    "name": "其他资产占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_assets_fund",
+    "name": "其他资产",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_invest_mv_fund",
+    "name": "股票投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_mv_growth_fund",
+    "name": "股票市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_mv_to_fanv_fund",
+    "name": "股票市值占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_mv_to_fanvg_fund",
+    "name": "股票市值占基金资产净值比例增长",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_mv_to_fatv_fund",
+    "name": "股票市值占基金资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_total_nav_chg_ratio_fund",
+    "name": "所属基金公司资产净值合计变动率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_total_nav_rank_the_fund_corp_fund",
+    "name": "所属基金公司资产净值合计排名",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_total_nav_the_fund_corp_fund",
+    "name": "所属基金公司资产净值合计",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_warrant_invest_mv_fund",
+    "name": "权证投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_warrant_mv_growth_fund",
+    "name": "权证市值增长率",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_warrant_mv_to_fanv_fund",
+    "name": "权证市值占基金资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  }
+]

@@ -1,35 +1,55 @@
----
-name: "Ab Test Analyzer"
-description: "自动分析A/B测试数据，计算统计显著性，生成可视化报告并提供优化建议，支持多变量测试。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ab-test-analyzer"
-sourceUrl: "https://clawhub.ai/skills/ab-test-analyzer"
----
+# ab-test-analyzer
 
-# Ab Test Analyzer
+## 描述
+A/B 测试分析器 - 自动分析测试数据，计算统计显著性，给出优化建议。适合：产品经理、运营、增长黑客。
 
-> 自动分析A/B测试数据，计算统计显著性，生成可视化报告并提供优化建议，支持多变量测试。
+## 功能
+- 数据导入与分析
+- 统计显著性计算
+- 可视化报告
+- 优化建议
+- 多变量测试支持
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ab-test-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/ab-test-analyzer](https://clawhub.ai/skills/ab-test-analyzer)
+## 使用场景
+1. 落地页优化 - 哪个版本转化高？
+2. 邮件主题行 - 哪个打开率高？
+3. 按钮文案 - 哪个点击率高？
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 命令示例
 ```bash
-hermes skills install clawhub/ab-test-analyzer
+# 导入数据
+openclaw run ab-test-analyzer import test_data.csv
+
+# 分析结果
+openclaw run ab-test-analyzer analyze --metric conversion
+
+# 生成报告
+openclaw run ab-test-analyzer report --output report.md
 ```
+
+## 输出示例
+```
+📊 A/B 测试结果
+
+测试：落地页 CTA 按钮颜色
+指标：点击率
+
+| 版本 | 访客 | 点击 | 点击率 |
+|------|------|------|--------|
+| A (蓝色) | 1000 | 50 | 5.0% |
+| B (绿色) | 1000 | 75 | 7.5% |
+
+结果：B 胜出
+提升：+50%（5.0% → 7.5%）
+置信度：95.2%（统计显著）
+
+建议：
+- 采用绿色按钮
+- 继续测试其他元素
+- 预计额外收入：+¥XXX/月
+```
+
+## 注意事项
+- 需要足够样本量
+- 建议置信度 > 95%
+- 避免过早停止测试

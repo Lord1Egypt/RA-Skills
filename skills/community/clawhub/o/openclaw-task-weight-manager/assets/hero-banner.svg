@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Task Weight Manager hero banner">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08111f"/>
+      <stop offset="55%" stop-color="#10233d"/>
+      <stop offset="100%" stop-color="#061018"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#68e0cf"/>
+      <stop offset="100%" stop-color="#00a6fb"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ff7b54"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1290" cy="170" r="180" fill="#10314f" opacity="0.35"/>
+  <circle cx="250" cy="770" r="220" fill="#0a2d47" opacity="0.28"/>
+  <g opacity="0.16">
+    <path d="M0 140 C280 80 450 210 700 180 C980 150 1130 30 1600 120" fill="none" stroke="#6ae7ff" stroke-width="2"/>
+    <path d="M0 210 C240 170 420 290 720 260 C1080 225 1260 110 1600 200" fill="none" stroke="#6ae7ff" stroke-width="2"/>
+    <path d="M0 790 C310 720 520 850 820 790 C1110 735 1310 640 1600 690" fill="none" stroke="#6ae7ff" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(86 92)">
+    <text x="0" y="0" fill="#8be9fd" font-size="22" font-family="Arial, Helvetica, sans-serif" letter-spacing="5">OPENCLAW SKILL</text>
+    <text x="0" y="90" fill="#f4fbff" font-size="88" font-weight="700" font-family="Arial, Helvetica, sans-serif">Task Weight Manager</text>
+    <text x="0" y="150" fill="#9ec5db" font-size="28" font-family="Arial, Helvetica, sans-serif">Split one noisy chat into weighted parallel threads.</text>
+    <text x="0" y="192" fill="#9ec5db" font-size="28" font-family="Arial, Helvetica, sans-serif">Protect the mainline. Park the distractions. Keep shipping.</text>
+  </g>
+
+  <g transform="translate(82 320)">
+    <rect x="0" y="0" width="500" height="410" rx="30" fill="#0b1628" stroke="#24405f" stroke-width="2"/>
+    <text x="34" y="58" fill="#f7fbff" font-size="30" font-weight="700" font-family="Arial, Helvetica, sans-serif">Single Chat</text>
+    <text x="34" y="95" fill="#8eaec6" font-size="20" font-family="Arial, Helvetica, sans-serif">Multiple active intentions compete inside one stream.</text>
+
+    <rect x="34" y="132" width="430" height="62" rx="16" fill="#11233a"/>
+    <text x="58" y="171" fill="#dfefff" font-size="22" font-family="Arial, Helvetica, sans-serif">Design the release plan</text>
+
+    <rect x="34" y="208" width="378" height="62" rx="16" fill="#172942"/>
+    <text x="58" y="247" fill="#dfefff" font-size="22" font-family="Arial, Helvetica, sans-serif">Review skill behavior</text>
+
+    <rect x="90" y="284" width="330" height="62" rx="16" fill="#1e304a"/>
+    <text x="114" y="323" fill="#dfefff" font-size="22" font-family="Arial, Helvetica, sans-serif">Draft marketplace copy</text>
+
+    <rect x="52" y="360" width="402" height="62" rx="16" fill="#213955"/>
+    <text x="76" y="399" fill="#dfefff" font-size="22" font-family="Arial, Helvetica, sans-serif">Fix focus drift during execution</text>
+  </g>
+
+  <g transform="translate(644 286)">
+    <path d="M0 160 H150" stroke="url(#accent)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+    <path d="M0 260 H150" stroke="url(#accent)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+    <path d="M0 360 H150" stroke="url(#accent)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+  </g>
+
+  <g transform="translate(808 150)">
+    <rect x="0" y="0" width="690" height="600" rx="34" fill="#091320" stroke="#23415f" stroke-width="2"/>
+    <text x="42" y="64" fill="#f7fbff" font-size="34" font-weight="700" font-family="Arial, Helvetica, sans-serif">Weighted Thread Board</text>
+    <text x="42" y="104" fill="#90b5ce" font-size="22" font-family="Arial, Helvetica, sans-serif">The mainline stays dominant while side threads remain visible.</text>
+
+    <rect x="42" y="142" width="606" height="108" rx="22" fill="#0f2633" stroke="#68e0cf" stroke-width="2.5"/>
+    <circle cx="96" cy="196" r="22" fill="#68e0cf"/>
+    <text x="132" y="188" fill="#effeff" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">MAINLINE</text>
+    <text x="132" y="220" fill="#f6fbff" font-size="34" font-weight="700" font-family="Arial, Helvetica, sans-serif">Release the skill package</text>
+    <rect x="512" y="170" width="112" height="44" rx="22" fill="url(#warm)"/>
+    <text x="548" y="199" fill="#111111" font-size="22" font-weight="700" font-family="Arial, Helvetica, sans-serif">97</text>
+
+    <rect x="42" y="280" width="286" height="116" rx="22" fill="#111d30"/>
+    <text x="68" y="322" fill="#83c8ff" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">SUPPORT</text>
+    <text x="68" y="362" fill="#f5fbff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Polish visuals</text>
+    <text x="68" y="392" fill="#9ab9d2" font-size="18" font-family="Arial, Helvetica, sans-serif">Weight 66</text>
+
+    <rect x="362" y="280" width="286" height="116" rx="22" fill="#111d30"/>
+    <text x="388" y="322" fill="#83c8ff" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">RESEARCH</text>
+    <text x="388" y="362" fill="#f5fbff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Study usage patterns</text>
+    <text x="388" y="392" fill="#9ab9d2" font-size="18" font-family="Arial, Helvetica, sans-serif">Weight 54</text>
+
+    <rect x="42" y="426" width="286" height="116" rx="22" fill="#101829" opacity="0.72"/>
+    <text x="68" y="468" fill="#7aa5c8" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">PARKING LOT</text>
+    <text x="68" y="508" fill="#dcecff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Explore variants</text>
+    <text x="68" y="538" fill="#89a9c3" font-size="18" font-family="Arial, Helvetica, sans-serif">Weight 33</text>
+
+    <rect x="362" y="426" width="286" height="116" rx="22" fill="#101829" opacity="0.72"/>
+    <text x="388" y="468" fill="#7aa5c8" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">REFLECTION</text>
+    <text x="388" y="508" fill="#dcecff" font-size="28" font-weight="700" font-family="Arial, Helvetica, sans-serif">Diagnose drift</text>
+    <text x="388" y="538" fill="#89a9c3" font-size="18" font-family="Arial, Helvetica, sans-serif">Weight 29</text>
+  </g>
+</svg>

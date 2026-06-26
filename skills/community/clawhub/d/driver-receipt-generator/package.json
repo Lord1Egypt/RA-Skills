@@ -1,0 +1,31 @@
+{
+  "name": "driver-receipt-generator",
+  "version": "1.1.0",
+  "description": "Professional receipt and invoice generator for rideshare drivers (Uber, Lyft), taxi, limo, delivery drivers, and independent contractors. Create passenger receipts, track ride income, manage 1099 tax records, and generate monthly income summaries. Free. Powered by ReceAI.",
+  "license": "MIT",
+  "clawhub": {
+    "category": "business",
+    "tags": [
+      "receipt",
+      "driver",
+      "invoice",
+      "rideshare",
+      "taxi",
+      "uber",
+      "lyft",
+      "limo",
+      "delivery",
+      "1099",
+      "tax",
+      "income",
+      "passenger",
+      "fare",
+      "mileage",
+      "self-employment",
+      "freelance",
+      "receipt-generator",
+      "car-service",
+      "airport-transfer"
+    ]
+  }
+}

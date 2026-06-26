@@ -1,0 +1,22 @@
+{
+  "name": "query-main-board-stocks",
+  "version": "1.0.0",
+  "description": "查询沪深主板 A 股股票列表（排除创业板、科创板）",
+  "main": "query_main_board_stocks.py",
+  "scripts": {
+    "run": "python query_main_board_stocks.py"
+  },
+  "keywords": [
+    "baostock",
+    "stock",
+    "a-share",
+    "主板股票",
+    "沪深股票"
+  ],
+  "author": "飞书助手",
+  "license": "MIT",
+  "dependencies": {
+    "baostock": "^1.0",
+    "pandas": "^2.0"
+  }
+}

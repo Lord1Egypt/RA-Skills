@@ -1,0 +1,348 @@
+{
+  "cases": [
+    {
+      "case_id": "zh-ai-collaboration",
+      "ok": true,
+      "isolated_drift_fields": [],
+      "baseline_drift_fields": [
+        "resolved_theme"
+      ],
+      "extraction_ms": 0.102,
+      "expected_snapshot": {
+        "ir_hash": "sha256:6cc533055e8a1fe1",
+        "resolved_report_class": "narrative",
+        "resolved_theme": "minimal",
+        "resolved_archetype": "research",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/timeline-diagram.md",
+          "references/rendering/media-code-callout.md",
+          "references/diagram-decision-rules.md"
+        ],
+        "component_counts": {
+          "callout": 1,
+          "timeline": 1,
+          "diagram": 1
+        },
+        "headings": [
+          "结论先行",
+          "六个阶段",
+          "劳动分工如何变化",
+          "管理动作"
+        ]
+      },
+      "isolated_snapshot": {
+        "ir_hash": "sha256:6cc533055e8a1fe1",
+        "resolved_report_class": "narrative",
+        "resolved_theme": "minimal",
+        "resolved_archetype": "research",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/timeline-diagram.md",
+          "references/rendering/media-code-callout.md",
+          "references/diagram-decision-rules.md"
+        ],
+        "component_counts": {
+          "callout": 1,
+          "timeline": 1,
+          "diagram": 1
+        },
+        "headings": [
+          "结论先行",
+          "六个阶段",
+          "劳动分工如何变化",
+          "管理动作"
+        ]
+      },
+      "baseline_snapshot": {
+        "resolved_report_class": "narrative",
+        "resolved_theme": "corporate-blue",
+        "resolved_archetype": "research",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/timeline-diagram.md",
+          "references/rendering/media-code-callout.md",
+          "references/diagram-decision-rules.md"
+        ],
+        "component_counts": {
+          "callout": 1,
+          "timeline": 1,
+          "diagram": 1
+        },
+        "headings": [
+          "结论先行",
+          "六个阶段",
+          "劳动分工如何变化",
+          "管理动作"
+        ]
+      }
+    },
+    {
+      "case_id": "en-ops-weekly",
+      "ok": true,
+      "isolated_drift_fields": [],
+      "baseline_drift_fields": [
+        "resolved_report_class",
+        "resolved_theme",
+        "required_refs"
+      ],
+      "extraction_ms": 0.084,
+      "expected_snapshot": {
+        "ir_hash": "sha256:174280b6b9f22a01",
+        "resolved_report_class": "mixed",
+        "resolved_theme": "corporate-blue",
+        "resolved_archetype": "update",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/kpi.md",
+          "references/rendering/timeline-diagram.md",
+          "references/rendering/media-code-callout.md"
+        ],
+        "component_counts": {
+          "kpi": 1,
+          "timeline": 1,
+          "callout": 1
+        },
+        "headings": [
+          "Bottom line",
+          "What changed",
+          "Next move"
+        ]
+      },
+      "isolated_snapshot": {
+        "ir_hash": "sha256:174280b6b9f22a01",
+        "resolved_report_class": "mixed",
+        "resolved_theme": "corporate-blue",
+        "resolved_archetype": "update",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/kpi.md",
+          "references/rendering/timeline-diagram.md",
+          "references/rendering/media-code-callout.md"
+        ],
+        "component_counts": {
+          "kpi": 1,
+          "timeline": 1,
+          "callout": 1
+        },
+        "headings": [
+          "Bottom line",
+          "What changed",
+          "Next move"
+        ]
+      },
+      "baseline_snapshot": {
+        "resolved_report_class": "narrative",
+        "resolved_theme": "regular-lumen",
+        "resolved_archetype": "update",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/kpi.md",
+          "references/rendering/timeline-diagram.md",
+          "references/rendering/media-code-callout.md",
+          "references/regular-report-content-rules.md"
+        ],
+        "component_counts": {
+          "kpi": 1,
+          "timeline": 1,
+          "callout": 1
+        },
+        "headings": [
+          "Bottom line",
+          "What changed",
+          "Next move"
+        ]
+      }
+    },
+    {
+      "case_id": "zh-quarterly-growth",
+      "ok": true,
+      "isolated_drift_fields": [],
+      "baseline_drift_fields": [
+        "resolved_report_class",
+        "resolved_theme",
+        "required_refs"
+      ],
+      "extraction_ms": 0.092,
+      "expected_snapshot": {
+        "ir_hash": "sha256:4b083817df05c8f4",
+        "resolved_report_class": "data",
+        "resolved_theme": "corporate-blue",
+        "resolved_archetype": "update",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/kpi.md",
+          "references/rendering/chart.md",
+          "references/rendering/table-list.md"
+        ],
+        "component_counts": {
+          "kpi": 1,
+          "chart": 1,
+          "table": 1
+        },
+        "headings": [
+          "关键判断",
+          "区域贡献",
+          "关键表格",
+          "下一步动作"
+        ]
+      },
+      "isolated_snapshot": {
+        "ir_hash": "sha256:4b083817df05c8f4",
+        "resolved_report_class": "data",
+        "resolved_theme": "corporate-blue",
+        "resolved_archetype": "update",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/kpi.md",
+          "references/rendering/chart.md",
+          "references/rendering/table-list.md"
+        ],
+        "component_counts": {
+          "kpi": 1,
+          "chart": 1,
+          "table": 1
+        },
+        "headings": [
+          "关键判断",
+          "区域贡献",
+          "关键表格",
+          "下一步动作"
+        ]
+      },
+      "baseline_snapshot": {
+        "resolved_report_class": "mixed",
+        "resolved_theme": "regular-lumen",
+        "resolved_archetype": "update",
+        "required_refs": [
+          "references/html-shell-template.md",
+          "references/html-shell/core-structure.md",
+          "references/html-shell/shared-component-css.md",
+          "references/html-shell/toc-edit-summary.md",
+          "references/html-shell/summary-card.md",
+          "references/html-shell/export.md",
+          "references/html-shell/print-responsive.md",
+          "references/theme-css.md",
+          "references/review-checklist.md",
+          "references/rendering-rules.md",
+          "references/rendering/plain-markdown.md",
+          "references/anti-patterns.md",
+          "references/rendering/kpi.md",
+          "references/rendering/chart.md",
+          "references/rendering/table-list.md",
+          "references/regular-report-content-rules.md"
+        ],
+        "component_counts": {
+          "kpi": 1,
+          "chart": 1,
+          "table": 1
+        },
+        "headings": [
+          "关键判断",
+          "区域贡献",
+          "关键表格",
+          "下一步动作"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "baseline_cases_with_drift": 3,
+    "isolated_cases_with_drift": 0,
+    "baseline_total_drift_fields": 7,
+    "isolated_total_drift_fields": 0,
+    "drift_reduction": 7,
+    "avg_extraction_ms": 0.093
+  }
+}

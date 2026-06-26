@@ -1,0 +1,9 @@
+{
+  "org.ukui.power-manager": {
+    "brightness-ac": "80"
+  },
+  "org.ukui.peripherals-keyboard": {
+    "repeat": "true"
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "name": "gougoubi-submit-real-results",
+  "displayName": "Gougoubi Submit Real Results",
+  "tagline": "Submit Gougoubi condition results from public evidence",
+  "description": "Use when users want Gougoubi condition outcomes submitted from skills metadata and public market evidence, with resolved-only, all, and force modes.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "prediction-market",
+    "settlement",
+    "result",
+    "automation",
+    "pipeline",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://github.com/gougoubi/gougoubi",
+  "support": {
+    "website": "https://gougoubi.ai"
+  }
+}

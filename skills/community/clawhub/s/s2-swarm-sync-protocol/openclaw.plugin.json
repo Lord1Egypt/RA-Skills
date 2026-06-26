@@ -1,0 +1,17 @@
+{
+  "id": "s2-swarm-sync-protocol",
+  "pluginId": "s2-swarm-sync-protocol",
+  "version": "1.1.0",
+  "type": "native-code",
+  "entry": "handler.py",
+  "runtime": "python3",
+  "permissions": {
+    "network": ["localhost", "p2p_mesh"],
+    "tools": ["execute_swarm_sync"],
+    "env": ["S2_SWARM_PKI_ROOT"]
+  },
+  "mcp_config": {
+    "auto_discovery": true,
+    "protocol_version": "2026.4.1"
+  }
+}

@@ -1,0 +1,129 @@
+# Project Analyzer 配置文件
+# 用于 SDD 文档生成的约束配置
+
+# 项目基本信息
+project:
+  name: my-project
+  type: spring-boot
+  version: 1.0.0
+
+# 输出配置
+output:
+  base_dir: docs/sdd
+  encoding: utf-8
+  format: markdown
+  generate_index: true  # 生成索引文件
+
+# SDD 文档配置
+sdd:
+  generate_srs: true      # 软件需求规格说明书
+  generate_sad: true      # 软件架构文档
+  generate_sdd: true      # 详细设计文档
+  generate_dbd: true      # 数据库设计文档
+  generate_apid: true     # API 接口文档
+  generate_tsd: true      # 测试设计文档
+
+# 数据库配置
+database:
+  analyze_entities: true    # 分析 DO/Entity 类
+  analyze_migrations: true   # 分析迁移脚本
+  verify_with_code: true     # SQL 与 DO 对照验证
+  migration_dirs:             # 迁移脚本目录
+    - db-migration
+    - migrations
+    - database
+    - sql
+
+# API 配置
+api:
+  scan_controllers: true    # 扫描 Controller
+  scan_feign: true          # 扫描 Feign Client
+  scan_dto: true             # 扫描 DTO/VO/BO
+  include_internal: false    # 包含内部接口
+
+# 文档约束
+documents:
+  srs:
+    required_sections:
+      - 引言
+      - 总体描述
+      - 功能需求
+      - 非功能需求
+      - 接口需求
+    min_length: 2000
+
+  sad:
+    required_sections:
+      - 架构概述
+      - 技术选型
+      - 模块设计
+      - 部署架构
+    min_length: 3000
+
+  sdd:
+    required_sections:
+      - 模块详细设计
+      - 接口设计
+      - 数据结构
+      - 异常处理
+    min_length: 5000
+
+  dbd:
+    required_sections:
+      - 数据库概述
+      - 表结构
+      - 索引设计
+      - ER图
+    min_length: 3000
+
+  apid:
+    required_sections:
+      - 接口概述
+      - 接口列表
+      - 错误码定义
+      - 请求响应示例
+    min_length: 3000
+
+  tsd:
+    required_sections:
+      - 测试策略
+      - 单元测试
+      - 集成测试
+      - E2E测试
+    min_length: 2000
+
+# 内容约束
+content:
+  language: zh-CN           # 输出语言
+  no_placeholders: true     # 不允许占位符
+  no_todos: true           # 不允许 TODO
+  no_assumptions: true     # 不允许假设
+
+# 禁止的模式
+forbidden_patterns:
+  - "TODO"
+  - "待补充"
+  - "..."
+  - "[待填写]"
+  - "xxx"
+  - "根据经验"
+  - "通常"
+  - "一般"
+
+# 质量约束
+quality:
+  min_coverage: 80         # 最小覆盖率
+  max_iterations: 3         # 最大修正次数
+  require_diagrams: false    # 需要图表
+
+# 规范检查
+standards:
+  auto_create: false        # 自动创建缺失规范
+  confirm_before_create: true # 创建前确认
+
+# Apifox 对接
+apifox:
+  project_id: null          # Apifox 项目 ID
+  api_token: null           # API Token
+  auto_sync: false          # 自动同步
+  auto_test: false         # 自动测试

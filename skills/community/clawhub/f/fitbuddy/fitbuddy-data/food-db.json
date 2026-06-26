@@ -1,0 +1,497 @@
+{
+  "description": "常用食物数据库（每100g的营养成分）",
+  "portion_aliases": {
+    "一碗": 200,
+    "一饭碗": 200,
+    "一碗饭": 200,
+    "一碗米饭": 200,
+    "一个鸡蛋": 50,
+    "一个蛋": 50,
+    "一个蛋白": 33,
+    "一个蛋黄": 17,
+    "一杯": 250,
+    "一杯牛奶": 250,
+    "一杯水": 250,
+    "一根香蕉": 120,
+    "一个苹果": 200,
+    "一勺": 15,
+    "一勺花生酱": 15,
+    "一小把": 25,
+    "一片": 30,
+    "一片面包": 30
+  },
+  "foods": {
+    "鸡胸肉": {
+      "protein_g": 25.0,
+      "carbs_g": 0.0,
+      "fat_g": 2.0,
+      "source": "默认"
+    },
+    "鸡腿肉": {
+      "protein_g": 20.0,
+      "carbs_g": 0.0,
+      "fat_g": 8.0,
+      "source": "默认"
+    },
+    "牛肉（瘦）": {
+      "protein_g": 22.0,
+      "carbs_g": 0.0,
+      "fat_g": 5.0,
+      "source": "默认"
+    },
+    "猪肉（瘦）": {
+      "protein_g": 20.0,
+      "carbs_g": 0.0,
+      "fat_g": 6.0,
+      "source": "默认"
+    },
+    "虾仁": {
+      "protein_g": 20.0,
+      "carbs_g": 0.5,
+      "fat_g": 0.5,
+      "source": "默认"
+    },
+    "三文鱼": {
+      "protein_g": 20.0,
+      "carbs_g": 0.0,
+      "fat_g": 13.0,
+      "source": "默认"
+    },
+    "鸡蛋（全蛋）": {
+      "protein_g": 13.0,
+      "carbs_g": 1.1,
+      "fat_g": 11.0,
+      "source": "默认"
+    },
+    "蛋白（蛋清）": {
+      "protein_g": 11.0,
+      "carbs_g": 0.7,
+      "fat_g": 0.2,
+      "source": "默认"
+    },
+    "全麦面包": {
+      "protein_g": 9.0,
+      "carbs_g": 48.0,
+      "fat_g": 3.0,
+      "source": "默认"
+    },
+    "白米饭": {
+      "protein_g": 2.6,
+      "carbs_g": 28.0,
+      "fat_g": 0.3,
+      "source": "默认"
+    },
+    "糙米饭": {
+      "protein_g": 2.8,
+      "carbs_g": 24.0,
+      "fat_g": 0.9,
+      "source": "默认"
+    },
+    "面条（熟）": {
+      "protein_g": 4.5,
+      "carbs_g": 25.0,
+      "fat_g": 0.5,
+      "source": "默认"
+    },
+    "红薯": {
+      "protein_g": 1.6,
+      "carbs_g": 20.0,
+      "fat_g": 0.1,
+      "source": "默认"
+    },
+    "土豆": {
+      "protein_g": 2.0,
+      "carbs_g": 17.0,
+      "fat_g": 0.1,
+      "source": "默认"
+    },
+    "燕麦（干）": {
+      "protein_g": 13.0,
+      "carbs_g": 66.0,
+      "fat_g": 7.0,
+      "source": "默认"
+    },
+    "牛奶": {
+      "protein_g": 3.2,
+      "carbs_g": 4.8,
+      "fat_g": 3.6,
+      "source": "默认"
+    },
+    "脱脂牛奶": {
+      "protein_g": 3.4,
+      "carbs_g": 5.0,
+      "fat_g": 0.1,
+      "source": "默认"
+    },
+    "酸奶（原味）": {
+      "protein_g": 3.5,
+      "carbs_g": 6.0,
+      "fat_g": 3.0,
+      "source": "默认"
+    },
+    "希腊酸奶": {
+      "protein_g": 10.0,
+      "carbs_g": 3.6,
+      "fat_g": 0.7,
+      "source": "默认"
+    },
+    "豆腐": {
+      "protein_g": 8.0,
+      "carbs_g": 1.5,
+      "fat_g": 4.0,
+      "source": "默认"
+    },
+    "西兰花": {
+      "protein_g": 3.0,
+      "carbs_g": 4.0,
+      "fat_g": 0.4,
+      "source": "默认"
+    },
+    "菠菜": {
+      "protein_g": 2.9,
+      "carbs_g": 3.6,
+      "fat_g": 0.4,
+      "source": "默认"
+    },
+    "香蕉": {
+      "protein_g": 1.3,
+      "carbs_g": 23.0,
+      "fat_g": 0.4,
+      "source": "默认"
+    },
+    "苹果": {
+      "protein_g": 0.3,
+      "carbs_g": 14.0,
+      "fat_g": 0.2,
+      "source": "默认"
+    },
+    "花生酱": {
+      "protein_g": 25.0,
+      "carbs_g": 20.0,
+      "fat_g": 50.0,
+      "source": "默认"
+    },
+    "蛋白粉（乳清）": {
+      "protein_g": 75.0,
+      "carbs_g": 8.0,
+      "fat_g": 5.0,
+      "source": "默认"
+    },
+    "饭团": {
+      "protein_g": 7.1,
+      "carbs_g": 30.2,
+      "fat_g": 0.6,
+      "source": "用户记录"
+    },
+    "米饭（一碗约200g）": {
+      "protein_g": 5.2,
+      "carbs_g": 56.0,
+      "fat_g": 0.6,
+      "source": "默认",
+      "note": "一碗约200g"
+    },
+    "水果黄瓜": {
+      "protein_g": 0.7,
+      "carbs_g": 2.9,
+      "fat_g": 0.2,
+      "source": "用户添加"
+    },
+    "哥本哈根全麦麻薯球(辣松)": {
+      "protein_g": 5.8,
+      "carbs_g": 48.0,
+      "fat_g": 11.7,
+      "source": "用户添加",
+      "serving_g": 65
+    },
+    "哥本哈根全麦麻薯球(五黑紫薯)": {
+      "protein_g": 6.6,
+      "carbs_g": 51.4,
+      "fat_g": 15.2,
+      "source": "用户添加",
+      "serving_g": 65
+    },
+    "蛋黄": {
+      "protein_g": 16.0,
+      "carbs_g": 3.6,
+      "fat_g": 30.0,
+      "source": "用户添加"
+    },
+    "鸡蛋(1个约50g)": {
+      "protein_g": 13.0,
+      "carbs_g": 1.1,
+      "fat_g": 11.0,
+      "source": "用户添加",
+      "serving_g": 50
+    },
+    "蛋白(1个约33g)": {
+      "protein_g": 11.0,
+      "carbs_g": 0.7,
+      "fat_g": 0.2,
+      "source": "用户添加",
+      "serving_g": 33
+    },
+    "蛋黄(1个约17g)": {
+      "protein_g": 16.0,
+      "carbs_g": 3.6,
+      "fat_g": 30.0,
+      "source": "用户添加",
+      "serving_g": 17
+    },
+    "--- 常见外卖/食堂 ---": {
+      "protein_g": 0, "carbs_g": 0, "fat_g": 0, "source": "分隔符"
+    },
+    "牛肉面": {
+      "protein_g": 8.0,
+      "carbs_g": 18.0,
+      "fat_g": 5.0,
+      "source": "估算",
+      "serving_g": 400,
+      "note": "一碗约400g"
+    },
+    "鸡排饭": {
+      "protein_g": 10.0,
+      "carbs_g": 22.0,
+      "fat_g": 8.0,
+      "source": "估算",
+      "serving_g": 350,
+      "note": "一份约350g"
+    },
+    "红烧肉饭": {
+      "protein_g": 9.0,
+      "carbs_g": 20.0,
+      "fat_g": 15.0,
+      "source": "估算",
+      "serving_g": 350,
+      "note": "一份约350g"
+    },
+    "宫保鸡丁饭": {
+      "protein_g": 11.0,
+      "carbs_g": 20.0,
+      "fat_g": 10.0,
+      "source": "估算",
+      "serving_g": 350,
+      "note": "一份约350g"
+    },
+    "番茄炒蛋饭": {
+      "protein_g": 7.0,
+      "carbs_g": 22.0,
+      "fat_g": 8.0,
+      "source": "估算",
+      "serving_g": 350,
+      "note": "一份约350g"
+    },
+    "麻辣烫": {
+      "protein_g": 7.0,
+      "carbs_g": 10.0,
+      "fat_g": 9.0,
+      "source": "估算",
+      "serving_g": 500,
+      "note": "一碗约500g"
+    },
+    "黄焖鸡米饭": {
+      "protein_g": 10.0,
+      "carbs_g": 22.0,
+      "fat_g": 8.0,
+      "source": "估算",
+      "serving_g": 400,
+      "note": "一份约400g"
+    },
+    "炸鸡(原味)": {
+      "protein_g": 18.0,
+      "carbs_g": 12.0,
+      "fat_g": 15.0,
+      "source": "估算",
+      "serving_g": 120,
+      "note": "一块约120g"
+    },
+    "汉堡(牛肉)": {
+      "protein_g": 13.0,
+      "carbs_g": 25.0,
+      "fat_g": 12.0,
+      "source": "估算",
+      "serving_g": 200
+    },
+    "三明治(鸡肉)": {
+      "protein_g": 12.0,
+      "carbs_g": 25.0,
+      "fat_g": 7.0,
+      "source": "估算",
+      "serving_g": 180
+    },
+    "煎饼果子": {
+      "protein_g": 8.0,
+      "carbs_g": 35.0,
+      "fat_g": 8.0,
+      "source": "估算",
+      "serving_g": 250,
+      "note": "一个约250g"
+    },
+    "包子(肉馅)": {
+      "protein_g": 9.0,
+      "carbs_g": 28.0,
+      "fat_g": 6.0,
+      "source": "估算",
+      "serving_g": 80,
+      "note": "一个约80g"
+    },
+    "包子(菜馅)": {
+      "protein_g": 5.0,
+      "carbs_g": 28.0,
+      "fat_g": 3.0,
+      "source": "估算",
+      "serving_g": 80,
+      "note": "一个约80g"
+    },
+    "饺子(猪肉)": {
+      "protein_g": 9.0,
+      "carbs_g": 22.0,
+      "fat_g": 6.0,
+      "source": "估算",
+      "serving_g": 20,
+      "note": "一个约20g"
+    },
+    "水煮鱼": {
+      "protein_g": 12.0,
+      "carbs_g": 5.0,
+      "fat_g": 12.0,
+      "source": "估算",
+      "serving_g": 350,
+      "note": "一份约350g"
+    },
+    "炒青菜": {
+      "protein_g": 2.0,
+      "carbs_g": 4.0,
+      "fat_g": 6.0,
+      "source": "估算",
+      "serving_g": 200,
+      "note": "一盘约200g"
+    },
+    "番茄蛋汤": {
+      "protein_g": 3.0,
+      "carbs_g": 3.0,
+      "fat_g": 3.0,
+      "source": "估算",
+      "serving_g": 300,
+      "note": "一碗约300g"
+    },
+    "豆浆(无糖)": {
+      "protein_g": 3.0,
+      "carbs_g": 1.0,
+      "fat_g": 1.6,
+      "source": "估算",
+      "serving_g": 300,
+      "note": "一杯约300ml"
+    },
+    "豆浆(加糖)": {
+      "protein_g": 2.5,
+      "carbs_g": 8.0,
+      "fat_g": 1.5,
+      "source": "估算",
+      "serving_g": 300,
+      "note": "一杯约300ml"
+    },
+    "坚果混合": {
+      "protein_g": 18.0,
+      "carbs_g": 20.0,
+      "fat_g": 50.0,
+      "source": "估算",
+      "serving_g": 25,
+      "note": "一小把约25g"
+    },
+    "花生": {
+      "protein_g": 25.0,
+      "carbs_g": 16.0,
+      "fat_g": 49.0,
+      "source": "默认"
+    },
+    "大蒜": {
+      "protein_g": 6.4,
+      "carbs_g": 33.0,
+      "fat_g": 0.1,
+      "source": "默认"
+    },
+    "青椒": {
+      "protein_g": 1.0,
+      "carbs_g": 6.0,
+      "fat_g": 0.2,
+      "source": "默认"
+    },
+    "番茄": {
+      "protein_g": 1.0,
+      "carbs_g": 3.9,
+      "fat_g": 0.2,
+      "source": "默认"
+    },
+    "可乐": {
+      "protein_g": 0.0,
+      "carbs_g": 10.6,
+      "fat_g": 0.0,
+      "source": "默认"
+    },
+    "鸡胸肉肠": {
+      "protein_g": 18.0,
+      "carbs_g": 5.0,
+      "fat_g": 3.0,
+      "source": "估算",
+      "serving_g": 50,
+      "note": "一根约50g"
+    },
+    "蛋白棒": {
+      "protein_g": 30.0,
+      "carbs_g": 30.0,
+      "fat_g": 10.0,
+      "source": "估算",
+      "serving_g": 60,
+      "note": "一根约60g"
+    },
+    "--- 菜品 ---": {
+      "protein_g": 0, "carbs_g": 0, "fat_g": 0, "source": "分隔符"
+    },
+    "番茄炒蛋": {
+      "type": "dish",
+      "ingredients": [
+        {"name": "鸡蛋（全蛋）", "grams": 150},
+        {"name": "番茄", "grams": 200}
+      ],
+      "source": "预置菜品",
+      "serving_g": 350
+    },
+    "青椒肉丝": {
+      "type": "dish",
+      "ingredients": [
+        {"name": "猪肉（瘦）", "grams": 100},
+        {"name": "青椒", "grams": 150}
+      ],
+      "source": "预置菜品",
+      "serving_g": 250
+    },
+    "宫保鸡丁": {
+      "type": "dish",
+      "ingredients": [
+        {"name": "鸡腿肉", "grams": 120},
+        {"name": "花生", "grams": 30},
+        {"name": "青椒", "grams": 80}
+      ],
+      "source": "预置菜品",
+      "serving_g": 230
+    },
+    "蒜蓉西兰花": {
+      "type": "dish",
+      "ingredients": [
+        {"name": "西兰花", "grams": 250},
+        {"name": "大蒜", "grams": 10}
+      ],
+      "source": "预置菜品",
+      "serving_g": 260
+    },
+    "可乐鸡翅": {
+      "type": "dish",
+      "ingredients": [
+        {"name": "鸡腿肉", "grams": 200},
+        {"name": "可乐", "grams": 50}
+      ],
+      "source": "预置菜品",
+      "serving_g": 250
+    }
+  }
+}

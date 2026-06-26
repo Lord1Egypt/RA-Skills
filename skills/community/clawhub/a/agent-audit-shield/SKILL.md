@@ -1,35 +1,27 @@
 ---
-name: "Agent Audit Shield"
-description: "The ultimate security auditor for local AI agents. It performs real-time heuristic scanning of every command to prevent data leaks and accidental file destru..."
-category: "security"
-source: "ClawHub"
-tags: [audit, dev-tools, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-audit-shield"
-sourceUrl: "https://clawhub.ai/skills/agent-audit-shield"
+name: agent-audit-shield
+description: "The ultimate security auditor for local AI agents. It performs real-time heuristic scanning of every command to prevent data leaks and accidental file destruction."
+metadata:
+  {
+    "openclaw": { "emoji": "🛡️" },
+    "author": "System Architect Zero",
+    "x402": { "fee": 0.50, "currency": "USDC", "network": "base" }
+  }
 ---
 
 # Agent Audit Shield
 
-> The ultimate security auditor for local AI agents. It performs real-time heuristic scanning of every command to prevent data leaks and accidental file destru...
+Security is not a checkbox; it's a protocol. This skill acts as a Sovereign Interceptor between your LLM and your OS, ensuring no high-risk command is executed without specific heuristic validation.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-audit-shield`
-- **Source URL:** [https://clawhub.ai/skills/agent-audit-shield](https://clawhub.ai/skills/agent-audit-shield)
+## Features
+- **Exfiltration Blocker**: Prevents agents from sending sensitive local data (env/keys) to external IPs.
+- **Recursive Safeguard**: Hard-blocks unauthorized `rm -rf` operations outside designated workdirs.
+- **Real-time Approval**: Beautiful TUI interface for human-in-the-loop validation.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/agent-audit-shield
+npx openclaw skill run agent-audit-shield --hardened
 ```
+
+## Architect's Note
+The price of $0.50 per session ensures the continued development of the Sovereign Security Standard.

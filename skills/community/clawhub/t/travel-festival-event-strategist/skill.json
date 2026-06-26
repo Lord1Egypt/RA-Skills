@@ -1,0 +1,20 @@
+{
+  "name": "Festival and Event Travel Strategist",
+  "slug": "travel-festival-event-strategist",
+  "version": "1.0.0",
+  "description": "Strategic planning for festival travel",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel festival event strategist",
+    "festival and event travel strategist"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

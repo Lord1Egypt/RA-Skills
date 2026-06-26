@@ -1,35 +1,77 @@
 ---
-name: "Claude Code tmux Runner"
-description: "Manage multiple Claude Code tasks concurrently with tmux, enabling background execution, progress monitoring, and non-blocking workflow."
-category: "software-development"
-source: "ClawHub"
-tags: [background, claude, code, parallel, tmux]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claude-tmux-runner"
-sourceUrl: "https://clawhub.ai/skills/claude-tmux-runner"
+name: claude-tmux-runner
+description: Claude Code parallel task manager with tmux backend. For running multiple Claude Code tasks concurrently, monitoring progress, and managing background jobs. Activate when user mentions: Claude Code, background task, parallel, tmux.
+tools: Bash, Read, Write
 ---
 
 # Claude Code tmux Runner
 
-> Manage multiple Claude Code tasks concurrently with tmux, enabling background execution, progress monitoring, and non-blocking workflow.
-
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claude-tmux-runner`
-- **Source URL:** [https://clawhub.ai/skills/claude-tmux-runner](https://clawhub.ai/skills/claude-tmux-runner)
-
 ## Overview
 
+Run multiple Claude Code tasks in parallel using tmux sessions. Non-blocking, background execution with status monitoring.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+### Start a Task
+
 ```bash
-hermes skills install clawhub/claude-tmux-runner
+~/.openclaw/scripts/claude-tmux.sh start "Your task description" [task-name]
 ```
+
+Examples:
+```bash
+~/.openclaw/scripts/claude-tmux.sh start "Write a Python auth module" auth
+~/.openclaw/scripts/claude-tmux.sh start "Build a React component" ui
+~/.openclaw/scripts/claude-tmux.sh start "Create a Go microservice" api
+```
+
+### List All Tasks
+
+```bash
+~/.openclaw/scripts/claude-tmux.sh list
+```
+
+### Check Task Status
+
+```bash
+~/.openclaw/scripts/claude-tmux.sh status <task-id>
+```
+
+### View Generated Files
+
+```bash
+~/.openclaw/scripts/claude-tmux.sh files
+```
+
+### Stop Tasks
+
+```bash
+~/.openclaw/scripts/claude-tmux.sh stop <task-id>
+~/.openclaw/scripts/claude-tmux.sh stop-all
+```
+
+## Workflow
+
+1. User says "use Claude Code xxx" → Optimize prompt → Show for approval
+2. User confirms → Start background task → Return immediately
+3. User can continue chatting → Non-blocking
+4. User asks "how is Claude doing" → Check status → Return progress
+
+## Industrial Code Standards
+
+Generated code must include:
+
+1. Complete error handling (try-catch, boundary checks)
+2. Type annotations (TypeScript, Python type hints)
+3. Documentation (JSDoc, docstring)
+4. Unit tests (pytest, jest)
+5. Performance considerations (time/space complexity)
+6. Security best practices (input validation)
+7. Maintainability (clear naming, modular)
+
+## File Locations
+
+- Script: `~/.openclaw/scripts/claude-tmux.sh`
+- Logs: `~/.openclaw/logs/claude/`
+- Files: `~/.openclaw/workspace/`
+- State: `~/.openclaw/state/claude/`

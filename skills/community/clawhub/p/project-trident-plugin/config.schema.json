@@ -1,0 +1,287 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trident Plugin Configuration",
+  "description": "Configuration schema for the Trident ambient memory plugin",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Master enable/disable switch for entire Trident system"
+    },
+    "layer0_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable Layer 0 (LCM lossless capture). REQUIRED for other layers to function."
+    },
+    "layer0_5_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable Layer 0.5 (signal router cron agent). Requires layer0_enabled=true."
+    },
+    "layer0_5_interval_minutes": {
+      "type": "integer",
+      "minimum": 5,
+      "maximum": 60,
+      "default": 15,
+      "description": "How often (in minutes) to run Layer 0.5 signal router. Recommended: 10-30 min. Lower = higher cost but faster signal routing."
+    },
+    "layer0_5_model": {
+      "type": "string",
+      "enum": [
+        "anthropic/claude-haiku-4-5",
+        "anthropic/claude-3-5-sonnet",
+        "google/gemini-2-flash",
+        "ollama/mistral",
+        "ollama/neural-chat",
+        "custom"
+      ],
+      "default": "anthropic/claude-haiku-4-5",
+      "description": "Model for Layer 0.5. Haiku is recommended for cost (~$0.02 per run). Ollama/* options run locally with zero cost."
+    },
+    "layer0_5_custom_model": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+/[a-z0-9-]+$",
+      "description": "Provider/model format (e.g., 'openai/gpt-4-turbo') when layer0_5_model='custom'. Ignored otherwise."
+    },
+    "layer0_5_temperature": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 2,
+      "default": 0.7,
+      "description": "Temperature for Layer 0.5 routing. 0.7 balances determinism + creativity. Lower = more deterministic signal routing."
+    },
+    "workspace_path": {
+      "type": "string",
+      "description": "Absolute path to OpenClaw workspace. Defaults to $OPENCLAW_WORKSPACE or auto-detected from cwd. Usually ~/.openclaw/workspace."
+    },
+    "memory_bucket_path": {
+      "type": "string",
+      "default": "memory",
+      "pattern": "^[a-zA-Z0-9._/-]+$",
+      "description": "Relative path from workspace_path where memory buckets are stored. Usually 'memory'."
+    },
+    "semantic_recall_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable optional semantic recall layer (vector search + entity graphs). Requires Layer 0 + Layer 0.5. Optional upgrade for agents with >50K messages."
+    },
+    "qdrant_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable Qdrant vector database for semantic memory search. Requires semantic_recall_enabled=true."
+    },
+    "qdrant_url": {
+      "type": "string",
+      "format": "uri",
+      "default": "http://localhost:6333",
+      "description": "Qdrant server endpoint. Can be local (Docker/binary) or cloud (Qdrant Cloud). Default assumes local Docker."
+    },
+    "qdrant_collection": {
+      "type": "string",
+      "default": "trident-memory",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Qdrant collection name for storing memory embeddings. Automatically created if missing."
+    },
+    "qdrant_api_key": {
+      "type": "string",
+      "description": "API key for Qdrant Cloud (optional). Leave empty for local Qdrant without authentication."
+    },
+    "falkordb_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable FalkorDB entity graph for relationship tracking. Requires semantic_recall_enabled=true."
+    },
+    "falkordb_url": {
+      "type": "string",
+      "format": "uri",
+      "default": "redis://localhost:6379",
+      "description": "FalkorDB connection URL. Can be Redis module (redis://...) or FalkorDB Cloud."
+    },
+    "falkordb_graph_key": {
+      "type": "string",
+      "default": "trident-graph",
+      "pattern": "^[a-z0-9_:-]+$",
+      "description": "FalkorDB graph key/namespace for entity relationships"
+    },
+    "git_backup_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable daily Git backup of memory files. Requires 'git' CLI and git init in workspace."
+    },
+    "git_backup_hour": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 23,
+      "default": 2,
+      "description": "Hour of day (UTC) to run daily Git backup. Default 2 AM minimizes impact."
+    },
+    "embedding_model": {
+      "type": "string",
+      "enum": [
+        "anthropic/embed-v3-small",
+        "anthropic/embed-v3-large",
+        "google/embedding-001",
+        "openai/text-embedding-3-small",
+        "openai/text-embedding-3-large",
+        "custom"
+      ],
+      "default": "anthropic/embed-v3-small",
+      "description": "Embedding model for semantic recall (only used if semantic_recall_enabled=true). Small variant recommended for cost."
+    },
+    "embedding_model_custom": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+/[a-z0-9-]+$",
+      "description": "Custom embedding model (provider/name format) when embedding_model='custom'"
+    },
+    "embedding_batch_size": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 10,
+      "description": "Batch size for embedding generation. Larger batches = faster but higher memory/token cost."
+    },
+    "audit_logging_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable detailed audit log of all Layer 0.5 routing decisions (written to memory/layer0/audit-log.md)"
+    },
+    "audit_log_retention_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 365,
+      "default": 90,
+      "description": "Days to retain audit logs before archival. Set to 0 for infinite retention."
+    },
+    "template_integrity_check": {
+      "type": "boolean",
+      "default": true,
+      "description": "Verify SHA256 hash of Layer 0.5 AGENT-PROMPT.md before each routing run. Security feature to prevent prompt injection."
+    },
+    "wipe_on_upgrade": {
+      "type": "boolean",
+      "default": false,
+      "description": "DANGEROUS: If true, wipes entire memory directory on plugin upgrade. Only use for testing. Memory is irretrievable after wipe."
+    }
+  },
+  "required": [
+    "enabled",
+    "layer0_enabled"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "layer0_5_enabled": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": ["layer0_5_model"],
+        "properties": {
+          "layer0_5_model": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "layer0_5_model": {
+            "const": "custom"
+          }
+        }
+      },
+      "then": {
+        "required": ["layer0_5_custom_model"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "qdrant_enabled": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": ["qdrant_url", "qdrant_collection"],
+        "properties": {
+          "semantic_recall_enabled": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "embedding_model": {
+            "const": "custom"
+          }
+        }
+      },
+      "then": {
+        "required": ["embedding_model_custom"]
+      }
+    }
+  ],
+  "examples": [
+    {
+      "description": "Minimal setup (Trident Lite, no semantic recall)",
+      "properties": {
+        "enabled": true,
+        "layer0_enabled": true,
+        "layer0_5_enabled": true,
+        "layer0_5_model": "anthropic/claude-haiku-4-5",
+        "layer0_5_interval_minutes": 15,
+        "semantic_recall_enabled": false
+      }
+    },
+    {
+      "description": "Zero-cost setup (local Ollama)",
+      "properties": {
+        "enabled": true,
+        "layer0_enabled": true,
+        "layer0_5_enabled": true,
+        "layer0_5_model": "ollama/mistral",
+        "layer0_5_interval_minutes": 30,
+        "semantic_recall_enabled": false
+      }
+    },
+    {
+      "description": "Full setup with semantic recall (Qdrant + FalkorDB)",
+      "properties": {
+        "enabled": true,
+        "layer0_enabled": true,
+        "layer0_5_enabled": true,
+        "layer0_5_model": "anthropic/claude-haiku-4-5",
+        "layer0_5_interval_minutes": 15,
+        "semantic_recall_enabled": true,
+        "qdrant_enabled": true,
+        "qdrant_url": "http://localhost:6333",
+        "falkordb_enabled": true,
+        "falkordb_url": "redis://localhost:6379",
+        "embedding_model": "anthropic/embed-v3-small"
+      }
+    },
+    {
+      "description": "Cloud Qdrant + Git backup",
+      "properties": {
+        "enabled": true,
+        "layer0_enabled": true,
+        "layer0_5_enabled": true,
+        "layer0_5_model": "anthropic/claude-haiku-4-5",
+        "semantic_recall_enabled": true,
+        "qdrant_enabled": true,
+        "qdrant_url": "https://your-cluster.qdrant.io:6333",
+        "qdrant_api_key": "sk-...",
+        "git_backup_enabled": true,
+        "git_backup_hour": 2
+      }
+    }
+  ]
+}

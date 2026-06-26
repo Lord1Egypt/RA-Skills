@@ -1,0 +1,46 @@
+{
+  "tools": [
+    {
+      "name": "push2today",
+      "description": "将任务执行结果推送到负一屏显示。通过执行 scripts/cli.js 命令实现。",
+      "executor": "shell",
+      "command": "node {{skillDir}}/scripts/cli.js push2today --msgId \"{{msgId}}\" --summary \"{{summary}}\" --result \"{{result}}\" --content \"{{content}}\"{{#if scheduleTaskId}} --scheduleTaskId \"{{scheduleTaskId}}\"{{/if}}{{#if scheduleTaskName}} --scheduleTaskName \"{{scheduleTaskName}}\"{{/if}}{{#if source}} --source \"{{source}}\"{{/if}}",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "msgId": {
+            "type": "string",
+            "description": "消息 ID，从当前会话上下文自动获取"
+          },
+          "summary": {
+            "type": "string",
+            "description": "任务摘要（64字符以内）"
+          },
+          "result": {
+            "type": "string",
+            "enum": ["任务执行成功", "任务执行失败"],
+            "description": "执行结果：任务执行成功 | 任务执行失败"
+          },
+          "content": {
+            "type": "string",
+            "description": "详细内容（限制30717字符）"
+          },
+          "scheduleTaskId": {
+            "type": "string",
+            "description": "定时任务 ID，来自定时任务时填写"
+          },
+          "scheduleTaskName": {
+            "type": "string",
+            "description": "定时任务名称，来自定时任务时填写"
+          },
+          "source": {
+            "type": "string",
+            "default": "openclaw",
+            "description": "来源类型，默认 openclaw"
+          }
+        },
+        "required": ["msgId", "summary", "result", "content"]
+      }
+    }
+  ]
+}

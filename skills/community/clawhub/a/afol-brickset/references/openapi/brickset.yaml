@@ -1,0 +1,632 @@
+openapi: 3.0.3
+info:
+  title: Brickset API
+  description: Brickset API v3 for LEGO set information and community features
+  version: "3.0"
+  contact:
+    name: Brickset API Support
+    url: https://brickset.com/tools/webservices/requestkey
+  license:
+    name: Brickset API Terms
+    url: https://brickset.com/article/52664/api-version-3-documentation
+
+servers:
+  - url: https://brickset.com/api/v3.asmx
+    description: Brickset API v3 Production Server
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /getSets:
+    post:
+      tags:
+        - Sets
+      summary: Get sets by various parameters
+      description: Retrieves LEGO sets matching specified criteria. Use params JSON string to specify filters.
+      operationId: getSets
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - userHash
+                - params
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                userHash:
+                  type: string
+                  description: User hash (can be empty string for public API)
+                params:
+                  type: string
+                  description: JSON string with filter parameters (e.g., '{"setNumber":"10030-1"}')
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /getAdditionalImages:
+    post:
+      tags:
+        - Sets
+      summary: Get additional images for a set
+      description: Retrieves extra images for a specific set beyond the main thumbnail
+      operationId: getAdditionalImages
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - userHash
+                - setID
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                userHash:
+                  type: string
+                  description: User hash (can be empty string for public API)
+                setID:
+                  type: integer
+                  description: Brickset internal set ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdditionalImagesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /getInstructions2:
+    post:
+      tags:
+        - Sets
+      summary: Get building instructions for a set
+      description: Retrieves available building instructions (PDF links) for a specific set
+      operationId: getInstructions2
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - userHash
+                - setNumber
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                userHash:
+                  type: string
+                  description: User hash (can be empty string for public API)
+                setNumber:
+                  type: string
+                  description: Set number (e.g., "10270-1")
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstructionsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /getReviews:
+    post:
+      tags:
+        - Sets
+      summary: Get user reviews for a set
+      description: Retrieves community reviews for a specific set
+      operationId: getReviews
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - userHash
+                - setID
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                userHash:
+                  type: string
+                  description: User hash (can be empty string for public API)
+                setID:
+                  type: integer
+                  description: Brickset internal set ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /login:
+    post:
+      tags:
+        - Authentication
+      summary: Authenticate user and obtain user hash token
+      description: Log in as a user and retrieve a token (userHash) that can be used in subsequent API calls
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - username
+                - password
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                username:
+                  type: string
+                  description: Brickset username
+                password:
+                  type: string
+                  description: Brickset password
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /setCollection:
+    post:
+      tags:
+        - Collection
+      summary: Modify user's collection or wishlist
+      description: Add, update, or remove sets from user's owned collection or wishlist
+      operationId: setCollection
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - userHash
+                - setID
+                - params
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                userHash:
+                  type: string
+                  description: User hash token from login
+                setID:
+                  type: integer
+                  description: Brickset internal set ID
+                params:
+                  type: string
+                  description: 'JSON string with collection parameters (e.g., ''{"own":1,"qtyOwned":2,"notes":"Great set!"}'') - own (0/1), want (0/1), qtyOwned (0-999), notes (max 1000 chars), rating (1-5)'
+      responses:
+        '200':
+          description: Collection updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /getUserNotes:
+    post:
+      tags:
+        - Collection
+      summary: Get all user notes for sets
+      description: Retrieves all sets with user notes and associated metadata
+      operationId: getUserNotes
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - apiKey
+                - userHash
+              properties:
+                apiKey:
+                  type: string
+                  description: API key for authentication
+                userHash:
+                  type: string
+                  description: User hash token from login
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: apiKey
+
+  parameters:
+    ApiKeyParam:
+      name: apiKey
+      in: query
+      description: API key for authentication
+      required: true
+      schema:
+        type: string
+
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [success, error]
+          description: Status of the API call
+        matches:
+          type: integer
+          description: Number of results matched
+        message:
+          type: string
+          description: Error message (present when status is error)
+
+    BricksetSet:
+      type: object
+      properties:
+        setID:
+          type: integer
+          description: Unique Brickset internal set ID
+        number:
+          type: string
+          description: LEGO set number (e.g., "10030")
+        numberVariant:
+          type: integer
+          description: Set variant number
+        name:
+          type: string
+          description: Set name
+        year:
+          type: integer
+          description: Release year
+        theme:
+          type: string
+          description: Theme name
+        themeGroup:
+          type: string
+          description: Theme group
+        subtheme:
+          type: string
+          description: Subtheme name
+        pieces:
+          type: integer
+          description: Number of pieces
+        minifigs:
+          type: integer
+          description: Number of minifigures
+        launchDate:
+          type: string
+          format: date-time
+          description: Launch date
+        exitDate:
+          type: string
+          format: date-time
+          description: Exit date (when set was discontinued)
+        image:
+          type: object
+          properties:
+            thumbnailURL:
+              type: string
+            imageURL:
+              type: string
+        bricksetURL:
+          type: string
+          description: URL to the set page on Brickset
+        released:
+          type: boolean
+          description: Whether the set has been released
+        rating:
+          type: number
+          format: double
+          description: Average user rating
+        reviewCount:
+          type: integer
+          description: Number of reviews
+        barcode:
+          type: object
+          description: Barcode information
+          properties:
+            EAN:
+              type: string
+              description: European Article Number
+            UPC:
+              type: string
+              description: Universal Product Code
+        dimensions:
+          type: object
+          description: Package dimensions
+          properties:
+            height:
+              type: number
+            width:
+              type: number
+            depth:
+              type: number
+            weight:
+              type: number
+        modelDimensions:
+          type: object
+          description: Built model dimensions
+          properties:
+            dimension1:
+              type: number
+            dimension2:
+              type: number
+            dimension3:
+              type: number
+        availability:
+          type: string
+          description: Availability status (e.g., 'LEGO exclusive', 'Retail')
+        ageRange:
+          type: object
+          properties:
+            min:
+              type: integer
+            max:
+              type: integer
+        category:
+          type: string
+        packagingType:
+          type: string
+        instructionsCount:
+          type: integer
+        additionalImageCount:
+          type: integer
+        collection:
+          type: object
+          description: User's collection status (empty if not logged in)
+        collections:
+          type: object
+          description: Community collection statistics
+          properties:
+            ownedBy:
+              type: integer
+              description: Number of users who own this set
+            wantedBy:
+              type: integer
+              description: Number of users who want this set
+        LEGOCom:
+          type: object
+          description: LEGO.com pricing and availability by region
+          additionalProperties:
+            type: object
+            properties:
+              retailPrice:
+                type: number
+              dateFirstAvailable:
+                type: string
+                format: date-time
+              dateLastAvailable:
+                type: string
+                format: date-time
+        itemNumber:
+          type: object
+          description: LEGO item numbers by region
+          additionalProperties:
+            type: string
+        extendedData:
+          type: object
+          description: Extended set information
+          properties:
+            tags:
+              type: array
+              items:
+                type: string
+            description:
+              type: string
+              description: HTML description of the set
+        lastUpdated:
+          type: string
+          format: date-time
+
+    AdditionalImage:
+      type: object
+      properties:
+        thumbnailURL:
+          type: string
+        imageURL:
+          type: string
+
+    Instruction:
+      type: object
+      properties:
+        URL:
+          type: string
+          description: URL to the PDF instruction file
+        description:
+          type: string
+          description: Description of the instruction (e.g., "Book 1", "Main model")
+
+    Review:
+      type: object
+      properties:
+        author:
+          type: string
+        datePosted:
+          type: string
+          format: date-time
+        rating:
+          $ref: '#/components/schemas/ReviewRating'
+        title:
+          type: string
+        review:
+          type: string
+          description: Review text content
+        HTML:
+          type: boolean
+          description: Whether review contains HTML
+
+    ReviewRating:
+      type: object
+      properties:
+        overall:
+          type: integer
+          minimum: 1
+          maximum: 5
+        parts:
+          type: integer
+          minimum: 1
+          maximum: 5
+        buildingExperience:
+          type: integer
+          minimum: 1
+          maximum: 5
+        playability:
+          type: integer
+          minimum: 1
+          maximum: 5
+        valueForMoney:
+          type: integer
+          minimum: 1
+          maximum: 5
+
+    SetsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            sets:
+              type: array
+              items:
+                $ref: '#/components/schemas/BricksetSet'
+
+    AdditionalImagesResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            additionalImages:
+              type: array
+              items:
+                $ref: '#/components/schemas/AdditionalImage'
+
+    InstructionsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            instructions:
+              type: array
+              items:
+                $ref: '#/components/schemas/Instruction'
+
+    ReviewsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            reviews:
+              type: array
+              items:
+                $ref: '#/components/schemas/Review'
+
+    LoginResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            hash:
+              type: string
+              description: User hash token for authenticated requests
+
+    CollectionResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          description: Response after modifying collection
+
+    UserNotesResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            userNotes:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserNote'
+              description: User notes for sets
+
+    UserNote:
+      type: object
+      properties:
+        setID:
+          type: integer
+          description: Brickset internal set ID
+        notes:
+          type: string
+          description: User's personal notes for this set
+
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'

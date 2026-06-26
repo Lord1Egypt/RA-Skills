@@ -1,35 +1,38 @@
 ---
-name: "ClawdBot Blog Watcher"
-description: "Monitor blogs and RSS feeds"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawdbot-blogwatcher"
-sourceUrl: "https://clawhub.ai/skills/clawdbot-blogwatcher"
+name: blogwatcher
+description: Monitor blogs and RSS feeds
+version: 1.0.0
+author: ClawdBot
+tags: [rss, blogs]
+requires_bins: []
+requires_env: []
+requires_config: []
 ---
 
-# ClawdBot Blog Watcher
+# Blog Watcher
 
-> Monitor blogs and RSS feeds
+Monitor blogs and RSS feeds
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawdbot-blogwatcher`
-- **Source URL:** [https://clawhub.ai/skills/clawdbot-blogwatcher](https://clawhub.ai/skills/clawdbot-blogwatcher)
+## Available Tools
 
-## Overview
+This skill uses ClawdBot's standard tools:
+- **bash** - Execute commands
+- **read_file** - Read files
+- **write_file** - Write files  
+- **web_fetch** - Fetch web content
+- **web_search** - Search the web
 
+## Usage Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawdbot-blogwatcher
-```
+User: "Help me with blog watcher"
+1. Assess what the user needs
+2. Use appropriate tools
+3. Provide helpful response
+
+## Configuration
+
+Check documentation for specific setup requirements.
+
+## Notes
+
+This skill requires integration with Blog Watcher service/application.

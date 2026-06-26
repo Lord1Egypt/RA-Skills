@@ -1,0 +1,11 @@
+{
+  "slug": "smart-chatbot-builder",
+  "name": "智能聊天机器人构建器",
+  "version": "1.0.0",
+  "summary": "快速构建 AI 聊天机器人，支持知识库、多轮对话、多渠道集成。适用于客服、销售、内部助手等场景。",
+  "author": "ai-solutions-dev",
+  "license": "MIT-0",
+  "tags": ["chatbot", "ai", "customer-service", "automation", "nlp", "business", "enterprise", "tools"],
+  "createdAt": "2026-03-29T14:31:00.000Z",
+  "updatedAt": "2026-03-29T14:38:00.000Z"
+}

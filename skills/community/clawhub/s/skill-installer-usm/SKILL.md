@@ -1,35 +1,80 @@
 ---
-name: "Skill Installer"
-description: "Install, search, update, and manage skills from public registries like ClawHub using the clawhub CLI within the OpenClaw workspace."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-installer-usm"
-sourceUrl: "https://clawhub.ai/skills/skill-installer-usm"
+name: skill-installer
+description: [USM] Install, search, update, and manage skills from registries (ClawHub, SkillHub, etc.). Use when the user wants to install a skill by slug (e.g. "clawhub install summarize"), search for skills, or update installed skills.
 ---
 
-# Skill Installer
+# ClawHub Skill Manager
 
-> Install, search, update, and manage skills from public registries like ClawHub using the clawhub CLI within the OpenClaw workspace.
+Install and manage skills from [ClawHub](https://clawhub.ai), the public skill registry for OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-installer-usm`
-- **Source URL:** [https://clawhub.ai/skills/skill-installer-usm](https://clawhub.ai/skills/skill-installer-usm)
+## Prerequisites
 
-## Overview
+The `clawhub` CLI must be available on PATH. Verify with `which clawhub`. If missing, ask the user to install it manually:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/skill-installer-usm
+npm i -g clawhub
 ```
+
+Do not auto-install without user confirmation.
+
+## Commands
+
+### Install a skill
+
+```bash
+cd ~/.openclaw/workspace && clawhub install <slug>
+```
+
+- `<slug>` is the skill identifier from ClawHub (e.g. `summarize`, `weather`, `coding-agent`)
+- Skills are installed into `./skills/` under the workspace
+- A new OpenClaw session is needed to pick up the skill
+
+### Search for skills
+
+```bash
+clawhub search "<query>"
+```
+
+### Update skills
+
+```bash
+# Update a specific skill
+clawhub update <slug>
+
+# Update all installed skills
+clawhub update --all
+```
+
+### Other useful commands
+
+```bash
+clawhub info <slug>       # Show skill details
+clawhub list              # List installed skills
+clawhub --help            # Full CLI reference
+```
+
+## Workflow
+
+1. Ensure `clawhub` CLI is installed (check with `which clawhub`, install if missing)
+2. `cd` to the workspace directory: `~/.openclaw/workspace`
+3. Run the appropriate `clawhub` command
+4. Tell the user to call `skill-manager` (or run `~/.skills/skill-manager/scripts/sync_skills.sh` directly) to configure the new skill's `meta.yaml` scope and distribute it via symlinks across Agents.
+5. Inform the user to start a new session (or restart gateway) for the skill to take effect
+
+## Installing via WhatsApp
+
+Users can install skills by messaging the OpenClaw agent on WhatsApp:
+
+```
+clawhub install <slug>
+```
+
+Example: `clawhub install summarize`
+
+The agent will handle CLI installation and confirm when the skill is ready.
+
+## Notes
+
+- All ClawHub skills are public and open
+- Treat third-party skills as untrusted — review before enabling
+- Workspace skills (`<workspace>/skills/`) take highest precedence over managed and bundled skills

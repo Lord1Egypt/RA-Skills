@@ -1,0 +1,58 @@
+{
+  "name": "媳妇智投Pro",
+  "version": "5.3.7",
+  "description": "媳妇智投Pro - 专业交易方案模板工具。安全修复版v5.3.7：移除兜底示例数据+密钥泄露防护+自动切换改为建议切换。",
+  "author": "AI媳妇",
+  "brand": "媳妇智投Pro",
+  "category": "finance",
+  "tags": [
+    "股票",
+    "期货",
+    "基金",
+    "交易方案",
+    "风险预警",
+    "走势预判",
+    "安全版"
+  ],
+  "main": "scripts/generate_plan.py",
+  "templates": {
+    "final": "templates/FINAL_PLAN_TEMPLATE.md",
+    "standard": "templates/STANDARD_PLAN_TEMPLATE.md"
+  },
+  "rules": "AUTO_ANALYSIS_RULES.md",
+  "features": [
+    "🌍 多语言输出 + 自动语言检测（移植自全球通引擎）",
+    "🧠 审题+质检机制：用户输入语言 + 市场母语自动匹配",
+    "🔒 安全机制：所有自动操作需用户确认",
+    "⚠️ 完整风险提示：投资有风险，入市需谨慎",
+    "🔇 精确触发词：以AI媳妇开头，防误触",
+    "📋 用户确认制：添加关注/发送文件均需用户确认"
+  ],
+  "supported_types": [
+    "股票",
+    "期货",
+    "基金",
+    "经济分析"
+  ],
+  "output_format": "docx",
+  "dependencies": {
+    "gs-stock-market-query": "行情数据",
+    "xiaoyi-web-search": "新闻搜索",
+    "xiaoyi-docx": "Word生成",
+    "tushare-finance": "财务数据"
+  },
+  "config": {
+    "api_keys": {
+      "GS_API_KEY": "国信证券数据接口（需用户自行配置）",
+      "TUSHARE_TOKEN": "Tushare财务数据接口（需用户自行配置）"
+    }
+  },
+  "security": {
+    "no_hardcoded_secrets": true,
+    "secrets_readme_verified": true,
+    "no_auto_start": true,
+    "user_confirmation_required": true,
+    "no_self_modification": true,
+    "explicit_triggers_only": true
+  }
+}

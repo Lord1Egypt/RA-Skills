@@ -1,0 +1,57 @@
+[
+  {
+    "repo": "alirezarezvani/claude-skills",
+    "label": "good",
+    "notes": "Large community skills collection; useful false-positive stress case."
+  },
+  {
+    "repo": "jezweb/claude-skills",
+    "label": "good",
+    "notes": "Skills collection with mixed integrations and docs."
+  },
+  {
+    "repo": "simonw/claude-skills",
+    "label": "good",
+    "notes": "Minimal curated skills examples."
+  },
+  {
+    "repo": "coleam00/second-brain-skills",
+    "label": "good",
+    "notes": "Mostly benign skills and docs."
+  },
+  {
+    "repo": "chujianyun/skills",
+    "label": "good",
+    "notes": "Large docs corpus including security guidance and examples."
+  },
+  {
+    "repo": "TrustAI-laboratory/Image-Prompt-Injection-Demo",
+    "label": "risky",
+    "notes": "Image steganography prompt injection demo."
+  },
+  {
+    "repo": "TrustAI-laboratory/Website_Prompt_Injection_Demo",
+    "label": "risky",
+    "notes": "Hidden prompt injection in HTML/web contexts."
+  },
+  {
+    "repo": "rhprasad0/data-exfil-prompt-injection-demo",
+    "label": "risky",
+    "notes": "Prompt injection exfiltration demo with malicious HTML payloads."
+  },
+  {
+    "repo": "jules-gd-dev/gemini-prompt-injection-demo",
+    "label": "risky",
+    "notes": "Context-file indirect prompt injection proof-of-concept."
+  },
+  {
+    "repo": "norsemen-local/supply-chain-attack-demo",
+    "label": "risky",
+    "notes": "Python supply-chain credential theft demonstration."
+  },
+  {
+    "repo": "h0acker/malicious-update-lab",
+    "label": "risky",
+    "notes": "Supply-chain attack lab with explicit malicious intent."
+  }
+]

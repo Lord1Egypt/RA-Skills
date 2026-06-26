@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="0" y="580" width="1280" height="4" fill="url(#accent)" opacity="0.6"/>
+  <text x="640" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="-1">LobsterSearch</text>
+  <text x="640" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="300" fill="#cccccc" text-anchor="middle">MCP Server</text>
+  <rect x="440" y="350" width="400" height="2" fill="url(#accent)" opacity="0.4"/>
+  <text x="640" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#999999" text-anchor="middle">7 Tools  |  100+ Businesses  |  Singapore</text>
+  <text x="640" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#666666" text-anchor="middle">AI-optimized local business search for agents</text>
+</svg>

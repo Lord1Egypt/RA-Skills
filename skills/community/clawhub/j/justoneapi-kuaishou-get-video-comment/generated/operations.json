@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/kuaishou/get-video-comment/v1 for Kuaishou Video Comments through JustOneAPI with videoId.",
+  "displayName": "Kuaishou Video Comments",
+  "endpointPath": "get-video-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Retrieves public comments of a Kuaishou video, including comment content,\nauthor info, like count, and reply count.\n\nTypical use cases:\n- Sentiment analysis and community feedback monitoring\n- Gathering engagement data for specific videos",
+      "method": "GET",
+      "operationId": "getVideoCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of the Kuaishou video, e.g. `3xbknvct79h46h9` or refer_photo_id `177012131237`",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor for subsequent pages.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pcursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/kuaishou/get-video-comment/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Comments",
+      "tags": [
+        "Kuaishou"
+      ]
+    }
+  ],
+  "platformKey": "kuaishou",
+  "primaryTag": "Kuaishou",
+  "skillName": "justoneapi_kuaishou_get_video_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-kuaishou-get-video-comment",
+  "sourceTitle": "OpenAPI definition"
+}

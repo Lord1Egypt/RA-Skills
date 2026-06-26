@@ -1,0 +1,2 @@
+# S2-BAS-MAS Ecosystem Dependencies
+cryptography>=41.0.0

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Codex Profile Orchestrator"
+  short_description: "stabilize codex account rotation in openclaw"

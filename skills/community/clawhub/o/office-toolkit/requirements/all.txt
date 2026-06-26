@@ -1,0 +1,14 @@
+# All dependencies
+# Word
+python-docx>=1.1.2
+lxml>=5.3.0
+
+# PowerPoint
+python-pptx>=1.0.0
+Pillow>=10.0.0
+
+# Excel
+openpyxl>=3.1.0
+
+# PDF
+pymupdf>=1.24.0

@@ -1,0 +1,4 @@
+interface:
+  display_name: "基于AI的SBTI技能测试"
+  short_description: "AI-based SBTI skill test SEO workflow for aisbti.com with weighted backlink scoring and relay."
+  default_prompt: "Build an AI-based SBTI skill test SEO plan for https://aisbti.com/, prioritize high-value backlinks, and output internal relay actions with safe anchor distribution."

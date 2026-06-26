@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "yan-standard-platinum",
+    "name": "中信银行颜卡标准白金卡",
+    "status": "active",
+    "tier": "白金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/240515/index.html?sid=SJWAPHD3",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0602&sid=YDKHD",
+    "annual_fee": "480元/年；首年免年费，次年刷卡达标免",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "最长50天免息还款期",
+      "2小时最高1000元航班延误险",
+      "首年免年费",
+      "次年刷卡达标免480元年费"
+    ],
+    "fit_tags": ["日常消费", "入门白金", "年轻客群", "低年费偏好", "颜值卡", "通用型"],
+    "avoid_tags": ["酒店会籍刚需", "航空里程刚需", "车主权益刚需"],
+    "notes": [
+      "适合作为低门槛、日常使用的入门白金卡。",
+      "更偏通用消费和基础出行保障，不是酒店/车主/航司强联名卡。"
+    ]
+  },
+  {
+    "slug": "i-platinum",
+    "name": "中信银行i白金信用卡",
+    "status": "active",
+    "tier": "白金卡",
+    "detail_url": "https://creditcard.ecitic.com/platinum/ibaijin.html",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0083&sid=YDKHD",
+    "annual_fee": "480元/年；首年减免，账单年内刷卡12次免次年年费",
+    "income_hint": "官网建议税前月薪5000元以上；快捷申请参考年龄25-35岁",
+    "highlights": [
+      "交易1.5倍积分",
+      "网络交易可计双倍积分（以官网细则为准）",
+      "2小时最高1000元航班延误险",
+      "500万元航空意外伤害险"
+    ],
+    "fit_tags": ["线上消费", "积分党", "经常出差", "年轻白领", "航延保障"],
+    "avoid_tags": ["零年费绝对偏好", "酒店会籍刚需", "车主权益刚需"],
+    "notes": [
+      "适合线上消费较多、又希望兼顾基础商旅保障的客户。",
+      "推荐时要明确首年减免、次年需刷卡达标免年费。"
+    ]
+  },
+  {
+    "slug": "yueka-gold",
+    "name": "中信银行悦卡（金卡）",
+    "status": "active",
+    "tier": "金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/yueka_g.html",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0076&sid=SJWAPPT#/baseInfo&pid=CS0076&sid=SJWAPPT",
+    "annual_fee": "以申请页实时展示为准",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "依据在中信名下资产总额，消费最高可享8倍积分回馈",
+      "新客户前三个自然月可享最高8倍积分回馈",
+      "金卡航班延误4小时最高1000元",
+      "最长50天免息还款期"
+    ],
+    "fit_tags": ["积分党", "有中信资产", "日常高频消费", "金卡偏好", "生日月积分"],
+    "avoid_tags": ["完全不看积分", "只看境外权益", "只看酒店会籍"],
+    "notes": [
+      "核心价值在于多倍积分，特别适合在中信已有一定资产沉淀的客户。",
+      "若客户没有资产、也不关注积分，推荐优先级会下降。"
+    ]
+  },
+  {
+    "slug": "yueka-platinum",
+    "name": "中信银行悦卡（白金卡）",
+    "status": "active",
+    "tier": "白金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/yueka_p.html",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0098&sid=SJWAPPT#/baseInfo&pid=CS0098&sid=SJWAPPT",
+    "annual_fee": "白金卡分层：精英480元/年、精逸980元/年、尊贵2000元/年；首年刚性收取，次年可积分兑换或自行缴纳",
+    "income_hint": "以审批结果为准；若白金级别未达标，官网说明可能自动更换为更适合的等级",
+    "highlights": [
+      "依据在中信名下资产总额，消费最高可享8倍积分回馈",
+      "新客户前三个自然月可享最高8倍积分回馈",
+      "白金卡航班延误2小时最高1000元",
+      "最长50天免息还款期"
+    ],
+    "fit_tags": ["高积分需求", "中信资产客户", "愿意承担年费", "白金客群"],
+    "avoid_tags": ["完全不接受年费", "低频消费", "只看航司/酒店联名"],
+    "notes": [
+      "适合重视积分回报、且对年费容忍度较高或已有较高资产的客户。",
+      "推荐时必须把年费和可能降级的规则说清楚。"
+    ]
+  },
+  {
+    "slug": "marriott-premium",
+    "name": "中信银行万豪旅享家精逸白金卡",
+    "status": "active",
+    "tier": "精逸白金卡",
+    "detail_url": "https://creditcard.ecitic.com/shenqing/wanhao/index.shtml",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0852&sid=YDKHD",
+    "annual_fee": "980元/年",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "万豪旅享家尊贵金卡会籍",
+      "赠送10个累计尊贵会籍有效房晚",
+      "赠送1个免费房晚",
+      "合格消费累计万豪积分10:1",
+      "万豪住宿9折、餐饮8折起"
+    ],
+    "fit_tags": ["酒店常旅客", "万豪偏好", "商旅出行", "高净值权益", "愿意付年费"],
+    "avoid_tags": ["不住酒店", "完全不接受年费", "纯日常小额消费"],
+    "notes": [
+      "这是酒店联名强需求客户的优先卡，不适合只做普通日常消费的客户。",
+      "若客户明确偏好万豪体系或住宿权益，应显著提高优先级。"
+    ]
+  },
+  {
+    "slug": "iche-pro",
+    "name": "中信银行i车Pro银联i白金信用卡",
+    "status": "active",
+    "tier": "i白金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/240515/index.html?sid=SJWAPHD3",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?cls=SJWAPICNEWBJ02&pid=CS1001&sid=YDKHD",
+    "annual_fee": "刷卡达标免年费",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "新户达标最高享1年1100元优惠",
+      "刷卡达标免年费",
+      "激活并绑微信支付送20元券",
+      "官网首页显示含充电5折、加油立减、0元洗车等车主导向权益"
+    ],
+    "fit_tags": ["车主", "新能源车", "加油充电", "洗车权益", "通勤人群"],
+    "avoid_tags": ["无车客户", "酒店会籍刚需", "航空里程刚需"],
+    "notes": [
+      "适合明确有车、尤其关注加油、充电、洗车等场景权益的客户。",
+      "如果客户没有车，通常不建议放在前三。"
+    ]
+  },
+  {
+    "slug": "visa-xiaoyao",
+    "name": "中信银行VISA逍遥白金信用卡",
+    "status": "active",
+    "tier": "白金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/youhui/221122/index.html",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?cls=wx&code=031wnQ0w3XwUv03qRH2w3O7CzX1wnQ0s&pid=CS0736&sid=SJWXBKDT1&state=1",
+    "annual_fee": "当前官网展示为免年费/新户免费申请类表述；以申请页实时展示为准",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "100万美元国际救援",
+      "留学/境外消费返现活动（需报名，以规则为准）",
+      "500万元航空意外保险",
+      "境外交易2倍积分",
+      "全球全币种免货币转换费"
+    ],
+    "fit_tags": ["留学", "境外消费", "国际出行", "海外医疗法律协助", "外币消费"],
+    "avoid_tags": ["几乎不出境", "不关心境外权益", "纯本地车主场景"],
+    "notes": [
+      "适合留学生、家长、长期境外消费或频繁国际出行客户。",
+      "若客户需求主要在境内日常积分，通常不是第一优先。"
+    ]
+  },
+  {
+    "slug": "feichangzhun",
+    "name": "中信银行飞常准联名卡（银联白金卡）",
+    "status": "active",
+    "tier": "银联白金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/feichangzhun/index.html",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?code=001JPA000VNO4S1DIe100teQqg1JPA0l&pid=CS0199&sid=SJFCZQD1&state=1",
+    "annual_fee": "刷卡达标免年费",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "首次申请并开卡后，次月可获12个月飞常准超级会员（标准版）",
+      "双重延误保障：飞常准端延误保障 + 中信端2小时最高1000元机票款赔付",
+      "页面展示航班延误赔付最高可达1200元",
+      "500万元航空意外险",
+      "机场贵宾厅和快速安检等会员权益"
+    ],
+    "fit_tags": ["高频飞行", "航延保障", "机场权益", "差旅人群", "免年费偏好"],
+    "avoid_tags": ["几乎不坐飞机", "酒店会籍刚需", "有车场景权益刚需"],
+    "notes": [
+      "适合非常看重航班延误、机场服务、飞行出差效率的客户。",
+      "相比普通通用卡，它更偏出行效率和飞行场景。"
+    ]
+  },
+  {
+    "slug": "guohang-ctrip",
+    "name": "中信银行国航携程联名卡",
+    "status": "active",
+    "tier": "金卡/白金卡",
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/guohangxiecheng/index.html",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?cls=SJWAPGHXC01&pid=CS0481&sid=YDKHD",
+    "alternate_apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?cls=SJWAPGHXCBJ01&pid=CS0478&sid=YDKHD",
+    "annual_fee": "金卡刷卡免年费；白金卡页面展示新客户首年免2000元年费",
+    "income_hint": "以审批结果为准",
+    "highlights": [
+      "金卡：计里程交易18元=1凤凰知音里程，航延4小时最高1000元",
+      "白金卡：计里程交易10元=1凤凰知音里程，航延2小时最高1000元",
+      "白金卡可匹配凤凰知音银卡会籍",
+      "金卡90天内飞行10次可升级凤凰知音银卡会籍",
+      "乘机返现等活动以官网规则为准"
+    ],
+    "fit_tags": ["国航偏好", "里程党", "携程出票", "国内商旅", "航司联名"],
+    "avoid_tags": ["不坐飞机", "不关心里程", "纯本地生活消费"],
+    "notes": [
+      "适合明确偏好国航或凤凰知音体系的客户。",
+      "推荐时要区分金卡与白金卡的年费、里程比例和航延条件。"
+    ]
+  },
+  {
+    "slug": "pet-theme-card",
+    "name": "中信银行颜卡宠物主题信用卡",
+    "status": "stopped",
+    "tier": "金卡",
+    "detail_url": "https://creditcard.ecitic.com/shenqing/chongwu/index.shtml",
+    "annual_fee": "不再作为新推荐卡",
+    "income_hint": "不适用",
+    "highlights": ["2024年7月31日起停止开放申请"],
+    "fit_tags": [],
+    "avoid_tags": ["停止发行"],
+    "notes": ["该卡已停发，不应再向新客户推荐。"]
+  }
+]

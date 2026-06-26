@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-03-14T11:13:09.649Z",
+  "pinnedVersion": "2026.3.13",
+  "latestVersion": "2026.3.13",
+  "latestPublishedAt": "2026-03-14T05:36:38.206Z",
+  "registryModifiedAt": "2026-03-14T05:36:38.351Z",
+  "githubLatestVersion": "2026.3.13",
+  "githubPublishedAt": "2026-03-14T05:19:41Z",
+  "githubUrl": "https://github.com/openclaw/openclaw/releases/tag/v2026.3.13",
+  "sourceParity": {
+    "npmLatestVersion": "2026.3.13",
+    "githubLatestVersion": "2026.3.13",
+    "inParity": true
+  },
+  "source": "npm",
+  "status": {
+    "pinnedVersion": "2026.3.13",
+    "latestVersion": "2026.3.13",
+    "latestPublishedAt": "2026-03-14T05:36:38.206Z",
+    "source": "npm",
+    "upToDate": true,
+    "ahead": false,
+    "behind": false
+  }
+}

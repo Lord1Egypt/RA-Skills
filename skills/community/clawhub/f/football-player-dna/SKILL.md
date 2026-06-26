@@ -1,35 +1,142 @@
 ---
-name: "Football Player DNA — AI Similarity Search"
-description: "Football player DNA similarity search — find style-matched alternatives at lower market values using AI vector search across 56,000+ players"
-category: "data-science"
-source: "ClawHub"
-tags: [analytics, ballers, dna, fifa, football, scouting, similarity, soccer, transfer, worldcup]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/football-player-dna"
-sourceUrl: "https://clawhub.ai/skills/football-player-dna"
+name: football-player-dna
+description: Football player DNA similarity search — find style-matched alternatives at lower market values using AI vector search across 56,000+ players
+version: "1.0.0"
+homepage: https://github.com/LeoandLeon/rising-transfers-clawhub-skills
+metadata:
+  clawdbot:
+    emoji: "🧬"
+    requires:
+      env: ["RT_API_KEY"]
+    primaryEnv: "RT_API_KEY"
 ---
 
 # Football Player DNA — AI Similarity Search
 
-> Football player DNA similarity search — find style-matched alternatives at lower market values using AI vector search across 56,000+ players
+Find statistically similar football players at lower market values. Powered by the Rising Transfers Intelligence API using pgvector cosine similarity across **56,000+ player profiles** — covering Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, and more.
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/football-player-dna`
-- **Source URL:** [https://clawhub.ai/skills/football-player-dna](https://clawhub.ai/skills/football-player-dna)
+This is the only football AI skill that uses **DNA vector search**: each player is encoded as a multi-dimensional fingerprint of playing style, physical attributes, and tactical role. The result: genuine statistical twins, not surface-level comparisons.
 
-## Overview
+---
 
+## External Endpoints
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/football-player-dna
-```
+| Endpoint | Method | Data Sent | Purpose |
+|----------|--------|-----------|---------|
+| `https://api.risingtransfers.com/api/v1/intelligence/dna-search` | POST | `{ "name": "<player_name>" }` | DNA vector similarity search |
+| `https://api.risingtransfers.com/api/v1/intelligence/player` | POST | `{ "name": "<player_name>" }` | Player profile lookup (optional enrichment) |
+
+No data is sent to any other endpoint. No data is stored locally.
+
+---
+
+## Security & Privacy
+
+- **What leaves your machine**: Only the player name(s) you provide in the query
+- **What does NOT leave your machine**: Conversation history, other installed skills, local files, API keys (the key is sent as an HTTP header, never in the request body or logs)
+- **Data retention by Rising Transfers**: API calls are logged for rate limiting and billing. Player name queries are not stored beyond 24 hours. See [privacy policy](https://risingtransfers.com/privacy)
+- **Authentication**: Your `RT_API_KEY` is sent as `X-RT-API-Key` header on every request to `api.risingtransfers.com` only
+
+---
+
+## Model Invocation Note
+
+This skill may be invoked autonomously by OpenClaw when you ask about finding similar football players, cheaper alternatives, or DNA-matched footballers. You can disable autonomous invocation by setting `skill.auto-discover false` in your OpenClaw config. Every API call consumes credits from your Rising Transfers account (2 credits per DNA search on free tier).
+
+---
+
+## Trust Statement
+
+By using this skill, the player name you query is sent to Rising Transfers (`api.risingtransfers.com`). Only install this skill if you trust Rising Transfers with that information. Rising Transfers is a football intelligence platform — no financial, personal, or sensitive data is involved in these queries.
+
+---
+
+## Trigger
+
+When the user asks to:
+- Find similar football players to a named player
+- Find cheaper alternatives to a specific footballer
+- Find DNA-matched or style-matched player options
+- Identify replacement candidates for a footballer
+- Scout statistically equivalent players for a squad
+
+Examples:
+- "Find me football players similar to Bellingham but cheaper"
+- "Who are the DNA alternatives to Rodri?"
+- "Give me a style-matched backup to Salah under €20M"
+- "Find a cheaper Mbappe alternative for my FIFA draft"
+- "What football player is statistically most similar to Kevin De Bruyne?"
+
+---
+
+## Instructions
+
+1. Extract the target player name from the user's request. If a team is mentioned, note it for disambiguation.
+
+2. Call the DNA search endpoint:
+   ```
+   POST https://api.risingtransfers.com/api/v1/intelligence/dna-search
+   Headers:
+     X-RT-API-Key: <RT_API_KEY>
+     Content-Type: application/json
+   Body:
+     { "name": "<player_name>", "team": "<team_name_if_provided>" }
+   ```
+
+3. If the response contains `error: "INSUFFICIENT_CREDITS"`, inform the user their Rising Transfers credits are exhausted and direct them to `api.risingtransfers.com` to top up.
+
+4. If the response contains `error: "PLAYER_NOT_FOUND"`, ask the user to clarify the player name or provide the current club.
+
+5. Parse the `data.alternatives` array from the response. For each alternative player, present:
+   - Player name and current club
+   - DNA similarity percentage (e.g. "91% similar")
+   - Market value and difference vs target (e.g. "€65M cheaper")
+   - Position and key playing style tags
+
+6. Present results as a ranked table, most similar first. Example format:
+
+   | Rank | Player | Club | Similarity | Value | Saving vs [Target] |
+   |------|--------|------|-----------|-------|-------------------|
+   | 1 | Name | Club | 91% | €15M | €65M cheaper |
+
+7. After the table, offer to dive deeper: "Want a full scout report on any of these players?"
+
+8. Do not fabricate statistics. If the API returns no alternatives, say so clearly and suggest the user try a different player.
+
+---
+
+## Error Handling
+
+| Error | User Message |
+|-------|-------------|
+| 401 Unauthorized | "Your RT_API_KEY is invalid or expired. Get a key at api.risingtransfers.com" |
+| 403 Insufficient Credits | "You've used all your DNA search credits. Top up at api.risingtransfers.com" |
+| 404 Player Not Found | "Player not found. Try the full name (e.g. 'Jude Bellingham') or add the club name." |
+| 429 Rate Limited | "Too many requests. Please wait a moment before trying again." |
+| 5xx Server Error | "Rising Transfers API is temporarily unavailable. Please try again in a few minutes." |
+
+---
+
+## Requirements
+
+- **RT_API_KEY**: A valid Rising Transfers API key. Register for free at [api.risingtransfers.com](https://api.risingtransfers.com). Free tier includes 2 DNA searches per day.
+- **OpenClaw**: v0.8.0 or later
+- **Network access**: Required (calls `api.risingtransfers.com`)
+
+---
+
+## Credit Usage
+
+| Action | Credits Consumed |
+|--------|-----------------|
+| DNA similarity search | 2 credits (free tier) |
+| Player profile enrichment (optional) | 1 credit |
+
+Free tier: 10 DNA searches/day.
+Pro tier ($29/mo): 500 DNA searches/day.
+
+---
+
+## Author
+
+Rising Transfers — [api.risingtransfers.com](https://api.risingtransfers.com)

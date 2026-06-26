@@ -1,0 +1,4 @@
+interface:
+  display_name: "DocCraft"
+  short_description: "Build formal docs from source files"
+  default_prompt: "Use $doccraft to turn source materials and an outline into a complete, review-ready Word document."

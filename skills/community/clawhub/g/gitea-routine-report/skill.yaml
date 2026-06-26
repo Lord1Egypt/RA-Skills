@@ -1,0 +1,16 @@
+name: gitea-routine-report
+version: 1.2.2
+description: 获取 Gitea 各仓库提交记录，调用 AI 生成进度报告，并发送 HTML 邮件给仓库管理员
+license: MIT
+author:
+  - mayidan
+  - zhangyiwen
+required_environment_variables:
+  - GITEA_URL
+  - GITEA_TOKEN
+primary_credential: GITEA_TOKEN
+credentials:
+  - name: GITEA_TOKEN
+    type: personal_access_token
+    provider: gitea
+environment_file: ~/.config/gitea-routine-report/.env

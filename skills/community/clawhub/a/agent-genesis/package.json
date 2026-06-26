@@ -1,0 +1,16 @@
+{
+  "name": "agent-genesis-skill",
+  "version": "1.0.0",
+  "description": "Agent Genesis AGC Claim and Gasless Interactions",
+  "main": "genesis.js",
+  "scripts": {
+    "start": "node genesis.js"
+  },
+  "dependencies": {
+    "@reclaimprotocol/zk-fetch": "^0.8.0",
+    "axios": "^1.6.7",
+    "ethers": "^6.16.0",
+    "permissionless": "^0.3.4",
+    "viem": "^2.47.10"
+  }
+}

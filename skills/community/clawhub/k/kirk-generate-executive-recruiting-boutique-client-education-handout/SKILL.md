@@ -1,35 +1,49 @@
 ---
-name: "generate-executive-recruiting-boutique-client-education-handout"
+name: "Generate Executive Recruiting Boutique Client Education Handout"
 description: "Create a polished explainer handout with visuals, FAQs, and clear next steps for a executive recruiting firm. Use when handling client education work..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kirk-generate-executive-recruiting-boutique-client-education-handout"
-sourceUrl: "https://clawhub.ai/skills/kirk-generate-executive-recruiting-boutique-client-education-handout"
+homepage: "https://www.skillboss.co/skills/generate-executive-recruiting-boutique-client-education-handout"
+metadata: {"category":"hr-recruitment","subcategory":"client-education","skill_id":"generate-executive-recruiting-boutique-client-education-handout","generated_day":"","seo_keywords":["executive recruiting firm education handout","executive recruiting firm client explainer","executive recruiting firm FAQ guide","executive recruiting firm visual handout"]}
 ---
 
-# generate-executive-recruiting-boutique-client-education-handout
+# Generate Executive Recruiting Boutique Client Education Handout
 
-> Create a polished explainer handout with visuals, FAQs, and clear next steps for a executive recruiting firm. Use when handling client education work...
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a executive recruiting firm. Use when handling client education work...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kirk-generate-executive-recruiting-boutique-client-education-handout`
-- **Source URL:** [https://clawhub.ai/skills/kirk-generate-executive-recruiting-boutique-client-education-handout](https://clawhub.ai/skills/kirk-generate-executive-recruiting-boutique-client-education-handout)
+## Use When
 
-## Overview
+Use this skill for client education work for executive recruiters, talent partners.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kirk-generate-executive-recruiting-boutique-client-education-handout
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: executive recruiting firm education handout, executive recruiting firm client explainer, executive recruiting firm FAQ guide, executive recruiting firm visual handout
+- Search intent: client education
+- Canonical slug: `generate-executive-recruiting-boutique-client-education-handout`
+- Install query: Install Generate Executive Recruiting Boutique Client Education Handout with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Executive Recruiting Boutique Client Education Handout] for my executive recruiting firm
+
+## Notes
+
+- Create a polished explainer handout with visuals, FAQs, and clear next steps for a executive recruiting firm
+- Use human review to avoid biased screening or employment decisions based only on generated analysis.
+
+## SEO Keywords
+
+- executive recruiting firm education handout
+- executive recruiting firm client explainer
+- executive recruiting firm FAQ guide
+- executive recruiting firm visual handout

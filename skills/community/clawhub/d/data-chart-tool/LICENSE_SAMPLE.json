@@ -1,0 +1,10 @@
+{
+  "license_key": "DCT-PREMIUM-001",
+  "issued_to": "test@example.com",
+  "skills": ["data-chart-tool"],
+  "plan": "premium",
+  "issued_at": "2026-03-22T18:13:17.299096+00:00",
+  "expires_at": "2027-03-21T18:13:17.299096+00:00",
+  "algorithm": "sha256",
+  "signature": "a7c8176d6b30c67e8f8ea9a5c4eecc7f8f9b1e7a3d2c1b0e9d8c7b6a5f4e3d2c1"
+}

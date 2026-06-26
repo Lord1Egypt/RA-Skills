@@ -1,0 +1,23 @@
+{
+  "name": "pacer",
+  "version": "0.1.0",
+  "description": "Your AI career companion",
+  "author": "hectormeta",
+  "homepage": "https://github.com/hectormeta/pacer-skill",
+  "license": "MIT",
+"tags": ["career", "planning", "opc", "productivity"],
+  "entry": "SKILL.md",
+  "capabilities": {
+    "memory": true,
+    "file_parsing": {
+      "enabled": true,
+      "supported_formats": ["pdf", "docx", "doc", "txt"],
+      "max_file_size_mb": 10
+    },
+    "heartbeat": {
+      "enabled": true,
+      "interval": "weekly",
+      "prompt": "本周你在自己的路径上迈出了什么步骤？哪里遇到了阻碍？"
+    }
+  }
+}

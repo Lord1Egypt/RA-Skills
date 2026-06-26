@@ -1,0 +1,28 @@
+{
+  "cameras": [
+    {
+      "STREAM_URL": "rtsp://admin:xxx@192.168.XXX/stream1",
+      "DEVICE_ID": "camera1"
+    },
+    {
+      "STREAM_URL": "rtsp://admin:xxx@192.168.xxx/stream1",
+      "DEVICE_ID": "camera2"
+    }
+  ],
+  "OUTPUT_WIDTH": 640,
+  "OUTPUT_HEIGHT": 360,
+  "ENABLE_DESCRIPTION": true,
+  "VLM_PROMPT": "",
+  "EMBEDDING_MODE": "text",
+  "KAMIVISION_API_URL": "https://kamiclaw-skill-api.kamihome.com/v1/detect",
+  "KAMIVISION_API_KEY": "",
+  "SIMILARITY_THRESHOLD": 0.35,
+  "SEARCH_TOP_K": 5,
+  "DATA_DIR": "./image_data",
+  "RETENTION_DAYS": 30,
+  "RECONNECT_DELAY": 3,
+  "SKIP_DUPLICATE": true,
+  "DUPLICATE_THRESHOLD": 5.0,
+  "TIME_ZONE_OFFSET": -12,
+  "CAPTURE_INTERVAL": 10
+}

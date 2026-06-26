@@ -1,0 +1,17 @@
+# Home Assistant + Xiaomi Home Integration
+# Usage: docker compose up -d
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    privileged: true
+    network_mode: host
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    # For Apple Silicon Macs, you may need to add:
+    # platform: linux/arm64

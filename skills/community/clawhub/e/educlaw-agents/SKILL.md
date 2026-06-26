@@ -1,35 +1,34 @@
----
-name: "Educlaw Multi-Subject Agent"
-description: "Multi-agent learning system supporting English, Math, and Chinese with isolated contexts and automatic routing by subject."
-category: "research"
-source: "ClawHub"
-tags: [education, english, math, multi-agent, tutoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/educlaw-agents"
-sourceUrl: "https://clawhub.ai/skills/educlaw-agents"
----
+# Educlaw 多学科 Agent
 
-# Educlaw Multi-Subject Agent
+多Agent学习系统，支持英语、数学等学科，每个学科由独立Agent处理，上下文完全隔离。
 
-> Multi-agent learning system supporting English, Math, and Chinese with isolated contexts and automatic routing by subject.
+## 功能
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/educlaw-agents`
-- **Source URL:** [https://clawhub.ai/skills/educlaw-agents](https://clawhub.ai/skills/educlaw-agents)
+- **多学科支持**：英语（免费）、数学、语文
+- **Agent隔离**：各科学记忆独立，互不干扰
+- **智能路由**：自动识别用户意图，路由到对应学科Agent
+- **积分系统**：完成练习获得积分，持续激励学习
 
-## Overview
+## 使用方法
 
+直接告诉我想学什么学科：
+- "学英语" → 英语Agent
+- "学数学" → 数学Agent  
+- "学语文" → 语文Agent
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/educlaw-agents
+## 架构
+
 ```
+用户输入 → 意图识别 → Agent路由 → 学科Agent → 回复
+```
+
+- 每个Agent有独立的instruction和memory
+- 上下文完全隔离，避免记忆污染
+
+## 配置
+
+编辑 `router/config.yaml` 自定义路由规则。
+
+## 版本
+
+v2.0.1

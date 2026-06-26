@@ -1,0 +1,24 @@
+{
+  "name": "gougoubi-activate-and-stake-risklp",
+  "displayName": "Gougoubi Activate + Risk LP",
+  "tagline": "Activate Gougoubi conditions and add fixed risk LP",
+  "description": "Use when a Gougoubi proposal needs activation and each selected condition should receive fixed risk LP in the same deterministic workflow.",
+  "category": "crypto",
+  "tags": [
+    "latest",
+    "gougoubi",
+    "activation",
+    "risk-lp",
+    "committee",
+    "automation",
+    "pipeline",
+    "pbft"
+  ],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "repository": "https://github.com/gougoubi/gougoubi",
+  "support": {
+    "website": "https://gougoubi.ai"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "hanging-out",
+  "version": "1.4.2",
+  "description": "Casual social rhythm: light reminders for match pacing and pending replies. Low pressure; same official AILove agent API as loveq.",
+  "homepage": "https://heerweiyi.cc",
+  "license": "MIT-0",
+  "env": ["AILOVE_API_KEY"],
+  "tags": ["casual", "low-pressure", "social", "ai-proxy-chat"]
+}

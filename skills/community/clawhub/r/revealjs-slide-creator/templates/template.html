@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Reveal.js Presentation</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/black.min.css" id="theme">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/highlight/monokai.min.css">
+
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Markdown Example -->
+      <section data-markdown>
+        <textarea data-template>
+            ## Markdown Support
+            This slide is written in **Markdown**.
+            
+            [Link to Reveal.js](https://revealjs.com)
+          </textarea>
+      </section>
+
+      <!-- Background & Media Example -->
+      <section data-background-color="aquamarine">
+        <h2>Backgrounds & Media</h2>
+        <img src="https://picsum.photos/400/300" alt="Random Image" class="r-frame">
+        <p>Slide with a background color and an r-frame image.</p>
+      </section>
+
+      <!-- Video Background & Lightbox concept -->
+      <section data-background-video="https://static.slid.es/site/homepage/v1/homepage-video-editor.mp4"
+        data-background-video-loop data-background-video-muted>
+        <h2>Video Backgrounds</h2>
+      </section>
+
+      <!-- Code Example -->
+      <section>
+        <h2>Code Highlighting</h2>
+        <pre><code data-trim data-noescape class="language-javascript">
+            function helloWorld() {
+              console.log("Hello, world!");
+            }
+          </code></pre>
+      </section>
+
+      <!-- Math Example -->
+      <section>
+        <h2>Math Support (MathJax)</h2>
+        <p>Inline: $e^{i\pi} + 1 = 0$</p>
+        <p>Block Equations:</p>
+        \[ \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+      </section>
+
+      <!-- Fragments Example -->
+      <section>
+        <h2>Fragments</h2>
+        <p class="fragment">Step 1</p>
+        <p class="fragment fade-up">Step 2 (Fade Up)</p>
+        <p class="fragment highlight-red">Step 3 (Highlight Red)</p>
+      </section>
+
+      <!-- Layout: Fit Text -->
+      <section>
+        <h2 class="r-fit-text">FIT TEXT LAYOUT</h2>
+        <h2 class="r-fit-text">MAKES HEADLINES FILL THE SLIDE</h2>
+      </section>
+
+      <!-- Layout: Stack -->
+      <section>
+        <h2>r-stack Layout</h2>
+        <p>Overlapping elements incrementally:</p>
+        <div class="r-stack">
+          <img class="fragment" src="https://picsum.photos/450/300" width="450" height="300" />
+          <img class="fragment" src="https://picsum.photos/300/450" width="300" height="450" />
+          <img class="fragment" src="https://picsum.photos/400/400" width="400" height="400" />
+        </div>
+      </section>
+
+      <!-- Layout: Stretch -->
+      <section>
+        <h2>r-stretch Layout</h2>
+        <img class="r-stretch" src="https://picsum.photos/450/250" />
+        <p>The image above stretches to consume the rest of the vertical space</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/notes/notes.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/highlight/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/math/math.min.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      mathjax3: {
+        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        },
+      },
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.MathJax3]
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+/* theme: corporate-clean — professional blue, polished */
+/* Upstream: lewislulu/html-ppt-skill (MIT) */
+[data-theme="corporate-clean"] {
+  --bg: #ffffff; --bg-soft: #f8fafc; --surface: #ffffff; --surface-2: #f1f5f9;
+  --border: rgba(15,23,42,.08); --border-strong: rgba(15,23,42,.18);
+  --text-1: #0f172a; --text-2: #475569; --text-3: #94a3b8;
+  --accent: #2563eb; --accent-2: #7c3aed; --accent-3: #db2777;
+  --good: #16a34a; --warn: #f59e0b; --bad: #dc2626;
+  --grad: linear-gradient(135deg,#2563eb,#7c3aed);
+  --grad-soft: linear-gradient(135deg,#eff6ff,#f5f3ff);
+  --radius: 12px; --radius-sm: 8px; --radius-lg: 20px;
+  --shadow: 0 1px 3px rgba(15,23,42,.08), 0 4px 12px rgba(15,23,42,.06);
+  --shadow-lg: 0 8px 24px rgba(15,23,42,.1), 0 24px 48px rgba(15,23,42,.08);
+  --font-sans: 'Inter','Noto Sans SC',sans-serif;
+  --font-display: 'Inter','Noto Sans SC',sans-serif;
+  --text: var(--text-1); --secondary: var(--text-2); --bg-alt: var(--bg-soft);
+  --font-body: var(--font-sans); --font-title: var(--font-display);
+}

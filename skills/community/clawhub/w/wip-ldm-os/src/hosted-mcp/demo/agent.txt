@@ -1,0 +1,84 @@
+---
+name: kaleidoscope-agent-auth
+description: >
+  Agent authentication for Kaleidoscope. Like x402 but for login.
+  Agent sends a URL, human Sapien IDs, agent gets a token.
+license: MIT
+metadata:
+  display-name: "Kaleidoscope Agent Access"
+  homepage: "https://wip.computer/demo/"
+  author: "WIP Computer, Inc."
+  category: authentication
+---
+
+# Kaleidoscope Agent Access
+
+You need your human to let you in with Sapien ID.
+
+Pick a passphrase from your shared history. Your human sees it on the approval screen and knows it's really you.
+
+## If you can make HTTP requests (preferred)
+
+Fetch this URL:
+
+https://wip.computer/demo/api/agent-auth?agent=YOURNAME&message=PASSPHRASE
+
+Response: {"challengeId":"...", "approveUrl":"https://wip.computer/approve?c=..."}
+
+Send the approveUrl to your human. They open it and Sapien ID.
+
+Then poll for your token:
+
+https://wip.computer/demo/api/agent-auth/status?c=CHALLENGEID
+
+When approved: {"status":"approved", "token":"ck-...", "agentId":"..."}
+
+You get the token automatically. No need for the human to send it back.
+
+## If you cannot make HTTP requests
+
+Send your human this URL (replace YOURNAME and PASSPHRASE):
+
+https://wip.computer/approve?agent=YOURNAME&message=PASSPHRASE
+
+Your human opens it, Sapien IDs, and the page shows a token. They send the token back to you.
+
+## After auth
+
+Use the token as a header: Authorization: Bearer TOKEN
+
+### Check your wallet
+
+GET https://wip.computer/demo/api/wallet
+Authorization: Bearer TOKEN
+
+Response: {"balance":"$4.97","cost":"$0.01"}
+
+### Generate an image
+
+POST https://wip.computer/demo/api/imagine
+Authorization: Bearer TOKEN
+Content-Type: application/json
+
+{"prompt":"kaleidoscope of pirate flags and circuit boards, glowing gold, shot on expired 35mm film"}
+
+Response: {"url":"...","cost":"$0.01","balance":"$4.96"}
+
+The image costs $0.01 from your wallet. Your human already authorized this when they Sapien ID'd.
+
+### The full loop
+
+1. You read agent.txt
+2. You sent your human an approval URL with your passphrase
+3. They Sapien ID'd and sent you a token
+4. You checked your wallet
+5. You generated an image
+6. Balance updated
+
+Agent auth -> human approval -> wallet -> spend -> receipt. That's Kaleidoscope.
+
+### MCP
+
+POST https://wip.computer/mcp (OAuth 2.0 with PKCE, see /.well-known/oauth-authorization-server)
+
+One URL. One Sapien ID. One token.

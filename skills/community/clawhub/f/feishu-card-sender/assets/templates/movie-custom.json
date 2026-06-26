@@ -1,0 +1,273 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "style": {
+      "text_size": {
+        "normal_v2": {
+          "default": "normal",
+          "pc": "normal",
+          "mobile": "heading"
+        }
+      }
+    }
+  },
+  "body": {
+    "direction": "horizontal",
+    "horizontal_spacing": "8px",
+    "vertical_spacing": "8px",
+    "horizontal_align": "left",
+    "vertical_align": "top",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "stretch",
+        "horizontal_align": "left",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "elements": [
+              {
+                "tag": "img",
+                "img_key": "${poster_img_key}",
+                "preview": true,
+                "scale_type": "fit_horizontal",
+                "corner_radius": "8px"
+              }
+            ],
+            "vertical_spacing": "8px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 1
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>📖 剧情简介</font>**\n${overview}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ],
+            "vertical_spacing": "8px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 2
+          }
+        ],
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "stretch",
+        "horizontal_spacing": "12px",
+        "horizontal_align": "left",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>⭐ 评分</font>**",
+                "text_size": "normal"
+              },
+              {
+                "tag": "markdown",
+                "content": "${rating}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ],
+            "padding": "12px 12px 12px 12px",
+            "vertical_spacing": "4px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 1
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>⏱️ 时长</font>**",
+                "text_size": "normal"
+              },
+              {
+                "tag": "markdown",
+                "content": "${runtime}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ],
+            "padding": "12px 12px 12px 12px",
+            "vertical_spacing": "4px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 1
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>📅 上映</font>**",
+                "text_size": "normal"
+              },
+              {
+                "tag": "markdown",
+                "content": "${year}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ],
+            "padding": "12px 12px 12px 12px",
+            "vertical_spacing": "4px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 1
+          }
+        ],
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "stretch",
+        "horizontal_spacing": "12px",
+        "horizontal_align": "left",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>🎭 类型</font>**",
+                "text_size": "normal"
+              },
+              {
+                "tag": "markdown",
+                "content": "${genres}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ],
+            "padding": "12px 12px 12px 12px",
+            "vertical_spacing": "4px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 1
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>🌍 国家</font>**",
+                "text_size": "normal"
+              },
+              {
+                "tag": "markdown",
+                "content": "${country}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ],
+            "padding": "12px 12px 12px 12px",
+            "vertical_spacing": "4px",
+            "horizontal_align": "left",
+            "vertical_align": "top",
+            "weight": 1
+          }
+        ],
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "markdown",
+        "content": "**<font color='blue-600'>🎭 主要演员</font>**\n${cast}",
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "markdown",
+        "content": "**<font color='blue-600'>🎬 导演</font>** ：${director}",
+        "text_align": "left",
+        "text_size": "normal_v2",
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "markdown",
+        "content": "**💬 ${tagline}**",
+        "text_align": "left",
+        "text_size": "normal_v2",
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "查看详情"
+        },
+        "type": "default",
+        "width": "default",
+        "size": "medium",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "${detail_url}",
+            "pc_url": "",
+            "ios_url": "",
+            "android_url": ""
+          }
+        ],
+        "margin": "0px 0px 0px 0px"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "${subscribe_button_text}"
+        },
+        "type": "primary",
+        "width": "default",
+        "size": "medium",
+        "disabled": "${subscribe_disabled}",
+        "behaviors": [
+          {
+            "type": "callback",
+            "value": {
+              "action": "subscribe",
+              "media_type": "${media_type}",
+              "tmdb_id": "${tmdb_id}",
+              "title": "${title}",
+              "card_key": "${card_key}"
+            }
+          }
+        ],
+        "margin": "0px 0px 0px 0px"
+      }
+    ]
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "🎬 《${title}》电影介绍"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": ""
+    },
+    "template": "blue",
+    "padding": "12px 16px 12px 16px"
+  }
+}

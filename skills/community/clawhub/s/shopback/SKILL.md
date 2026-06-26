@@ -1,35 +1,32 @@
 ---
-name: "ShopBack返利助手"
-description: "ShopBack东南亚与澳洲最大购物返利平台工具，覆盖新加坡马来西亚澳大利亚等多国市场，提供购物现金返利。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shopback"
-sourceUrl: "https://clawhub.ai/skills/shopback"
+name: ShopBack返利助手
+description: ShopBack东南亚与澳洲最大购物返利平台工具，覆盖新加坡马来西亚澳大利亚等多国市场，提供购物现金返利。
+version: 0.1.0
 ---
 
 # ShopBack返利助手
 
-> ShopBack东南亚与澳洲最大购物返利平台工具，覆盖新加坡马来西亚澳大利亚等多国市场，提供购物现金返利。
+ShopBack购物返利工具。东南亚与澳洲最大的Cashback返利平台，覆盖新加坡、马来西亚、印尼、澳大利亚等多国市场，已获数亿美元融资，是出海购物返利的优选工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shopback`
-- **Source URL:** [https://clawhub.ai/skills/shopback](https://clawhub.ai/skills/shopback)
+## 触发词
 
-## Overview
+shopback、shopback返利、东南亚返利、澳洲返利、shopback cashback、新加坡返利
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shopback
+- **多国覆盖**：新加坡/马来西亚/印尼/澳大利亚等
+- **本地商家**：各国本地电商和品牌官网
+- **国际商家**：Amazon/eBay等全球电商
+- **移动支付**：支持本地支付方式提现
+
+## 输出格式
+
+```
+🔴 ShopBack返利查询
+
+商家：[商家名称]
+地区：[国家]
+返利比例：[X]%
+可用优惠：[优惠描述]
+返利链接：[链接]
 ```

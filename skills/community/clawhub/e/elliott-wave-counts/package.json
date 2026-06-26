@@ -1,0 +1,9 @@
+{
+  "name": "elliott-wave-counts",
+  "version": "1.1.0",
+  "description": "Automated wave counting and market cycle prediction.",
+  "author": "ssidharHubble",
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module"
+}

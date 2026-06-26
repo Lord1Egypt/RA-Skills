@@ -1,35 +1,30 @@
----
-name: "wanjie-openclaw-video"
-description: "Generate videos via natural language with automatic task monitoring, dependency management, timeout cleanup, and background processing for high-performance V..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanjie-openclaw-video-v1-0-1"
-sourceUrl: "https://clawhub.ai/skills/wanjie-openclaw-video-v1-0-1"
----
+# Skill: wanjie-video-skill
+### 作者: 何振杰
 
-# wanjie-openclaw-video
+## 功能描述
+一个高性能 Veo 视频生成技能，支持通过自然语言一键生成。现已升级为全自动守护模式。
 
-> Generate videos via natural language with automatic task monitoring, dependency management, timeout cleanup, and background processing for high-performance V...
+## 适用场景
+- 自动化视频创作。
+- 无需命令行参数，通过自然语言对话生成视频。
+- 具备自动依赖修复、超时自愈、任务防重及全自动后台监控功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanjie-openclaw-video-v1-0-1`
-- **Source URL:** [https://clawhub.ai/skills/wanjie-openclaw-video-v1-0-1](https://clawhub.ai/skills/wanjie-openclaw-video-v1-0-1)
+## 安装说明
+1. 使用 `clawhub install wanjie-video-skill` 安装。
+2. 确保在 `~/.openclaw/openclaw.json` 中配置了有效的 API Key。
 
-## Overview
+## 使用方法
+安装后，直接在聊天窗口输入：
+> 生成视频：[您的提示词]
 
+后台会启动定时监控（每5分钟一次），若检测到空闲，会自动处理任务并将结果通过日志文件同步。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wanjie-openclaw-video-v1-0-1
-```
+## 运行机制
+- 拦截指令后，自动调用后台进程生成。
+- 具备 30 分钟任务超时强制清理机制，防止任务卡死。
+- 支持自动依赖安装（requests 库）。
+- 生成结果会自动存入 `veo_result.txt`，支持定时任务闭环管理。
+
+## 注意事项
+- 请确保系统环境已安装 Python。
+- 本插件部署了 Windows 任务计划程序 `OpenClaw_Veo_Monitor` 进行自动化监控。

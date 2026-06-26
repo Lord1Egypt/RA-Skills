@@ -1,0 +1,30 @@
+{
+  "_comment": "Manual overrides for dataset metadata. Applied on top of catalog + preset data. Use for discontinued datasets, nicer labels, or corrected cat_no.",
+  "RT": {
+    "id": "RT",
+    "name": "Retail Trade (DISCONTINUED June 2025)",
+    "cat_no": "8501.0",
+    "discontinued": true,
+    "discontinued_note": "RT Retail Trade was discontinued after June 2025. Use HSI_M (Household Spending Indicator) or BUSINESS_TURNOVER instead.",
+    "replacement": "HSI_M"
+  },
+  "RPPI": {
+    "id": "RPPI",
+    "name": "Residential Property Price Index",
+    "cat_no": "6416.0",
+    "note": "Latest available data is from around 2021-Q4 in the API; more recent dwelling price data is available via RES_DWELL_ST.",
+    "stale_warning": true
+  },
+  "LF_UNDER": {
+    "id": "LF_UNDER",
+    "name": "Labour Force: Underemployment and Underutilisation",
+    "cat_no": "6202.0",
+    "note": "Also contains participation rate (M12), labour force size (M9), employment (M3), and unemployment rate (M13) for cross-validation."
+  },
+  "HSI_M": {
+    "id": "HSI_M",
+    "name": "Monthly Household Spending Indicator",
+    "cat_no": "8501.0",
+    "note": "Experimental indicator replacing Retail Trade (RT). Available from late 2022."
+  }
+}

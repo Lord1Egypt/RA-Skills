@@ -1,0 +1,27 @@
+{
+  "name": "waquanquaner-skill",
+  "version": "1.0.2",
+  "description": "中国国内美团、饿了么、京东外卖红包优惠挖掘助手。一个链接挖取当日所有隐藏活动，方便、省心、省钱！",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "外卖红包",
+    "饿了么",
+    "美团",
+    "京东外卖",
+    "优惠券",
+    "省钱",
+    "agent-skill"
+  ],
+  "author": "WaQuanquaner",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/waquanquaner/waquanquaner-skill"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

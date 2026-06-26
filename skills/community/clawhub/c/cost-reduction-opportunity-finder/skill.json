@@ -1,0 +1,26 @@
+{
+  "name": "Cost Reduction Opportunity Finder",
+  "slug": "cost-reduction-opportunity-finder",
+  "version": "1.0.0",
+  "description": "Identifies potential cost reduction opportunities across operational categories.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "cost"
+  ],
+  "trigger_keywords": [
+    "cost reduction opportunity finder",
+    "cost reduction opportunity finder",
+    "cost",
+    "reduction",
+    "opportunity",
+    "finder"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

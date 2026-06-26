@@ -1,0 +1,2353 @@
+{
+  "metadata": {
+    "topic": "Python 数据分析",
+    "createdAt": "2026-03-15T06:19:28.848Z",
+    "version": "1.0.0"
+  },
+  "outline": {
+    "title": "Python 数据分析完整课程",
+    "subtitle": "从零到精通的系统学习路径",
+    "level": "beginner",
+    "levelDescription": "零基础入门，无需先修知识",
+    "estimatedDuration": "24小时",
+    "modules": [
+      {
+        "moduleNumber": 1,
+        "title": "模块1: 课程介绍与学习路径",
+        "description": "深入讲解Python 数据分析的课程介绍与学习路径内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "课程介绍与学习路径 - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "课程介绍与学习路径 - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "课程介绍与学习路径 - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 4,
+            "title": "课程介绍与学习路径 - 第4节",
+            "type": "practice",
+            "duration": "30分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "2小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解课程介绍与学习路径的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 2,
+        "title": "模块2: 核心概念基础",
+        "description": "深入讲解Python 数据分析的核心概念基础内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "核心概念基础 - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "核心概念基础 - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "核心概念基础 - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 4,
+            "title": "核心概念基础 - 第4节",
+            "type": "practice",
+            "duration": "30分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 5,
+            "title": "核心概念基础 - 第5节",
+            "type": "practice",
+            "duration": "35分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "2.5小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解核心概念基础的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 3,
+        "title": "模块3: 环境搭建与工具准备",
+        "description": "深入讲解Python 数据分析的环境搭建与工具准备内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "环境搭建与工具准备 - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "环境搭建与工具准备 - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "环境搭建与工具准备 - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "3小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解环境搭建与工具准备的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 4,
+        "title": "模块4: 第一个实战项目",
+        "description": "深入讲解Python 数据分析的第一个实战项目内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "第一个实战项目 - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "第一个实战项目 - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "第一个实战项目 - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 4,
+            "title": "第一个实战项目 - 第4节",
+            "type": "practice",
+            "duration": "30分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "2小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解第一个实战项目的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 5,
+        "title": "模块5: 核心技能深入 (上)",
+        "description": "深入讲解Python 数据分析的核心技能深入 (上)内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "核心技能深入 (上) - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "核心技能深入 (上) - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "核心技能深入 (上) - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 4,
+            "title": "核心技能深入 (上) - 第4节",
+            "type": "practice",
+            "duration": "30分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 5,
+            "title": "核心技能深入 (上) - 第5节",
+            "type": "practice",
+            "duration": "35分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "2.5小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解核心技能深入 (上)的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 6,
+        "title": "模块6: 核心技能深入 (下)",
+        "description": "深入讲解Python 数据分析的核心技能深入 (下)内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "核心技能深入 (下) - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "核心技能深入 (下) - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "核心技能深入 (下) - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "3小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解核心技能深入 (下)的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 7,
+        "title": "模块7: 综合实战应用",
+        "description": "深入讲解Python 数据分析的综合实战应用内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "综合实战应用 - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "综合实战应用 - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "综合实战应用 - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 4,
+            "title": "综合实战应用 - 第4节",
+            "type": "practice",
+            "duration": "30分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "2小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解综合实战应用的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      },
+      {
+        "moduleNumber": 8,
+        "title": "模块8: 进阶方向与职业发展",
+        "description": "深入讲解Python 数据分析的进阶方向与职业发展内容",
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "进阶方向与职业发展 - 第1节",
+            "type": "video",
+            "duration": "15分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 2,
+            "title": "进阶方向与职业发展 - 第2节",
+            "type": "demo",
+            "duration": "20分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 3,
+            "title": "进阶方向与职业发展 - 第3节",
+            "type": "practice",
+            "duration": "25分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 4,
+            "title": "进阶方向与职业发展 - 第4节",
+            "type": "practice",
+            "duration": "30分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          },
+          {
+            "lessonNumber": 5,
+            "title": "进阶方向与职业发展 - 第5节",
+            "type": "practice",
+            "duration": "35分钟",
+            "description": "详细讲解Python 数据分析相关知识点"
+          }
+        ],
+        "estimatedTime": "2.5小时",
+        "objectives": [
+          "掌握Python 数据分析的核心概念",
+          "能够独立完成相关实践",
+          "理解进阶方向与职业发展的实际应用场景",
+          "建立系统的知识框架"
+        ]
+      }
+    ]
+  },
+  "videoScripts": [
+    {
+      "moduleName": "模块1: 课程介绍与学习路径",
+      "script": {
+        "metadata": {
+          "title": "课程介绍与学习路径 - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"课程介绍与学习路径 - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块2: 核心概念基础",
+      "script": {
+        "metadata": {
+          "title": "核心概念基础 - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"核心概念基础 - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块3: 环境搭建与工具准备",
+      "script": {
+        "metadata": {
+          "title": "环境搭建与工具准备 - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"环境搭建与工具准备 - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块4: 第一个实战项目",
+      "script": {
+        "metadata": {
+          "title": "第一个实战项目 - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"第一个实战项目 - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块5: 核心技能深入 (上)",
+      "script": {
+        "metadata": {
+          "title": "核心技能深入 (上) - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"核心技能深入 (上) - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块6: 核心技能深入 (下)",
+      "script": {
+        "metadata": {
+          "title": "核心技能深入 (下) - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"核心技能深入 (下) - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块7: 综合实战应用",
+      "script": {
+        "metadata": {
+          "title": "综合实战应用 - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"综合实战应用 - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    },
+    {
+      "moduleName": "模块8: 进阶方向与职业发展",
+      "script": {
+        "metadata": {
+          "title": "进阶方向与职业发展 - 第1节",
+          "topic": "Python 数据分析",
+          "estimatedDuration": "15分钟",
+          "targetWordCount": 1950,
+          "videoType": "教学视频"
+        },
+        "script": {
+          "opening": {
+            "hook": "欢迎来到Python 数据分析课程！今天我们要讲的是\"进阶方向与职业发展 - 第1节\"",
+            "welcome": "大家好，我是你的讲师",
+            "agenda": [
+              "首先，我们会介绍核心概念",
+              "然后通过实例演示加深理解",
+              "最后会有实践练习帮助你巩固"
+            ],
+            "estimatedTime": "预计用时 15 分钟"
+          },
+          "introduction": {
+            "context": "在学习Python 数据分析之前，让我们先了解一下为什么这个主题如此重要",
+            "relevance": "这是每个从业者都必须掌握的核心技能",
+            "prerequisites": "无需太多基础，我们会从零开始讲解",
+            "outcomes": "学完后你将能够独立应用这些知识"
+          },
+          "mainContent": [
+            {
+              "section": 1,
+              "title": "第1部分：核心要点",
+              "keyPoints": [
+                "要点1: 基础概念讲解",
+                "要点2: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例1",
+                "代码演示1"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 2,
+              "title": "第2部分：核心要点",
+              "keyPoints": [
+                "要点3: 基础概念讲解",
+                "要点4: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例2",
+                "代码演示2"
+              ],
+              "duration": "5分钟"
+            },
+            {
+              "section": 3,
+              "title": "第3部分：核心要点",
+              "keyPoints": [
+                "要点5: 基础概念讲解",
+                "要点6: 实际应用示例"
+              ],
+              "examples": [
+                "实际案例3",
+                "代码演示3"
+              ],
+              "duration": "5分钟"
+            }
+          ],
+          "summary": {
+            "recap": "让我们回顾一下今天关于Python 数据分析的核心内容",
+            "keyTakeaways": [
+              "核心概念已经掌握",
+              "实践方法已经了解",
+              "下一步学习路径清晰"
+            ],
+            "nextSteps": "在下一节课中，我们会继续深入..."
+          },
+          "closing": {
+            "thankYou": "感谢你的学习!",
+            "encouragement": "继续加油，你正在变得更强",
+            "reminder": "记得完成课后练习哦"
+          },
+          "callToAction": {
+            "actions": [
+              "完成课后测验",
+              "参与讨论区互动",
+              "分享给需要的朋友",
+              "订阅课程获取更新"
+            ]
+          }
+        },
+        "visualCues": {
+          "slides": 7,
+          "demos": 3,
+          "screenShares": 2,
+          "annotations": "重点内容需要标注",
+          "bRoll": "适当插入相关素材"
+        },
+        "notes": {
+          "equipment": "建议使用高清摄像头和麦克风",
+          "lighting": "确保光线充足均匀",
+          "background": "简洁专业的背景",
+          "editing": "剪掉冗长停顿，保持节奏",
+          "captions": "添加字幕提高可访问性"
+        }
+      }
+    }
+  ],
+  "quizzes": [
+    {
+      "moduleName": "模块1: 课程介绍与学习路径",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块2: 核心概念基础",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块3: 环境搭建与工具准备",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块4: 第一个实战项目",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块5: 核心技能深入 (上)",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块6: 核心技能深入 (下)",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块7: 综合实战应用",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    },
+    {
+      "moduleName": "模块8: 进阶方向与职业发展",
+      "quiz": {
+        "title": "Python 数据分析测验",
+        "description": "测试你对Python 数据分析的掌握程度",
+        "difficulty": "beginner",
+        "totalQuestions": 10,
+        "passingScore": 70,
+        "timeLimit": "20分钟",
+        "questions": [
+          {
+            "number": 1,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 2,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 3,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 4,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 5,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 6,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          },
+          {
+            "number": 7,
+            "type": "fillBlank",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "在Python 数据分析中，______ 是最重要的概念之一。",
+            "correctAnswer": "核心术语",
+            "explanation": "解析：核心术语是基础..."
+          },
+          {
+            "number": 8,
+            "type": "shortAnswer",
+            "points": 10,
+            "difficulty": "beginner",
+            "question": "请简述Python 数据分析的三个关键应用场景。",
+            "sampleAnswer": "1. 场景一...\n2. 场景二...\n3. 场景三...",
+            "gradingCriteria": [
+              "答案完整性 (4 分)",
+              "准确性 (3 分)",
+              "逻辑性 (3 分)"
+            ]
+          },
+          {
+            "number": 9,
+            "type": "multipleChoice",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "关于Python 数据分析，以下哪个说法是正确的？",
+            "options": [
+              "A. 正确选项 - 准确描述核心概念",
+              "B. 错误选项 - 常见误解",
+              "C. 错误选项 - 部分正确但不完整",
+              "D. 错误选项 - 完全错误"
+            ],
+            "correctAnswer": "A",
+            "explanation": "解析：选项 A 正确因为..."
+          },
+          {
+            "number": 10,
+            "type": "trueFalse",
+            "points": 5,
+            "difficulty": "beginner",
+            "question": "Python 数据分析的核心概念是学习的基础。(判断题)",
+            "correctAnswer": true,
+            "explanation": "解析：这个说法正确，因为..."
+          }
+        ]
+      }
+    }
+  ],
+  "marketing": {
+    "courseDescription": {
+      "short": "掌握Python 数据分析的完整技能树，从零基础学习者到专业人士",
+      "medium": "这门Python 数据分析课程专为零基础学习者设计，通过系统的学习路径、实战项目和专家指导，帮助你快速掌握核心技能。课程包含视频讲解、实践练习和测验，确保学习效果。",
+      "long": "欢迎加入Python 数据分析完整课程！\n\n【课程亮点】\n• 系统化学习路径，从基础到进阶\n• 实战项目驱动，学以致用\n• 专家讲师，多年行业经验\n• 终身学习权限，持续更新\n• 学习社区，与同行交流\n\n【适合人群】\n• 零基础学习者\n• 想转行进入该领域的人士\n• 需要提升技能的从业者\n\n【学完你将获得】\n• 完整的知识体系\n• 实战项目经验\n• 可展示的作品集\n• 行业认可的证书",
+      "bulletPoints": [
+        "📚 Python 数据分析系统化学习",
+        "🎯 实战项目驱动",
+        "👨‍🏫 专家讲师指导",
+        "📜 结业证书",
+        "♾️ 终身学习权限"
+      ]
+    },
+    "landingPage": {
+      "headline": "从零掌握Python 数据分析 - 专为零基础学习者打造的完整课程",
+      "subheadline": "8 周系统学习，实战项目驱动，助你快速入门到精通",
+      "hero": {
+        "title": "成为Python 数据分析专家",
+        "subtitle": "加入 10,000+ 学员的学习之旅",
+        "cta": "立即开始学习"
+      },
+      "benefits": [
+        "系统化课程体系，避免碎片化学习",
+        "实战项目经验，学完就能用",
+        "灵活学习时间，随时随地学习",
+        "专业导师答疑，学习不迷路",
+        "学习社区支持，与同行交流成长"
+      ],
+      "curriculum": "详见课程大纲部分",
+      "pricing": {
+        "original": "¥2999",
+        "discounted": "¥1999",
+        "installment": "可分 12 期，每月仅¥167"
+      },
+      "guarantee": "30 天无理由退款保证",
+      "urgency": "限时优惠，仅剩 50 个名额"
+    },
+    "emailTemplates": {
+      "announcement": {
+        "subject": "🎉 全新Python 数据分析课程上线！限时优惠",
+        "body": "亲爱的学习者，\n\n我们很高兴宣布Python 数据分析完整课程正式上线！\n\n【课程亮点】\n• 系统化学习路径\n• 实战项目驱动\n• 专家讲师指导\n\n【限时优惠】\n前 100 名报名享受 7 折优惠\n\n立即报名：[链接]\n\n期待在课堂上见到你！"
+      },
+      "reminder": {
+        "subject": "⏰ Python 数据分析课程优惠即将结束",
+        "body": "你好，\n\n提醒一下，Python 数据分析课程的限时优惠将在 48 小时后结束。\n\n不要错过这个提升自己的机会！\n\n立即报名：[链接]"
+      },
+      "followUp": {
+        "subject": "学习Python 数据分析的过程中有任何问题吗？",
+        "body": "亲爱的学员，\n\n感谢你加入Python 数据分析课程！\n\n学习过程中有任何问题，欢迎随时在讨论区提问。\n\n祝你学习愉快！"
+      }
+    },
+    "socialMediaPosts": {
+      "weibo": [
+        "🔥 全新Python 数据分析课程上线！从零到精通，8 周系统学习，实战项目驱动。限时优惠中，点击了解 👉 [链接] #Python数据分析 #在线学习",
+        "💡 想学Python 数据分析但不知道从哪里开始？这门课程帮你规划完整学习路径！已有 1000+ 学员加入，你也来吗？[链接]"
+      ],
+      "wechat": [
+        {
+          "title": "零基础如何系统学习Python 数据分析？这份指南请收好",
+          "summary": "从学习路径到实战项目，一站式解决你的学习困惑",
+          "content": "详细介绍课程特色和学习方法..."
+        }
+      ],
+      "linkedin": "📚 Excited to announce our new Python 数据分析 course! Perfect for professionals looking to upskill. #OnlineLearning #Python数据分析"
+    },
+    "faq": [
+      {
+        "question": "这门Python 数据分析课程适合什么基础的人学习？",
+        "answer": "课程从零基础开始，循序渐进，适合所有想学习该主题的人。"
+      },
+      {
+        "question": "课程学习需要多长时间？",
+        "answer": "建议 8 周完成，每周学习 3-5 小时。也可根据自己的节奏调整。"
+      },
+      {
+        "question": "学完后能获得证书吗？",
+        "answer": "是的，完成所有课程和作业后，你将获得结业证书。"
+      },
+      {
+        "question": "有问题可以提问吗？",
+        "answer": "当然！课程有专门的讨论区，讲师和助教都会及时解答。"
+      },
+      {
+        "question": "课程有有效期吗？",
+        "answer": "购买后永久有效，包括未来的内容更新。"
+      }
+    ],
+    "testimonials": [
+      {
+        "role": "学员",
+        "content": "这门课程让我从零开始掌握了核心技能，现在我已经成功转行！"
+      },
+      {
+        "role": "从业者",
+        "content": "内容非常系统，实战项目特别有用，直接应用到工作中了。"
+      },
+      {
+        "role": "管理者",
+        "content": "给团队购买了课程，整体技能提升明显，投资回报很高。"
+      }
+    ]
+  }
+}

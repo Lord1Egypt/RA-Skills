@@ -1,0 +1,23 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_dashboard_card_detail",
+		"description": "Query details of a specific dashboard card in the application. Returns: Card details",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"dashboardId": {
+					"description": "Dashboard ID",
+					"type": "string"
+				},
+				"cardId": {
+					"description": "Dashboard card ID",
+					"type": "string"
+				}
+			},
+			"required": [
+				"dashboardId", "cardId"
+			]
+		}
+	}
+}

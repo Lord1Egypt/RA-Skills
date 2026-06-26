@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/convert/pdf/xlsx",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sample-pdfinvoice-with-image.pdf", "pages": "2-4", "output": "url" }
+  },
+  "response": {
+    "status": 200,
+    "body": { "success": true, "input_format": "pdf", "output_format": "xlsx", "file_size_bytes": 45056, "xlsx_url": "https://cdn.pdfapihub.com/xlsx/converted.xlsx" }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "line_detection",
+  "type": "opencv",
+  "model_path": "data/models/line_detection.pb",
+  "deployed": true
+}

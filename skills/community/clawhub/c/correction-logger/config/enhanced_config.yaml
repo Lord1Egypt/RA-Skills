@@ -1,0 +1,28 @@
+# 纠正记录器 v2.0.0 增强配置示例
+
+# 基础配置（与 v1.0.0 兼容）
+corrections_file: "~/self-improving/corrections.md"
+max_lines_per_file: 1000
+archive_directory: "~/self-improving/archive/"
+
+# 增强存储配置
+enhanced_db_file: "~/self-improving/corrections_enhanced.db"
+enable_fts5_search: true
+enable_auto_archive: true
+
+# NeverOnce 配置
+default_correction_priority: 10    # 修正默认优先级 (10/10)
+correction_never_decay: true       # 修正永不衰减
+auto_feedback_tracking: true       # 自动跟踪有效性反馈
+
+# 性能配置
+cache_ttl_seconds: 60              # 缓存有效期
+max_connections: 5                 # 数据库最大连接数
+
+# 搜索配置
+search_threshold: 0.7              # 搜索相关性阈值
+max_search_results: 10             # 最大搜索结果数
+
+# 监控配置
+enable_health_monitoring: true
+health_check_interval_seconds: 300

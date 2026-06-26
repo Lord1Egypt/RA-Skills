@@ -1,35 +1,55 @@
 ---
-name: "Ntriq X402 Alt Text"
+name: ntriq-x402-alt-text
 description: "Generate WCAG-compliant alt text and detailed image descriptions for accessibility. Pay $0.01 USDC via x402."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ntriq-x402-alt-text"
-sourceUrl: "https://clawhub.ai/skills/ntriq-x402-alt-text"
+version: 1.0.0
+metadata:
+  openclaw:
+    primaryTag: data-intelligence
+    tags: [accessibility, alt-text, wcag, vision, x402]
+    author: ntriq
+    homepage: https://x402.ntriq.co.kr
 ---
 
-# Ntriq X402 Alt Text
+# Alt Text Generator (x402)
 
-> Generate WCAG-compliant alt text and detailed image descriptions for accessibility. Pay $0.01 USDC via x402.
+Generate concise WCAG-compliant alt text (≤125 chars) and a detailed accessibility description for any image. Ideal for agents processing image libraries, CMS content, or e-commerce product photos. Pay $0.01 USDC per call via x402 (Base mainnet).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ntriq-x402-alt-text`
-- **Source URL:** [https://clawhub.ai/skills/ntriq-x402-alt-text](https://clawhub.ai/skills/ntriq-x402-alt-text)
+## How to Call
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ntriq-x402-alt-text
+POST https://x402.ntriq.co.kr/alt-text
+Content-Type: application/json
+X-PAYMENT: <x402-payment-header>
+
+{
+  "image_url": "https://example.com/product.jpg"
+}
+```
+
+## Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `image_url` | string | ✅ (or base64) | URL of image |
+| `image_base64` | string | ✅ (or url) | Base64-encoded image |
+| `language` | string | ❌ | Output language (default: `en`) |
+
+## Example Response
+
+```json
+{
+  "status": "ok",
+  "alt_text": "Red leather office chair with adjustable armrests on wheels",
+  "description": "A high-back executive office chair upholstered in red genuine leather. The chair features padded armrests, lumbar support, and a five-star wheeled base suitable for hard floors."
+}
+```
+
+## Payment
+
+- **Price**: $0.01 USDC per call
+- **Network**: Base mainnet (EIP-3009 gasless)
+- **Protocol**: [x402](https://x402.org)
+
+```bash
+curl https://x402.ntriq.co.kr/services
 ```

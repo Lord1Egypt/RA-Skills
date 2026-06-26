@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>里程碑甘特图</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .chart-title {
+    color: #e0e0e0;
+    font-size: 14px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+  .chart-container {
+    width: 100%;
+    max-width: 640px;
+    position: relative;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+</head>
+<body>
+<div class="chart-title">里程碑进度</div>
+<div class="chart-container" id="chartContainer">
+  <canvas id="milestoneChart"></canvas>
+</div>
+
+<script>
+  // ============================================================
+  // 模板变量说明（AI替换）
+  // ============================================================
+  // {{milestones}} → 里程碑数组，每项包含：
+  //   { name: "名称(≤8字)", plan_start: 0, plan_end: 30, actual_end: 22, status: "done|doing|todo|overdue" }
+  // {{today_offset}} → 今天距离开始日期的天数（用于绘制"今天"竖线）
+  // {{total_days}} → 总计划天数
+
+  const milestones = {{milestones}};
+  const todayOffset = {{today_offset}};
+  const totalDays = {{total_days}};
+
+  // 状态颜色映射
+  const statusColor = {
+    done:    '#26a69a',
+    doing:   '#42a5f5',
+    todo:    'rgba(255,255,255,0.15)',
+    overdue: '#ef5350'
+  };
+
+  const milestoneLabels = milestones.map(m => m.name);
+  const chartHeight = Math.max(120, milestones.length * 40 + 60);
+  document.getElementById('chartContainer').style.height = chartHeight + 'px';
+
+  // 构建数据集：偏移段（透明）+ 实际段
+  const offsetData = milestones.map(m => m.plan_start);
+  const planData = milestones.map(m => m.plan_end - m.plan_start);
+  const actualData = milestones.map(m => m.actual_end > 0 ? m.actual_end - m.plan_start : 0);
+  const colors = milestones.map(m => statusColor[m.status] || statusColor.todo);
+
+  // 自定义插件：绘制"今天"竖线
+  const todayLinePlugin = {
+    id: 'todayLine',
+    afterDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const xScale = scales.x;
+      const todayX = xScale.getPixelForValue(todayOffset);
+
+      if (todayX >= chartArea.left && todayX <= chartArea.right) {
+        ctx.save();
+        ctx.strokeStyle = '#ef5350';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(todayX, chartArea.top);
+        ctx.lineTo(todayX, chartArea.bottom);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ef5350';
+        ctx.font = 'bold 10px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('今天', todayX, chartArea.top - 4);
+        ctx.restore();
+      }
+    }
+  };
+
+  const ctx = document.getElementById('milestoneChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    plugins: [todayLinePlugin],
+    data: {
+      labels: milestoneLabels,
+      datasets: [
+        {
+          label: '_offset',
+          data: offsetData,
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          barThickness: 24,
+          stack: 'gantt'
+        },
+        {
+          label: '计划',
+          data: planData,
+          backgroundColor: milestones.map(m => statusColor[m.status] + '33'),
+          borderColor: colors,
+          borderWidth: 1,
+          borderRadius: { topRight: 4, bottomRight: 4 },
+          barThickness: 24,
+          stack: 'gantt'
+        },
+        {
+          label: '实际进度',
+          data: actualData,
+          backgroundColor: colors,
+          borderWidth: 0,
+          borderRadius: { topRight: 3, bottomRight: 3 },
+          barThickness: 18,
+          stack: 'actual'
+        },
+        {
+          label: '_offset_actual',
+          data: offsetData,
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          barThickness: 18,
+          stack: 'actual'
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 800 },
+      scales: {
+        x: {
+          min: 0,
+          max: totalDays,
+          stacked: true,
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: {
+            color: '#b0b0b0',
+            font: { size: 10 },
+            callback: val => val + '天'
+          }
+        },
+        y: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { color: '#e0e0e0', font: { size: 11 } }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            filter: item => item.text !== '_offset' && item.text !== '_offset_actual',
+            color: '#e0e0e0',
+            font: { size: 11 }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(26,26,46,0.95)',
+          titleColor: '#e0e0e0',
+          bodyColor: '#b0b0b0',
+          filter: item => item.dataset.label !== '_offset' && item.dataset.label !== '_offset_actual',
+          callbacks: {
+            title: context => milestones[context[0].dataIndex].name,
+            label: function(context) {
+              const m = milestones[context.dataIndex];
+              const statusMap = { done: '✅ 已完成', doing: '🔄 进行中', todo: '⏳ 未开始', overdue: '⚠️ 已逾期' };
+              return [
+                statusMap[m.status] || m.status,
+                '计划：第' + m.plan_start + '~' + m.plan_end + '天'
+              ];
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

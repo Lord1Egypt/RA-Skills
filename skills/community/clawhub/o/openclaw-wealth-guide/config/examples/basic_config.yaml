@@ -1,0 +1,75 @@
+# 智能数据采集器 - 基础配置示例
+name: "基础数据采集示例"
+version: "1.0.0"
+description: "演示基本的数据采集配置"
+log_level: "INFO"
+
+# 数据源配置
+sources:
+  example_web:
+    name: "示例网站"
+    type: "web"
+    url: "https://httpbin.org/html"  # 公共测试网站
+    enabled: true
+    headers:
+      User-Agent: "智能数据采集器/1.0.0"
+    timeout: 30
+    retry_count: 2
+    extract_rules:
+      title: "//h1/text()"
+      content: "//p/text()"
+      
+  example_api:
+    name: "示例API"
+    type: "api"
+    url: "https://httpbin.org/json"  # 公共测试API
+    enabled: true
+    method: "GET"
+    headers:
+      Accept: "application/json"
+      User-Agent: "智能数据采集器/1.0.0"
+    timeout: 30
+
+# 处理配置
+processing:
+  enabled: true
+  strategy: ["clean", "transform"]
+  clean_options:
+    remove_null: true
+    trim_whitespace: true
+    remove_duplicates: true
+  transform_options:
+    date_format: "%Y-%m-%d %H:%M:%S"
+    encoding: "utf-8"
+    number_precision: 2
+
+# 导出配置
+exports:
+  - name: "json_output"
+    format: "json"
+    output_path: "output/example_data.json"
+    indent: 2
+    ensure_ascii: false
+    enabled: true
+    
+  - name: "csv_output"
+    format: "csv"
+    output_path: "output/example_data.csv"
+    encoding: "utf-8"
+    delimiter: ","
+    write_header: true
+    enabled: true
+    
+  - name: "excel_output"
+    format: "excel"
+    output_path: "output/example_data.xlsx"
+    sheet_name: "采集数据"
+    write_header: true
+    enabled: true
+
+# 调度器配置
+scheduler:
+  enabled: false  # 示例中禁用调度器
+  timezone: "Asia/Shanghai"
+  max_workers: 4
+  job_store: "memory"

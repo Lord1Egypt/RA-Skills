@@ -1,35 +1,39 @@
 ---
-name: "Gotchi Equip"
-description: "Equip, unequip, and inspect Aavegotchi wearables on Base via Bankr submissions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gotchi-equip"
-sourceUrl: "https://clawhub.ai/skills/gotchi-equip"
+name: gotchi-equip
+description: Equip, unequip, and inspect Aavegotchi wearables on Base via Bankr submissions.
+homepage: https://github.com/aaigotchi/gotchi-equip-skill
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
+        - jq
+        - curl
+      env:
+        - BANKR_API_KEY
+      skills:
+        - bankr
 ---
 
-# Gotchi Equip
+# gotchi-equip
 
-> Equip, unequip, and inspect Aavegotchi wearables on Base via Bankr submissions.
+Manage wearable loadouts for your gotchis.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gotchi-equip`
-- **Source URL:** [https://clawhub.ai/skills/gotchi-equip](https://clawhub.ai/skills/gotchi-equip)
+## Scripts
 
-## Overview
+- `./scripts/equip.sh <gotchi-id> <slot=wearableId> [slot=wearableId...]`
+  - Updates selected slots while preserving existing equipped slots.
+- `./scripts/unequip-all.sh <gotchi-id>`
+  - Sets all 16 wearable slots to `0`.
+- `./scripts/show-equipped.sh <gotchi-id>`
+  - Shows currently equipped wearables from the Base subgraph.
 
+## Slot names
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gotchi-equip
-```
+`body`, `face`, `eyes`, `head`, `left-hand`, `right-hand`, `pet`, `background`
+
+## Safety notes
+
+- Gotchi ID is validated as numeric input.
+- API key is resolved from env/systemd/bankr config paths.
+- Equip flow fetches current loadout first to avoid accidental unequip of unspecified slots.

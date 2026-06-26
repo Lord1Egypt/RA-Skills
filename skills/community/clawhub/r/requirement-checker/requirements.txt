@@ -1,0 +1,5 @@
+# Requirement-Checker Python 依赖
+# Python >= 3.7 required
+
+# HTTP 请求库（必需）
+requests>=2.28.0

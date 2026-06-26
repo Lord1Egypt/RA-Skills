@@ -1,35 +1,78 @@
 ---
-name: "i18n"
-description: "Indexed by skills.sh from lobehub/lobehub"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "lobehub"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/lobehub/lobehub/i18n"
-sourceUrl: "https://skills.sh/lobehub/lobehub/i18n"
+name: i18n
+description: 'LobeHub i18n with react-i18next. Use for user-facing strings, locale keys, namespaces, useTranslation, t(), interpolation, zh-CN/en-US previews, hardcoded UI copy, or pnpm i18n.'
+user-invocable: false
 ---
 
-# i18n
+# LobeHub Internationalization Guide
 
-> Indexed by skills.sh from lobehub/lobehub
+- Default language: English (en-US)
+- Framework: react-i18next
+- **Only edit files in `src/locales/default/`** - Never edit JSON files in `locales/`
+- Run `pnpm i18n` to generate translations (or manually translate zh-CN/en-US for dev preview)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** lobehub
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/lobehub/lobehub/i18n`
-- **Source URL:** [https://skills.sh/lobehub/lobehub/i18n](https://skills.sh/lobehub/lobehub/i18n)
+## Key Naming Convention
 
-## Overview
+**Flat keys with dot notation** (not nested objects):
 
+```typescript
+// ✅ Correct
+export default {
+  'alert.cloud.action': '立即体验',
+  'sync.actions.sync': '立即同步',
+  'sync.status.ready': '已连接',
+};
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/lobehub/lobehub/i18n
+// ❌ Avoid nested objects
+export default {
+  alert: { cloud: { action: '...' } },
+};
 ```
+
+**Patterns:** `{feature}.{context}.{action|status}`
+
+**Parameters:** Use `{{variableName}}` syntax
+
+```typescript
+'alert.cloud.desc': '我们提供 {{credit}} 额度积分',
+```
+
+**Avoid key conflicts:**
+
+```typescript
+// ❌ Conflict
+'clientDB.solve': '自助解决',
+'clientDB.solve.backup.title': '数据备份',
+
+// ✅ Solution
+'clientDB.solve.action': '自助解决',
+'clientDB.solve.backup.title': '数据备份',
+```
+
+## Workflow
+
+1. Add keys to `src/locales/default/{namespace}.ts`
+2. Export new namespace in `src/locales/default/index.ts`
+3. For dev preview: manually translate `locales/zh-CN/{namespace}.json` and `locales/en-US/{namespace}.json`
+4. Remind the user to run `pnpm i18n` before creating PR — do NOT run it yourself (very slow)
+
+## Usage
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const { t } = useTranslation('common');
+
+t('newFeature.title');
+t('alert.cloud.desc', { credit: '1000' });
+
+// Multiple namespaces
+const { t } = useTranslation(['common', 'chat']);
+t('common:save');
+```
+
+## Common Namespaces
+
+**Most used:** `common` (shared UI), `chat` (chat features), `setting` (settings)
+
+Others: auth, changelog, components, discover, editor, electron, error, file, hotkey, knowledgeBase, memory, models, plugin, portal, providers, tool, topic

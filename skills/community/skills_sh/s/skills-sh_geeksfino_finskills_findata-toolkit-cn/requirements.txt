@@ -1,0 +1,12 @@
+# 金融数据工具包 — A股市场依赖
+# 安装: pip install -r requirements.txt
+
+# === 核心数据获取 ===
+akshare>=1.12.0           # A股数据（无需API密钥）
+
+# === 数据处理 ===
+pandas>=2.0.0
+numpy>=1.24.0
+
+# === 输出 ===
+tabulate>=0.9.0           # 表格美化输出

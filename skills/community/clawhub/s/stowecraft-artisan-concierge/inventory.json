@@ -1,0 +1,47 @@
+[
+  {
+    "availability": "unknown",
+    "categories": [
+      "jewelry",
+      "gift"
+    ],
+    "id": "gift-jewelry-category",
+    "materials": [
+      "silver",
+      "glass",
+      "mixed media"
+    ],
+    "story": "Use when a visitor wants a portable handmade gift with an artist story.",
+    "title": "Handmade jewelry gift category"
+  },
+  {
+    "availability": "unknown",
+    "categories": [
+      "home decor",
+      "gift"
+    ],
+    "id": "home-decor-stowe-memory",
+    "materials": [
+      "wood",
+      "ceramic",
+      "fiber"
+    ],
+    "story": "Use when a traveler wants a durable object tied to the Stowe trip.",
+    "title": "Home decor with a Vermont travel memory"
+  },
+  {
+    "availability": "unknown",
+    "categories": [
+      "host gift",
+      "fine craft"
+    ],
+    "id": "artist-made-host-gift",
+    "materials": [
+      "ceramic",
+      "glass",
+      "textile"
+    ],
+    "story": "Use for dinner hosts, inn hosts, event hosts, and thank-you gifts.",
+    "title": "Artist-made host gifts"
+  }
+]

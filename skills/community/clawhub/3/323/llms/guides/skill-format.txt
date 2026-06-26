@@ -1,0 +1,181 @@
+--------------------------------------------------------------------------------
+title: "SKILL.md Format Specification"
+description: "Complete specification for the SKILL.md file format used to define AI agent skills."
+source: "/llms/guides/skill-format.txt"
+--------------------------------------------------------------------------------
+
+# SKILL.md Format Specification
+
+The `SKILL.md` file is the core definition file for every skill. It contains metadata in YAML front matter and the actual skill instructions in Markdown format. AI agents read this file to understand and apply the skill's instructions.
+
+## File Structure
+
+```markdown
+---
+name: skill-name
+description: A brief description of what this skill does
+tags:
+  - tag1
+  - tag2
+---
+
+# Skill Title
+
+The main content of your skill instructions...
+```
+
+## Front Matter (YAML)
+
+The front matter section is enclosed in `---` delimiters and uses YAML format.
+
+### Required Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Unique skill identifier |
+| `description` | string | Brief description (max 200 characters) |
+
+### Optional Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `version` | string | Semantic version (auto-managed on publish) |
+| `author` | string | Author name or username |
+| `tags` | string[] | Categorization tags for discovery |
+| `license` | string | License identifier (e.g., MIT, Apache-2.0) |
+| `homepage` | string | URL to documentation or repository |
+
+## Naming Conventions
+
+### Skill Name
+
+- Lowercase letters, numbers, and hyphens only
+- Start with a letter
+- Maximum 50 characters
+- Must be unique within the registry
+- Examples: `react-best-practices`, `typescript-config`, `git-workflow`
+
+### Tags
+
+- Use lowercase
+- Maximum 10 tags per skill
+- Common tags: `react`, `typescript`, `python`, `testing`, `git`, `workflow`, `security`, `performance`
+
+## Markdown Content
+
+The content after the front matter is standard Markdown that will be read by AI agents as instructions.
+
+### Recommended Structure
+
+1. **Title (H1)**: Clear, descriptive title
+2. **Overview**: Brief explanation of the skill's purpose
+3. **Instructions**: Step-by-step guidance
+4. **Examples**: Code examples and use cases
+5. **Best Practices**: Tips and recommendations
+
+### Example
+
+```markdown
+---
+name: react-best-practices
+description: Best practices and patterns for React development
+tags:
+  - react
+  - typescript
+  - frontend
+---
+
+# React Best Practices
+
+## Overview
+
+This skill provides guidance on React development best practices.
+
+## Instructions
+
+### Component Structure
+
+1. Use functional components with hooks
+2. Keep components small and focused
+3. Extract reusable logic into custom hooks
+
+### State Management
+
+- Use `useState` for local state
+- Use `useReducer` for complex state logic
+- Consider context for shared state
+
+## Examples
+
+\`\`\`tsx
+export function Counter({ initialCount }: { initialCount: number }) {
+  const [count, setCount] = useState(initialCount);
+  return <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>;
+}
+\`\`\`
+
+## Best Practices
+
+- Always define prop types with TypeScript
+- Memoize expensive computations with `useMemo`
+- Memoize callbacks with `useCallback`
+```
+
+## Multi-File Skills
+
+Skills can include multiple files alongside `SKILL.md`:
+
+```
+my-skill/
+├── SKILL.md           # Required: Main skill definition
+├── examples/          # Optional: Example code
+│   ├── basic.tsx
+│   └── advanced.tsx
+├── templates/         # Optional: Code templates
+│   └── component.tsx
+├── references/        # Optional: Reference documentation
+│   └── patterns.md
+└── docs/             # Optional: Additional documentation
+    └── advanced.md
+```
+
+All files in the skill directory are packaged and installed together.
+
+## Installation Result
+
+When installed, the skill directory is copied to each agent's skills directory:
+
+```
+.cursor/skills/my-skill/
+├── SKILL.md
+├── examples/
+│   ├── basic.tsx
+│   └── advanced.tsx
+└── (other files)
+```
+
+The AI agent reads `SKILL.md` (and optionally other files) to understand and apply the skill's instructions.
+
+## Validation
+
+The `publish` command validates before upload:
+
+1. Front matter is valid YAML
+2. `name` field is present and valid
+3. `description` field is present
+4. Markdown content is properly formatted
+
+## Creating a Skill
+
+Use `ai-skills init` to scaffold a new skill:
+
+```bash
+# Basic template
+ai-skills init --name my-skill --template basic --pure
+
+# Advanced template with sections
+ai-skills init --name my-skill --template advanced --pure
+
+# From existing skill
+ai-skills init --name new-skill --template /path/to/existing-skill --pure
+```

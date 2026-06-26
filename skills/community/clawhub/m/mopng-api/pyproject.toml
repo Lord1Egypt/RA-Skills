@@ -1,0 +1,16 @@
+[project]
+name = "mopng-api"
+version = "0.1.0"
+description = "MoPNG API Skill for OpenClaw (runtime uses Python 3.10+ stdlib only; no PyPI runtime dependencies)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0",
+    "bandit[toml]>=1.7.10",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]

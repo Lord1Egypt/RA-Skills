@@ -1,0 +1,571 @@
+{
+  "mappings": [
+    {
+      "imgflip_id": "112126428",
+      "imgflip_name": "Distracted Boyfriend",
+      "memegen_id": "db",
+      "memegen_name": "Distracted Boyfriend",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "124822590",
+      "imgflip_name": "Left Exit 12 Off Ramp",
+      "memegen_id": "exit",
+      "memegen_name": "Left Exit 12 Off Ramp",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "252600902",
+      "imgflip_name": "Always Has Been",
+      "memegen_id": "astronaut",
+      "memegen_name": "Always Has Been",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "131940431",
+      "imgflip_name": "Gru's Plan",
+      "memegen_id": "gru",
+      "memegen_name": "Gru's Plan",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "131087935",
+      "imgflip_name": "Running Away Balloon",
+      "memegen_id": "balloon",
+      "memegen_name": "Running Away Balloon",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "135256802",
+      "imgflip_name": "Epic Handshake",
+      "memegen_id": "handshake",
+      "memegen_name": "Epic Handshake",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "97984",
+      "imgflip_name": "Disaster Girl",
+      "memegen_id": "disastergirl",
+      "memegen_name": "Disaster Girl",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "102156234",
+      "imgflip_name": "Mocking Spongebob",
+      "memegen_id": "spongebob",
+      "memegen_name": "Mocking Spongebob",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "129242436",
+      "imgflip_name": "Change My Mind",
+      "memegen_id": "cmm",
+      "memegen_name": "Change My Mind",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "55311130",
+      "imgflip_name": "This Is Fine",
+      "memegen_id": "fine",
+      "memegen_name": "This is Fine",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "100777631",
+      "imgflip_name": "Is This A Pigeon",
+      "memegen_id": "pigeon",
+      "memegen_name": "Is This a Pigeon?",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "178591752",
+      "imgflip_name": "Tuxedo Winnie The Pooh",
+      "memegen_id": "pooh",
+      "memegen_name": "Tuxedo Winnie the Pooh",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "180190441",
+      "imgflip_name": "They're The Same Picture",
+      "memegen_id": "same",
+      "memegen_name": "They're The Same Picture",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "252758727",
+      "imgflip_name": "Mother Ignoring Kid Drowning In A Pool",
+      "memegen_id": "pool",
+      "memegen_name": "Mother Ignoring Kid Drowning In A Pool",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "177682295",
+      "imgflip_name": "You Guys are Getting Paid",
+      "memegen_id": "millers",
+      "memegen_name": "You Guys Are Getting Paid?",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "27813981",
+      "imgflip_name": "Hide the Pain Harold",
+      "memegen_id": "harold",
+      "memegen_name": "Hide the Pain Harold",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "226297822",
+      "imgflip_name": "Panik Kalm Panik",
+      "memegen_id": "panik-kalm-panik",
+      "memegen_name": "Panik Kalm Panik",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "114585149",
+      "imgflip_name": "Inhaling Seagull",
+      "memegen_id": "seagull",
+      "memegen_name": "Inhaling Seagull",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "61520",
+      "imgflip_name": "Futurama Fry",
+      "memegen_id": "fry",
+      "memegen_name": "Futurama Fry",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "61544",
+      "imgflip_name": "Success Kid",
+      "memegen_id": "success",
+      "memegen_name": "Success Kid",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "135678846",
+      "imgflip_name": "Who Killed Hannibal",
+      "memegen_id": "wkh",
+      "memegen_name": "Who Killed Hannibal?",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "354700819",
+      "imgflip_name": "Two guys on a bus",
+      "memegen_id": "bus",
+      "memegen_name": "Two Guys on a Bus",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "110133729",
+      "imgflip_name": "spiderman pointing at spiderman",
+      "memegen_id": "spiderman",
+      "memegen_name": "Spider-Man Pointing at Spider-Man",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "134797956",
+      "imgflip_name": "American Chopper Argument",
+      "memegen_id": "chair",
+      "memegen_name": "American Chopper Argument",
+      "match_score": 1.0
+    },
+    {
+      "imgflip_id": "101470",
+      "imgflip_name": "Ancient Aliens",
+      "memegen_id": "aag",
+      "memegen_name": "Ancient Aliens Guy",
+      "match_score": 0.76
+    },
+    {
+      "imgflip_id": "28251713",
+      "imgflip_name": "Oprah You Get A",
+      "memegen_id": "oprah",
+      "memegen_name": "Oprah You Get a Car",
+      "match_score": 0.76
+    },
+    {
+      "imgflip_id": "119215120",
+      "imgflip_name": "Types of Headaches meme",
+      "memegen_id": "headaches",
+      "memegen_name": "Types of Headaches",
+      "match_score": 0.76
+    },
+    {
+      "imgflip_id": "72525473",
+      "imgflip_name": "say the line bart! simpsons",
+      "memegen_id": "say",
+      "memegen_name": "Say the Line, Bart!",
+      "match_score": 0.73
+    },
+    {
+      "imgflip_id": "61579",
+      "imgflip_name": "One Does Not Simply",
+      "memegen_id": "mordor",
+      "memegen_name": "One Does Not Simply Walk into Mordor",
+      "match_score": 0.71
+    },
+    {
+      "imgflip_id": "84341851",
+      "imgflip_name": "Evil Kermit",
+      "memegen_id": "kermit",
+      "memegen_name": "But That's None of My Business",
+      "match_score": 0.71
+    },
+    {
+      "imgflip_id": "101288",
+      "imgflip_name": "Third World Skeptical Kid",
+      "memegen_id": "sk",
+      "memegen_name": "Skeptical Third World Kid",
+      "match_score": 0.7
+    },
+    {
+      "imgflip_id": "137501417",
+      "imgflip_name": "Friendship ended",
+      "memegen_id": "friends",
+      "memegen_name": "Are You Two Friends?",
+      "match_score": 0.69
+    },
+    {
+      "imgflip_id": "163573",
+      "imgflip_name": "Imagination Spongebob",
+      "memegen_id": "spongebob",
+      "memegen_name": "Mocking Spongebob",
+      "match_score": 0.69
+    },
+    {
+      "imgflip_id": "89370399",
+      "imgflip_name": "Roll Safe Think About It",
+      "memegen_id": "rollsafe",
+      "memegen_name": "Roll Safe",
+      "match_score": 0.68
+    },
+    {
+      "imgflip_id": "29562797",
+      "imgflip_name": "I'm The Captain Now",
+      "memegen_id": "captain",
+      "memegen_name": "I am the Captain Now",
+      "match_score": 0.68
+    },
+    {
+      "imgflip_id": "187102311",
+      "imgflip_name": "Three-headed Dragon",
+      "memegen_id": "dragon",
+      "memegen_name": "What Color Do You Want Your Dragon",
+      "match_score": 0.67
+    },
+    {
+      "imgflip_id": "247375501",
+      "imgflip_name": "Buff Doge vs. Cheems",
+      "memegen_id": "cheems",
+      "memegen_name": "Cheems",
+      "match_score": 0.66
+    },
+    {
+      "imgflip_id": "91545132",
+      "imgflip_name": "Trump Bill Signing",
+      "memegen_id": "trump",
+      "memegen_name": "Donald Trump",
+      "match_score": 0.66
+    },
+    {
+      "imgflip_id": "181913649",
+      "imgflip_name": "Drake Hotline Bling",
+      "memegen_id": "drake",
+      "memegen_name": "Drakeposting",
+      "match_score": 0.65
+    },
+    {
+      "imgflip_id": "259237855",
+      "imgflip_name": "Laughing Leo",
+      "memegen_id": "leo",
+      "memegen_name": "Leo Strutting",
+      "match_score": 0.65
+    },
+    {
+      "imgflip_id": "145139900",
+      "imgflip_name": "Scooby doo mask reveal",
+      "memegen_id": "reveal",
+      "memegen_name": "Scooby Doo Reveal",
+      "match_score": 0.65
+    },
+    {
+      "imgflip_id": "438680",
+      "imgflip_name": "Batman Slapping Robin",
+      "memegen_id": "slap",
+      "memegen_name": "Will Smith Slapping Chris Rock",
+      "match_score": 0.64
+    },
+    {
+      "imgflip_id": "247756783",
+      "imgflip_name": "patrick to do list actually blank",
+      "memegen_id": "patrick",
+      "memegen_name": "Push it somewhere else Patrick",
+      "match_score": 0.64
+    },
+    {
+      "imgflip_id": "208915813",
+      "imgflip_name": "George Bush 9/11",
+      "memegen_id": "bus",
+      "memegen_name": "Two Guys on a Bus",
+      "match_score": 0.64
+    },
+    {
+      "imgflip_id": "221578498",
+      "imgflip_name": "Grant Gustin over grave",
+      "memegen_id": "grave",
+      "memegen_name": "Grant Gustin Next To Oliver Queen's Grave",
+      "match_score": 0.64
+    },
+    {
+      "imgflip_id": "342785297",
+      "imgflip_name": "Gus Fring we are not the same",
+      "memegen_id": "same",
+      "memegen_name": "They're The Same Picture",
+      "match_score": 0.63
+    },
+    {
+      "imgflip_id": "224015000",
+      "imgflip_name": "Bernie Sanders Once Again Asking",
+      "memegen_id": "ski",
+      "memegen_name": "Super Cool Ski Instructor",
+      "match_score": 0.62
+    },
+    {
+      "imgflip_id": "5496396",
+      "imgflip_name": "Leonardo Dicaprio Cheers",
+      "memegen_id": "leo",
+      "memegen_name": "Leo Strutting",
+      "match_score": 0.62
+    },
+    {
+      "imgflip_id": "247113703",
+      "imgflip_name": "A train hitting a school bus",
+      "memegen_id": "bus",
+      "memegen_name": "Two Guys on a Bus",
+      "match_score": 0.62
+    },
+    {
+      "imgflip_id": "222403160",
+      "imgflip_name": "Bernie I Am Once Again Asking For Your Support",
+      "memegen_id": "ski",
+      "memegen_name": "Super Cool Ski Instructor",
+      "match_score": 0.61
+    },
+    {
+      "imgflip_id": "188390779",
+      "imgflip_name": "Woman Yelling At Cat",
+      "memegen_id": "woman-cat",
+      "memegen_name": "Woman Yelling at a Cat",
+      "match_score": 0.56
+    },
+    {
+      "imgflip_id": "124055727",
+      "imgflip_name": "Y'all Got Any More Of That",
+      "memegen_id": "yallgot",
+      "memegen_name": "Y'all Got Any More of Them",
+      "match_score": 0.5
+    },
+    {
+      "imgflip_id": "142009471",
+      "imgflip_name": "is this butterfly",
+      "memegen_id": "fine",
+      "memegen_name": "This is Fine",
+      "match_score": 0.35
+    }
+  ],
+  "unmapped_imgflip": [
+    {
+      "imgflip_id": "427308417",
+      "imgflip_name": "0 days without (Lenny, Simpsons)"
+    },
+    {
+      "imgflip_id": "234202281",
+      "imgflip_name": "AJ Styles & Undertaker"
+    },
+    {
+      "imgflip_id": "505705955",
+      "imgflip_name": "Absolute Cinema"
+    },
+    {
+      "imgflip_id": "216523697",
+      "imgflip_name": "All My Homies Hate"
+    },
+    {
+      "imgflip_id": "322841258",
+      "imgflip_name": "Anakin Padme 4 Panel"
+    },
+    {
+      "imgflip_id": "224514655",
+      "imgflip_name": "Anime Girl Hiding from Terminator"
+    },
+    {
+      "imgflip_id": "533936279",
+      "imgflip_name": "Bell Curve"
+    },
+    {
+      "imgflip_id": "79132341",
+      "imgflip_name": "Bike Fall"
+    },
+    {
+      "imgflip_id": "119139145",
+      "imgflip_name": "Blank Nut Button"
+    },
+    {
+      "imgflip_id": "1035805",
+      "imgflip_name": "Boardroom Meeting Suggestion"
+    },
+    {
+      "imgflip_id": "92084495",
+      "imgflip_name": "Charlie Conspiracy (Always Sunny in Philidelphia)"
+    },
+    {
+      "imgflip_id": "5790452",
+      "imgflip_name": "Chuck Norris"
+    },
+    {
+      "imgflip_id": "195515965",
+      "imgflip_name": "Clown Applying Makeup"
+    },
+    {
+      "imgflip_id": "50421420",
+      "imgflip_name": "Disappointed Black Guy"
+    },
+    {
+      "imgflip_id": "162372564",
+      "imgflip_name": "Domino Effect"
+    },
+    {
+      "imgflip_id": "93895088",
+      "imgflip_name": "Expanding Brain"
+    },
+    {
+      "imgflip_id": "6235864",
+      "imgflip_name": "Finding Neverland"
+    },
+    {
+      "imgflip_id": "166969924",
+      "imgflip_name": "Flex Tape"
+    },
+    {
+      "imgflip_id": "61556",
+      "imgflip_name": "Grandma Finds The Internet"
+    },
+    {
+      "imgflip_id": "110163934",
+      "imgflip_name": "I Bet He's Thinking About Other Women"
+    },
+    {
+      "imgflip_id": "29617627",
+      "imgflip_name": "Look At Me"
+    },
+    {
+      "imgflip_id": "161865971",
+      "imgflip_name": "Marked Safe From"
+    },
+    {
+      "imgflip_id": "371619279",
+      "imgflip_name": "Megamind no bitches"
+    },
+    {
+      "imgflip_id": "370867422",
+      "imgflip_name": "Megamind peeking"
+    },
+    {
+      "imgflip_id": "148909805",
+      "imgflip_name": "Monkey Puppet"
+    },
+    {
+      "imgflip_id": "129315248",
+      "imgflip_name": "No - Yes"
+    },
+    {
+      "imgflip_id": "77045868",
+      "imgflip_name": "Pawn Stars Best I Can Do"
+    },
+    {
+      "imgflip_id": "80707627",
+      "imgflip_name": "Sad Pablo Escobar"
+    },
+    {
+      "imgflip_id": "99683372",
+      "imgflip_name": "Sleeping Shaq"
+    },
+    {
+      "imgflip_id": "171305372",
+      "imgflip_name": "Soldier protecting sleeping child"
+    },
+    {
+      "imgflip_id": "206151308",
+      "imgflip_name": "Spider Man Triple"
+    },
+    {
+      "imgflip_id": "67452763",
+      "imgflip_name": "Squidward window"
+    },
+    {
+      "imgflip_id": "14371066",
+      "imgflip_name": "Star Wars Yoda"
+    },
+    {
+      "imgflip_id": "155067746",
+      "imgflip_name": "Surprised Pikachu"
+    },
+    {
+      "imgflip_id": "21735",
+      "imgflip_name": "The Rock Driving"
+    },
+    {
+      "imgflip_id": "123999232",
+      "imgflip_name": "The Scroll Of Truth"
+    },
+    {
+      "imgflip_id": "284929871",
+      "imgflip_name": "They don't know"
+    },
+    {
+      "imgflip_id": "3218037",
+      "imgflip_name": "This Is Where I'd Put My Trophy If I Had One"
+    },
+    {
+      "imgflip_id": "309868304",
+      "imgflip_name": "Trade Offer"
+    },
+    {
+      "imgflip_id": "87743020",
+      "imgflip_name": "Two Buttons"
+    },
+    {
+      "imgflip_id": "309668311",
+      "imgflip_name": "Two Paths"
+    },
+    {
+      "imgflip_id": "217743513",
+      "imgflip_name": "UNO Draw 25 Cards"
+    },
+    {
+      "imgflip_id": "4087833",
+      "imgflip_name": "Waiting Skeleton"
+    },
+    {
+      "imgflip_id": "101956210",
+      "imgflip_name": "Whisper and Goosebumps"
+    },
+    {
+      "imgflip_id": "91538330",
+      "imgflip_name": "X, X Everywhere"
+    },
+    {
+      "imgflip_id": "360597639",
+      "imgflip_name": "whe i'm in a competition and my opponent is"
+    },
+    {
+      "imgflip_id": "316466202",
+      "imgflip_name": "where monkey"
+    }
+  ],
+  "stats": {
+    "total_memegen": 217,
+    "total_imgflip": 100,
+    "mapped": 53,
+    "unmapped": 47
+  }
+}

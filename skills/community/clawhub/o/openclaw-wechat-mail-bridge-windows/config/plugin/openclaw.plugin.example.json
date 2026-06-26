@@ -1,0 +1,41 @@
+{
+  "plugins": {
+    "wechatMailBridge": {
+      "enabled": true,
+      "bridge": {
+        "sharedSecretEnv": "BRIDGE_SHARED_SECRET",
+        "sqlitePath": "./state/wechat-mail-bridge.db",
+        "sweepIntervalSec": 5,
+        "staleClaimSec": 120,
+        "dedupeRetentionHours": 72,
+        "jobRetentionHours": 168,
+        "sidecarStaleSec": 60
+      },
+      "wechat": {
+        "allowGroups": ["Ops Group", "Mail Group"],
+        "triggerMode": "prefix",
+        "triggerPrefixes": ["/mail", "查邮箱", "/watch", "/mail-watch"],
+        "passiveSingleEmailMode": false
+      },
+      "mail": {
+        "backend": "bhmailer-http",
+        "queryMode": "direct-api",
+        "preferPushWebhook": true,
+        "bhmailerApiBase": "https://bsh.bhdata.com:30015",
+        "uidEnv": "BHMAILER_UID",
+        "signEnv": "BHMAILER_SIGN",
+        "webhookSecretEnv": "BHMAILER_WEBHOOK_SECRET",
+        "defaultTimeoutSec": 120
+      },
+      "reply": {
+        "format": "concise",
+        "maxBodyPreviewChars": 400
+      },
+      "privacy": {
+        "redactEmailsInLogs": true,
+        "storeRawMailBody": false,
+        "storeRawWechatText": true
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+httpx==0.28.1
+python-dotenv==1.0.1
+defusedxml==0.7.1
+# 如果用 Anthropic 供应商，取消下面这行注释（默认已启用）
+anthropic==0.42.0

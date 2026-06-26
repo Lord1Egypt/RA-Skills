@@ -1,0 +1,17 @@
+{
+  "name": "ocas-forge",
+  "version": "2.3.0",
+  "description": "Forge: skill architect and builder. Designs, builds, and validates complete Agent Skill packages through a mandatory six-phase pipeline: existence gate, classify, scope, architecture, build, validate. Trigger phrases: 'create a new skill', 'build a skill', 'design a skill', 'review this skill', 'repair this skill', 'validate skill package', 'update forge'. Default output is the finished installable package. Do not use for skill evaluation or variant proposals (use Mentor).",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-forge/",
+      "~/openclaw/journals/ocas-forge/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-forge/",
+      "~/openclaw/journals/ocas-forge/"
+    ]
+  }
+}

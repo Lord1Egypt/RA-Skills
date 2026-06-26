@@ -1,35 +1,37 @@
 ---
-name: "Premium Domain Search"
-description: "Search for premium domains for sale across Afternic, Sedo, Atom, Dynadot, Namecheap, NameSilo, and Unstoppable Domains."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/premium-domains"
-sourceUrl: "https://clawhub.ai/skills/premium-domains"
+name: premium-domains
+description: Search for premium domains for sale across Afternic, Sedo, Atom, Dynadot, Namecheap, NameSilo, and Unstoppable Domains.
+metadata: {"clawdbot":{"emoji":"💎","requires":{"bins":["curl"]}}}
 ---
 
 # Premium Domain Search
 
-> Search for premium domains for sale across Afternic, Sedo, Atom, Dynadot, Namecheap, NameSilo, and Unstoppable Domains.
+Find domains for sale across major marketplaces. Free API, just curl.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/premium-domains`
-- **Source URL:** [https://clawhub.ai/skills/premium-domains](https://clawhub.ai/skills/premium-domains)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/premium-domains
+curl -s "https://api.domaindetails.com/api/marketplace/search?domain=example.com" | jq
 ```
+
+## Marketplaces Checked
+
+- **Afternic** — GoDaddy's premium marketplace
+- **Sedo** — Global domain trading platform
+- **Atom** — Premium domain marketplace
+- **Dynadot** — Auctions & buy-now listings
+- **Namecheap** — Integrated registrar marketplace
+- **NameSilo** — Budget-friendly marketplace
+- **Unstoppable Domains** — Web3 domains
+
+## Response Fields
+
+- `found` — whether any listings exist
+- `marketplaces.<name>.listing.price` — price in cents or dollars
+- `marketplaces.<name>.listing.currency` — USD, EUR, etc.
+- `marketplaces.<name>.listing.url` — direct link to listing
+- `marketplaces.<name>.listing.listingType` — buy_now, auction, make_offer
+
+## Rate Limits
+
+- 100 requests/minute (no auth needed)

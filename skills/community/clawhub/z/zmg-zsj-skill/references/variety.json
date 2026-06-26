@@ -1,0 +1,26 @@
+{
+  "get_variety_list": {
+    "description": "综艺列表返回示例",
+    "example_response": {
+      "code": 0,
+      "data": {
+        "list": [
+          {
+            "varietyId": "VY_001",
+            "title": "示例综艺名称",
+            "coverUrl": "https://cdn.example.com/cover.jpg",
+            "subtitle": "第1季",
+            "episodeCount": 12,
+            "playCount": 5000000,
+            "updateTime": "2026-04-09",
+            "tags": ["标签A", "标签B"]
+          }
+        ],
+        "page": 1,
+        "pageSize": 20,
+        "total": 50
+      },
+      "msg": "success"
+    }
+  }
+}

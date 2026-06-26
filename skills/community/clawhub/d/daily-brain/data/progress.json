@@ -1,0 +1,28 @@
+{
+  "currentStreak": 0,
+  "longestStreak": 0,
+  "totalSolved": 0,
+  "correctCount": 0,
+  "currentDifficulty": "easy",
+  "categoryStats": {
+    "logic": {
+      "solved": 0,
+      "correct": 0
+    },
+    "math": {
+      "solved": 0,
+      "correct": 0
+    },
+    "memory": {
+      "solved": 0,
+      "correct": 0
+    },
+    "word": {
+      "solved": 0,
+      "correct": 0
+    }
+  },
+  "lastPlayedDate": null,
+  "achievements": [],
+  "history": []
+}

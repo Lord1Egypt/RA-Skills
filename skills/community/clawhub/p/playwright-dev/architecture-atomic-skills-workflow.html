@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原子动作 - Skills - 工作流 架构图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .legend {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .diagram-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .explanation {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .explanation h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .usage-example {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .usage-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ 原子动作 - Skills - 工作流 架构图</h1>
+        <p class="subtitle">三层架构 | 复用关系 | 调用链路</p>
+        
+        <!-- 图例 -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #10b981;"></div>
+                <span>原子动作（Atomic Actions）</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #667eea;"></div>
+                <span>Skills（技能）</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f59e0b; border: 2px dashed #f59e0b;"></div>
+                <span>工作流（Workflows）- 待扩展</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ef4444;"></div>
+                <span>共享原子动作</span>
+            </div>
+        </div>
+        
+        <!-- 主架构图 -->
+        <div class="diagram-container">
+            <div class="mermaid">
+graph TB
+    subgraph Layer3["上层：工作流层 - 待扩展"]
+        WF1["豆包会话处理"]
+        WF2["优先级提醒"]
+        WF3["周报生成"]
+    end
+    
+    subgraph Layer2["中层：Skills 层"]
+        S1["SKILL-GLOSSARY-001<br/>统一专业词汇"]
+        S2["SKILL-DOC-SYNC-001<br/>文档同步"]
+        S3["SKILL-PROJECT-EXPERT<br/>项目专家"]
+        S4["SKILL-HTML-REVIEW<br/>HTML 点评"]
+    end
+    
+    subgraph Layer1["下层：原子动作层 - 共享"]
+        A29["ATOM-DOC-029<br/>更新飞书文档"]
+        A28["ATOM-FEISHU-028<br/>写入飞书"]
+        A10["ATOM-DELIVERY-010<br/>飞书文字"]
+        A11["ATOM-DELIVERY-011<br/>飞书语音"]
+        A13["ATOM-DELIVERY-013<br/>本地播放"]
+        A5["ATOM-VISUAL-005<br/>生成 HTML"]
+        A8["ATOM-VISUAL-008<br/>生成 TTS"]
+        A1["ATOM-DATA-001<br/>保存豆包"]
+        A2["ATOM-DATA-002<br/>更新 worklog"]
+    end
+    
+    S1 --> A29
+    S1 --> A28
+    S2 --> A29
+    S2 --> A28
+    S3 --> A28
+    S3 --> A5
+    S4 --> A5
+    S4 --> A8
+    
+    WF1 -.-> S4
+    WF1 -.-> S1
+    WF2 -.-> S4
+    WF2 -.-> A11
+    WF2 -.-> A13
+    WF3 -.-> S2
+    
+    style A29 fill:#ef4444,stroke:#333,stroke-width:2px,color:#fff
+    style A28 fill:#ef4444,stroke:#333,stroke-width:2px,color:#fff
+    style Layer3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,stroke-dasharray:5 5
+    style Layer2 fill:#e0e7ff,stroke:#667eea,stroke-width:2px
+    style Layer1 fill:#d1fae5,stroke:#10b981,stroke-width:2px
+    style S1 fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+    style S2 fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+    style S3 fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+    style S4 fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+        </div>
+        </div>
+        
+        <!-- 复用关系详解 -->
+        <div class="explanation">
+            <h3>📊 复用关系详解</h3>
+            
+            <div class="usage-example">
+                <div class="usage-title">🔴 共享原子动作（被多个 Skills 复用）</div>
+                <p><strong>ATOM-DOC-029（更新飞书原子动作清单）</strong></p>
+                <ul>
+                    <li>被 SKILL-GLOSSARY-001（统一专业词汇）调用 ✅</li>
+                    <li>被 SKILL-DOC-SYNC-001（原子动作文档同步）调用 ✅</li>
+                    <li><strong>复用场景：</strong>任何需要更新飞书文档的场景</li>
+                </ul>
+                
+                <p style="margin-top: 15px;"><strong>ATOM-FEISHU-028（写入飞书文档）</strong></p>
+                <ul>
+                    <li>被 SKILL-GLOSSARY-001（统一专业词汇）调用 ✅</li>
+                    <li>被 SKILL-DOC-SYNC-001（原子动作文档同步）调用 ✅</li>
+                    <li>被 SKILL-PROJECT-EXPERT-001（项目知识专家）调用 ✅</li>
+                    <li><strong>复用场景：</strong>分块写入飞书文档</li>
+                </ul>
+            </div>
+            
+            <div class="usage-example" style="background: #e0e7ff; border-left-color: #667eea;">
+                <div class="usage-title" style="color: #3730a3;">💡 典型调用链路</div>
+                <p><strong>场景：更新专业词汇库</strong></p>
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>生成 HTML 专家点评 → 遇到新词汇"PE"</li>
+                    <li>调用 SKILL-GLOSSARY-001（统一专业词汇）</li>
+                    <li>SKILL-GLOSSARY-001 调用 ATOM-DOC-029（更新飞书文档）</li>
+                    <li>ATOM-DOC-029 调用 ATOM-FEISHU-028（分块写入）</li>
+                    <li>✅ 三线同步完成（飞书 + MD + TXT）</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- 层级说明 -->
+        <div class="explanation">
+            <h3>🏗️ 三层架构说明</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                <thead>
+                    <tr style="background: #667eea; color: white;">
+                        <th style="padding: 12px; border: 1px solid #e0e0e0;">层级</th>
+                        <th style="padding: 12px; border: 1px solid #e0e0e0;">职责</th>
+                        <th style="padding: 12px; border: 1px solid #e0e0e0;">示例</th>
+                        <th style="padding: 12px; border: 1px solid #e0e0e0;">状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">🔝 上层：工作流</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0;">复杂业务流程编排</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0;">豆包会话处理、周报生成</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0; color: #f59e0b;">🟡 待扩展（虚线框）</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">🎯 中层：Skills</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0;">特定领域能力封装</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0;">统一专业词汇、文档同步</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0; color: #10b981;">✅ 已创建 4 个</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0; font-weight: bold;">⚛️ 下层：原子动作</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0;">单一职责原子操作</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0;">写入飞书、生成 HTML、播放语音</td>
+                        <td style="padding: 12px; border: 1px solid #e0e0e0; color: #10b981;">✅ 已创建 30 个</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 核心原则 -->
+        <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px;">
+            <h3 style="color: white; margin-bottom: 15px;">💡 核心原则</h3>
+            <p><strong>原子动作是共享基础设施，Skills 是领域能力封装，工作流是业务流程编排。</strong></p>
+            <p style="margin-top: 10px;">下层为上层提供服务，上层组合下层能力。原子动作越稳定，上层越灵活。</p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>

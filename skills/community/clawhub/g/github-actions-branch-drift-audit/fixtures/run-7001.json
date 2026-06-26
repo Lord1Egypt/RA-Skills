@@ -1,0 +1,1 @@
+{"databaseId":7001,"workflowName":"CI","event":"push","conclusion":"success","headBranch":"main","createdAt":"2026-03-01T00:00:00Z","updatedAt":"2026-03-01T00:10:00Z","url":"https://example.com/run/7001","repository":{"nameWithOwner":"flowcreatebot/yf-api"}}

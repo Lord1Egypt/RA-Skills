@@ -1,35 +1,84 @@
----
-name: "今日头条运营助手"
-description: "自动化管理今日头条账号，支持热点监控、AI内容生成、封面设计及自动发布，适合自媒体和营销团队。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toutiao-ops"
-sourceUrl: "https://clawhub.ai/skills/toutiao-ops"
+# 今日头条运营助手 (toutiao-ops)
+
+> 自动化运营今日头条，AI生成高质量内容，适合创业者、自媒体人、营销团队
+
 ---
 
-# 今日头条运营助手
+## 功能简介
 
-> 自动化管理今日头条账号，支持热点监控、AI内容生成、封面设计及自动发布，适合自媒体和营销团队。
+这是一个完整的今日头条自动化运营Skill，包含：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toutiao-ops`
-- **Source URL:** [https://clawhub.ai/skills/toutiao-ops](https://clawhub.ai/skills/toutiao-ops)
+- 🤖 **Agent团队架构**：热点猎手、内容创作者、视觉设计师、发布执行
+- 📊 **热点监控系统**：多平台热点追踪、选题评分、每日报告
+- ✍️ **内容生产流程**：AI自动生成微头条/文章、标题优化、标签建议
+- 🎨 **封面设计能力**：Python PIL自动生成专业封面图
+- 🚀 **自动发布机制**：浏览器自动化发布、数据追踪
 
-## Overview
+---
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toutiao-ops
+- 创业项目需要快速起量
+- 自媒体账号需要稳定输出
+- 多账号矩阵运营
+- 品牌曝光推广
+
+---
+
+## 核心工作流程
+
 ```
+每日定时触发
+    ↓
+热点扫描（微博/抖音/头条/知乎）
+    ↓
+选题评分 + 生成内容初稿
+    ↓
+提交人工审核
+    ↓
+审核通过 → 生成封面 → 自动发布
+    ↓
+数据追踪 + 效果复盘
+```
+
+---
+
+## 定位建议
+
+推荐内容定位（高流量赛道）：
+
+| 领域 | 热度 | 变现能力 |
+|------|------|----------|
+| 情感/婚恋 | ⭐⭐⭐⭐⭐ | 中高 |
+| 社会热点 | ⭐⭐⭐⭐⭐ | 中 |
+| 职场/赚钱 | ⭐⭐⭐⭐ | 高 |
+| 科技/数码 | ⭐⭐⭐ | 高 |
+
+---
+
+## 使用前提
+
+- 已安装OpenClaw
+- 已配置头条号账户（账号+密码）
+- 需要浏览器自动化支持
+
+---
+
+## 示例命令
+
+```
+// 开始今日热点扫描
+请扫描今日头条热点，生成选题报告
+
+// 创作新内容
+请根据热点"#大龄剩女现象#"创作一篇微头条
+
+// 发布内容
+请帮我发布这篇内容到头条号
+```
+
+---
+
+## 作者
+
+大飞 AI管理组组长

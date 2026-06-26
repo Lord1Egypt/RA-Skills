@@ -1,0 +1,22 @@
+{
+  "test_levels": [
+    {
+      "id": "unit",
+      "purpose": "Verify a narrow rule or transformation in isolation.",
+      "openclaw_review_prompt": "Check whether the single rule being tested behaves exactly as declared, without relying on broader workflow assumptions.",
+      "required_fields": ["name", "intent", "input_state", "operation", "expected_output"]
+    },
+    {
+      "id": "integrated",
+      "purpose": "Verify multiple graph-task components working together through the CLI/skill flow.",
+      "openclaw_review_prompt": "Check whether the connected steps preserve graph semantics, produce the expected transition sequence, and leave inspectable artifacts.",
+      "required_fields": ["name", "intent", "setup", "steps", "expected_artifacts", "expected_terminal_checks"]
+    },
+    {
+      "id": "closed",
+      "purpose": "Verify behavior in a bounded realistic scenario with either a human or automation loop involved.",
+      "openclaw_review_prompt": "Check whether the system behaves honestly end-to-end under realistic constraints, including escalation, ambiguity handling, and completion semantics.",
+      "required_fields": ["name", "intent", "scenario", "actors", "initial_state", "success_conditions", "failure_signals"]
+    }
+  ]
+}

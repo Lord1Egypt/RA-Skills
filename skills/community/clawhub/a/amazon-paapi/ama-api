@@ -1,0 +1,6 @@
+#!/bin/bash
+# Amazon PA API Wrapper
+# Usage: ama-api <ASIN>
+
+cd /home/openclaw/workspace/skills/amazon-paapi
+python3 amazon_paapi.py "$@"

@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短视频爆款文案生成与复刻专家</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF0050;
+            --primary-dark: #E60048;
+            --secondary: #00D4FF;
+            --bg-dark: #0F0F0F;
+            --bg-card: #1A1A1A;
+            --bg-input: #2A2A2A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --border: #333333;
+            --success: #00C853;
+            --warning: #FFB300;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #252525 100%);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab:hover {
+            background: var(--bg-input);
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* 页面切换 */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        /* 输入组 */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 0, 80, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: #666;
+        }
+
+        .clear-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: #444;
+            color: #999;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .clear-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        textarea.input-field {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+            line-height: 1.6;
+        }
+
+        /* 平台选择 */
+        .platform-selector {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .platform-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            background: var(--bg-input);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .platform-btn:hover {
+            border-color: #555;
+            transform: translateY(-2px);
+        }
+
+        .platform-btn.active {
+            border-color: var(--primary);
+            background: rgba(255, 0, 80, 0.1);
+        }
+
+        .platform-btn .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .platform-btn .name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .platform-btn .desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* 生成按钮 */
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 0, 80, 0.3);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .generate-btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 结果展示 */
+        .result-section {
+            margin-top: 24px;
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #252525 0%, #1E1E1E 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .result-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 0, 80, 0.15);
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .icon-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(255, 0, 80, 0.1);
+        }
+
+        .result-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+        }
+
+        .result-content .original {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .result-content .translation {
+            color: var(--text-secondary);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .result-content .translation-label {
+            color: var(--secondary);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* TTS 播放器 */
+        .tts-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tts-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .voice-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .voice-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .voice-btn:hover {
+            border-color: #555;
+        }
+
+        .voice-btn.active {
+            border-color: var(--secondary);
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--secondary);
+        }
+
+        .tts-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--secondary) 0%, #00A8CC 100%);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .play-btn.playing {
+            background: var(--warning);
+        }
+
+        .download-btn {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            border-color: var(--success);
+            color: var(--success);
+            background: rgba(0, 200, 83, 0.1);
+        }
+
+        /* 保存记录页面 */
+        .saved-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .saved-item {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .saved-item:hover {
+            border-color: #444;
+        }
+
+        .saved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .saved-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .saved-platform {
+            padding: 4px 10px;
+            background: rgba(255, 0, 80, 0.15);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .saved-time {
+            padding: 4px 10px;
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            font-size: 11px;
+            border-radius: 12px;
+        }
+
+        .saved-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .saved-content {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .saved-footer {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .tag-btn:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .delete-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #FF5252;
+            transition: all 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background: rgba(255, 82, 82, 0.1);
+            border-color: #FF5252;
+        }
+
+        .clear-all-btn {
+            width: 100%;
+            padding: 14px;
+            border: 1px dashed #FF5252;
+            background: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #FF5252;
+            margin-bottom: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .clear-all-btn:hover {
+            background: rgba(255, 82, 82, 0.1);
+        }
+
+        /* 标题和标签生成结果 */
+        .title-tags-result {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--bg-input);
+            border-radius: 12px;
+            display: none;
+        }
+
+        .title-tags-result.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .generated-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .generated-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .generated-tag {
+            padding: 6px 12px;
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--secondary);
+            font-size: 13px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .generated-tag:hover {
+            background: rgba(0, 212, 255, 0.25);
+        }
+
+        /* Toast 提示 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            padding: 14px 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .toast.error {
+            border-color: #FF5252;
+            color: #FF5252;
+        }
+
+        .toast.info {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .empty-hint {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* 隐私提示 */
+        .privacy-hint {
+            font-size: 11px;
+            color: #FFB300;
+            opacity: 0.8;
+            cursor: help;
+            margin-left: auto;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(255, 179, 0, 0.1);
+        }
+
+        /* 翻译组件 */
+        .translate-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 14px 16px;
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px dashed rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .translate-bar .translate-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .translate-lang-select {
+            flex: 1;
+            min-width: 140px;
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23B0B0B0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 32px;
+        }
+
+        .translate-lang-select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .translate-lang-select option {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .translate-exec-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--secondary);
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .translate-exec-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .translate-exec-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .translate-exec-btn .mini-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-top-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 16px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .nav-tab {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .platform-btn {
+                min-width: 100px;
+                padding: 14px 16px;
+            }
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* 隐私声明底部 */
+        .privacy-footer {
+            max-width: 720px;
+            margin: 40px auto 20px;
+            padding: 16px 20px;
+            background: rgba(255, 179, 0, 0.05);
+            border: 1px dashed rgba(255, 179, 0, 0.2);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.8;
+            text-align: center;
+        }
+        .privacy-footer strong {
+            color: #FFB300;
+        }
+
+        /* 滚动条美化 */
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <div class="logo-icon">🎬</div>
+            <span>爆款文案专家</span>
+        </div>
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-page="generator">AI文案生成</button>
+            <button class="nav-tab" data-page="replicate">爆款复刻</button>
+            <button class="nav-tab" data-page="saved">保存记录</button>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container" id="mainContainer">
+        <!-- 模块1: AI文案生成器 -->
+        <div id="generator" class="page active">
+            <div class="card">
+                <div class="card-title">
+                    <div class="icon">🎯</div>
+                    <span>选择目标平台</span>
+                </div>
+                <div class="platform-selector">
+                    <button class="platform-btn active" data-platform="douyin">
+                        <span class="icon">🇨🇳</span>
+                        <span class="name">抖音</span>
+                        <span class="desc">中文口播文案</span>
+                    </button>
+                    <button class="platform-btn" data-platform="tiktok-jp">
+                        <span class="icon">🇯🇵</span>
+                        <span class="name">TikTok 日区</span>
+                        <span class="desc">日语口播+中文翻译</span>
+                    </button>
+                    <button class="platform-btn" data-platform="tiktok-us">
+                        <span class="icon">🇺🇸</span>
+                        <span class="name">TikTok 美区</span>
+                        <span class="desc">英语口播+中文翻译</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <div class="icon">✍️</div>
+                    <span>输入产品信息</span>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">产品类型</label>
+                    <div class="input-wrapper">
+                        <input type="text" class="input-field" id="productType" placeholder="例如：女装裤子、家居枕头、宠物用品...">
+                        <button class="clear-btn" onclick="clearInput('productType')">×</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">产品卖点（多个卖点用逗号分隔）</label>
+                    <div class="input-wrapper">
+                        <textarea class="input-field" id="productFeatures" placeholder="例如：到货快、浅色百搭、宽松舒适、口袋深、弹力好..."></textarea>
+                        <button class="clear-btn" onclick="clearInput('productFeatures')" style="top: 16px; transform: none;">×</button>
+                    </div>
+                </div>
+                <!-- 自动翻译栏 -->
+                <div class="translate-bar">
+                    <span class="translate-label">🌐 自动翻译</span>
+                    <span class="privacy-hint" title="翻译内容将发送至第三方翻译服务（MyMemory），敏感信息请勿使用">🔒 隐私提示</span>
+                    <select class="translate-lang-select" id="translateLang">
+                        <option value="" disabled selected>选择目标语言</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="ko">🇰🇷 한국어 (韩语)</option>
+                        <option value="fr">🇫🇷 Français (法语)</option>
+                        <option value="de">🇩🇪 Deutsch (德语)</option>
+                        <option value="es">🇪🇸 Español (西班牙语)</option>
+                        <option value="pt">🇧🇷 Português (葡萄牙语)</option>
+                        <option value="ru">🇷🇺 Русский (俄语)</option>
+                        <option value="ar">🇸🇦 العربية (阿拉伯语)</option>
+                        <option value="th">🇹🇭 ไทย (泰语)</option>
+                        <option value="vi">🇻🇳 Tiếng Việt (越南语)</option>
+                        <option value="id">🇮🇩 Bahasa (印尼语)</option>
+                        <option value="ms">🇲🇾 Bahasa Melayu (马来语)</option>
+                        <option value="hi">🇮🇳 हिन्दी (印地语)</option>
+                        <option value="it">🇮🇹 Italiano (意大利语)</option>
+                    </select>
+                    <button class="translate-exec-btn" id="translateBtn" onclick="translateProductInfo()">
+                        <span>🔄</span>
+                        <span>翻译并覆盖</span>
+                    </button>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="generateBtn" onclick="generateCopy()">
+                <span>🚀</span>
+                <span>生成爆款文案</span>
+            </button>
+
+            <div class="result-section" id="resultSection">
+                <div class="result-card">
+                    <div class="result-header">
+                        <span class="result-tag" id="resultTag">🇨🇳 抖音文案</span>
+                        <div class="result-actions">
+                            <button class="icon-btn" onclick="copyResult()" title="复制文案">📋</button>
+                            <button class="icon-btn" onclick="saveResult()" title="保存记录">💾</button>
+                        </div>
+                    </div>
+                    <div class="result-content" id="resultContent"></div>
+                    
+                    <div class="tts-section">
+                        <div class="tts-title">🔊 配音试听与下载</div>
+                        <div class="privacy-hint" title="文案内容将发送至第三方 TTS 服务（tts.wangwangit.com）进行语音合成，敏感信息请勿使用">🔒 隐私提示：文案将发送至第三方语音服务</div>
+                        <div class="voice-selector">
+                            <button class="voice-btn active" data-voice="female">
+                                <span>👩</span>
+                                <span>女声</span>
+                            </button>
+                            <button class="voice-btn" data-voice="male">
+                                <span>👨</span>
+                                <span>男声</span>
+                            </button>
+                        </div>
+                        <div class="tts-controls">
+                            <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+                            <button class="download-btn" onclick="downloadAudio()">
+                                <span>⬇️</span>
+                                <span>下载音频 (.mp3)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 模块2: 爆款复刻 -->
+        <div id="replicate" class="page">
+            <div class="card">
+                <div class="card-title">
+                    <div class="icon">🔄</div>
+                    <span>粘贴爆款文案进行复刻</span>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">原始爆款文案（支持中文、日文、英文等）</label>
+                    <div class="input-wrapper">
+                        <textarea class="input-field" id="originalCopy" placeholder="将您想要复刻的爆款文案粘贴到这里...\n\n系统会自动识别语种并保留原有节奏进行重写。\n中文文案 → 抖音风格重写\n日文/英文文案 → 原语种重写 + 中文翻译"></textarea>
+                        <button class="clear-btn" onclick="clearInput('originalCopy')" style="top: 16px; transform: none;">×</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">🌐 系统将自动识别语种并重写</label>
+                    <p style="color: var(--text-secondary); font-size: 13px; margin-top: 8px;">支持中文、日文、英文、韩文、法文、德文、西班牙文等任意语言，非中文文案将自动翻译为中文</p>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="replicateBtn" onclick="replicateCopy()">
+                <span>🔄</span>
+                <span>重新生成（换表达重写）</span>
+            </button>
+
+            <div class="result-section" id="replicateResultSection">
+                <div class="result-card">
+                    <div class="result-header">
+                        <span class="result-tag" id="replicateResultTag">重写结果</span>
+                        <div class="result-actions">
+                            <button class="icon-btn" onclick="copyReplicateResult()" title="复制文案">📋</button>
+                            <button class="icon-btn" onclick="saveReplicateResult()" title="保存记录">💾</button>
+                        </div>
+                    </div>
+                    <div class="result-content" id="replicateResultContent"></div>
+                    
+                    <div class="tts-section">
+                        <div class="tts-title">🔊 配音试听与下载</div>
+                        <div class="privacy-hint" title="文案内容将发送至第三方 TTS 服务（tts.wangwangit.com）进行语音合成，敏感信息请勿使用">🔒 隐私提示：文案将发送至第三方语音服务</div>
+                        <div class="voice-selector">
+                            <button class="voice-btn active" data-voice-rep="female">
+                                <span>👩</span>
+                                <span>女声</span>
+                            </button>
+                            <button class="voice-btn" data-voice-rep="male">
+                                <span>👨</span>
+                                <span>男声</span>
+                            </button>
+                        </div>
+                        <div class="tts-controls">
+                            <button class="play-btn" id="replicatePlayBtn" onclick="toggleReplicatePlay()">▶</button>
+                            <button class="download-btn" onclick="downloadReplicateAudio()">
+                                <span>⬇️</span>
+                                <span>下载音频 (.mp3)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 模块3: 保存记录 -->
+        <div id="saved" class="page">
+            <div class="card">
+                <div class="card-title">
+                    <div class="icon">💾</div>
+                    <span>历史保存记录</span>
+                </div>
+                <button class="clear-all-btn" onclick="clearAllSaved()">🗑️ 一键清空全部记录</button>
+                <div class="saved-list" id="savedList">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 隐私声明 -->
+    <div class="privacy-footer">
+        <p>🔒 <strong>隐私说明：</strong>本工具为纯前端应用，所有数据仅存储在您的浏览器本地。</p>
+        <p>翻译和语音合成功能需要调用第三方 API 服务（MyMemory 翻译、Edge TTS），相关文案内容将发送至对应服务商处理。</p>
+        <p>API 配置（Endpoint / Key）仅保存在浏览器本地，不会上传至任何服务器。</p>
+    </div>
+
+    <script>
+        // ==================== 全局状态 ====================
+        let currentPlatform = 'douyin';
+        let currentVoice = 'female';
+        let replicateVoice = 'female';
+        let currentResult = null;
+        let currentReplicateResult = null;
+        let isPlaying = false;
+        let isReplicatePlaying = false;
+
+        // ==================== 模拟文案库 ====================
+        const copyTemplates = {
+            douyin: {
+                hooks: [
+                    '姐妹们，这个{product}我真的要按头安利！',
+                    '挖到宝了！这个{product}真的绝了！',
+                    '最近被问爆的{product}，今天终于安排上了！',
+                    '姐妹们，这个{product}到货速度是真的很快！',
+                    '谁懂啊！这个{product}真的太好用了！'
+                ],
+                middles: [
+                    '颜色是{feature1}的，很适合日常穿搭。上身效果真的是很舒服，很{feature2}的，{feature3}也是挺好看的。',
+                    '{feature1}真的很棒，{feature2}特别到位，而且{feature3}也做得特别好。',
+                    '这个{feature1}就是我很喜欢的，{feature2}，而且带点{feature3}。',
+                    '{feature1}，{feature2}，{feature3}，真的挑不出毛病。'
+                ],
+                ends: [
+                    '喜欢可以考虑入手一下，着急想要用的姐妹们就可以赶紧买。',
+                    '这个真的很好看，简简单单，我非常喜欢这种不用动脑筋的{product}。',
+                    '如果你想找一件既能日常又有点态度的{product}，这一件我觉得是非常值得试试看的。',
+                    '关键它到货速度也是很快的，真的可以考虑入手。'
+                ]
+            },
+            'tiktok-jp': {
+                short: [
+                    {
+                        ja: '横になって寝ると腕がしびれる…その悩み、解決します\nこの{product}、{feature1}！\n{feature2}、朝まで快適\nもちろん{feature3}もばっちり\n今だけの特別価格、お見逃しなく！',
+                        zh: '侧睡时手臂会发麻…这个烦恼，我来解决\n这个{product}，{feature1}！\n{feature2}，舒适一整晚\n当然{feature3}也很完美\n限时特价，不要错过！'
+                    }
+                ],
+                medium: [
+                    {
+                        ja: '見た目のインパクトにちょっと戸惑ったけど、使ってみたら納得の快適さ。\n{feature1}、{feature2}。\n特に{feature3}、これかなり良いです。\n使い始めてから、毎日が違う気がします。',
+                        zh: '虽然一开始被外观震撼到有点犹豫，但用了之后真的很满意。\n{feature1}，{feature2}。\n特别是{feature3}，这个真的很棒。\n开始使用之后，感觉每天都不同了。'
+                    }
+                ],
+                long: [
+                    {
+                        ja: '今まで使った{product}の中で、一番変わったかもしれません。\nでも…思った以上に快適で、{feature1}。\n{feature2}に悩んでいた私が、これに変えてから、本当に楽になりました。\n{feature3}。\n見た目より、ずっと機能的です。\n家族みんなで使っています。おすすめです！',
+                        zh: '这是我用过的{product}中最特别的一个。\n但是…比想象中更舒适，{feature1}。\n被{feature2}困扰的我，换了这款之后真的轻松多了。\n{feature3}。\n比外观更实用。\n全家人都在用。强烈推荐！'
+                    }
+                ]
+            },
+            'tiktok-us': {
+                templates: [
+                    {
+                        en: "This is a life changer and you're never gonna wanna go back. I just don't have the time for {pain_point} and it's just {negative_feeling}. I decided to invest in this {product} and this was the best decision I have ever made. This {product} {feature1} and then {feature2}. It even comes with {feature3}. I have it tagged in this video for you for quick access but you guys definitely grab one of these.",
+                        zh: "这真的是改变生活的神器，你用了就回不去了。我就是没时间{ pain_point }，而且真的很{ negative_feeling }。我决定投资这个{ product }，这是我做过的最棒的决定。这个{ product }{ feature1 }，然后{ feature2 }。它还配有{ feature3 }。我在视频里标记了链接方便你快速购买，你们一定要入手一个。"
+                    },
+                    {
+                        en: "The one thing that I hate doing the most is {pain_point} and since I will be using {product_category} for life, I decided to invest in this {product}. This {product} {feature1} and then {feature2}. It even comes with {feature3}. This is really really cool. I have it tagged in this video for you for quick access, this is a life changer and you're never gonna wanna go back.",
+                        zh: "我最讨厌做的事情就是{ pain_point }，既然我要一辈子用{ product_category }，我决定投资这个{ product }。这个{ product }{ feature1 }，然后{ feature2 }。它还配有{ feature3 }。这真的太酷了。我在视频里标记了链接方便你快速购买，这真的是改变生活的神器，你用了就回不去了。"
+                    }
+                ]
+            }
+        };
+
+        // ==================== 初始化 ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 隐藏调试提示
+                var dbg = document.getElementById('debug-msg');
+                if (dbg) dbg.style.display = 'none';
+                
+                initNavigation();
+                initPlatformSelector();
+                initVoiceSelector();
+                loadSavedRecords();
+                console.log('[DEBUG] DOMContentLoaded 执行完成');
+            } catch(e) {
+                console.error('[DEBUG] DOMContentLoaded 出错:', e);
+                alert('页面初始化出错: ' + e.message);
+            }
+        });
+
+        // ==================== 导航 ====================
+        function initNavigation() {
+            // 防止重复绑定
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                // 先移除旧监听（通过 clone 方式）
+            });
+            // 重新绑定
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const pageId = tab.dataset.page;
+                    switchPage(pageId);
+                    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                });
+            });
+        }
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'saved') {
+                loadSavedRecords();
+            }
+        }
+
+        // ==================== 平台选择 ====================
+        function initPlatformSelector() {
+            const platformBtns = document.querySelectorAll('[data-platform]');
+            platformBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    platformBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentPlatform = btn.dataset.platform;
+                });
+            });
+        }
+
+        // ==================== 声音选择 ====================
+        function initVoiceSelector() {
+            const voiceBtns = document.querySelectorAll('[data-voice]');
+            voiceBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    voiceBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentVoice = btn.dataset.voice;
+                });
+            });
+
+            const repVoiceBtns = document.querySelectorAll('[data-voice-rep]');
+            repVoiceBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    repVoiceBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    replicateVoice = btn.dataset.voiceRep;
+                });
+            });
+        }
+
+        // ==================== 输入框清空 ====================
+        function clearInput(id) {
+            document.getElementById(id).value = '';
+        }
+
+        // ==================== 生成文案 ====================
+        async function generateCopy() {
+
+            const productType = document.getElementById('productType').value.trim();
+            const features = document.getElementById('productFeatures').value.trim();
+
+            if (!productType) {
+                showToast('请输入产品类型', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div><span>生成中...</span>';
+
+            try {
+                const result = generateCopyByPlatform(productType, features, currentPlatform);
+                currentResult = result;
+                displayResult(result);
+
+                if (currentPlatform === 'tiktok-jp' || currentPlatform === 'tiktok-us') {
+                    const sourceLang = currentPlatform === 'tiktok-jp' ? 'ja' : 'en';
+                    const translatedZh = await callTranslateAPI(result.content, 'zh', sourceLang);
+                    if (translatedZh) {
+                        result.translation = translatedZh;
+                        currentResult = result;
+                        displayResult(result);
+                    }
+                }
+            } catch (err) {
+                console.error('生成文案出错:', err);
+                showToast('❌ 文案生成失败: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🚀</span><span>生成爆款文案</span>';
+            }
+        }
+
+        function generateCopyByPlatform(product, features, platform) {
+            const featureList = features.split(/[,，]/).map(f => f.trim()).filter(f => f);
+            const defaults = {
+                'douyin': ['质量超好', '特别舒服', '设计很用心'],
+                'tiktok-jp': ['品質がとても良い', 'すごく快適', 'デザインが良い'],
+                'tiktok-us': ['really great quality', 'super comfortable', 'well designed']
+            };
+            const def = defaults[platform] || defaults['douyin'];
+            const f1 = featureList[0] || def[0];
+            const f2 = featureList[1] || def[1];
+            const f3 = featureList[2] || def[2];
+
+            if (platform === 'douyin') {
+                const templates = copyTemplates.douyin;
+                const hook = templates.hooks[Math.floor(Math.random() * templates.hooks.length)]
+                    .replace('{product}', product);
+                const middle = templates.middles[Math.floor(Math.random() * templates.middles.length)]
+                    .replace('{feature1}', f1)
+                    .replace('{feature2}', f2)
+                    .replace('{feature3}', f3);
+                const end = templates.ends[Math.floor(Math.random() * templates.ends.length)]
+                    .replace('{product}', product);
+
+                return {
+                    platform: 'douyin',
+                    platformName: '🇨🇳 抖音文案',
+                    content: hook + '\n\n' + middle + '\n\n' + end,
+                    language: 'zh-CN'
+                };
+            } else if (platform === 'tiktok-jp') {
+                const types = ['short', 'medium', 'long'];
+                const type = types[Math.floor(Math.random() * types.length)];
+                const template = copyTemplates['tiktok-jp'][type][0];
+
+                const ja = template.ja
+                    .replace(/\{product\}/g, product)
+                    .replace('{feature1}', f1)
+                    .replace('{feature2}', f2)
+                    .replace('{feature3}', f3);
+
+                return {
+                    platform: 'tiktok-jp',
+                    platformName: '🇯🇵 TikTok 日区文案',
+                    content: ja,
+                    translation: null,
+                    language: 'ja-JP'
+                };
+            } else if (platform === 'tiktok-us') {
+                const template = copyTemplates['tiktok-us'].templates[Math.floor(Math.random() * 2)];
+                const painPoint = featureList[0] || 'dealing with this';
+                const negativeFeeling = featureList[1] || 'frustrating';
+                const productCategory = product + 's';
+
+                const en = template.en
+                    .replace(/\{product\}/g, product)
+                    .replace(/\{pain_point\}/g, painPoint)
+                    .replace(/\{negative_feeling\}/g, negativeFeeling)
+                    .replace(/\{product_category\}/g, productCategory)
+                    .replace('{feature1}', f1)
+                    .replace('{feature2}', f2)
+                    .replace('{feature3}', f3);
+
+                return {
+                    platform: 'tiktok-us',
+                    platformName: '🇺🇸 TikTok 美区文案',
+                    content: en,
+                    translation: null,
+                    language: 'en-US'
+                };
+            }
+        }
+
+        function displayResult(result) {
+            const section = document.getElementById('resultSection');
+            const tag = document.getElementById('resultTag');
+            const content = document.getElementById('resultContent');
+
+            tag.textContent = result.platformName;
+            
+            if (result.translation) {
+                content.innerHTML = `<div class="original">${escapeHtml(result.content)}</div><div class="translation"><span class="translation-label">📖 中文翻译</span>${escapeHtml(result.translation)}</div>`;
+            } else if (result.language && result.language !== 'zh-CN') {
+                content.innerHTML = `<div class="original">${escapeHtml(result.content)}</div><div class="translation" id="translationLoading"><span class="translation-label">📖 中文翻译</span><span style="color:#666;">正在翻译中...</span></div>`;
+            } else {
+                content.innerHTML = `<div class="original">${escapeHtml(result.content)}</div>`;
+            }
+
+            section.classList.add('show');
+        }
+
+        // ==================== 复刻文案 ====================
+        async function replicateCopy() {
+
+            const original = document.getElementById('originalCopy').value.trim();
+            
+            if (!original) {
+                showToast('请粘贴原始文案', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('replicateBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div><span>重写中...</span>';
+
+            try {
+                const result = replicateCopyByPlatform(original);
+                currentReplicateResult = result;
+                displayReplicateResult(result);
+
+                if (result.language !== 'zh-CN') {
+                    const translatedZh = await callTranslateAPI(result.content, 'zh', result.langCode);
+                    if (translatedZh) {
+                        result.translation = translatedZh;
+                        currentReplicateResult = result;
+                        displayReplicateResult(result);
+                    }
+                }
+            } catch (err) {
+                console.error('复刻文案出错:', err);
+                showToast('❌ 文案重写失败: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔄</span><span>重新生成（换表达重写）</span>';
+            }
+        }
+
+        function replicateCopyByPlatform(original) {
+            const detected = detectLanguageFull(original);
+            const langCode = detected.code;
+            const langName = detected.name;
+            
+            let rewritten, language;
+            
+            if (langCode === 'zh') {
+                rewritten = original.replace(/真的/g, '真的超').replace(/很/g, '超级') + '\n\n（已换表达重写，保留原有节奏）';
+                language = 'zh-CN';
+            } else if (langCode === 'ja') {
+                rewritten = original.replace(/です/g, 'なんです').replace(/ます/g, 'ちゃいます') + '\n\n（同じリズムで書き換え済み）';
+                language = 'ja-JP';
+            } else if (langCode === 'en') {
+                rewritten = original.replace(/really/g, 'absolutely').replace(/very/g, 'incredibly') + '\n\n(Rewritten with same rhythm)';
+                language = 'en-US';
+            } else {
+                rewritten = original + '\n\n(Rewritten with same rhythm / 已用相同节奏重写)';
+                language = langCode + '-' + langCode.toUpperCase();
+            }
+
+            return {
+                platform: 'replicate',
+                platformName: `🌐 ${langName}重写版`,
+                content: rewritten,
+                translation: null,
+                language: language,
+                langCode: langCode
+            };
+        }
+
+        function detectLanguageFull(text) {
+            if (/[\u3040-\u309f\u30a0-\u30ff]/.test(text)) return { code: 'ja', name: '日文' };
+            if (/[\uac00-\ud7af]/.test(text)) return { code: 'ko', name: '韩文' };
+            if (/[\u0e00-\u0e7f]/.test(text)) return { code: 'th', name: '泰文' };
+            if (/[\u0400-\u04ff]/.test(text)) return { code: 'ru', name: '俄文' };
+            if (/[\u0600-\u06ff]/.test(text)) return { code: 'ar', name: '阿拉伯文' };
+            if (/[\u4e00-\u9fff]/.test(text)) {
+                const jpPatterns = /(です|ます|する|ある|いる|なる|れる|られる|せる|させる|ない|たい|たがる|よう|そう|らしい|みたい|過ぎ|方|的|性|化|屋|さん|君|様|殿)/;
+                if (jpPatterns.test(text)) return { code: 'ja', name: '日文' };
+                return { code: 'zh', name: '中文' };
+            }
+            if (/[a-zA-Z]/.test(text)) {
+                if (/\b(the|and|is|are|was|were|have|has|had|do|does|did|will|would|could|should|this|that|these|those|with|for|from|about|like|time|just|know|think|people|year|way|day|thing|man|world|life|hand|part|eye|place|work|week|case|point|government|company|number|group|problem|fact|be|to|of|in|on|at|by|as|or|if|but|so|not|no|yes|it|its|he|she|they|we|you|i|me|my|mine|your|yours|his|her|hers|our|ours|their|theirs|what|which|who|when|where|why|how|all|each|few|more|most|other|some|such|only|own|same|than|too|very|can|may|might|must|shall)\b/gi.test(text)) {
+                    return { code: 'en', name: '英文' };
+                }
+                return { code: 'en', name: '英文' };
+            }
+            return { code: 'en', name: '英文' };
+        }
+
+        function displayReplicateResult(result) {
+            const section = document.getElementById('replicateResultSection');
+            const tag = document.getElementById('replicateResultTag');
+            const content = document.getElementById('replicateResultContent');
+
+            tag.textContent = result.platformName;
+            
+            if (result.translation) {
+                content.innerHTML = `<div class="original">${escapeHtml(result.content)}</div><div class="translation"><span class="translation-label">📖 中文翻译</span>${escapeHtml(result.translation)}</div>`;
+            } else if (result.language && result.language !== 'zh-CN') {
+                content.innerHTML = `<div class="original">${escapeHtml(result.content)}</div><div class="translation" id="replicateTranslationLoading"><span class="translation-label">📖 中文翻译</span><span style="color:#666;">正在翻译中...</span></div>`;
+            } else {
+                content.innerHTML = `<div class="original">${escapeHtml(result.content)}</div>`;
+            }
+
+            section.classList.add('show');
+        }
+
+        // ==================== 复制功能 ====================
+        function copyResult() {
+            if (!currentResult) return;
+            copyToClipboard(currentResult.content);
+        }
+
+        function copyReplicateResult() {
+            if (!currentReplicateResult) return;
+            copyToClipboard(currentReplicateResult.content);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('✅ 已复制到剪贴板', 'success');
+            }).catch(() => {
+                showToast('❌ 复制失败，请手动复制', 'error');
+            });
+        }
+
+        // ==================== 保存记录 ====================
+        function saveResult() {
+            if (!currentResult) return;
+            saveToStorage(currentResult);
+        }
+
+        function saveReplicateResult() {
+            if (!currentReplicateResult) return;
+            saveToStorage(currentReplicateResult);
+        }
+
+        function saveToStorage(result) {
+            const records = JSON.parse(localStorage.getItem('copyRecords') || '[]');
+            records.unshift({
+                ...result,
+                id: Date.now(),
+                savedAt: new Date().toLocaleString('zh-CN')
+            });
+            localStorage.setItem('copyRecords', JSON.stringify(records.slice(0, 50)));
+            showToast('💾 保存成功', 'success');
+        }
+
+        function loadSavedRecords() {
+            const records = JSON.parse(localStorage.getItem('copyRecords') || '[]');
+            const container = document.getElementById('savedList');
+
+            if (records.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <div class="empty-text">暂无保存记录</div>
+                        <div class="empty-hint">生成的文案可以保存到这里，方便后续查看</div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = records.map(record => `
+                <div class="saved-item" data-id="${record.id}">
+                    <div class="saved-header">
+                        <div class="saved-meta">
+                            <span class="saved-platform">${record.platformName}</span>
+                            <span class="saved-time">${record.savedAt}</span>
+                        </div>
+                        <div class="saved-actions">
+                            <button class="play-btn" data-action="play" data-record-id="${record.id}" title="播放">▶</button>
+                            <button class="icon-btn" data-action="copy" data-record-id="${record.id}" title="复制">📋</button>
+                            <button class="delete-btn" data-action="delete" data-record-id="${record.id}">删除</button>
+                        </div>
+                    </div>
+                    <div class="saved-content">${escapeHtml(record.content)}${record.translation ? '\n\n【翻译】' + escapeHtml(record.translation) : ''}</div>
+                    <div class="saved-footer">
+                        <button class="tag-btn" data-action="tags" data-record-id="${record.id}">🏷️ 一键生成标题和标签</button>
+                    </div>
+                    <div class="title-tags-result" id="tags-${record.id}"></div>
+                </div>
+            `).join('');
+            // 绑定事件委托，避免内联 onclick
+            container.querySelectorAll('.saved-actions button, .tag-btn').forEach(btn => {
+                const action = btn.dataset.action;
+                const id = parseInt(btn.dataset.recordId, 10);
+                btn.addEventListener('click', () => {
+                    if (action === 'play') toggleSavedPlay(id);
+                    else if (action === 'copy') copySavedItem(id);
+                    else if (action === 'delete') deleteSavedItem(id);
+                    else if (action === 'tags') generateTitleTags(id);
+                });
+            });
+        }
+
+        function copySavedItem(id) {
+            const records = JSON.parse(localStorage.getItem('copyRecords') || '[]');
+            const record = records.find(r => r.id === id);
+            if (record) {
+                copyToClipboard(record.content);
+            }
+        }
+
+        let savedPlayingId = null;
+
+        function toggleSavedPlay(id) {
+            const records = JSON.parse(localStorage.getItem('copyRecords') || '[]');
+            const record = records.find(r => r.id === id);
+            if (!record) return;
+
+            const btn = document.getElementById(`playBtn-${id}`);
+
+            if (savedPlayingId === id) {
+                if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+                savedPlayingId = null;
+                btn.textContent = '▶';
+                btn.classList.remove('playing');
+                return;
+            }
+
+            if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+            
+            document.querySelectorAll('[id^="playBtn-"]').forEach(b => {
+                b.textContent = '▶';
+                b.classList.remove('playing');
+            });
+
+            savedPlayingId = id;
+            doSavedPlay(record, btn);
+        }
+
+        async function doSavedPlay(record, btn) {
+            const lang = record.language || 'zh-CN';
+            
+            btn.disabled = true;
+            btn.innerHTML = '<div class="mini-spinner" style="border-color:rgba(255,255,255,0.3);border-top-color:white;"></div>';
+
+            try {
+                const audioUrl = await callEdgeTTS(record.content, lang, 'female');
+                currentAudio = new Audio(audioUrl);
+
+                currentAudio.onended = () => {
+                    savedPlayingId = null;
+                    btn.textContent = '▶';
+                    btn.classList.remove('playing');
+                    btn.disabled = false;
+                };
+                currentAudio.onerror = () => {
+                    savedPlayingId = null;
+                    btn.textContent = '▶';
+                    btn.classList.remove('playing');
+                    btn.disabled = false;
+                    showToast('❌ 音频播放失败', 'error');
+                };
+
+                await currentAudio.play();
+                btn.textContent = '⏸';
+                btn.classList.add('playing');
+                btn.disabled = false;
+            } catch (err) {
+                console.error('TTS error:', err);
+                savedPlayingId = null;
+                btn.textContent = '▶';
+                btn.classList.remove('playing');
+                btn.disabled = false;
+                showToast('❌ TTS 服务错误', 'error');
+            }
+        }
+
+        function deleteSavedItem(id) {
+            let records = JSON.parse(localStorage.getItem('copyRecords') || '[]');
+            records = records.filter(r => r.id !== id);
+            localStorage.setItem('copyRecords', JSON.stringify(records));
+            loadSavedRecords();
+            showToast('🗑️ 已删除', 'info');
+        }
+
+        function clearAllSaved() {
+            if (confirm('确定要清空所有保存的记录吗？此操作不可恢复。')) {
+                localStorage.removeItem('copyRecords');
+                loadSavedRecords();
+                showToast('🗑️ 已全部清空', 'info');
+            }
+        }
+
+        // ==================== 生成标题和标签 ====================
+        function generateTitleTags(id) {
+            const records = JSON.parse(localStorage.getItem('copyRecords') || '[]');
+            const record = records.find(r => r.id === id);
+            if (!record) return;
+
+            const container = document.getElementById(`tags-${id}`);
+            
+            let title, tags;
+            
+            if (record.platform === 'douyin') {
+                title = '这个真的绝了！必入！';
+                tags = ['#好物推荐', '#种草', '#平价好物', '#必备单品', '#闭眼入'];
+            } else if (record.platform === 'tiktok-jp') {
+                title = 'これマジで神！買って正解！';
+                tags = ['#おすすめ', '#買ってよかった', '#便利グッズ', '#生活改善', '#tiktokhaul'];
+            } else {
+                title = 'This is a MUST HAVE!';
+                tags = ['#tiktokmademebuyit', '#musthave', '#lifechanging', '#amazonfinds', '#viralproduct'];
+            }
+
+            container.innerHTML = `
+                <div class="generated-title">${escapeHtml(title)}</div>
+                <div class="generated-tags">
+                    ${tags.map((tag, idx) => `<span class="generated-tag" data-tag="${escapeHtml(tag)}" data-tag-idx="${idx}">${escapeHtml(tag)}</span>`).join('')}
+                </div>
+            `;
+            container.querySelectorAll('.generated-tag').forEach(el => {
+                el.addEventListener('click', () => copyToClipboard(el.dataset.tag));
+            });
+            container.classList.add('show');
+        }
+
+        // ==================== TTS 配音引擎 (Edge TTS) ====================
+        const TTS_API_URL = 'https://tts.wangwangit.com/v1/audio/speech';
+
+        const EDGE_TTS_VOICES = {
+            'zh-CN': { female: 'zh-CN-XiaoxiaoNeural', male: 'zh-CN-YunxiNeural' },
+            'ja-JP': { female: 'ja-JP-NanamiNeural', male: 'ja-JP-DaichiNeural' },
+            'en-US': { female: 'en-US-JennyNeural', male: 'en-US-GuyNeural' },
+            'ko-KR': { female: 'ko-KR-SunHiNeural', male: 'ko-KR-InJoonNeural' }
+        };
+
+        let currentAudio = null;
+
+        async function callEdgeTTS(text, lang, gender) {
+            const langKey = lang.includes('-') ? lang : `${lang}-CN`;
+            const voiceMap = EDGE_TTS_VOICES[langKey] || EDGE_TTS_VOICES['zh-CN'];
+            const voice = voiceMap[gender] || voiceMap.female;
+
+            const response = await fetch(TTS_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    input: text,
+                    voice: voice,
+                    speed: 1.0,
+                    pitch: '0',
+                    style: 'general'
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`TTS server error (${response.status})`);
+            }
+
+            return URL.createObjectURL(await response.blob());
+        }
+
+        async function doPlay(text, lang, gender, btn, isReplicate = false) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            const stateKey = isReplicate ? 'isReplicatePlaying' : 'isPlaying';
+
+            btn.disabled = true;
+            btn.innerHTML = '<div class="mini-spinner" style="border-color:rgba(255,255,255,0.3);border-top-color:white;"></div>';
+
+            try {
+                const audioUrl = await callEdgeTTS(text, lang, gender);
+                currentAudio = new Audio(audioUrl);
+
+                currentAudio.onended = () => {
+                    window[stateKey] = false;
+                    btn.textContent = '▶';
+                    btn.classList.remove('playing');
+                    btn.disabled = false;
+                };
+                currentAudio.onerror = () => {
+                    window[stateKey] = false;
+                    btn.textContent = '▶';
+                    btn.classList.remove('playing');
+                    btn.disabled = false;
+                    showToast('❌ 音频播放失败', 'error');
+                };
+
+                await currentAudio.play();
+                window[stateKey] = true;
+                btn.textContent = '⏸';
+                btn.classList.add('playing');
+                btn.disabled = false;
+            } catch (err) {
+                console.error('TTS error:', err);
+                window[stateKey] = false;
+                btn.textContent = '▶';
+                btn.classList.remove('playing');
+                btn.disabled = false;
+                showToast('❌ TTS 服务错误', 'error');
+            }
+        }
+
+        function togglePlay() {
+            if (!currentResult) {
+                showToast('请先生成文案', 'error');
+                return;
+            }
+            const btn = document.getElementById('playBtn');
+
+            if (isPlaying) {
+                if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+                isPlaying = false;
+                btn.textContent = '▶';
+                btn.classList.remove('playing');
+                return;
+            }
+
+            doPlay(currentResult.content, currentResult.language, currentVoice, btn, false);
+        }
+
+        function toggleReplicatePlay() {
+            if (!currentReplicateResult) {
+                showToast('请先生成文案', 'error');
+                return;
+            }
+            const btn = document.getElementById('replicatePlayBtn');
+
+            if (isReplicatePlaying) {
+                if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+                isReplicatePlaying = false;
+                btn.textContent = '▶';
+                btn.classList.remove('playing');
+                return;
+            }
+
+            doPlay(currentReplicateResult.content, currentReplicateResult.language, replicateVoice, btn, true);
+        }
+
+        // ==================== 下载音频 ====================
+        async function downloadAudio() {
+            if (!currentResult) {
+                showToast('请先生成文案', 'error');
+                return;
+            }
+            await downloadTTS(currentResult, currentVoice);
+        }
+
+        async function downloadReplicateAudio() {
+            if (!currentReplicateResult) {
+                showToast('请先生成文案', 'error');
+                return;
+            }
+            await downloadTTS(currentReplicateResult, replicateVoice);
+        }
+
+        async function downloadTTS(result, gender) {
+            const platformNames = { 'douyin': '抖音', 'tiktok-jp': 'TikTok日区', 'tiktok-us': 'TikTok美区' };
+            const platformLabel = platformNames[result.platform] || result.platform;
+            const genderLabel = gender === 'male' ? '男声' : '女声';
+
+            try {
+                showToast('⬇️ 正在生成音频...', 'info');
+                const audioUrl = await callEdgeTTS(result.content, result.language, gender);
+
+                const response = await fetch(audioUrl);
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `配音_${platformLabel}_${genderLabel}_${Date.now()}.mp3`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                showToast('✅ 音频下载已开始', 'success');
+            } catch (err) {
+                console.error('TTS download error:', err);
+                showToast('❌ 音频下载失败', 'error');
+            }
+        }
+
+        // ==================== 自动翻译 ====================
+        async function translateProductInfo() {
+            const productType = document.getElementById('productType').value.trim();
+            const productFeatures = document.getElementById('productFeatures').value.trim();
+            const targetLang = document.getElementById('translateLang').value;
+
+            if (!targetLang) {
+                showToast('请先选择目标语言', 'error');
+                return;
+            }
+
+            if (!productType && !productFeatures) {
+                showToast('请先输入产品类型或产品卖点', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('translateBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<div class="mini-spinner"></div><span>翻译中...</span>';
+
+            try {
+                const fullText = [productType, productFeatures].filter(Boolean).join('\n');
+                const translatedText = await callTranslateAPI(fullText, targetLang);
+
+                if (translatedText) {
+                    const lines = translatedText.split('\n').filter(l => l.trim());
+
+                    if (productType && productFeatures) {
+                        document.getElementById('productType').value = lines[0] || '';
+                        document.getElementById('productFeatures').value = lines.slice(1).join('，');
+                    } else if (productType) {
+                        document.getElementById('productType').value = translatedText.trim();
+                    } else {
+                        document.getElementById('productFeatures').value = translatedText.trim();
+                    }
+
+                    const langNames = {
+                        zh: '中文', en: 'English', ja: '日本語', ko: '한국어',
+                        fr: 'Français', de: 'Deutsch', es: 'Español', pt: 'Português',
+                        ru: 'Русский', ar: 'العربية', th: 'ไทย', vi: 'Tiếng Việt',
+                        id: 'Bahasa', ms: 'Bahasa Melayu', hi: 'हिन्दी', it: 'Italiano'
+                    };
+                    showToast(`✅ 已翻译为${langNames[targetLang] || targetLang}`, 'success');
+                } else {
+                    showToast('❌ 翻译失败，请稍后重试', 'error');
+                }
+            } catch (err) {
+                console.error('翻译错误:', err);
+                showToast('❌ 翻译出错：' + (err.message || '网络异常'), 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔄</span><span>翻译并覆盖</span>';
+            }
+        }
+
+        async function callTranslateAPI(text, targetLang, forceSourceLang) {
+            let sourceLang = forceSourceLang || null;
+            if (!sourceLang) {
+                if (/[\u4e00-\u9fa5]/.test(text) && !/[\u3040-\u309f\u30a0-\u30ff]/.test(text)) sourceLang = 'zh';
+                else if (/[\u3040-\u309f\u30a0-\u30ff]/.test(text)) sourceLang = 'ja';
+                else if (/[\uac00-\ud7af]/.test(text)) sourceLang = 'ko';
+                else if (/[\u0e00-\u0e7f]/.test(text)) sourceLang = 'th';
+                else if (/[a-zA-Z]/.test(text)) sourceLang = 'en';
+            }
+
+            if (sourceLang === targetLang) return null;
+
+            const langPair = `${sourceLang}|${targetLang}`;
+            // 使用 POST 避免用户输入暴露在 URL 中
+            const response = await fetch('https://api.mymemory.translated.net/get', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(langPair)}`
+            });
+            if (!response.ok) throw new Error(`API 请求失败 (${response.status})`);
+
+            const data = await response.json();
+
+            if (data.responseStatus === 200 && data.responseData) {
+                return data.responseData.translatedText;
+            } else {
+                throw new Error(data.responseDetails || '翻译服务返回异常');
+            }
+        }
+
+        // ==================== Toast 提示 ====================
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ==================== 工具函数 ====================
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        function showToast(msg, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = 'toast ' + type;
+            setTimeout(function(){ toast.classList.add('show'); }, 10);
+            setTimeout(function(){ toast.classList.remove('show'); }, 3000);
+        }
+    </script>
+
+</body>
+</html>

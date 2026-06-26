@@ -1,0 +1,53 @@
+{
+  "skill_name": "product-description-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "hey so I just launched this vitamin C serum on Shopify and my current product page is basically just the manufacturer spec sheet copy-pasted in lol. it's a 30ml glass dropper bottle, 15% L-ascorbic acid, hyaluronic acid, vitamin E, vegan, cruelty-free, retails at $38. my customers are mostly women 25-40 who want brighter skin without a 10-step routine. I want the full thing — title, description, bullets, meta, the works. target keyword is 'vitamin c face serum'. tone should be clean and aspirational, not clinical",
+      "expected_output": "SEO-optimized title (60-80 chars with keyword), 300-500 word description following hook → solution → feature-benefit blocks → trust → scenario → CTA flow, 5-7 benefit-first bullet points, meta description 150-160 chars, emotional hooks / power words, all in an aspirational-not-clinical tone with 2-3% keyword density.",
+      "files": [],
+      "expectations": [
+        "Title is 60-80 characters and contains 'vitamin c' or 'Vitamin C'",
+        "Description is 300-500 words",
+        "Description opens with a pain point or desired outcome, not the product name",
+        "Each feature (L-ascorbic acid, hyaluronic acid, vitamin E) is translated into a customer benefit",
+        "Bullet points section has 5-7 items, each leading with a benefit",
+        "Meta description is 150-160 characters and contains the primary keyword",
+        "Tone is aspirational and sensory, not clinical or medical-sounding",
+        "No unverifiable superlatives like 'best serum' without proof"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I sell ergonomic office chairs on Shopify, this is our hero product at $429. specs: mesh back, adjustable lumbar support, 4D armrests, 135 degree recline, weight capacity 300lb, BIFMA certified, 5 year warranty. our audience is remote workers 30-50 who have back pain from cheap chairs. I don't want it to sound too techy — more like 'we understand your pain, here's the fix'. can you write the product description and bullets? also need a good title, we want to rank for 'ergonomic office chair'",
+      "expected_output": "Product title optimized for 'ergonomic office chair', description 300-500 words that leads with the back-pain problem (not specs), translates each spec into a user benefit (mesh=breathability, lumbar=targeted support, recline=pressure relief), 5-7 benefit-first bullets, meta description. Confident and empathetic tone, not overly technical.",
+      "files": [],
+      "expectations": [
+        "Title contains 'ergonomic' and 'office chair' and is 60-80 characters",
+        "Description opens with the back-pain problem or relief outcome, not a spec list",
+        "Mesh back is connected to breathability or temperature comfort",
+        "Adjustable lumbar is connected to personalized support or pain relief",
+        "BIFMA certification and 5-year warranty appear as trust signals",
+        "Bullets lead with benefits, not spec names",
+        "Meta description is 150-160 characters",
+        "Tone is empathetic and confident, not a spec dump"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "ok so I make soy candles by hand in my garage in portland and I sell on etsy. this one is lavender + eucalyptus, 8oz tin, 45 hour burn time, cotton wick, hand poured in small batches. priced at $24. I want something that feels warm and artisan-y, like you're buying from a real person not amazon. keyword is 'lavender soy candle'. keep the description shortish, maybe under 350 words? I need the title and bullets and meta too",
+      "expected_output": "Etsy-friendly title with 'lavender soy candle', description under 350 words with warm artisan tone and sensory language, emphasis on handmade/small-batch/Portland origin, 5-7 bullets covering scent, burn time, materials, handmade, and gift-worthiness, meta description 150-160 chars.",
+      "files": [],
+      "expectations": [
+        "Title contains 'lavender soy candle'",
+        "Description is under 350 words",
+        "Description uses sensory language for the scent (lavender + eucalyptus)",
+        "Handmade / small-batch / Portland origin are woven into the narrative, not just listed",
+        "Tone feels personal and artisan, not corporate",
+        "Bullets include burn time (45 hours) as a benefit, not just a spec",
+        "Meta description is 150-160 characters and contains the keyword",
+        "No filler phrases like 'high quality' or 'amazing product'"
+      ]
+    }
+  ]
+}

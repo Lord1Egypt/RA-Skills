@@ -1,0 +1,78 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+SensitiveContent
+Detected.Severe
+Violationthe input text
+may contain
+severe violation
+information.信息，请您使用
+其他 prompt
+400 BadRequestSensitiveContent
+Detected.Violenc
+eThe request
+failed because
+the input text
+may contain
+violence
+information.输入文本可能包
+含激进行为相关
+信息，请您使用
+其他 prompt
+400 BadRequestInputTextSensiti
+veContentDetec
+tedThe request
+failed because
+the input text
+may contain
+sensitive
+information.Req
+uest ID:输入文本可能包
+含敏感信息，请
+您更换后重试。
+400 BadRequestInputImageSensi
+tiveContentDete
+ctedThe request
+failed because
+the input image
+may contain
+sensitive
+information.Req
+uest ID:输入图像可能包
+含敏感信息，请
+您更换后重试。
+400 BadRequestInputVideoSensi
+tiveContentDete
+ctedThe request
+failed because
+the input video
+may contain
+sensitive
+information.输入视频可能包
+含敏感信息，请
+您更换后重试。
+400 BadRequestInputAudioSensi
+tiveContentDete
+ctedThe request
+failed because
+the input audio
+may contain
+sensitive
+information.Req
+uest ID:输入音频可能包
+含敏感信息，请
+您更换后重试
+400 BadRequestOutputTextSensi
+tiveContentDete
+ctedThe request
+failed because
+the output may
+contain sensitive
+information.生成的文字可能
+包含敏感信息，
+请您更换输入内
+容后重试
+400 BadRequestAPI参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 455/485

@@ -1,0 +1,22 @@
+# #AIagents DM Outreach List (50+ Handpicked Handles)
+
+🚀 Builders & Hustlers:
+@karpathy      @lexfridman     @gwern          @ylecun
+@AndrewYNg     @fchollet       @karlfriston    @demishassabis
+@geoffreyhinton @ilyasut       @goodfellow_ian @OriolVinyalsML
+
+🛠️ OpenClaw/ClawHub Ecosystem:
+@OpenClawAI    @clawhub        @achillesmorph  (you!)
+[Add more as you discover]
+
+💰 Bounty Hunters:
+@levelsio      @pieterlevels   @dhh           @swyx
+@amasad        @sabir_hussain_ @sama          @paulg
+
+📈 Agent Builders:
+@yoheinakajima @natfriedman    @dril          @waitbutwhy
+@timurban      @patio11        @csallen        @smc90
+
+[Pro Tip: Customize + expand via X search "#AIagents filter:verified min_faves:100"]
+
+Copy-paste into DM tool or xurl skill for outreach.

@@ -1,35 +1,55 @@
 ---
-name: "architecture"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/architecture"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/architecture"
+name: architecture
+description: Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design.
+allowed-tools: Read, Glob, Grep
 ---
 
-# architecture
+# Architecture Decision Framework
 
-> Indexed by skills.sh from davila7/claude-code-templates
+> "Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale."
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/architecture`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/architecture](https://skills.sh/davila7/claude-code-templates/architecture)
+## 🎯 Selective Reading Rule
 
-## Overview
+**Read ONLY files relevant to the request!** Check the content map, find what you need.
 
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `context-discovery.md` | Questions to ask, project classification | Starting architecture design |
+| `trade-off-analysis.md` | ADR templates, trade-off framework | Documenting decisions |
+| `pattern-selection.md` | Decision trees, anti-patterns | Choosing patterns |
+| `examples.md` | MVP, SaaS, Enterprise examples | Reference implementations |
+| `patterns-reference.md` | Quick lookup for patterns | Pattern comparison |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/architecture
-```
+---
+
+## 🔗 Related Skills
+
+| Skill | Use For |
+|-------|---------|
+| `@[skills/database-design]` | Database schema design |
+| `@[skills/api-patterns]` | API design patterns |
+| `@[skills/deployment-procedures]` | Deployment architecture |
+
+---
+
+## Core Principle
+
+**"Simplicity is the ultimate sophistication."**
+
+- Start simple
+- Add complexity ONLY when proven necessary
+- You can always add patterns later
+- Removing complexity is MUCH harder than adding it
+
+---
+
+## Validation Checklist
+
+Before finalizing architecture:
+
+- [ ] Requirements clearly understood
+- [ ] Constraints identified
+- [ ] Each decision has trade-off analysis
+- [ ] Simpler alternatives considered
+- [ ] ADRs written for significant decisions
+- [ ] Team expertise matches chosen patterns

@@ -1,35 +1,53 @@
 ---
-name: "Apm Monitor"
+version: "2.0.0"
+name: Pinpoint
 description: "APM, (Application Performance Management) tool for large-scale distributed systems. apm-monitor, java, agent, apm, distributed-tracing, monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apm-monitor"
-sourceUrl: "https://clawhub.ai/skills/apm-monitor"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
-# Apm Monitor
+# Pinpoint
 
-> APM, (Application Performance Management) tool for large-scale distributed systems. apm-monitor, java, agent, apm, distributed-tracing, monitoring.
+APM, (Application Performance Management) tool for large-scale distributed systems. ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apm-monitor`
-- **Source URL:** [https://clawhub.ai/skills/apm-monitor](https://clawhub.ai/skills/apm-monitor)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from apm-monitor-apm/apm-monitor
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `apm-monitor <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/apm-monitor
+# Show help
+apm-monitor help
+
+# Run
+apm-monitor run
 ```
+
+- Run `apm-monitor help` for commands
+- No API keys needed
+
+- Run `apm-monitor help` for all commands
+
+- Run `apm-monitor help` for all commands
+
+## Output
+
+Results go to stdout. Save with `apm-monitor run > output.txt`.
+
+## Configuration
+
+Set `APM_MONITOR_DIR` to change data directory. Default: `~/.local/share/apm-monitor/`

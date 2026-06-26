@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-24T21:54:00-07:00",
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "limits": {
+        "perSecond": 1,
+        "perMinute": 30,
+        "perHour": 500,
+        "perDay": 2000,
+        "burstSize": 5
+      },
+      "cooldownMs": 1000,
+      "retryAfterLimit": "queue"
+    },
+    "telegram": {
+      "enabled": true,
+      "limits": {
+        "perSecond": 30,
+        "perMinute": 20,
+        "perHour": 300,
+        "perDay": 3000
+      },
+      "cooldownMs": 100,
+      "retryAfterLimit": "queue"
+    },
+    "email": {
+      "enabled": true,
+      "limits": {
+        "perMinute": 1,
+        "perHour": 30,
+        "perDay": 300,
+        "burstSize": 3
+      },
+      "cooldownMs": 5000,
+      "retryAfterLimit": "queue",
+      "requireConsent": true
+    }
+  },
+  "global": {
+    "maxRetries": 3,
+    "retryBackoffMs": 5000,
+    "deduplicateWindowHours": 24
+  },
+  "quietHours": {
+    "enabled": true,
+    "start": "22:00",
+    "end": "08:00",
+    "timezone": "America/Los_Angeles",
+    "action": "queue"
+  }
+}

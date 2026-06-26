@@ -1,35 +1,120 @@
 ---
-name: "油价智能提醒"
-description: "油价智能提醒技能。自动监控国家发改委油价公告，判断近期油价涨跌趋势，在调价窗口前提早提醒用户加油。（1）未来油价将上调 → 提醒近日安排加油；（2）未来油价将下调 → 提醒等调价后再去加油。支持自定义检查频率、城市配置、状态防重复提醒。触发条件：用户提到"油价提醒"、"什么时候加油"、"油价涨了吗"、"设置油价监..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oil-price-reminder-china"
-sourceUrl: "https://clawhub.ai/skills/oil-price-reminder-china"
+name: oil-price-reminder
+description: 油价智能提醒技能。自动监控国家发改委油价公告，判断近期油价涨跌趋势，在调价窗口前提早提醒用户加油。（1）未来油价将上调 → 提醒近日安排加油；（2）未来油价将下调 → 提醒等调价后再去加油。支持自定义检查频率、城市配置、状态防重复提醒。触发条件：用户提到"油价提醒"、"什么时候加油"、"油价涨了吗"、"设置油价监控"时激活。
 ---
 
-# 油价智能提醒
+# 油价智能提醒技能
 
-> 油价智能提醒技能。自动监控国家发改委油价公告，判断近期油价涨跌趋势，在调价窗口前提早提醒用户加油。（1）未来油价将上调 → 提醒近日安排加油；（2）未来油价将下调 → 提醒等调价后再去加油。支持自定义检查频率、城市配置、状态防重复提醒。触发条件：用户提到"油价提醒"、"什么时候加油"、"油价涨了吗"、"设置油价监...
+> 自动抓取发改委油价公告，判断涨跌，在最佳时机提醒加油
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oil-price-reminder-china`
-- **Source URL:** [https://clawhub.ai/skills/oil-price-reminder-china](https://clawhub.ai/skills/oil-price-reminder-china)
+---
 
-## Overview
+## 核心功能
 
+- 🌿 **油价趋势分析**：抓取发改委（ndrc.gov.cn）最新公告，判断涨跌
+- ⏰ **智能时机提醒**：油价涨前提醒加油，跌前提醒等一等再加油
+- 🔁 **自定义频率**：支持每 N 天/每天/每周检查（默认每3天）
+- 🗓️ **调价窗口追踪**：自动估算下次调价日期（每10个工作日规律）
+- 📁 **状态防重复**：基于本地文件记录，防止同一天重复提醒
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oil-price-reminder-china
+---
+
+## 文件结构
+
 ```
+oil-price-reminder/
+├── SKILL.md                          ← 本文件
+└── scripts/
+    ├── oil_monitor.py                 ← 核心监控脚本（核心逻辑）
+    └── oil_state.json                 ← 状态持久化（由脚本自动创建）
+```
+
+---
+
+## 使用方式
+
+### 用户配置
+
+用户告诉 Nova 需要启用油价提醒后，Nova 会自动：
+
+1. 创建 `memory/oil_state.json` 状态文件
+2. 创建 cron job，每 3 天触发一次
+3. 记录下次调价窗口时间
+
+### cron 表达式参考
+
+| 频率 | 表达式（UTC） | 北京时间 |
+|------|------------|---------|
+| 每天 8:00 | `0 0 * * *` | 8:00 |
+| 每3天 8:00 | `0 8 */3 * *` | 16:00 |
+| 每周一 8:00 | `0 8 * * 1` | 16:00（周一） |
+
+### 提醒消息模板
+
+**涨前提醒：**
+```
+🌿 【油价提醒】
+预计 X 天后（YYYY-MM-DD 零点）油价将上调，建议近日安排加满油箱！
+```
+
+**跌前提醒：**
+```
+🌿 【油价提醒】
+预计 X 天后（YYYY-MM-DD 零点）油价将下调，建议调价后再去加油，可节省费用！
+```
+
+**趋势不明时：**
+```
+🌿 【油价提醒】
+下一轮油价调整窗口约在 YYYY-MM-DD（约X天后），届时油价可能有变动，如需加油请留意。
+```
+
+---
+
+## oil_monitor.py 核心逻辑
+
+```python
+# 主要流程
+1. curl https://www.ndrc.gov.cn/xwdt/xwfb/  获取最新公告
+2. 正则匹配含"油价"链接，获取公告正文
+3. 判断正文关键词：上调/上涨 → trend=up；下调/下降 → trend=down
+4. 估算下次调价窗口（上次调价+10个工作日）
+5. 判断距调价天数：
+   - 1~10天内 + trend=up  → 发涨前提醒
+   - 1~10天内 + trend=down → 发跌前提醒
+   - 1~10天内 + trend=不明 → 发趋势不明提醒
+   - >10天 → NO_REMINDER
+6. 写入 oil_state.json 状态文件
+```
+
+---
+
+## 状态文件格式
+
+```json
+{
+  "last_remind_date": "2026-03-27",
+  "next_adjust_date": "2026-04-06",
+  "trend": "up",
+  "days_left": 9,
+  "last_check": "2026-03-27"
+}
+```
+
+---
+
+## 依赖
+
+- Python 3
+- curl（系统自带）
+- cron（Gateway 内置）
+- message tool（推送至用户渠道）
+
+---
+
+## 注意事项
+
+- 数据来源为国家发改委官网，无需 API Key
+- 调价窗口为估算值，实际以发改委公告为准
+- 状态文件自动创建在 `/workspace/memory/oil_state.json`
+- 建议检查频率不要高于每天 1 次，避免对发改委服务器造成压力

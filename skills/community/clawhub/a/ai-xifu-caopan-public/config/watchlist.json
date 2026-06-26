@@ -1,0 +1,11 @@
+{
+  "stocks": [
+    {"code": "000980", "name": "众泰汽车", "set_code": "0"},
+    {"code": "601398", "name": "工商银行", "set_code": "1"}
+  ],
+  "indices": [
+    {"code": "000001", "name": "上证指数", "set_code": "1"},
+    {"code": "399001", "name": "深证成指", "set_code": "0"},
+    {"code": "399006", "name": "创业板指", "set_code": "0"}
+  ]
+}

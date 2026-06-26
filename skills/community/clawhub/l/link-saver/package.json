@@ -1,0 +1,9 @@
+{
+  "name": "link-saver",
+  "version": "1.0.0",
+  "description": "链接收藏夹，保存和整理有用的网页链接",
+  "main": "index.js",
+  "author": "黄豆豆",
+  "license": "MIT",
+  "keywords": ["链接", "收藏", "书签", "效率", "工具"]
+}

@@ -1,0 +1,20 @@
+{
+  "category": "手机",
+  "budget": { "max": 6000 },
+  "scenario": "日常使用",
+  "priorities": ["性价比"],
+  "decision_mode": "compare",
+  "notes": "先判断能不能直接按价格比较。",
+  "items": [
+    {
+      "title": "iPhone 15 128G 标准版",
+      "source": "taobao",
+      "price_hint": 4999
+    },
+    {
+      "title": "iPhone 15 256G 标准版",
+      "source": "jd",
+      "price_hint": 5599
+    }
+  ]
+}

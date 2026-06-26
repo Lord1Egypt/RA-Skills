@@ -1,0 +1,16 @@
+{
+  "name": "reading-manager",
+  "version": "1.0.0",
+  "description": "Personal reading management system for tracking books, articles, reading progress, notes, and generating reading reports. Use when: (1) recording book",
+  "main": "src/reading_manager_cli.py",
+  "bin": {
+    "reading-manager": "src/reading_manager_cli.py"
+  },
+  "keywords": ["openclaw", "skill", "productivity"],
+  "author": "harrylabs0913",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/reading-manager.git"
+  }
+}

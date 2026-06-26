@@ -1,0 +1,24 @@
+2024-03-25T09:15:00.001Z INFO  [payment-gateway] Starting payment processing for merchant cus_Oxr5ijklmnop
+2024-03-25T09:15:00.023Z INFO  [payment-gateway] SDK version: 3.2.0, API version: 2024-03-15
+2024-03-25T09:15:00.045Z INFO  [payment-gateway] Processing payment pay_1OxR2FAcme123abc: amount=500000, currency=GBP
+2024-03-25T09:15:00.112Z DEBUG [currency-service] Converting currency format: GBP -> validating
+2024-03-25T09:15:00.115Z ERROR [currency-service] Currency validation failed: expected ISO 4217 numeric code, got alphabetic "GBP"
+2024-03-25T09:15:00.116Z ERROR [payment-gateway] HTTP 422: {"error": "invalid_currency_format", "message": "Currency code must be numeric (826 for GBP)", "request_id": "req_abc123"}
+2024-03-25T09:15:01.001Z INFO  [payment-gateway] Processing payment pay_1OxR3GAcme456def: amount=1235000, currency=EUR
+2024-03-25T09:15:01.050Z DEBUG [currency-service] Converting currency format: EUR -> validating
+2024-03-25T09:15:01.055Z ERROR [currency-service] Currency validation failed: expected ISO 4217 numeric code, got alphabetic "EUR"
+2024-03-25T09:15:01.056Z ERROR [payment-gateway] HTTP 422: {"error": "invalid_currency_format"}
+2024-03-25T09:15:05.001Z INFO  [payment-gateway] Processing payment pay_1OxR4HAcme789ghi: amount=89000, currency=GBP
+2024-03-25T09:15:05.100Z ERROR [payment-gateway] Internal error during processing
+2024-03-25T09:15:05.101Z ERROR [payment-gateway] TypeError: Cannot read properties of undefined (reading 'numericCode')
+    at CurrencyConverter.toNumeric (/app/src/services/currency.js:45)
+    at PaymentProcessor.validate (/app/src/services/payment.js:132)
+    at async Router.handlePayment (/app/src/routes/payment.js:28)
+2024-03-25T09:15:05.102Z ERROR [payment-gateway] HTTP 500 returned, stack trace logged, ip=52.31.142.89, auth=Bearer tok.fake.demotokenfortest
+2024-03-25T09:15:30.001Z INFO  [payment-gateway] Processing payment pay_1OxR5IAcme000jkl: amount=250000, currency=GBP
+2024-03-25T09:15:30.050Z WARN  [payment-gateway] Request timeout after 30000ms
+2024-03-25T09:15:30.051Z ERROR [payment-gateway] Connection to currency-service timed out, circuit breaker tripped
+2024-03-25T09:16:00.001Z INFO  [payment-gateway] Processing payment pay_test_usd001: amount=10000, currency=USD
+2024-03-25T09:16:00.025Z DEBUG [currency-service] Converting currency format: USD -> validating
+2024-03-25T09:16:00.026Z INFO  [currency-service] USD validation passed (numeric code: 840, alphabetic accepted)
+2024-03-25T09:16:00.100Z INFO  [payment-gateway] Payment pay_test_usd001 processed successfully

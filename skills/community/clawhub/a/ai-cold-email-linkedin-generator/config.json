@@ -1,0 +1,134 @@
+{
+  "input_fields": [
+    {
+      "id": "product_service",
+      "label": "Product / Service",
+      "type": "text",
+      "placeholder": "e.g. AI-powered CRM for B2B SaaS startups",
+      "required": true,
+      "max_length": 300,
+      "hint": "Describe what you sell in one or two sentences. Be specific."
+    },
+    {
+      "id": "target_audience",
+      "label": "Target Audience",
+      "type": "text",
+      "placeholder": "e.g. VP of Sales at Series A SaaS companies with 20-100 employees",
+      "required": true,
+      "max_length": 300,
+      "hint": "Who is the ideal recipient? Include title, company type, and size if possible."
+    },
+    {
+      "id": "pain_points",
+      "label": "Pain Points",
+      "type": "textarea",
+      "placeholder": "e.g. They spend too much time manually updating CRM data; deals fall through because follow-ups are missed.",
+      "required": true,
+      "max_length": 500,
+      "hint": "List 1-3 real problems your prospect likely faces. Be honest and specific."
+    },
+    {
+      "id": "offer",
+      "label": "Your Offer / CTA",
+      "type": "text",
+      "placeholder": "e.g. Free 15-min demo to show how we cut CRM data entry by 80%",
+      "required": true,
+      "max_length": 300,
+      "hint": "What is the ONE action you want them to take? Keep it low-commitment."
+    },
+    {
+      "id": "sender_name",
+      "label": "Your Name",
+      "type": "text",
+      "placeholder": "e.g. Alex Chen",
+      "required": true,
+      "max_length": 100
+    },
+    {
+      "id": "sender_role",
+      "label": "Your Role / Company",
+      "type": "text",
+      "placeholder": "e.g. Head of Growth at Nexus AI",
+      "required": true,
+      "max_length": 150
+    },
+    {
+      "id": "prospect_name",
+      "label": "Prospect First Name (Optional)",
+      "type": "text",
+      "placeholder": "e.g. Sarah",
+      "required": false,
+      "max_length": 100,
+      "hint": "Leave blank to use [First Name] as a placeholder."
+    },
+    {
+      "id": "prospect_company",
+      "label": "Prospect Company (Optional)",
+      "type": "text",
+      "placeholder": "e.g. Stripe",
+      "required": false,
+      "max_length": 150,
+      "hint": "Used for personalization. Leave blank for a generic version."
+    },
+    {
+      "id": "personalization_hook",
+      "label": "Personalization Hook (Optional)",
+      "type": "textarea",
+      "placeholder": "e.g. I saw you recently posted about scaling your sales team on LinkedIn. / Congrats on your Series B round!",
+      "required": false,
+      "max_length": 400,
+      "hint": "A recent event, post, or achievement you noticed. This dramatically increases reply rates."
+    },
+    {
+      "id": "tone",
+      "label": "Tone",
+      "type": "select",
+      "required": true,
+      "default": "friendly_professional",
+      "options": [
+        {
+          "value": "friendly_professional",
+          "label": "Friendly and Professional - warm but credible (recommended)"
+        },
+        {
+          "value": "direct_confident",
+          "label": "Direct and Confident - straight to the point, no fluff"
+        },
+        {
+          "value": "curious_consultative",
+          "label": "Curious and Consultative - question-led, low pressure"
+        },
+        {
+          "value": "casual_peer",
+          "label": "Casual Peer - like a message from a founder to another founder"
+        }
+      ]
+    },
+    {
+      "id": "output_type",
+      "label": "What Do You Want to Generate?",
+      "type": "multiselect",
+      "required": true,
+      "default": ["cold_email", "linkedin_dm"],
+      "options": [
+        { "value": "cold_email", "label": "Cold Email (with subject line)" },
+        { "value": "linkedin_dm", "label": "LinkedIn Direct Message" },
+        { "value": "followup_1", "label": "Follow-Up #1 (3-5 days later)" },
+        { "value": "followup_2", "label": "Follow-Up #2 (final bump)" },
+        { "value": "ab_variants", "label": "A/B Test Variants (2 versions)" }
+      ]
+    }
+  ],
+  "output_format": {
+    "sections": true,
+    "copy_buttons": true,
+    "character_count": true
+  },
+  "settings": {
+    "avoid_spam_words": true,
+    "enforce_brevity": true,
+    "human_tone_check": true,
+    "max_email_words": 120,
+    "max_linkedin_words": 80
+  }
+}

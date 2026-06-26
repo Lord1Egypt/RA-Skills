@@ -1,0 +1,66 @@
+{
+  "name": "comfyui-image-generator",
+  "version": "1.0.0",
+  "description": "ComfyUI 本地图像生成 - 自动启停服务器管理",
+  "author": "机械之神",
+  "emoji": "🜃",
+  
+  "triggers": [
+    "生成图片",
+    "画图",
+    "绘制",
+    "文生图",
+    "图生图",
+    "AI 绘画",
+    "AI 创作",
+    "画一个",
+    "生成一张"
+  ],
+  
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8000,
+    "auto_start": true,
+    "auto_stop_idle_minutes": 30,
+    "startup_timeout_seconds": 60,
+    "generation_timeout_seconds": 300
+  },
+  
+  "workflows": {
+    "text-to-image": {
+      "file": "assets/text-to-image.json",
+      "description": "文生图 - 纯文字生成图像"
+    },
+    "image-to-image": {
+      "file": "assets/image-to-image.json",
+      "description": "图生图 - 基于现有图片修改"
+    },
+    "controlnet": {
+      "file": "assets/controlnet.json",
+      "description": "ControlNet - 精确控制构图"
+    }
+  },
+  
+  "defaults": {
+    "width": 1024,
+    "height": 1024,
+    "steps": 4,
+    "cfg": 1.0,
+    "sampler": "res_multistep",
+    "seed": -1
+  },
+  
+  "paths": {
+    "output": "F:/comcyui 模型/output",
+    "models": "F:/comcyui 模型/models",
+    "input": "F:/comcyui 模型/input",
+    "user": "F:/comcyui 模型/user"
+  },
+  
+  "models": {
+    "checkpoint": "z_image_turbo_bf16.safetensors",
+    "clip": "qwen_3_4b.safetensors",
+    "vae": "ae.safetensors",
+    "controlnet": "Z-Image-Turbo-Fun-Controlnet-Union.safetensors"
+  }
+}

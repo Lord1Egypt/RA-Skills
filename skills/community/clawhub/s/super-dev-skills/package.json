@@ -1,0 +1,40 @@
+{
+  "name": "@openclaw/super-dev",
+  "version": "1.0.1",
+  "description": "全栈之神·自进化零缺陷交付 — 集成需求深访、TDD 驱动、安全门禁、架构设计、UI/UX 验证的全栈开发工具套件",
+  "type": "module",
+  "main": "index.ts",
+  "openclaw": {
+    "extensions": "./openclaw.plugin.json",
+    "compat": {
+      "pluginApi": ">=2026.3.8",
+      "minGatewayVersion": "2026.3.8"
+    },
+    "build": {
+      "openclawVersion": "2026.3.8",
+      "pluginSdkVersion": "2026.3.8"
+    }
+  },
+  "dependencies": {
+    "openclaw-sdk": "^2026.3.8"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "super-dev",
+    "tdd",
+    "security",
+    "architecture",
+    "ux",
+    "code-quality"
+  ],
+  "author": "WeedFire",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WeedFire/super-dev-skills"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

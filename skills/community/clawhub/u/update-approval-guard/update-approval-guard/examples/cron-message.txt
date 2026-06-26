@@ -1,0 +1,11 @@
+Check for updates to OpenClaw and all installed skills.
+
+Rules:
+1. Run check-only commands. Do not apply updates automatically.
+2. Create <workspace>/data/update-approval-guard/pending-update.json only when updates are found.
+3. Include current version, latest version, and whether each item has an update.
+4. Set status to pending_confirmation and expiry to 24 hours after creation.
+5. If a non-expired pending plan already exists, keep it and report that approval is still pending.
+6. If there are no updates, report that everything is current.
+7. Ask the user to confirm before any update can be executed.
+8. Never run the actual update command during this scheduled check.

@@ -1,0 +1,45 @@
+{
+  "name": "tianchuang-finance-kb",
+  "description": "Tianchuang Finance knowledge base skill for strict document retrieval",
+  "version": "1.0",
+  "author": "Tianchuang Finance Knowledge Base System",
+  "trigger_keywords": [
+    "天创财务",
+    "报销",
+    "预算",
+    "资金",
+    "外汇",
+    "支付",
+    "核决",
+    "风险",
+    "账期",
+    "差旅",
+    "样品",
+    "费用",
+    "审批",
+    "制度",
+    "规定",
+    "管理办法",
+    "实施细则",
+    "财务制度",
+    "资金管理",
+    "风险控制"
+  ],
+  "document_sources": [
+    "天创财字[2023]007号—关于样品报销（付款）补充规定.pdf",
+    "天创财字[2023]006号—预算管理制度.pdf",
+    "天创财字[2023]005号—资金集中管理【外汇收支管理办法】.pdf",
+    "天创财字[2023]004号—关于规范公司支付单据的说明.pdf",
+    "天创财字[2023]003号—资金管理制度.pdf",
+    "天创财字[2023]002号—风险控制管理制度.pdf",
+    "天创财字[2023]001号—核决权限管理制度.pdf",
+    "流程5-客户账期变更流程.pdf"
+  ],
+  "retrieval_rules": {
+    "strict_verbatim": true,
+    "no_summarization": true,
+    "chinese_output_only": true,
+    "multi_match_separation": "\n",
+    "relevance_threshold": 0.85
+  }
+}

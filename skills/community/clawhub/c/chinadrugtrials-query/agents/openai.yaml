@@ -1,0 +1,5 @@
+interface:
+  display_name: "ChinaDrugTrials Query"
+  short_description: "Query CTR records with full details"
+  default_prompt: "Use $chinadrugtrials-query to search chinadrugtrials.org.cn for a drug and return registrations with company, date, and official detail links."
+

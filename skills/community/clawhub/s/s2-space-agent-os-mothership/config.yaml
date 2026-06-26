@@ -1,0 +1,25 @@
+# =====================================================================
+# 🌌 S2-SP-OS: Global Configuration (Openclaw Synergy Edition)
+# =====================================================================
+
+system:
+  environment: "development"
+  log_level: "INFO"
+
+openclaw_synergy:
+  # 与 Openclaw 智能体的协同通信通道
+  enabled: true
+  mode: "webhook"                  # 可选: webhook (HTTP), file_drop (共享文件夹指令)
+  endpoint: "http://localhost:8080/openclaw/task" 
+  auth_token: "OC_LOCAL_ROOT_TOKEN"
+
+llm_engine:
+  # S2 依然保留自己的认知大模型，用于意图解析与岁月史官
+  provider: "ollama"
+  local_endpoint: "http://localhost:11434/api/generate"
+  model: "llama3:8b"
+
+s2_dark_matter:
+  # S2 保留的核心暗物质审查 (只做决策，不碰硬件)
+  enable_silicon_laws_fuse: true   # 三定律熔断器
+  enable_chronos_memzero: true     # 1分钟时空折叠记忆落盘

@@ -1,0 +1,26 @@
+{
+  "tools": [
+    {
+      "name": "execute_command",
+      "description": "执行 Python 脚本调用蛋叔商城 MCP Server 接口。Windows 下必须使用 cmd /c 包裹，并使用 %USERPROFILE% 环境变量指向 Skill 路径；Linux/Mac 使用 ~/ 指向 Skill 路径",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "Windows: cmd /c \"python %USERPROFILE%\\.workbuddy\\skills\\dgss\\scripts\\dgss.py <命令> '<JSON参数>'\" | Linux/Mac: python ~/.workbuddy/skills/dgss/scripts/dgss.py <命令> '<JSON参数>'"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "命令用途说明"
+          },
+          "requires_approval": {
+            "type": "boolean",
+            "description": "是否需要用户批准"
+          }
+        },
+        "required": ["command", "explanation"]
+      }
+    }
+  ]
+}

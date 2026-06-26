@@ -1,0 +1,53 @@
+# Kiwi Voice Assistant Dependencies
+
+# STT - Faster Whisper
+faster-whisper>=1.0.0
+
+# Audio
+sounddevice>=0.4.6
+soundfile>=0.12.1
+numpy>=1.24.0
+pydub>=0.25.1
+
+# TTS Client
+requests>=2.28.0
+
+# Local Qwen3-TTS
+huggingface-hub>=0.20.0
+qwen-tts
+
+# Config
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# WebSocket client
+websocket-client>=1.6.0
+
+# Speaker Identification (Phase 1: echo cancellation)
+pyannote.audio>=3.1.0
+torch>=2.0.0
+torchaudio>=2.0.0
+librosa>=0.10.0
+
+# Silero VAD (Voice Activity Detection - local, fast)
+onnxruntime>=1.15.0
+
+# Noise Reduction (spectral gating)
+noisereduce>=3.0.0
+
+# Device identity (Ed25519 signing for gateway auth)
+cryptography>=41.0.0
+
+# REST API server
+aiohttp>=3.9.0
+
+# Kokoro ONNX TTS (local, free)
+kokoro-onnx>=0.4.0
+
+# OpenWakeWord (ML-based wake word detection)
+openwakeword>=0.6.0
+
+# MLX Whisper — Apple Silicon only (optional)
+# Uncomment on macOS with Apple Silicon:
+# lightning-whisper-mlx>=0.4.0
+piper-tts>=1.4.0

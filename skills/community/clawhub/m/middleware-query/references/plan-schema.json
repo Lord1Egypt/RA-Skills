@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Middleware Query Plan",
+  "type": "object",
+  "required": ["datasource", "profile", "action"],
+  "properties": {
+    "datasource": {
+      "type": "string",
+      "enum": ["mysql", "redis", "mongo"]
+    },
+    "profile": {"type": "string", "minLength": 1},
+    "action": {"type": "string"},
+    "limit": {"type": "integer", "minimum": 1, "maximum": 1000},
+
+    "sql": {"type": "string", "minLength": 1},
+
+    "key": {"type": "string"},
+    "keys": {"type": "array", "items": {"type": "string"}, "maxItems": 200},
+    "field": {"type": "string"},
+    "pattern": {"type": "string"},
+    "count": {"type": "integer", "minimum": 1, "maximum": 1000},
+    "start": {"type": "integer"},
+    "stop": {"type": "integer"},
+
+    "collection": {"type": "string"},
+    "filter": {"type": "object"},
+    "projection": {"type": "object"},
+    "pipeline": {"type": "array", "items": {"type": "object"}, "maxItems": 100}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"datasource": {"const": "mysql"}}},
+      "then": {
+        "required": ["sql"],
+        "properties": {"action": {"const": "sql_query"}}
+      }
+    },
+    {
+      "if": {"properties": {"datasource": {"const": "redis"}}},
+      "then": {
+        "properties": {
+          "action": {
+            "enum": ["get", "mget", "hget", "hgetall", "smembers", "zrange", "scan", "ttl", "type"]
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"datasource": {"const": "mongo"}}},
+      "then": {
+        "required": ["collection"],
+        "properties": {"action": {"enum": ["find", "aggregate"]}}
+      }
+    }
+  ],
+  "additionalProperties": true
+}

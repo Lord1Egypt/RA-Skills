@@ -1,0 +1,108 @@
+{
+  "name": "mao-emperors",
+  "version": "1.0.0",
+  "description": "帝王会议 - 毛选思想 Multi-Agent 决策系统。毛主席指挥秦始皇、汉武帝、唐太宗、朱元璋，用矛盾论/实践论/群众路线为你分析战略、组织、决策问题。",
+  "author": "水星魔女",
+  "license": "MIT",
+  "repository": "https://github.com/your-username/openclaw-skills",
+  "homepage": "http://www.threethreeliu.top",
+  "tags": [
+    "multi-agent",
+    "strategy",
+    "decision-making",
+    "chinese-history",
+    "philosophy",
+    "mao",
+    "leadership",
+    "management"
+  ],
+  "triggers": [
+    "帝王会议",
+    "毛选 multi-agent",
+    "用毛选思想分析",
+    "矛盾分析",
+    "群众路线",
+    "实践论",
+    "矛盾论",
+    "战略分析",
+    "组织设计"
+  ],
+  "capabilities": [
+    "multi_agent_coordination",
+    "strategic_analysis",
+    "contradiction_analysis",
+    "mass_line",
+    "decision_making",
+    "organizational_design",
+    "career_advice",
+    "problem_solving"
+  ],
+  "agents": [
+    {
+      "name": "毛主席",
+      "role": "会议主席，思想指导，战略决策",
+      "file": "agents/MAO.md",
+      "expertise": ["矛盾论", "实践论", "群众路线", "实事求是"]
+    },
+    {
+      "name": "秦始皇",
+      "role": "制度建设，中央集权",
+      "file": "agents/QIN_SHIHUANG.md",
+      "expertise": ["法家思想", "标准化", "中央集权"]
+    },
+    {
+      "name": "汉武帝",
+      "role": "对外战略，思想统一",
+      "file": "agents/HAN_WUDI.md",
+      "expertise": ["扩张战略", "意识形态", "对外开放"]
+    },
+    {
+      "name": "唐太宗",
+      "role": "用人纳谏，治理艺术",
+      "file": "agents/TANG_TAIZONG.md",
+      "expertise": ["团队建设", "民主集中", "历史反思"]
+    },
+    {
+      "name": "朱元璋",
+      "role": "阶级分析，群众动员",
+      "file": "agents/ZHU_YUANZHANG.md",
+      "expertise": ["人民立场", "反腐败", "群众动员"]
+    }
+  ],
+  "corePhilosophy": {
+    "contradiction": "矛盾的普遍性与特殊性，主要矛盾与次要矛盾",
+    "practice": "实践→认识→再实践→再认识",
+    "massLine": "从群众中来，到群众中去",
+    "seekTruth": "实事求是，具体问题具体分析",
+    "unitedFront": "团结一切可以团结的力量"
+  },
+  "useCases": [
+    "公司战略方向选择",
+    "个人职业发展规划",
+    "团队架构优化",
+    "跨部门协作问题",
+    "多方利益冲突分析",
+    "重大决策风险评估",
+    "执行计划制定"
+  ],
+  "examples": [
+    {
+      "title": "公司管理问题",
+      "query": "帝王会议，公司部门之间协作不畅，各自为政，如何改善？",
+      "output": "会议分析：主要矛盾（部门局部利益 vs 公司整体利益）+ 4 位帝王建议 + 执行计划"
+    },
+    {
+      "title": "个人职业发展",
+      "query": "帝王会议，我是技术出身，想转管理，但担心失去技术优势，怎么办？",
+      "output": "会议分析：技术深度 vs 管理广度 + 辩证统一策略 + 分阶段执行计划"
+    }
+  ],
+  "requirements": {
+    "openclaw": ">=2026.3.0"
+  },
+  "relatedSkills": [
+    "guilliman-strategist",
+    "coding-agent",
+    "academic-deep-research"
+  ]
+}

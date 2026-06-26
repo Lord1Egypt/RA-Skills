@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PPT区域数据结构",
+  "description": "用于PPT复刻的区域描述标准格式，基于Images2Slides论文",
+  "type": "object",
+  "required": ["image_path", "width", "height", "regions"],
+  "properties": {
+    "image_path": {
+      "type": "string",
+      "description": "源图像文件路径"
+    },
+    "width": {
+      "type": "number",
+      "description": "源图像宽度(像素)"
+    },
+    "height": {
+      "type": "number",
+      "description": "源图像高度(像素)"
+    },
+    "regions": {
+      "type": "array",
+      "description": "区域数组",
+      "items": {
+        "$ref": "#/definitions/Region"
+      }
+    }
+  },
+  "definitions": {
+    "Region": {
+      "type": "object",
+      "required": ["id", "type", "bounds"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "区域唯一标识"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["rectangle", "text", "image", "line", "shape"],
+          "description": "区域类型"
+        },
+        "role": {
+          "type": "string",
+          "description": "区域角色: header_bar, title, body, data_card, footer等"
+        },
+        "bounds": {
+          "$ref": "#/definitions/Bounds"
+        },
+        "color": {
+          "type": "string",
+          "description": "主要颜色(hex)"
+        },
+        "fill": {
+          "type": "string",
+          "description": "填充颜色(hex)"
+        },
+        "lineColor": {
+          "type": "string",
+          "description": "边框颜色"
+        },
+        "lineWidth": {
+          "type": "number",
+          "description": "边框宽度"
+        },
+        "content": {
+          "type": "string",
+          "description": "文本内容(type=text时)"
+        },
+        "fontSize": {
+          "type": "number",
+          "description": "字体大小"
+        },
+        "fontFamily": {
+          "type": "string",
+          "description": "字体名称"
+        },
+        "bold": {
+          "type": "boolean",
+          "description": "是否加粗"
+        },
+        "align": {
+          "type": "string",
+          "enum": ["left", "center", "right"],
+          "description": "水平对齐"
+        },
+        "valign": {
+          "type": "string",
+          "enum": ["top", "middle", "bottom"],
+          "description": "垂直对齐"
+        },
+        "imagePath": {
+          "type": "string",
+          "description": "图片路径(type=image时)"
+        },
+        "zIndex": {
+          "type": "number",
+          "description": "叠加顺序"
+        },
+        "dashType": {
+          "type": "string",
+          "enum": ["solid", "dash", "lgDash", "sysDash"],
+          "description": "线条样式"
+        }
+      }
+    },
+    "Bounds": {
+      "type": "object",
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "左上角X坐标(像素)"
+        },
+        "y": {
+          "type": "number",
+          "description": "左上角Y坐标(像素)"
+        },
+        "width": {
+          "type": "number",
+          "description": "宽度(像素)"
+        },
+        "height": {
+          "type": "number",
+          "description": "高度(像素)"
+        }
+      }
+    }
+  }
+}

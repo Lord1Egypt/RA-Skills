@@ -1,0 +1,70 @@
+{
+  "name": "wecom-deep-op",
+  "version": "1.0.0",
+  "description": "Enterprise WeChat (wecom) all-in-one MCP wrapper skill - unifies doc, schedule, meeting, todo, contact operations",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write src/",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+  },
+  "files": [
+    "dist",
+    "src",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "skill.yml"
+  ],
+  "keywords": [
+    "openclaw",
+    "skill",
+    "wecom",
+    "enterprise-wechat",
+    "mcp",
+    "document",
+    "calendar",
+    "meeting",
+    "todo",
+    "contact"
+  ],
+  "author": "老白 <bingbox0515@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bingbox/wecom-deep-op.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bingbox/wecom-deep-op/issues"
+  },
+  "homepage": "https://github.com/Bingbox/wecom-deep-op#readme",
+  "openclaw": {
+    "skill": {
+      "name": "wecom-deep-op",
+      "label": "企业微信全能操作",
+      "description": "一站式企业微信自动化：文档、日历、会议、待办、通讯录",
+      "category": "productivity",
+      "tags": ["wecom", "enterprise", "document", "calendar", "meeting", "todo", "contact"],
+      "inputs": [],
+      "outputs": []
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "prettier": "^3.0.0",
+    "rollup": "^4.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "tslib": "^2.6.0",
+    "typescript": "^5.0.0"
+  }
+}

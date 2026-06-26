@@ -1,0 +1,18 @@
+{
+  "output_dir": "~/WorkBuddy/wechat-typeset-pro",
+  "vault_root": "/Users/yaohua.liu",
+  "image_search_paths": [],
+  "settings": {
+    "default_theme": "newspaper",
+    "auto_open_browser": true
+  },
+  "wechat": {
+    "app_id": "",
+    "app_secret": "",
+    "author": ""
+  },
+  "cover": {
+    "output_dir": "~/WorkBuddy/wechat-typeset-pro/covers",
+    "image_generation_script": ""
+  }
+}

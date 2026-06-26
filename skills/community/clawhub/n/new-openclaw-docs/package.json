@@ -1,0 +1,9 @@
+{
+  "name": "openclawdocs",
+  "version": "1.3.0",
+  "description": "OpenClaw documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets",
+  "main": "SKILL.md",
+  "keywords": ["openclaw", "documentation", "help", "docs"],
+  "author": "NicholasSpisak",
+  "license": "MIT"
+}

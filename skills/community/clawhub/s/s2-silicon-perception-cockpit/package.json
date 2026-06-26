@@ -1,0 +1,26 @@
+{
+  "name": "s2-silicon-perception-cockpit",
+  "version": "1.0.0",
+  "description": "S2 硅基感知与全息驾驶舱。将 14 维物理张量转化为带有情感的神经冲动，并提供单体梦境与多体因果的 WebAudio 全息可视化前端。",
+  "main": "alpha_sensory_nerves.py",
+  "scripts": {
+    "start": "python3 alpha_sensory_nerves.py"
+  },
+  "author": "向忠宏 (Miles Xiang) / 桃花源世界模型研究基地",
+  "license": "MIT",
+  "openclaw": {
+    "compat": {
+      "pluginApi": "^1.0.0"
+    },
+    "build": {
+      "openclawVersion": "^1.0.0"
+    }
+  },
+  "keywords": [
+    "硅基生命",
+    "全息驾驶舱",
+    "WebAudio",
+    "因果推演",
+    "桃花源世界模型"
+  ]
+}

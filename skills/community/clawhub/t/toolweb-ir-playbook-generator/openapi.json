@@ -1,0 +1,253 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Incident Response Playbook Generator API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/ir/playbook": {
+      "post": {
+        "summary": "Generate Playbook",
+        "description": "Generate customized incident response playbook",
+        "operationId": "generate_playbook_api_ir_playbook_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaybookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaybookResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ir/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Health check endpoint",
+        "operationId": "health_check_api_ir_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Root endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PlaybookRequest": {
+        "properties": {
+          "assessmentData": {
+            "type": "object",
+            "title": "Assessmentdata"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Userid"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assessmentData",
+          "sessionId"
+        ],
+        "title": "PlaybookRequest"
+      },
+      "PlaybookResponse": {
+        "properties": {
+          "playbook_title": {
+            "type": "string",
+            "title": "Playbook Title"
+          },
+          "organization_name": {
+            "type": "string",
+            "title": "Organization Name"
+          },
+          "executive_summary": {
+            "type": "string",
+            "title": "Executive Summary"
+          },
+          "phases": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Phases"
+          },
+          "roles": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Roles"
+          },
+          "communication_templates": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Communication Templates"
+          },
+          "escalation_procedures": {
+            "type": "string",
+            "title": "Escalation Procedures"
+          },
+          "legal_considerations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Legal Considerations"
+          },
+          "contact_list": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Contact List"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "playbook_title",
+          "organization_name",
+          "executive_summary",
+          "phases",
+          "roles",
+          "communication_templates",
+          "escalation_procedures",
+          "legal_considerations",
+          "contact_list",
+          "session_id",
+          "timestamp"
+        ],
+        "title": "PlaybookResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

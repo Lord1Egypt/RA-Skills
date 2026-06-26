@@ -1,0 +1,16 @@
+[project]
+name = "redact-skill"
+version = "0.1.0"
+description = "Privacy redaction and document reading tools for images, PDFs, Word, and PowerPoint files"
+readme = "SKILL.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pillow",
+    "pymupdf",
+    "python-docx",
+    "python-pptx",
+    "paddleocr[all]",
+    "paddlex[ocr]",
+    "paddlepaddle",
+]
+

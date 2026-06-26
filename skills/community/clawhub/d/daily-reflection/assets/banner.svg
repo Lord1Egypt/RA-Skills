@@ -1,0 +1,13 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="200" fill="url(#bg)" rx="12"/>
+  <text x="60" y="90" font-family="monospace" font-size="52">🌅</text>
+  <text x="140" y="82" font-family="monospace" font-size="28" font-weight="bold" fill="#ffffff">daily-reflection</text>
+  <text x="140" y="115" font-family="monospace" font-size="14" fill="#6366f1">Automated end-of-day reflection for OpenClaw agents</text>
+  <text x="140" y="148" font-family="monospace" font-size="12" fill="#64748b">Builds long-term memory · Detects patterns · Prepares morning briefings</text>
+</svg>

@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_read_informat_script_sdk",
+    "description": "Query the script SDK documentation of Informat. It provides all the functions implemented by the Informat platform, and the return value is String",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

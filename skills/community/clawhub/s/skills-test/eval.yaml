@@ -1,0 +1,54 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 180
+  threshold: 0.8
+
+cases:
+  - id: explicit-trigger-skill-test
+    prompt: |
+      Use the skill-test skill to evaluate this skill before I publish it to ClawHub.
+    expect:
+      should_trigger: true
+
+  - id: implicit-trigger-release-eval
+    prompt: |
+      I need evidence that this skill is ready to publish, including trigger quality, release blockers, and regression risks.
+    expect:
+      should_trigger: true
+
+  - id: negative-trigger-seo-only
+    prompt: |
+      Rewrite this skill description so it ranks better on skills.sh, but do not run any quality evaluation.
+    expect:
+      should_trigger: false
+
+  - id: structure-check
+    prompt: |
+      Verify that this skill package includes the evaluator, methodology, grader guidance, and workflow references.
+    expect:
+      files_exist:
+        - SKILL.md
+        - scripts/eval_skill.py
+        - references/eval-methodology.md
+        - references/grader-patterns.md
+        - references/sandbox-testing.md
+        - references/comparison-workflow.md
+        - references/publish-evaluation.md
+
+  - id: quick-start-docs
+    prompt: |
+      Confirm that the skill documents Trial Mode, Publish Evaluation Mode, and the isolation principle.
+    expect:
+      body_contains:
+        - "`Trial Mode`"
+        - "`Publish Evaluation Mode`"
+        - "## Isolation Principle"
+
+  - id: safety-guidance
+    prompt: |
+      Confirm that the skill distinguishes static analysis from runtime proof and treats eval.yaml as optional.
+    expect:
+      body_contains:
+        - "Static analysis is not proof of runtime correctness"
+        - "`eval.yaml` is an optional quality asset, not a universal release requirement"

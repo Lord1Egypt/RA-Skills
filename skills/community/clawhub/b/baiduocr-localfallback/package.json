@@ -1,0 +1,118 @@
+{
+  "name": "BaiduOCR-LocalFallback-skill",
+  "version": "1.1.0",
+  "description": "115+ Baidu OCR API interfaces with EasyOCR local fallback",
+  "author": "xx235300",
+  "license": "MIT",
+  "homepage": "https://github.com/xx235300/BaiduOCR-LocalFallback",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xx235300/BaiduOCR-LocalFallback.git"
+  },
+  "keywords": [
+    "ocr",
+    "baidu",
+    "文字识别",
+    "easyocr",
+    "handwriting",
+    "idcard",
+    "receipt"
+  ],
+  "python": {
+    "version": ">=3.8",
+    "dependencies": [
+      "requests>=2.28.0",
+      "easyocr>=1.7.0",
+      "Pillow>=9.0.0"
+    ]
+  },
+  "openclaw": {
+    "skill": {
+      "name": "BaiduOCR-LocalFallback",
+      "displayName": "BaiduOCR-LocalFallback",
+      "description": "115+ Baidu OCR API interfaces with EasyOCR local fallback — auto-switches to local recognition when the network is unstable",
+      "version": "1.1.0",
+      "author": "xx235300",
+      "tags": [
+        "ocr",
+        "文字识别",
+        "图像处理",
+        "easyocr",
+        "baidu"
+      ],
+      "apis": [
+        "general_basic",
+        "general",
+        "accurate",
+        "accurate_basic",
+        "webimage",
+        "idcard",
+        "bankcard",
+        "passport",
+        "receipt",
+        "vat_invoice",
+        "handwriting",
+        "table",
+        "formula"
+      ]
+    },
+    "config": {
+      "api_key": {
+        "type": "string",
+        "required": true,
+        "description": "Baidu OCR API Key (from Baidu Cloud Console)"
+      },
+      "secret_key": {
+        "type": "string",
+        "required": true,
+        "description": "Baidu OCR Secret Key (from Baidu Cloud Console)"
+      },
+      "use_fallback": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable EasyOCR local fallback when Baidu OCR is unavailable"
+      }
+    },
+    "install": {
+      "type": "script",
+      "script": "install.sh",
+      "steps": [
+        "Detect OS (macOS / Linux / Windows)",
+        "Check Python 3.8+",
+        "Install Python dependencies (requests, easyocr, Pillow)",
+        "Create config directory ~/.openclaw/skills/BaiduOCR-LocalFallback/",
+        "Interactive API key configuration (or skip and configure later)",
+        "Test Baidu OCR connection"
+      ],
+      "requires": ["python3"]
+    },
+    "security": {
+      "warnings": [
+        "Requires Baidu API Key + Secret Key — do not share credentials",
+        "Stores credentials in plaintext at ~/.openclaw/skills/BaiduOCR-LocalFallback/config.json (chmod 600 recommended)",
+        "Makes outbound network calls to Baidu OCR API and downloads EasyOCR models (~100MB)",
+        "Do not send highly sensitive images to remote OCR without understanding Baidu's data retention policy",
+        "For higher security, use environment variables instead of config file"
+      ]
+    },
+    "examples": [
+      {
+        "title": "General text recognition",
+        "code": "ocr.recognize(image='/path/to/image.jpg', api='general_basic')"
+      },
+      {
+        "title": "ID card recognition",
+        "code": "ocr.recognize(image='/path/to/idcard.jpg', api='idcard', id_card_side='front')"
+      },
+      {
+        "title": "Handwriting (local fallback)",
+        "code": "ocr.recognize(image='/path/to/handwriting.jpg', api='handwriting')"
+      }
+    ]
+  },
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "python3 scripts/ocr.py --test-connection",
+    "show-apis": "python3 scripts/ocr.py --show-apis"
+  }
+}

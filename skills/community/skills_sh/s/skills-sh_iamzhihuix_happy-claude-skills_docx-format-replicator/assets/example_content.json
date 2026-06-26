@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "title": "Example Research Task Specification",
+    "author": "Research Team",
+    "version": "1.0",
+    "date": "2025-01-15"
+  },
+  "sections": [
+    {
+      "type": "heading",
+      "content": "引言",
+      "level": 1,
+      "number": "1"
+    },
+    {
+      "type": "paragraph",
+      "content": "本文档定义了示例产品的研制任务和技术要求。"
+    },
+    {
+      "type": "heading",
+      "content": "产品名称及代号",
+      "level": 1,
+      "number": "2"
+    },
+    {
+      "type": "paragraph",
+      "content": "产品名称：示例控制系统"
+    },
+    {
+      "type": "paragraph",
+      "content": "产品代号：EX-2025-001"
+    },
+    {
+      "type": "heading",
+      "content": "产品组成及功能",
+      "level": 1,
+      "number": "3"
+    },
+    {
+      "type": "heading",
+      "content": "产品组成",
+      "level": 2,
+      "number": "3.1"
+    },
+    {
+      "type": "paragraph",
+      "content": "本产品由以下部分组成："
+    },
+    {
+      "type": "paragraph",
+      "content": "1. 主控单元\n2. 通信模块\n3. 电源模块\n4. 接口板"
+    },
+    {
+      "type": "heading",
+      "content": "功能要求",
+      "level": 2,
+      "number": "3.2"
+    },
+    {
+      "type": "paragraph",
+      "content": "系统应具备数据采集、处理和通信功能。"
+    },
+    {
+      "type": "heading",
+      "content": "技术指标要求",
+      "level": 1,
+      "number": "4"
+    },
+    {
+      "type": "heading",
+      "content": "电气要求",
+      "level": 2,
+      "number": "4.1"
+    },
+    {
+      "type": "heading",
+      "content": "电源要求",
+      "level": 3,
+      "number": "4.1.1"
+    },
+    {
+      "type": "table",
+      "rows": 4,
+      "columns": ["3000", "7000"],
+      "cells": [
+        ["参数", "指标"],
+        ["输入电压", "220V AC ± 10%"],
+        ["功耗", "≤ 500W"],
+        ["频率", "50Hz ± 2Hz"]
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "使用要求",
+      "level": 1,
+      "number": "5"
+    },
+    {
+      "type": "heading",
+      "content": "质量要求",
+      "level": 2,
+      "number": "5.1"
+    },
+    {
+      "type": "paragraph",
+      "content": "产品应符合相关质量标准，通过所有必要的测试和验证。"
+    },
+    {
+      "type": "heading",
+      "content": "环境要求",
+      "level": 2,
+      "number": "5.2"
+    },
+    {
+      "type": "paragraph",
+      "content": "工作温度：-20°C ~ +55°C\n储存温度：-40°C ~ +70°C\n相对湿度：≤95%（无凝露）"
+    }
+  ]
+}

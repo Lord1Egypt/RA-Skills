@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-RISK-001",
+  "risk_points": [
+    {
+      "id": "RISK-001",
+      "source": "集中度预警-行情波动导致集中度突变",
+      "category": "data_integrity",
+      "severity": "high",
+      "description": "股票价格剧烈波动导致集中度在短时间内跨越多个阈值，可能遗漏中间级别预警或重复触发",
+      "impact": "投资者未收到逐级预警，或短时间内收到大量重复通知",
+      "mitigation": "预警计算引入防抖机制，确保每个阈值级别仅触发一次，且按级别顺序推送"
+    },
+    {
+      "id": "RISK-002",
+      "source": "集中度预警-通知渠道故障",
+      "category": "timeout",
+      "severity": "medium",
+      "description": "APP推送或短信网关故障导致预警通知无法送达投资者",
+      "impact": "投资者未及时收到预警，可能继续加仓导致风险扩大",
+      "mitigation": "通知发送失败时自动重试，超过重试次数后记录告警日志并通知运维"
+    },
+    {
+      "id": "RISK-003",
+      "source": "集中度预警-阈值配置错误",
+      "category": "data_integrity",
+      "severity": "high",
+      "description": "管理员误将阈值设置为不合理值（如提醒阈值高于禁止买入阈值），导致预警逻辑混乱",
+      "impact": "预警级别判定错误，可能在低集中度时禁止买入或高集中度时仅提醒",
+      "mitigation": "阈值修改时校验三级阈值的大小关系，提醒<警告<禁止买入，不满足则拒绝保存"
+    }
+  ],
+  "risk_summary": {
+    "total": 3,
+    "by_severity": {
+      "high": 2,
+      "medium": 1
+    }
+  }
+}

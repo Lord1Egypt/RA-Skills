@@ -1,0 +1,112 @@
+# CivilLabClaw-AI 配置示例
+
+# ============================================
+# 全局配置
+# ============================================
+output_dir: D:\Personal\OpenClaw\civil-ai-outputs
+model_dir: D:\Personal\OpenClaw\skills\CivilLabClaw-AI\models
+data_dir: D:\Personal\OpenClaw\skills\CivilLabClaw-AI\data
+log_level: INFO
+
+# ============================================
+# ML-Struct 配置
+# ============================================
+ml_struct:
+  default_model: gpr  # gpr, nn, xgboost
+  uncertainty_quant: true
+  ci_level: 0.95
+  
+  # GPR 参数
+  gpr:
+    kernel: RBF
+    alpha: 1e-10
+    n_restarts_optimizer: 10
+  
+  # 神经网络参数
+  nn:
+    hidden_layers: [128, 64, 32]
+    activation: relu
+    dropout: 0.2
+    epochs: 100
+    batch_size: 32
+
+# ============================================
+# DL-Damage 配置
+# ============================================
+dl_damage:
+  default_model: yolo  # cnn, yolo, mask_rcnn
+  detection_threshold: 0.5
+  min_crack_width: 0.1  # mm
+  
+  # YOLO 参数
+  yolo:
+    input_size: 640
+    confidence_threshold: 0.5
+    iou_threshold: 0.45
+  
+  # 图像预处理
+  preprocessing:
+    resize: [1024, 768]
+    normalize: true
+    enhance: false
+
+# ============================================
+# DigitalTwin 配置
+# ============================================
+digital_twin:
+  default_model: rom  # fem, rom, data_driven
+  update_frequency: 100  # Hz
+  rom_order: 10
+  
+  # 数据同化
+  assimilation:
+    method: kalman  # kalman, extended_kalman, particle
+    process_noise: 1e-6
+    measurement_noise: 1e-4
+  
+  # FEM 接口
+  fem:
+    software: opensees  # opensees, abaqus, ansys
+    parallel: true
+
+# ============================================
+# SmartMonitor 配置
+# ============================================
+smart_monitor:
+  sampling_rate: auto  # auto 或指定数值
+  anomaly_method: AE  # AE, statistical, one_class_svm
+  
+  # 特征提取
+  features:
+    time_domain: true
+    frequency_domain: true
+    time_frequency: false
+  
+  # 模态分析
+  modal:
+    method: FDD  # FDD, SSI
+    max_modes: 10
+    freq_range: [0, 50]  # Hz
+  
+  # 异常检测
+  anomaly:
+    threshold_percentile: 99
+    min_anomaly_duration: 5  # 秒
+
+# ============================================
+# 可视化配置
+# ============================================
+visualization:
+  format: png  # png, svg, pdf
+  dpi: 300
+  figsize: [10, 6]
+  style: seaborn
+
+# ============================================
+# 报告配置
+# ============================================
+report:
+  format: markdown  # markdown, pdf, html
+  include_plots: true
+  include_raw_data: false
+  template: default

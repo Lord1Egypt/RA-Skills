@@ -1,0 +1,30 @@
+identity:
+  name: generate_artifact_document
+  label:
+    en_US: Generate Formal Artifact
+    zh_Hans: 生成正式交付件
+description:
+  human:
+    en_US: Generate a numbered DOCX formal artifact inside the approved workspace.
+    zh_Hans: 在批准工作区内生成编号 DOCX 正式交付件。
+parameters:
+  - name: company_dir
+    type: string
+    required: true
+  - name: title
+    type: string
+    required: true
+  - name: category
+    type: select
+    required: true
+    options:
+      - business
+      - delivery
+      - product
+      - operations
+  - name: summary
+    type: string
+    required: true
+  - name: evidence
+    type: string
+    required: false

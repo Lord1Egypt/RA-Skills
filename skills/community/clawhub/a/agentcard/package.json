@@ -1,0 +1,19 @@
+{
+  "name": "asg-card",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "api",
+    "sdk",
+    "web",
+    "cli",
+    "mcp-server"
+  ],
+  "scripts": {
+    "build": "npm run -ws build",
+    "dev": "npm run -w @asgcard/web dev",
+    "dev:api": "npm run -w @asgcard/api dev",
+    "start": "npm run -w @asgcard/api start",
+    "typecheck": "npm run -ws typecheck"
+  }
+}

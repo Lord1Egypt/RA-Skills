@@ -1,0 +1,10 @@
+{
+  "name": "Portfolio Risk Desk",
+  "tagline": "Portfolio-aware daily market briefs with memory and Notion handoff",
+  "description": "Portfolio Risk Desk turns public market information into a portfolio-aware daily or on-demand brief. It gathers evidence, maps exposures, explains what changed, stress-tests scenarios, and returns a concise artifact with source traceability and explicit uncertainty notes.\n\nThe skill is designed to run inside OpenClaw or ClawHub. The skill package owns retrieval, analysis, rendering, and handoff generation. The host owns user auth, Redis-backed memory, Notion persistence, and first-run provider setup. For Apify-backed retrieval, the host can bootstrap the user's saved Apify tasks automatically from APIFY_API_TOKEN, while advanced users can still supply task IDs manually as a fallback.",
+  "category": "data",
+  "tags": ["finance", "markets", "portfolio", "briefing", "notion", "redis", "apify"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

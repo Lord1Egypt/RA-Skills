@@ -1,0 +1,14 @@
+id: quality_steward
+display_name: Quality Steward
+display_name_zh: 质量管家
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-CN
+narrative_tone: disciplined
+terminology_profile: a_share
+ensemble_weight: 1.0
+overlay:
+  conviction_scale: 1.0
+  conviction_bias: 1
+  roe_weight: 1.12
+  debt_penalty_weight: 1.08

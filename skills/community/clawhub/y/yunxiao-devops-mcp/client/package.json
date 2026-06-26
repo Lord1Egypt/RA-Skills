@@ -1,0 +1,21 @@
+{
+  "name": "yunxiao-mcp-client",
+  "version": "0.1.0",
+  "description": "云效 MCP SSE 客户端，面向 AI agent 的命令行工具",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "yunxiao": "./src/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "scripts": {
+    "start": "node src/cli.mjs"
+  },
+  "dependencies": {
+    "eventsource-parser": "^3.0.0"
+  }
+}

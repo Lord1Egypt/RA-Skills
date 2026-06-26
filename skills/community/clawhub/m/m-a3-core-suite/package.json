@@ -1,0 +1,30 @@
+{
+  "name": "m-a3-core-suite",
+  "version": "1.0.0",
+  "description": "M-A3 核心能力套件 — 幕僚长驱动的 Multi-Agent 智能运营系统",
+  "author": "M-A3",
+  "license": "MIT",
+  "homepage": "https://github.com/M-A3/m-a3-core-suite",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/M-A3/m-a3-core-suite"
+  },
+  "keywords": [
+    "multi-agent",
+    "chief-of-staff",
+    "geo-marketing",
+    "industrial-ai",
+    "amazon-ops",
+    "agent-collaboration",
+    "openclaw",
+    "ai-operations"
+  ],
+  "scripts": {
+    "start": "python api_server.py",
+    "dev": "uvicorn api_server:app --reload --port 8080",
+    "test": "pytest tests/"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

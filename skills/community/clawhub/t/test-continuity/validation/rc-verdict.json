@@ -1,0 +1,76 @@
+{
+  "_note": "Historical validation record from pre-release acceptance review. This package is now the sole public mainline.",
+  "verdict": "structurally_validated_pre_release",
+  "prior_verdict": "github_grade_release_candidate",
+  "acceptance_line": {
+    "acceptable_if": [
+      "no structural routing failure",
+      "no core arbiter misordering between task, wake seed, proactive, rhythm, and cron",
+      "closure and writeback boundaries still hold",
+      "/new continuity is not broken",
+      "validation does not leave state pollution behind",
+      "remaining issues are patch-level rather than redesign-level"
+    ],
+    "not_acceptable_if": [
+      "task or progress hooks lose to generic proactive follow-up",
+      "sleep, work-dnd, and wake phases fight each other",
+      "closure becomes unreliable",
+      "proactive self-pollutes long-term memory",
+      "/new continuity misanchors or silently drops",
+      "the implementation still needs a major path rewrite"
+    ]
+  },
+  "validation_summary": {
+    "followup_harness_20260427_065450": {
+      "pass_count": 14,
+      "fail_count": 0,
+      "evidence": "python3 scripts/followup_skill_harness.py --absence-minutes 3",
+      "notes": "Includes same-day wake handoff guard in the time_sense case."
+    },
+    "clawhub_metadata_20260427": {
+      "pass_count": 1,
+      "fail_count": 0,
+      "evidence": "_meta.json now declares the same OS, python3 binary, and OpenClaw env requirements as SKILL.md metadata.",
+      "notes": "Scanner-facing metadata alignment only; no runtime behavior changed."
+    },
+    "clawhub_core_bundle_20260427": {
+      "pass_count": 1,
+      "fail_count": 0,
+      "evidence": ".clawhubignore excludes host-only operator templates and near-live QA runners from ClawHub installs.",
+      "notes": "Portable skill core remains unchanged; GitHub source retains maintainer-only examples."
+    },
+    "clawhub_registry_schema_20260427": {
+      "pass_count": 1,
+      "fail_count": 0,
+      "evidence": "SKILL.md frontmatter now declares top-level metadata.requires plus OpenClaw-specific metadata.",
+      "notes": "Scanner-facing metadata schema alignment only; no runtime behavior changed."
+    },
+    "arbiter": {
+      "pass_count": 6,
+      "fail_count": 0
+    },
+    "topic_summary": {
+      "pass_count": 4,
+      "fail_count": 0
+    },
+    "writeback": {
+      "pass_count": 4,
+      "fail_count": 0
+    },
+    "routine_phase": {
+      "pass_count": 7,
+      "fail_count": 0
+    },
+    "internal_near_live": {
+      "pass_count": 5,
+      "fail_count": 0
+    }
+  },
+  "residual_risks": [
+    "phrase tuning",
+    "cadence tuning",
+    "threshold tuning",
+    "documentation polish"
+  ],
+  "structural_blockers": []
+}

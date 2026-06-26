@@ -1,0 +1,10 @@
+{
+  "name": "stock-decision",
+  "version": "1.0.0",
+  "description": "从共享记忆读取持仓，生成投资决策报告",
+  "author": "富贵儿",
+  "main": "skill.py",
+  "license": "MIT",
+  "keywords": ["stock", "investment", "decision", "A 股", "量化"],
+  "repository": "https://clawhub.ai/skills/stock-decision"
+}

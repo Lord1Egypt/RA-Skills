@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户画像专家点评 - Xiabi</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #5f6368;
+            --accent-color: #ea4335;
+            --success-color: #34a853;
+            --warning-color: #fbbc04;
+            --bg-color: #ffffff;
+            --text-color: #202124;
+            --border-color: #dadce0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--secondary-color);
+        }
+        
+        .rating-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .rating-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .rating-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .rating-score {
+            font-size: 3em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .rating-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            color: var(--secondary-color);
+            margin: 25px 0 15px 0;
+        }
+        
+        .core-view {
+            background: #f8f9fa;
+            border-left: 5px solid var(--accent-color);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .insight-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .insight-title {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pyramid-level {
+            margin-left: 20px;
+            padding-left: 15px;
+            border-left: 3px solid var(--border-color);
+        }
+        
+        .pyramid-level-2 {
+            margin-left: 40px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .action-icon {
+            font-size: 2em;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .action-content {
+            flex: 1;
+        }
+        
+        .action-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .action-desc {
+            color: var(--secondary-color);
+            font-size: 0.95em;
+        }
+        
+        .mermaid {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin: 20px 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .tag.work { background: #1a73e8; }
+        .tag.study { background: #34a853; }
+        .tag.personal { background: #ea4335; }
+        .tag.tech { background: #fbbc04; color: #202124; }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-date {
+            font-size: 0.85em;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 2px solid var(--border-color);
+            margin-top: 60px;
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            .rating-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 用户画像专家点评</h1>
+            <p class="subtitle">Xiabi 的个人知识体系与成长路径深度分析</p>
+            <p style="margin-top: 15px; color: var(--secondary-color);">
+                <span class="tag work">供应链管理</span>
+                <span class="tag tech">数字化转型</span>
+                <span class="tag study">持续学习</span>
+                <span class="tag personal">户外探索</span>
+            </p>
+        </header>
+
+        <!-- 专家评分 -->
+        <section class="rating-section">
+            <h2 style="color: white; border-bottom: 2px solid rgba(255,255,255,0.3);">📊 专家评分</h2>
+            <div class="rating-grid">
+                <div class="rating-item">
+                    <span class="rating-score">92%</span>
+                    <span class="rating-label">画像完整性</span>
+                    <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">基本信息、偏好、目标覆盖全面</p>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-score">88%</span>
+                    <span class="rating-label">系统成熟度</span>
+                    <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">周报/任务/知识库系统完善</p>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-score">85%</span>
+                    <span class="rating-label">自动化程度</span>
+                    <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">豆包/飞书/地理知识库自动化</p>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-score">78%</span>
+                    <span class="rating-label">知识结构化</span>
+                    <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">BOM/项目知识已沉淀，待扩展</p>
+                </div>
+            </div>
+            <div style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.15); border-radius: 10px;">
+                <strong style="font-size: 1.1em;">💡 核心洞察：</strong>
+                <p style="margin-top: 10px;">
+                    你已建立了<span class="highlight">企业级个人知识管理系统</span>，涵盖周报自动化、任务优先级管理、会话归档、地理知识库等模块。
+                    当前最需突破的是<strong>任务系统闭环</strong>（飞书 OAuth 配置）和<strong>知识可视化</strong>（Gantt 图/架构图标准化）。
+                </p>
+            </div>
+        </section>
+
+        <!-- 核心观点 -->
+        <section>
+            <h2>🎯 核心观点</h2>
+            <div class="core-view">
+                <h3 style="margin-top: 0;">结论先行：你是"数字化供应链专家的典型成长路径"</h3>
+                <p style="font-size: 1.05em; line-height: 1.8;">
+                    从传统物流（传化）→ 智能制造（小米）→ 数字化供应链（GSC/SRM/SCM），你的职业轨迹清晰体现了
+                    <strong>中国供应链数字化转型的缩影</strong>。当前你正处于<strong>从执行者到架构师</strong>的关键转型期，
+                    需要<strong>系统化沉淀方法论</strong>而非碎片化学习。
+                </p>
+                <p style="margin-top: 15px; font-size: 0.95em; color: var(--secondary-color);">
+                    ⚠️ 关键缺失：缺少<strong>个人方法论输出</strong>（如 BOM 管理规则的专家点评 HTML），
+                    建议将工作经验转化为可复用的知识资产。
+                </p>
+            </div>
+        </section>
+
+        <!-- 深度洞察 -->
+        <section>
+            <h2>🔍 深度洞察（金字塔结构）</h2>
+            
+            <div class="insight-card">
+                <div class="insight-title">📌 洞察 1：你的学习模式 = 视觉驱动 + 项目导向</div>
+                <div class="pyramid-level">
+                    <p><strong>论据 A：</strong> 明确标注"视觉学习者"，需要专业绘制的架构图而非手绘风格</p>
+                    <p><strong>论据 B：</strong> 所有项目都伴随 HTML 可视化输出（豆包专家点评、地理知识库、BOM 物料管理）</p>
+                    <p><strong>论据 C：</strong> 偏好 Mermaid 图表 + 科学杂志排版（Nature 风格 + 小红书图标）</p>
+                    <div class="pyramid-level-2" style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <strong>💡 业务价值：</strong> 视觉化学习适合<strong>复杂系统理解</strong>（如供应链多级 BOM 结构），
+                        但需警惕"过度可视化"导致的时间消耗。建议：核心概念可视化，细节用文字。
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-title">📌 洞察 2：你的工具栈 = 飞书生态 + AI 增强</div>
+                <div class="pyramid-level">
+                    <p><strong>论据 A：</strong> 飞书深度集成（文档/表格/任务/云盘 API 全部开通）</p>
+                    <p><strong>论据 B：</strong> AI 工具链完善（豆包会话归档、专家点评生成、TTS 语音）</p>
+                    <p><strong>论据 C：</strong> 自动化程度高（Cron 定时任务、每小时提醒、周报自动生成）</p>
+                    <div class="pyramid-level-2" style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <strong>💡 业务价值：</strong> 工具栈选择体现了<strong>企业级思维</strong>（飞书）+ <strong>极客精神</strong>（AI 自动化），
+                        但当前存在<strong>工具碎片化</strong>风险（豆包/飞书/Dashboard 三套系统）。建议：统一入口，减少切换成本。
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-title">📌 洞察 3：你的知识体系 = 供应链核心 + 跨界扩展</div>
+                <div class="pyramid-level">
+                    <p><strong>论据 A：</strong> 核心领域深度沉淀（BOM 七种零件类型、毛需求公式、物权归属逻辑）</p>
+                    <p><strong>论据 B：</strong> 跨界知识广度（地理知识库、CSCP/SCMP 认证、可视化技术）</p>
+                    <p><strong>论据 C：</strong> 历史经验复用（传化物流经验 → 小米供应链优化）</p>
+                    <div class="pyramid-level-2" style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <strong>💡 业务价值：</strong> T 型知识结构（供应链深度 + 数字化广度）适合<strong>数字化转型专家</strong>定位，
+                        但需加强<strong>方法论输出</strong>（如发表文章、内部分享、建立个人品牌）。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 知识架构 -->
+        <section>
+            <h2>🏗️ 知识架构图</h2>
+            <div class="mermaid">
+graph TD
+    A[Xiabi 知识体系] --> B[核心领域：供应链管理]
+    A --> C[支撑技能：数字化]
+    A --> D[认证体系：专业资质]
+    A --> E[个人兴趣：生活平衡]
+    
+    B --> B1[BOM 物料管理]
+    B --> B2[需求计划 GSC]
+    B --> B3[供应商管理 SRM]
+    B --> B4[制造执行 SCM]
+    
+    B1 --> B1a[七种零件类型 B/HC/V/C/D/S/M]
+    B1 --> B1b[毛需求公式 B+HC+V]
+    B1 --> B1c[物权归属逻辑]
+    
+    C --> C1[飞书生态]
+    C --> C2[AI 工具链]
+    C --> C3[可视化技术]
+    
+    C1 --> C1a[文档/表格/任务 API]
+    C1 --> C1b[OAuth 认证]
+    C1 --> C1c[消息卡片]
+    
+    C2 --> C2a[豆包会话归档]
+    C2 --> C2b[专家点评生成]
+    C2 --> C2c[TTS 语音]
+    
+    C3 --> C3a[Mermaid 图表]
+    C3 --> C3b[HTML 可视化]
+    C3 --> C3c[Gantt 图]
+    
+    D --> D1[CSCP 认证 备考中]
+    D --> D2[SCMP 认证 M1-M4 考纲]
+    
+    E --> E1[地理知识库 阶段 1]
+    E --> E2[户外活动 瀑布探索]
+    E --> E3[影视娱乐 都市天际线]
+    
+    style A fill:#1a73e8,color:white,stroke-width:3px
+    style B fill:#34a853,color:white
+    style C fill:#fbbc04,color:#202124
+    style D fill:#ea4335,color:white
+    style E fill:#5f6368,color:white
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: var(--secondary-color); font-size: 0.9em;">
+                📊 图示：你的知识体系呈现"T 型结构"——供应链深度 + 数字化广度
+            </p>
+        </section>
+
+        <!-- 对比分析 -->
+        <section>
+            <h2>📊 对比分析：当前状态 vs 理想状态</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>维度</th>
+                        <th>当前状态</th>
+                        <th>理想状态</th>
+                        <th>差距</th>
+                        <th>优先级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>任务管理</strong></td>
+                        <td>飞书 OAuth 配置中</td>
+                        <td>原生待办闭环（带对号图标）</td>
+                        <td>🔴 高</td>
+                        <td><span class="tag work">P0</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>知识可视化</strong></td>
+                        <td>HTML 标准已建立</td>
+                        <td>所有项目配套 Gantt 图</td>
+                        <td>🟡 中</td>
+                        <td><span class="tag tech">P1</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>地理知识库</strong></td>
+                        <td>阶段 1 基础建设</td>
+                        <td>KML 导入 + 地点关联 + 可视化</td>
+                        <td>🟡 中</td>
+                        <td><span class="tag personal">P1</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>方法论输出</strong></td>
+                        <td>BOM 规则已沉淀</td>
+                        <td>系列专家点评 HTML 库</td>
+                        <td>🟠 低</td>
+                        <td><span class="tag study">P2</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>工具统一</strong></td>
+                        <td>豆包/飞书/Dashboard 三套</td>
+                        <td>统一入口（飞书）</td>
+                        <td>⚪ 低</td>
+                        <td><span class="tag tech">P3</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 项目进展 Gantt -->
+        <section>
+            <h2>📅 项目进展 Gantt 图</h2>
+            <div class="mermaid">
+gantt
+    title Xiabi 核心项目进展（2026-03-08）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m-%d
+    todayMarker off
+    
+    section 已完成
+    豆包会话自动化系统 :done, doubao, 2026-03-05, 2026-03-06
+    周报系统上线 :done, weekly, 2026-03-01, 2026-03-06
+    HTML 专家点评标准 :done, html, 2026-03-06, 1d
+    飞书 API 权限开通 :done, feishu_auth, 2026-03-06, 1d
+    
+    section 进行中
+    飞书 OAuth 配置 :active, oauth, 2026-03-06, 2026-03-10
+    书签清理重组 :active, bookmark, 2026-03-08, 2026-03-09
+    用户画像可视化 :active, profile, 2026-03-08, 1d
+    
+    section 待启动
+    地理知识库 KML 导出 :geo, 2026-03-10, 2026-03-15
+    个人方法论输出 :method, 2026-03-15, 2026-03-30
+    CSCP 认证备考 :cscp, 2026-04-01, 2026-06-30
+    
+    section 里程碑
+    任务系统闭环 :milestone, m1, 2026-03-10, 0d
+    知识库体系成型 :milestone, m2, 2026-03-30, 0d
+    CSCP 认证通过 :milestone, m3, 2026-06-30, 0d
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: var(--secondary-color); font-size: 0.9em;">
+                🔴 关键路径：飞书 OAuth → 任务闭环 → 知识管理效率提升 50%
+            </p>
+        </section>
+
+        <!-- 行动建议 -->
+        <section>
+            <h2>🎯 行动建议</h2>
+            
+            <div class="action-item">
+                <div class="action-icon">🔴</div>
+                <div class="action-content">
+                    <div class="action-title">优先级 P0：完成飞书 OAuth 配置（5 分钟）</div>
+                    <div class="action-desc">
+                        <strong>动作：</strong> 打开飞书开发者后台 → 获取 user_access_token → 更新 openclaw.json<br>
+                        <strong>价值：</strong> 打通原生待办系统，任务管理效率提升 50%<br>
+                        <strong>依赖：</strong> 无<br>
+                        <strong>截止：</strong> 今天内完成
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-icon">🟡</div>
+                <div class="action-content">
+                    <div class="action-title">优先级 P1：Chrome 书签清理（15 分钟）</div>
+                    <div class="action-desc">
+                        <strong>动作：</strong> Ctrl+Shift+O → 删除传化相关文件夹（4 个）→ 按新结构重组<br>
+                        <strong>价值：</strong> 减少信息噪音，提升工作专注度<br>
+                        <strong>依赖：</strong> 无<br>
+                        <strong>截止：</strong> 本周内完成
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-icon">🟡</div>
+                <div class="action-content">
+                    <div class="action-title">优先级 P1：地理知识库 KML 导出（30 分钟）</div>
+                    <div class="action-desc">
+                        <strong>动作：</strong> Google Earth → 导出地标 KML → 上传 workspace/projects/地理知识库/<br>
+                        <strong>价值：</strong> 建立个人地理记忆库，支持地点关联回忆<br>
+                        <strong>依赖：</strong> 无<br>
+                        <strong>截止：</strong> 下周内完成
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-icon">🟠</div>
+                <div class="action-content">
+                    <div class="action-title">优先级 P2：BOM 管理专家点评系列（2 小时）</div>
+                    <div class="action-desc">
+                        <strong>动作：</strong> 基于现有 BOM 知识 → 生成 3-5 个专家点评 HTML → 归档到 knowledge-base/<br>
+                        <strong>价值：</strong> 沉淀个人方法论，建立专业影响力<br>
+                        <strong>依赖：</strong> HTML 标准已就绪<br>
+                        <strong>截止：</strong> 本月内完成
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-item">
+                <div class="action-icon">⚪</div>
+                <div class="action-content">
+                    <div class="action-title">优先级 P3：CSCP 认证备考规划（1 小时）</div>
+                    <div class="action-desc">
+                        <strong>动作：</strong> 查看 SCMP 考纲 → 制定学习计划 → 设置 Cron 提醒<br>
+                        <strong>价值：</strong> 专业资质背书，职业发展空间<br>
+                        <strong>依赖：</strong> 任务系统稳定后<br>
+                        <strong>截止：</strong> Q2 启动
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 记忆口诀 -->
+        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-top: 40px;">
+            <h2 style="color: white; border-bottom: 2px solid rgba(255,255,255,0.3);">🧠 记忆口诀</h2>
+            <div style="text-align: center; font-size: 1.2em; line-height: 2;">
+                <p><strong>供应链三支柱</strong>：BOM 物料 + 需求计划 + 供应商管理</p>
+                <p><strong>零件七类型</strong>：B 外购 HC 委外 V 双经销，C 委外散 D 指定 S 自由 M 自制</p>
+                <p><strong>毛需求公式</strong>：最全总成 B+HC，完整需求加 V 件</p>
+                <p><strong>工具三件套</strong>：飞书生态 + AI 增强 + 可视化输出</p>
+                <p><strong>成长三阶段</strong>：传化执行 → 小米架构 → 专家输出</p>
+            </div>
+        </section>
+
+        <footer>
+            <p><strong>🐾 阿福 Claw</strong> | 你的 AI 助手</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                生成时间：2026-03-08 11:20 | 基于 USER.md + MEMORY.md 深度分析
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; color: var(--secondary-color);">
+                下次更新：完成飞书 OAuth 配置后自动刷新画像完整度评分
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#1a73e8',
+                primaryTextColor: '#202124',
+                primaryBorderColor: '#1a73e8',
+                lineColor: '#5f6368',
+                secondaryColor: '#34a853',
+                tertiaryColor: '#ffffff'
+            }
+        });
+    </script>
+</body>
+</html>

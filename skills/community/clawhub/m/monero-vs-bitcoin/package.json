@@ -1,0 +1,6 @@
+{
+  "name": "monero-vs-bitcoin",
+  "version": "1.0.0",
+  "description": "Side-by-side comparison of Monero and Bitcoin features",
+  "main": "SKILL.md"
+}

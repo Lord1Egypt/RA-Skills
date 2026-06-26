@@ -1,0 +1,52 @@
+# Educlaw 路由配置
+
+router:
+  type: "llm"  # 使用大模型识别意图
+  
+  rules:
+    - intent: "学英语"
+      keywords: ["英语", "english", "English", "小英"]
+      target_agent: "小英老师"
+      
+    - intent: "学数学"
+      keywords: ["数学", "math", "Math", "小数"]
+      target_agent: "小数老师"
+      
+    - intent: "学语文"
+      keywords: ["语文", "中文", "小语"]
+      target_agent: "小语老师"
+      
+  fallback_agent: "通用助手"  # 意图不明时的默认Agent
+
+# Agent列表
+agents:
+  - id: "小英老师"
+    file: "./english/agent.yaml"
+    free: true
+    
+  - id: "小数老师"
+    file: "./math/agent.yaml"
+    free: false
+    price: "99元/年"
+    
+  - id: "小语老师"
+    file: "./chinese/agent.yaml"
+    free: false
+    price: "99元/年"
+    status: "coming_soon"  # 即将推出
+    contact: "微信：xxx"  # 联系获取全学科服务
+
+# 全局配置
+global:
+  # 孩子信息（首次对话时收集）
+  child_name: ""
+  child_grade: ""
+  
+  # 积分系统
+  points:
+    english: 0
+    math: 0
+    chinese: 0
+    
+  # 学习记录
+  history: []

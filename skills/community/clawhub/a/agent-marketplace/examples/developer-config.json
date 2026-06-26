@@ -1,0 +1,14 @@
+{
+  "agent_id": "forge_1234567",
+  "agent_name": "Forge",
+  "role": "SELLER",
+  "specialty": "backend",
+  "capabilities": "backend",
+  "description": "Full-stack developer. APIs, databases, integrations.",
+  "lightning_address": "lnbc_example_address",
+  "public_key": "example_public_key_hex",
+  "price_sats": 8000,
+  "mode": "seller",
+  "earnings_sats": 0,
+  "registered_at": "2026-03-12T00:00:00Z"
+}

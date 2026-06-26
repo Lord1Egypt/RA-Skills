@@ -1,35 +1,767 @@
 ---
-name: "HubSpot"
-description: "HubSpot CRM API integration with managed OAuth. Manage contacts, companies, deals, and associations. Use this skill when users want to create or update CRM r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hubspot-api"
-sourceUrl: "https://clawhub.ai/skills/hubspot-api"
+name: hubspot
+description: |
+  HubSpot CRM API integration with managed OAuth. Manage contacts, companies, deals, and associations. Use this skill when users want to create or update CRM records, search contacts, or sync data with HubSpot. For other third party apps, use the api-gateway skill (https://clawhub.ai/byungkyu/api-gateway).
+compatibility: Requires network access and valid Maton API key
+metadata:
+  author: maton
+  version: "1.0"
+  clawdbot:
+    emoji: 🧠
+    requires:
+      env:
+        - MATON_API_KEY
 ---
 
 # HubSpot
 
-> HubSpot CRM API integration with managed OAuth. Manage contacts, companies, deals, and associations. Use this skill when users want to create or update CRM r...
+Access the HubSpot CRM API with managed OAuth authentication. Create and manage contacts, companies, deals, and their associations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hubspot-api`
-- **Source URL:** [https://clawhub.ai/skills/hubspot-api](https://clawhub.ai/skills/hubspot-api)
+## Quick Start
 
-## Overview
+**CLI:**
 
+```bash
+maton hubspot contact list -L 10 --properties email,firstname,lastname
+```
+
+```bash
+maton api '/hubspot/crm/v3/objects/contacts?limit=10&properties=email,firstname,lastname'
+```
+
+**Python:**
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/hubspot/crm/v3/objects/contacts?limit=10&properties=email,firstname,lastname')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+## Base URL
+
+```
+https://api.maton.ai/hubspot/{native-api-path}
+```
+
+Maton proxies requests to `api.hubapi.com` and automatically injects your OAuth token.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+**NPM:**
 ```bash
-hermes skills install clawhub/hubspot-api
+npm install -g @maton-ai/cli
 ```
+
+**Homebrew:**
+```bash
+brew install maton-ai/cli/maton
+```
+
+## Authentication
+
+**CLI:**
+
+```bash
+maton login                          # Opens browser for API key
+maton login --interactive            # Skip browser, paste API key directly
+maton whoami                         # Show current auth state
+```
+
+**Manual:**
+
+1. Sign in or create an account at [maton.ai](https://maton.ai)
+2. Go to [maton.ai/settings](https://maton.ai/settings)
+3. Copy your API key
+4. Set your API key as `MATON_API_KEY`:
+
+```bash
+export MATON_API_KEY="YOUR_API_KEY"
+```
+
+## Connection Management
+
+Manage your HubSpot OAuth connections at `https://api.maton.ai`.
+
+### List Connections
+
+**CLI:**
+
+```bash
+maton connection list hubspot --status ACTIVE
+```
+
+```bash
+maton api -X GET /connections -f app=hubspot -f status=ACTIVE
+```
+
+**Python:**
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections?app=hubspot&status=ACTIVE')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Create Connection
+
+**CLI:**
+
+```bash
+maton connection create hubspot
+```
+
+```bash
+maton api /connections -f app=hubspot
+```
+
+**Python:**
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+data = json.dumps({'app': 'hubspot'}).encode()
+req = urllib.request.Request('https://api.maton.ai/connections', data=data, method='POST')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+req.add_header('Content-Type', 'application/json')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Get Connection
+
+**CLI:**
+
+```bash
+maton connection view {connection_id}
+```
+
+```bash
+maton api /connections/{connection_id}
+```
+
+**Python:**
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections/{connection_id}')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+**Response:**
+```json
+{
+  "connection": {
+    "connection_id": "{connection_id}",
+    "status": "ACTIVE",
+    "creation_time": "2025-12-08T07:20:53.488460Z",
+    "last_updated_time": "2026-01-31T20:03:32.593153Z",
+    "url": "https://connect.maton.ai/?session_token=...",
+    "app": "hubspot",
+    "metadata": {}
+  }
+}
+```
+
+Open the returned `url` in a browser to complete OAuth authorization.
+
+### Delete Connection
+
+**CLI:**
+
+```bash
+maton connection delete {connection_id}
+```
+
+```bash
+maton api -X DELETE /connections/{connection_id}
+```
+
+**Python:**
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections/{connection_id}', method='DELETE')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Specifying Connection
+
+If you have multiple HubSpot connections, specify which one to use:
+
+**CLI:**
+
+```bash
+maton hubspot contact list --properties email,firstname,lastname --connection {connection_id}
+```
+
+```bash
+maton api /hubspot/crm/v3/objects/contacts --connection {connection_id}
+```
+
+**Python:**
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/hubspot/crm/v3/objects/contacts')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+req.add_header('Maton-Connection', '{connection_id}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+If you have multiple connections, always specify the connection to ensure requests go to the intended account.
+
+## Security & Permissions
+
+- Access is scoped to contacts, companies, deals, and associations within the connected HubSpot account.
+- **All write operations require explicit user approval.** Before executing any create, update, or delete call, confirm the target resource and intended effect with the user.
+
+## API Reference
+
+### Contacts
+
+#### List Contacts
+
+```bash
+GET /hubspot/crm/v3/objects/contacts?limit=100&properties=email,firstname,lastname,phone
+```
+
+Example:
+
+```bash
+maton hubspot contact list --properties email,firstname,lastname,phone -L 100
+```
+
+#### Get Contact
+
+```bash
+GET /hubspot/crm/v3/objects/contacts/{contactId}?properties=email,firstname,lastname
+```
+
+Example:
+
+```bash
+maton hubspot contact view <contactId> --properties email,firstname,lastname
+```
+
+#### Create Contact
+
+```bash
+POST /hubspot/crm/v3/objects/contacts
+Content-Type: application/json
+
+{
+  "properties": {
+    "email": "john@example.com",
+    "firstname": "John",
+    "lastname": "Doe",
+    "phone": "+1234567890"
+  }
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact create --set email=john@example.com --set firstname=John --set lastname=Doe --set phone=+1234567890
+```
+
+#### Update Contact
+
+```bash
+PATCH /hubspot/crm/v3/objects/contacts/{contactId}
+Content-Type: application/json
+
+{
+  "properties": {
+    "phone": "+0987654321"
+  }
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact update <contactId> --set phone=+0987654321
+```
+
+#### Delete Contact
+
+```bash
+DELETE /hubspot/crm/v3/objects/contacts/{contactId}
+```
+
+Example:
+
+```bash
+maton hubspot contact archive <contactId>
+```
+
+#### Search Contacts
+
+```bash
+POST /hubspot/crm/v3/objects/contacts/search
+Content-Type: application/json
+
+{
+  "filterGroups": [{
+    "filters": [{
+      "propertyName": "email",
+      "operator": "EQ",
+      "value": "john@example.com"
+    }]
+  }],
+  "properties": ["email", "firstname", "lastname"]
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact search --filter email:EQ:john@example.com --properties email,firstname,lastname
+```
+
+### Companies
+
+#### List Companies
+
+```bash
+GET /hubspot/crm/v3/objects/companies?limit=100&properties=name,domain,industry
+```
+
+Example:
+
+```bash
+maton hubspot company list --properties name,domain,industry -L 100
+```
+
+#### Get Company
+
+```bash
+GET /hubspot/crm/v3/objects/companies/{companyId}?properties=name,domain,industry
+```
+
+Example:
+
+```bash
+maton hubspot company view <companyId> --properties name,domain,industry
+```
+
+#### Create Company
+
+```bash
+POST /hubspot/crm/v3/objects/companies
+Content-Type: application/json
+
+{
+  "properties": {
+    "name": "Acme Corp",
+    "domain": "acme.com",
+    "industry": "COMPUTER_SOFTWARE"
+  }
+}
+```
+
+Example:
+
+```bash
+maton hubspot company create --set name='Acme Corp' --set domain=acme.com --set industry=COMPUTER_SOFTWARE
+```
+
+**Note:** The `industry` property requires specific enum values (e.g., `COMPUTER_SOFTWARE`, `FINANCE`, `HEALTHCARE`). Use the List Properties endpoint to get valid values.
+
+#### Update Company
+
+```bash
+PATCH /hubspot/crm/v3/objects/companies/{companyId}
+Content-Type: application/json
+
+{
+  "properties": {
+    "industry": "COMPUTER_SOFTWARE",
+    "numberofemployees": "50"
+  }
+}
+```
+
+Example:
+
+```bash
+maton hubspot company update <companyId> --set industry=COMPUTER_SOFTWARE --set numberofemployees=50
+```
+
+#### Delete Company
+
+```bash
+DELETE /hubspot/crm/v3/objects/companies/{companyId}
+```
+
+Example:
+
+```bash
+maton hubspot company delete <companyId>
+```
+
+#### Search Companies
+
+```bash
+POST /hubspot/crm/v3/objects/companies/search
+Content-Type: application/json
+
+{
+  "filterGroups": [{
+    "filters": [{
+      "propertyName": "domain",
+      "operator": "CONTAINS_TOKEN",
+      "value": "*"
+    }]
+  }],
+  "properties": ["name", "domain"],
+  "limit": 10
+}
+```
+
+Example:
+
+```bash
+maton hubspot company search --filter 'domain:CONTAINS_TOKEN:*' --properties name,domain -L 10
+```
+
+### Deals
+
+#### List Deals
+
+```bash
+GET /hubspot/crm/v3/objects/deals?limit=100&properties=dealname,amount,dealstage
+```
+
+Example:
+
+```bash
+maton hubspot deal list --properties dealname,amount,dealstage -L 100
+```
+
+#### Get Deal
+
+```bash
+GET /hubspot/crm/v3/objects/deals/{dealId}?properties=dealname,amount,dealstage
+```
+
+Example:
+
+```bash
+maton hubspot deal view <dealId> --properties dealname,amount,dealstage
+```
+
+#### Create Deal
+
+```bash
+POST /hubspot/crm/v3/objects/deals
+Content-Type: application/json
+
+{
+  "properties": {
+    "dealname": "New Deal",
+    "amount": "10000",
+    "dealstage": "appointmentscheduled"
+  }
+}
+```
+
+Example:
+
+```bash
+maton hubspot deal create --set dealname='New Deal' --set amount=10000 --set dealstage=appointmentscheduled
+```
+
+#### Update Deal
+
+```bash
+PATCH /hubspot/crm/v3/objects/deals/{dealId}
+Content-Type: application/json
+
+{
+  "properties": {
+    "amount": "15000",
+    "dealstage": "qualifiedtobuy"
+  }
+}
+```
+
+Example:
+
+```bash
+maton hubspot deal update <dealId> --set amount=15000 --set dealstage=qualifiedtobuy
+```
+
+#### Delete Deal
+
+```bash
+DELETE /hubspot/crm/v3/objects/deals/{dealId}
+```
+
+Example:
+
+```bash
+maton hubspot deal delete <dealId>
+```
+
+### Associations (v4 API)
+
+#### Associate Objects
+
+```bash
+PUT /hubspot/crm/v4/objects/{fromObjectType}/{fromObjectId}/associations/{toObjectType}/{toObjectId}
+Content-Type: application/json
+
+[{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": 279}]
+```
+
+Example:
+
+```bash
+maton hubspot associations create --from contacts:<fromObjectId> --to companies:<toObjectId> --type 279
+```
+
+Common association type IDs:
+- `279` - Contact to Company
+- `3` - Deal to Contact
+- `341` - Deal to Company
+
+#### List Associations
+
+```bash
+GET /hubspot/crm/v4/objects/{objectType}/{objectId}/associations/{toObjectType}
+```
+
+Example:
+
+```bash
+maton hubspot associations list --from contacts:12345 --to companies
+```
+
+### Batch Operations
+
+Native batch subcommands are available for `contact`, `company`, and `deal`.
+
+#### Batch Read
+
+```bash
+POST /hubspot/crm/v3/objects/{objectType}/batch/read
+Content-Type: application/json
+
+{
+  "properties": ["email", "firstname"],
+  "inputs": [{"id": "123"}, {"id": "456"}]
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact batch-read --id 123,456 --properties email,firstname
+```
+
+#### Batch Create
+
+```bash
+POST /hubspot/crm/v3/objects/{objectType}/batch/create
+Content-Type: application/json
+
+{
+  "inputs": [
+    {"properties": {"email": "one@example.com", "firstname": "One"}},
+    {"properties": {"email": "two@example.com", "firstname": "Two"}}
+  ]
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact batch-create --data '[{"properties":{"email":"one@example.com","firstname":"One"}},{"properties":{"email":"two@example.com","firstname":"Two"}}]'
+```
+
+#### Batch Update
+
+```bash
+POST /hubspot/crm/v3/objects/{objectType}/batch/update
+Content-Type: application/json
+
+{
+  "inputs": [
+    {"id": "123", "properties": {"firstname": "Updated"}},
+    {"id": "456", "properties": {"firstname": "Also Updated"}}
+  ]
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact batch-update --data '[{"id":"123","properties":{"firstname":"Updated"}},{"id":"456","properties":{"firstname":"Also Updated"}}]'
+```
+
+#### Batch Archive
+
+```bash
+POST /hubspot/crm/v3/objects/{objectType}/batch/archive
+Content-Type: application/json
+
+{
+  "inputs": [{"id": "123"}, {"id": "456"}]
+}
+```
+
+Example:
+
+```bash
+maton hubspot contact batch-archive --id 123,456
+```
+
+### Properties
+
+#### List Properties
+
+```bash
+GET /hubspot/crm/v3/properties/{objectType}
+```
+
+Example:
+
+```bash
+maton hubspot properties list --type contacts
+```
+
+## Search Operators
+
+- `EQ` - Equal to
+- `NEQ` - Not equal to
+- `LT` / `LTE` - Less than / Less than or equal
+- `GT` / `GTE` - Greater than / Greater than or equal
+- `CONTAINS_TOKEN` - Contains token
+- `NOT_CONTAINS_TOKEN` - Does not contain token
+
+## Pagination
+
+List endpoints return a `paging.next.after` cursor:
+
+```json
+{
+  "results": [...],
+  "paging": {
+    "next": {
+      "after": "12345"
+    }
+  }
+}
+```
+
+Use the `after` query parameter to fetch the next page:
+
+```bash
+GET /hubspot/crm/v3/objects/contacts?limit=100&after=12345
+```
+
+## Code Examples
+
+### JavaScript
+
+```javascript
+const response = await fetch('https://api.maton.ai/hubspot/crm/v3/objects/contacts', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${process.env.MATON_API_KEY}`
+  },
+  body: JSON.stringify({
+    properties: { email: 'john@example.com', firstname: 'John' }
+  })
+});
+```
+
+### Python
+
+```python
+import os
+import requests
+
+response = requests.post(
+    'https://api.maton.ai/hubspot/crm/v3/objects/contacts',
+    headers={'Authorization': f'Bearer {os.environ["MATON_API_KEY"]}'},
+    json={'properties': {'email': 'john@example.com', 'firstname': 'John'}}
+)
+```
+
+## Notes
+
+- Batch operations support up to 100 records per request
+- Archive/Delete is a soft delete - records can be restored within 90 days
+- Delete endpoints return HTTP 204 (No Content) on success
+- The `industry` property on companies requires specific enum values
+- IMPORTANT: When using curl commands, use `curl -g` when URLs contain brackets (`fields[]`, `sort[]`, `records[]`) to disable glob parsing
+- IMPORTANT: When piping curl output to `jq` or other commands, environment variables like `$MATON_API_KEY` may not expand correctly in some shell environments. You may get "Invalid API key" errors when piping.
+
+## Error Handling
+
+| Status | Meaning |
+|--------|---------|
+| 400 | Missing HubSpot connection |
+| 401 | Invalid or missing Maton API key |
+| 429 | Rate limited (10 req/sec per account) |
+| 4xx/5xx | Passthrough error from HubSpot API |
+
+### Troubleshooting: API Key Issues
+
+1. Check that the `MATON_API_KEY` environment variable is set:
+
+```bash
+echo $MATON_API_KEY
+```
+
+2. Verify the API key is valid by listing connections:
+
+```bash
+python <<'EOF'
+import urllib.request, os, json
+req = urllib.request.Request('https://api.maton.ai/connections')
+req.add_header('Authorization', f'Bearer {os.environ["MATON_API_KEY"]}')
+print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
+EOF
+```
+
+### Troubleshooting: Invalid App Name
+
+1. Ensure your URL path starts with `hubspot`. For example:
+
+- Correct: `https://api.maton.ai/hubspot/crm/v3/objects/contacts`
+- Incorrect: `https://api.maton.ai/crm/v3/objects/contacts`
+
+## Resources
+
+- [HubSpot API Overview](https://developers.hubspot.com/docs/api/overview)
+- [List Contacts](https://developers.hubspot.com/docs/api-reference/crm-contacts-v3/basic/get-crm-v3-objects-contacts.md)
+- [Create Contact](https://developers.hubspot.com/docs/api-reference/crm-contacts-v3/basic/post-crm-v3-objects-contacts.md)
+- [Search Contacts](https://developers.hubspot.com/docs/api-reference/crm-contacts-v3/search/post-crm-v3-objects-contacts-search.md)
+- [List Companies](https://developers.hubspot.com/docs/api-reference/crm-companies-v3/basic/get-crm-v3-objects-companies.md)
+- [Create Company](https://developers.hubspot.com/docs/api-reference/crm-companies-v3/basic/post-crm-v3-objects-companies.md)
+- [List Deals](https://developers.hubspot.com/docs/api-reference/crm-deals-v3/basic/get-crm-v3-objects-0-3.md)
+- [Create Deal](https://developers.hubspot.com/docs/api-reference/crm-deals-v3/basic/post-crm-v3-objects-0-3.md)
+- [Associations API](https://developers.hubspot.com/docs/api-reference/crm-associations-v4/basic/get-crm-v4-objects-objectType-objectId-associations-toObjectType.md)
+- [Properties API](https://developers.hubspot.com/docs/api-reference/crm-properties-v3/core/get-crm-v3-properties-objectType.md)
+- [Search Reference](https://developers.hubspot.com/docs/api/crm/search)
+- [Maton Community](https://discord.com/invite/dBfFAcefs2)
+- [Maton Support](mailto:support@maton.ai)

@@ -1,0 +1,269 @@
+{
+  "name": "skills-monitor",
+  "displayName": "Skills Monitor — AI Skills 监控评估平台",
+  "slug": "skills-monitor",
+  "description": "AI Skills 一站式监控评估平台 — 7因子评估引擎、跨模型基准评测、中心化 Dashboard、智能推荐、诊断报告、数据上报",
+  "version": "0.7.0",
+  "author": "MerkyorLynn",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/MerkyorLynn/skills-monitor",
+  "repository": "https://github.com/MerkyorLynn/skills-monitor",
+  "icon": "🩺",
+  "keywords": [
+    "monitoring",
+    "benchmark",
+    "evaluation",
+    "agent",
+    "skills",
+    "dashboard",
+    "diagnostic",
+    "recommendation",
+    "llm",
+    "testing",
+    "health-check",
+    "report"
+  ],
+  "categories": [
+    "Development",
+    "Monitoring",
+    "Testing",
+    "Productivity"
+  ],
+  "main": "main.py",
+  "requirements": {
+    "python": ">=3.9",
+    "packages": [
+      "flask>=2.3.0",
+      "flask-sqlalchemy>=3.0.0",
+      "requests>=2.28.0",
+      "pandas>=1.5.0",
+      "apscheduler>=3.10.0",
+      "keyring>=25.0.0",
+      "python-dotenv>=1.0.0"
+    ]
+  },
+  "features": [
+    "7因子综合评估引擎（成功率/延迟/质量/成本/稳定性/社区热度/兼容性）",
+    "跨模型基准评测（TOP1000 Skills × 6 大模型矩阵）",
+    "智能推荐引擎（互补推荐 + 升级推荐 + 场景推荐）",
+    "中心化 Web Dashboard + PWA 支持",
+    "诊断报告自动生成 + 企微/微信推送",
+    "数据上报到中心化服务器",
+    "微信小程序端查看",
+    "OS Keychain 安全凭证存储",
+    "敏感信息自动脱敏引擎",
+    "GDPR 合规管理"
+  ],
+  "commands": [
+    {
+      "name": "init",
+      "description": "初始化 Skills Monitor 身份（生成 Agent ID + API Key）",
+      "parameters": [
+        {
+          "name": "force",
+          "type": "boolean",
+          "required": false,
+          "description": "是否强制重新初始化"
+        }
+      ]
+    },
+    {
+      "name": "status",
+      "description": "查看 Skills Monitor 系统状态（已安装/可运行 Skills、今日运行统计）",
+      "parameters": []
+    },
+    {
+      "name": "list",
+      "description": "列出所有已安装的 Skills（按类别分组，含版本和入口类型）",
+      "parameters": []
+    },
+    {
+      "name": "evaluate",
+      "description": "对指定 Skill 执行 7因子综合评估（成功率、延迟、质量、成本、稳定性、社区热度、兼容性）",
+      "parameters": [
+        {
+          "name": "skill_slug",
+          "type": "string",
+          "required": false,
+          "description": "Skill 的 slug 标识符（不指定则评估全部）"
+        },
+        {
+          "name": "verbose",
+          "type": "boolean",
+          "required": false,
+          "description": "是否显示详细评分维度"
+        }
+      ]
+    },
+    {
+      "name": "benchmark",
+      "description": "运行跨模型基准评测，支持 TOP1000 Skills × 6 大模型矩阵",
+      "parameters": [
+        {
+          "name": "skill_slug",
+          "type": "string",
+          "required": true,
+          "description": "Skill 的 slug 标识符"
+        },
+        {
+          "name": "runs",
+          "type": "number",
+          "required": false,
+          "description": "运行次数，默认 10"
+        },
+        {
+          "name": "simulate",
+          "type": "boolean",
+          "required": false,
+          "description": "是否模拟运行（不实际执行 skill）"
+        }
+      ]
+    },
+    {
+      "name": "baseline",
+      "description": "查询指定 Skill 在指定大模型上的基准评测分数",
+      "parameters": [
+        {
+          "name": "skill_slug",
+          "type": "string",
+          "required": true,
+          "description": "Skill 的 slug 标识符"
+        },
+        {
+          "name": "model",
+          "type": "string",
+          "required": false,
+          "description": "模型标识: claude-opus-4.6 / gpt-5.4 / gemini-3.0-pro / glm-5 / minimax-2.5 / deepseek-3.2"
+        }
+      ]
+    },
+    {
+      "name": "compare",
+      "description": "对比指定 Skill 与基准数据的差异",
+      "parameters": [
+        {
+          "name": "skill_slug",
+          "type": "string",
+          "required": true,
+          "description": "Skill 的 slug 标识符"
+        }
+      ]
+    },
+    {
+      "name": "recommend",
+      "description": "根据已安装 Skills 智能推荐最优补充方案（互补/升级/场景推荐）",
+      "parameters": [
+        {
+          "name": "category",
+          "type": "string",
+          "required": false,
+          "description": "Skill 分类，如 finance / development / productivity"
+        },
+        {
+          "name": "top_n",
+          "type": "number",
+          "required": false,
+          "description": "推荐数量，默认 5"
+        }
+      ]
+    },
+    {
+      "name": "report",
+      "description": "生成 Markdown 格式的综合日报（评估 + 推荐 + 运行统计）",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "description": "输出格式: markdown / json，默认 markdown"
+        }
+      ]
+    },
+    {
+      "name": "diagnose",
+      "description": "生成诊断报告（健康度 + 问题发现 + 优化建议 + 推荐安装）",
+      "parameters": [
+        {
+          "name": "send",
+          "type": "boolean",
+          "required": false,
+          "description": "是否推送到企业微信"
+        },
+        {
+          "name": "trigger",
+          "type": "string",
+          "required": false,
+          "description": "触发方式: manual / scheduled / post_install"
+        }
+      ]
+    },
+    {
+      "name": "upload",
+      "description": "将评估数据上报到中心化服务器",
+      "parameters": [
+        {
+          "name": "server",
+          "type": "string",
+          "required": false,
+          "description": "服务器地址，默认 http://localhost:5100"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "description": "上报类型: daily / diagnostic"
+        }
+      ]
+    },
+    {
+      "name": "dashboard",
+      "description": "启动 Web 实时监控面板（支持 PWA）",
+      "parameters": [
+        {
+          "name": "port",
+          "type": "number",
+          "required": false,
+          "description": "监听端口，默认 5050"
+        }
+      ]
+    },
+    {
+      "name": "server",
+      "description": "启动中心化服务器（含 API + 微信回调 + 小程序接口）",
+      "parameters": [
+        {
+          "name": "port",
+          "type": "number",
+          "required": false,
+          "description": "监听端口，默认 5100"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "url": "https://github.com/MerkyorLynn/skills-monitor/raw/main/docs/dashboard.png",
+      "description": "Web Dashboard 实时监控面板"
+    },
+    {
+      "url": "https://github.com/MerkyorLynn/skills-monitor/raw/main/docs/pwa.png",
+      "description": "PWA 移动端诊断报告"
+    }
+  ],
+  "changelog": {
+    "0.7.0": [
+      "拆分为独立 Skill 包，支持 SkillsHUB 上架",
+      "紧凑型 PWA 布局优化",
+      "诊断摘要和推荐安装模块前置突出",
+      "报告概览和详细数据折叠面板",
+      "新增 baseline 查询命令"
+    ],
+    "0.6.1": [
+      "跨模型基准评测（TOP1000 × 6 Models）",
+      "智能推荐引擎增强",
+      "微信小程序端支持",
+      "企微/微信推送通知",
+      "OS Keychain 安全凭证存储"
+    ]
+  }
+}

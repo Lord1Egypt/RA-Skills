@@ -1,0 +1,48 @@
+{
+  "skill_name": "swift-security",
+  "evals": [
+    {
+      "id": 0,
+      "name": "keychain-token-review",
+      "prompt": "Review this iOS token storage helper before we ship it. It saves an OAuth refresh token with `UserDefaults.standard.set(refreshToken, forKey: \"refresh\")`, writes access tokens with `SecItemAdd(query as CFDictionary, nil)` but ignores the returned OSStatus, omits `kSecAttrAccessible`, and calls `SecItemDelete` before every save to avoid duplicates. What is wrong, what severity would you assign, and what should the corrected Keychain pattern require?",
+      "expected_output": "A security review that flags plaintext token storage, ignored OSStatus, missing accessibility, and delete-then-add as findings; assigns severity; and requires Keychain add-or-update with explicit accessibility and recoverable error handling.",
+      "files": [],
+      "assertions": [
+        "Flags the refresh token in UserDefaults as a critical or high-severity insecure secret storage finding.",
+        "Requires checking OSStatus for SecItem calls and specifically handling errSecDuplicateItem, errSecItemNotFound, and errSecInteractionNotAllowed where relevant.",
+        "Requires an explicit kSecAttrAccessible or SecAccessControl policy for added items.",
+        "Rejects delete-then-add as the normal update strategy and recommends add-or-update with SecItemUpdate on errSecDuplicateItem.",
+        "Cites or names the relevant swift-security reference files for Keychain fundamentals, credential storage, access control, or common anti-patterns."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "biometric-secret-boundary",
+      "prompt": "A banking app wants Face ID before showing an account number. The current plan is to call `LAContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: ...)`, check the returned Bool, then read the account number from UserDefaults. They also forgot `NSFaceIDUsageDescription`. Write the correction plan and include the important iOS API constraints.",
+      "expected_output": "A correction plan that rejects the standalone LAContext Bool gate, moves the secret into a Keychain item protected by SecAccessControl, mentions Face ID usage description, handles enrollment changes, and states availability constraints for the biometric APIs.",
+      "files": [],
+      "assertions": [
+        "States that LAContext.evaluatePolicy alone must not release or protect the stored secret.",
+        "Requires storing the account number or token in Keychain behind SecAccessControl with an appropriate flag such as .biometryCurrentSet or .userPresence.",
+        "Mentions NSFaceIDUsageDescription as required for Face ID use.",
+        "Explains the enrollment-change effect of .biometryCurrentSet or evaluatedPolicyDomainState and the need for recovery/re-enrollment handling.",
+        "Cites or names biometric-authentication and keychain-access-control references."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "security-sibling-boundary",
+      "prompt": "A team asks for one security checklist covering Sign in with Apple, passkey server verification, App Attest assertions, URLSession quantum-secure TLS, custom end-to-end document encryption on iOS 26, Keychain refresh-token storage, Secure Enclave keys, and App Store privacy manifests. Give a concise scope review for what swift-security should answer directly and what should be handed to sibling skills.",
+      "expected_output": "A boundary-aware scope review that keeps Keychain, CryptoKit, Secure Enclave, credential storage, and certificate trust in swift-security; routes auth UI/server passkeys, App Attest, URLSession/TLS transport, and App Store privacy manifests to sibling skills; and names iOS 26 CryptoKit availability for custom quantum-secure workflows.",
+      "files": [],
+      "assertions": [
+        "Keeps Keychain refresh-token storage, Secure Enclave key policy, certificate trust, and client-side CryptoKit guidance in swift-security scope.",
+        "Routes Sign in with Apple, passkey registration/assertion UI, OAuth account flows, and passkey relying-party verification to authentication rather than expanding swift-security.",
+        "Routes App Attest and DeviceCheck assertions to device-integrity.",
+        "Routes URLSession transport architecture or TLS configuration to ios-networking while noting swift-security can discuss custom CryptoKit end-to-end encryption.",
+        "Routes App Store privacy manifests and submission compliance to app-store-review.",
+        "Mentions iOS 26 availability for ML-KEM, ML-DSA, X-Wing, SHA-3, or SecureEnclave post-quantum APIs when discussing custom document encryption."
+      ]
+    }
+  ]
+}

@@ -1,35 +1,136 @@
 ---
-name: "html-report"
-description: "将任意输入自动分解成 5-15 个独立 HTML 报告页面，每页严格 1017×720px（对齐 PPT 画布 10.59"×7.499" @96dpi），深度拆解 3-6 个子维度，每维度精炼 60-100 字 + 支撑图表。当用户说"生成报告"、"分析内容做成页面"、"做成HTML"、"内容可视化"时立即使用..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/html-report-generator"
-sourceUrl: "https://clawhub.ai/skills/html-report-generator"
+name: html-report-generator
+description: 将任意输入自动分解成 5-15 个独立 HTML 报告页面，每页严格 1017×720px（对齐 PPT 画布 10.59"×7.499" @96dpi），深度拆解 3-6 个子维度，每维度精炼 60-100 字 + 支撑图表。当用户说"生成报告"、"分析内容做成页面"、"做成HTML"、"内容可视化"时立即使用，无需确认直接生成。
 ---
 
-# html-report
+# HTML 报告生成器 · 主索引
 
-> 将任意输入自动分解成 5-15 个独立 HTML 报告页面，每页严格 1017×720px（对齐 PPT 画布 10.59"×7.499" @96dpi），深度拆解 3-6 个子维度，每维度精炼 60-100 字 + 支撑图表。当用户说"生成报告"、"分析内容做成页面"、"做成HTML"、"内容可视化"时立即使用...
+本 skill 拆分为 10 个专项文件，**按需读取，不要预加载所有文件**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/html-report-generator`
-- **Source URL:** [https://clawhub.ai/skills/html-report-generator](https://clawhub.ai/skills/html-report-generator)
+---
 
-## Overview
+## 📂 文件索引
 
+| 文件 | 职责 | 生成时机 |
+|------|------|---------|
+| `01-canvas.md` | 画布尺寸、四区结构、溢出规则 | 每页开始前 |
+| `02-design-system.md` | 自创 Tc 模板流程、6种基础模板基因库、主题一致性 | 规划阶段（第零步） |
+| `03-layout.md` | 自创 Lc 布局流程、4种基础布局基因库、空间计算 | 每页选布局时（第零步） |
+| `04-color-font.md` | 7套配色、字体规则、语义色系统 | 每页设定样式时 |
+| `05-content.md` | 反偷懒约束、内容密度、基础SVG图表库（6种） | 写内容时 |
+| `06-workflow.md` | 主题拆解规划、渲染验证、质量核查 | 开始和结束时 |
+| `07-special-pages.md` | 封面/目录/章节分隔/结尾页规范与HTML模板 | 生成特殊页面时 |
+| `08-svg-extended.md` | 扩展SVG图表库（圆环/散点/流程/树状/热力/瀑布/双轴） | 需要复杂图表时（可选）|
+| `09-components.md` | 页眉/摘要栏/卡片变体/徽章/图标/数字排版规范 | 每页组件选用时 |
+| `10-diagram-types.md` | 业务图谱库：架构图/流程图/层级图/决策图 + 网络查询流程 | 用户要求汇报图谱时 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/html-report-generator
+---
+
+## ⚡ 三条不可逾越的铁律
+
+> 违反任意一条 → 该页推翻重做，无例外。
+
+### 铁律 1：画布锁死 1017×720px
+
+```css
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1017px;  height: 720px;
+  min-width: 1017px; max-width: 1017px;
+  min-height: 720px; max-height: 720px;
+  overflow: hidden;
+}
 ```
+
+### 铁律 2：四区高度必须精确求和 720px
+
+```
+Header   72px  ←  页眉
+Content 580px  ←  主内容（仅左右 padding，上下为 0）
+Summary  48px  ←  摘要栏（必须有实质内容，不能留空）
+Footer   20px  ←  页脚
+─────────────
+总计    720px  ✓
+```
+
+### 铁律 3：不得使用 LibreOffice 渲染
+
+必须使用 Chrome/Puppeteer 截图（见 `06-workflow.md`）。
+
+---
+
+## 🚀 完整生成流程
+
+### 阶段一：规划（生成任何页面前）
+
+```
+1. 读 02-design-system.md → 第零步：分析用户描述，自创 Tc 专属模板
+2. 读 03-layout.md        → 了解 Lc 自创布局机制
+3. 读 06-workflow.md      → 拆解主题（8-12维度），规划每页三元组
+4. 读 07-special-pages.md → 确认是否需要封面/目录/章节/结尾页
+```
+
+### 阶段二：逐页生成
+
+```
+每页生成时：
+├─ 读 01-canvas.md        → 确定四区 CSS 骨架
+├─ 读 02-design-system.md → 应用 Tc 模板的背景/卡片/页眉 CSS
+├─ 读 03-layout.md        → 第零步：自创本页 Lc 布局
+├─ 读 04-color-font.md    → 选配色方案 + 字体
+├─ 读 05-content.md       → 填内容，选基础SVG图表，反偷懒自查
+├─ 读 08-svg-extended.md  → 需要圆环/流程/树状等复杂图表时（可选）
+├─ 读 09-components.md    → 选择页眉变体/摘要栏/卡片变体/徽章
+└─ 读 10-diagram-types.md → 用户要求架构图/流程图/层级图/决策图等业务图谱时（可选）
+                            若图谱不在库中 → 执行文件末尾的 WebSearch 查询流程
+
+特殊页面（封面/目录/章节页）：
+└─ 读 07-special-pages.md → 使用对应变体模板
+```
+
+### 阶段三：验证与收尾
+
+```
+└─ 读 06-workflow.md → 运行截图验证，对照质量清单
+```
+
+---
+
+## 📋 报告结构规范
+
+```
+P00  封面页（Cover）       → 07-special-pages.md CV变体
+P01  目录页（可选）        → 07-special-pages.md TC变体
+──── 章节分隔（可选）      → 07-special-pages.md CD变体
+P01+ 内容页 × N           → 主流程
+──── 章节分隔（可选）      → 07-special-pages.md CD变体
+PN   结尾页（End）         → 07-special-pages.md EP变体
+```
+
+---
+
+## 🎯 图表选型速查
+
+| 数据特征 | 图表类型 | 文件 |
+|---------|---------|------|
+| 趋势/时间序列 | 折线面积图 | 05 图表2 |
+| 量级对比（同类） | 横条图/柱状图 | 05 图表1/6 |
+| 多维度评分 | 雷达图 | 05 图表3 |
+| 时间节点 | 时间轴 | 05 图表4 |
+| 进度/计划 | 甘特条 | 05 图表5 |
+| 占比/构成 | 圆环图 | 08 图表7 |
+| 相关性分析 | 散点图 | 08 图表8 |
+| 步骤/决策流 | 流程图 | 08 图表9 |
+| 层级/树状 | 树状图 | 08 图表10 |
+| 二维密度 | 热力矩阵 | 08 图表11 |
+| 累计变化 | 瀑布图 | 08 图表12 |
+| 双量级叠加 | 双轴图 | 08 图表13 |
+| 系统组件/微服务/网络拓扑 | 分层架构图 / C4上下文图 | 10 一 |
+| 跨部门流程/审批/交接 | 泳道图 | 10 二 |
+| 转化率/用户路径 | 漏斗图 | 10 二 |
+| 流量/预算分配流向 | Sankey桑基图 | 10 三 |
+| KPI目标对比 | Bullet子弹图 | 10 三 |
+| 市场占比/资产组合 | Treemap树图 | 10 三 |
+| 组织/优先级/市场矩阵 | 金字塔/2×2矩阵/同心圆 | 10 四 |
+| 风险评估/任务分配 | 风险矩阵/RACI | 10 五 |
+| 不在以上列表的图谱 | → 读 10-diagram-types.md 末尾执行 WebSearch | 10 末 |

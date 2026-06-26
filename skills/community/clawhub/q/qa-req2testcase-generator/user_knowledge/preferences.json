@@ -1,0 +1,11 @@
+{
+  "prd_quality_review": false,
+  "default_domain": "trade",
+  "max_defect_patterns": 20,
+  "output_format": "excel",
+  "image_api": {
+    "url": "http://111.229.28.83:8901/api/analyze",
+    "model": "qwen",
+    "timeout": 120
+  }
+}

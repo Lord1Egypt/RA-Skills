@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PRODUCT_NAME}} - 评论分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            /* 基础色彩系统 - 专业数据分析风格 */
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-muted: #f1f5f9;
+
+            /* 文字色彩 */
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            --text-inverse: #ffffff;
+
+            /* 语义色彩 - 数据可视化专用 */
+            --data-success: #10b981;
+            --data-success-light: #d1fae5;
+            --data-warning: #f59e0b;
+            --data-warning-light: #fef3c7;
+            --data-danger: #ef4444;
+            --data-danger-light: #fee2e2;
+            --data-info: #3b82f6;
+            --data-info-light: #dbeafe;
+
+            /* 品牌色彩 - 专业蓝 */
+            --brand-primary: #1e40af;
+            --brand-secondary: #3b82f6;
+            --brand-accent: #6366f1;
+
+            /* 边框和分割线 */
+            --border-subtle: #e2e8f0;
+            --border-medium: #cbd5e1;
+
+            /* 图表调色板 - 色盲友好 */
+            --chart-1: #3b82f6;   /* 蓝色 */
+            --chart-2: #10b981;   /* 绿色 */
+            --chart-3: #f59e0b;   /* 橙色 */
+            --chart-4: #ef4444;   /* 红色 */
+            --chart-5: #8b5cf6;   /* 紫色 */
+            --chart-6: #06b6d4;   /* 青色 */
+            --chart-7: #ec4899;   /* 粉色 */
+            --chart-8: #84cc16;   /* 黄绿色 */
+
+            /* 阴影 */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ========== 头部区域 ========== */
+        .header {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .header-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .header-meta-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--brand-secondary);
+            border-radius: 50%;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* ========== 数据卡片网格 ========== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+
+        .metric-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .metric-card.primary {
+            border-left: 4px solid var(--brand-primary);
+        }
+
+        .metric-card.success {
+            border-left: 4px solid var(--data-success);
+        }
+
+        .metric-card.warning {
+            border-left: 4px solid var(--data-warning);
+        }
+
+        .metric-card.danger {
+            border-left: 4px solid var(--data-danger);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            color: var(--text-tertiary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.05em;
+        }
+
+        .metric-unit {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            margin-left: 0.25rem;
+        }
+
+        .metric-delta {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .metric-delta.positive { color: var(--data-success); }
+        .metric-delta.negative { color: var(--data-danger); }
+        .metric-delta.neutral { color: var(--text-tertiary); }
+
+        /* ========== 章节 ========== */
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-subtle);
+        }
+
+        .section-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            opacity: 0.15;
+            letter-spacing: -0.05em;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+        }
+
+        /* ========== 卡片网格 ========== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.625rem;
+            border-radius: 9999px;
+            background: var(--bg-muted);
+            color: var(--text-secondary);
+        }
+
+        /* ========== 用户画像卡片 ========== */
+        .persona-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .persona-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+        }
+
+        .persona-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .persona-count {
+            font-size: 0.875rem;
+            color: var(--brand-secondary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .persona-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .persona-tag {
+            font-size: 0.75rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--bg-muted);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ========== 图表容器 ========== */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .chart-container {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .chart-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========== 统计条 ========== */
+        .stat-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .stat-label {
+            min-width: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-track {
+            flex: 1;
+            height: 28px;
+            background: var(--bg-muted);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .stat-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-inverse);
+            border-radius: 6px;
+            transition: width 0.6s ease;
+        }
+
+        .stat-fill.blue { background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary)); }
+        .stat-fill.green { background: linear-gradient(90deg, var(--data-success), #34d399); }
+        .stat-fill.orange { background: linear-gradient(90deg, var(--data-warning), #fbbf24); }
+        .stat-fill.red { background: linear-gradient(90deg, var(--data-danger), #f87171); }
+
+        .stat-value {
+            min-width: 60px;
+            text-align: right;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ========== VOC卡片 ========== */
+        .voc-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 1rem;
+        }
+
+        .voc-card.positive { border-left: 4px solid var(--data-success); }
+        .voc-card.negative { border-left: 4px solid var(--data-danger); }
+        .voc-card.neutral { border-left: 4px solid var(--text-tertiary); }
+
+        .voc-quote {
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--border-medium);
+            line-height: 1.7;
+        }
+
+        .voc-analysis {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .voc-analysis strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ========== 战略卡片 ========== */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .strategy-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .strategy-card.urgent { border-top: 4px solid var(--data-danger); }
+        .strategy-card.short-term { border-top: 4px solid var(--data-warning); }
+        .strategy-card.long-term { border-top: 4px solid var(--data-info); }
+
+        .strategy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .strategy-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9375rem;
+        }
+
+        .strategy-urgency {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.075em;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .strategy-urgency.immediate { background: var(--data-danger-light); color: #991b1b; }
+        .strategy-urgency.short-term { background: var(--data-warning-light); color: #92400e; }
+        .strategy-urgency.long-term { background: var(--data-info-light); color: #1e40af; }
+
+        .strategy-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .strategy-roi {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--border-subtle);
+            font-size: 0.75rem;
+            color: var(--data-success);
+            font-weight: 500;
+        }
+
+        /* ========== 洞察内容 ========== */
+        .insights-content {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .insights-content h1,
+        .insights-content h2,
+        .insights-content h3,
+        .insights-content h4 {
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .insights-content h1 { font-size: 1.5rem; }
+        .insights-content h2 { font-size: 1.25rem; }
+        .insights-content h3 { font-size: 1.125rem; }
+
+        .insights-content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .insights-content ul,
+        .insights-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .insights-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .insights-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .insights-content code {
+            background: var(--bg-muted);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.875em;
+            color: var(--brand-primary);
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .footer-logo {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer p {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .header { padding: 1.5rem; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .chart-grid { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+            .header-top { flex-direction: column; gap: 1rem; }
+            .header-meta { flex-direction: column; gap: 0.5rem; }
+        }
+
+        /* ========== 打印样式 ========== */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .card,
+            .chart-container,
+            .persona-card,
+            .voc-card,
+            .strategy-card,
+            .insights-content,
+            .metric-card,
+            .header,
+            .footer {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                page-break-inside: avoid;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="header-top">
+                <div class="header-title">
+                    <h1>{{PRODUCT_NAME}}</h1>
+                </div>
+                <div class="header-meta">
+                    <div class="header-meta-item">ASIN: {{ASIN}}</div>
+                    <div class="header-meta-item">{{ANALYSIS_DATE}}</div>
+                    <div class="header-meta-item">AI分析</div>
+                </div>
+            </div>
+            <p class="header-subtitle">
+                基于 {{TOTAL_REVIEWS}} 条评论的深度分析 · 22维度标签体系 · 用户画像洞察
+            </p>
+        </header>
+
+        <!-- 关键指标 -->
+        <section class="metrics-grid">
+            <div class="metric-card primary">
+                <div class="metric-label">Total Reviews</div>
+                <div class="metric-value">{{TOTAL_REVIEWS}}<span class="metric-unit">条</span></div>
+            </div>
+            <div class="metric-card success">
+                <div class="metric-label">Positive Rate</div>
+                <div class="metric-value">{{POSITIVE_RATE}}<span class="metric-unit">%</span></div>
+                <div class="metric-delta positive">↑ 高于平均</div>
+            </div>
+            <div class="metric-card primary">
+                <div class="metric-label">Avg Rating</div>
+                <div class="metric-value">{{AVG_RATING}}<span class="metric-unit">/5</span></div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-label">User Personas</div>
+                <div class="metric-value">{{PERSONA_COUNT}}<span class="metric-unit">个</span></div>
+            </div>
+        </section>
+
+        <!-- 核心用户画像 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">核心用户画像</h2>
+            </div>
+            <div class="card-grid">
+                {{PERSONAS_HTML}}
+            </div>
+        </section>
+
+        <!-- 情感分布 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">情感分布分析</h2>
+            </div>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">评价等级分布</div>
+                    <canvas id="ratingChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">用户满意度情感分析</div>
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 标签维度统计 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">标签维度统计</h2>
+            </div>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">使用场景分布</div>
+                    <canvas id="scenarioChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">功能满意度分布</div>
+                    <canvas id="satisfactionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 价格感知与复购 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">价格感知与复购意愿</h2>
+            </div>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <div class="chart-title">价格感知分布</div>
+                    <div id="pricePerception"></div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">复购意愿分布</div>
+                    <canvas id="repurchaseChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOC用户之声 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">用户之声 (VOC)</h2>
+            </div>
+            <div id="vocSection">
+                {{VOC_HTML}}
+            </div>
+        </section>
+
+        <!-- 战略执行矩阵 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">战略执行矩阵</h2>
+            </div>
+            <div class="strategy-grid">
+                {{STRATEGY_HTML}}
+            </div>
+        </section>
+
+        <!-- 深度洞察 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">深度洞察分析</h2>
+            </div>
+            <div class="insights-content">
+                {{INSIGHTS_HTML}}
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-logo">Review Analytics Pro</div>
+            <p>Generated by AI · {{ANALYSIS_DATE}}</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-tertiary);">
+                Powered by Claude AI · 22-Dimension Tag System · User Persona Analysis
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js 配置
+        Chart.defaults.color = '#475569';
+        Chart.defaults.borderColor = '#e2e8f0';
+        Chart.defaults.font.family = 'Inter, -apple-system, sans-serif';
+
+        // 专业调色板（色盲友好）
+        const chartColors = {
+            blue: '#3b82f6',
+            green: '#10b981',
+            orange: '#f59e0b',
+            red: '#ef4444',
+            purple: '#8b5cf6',
+            cyan: '#06b6d4',
+            pink: '#ec4899',
+            lime: '#84cc16',
+            gray: '#94a3b8'
+        };
+
+        // 图表数据配置
+        const chartData = {{CHART_DATA}};
+
+        // 1. 评价等级分布
+        new Chart(document.getElementById('ratingChart'), {
+            type: 'bar',
+            data: {
+                labels: ['5星', '4星', '3星', '2星', '1星'],
+                datasets: [{
+                    label: '评价数量',
+                    data: chartData.ratingDistribution || [0, 0, 0, 0, 0],
+                    backgroundColor: [chartColors.green, chartColors.blue, chartColors.gray, chartColors.orange, chartColors.red],
+                    borderRadius: 6,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        // 2. 用户满意度情感分析
+        new Chart(document.getElementById('sentimentChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['强烈推荐', '推荐', '中立', '不推荐', '强烈不推荐'],
+                datasets: [{
+                    data: chartData.sentimentDistribution || [0, 0, 0, 0, 0],
+                    backgroundColor: [chartColors.green, chartColors.blue, chartColors.gray, chartColors.orange, chartColors.red],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { padding: 15, usePointStyle: true }
+                    }
+                }
+            }
+        });
+
+        // 3. 使用场景分布
+        new Chart(document.getElementById('scenarioChart'), {
+            type: 'pie',
+            data: {
+                labels: chartData.scenarioLabels || [],
+                datasets: [{
+                    data: chartData.scenarioData || [],
+                    backgroundColor: [chartColors.blue, chartColors.orange, chartColors.purple, chartColors.gray],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { padding: 15, usePointStyle: true }
+                    }
+                }
+            }
+        });
+
+        // 4. 功能满意度分布
+        new Chart(document.getElementById('satisfactionChart'), {
+            type: 'polarArea',
+            data: {
+                labels: ['超出预期', '符合预期', '低于预期'],
+                datasets: [{
+                    data: chartData.satisfactionData || [0, 0, 0],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { padding: 15, usePointStyle: true }
+                    }
+                },
+                scales: {
+                    r: {
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+
+        // 5. 复购意愿分布
+        new Chart(document.getElementById('repurchaseChart'), {
+            type: 'bar',
+            data: {
+                labels: ['会复购', '可能', '不会', '未提及'],
+                datasets: [{
+                    label: '用户数量',
+                    data: chartData.repurchaseData || [0, 0, 0, 0],
+                    backgroundColor: [chartColors.green, chartColors.blue, chartColors.red, chartColors.gray],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

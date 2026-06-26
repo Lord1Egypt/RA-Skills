@@ -1,0 +1,633 @@
+/*
+Theme Name: AKA Framework Theme
+Theme URI: https://github.com/lebtiga/aka-wireframe-wp-system
+Description: Simple, clean WordPress theme optimized for the AKA (Authority-Knowledge-Answer) framework. Includes custom templates for Authority Hubs, Knowledge Pages, and Answer Pages with proper SEO structure and mobile-responsive design.
+Version: 1.0.0
+Author: AKA Wireframe WordPress
+Author URI: https://github.com/lebtiga/aka-wireframe-wp-system
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+Text Domain: aka-framework
+Tags: seo, authority, knowledge, clean, responsive, minimal
+*/
+
+/* ========================================
+   CSS Variables - Easy Customization
+   ======================================== */
+:root {
+  /* Brand Colors - Customize these */
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --accent-color: #f59e0b;
+  --text-color: #1f2937;
+  --text-light: #6b7280;
+  --background: #ffffff;
+  --background-light: #f9fafb;
+  --border-color: #e5e7eb;
+  
+  /* Typography */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Layout */
+  --container-width: 1200px;
+  --content-width: 800px;
+  --sidebar-width: 300px;
+}
+
+/* ========================================
+   Reset & Base Styles
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: var(--background);
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+/* ========================================
+   Layout Structure
+   ======================================== */
+.site-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-content {
+  flex: 1;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.content-area {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.site-header {
+  background: var(--background);
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--spacing-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.site-title {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.site-title a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.site-description {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Navigation */
+.main-navigation {
+  margin-top: var(--spacing-sm);
+}
+
+.main-navigation ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.main-navigation a {
+  color: var(--text-color);
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.main-navigation a:hover {
+  background: var(--background-light);
+  text-decoration: none;
+}
+
+/* ========================================
+   Authority Hub Styling
+   ======================================== */
+.authority-hub {
+  padding: var(--spacing-xl) 0;
+}
+
+.hub-header {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+  background: linear-gradient(135deg, var(--background-light) 0%, var(--background) 100%);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.hub-title {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary-color);
+}
+
+.trust-bar {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-md);
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.emergency-banner {
+  background: var(--accent-color);
+  color: white;
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-weight: 600;
+}
+
+.emergency-banner a {
+  color: white;
+  text-decoration: underline;
+}
+
+.quick-nav {
+  background: var(--background-light);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.quick-nav h2 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.quick-nav ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.quick-nav a {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: white;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.quick-nav a:hover {
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+}
+
+/* ========================================
+   Knowledge Page Styling
+   ======================================== */
+.knowledge-page {
+  padding: var(--spacing-lg) 0;
+}
+
+.breadcrumbs {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.breadcrumbs a {
+  color: var(--text-light);
+}
+
+.breadcrumbs span {
+  margin: 0 var(--spacing-xs);
+}
+
+.page-header {
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.related-topics {
+  background: var(--background-light);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+  margin-top: var(--spacing-xl);
+}
+
+.related-topics h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.topic-card {
+  background: white;
+  padding: var(--spacing-md);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.topic-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   Answer Page Styling (FAQ)
+   ======================================== */
+.answer-page {
+  padding: var(--spacing-lg) 0;
+}
+
+.quick-answer {
+  background: var(--background-light);
+  padding: var(--spacing-lg);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 4px;
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.125rem;
+}
+
+.quick-answer h2 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.answer-content {
+  margin-bottom: var(--spacing-xl);
+}
+
+.related-questions {
+  background: var(--background-light);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+}
+
+.related-questions h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.related-questions ul {
+  list-style: none;
+}
+
+.related-questions li {
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+  position: relative;
+}
+
+.related-questions li:before {
+  content: "❓";
+  position: absolute;
+  left: 0;
+}
+
+/* ========================================
+   Content Components
+   ======================================== */
+.entry-content {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.entry-content h2 {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-md);
+}
+
+.entry-content h3 {
+  margin-top: var(--spacing-lg);
+}
+
+.entry-content ul,
+.entry-content ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+.entry-content li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.entry-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: var(--spacing-lg) 0;
+}
+
+.entry-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+/* CTA Buttons */
+.cta-button,
+.wp-block-button__link {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover,
+.wp-block-button__link:hover {
+  background: var(--secondary-color);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.cta-box {
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+}
+
+.cta-box h3 {
+  color: white;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cta-box .cta-button {
+  background: white;
+  color: var(--primary-color);
+}
+
+.cta-box .cta-button:hover {
+  background: var(--background-light);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.site-footer {
+  background: var(--text-color);
+  color: white;
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.footer-widget h3 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-widget ul {
+  list-style: none;
+}
+
+.footer-widget li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-widget a {
+  color: rgba(255,255,255,0.8);
+}
+
+.footer-widget a:hover {
+  color: white;
+}
+
+.site-info {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.875rem;
+}
+
+/* ========================================
+   Sidebar
+   ======================================== */
+.hub-sidebar {
+  background: var(--background-light);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  position: sticky;
+  top: 100px;
+}
+
+.hub-sidebar h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.hub-sidebar ul {
+  list-style: none;
+}
+
+.hub-sidebar li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.hub-sidebar a {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.hub-sidebar a:hover {
+  background: white;
+  text-decoration: none;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 2rem;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  
+  .hub-title {
+    font-size: 2rem;
+  }
+  
+  .trust-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .main-navigation ul {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .entry-content {
+    font-size: 1rem;
+  }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.hidden { display: none; }
+
+/* ========================================
+   WordPress Core Compatibility
+   ======================================== */
+.alignleft {
+  float: left;
+  margin-right: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.alignright {
+  float: right;
+  margin-left: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption {
+  max-width: 100%;
+}
+
+.wp-caption-text {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: var(--spacing-xs);
+}

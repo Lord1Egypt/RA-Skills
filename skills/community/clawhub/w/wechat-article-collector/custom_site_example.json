@@ -1,0 +1,18 @@
+{
+  "name": "我的博客",
+  "list_url": "https://example.com/blog",
+  "selectors": {
+    "article_row": ".post-item",
+    "title": ".post-title",
+    "date": ".post-date",
+    "link": ".post-title a",
+    "next_page": ".pagination .next"
+  },
+  "content_selectors": [
+    ".post-content",
+    "article",
+    ".entry-content"
+  ],
+  "wait_after_load": 2,
+  "need_login": false
+}

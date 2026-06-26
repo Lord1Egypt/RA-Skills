@@ -1,35 +1,97 @@
 ---
-name: "Bilibili Insight"
-description: "B 站 UP 主分析、视频数据追踪、粉丝画像、爆款内容拆解。适合内容创作者、品牌方、MCN 机构。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibili-insight"
-sourceUrl: "https://clawhub.ai/skills/bilibili-insight"
+name: bilibili-insight
+version: 1.0.0
+description: B 站 UP 主分析、视频数据追踪、粉丝画像、爆款内容拆解。适合内容创作者、品牌方、MCN 机构。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📺",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+          ],
+      },
+  }
 ---
 
-# Bilibili Insight
+# B 站数据分析技能
 
-> B 站 UP 主分析、视频数据追踪、粉丝画像、爆款内容拆解。适合内容创作者、品牌方、MCN 机构。
+分析 B 站 UP 主数据、视频表现、粉丝画像，拆解爆款内容公式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibili-insight`
-- **Source URL:** [https://clawhub.ai/skills/bilibili-insight](https://clawhub.ai/skills/bilibili-insight)
+## 功能
 
-## Overview
+1. **UP 主分析**: 粉丝数、播放量、更新频率、成长趋势
+2. **视频数据**: 播放、点赞、投币、收藏、评论分析
+3. **粉丝画像**: 年龄、性别、地域、兴趣分布
+4. **爆款拆解**: 分析高播放视频的内容结构
+5. **竞品监控**: 追踪同领域 UP 主的表现
+6. **选题建议**: 基于数据生成选题方向
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilibili-insight
 ```
+分析这个 UP 主的数据：https://space.bilibili.com/xxx
+```
+
+```
+查看这个视频的详细数据：[视频链接]
+```
+
+```
+帮我找科技区上升最快的 UP 主
+```
+
+```
+分析这个爆款视频为什么火
+```
+
+## 输出示例
+
+```
+📺 B 站 UP 主分析
+
+👤 UP 主信息：
+├─ 昵称：XXX
+├─ 粉丝：125.6w（+2.3w/月）
+├─ 获赞：3200w
+├─ 视频数：456
+└─ 分区：科技/数码
+
+📊 视频数据（近 30 天）：
+├─ 平均播放：85w
+├─ 最高播放：320w（标题：XXX）
+├─ 平均点赞：3.2w
+├─ 平均投币：1.8w
+├─ 平均收藏：2.5w
+└─ 互动率：8.5%
+
+🎯 粉丝画像：
+├─ 年龄：18-24 岁（45%）、25-30 岁（35%）
+├─ 性别：男性 78%、女性 22%
+├─ 地域：广东、江苏、浙江、北京、上海
+└─ 兴趣：数码、游戏、科技、汽车
+
+💡 爆款公式：
+- 标题：数字 + 痛点 + 悬念
+- 封面：产品对比图 + 大字标题
+- 时长：8-12 分钟
+- 更新频率：每周 2-3 更
+```
+
+## 变现模式
+
+- 免费：每日 5 次查询
+- 付费 (¥59/月)：无限查询 + 实时监控 + 竞品对比
+- 付费 (¥109/月)：+ 粉丝画像 + 定制报告 + 数据导出
+
+---
+
+**声明**: 数据来源于公开信息，仅供参考。

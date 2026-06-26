@@ -1,35 +1,24 @@
 ---
-name: "qdrant-monitoring"
-description: "Indexed by skills.sh from qdrant/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "qdrant"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/qdrant/skills/qdrant-monitoring"
-sourceUrl: "https://skills.sh/qdrant/skills/qdrant-monitoring"
+name: qdrant-monitoring
+description: "Guides Qdrant monitoring and observability setup. Use when someone asks 'how to monitor Qdrant', 'what metrics to track', 'is Qdrant healthy', 'optimizer stuck', 'why is memory growing', 'requests are slow', or needs to set up Prometheus, Grafana, or health checks. Also use when debugging production issues that require metric analysis."
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
 ---
 
-# qdrant-monitoring
+# Qdrant Monitoring
 
-> Indexed by skills.sh from qdrant/skills
+Qdrant monitoring allows tracking performance and health of your deployment, and identifying issues before they become outages. First determine whether you need to set up monitoring or diagnose an active issue.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** qdrant
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/qdrant/skills/qdrant-monitoring`
-- **Source URL:** [https://skills.sh/qdrant/skills/qdrant-monitoring](https://skills.sh/qdrant/skills/qdrant-monitoring)
-
-## Overview
+- Understand available metrics [Monitoring docs](https://skills.qdrant.tech/md/documentation/ops-monitoring/monitoring/)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/qdrant/skills/qdrant-monitoring
-```
+## Monitoring Setup
+
+Prometheus scraping, health probes, Hybrid Cloud specifics, alerting, and log centralization. [Monitoring Setup](setup/SKILL.md)
+
+
+## Debugging with Metrics
+
+Optimizer stuck, memory growth, slow requests. Using metrics to diagnose active production issues. [Debugging with Metrics](debugging/SKILL.md)

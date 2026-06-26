@@ -1,0 +1,39 @@
+{
+  "mode": "resume-score",
+  "source_type": "pdf",
+  "extraction_status": "ok",
+  "scorecard_name": "",
+  "candidate_profile": {
+    "name": null,
+    "location": null,
+    "years_experience": null,
+    "education_level": null,
+    "current_title": null,
+    "current_company": null,
+    "skills": [],
+    "industry_tags": []
+  },
+  "hard_filter_pass": true,
+  "hard_filter_fail_reasons": [],
+  "dimension_scores": {
+    "must_have_match": 0,
+    "nice_to_have_match": 0,
+    "title_match": 0,
+    "industry_match": 0,
+    "experience_fit": 0,
+    "education_fit": 0,
+    "location_fit": 0
+  },
+  "total_score": 0,
+  "decision": "reject",
+  "review_reasons": [],
+  "matched_terms": [],
+  "missing_terms": [],
+  "blocked_terms": [],
+  "evidence": {
+    "resume_excerpt": "",
+    "scorecard_signals": []
+  },
+  "summary": "",
+  "next_steps": []
+}

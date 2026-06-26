@@ -1,0 +1,56 @@
+{
+  "name": "paper-management-system",
+  "version": "2.0.0",
+  "description": "文献管理系统 - 自动化PDF文献索引、搜索、AI提炼工具。当用户需要管理PDF文献、自动索引、搜索文献、提取元数据时激活。",
+  "author": "crayfish-ai",
+  "license": "MIT",
+  "homepage": "https://github.com/crayfish-ai/paper-management-system",
+  "issues": "https://github.com/crayfish-ai/paper-management-system/issues",
+  "entry": "scripts/paper_manager.py",
+  "config": {
+    "PAPERMGR_PAPERS_DIR": {
+      "type": "string",
+      "description": "PDF 存储目录",
+      "default": "./papers"
+    },
+    "PAPERMGR_DOWNLOADS_DIR": {
+      "type": "string",
+      "description": "下载目录（自动移动新文件）",
+      "default": "./downloads"
+    },
+    "PAPERMGR_DATABASE_PATH": {
+      "type": "string",
+      "description": "SQLite 数据库路径",
+      "default": "./data/index.db"
+    },
+    "PAPERMGR_AI_ENABLED": {
+      "type": "boolean",
+      "description": "是否启用 AI 摘要生成",
+      "default": false
+    },
+    "OPENAI_API_KEY": {
+      "type": "string",
+      "description": "OpenAI API Key（用于 AI 摘要）",
+      "sensitive": true
+    }
+  },
+  "permissions": {
+    "description": "本 skill 需要本地文件系统读写权限（PDF 存储、数据库、日志）以及网络访问（OpenAI API，可选）。",
+    "filesystem": ["papers directory", "data directory", "downloads directory", "logs directory"],
+    "network": ["api.openai.com（可选）"]
+  },
+  "capabilities": {
+    "core": ["pdf_index", "pdf_rename", "search", "extract_fulltext"],
+    "opt_in": ["ai_summarize", "feishu_notify", "cron_dispatch"]
+  },
+  "safety": {
+    "no_system_modification": true,
+    "no_root_required": true,
+    "no_auto_migration": true,
+    "no_env_injection": true
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md"
+  }
+}

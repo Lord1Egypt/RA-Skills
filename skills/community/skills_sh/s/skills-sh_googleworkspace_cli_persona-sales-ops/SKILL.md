@@ -1,35 +1,40 @@
 ---
-name: "persona-sales-ops"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-sales-ops"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-sales-ops"
+name: persona-sales-ops
+description: "Manage sales workflows — track deals, schedule calls, client comms."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
+        - gws-calendar
+        - gws-sheets
+        - gws-drive
 ---
 
-# persona-sales-ops
+# Sales Operations
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-gmail`, `gws-calendar`, `gws-sheets`, `gws-drive`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-sales-ops`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-sales-ops](https://skills.sh/googleworkspace/cli/persona-sales-ops)
+Manage sales workflows — track deals, schedule calls, client comms.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +meeting-prep`
+- `gws workflow +email-to-task`
+- `gws workflow +weekly-digest`
 
+## Instructions
+- Prepare for client calls with `gws workflow +meeting-prep` to review attendees and agenda.
+- Log deal updates in a tracking spreadsheet with `gws sheets +append`.
+- Convert follow-up emails into tasks with `gws workflow +email-to-task`.
+- Share proposals by uploading to Drive with `gws drive +upload`.
+- Get a weekly sales pipeline summary with `gws workflow +weekly-digest`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-sales-ops
-```
+## Tips
+- Use `gws gmail +triage --query 'from:client-domain.com'` to filter client emails.
+- Schedule follow-up calls immediately after meetings to maintain momentum.
+- Keep all client-facing documents in a dedicated shared Drive folder.
+

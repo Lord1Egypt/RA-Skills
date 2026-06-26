@@ -1,0 +1,48 @@
+# ClawHub Configuration for miaoji-asin-clinic
+
+metadata:
+  name: miaoji-asin-clinic
+  version: 1.0.0
+  display_name: 秒技·ASIN一键诊所
+  description: |
+    亚马逊ASIN五维一键诊断工具，体检+开方+修复一站式工作流。
+    从合规度、广告度、评论度、视觉度、内容度五个维度评估Listing健康状态，
+    生成优先级排序的修复方案，提供完整的子技能使用引导。
+  author: 秒技工作室
+  homepage: https://xiaping.coze.site
+  repository: https://xiaping.coze.site/skills/miaoji-asin-clinic
+
+category: business
+
+tags:
+  - ASIN诊断
+  - 一键修复
+  - 亚马逊运营
+  - 跨境电商
+  - AI诊所
+  - Listing优化
+  - 五维体检
+  - 亚马逊卖家工具
+
+bins: []
+
+screenshots:
+  - description: 五维体检报告示例
+    url: ""
+
+keywords:
+  - amazon
+  - asin
+  - listing诊断
+  - 亚马逊运营
+  - 跨境电商
+  - 产品优化
+  - 转化率优化
+
+license: MIT
+
+documentation:
+  - title: 使用指南
+    url: ./README.md
+  - title: 评分矩阵
+    url: ./references/diagnosis-matrix.md

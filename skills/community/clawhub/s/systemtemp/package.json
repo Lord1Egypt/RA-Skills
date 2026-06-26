@@ -1,0 +1,16 @@
+{
+  "name": "SystemTemp",
+  "version": "1.0.0",
+  "description": "系統溫度監控工具 - 監控系統溫度、CPU 狀態、風扇轉速等硬體資訊",
+  "keywords": ["溫度", "監控", "系統", "CPU", "硬體", "temperature", "monitor", "system"],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "repository": "github:openclaw/skills/SystemTemp",
+  "main": "temp.js",
+  "scripts": {
+    "start": "node temp.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

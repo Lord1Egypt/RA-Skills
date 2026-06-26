@@ -1,0 +1,398 @@
+{
+  "$schema": "https://github.com/24601/surreal-skills/blob/main/SOURCES.json",
+  "description": "Provenance tracking for upstream repos and docs used to build this skill. Compare HEAD SHAs against these baselines to identify what changed for incremental updates.",
+  "skill_version": "1.7.1",
+  "snapshot_date": "2026-06-17",
+  "repos": {
+    "surrealdb/surrealdb": {
+      "sha": "c9e039542e85",
+      "date": "2026-06-10",
+      "release": "v3.1.4",
+      "main_tracking": "v3.1.4",
+      "url": "https://github.com/surrealdb/surrealdb",
+      "rules_affected": [
+        "rules/surrealql.md",
+        "rules/data-modeling.md",
+        "rules/security.md",
+        "rules/performance.md",
+        "rules/deployment.md",
+        "rules/surrealism.md",
+        "rules/surrealml.md",
+        "rules/gotchas.md"
+      ]
+    },
+    "surrealdb/surrealist": {
+      "sha": "b0f4b03b3c6e",
+      "date": "2026-06-16",
+      "release": "surrealist-v3.9.0",
+      "notes": "v3.9.0: schema designer ALTER, datasets browser, VIM mode, unified NS/DB selector, Cloud 3.1 upgrade.",
+      "url": "https://github.com/surrealdb/surrealist",
+      "rules_affected": [
+        "rules/surrealist.md"
+      ]
+    },
+    "surrealdb/surrealdb.js": {
+      "sha": "c25ccbd12864",
+      "date": "2026-06-17",
+      "release": "v2.0.3",
+      "package_release": "npm surrealdb 2.0.3; main adds Spectron 1.0.0-alpha.4 (preview)",
+      "url": "https://github.com/surrealdb/surrealdb.js",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.py": {
+      "sha": "616cc6eb65e7",
+      "date": "2026-06-17",
+      "release": "v2.0.0",
+      "package_release": "PyPI surrealdb 2.0.0; main pyproject 3.0.0 unreleased with Spectron SDK endpoints (preview)",
+      "url": "https://github.com/surrealdb/surrealdb.py",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.go": {
+      "sha": "82ed1db52c9e",
+      "date": "2026-06-17",
+      "release": "v1.4.0",
+      "url": "https://github.com/surrealdb/surrealdb.go",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.java": {
+      "sha": "175bf2584fb3",
+      "date": "2026-06-10",
+      "release": "v2.1.1",
+      "url": "https://github.com/surrealdb/surrealdb.java",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.net": {
+      "sha": "ab079d855b6f",
+      "date": "2026-06-17",
+      "release": "v0.10.2",
+      "package_release": "NuGet SurrealDb.Net 0.10.2 plus embedded-engine packages",
+      "url": "https://github.com/surrealdb/surrealdb.net",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.php": {
+      "sha": "2f8f7ade9c47",
+      "date": "2026-03-02",
+      "release": "v1.0.1",
+      "package_release": "Packagist surrealdb/surrealdb.php 1.0.1; PHP >=8.2",
+      "url": "https://github.com/surrealdb/surrealdb.php",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.c": {
+      "sha": "039481e0c46f",
+      "date": "2026-03-06",
+      "release": null,
+      "notes": "Source-only beta; upstream README warns cbindgen header ordering can cause linking failures.",
+      "url": "https://github.com/surrealdb/surrealdb.c",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.swift": {
+      "sha": "046f7d5f2405",
+      "date": "2026-04-29",
+      "release": null,
+      "notes": "No published tag; pin a commit or branch deliberately.",
+      "url": "https://github.com/surrealdb/surrealdb.swift",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.kotlin": {
+      "sha": "1d91ee969664",
+      "date": "2026-05-13",
+      "release": null,
+      "notes": "0.1.0-SNAPSHOT on main; no Maven Central release verified.",
+      "url": "https://github.com/surrealdb/surrealdb.kotlin",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surrealdb.rb": {
+      "sha": "5a98c3464b1f",
+      "date": "2026-04-01",
+      "release": "v0.7.0",
+      "package_release": "RubyGems surrealdb 0.7.0",
+      "url": "https://github.com/surrealdb/surrealdb.rb",
+      "rules_affected": [
+        "rules/sdks.md"
+      ]
+    },
+    "surrealdb/surreal-sync": {
+      "sha": "59b3166910f0",
+      "date": "2026-03-11",
+      "release": "v0.3.4",
+      "url": "https://github.com/surrealdb/surreal-sync",
+      "rules_affected": [
+        "rules/surreal-sync.md"
+      ]
+    },
+    "surrealdb/surrealfs": {
+      "sha": "0008a3a94dbe",
+      "date": "2026-01-29",
+      "release": null,
+      "url": "https://github.com/surrealdb/surrealfs",
+      "rules_affected": [
+        "rules/surrealfs.md"
+      ]
+    },
+    "surrealdb/surrealkit": {
+      "sha": "8b83dd867338",
+      "date": "2026-06-11",
+      "release": "v0.7.0",
+      "pre_release": false,
+      "url": "https://github.com/surrealdb/surrealkit",
+      "rules_affected": [
+        "rules/surrealkit.md"
+      ]
+    },
+    "surrealdb/surrealmcp": {
+      "sha": "6b82d699ece8",
+      "date": "2026-01-14",
+      "release": "v0.4.0",
+      "notes": "Only README-level churn after v0.4.0; install remains from source or Docker, not crates.io/npm.",
+      "url": "https://github.com/surrealdb/surrealmcp",
+      "rules_affected": [
+        "rules/surrealmcp.md",
+        "skills/surrealmcp/SKILL.md"
+      ]
+    },
+    "surrealdb/surrealml": {
+      "sha": "152ac2d508f1",
+      "date": "2025-09-17",
+      "release": "v0.1.2",
+      "package_release": "PyPI surrealml 0.0.4 remains latest as of 2026-06-17",
+      "notes": "clients/python/setup.py downloads C libraries from GitHub Releases into ~/surrealml_deps unless LOCAL_BUILD=TRUE.",
+      "url": "https://github.com/surrealdb/surrealml",
+      "rules_affected": [
+        "rules/surrealml.md"
+      ]
+    },
+    "surrealdb/surrealql-language-server": {
+      "sha": "02706f9c6c98",
+      "date": "2026-05-28",
+      "release": "v0.1.6",
+      "package_release": "crates.io surrealql-language-server 0.1.6",
+      "url": "https://github.com/surrealdb/surrealql-language-server",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-tree-sitter": {
+      "sha": "5db387281bcc",
+      "date": "2026-05-07",
+      "release": null,
+      "url": "https://github.com/surrealdb/surrealql-tree-sitter",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-vsx": {
+      "sha": "b29f25e4d0c7",
+      "date": "2026-06-09",
+      "release": "v0.4.2",
+      "url": "https://github.com/surrealdb/surrealql-vsx",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-jetbrains": {
+      "sha": "19a511cdf983",
+      "date": "2026-06-09",
+      "release": "v0.2.3",
+      "url": "https://github.com/surrealdb/surrealql-jetbrains",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-neovim": {
+      "sha": "94c4ee41ec4f",
+      "date": "2026-04-24",
+      "release": null,
+      "url": "https://github.com/surrealdb/surrealql-neovim",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-zed": {
+      "sha": "c03d2689fd1b",
+      "date": "2026-04-30",
+      "release": "v0.1.0",
+      "url": "https://github.com/surrealdb/surrealql-zed",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-helix": {
+      "sha": "b94338c8bd2f",
+      "date": "2026-04-24",
+      "release": null,
+      "url": "https://github.com/surrealdb/surrealql-helix",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/surrealql-emacs": {
+      "sha": "5960cc225e55",
+      "date": "2026-04-24",
+      "release": null,
+      "url": "https://github.com/surrealdb/surrealql-emacs",
+      "rules_affected": [
+        "rules/editor-tooling.md"
+      ]
+    },
+    "surrealdb/codemirror": {
+      "sha": "f88011f3ac07",
+      "date": "2026-05-19",
+      "release": "v1.0.6",
+      "package_release": "npm @surrealdb/codemirror 1.0.6 and @surrealdb/lezer 1.0.6",
+      "url": "https://github.com/surrealdb/codemirror",
+      "rules_affected": [
+        "rules/editor-tooling.md",
+        "rules/ecosystem-integrations.md"
+      ]
+    },
+    "surrealdb/langchain-surrealdb": {
+      "sha": "4cfecc53efbc",
+      "date": "2026-03-16",
+      "release": "v0.2.1",
+      "package_release": "PyPI langchain-surrealdb 0.2.1",
+      "url": "https://github.com/surrealdb/langchain-surrealdb",
+      "rules_affected": [
+        "rules/langchain.md"
+      ]
+    },
+    "surrealdb/n8n-nodes-surrealdb": {
+      "sha": "a14db7def6e2",
+      "date": "2026-04-24",
+      "release": "v0.6.0",
+      "package_release": "npm @surrealdb/n8n-nodes-surrealdb 0.6.0; unscoped n8n-nodes-surrealdb is a different older package",
+      "url": "https://github.com/surrealdb/n8n-nodes-surrealdb",
+      "rules_affected": [
+        "rules/ecosystem-integrations.md",
+        "rules/surrealmcp.md"
+      ]
+    },
+    "surrealdb/setup-surreal": {
+      "sha": "7c103070ba4f",
+      "date": "2024-11-13",
+      "release": "v2.0.1",
+      "notes": "GitHub Action for CI, not a general CLI bootstrap.",
+      "url": "https://github.com/surrealdb/setup-surreal",
+      "rules_affected": [
+        "rules/deployment.md"
+      ]
+    },
+    "surrealdb/agent-skills": {
+      "sha": "95628976c277",
+      "date": "2026-06-17",
+      "release": null,
+      "notes": "Official upstream Agent Skills repository; four additional skills since v1.6.6 snapshot.",
+      "url": "https://github.com/surrealdb/agent-skills",
+      "rules_affected": [
+        "rules/ecosystem-integrations.md",
+        "README.md"
+      ]
+    },
+    "surrealdb/docs.surrealdb.com": {
+      "sha": "4dcd7bdaa8ba",
+      "date": "2026-06-17",
+      "release": null,
+      "url": "https://github.com/surrealdb/docs.surrealdb.com",
+      "rules_affected": [
+        "rules/ecosystem-integrations.md",
+        "rules/surrealkit.md",
+        "rules/sdks.md",
+        "rules/surrealml.md",
+        "rules/editor-tooling.md",
+        "rules/surrealmcp.md",
+        "references/online_docs.md"
+      ]
+    },
+    "surrealdb/surqlize": {
+      "sha": "4a1e4abb97b3",
+      "date": "2026-06-09",
+      "release": null,
+      "notes": "Type-safe TypeScript ORM with graph support; verify API before examples.",
+      "url": "https://github.com/surrealdb/surqlize",
+      "rules_affected": [
+        "rules/ecosystem-integrations.md"
+      ]
+    },
+    "surrealdb/datasets": {
+      "sha": null,
+      "date": "2026-06-16",
+      "release": null,
+      "notes": "Official SurrealDB sample datasets; browse via Surrealist v3.9+.",
+      "url": "https://github.com/surrealdb/datasets",
+      "rules_affected": [
+        "rules/ecosystem-integrations.md",
+        "rules/surrealist.md"
+      ]
+    },
+    "surrealdb/agent-memory": {
+      "sha": null,
+      "date": "2026-06-17",
+      "release": null,
+      "notes": "Demo reference architecture for agent memory (KG + vectors); requires experimental flags — not production template.",
+      "url": "https://github.com/surrealdb/agent-memory",
+      "rules_affected": [
+        "rules/ecosystem-integrations.md",
+        "rules/graph-queries.md"
+      ]
+    }
+  },
+  "docs": {
+    "surrealdb.com/docs": {
+      "url": "https://surrealdb.com/docs",
+      "snapshot_date": "2026-06-17",
+      "sections_used": [
+        "surrealdb/surrealql/statements",
+        "surrealdb/surrealql/functions",
+        "surrealdb/surrealql/operators",
+        "surrealdb/extensions",
+        "surrealdb/deployment",
+        "surrealdb/cli",
+        "surrealdb/security",
+        "surrealdb/integrations/sdks",
+        "surrealdb/integrations/frameworks",
+        "surrealdb/integrations/embeddings",
+        "build/integrations/data-management/n8n",
+        "build/integrations/ai-frameworks",
+        "learn/context",
+        "labs/surrealml",
+        "labs/setup-surreal",
+        "build/ai-agents/mcp",
+        "releases/3.1"
+      ],
+      "rules_affected": [
+        "rules/surrealql.md",
+        "rules/data-modeling.md",
+        "rules/graph-queries.md",
+        "rules/vector-search.md",
+        "rules/security.md",
+        "rules/deployment.md",
+        "rules/performance.md",
+        "rules/surrealism.md",
+        "rules/surrealml.md",
+        "rules/surrealmcp.md",
+        "rules/editor-tooling.md",
+        "rules/langchain.md",
+        "rules/ecosystem-integrations.md",
+        "rules/gotchas.md",
+        "references/surrealql_cheatsheet.md"
+      ]
+    }
+  }
+}

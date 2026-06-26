@@ -1,0 +1,15 @@
+{
+  "name": "mooc-learner-skill",
+  "version": "1.0.0",
+  "description": "MOOC自动化学习工具",
+  "main": "scripts/learn-courses.js",
+  "scripts": {
+    "start": "node scripts/learn-courses.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "keywords": ["mooc", "自动化", "学习", "playwright"],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,50 @@
+{
+  "skill_name": "app-clips",
+  "evals": [
+    {
+      "id": 0,
+      "name": "invocation-entitlements-review",
+      "prompt": "Review this App Clip setup plan before my team implements it. The full app bundle ID is com.example.cafe and the App Clip is com.example.cafe.Clip. We want a default App Clip experience plus per-store advanced experiences, SwiftUI for the App Clip UI, UIKit scene delegates in an older shared module, and we need the full app to handle the same QR/NFC URLs after install. What target setup, entitlements, associated domains, and invocation routing should we require?",
+      "expected_output": "A review that gives App Clip-specific setup and routing guidance without drifting into unrelated full-app implementation detail.",
+      "files": [],
+      "expectations": [
+        "Names the App Clip target entitlement `com.apple.developer.on-demand-install-capable` and the parent/full-app association entitlements `com.apple.developer.parent-application-identifiers` and `com.apple.developer.associated-appclip-app-identifiers`.",
+        "Explains that the App Clip bundle ID must be prefixed by the full app bundle ID.",
+        "Recommends SwiftUI `.onContinueUserActivity(NSUserActivityTypeBrowsingWeb)` for App Clip URL handling.",
+        "Distinguishes UIKit cold launch via `scene(_:willConnectTo:options:)` connection options from URL handling in `scene(_:continue:)`, and does not treat `scene(_:willContinueUserActivityWithType:)` as the handler that provides the URL.",
+        "States that the full app must handle every App Clip invocation URL after installation.",
+        "Mentions `appclips:` associated domains on both full app and App Clip targets plus AASA hosting for custom URLs or advanced experiences."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "data-notifications-location",
+      "prompt": "We're designing a parking-meter App Clip. It should remember a pending session when the user installs the full app, use Sign in with Apple if available, remind the user by notification shortly after launch, and confirm they're physically near the meter without asking for continuous location. What should we put in the App Clip skill-level implementation checklist?",
+      "expected_output": "A checklist that covers secure handoff, Sign in with Apple verification, ephemeral notifications, and App Clip location confirmation with correct plist/API boundaries.",
+      "files": [],
+      "expectations": [
+        "Recommends App Groups/shared container or shared UserDefaults only for non-secret handoff data, and explicitly says not to store passwords, refresh tokens, or credential secrets there.",
+        "Explains Sign in with Apple handoff using the shared user identifier plus full-app `ASAuthorizationAppleIDProvider.getCredentialState(forUserID:)` verification for `.authorized`.",
+        "States that full-app keychain access to App Clip-created items is available only with the right association entitlements on iOS 15.4+ and that the App Clip cannot read full-app keychain items.",
+        "Names `NSAppClipRequestEphemeralUserNotification` under the App Clip target's `NSAppClip` Info.plist dictionary, notes the up-to-8-hour ephemeral authorization window, and checks for `.ephemeral` authorization before scheduling.",
+        "Explains that notification relaunch does not include the original invocation URL and should use APNs `target-content-id` or `UNNotificationContent.targetContentIdentifier` for multi-experience routing.",
+        "Names `NSAppClipRequestLocationConfirmation` under the App Clip target's `NSAppClip` Info.plist dictionary and uses `APActivationPayload`/`appClipActivationPayload` location confirmation rather than continuous location tracking."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "size-capability-boundary",
+      "prompt": "A product manager wants an App Clip for venue check-in that includes Live Activities, CloudKit, App Intents, in-app purchases, BackgroundTasks, big bundled media, and maybe a demo link. Write a concise feasibility review that says what belongs in the App Clip, what belongs in sibling/full-app work, and what size/invocation constraints matter.",
+      "expected_output": "A feasibility review that applies App Clip size and capability limits while preserving sibling-skill boundaries.",
+      "files": [],
+      "expectations": [
+        "States the current App Clip size limits by iOS generation and distinguishes the larger iOS 17+ reliable-internet/digital-only limit from physical invocation and demo-link constraints.",
+        "Recommends measuring with the App Thinning Size Report and warns against large bundled media or large pre-task downloads.",
+        "Says CloudKit is limited to public database reads with `CloudKit-Anonymous` on iOS 16+ for App Clips, with no public writes, iCloud Documents, key-value storage, private containers, or shared containers.",
+        "Explains that App Clip Live Activities require an App Clip-only widget extension that can include only Live Activities and needs the App Clip Extension capability / `com.apple.developer.on-demand-install-capable`.",
+        "Identifies App Intents, BackgroundTasks, in-app purchases, SKAdNetwork, App Tracking Transparency, custom URL schemes, and persistent/background assumptions as not App Clip runtime features.",
+        "Routes detailed ActivityKit, WidgetKit, BackgroundTasks, StoreKit purchase, CloudKit schema, and full-app implementation work to sibling/full-app skills instead of expanding App Clip guidance into implementation-level Swift package, App Group/keychain, location-confirmation API symbol, SKOverlay, or framework API details."
+      ]
+    }
+  ]
+}

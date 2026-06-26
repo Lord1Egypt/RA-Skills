@@ -1,0 +1,110 @@
+{
+  "name": "example-quality-eval",
+  "version": "1.0",
+  "description": "Example quality eval scenarios. Replace with your skill-specific prompts and assertions.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "basic-task-no-context",
+      "prompt": "Help me check the weather in Tokyo",
+      "expected_behavior": "Agent should use the weather skill to fetch current conditions",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Mentions temperature or weather condition",
+          "type": "conversation_contains_any",
+          "values": ["temperature", "sunny", "cloudy", "rain", "°C", "°F"]
+        },
+        {
+          "id": "a2",
+          "description": "References Tokyo or Japan",
+          "type": "conversation_contains_any",
+          "values": ["Tokyo", "Japan"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 2,
+      "name": "task-with-context",
+      "conversation_history": [
+        {
+          "role": "user",
+          "content": "I'm planning a trip to London next week"
+        },
+        {
+          "role": "assistant",
+          "content": "London is great! What would you like to know about your trip?"
+        }
+      ],
+      "prompt": "What should I pack? Check the weather forecast",
+      "expected_behavior": "Agent should fetch London weather and give packing suggestions",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "References London from context",
+          "type": "conversation_contains",
+          "value": "London"
+        },
+        {
+          "id": "a2",
+          "description": "Provides forecast or weather info",
+          "type": "conversation_contains_any",
+          "values": ["forecast", "weather", "rain", "umbrella", "jacket"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 3,
+      "name": "error-handling",
+      "prompt": "What's the weather in Atlantis?",
+      "expected_behavior": "Agent should handle non-existent location gracefully",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Acknowledges location issue or provides best effort",
+          "type": "conversation_contains_any",
+          "values": ["not found", "unknown", "couldn't find", "try another", "did you mean"]
+        }
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": 4,
+      "name": "multi-location",
+      "prompt": "Compare the weather in New York and Los Angeles today",
+      "expected_behavior": "Agent should fetch weather for both cities and compare",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Mentions New York",
+          "type": "conversation_contains_any",
+          "values": ["New York", "NYC"]
+        },
+        {
+          "id": "a2",
+          "description": "Mentions Los Angeles",
+          "type": "conversation_contains_any",
+          "values": ["Los Angeles", "LA"]
+        },
+        {
+          "id": "a3",
+          "description": "Provides comparison or both temperatures",
+          "type": "conversation_contains_any",
+          "values": ["warmer", "cooler", "both", "compared", "°"]
+        }
+      ],
+      "timeout_seconds": 90
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "context-sensitivity",
+      "description": "Compare response with prior context vs without",
+      "variant_a": {"eval_id": 2},
+      "variant_b": {"eval_id": 1},
+      "judge_criteria": "Does the agent appropriately use conversation context to infer the location?"
+    }
+  ]
+}

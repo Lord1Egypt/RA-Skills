@@ -1,0 +1,25 @@
+{
+  "name": "Personal Budget Planner",
+  "slug": "personal-budget-planner",
+  "version": "1.0.0",
+  "description": "Helps individuals create personalized budget frameworks based on income, expenses, savings goals, and debt priorities.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "personal"
+  ],
+  "trigger_keywords": [
+    "personal budget planner",
+    "personal budget planner",
+    "personal",
+    "budget",
+    "planner"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

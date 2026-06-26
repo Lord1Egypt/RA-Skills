@@ -1,35 +1,113 @@
 ---
-name: "review-writer"
-description: "Data-driven writing and polishing for professional workplace documents. Use when the user asks to write or refine: (1) 述职/复盘/年终总结, (2) 简历/项目经历/STAR 改写, (3) 周..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/review-writer"
-sourceUrl: "https://clawhub.ai/skills/review-writer"
+name: review-writer
+description: >-
+  Data-driven writing and polishing for professional workplace documents. Use when the user asks to
+  write or refine: (1) 述职/复盘/年终总结, (2) 简历/项目经历/STAR 改写, (3) 周报/月报/工作总结, (4)
+  OKR/目标与关键结果, (5) PRD/方案文档/需求说明. Also use for bilingual CN/EN drafts, tone
+  alignment, structure templating, bullet-point rewriting, and turning raw notes into a first draft
+  then iterating.
 ---
 
-# review-writer
-
-> Data-driven writing and polishing for professional workplace documents. Use when the user asks to write or refine: (1) 述职/复盘/年终总结, (2) 简历/项目经历/STAR 改写, (3) 周...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/review-writer`
-- **Source URL:** [https://clawhub.ai/skills/review-writer](https://clawhub.ai/skills/review-writer)
+# Review Writer
 
 ## Overview
 
+把零散要点快速变成**可交付的初稿**，再按反馈迭代到“数据驱动、结构清晰、可量化、可复用”的最终版本。根据用户输入语言自动用中文或英文输出（混合输入则先给中文，再给英文或相反，以用户指令为准）。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/review-writer
-```
+## Default workflow（先初稿，再迭代） 
+
+### 0) Minimal intake（不阻塞出稿）
+
+除非用户明确要求“先问清楚再写”，否则默认**先出 70% 初稿**。只在缺少关键信息会导致方向错误时，追加不超过 5 个问题（优先选项题/填空题）。
+
+优先询问的最小信息集（按需挑选）：
+- 文档类型与读者：述职/简历/周报/年终/OKR/PRD；读者是直属/HR/跨部门/高层
+- 时间范围：本周/本月/季度/全年；是否要对标目标/OKR
+- “数据口径”：指标定义、统计周期、分母分子、样本量/覆盖率
+- 可公开边界：可否写金额/客户名/内部系统名（不确定时做脱敏占位）
+- 口吻：默认**数据驱动**；是否需要更谦逊/更强势/更叙事
+
+### 1) Draft 1（结构先行）
+
+把用户要点归类为：背景/目标/动作/产出/结果/影响/复盘/下一步。优先用小标题 + 列表，避免长段落堆砌。
+
+默认输出顺序：
+1. 一页摘要（3–6 条 bullet，强结果）
+2. 结构化正文（按文档类型套模板）
+3. 指标/成果表（如适用）
+4. 风险与复盘 + 下一步（闭环）
+
+### 2) Iterate（按反馈改到可交付）
+
+每轮迭代只做三类改动（保持可控）：
+- **结构**：顺序、层级、是否需要摘要/表格/附录
+- **证据**：补齐数字、对比基线、口径解释、因果链
+- **表达**：更短、更具体、更面向读者；把“做了什么”改成“带来什么结果”
+
+## Templates（按需选用）
+
+### 述职 / 复盘（季度/半年/年度）
+
+推荐结构（可按情况增删）：
+- **一页摘要**：关键结果（含数字）+ 关键能力体现 + 最大复盘点 + 下阶段重点
+- **目标与范围**：本周期目标/职责范围/关键约束
+- **关键项目（3–6 个）**：每个用“目标-动作-结果-影响-复盘-下一步”
+- **指标与业务影响**：核心指标、基线、提升幅度、样本量与口径
+- **问题与复盘**：根因、权衡、避免再犯的机制
+- **下阶段计划**：目标、里程碑、依赖与风险
+
+### 周报 / 月报
+
+推荐结构：
+- **本周期产出（Top 3–5）**：每条尽量量化（完成率/耗时/影响面/节省成本）
+- **进行中（Top 3）**：当前进度、阻塞点、预计完成时间
+- **风险与依赖**：需要谁支持、何时、如果不支持的影响
+- **下周期计划**：目标、动作、验收标准
+
+### 简历 / 项目经历（STAR / CAR）
+
+单条经历优先格式（中英任选）：
+- **Context/Situation**：一句话背景（规模/约束）
+- **Task/Goal**：你的目标（指标化）
+- **Action**：你的关键动作（3–5 点，突出 ownership 与方法）
+- **Result/Impact**：结果（数字 + 对比基线 + 业务影响）
+
+写作规则：
+- 动词开头（Designed/Owned/Delivered/Improved…）
+- 结果优先，技术/过程其次
+- 重要数字用同一口径（例如：从 X 提升到 Y，提升 \( (Y-X)/X \)）
+
+### OKR
+
+输出要求：
+- **O（Objective）**：面向结果、可感知、不过度技术化
+- **KR（Key Results）**：量化、可验收、定义口径（时间范围/分母分子/数据源）
+- **Initiatives**：做什么来保证 KR（可选）
+
+### PRD / 方案文档（轻量但完整）
+
+推荐结构：
+- 背景 & 目标（含非目标）
+- 用户/场景/问题定义
+- 方案概述（1 页）
+- 详细设计（流程/交互/数据/权限）
+- 指标口径（北极星指标 + 过程指标）
+- 风险 & 备选方案
+- 里程碑 & 资源评估
+- 验收标准（必须可测试/可验证）
+
+## Data-driven writing checklist（默认开启）
+
+在输出前做快速自检并按需补齐：
+- **对比基线**：提升/下降相对谁（上周/上月/去年同期/对照组）
+- **口径**：统计周期、数据源、样本量；避免“显著/大幅”但没数字
+- **影响链**：动作 → 指标变化 → 业务影响（收入/成本/效率/体验/风险）
+- **可归因**：你的贡献边界是什么（owner/主导/参与/协作）
+- **可复用**：抽象方法论/机制（流程、看板、自动化、SOP）
+
+## Bilingual behavior（CN/EN auto）
+
+语言策略：
+- 跟随用户最近一次明确指令；否则跟随用户输入的主要语言
+- 如果用户说“给英文版/中英双语/发给海外同事”，输出对应版本
+- 术语处理：首次出现给中英对照（如关键指标名、系统名）；后续统一用一种语言

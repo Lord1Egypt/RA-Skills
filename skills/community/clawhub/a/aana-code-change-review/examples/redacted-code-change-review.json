@@ -1,0 +1,27 @@
+{
+  "task_summary": "Prepare a pull request for a small API validation fix.",
+  "change_type": "pull_request",
+  "changed_scope_summary": "Two validation files and one focused unit test were changed; no dependency or deploy files changed.",
+  "risk_classes": [
+    "security"
+  ],
+  "test_evidence": {
+    "status": "partial",
+    "observed_checks": [
+      "targeted unit test passed"
+    ],
+    "unrun_checks": [
+      "full test suite",
+      "security scan"
+    ]
+  },
+  "secret_scan_status": "needs_review",
+  "destructive_command_status": "none",
+  "scope_status": "within_request",
+  "safeguards_required": [
+    "state that only targeted tests ran",
+    "review diff for secrets before opening the pull request"
+  ],
+  "recommended_action": "defer",
+  "human_review_required": true
+}

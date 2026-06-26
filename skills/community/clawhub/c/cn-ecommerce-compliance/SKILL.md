@@ -1,35 +1,154 @@
 ---
-name: "CN Ecommerce Compliance"
-description: "跨境电商合规助手。帮助中国卖家进行出海合规自查，覆盖目标市场法规要求。使用场景：(1)中国卖家准备进入海外市场前的合规评估 (2)检查产品是否符合目标市场认证/标签要求 (3)评估跨境税务义务（VAT/GST/关税） (4)数据保护合规（GDPR/CCPA等） (5)平台规则合规（Amazon/Shopify/T..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-ecommerce-compliance"
-sourceUrl: "https://clawhub.ai/skills/cn-ecommerce-compliance"
+name: cn-ecommerce-compliance
+description: "跨境电商合规助手。帮助中国卖家进行出海合规自查，覆盖目标市场法规要求。使用场景：(1)中国卖家准备进入海外市场前的合规评估 (2)检查产品是否符合目标市场认证/标签要求 (3)评估跨境税务义务（VAT/GST/关税） (4)数据保护合规（GDPR/CCPA等） (5)平台规则合规（Amazon/Shopify/TikTok Shop等） (6)知识产权风险排查。触发词：跨境电商合规、出海合规、出口合规、跨境税务、VAT、产品认证、CE认证、FDA、平台规则。"
 ---
 
-# CN Ecommerce Compliance
+# 跨境电商合规助手
 
-> 跨境电商合规助手。帮助中国卖家进行出海合规自查，覆盖目标市场法规要求。使用场景：(1)中国卖家准备进入海外市场前的合规评估 (2)检查产品是否符合目标市场认证/标签要求 (3)评估跨境税务义务（VAT/GST/关税） (4)数据保护合规（GDPR/CCPA等） (5)平台规则合规（Amazon/Shopify/T...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-ecommerce-compliance`
-- **Source URL:** [https://clawhub.ai/skills/cn-ecommerce-compliance](https://clawhub.ai/skills/cn-ecommerce-compliance)
+为中国跨境电商卖家提供目标市场合规自查框架，覆盖产品认证、税务、数据保护、知识产权、平台规则五大维度。
 
-## Overview
+## 合规自查流程
 
+按顺序执行五大维度检查，任何维度不通过即需整改后方可继续。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-ecommerce-compliance
+### 维度一：产品合规
+
+对照 `references/product-certification-guide.md` 检查目标市场的产品认证和标签要求。
+
+**核心检查项：**
+
+| 市场 | 常见认证 | 典型品类要求 |
+|------|---------|------------|
+| 欧盟 | CE、REACH、WEEE、EPR | 电子电器、玩具、化妆品、纺织品 |
+| 美国 | FCC、FDA、UL、CPC | 电子电器、食品接触、玩具、灯具 |
+| 英国 | UKCA、UK REACH | 同欧盟类似，脱欧后独立认证 |
+| 日本 | PSE、MIC、JIS | 电子电器、无线电设备 |
+| 东南亚 | 各国差异大，需逐国核查 | 食品、化妆品、电子产品 |
+
+**关键红线：**
+- 销售未认证产品 → 产品召回 + 罚款 + 平台下架
+- 虚假标注认证标志 → 刑事责任风险
+
+### 维度二：税务合规
+
+对照 `references/cross-border-tax-guide.md` 评估税务义务。
+
+**核心检查项：**
+
+| 税种 | 触发条件 | 风险等级 |
+|------|---------|---------|
+| VAT/GST | 在目标国有库存/超过远程销售阈值 | 🔴 高 |
+| 关税 | 所有跨境货物进口 | 🟡 中 |
+| 所得税 | 在目标国构成常设机构 | 🔴 高 |
+| 销售税(美国) | 各州经济关联阈值不同 | 🟡 中 |
+
+**关键红线：**
+- 未注册VAT即销售 → 欠税 + 罚款 + 平台冻结
+- 低报货值逃关税 → 走私风险
+
+### 维度三：数据保护
+
+**核心检查项：**
+
+| 法规 | 适用市场 | 关键要求 |
+|------|---------|---------|
+| GDPR | 欧盟 | 用户同意、数据最小化、被遗忘权、DPO |
+| CCPA/CPRA | 加州 | 披露数据收集、退出权、删除权 |
+| PIPA | 韩国 | 同意基础、数据本地化 |
+| PDPA | 泰国/新加坡 | 同意基础、跨境传输限制 |
+
+**关键红线：**
+- 未经同意收集用户数据 → GDPR最高罚全球营收4%
+- 跨境传输未做充分保护 → 数据出境违规
+
+### 维度四：知识产权
+
+**核心检查项：**
+
+| 检查项 | 说明 | 风险 |
+|--------|------|------|
+| 商标注册 | 目标市场是否已注册相同/近似商标 | 侵权下架 + 赔偿 |
+| 专利排查 | 产品是否侵犯目标国有效专利 | 禁售 + 赔偿 |
+| 版权合规 | 产品图片/描述是否原创或授权 | 平台下架 |
+| 外观设计 | 产品外观是否已在目标国注册 | 侵权风险 |
+
+**关键红线：**
+- 销售仿牌/侵权产品 → 平台封店 + 法律诉讼
+- 盗用他人产品图片 → 版权侵权
+
+### 维度五：平台规则
+
+**主流平台合规要点：**
+
+| 平台 | 关键规则 | 常见违规 |
+|------|---------|---------|
+| Amazon | 账号关联、刷单、虚假评论、FBA标签 | 多账号运营、购买评论 |
+| Shopify | 支付合规、产品政策 | 违禁品、未授权品牌 |
+| TikTok Shop | 内容合规、本地化要求 | 虚假宣传、违禁内容 |
+| Temu/Shein | 价格合规、质量标准 | 虚假折扣、质量不达标 |
+| eBay | 知识产权、账户健康 | 仿品销售、发货延迟 |
+
+## 合规报告格式
+
+```markdown
+[跨境电商合规审查报告]
+
+审查对象：{店铺/产品/市场}
+目标市场：{国家/地区}
+审查时间：{YYYY-MM-DD HH:mm}
+
+维度一（产品合规）：{✅ 通过 / ⚠️ 需整改 / ❌ 不合规}
+  - 认证要求：{详情}
+  - 标签要求：{详情}
+
+维度二（税务合规）：{✅ 通过 / ⚠️ 需整改 / ❌ 不合规}
+  - VAT/GST：{详情}
+  - 关税：{详情}
+
+维度三（数据保护）：{✅ 通过 / ⚠️ 需整改 / ❌ 不合规}
+  - 适用法规：{详情}
+  - 合规措施：{详情}
+
+维度四（知识产权）：{✅ 通过 / ⚠️ 需整改 / ❌ 不合规}
+  - 商标排查：{详情}
+  - 专利排查：{详情}
+
+维度五（平台规则）：{✅ 通过 / ⚠️ 需整改 / ❌ 不合规}
+  - 适用平台：{详情}
+  - 风险点：{详情}
+
+总体结论：{✅ 可以上架 / ⚠️ 整改后可上架 / ❌ 暂不可上架}
+优先整改项：{按紧急程度排序}
 ```
+
+## 使用示例
+
+**示例1：中国卖家想在Amazon美国站销售LED灯具**
+- 维度一：需FCC认证 + UL安全认证 → ⚠️ 需获取认证
+- 维度二：需关注各州销售税经济关联 → ⚠️ 需注册
+- 维度三：收集用户数据需CCPA合规 → ⚠️ 需隐私政策
+- 维度四：需排查LED相关专利 → ⚠️ 需FTO分析
+- 维度五：Amazon FBA标签要求 → ✅ 可满足
+- 结论：⚠️ 整改后可上架
+
+**示例2：中国卖家想在TikTok Shop英国站销售美妆产品**
+- 维度一：需UKCA + CPSR化妆品安全报告 → ❌ 不合规
+- 维度二：需注册英国VAT → ⚠️ 需注册
+- 维度三：需GDPR合规 → ⚠️ 需整改
+- 维度四：需排查商标和配方专利 → ⚠️ 需排查
+- 维度五：TikTok美妆类目特殊要求 → ⚠️ 需了解
+- 结论：❌ 暂不可上架，需先获取CPSR
+
+## 参考资料
+
+- `references/product-certification-guide.md` — 各市场产品认证详细指南
+- `references/cross-border-tax-guide.md` — 跨境税务义务详解
+
+## 相关技能
+
+- **cn-business-compliance-check** — 中国法律合规审查器（通用合规/三层过滤/红线清单）
+- **cn-advertising-compliance** — 中国广告法合规审查器（违禁词/品类限制/直播带货合规）
+
+安装：`clawhub install cn-business-compliance-check` / `clawhub install cn-advertising-compliance`

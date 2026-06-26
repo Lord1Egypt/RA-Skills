@@ -1,0 +1,24 @@
+{
+  "monthly_budgets": {
+    "Housing": 1800,
+    "Food & Dining": 600,
+    "Transportation": 200,
+    "Utilities": 150,
+    "Entertainment": 100,
+    "Shopping": 250,
+    "Health": 100,
+    "Subscriptions": 75,
+    "Other": 50
+  },
+  "notes": {
+    "Housing": "Rent + renters insurance. Adjust if you own.",
+    "Food & Dining": "Groceries + restaurants + coffee. Delivery included.",
+    "Transportation": "Gas + rideshare + parking. Not car payment (put that in Housing).",
+    "Utilities": "Electric, water, internet, cell phone.",
+    "Entertainment": "Streaming not included here — that's Subscriptions.",
+    "Shopping": "Amazon, clothing, home goods, electronics.",
+    "Health": "Co-pays, prescriptions, gym membership.",
+    "Subscriptions": "Netflix, Spotify, iCloud, software subscriptions.",
+    "Other": "Catch-all. If this is high, review and recategorize."
+  }
+}

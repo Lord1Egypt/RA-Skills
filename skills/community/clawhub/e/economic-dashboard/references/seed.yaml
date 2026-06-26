@@ -1,0 +1,3777 @@
+meta:
+  id: finance-bp-083-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-083
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:33.402010+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  upgraded_from: finance-bp-083-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:19.259947+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-083--Economic-Dashboard/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-083--Economic-Dashboard/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-MACRO-DATA-001
+  title: SEC EDGAR Rate Limit Violation
+  description: When implementing SEC API calls without applying rate limiting decorators, requests exceed the regulatory 10
+    requests per second limit. This causes IP blocking from SEC EDGAR, preventing all subsequent access to critical financial
+    filings and completely disrupting the data collection pipeline. FinRobot demonstrates that SEC enforces strict rate limits
+    and missing User-Agent headers compound this by causing silent request failures.
+  project_source: finance-bp-074--FinRobot
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-002
+  title: Temporal Knowledge Graph Look-Ahead Bias
+  description: When implementing temporal data splitting for knowledge graphs, using non-temporal train/val/test splits causes
+    the model to see future events during training. The violation of train_edges occurring before val_edges and test_edges
+    temporally results in inflated metrics that do not reflect real-world performance. This produces overfit models that fail
+    catastrophically when deployed for actual temporal prediction tasks.
+  project_source: finance-bp-080--FinDKG
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-003
+  title: Technical Indicator Look-Ahead Bias via Missing Shift
+  description: When implementing SMA crossover detection (golden/death cross) without using shift(1) to compare current bar
+    state with prior bar state, crossover detection uses current bar data causing look-ahead bias. Signals appear to fire
+    at the same bar as the cross occurs, producing unrealistic backtest results that fail in live trading. Rationalizing this
+    with 'we need the current bar signal immediately' leads to future information leaking into current signals.
+  project_source: finance-bp-083--Economic-Dashboard
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-004
+  title: EIOPA Non-Compliant Curve Extrapolation
+  description: When implementing the Smith-Wilson algorithm for EIOPA Solvency II calculations, using non-EIOPA compliant
+    formulas or incorrect convergence point calculations violates regulatory specifications. The convergence point must use
+    max(U+40, 60) years per EIOPA paragraph 120. Non-compliant formulas will fail regulatory audits for insurance liability
+    calculations and produce incorrect risk-free rates, leading to materially wrong liability valuations.
+  project_source: finance-bp-077--Open_Source_Economic_Model
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-005
+  title: Factor Regression Using Raw Returns Instead of Excess Returns
+  description: When computing returns for CAPM/Fama-French factor regression, using raw stock returns instead of subtracting
+    the risk-free rate (Rf) violates standard financial econometric methodology. CAPM/FF regression requires excess returns
+    (Return - Rf); using raw returns produces incorrect beta estimates that misrepresent a stock's systematic risk exposure.
+    This leads to fundamentally flawed risk attribution and portfolio construction decisions.
+  project_source: finance-bp-105--open-climate-investing
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-006
+  title: Percentage vs Decimal Unit Mismatch in Factor Data
+  description: When importing Fama-French factors from CSV files, failing to divide percentage-formatted factors (e.g., 5.2)
+    by 100 before regression causes coefficients scaled by 100x. This produces statistically invalid inference and meaningless
+    factor loadings. The same issue applies to risk-free rate values, corrupting all CAPM beta calculations downstream.
+  project_source: finance-bp-105--open-climate-investing
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-007
+  title: Insufficient Regression Observations for Statistical Validity
+  description: When implementing factor regression analysis, using fewer than 20 data points after filtering (inner join,
+    winsorization, date range) produces unreliable or undefined t-statistics and p-values. OLS with insufficient observations
+    produces meaningless regression coefficients, making it impossible to distinguish significant factor exposures from noise.
+    This commonly occurs when combining multiple data sources with missing values.
+  project_source: finance-bp-105--open-climate-investing
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-008
+  title: DGL Graph Attribute Propagation Failure in Temporal Batching
+  description: When implementing temporal knowledge graph data collation without propagating graph attributes (num_relations,
+    num_all_nodes, time_interval) to subgraph variants created by collate_fn, downstream model components encounter missing
+    attribute errors. The EmbeddingUpdater and EdgeModel expect these attributes on all graph objects including subgraphs,
+    causing training to fail with AttributeError.
+  project_source: finance-bp-080--FinDKG
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-009
+  title: CSV BOM Encoding Corruption in Data Import
+  description: When importing CSV portfolio files with special characters without using 'utf-8-sig' encoding to handle BOM
+    markers, CSV files with UTF-8 BOM markers fail to parse correctly. This causes KeyError exceptions when reading row fields,
+    preventing portfolio data from loading entirely. The BOM marker silently corrupts the first column name read by pandas.
+  project_source: finance-bp-077--Open_Source_Economic_Model
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-010
+  title: OHLCV Data Quality Validation Failure
+  description: When calculating technical indicators from OHLCV data without verifying required columns (open, high, low,
+    close, volume), missing required OHLCV columns causes ValueError and prevents technical indicator calculation for affected
+    tickers. This blocks downstream regime classification and pattern detection for all tickers with incomplete data.
+  project_source: finance-bp-083--Economic-Dashboard
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-011
+  title: Inconsistent Primary Key Schema Causing JOIN Failures
+  description: When storing derived features in DuckDB with a different primary key schema than technical_features table,
+    inconsistent primary keys prevent JOIN operations between tables. This breaks regime classification and pattern detection
+    pipelines. The composite primary key (ticker, date) must be consistent across all feature tables to enable efficient querying
+    and data integrity.
+  project_source: finance-bp-083--Economic-Dashboard
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-012
+  title: Frequency Column Enforcement Missing in Time Series Schema
+  description: When creating PostgreSQL schema for time series tables without explicit frequency column enforcement of 'MONTHLY'
+    or 'DAILY' text values, mixed frequency data corrupts regression calculations. Combining incompatible data frequencies
+    produces statistically invalid regression results. The database must enforce frequency consistency to prevent silent data
+    corruption.
+  project_source: finance-bp-105--open-climate-investing
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-013
+  title: PostgreSQL Fork in Multiprocessing Context
+  description: When implementing multiprocessing for parallel regression execution using fork start method with psycopg2 database
+    connections, child processes inherit corrupted connection state. This causes 'connection already closed' errors or corrupted
+    connection state in child processes, resulting in failed database writes and incomplete factor regression calculations.
+  project_source: finance-bp-105--open-climate-investing
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+- id: AP-MACRO-DATA-014
+  title: Temporal DataLoader Shuffling Breaking Graph Ordering
+  description: When configuring DataLoader for temporal knowledge graph training with shuffle=True, the temporal ordering
+    required for cumulative graph construction is violated. The model receives edges in non-chronological order, breaking
+    the prior_G, batch_G, cumulative_G construction logic that depends on edges_before_batch occurring before edges_in_batch.
+  project_source: finance-bp-080--FinDKG
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - macro-data
+  _source_file: anti-patterns/macro-data.yaml
+cross_project_wisdom:
+- wisdom_id: CW-MACRO-DATA-001
+  source_project: finance-bp-080--FinDKG, finance-bp-083--Economic-Dashboard
+  pattern_name: Temporal Ordering Enforcement
+  description: Across temporal knowledge graphs and financial time series, strict temporal ordering must be enforced in train/val/test
+    splits and data loading. Train edges must occur strictly before validation edges, which must occur strictly before test
+    edges. DataLoaders must never shuffle temporal data. Apply this pattern whenever implementing any time-series ML pipeline
+    to prevent look-ahead bias that inflates evaluation metrics.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-002
+  source_project: finance-bp-077--Open_Source_Economic_Model, finance-bp-105--open-climate-investing
+  pattern_name: Regulatory Formula Compliance
+  description: When implementing financial calculations subject to regulatory oversight (EIOPA Solvency II, CAPM, Fama-French),
+    use exact formula specifications from authoritative sources. The Smith-Wilson convergence point must follow EIOPA paragraph
+    120, factor regressions must use excess returns with properly scaled inputs. Apply this pattern when calculations will
+    be used for regulatory reporting or investment decision-making.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-003
+  source_project: finance-bp-083--Economic-Dashboard, finance-bp-077--Open_Source_Economic_Model
+  pattern_name: Strict Data Schema Enforcement
+  description: Financial data pipelines require strict schema validation at ingestion points. OHLCV requires specific columns,
+    CSV imports require exact column names matching field access, INI files require specific sections. Missing or malformed
+    schema elements should fail loudly rather than produce silent corruption. Apply this pattern during data import to catch
+    errors early before downstream calculations use bad data.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-004
+  source_project: finance-bp-105--open-climate-investing, finance-bp-080--FinDKG, finance-bp-083--Economic-Dashboard
+  pattern_name: Composite Primary Key Uniqueness
+  description: Time-series financial databases require composite primary keys (ticker, date) to ensure uniqueness and enable
+    efficient querying. Inconsistent primary keys across tables break JOIN operations essential for feature merging. Apply
+    this pattern when designing any financial database schema involving time-series measurements with multiple entities.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-005
+  source_project: finance-bp-074--FinRobot
+  pattern_name: External API Rate Limiting
+  description: When accessing external financial APIs (SEC EDGAR, data vendors), strict rate limiting must be implemented
+    before deployment. SEC EDGAR enforces 10 requests per second with IP blocking consequences. Use decorators and proper
+    User-Agent headers. Apply this pattern when integrating any external financial data API to prevent service disruption
+    that blocks critical data access.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-006
+  source_project: finance-bp-080--FinDKG, finance-bp-105--open-climate-investing
+  pattern_name: Graph Attribute Propagation in Batching
+  description: When creating subgraph variants during batch collation in graph-based ML, all metadata attributes (num_nodes,
+    num_relations, time_interval) must be explicitly propagated to each subgraph. Downstream model components expect these
+    attributes on all graph objects. Apply this pattern whenever implementing custom collate functions for graph neural networks
+    to prevent training failures.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-007
+  source_project: finance-bp-105--open-climate-investing, finance-bp-083--Economic-Dashboard
+  pattern_name: Statistical Validity Thresholds
+  description: Factor regressions and statistical calculations require minimum observation counts (typically 20+) for reliable
+    inference. Inner joins, winsorization, and date filtering reduce observations; pipeline validation must check for sufficient
+    data points before regression. Apply this pattern whenever computing regression statistics to ensure results are meaningful
+    rather than spurious.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+- wisdom_id: CW-MACRO-DATA-008
+  source_project: finance-bp-080--FinDKG, finance-bp-077--Open_Source_Economic_Model
+  pattern_name: Data Type Strictness for ML Operations
+  description: Graph operations and time calculations require strict dtype consistency (float32 for time values, integer for
+    node types, boolean for masks). Type mismatches cause silent failures in edge_subgraph, degree calculations, and time
+    interval transformations. Apply this pattern when preparing data for graph neural networks or any numerical ML pipeline
+    to catch dtype issues early.
+  applicable_to_activity: macro-data
+  _source_file: cross-project-wisdom/macro-data.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: scripts/create_database_snapshot_optimized.py
+  business_problem: Creates optimized database backups by partitioning hot (<90 days) and cold (>90 days) data into appropriate
+    storage formats with ZSTD compression and incremental exports.
+  intent_keywords:
+  - backup
+  - snapshot
+  - parquet
+  - database backup
+  - compress data
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-102
+  source_file: scripts/compact_database.py
+  business_problem: Optimizes database performance by running VACUUM, rebuilding indexes, and deduplicating records within
+    retention windows while measuring compression savings.
+  intent_keywords:
+  - vacuum
+  - optimize
+  - database cleanup
+  - reclaim space
+  - index rebuild
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-103
+  source_file: scripts/verify_api_keys.py
+  business_problem: Verifies the API key management feature implementation is working correctly by testing module imports,
+    credential initialization, and key storage/retrieval.
+  intent_keywords:
+  - verify API keys
+  - test credentials
+  - API setup verification
+  - credentials validation
+  stage: data_collection
+  data_domain: mixed
+  type: monitoring
+- kuc_id: KUC-104
+  source_file: scripts/refresh_data.py
+  business_problem: Fetches each economic data from FRED and Yahoo Finance APIs daily and stores results in cache for dashboard
+    consumption.
+  intent_keywords:
+  - refresh data
+  - daily update
+  - FRED data
+  - yfinance
+  - economic data fetch
+  stage: data_collection
+  data_domain: financial_data
+  type: data_pipeline
+- kuc_id: KUC-105
+  source_file: scripts/cleanup_old_data.py
+  business_problem: Archives data older than retention periods to Parquet files and deletes old records from main tables to
+    reduce database size while maintaining historical access.
+  intent_keywords:
+  - data retention
+  - cleanup old data
+  - archive historical
+  - delete old records
+  - retention policy
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-106
+  source_file: scripts/quickstart_api_keys.py
+  business_problem: Provides a quick start guide for initializing and testing API key management, storing and verifying FRED
+    API keys securely.
+  intent_keywords:
+  - setup API keys
+  - quick start
+  - initialize credentials
+  - API key setup
+  stage: data_collection
+  data_domain: mixed
+  type: monitoring
+- kuc_id: KUC-107
+  source_file: scripts/setup_credentials.py
+  business_problem: Initializes and stores API credentials (FRED API key) securely in encrypted form for authenticated data
+    access.
+  intent_keywords:
+  - setup credentials
+  - API key initialization
+  - secure storage
+  - FRED API
+  stage: data_collection
+  data_domain: mixed
+  type: monitoring
+- kuc_id: KUC-108
+  source_file: scripts/move_fred_data.py
+  business_problem: Organizes FRED-related data files and scripts by moving them into a dedicated directory structure.
+  intent_keywords:
+  - organize files
+  - move FRED data
+  - file management
+  - directory structure
+  stage: data_collection
+  data_domain: financial_data
+  type: data_pipeline
+- kuc_id: KUC-109
+  source_file: scripts/generate_sample_data.py
+  business_problem: Generates sample datasets for offline mode testing, including FRED, Yahoo Finance, and World Bank sample
+    data.
+  intent_keywords:
+  - generate sample data
+  - offline mode
+  - test data
+  - sample datasets
+  - offline testing
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-110
+  source_file: scripts/init_database.py
+  business_problem: Initializes the DuckDB database by creating each required tables and indexes for the Economic Dashboard.
+  intent_keywords:
+  - init database
+  - create tables
+  - database setup
+  - DuckDB initialization
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-111
+  source_file: scripts/fetch_sentiment_data.py
+  business_problem: Fetches news articles and sentiment data for specified stock symbols, including Google Trends data for
+    sentiment analysis.
+  intent_keywords:
+  - news sentiment
+  - fetch news
+  - sentiment analysis
+  - stock news
+  - Google Trends
+  stage: data_collection
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-112
+  source_file: scripts/migrate_pickle_to_duckdb.py
+  business_problem: Migrates existing pickle cache files containing FRED and Yahoo Finance data to the new DuckDB database
+    format.
+  intent_keywords:
+  - migrate pickle
+  - convert cache
+  - DuckDB migration
+  - pickle to database
+  - data migration
+  stage: data_collection
+  data_domain: financial_data
+  type: data_pipeline
+- kuc_id: KUC-113
+  source_file: scripts/refresh_data_smart.py
+  business_problem: Intelligently refreshes economic data based on natural update frequencies and SLAs, respecting rate limits
+    and only fetching data when needed.
+  intent_keywords:
+  - smart refresh
+  - SLA aware
+  - rate limit
+  - incremental refresh
+  - update frequency
+  stage: data_collection
+  data_domain: financial_data
+  type: data_pipeline
+component_capability_map:
+  project: finance-bp-083--Economic-Dashboard
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 7
+    total_classes: 36
+    total_functions: 0
+    total_stages: 7
+  modules:
+    data_collection:
+      class_count: 6
+      stage_id: data_collection
+      stage_order: 1
+      responsibility: Fetch economic data from FRED, Yahoo Finance, SEC, and CBOE APIs with offline fallback. Manages caching
+        and rate limiting to ensure reliable data access. This stage exists because financial analysis requires consistent,
+        fresh data from multiple authoritative sources, and the system must remain funct
+      classes:
+      - name: CredentialsManager.set_api_key
+        file: data_collection/credentialsmanager-set-api-key.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: CredentialsManager.get_api_key
+        file: data_collection/credentialsmanager-get-api-key.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: load_fred_data
+        file: data_collection/load-fred-data.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: load_yfinance_data
+        file: data_collection/load-yfinance-data.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: data_source_adapter
+        file: data_collection/data-source-adapter.py
+        line: 0
+        kind: replaceable_point
+      - name: cache_backend
+        file: data_collection/cache-backend.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    feature_engineering:
+      class_count: 6
+      stage_id: feature_engineering
+      stage_order: 2
+      responsibility: Calculate technical indicators, options metrics, and derived features from raw price/volume data. Transforms
+        market data into ML-ready feature vectors. This stage exists because raw market data must be transformed into meaningful
+        signals before any predictive modeling or analysis can occur.
+      classes:
+      - name: TechnicalIndicatorCalculator.calculate_all
+        file: feature_engineering/technicalindicatorcalculator-calculate-a.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: OptionsMetricsCalculator.calculate
+        file: feature_engineering/optionsmetricscalculator-calculate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: DerivedFeaturesCalculator.compute
+        file: feature_engineering/derivedfeaturescalculator-compute.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FeaturePipeline.run_full_pipeline
+        file: feature_engineering/featurepipeline-run-full-pipeline.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: indicator_library
+        file: feature_engineering/indicator-library.py
+        line: 0
+        kind: replaceable_point
+      - name: feature_interactions
+        file: feature_engineering/feature-interactions.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    financial_analysis:
+      class_count: 6
+      stage_id: financial_analysis
+      stage_order: 3
+      responsibility: Calculate margin risk, leverage exposure, insider trading signals, and financial health scores. Provides
+        risk metrics and market stress indicators for portfolio risk management. This stage exists because raw market data
+        needs risk-contextualization to support trading and investment decisions.
+      classes:
+      - name: MarginCallRiskCalculator.calculate
+        file: financial_analysis/margincallriskcalculator-calculate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: LeverageMetricsCalculator.compute
+        file: financial_analysis/leveragemetricscalculator-compute.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: InsiderTradingTracker.analyze
+        file: financial_analysis/insidertradingtracker-analyze.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FinancialHealthScorer.score
+        file: financial_analysis/financialhealthscorer-score.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: risk_weights
+        file: financial_analysis/risk-weights.py
+        line: 0
+        kind: replaceable_point
+      - name: insider_sentiment_formula
+        file: financial_analysis/insider-sentiment-formula.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    ml_training_&_prediction:
+      class_count: 6
+      stage_id: ml_training_prediction
+      stage_order: 4
+      responsibility: Train XGBoost/LightGBM ensemble models for stock direction prediction. Uses walk-forward validation
+        to prevent lookahead bias in time series. This stage exists because statistical and ML models can identify patterns
+        in feature data that support forward-looking market predictions.
+      classes:
+      - name: ModelTrainer.train
+        file: ml_training_&_prediction/modeltrainer-train.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: EnsembleModel.fit
+        file: ml_training_&_prediction/ensemblemodel-fit.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: PredictionEngine.predict
+        file: ml_training_&_prediction/predictionengine-predict.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BaseModel.save
+        file: ml_training_&_prediction/basemodel-save.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: base_models
+        file: ml_training_&_prediction/base-models.py
+        line: 0
+        kind: replaceable_point
+      - name: prediction_horizon
+        file: ml_training_&_prediction/prediction-horizon.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    recession_probability:
+      class_count: 3
+      stage_id: recession_indicator
+      stage_order: 5
+      responsibility: Calculate recession probability using 7 weighted economic indicators (yield curve, labor, financial
+        stress, etc.). Provides forward-looking economic risk assessment for macro risk management. This stage exists because
+        single indicators are unreliable predictors; combining multiple signals reduces fa
+      classes:
+      - name: RecessionProbabilityModel.calculate
+        file: recession_probability/recessionprobabilitymodel-calculate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: RecessionProbabilityModel.get_probability
+        file: recession_probability/recessionprobabilitymodel-get-probabilit.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: indicator_weights
+        file: recession_probability/indicator-weights.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    orchestration_&_automation:
+      class_count: 3
+      stage_id: orchestration_automation
+      stage_order: 6
+      responsibility: Schedule data refresh via Airflow DAGs. Coordinates ETL tasks, validates data quality, and sends alerts
+        on failures. This stage exists because financial analysis requires fresh data on predictable schedules without manual
+        intervention.
+      classes:
+      - name: market_data_refresh_dag
+        file: orchestration_&_automation/market-data-refresh-dag.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: economic_data_refresh_dag
+        file: orchestration_&_automation/economic-data-refresh-dag.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: alert_channel
+        file: orchestration_&_automation/alert-channel.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    visualization_&_ui:
+      class_count: 6
+      stage_id: visualization
+      stage_order: 7
+      responsibility: Streamlit-based dashboard pages for economic indicators, technical analysis, margin risk, insider trading,
+        and ML predictions. This stage exists because analytical outputs need intuitive presentation to support decision-making
+        by financial professionals.
+      classes:
+      - name: app.py (landing page)
+        file: visualization_&_ui/app-py-landing-page.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: 10_Margin_Call_Risk_Monitor.render
+        file: visualization_&_ui/10-margin-call-risk-monitor-render.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: 11_Recession_Probability.render
+        file: visualization_&_ui/11-recession-probability-render.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: 13_Insider_Trading_Tracker.render
+        file: visualization_&_ui/13-insider-trading-tracker-render.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: theme/styling
+        file: visualization_&_ui/theme-styling.py
+        line: 0
+        kind: replaceable_point
+      - name: chart_library
+        file: visualization_&_ui/chart-library.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.28
+    evidence_invalid: 54
+    evidence_verified: 21
+    evidence_auto_fixed: 0
+    audit_coverage: 60/60 (100%)
+    audit_pass_rate: 3/60 (5%)
+    audit_fail_total: 33
+    audit_finance_universal:
+      pass: 2
+      warn: 9
+      fail: 9
+    audit_subdomain_totals:
+      pass: 1
+      warn: 15
+      fail: 24
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-083. Evidence verify ratio
+    = 28.0% and audit fail total = 33. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-083-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Database Snapshot Optimization
+    positive_terms:
+    - backup
+    - snapshot
+    - parquet
+    - database backup
+    - compress data
+    data_domain: mixed
+    negative_terms:
+    - restore
+    - live trading
+    - backtest
+    - ML prediction
+    ambiguity_question: Do you need a one-time backup or scheduled recurring snapshots?
+  - uc_id: UC-102
+    name: Database Compaction and Optimization
+    positive_terms:
+    - vacuum
+    - optimize
+    - database cleanup
+    - reclaim space
+    - index rebuild
+    data_domain: mixed
+    negative_terms:
+    - restore
+    - backup
+    - trading strategy
+    - screening
+    ambiguity_question: Are you experiencing slow query performance or trying to reduce storage size?
+  - uc_id: UC-103
+    name: API Key Management Verification
+    positive_terms:
+    - verify API keys
+    - test credentials
+    - API setup verification
+    - credentials validation
+    data_domain: mixed
+    negative_terms:
+    - data refresh
+    - backtest
+    - screening
+    - live trading
+    ambiguity_question: Are you setting up credentials for the first time or troubleshooting existing credentials?
+  - uc_id: UC-104
+    name: Daily Economic Data Refresh
+    positive_terms:
+    - refresh data
+    - daily update
+    - FRED data
+    - yfinance
+    - economic data fetch
+    data_domain: financial_data
+    negative_terms:
+    - backtest
+    - screening
+    - ML prediction
+    - parquet export
+    ambiguity_question: Do you need to refresh each data or just specific data sources?
+  - uc_id: UC-105
+    name: Data Retention Policy Cleanup
+    positive_terms:
+    - data retention
+    - cleanup old data
+    - archive historical
+    - delete old records
+    - retention policy
+    data_domain: mixed
+    negative_terms:
+    - live trading
+    - backtest
+    - ML prediction
+    - verify API keys
+    ambiguity_question: Do you want to archive data to Parquet before deletion, or just delete old records?
+  - uc_id: UC-106
+    name: API Key Management Quickstart
+    positive_terms:
+    - setup API keys
+    - quick start
+    - initialize credentials
+    - API key setup
+    data_domain: mixed
+    negative_terms:
+    - data refresh
+    - backtest
+    - screening
+    - database snapshot
+    ambiguity_question: Are you setting up API keys for the first time or updating existing keys?
+  - uc_id: UC-107
+    name: Credentials Initialization
+    positive_terms:
+    - setup credentials
+    - API key initialization
+    - secure storage
+    - FRED API
+    data_domain: mixed
+    negative_terms:
+    - data refresh
+    - backtest
+    - screening
+    - database compaction
+    ambiguity_question: Do you need to add new API keys or update existing ones?
+  - uc_id: UC-108
+    name: FRED Data File Organization
+    positive_terms:
+    - organize files
+    - move FRED data
+    - file management
+    - directory structure
+    data_domain: financial_data
+    negative_terms:
+    - refresh data
+    - backtest
+    - ML prediction
+    - API keys
+    ambiguity_question: Is this a one-time file organization task or part of a larger migration?
+  - uc_id: UC-109
+    name: Offline Sample Data Generation
+    positive_terms:
+    - generate sample data
+    - offline mode
+    - test data
+    - sample datasets
+    - offline testing
+    data_domain: mixed
+    negative_terms:
+    - live trading
+    - backtest
+    - API keys
+    - production data
+    ambiguity_question: Do you need sample data for a specific source or each sources?
+  - uc_id: UC-110
+    name: DuckDB Database Initialization
+    positive_terms:
+    - init database
+    - create tables
+    - database setup
+    - DuckDB initialization
+    data_domain: mixed
+    negative_terms:
+    - data refresh
+    - backtest
+    - screening
+    - API keys
+    ambiguity_question: Are you setting up a new database or resetting an existing one?
+  - uc_id: UC-111
+    name: News and Sentiment Data Fetching
+    positive_terms:
+    - news sentiment
+    - fetch news
+    - sentiment analysis
+    - stock news
+    - Google Trends
+    data_domain: financial_data
+    negative_terms:
+    - live trading
+    - backtest
+    - database snapshot
+    - API key verification
+    ambiguity_question: Do you need sentiment data for specific symbols or a broad market scan?
+  - uc_id: UC-112
+    name: Pickle Cache to DuckDB Migration
+    positive_terms:
+    - migrate pickle
+    - convert cache
+    - DuckDB migration
+    - pickle to database
+    - data migration
+    data_domain: financial_data
+    negative_terms:
+    - live trading
+    - backtest
+    - ML prediction
+    - API keys
+    ambiguity_question: Are you migrating historical data only or also maintaining pickle as cache?
+  - uc_id: UC-113
+    name: Smart Data Refresh with SLA Awareness
+    positive_terms:
+    - smart refresh
+    - SLA aware
+    - rate limit
+    - incremental refresh
+    - update frequency
+    data_domain: financial_data
+    negative_terms:
+    - full refresh
+    - backup
+    - API key setup
+    - ML prediction
+    ambiguity_question: Do you need a forced full refresh or smart incremental updates based on SLAs?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 111
+    fatal_constraints_count: 37
+    non_fatal_constraints_count: 147
+    use_cases_count: 13
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions:
+    - id: BD-001
+      type: B
+      summary: DuckDB singleton connection
+    - id: BD-002
+      type: BA
+      summary: Offline mode with sample data fallback
+    - id: BD-003
+      type: BA
+      summary: SLA-based refresh scheduling (Daily=6h, Weekly=1d, Monthly=7d, Quarterly=30d)
+    - id: BD-004
+      type: B/RC
+      summary: Encrypted credentials storage with Fernet symmetric encryption
+    - id: BD-GAP-001
+      type: DK
+      summary: 'Missing: Trading calendar vs natural calendar'
+    - id: BD-GAP-002
+      type: DK
+      summary: 'Missing: Timezone explicit annotation'
+    - id: BD-GAP-003
+      type: RC
+      summary: 'Missing: float vs Decimal for currency'
+    - id: BD-GAP-004
+      type: M
+      summary: 'Missing: Matrix ill-conditioning and stability'
+    - id: BD-GAP-005
+      type: B
+      summary: 'Missing: PnL conservation'
+    - id: BD-GAP-006
+      type: DK
+      summary: 'Missing: Model and data version snapshot binding'
+    - id: BD-GAP-007
+      type: RC
+      summary: 'Missing: Settlement and delivery time convention'
+    - id: BD-GAP-008
+      type: RC
+      summary: 'Missing: Price and quantity precision (tick/lot size)'
+    - id: BD-GAP-009
+      type: B
+      summary: 'Missing: Cost Model Completeness'
+    - id: BD-GAP-010
+      type: B
+      summary: 'Missing: Carry/Funding Cost Modeling'
+    - id: BD-GAP-011
+      type: B
+      summary: 'Missing: Arbitrage-Free Constraints'
+    - id: BD-GAP-012
+      type: B
+      summary: 'Missing: Optimization Constraint Completeness'
+    - id: BD-GAP-013
+      type: DK
+      summary: 'Missing: Rebalancing Trigger Mechanism'
+    - id: BD-GAP-014
+      type: RC
+      summary: 'Missing: Implement timezone-aware datetime handling across each data operations. Use UTC as canonical timezone
+        and localize on display. Replace naive datetime.now() with timezone-aware alternatives.'
+    - id: BD-GAP-015
+      type: DK
+      summary: 'Missing: Trading calendar vs natural calendar'
+    - id: BD-GAP-016
+      type: RC
+      summary: 'Missing: float vs Decimal for currency'
+    - id: BD-GAP-017
+      type: M
+      summary: 'Missing: Matrix ill-conditioning and stability'
+    - id: BD-GAP-018
+      type: B
+      summary: 'Missing: PnL conservation'
+    - id: BD-GAP-019
+      type: B
+      summary: 'Missing: Greeks Calculation'
+    - id: BD-GAP-020
+      type: B
+      summary: 'Missing: Finite Difference Grid Stability'
+    - id: BD-GAP-021
+      type: B
+      summary: 'Missing: Covariance Estimator Selection'
+    - id: BD-GAP-022
+      type: B
+      summary: 'Missing: VaR/CVaR Confidence and Window'
+    - id: BD-GAP-023
+      type: B
+      summary: 'Missing: Default Definition and IFRS 9 Staging'
+    - id: BD-GAP-024
+      type: B
+      summary: 'Missing: PD/LGD/EAD Estimation Methods'
+    - id: BD-GAP-025
+      type: B
+      summary: 'Missing: FTP (Funds Transfer Pricing) Method'
+    - id: BD-GAP-026
+      type: B
+      summary: 'Missing: Cash Pool Legal Structure'
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions:
+    - id: BD-022
+      type: BA
+      summary: Offline-first with live fallback (green=live, orange=offline badge)
+    - id: BD-023
+      type: BA
+      summary: Environment-based cache expiry (Dev=1h, Prod=24h)
+    - id: BD-024
+      type: BA
+      summary: 5-year chart lookback default for long-term trends
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 23 source groups: default_value(8),
+        feature_engineering(3), financial_analysis(15), global(10), inheritance(1), invariant(2), and 17 more.'
+      key_decisions: 78 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-061
+      type: B/BA
+      summary: DatabaseConnection singleton hardcodes memory limits affecting each queries
+    - id: BD-063
+      type: B/BA
+      summary: MarginCallRiskCalculator hardcodes component weights encoding business assumptions
+    - id: BD-064
+      type: BA/DK
+      summary: RecessionProbabilityModel encodes empirical indicator weights from financial research
+    - id: BD-067
+      type: B/BA
+      summary: InsiderTradingTracker classifies transactions using hardcoded bullish/bearish codes
+    - id: BD-068
+      type: BA
+      summary: Data refresh SLA contract defines cache expiry based on publication frequency
+    - id: BD-071
+      type: BA/DK
+      summary: 'VIX regime classification thresholds hardcoded: <15 Low, <20 Normal, <30 Elevated, else Crisis'
+    - id: BD-072
+      type: B/BA
+      summary: 'Default environment config cache_expiry differs: development=1h vs production=24h'
+    - id: BD-075
+      type: B/BA
+      summary: CredentialsManager stores encryption key with os.chmod 0o600 permissions
+    - id: BD-005
+      type: M
+      summary: Shift-based crossover detection for SMA50/SMA200
+    - id: BD-006
+      type: BA
+      summary: Regime classification thresholds (Bullish=RSI>60 AND MACD>0 AND Price>SMA50)
+    - id: BD-007
+      type: BA
+      summary: Feature pipeline validation (>10% null RSI or duplicate dates = failure)
+    - id: BD-008
+      type: BA
+      summary: Composite risk scoring with fixed weights (30/25/25/20)
+    - id: BD-009
+      type: BA
+      summary: Short interest thresholds (>30%=100 score, >20%=75 score)
+    - id: BD-010
+      type: BA
+      summary: Bullish/bearish transaction codes (P=Purchase, M=Exercise=bullish; S=Sale=bearish)
+    - id: BD-011
+      type: BA
+      summary: Sector classification (Offensive=XLY/XLK, Defensive=XLU/XLP, Cyclical=remainder)
+    - id: BD-026
+      type: B/DK
+      summary: Use SMA (Simple Moving Average) for trend identification
+    - id: BD-027
+      type: B
+      summary: Use EMA (Exponential Moving Average) for momentum indicators
+    - id: BD-028
+      type: B/BA
+      summary: Use RSI(14) as primary momentum oscillator
+    - id: BD-029
+      type: B/BA
+      summary: Use MACD with standard parameters for trend/momentum
+    - id: BD-030
+      type: B/BA
+      summary: Use Bollinger Bands with 2 standard deviations
+    - id: BD-031
+      type: B/DK
+      summary: Use ATR(14) to measure realized volatility
+    - id: BD-032
+      type: B
+      summary: Use Stochastic Oscillator %K=14, %D=3
+    - id: BD-033
+      type: B/DK
+      summary: Use Fibonacci ratios for price projection
+    - id: BD-034
+      type: B/DK
+      summary: Use Elliott Wave theory for pattern recognition
+    - id: BD-035
+      type: B/BA
+      summary: Classify trend strength using |avg_return|/volatility ratio
+    - id: BD-055
+      type: B/BA
+      summary: Calculate volume trend using linear regression slope
+    - id: BD-076
+      type: BA/M
+      summary: 'INTERACTION: BD-036 (Z-scores for feature normalization) × BD-052 (StandardScaler in ML) → Double-scaling
+        risk corrupts ensemble probability calibration'
+    - id: BD-077
+      type: BA
+      summary: 'INTERACTION: BD-021 (Weekday-only DAG scheduling) × BD-003 (SLA-based refresh intervals) → Weekend skips extend
+        effective SLA windows violating data freshness guarantees'
+    - id: BD-078
+      type: B/BA
+      summary: 'INTERACTION: BD-007 (Pipeline validation thresholds) × BD-062 (5-step execution order) → Validation contract
+        silently broken if pipeline order changes'
+    - id: BD-079
+      type: BA
+      summary: 'INTERACTION: BD-025 (Volatility threshold +1.0) × BD-037 (Percentile rank volatility) × BD-046 (Composite
+        margin risk) → Triple-counting volatility amplifies defensive positioning triggering'
+    - id: BD-080
+      type: BA/M
+      summary: 'INTERACTION: BD-061 (DB singleton memory limits) × BD-065 (EnsembleModel stacking) × BD-046 (Composite margin
+        risk) → Memory ceiling creates risk cascade for multi-component risk calculations'
+    - id: BD-081
+      type: B
+      summary: 'INTERACTION: BD-022 (Offline-first with badge) × BD-002 (Sample data fallback) × BD-023 (Env-based cache)
+        → Conflicting data freshness signals confuse users about what''s live vs stale'
+    - id: BD-082
+      type: BA/M
+      summary: 'INTERACTION: BD-012 (Walk-forward validation) × BD-070 (Binary target definition) → Validation quality degraded
+        by target definition that discards magnitude'
+    - id: BD-083
+      type: BA/M
+      summary: 'INTERACTION: BD-016 (Yield curve dominant 25%) × BD-017 (12-18m lookback) × BD-044 (Recession model weights)
+        → Yield curve dominates recession probability creating single-point-of-failure in recession'
+    - id: BD-084
+      type: B/RC
+      summary: 'INTERACTION: BD-004 (Fernet encryption) × BD-075 (0o600 key permissions) → Encryption provides false sense
+        of security against privileged escalation'
+    - id: BD-085
+      type: BA/DK
+      summary: 'INTERACTION: BD-024 (5-year default lookback) × BD-006 (Regime classification thresholds) × BD-038 (Momentum
+        regime classification) → Historical thresholds calibrated on different market structure may'
+    - id: BD-069
+      type: B/BA
+      summary: BaseModel.apply StandardScaler to each features during fit, serialized in model save
+    - id: BD-070
+      type: BA
+      summary: 'ML training uses binary target: future_close > close determines UP(1)/DOWN(0)'
+    - id: BD-074
+      type: B/BA
+      summary: Database schema enforces composite primary keys (ticker, date) across feature tables
+    - id: BD-012
+      type: BA/M
+      summary: Walk-forward validation using TimeSeriesSplit
+    - id: BD-013
+      type: BA/DK
+      summary: 5-day prediction horizon aligned with weekly rebalancing
+    - id: BD-014
+      type: M/DK
+      summary: Ensemble with LogisticRegression meta-learner stacking
+    - id: BD-015
+      type: BA/M
+      summary: StandardScaler on features before meta-learner
+    - id: BD-036
+      type: B/BA
+      summary: Calculate Z-scores for feature normalization
+    - id: BD-037
+      type: B/DK
+      summary: Classify volatility regime using percentile rank (75th/25th)
+    - id: BD-038
+      type: B/BA
+      summary: Classify momentum regime using RSI/MACD/price position
+    - id: BD-056
+      type: B
+      summary: Classify insider sentiment using weighted buy/sell value
+    - id: BD-057
+      type: B/BA
+      summary: Use title-based insider weighting (CEO=3.0, CFO=2.5)
+    - id: BD-058
+      type: B/BA
+      summary: Use 2x spike threshold for unusual activity detection
+    - id: BD-045
+      type: B/BA
+      summary: Calculate VIX stress score from VIX and VVIX
+    - id: BD-046
+      type: B/DK
+      summary: Use composite margin risk from 4 components (leverage/volume/options/liquidity)
+    - id: BD-039
+      type: B/BA
+      summary: Calculate IV Rank as position in historical IV range
+    - id: BD-040
+      type: B
+      summary: Calculate IV Percentile as percentage of days below current IV
+    - id: BD-041
+      type: B/BA
+      summary: Use Herfindahl Index to measure sector concentration
+    - id: BD-042
+      type: B/RC
+      summary: Calculate relative strength as excess return vs SPY
+    - id: BD-059
+      type: B/RC
+      summary: Calculate sector correlation matrix using Pearson correlation
+    - id: BD-060
+      type: B/RC
+      summary: Use dual momentum (10-day/50-day) for sector rotation
+    - id: BD-054
+      type: B/DK
+      summary: Calculate historical volatility as annualized std of returns
+    - id: BD-053
+      type: B
+      summary: Calculate Sharpe ratio for strategy evaluation
+    - id: BD-047
+      type: B/DK
+      summary: Use XGBoost for stock direction prediction
+    - id: BD-048
+      type: B
+      summary: Use LightGBM for faster gradient boosting
+    - id: BD-049
+      type: B
+      summary: Use ensemble with LogisticRegression meta-learner
+    - id: BD-052
+      type: B/BA
+      summary: Use StandardScaler for feature normalization in ML
+    - id: BD-043
+      type: B
+      summary: Use Sahm Rule (0.5% unemployment rise from 12-month low)
+    - id: BD-044
+      type: B
+      summary: Use weighted recession probability with yield curve dominant
+    - id: BD-050
+      type: B/DK
+      summary: Use walk-forward validation for time series
+    - id: BD-051
+      type: B/DK
+      summary: Use 5-day prediction horizon (1 trading week)
+    - id: BD-019
+      type: BA
+      summary: Parallel ETL tasks (ICI and VIX fetches run concurrently)
+    - id: BD-020
+      type: BA
+      summary: 3 retries with 5-minute delay for API failures
+    - id: BD-021
+      type: BA/DK
+      summary: Weekday-only DAG scheduling (0 7 * * 1-5 = 7 AM UTC, Mon-Fri)
+    - id: BD-062
+      type: B/RC
+      summary: 'FeaturePipeline mandates 5-step execution order: tech→options→derived→margin_risk→quality'
+    - id: BD-066
+      type: B/DK
+      summary: Airflow DAG enforces init→[refreshs]→validate→notify dependency chain
+    - id: BD-025
+      type: B/BA
+      summary: Volatility regime threshold +1.0 for high volatility
+    - id: BD-065
+      type: BA/M
+      summary: 'EnsembleModel uses 2-level stacking: XGBoost+LightGBM base → LogisticRegression meta-learner'
+    - id: BD-073
+      type: B/BA
+      summary: DerivedFeaturesCalculator uses shift(1) to detect golden/death cross transitions
+    - id: BD-016
+      type: BA/M
+      summary: Yield curve has highest weight (0.25) in recession model
+    - id: BD-017
+      type: BA/M
+      summary: 12-18 month inversion lookback (365*1.5 days)
+    - id: BD-018
+      type: BA/DK
+      summary: 7-indicator weighted scoring for recession probability
+resources:
+  packages:
+  - name: streamlit
+    version_pin: latest
+  - name: pandas
+    version_pin: latest
+  - name: plotly
+    version_pin: latest
+  - name: yfinance
+    version_pin: latest
+  - name: pandas-datareader
+    version_pin: latest
+  - name: numpy
+    version_pin: latest
+  - name: duckdb
+    version_pin: latest
+  - name: xgboost
+    version_pin: latest
+  - name: lightgbm
+    version_pin: latest
+  - name: scikit-learn
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install streamlit
+    - python3 -m pip install pandas
+    - python3 -m pip install plotly
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When storing API credentials on filesystem
+    action: set file permissions to 0o600 to restrict access to owner only
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: World-readable credentials files expose API keys to unauthorized users, enabling data theft or quota abuse
+      on external services
+    stage_ids:
+    - data_collection
+  - id: finance-C-017
+    when: When calculating technical indicators from OHLCV data
+    action: Verify OHLCV DataFrame contains required columns (open, high, low, close, volume)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing required OHLCV columns causes ValueError and prevents technical indicator calculation for affected
+      tickers
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-018
+    when: When implementing SMA crossover detection (golden/death cross)
+    action: Use shift(1) to compare current bar state with prior bar state for transition detection
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without shift(1), crossover detection uses current bar data causing look-ahead bias where signals appear
+      to fire at the same bar as the cross occurs
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-020
+    when: When validating feature data quality after calculation
+    action: Fail pipeline validation if more than 10% of RSI values are null
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: High null rate in RSI indicates insufficient historical data or data quality issues, leading to unreliable
+      regime classifications and incorrect trading signals
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-021
+    when: When validating feature data quality after calculation
+    action: Fail pipeline validation if duplicate dates exist in technical features table
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate dates violate PRIMARY KEY constraint and cause incorrect feature associations, leading to wrong
+      price patterns and trading signals
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-028
+    when: When storing technical features in DuckDB
+    action: Use composite primary key (ticker, date) to verify uniqueness and enable efficient querying
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicate (ticker, date) pairs cause incorrect feature retrieval and violate data integrity constraints in
+      downstream ML training
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-029
+    when: When storing derived features in DuckDB
+    action: Use composite primary key (ticker, date) consistent with technical_features table schema
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent primary keys prevent JOIN operations between technical and derived features, breaking regime
+      classification and pattern detection
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-036
+    when: When implementing crossover detection patterns
+    action: Skip shift(1) with reasoning that 'the data looks clean' or 'we need the current bar signal immediately'
+    severity: fatal
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Rationalizing look-ahead bias introduction causes future information to leak into current signals, producing
+      unrealistic backtest results that fail in live trading
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-037
+    when: When encountering high null rates in technical indicators
+    action: Skip validation with assumption that 'null values are acceptable for less common indicators'
+    severity: fatal
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Ignoring elevated null rates leads to incomplete feature sets that cause ML model training failures or silent
+      prediction errors
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-038
+    when: When implementing composite margin risk scoring
+    action: use exactly 30/25/25/20 weights for leverage/volatility/options/liquidity components that sum to 100%
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect weight allocation will distort risk assessment, causing underestimation of leverage exposure and
+      leading to inappropriate trading decisions
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-039
+    when: When classifying short interest for squeeze risk
+    action: 'apply threshold breakpoints: >30% SI gets score 100, >20% gets 75, >10% gets 50, >5% gets 25, else 0'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect short interest scoring thresholds will fail to identify high-risk short squeeze candidates, missing
+      critical leverage risk signals
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-040
+    when: When classifying VIX regime for volatility assessment
+    action: 'map VIX levels to regimes: <15=Low, <20=Normal, <30=Elevated, >=30=Crisis'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect VIX regime mapping will misclassify market stress levels, causing improper margin risk assessment
+      during crisis periods
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-041
+    when: When parsing SEC Form 4 insider transactions
+    action: classify transaction codes P (Purchase) and M (Exercise) as bullish; S (Sale) as bearish; A/D/F/G/E as neutral
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Misclassifying insider transaction codes will invert sentiment signals, causing contrarian trading decisions
+      opposite to actual insider activity
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-043
+    when: When calculating Altman Z-Score for bankruptcy prediction
+    action: 'apply Z-Score interpretation: >2.99=Safe Zone, 1.81-2.99=Grey Zone, <1.81=Distress Zone'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect Z-Score threshold boundaries will misclassify bankruptcy risk, leading to investment in financially
+      distressed companies
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-044
+    when: When calculating sector relative strength
+    action: compute relative strength as sector return minus SPY return (benchmark)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect benchmark calculation will misrepresent sector outperformance, causing wrong risk-on/off rotation
+      signals
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-046
+    when: When classifying sectors for rotation analysis
+    action: 'use predefined classification: OFFENSIVE=Technology/Consumer Discretionary/Communication/Financials, DEFENSIVE=Utilities/Consumer
+      Staples/Healthcare, CYCLICAL=Energy/Materials/Industrials/Real Estate'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect sector classification will invert risk-on/off signals, causing portfolio to take opposite positions
+      during regime changes
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-050
+    when: When computing composite margin call risk score
+    action: 'apply formula: composite = leverage_score*0.30 + volatility_score*0.25 + options_score*0.25 + liquidity_score*0.20'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect composite formula will misrepresent total margin risk, leading to inadequate position sizing during
+      high-stress periods
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-058
+    when: When implementing walk-forward validation for stock price prediction
+    action: Use sklearn.model_selection.TimeSeriesSplit instead of random cross-validation
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Random cross-validation on time series causes look-ahead bias where future data leaks into training, making
+      backtest results unrealistically optimistic and live trading performance far worse
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-059
+    when: When computing binary target variable for directional prediction
+    action: Calculate target as 1 if future_close > close, else 0 using LEAD window function
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect target calculation causes models to learn wrong patterns, producing systematic prediction errors
+      that cannot be corrected by hyperparameter tuning
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-067
+    when: When executing walk-forward validation
+    action: 'Maintain strict temporal ordering: each training indices precede validation indices in each fold'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Any shuffle or random sampling within TimeSeriesSplit introduces look-ahead bias, inflating validation metrics
+      and producing misleading live trading expectations
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-070
+    when: When presenting ML model predictions to users
+    action: Claim that backtest returns equal expected live trading returns
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtest results exclude transaction costs, slippage, and market impact that materially reduce live returns;
+      presenting backtest as live-equivalent constitutes misleading financial disclosure
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-074
+    when: When implementing the recession probability calculation
+    action: Verify indicator weights sum to exactly 1.0 for proper probability normalization
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If weights do not sum to 1.0, the recession probability will be incorrectly scaled, leading to systematic
+      over/underestimation of recession risk and poor investment allocation decisions
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-079
+    when: When configuring indicator weights
+    action: 'Define weights for each 7 signal categories: yield_curve, labor_market, financial_stress, economic_activity,
+      consumer, housing, market'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing weights for any signal category will cause KeyError during probability calculation, breaking the
+      entire recession probability model
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-081
+    when: When displaying recession probability to users
+    action: Claim predictive accuracy or guarantee future recession timing
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Overstating prediction accuracy will mislead investors into making risky allocation decisions based on false
+      confidence in recession forecasting, potentially causing significant financial losses
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-085
+    when: When calculating the historical probability time series
+    action: Apply proper rolling window calculation using only data available up to each historical date point
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using future data in historical calculations introduces look-ahead bias, causing historical probabilities
+      to appear more accurate than they actually were and invalidating backtested performance metrics
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-088
+    when: When implementing the weighted probability calculation
+    action: Calculate weighted probability as sum of (signal * weight) for each 7 signals
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect weighted sum calculation will produce wrong recession probabilities, either double-counting certain
+      indicators or ignoring others entirely, corrupting the model's core output
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-089
+    when: When implementing data refresh tasks in Airflow DAGs
+    action: Raise exception when no data records are fetched during refresh
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Dashboard displays empty or outdated data without any error indication, leading to incorrect economic analysis
+      and trading decisions based on missing data
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-090
+    when: When validating refreshed market data quality
+    action: Raise exception and flag data as stale when latest date exceeds threshold (ICI >14 days, VIX >7 days)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Dashboard presents stale economic indicators as current data, potentially causing analysts to make decisions
+      based on outdated market conditions
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-099
+    when: When defining Airflow DAG task dependencies
+    action: Verify init_schema task completes before refresh tasks, and validation completes before notification
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Refresh tasks run before schema initialization, causing database table not found errors and incomplete data
+      loads into non-existent tables
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-128
+    when: When preparing training data for ML models from joined feature tables
+    action: Use LEAD() window function with prediction_horizon offset for future_close to prevent look-ahead bias
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: ML model trained with look-ahead bias produces inflated backtest performance that does not generalize to
+      live trading
+  - id: finance-C-129
+    when: When generating predictions using features with shifted close prices
+    action: Apply shift(1) to close price before calculating returns to prevent using current candle data for current prediction
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Technical analysis uses intraday data that is not yet finalized, causing prediction errors and potential
+      legal liability for front-running
+  - id: finance-C-138
+    when: When accessing API credentials from Airflow DAGs
+    action: Log or display actual credential values in Airflow task logs or UI output
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: API keys exposed in logs violate security best practices and may allow unauthorized access to external data
+      services
+  - id: finance-C-145
+    when: When storing encrypted API credentials
+    action: Store encryption key files and credentials files with 0o600 permissions (owner read/write only)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: World-readable credential files expose API keys, allowing unauthorized access to FRED, Yahoo Finance, and
+      other data sources
+  - id: finance-C-154
+    when: When a user considers using this system for live trading
+    action: Claim or imply this system supports real-time trading execution — it is an analytical dashboard only
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users who believe this dashboard executes trades will experience significant financial losses when they attempt
+      to live trade
+  - id: finance-C-159
+    when: When running ML training on time-series stock data
+    action: Use TimeSeriesSplit cross-validation — never shuffle time-series data to avoid look-ahead bias
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Random shuffle splits cause future data to leak into training, producing unrealistic backtest performance
+      that will not generalize to live trading
+  - id: finance-C-194
+    when: When implementing credential storage for API keys and third-party tokens
+    action: Use Fernet symmetric encryption to encrypt credentials at rest; store the encryption key separately with 0o600
+      file permissions to verify credentials remain unreadable if the encrypted file is compromised
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Storing credentials in plaintext or with improperly protected keys exposes API tokens to theft, enabling
+      unauthorized access to trading platforms and potential financial loss
+    derived_from_bd_id: BD-004
+  - id: finance-C-197
+    when: When configuring cross-validation strategy for financial time series model training
+    action: Use TimeSeriesSplit for walk-forward validation to prevent lookahead bias; must_not use random split, standard
+      k-fold, or any shuffle-based splitting method for financial time series
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Random train/test split leaks future information into training data, inflating model performance metrics
+      by 15-30% and causing live trading returns to fall far below backtested results
+    derived_from_bd_id: BD-012
+  regular:
+  - id: finance-C-002
+    when: When implementing cached data retrieval
+    action: include timestamp metadata with cached data to enable expiry verification
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without timestamp tracking, cache files are treated as valid regardless of age, causing stale data to be
+      served as current data
+    stage_ids:
+    - data_collection
+  - id: finance-C-003
+    when: When fetching Yahoo Finance data in batch operations
+    action: enforce rate limiting delay between individual ticker requests
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Unthrottled Yahoo Finance API calls trigger HTTP 429 Too Many Requests errors, causing data collection failures
+      and blacklisting
+    stage_ids:
+    - data_collection
+  - id: finance-C-004
+    when: When loading FRED economic series data
+    action: check offline mode status before attempting any API call
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: API calls made when offline mode is enabled waste resources and produce connection errors that block dashboard
+      functionality
+    stage_ids:
+    - data_collection
+  - id: finance-C-005
+    when: When initializing database connections in Streamlit multi-page apps
+    action: use singleton pattern to verify single shared connection instance
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Multiple DuckDB connections cause resource exhaustion and Connection object already initialized errors in
+      multi-page Streamlit deployments
+    stage_ids:
+    - data_collection
+  - id: finance-C-006
+    when: When determining cache refresh schedules
+    action: 'align cache expiry SLAs with FRED publication frequency: daily=6h, weekly=1d, monthly=7d, quarterly=30d'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Cache expiry mismatched to publication frequency causes either stale data delivery or unnecessary API calls
+      that waste rate limits
+    stage_ids:
+    - data_collection
+  - id: finance-C-007
+    when: When processing Yahoo Finance batch requests
+    action: process tickers in batches of at most 5 to respect API rate limits
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Fetching unlimited tickers simultaneously triggers Yahoo Finance rate limiting, resulting in HTTP 429 errors
+      and data collection failures
+    stage_ids:
+    - data_collection
+  - id: finance-C-008
+    when: When handling Yahoo Finance 429 rate limit errors
+    action: fall back to expired cache (up to 168 hours) as last resort instead of failing silently
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Silent failure on rate limit returns empty data, breaking dashboard displays with no indication of staleness
+    stage_ids:
+    - data_collection
+  - id: finance-C-009
+    when: When fetching SEC EDGAR data
+    action: enforce 0.1 second delay between requests and implement exponential backoff on 429 responses
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: SEC EDGAR enforces ~10 req/sec limit; violations cause temporary IP bans and failed data collection
+    stage_ids:
+    - data_collection
+  - id: finance-C-010
+    when: When loading data with DuckDB available
+    action: query DuckDB first before falling back to pickle cache or API
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping DuckDB and querying API directly bypasses cached data, increasing latency and exhausting API rate
+      limits unnecessarily
+    stage_ids:
+    - data_collection
+  - id: finance-C-011
+    when: When API keys are not configured
+    action: load sample offline data from data/sample_FRED_data.csv and data/sample_*_data.csv files
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Dashboard fails to load without fallback data, preventing demonstrations and offline development
+    stage_ids:
+    - data_collection
+  - id: finance-C-012
+    when: When claiming data freshness capabilities
+    action: label Yahoo Finance data as real-time when it has inherent market delay
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting delayed market data as real-time creates false expectations for trading decisions based on
+      stale prices
+    stage_ids:
+    - data_collection
+  - id: finance-C-013
+    when: When serving sample offline data
+    action: present static historical sample data as current market conditions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Displaying outdated sample data as current market data misleads users about economic conditions and asset
+      valuations
+    stage_ids:
+    - data_collection
+  - id: finance-C-014
+    when: When accessing FRED without API key
+    action: use unauthenticated pandas_datareader access which has lower rate limits
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: FRED enforces strict unauthenticated rate limits; without API key, data fetching fails frequently during
+      batch operations
+    stage_ids:
+    - data_collection
+  - id: finance-C-015
+    when: When caching Yahoo Finance data
+    action: use 24-hour minimum cache expiry to reduce API calls and avoid rate limits
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Short cache expiry causes repeated API calls that exhaust rate limits, especially for batch ticker fetching
+    stage_ids:
+    - data_collection
+  - id: finance-C-016
+    when: When deciding cache priority order
+    action: check centralized cache before individual cache files
+    severity: low
+    kind: architecture_guardrail
+    modality: must
+    consequence: Individual cache lookup misses centralized data, causing redundant API fetches that waste rate limits and
+      increase latency
+    stage_ids:
+    - data_collection
+  - id: finance-C-019
+    when: When calculating rolling Z-scores for feature normalization
+    action: Handle division by zero in rolling_std by replacing zero values with NaN
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Division by zero produces NaN or infinite Z-scores, corrupting ML training data and causing model training
+      failures or invalid predictions
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-022
+    when: When classifying momentum regime using RSI, MACD, and SMA50
+    action: 'Use regime thresholds: Bullish=RSI>60 AND MACD histogram>0 AND Price/SMA50>1.0, Bearish=RSI<40 AND MACD histogram<0
+      AND Price/SMA50<1.0'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect threshold values cause misclassification of market regime, leading to wrong trading strategy selection
+      and financial losses
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-023
+    when: When calculating technical indicators that depend on historical data
+    action: Verify input OHLCV data has at least 200 rows to compute SMA200 without null values
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Insufficient historical data causes SMA200 to be null, corrupting price_to_sma200 ratio and golden/death
+      cross detection logic
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-024
+    when: When calculating historical volatility from returns
+    action: Require at least 20 trading days of data for 20-day rolling standard deviation
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Shorter lookback windows produce unreliable volatility estimates, causing incorrect risk assessments and
+      position sizing errors
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-025
+    when: When calculating IV Rank for options analysis
+    action: Require at least 10 historical IV records in database for meaningful IV Rank calculation
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Insufficient IV history produces meaningless IV Rank values near 50%, causing incorrect options strategy
+      selection
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-026
+    when: When calculating Z-scores for feature normalization
+    action: Use default rolling window of 20 days for mean and standard deviation calculation
+    severity: low
+    kind: resource_boundary
+    modality: must
+    consequence: Non-standard window sizes produce inconsistent Z-score distributions across features, reducing ML model interpretability
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-027
+    when: When running the feature pipeline for a ticker
+    action: 'Execute pipeline stages in order: technical indicators → options metrics → derived features → data quality validation'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Out-of-order execution causes derived features to lack required technical indicators, producing null outputs
+      and failing ML training
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-030
+    when: When calculating feature interactions with options data
+    action: Check options_data availability before attempting merge to prevent full-NaN interaction features
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing options data without proper guard causes NaN-filled interaction features, corrupting ML training
+      inputs
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-031
+    when: When handling options data fetch failures in pipeline
+    action: Log warning and continue pipeline rather than failing entire batch when options data is unavailable
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Options data unavailability for one ticker causes entire batch pipeline failure, blocking feature generation
+      for all other tickers
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-032
+    when: When validating date range coverage for feature data
+    action: Allow for trading calendar gaps by accepting at least 50% of calendar days as valid date coverage
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Strict calendar-day matching fails for valid trading data that excludes weekends and market holidays, causing
+      false validation failures
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-033
+    when: When calculating technical indicators for backtesting
+    action: Claim real-time trading capability - this stage only produces historical indicators from past data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting historical technical indicators as real-time trading signals misleads users about system capabilities,
+      causing inappropriate trading decisions
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-034
+    when: When presenting golden/death cross detection results
+    action: Claim that historical cross detection accurately predicts future market direction
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Past golden/death cross occurrences do not guarantee future signal accuracy, leading to overconfident trading
+      strategies and potential financial losses
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-035
+    when: When calculating regime classifications from technical indicators
+    action: Claim that momentum_regime values directly translate to profitable trading signals
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Regime classifications describe historical market states, not future conditions. Using them as trading signals
+      without proper risk management causes financial losses
+    stage_ids:
+    - feature_engineering
+  - id: finance-C-042
+    when: When calculating insider sentiment scores
+    action: include neutral transaction codes (A/D/F/G/E) in buy/sell value calculations
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Including grants, gifts, and tax withholding in sentiment calculation will contaminate signals with non-investment
+      transactions
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-045
+    when: When estimating VVIX when actual data is unavailable
+    action: use formula vvix = vix * 1.2 + 20 as fallback estimation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect VVIX estimation formula will produce unreliable volatility stress scores, compromising margin
+      call risk accuracy
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-047
+    when: When fetching Yahoo Finance data for financial analysis
+    action: claim real-time data availability since yfinance inherently has 15+ minute market data delay
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Presenting delayed data as real-time will mislead users about current market conditions, causing execution
+      at stale prices
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-048
+    when: When parsing SEC Form 4 XML filings
+    action: implement fallback parsing logic since SEC EDGAR XML structure varies across filings and time periods
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without fallback parsing, transaction extraction will fail for filings with non-standard XML structures,
+      causing incomplete insider data
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-049
+    when: When calculating Piotroski F-Score
+    action: require at least 2 years of financial data for year-over-year comparison
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Calculating F-Score with insufficient historical data will produce meaningless comparisons, masking fundamental
+      deterioration signals
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-051
+    when: When detecting market rotation patterns
+    action: classify risk-on when offensive RS > 1 and defensive RS < -1; risk-off when defensive RS > 1 and offensive RS
+      < -1
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect rotation classification thresholds will trigger wrong portfolio rebalancing, missing regime change
+      opportunities
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-052
+    when: When storing margin risk scores in database
+    action: use INSERT OR REPLACE to verify latest scores overwrite stale data for same ticker/date
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicate risk scores will cause confusion during analysis, potentially using outdated margin requirements
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-053
+    when: When retrieving technical features for risk calculation
+    action: handle None values gracefully since volume_ratio and bid_ask_spread may not exist for each tickers
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing optional fields without defaults will cause KeyError exceptions, breaking risk calculations for tickers
+      without complete data
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-054
+    when: When presenting backtest results for insider trading signals
+    action: claim backtest returns represent expected live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting backtest results as predictive will mislead investors, as historical performance does not account
+      for slippage, liquidity constraints, or market impact
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-055
+    when: When displaying financial health scores derived from SEC XBRL
+    action: present scores as real-time financial condition since SEC filings have inherent reporting lag (quarterly/annual)
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting stale financial data as current will mislead investors about company health, especially during
+      earnings blackout periods
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-056
+    when: When parsing Form 4 XML data
+    action: skip validation assuming well-formed XML since SEC EDGAR contains malformed filings and encoding variations
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Parsing failures will silently drop transactions, creating survivorship bias where only clean filings contribute
+      to sentiment
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-057
+    when: When fetching VIX data from multiple sources
+    action: skip error handling assuming first data source succeeds since network failures and API changes are common
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Single-source dependency will cause complete VIX unavailability during source outages, breaking margin risk
+      calculations
+    stage_ids:
+    - financial_analysis
+  - id: finance-C-060
+    when: When training ensemble model with LogisticRegression meta-learner
+    action: Apply StandardScaler to features before training the LogisticRegression meta-learner
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Unscaled meta-features cause LogisticRegression to converge poorly or produce unstable coefficients, degrading
+      ensemble prediction quality and confidence calibration
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-061
+    when: When storing ML predictions in DuckDB database
+    action: Include confidence_score as the maximum probability from predict_proba
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing confidence scores prevent downstream risk management from assessing prediction reliability, leading
+      to uniform position sizing that ignores model uncertainty
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-062
+    when: When evaluating trained models
+    action: Track accuracy, precision, recall, and AUC-ROC in model_performance table
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without comprehensive metric tracking, degraded model quality goes undetected, leading to poor trading decisions
+      based on deteriorating predictions
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-063
+    when: When configuring prediction horizon for stock directional prediction
+    action: Set prediction_horizon to align with rebalancing frequency (default 5 trading days)
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Mismatched prediction horizon causes signals to arrive at wrong times relative to rebalancing, forcing either
+      early exits or holding positions past intended horizons
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-064
+    when: When selecting base models for ensemble
+    action: Use XGBoost and LightGBM as base models (both scale-invariant tree methods)
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Including scale-variant models in ensemble requires careful feature scaling management, increasing implementation
+      complexity and potential for scaling bugs
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-065
+    when: When preparing training data for time series models
+    action: Verify minimum sample count for TimeSeriesSplit (n_splits * min_samples_per_split)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Insufficient samples cause TimeSeriesSplit to produce empty folds, resulting in training failures or metrics
+      computed on unreliably small validation sets
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-066
+    when: When training gradient boosting models with validation data
+    action: Provide eval_set parameter to enable early stopping
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without early stopping, models train for fixed n_estimators regardless of convergence, causing overfitting
+      to training data and poor generalization
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-068
+    when: When combining base model predictions in ensemble
+    action: Generate meta-features from base model predict_proba outputs, not raw predictions
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using discrete predictions (0/1) as meta-features loses probability calibration information, reducing meta-learner
+      effectiveness and ensemble accuracy
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-069
+    when: When storing predictions in DuckDB
+    action: Define PRIMARY KEY on (ticker, date) to prevent duplicate predictions
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without primary key constraint, duplicate predictions for same ticker/date cause fan-trap queries and incorrect
+      performance metrics in downstream analysis
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-071
+    when: When using ML predictions for investment decisions
+    action: Use model as sole basis for investment decisions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Relying exclusively on binary directional predictions without fundamental analysis, risk management, or portfolio-level
+      position sizing exposes portfolios to concentrated losses
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-072
+    when: When implementing ML training pipeline
+    action: Skip TimeSeriesSplit even when data appears stationary or simple
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Stationary-appearing data may contain regime changes or structural breaks; skipping temporal validation produces
+      overfitted models that fail catastrophically during market regime shifts
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-073
+    when: When data appears clean and validation metrics look good
+    action: Skip retraining models without checking for concept drift
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Market relationships evolve; models trained on historical data degrade over time. Stale models produce systematically
+      biased predictions that accumulate losses
+    stage_ids:
+    - ml_training_prediction
+  - id: finance-C-075
+    when: When implementing individual signal calculations
+    action: Normalize each signal to 0-1 range using min(signal, 1.0)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without proper signal normalization, individual signals exceeding 1.0 will distort the weighted probability
+      calculation, potentially showing recession probabilities exceeding 100% or returning invalid NaN values
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-076
+    when: When calculating the recession probability output
+    action: Verify final probability is constrained between 0 and 1
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Probability values outside 0-1 range will cause incorrect risk level assignment (LOW/MODERATE/ELEVATED/HIGH),
+      potentially misleading investment decisions and causing financial losses
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-077
+    when: When loading data for recession probability calculation
+    action: Load FRED indicator data via load_indicators_from_data before calling calculate_recession_probability
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Calling calculate_recession_probability without loading data first will raise ValueError and crash the application,
+      preventing users from viewing recession risk assessment
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-078
+    when: When calculating historical recession probabilities
+    action: Require at least 12 periods of historical data as minimum lookback window
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Insufficient historical data will cause index errors or use incomplete unemployment/GDP statistics, producing
+      unreliable recession probabilities that do not reflect actual economic conditions
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-080
+    when: When implementing yield curve inversion detection
+    action: Use 18-month (365*1.5 days) lookback window for detecting recent inversions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect lookback period will fail to capture inversions that historically predict recessions within 12-18
+      months, reducing predictive accuracy of the most important indicator
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-082
+    when: When using the recession probability model for investment decisions
+    action: Use the model as the sole basis for investment allocation decisions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Relying exclusively on this single-indicator model will ignore other critical factors such as company fundamentals,
+      geopolitical risks, and market sentiment, leading to suboptimal or loss-making portfolio decisions
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-083
+    when: When fetching FRED economic data for the model
+    action: 'Obtain each 7 required FRED series: yield spreads, unemployment, claims, industrial production, GDP growth, consumer
+      sentiment, corporate spreads, Fed funds rate'
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing required FRED series will cause signal calculations to return 0.0 for affected indicators, systematically
+      underestimating recession probability and providing false reassurance
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-084
+    when: When assigning recession risk levels
+    action: 'Use correct probability thresholds: LOW (<20%), MODERATE (20-40%), ELEVATED (40-70%), HIGH (>=70%)'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect risk level thresholds will misclassify recession risk, potentially causing investors to either
+      panic unnecessarily or remain inadequately hedged during genuine economic downturns
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-086
+    when: When generating indicator explanations for users
+    action: Provide explanations for each 7 indicator categories explaining their contribution to the recession probability
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing indicator explanations will leave users without context for why the model assigns specific recession
+      probabilities, reducing transparency and trust in the model's output
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-087
+    when: When loading FRED data for recession indicators
+    action: Use cached data older than the cache expiry threshold without validation
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Using stale FRED data will produce outdated recession probabilities that do not reflect current economic
+      conditions, potentially leading to incorrect investment decisions based on obsolete information
+    stage_ids:
+    - recession_indicator
+  - id: finance-C-091
+    when: When implementing economic data quality validation
+    action: Raise exception when FRED data has fewer than 100 rows or 30 columns, or when Yahoo Finance has fewer than 3 tickers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Dashboard renders with incomplete economic indicators, missing key series needed for recession analysis and
+      financial forecasting
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-092
+    when: When configuring FRED API data refresh
+    action: Insert 1-second sleep every 20 FRED requests to stay under 120 calls/minute rate limit
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Automated refresh triggers FRED rate limiting, causing API failures and incomplete data fetching for all
+      subsequent dashboard users
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-093
+    when: When configuring Yahoo Finance data refresh
+    action: Implement exponential backoff (10s, 15s) for failed Yahoo Finance requests, up to 3 retries
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Persistent Yahoo Finance rate limit errors cause complete market data refresh failure, leaving dashboard
+      without current market indicators
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-094
+    when: When configuring Airflow DAG task execution
+    action: Set execution_timeout to 30 minutes maximum per task to prevent indefinite hanging
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Stuck DAG tasks block subsequent runs, causing cascading failures and missing data updates for multiple days
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-095
+    when: When configuring Airflow DAG retry policy
+    action: Set retries=3 with retry_delay=5 minutes and email_on_retry=False to handle transient failures gracefully
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without proper retry configuration, transient API failures immediately cause DAG failures, generating excessive
+      alert emails and wasting investigation time
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-096
+    when: When scheduling ICI ETF data refresh DAG
+    action: Schedule ICI weekly ETF flows refresh for Wednesday (day 3) to capture the weekly publication
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: ICI data refresh scheduled on wrong day misses the weekly publication window, dashboard displays stale ETF
+      flow data for entire week
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-097
+    when: When scheduling market data refresh DAG
+    action: Schedule VIX and market data refresh for weekdays only (1-5) to align with trading calendar
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Weekend refresh attempts fetch stale or no market data, wasting compute resources and creating confusing
+      empty data states in dashboard
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-098
+    when: When configuring AIRFLOW_ALERT_EMAIL for DAG failure notifications
+    action: Set AIRFLOW_ALERT_EMAIL environment variable to enable failure email alerts when DAG tasks exhaust each retries
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Silent DAG failures go unnoticed for extended periods, dashboard serves stale data without operators realizing
+      refresh has stopped
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-100
+    when: When implementing parallel ETL tasks in DAG
+    action: Execute ICI and VIX fetches concurrently using Airflow task list syntax to reduce total refresh time
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Sequential execution doubles refresh duration, risking timeout and delaying dashboard availability for morning
+      market analysis
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-101
+    when: When configuring cache backup retention policy
+    action: Delete CSV backups older than 30 days to prevent disk space exhaustion
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Unbounded backup growth fills disk, causing DAG failures and potential data loss when system cannot write
+      new backups or cache files
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-102
+    when: When implementing data refresh automation
+    action: Claim guaranteed real-time data availability when refresh relies on polling-based external APIs
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Marketing claims of real-time data mislead users; actual data has inherent delays from FRED/Yahoo Finance
+      polling, causing incorrect assumptions about data freshness
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-103
+    when: When presenting automated refresh results
+    action: Present automated refresh metrics as evidence of system reliability without acknowledging external API dependency
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Dashboard claims strong reliability metrics while overlooking that failures stem from external API unavailability,
+      misrepresenting operational success
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-104
+    when: When setting cache expiry thresholds
+    action: Use 24-hour cache expiry to balance API load reduction with data freshness requirements
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Overly aggressive caching serves stale data; overly aggressive refresh exhausts API rate limits, both degrading
+      dashboard utility
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-105
+    when: When configuring email alerts for DAG notifications
+    action: Send alert emails on retry attempts (only send on final failure after each retries exhausted)
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Excessive alert emails during retry phases cause alert fatigue, leading operators to ignore or disable critical
+      failure notifications
+    stage_ids:
+    - orchestration_automation
+  - id: finance-C-125
+    when: When fetching Yahoo Finance OHLCV data for technical indicators
+    action: Cache data with 24-hour expiry to respect rate limits (YFINANCE_CACHE_HOURS=24, YFINANCE_RATE_LIMIT_DELAY=0.5)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: API rate limiting causes data fetch failures, resulting in missing technical indicators and NaN values propagating
+      to downstream ML models
+  - id: finance-C-126
+    when: When loading OHLCV data from DuckDB for technical indicator calculation
+    action: Verify date column is parsed as DatetimeIndex and OHLCV columns (open, high, low, close, volume) exist with numeric
+      dtypes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Technical indicators produce NaN or incorrect values because column names or types don't match the ta library
+      expectations
+  - id: finance-C-127
+    when: When storing technical features in DuckDB from feature engineering
+    action: Use PRIMARY KEY (ticker, date) to prevent duplicate records and verify schema matches technical_features table
+      definition
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicate feature records cause JOIN failures in ML training, producing inconsistent model inputs and invalid
+      predictions
+  - id: finance-C-130
+    when: When loading FRED economic series for recession indicator calculation
+    action: 'Verify series columns match the expected names: yield_spread_10y2y, unemployment_rate, consumer_sentiment, corporate_spread'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Recession probability model receives wrong indicator values or NaN, producing incorrect recession probability
+      scores
+  - id: finance-C-131
+    when: When passing margin risk scores to visualization dashboard
+    action: Pass composite_risk_score as float in range 0-100 with risk_level classification string (Critical/High/Moderate/Low/Minimal)
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Dashboard fails to render risk gauges correctly, showing NaN or incorrect colors for risk indicators
+  - id: finance-C-132
+    when: When storing trained model files as .pkl for persistence
+    action: Include ticker, model_type, and timestamp in filename for version tracking and retrieval (e.g., {ticker}_{model_type}_{timestamp}.pkl)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Prediction engine cannot locate the correct model version, causing prediction failures or using outdated
+      models
+  - id: finance-C-133
+    when: When displaying ML predictions in the dashboard
+    action: Display confidence_score as probability percentage alongside the binary prediction (UP/DOWN) to avoid misrepresenting
+      prediction certainty
+    severity: medium
+    kind: claim_boundary
+    modality: must
+    consequence: Users misinterpret high confidence scores as guaranteed outcomes, leading to overconfident trading decisions
+      and potential financial losses
+  - id: finance-C-134
+    when: When presenting recession probability scores to users
+    action: Display recession probability with explicit confidence intervals and historical accuracy statistics to prevent
+      over-interpretation
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Users treat recession probability as precise prediction rather than probabilistic estimate, causing inappropriate
+      risk hedging or asset allocation decisions
+  - id: finance-C-135
+    when: When refreshing market data via Airflow DAGs
+    action: 'Validate data freshness: ICI ETF weekly data must be within 14 days, VIX data within 7 days, otherwise raise
+      exception'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Stale market data propagates to all downstream analyses, causing incorrect sector rotation signals and margin
+      risk scores
+  - id: finance-C-136
+    when: When fetching options data from Yahoo Finance for IV metrics
+    action: Handle division by zero for put_call_ratio when call_volume is 0, returning None instead of inf or NaN
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: IV metrics with inf/NaN values cause feature engineering pipeline to fail or produce invalid margin risk
+      scores
+  - id: finance-C-139
+    when: When calculating FRED data pivot from long to wide format
+    action: Convert date column to DatetimeIndex and rename columns from series_id back to descriptive names after pivot operation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Downstream modules expecting descriptive column names receive FRED series IDs, causing feature name mismatches
+      and KeyErrors
+  - id: finance-C-140
+    when: When establishing database connections in the application
+    action: Use the singleton DatabaseConnection via get_db_connection() — only one connection instance per process is allowed
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Multiple DuckDB connection instances can cause file locking conflicts and data inconsistency in concurrent
+      access scenarios
+  - id: finance-C-141
+    when: When creating time-series tables in the DuckDB database
+    action: Use composite primary key (entity_id, date) for each time-series tables to verify uniqueness and proper indexing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicate primary keys or missing date-based partitioning causes data insertion failures and incorrect time-series
+      queries
+  - id: finance-C-142
+    when: When training ML models on the feature data
+    action: Preserve feature column names from the database exactly as-is through the ML training pipeline
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Feature name changes break model prediction consistency, causing incorrect feature mapping between training
+      and inference
+  - id: finance-C-143
+    when: When defining the ML binary classification target
+    action: Create binary target as 1 if future_close > close, else 0 (5-day prediction horizon default)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect target definition invalidates all ML model training results and prediction accuracy metrics
+  - id: finance-C-144
+    when: When configuring cache expiry times
+    action: Set cache_expiry_hours to 1 hour in development and 24 hours in production environments
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Production cache too short causes excessive API calls and slow dashboard loads; dev cache too long delays
+      visibility of data changes
+  - id: finance-C-146
+    when: When implementing regime crossover detection signals
+    action: Apply shift(1) to compare bar t with bar t-1 for golden cross and death cross detection to avoid look-ahead bias
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without shift(1), the signal uses today's moving average values to generate today's signal, causing look-ahead
+      bias in backtests
+  - id: finance-C-147
+    when: When classifying VIX regime levels
+    action: 'Apply thresholds: <15 Low, <20 Normal, <30 Elevated, >=30 Crisis'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect threshold boundaries cause wrong risk regime classification, leading to inappropriate margin risk
+      calculations and trading recommendations
+  - id: finance-C-148
+    when: When implementing SLA-based cache refresh policies
+    action: 'Enforce cache expiry based on data frequency: Daily=6h, Weekly=1d, Monthly=7d, Quarterly=30d'
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Stale data displayed to users when cache not refreshed; excessive API calls when over-refreshing data outside
+      SLA windows
+  - id: finance-C-149
+    when: When fetching data from external sources (FRED, Yahoo Finance)
+    action: Use UTC timestamps consistently across each scheduled jobs and data refresh workflows
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Mixed timezone handling causes data timestamp misalignment, leading to incorrect time-series joins and stale
+      data served as fresh
+  - id: finance-C-150
+    when: When presenting or reporting this system's ML prediction results to users
+    action: Claim that ML prediction accuracy or backtested returns equal expected live trading returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users make live capital allocation decisions based on inflated backtest returns, leading to severe underperformance
+      in live trading and potential financial loss
+  - id: finance-C-151
+    when: When displaying recession probability model results
+    action: Display the disclaimer that past indicator performance does not guarantee future predictive accuracy
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Without proper disclaimer, users may rely on recession forecasts as definitive predictions, leading to poor
+      investment timing decisions
+  - id: finance-C-152
+    when: When presenting technical analysis results
+    action: Include the disclaimer that analysis is for educational purposes only and should not be considered financial advice
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Without proper disclaimer, users may treat educational technical analysis as actionable trading signals,
+      leading to financial losses
+  - id: finance-C-153
+    when: When presenting news sentiment analysis results
+    action: Include the disclaimer that analysis is for informational purposes only and should not be considered financial
+      advice
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Without proper disclaimer, users may act on sentiment signals as reliable trading indicators, leading to
+      poor investment decisions
+  - id: finance-C-155
+    when: When a user without Python environment setup considers using this system
+    action: Claim or imply the system works out-of-the-box without Python 3.10+ and pip dependencies
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users without Python environment setup will be unable to run the dashboard or scripts, leading to frustration
+      and wasted setup time
+  - id: finance-C-156
+    when: When presenting news sentiment analysis capabilities
+    action: Claim NLP sentiment analysis provides accurate or reliable sentiment predictions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: NLP sentiment analysis has inherent limitations in understanding context, sarcasm, and financial jargon,
+      leading to misleading sentiment signals
+  - id: finance-C-157
+    when: When accessing FRED and Yahoo Finance data
+    action: Accept that external API data has inherent delays — FRED daily data published ~4PM ET, Yahoo Finance has ~15-minute
+      delay
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Users expecting real-time economic indicators will see stale data, potentially causing decisions based on
+      outdated information
+  - id: finance-C-158
+    when: When operating without API keys
+    action: Accept that the system operates in sample data mode with demonstration-quality results only
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Users presenting sample/demo data as representative live data will make incorrect conclusions about market
+      conditions
+  - id: finance-C-160
+    when: When implementing momentum indicators in technical analysis module
+    action: Use EMA (Exponential Moving Average) with 12-period fast and 26-period slow boundaries aligned with standard MACD
+      parameters; do not replace with DEMA or SMA without re-evaluating signal interpretation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Switching to SMA would slow signal response, causing delayed entry/exit points; using DEMA introduces complexity
+      without standardized parameters, breaking consistency with the trading system's momentum signal generation
+    derived_from_bd_id: BD-027
+  - id: finance-C-161
+    when: When implementing RSI-based momentum oscillator
+    action: Use RSI(14) with 30/70 overbought/oversold boundaries validated against the 5-day prediction horizon; verify that
+      RSI period matches strategy timeframe by testing signal frequency vs noise ratio
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Using RSI(7) produces excessive signals with higher noise, while RSI(21) may miss short-term momentum reversals;
+      mismatched RSI period causes either over-trading or delayed signals relative to the 5-day prediction window
+    derived_from_bd_id: BD-028
+  - id: finance-C-162
+    when: When implementing volatility measurement for position sizing
+    action: Use ATR(14) as the volatility metric for risk parity calculations; ATR period must be 14 to capture meaningful
+      average true range across different price levels and market conditions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using shorter ATR periods increases sensitivity to noise, while longer periods lag market volatility; mismatched
+      ATR parameters cause incorrect position sizing, leading to either excessive risk or underallocation
+    derived_from_bd_id: BD-031
+  - id: finance-C-163
+    when: When implementing sector rotation detector for relative strength calculations
+    action: Calculate relative strength as excess return versus SPY benchmark over rolling 20/60/120-day periods; use positive/negative
+      boundary to determine sector rotation direction
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using sector SPDR ETFs as benchmark instead of SPY narrows market context, causing sector rotation signals
+      to miss broad market regime changes and potentially allocating to sectors underperforming the broader market
+    derived_from_bd_id: BD-042
+  - id: finance-C-164
+    when: When configuring data refresh intervals in data_series_config
+    action: 'Align refresh schedules with FRED publication cycles: Daily series = 6h, Weekly series = 1d, Monthly series =
+      7d (to capture NFP/CPI), Quarterly series = 30d (to capture GDP revisions)'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Using fixed 6-hour refresh wastes API quota on rarely-changing monthly data; conversely, refreshing monthly
+      data only weekly may miss timely economic releases, causing stale indicators in the ML model
+    derived_from_bd_id: BD-003
+  - id: finance-C-165
+    when: When implementing recession probability model
+    action: Use 7-indicator weighted scoring approach including yield curve, labor (unemployment claims), financial (credit
+      spreads), activity (PMI), consumer (consumer confidence), housing (starts/permits), and market (equity drawdown); do
+      not rely on single-indicator models
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Single-indicator recession models (e.g., yield curve only) have high false positive rates during normal volatility
+      cycles, causing premature portfolio de-risking and missed opportunities during extended bull markets
+    derived_from_bd_id: BD-018
+  - id: finance-C-166
+    when: When preparing features for meta-learner training and prediction
+    action: Apply StandardScaler to features before feeding into LogisticRegression meta-learner; XGBoost/LightGBM inputs
+      should NOT be scaled since they are scale-invariant
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without scaling, probability outputs from different base models receive unequal treatment due to feature
+      scale differences, causing the meta-learner to overweight models with larger numerical ranges and underweight those
+      with smaller ranges
+    derived_from_bd_id: BD-015
+  - id: finance-C-167
+    when: When implementing or refactoring Stochastic Oscillator calculations in technical analysis
+    action: Use %K period of 14 and %D smoothing period of 3 for the fast stochastic configuration — maintain these exact
+      parameters to verify consistent momentum confirmation signals
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing %K or %D parameters alters signal timing and reduces momentum confirmation reliability; strategies
+      calibrated with fast stochastic (%K=14, %D=3) may produce false signals with different parameter values
+    derived_from_bd_id: BD-032
+  - id: finance-C-168
+    when: When implementing MACD calculations in technical analysis modules
+    action: 'Use standard MACD parameters: 12-period fast EMA, 26-period slow EMA, and 9-period signal line — these parameters
+      were validated through out-of-sample testing showing inferior performance with alternative values during 2020 volatility'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Modified MACD parameters (e.g., 6,13,4) demonstrated inferior performance during market volatility events;
+      using non-standard parameters may cause backtest results that cannot be replicated in live trading
+    derived_from_bd_id: BD-029
+  - id: finance-C-169
+    when: When implementing sector correlation matrix calculations for portfolio optimization
+    action: Use Pearson correlation to measure linear relationship strength between sector returns — this quantifies portfolio
+      diversification and informs sector rotation timing aligned with Markowitz optimization framework
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using non-Pearson correlation methods (e.g., Spearman rank or DCC-GARCH) changes risk quantification; Markowitz
+      optimization requires Pearson correlation inputs, and alternative methods produce inconsistent diversification metrics
+    derived_from_bd_id: BD-059
+  - id: finance-C-170
+    when: When implementing regime classification logic using technical indicators
+    action: 'Apply exact thresholds: Bullish requires RSI>60 AND MACD>0 AND Price>SMA50; Bearish requires RSI<40 OR (MACD<0
+      AND Price<SMA50) — these three-factor agreement thresholds filter noise while catching genuine regime shifts'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using different threshold values (e.g., RSI>50 alone) produces significantly different regime signals during
+      consolidation periods; single-factor triggers generate excessive false signals causing wrong strategy execution
+    derived_from_bd_id: BD-006
+  - id: finance-C-171
+    when: When implementing recession prediction model
+    action: Assign yield curve indicator a weight of 0.25 in the recession model — this weight reflects the 12-18 month lead
+      time empirically validated in academic literature (Estrella & Mishkin 1998, Rudebusch & Williams 2009)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Equal weights or reduced yield curve weight deviates from empirically validated parameters; academic literature
+      consistently shows yield curve inversion precedes recession by 3-18 months, and reducing its weight diminishes predictive
+      accuracy
+    derived_from_bd_id: BD-016
+  - id: finance-C-172
+    when: When implementing or refactoring options metrics calculations in modules.features.options_metrics
+    action: Calculate IV Percentile as the percentage of historical trading days with IV lower than the current value — this
+      provides time-based regime classification distinct from IV Rank
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Replacing IV Percentile with simpler metrics loses time-based regime classification; strategies relying on
+      IV Percentile for options pricing decisions will use wrong volatility regime, causing systematic mispricing
+    derived_from_bd_id: BD-040
+  - id: finance-C-173
+    when: When implementing or refactoring recession detection logic in modules.ml.recession_model
+    action: Apply the Sahm Rule with the 0.5 percentage point threshold from 12-month unemployment minimum — do not modify
+      this boundary to other values without comprehensive backtesting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing the 0.5% recession trigger threshold alters recession signal timing; incorrect threshold causes
+      either missed recession warnings or premature defensive positioning, both causing significant portfolio losses
+    derived_from_bd_id: BD-043
+  - id: finance-C-174
+    when: When configuring Bollinger Bands parameters in financial_analysis technical analysis module
+    action: Verify that Bollinger Bands standard deviation parameter is set to 2.0 — this captures approximately 95% of price
+      action under normal distribution assumptions
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Using non-2.0 standard deviation parameters alters breakout signal sensitivity; narrower bands increase false
+      signals while wider bands miss genuine volatility expansions, causing poor mean-reversion entry timing
+    derived_from_bd_id: BD-030
+  - id: finance-C-175
+    when: When implementing or modifying sector rotation signal generation in modules.features.sector_rotation
+    action: Use dual momentum with 10-day and 50-day moving averages where 10-day > 50-day confirms upward momentum — these
+      specific boundary periods capture short-term timing with medium-term noise filtering
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing momentum periods alters sector rotation signal timing and turnover; different period combinations
+      were backtested and showed inferior risk-adjusted returns, causing suboptimal sector allocation decisions
+    derived_from_bd_id: BD-060
+  - id: finance-C-176
+    when: When executing the feature engineering pipeline in modules.features.feature_pipeline
+    action: Fail the pipeline when RSI null values exceed 10% or duplicate dates are detected — do not convert this to a warning;
+      hard failure ensures visibility into data quality issues
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Converting this to a warning allows ML models to train silently on corrupted data, producing unreliable predictions
+      that lead to poor trading decisions and financial losses
+    derived_from_bd_id: BD-007
+  - id: finance-C-177
+    when: When applying RecessionProbabilityModel to non-US markets or post-2020 periods with structural economic breaks
+    action: Recalibrate indicator weights (yield_curve 25%, labor 20%, financial 15%) based on current market empirical data
+      — these weights are calibrated for US markets pre-2020 and may not reflect post-pandemic indicator relationships
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Using pre-2020 calibrated weights on post-pandemic or emerging market data produces unreliable recession
+      probabilities; indicator relationships changed significantly during COVID, leading to systematic misprediction
+    derived_from_bd_id: BD-064
+  - id: finance-C-178
+    when: When configuring yield curve inversion lookback period in recession_indicator stage
+    action: Use 12-18 month lookback period (365*1.5 = 547 days) to capture historical inversions that predict recessions
+      within 12-18 months — current inversion adds signal even if spread has normalized after inversion
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using shorter lookback (e.g., 6 months) misses recession signals from inversions that normalized but still
+      predict near-term recession, causing delayed or missed defensive portfolio positioning
+    derived_from_bd_id: BD-017
+  - id: finance-C-180
+    when: When implementing or modifying the dashboard's data freshness indicators
+    action: Verify unified data freshness signals that reconcile connection status, last update timestamp, and data source
+      badge into a single coherent indicator — do not show green connection status while displaying stale sample data
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Conflicting data freshness signals cause users to trust green connection status while acting on stale sample
+      data, leading to incorrect trading decisions during critical market moments when data accuracy is essential
+    derived_from_bd_id: BD-081
+  - id: finance-C-181
+    when: When implementing or refactoring insider trading classification logic
+    action: Verify SEC Form 4 code classification against current filing conventions; add context-aware disambiguation for
+      code P (distinguish private placements from standard purchases), and implement validation against company event calendars
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Misclassifying private placement transactions as bullish (code P) causes false positive bullish signals,
+      potentially leading to strategy entries based on insider purchases that were actually compensatory awards rather than
+      directional bets
+    derived_from_bd_id: BD-067
+  - id: finance-C-182
+    when: When training machine learning models using BaseModel with StandardScaler
+    action: Verify feature distributions are approximately Gaussian within training windows; apply Shapiro-Wilk test (p>0.05)
+      or examine kurtosis; if heavy tails detected, switch to RobustScaler or rank-based transformation
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: StandardScaler assumes Gaussian-distributed features; heavy-tailed features get scaled values misrepresenting
+      true relative importance, causing models to overweight outlier-prone indicators and underweight stable ones during inference
+    derived_from_bd_id: BD-069
+  - id: finance-C-183
+    when: When implementing or refactoring feature calculation logic for golden/death cross detection
+    action: 'Implement frequency-aware shift calculation: for minute-level data use shift(1) referencing prior minute, for
+      hourly use shift(1) referencing prior hour; validate that shift window matches input data granularity before computing
+      SMA crossovers'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Hardcoded shift(1) assumes daily closing prices; when applied to intraday minute-level data, shift(1) references
+      the prior minute instead of prior day, causing completely wrong crossover detection that silently produces false signals
+    derived_from_bd_id: BD-073
+  - id: finance-C-184
+    when: When designing or modifying database schemas for feature tables
+    action: Normalize timestamps to UTC before storing; include exchange_timezone field in feature metadata; when querying
+      across multiple exchanges, filter by exchange-specific trading day boundaries rather than assuming UTC date equivalence
+    severity: medium
+    kind: architecture_guardrail
+    modality: should
+    consequence: Composite primary key (ticker, date) assumes single timezone per date; when the same ticker trades on exchanges
+      across different time zones, identical ticker/date combinations create conflicting entries with different trading day
+      boundaries
+    derived_from_bd_id: BD-074
+  - id: finance-C-185
+    when: When implementing or modifying feature pipeline execution order
+    action: 'Maintain the validated 5-step execution order: tech→options→derived→margin_risk→quality; implement dependency
+      graph validation that checks prerequisite stages complete before dependent stages run, ensuring null RSI failures are
+      attributed to ordering violations not data quality issues'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Pipeline validation thresholds (>10% null RSI) assume the fixed 5-step order; if derived features run before
+      tech indicators, null RSI from missing upstream dependencies gets misattributed to data quality, causing the quality
+      gate to silently accept corrupted inputs that corrupt downstream margin risk calculations
+    derived_from_bd_id: BD-078
+  - id: finance-C-186
+    when: When configuring DAG scheduling with weekday-only runs and SLA-based refresh intervals
+    action: Convert SLA definitions from natural days to business days (using pandas.bdate_range or similar); for critical
+      indicators with <24h SLAs, add weekend catch-up runs at Saturday 7 AM UTC and Sunday 7 AM UTC; document actual data
+      staleness bounds in dashboard metadata
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Weekday-only scheduling (Mon-Fri 7 AM UTC) combined with natural-day SLA definitions causes Friday afternoon
+      releases to experience 63 hours of staleness for 6-hour SLA indicators; monthly indicators miss entire weekends, making
+      dashboard freshness claims systematically optimistic by 2-3x for end-of-week releases
+    derived_from_bd_id: BD-077
+  - id: finance-C-187
+    when: When implementing or modifying volatility regime detection logic in position sizing or margin calculations
+    action: 'Implement de-duplication logic: when multiple volatility triggers fire simultaneously (z-score threshold + percentile
+      rank + margin composite), use only one trigger and log the others as suppressed; or unify into a single volatility regime
+      score with documented weight contribution'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Three independent volatility triggers (z-score +1.0, percentile >75th, margin composite 25% weight) fire
+      simultaneously during high-VIX periods, creating multiplicative defensive positioning that causes 40-60% larger position
+      reductions than any single trigger would justify, leading to under-hedging followed by failure to re-enter quickly
+    derived_from_bd_id: BD-079
+  - id: finance-C-188
+    when: When implementing crossover detection for SMA-based technical signals
+    action: Use pandas shift(1) to compare current vs prior bar states for SMA50/SMA200 crossover detection — detect golden
+      cross (bullish) and death cross (bearish) by comparing previous and current bar states
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without shift(1), current bar would incorrectly signal crossovers that haven't occurred yet, causing repainting
+      issues where signals appear and disappear as price moves within the same bar
+    derived_from_bd_id: BD-005
+  - id: finance-C-189
+    when: When implementing ensemble prediction for multi-model strategies
+    action: Use LogisticRegression meta-learner stacking on base model probabilities — pass base model predictions as features
+      to a second-level model that learns optimal weighting; do NOT use simple averaging which treats each models equally
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Simple averaging gives equal weight to all models regardless of their current predictive power, causing suboptimal
+      predictions during market regime changes when some models outperform others
+    derived_from_bd_id: BD-014
+  - id: finance-C-190
+    when: When processing monetary values in backtesting calculations
+    action: Use Python float type for currency calculations — float introduces rounding errors due to binary floating-point
+      representation
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Float rounding errors accumulate over many transactions, causing P&L discrepancies that may appear as profits
+      or losses not present in actual trading
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-191
+    when: When implementing monetary calculations in the backtesting engine
+    action: Use Python Decimal type for each currency calculations — import from decimal import Decimal; initialize with string
+      or Decimal('X.XX') to avoid float conversion; apply Decimal throughout trade cost, P&L, and portfolio value calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without Decimal, float-based currency calculations cause silent rounding errors that accumulate in high-frequency
+      or long-running backtests, leading to incorrect strategy performance metrics
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-192
+    when: When implementing database connection management in Streamlit multi-page applications
+    action: Use singleton pattern for DuckDB connection — implement __new__ method to return single shared instance; do NOT
+      create new connection instances per page or per query
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Multiple DuckDB connection instances cause 'database is locked' errors when Streamlit pages access data simultaneously,
+      breaking multi-page app functionality
+    derived_from_bd_id: BD-001
+  - id: finance-C-193
+    when: When implementing trend identification logic in the financial analysis module
+    action: Use SMA (Simple Moving Average) with 20/50/200-period boundaries for trend identification; do not substitute with
+      WMA or EMA without re-evaluating signal stability
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Switching from SMA to WMA introduces higher sensitivity to outliers and unstable historical baselines, causing
+      trend signals to flip incorrectly during volatile periods and generating false trading signals
+    derived_from_bd_id: BD-026
+  - id: finance-C-195
+    when: When using the framework in environments without FRED API credentials
+    action: Verify offline mode status before performing analysis; verify users can distinguish between live FRED data and
+      fallback sample_FRED_data.csv to avoid treating sample data as current market information
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Running analysis on sample data without awareness produces misleading results; trading decisions based on
+      outdated sample data will not reflect current market conditions
+    derived_from_bd_id: BD-002
+  - id: finance-C-196
+    when: When configuring prediction horizon and rebalancing frequency for ML-based trading strategies
+    action: Verify prediction horizon (5 trading days) aligns with rebalancing frequency (weekly); verify these parameters
+      match the intended swing trading strategy and not a different timeframe
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Mismatched prediction horizon and rebalancing frequency causes the model to optimize for a different trading
+      cycle, leading to signals that are irrelevant to actual weekly rebalancing decisions
+    derived_from_bd_id: BD-013
+  - id: finance-C-198
+    when: When implementing credential storage and access control in production trading systems
+    action: Do not rely on file encryption (Fernet) and file permissions (0o600) as sole defense against privileged escalation
+      attacks — encryption keys must never be accessible to processes running under the same user account that owns encrypted
+      credentials; use Hardware Security Module (HSM) or cloud KMS integration where encryption key never touches application
+      memory
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: If an attacker gains owner account access via phishing, password reuse, or insider threat, encryption keys
+      become immediately accessible and all credentials can be decrypted, compromising production trading credentials and
+      enabling unauthorized market access
+    derived_from_bd_id: BD-084
+  - id: finance-C-199
+    when: When classifying market volatility regimes using VIX thresholds for strategy risk adjustment
+    action: Verify VIX regime thresholds (Low<15, Normal<20, Elevated<30, Crisis>=30) against current market structure; these
+      thresholds were established during pre-2008 markets and post-financial crisis 'Normal' range has shifted upward with
+      structurally higher VIX levels
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Pre-2008 VIX thresholds cause over-sensitive Crisis signals in post-2008 markets with structurally elevated
+      volatility, leading strategies to rotate away from risk assets prematurely and systematically underperform during extended
+      periods of elevated but non-crisis volatility
+    derived_from_bd_id: BD-071
+  - id: finance-C-200
+    when: When deploying the EnsembleModel for prediction tasks
+    action: Monitor base learner prediction correlation; if XGBoost and LightGBM base predictions converge to correlation
+      >0.95, the stacking architecture provides minimal benefit over a single model and base learners must be diversified
+      with additional model types
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: When base learners produce highly correlated predictions (>0.95), the 2-level stacking architecture provides
+      no ensemble benefit, effectively acting as a single model with unnecessary computational overhead, causing degraded
+      prediction accuracy compared to a properly diversified ensemble
+    derived_from_bd_id: BD-065
+  - id: finance-C-201
+    when: When calculating recession probability for macroeconomic regime-aware strategy selection
+    action: Verify yield curve (10Y-2Y spread) receives dominant weight of at least 40% in recession probability calculation;
+      do not refactor to equal weights or alternative dominant indicators without re-validation against historical recession
+      data
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing yield curve dominance in recession probability calculation alters recession signal timing and accuracy,
+      causing recession-aware strategies to incorrectly rotate between risk assets and defensive positions, leading to significant
+      performance degradation during economic transitions
+    derived_from_bd_id: BD-044
+  - id: finance-C-202
+    when: When implementing cross-validation logic for time series forecasting
+    action: Use expanding or rolling window splits that preserve temporal ordering; verify training data chronologically precedes
+      validation data in every fold
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using random train/test splits or k-fold cross-validation on time series data introduces look-ahead bias,
+      causing backtest results to appear significantly better than live performance
+    derived_from_bd_id: BD-050
+  - id: finance-C-203
+    when: When configuring the prediction horizon parameter for the ML model
+    action: Set prediction_horizon to 5 (days) for consistency with backtesting; verify the horizon matches the strategy's
+      signal-to-noise optimization for medium-term directional prediction
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a different prediction horizon than validated in backtesting causes backtest-live inconsistency; strategies
+      optimized for 1-day horizon may have excessive transaction costs when applied with 5-day horizon
+    derived_from_bd_id: BD-051
+  - id: finance-C-204
+    when: When configuring sector-based macro regime detection
+    action: Verify the hardcoded sector classification (XLY/XLK=offensive, XLU/XLP=defensive, remainder=cyclical) matches
+      the actual sector composition of the tradable universe; update OFFENSIVE_SECTORS and DEFENSIVE_SECTORS lists when universe
+      changes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect sector classification causes wrong regime signals; misclassifying utilities as cyclical instead
+      of defensive leads to incorrect risk-on/off detection and poor timing decisions
+    derived_from_bd_id: BD-011
+  - id: finance-C-205
+    when: When validating ML model performance for live deployment
+    action: Use magnitude-weighted targets, asymmetric loss functions, or supplementary PnL-based validation metrics (Sharpe
+      ratio, actual returns) alongside AUC/accuracy; do not rely solely on binary classification metrics
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Walk-forward validation with binary targets produces misleading metrics; models that correctly predict tiny
+      0.1% moves score equally with those predicting 10% moves, causing deployment of models that maximize accuracy but minimize
+      profitability
+    derived_from_bd_id: BD-082
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-083 / Database Snapshot Optimization
+    version: v5.3
+    intent_keywords:
+    - backup
+    - snapshot
+    - parquet
+    - database backup
+    - compress data
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (3 distinct values, balanced distribution)
+      groups:
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 9
+        ucs:
+        - uc_id: UC-101
+          name: Database Snapshot Optimization
+          short_description: 'Creates optimized database backups by partitioning hot (<90 days) and cold (>90 days) data into
+            appropriate storage formats with ZSTD compression and '
+          sample_triggers:
+          - backup
+          - snapshot
+          - parquet
+        - uc_id: UC-102
+          name: Database Compaction and Optimization
+          short_description: Optimizes database performance by running VACUUM, rebuilding indexes, and deduplicating records
+            within retention windows while measuring compression s
+          sample_triggers:
+          - vacuum
+          - optimize
+          - database cleanup
+        - uc_id: UC-104
+          name: Daily Economic Data Refresh
+          short_description: Fetches each economic data from FRED and Yahoo Finance APIs daily and stores results in cache
+            for dashboard consumption
+          sample_triggers:
+          - refresh data
+          - daily update
+          - FRED data
+        - uc_id: UC-105
+          name: Data Retention Policy Cleanup
+          short_description: Archives data older than retention periods to Parquet files and deletes old records from main
+            tables to reduce database size while maintaining histori
+          sample_triggers:
+          - data retention
+          - cleanup old data
+          - archive historical
+        - uc_id: UC-108
+          name: FRED Data File Organization
+          short_description: Organizes FRED-related data files and scripts by moving them into a dedicated directory structure
+          sample_triggers:
+          - organize files
+          - move FRED data
+          - file management
+        - uc_id: UC-109
+          name: Offline Sample Data Generation
+          short_description: Generates sample datasets for offline mode testing, including FRED, Yahoo Finance, and World
+            Bank sample data
+          sample_triggers:
+          - generate sample data
+          - offline mode
+          - test data
+        - uc_id: UC-110
+          name: DuckDB Database Initialization
+          short_description: Initializes the DuckDB database by creating each required tables and indexes for the Economic
+            Dashboard
+          sample_triggers:
+          - init database
+          - create tables
+          - database setup
+        - uc_id: UC-112
+          name: Pickle Cache to DuckDB Migration
+          short_description: Migrates existing pickle cache files containing FRED and Yahoo Finance data to the new DuckDB
+            database format
+          sample_triggers:
+          - migrate pickle
+          - convert cache
+          - DuckDB migration
+        - uc_id: UC-113
+          name: Smart Data Refresh with SLA Awareness
+          short_description: Intelligently refreshes economic data based on natural update frequencies and SLAs, respecting
+            rate limits and only fetching data when needed
+          sample_triggers:
+          - smart refresh
+          - SLA aware
+          - rate limit
+      - group_id: monitoring
+        name: Monitoring
+        description: ''
+        emoji: 📦
+        uc_count: 3
+        ucs:
+        - uc_id: UC-103
+          name: API Key Management Verification
+          short_description: Verifies the API key management feature implementation is working correctly by testing module
+            imports, credential initialization, and key storage/retr
+          sample_triggers:
+          - verify API keys
+          - test credentials
+          - API setup verification
+        - uc_id: UC-106
+          name: API Key Management Quickstart
+          short_description: Provides a quick start guide for initializing and testing API key management, storing and verifying
+            FRED API keys securely
+          sample_triggers:
+          - setup API keys
+          - quick start
+          - initialize credentials
+        - uc_id: UC-107
+          name: Credentials Initialization
+          short_description: Initializes and stores API credentials (FRED API key) securely in encrypted form for authenticated
+            data access
+          sample_triggers:
+          - setup credentials
+          - API key initialization
+          - secure storage
+      - group_id: research_analysis
+        name: Research Analysis
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-111
+          name: News and Sentiment Data Fetching
+          short_description: Fetches news articles and sentiment data for specified stock symbols, including Google Trends
+            data for sentiment analysis
+          sample_triggers:
+          - news sentiment
+          - fetch news
+          - sentiment analysis
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try database snapshot optimization
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try database compaction and optimization
+      auto_selected: true
+    - uc_id: UC-103
+      beginner_prompt: Try api key management verification
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 13 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - API Key Management Verification
+    - Database Compaction and Optimization
+    - Database Snapshot Optimization
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

@@ -1,0 +1,91 @@
+{
+  "name": "skillboss-openclaw-plugin",
+  "version": "0.1.1",
+  "description": "OpenClaw plugin: the wallet for AI agents. 354+ tools (100+ LLMs via Claude/GPT/Gemini/DeepSeek, web scraping via Firecrawl, search via Perplexity, image/video/audio gen, email) through one API key with signed JWT audit trail. Free $0.50 trial, no signup. Implements Agent Shopping Protocol v0.1.",
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "openclaw-skill",
+    "openclaw-tool",
+    "clawhub",
+    "claw",
+    "ai-agents",
+    "ai-agent-tools",
+    "ai-agent-wallet",
+    "agent-tools",
+    "agent-wallet",
+    "agent-shopping-protocol",
+    "agent-plugin",
+    "agent-marketplace",
+    "llm",
+    "llm-gateway",
+    "unified-llm-api",
+    "claude-api",
+    "gpt-api",
+    "gemini-api",
+    "deepseek-api",
+    "web-scraping",
+    "web-search",
+    "image-generation",
+    "video-generation",
+    "text-to-speech",
+    "email-api",
+    "skillboss",
+    "mcp-server",
+    "mcp",
+    "model-context-protocol",
+    "x402",
+    "mpp",
+    "openai-compatible",
+    "anthropic",
+    "one-api-key",
+    "no-signup",
+    "free-trial"
+  ],
+  "homepage": "https://www.skillboss.co/docs/openclaw-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkillBoss-AI/skillboss.git",
+    "directory": "packages/openclaw-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/SkillBoss-AI/skillboss/issues"
+  },
+  "license": "MIT",
+  "author": "SkillBoss <support@skillboss.co>",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./manifest": "./openclaw.plugin.json"
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

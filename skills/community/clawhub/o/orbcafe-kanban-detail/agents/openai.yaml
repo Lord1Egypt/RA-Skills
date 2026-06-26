@@ -1,0 +1,4 @@
+interface:
+  display_name: "ORBCAFE Kanban + Detail"
+  short_description: "Implement Kanban workflow boards and DetailInfo chaining"
+  default_prompt: "Use $orbcafe-kanban-detail to implement this ORBCAFE Kanban or Kanban-to-detail requirement with official examples patterns."

@@ -1,0 +1,45 @@
+# KB Framework - Core Dependencies
+#
+# Install: pip install -r requirements.txt
+#
+# Optional extras:
+#   HuggingFace Transformers LLM:  pip install -r requirements-transformers.txt
+#   PDF OCR support:                pip install pypdf easyocr  (see below)
+#   Development/testing:            pip install -r requirements-dev.txt
+
+# ── Vector Database ──────────────────────────────────────────────
+# ChromaDB for vector similarity search (hybrid search, embedding pipeline)
+chromadb>=0.4.0,<2.0.0
+
+# ── Embeddings ───────────────────────────────────────────────────
+# Sentence-transformers for embedding generation and cross-encoder reranking
+# Used by: src/library/chroma_integration.py, kb/commands/warmup.py, src/library/reranker.py
+sentence-transformers>=2.0.0,<3.0
+
+# ── YAML Parsing ─────────────────────────────────────────────────
+# PyYAML for Obsidian frontmatter parsing and config files
+# Used by: kb/obsidian/parser.py, kb/obsidian/writer.py, kb/obsidian/sync_manager.py,
+#           kb/biblio/content_manager.py
+PyYAML>=6.0
+
+# ── PDF Processing ─────────────────────────────────────────────────
+# PyMuPDF (fitz) for PDF rendering and text extraction
+# Used by: kb/scripts/index_pdfs.py (OCR page rendering)
+PyMuPDF>=1.23.0
+
+# pypdf for basic PDF text extraction
+# Used by: kb/scripts/index_pdfs.py (fallback/lazy import)
+pypdf>=3.0.0
+
+# ── Indirect Dependencies ─────────────────────────────────────────
+# The following are not directly imported but are required by chromadb and
+# sentence-transformers. Listed here to pin versions and ensure reproducibility.
+
+# numpy - used by chromadb, sentence-transformers internally
+numpy>=1.24.0
+
+# requests - used by chromadb and sentence-transformers for model downloads
+requests>=2.28.0
+
+# tqdm - progress bars (used by sentence-transformers download)
+tqdm>=4.65.0

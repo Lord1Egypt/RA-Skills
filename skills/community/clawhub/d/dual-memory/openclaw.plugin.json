@@ -1,0 +1,55 @@
+{
+	"id": "dual-memory",
+	"kind": "memory",
+	"credentials": {
+		"SUPERMEMORY_OPENCLAW_API_KEY": {
+			"description": "Optional. SuperMemory API key for cloud memory persistence. Get one at https://supermemory.com. Without it, only local memory-core is used.",
+			"required": false
+		}
+	},
+	"configSchema": {
+		"type": "object",
+		"additionalProperties": false,
+		"properties": {
+			"supermemory": {
+				"type": "object",
+				"properties": {
+					"apiKey": { "type": "string" },
+					"containerTag": { "type": "string" },
+					"autoRecall": { "type": "boolean" },
+					"autoCapture": { "type": "boolean" },
+					"maxRecallResults": { "type": "number", "minimum": 1, "maximum": 20 },
+					"profileFrequency": { "type": "number", "minimum": 1, "maximum": 500 },
+					"captureMode": { "type": "string", "enum": ["everything", "all"] },
+					"entityContext": { "type": "string", "maxLength": 1500 },
+					"debug": { "type": "boolean" },
+					"enableCustomContainerTags": { "type": "boolean" },
+					"customContainers": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"tag": { "type": "string" },
+								"description": { "type": "string" }
+							},
+							"required": ["tag", "description"]
+						}
+					},
+					"customContainerInstructions": { "type": "string" }
+				}
+			},
+			"memoryCore": {
+				"type": "object",
+				"properties": {
+					"dreaming": {
+						"type": "object",
+						"properties": {
+							"enabled": { "type": "boolean" },
+							"frequency": { "type": "string" }
+						}
+					}
+				}
+			}
+		}
+	}
+}

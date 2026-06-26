@@ -1,0 +1,166 @@
+{
+  "name": "Add Chapters 5-7 to Word Document",
+  "description": "Automate adding chapters 5-7 from text files to Word document",
+  "steps": [
+    {
+      "name": "Ensure Word is frontmost",
+      "action": "app",
+      "app": "Microsoft Word",
+      "operation": "activate"
+    },
+    {
+      "name": "Wait for Word to load",
+      "action": "sleep",
+      "duration": 3000
+    },
+    {
+      "name": "Go to end of document",
+      "action": "hotkey",
+      "keys": ["command", "down"]
+    },
+    {
+      "name": "Wait for navigation",
+      "action": "sleep",
+      "duration": 1000
+    },
+    {
+      "name": "Insert page break for Chapter 5",
+      "action": "hotkey",
+      "keys": ["command", "enter"]
+    },
+    {
+      "name": "Type Chapter 5 title",
+      "action": "type",
+      "text": "فصل ۵: پیاده‌سازی لایه سرویس‌های در سطح کاربر",
+      "delayMs": 100
+    },
+    {
+      "name": "Apply Heading 1 style",
+      "action": "hotkey",
+      "keys": ["command", "option", "1"]
+    },
+    {
+      "name": "Press Enter for new paragraph",
+      "action": "press",
+      "keys": ["return"]
+    },
+    {
+      "name": "Read Chapter 5 content",
+      "action": "run",
+      "command": "cat chapter5_clean.txt | pbcopy",
+      "wait": 1000
+    },
+    {
+      "name": "Paste Chapter 5 content",
+      "action": "hotkey",
+      "keys": ["command", "v"]
+    },
+    {
+      "name": "Wait for paste to complete",
+      "action": "sleep",
+      "duration": 2000
+    },
+    {
+      "name": "Format Chapter 5 subheadings",
+      "action": "run",
+      "command": "echo 'Will format ۵.۱, ۵.۲, etc. as Heading 2'",
+      "wait": 1000
+    },
+    {
+      "name": "Insert page break for Chapter 6",
+      "action": "hotkey",
+      "keys": ["command", "enter"]
+    },
+    {
+      "name": "Type Chapter 6 title",
+      "action": "type",
+      "text": "فصل ۶: پایش، سخت‌سازی امنیتی، آزمون‌ها و تحویل نهایی",
+      "delayMs": 100
+    },
+    {
+      "name": "Apply Heading 1 style",
+      "action": "hotkey",
+      "keys": ["command", "option", "1"]
+    },
+    {
+      "name": "Press Enter for new paragraph",
+      "action": "press",
+      "keys": ["return"]
+    },
+    {
+      "name": "Read Chapter 6 content",
+      "action": "run",
+      "command": "cat chapter6_clean.txt | pbcopy",
+      "wait": 1000
+    },
+    {
+      "name": "Paste Chapter 6 content",
+      "action": "hotkey",
+      "keys": ["command", "v"]
+    },
+    {
+      "name": "Wait for paste to complete",
+      "action": "sleep",
+      "duration": 2000
+    },
+    {
+      "name": "Insert page break for Chapter 7",
+      "action": "hotkey",
+      "keys": ["command", "enter"]
+    },
+    {
+      "name": "Type Chapter 7 title",
+      "action": "type",
+      "text": "فصل ۷: خلصه، نتیجه‌گیری و کارهای آینده",
+      "delayMs": 100
+    },
+    {
+      "name": "Apply Heading 1 style",
+      "action": "hotkey",
+      "keys": ["command", "option", "1"]
+    },
+    {
+      "name": "Press Enter for new paragraph",
+      "action": "press",
+      "keys": ["return"]
+    },
+    {
+      "name": "Read Chapter 7 content",
+      "action": "run",
+      "command": "cat chapter7_clean.txt | pbcopy",
+      "wait": 1000
+    },
+    {
+      "name": "Paste Chapter 7 content",
+      "action": "hotkey",
+      "keys": ["command", "v"]
+    },
+    {
+      "name": "Wait for paste to complete",
+      "action": "sleep",
+      "duration": 2000
+    },
+    {
+      "name": "Save document",
+      "action": "hotkey",
+      "keys": ["command", "s"]
+    },
+    {
+      "name": "Wait for save",
+      "action": "sleep",
+      "duration": 1000
+    },
+    {
+      "name": "Update Table of Contents",
+      "action": "type",
+      "text": "Updating Table of Contents...",
+      "delayMs": 100
+    },
+    {
+      "name": "Completion message",
+      "action": "run",
+      "command": "echo 'Chapters 5-7 added successfully!'",
+      "wait": 1000
+    }
+  ]
+}

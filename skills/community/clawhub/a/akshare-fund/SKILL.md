@@ -1,35 +1,73 @@
 ---
-name: "Akshare Fund"
-description: "基金量化数据分析工具，基于AkShare库获取公募基金净值、持仓、估值等数据。用于基金查询、持仓分析、业绩追踪。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/akshare-fund"
-sourceUrl: "https://clawhub.ai/skills/akshare-fund"
+name: akshare-fund
+description: 基金量化数据分析工具，基于AkShare库获取公募基金净值、持仓、估值等数据。用于基金查询、持仓分析、业绩追踪。
 ---
 
-# Akshare Fund
+# 基金量化 - AkShare 数据接口
 
-> 基金量化数据分析工具，基于AkShare库获取公募基金净值、持仓、估值等数据。用于基金查询、持仓分析、业绩追踪。
+## 支持的功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/akshare-fund`
-- **Source URL:** [https://clawhub.ai/skills/akshare-fund](https://clawhub.ai/skills/akshare-fund)
+### 1. 基金基本信息
+获取基金名称、类型、基金公司等
 
-## Overview
+### 2. 基金净值
+交易时间显示实时估算净值，非交易时间显示历史净值
 
+### 3. 基金持仓
+获取基金持仓股票明细，包括股票代码、名称、持仓市值、占净值比例
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 4. 基金估值
+同时显示官方估值和自定义估值（根据持仓股实时计算）
+
+### 5. 基金持仓汇总
+汇总多个基金的持仓，按股票占比排行，包含最新价和涨跌幅
+
+### 6. 基金列表
+按类型筛选基金（股票型、混合型、债券型、ETF等）
+
+## 使用命令
+
 ```bash
-hermes skills install clawhub/akshare-fund
+# 基金基本信息（支持多个）
+python fund_cli.py info --list 018957 161725
+
+# 基金净值（支持多个，自动判断交易时间）
+python fund_cli.py nav --list 018957 161725
+
+# 基金持仓
+python fund_cli.py holdings --list 018957
+
+# 基金估值
+python fund_cli.py estimate --list 018957
+
+# 基金持仓汇总排行（核心功能）
+python fund_cli.py summary --list 018957 161725 260108
+
+# 基金列表
+python fund_cli.py list --type 股票型
 ```
+
+## 规则说明
+
+所有数据接口均自动区分交易时间（9:30-15:00，周一至周五）：
+
+| 功能 | 交易时间 | 非交易时间 |
+|------|---------|-----------|
+| 基金净值 | 实时估算净值 | 历史净值 |
+| 基金估值 | 自定义估算 | 官方+自定义 |
+| 持仓汇总 | 含实时涨跌幅 | 无涨跌幅 |
+
+## 持仓汇总输出字段
+
+- 股票代码
+- 股票名称
+- 总占比（多只基金合计）
+- 最新价
+- 平均涨跌幅
+- 出现次数
+
+## 注意事项
+
+1. 数据仅供研究参考，不构成投资建议
+2. 基金持仓为季度披露，存在时滞
+3. 接口可能因目标网站变动而失效

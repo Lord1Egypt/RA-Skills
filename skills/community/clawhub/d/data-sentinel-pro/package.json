@@ -1,0 +1,25 @@
+{
+  "name": "data-sentinel-pro",
+  "version": "1.0.1",
+  "description": "7x24 小时监控网页、商品价格、竞对动态，变化即通知",
+  "type": "openclaw-skill",
+  "runtime": "python",
+  "entry": "monitor.py",
+  "python": ">=3.9",
+  "requirements": [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.1.0"
+  ],
+  "author": "Anson <ai.agent.anson@qq.com>",
+  "license": "MIT-0",
+  "homepage": "https://asmartglobal.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anson125chen/data-sentinel-pro"
+  },
+  "files": [
+    "monitor.py",
+    "SKILL.md"
+  ]
+}

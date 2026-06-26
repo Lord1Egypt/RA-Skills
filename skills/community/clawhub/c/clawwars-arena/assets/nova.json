@@ -1,0 +1,22 @@
+{
+  "name": "Nova",
+  "title": "The Adaptive Fighter",
+  "color": "#ff44ff",
+  "accentColor": "#ff88ff",
+  "shape": "hexagon",
+  "eyeStyle": "calm",
+  "trailEffect": "plasma",
+  "deathEffect": "implode",
+  "taunt": "Adapting...",
+  "taunts": ["Adapting...", "You're predictable.", "Next.", "Learn faster.", "Pattern recognized."],
+  "strategy": {
+    "preferredWeapon": "rocket",
+    "aggression": 0.65,
+    "accuracy": 0.55,
+    "speed": 1.0,
+    "retreatThreshold": 0.35,
+    "combatStyle": "adaptive",
+    "dodgePattern": "unpredictable",
+    "pickupPriority": "health"
+  }
+}

@@ -1,35 +1,19 @@
 ---
-name: "dev-browser"
-description: "Indexed by skills.sh from sawyerhood/dev-browser"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sawyerhood"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sawyerhood/dev-browser/dev-browser"
-sourceUrl: "https://skills.sh/sawyerhood/dev-browser/dev-browser"
+name: dev-browser
+description: Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows. Trigger phrases include "go to [url]", "click on", "fill out the form", "take a screenshot", "scrape", "automate", "test the website", "log into", or any browser interaction request.
 ---
 
-# dev-browser
+# Dev Browser
 
-> Indexed by skills.sh from sawyerhood/dev-browser
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sawyerhood
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sawyerhood/dev-browser/dev-browser`
-- **Source URL:** [https://skills.sh/sawyerhood/dev-browser/dev-browser](https://skills.sh/sawyerhood/dev-browser/dev-browser)
-
-## Overview
-
+A CLI for controlling browsers with sandboxed JavaScript scripts.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install skills-sh/sawyerhood/dev-browser/dev-browser
+npm install -g dev-browser
+dev-browser install
 ```
+
+## Usage
+
+Run `dev-browser --help` to learn more.

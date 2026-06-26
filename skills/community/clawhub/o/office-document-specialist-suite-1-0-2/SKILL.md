@@ -1,35 +1,32 @@
 ---
-name: "Office Document Specialist Suite 1.0.2"
-description: "Advanced suite for creating, editing, and analyzing Microsoft Office documents (Word, Excel, PowerPoint). Provides specialized tools for automated reporting..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/office-document-specialist-suite-1-0-2"
-sourceUrl: "https://clawhub.ai/skills/office-document-specialist-suite-1-0-2"
+name: office-document-specialist-suite
+description: Advanced suite for creating, editing, and analyzing Microsoft Office documents (Word, Excel, PowerPoint). Provides specialized tools for automated reporting and document management.
+metadata:
+  {
+    "openclaw": {
+      "emoji": "📄",
+      "requires": { 
+        "bins": ["python3"], 
+        "pip": ["python-docx", "openpyxl", "python-pptx"] 
+      }
+    }
+  }
 ---
 
-# Office Document Specialist Suite 1.0.2
+# Office Document Specialist Suite
 
-> Advanced suite for creating, editing, and analyzing Microsoft Office documents (Word, Excel, PowerPoint). Provides specialized tools for automated reporting...
+A specialized toolset for professional document manipulation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/office-document-specialist-suite-1-0-2`
-- **Source URL:** [https://clawhub.ai/skills/office-document-specialist-suite-1-0-2](https://clawhub.ai/skills/office-document-specialist-suite-1-0-2)
+## Features
 
-## Overview
+- **Word (.docx)**: Create and edit professional reports, manage styles, and insert tables/images.
+- **Excel (.xlsx)**: Data analysis, automated spreadsheet generation, and complex formatting.
+- **PowerPoint (.pptx)**: Automated slide deck creation from structured data.
 
+## Usage
+
+Each tool in the suite is designed to be called programmatically by the agent or via the provided CLI scripts.
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/office-document-specialist-suite-1-0-2
-```
+
+Run the included `setup.sh` to initialize the Python virtual environment and install dependencies.

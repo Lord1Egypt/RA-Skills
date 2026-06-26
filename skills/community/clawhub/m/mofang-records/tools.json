@@ -1,0 +1,396 @@
+{
+  "cliEntrypoint": "./cli.mjs",
+  "tools": [
+    {
+      "name": "mofang_test_connection",
+      "description": "测试魔方网表连接和配置是否正确。验证 BASE_URL、USERNAME、PASSWORD 配置，尝试获取 Token 并访问空间列表。安装后首先调用此命令确认连接正常。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "mofang_list_spaces",
+      "description": "列出或搜索当前用户可访问的空间，返回空间名称和ID。用于探索环境或用户不确定空间名称时。不传 q/spaceHint 时按创建时间倒序全量列出；可用 q/spaceHint 做精确优先、模糊兜底搜索。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "description": "空间搜索关键词，支持精确优先、模糊兜底"
+          },
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称或关键词；与 q 等价，便于 Agent 复用同一命名习惯"
+          },
+          "page": {
+            "type": "integer",
+            "description": "页码，从 1 开始；all=false 时生效",
+            "default": 1,
+            "minimum": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页数量，默认 100，最大 100",
+            "default": 100,
+            "minimum": 1,
+            "maximum": 100
+          },
+          "all": {
+            "type": "boolean",
+            "description": "是否自动分页列出全部空间，默认 true",
+            "default": true
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "mofang_list_forms",
+      "description": "列出指定空间下的所有表单。传入空间名称（中文），工具内部自动解析。不传 spaceHint 则使用最近操作的空间。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称（中文），如「AI演示空间」「网表业务」。支持精确和模糊匹配。不传则使用最近操作的空间"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "mofang_get_field_definitions",
+      "description": "获取指定表单的字段结构定义。返回每个字段的中文名称(label)、英文标识(name)、类型、是否可编辑、值格式说明，以及下拉列表/复选框的选项映射。传入表单名称（中文），工具内部自动解析空间和表单。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formHint": {
+            "type": "string",
+            "description": "表单名称（中文），如「采购申请」「客户信息」"
+          },
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称（中文），可选。不传时自动从缓存或多空间搜索"
+          }
+        },
+        "required": ["formHint"]
+      }
+    },
+    {
+      "name": "mofang_query_records",
+      "description": "查询指定表单中的记录列表，支持条件过滤、分页和排序。传入表单名称（中文），工具内部自动解析空间和表单，并自动获取字段定义用于映射。过滤条件中的字段名可使用中文名称(label)或英文标识(name)，工具自动转换。返回结果包含 fieldLabels 映射。重要：过滤条件参数名必须是 filters（复数、数组），不要使用魔方前端 JSON 里的单数 filter、filterType、value2、filterGroup；日期区间须用 operator between，且起止日期写在同一个 value 里用英文逗号分隔，例如 value:\"2026-03-01,2026-04-01\"。若误传前端的 filter.items（含 BETWEEN 与 value2），在无 filters 时 CLI 会尝试自动转换，但仍推荐直接写 filters。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formHint": {
+            "type": "string",
+            "description": "表单名称（中文），如「采购申请」「客户信息」"
+          },
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称（中文），可选"
+          },
+          "page": {
+            "type": "integer",
+            "description": "页码，从1开始，默认为1",
+            "default": 1,
+            "minimum": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页数量，默认为10",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 100
+          },
+          "all": {
+            "type": "boolean",
+            "description": "是否返回所有记录（忽略分页），默认为false",
+            "default": false
+          },
+          "filters": {
+            "type": "array",
+            "description": "过滤条件数组（唯一标准方式）。fieldName 可用中文 label 或英文 name。日期区间：operator 为 between，value 为「开始,结束」如 \"2026-03-01,2026-03-31\" 或 \"2026-03-01,2026-04-01\"（按业务是否含边界）。勿使用 filterType/value2。",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fieldName": {
+                  "type": "string",
+                  "description": "字段名（中文label或英文name均可），如「客户名称」或 kehumingcheng"
+                },
+                "operator": {
+                  "type": "string",
+                  "description": "操作符",
+                  "enum": [
+                    "eq", "noteq", "like", "like_and", "like_or",
+                    "or_like_and", "fulltext",
+                    "lt", "gt", "lte", "gte", "between",
+                    "isnull", "isnotnull",
+                    "in", "notin",
+                    "checkbox_in", "checkbox_eq",
+                    "tree", "rddl"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "过滤值。文本传原始文本（自动Base64编码）；数字填数字；日期填YYYY-MM-DD；between用逗号分隔如'100,1000'；isnull/isnotnull填'-1'"
+                },
+                "not": {
+                  "type": "boolean",
+                  "description": "是否取反，默认false",
+                  "default": false
+                },
+                "concat": {
+                  "type": "string",
+                  "description": "与前一个条件的连接方式，默认 &&(AND)",
+                  "enum": ["&&", "||"],
+                  "default": "&&"
+                }
+              },
+              "required": ["fieldName", "operator", "value"]
+            }
+          },
+          "orderBy": {
+            "type": "object",
+            "description": "排序规则",
+            "properties": {
+              "fieldName": {
+                "type": "string",
+                "description": "排序字段名（中文label或英文name均可）"
+              },
+              "direction": {
+                "type": "string",
+                "description": "排序方向",
+                "enum": ["asc", "desc"]
+              }
+            },
+            "required": ["fieldName", "direction"]
+          }
+        },
+        "required": ["formHint"]
+      }
+    },
+    {
+      "name": "mofang_create_record",
+      "description": "在指定表单中创建一条新记录。传入表单名称（中文），工具内部自动解析空间/表单并自动映射字段。data 的 key 可以使用中文字段名称(label)或英文标识(name)，工具自动识别转换。下拉列表填选项ID而非文本。执行前请向用户确认。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formHint": {
+            "type": "string",
+            "description": "表单名称（中文），如「采购申请」"
+          },
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称（中文），可选"
+          },
+          "data": {
+            "type": "object",
+            "description": "记录数据。key 可以是中文字段名(label)或英文标识(name)，工具自动映射。例如 {\"客户名称\": \"北京公司\", \"合同金额\": 50000} 或 {\"kehumingcheng\": \"北京公司\"}。下拉列表填选项ID如'1'；日期填'YYYY-MM-DD'；主引用填'{\"id\":\"记录id\"}'",
+            "additionalProperties": true
+          }
+        },
+        "required": ["formHint", "data"]
+      }
+    },
+    {
+      "name": "mofang_update_record",
+      "description": "修改指定记录的字段值。传入表单名称（中文），工具内部自动解析。data 的 key 可以使用中文或英文字段名。仅需提交要修改的字段。执行前请先查询到目标记录，向用户确认修改内容。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formHint": {
+            "type": "string",
+            "description": "表单名称（中文），如「采购申请」"
+          },
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称（中文），可选"
+          },
+          "recordId": {
+            "type": "string",
+            "description": "记录ID（序号值），通过查询记录获得"
+          },
+          "data": {
+            "type": "object",
+            "description": "要修改的字段数据，仅包含需要修改的字段。key 可以是中文或英文字段名。",
+            "additionalProperties": true
+          }
+        },
+        "required": ["formHint", "recordId", "data"]
+      }
+    },
+    {
+      "name": "mofang_delete_record",
+      "description": "删除指定的记录。此操作不可逆。执行前请先查询到目标记录并向用户展示，等待确认后再执行。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formHint": {
+            "type": "string",
+            "description": "表单名称（中文），如「采购申请」"
+          },
+          "spaceHint": {
+            "type": "string",
+            "description": "空间名称（中文），可选"
+          },
+          "recordId": {
+            "type": "string",
+            "description": "要删除的记录ID（序号值）"
+          }
+        },
+        "required": ["formHint", "recordId"]
+      }
+    },
+    {
+      "name": "mofang_bpm_list_tasks",
+      "description": "列出当前用户的 BPM 待处理任务（Activiti runtime/tasks）。mode: assignee=我的待办，candidate=组待办需认领，delegated=委托待办。可分页、按流程定义 key 或描述模糊过滤。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "assignee | candidate | delegated，默认 assignee",
+            "enum": ["assignee", "candidate", "delegated"]
+          },
+          "page": { "type": "integer", "description": "页码，从 1 开始", "default": 1, "minimum": 1 },
+          "pageSize": { "type": "integer", "description": "每页条数，默认 20，最大 100", "default": 20, "minimum": 1, "maximum": 100 },
+          "processDefinitionKey": { "type": "string", "description": "流程定义 key，可选" },
+          "descriptionLike": { "type": "string", "description": "任务描述模糊匹配，可选" }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "mofang_bpm_query_tasks",
+      "description": "按条件查询 BPM 任务（POST query/tasks），适合按表单+记录号定位。默认 assignee 为当前登录用户。可传 formHint+recordId 解析 formId 与记录过滤。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formHint": { "type": "string", "description": "表单名称（中文），与 recordId 联用以过滤" },
+          "spaceHint": { "type": "string", "description": "空间名称（中文），可选" },
+          "recordId": { "type": "string", "description": "网表记录序号" },
+          "processDefinitionKey": { "type": "string", "description": "流程定义 key" },
+          "processDefinitionName": { "type": "string", "description": "流程名称" },
+          "taskName": { "type": "string", "description": "任务显示名称" },
+          "taskDefinitionKey": { "type": "string", "description": "任务定义 key" },
+          "assigneeUserId": { "type": "string", "description": "处理人账号 id，不传则用当前用户" },
+          "includeProcessVariables": { "type": "boolean", "description": "是否包含流程变量，默认 true" },
+          "page": { "type": "integer", "default": 1, "minimum": 1 },
+          "pageSize": { "type": "integer", "default": 50, "minimum": 1, "maximum": 100 }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "mofang_bpm_get_task",
+      "description": "获取单个 BPM 任务详情及任务变量，并提取 recordId、spaceId、formId 提示，用于定位办理上下文。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "任务 id（从列表或查询结果获得）" }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "name": "mofang_bpm_complete_task",
+      "description": "提交/完成任务（action complete）。默认按服务端逻辑同步变量后提交；若 simple=true 则仅发送 variables，需自行传入完整变量数组。写操作前须向用户确认。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "任务 id" },
+          "simple": { "type": "boolean", "description": "为 true 时只 POST complete，且必须提供 variables" },
+          "variables": {
+            "type": "array",
+            "description": "Activiti 变量对象列表，如 [{\"name\",\"value\",\"scope\",\"type\"}]",
+            "items": { "type": "object", "additionalProperties": true }
+          }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "name": "mofang_bpm_delegate_task",
+      "description": "转办（delegate）任务到指定用户。写操作前须向用户确认。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "任务 id" },
+          "assignee": { "type": "string", "description": "被转办人账号 id（数字账号）" }
+        },
+        "required": ["taskId", "assignee"]
+      }
+    },
+    {
+      "name": "mofang_bpm_claim_task",
+      "description": "认领组任务（claim）。assignee 默认当前用户。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "任务 id" },
+          "assignee": { "type": "string", "description": "认领人账号 id，可选，默认当前用户" }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "name": "mofang_bpm_resolve_task",
+      "description": "委托归还（resolve），与 delegate 配对使用。写操作前须向用户确认。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "任务 id" }
+        },
+        "required": ["taskId"]
+      }
+    },
+    {
+      "name": "mofang_bpm_jump_task",
+      "description": "流程跳转：abort=终止（可选自动找结束节点），rollback=驳回（需 jumpTargetId 或 targetTaskName），recovery=取回（必须 jumpTargetId）。写操作前须向用户确认。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string", "description": "当前任务 id" },
+          "kind": {
+            "type": "string",
+            "enum": ["abort", "rollback", "recovery"],
+            "description": "abort | rollback | recovery"
+          },
+          "jumpTargetId": { "type": "string", "description": "BPMN 元素 id，如 sid-xxx；abort 可省略由服务端模型推断" },
+          "targetTaskName": { "type": "string", "description": "rollback 时用户任务在流程图上的显示名称" }
+        },
+        "required": ["taskId", "kind"]
+      }
+    },
+    {
+      "name": "mofang_bpm_open_transaction",
+      "description": "开启 BPM 事务（如并行加签 COSIGN）。返回 transactionId，后续须调用 close 并配合公式校验与记录保存。写操作前须向用户确认。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "taskAction": { "type": "string", "description": "动作码，如 COSIGN（加签）" },
+          "processName": { "type": "string", "description": "流程名称" },
+          "taskName": { "type": "string", "description": "当前任务名称" },
+          "processKey": { "type": "string", "description": "流程 key" },
+          "taskId": { "type": "string", "description": "任务 id，可选" },
+          "processInstId": { "type": "string", "description": "流程实例 id，可选" }
+        },
+        "required": ["taskAction"]
+      }
+    },
+    {
+      "name": "mofang_bpm_close_transaction",
+      "description": "关闭 BPM 事务，需传入 open 返回的 transactionId。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "transactionId": { "type": "string", "description": "与 mofang_bpm_open_transaction 返回的 transactionId 一致" }
+        },
+        "required": ["transactionId"]
+      }
+    }
+  ]
+}

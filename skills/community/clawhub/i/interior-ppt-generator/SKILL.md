@@ -1,35 +1,73 @@
 ---
-name: "Interior Design PPT Generator"
-description: "设计师把效果图放到文件夹里，一键自动生成交付PPT，每页一张图，自动加标题排版，直接就能给客户汇报。适合室内设计师快速生成方案交付文件。"
-category: "other"
-source: "ClawHub"
-tags: [interior-design, ppt, presentation, rendering]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interior-ppt-generator"
-sourceUrl: "https://clawhub.ai/skills/interior-ppt-generator"
+name: interior-ppt-generator
+description: 设计师把效果图放到文件夹里，一键自动生成交付PPT，每页一张图，自动加标题排版，直接就能给客户汇报。适合室内设计师快速生成方案交付文件。
 ---
 
-# Interior Design PPT Generator
+# 设计方案PPT自动生成器 v3.0
 
-> 设计师把效果图放到文件夹里，一键自动生成交付PPT，每页一张图，自动加标题排版，直接就能给客户汇报。适合室内设计师快速生成方案交付文件。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interior-ppt-generator`
-- **Source URL:** [https://clawhub.ai/skills/interior-ppt-generator](https://clawhub.ai/skills/interior-ppt-generator)
+设计师把效果图放到文件夹里，一键自动生成交付PPT，**直接就能给客户汇报**。
 
-## Overview
+- 自动读取文件夹里所有效果图（png/jpg/webp）
+- 按文件名排序，每页一张图自动排版
+- 自动生成标题页、任务回顾、章节页、材质说明
+- **深色品牌设计体系**：墨色+暖金配色，不再是白底黑字
+- 标准16:9宽屏，边距合适，不压图
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/interior-ppt-generator
+python3 generate_ppt.py <图片文件夹> <输出.pptx> [项目名] [风格] [面积]
+```
+
+## 示例
+
+```bash
+# 生成酒店项目交付PPT
+python3 generate_ppt.py \
+  ~/工作图纸/飞翔机械办公室/效果图/ \
+  ~/Desktop/飞翔机械交付.pptx \
+  "飞翔机械办公室" \
+  "工业风" \
+  "800"
+
+# 生成别墅交付PPT
+python3 generate_ppt.py \
+  ~/工作图纸/瑞安江境叠墅/效果图/ \
+  ~/Desktop/江境叠墅交付.pptx \
+  "瑞安江境叠墅" \
+  "现代轻奢" \
+  "210"
+```
+
+## 输出结构（9-15页）
+
+| 页面 | 内容 | 说明 |
+|------|------|------|
+| 1 | 封面 | 深色全屏+大标题+风格面积信息 |
+| 2 | 章节页：任务回顾 | 项目需求与设计目标 |
+| 3 | 内容页 | 左文右图版式+大号装饰数字 |
+| 4 | 章节页：设计概念 | 灵感来源与方案推导 |
+| 5 | 内容页 | 右图左文版式+深色装饰块 |
+| 6-N | 效果展示页 | 沉浸式全屏图+底部标题条 |
+| N+1 | 材质板 | 色块网格+标签+色彩比例 |
+| 末页 | 封底 | 感谢聆听+品牌信息 |
+
+## 设计升级（v3.0）
+
+- 配色：深邃黑(#12161c) + 品牌金(#dcb478) + 墨色(#1c232d)
+- 效果页：全屏沉浸式，底部半透明标题条
+- 内容页：深浅色块交替，大号装饰数字
+- 材质页：8个色块+标签+色彩比例图
+- 封底：极简深色+金色线条点缀
+
+## 依赖
+
+- python3
+- python-pptx
+- Pillow
+
+```bash
+pip3 install python-pptx Pillow
 ```

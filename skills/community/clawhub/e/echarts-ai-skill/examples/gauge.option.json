@@ -1,0 +1,28 @@
+{
+  "title": {
+    "text": "Readiness gauge",
+    "left": "center"
+  },
+  "tooltip": {
+    "trigger": "item"
+  },
+  "series": [
+    {
+      "type": "gauge",
+      "progress": {
+        "show": true,
+        "width": 18
+      },
+      "detail": {
+        "valueAnimation": true,
+        "formatter": "{value}"
+      },
+      "data": [
+        {
+          "value": 76,
+          "name": "Readiness gauge"
+        }
+      ]
+    }
+  ]
+}

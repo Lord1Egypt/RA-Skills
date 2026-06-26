@@ -1,0 +1,101 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/api/pgy/kol/data/core_data/v1 for Xiaohongshu Creator Marketplace (Pugongying) Creator Core Metrics through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Creator Core Metrics",
+  "endpointPath": "api/pgy/kol/data/core_data",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Core Metrics data, including engagement and content metrics, for benchmarking, vetting, and campaign planning.",
+      "method": "GET",
+      "operationId": "apiPgyKolDataCoreDataV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAILY_NOTE",
+          "description": "Business type.\n\nAvailable Values:\n- `DAILY_NOTE`: Daily notes\n- `COOPERATE_NOTE`: Cooperative notes",
+          "enumValues": [
+            "DAILY_NOTE",
+            "COOPERATE_NOTE"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "PHOTO_TEXT_AND_VIDEO",
+          "description": "Type of note.\n\nAvailable Values:\n- `PHOTO_TEXT_AND_VIDEO`: Photo and Video\n- `PHOTO_TEXT`: Photo and Text\n- `VIDEO`: Video only",
+          "enumValues": [
+            "PHOTO_TEXT_AND_VIDEO",
+            "PHOTO_TEXT",
+            "VIDEO"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAY_30",
+          "description": "Time range for data.\n\nAvailable Values:\n- `DAY_30`: Last 30 days\n- `DAY_90`: Last 90 days",
+          "enumValues": [
+            "DAY_30",
+            "DAY_90"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Advertisement filter.\n\nAvailable Values:\n- `ALL`: All notes\n- `ORGANIC_ONLY`: Organic notes only",
+          "enumValues": [
+            "ALL",
+            "ORGANIC_ONLY"
+          ],
+          "location": "query",
+          "name": "advertiseSwitch",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/pgy/kol/data/core_data/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Core Metrics",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_api_pgy_kol_data_core_data",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-api-pgy-kol-data-core-data",
+  "sourceTitle": "OpenAPI definition"
+}

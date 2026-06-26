@@ -1,35 +1,14 @@
 ---
-name: "Web3 Security Auditor"
-description: "Automation skill for Web3 Security Auditor."
-category: "security"
-source: "ClawHub"
-tags: [audit, blockchain, ethereum, rug-pull, security, smart-contract, solidity, web3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web3-security-auditor"
-sourceUrl: "https://clawhub.ai/skills/web3-security-auditor"
----
-
-# Web3 Security Auditor
-
-> Automation skill for Web3 Security Auditor.
-
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web3-security-auditor`
-- **Source URL:** [https://clawhub.ai/skills/web3-security-auditor](https://clawhub.ai/skills/web3-security-auditor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web3-security-auditor
-```
+name: smart-contract-security-auditor
+description: >-
+  Automated smart contract security auditing tool for finding vulnerabilities
+  in Solidity and Rust programs. Detects reentrancy bugs, integer overflows,
+  access control flaws, price oracle manipulation, and rug pull patterns.
+  Analyzes Ethereum, Solana, and BSC smart contracts. Generates professional
+  audit reports with severity ratings and remediation recommendations.
+  For Web3 developers, blockchain investors, and DeFi protocol teams doing
+  security due diligence before investing or deploying. Integrates with
+  Etherscan, Solscan, and on-chain data. Use cases: smart contract audit,
+  security review, DeFi security, Solidity auditing, vulnerability scanning,
+  blockchain security, rug pull detection, due diligence.
+version: 1.0.0

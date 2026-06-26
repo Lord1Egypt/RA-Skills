@@ -1,0 +1,7 @@
+{
+  "runtimeUrl": "http://base.test",
+  "options": {
+    "allowCrossOriginSitemaps": true
+  },
+  "repeat": 1
+}

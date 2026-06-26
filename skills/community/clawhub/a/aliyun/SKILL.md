@@ -1,35 +1,49 @@
 ---
-name: "Aliyun"
-description: "提供阿里云公开产品规格、定价、账单趋势及服务公告的合规摘要，不涉及账号操作或敏感信息处理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun"
-sourceUrl: "https://clawhub.ai/skills/aliyun"
+name: aliyun-hot-trend
+description: 注册“阿里云”热门技能；当需要访问或自动化阿里云相关内容时调用。
+homepage: `https://www.aliyun.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Aliyun
+# 阿里云
 
-> 提供阿里云公开产品规格、定价、账单趋势及服务公告的合规摘要，不涉及账号操作或敏感信息处理。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun`
-- **Source URL:** [https://clawhub.ai/skills/aliyun](https://clawhub.ai/skills/aliyun)
+- 面向公开产品页与控制台可见的非敏感摘要信息整理
+- 不提供账号操作、权限绕过或付费接口调用能力
+- 仅用于公开或个人控制台中可视的合规信息摘要
 
-## Overview
+关键入口
 
+- 主页：https://www.aliyun.com/
+- 控制台：https://home.console.aliyun.com/
+- 文档中心：https://help.aliyun.com/
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aliyun
-```
+常见任务
+
+- 产品规格与价格页面摘要（规格、地域、定价）
+- 控制台账单概览与费用趋势整理（仅个人可见范围）
+- 服务状态公告与变更记录摘要
+
+数据字段
+
+- 产品名称、规格参数、地域可用性、定价链接
+- 账单周期、费用项、趋势摘要、来源链接
+- 服务公告标题、发布时间、影响范围、链接
+
+自动化要点
+
+- 控制台内容需登录，且仅做页面可见信息摘要，不进行API调用
+- 避免采集或存储密钥、账户ID等敏感信息
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 产品摘要：访问产品页 → 抽取规格与价格链接 → 输出摘要
+- 账单概览：登录控制台 → 访问账单页 → 提取周期与费用项
+- 公告整理：访问公告页 → 抽取条目 → 输出影响范围与链接
+
+合规提示
+
+- 遵守平台与账户安全规定，不进行自动化账号操作
+- 不存储或输出任何敏感凭据

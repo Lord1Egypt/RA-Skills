@@ -1,0 +1,264 @@
+{
+  "blockchainTraceability": {
+    "version": "1.0.0",
+    "purpose": "保健品供应链透明度和质量验证",
+    "disclaimer": "当前为概念框架，实际实现需要行业合作和区块链基础设施"
+  },
+
+  "supplyChainStages": [
+    {
+      "stage": 1,
+      "name": "原材料采购",
+      "dataPoints": [
+        "产地",
+        "采收日期",
+        "有机认证",
+        "重金属检测",
+        "农药残留"
+      ],
+      "blockchainRecord": {
+        "transactionId": "0x...",
+        "timestamp": "ISO8601",
+        "dataHash": "SHA256(raw_material_data)"
+      }
+    },
+    {
+      "stage": 2,
+      "name": "提取/加工",
+      "dataPoints": [
+        "提取方法",
+        "标准化百分比",
+        "批号",
+        "生产日期",
+        "GMP认证"
+      ],
+      "blockchainRecord": {
+        "transactionId": "0x...",
+        "parentTransactionId": "stage1_tx_id",
+        "dataHash": "SHA256(processing_data)"
+      }
+    },
+    {
+      "stage": 3,
+      "name": "质量检测",
+      "dataPoints": [
+        "第三方实验室",
+        "检测日期",
+        "含量检测",
+        "纯度检测",
+        "污染物检测",
+        "微生物检测"
+      ],
+      "certifications": [
+        "ConsumerLab",
+        "NSF International",
+        "USP Verified",
+        "Informed Sport",
+        "Labdoor"
+      ],
+      "blockchainRecord": {
+        "transactionId": "0x...",
+        "parentTransactionId": "stage2_tx_id",
+        "certificateHash": "SHA256(lab_report)"
+      }
+    },
+    {
+      "stage": 4,
+      "name": "包装",
+      "dataPoints": [
+        "包装日期",
+        "批次号",
+        "过期日期",
+        "存储条件",
+        "防伪码"
+      ],
+      "blockchainRecord": {
+        "transactionId": "0x...",
+        "parentTransactionId": "stage3_tx_id",
+        "qrCodeData": "encrypted_blockchain_link"
+      }
+    },
+    {
+      "stage": 5,
+      "name": "分销",
+      "dataPoints": [
+        "分销商",
+        "运输条件",
+        "温度监控",
+        "到达日期"
+      ],
+      "blockchainRecord": {
+        "transactionId": "0x...",
+        "parentTransactionId": "stage4_tx_id"
+      }
+    },
+    {
+      "stage": 6,
+      "name": "零售",
+      "dataPoints": [
+        "零售商",
+        "上架日期",
+        "库存条件"
+      ],
+      "blockchainRecord": {
+        "transactionId": "0x...",
+        "finalProductQR": "user_scannable_qr"
+      }
+    }
+  ],
+
+  "userVerificationFlow": {
+    "steps": [
+      {
+        "action": "扫码",
+        "input": "产品二维码",
+        "output": "区块链查询链接"
+      },
+      {
+        "action": "验证",
+        "process": "查询区块链记录",
+        "data": "获取完整供应链数据"
+      },
+      {
+        "action": "确认",
+        "process": "验证数据完整性",
+        "checks": [
+          "哈希值匹配",
+          "时间戳顺序",
+          "认证机构签名"
+        ]
+      },
+      {
+        "action": "查看",
+        "output": "显示完整溯源报告"
+      }
+    ]
+  },
+
+  "qualityVerificationServices": {
+    "consumerLab": {
+      "name": "ConsumerLab.com",
+      "type": "独立测试",
+      "coverage": ["US", "部分国际品牌"],
+      "access": "订阅制 ($44/年)",
+      "api": "https://api.consumerlab.com/"
+    },
+    "nsf": {
+      "name": "NSF International",
+      "type": "认证机构",
+      "certifications": ["NSF Certified", "NSF for Sport"],
+      "access": "免费查询",
+      "website": "https://www.nsf.org/"
+    },
+    "usp": {
+      "name": "US Pharmacopeia",
+      "type": "标准制定+认证",
+      "certification": "USP Verified",
+      "access": "免费查询",
+      "website": "https://www.usp.org/"
+    },
+    "informedSport": {
+      "name": "Informed Sport",
+      "type": "运动员专用",
+      "focus": "禁用物质检测",
+      "access": "免费查询",
+      "website": "https://www.informed-sport.com/"
+    },
+    "labdoor": {
+      "name": "Labdoor",
+      "type": "独立测试",
+      "coverage": "有限但增长中",
+      "access": "免费+Premium",
+      "website": "https://www.labdoor.com/"
+    }
+  },
+
+  "fakeProductIndicators": [
+    {
+      "indicator": "价格过低",
+      "description": "明显低于市场平均价",
+      "risk": "可能是假货或劣质品"
+    },
+    {
+      "indicator": "无第三方测试",
+      "description": "没有ConsumerLab/NSF/USP等认证",
+      "risk": "含量和纯度无法保证"
+    },
+    {
+      "indicator": "模糊的标签",
+      "description": "成分表不清晰，无标准化信息",
+      "risk": "可能不含声称成分"
+    },
+    {
+      "indicator": "非正规渠道",
+      "description": "非授权零售商，无退货政策",
+      "risk": "假货风险高"
+    },
+    {
+      "indicator": "过期或临期",
+      "description": "过期或即将过期",
+      "risk": "效力降低或变质"
+    },
+    {
+      "indicator": "包装瑕疵",
+      "description": "拼写错误、模糊印刷",
+      "risk": "仿冒产品"
+    }
+  ],
+
+  "safePurchasingGuidelines": {
+    "authorizedRetailers": [
+      "iHerb",
+      "Amazon (官方旗舰店)",
+      "Vitacost",
+      "品牌官网",
+      "大型连锁药店 (CVS, Walgreens)"
+    ],
+    "avoid": [
+      "未授权第三方卖家",
+      "无退货政策的卖家",
+      "价格异常低的网站",
+      "社交媒体直购"
+    ],
+    "verifySteps": [
+      "检查批号是否可查",
+      "确认第三方认证标志",
+      "比较官方价格",
+      "查看卖家评价和历史"
+    ]
+  },
+
+  "blockchainImplementation": {
+    "currentStatus": "概念阶段",
+    "challenges": [
+      "行业标准化缺失",
+      "品牌参与度低",
+      "技术成本",
+      "用户接受度"
+    ],
+    "futureVision": {
+      "phase1": "主要品牌自愿参与",
+      "phase2": "行业标准建立",
+      "phase3": "监管要求",
+      "phase4": "全面覆盖"
+    },
+    "exampleImplementation": {
+      "platform": "以太坊或私有链",
+      "dataStorage": "IPFS + 链上哈希",
+      "access": "移动App扫码查询",
+      "cost": "品牌方承担，用户免费"
+    }
+  },
+
+  "currentBestPractices": {
+    "message": "在区块链溯源完全实现之前，用户应：",
+    "recommendations": [
+      "选择有第三方认证的品牌 (ConsumerLab, NSF, USP)",
+      "从授权零售商购买",
+      "检查批号和过期日期",
+      "查看实验室测试报告 (COA)",
+      "使用 Labdoor 等服务查询品牌评级",
+      "警惕价格过低的产品"
+    ]
+  }
+}

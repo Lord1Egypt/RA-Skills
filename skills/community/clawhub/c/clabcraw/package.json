@@ -1,0 +1,19 @@
+{
+  "name": "clabcraw-openclaw-skill",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/errors.test.js test/schema.test.js test/strategy.test.js test/config.test.js",
+    "check-balance": "node bins/clabcraw-claimable",
+    "claim-winnings": "node bins/clabcraw-claim",
+    "play:chess": "node games/chess/auto-play.js",
+    "play:auto": "node games/poker/auto-play.js",
+    "play:quick": "node games/poker/auto-play-quick.js"
+  },
+  "dependencies": {
+    "@x402/core": "^2.3.0",
+    "@x402/evm": "^2.3.0",
+    "@x402/fetch": "^2.3.0",
+    "viem": "^2.45.1"
+  }
+}

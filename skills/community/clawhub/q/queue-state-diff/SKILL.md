@@ -1,35 +1,30 @@
 ---
-name: "Queue State Diff"
-description: "Compare two queue or state snapshots and explain what changed between them. Use when Codex needs to analyze drift between JSON/JSONL snapshots, detect newly..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/queue-state-diff"
-sourceUrl: "https://clawhub.ai/skills/queue-state-diff"
+name: queue-state-diff
+description: Compare two queue or state snapshots and explain what changed between them. Use when Codex needs to analyze drift between JSON/JSONL snapshots, detect newly stuck jobs, missing queue references, changed counters, or state regressions across two points in time.
 ---
 
 # Queue State Diff
 
-> Compare two queue or state snapshots and explain what changed between them. Use when Codex needs to analyze drift between JSON/JSONL snapshots, detect newly...
+Use this skill to answer: what changed, what disappeared, and what got worse?
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/queue-state-diff`
-- **Source URL:** [https://clawhub.ai/skills/queue-state-diff](https://clawhub.ai/skills/queue-state-diff)
+## Workflow
 
-## Overview
+1. Gather two comparable snapshots: before/after JSON, report JSON, or JSONL-derived exports.
+2. Normalize them before reasoning; prefer deterministic diff over freehand comparison.
+3. Run `scripts/queue_state_diff.js` for raw comparison.
+4. Interpret the diff in terms of operational meaning: regressions, recoveries, or noise.
 
+## Script
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/queue-state-diff
+node skills/queue-state-diff/scripts/queue_state_diff.js \
+  --before out/report-before.json \
+  --after out/report-after.json \
+  --out out/queue-state-diff.md
 ```
+
+## Guardrails
+
+- Compare like with like; do not diff unrelated report formats.
+- Separate numeric drift from referential drift.
+- Call out missing keys explicitly instead of treating them as zero.

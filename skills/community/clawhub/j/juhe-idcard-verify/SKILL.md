@@ -1,35 +1,114 @@
 ---
-name: "身份证二要素核验 - 聚合数据"
-description: "身份证实名认证。验证姓名与身份证号是否一致，支持全国居民身份证。使用场景：用户说"身份证认证"、"实名认证"、"验证身份证"、"姓名和身份证是否匹配"、"身份证二要素核验"等。通过聚合数据（juhe.cn）API 实时核验，免费注册每天免费调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-idcard-verify"
-sourceUrl: "https://clawhub.ai/skills/juhe-idcard-verify"
+name: juhe-idcard-verify
+description: 身份证实名认证。验证姓名与身份证号是否一致，支持全国居民身份证。使用场景：用户说"身份证认证"、"实名认证"、"验证身份证"、"姓名和身份证是否匹配"、"身份证二要素核验"等。通过聚合数据（juhe.cn）API 实时核验，免费注册每天免费调用。
+homepage: https://www.juhe.cn/docs/api/id/103
+metadata: {"openclaw":{"emoji":"🆔","requires":{"bins":["python3"],"env":["JUHE_IDCARD_VERIFY_KEY"]},"primaryEnv":"JUHE_IDCARD_VERIFY_KEY"}}
 ---
 
-# 身份证二要素核验 - 聚合数据
+# 身份证实名认证
 
-> 身份证实名认证。验证姓名与身份证号是否一致，支持全国居民身份证。使用场景：用户说"身份证认证"、"实名认证"、"验证身份证"、"姓名和身份证是否匹配"、"身份证二要素核验"等。通过聚合数据（juhe.cn）API 实时核验，免费注册每天免费调用。
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP 查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-idcard-verify`
-- **Source URL:** [https://clawhub.ai/skills/juhe-idcard-verify](https://clawhub.ai/skills/juhe-idcard-verify)
+验证姓名与身份证号一致性：**全国居民身份证二要素核验**。
 
-## Overview
+---
 
+## 前置配置：获取 API Key
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [身份证实名认证 API](https://www.juhe.cn/docs/api/id/103) 页面，点击「申请使用」
+3. 审核通过后在「我的 API」中获取 AppKey
+4. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-idcard-verify
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_IDCARD_VERIFY_KEY=你的 AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_IDCARD_VERIFY_KEY=你的 AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/idcard_verify.py --key 你的 AppKey --name 张三 --idcard 110101199001011234
 ```
+
+> 免费额度：每天免费调用，具体次数以官网为准。
+
+---
+
+## 使用方法
+
+### 身份证二要素核验
+
+```bash
+python scripts/idcard_verify.py --name 张三 --idcard 110101199001011234
+```
+
+输出示例：
+
+```
+🆔 身份证实名认证结果
+
+验证结果：✅ 一致
+姓名：张*
+身份证：110101********1234
+性别：男
+出生日期：1990-01-01
+地址：北京市东城区
+```
+
+### 直接调用 API（无需脚本）
+
+```
+GET https://op.juhe.cn/idcard/query?key=YOUR_KEY&realname=张三&idcard=110101199001011234
+```
+
+---
+
+## AI 使用指南
+
+当用户需要进行身份证实名认证时，按以下步骤操作：
+
+1. **收集信息** — 从用户消息中获取姓名、身份证号
+2. **验证格式** — 检查身份证号是否符合 18 位格式
+3. **调用脚本或 API** — 执行验证，获取结果
+4. **展示结果** — 清晰展示验证结果，敏感信息脱敏处理
+
+### 返回字段说明
+
+| 字段 | 含义 | 示例 |
+|------|------|------|
+| `res` | 验证结果 | 1=一致，0=不一致 |
+| `resmsg` | 验证说明 | "一致" / "不一致" |
+| `sex` | 性别 | 男/女 |
+| `birth` | 出生日期 | 1990-01-01 |
+| `address` | 户籍地址 | 北京市东城区 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/103) 重新申请 |
+| `error_code` 10012 | 当日免费次数已用尽，建议升级套餐 |
+| 身份证号格式错误 | 告知身份证号格式错误，检查是否为 18 位 |
+| 验证不一致 | 告知用户姓名与身份证号不匹配 |
+| 网络超时 | 重试一次，仍失败则告知网络问题 |
+
+---
+
+## 脚本位置
+
+`scripts/idcard_verify.py` — 封装了 API 调用、参数验证、结果格式化和错误处理。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **网络工具**：IP 查询、DNS 解析、端口检测
+- **生活服务**：天气预报、万年历、节假日查询
+- **身份核验**：身份证实名认证、手机号实名认证、银行卡认证
+- **物流快递**：100+ 快递公司实时追踪
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

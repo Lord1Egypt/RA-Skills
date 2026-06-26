@@ -1,0 +1,27 @@
+{
+  "name": "flomo-archive",
+  "version": "1.0.0",
+  "description": "Get complete Flomo notes for a specified month and evaluate quality. Supports intelligent three-level downgrade strategy (week->day) to ensure full coverage, with built-in quality assessment rules to automatically mark low-quality notes.",
+  "author": "uena",
+  "license": "MIT",
+  "keywords": [
+    "flomo",
+    "notes",
+    "archive",
+    "knowledge-management",
+    "MCP"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uena/flomo-archive"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "scripts": {
+    "fetch": "python3 scripts/fetch_month.py",
+    "evaluate": "python3 scripts/evaluate_quality.py"
+  },
+  "dependencies": [],
+  "devDependencies": []
+}

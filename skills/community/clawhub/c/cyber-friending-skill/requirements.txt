@@ -1,0 +1,5 @@
+# Cyber-Friending Skill Dependencies
+
+# HTTP client for API calls
+requests>=2.31.0
+cryptography>=42.0.0

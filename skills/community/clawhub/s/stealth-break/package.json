@@ -1,0 +1,20 @@
+{
+  "name": "stealth-break",
+  "version": "1.1.0",
+  "description": "健康摸鱼技能，提供隐蔽的休息策略和定时提醒，使用 macOS 系统通知推送，帮助缓解工作压力、眼睛疲劳、腰椎问题，预防猝死。",
+  "author": "Ryan",
+  "license": "MIT",
+  "keywords": [
+    "health",
+    "break",
+    "reminder",
+    "macos",
+    "notification",
+    "wellness"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "stealth-break"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "skill_name": "swift-charts",
+  "evals": [
+    {
+      "id": 0,
+      "name": "chart3d-surface-setup",
+      "prompt": "We are targeting iOS 26 and need an interactive scientific visualization for z-depth data: render y = sin(2x) * cos(2z) as a 3D surface, keep the axes stable, and let the user inspect the view. What Swift Charts API should we use and what code shape should I start from?",
+      "expected_output": "Recommends Chart3D with SurfacePlot, labels x/y/z correctly, sets explicit x/y/z scale domains, binds Chart3DPose for inspection, and avoids using a 2D LinePlot/AreaPlot for the bivariate surface.",
+      "files": [],
+      "expectations": [
+        "Uses Chart3D and SurfacePlot for the iOS 26 bivariate surface instead of a 2D Chart with LinePlot or AreaPlot.",
+        "Shows or describes SurfacePlot with x, y, and z labels and a closure of the form y = f(x, z).",
+        "Sets or recommends explicit chartXScale, chartYScale, and chartZScale domains for stable comparisons.",
+        "Mentions Chart3DPose or chart3DPose for interactive inspection.",
+        "Notes that Chart3D should be used for real spatial or surface data, not as decoration for ordinary 2D charts."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "angle-selection-review",
+      "prompt": "Review this Swift Charts donut snippet: `@State private var selectedProduct: String?`; each `SectorMark(angle: .value(\"Sales\", item.sales))` sets opacity by comparing `selectedProduct == item.name`; the chart ends with `.chartAngleSelection(value: $selectedProduct)`. It compiles strangely. What is wrong and how should we fix the selection model?",
+      "expected_output": "Explains that chartAngleSelection binds the selected plottable angle value, uses a numeric binding such as Double?, maps the value back to a category with cumulative sector ranges, and keeps normal SectorMark pie/donut readability guidance.",
+      "files": [],
+      "expectations": [
+        "States that chartAngleSelection(value:) binds a Plottable angle value rather than the sector's category string.",
+        "Replaces the String? selection binding with a numeric angle binding such as Double?.",
+        "Maps the selected angle through cumulative sales/value ranges to derive the selected product/category.",
+        "Keeps SectorMark readability guidance such as positive values, limiting to 5-7 sectors, or grouping small slices into Other.",
+        "Does not route this bug to generic SwiftUI state management as the primary fix."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "boundary-routing",
+      "prompt": "A dashboard request mixes Swift Charts, MapKit annotations, NavigationStack deep links, async data loading, @Observable model ownership, and a custom VoiceOver audit. Split what belongs in the swift-charts skill versus adjacent Apple skills, then give the chart-specific recommendations.",
+      "expected_output": "Keeps chart construction, marks, axes/scales, selection/scrolling, vectorized plots, Chart3D, and chart accessibility basics in swift-charts while routing map annotations, navigation, data loading, Observation architecture, and detailed accessibility audits to sibling skills.",
+      "files": [],
+      "expectations": [
+        "Keeps Swift Charts chart type selection, marks, axes/scales, legends, annotations, selection, scrolling, vectorized plots, and Chart3D guidance in swift-charts scope.",
+        "Routes MapKit annotations or map overlays to MapKit guidance rather than treating them as chart marks.",
+        "Routes NavigationStack/deep-link implementation to swiftui-navigation.",
+        "Routes async networking/data loading and @Observable model ownership details to the appropriate networking, concurrency, or SwiftUI architecture skills.",
+        "Routes a deep VoiceOver/accessibility audit to ios-accessibility while still giving chart-specific label, color, Dynamic Type, and audio graph considerations."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/instagram/get-post-detail/v1 for Instagram Post Details through JustOneAPI with code.",
+  "displayName": "Instagram Post Details",
+  "endpointPath": "get-post-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Instagram post Details data, including post caption, media content (images/videos), and publish time, for analyzing engagement metrics (likes/comments) for a specific post and archiving post content and media assets for content analysis.",
+      "method": "GET",
+      "operationId": "getInstagramPostDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique shortcode (slug) for the Instagram post (e.g., 'DRhvwVLAHAG').",
+          "enumValues": [],
+          "location": "query",
+          "name": "code",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/instagram/get-post-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Details",
+      "tags": [
+        "Instagram"
+      ]
+    }
+  ],
+  "platformKey": "instagram",
+  "primaryTag": "Instagram",
+  "skillName": "justoneapi_instagram_get_post_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-instagram-get-post-detail",
+  "sourceTitle": "OpenAPI definition"
+}

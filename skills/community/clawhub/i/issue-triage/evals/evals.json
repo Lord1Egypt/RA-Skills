@@ -1,0 +1,17 @@
+{
+  "skill_name": "issue-triage",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我看看这个 Issue：\n标题：APP 闪退了！\n内容：我今天点开登录按钮，就直接崩溃了，没有任何报错。快修！",
+      "expected_output": "A Chinese Triage Report showing incomplete information. Priority might be High (crash), but Completeness Check boxes (Environment, Steps, Logs) should be empty. The Suggested Reply must politely ask for device info, OS, app version, and crash logs.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Triage this issue: Title: Missing required parameters in API docs. Body: The documentation for the POST /users endpoint doesn't specify that the 'email' field is required. It just says 'username' is needed, but my request failed with a 400 Bad Request mentioning 'email'.",
+      "expected_output": "An English Triage Report generated from the provided issue content. It should identify it as a documentation bug/issue, note missing environment details or logs if any, and suggest a polite reply asking for clarification or thanking the reporter.",
+      "files": []
+    }
+  ]
+}

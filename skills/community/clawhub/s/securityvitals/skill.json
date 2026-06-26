@@ -1,0 +1,60 @@
+{
+  "name": "securityvitals",
+  "version": "1.4.8",
+  "always": false,
+  "displayName": "SecurityVitals",
+  "description": "Security vitals checker, also known as ClawVitals. Scans your installation, scores your setup, and shows you exactly what to fix. First scan in seconds.",
+  "author": "Anguarda",
+  "license": "MIT",
+  "homepage": "https://clawvitals.io",
+  "repository": "https://github.com/ANGUARDA/clawvitals-skill",
+  "minOpenClawVersion": "2026.3.0",
+  "controlLibraryVersion": "1.1.0",
+  "controlLibraryVersionRange": ">=1.1.0 <2.0.0",
+  "permissions": [
+    "exec:openclaw:security-audit",
+    "exec:openclaw:health",
+    "exec:openclaw:update",
+    "exec:openclaw:version",
+    "exec:node:version"
+  ],
+  "intents": [
+    {
+      "pattern": [
+        "run clawvitals",
+        "clawvitals scan",
+        "check clawvitals",
+        "clawvitals check"
+      ],
+      "handler": "handleScan"
+    },
+    {
+      "pattern": [
+        "show clawvitals details",
+        "clawvitals full report",
+        "clawvitals details"
+      ],
+      "handler": "handleDetail"
+    }
+  ],
+  "tags": [
+    "security",
+    "audit",
+    "health-check",
+    "openclaw",
+    "monitoring",
+    "vitals",
+    "security-vitals"
+  ],
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "bins": [
+          "openclaw",
+          "node"
+        ]
+      },
+      "minVersion": "2026.3.0"
+    }
+  }
+}

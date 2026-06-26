@@ -1,0 +1,87 @@
+{
+  "name": "AI Infra",
+  "description": "AI基础设施技术选型评估模板",
+  "evaluation_dimensions": {
+    "performance": {
+      "weight": 0.30,
+      "metrics": ["吞吐量 (tokens/sec)", "延迟 (ms)", "GPU利用率 (%)", "内存占用 (GB)"],
+      "scoring_criteria": {
+        "excellent": "性能指标在同类产品中排名前20%",
+        "good": "性能指标在同类产品中排名20%-50%",
+        "average": "性能指标在同类产品中排名50%-80%",
+        "poor": "性能指标在同类产品中排名后20%"
+      }
+    },
+    "scalability": {
+      "weight": 0.20,
+      "metrics": ["最大并发连接数", "水平扩展能力", "集群管理复杂度", "自动扩缩容支持"],
+      "scoring_criteria": {
+        "excellent": "支持无缝水平扩展，集群管理简单",
+        "good": "支持水平扩展，集群管理较简单",
+        "average": "扩展能力有限，集群管理复杂度中等",
+        "poor": "扩展困难，集群管理复杂"
+      }
+    },
+    "ecosystem": {
+      "weight": 0.15,
+      "metrics": ["社区活跃度", "文档完整性", "第三方集成数量", "企业支持"],
+      "scoring_criteria": {
+        "excellent": "活跃社区+完善文档+丰富集成+企业支持",
+        "good": "活跃社区+良好文档+较多集成",
+        "average": "一般社区+基本文档+有限集成",
+        "poor": "不活跃社区+缺乏文档+很少集成"
+      }
+    },
+    "cost_efficiency": {
+      "weight": 0.15,
+      "metrics": ["每token成本 ($)", "硬件要求", "运维成本", "许可证费用"],
+      "scoring_criteria": {
+        "excellent": "成本效益比最优，性价比极高",
+        "good": "成本效益比较好，性价比高",
+        "average": "成本效益一般，性价比中等",
+        "poor": "成本效益差，性价比低"
+      }
+    },
+    "maturity": {
+      "weight": 0.10,
+      "metrics": ["版本稳定性", "生产环境案例", "bug修复速度", "安全更新频率"],
+      "scoring_criteria": {
+        "excellent": "稳定版本+大量生产案例+快速修复+定期安全更新",
+        "good": "稳定版本+较多生产案例+及时修复",
+        "average": "基本稳定+一些生产案例+一般修复速度",
+        "poor": "不稳定+少生产案例+修复缓慢"
+      }
+    },
+    "developer_experience": {
+      "weight": 0.10,
+      "metrics": ["API易用性", "调试工具", "学习曲线", "错误信息清晰度"],
+      "scoring_criteria": {
+        "excellent": "API直观+工具完善+学习简单+错误信息清晰",
+        "good": "API友好+工具较好+学习较简单",
+        "average": "API一般+工具有限+学习中等",
+        "poor": "API复杂+工具缺乏+学习困难"
+      }
+    }
+  },
+  "data_sources": [
+    "mlperf.org",
+    "github.com",
+    "stackoverflow.com",
+    "linkedin.com/jobs",
+    "techcrunch.com",
+    "medium.com",
+    "official documentation sites"
+  ],
+  "poc_scenarios": [
+    "高并发推理场景",
+    "多模型部署场景",
+    "资源受限环境场景",
+    "混合精度训练场景"
+  ],
+  "risk_factors": [
+    "供应商锁定风险",
+    "技术栈兼容性风险",
+    "团队技能匹配风险",
+    "许可证合规风险"
+  ]
+}

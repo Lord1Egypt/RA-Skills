@@ -1,35 +1,222 @@
 ---
-name: "SIFF 2026 买票行程规划"
-description: "用于根据任意影片清单与偏好规划 SIFF 2026 买票和观影行程；优先使用内置官方排片数据，并评估片长、散场缓冲、跨影院驾车时间与备选场次。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/siff28-ticket-planning-repo"
-sourceUrl: "https://clawhub.ai/skills/siff28-ticket-planning-repo"
+name: siff26-ticket-planning
+description: 用于根据任意影片清单与偏好规划 SIFF 2026 买票和观影行程；优先使用内置官方排片数据，并评估片长、散场缓冲、跨影院驾车时间与备选场次。
+version: 1.2.0
+author: Hermes Agent
+metadata:
+  hermes:
+    tags: [siff, siff2026, film, cinema, movie, festival, tickets, itinerary, routing, schedule]
+    category: leisure
 ---
 
-# SIFF 2026 买票行程规划
+# SIFF26 买票行程规划
 
-> 用于根据任意影片清单与偏好规划 SIFF 2026 买票和观影行程；优先使用内置官方排片数据，并评估片长、散场缓冲、跨影院驾车时间与备选场次。
+## 适用范围
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/siff28-ticket-planning-repo`
-- **Source URL:** [https://clawhub.ai/skills/siff28-ticket-planning-repo](https://clawhub.ai/skills/siff28-ticket-planning-repo)
+用于第 28 届上海国际电影节（SIFF 2026）的买票与观影行程规划。输入可以是任意影片清单、豆列、文本、截图、表格、本地文件、聊天记录中的片名，或用户直接给出的偏好；不要限定为豆瓣来源。
 
-## Overview
+本 skill 内置 SIFF 2026 官方排片资料。除非用户明确要求刷新，否则不要重新抓官方排片页，优先读取本地参考文件：
 
+- `references/siff2026/siff2026-official-cndata-20260603-001.json`
+- `references/siff2026/第28届上海国际电影节排片表-官方.xlsx`
+- `references/siff2026/siff2026-scrape-summary.json`
+- `references/siff2026/manifest.json`
+- `references/siff2026/siff2026-cinema-coordinates.csv`
+- `references/siff2026/siff2026-cinema-driving-matrix-osrm.csv`
+- `references/siff2026/siff2026-cinema-metro-matrix-estimated.csv`
+- `references/siff2026/siff2026-cinema-nearest-metro-stations.csv`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/siff28-ticket-planning-repo
-```
+不要把某次用户的片单、行程、抢票结果、评分快照写入 memory 或 skill；这里只保留可复用流程与官方排片源数据。
+
+## 默认偏好
+
+用户未指定时，按这些默认规则规划，并在输出中标注为默认假设：
+
+- 优先工作日晚上、周五晚上、周末。
+- 优先用户明确想看的影片；其次参考豆瓣/IMDb/Letterboxd 等评分与评价人数。
+- 每场按 `开始时间 + 片长` 计算散场时间。
+- 每场散场后默认加 30 分钟缓冲，再开始移动。
+- 同影院连场优先，但不要把「同影院中间硬等一小时以上」自动当成优点；长间隔要评估是否回家/回住处/去附近休息更合理。
+- 若用户给出家/住处/出发点，必须把「离家远近」纳入目标函数：优先近影院，标出偏远影院，并主动寻找更近备选场次。
+- 高分片和稀缺场次优先，不让低优先级片破坏高优先级片的可行性。
+- 若全覆盖会造成高风险转场、偏远影院或无意义长等待，给出「近家舒适版」「全覆盖版本」或替换建议。
+
+规划前必须主动询问会显著影响行程质量的锚点信息，不要只按影院之间转场优化。至少询问：
+
+- 家 / 住处 / 出发点的大致位置，或用户愿意提供的任意近似地标。
+- 中间可停靠点：公司、常去咖啡馆、朋友家、停车方便点、可临时休息的商圈等。
+- 对「离家远」的容忍阈值：例如驾车距离 >8km、地铁 >45m、夜间返程不接受等。
+- 对长间隔的处理偏好：宁可回家/回公司，还是愿意在影院附近等。
+
+隐私规则：这些锚点只用于本次规划计算。不要把用户给出的具体家庭地址、住处、公司地址、临时停靠点写入 memory、skill、README、发布仓库或任何可复用参考文件；若需要在输出文件中标注，使用「家点A」「公司点B」「停靠点C」等匿名名称。
+
+只有当缺失信息会明显改变方案且无法自行查到时才继续追问，例如：必看片/可放弃片、硬性日期、是否接受工作日下午、是否接受深夜返程。
+
+## 标准流程
+
+### 0. 收集本次规划锚点与舒适度约束
+
+- 将用户给出的家、住处、公司、常用停车点、可休息商圈等视为本次会话的 `anchor_points`，只保存在临时计算上下文。
+- 允许用户只给大致地标，不要求精确门牌。
+- 对每个影院计算到各 anchor 的距离/耗时；优先使用 OSRM 或地图/交通工具查询，无法查实时交通时标注为估算。
+- 为影院打离锚点等级，例如：近 / 可接受 / 偏远；阈值优先用用户给定值，未给定时用默认假设并在输出中说明。
+- 对同日两场之间的长间隔，计算是否值得回到某个 anchor：
+  - `可停留时间 = 下一场开始 - 上一场散场 - 离场缓冲 - 去 anchor 耗时 - 从 anchor 到下一影院耗时 - 提前到场缓冲`
+  - 若可停留时间达到用户阈值，建议回 anchor；否则建议留在影院附近或寻找更近替代场次。
+- 不要把「同影院但中间空很久」自动视为好方案；若长等待明显不舒服，主动找更近场次或拆到其他日期。
+
+### 1. 提取与规范化影片
+
+- 从用户输入中抽取片名、原名、英文名、年份、导演等。
+- URL 用 `web_extract`、`browser` 或 `terminal` 取内容；截图先做视觉/OCR。
+- 对中文名、外文名、别名做匹配，必要时用年份/导演消歧。
+- 不确定是否同片时保留候选并标注歧义，不要强行合并。
+
+### 2. 读取 SIFF 2026 排片
+
+- 首选内置 JSON：`references/siff2026/siff2026-official-cndata-20260603-001.json`。
+- 字段重点：`nameCn`、`nameEn`、`date`、`weekday`、`stime`、`length`、`cinema`、`hallsName`、`cinemaAddress`、`group`、`filmId`、`remarks`、`showType`、`liveActivity`。
+- Excel 可作为人工核对或用户需要附件时的官方原始表。
+- 若用户要求刷新，才重新抓官方数据，并说明刷新时间与来源 URL。
+
+### 3. 获取优先级信号
+
+优先级顺序：
+
+1. 用户明确的「必看 / 想看 / 可放弃」。
+2. 用户指定的平台评分。
+3. 常见评分与评价人数：豆瓣、IMDb、Letterboxd 等。
+4. 影展价值：4K 修复、导演回顾、少见格式、见面会、稀缺场次、特殊厅。
+5. 时间与交通可行性。
+
+不要编评分。查不到就写「未知」。
+
+### 4. 建模每个场次
+
+为每个候选场次计算：
+
+- `start_time`
+- `end_time = start_time + runtime`
+- `leave_time = end_time + 30m`
+- 时段标签：工作日白天 / 工作日晚 / 周五晚 / 周末白天 / 周末晚 / 深夜
+- 是否冲突、是否近冲突、是否有见面会或备注
+
+片长必须从排片字段或可信片源读取；缺失时标注估算，不要装作确定。
+
+### 5. 评估交通、回家间隙与转场
+
+不要再用「近距离 10–25 分钟 / 跨区 25–45 分钟」这类泛化规则替代查询结果。SIFF 2026 的影院间交通参考已经预先计算到参考文件。若用户给出家/住处/出发点，先把该点加入评估：计算家点 ↔ 候选影院距离/耗时，筛掉或标红偏远影院，并检查同影院长等待是否值得回家，而不是只因同影院就推荐硬等。方法细节见 `references/home-base-optimization.md`。
+
+SIFF 2026 的影院间交通参考：
+
+驾车：
+
+- `references/siff2026/siff2026-cinema-coordinates.csv`：44 家上海展映影院坐标与坐标来源。
+- `references/siff2026/siff2026-cinema-driving-matrix-osrm.csv`：44 家影院两两之间 OSRM 驾车距离与自由流耗时。
+- `references/siff2026/siff2026-cinema-routing-manifest.json`：驾车矩阵生成说明与校验哈希。
+
+地铁：
+
+- `references/siff2026/shanghai-metro-stationInfo-metroflow.csv`：上海地铁站点与邻接关系源数据。
+- `references/siff2026/siff2026-cinema-nearest-metro-stations.csv`：每家影院最近地铁站、步行距离与步行时间估算。
+- `references/siff2026/siff2026-cinema-metro-matrix-estimated.csv`：44 家影院两两之间的地铁移动时间估算。
+- `references/siff2026/siff2026-cinema-metro-routing-manifest.json`：地铁矩阵生成说明与校验哈希。
+
+使用方法：
+
+0. 若用户给出家/住处/出发点：
+   - 先定位家点坐标，并计算家点到所有候选影院的驾车/地铁耗时。
+   - 按离家远近给影院分级，例如 `近 / 可接受 / 偏远`；偏远影院若有同片近家备选，优先提出替换。
+   - 同影院两场之间若间隔很长，不要只写「同影院低风险」；要计算 `散场离场缓冲 + 回家耗时 + 再到影院耗时 + 提前到场缓冲` 后，能在家停留多久。
+   - 如果可在家停留时间足够（默认 ≥45 分钟），建议中间回家；不足则建议留在影院附近，并说明理由。
+1. 同影院：交通 0 分钟，但仍要看厅间转场、休息缓冲，以及长间隔是否回家/附近休息更合理。
+2. 跨影院先同时查两张矩阵：
+   - 驾车：从 `siff2026-cinema-driving-matrix-osrm.csv` 查 `from_cinema` → `to_cinema` 的 `distance_km` 与 `duration_min_freeflow_osrm`。
+   - 地铁：从 `siff2026-cinema-metro-matrix-estimated.csv` 查 `from_cinema` → `to_cinema` 的 `total_metro_transfer_min_est`，并记录最近地铁站。
+3. OSRM 驾车耗时是自由流基线，不是实时交通；按离场时段再加交通系数并标注为估算：
+   - 工作日 07:30–09:30、17:00–19:30：建议 `max(OSRM×2.0, OSRM+20m)`。
+   - 周末商圈高峰 13:00–21:00：建议 `max(OSRM×1.6, OSRM+15m)`。
+   - 平峰：建议 `max(OSRM×1.3, OSRM+10m)`。
+   - 远郊/停车困难/雨天：额外加 10–20m 风险缓冲。
+4. 地铁矩阵是估算值：最近站步行（4.5km/h + 两端各 5m 进出站）+ MetroFlow 站点邻接图最短路；不是实时列车时刻、末班车或拥挤度。深夜场必须额外查末班车或改用驾车。
+5. 计算可行性时分别评估驾车与地铁，默认选择风险更低且缓冲更大的方案。
+
+驾车：
+
+`leave_time + traffic_adjusted_drive_time + parking/walking_buffer <= next_start`
+
+地铁：
+
+`leave_time + total_metro_transfer_min_est + platform_wait_or_late_night_buffer <= next_start`
+
+输出跨影院时必须给出：影院 A → 影院 B、驾车 OSRM 距离、驾车自由流耗时、按时段修正后的驾车耗时、地铁最近站、地铁总耗时估算、两种方式各自剩余缓冲、推荐方式、风险等级。
+
+### 6. 生成方案
+
+先满足硬约束，再做优化：
+
+- 不安排时间重叠。
+- 不安排缓冲不足的跨影院转场，除非用户明确接受风险。
+- 不把偏远影院、无意义长等待、深夜返程风险藏在方案里；必须显式标出并给替换建议。
+- 若用户提供了家/住处/公司/停靠点，优先做「近锚点舒适版」，再给「全覆盖/高分优先版」。
+- 抢票锚点优先：高分、稀缺、周末黄金档、连场结构核心。
+- 对每个高优先级片准备备选场次。
+- 输出「买票顺序」而不只是时间顺序。
+- 对每个高优先级片准备备选场次。
+- 输出「买票顺序」而不只是时间顺序。
+
+推荐输出结构：
+
+1. 数据来源与假设。
+2. 买票优先级。
+3. 主行程（日程按天列）。
+4. 离家远近、跨影院转场与风险。
+5. 长间隔处理：回家 / 附近休息 / 继续候场。
+6. 关键备选场次，尤其是更近影院替换。
+7. 可放弃/低优先级项。
+8. 如有需要，附 CSV / ICS。
+
+## 输出要求
+
+每个推荐场次至少包含：
+
+- 影片名
+- 评分/优先级来源
+- 日期、星期、开始时间
+- 片长、散场时间、+30m 后可离场时间
+- 影院、影厅、地址
+- 与用户本次提供的家/住处/公司/停靠点的匿名距离等级，例如「距家点A：近 / 可接受 / 偏远」
+- 交通与缓冲说明
+- 长间隔处理：留在影院附近 / 回家点A / 回公司点B / 换场次
+- 风险等级：低 / 中 / 高
+
+抢票顺序要说明原因，例如：高分、稀缺、连场关键、替代少、周末黄金档。
+
+## 质量检查
+
+最终答复前逐项检查：
+
+- 推荐影片都来自用户给定清单，或明确标为备选扩展。
+- 每个场次能在内置官方排片或刷新后的官方源中找到。
+- 散场时间和 30 分钟缓冲已计算。
+- 跨影院转场已给出车程估算、缓冲与风险。
+- 若用户提供家/住处/公司/停靠点，已把离锚点远近、长间隔是否回锚点、偏远影院替换建议纳入方案。
+- 工作日晚/周末偏好已体现。
+- 高优先级片有备选方案。
+- 评分、交通、票务规则等当前事实有来源；无法确认的明确标注为估算。
+- 输出、附件、skill、memory 中没有保存用户的具体家庭地址、公司地址或私密停靠点。
+- 高优先级片有备选方案。
+- 评分、交通、票务规则等当前事实有来源；无法确认的明确标注为估算。
+
+## 常见错误
+
+- 只看开场时间，不算片长与散场后 30 分钟。
+- 用直线距离代替驾车时间。
+- 只看开场时间，不算片长与散场后 30 分钟。
+- 用直线距离代替驾车时间。
+- 为了覆盖低分片，牺牲高分片或稀缺场次。
+- 中文片名/外文片名未用年份、导演消歧。
+- 把一次性行程结果写进 memory 或 skill。
+- 把用户具体家庭地址、公司地址、私密停靠点写进 memory、skill、README、发布仓库或可复用参考文件。
+- 把「同影院中间等很久」当成当然优点，不评估回家/回公司/换近场的舒适度。
+- 明明已有内置 SIFF 2026 官方排片，却重复抓官方排片页。

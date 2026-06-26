@@ -1,0 +1,8 @@
+{
+  "name": "Alpha Hound",
+  "description": "基于复杂条件筛选股票并输出候选列表。",
+  "version": "0.1.0",
+  "identifier": "alpha-hound",
+  "author": "cooragent",
+  "category": "finance"
+}

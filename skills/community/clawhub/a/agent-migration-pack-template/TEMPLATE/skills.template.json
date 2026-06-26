@@ -1,0 +1,186 @@
+{
+  "template_version": "v1.0.5",
+  "file_type": "skills",
+  "sensitivity": "public",
+  "description": "技能清单模板 - 记录已安装和推荐的技能",
+  "catalog_version": "1.0",
+  "time_estimate": "3分钟",
+  "boundary_notes": {
+    "should_include": [
+      "已安装技能的名称、版本、来源",
+      "技能的功能描述和使用场景",
+      "推荐但未安装的技能"
+    ],
+    "should_not_include": [
+      "技能的具体配置参数（配置应在新环境重新设置）",
+      "技能的使用频率统计",
+      "API密钥等凭证信息（放入SECRET.md）"
+    ]
+  },
+
+  "export_date": {
+    "value": "2026-04-12",
+    "example": "2026-04-12",
+    "description": "导出日期"
+  },
+
+  "skills": [
+    {
+      "name": {
+        "value": "kline-analysis",
+        "example": "技能名",
+        "description": "技能名称"
+      },
+      "version": {
+        "value": "1.0.0",
+        "example": "1.0.0",
+        "description": "技能版本号"
+      },
+      "source": {
+        "value": "Coze商店",
+        "example": "Coze商店/Agent World/自定义",
+        "description": "技能来源"
+      },
+      "skill_id": {
+        "value": "SKL-xxxxx",
+        "example": "技能ID（如果有）",
+        "description": "技能ID（可选）"
+      },
+      "description": {
+        "value": "股票K线分析工具，支持多周期分析、均线指标和成交量，智能识别K线形态",
+        "example": "功能描述",
+        "description": "技能功能描述"
+      },
+      "status": {
+        "value": "installed",
+        "example": "installed",
+        "description": "状态：installed=已安装，recommended=推荐"
+      }
+    },
+    {
+      "name": {
+        "value": "excel_master",
+        "example": "excel_master",
+        "description": "技能名称"
+      },
+      "version": {
+        "value": "1.0.0",
+        "example": "1.0.0",
+        "description": "技能版本号"
+      },
+      "source": {
+        "value": "Coze商店",
+        "example": "Coze商店",
+        "description": "技能来源"
+      },
+      "skill_id": {
+        "value": "",
+        "example": "",
+        "description": "技能ID（可选）"
+      },
+      "description": {
+        "value": "Excel/CSV文件处理专家，支持数据清洗、批量填充、格式保留修改",
+        "example": "功能描述",
+        "description": "技能功能描述"
+      },
+      "status": {
+        "value": "installed",
+        "example": "installed",
+        "description": "状态"
+      }
+    },
+    {
+      "name": {
+        "value": "agent-world",
+        "example": "agent-world",
+        "description": "技能名称"
+      },
+      "version": {
+        "value": "1.0.0",
+        "example": "1.0.0",
+        "description": "技能版本号"
+      },
+      "source": {
+        "value": "Agent World",
+        "example": "Agent World",
+        "description": "技能来源"
+      },
+      "skill_id": {
+        "value": "",
+        "example": "",
+        "description": "技能ID（可选）"
+      },
+      "description": {
+        "value": "Agent World身份注册和验证系统，全网通行联盟站点",
+        "example": "功能描述",
+        "description": "技能功能描述"
+      },
+      "status": {
+        "value": "installed",
+        "example": "installed",
+        "description": "状态"
+      }
+    }
+  ],
+
+  "recommended_skills": [
+    {
+      "name": {
+        "value": "tavily-search",
+        "example": "推荐技能名",
+        "description": "技能名称"
+      },
+      "version": {
+        "value": "1.0.0",
+        "example": "1.0.0",
+        "description": "版本"
+      },
+      "source": {
+        "value": "Agent World",
+        "example": "Agent World",
+        "description": "来源"
+      },
+      "description": {
+        "value": "LLM优化的搜索引擎，适合深度信息检索和结构化搜索结果",
+        "example": "为什么推荐",
+        "description": "推荐理由"
+      }
+    },
+    {
+      "name": {
+        "value": "topic_tracking",
+        "example": "topic_tracking",
+        "description": "技能名称"
+      },
+      "version": {
+        "value": "1.0.0",
+        "example": "1.0.0",
+        "description": "版本"
+      },
+      "source": {
+        "value": "Coze商店",
+        "example": "Coze商店",
+        "description": "来源"
+      },
+      "description": {
+        "value": "话题追踪工具，高时效性内容获取，适合信息监控和新闻摘要",
+        "example": "为什么推荐",
+        "description": "推荐理由"
+      }
+    }
+  ],
+
+  "_comment": {
+    "instructions": "【重要】填写时删除value/example/description结构，直接填写实际值",
+    "example_note": "skills数组中的示例为已安装技能，recommended_skills为推荐但未安装的技能",
+    "from": [
+      "Coze平台 → 已安装技能列表",
+      "https://world.coze.site/ → 收藏的技能",
+      "skills/ 目录 → 自定义技能"
+    ],
+    "status_values": {
+      "installed": "已安装并正在使用",
+      "recommended": "推荐安装但尚未安装"
+    }
+  }
+}

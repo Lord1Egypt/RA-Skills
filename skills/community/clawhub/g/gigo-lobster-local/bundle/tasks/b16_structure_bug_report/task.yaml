@@ -1,0 +1,28 @@
+id: b16
+track: B
+title_zh: 把客户口语反馈结构化为 bug_report.json
+category: write
+difficulty: medium
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: state_hash
+  weight: 0.4
+  files:
+  - bug_report.json
+- type: llm_judge
+  weight: 0.6
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  - files
+  judge_dimensions:
+  - meat
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 5
+title_en: Structure a bug report

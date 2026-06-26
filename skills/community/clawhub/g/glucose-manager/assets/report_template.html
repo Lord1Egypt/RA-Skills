@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>血糖分析报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .status-good {
+            color: #28a745;
+        }
+        
+        .status-warning {
+            color: #ffc107;
+        }
+        
+        .status-danger {
+            color: #dc3545;
+        }
+        
+        .chart-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .chart-placeholder {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .recommendations {
+            background: #e7f3ff;
+            border-left-color: #17a2b8;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .recommendations li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .recommendations li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #17a2b8;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🩸 血糖分析报告</h1>
+            <p>报告生成时间: {{report_date}}</p>
+            <p>数据时间范围: {{date_range}}</p>
+        </div>
+        
+        <div class="content">
+            <!-- 数据概览 -->
+            <div class="section">
+                <h2>📊 数据概览</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">{{avg_glucose}}</div>
+                        <div class="stat-label">平均血糖 (mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value {{max_status}}">{{max_glucose}}</div>
+                        <div class="stat-label">最高值 (mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value {{min_status}}">{{min_glucose}}</div>
+                        <div class="stat-label">最低值 (mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{target_rate}}%</div>
+                        <div class="stat-label">达标率</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 血糖趋势图 -->
+            <div class="section">
+                <h2>📈 血糖趋势</h2>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        <!-- 这里将插入血糖趋势图 -->
+                        <p style="color: #999;">{{chart_placeholder}}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 详细分析 -->
+            <div class="section">
+                <h2>🔍 详细分析</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">{{fasting_avg}}</div>
+                        <div class="stat-label">空腹平均 (mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{post_meal_avg}}</div>
+                        <div class="stat-label">餐后平均 (mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{std_dev}}</div>
+                        <div class="stat-label">标准差</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{cv}}%</div>
+                        <div class="stat-label">变异系数</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 异常事件 -->
+            <div class="section">
+                <h2>⚠️ 异常事件</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value status-danger">{{hypo_count}}</div>
+                        <div class="stat-label">低血糖次数 (<3.9 mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value status-warning">{{hyper_count}}</div>
+                        <div class="stat-label">高血糖次数 (>10.0 mmol/L)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{total_readings}}</div>
+                        <div class="stat-label">总监测次数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">{{days_tracked}}</div>
+                        <div class="stat-label">监测天数</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 个性化建议 -->
+            <div class="section recommendations">
+                <h2>💡 个性化建议</h2>
+                <ul>
+                    {{recommendations}}
+                </ul>
+            </div>
+            
+            <!-- 医疗免责声明 -->
+            <div class="warning-box">
+                <h3>⚠️ 医疗免责声明</h3>
+                <p>本报告仅供参考，不能替代专业医疗建议、诊断或治疗。在做出任何治疗决策前，请务必咨询您的医疗保健提供者。如有疑问或症状加重，请立即就医。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>本报告由血糖管理助手自动生成</p>
+            <p>© 2026 血糖管理助手 | 数据隐私保护 | 本地存储</p>
+        </div>
+    </div>
+</body>
+</html>

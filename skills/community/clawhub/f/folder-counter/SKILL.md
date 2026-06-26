@@ -1,35 +1,56 @@
 ---
-name: "folder-counter"
-description: "统计指定文件夹下的文件数量和文件类型分布。当用户需要了解某个目录包含多少文件、或者在建立索引前需要评估文件规模时使用。触发场景：「帮我数一下这个文件夹有多少文件」「这个目录有多少东西」「统计一下这个路径的文件」"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/folder-counter"
-sourceUrl: "https://clawhub.ai/skills/folder-counter"
+name: folder-counter
+description: 统计指定文件夹下的文件数量和文件类型分布。当用户需要了解某个目录包含多少文件、或者在建立索引前需要评估文件规模时使用。触发场景：「帮我数一下这个文件夹有多少文件」「这个目录有多少东西」「统计一下这个路径的文件」
 ---
 
-# folder-counter
+# Folder Counter - 文件数量统计
 
-> 统计指定文件夹下的文件数量和文件类型分布。当用户需要了解某个目录包含多少文件、或者在建立索引前需要评估文件规模时使用。触发场景：「帮我数一下这个文件夹有多少文件」「这个目录有多少东西」「统计一下这个路径的文件」
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/folder-counter`
-- **Source URL:** [https://clawhub.ai/skills/folder-counter](https://clawhub.ai/skills/folder-counter)
+快速统计指定文件夹的文件数量和类型分布，用于在执行 GNO 索引前评估规模。
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/folder-counter
+### 快速统计（只计总数，快）
+```powershell
+C:\Users\41049\.openclaw\workspace\skills\folder-counter\scripts\count_files.ps1 -Path "D:\项目作品" -Fast
 ```
+
+### 完整统计（计总数 + 文件类型分布）
+```powershell
+C:\Users\41049\.openclaw\workspace\skills\folder-counter\scripts\count_files.ps1 -Path "D:\项目作品"
+```
+
+## 输出示例
+
+```
+=== 文件统计结果 ===
+路径: D:\项目作品
+总文件数: 1523
+
+=== 文件类型分布（前20）===
+.pdf: 450
+.docx: 320
+.jpg: 280
+.png: 150
+.md: 120
+.doc: 80
+.xlsx: 50
+(无扩展名): 40
+...
+```
+
+## 决策参考
+
+| 文件数量 | GNO 索引建议 |
+|---------|-------------|
+| < 1万 | ✅ 直接索引 |
+| 1万 ~ 10万 | ⚠️ 可索引，需告知耗时 |
+| 10万 ~ 50万 | 🚨 需确认，可考虑daemon后台 |
+| > 50万 | ❌ 建议过滤类型或缩小范围 |
+
+## 注意事项
+
+- 使用 `-Fast` 参数可以显著提升速度（不扫描扩展名）
+- 大文件夹统计可能需要较长时间，请耐心等待
+- 统计结果可作为选择索引策略的依据

@@ -1,0 +1,61 @@
+types:
+
+  Skill:
+    required: [name, source]
+    source_enum: [clawhub, local, github, system, other]
+    status_enum: [active, deprecated, experimental, unknown]
+    moderation_enum: [safe, suspicious, blocked, unreviewed]
+    # Full property list (not enforced by schema, documented here):
+    # name, slug, display_name, description, source, status, version,
+    # license, stars, downloads, installs_current, installs_all_time,
+    # owner_handle, local_path, last_scanned, moderation
+
+  SkillCategory:
+    required: [name]
+    # name, description
+
+  Tool:
+    required: [name, kind]
+    kind_enum: [mcp, cli, python_script, playwright, http_api, db, filesystem, other]
+    # name, kind, description, provider
+
+  SoftwarePackage:
+    required: [name, ecosystem]
+    ecosystem_enum: [pypi, npm, system, other]
+    # name, ecosystem, version, spec (full requirement spec)
+
+relations:
+
+  belongs_to_category:
+    from_types: [Skill]
+    to_types: [SkillCategory]
+    cardinality: many_to_many
+
+  subcategory_of:
+    from_types: [SkillCategory]
+    to_types: [SkillCategory]
+    acyclic: true
+
+  depends_on_skill:
+    # Inferred from SKILL.md integration patterns / explicit references.
+    # Not forced acyclic — cycles are detected and reported, not blocked.
+    from_types: [Skill]
+    to_types: [Skill]
+    cardinality: many_to_many
+
+  uses_tool:
+    from_types: [Skill]
+    to_types: [Tool]
+    cardinality: many_to_many
+
+  requires_package:
+    # Direct Python/Node package dependency declared in requirements.txt / package.json
+    from_types: [Skill]
+    to_types: [SoftwarePackage]
+    cardinality: many_to_many
+
+  backed_by_package:
+    # A Tool is implemented by / wraps a SoftwarePackage (e.g. playwright Tool -> patchright pkg)
+    from_types: [Tool]
+    to_types: [SoftwarePackage]
+    cardinality: many_to_many

@@ -1,0 +1,24 @@
+[project]
+name = "quark-lazy-cli"
+version = "0.1.22"
+description = "基于QAS的夸克云盘懒人追剧工具"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.28.0",
+    "click>=8.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+quark_lazy_cli = "quark_lazy_cli.main:cli"
+qslazy = "quark_lazy_cli.main:cli"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["quark_lazy_cli*"]
+namespaces = false

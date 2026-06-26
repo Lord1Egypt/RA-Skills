@@ -1,0 +1,83 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+参见 充值操作指
+引
+ 。
+403 Forbidden AccessDeniedThe request
+failed because
+you do not have
+access to the
+requested
+resource.
+Request ID:没有访问该资源
+的权限，请检查
+权限设置，或联
+系管理员添加白
+名单。
+403 ForbiddenOperationDenie
+d.InvalidStateOperation is
+denied because
+the specified
+context is in
+invalid state:
+InProgress.
+Request id:请求的缓存信息
+状态是不可用状
+态。请查看缓存
+信息是否正在被
+更新中。
+403 ForbiddenOperationDenie
+d.UnsupportedP
+haseOperation is
+denied because
+operation is not
+supported while
+the target is in
+its current
+phase.操作失败，操作
+目标在特殊状
+态，请检查目标
+是否存在或者被
+锁定等特殊状态
+中。
+403 ForbiddenOperationDenie
+d.FileQuotaExce
+ededYour account %s
+has exhausted
+its file storage
+quota. To
+continue using
+the service,
+please delete
+historical files.当前账号 %s 已
+耗尽文件存储额
+度，如需继续使
+用，请删除历史
+文件。
+403 ForbiddenOperationDenie
+d.InvalidStateThe specified file
+is in invalid state:
+InProgress.Requ
+est ID:请求所关联的
+File ID处于非可
+用状态，不可调
+用。
+404 NotFoundInvalidEndpoint
+OrModel.NotFou
+ndThe model or
+endpoint %s
+does not exist or
+you do not have
+access to it.模型或者推理接
+入点 %s 不存在
+或者您无权访问
+它。
+404 NotFound ModelNotOpenYour account %s
+has not
+activated the当前账号 %s 暂
+未开通 %s 模型
+服务，请前往火API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 463/485

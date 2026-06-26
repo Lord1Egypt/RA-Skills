@@ -1,35 +1,138 @@
----
-name: "QA Reviewer"
-description: "提供代码审查、单元测试、覆盖率分析和问题追踪，支持C++/Python/JavaScript，确保项目质量和文档完整度。"
-category: "software-development"
-source: "ClawHub"
-tags: [code-review, qa, quality-assurance, testing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qa-reviewer"
-sourceUrl: "https://clawhub.ai/skills/qa-reviewer"
----
+# QA Reviewer Skill
 
-# QA Reviewer
+## 概述
 
-> 提供代码审查、单元测试、覆盖率分析和问题追踪，支持C++/Python/JavaScript，确保项目质量和文档完整度。
+`qa-reviewer` 技能提供完整的质量保证、代码审查和测试框架能力。基于 SRM 项目实战经验，帮助 Agent 高效完成代码质量保障工作。
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qa-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/qa-reviewer](https://clawhub.ai/skills/qa-reviewer)
+## 核心能力
 
-## Overview
+### 1. 代码审查
+- ✅ 自动识别代码问题
+- ✅ 生成详细审查报告
+- ✅ 提供修复建议
+- ✅ 支持 C++/Python/JavaScript
 
+### 2. 测试框架
+- ✅ 创建单元测试
+- ✅ 运行测试套件
+- ✅ 生成覆盖率报告
+- ✅ 支持 Google Test/pytest/Jest
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 问题追踪
+- ✅ TODO 管理
+- ✅ 优先级排序
+- ✅ 状态跟踪
+- ✅ 修复验证
+
+### 4. 质量评估
+- ✅ P0 任务完成度检查
+- ✅ 代码质量指标
+- ✅ 文档完整性检查
+- ✅ 生成质量报告
+
+## 使用场景
+
+- **项目启动**: 进行需求评审，识别遗漏
+- **开发过程**: 代码审查，发现问题
+- **测试阶段**: 执行测试，验证质量
+- **验收阶段**: 生成报告，确认完成
+
+## 快速开始
+
 ```bash
-hermes skills install clawhub/qa-reviewer
+# 1. 加载技能
+openclaw skill load qa-reviewer
+
+# 2. 运行代码审查
+cd /path/to/project
+~/.openclaw/extensions/qa-reviewer/scripts/code_review.sh
+
+# 3. 生成测试报告
+~/.openclaw/extensions/qa-reviewer/scripts/generate_report.sh
+
+# 4. 运行测试
+~/.openclaw/extensions/qa-reviewer/scripts/run_tests.sh
 ```
+
+## 核心工作流
+
+### 代码审查流程
+```
+1. 阅读代码
+   ↓
+2. 识别问题
+   ↓
+3. 生成报告 (使用模板)
+   ↓
+4. 提交反馈
+   ↓
+5. 验证修复
+```
+
+### 测试执行流程
+```
+1. 创建测试用例
+   ↓
+2. 运行测试
+   ↓
+3. 分析结果
+   ↓
+4. 生成报告
+   ↓
+5. 跟踪问题
+```
+
+## 最佳实践
+
+### 1. 早期评审
+- 项目启动时就进行需求评审
+- 避免后期大规模返工
+- 评审时间 < 开发时间 10%
+
+### 2. 快速反馈
+- 发现问题 → 报告 → 修复 → 验证
+- 完整循环 < 1 小时
+- 问题不累积
+
+### 3. 独立验收
+- 测试角色独立于开发
+- 验收标准明确
+- 验证必须通过
+
+### 4. 文档同步
+- 代码和注释同时完成
+- 文档和代码同步更新
+- 避免事后补充
+
+## 检查清单
+
+### 代码审查清单
+- [ ] 功能实现正确
+- [ ] 边界情况处理
+- [ ] 错误处理完整
+- [ ] 代码风格一致
+- [ ] 注释完整清晰
+- [ ] 测试用例覆盖
+
+### 测试执行清单
+- [ ] 单元测试通过
+- [ ] 集成测试通过
+- [ ] 边界测试通过
+- [ ] 性能测试通过
+- [ ] 覆盖率达标
+
+## 版本历史
+
+- **v1.0.0** (2026-03-04)
+  - 初始版本
+  - 基于 SRM 项目经验
+  - 包含核心模板和脚本
+
+## 许可证
+
+MIT License
+
+---
+
+*维护者：sw-tester 🐛*  
+*最后更新：2026-03-04*

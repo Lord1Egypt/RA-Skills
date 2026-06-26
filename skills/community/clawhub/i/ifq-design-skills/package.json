@@ -1,0 +1,27 @@
+{
+  "name": "ifq-design-clawhub",
+  "description": "ClawHub-safe IFQ Design Skills bundle: zero-install HTML-first design routes, templates, and validators.",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "skills",
+    "design",
+    "html",
+    "prototype",
+    "slides"
+  ],
+  "scripts": {
+    "smoke": "node scripts/smoke-test.mjs",
+    "evals:validate": "node scripts/validate-evals.mjs",
+    "preview": "node scripts/preview.mjs",
+    "verify:lite": "node scripts/verify-lite.mjs",
+    "pack": "node scripts/pack-skill.mjs",
+    "validate": "node scripts/smoke-test.mjs",
+    "anti-slop": "node scripts/anti-slop-preflight.mjs"
+  }
+}

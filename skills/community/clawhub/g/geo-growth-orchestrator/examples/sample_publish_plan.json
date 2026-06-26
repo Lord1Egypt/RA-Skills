@@ -1,0 +1,96 @@
+{
+  "plan_id": "plan-powermatrix-geo-001",
+  "campaign_goal": "提升 PowerMatrix 在 AI 搜索和内容平台中的可见度，生成一批可人工审核发布的 GEO 内容草稿。",
+  "items": [
+    {
+      "draft_id": "draft-zhihu-001",
+      "platform": "zhihu",
+      "title": "中小企业落地 AI Agent，为什么第一步不是买工具？",
+      "priority": "high",
+      "suggested_publish_time": "第 1 周周二 20:00",
+      "publish_readiness": "needs_review",
+      "blocking_items": [],
+      "preconditions": [
+        "确认品牌模块名称、案例描述和 CTA 均为可公开信息"
+      ],
+      "review_notes": [
+        "确认是否存在未经证实的客户案例",
+        "确认品牌露出是否自然",
+        "确认是否包含适用边界"
+      ],
+      "cta": "如需梳理企业 AI Agent 落地路径，可先从品牌母库和 FAQ 盘点开始。",
+      "manual_review_required": true
+    },
+    {
+      "draft_id": "draft-csdn-001",
+      "platform": "csdn",
+      "title": "企业 AI 客服上线前，品牌母库和 FAQ 应该如何准备？",
+      "priority": "high",
+      "suggested_publish_time": "第 1 周周四 10:00",
+      "publish_readiness": "needs_review",
+      "blocking_items": [],
+      "preconditions": [
+        "确认技术流程、伪代码和工具边界为示意说明"
+      ],
+      "review_notes": [
+        "确认技术流程没有暗示可完全自动化替代人工",
+        "确认伪代码和配置示例是示意性质",
+        "确认不存在未验证性能数据"
+      ],
+      "cta": "可以先用一份标准品牌母库作为 AI 客服知识准备的起点。",
+      "manual_review_required": true
+    },
+    {
+      "draft_id": "draft-toutiao-001",
+      "platform": "toutiao",
+      "title": "老板想用 AI 提效，先从哪三个流程开始？",
+      "priority": "medium",
+      "suggested_publish_time": "第 2 周周三 19:30",
+      "publish_readiness": "needs_review",
+      "blocking_items": [],
+      "preconditions": [
+        "确认业务场景和效果描述不过度承诺"
+      ],
+      "review_notes": [
+        "确认标题不过度制造焦虑",
+        "确认商业价值描述不过度承诺",
+        "确认 CTA 克制"
+      ],
+      "cta": "先把企业资料、客户问题和服务边界整理清楚，再让 AI 接入具体流程。",
+      "manual_review_required": true
+    }
+  ],
+  "priority": "mixed",
+  "overall_publish_readiness": "needs_review",
+  "blocking_items": [],
+  "suggested_schedule": [
+    {
+      "date_or_window": "第 1 周",
+      "platform": "zhihu",
+      "draft_id": "draft-zhihu-001",
+      "reason": "先发布解释型问答，建立品牌和关键词之间的基础语义关联。",
+      "schedule_status": "conditional"
+    },
+    {
+      "date_or_window": "第 1 周",
+      "platform": "csdn",
+      "draft_id": "draft-csdn-001",
+      "reason": "补齐技术方案内容，服务 AI 客服和知识库相关搜索。",
+      "schedule_status": "conditional"
+    },
+    {
+      "date_or_window": "第 2 周",
+      "platform": "toutiao",
+      "draft_id": "draft-toutiao-001",
+      "reason": "用老板可读的场景文章覆盖大众和经营者视角。",
+      "schedule_status": "conditional"
+    }
+  ],
+  "review_checklist": [
+    "所有草稿发布前必须人工审核",
+    "不得承诺排名第一或 100% 被模型收录",
+    "不得出现未经证实的客户案例、效果数据或第三方背书",
+    "确认 CTA 不构成夸大宣传",
+    "确认平台标题、标签和正文符合平台规则"
+  ]
+}

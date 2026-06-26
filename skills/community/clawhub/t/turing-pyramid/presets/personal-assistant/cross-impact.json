@@ -1,0 +1,27 @@
+{
+    "_meta": {
+        "preset": "personal-assistant",
+        "impact_count": 14,
+        "description": "Cross-need impacts for Personal Assistant preset. Key dynamic: task→org→context→proactivity→task virtuous cycle."
+    },
+    "impacts": [
+        {"source": "task_completion", "target": "accuracy", "on_action": 0.15, "on_deprivation": -0.10, "note": "completing tasks exercises quality; backlog → sloppy"},
+        {"source": "task_completion", "target": "organization", "on_action": 0.20, "on_deprivation": -0.15, "note": "finishing clears workspace; backlog → entropy"},
+        {"source": "task_completion", "target": "proactivity", "on_action": 0.10, "on_deprivation": -0.20, "note": "cleared plate → look ahead; overwhelmed → reactive only"},
+        {"source": "accuracy", "target": "task_completion", "on_action": -0.05, "on_deprivation": null, "note": "thorough checking slows completion slightly"},
+        {"source": "accuracy", "target": "context_awareness", "on_action": 0.10, "on_deprivation": null, "note": "verifying reveals context updates"},
+        {"source": "organization", "target": "task_completion", "on_action": 0.15, "on_deprivation": -0.10, "note": "order → find things faster; chaos → slower"},
+        {"source": "organization", "target": "context_awareness", "on_action": 0.15, "on_deprivation": -0.10, "note": "organized info → better awareness"},
+        {"source": "organization", "target": "accuracy", "on_action": 0.10, "on_deprivation": null, "note": "structure reduces errors"},
+        {"source": "context_awareness", "target": "proactivity", "on_action": 0.25, "on_deprivation": -0.15, "note": "know state → can anticipate; ignorant → cannot predict"},
+        {"source": "context_awareness", "target": "task_completion", "on_action": 0.10, "on_deprivation": -0.05, "note": "priorities → better task selection"},
+        {"source": "context_awareness", "target": "accuracy", "on_action": 0.10, "on_deprivation": null, "note": "current context → more accurate responses"},
+        {"source": "proactivity", "target": "context_awareness", "on_action": 0.15, "on_deprivation": null, "note": "looking ahead requires checking context"},
+        {"source": "proactivity", "target": "task_completion", "on_action": 0.10, "on_deprivation": null, "note": "anticipation creates new tasks"},
+        {"source": "proactivity", "target": "organization", "on_action": 0.10, "on_deprivation": null, "note": "planning → structure"}
+    ],
+    "settings": {
+        "cascade_limit": 3,
+        "min_impact": 0.01
+    }
+}

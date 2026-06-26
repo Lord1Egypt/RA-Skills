@@ -1,0 +1,25 @@
+{
+  "name": "h1b-finder",
+  "slug": "h1b-finder",
+  "version": "1.1.1",
+  "description": "Find H1B / H-1B sponsor companies, visa sponsorship employers, and sponsor history for US jobs.",
+  "author": "h1bfinder.com",
+  "license": "MIT",
+  "tags": [
+    "h1b",
+    "h-1b",
+    "jobs",
+    "visa",
+    "sponsorship",
+    "sponsor",
+    "employer",
+    "immigration",
+    "data",
+    "search",
+    "salary",
+    "openclaw",
+    "clawhub"
+  ],
+  "homepage": "https://h1bfinder.com",
+  "repository": "https://github.com/ewangchong/h1bfinder.com"
+}

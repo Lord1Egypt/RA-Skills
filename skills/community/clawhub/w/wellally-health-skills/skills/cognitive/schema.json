@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/cognitive-assessment.json",
+  "title": "CognitiveAssessment",
+  "description": "Data structure definition for cognitive function assessment",
+  "type": "object",
+  "properties": {
+    "mmse_tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "total_score": {"type": "integer", "minimum": 0, "maximum": 30},
+          "max_score": {"type": "integer", "const": 30},
+          "interpretation": {
+            "type": "string",
+            "enum": ["正常", "轻度认知功能障碍", "中度认知功能障碍", "重度认知功能障碍"]
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "orientation": {"type": "integer", "minimum": 0, "maximum": 10},
+              "registration": {"type": "integer", "minimum": 0, "maximum": 3},
+              "attention": {"type": "integer", "minimum": 0, "maximum": 5},
+              "recall": {"type": "integer", "minimum": 0, "maximum": 3},
+              "language": {"type": "integer", "minimum": 0, "maximum": 9}
+            }
+          }
+        }
+      }
+    },
+    "moca_tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "total_score": {"type": "integer", "minimum": 0, "maximum": 30},
+          "adjusted_score": {"type": "integer", "minimum": 0, "maximum": 31},
+          "education_years": {"type": "integer", "minimum": 0, "maximum": 20},
+          "max_score": {"type": "integer", "const": 30},
+          "interpretation": {
+            "type": "string",
+            "enum": ["正常", "轻度认知功能障碍", "中度认知功能障碍", "重度认知功能障碍"]
+          }
+        },
+        "required": ["date", "total_score"]
+      }
+    },
+    "cognitive_domains": {
+      "type": "object",
+      "properties": {
+        "memory": {
+          "type": "object",
+          "properties": {
+            "status": {"type": "string", "enum": ["normal", "mild_impairment", "moderate_impairment", "severe_impairment"]},
+            "last_assessment": {"type": "string", "format": "date"},
+            "notes": {"type": "string"}
+          }
+        },
+        "executive": {
+          "type": "object",
+          "properties": {
+            "status": {"type": "string", "enum": ["normal", "mild_impairment", "moderate_impairment", "severe_impairment"]},
+            "last_assessment": {"type": "string", "format": "date"},
+            "notes": {"type": "string"}
+          }
+        },
+        "language": {
+          "type": "object",
+          "properties": {
+            "status": {"type": "string", "enum": ["normal", "mild_impairment", "moderate_impairment", "severe_impairment"]},
+            "last_assessment": {"type": "string", "format": "date"},
+            "notes": {"type": "string"}
+          }
+        },
+        "visuospatial": {
+          "type": "object",
+          "properties": {
+            "status": {"type": "string", "enum": ["normal", "mild_impairment", "moderate_impairment", "severe_impairment"]},
+            "last_assessment": {"type": "string", "format": "date"},
+            "notes": {"type": "string"}
+          }
+        }
+      }
+    },
+    "functional_impact": {
+      "type": "object",
+      "properties": {
+        "activities_of_daily_living": {
+          "type": "object",
+          "properties": {
+            "bathing": {
+              "type": "object",
+              "properties": {
+                "status": {"type": "string", "enum": ["independent", "needs_assistance", "dependent"]},
+                "last_assessment": {"type": "string", "format": "date"}
+              }
+            },
+            "dressing": {
+              "type": "object",
+              "properties": {
+                "status": {"type": "string", "enum": ["independent", "needs_assistance", "dependent"]},
+                "last_assessment": {"type": "string", "format": "date"}
+              }
+            },
+            "toileting": {
+              "type": "object",
+              "properties": {
+                "status": {"type": "string", "enum": ["independent", "needs_assistance", "dependent"]},
+                "last_assessment": {"type": "string", "format": "date"}
+              }
+            },
+            "transferring": {
+              "type": "object",
+              "properties": {
+                "status": {"type": "string", "enum": ["independent", "needs_assistance", "dependent"]},
+                "last_assessment": {"type": "string", "format": "date"}
+              }
+            },
+            "continence": {
+              "type": "object",
+              "properties": {
+                "status": {"type": "string", "enum": ["independent", "needs_assistance", "dependent"]},
+                "last_assessment": {"type": "string", "format": "date"}
+              }
+            },
+            "feeding": {
+              "type": "object",
+              "properties": {
+                "status": {"type": "string", "enum": ["independent", "needs_assistance", "dependent"]},
+                "last_assessment": {"type": "string", "format": "date"}
+              }
+            }
+          }
+        },
+        "instrumental_activities": {
+          "type": "object",
+          "properties": {
+            "shopping": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "cooking": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "managing_medications": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "using_telephone": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "managing_finances": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "housekeeping": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "transportation": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]},
+            "laundry": {"type": "string", "enum": ["independent", "needs_assistance", "supervision_needed", "dependent"]}
+          }
+        }
+      }
+    },
+    "risk_assessment": {
+      "type": "object",
+      "properties": {
+        "risk_level": {"type": "string", "enum": ["低风险", "中风险", "高风险"]},
+        "risk_factors": {"type": "array", "items": {"type": "string"}},
+        "recommendations": {"type": "array", "items": {"type": "string"}},
+        "last_assessment": {"type": "string", "format": "date"}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "impaired_domains_count": {"type": "integer"},
+        "last_mmse_score": {"type": "integer"},
+        "last_moca_score": {"type": "integer"},
+        "adl_dependency_count": {"type": "integer"},
+        "iadl_assistance_count": {"type": "integer"}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "examples": [
+    {
+      "name": "unit-transition-ready-to-done",
+      "expected_result": {
+        "summary": "Marking a ready node as done should advance downstream blocked nodes whose dependencies are now satisfied.",
+        "verification": {
+          "level": "unit",
+          "checks": [
+            {
+              "id": "u1",
+              "type": "state",
+              "prompt": "After recording success on node A, node A must be status=done and any node depending only on A must become ready."
+            }
+          ]
+        },
+        "failure_handling": {
+          "retry_hint": "Check dependency refresh logic.",
+          "escalate_when": "Dependency semantics are ambiguous or contradictory."
+        }
+      }
+    },
+    {
+      "name": "integrated-cli-next-and-result",
+      "expected_result": {
+        "summary": "The CLI should initialize a graph, show the next ready node, accept a structured result, and produce an inspectable updated graph.",
+        "verification": {
+          "level": "integrated",
+          "checks": [
+            {
+              "id": "i1",
+              "type": "artifact",
+              "prompt": "The project directory must contain graph state and an updated event/result log after the CLI flow completes."
+            },
+            {
+              "id": "i2",
+              "type": "behavior",
+              "prompt": "The next-node selection after result ingestion must match the dependency structure declared in the graph."
+            }
+          ]
+        },
+        "failure_handling": {
+          "branch_hint": "Create a debug branch if the graph state is valid but selection behavior is inconsistent.",
+          "escalate_when": "State updates cannot be explained by the declared graph contract."
+        }
+      }
+    },
+    {
+      "name": "closed-human-guided-review",
+      "expected_result": {
+        "summary": "In a bounded scenario, OpenClaw and Jimmy should be able to inspect the same graph and agree whether execution followed the intended path honestly.",
+        "verification": {
+          "level": "closed",
+          "checks": [
+            {
+              "id": "c1",
+              "type": "human-review",
+              "prompt": "A human reviewer can inspect the graph and understand why the current node was chosen and whether its outcome matched the declared expectation."
+            }
+          ]
+        },
+        "failure_handling": {
+          "escalate_when": "The graph can be traversed mechanically but is not legible or reviewable by the human operator."
+        }
+      }
+    }
+  ]
+}

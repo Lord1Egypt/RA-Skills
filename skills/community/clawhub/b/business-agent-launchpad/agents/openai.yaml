@@ -1,0 +1,8 @@
+interface:
+  display_name: "Business Agent Launchpad"
+  short_description: "Initialize business agents from plain work scenarios"
+  brand_color: "#2563EB"
+  default_prompt: "Use $business-agent-launchpad to initialize an OpenClaw or Hermes agent for my business workflow."
+
+policy:
+  allow_implicit_invocation: true

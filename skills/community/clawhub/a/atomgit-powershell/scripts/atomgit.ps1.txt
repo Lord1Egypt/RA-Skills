@@ -1,0 +1,462 @@
+# AtomGit PowerShell Script
+# Usage: . .\atomgit.ps1
+# Security: Input validation, error handling, token protection
+
+$script:ATOMGIT_BASE_URL = "https://api.atomgit.com/api/v5"
+$script:ATOMGIT_TOKEN = $null
+
+# ============================================================================
+# 安全工具函数
+# ============================================================================
+
+function Test-SafeOwnerOrRepo {
+    param([string]$Value)
+    # 只允许字母、数字、连字符、下划线、点
+    if ($Value -match '^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$') {
+        return $true
+    }
+    return $false
+}
+
+function Test-SafePRNumber {
+    param([int]$PR)
+    # PR 编号必须是正整数且在合理范围内
+    if ($PR -gt 0 -and $PR -lt 2147483647) {
+        return $true
+    }
+    return $false
+}
+
+function Protect-Token {
+    param([string]$Value)
+    # 脱敏显示 Token（仅显示前后缀）
+    if ($Value.Length -gt 8) {
+        return $Value.Substring(0, 4) + "****" + $Value.Substring($Value.Length - 4)
+    }
+    return "****"
+}
+
+function Handle-APIError {
+    param(
+        [System.Exception]$Error,
+        [string]$Operation
+    )
+    $errorMsg = $Error.Exception.Message
+    # 避免泄露敏感信息
+    if ($errorMsg -match "Bearer|Token|Authorization|secret|key") {
+        Write-Host "[$Operation] Authentication error occurred" -ForegroundColor Red
+    } else {
+        Write-Host "[$Operation] Error: $errorMsg" -ForegroundColor Red
+    }
+}
+
+# ============================================================================
+# 核心功能
+# ============================================================================
+
+function AtomGit-LoadToken {
+    if ($env:ATOMGIT_TOKEN) {
+        $script:ATOMGIT_TOKEN = $env:ATOMGIT_TOKEN
+        return $true
+    }
+    
+    $configPath = "$HOME\.openclaw\openclaw.json"
+    if (Test-Path $configPath) {
+        try {
+            $config = Get-Content $configPath -Raw | ConvertFrom-Json
+            if ($config.env -and $config.env.ATOMGIT_TOKEN) {
+                $script:ATOMGIT_TOKEN = $config.env.ATOMGIT_TOKEN
+                return $true
+            }
+        } catch {
+            Write-Host "Warning: Failed to read config file" -ForegroundColor Yellow
+        }
+    }
+    return $false
+}
+
+function AtomGit-Login {
+    param([string]$Token)
+    
+    # 输入验证
+    if ([string]::IsNullOrWhiteSpace($Token)) {
+        Write-Host "Error: Token cannot be empty" -ForegroundColor Red
+        return $false
+    }
+    
+    try {
+        $script:ATOMGIT_TOKEN = $Token
+        $headers = @{ "Authorization" = "Bearer $Token" }
+        $user = Invoke-RestMethod -Uri "$ATOMGIT_BASE_URL/user" -Headers $headers -Method Get
+        Write-Host "Login success: $($user.login)" -ForegroundColor Green
+        return $true
+    } catch {
+        Handle-APIError -Error $_ -Operation "Login"
+        $script:ATOMGIT_TOKEN = $null
+        return $false
+    }
+}
+
+function AtomGit-GetPRComments {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo,
+        [Parameter(Mandatory=$true)]
+        [int]$PR
+    )
+    
+    # 输入验证
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) {
+        Write-Host "Error: Invalid Owner format" -ForegroundColor Red
+        return $null
+    }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) {
+        Write-Host "Error: Invalid Repo format" -ForegroundColor Red
+        return $null
+    }
+    if (-not (Test-SafePRNumber -PR $PR)) {
+        Write-Host "Error: Invalid PR number" -ForegroundColor Red
+        return $null
+    }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    if (-not $script:ATOMGIT_TOKEN) {
+        Write-Host "Error: Token not configured" -ForegroundColor Red
+        return $null
+    }
+    
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/pulls/$PR/comments"
+        return Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+    } catch {
+        Handle-APIError -Error $_ -Operation "GetPRComments"
+        return $null
+    }
+}
+
+function AtomGit-CheckCI {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo,
+        [Parameter(Mandatory=$true)]
+        [int]$PR
+    )
+    
+    # 输入验证
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) {
+        Write-Host "Error: Invalid Owner format" -ForegroundColor Red
+        exit 1
+    }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) {
+        Write-Host "Error: Invalid Repo format" -ForegroundColor Red
+        exit 1
+    }
+    if (-not (Test-SafePRNumber -PR $PR)) {
+        Write-Host "Error: Invalid PR number" -ForegroundColor Red
+        exit 1
+    }
+    
+    Write-Host "`n=== AtomGit CI Check ===`n" -ForegroundColor Cyan
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    if (-not $script:ATOMGIT_TOKEN) {
+        Write-Host "Error: Token not configured" -ForegroundColor Red
+        exit 1
+    }
+    
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        Write-Host "Checking PR #$PR..." -ForegroundColor Gray
+    } catch {
+        Handle-APIError -Error $_ -Operation "CheckCI-Init"
+        exit 1
+    }
+    
+    $comments = AtomGit-GetPRComments -Owner $Owner -Repo $Repo -PR $PR
+    $ciComments = $comments | Where-Object { $_.user.login -like "*ci-bot*" } | Sort-Object -Property created_at -Descending
+    
+    if ($ciComments.Count -eq 0) {
+        Write-Host "No CI bot comments found" -ForegroundColor Yellow
+        exit 0
+    }
+    
+    $latestComment = $ciComments | Select-Object -First 1
+    Write-Host "Found $($ciComments.Count) CI bot comments" -ForegroundColor Green
+    
+    $checkItems = @()
+    if ($latestComment.body) {
+        $html = $latestComment.body
+        $pattern = '<tr><td[^>]*>([^<]+)</td>.*?<td[^>]*>(:[a-z_]+:)\s*<strong>([A-Z]+)</strong>'
+        $matches = [regex]::Matches($html, $pattern, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+        
+        foreach ($match in $matches) {
+            $itemName = $match.Groups[1].Value.Trim()
+            $emoji = $match.Groups[2].Value
+            $status = $match.Groups[3].Value
+            
+            if ($emoji -eq ':white_check_mark:') {
+                $result = 'success'
+            } elseif ($emoji -eq ':x:') {
+                $result = 'failed'
+            } elseif ($emoji -eq ':hourglass:') {
+                $result = 'running'
+            } elseif ($emoji -eq ':warning:') {
+                $result = 'warning'
+            } else {
+                $result = $status.ToLower()
+            }
+            
+            $checkItems += [PSCustomObject]@{
+                Name = $itemName
+                Result = $result
+                Status = $status
+            }
+        }
+    }
+    
+    $successCount = @($checkItems | Where-Object { $_.Result -eq 'success' }).Count
+    $failureCount = @($checkItems | Where-Object { $_.Result -eq 'failed' -or $_.Result -eq 'error' }).Count
+    $runningCount = @($checkItems | Where-Object { $_.Result -eq 'running' -or $_.Result -eq 'pending' }).Count
+    
+    Write-Host "`n=== Results ===`n" -ForegroundColor Cyan
+    Write-Host "Total: $($checkItems.Count)" -ForegroundColor White
+    Write-Host "Success: $successCount" -ForegroundColor Green
+    Write-Host "Failure: $failureCount" -ForegroundColor Red
+    Write-Host "Running: $runningCount" -ForegroundColor Yellow
+    
+    if ($checkItems.Count -gt 0) {
+        Write-Host "`nDetails:" -ForegroundColor Cyan
+        foreach ($item in $checkItems) {
+            if ($item.Result -eq 'success') {
+                Write-Host "[OK] $($item.Name)" -ForegroundColor Green
+            } elseif ($item.Result -eq 'failed' -or $item.Result -eq 'error') {
+                Write-Host "[FAIL] $($item.Name)" -ForegroundColor Red
+            } elseif ($item.Result -eq 'running' -or $item.Result -eq 'pending') {
+                Write-Host "[RUN] $($item.Name)" -ForegroundColor Yellow
+            } else {
+                Write-Host "[?] $($item.Name)" -ForegroundColor Gray
+            }
+        }
+    }
+    
+    if ($failureCount -gt 0) {
+        Write-Host "`nOverall: FAILED" -ForegroundColor Red
+        Write-Host "Failed items:" -ForegroundColor Red
+        foreach ($item in $checkItems | Where-Object { $_.Result -eq 'failed' }) {
+            Write-Host "  - $($item.Name)" -ForegroundColor Red
+        }
+        exit 2
+    } elseif ($runningCount -gt 0) {
+        Write-Host "`nOverall: RUNNING" -ForegroundColor Yellow
+        exit 1
+    } elseif ($checkItems.Count -eq 0) {
+        Write-Host "`nOverall: NO CHECKS" -ForegroundColor Yellow
+        exit 0
+    } else {
+        Write-Host "`nOverall: SUCCESS" -ForegroundColor Green
+        exit 0
+    }
+}
+
+# ============================================================================
+# 协作管理命令 (新增 v3.0.0)
+# ============================================================================
+
+function AtomGit-GetCollaborators {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo
+    )
+    
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) { Write-Host "Error: Invalid Owner"; return $null }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) { Write-Host "Error: Invalid Repo"; return $null }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/collaborators"
+        return Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+    } catch {
+        Handle-APIError -Error $_ -Operation "GetCollaborators"
+        return $null
+    }
+}
+
+function AtomGit-AddCollaborator {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo,
+        [Parameter(Mandatory=$true)]
+        [string]$Username,
+        [Parameter(Mandatory=$false)]
+        [string]$Permission = "push"
+    )
+    
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) { Write-Host "Error: Invalid Owner"; return $false }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) { Write-Host "Error: Invalid Repo"; return $false }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN"; "Content-Type" = "application/json" }
+        $body = @{ permission = $Permission } | ConvertTo-Json
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/collaborators/$Username"
+        Invoke-RestMethod -Uri $url -Headers $headers -Method Put -Body $body | Out-Null
+        Write-Host "Added $Username as collaborator" -ForegroundColor Green
+        return $true
+    } catch {
+        Handle-APIError -Error $_ -Operation "AddCollaborator"
+        return $false
+    }
+}
+
+function AtomGit-RemoveCollaborator {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo,
+        [Parameter(Mandatory=$true)]
+        [string]$Username
+    )
+    
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) { Write-Host "Error: Invalid Owner"; return $false }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) { Write-Host "Error: Invalid Repo"; return $false }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/collaborators/$Username"
+        Invoke-RestMethod -Uri $url -Headers $headers -Method Delete | Out-Null
+        Write-Host "Removed $Username from collaborators" -ForegroundColor Green
+        return $true
+    } catch {
+        Handle-APIError -Error $_ -Operation "RemoveCollaborator"
+        return $false
+    }
+}
+
+
+
+# ============================================================================
+# 其他实用命令 (新增 v3.0.0)
+# ============================================================================
+
+function AtomGit-GetLabels {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo
+    )
+    
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) { Write-Host "Error: Invalid Owner"; return $null }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) { Write-Host "Error: Invalid Repo"; return $null }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/labels"
+        return Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+    } catch {
+        Handle-APIError -Error $_ -Operation "GetLabels"
+        return $null
+    }
+}
+
+function AtomGit-GetReleases {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo
+    )
+    
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) { Write-Host "Error: Invalid Owner"; return $null }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) { Write-Host "Error: Invalid Repo"; return $null }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/releases"
+        return Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+    } catch {
+        Handle-APIError -Error $_ -Operation "GetReleases"
+        return $null
+    }
+}
+
+function AtomGit-GetHooks {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Owner,
+        [Parameter(Mandatory=$true)]
+        [string]$Repo
+    )
+    
+    if (-not (Test-SafeOwnerOrRepo -Value $Owner)) { Write-Host "Error: Invalid Owner"; return $null }
+    if (-not (Test-SafeOwnerOrRepo -Value $Repo)) { Write-Host "Error: Invalid Repo"; return $null }
+    
+    if (-not $script:ATOMGIT_TOKEN) { AtomGit-LoadToken }
+    try {
+        $headers = @{ "Authorization" = "Bearer $script:ATOMGIT_TOKEN" }
+        $url = "$ATOMGIT_BASE_URL/repos/$Owner/$Repo/hooks"
+        return Invoke-RestMethod -Uri $url -Headers $headers -Method Get
+    } catch {
+        Handle-APIError -Error $_ -Operation "GetHooks"
+        return $null
+    }
+}
+
+# ============================================================================
+# 帮助信息更新
+# ============================================================================
+
+function AtomGit-Help {
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host "  AtomGit PowerShell Tool v3.0.0"
+    Write-Host "========================================`n" -ForegroundColor Cyan
+    
+    Write-Host "📋 命令分类:" -ForegroundColor Yellow
+    
+    Write-Host "`n  🔐 认证:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-Login" -ForegroundColor Gray
+    
+    Write-Host "`n  👤 用户:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-GetUserInfo, AtomGit-GetUserProfile, AtomGit-GetUserRepos" -ForegroundColor Gray
+    Write-Host "    AtomGit-GetStarredRepos, AtomGit-GetWatchedRepos, AtomGit-GetUserEvents" -ForegroundColor Gray
+    
+    Write-Host "`n  📁 仓库:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-GetRepos, AtomGit-GetRepoDetail, AtomGit-GetRepoTree" -ForegroundColor Gray
+    Write-Host "    AtomGit-GetRepoFile, AtomGit-SearchRepos" -ForegroundColor Gray
+    
+    Write-Host "`n  🔀 PR 管理:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-GetPRList, AtomGit-GetPRDetail, AtomGit-GetPRFiles" -ForegroundColor Gray
+    Write-Host "    AtomGit-GetPRCommits, AtomGit-ApprovePR, AtomGit-MergePR" -ForegroundColor Gray
+    Write-Host "    AtomGit-CheckPR, AtomGit-CreatePR, AtomGit-CheckCI" -ForegroundColor Gray
+    
+    Write-Host "`n  📝 Issues:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-GetIssues, AtomGit-GetIssueDetail, AtomGit-CreateIssue" -ForegroundColor Gray
+    Write-Host "    AtomGit-UpdateIssue, AtomGit-GetIssueComments, AtomGit-AddIssueComment" -ForegroundColor Gray
+    
+    Write-Host "`n  🤝 协作管理:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-GetCollaborators, AtomGit-AddCollaborator, AtomGit-RemoveCollaborator" -ForegroundColor Gray
+    
+    Write-Host "`n  🏷️  其他:" -ForegroundColor Cyan
+    Write-Host "    AtomGit-GetLabels, AtomGit-GetReleases, AtomGit-GetHooks" -ForegroundColor Gray
+    
+    Write-Host "`n  ⚡ 批量处理:" -ForegroundColor Cyan
+    Write-Host "    Invoke-BatchApprove (需加载 atomgit-batch.ps1)" -ForegroundColor Gray
+    
+    Write-Host "`n========================================`n" -ForegroundColor Cyan
+}
+
+Write-Host "✅ AtomGit PowerShell Tool v3.0.0 loaded. Run 'AtomGit-Help' for usage." -ForegroundColor Green

@@ -1,0 +1,252 @@
+{
+  "run_id": "spanish_ham_demo",
+  "execution_mode": "mock_orchestration_demo",
+  "target_category": "西班牙火腿",
+  "target_market": "中国",
+  "industry_type": "食品 / 进口消费品",
+  "created_at": "2026-05-27T23:37:23",
+  "stages": [
+    {
+      "stage_id": "stage_0_intake",
+      "status": "success",
+      "inputs": [
+        "examples/spanish_ham_orchestration.md"
+      ],
+      "outputs": [
+        "00_input/spanish_ham_input.json"
+      ],
+      "used_skill": "",
+      "notes": "完成输入解析。"
+    },
+    {
+      "stage_id": "stage_1_brand_knowledge_base",
+      "status": "success",
+      "inputs": [
+        "00_input/spanish_ham_input.json"
+      ],
+      "outputs": [
+        "01_brand_knowledge_base/brand_knowledge_base.mock.json"
+      ],
+      "used_skill": "brand-knowledge-base-builder",
+      "notes": "mock artifact generated, handoff packet created."
+    },
+    {
+      "stage_id": "stage_2_geo_audit",
+      "status": "success",
+      "inputs": [
+        "01_brand_knowledge_base/brand_knowledge_base.mock.json"
+      ],
+      "outputs": [
+        "02_geo_audit/deepseek_geo_audit_report.mock.md",
+        "02_geo_audit/doubao_geo_audit_report.mock.md"
+      ],
+      "used_skill": "deepseek-geo-audit-skill; doubao-geo-audit-skill",
+      "notes": "mock reports generated, not live model results."
+    },
+    {
+      "stage_id": "stage_3_gap_matrix",
+      "status": "success",
+      "inputs": [
+        "02_geo_audit/*.mock.md"
+      ],
+      "outputs": [
+        "03_gap_matrix/geo_gap_matrix.json",
+        "03_gap_matrix/geo_gap_matrix.md"
+      ],
+      "used_skill": "",
+      "notes": "Generated 7 Spanish ham China-market GEO gaps."
+    },
+    {
+      "stage_id": "stage_4_content_task_plan",
+      "status": "success",
+      "inputs": [
+        "03_gap_matrix/geo_gap_matrix.json"
+      ],
+      "outputs": [
+        "04_content_task_plan/content_task_plan.json",
+        "04_content_task_plan/platform_distribution_plan.json"
+      ],
+      "used_skill": "",
+      "notes": "Generated 19 content tasks."
+    },
+    {
+      "stage_id": "stage_5_content_assets",
+      "status": "success",
+      "inputs": [
+        "04_content_task_plan/content_task_plan.json"
+      ],
+      "outputs": [
+        "05_content_assets/*.mock.md",
+        "05_content_assets/llms.mock.txt"
+      ],
+      "used_skill": "ai-geo-content-generator",
+      "notes": "mock assets generated, handoff packet created."
+    },
+    {
+      "stage_id": "stage_6_platform_drafts",
+      "status": "partial",
+      "inputs": [
+        "05_content_assets/*.mock.md"
+      ],
+      "outputs": [
+        "06_platform_drafts/*.mock.md"
+      ],
+      "used_skill": "zhihu-geo-draft-assistant; toutiao-geo-draft-assistant",
+      "notes": "Platform drafts are mock packets because adjacent Skills were not runtime-called."
+    },
+    {
+      "stage_id": "stage_7_delivery",
+      "status": "success",
+      "inputs": [
+        "all previous outputs"
+      ],
+      "outputs": [
+        "07_delivery/client_delivery_report.md"
+      ],
+      "used_skill": "",
+      "notes": "Customer-readable report generated."
+    },
+    {
+      "stage_id": "stage_8_monitoring",
+      "status": "success",
+      "inputs": [
+        "07_delivery/client_delivery_report.md"
+      ],
+      "outputs": [
+        "08_monitoring/retest_plan.md"
+      ],
+      "used_skill": "",
+      "notes": "Retest plan generated."
+    }
+  ],
+  "called_or_recommended_skills": [
+    {
+      "skill_id": "brand-knowledge-base-builder",
+      "display_name": "Brand Knowledge Base Builder",
+      "relative_path": "../Knowledge-Base-Builder/brand-knowledge-base-builder",
+      "status": "recommended_handoff_generated",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "doubao-geo-audit-skill",
+      "display_name": "Doubao GEO Audit Skill",
+      "relative_path": "../geo-analysis-doubao",
+      "status": "recommended_handoff_generated",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "deepseek-geo-audit-skill",
+      "display_name": "DeepSeek GEO Audit Skill",
+      "relative_path": "../deepseek-geo-audit-skill",
+      "status": "recommended_handoff_generated",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "deepseek-geo-tool",
+      "display_name": "GEO Tool DeepSeek",
+      "relative_path": "../GEO tool-deepseek",
+      "status": "skipped",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "ai-geo-content-generator",
+      "display_name": "AI GEO Content Generator",
+      "relative_path": "../AI-geo-content-generator",
+      "status": "recommended_handoff_generated",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "zhihu-geo-draft-assistant",
+      "display_name": "Zhihu GEO Draft Assistant",
+      "relative_path": "../zhihu-geo-draft-assistant",
+      "status": "recommended_handoff_generated",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "toutiao-geo-draft-assistant",
+      "display_name": "Toutiao GEO Draft Assistant",
+      "relative_path": "../toutiao-geo-draft-assistant",
+      "status": "recommended_handoff_generated",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "csdn-geo-draft-publisher",
+      "display_name": "CSDN GEO Draft Publisher",
+      "relative_path": "../csdn-geo-draft-publisher",
+      "status": "skipped",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    },
+    {
+      "skill_id": "juejin-geo-draft-publisher",
+      "display_name": "Juejin GEO Draft Publisher",
+      "relative_path": "../juejin-geo-draft-publisher",
+      "status": "skipped",
+      "execution_note": "No real runtime call in this demo; handoff or skip recorded."
+    }
+  ],
+  "failed_or_partial_skills": [
+    {
+      "skill_id": "zhihu-geo-draft-assistant",
+      "status": "partial",
+      "reason": "Generated handoff and mock packet; real Skill runtime not called."
+    },
+    {
+      "skill_id": "toutiao-geo-draft-assistant",
+      "status": "partial",
+      "reason": "Generated handoff and mock packet; real Skill runtime not called."
+    },
+    {
+      "skill_id": "xiaohongshu",
+      "status": "manual_or_future_skill",
+      "reason": "No adjacent 小红书 Skill exists in the local registry."
+    },
+    {
+      "skill_id": "douyin",
+      "status": "manual_or_future_skill",
+      "reason": "No adjacent 抖音 Skill exists in the local registry."
+    }
+  ],
+  "generated_artifacts": [
+    "00_input/execution_mode.md",
+    "00_input/source_example.md",
+    "00_input/spanish_ham_input.json",
+    "01_brand_knowledge_base/brand_knowledge_base.mock.json",
+    "01_brand_knowledge_base/brand_knowledge_base.mock.md",
+    "02_geo_audit/deepseek_geo_audit_report.mock.md",
+    "02_geo_audit/doubao_geo_audit_report.mock.md",
+    "02_geo_audit/dual_model_assessment.mock.json",
+    "03_gap_matrix/geo_gap_matrix.json",
+    "03_gap_matrix/geo_gap_matrix.md",
+    "04_content_task_plan/content_task_plan.json",
+    "04_content_task_plan/content_task_plan.md",
+    "04_content_task_plan/platform_distribution_plan.json",
+    "04_content_task_plan/platform_distribution_plan.md",
+    "05_content_assets/llms.mock.txt",
+    "05_content_assets/quote_sentence_library.mock.md",
+    "05_content_assets/toutiao_article_seed.mock.md",
+    "05_content_assets/website_faq.mock.md",
+    "05_content_assets/zhihu_answer_seed.mock.md",
+    "06_platform_drafts/douyin_manual_tasks.mock.md",
+    "06_platform_drafts/skipped_csdn_juejin.md",
+    "06_platform_drafts/toutiao_draft_packet.mock.md",
+    "06_platform_drafts/xiaohongshu_manual_tasks.mock.md",
+    "06_platform_drafts/zhihu_draft_packet.mock.md",
+    "07_delivery/client_delivery_report.md",
+    "07_delivery/delivery_file_index.md",
+    "08_monitoring/retest_plan.md",
+    "handoff_packets/01_to_brand_knowledge_base.md",
+    "handoff_packets/02_to_deepseek_geo_audit.md",
+    "handoff_packets/03_to_doubao_geo_audit.md",
+    "handoff_packets/04_to_ai_geo_content_generator.md",
+    "handoff_packets/05_to_zhihu_geo_draft_assistant.md",
+    "handoff_packets/06_to_toutiao_geo_draft_assistant.md"
+  ],
+  "next_actions": [
+    "把 handoff packet 复制到 Brand Knowledge Base Builder，生成真实品牌母库。",
+    "用真实品牌母库执行 DeepSeek / Doubao GEO 审计，替换 mock 报告。",
+    "根据真实审计刷新 GEO Gap Matrix 和 Content Task Plan。",
+    "调用知乎和今日头条草稿 Skill 生成真实平台草稿。",
+    "客户补充价格、渠道、规格、资质、图片和配送信息后再发布。"
+  ],
+  "mock_disclaimer": "This run is a mock orchestration demo and does not represent live DeepSeek or Doubao model results."
+}

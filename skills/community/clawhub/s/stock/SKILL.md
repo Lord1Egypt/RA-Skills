@@ -1,35 +1,38 @@
----
-name: "股票查询"
-description: "查询A股、港股、美股股票的实时行情，包括价格、涨跌幅、开盘价、成交量等详细数据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock"
-sourceUrl: "https://clawhub.ai/skills/stock"
----
+# Stock Skill - 股票查询
 
-# 股票查询
+获取A股、港股、美股的实时行情数据。
 
-> 查询A股、港股、美股股票的实时行情，包括价格、涨跌幅、开盘价、成交量等详细数据。
+## 支持的市场
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock`
-- **Source URL:** [https://clawhub.ai/skills/stock](https://clawhub.ai/skills/stock)
+- **A股**: 上海/深圳股票（使用新浪财经接口）
+- **港股**: 港股股票（使用新浪财经接口）
+- **美股**: 美股股票（使用新浪财经接口）
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/stock
+# 查询A股股票（自动识别沪深市场）
+stock 600519  # 贵州茅台
+stock 000001  # 平安银行
+stock 300750  # 宁德时代
+
+# 查询港股
+stock 00700  # 腾讯控股
+
+# 查询美股
+stock AAPL   # 苹果
+stock MSFT   # 微软
 ```
+
+## 输出格式
+
+返回股票的：
+- 当前价格
+- 涨跌幅
+- 涨跌额
+- 开盘价
+- 最高价
+- 最低价
+- 成交量
+- 成交额
+- 换手率

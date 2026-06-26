@@ -1,35 +1,180 @@
 ---
-name: "Official Account Assistant"
-description: "公众号超级助手。支持 AI 降味写作、自动发布文章、智能配图生成。让文章完全不像 AI 写的。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/official-account-assistant"
-sourceUrl: "https://clawhub.ai/skills/official-account-assistant"
+name: official-account-assistant
+description: 公众号超级助手。支持 AI 降味写作、自动发布文章、智能配图生成。让文章完全不像 AI 写的。
 ---
 
-# Official Account Assistant
+# 公众号超级助手
 
-> 公众号超级助手。支持 AI 降味写作、自动发布文章、智能配图生成。让文章完全不像 AI 写的。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/official-account-assistant`
-- **Source URL:** [https://clawhub.ai/skills/official-account-assistant](https://clawhub.ai/skills/official-account-assistant)
+### 1. AI 降味写作 🎭
+- 将 AI 生成内容改写为人类风格
+- 5 级降味强度可调
+- 添加个人经历、情绪表达、口语化元素
+- 彻底去除 AI 痕迹，根本看不出是 AI 写的
 
-## Overview
+### 2. 自动发布 🚀
+- 支持公众号后台自动发布
+- 定时推送功能
+- 自动排版优化
+- 一键群发
 
+### 3. 智能配图 🖼️
+- 根据文章内容自动生成配图
+- 支持 DALL-E 3、Midjourney 等 AI 绘图
+- 推荐无版权图片网站
+- 自动优化图片尺寸和格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/official-account-assistant
+---
+
+## 使用示例
+
+### 降 AI 味写作
 ```
+用户：把这篇 AI 文章改得像人写的
+助手：深度降味处理，添加个人经历和情绪表达
+```
+
+### 自动发布
+```
+用户：发布这篇文章到公众号
+助手：自动排版 + 定时推送 + 群发
+```
+
+### 智能配图
+```
+用户：给这篇文章配 5 张图
+助手：生成 AI 配图 + 推荐无版权图片
+```
+
+---
+
+## AI 降味技巧
+
+### 1. 添加个人经历
+```
+AI 版："人工智能技术正在改变我们的生活"
+人类版："上周我用 AI 写了篇文章，结果你猜怎么着？"
+```
+
+### 2. 情绪表达
+```
+AI 版："这个方法很有效"
+人类版："说实话，这个方法真的绝了！！"
+```
+
+### 3. 口语化
+```
+AI 版："因此我们建议"
+人类版："所以说啊，我建议你"
+```
+
+### 4. 细节描写
+```
+AI 版："他很高兴"
+人类版："他直接跳起来了，嘴角都快咧到耳根了"
+```
+
+### 5. 不完美表达
+```
+AI 版："综上所述，结论是明确的"
+人类版："说了这么多，其实就想告诉你一件事…"
+```
+
+---
+
+## 自动发布流程
+
+### Step 1：登录公众号
+- 扫码登录微信公众平台
+- 授权 API 访问权限
+
+### Step 2：上传素材
+- 自动上传文章内容
+- 自动上传配图
+- 自动设置封面图
+
+### Step 3：排版优化
+- 应用排版模板
+- 调整字体字号
+- 插入分割线和配图
+
+### Step 4：定时推送
+- 设置推送时间
+- 选择推送人群
+- 确认群发
+
+### Step 5：数据分析
+- 实时查看阅读量
+- 分析用户行为
+- 生成数据报告
+
+---
+
+## 智能配图功能
+
+### AI 绘图工具
+| 工具 | 特点 | 价格 |
+|------|------|------|
+| DALL-E 3 | 高质量，理解准确 | $0.04/张 |
+| Midjourney | 艺术感强 | $10-60/月 |
+| Stable Diffusion | 免费开源 | 免费 |
+| 文心一格 | 中文友好 | 免费额度 |
+
+### 无版权图片网站
+| 网站 | 特点 | 链接 |
+|------|------|------|
+| Unsplash | 高质量摄影 | unsplash.com |
+| Pexels | 免费商用 | pexels.com |
+| Pixabay | 种类丰富 | pixabay.com |
+| 摄图网 | 中文素材 | 699pic.com |
+
+### 配图规范
+| 位置 | 尺寸 | 格式 |
+|------|------|------|
+| 封面图 | 900×383px | JPG/PNG |
+| 文内配图 | 1080×600px | JPG/PNG |
+| 头像 | 200×200px | JPG/PNG |
+| 二维码 | 400×400px | PNG |
+
+---
+
+## 降味强度等级
+
+| 等级 | 改动幅度 | 适用场景 |
+|------|----------|----------|
+| 1 级 | 轻微调整 | 正式文档、报告 |
+| 2 级 | 适度口语化 | 技术博客、教程 |
+| 3 级 | 明显口语化 | 公众号文章、知乎 |
+| 4 级 | 高度口语化 | 小红书、朋友圈 |
+| 5 级 | 完全重写 | 故事、随笔 |
+
+---
+
+## 注意事项
+
+### 降味注意
+- 保留核心信息和数据准确性
+- 不要过度降味导致内容失真
+- 根据目标平台调整风格
+
+### 发布注意
+- 遵守微信公众平台规范
+- 避免敏感词和违规内容
+- 定时推送需提前审核
+
+### 配图注意
+- 确保图片版权清晰
+- 图片内容符合文章主题
+- 避免低俗、暴力图片
+
+---
+
+## 相关资源
+
+- `scripts/remove_ai_flavor.py` - AI 降味脚本
+- `scripts/auto_publish.py` - 自动发布脚本
+- `scripts/generate_images.py` - 智能配图脚本
+- `references/platform-rules.md` - 平台规范指南
+- `references/copyright-guide.md` - 版权使用指南
+- `assets/formatting-templates/` - 排版模板库

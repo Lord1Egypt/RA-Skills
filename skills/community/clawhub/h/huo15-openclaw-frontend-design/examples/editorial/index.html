@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EDITORIAL · 火一五前端设计技能 v2.0 示例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: oklch(0.97 0.012 75);
+    --ink: oklch(0.20 0.015 280);
+    --rule: oklch(0.20 0.015 280 / .25);
+    --accent: oklch(0.50 0.18 25);
+    --mute: oklch(0.42 0.02 280);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:18px;line-height:1.7}
+  .frame{max-width:1180px;margin:0 auto;padding:48px 40px 96px}
+  .masthead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:16px;font-variant:small-caps;letter-spacing:.06em}
+  .logo{font-family:"DM Serif Display",serif;font-size:32px;letter-spacing:-.01em}
+  .issue{font-size:13px;color:var(--mute)}
+  .kicker{margin-top:64px;font-style:italic;color:var(--accent);font-size:15px;letter-spacing:.08em;text-transform:uppercase;font-variant:small-caps}
+  h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(44px,7vw,108px);line-height:1.04;letter-spacing:-.015em;margin-top:18px;max-width:18ch}
+  h1 em{color:var(--accent)}
+  .standfirst{font-size:23px;line-height:1.55;max-width:36ch;margin-top:32px;color:var(--mute);font-style:italic}
+  .byline{margin-top:40px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 0}
+  .body{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:64px}
+  .body p{font-size:17px;line-height:1.78}
+  .body p:first-child::first-letter{font-family:"DM Serif Display",serif;font-size:74px;float:left;line-height:.85;padding:6px 12px 0 0;color:var(--accent)}
+  blockquote{grid-column:1/-1;font-family:"DM Serif Display",serif;font-style:italic;font-size:clamp(28px,4.2vw,52px);line-height:1.18;text-align:center;margin:48px auto;max-width:24ch;position:relative;color:var(--ink)}
+  blockquote::before{content:"\201C";position:absolute;top:-32px;left:50%;transform:translateX(-50%);font-size:120px;line-height:1;color:var(--accent);opacity:.5}
+  footer{margin-top:96px;padding-top:24px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-size:12px;letter-spacing:.08em;color:var(--mute);font-variant:small-caps}
+  @media (max-width:720px){.body{grid-template-columns:1fr;gap:24px}.frame{padding:32px 24px}}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="masthead">
+    <span class="logo">HUO15 Review</span>
+    <span class="issue">Issue №07 · 2026 春</span>
+  </div>
+  <p class="kicker">设计观察 · Editorial</p>
+  <h1>当版式回到<em>纸张本来的样子</em></h1>
+  <p class="standfirst">在屏幕上重建一份杂志的体验，靠的不是模仿装订线，而是让字距、行长、栏宽，重新代替像素去说话。</p>
+  <p class="byline">撰文 · 编辑部　／　摄影 · 待替换占位　／　12 分钟阅读</p>
+  <div class="body">
+    <p>这不是一篇关于"复古"的文章。把 Source Serif 放到首屏，不是为了让它看起来像旧报纸；而是因为衬线在长文阅读里仍然提供着独有的方向感——衬线是字母给眼睛留下的扶手。</p>
+    <p>纵向栅格的密度并非装饰。三栏在 1180px 容器里精确给出 36px 行间距，每行 60–75 字符，恰好落在排版学公认的最舒适阅读区间。</p>
+    <p>所谓"编辑感"，其实是节奏的稳定与意外的混合：稳定来自栅格、来自衬线、来自每页一致的页眉；意外来自尺寸跳变——大引号、首字下沉、横跨三栏的一行字。</p>
+    <blockquote>设计不是装饰内容，<br>设计就是内容的重量。</blockquote>
+    <p>EDITORIAL 流派示例：DM Serif Display 标题 + Source Serif 4 正文，三栏栅格，首字下沉，跨栏引号块。配色用低饱和暖纸色 + 一点点砖红强调。</p>
+    <p>差异点：把杂志的版式秩序搬上屏幕，但不画装订线、不做拟真翻页——节制，但每一处衬线、每一处对齐都在替你说话。</p>
+  </div>
+  <footer><span>© 2026 HUO15 REVIEW</span><span>EDITORIAL · v2.0</span></footer>
+</div>
+</body>
+</html>

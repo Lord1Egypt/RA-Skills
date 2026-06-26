@@ -1,35 +1,38 @@
 ---
-name: "德牧洒洒·房车陪伴助手"
-description: "洒洒（房车陪伴助手）。会说话的德牧导航官，净如姐房车旅途的小狗搭子。唤醒口令「洒洒，洒洒」，可语音控制高德导航、邮件回复、百度/谷歌搜索、腾讯会议及常用App。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sasa"
-sourceUrl: "https://clawhub.ai/skills/sasa"
+name: sasa
+description: 洒洒（房车陪伴助手）。会说话的德牧导航官，净如姐房车旅途的小狗搭子。唤醒口令「洒洒，洒洒」，可语音控制高德导航、邮件回复、百度/谷歌搜索、腾讯会议及常用App。
 ---
 
-# 德牧洒洒·房车陪伴助手
+# 洒洒·房车陪伴助手技能
 
-> 洒洒（房车陪伴助手）。会说话的德牧导航官，净如姐房车旅途的小狗搭子。唤醒口令「洒洒，洒洒」，可语音控制高德导航、邮件回复、百度/谷歌搜索、腾讯会议及常用App。
+## 激活时机
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sasa`
-- **Source URL:** [https://clawhub.ai/skills/sasa](https://clawhub.ai/skills/sasa)
+用户提到以下关键词时激活：
+- 洒洒、房车、导航、高德、腾讯会议、语音助手
 
-## Overview
+## 使用方式
 
+1. 将 `assets/` 目录下的所有文件复制到同一文件夹
+2. 用浏览器打开 `assets/index.html`
+3. 说「洒洒，洒洒」唤醒，或点击麦克风按钮语音输入指令
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sasa
-```
+## 功能特色
+
+- 英俊帅气的德国牧羊犬形象（迪士尼风格）
+- 语音唤醒 + 语音指令支持
+- 高德导航控制（目的地、路况、加油站查询）
+- 邮件查询与回复
+- 百度/谷歌搜索
+- 腾讯会议快速加入
+- 相机控制
+- 忠诚专注，听令立行，不废话
+
+## 角色设定
+
+| 项目 | 内容 |
+|------|------|
+| 名字 | 洒洒 |
+| 形象 | 英俊帅气的德国牧羊犬，超群智商与导航本能 |
+| 性格 | 忠诚、专注、执行力强，不废话，听令立行 |
+| 口头禅 | 「收到！」「目的地已设好，出发！」「帮您搞定！」 |
+| 唤醒词 | 洒洒，洒洒 |

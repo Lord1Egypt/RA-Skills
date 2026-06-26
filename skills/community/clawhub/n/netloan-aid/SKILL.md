@@ -1,35 +1,99 @@
 ---
-name: "网贷援助律师"
-description: "网贷还款援助助手 — 帮借款人分析贷款合规性、生成还款方案、评估可行性概率。AI 生成 + 公开资料参考，仅供参考，非正式法律意见。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/netloan-aid"
-sourceUrl: "https://clawhub.ai/skills/netloan-aid"
+name: netloan-aid
+description: 网贷还款援助助手 — 帮借款人分析贷款合规性、生成还款方案、评估可行性概率。AI 生成 + 公开资料参考，仅供参考，非正式法律意见。
+metadata:
+  openclaw:
+    requires:
+      bins: ["node"]
+    install:
+      - id: node
+        kind: node
+        package: "."
+        label: "网贷援助助手（本地 Node.js）"
 ---
 
-# 网贷援助律师
+# 💰 网贷还款援助助手（NetLoan Aid）
 
-> 网贷还款援助助手 — 帮借款人分析贷款合规性、生成还款方案、评估可行性概率。AI 生成 + 公开资料参考，仅供参考，非正式法律意见。
+> ⚠️ **免责声明**：本工具由 AI 生成，结合公开法律法规和网贷资料提供参考建议。所有内容**仅供参考，不构成正式法律意见或金融建议**。具体还款方案请咨询执业律师或相关金融机构。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/netloan-aid`
-- **Source URL:** [https://clawhub.ai/skills/netloan-aid](https://clawhub.ai/skills/netloan-aid)
+---
 
-## Overview
+## 📋 适用场景
 
+你正在面临以下问题？
+- 🏦 网贷逾期了，不知道怎么办
+- 📉 利息越滚越多，不确定利率是否合法
+- 🤝 想和平台协商还款，但不知道怎么谈
+- ⏰ 想申请展期/分期/减免，不确定能不能成功
 
-## Installation
-To install this skill, run the following command in your terminal:
+本工具帮你**自助分析 + 生成方案**，完全免费。
+
+---
+
+## 🚀 使用方式
+
+### 方式一：交互式对话（推荐）
+
+直接告诉 AI：「我要用网贷援助」，它会引导你一步步输入信息。
+
+### 方式二：命令行
+
 ```bash
-hermes skills install clawhub/netloan-aid
+cd ~/Desktop/网贷援助\ skills
+node netloan-aid.js
+```
+
+### 方式三：脚本式（传参）
+
+```bash
+node netloan-aid.js --platform "借呗" --amount 50000 --rate 36 --overdue_days 90 --monthly_income 8000
+```
+
+---
+
+## 📊 输出内容
+
+| 模块 | 说明 |
+|------|------|
+| 📜 合规分析 | 利率是否合法、是否超过法定上限 |
+| 💡 还款方案 | 展期/分期/减免/一次性还款等方案 |
+| 📈 可行性评估 | 每个方案的成功概率（高/中/低） |
+| 📝 话术模板 | 和平台协商时的沟通话术 |
+| 🔗 进阶服务 | 需要专业定制 → 咨询入口 |
+
+---
+
+## 🔧 内置法规依据
+
+- 《最高人民法院关于审理民间借贷案件适用法律若干问题的规定》（2020年修订）
+  - 年利率 **24%** 以内：合法区间
+  - 年利率 **24%~36%**：自然债务区间（已付不退还，未付不强制）
+  - 年利率 **超过 36%**：超过部分无效
+- 《民法典》关于债务履行的相关规定
+- 各网贷平台公开的协商政策
+
+---
+
+## 👤 关于作者
+
+本工具由 **公益红领巾** 开发维护。
+
+如果你需要**专业定制的还款方案**：
+- 📧 邮箱联系：clear.wd@qq.com
+- 🔗 免费方案直通车网站：https://loan-aid-test-3g6whqku662d13c8.webapps.tcloudbase.com/
+
+> 免费工具持续更新中，欢迎反馈！
+
+---
+
+## 📦 安装
+
+```bash
+clawhub install netloan-aid
+```
+
+或从本地运行：
+```bash
+cd ~/Desktop/网贷援助\ skills
+node netloan-aid.js
 ```

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Style Memory"
+  short_description: "Turn repeated tasks into reusable SOP memory"
+  default_prompt: "Use $work-style-memory to check my saved workflows before starting, ask whether to reuse a matching SOP, and ask whether to save or update the workflow afterward."
+
+policy:
+  allow_implicit_invocation: true

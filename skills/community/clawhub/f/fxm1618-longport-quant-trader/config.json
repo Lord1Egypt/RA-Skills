@@ -1,0 +1,241 @@
+# 量化交易配置 v2.0 - 持久化存储
+
+**最后更新**: 2026-03-06 10:55  
+**账户**: LBPT10034472（长桥模拟盘）
+
+---
+
+## 🔑 API 凭证
+
+```json
+{
+  "app_key": "35fed0834e2c6098e1051d836bd6d46d",
+  "app_secret": "e2d590d4615051faf8ac1319a4e911272ade8282ae9ee3a11fa7716a601b65c4",
+  "access_token": "m_eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ5YWRiMGIxYTdlNzYxNzEiLCJ0eXAiOiJKV1QifQ...",
+  "region": "HK",
+  "token_expiry": "2026-06-01"
+}
+```
+
+**配置位置**: `~/.openclaw/workspace/skills/longport-quant-trader/.env`
+
+---
+
+## 📊 策略配置
+
+### 策略 1: 动量追涨
+```json
+{
+  "name": "动量追涨",
+  "threshold": 0.013,
+  "position_size": 0.15,
+  "stop_loss": -0.01,
+  "take_profit": 0.02,
+  "hold_time_minutes": 30
+}
+```
+
+### 策略 2: 均值回归
+```json
+{
+  "name": "均值回归",
+  "threshold": -0.023,
+  "position_size": 0.12,
+  "stop_loss": -0.015,
+  "take_profit": 0.025,
+  "hold_time_minutes": 60
+}
+```
+
+### 策略 3: 网格交易 ⭐ NEW
+```json
+{
+  "name": "网格交易",
+  "grid_spacing": 0.025,
+  "grid_levels": 6,
+  "position_size_per_grid": 0.08,
+  "target_stocks": ["700.HK", "9988.HK"],
+  "description": "震荡市神器，自动低买高卖"
+}
+```
+
+### 策略 4: 突破追涨
+```json
+{
+  "name": "突破追涨",
+  "threshold": 0.02,
+  "volume_ratio": 3.0,
+  "position_size": 0.20,
+  "stop_loss": -0.008,
+  "take_profit": 0.015,
+  "hold_time_minutes": 15
+}
+```
+
+---
+
+## 📈 股票池 + 策略匹配
+
+```json
+[
+  {"symbol": "700.HK", "name": "腾讯", "type": "震荡", "best_strategy": "grid", "board_lot": 100},
+  {"symbol": "9988.HK", "name": "阿里", "type": "震荡", "best_strategy": "mean_reversion", "board_lot": 100},
+  {"symbol": "3690.HK", "name": "美团", "type": "趋势", "best_strategy": "momentum", "board_lot": 100},
+  {"symbol": "1211.HK", "name": "比亚迪", "type": "趋势", "best_strategy": "momentum", "board_lot": 500},
+  {"symbol": "9618.HK", "name": "京东", "type": "震荡", "best_strategy": "mean_reversion", "board_lot": 100},
+  {"symbol": "1810.HK", "name": "小米", "type": "高波", "best_strategy": "breakout", "board_lot": 500},
+  {"symbol": "2015.HK", "name": "理想", "type": "高波", "best_strategy": "breakout", "board_lot": 100},
+  {"symbol": "9866.HK", "name": "蔚来", "type": "高波", "best_strategy": "breakout", "board_lot": 100}
+]
+```
+
+---
+
+## 🤖 智能路由逻辑
+
+```python
+def select_strategy(symbol, market_data):
+    """
+    智能策略路由：
+    1. 分析市场环境（趋势/震荡/高波）
+    2. 分析标的特征
+    3. 匹配最优策略
+    """
+    if market_data['volatility'] < 0.01:
+        return "grid"  # 震荡市 → 网格
+    elif market_data['change'] > 0.013:
+        return "momentum"  # 上涨 → 动量
+    elif market_data['change'] < -0.023:
+        return "mean_reversion"  # 下跌 → 均值回归
+    elif market_data['volume_ratio'] > 3.0 and market_data['change'] > 0.02:
+        return "breakout"  # 放量突破 → 突破
+    else:
+        return "grid"  # 默认网格
+```
+
+---
+
+## 📱 飞书推送配置
+
+```json
+{
+  "webhook": "从环境变量 FEISHU_BOT_WEBHOOK 读取",
+  "user_id": "ou_c3f01a621b3fef9a2b59368233bf7647",
+  "push_events": [
+    "buy_signal",
+    "sell_signal",
+    "take_profit",
+    "stop_loss",
+    "grid_order",
+    "daily_report"
+  ]
+}
+```
+
+---
+
+## ⏰ 交易时间（北京时间）
+
+```
+早盘：09:30-12:00
+    监控频率：每 5 分钟
+    最佳时段：09:30-10:30
+
+午盘：13:00-16:00
+    监控频率：每 5 分钟
+    最佳时段：13:00-14:00
+
+夜盘（美股）：21:30-04:00
+    监控频率：每 5 分钟（盘前/盘中）
+    最佳时段：22:30-23:30
+```
+
+---
+
+## 🎯 风控参数
+
+```json
+{
+  "single_position_max": 0.20,
+  "total_position_max": 0.80,
+  "daily_stop_loss": -0.05,
+  "weekly_stop_loss": -0.10,
+  "monthly_stop_loss": -0.15,
+  "cash_reserve_min": 0.20
+}
+```
+
+---
+
+## 📂 核心文件
+
+```
+~/.openclaw/workspace/skills/longport-quant-trader/
+├── hk_quant_v2.py              # 主程序（高频自动交易）
+├── hk_stock_strategies.py      # 策略框架
+├── auto_trade.py               # 自动交易执行
+├── feishu_push.py             # 飞书推送
+├── check_account.py           # 账户检查
+├── .env                       # API 凭证（不要 Git 提交）
+├── config.json                # 本配置文件
+└── logs/                      # 交易日志
+```
+
+---
+
+## 🚀 启动命令
+
+```bash
+# 手动执行一次
+python3 hk_quant_v2.py
+
+# 每 5 分钟自动执行（crontab）
+*/5 9-12,13-16 * * 1-5 cd ~/.openclaw/workspace/skills/longport-quant-trader && python3 hk_quant_v2.py >> logs/trade.log 2>&1
+
+# 查看日志
+tail -f logs/trade.log
+
+# 查看账户
+python3 check_account.py
+```
+
+---
+
+## 📊 绩效跟踪
+
+### 目标
+- 胜率：>70%
+- 年化：>200%
+- 最大回撤：<15%
+- 夏普比率：>2.0
+
+### 记录格式
+```json
+{
+  "date": "2026-03-06",
+  "trades": 8,
+  "wins": 6,
+  "losses": 2,
+  "win_rate": 0.75,
+  "total_pnl": 3420,
+  "total_pnl_pct": 0.0182,
+  "best_trade": {"symbol": "700.HK", "pnl": 1240},
+  "worst_trade": {"symbol": "9988.HK", "pnl": -236}
+}
+```
+
+---
+
+## ⚠️ 重要提醒
+
+1. **这是模拟盘** - 先用模拟盘测试 2 周
+2. **严格止损** - -1% 立即执行，绝不扛单
+3. **快速止盈** - +2% 就走，不贪婪
+4. **高频交易** - 每日 5-20 笔，利用复利
+5. **每日复盘** - 记录每笔交易，优化参数
+
+---
+
+**创建时间**: 2026-03-06 10:55  
+**创建者**: 虾哥 🦐  
+**目的**: 防止配置丢失，实现持久化存储

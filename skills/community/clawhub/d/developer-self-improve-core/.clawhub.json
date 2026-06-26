@@ -1,0 +1,17 @@
+{
+  "name": "developer-self-improve-core",
+  "version": "1.1.9",
+  "description": "开发者自改进核心技能 - 提供自检、规则生成、记忆管理、定时提醒等核心功能",
+  "author": "lijiujiu",
+  "license": "MIT",
+  "tags": ["developer", "self-improve", "core", "memory", "safe", "app-development", "开发人员", "APP 开发", "IT", "软件开发"],
+  "emoji": "🛡️",
+  "requires": {
+    "bins": ["bash", "find", "grep", "awk", "md5sum", "stat", "sed"],
+    "optional": ["openclaw"],
+    "env": ["AUTO_MEMORY_WORKSPACE"],
+    "config": ["workspace/config/current_user.json"]
+  },
+  "homepage": "https://github.com/lijiujiu/developer-self-improve-core",
+  "repository": "https://github.com/lijiujiu/developer-self-improve-core"
+}

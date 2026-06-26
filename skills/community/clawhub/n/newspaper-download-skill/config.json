@@ -1,0 +1,5 @@
+{
+    "_comment": "newspaper-ocr skill 配置文件。填写后保存，无需每次传命令行参数。",
+    "api_base": "https://pick-read.vip/api",
+    "import_token": ""
+}

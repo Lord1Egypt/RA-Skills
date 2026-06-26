@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "config_version": "1.0",
+    "description": "S2-Chronos-Memzero Master Configuration File / S2时空记忆阵列全局配置文件",
+    "warning": "Modifying physical baseline parameters may affect Life-Safety compliance. / 修改物理底线参数可能影响生命安全合规。"
+  },
+  
+  "storage_engine": {
+    "db_type": "sqlite3",
+    "vault_path": "s2_memory_vault/s2_chronos.db",
+    "retention_policy_days": 365,
+    "auto_archive_compressed_data": true
+  },
+
+  "timeline_baseline": {
+    "granularity_seconds": 60,
+    "delta_compression": {
+      "enabled": true,
+      "tolerance_fluctuation": {
+        "light_lux_diff": 5.0,
+        "temp_celsius_diff": 0.5,
+        "sound_db_diff": 2.0
+      },
+      "description": "If variance is below tolerance, the engine folds the state to save space. / 如果要素波动低于容忍度，引擎将进行折叠压缩以节省空间。"
+    }
+  },
+
+  "privacy_firewall": {
+    "store_raw_video_footage": false,
+    "external_pointer_expiration_hours": 72,
+    "strict_4sqm_boundary_enforcement": true
+  }
+}

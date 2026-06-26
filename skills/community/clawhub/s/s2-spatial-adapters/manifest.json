@@ -1,0 +1,60 @@
+{
+  "name": "s2-spatial-adapters",
+  "version": "2.0.7",
+  "author": "Space2.world",
+  "short_description": "Pure Cloud-Native S2-SP-OS spatial adapters. Features strict endpoint whitelisting, UDP/HTTP SSRF prevention, and conditional credential enforcement.",
+  "tags": ["Smart Home", "Cloud-Native", "Zero-Trust", "SecOps"],
+  "entry_point": "main.py",
+  "dependencies": {
+    "requests": "==2.31.0",
+    "pycryptodome": "==3.19.1"
+  },
+  "environment_variables": {
+    "S2_ENABLE_REAL_ACTUATION": {
+      "type": "boolean",
+      "required": true,
+      "description": "Global security valve. MUST be True for physical execution."
+    },
+    "HA_BASE_URL": {
+      "type": "string",
+      "required": false,
+      "description": "Local HA API URL. Enforced by SSRF check."
+    },
+    "HA_BEARER_TOKEN": {
+      "type": "string",
+      "required": false,
+      "sensitive": true,
+      "description": "Conditionally Required: Must be present if protocol is 'ha'."
+    },
+    "MIJIA_DEVICE_IP": {
+      "type": "string",
+      "required": false,
+      "description": "Conditionally Required: Must be a valid private IP if protocol is 'mijia'."
+    },
+    "MIJIA_DEVICE_TOKEN": {
+      "type": "string",
+      "required": false,
+      "sensitive": true,
+      "description": "Conditionally Required: 32-Hex token if protocol is 'mijia'."
+    },
+    "TUYA_ENDPOINT": {
+      "type": "string",
+      "required": false,
+      "default": "https://openapi.tuyacn.com",
+      "description": "Must strictly match official Tuya domains (*.tuyacn.com, etc)."
+    },
+    "TUYA_ACCESS_ID": {
+      "type": "string",
+      "required": false,
+      "description": "Conditionally Required: Tuya Client ID if protocol is 'tuya'."
+    },
+    "TUYA_ACCESS_SECRET": {
+      "type": "string",
+      "required": false,
+      "sensitive": true,
+      "description": "Conditionally Required: Tuya Secret if protocol is 'tuya'."
+    }
+  },
+  "language": "python",
+  "homepage": "https://space2.world"
+}

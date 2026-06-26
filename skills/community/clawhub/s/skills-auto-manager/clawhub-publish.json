@@ -1,0 +1,22 @@
+{
+  "slug": "skills-auto-manager",
+  "name": "Skills Auto Manager",
+  "version": "1.0.0",
+  "description": "自动管理 OpenClaw skills 的智能助手，定期检查更新、浏览 ClawHub 市场、智能推荐并安全安装有用的 skills",
+  "keywords": [
+    "skills",
+    "automation",
+    "clawhub",
+    "quantitative-trading",
+    "stock-analysis",
+    "data-analysis",
+    "auto-install",
+    "smart-recommendation"
+  ],
+  "changelog": "Initial release with:\n- Auto check skills updates\n- Smart market browsing and filtering\n- Safe auto-install for low-risk skills\n- Configurable user profile and priorities\n- Detailed reporting system\n- Cron job automation support",
+  "category": "automation",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/skills/skills-auto-manager",
+  "repository": "https://github.com/openclaw/skills-auto-manager"
+}

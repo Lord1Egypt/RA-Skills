@@ -1,0 +1,23 @@
+{
+  "id": "mediacrawler-automation",
+  "name": "MediaCrawler Automation",
+  "version": "0.1.4",
+  "description": "基于 MediaCrawler 的多平台公开信息采集工具，支持自动检测环境、拉取仓库、安装 uv 依赖、Playwright、WebUI 与结果定位。",
+  "author": "ZhouGuang",
+  "repository": "https://github.com/NanmiCoder/MediaCrawler.git",
+  "type": "terminal",
+  "category": "Data Collection",
+  "entrypoint": "scripts/setup.sh",
+  "commands": {
+    "crawler-init": "bash scripts/setup.sh",
+    "crawler-help": "uv run main.py --help",
+    "crawler-run": "uv run main.py",
+    "crawler-web": "uv run uvicorn api.main:app --port 8080 --reload",
+    "crawler-dy-search": "uv run main.py --platform dy --lt qrcode --type search --headless false",
+    "crawler-xhs-search": "uv run main.py --platform xhs --lt qrcode --type search --headless false",
+    "crawler-results": "bash scripts/show_results.sh"
+  },
+  "env": {
+    "PROJECT_PATH": "$HOME/MediaCrawler"
+  }
+}

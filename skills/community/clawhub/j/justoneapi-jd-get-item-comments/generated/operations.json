@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/jd/get-item-comments/v1 for JD.com Product Comments through JustOneAPI with itemId.",
+  "displayName": "JD.com Product Comments",
+  "endpointPath": "get-item-comments",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get JD.com product Comments data, including ratings, timestamps, and reviewer signals, for customer feedback analysis and product research.",
+      "method": "GET",
+      "operationId": "getItemCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "A unique product identifier on JD.com (item ID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "itemId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Page number for paginated comments.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/jd/get-item-comments/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Product Comments",
+      "tags": [
+        "JD.com"
+      ]
+    }
+  ],
+  "platformKey": "jd",
+  "primaryTag": "JD.com",
+  "skillName": "justoneapi_jd_get_item_comments",
+  "skillType": "interface",
+  "slug": "justoneapi-jd-get-item-comments",
+  "sourceTitle": "OpenAPI definition"
+}

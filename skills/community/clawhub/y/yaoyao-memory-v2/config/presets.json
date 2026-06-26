@@ -1,0 +1,40 @@
+{
+  "name": "yaoyao-memory",
+  "version": "2.1.0",
+  "features": {
+    "搜索核心": {
+      "vector_search": {"enabled": true, "desc": "向量搜索"},
+      "fts_search": {"enabled": true, "desc": "全文搜索"},
+      "parallel_search": {"enabled": true, "desc": "并行搜索"},
+      "rrf_rank": {"enabled": true, "desc": "RRF排名"}
+    },
+    "缓存优化": {
+      "memory_cache": {"enabled": true, "desc": "内存缓存"},
+      "precompute": {"enabled": true, "desc": "预计算"},
+      "incremental": {"enabled": true, "desc": "增量更新"},
+      "compress": {"enabled": true, "desc": "结果压缩"}
+    },
+    "LLM增强": {
+      "rerank": {"enabled": true, "desc": "结果重排序"},
+      "summary": {"enabled": true, "desc": "结果摘要"},
+      "expand": {"enabled": true, "desc": "上下文扩展"},
+      "explain": {"enabled": true, "desc": "查询解释"}
+    },
+    "智能路由": {
+      "auto_route": {"enabled": true, "desc": "自动路由"},
+      "query_rewrite": {"enabled": true, "desc": "查询改写"},
+      "weight_based": {"enabled": true, "desc": "权重排序"}
+    },
+    "学习优化": {
+      "history_learn": {"enabled": true, "desc": "历史学习"},
+      "feedback": {"enabled": true, "desc": "用户反馈"},
+      "deduplicate": {"enabled": true, "desc": "智能去重"}
+    }
+  },
+  "limits": {
+    "max_results": 10,
+    "max_context": 500,
+    "cache_ttl": 300,
+    "daily_token_limit": 10000
+  }
+}

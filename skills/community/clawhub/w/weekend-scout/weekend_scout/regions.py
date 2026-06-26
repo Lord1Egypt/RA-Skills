@@ -1,0 +1,316 @@
+"""City-to-region mapping for search query generation.
+
+Used by cities.py to include regional names in broad search queries.
+Falls back to the city name itself when no mapping exists.
+"""
+
+from __future__ import annotations
+
+REGIONS: dict[str, str] = {
+    # --- Poland ---
+    "Warsaw": "Mazowsze",
+    "Warszawa": "Mazowsze",
+    "Krakow": "Malopolska",
+    "Kraków": "Malopolska",
+    "Lodz": "Lodzkie",
+    "Łódź": "Lodzkie",
+    "Wroclaw": "Dolny Slask",
+    "Wrocław": "Dolny Slask",
+    "Poznan": "Wielkopolska",
+    "Poznań": "Wielkopolska",
+    "Gdansk": "Pomorze",
+    "Gdańsk": "Pomorze",
+    "Szczecin": "Zachodniopomorskie",
+    "Bydgoszcz": "Kujawy",
+    "Lublin": "Lubelskie",
+    "Katowice": "Slask",
+    "Bialystok": "Podlaskie",
+    "Białystok": "Podlaskie",
+    "Gdynia": "Pomorze",
+    "Czestochowa": "Slask",
+    "Częstochowa": "Slask",
+    "Radom": "Mazowsze",
+    "Sosnowiec": "Slask",
+    "Torun": "Kujawy",
+    "Toruń": "Kujawy",
+    "Kielce": "Swietokrzyskie",
+    "Gliwice": "Slask",
+    "Zabrze": "Slask",
+    "Bytom": "Slask",
+    "Olsztyn": "Warmia-Mazury",
+    "Rzeszow": "Podkarpacie",
+    "Rzeszów": "Podkarpacie",
+    # --- United States ---
+    "New York": "Northeast",
+    "New York City": "Northeast",
+    "Los Angeles": "Southern California",
+    "Chicago": "Midwest",
+    "San Francisco": "Northern California",
+    "Houston": "Texas",
+    # --- Canada ---
+    "Toronto": "Ontario",
+    "Montreal": "Quebec",
+    "Montréal": "Quebec",
+    "Vancouver": "British Columbia",
+    "Ottawa": "Ontario",
+    "Calgary": "Alberta",
+    # --- United Kingdom ---
+    "London": "Greater London",
+    "Manchester": "North West England",
+    "Birmingham": "West Midlands",
+    "Glasgow": "Scotland",
+    "Edinburgh": "Scotland",
+    # --- Ireland ---
+    "Dublin": "Leinster",
+    "Cork": "Munster",
+    "Galway": "Connacht",
+    "Limerick": "Munster",
+    # --- Australia ---
+    "Sydney": "New South Wales",
+    "Melbourne": "Victoria",
+    "Brisbane": "Queensland",
+    "Perth": "Western Australia",
+    "Adelaide": "South Australia",
+    # --- New Zealand ---
+    "Auckland": "Auckland",
+    "Wellington": "Wellington",
+    "Christchurch": "Canterbury",
+    # --- Singapore ---
+    "Singapore": "Singapore",
+    # --- Japan ---
+    "Tokyo": "Kanto",
+    "東京": "Kanto",
+    "Osaka": "Kansai",
+    "大阪": "Kansai",
+    "Kyoto": "Kansai",
+    "京都": "Kansai",
+    "Yokohama": "Kanto",
+    "横浜": "Kanto",
+    "Nagoya": "Chubu",
+    "名古屋": "Chubu",
+    # --- South Korea ---
+    "Seoul": "Seoul Capital Area",
+    "서울": "Seoul Capital Area",
+    "Busan": "Southeast Korea",
+    "부산": "Southeast Korea",
+    "Incheon": "Seoul Capital Area",
+    "인천": "Seoul Capital Area",
+    "Daegu": "Southeast Korea",
+    "대구": "Southeast Korea",
+    "Daejeon": "Central Korea",
+    "대전": "Central Korea",
+    # --- Germany ---
+    "Berlin": "Brandenburg",
+    "Hamburg": "Hamburg",
+    "Munich": "Bavaria",
+    "München": "Bavaria",
+    "Cologne": "North Rhine-Westphalia",
+    "Köln": "North Rhine-Westphalia",
+    "Frankfurt": "Hesse",
+    "Stuttgart": "Baden-Württemberg",
+    "Düsseldorf": "North Rhine-Westphalia",
+    "Leipzig": "Saxony",
+    "Dresden": "Saxony",
+    "Dortmund": "North Rhine-Westphalia",
+    "Essen": "North Rhine-Westphalia",
+    "Bremen": "Bremen",
+    "Hanover": "Lower Saxony",
+    "Hannover": "Lower Saxony",
+    # --- Czech Republic ---
+    "Prague": "Bohemia",
+    "Praha": "Bohemia",
+    "Brno": "Moravia",
+    "Ostrava": "Moravia-Silesia",
+    "Plzen": "Bohemia",
+    "Plzeň": "Bohemia",
+    # --- Austria ---
+    "Vienna": "Vienna",
+    "Wien": "Vienna",
+    "Graz": "Styria",
+    "Linz": "Upper Austria",
+    "Salzburg": "Salzburg",
+    "Innsbruck": "Tyrol",
+    # --- Hungary ---
+    "Budapest": "Central Hungary",
+    "Debrecen": "Northern Great Plain",
+    "Miskolc": "Northern Hungary",
+    "Pecs": "Southern Transdanubia",
+    "Pécs": "Southern Transdanubia",
+    "Gyor": "Western Transdanubia",
+    "Győr": "Western Transdanubia",
+    # --- Slovakia ---
+    "Bratislava": "Western Slovakia",
+    "Kosice": "Eastern Slovakia",
+    "Košice": "Eastern Slovakia",
+    "Prešov": "Eastern Slovakia",
+    "Presov": "Eastern Slovakia",
+    # --- Belgium ---
+    "Brussels": "Brabant",
+    "Bruxelles": "Brabant",
+    "Antwerp": "Flanders",
+    "Antwerpen": "Flanders",
+    "Ghent": "Flanders",
+    "Gent": "Flanders",
+    "Liege": "Wallonia",
+    "Liège": "Wallonia",
+    # --- Netherlands ---
+    "Amsterdam": "North Holland",
+    "Rotterdam": "South Holland",
+    "The Hague": "South Holland",
+    "Den Haag": "South Holland",
+    "Utrecht": "Utrecht",
+    "Eindhoven": "North Brabant",
+    # --- France ---
+    "Paris": "Île-de-France",
+    "Lyon": "Auvergne-Rhône-Alpes",
+    "Marseille": "Provence",
+    "Toulouse": "Occitanie",
+    "Lille": "Hauts-de-France",
+    "Bordeaux": "Nouvelle-Aquitaine",
+    "Nice": "Provence-Alpes-Côte d'Azur",
+    "Nantes": "Pays de la Loire",
+    "Strasbourg": "Grand Est",
+    "Montpellier": "Occitanie",
+    # --- Italy ---
+    "Rome": "Lazio",
+    "Roma": "Lazio",
+    "Milan": "Lombardy",
+    "Milano": "Lombardy",
+    "Naples": "Campania",
+    "Napoli": "Campania",
+    "Turin": "Piedmont",
+    "Torino": "Piedmont",
+    "Florence": "Tuscany",
+    "Firenze": "Tuscany",
+    "Bologna": "Emilia-Romagna",
+    "Genoa": "Liguria",
+    "Genova": "Liguria",
+    "Venice": "Veneto",
+    "Venezia": "Veneto",
+    "Palermo": "Sicily",
+    # --- Spain ---
+    "Madrid": "Community of Madrid",
+    "Barcelona": "Catalonia",
+    "Valencia": "Valencian Community",
+    "Seville": "Andalusia",
+    "Sevilla": "Andalusia",
+    "Bilbao": "Basque Country",
+    "Zaragoza": "Aragon",
+    "Malaga": "Andalusia",
+    "Málaga": "Andalusia",
+    # --- Portugal ---
+    "Lisbon": "Greater Lisbon",
+    "Lisboa": "Greater Lisbon",
+    "Porto": "Norte",
+    "Braga": "Norte",
+    "Coimbra": "Centro",
+    # --- Sweden ---
+    "Stockholm": "Stockholm County",
+    "Gothenburg": "Västra Götaland",
+    "Göteborg": "Västra Götaland",
+    "Malmö": "Skåne",
+    "Uppsala": "Uppsala County",
+    "Linköping": "Östergötland",
+    # --- Norway ---
+    "Oslo": "Oslo",
+    "Bergen": "Vestland",
+    "Trondheim": "Trøndelag",
+    "Stavanger": "Rogaland",
+    # --- Denmark ---
+    "Copenhagen": "Zealand",
+    "København": "Zealand",
+    "Aarhus": "Central Denmark",
+    "Odense": "Southern Denmark",
+    "Aalborg": "North Denmark",
+    # --- Finland ---
+    "Helsinki": "Uusimaa",
+    "Tampere": "Pirkanmaa",
+    "Turku": "Southwest Finland",
+    "Oulu": "North Ostrobothnia",
+    # --- Romania ---
+    "Bucharest": "Muntenia",
+    "București": "Muntenia",
+    "Cluj-Napoca": "Transylvania",
+    "Timisoara": "Banat",
+    "Timișoara": "Banat",
+    "Iasi": "Moldavia",
+    "Iași": "Moldavia",
+    # --- Croatia ---
+    "Zagreb": "Zagreb County",
+    "Split": "Split-Dalmatia",
+    "Rijeka": "Primorje-Gorski Kotar",
+    "Osijek": "Slavonia",
+    # --- Bulgaria ---
+    "Sofia": "Sofia Province",
+    "Plovdiv": "Plovdiv Province",
+    "Varna": "Varna Province",
+    "Burgas": "Burgas Province",
+    # --- Serbia ---
+    "Belgrade": "Belgrade",
+    "Beograd": "Belgrade",
+    "Novi Sad": "Vojvodina",
+    "Niš": "Southern and Eastern Serbia",
+    "Nis": "Southern and Eastern Serbia",
+    # --- Greece ---
+    "Athens": "Attica",
+    "Athina": "Attica",
+    "Thessaloniki": "Central Macedonia",
+    "Patras": "Western Greece",
+    "Heraklion": "Crete",
+    # --- Turkey ---
+    "Istanbul": "Marmara",
+    "Ankara": "Central Anatolia",
+    "Izmir": "Aegean",
+    "İzmir": "Aegean",
+    "Bursa": "Marmara",
+    "Antalya": "Mediterranean",
+    # --- Russia ---
+    "Moscow": "Moscow Oblast",
+    "Moskva": "Moscow Oblast",
+    "Saint Petersburg": "Leningrad Oblast",
+    "Sankt-Peterburg": "Leningrad Oblast",
+    "Novosibirsk": "Novosibirsk Oblast",
+    "Yekaterinburg": "Sverdlovsk Oblast",
+    "Kazan": "Tatarstan",
+    # --- Ukraine ---
+    "Kyiv": "Kyiv Oblast",
+    "Kiev": "Kyiv Oblast",
+    "Kharkiv": "Kharkiv Oblast",
+    "Odessa": "Odessa Oblast",
+    "Dnipro": "Dnipropetrovsk Oblast",
+    "Lviv": "Lviv Oblast",
+    # --- Lithuania ---
+    "Vilnius": "Aukštaitija",
+    "Kaunas": "Aukštaitija",
+    "Klaipeda": "Samogitia",
+    "Klaipėda": "Samogitia",
+    # --- Latvia ---
+    "Riga": "Vidzeme",
+    "Daugavpils": "Latgale",
+    "Jelgava": "Zemgale",
+    # --- Estonia ---
+    "Tallinn": "Harju",
+    "Tartu": "Tartu",
+    "Narva": "Ida-Viru",
+    # --- Belarus ---
+    "Minsk": "Minsk Region",
+    "Gomel": "Gomel Region",
+    "Mogilev": "Mogilev Region",
+    "Vitebsk": "Vitebsk Region",
+    "Grodno": "Grodno Region",
+}
+
+
+def get_region(city_name: str, fallback: str = "") -> str:
+    """Return region name for a city, or fallback if not mapped.
+
+    Case-sensitive lookup against the REGIONS dictionary.
+
+    Args:
+        city_name: City name to look up (case-sensitive, matches GeoNames output).
+        fallback: Value to return if city not found. Defaults to city_name itself.
+
+    Returns:
+        Region name string.
+    """
+    return REGIONS.get(city_name, fallback or city_name)

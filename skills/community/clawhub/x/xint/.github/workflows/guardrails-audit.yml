@@ -1,0 +1,20 @@
+name: Guardrails Audit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Audit xint guardrails drift
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: 0xNyk
+          REPOS: xint
+          BRANCH: main
+        run: ./scripts/audit-guardrails.sh

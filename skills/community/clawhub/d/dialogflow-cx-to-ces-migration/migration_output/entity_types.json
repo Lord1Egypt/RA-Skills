@@ -1,0 +1,230 @@
+[
+  {
+    "name": "period",
+    "kind": "KIND_MAP",
+    "auto_expansion": "AUTO_EXPANSION_MODE_UNSPECIFIED",
+    "entities": [
+      {
+        "value": "quarterly",
+        "synonyms": [
+          "3",
+          "3 months",
+          "90 days",
+          "every three months",
+          "once a quarter",
+          "periodic",
+          "quarter year",
+          "quarterly",
+          "Quarterly",
+          "three-month period"
+        ]
+      },
+      {
+        "value": "Yearly",
+        "synonyms": [
+          "1 year",
+          "12 months",
+          "12-month",
+          "365 days",
+          "annual",
+          "annually",
+          "every year",
+          "per year",
+          "yearlong",
+          "Yearly"
+        ]
+      },
+      {
+        "value": "Monthly",
+        "synonyms": [
+          "1 month",
+          "30 days",
+          "each month",
+          "every month",
+          "Monthly",
+          "monthly basis",
+          "monthly subscription",
+          "per month",
+          "recurring monthly"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "car_no",
+    "kind": "KIND_REGEXP",
+    "auto_expansion": "AUTO_EXPANSION_MODE_UNSPECIFIED",
+    "entities": [
+      {
+        "value": "^[A-Z]{2}\\d{2}[A-Z]{0,2}\\d{4}$",
+        "synonyms": [
+          "^[A-Z]{2}\\d{2}[A-Z]{0,2}\\d{4}$"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pin_code",
+    "kind": "KIND_REGEXP",
+    "auto_expansion": "AUTO_EXPANSION_MODE_UNSPECIFIED",
+    "entities": [
+      {
+        "value": "[0-9]{6}",
+        "synonyms": [
+          "[0-9]{6}"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "fuel_type",
+    "kind": "KIND_MAP",
+    "auto_expansion": "AUTO_EXPANSION_MODE_UNSPECIFIED",
+    "entities": [
+      {
+        "value": "EV",
+        "synonyms": [
+          "all-electric",
+          "battery electric",
+          "BEV",
+          "electric",
+          "Electric",
+          "electric-powered",
+          "EV",
+          "zero-emission"
+        ]
+      },
+      {
+        "value": "CNG",
+        "synonyms": [
+          "Alternative fuel",
+          "cng",
+          "Cng",
+          "CNG",
+          "Compressed natural gas",
+          "Methane",
+          "Natural gas vehicle fuel",
+          "NGV fuel"
+        ]
+      },
+      {
+        "value": "Petrol",
+        "synonyms": [
+          "petrol",
+          "Petrol",
+          "premium",
+          "regular",
+          "unleaded"
+        ]
+      },
+      {
+        "value": "Diesel",
+        "synonyms": [
+          "automotive diesel",
+          "compression-ignition fuel",
+          "Diesel",
+          "diesel fuel",
+          "fuel oil",
+          "gasoil",
+          "heavy oil",
+          "diesel"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "model",
+    "kind": "KIND_MAP",
+    "auto_expansion": "AUTO_EXPANSION_MODE_UNSPECIFIED",
+    "entities": [
+      {
+        "value": "Tata Safari",
+        "synonyms": [
+          "safari",
+          "Tata Safari",
+          "Tata Safari Diesel",
+          "Tata Safari Petrol",
+          "Tata Safari SUV",
+          "Safari"
+        ]
+      },
+      {
+        "value": "Tata Harrier",
+        "synonyms": [
+          "harrier",
+          "Harrier",
+          "Tata Harrier",
+          "Tata Harrier Diesel",
+          "Tata Harrier Petrol",
+          "Tata Harrier SUV"
+        ]
+      },
+      {
+        "value": "Tata Nexon",
+        "synonyms": [
+          " Nexon",
+          "nexon",
+          "Tata Nexon",
+          "Tata Nexon Diesel",
+          "Tata Nexon EV",
+          "Tata Nexon Petrol"
+        ]
+      },
+      {
+        "value": "Tata Curvv",
+        "synonyms": [
+          "curvv",
+          "Curvv",
+          "Tata Curvv",
+          "Tata Curvv Concept",
+          "Tata Curvv Coupe",
+          "Tata Curvv EV"
+        ]
+      },
+      {
+        "value": "Tata Punch",
+        "synonyms": [
+          "punch",
+          "Punch",
+          "Tata Punch",
+          "Tata Punch Adventure Edition",
+          "Tata Punch iCNG",
+          "Tata Punch Pure"
+        ]
+      },
+      {
+        "value": "Tata Tigor",
+        "synonyms": [
+          "Tata Tigor",
+          "Tata Tigor EV",
+          "Tata Tigor iCNG",
+          "Tata Tigor XZ+",
+          "tigor",
+          "Tigor"
+        ]
+      },
+      {
+        "value": "Tata Tiago",
+        "synonyms": [
+          "Tata Tiago",
+          "Tata Tiago iCNG",
+          "Tata Tiago NRG",
+          "Tata Tiago XZ+",
+          "tiago",
+          "Tiago"
+        ]
+      },
+      {
+        "value": "Tata Altroz",
+        "synonyms": [
+          "altroz",
+          "Altroz",
+          "Tata Altroz",
+          "Tata Altroz DCA",
+          "Tata Altroz iTurbo",
+          "Tata Altroz Turbo"
+        ]
+      }
+    ]
+  }
+]

@@ -1,35 +1,146 @@
 ---
-name: "design-doc-generator"
-description: "根据前后端项目代码 + 前端页面，生成标准模块设计文档（Word .docx）。激活时机：(1) 用户要求整理/生成某个模块的设计文档，(2) 用户要求输出功能设计、表结构、流程说明等技术文档，(3) 用户提到"设计文档"、"模块文档"、"技术文档"。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/design-doc-generator"
-sourceUrl: "https://clawhub.ai/skills/design-doc-generator"
+name: design-doc-generator
+description: 根据前后端项目代码 + 前端页面，生成标准模块设计文档（Word .docx）。激活时机：(1) 用户要求整理/生成某个模块的设计文档，(2) 用户要求输出功能设计、表结构、流程说明等技术文档，(3) 用户提到"设计文档"、"模块文档"、"技术文档"。
 ---
 
-# design-doc-generator
+# 模块设计文档生成规范
 
-> 根据前后端项目代码 + 前端页面，生成标准模块设计文档（Word .docx）。激活时机：(1) 用户要求整理/生成某个模块的设计文档，(2) 用户要求输出功能设计、表结构、流程说明等技术文档，(3) 用户提到"设计文档"、"模块文档"、"技术文档"。
+## 启动流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/design-doc-generator`
-- **Source URL:** [https://clawhub.ai/skills/design-doc-generator](https://clawhub.ai/skills/design-doc-generator)
+### 信息收集
+1. **已提供前后端代码路径 + 前端地址** → 直接开始
+2. **只提供了部分信息**：
+   - 缺前端代码路径 → 询问前端项目根目录
+   - 缺后端代码路径 → 询问后端项目根目录
+   - 缺前端地址 → 读完代码后询问
+3. **都没提供** → 先询问前后端代码路径，读完代码后再询问前端地址
 
-## Overview
+### 登录处理
+访问前端页面时若需要登录：询问租户（如有）、用户名、密码，获取后登录再继续。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/design-doc-generator
+## 第一步：深度阅读前端代码
+
+目标目录：`<前端项目>/src/views/<模块路径>/`
+
+逐一阅读每个模块的：
+- **列表页** `index.vue`：提取搜索字段、表格列、操作按钮（新增/编辑/删除/导出/提交审核等）、分页逻辑
+- **表单页** `XxxForm.vue`：提取所有表单字段（字段名、类型、是否必填、校验规则）、子表结构、多标签页
+- **详情页** `detail.vue`：提取展示字段、子表展示
+- **API 文件** `src/api/<模块>.ts`：提取所有接口路径、请求参数、响应结构
+
+重点理解：
+- 字段的中文标签（label）→ 用于表结构"说明"列
+- 必填校验（required）→ 用于表结构"是否必填"列
+- 下拉选项值（options）→ 用于表结构"备注"列（枚举值说明）
+- 子表组件 → 对应数据库子表
+
+---
+
+## 第二步：深度阅读后端代码
+
+目标目录：`<后端项目>/<模块目录>/`
+
+逐一阅读：
+- **DO/Entity** `XxxDO.java`：提取所有字段（字段名、类型、注解、注释）→ 核心表结构来源
+- **建表 SQL**（如有）：直接提取字段定义、约束、索引、注释
+- **Controller** `XxxController.java`：提取所有接口路径、HTTP方法、参数
+- **Service** `XxxService.java` / `XxxServiceImpl.java`：理解业务逻辑、状态流转、关联操作
+- **BPM Listener** `XxxBpmStatusListener.java`（如有）：理解审批流程、状态变更逻辑
+- **VO/DTO**（如有）：补充前端展示字段与后端字段的映射关系
+
+重点理解：
+- 主表与子表的关联关系（外键字段）
+- 状态字段的枚举值含义
+- 审批流程的触发条件和状态变更
+- 必填约束（NOT NULL）
+
+---
+
+## 第三步：访问前端页面截图
+
+使用 agent-browser 逐一访问每个功能页面，截图保存到 `screenshots/` 目录：
+
+| 截图内容 | 命名规范 |
+|---------|---------|
+| 登录页 | `00-login-page.png` |
+| 模块列表页 | `NN-<模块>-list.png` |
+| 新增/编辑表单 | `NN-<模块>-form.png` |
+| 表单多标签页（资质/服务等） | `NN-<模块>-form-<tab>.png` |
+| 详情页 | `NN-<模块>-detail.png` |
+| 详情页子标签 | `NN-<模块>-detail-<tab>.png` |
+
+每个模块至少截：列表页 + 表单页 + 详情页。
+
+---
+
+## 第四步：整理设计素材
+
+在输出目录创建 `notes/design_notes.md`，按模块整理：
+- 模块功能描述（一段话）
+- 业务流程步骤（文字列表，参考 Service/Listener 逻辑）
+- 页面字段清单（来自前端代码）
+- 表结构（来自 DO + SQL，7列格式）
+- 实现类路径清单
+
+---
+
+## 第五步：生成 Word 设计文档
+
+使用 Python `python-docx` 生成，参考脚本：`scripts/build_design_doc.py`
+报告格式详见：`references/doc-format.md`
+
+**文档结构**：
 ```
+封面（系统名 + 模块名 + 生成时间，居中）
+目录（Word TOC 域，1-3级，右键更新域）
+1. 模块简介        ← Heading 1
+   模块范围、前端路由、后端接口前缀、代码位置
+2. 功能模块详细设计  ← Heading 1
+   2.x 子模块名     ← Heading 2
+       2.x.1 功能描述与业务流程  ← Heading 3
+           功能说明段落
+           流程步骤列表（• 步骤1 → 步骤2 → ...）
+       2.x.2 页面截图           ← Heading 3
+           列表页截图 + 图注
+           表单页截图 + 图注（多标签页逐一截图）
+           详情页截图 + 图注
+       2.x.3 数据表结构         ← Heading 3
+           主表（7列表格）
+           子表1（7列表格）
+           子表2（7列表格）...
+       2.x.4 实现类             ← Heading 3
+           前端文件路径列表
+           后端文件路径列表
+3. 总结说明        ← Heading 1
+```
+
+**表结构7列格式**（必须严格遵守）：
+| 字段名 | 说明 | 类型 | 是否必填 | 默认值 | 约束 | 备注 |
+- 字段名：数据库字段名（snake_case）
+- 说明：中文含义（来自前端label或后端注释）
+- 类型：数据库类型（varchar(N)/bigint/tinyint/text/datetime/date/decimal等）
+- 是否必填：是/否
+- 默认值：NULL / 具体值 / AUTO_INCREMENT
+- 约束：PRIMARY KEY / UNIQUE / INDEX / 空
+- 备注：枚举值说明（如 0草稿1审核中2已通过）、关联说明、特殊说明
+
+---
+
+## 执行原则
+
+1. **先读代码，再看页面** — 代码是权威，页面是验证
+2. **表结构必须完整** — 主表+所有子表，一个不漏
+3. **流程描述要具体** — 不能只写"支持新增编辑删除"，要写清楚每一步的触发条件和结果
+4. **截图要对应** — 每张截图放在对应模块的"页面截图"小节下，图注清晰
+5. **字段说明要准确** — 枚举值、关联关系、特殊约束都要在备注列说明清楚
+6. **输出目录结构**：
+   ```
+   workspace/outputs/<模块>-design-doc-<日期>/
+   ├── notes/design_notes.md
+   ├── screenshots/
+   │   ├── 00-login-page.png
+   │   └── ...
+   └── <系统名>-<模块名>-设计文档-<日期>.docx
+   ```

@@ -1,35 +1,69 @@
 ---
-name: "飞书知识库查询"
-description: "飞书知识库查询工具。当用户需要查询已有知识、确认操作步骤、查找历史记录或参考之前的工作时使用。包括：(1) 搜索知识库文档 (2) 获取具体文档内容 (3) 引用知识库中的操作指南。触发场景：用户说"查一下知识库"、"参考之前"、"知识库里有"、"确认一下之前的操作"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-knowledge-query"
-sourceUrl: "https://clawhub.ai/skills/feishu-knowledge-query"
+name: feishu-knowledge-query
+description: 飞书知识库查询工具。当用户需要查询已有知识、确认操作步骤、查找历史记录或参考之前的工作时使用。包括：(1) 搜索知识库文档 (2) 获取具体文档内容 (3) 引用知识库中的操作指南。触发场景：用户说"查一下知识库"、"参考之前"、"知识库里有"、"确认一下之前的操作"
 ---
 
-# 飞书知识库查询
+# 飞书知识库查询 Skill
 
-> 飞书知识库查询工具。当用户需要查询已有知识、确认操作步骤、查找历史记录或参考之前的工作时使用。包括：(1) 搜索知识库文档 (2) 获取具体文档内容 (3) 引用知识库中的操作指南。触发场景：用户说"查一下知识库"、"参考之前"、"知识库里有"、"确认一下之前的操作
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-knowledge-query`
-- **Source URL:** [https://clawhub.ai/skills/feishu-knowledge-query](https://clawhub.ai/skills/feishu-knowledge-query)
+本技能用于在执行任务时查询飞书知识库中的已有知识，确保操作一致性和知识复用。
 
-## Overview
+## 知识库信息
 
+- **知识库名称**: openclaw
+- **知识库ID**: 7612944775368608721
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-knowledge-query
-```
+## 已收录内容
+
+### 🛠️ 工具安装
+- Agent Reach 安装使用指南
+- wechat-article-reader 使用指南
+
+### 🚀 进阶技巧
+- 自我迭代方法
+
+### 🛡️ 安全配置
+- 安全最佳实践
+- IronClaw - OpenClaw 安全替代
+
+### 📖 完整教程
+- OpenClaw飞书官方插件安装指南
+- OpenClaw+Obsidian内容工厂搭建教程
+- Anthropic官方Skill创建完全指南
+
+## 使用方法
+
+### 1. 搜索知识库
+
+使用 `feishu_search_doc_wiki` 搜索相关内容：
+- query: 搜索关键词
+- 可按文档类型筛选
+
+### 2. 获取文档内容
+
+使用 `feishu_fetch_doc` 获取具体文档：
+- doc_id: 从搜索结果获取
+
+### 3. 结合知识执行任务
+
+当用户提出需求时：
+1. 先搜索知识库相关主题
+2. 获取具体操作指南
+3. 按照知识库中的最佳实践执行
+4. 如需创建新Skill，参考 Skill 创建指南
+
+## 典型场景
+
+| 用户需求 | 操作步骤 |
+|---------|---------|
+| "怎么做内容工厂" | 搜索"内容工厂" → 获取Obsidian搭建教程 |
+| "如何安装Agent Reach" | 搜索"Agent Reach" → 获取安装指南 |
+| "创建Skill的步骤" | 搜索"Skill创建" → 获取官方指南 |
+| "OpenClaw安全吗" | 搜索"IronClaw" → 获取安全替代方案 |
+
+## 注意事项
+
+- 知识库中的内容经过整理，是权威参考
+- 执行前先查询，避免重复造轮子
+- 如发现知识库内容过时，及时更新

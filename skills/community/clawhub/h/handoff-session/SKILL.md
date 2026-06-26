@@ -1,35 +1,207 @@
 ---
-name: "A cross-session handoff protocol for Claude Code and other AI agents.  handoff is not a summarization tool. It's a protocol for freezing your work context, packaging it, and resuming execution — in any session, any agent, any device."
-description: "跨会话交接协议。用户只要表现出“现在先停一下，下一会话接着干”“继续刚才那一轮”“上下文太长要迁移工作现场”等意图，就必须使用此 skill。 `handoff out` 生成一个最小可执行的 handoff 包；`handoff in <id|latest>` 先读取 handoff 包并给出恢复预览，获得用户..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/handoff-session"
-sourceUrl: "https://clawhub.ai/skills/handoff-session"
+name: handoff-v2
+description: >
+  跨会话交接协议。用户只要表现出“现在先停一下，下一会话接着干”“继续刚才那一轮”“上下文太长要迁移工作现场”等意图，就必须使用此 skill。
+  `handoff out` 生成一个最小可执行的 handoff 包；`handoff in <id|latest>` 先读取 handoff 包并给出恢复预览，获得用户同意后才继续执行；`handoff list` 查看最近的交接记录。
+  整个协议只允许一个载体：handoff.md，不生成额外 prompt，不要求用户重新讲背景。
 ---
 
-# A cross-session handoff protocol for Claude Code and other AI agents.  handoff is not a summarization tool. It's a protocol for freezing your work context, packaging it, and resuming execution — in any session, any agent, any device.
+# Handoff Protocol V2
 
-> 跨会话交接协议。用户只要表现出“现在先停一下，下一会话接着干”“继续刚才那一轮”“上下文太长要迁移工作现场”等意图，就必须使用此 skill。 `handoff out` 生成一个最小可执行的 handoff 包；`handoff in <id|latest>` 先读取 handoff 包并给出恢复预览，获得用户...
+`handoff` 不是总结工具，而是一套“冻结现场 → 封装状态 → 恢复执行”的交接协议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/handoff-session`
-- **Source URL:** [https://clawhub.ai/skills/handoff-session](https://clawhub.ai/skills/handoff-session)
+目标只有一个：**让下一会话不追问背景，直接继续干活。**
 
-## Overview
+## 一、协议对象
 
+每一次 handoff，都是一个 **handoff 包**：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/handoff-session
+```text
+~/.agents/handoff_context/<handoff_id>/handoff.md
 ```
+
+这个包只承担一件事：保存“继续执行”所需的最小状态。
+
+协议约束：
+
+- 唯一载体是 `handoff.md`
+- 不额外生成 prompt
+- 不转储聊天记录
+- 不追求完整，只追求可恢复
+- 写完后必须能让下一会话马上开工
+
+## 二、三种动作
+
+### `handoff out`
+
+把当前工作现场冻结成一个 handoff 包。
+
+触发信号：
+
+- `handoff out`
+- 帮我做会话交接
+- 上下文太长了 / 该换会话了
+- 我稍后继续 / 先把现场存一下
+- 把当前状态交给下个会话
+
+### `handoff in <id|latest>`
+
+读取一个 handoff 包，先恢复理解，再在用户同意后继续执行。
+
+触发信号：
+
+- `handoff in <id>`
+- `handoff in latest`
+- 继续刚才那个
+- 继续上一个会话
+- 从交接文档恢复
+- 接着上次任务做
+
+解析规则：
+
+- 给了 `<id>` → 读取该包
+- 写了 `latest` → 读取最近一次包
+- 没给 ID，但语义明显是“继续最近一次” → 按 `latest` 处理
+
+### `handoff list`
+
+列出最近 handoff 包，帮助用户找回某次交接。
+
+触发信号：
+
+- `handoff list`
+- 列出最近的 handoff
+- 看看最近交接
+
+## 三、八槽交接包
+
+每个 `handoff.md` 必须包含 8 个槽位，缺一不可：
+
+1. **当前任务**：现在到底在做什么
+2. **当前状态**：做到哪一步了，卡在哪里
+3. **已完成**：已经落地的结果
+4. **关键决策**：已经定下来的结论
+5. **关键约束**：不能破坏的限制
+6. **关键文件**：下一会话要先看的文件
+7. **下一步**：可以立刻执行的动作
+8. **待确认**：唯一阻塞项；没有就写 `无`
+
+填写标准：
+
+- `关键文件` 用 `path:line` + 一句话说明
+- `下一步` 必须是动作，不允许写“继续推进”“再看看”
+- `关键决策` 只写结论，不写讨论史
+- `待确认` 只写阻塞项，不能塞杂项
+- 没有内容时写 `未记录` 或 `无`，不能留空
+
+## 四、`handoff out` 协议
+
+按顺序执行：
+
+1. 用一句话确定主题
+2. 调用 `scripts/handoff_file.sh create "{主题}"`
+3. 填满 8 个槽位
+4. 做一次压缩，把不能帮助恢复执行的内容全部删掉
+5. 做一次恢复检查：假设自己已经失忆，只靠这份文档能否继续干活
+6. 向用户输出固定结果块
+
+压缩原则：
+
+- 保留事实，删除过程
+- 保留结论，删除讨论
+- 保留动作，删除叙述
+- 保留阻塞，删除情绪
+- 如果一行不能帮助下一会话动手，就删掉
+
+长度规则：
+
+- 目标长度：100 行内
+- 建议上限：120 行内
+- 复杂任务的例外上限：150 行内
+- 超过 120 行时，先主动压缩一次
+- 超过 150 行时，视为 handoff 失焦，需要重写
+
+固定输出块必须包含：
+
+```text
+Handoff saved.
+
+  ID:   {handoff_id}
+  File: ~/.agents/handoff_context/{handoff_id}/handoff.md
+
+  Next session → handoff in {handoff_id}
+```
+
+可以在前后补一句解释，但这三行的结构不能变。
+
+## 五、`handoff in` 协议
+
+按顺序执行：
+
+1. 解析目标 handoff 包
+2. 读取 `handoff.md`
+3. 用 3-5 条 bullets 复述恢复结果
+4. 明确告诉用户准备执行的下一步
+5. 先询问用户是否同意继续执行
+6. 只有在用户同意后，才打开 `关键文件` 并执行 `下一步`
+7. 若用户不同意，则停在恢复预览阶段，等待新的指令
+8. 若 `待确认` 阻塞执行，也只提出 1 个最关键问题
+
+恢复 bullets 至少覆盖：
+
+- 当前任务
+- 当前状态
+- 关键文件
+- 下一步
+- 是否存在阻塞
+
+建议询问句式：
+
+- `我已恢复现场，下一步是：{下一步}。是否继续执行？`
+
+禁止行为：
+
+- 不重新收集背景
+- 不让用户复述上一会话
+- 不把 handoff 当成总结报告来讲
+- 不在用户同意前就直接执行下一步
+- 不在 `handoff in` 时顺手再生成新的 handoff
+
+## 六、`handoff list` 协议
+
+执行：`scripts/handoff_file.sh list`
+
+输出格式：
+
+```text
+<handoff_id>  <topic>
+```
+
+一行一个，默认最近 5 条。
+
+## 七、恢复成功的判定标准
+
+一份合格 handoff，必须同时满足：
+
+- 新会话知道现在要做什么
+- 新会话知道已经做到哪一步
+- 新会话知道哪些限制不能碰
+- 新会话知道先看哪些文件
+- 新会话知道下一步立刻做什么
+- 新会话不需要用户重新讲故事
+- 用户同意后可以无缝继续执行
+
+只要有一项做不到，这份 handoff 就不合格，需要重写。
+
+## 八、异常处理
+
+- 找不到指定 ID：明确报错，并提示用户先执行 `handoff list`
+- 没有任何 handoff：明确说明还没有交接记录
+- `关键文件` 有部分不存在：指出缺失项，但继续基于剩余信息给出恢复预览
+- 文档里某槽位缺失：先用已有槽位恢复；只有在真的阻塞时才问 1 个问题
+
+## 九、资源
+
+- 脚本：`scripts/handoff_file.sh`
+- 模板：`references/templates.md`
+- 说明：`使用文档.md`

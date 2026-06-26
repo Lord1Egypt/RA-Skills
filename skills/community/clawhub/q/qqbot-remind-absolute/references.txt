@@ -1,0 +1,1 @@
+Use qqbot-remind-absolute as the preferred reminder path for QQ reminders. It creates real OpenClaw cron jobs and resolves reminder times to absolute datetimes in Asia/Shanghai before scheduling. Prefer this over tool-only reminder flows when delivery reliability matters.

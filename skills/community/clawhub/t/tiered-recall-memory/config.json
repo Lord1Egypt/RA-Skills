@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-25T10:00:00",
+  "description": "分层回忆系统配置",
+  "defaultLayers": ["L0", "L1", "L2", "L3"],
+  "recentDays": 2,
+  "maxTokensPerLayer": {
+    "L0": 4000,
+    "L1": 10000,
+    "L2": 5000,
+    "L3": 1000
+  },
+  "deepRecallBudget": 50000,
+  "autoLoadOnNewSession": true,
+  "topicKeywords": {
+    "游戏开发": ["游戏", "版本", "Bug", "修复", "功能", "v2.", "关卡", "合成"],
+    "搞钱特战队": ["搞钱", "赚钱", "变现", "商业模式", "定价", "收入", "产品"],
+    "OpenClaw": ["OpenClaw", "安装", "部署", "Gateway", "配置"],
+    "团队协作": ["团队", "子代理", "spawn", "会议", "投票"],
+    "记忆系统": ["记忆", "MEMORY", "日志", "反思", "回忆"],
+    "健康提醒": ["健康", "喝水", "运动", "护肤", "HealthGuardian"],
+    "软著申请": ["软著", "著作权", "版权", "源代码"],
+    "抖音小游戏": ["抖音", "小游戏", "tt.", "SDK"]
+  },
+  "projectPatterns": [
+    {
+      "name": "合成天选打工人",
+      "pattern": "(合成天选打工人|天选打工人|游戏|merge-worker)",
+      "path": "games/merge-worker/",
+      "keyFiles": ["index.html"]
+    },
+    {
+      "name": "搞钱特战队",
+      "pattern": "(搞钱特战队|赚钱|变现|商业模式)",
+      "path": "products/AI-Guide/"
+    },
+    {
+      "name": "OpenClaw变现",
+      "pattern": "(OpenClaw变现|安装服务|咨询服务)",
+      "path": "products/"
+    }
+  ]
+}

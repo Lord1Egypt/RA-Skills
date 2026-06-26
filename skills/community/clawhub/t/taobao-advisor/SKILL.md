@@ -1,35 +1,96 @@
 ---
-name: "Taobao Advisor"
+name: taobao-advisor
+slug: taobao-advisor
+version: 1.0.0
 description: "投流方案生成&全周期运营指导 - 仅生成方案/建议/报告，不执行任何投流操作，仅读 API 权限"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/taobao-advisor"
-sourceUrl: "https://clawhub.ai/skills/taobao-advisor"
+changelog: "v1.0.0 初始版本：测款方案、优化建议、复盘报告、全周期指导"
+metadata: {"clawdbot":{"emoji":"📊","requires":{"bins":["python3"],"python_deps":["requests","pandas","openpyxl"]},"os":["win32"]}}
 ---
 
-# Taobao Advisor
+# 投流方案生成&全周期运营指导 Skill
 
-> 投流方案生成&全周期运营指导 - 仅生成方案/建议/报告，不执行任何投流操作，仅读 API 权限
+## ⚠️ 重要安全声明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/taobao-advisor`
-- **Source URL:** [https://clawhub.ai/skills/taobao-advisor](https://clawhub.ai/skills/taobao-advisor)
+**本技能严格遵守以下安全铁律：**
 
-## Overview
+1. **不执行投流操作** - 仅生成方案、优化建议、复盘报告，所有资金操作由人工执行
+2. **仅读 API 权限** - 仅申请投流数据读取权限，不申请任何写权限
+3. **男装非标品特性** - 100% 贴合男装类目，符合万相台无界、直通车最新规则
+4. **人工确认执行** - 所有建议必须人工审核后手动执行
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 功能概述
+
+### 核心功能模块（仅生成建议）
+
+| 模块 | 功能 | 输出物 | 人工确认 |
+|------|------|--------|----------|
+| **新品测款方案** | 7 天测款方案生成 | 《新品测款投流方案》 | ✅ 必须 |
+| **优化建议生成** | 每 2 小时数据监控 | 《投流调整审核表》 | ✅ 必须 |
+| **复盘报告生成** | 日/周/月复盘 | 投流日报/周报/月报 | ✅ 必须 |
+| **全周期运营指导** | 新品/成长/爆发/换季 | 《运营指导手册》 | ✅ 必须 |
+
+---
+
+## 使用命令
+
+### 1. 新品测款方案生成
+
 ```bash
-hermes skills install clawhub/taobao-advisor
+python scripts/advisor_main.py test-plan --款号 KZ20260326 --预算 5000 --周期 7
 ```
+
+### 2. 优化建议生成
+
+```bash
+python scripts/advisor_main.py optimize --计划 ID 12345 --时间范围 今日
+```
+
+### 3. 复盘报告生成
+
+```bash
+python scripts/advisor_main.py review --周期 日 --日期 2026-03-26
+```
+
+### 4. 全周期运营指导
+
+```bash
+python scripts/advisor_main.py lifecycle --款号 KZ20260326 --阶段 新品期
+```
+
+---
+
+## 输出物
+
+### 1. 《新品测款投流方案》（Excel）
+
+### 2. 《投流调整审核表》（Excel）
+
+### 3. 投流日报/周报/月报
+
+### 4. 《商品全周期运营指导手册》
+
+### 5. 《每日运营关键操作清单》
+
+---
+
+## 安全与合规声明
+
+**本技能不会：**
+- ❌ 执行任何投流计划创建/调整
+- ❌ 执行任何出价/预算修改
+- ❌ 执行任何计划启停操作
+- ❌ 申请任何写权限 API
+- ❌ 越权操作投流数据
+
+**本技能仅支持：**
+- ✅ 生成投流方案
+- ✅ 生成优化建议
+- ✅ 生成复盘报告
+- ✅ 生成运营指导
+- ✅ 读取投流数据（仅读）
+
+---
+
+*📊 投流方案生成 — 仅生成建议，人工执行，合规第一*

@@ -1,35 +1,92 @@
 ---
-name: "AI全链路内容创作工厂"
-description: "AI全链路内容创作工厂 — 从热点发现到多平台发布，一站式内容生产工作流"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-fullstack-content-factory"
-sourceUrl: "https://clawhub.ai/skills/ai-fullstack-content-factory"
+name: ai-fullstack-content-factory
+description: AI全链路内容创作工厂 — 从热点发现到多平台发布，一站式内容生产工作流
+category: AI|内容|自动化
+triggers: 写文章, 创作内容, 热点文章, 小红书文章, 公众号文章, 内容工厂
 ---
 
-# AI全链路内容创作工厂
+# AI全链路内容创作工厂 (AI Full-Stack Content Factory)
 
-> AI全链路内容创作工厂 — 从热点发现到多平台发布，一站式内容生产工作流
+一站式内容生产工作流，从热点发现到多平台发布。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-fullstack-content-factory`
-- **Source URL:** [https://clawhub.ai/skills/ai-fullstack-content-factory](https://clawhub.ai/skills/ai-fullstack-content-factory)
+## 功能概述
 
-## Overview
+本技能组合将多个单体技能串联成完整的AI内容生产流水线：
 
+1. **热点发现** → 使用 `Agent-Reach` 全网搜索 AI/科技领域最新热点
+2. **文章创作** → 使用 `公众号助手` 生成 3000-5000 字高质量公众号文章
+3. **知识卡片生成** → 使用 `card-renderer` 渲染 Mac Pro / 赛博朋克等风格封面
+4. **多平台发布** → 使用 `xiaohongshu-mcp` 发布到小红书
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-fullstack-content-factory
+## 编排的 Skill
+
+| 技能 | 用途 | 调用方式 |
+|------|------|----------|
+| `Agent-Reach` | 全网热点搜索（Twitter/Reddit/YouTube/微信公众号） | 自动 |
+| `公众号助手` | 生成公众号深度文章 + 封面图 | 自动 |
+| `card-renderer` | 渲染多风格知识卡片附图 | 自动 |
+| `nano-banana-pro` | AI生成封面/配图 | 自动 |
+| `xiaohongshu-mcp` | 小红书内容发布 | 自动 |
+
+## 工作流程
+
 ```
+[热点发现] Agent-Reach 全网搜索
+       ↓
+[选题决策] 用户确认 / 调整方向
+       ↓
+[文章创作] 公众号助手 生成深度文章
+       ↓
+[封面设计] nano-banana-pro 生成封面图
+       ↓
+[卡片渲染] card-renderer 渲染风格卡片（可选）
+       ↓
+[小红书] xiaohongshu-mcp 发布小红书版本
+```
+
+## 使用方法
+
+### 第一步：触发热点发现
+
+```
+/agent-reach 搜索 "AI 2026 最新进展" 或 "大模型最新动态"
+```
+
+或直接告诉助手：
+> "帮我搜索今天的 AI 热点，然后写一篇公众号文章"
+
+### 第二步：确认选题
+
+助手会展示搜索到的热点列表，用户选择或调整方向。
+
+### 第三步：自动执行流水线
+
+确认后，助手自动执行：
+1. 调用 Agent-Reach 抓取相关内容
+2. 调用 公众号助手 撰写完整文章
+3. 调用 nano-banana-pro 生成封面
+4. 调用 card-renderer 渲染风格卡片（可选）
+5. 询问是否发布小红书版本
+
+## 适用场景
+
+- 科技博主 / AI 爱好者产出内容
+- 公众号运营者快速追热点
+- 内容工作室规模化生产
+
+## 示例
+
+**用户输入：**
+> "帮我写一篇关于 GPT-5 最新进展的公众号文章，并生成配套小红书内容"
+
+**助手执行：**
+1. 调用 Agent-Reach 搜索 GPT-5 相关热点
+2. 使用 公众号助手 生成 3000+ 字深度文章
+3. 调用 nano-banana-pro 生成封面图
+4. 调用 xiaohongshu-mcp 调整格式发布小红书
+
+## 注意事项
+
+- 公众号封面图建议尺寸 900×383px
+- 小红书封面建议 3:4 竖版
+- 文章发布前请确认内容准确性

@@ -1,35 +1,42 @@
 ---
-name: "shopping-list-fashion"
+name: jpeng-shopping-list-fashion
 description: "Create shopping lists"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-shopping-list-fashion"
-sourceUrl: "https://clawhub.ai/skills/jpeng-shopping-list-fashion"
+version: "1.0.0"
+author: "jpeng"
+tags: ["shopping", "list", "fashion"]
 ---
 
-# shopping-list-fashion
+# Fashion Shopping List
 
-> Create shopping lists
+Create shopping lists
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-shopping-list-fashion`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-shopping-list-fashion](https://clawhub.ai/skills/jpeng-shopping-list-fashion)
+## When to Use
 
-## Overview
+- User needs shopping related functionality
+- Automating list tasks
+- Fashion operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-shopping-list-fashion
+python3 scripts/shopping_list_fashion.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export LIST_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

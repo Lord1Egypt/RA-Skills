@@ -1,0 +1,5 @@
+interface:
+  display_name: "OpenClaw GEO Content Ops"
+  short_description: "Operate GEO content assets, targets, artifacts, receipts, and analytics"
+  brand_color: "#0F766E"
+  default_prompt: "Use $openclaw-geo-content-ops to design or audit our GEO content operations pipeline, including sources, tasks, publish targets, LLM-friendly artifacts, receipts, and analytics."

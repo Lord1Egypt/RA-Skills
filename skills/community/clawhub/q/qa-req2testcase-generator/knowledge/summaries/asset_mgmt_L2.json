@@ -1,0 +1,69 @@
+{
+  "domain": "资管域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "asset_mgmt.md",
+  "includes_L1": true,
+  "entity_states": {
+    "申赎申请": ["申请已提交(Submitted)", "已受理(Accepted)", "份额确认中(Confirming)", "已确认(Confirmed)", "已拒绝(Rejected)", "已撤销(Cancelled)", "部分确认(PartialConfirmed)"],
+    "净值计算": ["待计算(PendingCalc)", "数据采集中(DataCollecting)", "计算中(Calculating)", "待复核(PendingReview)", "已发布(Published)", "计算异常(CalcError)", "已修正(Corrected)"],
+    "资管产品": ["产品设计(Designing)", "内部审批(InternalApproval)", "监管报备(RegulatoryFiling)", "募集期(Fundraising)", "成立(Established)", "开放运作(OpenRunning)", "封闭运作(ClosedRunning)", "清算中(Liquidating)", "已清算(Liquidated)", "募集失败(FundraisingFailed)"]
+  },
+  "state_transitions": [
+    {"entity": "申赎申请", "from": "申请已提交", "trigger": "系统校验通过", "to": "已受理"},
+    {"entity": "申赎申请", "from": "申请已提交", "trigger": "校验不通过(限额/黑名单)", "to": "已拒绝"},
+    {"entity": "申赎申请", "from": "已受理", "trigger": "发送至TA系统确认", "to": "份额确认中"},
+    {"entity": "申赎申请", "from": "已受理", "trigger": "用户在截止时间前撤销", "to": "已撤销"},
+    {"entity": "申赎申请", "from": "份额确认中", "trigger": "TA确认成功", "to": "已确认"},
+    {"entity": "申赎申请", "from": "份额确认中", "trigger": "大额赎回触发比例确认", "to": "部分确认"},
+    {"entity": "净值计算", "from": "待计算", "trigger": "定时任务触发(16:00)", "to": "数据采集中"},
+    {"entity": "净值计算", "from": "计算中", "trigger": "计算完成", "to": "待复核"},
+    {"entity": "净值计算", "from": "待复核", "trigger": "基金会计确认", "to": "已发布"},
+    {"entity": "净值计算", "from": "计算中", "trigger": "估值偏差超阈值", "to": "计算异常"},
+    {"entity": "资管产品", "from": "募集期", "trigger": "募集达标(金额/人数)", "to": "成立"},
+    {"entity": "资管产品", "from": "募集期", "trigger": "募集期满未达标", "to": "募集失败"},
+    {"entity": "资管产品", "from": "开放运作", "trigger": "到期/触发清算条件", "to": "清算中"}
+  ],
+  "allowed_operations": {
+    "申赎-申请已提交/已受理": ["撤销(未超过当日15:00截止时间)"],
+    "申赎-已确认": ["仅查询(终态不可撤销)"],
+    "净值-待复核": ["基金会计复核确认或驳回"],
+    "净值-已发布": ["发现错误走修正流程(不可直接修改)"],
+    "产品-开放运作": ["接受申购赎回", "分红", "信息披露"],
+    "产品-封闭运作": ["仅运作管理(不接受申赎)"]
+  },
+  "forbidden_operations": {
+    "申赎-封闭期": ["提交申购/赎回(封闭期不接受)"],
+    "申赎-低于最低限额": ["申购(每只基金有最低申购金额)"],
+    "净值-跳过复核": ["直接发布(必须经基金会计复核)"],
+    "净值-直接修改": ["修改已发布净值(必须走修正流程)"],
+    "产品-封闭运作": ["接受赎回(定开产品除外)"],
+    "产品-超规模": ["超过合同约定上限继续募集"]
+  },
+  "role_permission_matrix": [
+    {"role": "投资者", "permissions": ["申购", "赎回", "查询份额/净值", "选择分红方式"]},
+    {"role": "基金经理", "permissions": ["投资决策", "调仓操作", "投资组合管理"]},
+    {"role": "基金会计", "permissions": ["净值计算", "净值复核", "费用计提"]},
+    {"role": "产品经理", "permissions": ["产品设计", "募集管理", "信息披露"]},
+    {"role": "风控人员", "permissions": ["投资比例监控", "杠杆率监控", "风控指标配置"]},
+    {"role": "合规人员", "permissions": ["产品审批", "信息披露审核", "适当性管理"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "TA系统(登记过户)", "interaction": "份额确认、份额登记、分红派息"},
+    {"system": "行情系统", "interaction": "持仓标的收盘价、估值数据"},
+    {"system": "托管行", "interaction": "资金划拨、净值复核、投资监督"},
+    {"system": "销售渠道(银行/三方)", "interaction": "申赎指令传递、份额查询"},
+    {"system": "信息披露平台", "interaction": "定期报告发布、净值公告"},
+    {"system": "监管报送系统", "interaction": "产品备案、定期报送"}
+  ],
+  "core_calculation_rules": [
+    {"name": "单位净值", "formula": "NAV = (总资产 - 总负债) / 总份额，保留4位小数四舍五入"},
+    {"name": "申购份额", "formula": "确认份额 = 申购金额 / (T日净值 × (1+申购费率))"},
+    {"name": "赎回金额", "formula": "赎回金额 = 赎回份额 × T日净值 × (1-赎回费率)"},
+    {"name": "日管理费", "formula": "日管理费 = 前一日NAV × 年管理费率 / 当年天数(365或366)"},
+    {"name": "日托管费", "formula": "日托管费 = 前一日NAV × 年托管费率 / 当年天数"},
+    {"name": "除息日净值", "formula": "除息日净值 = 前一日净值 - 每份分红金额"},
+    {"name": "红利再投资份额", "formula": "再投资份额 = 分红金额 / 除息日净值"},
+    {"name": "杠杆率", "formula": "杠杆率 = 总资产 / 净资产"}
+  ]
+}

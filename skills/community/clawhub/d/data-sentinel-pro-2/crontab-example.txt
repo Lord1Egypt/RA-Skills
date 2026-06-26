@@ -1,0 +1,23 @@
+# ═══════════════════════════════════════════════════════════════
+# Data Sentinel Pro - 数据监控 Cron 配置
+# 说明：将下方配置添加到现有 crontab 中
+# 编辑方式：crontab -e
+# ═══════════════════════════════════════════════════════════════
+
+# 监控示例 1：商品价格监控（每 30 分钟检查一次）
+*/30 * * * * cd /home/admin/.openclaw/workspace/skills/data-sentinel-pro && python3 scripts/monitor.py "https://item.jd.com/123456.html" price >> /home/admin/.openclaw/workspace/skills/data-sentinel-pro/logs/monitor.log 2>&1
+
+# 监控示例 2：网页内容监控（每小时检查一次）
+0 * * * * cd /home/admin/.openclaw/workspace/skills/data-sentinel-pro && python3 scripts/monitor.py "https://news.ycombinator.com" content >> /home/admin/.openclaw/workspace/skills/data-sentinel-pro/logs/monitor.log 2>&1
+
+# 监控示例 3：竞对页面监控（每 15 分钟检查一次，高频）
+*/15 9-18 * * 1-5 cd /home/admin/.openclaw/workspace/skills/data-sentinel-pro && python3 scripts/monitor.py "https://competitor.com/product" content >> /home/admin/.openclaw/workspace/skills/data-sentinel-pro/logs/monitor.log 2>&1
+
+# ═══════════════════════════════════════════════════════════════
+# 使用说明：
+# 1. 复制上方需要的行
+# 2. 替换 URL 为你的目标网址
+# 3. 选择监控规则：price（价格）或 content（内容）
+# 4. 运行 crontab -e 粘贴进去
+# 5. 保存退出即可生效
+# ═══════════════════════════════════════════════════════════════

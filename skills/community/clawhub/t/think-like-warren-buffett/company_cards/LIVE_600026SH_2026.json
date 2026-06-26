@@ -1,0 +1,76 @@
+{
+  "analysis_scope": "live",
+  "ticker": "600026.SH",
+  "company": "COSCO SHIPPING Energy Transportation Co., Ltd.",
+  "analysis_year": 2026,
+  "data_source": "COSCO Shipping Energy 2024 annual report summary (published 2025-03-27), 2025 Q3 report (published 2025-10-31), and market valuation / TTM metrics available through 2026-03-24",
+  "analyzed_date": "2026-03-24",
+
+  "hard_gates": {
+    "g1_roe_roic": {
+      "value": 0.0875,
+      "metric_used": "ROE",
+      "years_averaged": "2022-2024",
+      "pass": false
+    },
+    "g2_fcf_to_ni": {
+      "value": 0.42,
+      "fcf": 1369.0,
+      "net_income": 3303.0,
+      "pass": false
+    },
+    "g3_leverage": {
+      "metric_used": "Net Debt/EBITDA",
+      "value": 3.71,
+      "pass": true
+    },
+    "g4_revenue_trend": {
+      "description": "Revenue rose from RMB 18.66bn in 2022 to RMB 22.73bn in 2023 and RMB 23.24bn in 2024. 2025 first nine months softened versus 2024, but this looks cyclical, not structural.",
+      "structural_decline": false,
+      "pass": true
+    },
+    "g5_gross_margin_trend": {
+      "description": "Gross margin moved from 18.55% in 2022 to 29.51% in 2023 and 27.24% in 2024. It is off the peak, but not a 2+ year consecutive decline.",
+      "declining_2plus_years": false,
+      "pass": true
+    },
+    "g6_earnings_yield": {
+      "value": 0.0221,
+      "net_income_m": 3303.0,
+      "ev_m": 149360.0,
+      "exemption": null,
+      "pass": false
+    },
+    "g7_moat": {
+      "verdict": "SPLIT",
+      "moat_type": "cost_advantage",
+      "description": "Scale, state-backed relationships, domestic coastal share, and LNG long-term charters provide some stability. But most earnings power still comes from a tanker shipping business whose rates are cyclical, capital intensity is high, and pricing power is limited. I cannot underwrite a decade-long moat comparable to Buffett's preferred compounders.",
+      "pass": false
+    }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    {
+      "ticker": "601872.SH",
+      "company": "China Merchants Energy Shipping Co., Ltd.",
+      "year": 2026,
+      "gates_failed": ["g1_roe_roic", "g2_fcf_to_ni", "g6_earnings_yield", "g7_moat"],
+      "conclusion": "PASS — same tanker economics: ROIC is sub-12%, cash conversion is weak, earnings yield is only about 3.1%, and the moat is still rate-cycle dependent."
+    },
+    {
+      "ticker": "601975.SH",
+      "company": "Nanjing Tanker Corporation",
+      "year": 2026,
+      "gates_failed": ["g1_roe_roic", "g7_moat"],
+      "conclusion": "PASS — balance sheet is cleaner, but ROE is still below 12% and the business remains an asset-heavy commodity shipper without a Buffett-grade moat."
+    }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "N/A — live analysis, not a Berkshire historical backtest case",
+  "actual_result": "Open",
+  "verdict": "N/A",
+  "key_insight": "This is a better cyclical shipper than many peers, but it is still a cyclical shipper; today's returns on capital, cash conversion, and valuation do not justify a Buffett-style hold."
+}

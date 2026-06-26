@@ -1,35 +1,56 @@
 ---
-name: "Ontology To Expertpack"
-description: "Convert an Ontology skill knowledge graph into a structured ExpertPack. Use when migrating from the Ontology skill's entity/relation graph (memory/ontology/g..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ontology-to-expertpack"
-sourceUrl: "https://clawhub.ai/skills/ontology-to-expertpack"
+name: ontology-to-expertpack
+description: "Convert an Ontology skill knowledge graph into a structured ExpertPack. Use when migrating from the Ontology skill's entity/relation graph (memory/ontology/graph.jsonl) to ExpertPack's richer format with multi-layer retrieval, EK measurement, and portable deployment. Output is Obsidian-compatible — includes YAML frontmatter on all content files and can be opened as an Obsidian vault. Triggers on: 'ontology to expertpack', 'convert ontology', 'export ontology', 'migrate ontology', 'ontology graph to pack', 'upgrade ontology'. Requires the Ontology skill's graph.jsonl and optionally schema.yaml."
+metadata:
+  openclaw:
+    homepage: https://expertpack.ai
+    requires:
+      bins:
+        - python3
 ---
 
-# Ontology To Expertpack
+# Ontology to ExpertPack Converter
 
-> Convert an Ontology skill knowledge graph into a structured ExpertPack. Use when migrating from the Ontology skill's entity/relation graph (memory/ontology/g...
+Converts an OpenClaw Ontology skill's append-only knowledge graph into a fully compliant ExpertPack with multi-layer retrieval support.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ontology-to-expertpack`
-- **Source URL:** [https://clawhub.ai/skills/ontology-to-expertpack](https://clawhub.ai/skills/ontology-to-expertpack)
+## How to Use
 
-## Overview
+Run the converter script:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ontology-to-expertpack
+python3 {skill_dir}/scripts/convert.py \
+  --graph memory/ontology/graph.jsonl \
+  --output ~/expertpacks/my-knowledge-pack
 ```
+
+**Optional flags:**
+
+- `--schema memory/ontology/schema.yaml` — uses type definitions and relation rules
+- `--name "My Knowledge Pack"` — custom pack name (defaults to "Ontology Export")
+- `--type auto|person|product|process|composite` — override auto-detected pack type
+
+## What It Produces
+
+A complete ExpertPack at the output directory:
+
+- `manifest.yaml` — pack identity, type, context tiers, EK metadata placeholder
+- `overview.md` — summary of graph contents, entity/relation counts, navigation guide
+- Content organized by mapped category (relationships/, workflows/, facts/, concepts/, operational/, governance/)
+- `_index.md` in each content directory
+- `relations.yaml` — typed entity relation graph (schema 2.3 compliant)
+- `glossary.md` — entity types and terms
+- Lead summaries and `##` section headers for optimal chunking
+
+Filenames use kebab-case. Content files kept under 3KB.
+
+## Post-Conversion Steps
+
+1. `cd` into the generated ExpertPack directory
+2. Verify content files are 400–800 tokens each (Schema 2.5 — no external chunker needed for correctly-sized files)
+3. Run EK evaluator to measure esoteric knowledge ratio
+4. Review and refine `manifest.yaml` context tiers
+5. Commit to git and share via expertpack.ai or ClawHub
+
+See [expertpack.ai](https://expertpack.ai) and the `expertpack` ClawHub skill for full pack maintenance workflows.
+
+Keep the output pack git-friendly and ready for iterative deepening.

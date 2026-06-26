@@ -1,0 +1,4 @@
+interface:
+  display_name: "Composition Score Expert"
+  short_description: "Coach Chinese essay writing with structure, creativity, and warm rigor."
+  default_prompt: "Use $zuowen-score-expert to coach a student on Chinese composition without ghostwriting, using warm Feynman-style guidance."

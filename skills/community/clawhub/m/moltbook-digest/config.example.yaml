@@ -1,0 +1,155 @@
+version: 1
+
+analysis:
+  # Required: replace this placeholder in config.yaml with the user's preferred output language,
+  # for example `zh-CN` or `en`.
+  default_language: "__USER_PREFERRED_LANGUAGE__"
+
+  # Used to generate {analysis_question} when CLI does not provide --analysis-question.
+  # Available placeholder: {queries}
+  question_template: |
+    Systematically browse the accessible posts relevant to {queries}. Ignore ads, spam, duplicates, and low-information content. Extract and consolidate the most meaningful material by identifying useful facts, insights, experiences, questions, methods, trends, and disagreements.
+    Then produce a clear, deduplicated, and structured analysis focused on {queries}. Separate evidence from interpretation, preserve only a small number of representative original expressions when necessary, and highlight key takeaways, recurring themes, actionable insights, open questions, and unresolved tensions.
+
+  report_structure: |
+    ## 1. Corpus summary
+    ### 1.1 Related Work (per-post)
+    ### 1.2 Common patterns
+    ### 1.3 Distinctive differences
+    ## 2. First-principles framing
+    ## 3. Deep interpretation
+    ## 4. Confidence and blind spots
+    ## 5. Prioritized actions and follow-up questions
+    ## References
+
+  contract_template: |
+    Research question: {analysis_question}
+    User preferred language: {analysis_language}
+    Hard requirement: You MUST write the final report in {analysis_language}.
+
+    You MUST follow this workflow and output contract.
+
+    1) Summarize the corpus first:
+      - For each important post, extract its central claim or contribution.
+      - Identify the most important common patterns across posts.
+      - Identify the most meaningful differences, disagreements, or edge cases.
+      - Organize per-post summaries as Related Work, not as a shallow list.
+      - For each post, explain:
+        - problem or discussion context
+        - main idea, method, or viewpoint
+        - practical value or contribution
+        - limitations, missing context, or possible bias
+      - Explain how each post relates to the user’s question and how it connects to other posts.
+      - Use short post reference tags such as `[P1]`, `[P2]`, `[P3]` to organize each per-post block.
+      - Do not use placeholder headings such as Post A, Post B, or Work A.
+      - Write naturally, with clear flow, simple wording, and varied sentence length.
+      - Avoid generic AI-style phrasing, redundant wording, and em dash punctuation.
+      - Prefer short paragraphs over bullet dumps in analytical sections.
+
+    2) Apply first-principles reasoning:
+      - Restate the underlying user problem in terms of goals, constraints, tradeoffs, and decision criteria.
+      - Do NOT assume the user is fully clear about the goal or the best path.
+      - If the intent is ambiguous, explicitly state the main assumptions and plausible alternative interpretations.
+
+    3) Perform deep interpretation:
+      - Clearly separate evidence, inference, and uncertainty.
+      - Explain mechanisms and causal logic, not just surface patterns.
+      - Highlight tensions, contradictions, blind spots, and confidence limits.
+      - Do not overclaim beyond what the corpus supports.
+
+    4) End with action-oriented output:
+      - Provide prioritized recommendations.
+      - Provide concrete next steps where possible.
+      - End with the most useful follow-up questions for the user.
+
+    HARD OUTPUT FORMAT CONTRACT (must be followed exactly):
+    - Use these exact H2 section titles in this order:
+      1) `## 1. Corpus summary`
+      2) `## 2. First-principles framing`
+      3) `## 3. Deep interpretation`
+      4) `## 4. Confidence and blind spots`
+      5) `## 5. Prioritized actions and follow-up questions`
+    - Under section 1, include exactly these H3 subsections:
+      - `### 1.1 Related Work (per-post)`
+      - `### 1.2 Common patterns`
+      - `### 1.3 Distinctive differences`
+    - In `### 1.1 Related Work (per-post)`, organize each discussed post as a short prose block using its compact tag:
+      - Example opening: `**[P1] Post title.**`
+    - Do not use level-4 headings such as `####` for per-post entries.
+    - Do not cite raw post UUIDs or long URLs in running prose.
+    - Use short post reference tags such as `[P1]`, `[P2]`, `[P3]` in the body when referring to posts.
+    - Put clickable post links only in the final `## References` section.
+    - End the report with `## References`, mapping each post tag to a clickable markdown link.
+    - Each related-work item must include:
+      - problem/context
+      - approach/viewpoint
+      - contribution/value
+      - limitations/bias
+      - relation to user question and to other works
+    - Each H2 section must contain at least 2 paragraphs. Do not output only bullet points.
+    - Recommendations in section 5 must be a numbered list with explicit priority labels:
+      - `1. [P1] ...`
+      - `2. [P2] ...`
+    - Follow-up questions in section 5 must be a separate numbered list.
+    - Cite concrete evidence throughout using compact inline markers such as:
+      - `[P1]`, `[P2]`, `[P2 comment by author]`
+    - If evidence is insufficient for any claim, explicitly say so and reduce confidence instead of guessing.
+    - Do not output any meta text such as “I will follow the format” or “self-check”.
+
+    QUALITY GATE BEFORE FINAL OUTPUT:
+    - Verify all required H2/H3 headings exist.
+    - Verify each Related Work entry clearly uses a compact post tag such as `[P1]`.
+    - Verify no level-4 headings are used for per-post entries.
+    - Verify compact reference markers appear in every H2 section.
+    - Verify assumptions/alternatives are explicit in section 2.
+    - Verify contradictions/tradeoffs appear in section 3.
+    - Verify uncertainty/blind spots appear in section 4.
+    - Verify prioritized actions and follow-up questions both appear in section 5.
+    - Verify the final `## References` section exists and maps post tags to clickable links.
+
+    Reference structure:
+    {report_structure}
+
+# options: agent | openai | claude | gemini | siliconflow | minimax | volcengine
+active_provider: "agent"
+
+providers:
+  agent:
+    enabled: true
+
+  openai:
+    enabled: false
+    api_key: "<OPENAI_API_KEY>"
+    model: "openai/gpt-4.1-mini"
+
+  claude:
+    enabled: false
+    api_key: "<ANTHROPIC_API_KEY>"
+    model: "anthropic/claude-3-7-sonnet-latest"
+
+  gemini:
+    enabled: false
+    api_key: "<GEMINI_API_KEY>"
+    model: "gemini/gemini-2.0-flash"
+
+  siliconflow:
+    enabled: false
+    api_key: "<SILICONFLOW_API_KEY>"
+    model: "openai/Qwen/Qwen2.5-72B-Instruct"
+
+  minimax:
+    enabled: false
+    api_key: "<MINIMAX_API_KEY>"
+    model: "openai/MiniMax-Text-01"
+
+  volcengine:
+    enabled: false
+    api_key: "<ARK_API_KEY>"
+    model: "openai/doubao-1.5-pro-32k-250115"
+
+# Optional advanced overrides (add only when needed):
+# providers:
+#   openai:
+#     api_key_env: "OPENAI_API_KEY"
+#     api_base: "https://api.openai.com/v1"
+#     system_prompt: "Custom system prompt"

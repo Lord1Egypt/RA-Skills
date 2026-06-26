@@ -1,35 +1,23 @@
 ---
-name: "githuman"
-description: "Indexed by skills.sh from mcollina/githuman-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mcollina"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mcollina/githuman-skills/githuman"
-sourceUrl: "https://skills.sh/mcollina/githuman-skills/githuman"
+name: githuman
+description: Review AI-generated code changes before committing using GitHuman. Use when reviewing code changes, creating code reviews, checking what the AI agent wrote, preparing to commit, or when user mentions "review", "GitHuman", or "before commit".
+metadata:
+  tags: code-review, git, ai-workflow, commit, staging
 ---
 
-# githuman
+## When to use
 
-> Indexed by skills.sh from mcollina/githuman-skills
+Use this skill whenever you are working with GitHuman to review AI-generated code changes before committing them. GitHuman provides a web interface for visual code review with inline comments, suggestions, and todo management.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mcollina
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mcollina/githuman-skills/githuman`
-- **Source URL:** [https://skills.sh/mcollina/githuman-skills/githuman](https://skills.sh/mcollina/githuman-skills/githuman)
+## How to use
 
-## Overview
+Read individual rule files for detailed explanations and examples:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mcollina/githuman-skills/githuman
-```
+- [rules/installation.md](rules/installation.md) - Installing and running GitHuman
+- [rules/review-workflow.md](rules/review-workflow.md) - Complete workflow for reviewing AI-generated changes
+- [rules/staging.md](rules/staging.md) - Staging files for review directly in GitHuman
+- [rules/cli-commands.md](rules/cli-commands.md) - All CLI commands with examples
+- [rules/todos.md](rules/todos.md) - Managing todos and follow-up tasks
+- [rules/comments.md](rules/comments.md) - Adding inline comments and suggestions to code
+- [rules/export.md](rules/export.md) - Exporting reviews for documentation
+- [rules/tips.md](rules/tips.md) - Best practices and productivity tips

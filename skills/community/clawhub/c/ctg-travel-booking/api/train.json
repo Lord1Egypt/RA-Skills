@@ -1,0 +1,423 @@
+[
+  {
+    "method": "train.search",
+    "description": "车次列表",
+    "category": "RESOURCE",
+    "subCategory": "TRAIN",
+    "action": "SEARCH",
+    "parameters": {
+      "type": "object",
+      "description": "查询火车票请求参数",
+      "properties": {
+        "fromStation": {
+          "type": "string",
+          "description": "出发站,城市",
+          "example": "北京"
+        },
+        "fromCityType": {
+          "type": "integer",
+          "description": "出发地类型,example:1-火车站；2-城市",
+          "enum": [1, 2]
+        },
+        "toStation": {
+          "type": "string",
+          "description": "到达站,城市",
+          "example": "上海"
+        },
+        "toCityType": {
+          "type": "integer",
+          "description": "目的地类型,example:1-火车站；2-城市",
+          "enum": [1, 2]
+        },
+        "ticketDate": {
+          "type": "string",
+          "description": "乘车日期，格式：yyyy-MM-dd",
+          "example": "2025-09-11"
+        },
+        "trainNo": {
+          "type": "string",
+          "description": "车次号",
+          "example": "G123"
+        },
+        "sortType": {
+          "type": "integer",
+          "description": "排序方式 0-时间排序 1-耗时排序 2-价格低-高",
+          "enum": [0, 1, 2],
+          "default": 0
+        },
+        "onlyHasTicket": {
+          "type": "integer",
+          "description": "仅看有票 1表示是 其他否"
+        },
+        "isQuietCoach": {
+          "type": "integer",
+          "description": "是否有静音车厢 1 表示是 其他否"
+        },
+        "isFxh": {
+          "type": "integer",
+          "description": "是否是复兴号 1 表示是 其他否"
+        },
+        "isHigh": {
+          "type": "integer",
+          "description": "高铁动车 1 表示是 其他否"
+        },
+        "fromTimeRanges": {
+          "type": "array",
+          "description": "出发时间段",
+          "items": {
+            "$ref": "#/definitions/TimeRange"
+          }
+        },
+        "toTimeRanges": {
+          "type": "array",
+          "description": "到达时间段",
+          "items": {
+            "$ref": "#/definitions/TimeRange"
+          }
+        },
+        "depStations": {
+          "type": "array",
+          "description": "出发车站",
+          "items": {
+            "type": "string"
+          }
+        },
+        "arrStations": {
+          "type": "array",
+          "description": "到达车站",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seatNames": {
+          "type": "array",
+          "description": "座位类型",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trainTypes": {
+          "type": "array",
+          "description": "车型类型",
+          "items": {
+            "type": "string"
+          }
+        },
+        "entranceSource": {
+          "type": "integer",
+          "description": "入口 0-新旅行 1-疗休养",
+          "enum": [0, 1],
+          "default": 0
+        }
+      },
+      "required": ["fromStation", "fromCityType", "toStation", "toCityType", "ticketDate"]
+    },
+    "definitions": {
+      "TimeRange": {
+        "type": "object",
+        "description": "时间段",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "时间段开始时间，格式：HH:mm"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "时间段结束时间，格式：HH:mm"
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "train.detail",
+    "description": "车次详情",
+    "category": "RESOURCE",
+    "subCategory": "TRAIN",
+    "action": "DETAIL",
+    "parameters": {
+      "type": "object",
+      "description": "查询火车票详情请求参数",
+      "properties": {
+        "fromStation": {
+          "type": "string",
+          "description": "出发站"
+        },
+        "toStation": {
+          "type": "string",
+          "description": "到达站"
+        },
+        "ticketDate": {
+          "type": "string",
+          "description": "乘车日期，格式：yyyy-MM-dd"
+        },
+        "trainNo": {
+          "type": "string",
+          "description": "车次号"
+        },
+        "entranceSource": {
+          "type": "integer",
+          "description": "入口 0-新旅行 1-疗休养",
+          "enum": [0, 1],
+          "default": 0
+        }
+      },
+      "required": ["fromStation", "toStation", "ticketDate", "trainNo"]
+    }
+  },
+  {
+    "method": "getPassengerList",
+    "description": "获取乘客信息列表",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "LIST",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型 默认值2(火车票)",
+          "default": 2
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "method": "savePassenger",
+    "description": "保存乘客信息",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "SAVE",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "passengerName": {
+          "type": "string",
+          "description": "旅客姓名（中文）"
+        },
+        "pinyinName": {
+          "type": "string",
+          "description": "姓名拼音，格式为 LI SI（姓与名大写、空格分隔）"
+        },
+        "passengerType": {
+          "type": "integer",
+          "description": "旅客类型，0-成人"
+        },
+        "gender": {
+          "type": "integer",
+          "description": "性别，1-男 2-女"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "出生日期，格式 YYYY-MM-DD"
+        },
+        "identityType": {
+          "type": "string",
+          "description": "证件类型，ID-身份证"
+        },
+        "identityNo": {
+          "type": "string",
+          "description": "证件号码"
+        },
+        "nationality": {
+          "type": "string",
+          "description": "国籍二字码，如 CN"
+        },
+        "phoneCountryCode": {
+          "type": "string",
+          "description": "手机区号，如 +86"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "手机号码"
+        },
+        "status": {
+          "type": "integer",
+          "description": "状态，0-已删除 1-有效"
+        }
+      },
+      "required": ["passengerName", "identityNo", "phoneNumber"]
+    }
+  },
+  {
+    "method": "train.createOrder",
+    "description": "创建火车票订单",
+    "category": "ORDER",
+    "subCategory": "TRAIN",
+    "action": "BOOK",
+    "parameters": {
+      "type": "object",
+      "description": "创建火车票订单请求参数",
+      "properties": {
+        "orderItem": {
+          "type": "object",
+          "description": "订单项信息",
+          "properties": {
+            "resourceItemId": {
+              "type": "string",
+              "description": "资源项id"
+            },
+            "fromDate": {
+              "type": "string",
+              "description": "乘车日期"
+            },
+            "seatTypeName": {
+              "type": "string",
+              "description": "座位类型名称"
+            },
+            "adultSalePrice": {
+              "type": "number",
+              "description": "成人销售价"
+            },
+            "childSalePrice": {
+              "type": "number",
+              "description": "儿童销售价"
+            },
+            "hasSeat": {
+              "type": "boolean",
+              "description": "是否接收无座"
+            },
+            "passengers": {
+              "type": "array",
+              "description": "乘客信息列表",
+              "properties": {
+                "type": "object",
+                "description": "乘客信息",
+                "properties": {
+                  "passengerId": {
+                    "type": "string",
+                    "description": "乘客ID"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "乘客姓名"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "description": "证件类型",
+                    "default": "ID"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "description": "证件号码"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "description": "手机号码"
+                  },
+                  "passengerType": {
+                    "type": "number",
+                    "description": "乘客类型 0-成人 1-儿童 2-免费儿童"
+                  },
+                  "seatTypeName": {
+                    "type": "string",
+                    "description": "座位类型名称"
+                  },
+                  "parentId": {
+                    "type": "number",
+                    "description": "绑定成人ID (仅免费儿童有效)"
+                  }
+                },
+                "required": ["passengerId", "name", "idType", "idNumber", "passengerType", "seatTypeName"]
+              }
+            }
+          },
+          "required": ["resourceItemId", "fromDate", "seatTypeName", "adultSalePrice", "childSalePrice", "hasSeat", "passengers"]
+        }
+      },
+      "required": ["orderItem"]
+    }
+  },
+  {
+    "method": "train.orderStatus",
+    "description": "获取订单状态",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "STATUS",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "train.cancelOrder",
+    "description": "取消火车票订单（支付前）",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "CANCEL",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单ID"
+        },
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型，默认2（火车票）",
+          "default": 2
+        },
+        "subOrderType": {
+          "type": "string",
+          "description": "子订单类型，默认 DOMESTIC_TRAIN",
+          "default": "DOMESTIC_TRAIN"
+        },
+        "cancelReason": {
+          "type": "string",
+          "description": "取消原因"
+        },
+        "terminalCode": {
+          "type": "string",
+          "description": "终端类型，如 APP",
+          "default": "APP"
+        }
+      },
+      "required": [
+        "orderBaseId",
+        "orderType",
+        "subOrderType"
+      ]
+    }
+  },
+  {
+    "method": "orderHistory",
+    "description": "获取火车票订单历史列表",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "HISTORY",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string",
+          "description": "会员ID"
+        }
+      },
+      "required": ["memberId"]
+    }
+  },
+  {
+    "method": "orderDetail",
+    "description": "获取订单详情",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "QUERY",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        }
+      },
+      "required": ["orderBaseId"]
+    }
+  }
+]

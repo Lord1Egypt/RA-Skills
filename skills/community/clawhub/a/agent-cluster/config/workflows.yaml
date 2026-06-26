@@ -1,0 +1,125 @@
+# 工作流配置
+# Workflow Orchestration Configuration
+
+workflows:
+  # 库存-采购联动工作流
+  stock_replenishment:
+    name: "库存补货工作流"
+    description: "查询库存 → 判断是否低于安全水位 → 触发采购订单"
+    steps:
+      - agent: inventory_agent
+        action: query_stock
+        parallel: false
+      - agent: inventory_agent
+        action: calculate_safety_stock
+        parallel: false
+        condition: "stock_below_safety_threshold"
+      - agent: procurement_agent
+        action: supplier_lookup
+        parallel: false
+        condition: "needs_replenishment"
+      - agent: procurement_agent
+        action: place_order
+        parallel: false
+        condition: "supplier_confirmed"
+        requires_approval: true
+      - agent: finance_agent
+        action: audit_payment
+        parallel: false
+        condition: "order_placed"
+
+  # 物流-财务协同工作流
+  procurement_with_logistics:
+    name: "采购物流一体化工作流"
+    description: "并行查询物流和财务状态，综合决策"
+    steps:
+      - agent: procurement_agent
+        action: place_order
+        parallel: false
+      - parallel_group:
+          - agent: logistics_agent
+            action: plan_route
+          - agent: finance_agent
+            action: query_budget
+        parallel: true
+      - agent: orchestrator
+        action: aggregate_results
+        parallel: false
+        condition: "all_parallel_complete"
+
+  # 文档生成工作流
+  document_generation:
+    name: "工艺文档生成工作流"
+    description: "接收需求 → 查询PLM数据 → 生成文档"
+    steps:
+      - agent: orchestrator
+        action: understand_requirement
+        parallel: false
+      - parallel_group:
+          - agent: inventory_agent
+            action: query_stock
+          - agent: doc_agent
+            action: plm_lookup
+        parallel: true
+      - agent: doc_agent
+        action: generate_document
+        parallel: false
+
+  # 紧急采购工作流（高风险）
+  emergency_procurement:
+    name: "紧急采购工作流"
+    description: "高风险操作，需全程人工审批"
+    risk_level: "high"
+    steps:
+      - agent: inventory_agent
+        action: query_stock
+        parallel: false
+      - agent: procurement_agent
+        action: supplier_lookup
+        parallel: false
+      - agent: orchestrator
+        action: risk_assessment
+        parallel: false
+      - agent: finance_agent
+        action: budget_approval
+        parallel: false
+        requires_approval: true
+      - agent: logistics_agent
+        action: plan_route
+        parallel: false
+      - agent: orchestrator
+        action: final_human_review
+        parallel: false
+        requires_approval: true
+
+# 意图路由表
+intent_routing:
+  patterns:
+    - pattern: "(库存|库存量|还有多少|库存不足)"
+      agent: inventory_agent
+      confidence_threshold: 0.6
+    - pattern: "(物流|运费|发货|到货|运输|配送)"
+      agent: logistics_agent
+      confidence_threshold: 0.6
+    - pattern: "(采购|供应商|下单|订单|进货)"
+      agent: procurement_agent
+      confidence_threshold: 0.6
+    - pattern: "(预算|付款|报销|财务|发票|成本)"
+      agent: finance_agent
+      confidence_threshold: 0.6
+    - pattern: "(文档|报表|工艺|截图|填表|导出|PDF)"
+      agent: doc_agent
+      confidence_threshold: 0.6
+    - pattern: "(查询|看看|情况|状态|有没有)"
+      agent: inventory_agent
+      confidence_threshold: 0.5
+    - pattern: "(帮我|帮我做|执行|处理)"
+      agent: orchestrator
+      confidence_threshold: 0.4
+
+# 并行协作配置
+parallel_execution:
+  max_concurrent: 5
+  timeout_seconds: 120
+  partial_results_enabled: true
+  aggregation_strategy: "merge_and_deduplicate"

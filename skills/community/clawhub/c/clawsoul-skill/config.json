@@ -1,0 +1,29 @@
+{
+  "name": "ClawSoul Observer",
+  "version": "1.0.0",
+  "author": "OpenClaw Team",
+  "description": "赋予 AI 灵魂的观测者 - 通过 MBTI 性格系统为 Agent 赋予初始性格",
+  "trigger_commands": [
+    "/clawsoul awaken",
+    "/clawsoul status",
+    "/clawsoul inject",
+    "/clawsoul hook on",
+    "/clawsoul hook off"
+  ],
+  "permissions": [
+    "read_chat_history",
+    "modify_system_prompt",
+    "local_storage"
+  ],
+  "config": {
+    "frustration_threshold": 2,
+    "evolution_check_interval": 50,
+    "mbti_types": [
+      "INTJ", "INTP", "ENTJ", "ENTP",
+      "INFJ", "INFP", "ENFJ", "ENFP",
+      "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+      "ISTP", "ISFP", "ESTP", "ESFP"
+    ],
+    "hook_url": "https://clawsoul.neural-sync.center"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "run_time": "2026-04-06T13:18:00+08:00",
+  "run_number": "v6_forced_1318",
+  "trigger_source": "nasdaq_trigger_sentiment.json forced=true",
+  "feishu_message_id": "om_x100b52007ab314b8b4a2905abe86390",
+  "chat_id": "oc_7cc9126cec23d9879a7978ff23659823",
+  "source": "X keywords Trump Iran deal + Iran ceasefire + WatcherGuru + KobeissiLetter",
+  "web_search_status": "API_TOKEN_INVALID",
+  "posts_collected": 13,
+  "analysis_score_count": 13,
+  "analysis_high_signal_count": 10,
+  "report": "sent to feishu",
+  "key_findings": [
+    "45-day ceasefire negotiations confirmed via Axios (multiple sources, 13:13-13:17 CST)",
+    "Simultaneous explosions in Tehran (Mehrabad Airport, 13:16 CST) - contradiction signal",
+    "Brent crude FALLS on ceasefire news (WatcherGuru, 11:18 CST)",
+    "WTI $114-115/barrel morning spike, CPI inflation risk if sustained (KobeissiLetter)",
+    "Stocks -0.7/-0.8%, Oil +3%, Gold -0.9% at open",
+    "BTC $69K, $100M shorts liquidated"
+  ]
+}

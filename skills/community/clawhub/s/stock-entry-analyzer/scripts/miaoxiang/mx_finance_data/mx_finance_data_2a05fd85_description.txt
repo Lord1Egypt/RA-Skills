@@ -1,0 +1,8 @@
+金融数据查询结果说明
+========================================
+查询内容: 09988.HK EMA 均线
+数据文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_2a05fd85.xlsx
+描述文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_2a05fd85_description.txt
+数据行数: 10
+表数量: 2
+Sheet 列表: 阿里巴巴-W(09988.HK)的5日MA简单移动平均、10日, 阿里巴巴(BABA.N)的5日MA简单移动平均、10日MA简单

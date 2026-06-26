@@ -1,0 +1,37 @@
+{
+  "slug": "decision-ledger",
+  "title": "决策台账整理器",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "从纪要、聊天或项目材料中提取决策、负责人、截止时间、前提假设与撤销条件。",
+  "inputHint": "会议纪要、聊天记录、文档摘录",
+  "sections": [
+    "已确认决策",
+    "待确认事项",
+    "负责人和截止日",
+    "前提假设",
+    "推翻条件",
+    "后续依赖"
+  ],
+  "useCases": [
+    "决策沉淀",
+    "审计留痕",
+    "项目复盘"
+  ],
+  "positiveExamples": [
+    "把本周项目会议记录整理成决策台账",
+    "从纪要中抽取负责人和截止日期"
+  ],
+  "negativeExamples": [
+    "不要用来编造不存在的决策",
+    "不要用来替代法律审计"
+  ],
+  "risk": "只整理显式信息，隐含判断会被标注为推断。",
+  "tags": [
+    "decision",
+    "meeting",
+    "governance",
+    "tracking"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "poster-precise-text",
+  "version": "1.0.0",
+  "description": "精准文字海报生成技能（两步法）：HTML精准文字 + AI插画，文字100%清晰可读，适用于中文海报、医疗科普、教育宣传等场景。",
+  "author": "hetu",
+  "license": "MIT-0",
+  "tags": ["chinese", "poster", "healthcare", "text-precision", "html", "infographic"]
+}

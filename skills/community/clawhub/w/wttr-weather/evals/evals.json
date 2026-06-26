@@ -1,0 +1,75 @@
+{
+  "skill_name": "wttr-weather",
+  "evals": [
+    {
+      "id": 1,
+      "name": "basic-location-query",
+      "prompt": "帮我查一下北京今天的天气",
+      "expected_output": "返回北京的当前天气信息，包括温度、天气状况、风速、湿度等，使用中文输出",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "multi-city-comparison",
+      "prompt": "我想比较北京、上海、广州三个城市的天气，用一行格式显示",
+      "expected_output": "使用 format=3 或类似格式，一行显示三个城市的天气信息",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "json-api-query",
+      "prompt": "我需要用 JSON 格式获取东京的天气数据，用于程序处理",
+      "expected_output": "使用 format=j1 返回完整的 JSON 格式天气数据，包含 current_condition 等字段",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "special-location",
+      "prompt": "查一下埃菲尔铁塔的天气",
+      "expected_output": "使用 ~ 前缀查询特殊地点，如 wttr.in/~Eiffel+Tower，返回位置信息和天气",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "moon-phase",
+      "prompt": "今天的月相是什么？",
+      "expected_output": "使用 wttr.in/Moon 或 format=%m 返回月相信息",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "tmux-integration",
+      "prompt": "我想在 tmux 状态栏显示天气，应该怎么配置？",
+      "expected_output": "提供 tmux.conf 配置示例，使用 format 参数和正确的转义",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "custom-format",
+      "prompt": "我只想看温度和湿度，用自定义格式输出",
+      "expected_output": "使用%-notation 自定义格式，如 format=%t+%h",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "png-download",
+      "prompt": "下载一张巴黎天气的 PNG 图片，要透明背景",
+      "expected_output": "使用.png 后缀和 t 参数（透明度），如 wttr.in/Paris_tqp.png",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "v2-detailed",
+      "prompt": "给我详细的天气预报，包括日出日落时间和逐小时数据",
+      "expected_output": "使用 v2.wttr.in 或 format=v2 返回数据丰富的详细预报",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "airport-weather",
+      "prompt": "查一下慕尼黑机场（MUC）的天气",
+      "expected_output": "使用机场代码查询，如 wttr.in/muc，返回机场天气信息",
+      "files": []
+    }
+  ]
+}

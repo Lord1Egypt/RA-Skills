@@ -1,0 +1,4 @@
+interface:
+  display_name: "Summary Time Keep"
+  short_description: "Write time, fetch page, keep both files"
+  default_prompt: "Use $summary_time_keep to write the current time into a.txt, fetch www.bytedance.com with web_fetch, summarize the returned content into b.txt in the current workspace directory, and keep both files."

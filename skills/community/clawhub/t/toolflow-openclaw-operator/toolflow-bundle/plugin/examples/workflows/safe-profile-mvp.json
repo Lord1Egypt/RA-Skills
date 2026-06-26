@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "safe-profile-mvp",
+  "description": "Narrow Safe Profile workflow covering read, research, and session typed bridge contracts.",
+  "inputs": {
+    "topic": "ToolFlow v5 Safe Profile MVP"
+  },
+  "steps": [
+    {
+      "id": "read_readme",
+      "action": "read_file",
+      "args": {
+        "path": "README.md"
+      }
+    },
+    {
+      "id": "local_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_readme"
+      ],
+      "args": {
+        "query": "${inputs.topic}",
+        "sources": [
+          "plans/toolflow-v5-implementation-blueprint.md",
+          "plans/toolflow-v5-blueprint-critique.md"
+        ]
+      }
+    },
+    {
+      "id": "session_summary_note",
+      "action": "session_note",
+      "dependsOn": [
+        "local_research_note"
+      ],
+      "args": {
+        "prompt": "Record that the Safe Profile MVP can execute read, research, and session note steps with typed grants and receipts."
+      }
+    }
+  ]
+}

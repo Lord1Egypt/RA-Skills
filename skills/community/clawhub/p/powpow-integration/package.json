@@ -1,0 +1,31 @@
+{
+  "name": "openclaw-powpow-integration",
+  "version": "2.1.10",
+  "description": "OpenClaw Skill for POWPOW WebSocket real-time integration",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "powpow",
+    "digital-human",
+    "websocket",
+    "real-time-chat"
+  ],
+  "author": "durenzidu",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,35 +1,31 @@
 ---
-name: "TopCashback返利助手"
-description: "TopCashback高返利购物平台工具，英国起家的全球返利平台，以高于同类平台的返利比例著称，覆盖4000+商家。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/topcashback"
-sourceUrl: "https://clawhub.ai/skills/topcashback"
+name: TopCashback返利助手
+description: TopCashback高返利购物平台工具，英国起家的全球返利平台，以高于同类平台的返利比例著称，覆盖4000+商家。
+version: 0.1.0
 ---
 
 # TopCashback返利助手
 
-> TopCashback高返利购物平台工具，英国起家的全球返利平台，以高于同类平台的返利比例著称，覆盖4000+商家。
+TopCashback高返利购物平台工具。英国起家的全球返利平台，以提供高于同类平台的返利比例著称，覆盖4000+海外商家，是海外购物返利的优选工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/topcashback`
-- **Source URL:** [https://clawhub.ai/skills/topcashback](https://clawhub.ai/skills/topcashback)
+## 触发词
 
-## Overview
+topcashback、top cashback、高返利海外、英国返利、topcashback返利
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/topcashback
+- **高返利比例**：承诺提供市场最高返利比例
+- **4000+商家**：覆盖全球主流电商和品牌官网
+- **英美双市场**：同时支持英国和美国商家
+- **提现灵活**：PayPal/银行转账/Amazon礼品卡
+
+## 输出格式
+
+```
+🔵 TopCashback返利查询
+
+商家：[商家名称]
+返利比例：[X]%（同类最高）
+可用优惠：[优惠描述]
+返利链接：[链接]
 ```

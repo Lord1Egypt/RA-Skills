@@ -1,0 +1,8 @@
+{
+    "name": "geminipdfocr",
+    "description": "Extract text from PDFs using Google Gemini OCR",
+    "entry_point": "python -m geminipdfocr",
+    "arguments": ["pdf_path", "--max-pages", "--json", "--output", "--quiet"],
+    "required_env": ["GOOGLE_API_KEY"],
+    "install": "cd geminipdfocr && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+}

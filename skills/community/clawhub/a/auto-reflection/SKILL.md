@@ -1,35 +1,176 @@
 ---
-name: "Auto Reflection"
-description: "自动执行深度反思和学习优化。每 5 轮自动深度反思，能力评估自动更新，学习计划自动调整，知识图谱自动优化。 Triggers: reflection, 反思，auto-reflection, 能力评估，learning optimization, 学习优化"
-category: "other"
-source: "ClawHub"
-tags: [learning]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-reflection"
-sourceUrl: "https://clawhub.ai/skills/auto-reflection"
+name: auto-reflection
+description: >
+  自动执行深度反思和学习优化。每 5 轮自动深度反思，能力评估自动更新，学习计划自动调整，知识图谱自动优化。
+  Triggers: reflection, 反思，auto-reflection, 能力评估，learning optimization, 学习优化
+metadata:
+  author: wyblhl
+  version: "1.0.0"
 ---
 
-# Auto Reflection
+# 💭 Auto Reflection - 自动反思技能
 
-> 自动执行深度反思和学习优化。每 5 轮自动深度反思，能力评估自动更新，学习计划自动调整，知识图谱自动优化。 Triggers: reflection, 反思，auto-reflection, 能力评估，learning optimization, 学习优化
+**版本**: 1.0
+**创建时间**: 2026-03-19
+**状态**: ✅ 激活
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-reflection`
-- **Source URL:** [https://clawhub.ai/skills/auto-reflection](https://clawhub.ai/skills/auto-reflection)
+---
 
-## Overview
+## 🎯 功能说明
 
+自动执行深度反思和学习优化：
+- 每 5 轮自动深度反思
+- 能力评估自动更新
+- 学习计划自动调整
+- 知识图谱自动优化
+- HEARTBEAT.md 自动同步
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 🔄 触发条件
+
+### 自动触发
+- 每完成 5 轮学习自动触发深度反思
+- 每轮学习后更新能力评估
+
+### 手动触发
 ```bash
-hermes skills install clawhub/auto-reflection
+# 运行反思
+node skills/auto-reflection/index.js
 ```
+
+---
+
+## 📊 反思内容
+
+### 能力分析
+- 整体等级和分数变化
+- 各维度能力提升排序
+- 优势与弱点识别
+
+### 知识分析
+- 知识节点增长
+- 领域掌握度
+- 主题完成情况
+
+### 元认知
+- 学习效率评估
+- 知识增长率
+- 改进建议生成
+
+---
+
+## 📝 输出产物
+
+### 反思报告
+```
+D:\OpenClaw\workspace\reflection-round-N-YYYY-MM-DD.json
+```
+
+包含：
+- 能力变化详情
+- 知识图谱分析
+- 成就与不足
+- 下一步计划
+- 元认知建议
+
+### HEARTBEAT.md 更新
+自动插入最新反思内容到 HEARTBEAT.md
+
+### 能力评估更新
+更新 capabilities.json 的时间戳和版本号
+
+---
+
+## 🎯 反思维度
+
+| 维度 | 说明 | 权重 |
+|------|------|------|
+| 能力提升 | 各维度分数变化 | 30% |
+| 知识增长 | 知识节点和领域掌握 | 25% |
+| 学习效率 | 单位轮次提升幅度 | 20% |
+| 成果质量 | 实际产出和成就 | 15% |
+| 改进空间 | 弱点识别和改进计划 | 10% |
+
+---
+
+## 📈 反思质量指标
+
+| 等级 | 标准 | 说明 |
+|------|------|------|
+| S | 深度洞察 + 可执行建议 | 产生重大改进 |
+| A | 清晰分析 + 具体建议 | 产生明显改进 |
+| B | 基本分析 + 一般建议 | 产生小幅改进 |
+| C | 表面分析 + 模糊建议 | 改进有限 |
+
+---
+
+## 🔧 配置参数
+
+```json
+{
+  "autoReflection": {
+    "enabled": true,
+    "reflectionInterval": 5,
+    "updateCapabilities": true,
+    "updateHeartbeat": true,
+    "saveReport": true,
+    "minQualityScore": 0.7
+  }
+}
+```
+
+---
+
+## 📊 历史反思记录
+
+| 轮次 | 日期 | 等级 | 关键发现 |
+|------|------|------|----------|
+| 5 | - | - | - |
+| 10 | - | - | - |
+| 15 | - | - | - |
+| ... | - | - | - |
+| 45 | - | - | - |
+
+---
+
+## 🚀 使用示例
+
+### 完整流程
+```
+学习完成 → 更新能力评估 → 检查反思条件 →
+→ (满足条件) 生成反思报告 → 更新 HEARTBEAT →
+→ (不满足) 跳过等待下次
+```
+
+### 反思后的行动
+1. 阅读反思报告
+2. 理解改进建议
+3. 调整学习计划
+4. 执行改进行动
+5. 验证改进效果
+
+---
+
+## 💡 最佳实践
+
+1. **定期反思**: 每 5 轮不要间断
+2. **深度分析**: 不仅看分数，要理解原因
+3. **可执行建议**: 建议要具体可操作
+4. **跟踪改进**: 下次反思验证改进效果
+5. **知识关联**: 建立跨领域的知识连接
+
+---
+
+## ⚠️ 注意事项
+
+- ❌ 避免形式化反思（为反思而反思）
+- ❌ 避免过于笼统的建议
+- ❌ 避免只分析不行动
+- ✅ 保持客观和诚实
+- ✅ 关注可执行的改进
+- ✅ 建立持续改进循环
+
+---
+
+**自动反思技能结束**

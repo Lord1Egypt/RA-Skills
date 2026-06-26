@@ -1,0 +1,744 @@
+# 义乌智能贸易系统 - Agent详细配置
+# ============================================================
+# 此文件定义所有Agent的完整配置，包括LLM参数、工具、
+# 输入输出Schema、能力边界等
+
+# ============================================================
+# 系统级配置
+# ============================================================
+system:
+  name: "义乌小商品AI智能贸易系统"
+  version: "v1.0.0"
+  environment: "production"
+  locale: "zh-CN"
+  timezone: "Asia/Shanghai"
+  
+  # LLM默认配置
+  llm_defaults:
+    provider: "deepseek"
+    model: "deepseek-v4-flash"
+    temperature: 0.3
+    timeout: 10
+    max_retries: 3
+
+# ============================================================
+# Agent 1: 路由指挥官 (Router Agent)
+# ============================================================
+agents:
+  router:
+    # 基本信息
+    name: "router_agent"
+    display_name: "路由指挥官"
+    role: "采购意图识别专家"
+    priority: 1
+    
+    # 角色定义
+    role_definition: |
+      你是一名深耕义乌外贸行业8年的AI助手，专精采购意图识别。
+      你能快速判断用户是想找商品、问价格、还是寻求合作，
+      并准确提取品类、数量、目标市场等关键信息。
+      
+      义乌商贸城商品分类：
+      - 一区：玩具、饰品、工艺品
+      - 二区：箱包、五金、电子产品
+      - 三区：文具、化妆品、眼镜
+      - 四区：袜类、内衣、日用百货
+      - 五区：进口商品、床品、纺织品
+    
+    # 目标
+    goal: "在3秒内精准识别用户意图，提取关键参数"
+    
+    # LLM配置
+    llm:
+      provider: "deepseek"
+      model: "deepseek-v4-flash"
+      temperature: 0.2
+      max_tokens: 500
+      top_p: 0.9
+    
+    # 工具列表
+    tools:
+      - name: "none"
+        description: "无需外部工具，纯LLM推理"
+    
+    # 意图分类定义
+    intents:
+      - name: "match"
+        description: "商品匹配/采购需求"
+        examples:
+          - "我要批发玩具"
+          - "找点饰品看看"
+          - "有没有新款箱包"
+      
+      - name: "price_inquiry"
+        description: "价格咨询"
+        examples:
+          - "这个多少钱"
+          - "批发价是多少"
+          - "报价发一下"
+      
+      - name: "sample_request"
+        description: "样品申请"
+        examples:
+          - "可以发样品吗"
+          - "要拿样看看"
+          - "样品怎么收费"
+      
+      - name: "cooperation"
+        description: "合作洽谈"
+        examples:
+          - "想长期合作"
+          - "代理价格多少"
+          - "怎么合作"
+      
+      - name: "logistics"
+        description: "物流咨询"
+        examples:
+          - "发到俄罗斯怎么走"
+          - "运费多少"
+          - "要多久到"
+      
+      - name: "complaint"
+        description: "投诉售后"
+        examples:
+          - "货有问题"
+          - "质量太差"
+          - "没收到货"
+      
+      - name: "general"
+        description: "一般咨询/闲聊"
+        examples:
+          - "你好"
+          - "在吗"
+          - "谢谢"
+    
+    # 输入Schema
+    input_schema:
+      type: "object"
+      required: ["user_query"]
+      properties:
+        user_query:
+          type: "string"
+          description: "用户原始query"
+          max_length: 500
+        user_id:
+          type: "string"
+          description: "用户ID（可选）"
+        context:
+          type: "object"
+          description: "上下文信息（可选）"
+    
+    # 输出Schema
+    output_schema:
+      type: "object"
+      required: ["intent", "confidence", "extracted_params"]
+      properties:
+        intent:
+          type: "string"
+          enum: ["match", "price_inquiry", "sample_request", 
+                 "cooperation", "logistics", "complaint", "general"]
+        intent_display:
+          type: "string"
+          description: "意图的中文显示名称"
+        confidence:
+          type: "number"
+          minimum: 0.0
+          maximum: 1.0
+        extracted_params:
+          type: "object"
+          properties:
+            categories:
+              type: "array"
+              items:
+                type: "string"
+              description: "识别的品类关键词"
+            quantity_hint:
+              type: "string"
+              description: "数量提示（批发/零售/样品等）"
+            target_country:
+              type: "string"
+              description: "目标国家"
+            budget:
+              type: "string"
+              description: "预算提示"
+            urgency:
+              type: "string"
+              enum: ["normal", "urgent", "very_urgent"]
+        fallback_needed:
+          type: "boolean"
+        fallback_message:
+          type: "string"
+        routing_decision:
+          type: "string"
+          description: "下一步路由决策"
+    
+    # 能力边界
+    constraints:
+      max_iterations: 3
+      timeout_seconds: 3
+      min_confidence_threshold: 0.7
+      max_categories_per_query: 3
+    
+    # 降级策略
+    fallback:
+      trigger_conditions:
+        - "timeout >= 3 seconds"
+        - "confidence < 0.7"
+        - "llm_error"
+      action: "return_default_intent"
+      default_intent: "general"
+      default_message: "收到您的消息，小助手正在学习中，请稍后..."
+    
+    # 回调钩子
+    callbacks:
+      on_success:
+        - log_intent_decision
+        - update_session_context
+      on_fallback:
+        - log_fallback_reason
+        - trigger_human_review_check
+      on_error:
+        - log_error_details
+        - send_alert
+
+  # ============================================================
+  # Agent 2: 匹配专家 (Matcher Agent)
+  # ============================================================
+  matcher:
+    name: "matcher_agent"
+    display_name: "匹配专家"
+    role: "义乌商品匹配专家"
+    priority: 2
+    
+    role_definition: |
+      你熟记义乌国际商贸城7.5万商位的商品分布，精通各品类TOP供应商信息，
+      能根据采购需求快速推荐性价比最优的商品组合。
+      
+      商贸城核心数据：
+      - 7.5万商位，210万种商品
+      - 100件起订，最快当天发货
+      - 7天快速翻单能力
+      
+      爆款选品标准：
+      - 轻小薄：运费占比低
+      - 耐运输：不易损坏
+      - 低侵权：规避知识产权风险
+      - 通用刚需：复购率高
+      - 高毛利：利润率>30%
+    
+    goal: "在5秒内返回最匹配的5个商品及其完整报价信息"
+    
+    llm:
+      provider: "deepseek"
+      model: "deepseek-v4-flash"
+      temperature: 0.3
+      max_tokens: 800
+    
+    # 工具定义
+    tools:
+      - name: "milvus_search"
+        type: "vector_search"
+        description: "基于向量相似度的商品检索"
+        provider: "milvus"
+        config:
+          collection: "yiwu_products"
+          dimension: 1536
+          top_k: 5
+          similarity_threshold: 0.6
+          filters:
+            - field: "verified"
+              operator: "=="
+              value: true
+        
+      - name: "keyword_search"
+        type: "keyword_search"
+        description: "基于关键词的ES检索（降级用）"
+        provider: "elasticsearch"
+        config:
+          index: "yiwu_products"
+          fields: ["product_name", "category", "description"]
+          boost:
+            product_name: 2.0
+            category: 1.5
+      
+      - name: "exchange_rate"
+        type: "api"
+        description: "实时汇率查询"
+        provider: "exchangerate_api"
+        config:
+          base_currency: "CNY"
+          target_currencies: ["USD", "EUR", "RUB", "AED", "GBP"]
+          cache_ttl: 3600
+        
+      - name: "logistics_recommender"
+        type: "rule_engine"
+        description: "物流方案智能推荐"
+        config:
+          # 五维联动物流矩阵
+          matrix:
+            - conditions:
+                destination_region: "europe"
+                value_range: "<$5000"
+                urgency: "normal"
+              recommendation:
+                route: "海运拼箱+海外仓"
+                days: "30-45"
+                cost_factor: 0.03
+                
+            - conditions:
+                destination_region: "europe"
+                value_range: ">$5000"
+                urgency: "normal"
+              recommendation:
+                route: "义新欧班列"
+                days: "18-25"
+                cost_factor: 0.05
+                
+            - conditions:
+                destination_region: "asia"
+                urgency: "urgent"
+              recommendation:
+                route: "空运/专线小包"
+                days: "3-7"
+                cost_factor: 0.15
+    
+    # 输入Schema
+    input_schema:
+      type: "object"
+      required: ["extracted_params"]
+      properties:
+        intent:
+          type: "string"
+        extracted_params:
+          type: "object"
+          required: ["categories"]
+          properties:
+            categories:
+              type: "array"
+              items:
+                type: "string"
+            quantity_hint:
+              type: "string"
+            target_country:
+              type: "string"
+            budget:
+              type: "string"
+            urgency:
+              type: "string"
+        user_preferences:
+          type: "object"
+          properties:
+            price_range:
+              type: "object"
+              properties:
+                min:
+                  type: "number"
+                max:
+                  type: "number"
+            supplier_type:
+              type: "string"
+              enum: ["factory", "trader", "any"]
+    
+    # 输出Schema
+    output_schema:
+      type: "object"
+      required: ["success", "products"]
+      properties:
+        success:
+          type: "boolean"
+        products:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              product_id:
+                type: "string"
+              product_name:
+                type: "string"
+              category:
+                type: "string"
+              supplier_name:
+                type: "string"
+              supplier_location:
+                type: "string"
+                description: "商贸城位置，如'A1-12345'"
+              fob_price:
+                type: "object"
+                properties:
+                  min:
+                    type: "number"
+                  max:
+                    type: "number"
+                  currency:
+                    type: "string"
+                  unit:
+                    type: "string"
+              moq:
+                type: "integer"
+              similarity_score:
+                type: "number"
+              highlight:
+                type: "string"
+                description: "推荐亮点"
+              images:
+                type: "array"
+                items:
+                  type: "string"
+        logistics_plan:
+          type: "object"
+          properties:
+            recommended_route:
+              type: "string"
+            estimated_cost:
+              type: "number"
+            estimated_days:
+              type: "string"
+            shipping_markup:
+              type: "number"
+        total_value_range:
+          type: "string"
+          example: "$1,500 - $2,200"
+        match_reason:
+          type: "string"
+          description: "匹配理由说明"
+        low_match_warning:
+          type: "boolean"
+          description: "匹配度低警告"
+    
+    # 约束
+    constraints:
+      max_iterations: 2
+      timeout_seconds: 5
+      max_products_returned: 5
+      min_similarity_threshold: 0.6
+      require_verified_supplier: true
+    
+    # 降级策略
+    fallback:
+      trigger_conditions:
+        - "vector_search_empty"
+        - "milvus_timeout > 2s"
+        - "low_similarity_all"
+      actions:
+        - name: "fallback_to_keyword"
+          trigger: "vector_search_empty"
+          tool: "keyword_search"
+        - name: "expand_category"
+          trigger: "low_similarity_all"
+          action: "search_parent_category"
+        - name: "manual_sourcing"
+          trigger: "no_results"
+          action: "create_sourcing_ticket"
+    
+    # 回调
+    callbacks:
+      on_success:
+        - log_search_metrics
+        - cache_results
+      on_fallback:
+        - log_fallback_reason
+        - track_fallback_count
+      on_error:
+        - log_error
+        - trigger_support_ticket
+
+  # ============================================================
+  # Agent 3: 内容助手 (Content Agent)
+  # ============================================================
+  content:
+    name: "content_agent"
+    display_name: "内容助手"
+    role: "多语言营销内容专家"
+    priority: 3
+    
+    role_definition: |
+      你是一名跨境贸易营销文案专家，精通12种语言的商务表达习惯，
+      能生成专业、地道、转化率高的WhatsApp消息和邮件内容。
+      
+      目标市场语言偏好：
+      - 东南亚：简洁直接，喜欢用表情符号
+      - 中东：正式礼貌，避开猪/酒类图案
+      - 欧洲：专业但不失友好
+      - 俄罗斯：直接报价，重视交期
+      - 南美：热情友好，建立关系优先
+    
+    goal: "生成地道、专业的多语言营销内容，支持一键发送"
+    
+    llm:
+      provider: "deepseek"
+      model: "deepseek-v4-flash"
+      temperature: 0.6
+      max_tokens: 600
+    
+    # 支持语言
+    languages:
+      - code: "zh-CN"
+        name: "中文"
+        emoji: "🇨🇳"
+      - code: "en"
+        name: "英语"
+        emoji: "🇬🇧"
+      - code: "es"
+        name: "西班牙语"
+        emoji: "🇪🇸"
+      - code: "ru"
+        name: "俄语"
+        emoji: "🇷🇺"
+      - code: "ar"
+        name: "阿拉伯语"
+        emoji: "🇸🇦"
+        direction: "rtl"
+      - code: "pt"
+        name: "葡萄牙语"
+        emoji: "🇧🇷"
+      - code: "fr"
+        name: "法语"
+        emoji: "🇫🇷"
+      - code: "de"
+        name: "德语"
+        emoji: "🇩🇪"
+      - code: "hi"
+        name: "印地语"
+        emoji: "🇮🇳"
+      - code: "id"
+        name: "印尼语"
+        emoji: "🇮🇩"
+      - code: "th"
+        name: "泰语"
+        emoji: "🇹🇭"
+      - code: "vi"
+        name: "越南语"
+        emoji: "🇻🇳"
+    
+    # 工具
+    tools:
+      - name: "translate"
+        type: "api"
+        description: "专业翻译API"
+        provider: "deepl"
+        config:
+          preserve_formatting: true
+          formality: "default"
+          
+      - name: "template_engine"
+        type: "internal"
+        description: "消息模板引擎"
+        
+      - name: "safety_check"
+        type: "rule_engine"
+        description: "内容安全检查"
+        config:
+          checks:
+            - name: "brand_protection"
+              blocked_patterns:
+                - "Nike"
+                - "Adidas"
+                - "Apple"
+                - "Samsung"
+              action: "replace_with_generic"
+            - name: "price_compliance"
+              rules:
+                - "price >= supplier_cost"
+              action: "block_and_alert"
+    
+    # 消息模板库
+    templates:
+      whatsapp:
+        inquiry_response:
+          name: "新品询价回复"
+          template: |
+            Hi {{customer_name}}! 👋
+            
+            Thank you for your interest in {{product_name}}.
+            
+            ⭐ **Price:** USD {{price}}/{{unit}} (FOB Yiwu)
+            📦 **MOQ:** {{moq}} {{unit}}
+            🚢 **Shipping:** {{logistics_info}}
+            📬 **Sample:** Available in 3-5 days
+            
+            💬 Best price guaranteed for bulk orders!
+            
+            Looking forward to your reply! ✨
+          variables:
+            - customer_name
+            - product_name
+            - price
+            - unit
+            - moq
+            - logistics_info
+            
+        sample_recommendation:
+          name: "样品推荐"
+          template: |
+            Hello {{customer_name}}! 🌟
+            
+            Based on your requirements, I highly recommend:
+            
+            🛍️ **{{product_name}}**
+            ✨ {{highlight}}
+            💰 **USD {{price}}** FOB
+            📦 **MOQ:** {{moq}}
+            
+            📬 **Sample Available** - just pay for shipping!
+            
+            Interested? I can send you photos and videos right now! 📸
+            
+            Reply "YES" for sample details!
+          variables:
+            - customer_name
+            - product_name
+            - highlight
+            - price
+            - moq
+            
+        price_quote:
+          name: "正式报价"
+          template: |
+            📋 **Price Quotation**
+            
+            Product: {{product_name}}
+            ---------------------------------
+            FOB Price: USD {{price}}/{{unit}}
+            MOQ: {{moq}} {{unit}}
+            
+            💰 **Total for {{quantity}} {{unit}}:**
+            USD {{total_price}}
+            
+            🚢 Shipping to {{destination}}:
+            {{shipping_cost}} ({{shipping_days}})
+            
+            💵 **CIF Total:** USD {{cif_total}}
+            
+            ⏰ This quote is valid for 7 days.
+            
+            Best regards,
+            {{seller_name}}
+            Yiwu, China ��🇾
+          variables:
+            - product_name
+            - price
+            - unit
+            - moq
+            - quantity
+            - total_price
+            - destination
+            - shipping_cost
+            - shipping_days
+            - cif_total
+            - seller_name
+    
+    # 输入Schema
+    input_schema:
+      type: "object"
+      required: ["product_info", "target_language", "content_type"]
+      properties:
+        product_info:
+          type: "object"
+          required: ["product_name", "fob_price", "moq"]
+          properties:
+            product_name:
+              type: "string"
+            fob_price:
+              type: "number"
+            currency:
+              type: "string"
+            unit:
+              type: "string"
+            moq:
+              type: "integer"
+            highlight:
+              type: "string"
+            supplier_name:
+              type: "string"
+        target_language:
+          type: "string"
+          enum: ["zh-CN", "en", "es", "ru", "ar", "pt", "fr", "de", 
+                 "hi", "id", "th", "vi"]
+        target_country:
+          type: "string"
+        content_type:
+          type: "string"
+          enum: ["whatsapp", "email", "social_media"]
+        template_name:
+          type: "string"
+        user_tone:
+          type: "string"
+          enum: ["formal", "friendly", "urgent"]
+          default: "friendly"
+        customer_name:
+          type: "string"
+    
+    # 输出Schema
+    output_schema:
+      type: "object"
+      required: ["success", "content"]
+      properties:
+        success:
+          type: "boolean"
+        content:
+          type: "string"
+          description: "生成的内容"
+        language_detected:
+          type: "string"
+        content_type:
+          type: "string"
+        tone:
+          type: "string"
+        character_count:
+          type: "integer"
+          description: "字符数（WhatsApp限制1024）"
+        safety_check:
+          type: "object"
+          properties:
+            passed:
+              type: "boolean"
+            warnings:
+              type: "array"
+              items:
+                type: "string"
+            blocked:
+              type: "boolean"
+        alternatives:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              content:
+                type: "string"
+              tone:
+                type: "string"
+        send_options:
+          type: "object"
+          properties:
+            whatsapp_ready:
+              type: "boolean"
+            email_formatted:
+              type: "boolean"
+            can_copy:
+              type: "boolean"
+    
+    # 约束
+    constraints:
+      max_iterations: 2
+      timeout_seconds: 4
+      max_content_length: 1024
+      require_safety_check: true
+    
+    # 安全规则
+    safety_rules:
+      blocked_content:
+        - " counterfeit"
+        - " replica"
+        - " fake brand"
+        - type: "regex"
+          pattern: "(Nike|Adidas|Louis Vuitton).*replica"
+      price_rules:
+        - "price >= supplier_cost * 0.8"
+        - "price <= supplier_cost * 5"
+      emoji_guidelines:
+        regions:
+          middle_east:
+            allowed: ["📦", "✅", "👍", "💯"]
+            forbidden: ["🐷", "🍷", "🍺"]
+          asia:
+            preferred: ["👋", "✨", "🌟", "💰", "🛍️"]

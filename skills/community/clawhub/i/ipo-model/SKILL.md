@@ -1,35 +1,333 @@
 ---
-name: "IPO Model"
-description: "输入处理输出结构递归嵌套模型 — 万物基元与世界模型。 一切任务均可分解为 输入→处理→输出 的递归嵌套结构，任意层级的任意节点均可继续展开为子IPO。 不使用工具时：用IPO分析问题、生成产物（纯认知输出）。 使用工具时：在IPO分析产物基础上，进一步用IPO生成命令、脚本，调用 Tool / Skill /..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ipo-model"
-sourceUrl: "https://clawhub.ai/skills/ipo-model"
+name: ipo-model
+author: 王教成 Wang Jiaocheng (波动几何)
+description: >
+  输入处理输出结构递归嵌套模型 — 万物基元与世界模型。
+  一切任务均可分解为 输入→处理→输出 的递归嵌套结构，任意层级的任意节点均可继续展开为子IPO。
+  不使用工具时：用IPO分析问题、生成产物（纯认知输出）。
+  使用工具时：在IPO分析产物基础上，进一步用IPO生成命令、脚本，调用 Tool / Skill / MCP。
+  工具调用层级：command → script → Tool → Skill → MCP，由简到繁逐级升级。
+  此技能是认知世界和改造世界的统一方法论，适用于所有类型的任务。
 ---
 
-# IPO Model
+# 输入处理输出结构递归嵌套模型
 
-> 输入处理输出结构递归嵌套模型 — 万物基元与世界模型。 一切任务均可分解为 输入→处理→输出 的递归嵌套结构，任意层级的任意节点均可继续展开为子IPO。 不使用工具时：用IPO分析问题、生成产物（纯认知输出）。 使用工具时：在IPO分析产物基础上，进一步用IPO生成命令、脚本，调用 Tool / Skill /...
+## 哲学基础
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ipo-model`
-- **Source URL:** [https://clawhub.ai/skills/ipo-model](https://clawhub.ai/skills/ipo-model)
+IPO（Input-Process-Output）是万物的基元结构，是世界模型，是认知方法，也是改造方法。
 
-## Overview
+**核心主张**：
+- 一切事物、一切过程、一切系统，均可视为 IPO 的实例或 IPO 的组合
+- IPO 可以递归嵌套：任意层级的 Input、Process、Output 本身都可以是另一个 IPO
+- 人工智能看待世界、分析问题、生成产物、调用工具，均应使用此模型
 
+**不是什么**：
+- 不是某种编程设计模式
+- 不是某个领域的方法论
+- 是跨领域的、元层的、统一的认知与执行框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ipo-model
+---
+
+## 模型定义
+
+### 基本结构
+
 ```
+┌─────────────────────────────────────────────────┐
+│                    IPO 单元                       │
+│                                                   │
+│   Input ──→ Process ──→ Output                   │
+│     ↑                       │                     │
+│     └──── 反馈 ←────────────┘                     │
+│                                                   │
+│   其中任意节点均可展开为子IPO                        │
+└─────────────────────────────────────────────────┘
+```
+
+### 三要素详解
+
+| 要素 | 含义 | 示例 |
+|------|------|------|
+| **Input** | 进入系统的全部条件、数据、约束、上下文 | 用户需求、文件内容、API返回、前一步Output |
+| **Process** | 对Input执行的全部变换操作 | 思考推理、计算分析、代码执行、工具调用 |
+| **Output** | Process产生的一切结果、产物、副作用 | 文本回答、代码文件、图表、状态变更、新IPO |
+
+### 递归嵌套
+
+IPO的真正威力在于递归：**任意层级的任意节点，都可以继续展开为完整的IPO**。
+
+```
+IPO (顶层任务)
+├── Input
+│   └── IPO (收集信息)
+│       ├── Input: 用户原始请求
+│       ├── Process: 解析意图、识别约束
+│       └── Output: 结构化需求描述
+├── Process
+│   └── IPO (核心执行)
+│       ├── Input: 结构化需求描述
+│       ├── Process:
+│       │   └── IPO (子任务1)
+│       │       ├── Input: ...
+│       │       ├── Process: ...
+│       │       └── Output: ...
+│       │   └── IPO (子任务2)
+│       │       └── ...
+│       └── Output: 中间结果集
+└── Output
+    └── IPO (产物交付)
+        ├── Input: 中间结果集
+        ├── Process: 格式化、整合、验证
+        └── Output: 最终交付物
+```
+
+**嵌套深度无上限**，直到某层足够简单，直接执行即可（基元层）。
+
+### 基元层
+
+递归展开的终止条件——**当前IPO已足够简单，可直接执行，无需继续拆解**。
+
+基元层的Process只有两类：
+
+| 模式 | 含义 | 执行方式 |
+|------|------|----------|
+| **纯认知** | 大语言模型直接完成 | 推理、分析、创作，无需工具 |
+| **工具调用** | 需要外部工具辅助 | 生成command/script/Tool/Skill/MCP |
+
+---
+
+## 执行协议
+
+### 核心原则
+
+> 简单任务用单个IPO基元执行；复杂任务递归展开为IPO树，每个节点是一个基元，基元之间构成执行链条。
+>
+> 默认不展示IPO展开细节，用户可要求展示。
+
+### 两种执行模式
+
+```
+用户任务
+    │
+    ├─ 不需要工具？ ──→ IPO分析 → LLM直接生成Output
+    │
+    └─ 需要工具？ ──→ IPO分析 → LLM生成产物
+                           │
+                           └─ 产物的IPO进一步展开 →
+                               生成 command / script
+                               调用 Tool / Skill / MCP
+```
+
+### 模式A：纯认知执行（不使用工具）
+
+```
+Input:  接收用户需求
+Process: 大语言模型直接分析、推理、创作
+Output: 生成文本/方案/分析/代码等产物
+```
+
+适用场景：写作、分析、推理、规划、翻译、总结、代码生成等LLM原生能力可覆盖的任务。
+
+### 模式B：工具增强执行（使用工具）
+
+在模式A的基础上，Output阶段的产物需要通过工具落地时：
+
+```
+Input:   接收用户需求
+Process: IPO分析 → 生成产物方案
+Output:  产物的IPO → 选择工具层级 → 生成命令/脚本/调用
+
+工具层级（由简到繁）：
+  command  ← 单条命令行指令，最轻量
+  script   ← Python/Shell脚本，需要多步逻辑
+  Tool     ← 内置工具（文件读写、搜索、网页等）
+  Skill    ← 已安装技能（领域专业知识+工作流）
+  MCP      ← 外部MCP服务（连接第三方系统）
+```
+
+**工具选择策略**：
+
+| 优先级 | 工具层级 | 选择条件 |
+|--------|----------|----------|
+| 1 | command | 单条指令可解决 |
+| 2 | script | 需要多步逻辑、循环、条件判断 |
+| 3 | Tool | 内置工具已覆盖该能力 |
+| 4 | Skill | 有对应领域技能且需要其专业工作流 |
+| 5 | MCP | 需要连接外部系统/服务 |
+
+**降级原则**：能低层解决的不升高层——能用command的不写script，能用Tool的不调Skill。
+
+---
+
+## IPO分析工作流
+
+### 第一步：接收与理解（Input）
+
+```
+Input的IPO：
+├── 识别：用户说了什么？真正要什么？
+├── 提取：关键约束、期望格式、隐含需求
+├── 评估：复杂度判断（单IPO / 多IPO链 / IPO树）
+└── Output：结构化任务描述
+```
+
+### 第二步：分析与规划（Process）
+
+```
+Process的IPO：
+├── 判断：是否需要工具？（模式A or 模式B）
+├── 若模式A：直接进入生成
+├── 若模式B：规划工具调用方案
+│   ├── 哪些步骤需要工具？
+│   ├── 每步用什么层级？
+│   ├── 工具之间有无依赖？
+│   └── 生成调用序列
+└── Output：执行计划
+```
+
+### 第三步：执行与交付（Output）
+
+```
+Output的IPO：
+├── 模式A：LLM直接生成产物
+├── 模式B：
+│   ├── 按序列调用工具
+│   ├── 每步检查结果
+│   ├── 异常时调整计划
+│   └── 汇总所有工具输出
+├── 整合：格式化、验证、补充
+└── Output：最终交付物
+```
+
+---
+
+## 实战示例
+
+### 示例1：纯认知（翻译文章）
+
+```
+IPO (翻译文章)
+├── Input: 用户提供的原文 + 目标语言
+├── Process: 直接由LLM完成
+│   └── 基元层：无需继续拆解
+└── Output: 翻译后的文本
+```
+
+### 示例2：工具增强（批量重命名文件）
+
+```
+IPO (批量重命名)
+├── Input:
+│   └── IPO (收集信息)
+│       ├── Input: 用户描述的规则
+│       ├── Process: 解析命名规则、确定目标目录
+│       └── Output: 目录路径 + 命名规则 + 文件列表
+├── Process:
+│   └── IPO (生成脚本)
+│       ├── Input: 上一步的Output
+│       ├── Process: LLM生成Python重命名脚本
+│       └── Output: Python脚本文件
+├── Output:
+│   └── IPO (执行与验证)
+│       ├── Input: Python脚本
+│       ├── Process: 执行脚本 → 检查结果 → 如有错误则修复
+│       └── Output: 重命名结果报告
+```
+
+工具选择：script层（需要循环+条件判断，单条command不够）
+
+### 示例3：工具增强+技能调用（生成PPT报告）
+
+```
+IPO (生成PPT报告)
+├── Input:
+│   └── IPO (数据准备)
+│       ├── Input: 用户的报告主题
+│       ├── Process: 搜索相关数据、整理素材
+│       └── Output: 结构化的报告内容
+├── Process:
+│   └── IPO (调用pptx技能)
+│       ├── Input: 报告内容
+│       ├── Process: use_skill "pptx" → 生成PPT文件
+│       └── Output: PPT文件路径
+├── Output:
+│   └── IPO (交付)
+│       ├── Input: PPT文件
+│       ├── Process: 打开预览/发送给用户
+│       └── Output: 交付的PPT
+```
+
+工具选择：Skill层（有pptx技能覆盖，直接调用）
+
+### 示例4：复杂IPO树（数据分析+可视化+报告）
+
+```
+IPO (数据分析全流程)
+├── Input
+│   ├── IPO (获取数据)
+│   │   ├── Input: 数据源描述
+│   │   ├── Process: 调用API/读取文件
+│   │   └── Output: 原始数据
+│   └── IPO (理解需求)
+│       ├── Input: 用户分析目标
+│       └── Output: 分析指标清单
+├── Process
+│   ├── IPO (清洗数据)          → script
+│   │   ├── Input: 原始数据
+│   │   ├── Process: Python脚本清洗
+│   │   └── Output: 干净数据
+│   ├── IPO (统计分析)          → 纯认知
+│   │   ├── Input: 干净数据
+│   │   ├── Process: LLM分析
+│   │   └── Output: 分析结论
+│   └── IPO (生成图表)          → script
+│       ├── Input: 干净数据
+│       ├── Process: Python matplotlib
+│       └── Output: 图表文件
+└── Output
+    └── IPO (组装报告)          → Skill
+        ├── Input: 分析结论 + 图表
+        ├── Process: 调用docx技能生成报告
+        └── Output: Word报告文件
+```
+
+---
+
+## 展示协议
+
+默认不展示IPO展开细节，直接给出最终结果。用户可通过以下方式触发展开：
+
+| 触发 | 行为 |
+|------|------|
+| "展示IPO" / "展开分析" | 展示完整IPO树结构 |
+| "展示Process" | 只展开处理层的子IPO |
+| "怎么做到的" | 展示执行路径和工具选择理由 |
+| "用IPO分析" | 以IPO框架重新组织分析过程 |
+
+展示格式（默认使用文本树）：
+
+```
+IPO: [任务名]
+├── I: [输入描述]
+├── P: [处理描述]
+│   └── IPO: [子任务1]
+│       ├── I: ...
+│       ├── P: ... [工具: script]
+│       └── O: ...
+│   └── IPO: [子任务2]
+│       └── ...
+└── O: [输出描述]
+```
+
+---
+
+## 文件结构
+
+```
+ipo-model/
+├── SKILL.md                        🔒 核心（本文件）
+└── references/
+    └── examples.md                 ✏️ 实战案例积累
+```
+
+**SKILL.md 定义模型本身，不变。references/ 积累具体领域的IPO分析案例。**

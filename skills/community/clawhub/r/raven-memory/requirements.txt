@@ -1,0 +1,10 @@
+torch>=2.1.0
+transformers>=4.45.0
+langgraph>=0.2.0
+langgraph-checkpoint-sqlite
+langchain-core>=0.3.0
+accelerate
+sqlite-vec
+sentence-transformers
+
+datasets

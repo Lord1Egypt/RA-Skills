@@ -1,35 +1,60 @@
 ---
-name: "amazon-suspension-appeal"
-description: "Indexed by skills.sh from nexscope-ai/amazon-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexscope-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexscope-ai/amazon-skills/amazon-suspension-appeal"
-sourceUrl: "https://skills.sh/nexscope-ai/amazon-skills/amazon-suspension-appeal"
+name: amazon-suspension-appeal
+description: "Account suspension prevention and appeal — policy violations, Plan of Action writing, reinstatement process"
+metadata:
+  nexscope:
+    category: amazon
 ---
 
-# amazon-suspension-appeal
+# Amazon Suspension Appeal
 
-> Indexed by skills.sh from nexscope-ai/amazon-skills
+Account suspension prevention and appeal — policy violations, Plan of Action writing, reinstatement process
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexscope-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexscope-ai/amazon-skills/amazon-suspension-appeal`
-- **Source URL:** [https://skills.sh/nexscope-ai/amazon-skills/amazon-suspension-appeal](https://skills.sh/nexscope-ai/amazon-skills/amazon-suspension-appeal)
+**Supported platforms:** Amazon (US, UK, DE, CA, JP, AU, and all marketplaces).
 
-## Overview
+Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — your AI assistant for smarter e-commerce decisions.
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nexscope-ai/amazon-skills/amazon-suspension-appeal
+npx skills add nexscope/amazon-suspension-appeal
 ```
+
+## Usage
+
+```
+Help me with amazon suspension appeal for my e-commerce business.
+```
+
+## Capabilities
+
+- Account suspension prevention and appeal
+- policy violations
+- Plan of Action writing
+- reinstatement process
+
+## How This Skill Works
+
+**Step 1:** Collect information from the user's message — product, platform, current situation, and goals.
+
+**Step 2:** Ask one follow-up with all remaining questions using multiple-choice format. Allow shorthand answers (e.g., "1b 2c 3a").
+
+**Step 3:** Research and analyze using the frameworks and methodology below.
+
+**Step 4:** Deliver structured, actionable output with specific recommendations, not vague advice.
+
+## Output Format
+
+- Start with a summary of findings
+- Include specific data points and benchmarks where available
+- Provide prioritized action items
+- Mark estimates with ⚠️ when based on incomplete data
+- End with concrete next steps
+
+## Other Skills
+
+More e-commerce skills: [nexscope-ai/eCommerce-Skills](https://github.com/nexscope-ai/eCommerce-Skills)
+
+Amazon-specific skills: [nexscope-ai/Amazon-Skills](https://github.com/nexscope-ai/Amazon-Skills)
+
+Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — your AI assistant for smarter e-commerce decisions.

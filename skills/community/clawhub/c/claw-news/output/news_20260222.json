@@ -1,0 +1,103 @@
+{
+  "fetched_at": "2026-02-22T22:06:30.627298",
+  "total_items": 25,
+  "sources": 1,
+  "items": [
+    {
+      "title": "Microsoft error sees confidential emails exposed to AI tool Copilot",
+      "link": "https://www.bbc.com/news/articles/c8jxevd8mdyo",
+      "summary": "The company says it has addressed the issue and it did not provide anyone access to information they weren't already authorised to see.",
+      "published": "Thu, 19 Feb 2026 18:16:43 GMT",
+      "source": "bbc-tech",
+      "category": "tech"
+    },
+    {
+      "title": "Study shows how rocket launches pollute the atmosphere",
+      "link": "https://arstechnica.com/space/2026/02/study-shows-how-rocket-launches-pollute-the-atmosphere/",
+      "summary": "Is the global atmospheric commons destined to be an industrial waste dumping ground?",
+      "published": "Sun, 22 Feb 2026 11:20:03 +0000",
+      "source": "ars-technica",
+      "category": "tech"
+    },
+    {
+      "title": "Move over, Apple: Meet the alternative app stores available in the EU",
+      "link": "https://techcrunch.com/2026/02/22/move-over-apple-meet-the-alternative-app-stores-available-in-the-eu-and-elsewhere/",
+      "summary": "A list of some of the alternative app stores iPhone users in the EU can try today.",
+      "published": "Sun, 22 Feb 2026 09:00:21 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "NASA says it needs to haul the Artemis II rocket back to the hangar for repairs",
+      "link": "https://arstechnica.com/space/2026/02/nasa-says-it-needs-to-haul-the-artemis-ii-rocket-back-to-the-hangar-for-repairs/",
+      "summary": "Accessing and remediating any of these issues can only be performed in the VAB.",
+      "published": "Sat, 21 Feb 2026 23:54:38 +0000",
+      "source": "ars-technica",
+      "category": "tech"
+    },
+    {
+      "title": "Sam Altman would like remind you that humans use a lot of energy, too",
+      "link": "https://techcrunch.com/2026/02/21/sam-altman-would-like-remind-you-that-humans-use-a-lot-of-energy-too/",
+      "summary": "It also takes a lot of energy to train a human.",
+      "published": "Sat, 21 Feb 2026 21:38:01 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "Wikipedia blacklists Archive.today after alleged DDoS attack",
+      "link": "https://techcrunch.com/2026/02/21/wikipedia-blacklists-archive-today-after-alleged-ddos-attack/",
+      "summary": "Wikipedia editors have decided to remove all links to Archive.today, a web archiving service that they said has been linked to more than 695,000 times across the online encyclopedia.",
+      "published": "Sat, 21 Feb 2026 20:20:15 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "Microsoft's new gaming CEO vows not to flood the ecosystem with 'endless AI slop'",
+      "link": "https://techcrunch.com/2026/02/21/microsofts-new-gaming-ceo-vows-not-to-flood-the-ecosystem-with-endless-ai-slop/",
+      "summary": "Is Microsoft's gaming division doubling down on AI?",
+      "published": "Sat, 21 Feb 2026 17:41:27 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "Google VP warns that two types of AI startups may not survive",
+      "link": "https://techcrunch.com/2026/02/21/google-vp-warns-that-two-types-of-ai-startups-may-not-survive/",
+      "summary": "As generative AI evolves, a Google VP warns that LLM wrappers and AI aggregators face mounting pressure, with shrinking margins and limited differentiation threatening their long-term viability.",
+      "published": "Sat, 21 Feb 2026 16:00:00 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "OpenAI debated calling police about suspected Canadian shooter's chats",
+      "link": "https://techcrunch.com/2026/02/21/openai-debated-calling-police-about-suspected-canadian-shooters-chats/",
+      "summary": "Jesse Van Rootselaar's descriptions of gun violence were flagged by tools that monitor ChatGPT for misuse.",
+      "published": "Sat, 21 Feb 2026 15:25:44 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "India's Sarvam launches Indus AI chat app as competition heats up",
+      "link": "https://techcrunch.com/2026/02/20/indias-sarvam-launches-indus-ai-chat-app-as-competition-heats-up/",
+      "summary": "Sarvam's Indus chat app is currently available in beta.",
+      "published": "Sat, 21 Feb 2026 01:00:00 +0000",
+      "source": "techcrunch",
+      "category": "tech"
+    },
+    {
+      "title": "Georgia says Elon Musk's America PAC violated election law",
+      "link": "https://www.theverge.com/tech/882838/georgia-elon-musk-america-pac-voter-fraud",
+      "summary": "For all his bluster about voter fraud, Elon Musk has been one of the most flagrant flaunters of US election law. Now his America PAC has been slapped with a reprimand by the Georgia State Election Board.",
+      "published": "2026-02-21T11:55:36-05:00",
+      "source": "the-verge",
+      "category": "tech"
+    },
+    {
+      "title": "Urgent research needed to tackle AI threats, says Google AI boss",
+      "link": "https://www.bbc.com/news/articles/c0q3g0ln274o",
+      "summary": "But the head of the US delegation at the AI Impact Summit in Delhi says: We totally reject global governance of AI.",
+      "published": "Fri, 20 Feb 2026 10:32:40 GMT",
+      "source": "bbc-tech",
+      "category": "tech"
+    }
+  ]
+}

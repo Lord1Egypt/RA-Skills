@@ -1,0 +1,14 @@
+# 高德开放平台地理信息服务配置文件
+# 
+# 使用方法：复制此文件为 config.txt，填入你的 API Key
+#
+# API Key 获取地址：https://console.amap.com/dev/key/app
+#
+# 优先级：环境变量 > 本配置文件
+
+# API Key（必填）
+AMAP_API_KEY=your_api_key_here
+
+# Secret Key（可选，用于高级API签名验证）
+# 如不需要高级功能可不填
+AMAP_SECRET_KEY=your_secret_key_here

@@ -1,0 +1,11 @@
+{
+  "name": "Pastoral Prayer (OpenClaw Church)",
+  "tagline": "Write complete pastoral prayers for common church occasions.",
+  "description": "Produces a complete pastoral prayer for a given scenario: illness/hospital visit, thanksgiving, corporate worship, funeral, wedding, baptism, crisis, or grief. Dignified, gentle tone; theologically sound; ready to read aloud or adapt. Default: Evangelical; plain text. For pastors and chaplains. Related: Bible QA, Sermon Outline, Church Announcement skills by OpenClaw Church.",
+  "category": "utility",
+  "tags": ["prayer", "pastoral prayer", "intercession", "worship", "funeral", "wedding", "baptism", "church", "openclaw", "ministry", "pastor", "congregation"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://github.com/cheniOS/bible-church-ministry-skills"
+}

@@ -1,0 +1,119 @@
+# Operator Task Planning Prompt
+
+## PURPOSE
+This prompt is used by the Marketing Operator to decompose a CMO mission brief into executable tasks.
+
+## INPUT SPECIFICATION
+
+### mission_brief (from CMO, required)
+```json
+{
+  "mission_id": "string",
+  "objective": "string",
+  "target_audience": "string",
+  "strategy": "string",
+  "priority": "critical | high | medium | low",
+  "recommended_channels": ["string"],
+  "actions": [
+    {
+      "action": "string",
+      "priority": "string",
+      "expected_impact": "string",
+      "owner": "cmo | operator"
+    }
+  ],
+  "success_criteria": "string",
+  "constraints": {
+    "budget": "number or null",
+    "timeline": "string",
+    "brand_guidelines": "string"
+  }
+}
+```
+
+### available_resources (optional)
+```json
+{
+  "budget_remaining": "number",
+  "team_capacity": "string (hours/week)",
+  "tools_available": ["list of available tools/platforms"],
+  "channel_access": ["list of channels with active accounts"]
+}
+```
+
+### campaign_history (auto-loaded from memory)
+Previous campaigns for pattern matching and time estimation.
+
+## INSTRUCTIONS
+
+1. Read the mission brief completely
+2. For each action in the mission:
+   a. Break into atomic tasks (one clear action per task)
+   b. Assign a unique task_id: TASK-{mission_id}-{NNN}
+   c. Write a specific, action-oriented title
+   d. Write detailed, unambiguous instructions in description
+   e. Set priority (inherit from action or adjust based on dependencies)
+   f. Determine owner:
+      - "agent" — can be automated
+      - "human" — requires human judgment or access
+      - "api" — requires external API call (check adapters/)
+   g. Calculate deadline based on:
+      - Mission priority + timeline constraints
+      - Task complexity estimate
+      - Dependency chain position
+   h. Define expected_result as a measurable outcome
+   i. Identify dependencies on other tasks
+   j. Estimate effort in hours
+3. Validate dependency graph — NO circular dependencies allowed
+4. Sort tasks in execution order (topological sort by dependencies)
+5. Identify resource conflicts and flag them
+
+## OUTPUT STRUCTURE
+
+```json
+{
+  "plan_id": "UUID",
+  "mission_id": "ref to input",
+  "created_at": "ISO 8601",
+  "total_tasks": 12,
+  "estimated_total_effort": "40 hours",
+  "estimated_budget": 5000,
+  "tasks": [
+    {
+      "task_id": "TASK-M001-001",
+      "title": "Create landing page copy for {segment}",
+      "description": "Write headline, subheadline, 3 benefit bullets, CTA, and social proof section targeting {audience} pain point: {pain_point}. Tone: {brand_tone}. Max 500 words.",
+      "priority": "high",
+      "owner": "agent",
+      "deadline": "2024-01-15T17:00:00Z",
+      "status": "pending",
+      "expected_result": "Complete landing page copy document",
+      "success_metric": "Copy approved by human review",
+      "dependencies": [],
+      "estimated_effort": "2 hours",
+      "channel": "website",
+      "budget_allocated": 0,
+      "notes": ""
+    }
+  ],
+  "resource_conflicts": [
+    {
+      "conflict": "description",
+      "affected_tasks": ["task_ids"],
+      "resolution": "proposed solution"
+    }
+  ],
+  "execution_order": ["TASK-M001-001", "TASK-M001-002", "..."]
+}
+```
+
+## CONSTRAINTS
+
+- NEVER create a task without a measurable expected_result
+- NEVER leave dependencies undefined — explicitly use [] if none
+- NEVER estimate effort at 0 — minimum is 0.5 hours
+- Task titles must start with an action verb: Create, Write, Design, Launch, Test, Analyze, Deploy
+- Maximum 20 tasks per mission to maintain focus
+- If mission requires more than 20 tasks, split into phases and note in output
+- If resources are insufficient, flag and propose a reduced-scope plan
+- All deadlines must be realistic — flag if mission timeline is too aggressive

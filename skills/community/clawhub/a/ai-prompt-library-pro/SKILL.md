@@ -1,35 +1,239 @@
 ---
-name: "AI 绘画提示词库 Pro"
-description: "AI 绘画提示词库，包含 1000+ 高质量 Midjourney/Stable Diffusion 提示词模板，覆盖人像、风景、产品、插画等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-prompt-library-pro"
-sourceUrl: "https://clawhub.ai/skills/ai-prompt-library-pro"
+name: ai-prompt-library-pro
+version: 1.0.0
+description: AI 绘画提示词库，包含 1000+ 高质量 Midjourney/Stable Diffusion 提示词模板，覆盖人像、风景、产品、插画等场景。
+author: 全能虾大王
+license: MIT
+metadata:
+  openclaw:
+    emoji: "🎨"
+    category: "design"
+    requires: {}
 ---
 
 # AI 绘画提示词库 Pro
 
-> AI 绘画提示词库，包含 1000+ 高质量 Midjourney/Stable Diffusion 提示词模板，覆盖人像、风景、产品、插画等场景。
+1000+ 高质量提示词模板，一键生成精美 AI 画作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-prompt-library-pro`
-- **Source URL:** [https://clawhub.ai/skills/ai-prompt-library-pro](https://clawhub.ai/skills/ai-prompt-library-pro)
+## 支持平台
 
-## Overview
+| 平台 | 兼容度 | 优化程度 |
+|------|--------|---------|
+| Midjourney | ⭐⭐⭐⭐⭐ | 完全优化 |
+| Stable Diffusion | ⭐⭐⭐⭐⭐ | 完全优化 |
+| DALL-E 3 | ⭐⭐⭐⭐ | 高度优化 |
+| 文心一格 | ⭐⭐⭐⭐ | 高度优化 |
+| 通义万相 | ⭐⭐⭐⭐ | 高度优化 |
 
+## 提示词分类
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-prompt-library-pro
+### 1. 人像摄影（200+ 模板）
+
+| 风格 | 数量 | 难度 |
+|------|------|------|
+| 写实人像 | 50 | ⭐⭐ |
+| 动漫角色 | 50 | ⭐⭐ |
+| 古风人像 | 30 | ⭐⭐⭐ |
+| 赛博朋克 | 30 | ⭐⭐⭐ |
+| 时尚大片 | 40 | ⭐⭐⭐⭐ |
+
+**示例模板**：
 ```
+Portrait of a beautiful Chinese woman, 25 years old, 
+long black hair, natural makeup, soft lighting, 
+photorealistic, 85mm lens, f/1.8, bokeh background, 
+professional photography, 8K --ar 3:4 --v 6
+```
+
+### 2. 风景摄影（150+ 模板）
+
+| 风格 | 数量 | 难度 |
+|------|------|------|
+| 自然风光 | 50 | ⭐⭐ |
+| 城市建筑 | 40 | ⭐⭐⭐ |
+| 星空银河 | 30 | ⭐⭐⭐⭐ |
+| 四季景色 | 30 | ⭐⭐ |
+
+**示例模板**：
+```
+Majestic mountain landscape at sunrise, golden hour lighting, 
+misty valley below, snow-capped peaks, dramatic clouds, 
+photorealistic, landscape photography, 8K --ar 16:9
+```
+
+### 3. 产品设计（150+ 模板）
+
+| 类别 | 数量 | 难度 |
+|------|------|------|
+| 电子产品 | 40 | ⭐⭐⭐ |
+| 包装设计 | 40 | ⭐⭐⭐ |
+| 家具设计 | 30 | ⭐⭐ |
+| 服装设计 | 40 | ⭐⭐⭐⭐ |
+
+**示例模板**：
+```
+Product photography of a minimalist wireless speaker, 
+white marble surface, soft studio lighting, 
+clean background, professional product shot, 8K --ar 4:5
+```
+
+### 4. 插画艺术（200+ 模板）
+
+| 风格 | 数量 | 难度 |
+|------|------|------|
+| 扁平插画 | 50 | ⭐⭐ |
+| 水彩插画 | 40 | ⭐⭐⭐ |
+| 油画风格 | 40 | ⭐⭐⭐⭐ |
+| 像素艺术 | 30 | ⭐⭐ |
+| 国潮插画 | 40 | ⭐⭐⭐ |
+
+### 5. 商业素材（150+ 模板）
+
+| 用途 | 数量 | 难度 |
+|------|------|------|
+| 海报背景 | 40 | ⭐⭐ |
+| 电商主图 | 40 | ⭐⭐⭐ |
+| 社交媒体 | 40 | ⭐⭐ |
+| 演示背景 | 30 | ⭐⭐ |
+
+### 6. 特殊效果（150+ 模板）
+
+| 效果 | 数量 | 难度 |
+|------|------|------|
+| 光效 | 40 | ⭐⭐⭐ |
+| 粒子 | 30 | ⭐⭐⭐⭐ |
+| 液体 | 30 | ⭐⭐⭐⭐ |
+| 火焰 | 25 | ⭐⭐⭐ |
+| 烟雾 | 25 | ⭐⭐⭐ |
+
+## 使用方法
+
+### 基础用法
+```
+用户：我需要一个产品摄影的提示词，产品是护肤品
+AI：请问什么类型的护肤品？希望什么风格？
+```
+
+### 高级用法
+```
+用户：生成一个精华液产品摄影提示词，极简风，白色背景，高端感
+```
+
+## 提示词公式
+
+### 通用公式
+```
+[主体描述] + [环境/背景] + [光影效果] + [风格参考] + [技术参数]
+```
+
+### 人像公式
+```
+[人物特征] + [表情姿态] + [服装造型] + [场景背景] + [光影] + [镜头参数] + [风格]
+```
+
+### 产品公式
+```
+[产品名称] + [摆放方式] + [背景材质] + [灯光设置] + [拍摄角度] + [风格]
+```
+
+## 价格说明
+
+| 套餐 | 价格 | 包含内容 |
+|------|------|---------|
+| 基础版 | ¥99 | 100 个提示词模板 |
+| 标准版 | ¥199 | 500 个提示词模板 |
+| 专业版 | ¥399 | 1000 个提示词 + 定制 |
+| 企业版 | ¥999 | 无限使用 + 专属支持 |
+
+## 质量参数说明
+
+### Midjourney 参数
+
+| 参数 | 说明 | 推荐值 |
+|------|------|--------|
+| --ar | 宽高比 | 3:4 / 16:9 |
+| --v | 版本 | 6 |
+| --q | 质量 | 1-2 |
+| --style | 风格 | raw / scenic |
+| --chaos | 创意度 | 0-100 |
+
+### Stable Diffusion 参数
+
+| 参数 | 说明 | 推荐值 |
+|------|------|--------|
+| Steps | 迭代步数 | 20-30 |
+| CFG | 提示词相关性 | 7-9 |
+| Sampler | 采样器 | DPM++ 2M Karras |
+| Size | 分辨率 | 512x768 / 768x1024 |
+
+## 常见问题
+
+**Q: 新手能用吗？**
+A: 可以，模板已优化，复制粘贴即可使用。
+
+**Q: 支持中文提示词吗？**
+A: 支持，但英文效果更好。
+
+**Q: 可以定制吗？**
+A: 专业版和企业版支持定制。
+
+**Q: 更新频率？**
+A: 每月更新 50+ 新模板。
+
+## 案例展示
+
+### 案例 1：电商产品图
+- 客户：某美妆品牌
+- 使用模板：产品摄影 - 极简风
+- 效果：点击率提升 300%
+- 节省成本：¥50000+（相比专业摄影）
+
+### 案例 2：社交媒体素材
+- 客户：某自媒体
+- 使用模板：插画艺术 - 扁平风
+- 效果：涨粉 10 万+
+- 效率提升：10 倍
+
+## 交付内容
+
+### 基础版
+- 100 个精选提示词
+- PDF 文档
+- 使用指南
+
+### 标准版
+- 500 个提示词
+- 分类整理
+- 参数说明
+- 案例展示
+
+### 专业版
+- 1000 个提示词
+- 定制服务（10 个）
+- 1 对 1 指导
+- 终身更新
+
+### 企业版
+- 无限使用
+- 专属提示词库
+- API 接入
+- 优先支持
+
+## 更新政策
+
+- 基础版：3 个月免费更新
+- 标准版：6 个月免费更新
+- 专业版：1 年免费更新
+- 企业版：终身免费更新
+
+## 联系我们
+
+- 微信：xxx（专业版以上客户）
+- 邮箱：prompt@example.com
+- 响应时间：4 小时内
+
+---
+
+**让 AI 绘画变得简单高效！**
+
+*最后更新：2026-04-05*

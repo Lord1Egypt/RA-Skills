@@ -1,0 +1,42 @@
+{
+  "slug": "publishing-company",
+  "name": "出版公司",
+  "description": "适合选题策划、内容编辑、封面设计、发行宣传的出版型团队。",
+  "workers": [
+    {
+      "name": "主编",
+      "worker_id": "chief_editor",
+      "engine": "openclaw",
+      "role": "research",
+      "duty": "负责选题方向、内容把关与结构审稿"
+    },
+    {
+      "name": "策划",
+      "worker_id": "book_planner",
+      "engine": "openclaw",
+      "role": "research",
+      "duty": "负责选题策划、竞品调研与市场定位"
+    },
+    {
+      "name": "校对",
+      "worker_id": "proofreader",
+      "engine": "hermes",
+      "role": "general",
+      "duty": "负责文稿校对、错漏检查与出版前整理"
+    },
+    {
+      "name": "封设",
+      "worker_id": "cover_designer",
+      "engine": "openclaw",
+      "role": "design",
+      "duty": "负责封面设计、版式建议与视觉统一"
+    },
+    {
+      "name": "发行",
+      "worker_id": "distribution_manager",
+      "engine": "hermes",
+      "role": "general",
+      "duty": "负责发行文案、渠道沟通与宣传协作"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "lobster-says",
+  "version": "2.5.8",
+  "description": "🦞 虾说——你的专属共情虾。每天早晚给你一句关心的话，让你觉得被看到了。需注册 cron 定时任务推送消息；2.5.4 起服务端提前 3 分钟预生成消息，cron 触发时 /api/generate 直接返回已有消息（<200ms），企微 emit-message-text 链路总延迟从 15s+ 降至 <2s；Web 端新增信封动画特效，用户打开链接即看到虾的来信。企业微信在 2.5.3 起走极简主链路：脚本通过 --emit-message-text 只输出最终消息文本，由 isolated agent 使用 message 工具直发到 openclaw-wecom-bot；通用通道（Telegram 等）由脚本完整模式多通道 fallback 发送；可选读取本地会话日志生成理解摘要并上传到 nixiashuo.com。",
+  "author": "Jared",
+  "license": "MIT",
+  "repository": "",
+  "keywords": [
+    "emotional-support",
+    "daily-push",
+    "pixel-art",
+    "companion",
+    "cron",
+    "memory",
+    "sticker",
+    "情感陪伴",
+    "情绪价值",
+    "情绪虾",
+    "暖心虾",
+    "懂你的虾",
+    "empathy",
+    "mental-health",
+    "wellness",
+    "daily-checkin",
+    "mood",
+    "care",
+    "lobster",
+    "虾说",
+    "中文",
+    "chinese",
+    "壁纸生成",
+    "wallpaper"
+  ],
+  "data_usage": {
+    "cron_jobs": "Registers 5-6 scheduled cron jobs via openclaw cron add for daily message push and optional transcript digest",
+    "session_read": "In smart/deep memory mode only, reads local session JSONL files under ~/.openclaw/agents/main/sessions/ to generate understanding summaries",
+    "network": "Communicates with https://nixiashuo.com for message generation, delivery reporting, and optional transcript digest upload",
+    "config_files": "Reads and writes .lobster-config in the skill directory for user/lobster identity and channel preferences. Does NOT read openclaw.json or extract gateway tokens.",
+    "user_consent": "Memory mode (lightweight/smart/deep) is explicitly chosen by the user during initialization and can be changed at any time"
+  }
+}

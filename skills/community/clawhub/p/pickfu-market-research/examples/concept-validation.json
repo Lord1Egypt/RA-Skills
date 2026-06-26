@@ -1,0 +1,46 @@
+{
+  "surveyIntent": "Validate a product concept and gather first impressions from potential users",
+  "country": "US",
+  "sampleSize": "50",
+  "targeting": [],
+  "reporting": ["gender", "age-range", "income"],
+  "questions": [
+    {
+      "type": "five_second_test",
+      "prompt": "After seeing this image briefly, what do you think this product/service does?",
+      "options": [
+        { "mediaUrl": "https://example.com/concept-image.png" }
+      ]
+    },
+    {
+      "type": "star_rating",
+      "prompt": "How appealing is this product concept to you?",
+      "context": {
+        "text": "A smart water bottle that tracks your hydration and reminds you to drink throughout the day via a phone app."
+      },
+      "options": []
+    },
+    {
+      "type": "single_select",
+      "prompt": "How likely are you to try this product if it were available today?",
+      "context": {
+        "text": "A smart water bottle that tracks your hydration and reminds you to drink throughout the day via a phone app."
+      },
+      "options": [
+        { "value": "Definitely would try" },
+        { "value": "Probably would try" },
+        { "value": "Not sure" },
+        { "value": "Probably would not try" },
+        { "value": "Definitely would not try" }
+      ]
+    },
+    {
+      "type": "open_ended",
+      "prompt": "What questions or concerns do you have about this product?",
+      "context": {
+        "text": "A smart water bottle that tracks your hydration and reminds you to drink throughout the day via a phone app."
+      },
+      "options": []
+    }
+  ]
+}

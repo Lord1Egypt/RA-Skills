@@ -1,0 +1,225 @@
+{
+  "name": "ifq-design-skills",
+  "version": "2.4.3",
+  "title": "IFQ Design Skills",
+  "summary": "One prompt in, one shippable HTML page out. 12 design modes, 12 forkable templates, anti-slop preflight, and proof-first delivery. Zero dependencies, zero install hooks, CN-friendly font loading. The design skill that makes AI higher leverage.",
+  "category": "creative",
+  "tags": ["design", "html", "prototype", "slides", "infographic", "dashboard", "brand", "ifq", "editorial", "ambient-brand", "mockup", "app-design", "presentation", "pitch-deck", "branding", "logo", "typography", "print-design", "no-code-design", "ai-design", "social-media", "changelog", "portfolio", "business-card", "whitepaper", "onboarding", "brand-diagnosis", "social-kit", "motion-design"],
+  "license": "MIT",
+  "homepage": "https://github.com/peixl/ifq-design-skills",
+  "repository": "https://github.com/peixl/ifq-design-skills",
+  "package_repository": "https://github.com/peixl/ifq-design-clawhub",
+  "entrypoint": "SKILL.md",
+  "readme": "README.md",
+  "changelog": "CHANGELOG.md",
+  "platforms": ["macos", "linux", "windows"],
+  "compatibility": ["openclaw", "clawhub", "hermes", "claude_code", "codex_cli", "codebuddy", "cursor", "generic"],
+  "bundle": {
+    "ignore": "clawhub.ignore.txt",
+    "safe": true,
+    "contains_binary": false
+  },
+  "runtime": {
+    "node": ">=18.17",
+    "requires_scripts": false,
+    "network": {
+      "required": false,
+      "optional": ["fonts.googleapis.com", "fonts.gstatic.com", "images.unsplash.com", "unpkg.com"]
+    }
+  },
+  "permissions": {
+    "filesystem": "workspace",
+    "shell": "workspace-node-scripts-only",
+    "browser": "optional-outbound-https-read",
+    "network": "optional-outbound-https"
+  },
+  "plugins": {
+    "required": ["filesystem", "shell"],
+    "optional": ["browser", "memory"]
+  },
+  "ecosystem": {
+    "primary_runtime": "openclaw",
+    "primary_marketplace": "clawhub",
+    "install": "openclaw skills install ifq-design-skills",
+    "readiness_checks": [
+      "openclaw skills info ifq-design-skills",
+      "openclaw skills check ifq-design-skills",
+      "npm run validate"
+    ],
+    "quality_gates": [
+      "12-mode eval suite",
+      "zero-dependency ClawHub bundle",
+      "manifest/frontmatter parity",
+      "OpenClaw loader-gating metadata",
+      "script safety deny-list",
+      "secret and binary hygiene",
+      "font loading protocol",
+      "ClawHub archive cleanliness"
+    ]
+  },
+  "marketplace": {
+    "positioning": "One-turn HTML-first design production for OpenClaw users: route the prompt, fork a proven template, embed IFQ craft, and return a verified local artifact.",
+    "activation_loop": [
+      "install from ClawHub",
+      "try one natural-language design prompt",
+      "receive one local HTML artifact plus proof packet",
+      "iterate from visible work instead of prompt-engineering from scratch"
+    ],
+    "evidence_packet": [
+      "output file path",
+      "mode route used",
+      "template id used",
+      "assumptions made",
+      "verification command or browser check performed",
+      "known caveats that affect use"
+    ],
+    "human_value": [
+      "ordinary-language prompts become concrete files",
+      "assumptions and missing facts are visible instead of hidden",
+      "export boundaries are honest before the user spends time on setup",
+      "first-run examples explain exactly what good output looks like before install"
+    ],
+    "agent_value": [
+      "12 deterministic mode routes",
+      "template-first generation with required reference files",
+      "offline eval and smoke gates before publish",
+      "first-run evidence packet: file, route, template, assumptions, verification, caveats",
+      "failure policy favors reversible labeled assumptions over stalled setup loops"
+    ],
+    "scanner_alignment": [
+      "purpose and capability match the package footprint",
+      "instructions stay scoped to visual artifacts",
+      "no install-time execution or silent downloads",
+      "no required credentials",
+      "no persistence or privilege escalation"
+    ],
+    "top_skill_signals": [
+      "one memorable job: shippable HTML-first visual artifacts",
+      "exact install path and first prompt are visible",
+      "safe bundle stays narrow while the full repo handles opt-in exports",
+      "proof-first workflow makes quality auditable by humans and agents"
+    ]
+  },
+  "first_run": {
+    "install_prompt": "Install IFQ Design Skills (ifq-design-skills) from ClawHub. Keep work scoped to this skill. After install, inspect metadata, then help me create one verified HTML artifact from a natural-language design prompt.",
+    "starter_prompts": [
+      "Make a command center dashboard for our internal AI operations. Dense, calm, not a BI skin.",
+      "Create a 20-minute salon deck about AI agents. Bookish, not a SaaS keynote.",
+      "Turn four weekly release notes into a vertical changelog that feels authored, not corporate.",
+      "Audit this early-stage brand and give me three upgrade directions before changing anything.",
+      "Make a black-and-white business card for an indie cafe. Handmade, print-aware, no flourish.",
+      "Design a 5-screen onboarding for a meditation app with user mindset annotations at each step.",
+      "Create a social media kit for a product launch: X card, RedNote cover, IG square, WeChat header.",
+      "Make my personal portfolio page. I do not want it to look like I am job-hunting. Five style variants."
+    ],
+    "success_evidence": [
+      "output file path",
+      "mode route used",
+      "template id used",
+      "assumptions made",
+      "verification command or browser check performed",
+      "known caveats that affect use"
+    ]
+  },
+  "demo_artifacts": [
+    {
+      "label": "iOS prototype baseline",
+      "file": "demos/c1-ios-prototype.html",
+      "route": "M-06",
+      "verify": "npm run verify:lite -- demos/c1-ios-prototype.html"
+    },
+    {
+      "label": "motion design baseline",
+      "file": "demos/c3-motion-design.html",
+      "route": "M-01",
+      "verify": "npm run verify:lite -- demos/c3-motion-design.html"
+    },
+    {
+      "label": "expert review baseline",
+      "file": "demos/c6-expert-review.html",
+      "route": "M-11",
+      "verify": "npm run verify:lite -- demos/c6-expert-review.html"
+    },
+    {
+      "label": "infographic baseline",
+      "file": "demos/c5-infographic.html",
+      "route": "M-03",
+      "verify": "npm run verify:lite -- demos/c5-infographic.html"
+    },
+    {
+      "label": "brand protocol baseline",
+      "file": "demos/w1-brand-protocol.html",
+      "route": "M-12",
+      "verify": "npm run verify:lite -- demos/w1-brand-protocol.html"
+    }
+  ],
+  "tool_map": {
+    "read_file": "filesystem/read",
+    "write_file": "filesystem/write",
+    "list_dir": "filesystem/list",
+    "run_command": "shell/exec",
+    "web_search": "browser/search",
+    "web_fetch": "browser/fetch",
+    "screenshot": "browser/screenshot-or-host-tool"
+  },
+  "triggers": [
+    "原型", "高保真 mockup", "hi-fi mockup", "interactive prototype",
+    "keynote", "幻灯片", "slide deck", "ppt", "pptx",
+    "dashboard", "command center",
+    "landing", "hero page",
+    "changelog", "release notes",
+    "whitepaper", "白皮书",
+    "infographic", "信息图",
+    "business card", "名片",
+    "social cover", "封面", "小红书",
+    "brand system", "全栈品牌",
+    "design critique", "设计评审",
+    "design variants", "3 方向",
+    "motion demo", "launch film", "mp4 export plan", "gif export plan"
+  ],
+  "fullRepoOnlyExports": ["mp4", "gif", "pdf", "pptx"],
+  "do_not_use_for": [
+    "production web apps or SaaS backends",
+    "SEO-critical marketing sites",
+    "pure copy / text rewriting with no visual output",
+    "simple CSS patches inside an existing large codebase"
+  ],
+  "security_scan": {
+    "posture": "scanner-clean",
+    "dynamic_eval": false,
+    "script_network": false,
+    "child_process": false,
+    "secrets_in_repo": false,
+    "zero_dependencies": true,
+    "zero_install_hooks": true,
+    "deny_list_rules": 18,
+    "secret_patterns": 5,
+    "bundle_integrity": "deterministic tarball via node:zlib; no binary assets; no extensionless root files",
+    "scanner_expectations": [
+      "VirusTotal: clean — zero dependencies, zero install hooks, no binary assets",
+      "ClawScan: clean — workspace-scoped permissions, no script-side outbound network",
+      "Static analysis: clean — deny-list literals in JSON data, not inline code"
+    ]
+  },
+  "quick_commands": [
+    { "label": "Validate skill health", "command": "npm run validate", "description": "One-minute smoke test: templates, brand toolkit, ClawHub cleanliness, script safety, and manifest anchors." },
+    { "label": "Validate eval suite", "command": "npm run evals:validate", "description": "Checks regression scenarios for all 12 modes and their agent contracts." },
+    { "label": "Static HTML check", "command": "npm run verify:lite -- <file.html>", "description": "Zero-dependency placeholder and template-leak scan for generated HTML." },
+    { "label": "Build ClawHub bundle", "command": "npm run pack", "description": "Produces a clean .tar.gz outside the repo (excludes .git/ and editor junk)." },
+    { "label": "Anti-slop preflight", "command": "npm run anti-slop -- <file.html>", "description": "Scans generated HTML for 7 AI-slop violations: gradient text, glassmorphism, hero-metric, generic fonts, and more." }
+  ],
+  "docs": {
+    "quickstart": "SKILL.md#30-second-load-path",
+    "compatibility": "references/agent-compatibility.md",
+    "publishing": "references/clawhub-publishing.md",
+    "modes": "references/modes.md",
+    "brand_spec": "references/ifq-brand-spec.md",
+    "font_loading": "references/font-loading.md",
+    "anti_ai_slop": "references/anti-ai-slop.md",
+    "ecosystem_quality": "references/skill-ecosystem-quality.md",
+    "security": "SECURITY.md",
+    "smoke_test": "references/smoke-test.md",
+    "evals": "evals/evals.json",
+    "eval_schema": "evals/evals.schema.json"
+  }
+}

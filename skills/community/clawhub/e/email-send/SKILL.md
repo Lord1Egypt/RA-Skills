@@ -1,35 +1,52 @@
 ---
-name: "Email Send"
+name: email-send
 description: "Send a quick email via SMTP using `msmtp` without opening a full mail client."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-send"
-sourceUrl: "https://clawhub.ai/skills/email-send"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📧",
+        "requires": { "bins": ["msmtp"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "msmtp",
+              "bins": ["msmtp"],
+              "label": "Install msmtp (dnf)",
+            },
+          ],
+      },
+  }
 ---
 
-# Email Send
+# Email Send Skill
 
-> Send a quick email via SMTP using `msmtp` without opening a full mail client.
+Send a quick email via SMTP without opening the full himalaya client. Requires `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` env vars.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-send`
-- **Source URL:** [https://clawhub.ai/skills/email-send](https://clawhub.ai/skills/email-send)
+## Sending Email
 
-## Overview
+Send a basic email:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/email-send
+echo "Meeting at 3pm tomorrow." | msmtp recipient@example.com
+```
+
+Send with subject and headers:
+
+```bash
+printf "To: recipient@example.com\nSubject: Quick update\n\nHey, the deploy is done." | msmtp recipient@example.com
+```
+
+## Options
+
+- `--cc` -- carbon copy recipients
+- `--bcc` -- blind carbon copy recipients
+- `--attach <file>` -- attach a file
+
+## Install
+
+```bash
+sudo dnf install msmtp
 ```

@@ -1,0 +1,58 @@
+document:
+  standard_basis:
+    - ISO 11014:2009
+    - GHS
+  required_sections: 16
+  required_section_order:
+    - "Section 1: Identification"
+    - "SECTION 2: Hazards Identification"
+    - "SECTION 3: Composition / Information on Ingredients"
+    - "Section 4: First-Aid Measures"
+    - "SECTION 5: Firefighting Measures"
+    - "SECTION 6: Accidental release measures"
+    - "SECTION 7: Handling and storage"
+    - "SECTION 8: Exposure controls / personal protection"
+    - "SECTION 9: Physical and chemical properties"
+    - "SECTION 10: Stability and reactivity"
+    - "SECTION 11: Toxicological information"
+    - "SECTION 12: Ecological information"
+    - "SECTION 13: Disposal considerations"
+    - "SECTION 14: Transport information"
+    - "SECTION 15: Regulatory information"
+    - "SECTION 16: Other information"
+display:
+  preferred_no_data_text: "No data available"
+  allowed_no_data_texts:
+    - "No data available"
+    - "Not available"
+    - "No applicable information available"
+render:
+  template_authority: "client_template"
+  font_family: "Arial"
+  font_size_pt: 12
+  text_color: "000000"
+  preserve:
+    - "images"
+    - "separator_lines"
+    - "first_and_second_level_headings"
+    - "header_footer_tables"
+    - "page_number_fields"
+supplier_defaults:
+  source: "config/fixed_company.yml"
+  apply_fixed_supplier_block: true
+data_resolution:
+  mark_conflicts_for_manual_review: true
+  prefer_more_complete_source: true
+  prefer_formal_supplier_style_sources: true
+  forbid_fact_invention: true
+  non_fabricable_fields:
+    - "section_1.ec_number"
+    - "section_2.ghs_classifications"
+    - "section_2.signal_word"
+    - "section_2.pictograms"
+    - "section_2.hazard_statements"
+    - "section_9.flash_point"
+    - "section_11.numerical_measures_of_toxicity"
+    - "section_14.un_number"
+    - "section_14.transport_hazard_class"
+    - "section_14.packing_group"

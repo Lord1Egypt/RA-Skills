@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TEST_TITLE}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .timer-bar {
+            background: #f0f0f0;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .timer {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .timer.warning {
+            color: #e74c3c;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .progress {
+            font-size: 1em;
+            color: #666;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        
+        .question-category {
+            background: #e8e5ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.15em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #f5f3ff;
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #e8e5ff;
+        }
+        
+        .option.correct {
+            border-color: #27ae60;
+            background: #e8f8f0;
+        }
+        
+        .option.incorrect {
+            border-color: #e74c3c;
+            background: #fde8e8;
+        }
+        
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.2s ease;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px;
+            color: white;
+        }
+        
+        .score-value {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        .score-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .result-message {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .breakdown-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .breakdown-item .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .breakdown-item .value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .explanation {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .content {
+                padding: 20px;
+            }
+            .question-card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{TEST_TITLE}}</h1>
+            <p class="subtitle">Test your cognitive abilities</p>
+        </div>
+        
+        <div class="timer-bar" id="timerBar">
+            <div class="timer" id="timer">{{TIME_LIMIT}}:00</div>
+            <div class="progress">Question <span id="currentQ">1</span> / <span id="totalQ">{{TOTAL_QUESTIONS}}</span></div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        
+        <div class="content" id="quizContent">
+            <!-- Questions will be injected here -->
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score-circle">
+                <div class="score-value" id="scoreValue">0</div>
+                <div class="score-label">Score</div>
+            </div>
+            <div class="result-message" id="resultMessage"></div>
+            <div class="breakdown" id="breakdown"></div>
+            <button class="btn" onclick="location.reload()">Retake Test</button>
+        </div>
+        
+        <div class="btn-container" id="submitContainer">
+            <button class="btn" id="submitBtn" onclick="submitTest()">Submit Test</button>
+        </div>
+    </div>
+    
+    <script>
+        const questions = {{QUESTIONS_JSON}};
+        const timeLimit = {{TIME_LIMIT}}; // minutes
+        
+        let currentQuestion = 0;
+        let userAnswers = {};
+        let timerInterval;
+        let timeRemaining = timeLimit * 60;
+        
+        function init() {
+            document.getElementById('totalQ').textContent = questions.length;
+            renderQuestion(0);
+            startTimer();
+        }
+        
+        function renderQuestion(index) {
+            const container = document.getElementById('quizContent');
+            const q = questions[index];
+            
+            let html = `
+                <div class="question-card" id="q-${index}">
+                    <div class="question-header">
+                        <span class="question-number">Question ${index + 1}</span>
+                        <span class="question-category">${q.category}</span>
+                    </div>
+                    <div class="question-text">${q.question}</div>
+            `;
+            
+            if (q.type === 'multiple_choice' && q.options) {
+                html += '<div class="options">';
+                q.options.forEach((opt, i) => {
+                    const letter = String.fromCharCode(65 + i);
+                    const selected = userAnswers[index] === opt ? 'selected' : '';
+                    html += `
+                        <div class="option ${selected}" onclick="selectOption(${index}, '${opt.replace(/'/g, "\\'")}')">
+                            <span class="option-letter">${letter}</span>
+                            <span>${opt}</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            } else {
+                const value = userAnswers[index] || '';
+                html += `<input type="text" class="text-input" placeholder="Your answer..." value="${value}" onchange="saveTextAnswer(${index}, this.value)">`;
+            }
+            
+            html += `
+                    <div class="explanation" id="exp-${index}">
+                        <strong>Explanation:</strong> ${q.explanation}
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            document.getElementById('currentQ').textContent = index + 1;
+            updateProgress();
+        }
+        
+        function selectOption(qIndex, option) {
+            userAnswers[qIndex] = option;
+            renderQuestion(qIndex);
+            
+            // Auto-advance after short delay
+            if (qIndex < questions.length - 1) {
+                setTimeout(() => {
+                    currentQuestion = qIndex + 1;
+                    renderQuestion(currentQuestion);
+                }, 400);
+            }
+        }
+        
+        function saveTextAnswer(qIndex, value) {
+            userAnswers[qIndex] = value.trim();
+        }
+        
+        function updateProgress() {
+            const pct = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = pct + '%';
+        }
+        
+        function startTimer() {
+            if (!timeLimit || timeLimit <= 0) {
+                document.getElementById('timer').style.display = 'none';
+                return;
+            }
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                const mins = Math.floor(timeRemaining / 60);
+                const secs = timeRemaining % 60;
+                const timerEl = document.getElementById('timer');
+                timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                
+                if (timeRemaining <= 60) {
+                    timerEl.classList.add('warning');
+                }
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+        
+        function submitTest() {
+            clearInterval(timerInterval);
+            
+            let correct = 0;
+            const categoryScores = {};
+            
+            questions.forEach((q, i) => {
+                const userAns = (userAnswers[i] || '').toString().toLowerCase().trim();
+                const correctAns = q.answer.toString().toLowerCase().trim();
+                const isCorrect = userAns === correctAns;
+                
+                if (isCorrect) correct++;
+                
+                if (!categoryScores[q.category]) {
+                    categoryScores[q.category] = { correct: 0, total: 0 };
+                }
+                categoryScores[q.category].total++;
+                if (isCorrect) categoryScores[q.category].correct++;
+                
+                // Show all questions with answers
+                if (i !== currentQuestion) {
+                    renderQuestionForResults(i, isCorrect);
+                }
+            });
+            
+            // Re-render current with results
+            renderQuestionForResults(currentQuestion, 
+                (userAnswers[currentQuestion] || '').toString().toLowerCase().trim() === 
+                questions[currentQuestion].answer.toString().toLowerCase().trim()
+            );
+            
+            const score = Math.round((correct / questions.length) * 100);
+            
+            document.getElementById('scoreValue').textContent = score + '%';
+            document.getElementById('resultMessage').textContent = getResultMessage(score);
+            
+            let breakdownHtml = '';
+            for (const [cat, data] of Object.entries(categoryScores)) {
+                const catPct = Math.round((data.correct / data.total) * 100);
+                breakdownHtml += `
+                    <div class="breakdown-item">
+                        <div class="label">${cat}</div>
+                        <div class="value">${data.correct}/${data.total} (${catPct}%)</div>
+                    </div>
+                `;
+            }
+            document.getElementById('breakdown').innerHTML = breakdownHtml;
+            
+            document.getElementById('results').classList.add('show');
+            document.getElementById('submitContainer').classList.add('hidden');
+            document.getElementById('timerBar').classList.add('hidden');
+            document.getElementById('progressFill').style.width = '100%';
+            
+            // Show all explanations
+            questions.forEach((q, i) => {
+                document.getElementById('exp-' + i).classList.add('show');
+            });
+        }
+        
+        function renderQuestionForResults(index, isCorrect) {
+            if (index === currentQuestion) return; // Skip current, already rendered
+            
+            const container = document.getElementById('quizContent');
+            const q = questions[index];
+            
+            let html = `
+                <div class="question-card" id="q-${index}">
+                    <div class="question-header">
+                        <span class="question-number">Question ${index + 1}</span>
+                        <span class="question-category">${q.category}</span>
+                    </div>
+                    <div class="question-text">${q.question}</div>
+            `;
+            
+            if (q.type === 'multiple_choice' && q.options) {
+                html += '<div class="options">';
+                q.options.forEach((opt, i) => {
+                    const letter = String.fromCharCode(65 + i);
+                    let cls = '';
+                    if (opt === q.answer) cls = 'correct';
+                    else if (opt === userAnswers[index]) cls = 'incorrect';
+                    html += `
+                        <div class="option ${cls}">
+                            <span class="option-letter">${letter}</span>
+                            <span>${opt}</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            } else {
+                const userVal = userAnswers[index] || '(no answer)';
+                html += `
+                    <div style="padding: 10px; background: ${isCorrect ? '#e8f8f0' : '#fde8e8'}; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>Your answer:</strong> ${userVal} | <strong>Correct:</strong> ${q.answer}
+                    </div>
+                `;
+            }
+            
+            html += `
+                    <div class="explanation show">
+                        <strong>Explanation:</strong> ${q.explanation}
+                    </div>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', html);
+        }
+        
+        function getResultMessage(score) {
+            if (score >= 95) return "Outstanding! Your cognitive abilities are exceptional!";
+            if (score >= 85) return "Excellent work! You have superior reasoning skills!";
+            if (score >= 70) return "Great job! Above average performance!";
+            if (score >= 50) return "Good effort! Room for improvement with practice.";
+            return "Keep practicing! Cognitive skills improve with training.";
+        }
+        
+        // Start the test
+        init();
+    </script>
+</body>
+</html>

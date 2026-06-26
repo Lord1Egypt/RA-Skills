@@ -1,0 +1,14 @@
+{
+  "name": "visibility-repair",
+  "version": "0.3.0",
+  "owner": "xiaowang",
+  "updated_at": "2026-04-23",
+  "status": "active",
+  "maturity_tier": "beta",
+  "lifecycle_stage": "active",
+  "context_budget_tier": "production",
+  "review_cadence": "monthly",
+  "skill_archetype": "repair",
+  "target_platforms": ["openai", "claude", "generic", "agent-skills-compatible"],
+  "factory_components": ["references"]
+}

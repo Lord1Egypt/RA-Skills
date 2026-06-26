@@ -1,0 +1,66 @@
+draw_rules:
+  workday: 1
+  holiday: 2
+
+workday_pool:
+  - item: 去一家没吃过的店，好好吃一顿饭
+    weight: 4
+  - item: 找个咖啡店或公共空间坐着待一会儿
+    weight: 4
+  - item: 看一部电影
+    weight: 3
+  - item: 连续看几集剧
+    weight: 2
+  - item: 看一阵子书
+    weight: 3
+  - item: 去一个不熟的地方走一圈
+    weight: 4
+  - item: 在家外面待一阵子
+    weight: 4
+  - item: 和一个人聊一会儿
+    weight: 3
+  - item: 做一顿简单但舒服的饭
+    weight: 3
+  - item: 听一张专辑
+    weight: 3
+
+
+holiday_pool:
+  - item: 和朋友打一场球
+    weight: 4
+  - item: 去游泳
+    weight: 3
+  - item: 去徒步或者长距离走一走
+    weight: 4
+
+  - item: 去一个不熟或没去过的区域完整逛一圈
+    weight: 4
+  - item: 去一个自然环境待一段时间
+    weight: 4
+
+  - item: 去看一个展览或博物馆
+    weight: 3
+  - item: 去一个大商场或家居店逛一圈
+    weight: 2
+
+  - item: 和朋友约一顿饭
+    weight: 5
+
+  - item: 看一部电影或纪录片
+    weight: 2
+
+  - item: 做一顿完整的饭
+    weight: 3
+  - item: 做一个新菜
+    weight: 2
+
+  - item: 拍一组照片
+    weight: 2
+
+  - item: 把住的地方做一次明显的整理
+    weight: 3
+  - item: 买一个能提升生活体验的东西
+    weight: 1
+
+  - item: 把一件拖了很久的生活琐事解决掉
+    weight: 4

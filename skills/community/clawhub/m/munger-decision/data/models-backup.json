@@ -1,0 +1,185 @@
+{
+  "models": [
+    {
+      "id": "01",
+      "name": "第一性原理",
+      "category": "core",
+      "description": "回归事物本质，从基本事实出发推理",
+      "questions": [
+        "这个决策的核心目标是什么？",
+        "去掉所有假设，最基本的事实是什么？",
+        "从第一性原理出发，最优解是什么？"
+      ],
+      "scoring": {
+        "clear": "目标清晰，逻辑自洽",
+        "unclear": "目标模糊，需重新思考"
+      }
+    },
+    {
+      "id": "06",
+      "name": "能力圈",
+      "category": "core",
+      "description": "只在自己理解的领域做决策",
+      "questions": [
+        "你对这个领域的了解程度？（1-10分）",
+        "你能清晰解释核心逻辑吗？",
+        "你能预测未来 3 年的发展吗？"
+      ],
+      "scoring": {
+        "8-10": "高（可以决策）",
+        "5-7": "中等（需深入研究）",
+        "1-4": "低（建议放弃）"
+      }
+    },
+    {
+      "id": "07",
+      "name": "逆向思维",
+      "category": "core",
+      "description": "反过来想，什么会导致失败",
+      "questions": [
+        "什么情况下这个决策会失败？",
+        "最坏的结果是什么？你能承受吗？",
+        "如何避免这些失败？"
+      ],
+      "scoring": {
+        "identified": "已识别主要风险",
+        "missed": "存在未识别风险"
+      }
+    },
+    {
+      "id": "08",
+      "name": "激励机制",
+      "category": "psychology",
+      "description": "人们会按照激励行事",
+      "questions": [
+        "相关方的利益是什么？",
+        "激励是否一致？",
+        "是否存在利益冲突？"
+      ],
+      "scoring": {
+        "aligned": "激励一致",
+        "conflict": "存在利益冲突"
+      }
+    },
+    {
+      "id": "09",
+      "name": "护城河",
+      "category": "business",
+      "description": "持续竞争优势",
+      "questions": [
+        "有什么独特优势？",
+        "竞争对手能否轻易复制？",
+        "优势能持续多久？"
+      ],
+      "scoring": {
+        "strong": "护城河深厚",
+        "weak": "护城河薄弱"
+      }
+    },
+    {
+      "id": "10",
+      "name": "安全边际",
+      "category": "investment",
+      "description": "留有足够的缓冲空间",
+      "questions": [
+        "当前价格/成本有多少缓冲？",
+        "最坏情况下能承受多少损失？",
+        "是否有退出机制？"
+      ],
+      "scoring": {
+        "sufficient": "安全边际充足",
+        "insufficient": "安全边际不足"
+      }
+    },
+    {
+      "id": "02",
+      "name": "二八法则",
+      "category": "efficiency",
+      "description": "80%的结果来自20%的原因",
+      "questions": [
+        "哪 20% 的因素最关键？",
+        "是否聚焦在关键因素上？",
+        "是否在浪费精力在次要因素？"
+      ],
+      "scoring": {
+        "focused": "聚焦关键",
+        "scattered": "精力分散"
+      }
+    },
+    {
+      "id": "12",
+      "name": "机会成本",
+      "category": "economics",
+      "description": "选择的代价是放弃的最佳选项",
+      "questions": [
+        "如果不做这个，最好的替代方案是什么？",
+        "替代方案的收益是多少？",
+        "当前选择是否优于替代方案？"
+      ],
+      "scoring": {
+        "optimal": "当前选择最优",
+        "suboptimal": "存在更好选择"
+      }
+    },
+    {
+      "id": "43",
+      "name": "临界点",
+      "category": "systems",
+      "description": "量变引起质变的转折点",
+      "questions": [
+        "是否接近某个临界点？",
+        "跨越临界点会发生什么？",
+        "如何利用或避免临界点？"
+      ],
+      "scoring": {
+        "aware": "已识别临界点",
+        "unaware": "未识别临界点"
+      }
+    },
+    {
+      "id": "44",
+      "name": "市场先生",
+      "category": "investment",
+      "description": "市场情绪波动，不代表价值",
+      "questions": [
+        "当前市场情绪如何？",
+        "情绪是否过度乐观/悲观？",
+        "价值与价格是否背离？"
+      ],
+      "scoring": {
+        "rational": "市场理性",
+        "irrational": "市场非理性"
+      }
+    },
+    {
+      "id": "45",
+      "name": "社会证明",
+      "category": "psychology",
+      "description": "人们倾向于跟随大众",
+      "questions": [
+        "是否因为别人都在做而做？",
+        "大众是否可能错误？",
+        "是否有独立思考？"
+      ],
+      "scoring": {
+        "independent": "独立思考",
+        "herd": "从众心理"
+      }
+    },
+    {
+      "id": "48",
+      "name": "网络效应",
+      "category": "business",
+      "description": "用户越多，价值越大",
+      "questions": [
+        "是否存在网络效应？",
+        "网络效应有多强？",
+        "如何利用网络效应？"
+      ],
+      "scoring": {
+        "strong": "强网络效应",
+        "weak": "弱网络效应"
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "content-researcher",
+  "version": "1.0.0",
+  "description": "内容研究员：批量搜索、收集、总结文章/视频/新闻，自动生成结构化素材库，支持关键词和趋势分析",
+  "author": "小叮当",
+  "license": "MIT",
+  "keywords": [
+    "content",
+    "research",
+    "summarize",
+    "keyword",
+    "trends",
+    "素材库",
+    "内容创作"
+  ],
+  "engines": {
+    "python": ">=3.7"
+  },
+  "dependencies": {
+    "summarize": "^0.1.0"
+  },
+  "main": "source/content_researcher.py",
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "python source/content_researcher.py --help"
+  }
+}

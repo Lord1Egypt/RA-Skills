@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thesis Revision Editor"
+  short_description: "Review, revise, and save full theses"
+  default_prompt: "Use $thesis-revision-editor to review my complete thesis, list revision suggestions, revise it item by item, save the revised thesis, and explain every change."

@@ -1,35 +1,197 @@
 ---
-name: "picture-book-maker"
-description: "制作图文并茂的绘本，支持从主题策划、故事创作、角色设定到分镜设计和最终打包输出的完整流程，适用于教育绘本、儿童故事、寓言故事等场景"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/picture-book-maker"
-sourceUrl: "https://clawhub.ai/skills/picture-book-maker"
+name: picture-book-maker
+description: 制作图文并茂的绘本，支持从主题策划、故事创作、角色设定到分镜设计和最终打包输出的完整流程，适用于教育绘本、儿童故事、寓言故事等场景
+dependency:
+  python:
+    - requests>=2.28.0
+  system:
+    - mkdir -p ./picture-book-output
 ---
 
-# picture-book-maker
+# 绘本制作技能
 
-> 制作图文并茂的绘本，支持从主题策划、故事创作、角色设定到分镜设计和最终打包输出的完整流程，适用于教育绘本、儿童故事、寓言故事等场景
+## 任务目标
+- 本技能用于：从零创作完整的绘本作品
+- 能力包含：主题策划、故事创作、角色设计、分镜规划、画面生成、最终打包
+- 触发条件：用户请求制作绘本、创作儿童故事、设计教育绘本
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/picture-book-maker`
-- **Source URL:** [https://clawhub.ai/skills/picture-book-maker](https://clawhub.ai/skills/picture-book-maker)
+## 前置准备
 
-## Overview
+### 依赖说明
+本技能使用智能体原生能力，无需安装额外依赖包。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 非标准文件/文件夹准备
 ```bash
-hermes skills install clawhub/picture-book-maker
+# 创建绘本输出目录
+mkdir -p ./picture-book-output
 ```
+
+## 操作步骤
+
+### 1. 需求收集与分析
+- 询问并确认以下关键信息：
+  - 绘本主题（如：友谊、勇气、环保等）
+  - 目标受众（如：3-6岁、6-8岁、青少年等）
+  - 风格偏好（如：卡通、写实、水墨、水彩等）
+  - 预期页数（建议12-24页）
+  - 特殊要求（如：教育目标、寓意等）
+- 基于以上信息，明确绘本定位和创作方向
+
+### 2. 故事创作
+- 根据 [references/story-template.md](references/story-template.md) 的指导创作故事
+- 故事结构应包含：
+  - 核心冲突与主题
+  - 完整的情节发展（起承转合）
+  - 清晰的角色动机
+  - 适合目标受众的语言风格
+- 故事完成后，提炼每个页面的核心情节和文字内容
+
+### 3. 角色设定
+- 创建主要角色卡片，包含：
+  - 角色名称与定位
+  - 外貌特征（详细描述，确保画面生成的一致性）
+  - 性格特点
+  - 在故事中的成长弧光
+- 保存角色设定，确保后续画面描述中角色形象一致
+
+### 4. 分镜设计
+- 根据 [references/page-guide.md](references/page-guide.md) 进行分镜规划
+- 为每个页面设计：
+  - 画面构图（视角、景别、空间关系）
+  - 图文配比（文字位置、画面重点）
+  - 情绪基调（色彩倾向、氛围）
+  - 逐页记录画面描述，用于后续图像生成
+
+### 5. 逐页生成
+- 对每个页面执行以下流程：
+  1. **生成图像**：根据分镜描述生成画面，确保角色一致性、风格统一
+  2. **调整优化**：检查画面是否匹配情节需求，必要时重新生成
+  3. **保存文件**：将图片保存为 `page-01.png`, `page-02.png` 等格式，存入 `./picture-book-output/<book-name>/pages/`
+  4. **记录元数据**：为每个页面记录对应的故事文字
+
+### 6. 创建 metadata.json
+- 在 `./picture-book-output/<book-name>/` 目录下创建 `metadata.json` 文件
+- **必须使用以下标准格式**：
+
+```json
+{
+  "title": "绘本标题",
+  "author": "作者名称",
+  "description": "绘本描述",
+  "pages": [
+    {
+      "image": "https://example.com/page-01.png",
+      "text_cn": "第一页中文内容",
+      "text_en": "First page English content"
+    },
+    {
+      "image": "https://example.com/page-02.png",
+      "text_cn": "第二页中文内容",
+      "text_en": "Second page English content"
+    }
+  ]
+}
+```
+
+**格式要求**：
+- `title`：绘本标题（必需）
+- `author`：作者名称（必需）
+- `description`：绘本描述（可选）
+- `pages`：页面数组（必需）
+  - `image`：图片URL（可选，如果不提供则使用本地 pages 目录中的文件；支持 http/https 开头的URL）
+  - `url` 或 `file`：图片URL的替代字段名（与 `image` 等效）
+  - `text_cn`：中文内容（必需，只取第一段显示）
+  - `text_en`：英文内容（可选）
+  - 页数顺序必须与图片顺序一致（pages[0] 对应第一页）
+
+**图片来源优先级**：
+1. 如果本地 `pages/` 目录存在图片文件 → 使用本地文件
+2. 如果 `pages/` 目录为空 → 使用 `metadata.json` 中 `pages[i].image` 字段的URL
+3. 如果都没有 → 报错
+
+### 7. 打包输出
+- 确认所有页面和 metadata.json 已就绪后，调用打包脚本：
+  ```bash
+  python /workspace/projects/picture-book-maker/scripts/pack-book.py --input ./picture-book-output/<book-name> --output ./picture-book-output/<book-name>/book.html
+  ```
+  
+**参数说明**：
+- `--input`：绘本目录路径（支持相对路径，如 `./picture-book-output/my-book` 或 `picture-book-output/my-book`）
+- `--output`：输出HTML文件路径（可选，默认 `book.html`）
+- `--max-retries`：图片下载失败时的最大重试次数（可选，默认3次）
+
+**图片处理机制**：
+- 支持本地图片文件和URL图片
+- URL图片下载失败会自动重试（默认3次，每次间隔递增：2s、4s、6s）
+- 本地文件不存在或读取失败会立即报错
+- 所有图片重试失败后会生成占位图，继续完成绘本打包
+- 打包完成后会显示失败的图片列表和错误信息
+
+**目录结构要求**：
+```
+./picture-book-output/<book-name>/
+├── metadata.json          # 元数据文件（必需）
+└── pages/                 # 页面图片目录（必需）
+    ├── page-01.png
+    ├── page-02.png
+    └── ...
+```
+
+**常见错误排查**：
+- 如果提示"找不到元数据文件"，请检查：
+  1. `metadata.json` 是否在正确的目录下
+  2. 路径是否正确（支持 `./` 开头，也支持无 `./` 的相对路径）
+  3. 文件名是否拼写正确
+- 如果提示"找不到页面目录"，请检查 `pages` 文件夹是否存在
+- 如果图片下载失败：
+  1. 检查URL是否可访问
+  2. 增加 `--max-retries` 参数提高重试次数
+  3. 打包完成后查看失败图片列表，手动下载并替换
+- **如果提示"下载的文件不是有效的图片"**：
+  - 这通常意味着URL返回的是HTML错误页面而非真正的图片
+  - 解决方法：直接在 `metadata.json` 中使用原始图片URL，让打包脚本直接从网络加载
+  - 避免使用需要重定向或验证的图片URL
+
+- 脚本将生成：
+  - `book.html`：可在浏览器中直接浏览的HTML绘本（包含封面、翻页动画、响应式设计）
+
+## 资源索引
+- 故事创作指导：见 [references/story-template.md](references/story-template.md)（故事结构模板、角色卡片格式）
+- 分页设计指南：见 [references/page-guide.md](references/page-guide.md)（布局原则、画面描述技巧）
+- 打包脚本：见 [scripts/pack-book.py](scripts/pack-book.py)（参数：`--input` 指定绘本目录，`--output` 指定输出文件）
+
+## 注意事项
+- 保持角色视觉一致性：详细记录角色特征，在画面描述中反复强调
+- 控制页数规模：初次创作建议12-16页，避免故事过于冗长
+- 图文协调：文字应简洁，避免喧宾夺主
+- 风格统一：所有页面使用相同的艺术风格和调色方案
+- 受众适配：语言复杂度和画面细节符合目标年龄段认知水平
+
+## 使用示例
+
+### 示例1：教育绘本
+- 功能：创作关于环保的儿童绘本
+- 执行：
+  1. 确定目标：4-6岁儿童，主题"爱护森林"，16页
+  2. 创作"小熊守护森林"的故事
+  3. 设计主角小熊的形象（棕色毛发、蓝色围巾）
+  4. 逐页生成画面，采用温暖明亮的卡通风格
+  5. 打包生成HTML绘本
+
+### 示例2：寓言故事
+- 功能：创作传统寓言风格的绘本
+- 执行：
+  1. 确定目标：6-8岁儿童，主题"诚实"，20页
+  2. 改编"狼来了"的寓言故事
+  3. 采用略带神秘的水彩风格
+  4. 强调情节转折时的画面对比
+  5. 打包输出
+
+### 示例3：情感教育
+- 功能：创作关于情感认知的绘本
+- 执行：
+  1. 确定目标：3-5岁儿童，主题"认识情绪"，12页
+  2. 设计简单的情境，展示不同情绪
+  3. 使用简洁的线条和柔和的色块
+  4. 每页聚焦一种情绪表达
+  5. 生成适合低幼儿童的绘本

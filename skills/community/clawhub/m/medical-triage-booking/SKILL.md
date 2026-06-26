@@ -1,35 +1,147 @@
 ---
-name: "medical-triage-booking"
-description: "面向C端医疗导诊。根据用户主诉、病史等信息先做安全分流和挂号科室判断，再从内置医院数据中筛选最适合的医院/科室/医生 Top 3；随后给出北京114/京通挂号提示、挂号后提醒建议，以及基于百度地图的到院路线规划链接。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-triage-booking"
-sourceUrl: "https://clawhub.ai/skills/medical-triage-booking"
+name: medical-triage-booking
+description: 面向C端医疗导诊。根据用户主诉、病史等信息先做安全分流和挂号科室判断，再从内置医院数据中筛选最适合的医院/科室/医生 Top 3；随后给出北京114/京通挂号提示、挂号后提醒建议，以及基于百度地图的到院路线规划链接。
+metadata: {"openclaw":{"emoji":"🏥","requires":{"bins":["python3"]}}}
 ---
 
-# medical-triage-booking
+# 医疗导诊、挂号提示与路线规划
 
-> 面向C端医疗导诊。根据用户主诉、病史等信息先做安全分流和挂号科室判断，再从内置医院数据中筛选最适合的医院/科室/医生 Top 3；随后给出北京114/京通挂号提示、挂号后提醒建议，以及基于百度地图的到院路线规划链接。
+当用户需要“看病挂什么科”“推荐医院/医生”“挂号后提醒”“到医院怎么走”时，使用这个 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-triage-booking`
-- **Source URL:** [https://clawhub.ai/skills/medical-triage-booking](https://clawhub.ai/skills/medical-triage-booking)
+## 何时使用
 
-## Overview
+适合以下请求：
+- 用户描述症状、主诉、病史，想知道挂什么科
+- 用户想从内置医院/科室/医生数据里筛选出更合适的医生
+- 用户想要北京114/京通挂号提示
+- 用户上传挂号截图或文本，想做就医提醒
+- 用户想根据挂号医院做百度地图路线规划
 
+## 内置资源
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 医院数据：`{baseDir}/assets/hospital_extracted_final.csv`
+- 分诊脚本：`{baseDir}/scripts/triage_and_match.py`
+- 路线规划脚本：`{baseDir}/scripts/baidu_route_link.py`
+- 地理编码脚本：`{baseDir}/scripts/baidu_geocode.py`
+- 提醒时间脚本：`{baseDir}/scripts/appointment_reminders.py`
+- 分诊参考：`{baseDir}/references/triage_rules.md`
+
+## 工作流程
+
+### 1. 先收集最少必要信息
+
+优先收集：
+- 主诉与持续时间
+- 伴随症状（发热、胸痛、呼吸困难、腹痛、皮疹、头痛等）
+- 年龄、性别
+- 既往史/慢病/近期用药/是否妊娠
+- 想就诊的城市或默认北京
+
+若信息不全，先用已有信息做初步判断，但要明确不确定性。
+
+### 2. 先做安全分流
+
+先阅读 `{baseDir}/references/triage_rules.md`。
+如果存在明显急症信号（如持续胸痛、明显呼吸困难、意识改变、偏瘫、抽搐不止、大出血等），不要继续做普通门诊推荐；优先建议急诊/120，并把普通挂号建议降级为“病情稳定后再咨询门诊”。
+
+### 3. 用脚本完成科室判断与医院/医生匹配
+
+运行：
+
 ```bash
-hermes skills install clawhub/medical-triage-booking
+python3 {baseDir}/scripts/triage_and_match.py \
+  --csv {baseDir}/assets/hospital_extracted_final.csv \
+  --symptoms "用户主诉" \
+  --history "既往史或慢病，可为空" \
+  --age "年龄，可为空" \
+  --gender "性别，可为空" \
+  --top-k 3
 ```
+
+脚本会返回：
+- `emergency_flag`: 是否疑似急症
+- `department_candidates`: 推断出的科室候选
+- `top_matches`: 排名前3的医院/科室/医生及理由
+
+### 4. 组织给用户的推荐结果
+
+最终答复里优先给出：
+1. 推荐挂号科室（1个主推荐 + 1~2个备选）
+2. Top 3 医院/科室/医生推荐
+3. 每个推荐对象的简要理由
+4. 明确声明“仅用于分诊辅助，不替代医生诊断”
+
+推荐结果建议按以下结构输出：
+- 推荐科室
+- Top 3 推荐
+  - 医院
+  - 科室
+  - 医生
+  - 坐诊时间（若有）
+  - 推荐理由
+- 挂号方式
+- 后续提醒
+
+### 5. 固定给出挂号提示
+
+如果用户准备自行挂号，直接给出下面这段提示：
+
+微信内挂号更方便：
+- 方式 1：搜索“北京114预约挂号”公众号
+- 方式 2：搜索“京通”小程序 → 健康服务 → 预约挂号114
+
+电话方式：
+- 方式 1：拨打 010-114 挂号
+
+### 6. 挂号后提醒
+
+如果用户上传挂号截图或粘贴挂号文本：
+1. 先从内容中提取医院、科室、医生、就诊日期时间。
+2. 若时间明确，运行：
+
+```bash
+python3 {baseDir}/scripts/appointment_reminders.py --appointment "2026-03-20 14:30"
+```
+
+脚本默认返回 3 个提醒时间：
+- T-12h
+- T-6h
+- T-2h
+
+如果当前运行环境支持提醒/闹钟工具，在得到用户确认后创建 3 次提醒；如果不支持，就把提醒时间明确列给用户，并提示他设置手机闹钟。
+
+同时提醒用户：挂完号后可以把挂号信息截图或文本复制上来，我会继续帮他分析就医信息、安排提醒和路线规划。
+
+### 7. 就医路线规划
+
+当用户已经确定挂号医院，需要到院路线时：
+
+#### 7.1 先拿到起终点坐标
+
+- 先通用户的IP判断出用户的位置
+- 如果IP没有判断出来， 则提示用户， 让用户自己提交输入位置
+
+#### 7.2 再做路线规划并生成路径跳转链接
+
+- 将用户输出的位置和医院的位置转换成地图的坐标
+
+#### 7.3 再做路线规划并生成路径跳转链接
+
+- 根据用户的位置坐标，和医院的位置坐标，用amap-jsapi-skill技能生成推荐路线， 并给出线路链接， 点击能跳到web, 查看线路。
+
+
+
+如果缺少该环境变量，仍可完成：
+- 症状分诊
+- 医院/科室/医生推荐
+- 挂号提示
+- 提醒时间计算
+
+
+## 结果质量要求
+
+- 不要把推荐写成确诊结论。
+- 对数据不足、字段缺失、医生简介为空要明确说明。
+- 如果脚本结果与用户症状明显冲突，以安全优先：先提醒急症风险，再给保守建议。
+- Top 3 推荐必须尽量具体到“医院 + 科室 + 医生”。
+- 当数据质量不足时，要明确提示用户优先咨询医院导诊台或综合科。

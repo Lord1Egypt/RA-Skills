@@ -1,0 +1,10 @@
+{
+  "name": "navil-shield",
+  "version": "1.0.2",
+  "description": "Runtime security for OpenClaw. Protects MCP servers and CLI tools from prompt injection, data exfiltration, and privilege escalation at runtime.",
+  "author": "ivanpantheon",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/navilai/navil",
+  "repository": "https://github.com/navilai/navil",
+  "keywords": ["security", "mcp", "runtime", "proxy", "threat-detection", "openclaw", "prompt-injection", "data-exfiltration"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "claw-apply",
+  "version": "0.1.5",
+  "description": "Automated job search and application for LinkedIn and Wellfound",
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.mjs",
+    "search": "node job_searcher.mjs",
+    "apply": "node job_applier.mjs"
+  },
+  "dependencies": {
+    "@onkernel/sdk": "^0.15.0",
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["openclaw", "job-search", "automation", "linkedin", "wellfound"],
+  "author": "MattJackson",
+  "license": "AGPL-3.0-or-later"
+}

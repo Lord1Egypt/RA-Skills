@@ -1,0 +1,12 @@
+{
+  "name": "email-summarizer-scripts",
+  "version": "1.0.0",
+  "description": "Node.js dependencies for email-summarizer skill (PST native parsing)",
+  "private": true,
+  "dependencies": {
+    "pst-extractor": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

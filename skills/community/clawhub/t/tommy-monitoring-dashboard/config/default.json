@@ -1,0 +1,10 @@
+{
+  "channelName": "#monitoring",
+  "updateInterval": 30000,
+  "userId": "311529658695024640",
+  "features": {
+    "subagentTracking": true,
+    "cronMonitoring": true,
+    "systemHealth": false
+  }
+}

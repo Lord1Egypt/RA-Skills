@@ -1,35 +1,56 @@
 ---
-name: "Matrix Detection"
-description: "Identify illusions, hype, false narratives, and systemic manipulation; classify signal vs noise with evidence and risk tags."
-category: "other"
-source: "ClawHub"
-tags: [beta]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/matrix-detection"
-sourceUrl: "https://clawhub.ai/skills/matrix-detection"
+name: matrix-detection
+description: Identify illusions, hype, false narratives, and systemic manipulation; classify signal vs noise with evidence and risk tags.
+metadata:
+  author: Morpheus
+  version: 2.0.0
+  owner: Morpheus Agent
+  category: detection
 ---
 
-# Matrix Detection
+# SKILL: matrix-detection
 
-> Identify illusions, hype, false narratives, and systemic manipulation; classify signal vs noise with evidence and risk tags.
+## Purpose
+Identify illusions, hype, false narratives, and systemic manipulation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/matrix-detection`
-- **Source URL:** [https://clawhub.ai/skills/matrix-detection](https://clawhub.ai/skills/matrix-detection)
+## When to Use
+- New opportunities
+- Market narratives
+- Community movements
+- Strategic decisions
 
-## Overview
+## Inputs
+- `narrative` (required): the claim/story being pushed
+- `context` (required): where/when/why this narrative appears
+- `source` (optional): who is pushing it + incentives (if known)
 
+## Steps
+1. Identify emotional triggers (hype, fear, urgency, status signaling).
+2. Detect asymmetry (who benefits vs who believes).
+3. Check verifiability (what can be measured/confirmed now).
+4. Compare with historical patterns (similar claims → typical outcomes).
+5. Classify as:
+   - `signal`
+   - `noise`
+   - `manipulation`
+6. Assign risk level (`low|medium|high`) and list what would falsify the narrative.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/matrix-detection
-```
+## Validation
+- Evidence-based reasoning.
+- If uncertain, label uncertainty explicitly (no implied certainty).
+- No speculation without labeling it as hypothesis.
+
+## Output
+- `classification`: `signal|noise|manipulation`
+- `reasoning`: concise evidence chain
+- `risk_level`: `low|medium|high`
+- `next_checks`: 1–3 concrete verification actions
+
+## Safety Rules
+- Never assume malicious intent without evidence.
+- Do not provide financial guarantees or “sure outcomes”.
+
+## Example
+Input: “This token will 100x in 2 weeks”
+Output: `manipulation` / `high` / hype-driven / request verifiable catalysts + liquidity + unlock schedule
+

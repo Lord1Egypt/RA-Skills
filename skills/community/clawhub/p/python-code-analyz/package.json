@@ -1,0 +1,51 @@
+{
+  "name": "python-code-analyze",
+  "version": "1.0.0",
+  "description": "专业的 Python 代码分析与优化工具，提供安全检查、性能优化建议和自动化重构",
+  "author": "sohot-gdjinni <sujian0606@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "python",
+    "security",
+    "optimization",
+    "static-analysis",
+    "lint",
+    "code-quality",
+    "refactoring",
+    "best-practices",
+    "vulnerability-detection",
+    "performance",
+    "type-checking",
+    "code-smell",
+    "automation",
+    "dev-tools",
+    "sql-injection",
+    "command-injection",
+    "hardcoded-secrets"
+  ],
+  "main": "analyzer.py",
+  "bin": {
+    "code-analyzer": "analyzer.py"
+  },
+  "scripts": {
+    "test": "python3 example.py",
+    "analyze": "python3 analyzer.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/code-analyzer-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/code-analyzer-skill/issues"
+  },
+  "homepage": "https://github.com/yourusername/code-analyzer-skill#readme",
+  "engines": {
+    "python": ">=3.8"
+  },
+  "categories": [
+    "development",
+    "code-quality",
+    "security"
+  ]
+}

@@ -1,0 +1,8 @@
+🚀 启动 Claude Code + DashScope 代理...
+✅ 代理服务器已在端口 3458 运行
+🎯 启动 Claude Code...
+   API: http://localhost:3458 -> https://coding.dashscope.aliyuncs.com/apps/anthropic
+
+修复完成。第20-21行已正确使用上下文管理器，同时删除了多余的 `conn.close()` 调用（上下文管理器会自动关闭连接）。
+
+

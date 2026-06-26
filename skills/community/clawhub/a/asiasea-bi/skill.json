@@ -1,0 +1,16 @@
+{
+  "name": "asiasea-bi",
+  "version": "1.0.4",
+  "description": "基于大模型构建的无状态智能数据代理，提供多维业务环境的动态路由切换、语义化泛指标查询与端到端可视化快照生成功能。",
+  "repository": "asiasea-ai/bi",
+  "language": "python",
+  "entry": "main.py",
+  "api_dependencies": [
+    "GET https://o.yayuit.cn/dw/api/auth/supported-systems",
+    "GET https://o.yayuit.cn/dw/api/system/api-registry",
+    "GET https://o.yayuit.cn/dw/api/auth/system-token",
+    "POST https://o.yayuit.cn/dw/api/skills/archive/upload",
+    "GET https://e.asagroup.cn/asae-e/bx",
+    "GET https://e.asagroup.cn/asae-e/yearBudget/query"
+  ]
+}

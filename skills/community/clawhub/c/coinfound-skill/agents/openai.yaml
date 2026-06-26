@@ -1,0 +1,7 @@
+interface:
+  display_name: "CoinFound RWA Read"
+  short_description: "Read CoinFound RWA data from the bundled catalog and schema snapshots."
+  default_prompt: "Use $coinfound-rwa-read to fetch CoinFound RWA GET data from the bundled endpoint catalog."
+
+policy:
+  allow_implicit_invocation: true

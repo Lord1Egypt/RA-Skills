@@ -1,0 +1,21 @@
+{
+  "name": "Merge PDFs",
+  "description": "Combine two or more PDFs into a single document. Supports URLs, base64, multipart uploads, and custom metadata.",
+  "method": "POST",
+  "endpoint": "/v1/pdf/merge",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "urls", "type": "array", "required": false, "description": "Array of PDF URLs to merge (2-25)" },
+        { "name": "files", "type": "array", "required": false, "description": "Array of base64-encoded PDFs to merge" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "file", "base64"], "description": "Output mode" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom filename for the merged PDF" },
+        { "name": "metadata", "type": "object", "required": false, "description": "PDF metadata (title, author, subject, keywords)" }
+      ],
+      "also_accepts": "multipart/form-data with 'files' field(s)"
+    }
+  }
+}

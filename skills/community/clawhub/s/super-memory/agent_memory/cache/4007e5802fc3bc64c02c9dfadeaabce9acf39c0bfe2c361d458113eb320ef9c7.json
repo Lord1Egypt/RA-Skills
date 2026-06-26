@@ -1,0 +1,72 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 0,
+    "primary": [],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [
+        {
+          "name": "What",
+          "type": "unknown",
+          "role": "queried"
+        }
+      ],
+      "expanded": false
+    },
+    "query": "What degree did I graduate with?",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_36bf54e39636",
+      "query": "What degree did I graduate with?",
+      "result_summary": "found 0 results via tempr_4way, top_score=0.000",
+      "confidence": 0.3,
+      "sources_consulted": [],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779786376.7639022
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 0 results",
+          "timestamp": 1779786376.7714489
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=100)",
+          "timestamp": 1779786376.7760286
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779786376.7760286
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779786376.7760286
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 0 results (hits: {'structured': 0, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 0}, multi: 0)",
+          "timestamp": 1779786376.7760286
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 0 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786376.7639022
+    },
+    "status": "no_results"
+  },
+  "expires_at": 1779786436.778545,
+  "created_at": 1779786376.778545,
+  "_hmac": "f31c432db919db97b6800a05e98864e05908cf6a876dfcb7c93ebe2c8fd608dc"
+}

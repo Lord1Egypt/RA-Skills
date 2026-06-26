@@ -1,0 +1,41 @@
+{
+  "skill_name": "cart-bundle-aov-upsell",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Cart has one electric toothbrush and replacement heads pack. We want higher AOV and a checkout upsell. New launch is a travel case SKU. Margin ok for 15% on bundles.",
+      "expected_output": "Table rows: Main | Complement | Rationale | One-click copy; travel case tied to launch; heads as complement.",
+      "files": [],
+      "expectations": [
+        "Includes a table with columns Main product, Complement, Bundle discount rationale, One-click add copy",
+        "Names toothbrush as anchor and at least one complement (heads and/or travel case)",
+        "Rationale ties to AOV or launch or combined ship",
+        "Provides concrete one-click CTA copy",
+        "Reflects shopping-guide / bundle logic not random products"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Checkout bounce is brutal. Average cart is $38, free shipping at $50. Selling skincare — cleanser in cart, no moisturizer. Suggest bait and bundles.",
+      "expected_output": "Threshold bait + cleanser + moisturizer combo with mandatory four columns.",
+      "files": [],
+      "expectations": [
+        "Addresses free-shipping gap with a low-friction add or bundle",
+        "Table includes Main product, Complement, Bundle discount rationale, One-click add copy",
+        "Moisturizer or mini/SKU as complement to cleanser",
+        "Mentions checkout bounce or incentive in rationale"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write a meta description for our homepage only, 155 characters.",
+      "expected_output": "Meta description; no full bundle table required (should-not-trigger for heavy cart workflow).",
+      "files": [],
+      "expectations": [
+        "Does not force the full four-column bundle table as primary output for a pure SEO meta request",
+        "May deliver meta description without mandatory Main+Complement+rationale+CTA block",
+        "Stays appropriate to homepage meta task"
+      ]
+    }
+  ]
+}

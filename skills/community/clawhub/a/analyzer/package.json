@@ -1,0 +1,8 @@
+{
+  "name": "clawdbot-skill-analyzer",
+  "version": "1.0.1",
+  "description": "Discovers and maps an existing project's structure, patterns, and conventions.",
+  "keywords": ["clawdbot-skill", "analyzer", "codebase", "analysis", "project"],
+  "author": "",
+  "license": "MIT"
+}

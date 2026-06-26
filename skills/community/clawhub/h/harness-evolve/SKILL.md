@@ -1,35 +1,177 @@
 ---
-name: "Harness Evolve"
-description: "AI Agent 自进化引擎——消费研究日志 → 系统自检 → 架构优化（分级执行/提案）→ 写入当日进化摘要。 适用于任何 AI Agent 系统：OpenClaw、Claude Code agent、AutoGPT、LangGraph 或自研框架。 触发词：自进化、self-evolve、架构优化、agent..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/harness-evolve"
-sourceUrl: "https://clawhub.ai/skills/harness-evolve"
+name: harness-evolve
+version: 1.1.0
+description: >
+  AI Agent 自进化引擎——消费研究日志 → 系统自检 → 架构优化（分级执行/提案）→ 写入当日进化摘要。
+  适用于任何 AI Agent 系统：OpenClaw、Claude Code agent、AutoGPT、LangGraph 或自研框架。
+  触发词：自进化、self-evolve、架构优化、agent升级、harness进化、系统自检。
 ---
 
-# Harness Evolve
+# Harness Evolve — AI Agent 自进化引擎
 
-> AI Agent 自进化引擎——消费研究日志 → 系统自检 → 架构优化（分级执行/提案）→ 写入当日进化摘要。 适用于任何 AI Agent 系统：OpenClaw、Claude Code agent、AutoGPT、LangGraph 或自研框架。 触发词：自进化、self-evolve、架构优化、agent...
+> 职责边界：**消费研究发现 + 系统自检 + 执行优化**。搜索论文是 harness-research 的事。
+> `harness-evolve = 消费 research 日志 + 系统自检 + 分级执行`，是研究到行动的闭环。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/harness-evolve`
-- **Source URL:** [https://clawhub.ai/skills/harness-evolve](https://clawhub.ai/skills/harness-evolve)
+---
 
-## Overview
+## 第零步：读取项目配置
 
+从项目根目录的 `CLAUDE.md`（或 `README.md`）中识别以下信息。**找不到就问用户，不要猜**：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/harness-evolve
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| **agent_root** | Agent 项目根目录 | 当前工作目录 |
+| **config_files** | Agent 的核心配置/规则文件列表（行为规则、人格设定、prompt 模板等） | 从 CLAUDE.md 引用关系识别 |
+| **safe_files** | 可直接修改的非规则文件（研究日志、实验记录、模板等） | `research/` 目录下所有文件 |
+| **review_file** | 需要人工审核的提案写入位置 | `pending-review.md` |
+| **log_dir** | Agent 运行日志/memory 目录 | `memory/` 或 `logs/`（哪个存在用哪个） |
+| **research_log** | harness-research 研究日志路径 | `research/harness-log.md` |
+| **output_file** | 当日进化摘要输出路径（供日报等下游任务读取） | `research/evolve-today.md` |
+| **notify_command** | （可选）通知命令模板，`{message}` 为占位符 | 无 |
+
+---
+
+## 第一步：消费研究日志
+
+读取 research_log（默认 `research/harness-log.md`），提取并分类：
+
+| 类别 | 提取内容 | 用途 |
+|------|---------|------|
+| **P0 积压** | 所有标记 P0 且未标记 `已转化`/`已放弃` 的条目 | 第三步优先处理 |
+| **P1 积压** | 所有标记 P1 且未标记 `已转化`/`已放弃` 的条目 | 评估是否已可执行 |
+| **系统映射** | 每条的"系统映射"字段 + 映射置信度 | 交叉比对实际组件 |
+| **验证方式** | 每条的"验证"字段 | 执行后验证用 |
+| **已处理项** | 标记了 `已转化`/`已放弃` 的条目 | 跳过不重复处理 |
+
+**如果 research_log 不存在或无条目**：注明"研究日志暂无数据，跳过研究消费"，直接进入第二步。
+
+**也读取上次的 evolve 产出**（output_file，如存在）：了解上次进化做了什么，避免重复提案。
+
+---
+
+## 第二步：系统自检
+
+读取 config_files + safe_files + log_dir 最近 3 天日志，建立当前系统快照，然后逐项扫描：
+
+| # | 检查项 | 扫描对象 | 触发条件 |
+|---|--------|----------|----------|
+| 1 | **规则冗余** | config_files | 同一条规则在多处重复表述，或规则之间存在逻辑矛盾 |
+| 2 | **规则过期** | config_files + log_dir | 规则引用的实体（群、人、API、工具、文件路径）已不存在或已变更 |
+| 3 | **研究积压** | research_log | P0/P1 可落地方向超过 7 天未转化为配置变更或提案 |
+| 4 | **进化回归** | 上次 evolve 产出 + 实际文件 | 上次 Tier A 直接执行的修复是否仍然生效（防被覆盖） |
+| 5 | **日志异常** | log_dir 最近 3 天 | 连续出现无输出 / 重复内容 / 格式退化 / 异常中断 |
+| 6 | **研究映射** | 今日 P0/P1 条目 | 系统映射指向了具体可改组件，且该组件确实存在 |
+| 7 | **复杂度债务** | config_files | 单文件超过 300 行 / 嵌套规则超过 3 层 / 存在"如果...除非...但是..."链 |
+| 8 | **Skill 提炼机会** | config_files + log_dir | 同一操作模式出现 3+ 次但尚未抽象为 skill |
+
+**每项输出**：`[PASS]` 正常 / `[WARN]` 发现问题 + 一句话描述 / `[SKIP]` 项目无此结构
+
+---
+
+## 第三步：架构优化（分级执行）
+
+基于自检结果和研究日志，执行优化。**严格遵守三级分类**：
+
+### A级 — 直接执行
+
+**条件**：修改对象属于 safe_files（研究日志、实验记录、模板、文档等），不影响 Agent 运行时行为。
+
+典型动作：
+- 研究日志补充落地状态标记（`已转化` / `观察中` / `已放弃`）
+- 清理过期的临时文件或草稿
+- 修复 config_files 中的错别字、死链接、格式问题（不改语义）
+- 补充缺失的文件引用或修正路径
+
+**执行后立即 git commit**（如项目是 git 仓库），message 格式：`evolve: {一句话描述}`
+
+### B级 — 写提案等人工审核
+
+**条件**：修改对象属于 config_files（行为规则、人格设定、prompt 模板等），会影响 Agent 运行时行为。
+
+**绝不自主修改**，写入 review_file：
+
+```markdown
+## 自进化提案 · {YYYY-MM-DD}
+
+**来源**：{research_log 条目标题 + 日期 / 自检发现编号}
+**来源类型**：【源自Research·{P0/P1}】/【自检发现】
+**目标文件**：{文件名}
+**当前内容**：{原文摘录，保留上下文}
+**建议修改**：{具体改法，给出 before/after 对比}
+**依据**：{论文数据 / 系统自检发现 / 日志证据}
+**验证方式**：{如何确认改进有效}
+**风险**：{可能的副作用、回滚方案}
+**优先级**：P0（立即） / P1（下个迭代） / P2（关注）
 ```
+
+### C级 — 记录观察
+
+**条件**：发现了值得关注的模式/趋势，但暂无可行动方案。
+
+在研究日志对应条目追加：`**跟踪状态**：观察中 — {一句话原因}`
+
+---
+
+## 第四步：写入当日进化摘要
+
+将今日所有操作写入 output_file（覆盖写入，每天一份，UTF-8 无 BOM）：
+
+```markdown
+# Harness 自进化 · {YYYY-MM-DD}
+
+## 研究消费
+- 读取研究日志：{N} 条记录，其中 P0 {x} 条、P1 {y} 条
+- 新增待处理：{本次新发现的 P0/P1 数量，或"无新增"}
+- 已处理积压：{本次处理了哪些积压项}
+
+## 系统自检
+{8 项检查结果，每条一行，格式：[PASS/WARN/SKIP] 检查项名 — 详情}
+
+## 今日进化动作
+{按 A/B/C 级列出，无动作则写"今日无需进化动作，系统状态健康"}
+- [A] {直接执行了什么，改了哪个文件，commit hash}
+- [B] {写了什么提案到 review_file，来源标注}
+- [C] {记录了什么观察}
+
+## 进化摘要（供下游任务使用）
+{一段话，2-4 句：研究消费情况 + 自检结果 + 实际优化动作/待审核提案}
+```
+
+> 这个文件是下游任务（如日报）的数据源。如果你的系统有日报 skill，让日报读取此文件的"进化摘要"段落即可。
+
+---
+
+## 第五步：通知（可选）
+
+如果有 B 级提案且 notify_command 已配置：
+
+```bash
+# 将 {message} 替换为实际通知内容
+{notify_command} "Harness自进化：有新架构优化提案写入 {review_file}，请审核。"
+```
+
+无 B 级提案或未配置通知命令 → 跳过。
+
+---
+
+## 铁律
+
+1. **config_files 绝不自主修改** — 必须走 review_file 提案流程，等人工审核
+2. **逐次 commit** — 每次 A 级执行后立即 git commit，不积累多个改动
+3. **Research 驱动优先** — P0/P1 研究积压优先于自检发现处理
+4. **诚实高于动作** — 今日无需优化就写"系统状态健康"，不为了产出而强行改东西
+5. **output_file 每天覆盖** — 不追加历史（历史在 research_log 中持久保存）
+6. **编码安全** — 所有文件 UTF-8 无 BOM；命令行发送中文内容先写入文件再发送
+7. **去重** — 不重复提案已在 review_file 中存在且未被处理的建议
+
+---
+
+## 与 harness-research 的关系
+
+| | harness-research | harness-evolve（本 skill） |
+|--|-----------------|--------------------------|
+| **职责** | 搜索 → 精读 → 分析 → 记录 | 消费研究 + 系统自检 + **执行优化** |
+| **输出** | `research/harness-log.md` 条目 + 摘要 | `research/evolve-today.md` 进化摘要 |
+| **改代码吗** | 不改，只记录可落地方向 | A 级直接改，B 级写提案 |
+| **可独立用吗** | 可以，纯研究场景 | 可以，但消费 research 日志效果更好 |
+| **数据流** | → 写入 harness-log.md → | ← 读取 harness-log.md ← |

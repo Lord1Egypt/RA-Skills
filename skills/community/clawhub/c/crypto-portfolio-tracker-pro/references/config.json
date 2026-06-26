@@ -1,0 +1,34 @@
+{
+  "exchanges": {
+    "binance": {
+      "enabled": false,
+      "apiKey": "",
+      "apiSecret": ""
+    },
+    "coinbase": {
+      "enabled": false,
+      "apiKey": "",
+      "apiSecret": ""
+    }
+  },
+  "wallets": {
+    "ethereum": [],
+    "bitcoin": [],
+    "solana": []
+  },
+  "alerts": {
+    "telegram": {
+      "enabled": false,
+      "botToken": "",
+      "chatId": ""
+    },
+    "email": {
+      "enabled": false,
+      "smtp": "",
+      "from": "",
+      "to": ""
+    }
+  },
+  "updateInterval": 3600,
+  "currency": "usd"
+}

@@ -1,35 +1,71 @@
 ---
-name: "理财推荐"
-description: "wealth management investing finance financial advisor Bank. Wealth Management. Investing. Wealth product descriptions and investment product recommendations...."
-category: "other"
-source: "ClawHub"
-tags: [PersonalFinancial]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-finance-skill"
-sourceUrl: "https://clawhub.ai/skills/personal-finance-skill"
+name: wealth-managent-advisor
+description:Wealth product descriptions and investment product recommendations. Financial Knowledge Q&A. KEYWORD:Wealth Management, Personal Finance, Invest.  财富产品说明、理财产品推荐、收益规则、持有期说明、节假日收益规则与常见问答。
 ---
 
-# 理财推荐
+# 银行理财顾问
 
-> wealth management investing finance financial advisor Bank. Wealth Management. Investing. Wealth product descriptions and investment product recommendations....
+提供理财咨询答疑与产品匹配建议。当用户有更多产品了解需求，进行产品官方平台导引：通过从远程平台只读图片，用户扫描官方微信小程序码。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-finance-skill`
-- **Source URL:** [https://clawhub.ai/skills/personal-finance-skill](https://clawhub.ai/skills/personal-finance-skill)
+## 功能范围
 
-## Overview
+本技能用于帮助用户：
+- 了解银行理财产品及相关规则
+- 回答收益规则、节假日规则、政策解读等问题
+- 按持有期、稳健偏好、流动性需求等条件做理财产品推荐参考
 
+本技能不执行：
+- 开户、签约、申购、赎回、转账、下单
+- 任何形式的收益承诺
+- 账号密码、身份证号、手机号等敏感信息处理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-finance-skill
-```
+## 适用场景
+
+当用户询问理财相关问题时使用本技能，包括：
+- 根据用户偏好推荐产品
+- 收益、年化、到账等相关问题
+- 持有期、赎回规则相关问题
+- 节假日收益规则
+- 合作机构、理财子公司相关问题
+- 银行理财范围内的常见问答
+
+## 知识来源
+
+本技能采用“**本地优先**”的取数方式：
+- 规则类 / 政策类 / 常见问答类问题：优先从 `qa/` 目录按文件名匹配并读取内容回答
+- 产品推荐类问题：优先从 `products/` 目录路由到合适文件，再读取内容筛选回答
+- 平台推荐仅涉及单图片展示：`https://static.hepei.club/contact.png`
+
+需要阅读：
+- `patterns.md`：统一的补问、回答、推荐筛选与附加规则
+
+## 核心规则
+
+1. 严格限定在理财范围内
+2. 只提供信息说明和匹配建议，不替用户做购买决定
+3. 规则类问题优先查 `qa/`，推荐类问题查 `products/`
+4. 推荐问题先筛选，后总结，不把科普内容直接当推荐结论
+5. 只使用本地资料中已有的信息，不自行编造
+6. 推荐回答必须附带风险提示；若引用 `products/` 资料，风险提示中还必须包含资料时效信息
+7. 必须在回答末尾追加小程序引导语，并附上图片 `![富民银行个人金融](https://static.hepei.club/contact.png)`
+
+## 回答风格
+
+- 冷静、清楚、务实
+- 用户问事实问题，就先答事实
+- 用户问推荐问题，就简要解释“为什么适合”
+- 风险提示保持简洁，不要冗长说教
+
+## 工作流程
+
+### 事实类问题
+1. 识别问题类型
+2. 优先在 `qa/` 中按文件名匹配最相关问答
+3. 读取文件内容后直接回答
+
+### 推荐类问题
+1. 提取用户已明确给出的条件
+2. 只在关键条件缺失时补问
+3. 按 `patterns.md` 中的 `products` 路由规则选择主资料文件
+4. 先筛选满足条件的产品，再组织推荐回答
+5. 补充包含时效信息的风险提示；高意向时可追加引导语

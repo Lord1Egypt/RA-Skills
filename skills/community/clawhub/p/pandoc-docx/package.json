@@ -1,0 +1,65 @@
+{
+  "name": "pandoc-docx",
+  "version": "1.0.0",
+  "description": "Bidirectional conversion between Word (.docx) and Markdown using pandoc",
+  "keywords": [
+    "pandoc",
+    "docx",
+    "word",
+    "markdown",
+    "converter",
+    "document",
+    "openclaw-skill"
+  ],
+  "author": "Cyber",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/workspace/tree/main/skills/pandoc-docx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace.git",
+    "directory": "skills/pandoc-docx"
+  },
+  "scripts": {
+    "check": "./scripts/check-deps.sh",
+    "test": "echo 'Tests coming soon'"
+  },
+  "dependencies": {
+    "pandoc": ">=2.0"
+  },
+  "optionalDependencies": {
+    "libreoffice": ">=6.0",
+    "poppler-utils": ">=0.8",
+    "texlive": ">=2020"
+  },
+  "clawhub": {
+    "category": "document-processing",
+    "featured": false,
+    "tags": [
+      "pandoc",
+      "docx",
+      "word",
+      "markdown",
+      "converter",
+      "document-processing",
+      "file-conversion",
+      "productivity",
+      "openclaw",
+      "openclaw-skill"
+    ]
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "bash": ">=4.0.0"
+  },
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "templates/",
+    "references/"
+  ]
+}

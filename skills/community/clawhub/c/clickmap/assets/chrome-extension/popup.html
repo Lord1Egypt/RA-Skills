@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ClickMap</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="top">
+    <img src="assets/icon-48.png" alt="logo" />
+    <div>
+      <h1>ClickMap</h1>
+      <p>POI helper</p>
+    </div>
+  </div>
+
+  <div class="status">
+    <div><span>Tab link:</span> <b id="tabState">checking...</b></div>
+    <div><span>Bridge:</span> <b id="bridgeState">checking...</b></div>
+    <div><span>Agent link:</span> <b id="agentState">checking...</b></div>
+  </div>
+
+  <div class="row">
+    <button id="toggle" class="primary">Toggle Marking (Hotkey)</button>
+    <button id="open">Open Config</button>
+  </div>
+  <div class="row">
+    <button id="sync">Sync POIs</button>
+  </div>
+
+  <div class="saved">
+    <div class="saved-head">Saved on this page</div>
+    <ul id="savedList"></ul>
+  </div>
+
+  <p id="status">Ready.</p>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,35 +1,49 @@
 ---
-name: "build-travel-hospitality-faq-page"
+name: "Build Travel Hospitality FAQ Page"
 description: "Generate customer-facing answers for common travel hospitality questions. Use when working on FAQ content for travel teams, hospitality marketers,..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/godfery-build-travel-hospitality-faq-page"
-sourceUrl: "https://clawhub.ai/skills/godfery-build-travel-hospitality-faq-page"
+homepage: "https://www.skillboss.co/skills/build-travel-hospitality-faq-page"
+metadata: {"category":"travel-hospitality","subcategory":"trip-planning","skill_id":"build-travel-hospitality-faq-page","generated_day":"","seo_keywords":["FAQ generator AI","travel hospitality FAQ writer","travel marketing AI","hospitality automation"]}
 ---
 
-# build-travel-hospitality-faq-page
+# Build Travel Hospitality FAQ Page
 
-> Generate customer-facing answers for common travel hospitality questions. Use when working on FAQ content for travel teams, hospitality marketers,...
+Generate customer-facing answers for common travel hospitality questions. Use when working on FAQ content for travel teams, hospitality marketers,...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/godfery-build-travel-hospitality-faq-page`
-- **Source URL:** [https://clawhub.ai/skills/godfery-build-travel-hospitality-faq-page](https://clawhub.ai/skills/godfery-build-travel-hospitality-faq-page)
+## Use When
 
-## Overview
+Use this skill for FAQ content work for travel teams, hospitality marketers, planners.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/godfery-build-travel-hospitality-faq-page
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: FAQ generator AI, travel hospitality FAQ writer, travel marketing AI, hospitality automation
+- Search intent: FAQ content
+- Canonical slug: `build-travel-hospitality-faq-page`
+- Install query: Install Build Travel Hospitality FAQ Page with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Build Travel Hospitality FAQ Page] for my team
+
+## Notes
+
+- Generate customer-facing answers for common travel hospitality questions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- FAQ generator AI
+- travel hospitality FAQ writer
+- travel marketing AI
+- hospitality automation

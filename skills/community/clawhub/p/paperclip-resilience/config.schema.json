@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./config.schema.json",
+  "title": "paperclip-resilience spawn-with-fallback config",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional JSON Schema reference for editor support."
+    },
+    "$doc": {
+      "type": "string",
+      "description": "Optional human-readable documentation string."
+    },
+    "aliases": {
+      "type": "object",
+      "description": "Map short aliases to full provider/model identifiers.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "properties": {
+        "$doc": {
+          "type": "string"
+        }
+      }
+    },
+    "fallbacks": {
+      "type": "object",
+      "description": "Map full model identifiers to their fallback model.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "properties": {
+        "$doc": {
+          "type": "string"
+        }
+      }
+    },
+    "failurePatterns": {
+      "type": "object",
+      "description": "Regex patterns, serialized as strings, matched case-insensitively against spawn output.",
+      "additionalProperties": false,
+      "properties": {
+        "$doc": {
+          "type": "string"
+        },
+        "patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "failureStopReasons": {
+      "type": "object",
+      "description": "stop_reason values that should trigger fallback handling.",
+      "additionalProperties": false,
+      "properties": {
+        "$doc": {
+          "type": "string"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ai-marketing-automation",
+  "version": "1.0.0",
+  "description": "AI 营销自动化 - 自动投放、A/B测试、ROI优化、多渠道管理",
+  "main": "index.js",
+  "keywords": [
+    "ai",
+    "marketing",
+    "automation",
+    "ads",
+    "openclaw"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

@@ -1,0 +1,39 @@
+[project]
+name = "linkedin-skills"
+version = "0.1.0"
+description = "LinkedIn automation skills for AI agents via browser extension bridge"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = [
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.9.0",
+    "pytest>=8.0",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "N",
+    "UP",
+    "B",
+    "SIM",
+    "RUF",
+]
+ignore = [
+    "E402",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["linkedin"]

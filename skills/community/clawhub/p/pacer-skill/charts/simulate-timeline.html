@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未来轨迹时间轴</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .chart-title {
+    color: #e0e0e0;
+    font-size: 14px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+  .chart-container {
+    width: 100%;
+    max-width: 640px;
+    height: 280px;
+    position: relative;
+  }
+</style>
+</head>
+<body>
+<div class="chart-title">综合状态变化预测</div>
+<div class="chart-container">
+  <canvas id="timelineChart"></canvas>
+</div>
+
+<script>
+  // ============================================================
+  // 模板变量说明（AI替换）
+  // ============================================================
+  // {{path_name}} → 路径A的名称，如"转型产品经理"
+  // {{data_path_a}} → 路径A各时间节点评分，5个值，如 [55, 40, 52, 68, 82]
+  //   规律：第1个月必须低于起点（适应期），第3个月开始反弹，第6个月超越现状
+  // {{data_status_quo}} → 维持现状各时间节点评分，5个值，如 [55, 54, 53, 52, 50]
+  // {{milestone_index}} → 里程碑标注的节点索引（0-4），如 2（代表3个月处）
+  // {{milestone_label}} → 里程碑描述，如"完成第一个付费项目"
+  // {{turning_point_index}} → 转折点索引（通常为1，代表1个月处），如 1
+  // {{hover_labels_path_a}} → 路径A各节点hover描述，5条，如 ["正在调研市场", "最难熬，副业收入为0", "第一个付费客户", "月收入超过现在", "稳定运营"]
+  // {{hover_labels_status_quo}} → 现状各节点描述，5条
+
+  const pathName = "{{path_name}}";
+  const xLabels = ["现在", "1个月", "3个月", "6个月", "12个月"];
+  const dataPathA = {{data_path_a}};
+  const dataStatusQuo = {{data_status_quo}};
+  const milestoneIndex = {{milestone_index}};
+  const milestoneLabel = "{{milestone_label}}";
+  const turningPointIndex = {{turning_point_index}};
+  const hoverLabelsPathA = {{hover_labels_path_a}};
+  const hoverLabelsStatusQuo = {{hover_labels_status_quo}};
+
+  // 自定义插件：在特定节点绘制垂直虚线和标注
+  const annotationPlugin = {
+    id: 'customAnnotation',
+    afterDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const xScale = scales.x;
+      const yScale = scales.y;
+
+      // 转折点竖线
+      const tpX = xScale.getPixelForValue(turningPointIndex);
+      ctx.save();
+      ctx.setLineDash([5, 4]);
+      ctx.strokeStyle = 'rgba(239, 83, 80, 0.5)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(tpX, chartArea.top);
+      ctx.lineTo(tpX, chartArea.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 转折点文字
+      ctx.fillStyle = 'rgba(239, 83, 80, 0.8)';
+      ctx.font = '11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('最难熬的阶段', tpX, chartArea.top + 12);
+      ctx.restore();
+
+      // 里程碑标注点
+      if (milestoneIndex >= 0) {
+        const msX = xScale.getPixelForValue(milestoneIndex);
+        const msY = yScale.getPixelForValue(dataPathA[milestoneIndex]);
+        ctx.save();
+        ctx.fillStyle = '#26a69a';
+        ctx.beginPath();
+        ctx.arc(msX, msY, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 里程碑文字（上方）
+        ctx.fillStyle = '#a5d6a7';
+        ctx.font = 'bold 10px sans-serif';
+        ctx.textAlign = 'center';
+        const shortLabel = milestoneLabel.length > 10 ? milestoneLabel.substring(0, 10) + '…' : milestoneLabel;
+        ctx.fillText('🏁 ' + shortLabel, msX, msY - 14);
+        ctx.restore();
+      }
+    }
+  };
+
+  const ctx = document.getElementById('timelineChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    plugins: [annotationPlugin],
+    data: {
+      labels: xLabels,
+      datasets: [
+        {
+          label: pathName,
+          data: dataPathA,
+          borderColor: '#26a69a',
+          backgroundColor: 'rgba(38, 166, 154, 0.08)',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#26a69a',
+          fill: false,
+          tension: 0.35
+        },
+        {
+          label: '维持现状',
+          data: dataStatusQuo,
+          borderColor: '#ef5350',
+          backgroundColor: 'rgba(239, 83, 80, 0.06)',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#ef5350',
+          fill: false,
+          tension: 0.35
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1500,
+        easing: 'easeInOutQuart'
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: { color: '#e0e0e0', font: { size: 12 } }
+        },
+        y: {
+          min: 0,
+          max: 100,
+          grid: { color: 'rgba(255,255,255,0.07)' },
+          ticks: {
+            color: '#b0b0b0',
+            stepSize: 20,
+            font: { size: 10 },
+            callback: val => val + '分'
+          },
+          title: {
+            display: true,
+            text: '综合状态',
+            color: '#b0b0b0',
+            font: { size: 11 }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e0e0e0',
+            font: { size: 12 },
+            padding: 16,
+            usePointStyle: true
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(26,26,46,0.95)',
+          titleColor: '#e0e0e0',
+          bodyColor: '#b0b0b0',
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            label: function(context) {
+              const i = context.dataIndex;
+              const isPathA = context.datasetIndex === 0;
+              const desc = isPathA ? hoverLabelsPathA[i] : hoverLabelsStatusQuo[i];
+              return context.dataset.label + ': ' + context.parsed.y + '分 — ' + desc;
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

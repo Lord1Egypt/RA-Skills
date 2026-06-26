@@ -1,35 +1,432 @@
+# 冰山挖掘（Iceberg Excavation）
+
+> 从情绪入口一次性挖到底层操作系统
+
+## 版本信息
+
+- **版本**：v2.0.0（L2 可分享版）
+- **创建时间**：2026-04-06
+- **升级时间**：2026-04-07
+- **维护者**：mindset agent
+- **等级**：L2（可分享）
+
+### 变更日志
+
+#### v2.0.0 (2026-04-07)
+**新增**：
+- ✅ 配置机制：支持分析深度、输出格式、自定义层级
+- ✅ 错误处理：定义输入验证、降级方案、用户提示
+- ✅ 使用指南：新增2个实用场景案例
+- ✅ 依赖声明：明确列出4个模块文件及必需性
+
+**改进**：
+- ✅ 使用案例：从完整输出改为"触发→输入→输出→效果"格式
+- ✅ 参数可配置：5个配置参数（depth, format, custom_layers, enable_scoring, enable_suggestions）
+
+**L2 标准**：
+- ✅ 参数可配置
+- ✅ 使用案例实用化
+- ✅ 错误信息清晰
+- ✅ 依赖声明完整
+
 ---
-name: "Iceberg Excavation"
-description: "从情绪入口出发，分层挖掘潜意识需求、思维模式及底层操作系统，提供深度情绪分析与系统重构建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iceberg-excavation"
-sourceUrl: "https://clawhub.ai/skills/iceberg-excavation"
+
+## 触发条件
+
+当用户提到以下关键词时激活此技能：
+- 深度分析：为什么、根源、底层、模式、潜意识、冰山、操作系统
+- 追问情绪：为什么我有这个情绪？、这个情绪从哪来？
+- 系统重构：我想改变我的模式、我的底层逻辑是什么？
+
+**上下文触发**：情绪工具箱转化后，用户追问"为什么"
+
 ---
 
-# Iceberg Excavation
+## 配置参数
 
-> 从情绪入口出发，分层挖掘潜意识需求、思维模式及底层操作系统，提供深度情绪分析与系统重构建议。
+| 参数名 | 类型 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `depth` | int | 4 | 分析深度（1-4层） |
+| `format` | string | "markdown" | 输出格式（markdown/json/text） |
+| `custom_layers` | array | [] | 自定义层级名称 |
+| `enable_scoring` | bool | true | 是否启用情绪强度评分 |
+| `enable_suggestions` | bool | true | 是否生成系统重构建议 |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iceberg-excavation`
-- **Source URL:** [https://clawhub.ai/skills/iceberg-excavation](https://clawhub.ai/skills/iceberg-excavation)
+### 配置方式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+**方式1：环境变量**
 ```bash
-hermes skills install clawhub/iceberg-excavation
+export ICEBERG_DEPTH=3
+export ICEBERG_FORMAT=json
+export ICEBERG_ENABLE_SCORING=false
 ```
+
+**方式2：配置文件**（`config/iceberg-config.json`）
+```json
+{
+  "depth": 4,
+  "format": "markdown",
+  "custom_layers": [],
+  "enable_scoring": true,
+  "enable_suggestions": true
+}
+```
+
+**方式3：运行时参数**
+```markdown
+用户：用冰山挖掘分析我的焦虑，只分析前3层，输出JSON格式
+
+Agent自动识别参数：
+- depth: 3
+- format: "json"
+```
+
+### 配置示例
+
+**场景1：快速分析（前2层）**
+```json
+{
+  "depth": 2,
+  "format": "text",
+  "enable_scoring": false,
+  "enable_suggestions": false
+}
+```
+
+**场景2：完整分析（4层 + JSON输出）**
+```json
+{
+  "depth": 4,
+  "format": "json",
+  "enable_scoring": true,
+  "enable_suggestions": true
+}
+```
+
+---
+
+## 依赖声明
+
+### 必需依赖
+
+| 文件 | 必需性 | 说明 |
+|------|--------|------|
+| [modules/emotion-entry.md](modules/emotion-entry.md) | ✅ 必需 | 第1层：情绪入口分析 |
+| [modules/subconscious-needs.md](modules/subconscious-needs.md) | ✅ 必需 | 第2层：潜意识需求分析 |
+| [modules/thinking-patterns.md](modules/thinking-patterns.md) | ✅ 必需 | 第3层：思维模式分析 |
+| [modules/operating-system.md](modules/operating-system.md) | ⚠️ 可选 | 第4层：底层操作系统分析（缺失时降级到3层） |
+
+### 依赖检查机制
+
+```python
+# 检查必需模块
+required_modules = [
+    "modules/emotion-entry.md",
+    "modules/subconscious-needs.md",
+    "modules/thinking-patterns.md"
+]
+
+for module in required_modules:
+    if not exists(module):
+        return error("缺少必需模块：{module}")
+
+# 检查可选模块
+if not exists("modules/operating-system.md"):
+    depth = min(depth, 3)  # 降级到3层
+    log("第4层分析模块缺失，已跳过")
+```
+
+---
+
+## 核心方法论
+
+```
+情绪（入口）→ 5次追问 → 模式识别 → 系统重构
+```
+
+**5次追问**：
+1. 这个情绪在保护什么？（需求层）
+2. 这个需求从哪里来？（起源层）
+3. 如果不被满足，你会怎么样？（恐惧层）
+4. 这个恐惧在哪个场景反复出现？（模式层）
+5. 这个模式背后的信念是什么？（系统层）
+
+---
+
+## 4层冰山模型
+
+### 第1层：情绪入口
+- **任务**：识别情绪 + 触发事件
+- **模块**：[modules/emotion-entry.md](modules/emotion-entry.md)
+- **关键问题**：你现在是什么情绪？什么触发了它？
+
+### 第2层：潜意识需求
+- **任务**：挖掘情绪保护的需求
+- **模块**：[modules/subconscious-needs.md](modules/subconscious-needs.md)
+- **关键问题**：这个情绪在保护什么？这个需求从哪来？
+
+### 第3层：思维模式
+- **任务**：识别反复出现的恐惧和场景
+- **模块**：[modules/thinking-patterns.md](modules/thinking-patterns.md)
+- **关键问题**：如果不被满足会怎样？哪个场景反复出现？
+
+### 第4层：底层操作系统
+- **任务**：揭示核心信念和运作逻辑
+- **模块**：[modules/operating-system.md](modules/operating-system.md)
+- **关键问题**：这个模式背后的信念是什么？
+
+---
+
+## 使用示例
+
+### 案例1：情绪触发分析（快速模式）
+
+**场景**：用户首次接触冰山挖掘，想快速了解自己的情绪模式
+
+**触发方式**：
+```
+用户：我最近总是因为小事生气，帮我分析一下
+```
+
+**配置**：
+- depth: 2（只分析情绪入口 + 潜意识需求）
+- format: "text"（简洁文本输出）
+- enable_suggestions: false（不生成重构建议）
+
+**输入**：
+```markdown
+情绪：生气
+触发事件：同事迟到5分钟
+情绪强度：6/10
+```
+
+**输出**：
+```
+【冰山分析 - 快速版】
+
+第1层·情绪入口：
+你感到生气，因为同事迟到5分钟打破了你的预期。
+
+第2层·潜意识需求：
+这个生气在保护你的"时间秩序感"。你潜意识里认为：
+- 守时 = 尊重
+- 迟到 = 不重视我
+
+需求类型：控制感
+
+【建议】如需深入分析思维模式和底层系统，请说"继续分析"
+```
+
+**预期效果**：
+- 用户快速获得洞察（<1分钟）
+- 降低认知负担（只展示2层）
+- 引导深度分析（可选继续）
+
+---
+
+### 案例2：模式识别（完整模式）
+
+**场景**：用户想彻底理解自己的反复出现的行为模式
+
+**触发方式**：
+```
+用户：我想深度分析我的"完美主义"模式，挖到底层系统
+```
+
+**配置**：
+- depth: 4（完整4层分析）
+- format: "markdown"（完整报告）
+- enable_suggestions: true（生成重构建议）
+
+**输入**：
+```markdown
+情绪：焦虑
+触发事件：提交报告前反复检查
+情绪强度：8/10
+反复出现：每次交付前都会这样
+```
+
+**输出**：
+```markdown
+## 冰山分析报告（完整版）
+
+### 第1层：情绪入口
+- **情绪**：焦虑
+- **触发事件**：提交报告前反复检查
+- **情绪强度**：8/10
+- **模式标记**：反复出现在"交付前"场景
+
+### 第2层：潜意识需求
+- **这个情绪在保护**：我对"完美"的控制感
+- **需求来源**：害怕犯错、害怕被批评
+- **需求类型**：控制感 + 被认可
+
+### 第3层：思维模式
+- **反复出现的恐惧**：如果不完美，就会被否定
+- **触发场景**：任何需要"交付"的场景（报告、演示、承诺）
+- **模式类型**：灾难化 + 非黑即白（完美=成功，瑕疵=失败）
+
+### 第4层：底层操作系统
+- **核心信念**：我的价值 = 我的产出质量
+- **运作逻辑**：
+  1. 交付前 → 焦虑触发
+  2. 反复检查 → 暂时缓解
+  3. 永远不够 → 循环强化
+- **系统类型**：完美主义 + 外部确认依赖型
+
+### 系统重构建议
+
+#### 1. 认知重构
+- **信念调整**：质量有"足够好"标准，不是0或100
+- **证据检验**：回顾过去5次"不够完美"的交付，实际后果是什么？
+
+#### 2. 行为实验
+- **小步测试**：下次报告只检查2遍，观察实际反馈
+- **记录结果**：验证"灾难化"假设是否成立
+
+#### 3. 系统升级
+- **建立内部标准**：定义"足够好"的具体指标
+- **减少外部依赖**：从"别人怎么看"转向"我是否尽力"
+- **长期目标**：建立成长型思维，接受"不完美是常态"
+```
+
+**预期效果**：
+- 用户获得完整洞察（5-10分钟）
+- 清晰看到模式全貌
+- 获得可执行的重构建议
+- 建立长期改变路径
+
+---
+
+## 错误处理
+
+### 错误场景1：输入非情绪文本
+
+**触发**：
+```
+用户：帮我分析一下今天的天气
+```
+
+**错误信息**：
+```markdown
+⚠️ 冰山挖掘技能未激活
+
+**原因**：未检测到情绪相关内容
+
+**建议**：
+- 如果你想分析情绪，请描述你的情绪感受（如"我很焦虑"）
+- 如果你想聊其他话题，我可以用其他方式帮助你
+```
+
+---
+
+### 错误场景2：用户抗拒深度分析
+
+**触发**：
+```
+用户：不要分析我的底层系统，太深入了
+```
+
+**降级处理**：
+```markdown
+✅ 已切换到浅层分析模式
+
+【冰山分析 - 浅层版】
+
+第1层·情绪入口：
+你的情绪是...
+
+第2层·潜意识需求：
+这个情绪在保护...
+
+---
+💡 如需深度分析，请说"继续分析"。我会等你准备好。
+```
+
+**配置调整**：
+- depth: 2（自动降级）
+- 记录用户偏好到 memory
+
+---
+
+### 错误场景3：模块文件缺失
+
+**触发**：
+```
+modules/operating-system.md 文件不存在
+```
+
+**降级处理**：
+```markdown
+⚠️ 第4层分析模块缺失，已跳过
+
+【冰山分析 - 降级版】
+
+第1-3层分析完成...
+
+---
+💡 第4层（底层操作系统）分析暂时不可用
+请联系维护者修复模块文件：modules/operating-system.md
+```
+
+**配置调整**：
+- depth: 3（自动降级）
+- 记录错误到日志
+
+---
+
+### 错误场景4：配置参数无效
+
+**触发**：
+```
+depth: 5（超出范围）
+format: "xml"（不支持）
+```
+
+**错误信息**：
+```markdown
+⚠️ 配置参数无效
+
+**错误详情**：
+- `depth: 5` → 超出范围，应为 1-4
+- `format: "xml"` → 不支持，可选：markdown, json, text
+
+**已自动修正**：
+- depth: 4（使用默认值）
+- format: "markdown"（使用默认值）
+
+---
+💡 如需自定义配置，请参考：config/iceberg-config.json
+```
+
+---
+
+## 与情绪觉知工具箱的关系
+
+**调用顺序**：
+```
+用户表达情绪
+    ↓
+情绪觉知工具箱：识别 → 接纳 → 观察 → 转化
+    ↓
+用户追问"为什么"
+    ↓
+冰山挖掘：4层深度分析 + 系统重构
+```
+
+**分工**：
+- **情绪觉知工具箱**：处理情绪本身（症状层）
+- **冰山挖掘**：挖掘底层系统（病因层）
+
+---
+
+## 注意事项
+
+1. **非医疗建议**：此技能提供心理洞察，不替代专业治疗
+2. **循序渐进**：如果用户抗拒深度分析，先回到情绪觉知工具箱
+3. **尊重节奏**：不是所有人都准备好面对底层系统
+4. **文化敏感性**：考虑中国文化对"面子"、"权威"的特殊性
+
+---
+
+**核心信念**：情绪是入口，系统才是答案。挖得越深，改变越彻底。

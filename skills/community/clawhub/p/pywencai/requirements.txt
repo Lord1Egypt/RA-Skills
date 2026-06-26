@@ -1,0 +1,2 @@
+pywencai>=0.10.0
+pandas>=1.5.0

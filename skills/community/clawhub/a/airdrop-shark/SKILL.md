@@ -1,35 +1,118 @@
----
-name: "Airdrop Shark"
-description: "Track potential airdrop eligibility, view project snapshots and values, and manage snapshot reminders without wallet connections or private keys."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/airdrop-shark"
-sourceUrl: "https://clawhub.ai/skills/airdrop-shark"
----
+# AirdropAlert Skill - SKILL.md
 
-# Airdrop Shark
+**🪂 空投提醒技能 - 追踪潜在空投资格，提醒快照和时间**
 
-> Track potential airdrop eligibility, view project snapshots and values, and manage snapshot reminders without wallet connections or private keys.
+## 基本信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/airdrop-shark`
-- **Source URL:** [https://clawhub.ai/skills/airdrop-shark](https://clawhub.ai/skills/airdrop-shark)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/airdrop-shark
+```json
+{
+  "name": "airdrop-shark",
+  "version": "0.1.0",
+  "description": "空投提醒技能 - 追踪潜在空投资格，提醒快照和时间",
+  "author": "@gztanht",
+  "license": "MIT"
+}
 ```
+
+## 命令系统
+
+| 命令 | 描述 | 参数 |
+|------|------|------|
+| `airdrop` | 查看所有空投项目 | `--priority`, `--limit` |
+| `eligibility` | 检查空投资格 | `<project>`, `--address` |
+| `reminder` | 管理快照提醒 | `add`, `list`, `remove` |
+
+## 功能说明
+
+### 1. 空投项目列表 (`airdrop.mjs`)
+
+显示所有潜在空投项目，包括：
+- 项目名称和链
+- 预期快照时间
+- 预期价值范围
+- 交互难度
+- 优先级标记
+
+**参数**:
+- `--priority [high|medium|low]` - 按优先级筛选
+- `--limit N` - 限制显示数量
+
+### 2. 资格检查 (`eligibility.mjs`)
+
+检查用户地址是否符合特定项目的空投资格：
+- 交易次数要求
+- 使用链数量
+- 交易量要求
+- 最近活跃度
+
+**参数**:
+- `<project>` - 项目名称 (必需)
+- `--address <addr>` - 要检查的地址 (可选，默认当前钱包)
+
+### 3. 提醒管理 (`reminder.mjs`)
+
+设置和管理快照时间提醒：
+- 添加新提醒
+- 查看所有提醒
+- 删除已过期提醒
+
+**参数**:
+- `add --project <name> --date <YYYY-MM-DD>` - 添加提醒
+- `list` - 查看提醒列表
+- `remove <id>` - 删除提醒
+
+## 数据源
+
+- 社区整理的空投项目数据库
+- 官方公告和项目文档
+- 链上数据分析 (未来)
+
+## 输出格式
+
+### 空投列表输出
+```
+🪂 AirdropAlert - 潜在空投项目
+
+优先级  项目              链           快照时间    预期价值    难度
+─────────────────────────────────────────────────────────────────────
+🔴 高    LayerZero       多链         2026-Q2     $2000-5000  中
+🟡 中    Starknet        Starknet     已完成      $500-2000   低
+```
+
+### 资格检查输出
+```
+✅ LayerZero 资格检查
+
+地址：0x33f9...5ad9
+状态：符合条件
+
+要求:
+- ✅ 跨链交易 > 5 次
+- ✅ 使用 > 3 条不同链
+- ✅ 总交易量 > $1000
+
+预期空投：$2000-5000
+```
+
+## 定价策略
+
+- **免费版**: 5 次查询/天
+- **赞助版**: 0.5 USDT/USDC → 无限查询
+
+## 安全注意事项
+
+技能必须显示安全提示：
+- 不要求用户提供私钥
+- 不连接用户钱包 (只读地址检查)
+- 提醒用户验证官方链接
+- 建议用户小额测试
+
+## 未来规划
+
+- v0.2.0 - 链上数据自动检查
+- v0.3.0 - Telegram/Discord 通知
+- v1.0.0 - 自动化交互指南
+
+---
+
+**🪂 AirdropAlert v0.1.0 - Never Miss an Airdrop**

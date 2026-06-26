@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-ASSET-001",
+  "test_points": [
+    {
+      "id": "TP-001",
+      "source_scenario": "基金申购-主流程",
+      "category": "main_flow",
+      "description": "投资者申购在售公募基金，输入合法金额提交后资金冻结，T+1确认份额",
+      "precondition": "投资者账户正常，可用余额充足，基金产品在售",
+      "related_rules": ["申购金额最低1000元，按1000元递增", "T日申购T+1确认份额"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-002",
+      "source_scenario": "基金申购-费率分档计算",
+      "category": "branch",
+      "description": "申购金额在不同档位时费率正确计算：0-50万按1.5%、50万以上按1.0%",
+      "precondition": "投资者提交不同金额的申购订单",
+      "related_rules": ["申购费率按持有金额分档：0-50万1.5%、50万以上1.0%"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-003",
+      "source_scenario": "基金申购-金额低于最低限额",
+      "category": "boundary",
+      "description": "投资者输入低于1000元的申购金额，系统拒绝并提示最低申购金额",
+      "precondition": "投资者账户正常，基金产品在售",
+      "related_rules": ["申购金额最低1000元"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-004",
+      "source_scenario": "基金申购-金额非1000整数倍",
+      "category": "boundary",
+      "description": "投资者输入非1000元整数倍的金额（如1500元），系统拒绝并提示按1000元递增",
+      "precondition": "投资者账户正常，基金产品在售",
+      "related_rules": ["申购金额按1000元递增"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-005",
+      "source_scenario": "基金申购-余额不足",
+      "category": "exception",
+      "description": "投资者可用余额不足以支付申购金额，系统拒绝并提示余额不足",
+      "precondition": "投资者可用余额低于申购金额",
+      "related_rules": ["申购需冻结对应资金"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P1",
+      "pci_required": false,
+      "pci_description": ""
+    },
+    {
+      "id": "TP-006",
+      "source_scenario": "基金申购-持仓份额查看",
+      "category": "main_flow",
+      "description": "T+1份额确认后，投资者在持仓页面可查看基金份额和最新净值",
+      "precondition": "投资者已有一笔T+1确认完成的申购",
+      "related_rules": ["确认后可在持仓中查看份额和净值"],
+      "related_roles": ["投资者"],
+      "priority_hint": "P0",
+      "pci_required": false,
+      "pci_description": ""
+    }
+  ],
+  "coverage_summary": {
+    "total": 6,
+    "by_category": {
+      "main_flow": 2,
+      "branch": 1,
+      "boundary": 2,
+      "exception": 1
+    }
+  }
+}

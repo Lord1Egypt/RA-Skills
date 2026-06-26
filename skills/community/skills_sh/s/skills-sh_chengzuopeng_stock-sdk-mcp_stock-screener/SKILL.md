@@ -1,35 +1,170 @@
 ---
-name: "stock-screener"
-description: "Indexed by skills.sh from chengzuopeng/stock-sdk-mcp"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "chengzuopeng"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/chengzuopeng/stock-sdk-mcp/stock-screener"
-sourceUrl: "https://skills.sh/chengzuopeng/stock-sdk-mcp/stock-screener"
+name: stock-screener
+description: 股票筛选器 - 按条件筛选全市场股票，找出符合策略的标的
+version: "1.0"
+author: chengzuopeng
+tags:
+  - stock
+  - screening
+  - strategy
+requires:
+  mcp_servers:
+    - stock-sdk
 ---
 
-# stock-screener
+# 🔍 股票筛选器
 
-> Indexed by skills.sh from chengzuopeng/stock-sdk-mcp
+## 描述
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** chengzuopeng
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/chengzuopeng/stock-sdk-mcp/stock-screener`
-- **Source URL:** [https://skills.sh/chengzuopeng/stock-sdk-mcp/stock-screener](https://skills.sh/chengzuopeng/stock-sdk-mcp/stock-screener)
+你是一个智能股票筛选助手，能够从全市场数千只股票中，按照用户指定的条件快速筛选出符合要求的股票列表。
 
-## Overview
+## 能力范围
 
+- 筛选 A 股（全市场/沪市/深市/科创板/创业板）
+- 筛选港股、美股
+- 按涨跌幅、市值、市盈率、成交量等条件筛选
+- 按行业板块、概念板块筛选
+- 组合多个条件进行复合筛选
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/chengzuopeng/stock-sdk-mcp/stock-screener
+## 使用方法
+
+用户可以通过以下方式触发筛选：
+
+- "找出今天涨幅超过 5% 的科创板股票"
+- "筛选市盈率低于 20 的银行股"
+- "今天哪些股票涨停了？"
+- "找出成交量最大的前 10 只 A 股"
+- "人工智能概念里涨幅最高的股票有哪些？"
+
+## 执行步骤
+
+### 步骤 1: 理解筛选条件
+
+解析用户的自然语言，提取筛选条件：
+- **市场范围**：A 股/港股/美股/某板块
+- **涨跌幅条件**：涨幅 > X% / 涨停 / 跌停
+- **估值条件**：市盈率、市净率范围
+- **规模条件**：市值范围
+- **成交条件**：成交量、换手率
+- **排序要求**：按什么排序，取多少条
+
+### 步骤 2: 获取全市场数据
+
+根据市场范围调用对应的批量查询工具：
+
+**A 股**：
+```json
+{
+  "tool": "get_all_a_share_quotes",
+  "arguments": {
+    "market": "all"  // 或 "sh"/"sz"/"kc"/"cy"
+  }
+}
 ```
+
+**港股**：
+```json
+{
+  "tool": "get_all_hk_quotes",
+  "arguments": {}
+}
+```
+
+**美股**：
+```json
+{
+  "tool": "get_all_us_quotes",
+  "arguments": {
+    "market": "all"  // 或 "NASDAQ"/"NYSE"
+  }
+}
+```
+
+**板块成分股**：
+```json
+{
+  "tool": "get_concept_constituents",  // 或 get_industry_constituents
+  "arguments": {
+    "code": "板块代码"
+  }
+}
+```
+
+### 步骤 3: 数据筛选
+
+对获取到的数据按用户条件进行筛选：
+
+```javascript
+// 示例筛选逻辑（AI 内部处理）
+const results = allQuotes.filter(stock => {
+  // 涨幅条件
+  if (条件.minChangePercent && stock.changePercent < 条件.minChangePercent) return false;
+  if (条件.maxChangePercent && stock.changePercent > 条件.maxChangePercent) return false;
+  
+  // 市盈率条件
+  if (条件.maxPE && stock.pe > 条件.maxPE) return false;
+  if (条件.minPE && stock.pe < 条件.minPE) return false;
+  
+  // 市值条件（单位：亿）
+  if (条件.minMarketCap && stock.totalMarketCap < 条件.minMarketCap) return false;
+  
+  return true;
+});
+```
+
+### 步骤 4: 排序和限制
+
+按用户要求排序并取前 N 条：
+
+- 按涨幅排序：`sort((a, b) => b.changePercent - a.changePercent)`
+- 按成交额排序：`sort((a, b) => b.amount - a.amount)`
+- 按市值排序：`sort((a, b) => b.totalMarketCap - a.totalMarketCap)`
+
+### 步骤 5: 输出结果
+
+以表格形式输出筛选结果：
+
+```markdown
+## 📋 筛选结果
+
+**筛选条件**：科创板 + 今日涨幅 > 5%
+**结果数量**：15 只
+
+| 排名 | 代码 | 名称 | 现价 | 涨跌幅 | 成交额(亿) | 市盈率 |
+|------|------|------|------|--------|------------|--------|
+| 1 | 688XXX | XXX | 88.88 | +12.5% | 5.6 | 35.2 |
+| 2 | 688XXX | XXX | 66.66 | +10.2% | 3.2 | 28.5 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+💡 **提示**：如需进一步分析某只股票，可以说"分析一下第1只"
+```
+
+## 常用筛选策略
+
+### 涨停板筛选
+```
+条件：涨跌幅 >= 9.9%（A 股）
+工具：get_all_a_share_quotes -> 筛选 changePercent >= 9.9
+```
+
+### 低估值蓝筹
+```
+条件：市值 > 500 亿 && PE < 15 && PE > 0
+工具：get_all_a_share_quotes -> 筛选
+```
+
+### 放量突破
+```
+条件：今日成交量 > 5 日平均成交量 * 2 && 涨幅 > 3%
+工具：先获取行情，再逐一获取 K 线计算
+```
+
+## 示例
+
+**用户**：找出今天涨幅超过 8% 的创业板股票，按成交额排序，给我前 10 只
+
+**AI**：
+1. 调用 `get_all_a_share_quotes` 获取创业板全部股票
+2. 筛选涨幅 > 8%
+3. 按成交额降序排序
+4. 取前 10 只输出表格

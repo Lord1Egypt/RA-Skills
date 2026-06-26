@@ -1,0 +1,133 @@
+{
+  "name": "Advanced Vocabulary List",
+  "level": "advanced",
+  "total_words": 50,
+  "description": "高级英语词汇列表，适合英语水平较高的学习者",
+  "words": [
+    {
+      "word": "serendipity",
+      "phonetic": "/ˌserənˈdɪpəti/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "意外发现珍宝的运气；机缘巧合",
+      "example_sentence": "Finding this book was pure serendipity.",
+      "roots": [
+        {"part": "serendip", "meaning": "Ceylon (old name for Sri Lanka)", "type": "root"},
+        {"part": "-ity", "meaning": "state or quality", "type": "suffix"}
+      ],
+      "etymology": "Coined by Horace Walpole in 1754, from the Persian fairy tale 'The Three Princes of Serendip'"
+    },
+    {
+      "word": "ephemeral",
+      "phonetic": "/ɪˈfemərəl/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "短暂的，转瞬即逝的",
+      "example_sentence": "The beauty of cherry blossoms is ephemeral.",
+      "roots": [
+        {"part": "epi-", "meaning": "on", "type": "prefix"},
+        {"part": "hemer", "meaning": "day", "type": "root"},
+        {"part": "-al", "meaning": "relating to", "type": "suffix"}
+      ],
+      "etymology": "From Greek 'ephemeros' meaning 'lasting only a day'"
+    },
+    {
+      "word": "ubiquitous",
+      "phonetic": "/juːˈbɪkwɪtəs/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "无处不在的，普遍存在的",
+      "example_sentence": "Smartphones have become ubiquitous in modern society.",
+      "roots": [
+        {"part": "ubi", "meaning": "where", "type": "root"},
+        {"part": "que", "meaning": "anywhere", "type": "suffix"},
+        {"part": "-ous", "meaning": "having the quality of", "type": "suffix"}
+      ],
+      "etymology": "From Latin 'ubique' meaning 'everywhere'"
+    },
+    {
+      "word": "magnanimous",
+      "phonetic": "/mæɡˈnænɪməs/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "宽宏大量的，高尚的",
+      "example_sentence": "He was magnanimous in victory, praising his opponent.",
+      "roots": [
+        {"part": "magn", "meaning": "great", "type": "root"},
+        {"part": "anim", "meaning": "soul, spirit", "type": "root"},
+        {"part": "-ous", "meaning": "having the quality of", "type": "suffix"}
+      ],
+      "etymology": "From Latin 'magnus' (great) + 'animus' (soul)"
+    },
+    {
+      "word": "pernicious",
+      "phonetic": "/pərˈnɪʃəs/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "有害的，恶性的",
+      "example_sentence": "The pernicious effects of pollution are evident.",
+      "roots": [
+        {"part": "per-", "meaning": "through", "type": "prefix"},
+        {"part": "nec", "meaning": "death", "type": "root"},
+        {"part": "-ious", "meaning": "having the quality of", "type": "suffix"}
+      ],
+      "etymology": "From Latin 'perniciosus', from 'pernicies' (destruction)"
+    },
+    {
+      "word": "sycophant",
+      "phonetic": "/ˈsɪkəfænt/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "谄媚者，马屁精",
+      "example_sentence": "The king was surrounded by sycophants who never criticized him.",
+      "roots": [
+        {"part": "syco", "meaning": "fig", "type": "root"},
+        {"part": "phant", "meaning": "to show", "type": "suffix"}
+      ],
+      "etymology": "From Greek 'sykophantes' meaning 'informer', literally 'fig-shower'"
+    },
+    {
+      "word": "paradigm",
+      "phonetic": "/ˈpærədaɪm/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "范式，典范",
+      "example_sentence": "The discovery led to a paradigm shift in scientific thinking.",
+      "roots": [
+        {"part": "para-", "meaning": "beside", "type": "prefix"},
+        {"part": "deik", "meaning": "to show", "type": "root"}
+      ],
+      "etymology": "From Greek 'paradeigma' meaning 'pattern, example'"
+    },
+    {
+      "word": "zeitgeist",
+      "phonetic": "/ˈtsaɪtɡaɪst/",
+      "part_of_speech": "n.",
+      "chinese_meaning": "时代精神，时代思潮",
+      "example_sentence": "The movie captures the zeitgeist of the 1960s.",
+      "roots": [
+        {"part": "zeit", "meaning": "time", "type": "root (German)"},
+        {"part": "geist", "meaning": "spirit", "type": "root (German)"}
+      ],
+      "etymology": "German compound word meaning 'spirit of the times'"
+    },
+    {
+      "word": "ameliorate",
+      "phonetic": "/əˈmiːliəreɪt/",
+      "part_of_speech": "v.",
+      "chinese_meaning": "改善，改进",
+      "example_sentence": "The new policy aims to ameliorate working conditions.",
+      "roots": [
+        {"part": "a-", "meaning": "to", "type": "prefix"},
+        {"part": "melior", "meaning": "better", "type": "root"},
+        {"part": "-ate", "meaning": "to make", "type": "suffix"}
+      ],
+      "etymology": "From Latin 'melior' meaning 'better'"
+    },
+    {
+      "word": "quotidian",
+      "phonetic": "/kwɒˈtɪdiən/",
+      "part_of_speech": "adj.",
+      "chinese_meaning": "每日的，日常的",
+      "example_sentence": "He focused on the quotidian details of ordinary life.",
+      "roots": [
+        {"part": "quot", "meaning": "how many", "type": "root"},
+        {"part": "-idian", "meaning": "relating to", "type": "suffix"}
+      ],
+      "etymology": "From Latin 'quotidianus', from 'quoties' (how often)"
+    }
+  ]
+}

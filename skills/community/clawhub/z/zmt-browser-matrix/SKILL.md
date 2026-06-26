@@ -1,35 +1,37 @@
 ---
-name: "ZMT Matrix Browser"
-description: "通过本地 HTTP API 管理多账号矩阵浏览器，实现账号的启动、关闭及信息查询，支持自然语言和脚本控制。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zmt-browser-matrix"
-sourceUrl: "https://clawhub.ai/skills/zmt-browser-matrix"
+name: ZMT Matrix Browser
+slug: zmt-browser-matrix
+version: 1.0.16
+description: |
+  ZMT Browser Matrix Manager - Control multi-account browser matrix via HTTP API
+author: @wociaozhongyunonghaole
 ---
 
 # ZMT Matrix Browser
 
-> 通过本地 HTTP API 管理多账号矩阵浏览器，实现账号的启动、关闭及信息查询，支持自然语言和脚本控制。
+Control multi-account browser matrix tool via HTTP API for account startup, shutdown and information query.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zmt-browser-matrix`
-- **Source URL:** [https://clawhub.ai/skills/zmt-browser-matrix](https://clawhub.ai/skills/zmt-browser-matrix)
+## Features
 
-## Overview
+- Independent browser environment per account
+- Independent IP support
+- Independent Cookie/cache
+- HTTP API control
 
+## Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zmt-browser-matrix
-```
+- Python 3.8+
+- Install: pip install requests pyyaml
+- Matrix tool: https://zmt.scys6688.com/
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| list | List all accounts |
+| start | Start account by name |
+| stop | Stop account by name |
+
+## Natural Language
+
+Supports: "list all accounts", "start xiaohongshu", "stop xiaohongshu"

@@ -1,0 +1,39 @@
+{
+  "schema": "https://google.github.io/A2A/schemas/agent-card/v1",
+  "name": "Agent Ads (CPH)",
+  "description": "Pay-per-human lead generation. Subscribe to get intent-matched humans invited to your XMTP group chat. Consent-first, pay only when the human accepts.",
+  "version": "1.1.0",
+  "url": "https://xmtp-agent-production-e08b.up.railway.app",
+  "provider": {
+    "name": "Basemate",
+    "url": "https://basemate.app"
+  },
+  "capabilities": {
+    "tasks": true,
+    "streaming": false
+  },
+  "skills": [
+    {
+      "name": "discover_groups",
+      "description": "Search available XMTP groups by interest or tags"
+    },
+    {
+      "name": "subscribe_cph",
+      "description": "Subscribe to Cost Per Human delivery with interests, group ID, and price"
+    },
+    {
+      "name": "check_status",
+      "description": "Check subscription status and delivery counts"
+    },
+    {
+      "name": "claim_delivery",
+      "description": "Claim and pay for a matched human delivery"
+    }
+  ],
+  "protocols": ["x402", "xmtp", "erc-8004"],
+  "chains": ["base"],
+  "identity": {
+    "wallet": "0xb257b5c180b7b2cb80e35d6079abe68d9cf0467f",
+    "xmtpInboxId": "91e5c2e39bcc8f553de3db2ce1a9d78f9f2b0bbc6c182653c086892b8048d647"
+  }
+}

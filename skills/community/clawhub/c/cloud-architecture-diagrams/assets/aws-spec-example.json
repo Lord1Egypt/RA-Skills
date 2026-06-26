@@ -1,0 +1,32 @@
+{
+  "title": "AWS 3-Tier Web Application",
+  "provider": "aws",
+  "canvas": {"width": 1500, "height": 760},
+  "zones": [
+    {"id": "vpc", "label": "VPC", "x": 360, "y": 70, "width": 900, "height": 620},
+    {"id": "pub", "label": "Public Subnet", "x": 390, "y": 150, "width": 360, "height": 500},
+    {"id": "priv", "label": "Private Subnet", "x": 800, "y": 150, "width": 430, "height": 500}
+  ],
+  "nodes": [
+    {"id": "user", "title": "Users", "icon": "Users", "x": 40, "y": 330, "width": 64, "height": 64, "card": false},
+    {"id": "r53", "title": "Route 53", "icon": "Route 53", "x": 150, "y": 150, "width": 64, "height": 64, "card": false},
+    {"id": "cf", "title": "CloudFront", "icon": "CloudFront", "x": 150, "y": 470, "width": 64, "height": 64, "card": false},
+    {"id": "alb", "title": "Load Balancer", "desc": "Application LB", "icon": "Elastic Load Balancing", "x": 410, "y": 240, "width": 320, "height": 80},
+    {"id": "ec2a", "title": "Web Tier", "desc": "EC2 Auto Scaling", "icon": "EC2", "x": 410, "y": 400, "width": 320, "height": 80},
+    {"id": "ecs", "title": "App Tier", "desc": "ECS Fargate", "icon": "ECS", "x": 830, "y": 240, "width": 360, "height": 80},
+    {"id": "rds", "title": "Database", "desc": "RDS Multi-AZ", "icon": "RDS", "x": 830, "y": 400, "width": 360, "height": 80},
+    {"id": "s3", "title": "Static Assets", "desc": "S3 Bucket", "icon": "S3", "x": 830, "y": 540, "width": 360, "height": 80},
+    {"id": "ddb", "title": "Sessions", "desc": "DynamoDB", "icon": "DynamoDB", "x": 1290, "y": 240, "width": 64, "height": 64, "card": false},
+    {"id": "iam", "title": "IAM", "icon": "IAM", "x": 1290, "y": 470, "width": 64, "height": 64, "card": false}
+  ],
+  "edges": [
+    {"from": "user", "to": "r53", "label": "DNS", "dir": "to"},
+    {"from": "r53", "to": "alb", "label": "", "dir": "to"},
+    {"from": "user", "to": "cf", "label": "Static", "dir": "to"},
+    {"from": "cf", "to": "s3", "label": "Origin", "dir": "to", "color": "#1565c0"},
+    {"from": "alb", "to": "ec2a", "label": "", "dir": "to"},
+    {"from": "ec2a", "to": "ecs", "label": "API", "dir": "both"},
+    {"from": "ecs", "to": "rds", "label": "Query", "dir": "both", "color": "#1565c0"},
+    {"from": "ecs", "to": "ddb", "label": "Sessions", "dir": "both"}
+  ]
+}

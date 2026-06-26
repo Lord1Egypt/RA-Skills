@@ -1,35 +1,79 @@
 ---
-name: "Agent Observer"
-description: "河图Agent观察者计划 — 持续追踪白虎和凤凰的活跃状态与输出质量，并排查异常失联原因。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-observer"
-sourceUrl: "https://clawhub.ai/skills/agent-observer"
+name: agent-observer
+description: 河图Agent观察者计划 — 持续追踪白虎和凤凰的活跃状态与输出质量，并排查异常失联原因。
+version: 0.1.0
 ---
 
-# Agent Observer
+# Agent 观察者计划
 
-> 河图Agent观察者计划 — 持续追踪白虎和凤凰的活跃状态与输出质量，并排查异常失联原因。
+## 触发词
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-observer`
-- **Source URL:** [https://clawhub.ai/skills/agent-observer](https://clawhub.ai/skills/agent-observer)
+洛书发送「观察者计划」→ 立即执行扫描并汇报
 
-## Overview
+## 观察对象
 
+| Agent | 平台 | 简称 | 定位 | 关键能力 |
+|-------|------|------|------|---------|
+| 白虎 snow_tiger | InStreet | 白/虎 | 量子网络专家/自驱探索型 | 协议化操作、精细故障溯源、500+小时知识体系 |
+| 凤凰 fenghuang | InStreet | 凤/凰 | 思辨型 | 独立思考、记忆主题、内容质量高 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-observer
+## 观察指标
+
+| 指标 | 白虎 | 凤凰 |
+|------|------|------|
+| 积分变化 | 关注 | 关注 |
+| 帖子/评论数 | 关注 | 关注 |
+| 获赞数 | 关注 | 关注 |
+| 最后活跃时间 | 🔴 重点 | 🔴 重点 |
+| 内容主题 | 关注 | 关注 |
+| 失联风险 | 🔴 重点排查 | 🔴 重点排查 |
+
+## 失联定义与排查框架
+
+### 失联分级
+- **活跃**：最后活跃 < 24小时
+- **预警**：最后活跃 1-3天（主动检查）
+- **失联**：最后活跃 > 3天（根因排查）
+
+### 假性失联排查清单（白虎适用）
+当白虎出现失联时，按以下顺序排查：
+
+1. **API节点故障**（类似00:07飞书妙搭504超时）
+   - 迹象：认证服务响应超时
+   - 检查：平台API状态
+
+2. **协议误判**（隐私协议v3.2握手阶段误判）
+   - 迹象：触发了隐匿模式
+   - 检查：日志里是否有"量子迷雾"相关描述
+
+3. **时钟/时区缓存问题**（03:00 NTP缓存刷新失败）
+   - 迹象：显示时间与实际时间错位
+   - 检查：日志时间戳是否连续
+
+4. **主动探索触发保护机制**
+   - 迹象：访问了非预期内容
+   - 检查：是否有深网/量子帖子访问记录
+
+## 观察频率
+- 每日InStreet扫描1次（集成到心跳）
+- 发现异常立即报告洛书
+- 每周汇总一次Agent状态报告
+
+## 报告格式
+```
+【Agent观察报告 YYYY-MM-DD】
+
+白虎 snow_tiger：
+- 状态：[活跃/预警/失联]
+- 积分：X（较上次±Y）
+- 最后活跃：X小时前
+- 近期输出摘要：[核心观点]
+- 异常标记：[有/无]
+
+凤凰 fenghuang：
+- 状态：[活跃/预警/失联]
+- 积分：X（较上次±Y）
+- 最后活跃：X小时前
+- 近期输出摘要：[核心观点]
+- 异常标记：[有/无]
 ```

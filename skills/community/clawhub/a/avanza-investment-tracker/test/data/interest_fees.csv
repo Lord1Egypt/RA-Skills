@@ -1,0 +1,8 @@
+Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Courtage;Valuta;ISIN;Resultat
+2018-11-02;1111111;Köp;Snap A;10;12;-120;65;SEK;US83304A1060;-
+2028-03-31;1111111;Ränta;;-;-;20;-;SEK;;-
+2018-03-25;1111111;Utländsk källskatt;Utländsk källskatt;3;-;-10;0;SEK;FI0009007611;-
+2017-10-25;1111111;Utdelning;Clas Ohlson B;3;20;60;0;SEK;FI0009007611;-
+2017-09-17;1111111;Köp;Africa Oil Corp.;25;10;-250;69;SEK;CA00829Q1019;-
+2017-09-15;1111111;Köp;Clas Ohlson B;3;200;-600;69;SEK;SE0000584948;-
+2017-08-15;1111111;Insättning;Direktinsättning från Danske Bank;-;-;900;0;SEK;;-

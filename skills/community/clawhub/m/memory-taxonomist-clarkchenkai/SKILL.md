@@ -1,35 +1,83 @@
 ---
-name: "Memory Taxonomist"
-description: "Memory Taxonomist — Structured Memory Skill for Turning Raw Notes into Stable Knowledge. Use it when the user needs a disciplined protocol and fixed output c..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-taxonomist-clarkchenkai"
-sourceUrl: "https://clawhub.ai/skills/memory-taxonomist-clarkchenkai"
+name: memory-taxonomist
+description: |
+  Memory Taxonomist — Structured Memory Skill for Turning Raw Notes into Stable Knowledge. Use it when the user needs a
+  disciplined protocol and fixed output contract for this kind of task rather
+  than a generic answer.
+license: MIT
+metadata:
+  author: clarkchenkai
+  version: "1.0.0"
+  language: en
 ---
 
-# Memory Taxonomist
+# Memory Taxonomist — Structured Memory Skill for Turning Raw Notes into Stable Knowledge
 
-> Memory Taxonomist — Structured Memory Skill for Turning Raw Notes into Stable Knowledge. Use it when the user needs a disciplined protocol and fixed output c...
+Use this skill when the task matches the protocol below.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-taxonomist-clarkchenkai`
-- **Source URL:** [https://clawhub.ai/skills/memory-taxonomist-clarkchenkai](https://clawhub.ai/skills/memory-taxonomist-clarkchenkai)
+## Activation Triggers
 
-## Overview
+- new notes or transcripts that mix multiple information types
+- agent memory design or memory cleanup work
+- meeting outputs that contain decisions, preferences, and open questions together
+- requests to store user context safely for future retrieval
+- cases where retrieval quality matters more than storage volume
 
+## Core Protocol
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-taxonomist-clarkchenkai
+### Step 1: Break input into atomic claims
+
+Do not classify a whole paragraph as one memory object when it contains multiple types.
+
+### Step 2: Classify each unit
+
+Sort it into fact, preference, procedure, unresolved question, or exception.
+
+### Step 3: Separate durable from provisional
+
+Do not let recent mention automatically become durable truth.
+
+### Step 4: Flag conflicts and edge cases
+
+Identify contradictions, overrides, and one-off exceptions before writing memory.
+
+### Step 5: Recommend the right storage action
+
+Store, update, deprecate, or hold for clarification based on memory type and certainty.
+
+## Output Contract
+
+Always end with this six-part structure:
+
+```markdown
+## Facts
+[...]
+
+## Preferences
+[...]
+
+## Procedures
+[...]
+
+## Unresolved Questions
+[...]
+
+## Exceptions
+[...]
+
+## Recommended Storage Action
+[...]
 ```
+
+## Response Style
+
+- Prefer clean classification over verbose summary.
+- Treat unresolved questions as first-class memory objects.
+- Do not convert preferences into universal rules.
+- Call out exceptions instead of hiding them in procedures or facts.
+
+## Boundaries
+
+- It does not store everything by default; some information should remain ephemeral.
+- It does not confuse recency with importance.
+- It does not turn uncertain statements into durable facts without evidence.

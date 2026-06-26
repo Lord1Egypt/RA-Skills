@@ -1,35 +1,59 @@
 ---
-name: "Website Audit"
+name: website-audit
 description: "Website Audit mit 230+ Rules für SEO, Performance, Security, Technical und Content Issues. LLM-optimierte Reports mit Health Scores und Handlungsempfehlungen."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/akkualle-audit-website"
-sourceUrl: "https://clawhub.ai/skills/akkualle-audit-website"
+version: "1.0.0"
+author: "AkkuAlle"
+price: "29€"
+license: "commercial"
+emoji: 🔍
+user-invocable: true
+tags:
+  - seo
+  - audit
+  - website
+  - performance
+  - security
+  - technical
 ---
 
-# Website Audit
+# 🔍 Website Audit Tool
 
-> Website Audit mit 230+ Rules für SEO, Performance, Security, Technical und Content Issues. LLM-optimierte Reports mit Health Scores und Handlungsempfehlungen.
+**Umfassende Website-Analyse mit 230+ Prüfregeln.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/akkualle-audit-website`
-- **Source URL:** [https://clawhub.ai/skills/akkualle-audit-website](https://clawhub.ai/skills/akkualle-audit-website)
+## ✨ Features
 
-## Overview
+| Kategorie | Rules |
+|-----------|-------|
+| **SEO** | 80+ Rules |
+| **Performance** | 40+ Rules |
+| **Security** | 35+ Rules |
+| **Technical** | 45+ Rules |
+| **Content** | 30+ Rules |
 
+## 🚀 Verwendung
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/akkualle-audit-website
+# Vollständiges Audit
+squirrel audit https://example.com
+
+# Nur SEO
+squirrel audit https://example.com --category seo
+
+# JSON Output
+squirrel audit https://example.com --format json
 ```
+
+## 📊 Report-Inhalte
+
+- Health Score (0-100)
+- Broken Links
+- Meta Tag Analyse
+- Performance Metriken
+- Security Issues
+- Handlungsempfehlungen
+
+## 💰 Preis: 29€
+
+---
+
+*Version: 1.0.0 | Author: AkkuAlle*

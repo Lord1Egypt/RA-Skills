@@ -1,0 +1,3 @@
+display_name: 'Financial Calculator'
+short_description: 'Run deterministic financial calculations and schedules.'
+default_prompt: 'Help me calculate a loan, investment, or retirement scenario.'

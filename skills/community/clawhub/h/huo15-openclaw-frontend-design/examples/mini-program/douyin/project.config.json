@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "compileType": "miniprogram",
+  "appid": "tt-test-appid",
+  "projectname": "huo15-frontend-design-douyin-starter",
+  "description": "火一五前端设计技能 v4.2 抖音小程序 starter",
+  "setting": {
+    "es6": true,
+    "minified": false,
+    "newFeature": true
+  },
+  "libVersion": "latest"
+}

@@ -1,35 +1,26 @@
----
-name: "Account Weight Optimization"
-description: "Optimize platform account weight and authority by assessing health, analyzing factors, and providing strategies for compliance, growth, and recovery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/account-weight-optimization"
-sourceUrl: "https://clawhub.ai/skills/account-weight-optimization"
----
+# account-weight-optimization
 
-# Account Weight Optimization
+## Description
+Optimize account weight and authority on platforms. Improves algorithm favorability and content distribution.
 
-> Optimize platform account weight and authority by assessing health, analyzing factors, and providing strategies for compliance, growth, and recovery.
+## Location
+`skills/account-weight-optimization/`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/account-weight-optimization`
-- **Source URL:** [https://clawhub.ai/skills/account-weight-optimization](https://clawhub.ai/skills/account-weight-optimization)
+## Capabilities
+- Account health assessment
+- Weight factor analysis
+- Optimization strategies
+- Algorithm compliance
+- Authority building
+- Recovery planning
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/account-weight-optimization
+## Usage
+```python
+python skills/account-weight-optimization/optimize.py --account "@username" --platform "douyin"
 ```
+
+## Output
+- Health score
+- Weight factors
+- Optimization plan
+- Recovery steps

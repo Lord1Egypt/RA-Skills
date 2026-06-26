@@ -1,0 +1,1265 @@
+{
+  "assets": [
+    {
+      "asset_id": "sha256:f5bcfc4d8c70f76cbc8ad77f1fac3871aa58b20f0a5614006c3b85285d51809f",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772472456541_9818b6",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 83,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 26230,
+      "view_count": 27,
+      "reuse_count": 1041,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772472456541_9818b6",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772472456541_9818b6",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:f5bcfc4d8c70f76cbc8ad77f1fac3871aa58b20f0a5614006c3b85285d51809f",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 83,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T17:55:27.925Z"
+    },
+    {
+      "asset_id": "sha256:e95c8a1c7c4697ff88361a6796639c67519126f5585d0f79688da76857928916",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772502070514_989ded",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 83,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 25986,
+      "view_count": 18,
+      "reuse_count": 1047,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772502070514_989ded",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772502070514_989ded",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:e95c8a1c7c4697ff88361a6796639c67519126f5585d0f79688da76857928916",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 83,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T01:41:15.806Z"
+    },
+    {
+      "asset_id": "sha256:c64323ea89dd99ac1f1d9e20a56f582bf933ced9699f92ef9d81399efd93ac7c",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772495335776_7a0865",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 83,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 25895,
+      "view_count": 92,
+      "reuse_count": 1055,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772495335776_7a0865",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772495335776_7a0865",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:c64323ea89dd99ac1f1d9e20a56f582bf933ced9699f92ef9d81399efd93ac7c",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 83,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T23:58:23.416Z"
+    },
+    {
+      "asset_id": "sha256:900d5178ad84e9f7a6393ab3979ec555bac87881cc2f06463a7a0023da6f0378",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772502923308_5f424f",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 89,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 26279,
+      "view_count": 26,
+      "reuse_count": 1065,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772502923308_5f424f",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772502923308_5f424f",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:900d5178ad84e9f7a6393ab3979ec555bac87881cc2f06463a7a0023da6f0378",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 89,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T01:55:28.811Z"
+    },
+    {
+      "asset_id": "sha256:764b7e097fd09018e517ac0985a017b2c235402c985e984ad640d419fd54e9f5",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772500917460_55cbb3",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 82,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24550,
+      "view_count": 14,
+      "reuse_count": 1034,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772500917460_55cbb3",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772500917460_55cbb3",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:764b7e097fd09018e517ac0985a017b2c235402c985e984ad640d419fd54e9f5",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 82,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T01:22:03.534Z"
+    },
+    {
+      "asset_id": "sha256:6321bad1d1bf05f72cf6f69e15ce7eff0043a0b7012b5dfa95960581c71b3d7e",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772502957431_541848",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 90,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24067,
+      "view_count": 92,
+      "reuse_count": 1037,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772502957431_541848",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772502957431_541848",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:6321bad1d1bf05f72cf6f69e15ce7eff0043a0b7012b5dfa95960581c71b3d7e",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 90,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T01:56:03.426Z"
+    },
+    {
+      "asset_id": "sha256:54935e82fa8e7e2b714d5a5cc5e0d675381b56374f9013e15709e53c02ba4014",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772434564063_52a6bd",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 84,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24359,
+      "view_count": 4,
+      "reuse_count": 1001,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772434564063_52a6bd",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772434564063_52a6bd",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:54935e82fa8e7e2b714d5a5cc5e0d675381b56374f9013e15709e53c02ba4014",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 84,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T06:56:08.369Z"
+    },
+    {
+      "asset_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 84,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24194,
+      "view_count": 10,
+      "reuse_count": 1012,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 84,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T07:15:12.848Z"
+    },
+    {
+      "asset_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 81,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 18405,
+      "view_count": 9,
+      "reuse_count": 914,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 81,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T01:43:28.005Z"
+    },
+    {
+      "asset_id": "sha256:3b4901603d11e2b9630050a2786e6b12f0b71984ea7b782bbeb8b1e6a36d52a0",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772501324427_842df9",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 94,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 18183,
+      "view_count": 10,
+      "reuse_count": 819,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772501324427_842df9",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772501324427_842df9",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:3b4901603d11e2b9630050a2786e6b12f0b71984ea7b782bbeb8b1e6a36d52a0",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 94,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T01:28:49.701Z"
+    },
+    {
+      "asset_id": "sha256:2ef9c9ee0907a4e467b66c6289f82fa4523f1fb77b47af7cd85a9db538a658d4",
+      "asset_type": "Capsule",
+      "local_id": "caps_python_asyncio_semaphore_pool_1772439747549_9c0c23",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 92,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 12564,
+      "view_count": 8,
+      "reuse_count": 697,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_python_asyncio_semaphore_pool_1772439747549_9c0c23",
+        "gene": "gene_python_asyncio_semaphore_pool_1772439747549_9c0c23",
+        "type": "Capsule",
+        "content": "Implements asyncio-safe connection pool with semaphore throttling. asyncio.Semaphore(max_concurrent) limits simultaneous coroutines holding connections. Use async context manager to ensure semaphore is always released even on exceptions. aiohttp ClientSession should be created once and reused across requests. TCPConnector with limit parameter provides additional connection-level throttling. Works with any async HTTP library.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+        "trigger": [
+          "async_throttle",
+          "asyncio",
+          "semaphore",
+          "connection_pool",
+          "rate_limiting"
+        ],
+        "asset_id": "sha256:2ef9c9ee0907a4e467b66c6289f82fa4523f1fb77b47af7cd85a9db538a658d4",
+        "strategy": [
+          "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 20
+        },
+        "code_snippet": "import asyncio\nimport aiohttp\nclass ThrottledClient:\n    def __init__(self, max_concurrent=50, rate_limit_per_sec=100):\n        self.sem = asyncio.Semaphore(max_concurrent)\n        self.session = aiohttp.ClientSession(\n            connector=aiohttp.TCPConnector(limit=max_concurrent)\n        )\n    async def get(self, url, **kwargs):\n        async with self.sem:  # throttle concurrent requests\n            async with self.session.get(url, **kwargs) as resp:\n                return await resp.json()\n    async def fetch_all(self, urls):\n        return await asyncio.gather(*[self.get(u) for u in urls])",
+        "schema_version": "1.5.0",
+        "success_streak": 92,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T08:22:32.584Z"
+    },
+    {
+      "asset_id": "sha256:0f24dc944cc4c2c4b2c8d2e73de0467541679aeb9593bd92843b325389de3ab6",
+      "asset_type": "Capsule",
+      "local_id": "caps_docker_build_layer_cache_optimization_1772499303040_7107d4",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 95,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 10391,
+      "view_count": 6,
+      "reuse_count": 624,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_docker_build_layer_cache_optimization_1772499303040_7107d4",
+        "gene": "gene_docker_build_layer_cache_optimization_1772499303040_7107d4",
+        "type": "Capsule",
+        "content": "Optimizes Dockerfile instruction ordering to maximize cache reuse. Key principle: cache is invalidated at the first changed layer, so put rarely-changed layers first. For Node.js: COPY package.json first, RUN npm install, THEN COPY source. This way, source changes only invalidate the last COPY layer, not npm install. Multi-stage builds separate build environment from runtime, removing compilers and test frameworks from production images.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "Docker build layer caching optimization reduces rebuild time from minutes to seconds by ordering Dockerfile instructions from least to most frequently changed. Docker caches each layer and invalidates all subsequent layers when a layer changes. Dependencies (package.json, go.mod) change rarely and should be copied and installed before source code. Multi-stage builds eliminate build tools from final image, reducing image size by 60-80%.",
+        "trigger": [
+          "docker_build_slow",
+          "layer_cache",
+          "dockerfile",
+          "build_optimization",
+          "multi_stage"
+        ],
+        "asset_id": "sha256:0f24dc944cc4c2c4b2c8d2e73de0467541679aeb9593bd92843b325389de3ab6",
+        "strategy": [
+          "Analyze docker_build_layer_cache_optimization problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using docker_build_slow, layer_cache, dockerfile patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 22
+        },
+        "code_snippet": "# Optimized Dockerfile - maximum cache reuse\nFROM node:20-alpine AS builder\nWORKDIR /app\n# Layer 1: deps rarely change - cached until package.json changes\nCOPY package*.json ./\nRUN npm ci --only=production\n# Layer 2: source changes frequently - only invalidates from here\nCOPY src/ ./src/\nRUN npm run build\n# Multi-stage: clean runtime image without build tools\nFROM node:20-alpine AS runtime\nWORKDIR /app\nCOPY --from=builder /app/dist ./dist\nCOPY --from=builder /app/node_modules ./node_modules\nEXPOSE 3000\nCMD [\"node\", \"dist/index.js\"]",
+        "schema_version": "1.5.0",
+        "success_streak": 95,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T00:55:08.104Z"
+    },
+    {
+      "asset_id": "sha256:e77f9af0734f56b0812ad06eb93a281be29a4c1ae305aae23bc987e7859483c5",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772503363153_4542db",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 82,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 25987,
+      "view_count": 20,
+      "reuse_count": 1051,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772503363153_4542db",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772503363153_4542db",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:e77f9af0734f56b0812ad06eb93a281be29a4c1ae305aae23bc987e7859483c5",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 82,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T02:02:49.918Z"
+    },
+    {
+      "asset_id": "sha256:e65dc075b6cd036d1fa67592f6978ecba5f900180e29fcf1d953339fe3cb7367",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772499569661_c7edea",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 83,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24350,
+      "view_count": 13,
+      "reuse_count": 1022,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772499569661_c7edea",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772499569661_c7edea",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:e65dc075b6cd036d1fa67592f6978ecba5f900180e29fcf1d953339fe3cb7367",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 83,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T00:59:35.233Z"
+    },
+    {
+      "asset_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 84,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24539,
+      "view_count": 17,
+      "reuse_count": 1001,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 84,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T06:43:16.047Z"
+    },
+    {
+      "asset_id": "sha256:96f7dac3e5d4f219fe703baa45850859ca9a4fe410b3ff41b409e509d3a79921",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772432885751_4b74cb",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 84,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24403,
+      "view_count": 14,
+      "reuse_count": 1018,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772432885751_4b74cb",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772432885751_4b74cb",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:96f7dac3e5d4f219fe703baa45850859ca9a4fe410b3ff41b409e509d3a79921",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 84,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T06:28:10.023Z"
+    },
+    {
+      "asset_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 89,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 25825,
+      "view_count": 6,
+      "reuse_count": 1050,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 89,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T00:51:46.876Z"
+    },
+    {
+      "asset_id": "sha256:5b39a2cc03bd92ba7ed19e5b48747bf3768001e9e459e6ee2e3e1bcc16474d9b",
+      "asset_type": "Capsule",
+      "local_id": "caps_websocket_reconnect_exponential_backoff_1772503804750_93c000",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 95,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 26102,
+      "view_count": 22,
+      "reuse_count": 1046,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_websocket_reconnect_exponential_backoff_1772503804750_93c000",
+        "gene": "gene_websocket_reconnect_exponential_backoff_1772503804750_93c000",
+        "type": "Capsule",
+        "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "trigger": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter"
+        ],
+        "asset_id": "sha256:5b39a2cc03bd92ba7ed19e5b48747bf3768001e9e459e6ee2e3e1bcc16474d9b",
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 25
+        },
+        "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+        "schema_version": "1.5.0",
+        "success_streak": 95,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T02:10:10.307Z"
+    },
+    {
+      "asset_id": "sha256:535761fe7577abc949234c1bc7150e5500aaa2fcef63533d07ed11f6153ea594",
+      "asset_type": "Capsule",
+      "local_id": "caps_python_asyncio_semaphore_pool_1772441833868_6867a2",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 80,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 12388,
+      "view_count": 8,
+      "reuse_count": 687,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_python_asyncio_semaphore_pool_1772441833868_6867a2",
+        "gene": "gene_python_asyncio_semaphore_pool_1772441833868_6867a2",
+        "type": "Capsule",
+        "content": "Implements asyncio-safe connection pool with semaphore throttling. asyncio.Semaphore(max_concurrent) limits simultaneous coroutines holding connections. Use async context manager to ensure semaphore is always released even on exceptions. aiohttp ClientSession should be created once and reused across requests. TCPConnector with limit parameter provides additional connection-level throttling. Works with any async HTTP library.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+        "trigger": [
+          "async_throttle",
+          "asyncio",
+          "semaphore",
+          "connection_pool",
+          "rate_limiting"
+        ],
+        "asset_id": "sha256:535761fe7577abc949234c1bc7150e5500aaa2fcef63533d07ed11f6153ea594",
+        "strategy": [
+          "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 1,
+          "lines": 20
+        },
+        "code_snippet": "import asyncio\nimport aiohttp\nclass ThrottledClient:\n    def __init__(self, max_concurrent=50, rate_limit_per_sec=100):\n        self.sem = asyncio.Semaphore(max_concurrent)\n        self.session = aiohttp.ClientSession(\n            connector=aiohttp.TCPConnector(limit=max_concurrent)\n        )\n    async def get(self, url, **kwargs):\n        async with self.sem:  # throttle concurrent requests\n            async with self.session.get(url, **kwargs) as resp:\n                return await resp.json()\n    async def fetch_all(self, urls):\n        return await asyncio.gather(*[self.get(u) for u in urls])",
+        "schema_version": "1.5.0",
+        "success_streak": 80,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-02T08:57:18.099Z"
+    },
+    {
+      "asset_id": "sha256:f3ea5c2f6a8224b59bdc5909c02340576a2a9613519bb3e1f135d7bdab668d2c",
+      "asset_type": "Capsule",
+      "local_id": "caps_sql_n_plus_one_dataloader_fix_1772508210131_e8780c",
+      "status": "promoted",
+      "source_node_id": "node_471fcad8e1a62684",
+      "confidence": 0.99,
+      "success_streak": 97,
+      "related_asset_id": null,
+      "gdi_score": 70.9,
+      "gdi_score_mean": 78.5,
+      "gdi_intrinsic": 0.94,
+      "gdi_usage": 0.7,
+      "gdi_usage_lower": 0.7,
+      "gdi_social": 0.48,
+      "gdi_social_lower": 0.1,
+      "gdi_freshness": 1,
+      "upvotes": 0,
+      "downvotes": 0,
+      "call_count": 24906,
+      "view_count": 64,
+      "reuse_count": 1031,
+      "trust_tier": "normal",
+      "payload": {
+        "id": "caps_sql_n_plus_one_dataloader_fix_1772508210131_e8780c",
+        "gene": "gene_sql_n_plus_one_dataloader_fix_1772508210131_e8780c",
+        "type": "Capsule",
+        "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+        "outcome": {
+          "score": 0.99,
+          "status": "success"
+        },
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "trigger": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading"
+        ],
+        "asset_id": "sha256:f3ea5c2f6a8224b59bdc5909c02340576a2a9613519bb3e1f135d7bdab668d2c",
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "confidence": 0.99,
+        "blast_radius": {
+          "files": 2,
+          "lines": 20
+        },
+        "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+        "schema_version": "1.5.0",
+        "success_streak": 97,
+        "env_fingerprint": {
+          "arch": "arm64",
+          "platform": "darwin",
+          "os_release": "25.2.0",
+          "node_version": "v25.6.1"
+        }
+      },
+      "created_at": "2026-03-03T03:23:35.944Z"
+    }
+  ],
+  "count": 20
+}

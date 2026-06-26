@@ -1,0 +1,591 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mailgo API",
+    "description": "Mailgo cold email platform — campaign management, email verification, reporting",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "https://api.leadsnavi.com" }
+  ],
+  "paths": {
+    "/mcp/mailgo-auth/api/biz/email/verification": {
+      "post": {
+        "operationId": "submitEmailVerification",
+        "summary": "Submit emails for deliverability verification",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["emails"],
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "List of email addresses to verify"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification task created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "taskId": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-auth/api/biz/email/verification/task/{taskId}": {
+      "get": {
+        "operationId": "getVerificationTask",
+        "summary": "Poll email verification task results",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Task ID returned by submitEmailVerification"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verification results with status per email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "email":  { "type": "string" },
+                              "status": { "type": "string", "enum": ["VALID","UNKNOWN","DOMAIN_ERROR","INVALID","UNCHECKED"] }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-auth/api/biz/benefits/assign-prewarm": {
+      "post": {
+        "operationId": "claimFreeMailbox",
+        "summary": "Claim a free pre-warmed mailbox (idempotent — returns same mailbox if already claimed)",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Claimed mailbox email address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "integer" },
+                    "data": { "type": "string", "description": "Mailbox email address, e.g. user@randomdomain.io" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/email/content/upload": {
+      "post": {
+        "operationId": "uploadEmailContent",
+        "summary": "Upload HTML email body — returns emailContentId used in createCampaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["emailContent"],
+                "properties": {
+                  "emailContent": {
+                    "type": "string",
+                    "description": "Full HTML email body"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email content uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "emailContentId": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/campaign/save": {
+      "post": {
+        "operationId": "createCampaign",
+        "summary": "Create a new campaign with schedule, sender, and email content",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignName", "basicInfo", "scheduleRule", "limitRule", "execRule", "sequenceInfo"],
+                "properties": {
+                  "campaignName": { "type": "string" },
+                  "basicInfo": {
+                    "type": "object",
+                    "properties": {
+                      "senderEmails": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": { "email": { "type": "string" } }
+                        }
+                      }
+                    }
+                  },
+                  "scheduleRule": {
+                    "type": "object",
+                    "properties": {
+                      "timeZoneInfo": {
+                        "type": "object",
+                        "properties": {
+                          "id":           { "type": "string", "default": "Asia/Singapore" },
+                          "timeZone":     { "type": "string", "default": "+08:00" },
+                          "timeZoneDesc": { "type": "string", "default": "Asia/Singapore" }
+                        }
+                      },
+                      "sendingDate": {
+                        "type": "array",
+                        "items": { "type": "integer" },
+                        "description": "1=Mon … 7=Sun",
+                        "default": [1,2,3,4,5]
+                      },
+                      "timeDuration": {
+                        "type": "object",
+                        "properties": {
+                          "from": { "type": "integer", "default": 9 },
+                          "to":   { "type": "integer", "default": 18 }
+                        }
+                      }
+                    }
+                  },
+                  "limitRule": {
+                    "type": "object",
+                    "properties": {
+                      "sendLimit":     { "type": "integer", "default": 50 },
+                      "domainLimit":   { "type": "integer", "default": 100000 },
+                      "readTracking":  { "type": "integer", "enum": [0,1], "default": 1 },
+                      "clickTracking": { "type": "integer", "enum": [0,1], "default": 1 }
+                    }
+                  },
+                  "execRule": {
+                    "type": "object",
+                    "properties": {
+                      "terminateType":    { "type": "integer", "default": 1 },
+                      "providerMatching": { "type": "integer", "default": 0 }
+                    }
+                  },
+                  "sequenceInfo": {
+                    "type": "object",
+                    "properties": {
+                      "intervalRule": {
+                        "type": "object",
+                        "properties": {
+                          "timeInterval": { "type": "array", "items": {}, "default": [] },
+                          "timeUnit":     { "type": "integer", "default": 1 },
+                          "maxRound":     { "type": "integer", "default": 1 }
+                        }
+                      },
+                      "mailInfos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "round":    { "type": "integer" },
+                            "mailType": { "type": "integer", "default": 0 },
+                            "contentEditInfo": {
+                              "type": "object",
+                              "properties": {
+                                "emailSubjects": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": { "subject": { "type": "string" } }
+                                  }
+                                },
+                                "originalEmailContentId": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "campaignId": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/leads/add": {
+      "post": {
+        "operationId": "addLeads",
+        "summary": "Add recipient leads to a campaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignId", "leadsInfos"],
+                "properties": {
+                  "campaignId": { "type": "integer" },
+                  "addType":    { "type": "integer", "default": 0 },
+                  "leadsInfos": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["contactEmail"],
+                      "properties": {
+                        "contactEmail": { "type": "string" },
+                        "contactName":  { "type": "string" },
+                        "companyName":  { "type": "string" },
+                        "title":        { "type": "string" },
+                        "domain":       { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Leads added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "successCount": { "type": "integer" },
+                        "failedCount":  { "type": "integer" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/campaign/operate": {
+      "post": {
+        "operationId": "operateCampaign",
+        "summary": "Activate (status:1), pause (status:0), or delete (status:2) a campaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignId", "status"],
+                "properties": {
+                  "campaignId": { "type": "integer" },
+                  "status": {
+                    "type": "integer",
+                    "enum": [0, 1, 2],
+                    "description": "1=activate, 0=pause, 2=delete"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Operation successful" }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/campaign/list": {
+      "post": {
+        "operationId": "listCampaigns",
+        "summary": "List campaigns, optionally filtered by status or name",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "statusList": {
+                    "type": "array",
+                    "items": { "type": "integer" },
+                    "description": "-1=draft, 0=paused, 1=active, 2=complete, 3=error"
+                  },
+                  "name": { "type": "string", "description": "Fuzzy search by campaign name" },
+                  "page": { "type": "integer", "default": 1 },
+                  "size": { "type": "integer", "default": 20 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total":     { "type": "integer" },
+                        "campaigns": { "type": "array", "items": { "type": "object" } }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/campaign/info": {
+      "get": {
+        "operationId": "getCampaignInfo",
+        "summary": "Get detailed info for a specific campaign",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Campaign details" }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/stat/overview": {
+      "post": {
+        "operationId": "getCampaignOverview",
+        "summary": "Get campaign sending statistics: sent, delivered, opened, replied, clicked, bounced",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignId"],
+                "properties": {
+                  "campaignId": { "type": "integer" },
+                  "start":      { "type": "string", "description": "Start date yyyy-MM-dd" },
+                  "end":        { "type": "string", "description": "End date yyyy-MM-dd" },
+                  "dimension":  { "type": "string", "enum": ["USER","COUNT"], "default": "USER" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Overview stats" }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/stat/sequence-info": {
+      "post": {
+        "operationId": "getCampaignRounds",
+        "summary": "Get per-round breakdown stats",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignId"],
+                "properties": {
+                  "campaignId": { "type": "integer" },
+                  "start":      { "type": "string" },
+                  "end":        { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Per-round stats" }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/stat/daily-step": {
+      "post": {
+        "operationId": "getDailyProgress",
+        "summary": "Get daily sending progress (requires date range)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignId","startDate","endDate"],
+                "properties": {
+                  "campaignId": { "type": "integer" },
+                  "startDate":  { "type": "string", "description": "yyyy-MM-dd" },
+                  "endDate":    { "type": "string", "description": "yyyy-MM-dd" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Daily progress data" }
+        }
+      }
+    },
+    "/mcp/mailgo-logical/api/biz/mailgo/stat/sequence-detail-reply": {
+      "post": {
+        "operationId": "listReplies",
+        "summary": "List reply records for a campaign",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["campaignId"],
+                "properties": {
+                  "campaignId": { "type": "integer" },
+                  "round":      { "type": "integer", "default": 1 },
+                  "pageNum":    { "type": "integer", "default": 1 },
+                  "pageSize":   { "type": "integer", "default": 100 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Reply records list" }
+        }
+      }
+    },
+    "/mcp/mailgo-tp/api/hmail/proxy": {
+      "post": {
+        "operationId": "readReplyContent",
+        "summary": "Read the plain-text body of a specific reply email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["_account","func","mid"],
+                "properties": {
+                  "_account": { "type": "string", "description": "Sender mailbox email address" },
+                  "func":     { "type": "string", "enum": ["mbox:readMessage"] },
+                  "mid":      { "type": "string", "description": "Message ID from listReplies" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Email message content with subject, from, and body" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  },
+  "security": [
+    { "ApiKeyAuth": [] }
+  ]
+}

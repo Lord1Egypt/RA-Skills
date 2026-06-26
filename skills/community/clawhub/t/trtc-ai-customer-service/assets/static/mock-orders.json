@@ -1,0 +1,42 @@
+[
+    {
+        "id": "CS20260510001",
+        "name": { "zh": "无线降噪耳机 Pro", "yue": "無線降噪耳機 Pro", "en": "Wireless ANC Headphones Pro" },
+        "price": { "zh": "¥699", "yue": "HK$759", "en": "$96" },
+        "status": "shipped",
+        "date": "2026-05-10",
+        "emoji": "🎧"
+    },
+    {
+        "id": "CS20260508002",
+        "name": { "zh": "轻薄笔记本电脑 14寸", "yue": "輕薄筆記本電腦 14吋", "en": "Ultra-slim Laptop 14\"" },
+        "price": { "zh": "¥5,299", "yue": "HK$5,749", "en": "$729" },
+        "status": "delivered",
+        "date": "2026-05-08",
+        "emoji": "💻"
+    },
+    {
+        "id": "CS20260507003",
+        "name": { "zh": "智能手表 S9", "yue": "智能手錶 S9", "en": "Smart Watch S9" },
+        "price": { "zh": "¥1,299", "yue": "HK$1,409", "en": "$179" },
+        "status": "pending",
+        "date": "2026-05-07",
+        "emoji": "⌚"
+    },
+    {
+        "id": "CS20260505004",
+        "name": { "zh": "真皮双肩包", "yue": "真皮雙肩包", "en": "Genuine Leather Backpack" },
+        "price": { "zh": "¥399", "yue": "HK$433", "en": "$55" },
+        "status": "refunding",
+        "date": "2026-05-05",
+        "emoji": "🎒"
+    },
+    {
+        "id": "CS20260501005",
+        "name": { "zh": "空气炸锅 5L", "yue": "空氣炸鍋 5L", "en": "Air Fryer 5L" },
+        "price": { "zh": "¥259", "yue": "HK$281", "en": "$36" },
+        "status": "delivered",
+        "date": "2026-05-01",
+        "emoji": "🍳"
+    }
+]

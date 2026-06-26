@@ -1,0 +1,92 @@
+FILM GENRE CONVENTIONS - SHOT PATTERNS BY GENRE
+===============================================
+
+ACTION FILM:
+- Quick cuts between medium and close-up
+- shaky cam for intensity (though often critiqued)
+- Wide establishing shots before action beats
+- Point-of-view shots during chases
+- Slow motion for key impacts (bullet time, explosions)
+- Cross-cutting between parallel action sequences
+- Reaction shots after major moments
+
+DRAMA:
+- Longer takes, minimal cutting
+- Medium shots for dialogue
+- Close-ups for emotional beats
+- Eye-level camera for empathy
+- Natural lighting or motivated sources
+- fluid camera movement following characters
+
+HORROR:
+- Slow pushes toward subjects (builds dread)
+- Dutch angles for disorientation
+- Point-of-view monster shots
+- Darkness and shadow (limited visibility)
+- quick cuts for jump scares
+- Cluttered frames (visually busy, hard to see threat)
+- found footage style (first person confusion)
+- Close-ups on frightened faces
+
+THRILLER:
+- Tense close-ups during interrogation/revelation
+- Cross-cutting for suspense (ticking clock)
+- Long takes for sustained tension
+- Restricted view (what character can't see, neither can audience)
+- Over-the-shoulder shots for conspiracy feeling
+- Dark interiors, limited lighting
+
+ROMANTIC COMEDY:
+- Soft focus for romance
+- medium shots, warm color palette
+- Tracking shots for meet-cutes
+- Quick cuts for comedic timing
+- Wider shots for comedic setups
+- Match cuts on shared characteristics
+
+SCIENCE FICTION:
+- Extreme wide shots establishing alien/sci-fi worlds
+- Clean, minimalist production design
+- Blue/teal color grading common
+- CGI integration with practical elements
+- HUD overlays and futuristic interfaces
+- Hero shots (dramatic subject introduction)
+
+WESTERN:
+- Vast landscape establishing shots
+- Low camera angle (subjects against big sky)
+- Foreboding compositions (threat in distance)
+- High contrast black and white (classic era)
+- Dust, weather as environmental storytelling
+- Two-shot confrontations
+
+FILM NOIR:
+- Low key lighting, deep shadows
+- Venetian blind shadows
+- Rain and wet streets
+- Voiceover narration
+- Smoke and haze for atmosphere
+-不对称 compositions (morally ambiguous world)
+
+COMEDY:
+- Two-shot setups for reaction
+- Over-the-shoulder for conversation
+- Wide shots for physical comedy space
+- Quick cuts for visual punchlines
+- Medium shots for character-based comedy
+- Slow motion for emphasis (reaction shots)
+
+WAR FILM:
+- Extreme wide shots establishing battlefield
+- Handheld for combat immediacy
+- Close-ups of soldier faces
+- Cross-cutting between battle and home front
+- Desaturated color (gritty realism)
+- High angle "god's eye" battle overview shots
+
+MUSICAL:
+- Choreographed movement in wide shots
+- Integration of music and visual movement
+- Jump cuts to close-ups for solo performances
+- Dream/fantasy sequences in contrasting style
+- Production numbers as emotional expression

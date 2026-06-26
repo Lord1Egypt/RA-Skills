@@ -1,0 +1,74 @@
+[
+  {
+    "code": "ths_dividend_usf",
+    "name": "股息",
+    "description": "美国ETF/估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_premium_rate_usf",
+    "name": "溢价率",
+    "description": "美国ETF/估值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_usf",
+    "name": "涨跌幅",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_usf",
+    "name": "涨跌",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_close_price_usf",
+    "name": "收盘价",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_price_usf",
+    "name": "最高价",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_usf",
+    "name": "最低价",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_open_price_usf",
+    "name": "开盘价",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_usf",
+    "name": "前收盘价",
+    "description": "美国ETF/行情指标",
+    "params": ""
+  },
+  {
+    "code": "ths_introduction_cn_usf",
+    "name": "简介(中文)",
+    "description": "美国ETF/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_introduction_en_usf",
+    "name": "简介(英文)",
+    "description": "美国ETF/基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_issue_date_usf",
+    "name": "发行日期",
+    "description": "美国ETF/基本资料",
+    "params": ""
+  }
+]

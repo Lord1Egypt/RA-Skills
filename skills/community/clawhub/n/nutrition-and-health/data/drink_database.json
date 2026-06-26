@@ -1,0 +1,53 @@
+{
+  "coffee": [
+    {
+      "name": "美式咖啡",
+      "description": "提神不影响晚上睡眠，适合早上",
+      "situation": ["早上", "需要提神", "减脂期"]
+    },
+    {
+      "name": "拿铁",
+      "description": "相对温和，避免过度兴奋，适合下午",
+      "situation": ["下午", "喜欢温和口感"]
+    },
+    {
+      "name": "低因咖啡",
+      "description": "咖啡因少，适合胃不好或对咖啡因敏感的人",
+      "situation": ["胃不好", "晚上", "对咖啡因敏感"]
+    }
+  ],
+  "milk_tea": [
+    {
+      "name": "无糖/三分糖奶茶",
+      "description": "相对健康的选择，解瘾又不过量",
+      "situation": ["想喝奶茶", "减脂期"]
+    },
+    {
+      "name": "鲜奶代替奶精",
+      "description": "更健康的选择，避免反式脂肪酸",
+      "situation": ["注重健康"]
+    },
+    {
+      "name": "替代方案：纯茶 + 牛奶",
+      "description": "自己搭配，更健康可控",
+      "situation": ["想更健康", "DIY"]
+    }
+  ],
+  "healthy_drinks": [
+    {
+      "name": "温水/矿泉水",
+      "description": "最健康的选择，随时补充水分",
+      "situation": ["日常", "补水"]
+    },
+    {
+      "name": "绿茶/乌龙茶",
+      "description": "抗氧化，温和提神",
+      "situation": ["想提神", "养生"]
+    },
+    {
+      "name": "柠檬水",
+      "description": "补充维生素C，清新口感",
+      "situation": ["夏天", "想要清新口感"]
+    }
+  ]
+}

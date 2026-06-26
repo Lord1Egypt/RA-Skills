@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huanzhi FA Pro — ClawHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --ink: #111111;
+  --ink-soft: #6b6b6b;
+  --line: #e8e6e3;
+  --border: #e0deda;
+  --code-bg: #f5f4f2;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+/* Header */
+.header {
+  height: 56px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #000 100%);
+  border-radius: 6px;
+  position: relative;
+}
+
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 2px;
+  background: white;
+  box-shadow: 0 -4px 0 white, 0 4px 0 white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.nav-links svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 280px;
+  height: 36px;
+  padding: 0 12px 0 36px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--bg);
+}
+
+.search-box svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--ink-soft);
+}
+
+.theme-btn, .signin-btn {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* Main */
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.breadcrumbs a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover { text-decoration: underline; }
+
+/* Title section */
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+}
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--line);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+.skill-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Install block */
+.install-section {
+  margin-bottom: 24px;
+}
+
+.install-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.install-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 550px;
+}
+
+.install-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.install-tab {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.install-tab.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.code-box code {
+  font-family: 'SF Mono', monospace;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.copy-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* Markdown content */
+.content {
+  max-width: 700px;
+}
+
+.content h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.content blockquote {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.content blockquote p {
+  margin: 6px 0;
+  color: var(--ink-soft);
+}
+
+.content blockquote strong {
+  color: var(--ink);
+}
+
+.content blockquote em {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.content h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+}
+
+.content p {
+  margin: 8px 0;
+  line-height: 1.7;
+}
+
+.content ul {
+  padding-left: 20px;
+  margin: 12px 0;
+}
+
+.content li {
+  margin: 6px 0;
+}
+
+.content code {
+  font-family: 'SF Mono', monospace;
+  font-size: 13px;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Sidebar */
+.sidebar {
+  padding-top: 0;
+}
+
+.sidebar-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.meta-row:last-child {
+  border-bottom: none;
+}
+
+.meta-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.meta-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.meta-value.large {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.meta-value.pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+
+.pending-dot {
+  width: 8px;
+  height: 8px;
+  background: #eab308;
+  border-radius: 50%;
+}
+
+.audit-bars {
+  display: flex;
+  gap: 2px;
+}
+
+.audit-bars span {
+  width: 16px;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.meta-grid .meta-row {
+  border-bottom: none;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.user-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Action buttons */
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+.action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.action-btn.primary {
+  background: #2da44e;
+  border-color: #2da44e;
+  color: #fff;
+}
+
+.action-btn .badge {
+  background: var(--line);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="#" class="logo">
+    <span class="logo-icon"></span>
+    ClawHub
+  </a>
+  <nav class="nav-links">
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
+      Skills
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M9 8V2"/></svg>
+      Plugins
+    </a>
+  </nav>
+  <div class="header-right">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.34-4.34"/></svg>
+      <input type="text" placeholder="Search skills and plugins">
+    </div>
+    <button class="theme-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+    </button>
+    <button class="signin-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.16 1.18.92-.26 1.9-.38 2.88-.39.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.83 1.18 3.08 0 4.42-2.69 5.39-5.25 5.67.42.36.78 1.07.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+      GitHub
+    </button>
+  </div>
+</header>
+
+<main class="main">
+  <div>
+    <nav class="breadcrumbs">
+      <a href="#">skills</a> / <a href="#">ai-innopower</a> / huanzhi-fa-skill-pro
+    </nav>
+
+    <div class="title-row">
+      <h1 class="page-title">Huanzhi FA Pro</h1>
+      <span class="category-badge">Other</span>
+    </div>
+
+    <p class="skill-desc">创始人融资必备AI顾问！一键诊断融资准备度、秒懂TS条款陷阱、模拟投资人谈判。🇨🇳 中文 | 🧠 Capital EQ | 触发：融资/条款/焦虑</p>
+
+    <section class="install-section">
+      <h3>Install</h3>
+      <div class="install-box">
+        <div class="install-tabs">
+          <button class="install-tab active">CLI</button>
+          <button class="install-tab">Prompt</button>
+        </div>
+        <div class="code-box">
+          <code>openclaw skills install huanzhi-fa-skill-pro</code>
+          <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="tabs">
+      <a href="#" class="tab active">SKILL.md</a>
+      <a href="#" class="tab">Files</a>
+      <a href="#" class="tab">Compare</a>
+      <a href="#" class="tab">Versions</a>
+    </div>
+
+    <article class="content">
+      <h1>焕智FA Pro — AI专属融资顾问</h1>
+      <blockquote>
+        <p><strong>OPC创业者专属的AI融资顾问</strong></p>
+        <p><em>The AI Financing Advisor for OPC Entrepreneurs</em></p>
+        <p><strong>节奏不跑偏 · 条款不踩坑 · 情绪不崩溃</strong></p>
+      </blockquote>
+
+      <h2>Security &amp; Privacy</h2>
+      <ul>
+        <li><strong>Local-only execution</strong>: All logic runs locally, zero external API calls</li>
+        <li><strong>Data stays on your device</strong>: User profiles and BP files stored in <code>data/users/</code> only</li>
+        <li><strong>No credentials required</strong>: No API keys, no tokens, no authentication needed</li>
+        <li><strong>Audited by ClawHub</strong>: Security scan passed ✓</li>
+      </ul>
+    </article>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-block">
+      <div class="meta-row">
+        <span class="meta-label">Downloads</span>
+        <span class="meta-value large">888</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Owner</span>
+        <a href="#" class="user-badge">
+          <span class="user-avatar"></span>
+          <span>AI-innopower</span>
+        </a>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Security audit</span>
+        <span class="meta-value pending">
+          <span class="pending-dot"></span>
+          Pending
+          <span class="audit-bars">
+            <span></span><span></span><span></span><span></span>
+          </span>
+        </span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Last updated</span>
+        <span class="meta-value">23m ago</span>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-row">
+          <span class="meta-label">Current version</span>
+          <span class="meta-value" style="font-weight:400">v2.8.3</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">License</span>
+          <span class="meta-value" style="font-weight:400">MIT-0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-block" style="padding:12px 16px;">
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Star <span class="badge">1</span>
+      </button>
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        Download
+      </button>
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/></svg>
+        New version
+      </button>
+      <button class="action-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m4.22-10.22-4.24 4.24m-4.24 4.24 4.24 4.24M23 12h-6m-6 0H1m20.07-4.93-4.24 4.24m-4.24 4.24 4.24 4.24"/></svg>
+        Settings
+      </button>
+    </div>
+  </aside>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "mode": "to-data",
+  "file": "./test_inputs/invoice.pdf",
+  "out": "./artifacts/invoice_data_test",
+  "extract": "tables,entities,kv_pairs",
+  "fields": "invoice_number,invoice_date,total_amount,vendor_name,amount_due",
+  "debug": false
+}

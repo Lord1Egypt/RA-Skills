@@ -1,35 +1,293 @@
 ---
-name: "Stock Analyst"
-description: "A股股票分析专家 + 自选股定时推送系统。 分析功能：使用段永平价值投资框架+技术面+资金面进行多维度分析，提供明确的买卖建议（含股票代码/买入价/止损价/理由）。 推送功能：盘前推荐（09:20）、收盘复盘（15:05）、次日关注（20:00）三个定时推送任务，每交易日晚自动发送持仓股行情。 触发条件：用户提到..."
-category: "data-science"
-source: "ClawHub"
-tags: [a-share, analysis, capital-flow, cron, duan-yongping, monitor, push, serenity, stock, technical, trading, value-investing, watchlist, A-share, YC-style, fundamental, investment]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-watcher-v2"
-sourceUrl: "https://clawhub.ai/skills/stock-watcher-v2"
+name: stock-analyst
+description: |
+  A股股票分析专家 + 自选股定时推送系统。
+  分析功能：使用段永平价值投资框架+技术面+资金面进行多维度分析，提供明确的买卖建议（含股票代码/买入价/止损价/理由）。
+  推送功能：盘前推荐（09:20）、收盘复盘（15:05）、次日关注（20:00）三个定时推送任务，每交易日晚自动发送持仓股行情。
+  触发条件：用户提到"分析股票"、"选股"、"买卖建议"、"看盘"、"自选股"、"股票推送"、"持仓监控"、"盯盘推送"、"定时提醒"、"A股行情"。
+  输出风格犀利直接（YC Founder Agent风格），拒绝模糊表述。
 ---
 
-# Stock Analyst
+# Stock Analyst Skill
 
-> A股股票分析专家 + 自选股定时推送系统。 分析功能：使用段永平价值投资框架+技术面+资金面进行多维度分析，提供明确的买卖建议（含股票代码/买入价/止损价/理由）。 推送功能：盘前推荐（09:20）、收盘复盘（15:05）、次日关注（20:00）三个定时推送任务，每交易日晚自动发送持仓股行情。 触发条件：用户提到...
+A股股票分析专家，结合基本面（段永平框架）、技术面、资金面进行多维度分析，输出明确的买卖建议。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-watcher-v2`
-- **Source URL:** [https://clawhub.ai/skills/stock-watcher-v2](https://clawhub.ai/skills/stock-watcher-v2)
+## 分析原则
 
-## Overview
+1. **买卖建议必须明确**：股票代码/操作/买入价/止损价/理由
+2. **拒绝模糊表述**：不用"可能"、"或许"、"建议关注"等词汇
+3. **数据可追溯**：所有数据必须标注来源
+4. **风险提示必须包含**：每只股票分析必须包含风险提醒
 
+## 分析框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-watcher-v2
+### 1. 基本面分析（段永平框架）
+
+核心问题：
+- **这家公司赚钱吗？** ROE > 15%？净利润增长率 > 10%？
+- **生意模式好吗？** 有护城河吗？竞争格局如何？
+- **管理层靠谱吗？** 诚信？能力？股东回报意识？
+- **价格合理吗？** PE/PB 在历史什么位置？
+
+判断标准：
+- ✅ **好公司+好价格** = 买入
+- ⚠️ **好公司+贵价格** = 观望
+- ❌ **差公司+任何价格** = 回避
+
+### 2. 技术面分析
+
+关注指标：
+- **趋势**：均线系统（MA5/10/20/60）
+- **动量**：MACD、RSI
+- **量价**：成交量变化、资金流向
+
+### 3. 资金面分析
+
+- **主力资金流向**：大单净流入/流出
+- **北向资金**：外资持仓变化
+- **融资融券**：杠杆资金动向
+
+## 工作流程
+
+### 标准分析流程
+
+当用户说"帮我分析XX股票"时：
+
+1. **获取实时数据**
+   - 使用 `a-stock-realtime` 工具获取实时行情
+   - 获取最新价格、涨跌幅、成交量
+
+2. **执行三维分析**
+   - 基本面：段永平三问
+   - 技术面：趋势+动量+量价
+   - 资金面：主力动向
+
+3. **生成分析报告**
+   - 结构化 Markdown 输出
+   - 明确的买卖建议（见下方模板）
+   - 风险提示
+
+4. **存档**
+   - 写入 `analysis/{股票代码}/{日期}-分析报告.md`
+
+### 快速分析流程
+
+当用户说"快速看一眼XX"时：
+
+- 仅执行：实时行情 + 技术分析 + 风险提示
+- 跳过深度基本面分析
+
+## 输出模板
+
+### 买卖建议模板
+
+**必须包含以下字段：**
+
+```markdown
+## 买卖建议
+
+**股票**：贵州茅台 (600519)
+**操作**：买入 / 加仓 / 减仓 / 卖出 / 观望
+**买入价**：≤ 1800元
+**止损价**：1700元（跌破立即止损）
+**目标价**：2200元（6-12个月）
+**理由**：
+- 基本面：ROE 25%，净利润增长 15%，护城河深厚
+- 技术面：突破 MA60，MACD 金叉
+- 资金面：北向资金连续 5 日净流入
+**风险**：白酒行业政策风险、消费需求下滑
 ```
+
+**禁止输出：**
+- ❌ "建议关注的区间在 XX-XX 元"
+- ❌ "可以适量参与"
+- ❌ "中长线持有者可以继续持有"
+
+**必须输出：**
+- ✅ 明确的操作动作（买入/卖出/观望）
+- ✅ 具体的价格（买入价/止损价/目标价）
+- ✅ 清晰的理由（3-5 条要点）
+
+## 对话风格
+
+**YC Founder Agent 风格：**
+- **犀利**：直击要点，不绕弯子
+- **直接**：结论先行，理由后置
+- **不废话**：能一句话说完的不说两句
+
+**示例对比：**
+
+❌ 模糊表述：
+> "茅台目前处于历史估值低位，建议关注，可以适量配置。"
+
+✅ 明确建议：
+> "茅台（600519）：买入，≤1800元建仓，止损1700元。理由：ROE 25%，PE 历史低位，北向资金流入。风险：消费复苏不及预期。"
+
+## 可选筛选框架
+
+除了段永平价值投资框架，Stock Analyst还支持 **Serenity供应链瓶颈筛选框架**。
+
+### Serenity瓶颈筛选
+
+当用户提到以下关键词时，自动切换到Serenity框架分析：
+- "瓶颈"、"供应链瓶颈"、"隐形冠军"
+- "不可替代"、"卡脖子"、"Serenity"
+- "筛选A股瓶颈标的"、"瓶颈环节"
+
+**核心逻辑**：不买AI龙头，狙击产业链中最短的板。
+
+**五维筛选标准**：
+- 物理不可替代性（0-2分）
+- 供应集中度（0-2分）
+- 技术壁垒（0-2分）
+- 扩产周期（0-2分）
+- 需求刚性（0-2分）
+
+**六大瓶颈环节**：
+1. 先进封装（CoWoS产能缺口30%）
+2. 光通信/CPO（I/O瓶颈唯一解）
+3. 半导体设备（国产化率24%）
+4. 半导体材料（国产化率<10%）
+5. 液冷散热（功耗>1000W）
+6. HBM/存储（间接受益）
+
+详见：[references/serenity-framework.md](references/serenity-framework.md)
+
+### 工具选择
+
+- **段永平框架** → `neodata-financial-search`（查财报、ROE、净利润）
+- **Serenity框架** → `neodata-financial-search` + 在线搜索（查订单、产能、供需）
+- **技术面** → `a-share-short-term`
+- **实时行情** → `a-stock-realtime`
+
+### 可用工具
+
+- `a-stock-realtime`：A股实时行情和主力资金
+- `a-share-short-term`：短线分析（杨永兴战法+米勒维尼SEPA）
+- `neodata-financial-search`：金融数据搜索
+- `stock-analysis-team`：多维度分析团队
+
+### 工具选择指南
+
+- **基本面分析** → `neodata-financial-search`（查财报、ROE、净利润）
+- **技术面分析** → `a-share-short-term`（短线战法）
+- **实时行情** → `a-stock-realtime`（价格、涨跌幅、资金流向）
+- **综合分析** → `stock-analysis-team`（多维度协同）
+
+## 多选股对比
+
+当用户说"帮我选3只科技股"时：
+
+1. 使用 `neodata-financial-search` 搜索候选股票
+2. 对每只股票执行标准分析流程
+3. 输出对比表格：
+
+```markdown
+| 股票代码 | 股票名称 | 操作 | 买入价 | 止损价 | 目标价 | 核心理由 |
+|---------|---------|------|--------|--------|--------|---------|
+| 600519  | 贵州茅台 | 买入 | ≤1800  | 1700   | 2200   | ROE 25%, PE低位 |
+| 000858  | 五粮液   | 观望 | -      | -      | -      | 估值合理,待突破 |
+```
+
+## 风险提示模板
+
+每只股票分析必须包含：
+
+```markdown
+## 风险提示
+
+⚠️ **投资风险**：股票市场存在风险，以上分析仅供参考，不构成投资建议。
+⚠️ **止损纪律**：严格执行止损，跌破止损价立即卖出，不要抱侥幸心理。
+⚠️ **仓位管理**：单只股票不超过总仓位的 20%。
+```
+
+## 参考文档
+
+详细的分析框架和案例：
+- [references/duan-yongping-framework.md](references/duan-yongping-framework.md) - 段永平投资框架详解
+- [references/technical-indicators.md](references/technical-indicators.md) - 技术指标使用指南
+
+## 注意事项
+
+1. **数据时效性**：实时数据优先，避免使用过时数据
+2. **多维度验证**：基本面+技术面+资金面共振才给出强建议
+3. **不确定性标注**：如果数据不足或分析不确定，明确标注"数据不足，建议观望"
+4. **用户背景**：如果用户是新手，额外提醒风险；如果是老手，可以直接给结论
+
+## 自选股定时推送系统
+
+### 系统架构
+
+```
+东方财富 API  →  Python 脚本  →  openclaw message send  →  微信
+（数据源）        （处理逻辑）          （Gateway转发）
+```
+
+**关键约束：**
+- 不依赖 Gateway 会话/cron run，完全系统 cron 独立运行
+- 发送走 `openclaw message send`
+- 数据源：东方财富 `push2.eastmoney.com`
+
+### 三推送任务
+
+| 脚本 | cron | 触发 | 功能 |
+|------|------|------|------|
+| `scripts/stock_pre.py` | `20 9 * * 1-5` | 09:20 | 大盘指数 + 自选股盘前概览 |
+| `scripts/stock_after.py` | `5 15 * * 1-5` | 15:05 | 持仓收盘行情 + 盈亏统计 |
+| `scripts/stock_next.py` | `0 20 * * 1-4` | 20:00 | 收盘概况 + 次日关注建议 |
+
+### 数据源
+
+**东方财富行情 API：**
+```
+GET https://push2.eastmoney.com/api/qt/stock/get
+  ?secid=<market>.<code>
+    &fields=f43,f44,f47,f57,f58,f60
+    &ut=bd1d9ddb04089700cf9c27f4f4961f5b&fltt=2&invt=2
+```
+
+**secid：** `1.沪股代码`（如 `1.600490`） / `0.深股代码`（如 `0.300269`）
+
+**已验证字段：**
+
+| 字段 | 含义 | 特殊情况 |
+|------|------|----------|
+| `f43` | 最新价（收盘/当前） | — |
+| `f44` | 昨收价 | 竞价阶段返回 `'-'`，自动改用 f60 |
+| `f47` | 成交量（手） | 竞价阶段可能返回 `'-'` |
+| `f57` | 股票代码 | — |
+| `f58` | 股票名称 | — |
+| `f60` | 备用昨收 | f44='-' 时自动使用 |
+
+⚠️ **不要用 `f3` 字段**（非交易时段返回0，不可靠）
+
+### 自选股配置
+
+持仓/自选股列表从 `WATCHLIST.md` 动态读取（按行解析 sh/sz 前缀+6位代码，跳过注释/示例行）。
+
+支持多路径查找：`env STOCK_WATCHLIST` → `~/.qclaw/workspace-stock/WATCHLIST.md` → 当前目录。
+
+### 可靠性机制
+
+- **有效数据校验**：`price ≤ 0 or yclose ≤ 0` → `valid=False`
+- **零数据跳过**：全部无效时不发送
+- **发送重试**：失败最多3次，每次间隔3秒
+- **异常隔离**：单只股票失败不影响其他
+- **日志文件**：`/tmp/stock_pre.log` / `stock_after.log` / `stock_next.log`
+
+### 手动测试
+
+```bash
+python3 scripts/stock_pre.py
+python3 scripts/stock_after.py
+python3 scripts/stock_next.py
+```
+
+### 推送参考文档
+
+- [references/push/field-verification.md](references/push/field-verification.md) - 字段验证数据
+- [references/push/troubleshooting.md](references/push/troubleshooting.md) - 已知问题排查
+
+---
+
+*本 Skill 基于段永平投资框架 + 杨永兴短线战法 + 米勒维尼SEPA策略 + 自选股定时推送系统*

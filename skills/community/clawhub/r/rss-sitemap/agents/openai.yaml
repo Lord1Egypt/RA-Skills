@@ -1,0 +1,4 @@
+interface:
+  display_name: "RSS Sitemap"
+  short_description: "Discover site URLs from RSS and sitemaps"
+  default_prompt: "Use $rss-sitemap to discover crawlable URLs from a site's sitemap, Atom feed, or RSS feed."

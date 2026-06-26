@@ -1,0 +1,9 @@
+{
+  "id": "insentek-openapi",
+  "name": "Insentek OpenAPI Skill",
+  "version": "1.2.4",
+  "runtime": ["openclaw", "claude"],
+  "entry": "SKILL.md",
+  "author": "Insentek",
+  "permissions": ["network"]
+}

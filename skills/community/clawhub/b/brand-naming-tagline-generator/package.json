@@ -1,0 +1,18 @@
+{
+  "name": "brand-naming-tagline-generator",
+  "version": "1.0.0",
+  "description": "ClawHub skill: brand-naming-tagline-generator",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "author": "max_0x1",
+  "clawhub": {
+    "skill": true,
+    "category": "branding",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/01-brand-name-brainstorm.md"
+  }
+}

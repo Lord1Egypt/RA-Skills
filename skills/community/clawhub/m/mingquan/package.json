@@ -1,0 +1,11 @@
+{
+  "openclaw": {
+    "type": "mcp",
+    "category": "education",
+    "mcp_url": "https://open-envning.rainclassroom.com/openapi/v1/mcp-server/sse",
+    "auth": {
+      "type": "env",
+      "env": ["YUKETANG_SECRET"]
+    }
+  }
+}

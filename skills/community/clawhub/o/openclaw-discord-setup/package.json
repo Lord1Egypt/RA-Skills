@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-discord-setup",
+  "version": "1.0.0",
+  "description": "10-minute Discord Bot setup for OpenClaw",
+  "keywords": ["discord", "openclaw", "bot", "messaging", "setup"],
+  "author": "OpenClaw CN Team"
+}

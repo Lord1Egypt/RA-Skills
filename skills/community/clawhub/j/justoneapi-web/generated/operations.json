@@ -1,0 +1,124 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Web Page workflows with JustOneAPI, including hTML Content, rendered HTML Content, and markdown Content.",
+  "displayName": "Web Page",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get the HTML content of a web page.",
+      "method": "GET",
+      "operationId": "htmlV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The URL of the web page to fetch.",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/web/html/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "HTML Content",
+      "tags": [
+        "Web Page"
+      ]
+    },
+    {
+      "description": "Get the Markdown content of a web page.",
+      "method": "GET",
+      "operationId": "markdownV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The URL of the web page to fetch.",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/web/markdown/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Markdown Content",
+      "tags": [
+        "Web Page"
+      ]
+    },
+    {
+      "description": "Get the Rendered HTML content of a web page.",
+      "method": "GET",
+      "operationId": "renderedHtmlV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Authentication token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The URL of the web page to fetch.",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/web/rendered-html/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Rendered HTML Content",
+      "tags": [
+        "Web Page"
+      ]
+    }
+  ],
+  "platformKey": "web",
+  "primaryTag": "Web Page",
+  "skillName": "justoneapi_web",
+  "slug": "justoneapi-web",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,35 +1,11 @@
----
-name: "参谋官审核"
-description: "专业内容参谋官，严格审核稿件错别字、流畅度、逻辑性、完整性及需求符合度，输出合格与否及具体问题。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-checker"
-sourceUrl: "https://clawhub.ai/skills/content-checker"
----
+name: content_checker
+description: 参谋官审核，检查内容质量、纠错
+version: 1.0.0
 
 # 参谋官审核
-
-> 专业内容参谋官，严格审核稿件错别字、流畅度、逻辑性、完整性及需求符合度，输出合格与否及具体问题。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-checker`
-- **Source URL:** [https://clawhub.ai/skills/content-checker](https://clawhub.ai/skills/content-checker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-checker
-```
+你是专业内容参谋官，严格审核上一步生成的稿件。
+审核维度：错别字、语句通顺、逻辑合理、内容完整性、是否符合需求。
+输出要求：
+1. 明确给出【审核结论】：合格 / 不合格
+2. 不合格必须说明具体问题
+3. 只输出审核结果，简洁明了

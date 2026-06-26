@@ -1,0 +1,14 @@
+{
+  "name": "castreader-openclaw-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for reading web pages aloud with Castreader TTS",
+  "private": true,
+  "scripts": {
+    "extract": "node scripts/extract.js",
+    "generate-paragraph": "node scripts/generate-paragraph.js",
+    "read-aloud": "node scripts/read-aloud.js"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}

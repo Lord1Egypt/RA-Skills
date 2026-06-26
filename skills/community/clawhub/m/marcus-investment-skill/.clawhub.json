@@ -1,0 +1,11 @@
+{
+  "name": "marcus-investment-analyst",
+  "displayName": "Marcus 投资分析技能",
+  "version": "6.0.0",
+  "description": "Marcus 投资分析技能 - 基于缠论+MACD+RSI 的 A 股投资策略。用于股票分析、回测、投资建议。",
+  "author": "Marcus AI Agent",
+  "license": "MIT",
+  "tags": ["latest", "investment", "stock-analysis", "chan-theory", "A 股", "回测", "量化"],
+  "repository": "https://github.com/openclaw/marcus-investment-analyst",
+  "changelog": "Marcus 投资分析技能 v6.0 - 基于缠论+MACD+RSI 的 A 股投资策略，包含缠论中枢分析、策略回测、投资建议等功能"
+}

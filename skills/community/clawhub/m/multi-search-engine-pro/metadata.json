@@ -1,0 +1,15 @@
+{
+  "name": "multi-search-engine",
+  "version": "2.1.0",
+  "description": "Search orchestration skill with 17 engines, compare mode, presets, advanced operator composition, region/language/time filters, and no API keys.",
+  "engines": 17,
+  "requires_api_key": false,
+  "capabilities": [
+    "multi-engine-compare",
+    "operator-composition",
+    "privacy-search",
+    "region-aware-search",
+    "time-filter",
+    "knowledge-search"
+  ]
+}

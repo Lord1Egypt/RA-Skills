@@ -1,0 +1,60 @@
+﻿﻿{
+  "name": "novai360-analytics",
+  "displayName": "Novai360 智能市场分析",
+  "version": "1.0.0",
+  "description": "Novai360 提供的专业跨境电商智能分析服务，基于先进的 AI 技术和实时市场数据，为卖家提供深度市场洞察、竞品分析、关键词优化等专业建议",
+  "author": "Novai360 Team",
+  "tags": ["电商分析", "市场数据", "竞品分析", "关键词", "AI 智能"],
+  "category": "数据分析",
+  "api": {
+    "baseUrl": "https://api.novai360.com",
+    "endpoints": {
+      "chat": "/chat",
+      "skills": "/skills"
+    },
+    "authentication": {
+      "type": "none",
+      "description": "Novai360 服务已集成，无需额外配置"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "market_analysis",
+      "name": "市场分析",
+      "description": "基于实时数据的跨境电商市场趋势分析"
+    },
+    {
+      "id": "competitor_research",
+      "name": "竞品调研",
+      "description": "深度竞品数据分析和对比"
+    },
+    {
+      "id": "keyword_optimization",
+      "name": "关键词优化",
+      "description": "智能关键词挖掘和热度分析"
+    },
+    {
+      "id": "product_insights",
+      "name": "产品洞察",
+      "description": "产品表现全方位数据分析"
+    }
+  ],
+  "features": [
+    "实时市场数据获取",
+    "AI 智能分析报告生成",
+    "19 种专业分析维度",
+    "竞品深度对比",
+    "关键词热度追踪",
+    "类目标目趋势预测",
+    "产品表现评估",
+    "价格策略建议"
+  ],
+  "usage": {
+    "dailyLimit": 10,
+    "description": "每位用户每日可免费使用 10 次专业分析"
+  },
+  "privacy": {
+    "dataProtection": "所有查询数据均经过加密处理，严格保护用户隐私",
+    "compliance": "符合国际数据保护标准"
+  }
+}

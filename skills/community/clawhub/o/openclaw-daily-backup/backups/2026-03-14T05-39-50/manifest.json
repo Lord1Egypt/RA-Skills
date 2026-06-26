@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-14T05:39:50.221Z",
+  "name": null,
+  "description": null,
+  "workspace": "/Users/m1/.openclaw/workspace",
+  "openclaw_root": "/Users/m1/.openclaw",
+  "files": {
+    "SOUL.md": {
+      "size": 4070,
+      "hash": "sha256:e9f8b9fbd7cfb9b4e5fb0f0ed8ffc8fa063b33c4f721b108d8fc57d22409631d",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "USER.md": {
+      "size": 626,
+      "hash": "sha256:c9abc0adb0b80ea9291de16f4fdcade269f00bf2ff841364f15e158ab0932250",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "AGENTS.md": {
+      "size": 8107,
+      "hash": "sha256:f7bfd9282638564ed46a3f93f93caf05cfe492ffc4d4fd2ec75f5eedc9d96d69",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "IDENTITY.md": {
+      "size": 433,
+      "hash": "sha256:e102d128645903bdfcc17a8dcd0512a30424540692f769f1750166a04e9f32b3",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "TOOLS.md": {
+      "size": 2051,
+      "hash": "sha256:51f6e2d04503e8b1edc91c3f22c2a405c1b70bd17ce8356c3007df051a85faf3",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "HEARTBEAT.md": {
+      "size": 168,
+      "hash": "sha256:dac422286075ba178e9bae58154cc0ae8749a66854e438c9c58e8eb91f22c126",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "BOOTSTRAP.md": {
+      "size": 1470,
+      "hash": "sha256:5c4cb81099167dc7901bf16d7d4b8fd4bdbb37d2ec57437952f9409f19b88e39",
+      "exists": true,
+      "restoreTo": "workspace"
+    },
+    "openclaw.sanitized.json": {
+      "size": 7922,
+      "hash": "sha256:a593fcbb20fbd28f2b0133bde69870cd5529512e6ba4172f5b7612d7f8e4e4c9",
+      "exists": true,
+      "sanitized": true,
+      "original": "~/.openclaw/openclaw.json",
+      "restoreTo": "manual"
+    }
+  },
+  "created_by": "workspace",
+  "openclaw_version": "1.1.1"
+}

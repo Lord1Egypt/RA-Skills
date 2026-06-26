@@ -1,0 +1,11 @@
+requests
+websocket-client
+python-dotenv
+html2text
+bs4
+certifi
+trafilatura
+markdown
+pypdf
+pytesseract
+pillow

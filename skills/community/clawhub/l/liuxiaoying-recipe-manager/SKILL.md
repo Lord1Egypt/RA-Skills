@@ -1,35 +1,40 @@
 ---
-name: "Recipe Manager"
-description: "商用原料配方库。支持录入糖水、小料（芋圆、珍珠、四果汤、福鼎肉片等）的克数配方，多版本配比和做法，一键调取标准配比，自动计算单份成本与总成本，一键导出为表格（CSV/Excel）。 触发词：“配方”、“原料”、“成本”、“录入配方”、“调取芋圆配方”、“四果汤怎么做”、“导出配方表”、“计算成本”等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liuxiaoying-recipe-manager"
-sourceUrl: "https://clawhub.ai/skills/liuxiaoying-recipe-manager"
+name: recipe-manager
+description: |
+  商用原料配方库。支持录入糖水、小料（芋圆、珍珠、四果汤、福鼎肉片等）的克数配方，多版本配比和做法，一键调取标准配比，自动计算单份成本与总成本，一键导出为表格（CSV/Excel）。
+  触发词：“配方”、“原料”、“成本”、“录入配方”、“调取芋圆配方”、“四果汤怎么做”、“导出配方表”、“计算成本”等。
+author: your-name
+version: 1.0.0
+tags: ["recipe", "cost", "inventory", "export"]
+triggers:
+  - 录入配方
+  - 添加原料
+  - 芋圆配方
+  - 珍珠怎么做
+  - 四果汤配比
+  - 成本计算
+  - 导出配方表
+requires: []
 ---
 
-# Recipe Manager
+# Recipe Manager Skill
 
-> 商用原料配方库。支持录入糖水、小料（芋圆、珍珠、四果汤、福鼎肉片等）的克数配方，多版本配比和做法，一键调取标准配比，自动计算单份成本与总成本，一键导出为表格（CSV/Excel）。 触发词：“配方”、“原料”、“成本”、“录入配方”、“调取芋圆配方”、“四果汤怎么做”、“导出配方表”、“计算成本”等。
+## 功能说明
+- **配方管理**：录入/修改/删除配方（名称、原料列表、克数、做法步骤、版本号）
+- **多版本支持**：同一配方可保存多个版本
+- **成本计算**：自动计算单份原料成本 + 总成本
+- **一键调取**：通过自然语言调取标准配比
+- **导出表格**：导出所有配方为 CSV 文件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liuxiaoying-recipe-manager`
-- **Source URL:** [https://clawhub.ai/skills/liuxiaoying-recipe-manager](https://clawhub.ai/skills/liuxiaoying-recipe-manager)
+## 使用示例
+**用户**：录入芋圆配方，版本v1，需要木薯粉500克，紫薯200克，白糖100克，做法：蒸熟紫薯，混合木薯粉揉成团，切小块。木薯粉每斤5元，紫薯每斤8元，白糖每斤4元。
 
-## Overview
+**AI**：已录入「芋圆 v1」，单份成本共 X 元。
 
+## 成本计算逻辑
+- 原料成本 = Σ (原料克数 × 单价)
+- 单价单位统一为元/克（每斤自动除以500）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/liuxiaoying-recipe-manager
-```
+## 注意事项
+- 单价若说“每斤”，自动转换
+- 导出表格包含：配方名、版本、原料列表、做法、成本

@@ -1,0 +1,12 @@
+{
+  "name": "Complex Interaction (复杂交互实现)",
+  "tagline": "实现拖拽排序、虚拟滚动、富文本编辑器、实时协作、Canvas 优化",
+  "description": "实现高难度前端交互的可落地方案。覆盖 @dnd-kit 拖拽排序与跨容器看板、@tanstack/react-virtual 虚拟滚动（含动态行高与无限加载）、Tiptap 富文本编辑器、Yjs 实时协作、Canvas 分层渲染与高 DPI 适配等场景，给出关键代码和常见坑的解法。",
+  "category": "development",
+  "tags": ["frontend", "drag-drop", "virtual-scroll", "rich-text", "collaboration", "canvas", "yjs", "tiptap", "拖拽", "虚拟滚动"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

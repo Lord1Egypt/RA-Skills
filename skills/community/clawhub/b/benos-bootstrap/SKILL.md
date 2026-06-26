@@ -1,35 +1,44 @@
----
-name: "Benos Bootstrap"
-description: "Initializes the BenOS runtime in OpenClaw by validating system state, configuration, environment, and Node compatibility before other BenOS skills run."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/benos-bootstrap"
-sourceUrl: "https://clawhub.ai/skills/benos-bootstrap"
----
+# benos-bootstrap
 
-# Benos Bootstrap
+BenOS Bootstrap is a system-initialization skill for OpenClaw-based agent stacks.
 
-> Initializes the BenOS runtime in OpenClaw by validating system state, configuration, environment, and Node compatibility before other BenOS skills run.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/benos-bootstrap`
-- **Source URL:** [https://clawhub.ai/skills/benos-bootstrap](https://clawhub.ai/skills/benos-bootstrap)
+This skill initializes a BenOS runtime environment inside OpenClaw. It performs startup validation, establishes baseline state, and ensures required system dependencies are reachable before other BenOS skills execute.
 
-## Overview
+## What It Does
 
+- Verifies workspace structure and sandbox integrity
+- Confirms agent runtime configuration is valid
+- Checks required environment variables
+- Validates Node runtime compatibility
+- Returns structured health status for orchestration logic
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/benos-bootstrap
-```
+## Why It Exists
+
+BenOS is designed as a deterministic, structured executive runtime overlay. The bootstrap layer ensures predictable startup behavior and prevents downstream skills from executing in an inconsistent environment.
+
+This skill is intentionally lightweight but foundational. It is meant to run prior to advanced orchestration or automation layers.
+
+## Usage
+
+This skill is invoked during startup or manually when system validation is required.
+
+Example:
+
+Run benos-bootstrap to verify runtime health before deploying additional automation modules.
+
+## Output
+
+Returns structured JSON with:
+
+- ok (boolean)
+- message (string)
+- environment metadata (future expansion)
+
+## Roadmap
+
+Future versions will:
+- Add environment diff detection
+- Integrate structured logging
+- Support pre-flight dependency resolution

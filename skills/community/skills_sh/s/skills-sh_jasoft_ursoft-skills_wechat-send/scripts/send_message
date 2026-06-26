@@ -1,0 +1,7 @@
+#!/bin/zsh
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PYTHON_SCRIPT="$SCRIPT_DIR/wechat_auto.py"
+
+exec python3 "$PYTHON_SCRIPT" send "$@"

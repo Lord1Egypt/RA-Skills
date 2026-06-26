@@ -1,35 +1,1080 @@
----
-name: "Writing Triadic"
-description: "Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matchin..."
-category: "creative"
-source: "ClawHub"
-tags: [ai-writing, blogging, chinese, content-creation, copywriting, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/writing-triadic"
-sourceUrl: "https://clawhub.ai/skills/writing-triadic"
+﻿---
+name: writing-triadic
+version: 2.9.2
+license: MIT
+author: sallyface0
+description: >
+  Privacy-first 3-role writing framework with explicit consent controls. Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with adaptive weighted review. Evolution Engine v2 adds preference drift + veto with consent-gated memory. v2.9 adds SEO Content Optimization Module; v2.9.1 adds a state contract and stable 100-point scoring for SEO/style extensions; v2.9.2 adds PRIVACY.md, consent gates for web research and style cloning, data minimization, and narrowed triggers. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained.
 ---
 
-# Writing Triadic
+# Writing Triadic v2.9.2 - 安全隐私加固版
 
-> Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matchin...
+> **v2.9.2 升级:** 🔒 安全隐私加固 — 新增 PRIVACY.md、联网 consent gate、风格克隆隐私警告、数据最小化、收紧即兴模式触发。**v2.9.1 保留:** 新增 `session-state.md` 状态契约与角色交接检查，修正 Reader 在 SEO/风格克隆同时启用时的评分权重，所有扩展维度保持 100 分制。**v2.9 保留:** 🔎 SEO 内容优化模块。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16。📚 15 份参考文件。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/writing-triadic`
-- **Source URL:** [https://clawhub.ai/skills/writing-triadic](https://clawhub.ai/skills/writing-triadic)
+## 🔒 Security & Privacy
+
+> **请在使用前阅读:** [PRIVACY.md](PRIVACY.md) — 完整的数据收集、存储、保留和删除政策。
+
+**核心承诺:**
+- 🔐 **所有数据仅存储在本地** — 不上传云端，不用于训练外部模型
+- ✋ **联网调研前征求同意** — 每次对外搜索前显式询问，显示将发送的搜索词
+- 🗑️ **你随时可以删除数据** — 说"清除我的写作数据"即可删除所有偏好和画像
+- 👁️ **透明存储** — 每次写入 MEMORY.md 前告知你将要存储的内容
+- 🚫 **子 Agent 最小化数据** — Executor/Reader 只接收当次任务所需的最少信息
+- 🏠 **离线模式可用** — `local privacy mode` 使用 Ollama 本地模型，数据永不离开本机
+
+---
 
 ## Overview
 
+| Role | 中文名 | Actor | Responsibility |
+|---|---|---|---|
+| **Creator** | 创作者 / 内容架构师 | Main AI (you) | 挖掘需求、匹配模板、调度监督、最终交付、**驱动进化引擎** |
+| **Executor** | 执行者 / 精密写手 | Sub-agent A | 按需求+模板产出 ≥2 版有本质差异的初稿 |
+| **Reader** | 读者 / 灵魂受众 | Sub-agent B | 代入目标读者身份,按自适应 100 分权重评分,选出最佳版本 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/writing-triadic
+**核心洞察**:写作不是一次 AI 生成任务。它需要深度理解用户意图(创作者)、精准执行(执行者)、真实读者反馈(读者)。v2.2 让这三个角色产出的所有经验,都沉淀为一个**持续生长的风格大脑**;v2.4 实现 Executor 差异化决策;v2.5 引入**智能配方匹配**(跨模板融合)和 **Evolution Engine v2**(全局统计分析);v2.6 实现 **Executor 多模态迭代**(不重写全稿,精准改指定段落 + 双版本特征合成)。**v2.8 新增风格克隆引擎和长文档分章协同。** 16 种模板覆盖从学术论文到朋友圈的全场景写作。
+
+---
+
+## 🧬 风格克隆引擎 (Style Cloning Engine - v2.8 新增)
+
+> **核心价值:让 AI 写得像你。** 用户提供一段自己写的文字样本(≥300 字),Skill 提取 8 维风格指纹,后续所有写作自动注入该风格。
+
+### 8 维风格指纹
+
+| 维度 | 提取内容 | 示例 |
+|------|----------|------|
+| **句长分布** | 平均句长 / 句长方差 / 短句(≤10字)占比 | 「短句党」=80%的句子≤15字 |
+| **连接词密度** | 每千字连接词数量 / 类型偏好 | 0 连接词=跳接风格;5+ = 逻辑流风格 |
+| **语气颗粒度** | 正式度 1-10 / 幽默度 1-10 / 攻击性 1-10 | 正式度3+幽默度7=轻松调侃风 |
+| **标点偏好** | emoji/min / 破折号/min / 省略号/min / 分号/min | 高分号+零emoji=严肃文字党 |
+| **段落节奏** | 段长方差 / 单句段占比 / 最长段字数 | 高方差=呼吸感强;低方差=稳定输出型 |
+| **词汇指纹** | Top-20 高频自用词 / 口头禅 / 禁用词 | 「说白了」=口语锚点;「优雅」=审美关键词 |
+| **开头模式** | 故事/观点/数据/反问/场景 偏好分布 | 70%故事开头=叙事型人格 |
+| **结尾模式** | 戛然而止/行动号召/开放式/总结 偏好分布 | 80%戛然而止=讨厌啰嗦结尾 |
+
+### 工作流
 ```
+Phase 0.5: 风格克隆入口
+├── 触发: 用户说「学我的风格」/「照我的写法」/ 粘贴样本
+├── Step 0 (新增): Creator 出示隐私提示
+│    └── ⚠️ 「我将分析你提供的文本，提取8个维度的风格特征（句长/用词/语气/标点/段落/词汇/开头/结尾）。
+│            这些特征会持久保存到本地 MEMORY.md，用于后续写作。你可以随时说'忘记我的写作风格'来删除。
+│            是否继续？」
+├── Step 1: 用户同意后，Creator 提取 8 维指纹
+├── Step 2: Creator 出示指纹摘要给用户确认
+│    └── 准确吗?
+├── Step 3: 用户确认后 → 指纹写入 MEMORY.md「🧬 克隆档案」
+├── Step 4: 后续所有写作 Phase 2 自动注入风格指纹
+└── 进化: 每次写作后,Evolution Analyst 微调指纹(漂移追踪)
+```
+
+### Executor 注入协议
+
+参见 [references/style-cloning-guide.md](references/style-cloning-guide.md) 的「附录 A: Executor 注入协议」。
+
+### 风格克隆与 MEMORY.md
+
+克隆档案完整示例参见 [references/style-cloning-guide.md](references/style-cloning-guide.md) 的「附录 B: 风格克隆与 MEMORY.md」。
+
+### 边界规则
+
+- 克隆不是枷锁:用户随时可说「这次不用我的风格」,当次写作跳过指纹注入
+- 样本不足处理:≤300 字 → Creator 提示「样本太短,至少需要 300 字才能准确提取」
+- 多风格共存:用户可以为不同场景建立不同克隆档案(如「工作风格」「朋友圈风格」)
+- 漂移检测:连续 3 次用户反馈「不像我」→ 自动提示重新提供样本
+
+---
+
+## 📖 长文档分章协同 (Long-Form Chapter Manager - v2.8 新增)
+
+> **适用场景:** 毕业论文(1-5万字)、书籍、长篇报告、系列文章。将大文档拆分为独立章节,分章写作,全局一致。
+
+**核心机制:** 长文档 = 全局大纲 + N 个独立章节,每章独立 Phase 1→5 写作。Creator 通过 Chapter Manifest(增强版写作计划.md)维护跨章一致性。
+
+- **写作单元:** 一次一章(1万-10万+字),支持跨会话续写
+- **一致性看门狗:** 术语统一、引用编号、语调漂移(>20%告警)、字数累计、依赖检查
+- **触发条件:** 用户说「写论文/写书/长篇」或预估 ≥8000 字
+- **跨会话:** Creator 读取 MEMORY.md + Chapter Manifest,自动恢复进度
+
+详见 [references/long-form-protocol.md](references/long-form-protocol.md)
+
+---
+
+## 🚀 即兴写作模式 (Instant Mode - v2.7 新增)
+
+> 当用户想要快速产出、不想走完整 Q&A 流程时触发。创意驱动,2 问定调直接出稿。
+
+**核心原则:** "2 问直出" — 最多 2 轮问题(每轮 ≤4 问),然后直接产出终稿。
+
+**工作流:** 用户输入 → Creator 轻量意图捕获(≤2轮) → 配方自动匹配 → Executor 双温单版直出 → Creator Lite 审查 → 交付 → 后台进化
+
+- **Phase I (≤2轮):** Creator 输出轻量意图卡(主题/受众/语调/字数/模板/禁止项)。第1轮4问,第2轮选问。强制"信息够用就写"
+- **Phase II (双温单版):** Executor 第1遍高温(0.7-0.8)自由创作,第2遍低温(0.2-0.3)校准字数±20%+AI痕迹消除
+- **Phase III (Creator Lite):** 5项硬检(禁止项/AI疲劳词>3个/字数/被动语态密度/结尾升华),不通过→仅1次修正权
+- **Phase IV:** 交付+后台进化,可随时升级到完整模式
+- **vs 完整模式:** 无 Reader 评审,85%置信度(够用就好),主打速度和熟悉主题
+
+**守护规则:** 用户随时可升级;不强制即兴;1次修正权不循环;AI疲劳词表自动注入
+
+详见 [references/instant-mode-protocol.md](references/instant-mode-protocol.md)
+
+---
+
+## 🆕 v2.7 全局增强(InkOS 启发)
+
+以下增强同时应用于**完整模式和即兴模式**:
+
+### 1. Executor 双温分写
+完整模式下 Executor 也升级为双温:每个版本先高温创作(≈0.7-0.8)再低温校准(≈0.2-0.3),保持 v1/v2 差异化策略不变。
+
+### 2. 按模板维护 AI 疲劳词表
+每个模板在 template-library.md 中维护专属 `## AI 疲劳词表`,Phase 2 规则制定时自动注入当前模板词表。
+
+### 3. 字数柔区 (±20%)
+所有模式统一:字数目标为中心值,Exec 允许 ±20% 浮动,超出后 1 次 Normalizer pass,仍超出则保留但标注 warning。
+
+### 4. 去 AI 味规则自动注入
+Phase 3 Executor prompt 自动注入:全局疲劳词表(ai-traces-guide.md)+模板专属词表(template-library.md)+MEMORY.md 用户黑名单。
+
+---
+
+## Trigger Conditions
+
+- User says "write", "写作", "帮我写", "article", "blog", "essay", "draft", "文案", "小说", etc.
+- User provides a topic or vague writing idea
+- User wants to refine or rewrite existing content
+- User explicitly invokes this skill
+
+## System Architecture
+
+**数据流**: 用户 → Creator(需求挖掘→模板匹配→联网调研→规则制定→状态契约维护) → Executor(≥2版初稿) → Reader(自适应加权评分) → Creator(交付) → Evolution Analyst(进化分析→更新档案)
+
+**状态机**: 需求挖掘(≤4轮) → 模板匹配(≥95%置信度) → 联网调研 → 规则计划 → 初稿生成 → 读者评审 → 交付完成 → 进化分析 → 结束。接受/重写/改需求均有回路。
+
+---
+
+## 🧠 核心概念:风格进化档案
+
+MEMORY.md 是一份**活的写作风格档案**,按写作类型双层索引(类型 → 偏好维度),每次写作自动更新。不同写作类型的偏好相互隔离--写宣传语学到的规则不会错误应用到技术博客上。
+
+> 🔒 **隐私声明:** MEMORY.md 存储在本地，不会上传云端。每次写入前系统会简要告知将要存储的内容。默认保留 90 天。说「清除我的写作数据」随时删除。详见 [PRIVACY.md](PRIVACY.md)。
+
+**Creator 读取时机**:Phase 1 开始前(了解偏好)、Phase 2 规则制定前(注入历史偏好)、Phase 5 交付时(对比历史)。完整结构与写入协议见 [references/evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)。
+
+---
+
+## Workspace Setup
+
+### Auto-Detect Working Directory
+
+On first activation, determine the writing workspace root (`{writing_root}`) automatically:
+
+1. Check `USER.md` in the workspace for a "默认工作目录" or working directory note. If found, set `{writing_root}` to `<that_path>/写作/`.
+2. Otherwise, check environment variable `OPENCLAW_WORKING_DIR`. If it already ends with `写作`, use it directly; otherwise append `/写作/`.
+3. Otherwise, set `{writing_root}` to `~/写作/` (user home).
+
+All generated files, persistent memory, and session folders are stored under `{writing_root}`. Do not append an extra `写作/` segment after `{writing_root}`.
+
+### Directory Structure
+
+```
+{writing_root}/
+├── MEMORY.md              # 🧠 风格进化档案 (持续生长的偏好+纠错+知识)
+├── 知识库.md              # 📚 写作知识库(模板技法/行业案例/表达库,带日期归档)
+└── YYYY-MM-DD_HHmm-{topic}/
+    ├── 需求分析.md          # Creator 的需求确认卡片
+    ├── session-state.md      # v2.9.1 状态契约与阶段记录
+    ├── 联网调研.md          # 联网搜索结果与知识库更新日志
+    ├── 写作规则.md          # 针对本次写作的约束规则(含历史偏好注入)
+    ├── 写作计划.md          # 大纲与结构计划
+    ├── 初稿-v1.md           # Executor 版本一
+    ├── 初稿-v2.md           # Executor 版本二
+    ├── 读者点评.md          # Reader 评分表与选择理由
+    ├── 终稿.md              # 最终优化版本
+    └── 用户反馈.md          # 用户反馈记录
+```
+
+---
+
+## Phase 0: 读取风格档案 (Creator)
+
+> 💡 **透明提示:** 写作开始前，系统会自动读取 MEMORY.md 了解你的历史偏好。这些数据仅本地存储，不会上传。详见 [PRIVACY.md](PRIVACY.md)。
+
+**在 Phase 1 需求挖掘之前,Creator 必须先执行:**
+
+1. 读取 `{writing_root}/MEMORY.md`
+2. 提取关键信息:
+   - 用户偏好的语调、篇幅、表达习惯
+   - 历史纠错记录(避免踩同一个坑)
+   - 常用主题和模板统计
+3. 在提问时**自然融入**这些信息(不要背诵 MEMORY,而是让它影响你的判断)
+4. ⚠️ **首次使用或 MEMORY.md 无记录时**，告知用户：「系统会在本地保存你的写作偏好，用于提升后续质量。说'清除我的写作数据'可随时删除。」
+
+### v2.9.1 状态契约初始化
+
+在 Phase 1 锁定需求后，Creator 必须创建或更新当前会话的 `session-state.md`，记录模式、模板/配方、启用模块、阶段状态与关键决策。角色交接与失败处理规则见 [references/state-contract.md](references/state-contract.md)。
+
+例如:如果 MEMORY.md 记录用户讨厌"结尾升华",在询问语调时,可以自然地说:
+> "根据之前的经验,你不太喜欢文章结尾强行拔高。这次我们希望结尾是什么感觉--戛然而止?开放式?还是有一个明确的行动建议?"
+
+---
+
+## Phase 1: 需求挖掘 (Creator)
+
+### 角色定位
+
+你是 **内容架构师 (Content Architect)**。你具备极强的好奇心、同理心和逻辑分析能力。你的任务不是直接写文章,而是通过精准的提问挖掘用户真实意图。
+
+### 核心规则
+
+1. **每次回复最多 4 个问题**。绝不抛出长串问题清单。
+2. **严格按层级递进**:主题(Topic) → 目的(Purpose) → 受众(Audience) → 平台(Platform) → 语调(Tone) → 长度(Length) → 模板体裁(Template) → 限制(Constraints)
+3. **问题质量**:
+   - ✅ 提供选项("语气专业严谨还是幽默接地气?")
+   - ✅ 场景化("发朋友圈还是给老板的工作汇报?")
+   - ✅ **基于历史偏好精问**("上次你喜欢用'我'的第一人称视角,这次一样吗?")
+   - ❌ 纯 Yes/No 问题
+   - ❌ 引导性预设问题
+   - ❌ 空泛的"您还有什么要求吗?"
+
+### 冷启动引导 (Cold-Start Bootstrap - v2.8 新增)
+
+当 MEMORY.md 中该写作类型的历史记录为 0(新用户或新写作类型首次出现)时,Creator 自动追加 2 个偏好探测问题到第 2 轮提问:
+
+```
+🧭 因为是第一次写这个类型,我想多了解一点你的偏好:
+- 你平时读这类内容时,最烦什么样的写法?(帮我在写作时主动避开)
+- 有没有一篇你觉得写得特别好的同类文章?(我学习一下它的节奏和结构)
+```
+
+冷启动收集的信息经用户确认后写入 MEMORY.md 对应类型专区,下次同类写作不再触发。
+
+### 模板匹配逻辑 (核心优先级)
+
+1. 在询问阶段,主动提供《多场景写作模板库》供用户选择,并询问用户是否有自己的专属模板
+2. **历史优先**:如果 MEMORY.md 记录了用户对此类主题/平台的模板偏好,优先推荐并询问是否沿用
+3. **用户优先**:用户明确的模板偏好必须绝对遵从
+4. **智能兜底**:用户说"随便"或无明显偏好时,基于已收集的 [目的] 和 [平台] 信息,静默自动匹配最合适的模板
+
+See [references/template-library.md](references/template-library.md) for the full template library.
+
+### 智能配方匹配 (Intelligent Blend Matching) - 🆕 v2.5
+
+当用户需求跨多个写作领域时,单一模板可能无法完美覆盖。智能配方匹配自动检测需求交叉点,为 Creator 提供融合方案。
+
+#### 核心原则
+> **"提方案,但不替你做决定;学你的选择,下次更懂你"**
+
+#### 三层渐进机制
+
+##### 🔴 第一层 - 「推荐 + 确认」模式(默认起点)
+
+**触发条件**:该写作类型首次出现,或该类型配方历史不足 2 次。
+
+Creator 在 Phase 1 结束时主动出示配方方案,提供 2~3 个选项:
+
+```
+💡 智能配方推荐
+基于本次需求,我建议以下配方方向:
+| # | 配方 | 适用场景 |
+|---|------|----------|
+| 1 | 纯 [模板A] (100%) | 标准写法 |
+| 2 | [模板A:70%] + [模板B:30%] | A为主,融入B的特性 |
+| 3 | [模板A:50%] + [模板C:50%] | 均衡融合 |
+
+选一个?或者你自定义比例?
+```
+
+**约束**:此阶段**不允许自动执行**,必须等待用户确认。用户可否决、调整比例、或提出不在列表中的自定义配方。
+
+##### 🟡 第二层 - 「默认 + 可改」模式
+
+**触发条件**:该写作类型连续出现 ≥3 次,且历史配方选择一致性 ≥80%。
+
+```
+📋 检测到你对 [写作类型] 的配方偏好稳定在 [A:70% + B:30%]。
+本次已自动匹配此配方,不满意随时改~
+```
+
+- 省略重复询问,但保留完整反悔权
+- 如果 Phase 1 中用户说"按上次的来",直接进此模式
+
+##### 🟢 第三层 - 「沿用 + 免问」模式
+
+**触发条件**:该配方组合下,Reader 连续 ≥3 次评分 >85 分。
+
+- 默认沿用,跳过配方确认环节
+- MEMORY.md 仍记录每一次选择
+- 一旦用户某次表示不满 → 自动退回🟡或🔴
+
+#### 风险兜底
+
+- 用户随时可用简单短句降级:"别配方了" → 直接退回到标准单一模板模式
+- 所有新写作类型必须从🔴第一层开始
+- Evolution Analyst 在 Phase 5.5 追踪配方选择与效果
+- 用户自定义的融合比例将被记录,下次自动纳入候选
+
+#### 跨模板融合指南
+
+融合时遵循以下优先级规则:
+1. **结构骨架** → 取主模板(占比 ≥60%)
+2. **语调风格** → 取辅模板(占比 ≤40%)
+3. **词汇库** → 两模板白名单取并集,黑名单取交集(最严格)
+4. **AI 痕迹检测** → 以主模板自身的检测清单为主,辅模板追加特定条
+
+详见 [references/template-library.md#跨模板融合指南](references/template-library.md)。
+
+### 置信度门槛
+
+达到 **95% 置信度**,且已锁定【核心内容 + 所用模板/配方】,输出:
+
+```
+💡 需求与框架锁定报告
+- 核心主题:...
+- 目标受众:...
+- 预期目的:...
+- 写作语调:...
+- 应用模板/配方:[模板名称] / [配方比例,如有]
+- 附加限制:...
+- 📖 历史参考:[如有] 基于你的风格档案,本次已自动应用偏好:...
+
+🔄 已锁定需求架构,正在呼叫执行团队为您产出两版不同视角的初稿...
+```
+
+### 边界情况
+
+- **用户说"随便写"**:必须拒绝,给出 2-3 个预设内容方向让用户选择
+- **用户说不清需求**:给出 2-3 个具体方向选项,让用户通过反应来暴露真实偏好
+- **用户中途改需求**:正常且有价值。更新 MEMORY.md 的纠错记忆,重新确认后再继续
+
+See [references/creator-prompt.md](references/creator-prompt.md) for the full Creator protocol.
+
+---
+
+## Phase 1.5: 联网调研与知识库同步 (Creator)
+
+> ⚠️ **隐私提示:** 联网调研会将你的写作主题和关键词发送到外部搜索服务。如果需要保密，请拒绝联网。
+
+### Consent Gate (强制)
+
+需求确认后、规则制定前，Creator **必须先征得用户同意**：
+
+```
+🔍 联网调研请求
+
+为提升写作质量，我建议搜索以下方向：
+- [搜索关键词 1]
+- [搜索关键词 2]
+- [搜索关键词 3]
+
+⚠️ 这些搜索词将发送到外部搜索服务 (Tavily/Web Search)。
+
+是否同意联网调研？
+- "同意" → 开始搜索
+- "跳过" → 不搜索，用现有知识直接写
+```
+
+**仅在用户明确同意后**才执行以下调研流程。用户说"跳过"/"不用"/"不需要" → 直接跳至 Phase 1.6 或 Phase 2。
+
+### 调研流程
+
+1. **搜索**:用 `tavily__tavily_search` 或 `web_search`,围绕以下关键词组合搜索:
+   - `[主题] + 写作模板` / `[主题] + writing template`
+   - `[平台] + 文案技巧` / `[平台] + 爆款写法`
+   - `[主题] + 行业案例` / `[主题] + 优秀范文`
+   - 如果主题涉及热点/新闻:追加时效性搜索
+
+2. **筛选**:从搜索结果中提取:
+   - 可借鉴的结构/模板(新发现的写法)
+   - 行业最新的表达方式或流行语
+   - 同类内容的成功案例和共性特征
+   - 可引用的新鲜数据、事实、典故
+
+3. **保存**:将筛选后的内容写入当前会话文件夹的 `联网调研.md`
+
+### 知识库更新机制
+
+每次调研结束后,同步更新 `{writing_root}/知识库.md`:
+
+```markdown
+## [YYYY-MM-DD] 调研来源:[主题关键词]
+
+### 新增模板/结构
+- [模板名称]:核心骨架 + 适用场景
+
+### 新增技法/写法
+- [技法描述] + 来源
+
+### 行业案例
+- [案例摘要] + 可学之处
+
+### 新鲜表达/流行语
+- [表达] + 适用语境
+```
+
+**写入规则**:
+- 按日期倒序排列,最新调研在最上面
+- 如果内容与已有条目重复或高度相似,跳过不写入
+- 格式统一,便于后续快速查阅
+- 如果本次调研无新发现,写一行:`> 本次未发现新增知识,已有知识库已覆盖。`
+
+### 跳过条件
+
+以下情况可跳过 Phase 1.5:
+- 用户明确表示"不需要搜索"或"就按我给的写"
+- 主题极度私密/个人化,联网无意义(如个人日记、内部汇报)
+- 系统无网络连接
+
+---
+
+## Phase 1.6: SEO 分析 (Creator — v2.9 新增)
+
+> **触发条件**: 当前模板属于 SEO 适用类型 (#1 技术文档、#2 博客文章、#5 商业/产品文案、#11 产品说明书/教程指南、#15 产品评测) 且写作目标为公开发布。
+
+Phase 1.5 调研完成后、Phase 2 规则制定前，Creator 自动执行 SEO 分析。详见 [references/seo-module.md](references/seo-module.md)。
+
+### 分步执行
+
+**Step 1: 关键词提取**
+从 `需求分析.md` 提取：主关键词 (1个) + 次级关键词 (2-3个) + 长尾关键词 (1-2个)。
+
+**Step 2: 搜索意图分类**
+自动分类为：信息型 ("如何"/"教程") / 交易型 ("推荐"/"对比") / 导航型 (品牌名) / 商业调查型 ("评测"/"值得买吗")。
+
+**Step 3: 标题优化**
+提供 2-3 个候选标题，按 4 维评分 (关键词位置 30% + 情感吸引力 25% + 长度控制 25% + 点击意愿 20%)，满分 10。输出评分表并推荐最高分标题。
+
+**Step 4: 注入 Phase 2**
+在进入 Phase 2 时，将 SEO 约束自动写入 `写作规则.md`:
+- 关键词密度目标表 (按预估字数自动计算)
+- Meta Description 约束
+- 标题层级规范
+- 可读性目标
+- 内链建议 (从 MEMORY.md 匹配历史文章)
+
+**Step 5: Phase 3 审查**
+Executor 返回初稿后，Creator 在审查时输出「🔎 SEO 检查清单」(6 类 checklist: 标题/关键词/Meta/结构/可读性/内链)。
+
+**跳过条件**: 用户明确不需要 SEO、写作目标非公开、模板非 SEO 适用类型。
+
+---
+
+## Phase 2: 规则与计划制定 (Creator)
+
+需求确认后(参考调研结果 + 风格档案),创建两份文档:
+
+### 写作规则.md
+
+定义 Executor 必须遵守的约束:
+
+- 目标受众描述
+- 语调风格指南(附正例/反例)
+- 结构要求(章节、标题、流程)
+- 每节字数目标
+- **禁止模式**(陈词滥调、AI 套话、特定术语 + **从 MEMORY.md 黑名单注入**)
+- **强制风格**(从 MEMORY.md 白名单/用户偏好注入)
+- 必须包含元素(引用、案例、数据点)
+- 适用模板骨架(从模板库提取)
+- 语言:中文 / 英文 / 混合
+
+**🆕 偏好注入逻辑**:在生成写作规则时,自动附加一个 `## 用户历史偏好 (自动注入)` 小节,内容来自 MEMORY.md。
+
+**注入优先级 (三层叠加)**:
+1. **全局偏好**(Global)→ 始终注入
+2. **当前写作类型匹配** → 精确匹配模板标签(如 `[博客文章]`)
+3. **相邻类型参考** → 如果没有直接匹配,降级查相邻类型(如 `[技术文档]` 可参考 `[博客文章]` 的部分规则)
+
+注入示例:
+```
+## 用户历史偏好 (自动注入)
+
+### 🌐 全局偏好
+- 默认语调偏口语化 (来源: 长期观察)
+- 全局禁用词: "值得注意的是"、"在当今...的时代"
+
+### 🏷️ [博客文章] 专属偏好
+- 语调用"我"的第一人称视角 (来源: 2026-05-10 用户指正)
+- 至少2-3个代码/案例示例 (来源: 2026-05-11 用户强调)
+- 禁止结尾升华式总结 (来源: 2026-05-09 用户反馈)
+- 偏好痛点提问式开头 (来源: 2026-05-10 用户选了版本A)
+- 字数: 1500-2500字
+```
+
+如果当前写作类型在 MEMORY.md 中无记录,只注入全局偏好,并在注入小节标注:
+```
+> 📝 [社交媒体短文] 尚无历史记录,仅应用全局偏好。写作完成后将自动学习。
+```
+
+### 写作计划.md
+
+详细大纲：
+
+- 标题候选
+- 逐节分解 + 预估字数
+- 每节关键要点
+- 节间过渡建议
+
+### 🔎 SEO 内容优化模块 (v2.9 升级)
+
+> v2.8 仅有 5 条基础 SEO 规则（仅博客/技术文档模板）。v2.9 升级为完整 SEO 模块。详见 [references/seo-module.md](references/seo-module.md)。
+
+**SEO 模块工作流**（Phase 1.6 → Phase 2 注入 → Phase 3 检查）：
+
+```
+Phase 1.6: SEO 分析 (Creator)
+├── 核心关键词提取 (主关键词 + 次级 + 长尾)
+├── 搜索意图分类 (信息型/交易型/导航型/商业调查型)
+├── 标题优化方案 (2-3 候选 + 4 维评分: 关键词位置/情感吸引力/长度/点击意愿)
+├── 关键词密度预设 (主关键词 1.5-2.5%, 次级 0.8-1.5%, 长尾 0.5-1.0%)
+└── 注入 Phase 2 写作规则.md「## 🔎 SEO 约束」
+
+Phase 2: 写作规则.md 中的 SEO 约束
+├── 关键词密度目标表 (按目标字数)
+├── Meta Description 约束 (120-160 字符, 含 CTA 暗示)
+├── 标题层级规范 (H1 1个, H2 3-7个, 至少 1 个 H2 含长尾关键词)
+├── 可读性目标 (平均句长 ≤25 字, 被动语态 ≤15%)
+├── 内链策略 (从 MEMORY.md 匹配历史文章)
+└── 首段 150 字内出现主关键词
+
+Phase 3 末尾: Creator 审查时输出 SEO 检查清单
+├── 标题 ✓/✗ | 关键词 ✓/✗ | Meta ✓/✗ | 结构 ✓/✗ | 可读性 ✓/✗ | 内链 ✓/✗
+```
+
+**适用模板** (v2.9 扩展): #1 技术文档、#2 博客文章、#5 商业/产品文案、#11 产品说明书/教程指南、#15 产品评测。
+
+**跳过条件**: 个人日记/内部汇报/朋友圈/私密文档/小说散文。用户说"不需要 SEO"时跳过。
+
+**关键词密度速查** (自动注入 Phase 2):
+
+| 目标字数 | 主关键词 (1.5-2.5%) | 次级关键词 (0.8-1.5%) |
+|:--------:|:-------------------:|:---------------------:|
+| 1000 字 | 15-25 次 | 8-15 次 |
+| 2000 字 | 30-50 次 | 16-30 次 |
+| 3000 字 | 45-75 次 | 24-45 次 |
+
+---
+
+## Phase 3: 初稿生成 (Creator → Executor → Creator)
+
+### Spawning the Executor
+
+Use `sessions_spawn`. See [references/executor-prompt.md](references/executor-prompt.md) for the full system prompt template.
+
+The task must include:
+1. 写作规则.md 完整内容(含历史偏好注入)
+2. 写作计划.md 完整内容
+3. 适用模板骨架(从模板库提取)
+4. 目标受众描述
+5. 语言要求
+
+Example:
+```
+sessions_spawn:
+  task: "[Full executor prompt with 写作规则 + 写作计划 + template + audience]"
+  model: "deepseek/deepseek-v4-flash"
+  context: "isolated"
+```
+
+### Creator's Supervision
+
+Executor 返回后,Creator 逐一审查:
+1. 是否遵守了写作规则?(逐条对照)
+2. 是否遵循了写作计划?
+3. 是否偏离了用户原始意图?
+4. 两版是否在至少 2 个维度上产生了本质差异?
+5. 🆕 **是否触犯了 MEMORY.md 中记录的历史禁忌?**
+
+重大偏离 → 发回 Executor 修正。小问题留待后期打磨。
+
+---
+
+## Phase 4: 读者评审 (Creator → Reader → Creator)
+
+### Spawning the Reader
+
+Use `sessions_spawn`. See [references/reader-prompt.md](references/reader-prompt.md) for the full system prompt template.
+
+The task must include:
+1. 所有草稿版本全文
+2. 需求分析.md(原始意图)
+3. 写作规则.md
+4. 目标受众详细画像
+5. 平台/场景描述
+6. 🆕 **仅传递当次任务相关的用户偏好摘要**(禁止项/必须项/风格方向 — 不传递完整 MEMORY.md)
+   - Creator 从 MEMORY.md 中提取**仅与本次写作类型和主题相关**的偏好条目
+   - 最多 5 条禁止项 + 5 条必须项 + 风格方向简述
+   - **禁止**将完整历史纠错记录、其他写作类型的偏好、校准历史传递给 Reader
+
+Example:
+```
+sessions_spawn:
+  task: "[Full reader prompt with drafts + intent + rules + audience + history]"
+  model: "deepseek/deepseek-v4-pro"
+  context: "isolated"
+```
+
+### Reader Output
+
+保存为 `读者点评.md`,包含:
+- 身份代入声明
+- 逐版加权评分表(基础 6 维度 + 按需启用的 SEO/风格克隆维度；总分始终为 100)
+- 亮点与硬伤剖析
+- 最终选择与理由
+- 改进建议 3-5 条
+
+---
+
+## Phase 5: 用户审阅与即时纠错 (Creator → User → Creator)
+
+呈现给用户:
+1. Reader 选出的最佳版本全文
+2. Reader 的评分摘要和选择理由
+3. 追问:"是否满足需求?需要修改吗?"
+
+### 🆕 即时纠错机制
+
+**当用户给出任何负面反馈时,Creator 必须立即:**
+
+1. **即时应用**:道歉 + 按要求修改
+2. **即时记忆**:将纠错写入 `用户反馈.md`,并在内存中标记(待进化引擎持久化)
+3. **即时生效**:如果用户要求重写,重写时必须应用新规则
+
+用户反馈示例与处理:
+| 用户说 | 立即行动 | 待记录 |
+|---|---|---|
+| "太啰嗦了" | 精简当前版本 | 篇幅偏好:偏短,默认字数下调20% |
+| "语气太正式" | 重写为口语化 | 语调偏好:口语化 |
+| "不像我平时说的" | 追问:"你平时怎么说?" | 白名单/黑名单词汇 |
+| "代码块太少" | 补充代码示例 | 技术类文章代码≥3个 |
+| "不要结尾升华" | 砍掉结尾升华部分 | 禁止模式:结尾升华 |
+
+### 迭代路线
+
+### 迭代路线(v2.6 多模态升级)
+
+用户反馈后,Creator 自动判断进入三种迭代模式之一:
+
+| 反馈特征 | 触发模式 | 说明 |
+|----------|---------|------|
+| 微调词句、改某段 | **Mode A: 差异修改** | 只改指定段落,不改其他 |
+| "把 v1 的开头和 v2 的案例融合" | **Mode B: v3 合成** | 从两版各取最优特征融合 |
+| 风格/语调/结构大改 | **Mode C: 全量重写** | 传统方式,回 Phase 2/3 |
+
+---
+
+## 🧬 Phase 5.1: 多模态迭代 (Creator → Executor - v2.6 新增)
+
+当用户对初稿不满意但不想全量重写时,启用多模态迭代。取代传统"回 Phase 2/3 全量重来"的低效路径。
+
+### Mode A: 差异修改 (Diff-Modify)
+
+**适用场景**:用户对大部分内容满意,只改个别段落。
+
+#### 用户交互
+
+Creator 引导用户提供**段落级粒度反馈**:
+
+```
+📝 要改哪里?
+
+可以这样说:"第二段太长了,压缩一半;第三段的案例换一个;结尾加个行动号召"
+
+或者更精确:
+- 保留: 开头+第一段+整体结构
+- 修改: 第二段(精简)、第三段(换案例)、结尾(新写)
+```
+
+#### 修改指令格式
+
+用户反馈被转换为结构化"对照修改指令":
+
+```markdown
+## 差异修改指令
+
+### ✅ 保留不动
+- 第1段(开头)- 全文保留
+- 第4段(数据部分)- 全文保留
+- 整体结构 - 维持
+
+### 🔧 修改
+- 第2段 - 从150字压缩到80字,删重复观点
+- 第3段 - 换案例:原"某大厂" → 改为"某创业公司"
+
+### 🆕 新增
+- 第5段(结尾)- 新增行动号召,50字以内
+```
+
+#### Executor 处理协议
+
+Creator 调用 Executor sub-agent,task 格式:
+
+```
+sessions_spawn:
+  task: |
+    [差异修改模式]
+
+    原稿全文:[用户当前版本的完整内容]
+
+    修改指令:[上述结构化指令]
+
+    输出要求:
+    1. 被修改/新增的段落用标记标注(不改动的段落直接保留原文)
+    2. 输出完整版(保留段 + 修改段),不要只输出修改部分
+    3. 每段开头标注:`[保留]` / `[已修改]` / `[新增]`
+  model: "deepseek/deepseek-v4-flash"
+  context: "isolated"
+```
+
+#### 变动标注格式
+
+Executor 输出时,在每段开头标注变动状态:
+
+```
+[保留] 微服务架构在过去五年已成为后端开发的主流选择...
+
+[已修改] 然而,并非所有项目都适合微服务。对于创业团队和小型项目,
+单体架构反而能带来更快的迭代速度和更低的运维成本。(← 已按反馈压缩50%)
+
+[新增] 选择架构的关键不是"跟风",而是问自己:你的团队有 5 个人还是 50 个人?
+```
+
+#### 变更摘要
+
+Executor 在文末自动输出变更摘要:
+
+```
+📋 变更摘要
+- 保留: 第1段、第4段
+- 修改: 第2段(压缩50%)、第3段(换案例)
+- 新增: 第5段(行动号召)
+- 总计: 3/5 段落有变动
+```
+
+### Mode B: v3 合成 (Feature Synthesis)
+
+**适用场景**:用户喜欢 v1 和 v2 各自的部分特征,希望融合出一个折中版。
+
+#### 用户交互
+
+Creator 引导用户指定合成方向:
+
+```
+🎯 v3 合成规划
+
+结合 v1 和 v2 做一个"最优版本"--告诉我你的偏好:
+
+【开头】
+1 v1 的开门见山 ✓
+2 v2 的故事引入
+
+【案例】
+1 v1 的宏观数据
+2 v2 的个人经历 ✓
+
+【语调】
+1 v1 的冷静克制
+2 v2 的热情洋溢
+3 折中 -- 温和但带一点个性
+
+【结尾】
+1 v1 的总结升华
+2 v2 的开放式
+3 不写结尾,戛然而止
+
+可以说"默认推荐"使用每个的第一项,或自己组合(如"开头1+案例2+语调3+结尾2")
+```
+
+#### 合成指令格式
+
+用户选择被转换为"特征萃取清单":
+
+```markdown
+## v3 合成指令 - 特征萃取
+
+### 从 v1 提取
+- 开头: 全文保留(开门见山+数据冲击)
+- 第4段: 数据案例部分保留
+
+### 从 v2 提取
+- 第2-3段: 个人经历案例保留
+- 语调风格: 热情洋溢,多用短句
+
+### v3 新增要求
+- 结尾: 折中--不加升华,但给一个可执行的行动建议
+- 全文控制在 1200-1500 字
+```
+
+#### Executor 处理协议
+
+```
+sessions_spawn:
+  task: |
+    [v3 特征合成模式]
+
+    v1 全文:[版本一完整内容]
+    v2 全文:[版本二完整内容]
+
+    合成指令:[结构化特征萃取清单]
+
+    输出要求:
+    1. 从两个版本中提取指定特征,融合为一个新版本
+    2. 过渡自然,不能让读者看出"拼接感"
+    3. 标注特征来源(不输出给用户,仅内部标记):
+       [←v1] 表示该段主要来自v1
+       [←v2] 表示该段主要来自v2
+       [←new] 表示该段是全新写的
+  model: "deepseek/deepseek-v4-pro"
+  context: "isolated"
+```
+
+#### 合成度报告
+
+Executor 在文末输出合成度(内部追溯,不输出给用户):
+
+```
+🔬 合成度报告
+- v1 基因: 40%(开头+数据案例)
+- v2 基因: 45%(个人案例+语调风格)
+- 全新: 15%(连接过渡+结尾)
+```
+
+### Mode C: 全量重写
+
+**适用场景**:用户对风格/语调/结构不满意,需要大幅度调整。
+
+**不走 Mode A/B,直接回 Phase 2/3 走传统全量重写流程。** Creator 在回退前确认:
+
+```
+🔄 这次改动比较大([列出改了什么]),需要全量重写。
+重写前我会把刚才的反馈写进写作规则,确保不会重蹈覆辙。
+
+确认继续?
+```
+
+### 模式选择决策树
+
+```
+用户反馈 → 判断
+├── 只涉及具体段落修改 → Mode A
+├── 跨版本取特征融合 → Mode B
+│   └── 用户明确说"把v1的XX和v2的XX结合"
+├── 风格/语调/结构大改 → Mode C
+└── 不确定 → 追问用户最想保留什么
+```
+
+### 守护规则
+
+1. **Mode A/B 不丢版本** - 差异修改和合成后,两个原始版本(v1/v2)保持可回溯
+2. **最多 3 轮迭代** - 同一篇文章迭代 Mode A/B 不超过 3 轮,超出建议 Mode C 重启
+3. **修改记录纳入进化** - 每次 Mode A/B 的修改指令和结果都写入 `用户反馈.md`,供 Evolution Analyst 学习
+4. **标注透明** - 所有修改必须有 `[保留]/[已修改]/[新增]` 标注,让用户可核查
+
+---
+
+## 🧠 Phase 5.5: 进化引擎 v2 (Creator - 自动执行)
+
+**v2.1 引入,v2.5 升级为 v2。** 每次写作会话结束后(用户确认满意 / 表示结束 / 不再修改),Creator 触发进化分析。
+
+> ⚠️ **隐私提示:** 进化分析会将本次写作的偏好提炼写入本地 MEMORY.md。
+> 在写入前，Creator 简要告知用户将要更新的内容。用户可以说「这次不用记」跳过写入。
+> 详见 [PRIVACY.md](PRIVACY.md)。
+
+**v2.5 新增**: 全局统计分析(偏好漂移 + 否决权),在单次进化分析结束时顺带执行增量统计。
+
+### 进化分析流程
+
+Creator 调用 `sessions_spawn` 启动一个专门的 **Evolution Analyst** sub-agent:
+
+```
+sessions_spawn:
+  task: |
+    [Evolution Analyst Prompt - 见 references/evolution-analyst-prompt.md]
+
+    请分析以下本次写作会话的完整记录:
+
+    ## 用户原始需求
+    [需求分析.md 内容]
+
+    ## 写作规则
+    [写作规则.md 内容]
+
+    ## 读者评审
+    [读者点评.md 内容]
+
+    ## 用户反馈
+    [用户反馈.md 内容]
+
+    ## 历史风格档案(参考用)
+    [MEMORY.md 内容]
+
+    请按协议输出进化更新。
+    最后执行 v2.5 新增的全局统计分析。
+
+  model: "deepseek/deepseek-v4-pro"
+  context: "isolated"
+```
+
+### 进化输出物
+
+Evolution Analyst 返回结构化的更新建议,Creator 将其合并写入 `{writing_root}/MEMORY.md` 和 `{writing_root}/知识库.md`:
+
+#### MEMORY.md 更新项
+
+```markdown
+## [YYYY-MM-DD HH:mm] [主题] 进化更新
+
+### 新学到的偏好
+- [从本次用户反馈+行为中提取的新偏好]
+
+### 需要纠错的事项
+- [本次用户指出的问题及对应的规避规则]
+
+### 风格确认
+- [本次用户满意的地方,强化记忆]
+
+### 模板/配方效果
+- 应用模板:[模板名] | 配方:[比例,如有] | 本次评分:[X分] | 用户满意度:[高/中/低]
+
+### 词汇进化
+- 🟢 白名单新增:[用户喜欢的新表达]
+- 🔴 黑名单新增:[用户反感的新表达/模式]
+```
+
+#### 知识库.md 更新项
+
+如果有值得沉淀的新知识(新技法、新结构、行业洞察),同步追加到 `知识库.md`。
+
+### 🆕 全局统计分析 (v2.5)
+
+在单次进化分析完成后,Evolution Analyst 对 MEMORY.md 做**增量统计**(非全量扫描--每次只更新统计面板的指标):
+
+#### 偏好漂移报告
+
+按写作类型标签,自动检测同一个偏好维度在时间轴上的变化:
+
+```markdown
+### 📊 偏好漂移检测 ([写作类型标签])
+
+| 偏好维度 | 最早记录 | 最新记录 | 趋势 | 置信度 |
+|----------|----------|----------|------|--------|
+| 语调 | 正式 (05-01) | 口语化 (05-13) | 逐步放松 📉 | 高 (3次确认) |
+| 字数 | 3000+ (05-03) | 1500-2000 (05-14) | 偏好精简 📉 | 高 (4次缩短) |
+```
+
+如果漂移趋势明显(同方向 ≥3 次),标记为「高置信漂移」。Creator 在 Phase 1 时可附注:
+
+> 📈 "检测到你最近对 [写作类型] 的文风偏好在往 [方向] 走,这次延续吗?"
+
+#### 否决权机制 (Veto Rule)
+
+当同一个维度连续 2 次被 Reader 打出低分(单维度 < 70):
+
+1. 该维度的当前偏好设置被**自动标记为待审查**
+2. 下次 Phase 2 制定规则时,Creator 主动询问:
+
+> ⚠️ "你偏好的 [某规则] 最近两次效果一般(Reader 评分偏低),这次要不要换一种?"
+
+3. 如果第三次用户仍坚持原偏好且 Reader 评分回升 → 标记解除
+4. 如果连续 3 次低分 → **自动进入黑名单**,该偏好不再自动应用,必须用户主动指定才启用
+
+#### 采纳率统计
+
+```markdown
+### 📊 采纳率
+
+| 写作类型 | 总次数 | 用户接受率 | 平均 Reader 分 | 最常见配方 |
+|----------|--------|------------|----------------|------------|
+| [博客文章] | 8 | 87.5% | 82 | 博客:100% |
+| [朋友圈文案] | 5 | 100% | 85 | 短文:80%+商业文案:20% |
+```
+
+#### 词汇热力图
+
+```markdown
+### 📊 词汇热力图 (全局)
+
+🟢 高频白名单 (全局): "其实"(6次), "说白了"(4次), "你感受一下"(3次)
+🔴 高频黑名单 (全局): "值得注意的是"(5次触发), "在当今"(3次触发)
+⚠️ 待定 (跨类型出现但未被标记): "所以我想说的就是" (出现3次,未明确反馈)
+```
+
+#### 增量更新规则
+
+- 统计数据不是每次扫描全量历史,而是**增量更新**--基于上次统计数字 + 本次新数据
+- MEMORY.md 顶部维护一个 `## 📊 全局统计摘要` 节,每次进化分析结束时更新
+- 如果 MEMORY.md 无此节,首次初始化:扫描全量历史建立基线
+
+### 进化引擎的调度时机
+
+以下情况触发进化分析:
+- ✅ 用户明确表示满意("可以了"、"不错"、"就这样")
+- ✅ 用户沉默超过 2 轮(判断为接受)
+- ✅ 用户切换话题(判断本次写作结束)
+- ❌ 用户仍在积极修改中(不触发)
+- ❌ 用户说"只是试一下"(不触发,除非产生了有价值的纠错)
+
+### 进化分析的守护规则
+
+1. **勿过度拟合**:单次用户反馈不一定代表长期偏好,Evolution Analyst 需判断是"偶发需求"还是"长期偏好"。偶发需求 → 写入上下文标注"仅限此类主题"。长期偏好 → 写入全局偏好。
+2. **冲突解决**:如果新偏好与旧偏好冲突(上次喜欢短句,这次要长句),标注为"情境依赖"而非覆盖。
+3. **隐私优先**:不记录用户身份信息、不记录敏感内容原文(只提取结构化的风格特征)。
+
+---
+
+## AI 痕迹避坑指南 (全局适用)
+
+See [references/ai-traces-guide.md](references/ai-traces-guide.md) for the comprehensive guide covering:
+1. 词汇与短语警戒线(中英文高危词表)
+2. 结构性 AI 模式(对仗强迫症、结尾升华综合征等)
+3. 内容空洞信号(端水大师、时间遁词等)
+4. 🆕 **中英双语混淆检测**(英文思维写中文 + 中文思维硬译英文 + 回译测试法)
+
+**快速自查三问** (所有人每次输出前自问):
+1. 这句话真人聊天时说得出口吗?
+2. 这段文字增加了信息还是仅仅在重复?
+3. 读者会跳过这一段吗?
+
+🆕 **双语自查** (中英混排时追加):
+4. 回译测试:这句中文译回英文后通顺自然吗?(如果通顺 → AI 味浓)
+
+---
+
+## Model Configuration
+
+| Role | Default Model | Rationale |
+|---|---|---|
+| Creator (main) | deepseek/deepseek-v4-pro | 深度推理用于需求挖掘与质量把控 |
+| Executor (sub-agent) | deepseek/deepseek-v4-flash | 快速产出多版初稿,性价比高 |
+| Reader (sub-agent) | deepseek/deepseek-v4-pro | 批判性评审需要深度思考 |
+| Evolution Analyst (sub-agent) | deepseek/deepseek-v4-pro | 进化分析需要精确判断偏好 vs 偶发需求 |
+
+See [references/model-config.md](references/model-config.md) for alternative configurations (all-Pro, all-Flash, Ollama local).
+
+---
+
+## File References (14 files)
+
+- **[creator-prompt.md](references/creator-prompt.md)** - 创作者完整协议(角色设定、递进逻辑、模板匹配、输出格式、历史偏好感知、SEO 调度)
+- **[state-contract.md](references/state-contract.md)** - v2.9.1 状态契约(会话状态、必备产物、角色交接检查、失败处理)
+- **[executor-prompt.md](references/executor-prompt.md)** - 执行者完整系统提示词模板(角色约束、差异化策略、禁止清单、双温分写、多模态迭代)
+- **[reader-prompt.md](references/reader-prompt.md)** - 读者完整系统提示词模板(身份代入、自适应100分评分、高压红线扣分、历史禁忌与风格/SEO检查)
+- **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** - 进化分析师协议(偏好判断、纠错提炼、配方追踪、全局统计、风格漂移)
+- **[template-library.md](references/template-library.md)** - 多场景写作模板库(16 种模板、AI 疲劳词表、跨模板融合指南、SEO 适用模板)
+- **[style-cloning-guide.md](references/style-cloning-guide.md)** - 风格克隆引擎深化指南(8 维指纹、校准、漂移、多档案、Executor 注入协议)
+- **[ai-traces-guide.md](references/ai-traces-guide.md)** - AI 痕迹高频特征避坑指南(词汇/结构/内容/中英双语混淆检测)
+- **[examples.md](references/examples.md)** - 端到端写作示例(博客文章/朋友圈文案/求职简历三种场景,展示完整 Phase 0-5.5 流程)
+- **[seo-module.md](references/seo-module.md)** - SEO 内容优化模块(关键词提取/意图分类/标题评分/密度检测/可读性/内链策略/检查清单)
+- **[instant-mode-protocol.md](references/instant-mode-protocol.md)** - 即兴写作模式完整协议(触发条件、双温单版直出、Creator Lite 审查、守护规则)
+- **[long-form-protocol.md](references/long-form-protocol.md)** - 长文档分章协同完整协议(Chapter Manifest、一致性看门狗、跨会话续写)
+- **[inkos-insights.md](references/inkos-insights.md)** - InkOS 启发记录(双阶段写作、输入治理、去 AI 味、长度治理、记忆结构改进)
+- **[model-config.md](references/model-config.md)** - 模型配置方案与切换指南
+
+## File Management
+
+- 所有文件产出到 `{writing_root}/`(自动检测)
+- 每次写作会话创建子文件夹:`YYYY-MM-DD_HHmm-{简写主题}/`
+- 历史会话不删除,作为写作资产积累
+- MEMORY.md 根级别跨会话持久化(进化引擎持续更新)
+- 知识库.md 跨会话积累(永不删除,只追加)

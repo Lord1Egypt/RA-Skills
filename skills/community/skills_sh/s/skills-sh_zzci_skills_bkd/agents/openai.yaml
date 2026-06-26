@@ -1,0 +1,4 @@
+interface:
+  display_name: "BKD"
+  short_description: "Operate BKD kanban workflows over REST"
+  default_prompt: "Use $bkd to inspect and manage BKD project workflow state."

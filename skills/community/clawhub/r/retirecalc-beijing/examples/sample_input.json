@@ -1,0 +1,24 @@
+{
+  "person": {
+    "name": "示例用户",
+    "birth_date": "1985-03-15",
+    "category": "male_60"
+  },
+  "current": {
+    "as_of": "2026-03-01",
+    "actual_contribution_months": 180,
+    "deemed_contribution_months": 0,
+    "actual_pre_1998_07_months": 0,
+    "personal_account_balance": 120000,
+    "z_actual": 1.0,
+    "unemployment_benefit_months": 12
+  },
+  "assumptions": {
+    "avg_wage_growth_rate": 0.04,
+    "personal_account_bookkeeping_rate": 0.03,
+    "personal_contribution_rate": 0.08
+  },
+  "optimization": {
+    "strategy_contribution_indices": [0.6, 1.0, 1.5, 2.0, 3.0]
+  }
+}

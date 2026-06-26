@@ -1,35 +1,262 @@
 ---
-name: "gitlab"
-description: "Indexed by skills.sh from odyssey4me/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "odyssey4me"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/odyssey4me/agent-skills/gitlab"
-sourceUrl: "https://skills.sh/odyssey4me/agent-skills/gitlab"
+name: gitlab
+description: Create and manage GitLab issues, merge requests, pipelines, and repositories using the glab CLI. Use when asked to open an MR, review a merge request, check CI/CD pipelines, list issues, or manage code review on GitLab.
+metadata:
+  author: odyssey4me
+  version: "0.2.1"
+  category: code-hosting
+  tags: "issues, merge-requests, pipelines"
+  complexity: lightweight
+license: MIT
+allowed-tools: Bash($SKILL_DIR/scripts/gitlab.py:*)
 ---
 
-# gitlab
+# GitLab Skill
 
-> Indexed by skills.sh from odyssey4me/agent-skills
+This skill provides GitLab integration using the official `glab` CLI tool. A Python wrapper script produces markdown-formatted output for read/view operations. Action commands (create, merge, close, comment) should use `glab` directly.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** odyssey4me
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/odyssey4me/agent-skills/gitlab`
-- **Source URL:** [https://skills.sh/odyssey4me/agent-skills/gitlab](https://skills.sh/odyssey4me/agent-skills/gitlab)
+## Prerequisites
 
-## Overview
+**Install glab CLI**: [installation guide](https://gitlab.com/gitlab-org/cli#installation)
 
+## Authentication
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/odyssey4me/agent-skills/gitlab
+# Authenticate with GitLab
+glab auth login
+
+# Verify authentication
+glab auth status
 ```
+
+Supports GitLab.com, GitLab Dedicated, and GitLab Self-Managed instances.
+See [GitLab CLI Authentication](https://docs.gitlab.com/cli/#authentication) for details.
+
+## Script Usage
+
+The wrapper script (`scripts/gitlab.py`) formats output as markdown. Use it for read/view operations to get agent-consumable output. Use `glab` directly for action commands (create, merge, close, comment). See [permissions.md](references/permissions.md) for read/write classification of each command.
+
+```bash
+# Check glab CLI is installed and authenticated
+$SKILL_DIR/scripts/gitlab.py check
+
+# Issues
+$SKILL_DIR/scripts/gitlab.py issues list --repo GROUP/REPO
+$SKILL_DIR/scripts/gitlab.py issues view 123 --repo GROUP/REPO
+
+# Merge Requests
+$SKILL_DIR/scripts/gitlab.py mrs list --repo GROUP/REPO
+$SKILL_DIR/scripts/gitlab.py mrs view 456 --repo GROUP/REPO
+
+# Pipelines
+$SKILL_DIR/scripts/gitlab.py pipelines list --repo GROUP/REPO
+$SKILL_DIR/scripts/gitlab.py pipelines view 123456 --repo GROUP/REPO
+
+# Repositories
+$SKILL_DIR/scripts/gitlab.py repos list
+$SKILL_DIR/scripts/gitlab.py repos view GROUP/REPO
+```
+
+All commands support `--limit N` for list commands (default 30).
+
+## Commands (Direct glab Usage)
+
+For action commands, use `glab` directly:
+
+### Issues
+
+```bash
+glab issue list                    # List issues
+glab issue view 123                # View issue details
+glab issue create                  # Create new issue
+glab issue note 123                # Add comment
+glab issue close 123               # Close issue
+glab issue update 123 --label bug  # Edit issue
+```
+
+Full reference: [glab issue](https://docs.gitlab.com/cli/commands/glab_issue.html)
+
+### Merge Requests
+
+```bash
+glab mr list                       # List merge requests
+glab mr view 456                   # View MR details
+glab mr create                     # Create new MR
+glab mr approve 456                # Approve MR
+glab mr merge 456                  # Merge MR
+glab mr checkout 456               # Checkout MR branch
+glab mr diff 456                   # View MR diff
+glab mr note 456                   # Add comment to MR
+```
+
+Full reference: [glab mr](https://docs.gitlab.com/cli/commands/glab_mr.html)
+
+### Pipelines & CI/CD
+
+```bash
+glab ci list                       # List pipelines
+glab ci view 123456                # View pipeline details
+glab ci run                        # Trigger pipeline
+glab ci trace                      # Watch pipeline logs
+glab ci retry 123456               # Retry failed pipeline
+glab ci status                     # Show pipeline status
+```
+
+Full references:
+- [glab ci](https://docs.gitlab.com/cli/commands/glab_ci.html)
+- [glab pipeline](https://docs.gitlab.com/cli/commands/glab_pipeline.html)
+
+### Repositories
+
+```bash
+glab repo list                     # List repositories
+glab repo view GROUP/REPO          # View repository
+glab repo create                   # Create repository
+glab repo clone GROUP/REPO         # Clone repository
+glab repo fork GROUP/REPO          # Fork repository
+```
+
+Full reference: [glab repo](https://docs.gitlab.com/cli/commands/glab_repo.html)
+
+### Releases
+
+```bash
+glab release list                  # List releases
+glab release view v1.0.0           # View release details
+glab release create v1.0.0         # Create release
+glab release delete v1.0.0         # Delete release
+```
+
+Full reference: [glab release](https://docs.gitlab.com/cli/commands/glab_release.html)
+
+## Examples
+
+### Daily MR Review
+
+```bash
+# List MRs assigned to you
+glab mr list --assignee=@me
+
+# Review a specific MR
+$SKILL_DIR/scripts/gitlab.py mrs view 456
+glab mr diff 456
+glab mr approve 456
+
+# Verify approval was recorded
+$SKILL_DIR/scripts/gitlab.py mrs view 456  # check approval status
+```
+
+### Create Issue and Link MR
+
+```bash
+# Create issue
+glab issue create --title "Bug: Login fails" --description "Description" --label bug
+# Verify: note the issue number from output
+
+# Create MR that closes it (use issue number from above)
+glab mr create --title "Fix login bug" --description "Closes #123"
+# Verify MR was created and linked
+$SKILL_DIR/scripts/gitlab.py mrs view <number>
+```
+
+### Monitor CI Pipeline
+
+```bash
+# Check current pipeline status
+glab ci status
+
+# Watch pipeline logs in real-time
+glab ci trace
+
+# Retry failed jobs
+glab ci retry
+# Verify pipeline restarted
+$SKILL_DIR/scripts/gitlab.py pipelines list
+```
+
+See [common-workflows.md](references/common-workflows.md) for more examples.
+
+## Advanced Usage
+
+### JSON Output for Scripting
+
+```bash
+# Get JSON output
+glab issue list --output json
+
+# Process with jq
+glab mr list --output json | jq '.[] | "\(.iid): \(.title)"'
+```
+
+### GitLab API Access
+
+For operations not covered by glab commands:
+
+```bash
+# Make authenticated API request
+glab api projects/:id/issues
+
+# POST request
+glab api projects/:id/issues -X POST -f title="Issue" -f description="Text"
+
+# Process response
+glab api projects/:id | jq '.star_count'
+```
+
+Full reference: [glab api](https://docs.gitlab.com/cli/commands/glab_api.html)
+
+### Aliases for Frequent Operations
+
+```bash
+# Create shortcuts
+glab alias set mrs 'mr list --assignee=@me'
+glab alias set issues 'issue list --assignee=@me'
+glab alias set pipelines 'ci list'
+
+# Use them
+glab mrs
+glab issues
+glab pipelines
+```
+
+## Configuration
+
+```bash
+# View configuration
+glab config get
+
+# Set default editor
+glab config set editor vim
+
+# Set default Git protocol
+glab config set git_protocol ssh
+```
+
+Configuration stored in `~/.config/glab-cli/config.yml`
+
+## Model Guidance
+
+This skill wraps an official CLI. A fast, lightweight model is sufficient.
+
+## Troubleshooting
+
+```bash
+# Check authentication
+glab auth status
+
+# Re-authenticate
+glab auth login
+
+# Enable debug logging
+DEBUG=1 glab issue list
+
+# Check glab version
+glab version
+```
+
+## Official Documentation
+
+- **GitLab CLI Manual**: <https://docs.gitlab.com/cli/>
+- **GitLab CLI Repository**: <https://gitlab.com/gitlab-org/cli>
+- **GitLab API Documentation**: <https://docs.gitlab.com/ee/api/>
+- **GitLab CI/CD**: <https://docs.gitlab.com/ee/ci/>

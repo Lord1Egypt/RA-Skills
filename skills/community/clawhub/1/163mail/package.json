@@ -1,0 +1,15 @@
+{
+  "name": "163mail-skill",
+  "version": "1.0.0",
+  "description": "163 邮箱收发邮件技能",
+  "main": "index.js",
+  "dependencies": {
+    "docx": "^9.6.1",
+    "imap": "^0.8.19",
+    "mailparser": "^3.6.5",
+    "nodemailer": "^6.9.7"
+  },
+  "scripts": {
+    "install-deps": "npm install"
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "start_teleop",
+    "domain": "teleoperation",
+    "description": "Teleoperate the follower arm using the leader arm",
+    "command": "solo robo --teleop",
+    "inputs": [],
+    "parameters": {
+      "--robot-type": "SO100 | SO101 | Koch | bimanual_SO100 | bimanual_SO101 | RealMan",
+      "--leader-arms": "Leader arm ID from calibration config (e.g. leader_arm_1 or main_leader)",
+      "--follower-arms": "Follower arm ID from calibration config (e.g. follower_arm_1 or main_follower)",
+      "--cameras": "Optional: camera IDs and angles (omit flag entirely if no cameras needed)",
+      "--yes / -y": "Auto-apply saved settings when available (skip saved-settings prompt)"
+    },
+    "command_construction": "solo robo --teleop --robot-type <type> --leader-arms <leader_id> --follower-arms <follower_id> [--cameras <cam_config>]",
+    "port_detection": "Serial ports for leader and follower are auto-detected interactively by the tool — never ask the user for port paths.",
+    "explanation": "You move the leader arm by hand; the follower copies motions in real time. Used for demos, data collection, and testing before autonomous policies run. Bimanual: move both leaders to control both followers.",
+    "expected_output": "Teleop running — follower mirrors leader movement",
+    "validation": {
+      "type": "visual_physical",
+      "rule": "Follower arm physically moves when leader is moved"
+    },
+    "common_errors": [
+      "Connection error — tool auto-detects new ports and retries once automatically",
+      "failed to sync — check power voltages (12V follower, 5V leader on SO arms)",
+      "failed to read motor ids — run scan/diagnose; check cable integrity",
+      "Wrong leader/follower arm ID — check available IDs in ~/.solo/ config files"
+    ],
+    "notes": [
+      "Press Ctrl+C to stop",
+      "Camera config is optional — teleop works without cameras",
+      "Use -y to skip saved-settings prompt if settings were previously saved"
+    ],
+    "prerequisites": ["calibrate_arm (both arms)"],
+    "docs_ref": "/solobasic/teleop"
+  }
+]

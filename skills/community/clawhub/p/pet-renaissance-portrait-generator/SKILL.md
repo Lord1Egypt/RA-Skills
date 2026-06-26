@@ -1,35 +1,34 @@
 ---
-name: "Pet Renaissance Portrait Generator"
-description: "your pet into a royal Renaissance masterpiece — AI-powered royal pet portrait generator creates museum-quality oil painting portraits of dogs, cats, and any..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pet-renaissance-portrait-generator"
-sourceUrl: "https://clawhub.ai/skills/pet-renaissance-portrait-generator"
+name: pet-renaissance-portrait-generator
+description: your pet into a royal Renaissance masterpiece — AI-powered royal pet portrait generator creates museum-quality oil painting portraits of dogs, cats, and any pet as 17th-century aristocrats, medieval knights, or baroque nobility. Perfect for pet lovers, custom pet art, viral social media content, unique gift ideas, and personalized wall art via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Pet Renaissance Portrait Generator
 
-> your pet into a royal Renaissance masterpiece — AI-powered royal pet portrait generator creates museum-quality oil painting portraits of dogs, cats, and any...
+your pet into a royal Renaissance masterpiece — AI-powered royal pet portrait generator creates museum-quality oil painting portraits of dogs, cats, and any pet as 17th-century aristocrats, medieval knights, or baroque nobility. Perfect for pet lovers, custom pet art, viral social media content, unique gift ideas, and personalized wall art.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pet-renaissance-portrait-generator`
-- **Source URL:** [https://clawhub.ai/skills/pet-renaissance-portrait-generator](https://clawhub.ai/skills/pet-renaissance-portrait-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pet-renaissance-portrait-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create royal pet portrait ai generator images.
+
+## Quick start
+```bash
+node petrenaissanceportraitgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/pet-renaissance-portrait-generator
 ```

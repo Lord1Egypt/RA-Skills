@@ -1,0 +1,18 @@
+{
+  "name": "code_auto_fix",
+  "description": "自动运行代码并使用龙虾LLM修复，直接返回修复后代码",
+  "version": "1.0.0",
+  "author": "user",
+  "type": "mcp",
+  "mcp": {
+    "command": "python3",
+    "args": [
+      "skill.py"
+    ]
+  },
+  "tools": [
+    "run_python",
+    "run_c",
+    "run_assembly"
+  ]
+}

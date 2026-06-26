@@ -1,0 +1,213 @@
+# AI 市场日报 — 蜂巢配置
+
+# 花园感知
+garden:
+  # 扫描信号源
+  signals:
+    news_heat:
+      weight: 0.35
+      sources:
+        - "36kr"
+        - "量子位"
+        - "机器之心"
+        - "新智元"
+        - "AI前线"
+      search_queries:
+        - "国内大模型 最新发布"
+        - "AI大模型 新品上线"
+        - "大模型 API 更新"
+        - "国产大模型 价格调整"
+    community:
+      weight: 0.25
+      sources:
+        - "知乎"
+        - "V2EX"
+        - "即刻"
+      search_queries:
+        - "大模型 推荐"
+        - "国产AI模型 对比"
+    release:
+      weight: 0.15
+      # GitHub/GitLab release 监控
+      keywords: ["model release", "API update", "pricing update"]
+    price_change:
+      weight: 0.10
+    docs_update:
+      weight: 0.15
+
+  # bloom 阈值
+  bloom:
+    active_threshold: 0.4      # > 0.4 视为"开花"，全量采蜜
+    declining_threshold: 0.2   # < 0.2 视为"凋谢"，轻量检查
+    new_vendor_boost: 0.15     # 新发现厂商初始加成
+    decay_rate: 0.05           # 每日自然衰减（无新信号时）
+    max_score: 1.0
+
+# 采蜜目标（种子清单，会被花园感知动态更新）
+seed_vendors:
+  # 国内第一梯队
+  - name: "百度"
+    aliases: ["文心", "文心一言", "ERNIE"]
+    urls:
+      news: "https://yiyan.baidu.com"
+      pricing: "https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Dffk0dtj7"
+      api: "https://cloud.baidu.com/product/wenxinworkshop"
+    category: "tier1"
+
+  - name: "阿里"
+    aliases: ["通义", "通义千问", "Qwen", "百炼"]
+    urls:
+      news: "https://tongyi.aliyun.com"
+      pricing: "https://help.aliyun.com/zh/model-studio/getting-started/models"
+      api: "https://dashscope.console.aliyun.com"
+    category: "tier1"
+
+  - name: "字节"
+    aliases: ["豆包", "Doubao", "火山引擎"]
+    urls:
+      news: "https://www.volcengine.com/product/doubao"
+      pricing: "https://www.volcengine.com/pricing?category=doubao"
+      api: "https://console.volcengine.com/ark"
+    category: "tier1"
+
+  - name: "智谱"
+    aliases: ["GLM", "ChatGLM", "智谱清言"]
+    urls:
+      news: "https://chatglm.cn"
+      pricing: "https://open.bigmodel.cn/pricing"
+      api: "https://open.bigmodel.cn"
+    category: "tier1"
+
+  - name: "DeepSeek"
+    aliases: ["深度求索"]
+    urls:
+      news: "https://platform.deepseek.com"
+      pricing: "https://api-docs.deepseek.com/quick_start/pricing"
+      api: "https://platform.deepseek.com"
+    category: "tier1"
+
+  - name: "月之暗面"
+    aliases: ["Kimi", "Moonshot"]
+    urls:
+      news: "https://kimi.moonshot.cn"
+      pricing: "https://platform.moonshot.cn/docs/pricing"
+      api: "https://platform.moonshot.cn"
+    category: "tier1"
+
+  - name: "MiniMax"
+    aliases: ["海螺AI", "hailuo"]
+    urls:
+      news: "https://hailuoai.com"
+      pricing: "https://platform.minimaxi.com/document/Price"
+      api: "https://platform.minimaxi.com"
+    category: "tier1"
+
+  # 国内第二梯队
+  - name: "零一万物"
+    aliases: ["Yi", "01.AI"]
+    urls:
+      news: "https://www.01.ai"
+      pricing: "https://platform.lingyiwanwu.com/docs#pricing"
+      api: "https://platform.lingyiwanwu.com"
+    category: "tier2"
+
+  - name: "阶跃星辰"
+    aliases: ["Step", "跃问"]
+    urls:
+      news: "https://stepfun.com"
+      pricing: "https://platform.stepfun.com/pricing"
+      api: "https://platform.stepfun.com"
+    category: "tier2"
+
+  - name: "讯飞"
+    aliases: ["星火", "Spark"]
+    urls:
+      news: "https://xinghuo.xfyun.cn"
+      pricing: "https://xinghuo.xfyun.cn/sparkapi"
+      api: "https://console.xfyun.cn"
+    category: "tier2"
+
+  - name: "华为"
+    aliases: ["盘古", "Pangu"]
+    urls:
+      news: "https://www.huaweicloud.com/product/pangu.html"
+      pricing: "https://www.huaweicloud.com/product/pangu.html"
+      api: "https://console.huaweicloud.com"
+    category: "tier2"
+
+  - name: "蚂蚁"
+    aliases: ["百灵", "Ring", "蚂蚁集团"]
+    urls:
+      news: "https://www.antgroup.com/news"
+      pricing: "https://open.bigmodel.cn/pricing"
+      api: "https://platform.alipay.com"
+    category: "tier2"
+
+  - name: "商汤"
+    aliases: ["日日新", "SenseNova", "商量"]
+    urls:
+      news: "https://www.sensetime.com/cn/news-detail"
+      pricing: "https://platform.sensenova.cn/pricing"
+      api: "https://platform.sensenova.cn"
+    category: "tier2"
+
+  - name: "昆仑万维"
+    aliases: ["天工", "Skywork"]
+    urls:
+      news: "https://www.tiangong.cn"
+      pricing: "https://platform.tiangong.cn/pricing"
+      api: "https://platform.tiangong.cn"
+    category: "tier2"
+
+  # 国际（国内可访问/重要参考）
+  - name: "Google"
+    aliases: ["Gemini", "Vertex AI"]
+    urls:
+      news: "https://blog.google/technology/ai/"
+      pricing: "https://ai.google.dev/pricing"
+      api: "https://aistudio.google.com"
+    category: "international"
+
+  - name: "Anthropic"
+    aliases: ["Claude"]
+    urls:
+      news: "https://www.anthropic.com/news"
+      pricing: "https://www.anthropic.com/pricing"
+      api: "https://console.anthropic.com"
+    category: "international"
+
+  - name: "OpenAI"
+    aliases: ["GPT", "ChatGPT"]
+    urls:
+      news: "https://openai.com/blog"
+      pricing: "https://openai.com/api/pricing"
+      api: "https://platform.openai.com"
+    category: "international"
+
+# 排名权重（可演化）
+ranking:
+  comprehensive:
+    capability: 0.35       # 能力分（benchmark）
+    cost_effectiveness: 0.30  # 性价比分（能力/价格）
+    ecosystem: 0.20       # 生态分（API成熟度/文档/社区）
+    momentum: 0.15        # 势头分（近期增长/热度变化）
+  
+  cost_effectiveness:
+    # 性价比 = 能力分 / 归一化价格
+    # 价格归一化方式：取每百万token成本，按输入/输出 7:3 加权
+    input_weight: 0.7
+    output_weight: 0.3
+
+# 日报输出
+output:
+  dir: "/home/hongliang/.openclaw/workspace/ai-daily-report/output"
+  format: "markdown"       # markdown / feishu_card / both
+  feishu_target: ""         # 飞书推送目标（open_id）
+  archive_days: 90          # 保留天数
+
+# Playwright 配置
+playwright:
+  headless: true
+  timeout: 30000            # 30s 页面超时
+  navigation_timeout: 20000
+  retries: 2

@@ -1,0 +1,31 @@
+{
+    "date": "2026-03-23",
+    "timestamp": "2026-03-23 15:30:00",
+    "source": "东方财富",
+    "industries": [
+        {"rank": 1, "name": "银行", "change_percent": 1.2, "volume": 520000000, "net_inflow": 520000000, "leader": "招商银行", "leader_change": 2.5},
+        {"rank": 2, "name": "石油石化", "change_percent": 0.8, "volume": 310000000, "net_inflow": 310000000, "leader": "中国石油", "leader_change": 1.8},
+        {"rank": 3, "name": "煤炭", "change_percent": 0.5, "volume": 180000000, "net_inflow": 180000000, "leader": "中国神华", "leader_change": 1.2},
+        {"rank": 4, "name": "公用事业", "change_percent": 0.3, "volume": 50000000, "net_inflow": 50000000, "leader": "长江电力", "leader_change": 0.8},
+        {"rank": 5, "name": "交通运输", "change_percent": 0.1, "volume": 20000000, "net_inflow": -2000000, "leader": "京沪高铁", "leader_change": 0.5},
+        {"rank": 6, "name": "建筑装饰", "change_percent": -0.2, "volume": 30000000, "net_inflow": -50000000, "leader": "中国建筑", "leader_change": -0.5},
+        {"rank": 7, "name": "房地产", "change_percent": -0.5, "volume": 40000000, "net_inflow": -80000000, "leader": "万科 A", "leader_change": -1.2},
+        {"rank": 8, "name": "钢铁", "change_percent": -0.8, "volume": 60000000, "net_inflow": -100000000, "leader": "宝钢股份", "leader_change": -1.5},
+        {"rank": 9, "name": "有色金属", "change_percent": -1.2, "volume": 80000000, "net_inflow": -150000000, "leader": "紫金矿业", "leader_change": -2.0},
+        {"rank": 10, "name": "基础化工", "change_percent": -1.5, "volume": 90000000, "net_inflow": -180000000, "leader": "万华化学", "leader_change": -2.5},
+        {"rank": 26, "name": "医药生物", "change_percent": -3.2, "volume": 510000000, "net_inflow": -510000000, "leader": "恒瑞医药", "leader_change": -4.0},
+        {"rank": 27, "name": "通信", "change_percent": -3.5, "volume": 630000000, "net_inflow": -630000000, "leader": "中兴通讯", "leader_change": -4.5},
+        {"rank": 28, "name": "传媒", "change_percent": -3.8, "volume": 850000000, "net_inflow": -850000000, "leader": "分众传媒", "leader_change": -5.0},
+        {"rank": 29, "name": "电子", "change_percent": -4.2, "volume": 1280000000, "net_inflow": -1280000000, "leader": "立讯精密", "leader_change": -5.5},
+        {"rank": 30, "name": "计算机", "change_percent": -4.5, "volume": 1520000000, "net_inflow": -1520000000, "leader": "海康威视", "leader_change": -6.0}
+    ],
+    "summary": {
+        "total_industries": 30,
+        "up_count": 5,
+        "down_count": 25,
+        "limit_up": 2,
+        "limit_down": 15,
+        "total_volume": 5800000000,
+        "total_turnover": 850000000000
+    }
+}

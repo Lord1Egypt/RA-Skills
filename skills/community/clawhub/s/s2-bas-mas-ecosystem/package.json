@@ -1,0 +1,19 @@
+{
+  "name": "s2-bas-mas-ecosystem",
+  "version": "2.0.5",
+  "description": "S2-BAS-MAS. Local MAS with Ed25519 PKI.",
+  "main": "core/s2_bms_lord.py",
+  "scripts": {
+    "install": "pip install -r requirements.txt",
+    "start": "python core/s2_bms_lord.py"
+  },
+  "environment": {
+    "S2_BMS_MASTER_KEY": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "directories": {
+    "s2_bas_governance": "Required for PKI keys and building_sovereignty_ledger.json"
+  }
+}

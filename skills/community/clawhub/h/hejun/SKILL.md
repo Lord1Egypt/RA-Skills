@@ -1,35 +1,75 @@
----
-name: "和君集团"
-description: "HeJun提供企业战略规划、投资银行服务及商学教育，专注中国市场管理咨询与产业研究，服务多行业企业。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hejun"
-sourceUrl: "https://clawhub.ai/skills/hejun"
----
+# HeJun - 和君集团
 
-# 和君集团
+> 🏢 中国领先的管理咨询与投资机构
 
-> HeJun提供企业战略规划、投资银行服务及商学教育，专注中国市场管理咨询与产业研究，服务多行业企业。
+## 官方网站
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hejun`
-- **Source URL:** [https://clawhub.ai/skills/hejun](https://clawhub.ai/skills/hejun)
+🔗 **https://www.hejun.com/**
 
-## Overview
+## 关于和君
 
+**和君集团**是中国本土规模领先的综合性咨询服务机构，由著名管理学家王明夫先生创立。集团以"和君咨询"为核心品牌，致力于为企业提供全方位的管理咨询与战略服务。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hejun
+## 核心业务
+
 ```
+┌─────────────────────────────────────────┐
+│            🏢 和君集团                   │
+│         HeJun Group                     │
+├─────────────────────────────────────────┤
+│  📊 战略咨询    💼 投资银行              │
+│  🏭 产业研究    📈 资本运作              │
+│  👥 人力资源    🎓 商学教育              │
+└─────────────────────────────────────────┘
+```
+
+### 📊 管理咨询
+- 企业战略规划
+- 组织变革与流程优化
+- 市场营销与品牌战略
+- 人力资源管理体系
+
+### 💼 投资银行
+- 企业并购重组
+- IPO 上市辅导
+- 私募股权融资
+- 资本市场服务
+
+### 🎓 和君商学
+- 企业家培训
+- 高管领导力发展
+- 和君商学院 MBA 课程
+- 产业研究与知识服务
+
+## 服务领域
+
+| 行业 | 服务内容 |
+|------|----------|
+| 🏥 医药医疗 | 医药、医疗器械、大健康战略 |
+| ⚡ 能源 | 中海油等能源企业咨询 |
+| 🍚 粮油食品 | 中粮集团等龙头企业服务 |
+| 🚗 制造业 | 美的、吉利汽车等制造企业 |
+| 🏗️ 基建地产 | 基础设施与房地产行业 |
+| 💻 科技 | 科技创新企业战略规划 |
+
+## 核心优势
+
+- **深耕中国市场** — 20+ 年本土咨询经验
+- **产学研结合** — 咨询 + 教育 + 投资三位一体
+- **行业专家团队** — 世界500强企业特邀战略专家
+- **实战导向** — 注重落地执行与效果
+
+## 企业理念
+
+> "和衷共济，君子务本"
+
+和君以儒家"和"的理念为核心，强调与客户、员工、社会的和谐共赢，追求长期价值创造。
+
+## 联系方式
+
+- 🌐 官网：[www.hejun.com](https://www.hejun.com/)
+- 📍 地址：北京市朝阳区北苑路86号院213号楼
+
+---
+
+**HeJun** — 与中国企业共成长 🌱

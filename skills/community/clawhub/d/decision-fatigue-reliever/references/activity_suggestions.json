@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0",
+  "description": "Activity recommendation database",
+  "categories": {
+    "physical": {
+      "name": "Fitness & Sports",
+      "icon": "💪",
+      "activities": [
+        {"name": "Running", "duration": [30, 60], "energy_level": "medium-high", "budget": "free", "solo_friendly": true},
+        {"name": "Gym", "duration": [45, 90], "energy_level": "high", "budget": "medium", "solo_friendly": true},
+        {"name": "Yoga", "duration": [60, 90], "energy_level": "low-medium", "budget": "low", "solo_friendly": true},
+        {"name": "Swimming", "duration": [45, 60], "energy_level": "medium", "budget": "low", "solo_friendly": true},
+        {"name": "Cycling", "duration": [60, 180], "energy_level": "medium", "budget": "medium", "solo_friendly": true},
+        {"name": "Ball sports", "duration": [60, 120], "energy_level": "high", "budget": "low", "solo_friendly": false},
+        {"name": "Hiking", "duration": [120, 300], "energy_level": "medium", "budget": "free", "solo_friendly": true},
+        {"name": "Dance", "duration": [60, 90], "energy_level": "medium-high", "budget": "medium", "solo_friendly": false}
+      ]
+    },
+    "mental": {
+      "name": "Mental Activities",
+      "icon": "🧠",
+      "activities": [
+        {"name": "Reading", "duration": [30, 180], "energy_level": "low", "budget": "free", "solo_friendly": true},
+        {"name": "Learning new skills", "duration": [60, 120], "energy_level": "medium", "budget": "free", "solo_friendly": true},
+        {"name": "Writing", "duration": [30, 120], "energy_level": "medium", "budget": "free", "solo_friendly": true},
+        {"name": "Chess/Board games", "duration": [60, 240], "energy_level": "medium", "budget": "low", "solo_friendly": false},
+        {"name": "Meditation", "duration": [10, 60], "energy_level": "low", "budget": "free", "solo_friendly": true}
+      ]
+    },
+    "social": {
+      "name": "Social Activities",
+      "icon": "👥",
+      "activities": [
+        {"name": "Dining out", "duration": [90, 180], "energy_level": "medium", "budget": "medium", "solo_friendly": false},
+        {"name": "Movie", "duration": [120, 180], "energy_level": "low", "budget": "medium", "solo_friendly": true},
+        {"name": "Karaoke", "duration": [120, 240], "energy_level": "medium", "budget": "medium", "solo_friendly": false},
+        {"name": "Shopping", "duration": [120, 240], "energy_level": "low", "budget": "low", "solo_friendly": true},
+        {"name": "Cafe chat", "duration": [60, 180], "energy_level": "low", "budget": "low", "solo_friendly": true}
+      ]
+    },
+    "creative": {
+      "name": "Creative Activities",
+      "icon": "🎨",
+      "activities": [
+        {"name": "Painting", "duration": [60, 180], "energy_level": "medium", "budget": "low", "solo_friendly": true},
+        {"name": "DIY crafts", "duration": [120, 240], "energy_level": "medium", "budget": "medium", "solo_friendly": true},
+        {"name": "Photography", "duration": [120, 300], "energy_level": "medium", "budget": "free", "solo_friendly": true},
+        {"name": "Cooking/Baking", "duration": [60, 180], "energy_level": "medium", "budget": "low", "solo_friendly": true}
+      ]
+    },
+    "relaxing": {
+      "name": "Relaxation",
+      "icon": "🛋️",
+      "activities": [
+        {"name": "Binge watching", "duration": [120, 300], "energy_level": "low", "budget": "free", "solo_friendly": true},
+        {"name": "SPA/Massage", "duration": [90, 120], "energy_level": "low", "budget": "high", "solo_friendly": true},
+        {"name": "Park walk", "duration": [30, 90], "energy_level": "low", "budget": "free", "solo_friendly": true},
+        {"name": "Listening to music", "duration": [30, 180], "energy_level": "low", "budget": "free", "solo_friendly": true}
+      ]
+    }
+  },
+  "decision_factors": {
+    "energy_mapping": {
+      "high": ["Running", "Gym", "Ball sports", "Dance", "Hiking"],
+      "medium": ["Yoga", "Cycling", "Learning", "Writing", "Painting", "Crafts", "Photography", "Cooking"],
+      "low": ["Reading", "Meditation", "Movie", "Home", "SPA", "Walking", "Music"]
+    },
+    "budget_mapping": {
+      "free": ["Running", "Reading", "Meditation", "Hiking", "Photography", "Park walk", "Music"],
+      "low": ["Yoga", "Swimming", "Ball sports", "Writing", "Chess", "Shopping", "Cafe", "Painting", "Cooking"],
+      "medium": ["Gym", "Cycling", "Dining", "Movie", "Karaoke", "DIY crafts"],
+      "high": ["SPA/Massage", "Fine dining", "Personal training"]
+    },
+    "companions_mapping": {
+      "alone": ["Running", "Reading", "Meditation", "Writing", "Painting", "Photography", "Home", "Walking"],
+      "partner": ["Movie", "Restaurant", "Coffee", "Walking", "Cooking"],
+      "friends": ["Dining", "Karaoke", "Ball sports", "Board games", "Shopping", "Hiking"],
+      "family": ["Dining", "Movie", "Park", "Shopping", "Short trip"]
+    },
+    "time_slots": {
+      "morning": ["Running", "Meditation", "Reading", "Yoga"],
+      "afternoon": ["Shopping", "Coffee", "Learning", "Creative"],
+      "evening": ["Gym", "Movie", "Dining", "Home"],
+      "weekend": ["Hiking", "Cycling", "Creative", "Social"]
+    }
+  }
+}

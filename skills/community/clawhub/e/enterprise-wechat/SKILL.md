@@ -1,35 +1,27 @@
 ---
 name: "WeChat Work"
 description: "提供企业内部通讯、私域流量管理及办公协同指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enterprise-wechat"
-sourceUrl: "https://clawhub.ai/skills/enterprise-wechat"
 ---
 
-# WeChat Work
+# 企业微信
 
-> 提供企业内部通讯、私域流量管理及办公协同指引。
+## 筛选项
+- 类别/领域/功能（核心/进阶）
+- 场景/适用时段/设备要求（移动端/网页版/跨端）
+- 状态（实时/离线/授权/VIP特权/免费）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enterprise-wechat`
-- **Source URL:** [https://clawhub.ai/skills/enterprise-wechat](https://clawhub.ai/skills/enterprise-wechat)
+## 返回字段
+- 操作摘要/交互流程/关键入口
+- 功能亮点/提效工具/隐藏玩法/避坑指南
+- 状态追踪/数据同步/消息提醒/安全策略
 
-## Overview
+## 示例请求
+- “如何快速使用 企业微信 处理 [具体场景任务] ？”
+- “企业微信 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合产品迭代与社区反馈进行内容更新
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enterprise-wechat
-```
+## 注意事项
+- 保护个人隐私，谨慎进行敏感授权
+- 部分功能涉及第三方接口，稳定性受合作方波动影响

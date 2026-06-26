@@ -1,0 +1,15 @@
+{
+  "name": "irs-strategist",
+  "version": "1.0.0",
+  "description": "IRS Strategy Development Skill",
+  "openclaw": {
+    "type": "skill",
+    "category": "productivity",
+    "tags": [
+      "irs",
+      "strategy",
+      "quantitative trading",
+      "quant research"
+    ]
+  }
+}

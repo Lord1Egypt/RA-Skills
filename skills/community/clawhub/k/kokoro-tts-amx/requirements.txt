@@ -1,0 +1,4 @@
+torch>=2.3
+kokoro>=0.9.4
+misaki[zh]>=0.9.4
+numpy

@@ -1,0 +1,34 @@
+{
+  "name": "synapse",
+  "version": "1.1.0",
+  "author": "shadoprizm",
+  "description": "Self-learning memory engine that augments OpenClaw's built-in memory tools (memory_search/memory_get) with structured learning, preference tracking, pattern detection, and cross-session intelligence consolidation.",
+  "tags": ["memory", "learning", "preferences", "patterns", "intelligence", "profile"],
+  "category": "utility",
+  "install": {
+    "steps": [
+      "clawhub install shadoprizm/synapse-memory",
+      "No external dependencies required — uses OpenClaw's built-in memory tools"
+    ],
+    "source": "https://github.com/shadoprizm/skillforge",
+    "notes": "Instruction-only skill. No scripts, no Python, no ML model downloads. All operations use native OpenClaw tools (memory_search, memory_get, read, write, edit)."
+  },
+  "env": {
+    "optional": ["SYNAPSE_DATA_DIR"],
+    "notes": "SYNAPSE_DATA_DIR overrides the default memory path. Defaults to ~/.openclaw/workspace-astra/memory/synapse/"
+  },
+  "credentials": {
+    "required": "none",
+    "notes": "No external API keys, no network access, no third-party services. All data stays local."
+  },
+  "network": {
+    "calls": [],
+    "notes": "Zero network access. Synapse operates entirely on local files using OpenClaw's built-in tools. No telemetry, no external APIs, no data transmission."
+  },
+  "privacy": {
+    "data_access": "Reads ~/.openclaw/sessions/ and workspace memory files locally",
+    "data_storage": "Writes structured JSON and markdown to ~/.openclaw/workspace-astra/memory/synapse/",
+    "redaction": "Does NOT store API keys, passwords, tokens, or sensitive credentials. Agents are instructed to skip sensitive content during learning cycles.",
+    "persistence": "Local files only. No cloud storage, no external backup."
+  }
+}

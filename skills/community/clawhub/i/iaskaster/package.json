@@ -1,0 +1,28 @@
+{
+  "name": "iaskaster",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "scripts": {
+    "build": "bash build.sh",
+    "start": "node index.js",
+    "list": "node index.js list",
+    "download": "node index.js download",
+    "balance": "node index.js balance",
+    "recharge": "node index.js recharge"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.19.0"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.40.0"
+  }
+}

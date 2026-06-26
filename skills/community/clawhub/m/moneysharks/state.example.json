@@ -1,0 +1,29 @@
+{
+  "halt": false,
+  "circuit_breaker": false,
+  "consecutive_errors": 0,
+  "daily_loss": 0.0,
+  "last_run": null,
+  "account": {
+    "equity": 1000,
+    "available_margin": 1000,
+    "daily_pnl": 0
+  },
+  "positions": [],
+  "orders": [],
+  "known_open_positions": {},
+  "last_close_ts": {},
+  "metrics": {
+    "last_review_trade_count": 0,
+    "last_review_outcomes": {},
+    "win_rate": 0.0,
+    "avg_pnl": 0.0,
+    "total_pnl": 0.0,
+    "max_loss_streak": 0,
+    "confidence_multiplier": 1.0,
+    "effective_leverage_cap": null,
+    "recommended_min_confidence": 0.55,
+    "leverage_reduction_active": false,
+    "lessons": []
+  }
+}

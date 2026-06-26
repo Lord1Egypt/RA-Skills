@@ -1,35 +1,76 @@
 ---
-name: "中国官方经济资讯"
+name: cn-economy-news
 description: "获取中国经济资讯。仅从官方权威媒体（中国政府网、新华网、人民网、国家统计局、央视财经、中国经济网）抓取高质量经济新闻，自动过滤广告和低质量内容。触发词：中国经济、经济资讯、经济新闻、财经新闻、经济政策、宏观经济、GDP、CPI、PMI、货币政策、财政政策、今日财经。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-economy-news"
-sourceUrl: "https://clawhub.ai/skills/cn-economy-news"
 ---
 
-# 中国官方经济资讯
+# 中国经济资讯 Skill
 
-> 获取中国经济资讯。仅从官方权威媒体（中国政府网、新华网、人民网、国家统计局、央视财经、中国经济网）抓取高质量经济新闻，自动过滤广告和低质量内容。触发词：中国经济、经济资讯、经济新闻、财经新闻、经济政策、宏观经济、GDP、CPI、PMI、货币政策、财政政策、今日财经。
+从官方权威媒体获取高质量中国经济资讯，自动过滤广告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-economy-news`
-- **Source URL:** [https://clawhub.ai/skills/cn-economy-news](https://clawhub.ai/skills/cn-economy-news)
+## 数据源（仅限官方媒体）
 
-## Overview
+| 来源 | 域名 | 图标 | 侧重 |
+|:---|:---|:---:|:---|
+| 中国政府网 | gov.cn | 🏛️ | 政策法规 |
+| 新华网 | news.cn / xinhuanet.com | 📰 | 国家通讯社 |
+| 人民网 | people.com.cn | 📢 | 深度分析 |
+| 国家统计局 | stats.gov.cn | 📊 | 经济数据 |
+| 央视财经 | cctv.com | 📺 | 热点解读 |
+| 中国经济网 | ce.cn | 📈 | 综合财经 |
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-economy-news
+### Step 1: 多策略抓取（按优先级尝试）
+
+**策略 A — web_search（首选）**：如果 web_search 工具可用，直接用关键词搜索，结果最准确。
+
 ```
+web_search: "中国经济 最新" / "经济政策" / 用户指定关键词
+```
+
+**策略 B — 直接抓取官网页面**：用 web_fetch 直接访问官方网站首页或频道页。
+
+```
+web_fetch: https://www.ce.cn/              （中国经济网首页，内容丰富）
+web_fetch: http://finance.people.com.cn/    （人民网财经）
+web_fetch: http://www.news.cn/fortune/      （新华网财经）
+```
+
+**策略 C — 脚本工具（兜底）**：运行 `scripts/fetch_news.py`。
+
+```bash
+python3 scripts/fetch_news.py --limit 15 --keyword 经济
+```
+
+### Step 2: 严格过滤
+
+**必须丢弃**：
+- 非以上 6 个官方域名的内容
+- 标题含广告词：广告、推广、赞助、优惠券、折扣、限时、抢购、免费领、理财产品、稳赚、暴涨、代理、加盟、招商、揭秘、震惊
+- 标题 < 8 字或 > 80 字
+- 纯视频/图集/专题索引页
+
+### Step 3: 格式化输出
+
+按来源分组，输出格式：
+
+```
+📅 **中国经济资讯** | 2026-03-05 20:00
+
+### 🏛️ 中国政府网
+1. 标题（链接）
+2. 标题（链接）
+
+### 📊 国家统计局
+1. 标题（链接）
+```
+
+### Step 4: 深度阅读（用户要求时）
+
+用 web_fetch 抓取正文，提炼 3-5 个关键要点。
+
+## 注意事项
+
+- 永远不包含自媒体、营销号、商业网站的内容
+- 搜索受阻时换策略，不要卡死在一种方式上
+- 明确告知用户资讯的时效性

@@ -1,0 +1,99 @@
+{
+  "name": "context-compactor",
+  "version": "1.0.0",
+  "description": "上下文压缩代理，采用分层压缩策略，基于内存使用触发机制。处理HOT/WARM/COLD三层数据，优化token使用。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "compression",
+    "memory",
+    "optimization",
+    "token",
+    "management",
+    "hierarchical",
+    "monitoring"
+  ],
+  "categories": [
+    "utility",
+    "optimization",
+    "memory-management"
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "sqlite3": "*"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "INSTALL.md",
+    "skill.json",
+    "config.json",
+    "requirements.txt",
+    "*.py",
+    "*.sh",
+    "logs/",
+    "__pycache__/"
+  ],
+  "triggers": [
+    "压缩上下文",
+    "优化内存",
+    "减少token使用",
+    "长时间对话",
+    "会话历史太长",
+    "保留重要信息",
+    "删除冗余内容",
+    "复杂任务",
+    "上下文管理",
+    "token限制",
+    "上下文窗口不足",
+    "自动清理对话历史"
+  ],
+  "usage": {
+    "start": "./start_system.sh",
+    "stop": "./stop_system.sh",
+    "status": "./check_status.sh",
+    "compress": "python3 integration.py --compress",
+    "report": "python3 integration.py --report"
+  },
+  "features": [
+    "实时监控会话上下文",
+    "自动触发压缩优化",
+    "分层数据管理（HOT/WARM/COLD）",
+    "多种触发机制（内存、时间、事件）",
+    "详细压缩报告和统计",
+    "可配置的压缩策略",
+    "API接口支持",
+    "完整的日志系统"
+  ],
+  "configuration": {
+    "hot_layer": {
+      "max_items": 20,
+      "importance_threshold": 0.7,
+      "retention_days": 1
+    },
+    "warm_layer": {
+      "max_items": 100,
+      "importance_threshold": 0.4,
+      "retention_days": 7
+    },
+    "cold_layer": {
+      "max_items": 500,
+      "importance_threshold": 0.2,
+      "retention_days": 30
+    },
+    "triggers": {
+      "memory_threshold": 0.7,
+      "message_threshold": 50,
+      "time_interval_hours": 1
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/context-compactor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://clawhub.com/skills/context-compactor"
+}

@@ -1,35 +1,70 @@
 ---
-name: "viral-article-deconstructor"
-description: "深度拆解爆款文章，分析其核心观点、说服策略、情绪触发点、金句及语言风格。适用于分析高流量内容、学习爆款写作技巧以及内容营销研究。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/viral-article-deconstructor"
-sourceUrl: "https://clawhub.ai/skills/viral-article-deconstructor"
+name: viral-article-deconstructor
+version: 1.0.0
+description: 深度拆解爆款文章，分析其核心观点、说服策略、情绪触发点、金句及语言风格。适用于分析高流量内容、学习爆款写作技巧以及内容营销研究。
 ---
 
-# viral-article-deconstructor
+# 爆款文章拆解指南 (Viral Article Deconstructor)
 
-> 深度拆解爆款文章，分析其核心观点、说服策略、情绪触发点、金句及语言风格。适用于分析高流量内容、学习爆款写作技巧以及内容营销研究。
+本 Skill 用于深度拆解和分析爆款文章，通过多维度的解构，揭示文章如何吸引读者、触发情绪并实现广泛传播。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/viral-article-deconstructor`
-- **Source URL:** [https://clawhub.ai/skills/viral-article-deconstructor](https://clawhub.ai/skills/viral-article-deconstructor)
+## 拆解流程
 
-## Overview
+1. **阅读与感知**：通读全文，记录初次阅读时的情绪波动点。
+2. **结构化拆解**：按照指定的 10 个维度进行系统分析。
+3. **句式提炼**：专项提取“情绪价值”和“刺痛感”句式。
+4. **总结建议**：基于拆解结果，总结该文章可复用的爆款逻辑。
 
+## 拆解格式规范
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/viral-article-deconstructor
-```
+在执行拆解任务时，必须严格遵守以下输出格式：
+
+### 1. 核心观点 (Core Viewpoint)
+提炼文章最根本的立意或主张（一句话总结）。
+
+### 2. 副观点 (Sub-viewpoints)
+列出支撑核心观点的 2-3 个关键分论点。
+
+### 3. 说服策略 (Persuasion Strategies)
+分析作者如何说服读者（如：权威背书、数据支撑、对比法、归谬法、故事驱动等）。
+
+### 4. 情绪触发点 (Emotional Triggers)
+识别文章中引发读者共鸣、愤怒、焦虑、优越感或感动的具体段落或主题。
+
+### 5. 金句 (Golden Quotes)
+摘录文章中最具传播力、最发人深省的原创语句。
+
+### 6. 情感曲线分析 (Emotional Curve Analysis)
+描述读者在阅读过程中的情绪变化轨迹（如：好奇 -> 压抑 -> 爆发 -> 释怀）。
+
+### 7. 情感层次 (Emotional Layers)
+分析文章触及的情绪深度（从表层的感官刺激到深层的价值观认同）。
+
+### 8. 论证方式多样性 (Diversity of Argumentation)
+分析文章使用了哪些论证手段（事实、逻辑、情感、寓言等）及其分布。
+
+### 9. 视角转化分析 (Perspective Shift Analysis)
+分析作者如何在“我”、“你”、“他”或“上帝视角”之间切换，以增强代入感。
+
+### 10. 语言风格特征 (Language Style Characteristics)
+总结文章的用词偏好、句式长短、语气基调（如：犀利、温情、专业、幽默等）。
+
+---
+
+## 专项句式提炼
+
+除了上述结构化分析外，还需完成以下两类句式的专项提炼：
+
+### 提炼所有给观众制造情绪价值的句式
+*   **定义**：让读者感到被理解、被治愈、获得力量、产生优越感或愉悦感的句子。
+*   **示例**：“你不是在虚度光阴，你是在向下扎根。”
+
+### 提炼所有刺痛观众的句式
+*   **定义**：戳中读者痛点、揭露残酷真相、制造焦虑或引起强烈反思的句子。
+*   **示例**：“你以为你在努力，其实你只是在用勤奋掩盖思维的懒惰。”
+
+## 使用建议
+
+- 在分析时，不仅要列出内容，还要简要说明“为什么”有效。
+- 情感曲线可以用简单的文字图示表示，例如：`[平稳] --- [拉升] --- [最高点] --- [回落/沉思]`。
+- 对于长文章，可以先进行段落归类再进行整体拆解。

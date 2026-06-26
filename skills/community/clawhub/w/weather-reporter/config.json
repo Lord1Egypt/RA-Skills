@@ -1,0 +1,11 @@
+{
+    "zhipuAI": {
+        "api_key": "YOUR_API_KEY",
+        "model": "CogView-3-Flash"
+    },
+    "llm": {
+        "api_key": "YOUR_API_KEY",
+        "base_url": "https://opencode.ai/zen/v1",
+        "model": "minimax-m2.5-free"
+    }
+}

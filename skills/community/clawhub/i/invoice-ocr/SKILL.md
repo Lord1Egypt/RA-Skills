@@ -1,35 +1,118 @@
 ---
-name: "发票内容识别"
-description: "增值税发票识别技能：自动识别 PDF（单页/多页）或各种常见图片格式（PNG/JPG等）的发票，调用百度云增值税发票 OCR API 提取关键信息，输出结构化 Excel 报告。适用于以下场景： 用户上传发票文件并要求识别、提取、转换信息时；需要批量处理发票并生成 Excel 汇总表时； 需要对发票进行检测、内容..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/invoice-ocr"
-sourceUrl: "https://clawhub.ai/skills/invoice-ocr"
+name: invoice-ocr
+description: >
+  增值税发票识别技能：自动识别 PDF（单页/多页）或各种常见图片格式（PNG/JPG等）的发票，调用百度云增值税发票 OCR API
+  提取关键信息，输出结构化 Excel 报告。适用于以下场景：
+  用户上传发票文件并要求识别、提取、转换信息时；需要批量处理发票并生成 Excel 汇总表时；
+  需要对发票进行检测、内容识别和自动质量评估时；提及"发票识别"、"增值税发票"、"OCR识别"、
+  "invoice recognition"、"百度OCR" 等关键词时。
+  即使用户只是简单指示"帮我识别这张发票"，也应触发本技能。
+  输出包含三个核心处理流：发票预检测、结构化字段提取、质量评分评估，最终落地为直观的 Excel 文件。
+compatibility: "pip: pymupdf openpyxl requests Pillow python-dotenv"
 ---
 
-# 发票内容识别
+# 增值税发票识别技能 (VAT Invoice OCR Skill)
 
-> 增值税发票识别技能：自动识别 PDF（单页/多页）或各种常见图片格式（PNG/JPG等）的发票，调用百度云增值税发票 OCR API 提取关键信息，输出结构化 Excel 报告。适用于以下场景： 用户上传发票文件并要求识别、提取、转换信息时；需要批量处理发票并生成 Excel 汇总表时； 需要对发票进行检测、内容...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/invoice-ocr`
-- **Source URL:** [https://clawhub.ai/skills/invoice-ocr](https://clawhub.ai/skills/invoice-ocr)
+本技能支持 **PDF（单页/多页）** 和 **常见图片格式** 的发票识别，底层强依赖**百度云增值税发票 OCR 接口**，将非结构化文档转化为结构化数据，并输出为 Excel 报告。核心处理包含三个模块：
 
-## Overview
+1. **发票检测** — 过滤非发票图像、初判发票类型。
+2. **内容识别** — 调用百度云专用 API 提取核心字段（失败时自动降级通用 OCR）。
+3. **质量评估** — 基于字段完整度和引擎置信度进行自动化打分。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 工作流程
+
+### 步骤 1：环境与凭证检查
+
+在执行任务前，必须确认以下条件：
+* **输入文件有效性**：文件格式须为 `.pdf` / `.png` / `.jpg` / `.jpeg` 等支持的格式。
+* **环境变量配置 (`.env`)**：工作目录下必须存在 `.env` 文件，且包含 `BAIDU_API_KEY` 和 `BAIDU_SECRET_KEY`。
+  * 若未检测到配置，**必须主动询问用户**。若用户无凭证，引导其前往 [百度智能云控制台](https://console.bce.baidu.com/) 免费申请。
+* **输出路径**：确认最终生成的 Excel 文件存放位置（默认：`result.xlsx`）。
+
+### 步骤 2：安装依赖并执行
+
 ```bash
-hermes skills install clawhub/invoice-ocr
+# 1. 安装核心依赖
+pip install pymupdf openpyxl requests Pillow python-dotenv --break-system-packages -q
+
+# 2. 运行极简命令行
+python invoice_ocr_main.py \
+  --input <文件路径> \
+  --output ./outputs/发票识别结果.xlsx
+
 ```
+
+### 步骤 3：结果交付
+
+向用户交付生成的 Excel 文件，并简明扼要地总结处理情况（例如："已成功处理包含 3 页的 PDF，成功识别 2 张增值税专用发票，1 页因非发票内容已跳过，请查看 Excel 汇总。"）。
+
+---
+
+## 核心架构与模块说明
+
+脚本 `invoice_ocr_main.py` 的核心架构如下：
+
+### 1. 输入处理 (InputHandler)
+
+* 统一将不同类型的输入转化为标准的 JPEG 字节流列表。
+* 对大尺寸图片（>3MB）或高分辨率图像自动执行比例裁剪和质量压缩，规避 API 负荷限制。
+
+### 2. 发票检测 (InvoiceDetector)
+
+* 基于图像尺寸进行初步过滤（剔除极小图片）。
+* 结合 OCR 提取的文本内容，通过正则和关键词（如"增值税专用发票"、"价税合计"等）确切判定发票类型并输出置信度。
+
+### 3. 内容提取 (ContentExtractor)
+
+* 严格通过 `python-dotenv` 读取鉴权信息，获取并缓存 Access Token。
+* 优先请求 `vat_invoice` 增值税专用接口。
+* 若接口返回错误码（如非标准发票类型），无缝降级调用 `general_basic` 通用文字识别接口，并通过正则尽力挽救关键数据。
+* 内置自动重试机制（最高 3 次，间隔递增），增强网络抗抖动能力。
+
+### 4. 质量评估 (QualityAssessor)
+
+系统对成功识别的发票进行满分 100 分的量化评估，权重分配如下：
+
+| 评估维度 | 权重 | 说明 |
+| --- | --- | --- |
+| **字段完整性** | 60% | 校验核心字段（号码、日期、买卖双方、总金额）是否提取成功 |
+| **图像清晰度** | 40% | 基于 OCR 引擎返回的文本置信度转化 |
+
+**评级标准：**
+
+* 🟢 **优秀 (90-100)**：无需人工干预
+* 🟡 **良好 (70-89)**：建议抽查核心金额
+* 🔴 **较差 (<70)**：必须人工核验或重新扫描
+
+---
+
+## Excel 报告输出结构
+
+数据导出为单 Sheet（**"发票汇总"**），主打高度概括和直观，包含以下核心列头：
+
+* 页码
+* 发票类型
+* 发票号码
+* 开票日期
+* 销售方
+* 购买方
+* 价税合计
+* 质量评估（直接展示红黄绿指示灯及评级，如 "🟢 优秀"）
+
+---
+
+## 边缘 Case 容错处理
+
+| 异常场景 | 系统的自动化处理策略 |
+| --- | --- |
+| **多页混排 PDF** | 使用 PyMuPDF 逐页渲染分离，独立处理并汇总到同一 Excel |
+| **超大图片超限** | 自动按长宽比不超过 3:1 裁剪，并递减 JPEG 质量直至满足百度接口要求 |
+| **API 调用失败** | 阶梯式延迟重试 3 次，彻底失败则在 Excel 记录"识别失败"并继续处理下一页 |
+| **非发票 / 空白页** | `has_invoice` 标记为 False，跳过 API 消耗并在 Excel 中如实记录 |
+| **字段含扰码/空格** | 代码层面对提取的发票号码、税号进行 `.strip()` 和 `.replace(" ", "")` 清洗 |
+
+---

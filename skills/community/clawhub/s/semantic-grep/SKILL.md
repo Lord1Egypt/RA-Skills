@@ -1,35 +1,47 @@
----
-name: "Semantic Grep"
-description: "Offline local semantic code search using embeddings to find and index code by meaning with llama.cpp, ONNX, or Ollama backends."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/semantic-grep"
-sourceUrl: "https://clawhub.ai/skills/semantic-grep"
----
+# semgrepll - Local Semantic Code Search
 
-# Semantic Grep
+## Description
+Local semantic grep using embeddings - 100% offline capable with llama.cpp, ONNX, and Ollama backends. Use when searching code semantically, finding code by meaning, or indexing projects for AI-powered search.
 
-> Offline local semantic code search using embeddings to find and index code by meaning with llama.cpp, ONNX, or Ollama backends.
+## Triggers
+- "search code semantically"
+- "find code by meaning"  
+- "semantic grep"
+- "index project for search"
+- Commands: semgrep index, semgrep search
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/semantic-grep`
-- **Source URL:** [https://clawhub.ai/skills/semantic-grep](https://clawhub.ai/skills/semantic-grep)
+## Actions
+- Index projects: `semgrep index /path/to/project`
+- Search: `semgrep search "query"`
+- List: `semgrep ls`
+- Remove: `semgrep rm <project>`
 
-## Overview
-
+## Environment Variables (optional)
+| Variable | Default | Description |
+|-----------|---------|-------------|
+| EMBED_BACKEND | auto | Backend: llama, onnx, ollama |
+| LLM_MODEL_PATH | - | Path to GGUF model (llama.cpp) |
+| ONNX_MODEL_PATH | auto | Path to ONNX model |
+| SEMGREP_BACKEND | auto | Storage: sqlite, lance |
+| EMBED_MODEL | mxbai-embed-large-v1 | Embedding model |
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/semantic-grep
+pip install semgrepll
+# Optional: ONNX support
+pip install semgrepll[onnx]
 ```
+
+## Examples
+- "Index my project for semantic search" → runs `semgrep index ./project`
+- "Find authentication code" → runs `semgrep search "authentication"`
+- "Search for payment processing" → runs `semgrep search "payment processing"`
+
+## Requirements
+- Python 3.10+
+- One of: llama-cpp-python, onnxruntime, or Ollama running locally
+
+## Notes
+- 100% offline - no external API calls
+- Auto-detects fastest available backend
+- Embeddings cached for fast re-indexing

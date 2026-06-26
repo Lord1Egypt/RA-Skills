@@ -1,35 +1,11 @@
----
-name: "Agent Andri"
-description: "Agent Andri periodically sends its status report to the meeting-room by appending a message to a designated file."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-andri"
-sourceUrl: "https://clawhub.ai/skills/agent-andri"
----
+# agent-Andri
 
-# Agent Andri
+Skill ini merepresentasikan agen pekerja **Andri**.  Agen secara periodik mengirimkan statusnya ke **meeting‑room** dengan menuliskan ke file `~/ .openclaw/workspace/skills/meeting-room/to_leader.txt`.
 
-> Agent Andri periodically sends its status report to the meeting-room by appending a message to a designated file.
+## Variabel lingkungan
+- `AGENT_NAME` – Nama agen (di‑set otomatis oleh wrapper).
+- `NV_API_KEY` – API‑key khusus agen (tidak dipakai di contoh ini, hanya disimpan bila diperlukan).
+- `MODEL` – Model AI yang dipakai agen.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-andri`
-- **Source URL:** [https://clawhub.ai/skills/agent-andri](https://clawhub.ai/skills/agent-andri)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-andri
-```
+## Skrip utama
+`scripts/status_report.sh` membaca variabel di atas, men‑generate pesan status, dan men‑append‑kan ke file meeting‑room.

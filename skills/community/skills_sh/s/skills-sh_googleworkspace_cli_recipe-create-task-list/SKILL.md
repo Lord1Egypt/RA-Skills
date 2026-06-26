@@ -1,35 +1,28 @@
 ---
-name: "recipe-create-task-list"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-task-list"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-task-list"
+name: recipe-create-task-list
+description: "Set up a new Google Tasks list with initial tasks."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-tasks
 ---
 
-# recipe-create-task-list
+# Create a Task List and Add Tasks
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-tasks`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-task-list`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-task-list](https://skills.sh/googleworkspace/cli/recipe-create-task-list)
+Set up a new Google Tasks list with initial tasks.
 
-## Overview
+## Steps
 
+1. Create task list: `gws tasks tasklists insert --json '{"title": "Q2 Goals"}'`
+2. Add a task: `gws tasks tasks insert --params '{"tasklist": "TASKLIST_ID"}' --json '{"title": "Review Q1 metrics", "notes": "Pull data from analytics dashboard", "due": "2024-04-01T00:00:00Z"}'`
+3. Add another task: `gws tasks tasks insert --params '{"tasklist": "TASKLIST_ID"}' --json '{"title": "Draft Q2 OKRs"}'`
+4. List tasks: `gws tasks tasks list --params '{"tasklist": "TASKLIST_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-task-list
-```

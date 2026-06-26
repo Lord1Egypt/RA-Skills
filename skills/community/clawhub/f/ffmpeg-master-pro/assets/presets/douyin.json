@@ -1,0 +1,41 @@
+{
+  "name": "抖音优化",
+  "description": "抖音发布的最佳设置",
+  "version": "1.0",
+  "video": {
+    "codec": "libx264",
+    "preset": "fast",
+    "crf": 26,
+    "profile": "high",
+    "level": "4.0",
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "128k",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "platforms": {
+    "feed": {
+      "resolution": "1080x1920",
+      "aspect_ratio": "9:16",
+      "max_duration": 60,
+      "fps": 30,
+      "bitrate": "4000k"
+    },
+    "long_form": {
+      "resolution": "1080x1920",
+      "aspect_ratio": "9:16",
+      "max_duration": 900,
+      "fps": 30,
+      "bitrate": "3000k"
+    }
+  },
+  "requirements": {
+    "supported_codecs": ["H.264", "H.265"],
+    "aspect_ratio": "9:16",
+    "recommended_fps": [30, 60],
+    "supported_containers": ["mp4", "mov"]
+  }
+}

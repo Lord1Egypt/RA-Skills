@@ -1,0 +1,296 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Invoice Metadata",
+  "description": "Schema for invoice archive metadata files. Used by invoice_tracker.py and invoice_numbering.py.",
+  "type": "object",
+  "required": [
+    "invoice_id",
+    "invoice_number",
+    "document_type",
+    "client_name",
+    "status",
+    "issue_date",
+    "currency",
+    "line_items",
+    "total_amount"
+  ],
+  "properties": {
+    "invoice_id": {
+      "type": "string",
+      "description": "Unique ID: {invoice_number}_{client-slug}"
+    },
+    "invoice_number": {
+      "type": "string",
+      "description": "Formatted invoice number (e.g., INV-2026-001)"
+    },
+    "document_type": {
+      "type": "string",
+      "enum": ["invoice", "credit_note", "proforma", "void"],
+      "description": "Type of billing document"
+    },
+    "numbering_format": {
+      "type": ["string", "null"],
+      "description": "Format pattern used to generate the number"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "sent", "paid", "partial", "overdue", "void", "disputed"],
+      "description": "Current invoice status"
+    },
+    "replaces_invoice_id": {
+      "type": ["string", "null"],
+      "description": "ID of the voided invoice this one replaces"
+    },
+    "replaced_by_invoice_id": {
+      "type": ["string", "null"],
+      "description": "ID of the reissued invoice that replaced this one"
+    },
+
+    "client_name": {
+      "type": "string",
+      "description": "Full legal name of the client"
+    },
+    "client_slug": {
+      "type": ["string", "null"],
+      "description": "URL-safe lowercase slug of client name",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "client_profile_ref": {
+      "type": ["string", "null"],
+      "description": "Relative path to client profile JSON"
+    },
+    "contract_id": {
+      "type": ["string", "null"],
+      "description": "Link to contract in opc-contract-manager archive"
+    },
+
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the invoice was issued"
+    },
+    "due_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Payment due date"
+    },
+    "paid_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date payment was received (full or final partial)"
+    },
+    "payment_terms_days": {
+      "type": ["integer", "null"],
+      "description": "Payment terms in days (e.g., 30 for net-30)"
+    },
+    "service_period_start": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Start of the service period this invoice covers"
+    },
+    "service_period_end": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "End of the service period this invoice covers"
+    },
+    "service_period_label": {
+      "type": ["string", "null"],
+      "description": "Human-readable service period (e.g., 'Services for March 2026')"
+    },
+
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code (e.g., 'USD', 'EUR')"
+    },
+    "line_items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["description", "amount"],
+        "properties": {
+          "description": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["hourly", "fixed", "milestone", "recurring", "expense", "deposit", "credit"]
+          },
+          "quantity": { "type": ["number", "null"] },
+          "unit_price": {
+            "type": ["string", "null"],
+            "description": "Unit price as string to preserve exact figures"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Line item total as exact string"
+          },
+          "tax_applicable": {
+            "type": ["boolean", "null"],
+            "description": "Whether tax applies to this line item"
+          }
+        }
+      }
+    },
+    "subtotal": {
+      "type": ["string", "null"],
+      "description": "Sum of line item amounts before tax and discount"
+    },
+    "tax_details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tax_name": { "type": "string", "description": "e.g., 'Sales Tax', 'VAT'" },
+          "tax_rate": { "type": "string", "description": "e.g., '20%'" },
+          "tax_amount": { "type": "string", "description": "Exact tax amount" },
+          "tax_exempt": { "type": ["boolean", "null"] }
+        }
+      },
+      "description": "Applied taxes"
+    },
+    "total_tax": {
+      "type": ["string", "null"],
+      "description": "Total tax amount as exact string"
+    },
+    "discount": {
+      "type": ["object", "null"],
+      "properties": {
+        "description": { "type": "string" },
+        "type": { "type": "string", "enum": ["percentage", "fixed"] },
+        "value": { "type": "string" },
+        "amount": { "type": "string", "description": "Discount amount as exact string" }
+      },
+      "description": "Applied discount"
+    },
+    "total_amount": {
+      "type": "string",
+      "description": "Total invoice amount as exact string (subtotal + tax - discount)"
+    },
+    "outstanding_amount": {
+      "type": ["string", "null"],
+      "description": "Remaining unpaid amount (for partial payments)"
+    },
+
+    "your_entity": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "tax_id": { "type": ["string", "null"] },
+        "email": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] }
+      },
+      "description": "Your business entity details"
+    },
+    "client_billing": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": ["string", "null"] },
+        "tax_id": { "type": ["string", "null"] },
+        "email": { "type": ["string", "null"] },
+        "attention": { "type": ["string", "null"] }
+      },
+      "description": "Client billing details"
+    },
+
+    "partial_payments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "reference": { "type": ["string", "null"] },
+          "notes": { "type": ["string", "null"] }
+        }
+      },
+      "description": "Record of partial payments received"
+    },
+    "last_reminder_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date of the most recent payment reminder"
+    },
+    "reminder_count": {
+      "type": ["integer", "null"],
+      "description": "Number of reminders sent"
+    },
+    "collection_stage": {
+      "type": ["string", "null"],
+      "enum": ["current", "reminder", "overdue", "escalation", "final", "dispute", "written_off", null],
+      "description": "Current stage in the collections cadence"
+    },
+    "dispute_reason": {
+      "type": ["string", "null"],
+      "description": "Reason for dispute if status is 'disputed'"
+    },
+    "disputed_at": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date the dispute was raised"
+    },
+
+    "delivery_status": {
+      "type": ["string", "null"],
+      "enum": ["draft", "sent", "acknowledged", null],
+      "description": "Delivery status of the invoice"
+    },
+    "sent_at": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date the invoice was sent"
+    },
+    "delivery_channel": {
+      "type": ["string", "null"],
+      "description": "How it was delivered (email, portal, mail)"
+    },
+    "sent_to": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Email addresses or delivery targets"
+    },
+
+    "source_contract_ref": {
+      "type": ["string", "null"],
+      "description": "Reference to the source contract"
+    },
+    "source_quote_ref": {
+      "type": ["string", "null"],
+      "description": "Reference to a quote or proposal"
+    },
+    "generated_from_recurring": {
+      "type": ["string", "null"],
+      "description": "Recurring template ID that generated this invoice"
+    },
+    "created_by_mode": {
+      "type": ["string", "null"],
+      "description": "Which skill mode created this invoice (new/quick/recurring)"
+    },
+    "reference_number": {
+      "type": ["string", "null"],
+      "description": "External reference (PO number, project code)"
+    },
+
+    "payment_method": {
+      "type": ["string", "null"],
+      "description": "Payment method (bank transfer, check, etc.)"
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Payment instructions, bank details, or other notes"
+    },
+    "archive_warnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Issues encountered during invoice creation or archiving"
+    },
+    "created_at": {
+      "type": ["string", "null"],
+      "description": "Timestamp when the invoice record was created"
+    },
+    "updated_at": {
+      "type": ["string", "null"],
+      "description": "Timestamp of last update"
+    }
+  }
+}

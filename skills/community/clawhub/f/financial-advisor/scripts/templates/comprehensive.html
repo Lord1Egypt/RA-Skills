@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>{{ shared_css }}</style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header" style="background:linear-gradient(135deg, #0f172a 0%, #312e81 40%, #7c3aed 70%, #a855f7 100%);">
+            <h1>{{ title }}</h1>
+            <p class="subtitle">全球市场速览 · 行业聚焦 · 重点个股 · 策略建议</p>
+            <div class="header-meta">
+                <span class="header-meta-item">📅 {{ date }}</span>
+                <span class="header-meta-item">⏱ {{ generation_time }}</span>
+                <span class="header-meta-item">🔬 {{ analyst }}</span>
+            </div>
+        </div>
+
+        <nav class="report-nav" id="main-nav">
+            <div class="nav-inner">
+                {% if market_indices_html %}<a href="#global-market" class="nav-item">📊 全球市场</a><span class="nav-divider"></span>{% endif %}
+                {% if ai_events_html or ai_deep_html %}<a href="#industry-focus" class="nav-item">🏭 行业聚焦</a><span class="nav-divider"></span>{% endif %}
+                {% if summary_html or realtime_html %}<a href="#key-stocks" class="nav-item">📈 重点个股</a><span class="nav-divider"></span>{% endif %}
+                {% if macro_html %}<a href="#macro-env" class="nav-item">🌍 宏观热点</a><span class="nav-divider"></span>{% endif %}
+                <a href="#appendix" class="nav-item">📜 免责声明</a>
+            </div>
+        </nav>
+
+        <!-- PANEL 1: 全球市场速览 -->
+        {% if market_indices_html %}
+        <div class="report-section section-market" id="global-market">
+            <div class="section-header">
+                <div class="section-icon cyan">📊</div>
+                <h2>全球市场速览</h2>
+                <span class="section-tag">GLOBAL MARKETS</span>
+            </div>
+            <div class="section-body">{{ market_indices_html }}</div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 2: 行业聚焦 + AI 分析 -->
+        {% if ai_brief_html or ai_events_html or ai_deep_html %}
+        <div class="report-section section-conclusion" id="industry-focus">
+            <div class="section-header">
+                <div class="section-icon green">🏭</div>
+                <h2>行业聚焦与趋势分析</h2>
+                <span class="section-tag">INDUSTRY FOCUS</span>
+            </div>
+            <div class="section-body">
+                {% if ai_brief_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">🧠</span>AI 综合研判</div>
+                    {{ ai_brief_html }}
+                </div>
+                {% endif %}
+                {% if ai_events_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">⚡</span>关键事件影响</div>
+                    {{ ai_events_html }}
+                </div>
+                {% endif %}
+                {% if ai_deep_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">🧠</span>深度分析与推理</div>
+                    {{ ai_deep_html }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 3: 重点个股 -->
+        {% if summary_html or realtime_html or indicators_html %}
+        <div class="report-section section-market" id="key-stocks">
+            <div class="section-header">
+                <div class="section-icon cyan">📈</div>
+                <h2>重点个股数据</h2>
+                <span class="section-tag">KEY STOCKS</span>
+            </div>
+            <div class="section-body">
+                {% if summary_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#cffafe;">📋</span>核心指标速览</div>
+                    {{ summary_html }}
+                </div>
+                {% endif %}
+
+                {% if realtime_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#cffafe;">💹</span>实时行情</div>
+                    {{ realtime_html }}
+                </div>
+                {% endif %}
+
+                {% if echarts_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#cffafe;">📉</span>价格走势</div>
+                    {{ echarts_html }}
+                </div>
+                {% endif %}
+
+                {% if indicators_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#cffafe;">🔬</span>技术指标</div>
+                    {{ indicators_html }}
+                </div>
+                {% endif %}
+
+                {% if risk_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#fee2e2;">⚠️</span>风险评估</div>
+                    {{ risk_html }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 4: 宏观与热点 -->
+        {% if macro_html %}
+        <div class="report-section section-intelligence" id="macro-env">
+            <div class="section-header">
+                <div class="section-icon amber">🌍</div>
+                <h2>宏观经济与热点</h2>
+                <span class="section-tag">MACRO & TRENDING</span>
+            </div>
+            <div class="section-body">{{ macro_html }}</div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 5: 免责声明 -->
+        <div class="report-section section-appendix" id="appendix">
+            <div class="section-header">
+                <div class="section-icon slate">📜</div>
+                <h2>免责声明与数据来源</h2>
+                <span class="section-tag">DISCLAIMER</span>
+            </div>
+            <div class="section-body">
+                <div class="disclaimer-inner">
+                    <h3>⚠️ 风险提示与免责声明</h3>
+                    <ul>
+                        <li>本报告基于公开市场数据和 AI 分析自动生成，<strong>不构成任何投资建议</strong></li>
+                        <li>行业趋势分析基于当前数据，不代表未来走势</li>
+                        <li>股市有风险，投资需谨慎。过往业绩不代表未来表现</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-footer">
+            <div class="divider"></div>
+            <p>报告生成时间：{{ generation_time }}</p>
+            <p style="margin-top:8px;color:#d1d5db;">Financial Data Analyzer — Comprehensive Research</p>
+        </div>
+    </div>
+
+    <script>{{ nav_scroll_js }}</script>
+</body>
+</html>

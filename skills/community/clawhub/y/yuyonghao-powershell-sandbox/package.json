@@ -1,0 +1,20 @@
+{
+  "name": "powershell-sandbox",
+  "version": "0.1.0",
+  "description": "PowerShell 安全沙箱 - 带命令白名单、超时控制和静态代码扫描",
+  "main": "src/sandbox.ps1",
+  "scripts": {
+    "test": "powershell -ExecutionPolicy Bypass -File test/run-tests.ps1"
+  },
+  "keywords": [
+    "powershell",
+    "sandbox",
+    "security",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "scenique-prevision",
+  "version": "1.0.0",
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "description": "Decision forecasting engine based on Menos architecture and swarm intelligence.",
+  "main": "prevision_engine.py",
+  "tools": [
+    {
+      "name": "prevision_simulate",
+      "description": "Run a multi-agent simulation sandbox for a given decision or query.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "The decision or topic to forecast." },
+          "mode": { "enum": ["light", "standard", "sovereign"], "default": "standard" }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+}

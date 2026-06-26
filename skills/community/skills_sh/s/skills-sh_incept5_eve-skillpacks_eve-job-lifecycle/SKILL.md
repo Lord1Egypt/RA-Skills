@@ -1,35 +1,38 @@
 ---
-name: "eve-job-lifecycle"
-description: "Indexed by skills.sh from incept5/eve-skillpacks"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "incept5"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/incept5/eve-skillpacks/eve-job-lifecycle"
-sourceUrl: "https://skills.sh/incept5/eve-skillpacks/eve-job-lifecycle"
+name: eve-job-lifecycle
+description: Create, manage, and review Eve jobs, phases, and dependencies. Use when running knowledge work in Eve or structuring job hierarchies.
 ---
 
-# eve-job-lifecycle
+# Eve Job Lifecycle
 
-> Indexed by skills.sh from incept5/eve-skillpacks
+Use jobs as the unit of work and keep phases explicit.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** incept5
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/incept5/eve-skillpacks/eve-job-lifecycle`
-- **Source URL:** [https://skills.sh/incept5/eve-skillpacks/eve-job-lifecycle](https://skills.sh/incept5/eve-skillpacks/eve-job-lifecycle)
+## Phases
 
-## Overview
+- idea -> backlog -> ready -> active -> review -> done or cancelled
+- Jobs default to `ready` and can be scheduled immediately.
 
+## Create jobs
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/incept5/eve-skillpacks/eve-job-lifecycle
-```
+- `eve job create --description "..."`
+- Add details with `--project`, `--priority`, `--phase`, `--labels`, `--review`.
+- Create sub-jobs with `eve job create --parent <job-id> --description "..."`.
+
+## Update and complete
+
+- `eve job update <id> --phase <phase>`
+- `eve job submit <id> --summary "..."`
+- `eve job approve <id>` or `eve job reject <id> --reason "..."`
+- `eve job close <id> --reason "..."`
+- `eve job cancel <id> --reason "..."`
+
+## Dependencies
+
+- `eve job dep add <job> <blocking-job>`
+- Use dependencies only for true blockers.
+- Inspect with `eve job dep list <id>`.
+
+## Agent control signals
+
+- Emit a fenced `json-result` block with `eve.status` as `waiting`, `success`, or `failed`.
+- Return `waiting` only after dependencies exist.

@@ -1,35 +1,22 @@
 ---
-name: "Skills Browser"
+name: "ai-skills-browser"
 description: "Skills浏览器 - 使用HTML和Python3实现的本地技能浏览工具，支持技能列表过滤和详情查看"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-skills-browser"
-sourceUrl: "https://clawhub.ai/skills/ai-skills-browser"
+Author: "邵瑞波"
+Date: "2026-03-15"
+BusinessSupportVersion: "2.0.5"
 ---
 
-# Skills Browser
+# AI SKILLS BROWSER
 
-> Skills浏览器 - 使用HTML和Python3实现的本地技能浏览工具，支持技能列表过滤和详情查看
+../skills/目录内的技能管理工具，支持技能列表过滤和详情查看。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-skills-browser`
-- **Source URL:** [https://clawhub.ai/skills/ai-skills-browser](https://clawhub.ai/skills/ai-skills-browser)
+# 功能
+- 技能列表过滤
+- 技能详情查看
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-skills-browser
-```
+# 安装
+- 运行skillsbrowser脚本
+- 访问http://127.0.0.1:8765查看技能浏览器
+- 从浏览器中输入技能名称进行过滤
+- 点击技能名称查看详细信息
+- 从浏览器中关闭技能浏览器

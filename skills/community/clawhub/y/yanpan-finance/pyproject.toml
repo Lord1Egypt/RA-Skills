@@ -1,0 +1,11 @@
+[project]
+name = "yanpan-mcp"
+version = "0.1.0"
+description = "研报、新闻分析、股票分析 MCP Server"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "pymongo>=4.0.0",
+    "python-dotenv>=1.0.0",
+    "uvicorn>=0.30.0",
+]

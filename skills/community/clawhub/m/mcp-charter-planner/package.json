@@ -1,0 +1,34 @@
+{
+  "name": "@vbotholemu/mcp-charter-planner",
+  "version": "1.0.0",
+  "description": "MCP tool for BVI sailing charter planning with itineraries, weather, and provisioning",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mcp-charter-planner": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "bvi",
+    "sailing",
+    "charter",
+    "planner",
+    "caribbean",
+    "itinerary"
+  ],
+  "author": "velocibot",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}

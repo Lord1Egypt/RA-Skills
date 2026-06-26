@@ -1,0 +1,23 @@
+{
+  "name": "flow-visual-explainer",
+  "version": "1.0.0",
+  "description": "Generate beautiful self-contained HTML diagrams, architecture overviews, comparison tables, and slide decks from a single prompt. No more ASCII art.",
+  "homepage": "https://github.com/nicobailon/visual-explainer",
+  "keywords": [
+    "diagrams",
+    "mermaid",
+    "visualization",
+    "slides",
+    "architecture",
+    "html",
+    "charts",
+    "openclaw",
+    "flowverse"
+  ],
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "emoji": "🎨",
+    "author": "windseeker1111"
+  }
+}

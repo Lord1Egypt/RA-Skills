@@ -1,0 +1,31 @@
+{
+  "name": "clawdbot-mutual-aid",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "🦞 大龙虾互助技能 - 任务完成自动总结，被骂时求助，收到求助时分享经验",
+  "main": "index.ts",
+  "keywords": [
+    "clawdbot",
+    "mutual-aid",
+    "openclaw",
+    "plugin"
+  ],
+  "author": "主任",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.1.26"
+  },
+  "dependencies": {
+    "@apinator/client": "^2.0.0",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^6.0.2"
+  }
+}

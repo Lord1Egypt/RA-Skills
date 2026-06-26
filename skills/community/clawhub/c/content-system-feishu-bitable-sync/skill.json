@@ -1,0 +1,9 @@
+{
+  "id": "feishu-bitable-sync",
+  "name": "Feishu Bitable Sync",
+  "layer": "distribute",
+  "executor": "feishu_bitable_sync_v1",
+  "input_kind": "wechat_report_markdown_or_json",
+  "output_kind": "sync_report_markdown",
+  "description": "Sync a generated wechat-report raw JSON or report Markdown into Feishu Bitable with one article per row and source_url deduplication. Default to cached Feishu user authorization, preserve tenant mode, and export a CSV fallback when direct sync is blocked."
+}

@@ -1,0 +1,25 @@
+{
+  "name": "NutriCoach",
+  "tagline": "Personal health data management and intelligent diet recommendation system",
+  "description": "A comprehensive personal health management system for tracking body metrics, logging meals, analyzing nutrition, managing pantry inventory, and receiving intelligent diet recommendations. Features 570 Chinese foods database, OCR food recognition from packaging photos, smart recipe recommendations based on available ingredients, and a luxury refined web dashboard with deep emerald + champagne gold theme.",
+  "category": "health",
+  "tags": [
+    "health",
+    "fitness",
+    "nutrition",
+    "diet",
+    "weight-tracking",
+    "meal-planning",
+    "pantry-management",
+    "ocr",
+    "recipe-recommendation",
+    "web-dashboard"
+  ],
+  "version": "2.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/RainbowLion0320/nutricoach-skill/issues",
+  "homepage": "https://github.com/RainbowLion0320/nutricoach-skill",
+  "author": "RainbowLion0320",
+  "repository": "https://github.com/RainbowLion0320/nutricoach-skill.git"
+}

@@ -1,0 +1,59 @@
+# 360 Power Saver - 耗电排行™ 模块
+# 展示进程 CPU 和内存占用排行
+
+Add-Type -AssemblyName PresentationFramework
+
+function Show-PowerRanking {
+    param([int]$Top = 10)
+
+    # 获取进程列表
+    $processes = Get-Process | Where-Object { $_.CPU -gt 0 -or $_.WorkingSet -gt 0 } | 
+                 Sort-Object CPU -Descending | 
+                 Select-Object -First $Top
+
+    # 计算总 CPU 时间
+    $totalCpu = ($processes | Measure-Object -Property CPU -Sum).Sum
+
+    # 构建消息
+    $msg = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "     360°省电大师 - 耗电排行`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+    $msg += "🏆 CPU 占用 Top $Top`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n"
+
+    $rank = 1
+    foreach ($proc in $processes) {
+        $cpu = if ($proc.CPU) { [math]::Round($proc.CPU, 1) } else { 0 }
+        $memMB = [math]::Round($proc.WorkingSet / 1MB, 0)
+        $percent = if ($totalCpu -gt 0) { [math]::Round(($proc.CPU / $totalCpu) * 100, 1) } else { 0 }
+
+        # 进度条
+        $barLen = [math]::Min([math]::Round($percent / 5), 20)
+        $bar = "█" * $barLen + "░" * (20 - $barLen)
+
+        # 排名图标
+        $icon = switch ($rank) {
+            1 { "🥇" }
+            2 { "🥈" }
+            3 { "🥉" }
+            default { "$rank.".PadLeft(2) }
+        }
+
+        $name = $proc.Name
+        if ($name.Length -gt 16) { $name = $name.Substring(0, 16) + "..." }
+
+        $msg += "$icon $($name.PadRight(18)) $percent%`n"
+        $msg += "    CPU: ${cpu}s | 内存: ${memMB}MB`n"
+
+        $rank++
+    }
+
+    $msg += "`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
+    $msg += "💡 提示：关闭高占用进程可降低能耗`n"
+    $msg += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+    [System.Windows.MessageBox]::Show($msg, "360°省电大师 - 耗电排行", "OK", "Information")
+}
+
+# 执行
+Show-PowerRanking

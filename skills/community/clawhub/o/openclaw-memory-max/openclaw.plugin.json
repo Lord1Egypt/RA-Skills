@@ -1,0 +1,56 @@
+{
+    "id": "openclaw-memory-max",
+    "name": "OpenClaw Memory Max",
+    "version": "3.0.3",
+    "description": "SOTA Memory Suite: Auto-Recall Hooks, Cross-Encoder Reranking, Multi-Hop Deep Search, Semantic Causal Graph, Episodic Memory, Utility Vectors, and Nightly Sleep-Cycle Consolidation.",
+    "kind": "memory",
+    "main": "dist/index.js",
+    "configSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "enableRulePinning": {
+                "type": "boolean",
+                "default": false,
+                "description": "Enable YAML rule pinning from MEMORY.md into the system prompt. Off by default — must be explicitly opted in. Only enable if you control write access to MEMORY.md."
+            },
+            "enableAutoCapture": {
+                "type": "boolean",
+                "default": false,
+                "description": "Enable automatic capture of high-value user messages (rules, corrections, preferences) to sidecar files. Off by default — opt in if you want persistent message logging."
+            },
+            "enableAutoRecall": {
+                "type": "boolean",
+                "default": true,
+                "description": "Enable automatic memory injection before each agent turn via lifecycle hooks."
+            }
+        }
+    },
+    "env": {
+        "OPENCLAW_HOME": {
+            "description": "Base directory for OpenClaw data. Defaults to ~/.openclaw if not set.",
+            "required": false
+        }
+    },
+    "fileAccess": {
+        "reads": [
+            "$OPENCLAW_HOME/main.sqlite — Read-only access to the memory database (chunks table for search)",
+            "$OPENCLAW_HOME/openclaw.json — Read plugin config from the global config file",
+            "$OPENCLAW_HOME/memory/MEMORY.md — Read YAML rule blocks (only when enableRulePinning=true)"
+        ],
+        "writes": [
+            "$OPENCLAW_HOME/memory/utility_scores.json — Reinforcement scores per memory ID (~100 KB)",
+            "$OPENCLAW_HOME/memory/causal_graph.json — Cause-action-effect chains, 500 node cap (~500 KB)",
+            "$OPENCLAW_HOME/memory/auto_captured.jsonl — Auto-captured messages, 30-day cap (only when enableAutoCapture=true)",
+            "$OPENCLAW_HOME/memory/episodes.jsonl — Session episode summaries, 30-day cap (~1 MB)",
+            "$OPENCLAW_HOME/memory/consolidation_context.md — Sleep cycle consolidation summary"
+        ]
+    },
+    "privacy": {
+        "storesUserMessages": "opt-in (enableAutoCapture=false by default)",
+        "modifiesSystemPrompt": "auto-recall injects <relevant-memories> into session context via hook (not global config); rule pinning is opt-in (enableRulePinning=false by default) and also injected via hook only",
+        "modifiesGlobalConfig": false,
+        "externalNetworkAccess": false,
+        "dataRetention": "sidecar files auto-truncated after 30 days by in-process sleep cycle"
+    }
+}

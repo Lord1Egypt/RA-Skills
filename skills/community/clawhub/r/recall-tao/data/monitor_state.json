@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "status": "idle",
+  "lastCheck": null,
+  "videos": [],
+  "stats": {
+    "totalProcessed": 4,
+    "totalReplied": 4,
+    "totalSkipped": 0,
+    "totalManualReview": 0
+  },
+  "createdAt": "2026-04-02T06:00:20.787Z",
+  "updatedAt": "2026-04-02T06:04:53.522Z",
+  "lastUpdated": "2026-04-02T06:04:53.523Z"
+}

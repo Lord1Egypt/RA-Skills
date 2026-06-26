@@ -1,0 +1,12 @@
+{
+  "name": "API and Data (接口与数据层)",
+  "tagline": "请求封装、错误处理、Loading/空态、缓存与数据流设计",
+  "description": "接口与数据层技能：请求封装与鉴权/取消/重试、错误分层处理、Loading 与空态/失败态、缓存与更新策略、数据流选型（React Query/SWR/自管理）。适用于接口封装、请求、错误处理、loading、缓存、数据流等场景。",
+  "category": "development",
+  "tags": ["api", "fetch", "axios", "react-query", "swr", "loading", "cache", "数据流"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

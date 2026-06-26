@@ -1,0 +1,18 @@
+[component]
+name        = "mood"
+title       = "Mood"
+version     = "0.1.0"
+description = "Hourly mood check-ins via chat. Stores raw replies to mood_entries."
+
+[panel]
+enabled         = true
+order           = 20
+freshness_hours = 4
+
+[storage]
+tables = ["mood_entries"]
+
+[cron]
+schedule    = "0 8-23 * * *"
+command     = "python3 scripts/prompt.py"
+description = "Hourly mood check-in"

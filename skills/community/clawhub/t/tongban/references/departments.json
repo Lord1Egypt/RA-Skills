@@ -1,0 +1,297 @@
+[
+  {
+    "code": "SHAQSH",
+    "name": "上海市应急管理局",
+    "short_name": "市应急局"
+  },
+  {
+    "code": "SHCJSH",
+    "name": "上海市残疾人联合会",
+    "short_name": "市残联"
+  },
+  {
+    "code": "SHCZSH",
+    "name": "上海市财政局",
+    "short_name": "市财政局"
+  },
+  {
+    "code": "SHDASH",
+    "name": "上海市档案局",
+    "short_name": "市档案局"
+  },
+  {
+    "code": "SHDZSH",
+    "name": "上海市地震局",
+    "short_name": "市地震局"
+  },
+  {
+    "code": "SHFGSH",
+    "name": "上海市发展和改革委员会",
+    "short_name": "市发展改革委"
+  },
+  {
+    "code": "SHFLSH",
+    "name": "上海市妇女联合会",
+    "short_name": "市妇联"
+  },
+  {
+    "code": "SHFWSH",
+    "name": "上海市房屋管理局",
+    "short_name": "市房屋管理局"
+  },
+  {
+    "code": "SHFYSH",
+    "name": "上海市人民政府发展研究中心",
+    "short_name": "市政府发展研究中心"
+  },
+  {
+    "code": "SHGASH",
+    "name": "上海市公安局",
+    "short_name": "市公安局"
+  },
+  {
+    "code": "SHGBSH",
+    "name": "上海市国家保密局",
+    "short_name": "市国家保密局"
+  },
+  {
+    "code": "SHGDSH",
+    "name": "国家税务总局上海市税务局",
+    "short_name": "市税务局"
+  },
+  {
+    "code": "SHGFSH",
+    "name": "上海市高级人民法院",
+    "short_name": "市高级人民法院"
+  },
+  {
+    "code": "SHGHSH",
+    "name": "上海市规划和自然资源局",
+    "short_name": "市规划资源局"
+  },
+  {
+    "code": "SHGJSH",
+    "name": "上海市国家安全局",
+    "short_name": "市国安局"
+  },
+  {
+    "code": "SHGQSH",
+    "name": "中国共产主义青年团上海市委员会",
+    "short_name": "团市委"
+  },
+  {
+    "code": "SHGSSH",
+    "name": "上海市市场监督管理局",
+    "short_name": "市市场监管局"
+  },
+  {
+    "code": "SHGYSH",
+    "name": "上海市工商业联合会",
+    "short_name": "市工商联"
+  },
+  {
+    "code": "SHGZSH",
+    "name": "上海市国有资产监督管理委员会",
+    "short_name": "市国资委"
+  },
+  {
+    "code": "SHHBSH",
+    "name": "上海市生态环境局",
+    "short_name": "市生态环境局"
+  },
+  {
+    "code": "SHHSSH",
+    "name": "上海市红十字会",
+    "short_name": "市红十字会"
+  },
+  {
+    "code": "SHHZSH",
+    "name": "上海市人民政府合作交流办公室",
+    "short_name": "市政府合作交流办"
+  },
+  {
+    "code": "SHJDSH",
+    "name": "上海市禁毒委员会办公室",
+    "short_name": "市禁毒委员会办公室"
+  },
+  {
+    "code": "SHJJSH",
+    "name": "中共上海市委金融委员会办公室",
+    "short_name": "市委金融办"
+  },
+  {
+    "code": "SHJMSH",
+    "name": "上海市商务委员会",
+    "short_name": "市商务委"
+  },
+  {
+    "code": "SHJSSH",
+    "name": "上海市住房和城乡建设管理委员会",
+    "short_name": "市住房城乡建设管理委"
+  },
+  {
+    "code": "SHJXSH",
+    "name": "上海市经济和信息化委员会",
+    "short_name": "市经济信息化委"
+  },
+  {
+    "code": "SHJYSH",
+    "name": "上海市教育委员会",
+    "short_name": "市教委"
+  },
+  {
+    "code": "SHKJSH",
+    "name": "上海市科学技术委员会",
+    "short_name": "市科委"
+  },
+  {
+    "code": "SHLSSH",
+    "name": "上海市粮食和物资储备局",
+    "short_name": "市粮食物资储备局"
+  },
+  {
+    "code": "SHLYSH",
+    "name": "上海市文化和旅游局",
+    "short_name": "市文化旅游局"
+  },
+  {
+    "code": "SHMFSH",
+    "name": "上海市国防动员办公室",
+    "short_name": "市国动办"
+  },
+  {
+    "code": "SHMSSH",
+    "name": "上海市民族和宗教事务局",
+    "short_name": "市民族宗教局"
+  },
+  {
+    "code": "SHMZSH",
+    "name": "上海市民政局",
+    "short_name": "市民政局"
+  },
+  {
+    "code": "SHNYSH",
+    "name": "上海市农业农村委员会",
+    "short_name": "市农业农村委"
+  },
+  {
+    "code": "SHQWSH",
+    "name": "上海市人民政府侨务办公室",
+    "short_name": "市政府侨办"
+  },
+  {
+    "code": "SHQXSH",
+    "name": "上海市气象局",
+    "short_name": "市气象局"
+  },
+  {
+    "code": "SHRCSH",
+    "name": "上海市人才工作局（上海市外国专家局）",
+    "short_name": "市人才局"
+  },
+  {
+    "code": "SHRHSH",
+    "name": "上海市人力资源和社会保障局",
+    "short_name": "市人力资源社会保障局"
+  },
+  {
+    "code": "SHRJSH",
+    "name": "上海市人民检察院",
+    "short_name": "市人民检察院"
+  },
+  {
+    "code": "SHSFSH",
+    "name": "上海市司法局",
+    "short_name": "市司法局"
+  },
+  {
+    "code": "SHSLSH",
+    "name": "上海市绿化和市容管理局",
+    "short_name": "市绿化市容局"
+  },
+  {
+    "code": "SHSPSH",
+    "name": "上海市药品监督管理局",
+    "short_name": "市药品监管局"
+  },
+  {
+    "code": "SHSWSH",
+    "name": "上海市水务局（上海市海洋局）",
+    "short_name": "市水务局"
+  },
+  {
+    "code": "SHSYSH",
+    "name": "上海市事业单位登记管理局",
+    "short_name": "市事业单位登记管理局"
+  },
+  {
+    "code": "SHTGSH",
+    "name": "上海市交通委员会",
+    "short_name": "市交通委"
+  },
+  {
+    "code": "SHTJSH",
+    "name": "上海市统计局",
+    "short_name": "市统计局"
+  },
+  {
+    "code": "SHTYSH",
+    "name": "上海市体育局",
+    "short_name": "市体育局"
+  },
+  {
+    "code": "SHWBSH",
+    "name": "上海市人民政府外事办公室",
+    "short_name": "市政府外办"
+  },
+  {
+    "code": "SHWMSH",
+    "name": "上海市精神文明建设委员会办公室",
+    "short_name": "市文明办"
+  },
+  {
+    "code": "SHWSSH",
+    "name": "上海市卫生健康委（市中医药管理局、市疾控局）",
+    "short_name": "市卫生健康委（市中医药管理局、市疾控局）"
+  },
+  {
+    "code": "SHXFSH",
+    "name": "上海市消防救援局",
+    "short_name": "市消防救援局"
+  },
+  {
+    "code": "SHXWSH",
+    "name": "上海市新闻出版局（上海市版权局）、上海市电影局",
+    "short_name": "市新闻出版局（市版权局）、市电影局"
+  },
+  {
+    "code": "SHYBSH",
+    "name": "上海市医疗保障局",
+    "short_name": "市医保局"
+  },
+  {
+    "code": "SHYCSH",
+    "name": "上海市烟草专卖局",
+    "short_name": "市烟草专卖局"
+  },
+  {
+    "code": "SHYWSH",
+    "name": "上海市退役军人事务局",
+    "short_name": "市退役军人局"
+  },
+  {
+    "code": "SHYZSH",
+    "name": "上海市邮政管理局",
+    "short_name": "市邮政管理局"
+  },
+  {
+    "code": "SHZCSH",
+    "name": "上海市知识产权局",
+    "short_name": "市知识产权局"
+  },
+  {
+    "code": "SHZHSH",
+    "name": "上海市总工会",
+    "short_name": "市总工会"
+  }
+]

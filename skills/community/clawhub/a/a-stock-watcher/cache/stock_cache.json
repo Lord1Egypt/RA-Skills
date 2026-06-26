@@ -1,0 +1,65 @@
+{
+  "002892": {
+    "data": {
+      "success": true,
+      "source": "tencent",
+      "code": "002892",
+      "market": "深证",
+      "name": "科力尔",
+      "current_price": 11.91,
+      "change": 0.120000000000001,
+      "change_pct": 1.0178117048346143,
+      "pre_close": 11.79,
+      "open": 11.76,
+      "high": 11.91,
+      "low": 11.71,
+      "volume": 51963,
+      "amount": 6156.0,
+      "update_time": "2026-03-06 16:35:51"
+    },
+    "timestamp": 1772786151.128889,
+    "expiry": 300
+  },
+  "600036": {
+    "data": {
+      "success": true,
+      "source": "tencent",
+      "code": "600036",
+      "market": "上证",
+      "name": "招商银行",
+      "current_price": 39.2,
+      "change": 0.05000000000000426,
+      "change_pct": 0.12771392081737998,
+      "pre_close": 39.15,
+      "open": 39.1,
+      "high": 39.32,
+      "low": 38.95,
+      "volume": 465957,
+      "amount": 182214.0,
+      "update_time": "2026-03-06 16:35:51"
+    },
+    "timestamp": 1772786151.1992,
+    "expiry": 300
+  },
+  "300059": {
+    "data": {
+      "success": true,
+      "source": "tencent",
+      "code": "300059",
+      "market": "深证",
+      "name": "东方财富",
+      "current_price": 21.56,
+      "change": 0.46999999999999886,
+      "change_pct": 2.228544333807486,
+      "pre_close": 21.09,
+      "open": 21.0,
+      "high": 21.64,
+      "low": 20.96,
+      "volume": 2338196,
+      "amount": 499722.0,
+      "update_time": "2026-03-06 16:35:51"
+    },
+    "timestamp": 1772786151.2979,
+    "expiry": 300
+  }
+}

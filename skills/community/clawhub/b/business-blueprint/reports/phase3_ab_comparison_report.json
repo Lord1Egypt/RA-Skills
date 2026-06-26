@@ -1,0 +1,154 @@
+{
+  "test_phase": "Phase 3 - A/B Comparison",
+  "test_date": "2026-04-25",
+  "comparison": {
+    "old_system": {
+      "intent_accuracy": 0.8500000000000001,
+      "layer_accuracy": 0.8,
+      "satisfaction": 0.6
+    },
+    "new_system": {
+      "intent_accuracy": 1.0,
+      "layer_accuracy": 1.0,
+      "satisfaction": 0.75
+    }
+  },
+  "improvement": {
+    "intent_lift": 0.1499999999999999,
+    "layer_lift": 0.19999999999999996,
+    "satisfaction_lift": 0.15000000000000002
+  },
+  "statistical_significance": {
+    "p_value": 0.02,
+    "confidence_level": "95%"
+  },
+  "thresholds": {
+    "intent_lift": 0.1,
+    "layer_lift": 0.08,
+    "satisfaction_lift": 0.15,
+    "p_value": 0.05
+  },
+  "pass_status": true,
+  "detailed_results": {
+    "old_intent": [
+      {
+        "name": "retail",
+        "predicted": {
+          "primary": "product",
+          "secondary": "retail",
+          "mode": "auto"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": "retail-operations"
+        },
+        "accuracy": 0.8
+      },
+      {
+        "name": "common",
+        "predicted": {
+          "primary": "product",
+          "secondary": null,
+          "mode": "auto"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": null
+        },
+        "accuracy": 1.0
+      },
+      {
+        "name": "finance",
+        "predicted": {
+          "primary": "product",
+          "secondary": "finance",
+          "mode": "auto"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": "finance-regulatory"
+        },
+        "accuracy": 0.8
+      },
+      {
+        "name": "manufacturing",
+        "predicted": {
+          "primary": "product",
+          "secondary": "manufacturing",
+          "mode": "auto"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": "manufacturing-supply-chain"
+        },
+        "accuracy": 0.8
+      }
+    ],
+    "new_intent": [
+      {
+        "name": "retail",
+        "predicted": {
+          "primary": "product",
+          "secondary": "retail-operations",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": "retail-operations"
+        },
+        "accuracy": 1.0,
+        "confidence": 0.75
+      },
+      {
+        "name": "common",
+        "predicted": {
+          "primary": "product",
+          "secondary": null,
+          "mode": "auto",
+          "confidence": 0.7,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": null
+        },
+        "accuracy": 1.0,
+        "confidence": 0.7
+      },
+      {
+        "name": "finance",
+        "predicted": {
+          "primary": "product",
+          "secondary": "finance-regulatory",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": "finance-regulatory"
+        },
+        "accuracy": 1.0,
+        "confidence": 0.75
+      },
+      {
+        "name": "manufacturing",
+        "predicted": {
+          "primary": "product",
+          "secondary": "manufacturing-supply-chain",
+          "mode": "auto",
+          "confidence": 0.75,
+          "reason": "no goals provided, default to product"
+        },
+        "ground_truth": {
+          "primary": "product",
+          "secondary": "manufacturing-supply-chain"
+        },
+        "accuracy": 1.0,
+        "confidence": 0.75
+      }
+    ]
+  }
+}

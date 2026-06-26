@@ -1,0 +1,32 @@
+{
+  "name": "canvas-poster",
+  "version": "1.0.0",
+  "description": "Declarative server-side poster/dashboard image generator based on @napi-rs/canvas",
+  "main": "lib/builder.js",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "demo": "node examples/demo.js"
+  },
+  "keywords": [
+    "canvas",
+    "poster",
+    "dashboard",
+    "chart",
+    "infographic",
+    "image-generation",
+    "server-side-rendering",
+    "napi-rs"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "lib/",
+    "templates/",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.97"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "idle",
+  "question": null,
+  "candidate_pool": [],
+  "participants": [],
+  "current_round": 0,
+  "max_rounds": 0,
+  "user_interventions": [],
+  "finished": false,
+  "discussion_content": [],
+  "last_user_action": null,
+  "pending_user_input_type": "question",
+  "created_at": null,
+  "updated_at": "2026-04-16T20:06:23.505428"
+}

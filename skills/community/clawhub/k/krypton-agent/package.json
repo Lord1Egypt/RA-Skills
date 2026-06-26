@@ -1,0 +1,17 @@
+{
+  "name": "kryptone-escrow-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CLI helpers for Kryptone/PrivacyEscrow API using agent x-api-key auth",
+  "scripts": {
+    "register": "node scripts/register.js",
+    "create-trade": "node scripts/create-trade.js",
+    "accept-deposit": "node scripts/accept-deposit.js",
+    "submit-deposit-sig": "node scripts/submit-deposit-sig.js",
+    "settle": "node scripts/settle.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

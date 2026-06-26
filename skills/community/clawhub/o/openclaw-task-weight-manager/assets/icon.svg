@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Task Weight Manager icon">
+  <rect width="256" height="256" rx="48" fill="#0F766E"/>
+  <circle cx="128" cy="128" r="78" fill="#134E4A"/>
+  <circle cx="128" cy="128" r="52" fill="#F0FDFA"/>
+  <circle cx="128" cy="128" r="18" fill="#0F766E"/>
+  <path d="M128 36 L136 92 L120 92 Z" fill="#FDE68A"/>
+  <path d="M220 128 L164 136 L164 120 Z" fill="#FDE68A"/>
+  <path d="M128 220 L120 164 L136 164 Z" fill="#FDE68A"/>
+  <path d="M36 128 L92 120 L92 136 Z" fill="#FDE68A"/>
+</svg>

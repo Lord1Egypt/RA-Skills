@@ -1,0 +1,37 @@
+{
+  "slug": "data-retention-mapper",
+  "title": "数据留存地图师",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "structured_brief",
+  "summary": "梳理数据保留周期、落盘位置、清理责任与过期处置建议。",
+  "inputHint": "数据类型、存储位置、保留要求",
+  "sections": [
+    "数据资产",
+    "存储位置",
+    "保留周期",
+    "清理责任",
+    "风险点",
+    "改进建议"
+  ],
+  "useCases": [
+    "数据治理",
+    "合规准备",
+    "资产盘点"
+  ],
+  "positiveExamples": [
+    "帮我画一张数据留存地图",
+    "整理保留周期和落盘位置"
+  ],
+  "negativeExamples": [
+    "不要替代正式合规意见",
+    "不要隐瞒敏感存储位置风险"
+  ],
+  "risk": "适合作为治理底稿。",
+  "tags": [
+    "data-retention",
+    "governance",
+    "privacy",
+    "audit"
+  ]
+}

@@ -1,35 +1,31 @@
 ---
-name: "daa-agent"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/daa-agent"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/daa-agent"
+name: daa-agent
+description: Create and adapt Dynamic Agentic Architecture agents that learn and evolve
+argument-hint: "<create|adapt|status> [options]"
+allowed-tools: mcp__claude-flow__daa_agent_create mcp__claude-flow__daa_agent_adapt mcp__claude-flow__daa_learning_status mcp__claude-flow__daa_performance_metrics mcp__claude-flow__daa_knowledge_share Bash
 ---
 
-# daa-agent
+# DAA Agent
 
-> Indexed by skills.sh from ruvnet/ruflo
+Create agents with Dynamic Agentic Architecture that adapt and learn over time.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/daa-agent`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/daa-agent](https://skills.sh/ruvnet/ruflo/daa-agent)
+## When to use
 
-## Overview
+When you need agents that go beyond static configurations — agents that adapt their behavior based on performance metrics, learn from interactions, and share knowledge with other agents.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/daa-agent
-```
+1. **Create agent** — call `mcp__claude-flow__daa_agent_create` with initial configuration and learning parameters
+2. **Monitor learning** — call `mcp__claude-flow__daa_learning_status` to see adaptation progress
+3. **Check performance** — call `mcp__claude-flow__daa_performance_metrics` for efficiency and accuracy metrics
+4. **Adapt** — call `mcp__claude-flow__daa_agent_adapt` to trigger manual adaptation based on feedback
+5. **Share knowledge** — call `mcp__claude-flow__daa_knowledge_share` to propagate learnings to other agents
+
+## DAA vs static agents
+
+| Aspect | Static Agent | DAA Agent |
+|--------|-------------|-----------|
+| Behavior | Fixed configuration | Adapts over time |
+| Learning | None | Continuous from interactions |
+| Knowledge | Isolated | Shared across agents |
+| Performance | Constant | Improves with use |

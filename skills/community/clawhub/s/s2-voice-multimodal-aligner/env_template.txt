@@ -1,0 +1,11 @@
+# S2-Voice-Multimodal-Aligner 环境变量模板
+# 使用方法：将此文件重命名为 .env 并填入真实凭证（.env 默认会被 .gitignore 忽略）
+
+# 【物理控制保险栓】 默认 False (安全沙盒模式，不发送真实请求)
+S2_ENABLE_REAL_ACTUATION=False
+
+# 【Home Assistant 内网网关】 必须解析为局域网 IP 以通过 SSRF 防护校验
+HA_BASE_URL=http://homeassistant.local:8123/api
+
+# 【网关访问凭证】 (敏感信息)
+HA_BEARER_TOKEN=your_long_lived_access_token_here

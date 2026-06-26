@@ -1,0 +1,4 @@
+interface:
+  display_name: "AG9"
+  short_description: "Verify agent identity with Palm-backed AG9"
+  default_prompt: "Register this agent with AG9, load or create its identity, and produce the verification link."

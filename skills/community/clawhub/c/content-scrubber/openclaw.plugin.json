@@ -1,0 +1,18 @@
+{
+  "id": "content-scrubber",
+  "name": "Content Scrubber",
+  "description": "Scrubs internal infrastructure details (IPs, ports, hostnames) from outgoing messages before delivery",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "dryRun": {
+        "type": "boolean"
+      },
+      "allowedRecipients": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+# 自动切换模型配置
+
+models:
+  - id: primary
+    model: custom-maas-coding-api-cn-huabei-1-xf-yun-com/astron-code-latest
+    name: "Astron Code"
+    daily_limit: 10000000
+    priority: 1
+  
+  - id: backup-1
+    model: zai/glm-5
+    name: "GLM-4.5"
+    daily_limit: null
+    priority: 2
+  
+  - id: backup-2
+    model: gl
+    name: "Astron Code (备用)"
+    daily_limit: null
+    priority: 3
+
+notification:
+  enabled: true
+  message: "🔄 模型已切换：{from} → {to}"
+
+auto_switch:
+  on_limit_exceeded: true
+  on_rate_limit: true
+  retry_delay: 60
+  warning_threshold: 0.8
+  critical_threshold: 0.95

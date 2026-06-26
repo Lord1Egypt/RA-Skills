@@ -1,0 +1,20 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame" clip-path="url(#clip0_278_2608)">
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0Z" fill="#627EEA"/>
+<path id="Vector_2" d="M10.3062 2.5V8.04375L14.9918 10.1375L10.3062 2.5Z" fill="white" fill-opacity="0.602"/>
+<g id="Group">
+<path id="Vector_3" d="M10.3062 2.5L5.61865 10.1375L10.2999 8.04375L10.3062 2.5Z" fill="white"/>
+<path id="Vector_4" d="M10.3062 13.7299V17.4924L14.9937 11.0049L10.3062 13.7299Z" fill="white" fill-opacity="0.602"/>
+<path id="Vector_5" d="M10.3062 17.4967V13.7279L5.61865 11.0029L10.3062 17.4967Z" fill="white"/>
+<g id="Group_2">
+<path id="Vector_6" d="M10.3062 12.8578L14.9918 10.1328L10.3062 8.03906V12.8578Z" fill="white" fill-opacity="0.2"/>
+<path id="Vector_7" d="M5.625 10.1371L10.3062 12.8559V8.03711L5.625 10.1371Z" fill="white" fill-opacity="0.602"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_278_2608">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>

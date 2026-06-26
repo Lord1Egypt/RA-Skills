@@ -1,0 +1,4 @@
+interface:
+  display_name: "A-share Fund Intel"
+  short_description: "Timed A-share and fund intelligence reporting"
+  default_prompt: "Generate PRE_OPEN, POST_CLOSE, and NIGHT_CONFIRM reports for A-share and funds."

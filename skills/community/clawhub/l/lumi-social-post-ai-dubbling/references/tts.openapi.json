@@ -1,0 +1,78 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - TTS Voices",
+    "description": "List available Text-to-Speech voices for video dubbing",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "TTS" }],
+  "paths": {
+    "/api/v1/tts": {
+      "get": {
+        "summary": "List available TTS voices",
+        "description": "Returns all available TTS voices for dubbing. Use the voice id as dubbingVoiceId in localization or repurpose calls. Results are cached for 24 hours.",
+        "tags": ["TTS"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "required": false,
+            "description": "Filter by language code, e.g. en, zh, ko, ja",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["female", "male"] }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of TTS voices",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "voices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "number", "description": "Voice ID — use as dubbingVoiceId" },
+                          "displayName": { "type": "string" },
+                          "displayNameEn": { "type": "string" },
+                          "displayName2": { "type": "string" },
+                          "displayName2En": { "type": "string" },
+                          "gender": { "type": "string", "enum": ["female", "male"] },
+                          "language": { "type": "string", "description": "Language code, e.g. en, zh, ko" },
+                          "locale": { "type": "string", "description": "Locale code, e.g. en-US, zh-CN" },
+                          "isAdvanced": { "type": "number", "description": "1 = premier voice, 0 = standard" },
+                          "avatarUrl": { "type": "string" },
+                          "demoUrl": { "type": "string", "description": "Audio preview URL" },
+                          "demoText": { "type": "string" }
+                        },
+                        "required": ["id", "displayName", "gender", "language", "locale"]
+                      }
+                    },
+                    "total": { "type": "number" }
+                  },
+                  "required": ["voices", "total"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

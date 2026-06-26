@@ -1,0 +1,43 @@
+{
+  "name": "bilibit",
+  "version": "0.1.6",
+  "description": "Simple Bilibili video downloader. Just paste the URL!",
+  "main": "src/cli.js",
+  "bin": {
+    "bilibit": "./bin/bilibit.js",
+    "bbdown": "./bin/bbdown-wrapper.js"
+  },
+  "scripts": {
+    "test": "node tests/",
+    "start": "node bin/bilibit.js",
+    "postinstall": "node scripts/install-bbdown.js"
+  },
+  "keywords": [
+    "bilibili",
+    "B 站",
+    "哔哩哔哩",
+    "video",
+    "downloader",
+    "视频下载",
+    "弹幕",
+    "danmaku",
+    "simple",
+    "fast",
+    "cli",
+    "pure-download"
+  ],
+  "author": "bilibit team",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AoturLab/bilibit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AoturLab/bilibit/issues"
+  },
+  "homepage": "https://github.com/AoturLab/bilibit#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

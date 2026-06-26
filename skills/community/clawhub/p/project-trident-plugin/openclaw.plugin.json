@@ -1,0 +1,72 @@
+{
+  "id": "trident",
+  "name": "Trident Memory System",
+  "description": "Three-tier persistent memory architecture for OpenClaw agents. Provides daily episodic logs, curated long-term memory, semantic recall via LCM, and WAL-based continuity without vendor lock-in.",
+  "version": "1.0.0",
+  "author": "Shiva",
+  "homepage": "https://github.com/ShivaClaw/trident-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShivaClaw/trident-plugin.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "persistence",
+    "semantic-recall",
+    "agent-continuity",
+    "lossless-context-management"
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "description": "Enable Trident memory system",
+        "default": true
+      },
+      "memoryRoot": {
+        "type": "string",
+        "description": "Root directory for memory files (default: workspace root)",
+        "default": "./"
+      },
+      "maxDailyLogSize": {
+        "type": "number",
+        "description": "Maximum size of daily log before rotation (bytes, default: 5MB)",
+        "default": 5242880
+      },
+      "enableSemanticRecall": {
+        "type": "boolean",
+        "description": "Enable semantic recall via Qdrant (requires setup)",
+        "default": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "memory_search",
+        "description": "Search Trident memory using full-text or regex"
+      },
+      {
+        "name": "memory_expand",
+        "description": "Expand compacted memory summaries"
+      },
+      {
+        "name": "memory_update",
+        "description": "Append entries to daily memory log"
+      },
+      {
+        "name": "memory_recall",
+        "description": "Intelligent contextual recall via LCM"
+      }
+    ]
+  },
+  "uiHints": {
+    "memoryRoot": {
+      "label": "Memory Root Directory",
+      "placeholder": "/path/to/memory"
+    }
+  }
+}

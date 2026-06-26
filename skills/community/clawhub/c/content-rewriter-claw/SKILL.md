@@ -1,35 +1,88 @@
 ---
-name: "流量重组洗稿虾"
-description: "流量重组洗稿虾 — 基于爆款逻辑的深度内容改写专家。保留爆款基因，规避重复风险，快速产出高质量原创内容。 **当以下情况时使用此 Skill**： (1) 需要将爆款内容改写为符合自己账号风格的原创版本 (2) 需要跨平台内容迁移（长文→短视频脚本、视频→图文） (3) 需要基于同一核心观点生成多个不同角度的内容..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-rewriter-claw"
-sourceUrl: "https://clawhub.ai/skills/content-rewriter-claw"
+name: content-rewriter-claw
+description: |
+  流量重组洗稿虾 — 基于爆款逻辑的深度内容改写专家。保留爆款基因，规避重复风险，快速产出高质量原创内容。
+
+  **当以下情况时使用此 Skill**：
+  (1) 需要将爆款内容改写为符合自己账号风格的原创版本
+  (2) 需要跨平台内容迁移（长文→短视频脚本、视频→图文）
+  (3) 需要基于同一核心观点生成多个不同角度的内容版本
+  (4) 需要将可能触及平台红线的内容改写为合规版本
+  (5) 用户提到"改写"、"洗稿"、"内容改编"、"换个角度"、"重新演绎"、"借鉴爆款"、"规避重复"、"原创改写"、"内容衍生"、"合规化"
 ---
 
-# 流量重组洗稿虾
+# 流量重组洗稿虾 (content-rewriter-claw)
 
-> 流量重组洗稿虾 — 基于爆款逻辑的深度内容改写专家。保留爆款基因，规避重复风险，快速产出高质量原创内容。 **当以下情况时使用此 Skill**： (1) 需要将爆款内容改写为符合自己账号风格的原创版本 (2) 需要跨平台内容迁移（长文→短视频脚本、视频→图文） (3) 需要基于同一核心观点生成多个不同角度的内容...
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-rewriter-claw`
-- **Source URL:** [https://clawhub.ai/skills/content-rewriter-claw](https://clawhub.ai/skills/content-rewriter-claw)
+### 步骤 1：解构原始内容
+分析原文的核心要素：
+- 核心观点/论点
+- 论证逻辑（因果/对比/递进）
+- 情绪共鸣点
+- 金句/亮点
+- 数据/案例
+- 结构框架
 
-## Overview
+### 步骤 2：提炼爆款基因
+识别内容为什么会爆的关键因素，参考 `references/viral-gene-model.md`：
+- 标题钩子类型（悬念/痛点/反常识/数字/共鸣）
+- 情绪触发器（焦虑/好奇/愤怒/感动/共鸣）
+- 传播结构（起承转合节奏）
+- 价值密度
 
+### 步骤 3：选择改写深度
+根据用户需求或内容风险选择改写深度，详见 `references/rewrite-rules.md`：
+- `shallow`：浅层改写（快速产出，重复率30-50%）
+- `medium`：中层改写（大多数场景，重复率10-30%）
+- `deep`：深度重构（高风险内容，重复率<10%）
+- `full`：完全原创（仅保留核心观点，重复率<5%）
 
-## Installation
-To install this skill, run the following command in your terminal:
+用户未指定时，默认使用 `deep`（安全优先）。
+
+### 步骤 4：执行改写
+按选定深度改写内容，同时：
+- 保留爆款基因（钩子类型、情绪触发点、传播结构不变，内容全换）
+- 适配目标账号风格（语言风格、句式、人称、特色表达）
+- 适配目标平台规范（如有指定）
+
+### 步骤 5：合规检查
+改写完成后，对照 `references/compliance-rules.md` 检查：
+- 估算重复率是否达标
+- 检查绝对化用语和平台敏感词
+- 评估版权风险
+
+### 步骤 6：输出结果
+输出格式：
+1. **改写后的内容**（完整版）
+2. **改写说明**：简述做了哪些改动（改写深度、角度转换、案例替换等）
+3. **合规评估**：预估重复率区间、风险等级
+
+## 辅助脚本
+
+`scripts/rewrite-content.py`：生成结构化改写 prompt，适合批量处理场景。
+
 ```bash
-hermes skills install clawhub/content-rewriter-claw
+python3 scripts/rewrite-content.py --input "原文内容" --depth deep --style "轻松幽默" --platform xiaohongshu
+python3 scripts/rewrite-content.py --input-file content.txt --depth medium --output result.json
 ```
+
+参数：
+- `--depth`：shallow / medium / deep / full
+- `--style`：目标风格描述（如"专业严谨"、"轻松幽默"）
+- `--platform`：目标平台（douyin / xiaohongshu / wechat / bilibili）
+- `--keep`：必须保留的要素（逗号分隔）
+- `--avoid`：需要规避的要素（逗号分隔）
+
+## 参考资料
+
+- `references/rewrite-rules.md`：改写深度层级定义和操作清单
+- `references/viral-gene-model.md`：爆款基因提炼模型（钩子公式、情绪触发器、传播结构）
+- `references/compliance-rules.md`：查重阈值、平台敏感词、版权风险评估
+
+## 注意事项
+
+- 改写不等于可以随意使用他人内容，注意版权边界
+- 深度改写需要较长时间，告知用户预期等待
+- 改写质量依赖原文质量
+- 不支持视频内容直接改写（仅支持文字）

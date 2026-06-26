@@ -1,0 +1,22 @@
+{
+  "name": "cold-outreach",
+  "version": "1.0.0",
+  "description": "Run a complete cold email outreach campaign — from sourcing leads to handling replies. Covers ICP definition, lead sourcing strategy, email sequence construction, personalization, reply handling, and suppression management.",
+  "keywords": [
+    "cold-email",
+    "outreach",
+    "lead-gen",
+    "n8n",
+    "automation",
+    "sales",
+    "prospecting"
+  ],
+  "author": "Qsys",
+  "license": "MIT",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/",
+    "_meta.json"
+  ]
+}

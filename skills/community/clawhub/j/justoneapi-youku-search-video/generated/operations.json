@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/youku/search-video/v1 for YOUKU Video Search through JustOneAPI with keyword.",
+  "displayName": "YOUKU Video Search",
+  "endpointPath": "search-video",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get YOUKU video Search data, including video ID, title, and cover image, for keyword-based video discovery, monitoring specific topics or trends on youku, and analyzing search results for market research.",
+      "method": "GET",
+      "operationId": "searchVideoV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Keyword to search for.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination, starting from 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/youku/search-video/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Search",
+      "tags": [
+        "YOUKU"
+      ]
+    }
+  ],
+  "platformKey": "youku",
+  "primaryTag": "YOUKU",
+  "skillName": "justoneapi_youku_search_video",
+  "skillType": "interface",
+  "slug": "justoneapi-youku-search-video",
+  "sourceTitle": "OpenAPI definition"
+}

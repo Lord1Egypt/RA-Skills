@@ -1,35 +1,127 @@
 ---
-name: "due-diligence-coordinator"
-description: "Indexed by skills.sh from jmsktm/claude-settings"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jmsktm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/due-diligence-coordinator"
-sourceUrl: "https://skills.sh/jmsktm/claude-settings/due-diligence-coordinator"
+name: Due Diligence Coordinator
+slug: due-diligence-coordinator
+description: Coordinate and prepare for investor due diligence with organized data rooms
+category: business
+complexity: simple
+version: "1.0.0"
+author: "ID8Labs"
+triggers:
+  - "due diligence"
+  - "dd preparation"
+  - "data room"
+  - "investor dd"
+  - "due diligence prep"
+tags:
+  - due-diligence
+  - investors
+  - data-room
+  - preparation
+  - fundraising
 ---
 
-# due-diligence-coordinator
+# Due Diligence Coordinator
 
-> Indexed by skills.sh from jmsktm/claude-settings
+Coordinate and prepare for investor due diligence with organized data rooms
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jmsktm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/due-diligence-coordinator`
-- **Source URL:** [https://skills.sh/jmsktm/claude-settings/due-diligence-coordinator](https://skills.sh/jmsktm/claude-settings/due-diligence-coordinator)
+## When to Use This Skill
 
-## Overview
+Use this skill when you need to:
+- Improve business operations and strategy
+- Make data-driven business decisions
+- Optimize processes and outcomes
 
+**Not recommended for:**
+- Tasks requiring creative design work
+- technical coding
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jmsktm/claude-settings/due-diligence-coordinator
-```
+## Quick Reference
+
+| Action | Command/Trigger |
+|--------|-----------------|
+| Create due diligence coordinator | `due diligence` |
+| Review and optimize | `review due diligence coordinator` |
+| Get best practices | `due diligence coordinator best practices` |
+
+## Core Workflows
+
+### Workflow 1: Initial Due Diligence Coordinator Creation
+
+**Goal:** Create a high-quality due diligence coordinator from scratch
+
+**Steps:**
+1. **Discovery** - Understand requirements and objectives
+2. **Planning** - Develop strategy and approach
+3. **Execution** - Implement the plan
+4. **Review** - Evaluate results and iterate
+5. **Optimization** - Refine based on feedback
+
+### Workflow 2: Advanced Due Diligence Coordinator Optimization
+
+**Goal:** Refine and optimize existing due diligence coordinator for better results
+
+**Steps:**
+1. **Research** - Gather relevant information
+2. **Analysis** - Evaluate options and approaches
+3. **Decision** - Choose the best path forward
+4. **Implementation** - Execute with precision
+5. **Measurement** - Track success metrics
+
+## Best Practices
+
+1. **Start with Clear Objectives**
+   Define what success looks like before beginning work.
+
+2. **Follow Industry Standards**
+   Leverage proven frameworks and best practices in business.
+
+3. **Iterate Based on Feedback**
+   Continuously improve based on results and user input.
+
+4. **Document Your Process**
+   Keep track of decisions and outcomes for future reference.
+
+5. **Focus on Quality**
+   Prioritize excellence over speed, especially in early iterations.
+
+## Checklist
+
+Before considering your work complete:
+
+- [ ] Objectives clearly defined and understood
+- [ ] Research and discovery phase completed
+- [ ] Strategy or plan documented
+- [ ] Implementation matches requirements
+- [ ] Quality standards met
+- [ ] Stakeholders informed and aligned
+- [ ] Results measured against goals
+- [ ] Documentation updated
+- [ ] Feedback collected
+- [ ] Next steps identified
+
+## Common Mistakes
+
+| Mistake | Why It's Bad | Better Approach |
+|---------|--------------|-----------------|
+| Skipping research | Leads to misaligned solutions | Invest time in understanding context |
+| Ignoring best practices | Reinventing the wheel | Study successful examples first |
+| No clear metrics | Can't measure success | Define KPIs upfront |
+
+## Integration Points
+
+- **Tools**: Integration with common business platforms and tools
+- **Workflows**: Fits into existing business operations workflows
+- **Team**: Collaborates with leadership and operations stakeholders
+
+## Success Metrics
+
+Track these metrics to measure effectiveness:
+- Quality of output
+- Time to completion
+- Stakeholder satisfaction
+- Impact on business goals
+- Reusability of approach
+
+---
+
+*This skill is part of the ID8Labs Skills Marketplace. Last updated: 2026-01-07*

@@ -1,35 +1,134 @@
 ---
-name: "Skill Analyst Zh"
-description: "在安装或发布 OpenClaw skill 之前进行分析评估。对比已安装或 ClawHub 上的同类 skill， 检查功能重叠，进行安全审查，给出明确的安装/发布建议。 需要 `clawhub` CLI 可用。 使用场景：用户想评估某个 skill 是否值得安装、对比 ClawHub 上的同类 skill、 检..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-analyst-zh"
-sourceUrl: "https://clawhub.ai/skills/skill-analyst-zh"
+name: skill-analyst-zh
+description: >
+  在安装或发布 OpenClaw skill 之前进行分析评估。对比已安装或 ClawHub 上的同类 skill，
+  检查功能重叠，进行安全审查，给出明确的安装/发布建议。
+  需要 `clawhub` CLI 可用。
+  使用场景：用户想评估某个 skill 是否值得安装、对比 ClawHub 上的同类 skill、
+  检查本地 skill 是否达到发布标准。
+  触发词："分析 skill-name"、"评估安装/发布某某技能"、"这个skill值得装吗"、"能发布吗"、"skill对比"。
 ---
 
-# Skill Analyst Zh
+# 技能分析师
 
-> 在安装或发布 OpenClaw skill 之前进行分析评估。对比已安装或 ClawHub 上的同类 skill， 检查功能重叠，进行安全审查，给出明确的安装/发布建议。 需要 `clawhub` CLI 可用。 使用场景：用户想评估某个 skill 是否值得安装、对比 ClawHub 上的同类 skill、 检...
+在你安装或发布 skill 之前，帮你分析、对比、把关。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-analyst-zh`
-- **Source URL:** [https://clawhub.ai/skills/skill-analyst-zh](https://clawhub.ai/skills/skill-analyst-zh)
+## 前置条件
 
-## Overview
+- 需要 `clawhub` CLI 可用
+- `skill-vetter` 可选（用于安全审查）
 
+## 工作流：安装评估
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第一步：搜索目标
+
+用 `clawhub search <关键词>` 搜索 ClawHub 上的同类 skill：
+
 ```bash
-hermes skills install clawhub/skill-analyst-zh
+clawhub search "<skill名称>"
+clawhub inspect "<最佳匹配>"
 ```
+
+获取：名称、作者、版本、简介、许可证、最近更新时间。
+
+### 第二步：查看已安装 skill
+
+扫描 `~/.openclaw/skills/` 目录下的 SKILL.md 文件，或用 `clawhub list` 查看。
+
+### 第三步：查找重叠
+
+将目标 skill 与已安装 skill 对比：
+- 搜索功能关键词或用途重叠
+- 评估重叠程度：高(HIGH) / 中(MEDIUM) / 低(LOW) / 无(NONE)
+- 标注关键差异
+
+### 第四步：安全检查（可选）
+
+如已安装 `skill-vetter`，对目标运行安全审查。否则标注"安全审查已跳过"。
+
+### 第五步：生成报告
+
+```markdown
+## 🔍 分析报告：安装 <skill名称>
+
+### 概览
+| 字段 | 值 |
+|------|-----|
+| 名称 | ... |
+| 作者 | ... |
+| 版本 | ... |
+| 许可证 | ... |
+| 更新时间 | ... |
+
+### 与已安装 Skill 的重叠
+- skill-a：中(MEDIUM) — 用途相似但方法不同
+- skill-b：无(NONE) — 不相关
+
+### 独特价值
+- 功能 X（没有任何已安装 skill 覆盖）
+
+### 风险
+- 需要 Z 的 API 密钥
+
+### 结论
+✅ 推荐安装 / ⚠️ 考虑安装 / ❌ 不推荐
+```
+
+## 工作流：发布评估
+
+### 第一步：读取本地 skill
+
+从工作区或 skills 目录读取 SKILL.md，提取名称、描述、功能概要、文件列表。
+
+### 第二步：搜索竞品
+
+用 2-3 个不同关键词搜索：
+
+```bash
+clawhub search "<skill名称>"
+clawhub search "<描述中的关键词>"
+```
+
+### 第三步：分析竞品
+
+对每个相关结果：
+
+```bash
+clawhub inspect "<竞品>"
+```
+
+对比：功能覆盖、版本成熟度、更新频率、独特性。
+
+### 第四步：生成报告
+
+```markdown
+## 🔍 分析报告：发布 <skill名称>
+
+### 你的 Skill
+| 字段 | 值 |
+|------|-----|
+| 名称 | ... |
+| 文件数 | ... |
+| 描述 | ... |
+
+### ClawHub 上的竞品
+| Skill | 作者 | 版本 | 重叠度 | 更新时间 |
+|-------|------|------|--------|----------|
+| ... | ... | ... | 高/中/低 | ... |
+
+### 你的优势
+- 与竞品的关键差异
+
+### 改进建议
+- 发布前建议增加 X
+
+### 结论
+✅ 可以发布 / ⚠️ 先优化再发布 / ❌ 重新考虑
+```
+
+## 输出规范
+
+- 始终使用表格进行结构化对比
+- 分析简洁，以可操作性为导向
+- 以明确结论收尾
+- 使用以上报告模板，不要自由发挥

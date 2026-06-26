@@ -1,0 +1,86 @@
+# Agent Swarm Team Configuration
+# Use this as a template for your own team setup
+
+team:
+  name: "My Team"
+  description: "Multi-agent team for personal AI orchestration"
+
+  # Channel configuration
+  # Currently supports: feishu
+  # Each agent needs a target (open_id or channel_id)
+  channel: feishu
+
+  agents:
+    - id: master
+      name: "主管"
+      role: master
+      emoji: "🎯"
+      description: "调度、审查、路由、兜底"
+      # For Feishu:
+      target: "user:ou_xxxxxxxx"
+      # For other channels, use appropriate identifiers
+
+    - id: specialist-ops
+      name: "运维专家"
+      role: specialist
+      emoji: "🔧"
+      domain: [ops, security, diagnosis, monitoring]
+      description: "系统运维、安全审计、故障诊断"
+      target: "user:ou_yyyyyyyy"
+
+    - id: specialist-content
+      name: "内容专家"
+      role: specialist
+      emoji: "🎨"
+      domain: [content, creative, research, news]
+      description: "内容创作、资讯研究、创意策划"
+      target: "user:ou_zzzzzzzz"
+
+    - id: critic
+      name: "审查"
+      role: critic
+      emoji: "🔍"
+      description: "审查输出质量、风险评估"
+      # Critic usually doesn't need direct user contact
+      # but receives reports from specialists
+      target: "user:ou_xxxxxxxx"
+
+# Task routing rules
+# Defines which specialist handles which type of task
+routing:
+  rules:
+    - trigger: [运维, 系统, 安全, 诊断, 监控, bug]
+      target: specialist-ops
+      confidence_threshold: 0.6
+
+    - trigger: [内容, 创作, 资讯, 新闻, 策划, 文案, 设计]
+      target: specialist-content
+      confidence_threshold: 0.6
+
+    - trigger: [审查, 评估, 判断, 决定]
+      target: critic
+      confidence_threshold: 0.5
+
+    - trigger: [路由, 调度, 分配]
+      target: master
+      confidence_threshold: 0.7
+
+# Fallback: if no rule matches, route to master
+fallback:
+  target: master
+  action: ask_for_clarification
+
+# Memory protocol
+memory:
+  long_term: MemPalace        # Team decisions, facts, cross-agent knowledge
+  short_term: MemClaw/Cortex   # Session preferences, temporary context
+  recall_required:
+    - task_start
+    - cross_agent_handoff
+    - escalation
+
+# Communication
+comms:
+  protocol: structured_message   # See SKILL.md for format
+  async: true                  # Non-blocking message passing
+  escalation_required: true    # Must escalate to master on boundary violation

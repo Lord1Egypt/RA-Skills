@@ -1,35 +1,173 @@
----
-name: "teamarchitect-skill"
-description: "通过对话收集需求，设计多智能体团队架构，并推荐对应 Agent 角色的专业技能供选择和安装。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/teamarchitect-skill"
-sourceUrl: "https://clawhub.ai/skills/teamarchitect-skill"
----
+# TeamArchitect - 智能团队架构师
 
-# teamarchitect-skill
+## 技能描述
+通过自然语言对话和多轮询问，深入了解用户需求，设计多智能体团队架构，并根据每个 Agent 角色推荐对应的专业技能供用户选择安装。
 
-> 通过对话收集需求，设计多智能体团队架构，并推荐对应 Agent 角色的专业技能供选择和安装。
+## 核心流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/teamarchitect-skill`
-- **Source URL:** [https://clawhub.ai/skills/teamarchitect-skill](https://clawhub.ai/skills/teamarchitect-skill)
+### 1. 需求收集阶段
+使用引导式对话了解以下信息：
+- **项目类型**: 是什么类型的项目/产品
+- **目标用户**: 服务对象是谁
+- **技术栈偏好**: 现有技术栈或偏好
+- **协作平台**: 使用的工具（GitHub、飞书、钉钉等）
+- **团队规模**: 预期 Agent 数量
+- **预算限制**: 是否有 API 调用成本考虑
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/teamarchitect-skill
+### 2. 架构设计阶段
+根据需求智能匹配团队架构，输出：
 ```
+【团队架构图】
+协调 Agent
+├── 分析 Agent
+├── 执行 Agent
+├── 创作 Agent
+└── ...
+
+【各 Agent 职责】
+- 协调 Agent: 任务分发、上下文管理
+- 分析 Agent: 数据收集、信息分析
+- ...
+```
+
+### 3. Agent 角色 - 技能映射库
+
+根据 Agent 角色类型，动态推荐对应技能：
+
+| Agent 角色 | 核心技能（主业必需） | 非核心技能（能力增强） |
+|-----------|-------------------|---------------------|
+| 分析类 | 数据分析、信息抓取、摘要提炼 | 趋势分析、竞品对比 |
+| 执行类 | 代码编写、文件处理、API 调用 | 批量操作、自动化脚本 |
+| 审查类 | 代码审查、安全扫描、质量检查 | 性能分析、规范检查 |
+| 协调类 | 任务分发、上下文管理、进度追踪 | 报告生成、通知提醒 |
+| 创作类 | 文案撰写、内容优化、排版美化 | 多平台适配、视频脚本 |
+| 陪伴类 | 对话交流、情感分析、记忆管理 | 个性化推荐、日程提醒 |
+| 办公类 | Excel、PPT、Word、PDF 处理 | 邮件管理、会议安排 |
+| 技术类 | 前后端开发、数据库、运维部署 | 监控告警、CI/CD |
+| 研究类 | 深度调研、文献分析 | 知识图谱、引用管理 |
+| 运营类 | 多平台发布、粉丝互动 | 数据分析、推广策略 |
+| 设计类 | UI/UX、视觉设计、图片处理 | 原型设计、素材管理 |
+| 测试类 | 自动化测试、Bug 检测 | 性能测试、覆盖率分析 |
+| 学习类 | 知识管理、技能更新 | 记忆整理、经验总结 |
+
+### 4. 技能推荐阶段
+
+#### 动态推荐逻辑
+```
+对于每个 Agent 角色：
+  1. 查找该角色对应的核心技能列表
+  2. 检查本地是否已安装
+  3. 未安装的标记为 [待安装/待创建]
+  4. 汇总生成推荐清单
+```
+
+#### 推荐输出格式
+```
+根据你的团队架构，为各 Agent 推荐以下技能：
+
+【分析 Agent】核心技能
+  ✓ self-improving - 持续学习改进 [已安装]
+  □ data-analyzer - 数据分析 [ClawdHub]
+  □ web-scraper - 网页抓取 [待创建]
+
+【办公 Agent】核心技能
+  □ excel-handler - Excel 处理 [ClawdHub]
+  □ ppt-maker - PPT 制作 [待创建]
+  ...
+
+【非核心技能 - 可选增强】
+  □ trend-analyzer - 趋势分析 [ClawdHub]
+  □ video-scripter - 视频脚本 [待创建]
+  ...
+
+---
+操作：
+1. 安装全部核心技能 [Y/n]
+2. 选择安装核心技能 [输入编号]
+3. 选择非核心技能 [空格分隔编号]
+4. 跳过 [skip]
+```
+
+### 5. 技能安装策略
+
+```
+对于每个推荐技能：
+1. 本地已安装 → 跳过
+2. ClawdHub 有现成 → 推荐安装
+3. GitHub 有开源 → 推荐下载
+4. 都不存在 → 询问是否创建新技能
+```
+
+### 6. 安装执行阶段
+- 核心技能：用户确认后批量安装/创建
+- 非核心技能：根据用户选择安装
+- 安装失败时提供备选方案
+- 缺失技能：询问是否现场创建
+
+### 7. 配置优化阶段
+- 检查技能兼容性
+- 提供配置文件调优建议
+- 设置 Agent 间协作规则
+- 创建技能 - 能力映射表供运行时调用
+
+## 技能来源优先级
+1. 本地已有技能 (`~/.claude/skills/`)
+2. ClawdHub 技能市场
+3. GitHub 开源技能仓库
+4. 用户指定来源
+5. 现场创建新技能
+
+## 对话示例
+
+```
+用户：我想做一个自动化代码审查工具
+
+助手：好的，我来帮你设计团队架构。请问：
+1. 这个项目主要服务于什么编程语言？
+2. 需要集成到哪些平台？（GitHub/GitLab/本地）
+3. 预期每天处理多少代码审查请求？
+
+用户：主要是 Python 和 JavaScript，集成 GitHub，每天大约 50 次请求
+
+助手：根据你的需求，推荐以下团队架构：
+
+【团队架构】
+├── 代码分析 Agent (负责解析代码结构)
+├── 规范审查 Agent (负责检查代码规范)
+├── 安全扫描 Agent (负责漏洞检测)
+└── 报告生成 Agent (负责生成审查报告)
+
+【为各 Agent 推荐技能】
+
+【分析 Agent】核心技能
+  □ code-parser - 代码解析 [ClawdHub]
+  □ ast-analyzer - AST 分析 [待创建]
+
+【审查 Agent】核心技能
+  ✓ skill-vetter - 技能安全审查 [已安装]
+  □ linter-pro - 代码规范检查 [ClawdHub]
+
+【执行 Agent】核心技能
+  ✓ debug-pro - 错误调试分析 [已安装]
+  □ auto-fixer - 自动修复 [待创建]
+
+是否安装以上核心技能？[Y/n/skip]
+
+用户：Y
+
+助手：正在安装核心技能...
+✓ code-parser 安装完成
+✓ linter-pro 安装完成
+✓ debug-pro 已存在
+⚠ auto-fixer 不存在，是否现在创建？[Y/n]
+```
+
+## 安装命令
+```
+/teamarchitect
+```
+
+## 元数据
+- 版本：1.1.0
+- 作者：用户自定义
+- 适用平台：OpenClaw, Claude Code, 通用 AI 助理

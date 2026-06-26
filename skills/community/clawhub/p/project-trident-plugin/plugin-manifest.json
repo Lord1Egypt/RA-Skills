@@ -1,0 +1,308 @@
+{
+  "name": "project-trident-plugin",
+  "version": "2.0.0",
+  "description": "Five-tier persistent memory for OpenClaw agents. Lossless capture (SQLite) → intelligent routing → hierarchical storage → semantic recall (Qdrant+FalkorDB) → disaster recovery. Native binaries, zero Docker required, $0 self-hosted.",
+  "author": {
+    "name": "Shiva",
+    "github": "ShivaClaw",
+    "email": "shivaclaw@clawhub.ai"
+  },
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShivaClaw/project-trident"
+  },
+  "homepage": "https://clawhub.ai/shivaclaw/trident",
+  "keywords": [
+    "memory",
+    "persistence",
+    "agent-continuity",
+    "identity",
+    "semantic-recall",
+    "embeddings",
+    "vector-search",
+    "backup",
+    "git",
+    "cron",
+    "signal-routing"
+  ],
+  "type": "plugin",
+  "category": "memory",
+  "tags": [
+    "ambient-memory",
+    "lossless-capture",
+    "agent-identity",
+    "cross-platform"
+  ],
+  "minimum_openclaw_version": "1.0.0",
+  "plugin_api_version": "1.0",
+  "activation": {
+    "type": "cron",
+    "trigger": "environment",
+    "description": "Automatic signal routing and memory consolidation"
+  },
+  "configuration": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable Trident memory system"
+      },
+      "layer0_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable Layer 0 LCM (lossless capture). Required for all other layers."
+      },
+      "layer0_5_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable Layer 0.5 signal router (cron agent). Requires Layer 0."
+      },
+      "layer0_5_interval_minutes": {
+        "type": "integer",
+        "minimum": 5,
+        "maximum": 60,
+        "default": 15,
+        "description": "Signal routing interval in minutes (10-30 min recommended for cost-effectiveness)"
+      },
+      "layer0_5_model": {
+        "type": "string",
+        "enum": [
+          "anthropic/claude-haiku-4-5",
+          "anthropic/claude-3-5-sonnet",
+          "google/gemini-2-flash",
+          "ollama/mistral",
+          "ollama/neural-chat",
+          "custom"
+        ],
+        "default": "anthropic/claude-haiku-4-5",
+        "description": "Model for Layer 0.5 signal router. Haiku recommended for cost. Use ollama/* for zero-cost local inference."
+      },
+      "layer0_5_custom_model": {
+        "type": "string",
+        "description": "Custom model provider/name when layer0_5_model is 'custom'"
+      },
+      "layer0_5_temperature": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 2,
+        "default": 0.7,
+        "description": "Temperature for Layer 0.5 routing decisions"
+      },
+      "workspace_path": {
+        "type": "string",
+        "description": "Workspace root directory (typically ~/.openclaw/workspace). If omitted, uses $OPENCLAW_WORKSPACE or infers from cwd."
+      },
+      "memory_bucket_path": {
+        "type": "string",
+        "default": "memory",
+        "description": "Relative path from workspace_path where Trident buckets are stored"
+      },
+      "semantic_recall_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Layer 1.5: semantic recall (Qdrant + FalkorDB). Mandatory in v2.0. Requires Layer 0 and Layer 0.5."
+      },
+      "qdrant_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable Qdrant vector search. Mandatory in v2.0."
+      },
+      "qdrant_url": {
+        "type": "string",
+        "default": "http://localhost:6333",
+        "description": "Qdrant server URL (Docker, local binary, or cloud)"
+      },
+      "qdrant_collection": {
+        "type": "string",
+        "default": "trident-memory",
+        "description": "Qdrant collection name for memory embeddings"
+      },
+      "qdrant_api_key": {
+        "type": "string",
+        "description": "API key for Qdrant Cloud (optional, for cloud deployments)"
+      },
+      "falkordb_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable FalkorDB entity graph for semantic recall. Mandatory in v2.0."
+      },
+      "falkordb_url": {
+        "type": "string",
+        "default": "redis://localhost:6379",
+        "description": "FalkorDB connection URL (Redis or FalkorDB Cloud)"
+      },
+      "falkordb_graph_key": {
+        "type": "string",
+        "default": "trident-graph",
+        "description": "FalkorDB graph key"
+      },
+      "git_backup_enabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable daily Git backup of memory (requires git init in workspace)"
+      },
+      "git_backup_hour": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 23,
+        "default": 2,
+        "description": "Hour of day (0-23) for daily Git backup cron job"
+      },
+      "embedding_model": {
+        "type": "string",
+        "enum": [
+          "anthropic/embed-v3-small",
+          "anthropic/embed-v3-large",
+          "google/embedding-001",
+          "openai/text-embedding-3-small",
+          "openai/text-embedding-3-large",
+          "custom"
+        ],
+        "default": "anthropic/embed-v3-small",
+        "description": "Embedding model for semantic recall. Only used if semantic_recall_enabled=true."
+      },
+      "embedding_model_custom": {
+        "type": "string",
+        "description": "Custom embedding model when embedding_model='custom'"
+      },
+      "audit_logging_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable audit logging for Layer 0.5 routing decisions (written to memory/layer0/audit-log.md)"
+      },
+      "template_integrity_check": {
+        "type": "boolean",
+        "default": true,
+        "description": "Verify Layer 0.5 AGENT-PROMPT.md SHA256 before each routing run (security feature)"
+      },
+      "wipe_on_upgrade": {
+        "type": "boolean",
+        "default": false,
+        "description": "Dangerous: if true, wipes memory on plugin upgrade. Use only for testing."
+      }
+    },
+    "required": [
+      "enabled",
+      "layer0_enabled",
+      "layer0_5_model"
+    ]
+  },
+  "dependencies": {
+    "plugins": [
+      {
+        "name": "lossless-claw",
+        "version": ">=1.0.0",
+        "optional": false,
+        "reason": "Layer 0 requires LCM (Lossless Context Management) for SQLite+DAG persistence"
+      }
+    ],
+    "system": [
+      {
+        "type": "cli",
+        "name": "node",
+        "minimum_version": "22.14.0"
+      },
+      {
+        "type": "cli",
+        "name": "git",
+        "optional": true,
+        "reason": "Optional: required only if git_backup_enabled=true"
+      },
+      {
+        "type": "cli",
+        "name": "docker",
+        "optional": true,
+        "reason": "Optional: required only if using Qdrant/FalkorDB via Docker"
+      }
+    ]
+  },
+  "directories": {
+    "memory": "memory/",
+    "memory_daily": "memory/daily/",
+    "memory_self": "memory/self/",
+    "memory_lessons": "memory/lessons/",
+    "memory_projects": "memory/projects/",
+    "memory_reflections": "memory/reflections/",
+    "memory_layer0": "memory/layer0/",
+    "scripts": "scripts/"
+  },
+  "capabilities": {
+    "core": [
+      "lossless-capture",
+      "signal-routing",
+      "hierarchical-organization",
+      "semantic-recall",
+      "vector-search",
+      "entity-graphs"
+    ],
+    "optional": [
+      "git-backup",
+      "audit-logging"
+    ]
+  },
+  "lifecycle": {
+    "install": {
+      "type": "script",
+      "path": "scripts/install.sh",
+      "description": "Initialize Trident directory structure and copy templates"
+    },
+    "activate": {
+      "type": "script",
+      "path": "scripts/activate.sh",
+      "description": "Enable cron job for Layer 0.5 signal router"
+    },
+    "deactivate": {
+      "type": "script",
+      "path": "scripts/deactivate.sh",
+      "description": "Disable cron job for Layer 0.5 signal router (preserves memory)"
+    },
+    "uninstall": {
+      "type": "manual",
+      "description": "Uninstall Trident. Memory is never automatically deleted. Use 'rm -r ~/.openclaw/workspace/memory' to remove memory files."
+    }
+  },
+  "permissions": {
+    "file_access": [
+      "~/.openclaw/workspace/memory/*",
+      "~/.openclaw/workspace/*.md",
+      "~/.openclaw/workspace/.git/*"
+    ],
+    "process": [
+      "cron-scheduling"
+    ],
+    "network": [
+      "qdrant-server (optional)",
+      "falkordb-server (optional)",
+      "embedding-api (optional)"
+    ]
+  },
+  "health_check": {
+    "enabled": true,
+    "interval_minutes": 60,
+    "checks": [
+      "memory_directory_exists",
+      "layer0_lossless_capture_running",
+      "layer0_5_cron_scheduled",
+      "template_integrity_valid"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "installation": "INSTALL.md",
+    "getting_started": "docs/QUICKSTART.md",
+    "troubleshooting": "docs/TROUBLESHOOTING.md",
+    "faq": "docs/FAQ.md"
+  },
+  "metadata": {
+    "mature": true,
+    "actively_maintained": true,
+    "downloads": 0,
+    "rating": 5,
+    "reviews": 0,
+    "created_at": "2026-03-20T00:00:00Z",
+    "updated_at": "2026-04-24T18:00:00Z",
+    "changelog_url": "https://github.com/ShivaClaw/trident-plugin/releases"
+  }
+}

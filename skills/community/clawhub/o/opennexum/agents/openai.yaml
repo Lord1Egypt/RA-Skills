@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenNexum"
+  short_description: "Contract-driven ACP coding orchestration"
+  default_prompt: "Use $opennexum to set up contract-driven multi-agent ACP orchestration for this repository."

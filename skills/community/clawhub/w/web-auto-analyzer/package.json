@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "name": "chrome-devtools-auto-analyzer",
+  "version": "1.1.1",
+  "description": "Automated website analysis using Lighthouse",
+  "main": "automation-script.js",
+  "scripts": {
+    "analyze": "node automation-script.js",
+    "test": "node automation-script.js https://example.com"
+  },
+  "dependencies": {
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^12.8.2"
+  }
+}

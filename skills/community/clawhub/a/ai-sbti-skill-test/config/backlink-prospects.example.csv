@@ -1,0 +1,5 @@
+source_domain,source_url,target_url,anchor_text,link_type,relevance,authority,estimated_traffic,indexed,outbound_links,placement
+example-ai-directory.com,https://example-ai-directory.com/tool/aisbti,https://aisbti.com/,Aisbti personality test,dofollow,0.92,68,145000,1,42,directory
+marketing-blog.example,https://marketing-blog.example/best-personality-tools,https://aisbti.com/sbti-what-is.html,SBTI test explained,dofollow,0.88,72,210000,1,28,editorial
+community.example,https://community.example/profile/aisbti,https://aisbti.com/sbti-vs-mbti.html,https://aisbti.com/sbti-vs-mbti.html,nofollow,0.65,55,42000,1,120,profile
+forum.example,https://forum.example/thread/mbti-alternatives,https://aisbti.com/sbti-viral-analysis.html,SBTI analysis tool,ugc,0.61,49,36000,1,190,forum

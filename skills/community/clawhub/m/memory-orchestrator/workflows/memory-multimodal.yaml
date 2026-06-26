@@ -1,0 +1,231 @@
+# iFlow Workflow: 多模态记忆系统
+# 版本: 2.0.0
+# 描述: 集成 CLIP (图像) 和 Whisper (音频) 的多模态记忆支持
+# 依赖: scripts/multimodal_processor.py
+
+name: memory-multimodal
+description: 多模态记忆系统 - 支持图像、音频、文本的统一记忆存储与检索
+version: "2.0.0"
+
+# =====================
+# 模型配置
+# =====================
+models:
+  # 文本嵌入模型 (已有)
+  text:
+    name: "all-MiniLM-L6-v2"
+    path: "${WORKSPACE}/skills/local-memory/models/all-MiniLM-L6-v2"
+    dimension: 384
+    status: "installed"
+    
+  # 图像嵌入模型 (CLIP)
+  image:
+    name: "clip-ViT-B-32"
+    path: "${WORKSPACE}/skills/local-memory/models/clip-ViT-B-32"
+    dimension: 512
+    status: "pending"  # 需要手动下载
+    download_cmd: |
+      cd ${WORKSPACE}/skills/local-memory
+      source venv/bin/activate
+      python3 -c "from sentence_transformers import SentenceTransformer; m = SentenceTransformer('clip-ViT-B-32'); m.save('models/clip-ViT-B-32')"
+      
+  # 音频转录模型 (Whisper)
+  audio:
+    name: "whisper-tiny"
+    cache: "${HOME}/.cache/whisper/tiny.pt"
+    status: "pending"  # 首次使用时自动下载
+    download_cmd: "whisper --model tiny --language zh /dev/null 2>/dev/null || true"
+
+# =====================
+# 触发器
+# =====================
+triggers:
+  # 定时索引更新
+  - type: cron
+    schedule: "0 3 * * *"  # 每天凌晨 3 点
+    command: rebuild-index
+    
+  # 文件监控 - 图像
+  - type: file-watch
+    paths:
+      - "${WORKSPACE}/memory/multimodal/images/**/*"
+    events:
+      - create
+    debounce: 60
+    command: |
+      python3 "${WORKSPACE}/scripts/multimodal_processor.py" image "${FILE_PATH}"
+      python3 "${WORKSPACE}/scripts/multimodal_processor.py" build-index --modality image
+      
+  # 文件监控 - 音频
+  - type: file-watch
+    paths:
+      - "${WORKSPACE}/memory/multimodal/audio/**/*"
+    events:
+      - create
+    debounce: 60
+    command: |
+      python3 "${WORKSPACE}/scripts/multimodal_processor.py" audio "${FILE_PATH}" --language zh --model tiny
+      python3 "${WORKSPACE}/scripts/multimodal_processor.py" build-index --modality audio
+
+# =====================
+# 命令
+# =====================
+commands:
+  # 添加图像记忆
+  add-image:
+    description: "添加图像到记忆系统"
+    params:
+      - name: path
+        required: true
+        description: "图像文件路径"
+      - name: caption
+        required: false
+        description: "自定义描述"
+    steps:
+      - name: process
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" image "${path}" --caption "${caption}"
+      - name: update-index
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" build-index --modality image
+
+  # 添加音频记忆
+  add-audio:
+    description: "添加音频到记忆系统"
+    params:
+      - name: path
+        required: true
+        description: "音频文件路径"
+      - name: language
+        required: false
+        default: "zh"
+        description: "音频语言"
+      - name: model
+        required: false
+        default: "tiny"
+        description: "Whisper 模型大小 (tiny/base/small/medium)"
+    steps:
+      - name: process
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" audio "${path}" --language "${language}" --model "${model}"
+      - name: update-index
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" build-index --modality audio
+
+  # 多模态搜索
+  search:
+    description: "跨模态记忆搜索"
+    params:
+      - name: query
+        required: true
+        description: "搜索查询 (文本)"
+      - name: modalities
+        required: false
+        default: "text,audio,image"
+        description: "搜索的模态类型 (逗号分隔)"
+      - name: top-k
+        required: false
+        default: "5"
+        description: "返回结果数量"
+    steps:
+      - name: search
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" search "${query}" --top-k ${top-k} --modalities ${modalities}
+
+  # 重建索引
+  rebuild-index:
+    description: "重建多模态向量索引"
+    steps:
+      - name: rebuild-text
+        command: python3 "${WORKSPACE}/scripts/build_memory_index.py"
+      - name: rebuild-multimodal
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" build-index --modality all
+      - name: log
+        command: echo "[$(date '+%Y-%m-%d %H:%M:%S')] Multimodal index rebuilt" >> "${WORKSPACE}/memory/state/sync.log"
+
+  # 检查状态
+  status:
+    description: "检查模型和系统状态"
+    steps:
+      - name: check
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" status
+
+  # 下载模型
+  download-models:
+    description: "下载缺失的模型"
+    steps:
+      - name: check
+        command: python3 "${WORKSPACE}/scripts/multimodal_processor.py" status
+      - name: download-clip
+        condition: "CLIP model not found"
+        command: |
+          echo "Downloading CLIP model..."
+          cd ${WORKSPACE}/skills/local-memory
+          source venv/bin/activate
+          unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
+          python3 -c "
+          from sentence_transformers import SentenceTransformer
+          import os
+          model = SentenceTransformer('clip-ViT-B-32')
+          model.save('models/clip-ViT-B-32')
+          print('CLIP model downloaded successfully')
+          "
+      - name: download-whisper
+        condition: "Whisper model not found"
+        command: |
+          echo "Downloading Whisper tiny model..."
+          cd ${WORKSPACE}/skills/local-memory
+          source venv/bin/activate
+          python3 -c "
+          import whisper
+          whisper.load_model('tiny')
+          print('Whisper tiny model downloaded successfully')
+          "
+
+# =====================
+# 存储结构
+# =====================
+storage:
+  base_path: "${WORKSPACE}/memory/multimodal"
+  
+  structure:
+    images:
+      path: "${base_path}/images"
+      index: "index.faiss"
+      data: "index.jsonl"
+      
+    audio:
+      path: "${base_path}/audio"
+      index: "index.faiss"
+      data: "index.jsonl"
+      transcripts: "transcripts/"
+
+# =====================
+# 性能配置
+# =====================
+performance:
+  # GPU 配置
+  gpu:
+    enabled: true
+    device: "cuda:0"
+    
+  # 批处理
+  batch:
+    embedding_size: 32
+    
+  # 模型选择
+  whisper_model: "tiny"  # tiny/base/small/medium
+
+# =====================
+# 通知
+# =====================
+notifications:
+  on-index-complete:
+    - type: log
+      file: "${WORKSPACE}/memory/state/sync.log"
+      message: "[{timestamp}] Multimodal index updated"
+      
+  on-transcription-complete:
+    - type: log
+      file: "${WORKSPACE}/memory/state/sync.log"
+      message: "[{timestamp}] Audio transcribed: {source}"
+
+  on-error:
+    - type: log
+      file: "${WORKSPACE}/memory/state/sync.log"
+      message: "[{timestamp}] ERROR: {error}"

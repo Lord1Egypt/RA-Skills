@@ -1,0 +1,10 @@
+{
+  "slug": "kairoa-toolkit",
+  "name": "Kairoa Toolkit",
+  "version": "1.0.0",
+  "summary": "Launch Kairoa desktop app to access 40+ developer tools - encoding, encryption, formatting, QR code, mock data, and more. 启动 Kairoa 桌面应用，访问 40+ 开发者工具。",
+  "category": "developer-tools",
+  "tags": ["kairoa", "developer-tools", "encoding", "crypto", "qr-code", "mock-data", "formatting"],
+  "license": "MIT",
+  "author": "ning"
+}

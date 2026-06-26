@@ -1,0 +1,4 @@
+interface:
+  display_name: "super-novel-generator"
+  short_description: "生成中文网文的提示词、大纲、章节与连续性记忆文件"
+  default_prompt: "Turn my idea into a coherent serialized Chinese web novel with a prompt, outline, chapter drafts, and continuity memory files, using file outputs when the task calls for a persistent workspace."

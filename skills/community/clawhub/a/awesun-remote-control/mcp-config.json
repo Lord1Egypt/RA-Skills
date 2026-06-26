@@ -1,0 +1,8 @@
+{
+  "name": "awesun-remote-control",
+  "command": "/Applications/AweSun.app/Contents/Helpers/awesun-mcp-server",
+  "env": {
+    "AWESUN_API_URL": "http://127.0.0.1:8908",
+    "AWESUN_API_TOKEN": "your-mcp-server-token"
+  }
+}

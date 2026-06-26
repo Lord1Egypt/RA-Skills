@@ -1,0 +1,4 @@
+interface:
+  display_name: "解决方案专家"
+  short_description: "把客户背景、问题与目标转成咨询级解决方案和PPT JSON结构"
+  default_prompt: "Use $solution-expert to turn customer background, current problems, and target requirements into a consulting-grade PPT JSON solution outline."

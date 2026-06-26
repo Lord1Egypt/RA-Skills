@@ -1,0 +1,54 @@
+{
+  "_doc": "Browser discovery paths used by tt_download.py:find_chrome(). Listed here so users / agents can audit or extend without editing Python. Order = priority order. If a path matches and the file exists, it wins over later entries. PATH-lookup fallback runs AFTER all explicit paths, checking the names in PATH_FALLBACK.",
+  "platforms": {
+    "darwin": {
+      "candidates": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+        "/Applications/Vivaldi.app/Contents/MacOS/Vivaldi"
+      ]
+    },
+    "linux": {
+      "candidates": [
+        "/usr/bin/google-chrome",
+        "/usr/bin/google-chrome-stable",
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
+        "/snap/bin/chromium",
+        "/opt/google/chrome/chrome",
+        "/opt/chromium/chromium"
+      ]
+    },
+    "win32": {
+      "_doc": "Built dynamically from ProgramFiles / ProgramFiles(x86) / ProgramW6432 env vars at runtime. The static list below is the set of relative paths probed under each of those roots.",
+      "relative_candidates": [
+        "Google\\Chrome\\Application\\chrome.exe",
+        "Google\\Chrome Beta\\Application\\chrome.exe",
+        "Microsoft\\Edge\\Application\\msedge.exe",
+        "Microsoft\\Edge Beta\\Application\\msedge.exe",
+        "Chromium\\Application\\chrome.exe",
+        "BraveSoftware\\Brave-Browser\\Application\\brave.exe"
+      ]
+    }
+  },
+  "path_fallback": [
+    "google-chrome",
+    "google-chrome-stable",
+    "chrome",
+    "chromium",
+    "chromium-browser",
+    "chrome.exe",
+    "msedge.exe"
+  ],
+  "engine_note": "All browsers must be Chromium-based for --headless=new --dump-dom --virtual-time-budget to work. Firefox / Safari are NOT supported.",
+  "min_version": {
+    "chrome": "109+",
+    "edge": "109+",
+    "_doc": "109 is when --headless=new became the recommended mode. Older Chrome used --headless (legacy mode) which lacks full DOM/CSS rendering and will miss the JS-rendered <video> tag."
+  },
+  "diy": {
+    "_doc": "To add a custom browser location: set the CHROME_CANDIDATES list in scripts/tt_download.py, OR set the TT_DOWNLOAD_CHROME env var (not yet implemented; raise an issue if you need it)."
+  }
+}

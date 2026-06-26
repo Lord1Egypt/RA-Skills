@@ -1,0 +1,29 @@
+{
+  "name": "design-to-html",
+  "version": "1.0.0",
+  "description": "Convert visual design mockups to pixel-perfect HTML/CSS through iterative refinement",
+  "scripts": {
+    "analyze": "node scripts/analyze.js",
+    "render": "node scripts/render.js",
+    "compare": "node scripts/compare.js",
+    "pipeline": "node scripts/pipeline.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.32.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "html",
+    "css",
+    "pixel-perfect",
+    "visual-comparison",
+    "automation"
+  ]
+}

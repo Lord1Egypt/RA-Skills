@@ -1,0 +1,160 @@
+{
+  "name": "lobster-radio",
+  "displayName": "龙虾电台",
+  "description": "个性化资讯电台生成服务。根据用户感兴趣的主题或标签生成资讯音频，支持定时推送。",
+  "version": "1.0.0",
+  "author": "你的名字",
+  "category": "productivity",
+  "emoji": "🎙️",
+  "license": "MIT",
+  "repository": "https://github.com/Jayden-X-L/lobster-radio-skill",
+  "homepage": "https://github.com/Jayden-X-L/lobster-radio-skill",
+  "keywords": [
+    "radio",
+    "tts",
+    "news",
+    "audio",
+    "podcast",
+    "qwen3-tts"
+  ],
+  "platforms": [
+    "openclaw",
+    "lobsterai"
+  ],
+  "runtime": {
+    "type": "python",
+    "version": ">=3.10",
+    "entry": "cowork_mode.py",
+    "requirements": "requirements.txt"
+  },
+  "requires": {
+    "python": ">=3.10",
+    "dependencies": [
+      "torch>=2.0.0",
+      "transformers>=4.40.0",
+      "accelerate>=0.20.0",
+      "huggingface_hub>=0.16.0",
+      "modelscope>=1.10.0",
+      "aiohttp>=3.9.0",
+      "pydub>=0.25.1",
+      "requests>=2.31.0"
+    ]
+  },
+  "permissions": [
+    "fileSystem",
+    "network"
+  ],
+  "capabilities": {
+    "tts": true,
+    "scheduledTasks": true,
+    "offline": true
+  },
+  "config": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "default": "qwen3-tts",
+          "enum": ["qwen3-tts"]
+        },
+        "model": {
+          "type": "string",
+          "default": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice"
+        },
+        "voice": {
+          "type": "string",
+          "default": "xiaoxiao",
+          "enum": ["xiaoxiao", "yunjian", "xiaochen", "xiaoyu", "xiaoya"]
+        },
+        "emotion": {
+          "type": "string",
+          "default": "neutral",
+          "enum": ["neutral", "happy", "sad", "excited", "calm"]
+        },
+        "speed": {
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0.5,
+          "maximum": 2.0
+        },
+        "pitch": {
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0.5,
+          "maximum": 2.0
+        },
+        "use_gpu": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "generate",
+      "description": "生成电台",
+      "examples": [
+        "生成关于人工智能的电台",
+        "给我做一个科技新闻电台",
+        "生成5分钟的财经资讯"
+      ]
+    },
+    {
+      "name": "configure",
+      "description": "配置TTS",
+      "examples": [
+        "配置电台音色",
+        "更换声音",
+        "设置语速"
+      ]
+    },
+    {
+      "name": "schedule",
+      "description": "设置定时任务",
+      "examples": [
+        "每天早上8点推送科技新闻",
+        "每周一早会前生成财经电台"
+      ]
+    },
+    {
+      "name": "list",
+      "description": "查看历史电台",
+      "examples": [
+        "查看我的电台",
+        "播放昨天的电台"
+      ]
+    }
+  ],
+  "whenToUse": {
+    "use": [
+      "生成特定主题的电台",
+      "设置每日定时推送",
+      "配置TTS音色",
+      "收听历史电台"
+    ],
+    "dontUse": [
+      "播放音乐",
+      "实时广播",
+      "视频内容"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "quickstart": "QUICKSTART.md",
+    "install": "INSTALL.md"
+  },
+  "integration": {
+    "openclaw": {
+      "skillFile": "SKILL.md",
+      "memoryStorage": "MEMORY.md",
+      "cronSystem": "openclaw cron"
+    },
+    "lobsterai": {
+      "memoryStorage": "sqlite",
+      "scheduledTaskSkill": "scheduled-task",
+      "coworkMode": true
+    }
+  }
+}

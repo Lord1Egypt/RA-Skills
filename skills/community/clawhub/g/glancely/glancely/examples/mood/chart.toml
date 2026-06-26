@@ -1,0 +1,24 @@
+# Mood component — calendar grid showing daily mood scores
+[chart]
+type = "calendar_grid"
+title = "Mood"
+
+[chart.data]
+source = "rows"
+date_field = "created_at"
+value_field = "mood_score"
+label_field = "mood_label"
+
+[chart.options]
+color_scheme = "blue"
+
+[overview]
+enabled = true
+card_type = "sparkline"
+label = "Mood (7d)"
+data_key = "summary.avg_score_7d"
+suffix = "/10"
+value_field = "mood_score"
+width = 120
+height = 30
+color = "#4a7"

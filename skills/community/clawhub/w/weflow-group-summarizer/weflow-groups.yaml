@@ -1,0 +1,16 @@
+# WeFlow 群聊监控配置
+#
+# host: WeFlow API 地址
+#   - 直连: http://127.0.0.1:5031
+#   - 通过代理: http://<proxy-ip>:5032
+host: ""
+
+# groups: 需要监控的群聊列表
+#   - talker: "12345678@chatroom"      # 群聊 ID
+#     name: "群聊名称"                  # 群聊名称（方便识别）
+#     members: "/path/to/members.json"  # 群成员 JSON（由 convert_members.py 生成）
+#     summary_prompt: "你是情报分析专家，挖掘群聊中的高价值信息"   # 总结提示词
+#     subscribe_members:                # 特别关注的群友 wxid
+#       - "wxid_example"
+#     last_local_id: 0                  # 上次读取的消息 ID（脚本自动更新，勿手动修改）
+groups: []

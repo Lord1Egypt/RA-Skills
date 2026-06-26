@@ -1,0 +1,67 @@
+{
+  "suite": "production",
+  "description": "生产级场景：多渠道部署、安全策略、团队协作、完整生命周期",
+  "cases": [
+    {
+      "id": "P-001",
+      "prompt": "我要在Discord上部署一个公开的助手，用于社区技术问答。需要严格的安全设置，陌生人必须配对才能私聊。助手名叫 TechBot，风格专业但友好。我是社区管理员，叫 David。",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["Discord", "dmPolicy", "pairing", "allowFrom", "David", "TechBot"],
+        "security_section_required": true,
+        "multi_round": false
+      }
+    },
+    {
+      "id": "P-002",
+      "prompt": "我需要一个助手通过WhatsApp帮我处理客户消息。要求：只允许通讯录中的人发消息，语气要正式礼貌，用英文。我叫 Sarah，是销售经理。",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["WhatsApp", "allowFrom", "Sarah", "sales"],
+        "security_section_required": true,
+        "language": "en",
+        "multi_round": false
+      }
+    },
+    {
+      "id": "P-003",
+      "prompt": "帮我配置一个同时跑在 Discord 和 WhatsApp 上的助手。两个渠道安全策略不同：Discord 开放但要配对码，WhatsApp 只允许联系人。助手要管理我的日程和邮件。",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["Discord", "WhatsApp", "dmPolicy", "pairing", "allowFrom"],
+        "security_section_required": true,
+        "multi_channel": true,
+        "multi_round": false
+      }
+    },
+    {
+      "id": "P-004",
+      "prompt": "我是个自媒体博主，需要一个助手帮我管理多个社交平台的内容排期。要求助手有创意、活泼，用 🎨 emoji。我的名字叫小雨。",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["小雨", "🎨", "社交平台", "内容排期"],
+        "tone": "活泼、有创意",
+        "multi_round": false
+      }
+    },
+    {
+      "id": "P-005",
+      "prompt": "Configur an assistant for a research team. It should be multilingual (Chinese + English), help with literature review, note-taking, and citation management. Strict academic tone. Team lead: Dr. Wang.",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["Dr. Wang", "literature", "citation", "multilingual"],
+        "tone": "academic",
+        "multi_round": false
+      }
+    },
+    {
+      "id": "P-006",
+      "prompt": "帮我配置一个使用 ElevenLabs 语音的助手，要能语音播报日程提醒。语音偏好用 'sag' 设置。助手叫小声，温柔风格。",
+      "assertions": {
+        "must_contain_all_files": ["BOOTSTRAP.md", "AGENTS.md", "SOUL.md", "IDENTITY.md", "USER.md", "TOOLS.md", "HEARTBEAT.md", "MEMORY.md"],
+        "must_contain_keywords": ["ElevenLabs", "sag", "语音", "小声"],
+        "multi_round": false
+      }
+    }
+  ]
+}

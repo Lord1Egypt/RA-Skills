@@ -1,0 +1,28 @@
+{
+  "name": "active-memory-calculus",
+  "version": "1.0.0",
+  "description": "Active Memory and Dreaming System for Calculus Teaching - OpenClaw Skill",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "clawhub test .",
+    "publish": "clawhub publish . --slug active-memory-calculus"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "calculus",
+    "active-memory",
+    "dreaming-system",
+    "education",
+    "mathematics"
+  ],
+  "author": "daigxok",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daigxok/active-memory-calculus.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

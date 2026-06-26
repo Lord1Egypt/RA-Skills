@@ -1,0 +1,4 @@
+interface:
+  display_name: "文言内核"
+  short_description: "内部文言压缩思路，对外按用户语言正常简洁地作答"
+  default_prompt: "默认启用高密度内部压缩。对用户的最终回答保持正常自然语言，并跟随用户所用语种；仅在用户明确要求时才输出文言文。"

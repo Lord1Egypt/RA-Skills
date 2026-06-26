@@ -1,0 +1,195 @@
+{
+  "country_code": "AE",
+  "country_name": "United Arab Emirates",
+  "country_slug": "united-arab-emirates",
+  "emergency": {
+    "number": "999",
+    "ambulance": "998",
+    "police": "999",
+    "fire": "997",
+    "coast_guard": "996",
+    "agency": "National Emergency Crisis and Disaster Management Authority (NCEMA)",
+    "website": "https://www.ncema.gov.ae/en",
+    "social": {
+      "twitter": "@ABORR_NCEMA",
+      "instagram": "@ncaborr"
+    },
+    "app": "NCEMA UAE app (iOS/Android)",
+    "sms_alerts": "Register via NCEMA app or Du/Etisalat for emergency SMS"
+  },
+  "embassies": {
+    "us": {
+      "url": "https://ae.usembassy.gov/",
+      "emergency": "+971-2-414-2200",
+      "address": "Embassies District, Plot 38, Abu Dhabi"
+    },
+    "uk": {
+      "url": "https://www.gov.uk/world/organisations/british-embassy-abu-dhabi",
+      "emergency": "+971-2-610-1100",
+      "address": "Al Seef, Khalid Bin Al Waleed Rd, Dubai"
+    },
+    "india": {
+      "url": "https://www.indembassyuae.gov.in/",
+      "emergency": "+971-2-449-2700"
+    },
+    "travel_advisory_urls": {
+      "us": "https://ae.usembassy.gov/u-s-citizen-services/security-and-travel-information/",
+      "uk": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates"
+    }
+  },
+  "sources": {
+    "tier0": [
+      {
+        "id": "uae_ncema",
+        "name": "NCEMA",
+        "url": "https://www.ncema.gov.ae/en"
+      },
+      {
+        "id": "us_embassy_uae",
+        "name": "US Embassy UAE",
+        "url": "https://ae.usembassy.gov/u-s-citizen-services/security-and-travel-information/"
+      },
+      {
+        "id": "uk_fcdo_uae",
+        "name": "UK FCDO UAE",
+        "url": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates"
+      }
+    ],
+    "tier1": [
+      {
+        "id": "national_uae",
+        "name": "The National",
+        "url": "https://www.thenationalnews.com/uae/"
+      },
+      {
+        "id": "khaleej_times",
+        "name": "Khaleej Times",
+        "url": "https://www.khaleejtimes.com/uae"
+      },
+      {
+        "id": "gulf_news",
+        "name": "Gulf News",
+        "url": "https://gulfnews.com/uae"
+      }
+    ],
+    "tier2": [
+      {
+        "id": "faa_notams_dxb",
+        "name": "NOTAMs DXB",
+        "icao": "OMDB"
+      },
+      {
+        "id": "faa_notams_auh",
+        "name": "NOTAMs AUH",
+        "icao": "OMAA"
+      },
+      {
+        "id": "faa_notams_shj",
+        "name": "NOTAMs SHJ",
+        "icao": "OMSJ"
+      }
+    ]
+  },
+  "airports": {
+    "primary": [
+      {
+        "name": "Dubai International",
+        "icao": "OMDB",
+        "iata": "DXB"
+      },
+      {
+        "name": "Abu Dhabi International",
+        "icao": "OMAA",
+        "iata": "AUH"
+      },
+      {
+        "name": "Al Maktoum International",
+        "icao": "OMDW",
+        "iata": "DWC"
+      }
+    ]
+  },
+  "shelters": {
+    "info_url": "https://www.ncema.gov.ae/en",
+    "guidance": "Follow NCEMA instructions. Move to interior rooms away from windows. Basements or ground-floor interior rooms are safest. Dubai Metro stations can serve as shelters. Major malls have designated safe zones.",
+    "key_locations": [
+      "Dubai Metro stations (underground sections)",
+      "Mall basement parking levels",
+      "Building stairwells (interior, no windows)",
+      "Designated civil defense shelters (per NCEMA)"
+    ]
+  },
+  "evacuation": {
+    "airports": [
+      "DXB",
+      "AUH",
+      "DWC",
+      "SHJ"
+    ],
+    "land_borders": [
+      {
+        "name": "Hatta (to Oman)",
+        "notes": "Al Ain road"
+      },
+      {
+        "name": "Khatam Al Shiklah (to Oman)",
+        "notes": "Abu Dhabi side"
+      }
+    ],
+    "sea_ports": [
+      "Port Rashid",
+      "Jebel Ali"
+    ],
+    "guidance": "Monitor airline status at DXB/AUH. If airports close, Oman land borders (Hatta, Al Ain) may remain open. Keep passport and travel documents accessible at all times. Maintain vehicle fuel above half tank."
+  },
+  "infrastructure": {
+    "water": "Desalination-dependent. Store minimum 3 days supply (4L per person per day).",
+    "power": "DEWA/ADDC grid. In outage: phone charging is priority.",
+    "telecom": "Du and Etisalat. Emergency calls work even without SIM.",
+    "currency": "AED. Keep cash reserve (ATMs may go offline). USD widely accepted."
+  },
+  "threat_keywords_local": [
+    "dubai",
+    "abu dhabi",
+    "uae",
+    "emirates",
+    "sharjah",
+    "ajman",
+    "fujairah",
+    "ras al khaimah",
+    "umm al quwain",
+    "jebel ali",
+    "ncema",
+    "dewa",
+    "strait of hormuz",
+    "persian gulf",
+    "arabian gulf",
+    "al dhafra",
+    "minhad",
+    "saadiyat"
+  ],
+  "language": "en",
+  "timezone": "Asia/Dubai",
+  "utc_offset": "+04:00",
+  "country": "United Arab Emirates",
+  "neighbors": [
+    "Iran",
+    "Iraq",
+    "Saudi Arabia",
+    "Qatar",
+    "Bahrain",
+    "Kuwait",
+    "Oman",
+    "Yemen"
+  ],
+  "regions_of_interest": [
+    "Israel",
+    "Lebanon",
+    "Syria",
+    "Jordan",
+    "Egypt",
+    "Strait of Hormuz",
+    "Persian Gulf",
+    "Gulf of Oman"
+  ]
+}

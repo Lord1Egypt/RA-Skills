@@ -1,0 +1,9 @@
+{
+  "always": false,
+  "autonomous": true,
+  "post_install": {
+    "run": "./scripts/setup-cron.sh",
+    "description": "配置每周自动更新检查的定时任务",
+    "optional": true
+  }
+}

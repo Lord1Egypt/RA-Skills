@@ -1,0 +1,33 @@
+{
+  "name": "shwuyechaxunhetongdaoqi",
+  "version": "1.0.0",
+  "description": "上海物业查询合同到期技能 - 批量查询物业项目合同到期情况",
+  "author": "傲小喵 (Ao Xiao Miao)",
+  "license": "MIT",
+  "keywords": [
+    "上海物业",
+    "合同到期",
+    "批量查询",
+    "招标公告",
+    "中标公告",
+    "评标结果公告"
+  ],
+  "dependencies": {
+    "shwuyeyanjiu": ">=1.0.0",
+    "requests": ">=2.31.0",
+    "beautifulsoup4": ">=4.12.0",
+    "pdf2image": ">=1.16.0",
+    "pytesseract": ">=0.3.10",
+    "python-dateutil": ">=2.8.0"
+  },
+  "scripts": {
+    "query": "python scripts/query_contract_expiry.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/shwuyechaxunhetongdaoqi"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

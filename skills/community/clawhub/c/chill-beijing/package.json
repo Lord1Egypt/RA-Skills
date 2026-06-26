@@ -1,0 +1,24 @@
+{
+  "name": "chill-beijing",
+  "version": "1.0.0",
+  "description": "北京下班及周末放松推荐助手",
+  "type": "module",
+  "main": "scripts/generate-recommendations.mjs",
+  "scripts": {
+    "recommend": "node scripts/generate-recommendations.mjs",
+    "workday": "node scripts/generate-recommendations.mjs --workday",
+    "weekend": "node scripts/generate-recommendations.mjs --weekend"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "keywords": [
+    "beijing",
+    "recommendations",
+    "entertainment",
+    "weekend",
+    "chill"
+  ],
+  "author": "Kimi Claw",
+  "license": "MIT"
+}

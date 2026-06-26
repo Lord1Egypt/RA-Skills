@@ -1,35 +1,25 @@
----
-name: "News Skill"
-description: "Provides latest news summaries including title, source, and brief overview on any topic using Bing News Search API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/news-skill"
-sourceUrl: "https://clawhub.ai/skills/news-skill"
----
+# News Summary Skill
 
-# News Skill
+Get the latest news summaries for any topic.
 
-> Provides latest news summaries including title, source, and brief overview on any topic using Bing News Search API.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/news-skill`
-- **Source URL:** [https://clawhub.ai/skills/news-skill](https://clawhub.ai/skills/news-skill)
+- Get latest news for any topic
+- Uses Bing News Search API (via Jina)
+- Returns title, source, and brief summary
 
-## Overview
+## Price
 
+- **0.001 USDT** per call
+- Payment via SkillPay
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/news-skill
-```
+## Usage
+
+- "Latest news about AI"
+- "News about Bitcoin"
+- "Tech news today"
+
+## Integration
+
+- API Key: sk_93c5ff38cc3e6112623d361fffcc5d1eb1b5844eac9c40043b57c0e08f91430e
+- Price: 0.001 USDT per call

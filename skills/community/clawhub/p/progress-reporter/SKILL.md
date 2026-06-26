@@ -1,35 +1,99 @@
----
-name: "Progress Reporter"
-description: "Automatically reports task progress every 10 minutes during execution, including current status, recent work, overall progress, and next steps."
-category: "other"
-source: "ClawHub"
-tags: [auto-optimized]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/progress-reporter"
-sourceUrl: "https://clawhub.ai/skills/progress-reporter"
+# Progress Reporter - 定时进度汇报系统
+
+## 功能说明
+
+**每 10 分钟自动汇报当前任务进展**，让总裁随时了解云端执行情况。
+
 ---
 
-# Progress Reporter
+## ⏰ 汇报频率
 
-> Automatically reports task progress every 10 minutes during execution, including current status, recent work, overall progress, and next steps.
+- **每 10 分钟** 自动汇报一次
+- 仅在任务执行中时汇报
+- 无任务时静默跳过
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/progress-reporter`
-- **Source URL:** [https://clawhub.ai/skills/progress-reporter](https://clawhub.ai/skills/progress-reporter)
+---
 
-## Overview
+## 📊 汇报内容
 
+每次汇报包含：
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **当前状态** - 执行中/迭代次数
+2. **本周期完成的工作** - 最近的操作日志
+3. **当前进展** - 总迭代次数、最近操作
+4. **下一步计划** - 接下来的行动
+
+---
+
+## 📁 输出文件
+
+| 文件 | 说明 |
+|------|------|
+| `tasks/progress-reports/*.md` | 详细进度报告 |
+| `memory/progress-*.md` | 通知简报 |
+| `memory/progress-report.log` | 运行日志 |
+
+---
+
+## 🔧 配置
+
+编辑 crontab:
 ```bash
-hermes skills install clawhub/progress-reporter
+# 每 10 分钟汇报一次
+*/10 * * * * bash /root/.openclaw/workspace/skills/progress-reporter/report.sh
 ```
+
+---
+
+## 📬 示例汇报
+
+```markdown
+# 📊 进度汇报
+
+**时间**: 2026-03-05 23:20:00
+**任务**: task-xxx
+**任务内容**: 研究 AI 助手市场
+
+---
+
+## 当前状态
+
+🔄 执行中 - 迭代 #5
+
+---
+
+## 本周期完成的工作
+
+- 收集了 10 个竞品案例
+- 分析了主要功能特点
+- 生成了对比表格
+
+---
+
+## 当前进展
+
+- 总迭代次数：5
+- 最近操作：分析完成
+- 状态：执行中
+
+---
+
+## 下一步计划
+
+- 继续执行当前迭代
+- 评估结果质量
+- 生成最终报告
+```
+
+---
+
+## 🫡 总裁，现在您：
+
+1. **每 10 分钟收到一次汇报** - 了解最新进展
+2. **随时掌握执行情况** - 不再盲人摸象
+3. **发现问题及时干预** - 不会浪费资源
+4. **最终报告 + 过程汇报** - 完整透明
+
+---
+
+**汇报系统已部署！** 🫡

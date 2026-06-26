@@ -1,0 +1,103 @@
+{
+  "slug": "socialepoch-wa-scrm",
+  "name": "SocialEpoch - WhatsApp SCRM 智能助手",
+  "version": "2.3.3",
+  "author": "SocialEpoch",
+  "description": "官方原生对接 SocialEpoch WhatsApp SCRM API，零代码实现文字/图片/音频/文件/视频/名片/名片超链/分流超链全类型消息收发，支持单发/批量群发（多号码逗号分隔），自动接收消息，自动消息回调,自动消息状态回调，自动AI回复，自动依赖安装，自动环境配置，支持PC/手机/云端三端发送标识,双模式保活与重置，安全单进程运行",
+  "category": "WhatsApp / 营销 / 客服 / 海外 / 跨境 / AI工具",
+  "tags": [
+    "SocialEpoch",
+    "WhatsApp",
+    "wa",
+    "ws",
+    "scrm",
+    "AI",
+    "消息推送",
+    "客户管理",
+    "群发",
+    "批量发送",
+    "图片",
+    "视频",
+    "文件",
+    "名片",
+    "超链",
+    "分流",
+    "客服",
+    "海外营销",
+    "跨境客服",
+    "自动接收消息",
+    "自动回复"
+  ],
+  "icon": "📱",
+  "permissions": ["network", "config"],
+  "configSchema": {
+    "tenantId": {
+      "type": "string",
+      "label": "tenantId（租户ID）",
+      "required": true,
+      "placeholder": "请填写平台分配的 tenantId"
+    },
+    "ApiKey": {
+      "type": "string",
+      "label": "ApiKey（API密钥）",
+      "required": true,
+      "secret": true,
+      "placeholder": "请填写平台分配的 ApiKey"
+    },
+    "sendSource": {
+      "type": "string",
+      "label": "发送端类型（1=PC,2=手机,3=云端）",
+      "required": false,
+      "default": "1",
+      "placeholder": "默认为1（PC端）"
+    },
+    "mediaTips": {
+      "type": "string",
+      "label": "多媒体使用说明",
+      "required": false,
+      "default": "图片/音频/文件/视频仅支持公网可访问链接；批量发送多个号码请使用英文逗号分隔",
+      "readonly": true
+    }
+  },
+  "triggers": [
+    "查询在线客服号",
+    "查询指定客服账号",
+    "发送文字",
+    "发送图片",
+    "发送音频",
+    "发送文件",
+    "发送视频",
+    "发送名片",
+    "发送名片超链",
+    "发送分流超链",
+    "查询任务状态",
+    "群发文字",
+    "群发图片",
+    "群发音频",
+    "群发文件",
+    "群发视频",
+    "群发名片超链",
+    "SocialEpoch",
+    "WhatsApp客服",
+    "ws客服",
+    "WhatsApp群发",
+    "批量发送",
+    "开启自动接收消息",
+    "重置接收服务",
+    "检查接收状态",
+    "打开控制台",
+    "打开Dashboard",
+    "设置配置",
+    "设置回调"
+  ],
+  "metadata": {
+    "requires": {
+     "config": ["SOCIALEPOCH_TENANT_ID", "SOCIALEPOCH_API_KEY", "SOCIALEPOCH_SOURCE"]
+    }
+  },
+  "memoryHint": "本技能为固化技能，AI必须直接执行命令，禁止询问参数、API、文档；支持单发与批量群发，多个接收号码使用英文逗号分隔，自动调用对应接口；查询任务状态自动显示中文说明；支持按客服账号查询在线状态。",
+  "autoLoad": true,
+  "docAutoImport": true,
+  "always": false,
+  "privacy": "none"
+}

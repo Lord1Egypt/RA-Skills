@@ -1,0 +1,79 @@
+{
+  "name": "odontosoft",
+  "version": "1.0.0",
+  "description": "Gestión de turnos odontológicos en Odontosoft. Consulta doctores, disponibilidad, busca pacientes y agenda turnos.",
+  "author": "odontosoft",
+  "main": "index.js",
+  "permissions": [
+    "network:api.odontosoft.com.py"
+  ],
+  "config": {
+    "baseUrl": {
+      "type": "string",
+      "required": true,
+      "description": "URL base de la API. Ej: https://api.odontosoft.com.py"
+    },
+    "apiKey": {
+      "type": "string",
+      "required": true,
+      "description": "Bearer token de autenticación"
+    }
+  },
+  "tools": [
+    {
+      "name": "get_doctores",
+      "description": "Obtiene la lista de odontólogos activos de la clínica",
+      "parameters": {}
+    },
+    {
+      "name": "get_turnos_disponibles",
+      "description": "Devuelve los horarios disponibles de un doctor en una fecha dada",
+      "parameters": {
+        "doctor_id": {
+          "type": "integer",
+          "description": "ID del odontólogo"
+        },
+        "fecha": {
+          "type": "string",
+          "description": "Fecha en formato YYYY-MM-DD"
+        }
+      }
+    },
+    {
+      "name": "buscar_paciente",
+      "description": "Busca un paciente por número de documento",
+      "parameters": {
+        "documento": {
+          "type": "string",
+          "description": "Número de documento del paciente"
+        }
+      }
+    },
+    {
+      "name": "agendar_turno",
+      "description": "Agenda un nuevo turno. Validar disponibilidad antes de llamar.",
+      "parameters": {
+        "paciente_id": {
+          "type": "integer",
+          "description": "ID del paciente"
+        },
+        "doctor_id": {
+          "type": "integer",
+          "description": "ID del odontólogo"
+        },
+        "fecha": {
+          "type": "string",
+          "description": "Fecha en formato YYYY-MM-DD"
+        },
+        "hora": {
+          "type": "string",
+          "description": "Hora en formato HH:MM"
+        },
+        "motivo": {
+          "type": "string",
+          "description": "Motivo de la consulta"
+        }
+      }
+    }
+  ]
+}

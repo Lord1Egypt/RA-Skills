@@ -1,0 +1,18 @@
+FUNCTION_BLOCK "{{ block_name }}"
+// {{ description }}
+VAR_INPUT
+    {% for var in variables if var.direction == 'input' %}
+    {{ var.name }} : {{ var.type }};
+    {% endfor %}
+END_VAR
+VAR_OUTPUT
+    {% for var in variables if var.direction == 'output' %}
+    {{ var.name }} : {{ var.type }};
+    {% endfor %}
+END_VAR
+VAR
+    // 内部变量
+END_VAR
+BEGIN
+    {{ logic }}
+END_FUNCTION_BLOCK

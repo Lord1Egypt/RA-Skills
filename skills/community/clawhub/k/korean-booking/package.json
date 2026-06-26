@@ -1,0 +1,17 @@
+{
+  "name": "korean-booking",
+  "version": "2.1.7",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "jest",
+    "generate": "node scripts/generate-md.js",
+    "generate:all": "node scripts/generate-md.js --lang=zh,en,ja,th"
+  },
+  "dependencies": {
+    "pinyin-pro": "^3.26.0",
+    "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

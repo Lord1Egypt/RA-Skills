@@ -1,0 +1,9 @@
+{
+  "name": "dashscope-imagegen",
+  "description": "Generate images using DashScope wan2.6-t2i (通义万相 2.6). Supports Chinese/English prompts, custom sizes, and batch generation.",
+  "requires": {
+    "env": ["DASHSCOPE_API_KEY"],
+    "anyBins": ["python3"]
+  },
+  "primaryEnv": "DASHSCOPE_API_KEY"
+}

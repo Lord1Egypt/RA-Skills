@@ -1,35 +1,94 @@
 ---
-name: "4d Compression Core"
+name: 4d-compression-core
+version: 1.0.3
 description: "把长内容压缩成结构化 4D 向量——节省约 60-80% Token，保留核心信息"
-category: "other"
-source: "ClawHub"
-tags: [4d, compression, uptef]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/4d-compression-core"
-sourceUrl: "https://clawhub.ai/skills/4d-compression-core"
+metadata: { "openclaw": { "emoji": "🌀", "requires": { "bins": ["bash"] }, "triggers": ["压缩", "4d", "向量", "精简", "compress"], "priority": "critical" } }
 ---
 
-# 4d Compression Core
+# 🌀 4D Compression Core - 4D 向量压缩
 
-> 把长内容压缩成结构化 4D 向量——节省约 60-80% Token，保留核心信息
+> **把长内容压缩成结构化 4D 向量——节省约 60-80% Token，保留核心信息**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/4d-compression-core`
-- **Source URL:** [https://clawhub.ai/skills/4d-compression-core](https://clawhub.ai/skills/4d-compression-core)
+**全部本地运行 · 无隐私收集 · 危险操作二次确认 · 可随时卸载**
 
-## Overview
+---
 
+## 🎯 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/4d-compression-core
+- 🧠 **结构化压缩** - 空间/能量/信息/时间四维分离
+- 🎯 **语义保留** - 保留核心语义，压缩率约 60-80%
+- 📊 **智能路由** - 自动选择最优压缩版本（A/B/C）
+- ⚡ **零额外消耗** - 规则匹配，不调用大模型
+
+---
+
+## 🚀 快速开始
+
 ```
+你说："压缩这段内容"
+
+Neo 显示：
+🌀 4D 压缩完成
+
+原始：12,345 tokens
+压缩后：3,456 tokens
+节省：约 72%
+
+【结构化要点】核心信息...
+
+💡 保留核心语义，可安全使用
+```
+
+---
+
+## 🎯 触发词
+
+| 你想做什么 | 你说 |
+|-----------|------|
+| 压缩文本 | "压缩"、"4d"、"精简"、"compress" |
+
+**不用配置，说"压缩"就启动。**
+
+---
+
+## ⚠️ 安全与边界
+
+**压缩率说明**
+- 文本：约 60-80%（因内容而异）
+- 知识类：约 70-80%（深度无损）
+- 对话类：约 40-60%（保留情感）
+
+**语义保留**
+- 压缩版：保留核心语义（97%+）
+- 不支持：EPUB/PDF 书籍处理（需手动转换文本）
+
+**本地运行**
+- 所有压缩在本地完成
+- 无云端依赖，无隐私泄露
+
+**可随时卸载**
+- `clawhub uninstall 4d-compression-core`
+- 无残留，无影响
+
+---
+
+## 📦 安装
+
+```bash
+clawhub install 4d-compression-core
+```
+
+---
+
+## 🔗 可验证证据
+
+- **ClawHub 页面**: https://clawhub.com/skills/4d-compression-core
+- **版本**: v1.0.3 (Hash: k97830rdgnb8q5b141jetnck3581ydnv)
+- **测试报告**: `workspace/tests/4d-compression/` (T1-T7 实验闭环)
+
+---
+
+*版本：1.0.3*  
+*创建时间：2026-02-24*  
+*许可证：MIT*  
+*开发者：Neo（宇宙神经系统）*

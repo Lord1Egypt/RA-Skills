@@ -1,35 +1,12 @@
 ---
-name: "gpt-researcher"
-description: "Indexed by skills.sh from assafelovic/gpt-researcher"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "assafelovic"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/assafelovic/gpt-researcher/gpt-researcher"
-sourceUrl: "https://skills.sh/assafelovic/gpt-researcher/gpt-researcher"
+name: gpt-researcher
+description: Autonomous deep research from Codex via MCP
 ---
 
-# gpt-researcher
+# GPT Researcher for Codex
 
-> Indexed by skills.sh from assafelovic/gpt-researcher
+Use GPT Researcher from Codex via MCP.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** assafelovic
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/assafelovic/gpt-researcher/gpt-researcher`
-- **Source URL:** [https://skills.sh/assafelovic/gpt-researcher/gpt-researcher](https://skills.sh/assafelovic/gpt-researcher/gpt-researcher)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/assafelovic/gpt-researcher/gpt-researcher
-```
+## When to use
+- When you need gpt-researcher capabilities in your Codex workflow
+- See https://github.com/assafelovic/gpt-researcher for full setup instructions

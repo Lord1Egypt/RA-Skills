@@ -1,35 +1,17 @@
 ---
-name: "implementation"
-description: "Indexed by skills.sh from ceedaragents/cyrus"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ceedaragents"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ceedaragents/cyrus/implementation"
-sourceUrl: "https://skills.sh/ceedaragents/cyrus/implementation"
+name: implementation
+description: Implement the requested changes. Write production-ready code, follow existing patterns, and run tests to verify your work.
 ---
 
-# implementation
+# Implementation
 
-> Indexed by skills.sh from ceedaragents/cyrus
+Implement the requested changes:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ceedaragents
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ceedaragents/cyrus/implementation`
-- **Source URL:** [https://skills.sh/ceedaragents/cyrus/implementation](https://skills.sh/ceedaragents/cyrus/implementation)
+- Write production-ready code that follows existing patterns and conventions
+- Run tests to verify your implementation works correctly
+- Handle edge cases and error scenarios appropriately
+- Keep changes focused on what was requested — avoid unrelated improvements
 
-## Overview
+If tests fail, fix them before moving on to the next phase of the workflow.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ceedaragents/cyrus/implementation
-```
+When implementation is complete, proceed to the verification and shipping phase.

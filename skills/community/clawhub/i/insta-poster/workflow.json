@@ -1,0 +1,30 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "name": "input_analysis",
+      "description": "Extract topic and intent from user input"
+    },
+    {
+      "step": 2,
+      "name": "caption_generation",
+      "description": "Generate engaging Instagram caption based on topic"
+    },
+    {
+      "step": 3,
+      "name": "hashtag_generation",
+      "description": "Generate relevant hashtags for engagement"
+    },
+    {
+      "step": 4,
+      "name": "image_prompt_generation",
+      "description": "Create AI image prompt for post visual"
+    },
+    {
+      "step": 5,
+      "name": "final_output",
+      "description": "Combine all outputs into structured JSON response"
+    }
+  ],
+  "flow": "user_input -> analysis -> caption -> hashtags -> image_prompt -> output"
+}

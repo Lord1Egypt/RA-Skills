@@ -1,35 +1,38 @@
 ---
-name: "Search Full"
+name: search-full
 description: "Search the web with SearXNG, then fetch the full page with Crawl4AI and answer from the page正文."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/search-full"
-sourceUrl: "https://clawhub.ai/skills/search-full"
 ---
 
-# Search Full
+# Search full-page workflow
 
-> Search the web with SearXNG, then fetch the full page with Crawl4AI and answer from the page正文.
+Use this skill when a search result summary is not enough and you need the actual page contents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/search-full`
-- **Source URL:** [https://clawhub.ai/skills/search-full](https://clawhub.ai/skills/search-full)
+## Workflow
 
-## Overview
+1. Search with SearXNG.
+2. Open the best result with Crawl4AI.
+3. Read the Markdown正文, not just the snippet.
+4. If the page cannot be opened, report the failure clearly and do not invent content.
 
+## Local command
 
-## Installation
-To install this skill, run the following command in your terminal:
+Use the fixed command:
+
 ```bash
-hermes skills install clawhub/search-full
+ocsearch "your query"
 ```
+
+## What it already does
+
+- Uses `SEARXNG_URL`, defaulting to `http://localhost:8080`
+- Searches the web
+- Crawls the top result with Crawl4AI
+- Prints extracted Markdown正文
+
+## Best for
+
+- Official docs
+- Pricing pages
+- API references
+- Version notes
+- Pages where snippets are too short

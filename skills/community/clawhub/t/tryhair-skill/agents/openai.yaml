@@ -1,0 +1,7 @@
+interface:
+  display_name: "TryHair AI"
+  short_description: "Hairstyle try-on and face-shape analysis."
+  default_prompt: "Use tryhair-openclaw to analyze my face shape or preview new hairstyle from my photo."
+
+policy:
+  allow_implicit_invocation: true

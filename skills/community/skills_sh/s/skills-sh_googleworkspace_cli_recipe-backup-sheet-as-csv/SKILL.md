@@ -1,35 +1,28 @@
 ---
-name: "recipe-backup-sheet-as-csv"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-backup-sheet-as-csv"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-backup-sheet-as-csv"
+name: recipe-backup-sheet-as-csv
+description: "Export a Google Sheets spreadsheet as a CSV file for local backup or processing."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-sheets
+        - gws-drive
 ---
 
-# recipe-backup-sheet-as-csv
+# Export a Google Sheet as CSV
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-sheets`, `gws-drive`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-backup-sheet-as-csv`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-backup-sheet-as-csv](https://skills.sh/googleworkspace/cli/recipe-backup-sheet-as-csv)
+Export a Google Sheets spreadsheet as a CSV file for local backup or processing.
 
-## Overview
+## Steps
 
+1. Get spreadsheet details: `gws sheets spreadsheets get --params '{"spreadsheetId": "SHEET_ID"}'`
+2. Export as CSV: `gws drive files export --params '{"fileId": "SHEET_ID", "mimeType": "text/csv"}'`
+3. Or read values directly: `gws sheets +read --spreadsheet SHEET_ID --range 'Sheet1' --format csv`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-backup-sheet-as-csv
-```

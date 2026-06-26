@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+*.cache
+cache.json
+qa_cache.json
+
+# Logs
+*.log
+
+# Project specific
+.claude/
+
+# User config (跨会话工作目录配置)
+config.json

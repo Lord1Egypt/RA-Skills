@@ -1,0 +1,44 @@
+{
+  "name": "pinduoduo-cs-assistant",
+  "version": "1.1.1",
+  "description": "拼多多商家客服自动化助手 - 浏览器自动登录、智能消息回复、售后处理",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "pinduoduo",
+    "customer-service",
+    "automation",
+    "openclaw",
+    "skill",
+    "ecommerce",
+    "chatbot"
+  ],
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "dependencies": {
+    "@openclaw/browser-tools": "^1.0.0",
+    "commander": "^11.0.0",
+    "puppeteer": "^21.0.0",
+    "ws": "^8.14.0",
+    "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "allowed_roots": [
+    "{workspace}/skills",
+    "{workspace}/.skills",
+    "{home}/.moltbot/skills"
+  ],
+  "quarantine_dir": "{workspace}/output/skillguard/quarantine",
+  "reports_dir": "{workspace}/output/skillguard/reports",
+  "audit_log": "{workspace}/output/skillguard/audit.log",
+  "exclude_skill_names": [
+    "__pycache__",
+    ".git",
+    "skill_guard"
+  ],
+  "text_file_extensions": [
+    ".md",
+    ".txt",
+    ".py",
+    ".js",
+    ".ts",
+    ".tsx",
+    ".jsx",
+    ".sh",
+    ".bash",
+    ".zsh",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".ini",
+    ".cfg",
+    ".env",
+    ".service"
+  ],
+  "size_limits": {
+    "max_file_bytes": 1048576,
+    "max_ai_chars": 12000,
+    "max_matches_per_rule": 5
+  },
+  "thresholds": {
+    "warn": 20,
+    "block": 55,
+    "quarantine": 75
+  },
+  "ai_enforcement": {
+    "fail_closed_stages": [
+      "install",
+      "update",
+      "exec"
+    ],
+    "failure_recommendation": "BLOCK"
+  },
+  "stage_overrides": {
+    "scan": {
+      "blocked_statuses": [
+        "BLOCK",
+        "QUARANTINE"
+      ]
+    },
+    "install": {
+      "blocked_statuses": [
+        "BLOCK",
+        "QUARANTINE"
+      ]
+    },
+    "update": {
+      "blocked_statuses": [
+        "BLOCK",
+        "QUARANTINE"
+      ]
+    },
+    "exec": {
+      "blocked_statuses": [
+        "WARN",
+        "BLOCK",
+        "QUARANTINE"
+      ],
+      "warn": 10,
+      "block": 45,
+      "quarantine": 70
+    }
+  },
+  "rules": [
+    {
+      "id": "destructive_commands",
+      "title": "Destructive commands",
+      "category": "filesystem",
+      "severity": "critical",
+      "weight": 50,
+      "pattern": "(^|[^A-Za-z0-9_])(rm\\s+-rf|mkfs(\\.|\\s)|dd\\s+if=|shred\\s+-|wipe(\\s|$)|truncate\\s+-s\\s+0)",
+      "description": "Detects destructive disk or file deletion commands."
+    },
+    {
+      "id": "network_upload",
+      "title": "Network upload",
+      "category": "network",
+      "severity": "high",
+      "weight": 26,
+      "pattern": "(curl\\s+.*(-d|--data|--upload-file)|wget\\s+.*(--post-data|--body-data)|requests\\.(post|put)\\(.*(data=|files=)|httpx\\.(post|put)\\(.*(data=|files=))",
+      "description": "Detects outbound uploads and HTTP calls carrying bodies or files."
+    },
+    {
+      "id": "dynamic_execution",
+      "title": "Dynamic execution",
+      "category": "execution",
+      "severity": "high",
+      "weight": 28,
+      "pattern": "(eval\\(|exec\\(|compile\\(|subprocess\\.(Popen|run)\\(|os\\.system\\()",
+      "description": "Detects code paths that execute dynamically provided commands."
+    },
+    {
+      "id": "remote_code_load",
+      "title": "Remote code load and execute",
+      "category": "execution",
+      "severity": "critical",
+      "weight": 48,
+      "pattern": "(((exec|eval)\\(.*(urlopen|requests\\.(get|post)|httpx\\.(get|post)|fetch\\().*(read\\(|text))|((curl|wget).*(\\|\\s*(bash|sh)|bash\\s+-c|sh\\s+-c))|(source\\s+<\\((curl|wget)\\)))",
+      "description": "Detects remote payload fetching followed by direct execution or shell piping."
+    },
+    {
+      "id": "hardcoded_secret",
+      "title": "Hardcoded secret value",
+      "category": "secrets",
+      "severity": "high",
+      "weight": 34,
+      "pattern": "((api[_-]?key|app[_-]?secret|access[_-]?token|private[_-]?key|password)\\s*[=:]\\s*[\"'][^\"'\\n]{12,}[\"'])|(\"api_key\"\\s*:\\s*\"[^\"]{12,}\")|(sk-[A-Za-z0-9]{12,})|(moltbook_[A-Za-z0-9_\\-]{8,})|(new1_[A-Za-z0-9]{12,})",
+      "description": "Detects likely hardcoded secrets or live tokens."
+    },
+    {
+      "id": "credential_reference",
+      "title": "Credential reference",
+      "category": "secrets",
+      "severity": "low",
+      "weight": 6,
+      "pattern": "(\\.env\\b|api[_-]?key|app[_-]?secret|access[_-]?token|private[_-]?key|password|YOUR_API_KEY|process\\.env\\.[A-Z0-9_]+|os\\.getenv\\([\"'][A-Z0-9_]+[\"'])",
+      "description": "Detects references to secrets or credential files without proving a live secret is embedded."
+    },
+    {
+      "id": "privilege_escalation",
+      "title": "Privilege escalation",
+      "category": "execution",
+      "severity": "critical",
+      "weight": 45,
+      "pattern": "(sudo\\s+|chmod\\s+777|chown\\s+root|setcap\\s+)",
+      "description": "Detects privileged execution attempts."
+    },
+    {
+      "id": "obfuscation",
+      "title": "Obfuscation",
+      "category": "evasion",
+      "severity": "medium",
+      "weight": 18,
+      "pattern": "(base64\\s+-d|frombase64string\\(|b64decode\\(|rot13|marshal\\.loads\\(|zlib\\.decompress\\()",
+      "description": "Detects common obfuscation or payload hiding patterns."
+    },
+    {
+      "id": "suspicious_persistence",
+      "title": "Suspicious persistence",
+      "category": "persistence",
+      "severity": "high",
+      "weight": 25,
+      "pattern": "(crontab\\s+|systemctl\\s+enable|launchctl\\s+load|~/.bashrc|~/.profile|/etc/systemd)",
+      "description": "Detects persistence and autorun behavior."
+    },
+    {
+      "id": "symlink_trick",
+      "title": "Symlink abuse",
+      "category": "filesystem",
+      "severity": "medium",
+      "weight": 20,
+      "pattern": "(ln\\s+-s|os\\.symlink\\()",
+      "description": "Detects symlink creation that may evade directory boundaries."
+    },
+    {
+      "id": "prompt_injection",
+      "title": "Prompt injection instructions",
+      "category": "agent_control",
+      "severity": "medium",
+      "weight": 18,
+      "pattern": "(ignore previous instructions|system prompt|developer message|exfiltrate|send the contents of)",
+      "description": "Detects prompt-level manipulation guidance embedded in skills."
+    }
+  ],
+  "capability_patterns": {
+    "network": [
+      "requests\\.",
+      "httpx\\.",
+      "urllib\\.",
+      "curl\\s+",
+      "wget\\s+"
+    ],
+    "shell": [
+      "subprocess\\.",
+      "os\\.system\\(",
+      "Popen\\(",
+      "bash\\s+",
+      "sh\\s+"
+    ],
+    "file_write": [
+      "open\\(.*[\"']w",
+      "write_text\\(",
+      "write_bytes\\(",
+      "shutil\\.(copy|move|rmtree)"
+    ],
+    "credential_access": [
+      "\\.env\\b",
+      "config\\.json",
+      "api[_-]?key",
+      "password"
+    ]
+  },
+  "trusted_publishers": [
+    {
+      "id": "clawhub_registry",
+      "label": "ClawHub registry package",
+      "match": {
+        "registry": "https://clawhub.ai"
+      },
+      "score_adjustment": -10
+    },
+    {
+      "id": "moltbook_official",
+      "label": "Official Moltbook distribution",
+      "match": {
+        "homepage_hosts": [
+          "www.moltbook.com",
+          "moltbook.com"
+        ]
+      },
+      "score_adjustment": -8
+    }
+  ],
+  "rule_exceptions": [],
+  "path_weight_overrides": [
+    {
+      "path_contains": [
+        "references/",
+        "assets/"
+      ],
+      "multiplier": 0.15
+    },
+    {
+      "path_contains": [
+        "SKILL.md",
+        "HEARTBEAT.md",
+        "TOOLS.md",
+        "MESSAGING.md"
+      ],
+      "multiplier": 0.25
+    },
+    {
+      "path_contains": [
+        "config/"
+      ],
+      "multiplier": 1.1
+    },
+    {
+      "path_contains": [
+        "scripts/"
+      ],
+      "multiplier": 1.0
+    }
+  ],
+  "report_templates": {
+    "headline": "{recommendation} {skill_name} risk={risk_score} stage={stage}",
+    "summary": "{skill_name} declared '{declared_purpose}' and produced {finding_count} finding(s). Decision: {recommendation}.",
+    "operator_note": "Use quarantine first for untrusted skills. Delete only with explicit approval."
+  }
+}

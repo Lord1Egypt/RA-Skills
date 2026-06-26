@@ -1,0 +1,38 @@
+/* themes/bold-poster.css — extracted from 06-bold-poster */
+
+[data-theme="bold-poster"] {
+  --bg: #000000;
+  --bg-soft: #0A0A0A;
+  --surface: #1A1A1A;
+  --surface-2: #0A0A0A;
+  --border: rgba(255,255,255,.12);
+  --border-strong: rgba(255,255,255,.22);
+  --text-1: #FFFFFF;
+  --text-2: rgba(255,255,255,.7);
+  --text-3: rgba(255,255,255,.4);
+  --text: var(--text-1);
+  --accent: #FF3355;
+  --secondary: var(--text-2);
+  --bg-alt: var(--bg-soft);
+
+  --font-title: system-ui, -apple-system, "PingFang SC", "Inter", "Helvetica Neue", sans-serif;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+
+  --title-size-v: 160px;
+  --title-size-s: 120px;
+  --title-size-w: 96px;
+  --title-size-c: 72px;
+  --content-size: 40px;
+  --qr-size: 64px;
+
+  --decor-tl: linear-gradient(135deg, var(--accent) 0%, transparent 50%);
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  --accent-line: none;
+  --accent-block: none;
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "";
+}

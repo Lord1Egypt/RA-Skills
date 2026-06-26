@@ -1,35 +1,107 @@
 ---
-name: "科技日报"
+name: tech-news-daily
 description: "每日科技资讯聚合。自动抓取GitHub Trending、51CTO、百度热搜科技榜，筛选AI/Cloud/ML领域内容，生成结构化简报。触发词：科技日报、tech news、每日资讯、科技资讯"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-tech-news"
-sourceUrl: "https://clawhub.ai/skills/daily-tech-news"
 ---
 
-# 科技日报
+# Tech News Daily - OpenClaw 专属自动化科技资讯策展机器人
 
-> 每日科技资讯聚合。自动抓取GitHub Trending、51CTO、百度热搜科技榜，筛选AI/Cloud/ML领域内容，生成结构化简报。触发词：科技日报、tech news、每日资讯、科技资讯
+## 角色定位
+专注每日 AI 与科技领域内容抓取、清洗、提炼与结构化输出，全程无人工干预、格式严格统一、适配飞书卡片与网页解析规则。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-tech-news`
-- **Source URL:** [https://clawhub.ai/skills/daily-tech-news](https://clawhub.ai/skills/daily-tech-news)
+## 执行规则（强制遵循）
 
-## Overview
+### 一、抓取规则
 
+**执行时间：** 每日 08:00 自动触发（Asia/Shanghai）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-tech-news
+**时间范围：** 仅抓取过去 24 小时内发布/更新内容
+
+**抓取信源（固定不可变更）：**
+
+| 类型 | 信源 | 说明 |
+|------|------|------|
+| 技术社区 | GitHub Trending | 按 AI/Cloud/ML 分类 |
+| 技术社区 | 51CTO | 人工智能/云计算热榜 |
+| 搜索榜单 | 百度热搜·科技榜 | AI/AIGC/大模型/芯片 |
+| 垂直科技媒体 | 机器之心、量子位、新智元、智东西、AI 前线 | 高优先级 |
+| 科技商业媒体 | InfoQ、36 氪、钛媒体、雷锋网、DeepTech 深科技 | 商业动态 |
+
+### 二、内容清洗与筛选
+
+1. **全自动去重**：同一事件仅保留首发/最权威信源，重复内容直接剔除
+2. **质量过滤**：
+   - 仅保留热度/阅读量前 20% 内容
+   - 聚焦赛道：大模型、AIGC、算力芯片、机器人、自动驾驶、AI 应用、算力基建
+   - 剔除：纯公关软文、低质搬运、无信息增量内容
+
+### 三、内容标准化提炼（单篇格式固定）
+
+对每篇通过筛选内容生成统一结构：
+
+- **标题**：≤15 字，简洁吸睛
+- **核心看点**：3 条精简要点，只保留关键事实/数据/结论
+- **原文链接**：保留可访问原始地址
+- **重要性评级**：
+  - 🔥🔥🔥 行业重磅
+  - 🔥🔥 值得关注
+  - 🔥 参考阅读
+
+### 四、最终输出格式（Markdown+ 飞书友好）
+
+```markdown
+📅 OpenClaw 科技早报 | {{日期}} | 第{{期数}}期
+
+🚀 今日重磅
+（仅展示 🔥🔥🔥 级别，3–5 条）
+
+💡 技术前沿
+（GitHub Trending + 技术深度文章）
+
+🏢 行业动态
+（投融资、政策、企业动态、行业格局）
+
+🤖 AI 应用
+（产品发布、落地案例、工具更新）
+
+📊 数据洞察
+（报告数据、趋势判断、市场规模）
 ```
+
+**底部标注：**
+```
+本日报由 OpenClaw 全自动聚合生成
+信源：GitHub / 51CTO / 机器之心 / 量子位 / 新智元 / 智东西 / InfoQ / 36 氪 / 钛媒体 / 雷锋网 / AI 前线 / DeepTech
+```
+
+## 文件结构
+
+```
+skills/tech-news-daily/
+├── SKILL.md              # 本文件，完整执行规范
+├── tech-news-daily.py    # 主脚本：抓取、清洗、聚合、生成
+├── send_feishu.py        # 飞书推送模块
+├── config.json           # 信源配置、关键词、推送目标
+├── data/
+│   ├── daily/            # 每日 JSON 报告
+│   ├── pushed-articles.json  # 已推送 URL 记录（去重用）
+│   └── issue-count.json      # 期数计数器
+└── briefings/            # Markdown 简报输出
+    ├── 2026-04-01-科技.md
+    └── ...
+```
+
+## 手动执行
+
+说 "生成日报" 或 "推送科技资讯" 立即执行一次完整流程。
+
+## 配置项
+
+- `FEISHU_WEBHOOK_URL` - 飞书机器人 Webhook（可选，为空则仅本地生成）
+- `TODAY` - 指定日期（可选，默认今日）
+
+## 注意事项
+
+- 抓取失败的信源跳过，不中断整体流程
+- 单次推送控制在 15 条以内
+- 超过 30 天的推送记录可自动清理
+- 每期自动更新 `issue-count.json` 期数

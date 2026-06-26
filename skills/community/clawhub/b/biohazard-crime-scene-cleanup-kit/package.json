@@ -1,0 +1,38 @@
+{
+  "name": "biohazard-crime-scene-cleanup-kit",
+  "version": "1.0.0",
+  "description": "Complete compliance-ready marketing system for licensed biohazard and crime scene cleanup companies — 7 compliance moats: OSHA BBP Exposure Control Plan gate (29 CFR 1910.1030), Nevada NDEP medical waste transporter registration gate (NAC 444.916), NRS 451 coroner release/human remains gate, NRS 441A.640 meth lab DPBH certification gate, ABRA/credentialing accuracy gate, Nevada Crime Victim Compensation gate (NRS 217.280/NRS 685A.170), active investigation scene entry gate.",
+  "keywords": [
+    "biohazard cleanup marketing",
+    "crime scene cleanup marketing",
+    "trauma scene cleanup Las Vegas",
+    "OSHA bloodborne pathogens marketing",
+    "NDEP medical waste transporter Nevada",
+    "NRS 441A.640 meth lab decontamination",
+    "ABRA member marketing",
+    "Nevada crime victim compensation NRS 217",
+    "coroner release cleanup Nevada",
+    "DPBH certified meth lab Nevada",
+    "biohazard local SEO Las Vegas",
+    "trades bundle"
+  ],
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "clawhub": {
+    "skill": true,
+    "category": "local-business-marketing",
+    "subcategory": "home-services",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "freePrompt": "prompts/01-service-acquisition-campaigns.md",
+    "prompts": 4,
+    "freePrompts": 1,
+    "bundle": {
+      "name": "home-services-trades-v2",
+      "bundleSkillCount": 58,
+      "price": 99
+    }
+  }
+}

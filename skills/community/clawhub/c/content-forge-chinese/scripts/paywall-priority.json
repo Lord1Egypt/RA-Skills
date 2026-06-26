@@ -1,0 +1,42 @@
+{
+  "version": "0.1.0",
+  "description": "国内网络下的付费墙策略优先级表，被 SKILL.md 工作流引用",
+  "overseas_paywall": [
+    {"order": 1, "method": "jina-proxy", "layer_in_upstream": 1, "enabled": true,
+     "note": "r.jina.ai 代理，国内+VPN 可用，速度快"},
+    {"order": 2, "method": "bot-ua", "layer_in_upstream": 2, "enabled": true,
+     "note": "Googlebot/Bingbot UA 伪装，约 50 站点适用"},
+    {"order": 3, "method": "generic-disguise", "layer_in_upstream": 3, "enabled": true,
+     "note": "通用 UA + Referer + AMP + EU IP 伪装"},
+    {"order": 4, "method": "agent-fetch", "layer_in_upstream": 6, "enabled": true,
+     "note": "本地 Playwright 强力抓取"},
+    {"order": 5, "method": "google-cache", "layer_in_upstream": 5, "enabled": true,
+     "note": "Google Cache，需稳定代理"},
+    {"order": 6, "method": "archive-today", "layer_in_upstream": 4, "enabled": false,
+     "note": "国内域名被污染，默认关闭"}
+  ],
+  "domestic_paywall": [
+    {"order": 1, "method": "user-cookie", "enabled": true,
+     "note": "用户提供订阅站点的登录 cookie，100% 成功率"},
+    {"order": 2, "method": "wechat-mirror", "enabled": true,
+     "note": "通过微信公众号搜索同标题文章（财新/虎嗅常有）"},
+    {"order": 3, "method": "amp-version", "enabled": true,
+     "note": "尝试 /amp/ 路径，部分国内站支持"},
+    {"order": 4, "method": "wexin-read-mcp", "enabled": true,
+     "note": "Playwright 模拟浏览器（仅微信公众号）"},
+    {"order": 5, "method": "manual-paste", "enabled": true,
+     "note": "兜底：让用户手动复制粘贴"}
+  ],
+  "site_overrides": {
+    "caixin.com":      {"category": "domestic", "preferred_methods": ["user-cookie", "wechat-mirror", "amp-version"]},
+    "huxiu.com":       {"category": "domestic", "preferred_methods": ["user-cookie", "wechat-mirror"]},
+    "36kr.com":        {"category": "domestic", "preferred_methods": ["wechat-mirror", "amp-version"]},
+    "mp.weixin.qq.com": {"category": "domestic", "preferred_methods": ["wexin-read-mcp", "manual-paste"]},
+    "zsxq.com":        {"category": "domestic", "preferred_methods": ["manual-paste"], "note": "禁止爬虫"},
+    "nytimes.com":     {"category": "overseas", "preferred_methods": ["jina-proxy", "bot-ua", "agent-fetch"]},
+    "wsj.com":         {"category": "overseas", "preferred_methods": ["bot-ua", "jina-proxy", "agent-fetch"]},
+    "ft.com":          {"category": "overseas", "preferred_methods": ["bot-ua", "jina-proxy", "agent-fetch"]},
+    "economist.com":   {"category": "overseas", "preferred_methods": ["jina-proxy", "agent-fetch"]},
+    "theinformation.com": {"category": "overseas", "preferred_methods": ["bot-ua", "jina-proxy"]}
+  }
+}

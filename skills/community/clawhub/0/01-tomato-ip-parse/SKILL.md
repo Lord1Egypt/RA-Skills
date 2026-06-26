@@ -1,35 +1,16 @@
----
-name: "01 Tomato Ip Parse"
-description: "专业解析番茄小说IP内容，提取世界观、人物设定、核心冲突及爽点，完成内容合规初检，助力AI剧本改编。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/01-tomato-ip-parse"
-sourceUrl: "https://clawhub.ai/skills/01-tomato-ip-parse"
----
-
-# 01 Tomato Ip Parse
-
-> 专业解析番茄小说IP内容，提取世界观、人物设定、核心冲突及爽点，完成内容合规初检，助力AI剧本改编。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/01-tomato-ip-parse`
-- **Source URL:** [https://clawhub.ai/skills/01-tomato-ip-parse](https://clawhub.ai/skills/01-tomato-ip-parse)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/01-tomato-ip-parse
-```
+# 番茄IP解析技能
+## 功能介绍
+专业解析番茄小说IP内容，自动提取核心世界观、人物设定、核心冲突、高光爽点，并完成内容合规初检，为AI短剧改编提供标准化素材。
+## 输入参数
+- novel_title：小说标题（必填）
+- novel_text：小说正文内容（必填）
+- style_tag：风格标签，可选：爽文/甜宠/逆袭/玄幻/现言，默认：爽文
+## 输出结果
+- ip_info：结构化IP信息
+- compliance_check：内容合规检查结果
+## 使用场景
+- 番茄小说IP改编短剧第一步
+- 批量提取小说核心信息
+- 内容合规风险初筛
+## 技术说明
+支持通用大模型接入，需配置 API_KEY、API_BASE、MODEL_NAME。

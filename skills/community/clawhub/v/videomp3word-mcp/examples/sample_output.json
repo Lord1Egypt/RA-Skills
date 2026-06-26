@@ -1,0 +1,69 @@
+{
+  "request_id": "request_123",
+  "mode": "balanced",
+  "requested_outputs": ["summary", "qa", "flashcards", "tasks", "topics"],
+  "summary": "The speaker outlines a roadmap for an AI workflow platform and assigns follow-up work for chunking, traceability, and exports.",
+  "topics": ["AI workflows", "semantic chunking", "traceability", "export formats"],
+  "key_points": [
+    "The platform should move from raw tools to a single task-oriented API.",
+    "Workflow execution needs checkpointing, retries, and reusable resources.",
+    "Structured exports create stronger monetizable outputs for SaaS use cases."
+  ],
+  "action_items": [
+    {
+      "task": "Alice will send the roadmap by next Friday.",
+      "owner": "Alice",
+      "deadline": "next Friday"
+    }
+  ],
+  "qa_pairs": [
+    {
+      "question": "What does the transcript say about semantic chunking?",
+      "answer": "Semantic chunking is treated as part of the structured knowledge extraction workflow."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "Explain semantic chunking",
+      "back": "Semantic chunking breaks a transcript into reusable knowledge blocks for downstream extraction."
+    }
+  ],
+  "entities": [
+    {
+      "name": "Alice",
+      "type": "person_or_concept"
+    }
+  ],
+  "confidence_scores": {
+    "overall": 0.89,
+    "summary": 0.92,
+    "topics": 0.85
+  },
+  "trace": {
+    "workflow_run_id": "workflow_123",
+    "steps": [
+      {
+        "step": "ingest_media",
+        "status": "completed",
+        "attempt": 1,
+        "duration_ms": 5,
+        "cached": false
+      }
+    ],
+    "models_used": ["planner-balanced:v1", "videomp3word-video2word:balanced", "knowledge-model"],
+    "chunk_references": ["chunk_1", "chunk_2"],
+    "resource_ids": {
+      "media_asset_id": "media_123",
+      "transcript_id": "transcript_123",
+      "knowledge_unit_id": "knowledge_123"
+    }
+  },
+  "exports": {
+    "json": "{...}",
+    "markdown": "# Video To Knowledge",
+    "notion": {
+      "title": "Video To Knowledge",
+      "blocks": []
+    }
+  }
+}

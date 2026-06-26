@@ -1,0 +1,64 @@
+# 章节配置
+
+# 报告章节顺序
+sections:
+  - name: "基础信息"
+    key: "basic_info"
+    required: true
+  - name: "一句话概括"
+    key: "one_sentence"
+    required: true
+    max_words: 50
+  - name: "科学问题"
+    key: "scientific_question"
+    required: true
+    subsections:
+      - "核心问题"
+      - "背景与重要性"
+      - "现有方法不足"
+  - name: "技术路线"
+    key: "methods"
+    required: true
+    subsections:
+      - "核心技术"
+      - "实验设计"
+      - "关键技术参数"
+  - name: "核心发现"
+    key: "findings"
+    required: true
+    subsections:
+      - "主要结论"
+      - "关键数据"
+      - "机制解释"
+  - name: "创新点"
+    key: "innovation"
+    required: true
+    max_count: 3
+  - name: "与现有方法对比"
+    key: "comparison"
+    required: false
+  - name: "局限性与发展方向"
+    key: "limitations"
+    required: false
+  - name: "可复现要素"
+    key: "reproducibility"
+    required: false
+  - name: "对你研究的意义"
+    key: "relevance"
+    required: false
+
+# 关键词匹配（用于自动识别章节）
+keywords:
+  abstract: ["abstract", "摘要"]
+  background: ["background", "introduction", "背景"]
+  methods: ["method", "material", "实验", "方法"]
+  results: ["result", "结果"]
+  discussion: ["discussion", "conclusion", "讨论", "结论"]
+
+# 数据提取模式
+data_patterns:
+  percentage: "(\d+(?:\.\d+)?)%"
+  concentration: "(\d+(?:\.\d+)?)\s*(g/L|mM|M|mg/mL)"
+  time: "(\d+)\s*(h|hour|min|minute|s|second)"
+  temperature: "(\d+)\s*°C"
+  fold_change: "(\d+(?:\.\d++)?)-?fold"

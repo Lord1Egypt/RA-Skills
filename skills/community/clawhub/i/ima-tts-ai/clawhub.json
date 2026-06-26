@@ -1,0 +1,121 @@
+{
+  "name": "IMA TTS Generator",
+  "tagline": "Convert text, scripts, and captions into natural voiceovers for videos, explainers, product demos, and social posts.",
+  "description": "Convert text, scripts, and captions into natural voiceovers for videos, explainers, product demos, and social posts.",
+  "category": "file-generation",
+  "requiredEnvVars": ["IMA_API_KEY"],
+  "credentialNotice": "The IMA API key is required at runtime (--api-key or IMA_API_KEY). It is sent only to https://api.imastudio.com. Obtain keys at https://imastudio.com or https://www.imaclaw.ai/ (same provider). Use a scoped or test key if concerned about credential exposure.",
+  "requires": {
+    "env": ["IMA_API_KEY"],
+    "primaryCredential": "IMA_API_KEY",
+    "credentialNote": "IMA_API_KEY is required at runtime and sent only to api.imastudio.com for TTS APIs."
+  },
+  "localPaths": {
+    "readWrite": [
+      "~/.openclaw/memory/ima_prefs.json",
+      "~/.openclaw/logs/ima_skills/"
+    ],
+    "purpose": "Preferences and generation logs; logs auto-deleted after 7 days. User can delete anytime."
+  },
+  "persistence": {
+    "readWrite": [
+      "~/.openclaw/memory/ima_prefs.json",
+      "~/.openclaw/logs/ima_skills/"
+    ],
+    "retention": "Logs are auto-cleaned after 7 days; preferences remain until user deletes them."
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "author": {
+    "name": "IMA Studio",
+    "url": "https://www.imaclaw.ai/"
+  },
+  "support_url": "https://www.imaclaw.ai/",
+  "homepage": "https://www.imaclaw.ai/",
+  "supported_models": [
+    "seed-tts",
+    "seed-tts-2.0",
+    "seed tts 2.0",
+    "text-to-speech",
+    "TTS",
+    "speech synthesis",
+    "voiceover",
+    "narration"
+  ],
+  "tags": [
+    "ima-studio",
+    "tts",
+    "text-to-speech",
+    "speech-synthesis",
+    "voice",
+    "voiceover",
+    "narration",
+    "seed-tts",
+    "seed-tts-2.0",
+    "ai-voice",
+    "dubbing",
+    "audiobook",
+    "podcast"
+  ],
+  "keywords": [
+    "text to speech",
+    "speech synthesis",
+    "TTS",
+    "voice synthesis",
+    "voiceover",
+    "narration",
+    "AI voice",
+    "dubbing",
+    "audiobook",
+    "podcast narration",
+    "video narration",
+    "ima studio",
+    "seed-tts",
+    "seed tts",
+    "seed tts 2.0",
+    "语音合成",
+    "文字转语音",
+    "AI配音",
+    "朗读",
+    "播报",
+    "配音"
+  ],
+  "search_optimized_terms": [
+    "seed-tts",
+    "seed tts",
+    "seed tts 2.0",
+    "text to speech",
+    "TTS",
+    "speech synthesis",
+    "voice synthesis",
+    "voiceover",
+    "narration",
+    "AI voice",
+    "dubbing",
+    "语音合成",
+    "文字转语音",
+    "AI配音",
+    "朗读"
+  ],
+  "related_skills": [
+    "ima-knowledge-ai",
+    "ima-all-ai",
+    "ima-voice-ai",
+    "ima-resource-skill"
+  ],
+  "use_cases": [
+    "Video narration and voiceover",
+    "Podcast and audiobook production",
+    "E-learning and educational content",
+    "Accessibility and screen readers",
+    "Commercial and marketing voiceover",
+    "IVR and phone announcements"
+  ],
+  "key_features": [
+    "seed-tts-2.0 with natural prosody",
+    "Multiple voice options and styles",
+    "Text-to-speech output mp3/wav URL",
+    "Fast generation with automatic retry"
+  ]
+}

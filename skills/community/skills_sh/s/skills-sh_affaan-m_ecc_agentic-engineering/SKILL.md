@@ -1,35 +1,64 @@
 ---
-name: "agentic-engineering"
-description: "Indexed by skills.sh from affaan-m/ecc"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "affaan-m"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/affaan-m/ecc/agentic-engineering"
-sourceUrl: "https://skills.sh/affaan-m/ecc/agentic-engineering"
+name: agentic-engineering
+description: Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing.
+metadata:
+  origin: ECC
 ---
 
-# agentic-engineering
+# Agentic Engineering
 
-> Indexed by skills.sh from affaan-m/ecc
+Use this skill for engineering workflows where AI agents perform most implementation work and humans enforce quality and risk controls.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** affaan-m
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/affaan-m/ecc/agentic-engineering`
-- **Source URL:** [https://skills.sh/affaan-m/ecc/agentic-engineering](https://skills.sh/affaan-m/ecc/agentic-engineering)
+## Operating Principles
 
-## Overview
+1. Define completion criteria before execution.
+2. Decompose work into agent-sized units.
+3. Route model tiers by task complexity.
+4. Measure with evals and regression checks.
 
+## Eval-First Loop
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/affaan-m/ecc/agentic-engineering
-```
+1. Define capability eval and regression eval.
+2. Run baseline and capture failure signatures.
+3. Execute implementation.
+4. Re-run evals and compare deltas.
+
+## Task Decomposition
+
+Apply the 15-minute unit rule:
+- each unit should be independently verifiable
+- each unit should have a single dominant risk
+- each unit should expose a clear done condition
+
+## Model Routing
+
+- Haiku: classification, boilerplate transforms, narrow edits
+- Sonnet: implementation and refactors
+- Opus: architecture, root-cause analysis, multi-file invariants
+
+## Session Strategy
+
+- Continue session for closely-coupled units.
+- Start fresh session after major phase transitions.
+- Compact after milestone completion, not during active debugging.
+
+## Review Focus for AI-Generated Code
+
+Prioritize:
+- invariants and edge cases
+- error boundaries
+- security and auth assumptions
+- hidden coupling and rollout risk
+
+Do not waste review cycles on style-only disagreements when automated format/lint already enforce style.
+
+## Cost Discipline
+
+Track per task:
+- model
+- token estimate
+- retries
+- wall-clock time
+- success/failure
+
+Escalate model tier only when lower tier fails with a clear reasoning gap.

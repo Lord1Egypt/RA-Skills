@@ -1,0 +1,58 @@
+{
+  "id": "memory-agentmemo",
+  "kind": "memory",
+  "uiHints": {
+    "serverUrl": {
+      "label": "AgentMemo Server URL",
+      "placeholder": "http://localhost:8790",
+      "help": "Base URL of your AgentMemo HTTP service (or use ${AGENTMEMO_URL})"
+    },
+    "apiKey": {
+      "label": "API Key",
+      "sensitive": true,
+      "placeholder": "your-api-key",
+      "help": "Optional bearer token for authenticated AgentMemo instances (or use ${AGENTMEMO_API_KEY})"
+    },
+    "userId": {
+      "label": "User / Namespace ID",
+      "placeholder": "openclaw",
+      "help": "Optional user or namespace ID to scope memories"
+    },
+    "autoCapture": {
+      "label": "Auto-Capture",
+      "help": "Automatically capture important information from conversations and store to AgentMemo"
+    },
+    "autoRecall": {
+      "label": "Auto-Recall",
+      "help": "Automatically inject relevant memories from AgentMemo into context before agent starts"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "serverUrl": {
+        "type": "string",
+        "description": "Base URL of the AgentMemo HTTP service"
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Optional bearer token / API key"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Optional user or namespace ID for scoping memories"
+      },
+      "autoCapture": {
+        "type": "boolean",
+        "description": "Auto-capture important messages from conversations",
+        "default": false
+      },
+      "autoRecall": {
+        "type": "boolean",
+        "description": "Auto-inject relevant memories before agent starts",
+        "default": true
+      }
+    }
+  }
+}

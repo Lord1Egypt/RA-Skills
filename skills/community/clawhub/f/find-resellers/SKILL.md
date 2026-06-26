@@ -1,35 +1,41 @@
 ---
-name: "Find Resellers"
-description: "Find resellers, stockists, secondary sellers, and channel resale opportunities for ecommerce and cross-border products. Use when the user wants help identify..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/find-resellers"
-sourceUrl: "https://clawhub.ai/skills/find-resellers"
+name: Find Resellers
+description: Find resellers, stockists, secondary sellers, and channel resale opportunities for ecommerce and cross-border products. Use when the user wants help identifying who may resell the product, shortlist likely resale partners, or compare reseller fit by market, storefront type, and sales model.
 ---
 
 # Find Resellers
 
-> Find resellers, stockists, secondary sellers, and channel resale opportunities for ecommerce and cross-border products. Use when the user wants help identify...
+Help users identify resellers who are more likely to carry or move the product, rather than producing a generic seller list.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/find-resellers`
-- **Source URL:** [https://clawhub.ai/skills/find-resellers](https://clawhub.ai/skills/find-resellers)
+## Use when
+- The user wants resellers, stockists, or resale channel partners
+- The user needs resale options by region, platform, or business model
+- The user wants help prioritizing which reseller prospects look worth contacting first
 
-## Overview
+## Inputs
+- Product or category
+- Target geography or market
+- Preferred reseller type if known
+- Price band or channel constraints
+- Exclusions or must-have criteria
 
+## Workflow
+1. Clarify the resale goal and channel context
+2. Search public seller and channel signals in the target market
+3. Compare candidates by category fit, resale logic, and likely relevance
+4. Remove weak-fit or duplicate names
+5. Return a prioritized shortlist with reasoning and next actions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/find-resellers
-```
+## Output
+Return:
+- Reseller shortlist
+- Why each reseller may fit
+- Supporting signals when available
+- Risks or unknowns to verify
+- Suggested outreach angle
+
+## Quality bar
+- Focus on plausible resale fit, not just merchant names
+- Distinguish resellers from distributors or end buyers
+- Be explicit about missing evidence
+- Make follow-up easier, not harder

@@ -1,0 +1,104 @@
+{
+  "ticker": "600519.SH",
+  "market": "CN",
+  "valuation_model": "steady_state_single_stage",
+  "requested_valuation_model": "steady_state_single_stage",
+  "effective_valuation_model": "steady_state_single_stage",
+  "degraded": false,
+  "currency": "CNY",
+  "as_of_date": "2026-04-11",
+  "tax": {
+    "effective_tax_rate": 0.25,
+    "effective_tax_rate_source": "akshare:tax_rate",
+    "marginal_tax_rate": 0.25,
+    "marginal_tax_rate_source": "market_default"
+  },
+  "wacc_inputs": {
+    "risk_free_rate": 0.025,
+    "risk_free_rate_source": "market_default_cn",
+    "equity_risk_premium": 0.06,
+    "equity_risk_premium_source": "market_default",
+    "beta": 0.85,
+    "beta_source": "baostock_price_regression:sh.000300",
+    "cost_of_equity": 0.076,
+    "pre_tax_cost_of_debt": 0.035,
+    "pre_tax_cost_of_debt_source": "akshare:interest_expense_over_total_debt",
+    "wacc": 0.0735125
+  },
+  "capital_structure": {
+    "equity_weight": 0.95,
+    "debt_weight": 0.05,
+    "source": "akshare_baostock:market_value_using_total_debt"
+  },
+  "fcff": {
+    "anchor": 87857776428.33,
+    "anchor_method": "cfo_plus_after_tax_interest_minus_capex",
+    "selected_path": "cfo",
+    "anchor_ebiat_path": 56370536406.8625,
+    "anchor_cfo_path": 87857776428.33,
+    "ebiat_path_available": true,
+    "cfo_path_available": true,
+    "after_tax_interest": 72796313.46000001,
+    "after_tax_interest_source": "interest_paid",
+    "reconciliation_gap": 31487240021.4675,
+    "reconciliation_gap_pct": 0.35838876536049397,
+    "anchor_mode": "latest",
+    "anchor_observation_count": 1,
+    "delta_nwc_source": "op_nwc_delta",
+    "last_report_period": "2024-12-31"
+  },
+  "valuation": {
+    "enterprise_value": 1856309628220.3196,
+    "equity_value": 1915179593649.2495,
+    "per_share_value": 1524.5844194674194,
+    "terminal_growth_rate": 0.025,
+    "terminal_growth_rate_effective": 0.025,
+    "present_value_stage1": 0.0,
+    "present_value_stage2": null,
+    "present_value_terminal": 1856309628220.3196,
+    "terminal_value": 1856309628220.3196,
+    "terminal_value_share": 1.0,
+    "explicit_forecast_years": 0,
+    "stage1_years": null,
+    "stage2_years": null,
+    "stage2_decay_mode": null
+  },
+  "diagnostics": [
+    "provider_normalization:akshare_baostock:A",
+    "provider_cache_hit:akshare_baostock",
+    "tax_rate_paths_are_separated",
+    "fcff_path_selector_preferred_cfo",
+    "fcff_path_selected:cfo",
+    "valuation_model_steady_state_single_stage"
+  ],
+  "warnings": [
+    "fcff_reconciliation_gap_pct_above_0.10"
+  ],
+  "sensitivity": {
+    "metric": "per_share_value",
+    "metric_label": "Per Share Value",
+    "base_wacc": 0.073512,
+    "base_terminal_growth_rate": 0.025,
+    "base_metric_value": 1524.5844194674194,
+    "market_price": null,
+    "wacc_axis": {
+      "min": 0.053512,
+      "max": 0.093512,
+      "points": 5
+    },
+    "terminal_growth_axis": {
+      "min": 0.015,
+      "max": 0.035,
+      "points": 5
+    },
+    "diagnostics": [
+      "sensitivity_heatmap:wacc_x_terminal_growth",
+      "sensitivity_metric:per_share_value"
+    ],
+    "warnings": []
+  },
+  "artifacts": {
+    "sensitivity_heatmap_path": "examples/cn_moutai_single_stage.output.sensitivity.png",
+    "sensitivity_heatmap_svg_path": "examples/cn_moutai_single_stage.output.sensitivity.svg"
+  }
+}

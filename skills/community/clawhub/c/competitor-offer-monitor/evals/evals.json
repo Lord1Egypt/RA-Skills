@@ -1,0 +1,43 @@
+{
+  "skill_name": "competitor-offer-monitor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our Shopify CVR was ~2.8% last month and this week it's ~1.9% with similar traffic. Nothing obvious broke on our site. I noticed Competitor X emailed a 30% off sitewide on Monday. How do I know if that's the cause and what should we do about pricing?",
+      "expected_output": "Timeline/correlation guidance; hypothesis stack (competitor vs other causes); required 4+ row matrix (move, metric, confidence, lever, guardrail); price-match or value-defense options with margin/kill-switch thinking; not only 'match 30%.'",
+      "files": [],
+      "expectations": [
+        "Includes a Markdown table with columns for competitor move, your metric shift (hypothesis), confidence, response lever, and guardrail or kill switch",
+        "Table has at least four rows",
+        "Discusses aligning competitor promo timing with conversion or funnel metrics and notes attribution or mix caveats",
+        "Lists non-competitor explanations for CVR drop (e.g. creative, stock, seasonality) alongside competitor hypothesis",
+        "Proposes concrete response levers beyond a blind sitewide price cut (e.g. targeted match, bundle, loyalty, service)",
+        "Mentions margin floors, duration limits, or exit criteria for any promotional response"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're drafting a price match guarantee for our DTC store. MAP from the brand says we can't advertise below $89 but competitors sometimes show $79 on Google Shopping. Legal said keep it high level. Give me operational rules and customer-facing principles.",
+      "expected_output": "Eligibility, proof, channel/MAP tension called out (without legal advice), stacking, caps, logging; matrix still useful for mapping scenarios vs responses; clear that MAP needs brand/legal alignment.",
+      "files": [],
+      "expectations": [
+        "Addresses price match policy elements such as eligibility, proof of competitor price, and channel considerations",
+        "Acknowledges MAP or minimum advertised price tension and recommends coordinating with brand policy or counsel without claiming to be legal advice",
+        "Includes operational guardrails (caps, stacking, who approves exceptions)",
+        "Includes a structured matrix or equivalent scenario rows mapping competitor listing types to allowed responses",
+        "Customer-facing principles emphasize trust and fairness rather than aggressive discounting tone"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write 10 blog post titles for our skincare brand spring campaign. No pricing or competitors mentioned.",
+      "expected_output": "Brief creative SEO/content help; does NOT dump the full competitor-offer monitoring template or mandatory CVR matrix.",
+      "files": [],
+      "expectations": [
+        "Does not use the full competitor-offer response matrix as the primary deliverable",
+        "Does not force price match, CVR diagnostics, or competitor monitoring workflow for a pure content request",
+        "May give blog titles or ask clarifying questions appropriate to content marketing"
+      ]
+    }
+  ]
+}

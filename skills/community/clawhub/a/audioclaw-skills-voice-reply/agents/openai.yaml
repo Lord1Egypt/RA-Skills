@@ -1,0 +1,4 @@
+interface:
+  display_name: "AudioClaw Skills Voice Reply"
+  short_description: "AudioClaw dynamic voice and emotion routing"
+  default_prompt: "Use $audioclaw-skills-voice-reply to turn an AudioClaw reply into AudioClaw speech. Default to the prepared clone voice_id `vc-yxdCFUKyNLPexxJ66jaXWk` for future voice replies unless the user explicitly asks for another voice. For AudioClaw on Feishu, prefer the wrapper and let it send the audio directly through Feishu instead of using send_file or sending MEDIA paths as text. After the audio is sent, prefer no extra text confirmation. If the host runtime still needs one final assistant message to complete the turn, send one short natural Chinese line such as `我已经用语音回复你了。`."

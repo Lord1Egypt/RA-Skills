@@ -1,35 +1,21 @@
----
-name: "郡城工业AI"
-description: "专业分析PLC程序，设计工业自动化方案，诊断设备故障，并生成SCADA传感器数据报表。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, industrial, plc, scada]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juncheng-industrial-ai"
-sourceUrl: "https://clawhub.ai/skills/juncheng-industrial-ai"
----
+# 郡城工业AI · Juncheng Industrial AI
 
-# 郡城工业AI
+分析PLC程序、工业自动化方案设计和故障诊断的专业技能。
 
-> 专业分析PLC程序，设计工业自动化方案，诊断设备故障，并生成SCADA传感器数据报表。
+## 功能
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juncheng-industrial-ai`
-- **Source URL:** [https://clawhub.ai/skills/juncheng-industrial-ai](https://clawhub.ai/skills/juncheng-industrial-ai)
+1. **PLC程序分析** — 解析梯形图/SCL/STL代码，定位逻辑错误
+2. **工业自动化方案设计** — 根据工艺流程图自动生成PLC程序框架
+3. **设备故障诊断** — 分析报警代码，结合历史数据定位故障原因
+4. **SCADA报表生成** — 从原始传感器数据生成日报/周报/月报
 
-## Overview
+## 使用
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/juncheng-industrial-ai
+```openclaw
+-summon "juncheng-industrial-ai"
+请分析这段西门子SCL代码中的死锁风险...
 ```
+
+## 作者
+
+郡城智能科技 (Juncheng AI) — 烟台本地AI服务商

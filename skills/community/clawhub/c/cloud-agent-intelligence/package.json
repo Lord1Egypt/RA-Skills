@@ -1,0 +1,9 @@
+{
+  "name": "cloud-agent-intelligence",
+  "version": "0.1.0",
+  "description": "【自研系统技能】cloud-agent-intelligence",
+  "main": "src/index.js",
+  "keywords": ["cloud-agent-intelligence", "ai-assistant", "cloud-shrimp"],
+  "author": "王的奴隶 · 严谨专业版",
+  "license": "Commercial"
+}

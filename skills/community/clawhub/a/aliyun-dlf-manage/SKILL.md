@@ -1,35 +1,84 @@
 ---
-name: "Aliyun Dlf Manage"
-description: "Use when managing Alibaba Cloud Data Lake Formation (DataLake) via OpenAPI/SDK, including the user asks for DataLake catalog resource operations, configurati..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun-dlf-manage"
-sourceUrl: "https://clawhub.ai/skills/aliyun-dlf-manage"
+name: aliyun-dlf-manage
+description: Use when managing Alibaba Cloud Data Lake Formation (DataLake) via OpenAPI/SDK, including the user asks for DataLake catalog resource operations, configuration updates, status queries, or troubleshooting DataLake API workflows.
+version: 1.0.0
 ---
 
-# Aliyun Dlf Manage
+Category: service
 
-> Use when managing Alibaba Cloud Data Lake Formation (DataLake) via OpenAPI/SDK, including the user asks for DataLake catalog resource operations, configurati...
+# Data Lake Formation
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun-dlf-manage`
-- **Source URL:** [https://clawhub.ai/skills/aliyun-dlf-manage](https://clawhub.ai/skills/aliyun-dlf-manage)
+Use Alibaba Cloud OpenAPI (RPC) with official SDKs or OpenAPI Explorer to manage resources for Data Lake Formation.
 
-## Overview
+## Workflow
 
+1) Confirm region, resource identifiers, and desired action.
+2) Discover API list and required parameters (see references).
+3) Call API with SDK or OpenAPI Explorer.
+4) Verify results with describe/list APIs.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## AccessKey priority (must follow)
+
+1) Environment variables: `ALICLOUD_ACCESS_KEY_ID` / `ALICLOUD_ACCESS_KEY_SECRET` / `ALICLOUD_REGION_ID`
+Region policy: `ALICLOUD_REGION_ID` is an optional default. If unset, decide the most reasonable region for the task; if unclear, ask the user.
+2) Shared config file: `~/.alibabacloud/credentials`
+
+## API discovery
+
+- Product code: `DataLake`
+- Default API version: `2020-07-10`
+- Use OpenAPI metadata endpoints to list APIs and get schemas (see references).
+
+## High-frequency operation patterns
+
+1) Inventory/list: prefer `List*` / `Describe*` APIs to get current resources.
+2) Change/configure: prefer `Create*` / `Update*` / `Modify*` / `Set*` APIs for mutations.
+3) Status/troubleshoot: prefer `Get*` / `Query*` / `Describe*Status` APIs for diagnosis.
+
+## Minimal executable quickstart
+
+Use metadata-first discovery before calling business APIs:
+
 ```bash
-hermes skills install clawhub/aliyun-dlf-manage
+python scripts/list_openapi_meta_apis.py
 ```
+
+Optional overrides:
+
+```bash
+python scripts/list_openapi_meta_apis.py --product-code <ProductCode> --version <Version>
+```
+
+The script writes API inventory artifacts under the skill output directory.
+
+## Output policy
+
+If you need to save responses or generated artifacts, write them under:
+`output/aliyun-dlf-manage/`
+
+## Validation
+
+```bash
+mkdir -p output/aliyun-dlf-manage
+for f in skills/data-lake/aliyun-dlf-manage/scripts/*.py; do
+  python3 -m py_compile "$f"
+done
+echo "py_compile_ok" > output/aliyun-dlf-manage/validate.txt
+```
+
+Pass criteria: command exits 0 and `output/aliyun-dlf-manage/validate.txt` is generated.
+
+## Output And Evidence
+
+- Save artifacts, command outputs, and API response summaries under `output/aliyun-dlf-manage/`.
+- Include key parameters (region/resource id/time range) in evidence files for reproducibility.
+
+## Prerequisites
+
+- Configure least-privilege Alibaba Cloud credentials before execution.
+- Prefer environment variables: `ALICLOUD_ACCESS_KEY_ID`, `ALICLOUD_ACCESS_KEY_SECRET`, optional `ALICLOUD_REGION_ID`.
+- If region is unclear, ask the user before running mutating operations.
+
+## References
+
+- Sources: `references/sources.md`

@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "description": "项目归属配置文件 - 用于 multi-user-privacy 技能的项目权限检查",
+  "projects": {
+    "hazmat-news": {
+      "name": "危化品新闻采集系统",
+      "path": "/home/user/.openclaw/workspace/projects/hazmat-news",
+      "owner": "ou_ba3410ec9024501b3383141a5ba7bec4",
+      "collaborators": [
+        "ou_b96f5424607baf3a0455b55e0f4a2213"
+      ],
+      "description": "孙哥的危化品物流新闻自动采集发布系统",
+      "permissions": {
+        "read": ["all"],
+        "write": ["owner", "collaborator"],
+        "execute": ["owner", "collaborator"],
+        "delete": ["owner"]
+      }
+    }
+  },
+  "default_permissions": {
+    "read": ["all"],
+    "write": ["owner"],
+    "execute": ["owner"],
+    "delete": ["owner"]
+  },
+  "notes": {
+    "admin_override": "管理员 (ou_b96f5424607baf3a0455b55e0f4a2213) 可以操作所有项目",
+    "add_project": "添加新项目时，在此文件中配置 owner 和 collaborators",
+    "format": "project_key: { name, path, owner, collaborators[], description, permissions }"
+  }
+}

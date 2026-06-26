@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-development-tracker.json",
+  "title": "Child Development Tracker",
+  "description": "Data structure for child development milestone tracking",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update time"
+    },
+    "child_profile": {
+      "type": "object",
+      "description": "Child basic information",
+      "properties": {
+        "child_id": {
+          "type": "string",
+          "description": "儿童唯一标识"
+        },
+        "name": {
+          "type": "string",
+          "description": "儿童姓名"
+        },
+        "birth_date": {
+          "type": "string",
+          "format": "date",
+          "description": "出生日期"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female"],
+          "description": "性别"
+        },
+        "premature": {
+          "type": "boolean",
+          "description": "是否早产"
+        },
+        "gestational_age": {
+          "type": "integer",
+          "minimum": 28,
+          "maximum": 42,
+          "description": "孕周（早产儿需要）"
+        }
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "developmental_tracking": {
+      "type": "object",
+      "properties": {
+        "assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/assessment"
+          }
+        }
+      }
+    },
+    "milestone_achievement": {
+      "type": "object",
+      "properties": {
+        "gross_motor": {
+          "$ref": "#/definitions/domain_progress"
+        },
+        "fine_motor": {
+          "$ref": "#/definitions/domain_progress"
+        },
+        "language": {
+          "$ref": "#/definitions/domain_progress"
+        },
+        "social": {
+          "$ref": "#/definitions/domain_progress"
+        },
+        "cognitive": {
+          "$ref": "#/definitions/domain_progress"
+        }
+      }
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string"},
+          "type": {"type": "string"},
+          "severity": {"type": "string"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_assessments": {"type": "integer"},
+        "last_assessment_date": {"type": "string"},
+        "developmental_trend": {"type": "string"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"],
+  "definitions": {
+    "assessment": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "评估日期"
+        },
+        "age": {
+          "type": "string",
+          "description": "年龄表示（如6m）"
+        },
+        "age_months": {
+          "type": "integer",
+          "description": "月龄"
+        },
+        "corrected_age": {
+          "type": "integer",
+          "description": "矫正月龄（早产儿）"
+        },
+        "gross_motor": {
+          "$ref": "#/definitions/domain_assessment"
+        },
+        "fine_motor": {
+          "$ref": "#/definitions/domain_assessment"
+        },
+        "language": {
+          "$ref": "#/definitions/domain_assessment"
+        },
+        "social": {
+          "$ref": "#/definitions/domain_assessment"
+        },
+        "cognitive": {
+          "$ref": "#/definitions/domain_assessment"
+        },
+        "overall_assessment": {
+          "type": "string",
+          "enum": ["normal", "delay_suspected", "delay_confirmed"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "domain_assessment": {
+      "type": "object",
+      "description": "单个发育领域评估",
+      "properties": {
+        "head_control": {
+          "$ref": "#/definitions/milestone"
+        },
+        "rolling": {
+          "$ref": "#/definitions/milestone"
+        },
+        "sitting": {
+          "$ref": "#/definitions/milestone"
+        },
+        "crawling": {
+          "$ref": "#/definitions/milestone"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["normal", "delay_suspected", "delay_confirmed"]
+        }
+      }
+    },
+    "milestone": {
+      "type": "object",
+      "properties": {
+        "achieved": {
+          "type": "boolean"
+        },
+        "age_achieved": {
+          "type": "integer",
+          "description": "达成月龄"
+        }
+      }
+    },
+    "domain_progress": {
+      "type": "object",
+      "properties": {
+        "total_milestones": {
+          "type": "integer"
+        },
+        "achieved": {
+          "type": "integer"
+        },
+        "percentage": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

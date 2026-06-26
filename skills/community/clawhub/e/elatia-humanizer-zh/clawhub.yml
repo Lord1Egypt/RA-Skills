@@ -1,0 +1,7 @@
+name: humanizer-zh
+slug: humanizer-zh
+version: 2.1.0
+description: 去除文本中的 AI 生成痕迹。当用户说"润色"、"改写"、"去 AI 味"、"更像人写的"时使用。基于维基百科"AI 写作特征"指南。
+author: Elatia
+license: MIT
+tags: writing,editing,chinese,ai-detection,narrative,latest

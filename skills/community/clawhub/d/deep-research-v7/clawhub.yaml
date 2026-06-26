@@ -1,0 +1,37 @@
+name: deep-research
+version: 7.0.0
+description: 深度研究技能 - 领域无关、配置驱动、数据源自适应。支持arXiv/Semantic Scholar搜索，自动下载PDF并解析全文，生成三层报告（执行摘要、验证清单、完整报告）。当用户说"做一个survey"、"深度研究"、"文献调研"时自动触发。
+author: Rick
+tags:
+  - research
+  - academic
+  - pdf-extraction
+  - web-scraping
+  - knowledge-management
+  - survey
+  - literature-review
+commands:
+  - name: fetch-card-from-web
+    script: scripts/fetch-card-from-web.py
+    description: 从URL生成研究卡片
+  - name: convert-card-to-md
+    script: scripts/convert-card-to-md.py
+    description: JSON卡片转Markdown
+  - name: batch-fetch
+    script: scripts/batch-fetch.py
+    description: 批量网页抓取
+  - name: fetch-with-auto-detect
+    script: scripts/fetch-with-auto-detect.py
+    description: 智能URL处理(PDF自动检测)
+  - name: run-research
+    script: scripts/run-research.sh
+    description: 完整研究流程
+  - name: research-claw-bridge
+    script: scripts/research_claw_bridge.py
+    description: Research Claw桥接模块（多数据源搜索+Survey生成）
+dependencies:
+  - requests
+  - pdfplumber
+  - semanticscholar
+  - pymupdf
+  - openai

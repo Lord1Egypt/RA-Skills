@@ -1,0 +1,92 @@
+{
+  "run_id": "sciverse-sample-run",
+  "created_at": "2026-04-21T12:00:00Z",
+  "project": "Sciverse API",
+  "record_count": 11,
+  "metrics": {
+    "mention_rate": 77.27,
+    "positive_mention_rate": 63.64,
+    "capability_accuracy": 100.0,
+    "ecosystem_accuracy": 83.33
+  },
+  "strict_rates": {
+    "mention_rate": 54.55,
+    "positive_mention_rate": 36.36,
+    "capability_accuracy": 100.0,
+    "ecosystem_accuracy": 66.67
+  },
+  "by_model": [
+    {
+      "model_id": "gpt-4.1-mini",
+      "record_count": 11,
+      "mention_rate": 77.27,
+      "positive_mention_rate": 63.64,
+      "capability_accuracy": 100.0,
+      "ecosystem_accuracy": 83.33
+    }
+  ],
+  "by_funnel_stage": [
+    {
+      "funnel_stage": "awareness",
+      "record_count": 2,
+      "mention_rate": 75.0,
+      "positive_mention_rate": 75.0,
+      "capability_accuracy": null,
+      "ecosystem_accuracy": null
+    },
+    {
+      "funnel_stage": "selection",
+      "record_count": 4,
+      "mention_rate": 75.0,
+      "positive_mention_rate": 75.0,
+      "capability_accuracy": 100.0,
+      "ecosystem_accuracy": null
+    },
+    {
+      "funnel_stage": "integration",
+      "record_count": 1,
+      "mention_rate": 100.0,
+      "positive_mention_rate": 50.0,
+      "capability_accuracy": null,
+      "ecosystem_accuracy": 100.0
+    },
+    {
+      "funnel_stage": "activation",
+      "record_count": 2,
+      "mention_rate": 75.0,
+      "positive_mention_rate": 25.0,
+      "capability_accuracy": null,
+      "ecosystem_accuracy": null
+    },
+    {
+      "funnel_stage": "agent",
+      "record_count": 2,
+      "mention_rate": 75.0,
+      "positive_mention_rate": 75.0,
+      "capability_accuracy": null,
+      "ecosystem_accuracy": 75.0
+    }
+  ],
+  "repair_candidates": [
+    {
+      "query_id": "ecosystem-002",
+      "model_id": "gpt-4.1-mini",
+      "repair_type": "competitor_insert"
+    },
+    {
+      "query_id": "competitor-002",
+      "model_id": "gpt-4.1-mini",
+      "repair_type": "weak_positioning"
+    },
+    {
+      "query_id": "negative-001",
+      "model_id": "gpt-4.1-mini",
+      "repair_type": "integration_friction"
+    },
+    {
+      "query_id": "negative-002",
+      "model_id": "gpt-4.1-mini",
+      "repair_type": "negative_eval"
+    }
+  ]
+}

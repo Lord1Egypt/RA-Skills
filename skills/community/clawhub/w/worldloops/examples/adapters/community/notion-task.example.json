@@ -1,0 +1,16 @@
+{
+  "source": "notion",
+  "sourceType": "task",
+  "externalWrite": false,
+  "text": "Task: Finalize Q3 content calendar — due 2026-05-30, no updates in 5 days, owner has not responded to follow-up.",
+  "observedAt": "2026-05-20T08:30:00.000Z",
+  "url": "https://www.notion.so/your-workspace/q3-content-calendar-page-id",
+  "summary": "Stalled task: Q3 content calendar overdue for update",
+  "metadata": {
+    "pageId": "q3-content-calendar-page-id",
+    "dueDate": "2026-05-30",
+    "status": "In Progress",
+    "priority": "medium",
+    "adapterStatus": "community"
+  }
+}

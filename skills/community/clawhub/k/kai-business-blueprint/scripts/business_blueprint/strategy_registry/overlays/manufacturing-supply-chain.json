@@ -1,0 +1,34 @@
+{
+  "overlayId": "manufacturing-supply-chain",
+  "kind": "overlay",
+  "version": "1.0",
+  "name": "制造业供应链叠加",
+  "description": "叠加制造业供应链层级",
+  "appliesTo": ["product-capability", "technical-architecture"],
+  "adjustments": [
+    {
+      "layer": "supplier",
+      "layerName": "供应商管理",
+      "signals": [
+        {"type": "nameKeyword", "values": ["供应商", "采购", "原材料", "ERP"], "weight": 120}
+      ],
+      "scoreDelta": 100
+    },
+    {
+      "layer": "production",
+      "layerName": "生产执行",
+      "signals": [
+        {"type": "nameKeyword", "values": ["生产", "工厂", "车间", "MES"], "weight": 120}
+      ],
+      "scoreDelta": 100
+    },
+    {
+      "layer": "warehouse",
+      "layerName": "仓储物流",
+      "signals": [
+        {"type": "nameKeyword", "values": ["仓库", "WMS", "仓储", "配送", "物流"], "weight": 120}
+      ],
+      "scoreDelta": 100
+    }
+  ]
+}

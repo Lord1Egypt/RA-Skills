@@ -1,0 +1,16 @@
+{
+  "org_id": "",
+  "token": "",
+  "user_id": "",
+  "default_project": "",
+  "default_project_id": "",
+  "workitem_types": {},
+  "status_map": {
+    "待处理": "100005",
+    "进行中": "100006", 
+    "已完成": "100007",
+    "已关闭": "100008"
+  },
+  "priority_map": {},
+  "note": "请在使用前填写你的 org_id、token、user_id"
+}

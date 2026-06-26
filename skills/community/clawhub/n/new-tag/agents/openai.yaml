@@ -1,0 +1,4 @@
+interface:
+  display_name: "New Tag"
+  short_description: "Bump versions, commit, and push a release tag"
+  default_prompt: "Use $new-tag to bump package versions, validate release builds, commit the release prep, and push a new git tag."

@@ -1,35 +1,43 @@
----
-name: "360 Search"
-description: "Provides search functionalities including image and news retrieval using the 360 Search API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/360-search"
-sourceUrl: "https://clawhub.ai/skills/360-search"
----
+# 360-search
 
-# 360 Search
+> 自动生成的技能文档 - 2026-03-08
 
-> Provides search functionalities including image and news retrieval using the 360 Search API.
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/360-search`
-- **Source URL:** [https://clawhub.ai/skills/360-search](https://clawhub.ai/skills/360-search)
+360-search 技能包 - search 类工具
 
-## Overview
+## 功能
 
+- 
+360_search_client.py- scripts/image.py- scripts/news.py
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/360-search
+## 使用方法
+
+```python
+# 示例用法
+# 待补充
 ```
+
+## 配置
+
+查看 `.env.example` 文件了解所需环境变量。
+
+## 脚本
+
+- 
+360_search_client.py- scripts/image.py- scripts/news.py
+
+## 测试
+
+```bash
+# 运行测试
+# 待补充
+```
+
+## 备注
+
+此文档由脚本自动生成，请根据实际情况补充完善。
+
+---
+
+*最后更新：2026-03-08T20:15:05.857379

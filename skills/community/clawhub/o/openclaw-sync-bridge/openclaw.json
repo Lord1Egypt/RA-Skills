@@ -1,0 +1,16 @@
+{
+  "name": "openclaw-sync-bridge",
+  "version": "2.0.0",
+  "description": "一键同步 OpenClaw 配置到云端，智能检测工作目录，安全备份",
+  "author": "JayShna",
+  "keywords": ["sync", "backup", "gist", "github", "cloud", "workspace", "bridge"],
+  "license": "MIT",
+  "main": "sync_bridge.py",
+  "engines": {
+    "python": ">=3.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JayShna/openclaw-sync-bridge"
+  }
+}

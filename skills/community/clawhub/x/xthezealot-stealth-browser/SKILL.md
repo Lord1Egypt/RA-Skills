@@ -1,35 +1,36 @@
----
-name: "Stealth Browser"
-description: "Access websites with advanced bot protection to fetch HTML, screenshots, PDFs, or multiple pages in parallel using isolated browser contexts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xthezealot-stealth-browser"
-sourceUrl: "https://clawhub.ai/skills/xthezealot-stealth-browser"
----
-
 # Stealth Browser
 
-> Access websites with advanced bot protection to fetch HTML, screenshots, PDFs, or multiple pages in parallel using isolated browser contexts.
+Use `/stealth-browser` to access websites with advanced bot protection.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xthezealot-stealth-browser`
-- **Source URL:** [https://clawhub.ai/skills/xthezealot-stealth-browser](https://clawhub.ai/skills/xthezealot-stealth-browser)
+## Commands
 
-## Overview
+- `/stealth-browser open <url>` - Fetch page HTML
+- `/stealth-browser screenshot <url>` - Take full-page screenshot  
+- `/stealth-browser pdf <url>` - Save page as PDF
+- `/stealth-browser parallel <url1> <url2> [url3...]` - Fetch multiple URLs in parallel
 
+## Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xthezealot-stealth-browser
 ```
+/stealth-browser open https://www.bazaraki.com/adv/6203561_2-bedroom-detached-house-for-sale/
+/stealth-browser screenshot https://example.com
+/stealth-browser pdf https://example.com
+/stealth-browser parallel https://site1.com https://site2.com https://site3.com
+```
+
+## Parallel Browsing
+
+The `parallel` command fetches multiple URLs simultaneously using isolated browser contexts:
+- Each URL gets its own isolated context (cookies, storage, etc.)
+- Much faster than sequential fetching
+- Results returned as formatted JSON
+
+## How It Works
+
+Uses Playwright Extra with Stealth Plugin to mask automation signatures:
+- Removes `navigator.webdriver` flag
+- Spoofs Chrome plugins and permissions
+- Fakes WebGL/Canvas fingerprints
+- Mimics real user behavior
+
+Bypasses Cloudflare, reCAPTCHA, and most bot detection.

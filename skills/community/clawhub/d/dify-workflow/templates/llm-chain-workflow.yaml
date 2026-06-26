@@ -1,0 +1,293 @@
+# Multi-LLM Chain Workflow Template
+# Pattern: Start → LLM (Analyze) → LLM (Review) → LLM (Refine) → End
+# Use case: High-quality content generation with self-reflection
+
+app:
+  description: Multi-step LLM processing with reflection
+  icon: sparkles
+  icon_background: '#FEF3C7'
+  mode: workflow
+  name: LLM Chain Workflow
+  use_icon_as_answer_icon: false
+
+dependencies: []
+
+kind: app
+version: 0.6.0  # replace with exported version
+
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      enabled: false
+  graph:
+    edges:
+      # Start → LLM Analyze
+      - data:
+          sourceType: start
+          targetType: llm
+        id: start-to-analyze
+        source: '1700000000001'
+        sourceHandle: source
+        target: '1700000000002'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # LLM Analyze → LLM Review
+      - data:
+          sourceType: llm
+          targetType: llm
+        id: analyze-to-review
+        source: '1700000000002'
+        sourceHandle: source
+        target: '1700000000003'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # LLM Review → LLM Refine
+      - data:
+          sourceType: llm
+          targetType: llm
+        id: review-to-refine
+        source: '1700000000003'
+        sourceHandle: source
+        target: '1700000000004'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # LLM Refine → End
+      - data:
+          sourceType: llm
+          targetType: end
+        id: refine-to-end
+        source: '1700000000004'
+        sourceHandle: source
+        target: '1700000000005'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+    nodes:
+      # ============ START NODE ============
+      - data:
+          type: start
+          title: Start
+          desc: Input content for analysis
+          variables:
+            - variable: content
+              label: Content
+              type: paragraph
+              required: true
+              max_length: 50000
+              options: []
+            - variable: language
+              label: Output Language
+              type: select
+              required: true
+              options:
+                - Chinese
+                - English
+        id: '1700000000001'
+        type: custom
+        position:
+          x: 30
+          y: 275
+        width: 244
+        height: 150
+
+      # ============ LLM NODE 1: ANALYZE ============
+      - data:
+          type: llm
+          title: Step 1 - Analyze
+          desc: Initial content analysis
+          model:
+            # replace provider/name with values from your instance export
+            provider: langgenius/openai/openai
+            name: gpt-4o
+            mode: chat
+            completion_params: {}
+          prompt_template:
+            - id: system-prompt-1
+              role: system
+              text: |
+                You are an expert content analyst. Your task is to provide a comprehensive initial analysis of the given content.
+
+                Output your analysis in {{#1700000000001.language#}}.
+
+                Include:
+                1. One-sentence summary
+                2. Main topics covered
+                3. Key arguments or points
+                4. Target audience
+                5. Content quality assessment
+            - id: user-prompt-1
+              role: user
+              text: |
+                Please analyze the following content:
+
+                <content>
+                {{#1700000000001.content#}}
+                </content>
+
+                Provide a structured analysis.
+          context:
+            enabled: false
+            variable_selector: []
+          vision:
+            enabled: false
+        id: '1700000000002'
+        type: custom
+        position:
+          x: 334
+          y: 275
+        width: 244
+        height: 118
+
+      # ============ LLM NODE 2: REVIEW ============
+      - data:
+          type: llm
+          title: Step 2 - Review
+          desc: Review and critique the analysis
+          model:
+            # replace provider/name with values from your instance export
+            provider: langgenius/openai/openai
+            name: gpt-4o
+            mode: chat
+            completion_params: {}
+          prompt_template:
+            - id: system-prompt-2
+              role: system
+              text: |
+                You are a critical reviewer. Your task is to review an initial content analysis and identify areas for improvement.
+
+                Output your review in {{#1700000000001.language#}}.
+
+                Focus on:
+                1. Accuracy of the summary
+                2. Completeness of key points
+                3. Missing important elements
+                4. Potential misinterpretations
+                5. Suggestions for improvement
+            - id: user-prompt-2
+              role: user
+              text: |
+                Original content:
+                <content>
+                {{#1700000000001.content#}}
+                </content>
+
+                Initial analysis:
+                <analysis>
+                {{#1700000000002.text#}}
+                </analysis>
+
+                Please review this analysis and provide specific feedback for improvement.
+          context:
+            enabled: false
+            variable_selector: []
+          vision:
+            enabled: false
+        id: '1700000000003'
+        type: custom
+        position:
+          x: 638
+          y: 275
+        width: 244
+        height: 118
+
+      # ============ LLM NODE 3: REFINE ============
+      - data:
+          type: llm
+          title: Step 3 - Refine
+          desc: Generate final refined output
+          model:
+            # replace provider/name with values from your instance export
+            provider: langgenius/openai/openai
+            name: gpt-4o
+            mode: chat
+            completion_params: {}
+          prompt_template:
+            - id: system-prompt-3
+              role: system
+              text: |
+                You are a senior editor producing the final, polished analysis.
+
+                Output in {{#1700000000001.language#}}.
+
+                Based on the initial analysis and review feedback, produce a final comprehensive analysis that:
+                1. Addresses all feedback points
+                2. Is accurate and complete
+                3. Uses clear, professional language
+                4. Provides actionable insights
+
+                Output format (JSON):
+                {
+                  "summary": "One-sentence summary",
+                  "key_points": ["point1", "point2", ...],
+                  "insights": ["insight1", "insight2", ...],
+                  "quality_score": 85,
+                  "recommendations": ["rec1", "rec2", ...]
+                }
+            - id: user-prompt-3
+              role: user
+              text: |
+                Original content:
+                <content>
+                {{#1700000000001.content#}}
+                </content>
+
+                Initial analysis:
+                <analysis>
+                {{#1700000000002.text#}}
+                </analysis>
+
+                Review feedback:
+                <review>
+                {{#1700000000003.text#}}
+                </review>
+
+                Please produce the final, refined analysis incorporating all feedback.
+          context:
+            enabled: false
+            variable_selector: []
+          vision:
+            enabled: false
+        id: '1700000000004'
+        type: custom
+        position:
+          x: 942
+          y: 275
+        width: 244
+        height: 118
+
+      # ============ END NODE ============
+      - data:
+          type: end
+          title: End
+          desc: Output final analysis
+          outputs:
+            - variable: final_analysis
+              value_selector:
+                - '1700000000004'
+                - text
+            - variable: initial_analysis
+              value_selector:
+                - '1700000000002'
+                - text
+            - variable: review_feedback
+              value_selector:
+                - '1700000000003'
+                - text
+        id: '1700000000005'
+        type: custom
+        position:
+          x: 1246
+          y: 275
+        width: 244
+        height: 150
+
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.8

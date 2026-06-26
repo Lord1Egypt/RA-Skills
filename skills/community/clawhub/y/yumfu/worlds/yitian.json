@@ -1,0 +1,1214 @@
+{
+  "id": "yitian",
+  "name_zh": "倚天屠龙记",
+  "name_en": "The Heaven Sword and Dragon Saber",
+  "language": "zh",
+  "genre": "wuxia",
+  "era": "元末明初 (1337-1368)",
+  "age_rating": "Teen (13+)",
+  "themes": [
+    "武林争霸",
+    "门派恩怨",
+    "神兵传说",
+    "情感纠葛",
+    "江湖义气"
+  ],
+  "description_zh": "元末明初，武林因屠龙刀、倚天剑而掀起腥风血雨。张无忌身负九阳神功，卷入六大派围攻光明顶、屠狮大会等江湖风波。四位红颜知己，明教与正派之争，倚天剑中隐藏的秘密，究竟如何抉择？",
+  "description_en": "Late Yuan Dynasty, the martial world is torn by the Heaven Sword and Dragon Saber. Zhang Wuji, bearing the Nine Yang Divine Skill, is caught in the siege of Light Summit and the power struggle between Ming Cult and orthodox sects. Four beauties, sect conflicts, and the secret within the Heaven Sword - what will you choose?",
+  "gameplay_pacing": {
+    "quest_structure": "主线 + 支线 + 隐藏任务",
+    "total_chapters": 9,
+    "chapter_duration": "每章 3-5 小时游戏时间",
+    "cannot_skip_chapters": true,
+    "chapter_milestones": [
+      "第一章：冰火岛 - 出生与童年（谢逊、殷素素）",
+      "第二章：武当拜师 - 张三丰收徒，学习太极拳",
+      "第三章：昆仑遇险 - 中玄冥神掌，奇遇胡青牛",
+      "第四章：蝴蝶谷 - 医仙谷，初遇小昭",
+      "第五章：光明顶大战 - 六大派围攻，九阳神功大成",
+      "第六章：明教教主 - 继任第34代教主，习得乾坤大挪移",
+      "第七章：屠狮大会 - 谢逊下落，倚天剑秘密揭开",
+      "第八章：少林寺 - 三渡大战，九阳 vs 金刚伏魔圈",
+      "第九章：终局抉择 - 推翻元朝 / 退隐江湖 / 称霸武林"
+    ],
+    "romance_system": {
+      "love_interests": 4,
+      "max_affection": 100,
+      "exclusive_endings": true,
+      "description": "与四位女主角互动，每位有独立剧情线。最终只能选择一人（或孤独终老）"
+    }
+  },
+  "character_creation": {
+    "fixed_protagonist": true,
+    "name": "张无忌",
+    "gender": "male",
+    "age_start": 10,
+    "backstory": "张翠山与殷素素之子，出生于冰火岛。父母因屠龙刀秘密而自尽，义父谢逊传授七伤拳。中玄冥神掌奇毒，机缘巧合下习得九阳神功。",
+    "starting_stats": {
+      "内力": 30,
+      "武功": 20,
+      "智慧": 40,
+      "魅力": 35,
+      "运气": 50
+    },
+    "starting_skills": [
+      "武当长拳（入门）",
+      "七伤拳（残缺1成，伤敌伤己）"
+    ],
+    "special_physique": {
+      "name": "玄冥寒毒",
+      "effect": "中玄冥神掌奇毒，每日-10 HP。习得九阳神功后转化为内力增幅",
+      "cure_trigger": "第五章：光明顶大战"
+    }
+  },
+  "factions": [
+    {
+      "id": "mingjiao",
+      "name": "明教",
+      "alias": "魔教（六大派污名）",
+      "alignment": "中立偏善",
+      "headquarters": "光明顶（昆仑山）",
+      "leader": "阳顶天（失踪） → 张无忌（第六章）",
+      "hierarchy": [
+        "教主",
+        "光明左右使（杨逍、范遥）",
+        "四大护教法王（紫、白、金、青）",
+        "五散人（周颠、张中、彭莹玉、冷谦、说不得）",
+        "五行旗（锐金、烈火、洪水、巨木、厚土）"
+      ],
+      "signature_skills": [
+        "乾坤大挪移（教主独门）",
+        "圣火令武功（波斯总教）",
+        "光明圣火阵"
+      ],
+      "sacred_relics": [
+        "圣火令（24块）",
+        "乾坤大挪移心法秘籍"
+      ],
+      "relationship_with_player": "第六章成为教主",
+      "major_conflicts": [
+        "六大派围攻光明顶",
+        "对抗元朝朝廷",
+        "内部权力斗争（成昆阴谋）"
+      ]
+    },
+    {
+      "id": "wudang",
+      "name": "武当派",
+      "alignment": "正派",
+      "headquarters": "武当山",
+      "founder": "张三丰",
+      "disciples": [
+        "宋远桥（大弟子）",
+        "俞莲舟（二弟子）",
+        "俞岱岩（三弟子，瘫痪）",
+        "张松溪（四弟子）",
+        "张翠山（五弟子，玩家父亲，已故）",
+        "殷梨亭（六弟子）",
+        "莫声谷（七弟子）"
+      ],
+      "signature_skills": [
+        "太极拳",
+        "太极剑",
+        "纯阳无极功",
+        "梯云纵"
+      ],
+      "relationship_with_player": "师门（张三丰徒孙），第二章拜师",
+      "stance_on_mingjiao": "初期敌对，后期理解"
+    },
+    {
+      "id": "shaolin",
+      "name": "少林派",
+      "alignment": "正派",
+      "headquarters": "少林寺",
+      "leader": "方丈空闻（后为空智、空性）",
+      "signature_skills": [
+        "金刚伏魔圈",
+        "龙爪手",
+        "大力金刚指",
+        "罗汉拳"
+      ],
+      "hidden_antagonist": "圆真（成昆）- 挑起武林纷争的幕后黑手",
+      "relationship_with_player": "敌对 → 中立（真相揭露后）"
+    },
+    {
+      "id": "emei",
+      "name": "峨眉派",
+      "alignment": "正派",
+      "headquarters": "峨眉山",
+      "leader": "灭绝师太",
+      "disciples": [
+        "纪晓芙（大弟子，已故）",
+        "丁敏君（二弟子）",
+        "周芷若（第三代弟子，玩家恋人之一）"
+      ],
+      "sacred_weapon": "倚天剑",
+      "signature_skills": [
+        "四象掌",
+        "截手九式",
+        "金顶九式"
+      ],
+      "relationship_with_player": "仇恨（灭绝恨明教） → 复杂（周芷若因素）",
+      "key_event": "灭绝师太临终传位周芷若"
+    },
+    {
+      "id": "kunlun",
+      "name": "昆仑派",
+      "alignment": "正派",
+      "headquarters": "昆仑山",
+      "leader": "何太冲夫妇",
+      "signature_skills": [
+        "正两仪剑法",
+        "昆仑剑法"
+      ],
+      "relationship_with_player": "敌对（第三章被陷害）"
+    },
+    {
+      "id": "huashan",
+      "name": "华山派",
+      "alignment": "正派",
+      "headquarters": "华山",
+      "leader": "鲜于通",
+      "signature_skills": [
+        "华山剑法"
+      ]
+    },
+    {
+      "id": "kongtong",
+      "name": "崆峒派",
+      "alignment": "正派",
+      "headquarters": "崆峒山",
+      "leader": "五老",
+      "signature_skills": [
+        "七伤拳（威力巨大，伤己伤敌）",
+        "崆峒剑法"
+      ],
+      "relationship_with_player": "感激（谢逊传授七伤拳）"
+    },
+    {
+      "id": "tianying",
+      "name": "天鹰教",
+      "alignment": "中立",
+      "headquarters": "灵蛇岛",
+      "leader": "殷天正（白眉鹰王，玩家外公）",
+      "relationship_with_player": "亲族，明教四大法王之一"
+    },
+    {
+      "id": "yuanchao",
+      "name": "元朝朝廷",
+      "alignment": "反派",
+      "leader": "元顺帝",
+      "key_figures": [
+        "汝阳王府（赵敏之父）",
+        "赵敏（郡主，玩家恋人之一）",
+        "玄冥二老（鹿杖客、鹤笔翁）"
+      ],
+      "goal": "镇压明教，维护蒙元统治"
+    }
+  ],
+  "legendary_items": [
+    {
+      "name": "屠龙刀",
+      "type": "神兵",
+      "rarity": "传说",
+      "damage": 150,
+      "effect": "+50% 武功威力，削铁如泥",
+      "lore": "武林至尊，宝刀屠龙，号令天下，莫敢不从。倚天不出，谁与争锋。",
+      "secret": "刀中藏有《武穆遗书》和《降龙十八掌》秘籍",
+      "current_owner": "谢逊（义父，失踪）",
+      "acquisition_chapter": 7
+    },
+    {
+      "name": "倚天剑",
+      "type": "神兵",
+      "rarity": "传说",
+      "damage": 140,
+      "effect": "+40% 剑法威力，峨眉掌门信物",
+      "lore": "倚天不出，谁与争锋。",
+      "secret": "剑中藏有《九阴真经》",
+      "current_owner": "灭绝师太 → 周芷若",
+      "acquisition_chapter": 7
+    },
+    {
+      "name": "圣火令",
+      "type": "法器",
+      "rarity": "稀有",
+      "damage": 60,
+      "effect": "烧烤敌人，附带火焰伤害",
+      "special_skill": "圣火令武功（24式）",
+      "lore": "波斯明教总教传承",
+      "quantity": 24
+    },
+    {
+      "name": "乾坤大挪移心法",
+      "type": "秘籍",
+      "rarity": "传说",
+      "effect": "习得明教最高武功，可反弹攻击、借力打力",
+      "location": "光明顶密道",
+      "difficulty": "极难（历代教主少有练成第七层）",
+      "zhang_wuji_achievement": "第六章短时间内练至第六层"
+    },
+    {
+      "name": "九阳真经",
+      "type": "秘籍",
+      "rarity": "传说",
+      "effect": "内力生生不息，百毒不侵，疗伤速度极快",
+      "lore": "《楞伽经》夹缝中，达摩祖师遗作",
+      "zhang_wuji_achievement": "第五章练成，驱除玄冥寒毒"
+    },
+    {
+      "name": "武穆遗书",
+      "type": "兵法",
+      "rarity": "传说",
+      "effect": "岳飞兵法，可统率大军",
+      "location": "屠龙刀内",
+      "zhang_wuji_use": "第九章推翻元朝时使用"
+    }
+  ],
+  "martial_arts": [
+    {
+      "name": "九阳神功",
+      "type": "内功",
+      "power": 95,
+      "learning_difficulty": "极难",
+      "special_effects": [
+        "内力自动恢复",
+        "百毒不侵",
+        "寒暑不惧",
+        "疗伤速度 +500%"
+      ],
+      "counter": "玄冥神掌（习得九阳后反而转化为内力）"
+    },
+    {
+      "name": "乾坤大挪移",
+      "type": "奇功",
+      "power": 92,
+      "learning_difficulty": "极难",
+      "special_effects": [
+        "反弹敌方招式",
+        "借力打力",
+        "转移内力"
+      ],
+      "zhang_wuji_achievement": "数小时练成第六层（惊世骇俗）"
+    },
+    {
+      "name": "太极拳",
+      "type": "拳法",
+      "power": 88,
+      "creator": "张三丰",
+      "principles": "以柔克刚，后发制人",
+      "levels": [
+        "入门",
+        "小成",
+        "大成",
+        "化境"
+      ]
+    },
+    {
+      "name": "太极剑",
+      "type": "剑法",
+      "power": 90,
+      "creator": "张三丰",
+      "special": "张三丰现场创造传授张无忌"
+    },
+    {
+      "name": "七伤拳",
+      "type": "拳法",
+      "power": 85,
+      "side_effect": "伤敌七分，自损三分",
+      "origin": "崆峒派镇派武功",
+      "zhang_wuji_status": "谢逊传授，练成九阳后无副作用"
+    },
+    {
+      "name": "圣火令武功",
+      "type": "杂学",
+      "power": 80,
+      "total_moves": 24,
+      "origin": "波斯明教"
+    },
+    {
+      "name": "龙爪手",
+      "type": "擒拿",
+      "power": 75,
+      "origin": "少林派"
+    },
+    {
+      "name": "金刚伏魔圈",
+      "type": "阵法",
+      "power": 90,
+      "participants": "108罗汉",
+      "zhang_wuji_breakthrough": "第八章以太极拳破阵"
+    }
+  ],
+  "npcs": [
+    {
+      "name": "张三丰",
+      "title": "武当开山祖师",
+      "faction": "武当派",
+      "age": 100,
+      "level": 99,
+      "personality": "仙风道骨，慈悲为怀，武学宗师",
+      "role": "师祖，精神导师",
+      "signature_skill": "太极拳、太极剑",
+      "famous_scene": "百岁高龄现场创太极剑",
+      "relationship_with_player": "徒孙，极为疼爱",
+      "dialogue_example": "无忌，为师这套太极剑乃现学现卖，你且记住了..."
+    },
+    {
+      "name": "谢逊",
+      "title": "金毛狮王",
+      "faction": "明教",
+      "role": "义父",
+      "level": 88,
+      "personality": "嫉恶如仇，因复仇而疯魔，对无忌慈父般关爱",
+      "backstory": "全家被成昆所杀，发誓报仇，屠杀武林多人夺屠龙刀",
+      "signature_skill": "七伤拳、狮子吼",
+      "key_item": "屠龙刀",
+      "fate": "第七章被找到，自刎谢罪（可选择阻止）",
+      "relationship_with_player": "义父，传授七伤拳"
+    },
+    {
+      "name": "赵敏",
+      "title": "郡主（敏敏特穆尔）",
+      "faction": "元朝 → 中立",
+      "age": 18,
+      "level": 70,
+      "personality": "聪慧机敏，敢爱敢恨，为爱放弃一切",
+      "appearance": "美貌绝伦，身材修长，眼神灵动",
+      "signature_skill": "鞭法、毒药（学自玄冥二老）",
+      "romance_route": {
+        "affection_start": 0,
+        "affection_max": 100,
+        "key_scenes": [
+          {
+            "chapter": 5,
+            "event": "光明顶初遇，敌对",
+            "affection": 10
+          },
+          {
+            "chapter": 6,
+            "event": "万安寺救张无忌",
+            "affection": 30
+          },
+          {
+            "chapter": 7,
+            "event": "绿柳山庄表白",
+            "affection": 60
+          },
+          {
+            "chapter": 8,
+            "event": "少室山舍命相救",
+            "affection": 85
+          },
+          {
+            "chapter": 9,
+            "event": "放弃郡主身份跟随张无忌",
+            "affection": 100
+          }
+        ],
+        "ending": "与张无忌退隐江湖，隐居蒙古草原"
+      },
+      "famous_quotes": [
+        "你管我叫什么？",
+        "我偏要勉强！",
+        "张无忌，你这个大骗子！"
+      ]
+    },
+    {
+      "name": "周芷若",
+      "title": "峨眉掌门",
+      "faction": "峨眉派",
+      "age": 18,
+      "level": 75,
+      "personality": "温柔贤淑（前期），阴狠毒辣（黑化后）",
+      "appearance": "清丽脱俗，似仙子下凡",
+      "signature_skill": "九阴白骨爪、峨眉剑法",
+      "romance_route": {
+        "affection_start": 20,
+        "affection_max": 100,
+        "turning_point": "灭绝师太临终命令（杀张无忌夺屠龙刀）",
+        "key_scenes": [
+          {
+            "chapter": 2,
+            "event": "船上初遇，青梅竹马",
+            "affection": 40
+          },
+          {
+            "chapter": 6,
+            "event": "峨眉山重逢",
+            "affection": 70
+          },
+          {
+            "chapter": 7,
+            "event": "屠狮大会暗算谢逊",
+            "affection": -30,
+            "note": "黑化"
+          },
+          {
+            "chapter": 8,
+            "event": "倚天剑刺张无忌",
+            "affection": -50
+          },
+          {
+            "chapter": 9,
+            "event": "真心悔悟，出家为尼",
+            "affection_redemption": 60
+          }
+        ],
+        "ending": "若选择周芷若，她放弃掌门之位，与张无忌归隐"
+      },
+      "tragic_element": "师命与爱情间挣扎，最终黑化，悲剧收场（除非玩家选择她）",
+      "famous_quotes": [
+        "我就是要你武功全失，双目失明，四肢残废，我再慢慢地服侍你一辈子",
+        "你娶了我，我就不杀赵敏"
+      ]
+    },
+    {
+      "name": "小昭",
+      "title": "波斯明教圣女",
+      "faction": "明教（波斯总教）",
+      "age": 17,
+      "level": 60,
+      "personality": "温柔体贴，善解人意，默默付出",
+      "appearance": "柔美可人，明眸皓齿",
+      "signature_skill": "波斯武功、圣火令",
+      "romance_route": {
+        "affection_start": 10,
+        "affection_max": 100,
+        "key_scenes": [
+          {
+            "chapter": 4,
+            "event": "蝴蝶谷相识，照顾无忌",
+            "affection": 30
+          },
+          {
+            "chapter": 5,
+            "event": "光明顶并肩作战",
+            "affection": 55
+          },
+          {
+            "chapter": 6,
+            "event": "密道中互诉衷肠",
+            "affection": 80
+          },
+          {
+            "chapter": 7,
+            "event": "身份揭露，被召回波斯",
+            "affection": 90
+          },
+          {
+            "chapter": 9,
+            "event": "若选择小昭，她放弃圣女之位",
+            "affection": 100
+          }
+        ],
+        "ending": "返回波斯成为教主 OR 放弃一切跟随张无忌"
+      },
+      "fate": "第七章被波斯明教召回，成为圣女",
+      "famous_quotes": [
+        "教主哥哥...",
+        "我只想在你身边，一辈子照顾你"
+      ]
+    },
+    {
+      "name": "殷离",
+      "title": "天鹰教教主之女",
+      "faction": "明教",
+      "age": 18,
+      "level": 55,
+      "personality": "刁蛮任性（少女时），痴情坚韧（毁容后）",
+      "appearance": "绝美（幼时），毁容（被周芷若所害）",
+      "signature_skill": "千蛛万毒手",
+      "romance_route": {
+        "affection_start": 50,
+        "affection_max": 100,
+        "tragic_element": "容貌被毁，自卑隐藏，默默守护",
+        "key_scenes": [
+          {
+            "chapter": 2,
+            "event": "童年订婚（表妹）",
+            "affection": 50
+          },
+          {
+            "chapter": 5,
+            "event": "被周芷若毁容",
+            "affection": 70,
+            "note": "悲剧开始"
+          },
+          {
+            "chapter": 6,
+            "event": "蒙面保护张无忌",
+            "affection": 85
+          },
+          {
+            "chapter": 8,
+            "event": "真相揭露，痛哭",
+            "affection": 95
+          },
+          {
+            "chapter": 9,
+            "event": "若选择殷离，用九阳内力治愈容貌",
+            "affection": 100
+          }
+        ],
+        "ending": "恢复容貌，与张无忌终成眷属"
+      },
+      "famous_quotes": [
+        "表哥...",
+        "我不要你看见我这副样子..."
+      ]
+    },
+    {
+      "name": "杨逍",
+      "title": "光明左使",
+      "faction": "明教",
+      "level": 82,
+      "personality": "风流倜傥，武功高强，深爱纪晓芙",
+      "signature_skill": "弹指神通",
+      "daughter": "杨不悔",
+      "role": "教中长老，协助张无忌"
+    },
+    {
+      "name": "范遥",
+      "title": "光明右使",
+      "faction": "明教",
+      "level": 80,
+      "personality": "沉稳老练",
+      "signature_skill": "幻阴指"
+    },
+    {
+      "name": "灭绝师太",
+      "title": "峨眉掌门",
+      "faction": "峨眉派",
+      "level": 78,
+      "personality": "刚烈嫉恶，极度仇恨明教",
+      "signature_skill": "倚天剑法",
+      "sacred_weapon": "倚天剑",
+      "hatred_origin": "师兄（孤鸿子）被杨逍所杀",
+      "relationship_with_player": "仇恨（明教教主）",
+      "fate": "第七章战死，临终传位周芷若并命令杀张无忌"
+    },
+    {
+      "name": "成昆",
+      "title": "幕后黑手",
+      "alias": "圆真（少林）、混元霹雳手",
+      "faction": "反派",
+      "level": 85,
+      "personality": "阴险狡诈，挑拨离间",
+      "motive": "因爱人阳顶天夫人而恨明教，挑起武林仇杀",
+      "signature_skill": "幻阴指",
+      "relationship_with_player": "仇敌（杀谢逊全家）",
+      "fate": "第八章被揭穿，被谢逊同归于尽"
+    },
+    {
+      "name": "殷素素",
+      "title": "天鹰教教主之女",
+      "faction": "明教",
+      "role": "母亲",
+      "personality": "泼辣敢爱",
+      "fate": "第一章因屠龙刀秘密自杀",
+      "last_words": "无忌，越漂亮的女人越会骗人（预言赵敏、周芷若）"
+    },
+    {
+      "name": "张翠山",
+      "title": "武当五侠",
+      "faction": "武当派",
+      "role": "父亲",
+      "personality": "忠义两全",
+      "fate": "第一章为保屠龙刀秘密自杀"
+    }
+  ],
+  "romance_system": {
+    "love_interests": [
+      {
+        "name": "赵敏",
+        "personality": "聪慧机敏，敢爱敢恨",
+        "affection_events": 5,
+        "ending_requirement": "好感度 ≥85，第九章选择赵敏",
+        "ending_description": "放弃郡主身份，与张无忌退隐蒙古草原，骑马看日落"
+      },
+      {
+        "name": "周芷若",
+        "personality": "温柔（前期）→ 阴狠（中期）→ 悔悟（后期）",
+        "affection_events": 5,
+        "redemption_path": true,
+        "ending_requirement": "好感度 ≥60，包容她的黑化，第九章选择周芷若",
+        "ending_description": "放弃峨眉掌门，与张无忌归隐终南山，相伴终生"
+      },
+      {
+        "name": "小昭",
+        "personality": "温柔体贴，默默付出",
+        "affection_events": 4,
+        "ending_requirement": "好感度 ≥80，第九章选择小昭",
+        "ending_description": "放弃波斯圣女之位，与张无忌浪迹天涯"
+      },
+      {
+        "name": "殷离",
+        "personality": "痴情坚韧",
+        "affection_events": 5,
+        "healing_path": true,
+        "ending_requirement": "好感度 ≥90，用九阳内力治愈容貌，第九章选择殷离",
+        "ending_description": "恢复容貌，回天鹰教继承教主之位，与张无忌琴瑟和鸣"
+      }
+    ],
+    "final_choice": {
+      "chapter": 9,
+      "description": "四女齐聚，你只能选择一人，或孤独终老",
+      "consequences": {
+        "choose_one": "与选中女主HE，其余三人各奔东西",
+        "choose_none": "四女皆失望离去，张无忌孤独终老，成就【无情教主】"
+      }
+    }
+  },
+  "major_events": [
+    {
+      "chapter": 1,
+      "name": "冰火岛十年",
+      "description": "出生于冰火岛，父母因屠龙刀秘密被逼自尽，谢逊成为义父",
+      "key_npcs": [
+        "谢逊",
+        "殷素素",
+        "张翠山"
+      ],
+      "player_age": "0-10岁",
+      "skills_learned": [
+        "七伤拳（残缺）"
+      ]
+    },
+    {
+      "chapter": 2,
+      "name": "武当拜师",
+      "description": "回武当山认祖归宗，张三丰收为徒孙，学习武当武功",
+      "key_npcs": [
+        "张三丰",
+        "宋远桥",
+        "俞莲舟"
+      ],
+      "skills_learned": [
+        "武当长拳",
+        "梯云纵"
+      ],
+      "romance_event": "船上遇周芷若，青梅竹马"
+    },
+    {
+      "chapter": 3,
+      "name": "昆仑遇险",
+      "description": "被何太冲陷害，中玄冥神掌奇毒，每日剧痛难忍",
+      "key_npcs": [
+        "何太冲",
+        "玄冥二老"
+      ],
+      "status_change": "中玄冥寒毒，-10 HP/天"
+    },
+    {
+      "chapter": 4,
+      "name": "蝴蝶谷奇遇",
+      "description": "坠落悬崖，遇医仙胡青牛、毒仙王难姑，结识小昭",
+      "key_npcs": [
+        "胡青牛",
+        "王难姑",
+        "小昭"
+      ],
+      "romance_event": "小昭悉心照料，情愫暗生"
+    },
+    {
+      "chapter": 5,
+      "name": "光明顶大战",
+      "description": "六大派围攻光明顶，张无忌误入密道，习得九阳神功大成，驱除寒毒",
+      "key_npcs": [
+        "六大派掌门",
+        "明教众人",
+        "赵敏"
+      ],
+      "skills_learned": [
+        "九阳神功（大成）"
+      ],
+      "status_change": "玄冥寒毒治愈，内力暴增",
+      "romance_event": "与赵敏初次交锋（敌对）",
+      "outcome": "救明教于危难，众人拥戴"
+    },
+    {
+      "chapter": 6,
+      "name": "继任教主",
+      "description": "成为明教第34代教主，习得乾坤大挪移",
+      "key_npcs": [
+        "杨逍",
+        "范遥",
+        "四大法王"
+      ],
+      "skills_learned": [
+        "乾坤大挪移（第六层）"
+      ],
+      "romance_event": "小昭告白（密道）",
+      "responsibility": "重整明教，对抗元朝"
+    },
+    {
+      "chapter": 7,
+      "name": "屠狮大会",
+      "description": "各派争夺屠龙刀，周芷若暗算谢逊，倚天剑秘密揭开",
+      "key_npcs": [
+        "谢逊",
+        "周芷若（黑化）",
+        "灭绝师太"
+      ],
+      "key_items": [
+        "屠龙刀",
+        "倚天剑"
+      ],
+      "secrets_revealed": [
+        "武穆遗书（屠龙刀）",
+        "九阴真经（倚天剑）"
+      ],
+      "romance_event": "周芷若黑化，殷离毁容真相",
+      "tragedy": "灭绝师太战死，谢逊自刎（可阻止）"
+    },
+    {
+      "chapter": 8,
+      "name": "少林寺决战",
+      "description": "成昆真相揭露，三渡大战，破金刚伏魔圈",
+      "key_npcs": [
+        "成昆",
+        "谢逊",
+        "空智",
+        "空性",
+        "空见"
+      ],
+      "boss_fight": "金刚伏魔圈（108罗汉）",
+      "outcome": "谢逊与成昆同归于尽（可改变），武林恩怨化解"
+    },
+    {
+      "chapter": 9,
+      "name": "终局抉择",
+      "description": "推翻元朝 / 退隐江湖 / 称霸武林，并选择终身伴侣",
+      "romance_choice": "四女齐聚，选择一人或孤独终老",
+      "endings": [
+        {
+          "name": "明君之路",
+          "requirement": "选择推翻元朝 + 赵敏",
+          "description": "与赵敏建立明朝，朱元璋为臣，成为开国皇帝"
+        },
+        {
+          "name": "归隐山林",
+          "requirement": "选择退隐 + 任意女主",
+          "description": "与爱人退隐江湖，琴瑟和鸣"
+        },
+        {
+          "name": "武林至尊",
+          "requirement": "选择称霸 + 无爱人",
+          "description": "成为武林盟主，孤独终老"
+        },
+        {
+          "name": "悲剧结局",
+          "requirement": "四女好感均低",
+          "description": "众叛亲离，孤独终老，明教衰败"
+        }
+      ]
+    }
+  ],
+  "combat_system": {
+    "type": "回合制",
+    "elements": [
+      "内力",
+      "招式",
+      "轻功",
+      "兵器"
+    ],
+    "special_mechanics": {
+      "九阳护体": "自动恢复 10% HP/回合",
+      "乾坤大挪移": "30% 概率反弹敌方攻击",
+      "太极拳": "以柔克刚，对刚猛招式伤害减半"
+    },
+    "boss_battles": [
+      {
+        "name": "玄冥二老",
+        "chapter": 5,
+        "difficulty": "困难"
+      },
+      {
+        "name": "六大派掌门联手",
+        "chapter": 5,
+        "difficulty": "极难"
+      },
+      {
+        "name": "金刚伏魔圈",
+        "chapter": 8,
+        "difficulty": "传说"
+      },
+      {
+        "name": "成昆",
+        "chapter": 8,
+        "difficulty": "困难"
+      }
+    ]
+  },
+  "endings": [
+    "开国皇帝（推翻元朝 + 赵敏）",
+    "归隐山林（退隐 + 周芷若/小昭/殷离）",
+    "武林至尊（称霸 + 无女主）",
+    "孤独教主（四女好感均低）",
+    "悲剧结局（错误选择导致明教覆灭）",
+    "完美结局（推翻元朝 + 四女和解 + 武林和平，极难达成）"
+  ],
+  "art_style": {
+    "description": "传统武侠风格，写实人物，恢弘场景",
+    "color_palette": [
+      "古铜色",
+      "朱红",
+      "墨绿",
+      "鎏金"
+    ],
+    "reference_artists": [
+      "金庸影视剧概念图",
+      "古风插画"
+    ],
+    "scene_examples": [
+      "光明顶大战（六大派围攻，圣火熊熊）",
+      "冰火岛（冰川与火山并存）",
+      "武当山（云雾缭绕，道观庄严）",
+      "蝴蝶谷（百蝶飞舞，医仙小屋）"
+    ]
+  },
+  "achievement_system": {
+    "total_achievements": 50,
+    "categories": [
+      "武功",
+      "剧情",
+      "恋爱",
+      "隐藏"
+    ],
+    "examples": [
+      {
+        "name": "九阳大成",
+        "requirement": "第五章习得九阳神功"
+      },
+      {
+        "name": "教主登基",
+        "requirement": "第六章成为明教教主"
+      },
+      {
+        "name": "情圣",
+        "requirement": "四女好感度均 ≥80"
+      },
+      {
+        "name": "完美结局",
+        "requirement": "达成最难的完美结局"
+      },
+      {
+        "name": "武林神话",
+        "requirement": "习得所有传说武功"
+      }
+    ]
+  },
+  "difficulty_settings": {
+    "easy": "战斗简单，剧情提示明确",
+    "normal": "标准难度",
+    "hard": "战斗困难，需策略搭配武功",
+    "nightmare": "角色可永久死亡，错误选择导致Bad End"
+  },
+  "trivia": {
+    "author": "金庸（查良镛）",
+    "publication_year": 1961,
+    "word_count": "约97万字",
+    "adaptations": "多次影视改编，TVB、大陆、电影版本众多",
+    "cultural_impact": "华语武侠经典，四大美女之争成为永恒话题"
+  },
+  "world_id": "yitian",
+  "status": "playable",
+  "default_language": "zh",
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "art_style_key": "chinese_ink_painting_epic",
+  "playable_roles": [
+    {
+      "id": "zhang_wuji",
+      "name": "张无忌",
+      "name_en": "Zhang Wuji",
+      "description": "主角，身负九阳神功，明教第34代教主",
+      "preset": true,
+      "starting_faction": "mingjiao",
+      "starting_skills": [
+        "武当长拳",
+        "七伤拳（残缺）"
+      ],
+      "unique_trait": "玄冥寒毒（第五章治愈），九阳神功天赋异禀"
+    },
+    {
+      "id": "custom_disciple",
+      "name": "自定义弟子",
+      "name_en": "Custom Disciple",
+      "description": "选择一个门派，以原创角色体验倚天世界",
+      "preset": false,
+      "faction_choices": [
+        "wudang",
+        "shaolin",
+        "emei",
+        "kunlun",
+        "huashan",
+        "kongtong",
+        "mingjiao"
+      ],
+      "note": "不绑定主线，可以自由探索倚天世界"
+    }
+  ],
+  "start_options": {
+    "option_a": "扮演张无忌，体验完整主线剧情（推荐）",
+    "option_b": "创建自己的角色，以旁观者视角游历倚天世界"
+  },
+  "language_switching": {
+    "trigger_zh_to_en": [
+      "switch to English",
+      "用英文",
+      "英语模式"
+    ],
+    "trigger_en_to_zh": [
+      "切换中文",
+      "switch to Chinese",
+      "中文模式"
+    ]
+  },
+  "key_figures": [
+    {
+      "name": "张无忌",
+      "role": "主角与教主候选",
+      "drive": "在仁厚、爱情与天下责任之间挣扎",
+      "ties": [
+        "赵敏",
+        "周芷若",
+        "小昭",
+        "谢逊"
+      ]
+    },
+    {
+      "name": "赵敏",
+      "role": "郡主与局中人",
+      "drive": "以聪明与身份压住江湖，同时争取张无忌",
+      "ties": [
+        "元廷",
+        "张无忌",
+        "六大派"
+      ]
+    },
+    {
+      "name": "周芷若",
+      "role": "峨眉继承者",
+      "drive": "在师门重压与个人欲望之间扭曲成长",
+      "ties": [
+        "灭绝师太",
+        "张无忌",
+        "倚天剑"
+      ]
+    },
+    {
+      "name": "谢逊",
+      "role": "金毛狮王",
+      "drive": "复仇、赎罪、父辈命运与屠龙刀秘密",
+      "ties": [
+        "张无忌",
+        "屠狮大会",
+        "明教"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "光明顶",
+      "type": "明教中枢",
+      "importance": "主线转折、教主继承、六大派围攻"
+    },
+    {
+      "name": "武当山",
+      "type": "正派山门",
+      "importance": "师承、名望、太极传承"
+    },
+    {
+      "name": "少林寺",
+      "type": "武林审判场",
+      "importance": "屠狮大会、伏魔圈、终局冲突"
+    },
+    {
+      "name": "冰火岛",
+      "type": "身世原点",
+      "importance": "父辈悲剧、童年命运、谢逊线"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "张无忌 / 赵敏 / 周芷若 / 小昭",
+      "tension": "爱情、身份、牺牲与选择"
+    },
+    {
+      "thread": "明教 / 六大派 / 元廷",
+      "tension": "正邪名分与政治现实互相嵌套"
+    },
+    {
+      "thread": "谢逊 / 成昆 / 屠龙刀",
+      "tension": "复仇链条与江湖浩劫"
+    },
+    {
+      "thread": "武当 / 峨眉 / 少林",
+      "tension": "名门秩序、威望与暗中算计"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "屠龙刀",
+      "kind": "神兵",
+      "story_use": "争夺、秘密、号令与祸根"
+    },
+    {
+      "name": "倚天剑",
+      "kind": "神兵",
+      "story_use": "名门继承、秘密载体、女性权力线"
+    },
+    {
+      "name": "九阳神功",
+      "kind": "绝世内功",
+      "story_use": "解毒、逆转、成长主轴"
+    },
+    {
+      "name": "乾坤大挪移",
+      "kind": "明教核心武学",
+      "story_use": "教主资格、战局翻盘"
+    }
+  ],
+  "mainline_stages": [
+    "身世与寒毒",
+    "师门与奇遇",
+    "光明顶崛起",
+    "教主与情局",
+    "屠狮大会与终局选择"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "明教权力层",
+      "core_members": [
+        "杨逍",
+        "范遥",
+        "四大法王",
+        "五散人",
+        "张无忌后继位线"
+      ],
+      "internal_tension": "谁真正服教主、谁在借教主之名行私事"
+    },
+    {
+      "name": "六大派联盟",
+      "core_members": [
+        "少林",
+        "武当",
+        "峨眉",
+        "崆峒",
+        "昆仑",
+        "华山"
+      ],
+      "internal_tension": "名门正义表象下的偏见、私怨与夺宝欲"
+    },
+    {
+      "name": "元廷与郡主系",
+      "core_members": [
+        "赵敏",
+        "朝廷鹰犬",
+        "地方军权",
+        "情报系统"
+      ],
+      "internal_tension": "政治控制、私人情感、对江湖的利用"
+    },
+    {
+      "name": "女性情感主线网",
+      "core_members": [
+        "赵敏",
+        "周芷若",
+        "小昭",
+        "殷离"
+      ],
+      "internal_tension": "爱情、身份、牺牲、嫉妒与终局选择"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "光明顶",
+      "function": "教主线、阵营重排、公开大战、绝学验证"
+    },
+    {
+      "name": "武当山",
+      "function": "师门名望、太极传承、老一辈关系网"
+    },
+    {
+      "name": "少林寺",
+      "function": "屠狮大会、舆论审判、终局武学冲突"
+    },
+    {
+      "name": "蝴蝶谷与医线地点",
+      "function": "解毒、疗伤、柔性支线、人情债"
+    },
+    {
+      "name": "元廷控制据点",
+      "function": "朝廷压力、赵敏布局、抓捕与谈判"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "光明顶",
+      "subzones": [
+        "总坛",
+        "密道",
+        "教众营地",
+        "决战平台",
+        "秘笈藏处"
+      ]
+    },
+    {
+      "hub": "少林寺",
+      "subzones": [
+        "山门",
+        "演武场",
+        "方丈议事处",
+        "伏魔圈区域",
+        "大会场"
+      ]
+    },
+    {
+      "hub": "武当山",
+      "subzones": [
+        "紫霄宫",
+        "山门石阶",
+        "演武台",
+        "静修处",
+        "太极授艺点"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "身世与道义",
+      "pressure": "你越接近真相，越难只做一个善良的人"
+    },
+    {
+      "name": "教主责任",
+      "pressure": "个人情感越深，教主身份越不允许你只为自己活"
+    },
+    {
+      "name": "神兵与秘密",
+      "pressure": "倚天屠龙两件神兵不断把所有人拉回同一场灾难"
+    },
+    {
+      "name": "爱情终局",
+      "pressure": "每条感情线都会反过来影响阵营和天下线"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "屠龙刀",
+      "thread": "从争抢目标逐步变成复仇、号令与真相载体"
+    },
+    {
+      "item": "倚天剑",
+      "thread": "从名门象征演变为秘密开启器与感情冲突中心"
+    },
+    {
+      "item": "圣火令与乾坤心法",
+      "thread": "从教中遗物上升为教主合法性与战力核心"
+    }
+  ]
+}

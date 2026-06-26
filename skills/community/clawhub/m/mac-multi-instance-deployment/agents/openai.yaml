@@ -1,0 +1,7 @@
+interface:
+  display_name: "Mac Multi-Instance Deployment"
+  short_description: "Public-safe Mac deployment planning for multi-instance OpenClaw layouts"
+  default_prompt: "Use $mac-multi-instance-deployment to organize a generic Mac multi-instance OpenClaw workspace, update boundaries and sample config, and validate the public pack."
+
+policy:
+  allow_implicit_invocation: true

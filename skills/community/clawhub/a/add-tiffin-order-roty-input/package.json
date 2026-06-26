@@ -1,0 +1,10 @@
+{
+  "name": "add-tiffin-order-roty-input",
+  "version": "0.1.0",
+  "description": "Roty tiffin ordering skill (Python) - manifest for ClawHub/OpenClaw",
+  "main": "scripts/handle_message.py",
+  "clawhub": {
+    "slug": "add-tiffin-order-roty-input",
+    "entry": "scripts/handle_message.py"
+  }
+}

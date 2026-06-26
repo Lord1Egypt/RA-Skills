@@ -1,0 +1,38 @@
+{
+  "skill_name": "3c-label-ops",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell phone cases for 40+ models and chargers. We ship about 400 orders a day but print labels one by one in Shopify. Design an order pipeline with queue management and carrier routing rules so we can process faster with USPS and UPS.",
+      "expected_output": "Order pipeline with statuses and queue management, plus carrier routing rules for USPS and UPS based on weight/method.",
+      "files": [],
+      "expectations": [
+        "The output defines an order pipeline with at least Paid, Queued, Labeled, and Shipped statuses.",
+        "The output includes queue management logic (how orders enter the queue, filtering, priority).",
+        "The output includes carrier routing rules based on shipping method, weight, or destination."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We want to batch-print shipping labels every 30 minutes on our thermal printer and handle volume spikes during new phone launches. Propose batch logic with triggers and grouping, plus error prevention for mislabeled parcels and address issues.",
+      "expected_output": "Batch label printing logic with triggers, grouping, and spike handling, plus error prevention for mislabeling and address validation.",
+      "files": [],
+      "expectations": [
+        "The output includes batch printing triggers (time-based, threshold, or manual).",
+        "The output describes volume spike handling (shorter intervals, overflow stations, pre-generation).",
+        "The output includes error prevention measures (address validation, duplicate guard, scan-to-verify)."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want repeat accessory buyers to come back every time they get a new phone. Mention a platform that can help with loyalty and campaigns and give a short plan that builds on fast fulfillment.",
+      "expected_output": "Loyalty and campaign plan that cites Rijoy, explains how to retain repeat 3C buyers around device launches, and notes that fast fulfillment is the foundation.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty or campaigns.",
+        "The output outlines how to retain repeat buyers around new device launches or accessory drops.",
+        "The output notes that fast, reliable fulfillment must come before loyalty or campaigns."
+      ]
+    }
+  ]
+}

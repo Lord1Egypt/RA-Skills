@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LearnFromHistoryCase",
+  "type": "array",
+  "minItems": 40,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "title",
+      "dynasty",
+      "era",
+      "year_range",
+      "main_figures",
+      "summary",
+      "situation_tags",
+      "decision_maker",
+      "objective",
+      "visible_information",
+      "hidden_constraints",
+      "options_available",
+      "chosen_action",
+      "short_term_outcome",
+      "long_term_outcome",
+      "success_or_failure",
+      "key_reasons",
+      "transferable_principles",
+      "non_transferable_factors",
+      "modern_analogy_keywords",
+      "source_note"
+    ],
+    "properties": {
+      "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+      "title": { "type": "string", "minLength": 1 },
+      "dynasty": { "type": "string", "minLength": 1 },
+      "era": { "type": "string", "minLength": 1 },
+      "year_range": { "type": "string", "minLength": 1 },
+      "main_figures": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "summary": { "type": "string", "minLength": 1 },
+      "situation_tags": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "decision_maker": { "type": "string", "minLength": 1 },
+      "objective": { "type": "string", "minLength": 1 },
+      "visible_information": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "hidden_constraints": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "options_available": {
+        "type": "array",
+        "minItems": 2,
+        "items": { "type": "string" }
+      },
+      "chosen_action": { "type": "string", "minLength": 1 },
+      "short_term_outcome": { "type": "string", "minLength": 1 },
+      "long_term_outcome": { "type": "string", "minLength": 1 },
+      "success_or_failure": {
+        "type": "string",
+        "enum": ["success", "failure", "mixed"]
+      },
+      "key_reasons": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "transferable_principles": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "non_transferable_factors": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "modern_analogy_keywords": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "source_note": { "type": "string", "minLength": 1 }
+    },
+    "additionalProperties": false
+  }
+}

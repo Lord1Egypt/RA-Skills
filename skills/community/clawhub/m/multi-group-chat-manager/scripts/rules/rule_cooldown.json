@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "note": "自动维护的计数器和水位线，由 rule_engine.py 自动管理，不要手动修改。",
+    "version": 1
+  },
+  "cooldowns": {},
+  "sequences": {}
+}

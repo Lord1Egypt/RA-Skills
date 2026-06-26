@@ -1,0 +1,10 @@
+{
+  "name": "Seedance Video",
+  "tagline": "即梦 Seedance 文生视频",
+  "description": "Seedance video tasks.",
+  "category": "media",
+  "tags": ["seedance", "video", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

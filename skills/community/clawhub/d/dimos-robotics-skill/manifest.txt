@@ -1,0 +1,11 @@
+SKILL.md
+README.md
+manifest.txt
+resources/dimos_reference.md
+resources/safety_and_testing.md
+templates/skill_container_template.py
+templates/safe_motion_skill.py
+templates/mcp_blueprint_template.py
+templates/spec_protocol_template.py
+templates/system_prompt_patch.md
+scripts/scaffold_dimos_skill.py

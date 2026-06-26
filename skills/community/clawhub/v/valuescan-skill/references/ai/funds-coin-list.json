@@ -1,0 +1,74 @@
+{
+  "name": "资金异动代币列表",
+  "endpoint": "POST /ai/getFundsCoinList",
+  "description": "获取对指定代币在中心化交易所上，监控到现货或合约交易存在主力资金异动的代币列表",
+  "credits_cost": 3,
+  "needToken": false,
+  "use_case": "适用于实时监控在上涨或震荡行情中资金活跃且具有短期套利潜力的代币查询，适用于发现异常资金流动的代币",
+  "notes": "自然语言输入异动、资金看涨、异动看涨等词语时查询此接口；自然语言输入上涨机会、看涨代币等语言时可查询此接口，返回结果需注明资金异动看涨代币",
+  "update_frequency": "实时更新",
+  "params": {},
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "tradeType": { "type": "integer", "actualType": "integer", "desc": "交易类型（1:现货 2:合约 3:交割合约）" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "交易符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "startTime": { "type": "long", "actualType": "long", "desc": "开始时间" },
+    "endTime": { "type": "long", "actualType": "long", "desc": "结束时间" },
+    "number24h": { "type": "integer", "actualType": "integer", "desc": "24小时内的数量" },
+    "numberNot24h": { "type": "integer", "actualType": "integer", "desc": "非24小时内的数量" },
+    "price": { "type": "number", "actualType": "string", "desc": "价格" },
+    "pushPrice": { "type": "number", "actualType": "string", "desc": "开始价格" },
+    "gains": { "type": "number", "actualType": "number", "desc": "涨幅" },
+    "decline": { "type": "number", "actualType": "number", "desc": "推送后跌幅(%)" },
+    "percentChange24h": { "type": "number", "actualType": "string", "desc": "24小时价格变化百分比" },
+    "marketCap": { "type": "number", "actualType": "string", "desc": "市值" },
+    "alpha": { "type": "boolean", "actualType": "boolean", "desc": "是否Alpha" },
+    "fomo": { "type": "boolean", "actualType": "boolean", "desc": "是否Fomo" },
+    "fomoEscalation": { "type": "boolean", "actualType": "boolean", "desc": "是否Fomo加剧" },
+    "bullishRatio": { "type": "number", "actualType": "number", "desc": "看涨情绪比例" }
+  },
+  "field_meta": {
+    "startTime": { "meaning": "异动开始时间", "range": "资金异动周期的起始时间", "advice": "用于了解异动持续时长" },
+    "endTime": { "meaning": "异动结束时间", "range": "资金异动周期的结束时间", "advice": "与startTime配合判断异动周期" },
+    "number24h": { "meaning": "短线行情异动", "range": "最近24小时内资金的异动次数检测", "advice": "次数越多表示异动越频繁" },
+    "numberNot24h": { "meaning": "趋势行情异动", "range": "3个月内的资金异动次数检测", "advice": "次数越多表示异动越频繁" },
+    "pushPrice": { "meaning": "异动推送价格", "range": "系统首次推送该异动代币时的价格", "advice": "用于计算入场后的涨跌幅" },
+    "alpha": { "meaning": "Alpha信号", "range": "布尔值，表示主力异常活跃或上涨可能高", "advice": "true时关注度应更高" },
+    "fomo": { "meaning": "FOMO信号", "range": "布尔值，表示市场情绪活跃，上涨趋势可能延续", "advice": "true时上涨延续可能性高，但需注意追高风险" },
+    "fomoEscalation": { "meaning": "FOMO加剧", "range": "布尔值，FOMO市场情绪过热，可能有突发风险", "advice": "true时风险显著增加" }
+  },
+  "enums": {
+    "tradeType": { "1": "现货", "2": "合约（永续）", "3": "交割合约" }
+  },
+  "example": {
+    "req": {},
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "updateTime": 1773395400000,
+          "tradeType": 2,
+          "vsTokenId": "22974",
+          "symbol": "TAO",
+          "name": "Bittensor",
+          "startTime": 1773297600000,
+          "endTime": 1773395400000,
+          "number24h": 7,
+          "numberNot24h": 1,
+          "price": "237.5",
+          "pushPrice": "205.7",
+          "gains": 19.20,
+          "declines": 1.07,
+          "percentChange24h": "4.56",
+          "marketCap": "2555201474.45",
+          "alpha": true,
+          "fomo": false,
+          "fomoEscalation": false,
+          "bullishRatio": 0.56
+        }
+      ]
+    }
+  }
+}

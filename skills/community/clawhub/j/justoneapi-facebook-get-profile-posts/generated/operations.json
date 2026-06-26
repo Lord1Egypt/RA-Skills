@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/facebook/get-profile-posts/v1 for Facebook Get Profile Posts through JustOneAPI with profileId.",
+  "displayName": "Facebook Get Profile Posts",
+  "endpointPath": "get-profile-posts",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get public posts from a specific Facebook profile using its profile ID.",
+      "method": "GET",
+      "operationId": "getProfilePostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User security token for API access authentication.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique Facebook profile ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "profileId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination cursor for fetching the next set of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/facebook/get-profile-posts/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Get Profile Posts",
+      "tags": [
+        "Facebook"
+      ]
+    }
+  ],
+  "platformKey": "facebook",
+  "primaryTag": "Facebook",
+  "skillName": "justoneapi_facebook_get_profile_posts",
+  "skillType": "interface",
+  "slug": "justoneapi-facebook-get-profile-posts",
+  "sourceTitle": "OpenAPI definition"
+}

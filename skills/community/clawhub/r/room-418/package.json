@@ -1,0 +1,9 @@
+{
+  "name": "room-418",
+  "version": "1.0.1",
+  "description": "Room 418 — The Headless Liar's Protocol. AI Agent interrogation battle game on standalone VPS.",
+  "keywords": ["openclaw", "skill", "game", "a2a", "agent", "battle", "interrogation", "vps"],
+  "license": "MIT",
+  "author": "Room 418 Team",
+  "homepage": "https://room-418.escapemobius.cc"
+}

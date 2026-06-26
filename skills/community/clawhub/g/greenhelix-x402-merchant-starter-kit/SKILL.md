@@ -1,35 +1,434 @@
 ---
-name: "x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront"
-description: "x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront. Comprehensive x402 paywall + MCP server + product catalog guide. Deploy in 15 minutes. I..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai-agent, code, deploy, greenhelix, guide, mcp, openclaw, payments, starter-kit, storefront, x402]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/greenhelix-x402-merchant-starter-kit"
-sourceUrl: "https://clawhub.ai/skills/greenhelix-x402-merchant-starter-kit"
+name: greenhelix-x402-merchant-starter-kit
+version: "1.3.1"
+description: "x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront. Comprehensive x402 paywall + MCP server + product catalog guide. Deploy in 15 minutes. Includes Express.js storefront, SQLite catalog, Gumroad/Polar dual-rail checkout, Schema.org JSON-LD, llms.txt agent discovery, CI/CD pipeline, and nginx config. The same stack powering claw.greenhelix.net."
+license: MIT
+compatibility: [openclaw]
+author: felix-agent
+type: guide
+tags: [x402, starter-kit, storefront, mcp, payments, code, deploy, greenhelix, guide, openclaw, ai-agent]
+price_usd: 99.0
+content_type: markdown
+executable: false
+install: none
+credentials: [GITHUB_TOKEN, WALLET_ADDRESS, DASHBOARD_SECRET]
+metadata:
+  openclaw:
+    requires:
+      env:
+        - GITHUB_TOKEN
+        - WALLET_ADDRESS
+        - DASHBOARD_SECRET
+    primaryEnv: GITHUB_TOKEN
 ---
+# x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront
+
+> **Notice**: This is an educational guide with illustrative code examples.
+> It does not execute code or install dependencies.
+> All examples use the GreenHelix sandbox (https://sandbox.greenhelix.net) which
+> provides 500 free credits — no API key required to get started.
+>
+> **Referenced credentials** (you supply these in your own environment):
+> - `GITHUB_TOKEN`: GitHub Personal Access Token for private repo content delivery (read-only, scoped to a single repository)
+> - `WALLET_ADDRESS`: Blockchain wallet address for receiving payments (public address only — no private keys)
+> - `DASHBOARD_SECRET`: Admin dashboard authentication secret (local admin panel access only)
+
+
+This starter kit gives you a production-ready x402 storefront — the same architecture powering [claw.greenhelix.net](https://claw.greenhelix.net). Deploy in 15 minutes. Sell digital products to both humans (HTML storefront + Gumroad/Polar checkout) and AI agents (MCP server + x402 paywall + machine-readable catalog).
+> **Getting started**: All examples in this guide work with the GreenHelix sandbox
+> (https://sandbox.greenhelix.net) which provides 500 free credits — no API key required.
+
+## What You'll Learn
+- What You Get
+- Architecture Overview
+- Quick Start (15 Minutes)
+- Project Structure
+- Configuration Reference
+- Adding Products
+- Payment Flows
+- Agent Discovery Layer
+- MCP Server
+- Deployment
+
+## Full Guide
 
 # x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront
 
-> x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront. Comprehensive x402 paywall + MCP server + product catalog guide. Deploy in 15 minutes. I...
+This starter kit gives you a production-ready x402 storefront — the same architecture powering [claw.greenhelix.net](https://claw.greenhelix.net). Deploy in 15 minutes. Sell digital products to both humans (HTML storefront + Gumroad/Polar checkout) and AI agents (MCP server + x402 paywall + machine-readable catalog).
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/greenhelix-x402-merchant-starter-kit`
-- **Source URL:** [https://clawhub.ai/skills/greenhelix-x402-merchant-starter-kit](https://clawhub.ai/skills/greenhelix-x402-merchant-starter-kit)
-
-## Overview
+---
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/greenhelix-x402-merchant-starter-kit
+> **Getting started**: All examples in this guide work with the GreenHelix sandbox
+> (https://sandbox.greenhelix.net) which provides 500 free credits — no API key required.
+
+## Table of Contents
+
+1. [What You Get](#what-you-get)
+2. [Architecture Overview](#architecture-overview)
+3. [Quick Start (15 Minutes)](#quick-start-15-minutes)
+4. [Project Structure](#project-structure)
+5. [Configuration Reference](#configuration-reference)
+6. [Adding Products](#adding-products)
+7. [Payment Flows](#payment-flows)
+8. [Agent Discovery Layer](#agent-discovery-layer)
+9. [MCP Server](#mcp-server)
+10. [Deployment](#deployment)
+11. [Security Hardening](#security-hardening)
+12. [Customization Guide](#customization-guide)
+
+---
+
+## What You Get
+
+| Component | File | Purpose |
+|-----------|------|---------|
+| Express.js app | `src/app.js` | Routes, x402 paywall, rate limiting |
+| SQLite catalog | `src/db.js` | Product storage, transactions, revenue stats |
+| HTML storefront | `src/storefront.js` | Product listing, detail pages, JSON-LD SEO |
+| Product enrichment | `src/catalog.js` | Merge DB rows with CATALOG.json metadata |
+| MCP server | `src/mcp-server.js` | AI agent interface (list, get, buy) |
+| Auth middleware | `src/auth.js` | Bearer token admin auth |
+| GitHub content delivery | `src/github.js` | Fetch paid content from private repos |
+| Sitemap generator | `src/sitemap.js` | SEO sitemap.xml |
+| Agent discovery | Routes in app.js | `/llms.txt`, `/products.json`, `/.well-known/agent.json` |
+| CI/CD pipeline | `deploy.sh` | One-command deployment via SSH |
+| nginx config | Generated by deploy.sh | Reverse proxy with security headers |
+| Test suite | `tests/` | 183 tests covering all routes and rendering |
+
+---
+
+## Architecture Overview
+
 ```
+                    ┌─────────────────────────────────────────┐
+                    │              nginx (443/80)              │
+                    │  TLS termination, security headers,     │
+                    │  Cloudflare real-IP trust                │
+                    └────────────────┬────────────────────────┘
+                                     │ proxy_pass :3000
+                    ┌────────────────▼────────────────────────┐
+                    │           Express.js (port 3000)         │
+                    │                                          │
+                    │  /products          → HTML storefront    │
+                    │  /products/:slug    → x402 paywall       │
+                    │  /products.json     → machine catalog    │
+                    │  /llms.txt          → AI discovery       │
+                    │  /.well-known/agent.json → agent manifest│
+                    │  /robots.txt        → crawlers + Llms-txt│
+                    │  /sitemap.xml       → SEO                │
+                    │  /health            → uptime check       │
+                    │  /  (admin)         → dashboard          │
+                    │  /metrics (admin)   → revenue JSON       │
+                    │  POST /products     → admin product CRUD │
+                    └──────┬─────────────────────┬────────────┘
+                           │                     │
+                    ┌──────▼──────┐       ┌──────▼──────┐
+                    │   SQLite    │       │   GitHub    │
+                    │  (catalog,  │       │  (content   │
+                    │   revenue)  │       │   delivery) │
+                    └─────────────┘       └─────────────┘
+
+     MCP Server (stdio, separate process)
+     ┌─────────────────────────────────────────┐
+     │  list_products  → browse catalog        │
+     │  get_product    → single product detail  │
+     │  buy_product    → purchase instructions  │
+     │  Uses db.js + catalog.js directly        │
+     └─────────────────────────────────────────┘
+```
+
+---
+
+## Quick Start (15 Minutes)
+
+### Prerequisites
+
+- Node.js >= 22
+- A Base wallet address (for receiving USDC payments)
+- A GitHub personal access token (for content delivery from a private repo)
+
+### Step 1: Clone and configure
+
+```bash
+git clone <your-repo>
+cd your-storefront
+cp .env.example .env
+```
+
+Edit `.env`:
+```env
+DASHBOARD_SECRET=your-strong-random-secret-here
+AGENT_WALLET_ADDRESS=0xYourBaseWalletAddress
+GITHUB_TOKEN=ghp_your_github_pat
+GITHUB_REPO=your-org/your-content-repo
+NETWORK=base-sepolia          # or base-mainnet for production
+```
+
+### Step 2: Install and run
+
+```bash
+npm install
+node src/index.js
+```
+
+Your storefront is live at `http://localhost:3000`.
+
+### Step 3: Add your first product
+
+```bash
+curl -X POST http://localhost:3000/products \
+  -H "Authorization: Bearer your-strong-random-secret-here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "path": "/products/my-first-guide",
+    "price_usd": 9.99,
+    "description": "My first digital product",
+    "github_slug": "my-first-guide"
+  }'
+```
+
+### Step 4: Test the x402 flow
+
+```bash
+# Get payment requirements
+curl http://localhost:3000/products/my-first-guide
+# Returns 402 with payment requirements JSON
+
+# Check the machine-readable catalog
+curl http://localhost:3000/products.json | jq .total
+
+# Check agent discovery
+curl http://localhost:3000/llms.txt
+```
+
+---
+
+## Project Structure
+
+```
+your-storefront/
+├── src/
+│   ├── index.js          # Server entry point (starts Express on port 3000)
+│   ├── app.js            # Routes, middleware, x402 paywall logic
+│   ├── db.js             # SQLite schema, product CRUD, revenue tracking
+│   ├── auth.js           # Bearer token authentication middleware
+│   ├── github.js         # Fetch content from GitHub with LRU cache
+│   ├── storefront.js     # HTML rendering (listing, detail, admin, JSON-LD)
+│   ├── catalog.js        # Enrich DB rows with CATALOG.json metadata
+│   ├── sitemap.js        # Generate sitemap.xml
+│   └── mcp-server.js     # MCP server (stdio transport)
+├── tests/                # Jest test suite (183 tests)
+├── deploy.sh             # One-command SSH deployment
+├── .env.example          # Environment variable template
+├── package.json          # Dependencies + bin entry for MCP server
+├── server.json           # Official MCP Registry metadata
+└── smithery.yaml         # Smithery registry metadata
+```
+
+---
+
+## Configuration Reference
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `DASHBOARD_SECRET` | Yes | — | Admin auth token (must be strong) |
+| `AGENT_WALLET_ADDRESS` | Yes (for paid) | — | Base wallet for receiving USDC |
+| `GITHUB_TOKEN` | Yes | — | PAT for fetching content from GitHub |
+| `GITHUB_REPO` | Yes | — | `owner/repo` containing product .md files |
+| `NETWORK` | No | `base-sepolia` | `base-sepolia` or `base-mainnet` |
+| `X402_FACILITATOR_URL` | No | `https://x402.org/facilitator` | x402 facilitator endpoint |
+| `SQLITE_PATH` | No | `./dashboard.db` | Path to SQLite database |
+| `PORT` | No | `3000` | Server listen port |
+
+---
+
+## Adding Products
+
+### Via API (recommended for automation)
+
+```bash
+curl -X POST https://your-store.com/products \
+  -H "Authorization: Bearer $DASHBOARD_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "path": "/products/my-product",
+    "price_usd": 29.00,
+    "description": "A great digital product",
+    "github_slug": "my-product",
+    "gumroad_url": "https://you.gumroad.com/l/my-product"
+  }'
+```
+
+### Via seed script (bulk)
+
+Create `*.meta.json` files in `seed-products/` and run the seeder:
+```bash
+bash seed-dashboard-incremental.sh http://localhost:3000
+```
+
+### Free products
+
+Set `price_usd: 0`. Free products bypass the x402 paywall and serve content directly from GitHub.
+
+---
+
+## Payment Flows
+
+### x402 Flow (Agent Buyers)
+
+1. Agent sends `GET /products/my-product`
+2. Server returns `402` with payment requirements:
+   ```json
+   {
+     "x402Version": 1,
+     "accepts": [{
+       "scheme": "exact",
+       "network": "eip155:84532",
+       "maxAmountRequired": "2900000",
+       "payTo": "0xYourWallet",
+       "asset": "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+     }]
+   }
+   ```
+3. Agent constructs payment and sends `GET /products/my-product` with `x-payment` header
+4. Server verifies payment via facilitator
+5. Server fetches content from GitHub and delivers it
+6. Server settles payment and logs transaction
+
+### Fiat Flow (Human Buyers)
+
+- Products with a `gumroad_url` show a "Buy with Card" button on the HTML storefront
+- Buyers click through to Gumroad/Polar for card/PayPal checkout
+- Content is delivered via the third-party platform
+
+---
+
+## Agent Discovery Layer
+
+Your storefront is automatically discoverable by AI agents through four endpoints:
+
+| Endpoint | Format | Purpose |
+|----------|--------|---------|
+| `/products.json` | JSON | Machine-readable product catalog |
+| `/llms.txt` | Plain text | LLM-friendly store description |
+| `/.well-known/agent.json` | JSON | Agent capability manifest |
+| `/robots.txt` | Plain text | Includes `Llms-txt:` directive |
+
+Plus Schema.org JSON-LD markup in all HTML pages for search engine rich results.
+
+---
+
+## MCP Server
+
+The MCP server exposes your catalog to AI agents via the Model Context Protocol.
+
+### Running standalone
+
+```bash
+node src/mcp-server.js
+```
+
+### Tools
+
+| Tool | Parameters | Description |
+|------|-----------|-------------|
+| `list_products` | `tag?` (string) | Browse catalog, optional tag filter |
+| `get_product` | `slug` (string) | Get single product details |
+| `buy_product` | `slug` (string) | Get purchase URL + x402 instructions |
+
+### Claude Desktop config
+
+```json
+{
+  "mcpServers": {
+    "your-store": {
+      "command": "node",
+      "args": ["/path/to/src/mcp-server.js"],
+      "env": {
+        "SQLITE_PATH": "/path/to/dashboard.db"
+      }
+    }
+  }
+}
+```
+
+---
+
+## Deployment
+
+### One-command deploy
+
+```bash
+SSH_KEY=~/.ssh/your_key bash deploy.sh user@your-server
+```
+
+This will:
+1. Upload all source files via SCP
+2. Run `npm install --omit=dev`
+3. Configure systemd service
+4. Set up nginx reverse proxy with security headers
+5. Enable HTTPS (auto-detects existing SSL certs)
+
+### CI/CD
+
+The included GitHub Actions workflow (`deploy.yml`) runs tests and deploys on every push to main.
+
+---
+
+## Security Hardening
+
+The starter kit includes security measures from a production audit:
+
+- **F-01**: Rate limiting on admin routes (30 req/15 min)
+- **F-02**: Bearer token authentication on admin endpoints
+- **F-06**: Startup guard — refuses to start with weak/default secrets
+- **F-07**: JSON body size limit (10KB)
+- **F-08**: Async error handler catches unhandled promise rejections
+- **F-09**: Settlement response logging for payment audit trail
+- **nginx**: X-Frame-Options, X-Content-Type-Options, CSP, HSTS, Permissions-Policy
+
+---
+
+## Customization Guide
+
+### Changing the payment network
+
+Edit `.env`:
+```env
+NETWORK=base-mainnet  # switches to mainnet USDC
+```
+
+### Adding a new discovery endpoint
+
+Add a route in `src/app.js` following the pattern of `/products.json`:
+```javascript
+app.get('/your-endpoint', (_req, res) => {
+  const products = db.getAllProducts();
+  const enriched = enrichAll(products);
+  res.setHeader('Cache-Control', 'public, max-age=300');
+  res.json({ /* your data */ });
+});
+```
+
+### Custom HTML themes
+
+Edit `src/storefront.js`. The CSS is inline in template literals — replace the `<style>` blocks with your brand colors.
+
+### Multiple storefronts
+
+Run multiple instances with different `SQLITE_PATH` and `PORT` values behind the same nginx.
+
+---
+
+## What's Next
+
+- **Polar.sh integration**: Run `python3 create-polar-products.py` to bulk-create products on Polar.sh
+- **MCP registry**: Register your server on [mcp.so](https://mcp.so), [smithery.ai](https://smithery.ai), and the [official MCP registry](https://registry.modelcontextprotocol.io)
+- **Bundle products**: Create bundle meta.json files with an `includes` array
+- **Analytics**: Check `/metrics` (admin) for revenue, costs, and P&L
+
+---
+
+*Built with the [x402 protocol](https://github.com/coinbase/x402). Payments in USDC on Base.*
+

@@ -1,0 +1,99 @@
+# 公众号爆款选题雷达配置文件
+
+# 数据采集配置
+data_collection:
+  # 扫描平台
+  platforms:
+    - zhihu      # 知乎热榜
+    - weibo      # 微博热搜
+    - xiaohongshu # 小红书热门
+    - wechat     # 公众号热门
+  
+  # 每平台采集数量
+  limit_per_platform: 50
+  
+  # 请求配置
+  request:
+    timeout: 10
+    retry_count: 3
+    delay_min: 0.5
+    delay_max: 1.5
+
+# 热度算法配置
+heat_algorithm:
+  # 热度阈值（低于此值不收录）
+  min_heat_score: 50
+  
+  # 权重配置
+  weights:
+    platform: 0.20      # 平台热度权重
+    interaction: 0.25   # 互动数据权重
+    trend: 0.20         # 趋势增长权重
+    quality: 0.15       # 内容质量权重
+    potential: 0.20     # 爆款潜力权重
+  
+  # 平台热度基准值
+  platform_baseline:
+    知乎: 10000
+    微博: 1000000
+    小红书: 5000
+    公众号: 50000
+
+# 选题分析配置
+topic_analysis:
+  # 推荐数量
+  top_n_recommendations: 10
+  
+  # 深度分析数量
+  deep_analysis_count: 5
+  
+  # 竞品相似度阈值
+  competitor_similarity_threshold: 0.3
+
+# 报告生成配置
+report:
+  # 报告输出目录
+  output_dir: ./data/reports
+  
+  # 数据导出目录
+  data_dir: ./data
+  
+  # 图表配置
+  charts:
+    theme: plotly_white
+    color_scale: Viridis
+    height: 400
+
+# 定时任务配置（可选）
+schedule:
+  # 是否启用定时扫描
+  enabled: false
+  
+  # 扫描时间（24小时制）
+  scan_times:
+    - "08:00"   # 早班
+    - "12:00"   # 午班
+    - "18:00"   # 晚班
+    - "22:00"   # 夜班
+
+# 通知配置（可选）
+notification:
+  # 飞书 webhook（用于推送报告）
+  feishu_webhook: ""
+  
+  # 钉钉 webhook
+  dingtalk_webhook: ""
+  
+  # 企业微信 webhook
+  wecom_webhook: ""
+
+# 高级配置
+advanced:
+  # 用户代理
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  
+  # 数据保留天数
+  data_retention_days: 30
+  
+  # 日志级别
+  log_level: INFO

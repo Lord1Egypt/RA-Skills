@@ -1,0 +1,85 @@
+# 定时任务配置
+# 设置你的每日例行和提醒
+
+cron_jobs:
+  # 晨间简报 - 工作日早上8点
+  - name: "morning-briefing"
+    schedule: "0 8 * * 1-5"  # 分钟 小时 日 月 星期
+    enabled: true
+    tasks:
+      - skill: "email-mail-master"
+        action: "summary"
+        params:
+          unread_only: true
+          max_count: 10
+      
+      - skill: "ai-news-collector"
+        action: "fetch"
+        params:
+          categories: ["ai", "tech"]
+          limit: 5
+      
+      - skill: "task-tracker"
+        action: "list"
+        params:
+          filter: "today"
+    
+    notification:
+      enabled: true
+      format: "markdown"
+  
+  # 晚间回顾 - 工作日晚上6点
+  - name: "evening-wrap-up"
+    schedule: "0 18 * * 1-5"
+    enabled: true
+    tasks:
+      - skill: "task-tracker"
+        action: "remind"
+        params:
+          scope: "tomorrow"
+      
+      - skill: "email-mail-master"
+        action: "check"
+        params:
+          filter: "flagged"
+  
+  # 周回顾 - 周五晚上6点
+  - name: "weekly-review"
+    schedule: "0 18 * * 5"
+    enabled: true
+    tasks:
+      - skill: "email-mail-master"
+        action: "stats"
+        params:
+          period: "week"
+      
+      - skill: "task-tracker"
+        action: "report"
+        params:
+          period: "week"
+      
+      - skill: "ai-news-collector"
+        action: "digest"
+        params:
+          period: "week"
+  
+  # 月度总结 - 每月最后一天
+  - name: "monthly-summary"
+    schedule: "0 9 L * *"
+    enabled: true
+    tasks:
+      - skill: "task-tracker"
+        action: "report"
+        params:
+          period: "month"
+          include_charts: true
+
+# 一次性提醒示例
+one_time_reminders:
+  - name: "项目截止提醒"
+    datetime: "2026-03-25T17:00:00"
+    message: "项目X将在今天截止，请确认已完成所有交付物"
+  
+  - name: "会议提醒"
+    datetime: "2026-03-21T14:45:00"
+    message: "15分钟后有重要会议，请做好准备"

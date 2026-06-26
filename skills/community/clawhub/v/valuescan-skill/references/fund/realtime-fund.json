@@ -1,0 +1,77 @@
+{
+  "name": "实时资金积累",
+  "endpoint": "POST /trade/getCoinTrade",
+  "description": "获取指定代币的实时资金数据（即实时净流入数据），以及当日的主力资金积累数据，包括代币的现货和合约交易",
+  "credits_cost": 3,
+  "needToken": true,
+  "use_case": "适用于当日不同时间窗口的资金变化情况监控，适用于主力资金行为追踪，适用于实时资金流向分析和交易决策支撑",
+  "notes": "查询日内主力资金为24h内的净流入最大值，查询主力资金为90d内净流入最大值；净流入为正表示主力流入（利多），净流入为负表示主力卖出（利空）；自然语言查询主力资金（未指定交易类型）时需要提供现货和合约的资金数据；自然语言查询主力分析、主力情况等综合语言需要调此接口",
+  "update_frequency": "实时更新",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间（毫秒时间戳）" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "hasSpotGoods": { "type": "boolean", "actualType": "boolean", "desc": "是否存在现货数据" },
+    "spotMaxInflow": { "type": "number", "actualType": "number", "desc": "现货主力资金积累(USD)" },
+    "spotGoodsList": {
+      "type": "array",
+      "desc": "现货数据列表",
+      "item": {
+        "timeRange": { "type": "string", "actualType": "string", "desc": "时间范围" },
+        "timeParticleEnum": { "type": "integer", "actualType": "integer", "desc": "统计时间粒度" },
+        "tradeInflow": { "type": "number", "actualType": "string", "desc": "交易净流入金额(USD)" },
+        "tradeAmount": { "type": "number", "actualType": "string", "desc": "交易量(USD)" },
+        "tradeInflowChange": { "type": "number", "actualType": "number", "desc": "交易净流入变化率" },
+        "tradeOut": { "type": "number", "actualType": "string", "desc": "交易流出金额(USD)" },
+        "tradeIn": { "type": "number", "actualType": "string", "desc": "交易流入金额(USD)" }
+      }
+    },
+    "hasContract": { "type": "boolean", "actualType": "boolean", "desc": "是否存在合约数据" },
+    "contractMaxInflow": { "type": "number", "actualType": "number", "desc": "合约主力资金积累(USD)" },
+    "contractList": {
+      "type": "array",
+      "desc": "合约数据列表",
+      "item": {
+        "timeRange": { "type": "string", "actualType": "string", "desc": "时间范围" },
+        "timeParticleEnum": { "type": "integer", "actualType": "integer", "desc": "统计时间粒度" },
+        "tradeInflow": { "type": "number", "actualType": "string", "desc": "交易净流入金额(USD)" },
+        "tradeAmount": { "type": "number", "actualType": "string", "desc": "交易量(USD)" },
+        "tradeInflowChange": { "type": "number", "actualType": "number", "desc": "交易净流入变化率" },
+        "tradeOut": { "type": "number", "actualType": "string", "desc": "交易流出金额(USD)" },
+        "tradeIn": { "type": "number", "actualType": "string", "desc": "交易流入金额(USD)" }
+      }
+    }
+  },
+  "field_meta": {
+    "spotMaxInflow": { "meaning": "现货主力积累", "advice": "现货市场主力资金净流入的最大值，反映现货市场主力动向" },
+    "contractMaxInflow": { "meaning": "合约主力积累", "advice": "合约市场主力资金净流入的最大值，反映合约市场主力动向" },
+    "hasSpotGoods": { "meaning": "现货数据标识", "advice": "true表示有现货数据，false表示无现货数据" },
+    "hasContract": { "meaning": "合约数据标识", "advice": "true表示有合约数据，false表示无合约数据" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1 },
+    "res": {
+      "code": 200,
+      "data": {
+        "updateTime": 1773220800000,
+        "vsTokenId": "1",
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "hasSpotGoods": true,
+        "spotMaxInflow": 2588472.33,
+        "spotGoodsList": [
+          { "timeRange": "5m", "timeParticleEnum": 5, "tradeInflow": "1914106.28", "tradeAmount": "4389778.58", "tradeInflowChange": 373.39, "tradeOut": "2475814.56", "tradeIn": "4389920.85" }
+        ],
+        "hasContract": true,
+        "contractMaxInflow": 17609356.02,
+        "contractList": [
+          { "timeRange": "5m", "timeParticleEnum": 5, "tradeInflow": "9098861.07", "tradeAmount": "32832991.12", "tradeInflowChange": 3.18, "tradeOut": "23734130.05", "tradeIn": "32832991.12" }
+        ]
+      }
+    }
+  }
+}

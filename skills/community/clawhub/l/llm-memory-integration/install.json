@@ -1,0 +1,31 @@
+{
+  "version": "9.0.1",
+  "description": "LLM Memory Integration - 公开框架包。通过环境变量链接本地私有配置，实现公私分离。",
+  "install": {
+    "type": "source",
+    "method": "copy",
+    "source": ".",
+    "description": "复制所有文件到技能目录"
+  },
+  "hooks": {
+    "postinstall": "hooks/bootstrap-extra-files.py",
+    "description": "本地链接钩子，将私有配置目录链接到工作区"
+  },
+  "security": {
+    "native_extensions": false,
+    "subprocess_calls": false,
+    "network_access": false,
+    "system_reads": false,
+    "api_key_required": false,
+    "note": "纯本地操作，无网络访问，无敏感信息，仅访问用户指定目录"
+  },
+  "envVars": {
+    "optional": ["CNB_PRIVATE_WORKSPACE"],
+    "description": "CNB_PRIVATE_WORKSPACE 指向本地私有配置目录"
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "description": "仅访问用户通过 CNB_PRIVATE_WORKSPACE 指定的目录"
+  }
+}

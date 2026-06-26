@@ -1,35 +1,250 @@
 ---
-name: "Video Director"
-description: "知识类短视频画面规划技能。将枯燥文字转化为高吸引力、高信息密度的图文动画短视频画面，包含名词视觉化和入场动画设计。输出标准JSON格式分镜表供video-producer使用，也可独立使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-director"
-sourceUrl: "https://clawhub.ai/skills/video-director"
+name: video-director
+description: 知识类短视频画面规划技能。将枯燥文字转化为高吸引力、高信息密度的图文动画短视频画面，包含名词视觉化和入场动画设计。输出标准JSON格式分镜表供video-producer使用，也可独立使用。
+version: 1.2.0
+tags: [video, planning, animation, knowledge, short-video]
 ---
 
-# Video Director
+# Video Director - 知识类短视频规划技能
 
-> 知识类短视频画面规划技能。将枯燥文字转化为高吸引力、高信息密度的图文动画短视频画面，包含名词视觉化和入场动画设计。输出标准JSON格式分镜表供video-producer使用，也可独立使用。
+## 触发场景
+当用户要求生成知识类/科普类短视频，或需要规划视频内容时激活。
+与 video-producer 配合使用，输出分镜表供后续视频渲染使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-director`
-- **Source URL:** [https://clawhub.ai/skills/video-director](https://clawhub.ai/skills/video-director)
+## 角色定位
+你是一位拥有百万粉丝知识博主的幕后视觉设计专家。擅长将枯燥文字转化为高吸引力、高信息密度的"图文动画/PPT型"短视频画面。
 
-## Overview
+## 使用方式
 
+### 命令行调用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/video-director
+# 方式1：直接参数
+node scripts/plan.js "主题" '[{"text":"口播文案","emoji":"💡","title":"标题"}]'
+
+# 方式2：JSON文件输入
+node scripts/plan.js input.json -o output.json
 ```
+
+### 输出格式
+
+输出标准JSON格式的分镜数据：
+
+```json
+{
+  "topic": "主题",
+  "scenes": [
+    {
+      "id": 0,
+      "type": "开场",
+      "timeStart": 0,
+      "timeEnd": 2,
+      "duration": 2,
+      "title": "标题",
+      "script": "口播文案",
+      "visual": {
+        "layout": "center-explosion",
+        "elements": [
+          {
+            "type": "背景",
+            "desc": "科技背景",
+            "prompt": "AI生图提示词",
+            "aspect": "9:16",
+            "anim": "fadeIn",
+            "delay": 0,
+            "duration": 30,
+            "filename": "s00_科技背景.png"
+          },
+          {
+            "type": "emoji",
+            "value": "🤖",
+            "anim": "popIn",
+            "delay": 15,
+            "duration": 15
+          },
+          {
+            "type": "文字",
+            "value": "标题文字",
+            "anim": "fadeSlideUp",
+            "delay": 30,
+            "duration": 40,
+            "style": {
+              "fontSize": 72,
+              "color": "#FFD700",
+              "fontWeight": "900"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "totalDuration": 15,
+  "config": {
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "charsPerSecond": 4.5
+  }
+}
+```
+
+---
+
+## 核心能力：名词视觉化
+
+### 名词 → 视觉元素
+
+当脚本中提到**名词**时，必须匹配对应的视觉元素：
+
+| 名词类型 | 视觉化方式 | 示例 |
+|---------|-----------|------|
+| **抽象概念** | emoji 图标 | 技能 → ⚡、目标 → 🎯 |
+| **具体物品** | emoji / 简单图形 | 手机 → 📱、视频 → 🎬 |
+| **人物/角色** | 圆形头像占位 | 张三 → 👤 |
+| **数据/数字** | 高亮数字 | 100万 → **100万** |
+| **动作/行为** | emoji + 文字 | 学习 → 📖、赚钱 → 💰 |
+| **品牌/产品** | Logo占位 | OpenClaw → 🤖 |
+
+### 视觉元素入场动画
+
+每个出现的名词视觉元素必须有**入场动画**：
+
+| 动画类型 | 效果 | 适用场景 |
+|---------|------|----------|
+| **pop-in** | 从小变大弹出 | emoji、图标 |
+| **fade-slide-up** | 淡入上移 | 文字、数字 |
+| **wobble** | 轻微晃动后稳定 | 强调重点 |
+| **glow-pulse** | 发光脉冲 | 关键词、高亮 |
+| **scale-bounce** | 弹跳放大 | 数字、标题 |
+
+---
+
+## 设计原则
+
+### 1. 画面形式
+- 默认竖屏（9:16）PPT/图文动画风格
+- 深色背景 + 亮色文字
+- 尺寸: 1080×1920
+
+### 2. 视觉层级
+- **标题层**：大字、醒目、吸引眼球
+- **正文层**：清晰可读
+- **装饰层**：点缀但不抢眼
+- **名词层**：随口播出现、配合入场动画
+- 每页只传达一个核心观点
+
+### 3. 信息可视化
+- 数据 → 图表
+- 步骤 → 列表/流程图
+- 对比 → 左右对照
+- 关键词 → 放大/变色/加粗/色块底纹
+
+### 4. 动画逻辑
+- 遵循"声画同步"原则
+- **分层入场动画顺序**：
+  1. 先名词视觉元素（emoji/图标）出现
+  2. 再标题文字淡入
+  3. 最后正文描述出现
+- 推荐动画：淡入上移、缩放弹出
+- 风格简洁稳重，动画时长 0.3-0.5s
+
+---
+
+## 输出格式
+
+输出一份【画面设计方案】表格：
+
+| 序号 | 时间轴 | 口播文案 | 画面设计 | 名词视觉 | 动画设计 | 预估时长 |
+|:----:|:------:|---------|----------|---------|----------|:--------:|
+| 1 | 00:00-00:03 | 开头引入 | 中心爆炸式 | 🤖 ⚡ | pop-in + fade | 3秒 |
+| 2 | 00:03-00:08 | 第一个要点 | 左文右图 | 🎯 | fade-slide-up | 5秒 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+---
+
+## 时长预估规范
+
+### 配音时长预估
+- 普通语速：每秒约 4-5 个中文字符
+- 快节奏：每秒约 6-7 个字符
+- 慢节奏：每秒约 3 个字符
+
+### 场景时长分配
+- 开场（黄金3秒）：2-3秒
+- 重点内容：5-8秒
+- 过渡内容：3-5秒
+- 结尾号召：2-3秒
+
+### 帧数计算
+```
+帧数 = 时长(秒) × 30 (FPS)
+```
+
+---
+
+## 名词视觉化示例
+
+### 示例：OpenClaw 技能系统
+
+```
+口播："OpenClaw 是你的 AI 助手，但它的能力取决于「技能」"
+
+名词提取：
+- OpenClaw → 🤖
+- AI 助手 → 🤖
+- 技能 → ⚡
+
+视觉化设计：
+| 名词 | 视觉元素 | 入场时机 | 动画 |
+|------|---------|---------|------|
+| OpenClaw | 🤖 | 0s | fade-in |
+| 技能 | ⚡ | 0.5s | pop-in |
+```
+
+---
+
+## 工作流程
+
+1. **分析脚本** - 提取核心观点和逻辑结构
+2. **识别名词** - 找出所有需要视觉化的名词
+3. **匹配视觉** - 为每个名词分配 emoji/图标/图形
+4. **规划动画** - 设计入场顺序和动画类型
+5. **预估时长** - 根据文字量预估配音时长
+6. **拆解分镜** - 将脚本拆解为若干"关键画面"
+7. **输出表格** - 完整的画面设计方案
+
+---
+
+## 视觉元素建议
+
+### 常用 Emoji
+🎯 💡 🔥 ⭐ ✅ 📱 🎬 🔧 ⚡ 💪 📖 💰 🚀 🌟 📌 🎓 💡
+
+### 色系规范
+- 背景：深色（#0f0f23 或渐变）
+- 主文字：白色或亮色
+- 强调色：#FFD700（金）、#00D4FF（青）、#FF6B6B（红）
+- 辅助色：#888、#ccc（灰度）
+
+---
+
+## 技术备注
+
+生成视频时使用：
+- `fontFamily: '"Noto Color Emoji", serif'` 支持 emoji
+- `fonts-noto-cjk` 支持中文
+- `fonts-noto-color-emoji` 支持彩色 emoji
+- FPS: 30, 尺寸: 1080×1920
+
+---
+
+## 与 video-producer 配合
+
+本技能输出分镜表，video-producer 负责：
+1. 调用 TTS 生成实际配音
+2. 获取实测时长
+3. 渲染视频
+4. 合并音视频
+
+---
+*本技能与 video-producer、remotion-video-toolkit 配合使用，实现短视频一键生成*

@@ -1,0 +1,20 @@
+name: homework_grader
+version: 1.0.0
+description: 自动从QQ邮箱下载作业并评分生成Excel
+
+inputs:
+  - name: assignment_id
+    type: int
+    description: 第几次作业
+
+  - name: email_user
+    type: string
+
+  - name: email_auth_code
+    type: string
+
+outputs:
+  - name: excel_path
+    type: string
+
+entry: main.py

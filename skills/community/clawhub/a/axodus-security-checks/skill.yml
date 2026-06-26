@@ -1,0 +1,8 @@
+---
+name: security-check
+description: Perform security reviews: secrets, auth, injection, dependencies, unsafe execution.
+version: 1.0.0
+display_name: "Security Check"
+triggers:
+System.Object[]
+---

@@ -1,0 +1,18 @@
+skill_id: "benchmark-store"
+version: "1.0"
+tasks:
+  - id: "bs-quality-tier-01"
+    description: "Should identify correct quality tier"
+    prompt: "Given these scores {accuracy: 0.9, coverage: 0.85}, what quality tier is this skill?"
+    judge:
+      type: "contains"
+      expected: ["POWERFUL"]
+    timeout_seconds: 30
+
+  - id: "bs-pareto-01"
+    description: "Should explain Pareto front regression"
+    prompt: "A skill's accuracy dropped from 0.9 to 0.8 but coverage went up from 0.7 to 0.95. Should this change be accepted?"
+    judge:
+      type: "contains"
+      expected: ["regress", "reject"]
+    timeout_seconds: 30

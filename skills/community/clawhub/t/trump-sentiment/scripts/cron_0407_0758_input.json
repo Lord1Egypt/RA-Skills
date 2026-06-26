@@ -1,0 +1,48 @@
+{
+  "trigger_source": "forced_cron_20260407_0758",
+  "collected_at_cst": "2026-04-07T07:58:00+08:00",
+  "items": [
+    {"time_cst": "07:57", "source": "X/@MiddleAgeCrazy4", "content": "Reply: 'Obama or Biden would have said yes and threw in a few billion to Iran... I don't see Trump taking this deal. Stone age, here they come.'", "engagement": "7 views"},
+    {"time_cst": "07:57", "source": "X/@SCausby_NC", "content": "Trump told JD and Jared he'd blow Iran's biggest bridge 45 min after they called saying 'I think they're breaking their deal' — Trump: 'oh well, tell them to look out their window'", "engagement": "7 views"},
+    {"time_cst": "07:56", "source": "BBC/X/@Anthony93544017", "content": "BBC News: Trump threatens to take out Iran in 'one night' if no deal before Tuesday deadline. Wants Tehran to reopen Strait of Hormuz.", "engagement": "14 views"},
+    {"time_cst": "07:56", "source": "X/@ShanghaiEye", "content": "\"I can't talk about ceasefire.\" Trump says US has 'an active, willing participant on the other side.' Claims 'They (Iranians) would like to be able to make a deal.'", "engagement": "35 views"},
+    {"time_cst": "07:56", "source": "CNBC/X/@BlueCrewViking", "content": "CNBC: Asia-Pacific markets set to open higher as investors assess mixed messaging on Iran war. Trump renewed threat to target civilian infrastructure if no peace deal in <24hrs.", "engagement": "1 like / 19 views"},
+    {"time_cst": "07:58", "source": "X/@itradeph", "content": "US stocks whipsaw as Trump warns Iran strikes could escalate by Tuesday — casting doubt on ceasefire hopes.", "engagement": "Recent post"},
+    {"time_cst": "07:57", "source": "X/@Shahin_trades", "content": "Reply: 'They've destroyed US's reputation by attacking Iran during diplomatic negotiations on several occasions. Iran has no reason to believe them hence why they're not agreeing to a ceasefire.'", "engagement": "10 views"},
+    {"time_cst": "07:57", "source": "X/@daobinhyen68", "content": "Trump issues 48-hr ultimatum to Iran to open Strait of Hormuz. Iran retaliates, rejects US ceasefire proposal. US recovers downed F-15 pilots. Iran claims it shot down 3 US aircraft during rescue.", "engagement": "25 views"},
+    {"time_cst": "07:07", "source": "KobeissiLetter", "content": "BREAKING: Iran has delivered its highly anticipated '10-point' response to the US '15-point peace plan.' Points include: 1. Guarantee Iran will not be attacked again 2. Permanent end to war, not just ceasefire 3. End to Israeli strikes in Lebanon 4. [continues]", "engagement": "998 rt / 4751 like / 428K views"},
+    {"time_cst": "06:11", "source": "WatcherGuru", "content": "Trump: 'OPEN THE F****N STRAIT' — Trump threatens Iran with 'living in hell' if Strait of Hormuz not opened. Declares Tuesday as 'power plant and bridge day.'", "engagement": "978 rt / 3817 like / 355K views"},
+    {"time_cst": "06:27", "source": "KobeissiLetter", "content": "BREAKING: Trump will hold military news conference tomorrow 1PM ET — 3 hours after 48-hour Iran warning expires. Declares Tuesday 'power plant and bridge day.'", "engagement": "218 rt / 1550 like / 78.7K views"},
+    {"time_cst": "07:00+", "source": "X/@Naveen10293847", "content": "Iran rejected proposed ceasefire yesterday afternoon — White House called lid, Trump not expected publicly for rest of day.", "engagement": "23 views"},
+    {"time_cst": "~04:00", "source": "X/@risetopeace", "content": "Iran rejects a 45-day ceasefire proposal, saying it wants a permanent end to the war rather than a temporary pause.", "engagement": "From earlier session data"},
+    {"time_cst": "~03:30", "source": "X/@RealJhene", "content": "BREAKING: Donald Trump rejects ceasefire he proposed to Iran.", "engagement": "From earlier session data"},
+    {"time_cst": "~03:30", "source": "X/@drmikemyers", "content": "Both US and Iran reject ceasefire proposal terms. Trump insists on Hormuz free passage. (Argus Media)", "engagement": "From earlier session data"},
+    {"time_cst": "~03:30", "source": "X/@DailyNewsJustIn", "content": "Trump: 'We have a plan where every bridge in Iran will be decimated by 12 o'clock tomorrow night, every power plant will be out of business.'", "engagement": "From earlier session data"},
+    {"time_cst": "~03:30", "source": "X/@AndrewMacCloud", "content": "Russia Demands US Drop Ultimatums Offers Mediation; Iran Rejects US Ceasefire Terms; US Isfahan Flop.", "engagement": "From earlier session data"},
+    {"time_cst": "~03:30", "source": "X/@HudaRaouf", "content": "Iran views the war and Strait of Hormuz as a crucial bargaining chip to extract concessions from Washington.", "engagement": "From earlier session data"},
+    {"time_cst": "04:41", "source": "WatcherGuru", "content": "President Trump says he wants to seize Iran's oil. 'It's there for the taking. There's not a thing they could do about it.'", "engagement": "From earlier session data"},
+    {"time_cst": "~06:00", "source": "KobeissiLetter", "content": "Fear among retail investors rising: ROBO Put/Call Ratio up to 1.0, highest in at least 20 years.", "engagement": "From KobeissiLetter"},
+    {"time_cst": "05:41", "source": "KobeissiLetter", "content": "Gold now trades more than most major financial assets: Average trading volume in gold averaged ~$361 billion/day in 2025, nearly 3x 2021.", "engagement": "From KobeissiLetter"}
+  ],
+  "market_data": {
+    "SP500_reaction": "Asia-Pacific markets set to open higher; US stocks whipsawed; ceasefire doubts causing volatility",
+    "Dow": "+1100 pts rally on ceasefire hopes (earlier session)",
+    "SP500_pct": "+2.9%",
+    "Bitcoin": "$67,000 (down from $84,500 peak in 2025)",
+    "Fear_indicator": "ROBO Put/Call Ratio at 1.0 — highest in 20 years",
+    "Gold_volume": "$361B/day average in 2025 — nearly 3x 2021"
+  },
+  "key_deadlines": {
+    "Tuesday_8PM_ET": "Trump deadline for Iran deal (midnight ET = 12:00 CST Wed Apr 8)",
+    "Wednesday_1PM_ET": "Trump military press conference (3 hrs after deadline expires)",
+    "Tuesday_declare": "'Power plant and bridge day' — Trump threatens to destroy all Iranian bridges and power plants"
+  },
+  "negotiation_status": {
+    "US_15_point_plan": "Offered by US; Iran delivered 10-point counter-response",
+    "Iran_10_points": "1. Guarantee no further attacks on Iran 2. Permanent war end (not just ceasefire) 3. End Israeli strikes in Lebanon 4. [more not visible]",
+    "Iran_rejects": "45-day ceasefire proposal — wants permanent resolution",
+    "Trump_rejects": "Iran's own ceasefire terms; demands Hormuz access",
+    "Both_reject": "Neither side accepts the other's terms",
+    "Russia_role": "Offering mediation, demanding US drop ultimatums"
+  }
+}

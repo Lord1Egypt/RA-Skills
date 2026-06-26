@@ -1,0 +1,39 @@
+{
+  "source": {
+    "vaultPath": "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/MyVault",
+    "includeFolders": ["Clippings"],
+    "excludeFolders": ["Private", "Templates", "Daily"],
+    "requireFrontmatterPublish": false
+  },
+  "publish": {
+    "workspaceDir": "~/projects/your-pages-site",
+    "contentDir": "content"
+  },
+  "site": {
+    "generator": "quartz",
+    "baseUrl": "https://YOURDOMAIN.COM",
+    "title": "YOURDOMAIN.COM",
+    "theme": "minimal",
+    "showBacklinks": true,
+    "branding": {
+      "rootSourceFolder": "Clippings",
+      "clippingsIndexLabel": "Clippings | YOURDOMAIN.COM",
+      "rootIndexLabel": "Vault | YOURDOMAIN.COM",
+      "sidebarTitleHtml": "Obsidian Vault<br/>YOURDOMAIN.COM"
+    }
+  },
+  "cloudflare": {
+    "projectName": "your-pages-project",
+    "branch": "main",
+    "productionDomain": "YOURDOMAIN.COM",
+    "apiTokenEnv": "CLOUDFLARE_API_TOKEN",
+    "accountIdEnv": "CLOUDFLARE_ACCOUNT_ID",
+    "basicAuth": {
+      "enabled": false,
+      "username": "",
+      "password": "",
+      "usernameEnv": "BASIC_AUTH_USERNAME",
+      "passwordEnv": "BASIC_AUTH_PASSWORD"
+    }
+  }
+}

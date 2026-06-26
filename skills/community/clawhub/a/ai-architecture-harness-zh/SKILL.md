@@ -1,35 +1,204 @@
 ---
-name: "ai-architecture-harness-zh"
-description: "建立和使用 AI 编程架构护栏，防止架构坍缩、功能回退和长对话迭代漂移。Use when the user mentions AI 编程, Agent 编程, 架构坍缩, Harness Engineering, 设计意图, 验收规则, 黄金法则, 架构测试, 或希望让代码库更适合 AI Agent 安全修改。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-architecture-harness-zh"
-sourceUrl: "https://clawhub.ai/skills/ai-architecture-harness-zh"
+name: ai-architecture-harness-zh
+description: 建立和使用 AI 编程架构护栏，防止架构坍缩、功能回退和长对话迭代漂移。Use when the user mentions AI 编程, Agent 编程, 架构坍缩, Harness Engineering, 设计意图, 验收规则, 黄金法则, 架构测试, 或希望让代码库更适合 AI Agent 安全修改。
 ---
 
-# ai-architecture-harness-zh
+# AI 编程架构护栏
 
-> 建立和使用 AI 编程架构护栏，防止架构坍缩、功能回退和长对话迭代漂移。Use when the user mentions AI 编程, Agent 编程, 架构坍缩, Harness Engineering, 设计意图, 验收规则, 黄金法则, 架构测试, 或希望让代码库更适合 AI Agent 安全修改。
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-architecture-harness-zh`
-- **Source URL:** [https://clawhub.ai/skills/ai-architecture-harness-zh](https://clawhub.ai/skills/ai-architecture-harness-zh)
+帮助编码 Agent 在大型或复杂项目中修改代码时，不破坏已有架构、核心功能和长期设计意图。
 
-## Overview
+使用本 Skill 时，把代码仓库视为事实来源，但把人工维护的设计意图视为最高层指导。不要依赖长对话历史保存关键上下文，关键规则必须沉淀到仓库文档或可执行检查中。
 
+## 核心模型
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-architecture-harness-zh
+使用四层护栏模型：
+
+```text
+1. 人工设计意图层
+2. Agent 同步的架构文档和验收文档层
+3. 硬性自动化约束层
+4. 人工巡检和黄金法则反馈层
 ```
+
+Agent 的任务不是自由发挥，而是在明确边界和反馈回路中安全执行。
+
+## 推荐文档结构
+
+为项目创建或完善护栏时，优先使用这个最小结构：
+
+```text
+AGENTS.md
+docs/DESIGN_INTENT.md
+docs/ARCHITECTURE.md
+docs/ACCEPTANCE_RULES.md
+docs/GOLDEN_RULES.md
+docs/ARCHITECTURE_DRIFT.md
+```
+
+`DESIGN_INTENT.md` 由人工维护，记录项目目标、核心架构原则、不可破坏的取舍、历史设计决策。它是“宪法”，不要让 Agent 用当前实现覆盖人工意图。
+
+`ARCHITECTURE.md` 记录当前确认过的架构地图。它可以由 Agent 基于代码和 `DESIGN_INTENT.md` 阶段性同步，但不能把偶然漂移自动合法化。
+
+`ACCEPTANCE_RULES.md` 记录核心功能、架构承诺和非回归行为的验收方式。
+
+`GOLDEN_RULES.md` 记录真实事故中沉淀出的强规则。每条规则应包含事故来源、禁止行为、正确做法和自动化检查方式。
+
+`ARCHITECTURE_DRIFT.md` 记录设计意图和当前实现之间的差异，并分类为：符合意图、合理演进、技术债、需要人工决策、违反设计。
+
+## 开始编码前
+
+在执行非平凡代码修改前：
+
+1. 读取 `AGENTS.md`，如果存在。
+2. 读取 `docs/DESIGN_INTENT.md`、`docs/ARCHITECTURE.md`、`docs/ACCEPTANCE_RULES.md`、`docs/GOLDEN_RULES.md`，如果存在。
+3. 明确本次修改不能破坏的架构边界和行为。
+4. 在编辑前说明本次修改范围。
+5. 不要主动进行大范围重构、重命名、迁移或抽象改造，除非用户明确要求。
+
+如果项目还没有这些护栏文档，先创建最小可用版本，不要一次性发明庞大的文档体系。
+
+## 设计意图维护流程
+
+人工设计意图是最高层锚点。更新 `DESIGN_INTENT.md` 时：
+
+1. 保留历史决策，不要简单覆盖旧内容。
+2. 用日期或决策记录追加新意图。
+3. 记录“为什么变化”，而不只是“变化成什么”。
+4. 保持足够短，使 Agent 能在编码前读完。
+5. 不允许 Agent 用实现便利性替代人工设计取舍。
+
+推荐格式：
+
+```markdown
+## YYYY-MM-DD - [决策标题]
+
+设计意图：
+[系统必须保持或演进成什么。]
+
+原因：
+[为什么这个方向重要。]
+
+影响：
+- [未来修改必须遵守的约束。]
+- [Agent 不允许破坏的内容。]
+```
+
+## 架构同步流程
+
+阶段性工作完成后，或重大任务开始前，同步架构文档：
+
+1. 读取 `DESIGN_INTENT.md`。
+2. 检查相关代码实现。
+3. 对比设计意图和当前代码。
+4. 对每个差异进行分类：
+   - `符合意图`
+   - `合理演进`
+   - `技术债`
+   - `需要人工决策`
+   - `违反设计`
+5. 只把确认过的架构写入 `ARCHITECTURE.md`。
+6. 把未确认或可疑差异写入 `ARCHITECTURE_DRIFT.md`。
+
+不要默认“当前代码就是正确架构”。当前代码可能已经发生坍缩或漂移。
+
+## 架构验收测试
+
+把架构承诺转成可执行检查。对于每个架构基石：
+
+1. 从 `ARCHITECTURE.md` 中识别架构基石节点。
+2. 基于代码找出能证明该基石仍然有效的特殊调用链、数据流或不变量。
+3. 编写聚焦的单元测试、集成测试、lint 规则或结构检查。
+4. 把检查加入正常验证流程。
+
+示例：
+
+```text
+架构基石：
+PlanAgent 必须具备多轮持续记忆。
+
+可观测规律：
+连续 10 轮对话后，必须触发记忆管理链路中的 retrieve、summarize/update、persist。
+
+验收测试：
+模拟 10 轮对话，断言预期的 MemoryManager 方法被调用，且结果进入持久化或上下文构建流程。
+```
+
+优先使用确定性检查，而不是只依赖 AI 判断：
+
+```text
+类型检查 > 单元测试 > 集成测试 > 架构测试 > lint > CI > AI review > prompt 提醒
+```
+
+AI review 只能作为语义补充，不能作为核心护栏。
+
+## 硬约束优先目标
+
+构建护栏时，优先防止这些问题：
+
+- 跨层调用或 import 违反架构方向
+- 绕过核心 service、repository、memory manager、validator、provider
+- 为已有子系统创建竞争性重复实现
+- 删除、弱化或绕开回归测试
+- 未更新验收规则就改变外部行为
+- 用直接数据访问替代稳定抽象
+- 引入无边界复杂度、全局状态或隐藏副作用
+
+如果项目有清晰分层，应该把允许的依赖方向写成测试或 lint 规则。
+
+## 黄金法则流程
+
+当已有护栏没有挡住架构坍缩、功能回退或漂移时：
+
+1. 总结事故。
+2. 判断为什么现有文档或测试没有阻止它。
+3. 在 `GOLDEN_RULES.md` 中新增规则。
+4. 新增或提出一个确定性检查来执行该规则。
+5. 把规则链接到测试、lint、CI 或 review checklist。
+
+推荐格式：
+
+```markdown
+## [规则标题]
+
+事故来源：
+[发生了什么，什么时候发生。]
+
+禁止行为：
+[Agent 不允许再做什么。]
+
+必须行为：
+[正确的架构行为是什么。]
+
+执行方式：
+- [测试、lint、CI 检查或 review 步骤。]
+```
+
+不要把 `GOLDEN_RULES.md` 写成泛泛而谈的建议集合。它应该短、高信号，并来自真实事故或高风险模式。
+
+## 坍缩风险审查
+
+每次 Agent 完成有意义的修改后，最终答复前检查：
+
+1. 本次是否修改了架构边界？
+2. 是否绕过了已有抽象？
+3. 是否删除、弱化或回避了已有测试？
+4. 是否改变了核心调用链？
+5. 是否为已有子系统创建了竞争性实现？
+6. 是否把职责移动到了错误模块？
+7. 人工 review 应该优先看哪里？
+
+如果答案中存在风险，要么修复，要么记录为需要人工决策的架构漂移。
+
+## 输出方式
+
+当用户要求设计护栏时，输出：
+
+- 最小需要新增的文档集合
+- 应该编码成硬约束的架构不变量
+- 第一批应该实现的测试、lint 或结构检查
+- 黄金法则反馈流程
+- 简短落地计划
+
+当用户要求把护栏应用到代码时，先阅读已有文档和测试，再小范围修改，并使用当前项目最强的自动化检查完成验证

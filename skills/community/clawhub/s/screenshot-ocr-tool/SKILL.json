@@ -1,0 +1,35 @@
+{
+  "name": "screenshot-ocr-tool",
+  "version": "1.0.0",
+  "description": "专门用于处理屏幕截图的OCR工具，特别适合中医考试题识别",
+  "author": "仁风助手",
+  "skills": [
+    {
+      "id": "screenshot_ocr_extraction",
+      "name": "Screenshot OCR Extraction",
+      "description": "从屏幕截图中提取文字内容，特别适合处理考试题",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string",
+            "description": "截图文件路径"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["text", "structured", "question_answer"],
+            "default": "text",
+            "description": "输出格式：纯文本、结构化、问答分离"
+          }
+        },
+        "required": ["image_path"]
+      },
+      "implementation": {
+        "type": "script",
+        "engine": "python",
+        "path": "./scripts/screenshot_ocr.py",
+        "function": "main"
+      }
+    }
+  ]
+}

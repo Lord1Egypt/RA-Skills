@@ -1,35 +1,33 @@
----
-name: "Pipeworx chargebee"
-description: "Access and manage Chargebee subscriptions, customers, and invoices with filtering options via Pipeworx Chargebee API v2 integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-chargebee"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-chargebee"
----
+# Chargebee
 
-# Pipeworx chargebee
+Chargebee MCP Pack — wraps the Chargebee API v2
 
-> Access and manage Chargebee subscriptions, customers, and invoices with filtering options via Pipeworx Chargebee API v2 integration.
+## chargebee_list_subscriptions
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-chargebee`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-chargebee](https://clawhub.ai/skills/pipeworx-chargebee)
+List all subscriptions with optional filtering by status (e.g., 'active', 'cancelled'). Returns subs
 
-## Overview
+## chargebee_get_subscription
 
+Get full subscription details by ID. Returns plan, status, billing dates, customer info, and all cha
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-chargebee
+## chargebee_list_customers
+
+List all customers with pagination. Returns customer IDs, names, emails, billing addresses, and crea
+
+## chargebee_get_customer
+
+Get complete customer profile by ID. Returns name, email, address, payment methods, subscription cou
+
+## chargebee_list_invoices
+
+List invoices filtered by status (e.g., 'paid', 'pending') and/or customer ID. Returns invoice numbe
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "url": "https://gateway.pipeworx.io/chargebee/mcp"
+    }
+  }
+}
 ```

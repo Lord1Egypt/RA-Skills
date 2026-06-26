@@ -1,0 +1,56 @@
+{
+  "name": "video-to-doc",
+  "version": "1.0.0",
+  "author": "your-name",
+  "description": "将操作视频自动转换为图文并茂的Word操作指南。支持智能截图、语音转录、一键生成文档。",
+  "long_description": "本技能能够自动分析视频文件，提取关键帧截图，识别界面元素和操作内容，并生成结构化的图文操作指南Word文档。支持：1)智能截图策略（动态间隔/场景检测）；2)语音转录（本地Whisper）；3)截图内容分析；4)一键生成Word文档。",
+  "trigger": ["视频转文档", "生成操作手册", "视频截图", "操作指南"],
+  "category": ["文档处理", "视频处理", "效率工具"],
+  "keywords": ["视频", "文档", "操作手册", "截图", "转录", "Word"],
+  "price": {
+    "trial": {
+      "free_count": 3,
+      "description": "免费试用3次"
+    },
+    "official": {
+      "coins": 50,
+      "type": "per_use",
+      "description": "50虾米/次"
+    }
+  },
+  "dependencies": {
+    "python": [
+      {"name": "faster-whisper", "version": ">=0.10.0"},
+      {"name": "pillow", "version": ">=10.0.0"},
+      {"name": "python-docx", "version": ">=0.8.11"},
+      {"name": "anthropic", "version": ">=0.18.0"}
+    ],
+    "npm": [
+      {"name": "docx", "version": ">=8.0.0"}
+    ],
+    "system": [
+      {"name": "ffmpeg", "description": "视频处理工具"}
+    ]
+  },
+  "requirements": {
+    "min_python": "3.8",
+    "os": ["linux", "windows", "macos"]
+  },
+  "usage": {
+    "input": "视频文件路径",
+    "output": "Word文档(.docx)",
+    "example": "python scripts/smart_extract.py video.mp4"
+  },
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-04-10",
+      "changes": ["首次发布", "支持智能截图策略", "支持语音转录"]
+    }
+  ],
+  "license": "MIT",
+  "support": {
+    "email": "",
+    "docs": ""
+  }
+}

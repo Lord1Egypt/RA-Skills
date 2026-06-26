@@ -1,35 +1,51 @@
 ---
-name: "A股市场情绪量化"
-description: "用数据判断市场处于"亢奋/分歧/冰点/修复"哪个阶段。用于A股短线交易，辅助判断仓位和交易策略。"
-category: "blockchain"
-source: "ClawHub"
-tags: [a-stock, sentiment, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-market-sentiment"
-sourceUrl: "https://clawhub.ai/skills/a-stock-market-sentiment"
+name: market-sentiment
+description: 用数据判断市场处于"亢奋/分歧/冰点/修复"哪个阶段。用于A股短线交易，辅助判断仓位和交易策略。
 ---
 
-# A股市场情绪量化
+# 市场情绪量化 Skill
 
-> 用数据判断市场处于"亢奋/分歧/冰点/修复"哪个阶段。用于A股短线交易，辅助判断仓位和交易策略。
+## 核心能力
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-market-sentiment`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-market-sentiment](https://clawhub.ai/skills/a-stock-market-sentiment)
+用数据判断市场处于"亢奋/分歧/冰点/修复"哪个阶段，而不是靠感觉猜。
 
-## Overview
+## 情绪判断规则
 
+### 情绪冰点
+- 涨停家数 < 20家
+- 跌停家数 > 10家
+- 连板高度 < 3板
+- **操作建议**：轻仓或空仓
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-market-sentiment
-```
+### 情绪亢奋
+- 涨停家数 > 80家
+- 炸板率 < 15%
+- 连板高度 > 5板
+- **操作建议**：重仓主线龙头
+
+### 分歧阶段
+- 涨停家数波动大
+- 炸板率 > 25%
+- **操作建议**：半仓参与辨识度高的标的
+
+## 数据获取
+
+调用 akshare-stock 获取：
+- 涨停家数：akshare_stock_limit_up()
+- 跌停家数：akshare_stock_limit_down()
+- 炸板率：(封板失败数 / 涨停家数) × 100%
+- 连板高度：最高连板数
+
+## 实战流程
+
+1. 每天开盘前花5分钟获取数据
+2. 判断当前情绪阶段
+3. 匹配对应仓位策略
+4. 避免在冰点期盲目出手
+
+## 触发场景
+
+- "今天市场情绪怎么样"
+- "现在是冰点还是亢奋"
+- "能不能加仓"
+- "今天适合重仓还是轻仓"

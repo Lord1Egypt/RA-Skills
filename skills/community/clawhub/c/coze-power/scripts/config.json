@@ -1,0 +1,8 @@
+{
+  "api_key": "CHANGE-ME-TO-SOMETHING-SECURE",
+  "host": "0.0.0.0",
+  "port": 8899,
+  "allowed_commands": ["ls", "pwd", "cat", "echo", "python3", "node", "date", "whoami", "find", "wc", "tar", "grep", "head", "tail"],
+  "allowed_paths": ["~", "/tmp", "/home"],
+  "max_file_size_kb": 1024
+}

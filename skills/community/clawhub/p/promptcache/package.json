@@ -1,0 +1,12 @@
+{
+  "name": "promptcache",
+  "version": "1.0.1",
+  "description": "Estimate prompt caching savings. Signal Loom AI.",
+  "bin": {
+    "promptcache": "./scripts/promptcache"
+  },
+  "signalloom": {
+    "api": true,
+    "free_tier": "3 analyses/day"
+  }
+}

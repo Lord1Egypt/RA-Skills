@@ -1,0 +1,100 @@
+{
+  "name": "AdvancedMLClassificationSkill",
+  "description": "自动化生成工业级机器学习分类算法代码、调用算法做预测、输出准确率对比和可视化结果，支持新手友好的结果解读。",
+  "inputs": {
+    "data_path": {
+      "type": "str",
+      "required": true,
+      "description": "CSV数据集路径"
+    },
+    "target_col": {
+      "type": "str",
+      "required": true,
+      "description": "预测目标列名"
+    },
+    "algorithms": {
+      "type": "list[str]",
+      "required": false,
+      "default": [
+        "逻辑回归",
+        "决策树",
+        "随机森林",
+        "XGBoost",
+        "LightGBM"
+      ],
+      "description": "要调用的算法列表"
+    },
+    "test_size": {
+      "type": "float",
+      "required": false,
+      "default": 0.2,
+      "description": "测试集比例"
+    },
+    "random_state": {
+      "type": "int",
+      "required": false,
+      "default": 42,
+      "description": "随机种子"
+    },
+    "cv_options": {
+      "type": "dict",
+      "required": false,
+      "default": {
+        "enabled": false,
+        "method": "StratifiedKFold",
+        "folds": 5,
+        "repeats": 2,
+        "scoring": "accuracy"
+      },
+      "description": "交叉验证配置"
+    },
+    "search_options": {
+      "type": "dict",
+      "required": false,
+      "default": {
+        "enabled": false,
+        "method": "GridSearchCV",
+        "cv": 3,
+        "n_iter": 20,
+        "scoring": "accuracy"
+      },
+      "description": "参数搜索配置"
+    },
+    "feature_importance_enabled": {
+      "type": "bool",
+      "required": false,
+      "default": true,
+      "description": "是否计算特征重要性排序"
+    }
+  },
+  "outputs": {
+    "accuracy_results": {
+      "type": "dict[str, float|None]",
+      "description": "算法名到测试集准确率的映射（成功时保留4位小数）"
+    },
+    "cv_results": {
+      "type": "dict[str, float|None]",
+      "description": "算法名到交叉验证平均分的映射"
+    },
+    "search_results": {
+      "type": "dict[str, dict]",
+      "description": "算法名到参数搜索结果（best_score、best_params）"
+    },
+    "interpretation": {
+      "type": "str",
+      "description": "中文结果解读，适合初级数据开发师"
+    },
+    "generated_codes": {
+      "type": "dict[str, str]",
+      "description": "算法名到生成完整代码的映射"
+    },
+    "visualization_data": {
+      "type": "dict",
+      "description": "可视化所需数据（算法名列表、准确率、CV分数）"
+    },
+    "feature_importance": {
+      "type": "dict",
+      "description": "最佳算法的特征重要性排序结果"
+    }
+  }
+}

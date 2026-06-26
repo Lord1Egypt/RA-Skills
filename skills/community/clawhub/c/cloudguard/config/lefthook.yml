@@ -1,0 +1,52 @@
+# CloudGuard -- lefthook configuration
+# Installed by: cloudguard hooks install
+# Documentation: https://cloudguard.pages.dev/docs/hooks
+#
+# Scans staged IaC files for cloud security misconfigurations:
+#   - Pre-commit: Blocks commits with critical/high severity findings
+#   - Pre-push: Blocks pushes with critical findings only
+#
+# Supported file types: .tf, .tfvars, .yml, .yaml, .json, Dockerfile,
+#   docker-compose.yml, Kubernetes manifests, CloudFormation templates
+#
+# Override skill location:
+#   export CLOUDGUARD_SKILL_DIR="/path/to/cloudguard"
+
+pre-commit:
+  parallel: true
+  commands:
+    cloudguard-check:
+      glob: "*.{tf,tfvars,yml,yaml,json,hcl,template,rego,conf,cfg,toml}"
+      run: |
+        CLOUDGUARD_SKILL_DIR="${CLOUDGUARD_SKILL_DIR:-$HOME/.openclaw/skills/cloudguard}"
+        if [[ -f "$CLOUDGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CLOUDGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$CLOUDGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_cloudguard_check
+        else
+          echo "[CloudGuard] Skill not found at $CLOUDGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Cloud security issues detected in staged files!
+        Run 'cloudguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    cloudguard-push-check:
+      glob: "*.{tf,tfvars,yml,yaml,json,hcl,template}"
+      run: |
+        CLOUDGUARD_SKILL_DIR="${CLOUDGUARD_SKILL_DIR:-$HOME/.openclaw/skills/cloudguard}"
+        if [[ -f "$CLOUDGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CLOUDGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$CLOUDGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_cloudguard_prepush "."
+        else
+          echo "[CloudGuard] Skill not found at $CLOUDGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        CRITICAL cloud security issues found -- push blocked!
+        Fix critical misconfigurations before pushing.
+        Run 'cloudguard scan' to see details.
+        Or 'git push --no-verify' to skip (NOT recommended).

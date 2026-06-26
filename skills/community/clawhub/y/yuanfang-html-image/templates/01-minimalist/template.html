@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+/* Top accent line — functional brand marker */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 4px;
+  background: {{ACCENT}};
+  z-index: 3;
+}
+/* Right accent block — simplified, no decoration */
+.accent-block {
+  position: absolute;
+  right: 0; top: 0;
+  width: 24%;
+  height: 100%;
+  background: {{ACCENT}};
+  overflow: hidden;
+}
+/* Brand mark in accent block */
+.brand {
+  position: absolute;
+  bottom: 48px;
+  right: 0;
+  width: 100%;
+  padding-right: 32px;
+  text-align: right;
+  font-family: {{FONT_TITLE}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.55);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+/* Content container */
+.container {
+  position: relative;
+  z-index: 2;
+  padding: 64px;
+  width: 76%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* Badge */
+.badge {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.4);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: {{ACCENT}};
+  margin-bottom: 24px;
+  opacity: 0.75;
+}
+/* Title */
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 0;
+  color: {{TEXT}};
+}
+/* Thin divider */
+.divider {
+  width: 48px;
+  height: 2px;
+  background: {{ACCENT}};
+  margin: 32px 0;
+  opacity: 0.4;
+}
+/* Body content */
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: {{SECONDARY}};
+  max-width: 88%;
+}
+/* Points — clean, no pill background */
+.points {
+  list-style: none;
+  margin-top: 32px;
+}
+.points li {
+  display: block;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 8px);
+  font-weight: 500;
+  color: {{ACCENT}};
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  padding: 0;
+  margin-bottom: 12px;
+  border-left: 2px solid {{ACCENT}};
+  padding-left: 16px;
+  opacity: 0.75;
+}
+.points li:last-child { margin-bottom: 0; }
+.points:empty { display: none; }
+/* Source */
+.source {
+  position: absolute;
+  bottom: 48px;
+  left: 64px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  color: {{SECONDARY}};
+  opacity: 0.35;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+  z-index: 2;
+}
+/* Portrait: left content 80%, right accent 20% */
+@media (max-aspect-ratio: 4/5) {
+  body { flex-direction: row; align-items: stretch; }
+  .title { font-size: {{TITLE_SIZE_S}}; }
+  .accent-block { width: 20%; height: 100%; }
+  .container { width: 80%; padding: 48px; }
+  .content { max-width: 95%; }
+  .source { left: 48px; }
+}
+/* Landscape (5:4 to 16:9): full-width content, top accent line only, no side block */
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 16/9) {
+  body { flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 56px 72px; }
+  body::before { width: 48px; height: 4px; }
+  .accent-block { display: none; }
+  .container {
+    width: 100%;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .badge { margin-bottom: 16px; font-size: calc({{CONTENT_SIZE__PRINT}} * 0.35); }
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .divider { margin: 20px 0; }
+  .content { max-width: 80%; font-size: {{CONTENT_SIZE}}; }
+  .points { margin-top: 24px; }
+  .points li {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    border-left: none;
+    border-top: 1px solid {{ACCENT}};
+    padding: 4px 16px;
+    font-size: calc({{CONTENT_SIZE}} - 10px);
+  }
+  .points:empty { display: none; }
+  .source {
+    position: static;
+    margin-top: 32px;
+    font-size: calc({{CONTENT_SIZE__PRINT}} * 0.4);
+    opacity: 0.35;
+  }
+}
+/* Very wide (>= 16:9): full-width, content centered, no side block */
+@media (min-aspect-ratio: 16/9) {
+  body { flex-direction: column; align-items: center; justify-content: center; padding: 0; }
+  body::before { width: 48px; height: 4px; }
+  .accent-block { display: none; }
+  .container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 64px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .badge { margin-bottom: 16px; font-size: calc({{CONTENT_SIZE__PRINT}} * 0.35); }
+  .title { font-size: {{TITLE_SIZE_C}}; }
+  .divider { margin: 20px auto; }
+  .content { max-width: 100%; font-size: {{CONTENT_SIZE}}; text-align: center; }
+  .points { margin-top: 24px; text-align: center; }
+  .points li {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    border-left: none;
+    border-top: 1px solid {{ACCENT}};
+    padding: 4px 16px;
+    font-size: calc({{CONTENT_SIZE}} - 10px);
+  }
+  .points:empty { display: none; }
+  .source {
+    position: static;
+    margin-top: 32px;
+    font-size: calc({{CONTENT_SIZE__PRINT}} * 0.4);
+    opacity: 0.35;
+  }
+}
+/* Cover (2.35:1): centered, no accent block, editorial feel */
+@media (aspect-ratio: 47/20) {
+  body { flex-direction: column; align-items: center; justify-content: center; }
+  body::before { display: none; }
+  .accent-block { display: none; }
+  .container {
+    width: 100%;
+    padding: 0 80px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+  .badge { margin-bottom: 20px; font-size: calc({{CONTENT_SIZE__PRINT}} * 0.35); }
+  .title { font-size: {{TITLE_SIZE_C}}; letter-spacing: -0.02em; margin-bottom: 0; }
+  .divider { margin: 24px auto; }
+  .content {
+    max-width: 100%;
+    text-align: center;
+    font-size: {{CONTENT_SIZE}};
+    line-height: 1.65;
+    opacity: 0.65;
+  }
+  .points { margin-top: 24px; text-align: center; }
+  .points li {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    border-left: none;
+    padding: 4px 16px;
+    border-top: 1px solid {{ACCENT}};
+    font-size: calc({{CONTENT_SIZE}} - 10px);
+  }
+  .points:empty { display: none; }
+  .source {
+    position: static;
+    margin-top: 32px;
+    font-size: calc({{CONTENT_SIZE__PRINT}} * 0.4);
+    opacity: 0.35;
+    letter-spacing: 0.2em;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="badge">{{BADGE}}</div>
+  <h1 class="title">{{TITLE}}</h1>
+  <div class="divider"></div>
+  <div class="content">{{CONTENT}}</div>
+  <ul class="points">{{POINTS_HTML}}</ul>
+</div>
+<div class="source">{{SOURCE}}</div>
+<div class="accent-block">
+  <div class="brand">{{BRAND}}</div>
+</div>
+</body>
+</html>

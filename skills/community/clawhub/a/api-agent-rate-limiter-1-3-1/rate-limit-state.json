@@ -1,0 +1,26 @@
+{
+  "provider": "claude",
+  "plan": "max-5x",
+  "tier": "ok",
+  "estimatedPct": 1,
+  "lastUpdated": "2026-03-28T19:00:03.957111+00:00",
+  "pausedUntil": null,
+  "window": {
+    "durationMs": 18000000,
+    "requests": [
+      {
+        "ts": 1774708743717,
+        "tokens": 5000
+      },
+      {
+        "ts": 1774710099379,
+        "tokens": 1000
+      }
+    ],
+    "estimatedLimit": 150
+  },
+  "backoff": {
+    "consecutive429s": 0,
+    "lastBackoffMs": 0
+  }
+}

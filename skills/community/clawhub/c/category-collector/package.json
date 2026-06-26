@@ -1,0 +1,22 @@
+{
+  "name": "category-collector",
+  "version": "1.0.0",
+  "description": "Shopify 网店分类链接采集器 - 自动采集所有分类链接，提取多级分类名称，保存为 CSV 文件",
+  "main": "collect.js",
+  "bin": {
+    "category-collector": "./collect.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "keywords": [
+    "scraper",
+    "categories",
+    "shopify",
+    "collection",
+    "csv",
+    "web-scraping"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT"
+}

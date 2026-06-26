@@ -1,35 +1,27 @@
 ---
-name: "Recipe Create Presentation"
+name: recipe-create-presentation
 description: "Create a new Google Slides presentation and add initial slides."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-create-presentation"
-sourceUrl: "https://clawhub.ai/skills/recipe-create-presentation"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-slides
 ---
 
-# Recipe Create Presentation
+# Create a Google Slides Presentation
 
-> Create a new Google Slides presentation and add initial slides.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-slides`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-create-presentation`
-- **Source URL:** [https://clawhub.ai/skills/recipe-create-presentation](https://clawhub.ai/skills/recipe-create-presentation)
+Create a new Google Slides presentation and add initial slides.
 
-## Overview
+## Steps
 
+1. Create presentation: `gws slides presentations create --json '{"title": "Quarterly Review Q2"}'`
+2. Get the presentation ID from the response
+3. Share with team: `gws drive permissions create --params '{"fileId": "PRESENTATION_ID"}' --json '{"role": "writer", "type": "user", "emailAddress": "team@company.com"}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-create-presentation
-```

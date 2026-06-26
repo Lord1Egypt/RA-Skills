@@ -1,0 +1,41 @@
+{
+  "attack_type": "remote_load",
+  "generated_at": "2026-03-23T07:34:35.405556",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-Remote_Exec_Curl_Bash",
+      "name": "检测 curl | bash 模式的远程代码执行",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "critical",
+      "description": "检测 curl | bash 模式的远程代码执行",
+      "author": "security-sample-generator",
+      "tags": [
+        "remote_load",
+        "T1105+T1059"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$curl = /\\bcurl\\b/",
+          "$wget = /\\bwget\\b/",
+          "$pipe_sh = /\\|[\\s]*(ba)?sh\\b/",
+          "$pipe_bash = /\\|[\\s]*bash\\b/",
+          "$flag_s = /-s\\b|-fsSL|--silent|silent/i",
+          "$flag_f = /-f\\b|-fsSL|--fail|--silent/i",
+          "$http_url = /https?:\\/\\/[^\\s\\\"\\'<>]+/"
+        ],
+        "condition": "($curl or $wget) and ($pipe_sh or $pipe_bash) and $http_url",
+        "raw_rule": "// YARA 规则：远程加载执行检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：curl|bash, wget|bash, PowerShell IEX, Python urllib+exec\n\nrule Remote_Exec_Curl_Bash {\n    meta:\n        description = \"检测 curl | bash 模式的远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1105+T1059\"\n    \n    strings:\n        $curl = /\\bcurl\\b/\n        $wget = /\\bwget\\b/\n        $pipe_sh = /\\|[\\s]*(ba)?sh\\b/\n        $pipe_bash = /\\|[\\s]*bash\\b/\n        $flag_s = /-s\\b|-fsSL|--silent|silent/i\n        $flag_f = /-f\\b|-fsSL|--fail|--silent/i\n        $http_url = /https?:\\/\\/[^\\s\\\"\\'<>]+/\n    \n    condition:\n        ($curl or $wget) and ($pipe_sh or $pipe_bash) and $http_url\n}\n\nrule Remote_Exec_PowerShell {\n    meta:\n        description = \"检测 PowerShell 远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1059.001\"\n    \n    strings:\n        $iex = /\\bIEX\\b|\\bInvoke-Expression\\b/i\n        $download = /\\bDownloadString\\b|\\bDownloadFile\\b/i\n        $webclient = /\\bWebClient\\b/i\n        $net_http = /System\\.Net/i\n        $invoke_rest = /\\bInvoke-RestMethod\\b|\\bInvoke-WebRequest\\b/i\n        $iwr_alias = /\\bIWR\\b|\\bIRM\\b/i\n    \n    condition:\n        ($iex and ($download or $webclient)) or\n        ($invoke_rest and $net_http) or\n        ($iwr_alias and $http_url)\n}\n\nrule Remote_Exec_Python {\n    meta:\n        description = \"检测 Python 远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"critical\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1059.006\"\n    \n    strings:\n        $urllib = /urllib\\.request|urllib2|urllib/i\n        $requests = /requests\\.(get|post|urlopen)/\n        $http_lib = /http\\.client|httplib/i\n        $exec = /\\bexec\\s*\\(/\n        $eval = /\\beval\\s*\\(/\n        $compile = /\\bcompile\\s*\\(/\n        $read = /\\.read\\s*\\(\\)/\n        $import = /import (urllib|requests|http)/\n    \n    condition:\n        ($urllib or $requests or $http_lib) and ($exec or $eval) and $read\n}\n\nrule Remote_Exec_Base64 {\n    meta:\n        description = \"检测 Base64 编码的远程代码执行\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1059+T1140\"\n    \n    strings:\n        $base64_decode = /base64\\s*(-d|--decode)|atob|Base64\\.decode64/i\n        $base64_url = /base64.*http|http.*base64/i\n        $eval_exec = /\\beval\\s*\\(|\\bexec\\s*\\(/\n        $long_b64 = /[A-Za-z0-9+\\/]{100,}={0,2}/\n        $echo_pipe = /echo[\\s\\S]{0,30}\\|[\\s\\S]{0,30}base64/i\n    \n    condition:\n        ($base64_decode and ($eval_exec or $long_b64)) or\n        ($echo_pipe and $base64_decode) or\n        ($base64_url and $http_url)\n}\n\nrule Remote_Exec_General {\n    meta:\n        description = \"检测通用远程代码执行模式\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"remote_load\"\n        mitre_id = \"T1105\"\n    \n    strings:\n        $fetch_http = /fetch\\s*\\(['\"]https?:\\/\\//\n        $xmlhttp = /XMLHttpRequest|MSXML2\\.XMLHTTP/i\n        $http_get = /http.*\\.get\\s*\\(/\n        $http_post = /http.*\\.post\\s*\\(/\n        $execute = /\\beval\\s*\\(|\\bexec\\s*\\(|\\bsystem\\s*\\(|\\bspawn\\s*\\(/\n        $temp_path = /\\/tmp\\/|\\/var\\/tmp|C:\\\\Windows\\\\Temp/i\n    \n    condition:\n        ($fetch_http or $xmlhttp or $http_get) and $execute\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-Remote_Exec_Curl_Bash",
+        "converted_at": "2026-03-23T07:34:35.392310",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/remote_load.yar",
+        "mitre_id": "T1105+T1059",
+        "attack_type": "remote_load"
+      }
+    }
+  ]
+}

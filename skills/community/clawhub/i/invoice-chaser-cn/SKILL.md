@@ -1,35 +1,89 @@
 ---
-name: "Invoice Chaser CN"
+name: invoice-chaser-cn
 description: "自动生成中英双语催款消息与跟进节奏，帮助自由职业者和小团队更快回款。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/invoice-chaser-cn"
-sourceUrl: "https://clawhub.ai/skills/invoice-chaser-cn"
+metadata:
+  {
+    "openclaw": {
+      "emoji": "💸",
+      "tags": ["invoice", "collections", "freelancer", "cashflow", "bilingual"],
+      "requires": { "bins": [] }
+    }
+  }
 ---
 
 # Invoice Chaser CN
 
-> 自动生成中英双语催款消息与跟进节奏，帮助自由职业者和小团队更快回款。
+把“不好开口的催款”，变成标准化、可复制、可持续执行的回款流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/invoice-chaser-cn`
-- **Source URL:** [https://clawhub.ai/skills/invoice-chaser-cn](https://clawhub.ai/skills/invoice-chaser-cn)
+## 为什么用它
 
-## Overview
+- **提升回款率**：避免只发一次提醒后就沉默
+- **节省时间**：每次 30 秒生成专业文案
+- **保护关系**：语气可控（温和/标准/强硬）
+- **双语覆盖**：中文 + 英文一键生成
 
+## 适用人群
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/invoice-chaser-cn
+- 自由职业者
+- 小型工作室 / 出海团队
+- 接外包、咨询、设计、开发项目的个人
+
+## 输入信息（建议）
+
+- 客户称呼
+- 项目名称
+- 发票号
+- 金额与币种
+- 到期日 / 已逾期天数
+- 付款方式
+- 语气等级（温和 / 正常 / 强硬）
+- 客户关系（新客户 / 老客户 / 重要客户）
+
+## 输出内容
+
+1. 邮件主题（可直接发）
+2. 邮件正文（中文+英文）
+3. IM 短消息版本（中文+英文）
+4. 下一次跟进建议（具体日期）
+
+## 推荐催款节奏
+
+- T-2：到期前友好提醒
+- D+1：正式跟进
+- D+3：二次催款
+- D+7：最后提醒（可选附“暂停交付/服务”声明）
+
+## 示例 Prompt
+
+```text
+你是应收账款催收助手。请根据以下信息生成：
+1) 邮件主题
+2) 邮件正文（中文+英文）
+3) IM短消息版本（中文+英文）
+4) 下一次跟进建议（具体到日期）
+
+客户称呼：Alex
+项目：Landing Page Design
+发票号：INV-2026-031
+金额：800 USDT
+到期日：2026-03-01（已逾期3天）
+付款方式：USDT-TRC20
+语气：正常
+关系级别：老客户
 ```
+
+## 定价建议（可按需调整）
+
+- Free：每日 3 次
+- Pro：$9.9/月（300 次）
+- Team：$29/月（1500 次）
+
+## 合规边界
+
+- 不提供法律建议
+- 不生成辱骂、威胁、恐吓内容
+- 争议升级场景建议咨询律师
+
+## 更新日志
+
+- v0.1.1：优化商品页文案结构、补充催款节奏与适用人群，提升转化可读性

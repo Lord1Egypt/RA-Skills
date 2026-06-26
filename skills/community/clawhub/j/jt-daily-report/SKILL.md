@@ -1,35 +1,121 @@
 ---
-name: "news-daily-report"
-description: "获取每日日报，通过 API 获取用户新闻推荐信息，支持用户兴趣偏好和查询关键词排序，获取个性化每日日报，并生成精美 H5 页面。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jt-daily-report"
-sourceUrl: "https://clawhub.ai/skills/jt-daily-report"
+name: news-daily-report
+description: 获取每日日报，通过 API 获取用户新闻推荐信息，支持用户兴趣偏好和查询关键词排序，获取个性化每日日报，并生成精美 H5 页面。
+version: 1.0.5
 ---
+# 个性化每日日报技能
 
-# news-daily-report
+## 功能说明
 
-> 获取每日日报，通过 API 获取用户新闻推荐信息，支持用户兴趣偏好和查询关键词排序，获取个性化每日日报，并生成精美 H5 页面。
+此技能用于获取个性化每日日报，通过调用 API `https://jiutian.10086.cn/jiujiuassist/proactive/get_user_news_recommend` 获取新闻数据，并支持根据用户兴趣偏好和查询关键词进行个性化排序，最终生成精美的 H5 页面进行展示。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jt-daily-report`
-- **Source URL:** [https://clawhub.ai/skills/jt-daily-report](https://clawhub.ai/skills/jt-daily-report)
+## 核心特性
 
-## Overview
+- 🎯 **个性化排序**：基于用户兴趣偏好和查询关键词进行智能排序
+- 📱 **精美 H5 页面**：现代化响应式设计，支持移动端和桌面端
+- 🔧 **灵活参数**：支持通过命令行参数传入用户偏好和查询
+- 🤖 **大模型排序**：利用大模型的理解能力进行智能排序
 
+## 个性化来源
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **当前对话上下文**：从对话上下文中的用户画像和灵犀记忆获取兴趣偏好
+2. **用户直接查询**：用户明确表达的需求，如"我想看体育新闻"
+
+## 工作流程
+
+### 步骤 1：分析用户需求
+
+- 从**当前对话上下文**中提取用户的兴趣偏好（如 健身、水果等）
+- 识别用户的直接查询关键词（如"体育"、"科技"等）
+
+### 步骤 2：获取新闻数据
+
+执行脚本 `./scripts/get_daily_report.py` 获取新闻数据：
+
 ```bash
-hermes skills install clawhub/jt-daily-report
+# 基本用法
+python ./scripts/get_daily_report.py
 ```
+
+### 步骤 3：大模型智能排序（核心步骤）
+
+**重要：这一步由大模型直接完成，不需要编写 python 代码！**
+**重要：这一步只需要输出新闻 ID 的顺序列表！**
+
+1. 首先读取 `./data/daily_report.json`文件
+2. 查看每条新闻的 id 字段
+3. **查看当前对话上下文中的用户画像和灵犀记忆**，获取用户的兴趣偏好
+4. 根据用户的兴趣偏好和查询关键词，对新闻 ID 进行排序：
+
+- 最高优先级：新闻标题或内容包含用户查询关键词的
+- 高优先级：新闻标题或内容包含用户兴趣偏好的（从上下文中的画像/灵犀记忆获取）
+- 普通优先级：其他新闻
+
+5. 只输出排序后的 ID 列表，保存到  `./data/sorted_ids.json` 文件中。如果 `./data/sorted_ids.json` 文件已存在，请一定要先删除掉！！
+
+输出格式示例：
+
+```json
+{
+  "sorted_ids": [103, 45, 67, 89, 12, 34, 56, 78, 90],
+  "sorting_reason": "根据你的画像（IT 爱好者、技术开发者、健身达人）优先展示：1) AI/科技新闻；2) 体育健康；3) 其他新闻"
+}
+```
+
+**排序要求：**
+
+- 保持每条新闻的原始数据结构不变
+- 在排序时考虑新闻的相关性、时效性
+- **必须使用当前对话上下文中的用户画像和灵犀记忆**，不要使用默认或假设的偏好
+- 如果用户有明确的偏好领域，相关新闻优先展示
+
+### 步骤 4：生成 H5 页面
+
+执行脚本 `./scripts/generate_h5_report.py` 将排序后的新闻数据转换为精美的 H5 页面。
+
+## 脚本说明
+
+- `./scripts/get_daily_report.py` - 获取新闻数据的主脚本，支持接收用户偏好和查询参数
+- `./scripts/generate_h5_report.py` - 生成精美 H5 页面的脚本
+
+## H5 页面特性
+
+- 🎨 现代化响应式设计，支持移动端和桌面端
+- 🌈 渐变色背景和卡片式布局
+- 📱 移动端优先的交互体验
+- 🖼️ 支持新闻图片展示
+- 🔗 可点击跳转到原文链接
+- ⏰ 显示新闻来源和时间
+- ✨ 卡片悬停动画效果
+- 🌙 毛玻璃效果的头部设计
+
+## 大模型排序指南
+
+当用户请求个性化日报时：
+
+1. **分析用户需求**：从**当前对话上下文**中识别用户的兴趣偏好和查询关键词（如灵犀记忆、用户画像）
+2. **调用 API**：执行 `get_daily_report.py` 获取原始新闻数据
+3. **智能排序**：根据以下规则对新闻进行排序，并保存到 `./data/sorted_ids.json` 文件中
+   - 包含用户查询关键词的新闻排在最前面
+   - 包含用户兴趣偏好的新闻排在中间（从上下文画像获取）
+   - 其他新闻排在最后
+4. **生成 H5**：执行 `generate_h5_report.py` 生成最终的 H5 页面
+
+## 使用示例
+
+```bash
+# 获取默认日报
+python ./scripts/get_daily_report.py
+```
+
+## 注意事项
+
+- API 地址：https://jiutian.10086.cn/jiujiuassist/proactive/get_user_news_recommend
+- 需要确保 API 服务已启动并可访问
+- 需要安装 requests 库：`pip install requests`
+- H5 页面默认保存在 `output/daily_report.html`
+- 排序逻辑由大模型根据用户需求智能处理
+- **如果当前对话上下文中的存在用户画像和灵犀记忆，那么排序时必须使用**
+- 不要修改原始新闻数据的结构
+- 如果用户没有指定偏好，保持原始顺序即可
+- 确保 sorted_ids.json 是有效的 JSON 格式

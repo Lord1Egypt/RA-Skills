@@ -1,0 +1,170 @@
+{
+  "slug": "party-planner-pro",
+  "name": "Party Planner Pro",
+  "description": "AI-powered party and event planning dashboard companion for guests, budgets, menus, timelines, vendors, and day-of coordination.",
+  "version": "1.0.1",
+  "prefix": "pp_",
+  "route": "/party-planner",
+  "icon": "PartyPopper",
+  "author": "NormieClaw",
+  "tables": [
+    {
+      "name": "pp_events",
+      "columns": [
+        { "name": "id", "type": "UUID", "primary_key": true },
+        { "name": "user_id", "type": "UUID" },
+        { "name": "slug", "type": "TEXT", "unique": true },
+        { "name": "name", "type": "TEXT" },
+        { "name": "type", "type": "TEXT" },
+        { "name": "subtype", "type": "TEXT" },
+        { "name": "honoree", "type": "TEXT" },
+        { "name": "event_date", "type": "DATE" },
+        { "name": "time_start", "type": "TIME" },
+        { "name": "time_end", "type": "TIME" },
+        { "name": "venue_type", "type": "TEXT" },
+        { "name": "venue_name", "type": "TEXT" },
+        { "name": "venue_address", "type": "TEXT" },
+        { "name": "guest_count_estimate", "type": "INTEGER", "default": 0 },
+        { "name": "formality", "type": "TEXT", "default": "casual" },
+        { "name": "theme", "type": "TEXT" },
+        { "name": "color_scheme", "type": "JSONB", "default": "[]" },
+        { "name": "total_budget_cents", "type": "INTEGER", "default": 0 },
+        { "name": "status", "type": "TEXT", "default": "planning" },
+        { "name": "notes", "type": "TEXT" },
+        { "name": "created_at", "type": "TIMESTAMPTZ" },
+        { "name": "updated_at", "type": "TIMESTAMPTZ" }
+      ],
+      "indexes": [
+        { "name": "idx_pp_events_user", "columns": ["user_id", "event_date DESC"] },
+        { "name": "idx_pp_events_slug", "columns": ["slug"], "unique": true }
+      ]
+    },
+    {
+      "name": "pp_guests",
+      "columns": [
+        { "name": "id", "type": "UUID", "primary_key": true },
+        { "name": "event_id", "type": "UUID", "references": "pp_events.id" },
+        { "name": "user_id", "type": "UUID" },
+        { "name": "name", "type": "TEXT" },
+        { "name": "email", "type": "TEXT" },
+        { "name": "phone", "type": "TEXT" },
+        { "name": "group_name", "type": "TEXT" },
+        { "name": "rsvp_status", "type": "TEXT", "default": "invited" },
+        { "name": "dietary", "type": "TEXT[]", "default": "{}" },
+        { "name": "allergies", "type": "TEXT[]", "default": "{}" },
+        { "name": "plus_one_allowed", "type": "BOOLEAN", "default": false },
+        { "name": "plus_one_name", "type": "TEXT" },
+        { "name": "plus_one_dietary", "type": "TEXT[]", "default": "{}" },
+        { "name": "table_assignment", "type": "TEXT" },
+        { "name": "notes", "type": "TEXT" },
+        { "name": "invited_at", "type": "DATE" },
+        { "name": "responded_at", "type": "DATE" },
+        { "name": "created_at", "type": "TIMESTAMPTZ" },
+        { "name": "updated_at", "type": "TIMESTAMPTZ" }
+      ],
+      "indexes": [
+        { "name": "idx_pp_guests_event", "columns": ["event_id", "rsvp_status"] },
+        { "name": "idx_pp_guests_user", "columns": ["user_id"] }
+      ]
+    },
+    {
+      "name": "pp_budget_items",
+      "columns": [
+        { "name": "id", "type": "UUID", "primary_key": true },
+        { "name": "event_id", "type": "UUID", "references": "pp_events.id" },
+        { "name": "user_id", "type": "UUID" },
+        { "name": "category", "type": "TEXT" },
+        { "name": "description", "type": "TEXT" },
+        { "name": "vendor", "type": "TEXT" },
+        { "name": "allocated_cents", "type": "INTEGER", "default": 0 },
+        { "name": "amount_cents", "type": "INTEGER", "default": 0 },
+        { "name": "is_paid", "type": "BOOLEAN", "default": false },
+        { "name": "payment_method", "type": "TEXT" },
+        { "name": "expense_date", "type": "DATE" },
+        { "name": "receipt_note", "type": "TEXT" },
+        { "name": "created_at", "type": "TIMESTAMPTZ" },
+        { "name": "updated_at", "type": "TIMESTAMPTZ" }
+      ],
+      "indexes": [
+        { "name": "idx_pp_budget_event", "columns": ["event_id", "category"] },
+        { "name": "idx_pp_budget_user", "columns": ["user_id"] }
+      ]
+    },
+    {
+      "name": "pp_tasks",
+      "columns": [
+        { "name": "id", "type": "UUID", "primary_key": true },
+        { "name": "event_id", "type": "UUID", "references": "pp_events.id" },
+        { "name": "user_id", "type": "UUID" },
+        { "name": "description", "type": "TEXT" },
+        { "name": "category", "type": "TEXT" },
+        { "name": "due_date", "type": "DATE" },
+        { "name": "assigned_to", "type": "TEXT" },
+        { "name": "status", "type": "TEXT", "default": "todo" },
+        { "name": "priority", "type": "TEXT", "default": "medium" },
+        { "name": "milestone", "type": "TEXT" },
+        { "name": "notes", "type": "TEXT" },
+        { "name": "completed_at", "type": "TIMESTAMPTZ" },
+        { "name": "created_at", "type": "TIMESTAMPTZ" },
+        { "name": "updated_at", "type": "TIMESTAMPTZ" }
+      ],
+      "indexes": [
+        { "name": "idx_pp_tasks_event", "columns": ["event_id", "status", "due_date"] },
+        { "name": "idx_pp_tasks_user", "columns": ["user_id"] }
+      ]
+    },
+    {
+      "name": "pp_vendors",
+      "columns": [
+        { "name": "id", "type": "UUID", "primary_key": true },
+        { "name": "event_id", "type": "UUID", "references": "pp_events.id" },
+        { "name": "user_id", "type": "UUID" },
+        { "name": "business_name", "type": "TEXT" },
+        { "name": "contact_person", "type": "TEXT" },
+        { "name": "phone", "type": "TEXT" },
+        { "name": "email", "type": "TEXT" },
+        { "name": "website", "type": "TEXT" },
+        { "name": "service_type", "type": "TEXT" },
+        { "name": "quote_cents", "type": "INTEGER", "default": 0 },
+        { "name": "quote_date", "type": "DATE" },
+        { "name": "quote_expiry", "type": "DATE" },
+        { "name": "booking_status", "type": "TEXT", "default": "researching" },
+        { "name": "deposit_cents", "type": "INTEGER", "default": 0 },
+        { "name": "deposit_paid_date", "type": "DATE" },
+        { "name": "balance_cents", "type": "INTEGER", "default": 0 },
+        { "name": "balance_due_date", "type": "DATE" },
+        { "name": "contract_notes", "type": "TEXT" },
+        { "name": "cancellation_policy", "type": "TEXT" },
+        { "name": "created_at", "type": "TIMESTAMPTZ" },
+        { "name": "updated_at", "type": "TIMESTAMPTZ" }
+      ],
+      "indexes": [
+        { "name": "idx_pp_vendors_event", "columns": ["event_id", "service_type"] },
+        { "name": "idx_pp_vendors_user", "columns": ["user_id"] }
+      ]
+    },
+    {
+      "name": "pp_menu_items",
+      "columns": [
+        { "name": "id", "type": "UUID", "primary_key": true },
+        { "name": "event_id", "type": "UUID", "references": "pp_events.id" },
+        { "name": "user_id", "type": "UUID" },
+        { "name": "course", "type": "TEXT" },
+        { "name": "item_name", "type": "TEXT" },
+        { "name": "dietary_tags", "type": "TEXT[]", "default": "{}" },
+        { "name": "quantity_per_person", "type": "TEXT" },
+        { "name": "total_quantity", "type": "TEXT" },
+        { "name": "estimated_cost_cents", "type": "INTEGER", "default": 0 },
+        { "name": "assigned_to", "type": "TEXT" },
+        { "name": "is_potluck_item", "type": "BOOLEAN", "default": false },
+        { "name": "notes", "type": "TEXT" },
+        { "name": "created_at", "type": "TIMESTAMPTZ" },
+        { "name": "updated_at", "type": "TIMESTAMPTZ" }
+      ],
+      "indexes": [
+        { "name": "idx_pp_menu_event", "columns": ["event_id", "course"] },
+        { "name": "idx_pp_menu_user", "columns": ["user_id"] }
+      ]
+    }
+  ]
+}

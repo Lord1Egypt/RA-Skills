@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌪️ do-it 技能测试</title>
+  <style>
+    :root {
+      --primary: #FF6A00;
+      --light: #FFFFFF;
+      --gray-50: #F9FAFB;
+      --gray-200: #E5E7EB;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-900: #111827;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 8px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn {
+      padding: 14px 30px;
+      background: linear-gradient(135deg, var(--primary), #E55A00);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
+    }
+
+    .btn:disabled {
+      background: var(--gray-200);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result {
+      background: var(--gray-50);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--gray-700);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      display: none;
+    }
+
+    .loading.show {
+      display: block;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--gray-200);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .example-btns {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .example-btn {
+      padding: 8px 16px;
+      background: var(--gray-50);
+      border: 2px solid var(--gray-200);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .example-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🌪️ do-it 技能测试</h1>
+      <p>你只管提问，滚滚帮你判断</p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-bottom: 20px; color: var(--gray-900);">📝 输入你的问题</h2>
+      
+      <div class="example-btns">
+        <button class="example-btn" onclick="loadExample('career')">💼 职业选择示例</button>
+        <button class="example-btn" onclick="loadExample('love')">💚 感情问题示例</button>
+        <button class="example-btn" onclick="loadExample('life')">🏠 生活选择示例</button>
+      </div>
+
+      <div class="form-group">
+        <label>你的问题 *</label>
+        <input type="text" id="problem" placeholder="例如：我该留在长沙还是去广州工作？">
+      </div>
+
+      <div class="form-group">
+        <label>当前状态 *</label>
+        <input type="text" id="current" placeholder="例如：在长沙工作，年薪 15 万">
+      </div>
+
+      <div class="form-group">
+        <label>可选方案 *</label>
+        <input type="text" id="options" placeholder="例如：留长沙 / 去广州（年薪 40 万）">
+      </div>
+
+      <div class="form-group">
+        <label>你的顾虑</label>
+        <textarea id="concerns" placeholder="例如：家在长沙，但广州发展好；长沙有喜欢的人，但她不喜欢我"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>你的偏好（可选）</label>
+        <input type="text" id="preference" placeholder="例如：有点想去广州，但舍不得家">
+      </div>
+
+      <div class="form-group">
+        <label>补充信息</label>
+        <textarea id="additional" placeholder="例如：35 岁，单身，父母在长沙，有房"></textarea>
+      </div>
+
+      <button class="btn" id="analyzeBtn" onclick="analyze()">
+        🌪️ 开始分析
+      </button>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div style="color: var(--gray-600);">滚滚正在分析中，请稍候...</div>
+      </div>
+
+      <div class="result" id="result" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script>
+    // 示例数据
+    const examples = {
+      career: {
+        problem: '我该留在长沙还是去广州工作？',
+        current: '在长沙工作，年薪 15 万',
+        options: '留长沙 / 去广州（年薪 40 万，需出差）',
+        concerns: '家在长沙，但广州发展好；长沙有喜欢的人，但她不喜欢我',
+        preference: '有点想去广州，但舍不得家',
+        additional: '35 岁，单身，父母在长沙，有房'
+      },
+      love: {
+        problem: '她不喜欢我，我该继续追求还是放下？',
+        current: '暗恋她半年了，对她很好，但她明确表示不喜欢我',
+        options: '继续追求 / 放下离开',
+        concerns: '真的很喜欢她，但怕一直纠缠会让她更讨厌我',
+        preference: '想放下，但舍不得',
+        additional: '28 岁，通过朋友介绍认识，同在一个城市'
+      },
+      life: {
+        problem: '我该现在买房还是再等等？',
+        current: '工作 5 年，存款 50 万，月收入 2 万',
+        options: '现在买 / 再等等',
+        concerns: '怕现在买了会跌，又怕再等会涨得更高',
+        preference: '倾向于再等等，但不确定',
+        additional: '在一线城市，未婚，父母可以支持一部分'
+      }
+    };
+
+    // 加载示例
+    function loadExample(type) {
+      const ex = examples[type];
+      document.getElementById('problem').value = ex.problem;
+      document.getElementById('current').value = ex.current;
+      document.getElementById('options').value = ex.options;
+      document.getElementById('concerns').value = ex.concerns;
+      document.getElementById('preference').value = ex.preference;
+      document.getElementById('additional').value = ex.additional;
+    }
+
+    // 分析函数
+    async function analyze() {
+      const problem = document.getElementById('problem').value.trim();
+      const current = document.getElementById('current').value.trim();
+      const options = document.getElementById('options').value.trim();
+
+      if (!problem || !current || !options) {
+        alert('请填写问题、当前状态和可选方案');
+        return;
+      }
+
+      // 显示加载动画
+      document.getElementById('loading').classList.add('show');
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('analyzeBtn').disabled = true;
+
+      // 调用 API（模拟）
+      try {
+        const response = await fetch('http://47.111.25.62:8000/api/ai/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt: getDoItPrompt(),
+            user_input: getUserInput(),
+            model: 'qwen3.5-plus',
+            temperature: 0.7,
+            max_tokens: 2000
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('API 调用失败');
+        }
+
+        const result = await response.json();
+        
+        // 显示结果
+        document.getElementById('loading').classList.remove('show');
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('result').textContent = result.analysis || '分析失败';
+        
+      } catch (error) {
+        document.getElementById('loading').classList.remove('show');
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('result').textContent = '❌ 分析失败：' + error.message;
+      }
+
+      document.getElementById('analyzeBtn').disabled = false;
+    }
+
+    // 获取用户输入
+    function getUserInput() {
+      return `
+## 我的问题
+${document.getElementById('problem').value.trim()}
+
+## 我的情况
+- **当前状态：** ${document.getElementById('current').value.trim()}
+- **可选方案：** ${document.getElementById('options').value.trim()}
+- **我的顾虑：** ${document.getElementById('concerns').value.trim()}
+- **我的偏好：** ${document.getElementById('preference').value.trim() || '暂无'}
+
+## 补充信息
+${document.getElementById('additional').value.trim() || '无'}
+`;
+    }
+
+    // 获取 Prompt
+    function getDoItPrompt() {
+      return `
+# 🌪️ do it - AI 判断助手
+
+## 你的角色
+你是一个判断决策型 AI，名字叫"滚滚"。
+
+## 你的特点
+- 客观分析问题，不受情绪影响
+- 逻辑清晰，利弊权衡
+- 给出明确建议，不模棱两可
+- 真诚直接，不说假话
+- 持续陪伴，不管结果如何
+
+## 你的判断原则
+
+### 1. 长期主义
+- 不看眼前得失，看长期发展
+- 不看短期痛苦，看长期收益
+
+### 2. 价值匹配
+- 用户的能力值多少钱，就赚多少钱
+- 不要委屈自己，不要低估自己
+
+### 3. 成长优先
+- 选择能让用户成长的
+- 选择能让用户变得更好的
+
+### 4. 情感健康
+- 远离消耗用户的人
+- 靠近滋养用户的人
+
+### 5. 可逆性原则
+- 如果选择可逆，大胆尝试
+- 如果选择不可逆，谨慎决策
+
+### 6. 最坏情况
+- 问自己：最坏的结果是什么？
+- 如果能承受，就去做
+
+## 输出格式
+请按照以下格式输出判断结果：
+
+# 🌪️ do it - 滚滚的判断
+
+## 你的问题
+[复述问题，确保理解正确]
+
+## 滚滚的分析
+
+### 方案 A：[名称]
+**优势：**
+- ...
+
+**劣势：**
+- ...
+
+**风险：**
+- ...
+
+**机会：**
+- ...
+
+### 方案 B：[名称]
+[同上]
+
+## 滚滚的判断
+
+### ✅ 推荐选择：[方案 X]
+
+**理由：**
+1. ...
+2. ...
+3. ...
+
+**核心原因：**
+[一句话总结为什么选这个]
+
+## 执行建议
+
+### 第一步（本周）
+- [ ] ...
+
+### 第二步（本月）
+- [ ] ...
+
+### 第三步（3 个月）
+- [ ] ...
+
+## 风险提示
+
+**可能遇到的问题：**
+- ...
+
+**应对方案：**
+- ...
+
+## 滚滚的话
+
+[滚滚的真心话，鼓励和支持]
+
+---
+
+**记住：**
+- 滚滚的判断仅供参考
+- 你保留最终决定权
+- 不管结果如何，滚滚都在
+`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "locations": [
+    {"code": "km",  "name": "昆明",       "name_en": "Kunming",     "lat": 25.02, "lon": 102.68, "season_start_doy": 60,  "season_end_doy": 300},
+    {"code": "gzl", "name": "贵州六盘水", "name_en": "Liupanshui",  "lat": 26.59, "lon": 104.83, "season_start_doy": 75,  "season_end_doy": 305},
+    {"code": "nn",  "name": "南宁",       "name_en": "Nanning",     "lat": 22.82, "lon": 108.37, "season_start_doy": 60,  "season_end_doy": 300},
+    {"code": "wh",  "name": "武汉",       "name_en": "Wuhan",       "lat": 30.58, "lon": 114.27, "season_start_doy": 92,  "season_end_doy": 305},
+    {"code": "hf",  "name": "合肥",       "name_en": "Hefei",       "lat": 31.82, "lon": 117.25, "season_start_doy": 92,  "season_end_doy": 305},
+    {"code": "hz",  "name": "杭州",       "name_en": "Hangzhou",    "lat": 30.25, "lon": 120.17, "season_start_doy": 90,  "season_end_doy": 305},
+    {"code": "th",  "name": "通化",       "name_en": "Tonghua",     "lat": 41.73, "lon": 125.94, "season_start_doy": 120, "season_end_doy": 280}
+  ]
+}

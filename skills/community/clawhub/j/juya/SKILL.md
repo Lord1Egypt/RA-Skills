@@ -1,35 +1,26 @@
 ---
-name: "Juya AI Daily"
-description: "Fetch Juya AI Daily (juya-ai-daily) newsletter content. Use when the user asks to view AI daily news, AI morning briefing, or Juya daily. Supports fetching a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juya"
-sourceUrl: "https://clawhub.ai/skills/juya"
+name: juya
+description: Fetch Juya AI Daily (juya-ai-daily) newsletter content. Use when the user asks to view AI daily news, AI morning briefing, or Juya daily. Supports fetching a specific date, defaults to today.
 ---
 
 # Juya AI Daily
 
-> Fetch Juya AI Daily (juya-ai-daily) newsletter content. Use when the user asks to view AI daily news, AI morning briefing, or Juya daily. Supports fetching a...
+RSS feed URL: `https://imjuya.github.io/juya-ai-daily/rss.xml`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juya`
-- **Source URL:** [https://clawhub.ai/skills/juya](https://clawhub.ai/skills/juya)
+## Usage
 
-## Overview
+1. Fetch the RSS feed using `web_fetch`
+2. Parse `<item>` list from the returned XML
+3. Match the target entry by date (format `YYYY-MM-DD`), default to the latest
+4. Extract HTML content from `<content:encoded>`, format as Markdown
+5. For full content, visit the corresponding `<link>` for the detail page
 
+## Date Matching
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/juya
-```
+- Each item's `<title>` is in `YYYY-MM-DD` format
+- Match by title when user specifies a date
+- Default to the first (latest) item when no date is specified
+
+## Output Format
+
+Organize as a clean Markdown list, grouped by category (headlines, model releases, developer ecosystem, etc.), with titles and links.

@@ -1,0 +1,464 @@
+[
+  {
+    "code": "ths_product_share_chg_bcm",
+    "name": "产品份额变化",
+    "description": "产品份额",
+    "params": ""
+  },
+  {
+    "code": "ths_product_shares_bcm",
+    "name": "产品份额",
+    "description": "产品份额",
+    "params": ""
+  },
+  {
+    "code": "ths_sq_pur_and_redemp_net_amt_bcm",
+    "name": "单季度申购赎回净额",
+    "description": "产品份额",
+    "params": ""
+  },
+  {
+    "code": "ths_sq_total_redemp_share_bcm",
+    "name": "单季度总赎回份额",
+    "description": "产品份额",
+    "params": ""
+  },
+  {
+    "code": "ths_total_redemp_share_rp_bcm",
+    "name": "报告期总赎回份额",
+    "description": "产品份额",
+    "params": ""
+  },
+  {
+    "code": "ths_dur_bcm",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末),计算周期(100-日,101-周,102-月,103-年),收益率计算方法(101-普通收益率,100-对数收益率),标的指数(000001.SH-上证综合指数,000016.SH-上证50 指数,000010.SH-上证180 指数,399001.SZ-深证成份指数,399106.SZ-深证综合指数,399903.SZ-中证100 指数,000300.SH-沪深300 指数,000906.SH-中证800 指数,000935.SH-中证信息技术指数,000933.SH-中证医药卫生指数,000012.SH-上证国债指数,H11001.CSI-中证全债指数,133333.MI-MSCI CHINA A指数)基本资料存续期",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_high_pur_fee_rate_bcm",
+    "name": "最高申购费率",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_manager_current_bcm",
+    "name": "投资经理(现任)",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_objective_bcm",
+    "name": "投资目标",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_invest_socpe_bcm",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末),计算周期(100-日,101-周,102-月,103-年),收益率计算方法(101-普通收益率,100-对数收益率),标的指数(000001.SH-上证综合指数,000016.SH-上证50 指数,000010.SH-上证180 指数,399001.SZ-深证成份指数,399106.SZ-深证综合指数,399903.SZ-中证100 指数,000300.SH-沪深300 指数,000906.SH-中证800 指数,000935.SH-中证信息技术指数,000933.SH-中证医药卫生指数,000012.SH-上证国债指数,H11001.CSI-中证全债指数,133333.MI-MSCI CHINA A指数)基本资料投资范围",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_is_extract_perf_reward_bcm",
+    "name": "是否提取业绩报酬",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_manage_fee_rate_bcm",
+    "name": "管理费率",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_perf_comparative_benchmark_bcm",
+    "name": "业绩比较基准",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_plan_type_bcm",
+    "name": "计划类型",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_product_thscode_bcm",
+    "name": "产品同花顺代码",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_surplus_duration_bcm",
+    "name": "剩余存续期",
+    "description": "基本资料",
+    "params": ""
+  },
+  {
+    "code": "ths_actual_issue_scale_bcm",
+    "name": "实际发行规模",
+    "description": "基本资料/发行指标基本资料/发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_participate_amt_bcm",
+    "name": "最低参与金额",
+    "description": "基本资料/发行指标 封闭期说明 ths_close_period_explain_bcm基本资料/发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sacle_ul_in_promotion_bcm",
+    "name": "推广期规模上限",
+    "description": "基本资料/发行指标 开放日说明 ths_open_day_explain_bcm基本资料/发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sales_ed_bcm",
+    "name": "销售截止日期",
+    "description": "基本资料/发行指标基本资料/发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_supervisor_participate_amt_bcm",
+    "name": "管理人参与金额",
+    "description": "基本资料/发行指标",
+    "params": ""
+  },
+  {
+    "code": "ths_jensen_bcm",
+    "name": "标绩效评估/风险收益指标Jensen",
+    "description": "基本资料/发行指",
+    "params": ""
+  },
+  {
+    "code": "ths_valid_pur_num_bcm",
+    "name": "有效认购户数",
+    "description": "基本资料/发行指",
+    "params": ""
+  },
+  {
+    "code": "ths_annualvolatility_bcm",
+    "name": "年化波动率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_risk_income_bcm",
+    "name": "平均风险收益",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_yield_bcm",
+    "name": "平均收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_downsidestandarddeviation_bcm",
+    "name": "下行标准差",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_geoavg_risk_income_bcm",
+    "name": "几何平均风险收益",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_geoavg_yield_bcm",
+    "name": "几何平均收益率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_maxretracementrate_bcm",
+    "name": "最大回撤率",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sharp_bcm",
+    "name": "Sharpe",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_yield_standard_deviation_bcm",
+    "name": "收益率标准差",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unit_nv_bcm",
+    "name": "累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unit_nv_grow_bcm",
+    "name": "累计单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_accum_unitnvg_bcm",
+    "name": "累计单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjust_unit_nvg_since_founded_bcm",
+    "name": "自成立日起复权单位净值增长率",
+    "description": "净值指标净值指标 复权单位净值 ths_adjustment_nv_bcm 交易日期(100-最新)",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_bcm",
+    "name": "复权单位净值增长",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_ratio_bcm",
+    "name": "复权单位净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adjustment_nvg_to_mkt_bcm",
+    "name": "复权单位净值相对大盘增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cash_dividendnvg_bcm",
+    "name": "现金分红净值增长率",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_accum_unit_nv_int_bcm",
+    "name": "区间最高累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_adjustment_unit_nv_int_bcm",
+    "name": "区间最高复权单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_high_unit_nv_int_bcm",
+    "name": "区间最高单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_latestnetvaluedate_bcm",
+    "name": "最新净值日期",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_accum_unit_nv_int_bcm",
+    "name": "区间最低累计单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_adjustment_unit_nv_int_bcm",
+    "name": "区间最低复权单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_low_unit_nv_int_bcm",
+    "name": "区间最低单位净值",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_similar_product_int_avg_income_bcm",
+    "name": "同类产品区间平均收益",
+    "description": "净值指标",
+    "params": ""
+  },
+  {
+    "code": "ths_unit_nv_bcm",
+    "name": "日,101-截止日1 周前,102-截止日2 周前,103-截止日52 周前,104-截止日1 月前,105-截止日3 月前,106-截止日6 月前,107-截止日1 年前,108-截止日3 年前,109-本年初,110-本月初,111-本周一,112-下半年初,113-上市首日),截止交易日期(100-最新,110-前一交易日,102-上周末,103-上月末,104-上年末,105-上半年末),产品分类(100-一级分类,101-二级分类)净值指标单位净值",
+    "description": "起始交易日期(100-截止日前一交易",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_held_num_eorp_bcm",
+    "name": "报告期末持有股票个数",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_mv_bcm",
+    "name": "重仓股持股市值",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_num_bcm",
+    "name": "重仓股持股数量",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_sortino_bcm",
+    "name": "Sortino",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_stock_code_bcm",
+    "name": "重仓股股票代码",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_held_stock_name_bcm",
+    "name": "重仓股股票名称",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_n_top_stock_mv_to_anv_bcm",
+    "name": "前N 名重仓股票市值合",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_mv_ratio_bcm",
+    "name": "重仓股市值占股票投资市值比",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_mv_to_nv_bcm",
+    "name": "重仓股市值占资产净值比",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_top_stock_mv_to_tv_bcm",
+    "name": "重仓股市值占资产总值比",
+    "description": "投资组合/持股明细",
+    "params": ""
+  },
+  {
+    "code": "ths_anv_bcm",
+    "name": "资产净值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_anv_to_total_assets_bcm",
+    "name": "资产净值占资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_bcm",
+    "name": "银行存款",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_to_anv_bcm",
+    "name": "银行存款占资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bank_deposit_to_atv_bcm",
+    "name": "银行存款占资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_invest_mv_bcm",
+    "name": "债券投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_mv_toanv_bcm",
+    "name": "债券市值占资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_bond_mv_toatv_bcm",
+    "name": "债券市值占资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_invest_value_bcm",
+    "name": "基金投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_mv_to_anv_bcm",
+    "name": "基金市值占资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_fund_mv_toa_tv_bcm",
+    "name": "基金市值占资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_to_anv_bcm",
+    "name": "其他资产占资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_asset_to_atv_bcm",
+    "name": "其他资产占资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_other_assets_bcm",
+    "name": "其他资产",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_treynor_bcm",
+    "name": "Treynor",
+    "description": "绩效评估/风险收益指标",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_invest_mv_bcm",
+    "name": "股票投资市值",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_mv_to_anv_bcm",
+    "name": "股票市值占资产净值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  },
+  {
+    "code": "ths_stock_mv_to_atv_bcm",
+    "name": "股票市值占资产总值比",
+    "description": "投资组合/资产配置",
+    "params": ""
+  }
+]

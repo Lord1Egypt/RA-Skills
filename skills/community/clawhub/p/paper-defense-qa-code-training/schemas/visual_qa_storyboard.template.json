@@ -1,0 +1,38 @@
+{
+  "paper": {
+    "paper_slug": "",
+    "paper_title": "",
+    "venue": "",
+    "year": ""
+  },
+  "visual_policy": {
+    "text_first_then_image": true,
+    "target_environment": "chatgpt_web",
+    "preferred_model": "Codex imagegen skill first when running inside Codex; otherwise ChatGPT Images 2.0 / gpt-image-2 when available",
+    "style_brief": "clean academic infographic, PPT-friendly 16:9, consistent icons, minimal decorative clutter",
+    "aspect_ratio": "16:9",
+    "exact_text_policy": "Use generated images for layout/metaphor; overlay exact equations, code, and dense text later in PPT/SVG/HTML when precision matters.",
+    "generation_reminder_cn": "先交付文字版问答和提示词。后续单独请求生图；Codex 内优先使用 imagegen skill，非 Codex 场景再使用 create image 模式或 API。"
+  },
+  "cards": [
+    {
+      "card_id": "VC001",
+      "linked_q_ids": ["Q001"],
+      "card_type": "claim_evidence_map",
+      "priority": "P1",
+      "audience": ["advisor", "reviewer", "committee"],
+      "title_cn": "核心贡献能防守到哪里？",
+      "question_cn": "这篇论文最核心的贡献是什么，和最接近的前作相比到底新在哪里？",
+      "spoken_answer_summary_cn": "用 Claim-Evidence-Boundary 结构说明本文新增机制、支持证据和不能过度声称的范围。",
+      "evidence_labels": ["missing_evidence"],
+      "boundary_cn": "不要把论文未测试的任务、数据集或部署场景说成已被证明。",
+      "visual_concept_cn": "一张三栏贡献地图：左栏是 closest prior work，中栏是 this paper，右栏是 evidence + boundary。",
+      "image_prompt_cn": "Create a clean 16:9 academic infographic slide in Chinese and English mixed style. Show a three-column contribution map: left column 'Closest Prior Work', middle column 'This Paper', right column 'Evidence + Boundary'. Use simple nodes and arrows, paper-review atmosphere, calm academic design, high readability, minimal decoration. Leave empty spaces where exact paper-specific labels can be overlaid later.",
+      "negative_prompt_cn": "No photorealistic people, no clutter, no fake citations, no unreadable tiny text, no fabricated paper names.",
+      "text_overlay_plan_cn": "在 PPT 中覆盖具体论文名、前作名、表格/图编号、证据标签和安全边界。",
+      "style_consistency_notes_cn": "后续所有图保持同一图标体系：Claim、Evidence、Boundary、Follow-up 四类标签。",
+      "revision_prompt_cn": "请保持三栏结构不变，减少装饰元素，给右侧 evidence/boundary 留出更大空白。",
+      "generation_status": "image_pending"
+    }
+  ]
+}

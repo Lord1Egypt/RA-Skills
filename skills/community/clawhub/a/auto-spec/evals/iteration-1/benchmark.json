@@ -1,0 +1,68 @@
+{
+  "skill_name": "auto-spec",
+  "iteration": 1,
+  "configurations": [
+    {"name": "with_skill", "label": "Auto-Spec Skill"},
+    {"name": "without_skill", "label": "Baseline (No Skill)"}
+  ],
+  "evals": [
+    {
+      "eval_name": "forward-spec-feature-level",
+      "results": {
+        "with_skill": {
+          "pass_rate": 1.0,
+          "passed": 7,
+          "total": 7
+        },
+        "without_skill": {
+          "pass_rate": 0.571,
+          "passed": 4,
+          "total": 7
+        }
+      }
+    },
+    {
+      "eval_name": "reverse-spec-module-level",
+      "results": {
+        "with_skill": {
+          "pass_rate": 1.0,
+          "passed": 7,
+          "total": 7
+        },
+        "without_skill": {
+          "pass_rate": 0.714,
+          "passed": 5,
+          "total": 7
+        }
+      }
+    },
+    {
+      "eval_name": "forward-spec-then-code",
+      "results": {
+        "with_skill": {
+          "pass_rate": 1.0,
+          "passed": 7,
+          "total": 7
+        },
+        "without_skill": {
+          "pass_rate": 0.857,
+          "passed": 6,
+          "total": 7
+        }
+      }
+    }
+  ],
+  "summary": {
+    "with_skill": {
+      "overall_pass_rate": 1.0,
+      "total_passed": 21,
+      "total_assertions": 21
+    },
+    "without_skill": {
+      "overall_pass_rate": 0.714,
+      "total_passed": 15,
+      "total_assertions": 21
+    },
+    "delta": "+28.6%"
+  }
+}

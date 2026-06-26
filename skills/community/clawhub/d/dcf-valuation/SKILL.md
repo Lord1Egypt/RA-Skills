@@ -1,35 +1,146 @@
 ---
-name: "dcf-valuation"
-description: "十年DCF估值工具，支持两种方法：传统DCF折现(Gordon永续模型)和段永平式PE退出法。触发词：估算DCF、DCF估值、内在价值、十年估值、自由现金流折现、PE退出、段永平式估值。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dcf-valuation"
-sourceUrl: "https://clawhub.ai/skills/dcf-valuation"
+name: dcf
+description: 十年DCF估值工具，支持两种方法：传统DCF折现(Gordon永续模型)和段永平式PE退出法。触发词：估算DCF、DCF估值、内在价值、十年估值、自由现金流折现、PE退出、段永平式估值。
 ---
 
-# dcf-valuation
+# DCF估值工具
 
-> 十年DCF估值工具，支持两种方法：传统DCF折现(Gordon永续模型)和段永平式PE退出法。触发词：估算DCF、DCF估值、内在价值、十年估值、自由现金流折现、PE退出、段永平式估值。
+从定性+定量两个维度评估公司价值，支持**两种估值方法**并行计算。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dcf-valuation`
-- **Source URL:** [https://clawhub.ai/skills/dcf-valuation](https://clawhub.ai/skills/dcf-valuation)
+## 工作流程
 
-## Overview
+1. **搜集数据**：搜索目标公司的财务数据（近5年营收、净利润、净利率、经营现金流、货币资金、负债、市值、股本、分红）
+2. **数据时效校验**：确认使用最新年报数据（基准年必须是最新报告期），若已有旧分析报告需检查年份是否过期
+3. **定性分析**：按 `references/qualitative.md` 框架分析商业模式、行业空间、竞争格局、财务质量
+4. **定量计算**：运行 `scripts/dcf_calc.py --method both` 同时计算两种方法
+5. **输出报告**：定性结论 + 传统DCF三情景 + PE退出法三情景 + 综合判断
+6. **文件生成校验**：写文件后立即检查文件是否真实存在指定目录
+7. **通知用户**：告知本地文件路径
 
+## 两种估值方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 方法一：传统DCF（Gordon永续模型）
+
+**原理**：10年FCF折现 + 永续终值折现
+
+```
+内在价值 = Σ(FCF_t / (1+r)^t) + TV/(1+r)^10 + 净现金
+TV = FCF_10 × (1+g) / (r-g)   # Gordon永续模型
+```
+
+**适用场景**：成熟稳定企业、现金流可预测、愿意给永续假设
+
+**参数**：
+| 参数 | 保守 | 中性 | 乐观 |
+|------|------|------|------|
+| 折现率(r) | 9-10% | 8-9% | 7-8% |
+| 永续增长率(g) | 3% | 3-4% | 4% |
+| FCF/净利润 | 85-90% | 88-92% | 90-95% |
+
+---
+
+### 方法二：段永平式PE退出法
+
+**原理**：不依赖永续折现，直接问"10年后能赚多少？给多少PE？"
+
+```
+内在价值 = (净利润_10年 × 退出PE + 分红累计折现 + 净现金) / (1+r)^10
+```
+
+**核心逻辑**：
+- 折现率(r) = **机会成本** = 你拿着现金存银行能赚多少（国债/定存利率，当前约1.5%）
+- 不做永续假设，终值 = 10年后净利润 × 合理PE
+- 段永平认为：参数越少，错的概率越小
+
+**优势**：不依赖永续增长率假设，参数直观易验证
+**风险**：对10年后PE和增速判断依赖主观
+
+**适用场景**：高确定性、现金流稳定、有分红习惯的优质企业
+
+---
+
+## 定性分析要点
+
+见 `references/qualitative.md`
+
+### 财务质量检查
+
+- 经营现金流/净利润 > 80% → 真金白银
+- FCF/净利润 → 资本开支大不大
+- 净现金 = 货币资金 - 有息负债
+- 分红率+分红绝对额是否稳定
+
+## 定量计算参数
+
+### 必需参数
+
+| 参数 | 说明 | 来源 |
+|------|------|------|
+| base_revenue | 基准年营收（亿） | 最新年报 |
+| base_profit | 基准年净利润（亿） | 最新年报 |
+| net_cash | 净现金（亿） | 货币资金-有息负债 |
+| total_shares | 总股本（亿股） | F10 |
+| current_market_cap | 当前市值（亿） | 实时行情 |
+| current_price | 当前股价（元） | 实时行情 |
+| dividend_ratio | 分红比例 | 近3年平均 |
+
+### 传统DCF三情景
+
+| 参数 | 保守 | 中性 | 乐观 |
+|------|------|------|------|
+| revenue_growth | 低增速 | 中增速 | 高增速 |
+| net_margin | 净利率下限 | 净利率中枢 | 净利率上限 |
+| fcf_ratio | 85-90% | 88-92% | 90-95% |
+| discount_rate | 9-10% | 8-9% | 7-8% |
+| terminal_growth | 3% | 3-4% | 4% |
+
+### PE退出法三情景
+
+| 参数 | 保守 | 中性 | 乐观 |
+|------|------|------|------|
+| profit_growth | 年均5% | 年均8% | 年均10%+ |
+| exit_pe | 15x | 20x | 25x |
+| discount_rate | 3%（稳健机会成本） | 1.5%（国债利率） | 1.5%（机会成本） |
+| dividend_ratio | 70% | 75% | 80% |
+
+## 两种方法的核心差异
+
+| | 传统DCF | 段永平PE退出法 |
+|---|--------|--------------|
+| 折现率 | 7-10%（含股权风险溢价） | 1.5-3%（机会成本） |
+| 终值依赖 | Gordon永续（占60-80%） | 10年后PE（可控） |
+| 本质 | 数学模型 | 商业判断 |
+| 适用 | 任何企业 | 高确定性+稳定分红 |
+| 风险 | 永续增长率微调导致结果剧变 | 10年增速+PE主观 |
+
+## 保存路径
+
+默认保存到用户本地工作目录：`{user_workspace}/投资/`
+可由用户自定义配置。
+
+文件命名：`{股票名称}_DCF估值_{YYYY-MM-DD}.md`
+
+## 使用示例
+
 ```bash
-hermes skills install clawhub/dcf-valuation
+python3 scripts/dcf_calc.py --json '{
+  "stock_name": "贵州茅台",
+  "base_revenue": 1720.5,
+  "base_profit": 823.2,
+  "net_cash": 1500,
+  "total_shares": 12.52,
+  "current_market_cap": 17219,
+  "current_price": 1375,
+  "dividend_ratio": 0.75,
+  "scenarios": {
+    "保守": { ... },
+    "中性": { ... },
+    "乐观": { ... }
+  },
+  "pe_exit_scenarios": {
+    "保守": { "profit_growth": [...], "exit_pe": 15, "discount_rate": 0.03 },
+    "中性": { "profit_growth": [...], "exit_pe": 20, "discount_rate": 0.015 },
+    "乐观": { "profit_growth": [...], "exit_pe": 25, "discount_rate": 0.015 }
+  }
+}'
 ```

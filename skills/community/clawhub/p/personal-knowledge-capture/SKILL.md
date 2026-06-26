@@ -1,35 +1,217 @@
 ---
-name: "knowledge-capture"
-description: "知识库捕获与自适应复习系统。触发词：「记住」「记下来」「加入知识库」「这个值得记」「帮我记住」「值得记录」。将对话中的知识点整理成结构化 Markdown 笔记，写入对应分类目录，自动生成题目加入题库（question-bank.json），并更新掌握度状态文件（mastery-status.json）和复习计划..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-knowledge-capture"
-sourceUrl: "https://clawhub.ai/skills/personal-knowledge-capture"
+name: knowledge-capture
+description: 知识库捕获与自适应复习系统。触发词：「记住」「记下来」「加入知识库」「这个值得记」「帮我记住」「值得记录」。将对话中的知识点整理成结构化 Markdown 笔记，写入对应分类目录，自动生成题目加入题库（question-bank.json），并更新掌握度状态文件（mastery-status.json）和复习计划。支持答题评分：用户回答复习题后，调用本 skill 评分并更新掌握度，动态调整下次复习时间。
 ---
 
-# knowledge-capture
+# 知识库捕获 Skill（含自适应复习机制）
 
-> 知识库捕获与自适应复习系统。触发词：「记住」「记下来」「加入知识库」「这个值得记」「帮我记住」「值得记录」。将对话中的知识点整理成结构化 Markdown 笔记，写入对应分类目录，自动生成题目加入题库（question-bank.json），并更新掌握度状态文件（mastery-status.json）和复习计划...
+## 触发场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-knowledge-capture`
-- **Source URL:** [https://clawhub.ai/skills/personal-knowledge-capture](https://clawhub.ai/skills/personal-knowledge-capture)
+### 场景一：捕获新知识（用户说「记住/记下来」等）
+触发词：**「记住」「记下来」「加入知识库」「这个值得记」「帮我记住」「值得记录」**
 
-## Overview
+### 场景二：评分更新（用户回答了复习题后）
+当用户回复了复习测验的答案时，执行评分 + 更新掌握度流程。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-knowledge-capture
+## 知识库路径
+
+根目录：`/root/.openclaw/workspace/knowledge/`
+
+| 目录 | 适用内容 |
+|------|---------|
+| `finance/` | 金融投资、股票、基金、技术指标、经济学 |
+| `agent/` | AI Agent、多 Agent 架构、OpenClaw、Skill 开发 |
+| `tech/` | 技术知识、编程、系统架构、算法 |
+| `product/` | 产品设计、用户研究、商业分析 |
+| `misc/` | 其他 |
+
+关键文件：
+- `learning/mastery-status.json` — 掌握度状态
+- `learning/question-bank.json` — 题目库
+- `learning/01-遗忘曲线复习计划.md` — 复习时间表
+
+---
+
+## 场景一：捕获新知识
+
+### Step 1：分析内容
+- 从对话中提取要记忆的知识点
+- 判断分类目录
+- 如果不明确，询问「你想记住刚才的哪部分？」
+
+### Step 2：生成笔记
+按以下结构写笔记：
+
+```markdown
+# {知识点标题} 速记卡
+
+> 初学日期：YYYY-MM-DD
+
+## 🎯 核心要点
+（3-5条最重要的结论，用自己能复述的语言）
+
+## 📖 详细内容
+（知识点的完整解释）
+
+## 💡 类比记忆
+（用生活化类比，越具体越好）
+
+## 📊 对比表格（如适用）
+
+## ⚡ 一句话总结
+
+## ❓ 自测问题
+- [ ] 问题1（level 1，概念识别）
+- [ ] 问题2（level 2，类比解释）
+- [ ] 问题3（level 3，应用场景）
 ```
+
+### Step 3：写入文件
+`knowledge/{分类}/序号-标题.md`
+
+### Step 4：生成题目加入题库
+读取 `learning/question-bank.json`，为新知识点生成3-5道题，按层级：
+- **level 1**（选择题）：概念识别，有迷惑性选项
+- **level 2**（类比题）：用类比解释概念
+- **level 3**（应用题）：给场景让用户判断决策
+- **level 4**（教学题）：向外行解释（费曼技巧）
+
+题目格式：
+```json
+{
+  "id": "{topic_prefix}_{序号}",
+  "type": "choice|analogy|apply|teach",
+  "level": 1,
+  "concept": "概念名",
+  "question": "题目",
+  "options": ["A. ...", "B. ...", "C. ..."],
+  "answer": "B",
+  "explanation": "解析"
+}
+```
+
+### Step 5：更新掌握度状态
+在 `learning/mastery-status.json` 中新增：
+```json
+"{topic名称}": {
+  "file": "{分类}/{文件名}",
+  "learnDate": "YYYY-MM-DD",
+  "reviewCount": 0,
+  "lastReviewDate": null,
+  "lastScore": null,
+  "avgScore": null,
+  "status": "new",
+  "weakPoints": [],
+  "masteredPoints": [],
+  "nextReviewDate": "明天日期",
+  "reviewHistory": []
+}
+```
+
+### Step 6：更新复习计划文档
+在 `learning/01-遗忘曲线复习计划.md` 中新增一行，计算6个复习节点：
+- 复习节点 = 学习日 + 1/2/4/7/15/30 天
+
+### Step 7：反馈用户
+告知：笔记路径、题目已加入题库、明天8:00开始第一次测验
+
+---
+
+## 场景二：答题评分与掌握度更新
+
+### 触发条件
+用户回复了复习测验的答案（包含 Q1/Q2/Q3 的回答，或直接回答题目）。
+
+### Step 1：逐题评分（1-5分）
+
+**选择题评分：**
+- 答对 = 4分起步；答对且解释正确 = 5分；答错 = 1-2分
+
+**开放题评分标准：**
+| 分数 | 标准 |
+|------|------|
+| 5 | 准确、完整、能举一反三 |
+| 4 | 正确，细节稍有遗漏 |
+| 3 | 方向对，细节有误 |
+| 2 | 方向错但有部分印象 |
+| 1 | 完全想不起来 |
+
+### Step 2：逐题反馈
+每道题给出：
+- 得分
+- 你的回答哪里对、哪里需要补充
+- 标准答案（简洁版）
+- 记忆技巧提示
+
+### Step 3：更新掌握度状态
+计算本次平均分，更新 `mastery-status.json`：
+
+**动态调度规则：**
+
+| 平均分 | 状态变化 | 下次复习时间 |
+|--------|---------|------------|
+| ≥ 4.5 | reviewing → 拉长间隔 | 按艾宾浩斯正常节奏 |
+| 3-4 | learning → 维持 | 明天再来一遍 |
+| < 3 | 退回 learning | 明天 + 后天 + 4天（强化） |
+| 某题得1分 | 标记 weakPoint | 下次强制出此 concept 的题 |
+| 连续3次平均≥4 | → mastered | 退出高频复习队列 |
+
+**更新字段：**
+```json
+{
+  "reviewCount": +1,
+  "lastReviewDate": "今天",
+  "lastScore": 本次平均分,
+  "avgScore": 历史平均分,
+  "status": "new|learning|reviewing|mastered",
+  "weakPoints": ["得分<3的concept"],
+  "nextReviewDate": "动态计算",
+  "reviewHistory": [{"date": "今天", "score": 分数, "weakPoints": [...]}]
+}
+```
+
+### Step 4：汇总反馈
+发送给用户：
+```
+📊 本次测验结果
+
+{主题}：{分数}/5分  → {掌握度状态}
+
+Q1 [{concept}]：{分数}分 ✅/⚠️
+{简短点评}
+
+Q2 [{concept}]：{分数}分 ✅/⚠️
+{简短点评}
+
+Q3 [{concept}]：{分数}分 ✅/⚠️
+{简短点评}
+
+---
+{掌握度总结}
+{下次复习时间}
+{如有薄弱点：「{概念}还需要加强，下次会重点考察」}
+```
+
+---
+
+## 掌握度等级
+
+| 状态 | 含义 | 触发条件 |
+|------|------|---------|
+| `new` | 未复习 | 初始状态 |
+| `learning` | 学习中 | 平均分 < 4 |
+| `reviewing` | 巩固中 | 平均分 ≥ 4 |
+| `mastered` | 已掌握 | 连续3次平均分 ≥ 4 |
+
+---
+
+## 题目难度层级
+
+| Level | 类型 | 描述 | 对应复习阶段 |
+|-------|------|------|------------|
+| 1 | 选择题 | 概念识别 | 第1-2次 |
+| 2 | 类比题 | 用类比解释 | 第1-3次 |
+| 3 | 应用题 | 给场景做决策 | 第2次起 |
+| 4 | 教学题 | 向外行解释（费曼技巧） | 第4次起 |

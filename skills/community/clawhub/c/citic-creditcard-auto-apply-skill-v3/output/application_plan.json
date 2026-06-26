@@ -1,0 +1,177 @@
+{
+  "workflow_name": "citic_creditcard_browser_prefill",
+  "workspace": "/mnt/data/citic_rewrite/citic-creditcard-auto-apply",
+  "browser_profile_default": "openclaw",
+  "browser_profile_existing_session": "user",
+  "recommended_card": {
+    "rank": 1,
+    "score": 38,
+    "slug": "yan-standard-platinum",
+    "name": "中信银行颜卡标准白金卡",
+    "tier": "白金卡",
+    "annual_fee": "480元/年；首年免年费，次年刷卡达标免",
+    "fit_tags": [
+      "日常消费",
+      "入门白金",
+      "年轻客群",
+      "低年费偏好",
+      "颜值卡",
+      "通用型"
+    ],
+    "detail_url": "https://creditcard.ecitic.com/h5/shenqing/240515/index.html?sid=SJWAPHD3",
+    "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0602&sid=YDKHD",
+    "reasons": [
+      "首年免年费、次年刷卡达标可免年费，适合低年费偏好。"
+    ],
+    "cautions": []
+  },
+  "backup_cards": [
+    {
+      "rank": 2,
+      "score": 36,
+      "slug": "i-platinum",
+      "name": "中信银行i白金信用卡",
+      "tier": "白金卡",
+      "annual_fee": "480元/年；首年减免，账单年内刷卡12次免次年年费",
+      "fit_tags": [
+        "线上消费",
+        "积分党",
+        "经常出差",
+        "年轻白领",
+        "航延保障"
+      ],
+      "detail_url": "https://creditcard.ecitic.com/platinum/ibaijin.html",
+      "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0083&sid=YDKHD",
+      "reasons": [],
+      "cautions": []
+    },
+    {
+      "rank": 3,
+      "score": 34,
+      "slug": "yueka-gold",
+      "name": "中信银行悦卡（金卡）",
+      "tier": "金卡",
+      "annual_fee": "以申请页实时展示为准",
+      "fit_tags": [
+        "积分党",
+        "有中信资产",
+        "日常高频消费",
+        "金卡偏好",
+        "生日月积分"
+      ],
+      "detail_url": "https://creditcard.ecitic.com/h5/shenqing/yueka_g.html",
+      "apply_url": "https://cs.creditcard.ecitic.com/citiccard/cardshopcloud/standardcard-h5/index.html?pid=CS0076&sid=SJWAPPT#/baseInfo&pid=CS0076&sid=SJWAPPT",
+      "reasons": [],
+      "cautions": [
+        "如无中信资产、且不关注积分，悦卡优势会下降。"
+      ]
+    }
+  ],
+  "candidate_fields": [
+    {
+      "field": "id_type",
+      "value": "中华人民共和国居民身份证",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "中华人民共和国居民身份证"
+    },
+    {
+      "field": "assets_with_citic",
+      "value": "0",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "0"
+    },
+    {
+      "field": "car_owner",
+      "value": "false",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "false"
+    },
+    {
+      "field": "ev_owner",
+      "value": "false",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "false"
+    },
+    {
+      "field": "international_travel",
+      "value": "false",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "false"
+    },
+    {
+      "field": "student_abroad",
+      "value": "false",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "false"
+    },
+    {
+      "field": "travel_frequency",
+      "value": "rare",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "rare"
+    },
+    {
+      "field": "annual_fee_tolerance",
+      "value": "low",
+      "source": "profiles/applicant_profile.json or template",
+      "confidence": "high",
+      "masked_preview": "low"
+    }
+  ],
+  "confirmed_fields_required": [
+    "full_name",
+    "phone",
+    "id_type",
+    "city",
+    "employer_name",
+    "monthly_income"
+  ],
+  "safe_prefill_fields": [
+    "full_name",
+    "gender",
+    "birth_date",
+    "phone",
+    "email",
+    "city",
+    "residential_address",
+    "mailing_address",
+    "employer_name",
+    "employer_city",
+    "job_title",
+    "education",
+    "monthly_income",
+    "housing_status"
+  ],
+  "never_autofill_without_user_live_confirmation": [
+    "id_number",
+    "sms_code",
+    "otp",
+    "face_verification",
+    "signature",
+    "agreement_consent",
+    "credit_authorization"
+  ],
+  "browser_sequence": [
+    "open official page",
+    "snapshot page refs",
+    "open official apply page",
+    "snapshot form refs",
+    "type/select only confirmed fields",
+    "stop before OTP / agreement / final submit"
+  ],
+  "stop_conditions": [
+    "captcha shown",
+    "otp or sms verification shown",
+    "credit authorization or agreement shown",
+    "final submit button shown",
+    "required field missing or conflicting"
+  ],
+  "warning": "This plan is for browser-assisted prefill only. The customer must review and complete the final submission personally."
+}

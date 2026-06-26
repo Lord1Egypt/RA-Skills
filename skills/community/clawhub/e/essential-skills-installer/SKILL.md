@@ -1,35 +1,78 @@
 ---
-name: "Essential Skills Installer"
-description: "一键安装 OpenClaw 必备技能。适用于新用户入门和快速部署。触发词：安装必备技能、一键安装、初始化技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/essential-skills-installer"
-sourceUrl: "https://clawhub.ai/skills/essential-skills-installer"
+name: essential-skills-installer
+description: 一键安装 OpenClaw 必备技能。适用于新用户入门和快速部署。触发词：安装必备技能、一键安装、初始化技能。
 ---
 
-# Essential Skills Installer
+# 必备技能一键安装
 
-> 一键安装 OpenClaw 必备技能。适用于新用户入门和快速部署。触发词：安装必备技能、一键安装、初始化技能。
+一键安装 OpenClaw 必备技能，适用于新用户入门和快速部署。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/essential-skills-installer`
-- **Source URL:** [https://clawhub.ai/skills/essential-skills-installer](https://clawhub.ai/skills/essential-skills-installer)
+## 适用场景
 
-## Overview
+- 新用户刚安装 OpenClaw
+- 新服务器快速部署
+- 恢复工作环境
 
+## 必备技能列表
 
-## Installation
-To install this skill, run the following command in your terminal:
+以下技能均为⭐️⭐️⭐️⭐️⭐️（五星推荐）或⭐️⭐️⭐️⭐️（四星推荐），一键全部安装：
+
+**五星推荐** ⭐️⭐️⭐️⭐️⭐️：
+
+1. **skill-vetter** — 技能安全检查，安装前扫描风险
+2. **tavily-search** — AI 优化搜索，快速获取信息
+3. **self-improving-agent** — 自我改进，持续学习优化
+4. **memory-os** — 持久记忆，跨会话保持上下文
+5. **find-skills** — 技能发现，快速找到需要的技能
+6. **skill-creator** — 创建新技能，标准化技能开发
+
+**四星推荐** ⭐️⭐️⭐️⭐️：
+
+7. **summarize** — URL/文件摘要，快速提取关键信息
+8. **notion** — Notion API 操作，笔记数据库管理
+
+---
+
+### 方式一：一键安装（推荐）
+
+直接运行安装脚本，全部安装 5 个必备技能：
+
 ```bash
-hermes skills install clawhub/essential-skills-installer
+bash {baseDir}/install.sh
 ```
+
+### 方式二：通过 AI 安装
+
+告诉 AI：
+
+> 帮我安装必备技能
+
+AI 会自动运行安装脚本。
+
+---
+
+## 安装流程
+
+1. 检查 skillhub CLI 是否可用
+2. 逐个安装技能
+3. 安装失败的技能记录并提示
+4. 安装完成后显示汇总
+
+---
+
+## 安装后配置
+
+部分技能需要配置 API Key：
+
+| 技能 | 需要配置 | 获取方式 |
+|------|----------|----------|
+| tavily-search | Tavily API Key | https://tavily.com |
+
+其他技能无需配置，安装即可使用。
+
+---
+
+## 预期时间
+
+- 全部安装：约 2-3 分钟
+- 基础工具：约 30 秒

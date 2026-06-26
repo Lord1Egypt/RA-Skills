@@ -1,0 +1,23 @@
+{
+  "budget": {
+    "daily": 10.0,
+    "weekly": 50.0,
+    "monthly": 200.0
+  },
+  "cache": {
+    "ttl": 1800,
+    "maxSize": 10000
+  },
+  "modelRouting": {
+    "preferLocal": false,
+    "modelPriority": {
+      "flagship": ["claude-3.5-sonnet", "gpt-4o"],
+      "balanced": ["gpt-4o-mini", "claude-3-haiku"],
+      "economic": ["glm-4-flash"]
+    }
+  },
+  "monitoring": {
+    "spikeMultiplier": 2.5,
+    "realTimeInterval": 5000
+  }
+}

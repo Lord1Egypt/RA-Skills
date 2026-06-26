@@ -1,35 +1,35 @@
----
-name: "Expanso tls-inspect"
-description: "Inspect TLS certificates for expiry, SANs, chain validity, and cipher details using Expanso Edge pipelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-tls-inspect"
-sourceUrl: "https://clawhub.ai/skills/expanso-tls-inspect"
----
+# tls-inspect
 
-# Expanso tls-inspect
+Inspect TLS certificate (expiry, SANs, chain, cipher)
 
-> Inspect TLS certificates for expiry, SANs, chain validity, and cipher details using Expanso Edge pipelines.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-tls-inspect`
-- **Source URL:** [https://clawhub.ai/skills/expanso-tls-inspect](https://clawhub.ai/skills/expanso-tls-inspect)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-tls-inspect
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/tls-inspect/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

@@ -1,35 +1,18 @@
----
-name: "Togetherai Tts"
-description: "Convert text to speech using the TogetherAI API with the MiniMax speech-2.6-turbo model and save audio in mp3 format."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/togetherai-tts"
-sourceUrl: "https://clawhub.ai/skills/togetherai-tts"
----
+# TogetherAI TTS
 
-# Togetherai Tts
+Text-to-speech using TogetherAI API with MiniMax speech-2.6-turbo model.
 
-> Convert text to speech using the TogetherAI API with the MiniMax speech-2.6-turbo model and save audio in mp3 format.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/togetherai-tts`
-- **Source URL:** [https://clawhub.ai/skills/togetherai-tts](https://clawhub.ai/skills/togetherai-tts)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/togetherai-tts
+cd /home/marc/clawd/skills/togetherai_tts
+node index.js "your text here" output.mp3
 ```
+
+## Configuration
+
+Set these in `.env`:
+- `TOGETHERAI_API_KEY`: Your TogetherAI API key
+- `TOGETHERAI_MODEL`: Model to use (default: minimax/speech-2.6-turbo)
+- `TTS_FORMAT`: Output format (default: mp3)
+- `TTS_VOICE`: Voice to use (default: default)

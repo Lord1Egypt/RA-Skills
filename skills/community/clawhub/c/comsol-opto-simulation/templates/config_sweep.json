@@ -1,0 +1,30 @@
+﻿{
+  "simulation_type": "parameter_sweep",
+  "name": "generic_parameter_sweep_template",
+  "description": "Topic-neutral sweep template. Configure a base JSON file, target parameter paths, ranges, and validation metrics before running.",
+  "requires_configuration": true,
+  "base_config_path": "<CONFIGURE_BASE_CONFIG_JSON>",
+  "sweep_parameters": [
+    {
+      "name": "<CONFIGURE_JSON_PATH_TO_PARAMETER_1>",
+      "description": "<CONFIGURE_PARAMETER_1_DESCRIPTION>",
+      "mode": "<CONFIGURE_lin_log_list>",
+      "start": "<CONFIGURE_START_VALUE>",
+      "stop": "<CONFIGURE_STOP_VALUE>",
+      "points": "<CONFIGURE_POINT_COUNT>"
+    },
+    {
+      "name": "<CONFIGURE_JSON_PATH_TO_PARAMETER_2>",
+      "description": "<CONFIGURE_PARAMETER_2_DESCRIPTION>",
+      "mode": "<CONFIGURE_lin_log_list>",
+      "values": "<CONFIGURE_VALUE_LIST_IF_USING_LIST_MODE>"
+    }
+  ],
+  "parallel": "<CONFIGURE_TRUE_FALSE>",
+  "max_workers": "<CONFIGURE_MAX_WORKERS>",
+  "output_dir": "output/sweep_configured_project",
+  "resume": true,
+  "extract_metrics": "<CONFIGURE_TRUE_FALSE>",
+  "generate_summary_plots": "<CONFIGURE_TRUE_FALSE>",
+  "verbose": true
+}

@@ -1,35 +1,101 @@
 ---
-name: "Video Script Writer"
-description: "短视频脚本生成、分镜设计、口播稿撰写、爆款公式套用。适合短视频创作者、MCN、品牌方。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-script-writer"
-sourceUrl: "https://clawhub.ai/skills/video-script-writer"
+name: video-script-writer
+version: 1.0.0
+description: 短视频脚本生成、分镜设计、口播稿撰写、爆款公式套用。适合短视频创作者、MCN、品牌方。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎬",
+        "requires": { "bins": ["node"] },
+        "install": [],
+      },
+  }
 ---
 
-# Video Script Writer
+# 视频脚本生成技能
 
-> 短视频脚本生成、分镜设计、口播稿撰写、爆款公式套用。适合短视频创作者、MCN、品牌方。
+AI 驱动的短视频脚本创作工具，生成抖音、快手、视频号、B 站等平台的爆款脚本。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-script-writer`
-- **Source URL:** [https://clawhub.ai/skills/video-script-writer](https://clawhub.ai/skills/video-script-writer)
+## 功能
 
-## Overview
+1. **脚本生成**: 根据主题生成完整脚本（含分镜）
+2. **口播稿撰写**: 生成自然流畅的口播文案
+3. **分镜设计**: 详细的画面描述和拍摄指导
+4. **爆款套用**: 基于热门视频公式生成内容
+5. **平台适配**: 适配不同平台的风格和时长
+6. **优化建议**: 分析脚本并提供改进方案
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-script-writer
 ```
+帮我写一个 30 秒的抖音口播稿，主题是护肤技巧
+```
+
+```
+生成一个带货视频脚本，卖点是：天然成分、敏感肌可用
+```
+
+```
+把这个文案改写成视频脚本：[粘贴文案]
+```
+
+```
+帮我设计分镜，主题是：办公室零食推荐
+```
+
+## 输出示例
+
+```
+🎬 视频脚本
+
+📋 基础信息：
+├─ 平台：抖音
+├─ 时长：30 秒
+├─ 类型：口播 + 展示
+└─ 主题：护肤技巧
+
+📝 完整脚本：
+
+【0-3 秒】hook（吸引注意）
+画面：素颜 close-up，皮肤状态差
+口播："25 岁后皮肤断崖式下跌？这 3 个习惯害了你！"
+字幕：⚠️ 90% 的人都在犯
+
+【3-10 秒】痛点放大
+画面：快速切换熬夜、不卸妆、乱用产品
+口播："熬夜刷手机、带妆睡觉、跟风买产品..."
+字幕：❌ 别再这样了！
+
+【10-25 秒】解决方案
+画面：展示正确护肤步骤 + 产品
+口播："其实只要做好这 3 步，皮肤就能救回来..."
+字幕：✅ 正确做法
+
+【25-30 秒】CTA
+画面：产品特写 + 优惠信息
+口播："点击链接，领取新人专属优惠！"
+字幕：🎁 限时福利
+
+🎯 拍摄建议：
+- 光线：自然光或柔光灯
+- 背景：简洁干净
+- 语速：稍快，保持节奏感
+- BGM：轻快、有节奏感
+
+💡 优化建议：
+- 前 3 秒加入更有冲击力的画面
+- 加入对比效果增强说服力
+- CTA 更明确，加入紧迫感
+```
+
+## 变现模式
+
+- 免费：每日 3 个脚本
+- 付费 (¥59/月)：无限脚本 + 多平台适配 + 分镜设计
+- 付费 (¥119/月)：+ 爆款公式库 + 定制模板 + 批量生成
+
+---
+
+**声明**: 脚本效果因内容和执行而异，建议测试优化。

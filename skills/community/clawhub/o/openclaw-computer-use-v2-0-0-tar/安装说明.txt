@@ -1,0 +1,117 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║     🖥️ OpenClaw Computer Use Pro v2.0                            ║
+║        让 OpenClaw 像人类一样使用电脑 - 增强版                    ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📦 版本信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+版本: 2.0.0 Pro
+更新日期: 2026-03-29
+新增功能: 增强API、图片识别、进度显示、批量操作
+
+📦 安装步骤
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣ 安装系统依赖
+   ┌─────────────────────────────────────────────────────────┐
+   │ Ubuntu/Debian:                                          │
+   │ sudo apt-get install -y scrot xdotool wmctrl xclip ffmpeg│
+   │                                                         │
+   │ macOS:                                                  │
+   │ brew install imagemagick cliclick ffmpeg                │
+   └─────────────────────────────────────────────────────────┘
+
+2️⃣ 复制技能到 OpenClaw 目录
+   mkdir -p ~/.openclaw/workspace/skills/
+   cp -r openclaw-computer-use-v2.0.0 \
+         ~/.openclaw/workspace/skills/openclaw-computer-use
+
+3️⃣ 设置权限
+   chmod +x ~/.openclaw/workspace/skills/openclaw-computer-use/*.sh
+
+4️⃣ 运行测试
+   cd ~/.openclaw/workspace/skills/openclaw-computer-use
+   ./test.sh
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 快速开始
+
+# 基础版截图
+computer-screenshot --full
+
+# 增强版 Python API
+python3 -c "
+from computer_use_pro import Screenshot, Mouse, Keyboard
+
+# 延迟3秒后截图
+s = Screenshot()
+s.full_screen(delay=3)
+
+# 平滑移动鼠标
+m = Mouse()
+m.move(500, 300, duration=0.5)
+m.click()
+
+# 输入文字
+k = Keyboard()
+k.type('Hello World', interval=0.01)
+"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ v2.0 新增功能
+
+📸 Screenshot Pro
+   • 延迟截图 (delay参数)
+   • 交互式区域选择
+   • 剪贴板截图保存
+   • 截图历史记录
+
+🖱️ Mouse Pro
+   • 平滑移动动画
+   • 图片位置识别 (move_to_image)
+   • 水平滚动支持
+   • 移动历史记录
+
+⌨️ Keyboard Pro
+   • 打字速度控制
+   • 按键按住/释放
+   • 常用快捷键封装 (copy/paste/save)
+
+🚀 Application Pro
+   • 等待窗口出现
+   • 窗口最小化/最大化
+   • 智能窗口查找
+
+📁 FileManager Pro
+   • 详细文件信息
+   • 复制进度显示
+   • 批量重命名
+   • 人性化大小显示
+
+⚙️ SystemMonitor Pro
+   • 完整系统信息
+   • 进程详细信息
+   • 强制结束进程
+
+🎥 Recorder (新增)
+   • 屏幕录制
+   • 区域录制
+   • 开始/停止控制
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 文档
+
+• SKILL.md - 完整使用文档
+• computer_use.py - 基础版 Python API
+• computer_use_pro.py - 增强版 Python API ⭐
+• test.sh - 自动化测试脚本
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+作者: OpenClaw Community
+版本: 2.0.0 Pro

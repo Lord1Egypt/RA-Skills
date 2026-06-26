@@ -1,0 +1,36 @@
+# SafeHub Semgrep rules: outbound network calls
+# Detects fetch, axios, http, requests and similar patterns that could exfiltrate data.
+# Severity: HIGH — skills that make network calls without declaring network permission
+# or that call unknown endpoints may be exfiltrating user data.
+
+rules:
+  - id: safehub-network-fetch
+    message: "Outbound fetch() call detected. May send data to external servers."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern: fetch(...)
+
+  - id: safehub-network-axios
+    message: "Outbound axios/HTTP call detected. May exfiltrate data."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: axios.(get|post|put|delete|request)(...)
+      - pattern: require("axios")(...)
+      - pattern: require('axios')(...)
+
+  - id: safehub-network-http-require
+    message: "HTTP/HTTPS module use detected. May perform outbound requests."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: require("http")
+      - pattern: require("https")
+      - pattern: require('http')
+      - pattern: require('https')

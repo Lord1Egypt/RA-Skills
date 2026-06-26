@@ -1,35 +1,57 @@
 ---
-name: "Stock Financial Analysis"
-description: "专业的股票金融分析技能。当用户需要寻找短线交易机会、分析股票筹码分布、获取买入卖出信号、分析上证指数筹码变化、进行上市公司基本面分析、研究主营业务、行业发展、竞争环境、财务分析、估值分析，或提供上市公司财务报告要求综合分析时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-financial-analysis-quant"
-sourceUrl: "https://clawhub.ai/skills/stock-financial-analysis-quant"
+name: stock-financial-analysis
+version: 1.0.0
+description: 专业的股票金融分析技能。当用户需要寻找短线交易机会、分析股票筹码分布、获取买入卖出信号、分析上证指数筹码变化、进行上市公司基本面分析、研究主营业务、行业发展、竞争环境、财务分析、估值分析，或提供上市公司财务报告要求综合分析时使用此技能。
 ---
 
-# Stock Financial Analysis
+# 股票金融分析
 
-> 专业的股票金融分析技能。当用户需要寻找短线交易机会、分析股票筹码分布、获取买入卖出信号、分析上证指数筹码变化、进行上市公司基本面分析、研究主营业务、行业发展、竞争环境、财务分析、估值分析，或提供上市公司财务报告要求综合分析时使用此技能。
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-financial-analysis-quant`
-- **Source URL:** [https://clawhub.ai/skills/stock-financial-analysis-quant](https://clawhub.ai/skills/stock-financial-analysis-quant)
+本技能提供专业的股票金融分析服务，涵盖短线交易机会识别和上市公司基本面分析两大核心领域。
 
-## Overview
+## 核心功能
 
+### 短线交易分析
+- 捕捉市场短线投资机会
+- 分析上证指数及个股筹码分布
+- 提供买入卖出信号参考
+- 技术形态分析与趋势判断
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-financial-analysis-quant
-```
+### 基本面分析
+- 上市公司主营业务分析
+- 行业发展前景研究
+- 竞争环境与市场份额评估
+- 财务报表深度分析
+- 企业估值分析
+
+## 使用场景
+
+当用户提出以下需求时触发本技能：
+
+1. **"帮我分析XXX股票的短线机会"**
+2. **"这只股票现在可以买吗"**
+3. **"分析一下上证指数的筹码分布"**
+4. **"帮我研究XXX公司的基本面"**
+5. **"这份年报的数据怎么样"**
+6. **"这只股票估值合理吗"**
+7. **"分析一下这个行业的发展趋势"**
+
+## 工作流程
+
+1. **接收需求** - 理解用户的分析目标
+2. **数据收集** - 获取相关股票信息和财务数据
+3. **分析执行** - 根据需求进行技术面或基本面分析
+4. **结论输出** - 提供专业的分析报告和投资建议
+
+## 输出格式
+
+- 短线分析：技术指标、支撑阻力位、买卖信号
+- 基本面分析：财务指标、估值模型、行业对比
+- 综合报告：结构化的分析文档
+
+## 注意事项
+
+- 本技能仅提供分析参考，不构成投资建议
+- 投资决策需谨慎，请结合自身风险承受能力
+- 分析结果仅供参考，市场有风险，投资需谨慎

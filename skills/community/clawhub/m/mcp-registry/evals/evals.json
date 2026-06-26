@@ -1,0 +1,60 @@
+{
+  "skill_name": "mcp-registry",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Find me some MCP servers for working with PostgreSQL databases.",
+      "expected_output": "A list of postgres-related MCP servers from the official registry, each showing the server name, description, package identifier, and install command (npx/uvx/docker). Results should come from a real registry API call, not invented.",
+      "assertions": [
+        "At least one server result is shown",
+        "Each result includes a package identifier or install command",
+        "The response clearly indicates results came from the MCP Registry API",
+        "The response does not invent server names that weren't in the API response"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "What are the setup requirements for the official filesystem MCP server? I need to know what environment variables it needs and how to install it.",
+      "expected_output": "Details fetched from the MCP Registry for the filesystem server, including: the package identifier, install method (command + args), and a list of environment variables with their descriptions and whether they're required.",
+      "assertions": [
+        "Install command and package identifier are shown",
+        "Environment variables are listed (or it's stated that none are required)",
+        "The data comes from a real registry API call to the versions endpoint",
+        "Server name is URL-encoded correctly in the API request (uses %2F not /)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Give me the Claude Desktop config JSON for the GitHub MCP server so I can add it to my claude_desktop_config.json.",
+      "expected_output": "A valid JSON snippet in the mcpServers format for claude_desktop_config.json, with the command/args populated from real registry data for the GitHub MCP server. Required environment variables (like a GitHub token) should be shown as placeholder values with their descriptions.",
+      "assertions": [
+        "Output contains valid JSON with a mcpServers key",
+        "The command and args are derived from real registry package data",
+        "Required environment variables appear in the env block",
+        "Secret env vars are shown as placeholder strings, not real values"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "What are the most popular MCP servers right now? Show me the top 10 by GitHub stars.",
+      "expected_output": "A ranked list of MCP servers sorted by GitHub stars, fetched from the MCPCentral API (mcpcentral.io/api/servers). Each entry should show the server name, star count, and a brief description.",
+      "assertions": [
+        "Results come from the MCPCentral API, not the official registry search",
+        "At least 5 servers are shown",
+        "Star counts are displayed for each server",
+        "Servers appear to be ordered by stars descending"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I want Claude to be able to send and read emails. Are there any MCP servers that could help with that?",
+      "expected_output": "Multiple search queries run against the official registry with different keywords (e.g., 'email', 'gmail', 'mail', 'smtp'). Results are synthesized and presented as AI recommendations — clearly labeled as the model's interpretation, not a direct API 'recommend' endpoint.",
+      "assertions": [
+        "Multiple keyword searches are attempted (not just one)",
+        "The response labels recommendations as AI-synthesized, not from an API",
+        "Each recommended server includes a source name and description from real registry data",
+        "If no strong matches are found, fallback strategies are attempted (shorter keywords, alternative terms)"
+      ]
+    }
+  ]
+}

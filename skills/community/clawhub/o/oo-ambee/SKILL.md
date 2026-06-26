@@ -1,35 +1,82 @@
 ---
-name: "Ambee"
-description: "Ambee (getambee.com). Use this skill for ANY Ambee request — searching and reading data. Whenever a task involves Ambee, use this skill instead of calling th..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-ambee"
-sourceUrl: "https://clawhub.ai/skills/oo-ambee"
+name: oo-ambee
+description: "Ambee (getambee.com). Use this skill for ANY Ambee request — searching and reading data. Whenever a task involves Ambee, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Ambee"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["ambee"]
+  icon: "https://static.oomol.com/logo/third-party/Ambee.svg"
 ---
 
 # Ambee
 
-> Ambee (getambee.com). Use this skill for ANY Ambee request — searching and reading data. Whenever a task involves Ambee, use this skill instead of calling th...
+Operate **Ambee** through your OOMOL-connected account. This skill calls the `ambee` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-ambee`
-- **Source URL:** [https://clawhub.ai/skills/oo-ambee](https://clawhub.ai/skills/oo-ambee)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Ambee. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-ambee
+oo connector schema "ambee" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "ambee" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `geocode_by_place` — Convert a place name or address into latitude and longitude with Ambee.
+- `get_air_quality_by_lat_lng` — Get the latest air quality station readings for one coordinate from Ambee.
+- `get_air_quality_forecast_by_lat_lng` — Get the air quality forecast for one coordinate from Ambee.
+- `get_air_quality_history_by_lat_lng` — Get historical air quality readings for one coordinate from Ambee.
+- `reverse_geocode_by_lat_lng` — Convert latitude and longitude into location details with Ambee.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Ambee state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Ambee is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=ambee
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Ambee homepage: https://www.getambee.com

@@ -1,0 +1,19 @@
+name: smart-auto-note
+version: 2.0.0
+primaryEnv: node
+install: []
+requires:
+  system:
+    - node
+    - openclaw
+  tools:
+    - filesystem
+    - message.send # 🔥 保留这个，这是官方推送通道
+
+# 🔥 新增：OpenClaw 内置 Cron 定时触发器
+triggers:
+  - type: cron
+    expression: "0 * * * *"  # 每分钟第0秒执行一次
+    handler: onCronTick       # 对应 index.js 里的函数名
+
+entry: index.js

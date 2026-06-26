@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "company": "{{company_name}}",
+  "last_updated": "2026-01-01",
+  "categories": [
+    {
+      "id": "cat-001",
+      "name": "{{product_category_1}}",
+      "products": [
+        {
+          "id": "prod-001",
+          "name": "Example Product A",
+          "model": "EPA-100",
+          "description": "High-performance industrial equipment",
+          "specs": {
+            "capacity": "100 units/hr",
+            "power": "220V/380V",
+            "weight": "500kg",
+            "dimensions": "2000x1500x1800mm"
+          },
+          "moq": 1,
+          "lead_time_days": 30,
+          "certifications": ["CE", "ISO 9001"],
+          "target_markets": ["Middle East", "Southeast Asia", "Africa"]
+        },
+        {
+          "id": "prod-002",
+          "name": "Example Product B",
+          "model": "EPB-200",
+          "description": "Compact model for small operations",
+          "specs": {
+            "capacity": "50 units/hr",
+            "power": "220V",
+            "weight": "200kg",
+            "dimensions": "1500x1000x1200mm"
+          },
+          "moq": 2,
+          "lead_time_days": 21,
+          "certifications": ["CE"],
+          "target_markets": ["Latin America", "Africa"]
+        }
+      ]
+    },
+    {
+      "id": "cat-002",
+      "name": "{{product_category_2}}",
+      "products": [
+        {
+          "id": "prod-003",
+          "name": "Spare Part Kit",
+          "model": "SPK-001",
+          "description": "Standard maintenance kit",
+          "specs": {
+            "contents": "Wear parts, filters, gaskets, seals",
+            "compatibility": "EPA-100, EPB-200"
+          },
+          "moq": 5,
+          "lead_time_days": 7,
+          "certifications": [],
+          "target_markets": ["Middle East", "Southeast Asia", "Africa", "Latin America"]
+        }
+      ]
+    }
+  ],
+  "pricing_notes": "All prices are FOB. Contact sales for CIF/DDP quotes.",
+  "payment_terms": ["T/T 30% deposit + 70% before shipment", "L/C at sight", "Western Union (small orders)"]
+}

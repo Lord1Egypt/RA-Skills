@@ -1,35 +1,94 @@
 ---
-name: "Gold Monitor CN 黄金监控"
-description: "A股黄金生态链监控工具 - 国内黄金ETF（159937/518880等）、上海金交所AU9999现货、国际COMEX黄金期货、美元指数、人民币汇率USD/CNY、A股黄金矿业股（赤峰/山东/中金等）全链路监控。区别于其他黄金技能，独占黄金ETF和矿业股联动分析，适合中国投资者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gold-monitor-cn"
-sourceUrl: "https://clawhub.ai/skills/gold-monitor-cn"
+name: gold-monitor-cn
+description: A股黄金生态链监控工具 - 国内黄金ETF（159937/518880等）、上海金交所AU9999现货、国际COMEX黄金期货、美元指数、人民币汇率USD/CNY、A股黄金矿业股（赤峰/山东/中金等）全链路监控。区别于其他黄金技能，独占黄金ETF和矿业股联动分析，适合中国投资者。
+metadata: {"clawhub":{"slug":"gold-monitor-cn"},"clawdbot":{"emoji":"🥇","requires":{"bins":["python3"]}}}
 ---
 
-# Gold Monitor CN 黄金监控
+# Gold Monitor - 黄金价格监控工具
 
-> A股黄金生态链监控工具 - 国内黄金ETF（159937/518880等）、上海金交所AU9999现货、国际COMEX黄金期货、美元指数、人民币汇率USD/CNY、A股黄金矿业股（赤峰/山东/中金等）全链路监控。区别于其他黄金技能，独占黄金ETF和矿业股联动分析，适合中国投资者。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gold-monitor-cn`
-- **Source URL:** [https://clawhub.ai/skills/gold-monitor-cn](https://clawhub.ai/skills/gold-monitor-cn)
+实时监控国内外黄金价格及相关指标，辅助判断黄金ETF走势。
 
-## Overview
+## 快速查询（直接运行脚本）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gold-monitor-cn
+python3 {技能目录}/scripts/gold_monitor.py
 ```
+
+## 监控指标一览
+
+| 指标 | 说明 | 重要性 |
+|------|------|--------|
+| 国内黄金ETF | 159937/159934/518880等 | ⭐⭐⭐ 直接跟踪 |
+| AU9999现货价 | 上海金交所基准价 | ⭐⭐⭐ 现货基准 |
+| COMEX黄金期货 | GC00Y主力合约 | ⭐⭐⭐ 国际基准 |
+| 美元指数 DXY | 与黄金负相关极强 | ⭐⭐⭐ 领先指标 |
+| USD/CNY | 汇率影响国内金价 | ⭐⭐ 汇率传导 |
+| 黄金矿业股 | 赤峰/山东/中金等 | ⭐⭐ 产业联动 |
+
+## 关键指标解读
+
+### 核心信号（最重要）
+
+1. **美元指数走弱** → 黄金多头信号（负相关约-0.8）
+2. **COMEX黄金期货上涨** → 国际金价方向确认
+3. **黄金矿业股大涨** → 产业资本提前布局，领先信号
+4. **黄金ETF成交量放大** → 资金大幅入场
+
+### 次要信号
+
+5. **人民币贬值（USD/CNY上涨）** → 国内金价被动抬高
+6. **黄金ETF出现溢价** → 短期情绪过热，回调风险
+7. **央行增持黄金储备** → 长期利好信号
+
+## 指标联动逻辑
+
+```
+国际金价(美元) → 汇率换算 → 国内金价 → 黄金ETF
+     ↑              ↓
+  美元指数        人民币汇率
+     ↓              ↑
+  实际利率/通胀预期
+```
+
+## 使用场景
+
+**日常监控（运行脚本）：**
+```bash
+python3 skills/gold-monitor/scripts/gold_monitor.py
+```
+
+**分析解读：**
+- 黄金ETF近期走势如何？
+- 现在适合买黄金ETF吗？（结合多指标判断）
+- 国内外金价差多少？
+
+## 脚本输出示例
+
+```
+============================================================
+🥇 黄金指标监控面板
+更新时间: 2026-03-30 00:15:00
+============================================================
+
+📊 【国内黄金ETF】
+    代码        名称   最新价  涨跌幅
+159937   黄金ETF博时  9.476  +0.52%
+159934  黄金ETF易方达  9.922  +0.52%
+
+📊 【COMEX黄金期货】
+COMEX黄金(GC00Y)  $4489.7/盎司  +2.59%
+
+📊 【美元指数】
+UDI  美元指数  100.19  +0.24%
+
+📊 【A股黄金矿业股】
+赤峰黄金  39.80  +6.70%（产业联动领先信号）
+```
+
+## 注意事项
+
+1. **数据延迟**：akshare数据有延迟，以实际行情为准
+2. **非投资建议**：数据仅供参考，不构成投资建议
+3. **多指标共振**：单一指标易失真，多指标共振更可靠

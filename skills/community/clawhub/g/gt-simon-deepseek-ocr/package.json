@@ -1,0 +1,10 @@
+{
+  "name": "GT-Simon-deepseek-ocr",
+  "version": "0.1.1",
+  "private": true,
+  "description": "OCR skill powered by DeepSeek OCR",
+  "type": "module",
+  "bin": {
+    "GT-simon-deepseek-ocr": "scripts/index.js"
+  }
+}

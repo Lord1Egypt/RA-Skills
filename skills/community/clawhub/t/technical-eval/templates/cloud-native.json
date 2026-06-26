@@ -1,0 +1,93 @@
+{
+  "template_name": "cloud-native",
+  "description": "云原生技术栈评估模板",
+  "evaluation_dimensions": {
+    "容器化支持": {
+      "weight": 0.15,
+      "metrics": {
+        "Docker兼容性": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "Kubernetes集成度": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "Helm Chart可用性": {"type": "binary", "options": ["yes", "no"]}
+      }
+    },
+    "微服务架构": {
+      "weight": 0.20,
+      "metrics": {
+        "服务发现支持": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "负载均衡能力": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "熔断降级机制": {"type": "quantitative", "unit": "score", "range": [1, 5]}
+      }
+    },
+    "可观测性": {
+      "weight": 0.15,
+      "metrics": {
+        "Metrics支持": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "Logging集成": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "Tracing支持": {"type": "quantitative", "unit": "score", "range": [1, 5]}
+      }
+    },
+    "CI/CD集成": {
+      "weight": 0.10,
+      "metrics": {
+        "GitOps支持": {"type": "binary", "options": ["yes", "no"]},
+        "自动化部署": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "回滚机制": {"type": "quantitative", "unit": "score", "range": [1, 5]}
+      }
+    },
+    "安全性": {
+      "weight": 0.15,
+      "metrics": {
+        "网络策略支持": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "身份认证集成": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "漏洞扫描集成": {"type": "binary", "options": ["yes", "no"]}
+      }
+    },
+    "社区活跃度": {
+      "weight": 0.10,
+      "metrics": {
+        "GitHub Stars": {"type": "quantitative", "unit": "count", "confidence_interval": 0.95},
+        "月度提交数": {"type": "quantitative", "unit": "count", "confidence_interval": 0.95},
+        "Issue响应时间": {"type": "quantitative", "unit": "hours", "confidence_interval": 0.95}
+      }
+    },
+    "企业采用率": {
+      "weight": 0.15,
+      "metrics": {
+        "Fortune 500采用": {"type": "quantitative", "unit": "percentage", "range": [0, 100]},
+        "云厂商支持": {"type": "quantitative", "unit": "score", "range": [1, 5]},
+        "生产环境稳定性": {"type": "quantitative", "unit": "uptime_percentage", "range": [0, 100]}
+      }
+    }
+  },
+  "data_sources": {
+    "primary": [
+      "github.com",
+      "stackoverflow.com",
+      "cncf.io",
+      "kubernetes.io",
+      "docker.com"
+    ],
+    "secondary": [
+      "medium.com",
+      "dev.to",
+      "techcrunch.com",
+      "linkedin.com/jobs"
+    ]
+  },
+  "maturity_model": {
+    "dimensions": ["社区活跃度", "企业采用率", "文档完整性", "安全更新频率", "向后兼容性"],
+    "scale": [1, 5]
+  },
+  "poc_criteria": {
+    "go_threshold": {
+      "overall_score": 4.0,
+      "critical_dimensions_min": 3.5,
+      "community_activity_min": 100
+    },
+    "no_go_threshold": {
+      "security_issues_critical": true,
+      "overall_score_max": 2.5,
+      "community_inactive_months": 6
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "pearl-calc",
+  "version": "0.9.19",
+  "type": "module",
+  "dependencies": {
+    "@pearl-cash/client": "0.0.15"
+  }
+}

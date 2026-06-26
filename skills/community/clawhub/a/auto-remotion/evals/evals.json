@@ -1,0 +1,43 @@
+{
+  "skill_name": "auto-remotion",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "我有一段产品演示的录屏，大概 20 分钟，想把它做成官网的宣传片，大概 60 秒左右。请帮我规划一下怎么做。",
+      "expected_output": "应输出完整的分阶段规划：先明确约束（输入/输出/时长/核心价值），再建立结构化中间产物（剪辑执行稿、分镜表、编辑规格），最后才进入 Remotion 实现。包含项目结构建议、segment 划分思路、关键原则说明。",
+      "files": [],
+      "notes": "测试完整工作流：目标确认 → 中间产物 → Remotion 骨架 → 字幕 → 配音 → BGM → 渲染",
+      "assertions": [
+        {"id": "A1", "text": "提到了先明确目标与约束（输入/输出/时长）", "passed": false, "evidence": ""},
+        {"id": "A2", "text": "提到了建立结构化中间产物（剪辑执行稿/分镜表/编辑规格）", "passed": false, "evidence": ""},
+        {"id": "A3", "text": "提到了 Remotion 项目结构约定（public/ 放素材，staticFile 引用）", "passed": false, "evidence": ""},
+        {"id": "A4", "text": "提到了 Sequence 嵌套时长管理原则", "passed": false, "evidence": ""},
+        {"id": "A5", "text": "提到了字幕轨、edge-tts 配音、BGM 的顺序", "passed": false, "evidence": ""}
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "我用 Remotion 做视频，已经有了一个 composition，但旁白配音总是和字幕对不上，声音比字幕快了几秒。请问我应该怎么解决这个问题？",
+      "expected_output": "应识别出核心问题：TTS 自然语速与目标帧时长不匹配。应给出解决方案：每段配音后测量实际时长，用 anullsrc 静音填充对齐目标帧时长。提供 edge-tts + ffmpeg 的具体实施步骤和代码示例。",
+      "files": [],
+      "notes": "测试子任务处理：从字幕/配音错位问题出发，提供 edge-tts 静音填充方案",
+      "assertions": [
+        {"id": "B1", "text": "识别出核心问题是 TTS 自然语速与目标帧时长不匹配", "passed": false, "evidence": ""},
+        {"id": "B2", "text": "给出了静音填充方案（anullsrc 或类似方案）", "passed": false, "evidence": ""},
+        {"id": "B3", "text": "提供了 edge-tts + ffmpeg 的具体实施步骤", "passed": false, "evidence": ""},
+        {"id": "B4", "text": "提到了测量实际配音时长 vs 目标帧时长的方法", "passed": false, "evidence": ""}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我有一些技术文档，想把它们转成演示视频，每页幻灯片自动生成配音和字幕。请问我应该怎么做？",
+      "expected_output": "应判断这不是本 skill 的目标场景。本 skill 专注于'从已有录屏/产品演示视频'生成宣传片，而不是从文字/幻灯片生成视频。",
+      "files": [],
+      "notes": "测试 should-not-trigger：文字转视频 ≠ 录屏转宣传片",
+      "assertions": [
+        {"id": "C1", "text": "判断出这不是本 skill 的适用场景（文字/幻灯片 ≠ 录屏视频）", "passed": false, "evidence": ""},
+        {"id": "C2", "text": "给出了替代方案建议（如先从文档生成录屏，再走本工作流）", "passed": false, "evidence": ""}
+      ]
+    }
+  ]
+}

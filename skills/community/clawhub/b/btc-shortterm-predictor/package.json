@@ -1,0 +1,18 @@
+{
+  "name": "btc-shortterm-predictor",
+  "version": "1.0.0",
+  "description": "BTC 15分钟短线预测 - 技术指标分析",
+  "main": "scripts/predict.js",
+  "scripts": {
+    "predict": "node scripts/predict.js"
+  },
+  "keywords": [
+    "bitcoin",
+    "btc",
+    "prediction",
+    "trading",
+    "skillpay"
+  ],
+  "author": "小白",
+  "license": "MIT"
+}

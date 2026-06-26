@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Videos"
+  short_description: "Search Google Videos"
+  default_prompt: "Use $dataify-google-videos to run a search query."

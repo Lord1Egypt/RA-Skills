@@ -1,35 +1,60 @@
 ---
-name: "ContextKeeper"
-description: "ContextKeeper — Safe project state tracking for AI agents. Manual checkpoint creation with validated inputs. No background processes, no PID manipulation, no..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, ai, checkpoint, context, foreground-only, git, manual, memory, no-background, no-pid, project-state, projects, resume, safe, security, state, tracking, workflow, bugfix, contextkeeper, continuation, dashboard, intent, productivity, rce-patch, security-verified]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/contextkeeper"
-sourceUrl: "https://clawhub.ai/skills/contextkeeper"
+name: contextkeeper
+description: ContextKeeper — Safe project state tracking for AI agents. Manual checkpoint creation with validated inputs. No background processes, no PID manipulation, no command execution.
+metadata:
+  openclaw:
+    requires:
+      bins: []
+    install: []
 ---
 
-# ContextKeeper
+# ContextKeeper 🔮
 
-> ContextKeeper — Safe project state tracking for AI agents. Manual checkpoint creation with validated inputs. No background processes, no PID manipulation, no...
+> Safe project state tracking for AI agents
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/contextkeeper`
-- **Source URL:** [https://clawhub.ai/skills/contextkeeper](https://clawhub.ai/skills/contextkeeper)
+Keeps track of what you're working on across sessions. Create checkpoints manually, view status in dashboard.
 
-## Overview
+---
 
+## Security
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Risk | Mitigation |
+|------|------------|
+| Remote Code Execution | No command substitution with user data |
+| PID manipulation | No PID files, no process management |
+| Background processes | No watchers, no daemons |
+| Injection attacks | Input validated and escaped |
+
+---
+
+## Scripts
+
+Two simple foreground scripts:
+
+| Script | Purpose |
+|--------|---------|
+| `ckpt.sh` | Create checkpoint with message |
+| `dashboard.sh` | View project status |
+
+---
+
+## Usage
+
 ```bash
-hermes skills install clawhub/contextkeeper
+# Create checkpoint
+./ckpt.sh "Fixed auth issue"
+
+# View status
+./dashboard.sh
 ```
+
+---
+
+## Requirements
+
+- bash
+- git (for project detection)
+
+---
+
+**Part of:** [TheOrionAI](https://github.com/TheOrionAI)

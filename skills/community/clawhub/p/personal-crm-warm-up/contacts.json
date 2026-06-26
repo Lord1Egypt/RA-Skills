@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Sarah Chen",
+    "category": "Inner Circle",
+    "lastInteractionDate": "2026-02-10",
+    "lastTopic": "She was planning a move to Portland for a new design role",
+    "contactMethod": "text"
+  },
+  {
+    "name": "Marcus Rivera",
+    "category": "Professional",
+    "lastInteractionDate": "2025-11-20",
+    "lastTopic": "Discussed a potential collaboration on an open-source CLI tool",
+    "contactMethod": "email"
+  },
+  {
+    "name": "Jenna Okafor",
+    "category": "Friend",
+    "lastInteractionDate": "2026-03-01",
+    "lastTopic": "Talked about her upcoming marathon in Berlin",
+    "contactMethod": "text"
+  },
+  {
+    "name": "David Kim",
+    "category": "Casual",
+    "lastInteractionDate": "2025-10-05",
+    "lastTopic": "Ran into each other at a coffee shop, talked about sourdough baking",
+    "contactMethod": "text"
+  },
+  {
+    "name": "Priya Patel",
+    "category": "Professional",
+    "lastInteractionDate": "2026-01-15",
+    "lastTopic": "She shared feedback on a pitch deck for her startup idea",
+    "contactMethod": "email"
+  },
+  {
+    "name": "Alex Townsend",
+    "category": "Inner Circle",
+    "lastInteractionDate": "2026-04-01",
+    "lastTopic": "Weekly catch-up, talked about a new board game cafe downtown",
+    "contactMethod": "text"
+  },
+  {
+    "name": "Fatima Al-Rashid",
+    "category": "Friend",
+    "lastInteractionDate": "2025-12-25",
+    "lastTopic": "Holiday greetings and her plans to learn pottery",
+    "contactMethod": "text"
+  },
+  {
+    "name": "Leo Nguyen",
+    "category": "Casual",
+    "lastInteractionDate": "2025-09-14",
+    "lastTopic": "Met at a community hackathon, built a weather widget together",
+    "contactMethod": "email"
+  },
+  {
+    "name": "Rachel Montgomery",
+    "category": "Professional",
+    "lastInteractionDate": "2026-03-20",
+    "lastTopic": "Synced on Q2 OKRs for the cross-team initiative",
+    "contactMethod": "slack"
+  },
+  {
+    "name": "Ethan Brooks",
+    "category": "Inner Circle",
+    "lastInteractionDate": "2026-01-28",
+    "lastTopic": "He mentioned his band was recording their first EP",
+    "contactMethod": "text"
+  }
+]

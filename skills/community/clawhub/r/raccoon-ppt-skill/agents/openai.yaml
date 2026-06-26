@@ -1,0 +1,48 @@
+interface:
+  display_name: "Raccoon PPT"
+  short_description: "Generate PPT decks through ppt_jobs OpenAPI."
+  default_prompt: "Use $raccoon-ppt to create a PPT from my topic and return the final download link."
+
+policy:
+  allow_implicit_invocation: true
+
+instructions: |
+  When user wants to generate a PPT/slides/presentation:
+
+  1. Extract or ask for minimal required fields:
+     - prompt: what PPT to create
+     - role: speaker identity (max 10 chars)
+     - scene: usage scenario (max 10 chars)
+     - audience: target audience (max 10 chars)
+     - Note: API accepts any string value, not limited to predefined enums
+
+  2. Call `python3 scripts/main.py generate` (takes ~2-3 min to return, this is normal API behavior)
+
+  3. After creation, tell user: "任务已创建，预计 10-120 分钟完成，稍后可查看进度"
+
+  4. Periodically check progress with `check-job` or `list-jobs`, notify user when succeeded
+
+  5. Handle task status:
+     - succeeded: provide download_url to user
+     - waiting_user_input: ask user the question, then use find-recent-job + resume
+     - queued/running: task is processing
+     - failed: show error_message
+     - business error 600020: multiple tasks running, try later
+     - business error 600021: task not ready for reply
+
+  6. To continue a waiting_user_input task:
+     - First: `python3 scripts/main.py find-recent-job --statuses waiting_user_input`
+     - Then: `python3 scripts/main.py generate --prompt "<answer>" --resume-state <state_path>`
+
+  7. Never expose job_id, plan_id, outline to user
+
+  Examples:
+  - "帮我做一份 AI Agent 培训 PPT" → infer role/scene/audience, create task
+  - "继续刚才的 PPT，重点讲协作" → find-recent-job then resume
+
+examples:
+  - user: "帮我生成一份面向投资人的 AI 创业项目路演 PPT"
+    assistant: "调用 generate --prompt '...' --role '企业管理者（CEO/总监/经理）' --scene '商业提案' --audience '投资人'"
+
+  - user: "继续，重点讲多 Agent 协作"
+    assistant: "调用 generate --prompt '重点讲多 Agent 协作' --resume-state ./output/ppt_job_state.json"

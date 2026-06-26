@@ -1,35 +1,28 @@
 ---
-name: "OpenNexum TS"
-description: "Contract-driven multi-agent orchestration with ACP. TypeScript CLI for spawning and tracking coding agents via OpenClaw sessions_spawn."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opennexum-ts"
-sourceUrl: "https://clawhub.ai/skills/opennexum-ts"
+name: opennexum-ts
+version: 0.1.0
+description: Contract-driven multi-agent orchestration with ACP. TypeScript CLI for spawning and tracking coding agents via OpenClaw sessions_spawn.
+requires:
+  node: ">=20"
+  tools: [pnpm, openclaw]
 ---
 
 # OpenNexum TS
 
-> Contract-driven multi-agent orchestration with ACP. TypeScript CLI for spawning and tracking coding agents via OpenClaw sessions_spawn.
+Contract-driven coding agent orchestration via OpenClaw ACP.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opennexum-ts`
-- **Source URL:** [https://clawhub.ai/skills/opennexum-ts](https://clawhub.ai/skills/opennexum-ts)
+## When to use
+- Coordinating multiple AI coding agents on a project
+- Running generator/evaluator pairs with automatic retry
+- Tracking parallel ACP sessions with Telegram notifications
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opennexum-ts
-```
+## Quick Start
+1. `pnpm install && pnpm build`
+2. Set env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+3. `nexum init` — initialize project
+4. Create Contract YAML in docs/nexum/contracts/
+5. `nexum spawn <taskId>` — get spawn payload
+6. Call sessions_spawn with payload
+7. `nexum track <taskId> <sessionKey>` — record session
+8. `nexum eval <taskId>` + spawn evaluator
+9. `nexum complete <taskId> <verdict>` — process result

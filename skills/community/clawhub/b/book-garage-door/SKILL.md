@@ -1,35 +1,66 @@
 ---
-name: "Book Garage Door"
-description: "Book garage-door services through Lokuli MCP. Use when user needs to find and book garage-door. Triggers on requests like "book a garage-door", "find garage-door near me", or any garage-door service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-garage-door"
-sourceUrl: "https://clawhub.ai/skills/book-garage-door"
+name: book-garage-door
+description: Book garage-door services through Lokuli MCP. Use when user needs to find and book garage-door. Triggers on requests like "book a garage-door", "find garage-door near me", or any garage-door service request.
 ---
 
-# Book Garage Door
+# uook garage door
 
-> Book garage-door services through Lokuli MCP. Use when user needs to find and book garage-door. Triggers on requests like "book a garage-door", "find garage-door near me", or any garage-door service request.
+Book garage-door services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-garage-door`
-- **Source URL:** [https://clawhub.ai/skills/book-garage-door](https://clawhub.ai/skills/book-garage-door)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-garage-door
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "garage-door",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

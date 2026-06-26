@@ -1,0 +1,4 @@
+interface:
+  display_name: "龙虾数字人"
+  short_description: "通过平台 API 获取数字人与音色、训练资源并合成口播视频"
+  default_prompt: "Use $chanjing-openclaw to list public or owned avatars and voices, train assets, and synthesize talking-head videos through the platform API."

@@ -1,0 +1,242 @@
+:root {
+    /* 莫兰迪高级暗色系 */
+    --bg-main: #0f1215;
+    --bg-gradient: radial-gradient(circle at 20% 20%, #1c252e 0%, #0f1215 100%);
+    
+    /* 莫兰迪文字渐变色值 (青蓝 -> 灰紫) */
+    --text-gradient: linear-gradient(135deg, #a8dadc 0%, #b8c1ec 50%, #8e9aaf 100%);
+    
+    --text-primary: #f8f9fa;
+    --text-secondary: rgba(248, 249, 250, 0.5);
+    
+    /* 精细化组件颜色 */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.12);
+    
+    --padding-global: 100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-main);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+section {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-global);
+    scroll-snap-align: start;
+    position: relative;
+    gap: 3rem;
+    text-align: center;
+}
+
+/* 核心总则：突出文字全部采用渐变 */
+h1, .morandi-gradient {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    display: inline-block;
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+p {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    max-width: 850px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* 精细化卡片组 (Refined Cards) */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 3rem 2rem;
+    border-radius: 32px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.glass-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--glass-highlight);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.glass-card h3 {
+    font-size: 1.8rem;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 渐变标签云 (Gradient Tags) */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.tag {
+    padding: 10px 24px;
+    background: var(--glass-bg);
+    border: 1px solid transparent;
+    background-image: linear-gradient(var(--bg-main), var(--bg-main)), var(--text-gradient);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+.tag:hover {
+    transform: scale(1.1);
+}
+
+/* 空灵感导航点 (Ethereal Nav) */
+.nav-dots {
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 100;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+.dot::after {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.dot:hover {
+    border-color: #fff;
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: #fff;
+    border-color: #fff;
+    transform: scale(1.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.dot.active::after {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* 顶部渐变进度条 */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--text-gradient);
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
+/* 呼吸入场动效 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+        filter: blur(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+svg {
+    width: 72px;
+    height: 72px;
+    stroke: url(#grad1); /* 需要在 HTML 中定义 SVG 渐变，此处暂设为 currentColor */
+    stroke-width: 1.2;
+    fill: none;
+    margin-bottom: 1rem;
+}

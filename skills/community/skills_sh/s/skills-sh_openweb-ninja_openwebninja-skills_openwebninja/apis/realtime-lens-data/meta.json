@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-lens-data",
+  "portal_api_id": "realtime_lens_data",
+  "rapidapi_host": "real-time-lens-data.p.rapidapi.com",
+  "notes": "No pagination. Use 'limit' param to control total results (max 500).",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_lens_data.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-lens-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-lens-data"
+}

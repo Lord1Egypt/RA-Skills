@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Query Tool - 在线JSON查询</title>
+  <meta name="description" content="免费的在线JSON查询工具，支持路径查询、数组索引、通配符、类型过滤、表格输出。无须注册，直接使用。">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f6fa;
+      --surface: #ffffff;
+      --primary: #4f6ef7;
+      --primary-hover: #3a55d4;
+      --danger: #e53e3e;
+      --text: #1a202c;
+      --text-muted: #718096;
+      --border: #e2e8f0;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-icon {
+      width: 28px; height: 28px;
+      background: var(--primary);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 14px; font-weight: 900;
+    }
+
+    /* Ad banner */
+    .ad-banner {
+      background: #f0f0f0;
+      border: 1px dashed #ccc;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      color: #aaa; font-size: 12px;
+      min-height: 60px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .ad-mobile { display: none; }
+
+    /* Main container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+
+    /* Input section */
+    .input-section { margin-bottom: 16px; }
+    .section-label {
+      font-size: 13px; font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label .badge {
+      background: var(--primary); color: white;
+      font-size: 10px; padding: 1px 6px;
+      border-radius: 10px; font-weight: 600;
+    }
+
+    textarea {
+      width: 100%; min-height: 200px;
+      padding: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+      font-size: 13px; line-height: 1.5;
+      resize: vertical;
+      transition: border-color 0.2s;
+      background: var(--surface);
+    }
+    textarea:focus { outline: none; border-color: var(--primary); }
+    textarea.error { border-color: var(--danger); }
+
+    /* Query bar */
+    .query-bar {
+      display: flex; gap: 10px; margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .query-input-wrap {
+      flex: 1; min-width: 240px;
+      display: flex; align-items: center;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .query-input-wrap:focus-within { border-color: var(--primary); }
+    .query-prefix {
+      padding: 0 12px;
+      color: var(--text-muted);
+      font-family: monospace;
+      font-size: 15px;
+      white-space: nowrap;
+      user-select: none;
+    }
+    #queryInput {
+      flex: 1; border: none; outline: none;
+      padding: 11px 12px 11px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      background: transparent;
+    }
+    .format-tabs {
+      display: flex; align-items: center;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .format-tab {
+      padding: 8px 14px;
+      font-size: 12px; font-weight: 600;
+      cursor: pointer;
+      color: var(--text-muted);
+      border: none; background: none;
+      transition: all 0.2s;
+      border-right: 1px solid var(--border);
+    }
+    .format-tab:last-child { border-right: none; }
+    .format-tab.active {
+      background: var(--primary); color: white;
+    }
+    .btn {
+      padding: 10px 20px;
+      background: var(--primary); color: white;
+      border: none; border-radius: var(--radius);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--primary-hover); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { background: var(--bg); }
+    .btn-sm { padding: 6px 12px; font-size: 12px; }
+
+    /* Error / status bar */
+    .status-bar {
+      display: flex; align-items: center; gap: 8px;
+      min-height: 22px; margin-bottom: 12px;
+      font-size: 12px;
+    }
+    .status-bar.error { color: var(--danger); }
+    .status-bar.success { color: #38a169; }
+    .status-bar.info { color: var(--text-muted); }
+    .match-count {
+      background: #eef2ff; color: var(--primary);
+      padding: 1px 8px; border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* Results */
+    .result-panel {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .result-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      background: #fafafa;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .result-toolbar-left {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--text-muted);
+    }
+    .result-toolbar-right {
+      display: flex; gap: 6px;
+    }
+    .result-content {
+      padding: 0;
+      max-height: 500px;
+      overflow: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+    }
+
+    /* Table view */
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .result-table th {
+      background: #f4f6fa;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+      position: sticky; top: 0;
+    }
+    .result-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--border);
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .result-table tr:last-child td { border-bottom: none; }
+    .result-table tr:hover td { background: #f8f9ff; }
+    .result-table .null-cell { color: #a0aec0; font-style: italic; }
+    .result-table .bool-true { color: #38a169; font-weight: 600; }
+    .result-table .bool-false { color: #e53e3e; font-weight: 600; }
+    .result-table .num-cell { color: #3182ce; }
+    .result-table .str-cell { color: #2d3748; }
+
+    /* JSON tree view */
+    .json-tree {
+      padding: 14px;
+      line-height: 1.7;
+    }
+    .json-tree .jt-key { color: #805ad5; }
+    .json-tree .jt-str { color: #2d3748; }
+    .json-tree .jt-num { color: #3182ce; }
+    .json-tree .jt-bool { color: #38a169; font-weight: 600; }
+    .json-tree .jt-null { color: #a0aec0; font-style: italic; }
+    .json-tree .jt-bracket { color: var(--text-muted); }
+    .json-tree .jt-colon { color: var(--text-muted); }
+
+    /* Help section */
+    .help-section {
+      margin-top: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .help-header {
+      padding: 14px 20px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600; font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .help-content {
+      padding: 20px;
+      display: none;
+    }
+    .help-content.open { display: block; }
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .help-card {
+      background: #f8f9ff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+    .help-card-title {
+      font-family: monospace;
+      font-size: 13px; font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .help-card-desc { font-size: 12px; color: var(--text-muted); }
+    .help-card-example {
+      font-family: monospace; font-size: 11px;
+      background: #1a202c; color: #a3d99a;
+      padding: 6px 8px; border-radius: 4px;
+      margin-top: 6px;
+      overflow-x: auto;
+    }
+
+    /* Sample data buttons */
+    .sample-buttons {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .sample-btn {
+      padding: 4px 10px;
+      background: #eef2ff; color: var(--primary);
+      border: 1px solid #c3d0fa;
+      border-radius: 20px;
+      font-size: 11px; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sample-btn:hover { background: var(--primary); color: white; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: #1a202c; color: white;
+      padding: 10px 18px; border-radius: 8px;
+      font-size: 13px;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .footer a { color: var(--primary); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header-inner { padding: 0; }
+      .query-bar { flex-direction: column; }
+      .query-input-wrap { min-width: 100%; }
+      .format-tabs { width: 100%; justify-content: center; }
+      .btn { width: 100%; }
+      .result-table { font-size: 11px; }
+      .result-table th, .result-table td { padding: 5px 8px; }
+      .ad-desktop { display: none; }
+      .ad-mobile { display: flex; margin: 10px 0; }
+      .help-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">{}</div>
+      JSON Query Tool
+    </div>
+    <div style="font-size:12px;color:var(--text-muted);">在线 JSON 数据查询</div>
+  </div>
+</div>
+
+<!-- Ad Banner Top -->
+<div class="container">
+  <div class="ad-desktop ad-banner" id="adTop">
+    <!-- 百度广告联盟 / Google AdSense 占位 -->
+    <span>广告位 · 投放广告</span>
+  </div>
+  <div class="ad-mobile ad-banner">
+    <span>广告</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Sample Data Buttons -->
+  <div class="sample-buttons">
+    <button class="sample-btn" onclick="loadSample('store')">📚 书店数据</button>
+    <button class="sample-btn" onclick="loadSample('users')">👥 用户订单</button>
+    <button class="sample-btn" onclick="loadSample('api')">🔗 API 响应</button>
+    <button class="sample-btn" onclick="loadSample('nested')">🏢 深层嵌套</button>
+  </div>
+
+  <!-- JSON Input -->
+  <div class="input-section">
+    <div class="section-label">
+      <span>📋 JSON 数据</span>
+      <span class="badge">支持任意合法 JSON</span>
+    </div>
+    <textarea id="jsonInput" placeholder="粘贴你的 JSON 数据，例如：&#10;{&#10;  &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;age&quot;: 30&#10;}" spellcheck="false"></textarea>
+  </div>
+
+  <!-- Query Bar -->
+  <div class="query-bar">
+    <div class="query-input-wrap">
+      <span class="query-prefix">$</span>
+      <input type="text" id="queryInput" placeholder="store.book[*].author" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="format-tabs">
+      <button class="format-tab active" data-format="json" onclick="setFormat('json')">JSON</button>
+      <button class="format-tab" data-format="table" onclick="setFormat('table')">表格</button>
+      <button class="format-tab" data-format="raw" onclick="setFormat('raw')">原始</button>
+    </div>
+    <button class="btn" onclick="runQuery()">🔍 查询</button>
+    <button class="btn btn-outline btn-sm" onclick="clearAll()">清空</button>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar" id="statusBar"></div>
+
+  <!-- Result -->
+  <div class="result-panel">
+    <div class="result-toolbar">
+      <div class="result-toolbar-left">
+        <span>📊 查询结果</span>
+        <span class="match-count" id="matchCount"></span>
+      </div>
+      <div class="result-toolbar-right">
+        <button class="btn btn-outline btn-sm" onclick="copyResult()">📋 复制</button>
+        <button class="btn btn-outline btn-sm" onclick="expandAll()">展开全部</button>
+      </div>
+    </div>
+    <div class="result-content" id="resultContent">
+      <div style="padding:40px;text-align:center;color:var(--text-muted);font-size:13px;">
+        输入 JSON 数据并输入查询语句，结果将显示在这里
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad Banner Bottom -->
+  <div class="ad-banner" style="margin-top:24px;">
+    <span>广告位 · 底部横幅广告</span>
+  </div>
+
+  <!-- Help Section -->
+  <div class="help-section">
+    <div class="help-header" onclick="toggleHelp()">
+      📖 使用说明
+      <span id="helpToggle" style="font-size:12px;">▼</span>
+    </div>
+    <div class="help-content" id="helpContent">
+      <div class="help-grid">
+
+        <div class="help-card">
+          <div class="help-card-title">$.key</div>
+          <div class="help-card-desc">获取顶层对象的 key 值</div>
+          <div class="help-card-example">$.name → Alice</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">$.key.nested</div>
+          <div class="help-card-desc">嵌套访问，查询深层属性</div>
+          <div class="help-card-example">$.address.city → Beijing</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">$.array[index]</div>
+          <div class="help-card-desc">访问数组指定索引，从 0 开始</div>
+          <div class="help-card-example">$.friends[0].name → Bob</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">$.array[*]</div>
+          <div class="help-card-desc">通配符 * 匹配数组所有元素</div>
+          <div class="help-card-example">$.books[*].title → [所有书名]</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">$.key.*</div>
+          <div class="help-card-desc">通配符 * 匹配对象所有子属性</div>
+          <div class="help-card-example">$.address.* → {所有属性}</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">$.a[0].b[*].c</div>
+          <div class="help-card-desc">组合使用：数组索引 + 通配符</div>
+          <div class="help-card-example">$.users[0].orders[*].id</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">@.price&gt;10</div>
+          <div class="help-card-desc">类型过滤（仅表格视图支持）</div>
+          <div class="help-card-example">@.price&gt;100 · @.age&gt;=18</div>
+        </div>
+
+        <div class="help-card">
+          <div class="help-card-title">输出格式</div>
+          <div class="help-card-desc">JSON / 表格 / 原始三种输出格式</div>
+          <div class="help-card-example">表格最适合数组对象数据</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  JSON Query Tool · 纯前端运行 · 数据不上传服务器 · © 2025
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   JSON Query Engine (Pure JavaScript port from jsonq.py)
+   ============================================================ */
+
+function parseQuery(query) {
+  const parts = [];
+  let i = 0;
+  query = query.trim();
+
+  while (i < query.length) {
+    if (query[i] === '.') { i++; continue; }
+
+    if (query[i] === '[') {
+      const end = query.indexOf(']', i);
+      if (end === -1) throw new Error(`未闭合的方括号，位置 ${i}`);
+      const content = query.slice(i + 1, end);
+      if (content === '*') {
+        parts.push({ type: 'wildcard-array' });
+      } else if (/^-?\d+$/.test(content)) {
+        parts.push({ type: 'index', value: parseInt(content, 10) });
+      } else {
+        throw new Error(`无效的数组索引: ${content}`);
+      }
+      i = end + 1;
+      continue;
+    }
+
+    // Key name
+    let j = i;
+    while (j < query.length && query[j] !== '.' && query[j] !== '[') j++;
+    const key = query.slice(i, j);
+    if (key === '*') {
+      parts.push({ type: 'wildcard-object' });
+    } else if (key) {
+      parts.push({ type: 'key', value: key });
+    }
+    i = j;
+  }
+  return parts;
+}
+
+function getValue(data, parts) {
+  if (!parts || parts.length === 0) return data;
+  const [part, ...rest] = parts;
+
+  // Wildcard object: matches all keys
+  if (part.type === 'wildcard-object') {
+    if (typeof data !== 'object' || data === null) return undefined;
+    const results = {};
+    for (const key of Object.keys(data)) {
+      const result = getValue(data[key], rest);
+      if (result !== undefined) results[key] = result;
+    }
+    return Object.keys(results).length ? results : undefined;
+  }
+
+  // Wildcard array: matches all items
+  if (part.type === 'wildcard-array') {
+    if (!Array.isArray(data)) return undefined;
+    const results = [];
+    for (const item of data) {
+      const result = getValue(item, rest);
+      if (result !== undefined) results.push(result);
+    }
+    return results.length ? results : undefined;
+  }
+
+  // Array index
+  if (part.type === 'index') {
+    if (!Array.isArray(data)) return undefined;
+    const idx = part.value;
+    if (idx < 0 || idx >= data.length) return undefined;
+    return getValue(data[idx], rest);
+  }
+
+  // Key
+  if (part.type === 'key') {
+    if (typeof data !== 'object' || data === null) return undefined;
+    if (!(part.value in data)) return undefined;
+    return getValue(data[part.value], rest);
+  }
+
+  return undefined;
+}
+
+function queryJson(data, queryStr) {
+  const parts = parseQuery(queryStr);
+  return getValue(data, parts);
+}
+
+/* ============================================================
+   Output Formatters
+   ============================================================ */
+
+function syntaxHighlightJson(value, indent = 0) {
+  const pad = '  '.repeat(indent);
+  const childPad = '  '.repeat(indent + 1);
+
+  if (value === null) return `<span class="jt-null">null</span>`;
+  if (typeof value === 'boolean') return `<span class="jt-bool">${value}</span>`;
+  if (typeof value === 'number') return `<span class="jt-num">${value}</span>`;
+  if (typeof value === 'string') {
+    const escaped = value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return `<span class="jt-str">"${escaped}"</span>`;
+  }
+  if (Array.isArray(value)) {
+    if (value.length === 0) return `<span class="jt-bracket">[]</span>`;
+    const items = value.map(v => {
+      const comma = value.indexOf(v) < value.length - 1 ? ',' : '';
+      return childPad + syntaxHighlightJson(v, indent + 1) + comma;
+    }).join('\n');
+    return `<span class="jt-bracket">[</span>\n${items}\n${pad}<span class="jt-bracket">]</span>`;
+  }
+  if (typeof value === 'object') {
+    const keys = Object.keys(value);
+    if (keys.length === 0) return `<span class="jt-bracket">{}</span>`;
+    const items = keys.map((k, i) => {
+      const comma = i < keys.length - 1 ? ',' : '';
+      const escaped = k.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return `${childPad}<span class="jt-key">"${escaped}"</span><span class="jt-colon">: </span>${syntaxHighlightJson(value[k], indent + 1)}${comma}`;
+    }).join('\n');
+    return `<span class="jt-bracket">{</span>\n${items}\n${pad}<span class="jt-bracket">}</span>`;
+  }
+  return String(value);
+}
+
+function cellValue(v) {
+  if (v === null || v === undefined) return '<span class="null-cell">null</span>';
+  if (typeof v === 'boolean') return v ? '<span class="bool-true">true</span>' : '<span class="bool-false">false</span>';
+  if (typeof v === 'number') return `<span class="num-cell">${v}</span>`;
+  if (typeof v === 'string') return `<span class="str-cell">${escapeHtml(v)}</span>`;
+  return escapeHtml(JSON.stringify(v));
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function toTableHtml(data) {
+  if (data === null || data === undefined) return '<div style="padding:20px;color:var(--text-muted)">无数据</div>';
+  let arr = data;
+  if (!Array.isArray(arr)) arr = [arr];
+
+  if (arr.length === 0) return '<div style="padding:20px;color:var(--text-muted)">(空结果)</div>';
+
+  // Collect all unique keys
+  const allKeys = [];
+  const seen = new Set();
+  for (const item of arr) {
+    if (item && typeof item === 'object') {
+      for (const k of Object.keys(item)) {
+        if (!seen.has(k)) { seen.add(k); allKeys.push(k); }
+      }
+    }
+  }
+
+  if (allKeys.length === 0) {
+    // Primitive values
+    return `<div style="padding:14px;font-family:monospace">${cellValue(data)}</div>`;
+  }
+
+  let html = '<table class="result-table"><thead><tr>';
+  for (const k of allKeys) {
+    html += `<th>${escapeHtml(k)}</th>`;
+  }
+  html += '</tr></thead><tbody>';
+
+  for (const item of arr) {
+    html += '<tr>';
+    for (const k of allKeys) {
+      const v = item && typeof item === 'object' ? item[k] : undefined;
+      html += `<td title="${escapeHtml(v !== null && v !== undefined ? JSON.stringify(v) : '')}">${cellValue(v)}</td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  return html;
+}
+
+/* ============================================================
+   App State
+   ============================================================ */
+
+let currentFormat = 'json';
+let lastResult = null;
+
+function setFormat(fmt) {
+  currentFormat = fmt;
+  document.querySelectorAll('.format-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.format === fmt);
+  });
+  if (lastResult !== null) renderResult(lastResult);
+}
+
+function runQuery() {
+  const jsonInput = document.getElementById('jsonInput');
+  const queryInput = document.getElementById('queryInput');
+  const statusBar = document.getElementById('statusBar');
+  const jsonText = jsonInput.value.trim();
+  const queryStr = queryInput.value.trim();
+
+  jsonInput.classList.remove('error');
+
+  if (!jsonText) {
+    jsonInput.classList.add('error');
+    setStatus('请先输入 JSON 数据', 'error');
+    return;
+  }
+
+  if (!queryStr) {
+    setStatus('请输入查询语句', 'error');
+    return;
+  }
+
+  let data;
+  try {
+    data = JSON.parse(jsonText);
+  } catch (e) {
+    jsonInput.classList.add('error');
+    setStatus(`JSON 解析错误: ${e.message}`, 'error');
+    return;
+  }
+
+  let result;
+  try {
+    result = queryJson(data, queryStr);
+  } catch (e) {
+    setStatus(`查询错误: ${e.message}`, 'error');
+    return;
+  }
+
+  lastResult = result;
+  const count = countResults(result);
+  setStatus(`查询成功`, 'success');
+  document.getElementById('matchCount').textContent = count > 0 ? `${count} 条结果` : '';
+  renderResult(result);
+}
+
+function renderResult(result) {
+  const el = document.getElementById('resultContent');
+  if (result === null || result === undefined) {
+    el.innerHTML = '<div style="padding:30px;text-align:center;color:var(--text-muted);">(无结果)</div>';
+    return;
+  }
+
+  if (currentFormat === 'json') {
+    el.innerHTML = `<div class="json-tree">${syntaxHighlightJson(result)}</div>`;
+  } else if (currentFormat === 'table') {
+    el.innerHTML = toTableHtml(result);
+  } else {
+    // raw
+    let text = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
+    el.innerHTML = `<pre style="padding:14px;margin:0;white-space:pre-wrap;word-break:break-all;font-size:13px;line-height:1.6">${escapeHtml(text)}</pre>`;
+  }
+}
+
+function countResults(data) {
+  if (data === null || data === undefined) return 0;
+  if (Array.isArray(data)) return data.length;
+  if (typeof data === 'object') return Object.keys(data).length;
+  return 1;
+}
+
+function setStatus(msg, type) {
+  const el = document.getElementById('statusBar');
+  el.textContent = msg;
+  el.className = `status-bar ${type}`;
+}
+
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function copyResult() {
+  if (lastResult === null || lastResult === undefined) { showToast('无结果可复制'); return; }
+  const text = JSON.stringify(lastResult, null, 2);
+  navigator.clipboard.writeText(text).then(() => showToast('已复制到剪贴板')).catch(() => showToast('复制失败'));
+}
+
+function clearAll() {
+  document.getElementById('jsonInput').value = '';
+  document.getElementById('queryInput').value = '';
+  document.getElementById('resultContent').innerHTML = '<div style="padding:40px;text-align:center;color:var(--text-muted);font-size:13px;">输入 JSON 数据并输入查询语句，结果将显示在这里</div>';
+  document.getElementById('statusBar').textContent = '';
+  document.getElementById('statusBar').className = 'status-bar';
+  document.getElementById('matchCount').textContent = '';
+  lastResult = null;
+  document.getElementById('jsonInput').classList.remove('error');
+}
+
+function toggleHelp() {
+  const el = document.getElementById('helpContent');
+  const toggle = document.getElementById('helpToggle');
+  el.classList.toggle('open');
+  toggle.textContent = el.classList.contains('open') ? '▲' : '▼';
+}
+
+function expandAll() {
+  // For tree view, nothing to do; for table view, could implement row expansion
+  showToast('查看 JSON 格式可展开全部节点');
+}
+
+/* ============================================================
+   Sample Data
+   ============================================================ */
+
+const SAMPLE_DATA = {
+  store: JSON.stringify({
+    "store": {
+      "book": [
+        { "category": "fiction", "author": "J.R.R. Tolkien", "title": "The Lord of the Rings", "price": 99.99 },
+        { "category": "fiction", "author": "J.K. Rowling", "title": "Harry Potter", "price": 59.99 },
+        { "category": "tech", "author": "Brian Kernighan", "title": "C Programming", "price": 45.50 },
+        { "category": "tech", "author": "Douglas Adams", "title": "Hitchhiker's Guide", "price": 29.99 }
+      ],
+      "bicycle": { "color": "red", "price": 399.99 }
+    }
+  }, null, 2),
+
+  users: JSON.stringify({
+    "users": [
+      {
+        "id": 1, "name": "Alice", "age": 30,
+        "email": "alice@example.com",
+        "orders": [
+          { "id": "A1", "total": 1250, "items": 3 },
+          { "id": "A2", "total": 899, "items": 1 }
+        ]
+      },
+      {
+        "id": 2, "name": "Bob", "age": 25,
+        "email": "bob@example.com",
+        "orders": [
+          { "id": "B1", "total": 3200, "items": 5 }
+        ]
+      },
+      {
+        "id": 3, "name": "Charlie", "age": 35,
+        "email": "charlie@example.com",
+        "orders": []
+      }
+    ],
+    "metadata": { "total": 3, "page": 1 }
+  }, null, 2),
+
+  api: JSON.stringify({
+    "code": 200,
+    "message": "success",
+    "data": {
+      "products": [
+        { "id": "P001", "name": "iPhone 15", "price": 799, "inStock": true },
+        { "id": "P002", "name": "MacBook Air", "price": 1299, "inStock": true },
+        { "id": "P003", "name": "AirPods Pro", "price": 249, "inStock": false }
+      ],
+      "pagination": { "page": 1, "perPage": 10, "total": 3 }
+    }
+  }, null, 2),
+
+  nested: JSON.stringify({
+    "company": {
+      "name": "TechCorp",
+      "founded": 2010,
+      "departments": [
+        {
+          "name": "Engineering",
+          "head": "Dave",
+          "employees": [
+            { "name": "Alice", "role": "Senior", "salary": 150000 },
+            { "name": "Bob", "role": "Junior", "salary": 80000 }
+          ]
+        },
+        {
+          "name": "Sales",
+          "head": "Eve",
+          "employees": [
+            { "name": "Charlie", "role": "Manager", "salary": 120000 }
+          ]
+        }
+      ]
+    }
+  }, null, 2)
+};
+
+function loadSample(name) {
+  document.getElementById('jsonInput').value = SAMPLE_DATA[name];
+  document.getElementById('queryInput').value = '';
+  clearAll();
+  showToast('示例数据已加载，输入查询试试');
+}
+
+/* ============================================================
+   Keyboard Shortcuts
+   ============================================================ */
+
+document.addEventListener('keydown', function(e) {
+  // Ctrl/Cmd + Enter to run query
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    runQuery();
+  }
+  // Escape to clear error state
+  if (e.key === 'Escape') {
+    document.getElementById('jsonInput').classList.remove('error');
+    setStatus('', '');
+  }
+});
+
+/* ============================================================
+   Auto-run on query change (debounced)
+   ============================================================ */
+
+let debounceTimer;
+document.getElementById('queryInput').addEventListener('input', function() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    const jsonText = document.getElementById('jsonInput').value.trim();
+    const queryStr = this.value.trim();
+    if (jsonText && queryStr) runQuery();
+  }, 600);
+});
+
+/* ============================================================
+   Initial Example
+   ============================================================ */
+
+// Preload store sample and a default query so the page isn't empty
+window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('jsonInput').value = SAMPLE_DATA.store;
+  document.getElementById('queryInput').value = 'store.book[*].author';
+  runQuery();
+});
+</script>
+
+</body>
+</html>

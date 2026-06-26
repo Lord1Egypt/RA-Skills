@@ -1,35 +1,31 @@
----
-name: "用自然语言描述需求 → 自动生成需求文档 → 打开编辑器"
-description: "将自然语言需求转为需求文档生成requests.txt并自动用首选编辑器打开。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coder-helper"
-sourceUrl: "https://clawhub.ai/skills/coder-helper"
----
+# Coder Helper Skill
 
-# 用自然语言描述需求 → 自动生成需求文档 → 打开编辑器
+用自然语言描述需求，自动生成需求文档并打开编辑器。
 
-> 将自然语言需求转为需求文档生成requests.txt并自动用首选编辑器打开。
+## 触发
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coder-helper`
-- **Source URL:** [https://clawhub.ai/skills/coder-helper](https://clawhub.ai/skills/coder-helper)
+当用户想要：
+- 写代码但不想自己动手
+- 生成需求文档
+- 用 AI 辅助编程
 
-## Overview
+## 使用
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/coder-helper
 ```
+帮我写个XXX
+创建一个YY脚本
+```
+
+## 行为
+
+1. 解析用户需求
+2. 生成 `requests.txt` 到当前项目目录
+3. 自动打开默认编辑器（可配置）
+
+## 配置
+
+编辑器优先级：
+1. Cursor
+2. VSCode
+3. Notepad++
+4. 默认文本编辑器

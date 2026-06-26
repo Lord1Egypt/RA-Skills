@@ -1,35 +1,57 @@
 ---
-name: "clawhub-skill-remote-agent"
-description: "Bridge to external vertical agents (Google ADK, VeADK, etc.) for specialized tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-skill-remote-agent"
-sourceUrl: "https://clawhub.ai/skills/clawhub-skill-remote-agent"
+name: remote-agent
+description: Bridge to external vertical agents (Google ADK, VeADK, etc.) for specialized tasks.
+metadata: { "openclaw": { "emoji": "🔗", "requires": { "env": ["REMOTE_AGENT_URL"] } } }
 ---
 
-# clawhub-skill-remote-agent
+# Remote Agent Bridge
 
-> Bridge to external vertical agents (Google ADK, VeADK, etc.) for specialized tasks.
+This skill enables OpenClaw to delegate tasks to external, specialized AI agents via a standard HTTP interface. Use this when the user's request requires domain-specific knowledge (e.g., enterprise data, financial analysis, legal review) that is handled by a separate agent system.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-skill-remote-agent`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-skill-remote-agent](https://clawhub.ai/skills/clawhub-skill-remote-agent)
+## Configuration
 
-## Overview
+Ensure the following environment variables are set in your OpenClaw environment (e.g., via `.env` or `openclaw config`):
 
+- `REMOTE_AGENT_URL`: The HTTP endpoint of the external agent (e.g., `https://remote-agent.example.com/run` or your Google ADK endpoint).
+- `REMOTE_AGENT_KEY`: (Optional) The Bearer token for authentication.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+When the user asks a question that falls into the domain of a specialized remote agent, use this skill to forward the request.
+
+### Command
+
 ```bash
-hermes skills install clawhub/clawhub-skill-remote-agent
+python3 skills/remote-agent/scripts/client.py --query "<USER_QUERY>" [--agent "<AGENT_ID>"]
+```
+
+### Examples
+
+**Scenario 1: Financial Analysis (VeADK)**
+
+User: "Analyze the Q3 earnings report for TechCorp."
+Thought: The user is asking for financial analysis. I should delegate this to the 'financial-expert' agent.
+Action:
+
+```bash
+python3 skills/remote-agent/scripts/client.py --agent "financial-expert" --query "Analyze the Q3 earnings report for TechCorp"
+```
+
+**Scenario 2: Enterprise Knowledge (Google ADK)**
+
+User: "What is the company policy on remote work?"
+Thought: This requires internal knowledge. I'll ask the 'hr-bot'.
+Action:
+
+```bash
+python3 skills/remote-agent/scripts/client.py --agent "hr-bot" --query "company policy on remote work"
+```
+
+**Scenario 3: Custom LangChain Backend**
+
+User: "Run the data processing pipeline."
+Action:
+
+```bash
+python3 skills/remote-agent/scripts/client.py --query "Run the data processing pipeline"
 ```

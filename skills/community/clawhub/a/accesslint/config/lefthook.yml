@@ -1,0 +1,21 @@
+# AccessLint — lefthook configuration
+# Installed by: accesslint hooks install
+# Documentation: https://accesslint.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    accesslint-a11y-scan:
+      run: |
+        ACCESSLINT_SKILL_DIR="${ACCESSLINT_SKILL_DIR:-$HOME/.openclaw/skills/accesslint}"
+        if [[ -f "$ACCESSLINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$ACCESSLINT_SKILL_DIR/scripts/patterns.sh"
+          source "$ACCESSLINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_accesslint_scan
+        else
+          echo "[AccessLint] Skill not found at $ACCESSLINT_SKILL_DIR — skipping scan"
+        fi
+      fail_text: |
+        Accessibility issues detected in staged files!
+        Run 'accesslint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

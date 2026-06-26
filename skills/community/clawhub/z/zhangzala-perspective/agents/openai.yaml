@@ -1,0 +1,7 @@
+interface:
+  display_name: "张咋啦视角"
+  short_description: "用张咋啦式方法思考 AI、产品、内容与个人杠杆"
+  default_prompt: "Use $zhangzala-perspective to help me think through an AI-era career, product, learning, or content question with a builder-first, anti-anxiety, distribution-aware lens."
+
+policy:
+  allow_implicit_invocation: true

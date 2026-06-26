@@ -1,35 +1,209 @@
+# Code Review Skill — 代码审查
+
+> 四维代码审查系统：安全 / 性能 / 质量 / 可维护性
+
+## 适用场景
+
+当用户要求以下操作时使用此 Skill：
+1. 审查代码（PR、文件、代码片段）
+2. 代码质量评估 / 代码审计
+3. 安全审查 / 漏洞检测
+4. 性能分析 / 优化建议
+5. 重构建议 / 可维护性评估
+
+触发关键词：`代码审查`、`code review`、`review`、`审查`、`审计`、`安全审查`、`质量评估`
+
 ---
-name: "OC Code Review"
-description: "提供代码安全、性能、质量与可维护性四维度全面审查，评分并生成改进建议与详细报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-code-review"
-sourceUrl: "https://clawhub.ai/skills/oc-code-review"
----
 
-# OC Code Review
+## 审查流程（5 步）
 
-> 提供代码安全、性能、质量与可维护性四维度全面审查，评分并生成改进建议与详细报告。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-code-review`
-- **Source URL:** [https://clawhub.ai/skills/oc-code-review](https://clawhub.ai/skills/oc-code-review)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-code-review
 ```
+1. 获取代码 → 2. 四维分析 → 3. 评分定级 → 4. 生成报告 → 5. 输出建议
+```
+
+### Step 1: 获取代码
+
+根据场景选择合适的代码获取方式：
+
+| 场景 | 方法 |
+|------|------|
+| 用户直接粘贴代码 | 直接使用，进入 Step 2 |
+| 本地文件 | `read` 工具读取文件内容 |
+| GitHub PR | `exec` + `git diff` 或 `gh` CLI |
+| Git 仓库 | `exec` + `git log` / `git show` |
+| 飞书文档中的代码 | `feishu-fetch-doc` 技能获取内容 |
+| 网页代码 | `web_fetch` 抓取页面内容 |
+
+### Step 2: 四维分析
+
+按以下四个维度逐一审查，每个维度使用对应的检查清单（见 `templates/` 目录）：
+
+| 维度 | 关注点 | 检查清单 |
+|------|--------|----------|
+| 🔒 安全 | 注入、认证、加密、敏感数据 | `templates/checklist-security.md` |
+| ⚡ 性能 | 查询优化、缓存、并发、内存 | `templates/checklist-performance.md` |
+| 🏆 质量 | 命名、错误处理、类型、SOLID | `templates/checklist-quality.md` |
+| 🔧 可维护 | 复杂度、文档、测试、可扩展性 | `templates/checklist-maintainability.md` |
+
+### Step 3: 评分定级
+
+对每个维度进行 1-10 分评分，并计算总分：
+
+| 分数区间 | 等级 | 含义 |
+|----------|------|------|
+| 9-10 | ⭐ 优秀 | 生产级代码，几乎无问题 |
+| 7-8 | ✅ 良好 | 少量改进点，可直接合入 |
+| 5-6 | ⚠️ 一般 | 存在较多改进点，建议修改后合入 |
+| 3-4 | 🔶 较差 | 存在严重问题，需要大幅修改 |
+| 1-2 | 🔴 危险 | 存在安全隐患或致命缺陷，禁止合入 |
+
+**总分计算**：`(安全 + 质量 + 性能 + 可维护) / 4`，四舍五入到小数点后 1 位
+
+### Step 4: 生成报告
+
+使用 `templates/finding-template.md` 格式记录每个发现的问题，然后生成综合报告。
+
+### Step 5: 输出建议
+
+报告末尾给出：
+- **推荐操作**：✅ Approve / ⚠️ Request Changes / 🔄 Needs Discussion
+- **优先修复项**：按严重程度排序的 Top 3 改进建议
+- **代码亮点**：值得学习和推广的好实践（如有）
+
+---
+
+## 审查维度详细说明
+
+### 🔒 安全审查
+
+重点关注：
+- **注入防护**：SQL 注入、XSS、命令注入、SSRF
+- **认证授权**：会话管理、权限校验、越权风险
+- **数据保护**：敏感信息泄露、日志脱敏、加密存储
+- **配置安全**：默认配置、依赖漏洞、HTTPS 强制
+- **输入验证**：用户输入过滤、类型校验、边界检查
+
+### ⚡ 性能审查
+
+重点关注：
+- **数据库**：N+1 查询、索引使用、连接池、慢查询
+- **算法**：时间复杂度、空间复杂度、数据结构选择
+- **并发**：锁竞争、死锁风险、异步处理
+- **资源**：内存泄漏、文件句柄、连接释放
+- **缓存**：缓存策略、缓存击穿、缓存一致性
+
+### 🏆 质量审查
+
+重点关注：
+- **代码风格**：命名规范、代码格式、一致性
+- **错误处理**：异常捕获、错误传播、降级策略
+- **设计原则**：SOLID、DRY、KISS、YAGNI
+- **类型安全**：类型定义、空值处理、边界值
+- **可测试性**：依赖注入、接口抽象、单元测试覆盖
+
+### 🔧 可维护性审查
+
+重点关注：
+- **代码复杂度**：圈复杂度、认知复杂度、函数长度
+- **文档质量**：注释、README、API 文档
+- **模块化**：职责分离、耦合度、内聚性
+- **扩展性**：设计模式、接口设计、配置化
+- **技术债务**：TODO/FIXME、临时方案、已知问题
+
+---
+
+## 复杂度分析脚本
+
+当需要深度分析代码复杂度时，可使用提供的辅助脚本：
+
+```bash
+# 分析单个文件的基本指标
+python3 <skill_dir>/scripts/analyze-metrics.py <file>
+
+# 比较修改前后的复杂度变化
+python3 <skill_dir>/scripts/compare-complexity.py <before_file> <after_file>
+```
+
+> `<skill_dir>` 替换为本技能的实际路径（`/Users/narain/.openclaw/workspace/skills/code-review`）
+
+---
+
+## 输出格式模板
+
+### 单文件审查报告
+
+```markdown
+# 代码审查报告
+
+**文件**：`path/to/file.py`
+**审查时间**：YYYY-MM-DD HH:MM
+**审查范围**：安全 / 性能 / 质量 / 可维护性
+
+## 总评
+
+| 维度 | 评分 | 等级 |
+|------|------|------|
+| 🔒 安全 | X/10 | ⭐/✅/⚠️/🔶/🔴 |
+| ⚡ 性能 | X/10 | ... |
+| 🏆 质量 | X/10 | ... |
+| 🔧 可维护 | X/10 | ... |
+| **综合** | **X/10** | ... |
+
+## 发现的问题
+
+### [严重程度] 问题标题
+- **位置**：文件名:行号
+- **维度**：安全/性能/质量/可维护
+- **描述**：问题说明
+- **影响**：可能导致的后果
+- **建议**：修复方案 + 代码示例
+
+## 亮点
+- 值得推广的好实践
+
+## 建议
+- **推荐操作**：✅ Approve / ⚠️ Request Changes
+- **优先修复**：Top 3 改进建议
+```
+
+### PR/MR 审查报告
+
+```markdown
+# PR 审查报告
+
+**PR**：#123 - PR 标题
+**分支**：feature/xxx → main
+**变更统计**：+X / -Y 行，Z 个文件
+
+## 总评
+（同上格式，评分基于所有变更文件的综合评估）
+
+## 按文件审查
+### `src/module/file.py` (+10/-5)
+（逐文件列出问题）
+
+## 依赖影响分析
+- 受影响的上下游模块
+
+## 建议
+（同上格式）
+```
+
+---
+
+## 审查模式
+
+### 快速审查（Quick Review）
+- 适用：小改动、紧急修复
+- 方法：只检查安全和质量两个维度
+- 输出：精简版报告
+
+### 深度审查（Deep Review）
+- 适用：核心模块、大型重构
+- 方法：四维度全面审查 + 复杂度脚本分析
+- 输出：完整报告 + 复杂度数据
+
+### 安全专项审查（Security Audit）
+- 适用：安全敏感代码、合规要求
+- 方法：以安全维度为核心，其他维度为辅
+- 输出：安全报告 + 风险矩阵

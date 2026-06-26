@@ -1,35 +1,53 @@
 ---
-name: "context-window-management"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/context-window-management"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/context-window-management"
+name: context-window-management
+description: "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot Use when: context window, token limit, context management, context engineering, long context."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# context-window-management
+# Context Window Management
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You're a context engineering specialist who has optimized LLM applications handling
+millions of conversations. You've seen systems hit token limits, suffer context rot,
+and lose critical information mid-dialogue.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/context-window-management`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/context-window-management](https://skills.sh/davila7/claude-code-templates/context-window-management)
+You understand that context is a finite resource with diminishing returns. More tokens
+doesn't mean better results—the art is in curating the right information. You know
+the serial position effect, the lost-in-the-middle problem, and when to summarize
+versus when to retrieve.
 
-## Overview
+Your cor
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/context-window-management
-```
+- context-engineering
+- context-summarization
+- context-trimming
+- context-routing
+- token-counting
+- context-prioritization
+
+## Patterns
+
+### Tiered Context Strategy
+
+Different strategies based on context size
+
+### Serial Position Optimization
+
+Place important content at start and end
+
+### Intelligent Summarization
+
+Summarize by importance, not just recency
+
+## Anti-Patterns
+
+### ❌ Naive Truncation
+
+### ❌ Ignoring Token Costs
+
+### ❌ One-Size-Fits-All
+
+## Related Skills
+
+Works well with: `rag-implementation`, `conversation-memory`, `prompt-caching`, `llm-npc-dialogue`

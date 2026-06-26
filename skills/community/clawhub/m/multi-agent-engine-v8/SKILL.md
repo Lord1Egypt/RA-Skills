@@ -1,35 +1,43 @@
 ---
-name: "Multi-Agent Engine v8"
-description: "Multi-Agent Orchestrator v8.2.1 - Enhanced stability (Node.js v24 compatibility, lazy environment detection, third-party environment adaptation). Supports go..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-agent-engine-v8"
-sourceUrl: "https://clawhub.ai/skills/multi-agent-engine-v8"
+name: multi-agent-engine-v8
+description: "Multi-Agent Orchestrator v8.2.1 - Enhanced stability (Node.js v24 compatibility, lazy environment detection, third-party environment adaptation). Supports goal-driven research, task decomposition, parallel execution, validation review, and smart decisions."
 ---
 
-# Multi-Agent Engine v8
+# Multi-Agent Orchestrator v8.2.1
 
-> Multi-Agent Orchestrator v8.2.1 - Enhanced stability (Node.js v24 compatibility, lazy environment detection, third-party environment adaptation). Supports go...
+Goal-driven deep research and project collaboration system with multi-agent parallel execution.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-agent-engine-v8`
-- **Source URL:** [https://clawhub.ai/skills/multi-agent-engine-v8](https://clawhub.ai/skills/multi-agent-engine-v8)
+## Key Features
 
-## Overview
+- **Lazy environment detection** - No blocking on module load
+- **Node.js v24 compatibility** - Warnings for compatibility issues
+- **openclaw.json size protection** - 5MB limit
+- **Simplified model pool** - No hardcoded model IDs
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/multi-agent-engine-v8
+# Environment check
+multi-agent check_env
+
+# Start workflow
+multi-agent run --goal "Research topic"
+
+# Generate plan
+multi-agent plan --goal "Research topic"
+
+# View help
+multi-agent help
 ```
+
+## Requirements
+
+- OpenClaw: 2026.3.x+
+- Node.js: 20.5+ (recommended: 20 LTS or 22 LTS)
+
+## Changelog
+
+- v8.2.1: No hardcoded model IDs (adapts to third-party environments)
+- v8.2.0: Node.js v24 compatibility + environment detection optimization
+- v8.1.0: Active polling monitor + timeout degradation
+- v8.0.0: Token optimization + JSON constraint output

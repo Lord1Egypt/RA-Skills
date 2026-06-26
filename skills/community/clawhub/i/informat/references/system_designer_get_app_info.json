@@ -1,0 +1,13 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_designer_get_app_info",
+		"description": "Query configuration information of low-code platform application.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+
+			}
+		}
+	}
+}

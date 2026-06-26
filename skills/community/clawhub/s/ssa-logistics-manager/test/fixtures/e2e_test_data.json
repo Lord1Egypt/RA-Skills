@@ -1,0 +1,78 @@
+{
+  "order": {
+    "orderId": "ORD-E2E-TEST-001",
+    "orderDate": "2026-03-20",
+    "customerRef": "PO-2026-0320"
+  },
+  "customer": {
+    "customerId": "CUST-E2E-001",
+    "name": "E2E Test Customer",
+    "company": "Test Import Export Co.",
+    "email": "test@customer-example.com",
+    "phone": "+1-555-0123",
+    "address": "123 Test Street, Los Angeles, CA 90001, USA"
+  },
+  "cargo": {
+    "products": [
+      {
+        "name": "HDMI Cable 2.1",
+        "model": "HDMI-2.1-2M",
+        "quantity": 500,
+        "unitPrice": 5.50,
+        "total": 2750.00
+      },
+      {
+        "name": "USB-C Cable 100W",
+        "model": "USBC-100W-1M",
+        "quantity": 300,
+        "unitPrice": 8.00,
+        "total": 2400.00
+      },
+      {
+        "name": "Ethernet Cable CAT6A",
+        "model": "LAN-CAT6A-5M",
+        "quantity": 200,
+        "unitPrice": 6.50,
+        "total": 1300.00
+      }
+    ],
+    "totalQuantity": 1000,
+    "totalVolume": 2.5,
+    "totalWeight": 150,
+    "packages": 10,
+    "description": "Electronic Cables for E2E Test"
+  },
+  "shipping": {
+    "transportMode": "海运",
+    "portOfLoading": "Yantian, Shenzhen",
+    "portOfDischarge": "Los Angeles, CA",
+    "placeOfDelivery": "Los Angeles Warehouse",
+    "vesselName": "COSCO SHIPPING UNIVERSE",
+    "voyageNo": "088E",
+    "etd": "2026-03-28T08:00:00.000Z",
+    "eta": "2026-04-15T14:00:00.000Z"
+  },
+  "container": {
+    "containerNo": "CSLU1234567",
+    "size": "40HQ",
+    "type": "Dry",
+    "sealNo": "FT123456"
+  },
+  "billOfLading": {
+    "blNo": "COSU6789012345",
+    "blType": "Original",
+    "blDate": "2026-03-28",
+    "blCopy": "test/fixtures/sample_bol.pdf"
+  },
+  "freight": {
+    "freightCost": 2500.00,
+    "currency": "USD",
+    "paymentTerms": "Freight Collect",
+    "insuranceCost": 150.00,
+    "otherCosts": 100.00
+  },
+  "okki": {
+    "expectedTrailType": 105,
+    "matchType": "order_id_search"
+  }
+}

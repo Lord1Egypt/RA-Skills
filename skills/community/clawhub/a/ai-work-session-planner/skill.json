@@ -1,0 +1,23 @@
+{
+  "name": "ai-work-session-planner",
+  "version": "1.0.1",
+  "license": "MIT-0",
+  "language": "en",
+  "hasExecutableCode": false,
+  "triggerKeywords": [
+    "aiWorkSessionPlan",
+    "workSessionPlanner",
+    "sessionPlanCard",
+    "focusedWorkSession",
+    "sessionPrepCard",
+    "workSessionBuilder",
+    "aiWorkSessionPrep"
+  ],
+  "execution": "noExec",
+  "promptOnly": true,
+  "requires_api": false,
+  "no_network": true,
+  "no_credentials": true,
+  "no_code_execution": true,
+  "contentType": "document-only"
+}

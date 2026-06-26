@@ -1,0 +1,7 @@
+# 核心依赖 — PyTorch 由安装脚本单独安装（如果检测到 GPU 则安装 CUDA 版本）
+faster-whisper>=1.2.0
+
+# 注意：PyTorch 将在 setup.sh 中根据硬件环境自动安装：
+# - NVIDIA GPU: 安装 CUDA 版本的 PyTorch
+# - macOS: 安装标准版 PyTorch
+# - 其他 CPU: 安装 CPU 版 PyTorch

@@ -1,0 +1,30 @@
+// 远程 OpenClaw 实例连接信息模板
+// 复制为 peer-config.local.json5 并填入你的信息
+// ⚠️ 不要把 .local.json5 提交到 Git！
+
+{
+  // 远程实例别名
+  name: "我的服务器",
+
+  // 连接信息
+  host: "your-server-ip",          // IP 或域名
+  port: 16841,                    // Gateway 端口
+  basePath: "",                   // 如果有 basePath 则填写，如 "/718872eb"
+
+  // API 认证
+  token: "your-gateway-token",    // gateway.auth.token
+
+  // SSH 连接（用于传文件）
+  ssh: {
+    user: "root",
+    host: "your-server-ip",
+    workspacePath: "/home/admin/.openclaw/workspace",  // 远程 workspace 路径
+  },
+
+  // 记忆同步
+  sync: {
+    enabled: true,
+    schedule: "0 0 * * 0",        // cron 表达式，默认每周日 00:00
+    timezone: "Asia/Shanghai",
+  },
+}

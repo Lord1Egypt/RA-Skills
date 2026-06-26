@@ -1,35 +1,139 @@
 ---
-name: "Task Tracker Pro"
-description: "持久化任务管理：拆解步骤、追踪进度、中断恢复、多Agent协作。 触发场景： - 收到需要多步骤执行的任务（"帮我做XX"、"搞一个XX"） - 新对话/会话启动时自动检查未完成任务 - 用户问"任务进度"、"做到哪了"、"继续上次的" - 用户说"建个任务"、"拆解一下"、"规划一下步骤" 核心理念：不信任对话..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-tracker-pro"
-sourceUrl: "https://clawhub.ai/skills/task-tracker-pro"
+name: task-tracker-pro
+description: |
+  持久化任务管理：拆解步骤、追踪进度、中断恢复、多Agent协作。
+  触发场景：
+  - 收到需要多步骤执行的任务（"帮我做XX"、"搞一个XX"）
+  - 新对话/会话启动时自动检查未完成任务
+  - 用户问"任务进度"、"做到哪了"、"继续上次的"
+  - 用户说"建个任务"、"拆解一下"、"规划一下步骤"
+  核心理念：不信任对话记忆，只信任文件。状态全部落盘，断电不丢活。
 ---
 
-# Task Tracker Pro
+# Task Tracker
 
-> 持久化任务管理：拆解步骤、追踪进度、中断恢复、多Agent协作。 触发场景： - 收到需要多步骤执行的任务（"帮我做XX"、"搞一个XX"） - 新对话/会话启动时自动检查未完成任务 - 用户问"任务进度"、"做到哪了"、"继续上次的" - 用户说"建个任务"、"拆解一下"、"规划一下步骤" 核心理念：不信任对话...
+> 任务状态写文件，断电不丢活。做一步打一个 ✅，大哥一眼看进度。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-tracker-pro`
-- **Source URL:** [https://clawhub.ai/skills/task-tracker-pro](https://clawhub.ai/skills/task-tracker-pro)
+## 目录结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-tracker-pro
 ```
+tasks/
+├── 项目名.md        ← 进行中的任务
+└── done/
+    └── 项目名.md    ← 已完成归档
+```
+
+路径：`~/.openclaw/workspace/tasks/`（首次使用时自动创建）
+
+## 核心流程
+
+### 1. 收到任务 → 拆解建档
+
+收到多步骤任务后：
+
+1. 分析任务，拆解为可执行的具体步骤
+2. 创建 `tasks/项目名.md`，按模板写入
+3. 告诉用户："任务已建档，共 N 步，开始执行"
+
+### 2. 执行 → 做一步打一个 ✅
+
+每完成一个步骤：
+
+1. 执行该步骤的实际工作
+2. **立即**更新任务文件：`- [ ]` → `- [x]` + 追加执行人、时间
+3. 在执行日志里记一笔关键信息
+4. 继续下一步
+
+**铁律：先打勾再继续，不要攒着一起打。**
+
+### 3. 中断恢复 → 开机先查 tasks/
+
+新对话启动时：
+
+```bash
+ls ~/.openclaw/workspace/tasks/*.md 2>/dev/null
+```
+
+- 有文件 → 读取，找到未打勾的步骤，从那里继续
+- 没文件 → 无活跃任务，正常工作
+
+### 4. 完成 → 检查 + 归档
+
+所有步骤打完 ✅ 后：
+
+1. 逐项核对检查清单
+2. 状态改为 `🟢 已完成`
+3. 移动到 `tasks/done/`：`mv tasks/项目名.md tasks/done/`
+4. 告诉用户："任务完成，已归档"
+
+## 任务文件模板
+
+```markdown
+# 任务：[名称]
+
+> 状态：🟡 进行中 | 创建：YYYY-MM-DD HH:MM | 负责：[主Agent]
+
+## 步骤
+
+- [ ] 步骤1描述
+- [ ] 步骤2描述
+- [ ] 步骤3描述
+
+## 多Agent分工
+
+> 仅多Agent协作时需要，单人任务删掉此节
+
+| Agent | 负责范围 |
+|-------|----------|
+| 兔刀乐 | xxx |
+| Fish | xxx |
+
+## 检查清单
+
+- [ ] 所有步骤完成
+- [ ] 产出物确认
+- [ ] 用户验收
+
+## 执行日志
+
+（每步完成后追加一行）
+```
+
+### 打勾格式
+
+完成时把 `- [ ]` 改为：
+
+```
+- [x] 步骤描述 ✅ 执行人 MM-DD HH:MM
+```
+
+示例：
+```
+- [x] 调研竞品定价 ✅ 兔刀乐 03-27 17:00
+- [x] 生成对比表格 ✅ Fish 03-27 17:30
+- [ ] 输出最终报告
+```
+
+## 多Agent协作
+
+需要多Agent时：
+
+1. 在任务文件「多Agent分工」表里列出每个Agent和职责
+2. 拆步骤时标注每步的负责Agent
+3. 每个Agent做完自己的步骤自己打 ✅
+4. 主Agent负责最终检查
+
+步骤标注格式：
+```
+- [ ] [兔刀乐] 调研市场数据
+- [ ] [Fish] 拆解用户需求
+```
+
+## 规则
+
+1. **一事一档**：每个独立任务一个文件，不混
+2. **实时更新**：做完就打勾，不攒
+3. **日志留痕**：关键决策、遇到的问题写进执行日志
+4. **粒度适中**：步骤拆到"一口气能做完"的大小，别太粗也别太细
+5. **阻塞标记**：遇到卡点在步骤后标 `⚠️ 阻塞：原因`，等解决后继续
+6. **不删只归档**：完成的任务移到 done/，不要删除

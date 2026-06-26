@@ -1,0 +1,10 @@
+{
+  "name": "@Cortez_1/time-machine",
+  "version": "1.0.0",
+  "description": "An OpenClaw skill that acts like a time machine, providing a rollback feature for long-running tasks.",
+  "main": "index.js",
+  "keywords": ["openclaw", "clawskill", "rollback", "undo", "time-machine", "safety"],
+  "author": "YourName",
+  "license": "MIT",
+  "type": "module"
+}

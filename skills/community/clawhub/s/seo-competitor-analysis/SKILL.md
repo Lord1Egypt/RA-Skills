@@ -1,35 +1,30 @@
 ---
-name: "SEO Intelligence & Competitor Analysis Pro"
-description: "Perform deep SEO competitor analysis, including keyword research, backlink checking, and content strategy mapping. Use when the user wants to analyze a website's competitors or improve their own SEO ranking by studying the competition."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, competitor-analysis, intelligence, marketing, seo]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seo-competitor-analysis"
-sourceUrl: "https://clawhub.ai/skills/seo-competitor-analysis"
+name: seo-competitor-analysis
+description: Perform deep SEO competitor analysis, including keyword research, backlink checking, and content strategy mapping. Use when the user wants to analyze a website's competitors or improve their own SEO ranking by studying the competition.
 ---
 
-# SEO Intelligence & Competitor Analysis Pro
+# SEO Competitor Analysis Skill
 
-> Perform deep SEO competitor analysis, including keyword research, backlink checking, and content strategy mapping. Use when the user wants to analyze a website's competitors or improve their own SEO ranking by studying the competition.
+This skill automates the process of identifying and analyzing SEO competitors to inform content and ranking strategies.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seo-competitor-analysis`
-- **Source URL:** [https://clawhub.ai/skills/seo-competitor-analysis](https://clawhub.ai/skills/seo-competitor-analysis)
+## Workflow
 
-## Overview
+1. **Identify Competitors**: If not provided, search for the target domain and identify top-ranking sites for similar keywords.
+2. **Analyze Keywords**: Use `web_search` to find ranking keywords and search volume (if available via snippets).
+3. **Content Gap Analysis**: Compare the user's content with competitors to identify missing topics.
+4. **Report Generation**: Summarize findings into a structured report.
 
+## Tools to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/seo-competitor-analysis
-```
+- `web_search`: To find competitors and their ranking content.
+- `web_fetch`: To extract content from competitor pages for deep analysis.
+- `browser`: For complex pages that require JavaScript or manual navigation patterns.
+
+## Scripts
+
+- `scripts/competitor_finder.py`: (Optional) Logic to automate the discovery of competitors using search APIs.
+
+## References
+
+- `references/seo_metrics_guide.md`: Definition of SEO terms and how to interpret them.
+- `references/report_template.md`: A standard structure for the final SEO analysis report.

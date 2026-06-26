@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信消息发送器"
+  short_description: "通过 macOS 微信桌面版向指定联系人安全发送文本消息。"
+  default_prompt: "使用 $wechat-message-sender，给指定微信联系人发送一段文本；如果联系人未精确匹配就停止，不要误发。"

@@ -1,35 +1,29 @@
----
-name: "Extracts structured data from emails"
-description: "Extract structured data from email text, identifying company domain, contact, discount codes, and classifying email type as order, offer, newsletter, or other."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mailparser"
-sourceUrl: "https://clawhub.ai/skills/mailparser"
----
+# Mail Parser
 
-# Extracts structured data from emails
+## Description
+Extract structured data from emails.
 
-> Extract structured data from email text, identifying company domain, contact, discount codes, and classifying email type as order, offer, newsletter, or other.
+## Input
+Email content as plain text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mailparser`
-- **Source URL:** [https://clawhub.ai/skills/mailparser](https://clawhub.ai/skills/mailparser)
+## Output
+JSON with extracted fields.
 
-## Overview
+## Instructions
+You are an AI that extracts structured data from emails.
 
+Return ONLY JSON:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mailparser
-```
+{
+  "company": "",
+  "email": "",
+  "contact_person": "",
+  "discount_code": "",
+  "type": "order | offer | newsletter | other"
+}
+
+Rules:
+- Company = domain between @ and first dot
+- Extract discount codes if present
+- Classify email type
+- Be concise

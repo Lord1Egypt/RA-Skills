@@ -1,35 +1,208 @@
 ---
-name: "zhihu-to-wechat"
-description: "全自动知乎热榜选题 → IT科技风格公众号文章生成 → 自动配图 → 微信服务号发布工作流。 当用户提到"知乎热点"、"公众号文章"、"帮我写公众号"、"热榜选题"、"微信推文"、"IT科技文章"、 "发布公众号"等场景时，必须触发此skill。适用于科技博主、IT自媒体、技术内容创作者。"
-category: "other"
-source: "ClawHub"
-tags: [2025/3/6-release]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhihu-to-wechat"
-sourceUrl: "https://clawhub.ai/skills/zhihu-to-wechat"
+name: zhihu-to-wechat
+description: 全自动知乎热榜选题 → IT科技风格公众号文章生成 → 自动配图 → 微信服务号发布工作流。
+  当用户提到"知乎热点"、"公众号文章"、"帮我写公众号"、"热榜选题"、"微信推文"、"IT科技文章"、
+  "发布公众号"等场景时，必须触发此skill。适用于科技博主、IT自媒体、技术内容创作者。
 ---
 
-# zhihu-to-wechat
+# 知乎热榜 → 微信公众号（IT科技风格）全自动发布
 
-> 全自动知乎热榜选题 → IT科技风格公众号文章生成 → 自动配图 → 微信服务号发布工作流。 当用户提到"知乎热点"、"公众号文章"、"帮我写公众号"、"热榜选题"、"微信推文"、"IT科技文章"、 "发布公众号"等场景时，必须触发此skill。适用于科技博主、IT自媒体、技术内容创作者。
+## 整体流程图
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhihu-to-wechat`
-- **Source URL:** [https://clawhub.ai/skills/zhihu-to-wechat](https://clawhub.ai/skills/zhihu-to-wechat)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhihu-to-wechat
 ```
+知乎热榜抓取 → 用户选题 → 内容研究 → 文章生成 → 自动配图 → 排版格式化 → 发布草稿
+```
+
+---
+
+## 前置配置
+
+用户首次使用时，收集以下信息并保存在对话 context 中：
+
+| 参数 | 说明 | 获取方式 |
+|------|------|----------|
+| `WECHAT_APP_ID` | 服务号 AppID | 微信公众平台 → 设置与开发 → 基本配置 |
+| `WECHAT_APP_SECRET` | 服务号 AppSecret | 同上 |
+| `UNSPLASH_ACCESS_KEY` | 配图 API Key | https://unsplash.com/developers 免费注册 |
+| `AUTHOR_NAME` | 作者署名 | 用户自定义 |
+
+> ⚠️ 发布接口需要**已认证的微信服务号**，并开通"草稿箱"权限。
+
+---
+
+## Step 1：抓取知乎热榜
+
+运行脚本：`scripts/fetch_zhihu.py`
+
+该脚本会：
+1. 请求知乎热榜 API（无需登录）
+2. 返回 Top 20 热榜话题，含标题、热度值、链接
+3. 标记 IT/科技/互联网相关话题（⭐ 推荐）
+
+**展示格式示例：**
+```
+📊 今日知乎热榜（IT科技推荐）
+━━━━━━━━━━━━━━━━━━━━
+⭐ 1. 如何看待OpenAI发布o3模型？ | 热度: 2341万
+   2. 特斯拉Cybertruck续航测评 | 热度: 1876万
+⭐ 3. 国内大模型2024年现状盘点 | 热度: 1654万
+...
+
+请选择 1-3 个话题（如：1,3）：
+```
+
+等待用户选题后进入 Step 2。
+
+---
+
+## Step 2：内容深度研究
+
+针对用户选定的话题，使用 `web_search` 工具并行搜索：
+
+**搜索策略：**
+```
+话题关键词 + "最新进展"
+话题关键词 + "技术分析"
+话题关键词 + "数据 报告 2024"
+话题关键词 + site:zhihu.com
+```
+
+**提炼要点（传给 Step 3）：**
+- 核心事件/结论（3-5条）
+- 关键数据/数字（增强可信度）
+- 技术背景说明（IT 读者预期有一定基础）
+- 争议点 / 不同观点（提高互动性）
+- 延伸影响（读者最关心的"对我有什么影响"）
+
+---
+
+## Step 3：生成 IT 风格公众号文章
+
+参考模板：`assets/it_article_template.md`
+
+### IT 科技文章写作规范
+
+**标题公式（三选一）：**
+- `[重磅] XXX，技术圈炸了` 
+- `深度 | XXX背后，我们看到了什么`
+- `XXX：一文搞懂，附完整技术解析`
+
+**文章结构（1500-2500字）：**
+
+```
+[封面图占位]
+
+▌ 导读（50字内，制造紧迫感/好奇心）
+
+## 一、事件速览
+
+[用3-4句话交代背景，适合快速浏览]
+
+## 二、技术解读
+
+[核心内容，深入但不晦涩，多用类比]
+[穿插数据图表描述]
+
+[配图1占位：技术架构/产品图]
+
+## 三、行业影响
+
+[对开发者/企业/普通用户分别的影响]
+
+## 四、专家观点
+
+[引用知乎高赞观点，标注来源]
+
+[配图2占位：数据图/趋势图]
+
+## 五、写在最后
+
+[个人观点 + 引导评论的问题]
+[关注/转发引导]
+```
+
+**IT 写作风格要点：**
+- 用「我们」拉近距离，避免「笔者」
+- 专业词汇后加简短解释（括号内），如：LLM（大语言模型）
+- 多用小标题、加粗，方便碎片化阅读
+- 数字用阿拉伯数字，增强冲击感
+- 结尾必有互动问题，引导留言
+
+---
+
+## Step 4：自动配图
+
+运行脚本：`scripts/fetch_images.py`
+
+**配图策略：**
+1. 封面图：根据文章主题，搜索高质量横版图（16:9）
+2. 配图1：技术相关图（服务器/代码/芯片等）
+3. 配图2：数据/趋势图风格图
+
+**图片来源优先级：**
+1. Unsplash API（需 API Key，免费高清）
+2. Pexels API（备选，同样免费）
+3. 关键词 web_search 图片搜索（最后备选）
+
+返回图片 URL 列表，插入文章对应位置。
+
+---
+
+## Step 5：HTML 排版生成
+
+运行脚本：`scripts/format_article.py`
+
+生成符合微信公众号的 HTML，特点：
+- 内联样式（微信编辑器不支持外部 CSS）
+- 渐变色标题装饰（科技感蓝紫色系）
+- 代码块特殊样式
+- 引用块样式
+- 自适应图片
+
+参考样式规范：`references/wechat_html_style.md`
+
+---
+
+## Step 6：上传配图并发布草稿
+
+运行脚本：`scripts/wechat_publisher.py`
+
+流程：
+1. 获取 Access Token（自动刷新）
+2. 上传封面图到微信素材库 → 获取 `thumb_media_id`
+3. 上传正文配图 → 替换文章中的图片 URL 为微信 CDN 地址
+4. 调用草稿接口创建草稿
+5. 返回草稿 media_id，提示用户前往公众号后台预览发布
+
+**最终提示：**
+```
+✅ 草稿已创建成功！
+📝 media_id: xxxxxxxxxxxx
+🔗 请前往微信公众平台 → 草稿箱 → 预览后发布
+   https://mp.weixin.qq.com
+```
+
+---
+
+## 错误处理
+
+| 错误 | 原因 | 解决方案 |
+|------|------|----------|
+| `40001` invalid credential | Token 过期 | 脚本自动重新获取 |
+| `45009` reach max api daily quota | 日调用超限 | 明日重试 |
+| `48001` api unauthorized | 未开通接口权限 | 公众平台申请接口 |
+| 知乎请求被拦截 | 频率限制 | 脚本内置随机延迟 |
+
+---
+
+## 快速开始
+
+用户说"帮我写一篇知乎热点公众号文章"时，执行：
+1. 直接运行 Step 1 展示热榜
+2. 等用户选题
+3. Step 2-6 自动流水线执行
+4. 每步完成后简短告知进度
+
+读取参考文件了解更多：
+- `references/wechat_api.md` — 微信API完整参数说明
+- `references/wechat_html_style.md` — HTML排版样式规范

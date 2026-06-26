@@ -1,35 +1,78 @@
 ---
-name: "潜在意向筛选虾"
-description: "潜在意向筛选虾 — 从公域评论、帖子、私信中识别真实购买意向，生成高意向销售线索并推送给销售团队。 当以下情况时使用此 Skill： (1) 需要从评论区、帖子、私信中挖掘有购买意向的潜在客户 (2) 需要对用户提供的评论数据（CSV/文本）进行意向识别和评分 (3) 需要在竞品帖子下找到对竞品不满意、正在寻找替..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intent-filter-claw"
-sourceUrl: "https://clawhub.ai/skills/intent-filter-claw"
+name: intent-filter-claw
+description: |
+  潜在意向筛选虾 — 从公域评论、帖子、私信中识别真实购买意向，生成高意向销售线索并推送给销售团队。
+
+  当以下情况时使用此 Skill：
+  (1) 需要从评论区、帖子、私信中挖掘有购买意向的潜在客户
+  (2) 需要对用户提供的评论数据（CSV/文本）进行意向识别和评分
+  (3) 需要在竞品帖子下找到对竞品不满意、正在寻找替代品的潜在客户
+  (4) 需要将高意向线索整理成表格或推送到飞书
+  (5) 用户提到"意向筛选"、"潜在客户"、"公域挖掘"、"评论区挖掘"、"求推荐"、"求链接"、"购买意向"、"线索筛选"、"语义识别"、"意向识别"、"销售线索"、"私信筛选"、"竞品挖掘"、"高意向用户"、"流量转化"
 ---
 
-# 潜在意向筛选虾
+# 潜在意向筛选虾 (intent-filter-claw)
 
-> 潜在意向筛选虾 — 从公域评论、帖子、私信中识别真实购买意向，生成高意向销售线索并推送给销售团队。 当以下情况时使用此 Skill： (1) 需要从评论区、帖子、私信中挖掘有购买意向的潜在客户 (2) 需要对用户提供的评论数据（CSV/文本）进行意向识别和评分 (3) 需要在竞品帖子下找到对竞品不满意、正在寻找替...
+从公域评论/帖子/私信中识别购买意向，输出带评分的高意向线索列表。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intent-filter-claw`
-- **Source URL:** [https://clawhub.ai/skills/intent-filter-claw](https://clawhub.ai/skills/intent-filter-claw)
+## 工作流程
 
-## Overview
+### 步骤 1：明确输入来源
 
+用户可能提供两种输入：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intent-filter-claw
-```
+**A. 原始评论数据（CSV/文本）**
+- 直接进入步骤 2 分析
+- 期望字段：`用户名`、`内容`、`平台`（可选）、`时间`（可选）
+
+**B. 自然语言监控需求**（如"帮我监控小红书护肤品评论"）
+- 告知用户：实际平台采集需要对应平台 API 权限
+- 提供模拟数据演示，或引导用户提供已采集的评论文件
+- 使用 `scripts/intent-scanner.sh` 说明采集命令
+
+### 步骤 2：语义意向识别
+
+读取 `references/intent-keywords.md` 获取意向词库，读取 `references/semantic-rules.md` 获取语义规则。
+
+对每条评论：
+1. 匹配强/中/弱意向词
+2. 应用语义规则（排除否定语境、反讽、无关内容）
+3. 识别竞品不满信号
+
+### 步骤 3：意向评分（0-100）
+
+读取 `references/user-value-model.md` 获取评分模型。
+
+| 维度 | 权重 | 说明 |
+|------|------|------|
+| 意向词强度 | 50% | 强意向词 40-50 分，中 20-35 分，弱 5-15 分 |
+| 账号影响力 | 20% | 粉丝数/互动率估算 |
+| 紧迫度 | 20% | 有明确时间节点加分 |
+| 竞品不满 | 10% | 提及竞品差评加分 |
+
+**推送阈值**：默认 ≥70 分为高意向，推送给销售。
+
+### 步骤 4：输出线索表
+
+输出格式（Markdown 表格或 CSV）：
+
+| 用户名 | 平台 | 原始内容 | 意向类型 | 评分 | 建议话术 |
+|--------|------|----------|----------|------|----------|
+
+### 步骤 5：推送到飞书（可选）
+
+若用户要求推送，使用 `message` 工具发送到指定飞书群或个人，或使用 `feishu_bitable_app_table_record` 写入多维表格线索库。
+
+## 关键原则
+
+- **语义优先**：不只匹配关键词，结合上下文判断真实意向
+- **宁缺毋滥**：误判比漏判代价更高，严格过滤否定/反讽语境
+- **分级处理**：高/中/低意向分别给出不同跟进建议
+- **隐私合规**：只处理用户主动公开的内容
+
+## 参考文件
+
+- `references/intent-keywords.md` — 意向词库（强/中/弱 + 行业定制）
+- `references/semantic-rules.md` — 语义分析规则（否定/反讽/竞品识别）
+- `references/user-value-model.md` — 用户价值评估与评分模型
+- `scripts/intent-scanner.sh` — 平台采集与分析命令参考

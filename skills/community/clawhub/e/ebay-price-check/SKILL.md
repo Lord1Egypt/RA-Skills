@@ -1,35 +1,43 @@
----
-name: "Ebay Price Check"
-description: "Search eBay for current and sold item prices, providing price range, shipping, condition filters, and price history summaries."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ebay-price-check"
-sourceUrl: "https://clawhub.ai/skills/ebay-price-check"
----
+# eBay Price Check Skill
 
-# Ebay Price Check
+Check eBay item prices, including sold listings for historical data.
 
-> Search eBay for current and sold item prices, providing price range, shipping, condition filters, and price history summaries.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ebay-price-check`
-- **Source URL:** [https://clawhub.ai/skills/ebay-price-check](https://clawhub.ai/skills/ebay-price-check)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ebay-price-check
+### Check current price of an item
 ```
+/eBay price check iPhone 14 Pro Max 256GB
+```
+
+### Check sold prices (historical data)
+```
+/eBay sold prices MacBook Pro 14" M3
+```
+
+### Get price history summary
+```
+/eBay price history Samsung Galaxy S23
+```
+
+## Capabilities
+
+- **Search eBay** for items by keyword
+- **Get current listing prices** (active listings)
+- **Get sold prices** (historical data from sold listings)
+- **Price range analysis** (min/max/average)
+- **Shipping cost information**
+- **Item condition filtering** (new, used, refurbished)
+
+## How it Works
+
+1. Searches eBay using their public search API
+2. Parses results to extract prices, titles, shipping costs
+3. For sold prices, filters by "Sold Items" category
+4. Returns formatted summary with price statistics
+
+## Notes
+
+- Requires internet connection
+- eBay may limit search frequency
+- Sold data may not be available for all items
+- Prices shown are in USD unless specified

@@ -1,0 +1,3727 @@
+meta:
+  id: finance-bp-104-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-104
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:49.125318+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - unspecified
+    activities:
+    - finance-analytics
+  upgraded_from: finance-bp-104-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:27.856671+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-104--Engine/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-104--Engine/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: Examples/InitialMargin/ore_dynamicsimm.ipynb
+  business_problem: Analyzes collateralized vs uncollateralized counterparty exposure dynamics for risk management and margin
+    calculations.
+  intent_keywords:
+  - initial margin
+  - SIMM
+  - collateral
+  - exposure
+  - variation margin
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-102
+  source_file: Examples/Legacy/Example_56/ore.ipynb
+  business_problem: Computes and visualizes XVA metrics including CVA, DVA, FVA, and exposure profiles for OTC derivatives
+    portfolio.
+  intent_keywords:
+  - XVA
+  - CVA
+  - FVA
+  - exposure
+  - counterparty risk
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-103
+  source_file: Examples/Legacy/Example_61/ore.ipynb
+  business_problem: Compares different sensitivity computation methods (bump-and-reval, automatic differentiation, complex
+    step) for accuracy and performance validation.
+  intent_keywords:
+  - sensitivity
+  - AD
+  - automatic differentiation
+  - complex step
+  - bump and reval
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-104
+  source_file: Examples/ORE-Python/Notebooks/Dependencies/dependencies.ipynb
+  business_problem: Explores market object dependencies and portfolio structure by examining curves, conventions, and pricing
+    engine configurations.
+  intent_keywords:
+  - market data
+  - curves
+  - conventions
+  - portfolio
+  - dependencies
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-105
+  source_file: Examples/ORE-Python/Notebooks/Example_1/hello.ipynb
+  business_problem: Demonstrates basic instrument setup and valuation for a commodity forward contract using price and discount
+    curves.
+  intent_keywords:
+  - commodity
+  - forward
+  - pricing engine
+  - price curve
+  - discount curve
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-106
+  source_file: Examples/ORE-Python/Notebooks/Example_1/ore.ipynb
+  business_problem: Generates comprehensive portfolio reports including NPV, cashflows, and yield curves for trade valuation.
+  intent_keywords:
+  - NPV
+  - cashflow
+  - curves
+  - portfolio
+  - valuation
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-107
+  source_file: Examples/ORE-Python/Notebooks/Example_2/ore.ipynb
+  business_problem: Analyzes counterparty exposure profiles (EPE, ENE) for individual swaps and netting sets to assess credit
+    risk.
+  intent_keywords:
+  - exposure
+  - EPE
+  - ENE
+  - netting set
+  - swap
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-108
+  source_file: Examples/ORE-Python/Notebooks/Example_3/ore.ipynb
+  business_problem: Visualizes Monte Carlo simulation paths and NPV cubes for XVA computation, including scenario data analysis.
+  intent_keywords:
+  - XVA
+  - scenario
+  - simulation
+  - Monte Carlo
+  - NPV cube
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-109
+  source_file: Examples/ORE-Python/Notebooks/Example_3/progress.ipynb
+  business_problem: Monitors ORE simulation progress by reading log files and displaying execution status in Jupyter.
+  intent_keywords:
+  - progress
+  - monitoring
+  - simulation
+  - log
+  stage: data_collection
+  data_domain: mixed
+  type: monitoring
+- kuc_id: KUC-110
+  source_file: Examples/ORE-Python/Notebooks/Example_4/ore.ipynb
+  business_problem: Analyzes simulated scenario data to compute covariance matrices and risk factor correlations from Monte
+    Carlo output.
+  intent_keywords:
+  - scenario
+  - covariance
+  - correlation
+  - risk factor
+  - eigenvalue
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-111
+  source_file: Examples/ORE-Python/Notebooks/Example_5/ore.ipynb
+  business_problem: Visualizes custom payoff functions and analyzes trade-level exposure for exotic instruments like barrier
+    options.
+  intent_keywords:
+  - payoff
+  - barrier option
+  - custom
+  - exposure
+  - visualization
+  stage: factor_computation
+  data_domain: trading_data
+  type: research_analysis
+- kuc_id: KUC-112
+  source_file: Examples/ORE-Python/Notebooks/Example_6/ore.ipynb
+  business_problem: Demonstrates dynamic valuation date changes and interactive scenario analysis using Jupyter widgets for
+    what-if analysis.
+  intent_keywords:
+  - valuation date
+  - scenario
+  - interactive
+  - what-if
+  - dynamic
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-113
+  source_file: Examples/ORE-Python/Notebooks/Example_7/ore.ipynb
+  business_problem: Calculates regulatory margin requirements using SIMM methodology based on CRIF-formatted risk sensitivities.
+  intent_keywords:
+  - SIMM
+  - margin
+  - CRIF
+  - initial margin
+  - regulatory
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-114
+  source_file: Examples/ORE-Python/Notebooks/Example_8/analytics.ipynb
+  business_problem: Sets up complete market data infrastructure including curves, conventions, pricing engines, and term structure
+    configurations.
+  intent_keywords:
+  - market data
+  - configuration
+  - curves
+  - conventions
+  - pricing engine
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-115
+  source_file: Examples/ORE-Python/Notebooks/Example_9/ore.ipynb
+  business_problem: Extracts and inspects term structures including discount curves, forward curves, and zero rates for pricing
+    validation.
+  intent_keywords:
+  - term structure
+  - discount curve
+  - forward curve
+  - zero rate
+  - ibor
+  stage: factor_computation
+  data_domain: market_data
+  type: reporting
+- kuc_id: KUC-116
+  source_file: Examples/ORE-Python/Notebooks/QuasiMonteCarloMethods.ipynb
+  business_problem: Demonstrates quasi-Monte Carlo methods using low-discrepancy sequences (Sobol) for more efficient European
+    option pricing.
+  intent_keywords:
+  - quasi-Monte Carlo
+  - Sobol
+  - low discrepancy
+  - option pricing
+  - variance reduction
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-117
+  source_file: Examples/Performance/ore_aadsensi.ipynb
+  business_problem: Compares automatic differentiation sensitivity computation performance against traditional bump-and-reval
+    and complex step methods.
+  intent_keywords:
+  - AAD
+  - sensitivity
+  - performance
+  - automatic differentiation
+  - Greeks
+  stage: factor_computation
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-118
+  source_file: Examples/Performance/ore_cvasensi.ipynb
+  business_problem: Computes CVA sensitivities to risk factors and analyzes credit valuation adjustment exposure profiles.
+  intent_keywords:
+  - CVA
+  - sensitivity
+  - credit
+  - scenario
+  - exposure
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-119
+  source_file: FrontEnd/Python/Visualization/npvcube/ore_jupyter_dashboard.ipynb
+  business_problem: Provides interactive Jupyter dashboard for launching ORE, visualizing NPV cube data, and filtering by
+    netting sets.
+  intent_keywords:
+  - dashboard
+  - NPV cube
+  - visualization
+  - interactive
+  - netting set
+  stage: factor_computation
+  data_domain: trading_data
+  type: reporting
+component_capability_map:
+  project: finance-bp-104--Engine
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 7
+    total_classes: 34
+    total_functions: 0
+    total_stages: 7
+  modules:
+    xml_configuration_stage:
+      class_count: 5
+      stage_id: xml_configuration
+      stage_order: 1
+      responsibility: 'Parses XML input files (ore.xml, simulation.xml, portfolio.xml) to define the ORE execution pipeline.
+        WHY: Decoupled configuration enables flexible workflow definition without code changes, allowing non-programmers to
+        modify execution behavior.'
+      classes:
+      - name: Parameters.fromFile
+        file: xml_configuration_stage/parameters-fromfile.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: OreExample.__init__
+        file: xml_configuration_stage/oreexample-init.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: OreExample.run
+        file: xml_configuration_stage/oreexample-run.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ore_exe_location
+        file: xml_configuration_stage/ore-exe-location.py
+        line: 0
+        kind: replaceable_point
+      - name: xml_configuration_file
+        file: xml_configuration_stage/xml-configuration-file.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    market_data_loading:
+      class_count: 4
+      stage_id: market_data_loading
+      stage_order: 2
+      responsibility: 'Loads market data (yield curves, volatility surfaces, FX spots, credit curves) into ORE''s market object.
+        WHY: Separates data ingestion from pricing to enable consistent revaluation and supports both file-based and programmatic
+        data injection.'
+      classes:
+      - name: CSVLoader
+        file: market_data_loading/csvloader.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: InMemoryLoader
+        file: market_data_loading/inmemoryloader.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Market construction
+        file: market_data_loading/market-construction.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: loader_implementation
+        file: market_data_loading/loader-implementation.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    pricing_&_npv_calculation:
+      class_count: 6
+      stage_id: pricing_npv
+      stage_order: 3
+      responsibility: 'Prices trades using configured pricing engines and calculates Net Present Values for the entire portfolio.
+        WHY: Core valuation step that feeds each downstream risk calculations, XVA, and reporting.'
+      classes:
+      - name: VanillaOption.setPricingEngine
+        file: pricing_&_npv_calculation/vanillaoption-setpricingengine.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AnalyticEuropeanEngine
+        file: pricing_&_npv_calculation/analyticeuropeanengine.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: HestonModel
+        file: pricing_&_npv_calculation/hestonmodel.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: PlainInMemoryReport.getReport
+        file: pricing_&_npv_calculation/plaininmemoryreport-getreport.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: pricing_engine
+        file: pricing_&_npv_calculation/pricing-engine.py
+        line: 0
+        kind: replaceable_point
+      - name: model_type
+        file: pricing_&_npv_calculation/model-type.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    monte_carlo_simulation_&_exposure:
+      class_count: 5
+      stage_id: simulation_exposure
+      stage_order: 4
+      responsibility: 'Runs Monte Carlo simulations to generate future exposure profiles for trades and netting sets. WHY:
+        Enables XVA calculations that require full distribution of future portfolio values, not just point estimates.'
+      classes:
+      - name: Simulation configuration
+        file: monte_carlo_simulation_&_exposure/simulation-configuration.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Cube storage and retrieval
+        file: monte_carlo_simulation_&_exposure/cube-storage-and-retrieval.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FinancialSystem.consistent_input
+        file: monte_carlo_simulation_&_exposure/financialsystem-consistent-input.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: simulation_engine
+        file: monte_carlo_simulation_&_exposure/simulation-engine.py
+        line: 0
+        kind: replaceable_point
+      - name: scenario_output
+        file: monte_carlo_simulation_&_exposure/scenario-output.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    xva_&_margin_calculation:
+      class_count: 5
+      stage_id: xva_calculation
+      stage_order: 5
+      responsibility: 'Computes Credit Valuation Adjustment (CVA), Debt Valuation Adjustment (DVA), Funding Valuation Adjustment
+        (FVA), and regulatory margins (SA-CCR, SIMM, DIM). WHY: Critical for trading desk P&L attribution, risk management,
+        and regulatory capital compliance.'
+      classes:
+      - name: expectedSimmEvolution
+        file: xva_&_margin_calculation/expectedsimmevolution.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: netCubeFilter
+        file: xva_&_margin_calculation/netcubefilter.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: CreditPortfolioModel
+        file: xva_&_margin_calculation/creditportfoliomodel.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: margin_methodology
+        file: xva_&_margin_calculation/margin-methodology.py
+        line: 0
+        kind: replaceable_point
+      - name: evaluation_date
+        file: xva_&_margin_calculation/evaluation-date.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    post-processing_&_visualization:
+      class_count: 5
+      stage_id: post_processing
+      stage_order: 6
+      responsibility: 'Transforms raw ORE output into analysis-ready formats and generates publication-quality plots. WHY:
+        Bridges gap between engine output and human-interpretable results for risk management decision-making.'
+      classes:
+      - name: OutputPlotter
+        file: post-processing_&_visualization/outputplotter.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: compare_files
+        file: post-processing_&_visualization/compare-files.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: OutputFiles.from_folder
+        file: post-processing_&_visualization/outputfiles-from-folder.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: plot_format
+        file: post-processing_&_visualization/plot-format.py
+        line: 0
+        kind: replaceable_point
+      - name: comparison_tolerance
+        file: post-processing_&_visualization/comparison-tolerance.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    regression_testing_framework:
+      class_count: 4
+      stage_id: regression_testing
+      stage_order: 7
+      responsibility: 'Validates ORE outputs against expected results and manages test suite execution. WHY: Ensures numerical
+        stability across versions, platforms, and configuration changes to prevent silent regressions.'
+      classes:
+      - name: TestExamples dynamic test generation
+        file: regression_testing_framework/testexamples-dynamic-test-generation.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: compare_files_df
+        file: regression_testing_framework/compare-files-df.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: test_parallelism
+        file: regression_testing_framework/test-parallelism.py
+        line: 0
+        kind: replaceable_point
+      - name: sample_count_override
+        file: regression_testing_framework/sample-count-override.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.3888888888888889
+    evidence_invalid: 44
+    evidence_verified: 28
+    evidence_auto_fixed: 0
+    audit_coverage: 47/47 (100%)
+    audit_pass_rate: 12/47 (25%)
+    audit_fail_total: 7
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 12
+      warn: 28
+      fail: 7
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-104. Evidence verify ratio
+    = 38.9% and audit fail total = 7. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-104-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc:
+  - UC-101
+  - UC-102
+  - UC-103
+  - UC-105
+  - UC-106
+  - UC-107
+  - UC-108
+  - UC-110
+  - UC-111
+  - UC-112
+  - UC-113
+  - UC-115
+  - UC-116
+  - UC-117
+  - UC-118
+  - UC-119
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Dynamic SIMM Exposure Analysis
+    positive_terms:
+    - initial margin
+    - SIMM
+    - collateral
+    - exposure
+    - variation margin
+    data_domain: trading_data
+    negative_terms:
+    - XVA
+    - NPV
+    - pricing
+    ambiguity_question: Are you looking for margin/SIMM calculations or valuation/pricing analytics?
+  - uc_id: UC-102
+    name: XVA Valuation and Sensitivity Reporting
+    positive_terms:
+    - XVA
+    - CVA
+    - FVA
+    - exposure
+    - counterparty risk
+    data_domain: trading_data
+    negative_terms:
+    - NPV
+    - pricing
+    - margin
+    ambiguity_question: Do you need XVA/counterparty risk metrics or basic portfolio valuations?
+  - uc_id: UC-103
+    name: Pricing Sensitivity Method Comparison
+    positive_terms:
+    - sensitivity
+    - AD
+    - automatic differentiation
+    - complex step
+    - bump and reval
+    data_domain: financial_data
+    negative_terms:
+    - XVA
+    - exposure
+    ambiguity_question: Are you comparing sensitivity computation methods or analyzing risk metrics?
+  - uc_id: UC-104
+    name: Market Data and Portfolio Dependency Analysis
+    positive_terms:
+    - market data
+    - curves
+    - conventions
+    - portfolio
+    - dependencies
+    data_domain: market_data
+    negative_terms:
+    - XVA
+    - exposure
+    ambiguity_question: Are you setting up market data infrastructure or running risk calculations?
+  - uc_id: UC-105
+    name: Commodity Forward Valuation Setup
+    positive_terms:
+    - commodity
+    - forward
+    - pricing engine
+    - price curve
+    - discount curve
+    data_domain: financial_data
+    negative_terms:
+    - portfolio
+    - XVA
+    - exposure
+    ambiguity_question: Are you learning instrument setup or need portfolio-level analytics?
+  - uc_id: UC-106
+    name: Portfolio NPV Cashflow and Curve Reporting
+    positive_terms:
+    - NPV
+    - cashflow
+    - curves
+    - portfolio
+    - valuation
+    data_domain: trading_data
+    negative_terms:
+    - XVA
+    - exposure
+    - sensitivity
+    ambiguity_question: Do you need basic portfolio valuations or risk/exposure metrics?
+  - uc_id: UC-107
+    name: Netting Set Exposure Analysis
+    positive_terms:
+    - exposure
+    - EPE
+    - ENE
+    - netting set
+    - swap
+    data_domain: trading_data
+    negative_terms:
+    - NPV
+    - pricing
+    - margin
+    ambiguity_question: Are you analyzing credit exposure or computing trade valuations?
+  - uc_id: UC-108
+    name: XVA Scenario Path Visualization
+    positive_terms:
+    - XVA
+    - scenario
+    - simulation
+    - Monte Carlo
+    - NPV cube
+    data_domain: trading_data
+    negative_terms:
+    - NPV
+    - pricing
+    ambiguity_question: Are you analyzing XVA scenarios or basic trade valuations?
+  - uc_id: UC-109
+    name: Simulation Progress Monitoring
+    positive_terms:
+    - progress
+    - monitoring
+    - simulation
+    - log
+    data_domain: mixed
+    negative_terms:
+    - NPV
+    - exposure
+    - reporting
+    ambiguity_question: Are you monitoring execution progress or analyzing results?
+  - uc_id: UC-110
+    name: Scenario Dump Covariance Analysis
+    positive_terms:
+    - scenario
+    - covariance
+    - correlation
+    - risk factor
+    - eigenvalue
+    data_domain: financial_data
+    negative_terms:
+    - NPV
+    - XVA
+    ambiguity_question: Are you analyzing risk factor correlations or computing valuations?
+  - uc_id: UC-111
+    name: Custom Payoff and Exposure Analysis
+    positive_terms:
+    - payoff
+    - barrier option
+    - custom
+    - exposure
+    - visualization
+    data_domain: trading_data
+    negative_terms:
+    - portfolio
+    - XVA
+    ambiguity_question: Are you analyzing exotic instrument payoffs or standard trade valuations?
+  - uc_id: UC-112
+    name: Dynamic Valuation Date Scenario Analysis
+    positive_terms:
+    - valuation date
+    - scenario
+    - interactive
+    - what-if
+    - dynamic
+    data_domain: financial_data
+    negative_terms:
+    - XVA
+    - exposure
+    ambiguity_question: Are you running what-if scenario analysis or standard risk reports?
+  - uc_id: UC-113
+    name: SIMM Margin Calculation with CRIF Data
+    positive_terms:
+    - SIMM
+    - margin
+    - CRIF
+    - initial margin
+    - regulatory
+    data_domain: trading_data
+    negative_terms:
+    - XVA
+    - NPV
+    ambiguity_question: Are you calculating SIMM margin or XVA metrics?
+  - uc_id: UC-114
+    name: Market Data Configuration and Analytics Setup
+    positive_terms:
+    - market data
+    - configuration
+    - curves
+    - conventions
+    - pricing engine
+    data_domain: market_data
+    negative_terms:
+    - XVA
+    - exposure
+    ambiguity_question: Are you configuring market data or running analytics?
+  - uc_id: UC-115
+    name: Term Structure and Discount Factor Extraction
+    positive_terms:
+    - term structure
+    - discount curve
+    - forward curve
+    - zero rate
+    - ibor
+    data_domain: market_data
+    negative_terms:
+    - XVA
+    - exposure
+    ambiguity_question: Are you inspecting term structures or computing risk metrics?
+  - uc_id: UC-116
+    name: Quasi-Monte Carlo Option Pricing
+    positive_terms:
+    - quasi-Monte Carlo
+    - Sobol
+    - low discrepancy
+    - option pricing
+    - variance reduction
+    data_domain: financial_data
+    negative_terms:
+    - portfolio
+    - XVA
+    ambiguity_question: Are you exploring numerical methods for option pricing or analyzing portfolios?
+  - uc_id: UC-117
+    name: AAD Sensitivity Performance Analysis
+    positive_terms:
+    - AAD
+    - sensitivity
+    - performance
+    - automatic differentiation
+    - Greeks
+    data_domain: financial_data
+    negative_terms:
+    - XVA
+    - exposure
+    ambiguity_question: Are you benchmarking sensitivity computation methods or running risk reports?
+  - uc_id: UC-118
+    name: CVA Sensitivity Scenario Analysis
+    positive_terms:
+    - CVA
+    - sensitivity
+    - credit
+    - scenario
+    - exposure
+    data_domain: trading_data
+    negative_terms:
+    - NPV
+    - pricing
+    ambiguity_question: Are you analyzing CVA sensitivities or basic valuations?
+  - uc_id: UC-119
+    name: NPV Cube Visualization Dashboard
+    positive_terms:
+    - dashboard
+    - NPV cube
+    - visualization
+    - interactive
+    - netting set
+    data_domain: trading_data
+    negative_terms:
+    - XVA
+    - sensitivity
+    ambiguity_question: Are you building custom dashboards or running standard risk reports?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 78
+    fatal_constraints_count: 44
+    non_fatal_constraints_count: 148
+    use_cases_count: 19
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 22 source groups: Examples/Exposure(2),
+        Examples/InitialMargin(1), Examples/ORE-Python/ExampleScripts(12), ORE-SWIG/test(4), PythonIntegration(4), Tools/PythonOreRunner(2),
+        and 16 more.'
+      key_decisions: 78 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-027
+      type: B/BA
+      summary: PCA on yield curve scenarios
+    - id: BD-028
+      type: B/BA
+      summary: Log-linear discount-to-zero-rate conversion
+    - id: BD-029
+      type: B/BA
+      summary: 365.25 day count convention
+    - id: BD-030
+      type: B/BA
+      summary: Black-Scholes-Merton for vanilla options
+    - id: BD-031
+      type: B/DK
+      summary: Heston stochastic volatility model
+    - id: BD-032
+      type: B
+      summary: COS method for Heston pricing
+    - id: BD-033
+      type: B/BA
+      summary: Finite difference Black-Scholes PDE
+    - id: BD-034
+      type: B
+      summary: Binomial tree with multiple algorithms
+    - id: BD-035
+      type: B/RC
+      summary: Monte Carlo with variance reduction
+    - id: BD-036
+      type: B/DK
+      summary: Hull-White one-factor model for swaptions
+    - id: BD-037
+      type: B/BA
+      summary: Levenberg-Marquardt optimization
+    - id: BD-038
+      type: B/BA
+      summary: End criteria for optimization
+    - id: BD-039
+      type: B
+      summary: Gaussian1dSwaptionEngine discretization
+    - id: BD-040
+      type: B/BA
+      summary: Implied volatility Newton solver
+    - id: BD-041
+      type: B/BA
+      summary: Calibration basket generation modes
+    - id: BD-042
+      type: B/BA
+      summary: Black constant volatility surface
+    - id: BD-043
+      type: B/DK
+      summary: Black variance surface by moneyness
+    - id: BD-044
+      type: B
+      summary: FX Vanna-Volga smile calibration
+    - id: BD-045
+      type: B/BA
+      summary: QLE Swaption vol cube interpolation
+    - id: BD-023
+      type: B/BA
+      summary: MARS for conditional expectation estimation
+    - id: BD-024
+      type: B/BA
+      summary: HNSW approximate nearest neighbors
+    - id: BD-025
+      type: B
+      summary: Fourier basis features for regression
+    - id: BD-026
+      type: B/DK
+      summary: KNN weighted smoothing
+    - id: BD-021
+      type: B/BA
+      summary: Directional graph for counterparty network
+    - id: BD-022
+      type: B/BA
+      summary: EEPE-based systemic risk contribution
+    - id: BD-GAP-001
+      type: B
+      summary: TradeGenerator organizes instruments into currency-segmented portfolios (oisPortfolio keyed by currency), enabling
+        parallel curve bootstrapping per currency
+    - id: BD-GAP-003
+      type: B/BA
+      summary: Day count conventions are mapped per currency (and optionally per tenor), encoding the regulatory and market
+        practice for each currency jurisdiction
+    - id: BD-GAP-006
+      type: B
+      summary: ORE API routes analytics requests to specialized setup handlers (setupNPV, setupSensitivity, setupStress, setupXVA,
+        setupExposure) rather than a generic handler, encoding domain-specific parameter str
+    - id: BD-046
+      type: BA
+      summary: Shift horizon defaults to 0.0 across ALL model builders (LGM, CR-LGM, InfDK, InfJY) as architecture
+    - id: BD-049
+      type: BA
+      summary: EngineFactory lazy-resets builders only when buildersDirty_ flag is set; initial state has dirty=true
+    - id: BD-054
+      type: BA
+      summary: FileList._parse() silently catches FileNotFoundError and continues; no error propagation
+    - id: BD-GAP-002
+      type: B
+      summary: Floating legs support configurable basis spread (bool parameter) while fixed legs do not, reflecting the structural
+        difference between floating coupons (can have basis) and fixed coupons (basis is zer
+    - id: BD-GAP-004
+      type: BA
+      summary: ORE API accepts CSV uploads for results post-processing (postCSV) rather than mandating structured JSON output,
+        prioritizing analyst flexibility with spreadsheet tools
+    - id: BD-GAP-007
+      type: B/RC
+      summary: State scenarios are stored in gzip-compressed files with separate extraction methods by key and date index,
+        trading compression efficiency for random access by scenario dimension
+    - id: BD-GAP-008
+      type: T
+      summary: 'Performance utilities provide dual plotting modes: individual NPV path visualization (plotNpvPaths) and aggregated
+        date-level scenario extraction (getNpvScenarios), supporting both path-specific analy'
+    - id: BD-GAP-009
+      type: T
+      summary: Chart generation in Excel export supports configurable row and column headers, allowing dynamic reorientation
+        of data tables to match analyst spreadsheet layouts
+    - id: BD-056
+      type: BA/M
+      summary: 'INTERACTION: [BD-052] × [BD-055] → Systemic pricing risk from inconsistent shift horizon validation and application
+        across model families'
+    - id: BD-057
+      type: B
+      summary: 'INTERACTION: [BD-019] × [BD-008] → Test-production sample divergence creates false regression confidence'
+    - id: BD-058
+      type: BA
+      summary: 'INTERACTION: [BD-009] × [BD-017] → Dual parallelism controls create resource allocation ambiguity'
+    - id: BD-059
+      type: BA
+      summary: 'INTERACTION: [BD-027] × [BD-028] → Hidden dependency: PCA requires consistent rate conversion; log-linear
+        approximation affects factor quality'
+    - id: BD-060
+      type: B/BA
+      summary: 'INTERACTION: [BD-015] × [BD-019] → Reduced sample count amplifies tolerance calibration requirements for MC
+        comparisons'
+    - id: BD-061
+      type: B/BA
+      summary: 'INTERACTION: [BD-046] × [BD-052] → Default shift=0.0 interacts with model-specific shift application creating
+        inconsistent initialization'
+    - id: BD-062
+      type: BA/DK
+      summary: 'INTERACTION: [BD-051] × [BD-010] → Mirrored FX trades required for systemic risk analysis but creates tension
+        with netting set independence'
+    - id: BD-063
+      type: BA/DK
+      summary: 'INTERACTION: [BD-023] × [BD-024] × [BD-025] → MARS, HNSW, and Fourier features create complex interdependent
+        ML pipeline with implicit assumptions'
+    - id: BD-GAP-010
+      type: T
+      summary: Legacy Excel integration supports multiple data import formats (CSV, XML, space-delimited) reflecting the heterogeneous
+        data sources in institutional trading environments
+    - id: BD-048
+      type: B
+      summary: Every TradeBuilder subclasses MUST be stateless; constructor returns shared_ptr without state
+    - id: BD-050
+      type: B
+      summary: ShiftedLognormal volatility type requires shift() lookup in 4 permutations; other types ignore shift
+    - id: BD-055
+      type: BA/M
+      summary: ShiftHorizon must be non-negative (>=0) validated in ALL model builders but InfJyBuilder uses different logic
+    - id: BD-004
+      type: BA/DK
+      summary: Loaders abstract data source (CSV vs in-memory) to allow flexible market data injection
+    - id: BD-005
+      type: B/DK
+      summary: CSV format allows non-programmers to update market data without recompilation
+    - id: BD-047
+      type: B
+      summary: OreBasic.__init__ calls parse_input() but NOT parse_output(); parse_output must be called explicitly after
+        run()
+    - id: BD-051
+      type: B
+      summary: FinancialSystem requires mirrored trade pairs for FxForward/Swap; validation enforced by consistent_input()
+    - id: BD-053
+      type: M
+      summary: OreExample._locate_ore_exe() hardcodes 15+ path patterns for Windows vs Unix; path order matters
+    - id: BD-052
+      type: DK
+      summary: Shift applied as -parametrization->H(shiftHorizon) in LGM but as direct value in CR-LGM and Inflation models
+    - id: BD-014
+      type: BA/DK
+      summary: OutputFiles uses factory pattern from_folder() to auto-discover output files
+    - id: BD-015
+      type: BA
+      summary: Comparison uses datacompy for DataFrame equality with tolerance support
+    - id: BD-016
+      type: B
+      summary: OutputPlotter extends dict for lazy loading of plot data
+    - id: BD-017
+      type: B
+      summary: EXAMPLES_PARALLEL env var controls ThreadPoolExecutor workers for output processing
+    - id: BD-006
+      type: B/BA
+      summary: Engine pattern allows swapping pricing models without changing trade representation
+    - id: BD-007
+      type: BA
+      summary: Reports stored in memory and retrieved by name after ORE run
+    - id: BD-018
+      type: BA
+      summary: Dynamic test generation allows adding examples without modifying test code
+    - id: BD-019
+      type: B
+      summary: OVERWRITE_SCENARIOGENERATOR_SAMPLES=50 for regression testing (not 1000+ production)
+    - id: BD-020
+      type: BA/DK
+      summary: Per-example comparison_config.json allows file-specific tolerances and exclusions
+    - id: BD-GAP-005
+      type: B/BA
+      summary: ORE API implements explicit directory traversal protection (is_directory_traversal check) before serving files,
+        preventing path injection attacks on the analytics engine
+    - id: BD-008
+      type: B/DK
+      summary: Exposure simulation uses scenario files to cache market paths for efficiency
+    - id: BD-009
+      type: BA
+      summary: Parallel execution via ThreadPoolExecutor with EXAMPLES_PARALLEL env var control
+    - id: BD-010
+      type: BA
+      summary: FinancialSystem builds counterparty graph via networkx for systemic risk analysis
+    - id: BD-001
+      type: BA
+      summary: XML-based configuration decouples engine from workflow definition
+    - id: BD-002
+      type: B
+      summary: OreExample class provides unified interface for running ORE across each examples
+    - id: BD-003
+      type: B
+      summary: ORE_EXAMPLES_USE_PYTHON env var switches between native exe and Python wrapper
+    - id: BD-GAP-011
+      type: DK
+      summary: 'Missing: Point-in-Time data availability'
+    - id: BD-GAP-012
+      type: B
+      summary: 'Missing: Covariance estimator selection and shrinkage'
+    - id: BD-GAP-013
+      type: B
+      summary: 'Missing: Factor IC demean and grouping alignment'
+    - id: BD-GAP-014
+      type: B
+      summary: 'Missing: NPL portfolio EBA field completeness'
+    - id: BD-GAP-015
+      type: B
+      summary: 'Missing: Provider priority and credential isolation'
+    - id: BD-011
+      type: BA/DK
+      summary: SIMM calculation done post-simulation using scenarioToMarket pipeline
+    - id: BD-012
+      type: B
+      summary: Multiple ORE runs with different configurations for sensitivity analysis (ore.xml, ore1.xml, ore2.xml)
+    - id: BD-013
+      type: BA
+      summary: SA-CCR and CPM run as separate examples enabling modular capital calculation
+resources:
+  packages:
+  - name: pandas
+    version_pin: ==1.5.3
+  - name: numpy
+    version_pin: ==1.24.4
+  - name: matplotlib
+    version_pin: '>=2'
+  - name: requests
+    version_pin: ==2.31.0
+  - name: scipy
+    version_pin: '>=1.3.0'
+  - name: scikit-learn
+    version_pin: '>1.4.2'
+  - name: pytest
+    version_pin: '>=8.3'
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When parsing ore.xml with Parameters.fromFile()
+    action: 'include a Setup node containing mandatory parameters: asofDate, inputPath, and outputPath'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: OREApp initialization fails with a parse error or undefined behavior because the XML parser requires the
+      Setup section with essential date and path configuration
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-002
+    when: When executing XMLDocument::fromFile()
+    action: pass an empty or non-existent file path to XMLDocument constructor
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: ORE terminates with a QL_REQUIRE exception stating 'Failed to open file' or 'File X is empty', preventing
+      any analytics from running
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-003
+    when: When configuring ore.xml for OREApp
+    action: wrap the root XML element with an <ORE> tag as the top-level container
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Parameters parsing fails because Parameters::fromXML() explicitly checks for the 'ORE' node name at xmlutils.cpp:76
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-011
+    when: When OREApp initialization encounters missing setup group
+    action: throw QL_REQUIRE exception stating 'parameter group setup missing'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: ORE terminates with opaque error instead of identifying the missing Setup section in the XML configuration
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-012
+    when: When the ore.xml file contains malformed XML
+    action: catch rapidxml::parse_error and call handle_rapidxml_parse_error() for user-friendly diagnostics
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: ORE crashes with raw rapidxml exception details instead of providing actionable error messages about XML
+      syntax errors
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-016
+    when: When parsing market data CSV files, loader expects exactly 3 tokens per data line
+    action: 'Provide data rows with exactly three whitespace/comma/semicolon/tab-delimited fields: date, key name, and numeric
+      value'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid CSVLoader lines cause QL_REQUIRE to throw parsing errors, preventing market data from loading and
+      blocking all downstream pricing calculations
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-018
+    when: When building yield curves, loader must provide market quotes for each as-of dates matching the valuation date
+    action: Verify market data file contains entries with dates matching the evaluationDate used for pricing
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: TodaysMarket initialization fails with 'no quotes available for date' warning when data is missing for the
+      valuation date, causing null curve handles and NaN pricing results
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-027
+    when: When building market object, loader must be provided as non-null shared_ptr to avoid runtime crashes
+    action: Pass valid Loader instance (CSVLoader or InMemoryLoader) to TodaysMarket constructor, never pass null loaders
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Null loader causes QL_REQUIRE to throw 'Loader is null' error, preventing market initialization and blocking
+      all valuations
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-036
+    when: When pricing a trade and generating NPV reports
+    action: verify that NPV values are finite using std::isfinite before writing to report
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-finite NPV values (NaN, Inf, -Inf) propagate through the risk calculation pipeline, corrupting XVA, exposure,
+      and sensitivity outputs that depend on trade valuations
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-037
+    when: When implementing trade builders for portfolio construction
+    action: verify each AbstractTradeBuilder subclasses are stateless and produce new trade instances via factory methods
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Stateful trade builders cause shared_ptr reuse bugs across concurrent portfolio builds, leading to duplicate
+      trades or data corruption when multiple threads process the same builder instance
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-039
+    when: When calling VanillaOption.NPV() method
+    action: verify a pricing engine has been attached via setPricingEngine() before invoking NPV()
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Calling NPV() without an attached pricing engine throws an exception or returns uninitialized values, causing
+      silent failures in the risk calculation pipeline
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-043
+    when: When configuring pricing engine parameters via EngineData XML
+    action: verify each trade type has both model and engine specified to enable proper engine binding
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Missing model or engine specification in EngineData causes EngineFactory to fail during portfolio build,
+      preventing risk calculations from running
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-044
+    when: When performing FX conversion during NPV calculation
+    action: use current FX spot rates from SimMarket for conversion, dividing by numeraire for proper discounting
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect FX conversion or numeraire division produces wrong base currency NPV values, leading to misstated
+      portfolio values and incorrect risk reporting
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-049
+    when: When validating NPV cube dimensions after portfolio valuation
+    action: verify cube dimensions (numIds, numDates, samples, depth) match expected portfolio and date grid sizes
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Dimension mismatch between NPV cube and portfolio causes index out-of-bounds errors or silent data truncation
+      in exposure aggregation
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-050
+    when: When filtering simulation samples from rawcube.csv
+    action: account for the 1-based sample indexing convention in rawcube versus 0-based in scenariodata
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Exposure calculations will produce incorrect results when filterSample values are misaligned between rawcube
+      and scenariodata conventions
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-051
+    when: When extracting NPV values from the raw cube
+    action: filter on depth == 0 to extract primary simulation results representing current portfolio state
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Raw cube filter returns incorrect NPV values when depth != 0 is included, potentially including auxiliary
+      calculations
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-052
+    when: When generating EPE/ENE exposure CSV files
+    action: include columns Date, NettingSetId, EPE, ENE, EEPE, ENEE as required by downstream XVA calculations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Downstream XVA and collateral calculations fail when required exposure columns are missing from netting set
+      exposure CSVs
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-053
+    when: When reconstructing Market from scenario file
+    action: parse simulation.xml to extract currencies, indices, curve tenors, FX vols, and swaption vols matching scenario
+      dump structure
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: scenarioToMarket fails to reconstruct valid market data when simulation.xml market configuration does not
+      match scenario dump columns
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-064
+    when: When implementing netCubeFilter for XVA aggregation
+    action: filter depth == 0 for trade-level NPV aggregation to netting-set level
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect depth filtering causes NPV values to be incorrectly aggregated, leading to wrong XVA calculations
+      and mispriced counterparty risk exposure
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-065
+    when: When implementing expectedSimmEvolution for SIMM averaging
+    action: divide InitialMargin by number of samples to compute expected value across simulation paths
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: SIMM evolution computed without sample averaging produces path-specific results instead of expected values,
+      causing incorrect IM forecasting
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-066
+    when: When computing SIMM evolution from multi-sample cube
+    action: aggregate samples by summing before averaging InitialMargin values
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Sample aggregation without proper summation-then-division causes incorrect expected SIMM values across simulation
+      paths
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-067
+    when: When validating XVA report output format
+    action: 'include #Id (or #TradeId), NettingSetId, CVA, DVA, FVA (or FBA/FCA), KVA columns in output'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing required columns in XVA report causes downstream risk reporting systems to fail and regulatory submissions
+      to be rejected
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-068
+    when: When validating SIMM evolution DataFrame output
+    action: return DataFrame with Date (or AsOfDate), NettingSetId (or Portfolio), SIMM columns
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: SIMM evolution output missing required columns causes IM forecasting pipelines to fail
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-069
+    when: When implementing SA-CCR capital calculation
+    action: output AddOn, NPV, EAD (Exposure at Default), RW (Risk Weight), CC (Capital Charge) columns per netting set
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: SA-CCR output missing regulatory required fields causes non-compliance with Basel CCR capital requirements
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-088
+    when: When configuring CSV comparison in comparison_config.json
+    action: Define keys field to specify join columns for DataFrame comparison
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: DataFrame comparison fails with warning 'The comparison configuration must contain a keys field', causing
+      regression tests to abort without meaningful diff output
+    stage_ids:
+    - post_processing
+  - id: finance-C-089
+    when: When plotting exposure data with OutputPlotter
+    action: Verify exposure CSV files contain 'Date', 'EPE', and 'ENE' columns
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: KeyError raised when accessing df['Date'] or df['EPE']/df['ENE'], causing plot generation to fail with pandas
+      KeyError
+    stage_ids:
+    - post_processing
+  - id: finance-C-099
+    when: When implementing CSV file comparison configuration
+    action: Define non-empty keys field containing non-empty string column names for join-based comparison
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Comparison fails silently or produces incorrect results when keys are missing, causing false pass/fail signals
+      in regression testing
+    stage_ids:
+    - regression_testing
+  - id: finance-C-115
+    when: When constructing the Market object from XML configuration
+    action: use the same asofDate across each market data components (yield curves, volatility surfaces, FX spots, credit
+      curves)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mixed date market data causes incorrect trade pricing, leading to materially wrong NPV calculations and XVA
+      results across the portfolio
+    stage_ids:
+    - market_data_loading
+    - pricing_npv
+  - id: finance-C-116
+    when: When transferring NPV cube data between simulation and XVA stages
+    action: verify cube trade IDs match the portfolio trade IDs exactly
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: NPVCube index mismatch with portfolio causes exposure aggregation to fail or produce incorrect CVA/DVA allocations
+    stage_ids:
+    - simulation_exposure
+    - xva_calculation
+  - id: finance-C-117
+    when: When computing exposure profiles for post-processing
+    action: use the same CubeInterpretation that was used during simulation cube generation
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent cube interpretation causes incorrect MPOR cashflow retrieval, leading to wrong collateral exposure
+      calculations
+    stage_ids:
+    - simulation_exposure
+    - post_processing
+  - id: finance-C-118
+    when: When loading pre-built cubes for XVA calculation
+    action: provide both the NPV cube and corresponding AggregationScenarioData from the same simulation run
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mismatched scenario data causes numeraire values to be applied to incorrect dates/samples, corrupting all
+      exposure and XVA calculations
+    stage_ids:
+    - simulation_exposure
+    - xva_calculation
+  - id: finance-C-120
+    when: When computing netting set level exposures from trade level
+    action: apply netting set netting rules before aggregating exposures
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without proper netting, EPE/ENE calculations overstate exposure, leading to excessive capital reserves and
+      incorrect CVA/DVA allocation
+    stage_ids:
+    - pricing_npv
+    - simulation_exposure
+  - id: finance-C-121
+    when: When transferring aggregation scenario data between simulation and XVA
+    action: preserve the exact date grid indices and sample counts in AggregationScenarioData
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Scenario data dimension mismatch causes index out of bounds errors or silent misalignment in numeraire retrieval
+      during XVA calculation
+    stage_ids:
+    - simulation_exposure
+    - xva_calculation
+  - id: finance-C-125
+    when: When loading market data from marketdata.txt and curves.csv
+    action: parse dates using the same date format as todaysmarket.xml conventions
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Date parsing mismatch causes market data to be associated with wrong dates, corrupting curve construction
+      and trade pricing
+    stage_ids:
+    - xml_configuration
+    - market_data_loading
+  - id: finance-C-127
+    when: When building the EngineFactory for trade pricing
+    action: link the pricing engine factory to the Market object from the same as-of date
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Pricing engines built with mismatched market data produce incorrect NPVs, corrupting the entire risk calculation
+      pipeline
+    stage_ids:
+    - market_data_loading
+    - pricing_npv
+  - id: finance-C-130
+    when: When computing XVA for netting sets with collateral
+    action: use the same collateral balance evolution from MPOR calculation in both exposure and XVA stages
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Collateral balance inconsistency causes wrong COLVA calculation and incorrect net exposure reporting
+    stage_ids:
+    - simulation_exposure
+    - xva_calculation
+  - id: finance-C-132
+    when: When extracting portfolio trades for simulation exposure
+    action: preserve netting set assignments from the original portfolio for trade-level exposure aggregation
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Lost netting set assignments prevent proper netting and produce overstated exposures for capital calculation
+    stage_ids:
+    - pricing_npv
+    - simulation_exposure
+  - id: finance-C-142
+    when: When implementing TradeBuilder subclasses for custom trade types
+    action: Maintain any internal state in TradeBuilder subclasses — each TradeBuilder implementations must be stateless,
+      returning shared_ptr to newly constructed objects
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Stateful TradeBuilders cause shared_ptr reuse bugs where trades share incorrect state, leading to incorrect
+      pricing and risk calculations across portfolios
+  - id: finance-C-145
+    when: When initializing ORE application for pricing and risk analytics
+    action: Call initBuilders() with registerOREAnalytics=true before creating OREApp instance — this registers each analytic
+      builders (XVA, SIMM, VaR, etc.) in the EngineBuilderFactory
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: OREApp fails to find registered analytics because builders are not registered, preventing any pricing or
+      risk calculations from executing
+  - id: finance-C-153
+    when: When using ORE for regulatory reporting and capital calculation
+    action: Validate SIMM and SA-CCR calculations independently — ORE provides implementation guidance but regulatory capital
+      calculations require compliance verification against official regulatory specifications
+    severity: fatal
+    kind: claim_boundary
+    modality: must
+    consequence: Regulatory capital figures reported to authorities may not meet compliance requirements if ORE implementation
+      details diverge from official ISDA SIMM or SA-CCR specifications
+  - id: finance-C-155
+    when: When implementing pricing logic for exotic derivatives in XVA calculations
+    action: Use Monte Carlo with variance reduction techniques (antithetic variates, control variates) to achieve <0.1% pricing
+      accuracy with 100k paths; verify control variate is highly correlated with payoff
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Plain Monte Carlo without variance reduction requires 1M+ paths to achieve equivalent accuracy, causing unacceptable
+      computational overhead in XVA calculations; exotic derivatives priced with insufficient paths produce inaccurate risk
+      metrics that may violate regulatory capital requirements
+    derived_from_bd_id: BD-035
+  - id: finance-C-171
+    when: When pricing options with Black-Scholes-Merton model
+    action: Apply Black-Scholes-Merton to American options, options with discrete dividends, or long-dated options exceeding
+      2 years — these require alternative models (binomial tree, finite difference, or Monte Carlo)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Black-Scholes-Merton assumes constant volatility and log-normal prices, systematically mispricing American
+      options by ignoring early exercise premium and misvaluing discrete dividend impacts
+    derived_from_bd_id: BD-030
+  - id: finance-C-189
+    when: When implementing the Heston stochastic volatility model for equity options pricing
+    action: Validate that Feller condition (2*kappa*theta > sigma^2) is satisfied to verify variance process positivity; reject
+      parameter sets violating this condition
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Parameter sets violating the Feller condition cause the variance process to reach zero, producing invalid
+      option prices and potentially negative values that corrupt XVA calculations for exotic equity structures
+    derived_from_bd_id: BD-031
+  - id: finance-C-190
+    when: When using the Hull-White one-factor short-rate model for interest rate swaption pricing
+    action: Apply Hull-White one-factor exclusively to vanilla swaptions; do not use for structures requiring spread dynamics
+      between curve tenors as single-factor models cannot capture cross-tenor correlations
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Using Hull-White one-factor for non-vanilla swaption structures causes systematic mispricing due to inability
+      to model tenor spread dynamics, leading to incorrect IMA FRTB risk factor calculations
+    derived_from_bd_id: BD-036
+  regular:
+  - id: finance-C-004
+    when: When initializing OreExample with dry=True
+    action: skip subprocess execution of ore.exe and return immediately from run() method
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Dry-run mode fails to bypass ore.exe execution, causing unnecessary process spawning and delayed testing
+      feedback
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-005
+    when: When auto-detecting ore executable location
+    action: exceed 3 path pattern iterations when ORE_EXAMPLES_USE_PYTHON is not set
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Auto-detection mechanism performs excessive filesystem checks, causing slow initialization especially on
+      network-mounted directories
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-006
+    when: When ore.exe cannot be located by _locate_ore_exe()
+    action: print 'ORE executable not found' message and terminate execution with quit()
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Missing executable detection fails silently, causing downstream test failures with cryptic error messages
+      instead of clear diagnostic
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-007
+    when: When setting up OreExample with ORE_EXAMPLES_USE_PYTHON environment variable
+    action: check ORE_EXAMPLES_USE_PYTHON key in os.environ and set use_python flag accordingly
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Environment variable-based switching fails, causing ore.exe to be invoked instead of Python wrapper in CI/CD
+      environments requiring Python mode
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-008
+    when: When ore.xml specifies a relative inputPath
+    action: resolve referenced files (portfolio.xml, simulation.xml) relative to the ore.xml directory
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Configuration file resolution fails because referenced XML files are not found, causing MissingResourceException
+      equivalent errors
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-009
+    when: When running ore.exe from command line
+    action: pass exactly one argument (the ore.xml path) to ore executable
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: ORE prints usage message and returns -1 without executing, failing automated test pipelines that expect successful
+      runs
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-010
+    when: When constructing OREApp with Parameters from ore.xml
+    action: call initBuilders() before instantiating OREApp to register each analytic types
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Analytics fail to execute because required analytic builders (XVA, SIMM, Sensitivity) are not registered
+      in the factory system
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-013
+    when: When documenting ore.exe capabilities
+    action: claim that ore.exe provides real-time market data or live trading execution
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users may incorrectly expect live trading capabilities, leading to operational failures when they attempt
+      to execute real trades
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-014
+    when: When presenting ORE backtest results to stakeholders
+    action: imply that simulated portfolio returns guarantee equivalent live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested XVA and exposure calculations do not account for execution slippage, counterparty delays, or market
+      impact, leading to overconfident risk estimates
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-015
+    when: When configuring ORE for parallel execution
+    action: validate that the specified nThreads parameter is a positive integer and within system resource limits
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Invalid thread count causes thread spawning failures or excessive context switching, degrading simulation
+      performance
+    stage_ids:
+    - xml_configuration
+  - id: finance-C-017
+    when: When implementing market data loading, loader must skip comment lines beginning with '#'
+    action: Filter out or skip any line where the first non-whitespace character is '#' before parsing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Comment lines containing market data format headers or documentation will be incorrectly parsed as data entries,
+      corrupting the market object with invalid quotes
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-019
+    when: When loading fixings data, dates must be strictly less than evaluation date unless implyTodaysFixings is enabled
+    action: Load historical fixings with dates before evaluationDate, excluding today's fixings when implyTodaysFixings=false
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Including future or today's unconfirmed fixings without proper flag causes pricing to use provisional data,
+      producing unreliable XVA calculations
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-020
+    when: When loading market data, CSV loader must accept multiple delimiter formats for flexibility
+    action: 'Parse CSV files using delimiters: comma, semicolon, tab, and space with token compression enabled'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Data files created with different regional settings (European comma-decimal vs US period-decimal) fail to
+      parse correctly, producing incorrect token counts
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-021
+    when: When loading FX market data, loader must enforce currency dominance ordering for consistent triangulation
+    action: Follow fxDominance hierarchy (XAU,XAG,XPT,XPD,EUR,GBP,AUD,NZD,USD,CAD,CHF,ZAR,...JPY,IDR,KRW) when storing FX
+      spot pairs
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicate FX pairs stored in wrong order (e.g., both EUR/USD and USD/EUR) cause triangulation errors and
+      incorrect cross-currency valuations
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-022
+    when: When configuring volatility surfaces, curve configuration must match available quotes in the loader
+    action: Verify volatility curve configuration specifies strike/expiry quotes that exist in marketdata.txt, with wildcard
+      patterns matching actual quote IDs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing volatility surface data points cause 'missing expiry/strike will be excluded' warnings and incomplete
+      vol surfaces, leading to interpolation errors in option pricing
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-023
+    when: When implementing market data loading, loader must enforce unique market datum entries using set-based storage
+    action: Store market data in std::set containers with SharedPtrMarketDatumComparator to verify uniqueness and sorted retrieval
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate market data entries cause ambiguous quote resolution, where get() operations may return inconsistent
+      results between calls
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-024
+    when: When implementing market data loading, loader must support lazy loading capability for large datasets
+    action: Implement lazyBuild parameter to defer curve construction until first access, reducing initialization time for
+      large market datasets
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Eager construction of all curves at initialization causes excessive startup time when only a subset of curves
+      is needed for pricing
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-025
+    when: When loading market data, parser must reject invalid market datum names with specific format errors
+    action: Validate parseMarketDatum input against expected format (TYPE/NAME/EXPIRY/STRIKE), throwing QuantLib::Error for
+      malformed keys
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Malformed market datum keys silently pass validation and cause downstream curve building failures with cryptic
+      errors
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-026
+    when: When loading market data, this stage must use file-based CSV loading rather than live market data feeds
+    action: Load market observables from CSV/text files (marketdata.txt, curves.csv, fixings.txt), not from real-time data
+      providers
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting file-based static market data as real-time creates misleading impressions about data freshness
+      and pricing accuracy
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-028
+    when: When loading market data for XVA calculations, loader must support continueOnError mode for partial data scenarios
+    action: Enable continueOnError flag in TodaysMarket to log build errors but continue with available data rather than failing
+      completely
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Strict error handling causes entire XVA calculation to fail when a single non-critical curve is missing,
+      preventing partial results
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-029
+    when: When adding fixings to loader, duplicate entries must be logged and skipped rather than causing errors
+    action: Insert fixings into std::set container which automatically deduplicates, logging warnings for each duplicate found
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate fixings cause unexpected behavior in index bootstrap calculations, producing inconsistent forward
+      rate estimates
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-030
+    when: When building volatility surfaces, loader must handle missing data gracefully with proper logging
+    action: Log warnings for missing volatility surface expiry/strike combinations and exclude them from construction rather
+      than throwing errors
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Incomplete volatility surfaces with unlogged missing points cause silent interpolation errors in option pricing,
+      producing systematically biased results
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-031
+    when: When parsing date fields in market data files, loader must support multiple ISO date formats
+    action: Accept dates in YYYYMMDD, YYYY-MM-DD, YYYY/MM/DD, and YYYY.MM.DD formats through parseDate() function
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Date parsing failures cause entire market data files to be rejected, blocking pricing with cryptic 'Invalid
+      date format' errors
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-032
+    when: When implementing market data loading, developers must not skip data validation even for seemingly correct test
+      data
+    action: Always run parseMarketDatum validation on input data; never assume test data is correctly formatted without verification
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Skipping validation for 'simple' test cases allows malformed data to pass, creating false confidence in production
+      data quality
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-033
+    when: When loading market data, loader must not assume token compression handles each whitespace variations
+    action: Use boost::token_compress_on explicitly to handle multiple consecutive delimiters, not just single delimiters
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Files with inconsistent spacing (e.g., '20160205  FX/RATE/EUR/USD  1.10') produce wrong token counts when
+      token compression is not enabled
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-034
+    when: When loading market data, ORE must not claim real-time data capability since it only supports static file-based
+      loading
+    action: Document that market data is loaded from files with possible delay, not from live exchange feeds
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Marketing ORE as real-time capable when it only supports batch file loading creates compliance risk and misaligned
+      user expectations
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-035
+    when: When loading market data, loader must handle dividend data with 3-5 tokens for different dividend date specifications
+    action: 'Accept dividend entries with format: Date Name Value [PayDate] [AnnouncementDate], where PayDate and AnnouncementDate
+      are optional'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect dividend data causes equity curve miscalibration, producing wrong dividend yield adjustments in
+      equity option pricing
+    stage_ids:
+    - market_data_loading
+  - id: finance-C-038
+    when: When configuring Monte Carlo pricing engines for European options
+    action: set requiredTolerance parameter to achieve accuracy within 1 basis point of analytic benchmarks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: MC engine without proper tolerance produces inaccurate NPV values that misrepresent trade economics, leading
+      to incorrect risk assessments and potential financial losses in live trading decisions
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-040
+    when: When using the engine swapping pattern for model comparison
+    action: compare AnalyticEuropeanEngine vs MCEuropeanEngine results and verify differences remain within 1 basis point
+      tolerance for European options
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Engine swapping without tolerance verification may introduce numerical discrepancies between pricing models
+      that compound through risk calculations
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-041
+    when: When building the NPV cube for simulation exposure calculation
+    action: set T0 values first using setT0() before setting other scenario values using set() method
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect ordering of T0 vs scenario value setting in NPVCube causes undefined behavior or incorrect exposure
+      calculations in downstream XVA computations
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-042
+    when: When retrieving NPV reports from AnalyticsManager
+    action: use getReport() method with the exact report name to retrieve in-memory reports after analytics execution
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect report retrieval causes null pointer exceptions or empty data, breaking post-processing workflows
+      that depend on NPV report data
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-045
+    when: When presenting NPV calculation results from backtesting
+    action: claim that backtest NPV results represent expected live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting backtest NPV as indicative of live trading performance creates misleading expectations, ignoring
+      execution costs, slippage, and market impact that differ between simulation and reality
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-046
+    when: When handling pricing failures for individual trades in portfolio
+    action: catch exceptions from trade->instrument()->NPV() and write Null<Real>() values to report with structured error
+      logging
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Uncaught pricing exceptions cause portfolio valuation to abort entirely, losing all NPV results instead of
+      isolating the failing trade
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-047
+    when: When configuring the NPV report output format
+    action: 'include #TradeId column matching portfolio trade IDs and Maturity column for each trade entry'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing or incorrectly named ID columns prevent downstream systems from matching NPV reports to specific
+      trades, breaking trade-level risk attribution
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-048
+    when: When using EngineBuilder caching for performance optimization
+    action: reset cached engines when market data changes to prevent stale pricing using outdated curves
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Cached engines with stale market data produce incorrect NPV values that do not reflect current market conditions,
+      causing systematic mispricing
+    stage_ids:
+    - pricing_npv
+  - id: finance-C-054
+    when: When configuring Monte Carlo simulation samples
+    action: use SCENARIOGENERATOR_SAMPLES >= 50 for regression testing and >= 1000 for production exposure calculations
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Insufficient samples produce statistically unreliable exposure estimates with high variance, leading to incorrect
+      XVA calculations
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-055
+    when: When running exposure simulations in parallel
+    action: configure EXAMPLES_PARALLEL environment variable to control ThreadPoolExecutor max_workers for resource-constrained
+      environments
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Uncontrolled parallel execution may exhaust system resources in CI environments or exceed available memory
+      for large portfolios
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-056
+    when: When configuring the simulation engine for exposure calculation
+    action: select simulation_engine from supported variants (classic or AMC) as defined in ore.xml analytics configuration
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Wrong simulation engine selection produces inconsistent exposure profiles between trade types, particularly
+      for exotic instruments requiring AMC
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-057
+    when: When running exposure simulations for post-processing analysis
+    action: write scenario files to disk via scenariodump configuration to enable scenario reuse without re-running expensive
+      Monte Carlo
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Re-running Monte Carlo for every post-processing change wastes computation time; scenario caching enables
+      efficient SIMM/DIM comparison
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-058
+    when: When configuring random number generation for simulation
+    action: use non-zero Seed value to verify reproducible simulation results and regression test compatibility
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Zero seed produces unpredictable simulation paths, breaking regression testing and preventing comparison
+      against expected outputs
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-059
+    when: When computing systemic risk metrics from netting set exposures
+    action: build FinancialSystem counterparty graph via NetworkX using NettingSetId relationships from XVA output
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Systemic risk analysis produces incorrect rho+ and rho- metrics when netting set relationships are not properly
+      extracted from XVA output
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-060
+    when: When validating simulation input consistency
+    action: verify every trade has a correctly mirrored counterpart trade with matching trade IDs and opposite payer/receiver
+      orientation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unmirrored trades in portfolio produce incorrect netting set aggregations and expose the system to incorrect
+      exposure calculations
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-061
+    when: When reporting Monte Carlo simulation exposure results
+    action: claim that simulation-derived EPE/ENE values represent actual expected live trading exposure
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Monte Carlo simulation uses stochastic modeling with idealized assumptions; presenting simulated exposures
+      as guaranteed future values misleads risk stakeholders
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-062
+    when: When presenting NPV cube results
+    action: present multi-dimensional NPV cube outputs as direct representations of actual portfolio values
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: NPV cube contains simulated valuations across scenarios that may not reflect actual market conditions at
+      future dates; presenting these as real valuations misrepresents risk
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-063
+    when: When configuring scenario output for post-simulation analysis
+    action: verify scenario_output setting matches the intended analysis workflow, either writing scenario files to disk or
+      using in-memory processing
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Incorrect scenario_output configuration leads to either unnecessary disk I/O for memory-resident analysis
+      or failed post-processing when scenarios are not persisted
+    stage_ids:
+    - simulation_exposure
+  - id: finance-C-070
+    when: When calculating SIMM on simulated market scenarios
+    action: discount InitialMargin by numeraire before aggregating across simulation dates
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Undiscounted SIMM values cause incorrect IM forecasting due to inconsistent discounting across time periods
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-071
+    when: When filtering samples in XVA calculation
+    action: use filterSample parameter consistently across netCubeFilter, rawCubeFilter, and SIMM cube generation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent sample filtering causes mismatched data between NPV aggregation and SIMM calculation
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-072
+    when: When running SIMM calculation post-simulation
+    action: use scenarioToMarket to convert simulated market scenarios into ORE market data format
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper scenario conversion, SIMM cannot be computed on simulated market paths, preventing IM forecasting
+      analysis
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-073
+    when: When executing SA-CCR and CPM as separate analytic runs
+    action: run SA-CCR and Credit Portfolio Model as independent modules for modular regulatory capital calculation
+    severity: medium
+    kind: architecture_guardrail
+    modality: should
+    consequence: Coupling SA-CCR with CPM causes inability to run independent capital calculations and methodology comparison
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-074
+    when: When aggregating trade-level NPVs to netting-set level
+    action: filter by both nettingSetId and depth==0 to verify only direct positions are included in aggregation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing nettingSetId filter causes NPVs from all netting sets to be aggregated together, corrupting counterparty-level
+      risk calculations
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-075
+    when: When configuring XVA analysis with multiple runs
+    action: use different ORE XML configurations for sensitivity analysis without modifying instrument-level settings
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Re-running with same config prevents sensitivity analysis and stress testing capabilities
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-076
+    when: When computing SA-CVA as post-processor for XVA sensitivity
+    action: verify CVA sensitivities are computed before SA-CVA calculation or loaded from pre-computed file
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: SA-CVA calculation without input sensitivities fails or produces zero capital figures
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-077
+    when: When computing BA-CVA using SA-CCR internal results
+    action: run SA-CCR analytic first to produce EAD values required for BA-CVA calculation
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: BA-CVA calculation fails without SA-CCR EAD input, preventing basic approach CVA capital computation
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-078
+    when: When computing XVA under stressed market conditions
+    action: apply separate shift scenarios (parallel curve shifts) to revalue portfolio and compute stressed XVA
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Without stress testing, portfolio XVA undervalues tail risk and fails regulatory stress test requirements
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-079
+    when: When using ORE for XVA calculations in production
+    action: claim real-time trading capability based on backtest simulation results
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting simulated XVA results as live trading proof misleads stakeholders about actual counterparty risk
+      in real portfolios
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-080
+    when: When presenting SA-CCR capital figures from simulation
+    action: equate simulated EAD values with actual regulatory capital requirements without model validation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Simulated SA-CCR capital figures may differ from actual regulatory calculations due to model approximations,
+      requiring validation against exchange or internal model requirements
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-081
+    when: When validating XVA calculations against regulatory formulas
+    action: compare SA-CCR output against external regulatory calculator for same inputs before using in compliance reporting
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using unvalidated SA-CCR implementation for regulatory capital reporting risks non-compliance with Basel
+      CCR requirements
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-082
+    when: When setting up SIMM calculation for regulatory IM
+    action: use ISDA SIMM version compatible with current regulatory requirements (2.4, 2.5A, 2.6)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Using outdated SIMM version may not comply with current regulatory margin requirements for OTC derivatives
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-083
+    when: When computing Dynamic SIMM with regression-based DIM
+    action: verify simulation configuration (Euler discretization, time steps per year, date grid) matches between brute-force
+      and AMCCG calculation
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Mismatched simulation configurations cause incorrect SIMM evolution benchmarking and validation failures
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-084
+    when: When parsing SIMM cube with depth levels
+    action: map margin type (All, Delta, Vega, Curvature) to corresponding depth integer values (0, 1, 2, 3)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect depth mapping causes wrong SIMM component to be selected, corrupting delta/vega/curvature breakdown
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-085
+    when: When implementing XVA P&L Explain
+    action: compute XVA change between two evaluation dates using full revaluation rather than sensitivity-based approximation
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Sensitivity-based XVA P&L Explain produces incorrect attribution by using linear approximation instead of
+      full revaluation
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-086
+    when: When processing scenario data for SIMM calculation
+    action: extract reference dates from scenario CSV and convert aggregation data to fixing file format
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Missing scenario date extraction causes SIMM calculation to fail on implied market scenarios
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-087
+    when: When running multiple XVA examples in parallel
+    action: configure EXAMPLES_PARALLEL environment variable or limit to 1 to avoid output file conflicts
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Parallel execution without proper configuration causes output file corruption and incorrect XVA results
+    stage_ids:
+    - xva_calculation
+  - id: finance-C-090
+    when: When performing regression testing on Monte Carlo output files
+    action: Configure tolerance parameters (abs_tol or rel_tol) for numerical columns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Floating-point comparison fails due to minor numerical differences in stochastic simulation results, causing
+      false test failures despite valid output
+    stage_ids:
+    - post_processing
+  - id: finance-C-091
+    when: When using OutputFiles.from_folder() for file discovery
+    action: Verify output folder contains files with .csv extension only
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Only files ending with '.csv' are discovered; XML, JSON, or binary output files are silently ignored, causing
+      incomplete test coverage
+    stage_ids:
+    - post_processing
+  - id: finance-C-092
+    when: When generating plots with OutputPlotter
+    action: Set plot format to .pdf (currently hardcoded at line 37)
+    severity: low
+    kind: resource_boundary
+    modality: must
+    consequence: Plots are always saved as PDF regardless of user preference; cannot generate PNG or SVG formats for web publishing
+      or reports requiring raster graphics
+    stage_ids:
+    - post_processing
+  - id: finance-C-093
+    when: When initializing OutputPlotter for plot generation
+    action: Call parse_output() before accessing self.plots or self.output.csv
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: AttributeError raised if OutputPlotter is accessed before parse_output() initializes self.output and self.plots
+      as None
+    stage_ids:
+    - post_processing
+  - id: finance-C-094
+    when: When executing compare_files() on CSV file pairs
+    action: Provide comparison configuration specifying keys for DataFrame join
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without config, comparison falls back to join_columns=None which causes datacompy.Compare() to fail, returning
+      incorrect comparison results
+    stage_ids:
+    - post_processing
+  - id: finance-C-095
+    when: When loading ORE output for post-processing analysis
+    action: Access CSV data through OutputFiles.csv dictionary keys derived from file names
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect key used to access CSV data returns KeyError; keys are file names without .csv extension (e.g.,
+      'npv', 'xva', 'exposure_nettingset_CPTY_A')
+    stage_ids:
+    - post_processing
+  - id: finance-C-096
+    when: When presenting regression test results to stakeholders
+    action: Claim that backtest output equals expected live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting simulation results as guaranteed live trading outcomes violates risk management best practices
+      and misleads decision-makers about actual expected performance
+    stage_ids:
+    - post_processing
+  - id: finance-C-097
+    when: When configuring comparison tolerance for regression testing
+    action: Set tolerance values too loose to mask genuine numerical regressions
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Setting rel_tol above 1e-6 or abs_tol above 0.1 for critical exposure metrics hides genuine numerical regressions
+      in Monte Carlo simulations
+    stage_ids:
+    - post_processing
+  - id: finance-C-098
+    when: When discovering output files with OutputFiles.from_folder()
+    action: Assume files are returned in any particular order
+    severity: medium
+    kind: operational_lesson
+    modality: must_not
+    consequence: os.listdir() returns files in arbitrary OS-dependent order; relying on order for sequential processing causes
+      inconsistent analysis results
+    stage_ids:
+    - post_processing
+  - id: finance-C-100
+    when: When running regression tests on examples
+    action: Run with full simulation samples instead of OVERWRITE_SCENARIOGENERATOR_SAMPLES=50 for non-exempt examples
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Non-exempt examples consume excessive CI time with full simulation, causing delayed feedback and resource
+      waste
+    stage_ids:
+    - regression_testing
+  - id: finance-C-101
+    when: When comparing numerical values in regression tests
+    action: Apply both absolute tolerance (abs_tol) and relative tolerance (rel_tol) checks for floating-point comparisons
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Numerical values that differ slightly due to floating-point precision are incorrectly flagged as failures,
+      causing test flakiness across platforms
+    stage_ids:
+    - regression_testing
+  - id: finance-C-102
+    when: When configuring test-specific comparison settings
+    action: Merge test-specific comparison_config.json with the default configuration file
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Test-specific tolerances and exclusions are ignored, causing incorrect pass/fail signals for examples with
+      known acceptable variations
+    stage_ids:
+    - regression_testing
+  - id: finance-C-103
+    when: When executing regression test suite
+    action: Use deterministic sample count by exempting performance-sensitive examples from OVERWRITE_SCENARIOGENERATOR_SAMPLES
+      override
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Performance examples produce non-reproducible results due to reduced sample count, causing inconsistent pass/fail
+      signals between runs
+    stage_ids:
+    - regression_testing
+  - id: finance-C-104
+    when: When defining column-level comparison tolerances
+    action: Specify column-specific tolerances in comparison_config.json column_settings array
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Column groups without explicit tolerances use default comparison, causing false failures for numerically-sensitive
+      columns like IM amounts and SIMM data
+    stage_ids:
+    - regression_testing
+  - id: finance-C-105
+    when: When running regression tests in parallel
+    action: Produce identical pass/fail results to sequential execution for the same codebase
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Parallel execution introduces race conditions or non-determinism, causing flaky test results that vary between
+      CI runs
+    stage_ids:
+    - regression_testing
+  - id: finance-C-106
+    when: When generating tests for new examples
+    action: Automatically register tests through add_utest() without manual test code modification
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Manual test registration creates maintenance burden and causes new examples to be missed in regression suite
+    stage_ids:
+    - regression_testing
+  - id: finance-C-107
+    when: When configuring file comparison keys
+    action: Use duplicate key names in the keys array for CSV comparison
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Duplicate keys cause incorrect DataFrame joins and produce misleading comparison results
+    stage_ids:
+    - regression_testing
+  - id: finance-C-108
+    when: When defining per-example comparison configuration
+    action: Place comparison_config.json in the example test directory for example-specific overrides
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Known acceptable variations are not excluded, causing intentional differences to fail regression tests
+    stage_ids:
+    - regression_testing
+  - id: finance-C-109
+    when: When running regression test suite on baseline platform
+    action: Achieve test pass rate of at least 95% with known failures documented in comparison_config
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Low pass rate indicates fundamental platform incompatibility or regression in core functionality
+    stage_ids:
+    - regression_testing
+  - id: finance-C-110
+    when: When a test comparison fails
+    action: Produce diff files with column-level granularity showing exact value differences
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without column-level diffs, developers cannot quickly identify which columns caused test failures
+    stage_ids:
+    - regression_testing
+  - id: finance-C-111
+    when: When defining JSON file comparison paths
+    action: Include parent key path in nested key specifications using forward slash separator
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Nested keys are not matched correctly, causing diffs to be incorrectly ignored or flagged
+    stage_ids:
+    - regression_testing
+  - id: finance-C-112
+    when: When using optional columns in comparison configuration
+    action: Verify optional columns exist in both DataFrames or are absent from both
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Columns present in one file but not the other cause comparison to fail even when optional_cols behavior is
+      desired
+    stage_ids:
+    - regression_testing
+  - id: finance-C-113
+    when: When configuring tolerance for regression testing
+    action: Accept that small numerical differences are expected across platforms and use specified tolerances
+    severity: medium
+    kind: claim_boundary
+    modality: must
+    consequence: Overly strict tolerances cause cross-platform CI failures, misrepresenting stable code as regressed
+    stage_ids:
+    - regression_testing
+  - id: finance-C-114
+    when: When setting up parallel test execution
+    action: Configure pytest -n parameter appropriately for available CPU cores without exceeding resource limits
+    severity: low
+    kind: resource_boundary
+    modality: must
+    consequence: Excessive parallelism causes resource exhaustion, while insufficient parallelism increases test duration
+    stage_ids:
+    - regression_testing
+  - id: finance-C-119
+    when: When generating XVA reports for comparison against baseline
+    action: use the same CSV quote character and null string conventions as the baseline ExpectedOutput
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Mismatched CSV formatting causes regression test comparison failures even when numeric values are correct
+    stage_ids:
+    - post_processing
+    - regression_testing
+  - id: finance-C-122
+    when: When writing trade exposure CSVs to post-processing
+    action: include the Date column and each EPE/ENE profile columns as defined in ReportWriter::writeTradeExposures
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing columns cause visualization and analysis tools to fail, preventing proper risk assessment
+    stage_ids:
+    - simulation_exposure
+    - post_processing
+  - id: finance-C-123
+    when: When transferring XVA results for post-processing
+    action: include both trade-level and netting-set-level CVA/DVA/FVA values in the XVA report
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing granularity prevents proper risk attribution and allocation analysis required for regulatory reporting
+    stage_ids:
+    - xva_calculation
+    - post_processing
+  - id: finance-C-124
+    when: When comparing output files during regression testing
+    action: apply the tolerance thresholds defined in comparison_config.json for each output file type
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Using default tolerances instead of file-specific tolerances causes false test failures or missed regressions
+      in critical output files
+    stage_ids:
+    - post_processing
+    - regression_testing
+  - id: finance-C-126
+    when: When computing credit migration files for visualization
+    action: generate credit migration output with pdf and cdf columns for each requested time step
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing credit migration distributions prevents analysis of credit migration risk and regulatory stress testing
+    stage_ids:
+    - xva_calculation
+    - post_processing
+  - id: finance-C-128
+    when: When writing netting set exposure CSVs
+    action: include EPE, ENE, PFE, and EEPE columns for each netting set ID
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incomplete exposure columns prevent proper netting set risk analysis and regulatory reporting
+    stage_ids:
+    - simulation_exposure
+    - post_processing
+  - id: finance-C-129
+    when: When running regression tests
+    action: skip comparison of files that are in the ExpectedOutput directory
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Skipping file comparison masks output inconsistencies and prevents detection of silent result changes
+    stage_ids:
+    - post_processing
+    - regression_testing
+  - id: finance-C-131
+    when: When processing margin evolution CSVs for post-processing
+    action: preserve the chronological ordering of margin schedule dates
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Out-of-order margin dates cause incorrect IM evolution tracking and wrong MVA calculations
+    stage_ids:
+    - xva_calculation
+    - post_processing
+  - id: finance-C-133
+    when: When writing scenario dump files for SIMM calculation
+    action: include each risk factor keys that are simulated in the scenario generator configuration
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing risk factors in scenario dump causes incomplete SIMM calculation and incorrect regulatory capital
+      requirements
+    stage_ids:
+    - simulation_exposure
+    - xva_calculation
+  - id: finance-C-134
+    when: When running regression testing after code changes
+    action: assume that floating point tolerance values from comparison_config.json are sufficient for each numeric columns
+    severity: medium
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Using generic tolerances instead of column-specific tolerances causes false passes on critical columns or
+      false failures on noise columns
+    stage_ids:
+    - post_processing
+    - regression_testing
+  - id: finance-C-135
+    when: When parsing CSV output files produced by ORE reports
+    action: Use '#Id' column for trade identifiers and 'Date' column for timestamps — each CSV output files follow this convention
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Custom parsers fail to read ORE output files because they look for incorrect column names, causing data extraction
+      errors in downstream analysis
+  - id: finance-C-136
+    when: When executing ORE from example directories on Linux/Unix systems
+    action: Locate the ORE executable at ../../build/App/ore relative to the example directory (with fallback paths for ../../../build/App/ore
+      and ../../App/build/ore)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: ORE examples fail to execute because the ore executable cannot be found, preventing risk analytics workflows
+      from running
+  - id: finance-C-137
+    when: When testing ORE example configurations without executing the full risk engine
+    action: Set the dry=True flag on OreExample class to skip actual ORE execution while validating each other setup and parsing
+      steps
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Dry-run tests attempt actual ORE execution instead of validating configuration, causing slow test runs and
+      unnecessary computation
+  - id: finance-C-138
+    when: When running ORE example test suite for regression testing
+    action: Use pytest with -n 16 flag to enable 16-way parallelism via pytest-xdist for faster execution across the ~80 example
+      configurations
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Test suite runs sequentially taking 16x longer than necessary, delaying feedback on regressions in risk analytics
+      functionality
+  - id: finance-C-139
+    when: When configuring scenario generator samples for fast regression testing
+    action: Set SCENARIOGENERATOR_SAMPLES=50 for fast regression testing, while production runs should use 1000+ samples for
+      statistical significance
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Fast regression tests produce statistically insignificant results that may mask real issues in exposure simulation
+      and XVA calculations
+  - id: finance-C-140
+    when: When parsing market datum quotes for correlation, rates, and other instruments
+    action: Use TYPE/NAME/EXPIRY/STRIKE format (e.g., 'CORRELATION/RATE/INDEX1/INDEX2/1Y/ATM') for each market quote according
+      to the parsing convention
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Market data loader fails to parse quotes, causing incomplete term structure construction and incorrect pricing
+      across derivatives portfolios
+  - id: finance-C-141
+    when: When using OreBasic Python wrapper for ORE configurations
+    action: Call parse_input() explicitly in constructor for input parsing, but call parse_output() only after run() completes
+      — parse_output() is NOT called automatically in __init__
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Attempting to access output data before running ORE returns empty results because output files do not exist
+      yet, leading to incorrect analysis
+  - id: finance-C-143
+    when: When overriding EngineFactory model or engine parameters after construction
+    action: Call setModelParameterOverrides() or setEngineParameterOverrides() which sets buildersDirty_=true, then trigger
+      resetBuilders() before using the factory — initial state has dirty=true
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Parameter overrides are ignored because buildersDirty_ remains true but resetBuilders() is only called lazily
+      on next builder() call, causing stale pricing engines to be used
+  - id: finance-C-144
+    when: When validating ShiftHorizon parameter across different model builders
+    action: Verify ShiftHorizon is non-negative (>=0) — LGMBuilder and CrLGMBuilder throw exceptions for negative values,
+      while InfJyBuilder issues warnings only
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent ShiftHorizon validation causes some models to fail silently (InfJyBuilder warning) while others
+      throw hard errors, leading to model-specific bugs in risk simulations
+  - id: finance-C-146
+    when: When running multi-threaded valuation in ORE
+    action: Configure nThreads parameter in ore.xml — ORE's multi-threaded engine works around QuantLib's thread-safety limitations
+      by splitting portfolio into parts processed by separate threads
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Valuation runs on single thread despite available CPU cores, extending execution time unnecessarily for large
+      portfolios with many trades
+  - id: finance-C-147
+    when: When using GPU acceleration for exposure simulation
+    action: Claim production-ready GPU speedup for exposure calculations — GPU implementation for conditional expectation
+      calculations is work-in-progress with no current speedup vs CPU benchmark
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Users are promised GPU acceleration benefits that do not materialize because dominating conditional expectation
+      calculations still run on CPU, leading to失望 (disappointment) and misallocated computational resources
+  - id: finance-C-148
+    when: When presenting ORE's computational performance capabilities
+    action: Claim production-ready AAD for CVA sensitivities — AAD implementation for CVA sensitivities is described as proof-of-concept
+      in the documentation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users build production workflows on AAD-based CVA sensitivity capabilities that have not been validated for
+      production use, risking incorrect regulatory capital calculations
+  - id: finance-C-149
+    when: When presenting or reporting ORE's pricing and risk analytics capabilities
+    action: Claim support for high-frequency trading scenarios requiring sub-millisecond latency — ORE is a batch-oriented
+      risk engine designed for end-of-day and periodic risk calculations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users build real-time trading systems expecting sub-millisecond responses that ORE cannot provide, leading
+      to critical failures in latency-sensitive trading environments
+  - id: finance-C-150
+    when: When presenting or reporting ORE's pricing and risk analytics capabilities
+    action: Claim support for real-time streaming market data integration — ORE uses batch-oriented architecture with CSV
+      and XML file-based market data loading
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users build real-time market data pipelines expecting live streaming quotes that ORE cannot consume, causing
+      complete system architecture failures
+  - id: finance-C-151
+    when: When presenting or reporting ORE's pricing and risk analytics capabilities
+    action: Claim support for non-derivative portfolios (bonds, equities) without trade wrapper conversion — ORE requires
+      trades to be wrapped as derivative instruments for risk analysis
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users attempt to analyze plain bonds and equity positions directly in ORE, receiving errors or incorrect
+      risk measures due to missing trade wrapper conversion
+  - id: finance-C-152
+    when: When presenting or reporting ORE's pricing and risk analytics capabilities
+    action: Claim support for simple single-instrument pricing without risk simulation — ORE is designed for portfolio-level
+      XVA and risk simulation, not standalone trade pricing
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users deploy ORE for simple pricing tasks better suited to QuantLib directly, incurring unnecessary complexity
+      and computational overhead while missing features available in simpler tools
+  - id: finance-C-154
+    when: When running ORE multiple times in the same process
+    action: Verify singleton cleanup via CleanUpThreadLocalSingletons and CleanUpThreadGlobalSingletons is executed between
+      runs to reset IndexManager, DividendManager, ObservationMode, ComputeEnvironment, and other thread-local/global state
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Stale singleton state from previous ORE runs causes incorrect pricing, corrupted scenario data, and memory
+      leaks in long-running applications
+  - id: finance-C-156
+    when: When implementing pricing engine configuration in trade workflows
+    action: Set pricing engine on trade object before any pricing/NPV calculation; engine must be set after trade construction
+      but before valuation calls
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Pricing without an explicitly set engine may use default model assumptions that differ from intended strategy;
+      model comparison workflows produce incorrect results if engine configuration order is violated, leading to wrong risk
+      assessments
+    derived_from_bd_id: BD-006
+  - id: finance-C-157
+    when: When validating shiftHorizon parameter across model builder implementations
+    action: Validate shiftHorizon >= 0 consistently across each model builders including InfJyBuilder; reject negative values
+      with error instead of warning for uniform runtime behavior
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: InfJyBuilder accepts negative shiftHorizon with a warning while other model builders reject it outright,
+      causing inconsistent validation results in multi-model workflows where users expect uniform behavior for identical parameter
+      values
+    derived_from_bd_id: BD-055
+  - id: finance-C-158
+    when: When implementing shift horizon configuration across LGM, CR-LGM, and Inflation model families
+    action: Assume uniform shift handling when switching between LGM, CR-LGM, and Inflation models; shift is applied via -parametrization->H(shiftHorizon)
+      in LGM but as direct value in CR-LGM and Inflation models
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Assuming uniform shift application across model families leads to incorrect parameter interpretation; the
+      same shiftHorizon value produces different model behavior depending on which model family is selected, causing silent
+      pricing errors in multi-model portfolios
+    derived_from_bd_id: BD-052
+  - id: finance-C-159
+    when: When documenting or implementing multi-model workflows using LGM, CR-LGM, and Inflation models
+    action: 'Document each model''s shift application method explicitly: LGM uses -parametrization->H(shiftHorizon) transformation,
+      CR-LGM and Inflation models use direct value assignment; provide migration guide for users switching between model families'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit documentation, extension developers implement custom models with incorrect assumptions about
+      shift handling, leading to incompatible model implementations that cannot be compared or hedged correctly across model
+      families
+    derived_from_bd_id: BD-052
+  - id: finance-C-160
+    when: When implementing or modifying ORE executable discovery logic in ore_examples_helper.py
+    action: Maintain the hardcoded path pattern search order with Windows paths (lines 77-113) checked before Unix paths (lines
+      114-141); first matching pattern wins; verify ORE executables are placed in one of the supported installation locations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: ORE executable discovery fails silently when executable is not found in any of the 15+ hardcoded path patterns;
+      in mixed Windows/Unix environments, searching wrong path order first causes unnecessary filesystem scans before finding
+      the executable
+    derived_from_bd_id: BD-053
+  - id: finance-C-161
+    when: When implementing regression tests for scenario generation
+    action: Maintain OVERWRITE_SCENARIOGENERATOR_SAMPLES=50 for regression test execution — do not increase to production
+      values (1000+) as this would make CI prohibitively slow, and do not decrease below 50 as this would lose statistical
+      significance for algorithmic regression detection
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Increasing sample count to production levels causes regression test suite to exceed CI time limits, blocking
+      deployment pipelines; decreasing below 50 causes regression tests to fail to detect algorithmic regressions, allowing
+      defective code to reach production
+    derived_from_bd_id: BD-019
+  - id: finance-C-162
+    when: When implementing scenario generation with periodic risk factor patterns
+    action: Use Fourier basis expansion with order=40 for capturing seasonal volatility cycles and intra-year correlation
+      shifts — do not change to lower orders without re-validating frequency resolution for daily data
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using polynomial basis instead of Fourier order 40 causes extrapolation instability in scenario generation,
+      producing invalid risk factor paths for seasonal patterns and corrupting P&L attribution accuracy
+    derived_from_bd_id: BD-025
+  - id: finance-C-163
+    when: When implementing PCA-based scenario generation for yield curve movements
+    action: Apply PCA to yield curve using 252-day rolling window annualized covariance matching Basel market risk horizon,
+      and retain components explaining at least 95% of variance
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using fewer PCA components than 95% variance threshold causes insufficient dimensionality reduction that
+      degrades scenario accuracy, leading to regulatory capital miscalculation and potential Basel compliance violations
+    derived_from_bd_id: BD-027
+  - id: finance-C-164
+    when: When implementing discount factor to zero rate conversion for yield curve building
+    action: Apply log-linear discount-to-zero-rate conversion for maturities exceeding 10 years — use alternative interpolation
+      methods (cubic spline) for long-dated instruments where curvature is high
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Using log-linear approximation for maturities beyond 10 years causes accuracy degradation that introduces
+      material errors in CSA-based exposure calculations, resulting in incorrect XVA valuations and potential regulatory capital
+      miscalculations
+    derived_from_bd_id: BD-028
+  - id: finance-C-165
+    when: When implementing Black variance surface for FX options pricing
+    action: Parameterize Black variance surface by moneyness (not strike) to capture volatility smile consistent with FX market
+      practice — interpolation in moneyness space better captures smile dynamics
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using strike-based parameterization instead of moneyness causes interpolation artifacts at boundaries that
+      corrupt FX option pricing, leading to systematic mispricing in CVA calculations and incorrect hedging decisions
+    derived_from_bd_id: BD-043
+  - id: finance-C-166
+    when: When implementing Heston model pricing using the COS method
+    action: Use N=200 terms in the COS series expansion to achieve accuracy within 0.01% of quasi-exact values required for
+      XVA grid computations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reducing N below 200 terms compromises the 0.01% accuracy threshold needed for millions of Heston evaluations
+      in XVA grid computations, causing systematic pricing errors that accumulate across the portfolio
+    derived_from_bd_id: BD-032
+  - id: finance-C-167
+    when: When implementing binomial tree option pricing for model uncertainty measurement
+    action: Use at least two distinct binomial tree algorithms (Cox-Ross-Rubinstein, Jarrow-Rudd, or Leisen-Reimer) to enable
+      cross-validation and model risk quantification under FRTB IMA requirements
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using only a single binomial tree algorithm eliminates the ability to quantify model uncertainty, violating
+      FRTB IMA requirements and potentially misestimating risk for regulatory capital calculations
+    derived_from_bd_id: BD-034
+  - id: finance-C-168
+    when: When configuring Gaussian1dSwaptionEngine for GSR model discretization
+    action: Use exactly 64 time steps and 7.0 standard deviation cutoff for swaption pricing discretization to verify convergence
+      across swaption maturities and coverage of 99.99% of distribution
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using fewer than 64 time steps causes insufficient convergence on long-dated swaptions, leading to inaccurate
+      calibrated values and incorrect FRTB IMA risk calculations
+    derived_from_bd_id: BD-039
+  - id: finance-C-169
+    when: When calibrating FX smile for derivative pricing
+    action: Use Vanna-Volga method with three liquid strikes (25 delta put, ATM, 25 delta call premium) for FX smile calibration
+      to capture correlation between FX spot and volatility dynamics
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Replacing Vanna-Volga with simpler models like SABR loses accuracy for correlation-sensitive FX derivatives
+      such as barrier options, systematically mispricing the portfolio
+    derived_from_bd_id: BD-044
+  - id: finance-C-170
+    when: When calculating time deltas for initial margin calculations under SIMM
+    action: Use ACT/365.25 day count convention consistently across each currency pairs for SIMM compliance and multi-currency
+      portfolio margin accuracy
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using ACT/360 or 30/360 breaks SIMM compliance for USD LIBOR legacy trades, causing incorrect margin calculations
+      that may result in regulatory penalties or insufficient margin buffers
+    derived_from_bd_id: BD-029
+  - id: finance-C-172
+    when: When implementing finite difference solver for Black-Scholes PDE
+    action: Use exactly 801 time steps and 800 spatial grid points with stability condition dt < (dS^2)/(sigma^2*S^2) to verify
+      convergence for early exercise boundary detection
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reducing grid resolution below 801x800 violates the stability condition, causing numerical oscillation or
+      divergence in early exercise boundary detection and incorrect American option pricing
+    derived_from_bd_id: BD-033
+  - id: finance-C-173
+    when: When initializing model builders (LGM, CR-LGM, InfDK, InfJY) for pricing discretization
+    action: Explicitly set shiftHorizon to a non-zero calibrated value during model initialization when controlling pricing
+      discretization is required — do not rely on implicit defaults
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit shiftHorizon configuration, pricing accuracy and risk sensitivities are affected for instruments
+      requiring shift adjustments, causing incorrect FRTB regulatory capital calculations
+    derived_from_bd_id: BD-046
+  - id: finance-C-174
+    when: When managing builder state via EngineFactory for repeated pricing calls
+    action: Set buildersDirty_ flag to true whenever configuration changes to verify stale builder state is properly refreshed
+      during lazy reset — do not assume builders automatically reflect configuration updates
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Failing to set the dirty flag after configuration changes causes the factory to reuse stale builder state,
+      leading to incorrect pricing results that do not reflect updated market data or model parameters
+    derived_from_bd_id: BD-049
+  - id: finance-C-175
+    when: When processing file lists via FileList._parse() for batch configuration
+    action: Assume the framework validates configuration completeness when FileList._parse() is called — the method silently
+      catches FileNotFoundError without propagating exceptions or providing warnings
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Missing configuration files are silently excluded from processing, causing incomplete analysis with no error
+      indication and making configuration errors difficult to diagnose
+    derived_from_bd_id: BD-054
+  - id: finance-C-176
+    when: When parsing file lists for batch processing
+    action: Implement explicit error handling that raises exceptions or logs warnings with FAILURE level when expected files
+      are not found, rather than silently continuing with incomplete file lists
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without explicit error handling, batch processing proceeds with incomplete file lists producing misleading
+      results that appear valid but lack critical configuration data
+    derived_from_bd_id: BD-054
+  - id: finance-C-177
+    when: When implementing or refactoring OreBasic class usage patterns
+    action: Call parse_output() explicitly AFTER run() completes, NOT in __init__. Never attempt to parse output before market
+      data is populated by run()
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Calling parse_output() before run() will produce empty or incorrect results since output data structures
+      are not initialized until run() completes, making backtest results unreliable
+    derived_from_bd_id: BD-047
+  - id: finance-C-178
+    when: When implementing TradeBuilder subclasses for engine factory operations
+    action: Keep TradeBuilder instances completely stateless; constructor must return shared_ptr without any internal state
+      that persists between build requests
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Stateful builders cause non-deterministic trade generation and race conditions in multi-threaded scenarios
+      where builder instances are reused across EngineFactory calls, corrupting trade output
+    derived_from_bd_id: BD-048
+  - id: finance-C-179
+    when: When configuring volatility type for interest rate model calibration
+    action: Apply shift() lookup ONLY for ShiftedLognormal volatility type; Normal and Black-Scholes types must NOT apply
+      shift parameter
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Applying shift to non-ShiftedLognormal volatility types produces incorrect pricing results; the 4-permutation
+      pattern must be maintained for each interest rate model calibration
+    derived_from_bd_id: BD-050
+  - id: finance-C-180
+    when: When calibrating interest rate models (e.g., Hull-White) to swaption volatility surface
+    action: Use Levenberg-Marquardt optimization algorithm combining Gauss-Newton and gradient descent methods; verify initial
+      parameters are within convergence radius
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect optimization algorithm selection causes convergence failures or poor calibration quality, producing
+      inaccurate risk factors that invalidate regulatory capital calculations
+    derived_from_bd_id: BD-037
+  - id: finance-C-181
+    when: When implementing model calibration optimization loops
+    action: 'Set explicit termination criteria: max iterations=1000, max stationary state=10, function tolerance=1e-8, gradient
+      tolerance=1e-8, x-tolerance=1e-8 to verify reproducibility'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Missing or incorrect termination criteria causes infinite loops or premature convergence, degrading calibration
+      quality and breaking reproducibility required for audit compliance
+    derived_from_bd_id: BD-038
+  - id: finance-C-182
+    when: When computing implied volatility from market prices for SABR/SVI surface fitting
+    action: Use Newton-Raphson solver with tolerance 1e-6 and max 1000 iterations; verify initial guess is between 0% and
+      200%
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using bisection instead of Newton-Raphson causes 10x slower convergence; incorrect initial guess or solver
+      tolerance produces inaccurate implied volatility for deep ITM/OTM options
+    derived_from_bd_id: BD-040
+  - id: finance-C-183
+    when: When selecting calibration instruments for model calibration
+    action: 'Choose calibration basket mode based on portfolio complexity: Naive for simple portfolios, MaturityStrikeByDeltaGamma
+      for complex portfolios requiring better vol surface shape capture'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Using Naive basket mode for complex portfolios under-captures vol surface shape, degrading model calibration
+      quality required for accurate regulatory capital calculation
+    derived_from_bd_id: BD-041
+  - id: finance-C-184
+    when: When processing results for automated downstream systems requiring structured data
+    action: Use structured JSON output instead of CSV when downstream systems require precise decimal representation or when
+      processing instruments with high decimal precision
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: CSV format causes precision loss for decimal-heavy instruments and breaks automation with systems requiring
+      structured JSON, potentially corrupting financial calculations in downstream systems
+    derived_from_bd_id: BD-GAP-004
+  - id: finance-C-185
+    when: When initializing model builders with default shiftHorizon parameter across different model families (LG, CR-LGM,
+      Inflation)
+    action: Verify that applying shiftHorizon=0.0 produces mathematically consistent results across model families, or explicitly
+      use model-specific defaults with documented behavior differences
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Applying the same shiftHorizon default value (0.0) to different model families produces mathematically inconsistent
+      risk metrics despite documented consistency intentions, leading to incorrect hedging and capital allocation decisions
+    derived_from_bd_id: BD-061
+  - id: finance-C-186
+    when: When implementing or refactoring plot data loading in post-processing
+    action: Preserve lazy loading behavior via dict-based interface — do not refactor OutputPlotter to eagerly load each exposure
+      data into memory at initialization
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Eagerly loading large Monte Carlo exposure files consumes excessive memory during initialization; for files
+      exceeding available RAM, this causes out-of-memory errors that prevent any visualization from running, defeating the
+      purpose of exposure analysis
+    derived_from_bd_id: BD-016
+  - id: finance-C-187
+    when: When using MARS for conditional expectation estimation in risk factor modeling
+    action: Verify the training window spans at least one full market cycle to enable stable knot selection; using shorter
+      windows risks unstable coefficient estimation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: MARS models trained on incomplete market cycles produce unstable knots that cause misestimated conditional
+      expectations, leading to incorrect risk factor valuations and potential regulatory capital miscalculations
+    derived_from_bd_id: BD-023
+  - id: finance-C-188
+    when: When implementing HNSW approximate nearest neighbor search for basket matching and scenario reduction
+    action: Maintain recall rate above 95% for regulatory acceptance; configure ef_construction and M parameters to balance
+      speed against accuracy requirements
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: HNSW implementations with recall rates below 95% cause suboptimal basket matching in calibration, introducing
+      pricing errors that fail Basel IV SA-CCR regulatory acceptance criteria
+    derived_from_bd_id: BD-024
+  - id: finance-C-191
+    when: When implementing NPL portfolio data processing in the analytics engine
+    action: Assume the framework automatically validates NPL portfolio EBA field completeness — the framework does not implement
+      EBA field validation for NPL data; missing fields will cause silent data corruption in downstream analytics
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit EBA field validation, NPL portfolio records with missing required fields propagate through
+      the analytics pipeline, causing incorrect regulatory reporting and risk calculations
+    derived_from_bd_id: BD-GAP-014
+  - id: finance-C-192
+    when: When processing NPL portfolio data in the analytics engine
+    action: Implement explicit EBA field validation that checks each required fields are populated before processing, and
+      fail with explicit error if any required field is missing or null
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit field validation, NPL portfolio records with incomplete EBA fields silently propagate through
+      the system, corrupting downstream risk calculations and regulatory reports
+    derived_from_bd_id: BD-GAP-014
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-104 / Dynamic SIMM Exposure Analysis
+    version: v5.3
+    intent_keywords:
+    - initial margin
+    - SIMM
+    - collateral
+    - exposure
+    - variation margin
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (4 distinct values, balanced distribution)
+      groups:
+      - group_id: reporting
+        name: Reporting
+        description: ''
+        emoji: 📋
+        uc_count: 9
+        ucs:
+        - uc_id: UC-101
+          name: Dynamic SIMM Exposure Analysis
+          short_description: Analyzes collateralized vs uncollateralized counterparty exposure dynamics for risk management
+            and margin calculations
+          sample_triggers:
+          - initial margin
+          - SIMM
+          - collateral
+        - uc_id: UC-102
+          name: XVA Valuation and Sensitivity Reporting
+          short_description: Computes and visualizes XVA metrics including CVA, DVA, FVA, and exposure profiles for OTC derivatives
+            portfolio
+          sample_triggers:
+          - XVA
+          - CVA
+          - FVA
+        - uc_id: UC-106
+          name: Portfolio NPV Cashflow and Curve Reporting
+          short_description: Generates comprehensive portfolio reports including NPV, cashflows, and yield curves for trade
+            valuation
+          sample_triggers:
+          - NPV
+          - cashflow
+          - curves
+        - uc_id: UC-107
+          name: Netting Set Exposure Analysis
+          short_description: Analyzes counterparty exposure profiles (EPE, ENE) for individual swaps and netting sets to assess
+            credit risk
+          sample_triggers:
+          - exposure
+          - EPE
+          - ENE
+        - uc_id: UC-108
+          name: XVA Scenario Path Visualization
+          short_description: Visualizes Monte Carlo simulation paths and NPV cubes for XVA computation, including scenario
+            data analysis
+          sample_triggers:
+          - XVA
+          - scenario
+          - simulation
+        - uc_id: UC-113
+          name: SIMM Margin Calculation with CRIF Data
+          short_description: Calculates regulatory margin requirements using SIMM methodology based on CRIF-formatted risk
+            sensitivities
+          sample_triggers:
+          - SIMM
+          - margin
+          - CRIF
+        - uc_id: UC-115
+          name: Term Structure and Discount Factor Extraction
+          short_description: Extracts and inspects term structures including discount curves, forward curves, and zero rates
+            for pricing validation
+          sample_triggers:
+          - term structure
+          - discount curve
+          - forward curve
+        - uc_id: UC-118
+          name: CVA Sensitivity Scenario Analysis
+          short_description: Computes CVA sensitivities to risk factors and analyzes credit valuation adjustment exposure
+            profiles
+          sample_triggers:
+          - CVA
+          - sensitivity
+          - credit
+        - uc_id: UC-119
+          name: NPV Cube Visualization Dashboard
+          short_description: Provides interactive Jupyter dashboard for launching ORE, visualizing NPV cube data, and filtering
+            by netting sets
+          sample_triggers:
+          - dashboard
+          - NPV cube
+          - visualization
+      - group_id: research_analysis
+        name: Research Analysis
+        description: ''
+        emoji: 📦
+        uc_count: 7
+        ucs:
+        - uc_id: UC-103
+          name: Pricing Sensitivity Method Comparison
+          short_description: Compares different sensitivity computation methods (bump-and-reval, automatic differentiation,
+            complex step) for accuracy and performance validation
+          sample_triggers:
+          - sensitivity
+          - AD
+          - automatic differentiation
+        - uc_id: UC-105
+          name: Commodity Forward Valuation Setup
+          short_description: Demonstrates basic instrument setup and valuation for a commodity forward contract using price
+            and discount curves
+          sample_triggers:
+          - commodity
+          - forward
+          - pricing engine
+        - uc_id: UC-110
+          name: Scenario Dump Covariance Analysis
+          short_description: Analyzes simulated scenario data to compute covariance matrices and risk factor correlations
+            from Monte Carlo output
+          sample_triggers:
+          - scenario
+          - covariance
+          - correlation
+        - uc_id: UC-111
+          name: Custom Payoff and Exposure Analysis
+          short_description: Visualizes custom payoff functions and analyzes trade-level exposure for exotic instruments like
+            barrier options
+          sample_triggers:
+          - payoff
+          - barrier option
+          - custom
+        - uc_id: UC-112
+          name: Dynamic Valuation Date Scenario Analysis
+          short_description: Demonstrates dynamic valuation date changes and interactive scenario analysis using Jupyter widgets
+            for what-if analysis
+          sample_triggers:
+          - valuation date
+          - scenario
+          - interactive
+        - uc_id: UC-116
+          name: Quasi-Monte Carlo Option Pricing
+          short_description: Demonstrates quasi-Monte Carlo methods using low-discrepancy sequences (Sobol) for more efficient
+            European option pricing
+          sample_triggers:
+          - quasi-Monte Carlo
+          - Sobol
+          - low discrepancy
+        - uc_id: UC-117
+          name: AAD Sensitivity Performance Analysis
+          short_description: Compares automatic differentiation sensitivity computation performance against traditional bump-and-reval
+            and complex step methods
+          sample_triggers:
+          - AAD
+          - sensitivity
+          - performance
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 2
+        ucs:
+        - uc_id: UC-104
+          name: Market Data and Portfolio Dependency Analysis
+          short_description: Explores market object dependencies and portfolio structure by examining curves, conventions,
+            and pricing engine configurations
+          sample_triggers:
+          - market data
+          - curves
+          - conventions
+        - uc_id: UC-114
+          name: Market Data Configuration and Analytics Setup
+          short_description: Sets up complete market data infrastructure including curves, conventions, pricing engines, and
+            term structure configurations
+          sample_triggers:
+          - market data
+          - configuration
+          - curves
+      - group_id: monitoring
+        name: Monitoring
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-109
+          name: Simulation Progress Monitoring
+          short_description: Monitors ORE simulation progress by reading log files and displaying execution status in Jupyter
+          sample_triggers:
+          - progress
+          - monitoring
+          - simulation
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try dynamic simm exposure analysis
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try xva valuation and sensitivity reporting
+      auto_selected: true
+    - uc_id: UC-103
+      beginner_prompt: Try pricing sensitivity method comparison
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 19 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Pricing Sensitivity Method Comparison
+    - XVA Valuation and Sensitivity Reporting
+    - Dynamic SIMM Exposure Analysis
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

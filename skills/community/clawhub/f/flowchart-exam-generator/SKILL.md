@@ -1,35 +1,68 @@
 ---
-name: "Flowchart Exam Generator"
-description: "根据流程图图片自动生成应知应会考试题（单选题、多选题）。当用户要求"根据流程图出考试题"、"根据流程图生成题目"、"根据流程图出应知应会"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flowchart-exam-generator"
-sourceUrl: "https://clawhub.ai/skills/flowchart-exam-generator"
+name: flowchart-exam-generator
+description: 根据流程图图片自动生成应知应会考试题（单选题、多选题）。当用户要求"根据流程图出考试题"、"根据流程图生成题目"、"根据流程图出应知应会"时使用。
 ---
 
-# Flowchart Exam Generator
+# 流程图考试题生成器
 
-> 根据流程图图片自动生成应知应会考试题（单选题、多选题）。当用户要求"根据流程图出考试题"、"根据流程图生成题目"、"根据流程图出应知应会"时使用。
+根据上传的流程图图片，自动分析流程内容并生成标准格式的应知应会考试题Excel文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flowchart-exam-generator`
-- **Source URL:** [https://clawhub.ai/skills/flowchart-exam-generator](https://clawhub.ai/skills/flowchart-exam-generator)
+## 工作流程
 
-## Overview
+### 1. 分析流程图
+使用 `images_understand` 工具分析流程图，提取：
+- 流程名称和主题
+- 所有步骤和环节
+- 每个步骤的具体内容、操作人员、输入输出文件
+- 判断条件和分支
+- 涉及的部门或岗位
+- 特殊情况或注意事项
 
+### 2. 生成考试题
+根据分析结果生成考试题，默认配置：
+- **单选题**：5道（可自定义数量）
+- **多选题**：5道（可自定义数量）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flowchart-exam-generator
+### 3. 输出格式要求
+
+**题目格式规范：**
+1. 出处放在题干前面，用逗号分隔
+   ```
+   流程名称，题目内容（）
+   ```
+2. 用`（）`代替提问部分
+3. 每道题4个选项（A/B/C/D）
+4. 答案格式：`A=1, B=2, C=3, D=4`
+5. 多选题答案用逗号隔开（如：`1,2,3`）
+
+### 4. Excel输出结构
+
+| 列 | 内容 |
+|----|------|
+| 题型 | 单选题/多选题 |
+| 题目 | 带出处的完整题目 |
+| 选项1 | A选项 |
+| 选项2 | B选项 |
+| 选项3 | C选项 |
+| 选项4 | D选项 |
+| 正确答案 | 数字格式（1/2/3/4，多选用逗号） |
+| 解析 | 答案解析 |
+| 出处 | 流程名称 |
+
+## 执行示例
+
 ```
+用户：请根据这个流程图出5道单选和5道多选
+
+1. 分析流程图内容
+2. 生成符合格式的考试题
+3. 保存为Excel文件
+4. 提供下载链接
+```
+
+## 注意事项
+
+- 确保流程图清晰可读
+- 涉及部门、岗位、文件名称都要提取
+- 特殊情况（如判断条件、分支处理）要单独出题
+- 解析部分要准确说明答案原因

@@ -1,0 +1,4 @@
+interface:
+  display_name: "代码重构"
+  short_description: "在不改变行为的前提下优化命名、结构与重复代码。"
+  default_prompt: "使用 $code-refactor 在保持行为不变的前提下重构这段代码。"

@@ -1,0 +1,40 @@
+{
+  "name": "tg-news-digest-lite",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Autonomous AI agent for monitoring public Telegram channels via web scraping, with zero authentication required",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": [
+    "telegram",
+    "news-monitoring",
+    "web-scraping",
+    "ai-summarization",
+    "openclaw-skill",
+    "digest",
+    "automation"
+  ],
+  "author": "your-name <your-email@example.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
+    "fs-extra": "^11.2.0",
+    "openai": "^4.28.0",
+    "yaml": "^2.4.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/tg-news-digest-lite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/tg-news-digest-lite/issues"
+  },
+  "homepage": "https://clawhub.ai/skills/tg-news-digest-lite"
+}

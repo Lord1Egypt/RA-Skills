@@ -1,0 +1,44 @@
+{
+  "skill_name": "app-store-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit this iOS app's App Store submission readiness: it has subscriptions, a third-party analytics SDK, ads that may track users across apps, iPhone and iPad support, and a PrivacyInfo.xcprivacy file that only declares UserDefaults with CA92.1. Give the highest-risk rejection issues and the exact checks the team should run before upload.",
+      "expected_output": "A source-grounded App Review readiness audit covering IAP/subscription display, ATT, privacy manifests and SDK manifests, Xcode/SDK upload requirements, screenshot requirements, metadata, and reviewer access.",
+      "files": [],
+      "expectations": [
+        "Mentions that uploads after April 28, 2026 need Xcode 26 or later with the relevant platform SDK 26 or later.",
+        "Identifies that tracking across apps or websites requires ATT, NSUserTrackingUsageDescription, and no tracking before authorization.",
+        "Checks whether third-party SDK code that collects data, uses required-reason APIs, enables data collection, or contacts tracking domains has its own privacy manifest.",
+        "Warns that digital subscriptions generally require StoreKit IAP and visible subscription terms, restore purchases, and no external purchase path unless current rules or entitlements allow it.",
+        "Includes iPhone 6.9-inch and iPad 13-inch screenshot requirements for a universal iPhone/iPad app."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this proposed PrivacyInfo.xcprivacy plan: the app uses UserDefaults for settings, checks free disk space before downloading offline videos, reads file modification dates for files picked through UIDocumentPickerViewController, and includes an SDK that wraps UserDefaults for the app. Which required-reason API categories and reason codes should be declared, and where should the app versus SDK declarations live?",
+      "expected_output": "A privacy-manifest reason-code review that selects current approved reason codes and correctly separates app manifest declarations from SDK manifest declarations.",
+      "files": [],
+      "expectations": [
+        "Selects NSPrivacyAccessedAPICategoryUserDefaults with CA92.1 for app-owned UserDefaults settings.",
+        "Selects NSPrivacyAccessedAPICategoryDiskSpace with E174.1 for checking free space before downloads.",
+        "Selects NSPrivacyAccessedAPICategoryFileTimestamp with 3B52.1 for user-granted document picker files.",
+        "Selects UserDefaults wrapper SDK reason C56D.1 for the SDK only and says the SDK must report its own required-reason API use in its own manifest.",
+        "Warns not to invent broad reasons and to re-check Apple's current required-reason API documentation."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want better App Store keywords and screenshot captions for my habit tracker, but I also don't want a metadata rejection. Give me the compliance guardrails only, and call out which parts belong in an ASO strategy pass rather than an App Review pass.",
+      "expected_output": "A boundary-aware answer that keeps app-store-review focused on metadata compliance and routes keyword strategy and conversion optimization to the ASO skill.",
+      "files": [],
+      "expectations": [
+        "States that keyword research, ranking strategy, and conversion optimization belong to an ASO strategy pass rather than App Review compliance.",
+        "Gives App Review metadata guardrails: accurate app name, screenshots showing real UI, no misleading features, no prices in description, no competitor names or irrelevant keywords.",
+        "Mentions the 30-character app name/subtitle limits and 100-character keyword field limit with comma-separated keywords and no spaces after commas.",
+        "Mentions current screenshot size compliance, including 6.9-inch iPhone and 13-inch iPad requirements when applicable.",
+        "Does not expand into a full keyword plan or marketing copy rewrite."
+      ]
+    }
+  ]
+}

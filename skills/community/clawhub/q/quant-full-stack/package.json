@@ -1,0 +1,24 @@
+{
+  "name": "quant-full-stack",
+  "version": "1.0.0",
+  "description": "A 股股票量化全流程核心任务体系，覆盖数据采集、因子挖掘、策略构建、回测验证、模拟交易、风险管理 6 大核心模块",
+  "private": true,
+  "type": "skill",
+  "keywords": [
+    "quant",
+    "stock",
+    "trading",
+    "backtest",
+    "alpha",
+    "factor"
+  ],
+  "skill": {
+    "slug": "quant-full-stack",
+    "name": "Quant Full Stack",
+    "description": "A 股股票量化全流程核心任务体系",
+    "entryPoint": "runner.py",
+    "version": "1.0.0",
+    "author": "yuhond",
+    "license": "MIT"
+  }
+}

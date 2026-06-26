@@ -1,0 +1,17 @@
+{
+  "name": "prose-to-deck",
+  "version": "1.0.3",
+  "description": "Convert long-form writing into polished single-file HTML decks with editorial pacing, review checkpoints, reusable style seeds, and self-contained output ready to share.",
+  "author": "yuu",
+  "license": "MIT",
+  "permissions": [],
+  "entry": "SKILL.md",
+  "tags": [
+    "presentation",
+    "html",
+    "slides",
+    "storytelling",
+    "longform",
+    "editorial-design"
+  ]
+}

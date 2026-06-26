@@ -1,0 +1,37 @@
+{
+  "slug": "nonprofit-grant-outline",
+  "title": "公益资助申请大纲器",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "structured_brief",
+  "summary": "为公益项目生成 grant proposal 大纲，连接目标、预算、影响指标与证据。",
+  "inputHint": "项目目标、受益人、预算、证据",
+  "sections": [
+    "项目摘要",
+    "问题定义",
+    "行动方案",
+    "预算框架",
+    "影响指标",
+    "证据与风险"
+  ],
+  "useCases": [
+    "基金申请",
+    "公益项目设计",
+    "项目传播"
+  ],
+  "positiveExamples": [
+    "帮我写一份公益 grant proposal 大纲",
+    "把预算和影响指标连起来"
+  ],
+  "negativeExamples": [
+    "不要伪造受益人数",
+    "不要替代正式合规审核"
+  ],
+  "risk": "输出为申请大纲草案。",
+  "tags": [
+    "nonprofit",
+    "grant",
+    "proposal",
+    "impact"
+  ]
+}

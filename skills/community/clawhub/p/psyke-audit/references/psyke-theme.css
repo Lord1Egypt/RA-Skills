@@ -1,0 +1,403 @@
+/* ===========================================
+   PSYKE AUDIT — SLIDE THEME
+   Dark-mode, purple primary, lime accent
+   Based on psyke.co brand guidelines
+   =========================================== */
+
+/* --- Fonts: Space Grotesk (Google Fonts) --- */
+/* Include in <head>:
+   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+*/
+
+:root {
+    /* === Brand Colours === */
+    --psyke-purple: #9500FF;
+    --psyke-purple-light: rgba(149, 0, 255, 0.15);
+    --psyke-purple-glow: rgba(149, 0, 255, 0.3);
+    --psyke-lime: #e6f85e;
+    --psyke-lime-light: rgba(230, 248, 94, 0.12);
+
+    /* === Backgrounds === */
+    --bg-primary: #11121c;
+    --bg-secondary: #171825;
+    --bg-tertiary: #191a28;
+    --bg-card: #1e1f30;
+    --bg-elevated: #262838;
+    --bg-surface: rgba(255, 255, 255, 0.03);
+
+    /* === Text === */
+    --text-primary: #eae6ff;
+    --text-secondary: #bdbfd4;
+    --text-muted: #747694;
+    --text-dim: rgba(255, 255, 255, 0.35);
+
+    /* === Accents === */
+    --accent-critical: #fe577f;
+    --accent-high: #ff8f3f;
+    --accent-medium: #e6f85e;
+    --accent-good: #58ebff;
+    --accent-positive: #4ade80;
+
+    /* === Gradients === */
+    --gradient-brand: linear-gradient(135deg, #9500FF 0%, #fe577f 100%);
+    --gradient-glow: linear-gradient(135deg, #58ebff 0%, #e6f85e 100%);
+    --gradient-card: linear-gradient(180deg, rgba(149, 0, 255, 0.08) 0%, transparent 100%);
+
+    /* === Typography === */
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Space Grotesk', system-ui, sans-serif;
+
+    /* === Sizing (clamp for viewport scaling) === */
+    --title-size: clamp(1.5rem, 5vw, 4rem);
+    --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+    --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+    --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+    --small-size: clamp(0.65rem, 1vw, 0.875rem);
+    --slide-padding: clamp(1.5rem, 4vw, 4rem);
+    --content-gap: clamp(0.5rem, 2vw, 2rem);
+
+    /* === Animation === */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-normal: 0.6s;
+}
+
+/* === Base === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === Slide Layouts === */
+
+/* Title slide */
+.slide-title {
+    background: var(--bg-primary);
+    display: flex; align-items: center; justify-content: center;
+}
+.slide-title .content-wrap {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: flex-start;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+    max-width: min(85vw, 900px);
+}
+.slide-title h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--text-primary);
+}
+.slide-title h1 .accent { color: var(--psyke-purple); }
+.slide-title h1 .accent-lime { color: var(--psyke-lime); }
+.slide-title .subtitle {
+    font-size: var(--body-size); color: var(--text-secondary);
+    max-width: 500px; line-height: 1.6;
+}
+.slide-title .meta {
+    font-size: var(--small-size);
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+/* Psyke logo bar (top of title slide) */
+.psyke-logo {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: clamp(0.8rem, 1.2vw, 1rem);
+    text-transform: uppercase; letter-spacing: 0.3em;
+    color: var(--psyke-purple);
+}
+
+/* Split slide: left content, right panel */
+.slide-split { display: flex; height: 100%; width: 100%; }
+.split-left {
+    flex: 1; padding: var(--slide-padding);
+    display: flex; flex-direction: column; justify-content: center;
+    gap: var(--content-gap); position: relative; z-index: 1;
+    background: var(--bg-primary);
+}
+.split-right {
+    flex: 1; padding: var(--slide-padding);
+    display: flex; flex-direction: column; justify-content: center;
+    gap: var(--content-gap); position: relative; z-index: 1;
+    background: var(--bg-secondary);
+}
+
+/* Subtle grid background (optional, use sparingly) */
+.grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(149, 0, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(149, 0, 255, 0.03) 1px, transparent 1px);
+    background-size: clamp(30px, 5vw, 60px) clamp(30px, 5vw, 60px);
+    pointer-events: none; z-index: 0;
+}
+
+/* Glow orb decorations */
+.glow-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none; z-index: 0;
+}
+.glow-purple {
+    background: var(--psyke-purple-glow);
+    width: clamp(150px, 25vw, 350px); height: clamp(150px, 25vw, 350px);
+}
+.glow-lime {
+    background: rgba(230, 248, 94, 0.08);
+    width: clamp(100px, 20vw, 250px); height: clamp(100px, 20vw, 250px);
+}
+
+/* === Typography === */
+.label {
+    font-family: var(--font-display); font-size: var(--small-size);
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--psyke-purple); font-weight: 600;
+}
+.label-lime { color: var(--psyke-lime); }
+.label-muted { color: var(--text-muted); }
+
+h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--h2-size); line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--text-primary);
+}
+h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: var(--h3-size); line-height: 1.2;
+    color: var(--text-primary);
+}
+p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-secondary); }
+
+/* === Score Display === */
+.score-display { display: flex; align-items: center; gap: clamp(1rem, 3vw, 3rem); }
+.score-ring {
+    position: relative;
+    width: clamp(100px, 18vw, 200px); height: clamp(100px, 18vw, 200px);
+    flex-shrink: 0;
+}
+.score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.score-ring .ring-bg { fill: none; stroke: var(--bg-elevated); stroke-width: 6; }
+.score-ring .ring-fill {
+    fill: none; stroke: var(--psyke-purple); stroke-width: 6;
+    stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1.5s var(--ease-out-expo);
+}
+.score-ring .ring-fill-lime { stroke: var(--psyke-lime); }
+.slide.visible .score-ring .ring-fill { stroke-dashoffset: calc(283 - (283 * var(--score-pct))); }
+.score-number {
+    position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.8rem, 5vw, 3.5rem); color: var(--text-primary);
+}
+.score-label {
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--text-muted);
+}
+
+/* Dual score (SEO + GEO side by side) */
+.dual-score { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; }
+.dual-score .score-block { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.5vw, 0.5rem); align-items: center; }
+.dual-score .score-label-big {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: var(--body-size); text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* === Badges === */
+.badge {
+    display: inline-block;
+    padding: clamp(2px, 0.3vw, 4px) clamp(8px, 1vw, 14px);
+    font-family: var(--font-display); font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+    border-radius: 4px;
+}
+.badge-critical { background: var(--accent-critical); color: white; }
+.badge-high { background: var(--accent-high); color: var(--bg-primary); }
+.badge-medium { background: var(--accent-medium); color: var(--bg-primary); }
+.badge-good { background: var(--accent-good); color: var(--bg-primary); }
+.badge-positive { background: var(--accent-positive); color: var(--bg-primary); }
+
+/* === Issue Cards === */
+.issue-card {
+    padding: clamp(0.6rem, 1.2vw, 1rem);
+    border-left: 3px solid var(--psyke-purple);
+    background: var(--bg-surface);
+    display: flex; flex-direction: column;
+    gap: clamp(0.2rem, 0.5vw, 0.4rem);
+    border-radius: 0 4px 4px 0;
+}
+.issue-card strong {
+    font-family: var(--font-display); font-size: var(--body-size);
+    font-weight: 600; color: var(--text-primary);
+}
+.issue-card p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.5; }
+
+/* === Evidence Block === */
+.evidence {
+    background: rgba(149, 0, 255, 0.05);
+    border: 1px solid rgba(149, 0, 255, 0.12);
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    font-family: 'Space Grotesk', monospace; font-size: var(--small-size);
+    color: var(--text-secondary); line-height: 1.5; border-radius: 4px;
+}
+
+/* === Fix Box === */
+.fix-box {
+    display: flex; gap: clamp(0.4rem, 0.8vw, 0.8rem); align-items: flex-start;
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: rgba(74, 222, 128, 0.06);
+    border: 1px solid rgba(74, 222, 128, 0.15);
+    border-radius: 4px;
+}
+.fix-icon { color: var(--accent-positive); font-weight: 700; flex-shrink: 0; }
+.fix-box strong {
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-primary);
+}
+.fix-box p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.5; }
+
+/* === Findings List === */
+.findings {
+    list-style: none; display: flex; flex-direction: column;
+    gap: clamp(0.3rem, 0.8vh, 0.6rem);
+}
+.findings li {
+    font-size: var(--body-size); line-height: 1.5;
+    padding-left: clamp(0.8rem, 1.5vw, 1.2rem); position: relative;
+    color: var(--text-secondary);
+}
+.findings li::before {
+    content: ''; position: absolute; left: 0;
+    top: clamp(7px, 0.8vw, 10px);
+    width: clamp(4px, 0.5vw, 6px); height: clamp(4px, 0.5vw, 6px);
+    background: var(--psyke-purple); border-radius: 1px;
+}
+.findings li strong { color: var(--text-primary); }
+
+/* === Breakdown Grid === */
+.breakdown-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+}
+.breakdown-item {
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: var(--bg-surface);
+    border-left: 3px solid var(--psyke-purple);
+    display: flex; flex-direction: column; gap: 2px;
+    border-radius: 0 4px 4px 0;
+}
+.breakdown-item .cat-name {
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600; color: var(--text-muted);
+}
+.breakdown-item .cat-score {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.2rem, 2.5vw, 2rem); color: var(--psyke-purple);
+}
+.breakdown-item .cat-max { font-size: var(--small-size); color: var(--text-dim); }
+
+/* === Competitor Table === */
+.competitor-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: clamp(0.3rem, 0.6vw, 0.5rem);
+}
+.competitor-row {
+    display: grid; grid-template-columns: 2fr repeat(4, 1fr);
+    gap: clamp(0.3rem, 0.5vw, 0.5rem); align-items: center;
+    padding: clamp(0.3rem, 0.6vw, 0.5rem);
+    font-size: var(--small-size);
+}
+.competitor-row.header {
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.competitor-row.client { color: var(--psyke-purple); font-weight: 600; }
+.competitor-cell { text-align: center; }
+.competitor-cell:first-child { text-align: left; }
+
+/* === Priority List === */
+.priority-list { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.6vh, 0.5rem); }
+.priority-row {
+    display: flex; align-items: center; gap: clamp(0.4rem, 1vw, 0.8rem);
+    padding: clamp(0.3rem, 0.6vw, 0.5rem) 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.priority-num {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--body-size); color: var(--psyke-purple);
+    min-width: clamp(18px, 2vw, 28px);
+}
+.priority-text { font-size: var(--body-size); color: var(--text-secondary); flex: 1; }
+
+/* === Psyke CTA Slide === */
+.psyke-cta {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* === Slide Number === */
+.slide-num {
+    position: absolute; top: var(--slide-padding); right: var(--slide-padding);
+    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--text-dim); z-index: 2;
+}
+
+/* === Progress Bar === */
+.progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: var(--gradient-brand); z-index: 9999;
+    transition: width 0.3s ease;
+}
+
+/* === Nav Dots === */
+.nav-dots {
+    position: fixed; right: clamp(12px, 2vw, 24px); top: 50%;
+    transform: translateY(-50%); display: flex; flex-direction: column;
+    gap: clamp(6px, 0.8vh, 10px); z-index: 9998;
+}
+.nav-dot {
+    width: clamp(5px, 0.5vw, 7px); height: clamp(5px, 0.5vw, 7px);
+    border-radius: 50%; background: rgba(255,255,255,0.1);
+    cursor: pointer; transition: all 0.3s ease;
+}
+.nav-dot.active { background: var(--psyke-purple); transform: scale(1.5); }
+
+/* === Animations === */
+.reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .slide-split { flex-direction: column; }
+    .split-left, .split-right { flex: none; height: 50%; }
+    .breakdown-grid { grid-template-columns: 1fr; }
+    .dual-score { flex-direction: column; align-items: center; }
+    .competitor-row { grid-template-columns: 1.5fr repeat(4, 1fr); font-size: clamp(0.55rem, 0.9vw, 0.65rem); }
+}
+@media (max-height: 700px) {
+    :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1.5vw, 1rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); }
+}
+@media (max-height: 600px) {
+    :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); --title-size: clamp(1.1rem, 4vw, 2rem); --body-size: clamp(0.7rem, 1.2vw, 0.95rem); }
+    .nav-dots, .keyboard-hint, .decorative { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+    html { scroll-behavior: auto; }
+}

@@ -1,0 +1,32 @@
+name: message-chunker
+version: 1.0.0
+author: 01-老鹰
+created: 2026-03-10
+description: 智能消息分段工具
+
+# 默认配置
+defaults:
+  maxChunkSize: 4000
+  splitOnHeadings: true
+  splitOnTables: true
+  includeContinuation: true
+
+# 支持的平台
+platforms:
+  - feishu
+  - telegram
+  - discord
+  - whatsapp
+
+# 触发条件
+triggers:
+  - messageLength > 4000
+  - multipleSections
+  - sendFailure
+
+# 标签
+tags:
+  - messaging
+  - chunking
+  - feishu
+  - communication

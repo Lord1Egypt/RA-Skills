@@ -1,0 +1,42 @@
+{
+  "type": "skill",
+  "name": "feishu",
+  "lastUpdated": "2026-03-18T02:45:47.021565+08:00",
+  "totalExecutions": 6,
+  "successCount": 6,
+  "failureCount": 0,
+  "experiences": [
+    {
+      "id": "exp_feishu_001",
+      "timestamp": "2026-03-14T02:40:00+08:00",
+      "context": "创建飞书任务",
+      "lesson": "飞书任务必须指定current_user_id为用户open_id，否则用户看不到任务",
+      "severity": "high",
+      "timesRepeated": 0,
+      "prevention": "创建飞书任务时自动填充current_user_id为ou_093cfcf39cbba4e4fbe336aea2ac4434"
+    },
+    {
+      "id": "exp_feishu_002",
+      "timestamp": "2026-03-14T02:45:00+08:00",
+      "context": "任务归属标识",
+      "lesson": "自动创建的飞书任务需要添加【韩立记录】前缀，便于用户区分",
+      "severity": "low",
+      "timesRepeated": 0,
+      "prevention": "所有自动创建的飞书任务描述开头统一添加【韩立记录】标识"
+    }
+  ],
+  "patterns": {
+    "commonMistakes": [
+      "未指定current_user_id导致任务不可见",
+      "任务描述不清晰",
+      "未设置合理的截止时间",
+      "忘记添加自动创建标识"
+    ],
+    "bestPractices": [
+      "创建任务时自动填充用户open_id",
+      "自动创建的任务添加【韩立记录】前缀",
+      "合理设置任务截止时间",
+      "任务创建后返回任务链接便于用户访问"
+    ]
+  }
+}

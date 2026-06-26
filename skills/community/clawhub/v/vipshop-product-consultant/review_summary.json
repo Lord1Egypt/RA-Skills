@@ -1,0 +1,276 @@
+{
+  "spuId": "376691009459675139",
+  "totalCount": "3k+用户默认评价了该商品",
+  "satisfaction": "99.8",
+  "satisfactionDegree": "满意度99.8%",
+  "keywords": [
+    {
+      "word": "全部-按默认排序",
+      "count": -1,
+      "asKeyWordCount": "3.2k+",
+      "type": "2"
+    },
+    {
+      "word": "最新-按时间排序",
+      "count": -4,
+      "asKeyWordCount": null,
+      "type": "3"
+    },
+    {
+      "word": "有图/视频",
+      "count": 79,
+      "asKeyWordCount": "79",
+      "type": null
+    },
+    {
+      "word": "穿戴舒适",
+      "count": 57,
+      "asKeyWordCount": "57",
+      "type": null
+    },
+    {
+      "word": "购物体验好",
+      "count": 53,
+      "asKeyWordCount": "53",
+      "type": null
+    },
+    {
+      "word": "上身效果不错",
+      "count": 17,
+      "asKeyWordCount": "17",
+      "type": null
+    },
+    {
+      "word": "质感满意",
+      "count": 16,
+      "asKeyWordCount": "16",
+      "type": null
+    },
+    {
+      "word": "时尚百搭",
+      "count": 11,
+      "asKeyWordCount": "11",
+      "type": null
+    },
+    {
+      "word": "风格鲜明",
+      "count": 11,
+      "asKeyWordCount": "11",
+      "type": null
+    },
+    {
+      "word": "值得推荐",
+      "count": 9,
+      "asKeyWordCount": "9",
+      "type": null
+    },
+    {
+      "word": "性价比高",
+      "count": 8,
+      "asKeyWordCount": "8",
+      "type": null
+    },
+    {
+      "word": "超V说",
+      "count": 77,
+      "asKeyWordCount": "77",
+      "type": null
+    },
+    {
+      "word": "回头客",
+      "count": 118,
+      "asKeyWordCount": "118",
+      "type": null
+    },
+    {
+      "word": "中差评",
+      "count": -1,
+      "asKeyWordCount": null,
+      "type": "1"
+    }
+  ],
+  "descriptions": [],
+  "sizeFeelList": [],
+  "raw_data": {
+    "code": 0,
+    "defaultReputationNumber": "3k+用户默认评价了该商品",
+    "description": {},
+    "nlpKeyWordList": [
+      {
+        "asKeyWordCount": "3.2k+",
+        "isEnableTryReport": true,
+        "keyWordCount": -1,
+        "keyWordNlp": "全部-按默认排序",
+        "type": "2"
+      },
+      {
+        "keyWordCount": -4,
+        "keyWordNlp": "最新-按时间排序",
+        "type": "3"
+      },
+      {
+        "asKeyWordCount": "79",
+        "isEnableTryReport": false,
+        "keyWordCount": 79,
+        "keyWordNlp": "有图/视频"
+      },
+      {
+        "asKeyWordCount": "57",
+        "isEnableTryReport": false,
+        "keyWordCount": 57,
+        "keyWordNlp": "穿戴舒适"
+      },
+      {
+        "asKeyWordCount": "53",
+        "isEnableTryReport": false,
+        "keyWordCount": 53,
+        "keyWordNlp": "购物体验好"
+      },
+      {
+        "asKeyWordCount": "17",
+        "isEnableTryReport": false,
+        "keyWordCount": 17,
+        "keyWordNlp": "上身效果不错"
+      },
+      {
+        "asKeyWordCount": "16",
+        "isEnableTryReport": false,
+        "keyWordCount": 16,
+        "keyWordNlp": "质感满意"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "时尚百搭"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "风格鲜明"
+      },
+      {
+        "asKeyWordCount": "9",
+        "isEnableTryReport": false,
+        "keyWordCount": 9,
+        "keyWordNlp": "值得推荐"
+      },
+      {
+        "asKeyWordCount": "8",
+        "isEnableTryReport": false,
+        "keyWordCount": 8,
+        "keyWordNlp": "性价比高"
+      },
+      {
+        "asKeyWordCount": "77",
+        "isEnableTryReport": false,
+        "keyWordCount": 77,
+        "keyWordNlp": "超V说"
+      },
+      {
+        "asKeyWordCount": "118",
+        "isEnableTryReport": false,
+        "keyWordCount": 118,
+        "keyWordNlp": "回头客"
+      },
+      {
+        "isEnableTryReport": false,
+        "keyWordCount": -1,
+        "keyWordNlp": "中差评",
+        "type": "1"
+      }
+    ],
+    "nlpVersion": "3.1",
+    "picEntrance": "0",
+    "satisfaction": "99.8",
+    "satisfactionDegree": "满意度99.8%",
+    "skuTitle": "只看当前款式",
+    "topNlpKeyWordList": [
+      {
+        "asKeyWordCount": "3.2k+",
+        "isEnableTryReport": true,
+        "keyWordCount": -1,
+        "keyWordNlp": "全部-按默认排序",
+        "type": "2"
+      },
+      {
+        "keyWordCount": -4,
+        "keyWordNlp": "最新-按时间排序",
+        "type": "3"
+      },
+      {
+        "asKeyWordCount": "79",
+        "isEnableTryReport": false,
+        "keyWordCount": 79,
+        "keyWordNlp": "有图/视频"
+      },
+      {
+        "asKeyWordCount": "57",
+        "isEnableTryReport": false,
+        "keyWordCount": 57,
+        "keyWordNlp": "穿戴舒适"
+      },
+      {
+        "asKeyWordCount": "53",
+        "isEnableTryReport": false,
+        "keyWordCount": 53,
+        "keyWordNlp": "购物体验好"
+      },
+      {
+        "asKeyWordCount": "17",
+        "isEnableTryReport": false,
+        "keyWordCount": 17,
+        "keyWordNlp": "上身效果不错"
+      },
+      {
+        "asKeyWordCount": "16",
+        "isEnableTryReport": false,
+        "keyWordCount": 16,
+        "keyWordNlp": "质感满意"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "时尚百搭"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "风格鲜明"
+      },
+      {
+        "asKeyWordCount": "9",
+        "isEnableTryReport": false,
+        "keyWordCount": 9,
+        "keyWordNlp": "值得推荐"
+      },
+      {
+        "asKeyWordCount": "8",
+        "isEnableTryReport": false,
+        "keyWordCount": 8,
+        "keyWordNlp": "性价比高"
+      },
+      {
+        "asKeyWordCount": "77",
+        "isEnableTryReport": false,
+        "keyWordCount": 77,
+        "keyWordNlp": "超V说"
+      },
+      {
+        "asKeyWordCount": "118",
+        "isEnableTryReport": false,
+        "keyWordCount": 118,
+        "keyWordNlp": "回头客"
+      },
+      {
+        "isEnableTryReport": false,
+        "keyWordCount": -1,
+        "keyWordNlp": "中差评",
+        "type": "1"
+      }
+    ]
+  }
+}

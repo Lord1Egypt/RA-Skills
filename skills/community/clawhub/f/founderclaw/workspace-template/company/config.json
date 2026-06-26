@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "models": {
+    "fast": "not-configured",
+    "best": "not-configured",
+    "vision": "openrouter/xiaomi/mimo-v2-omni"
+  },
+  "autoMode": {
+    "enabled": false,
+    "principles": [
+      "Choose completeness — ship the whole thing",
+      "Boil lakes — fix everything in blast radius if <1 day",
+      "Pragmatic — 5 seconds choosing, not 5 minutes",
+      "DRY — duplicates? Reject. Reuse.",
+      "Explicit over clever — 10-line obvious > 200-line abstraction",
+      "Bias toward action — merge > review cycles > stale deliberation"
+    ]
+  },
+  "communication": {
+    "manual": "all-through-ceo",
+    "auto": "department-to-department-with-ceo-notification"
+  },
+  "toolPolicy": {
+    "ceo": "full",
+    "strategy": "read-write-research",
+    "shipper": "read-write-deploy",
+    "tester": "read-only-qa",
+    "safety": "read-only-audit",
+    "observer": "read-only-debug"
+  }
+}

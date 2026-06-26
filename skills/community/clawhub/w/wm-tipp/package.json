@@ -1,0 +1,6 @@
+{
+  "name": "wm-tipp",
+  "version": "1.0.1",
+  "description": "WM 2026 Tipps mit Polymarket-Quoten. Automatische Daily-Tipps an Telegram.",
+  "license": "MIT-0"
+}

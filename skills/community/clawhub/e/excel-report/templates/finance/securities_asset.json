@@ -1,0 +1,111 @@
+{
+  "id": "finance_securities_asset",
+  "name": "证券客户资产月度报表",
+  "name_en": "Securities Client Asset Monthly Report",
+  "industry": "finance",
+  "scene": "资产管理",
+  "description": "客户资产监控、产品销售分析，适配证券公司、基金公司场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month"]},
+        {"field": "customer_tier", "label": "客户等级", "type": "string", "aliases": ["客户等级", "customer_tier", "客户级别", "等级"]},
+        {"field": "asset_size", "label": "资产规模", "type": "number", "aliases": ["资产规模", "asset_size", "资产", "AUM"]},
+        {"field": "product_type", "label": "持仓产品类型", "type": "string", "aliases": ["持仓产品类型", "product_type", "产品类型", "投资类型"]},
+        {"field": "transaction_count", "label": "交易笔数", "type": "number", "aliases": ["交易笔数", "transaction_count", "交易次数"]},
+        {"field": "commission", "label": "手续费收入", "type": "number", "aliases": ["手续费收入", "commission", "佣金", "手续费"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_aum",
+          "label": "总资产规模(AUM)",
+          "formula": "SUM(asset_size)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "total_commission",
+          "label": "总手续费收入",
+          "formula": "SUM(commission)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "avg_asset",
+          "label": "人均资产",
+          "formula": "SUM(asset_size)/COUNT_DISTINCT(customer_tier)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "commission_rate",
+          "label": "手续费率",
+          "formula": "SUM(commission)/SUM(asset_size)",
+          "format": "percent",
+          "style": "gauge"
+        }
+      ],
+      "charts": [
+        {
+          "id": "tier_pie",
+          "type": "pie",
+          "title": "客户等级资产占比",
+          "dimension": "customer_tier",
+          "metric": "asset_size",
+          "position": {"row": 1, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "asset_trend",
+          "type": "line",
+          "title": "月度资产规模趋势",
+          "x": "month",
+          "y": ["asset_size"],
+          "series_names": ["资产规模"],
+          "position": {"row": 1, "col": 12, "width": 14, "height": 8}
+        },
+        {
+          "id": "product_bar",
+          "type": "bar",
+          "title": "各产品类型交易笔数及手续费对比",
+          "x": "product_type",
+          "y": ["transaction_count", "commission"],
+          "series_names": ["交易笔数", "手续费"],
+          "dual_axis": true,
+          "position": {"row": 10, "col": 1, "width": 15, "height": 8}
+        },
+        {
+          "id": "tier_product",
+          "type": "bar_stacked",
+          "title": "各客户等级产品持仓分布",
+          "x": "customer_tier",
+          "y": "asset_size",
+          "stack_by": "product_type",
+          "position": {"row": 10, "col": 18, "width": 12, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "客户分析",
+      "type": "detail",
+      "source": "原始数据",
+      "group_by": ["customer_tier"],
+      "aggregations": {
+        "asset_size": "SUM",
+        "transaction_count": "SUM",
+        "commission": "SUM"
+      },
+      "computed_fields": [
+        {"field": "asset_share", "label": "资产占比", "formula": "asset_size / TOTAL(asset_size)", "format": "percent"},
+        {"field": "avg_transaction", "label": "平均交易额", "formula": "asset_size / transaction_count", "format": "currency"}
+      ],
+      "sort_by": {"field": "asset_size", "order": "desc"}
+    }
+  ],
+  "output_filename": "金融业-证券客户资产月报-{month}.xlsx"
+}

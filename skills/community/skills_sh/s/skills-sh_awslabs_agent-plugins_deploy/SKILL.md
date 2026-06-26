@@ -1,35 +1,67 @@
 ---
-name: "deploy"
-description: "Indexed by skills.sh from awslabs/agent-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "awslabs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/awslabs/agent-plugins/deploy"
-sourceUrl: "https://skills.sh/awslabs/agent-plugins/deploy"
+name: deploy
+description: "Deploy applications to AWS. Triggers on phrases like: deploy to AWS, host on AWS, run this on AWS, AWS architecture, estimate AWS cost, generate infrastructure. Analyzes any codebase and deploys to optimal AWS services."
 ---
 
-# deploy
+# Deploy on AWS
 
-> Indexed by skills.sh from awslabs/agent-plugins
+Take any application and deploy it to AWS with minimal user decisions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** awslabs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/awslabs/agent-plugins/deploy`
-- **Source URL:** [https://skills.sh/awslabs/agent-plugins/deploy](https://skills.sh/awslabs/agent-plugins/deploy)
+## Philosophy
 
-## Overview
+**Minimize cognitive burden.** User has code, wants it on AWS. Pick the most
+straightforward services. Don't ask questions with obvious answers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/awslabs/agent-plugins/deploy
-```
+1. **Analyze** - Scan codebase for framework, database, dependencies
+2. **Recommend** - Select AWS services, concisely explain rationale
+3. **Estimate** - Show monthly cost before proceeding
+4. **Generate** - Write IaC code with [security defaults](references/security.md) applied
+5. **Deploy** - Run security checks, then execute with user confirmation
+
+## Defaults
+
+See [defaults.md](references/defaults.md) for the complete service selection matrix.
+
+Core principle: Default to **dev-sized** (cost-conscious: small instance sizes, minimal redundancy, and non-HA/single-AZ defaults) unless user says "production-ready".
+
+## MCP Servers
+
+### awsknowledge
+
+Consult for architecture decisions. Use when choosing between AWS services
+or validating that a service fits the use case. Helps answer "what's the
+right AWS service for X?"
+
+Key topics: `general` for architecture, `amplify_docs` for static sites/SPAs,
+`cdk_docs` and `cdk_constructs` for IaC patterns.
+
+### awspricing
+
+Get cost estimates. **Always present costs before generating IaC** so user
+can adjust before committing. See [cost-estimation.md](references/cost-estimation.md)
+for query patterns.
+
+### awsiac
+
+Consult for IaC best practices. Use when writing CDK/CloudFormation/Terraform
+to ensure patterns follow AWS recommendations.
+
+## Principles
+
+- Concisely explain why each service was chosen
+- Always show cost estimate before generating code
+- Apply [security defaults](references/security.md) automatically (encryption, private subnets, least privilege)
+- Run IaC security scans (cfn-nag, checkov) before deployment
+- Don't ask "Lambda or Fargate?" - just pick the obvious one
+- If genuinely ambiguous, then ask
+- **Never recommend AWS App Runner** — it is in maintenance mode. Use ECS Express Mode instead.
+- When user explicitly requests a managed application platform or signals low infrastructure involvement, route to Elastic Beanstalk
+
+## References
+
+- [Service defaults](references/defaults.md)
+- [Security defaults](references/security.md)
+- [Cost estimation patterns](references/cost-estimation.md)
+- [Elastic Beanstalk skill](../elastic-beanstalk/SKILL.md)

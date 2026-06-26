@@ -1,0 +1,15 @@
+{
+  "id": "ceramic-search",
+  "name": "Ceramic Search",
+  "description": "Web search for AI agents via Ceramic Search API. Exposes ceramic_search as a native agent tool.",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "apiKey": { "type": "string", "description": "Ceramic API key (falls back to CERAMIC_API_KEY env var)" }
+    },
+    "additionalProperties": false
+  },
+  "contracts": {
+    "tools": ["ceramic_search"]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "fec-implement-from-design",
+  "name": "设计稿实现",
+  "category": "design-ui",
+  "tags": [
+    "figma",
+    "sketch",
+    "mastergo",
+    "pixso",
+    "design-to-code",
+    "mcp"
+  ],
+  "summary": "Frontend Craft skill for 设计稿实现.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "figma",
+    "sketch",
+    "mastergo",
+    "pixso",
+    "design-to-code",
+    "mcp"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when implementing UI from Figma, Sketch, MasterGo, Pixso, Modao, MockingBot, screenshots, design selections, design tokens, or design-to-code tasks for production frontend components/pages; Chinese triggers include 设计稿, 按设计实现.",
+  "source": "skills/fec-implement-from-design",
+  "references": [
+    "references/design-plan-template.md"
+  ]
+}

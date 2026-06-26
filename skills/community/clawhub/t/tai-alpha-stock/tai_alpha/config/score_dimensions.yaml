@@ -1,0 +1,60 @@
+# Score calibration: point deltas and thresholds (tune here, run unit tests).
+# Mirrors legacy hardcoded logic v1; version tag for audits.
+# Bundled fallback when repo ``setup/config`` is unavailable (e.g. wheel install).
+version: "1.0.0"
+base_score: 50
+thresholds:
+  signal_strong_buy: 85
+  signal_buy: 75
+  signal_avoid_high: 65
+  signal_sell: 55
+  fear_greed_elevated: 80
+  vix_high: 25
+  vix_low: 20
+  spy_mom_high: 5
+  shorts_elevated: 0.15
+  iv_low: 0.4
+  rsi_overbought: 75
+  rsi_oversold: 35
+  analyst_upside_pct: 1.15
+points:
+  fundamentals:
+    pe_low_if_below: { threshold: 20, points: 12 }
+    roe_if_above: { threshold: 0.2, points: 15 }
+    debt_if_below: { threshold: 40, points: 10 }
+    div_yield_if_above: { threshold: 0.04, points: 5 }
+  technicals:
+    sharpe_if_above: { threshold: 1.5, points: 18 }
+    macd_bull: 10
+    rsi_oversold_bonus: 8
+    rsi_overbought_penalty: -12
+    beta_if_below: { threshold: 1.2, points: 5 }
+    vol_if_above: { threshold: 2000000, points: 6 }
+  analyst:
+    rating_if_below: { threshold: 2.2, points: 20 }
+    target_vs_price_pct: { multiplier: 1.15, points: 12 }
+    eps_growth_if_above: { threshold: 0.2, points: 8 }
+  macro:
+    vix_low_bonus: 8
+    spy_mom_bonus: 6
+    yield_curve_if_positive: 3
+    iv_low_bonus: 4
+  peers:
+    peer_score_if_positive: 5
+  ml:
+    pred_multiplier: 10
+  sentiment:
+    news_keyword_per_delta: 4
+    positive_keywords: ["beat", "upgrade", "buy", "growth"]
+    negative_keywords: ["miss", "downgrade", "sell"]
+  fear_greed:
+    if_above_penalty: -10
+  shorts:
+    if_elevated_penalty: -8
+  iv_dup:
+    if_low_bonus: 4
+  vix:
+    if_high_penalty: -5
+alpha_boost:
+  if_alpha_vs_spy_above: 10
+  conviction_add: 12

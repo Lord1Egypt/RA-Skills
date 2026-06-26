@@ -1,0 +1,28 @@
+policies:
+  auth_errors:
+    breaker_errors: [auth, 401, invalid_api_key, invalid_access_token, expired_token]
+    cooldown_seconds: 1800
+    provider_scope_if_shared_auth_group: true
+    same_provider_retry_after_auth_error: false
+
+  rate_limit:
+    cooldown_seconds: 120
+    lower_priority_for_provider: true
+    allow_same_provider_retry: true
+
+  timeout:
+    retry_once: true
+    retry_timeout_seconds: 15
+    prefer_faster_model: true
+
+  server_errors:
+    retry_once: true
+    cooldown_seconds: 60
+    cross_provider_after_retry: true
+
+  degrade_mode:
+    enter_if_healthy_models_below: 2
+    enter_if_auth_groups_healthy_below: 1
+    prefer_local_model: true
+    force_single_role_execution: true
+    allowed_roles: [router-chief, emergency-scribe, cabinet-planner]

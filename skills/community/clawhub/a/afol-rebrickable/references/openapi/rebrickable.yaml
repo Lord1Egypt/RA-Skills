@@ -1,0 +1,3121 @@
+swagger: '2.0'
+info:
+  title: 'Rebrickable API'
+  description: 'LEGO brick directory and inventory management API'
+  version: 'v3'
+host: rebrickable.com
+basePath: /api/v3
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+  - application/x-www-form-urlencoded
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+definitions:
+  PaginatedResponse:
+    type: object
+    properties:
+      count:
+        type: integer
+        description: Total number of items
+      next:
+        type: string
+        x-nullable: true
+        description: URL for the next page of results
+      previous:
+        type: string
+        x-nullable: true
+        description: URL for the previous page of results
+  Color:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique color identifier
+      name:
+        type: string
+        description: Color name
+      rgb:
+        type: string
+        description: Hex color code
+      is_trans:
+        type: boolean
+        description: Whether the color is transparent
+      external_ids:
+        type: object
+        description: External platform identifiers
+        additionalProperties:
+          type: object
+          properties:
+            ext_ids:
+              type: array
+              items:
+                type: integer
+            ext_descrs:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+  ColorList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/Color'
+  BrickSet:
+    type: object
+    properties:
+      set_num:
+        type: string
+        description: Unique set identifier
+      name:
+        type: string
+        description: Set name
+      year:
+        type: integer
+        description: Release year
+      theme_id:
+        type: integer
+        description: Theme identifier
+      num_parts:
+        type: integer
+        description: Number of parts in the set
+      set_img_url:
+        type: string
+        x-nullable: true
+        description: Set image URL
+      set_url:
+        type: string
+        description: Rebrickable set page URL
+      last_modified_dt:
+        type: string
+        format: date-time
+        description: Last modification timestamp
+  SetList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/BrickSet'
+  MOC:
+    type: object
+    properties:
+      set_num:
+        type: string
+        description: Unique MOC identifier (e.g., MOC-12345)
+      name:
+        type: string
+        description: MOC name
+      year:
+        type: integer
+        x-nullable: true
+        description: Year the MOC was created
+      num_parts:
+        type: integer
+        description: Number of parts in the MOC
+      moc_img_url:
+        type: string
+        x-nullable: true
+        description: MOC image URL
+      moc_url:
+        type: string
+        description: Rebrickable MOC page URL
+      designer_name:
+        type: string
+        x-nullable: true
+        description: Name of the MOC designer
+      designer_url:
+        type: string
+        x-nullable: true
+        description: URL to the designer's profile
+  MOCList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/MOC'
+  Part:
+    type: object
+    properties:
+      part_num:
+        type: string
+        description: Unique part identifier
+      name:
+        type: string
+        description: Part name
+      part_cat_id:
+        type: integer
+        description: Part category identifier
+      part_url:
+        type: string
+        description: Rebrickable part page URL
+      part_img_url:
+        type: string
+        x-nullable: true
+        description: Part image URL
+      external_ids:
+        type: object
+        description: External platform identifiers
+        additionalProperties:
+          type: array
+          items:
+            type: string
+  PartList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/Part'
+  Theme:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique theme identifier
+      name:
+        type: string
+        description: Theme name
+      parent_id:
+        type: integer
+        x-nullable: true
+        description: Parent theme identifier
+  ThemeList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/Theme'
+  Minifig:
+    type: object
+    properties:
+      set_num:
+        type: string
+        description: Unique minifig identifier
+      name:
+        type: string
+        description: Minifig name
+      num_parts:
+        type: integer
+        description: Number of parts in the minifig
+      set_img_url:
+        type: string
+        x-nullable: true
+        description: Minifig image URL
+      set_url:
+        type: string
+        description: Rebrickable minifig page URL
+      last_modified_dt:
+        type: string
+        format: date-time
+        description: Last modification timestamp
+  MinifigList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/Minifig'
+  PartCategory:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique part category identifier
+      name:
+        type: string
+        description: Part category name
+  PartCategoryList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/PartCategory'
+  Element:
+    type: object
+    properties:
+      element_id:
+        type: string
+        description: LEGO element ID
+      part:
+        $ref: '#/definitions/Part'
+      color:
+        $ref: '#/definitions/Color'
+  UserToken:
+    type: object
+    properties:
+      user_token:
+        type: string
+        description: Authentication token for user-specific API calls
+  UserProfile:
+    type: object
+    properties:
+      username:
+        type: string
+        description: Username
+      email:
+        type: string
+        description: User email address
+  Badge:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Badge identifier
+      name:
+        type: string
+        description: Badge name
+      description:
+        type: string
+        description: Badge description
+  BadgeList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/Badge'
+  UserPartList:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Part list identifier
+      name:
+        type: string
+        description: Part list name
+      is_buildable:
+        type: boolean
+        description: Whether the list is marked as buildable
+      num_parts:
+        type: integer
+        description: Number of parts in the list
+  UserPartListList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/UserPartList'
+  UserSetListList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/UserSetList'
+  BuildAnalysisResponse:
+    type: object
+    description: Build analysis response showing parts ownership and missing parts statistics
+    properties:
+      user:
+        type: integer
+        description: User ID who performed the analysis
+      inventory:
+        type: integer
+        description: User's inventory ID used for analysis
+      user_list:
+        type: integer
+        x-nullable: true
+        description: Specific user list ID if analysis was limited to a list
+      pct_owned:
+        type: number
+        format: double
+        description: Percentage of parts owned (as percentage value, e.g., 2.4 for 2.4%)
+        minimum: 0
+        maximum: 100
+      num_missing:
+        type: integer
+        description: Number of parts missing from user's collection
+        minimum: 0
+      num_ignored:
+        type: integer
+        description: Number of parts ignored based on build settings
+        minimum: 0
+      num_owned_less_ignored:
+        type: integer
+        description: Number of parts owned excluding ignored parts
+        minimum: 0
+      total_parts:
+        type: integer
+        description: Total number of parts in the set
+        minimum: 1
+      total_parts_less_ignored:
+        type: integer
+        description: Total parts in set excluding ignored parts
+        minimum: 1
+      build_options:
+        $ref: '#/definitions/BuildOptions'
+  BuildOptions:
+    type: object
+    description: Build settings used for the analysis
+    properties:
+      ignore_print:
+        type: boolean
+        description: Whether to ignore part prints/patterns
+      ignore_mold:
+        type: boolean
+        description: Whether to ignore part mold variations
+      ignore_altp:
+        type: boolean
+        description: Whether to ignore alternate parts
+      ignore_minifigs:
+        type: boolean
+        description: Whether to ignore minifigures
+      ignore_non_lego:
+        type: boolean
+        description: Whether to ignore non-LEGO parts
+      sort_by:
+        type: integer
+        description: Sort order preference
+      color:
+        type: integer
+        description: Color matching preference
+      theme:
+        type: integer
+        x-nullable: true
+        description: Theme filter if applied
+      min_parts:
+        type: integer
+        description: Minimum parts threshold
+      max_parts:
+        type: integer
+        description: Maximum parts threshold
+      min_year:
+        type: integer
+        description: Minimum year filter
+      max_year:
+        type: integer
+        description: Maximum year filter
+      added_days_ago:
+        type: integer
+        description: Days ago filter for recently added parts
+      inc_official:
+        type: boolean
+        description: Include official LEGO sets
+      inc_custom:
+        type: boolean
+        description: Include custom MOCs
+      inc_bmodels:
+        type: boolean
+        description: Include B-models
+      inc_accessory:
+        type: boolean
+        description: Include accessory sets
+      inc_premium:
+        type: boolean
+        description: Include premium sets
+      inc_alts:
+        type: boolean
+        description: Include alternate builds
+      inc_owned:
+        type: boolean
+        description: Include owned sets
+  UserSetInList:
+    type: object
+    description: A set within a user's set list
+    properties:
+      list_id:
+        type: integer
+        description: ID of the set list this entry belongs to
+      set_num:
+        type: string
+        description: Set number (e.g., "10179-1")
+      quantity:
+        type: integer
+        description: Quantity of this set in the list
+        minimum: 1
+      include_spares:
+        type: boolean
+        description: Whether spare parts are included
+      set:
+        $ref: '#/definitions/SetBasic'
+  UserSetInListList:
+    type: object
+    description: Paginated list of sets in a user's set list
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            description: Array of sets in the list
+            items:
+              $ref: '#/definitions/UserSetInList'
+  UserSetList:
+    type: object
+    description: User's set list details
+    properties:
+      id:
+        type: integer
+        description: Unique ID of the set list
+      name:
+        type: string
+        description: Name of the set list
+      is_buildable:
+        type: boolean
+        description: Whether sets are for building (parted-out) or collecting (sealed)
+      num_sets:
+        type: integer
+        description: Number of sets in the list
+  SetBasic:
+    type: object
+    description: Basic set information
+    properties:
+      set_num:
+        type: string
+        description: Set number with version (e.g., "10179-1")
+      name:
+        type: string
+        description: Set name
+      year:
+        type: integer
+        description: Year the set was released
+      theme_id:
+        type: integer
+        description: Theme ID
+      num_parts:
+        type: integer
+        description: Number of parts in the set
+      set_img_url:
+        type: string
+        x-nullable: true
+        description: URL to set image
+      set_url:
+        type: string
+        description: URL to set details on Rebrickable
+      last_modified_dt:
+        type: string
+        format: date-time
+        description: Last modification date
+  UserSetsList:
+    type: object
+    description: Paginated list of user's sets across all lists
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            description: Array of user's sets
+            items:
+              $ref: '#/definitions/UserSetInList'
+          ignore_altp:
+            type: boolean
+            description: Whether to ignore alternate parts
+          ignore_minifigs:
+            type: boolean
+            description: Whether to ignore minifigures
+          ignore_non_lego:
+            type: boolean
+            description: Whether to ignore non-LEGO parts
+          sort_by:
+            type: integer
+            description: Sort order preference
+          color:
+            type: integer
+            description: Color matching preference
+          theme:
+            type: integer
+            x-nullable: true
+            description: Theme filter if applied
+          min_parts:
+            type: integer
+            description: Minimum parts threshold
+          max_parts:
+            type: integer
+            description: Maximum parts threshold
+          min_year:
+            type: integer
+            description: Minimum year filter
+          max_year:
+            type: integer
+            description: Maximum year filter
+          added_days_ago:
+            type: integer
+            description: Days ago filter for recently added parts
+          inc_official:
+            type: boolean
+            description: Include official LEGO sets
+          inc_custom:
+            type: boolean
+            description: Include custom MOCs
+          inc_bmodels:
+            type: boolean
+            description: Include B-models
+          inc_accessory:
+            type: boolean
+            description: Include accessory sets
+          inc_premium:
+            type: boolean
+            description: Include premium sets
+          inc_alts:
+            type: boolean
+            description: Include alternate builds
+          inc_owned:
+            type: boolean
+            description: Include owned sets
+  AddSetToListRequest:
+    type: object
+    description: Input for adding a set to a list
+    required:
+      - set_num
+    properties:
+      set_num:
+        type: string
+        description: Set number (e.g., "10179-1")
+      quantity:
+        type: integer
+        description: Quantity of this set
+        minimum: 1
+        default: 1
+      include_spares:
+        type: boolean
+        description: Whether spare parts are included
+        default: false
+  UserPart:
+    type: object
+    description: A part in a user's collection (across all part lists)
+    properties:
+      quantity:
+        type: integer
+        description: Quantity of this part
+      part:
+        $ref: '#/definitions/Part'
+      color:
+        $ref: '#/definitions/Color'
+  UserPartsList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/UserPart'
+  UserPartInList:
+    type: object
+    description: A part in a specific part list
+    properties:
+      list_id:
+        type: integer
+        description: Part list ID
+      quantity:
+        type: integer
+        description: Quantity of this part
+      part:
+        $ref: '#/definitions/Part'
+      color:
+        $ref: '#/definitions/Color'
+  UserPartInListList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/UserPartInList'
+  UserMinifig:
+    type: object
+    description: A minifig in a user's collection
+    properties:
+      quantity:
+        type: integer
+        description: Quantity of this minifig
+      minifig:
+        $ref: '#/definitions/Minifig'
+  UserMinifigsList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/UserMinifig'
+  InventoryPart:
+    type: object
+    description: An inventory part (part from a specific set's inventory)
+    properties:
+      id:
+        type: integer
+        description: Inventory part ID
+      inv_part_id:
+        type: integer
+        description: Inventory part ID (duplicate field)
+      part:
+        $ref: '#/definitions/Part'
+      color:
+        $ref: '#/definitions/Color'
+      set_num:
+        type: string
+        description: Set number this part is from
+      quantity:
+        type: integer
+        description: Quantity in the set
+      is_spare:
+        type: boolean
+        description: Whether this is a spare part
+      element_id:
+        type: string
+        description: LEGO element ID
+      num_sets:
+        type: integer
+        description: Number of sets containing this part
+  UserLostPart:
+    type: object
+    description: A lost part in a user's collection
+    properties:
+      lost_part_id:
+        type: integer
+        description: Lost part record ID
+      lost_quantity:
+        type: integer
+        description: Quantity lost
+      inv_part:
+        $ref: '#/definitions/InventoryPart'
+  UserLostPartsList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/UserLostPart'
+  InventoryPartList:
+    allOf:
+      - $ref: '#/definitions/PaginatedResponse'
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: '#/definitions/InventoryPart'
+security:
+  - ApiKeyAuth: []
+paths:
+  /lego/colors/:
+    get:
+      operationId: lego_colors_list
+      responses:
+        '200':
+          description: 'List of LEGO colors'
+          schema:
+            $ref: '#/definitions/ColorList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of all Colors.
+      summary: Get a list of all Colors.
+      tags:
+        - lego
+  '/lego/colors/{id}/':
+    get:
+      operationId: lego_colors_read
+      responses:
+        '200':
+          description: 'Details about a specific LEGO color'
+          schema:
+            $ref: '#/definitions/Color'
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: A unique value identifying this color.
+          type: string
+      description: Get details about a specific Color.
+      summary: Get details about a specific Color.
+      tags:
+        - lego
+  '/lego/elements/{element_id}/':
+    get:
+      operationId: lego_elements_read
+      responses:
+        '200':
+          description: 'Details about a specific Element ID'
+          schema:
+            $ref: '#/definitions/Element'
+      parameters:
+        - name: element_id
+          required: true
+          in: path
+          description: 'LEGO element identifier'
+          type: string
+      description: Get details about a specific Element ID.
+      summary: Get details about a specific Element ID.
+      tags:
+        - lego
+  /lego/minifigs/:
+    get:
+      operationId: lego_minifigs_list
+      responses:
+        '200':
+          description: 'List of LEGO minifigs'
+          schema:
+            $ref: '#/definitions/MinifigList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: min_parts
+          required: false
+          in: query
+          description: 'Minimum number of parts'
+          type: number
+        - name: max_parts
+          required: false
+          in: query
+          description: 'Maximum number of parts'
+          type: number
+        - name: in_set_num
+          required: false
+          in: query
+          description: 'Filter by set number'
+          type: string
+        - name: in_theme_id
+          required: false
+          in: query
+          description: 'Filter by theme ID'
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: Get a list of Minifigs.
+      summary: Get a list of Minifigs.
+      tags:
+        - lego
+  '/lego/minifigs/{set_num}/':
+    get:
+      operationId: lego_minifigs_read
+      responses:
+        '200':
+          description: 'Details for a specific Minifig'
+          schema:
+            $ref: '#/definitions/Minifig'
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: 'Minifig set number identifier'
+          type: string
+      description: Get details for a specific Minifig.
+      summary: Get details for a specific Minifig.
+      tags:
+        - lego
+  '/lego/minifigs/{set_num}/parts/':
+    get:
+      operationId: lego_minifigs_parts_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+      description: >-
+        Get a list of all Inventory Parts in this Minifig.
+
+
+        Optional parameter inc_part_details=1 can be used to return additional
+        part fields, the same as for a single part lookup.
+      summary: Get a list of all Inventory Parts in this Minifig.
+      tags:
+        - lego
+  '/lego/minifigs/{set_num}/sets/':
+    get:
+      operationId: lego_minifigs_sets_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of Sets a Minifig has appeared in.
+      summary: Get a list of Sets a Minifig has appeared in.
+      tags:
+        - lego
+  /lego/part_categories/:
+    get:
+      operationId: lego_part_categories_list
+      responses:
+        '200':
+          description: 'List of all Part Categories'
+          schema:
+            $ref: '#/definitions/PartCategoryList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of all Part Categories.
+      summary: Get a list of all Part Categories.
+      tags:
+        - lego
+  '/lego/part_categories/{id}/':
+    get:
+      operationId: lego_part_categories_read
+      responses:
+        '200':
+          description: 'Details about a specific Part Category'
+          schema:
+            $ref: '#/definitions/PartCategory'
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: A unique integer value identifying this part category.
+          type: integer
+      description: Get details about a specific Part Category.
+      summary: Get details about a specific Part Category.
+      tags:
+        - lego
+  /lego/parts/:
+    get:
+      operationId: lego_parts_list
+      responses:
+        '200':
+          description: 'List of LEGO parts'
+          schema:
+            $ref: '#/definitions/PartList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: part_num
+          required: false
+          in: query
+          description: 'Filter by part number'
+          type: string
+        - name: part_nums
+          required: false
+          in: query
+          description: 'Comma-separated list of part numbers'
+          type: string
+        - name: part_cat_id
+          required: false
+          in: query
+          description: 'Filter by part category ID'
+          type: string
+        - name: color_id
+          required: false
+          in: query
+          description: 'Filter by color ID'
+          type: string
+        - name: bricklink_id
+          required: false
+          in: query
+          description: 'Filter by BrickLink ID'
+          type: string
+        - name: brickowl_id
+          required: false
+          in: query
+          description: 'Filter by BrickOwl ID'
+          type: string
+        - name: lego_id
+          required: false
+          in: query
+          description: 'Filter by LEGO ID'
+          type: string
+        - name: ldraw_id
+          required: false
+          in: query
+          description: 'Filter by LDraw ID'
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: >-
+        Get a list of Parts.
+
+
+        Optional parameter inc_part_details=1 can be used to return additional
+        fields, the same as for a single part lookup.
+
+
+        The optional part_nums filter parameter should be a comma separated list
+        of part_num without spaces.
+
+
+        Optionally filter by one or more of the below query parameters.
+      summary: Get a list of Parts.
+      tags:
+        - lego
+  '/lego/parts/{part_num}/':
+    get:
+      operationId: lego_parts_read
+      responses:
+        '200':
+          description: 'Details about a specific Part'
+          schema:
+            $ref: '#/definitions/Part'
+      parameters:
+        - name: part_num
+          required: true
+          in: path
+          description: 'Part number identifier'
+          type: string
+      description: Get details about a specific Part.
+      summary: Get details about a specific Part.
+      tags:
+        - lego
+  '/lego/parts/{part_num}/colors/':
+    get:
+      operationId: lego_parts_colors_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: part_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of all Colors a Part has appeared in.
+      summary: Get a list of all Colors a Part has appeared in.
+      tags:
+        - lego
+  '/lego/parts/{part_num}/colors/{color_id}/':
+    get:
+      operationId: lego_parts_colors_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: color_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: part_num
+          required: true
+          in: path
+          description: ''
+          type: string
+      description: Get details about a specific Part/Color combination.
+      summary: Get details about a specific Part/Color combination.
+      tags:
+        - lego
+  '/lego/parts/{part_num}/colors/{color_id}/sets/':
+    get:
+      operationId: lego_parts_colors_sets_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: color_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: part_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of all Sets the Part/Color combination has appeard in.
+      summary: Get a list of all Sets the Part/Color combination has appeard in.
+      tags:
+        - lego
+  /lego/sets/:
+    get:
+      operationId: lego_sets_list
+      responses:
+        '200':
+          description: 'List of LEGO sets'
+          schema:
+            $ref: '#/definitions/SetList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: theme_id
+          required: false
+          in: query
+          description: 'Filter by theme ID'
+          type: string
+        - name: min_year
+          required: false
+          in: query
+          description: 'Filter by minimum year'
+          type: number
+        - name: max_year
+          required: false
+          in: query
+          description: 'Filter by maximum year'
+          type: number
+        - name: min_parts
+          required: false
+          in: query
+          description: 'Filter by minimum number of parts'
+          type: number
+        - name: max_parts
+          required: false
+          in: query
+          description: 'Filter by maximum number of parts'
+          type: number
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: 'Get a list of Sets, optionally filtered by any of the below parameters.'
+      summary: 'Get a list of Sets, optionally filtered by any of the below parameters.'
+      tags:
+        - lego
+  '/lego/sets/{set_num}/':
+    get:
+      operationId: lego_sets_read
+      responses:
+        '200':
+          description: 'Details for a specific Set'
+          schema:
+            $ref: '#/definitions/BrickSet'
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: 'Set number identifier'
+          type: string
+      description: Get details for a specific Set.
+      summary: Get details for a specific Set.
+      tags:
+        - lego
+  '/lego/sets/{set_num}/alternates/':
+    get:
+      operationId: lego_sets_alternates_list
+      responses:
+        '200':
+          description: 'List of alternative builds (MOCs) for the set'
+          schema:
+            $ref: '#/definitions/MOCList'
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: >-
+        Get a list of MOCs which are Alternate Builds of a specific Set - i.e.
+        all parts in the MOC can
+
+        be found in the Set.
+      summary: >-
+        Get a list of MOCs which are Alternate Builds of a specific Set - i.e.
+        all parts in the MOC can
+      tags:
+        - lego
+  '/lego/sets/{set_num}/minifigs/':
+    get:
+      operationId: lego_sets_minifigs_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+      description: Get a list of all Inventory Minifigs in this Set.
+      summary: Get a list of all Inventory Minifigs in this Set.
+      tags:
+        - lego
+  '/lego/sets/{set_num}/parts/':
+    get:
+      operationId: lego_sets_parts_list
+      responses:
+        '200':
+          description: 'List of inventory parts in the set'
+          schema:
+            $ref: '#/definitions/InventoryPartList'
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+      description: >-
+        Get a list of all Inventory Parts in this Set.
+
+
+        Optional parameter inc_part_details=1 can be used to return additional
+        part fields, the same as for a single part lookup.
+
+        Optional parameter inc_minifig_parts=1 can be used to include minifig
+        parts in this call.
+
+        Optional parameter inc_color_details=0 can be used to prevent color
+        field expansion and reduce response sizes.
+      summary: Get a list of all Inventory Parts in this Set.
+      tags:
+        - lego
+  '/lego/sets/{set_num}/sets/':
+    get:
+      operationId: lego_sets_sets_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+      description: Get a list of all Inventory Sets in this Set.
+      summary: Get a list of all Inventory Sets in this Set.
+      tags:
+        - lego
+  /lego/themes/:
+    get:
+      operationId: lego_themes_list
+      responses:
+        '200':
+          description: 'List of all LEGO themes'
+          schema:
+            $ref: '#/definitions/ThemeList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Return all Themes
+      summary: Return all Themes
+      tags:
+        - lego
+  '/lego/themes/{id}/':
+    get:
+      operationId: lego_themes_read
+      responses:
+        '200':
+          description: 'Details for a specific Theme'
+          schema:
+            $ref: '#/definitions/Theme'
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: A unique integer value identifying this theme.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Return details for a specific Theme
+      summary: Return details for a specific Theme
+      tags:
+        - lego
+  /swagger/:
+    get:
+      operationId: swagger_list
+      responses:
+        '200':
+          description: ''
+      parameters: []
+      tags:
+        - swagger
+  /users/_token/:
+    post:
+      operationId: users__token_create
+      responses:
+        '201':
+          description: 'User authentication token generated successfully'
+          schema:
+            $ref: '#/definitions/UserToken'
+      parameters:
+        - name: username
+          required: true
+          in: formData
+          description: Username (or email) of user
+          type: string
+        - name: password
+          required: true
+          in: formData
+          description: Password of user
+          type: string
+      description: >-
+        Generate a User Token to be used for authorising user account actions in
+        subsequent calls. Username can be either
+         the actual username or the user's email address.
+      summary: >-
+        Generate a User Token to be used for authorising user account actions in
+        subsequent calls. Username can be either
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  /users/badges/:
+    get:
+      operationId: users_badges_list
+      responses:
+        '200':
+          description: 'List of all available badges'
+          schema:
+            $ref: '#/definitions/BadgeList'
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of all the available Badges
+      summary: Get a list of all the available Badges
+      tags:
+        - users
+  '/users/badges/{id}/':
+    get:
+      operationId: users_badges_read
+      responses:
+        '200':
+          description: 'Details about a specific badge'
+          schema:
+            $ref: '#/definitions/Badge'
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: A unique integer value identifying this badge.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get details about a specific Badge
+      summary: Get details about a specific Badge
+      tags:
+        - users
+  '/users/{user_token}/allparts/':
+    get:
+      operationId: users_allparts_list
+      responses:
+        '200':
+          description: 'All parts across all user part lists'
+          schema:
+            $ref: '#/definitions/UserPartsList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: part_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: part_cat_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: color_id
+          required: false
+          in: query
+          description: ''
+          type: number
+      description: >-
+        Get a list of all the Parts in all the user's Part Lists as well as the
+        Parts inside Sets in the user's Set Lists.
+
+
+        ###WARNING this call is very resource intensive, do not overuse it!
+
+
+        Optionally, filter by one or more of the below query parameters.
+      summary: >-
+        Get a list of all the Parts in all the user's Part Lists as well as the
+        Parts inside Sets in the user's Set Lists.
+      tags:
+        - users
+  '/users/{user_token}/build/{set_num}/':
+    get:
+      operationId: users_build_read
+      responses:
+        '200':
+          description: 'Build analysis response with parts statistics and build options'
+          schema:
+            $ref: '#/definitions/BuildAnalysisResponse'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+      description: >-
+        Find out how many parts the user needs to build the specified Set.
+
+
+        The user's default Build Settings will be used to calculate a Build
+        Match % using their LEGO Collection of Sets
+
+        and Parts.
+      summary: Find out how many parts the user needs to build the specified Set.
+      tags:
+        - users
+  '/users/{user_token}/lost_parts/':
+    get:
+      operationId: users_lost_parts_list
+      responses:
+        '200':
+          description: 'All lost parts from user collection'
+          schema:
+            $ref: '#/definitions/UserLostPartsList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: |-
+        Get a list of all the Lost Parts from the user's LEGO collection.
+
+        Optionally, filter by one or more of the below query parameters.
+      summary: Get a list of all the Lost Parts from the user's LEGO collection.
+      tags:
+        - users
+    post:
+      operationId: users_lost_parts_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: lost_quantity
+          required: false
+          in: formData
+          description: ''
+          type: integer
+        - name: inv_part_id
+          required: true
+          in: formData
+          description: ''
+          type: integer
+      description: >-
+        Add one or more Lost Parts to the user.
+
+
+        ### Single Part
+
+        When adding a single Part, returns the successfully created Part (status
+        201) or details for why the Part could not
+
+        be added.
+
+        ### Multiple Parts
+
+        To add multiple Parts, POST a JSON list of them (using a Content-Type
+        header of 'application/json'). The inv_part_id
+
+        field can be retrieved from the Set's inventory.
+
+        e.g:
+
+        `[{"inv_part_id": 806698, "lost_quantity": 3},
+          {"inv_part_id": 256007, "lost_quantity": 2}]`
+        Returns a list of successfully added Parts. If the Part already exists
+        or is unrecognised, it will be skipped.
+      summary: Add one or more Lost Parts to the user.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  '/users/{user_token}/lost_parts/{id}/':
+    delete:
+      operationId: users_lost_parts_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Remove the Lost Part from the user.
+      summary: Remove the Lost Part from the user.
+      tags:
+        - users
+  '/users/{user_token}/minifigs/':
+    get:
+      operationId: users_minifigs_list
+      responses:
+        '200':
+          description: 'All minifigs from user sets'
+          schema:
+            $ref: '#/definitions/UserMinifigsList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: fig_set_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: >-
+        Get a list of all the Minifigs in all the user's Sets. Note that this is
+        a read-only list as Minifigs are
+
+        automatically determined by the Sets in the user's Set Lists.
+
+
+        Minifigs that were manually added to Set Lists can be retrieved via the
+
+        GET /users/{user_token}/sets/ endpoint.
+
+
+        Optionally, filter by one or more of the below query parameters.
+      summary: >-
+        Get a list of all the Minifigs in all the user's Sets. Note that this is
+        a read-only list as Minifigs are
+      tags:
+        - users
+  '/users/{user_token}/partlists/':
+    get:
+      operationId: users_partlists_list
+      responses:
+        '200':
+          description: 'List of user part lists'
+          schema:
+            $ref: '#/definitions/UserPartListList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+      description: Get a list of all the user's Part Lists.
+      summary: Get a list of all the user's Part Lists.
+      tags:
+        - users
+    post:
+      operationId: users_partlists_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: is_buildable
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: name
+          required: true
+          in: formData
+          description: ''
+          type: string
+        - name: num_parts
+          required: false
+          in: formData
+          description: ''
+          type: integer
+      description: Add a new Part List.
+      summary: Add a new Part List.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  '/users/{user_token}/partlists/{list_id}/':
+    get:
+      operationId: users_partlists_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+      description: Get details about a specific Part List.
+      summary: Get details about a specific Part List.
+      tags:
+        - users
+    put:
+      operationId: users_partlists_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: is_buildable
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: name
+          required: true
+          in: formData
+          description: ''
+          type: string
+        - name: num_parts
+          required: false
+          in: formData
+          description: ''
+          type: integer
+      description: Replace an existing Part List's details.
+      summary: Replace an existing Part List's details.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    patch:
+      operationId: users_partlists_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: is_buildable
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: name
+          required: false
+          in: formData
+          description: ''
+          type: string
+        - name: num_parts
+          required: false
+          in: formData
+          description: ''
+          type: integer
+      description: Update an existing Part List's details.
+      summary: Update an existing Part List's details.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    delete:
+      operationId: users_partlists_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+      description: Delete a Part List and all it's Parts.
+      summary: Delete a Part List and all it's Parts.
+      tags:
+        - users
+  '/users/{user_token}/partlists/{list_id}/parts/':
+    get:
+      operationId: users_partlists_parts_list
+      responses:
+        '200':
+          description: 'Parts in the specified part list'
+          schema:
+            $ref: '#/definitions/UserPartInListList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: >-
+        Get a list of all the Parts in a specific Part List.
+
+
+        Optional parameter inc_part_details=1 can be used to return additional
+        part fields, the same as for a single part lookup.
+
+        Optional parameter inc_color_details=0 can be used to prevent color
+        field expansion and reduce response sizes.
+      summary: Get a list of all the Parts in a specific Part List.
+      tags:
+        - users
+    post:
+      operationId: users_partlists_parts_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: part_num
+          required: true
+          in: formData
+          description: ''
+          type: string
+        - name: quantity
+          required: true
+          in: formData
+          description: ''
+          type: integer
+        - name: color_id
+          required: true
+          in: formData
+          description: ''
+          type: integer
+      description: >-
+        Add one or more Parts to the Part List.
+
+
+        ### Single Part
+
+        When adding a single Part, returns the successfully created Part (status
+        201) or details for why the Part could not
+
+        be added.
+
+        ### Multiple Parts
+
+        To add multiple Parts, POST a JSON list of them (using a Content-Type
+        header of 'application/json').
+
+        e.g:
+
+        `[{"part_num":"3001", "color_id": 1, "quantity": 10},
+         {"part_num":"3001", "color_id": 2, "quantity": 20},
+         {"part_num":"3002", "color_id": 14, "quantity": 30}]`
+        Returns a list of successfully added Parts. If the Part already exists
+        or is unrecognised, it will be skipped.
+      summary: Add one or more Parts to the Part List.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  '/users/{user_token}/partlists/{list_id}/parts/{part_num}/{color_id}/':
+    get:
+      operationId: users_partlists_parts_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: color_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: part_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get details about a specific Part in the Part List.
+      summary: Get details about a specific Part in the Part List.
+      tags:
+        - users
+    put:
+      operationId: users_partlists_parts_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: color_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: part_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: quantity
+          required: true
+          in: formData
+          description: ''
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Replace an existing Part's details in the Part List.
+      summary: Replace an existing Part's details in the Part List.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    delete:
+      operationId: users_partlists_parts_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: color_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: part_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Delete a Part from the Part List.
+      summary: Delete a Part from the Part List.
+      tags:
+        - users
+  '/users/{user_token}/parts/':
+    get:
+      operationId: users_parts_list
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: part_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: part_cat_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: color_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: >-
+        Get a list of all the Parts in all the user's Part Lists.
+
+
+        Optional parameter inc_part_details=1 can be used to return additional
+        part fields, the same as for a single part lookup.
+
+
+        ###Set List logic
+
+        Parts appearing in multiple Part Lists will be listed multiple times.
+
+
+        Optionally, filter by one or more of the below query parameters.
+      summary: Get a list of all the Parts in all the user's Part Lists.
+      tags:
+        - users
+  '/users/{user_token}/profile/':
+    get:
+      operationId: users_profile_read
+      responses:
+        '200':
+          description: 'User profile details'
+          schema:
+            $ref: '#/definitions/UserProfile'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+      description: Get details about a specific user.
+      summary: Get details about a specific user.
+      tags:
+        - users
+  '/users/{user_token}/setlists/':
+    get:
+      operationId: users_setlists_list
+      responses:
+        '200':
+          description: 'List of user set lists'
+          schema:
+            $ref: '#/definitions/UserSetListList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+      description: Get a list of all the user's Set Lists.
+      summary: Get a list of all the user's Set Lists.
+      tags:
+        - users
+    post:
+      operationId: users_setlists_create
+      responses:
+        '201':
+          description: 'Set list created successfully'
+          schema:
+            $ref: '#/definitions/UserSetList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: is_buildable
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: name
+          required: true
+          in: formData
+          description: ''
+          type: string
+        - name: num_sets
+          required: false
+          in: formData
+          description: ''
+          type: integer
+      description: Add a new Set List.
+      summary: Add a new Set List.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  '/users/{user_token}/setlists/{list_id}/':
+    get:
+      operationId: users_setlists_read
+      responses:
+        '200':
+          description: 'Set list details'
+          schema:
+            $ref: '#/definitions/UserSetList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+      description: Get details about a specific Set List.
+      summary: Get details about a specific Set List.
+      tags:
+        - users
+    put:
+      operationId: users_setlists_update
+      responses:
+        '200':
+          description: 'Set list updated successfully'
+          schema:
+            $ref: '#/definitions/UserSetList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: is_buildable
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: name
+          required: true
+          in: formData
+          description: ''
+          type: string
+        - name: num_sets
+          required: false
+          in: formData
+          description: ''
+          type: integer
+      description: Replace an existing Set List's details.
+      summary: Replace an existing Set List's details.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    patch:
+      operationId: users_setlists_partial_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: is_buildable
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: name
+          required: false
+          in: formData
+          description: ''
+          type: string
+        - name: num_sets
+          required: false
+          in: formData
+          description: ''
+          type: integer
+      description: Update an existing Set List's details.
+      summary: Update an existing Set List's details.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    delete:
+      operationId: users_setlists_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+      description: Delete a Set List and all it's Sets.
+      summary: Delete a Set List and all it's Sets.
+      tags:
+        - users
+  '/users/{user_token}/setlists/{list_id}/sets/':
+    get:
+      operationId: users_setlists_sets_list
+      responses:
+        '200':
+          description: 'List of sets in the set list'
+          schema:
+            $ref: '#/definitions/UserSetInListList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get a list of all the Sets in a specific Set List.
+      summary: Get a list of all the Sets in a specific Set List.
+      tags:
+        - users
+    post:
+      operationId: users_setlists_sets_create
+      responses:
+        '201':
+          description: 'Sets added to list successfully'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UserSetInList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: body
+          required: true
+          in: body
+          description: 'Array of sets to add (or single set wrapped in array)'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AddSetToListRequest'
+      description: >-
+        Add one or more Sets to the Set List. Existing Sets are unaffected.
+
+
+        Always send sets as a JSON array, even for a single set.
+
+
+        Example for single set:
+
+        `[{"set_num":"8043-1", "quantity": 1}]`
+
+
+        Example for multiple sets:
+
+        `[{"set_num":"8043-1", "quantity": 1},
+         {"set_num":"8110-1", "quantity": 2, "include_spares": false}]`
+
+
+        Returns a list of successfully added Sets. If a Set already exists or
+        is unrecognised, it will be skipped.
+      summary: Add one or more Sets to the Set List. Always send as JSON array.
+      consumes:
+        - application/json
+      tags:
+        - users
+  '/users/{user_token}/setlists/{list_id}/sets/{set_num}/':
+    get:
+      operationId: users_setlists_sets_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Get details about a specific Set in the Set List.
+      summary: Get details about a specific Set in the Set List.
+      tags:
+        - users
+    put:
+      operationId: users_setlists_sets_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: quantity
+          required: false
+          in: formData
+          description: ''
+          type: integer
+        - name: include_spares
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Replace an existing Set's details in the Set List.
+      summary: Replace an existing Set's details in the Set List.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    patch:
+      operationId: users_setlists_sets_partial_update
+      responses:
+        '200':
+          description: 'Set updated in list successfully'
+          schema:
+            $ref: '#/definitions/UserSetInList'
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: quantity
+          required: false
+          in: formData
+          description: ''
+          type: integer
+        - name: include_spares
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Update an existing Set's details in the Set List.
+      summary: Update an existing Set's details in the Set List.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    delete:
+      operationId: users_setlists_sets_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: list_id
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+      description: Delete a Set from the Set List.
+      summary: Delete a Set from the Set List.
+      tags:
+        - users
+  '/users/{user_token}/sets/':
+    get:
+      operationId: users_sets_list
+      responses:
+        '200':
+          description: 'List of all user sets across all lists'
+          schema:
+            $ref: '#/definitions/UserSetsList'
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: Authorization
+          required: true
+          in: header
+          description: 'API key in format: key YOUR_API_KEY'
+          type: string
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          type: integer
+        - name: set_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: theme_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: |-
+        Get a list of all the Sets in the user's LEGO collection.
+
+        ### Set List logic
+        Sets appearing in multiple Set Lists will be listed multiple times.
+
+        Optionally, filter by one or more of the below query parameters.
+      summary: Get a list of all the Sets in the user's LEGO collection.
+      tags:
+        - users
+    post:
+      operationId: users_sets_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: true
+          in: formData
+          description: ''
+          type: string
+        - name: quantity
+          required: false
+          in: formData
+          description: ''
+          type: integer
+        - name: include_spares
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+      description: >-
+        Add one or more Sets to the user's LEGO collection. Existing Sets are
+        unaffected.
+
+
+        ### Set List logic
+
+        The Set List used when adding sets is chosen in the following order:
+
+        1. If no Set Lists exist, one will be created and used
+
+        2. User's configured default Set List for Imports
+
+        3. The first Set List alphabetically
+
+
+        ### Single Set
+
+        When adding a single Set, returns the successfully created Set (status
+        201) or details for why the Set could not
+
+        be added.
+
+        ### Multiple Sets
+
+        To add multiple Sets, POST a JSON list of them (using a Content-Type
+        header of 'application/json').
+
+        e.g:
+
+        `[{"set_num":"8043-1", "quantity": 1},
+         {"set_num":"8110-1", "quantity": 2, "include_spares": "False"}]`
+        Returns a list of successfully added Sets. If the Set already exists or
+        is unrecognised, it will be skipped.
+      summary: >-
+        Add one or more Sets to the user's LEGO collection. Existing Sets are
+        unaffected.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  '/users/{user_token}/sets/sync/':
+    post:
+      operationId: users_sets_sync_create
+      responses:
+        '201':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: quantity
+          required: false
+          in: formData
+          description: ''
+          type: integer
+        - name: include_spares
+          required: false
+          in: formData
+          description: ''
+          type: boolean
+        - name: set_num
+          required: true
+          in: formData
+          description: ''
+          type: string
+      description: >-
+        Synchronise a user's Sets to the POSTed list.
+
+
+        ### Set List logic
+
+        This is used to completely replace the user's Sets with those in the
+        supplied list.
+
+        It will remove any Sets in Rebrickable that are not found in the
+        supplied list.
+
+        It will attempt to keep any current Rebrickable Sets in their existing
+        Set Lists, and will add any new Sets
+
+        found into the Default Set List for Imports in the user's settings.
+
+        ### Single Set
+
+        When adding a single Set, returns the successfully created Set (status
+        201) or details for why the Set could not
+
+        be added.
+
+        ### Multiple Sets
+
+        To add multiple Sets, POST a JSON list of them (using a Content-Type
+        header of 'application/json').
+
+        e.g:
+
+        `[{"set_num":"8043-1", "quantity": 1},
+         {"set_num":"8110-1", "quantity": 2, "include_spares": "False"}]`
+        Returns a list of successfully added Sets. If the Set is unrecognised,
+        it will be skipped.
+      summary: Synchronise a user's Sets to the POSTed list.
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+  '/users/{user_token}/sets/{set_num}/':
+    get:
+      operationId: users_sets_read
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: theme_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: >-
+        Get details about a specific Set in the user's LEGO collection.
+
+
+        ### Set List logic
+
+        Because this merges sets found across all Set Lists the fields list_id
+        and include_spares may not be
+
+        accurate unless the Set actually only exists in a single Set List.
+      summary: Get details about a specific Set in the user's LEGO collection.
+      tags:
+        - users
+    put:
+      operationId: users_sets_update
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: quantity
+          required: false
+          in: formData
+          description: ''
+          type: integer
+        - name: set_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: theme_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: >-
+        Update an existing Set's quantity in all Set Lists. This PUT call is
+        different to others in that it will create
+
+        the Set if it doesn't already exist, and it will delete the Set if you
+        pass a quantity of 0.
+
+
+        ### Set List logic
+
+        * Default Set List = user's configured default import list or the first
+        alphabetically if none exist.
+
+        * Increasing quantity = add to Set in default Set List if it exists,
+        else add it there
+
+        * Decreasing quantity = remove from Set in default Set List first, then
+        from remaining lists until done
+      summary: >-
+        Update an existing Set's quantity in all Set Lists. This PUT call is
+        different to others in that it will create
+      consumes:
+        - application/x-www-form-urlencoded
+      tags:
+        - users
+    delete:
+      operationId: users_sets_delete
+      responses:
+        '204':
+          description: ''
+      parameters:
+        - name: user_token
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: true
+          in: path
+          description: ''
+          type: string
+        - name: set_num
+          required: false
+          in: query
+          description: ''
+          type: string
+        - name: theme_id
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_year
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: min_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: max_parts
+          required: false
+          in: query
+          description: ''
+          type: number
+        - name: ordering
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          type: string
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          type: string
+      description: Delete the Set from all the user's Set Lists.
+      summary: Delete the Set from all the user's Set Lists.
+      tags:
+        - users

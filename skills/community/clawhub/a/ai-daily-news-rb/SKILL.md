@@ -1,35 +1,42 @@
 ---
-name: "AI日报测试版"
-description: "专门用于整理、汇总和深度分析每日最前沿的 AI 资讯，包括行业大事件、大模型更新、学术论文、开源工具及新技术标准。当用户提到“生成 AI 日报”、“今日 AI 资讯”、“行业动态汇总”或类似的请求时，请务必使用此技能。即使没有明确说“日报”，只要是请求汇总最新 AI 领域进展，都应触发本技能以确保内容的深度和准确性。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-daily-news-rb"
-sourceUrl: "https://clawhub.ai/skills/ai-daily-news-rb"
+name: ai-news-daily
+description: 专门用于整理、汇总和深度分析每日最前沿的 AI 资讯，包括行业大事件、大模型更新、学术论文、开源工具及新技术标准。当用户提到“生成 AI 日报”、“今日 AI 资讯”、“行业动态汇总”或类似的请求时，请务必使用此技能。即使没有明确说“日报”，只要是请求汇总最新 AI 领域进展，都应触发本技能以确保内容的深度和准确性。
 ---
 
-# AI日报测试版
+# AI 资讯日报生成指南
 
-> 专门用于整理、汇总和深度分析每日最前沿的 AI 资讯，包括行业大事件、大模型更新、学术论文、开源工具及新技术标准。当用户提到“生成 AI 日报”、“今日 AI 资讯”、“行业动态汇总”或类似的请求时，请务必使用此技能。即使没有明确说“日报”，只要是请求汇总最新 AI 领域进展，都应触发本技能以确保内容的深度和准确性。
+本技能旨在帮助用户快速掌握 AI 领域的每日动态，通过深度检索和结构化整理，产出具备技术深度和专业视角的分析日报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-daily-news-rb`
-- **Source URL:** [https://clawhub.ai/skills/ai-daily-news-rb](https://clawhub.ai/skills/ai-daily-news-rb)
+## 执行流程
 
-## Overview
+1. **深度双语检索**：
+   - 优先执行 `search_web`。检索词应涵盖：
+     - 中文关键词（如“AI 资讯”、“AI 大事件”、“深度学习最新动态”等）
+     - 英文关键词（如 "AI news", "latest AI breakthroughs", "LLM updates", "arXiv AI papers", "Open source AI tools"）以确保涵盖全球最前沿的信息流。
+   - 关注以下重点来源：
+     - 技术博客（OpenAI, Anthropic, Google DeepMind, Meta AI 等）
+     - 学术平台（arXiv, Hugging Face Papers）
+     - 开发者社区（GitHub Trending, Product Hunt AI）
+     - 行业新闻（The Verge, TechCrunch, IT 之家等）
 
+2. **内容分类与筛选**：
+   - 将搜集到的资讯按以下板块进行归类：
+     - **行业大事件**：监管政策、巨头交易、投融资动态等。
+     - **大模型动态**：新模型发布、架构创新（如 MoE, Diffusion 模型）、API 更新。
+     - **学术前沿**：精选 2-3 篇当日或近期高质量的 arXiv 论文，重点分析其解决的问题和核心贡献。
+     - **开源工具与项目**：在 GitHub 上活跃或具有极高应用潜力的 AI 工具。
+     - **新技术标准**：通信协议、互操作性标准、AI 安全评估框架等。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-daily-news-rb
-```
+3. **深度分析与撰写**：
+   - **拒绝浅尝辄止**：对于每一条资讯，不应只写“发布了 X”，而应解释“为什么 X 很重要”、“它的技术背景是什么”以及“对行业可能产生的深远影响”。
+   - **技术术语准确性**：确保中文术语翻译准确且符合领域共识。
+
+4. **输出格式建议**：
+   - 使用 Markdown 结构化输出。
+   - 每一条资讯都应包含：**[标题]**、**[核心摘要]**、**[深度解析/影响分析]**、**[来源链接]**（如果能获取到的话）。
+
+## 核心原则
+
+- **时效性优先**：内容应贴合“今日”或“近 24 小时”。
+- **客观公正**：避免过度煽情或主观臆断，专注于事实、性能数据和技术细节。
+- **关联分析**：如果多个动态互有关联，尝试将点状的信息连成线，在内容中解释它们之间的关联。

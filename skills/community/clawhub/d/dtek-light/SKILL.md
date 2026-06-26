@@ -1,35 +1,65 @@
 ---
-name: "DTEK Light"
-description: "Проверка наличия электроэнергии через сайт ДТЭК Одесские электросети (Одеса, вул. Чикаленка Євгена, 43)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dtek-light"
-sourceUrl: "https://clawhub.ai/skills/dtek-light"
+name: dtek-light-check
+description: Проверка наличия электроэнергии через сайт ДТЭК Одесские электросети (Одеса, вул. Чикаленка Євгена, 43)
 ---
 
-# DTEK Light
+# Проверка света (ДТЭК Одесские электросети)
 
-> Проверка наличия электроэнергии через сайт ДТЭК Одесские электросети (Одеса, вул. Чикаленка Євгена, 43)
+Проверяет текущее наличие электроэнергии по адресу Одеса, вул. Чикаленка Євгена, 43 через сайт dtek-oem.com.ua.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dtek-light`
-- **Source URL:** [https://clawhub.ai/skills/dtek-light](https://clawhub.ai/skills/dtek-light)
+## When to use
 
-## Overview
+Используй этот скилл когда пользователь спрашивает:
 
+- "что по свету?"
+- "есть свет?"
+- "когда включат свет?"
+- "/light"
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Prerequisites
+
+Для работы нужен Playwright с установленным Chromium:
+
 ```bash
-hermes skills install clawhub/dtek-light
+npm install playwright
+npx playwright install chromium
 ```
+
+## Instructions
+
+1. Запусти скрипт проверки. Скрипт находится рядом с этим SKILL.md:
+
+```bash
+node "$(dirname "$(find ~/.claude/skills -name 'check-light.js' -path '*dtek-light*' | head -1)")/check-light.js"
+```
+
+2. Скрипт вернет JSON с полем `status`. Интерпретируй результат:
+
+### Если `status` = `no_light`:
+
+Ответь:
+
+```
+Света нет. Выключили в [start_time].
+Скорее всего эти бляди включат в [restore_time].
+```
+
+Где `[start_time]` и `[restore_time]` - значения из JSON.
+
+### Если `status` = `light_on`:
+
+Ответь:
+
+```
+Свет вроде как есть, но кто этих пиздюков знает.
+```
+
+### Если `status` = `error` или `unknown`:
+
+Ответь:
+
+```
+Не удалось проверить, сайт ДТЭК опять чудит. Попробуй позже.
+```
+
+И покажи ошибку если есть.

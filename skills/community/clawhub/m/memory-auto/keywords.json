@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/default",
+  "name": "openclaw-memory-auto",
+  "version": "0.1.0",
+  "description": "Universal memory archiving plugin for OpenClaw",
+  "keywords": [
+    "openclaw",
+    "memory",
+    "archive",
+    "ai",
+    "productivity"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "config": {
+    "keywords": [
+      "lobster", "OpenClaw", "任务", "记得", "记住", "重要",
+      "task", "remember", "important", "issue", "fix"
+    ],
+    "paths": {
+      "memoryDir": "memory",
+      "logsDir": "logs"
+    },
+    "schedule": {
+      "archiveHour": 9,
+      "checkOnStartup": true
+    }
+  }
+}

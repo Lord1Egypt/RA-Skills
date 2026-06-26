@@ -1,35 +1,22 @@
 ---
-name: "LiQun Context Manager"
-description: "管理对话上下文和记忆提取。根据关键词高效检索历史记忆。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liqun-context-manager"
-sourceUrl: "https://clawhub.ai/skills/liqun-context-manager"
+name: context-manager
+description: 管理对话上下文和记忆提取。根据关键词高效检索历史记忆。
 ---
 
-# LiQun Context Manager
+# Context Manager Skill
 
-> 管理对话上下文和记忆提取。根据关键词高效检索历史记忆。
+## 功能
+- 搜索记忆文件
+- 提取相关上下文
+- 管理会话状态
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liqun-context-manager`
-- **Source URL:** [https://clawhub.ai/skills/liqun-context-manager](https://clawhub.ai/skills/liqun-context-manager)
+## 使用方法
+```python
+from context_manager import search_memory, get_recent
 
-## Overview
+# 搜索记忆
+results = search_memory('关键词')
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/liqun-context-manager
+# 获取最近记忆
+recent = get_recent(5)
 ```

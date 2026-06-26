@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx jokes"
-description: "Jokes MCP — wraps JokeAPI v2 (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-jokes"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-jokes"
+name: pipeworx-jokes
+description: Jokes MCP — wraps JokeAPI v2 (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/jokes
 ---
 
-# Pipeworx jokes
+# pipeworx-jokes
 
-> Jokes MCP — wraps JokeAPI v2 (free, no auth)
+Jokes MCP — wraps JokeAPI v2 (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-jokes`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-jokes](https://clawhub.ai/skills/pipeworx-jokes)
+## Tools
 
-## Overview
+- `get_joke`
+- `search_jokes`
+- `get_joke_categories`
+- `get_joke_flags`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-jokes
+```json
+{
+  "mcpServers": {
+    "pipeworx-jokes": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/jokes/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/jokes](https://pipeworx.io/packs/jokes)

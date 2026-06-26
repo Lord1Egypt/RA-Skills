@@ -1,0 +1,47 @@
+{
+  "name": "ifq-app-builder-clawhub",
+  "version": "1.0.1",
+  "private": true,
+  "description": "ClawHub-safe OpenClaw edition of IFQ App Builder: three sentences into a verified build-ready app prompt bundle across 12 platform modes.",
+  "author": "ifq.ai",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/peixl/ifq-app-builder",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peixl/ifq-app-builder.git",
+    "directory": "clawhub/ifq-app-builder"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "skills",
+    "app-builder",
+    "prompt-bundle",
+    "desktop",
+    "mobile",
+    "ios",
+    "android",
+    "harmonyos",
+    "miniprogram",
+    "pwa",
+    "cli",
+    "ifq"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "type": "module",
+  "scripts": {
+    "smoke": "node scripts/smoke-test.mjs",
+    "validate": "node scripts/smoke-test.mjs",
+    "validate:templates": "node scripts/validate-templates.mjs",
+    "evals:validate": "node scripts/validate-evals.mjs",
+    "verify:lite": "node scripts/verify-lite.mjs",
+    "quality:score": "node scripts/quality-score.mjs",
+    "pack": "node scripts/pack-skill.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "peerDependencies": {}
+}

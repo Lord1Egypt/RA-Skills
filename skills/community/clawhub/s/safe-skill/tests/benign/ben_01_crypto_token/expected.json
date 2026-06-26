@@ -1,0 +1,7 @@
+{
+    "label": "benign",
+    "description": "Crypto portfolio tracker. 'token' refers to cryptocurrency tokens, not credentials. Should be CLEAN or LOW.",
+    "expected_max_score": 15,
+    "expected_level": ["CLEAN", "LOW"],
+    "should_not_trigger_categories": ["credential", "rce", "exfil"]
+}

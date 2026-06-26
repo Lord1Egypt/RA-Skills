@@ -1,0 +1,3 @@
+display_name: CMIC Skill Scanner
+short_description: Audit skill packages for malware and suspicious patterns before installation.
+default_prompt: Audit this local skill target, output findings and risk level.

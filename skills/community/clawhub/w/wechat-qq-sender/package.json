@@ -1,0 +1,47 @@
+{
+  "name": "wechat-qq-sender",
+  "version": "1.1.3",
+  "description": "Windows 平台微信和 QQ 自动发消息工具",
+  "main": "README.md",
+  "keywords": [
+    "wechat",
+    "qq",
+    "messaging",
+    "automation",
+    "windows",
+    "pyautogui",
+    "wechat-bot",
+    "qq-bot",
+    "微信",
+    "消息发送",
+    "自动回复",
+    "gui-automation",
+    "chat-bot",
+    "message-sender",
+    "social-media",
+    "微信自动",
+    "QQ自动",
+    "消息机器人",
+    "截图识别",
+    "pygetwindow",
+    "pyperclip"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "openclaw": {
+    "minVersion": "2026.3.0",
+    "platform": ["windows"],
+    "triggers": [
+      "发微信",
+      "给.*发消息",
+      "微信自动",
+      "QQ自动",
+      "截图分析"
+    ],
+    "dataPaths": [
+      "~/.openclaw/workspace/screenshots/",
+      "~/.openclaw/workspace/temp/"
+    ],
+    "privacyNotice": "本技能会截取屏幕并保存到本地，涉及剪贴板操作和键盘模拟。请勿在包含敏感信息的场景使用，建议仅在测试环境运行。"
+  }
+}

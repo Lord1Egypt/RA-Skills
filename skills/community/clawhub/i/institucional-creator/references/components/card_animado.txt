@@ -1,0 +1,731 @@
+You are given a task to integrate an existing React component in the codebase
+
+The codebase should support:
+- shadcn project structure  
+- Tailwind CSS
+- Typescript
+
+If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
+
+Determine the default path for components and styles. 
+If default path for components is not /components/ui, provide instructions on why it's important to create this folder
+Copy-paste this component to /components/ui folder:
+```tsx
+bauhaus-card.tsx
+"use client";
+import React, { useEffect, useRef } from "react";
+import { ChronicleButton } from "./chronicle-button";
+
+const BAUHAUS_CARD_STYLES = `
+.bauhaus-card {
+  position: relative;
+  z-index: 555;
+  max-width: 20rem;
+  min-height: 20rem;
+  width: 90%;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  text-align: center;
+  box-shadow: 1px 12px 25px rgb(0,0,0/78%);
+  border-radius: var(--card-radius, 20px);
+  border: var(--card-border-width, 2px) solid transparent;
+  --rotation: 4.2rad;
+  background-image:
+    linear-gradient(var(--card-bg, #151419), var(--card-bg, #151419)),
+    linear-gradient(calc(var(--rotation,4.2rad)), var(--card-accent, #156ef6) 0, var(--card-bg, #151419) 30%, transparent 80%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: var(--card-text-main, #f0f0f1);
+}
+.bauhaus-card::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2.25rem;
+  z-index: -1;
+  border: 0.155rem solid transparent;
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+.bauhaus-card-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8em 0.5em 0em 1.5em;
+}
+.bauhaus-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.bauhaus-date {
+  color: var(--card-text-top, #bfc7d5);
+}
+.bauhaus-size6 {
+  width: 2.5rem;
+  cursor: pointer;
+}
+.bauhaus-card-body {
+  position: absolute;
+  width: 100%;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.7em 1.25em 0.5em 1.5em;
+}
+.bauhaus-card-body h3 {
+  font-size: 1.375rem;
+  margin-top: -0.4em;
+  margin-bottom: 0.188em;
+  font-weight: 600;
+  color: var(--card-text-main, #f0f0f1);
+}
+.bauhaus-card-body p {
+  color: var(--card-text-sub, #a0a1b3);
+  font-size: 1rem;
+  letter-spacing: 0.031rem;
+}
+.bauhaus-progress {
+  margin-top: 0.938rem;
+}
+.bauhaus-progress-bar {
+  position: relative;
+  width: 100%;
+  background: var(--card-progress-bar-bg, #363636);
+  height: 0.313rem;
+  display: block;
+  border-radius: 3.125rem;
+}
+.bauhaus-progress-bar > div {
+  height: 5px;
+  border-radius: 3.125rem;
+}
+.bauhaus-progress span:first-of-type {
+  text-align: left;
+  font-weight: 600;
+  width: 100%;
+  display: block;
+  margin-bottom: 0.313rem;
+  color: var(--card-text-progress-label, #b4c7e7);
+}
+.bauhaus-progress span:last-of-type {
+  margin-top: 0.313rem;
+  text-align: right;
+  display: block;
+  color: var(--card-text-progress-value, #e7e7f7);
+}
+.bauhaus-card-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7em 1.25em 0.5em 1.5em;
+  border-bottom-left-radius: 2.25rem;
+  border-bottom-right-radius: 2.25rem;
+  border-top: 0.063rem solid var(--card-separator, #2F2B2A);
+}
+`;
+
+function injectBauhausCardStyles() {
+  if (typeof window === "undefined") return;
+  if (!document.getElementById("bauhaus-card-styles")) {
+    const style = document.createElement("style");
+    style.id = "bauhaus-card-styles";
+    style.innerHTML = BAUHAUS_CARD_STYLES;
+    document.head.appendChild(style);
+  }
+}
+
+const isRTL = (text: string): boolean =>
+  /[\u0590-\u05FF\u0600-\u06FF\u0700-\u074F]/.test(text);
+
+export interface BauhausCardProps {
+  id: string;
+  borderRadius?: string;
+  backgroundColor?: string;
+  separatorColor?: string;
+  accentColor: string;
+  borderWidth?: string;
+  topInscription: string;
+  mainText: string;
+  subMainText: string;
+  progressBarInscription: string;
+  progress: number;
+  progressValue: string;
+  filledButtonInscription?: string;
+  outlinedButtonInscription?: string;
+  onFilledButtonClick: (id: string) => void;
+  onOutlinedButtonClick: (id: string) => void;
+  onMoreOptionsClick: (id: string) => void;
+  mirrored?: boolean;
+  swapButtons?: boolean;
+  ChronicleButtonHoverColor?: string;
+  textColorTop?: string;
+  textColorMain?: string;
+  textColorSub?: string;
+  textColorProgressLabel?: string;
+  textColorProgressValue?: string;
+  progressBarBackground?: string;
+  chronicleButtonBg?: string;
+  chronicleButtonFg?: string;
+  chronicleButtonHoverFg?: string;
+}
+
+export const Component: React.FC<BauhausCardProps> = ({
+  id,
+  borderRadius = "2em",
+  backgroundColor = "#151419",
+  separatorColor = "#2F2B2A",
+  accentColor = "#156ef6",
+  borderWidth = "2px",
+  topInscription = "Not Set!",
+  swapButtons = false,
+  mainText = "Not Set!",
+  subMainText = "Not Set!",
+  progressBarInscription = "Not Set!",
+  progress = 0,
+  progressValue = "Not Set!",
+  filledButtonInscription = "Not Set!",
+  outlinedButtonInscription = "Not Set!",
+  onFilledButtonClick,
+  onOutlinedButtonClick,
+  onMoreOptionsClick,
+  mirrored = false,
+  ChronicleButtonHoverColor = "#156ef6",
+  textColorTop = "#bfc7d5",
+  textColorMain = "#f0f0f1",
+  textColorSub = "#a0a1b3",
+  textColorProgressLabel = "#b4c7e7",
+  textColorProgressValue = "#e7e7f7",
+  progressBarBackground = "#363636",
+  chronicleButtonBg = "#151419",
+  chronicleButtonFg = "#fff",
+  chronicleButtonHoverFg = "#fff",
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    injectBauhausCardStyles();
+    const card = cardRef.current;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const angle = Math.atan2(-x, y);
+        card.style.setProperty("--rotation", angle + "rad");
+      }
+    };
+    if (card) {
+      card.addEventListener("mousemove", handleMouseMove);
+    }
+    return () => {
+      if (card) {
+        card.removeEventListener("mousemove", handleMouseMove);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      className="bauhaus-card"
+      ref={cardRef}
+      style={{
+        '--card-bg': backgroundColor,
+        '--card-border': separatorColor,
+        '--card-accent': accentColor,
+        '--card-radius': borderRadius,
+        '--card-border-width': borderWidth,
+        '--card-text-top': textColorTop,
+        '--card-text-main': textColorMain,
+        '--card-text-sub': textColorSub,
+        '--card-text-progress-label': textColorProgressLabel,
+        '--card-text-progress-value': textColorProgressValue,
+        '--card-separator': separatorColor,
+        '--card-progress-bar-bg': progressBarBackground,
+      } as React.CSSProperties}
+    >
+      <div
+        style={{ transform: mirrored ? 'scaleX(-1)' : 'none' }}
+        className="bauhaus-card-header"
+      >
+        <div
+          className="bauhaus-date"
+          style={{
+            transform: mirrored ? 'scaleX(-1)' : 'none',
+            direction: isRTL(topInscription) ? 'rtl' : 'ltr',
+          }}
+        >
+          {topInscription}
+        </div>
+        <div
+          onClick={() => onMoreOptionsClick(id)}
+          style={{ cursor: 'pointer' }}
+        >
+          <svg viewBox="0 0 24 24" fill="var(--card-text-main)" className="bauhaus-size6">
+            <path fillRule="evenodd" d="M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5" clipRule="evenodd" />
+          </svg>
+        </div>
+      </div>
+      <div className="bauhaus-card-body">
+        <h3 style={{ direction: isRTL(mainText) ? 'rtl' : 'ltr' }}>{mainText}</h3>
+        <p style={{ direction: isRTL(subMainText) ? 'rtl' : 'ltr' }}>{subMainText}</p>
+        <div className="bauhaus-progress">
+          <span style={{
+            direction: isRTL(progressBarInscription) ? 'rtl' : 'ltr',
+            textAlign: mirrored ? 'right' : 'left'
+          }}>
+            {progressBarInscription}
+          </span>
+          <div
+            style={{ transform: mirrored ? 'scaleX(-1)' : 'none' }}
+            className="bauhaus-progress-bar"
+          >
+            <div
+              style={{
+                width: `${(progress / 100) * 100}%`,
+                backgroundColor: accentColor
+              }}
+            />
+          </div>
+          <span style={{
+            direction: isRTL(progressValue) ? 'rtl' : 'ltr',
+            textAlign: mirrored ? 'left' : 'right'
+          }}>
+            {progressValue}
+          </span>
+        </div>
+      </div>
+      <div className="bauhaus-card-footer">
+        <div className="bauhaus-button-container">
+          {swapButtons ? (
+            <>
+              <ChronicleButton
+                text={outlinedButtonInscription}
+                outlined={true}
+                width="124px"
+                onClick={() => onOutlinedButtonClick(id)}
+                borderRadius={borderRadius}
+                hoverColor={accentColor}
+                customBackground={chronicleButtonBg}
+                customForeground={chronicleButtonFg}
+                hoverForeground={chronicleButtonHoverFg}
+              />
+              <ChronicleButton
+                text={filledButtonInscription}
+                width="124px"
+                onClick={() => onFilledButtonClick(id)}
+                borderRadius={borderRadius}
+                hoverColor={accentColor}
+                customBackground={chronicleButtonBg}
+                customForeground={chronicleButtonFg}
+                hoverForeground={chronicleButtonHoverFg}
+              />
+            </>
+          ) : (
+            <>
+              <ChronicleButton
+                text={filledButtonInscription}
+                width="124px"
+                onClick={() => onFilledButtonClick(id)}
+                borderRadius={borderRadius}
+                hoverColor={accentColor}
+                customBackground={chronicleButtonBg}
+                customForeground={chronicleButtonFg}
+                hoverForeground={chronicleButtonHoverFg}
+              />
+              <ChronicleButton
+                text={outlinedButtonInscription}
+                outlined={true}
+                width="124px"
+                onClick={() => onOutlinedButtonClick(id)}
+                borderRadius={borderRadius}
+                hoverColor={accentColor}
+                customBackground={chronicleButtonBg}
+                customForeground={chronicleButtonFg}
+                hoverForeground={chronicleButtonHoverFg}
+              />
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+demo.tsx
+import { Component } from "./components/ui/bauhaus-card";
+
+const DemoOne = () => (
+  <div className="w-full p-8 rounded-lg min-h-[300px] flex flex-wrap gap-6 items-center justify-center relative">
+    {/* Card 1 */}
+    <Component
+      id="1"
+      accentColor="#156ef6"
+      backgroundColor="var(--bauhaus-card-bg)"
+      separatorColor="var(--bauhaus-card-separator)"
+      borderRadius="2em"
+      borderWidth="2px"
+      topInscription="Uploaded on 12/31/2024"
+      mainText="Financial Report.zip"
+      subMainText="Downloading File..."
+      progressBarInscription="Progress:"
+      progress={75.98}
+      progressValue="75.98%"
+      filledButtonInscription="Share"
+      outlinedButtonInscription="Bookmark"
+      onFilledButtonClick={id => console.log(`Filled button clicked for ID: ${id}`)}
+      onOutlinedButtonClick={id => console.log(`Outlined button clicked for ID: ${id}`)}
+      onMoreOptionsClick={id => console.log(`More options dots clicked for ID: ${id}`)}
+      mirrored={false}
+      swapButtons={false}
+      textColorTop="var(--bauhaus-card-inscription-top)"
+      textColorMain="var(--bauhaus-card-inscription-main)"
+      textColorSub="var(--bauhaus-card-inscription-sub)"
+      textColorProgressLabel="var(--bauhaus-card-inscription-progress-label)"
+      textColorProgressValue="var(--bauhaus-card-inscription-progress-value)"
+      progressBarBackground="var(--bauhaus-card-progress-bar-bg)"
+      chronicleButtonBg="var(--bauhaus-chronicle-bg)"
+      chronicleButtonFg="var(--bauhaus-chronicle-fg)"
+      chronicleButtonHoverFg="var(--bauhaus-chronicle-hover-fg)"
+    />
+    {/* Card 2 */}
+    <Component
+      id="2"
+      accentColor="#24d200"
+      backgroundColor="var(--bauhaus-card-bg)"
+      separatorColor="var(--bauhaus-card-separator)"
+      borderRadius="2em"
+      borderWidth="2px"
+      topInscription="$4.99"
+      mainText="Next.js Basics"
+      subMainText="This course doesn't exist!"
+      progressBarInscription="Spots left:"
+      progress={20}
+      progressValue="20/100"
+      filledButtonInscription="Enroll"
+      outlinedButtonInscription="Bookmark"
+      onFilledButtonClick={id => console.log(`Filled button clicked for ID: ${id}`)}
+      onOutlinedButtonClick={id => console.log(`Outlined button clicked for ID: ${id}`)}
+      onMoreOptionsClick={id => console.log(`More options dots clicked for ID: ${id}`)}
+      mirrored={false}
+      swapButtons={false}
+      textColorTop="var(--bauhaus-card-inscription-top)"
+      textColorMain="var(--bauhaus-card-inscription-main)"
+      textColorSub="var(--bauhaus-card-inscription-sub)"
+      textColorProgressLabel="var(--bauhaus-card-inscription-progress-label)"
+      textColorProgressValue="var(--bauhaus-card-inscription-progress-value)"
+      progressBarBackground="var(--bauhaus-card-progress-bar-bg)"
+      chronicleButtonBg="var(--bauhaus-chronicle-bg)"
+      chronicleButtonFg="var(--bauhaus-chronicle-fg)"
+      chronicleButtonHoverFg="#151419"
+    />
+    {/* Card 3 */}
+    <Component
+      id="3"
+      accentColor="#fc6800"
+      backgroundColor="var(--bauhaus-card-bg)"
+      separatorColor="var(--bauhaus-card-separator)"
+      borderRadius="2.25em"
+      borderWidth="3px"
+      topInscription="1 de julio en Miami"
+      mainText="Nombre de la conferencia"
+      subMainText="Descripción de la conferencia."
+      progressBarInscription="Plazas disponibles:"
+      progress={10}
+      progressValue="32"
+      filledButtonInscription="Inscribirse"
+      outlinedButtonInscription="Detalles"
+      onFilledButtonClick={id => console.log(`Filled button clicked for ID: ${id}`)}
+      onOutlinedButtonClick={id => console.log(`Outlined button clicked for ID: ${id}`)}
+      onMoreOptionsClick={id => console.log(`More options dots clicked for ID: ${id}`)}
+      mirrored={false}
+      swapButtons={false}
+      textColorTop="var(--bauhaus-card-inscription-top)"
+      textColorMain="var(--bauhaus-card-inscription-main)"
+      textColorSub="var(--bauhaus-card-inscription-sub)"
+      textColorProgressLabel="var(--bauhaus-card-inscription-progress-label)"
+      textColorProgressValue="var(--bauhaus-card-inscription-progress-value)"
+      progressBarBackground="var(--bauhaus-card-progress-bar-bg)"
+      chronicleButtonBg="var(--bauhaus-chronicle-bg)"
+      chronicleButtonFg="var(--bauhaus-chronicle-fg)"
+      chronicleButtonHoverFg="var(--bauhaus-chronicle-hover-fg)"
+    />
+    {/* Card 4 */}
+    <Component
+      id="4"
+      accentColor="#8f10f6"
+      backgroundColor="var(--bauhaus-card-bg)"
+      separatorColor="var(--bauhaus-card-separator)"
+      borderRadius="1em"
+      borderWidth="4px"
+      topInscription="דאלאס - תל אביב"
+      mainText="מגיע בשעה 9:03 לפי"
+      subMainText="שם שדה התעופה"
+      progressBarInscription="מגיע בעוד:"
+      progress={90}
+      progressValue="30 דקות"
+      filledButtonInscription="שתף"
+      outlinedButtonInscription="עוד"
+      onFilledButtonClick={id => console.log(`Filled button clicked for ID: ${id}`)}
+      onOutlinedButtonClick={id => console.log(`Outlined button clicked for ID: ${id}`)}
+      onMoreOptionsClick={id => console.log(`More options dots clicked for ID: ${id}`)}
+      mirrored={true}
+      swapButtons={true}
+      textColorTop="var(--bauhaus-card-inscription-top)"
+      textColorMain="var(--bauhaus-card-inscription-main)"
+      textColorSub="var(--bauhaus-card-inscription-sub)"
+      textColorProgressLabel="var(--bauhaus-card-inscription-progress-label)"
+      textColorProgressValue="var(--bauhaus-card-inscription-progress-value)"
+      progressBarBackground="var(--bauhaus-card-progress-bar-bg)"
+      chronicleButtonBg="var(--bauhaus-chronicle-bg)"
+      chronicleButtonFg="var(--bauhaus-chronicle-fg)"
+      chronicleButtonHoverFg="var(--bauhaus-chronicle-hover-fg)"
+    />
+  </div>
+);
+
+export { DemoOne };
+
+```
+
+Copy-paste these files for dependencies:
+```tsx
+maxim.bort.devel/chronicle-button
+"use client";
+import React from "react";
+
+// Inline CSS as a string
+const styles = `
+.chronicleButton {
+  --chronicle-button-default-hover-color: var(--theme-color);
+  --chronicle-button-border-radius: var(--general-rounding, 8px);
+  border-radius: var(--chronicle-button-border-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  line-height: 1;
+  padding: 1rem 1.232rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  background: var(--chronicle-button-background);
+  color: var(--chronicle-button-foreground);
+  transition: background 0.4s linear, color 0.4s linear;
+  will-change: background, color;
+  position: relative;
+}
+
+.chronicleButton:hover {
+  background: var(--chronicle-button-hover-background);
+  color: var(--chronicle-button-hover-foreground);
+}
+
+.chronicleButton span {
+  position: relative;
+  display: block;
+  perspective: 108px;
+}
+
+.chronicleButton span:nth-of-type(2) {
+  position: absolute;
+}
+
+.chronicleButton em {
+  font-style: normal;
+  display: inline-block;
+  font-size: 1.025rem;
+  color: inherit;
+  will-change: transform, opacity, color, transition;
+  transition: transform 0.55s cubic-bezier(.645,.045,.355,1), opacity 0.35s linear 0.2s, color 0.4s linear;
+}
+
+.chronicleButton span:nth-of-type(1) em {
+  transform-origin: top;
+}
+.chronicleButton span:nth-of-type(2) em {
+  opacity: 0;
+  transform: rotateX(-90deg) scaleX(.9) translate3d(0,10px,0);
+  transform-origin: bottom;
+}
+.chronicleButton:hover span:nth-of-type(1) em {
+  opacity: 0;
+  transform: rotateX(90deg) scaleX(.9) translate3d(0,-10px,0);
+}
+.chronicleButton:hover span:nth-of-type(2) em {
+  opacity: 1;
+  transform: rotateX(0deg) scaleX(1) translateZ(0);
+  transition: transform 0.75s cubic-bezier(.645,.045,.355,1), opacity 0.35s linear 0.3s, color 0.4s linear;
+}
+
+.chronicleButton.outlined {
+  background: transparent;
+  border: 2px solid var(--chronicle-button-background);
+  padding: calc(1rem - var(--outline-padding-adjustment)) 0;
+  color: var(--chronicle-button-background);
+  transition: border 0.4s linear, color 0.4s linear, background-color 0.4s linear;
+  will-change: border, color;
+}
+
+.chronicleButton.outlined:hover {
+  background: var(--outlined-button-background-on-hover, transparent);
+  border-color: var(--chronicle-button-hover-background);
+  color: var(--chronicle-button-hover-background);
+}
+
+.chronicleButton.outlined span:nth-of-type(1) em,
+.chronicleButton.outlined span:nth-of-type(2) em {
+  transition: color 0.4s linear;
+}
+
+.chronicleButton.outlined:hover span:nth-of-type(1) em,
+.chronicleButton.outlined:hover span:nth-of-type(2) em {
+  color: var(--chronicle-button-hover-background);
+}
+`;
+
+interface ChronicleButtonProps {
+  text: string;
+  onClick?: () => void;
+  hoverColor?: string;
+  width?: string;
+  outlined?: boolean;
+  outlinePaddingAdjustment?: string;
+  borderRadius?: string;
+  outlinedButtonBackgroundOnHover?: string;
+  customBackground?: string;
+  customForeground?: string;
+  hoverForeground?: string;
+}
+
+export const ChronicleButton: React.FC<ChronicleButtonProps> = ({
+  text,
+  onClick,
+  hoverColor = "#a594fd",
+  width = "160px",
+  outlined = false,
+  outlinePaddingAdjustment = "2px",
+  borderRadius = "8px",
+  outlinedButtonBackgroundOnHover = "transparent",
+  customBackground = "#fff",
+  customForeground = "#111014",
+  hoverForeground = "#111014",
+}) => {
+  // Inject styles once
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!document.getElementById("chronicle-button-style")) {
+      const style = document.createElement("style");
+      style.id = "chronicle-button-style";
+      style.innerHTML = styles;
+      document.head.appendChild(style);
+    }
+  }, []);
+
+  const buttonStyle = {
+    "--chronicle-button-background": customBackground,
+    "--chronicle-button-foreground": customForeground,
+    "--chronicle-button-hover-background": hoverColor,
+    "--chronicle-button-hover-foreground": hoverForeground,
+    "--outline-padding-adjustment": outlinePaddingAdjustment,
+    "--chronicle-button-border-radius": borderRadius,
+    "--outlined-button-background-on-hover": outlinedButtonBackgroundOnHover,
+    width: width,
+    borderRadius: borderRadius,
+  } as React.CSSProperties;
+
+  return (
+    <button
+      className={`chronicleButton${outlined ? " outlined" : ""}`}
+      onClick={onClick}
+      style={buttonStyle}
+      type="button"
+    >
+      <span>
+        <em>{text}</em>
+      </span>
+      <span>
+        <em>{text}</em>
+      </span>
+    </button>
+  );
+};
+
+```
+
+Extend existing Tailwind 4 index.css with this code (or if project uses Tailwind 3, extend tailwind.config.js or globals.css):
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --bauhaus-card-bg: #f0f4fb;
+  --bauhaus-card-separator: #d3dce8;
+  --bauhaus-card-accent: #156ef6;
+  --bauhaus-card-radius: 2em;
+  --bauhaus-card-border-width: 2px;
+  --bauhaus-card-inscription-top: #3b4252;
+  --bauhaus-card-inscription-main: #111014;
+  --bauhaus-card-inscription-sub: #5e6473;
+  --bauhaus-card-inscription-progress-label: #454f55;
+  --bauhaus-card-inscription-progress-value: #1c2541;
+  --bauhaus-card-progress-bar-bg: #e5e7eb;
+  --bauhaus-chronicle-bg: #151419;
+  --bauhaus-chronicle-fg: #fff;
+  --bauhaus-chronicle-hover-fg: #fff;
+}
+
+.dark {
+  --background: #252533;
+  --bauhaus-card-bg: #151419;
+  --bauhaus-card-separator: #2F2B2A;
+  --bauhaus-card-accent: #156ef6;
+  --bauhaus-card-radius: 2em;
+  --bauhaus-card-border-width: 2px;
+  --bauhaus-card-inscription-top: #bfc7d5;
+  --bauhaus-card-inscription-main: #f0f0f1;
+  --bauhaus-card-inscription-sub: #a0a1b3;
+  --bauhaus-card-inscription-progress-label: #b5b6c4;
+  --bauhaus-card-inscription-progress-value: #e7e7f7;
+  --bauhaus-card-progress-bar-bg: #363636;
+  --bauhaus-chronicle-bg: #fff;
+  --bauhaus-chronicle-fg: #151419;
+  --bauhaus-chronicle-hover-fg: #fff;
+}
+
+```
+
+Implementation Guidelines
+ 1. Analyze the component structure and identify all required dependencies
+ 2. Review the component's argumens and state
+ 3. Identify any required context providers or hooks and install them
+ 4. Questions to Ask
+ - What data/props will be passed to this component?
+ - Are there any specific state management requirements?
+ - Are there any required assets (images, icons, etc.)?
+ - What is the expected responsive behavior?
+ - What is the best place to use this component in the app?
+
+Steps to integrate
+ 0. Copy paste all the code above in the correct directories
+ 1. Install external dependencies
+ 2. Fill image assets with Unsplash stock images you know exist
+ 3. Use lucide-react icons for svgs or logos if component requires them

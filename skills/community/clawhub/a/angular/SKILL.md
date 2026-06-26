@@ -1,35 +1,34 @@
 ---
-name: "Angular"
-description: "Avoid common Angular mistakes — subscription leaks, change detection, dependency injection, and module organization."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/angular"
-sourceUrl: "https://clawhub.ai/skills/angular"
+name: Angular
+slug: angular
+version: 1.0.1
+description: Build reliable Angular apps avoiding RxJS leaks, change detection traps, and DI pitfalls.
 ---
 
-# Angular
+## When to Use
 
-> Avoid common Angular mistakes — subscription leaks, change detection, dependency injection, and module organization.
+User needs Angular expertise — component architecture, RxJS patterns, change detection, dependency injection, routing, and forms.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/angular`
-- **Source URL:** [https://clawhub.ai/skills/angular](https://clawhub.ai/skills/angular)
+## Quick Reference
 
-## Overview
+| Topic | File |
+|-------|------|
+| Components & change detection | `components.md` |
+| RxJS & subscriptions | `rxjs.md` |
+| Forms & validation | `forms.md` |
+| Dependency injection | `di.md` |
+| Routing & guards | `routing.md` |
+| HTTP & interceptors | `http.md` |
 
+## Common Mistakes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/angular
-```
+- `OnPush` with mutated objects won't trigger change detection — always create new reference: `{...obj}` or `[...arr]`
+- `@ViewChild` is undefined in constructor/`ngOnInit` — access in `ngAfterViewInit` or later
+- `*ngFor` without `trackBy` re-renders entire list on any change — add `trackBy` returning stable ID
+- Manual `subscribe()` without unsubscribe leaks memory — use `async` pipe, `takeUntilDestroyed()`, or unsubscribe in `ngOnDestroy`
+- `HttpClient` returns cold Observable — each `subscribe()` fires new HTTP request
+- `setTimeout`/`setInterval` outside NgZone — change detection won't run, use `NgZone.run()` or signals
+- Circular DI dependency crashes app — use `forwardRef()` or restructure services
+- `ElementRef.nativeElement` direct DOM access breaks SSR — use `Renderer2` or `@defer`
+- Route params via `snapshot` miss navigation changes — use `paramMap` Observable for same-component navigation
+- `setValue()` on FormGroup requires ALL fields — use `patchValue()` for partial updates

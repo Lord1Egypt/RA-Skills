@@ -1,0 +1,6 @@
+{
+  "name": "legend",
+  "type": "tesseract",
+  "config_path": "data/config/legend.config",
+  "deployed": true
+}

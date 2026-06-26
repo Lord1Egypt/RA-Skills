@@ -1,35 +1,197 @@
----
-name: "Family Memory Timeline"
-description: "自动分析家庭照片和对话，生成结构化时间线故事，帮助回顾和珍藏家庭重要记忆。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/family-memory-timeline"
-sourceUrl: "https://clawhub.ai/skills/family-memory-timeline"
----
+# Family Memory Timeline - 家庭记忆时光机
 
-# Family Memory Timeline
+## 功能说明
 
-> 自动分析家庭照片和对话，生成结构化时间线故事，帮助回顾和珍藏家庭重要记忆。
+**家庭记忆时光机**是一个专门用于整理和呈现家庭记忆的skill。它通过分析家庭照片、视频和对话文字，自动生成结构化的时间线故事，帮助家庭成员回顾和珍藏重要时刻。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/family-memory-timeline`
-- **Source URL:** [https://clawhub.ai/skills/family-memory-timeline](https://clawhub.ai/skills/family-memory-timeline)
+### 核心功能
 
-## Overview
+1. **照片情感分类** - 自动分析照片内容，识别场景、人物、情感氛围
+2. **对话摘要** - 从家庭对话文字中提取关键信息和情感要点
+3. **时间线生成** - 基于时间戳和内容关联性，自动构建时间线
+4. **故事叙述** - 将时间线转化为连贯的叙述性故事
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/family-memory-timeline
+### 触发词
+
+- `家庭记忆时光机`
+- `家庭故事整理`
+- `家庭照片时间线`
+- `家庭回忆整理`
+
+### 指令格式
+
+#### 格式1：简单指令
 ```
+整理家庭记忆 [时间范围] [故事风格]
+```
+示例：
+- `整理家庭记忆 2023年`
+- `整理家庭记忆 去年 温馨风格`
+
+#### 格式2：详细指令
+```
+创建家庭时间线：
+照片：[照片路径列表]
+对话：[对话文本]
+时间范围：[开始时间] 到 [结束时间]
+风格：[风格偏好]
+```
+
+## 输入格式
+
+### 请求参数 (CreateStoryRequest)
+
+```json
+{
+  "media": [
+    "/photos/vacation_2023.jpg",
+    { "path": "/photos/birthday.png", "description": "春节家庭聚会", "timestamp": "2023-01-22T18:00:00" }
+  ],
+  "conversations": [
+    { "speaker": "妈妈", "content": "今天宝宝第一次走路了！", "timestamp": "2023-05-15T10:30:00" },
+    { "speaker": "爸爸", "content": "太激动了，要记录下来！", "timestamp": "2023-05-15T10:31:00" }
+  ],
+  "config": {
+    "style": { "narrative": "warm" },
+    "output": { "formats": ["json", "markdown"] }
+  },
+  "projectName": "2023家庭回忆"
+}
+```
+
+### 参数说明
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| media | array | 否 | 媒体文件路径或对象数组 |
+| conversations | array | 否 | 对话记录数组 |
+| config | object | 否 | 配置选项 |
+| projectName | string | 否 | 项目名称 |
+
+### config配置
+
+```json
+{
+  "style": {
+    "narrative": "warm | humorous | formal | poetic | casual"
+  },
+  "output": {
+    "formats": ["json", "markdown"]
+  }
+}
+```
+
+## 输出格式
+
+### 成功响应
+
+```json
+{
+  "success": true,
+  "story": {
+    "id": "story_xxx",
+    "title": "我们的家庭故事",
+    "timeline": {
+      "events": [...],
+      "timeframe": { "start": "...", "end": "..." }
+    },
+    "chapters": [...],
+    "summary": {
+      "totalEvents": 5,
+      "emotionalHighlights": [...],
+      "keyMoments": [...]
+    },
+    "metadata": {
+      "generatedAt": "2026-04-05T...",
+      "version": "0.1.0"
+    }
+  },
+  "processing": {
+    "status": "completed",
+    "progress": 100
+  },
+  "outputContent": "..."
+}
+```
+
+## 使用示例
+
+### 示例1：整理年度家庭回忆
+
+**输入：**
+```
+整理家庭记忆
+
+我想整理2023年的家庭回忆。
+照片在 /Users/家庭/照片/2023/ 目录下。
+还有一些微信聊天记录。
+请生成一个温馨风格的时间线故事。
+```
+
+### 示例2：创建宝宝成长记录
+
+**输入：**
+```
+开始家庭记忆项目 "宝宝的成长第一年"
+
+添加照片 /Users/家庭/宝宝/0-12个月/
+添加对话记录：
+- 妈妈：今天宝宝第一次翻身了！
+- 爸爸：宝宝会坐起来了！
+
+时间范围：2023年1月到12月
+风格：温馨感人
+生成时间线
+```
+
+## 输出示例（Markdown格式）
+
+```markdown
+# 我们的家庭故事
+
+**生成时间**: 2026年4月5日 18:30:00
+**时间范围**: 2023年1月1日 - 2023年12月31日
+
+## 统计概览
+- 总事件数: 5
+- 照片/媒体: 2
+- 对话记录: 3
+
+## 时间线
+### 2023-05-15 - 宝宝第一次翻身了
+- 类型: conversation
+- 描述: 今天宝宝第一次翻身了！
+- 情感: warmth (85%置信度)
+- 重要性: 7/10
+
+## 故事章节
+### 2023-05月的温馨时刻
+时期: 2023-05-01 - 2023-05-31
+情感基调: 温馨感人
+叙述: 这个月的家庭生活充满了温暖和甜蜜...
+
+## 情感亮点
+- warmth: 3次 (代表: 宝宝第一次翻身了)
+
+## 关键时刻
+- 宝宝第一次翻身了 (重要性: 7/10)
+
+---
+*由家庭记忆时光机生成 | 版本: 0.1.0*
+```
+
+## 注意事项
+
+1. 支持的图片格式：JPG、PNG、HEIC，单张不超过10MB
+2. 对话处理单次不超过5000字
+3. 支持中文和英文
+4. 时间范围支持从1970年至今
+5. 不接入真实第三方API，使用模拟数据
+
+## 技术信息
+
+- 版本: 0.1.0
+- 类型: ES Module (handler.mjs)
+- 依赖: 无外部依赖（纯模拟实现）

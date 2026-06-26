@@ -1,0 +1,141 @@
+{
+  "id": "speech_audio",
+  "name": "Speech & Audio",
+  "name_zh": "语音与音频",
+  "description": "Speech recognition, synthesis, audio processing, and speech LLMs",
+  "description_zh": "语音识别、语音合成、音频处理、语音大模型",
+  "arxiv_categories": [
+    {
+      "id": "cs.SD",
+      "name": "Sound",
+      "url": "https://arxiv.org/list/cs.SD/recent",
+      "description": "Audio processing, music computing, sonification"
+    },
+    {
+      "id": "eess.AS",
+      "name": "Audio and Speech Processing",
+      "url": "https://arxiv.org/list/eess.AS/recent",
+      "description": "Speech recognition, audio analysis, music processing"
+    }
+  ],
+  "classification": [
+    {
+      "name": "Speech LLM",
+      "labels": {
+        "zh": "语音大模型",
+        "en": "Speech LLM",
+        "ja": "音声大規模言語モデル"
+      },
+      "keywords": [
+        "speech llm",
+        "audio llm",
+        "spoken language model",
+        "speech language model",
+        "voice llm",
+        "audio-language model",
+        "speech understanding",
+        "spoken dialogue"
+      ]
+    },
+    {
+      "name": "ASR",
+      "labels": {
+        "zh": "语音识别",
+        "en": "Speech Recognition",
+        "ja": "音声認識"
+      },
+      "keywords": [
+        "automatic speech recognition",
+        "asr system",
+        "speech-to-text",
+        "speech transcription",
+        "end-to-end asr",
+        "conformer",
+        "wav2vec",
+        "hubert",
+        "whisper"
+      ]
+    },
+    {
+      "name": "TTS",
+      "labels": {
+        "zh": "语音合成",
+        "en": "Speech Synthesis",
+        "ja": "音声合成"
+      },
+      "keywords": [
+        "text-to-speech",
+        "tts system",
+        "speech synthesis",
+        "voice synthesis",
+        "neural vocoder",
+        "acoustic model",
+        "tacotron",
+        "fastspeech"
+      ]
+    },
+    {
+      "name": "Enhancement",
+      "labels": {
+        "zh": "语音增强",
+        "en": "Enhancement",
+        "ja": "音声強調"
+      },
+      "keywords": [
+        "speech enhancement",
+        "noise reduction",
+        "speech denoising",
+        "audio enhancement",
+        "dereverberation",
+        "source separation",
+        "beamforming"
+      ]
+    },
+    {
+      "name": "SLU",
+      "labels": {
+        "zh": "口语理解",
+        "en": "Spoken Language Understanding",
+        "ja": "音声言語理解"
+      },
+      "keywords": [
+        "spoken language understanding",
+        "intent recognition",
+        "slot filling",
+        "spoken nlu",
+        "semantic parsing"
+      ]
+    },
+    {
+      "name": "Paralinguistics",
+      "labels": {
+        "zh": "副语言学",
+        "en": "Paralinguistics",
+        "ja": "副言語学"
+      },
+      "keywords": [
+        "emotion recognition",
+        "speaker verification",
+        "speaker identification",
+        "speaker recognition",
+        "age estimation",
+        "gender recognition"
+      ]
+    },
+    {
+      "name": "Audio",
+      "labels": {
+        "zh": "通用音频",
+        "en": "General Audio",
+        "ja": "一般音声"
+      },
+      "keywords": [
+        "audio classification",
+        "sound event detection",
+        "audio tagging",
+        "acoustic scene",
+        "music information retrieval"
+      ]
+    }
+  ]
+}

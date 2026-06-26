@@ -1,0 +1,31 @@
+{
+  "name": "auto-md2img",
+  "version": "1.3.0",
+  "description": "Convert Markdown content to images automatically with GitHub styling, full Chinese support, smart pagination, emoji support, and syntax highlighting. Supports height-based pagination and quality adjustment.",
+  "bin": {
+    "md2img": "./scripts/md_to_png.js"
+  },
+  "main": "scripts/md_to_png.js",
+  "scripts": {
+    "convert": "node scripts/md_to_png.js"
+  },
+  "keywords": [
+    "markdown",
+    "image",
+    "convert",
+    "puppeteer",
+    "markdown-to-image",
+    "md2img",
+    "pagination",
+    "chinese"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^4.3.0",
+    "puppeteer": "^21.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

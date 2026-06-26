@@ -1,0 +1,17 @@
+{
+  "name": "@usedada/plugin",
+  "version": "0.1.4",
+  "description": "OpenClaw skill for dada — hosted backend infra for openclaw agents.",
+  "type": "module",
+  "main": "./SKILL.md",
+  "files": ["SKILL.md", "package.json"],
+  "keywords": ["openclaw", "openclaw-skill", "dada", "database", "storage", "webhooks", "agent"],
+  "author": "Honeybadge Labs",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/honeybadge-labs/dada",
+    "directory": "plugin"
+  },
+  "publishConfig": { "access": "public" }
+}

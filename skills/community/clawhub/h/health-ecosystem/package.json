@@ -1,0 +1,41 @@
+{
+  "name": "health-ecosystem",
+  "version": "1.0.0",
+  "description": "基于华为运动健康的智能健康闭环系统。整合华为穿戴设备数据采集、Obsidian 知识沉淀、定时任务自动化，形成完整的个人健康管理闭环。",
+  "author": "xiaoyi-claw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaoyi-claw/health-ecosystem"
+  },
+  "keywords": [
+    "health",
+    "huawei",
+    "huawei-health",
+    "obsidian",
+    "cron",
+    "ecosystem",
+    "personal-health",
+    "wearable",
+    "openclaw",
+    "skill"
+  ],
+  "engines": {
+    "openclaw": ">=2025.1.0"
+  },
+  "dependencies": {
+    "xiaoyi-health": ">=1.0.0",
+    "obsidian-git-vault": ">=1.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "templates/"
+  ],
+  "clawhub": {
+    "category": "health",
+    "platform": "huawei-health",
+    "featured": true,
+    "icon": "🏥"
+  }
+}

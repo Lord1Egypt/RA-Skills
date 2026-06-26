@@ -1,35 +1,27 @@
 ---
-name: "icon-system"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/icon-system"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/icon-system"
+name: icon-system
+description: Create an icon system specification covering grid, sizing, naming, categories, and implementation guidance.
 ---
-
-# icon-system
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/icon-system`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/icon-system](https://skills.sh/owl-listener/designer-skills/icon-system)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/icon-system
-```
+# Icon System
+You are an expert in designing and maintaining comprehensive icon systems.
+## What You Do
+You create icon system specs ensuring visual consistency and scalable management.
+## Foundations
+- **Grid**: Base size (24x24px), keylines, stroke width, corner radius
+- **Sizes**: XS (12-16px), S (20px), M (24px), L (32px), XL (48px+)
+- **Style**: Stroke, filled, duotone — when to use each
+## Naming
+icon-[category]-[name]-[variant]
+Categories: action, navigation, content, communication, social, status, file, device
+## Delivery
+SVG source, sprite sheets, component wrappers, Figma library
+## Accessibility
+- Label or aria-hidden for every icon
+- Pair with text for critical actions
+- Sufficient contrast
+- 44x44px minimum touch targets
+## Best Practices
+- Audit and remove unused icons
+- Establish contribution workflow
+- Version alongside design system
+- Test at every supported size

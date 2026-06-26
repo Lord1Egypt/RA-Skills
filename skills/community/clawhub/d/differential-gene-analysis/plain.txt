@@ -1,0 +1,7 @@
+differential_gene_analysis/
+├── skill.json           # 平台识别文件
+├── main.R               # 入口脚本
+├── README.md            # 说明
+├── input/               # 可上传的模拟输入数据
+│   └── count_matrix.csv # 基因表达计数矩阵
+└── output/              # 运行后自动生成结果

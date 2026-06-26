@@ -1,0 +1,27 @@
+{
+  "name": "nano-gpt-cli",
+  "version": "0.1.0",
+  "description": "CLI for the NanoGPT API",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "nano-gpt": "dist/src/bin.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "commander": "^14.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.2"
+  }
+}

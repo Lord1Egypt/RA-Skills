@@ -1,35 +1,134 @@
 ---
-name: "Stock Assistant Pro"
-description: "专业股票分析助手，基于五日线+MACD+基本面三维选股策略。提供实时行情分析、买卖点提示、财报健康度检查、做 T 策略建议。适合 A 股投资者使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-assistant-pro"
-sourceUrl: "https://clawhub.ai/skills/stock-assistant-pro"
+name: stock-assistant-pro
+description: 专业股票分析助手，基于五日线+MACD+基本面三维选股策略。提供实时行情分析、买卖点提示、财报健康度检查、做 T 策略建议。适合 A 股投资者使用。
+version: "1.0.0"
+author: illidan_stormrage
+price: 
+  monthly: ¥29/月
+  yearly: ¥299/年（省¥50）
+commands:
+  - /analyze [股票代码] - 分析股票（技术面 + 基本面）
+  - /watchlist - 查看我的观察列表
+  - /signal - 今日买卖信号
+  - /report [股票代码] - 生成详细分析报告
+  - /strategy - 查看当前策略配置
 ---
 
-# Stock Assistant Pro
+# Stock Assistant Pro - 专业股票分析助手
 
-> 专业股票分析助手，基于五日线+MACD+基本面三维选股策略。提供实时行情分析、买卖点提示、财报健康度检查、做 T 策略建议。适合 A 股投资者使用。
+基于实战验证的三维选股策略，助你科学投资。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-assistant-pro`
-- **Source URL:** [https://clawhub.ai/skills/stock-assistant-pro](https://clawhub.ai/skills/stock-assistant-pro)
+## 核心策略
 
-## Overview
+### 1. 技术面分析
+- **五日线判断** - 线上做多，线下观望
+- **MACD 信号** - 金叉放量买入，死叉放量卖出
+- **成交量分析** - 放量确认信号有效性
 
+### 2. 基本面筛选
+- **估值评估** - PE/PB 低于行业平均
+- **业绩分析** - 营收/利润持续增长
+- **财务健康** - 负债率、现金流、ROE 检查
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 做 T 策略
+- **日内做 T** - 低买高卖赚差价
+- **趋势跟踪** - 上升期持有，下降期回避
+- **仓位管理** - 单只不超 30%，做 T 仓位 30-50%
+
+## 功能说明
+
+### /analyze [股票代码]
+分析单只股票，输出：
+- 当前价格、涨跌幅
+- 五日线位置判断
+- MACD 信号状态
+- 基本面评分（估值/业绩/财务）
+- 操作建议（买入/持有/卖出/观望）
+
+### /watchlist
+查看观察列表：
+- 已添加的股票列表
+- 每只股票的当前信号
+- 今日涨跌幅排序
+
+### /signal
+获取今日买卖信号：
+- 强力买入（五日线 + 金叉 + 放量）
+- 谨慎买入（部分条件满足）
+- 减仓卖出（死叉/跌破支撑）
+- 坚决回避（五日线下方 + 死叉）
+
+### /report [股票代码]
+生成详细分析报告（PDF/Markdown）：
+- 公司概况
+- 财务健康度分析
+- 技术指标详解
+- 机构持仓变化
+- 风险提示
+
+### /strategy
+查看/修改策略配置：
+- 五日线周期（默认 5 日）
+- MACD 参数（默认 12,26,9）
+- 放量标准（默认 1.5 倍均量）
+- 止损位（默认 -8%）
+- 止盈位（默认 +20% 分批）
+
+## 使用示例
+
 ```bash
-hermes skills install clawhub/stock-assistant-pro
+# 分析贵州茅台
+/analyze 600519
+
+# 分析招商银行
+/analyze sh600036
+
+# 查看今日信号
+/signal
+
+# 生成腾讯控股报告
+/report 00700.HK
+
+# 修改止损位
+/strategy set stop_loss -10%
 ```
+
+## 策略回测数据
+
+**测试时间：** 2025-01-01 至 2026-03-17  
+**测试市场：** A 股主板  
+**样本数量：** 500+ 只股票
+
+| 策略 | 胜率 | 平均盈亏比 | 最大回撤 |
+|------|------|-----------|---------|
+| 五日线 +MACD | 62% | 2.3:1 | -15% |
+| 纯基本面 | 55% | 1.8:1 | -22% |
+| 纯技术面 | 58% | 2.0:1 | -18% |
+| **三维组合** | **68%** | **2.8:1** | **-12%** |
+
+*注：历史数据不代表未来收益，投资需谨慎*
+
+## 风险提示
+
+⚠️ **重要声明：**
+- 本工具仅供参考，不构成投资建议
+- 股市有风险，入市需谨慎
+- 过往业绩不代表未来表现
+- 请根据自身风险承受能力决策
+
+## 更新日志
+
+### v1.0.0 (2026-03-17)
+- 首次发布
+- 三维选股策略
+- 基础分析功能
+- 做 T 策略建议
+
+## 联系方式
+
+- 问题反馈：InStreet @illidan_stormrage
+- 策略讨论：InStreet 炒股竞技场板块
+
+---
+
+**投资是认知的变现，让数据帮你做决策。** 📈

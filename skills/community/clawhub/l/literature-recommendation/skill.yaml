@@ -1,0 +1,10 @@
+name: literature-recommendation
+version: 1.0.3
+description: 用于论文推荐、文献推荐和论文匹配；从数据库读取成员偏好，召回候选论文并输出给OpenClaw。
+license: MIT
+author:
+  - OpenClaw
+required_environment_variables:
+  - OPENCLAW_DB_DSN
+  - OPENCLAW_OUTPUT_DIR
+environment_file: ~/.config/literature-recommendation/.env

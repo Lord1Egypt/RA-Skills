@@ -1,35 +1,99 @@
 ---
-name: "Dev Project Tracker"
-description: "按需求/版本维度管理项目全生命周期。创建需求目录、记录日常进展、追踪问题、管理变更、自动蒸馏归档。 触发词：创建需求目录、新建项目、项目进展、记录进展、项目归档、蒸馏项目、查看项目、项目状态、 "新需求"、"建个项目目录"、"记一下进展"、"这个需求上线了"。 适用于任何按版本/需求迭代的软件项目。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dev-project-tracker"
-sourceUrl: "https://clawhub.ai/skills/dev-project-tracker"
+name: project-tracker
+description: >-
+  按需求/版本维度管理项目全生命周期。创建需求目录、记录日常进展、追踪问题、管理变更、自动蒸馏归档。
+  触发词：创建需求目录、新建项目、项目进展、记录进展、项目归档、蒸馏项目、查看项目、项目状态、
+  "新需求"、"建个项目目录"、"记一下进展"、"这个需求上线了"。
+  适用于任何按版本/需求迭代的软件项目。
 ---
 
-# Dev Project Tracker
+# Project Tracker
 
-> 按需求/版本维度管理项目全生命周期。创建需求目录、记录日常进展、追踪问题、管理变更、自动蒸馏归档。 触发词：创建需求目录、新建项目、项目进展、记录进展、项目归档、蒸馏项目、查看项目、项目状态、 "新需求"、"建个项目目录"、"记一下进展"、"这个需求上线了"。 适用于任何按版本/需求迭代的软件项目。
+按需求/版本一站式管理项目文档，覆盖从创建到归档的完整生命周期。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dev-project-tracker`
-- **Source URL:** [https://clawhub.ai/skills/dev-project-tracker](https://clawhub.ai/skills/dev-project-tracker)
+## 目录结构规范
 
-## Overview
+每个需求/版本一个目录，放在 `projects/<project-name>/<requirement-name>/` 下：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dev-project-tracker
 ```
+projects/<project>/<requirement>/
+├── README.md        # 总览：需求名称、负责人、上线时间、状态
+├── WORK_LOG.md      # 日常进展（按日期倒序）
+├── DIVISION.md      # 分工表
+├── ISSUES.md        # 问题追踪
+├── CHANGES.md       # 变更记录
+├── docs/            # 需求文档、PRD链接
+├── tech/            # 技术方案
+└── design/          # 设计稿链接
+```
+
+## 操作指南
+
+### 创建需求目录
+
+收到"创建需求目录"或"新需求"时：
+
+1. 读取 `references/templates/` 下的模板文件
+2. 在 `projects/<project>/<requirement>/` 下创建完整目录结构
+3. 填入已知信息（需求名、负责人、预计上线时间等）
+4. README.md 中 `状态` 字段设为 `🟢 开发中`
+
+### 记录日常进展
+
+收到"记录进展"或项目相关更新时：
+
+1. 在 `WORK_LOG.md` 顶部添加新条目（日期倒序）
+2. 格式：`## YYYY-MM-DD` + 具体内容
+3. 同步更新个人日志 `memory/YYYY-MM-DD.md`
+4. 关键决策同时写入长期记忆（memory_store）
+
+### 追踪问题
+
+在 `ISSUES.md` 中管理：
+
+```markdown
+| # | 问题描述 | 状态 | 负责人 | 创建日期 | 解决日期 |
+|---|---------|------|--------|---------|---------|
+| 1 | xxx     | 🔴待解决 | xxx | 2026-03-20 | - |
+```
+
+状态：🔴待解决 → 🟡处理中 → 🟢已解决
+
+### 变更记录
+
+需求变更时在 `CHANGES.md` 记录：
+
+```markdown
+## YYYY-MM-DD 变更标题
+- **变更内容：** xxx
+- **变更原因：** xxx  
+- **影响范围：** xxx
+- **确认人：** xxx
+```
+
+### 生命周期管理
+
+README.md 中必须包含 `状态` 和 `实际上线` 字段：
+
+| 阶段 | 状态 | 触发条件 | 操作 |
+|------|------|---------|------|
+| 活跃期 | 🟢 开发中 | 创建时 | 完整记录所有文件 |
+| 蒸馏期 | 🟡 已上线(蒸馏中) | 上线后2周 | WORK_LOG/ISSUES 压缩为摘要，tech/design 保留 |
+| 归档期 | 🔴 已归档 | 上线后3个月 | 压缩为 ARCHIVE.md，删除原目录 |
+
+蒸馏/归档前必须通知负责人确认。
+
+### 查看项目状态
+
+收到"查看项目"或"项目状态"时：
+
+1. 扫描 `projects/` 下所有需求目录
+2. 读取每个 README.md 的状态和上线时间
+3. 汇总输出项目看板
+
+## 注意事项
+
+- 项目进展写 WORK_LOG.md，**不混入个人日志**
+- 关键决策、人员信息同步到长期记忆
+- 设计稿链接存 `design/DESIGN.md`，需求文档链接存 `docs/`
+- 技术方案存 `tech/`，按前端/后端分文件

@@ -1,35 +1,469 @@
 ---
-name: "reportgama"
-description: "🎯 深度市场调研报告生成技能 —— 专为目标国家+目标品类量身定制。支持13个信息采集模块：多语种搜索、新闻监控、竞争分析、电商价格、广告投放、海关数据、政府招标（Tender）、医疗器械注册证（Roszdravnadzor）、Telegram社群、VKontakte社群、医疗机构分布、参考定价（ЖНВЛП）。..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reportgama"
-sourceUrl: "https://clawhub.ai/skills/reportgama"
+name: "Report-gama"
+version: "1.0.0"
+description: "🎯 深度市场调研报告生成技能 —— 专为目标国家+目标品类量身定制。支持13个信息采集模块：多语种搜索、新闻监控、竞争分析、电商价格、广告投放、海关数据、政府招标（Tender）、医疗器械注册证（Roszdravnadzor）、Telegram社群、VKontakte社群、医疗机构分布、参考定价（ЖНВЛП）。生成15章节专业长篇调研报告并导出PDF+图表。"
+categories:
+  - research
+  - market-intelligence
+  - multilingual
+  - report-generation
+emoji: "📊"
+author: "WorkBuddy Custom"
+homepage: "https://github.com/workbuddy/report-gama"
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3", "pip3"]
+    install:
+      - id: python-deps
+        kind: exec
+        command: "pip3 install requests beautifulsoup4 lxml fake-useragent python-dateutil matplotlib reportlab pillow"
+        label: "安装Python依赖"
 ---
 
-# reportgama
+# 📊 Report-gama — 深度市场调研报告生成技能
 
-> 🎯 深度市场调研报告生成技能 —— 专为目标国家+目标品类量身定制。支持13个信息采集模块：多语种搜索、新闻监控、竞争分析、电商价格、广告投放、海关数据、政府招标（Tender）、医疗器械注册证（Roszdravnadzor）、Telegram社群、VKontakte社群、医疗机构分布、参考定价（ЖНВЛП）。...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reportgama`
-- **Source URL:** [https://clawhub.ai/skills/reportgama](https://clawhub.ai/skills/reportgama)
+Report-gama 是我为你量身打造的专业市场调研报告生成系统。它整合了多语种搜索、实时新闻监控、竞争情报、电商价格追踪、广告投放分析和海关数据挖掘等能力，输出一份**颗粒度极高的专业长篇调研报告**，涵盖你指定的国家+品类所需的全部信息维度。
 
-## Overview
+> **典型案例**：作为医疗器械俄罗斯国家经理，我想了解截止2026年4月俄罗斯血糖检测设备市场的全部信息——行业新闻、竞争格局、市场容量、电商价格、广告投放渠道与价格、海关进出口数据，最终生成一份完整的PDF报告。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reportgama
+## 核心能力矩阵
+
+| 能力模块 | 覆盖维度 | 数据来源 | 输出形式 |
+|---------|---------|---------|---------|
+| 🔍 多语种搜索 | 品类词×维度词扩展，并发多引擎搜索 | Yandex/Google/Baidu/DDG/Bing | 结构化搜索结果 |
+| 📰 新闻动态 | 近30天行业新闻、政策法规 | Yandex/Baidu/Google News | 时间线摘要 |
+| 🏭 行业分析 | 市场容量、TAM/SAM/SOM、趋势 | 多源聚合 | 数据表格+图表 |
+| 🦾 竞争对手 | 品牌、产品线、价格、市场份额 | Yandex/Google/电商平台 | 竞争矩阵 |
+| 🛒 电商价格 | 主要电商平台价格区间 | Wildberries/Ozon/Яндекс.Маркет/Kaspi | 价格对比表 |
+| 📢 广告投放 | 渠道、CPM/CPC价格、TOP广告主 | Yandex.Direct/VK Ads/WB Ads | 渠道价格表 |
+| 🚢 海关数据 | 进出口数量、金额、主要贸易国 | UN Comtrade + 网页搜索 | 数据表格+趋势图 |
+| 💬 Telegram社群 | 公开频道讨论、行业情报 | TGStat + site:t.me + 行业频道 | 帖子摘要+趋势 |
+| 📋 政府招标 | 历史中标价、采购方、区域分布 | zakupki.gov.ru + ЕИС + 联邦主体平台 | 招标公告+价格统计 |
+| 🏥 注册证查询 | 竞品注册证数量/有效期/产品线 | roszdravnadzor.gov.ru + grls.rosminzdrav.ru | 注册证矩阵 |
+| 🌐 VKontakte | 行业群组讨论、卖家社群 | VK搜索 + site:vk.com | 帖子摘要+互动统计 |
+| 🏨 医疗机构分布 | 医院/诊所/药房区域分布 | rosminzdrav.ru + 地区卫生部门 | 机构分布地图 |
+| 💰 参考定价 | ЖНВЛП最高限价、招标价格区间 | zhnvlp.ru + 招标历史 | 定价表+价格层级 |
+| 📄 综合报告 | 15章节完整报告 | AI综合分析 | Markdown + PDF |
+
+---
+
+## 工作流程总览
+
 ```
+用户请求
+  │
+  ▼
+┌──────────────────────────────────────────────────────────────┐
+│  Phase 1: 信息采集（并发执行）                                │
+│  ┌────────────┐  ┌────────────┐  ┌────────────────────┐    │
+│  │ 多语种搜索  │  │ 新闻监控   │  │ 竞争对手分析        │    │
+│  │ multi_lang │  │ news_      │  │ competitor_        │    │
+│  │ _search    │  │ monitor     │  │ analysis           │    │
+│  └────────────┘  └────────────┘  └────────────────────┘    │
+│  ┌────────────┐  ┌────────────┐  ┌────────────────────┐    │
+│  │ 电商价格   │  │ 广告研究   │  │ 海关数据抓取        │    │
+│  │ ecommerce_ │  │ ad_        │  │ customs_data       │    │
+│  │ tracker    │  │ research   │  │                    │    │
+│  └────────────┘  └────────────┘  └────────────────────┘    │
+└──────────────────────────────────────────────────────────────┘
+  │
+  ▼
+┌──────────────────────────────────────────────────────────────┐
+│  Phase 2: 数据清洗与结构化                                    │
+│  数据去重 → 质量分级 → 关键信息提取 → 表格化                  │
+└──────────────────────────────────────────────────────────────┘
+  │
+  ▼
+┌──────────────────────────────────────────────────────────────┐
+│  Phase 3: 报告生成                                           │
+│  markdown长篇报告 + matplotlib图表 + PDF导出                 │
+└──────────────────────────────────────────────────────────────┘
+  │
+  ▼
+📄 完整PDF报告 → 用户
+```
+
+---
+
+## 使用方式
+
+### 触发词（任选其一）
+
+```
+生成俄罗斯医疗器械市场报告
+俄罗斯血糖仪深度调研报告
+生成某国家某品类市场报告
+深度市场调研报告
+竞品分析报告 俄罗斯
+电商价格调研 俄罗斯 血糖仪
+广告投放分析 俄罗斯
+海关数据报告 俄罗斯
+一键生成市场调研PDF
+[国家]+[品类] 市场调研报告
+```
+
+### 调用方式
+
+```
+# 标准调用
+python3 {baseDir}/scripts/master.py --country 俄罗斯 --category "血糖检测设备" --lang ru
+
+# 完整调用（13个模块全开 + PDF导出）
+python3 {baseDir}/scripts/master.py \
+  --country 俄罗斯 \
+  --category "血糖检测设备/глюкометр" \
+  --lang ru \
+  --modules news,market,competitor,ecommerce,ads,customs,search,telegram,tender,registration,vk,medical_org,pricing \
+  --pdf \
+  --output ./report_russia_bg_monitor.pdf
+
+# 仅核心模块（快速报告）
+python3 {baseDir}/scripts/master.py --country 俄罗斯 --category "血糖检测设备" --modules news,competitor,ecommerce
+
+# 仅新增模块（招标+注册证+定价）
+python3 {baseDir}/scripts/master.py --country 俄罗斯 --category "血糖检测设备" --modules tender,registration,pricing
+```
+
+### AI Agent 直接使用
+
+当用户请求市场调研报告时，按以下步骤执行：
+
+**Step 1 — 解析需求**
+```
+输入示例："生成俄罗斯血糖检测设备市场调研报告，截止2026年4月"
+提取：国家=俄罗斯，语言=俄语，品类=血糖检测设备，时间截止=2026-04-05
+```
+
+**Step 2 — 确认调研深度**
+```
+自动提供三种深度选项（无需用户选择，除非用户明确）：
+- 快速报告（~10分钟）：新闻+竞争+价格概览
+- 标准报告（~30分钟）：全模块+基础图表
+- 深度报告（~60分钟）：全模块+深度图表+PDF导出
+```
+
+**Step 3 — 执行多源并发搜索**
+按以下顺序执行（可并行）：
+1. 多语种搜索 → 关键词扩展 → 搜索执行
+2. 新闻监控 → 近30天行业新闻收集
+3. 竞争分析 → 品牌/产品线/价格矩阵
+4. 电商追踪 → 价格区间/销量数据
+5. 广告研究 → 渠道/CPM/CPC 估算
+6. 海关数据 → 进出口数量/金额趋势
+7. Telegram监控 → 公开频道行业讨论
+8. 政府招标 → zakupki.gov.ru 中标记录
+9. 注册证查询 → Roszdravnadzor 竞品注册证
+10. VKontakte监控 → 行业群组讨论
+11. 医疗机构分布 → 区域市场容量
+12. 参考定价 → ЖНВЛП 价格锚点
+
+**Step 4 — 质量分级与标注**
+- 🔴 高可信：政府数据、权威机构、行业报告
+- 🟡 中可信：专业媒体、品牌官网、电商数据
+- 🟢 低可信：论坛、自媒体、估算数据
+
+**Step 5 — 报告生成**
+调用 `report_generator.py` 生成 Markdown 报告。
+
+**Step 6 — PDF导出**
+调用 `pdf_exporter.py` 导出最终 PDF。
+
+---
+
+## 国家×品类关键词策略
+
+### 医疗器械领域预设关键词库
+
+| 品类 | 俄语 | 英语 | HS编码 |
+|------|------|------|--------|
+| 血糖检测仪 | глюкометр, измеритель глюкозы | blood glucose meter, glucometer | 902780 |
+| 血压计 | тонометр, измеритель давления | blood pressure monitor, sphygmomanometer | 901890 |
+| 体温计 | термометр | thermometer | 902511 |
+| 心电图机 | электрокардиограф | ECG, electrocardiograph | 901811 |
+| 雾化器 | небулайзер, ингалятор | nebulizer, inhaler | 901920 |
+| 制氧机 | кислородный концентратор | oxygen concentrator | 901920 |
+| 轮椅 | инвалидная коляска | wheelchair | 8713 |
+| 一次性手套 | перчатки медицинские | medical gloves | 401511 |
+
+### 多语种关键词扩展规则
+
+**俄语 → 英语双向扩展：**
+```
+глюкометр → glucometer / blood glucose meter
+Росздравнадзор → Roszdravnadzor / Russian Health Surveillance
+медицинское оборудование → medical equipment / medical device
+рынок медицинской техники → medical devices market
+```
+
+**电商平台搜索词：**
+```
+Wildberries: глюкометр купить / глюкометр цена
+Ozon: глюкометр / измеритель сахара в крови
+Яндекс.Маркет: глюкометр цены отзывы
+```
+
+---
+
+## 支持的国家/地区模块
+
+| 国家 | 主要搜索语言 | 电商平台 | 广告渠道 | 海关数据源 |
+|------|------------|---------|---------|----------|
+| 🇷🇺 俄罗斯 | 俄语/英语 | Wildberries, Ozon, Яндекс.Маркет | Yandex.Direct, Google Ads | Росстат, UN Comtrade |
+| 🇰🇿 哈萨克斯坦 | 哈萨克语/俄语 | Wildberries KZ, Kaspi | Yandex.Direct | КТС, UN Comtrade |
+| 🇺🇿 乌兹别克斯坦 | 乌兹别克语/俄语 | Uzum, Per_shop | Yandex.Direct | 海关总署 |
+| 🇧🇾 白俄罗斯 | 俄语 | Wildberries BY, 21vek | Yandex.Direct | 海关委员会 |
+| 🇨🇳 中国 | 中文/英语 | 淘宝/京东/拼多多 | 百度推广/抖音广告 | 中国海关 |
+| 🇺🇸 美国 | 英语 | Amazon, Walmart | Google Ads, Meta Ads | US Census |
+| 🇩🇪 德国 | 德语/英语 | Amazon.de, MediaMarkt | Google Ads | Eurostat |
+
+---
+
+## 核心模块详解
+
+### 1. 多语种搜索模块 (multi_lang_search.py)
+
+**支持引擎：**
+- 🇷🇺 Yandex（俄语首选）
+- 🌐 Google（全球覆盖）
+- 🦆 DuckDuckGo（隐私搜索）
+- 🇨🇳 百度（Baidu，中文+部分俄语）
+- 📋 Bing（国际新闻）
+- 🐦 Twitter/X（实时动态）
+
+**搜索策略：**
+```
+每个维度 × 3种关键词变体 × 2个引擎 = 6组搜索
+执行并行搜索 → 合并去重 → 质量分级
+```
+
+### 2. 新闻监控模块 (news_monitor.py)
+
+**时间范围：** 近30天（可配置）
+**来源分类：**
+- 政府/监管：Росздравнадзор, Минздрав, ФАС
+- 行业媒体：medvestnik.ru, vademecum.ru, pharmvestnik.ru
+- 商业媒体：РБК, Коммерсантъ, Ведомости
+- 社交媒体：Telegram公开频道, VK
+
+### 3. 竞争对手分析模块 (competitor_analysis.py)
+
+**分析维度：**
+- 品牌份额（基于销量/搜索量估算）
+- 产品线布局（高/中/低端）
+- 价格策略（价格带分布）
+- 渠道布局（线上/线下/医院）
+- 注册证情况（Росздравнадзор注册）
+
+### 4. 电商价格追踪模块 (ecommerce_tracker.py)
+
+**抓取平台：**
+```
+Wildberries.ru（俄罗斯最大电商）
+Ozon.ru（俄罗斯综合电商）
+Яндекс.Маркет（比价平台）
+Kaspi.kz（哈萨克斯坦）
+```
+
+**输出指标：**
+- 价格区间（最低/平均/最高）
+- 月销量估算
+- 评分/评论数
+- 促销活动信息
+
+### 5. 广告研究模块 (ad_research.py)
+
+**估算维度：**
+- 主要广告渠道覆盖
+- CPM/CPC 价格区间
+- 热门广告主（竞争对手投放）
+- 广告素材趋势
+
+### 6. 海关数据模块 (customs_data.py)
+
+**数据来源：**
+- UN Comtrade（联合国贸易数据库，免费）
+- 各国海关官网开放数据
+- 估算数据（当官方数据不可得时）
+
+**HS编码查询：** 自动将品类名映射到对应HS编码
+
+### 7. 报告生成模块 (report_generator.py)
+
+**输出格式：**
+- Markdown（完整报告）
+- HTML（带样式）
+- PDF（最终交付物）
+
+**图表类型：**
+- 市场份额饼图/柱状图
+- 价格分布箱线图
+- 海关数据趋势折线图
+- 竞争对手矩阵热力图
+
+### 8. PDF导出模块 (pdf_exporter.py)
+
+**使用 ReportLab 生成专业 PDF：**
+- 封面（标题+国家+品类+日期）
+- 目录（自动生成）
+- 正文分章节
+- 图表嵌入
+- 页眉页脚
+- 专业排版
+
+---
+
+## 报告结构模板
+
+```
+# [品类名] [国家名] 市场深度调研报告
+> 报告日期：[DATE] | 调研截止：[DATE] | 报告级别：[快速/标准/深度]
+> 语言版本：原语种（[语种]）+ 中文摘要
+> 数据来源：[N]个来源 | 置信度：[高/中/低]
+
+## 执行摘要
+[3-5段核心结论]
+
+## 一、行业概述与新闻动态
+### 1.1 行业定义与分类
+### 1.2 近30天行业重大事件
+### 1.3 政策法规动态（Росздравнадзор/Минздрав等）
+[时间线列表，标注来源]
+
+## 二、市场容量与规模
+### 2.1 整体市场规模（TAM/SAM/SOM）
+[表格+图表]
+### 2.2 五年趋势（2020-2025）
+[折线图]
+### 2.3 市场驱动因素与制约因素
+
+## 三、竞争格局分析
+### 3.1 主要竞争者列表与市场份额
+[市场份额图]
+### 3.2 竞争者产品线对比
+[矩阵表]
+### 3.3 价格带分布
+[箱线图/柱状图]
+### 3.4 渠道策略对比
+
+## 四、渠道与采购分析
+### 4.1 医院/诊所采购渠道
+### 4.2 零售/电商渠道
+[Wildberries/Ozon价格对比表]
+### 4.3 线上vs线下占比
+
+## 五、电商平台价格深度分析
+### 5.1 主要平台价格区间
+[表格]
+### 5.2 TOP产品销量排行
+### 5.3 促销活动规律
+
+## 六、广告投放与数字营销
+### 6.1 主要广告渠道
+### 6.2 CPM/CPC价格估算
+[价格表]
+### 6.3 竞品广告投放策略
+
+## 七、海关进出口数据分析
+### 7.1 进出口总量趋势
+[趋势图]
+### 7.2 主要贸易伙伴
+### 7.3 平均单价走势
+[数据表]
+
+## 八、产品趋势与技术方向
+### 8.1 技术创新方向
+### 8.2 产品智能化趋势
+### 8.3 用户需求变化
+
+## 九、市场进入建议
+### 9.1 机会与风险评估
+### 9.2 定价策略建议
+### 9.3 渠道选择建议
+
+## 十、数据来源与参考
+[完整参考文献列表，标注置信度]
+
+---
+附录A：行业术语表（中/俄/英）
+附录B：完整数据表
+```
+
+---
+
+## 质量控制规则
+
+### 信息可信度分级
+
+| 等级 | 标识 | 来源类型 | 使用规则 |
+|------|------|---------|---------|
+| 高 | 🔴 | 政府数据、上市财报、权威机构 | 可直接引用 |
+| 中 | 🟡 | 专业媒体、品牌官网、电商数据 | 标注来源，谨慎引用 |
+| 低 | 🟢 | 论坛、社交媒体、估算数据 | 仅作参考，须标注"估算" |
+
+### 信息孤岛处理
+
+当某维度数据无法获取时：
+1. 标注"[数据暂不可得，建议通过[具体渠道]获取]"
+2. 尽力寻找代理指标（如：用电商销量估算市场总量）
+3. 报告该维度置信度降至"低"并说明原因
+
+### 交叉验证规则
+
+关键数据点（市场容量、竞争份额等）必须从**至少2个独立来源**验证，如不一致，报告两个数值并说明差异原因。
+
+---
+
+## 文件结构
+
+```
+report-gama/
+├── SKILL.md                      # 本文件（核心规范）
+├── _meta.json                    # 元数据
+├── requirements.txt              # Python依赖
+├── scripts/
+│   ├── master.py                # 主控脚本（串联所有模块）
+│   ├── multi_lang_search.py      # 多语种搜索引擎
+│   ├── news_monitor.py           # 新闻与行业动态监控
+│   ├── market_research.py        # 市场容量与TAM/SAM分析
+│   ├── competitor_analysis.py    # 竞争对手深度分析
+│   ├── ecommerce_tracker.py      # 电商价格追踪
+│   ├── ad_research.py            # 广告投放渠道与价格研究
+│   ├── customs_data.py           # 海关进出口数据抓取
+│   ├── report_generator.py       # 报告生成器（Markdown+图表）
+│   ├── pdf_exporter.py           # PDF导出模块
+│   └── config.py                 # 配置管理
+├── references/
+│   ├── industry_keywords.md      # 行业关键词库
+│   ├── hs_codes.md               # HS编码参考表
+│   ├── ecommerce_platforms.md    # 各国电商平台说明
+│   └── report_templates.md       # 报告模板参考
+└── assets/
+    └── logo.png                  # 报告封面logo（可选）
+```
+
+---
+
+## 安全与隐私
+
+- ✅ 仅采集公开可访问的网页数据
+- ✅ 不使用任何账号密码
+- ✅ 不采集个人隐私信息
+- ✅ 数据不跨境存储
+- ✅ 遵守目标网站 robots.txt 规定
+- ⚠️ 海关数据以公开统计数据为准，不涉及商业机密
+
+---
+
+## 反馈与迭代
+
+如报告中有任何信息需要补充或修正，请直接告知：
+- 哪些数据点不够准确
+- 需要增加哪个国家/品类
+- 报告结构是否满足需求
+
+Report-gama 将持续迭代，为你提供越来越精准的市场情报。

@@ -1,0 +1,1 @@
+Here's a preliminary link to doxygen generated documentation for the library: http://fastled.io/docs

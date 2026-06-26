@@ -1,35 +1,27 @@
 ---
-name: "Awesome Submitter Pro"
-description: "Generate submission issues for GitHub awesome-lists. Auto-creates formatted Issue content for awesome-indie, awesome-privacy, awesome-cloudflare, and 7 more..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/awesome-submitter-pro"
-sourceUrl: "https://clawhub.ai/skills/awesome-submitter-pro"
+name: "awesome-submitter-pro"
+version: "1.0.0"
+description: "Generate submission issues for GitHub awesome-lists. Auto-creates formatted Issue content for awesome-indie, awesome-privacy, awesome-cloudflare, and 7 more popular awesome repositories. Highest ROI backlink strategy — permanent, free, high-authority links from starred repos."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [github, awesome-list, backlink, seo, open-source, submission]
+category: "marketing"
 ---
 
 # Awesome Submitter Pro
 
-> Generate submission issues for GitHub awesome-lists. Auto-creates formatted Issue content for awesome-indie, awesome-privacy, awesome-cloudflare, and 7 more...
+Generate ready-to-post GitHub Issues for awesome-list repositories. The highest ROI backlink strategy: awesome-lists are permanent, free, and many have 10K+ stars (high domain authority).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/awesome-submitter-pro`
-- **Source URL:** [https://clawhub.ai/skills/awesome-submitter-pro](https://clawhub.ai/skills/awesome-submitter-pro)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/awesome-submitter-pro
-```
+| Command | Description |
+|---------|-------------|
+| `generate` | Generate Issue content for a specific awesome-list |
+| `repo-list` | Show all supported awesome-list repositories |
+| `find-lists` | Find relevant awesome-lists for your product |
+| `submit-guide` | Step-by-step Issue submission guide |
+| `format-rules` | Formatting requirements per repository |
+| `pr-vs-issue` | When to use Pull Request vs Issue |
+| `success-tips` | Tips for getting accepted |
+| `track` | Track submission status across repos |

@@ -1,0 +1,31 @@
+{
+  "name": "smart-chatbot-builder",
+  "version": "1.0.0",
+  "description": "智能聊天机器人构建器，快速创建客服/销售/内部助手聊天机器人",
+  "author": "ai-solutions-dev",
+  "license": "MIT-0",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "triggers": [
+    "聊天机器人",
+    "chatbot",
+    "客服机器人",
+    "AI 助手",
+    "对话机器人",
+    "customer service",
+    "AI chatbot",
+    "bot builder"
+  ],
+  "capabilities": [
+    "read",
+    "write",
+    "web_fetch",
+    "message"
+  ],
+  "config": {
+    "defaultModel": "local-qwen",
+    "maxContextLength": 4096,
+    "handoffThreshold": 0.6
+  }
+}

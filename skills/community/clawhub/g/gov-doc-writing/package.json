@@ -1,0 +1,9 @@
+{
+  "name": "gov-doc-writing",
+  "version": "1.5.0",
+  "description": "创建符合中国政府及央企规范的Word文档(.docx)",
+  "author": "刘洪亮",
+  "dependencies": {
+    "docx": "^9.6.1"
+  }
+}

@@ -1,0 +1,33 @@
+# auto-skill-loader.config.yaml
+# Auto Skill Loader v2.0 默认配置
+# 所有字段可选，均有合理默认值
+# 不创建此文件 = 使用全部默认值 = 直接能用
+
+# 额外标记为 core 的 Skill（名称列表）
+# 除内置白名单外，你可以在这里添加自定义 core Skill
+coreSkills: []
+  # - my-custom-audit-skill
+
+# 排除不参与自动加载的 Skill（名称列表）
+skipSkills: []
+  # - deprecated-skill
+
+# 是否启用 Agent 路由（默认 true）
+# 设为 false 则不尝试发现和转发给其他 Agent
+enableRouting: true
+
+# 匹配模式
+# strict  - 仅触发词精确匹配
+# normal  - 触发词 + 语义匹配（默认）
+# fuzzy   - 全部策略（包括模糊领域匹配）
+matchMode: normal
+
+# 日志级别
+# silent - 不输出
+# info   - 基本匹配日志（默认）
+# debug  - 详细匹配过程
+logLevel: info
+
+# Dry Run 模式（默认 false）
+# 设为 true 则只预览匹配结果，不实际加载
+dryRun: false

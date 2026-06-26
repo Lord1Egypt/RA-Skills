@@ -1,35 +1,92 @@
 ---
-name: "东方财富日内行情 dfcf-stock-intraday"
-description: "使用东方财富 API 获取 A 股（沪市/深市）及指数的日内分时数据。当用户询问某只 A 股或指数的日内走势、分时数据、当日行情、实时价格、分时图数据时，必须使用此 skill。触发关键词包括：分时数据、日内数据、今日行情、分时走势、intraday、当日走势、东方财富获取数据。支持沪市（market=1）和深市..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dfcf-stock-intraday"
-sourceUrl: "https://clawhub.ai/skills/dfcf-stock-intraday"
+name: eastmoney-intraday
+description: 使用东方财富 API 获取 A 股（沪市/深市）及指数的日内分时数据。当用户询问某只 A 股或指数的日内走势、分时数据、当日行情、实时价格、分时图数据时，必须使用此 skill。触发关键词包括：分时数据、日内数据、今日行情、分时走势、intraday、当日走势、东方财富获取数据。支持沪市（market=1）和深市（market=0）。
 ---
 
-# 东方财富日内行情 dfcf-stock-intraday
+# 东方财富日内分时数据 Skill
 
-> 使用东方财富 API 获取 A 股（沪市/深市）及指数的日内分时数据。当用户询问某只 A 股或指数的日内走势、分时数据、当日行情、实时价格、分时图数据时，必须使用此 skill。触发关键词包括：分时数据、日内数据、今日行情、分时走势、intraday、当日走势、东方财富获取数据。支持沪市（market=1）和深市...
+## 第一步：确定 secid
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dfcf-stock-intraday`
-- **Source URL:** [https://clawhub.ai/skills/dfcf-stock-intraday](https://clawhub.ai/skills/dfcf-stock-intraday)
+`secid` 格式为 `{market}.{code}`，规则如下：
 
-## Overview
+| 股票代码开头 | 市场 | market 值 | secid 示例 |
+|------------|------|-----------|-----------|
+| `6` | 沪市 A 股 | 1 | `1.600519`（贵州茅台） |
+| `0` 或 `3` | 深市 A 股 | 0 | `0.000858`（步长制药） |
+| `000001` | 上证指数 | 1 | `1.000001` |
+| `399001` | 深证成指 | 0 | `0.399001` |
+| `399006` | 创业板指 | 0 | `0.399006` |
 
+如果用户只说了股票名称，先推断代码，再按上表确定 secid。
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 第二步：执行 curl 请求
+
+在 bash 中运行以下命令（将 `<secid>` 替换为实际值）：
+
 ```bash
-hermes skills install clawhub/dfcf-stock-intraday
+curl -s "https://push2.eastmoney.com/api/qt/stock/trends2/get?fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58&ut=fb5fd1943c7b386f172d6893dbfba10b&ndays=1&iscr=1&secid=<secid>"
 ```
+
+示例（上证指数）：
+```bash
+curl -s "https://push2.eastmoney.com/api/qt/stock/trends2/get?fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58&ut=fb5fd1943c7b386f172d6893dbfba10b&ndays=1&iscr=1&secid=1.000001"
+```
+
+---
+
+## 第三步：解析 JSON 响应
+
+### 检查返回是否正常
+
+- `rc == 0` 且 `data` 不为 null → 正常，继续解析
+- `data` 为 null → secid 有误，告知用户检查代码和市场
+- 请求失败 → 提示网络问题
+
+### data 顶层字段
+
+| 字段 | 含义 |
+|------|------|
+| `name` | 股票/指数名称 |
+| `code` | 股票代码 |
+| `preClose` | 昨收价 |
+| `trendsTotal` | 分时数据总条数 |
+| `trends` | 分时数据数组（见下） |
+
+### trends 数组格式
+
+每条字符串按逗号分隔，共 8 个字段：
+
+```
+时间(f51), 开盘价(f52), 现价/收盘价(f53), 最高价(f54), 最低价(f55), 成交量-手(f56), 成交额-元(f57), 均价(f58)
+```
+
+示例：
+```
+"2026-03-24 09:31,3850.95,3841.40,3852.03,3841.40,21144419,27208168960.00,3876.612"
+```
+
+---
+
+## 第四步：输出数据
+
+将解析结果以如下格式直接输出给用户：
+
+```
+【上证指数】（000001）当日分时数据
+昨收价: 3813.28  |  共 256 条
+
+时间     开盘      现价      最高      最低      成交量(手)    成交额(元)          均价
+-------- -------- -------- -------- -------- ------------ ------------------- --------
+09:15    3813.28  3813.28  3813.28  3813.28  0            0.00                3813.28
+09:31    3850.95  3841.40  3852.03  3841.40  21144419     27208168960.00      3876.61
+...
+15:00    3880.86  3881.28  3881.42  3880.86  8194784      10308771840.00      3937.72
+```
+
+**注意：**
+- 时间只显示 `HH:MM` 部分（去掉日期前缀）
+- 均价保留 2 位小数
+- 非交易时间请求会返回上一交易日数据，需告知用户
+- 集合竞价阶段（9:15–9:25）成交量通常为 0，属正常现象

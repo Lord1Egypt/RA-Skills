@@ -1,0 +1,2 @@
+# No external dependencies required.
+# Scripts use only Python standard library (urllib, json, argparse).

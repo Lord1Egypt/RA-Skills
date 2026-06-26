@@ -1,35 +1,32 @@
 ---
-name: "calendar"
-description: "Indexed by skills.sh from sundial-org/awesome-openclaw-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sundial-org"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/calendar"
-sourceUrl: "https://skills.sh/sundial-org/awesome-openclaw-skills/calendar"
+name: calendar
+description: Calendar management and scheduling. Create events, manage meetings, and sync across calendar providers.
+metadata: {"clawdbot":{"emoji":"📅","requires":{"bins":["curl","jq"]}}}
 ---
 
-# calendar
+# Calendar 📅
 
-> Indexed by skills.sh from sundial-org/awesome-openclaw-skills
+Calendar and scheduling management.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sundial-org
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/calendar`
-- **Source URL:** [https://skills.sh/sundial-org/awesome-openclaw-skills/calendar](https://skills.sh/sundial-org/awesome-openclaw-skills/calendar)
+## Features
 
-## Overview
+- Create events
+- Schedule meetings
+- Set reminders
+- View availability
+- Recurring events
+- Calendar sync
 
+## Supported Providers
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/calendar
+- Google Calendar
+- Apple Calendar
+- Outlook Calendar
+
+## Usage Examples
+
+```
+"Schedule meeting tomorrow at 2pm"
+"Show my calendar for this week"
+"Find free time for a 1-hour meeting"
 ```

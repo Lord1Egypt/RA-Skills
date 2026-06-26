@@ -1,0 +1,13 @@
+{
+  "channels": {
+    "feishu": {
+      "master_id": "YOUR_SENDER_ID_HERE",
+      "allowlist": []
+    },
+    "telegram": {
+      "master_id": "YOUR_SENDER_ID_HERE",
+      "allowlist": []
+    }
+  },
+  "global_allowlist": []
+}

@@ -1,35 +1,663 @@
+﻿---
+name: "Enterprise Bid Document AI — 企业招投标文书AI助手"
+slug: tender-bidding-assistant
+version: "3.2.0"
+description: "AI-powered enterprise bidding assistant for China government procurement and commercial projects. Full-lifecycle support: bid document analysis, strategy, drafting, compliance audit, and post-bid follow-up. Updated for 2026 regulatory changes. ⚠️ IMPORTANT: This skill may process bid documents containing confidential business information. Users must sanitize sensitive data before upload and review their organization's data handling policies."
+author: gechengling
+license: MIT
+agent_created: true
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Glob
+  - WebSearch
+  - WebFetch
+tags:
+  - tender-document
+  - bid-document
+  - procurement-bid
+  - government-procurement
+  - bidding-documents
+  - compliance-audit
+  - 招标文件
+  - 投标文件
+  - 政府采购投标
+  - 招投标
+triggers:
+  # English — specific phrases only, avoid accidental trigger on generic "bid"/"tender"/"procurement"
+  - "tender document"
+  - "bid document"
+  - "bidding strategy"
+  - "RFP analysis"
+  - "RFQ response"
+  - "government procurement bid"
+  - "bid compliance audit"
+  - "tender bid analysis"
+  - "bidding document review"
+  - "procurement bidding strategy"
+  # Chinese — specific phrases, avoid single/short words that appear in normal conversation
+  - "招标文件解析"
+  - "投标文件制作"
+  - "投标策略制定"
+  - "招投标合规自查"
+  - "政府采购投标"
+  - "招标评分标准分析"
+  - "投标报价策略"
+  - "废标风险自查"
+  - "开标后跟进"
+  - "投标质疑函"
+  - "电子招投标"
+  - "异常低价说明"
+  - "电子保函方案"
+  - "绿色采购评分"
 ---
-name: "Tender Bidding Assistant"
-description: "AI-powered enterprise bidding assistant for China government procurement and commercial projects. Full-lifecycle support: bid document analysis, strategy, dr..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai-agent, automation, bid, china-government, chinese-market, commercial-bid, document-generation, enterprise, procurement, rfp, technical-bid, tender]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tender-bidding-assistant"
-sourceUrl: "https://clawhub.ai/skills/tender-bidding-assistant"
+
+# Enterprise Bid Document AI / 企业招投标文书AI助手
+
+> **English:** Full-lifecycle bidding assistant for government procurement and commercial projects. Updated for 2026 regulatory changes: AI compliance checks, electronic guarantees, green procurement scoring, abnormal price red-line rules, and SME preferential policies.
+>
+> **中文:** 企业招投标全流程AI助手——全面覆盖招标文件解析、资格预审、策略制定、技术标/商务标撰写、报价策略、废标自查、开标后跟进。已更新2026年新政：AI合规自查、电子保函、绿色采购评审、异常低价红线、中小企业优惠政策。
+
 ---
 
-# Tender Bidding Assistant
+## ⚠️ 使用前必读：数据安全与保密声明
 
-> AI-powered enterprise bidding assistant for China government procurement and commercial projects. Full-lifecycle support: bid document analysis, strategy, dr...
+> **重要提醒：** 本 Skill 在处理招投标文件时，可能会对上传的文档内容进行读取、分析和处理。招投标文件通常包含**商业秘密、报价信息、技术方案、客户数据**等高度敏感内容。
+>
+> **使用前请务必：**
+> 1. **脱敏处理**：上传前移除或替换所有敏感信息（具体报价、客户名称、核心技术参数、人员身份信息）
+> 2. **授权确认**：确保你有权限将相关文件内容用于 AI 分析
+> 3. **合规审查**：确认贵组织的数据安全政策允许使用第三方 AI 工具处理相关业务文件
+> 4. **结果验证**：本 Skill 生成的所有内容仅供参考，最终投标决策须由具备资质的专业人员独立审核确认
+>
+> **数据处理说明：**
+> - 本 Skill 通过 ClawHub 平台运行，文档处理过程遵循 ClawHub 的数据安全规范
+> - 不保证上传文档会被自动删除或匿名化处理
+> - 建议对极敏感项目采用离线分析或仅提供脱敏后的摘要信息
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tender-bidding-assistant`
-- **Source URL:** [https://clawhub.ai/skills/tender-bidding-assistant](https://clawhub.ai/skills/tender-bidding-assistant)
+---
 
-## Overview
+## ⚡ 2026年核心新政速览（v3.1新增）
 
+本版本全面纳入以下2026年招投标领域重大政策变化：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tender-bidding-assistant
+| 新政要点 | 影响等级 | 核心变化 |
+|---------|---------|---------|
+| 🏛️ 招标投标法修订 | ⭐⭐⭐⭐⭐ | 综合评估法成为通用评标方法，严格限制最低评标价法 |
+| 📉 价格权重下调 | ⭐⭐⭐⭐⭐ | 服务类项目价格分降为40-50%，技术/绿色/信用权重大幅提升 |
+| 🚨 异常低价红线 | ⭐⭐⭐⭐⭐ | 低于最高限价45% 或 低于次低报价50% → 须提交成本证明，否则废标 |
+| 🤖 AI全流程应用 | ⭐⭐⭐⭐ | 2026年底重点场景覆盖，2027年全国20个AI场景全面推广 |
+| 🌱 绿色采购硬性化 | ⭐⭐⭐⭐ | 碳排放/节能环保从加分项变为法定评审标准 |
+| 🛡️ 电子保函全面替代 | ⭐⭐⭐⭐ | 投标/履约/质量保证金全面推广电子保函（保险）替代现金 |
+| 🏢 中小企业优惠 | ⭐⭐⭐⭐ | 200万以下货物服务/400万以下工程全部预留小微企业，6-10%价格扣除 |
+| 🔍 围串标AI识别 | ⭐⭐⭐⭐ | 自动检测机器码/IP/MAC/文件编辑痕迹/语义相似度 |
+| 📋 终身追责 | ⭐⭐⭐ | 招标人全流程终身追责，项目档案保存期延长至15年 |
+| 🎤 数字人答辩 | ⭐⭐⭐ | 定标环节引入数字人答辩辅助决策 |
+
+---
+
+## Core Capabilities / 核心能力
+
+### 1. 招标文件全面解析
+
+**解析维度：**
+
+**1.1 项目基本信息**
+- 项目名称/编号、采购人、预算金额、采购方式（公开招标/邀请招标/竞争性谈判/询价/单一来源）
+- 合同类型（单次/框架协议/多年期）、资金来源（财政资金类别）
+- **🆕 电子招标平台识别**：自动辨识招标平台类型（政府采购云平台/中招联合/优质采/各省公共资源交易中心），提示对应平台的CA证书要求、文件加密格式和递交流程差异
+
+**1.2 关键时间节点**
+- 文件获取截止 → 答疑截止 → 投标递交截止 → 开标 → 中标公示 → 合同签订
+- **🆕 电子投递窗口识别**：标注电子投标系统开放时间段（部分平台非7×24小时开放），避免因错过电子上传窗口而废标
+
+**1.3 资格条件核查**
+- 主体资格：营业执照经营范围、注册资本、存续年限
+- 行业资质：许可证类别/等级/有效期（保险经纪代理资质、软件企业认证、ISO等）
+- 财务要求：营收规模、净资产、银行资信证明
+- 业绩要求：合同金额/数量/年限，证明材料形式（合同+验收报告/中标通知书）
+- 人员要求：资质证书种类（PMP/一建/监理工程师）、社保缴纳证明月份
+- 信用要求：政府采购黑名单核查、税务合规
+- **🆕 2026合规穿透核查**：信用中国+中国裁判文书网+全国公共资源交易平台三网联查；识别招标文件中是否存在违反中小企业政策的歧视性条款（如不合理的地域限制、注册资本门槛）
+
+**1.4 评分标准深度解析**
+- 分值分布：商务分 + 技术分 + 价格分 + 服务分（权重及子项）
+- 客观分（一票否决/满分零分） vs 主观分（弹性打分空间）
+- 加分项识别：证书/荣誉/专利/奖项，精准对应准备材料
+- 评分陷阱：识别对本公司不利的卡位设计
+- **🆕 2026评标权重分析**：自动标注价格分是否已按新政下调（服务类≤50%、货物/工程类≤60%），识别绿色采购指标是否已纳入法定评审（碳排放强度、可再生能源使用比例、节能环保技术应用），提示技术方案+履约能力+信用评价的增权空间
+
+**1.5 投标文件格式要求**
+- 正本/副本数量、电子文件（U盘/网上递交）
+- 装订方式（骑马钉/胶装/无钉）、密封要求、签字盖章规范
+- **🆕 电子投标合规要求**：哈希值加密存证规则、CA数字证书互认范围（是否跨省通办）、电子签章效力声明、机器码/IP/MAC地址隔离要求（禁止多投标人使用同一设备制作标书）
+
+**输出：** 招标文件分析报告（项目概要表 + 资格门槛清单 + 评分策略 + 材料清单 + 风险提示 + 新政影响评估）
+
+---
+
+### 2. 投标策略制定
+
+**2.1 竞争态势分析**
+- 潜在竞争对手资质/业绩/报价区间分析
+- 本公司相对竞争优势识别（技术/价格/资质）
+- 投标可行性评估（获标概率 × 资源投入 ROI）
+- **🆕 中小企业优惠政策利用策略**：判断本公司是否符合小微企业标准，如符合则自动计算6-10%价格扣除后的评审优势；评估是否可通过与大中型企业组成联合体或分包方式享受评审优惠
+
+**2.2 评分最大化策略**
+- 商务分：资质证书准备优先级，临时可补充的证书
+- 技术分：针对主观分项，定向设计方案亮点
+- 服务分：响应时效/驻场/备件等服务承诺量化策略
+- **🆕 绿色低碳加分策略**：识别招标文件中绿色采购指标要求，评估本公司碳排放数据/节能认证/环保产品认证的匹配度，提供可快速申请或补充的绿色资质清单（如ISO 14064碳核查声明、绿色供应链评价证书）
+
+**2.3 联合体投标决策**
+- 主办方/成员方资质分配，联合体协议要点
+- 职责分工、资质共享规则、风险承担约定
+- **🆕 联合体中小企业优惠规则**：大中型企业与小微企业组成联合体，小微企业合同份额≥30%时可享受评审优惠的具体条件与协议设计
+
+**2.4 差异化亮点设计**
+- 超出招标要求的增值服务（免费培训、延保期、专属通道）
+- 行业案例对标采购人痛点包装
+
+**2.5 质疑与弃标决策**
+- 发现招标文件倾向性条款时，质疑流程与风险评估
+- 弃标条件判断（资格不满足 vs 投入产出比）
+- **🆕 2026歧视性条款识别**：自动检测招标文件中是否存在被《招标投标法》修订草案及《招标人主体责任履行指引》禁止的不合理条件（地域限制、不相关的注册资本门槛、特定奖项荣誉作为准入门槛等），提供质疑函法律依据引用
+
+---
+
+### 3. 商务标制作
+
+**3.1 封面与目录**
+- 封面要素：项目名称/编号、投标人全称（与营业执照一致）、日期、正本/副本标识
+- 目录按招标文件要求顺序，标注页码
+
+**3.2 投标函（核心法律文件）**
+- 投标总价大小写完全一致，含税价格说明（增值税税率）
+- 投标有效期（×日历天），法定代表人/授权代表签字+公章
+- 日期填写递交当日
+
+**3.3 法定代表人身份证明 & 授权委托书**
+- 委托书：委托人→受托人→授权范围（签署文件/参加开标/签订合同）→有效期
+- 受托人身份证复印件附件
+
+**3.4 报价文件**
+- 分项报价明细表（单价×数量=合价）
+- 总报价汇总表（含税/不含税/税额分列）
+- 价格说明（报价构成：人工/材料/管理费/利润）
+- **🆕 异常低价成本证明包**：当报价低于最高限价45%或低于次低报价50%时，自动生成包含加盖公章的人材机明细+管理费及利润测算表的成本证明文件模板，以及与行业造价数据库比对说明的框架
+
+**3.5 资质证明材料（按页码排列）**
+1. 营业执照（三证合一）
+2. 行业许可证/资质证书（按评分排序）
+3. ISO/体系认证证书
+4. 荣誉奖项证书（对应加分项）
+5. 纳税证明/财务审计报告
+6. 银行资信证明/开户许可证
+7. 业绩合同+验收报告（金额从大到小）
+8. 关键人员资质证书+社保证明
+9. 信用承诺书/无不良记录证明
+10. **🆕 绿色低碳相关证书**：ISO 14001环境管理体系、ISO 50001能源管理体系、碳核查声明、绿色供应链评价、产品碳足迹报告
+
+**3.6 承诺函合集**
+| 类型 | 内容要点 |
+|------|---------|
+| 廉洁诚信承诺 | 不行贿、不围标、诚实守信 |
+| 不串标/围标承诺 | 独立报价、不与他人串通 |
+| 诚信投标承诺 | 材料真实性声明 |
+| 社会责任承诺 | 劳工保护、环保合规（视要求） |
+| 知识产权承诺 | 无侵权（科技类项目） |
+| **🆕 绿色采购承诺** | 碳排放数据真实性声明、节能环保技术应用声明 |
+| **🆕 电子投标合规承诺** | 电子文件与纸质文件一致性声明、哈希值存证确认 |
+
+**3.7 投标保证金文件**
+- **🆕 电子保函优先方案**：优先推荐电子保函（保险）替代现金保证金，提供银行保函/保险保函/担保保函三种形式的金额/有效期/受益人三要素对比；现金汇款仅作备选，附带汇款凭证+加盖公章确认函模板
+- **🆕 电子保函平台对接指引**：主流电子保函平台（工保网/中企云链/各省公共资源交易中心保函系统）的办理流程、费率对比（通常为保证金金额的0.5%-1.5%）
+
+**3.8 商务标格式合规清单**
+- [ ] 正本/副本标注正确，数量符合要求
+- [ ] 投标函大小写金额完全一致
+- [ ] 日期填写完整（年月日）
+- [ ] 所有签字处/盖章处无遗漏
+- [ ] 装订方式/密封符合招标文件要求
+- [ ] 证书在有效期内，复印件清晰
+- [ ] **🆕 电子文件哈希值已生成并存证**
+- [ ] **🆕 电子签章CA证书在有效期内且互认范围覆盖招标平台**
+- [ ] **🆕 电子保函已审核通过且在有效期内**
+
+---
+
+### 4. 技术标制作
+
+**4.1 项目理解与需求回应**
+- 逐条回应采购需求书，识别采购人隐含痛点
+- 分析现状与目标gap，提出解决路径
+
+**4.2 公司综合实力介绍**
+- 企业概况（聚焦本项目相关优势）
+- 核心资质/认证/行业地位
+- 标杆客户案例（与采购人同类型优先）
+
+**4.3 技术方案（核心章节）**
+
+**A. 服务类（保险/咨询/培训）：**
+- 服务方案框架、服务内容/标准/流程
+- 交付模式（线上/线下/混合，频次）
+- 服务管理机制（报告/满意度/投诉响应）
+
+**B. IT/软件类：**
+- 系统架构图+模块说明
+- 功能需求逐条响应矩阵（需求→实现→截图）
+- 数据安全（等保2.0合规）
+- SLA承诺（并发量/响应时间/可用性≥X%）
+- 运维升级方案（版本/故障/容灾）
+
+**C. 工程类：**
+- 施工组织设计、关键施工技术方案
+- 质量控制（工序检验/隐蔽验收）
+- 安全文明施工（应急预案/特种作业）
+
+**D. 货物采购类：**
+- 技术规格逐条响应表（≥ 或 = 采购规格）
+- 质量认证（3C/CE/国标检测报告）
+- 交货计划与包装方案
+
+**🆕 2026 AI辅助评标应对策略：**
+- 响应性自动比对优化：技术方案按招标文件条款逐条编号响应，采用结构化格式（需求编号→我方响应→证明材料页码），便于AI自动提取和比对
+- 语义独创性保障：避免使用通用模板话术，针对每个项目定制关键段落，降低AI语义相似度检测的雷同告警风险
+- 量化承诺优先：凡是可量化的指标（响应时间、驻场人数、培训课时、巡检频次）全部使用具体数字而非模糊描述
+
+**4.4 项目实施计划**
+- WBS任务分解（里程碑+交付物清单）
+- 甘特图（各阶段时间安排）
+- 资源投入计划（人员/设备/资金按阶段）
+
+**4.5 项目团队配置**
+| 岗位 | 资质证书 | 同类业绩 | 到岗时间 |
+|------|---------|---------|---------|
+| 项目总负责人 | — | — | 中标后×日 |
+| 技术负责人 | — | — | — |
+| 驻场/交付人员 | — | — | — |
+
+- 核心人员简历摘要（200字，突出本项目相关经历）
+- 人员稳定性承诺（更换须采购人审批）
+- **🆕 社保穿透核查准备**：提供关键人员最近连续×个月的社保缴纳记录（需与投标单位一致），应对2026新政对中标候选人人员社保关系的穿透式核验要求
+
+**4.6 质量保证体系**
+- 质量管理组织架构与职责
+- 关键节点验收标准与ISO执行机制
+- 质量问题处理流程（发现→响应→改进闭环）
+
+**4.7 售后服务方案（关键加分项）**
+- 响应标准：紧急故障≤X小时，一般问题≤X工作日，咨询≤X工作日
+- 服务渠道：专属400/微信/企业微信/邮件/驻场
+- 定期巡检频次、服务报告模板
+- 质保年限（明确超出最低要求部分）
+- 培训方案（初始培训+年度复训+材料提供）
+- 增值服务亮点（免费版本升级/行业数据共享）
+
+**4.8 风险管理与应急预案**
+- 主要风险识别（技术/人员/供应链/政策）
+- 预防措施与应急响应流程
+- 项目保险方案（工程险/雇主责任险等）
+
+**4.9 类似项目业绩展示**
+| 项目名称 | 采购人 | 合同金额 | 完成时间 |
+|---------|--------|---------|---------|
+| — | — | — | — |
+
+- 业绩材料三件套：合同首页+金额页+验收报告
+- 排序：金额从大到小，优先与本次需求高度相似
+
+**4.10 创新方案与增值服务**
+- 超出招标要求的技术创新点
+- 额外提供不收费的增值内容
+- AI/大数据赋能方案（如适用）
+
+---
+
+### 5. 报价策略分析
+
+**5.1 评标价格计算方式**
+| 计算方式 | 最优策略 |
+|---------|---------|
+| 最低价中标 | 成本线以上尽量低报（注意2026异常低价红线） |
+| 综合评分（偏差率） | 预测基准价，报最优负偏差区间 |
+| 综合评分（固定基准） | 按公式计算最优报价点 |
+| 招标控制价下浮 | 下浮率在合理区间内最优 |
+
+**5.2 基准价预测方法**
+- 市场询价（同类项目价格区间）
+- 竞争对手报价推测（历史中标数据）
+- 成本加成法：直接成本+间接成本+目标利润
+- 预算反推：中标价通常在预算85%-95%区间
+- **🆕 电子招投标平台历史数据挖掘**：通过公共资源交易平台公开的中标公示数据，提取同类项目近12个月的中标价格区间、中标折扣率分布、中标企业报价规律
+
+**5.3 不平衡报价策略**
+- 适用：工程量清单/可选项报价/多标段组合
+- 类型：前高后低（提前回收资金）、量大项低量小项高
+- 风险提示：过度不平衡可能被废标
+- **🆕 AI报价深度扫描预警**：2026年AI辅助评标系统会对工程量清单和报价清单进行深度扫描和语义分析，不平衡报价的隐蔽性大幅降低。建议报价偏差控制在15%以内，并准备合理的单价差异说明
+
+**5.4 成本保障底线**
+- 直接成本清单（人工/材料/设备/差旅）
+- 间接成本（管理费/税费/投标费用）
+- 最低可接受利润率，恶意低价中标风险评估
+- **🆕 异常低价红线计算器**：
+  - 红线一：最高限价 × 45% = ¥X
+  - 红线二：预估次低报价 × 50% = ¥Y
+  - 如我方报价 < X 或 < Y，必须提前准备人材机明细+管理费及利润测算表（加盖公章）
+  - 成本证明材料需与行业造价数据库可比对，差距过大需提供合理说明
+
+**5.5 报价敏感性测试**
+- 价格变动5%时的评分变化分析
+- 不同价格方案的综合评分模拟
+- **🆕 价格分权重适配模拟**：根据2026新政价格分上限（服务类≤50%、货物工程类≤60%），模拟不同报价方案在新技术/绿色/信用权重下的综合得分变化
+
+---
+
+### 6. 废标风险全面自查
+
+**6.1 资格性审查（一票否决）**
+- [ ] 营业执照有效、经营范围匹配
+- [ ] 行业资质证书在有效期
+- [ ] 满足注册资本/净资产要求
+- [ ] 业绩条件逐条核对（金额/年限/证明材料完整）
+- [ ] 关键人员社保覆盖要求月份
+- [ ] 不在政府采购黑名单（信用中国核查）
+- [ ] 联合体协议已签署（如适用）
+
+**6.2 符合性审查**
+- [ ] 投标函大小写金额完全一致（逐字核对）
+- [ ] 投标有效期不短于要求
+- [ ] 报价未超出最高限价（如有）
+- [ ] 未实质性拒绝招标文件条款
+- [ ] 保证金金额/形式/有效期符合要求且已到账
+- [ ] **🆕 电子保函有效期覆盖投标有效期+30天（监管缓冲期要求）**
+
+**6.3 文件完整性**
+- [ ] 按目录逐项核对，无缺页缺项
+- [ ] 正本/副本数量符合要求
+- [ ] 电子文件已制作并与纸质版一致
+- [ ] 所有签字处/盖章处无遗漏
+
+**6.4 格式规范**
+- [ ] 装订方式符合要求，密封完整
+- [ ] 页码连续，无缺页重复
+- [ ] 证书复印件清晰，未过期，未涂改
+- [ ] 分项报价与总价汇总一致，无计算错误
+
+**6.5 合规风险**
+- [ ] 无串通投标行为
+- [ ] 项目负责人非同期挂靠其他项目
+- [ ] 无与采购人利益冲突的关联关系
+- [ ] 低价投标时已准备成本说明材料
+- **🆕 电子标书机器码/IP/MAC地址隔离检查**：确认制作电子标书的设备从未被其他投标人使用过；确认上传IP地址与本公司实际办公网络一致；确认文件编辑痕迹中不包含其他公司信息；确认电子标书文件创建者/最后保存者信息为公司授权人员
+
+**6.6 保险类投标专项**
+- [ ] 保险经营许可证有效，险种涵盖采购内容
+- [ ] 偿付能力充足率满足监管要求（核心≥100%/50%，综合≥150%/100%：偿二代二期标准）
+- [ ] 风险综合评级≥B类
+- [ ] 险种条款已在金融监管局备案（提供备案号）
+- [ ] 费率在行业指导范围内，历史赔付率说明材料就绪
+
+**6.7 🆕 AI合规预审清单**
+- [ ] 电子投标文件已过AI合规检测工具预审（招标文件响应度≥95%、错敏词清零）
+- [ ] 技术方案语义独创性检查通过（不与已公开的其他投标方案高度雷同）
+- [ ] 报价清单已过AI不平衡报价检测（单项偏差≤15%）
+- [ ] 社保信息已过穿透式核验准备（关键人员社保单位与投标人一致）
+- [ ] 绿色采购指标已逐条响应并附证明材料
+
+---
+
+### 7. 开标后跟进管理
+
+**7.1 开标现场应对**
+- 记录所有投标人名称、公开宣读报价
+- 发现废标/唱价错误，现场提出异议程序
+- 禁止行为：不得向评委施加任何影响
+- **🆕 AI辅助开标现场应对**：如遇"数字开标人"（AI宣读纪律/解密/唱标），注意核对电子唱标信息与投标文件一致性，系统自动记录的异议时限比人工开标更短（通常≤10分钟）
+
+**7.2 澄清响应管理**
+- 评委澄清函：在要求时限内书面回复
+- 澄清原则：不得实质性修改投标文件，仅作说明
+- 澄清函模板：问题引述 → 说明解释 → 证明材料
+- **🆕 数字人答辩准备**：2026新政鼓励在定标环节引入数字人答辩，需准备好虚拟答辩的脚本逻辑、核心优势的视觉化展示材料、常见质疑问题的应对框架
+
+**7.3 中标通知书 & 合同谈判**
+- 有效期内签订合同（逾期视为放弃）
+- 合同谈判重点：付款条款（预付款比例/里程碑付款）、违约条款（延期处罚上限）、知识产权归属、争议解决（仲裁/诉讼，管辖地）
+- 履约保证金：金额/形式/退还条件确认
+- **🆕 AI合同风险检测**：利用AI工具对合同关键权利义务条款进行风险提示，防范"阴阳合同"和随意篡改。重点核查：付款条款与招标文件一致性、违约条款对等性、知识产权归属清晰度、履约保证金退还条件是否有操作性
+
+**7.4 未中标分析与质疑投诉**
+- 申请查阅评标报告（×日内）
+- 可质疑情形：中标人不满足资格条件/打分明显错误/业绩弄虚作假
+- 流程：质疑（7日内回复）→ 不满意投诉财政部门（30日内）
+- 失标原因分析（报价/方案/资质）并针对性提升
+- **🆕 2026中标人穿透核查权**：可申请对中标候选人的资质真实性、业绩有效性、人员社保关系进行穿透式核验，如发现造假可向财政部门投诉并要求重新评审
+
+---
+
+### 8. 行业专项模板库
+
+#### 团体保险投标
+- 保险方案设计框架（险种组合/保障内容/赔付条件）
+- 承保方案书（费率厘定说明/偿付能力声明）
+- 理赔服务承诺（理赔时效/绿色通道/免赔说明）
+- 惠民保/补充医疗/雇主责任险专项方案模板
+- **🆕 健康管理增值服务方案**：员工健康体检、心理健康EAP、健康讲座、在线问诊等增值服务模块，可作为服务分加分亮点
+
+#### IT系统采购投标
+- 功能需求响应矩阵模板
+- 数据安全方案（等保2.0合规声明）
+- SLA服务协议模板
+- 用户培训计划模板
+- **🆕 政务云/信创适配方案**：国产CPU（鲲鹏/飞腾）、操作系统（麒麟/统信）、数据库（达梦/人大金仓）适配声明模板；数据本地化存储、安全可控承诺函
+
+#### 咨询服务投标
+- 项目理解与方法论框架（MECE分析）
+- 顾问团队简历模板（结构化一页纸）
+- 研究报告/调研访谈方案设计
+
+#### 工程类投标
+- 施工组织设计大纲
+- 重难点分析与对策
+- 项目经理/技术负责人简历模板
+- **🆕 绿色施工方案**：碳排放测算与控制目标、建筑垃圾资源化利用率承诺、绿色建材使用比例（2026要求≥30%）、BIM+智慧工地管理方案
+
+#### 🆕 新能源/绿色项目投标
+- 光伏/风电/储能项目技术方案框架
+- 碳减排量测算与碳交易收益说明
+- 全生命周期碳排放评估报告模板
+- ESG绩效提升方案
+
+#### 🆕 数字化服务投标
+- 大模型/智能体服务采购专项方案（2026年4月国务院新纳入政府采购支持清单）
+- AI项目实施方法论（数据治理→模型训练→部署运维→持续优化）
+- 算法安全与可解释性声明
+- 模型备案合规声明
+
+---
+### 8.5 各省电子招投标平台差异对比表（2026版）
+
+| 平台名称 | 覆盖省份 | CA证书类型 | 文件加密格式 | 投标窗口时间 | 特殊要求 | 常见废标原因 |
+|---------|---------|------------|-------------|---------------|---------|------------|
+| 政府采购云平台 | 全国（中央+地方） | 国密USB Key（飞天/握奇） | 加密XML | 限时开放（截止前4小时） | 提前1日完成测试上传 | CA证书过期/加密失败 |
+| 中招联合 | 中央/北京/部分央企 | CFCA证书 | 加密PDF | 24h开放 | 联合体协议需公证 | 联合体未公证 |
+| 优质采 | 安徽/江苏/全国部分 | 国密CA | 加密 | 工作日9:00-17:00 | 信创环境（麒麟/统信） | 非工作日无法上传 |
+| 各省公共资源交易中心 | 各省市独立 | 本省CA（不互认） | 各省不同 | 各省略有差异 | 需现场解密（部分） | 未办本省CA |
+| 企业自建平台 | 大型国企/银行 | 企业指定CA | 企业格式 | 按企业规定 | 注册准入审核 | 未提前注册 |
+
+**关键操作提示**：
+1. **CA证书互认**：2026年起长三角/京津冀推进CA互认，但全国仍未统一，跨省投标须办理当地CA
+2. **电子投标文件加密**：须使用招标文件指定加密工具（通常为平台提供），加密后须成功上传并收到回执
+3. **投标窗口时间**：部分平台非7×24小时开放（如优质采），周五晚间至周日可能无法上传，须提前完成
+
+---
+
+### 8.6 2026新政评分标准变化详解表
+
+| 评分要素 | 旧政（2024前） | 新政（2026） | 变化幅度 | 应对策略 |
+|---------|------------|------------|---------|---------|
+| **价格分权重**（服务类） | 最高60% | 最高50% | ↓10% | 强化技术/服务得分，不再依赖低价取胜 |
+| **价格分权重**（货物/工程） | 最高70% | 最高60% | ↓10% | 技术方案权重上升，方案质量成关键 |
+| **绿色采购** | 加分项（2-5分） | 法定评审标准（一票否决项） | 质变 | 必须提供碳足迹/环保认证，否则废标 |
+| **信用评价** | 无全国统一标准 | 全国信用信息共享平台数据 | 新增 | 提前查询自身信用记录，有问题提前修复 |
+| **异常低价** | 无明确规定 | 低于最高限价45%或次低50%须说明 | 新增 | 报价前测算成本红线，准备证明材料 |
+| **中小企业** | 部分预留 | 200万以下全预留+6-10%价格扣除 | 强化 | 小微企业须提供《中小企业声明函》标准格式 |
+| **AI评标** | 无 | 2027年全国20场景推广 | 新增 | 技术方案避免模板化，防语义相似度告警 |
+
+---
+
+### 8.7 投标文件编制时间规划模板（2026实战版）
+
+| 阶段 | 建议天数 | 关键任务清单 | 交付物 | 常见风险点 | 应对方案 |
+|------|---------|------------|--------|---------|---------|
+| **招标文件分析** | 1-2日 | ①通读全文标记关键条款 ②提取评分标准 ③列出资审条件 ④澄清问题清单 | 招标文件分析报告 | 时间不足导致理解偏差 | 立即启动，不等待 |
+| **资质材料准备** | 2-3日 | ①更新营业执照 ②检查许可证有效期 ③准备业绩合同+验收报告 ④社保/纳税证明 | 资质证明文件包 | 证书过期需紧急续期 | 提前1周检查所有证书 |
+| **商务标编制** | 2-3日 | ①投标函（大小写核对） ②分项报价表 ③商务条款响应 ④投标保证金（电子保函） | 商务标书 | 报价计算错误/保证金未到账 | 报价双人复核+提前24h缴保 |
+| **技术标编制** | 3-5日 | ①技术方案 ②项目团队 ③实施计划 ④售后服务 ⑤应急预案 | 技术标书 | 方案针对性不足/AI相似度告警 | 定制化撰写，避免模板套用 |
+| **电子标书制作** | 1-2日 | ①PDF转换 ②电子签章 ③加密上传 ④解密测试 | 电子投标文件 | 加密失败/上传超时 | 提前1日完成，留缓冲时间 |
+| **整合自查** | 1日 | ①废标条款逐项核对 ②格式规范检查 ③AI合规预审 | 自查报告 | 最后一刻发现致命错误 | 使用AI预审工具提前扫描 |
+| **递交/上传** | 0.5-1日 | ①电子上传确认回执 ②纸质版送达（如要求） ③开标代表授权 | 投标文件+回执 | 网络故障/交通意外 | 提前4小时完成，不选最后一刻 |
+
+**总周期建议**：简单项目（标书<200页）建议10-12日；复杂项目（标书>500页）建议15-20日。
+
+---
+
+### 8.8 废标风险量化评估模型（2026新版）
+
+| 风险类别 | 权重 | 评估问题（每题0-2分，0=无风险，2=高风险） | 得分计算 |
+|---------|------|-------------------------------------|---------|
+| **资格性风险** | 30% | Q1:营业执照范围是否完全覆盖招标内容？Q2:行业资质是否在有效期内？Q3:业绩金额/数量是否满足门槛？ | 平均得分×0.3 |
+| **符合性风险** | 25% | Q1:投标函大小写是否完全一致？Q2:投标有效期是否满足？Q3:保证金是否已到账？ | 平均得分×0.25 |
+| **报价风险** | 20% | Q1:报价是否超最高限价？Q2:是否触发异常低价红线？Q3:分项报价与总价是否一致？ | 平均得分×0.2 |
+| **合规风险** | 15% | Q1:机器码/IP是否与其他投标人隔离？Q2:技术方案是否原创？Q3:社保是否与投标人一致？ | 平均得分×0.15 |
+| **电子风险** | 10% | Q1:CA证书是否在有效期内？Q2:电子签章是否成功？Q3:加密上传是否收到回执？ | 平均得分×0.1 |
+
+**风险等级判定**：
+- **绿色（得分≥85）**：风险可控，可正常投标
+- **黄色（70≤得分<85）**：存在中风险项，须补充材料或调整策略
+- **红色（得分<70）**：高风险，建议放弃或大幅调整后再投
+
+---
+
+### 9. 合规边界声明
+
+> **⚠️ 本Skill拒绝协助以下行为：**
+> 1. 串通投标（围标）、虚假业绩/伪造证书、行贿评委、恶意低价后转包
+> 2. 利用AI工具规避围串标检测（故意修改机器码/MAC地址/IP地址）
+> 3. 生成与其他投标人实质性雷同的技术方案（语义相似度规避）
+> 4. 伪造绿色低碳认证材料或碳排放数据
+>
+> **法律依据：** 上述行为违反《招标投标法》《政府采购法》及2026年修订条款、《反不正当竞争法》以及国家发改委等8部门《关于加快招标投标领域人工智能推广应用的实施意见》（发改法规〔2026〕195号），情节严重将追究刑事责任。AI仅作辅助工具，不替代招标人、投标人、评标专家的自主判断和法定责任。
+
+---
+
+## Workflow / 工作流程
+
 ```
+用户提供招标文件/公告/描述
+       ↓
+Step 1: 全面解析 → 分析报告 + 资格核查 + 材料清单 + 新政影响评估
+       ↓
+Step 2: 策略制定 → 竞争分析 + 报价区间 + 亮点设计 + 中小企业优惠评估
+       ↓ (用户确认)
+Step 3: 按需生成 → 商务标 / 技术标 / 报价策略（含异常低价成本证明）
+       ↓
+Step 4: 废标自查 → 逐项检查报告 + AI合规预审
+       ↓
+Step 5: 开标后跟进 → 澄清 / 数字人答辩 / 合同AI审查 / 质疑
+```
+
+---
+
+## 常见场景示例
+
+| 场景 | 示例指令 |
+|------|---------|
+| 解析招标文件 | "帮我分析这份招标公告，提取关键要素、废标风险和2026新政影响" |
+| 制定报价策略 | "综合评分法价格分40%，偏差率公式，异常低价红线分析，帮我测算最优报价" |
+| 生成投标函 | "帮我生成IT采购商务投标函，总价258万元，含电子保函说明" |
+| 撰写技术方案 | "帮我写团体健康险投标的技术服务方案，需包含绿色加分亮点" |
+| 制作售后承诺 | "生成保险服务项目售后服务承诺，含理赔响应时效和健康管理增值" |
+| 废标自查 | "按2026废标风险清单逐项审查我的标书，含AI合规预审" |
+| 质疑函 | "写一份针对评标结果的质疑函，中标人业绩不满足要求，申请穿透核查" |
+| 联合体协议 | "起草联合体投标协议，主办方负责技术，成员方提供资质，含中小企业优惠条款" |
+| 合同谈判清单 | "整理中标后合同谈判关键条款清单，含AI合同风险检测要点" |
+| 异常低价说明 | "准备异常低价成本证明文件，含人材机明细和行业造价对比" |
+
+---
+
+> **English:** Covers China Government Procurement Law (政府采购法), Bidding Law (招标投标法) with 2026 amendments, NDRC AI Implementation Guidelines (发改法规〔2026〕195号), MOF Abnormal Pricing Notice (财库〔2026〕2号), and CBIRC Solvency II guidelines. For Word export, combine with `docx` skill.
+
+---
+
+## References / 参考文件
+
+- `references/bid-document-templates.md` — 投标各模块模板库（含2026新政模板）
+- `scripts/analyze_tender.py` — 招标文件自动化分析脚本（支持AI合规预审）
+
+---
+
+*Enterprise Bid Document AI v3.1.0 | Author: gechengling | License: MIT*  
+*ClawHub: https://clawhub.ai/gechengling/tender-bidding-assistant*  
+*GitHub: https://github.com/gechengling/tender-bidding-assistant*
+
+---
+
+## README (English)
+
+**Enterprise Bid Document AI** is a full-lifecycle bidding assistant updated for 2026 China regulatory changes. It covers government procurement and commercial project bidding end-to-end, with special attention to the eight major 2026 policy shifts affecting how bids are evaluated and scored.
+
+### What's New in v3.1.0
+- ⚠️ **Security & Data Warnings added** — explicit notice that bid documents may contain confidential information; users must sanitize sensitive data before upload
+- 🔒 **Trigger refinement** — English/Chinese triggers made more specific to avoid accidental invocation on generic conversation
+- 📋 **Compliance boundary strengthened** — clearer rejection of bid-rigging, document forgery, and policy-violating assistance
+
+### ⚠️ Security & Data Warning
+
+Before using this skill, please read carefully:
+
+- **Bid documents are confidential.** Uploaded files may contain pricing, technical proposals, and business-sensitive content.
+- **Sanitize before upload.** Remove or redact sensitive data (specific prices, client names, core technical parameters, personnel identity information) before submitting documents for analysis.
+- **No guaranteed deletion.** Uploaded documents are not guaranteed to be automatically deleted or anonymized after processing.
+- **Your responsibility.** You are responsible for ensuring your organization's data security policies allow using third-party AI tools for business document analysis.
+
+### Quick Start
+```bash
+npx clawhub install tender-bidding-assistant
+```
+
+### Key Commands
+```
+/tender-bidding-assistant "Analyze this RFP for 2026 policy impact"
+/tender-bidding-assistant "Generate commercial bid package with e-guarantee"
+/tender-bidding-assistant "Run AI compliance pre-audit on my bid documents"
+/tender-bidding-assistant "Prepare abnormal low-price cost justification"
+```
+
+**Install**: `npx clawhub install tender-bidding-assistant`  
+**Author**: gechengling | **Version**: 3.1.0 | **License**: MIT
+
+## Security & Compliance
+
+**⚠️ Data Processing Warning:** This skill may read and process bid documents you upload or paste into the conversation. Bid documents typically contain **confidential business information** including pricing, technical proposals, client data, and strategic content. By using this skill, you acknowledge that such content may be processed by the AI model.
+
+**User Responsibilities:**
+- **Sanitize before use:** Remove or redact sensitive data (specific prices, client names, core technical parameters, personnel identity information) before submitting any document for analysis.
+- **Authorization:** Ensure you have permission to use the relevant document content for AI-assisted analysis.
+- **Compliance:** Confirm your organization's data security policy allows using third-party AI tools for business document analysis.
+- **No guaranteed deletion:** Uploaded documents are not guaranteed to be automatically deleted or anonymized after processing.
+
+**What this skill does NOT do:**
+- Does NOT facilitate bid-rigging, collusion, or any form of corruption.
+- Does NOT assist in forging certificates, falsifying performance records, or creating fake qualifications.
+- Does NOT provide strategies to evade AI-based collusion detection (machine code/IP/MAC address manipulation).
+- Does NOT generate technical proposals with substantially similar content to other bidders.
+
+**Allowed Tools:** `Bash, Read, Write, Glob, WebSearch, WebFetch` — used to analyze bid documents, generate templates, search regulatory updates, and fetch reference materials. All generated content is for reference only — final bid documents must be reviewed by qualified professionals.
+
+**Legal Basis:** China's Bidding Law (招标投标法), Government Procurement Law (政府采购法) with 2026 amendments, NDRC AI Implementation Guidelines (发改法规〔2026〕195号). AI is an assistive tool only; it does not replace the independent judgment and legal responsibility of bidders, bid-evaluation experts, or procuring entities.

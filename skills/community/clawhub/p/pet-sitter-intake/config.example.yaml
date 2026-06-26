@@ -1,0 +1,42 @@
+# Pet Sitter Intake Form Generator - Configuration Example
+# Copy this file to config.yaml and customize for your business
+
+# Business Information
+business_name: "Pawsitive Pet Care"
+sitter_name: "Jane Smith"  # Leave empty to use business_name in authorization text
+services: "Pet Sitting, Dog Walking, Boarding, Drop-In Visits"
+location: "Portland, OR"
+contact: "(503) 555-1234 | hello@pawsitivepetcare.com"
+
+# Form Options
+service_type: general  # Options: general, boarding, walking, drop_in
+num_pets: 1            # Number of pet profile pages (1-5 recommended)
+include_home_access: true  # Include home access section for in-home sitting
+fillable: true         # Generate fillable PDF form fields (set false for print-only)
+
+# Output
+output: "client_intake_form.pdf"  # Default output filename
+
+# Color Theme
+# Built-in themes: lavender, ocean, forest, rose, sunset, neutral, midnight
+# Run `python generate_form.py --list-themes` to see all options with color previews
+theme: lavender
+
+# Custom Colors (optional) - Only used when theme is set to "custom"
+# Uncomment and modify to create your own brand colors:
+# theme: custom
+# colors:
+#   primary: "#DDD6F3"       # Section headers, backgrounds
+#   primary_mid: "#B8ABDF"   # Borders, field outlines
+#   primary_dark: "#6B5B9E"  # Headings, checkbox borders
+#   accent: "#FAC8A0"        # Decorative lines, highlights
+#   accent_light: "#FEF0E7"  # Hero section, authorization blocks
+#   text: "#2D2926"          # Main text color
+#   text_muted: "#6B6560"    # Labels, secondary text
+#   text_light: "#B0A9A4"    # Notes, hints, footer
+
+# Service Type Descriptions:
+# - general: Standard intake form with all sections
+# - boarding: Adds drop-off/pick-up times, items to bring checklist
+# - walking: Adds leash behavior, route preferences, walk duration
+# - drop_in: Adds per-visit task checklist, visit time preferences

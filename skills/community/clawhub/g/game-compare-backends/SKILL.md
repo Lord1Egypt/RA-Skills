@@ -1,35 +1,37 @@
 ---
-name: "Game Compare Backends"
-description: "Run a narrow compare between two or three backend profiles when architecture uncertainty is real. Use carefully, because it usually costs more tokens and time."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/game-compare-backends"
-sourceUrl: "https://clawhub.ai/skills/game-compare-backends"
+name: game-compare-backends
+description: Run a narrow compare between two or three backend profiles when architecture uncertainty is real. Use carefully, because it usually costs more tokens and time.
+license: MIT
+compatibility: Claude Code and Codex. Best results with file read/write access and the ability to build/test prototypes.
+metadata:
+  author: game-superpowers
+  version: "1.1.0"
+  domain: game-development
 ---
 
 # Game Compare Backends
 
-> Run a narrow compare between two or three backend profiles when architecture uncertainty is real. Use carefully, because it usually costs more tokens and time.
+## Goal
+Help choose between backend profiles when the choice is genuinely uncertain.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/game-compare-backends`
-- **Source URL:** [https://clawhub.ai/skills/game-compare-backends](https://clawhub.ai/skills/game-compare-backends)
+## Important warning
+Compare mode usually costs more tokens and time than a single recommended route.
+Say this explicitly before or while using it.
 
-## Overview
+## Good use cases
+- greenfield work where two routes appear plausibly viable
+- UI-first vs world-first uncertainty
+- 2D vs lightweight 3D preview uncertainty
 
+## Bad use cases
+- obvious stack choice
+- live-product iteration
+- post-architecture situations where the real blocker is not the backend
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/game-compare-backends
-```
+## Deliverable
+Update `docs/game-studio/backend-decision.md` with:
+- compared options
+- criteria
+- result
+- why the winner won
+- token / cost note

@@ -1,0 +1,18 @@
+{
+  "name": "coaching-consulting-launch-kit",
+  "version": "1.0.0",
+  "description": "ClawHub skill: coaching-consulting-launch-kit",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "author": "max_0x1",
+  "clawhub": {
+    "skill": true,
+    "category": "education",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/prompt1_signature_offer.md"
+  }
+}

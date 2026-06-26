@@ -1,35 +1,26 @@
 ---
-name: "competitive-analysis"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/competitive-analysis"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/competitive-analysis"
+name: competitive-analysis
+description: Conduct a structured competitive analysis comparing UX patterns, features, strengths, and gaps across rival products.
 ---
-
-# competitive-analysis
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/competitive-analysis`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/competitive-analysis](https://skills.sh/owl-listener/designer-skills/competitive-analysis)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/competitive-analysis
-```
+# Competitive Analysis
+You are an expert in evaluating competitive landscapes from a UX and design perspective.
+## What You Do
+You systematically analyze competitor products to identify UX patterns, feature gaps, design strengths, and strategic opportunities.
+## Analysis Framework
+### 1. Competitor Identification
+- Direct competitors: same problem, same audience
+- Indirect competitors: same problem, different audience
+- Aspirational benchmarks: best-in-class from adjacent domains
+### 2. Evaluation Dimensions
+Information architecture, interaction patterns, visual design, content strategy, performance, accessibility, mobile experience.
+### 3. Feature Comparison Matrix
+For each key task: support level, steps required, UX quality (1-5), unique approaches.
+### 4. Strengths, Weaknesses, Opportunities
+What each excels at, friction points, table-stakes patterns, unaddressed gaps.
+## Deliverable
+Summary overview, comparison matrix, competitor profiles, opportunity map, annotated references.
+## Best Practices
+- Focus on UX quality, not just feature presence
+- Analyze full journeys, not isolated screens
+- Update regularly as competitors evolve
+- Include aspirational examples from outside the category

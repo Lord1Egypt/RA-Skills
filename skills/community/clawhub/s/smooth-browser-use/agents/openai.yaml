@@ -1,0 +1,4 @@
+interface:
+  display_name: "Smooth Browser Use"
+  short_description: "Use real browser events and recover cleanly"
+  default_prompt: "Use $smooth-browser-use when operating a browser workflow that needs reliable text entry or page recovery."

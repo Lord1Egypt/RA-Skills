@@ -1,35 +1,45 @@
 ---
-name: "Watadot Aws Cloudwatch"
-description: "Observability and monitoring by Watadot Studio. Log tailing and metric extraction."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/watadot-aws-cloudwatch"
-sourceUrl: "https://clawhub.ai/skills/watadot-aws-cloudwatch"
+name: watadot-aws-cloudwatch
+description: Observability and monitoring by Watadot Studio. Log tailing and metric extraction.
+metadata:
+  openclaw:
+    emoji: 📈
+    requires:
+      anyBins: [aws]
 ---
 
-# Watadot Aws Cloudwatch
+# AWS CloudWatch Skills
 
-> Observability and monitoring by Watadot Studio. Log tailing and metric extraction.
+Observability and automated monitoring patterns.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/watadot-aws-cloudwatch`
-- **Source URL:** [https://clawhub.ai/skills/watadot-aws-cloudwatch](https://clawhub.ai/skills/watadot-aws-cloudwatch)
+## 🚀 Core Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Log Insights
 ```bash
-hermes skills install clawhub/watadot-aws-cloudwatch
+# Live tail of a Log Group
+aws logs tail /aws/lambda/<function-name> --follow
+
+# Query logs for errors (last 1h)
+aws logs filter-log-events --log-group-name <name> --filter-pattern "ERROR" --start-time $(date -d '1 hour ago' +%s000) --query "events[].message"
 ```
+
+### Metrics & Alarms
+```bash
+# List active alarms with state
+aws cloudwatch describe-alarms --query "MetricAlarms[?StateValue==\`ALARM\`].{Name:AlarmName,Reason:StateReason}" --output table
+
+# Get CPU utilization metric for EC2
+aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=<id> --period 3600 --statistics Average --start-time 2026-03-15T00:00:00 --end-time 2026-03-16T00:00:00
+```
+
+### Dashboard Orchestration
+```bash
+# List dashboard names
+aws cloudwatch list-dashboards --query "DashboardEntries[].DashboardName"
+```
+
+## 🧠 Best Practices
+1. **Retention Policies**: Don't keep logs forever. Set retention (e.g., 14 days) to save storage costs.
+2. **Log Streams**: Use unique log stream names for different agent instances to avoid interleaving.
+3. **Structured Logging**: Log in JSON format to make filtering and automated analysis via OpenClaw easier.
+4. **Alarms**: Set up billing alarms to catch sudden spikes in AWS usage early.

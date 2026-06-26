@@ -1,35 +1,33 @@
 ---
-name: "yee-brave-search"
+name: brave-search-custom
 description: "A custom tool for web searching using Brave Search API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yee-brave-search"
-sourceUrl: "https://clawhub.ai/skills/yee-brave-search"
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🔍",
+      "requires": { "bins": ["python3"] }
+    }
+  }
 ---
 
-# yee-brave-search
+# Brave Search Custom Skill
 
-> A custom tool for web searching using Brave Search API.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yee-brave-search`
-- **Source URL:** [https://clawhub.ai/skills/yee-brave-search](https://clawhub.ai/skills/yee-brave-search)
-
-## Overview
-
+A lightweight skill for searching the web with the Brave Search API.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+1. Create a folder named `brave-search-custom` in your OpenClaw `skills/` directory.
+2. Put `brave_search.py` and `SKILL.md` inside it.
+3. Make sure `brave_search.py` is executable: `chmod +x brave_search.py`.
+
+## Configuration
+
+Set your Brave Search API key as an environment variable:
+
 ```bash
-hermes skills install clawhub/yee-brave-search
+export BRAVE_API_KEY="your_brave_api_key_here"
 ```
+
+## Usage
+
+Ask your OpenClaw agent to search for anything, and it will use this script to fetch real-time data from the web.

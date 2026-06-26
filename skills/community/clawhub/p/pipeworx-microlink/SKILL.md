@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx microlink"
-description: "Microlink MCP — wraps Microlink API (free tier, no auth required)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-microlink"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-microlink"
+name: pipeworx-microlink
+description: Microlink MCP — wraps Microlink API (free tier, no auth required)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/microlink
 ---
 
-# Pipeworx microlink
+# pipeworx-microlink
 
-> Microlink MCP — wraps Microlink API (free tier, no auth required)
+Microlink MCP — wraps Microlink API (free tier, no auth required). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-microlink`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-microlink](https://clawhub.ai/skills/pipeworx-microlink)
+## Tools
 
-## Overview
+- `get_metadata`
+- `take_screenshot`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-microlink
+```json
+{
+  "mcpServers": {
+    "pipeworx-microlink": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/microlink/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/microlink](https://pipeworx.io/packs/microlink)

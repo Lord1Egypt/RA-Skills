@@ -1,0 +1,39 @@
+{
+  "id": "fec-accessibility-check",
+  "name": "无障碍检查",
+  "category": "review-quality",
+  "tags": [
+    "a11y",
+    "wcag",
+    "accessibility",
+    "audit"
+  ],
+  "summary": "Frontend Craft skill for 无障碍检查.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "a11y",
+    "wcag",
+    "accessibility",
+    "audit"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when reviewing or improving frontend accessibility, semantic structure, keyboard support, focus management, ARIA labels, screen reader behavior, WCAG 2.2 issues, touch accessibility, or assistive-technology regressions; Chinese triggers include 无障碍, accessibility, a11y, WCAG, 屏幕阅读器.",
+  "source": "skills/fec-accessibility-check",
+  "references": [
+    "references/report-template.md",
+    "references/screen-reader-testing.md"
+  ]
+}

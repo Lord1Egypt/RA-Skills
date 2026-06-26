@@ -1,35 +1,32 @@
 ---
-name: "Cn Date Validator"
+slug: cn-date-validator
+name: Date Validator
+version: "1.0.0"
 description: "Validate date strings and check formats. Support YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY. Pure Python."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-date-validator"
-sourceUrl: "https://clawhub.ai/skills/cn-date-validator"
+keywords: tool, utility
+license: MIT-0
+tags:
+  - tools
 ---
 
-# Cn Date Validator
+# Date Validator
 
-> Validate date strings and check formats. Support YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY. Pure Python.
+Validate date strings and check formats. Support YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY. Pure Python.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-date-validator`
-- **Source URL:** [https://clawhub.ai/skills/cn-date-validator](https://clawhub.ai/skills/cn-date-validator)
+## Features
 
-## Overview
+- Pure Python standard library
+- No external dependencies
+- Command-line interface
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-date-validator
 ```
+python3 scripts/date_validator.py --help
+```
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

@@ -1,35 +1,43 @@
 ---
-name: "muapi-platform"
-description: "Setup and utility scripts for muapi.ai — configure API keys, test connectivity, and poll for async generation results"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/muapi-platform"
-sourceUrl: "https://clawhub.ai/skills/muapi-platform"
+slug: muapi-platform
+name: muapi-platform
+version: "0.1.0"
+description: Setup and utility scripts for muapi.ai — configure API keys, test connectivity, and poll for async generation results
+acceptLicenseTerms: true
 ---
 
-# muapi-platform
+# ⚙️ MuAPI Platform Utilities
 
-> Setup and utility scripts for muapi.ai — configure API keys, test connectivity, and poll for async generation results
+**Setup and polling utilities for the muapi.ai platform.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/muapi-platform`
-- **Source URL:** [https://clawhub.ai/skills/muapi-platform](https://clawhub.ai/skills/muapi-platform)
+Configure your API key, verify connectivity, and poll for async generation results.
 
-## Overview
+## Available Scripts
 
+| Script | Description |
+| :--- | :--- |
+| `setup.sh` | Configure API key, show config, test key validity |
+| `check-result.sh` | Poll for async generation results by request ID |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
 ```bash
-hermes skills install clawhub/muapi-platform
+# Save your API key
+bash setup.sh --add-key "YOUR_MUAPI_KEY"
+
+# Show current configuration
+bash setup.sh --show-config
+
+# Test API key validity
+bash setup.sh --test
+
+# Poll for a result (waits for completion)
+bash check-result.sh --id "your-request-id"
+
+# Check once without polling
+bash check-result.sh --id "your-request-id" --once
 ```
+
+## Requirements
+
+- `curl`

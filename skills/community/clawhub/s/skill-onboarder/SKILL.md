@@ -1,35 +1,40 @@
 ---
-name: "Skill Onboarder"
-description: "Auto-wires new skills into core system. On skill install detected, reads SKILL.md/AGENT.md/SOUL.md/hooks and injects into soul/memory/agent files."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-onboarder"
-sourceUrl: "https://clawhub.ai/skills/skill-onboarder"
+name: skill-onboarder
+description: Auto-wires new skills into core system. On skill install detected, reads SKILL.md/AGENT.md/SOUL.md/hooks and injects into soul/memory/agent files.
+version: 1.1.0
+trigger: "installed|new skill|onboard|wire skill|onboarding|skill wired"
+homepage: https://github.com/clawhub/skill-onboarder
+metadata: {"openclaw": {"skillKey": "skill-onboard", "emoji": "🔧", "always": true, "requires": {"bins": []}, "triggers": [{"kind": "event", "event": "skill:post-install", "future": true}]}}
 ---
 
 # Skill Onboarder
 
-> Auto-wires new skills into core system. On skill install detected, reads SKILL.md/AGENT.md/SOUL.md/hooks and injects into soul/memory/agent files.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-onboarder`
-- **Source URL:** [https://clawhub.ai/skills/skill-onboarder](https://clawhub.ai/skills/skill-onboarder)
+Auto-wire new skills. On trigger, reads skill files → wires to core system.
 
-## Overview
+## Trigger
 
+Matches: "installed", "new skill", "onboard", "wire skill", "onboarding"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-onboarder
-```
+Future: Auto-fires on `skill:post-install` event (not yet implemented)
+
+## Files Written
+
+| File | Adds |
+|------|------|
+| `soul/master.md` | Skill sections |
+| `agent/skills-active.md` | Triggers + rules |
+| `workspace/_index.md` | Registration |
+
+## Process
+
+1. Detect trigger → extract skill name
+2. Read: SKILL.md, AGENT.md, SOUL.md, hooks/
+3. Extract: triggers, rules (hard/soft), sections
+4. Inject to core files
+5. Confirm
+
+## Idempotent
+
+Safe to re-run. Checks before write. Updates version if changed.

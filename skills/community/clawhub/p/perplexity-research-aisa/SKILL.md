@@ -1,35 +1,58 @@
 ---
-name: "perplexity-research-aisa"
-description: "Produce citation-backed deep research answers through Perplexity Sonar models via AISA. Use when: the user needs synthesized research, comparative analysis,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/perplexity-research-aisa"
-sourceUrl: "https://clawhub.ai/skills/perplexity-research-aisa"
+name: perplexity-research
+description: "Produce citation-backed deep research answers through Perplexity Sonar models via AISA. Use when: the user needs synthesized research, comparative analysis, or long-form cited answers instead of raw link lists."
+author: aisa
+version: "1.0.0"
+license: Apache-2.0
+user-invocable: true
+primaryEnv: AISA_API_KEY
+requires:
+  env:
+    - AISA_API_KEY
+  bins:
+    - python3
+metadata:
+  openclaw:
+    primaryEnv: AISA_API_KEY
+    requires:
+      env:
+        - AISA_API_KEY
+      bins:
+        - python3
 ---
+# Perplexity Research
 
-# perplexity-research-aisa
+## When to Use
 
-> Produce citation-backed deep research answers through Perplexity Sonar models via AISA. Use when: the user needs synthesized research, comparative analysis,...
+- Produce citation-backed deep research answers through Perplexity Sonar models via AISA. Use when: the user needs synthesized research, comparative analysis, or long-form cited answers instead of raw link lists.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/perplexity-research-aisa`
-- **Source URL:** [https://clawhub.ai/skills/perplexity-research-aisa](https://clawhub.ai/skills/perplexity-research-aisa)
+## When NOT to Use
 
-## Overview
+- Do not use this skill for browser-cookie extraction, passwords, Keychain access, or other local sensitive credential access.
+- Prefer a different skill when the user request is outside this skill's domain.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Generate cited research answers with configurable Sonar model depth.
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/perplexity-research-aisa
+export AISA_API_KEY="your-key"
 ```
+
+## Primary Runtime
+
+Use the bundled Python client as the canonical ClawHub runtime path:
+
+```bash
+python3 scripts/search_client.py
+```
+
+## Example Queries
+
+- Research global AI regulation trends and return a cited summary.
+
+## Notes
+
+- Best when synthesis matters more than raw result recall.

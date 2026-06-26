@@ -1,0 +1,5 @@
+{
+  "type": "decision",
+  "text": "Use GrayMatter as the primary durable memory layer for OpenClaw orchestration and handoffs.",
+  "sourceChannel": "openclaw"
+}

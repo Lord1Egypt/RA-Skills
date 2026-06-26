@@ -1,35 +1,200 @@
 ---
-name: "Harness Research"
-description: "AI Agent Harness 前沿研究 skill——让你的智能体每天自动追踪 AI Agent 领域最新论文和文章， 用结构化框架分析，记录可落地到自身系统的改进方向，实现智能体的持续自我进化。 触发词：研究论文、找最新文章、Harness学习、读paper、agent研究、分析论文、 今日研究、self-..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/harness-research"
-sourceUrl: "https://clawhub.ai/skills/harness-research"
+name: harness-research
+version: 1.1.0
+description: >
+  AI Agent Harness 前沿研究 skill——让你的智能体每天自动追踪 AI Agent 领域最新论文和文章，
+  用结构化框架分析，记录可落地到自身系统的改进方向，实现智能体的持续自我进化。
+  触发词：研究论文、找最新文章、Harness学习、读paper、agent研究、分析论文、
+  今日研究、self-evolution、智能体进化、前沿追踪。
+  适用于任何运行中的 AI Agent 系统——无论你用的是 OpenClaw、Claude Code、AutoGPT、
+  LangGraph 还是自研框架，只要你的智能体在运行，这个 skill 就能帮它变得更好。
 ---
 
-# Harness Research
+# Harness Research — 智能体前沿研究引擎
 
-> AI Agent Harness 前沿研究 skill——让你的智能体每天自动追踪 AI Agent 领域最新论文和文章， 用结构化框架分析，记录可落地到自身系统的改进方向，实现智能体的持续自我进化。 触发词：研究论文、找最新文章、Harness学习、读paper、agent研究、分析论文、 今日研究、self-...
+> 职责边界：**只研究、只记录、不改代码**。改代码是 harness-evolve 的事。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/harness-research`
-- **Source URL:** [https://clawhub.ai/skills/harness-research](https://clawhub.ai/skills/harness-research)
+---
 
-## Overview
+## 执行约束（先读，贯穿全程）
 
+- **论文驱动**：结论必须有论文/文章依据，直觉只能指导搜索方向
+- **场景优先**：从系统真实痛点倒推，不从论文正推"这个能用在哪"
+- **单变量**：每条落地建议只改一个变量，不捆绑建议
+- **诚实高于数量**：今日无高质量发现就如实记录，平庸论文不分析——它会污染日志、降低未来检索信噪比
+- **可输出性**：分析末尾问"这能帮到其他 Agent 开发者吗？"能则标记 `📤`
+- **去重铁律**：已在日志中出现过的标题/URL 绝不重复分析，即使换了搜索词命中
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/harness-research
+---
+
+## 步骤一：读取系统上下文
+
+每次运行前，从项目文档中读取以下信息（优先级：`CLAUDE.md` > `README.md` > 用户说明）：
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| **框架类型** | Agent 使用的框架 | 从 CLAUDE.md 推断 |
+| **核心痛点** | 当前系统最急需改善的问题 | 从 CLAUDE.md / learnings 中提取 |
+| **研究日志路径** | harness-log.md 位置 | `research/harness-log.md` |
+| **已有 evolve 产出** | harness-evolve 的进化摘要 | `research/evolve-today.md`（如存在则读取，了解哪些 P0/P1 已被处理） |
+
+**如果项目文档里没有框架类型和核心痛点**，直接询问用户，不要跳过——后续所有"系统映射"分析依赖它们。
+
+**如果存在 evolve 产出**：读取最近的进化摘要，了解哪些研究建议已落地、哪些被否决——避免反复推荐已处理的方向。
+
+---
+
+## 步骤二：确定搜索时间窗口
+
+读研究日志（`research/harness-log.md`），提取：
+
+1. **上次搜索日期**：日志中最新记录的 `## YYYY-MM-DD` 日期
+2. **已分析标题列表**：所有 `## YYYY-MM-DD · {标题}` 中的标题（去重用）
+3. **已分析 URL 列表**：所有 `**来源**：{URL}` 中的 URL（URL 级去重，防同文不同标题）
+4. **上次搜索词**：最近一条记录中的"搜索词"字段（指导本次选词）
+5. **P0/P1 积压清单**：所有尚未标记 `已转化` 或 `已放弃` 的 P0/P1 条目（供步骤六引用）
+
+**搜索窗口 = 上次搜索日期 → 今天**。日志不存在或为空时，默认最近 14 天。
+
+**各来源的日期判断规则**（不同平台日期信号不一致）：
+
+| 来源 | 用哪个日期 |
+|------|-----------|
+| arxiv | `Submitted` 日期（页面右侧），不用 `v1` 日期（v1可能是修订时间） |
+| 机构博客/官网 | 文章头部 published date |
+| HuggingFace blog | URL 中的日期或文章顶部日期 |
+| 日期不确定 | 日志中注明"日期不确定，约 YYYY-MM" |
+
+---
+
+## 步骤三：搜索
+
+在时间窗口内搜索，每次选 2-3 个关键词组合。**选取策略**：读步骤二提取的上次搜索词，优先选上次未使用的领域，保证 8 个领域轮流覆盖，不重复扎堆同一方向。关键词末尾附加当前年份（不要写死）。
+
+| 领域 | 关键词示例 |
+|------|-----------|
+| Harness 架构 | `AI agent harness scaffolding framework {年份}` |
+| 记忆编排 | `LLM agent memory orchestration context management` |
+| 多智能体 | `multi-agent coordination architecture scaling` |
+| 评测基准 | `AI agent evaluation benchmark tool-use` |
+| 长时运行 | `long-running agent session state management` |
+| 前沿发布 | `Anthropic OpenAI Google agent research new` |
+| 自我进化 | `self-improving agent self-evolution meta-learning` |
+| 工具使用 | `tool-use planning function-calling agent reasoning` |
+
+**优先信息源**：arxiv.org → anthropic.com/research → openai.com/research → deepmind.google/research → huggingface.co/blog → 知名工程博客（Lilian Weng、Simon Willison 等）
+
+**入选标准**（全部满足才精读）：
+- 发表日期在搜索窗口内
+- 标题不在已分析列表中 **且** URL 不在已分析 URL 列表中
+- 有实验数据或真实工程案例（非纯综述）
+- 提出新角度/新数据，或挑战已有认知
+- 能映射到至少一个真实 Agent 场景
+
+全部不达标 → 跳到步骤五记录"无发现"，再继续步骤六输出摘要，两步都要执行。
+
+---
+
+## 步骤四：精读与分析
+
+WebFetch 读取全文，按以下框架分析——核心问题是"so what：它对我的系统意味着什么，我具体可以怎么做"。
+
+**如果全文无法读取**（PDF 直链、访问受限等）：读取摘要/abstract 页完成分析，并在日志中标注"⚠️ 仅基于摘要分析，未读全文"。
+
+**① 基本信息**
+- 标题 / 机构 / 发表日期 / 来源 URL
+- 一句话概括：这篇在做什么
+
+**② 核心发现**（1-3 个，必须含具体数据）
+- ✗ "提升了性能"
+- ✓ "在 X 任务上较 baseline 提升 Y%"
+
+**③ 认知冲击**
+- 全新方向 / 印证已知 / 挑战现有认知 — 一句话说明
+- 若是挑战：影响面有多大？
+
+**④ 系统映射**（关键步骤——无映射的阅读是消遣，有映射才是进化）
+- 映射到 Agent 的哪个具体组件/场景
+- 应用后能解决什么问题
+- **映射置信度**：高（直接适用）/ 中（需适配）/ 低（启发性）
+
+**⑤ 可落地方向**（记录，不实施——实施是 harness-evolve 的职责）
+- 改什么：哪个模块 / 规则 / 流程
+- 怎么改：思路和范围估计
+- 优先级：P0（立即试验）/ P1（下个迭代）/ P2（关注）
+- 风险：可能的副作用
+- **验证方式**：如何确认改进有效（可观测指标或对比实验设计）
+
+---
+
+## 步骤五：写入研究日志
+
+用 **Edit 工具**在日志文件末尾 `---` 后追加内容；如文件不存在，用 **Write 工具**新建并写入完整内容。
+
+**有发现时**：
+```markdown
+## {YYYY-MM-DD} · {论文/文章标题}
+
+**来源**：{URL}
+**机构**：{简写}
+**发表**：{日期}
+**搜索词**：{本次使用的关键词组合}
+
+**核心发现**：
+- {发现1，含数据}
+- {发现2，含数据}
+
+**认知冲击**：{全新 / 印证 / 挑战} — {一句话}
+
+**系统映射**（置信度：{高/中/低}）：
+- {组件/场景}：{价值}
+
+**可落地方向**（{P0/P1/P2}）：
+- {改什么}：{怎么改}
+- 风险：{副作用}
+- 验证：{如何确认有效}
+
+---
 ```
+
+**无发现时**：
+```markdown
+## {YYYY-MM-DD} · 研究记录
+
+**搜索结果**：今日未发现高价值新发表
+**搜索词**：{用了哪些词}
+**备注**：{跳过原因，或"所有候选论文均不满足入选标准"}
+
+---
+```
+
+---
+
+## 步骤六：输出摘要
+
+输出可直接用于日报/周报的摘要段落：
+
+**有发现**：
+```
+今日研读：{标题}（{机构，日期}）
+核心发现：{一句话，含关键数据}
+可落地方向（{优先级}）：{具体改什么}
+```
+
+**无发现**：
+```
+今日搜索未发现高价值新发表，已有认知持续跟进中
+当前最高优先落地项：{从步骤二提取的 P0/P1 积压清单中选最高优先级的一条；如无记录，写"暂无待验证落地项，持续跟进中"}
+```
+
+---
+
+## 与 harness-evolve 的关系
+
+| | harness-research（本 skill） | harness-evolve |
+|--|---------------------------|----------------|
+| **职责** | 搜索 → 精读 → 分析 → 记录 | 消费研究 + 系统自检 + **执行优化** |
+| **输出** | `research/harness-log.md` 条目 + 摘要段落 | 进化摘要（含动作记录） |
+| **改代码吗** | 不改，只记录可落地方向 | A 级直接改，B 级写提案 |
+| **可独立用吗** | 可以，纯研究场景 | 可以，但消费 research 日志效果更好 |
+| **数据流** | → 写入 harness-log.md → | ← 读取 harness-log.md ← |

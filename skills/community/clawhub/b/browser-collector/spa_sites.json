@@ -1,0 +1,137 @@
+{
+  "_comment": "SPA站点动态等待配置",
+  "version": "2.0.0",
+  "updated": "2026-05-01",
+  "help.aliyun.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".article-content",
+    "stable_check": true,
+    "timeout": 30,
+    "wait_time": 0
+  },
+  "platform.kimi.com": {
+    "render_strategy": "dom_stable",
+    "wait_for_selector": ".api-doc-content",
+    "stable_check": true,
+    "timeout": 20,
+    "wait_time": 0
+  },
+  "platform.minimaxi.com": {
+    "render_strategy": "dom_stable",
+    "wait_for_selector": ".doc-content",
+    "stable_check": true,
+    "timeout": 20,
+    "wait_time": 0
+  },
+  "support.huaweicloud.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".help-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "*.aliyun.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".content-body",
+    "stable_check": true,
+    "timeout": 30,
+    "wait_time": 0
+  },
+  "docs.aws.amazon.com": {
+    "render_strategy": "selector",
+    "wait_for_selector": "#aws-docs-content",
+    "stable_check": false,
+    "timeout": 20,
+    "wait_time": 0
+  },
+  "learn.microsoft.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "cloud.google.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".devsite-article-body",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "volcengine.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".doc-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "developer.hashicorp.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".docs-body",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "www.vultr.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".docs-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "docs.digitalocean.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".article-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "kubernetes.io": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": "#docs-content",
+    "stable_check": true,
+    "timeout": 30,
+    "wait_time": 0
+  },
+  "react.dev": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".docs-wrapper",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "beta.reactjs.org": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".docs-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "vuejs.org": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "tanstack.com": {
+    "render_strategy": "networkidle",
+    "wait_for_selector": ".docs-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "www.coze.cn": {
+    "render_strategy": "dom_stable",
+    "wait_for_selector": ".doc-content",
+    "stable_check": true,
+    "timeout": 25,
+    "wait_time": 0
+  },
+  "default": {
+    "render_strategy": "networkidle",
+    "stable_check": true,
+    "timeout": 30,
+    "wait_time": 0
+  }
+}

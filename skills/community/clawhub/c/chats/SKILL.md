@@ -1,35 +1,19 @@
----
-name: "EchoChat"
-description: "Memory-powered AI chat with context-aware, emotionally matched responses citing personal memories and supporting peer messaging and exports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chats"
-sourceUrl: "https://clawhub.ai/skills/chats"
----
+# Echo Chat
 
-# EchoChat
+Memory-powered conversational AI that knows you. Chat with an agent grounded in your personal memories — responses are contextual, emotionally aware, and cite real experiences. The core conversation engine behind Echo.
 
-> Memory-powered AI chat with context-aware, emotionally matched responses citing personal memories and supporting peer messaging and exports.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chats`
-- **Source URL:** [https://clawhub.ai/skills/chats](https://clawhub.ai/skills/chats)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/chats
+echo-chat start <user-id>          # Start memory-grounded conversation
+echo-chat peer <id-a> <id-b>       # Facilitate peer-to-peer memory chat
+echo-chat export <thread-id>       # Export conversation with memory refs
 ```
+
+## Features
+
+- Memory-grounded responses with evidence citations
+- Emotion-aware tone matching
+- Peer messaging with shared memory context
+- Voice and text modes
+- Cross-platform memory integration (ChatGPT, Gemini, etc.)

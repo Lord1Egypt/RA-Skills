@@ -1,0 +1,10 @@
+{
+  "vault_path": "/Users/lucien/Library/Mobile Documents/iCloud~md~obsidian/Documents/ObsidianVault/收藏文档/",
+  "collector_name": "万茜",
+  "categories": {
+    "AI工具": ["AI", "机器学习", "LLM", "GPT", "Claude", "OpenClaw", "Agent", "量化", "炒股"],
+    "兴趣爱好": ["路亚", "钓鱼", "户外", "游戏", "音乐", "运动", "3D打印"],
+    "技术教程": ["编程", "代码", "教程", "开发", "配置", "部署", "API", "DevOps"],
+    "生活日常": ["美食", "旅行", "健康", "生活技巧", "读书"]
+  }
+}

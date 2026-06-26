@@ -1,35 +1,24 @@
 ---
-name: "Rate Limit Guard"
-description: "Prevent 429 retry loops and wasted tokens. Use before expensive API calls or after hitting rate limits. Enforces preflight checks, backoff, and context shrin..."
-category: "other"
-source: "ClawHub"
-tags: [agent-intelligence, reliability]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rate-limit-guard"
-sourceUrl: "https://clawhub.ai/skills/rate-limit-guard"
+name: rate-limit-guard
+description: Prevent 429 retry loops and wasted tokens. Use before expensive API calls or after hitting rate limits. Enforces preflight checks, backoff, and context shrinking.
 ---
 
 # Rate Limit Guard
 
-> Prevent 429 retry loops and wasted tokens. Use before expensive API calls or after hitting rate limits. Enforces preflight checks, backoff, and context shrin...
+## Before Expensive Calls
+Check: provider/model, recent failures, concurrency, context size.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rate-limit-guard`
-- **Source URL:** [https://clawhub.ai/skills/rate-limit-guard](https://clawhub.ai/skills/rate-limit-guard)
+## On 429
+1. Set concurrency to 1.
+2. Stop parallel retries.
+3. Shrink context.
+4. Send one minimal probe.
+5. Back off (exponential).
 
-## Overview
+## Rules
+- Never retry a giant request unchanged.
+- Never fallback-spam premium providers.
+- Batch corpus work in 10–20 item chunks.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rate-limit-guard
-```
+## Output
+Next action: proceed / recovery mode / pause.

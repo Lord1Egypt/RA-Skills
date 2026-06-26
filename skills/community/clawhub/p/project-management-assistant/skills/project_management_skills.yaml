@@ -1,0 +1,118 @@
+---
+skills:
+- id: PM01_project_kickoff_extract
+  name: 项目启动信息提取
+  purpose: 从合同、方案和会议纪要中提取目标、范围、交付物、节点和约束。
+  inputs:
+  - contract
+  - solution_doc
+  - kickoff_notes
+  outputs:
+  - project_charter
+  - scope_items
+  - deliverables
+  - constraints
+  human_review: true
+  audit_log: true
+- id: PM02_wbs_generate
+  name: WBS 生成
+  purpose: 按阶段、任务、责任人、依赖和交付物生成 WBS。
+  inputs:
+  - project_charter
+  - template_library
+  outputs:
+  - wbs_table
+  - dependency_list
+  - responsibility_matrix
+  human_review: true
+  audit_log: true
+- id: PM03_milestone_plan
+  name: 里程碑计划生成
+  purpose: 生成阶段计划、关键节点、交付物和验收标准。
+  inputs:
+  - wbs_table
+  - contract_deadlines
+  outputs:
+  - milestone_plan
+  - acceptance_criteria
+  - timeline
+  human_review: true
+  audit_log: true
+- id: PM04_progress_collect
+  name: 进度填报整理
+  purpose: 汇总日报、周报和任务反馈，形成进度状态。
+  inputs:
+  - daily_reports
+  - task_updates
+  - wbs_table
+  outputs:
+  - progress_summary
+  - delayed_tasks
+  - status_table
+  human_review: true
+  audit_log: true
+- id: PM05_risk_warning
+  name: 项目风险预警
+  purpose: 识别延期、资源不足、质量、范围、客户确认和验收风险。
+  inputs:
+  - progress_summary
+  - customer_feedback
+  - risk_rules
+  outputs:
+  - risk_register
+  - risk_level
+  - response_suggestions
+  human_review: true
+  audit_log: true
+- id: PM06_weekly_report_generate
+  name: 项目周报生成
+  purpose: 生成本周进展、问题风险、下周计划、需协调事项和管理摘要。
+  inputs:
+  - progress_summary
+  - risk_register
+  - next_plan
+  outputs:
+  - weekly_report
+  - management_summary
+  - coordination_items
+  human_review: true
+  audit_log: true
+- id: PM07_customer_communication_track
+  name: 客户沟通跟踪
+  purpose: 整理客户反馈、待确认事项、回复建议和催办提醒。
+  inputs:
+  - meeting_minutes
+  - chat_records
+  - customer_feedback
+  outputs:
+  - confirmation_list
+  - reply_suggestions
+  - reminders
+  human_review: true
+  audit_log: true
+- id: PM08_delivery_archive
+  name: 交付物归档
+  purpose: 按项目阶段归档交付物、验收材料、版本和审批记录。
+  inputs:
+  - deliverables
+  - acceptance_docs
+  - project_records
+  outputs:
+  - archive_index
+  - acceptance_checklist
+  - version_record
+  human_review: true
+  audit_log: true
+- id: PM09_project_retro
+  name: 项目复盘
+  purpose: 总结延期、质量、协同、客户沟通和交付经验，沉淀改进建议。
+  inputs:
+  - project_records
+  - risk_register
+  - acceptance_result
+  outputs:
+  - retro_report
+  - lessons_learned
+  - improvement_actions
+  human_review: true
+  audit_log: true

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pattern Jewellery — OpenClaw Skill System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #b8963e;
+    --gold-light: #d4b06a;
+    --gold-pale: #f5ecd7;
+    --navy: #0e1628;
+    --navy-mid: #1a2540;
+    --slate: #2c3a55;
+    --ink: #111827;
+    --mist: #f8f6f2;
+    --border: rgba(184,150,62,0.25);
+    --tag-bg: rgba(184,150,62,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--navy);
+    color: #e8e0d4;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1c2e50 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,150,62,0.12);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,150,62,0.08);
+  }
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 2.6rem;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  header h1 span { color: var(--gold); font-style: italic; }
+  .header-sub {
+    font-size: 0.72rem;
+    color: rgba(232,224,212,0.5);
+    letter-spacing: 0.1em;
+  }
+  .product-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.68rem;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+  }
+  .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+  /* ── LAYOUT ── */
+  main { max-width: 1200px; margin: 0 auto; padding: 3rem 4rem; }
+
+  /* ── SECTION ── */
+  .component {
+    margin-bottom: 4rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .component-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(184,150,62,0.07);
+    border-bottom: 1px solid var(--border);
+  }
+  .component-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--gold);
+    font-style: italic;
+    min-width: 2rem;
+  }
+  .component-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c8bfb0;
+  }
+  .component-tag {
+    margin-left: auto;
+    padding: 0.2rem 0.6rem;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CODE BLOCK ── */
+  .code-wrap { padding: 1.5rem; background: #080e1a; overflow-x: auto; }
+  pre {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    color: #c8d0e0;
+    white-space: pre;
+  }
+  .tok-key   { color: #7eb8f7; }
+  .tok-str   { color: #a8d9a0; }
+  .tok-num   { color: #f0c060; }
+  .tok-bool  { color: #e08080; }
+  .tok-cmt   { color: #5a6a8a; font-style: italic; }
+  .tok-gold  { color: var(--gold-light); }
+
+  /* ── PROSE SECTION ── */
+  .prose-wrap { padding: 1.5rem 2rem; }
+  .prose-wrap p { font-size: 0.78rem; color: #b8b0a4; line-height: 1.8; margin-bottom: 0.8rem; }
+
+  /* ── TEMPLATES ── */
+  .template-block {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(184,150,62,0.1);
+  }
+  .template-block:last-child { border-bottom: none; }
+  .template-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .template-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.8;
+    color: #d0c8be;
+    background: #080e1a;
+    padding: 1rem 1.25rem;
+    border-left: 2px solid var(--gold);
+    white-space: pre-wrap;
+  }
+  .token-pill {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.2rem 0.7rem;
+    background: rgba(184,150,62,0.12);
+    border: 1px solid rgba(184,150,62,0.3);
+    border-radius: 20px;
+    font-size: 0.6rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+  .var-pill {
+    color: #7eb8f7;
+    font-style: italic;
+  }
+
+  /* ── WORKFLOW DIAGRAM ── */
+  .workflow-wrap { padding: 2rem; }
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .flow-row.parallel { align-items: flex-start; margin-left: 3rem; }
+  .agent-box {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1rem 1.25rem;
+    background: #0d1525;
+    position: relative;
+  }
+  .agent-box .a-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .agent-box .a-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .agent-box .a-io {
+    font-size: 0.65rem;
+    color: #7a8aa0;
+    line-height: 1.6;
+  }
+  .arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    color: var(--gold);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .arrow-down {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1rem;
+    padding: 0.4rem 0;
+    margin-left: 2rem;
+  }
+  .parallel-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(184,150,62,0.5);
+    margin-bottom: 0.5rem;
+    margin-left: 3rem;
+  }
+  .flow-join {
+    margin-left: 3rem;
+    font-size: 0.65rem;
+    color: #5a6a8a;
+    padding: 0.3rem 0;
+  }
+  .data-tag {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    background: rgba(126,184,247,0.08);
+    border: 1px solid rgba(126,184,247,0.2);
+    border-radius: 2px;
+    font-size: 0.6rem;
+    color: #7eb8f7;
+    margin: 0.1rem 0;
+    font-style: italic;
+  }
+
+  /* ── MEMORY / CACHE ── */
+  .rule-list { padding: 1.5rem 2rem; }
+  .rule-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.7rem;
+    align-items: flex-start;
+  }
+  .rule-icon { color: var(--gold); flex-shrink: 0; font-size: 0.7rem; padding-top: 0.05rem; }
+  .rule-text { font-size: 0.73rem; color: #b0a898; line-height: 1.6; }
+  .rule-text strong { color: #d4ccc4; font-weight: 500; }
+
+  /* ── TOKEN BUDGET ── */
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 1.5rem 2rem;
+  }
+  .budget-cell {
+    background: #0d1525;
+    padding: 1rem 1.25rem;
+  }
+  .budget-agent { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5a7a9a; margin-bottom: 0.3rem; }
+  .budget-tokens {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .budget-label { font-size: 0.6rem; color: #5a6a7a; margin-top: 0.2rem; }
+  .budget-total { background: rgba(184,150,62,0.08); }
+  .budget-total .budget-tokens { color: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.62rem;
+    color: #3a4a60;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">OpenClaw Agent System · Production-Ready</div>
+  <h1>Pattern Jewellery <span>Automation</span></h1>
+  <div class="header-sub">skill_schema · tool_definitions · prompt_templates · workflow · memory · cache · token_optimization</div>
+  <div class="product-badge">
+    <span class="dot"></span>
+    R4389 · Diamond &amp; Blue Sapphire Ring · 18K White Gold · AED 4,455
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 1: SKILL SCHEMA
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">01</span>
+    <span class="component-title">Skill Schema</span>
+    <span class="component-tag">JSON</span>
+  </div>
+  <div class="code-wrap"><pre>{
+  <span class="tok-key">"skill_name"</span>: <span class="tok-str">"pattern_jewellery_automation"</span>,
+  <span class="tok-key">"version"</span>: <span class="tok-str">"1.0.0"</span>,
+  <span class="tok-key">"description"</span>: <span class="tok-str">"Automates jewellery product marketing: enhances images, generates lifestyle and product visuals, creates SEO content, and stores outputs in Google Drive for Pattern Jewellery."</span>,
+
+  <span class="tok-key">"pattern_jewellery_specs"</span>: {
+    <span class="tok-key">"intricate_design_focus"</span>: <span class="tok-bool">true</span>,
+    <span class="tok-key">"high_detail_textures"</span>: <span class="tok-bool">true</span>,
+    <span class="tok-key">"fusion_aesthetic"</span>: <span class="tok-str">"traditional-modern"</span>,
+    <span class="tok-key">"target_market"</span>: <span class="tok-str">"Gulf luxury"</span>,
+    <span class="tok-key">"hallmark"</span>: <span class="tok-str">"750"</span>
+  },
+
+  <span class="tok-key">"input_schema"</span>: {
+    <span class="tok-key">"product_image"</span>: {
+      <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>,
+      <span class="tok-key">"format"</span>: <span class="tok-str">"url_or_base64"</span>,
+      <span class="tok-key">"required"</span>: <span class="tok-bool">true</span>,
+      <span class="tok-key">"description"</span>: <span class="tok-str">"Raw product photograph from studio shoot"</span>
+    },
+    <span class="tok-key">"product_details"</span>: {
+      <span class="tok-key">"type"</span>: <span class="tok-str">"object"</span>,
+      <span class="tok-key">"required"</span>: <span class="tok-bool">true</span>,
+      <span class="tok-key">"properties"</span>: {
+        <span class="tok-key">"name"</span>:        { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"Diamond Blue Sapphire Ring"</span> },
+        <span class="tok-key">"sku"</span>:         { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"R4389"</span> },
+        <span class="tok-key">"category"</span>:    { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"rings"</span> },
+        <span class="tok-key">"material"</span>:    { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"18K white gold 2.24gm, natural diamond 0.32ct, blue sapphire 0.78ct"</span> },
+        <span class="tok-key">"price_now"</span>:   { <span class="tok-key">"type"</span>: <span class="tok-str">"number"</span>, <span class="tok-key">"example"</span>: <span class="tok-num">4455</span> },
+        <span class="tok-key">"price_was"</span>:   { <span class="tok-key">"type"</span>: <span class="tok-str">"number"</span>, <span class="tok-key">"example"</span>: <span class="tok-num">8990</span> },
+        <span class="tok-key">"description"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"Oval blue sapphire centrepiece with double diamond halo, prong-set in 18K white gold, hallmarked 750"</span> }
+      }
+    }
+  },
+
+  <span class="tok-key">"output_schema"</span>: {
+    <span class="tok-key">"model_image_url"</span>:   { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"description"</span>: <span class="tok-str">"URL of generated lifestyle model image"</span> },
+    <span class="tok-key">"product_image_url"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"description"</span>: <span class="tok-str">"URL of generated premium product-only image"</span> },
+    <span class="tok-key">"caption"</span>:           { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"description"</span>: <span class="tok-str">"SEO-optimized social media caption"</span> },
+    <span class="tok-key">"hashtags"</span>:          { <span class="tok-key">"type"</span>: <span class="tok-str">"array"</span>, <span class="tok-key">"items"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span> } },
+    <span class="tok-key">"drive_link"</span>:        { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"description"</span>: <span class="tok-str">"Google Drive folder URL for all assets"</span> }
+  },
+
+  <span class="tok-key">"steps"</span>: [
+    {
+      <span class="tok-key">"step"</span>: <span class="tok-num">1</span>,
+      <span class="tok-key">"id"</span>: <span class="tok-str">"prompt_generation"</span>,
+      <span class="tok-key">"agent"</span>: <span class="tok-str">"creative_agent"</span>,
+      <span class="tok-key">"depends_on"</span>: <span class="tok-str">"vision_agent"</span>,
+      <span class="tok-key">"description"</span>: <span class="tok-str">"Generate model and product image prompts from visual analysis and memory"</span>
+    },
+    {
+      <span class="tok-key">"step"</span>: <span class="tok-num">2</span>,
+      <span class="tok-key">"id"</span>: <span class="tok-str">"image_generation"</span>,
+      <span class="tok-key">"agent"</span>: <span class="tok-str">"vision_agent"</span>,
+      <span class="tok-key">"tool"</span>: <span class="tok-str">"imagen_api"</span>,
+      <span class="tok-key">"parallel"</span>: <span class="tok-bool">true</span>,
+      <span class="tok-key">"description"</span>: <span class="tok-str">"Generate model lifestyle image and premium product image concurrently"</span>
+    },
+    {
+      <span class="tok-key">"step"</span>: <span class="tok-num">3</span>,
+      <span class="tok-key">"id"</span>: <span class="tok-str">"content_generation"</span>,
+      <span class="tok-key">"agent"</span>: <span class="tok-str">"content_agent"</span>,
+      <span class="tok-key">"tool"</span>: <span class="tok-str">"claude_llm"</span>,
+      <span class="tok-key">"parallel"</span>: <span class="tok-bool">true</span>,
+      <span class="tok-key">"description"</span>: <span class="tok-str">"Generate SEO caption and hashtags concurrently with image generation"</span>
+    },
+    {
+      <span class="tok-key">"step"</span>: <span class="tok-num">4</span>,
+      <span class="tok-key">"id"</span>: <span class="tok-str">"storage"</span>,
+      <span class="tok-key">"agent"</span>: <span class="tok-str">"storage_agent"</span>,
+      <span class="tok-key">"tool"</span>: <span class="tok-str">"drive_api"</span>,
+      <span class="tok-key">"depends_on"</span>: [<span class="tok-str">"image_generation"</span>, <span class="tok-str">"content_generation"</span>],
+      <span class="tok-key">"description"</span>: <span class="tok-str">"Upload all assets to organized Google Drive folder"</span>
+    }
+  ]
+}</pre></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 2: TOOL DEFINITIONS
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">02</span>
+    <span class="component-title">Tool Definitions</span>
+    <span class="component-tag">JSON</span>
+  </div>
+  <div class="code-wrap"><pre>[
+  {
+    <span class="tok-key">"tool_name"</span>: <span class="tok-str">"claude_llm"</span>,
+    <span class="tok-key">"description"</span>: <span class="tok-str">"Anthropic Claude for prompt generation and social content creation"</span>,
+    <span class="tok-key">"api_endpoint"</span>: <span class="tok-str">"https://api.anthropic.com/v1/messages"</span>,
+    <span class="tok-key">"auth_method"</span>: <span class="tok-str">"bearer_token"</span>,
+    <span class="tok-key">"auth_header"</span>: <span class="tok-str">"x-api-key"</span>,
+    <span class="tok-key">"model"</span>: <span class="tok-str">"claude-3-5-haiku-20241022"</span>,
+    <span class="tok-key">"functions"</span>: [
+      {
+        <span class="tok-key">"name"</span>: <span class="tok-str">"generate_image_prompt"</span>,
+        <span class="tok-key">"description"</span>: <span class="tok-str">"Generate optimized Imagen prompts for model and product visuals"</span>,
+        <span class="tok-key">"max_tokens"</span>: <span class="tok-num">300</span>,
+        <span class="tok-key">"input_schema"</span>: {
+          <span class="tok-key">"image_analysis"</span>: {
+            <span class="tok-key">"type"</span>: <span class="tok-str">"object"</span>,
+            <span class="tok-key">"fields"</span>: [<span class="tok-str">"design_type"</span>, <span class="tok-str">"material_detected"</span>, <span class="tok-str">"quality_score"</span>]
+          },
+          <span class="tok-key">"product_details"</span>: {
+            <span class="tok-key">"type"</span>: <span class="tok-str">"object"</span>,
+            <span class="tok-key">"fields"</span>: [<span class="tok-str">"name"</span>, <span class="tok-str">"material"</span>, <span class="tok-str">"description"</span>]
+          },
+          <span class="tok-key">"memory"</span>: {
+            <span class="tok-key">"type"</span>: <span class="tok-str">"object"</span>,
+            <span class="tok-key">"fields"</span>: [<span class="tok-str">"style"</span>, <span class="tok-str">"background_preference"</span>]
+          }
+        },
+        <span class="tok-key">"output_schema"</span>: {
+          <span class="tok-key">"model_prompt"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"max_tokens"</span>: <span class="tok-num">120</span> },
+          <span class="tok-key">"product_prompt"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"max_tokens"</span>: <span class="tok-num">120</span> }
+        },
+        <span class="tok-key">"response_format"</span>: <span class="tok-str">"json"</span>
+      },
+      {
+        <span class="tok-key">"name"</span>: <span class="tok-str">"generate_social_content"</span>,
+        <span class="tok-key">"description"</span>: <span class="tok-str">"Generate SEO-optimized Instagram caption and hashtag array"</span>,
+        <span class="tok-key">"max_tokens"</span>: <span class="tok-num">220</span>,
+        <span class="tok-key">"input_schema"</span>: {
+          <span class="tok-key">"product_details"</span>: {
+            <span class="tok-key">"type"</span>: <span class="tok-str">"object"</span>,
+            <span class="tok-key">"fields"</span>: [<span class="tok-str">"name"</span>, <span class="tok-str">"price_now"</span>, <span class="tok-str">"price_was"</span>, <span class="tok-str">"material"</span>, <span class="tok-str">"description"</span>]
+          },
+          <span class="tok-key">"memory"</span>: {
+            <span class="tok-key">"type"</span>: <span class="tok-str">"object"</span>,
+            <span class="tok-key">"fields"</span>: [<span class="tok-str">"tone"</span>, <span class="tok-str">"top_performing_caption"</span>]
+          }
+        },
+        <span class="tok-key">"output_schema"</span>: {
+          <span class="tok-key">"caption"</span>:  { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"max_chars"</span>: <span class="tok-num">220</span> },
+          <span class="tok-key">"hashtags"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"array"</span>, <span class="tok-key">"max_items"</span>: <span class="tok-num">20</span> }
+        },
+        <span class="tok-key">"response_format"</span>: <span class="tok-str">"json"</span>
+      }
+    ]
+  },
+
+  {
+    <span class="tok-key">"tool_name"</span>: <span class="tok-str">"imagen_api"</span>,
+    <span class="tok-key">"description"</span>: <span class="tok-str">"Google Imagen 3 for high-fidelity jewellery image generation"</span>,
+    <span class="tok-key">"api_endpoint"</span>: <span class="tok-str">"https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/imagen-3.0-generate-002:predict"</span>,
+    <span class="tok-key">"auth_method"</span>: <span class="tok-str">"oauth2_service_account"</span>,
+    <span class="tok-key">"model_version"</span>: <span class="tok-str">"imagen-3.0-generate-002"</span>,
+    <span class="tok-key">"functions"</span>: [
+      {
+        <span class="tok-key">"name"</span>: <span class="tok-str">"generate_model_image"</span>,
+        <span class="tok-key">"description"</span>: <span class="tok-str">"Generate lifestyle shot of model wearing jewellery"</span>,
+        <span class="tok-key">"input_schema"</span>: {
+          <span class="tok-key">"prompt"</span>:       { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"required"</span>: <span class="tok-bool">true</span> },
+          <span class="tok-key">"aspect_ratio"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"default"</span>: <span class="tok-str">"4:5"</span>, <span class="tok-key">"enum"</span>: [<span class="tok-str">"1:1"</span>, <span class="tok-str">"4:5"</span>, <span class="tok-str">"9:16"</span>] },
+          <span class="tok-key">"quality"</span>:      { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"default"</span>: <span class="tok-str">"ultra"</span> },
+          <span class="tok-key">"sample_count"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"integer"</span>, <span class="tok-key">"default"</span>: <span class="tok-num">1</span> }
+        },
+        <span class="tok-key">"output_schema"</span>: {
+          <span class="tok-key">"image_url"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"format"</span>: <span class="tok-str">"gcs_uri"</span> }
+        }
+      },
+      {
+        <span class="tok-key">"name"</span>: <span class="tok-str">"generate_product_image"</span>,
+        <span class="tok-key">"description"</span>: <span class="tok-str">"Generate premium product-only image on luxury background"</span>,
+        <span class="tok-key">"input_schema"</span>: {
+          <span class="tok-key">"prompt"</span>:       { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"required"</span>: <span class="tok-bool">true</span> },
+          <span class="tok-key">"aspect_ratio"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"default"</span>: <span class="tok-str">"1:1"</span>, <span class="tok-key">"enum"</span>: [<span class="tok-str">"1:1"</span>, <span class="tok-str">"4:5"</span>] },
+          <span class="tok-key">"quality"</span>:      { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"default"</span>: <span class="tok-str">"ultra"</span> },
+          <span class="tok-key">"sample_count"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"integer"</span>, <span class="tok-key">"default"</span>: <span class="tok-num">1</span> }
+        },
+        <span class="tok-key">"output_schema"</span>: {
+          <span class="tok-key">"image_url"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"format"</span>: <span class="tok-str">"gcs_uri"</span> }
+        }
+      }
+    ]
+  },
+
+  {
+    <span class="tok-key">"tool_name"</span>: <span class="tok-str">"drive_api"</span>,
+    <span class="tok-key">"description"</span>: <span class="tok-str">"Google Drive for organized asset storage"</span>,
+    <span class="tok-key">"api_endpoint"</span>: <span class="tok-str">"https://www.googleapis.com/upload/drive/v3/files"</span>,
+    <span class="tok-key">"auth_method"</span>: <span class="tok-str">"oauth2_service_account"</span>,
+    <span class="tok-key">"scopes"</span>: [<span class="tok-str">"https://www.googleapis.com/auth/drive.file"</span>],
+    <span class="tok-key">"folder_structure"</span>: <span class="tok-str">"/Pattern_Jewellery/{product_category}/{YYYY-MM-DD}/{sku}/"</span>,
+    <span class="tok-key">"functions"</span>: [
+      {
+        <span class="tok-key">"name"</span>: <span class="tok-str">"upload_to_drive"</span>,
+        <span class="tok-key">"description"</span>: <span class="tok-str">"Upload file to structured Drive folder, return shareable link"</span>,
+        <span class="tok-key">"input_schema"</span>: {
+          <span class="tok-key">"file_data"</span>:   { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"format"</span>: <span class="tok-str">"binary_or_gcs_uri"</span> },
+          <span class="tok-key">"folder_path"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"/Pattern_Jewellery/rings/2025-01-15/R4389/"</span> },
+          <span class="tok-key">"file_name"</span>:   { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"example"</span>: <span class="tok-str">"R4389_model_lifestyle.jpg"</span> },
+          <span class="tok-key">"mime_type"</span>:   { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"default"</span>: <span class="tok-str">"image/jpeg"</span> }
+        },
+        <span class="tok-key">"output_schema"</span>: {
+          <span class="tok-key">"drive_link"</span>: { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span>, <span class="tok-key">"format"</span>: <span class="tok-str">"https://drive.google.com/drive/folders/{folder_id}"</span> },
+          <span class="tok-key">"file_id"</span>:    { <span class="tok-key">"type"</span>: <span class="tok-str">"string"</span> }
+        }
+      }
+    ]
+  }
+]</pre></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 3: PROMPT TEMPLATES
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">03</span>
+    <span class="component-title">Prompt Templates</span>
+    <span class="component-tag">3 Templates</span>
+  </div>
+
+  <div class="template-block">
+    <div class="template-label">Template 1 · Model Lifestyle Image Prompt · Max 120 tokens</div>
+    <div class="template-text">Professional luxury jewellery lifestyle photograph, Gulf market. Elegant Middle Eastern woman, refined pose, manicured hand foregrounded. Wearing <span class="var-pill">{product_name}</span> crafted in <span class="var-pill">{material}</span>. Macro detail: <span class="var-pill">{design_details}</span>. Setting: modern Dubai interior, soft bokeh, neutral silk backdrop. Studio lighting with rim highlight on stone facets and prong setting. Editorial fashion quality. 8K, photorealistic, no text.</div>
+    <div class="token-pill">≈ 78 tokens · within 120-token limit ✓</div>
+  </div>
+
+  <div class="template-block">
+    <div class="template-label">Template 2 · Premium Product-Only Image Prompt · Max 120 tokens</div>
+    <div class="template-text">Luxury jewellery product photography, no model. <span class="var-pill">{product_name}</span> in <span class="var-pill">{material}</span>. Key features: <span class="var-pill">{key_features}</span>. Surface: white Carrara marble with deep navy velvet accent. Macro lens, tack-sharp stone facets and prong detail. Three-point studio lighting: soft key, hard fill catching diamond brilliance, warm backlight. Floating shadow. 8K, photorealistic, commercial retail grade, no text.</div>
+    <div class="token-pill">≈ 80 tokens · within 120-token limit ✓</div>
+  </div>
+
+  <div class="template-block">
+    <div class="template-label">Template 3 · Social Media Content Prompt · Max 180 tokens</div>
+    <div class="template-text">Generate Instagram content for Pattern Jewellery, Dubai. Luxury tone, traditional-modern fusion voice.
+
+Product: <span class="var-pill">{product_name}</span>
+Price: AED <span class="var-pill">{price_now}</span> (was AED <span class="var-pill">{price_was}</span>)
+USP: <span class="var-pill">{unique_selling_points}</span>
+
+Return JSON only:
+{
+  "caption": "2–3 sentence luxury caption, highlight offer, end with CTA (link in bio / DM to order)",
+  "hashtags": ["array", "of", "20", "mixed", "broad+niche", "tags", "no", "spaces"]
+}
+
+Brand rules: aspirational, never salesy. Reference craftsmanship. Include price drop naturally.</div>
+    <div class="token-pill">≈ 102 tokens · within 180-token limit ✓</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 4: MULTI-AGENT WORKFLOW DIAGRAM
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">04</span>
+    <span class="component-title">Multi-Agent Workflow Design</span>
+    <span class="component-tag">4 Agents</span>
+  </div>
+
+  <div class="workflow-wrap">
+
+    <!-- AGENT 1: VISION -->
+    <div class="flow-row">
+      <div class="agent-box" style="max-width:380px;">
+        <div class="a-label">Step 0 · Sequential</div>
+        <div class="a-name">Vision Agent</div>
+        <div class="a-io">
+          IN → <span class="data-tag">product_image (url)</span><br>
+          TOOL → Internal vision model<br>
+          OUT → <span class="data-tag">design_type</span> <span class="data-tag">material_detected</span> <span class="data-tag">quality_score</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓ image_analysis (3 fields only)</div>
+
+    <!-- AGENT 2: CREATIVE -->
+    <div class="flow-row">
+      <div class="agent-box" style="max-width:380px;">
+        <div class="a-label">Step 1 · Sequential</div>
+        <div class="a-name">Creative Agent</div>
+        <div class="a-io">
+          IN → <span class="data-tag">image_analysis</span> <span class="data-tag">product_details</span> <span class="data-tag">memory.style</span> <span class="data-tag">memory.background_preference</span><br>
+          TOOL → claude_llm :: generate_image_prompt<br>
+          OUT → <span class="data-tag">model_prompt</span> <span class="data-tag">product_prompt</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓ prompts dispatched in parallel to Steps 2 &amp; 3</div>
+
+    <!-- PARALLEL: AGENTS 3 + CONTENT -->
+    <div class="parallel-label">⟳ Parallel Execution (Steps 2 &amp; 3)</div>
+    <div class="flow-row" style="gap:1rem; max-width:820px;">
+      <div class="agent-box">
+        <div class="a-label">Step 2 · Parallel</div>
+        <div class="a-name">Image Agent (Vision)</div>
+        <div class="a-io">
+          IN → <span class="data-tag">model_prompt</span> <span class="data-tag">product_prompt</span><br>
+          TOOL → imagen_api :: generate_model_image<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; imagen_api :: generate_product_image<br>
+          OUT → <span class="data-tag">model_image_url</span> <span class="data-tag">product_image_url</span>
+        </div>
+      </div>
+      <div class="arrow" style="color:#3a4a60;">|</div>
+      <div class="agent-box">
+        <div class="a-label">Step 3 · Parallel</div>
+        <div class="a-name">Content Agent</div>
+        <div class="a-io">
+          IN → <span class="data-tag">product_details</span> <span class="data-tag">memory.tone</span> <span class="data-tag">memory.top_performing_caption</span><br>
+          TOOL → claude_llm :: generate_social_content<br>
+          OUT → <span class="data-tag">caption</span> <span class="data-tag">hashtags[]</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-join">→ await both parallel steps complete</div>
+    <div class="arrow-down">↓ all 4 outputs collected</div>
+
+    <!-- AGENT 4: STORAGE -->
+    <div class="flow-row">
+      <div class="agent-box" style="max-width:500px;">
+        <div class="a-label">Step 4 · Sequential</div>
+        <div class="a-name">Storage Agent</div>
+        <div class="a-io">
+          IN → <span class="data-tag">model_image_url</span> <span class="data-tag">product_image_url</span> <span class="data-tag">caption</span> <span class="data-tag">hashtags[]</span> <span class="data-tag">product_details.sku</span> <span class="data-tag">product_details.category</span><br>
+          TOOL → drive_api :: upload_to_drive (×3: model img, product img, metadata.json)<br>
+          FOLDER → /Pattern_Jewellery/rings/2025-01-15/R4389/<br>
+          OUT → <span class="data-tag">drive_link (folder URL)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓ final skill output returned to user</div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 5: MEMORY SYSTEM
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">05</span>
+    <span class="component-title">Memory System Structure</span>
+    <span class="component-tag">JSON + Rules</span>
+  </div>
+  <div class="code-wrap"><pre><span class="tok-cmt">// memory.json — persistent, lightweight, 4 fields max</span>
+{
+  <span class="tok-key">"style"</span>:                  <span class="tok-str">"editorial"</span>,
+  <span class="tok-key">"tone"</span>:                   <span class="tok-str">"aspirational-luxury"</span>,
+  <span class="tok-key">"background_preference"</span>:  <span class="tok-str">"white-marble"</span>,
+  <span class="tok-key">"top_performing_caption"</span>: <span class="tok-str">"Timeless elegance, crafted for you. Now at AED 4,455 — link in bio."</span>
+}
+
+<span class="tok-cmt">// ── UPDATE RULES ──────────────────────────────────────────</span>
+<span class="tok-cmt">// WHEN:  Only on explicit user correction or positive feedback signal</span>
+<span class="tok-cmt">// HOW:   Replace field value atomically; no nested objects added</span>
+<span class="tok-cmt">// WHERE: /system/memory/pattern_jewellery_memory.json (persistent)</span>
+<span class="tok-cmt">// LIMIT: 4 fields hard cap — no expansion permitted</span>
+
+<span class="tok-cmt">// ── INJECTION POINTS ──────────────────────────────────────</span>
+<span class="tok-cmt">// Creative Agent receives: style + background_preference</span>
+<span class="tok-cmt">// Content Agent receives:  tone + top_performing_caption</span>
+
+<span class="tok-cmt">// ── BEFORE / AFTER EXAMPLE ────────────────────────────────</span>
+
+<span class="tok-cmt">// BEFORE (default state):</span>
+{
+  <span class="tok-key">"style"</span>:                  <span class="tok-str">"editorial"</span>,
+  <span class="tok-key">"tone"</span>:                   <span class="tok-str">"aspirational-luxury"</span>,
+  <span class="tok-key">"background_preference"</span>:  <span class="tok-str">"white-marble"</span>,
+  <span class="tok-key">"top_performing_caption"</span>: <span class="tok-str">""</span>
+}
+
+<span class="tok-cmt">// USER FEEDBACK: "I prefer dark navy velvet backgrounds, they performed better last week"</span>
+
+<span class="tok-cmt">// AFTER (single field updated):</span>
+{
+  <span class="tok-key">"style"</span>:                  <span class="tok-str">"editorial"</span>,
+  <span class="tok-key">"tone"</span>:                   <span class="tok-str">"aspirational-luxury"</span>,
+  <span class="tok-key">"background_preference"</span>:  <span class="tok-str">"deep-navy-velvet"</span>,
+  <span class="tok-key">"top_performing_caption"</span>: <span class="tok-str">""</span>
+}
+<span class="tok-cmt">// Creative Agent now injects "deep-navy-velvet" into Template 2 at {background_preference}</span></pre></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 6: CACHING LOGIC
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">06</span>
+    <span class="component-title">Caching Logic</span>
+    <span class="component-tag">JSON + Flow</span>
+  </div>
+  <div class="code-wrap"><pre><span class="tok-cmt">// cache.json — Redis or local JSON, 30-day TTL</span>
+{
+  <span class="tok-key">"image_hashes"</span>: {
+    <span class="tok-key">"a3f2c1b9_diamond-blue-sapphire-ring-r4389"</span>: {
+      <span class="tok-key">"hash"</span>:       <span class="tok-str">"a3f2c1b9"</span>,
+      <span class="tok-key">"created_at"</span>: <span class="tok-str">"2025-01-15T08:30:00Z"</span>,
+      <span class="tok-key">"expires_at"</span>: <span class="tok-str">"2025-02-14T08:30:00Z"</span>
+    }
+  },
+  <span class="tok-key">"enhanced_prompts"</span>: {
+    <span class="tok-key">"a3f2c1b9_diamond-blue-sapphire-ring-r4389"</span>: {
+      <span class="tok-key">"model_prompt"</span>:   <span class="tok-str">"Professional luxury jewellery lifestyle photograph..."</span>,
+      <span class="tok-key">"product_prompt"</span>: <span class="tok-str">"Luxury jewellery product photography, no model..."</span>
+    }
+  },
+  <span class="tok-key">"final_outputs"</span>: {
+    <span class="tok-key">"a3f2c1b9_diamond-blue-sapphire-ring-r4389"</span>: {
+      <span class="tok-key">"model_image_url"</span>:   <span class="tok-str">"https://drive.google.com/file/d/abc123"</span>,
+      <span class="tok-key">"product_image_url"</span>: <span class="tok-str">"https://drive.google.com/file/d/def456"</span>,
+      <span class="tok-key">"caption"</span>:           <span class="tok-str">"Timeless elegance, crafted for you..."</span>,
+      <span class="tok-key">"hashtags"</span>:          [<span class="tok-str">"#PatternJewellery"</span>, <span class="tok-str">"#DubaiJewellery"</span>],
+      <span class="tok-key">"drive_link"</span>:        <span class="tok-str">"https://drive.google.com/drive/folders/xyz789"</span>
+    }
+  }
+}
+
+<span class="tok-cmt">// ── CACHE KEY FORMAT ──────────────────────────────────────</span>
+<span class="tok-cmt">// "{pHash_8char}_{product_name_slug}"</span>
+<span class="tok-cmt">// Example: "a3f2c1b9_diamond-blue-sapphire-ring-r4389"</span>
+
+<span class="tok-cmt">// ── DETECTION ALGORITHM ───────────────────────────────────</span>
+<span class="tok-cmt">// Algorithm: pHash (perceptual hash) — tolerates JPEG compression artifacts</span>
+<span class="tok-cmt">// Match threshold: Hamming distance ≤ 10 (identical/near-identical images)</span>
+<span class="tok-cmt">// product_details change detection: SHA1 hash of JSON.stringify(product_details)</span>
+
+<span class="tok-cmt">// ── LOGIC FLOW ────────────────────────────────────────────</span>
+<span class="tok-cmt">// 1. Receive product_image + product_details</span>
+<span class="tok-cmt">// 2. Compute pHash(product_image) → hash_key</span>
+<span class="tok-cmt">// 3. Compute SHA1(product_details) → detail_fingerprint</span>
+<span class="tok-cmt">// 4. cache_key = hash_key + "_" + slug(product_details.name + product_details.sku)</span>
+<span class="tok-cmt">// 5. IF cache_key in final_outputs AND NOT expired AND detail_fingerprint unchanged:</span>
+<span class="tok-cmt">//      RETURN cached final_outputs[cache_key]  ← skip all agents</span>
+<span class="tok-cmt">// 6. ELSE IF cache_key in enhanced_prompts (image same, details changed):</span>
+<span class="tok-cmt">//      SKIP vision_agent + creative_agent</span>
+<span class="tok-cmt">//      RE-RUN content_agent + storage_agent only</span>
+<span class="tok-cmt">// 7. ELSE (full miss):</span>
+<span class="tok-cmt">//      EXECUTE full 4-step workflow</span>
+<span class="tok-cmt">//      STORE all layers in cache</span>
+<span class="tok-cmt">// 8. Expiration: TTL = 30 days. Manual invalidation: cache.delete(cache_key)</span></pre></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COMPONENT 7: TOKEN OPTIMIZATION
+═══════════════════════════════════════════════════ -->
+<section class="component">
+  <div class="component-header">
+    <span class="component-num">07</span>
+    <span class="component-title">Token Optimization Strategy</span>
+    <span class="component-tag">Budget + Rules</span>
+  </div>
+
+  <div class="rule-list">
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Short atomic prompts:</strong> Each agent call handles one task only. No multi-instruction prompts. Template variables replace repeated context text.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Cached system prompts:</strong> System prompts for claude_llm are cached server-side using Anthropic prompt caching (cache_control: ephemeral). Not resent per call.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>JSON-only responses:</strong> All LLM outputs use response_format: json. Eliminates preamble, filler, and markdown tokens.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Minimal image_analysis payload:</strong> Vision Agent outputs exactly 3 fields (design_type, material_detected, quality_score). No descriptions, no arrays, no nested objects.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Selective memory injection:</strong> Creative Agent receives only style + background_preference. Content Agent receives only tone + top_performing_caption. No agent receives the full memory object.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Parallel Step 2 + 3:</strong> image_generation and content_generation run concurrently. Eliminates sequential latency and avoids a round-trip token overhead for orchestration.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>max_tokens hard caps:</strong> claude_llm calls capped at 300 tokens (generate_image_prompt) and 220 tokens (generate_social_content). Model is prevented from over-generating.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Cache-first on repeat images:</strong> Full cache hit skips all 4 agents (0 LLM tokens consumed). Partial hit (details changed) skips 2 agents, saving ~170 tokens.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Product details passed as minimal subset:</strong> Each agent receives only the fields it requires — never the full product_details object.</span></div>
+    <div class="rule-item"><span class="rule-icon">→</span><span class="rule-text"><strong>Memory limited to 4 string fields:</strong> No nested objects, arrays, or metadata stored. Keeps injection payload under 40 tokens per agent call.</span></div>
+  </div>
+
+  <div class="budget-grid">
+    <div class="budget-cell">
+      <div class="budget-agent">Vision Agent</div>
+      <div class="budget-tokens">≤ 50</div>
+      <div class="budget-label">tokens output (3-field JSON)</div>
+    </div>
+    <div class="budget-cell">
+      <div class="budget-agent">Creative Agent</div>
+      <div class="budget-tokens">≤ 240</div>
+      <div class="budget-label">tokens output (120 × 2 prompts)</div>
+    </div>
+    <div class="budget-cell">
+      <div class="budget-agent">Content Agent</div>
+      <div class="budget-tokens">≤ 180</div>
+      <div class="budget-label">tokens output (caption + hashtags)</div>
+    </div>
+    <div class="budget-cell">
+      <div class="budget-agent">Storage Agent</div>
+      <div class="budget-tokens">≤ 30</div>
+      <div class="budget-label">tokens output (drive_link + file_ids)</div>
+    </div>
+    <div class="budget-cell budget-total">
+      <div class="budget-agent">Total Per Execution</div>
+      <div class="budget-tokens">≤ 500</div>
+      <div class="budget-label">tokens (well under 600 budget)</div>
+    </div>
+    <div class="budget-cell">
+      <div class="budget-agent">Cache Hit (full)</div>
+      <div class="budget-tokens">0</div>
+      <div class="budget-label">LLM tokens consumed</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Pattern Jewellery Automation · OpenClaw Skill System v1.0.0 · SKU R4389 · Diamond &amp; Blue Sapphire Ring · 18K White Gold
+</footer>
+
+</body>
+</html>

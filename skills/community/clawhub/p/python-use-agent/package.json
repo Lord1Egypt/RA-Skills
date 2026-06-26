@@ -1,0 +1,35 @@
+{
+  "name": "python-use-agent",
+  "version": "1.0.0",
+  "description": "Python-Use Agent - Task-driven Python execution powered by AI (Agent 2.0 paradigm)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node index.js"
+  },
+  "keywords": [
+    "python",
+    "agent",
+    "automation",
+    "ai",
+    "llm",
+    "code-generation",
+    "task-driven",
+    "agent-2.0"
+  ],
+  "author": "AiPyapp Team (integrated by SuperMike)",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "python": ">=3.8"
+  },
+  "engines": {
+    "node": ">=18",
+    "python": ">=3.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knownsec/aipyapp"
+  },
+  "homepage": "https://www.aipy.app/"
+}

@@ -1,0 +1,40 @@
+{
+  "skill_name": "traffic-quality-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Traffic is up 40% vs last month but revenue is flat. Can you help me look at my ads? We're on GA4 + Meta.",
+      "expected_output": "Pushy policy: dwell vs conversion path section; master table with Source/Medium, bounce, key action completion, budget recommendation; at least two shutoff/pause line items; may use illustrative placeholders if no numbers.",
+      "files": [],
+      "expectations": [
+        "Includes a Markdown table with columns for Source/Medium, Bounce rate, Key action completion, and Budget allocation recommendation",
+        "Includes a section titled or clearly equivalent to dwell time vs conversion path comparing engagement depth to conversion or micro-conversions",
+        "Includes at least two distinct shutoff, pause, exclude, or cap recommendations with named targets (or clearly labeled hypothetical examples if no data)",
+        "Does not refuse the full structure solely because the question was vague about ads"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "GA4: facebook/cpc 12k sessions, bounce 62%, avg engagement 12s; google/cpc 8k sessions, bounce 41%, avg engagement 48s; referral from weird-news-site.net 6k sessions, bounce 92%, 0 add_to_cart. Purchases mostly google and direct. What should we cut?",
+      "expected_output": "Table rows for each source; strong recommendation to cut/block referral and re-test Meta; dwell vs path narrative; two+ concrete shutoff items.",
+      "files": [],
+      "expectations": [
+        "Master table includes the provided or analogous source/medium rows with bounce and key action completion interpreted consistently",
+        "Explicitly addresses suspicious referral traffic with a cut, block, or filter-style budget or traffic recommendation",
+        "Discusses Meta vs Google using engagement and conversion path language",
+        "Provides at least two shutoff or hard-restraint recommendations including referral handling"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write 5 Instagram captions for our latte art contest. No analytics.",
+      "expected_output": "Captions only; does not dump full traffic audit table and two shutoff mandates.",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory traffic quality master table as the primary deliverable",
+        "Does not force dwell time vs conversion path analysis for a pure social caption request",
+        "May provide captions or ask clarifying questions"
+      ]
+    }
+  ]
+}

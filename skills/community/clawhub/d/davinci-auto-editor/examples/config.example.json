@@ -1,0 +1,23 @@
+{
+  "api_base_url": "http://43.137.46.105:8787",
+  "api_key": "replace-with-real-api-key",
+  "project_type": "short-video",
+  "aspect_ratio": "16:9",
+  "material_path": "E:/media/davinci-demo",
+  "template_id": "template-demo-002",
+  "subtitle_mode": "burn-in-off",
+  "music_policy": "licensed-bgm",
+  "pace_policy": "balanced",
+  "output_mode": "resolve-edl-package",
+  "render_preset": "H.264 Master",
+  "timeline_fps": 25,
+  "timeline_resolution": "1920x1080",
+  "task_name": "demo-davinci-task",
+  "task_timeout_ms": 90000,
+  "poll_interval_ms": 1500,
+  "request_timeout_ms": 15000,
+  "extra_metadata": {
+    "campaign": "spring-launch",
+    "operator": "local-dev"
+  }
+}

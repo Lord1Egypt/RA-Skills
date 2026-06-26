@@ -1,0 +1,6 @@
+{
+  "name": "monero-pool-comparison",
+  "version": "1.0.0",
+  "description": "Compare and choose the best Monero mining pool for your needs",
+  "main": "SKILL.md"
+}

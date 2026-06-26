@@ -1,35 +1,49 @@
 ---
-name: "Daily Inspiration"
-description: "每天定时推送倪海厦、南怀瑾等国学大师的相关内容，通过飞书发送给用户。内容包括佛学解脱、气功、周易、中医等主题。用于：用户请求每天获取精神修行相关资讯。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-inspiration"
-sourceUrl: "https://clawhub.ai/skills/daily-inspiration"
+name: daily-inspiration
+description: 每天定时推送倪海厦、南怀瑾等国学大师的相关内容，通过飞书发送给用户。内容包括佛学解脱、气功、周易、中医等主题。用于：用户请求每天获取精神修行相关资讯。
 ---
 
-# Daily Inspiration
+# 每日灵修推送
 
-> 每天定时推送倪海厦、南怀瑾等国学大师的相关内容，通过飞书发送给用户。内容包括佛学解脱、气功、周易、中医等主题。用于：用户请求每天获取精神修行相关资讯。
+## 触发方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-inspiration`
-- **Source URL:** [https://clawhub.ai/skills/daily-inspiration](https://clawhub.ai/skills/daily-inspiration)
+此技能在定时任务触发时自动运行，无需用户主动请求。
 
-## Overview
+## 内容优先级
 
+1. **倪海厦天纪** - 易经、风水、命理、阴阳五行（30%）
+2. **倪海厦人纪** - 中医经典、针灸、伤寒论（25%）
+3. **老庄哲学** - 道德经、庄子、逍遥自在（25%）
+4. **佛学/禅定** - 南怀瑾、禅定修行（20%）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-inspiration
+## 执行流程
+
+1. **选择主题**：随机从四个范畴中选择（天纪30%，人纪25%，老庄25%，佛学20%）
+2. **搜索内容**：使用 batch_web_search 搜索相关主题的最新或经典内容
+3. **整理内容**：提取有价值的信息片段
+4. **发送飞书**：使用 message 工具发送到用户
+
+## 内容来源
+
+- **倪海厦天纪**：易经、阴阳五行、风水、命理、紫微斗数
+- **倪海厦人纪**：针灸、黄帝内经、神农本草经、伤寒论、金匮要略
+- **老庄哲学**：道德经、庄子、列子、杨朱
+- 佛学：南怀瑾著作、禅宗公案
+
+## 输出格式
+
+每日两条推送：
+
+**早间（6:00-8:00）**：偏重修行、心性类
+**晚间（18:00-20:00）**：偏重养生、实用类
+
+消息格式：
+```
+📖 每日灵修
+
+[标题]
+
+[内容摘要/经典语录/实用知识]
+
+来源：xxx
 ```

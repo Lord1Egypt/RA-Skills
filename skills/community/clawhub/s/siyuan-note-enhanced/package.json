@@ -1,0 +1,9 @@
+{
+  "name": "siyuan-note",
+  "version": "1.0.0",
+  "description": "思源笔记读写技能，提供与思源笔记（SiYuan Note）进行交互的能力，包括读取和写入笔记内容",
+  "main": "SKILL.md",
+  "keywords": ["siyuan", "note", "notes", "思源笔记", "sync", "synchronization"],
+  "author": "OpenClaw Assistant",
+  "license": "MIT"
+}

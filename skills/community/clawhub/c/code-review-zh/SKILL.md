@@ -1,35 +1,32 @@
 ---
-name: "Code Review Zh"
-description: "代码审查助手，对代码进行全面审查，覆盖代码质量、潜在 Bug、性能问题、安全漏洞和可维护性。 适用于 PR 审查、代码重构前检查、新人代码辅导、技术方案评估等场景。解决"帮我看看这段代码有什么问题"、 "代码审查 / code review"、"找出代码中的 Bug"、"这个实现方案有什么风险"等需求。 支持 P..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-review-zh"
-sourceUrl: "https://clawhub.ai/skills/code-review-zh"
+name: code-review-zh
+description: >
+  代码审查助手，对代码进行全面审查，覆盖代码质量、潜在 Bug、性能问题、安全漏洞和可维护性。
+  适用于 PR 审查、代码重构前检查、新人代码辅导、技术方案评估等场景。解决"帮我看看这段代码有什么问题"、
+  "代码审查 / code review"、"找出代码中的 Bug"、"这个实现方案有什么风险"等需求。
+  支持 Python / Java / Go / JavaScript / TypeScript 等主流语言。
+tags: [代码审查, code-review, 代码质量, bug检测, PR审查, 安全漏洞, 代码优化]
 ---
 
-# Code Review Zh
+# 代码审查助手
 
-> 代码审查助手，对代码进行全面审查，覆盖代码质量、潜在 Bug、性能问题、安全漏洞和可维护性。 适用于 PR 审查、代码重构前检查、新人代码辅导、技术方案评估等场景。解决"帮我看看这段代码有什么问题"、 "代码审查 / code review"、"找出代码中的 Bug"、"这个实现方案有什么风险"等需求。 支持 P...
+对提交的代码进行全面审查，输出分级问题清单和改进建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-review-zh`
-- **Source URL:** [https://clawhub.ai/skills/code-review-zh](https://clawhub.ai/skills/code-review-zh)
+## Tools Required
+- read
 
-## Overview
+## Usage
 
+- "帮我做一次代码审查，找出潜在问题和改进点"
+- "这个 PR 有没有安全风险，帮我检查一下"
+- "我写的这段 Python 代码有没有性能问题或隐患"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-review-zh
-```
+## Examples
+
+输入：`帮我 review 这段 Go 代码，重点关注并发安全和错误处理`
+
+输出：
+- **严重问题**：data race 风险（第 23 行，共享变量未加锁）
+- **中等问题**：error 未处理（第 47 行），可能导致静默失败
+- **建议优化**：可用 sync.Pool 减少 GC 压力
+- 附改写示例代码

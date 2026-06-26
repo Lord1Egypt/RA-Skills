@@ -1,0 +1,26 @@
+name: aicodem-xmind-testcase
+version: 1.0.0
+description: 生成 XMind 格式的测试用例文件。基于测试用例数据自动生成结构化的 XMind 思维导图文件，支持电商消费券、登录、注册、下单等多种测试场景。输出文件可直接用 XMind、MindManager 等工具打开。
+license: MIT
+
+input_schema:
+  type: object
+  properties:
+    test_data:
+      type: object
+      description: 测试用例数据结构
+
+output_schema:
+  type: object
+  properties:
+    file:
+      type: string
+      description: 生成的 xmind 文件路径
+
+steps:
+  - name: generate_xmind
+    type: python
+    entry: scripts/generate_xmind.py
+    input:
+      test_data: "{{test_data}}"
+    output: result

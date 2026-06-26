@@ -1,35 +1,19 @@
 ---
-name: "Folder Inspector"
-description: "此技能用于扫描本地目录。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/folder-inspector"
-sourceUrl: "https://clawhub.ai/skills/folder-inspector"
+name: folder_inspector
+description: 此技能用于扫描本地目录。
 ---
 
-# Folder Inspector
+# Folder Inspector Skill
 
-> 此技能用于扫描本地目录。
+当用户询问“某个文件夹里有什么”、“看看这个目录下的文件大小”时使用。 输入参数为文件夹的绝对路径。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/folder-inspector`
-- **Source URL:** [https://clawhub.ai/skills/folder-inspector](https://clawhub.ai/skills/folder-inspector)
+## 参数说明
+- path: 目标文件夹的绝对路径。
 
-## Overview
+## 使用场景
+- 当用户询问“目录下有什么”或“查看文件夹大小”时，**必须**调用此工具。
+- 如果用户给出的是相对路径，请尽量结合上下文将其转换为绝对路径。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/folder-inspector
-```
+## 使用示例
+- "帮我看看 /home/jiajiexu 目录下有哪些大文件？"
+- "查询一下 /tmp 文件夹的内容。"

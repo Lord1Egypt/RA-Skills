@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_create_table_field_group",
+    "description": "Create data table field group. ",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Data table ID (must exist)."
+        },
+		"name": {
+          "type": "string",
+          "description": "Group name"
+        }
+      },
+      "required": ["tableId", "name"]
+    }
+  }
+}

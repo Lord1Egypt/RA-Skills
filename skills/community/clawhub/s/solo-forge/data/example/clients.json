@@ -1,0 +1,19 @@
+[
+  {
+    "name": "示例公司",
+    "industry": "电商",
+    "contact": "张总 138xxxx",
+    "status": "优质",
+    "signal": "绿灯",
+    "notes": "通过朋友介绍",
+    "research": {
+      "company_intro": "成立于2020年的母婴电商公司",
+      "products": "母婴用品线上销售",
+      "competitors": "竞品A、竞品B",
+      "recent_news": "2026年Q1完成B轮融资",
+      "pain_points": "缺少自有私域流量平台",
+      "decision_maker": "张总（CEO）"
+    },
+    "created_at": "2026-05-25"
+  }
+]

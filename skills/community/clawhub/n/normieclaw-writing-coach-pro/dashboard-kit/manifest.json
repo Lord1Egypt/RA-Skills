@@ -1,0 +1,84 @@
+{
+  "skill": "writing-coach-pro",
+  "version": "1.0.0",
+  "prefix": "wc_",
+  "display_name": "Writing Coach",
+  "icon": "pencil-line",
+  "route": "/writing-coach",
+  "description": "Writing analysis trends, style profile, and improvement tracking",
+  "tables": [
+    {
+      "name": "wc_sessions",
+      "description": "One row per writing review session",
+      "columns": [
+        { "name": "id", "type": "text", "primary": true },
+        { "name": "date", "type": "timestamptz", "index": true },
+        { "name": "mode", "type": "text" },
+        { "name": "word_count", "type": "integer" },
+        { "name": "issues_found", "type": "integer" },
+        { "name": "issues_accepted", "type": "integer" },
+        { "name": "readability_grade", "type": "real" },
+        { "name": "reading_ease", "type": "real" },
+        { "name": "passive_voice_pct", "type": "real" },
+        { "name": "adverb_density", "type": "real" },
+        { "name": "context_type", "type": "text" }
+      ]
+    },
+    {
+      "name": "wc_issues",
+      "description": "Individual issues detected across sessions",
+      "columns": [
+        { "name": "id", "type": "text", "primary": true },
+        { "name": "session_id", "type": "text", "references": "wc_sessions.id" },
+        { "name": "pass", "type": "text" },
+        { "name": "rule", "type": "text", "index": true },
+        { "name": "description", "type": "text" },
+        { "name": "accepted", "type": "boolean" }
+      ]
+    },
+    {
+      "name": "wc_profile_history",
+      "description": "Style profile change log",
+      "columns": [
+        { "name": "id", "type": "text", "primary": true },
+        { "name": "date", "type": "timestamptz", "index": true },
+        { "name": "field", "type": "text" },
+        { "name": "old_value", "type": "text" },
+        { "name": "new_value", "type": "text" },
+        { "name": "trigger", "type": "text" }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "type": "stat_row",
+      "items": [
+        { "label": "Total Sessions", "query": "SELECT COUNT(*) FROM wc_sessions" },
+        { "label": "Words Reviewed", "query": "SELECT COALESCE(SUM(word_count), 0) FROM wc_sessions" },
+        { "label": "Current Grade Level", "query": "SELECT ROUND(readability_grade, 1) FROM wc_sessions ORDER BY date DESC LIMIT 1" },
+        { "label": "Acceptance Rate", "query": "SELECT ROUND(SUM(issues_accepted)::numeric / NULLIF(SUM(issues_found), 0) * 100, 1) FROM wc_sessions" }
+      ]
+    },
+    {
+      "type": "line_chart",
+      "title": "Readability Trend",
+      "query": "SELECT date::date, AVG(readability_grade) as grade_level FROM wc_sessions GROUP BY date::date ORDER BY date::date",
+      "x": "date",
+      "y": "grade_level"
+    },
+    {
+      "type": "bar_chart",
+      "title": "Issues by Category",
+      "query": "SELECT pass, COUNT(*) as count FROM wc_issues GROUP BY pass ORDER BY count DESC",
+      "x": "pass",
+      "y": "count"
+    },
+    {
+      "type": "line_chart",
+      "title": "Acceptance Rate Over Time",
+      "query": "SELECT s.date::date, ROUND(SUM(s.issues_accepted)::numeric / NULLIF(SUM(s.issues_found), 0) * 100, 1) as rate FROM wc_sessions s GROUP BY s.date::date ORDER BY s.date::date",
+      "x": "date",
+      "y": "rate"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "name": "wangjucai-liangpi",
+  "display_name": "王聚财面皮铺信息查询",
+  "description": "查询王聚财面皮铺信息：餐厅名称与简介、营业时间、门店地址、菜单菜品、外卖配送、堂食预约。西安首家芥末蒜香酿皮，擀面皮人气榜TOP。",
+  "version": "1.3.0",
+  "author": "王聚财AI",
+  "license": "MIT",
+  "repository": "https://github.com/maggotnian-cell/wangjucai-liangpi-skill",
+  "category": "信息查询",
+  "keywords": [
+    "王聚财",
+    "wangjucai",
+    "面皮铺",
+    "凉皮",
+    "酿皮",
+    "擀面皮",
+    "芥末蒜香",
+    "西安美食",
+    "西安北站",
+    "张家堡",
+    "凤城六路",
+    "外卖",
+    "陕西小吃",
+    "面食"
+  ],
+  "mcp_server": {
+    "transport": "streamable-http",
+    "url": "https://wangjucai-liangpi-246135-8-1421953131.sh.run.tcloudbase.com"
+  },
+  "tools": [
+    {
+      "name": "get_restaurant_info",
+      "display_name": "餐厅基本信息",
+      "description": "查询王聚财面皮铺的基本信息。返回餐厅名称、简介、营业时间、地址、电话、人均消费。无需输入参数，直接调用即可返回全部信息。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_menu",
+      "display_name": "菜单与特色菜",
+      "description": "获取王聚财面皮铺的完整菜单和特色菜介绍。返回酿皮系列、擀面皮系列、搭配菜品、价格、辣度选择。用户询问'有什么菜'、'菜单'、'特色菜'、'招牌'、'芥末蒜香是什么'时使用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_delivery_info",
+      "display_name": "外卖服务",
+      "description": "获取王聚财面皮铺外卖配送信息。用户询问'能点外卖吗'、'外卖怎么点'、'配送范围'时使用。返回美团、饿了么搜索方式，配送范围约3公里。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_reservation_info",
+      "display_name": "堂食预约",
+      "description": "获取王聚财面皮铺堂食预约信息。用户询问'能堂食吗'、'需要预约吗'、'店里位置多吗'时使用。返回预约电话、堂食提示（位置有限建议预约）。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_wifi_info",
+      "display_name": "到店Wi-Fi指引",
+      "description": "获取到店后的 Wi-Fi 使用指引。为保护店内网络安全，公开发布版本不直接返回 Wi-Fi 密码，只提示用户到店询问店员或查看门店提示。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_order_entry",
+      "display_name": "公开下单入口",
+      "description": "获取公开下单入口链接。AI 可以直接把链接发给用户，也可以提示用户到店后扫描桌面二维码进入同一入口。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "brand_prompt": {
+    "system_instruction": "你是王聚财面皮铺的AI助手。王聚财是西安首家芥末蒜香酿皮店，大众点评4.6-4.7分，擀面皮人气榜TOP。用实在、亲民、有特色的方式回答问题。不要用营销套话，像邻居推荐一家好吃的凉皮店。不知道的就说不知道，不要编造。回答具体信息时，优先调用对应的 Skill 工具获取数据。公开下单入口可以直接提供给用户；同时要提醒用户，到店后也可以扫描桌面二维码进入同一入口。涉及 Wi-Fi 密码等门店内部资源时，不在公开 Skill 中直接泄露。",
+    "tone": {
+      "personality": "warm_and_honest",
+      "avoid": [
+        "hype",
+        "marketing_jargon",
+        "exaggeration"
+      ]
+    },
+    "brand_keywords": [
+      "芥末蒜香酿皮",
+      "西安首家",
+      "擀面皮人气榜TOP",
+      "劲道有嚼劲",
+      "辣椒香而不辣",
+      "人均12元"
+    ]
+  }
+}

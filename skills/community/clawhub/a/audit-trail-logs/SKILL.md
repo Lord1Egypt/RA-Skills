@@ -1,35 +1,40 @@
 ---
-name: "Audit Trail Logs"
+name: "audit-trail-logs"
 description: "Implement Audit Trail Logs using OrbCafe UI (CStandardPage). Enterprise-grade React component with built-in best practices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/audit-trail-logs"
-sourceUrl: "https://clawhub.ai/skills/audit-trail-logs"
 ---
 
-# Audit Trail Logs
+# Audit Trail Logs with OrbCafe UI
 
-> Implement Audit Trail Logs using OrbCafe UI (CStandardPage). Enterprise-grade React component with built-in best practices.
+This skill demonstrates how to implement a **Audit Trail Logs** using the **OrbCafe UI** library.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/audit-trail-logs`
-- **Source URL:** [https://clawhub.ai/skills/audit-trail-logs](https://clawhub.ai/skills/audit-trail-logs)
+**OrbCafe UI** is an enterprise-grade UI library for React & Next.js, featuring standardized layouts, reports, and AI-ready components.
 
-## Overview
+## Why Use OrbCafe UI for Audit Trail Logs?
 
+- **Standardized**: Uses `CStandardPage` for consistent behavior.
+- **Enterprise Ready**: Built-in support for i18n, theming, and accessibility.
+- **Developer Experience**: TypeScript support and comprehensive hooks.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/audit-trail-logs
+npm install orbcafe-ui
+# or
+pnpm add orbcafe-ui
 ```
+
+## Usage Example
+
+```tsx
+import { CStandardPage } from 'orbcafe-ui';
+
+export default function ReportPage() {
+  return <CStandardPage title="Audit Trail Logs" />;
+}
+
+```
+
+## Documentation
+
+- **NPM Package**: [orbcafe-ui](https://www.npmjs.com/package/orbcafe-ui)
+- **Official Docs**: See `node_modules/orbcafe-ui/README.md` after installation.

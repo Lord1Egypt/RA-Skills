@@ -1,0 +1,4 @@
+interface:
+  display_name: "PMA Code Review"
+  short_description: "Stack-aware code review for PMA projects"
+  default_prompt: "Use $pma-cr to review the current diff for correctness, security, and regressions."

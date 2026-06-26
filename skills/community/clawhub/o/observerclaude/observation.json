@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UxrObserver Observation Record",
+  "description": "Schema for a single interaction observation logged to observations.jsonl",
+  "type": "object",
+  "required": ["id", "timestamp", "session_id", "observation_type", "task", "user", "openclaw", "infrastructure", "outcome", "task_context_narrative"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique observation ID (format: obs-{uuid})"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Session UUID grouping related interactions"
+    },
+    "observation_type": {
+      "type": "string",
+      "enum": ["interaction", "amendment", "system_event", "gap_detected"],
+      "description": "Type of observation record"
+    },
+    "amended_observation_id": {
+      "type": ["string", "null"],
+      "description": "If observation_type is 'amendment', the ID of the original observation being corrected"
+    },
+    "task": {
+      "type": "object",
+      "required": ["intent_summary", "category", "complexity"],
+      "properties": {
+        "intent_summary": { "type": "string", "description": "Brief summary of what the user was trying to do" },
+        "category": {
+          "type": "string",
+          "enum": ["coding", "writing", "research", "file_creation", "data_analysis", "planning", "conversation", "system_configuration", "automation", "learning", "debugging_openclaw", "communication", "image_generation", "other"]
+        },
+        "complexity": {
+          "type": "string",
+          "enum": ["trivial", "simple", "moderate", "complex", "multi_session"]
+        },
+        "is_chain": { "type": "boolean", "description": "Whether this task is part of a larger chain" },
+        "chain_id": { "type": ["string", "null"], "description": "Group ID for chained tasks" },
+        "is_first_occurrence": { "type": "boolean", "description": "First time user attempted this category" },
+        "frequency_rank": { "type": ["integer", "null"], "description": "Current rank of this category in user's usage" }
+      }
+    },
+    "user": {
+      "type": "object",
+      "required": ["request_verbatim", "sentiment", "verbatims"],
+      "properties": {
+        "request_verbatim": { "type": "string", "description": "User's exact words making the request" },
+        "prompt_style": {
+          "type": "string",
+          "enum": ["minimal", "detailed_instruction", "example_driven", "iterative", "structured", "conversational", "technical"]
+        },
+        "corrections_made": { "type": "integer", "description": "Number of corrections in this interaction" },
+        "correction_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["scope_correction", "format_correction", "factual_correction", "intent_correction", "style_correction", "precision_correction"]
+          }
+        },
+        "sentiment": { "type": "string", "description": "Detected sentiment (may include transitions like 'frustrated_then_positive')" },
+        "verbatims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["header", "quote", "context"],
+            "properties": {
+              "header": { "type": "string", "description": "Researcher-generated interpretive summary" },
+              "quote": { "type": "string", "description": "User's exact words" },
+              "context": { "type": "string", "description": "What was happening when they said this" },
+              "signal_type": {
+                "type": "string",
+                "enum": ["request", "reaction", "correction", "emotion", "expectation", "commentary"]
+              }
+            }
+          }
+        },
+        "workaround_used": { "type": "boolean" },
+        "workaround_description": { "type": ["string", "null"] },
+        "abandoned": { "type": "boolean" },
+        "abandonment_reason": { "type": ["string", "null"] },
+        "mental_model_mismatch": { "type": ["string", "null"], "description": "Description if user expected different behavior" },
+        "feature_discovery": { "type": ["string", "null"], "description": "Description if user discovered a new capability" },
+        "trust_signal": {
+          "type": ["string", "null"],
+          "enum": ["verified_output", "trusted_blindly", "expressed_skepticism", "checked_then_accepted", null]
+        }
+      }
+    },
+    "openclaw": {
+      "type": "object",
+      "required": ["approach_summary", "response_summary", "tools_used", "tool_call_count"],
+      "properties": {
+        "approach_summary": { "type": "string" },
+        "response_summary": { "type": "string" },
+        "tools_used": { "type": "array", "items": { "type": "string" } },
+        "tool_call_count": { "type": "integer" },
+        "errors_encountered": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "error_type": { "type": "string" },
+              "error_message": { "type": "string" },
+              "recovered": { "type": "boolean" }
+            }
+          }
+        },
+        "retries": { "type": "integer" },
+        "skills_triggered": { "type": "array", "items": { "type": "string" } },
+        "hallucination_detected": { "type": "boolean" },
+        "hallucination_details": { "type": ["string", "null"] }
+      }
+    },
+    "infrastructure": {
+      "type": "object",
+      "properties": {
+        "model_detected": { "type": ["string", "null"] },
+        "environment_detected": {
+          "type": ["string", "null"],
+          "enum": ["claude_ai", "claude_code", "cowork", "desktop", "mobile", "unknown", null]
+        },
+        "sub_agent_architecture": {
+          "type": ["string", "null"],
+          "enum": ["single_agent", "supervisor_worker", "pipeline", "parallel_fan_out", "custom", null]
+        },
+        "sub_agent_details": { "type": ["string", "null"] },
+        "estimated_input_tokens": { "type": "integer" },
+        "estimated_output_tokens": { "type": "integer" },
+        "estimated_tool_tokens": { "type": "integer" },
+        "estimated_cost_usd": { "type": "number" },
+        "cost_confidence_range": { "type": "number", "description": "±percentage (typically 0.20 for 20%)" },
+        "session_duration_seconds": { "type": ["integer", "null"] }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "required": ["result"],
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": ["success", "partial_success", "failure", "abandoned", "ongoing"]
+        },
+        "failure_type": {
+          "type": ["string", "null"],
+          "enum": ["tool_error", "misunderstanding", "scope_mismatch", "format_error", "hallucination", "loop", "timeout", "skill_failure", "context_loss", "dependency_failure", "user_confusion", "silent_failure", null]
+        },
+        "failure_severity": {
+          "type": ["string", "null"],
+          "enum": ["minor", "moderate", "severe", "critical", null]
+        },
+        "recovery_pattern": {
+          "type": ["string", "null"],
+          "enum": ["user_workaround", "openclaw_self_correction", "user_correction_prompted_fix", "retry_succeeded", "abandonment", "escalation", null]
+        },
+        "value_delivered": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["time_saved", "quality_improvement", "capability_unlock", "cognitive_offload", "learning", "creative_amplification"]
+          }
+        },
+        "magic_moment": { "type": "boolean", "description": "True if user expressed genuine surprise or delight" },
+        "magic_moment_details": { "type": ["string", "null"] }
+      }
+    },
+    "task_context_narrative": {
+      "type": "string",
+      "description": "3-5 sentence narrative of what happened, written for someone who wasn't there"
+    }
+  }
+}

@@ -1,35 +1,42 @@
 ---
-name: "ts3"
-description: "TS3 namespace for Netsnek e.U. TypeScript server-side framework. HTTP server scaffolding, middleware composition, request validation, and structured logging."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ts3"
-sourceUrl: "https://clawhub.ai/skills/ts3"
+name: ts3
+description: TS3 namespace for Netsnek e.U. TypeScript server-side framework. HTTP server scaffolding, middleware composition, request validation, and structured logging.
+user-invocable: true
+version: 0.1.0
+metadata:
+  openclaw:
+    os: [linux]
+    permissions: [exec]
 ---
 
-# ts3
+# Why TS3?
 
-> TS3 namespace for Netsnek e.U. TypeScript server-side framework. HTTP server scaffolding, middleware composition, request validation, and structured logging.
+TS3 is the Netsnek e.U. TypeScript server-side framework. Build HTTP servers with minimal boilerplate: scaffolding, middleware composition, request validation, and structured logging are built in.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ts3`
-- **Source URL:** [https://clawhub.ai/skills/ts3](https://clawhub.ai/skills/ts3)
+## Architecture
 
-## Overview
+- **HTTP server** — Express-compatible request/response
+- **Middleware** — Composable request pipelines
+- **Validation** — Zod or similar for request bodies
+- **Logging** — Structured JSON logs
 
+## Server Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Script | Option | Action |
+|--------|--------|--------|
+| server-init.sh | `--routes` | Generate route handlers |
+| server-init.sh | `--health` | Add health check endpoint |
+| server-init.sh | `--describe` | Describe server structure |
+
+## Example Session
+
 ```bash
-hermes skills install clawhub/ts3
+# Bootstrap a server with routes
+./scripts/server-init.sh --routes
+
+# Add health endpoint
+./scripts/server-init.sh --health
+
+# Inspect layout
+./scripts/server-init.sh --describe
 ```

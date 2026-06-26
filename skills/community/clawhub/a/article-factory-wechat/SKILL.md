@@ -1,35 +1,112 @@
----
-name: "微信公众号文章生产SOP"
-description: "微信公众平台文章全流程生产工具，涵盖选题、调研、撰写、去AI味、生成配图、HTML排版及提交草稿七个标准步骤。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/article-factory-wechat"
-sourceUrl: "https://clawhub.ai/skills/article-factory-wechat"
----
+***
 
-# 微信公众号文章生产SOP
+name: article-factory-wechat
+description: 微信公众号文章生产全流程工具，提供从选题搜集、深度调研、撰写文章、去AI味、生成配图、HTML排版到提交草稿的完整7步标准化流程。当用户提到写公众号文章、发文章、文章选题、公众号草稿、文章配图、文章排版、去除AI痕迹、提交公众号等任何相关需求时，立即使用此技能。
+------------------------------------------------------------------------------------------------------------------------------------------------
 
-> 微信公众平台文章全流程生产工具，涵盖选题、调研、撰写、去AI味、生成配图、HTML排版及提交草稿七个标准步骤。
+# 公众号文章生产 SOP（7步流程）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/article-factory-wechat`
-- **Source URL:** [https://clawhub.ai/skills/article-factory-wechat](https://clawhub.ai/skills/article-factory-wechat)
+## 完整流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/article-factory-wechat
 ```
+Step 1: 信息搜集 → Step 2: 深度调研 → Step 3: 撰写文章
+    ↓
+Step 4: 去AI味 → Step 5: 生成配图 → Step 6: HTML排版 → Step 7: 提交草稿
+```
+
+***
+
+## 各步骤详细说明
+
+请只在执行到对应步骤的时候才浏览对应步骤的具体说明。
+
+- [Step 1: 信息搜集](./steps/step-01-information-gathering.md) - 从可用信息源获取真实事件，提炼3个选题
+- [Step 2: 深度调研](./steps/step-02-research.md) - 确定选题后，收集足够素材支撑文章
+- [Step 3: 撰写文章](./steps/step-03-writing.md) - 写出符合公众号风格的高质量文章
+- [Step 4: 去AI味](./steps/step-04-de-ai.md) - 使用humanize-chinese技能优化文章，去除AI痕迹
+- [Step 5: 生成配图](./steps/step-05-html-image-generation.md) - 使用HTML模板生成封面图、文章配图、流程图等
+- [Step 6: HTML排版](./steps/step-06-html-layout.md) - 将文章转为美观的HTML格式，适配公众号
+- [Step 7: 提交草稿](./steps/step-07-submit-draft.md) - 检查并提交到公众号草稿
+
+***
+
+## 凭证要求（必须配置）
+
+### 环境变量
+
+在 `~/.openclaw/env` 中配置以下密钥：
+
+```
+WECHAT_APPID=你的微信公众号AppID
+WECHAT_APPSECRET=你的微信公众号AppSecret
+```
+
+**获取方式：** 登录微信公众平台 → 开发 → 开发管理 → 基本配置
+
+### 微信公众号 IP 白名单
+
+将运行此技能的服务器 IP 地址添加到微信公众平台的 IP 白名单，否则接口调用会失败。
+
+***
+
+## 依赖技能
+
+本技能依赖以下已安装技能：
+
+| 技能                    | 用途              |
+| --------------------- | --------------- |
+| `humanize-chinese`    | （可选）文章去AI味检测与优化 |
+| `multi-search-engine` | 选题阶段的信息搜索       |
+
+***
+
+## 外部工具集成
+
+| 工具            | 用途       | 凭证要求                                |
+| ------------- | -------- | ----------------------------------- |
+| 微信公众号 API     | 发布草稿     | `WECHAT_APPID` + `WECHAT_APPSECRET` |
+| 飞书云文档         | 文章审阅分享   | 通过 OpenClaw 飞书插件，无需额外配置             |
+| Puppeteer（本地） | HTML 转图片 | 无需配置，脚本内置                           |
+
+***
+
+## 使用前提
+
+### npm 依赖安装
+
+首次使用前需要安装依赖：
+
+```bash
+cd skills/article-factory-wechat && npm install
+```
+
+***
+
+## 关键文件路径
+
+| 内容     | 路径                                   |
+| ------ | ------------------------------------ |
+| 输出目录   | `工作区/work/output/{YYYYMMDD}-{文章标题}/` |
+| 脚本     | `scripts/`                           |
+| HTML模板 | `templates/`                         |
+| 参考文档   | `references/`                        |
+
+## 输出目录规范
+
+所有产物统一输出到：
+
+```
+工作区/work/output/{YYYYMMDD}-{文章标题}/
+```
+
+- `YYYYMMDD`：当前日期（如 20260321）
+- `文章标题`：文章的标题
+- 示例：`workspace/work/output/20260321-AI-新模型评测/`
+
+## ⚠️ 常见错误
+
+1. **图片不能省略** — 封面图 + 文章配图都是必须步骤
+2. **去AI味必须做** — 每次都要跑检测脚本，不能跳过
+3. **用户审阅后再提交** — 将结果发给**用户**，确认后再提交草稿（若为飞书渠道，请发送飞书文档）
+4. **必须用 HTML 模板生图** — 封面图和配图必须用 `temp-convert.js` + HTML 模板方式
+

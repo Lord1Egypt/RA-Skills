@@ -1,0 +1,59 @@
+// services/{{name}}.ts
+// {{description}}
+
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { GlobalErrorHandler } from '../common/utils/GlobalErrorHandler';
+
+const TAG = '{{name}}';
+const DOMAIN = 0x0001;
+
+export class {{name}} {
+  private static instance: {{name}};
+  private errorHandler: GlobalErrorHandler;
+
+  private constructor() {
+    this.errorHandler = GlobalErrorHandler.getInstance();
+  }
+
+  static getInstance(): {{name}} {
+    if (!{{name}}.instance) {
+      {{name}}.instance = new {{name}}();
+    }
+    return {{name}}.instance;
+  }
+
+  {{#each methods}}
+  /**
+   * {{description}}
+   * [TODO-GUIDE] 实现参考: implementation-guides.md
+   */
+  async {{name}}(input: {{inputType}}): Promise<{{outputType}}> {
+    try {
+      hilog.info(DOMAIN, TAG, '{{name}} called');
+
+      // [TODO-GUIDE] 实现业务逻辑
+      const result = await this.do{{capitalize name}}(input);
+
+      return {
+        success: true,
+        data: result
+      };
+    } catch (error) {
+      this.errorHandler.handle(error, '{{name}}');
+      return {
+        success: false,
+        error: {
+          code: 'ERROR',
+          message: String(error)
+        }
+      };
+    }
+  }
+
+  private async do{{capitalize name}}(input: {{inputType}}): Promise<{{returnType}}> {
+    // [TODO-GUIDE] 参见: implementation-guides.md
+    throw new Error('Not implemented');
+  }
+
+  {{/each}}
+}

@@ -1,35 +1,51 @@
 ---
-name: "高佣联盟返利助手"
-description: "高佣联盟CPS聚合返利工具，以高佣金比例为核心优势，覆盖淘宝京东拼多多美团等多平台返利和社交裂变推广。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gaoyong-union"
-sourceUrl: "https://clawhub.ai/skills/gaoyong-union"
+name: 高佣联盟返利助手
+description: 高佣联盟CPS聚合返利工具，以高佣金比例为核心优势，覆盖淘宝京东拼多多美团等多平台返利和社交裂变推广。
+version: 0.1.0
 ---
 
 # 高佣联盟返利助手
 
-> 高佣联盟CPS聚合返利工具，以高佣金比例为核心优势，覆盖淘宝京东拼多多美团等多平台返利和社交裂变推广。
+高佣联盟CPS聚合返利工具。以高佣金比例为核心卖点，聚合淘宝联盟、京东联盟、多多进宝、美团联盟等多平台CPS接口，为用户提供高返利查询和社交裂变推广能力。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gaoyong-union`
-- **Source URL:** [https://clawhub.ai/skills/gaoyong-union](https://clawhub.ai/skills/gaoyong-union)
+## 触发词
 
-## Overview
+高佣联盟、高佣返利、gaoyong、高佣金、高佣推广、高佣省钱
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gaoyong-union
+### 核心功能
+
+- **高佣商品筛选**：专注筛选各平台高佣金比例商品
+- **多平台覆盖**：淘宝/京东/拼多多/美团/饿了么等
+- **佣金比例对比**：同商品不同渠道佣金比例对比
+- **社交裂变工具**：邀请海报、推广链接、分享素材一键生成
+
+### 高佣特色
+
+| 特色 | 说明 |
+|------|------|
+| 佣金比例高 | 主打比同类平台更高的佣金返利 |
+| 覆盖面广 | 购物+外卖+出行+生活服务 |
+| 裂变激励 | 多级邀请奖励，团队收益 |
+| 实时结算 | 部分订单支持快速结算 |
+
+### 使用场景
+
+1. **高佣选品**：筛选佣金比例最高的商品推广
+2. **多场景返利**：购物、外卖、打车都能返利
+3. **团队推广**：裂变拉新，扩大推广团队
+4. **佣金提现**：管理和提现佣金收益
+
+## 输出格式
+
+```
+🔥 高佣联盟返利查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+佣金比例：[X]%（高于行业均值）
+预计返利：¥[金额]
+推广链接：[链接]
 ```

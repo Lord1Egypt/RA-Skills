@@ -1,35 +1,11 @@
 ---
-name: "code-review-change-size"
-description: "Indexed by skills.sh from openai/codex"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "openai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/openai/codex/code-review-change-size"
-sourceUrl: "https://skills.sh/openai/codex/code-review-change-size"
+name: code-review-change-size
+description: Change size guidance (800 lines)
 ---
 
-# code-review-change-size
+Unless the change is mechanical the total number of changed lines should not exceed 800 lines.
+For complex logic changes the size should be under 500 lines.
 
-> Indexed by skills.sh from openai/codex
+If the change is larger, explain whether it can be split into reviewable stages and identify the smallest coherent stage to land first.
+Base the staging suggestion on the actual diff, dependencies, and affected call sites.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** openai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/openai/codex/code-review-change-size`
-- **Source URL:** [https://skills.sh/openai/codex/code-review-change-size](https://skills.sh/openai/codex/code-review-change-size)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/openai/codex/code-review-change-size
-```

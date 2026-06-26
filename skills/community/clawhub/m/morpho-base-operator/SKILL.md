@@ -1,35 +1,19 @@
----
-name: "Morpho Base Operator"
-description: "Operate a Base-first Morpho vault workflow using a registry file to plan, snapshot, execute, and archive without dynamic market discovery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/morpho-base-operator"
-sourceUrl: "https://clawhub.ai/skills/morpho-base-operator"
----
-
 # Morpho Base Operator
 
-> Operate a Base-first Morpho vault workflow using a registry file to plan, snapshot, execute, and archive without dynamic market discovery.
+Use this skill to operate a Base-first Morpho mandated vault workflow in a registry-first way.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/morpho-base-operator`
-- **Source URL:** [https://clawhub.ai/skills/morpho-base-operator](https://clawhub.ai/skills/morpho-base-operator)
+The active production-candidate validation chain is Base. BSC is retained only as reviewed historical empty-scope context, and `allowMainnetExecution` stays `false` by default.
 
-## Overview
+## Required sequence
 
+1. Load the configured registry file.
+2. Verify registry addresses before planning.
+3. Snapshot current state.
+4. Build a deterministic plan for a registered market only.
+5. Collect the authority signature outside the host.
+6. Execute through the pinned mandated MCP stack.
+7. Reconcile and archive the execution report.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/morpho-base-operator
-```
+Never perform dynamic market discovery in the write path.
+
+Users must supply their own local configuration (RPC, operator private key, and any active vault identifiers) outside the published skill bundle.

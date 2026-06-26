@@ -1,35 +1,64 @@
 ---
-name: "xcodebuildmcp-cli"
-description: "Indexed by skills.sh from getsentry/xcodebuildmcp"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "getsentry"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/getsentry/xcodebuildmcp/xcodebuildmcp-cli"
-sourceUrl: "https://skills.sh/getsentry/xcodebuildmcp/xcodebuildmcp-cli"
+name: xcodebuildmcp-cli
+description: Official skill for the XcodeBuildMCP CLI. Use when doing iOS/macOS/watchOS/tvOS/visionOS work (build, test, run, debug, log, UI automation).
 ---
 
-# xcodebuildmcp-cli
+# XcodeBuildMCP CLI
 
-> Indexed by skills.sh from getsentry/xcodebuildmcp
+Use XcodeBuildMCP tools via the `xcodebuildmcp` executable instead of raw `xcodebuild`, `xcrun`, or `simctl`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** getsentry
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/getsentry/xcodebuildmcp/xcodebuildmcp-cli`
-- **Source URL:** [https://skills.sh/getsentry/xcodebuildmcp/xcodebuildmcp-cli](https://skills.sh/getsentry/xcodebuildmcp/xcodebuildmcp-cli)
+## Step 1: Ensure the CLI Exists
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Check availability:
 ```bash
-hermes skills install skills-sh/getsentry/xcodebuildmcp/xcodebuildmcp-cli
+xcodebuildmcp --help
 ```
+
+If missing, install with one of:
+```bash
+brew tap getsentry/xcodebuildmcp
+brew install xcodebuildmcp
+```
+
+```bash
+npm install -g xcodebuildmcp@latest
+```
+
+Re-check after install:
+```bash
+xcodebuildmcp --help
+```
+
+## Step 2: Use Help-First Discovery
+
+Discover workflows and arguments from the CLI itself:
+```bash
+xcodebuildmcp --help
+xcodebuildmcp tools
+xcodebuildmcp <workflow> --help
+xcodebuildmcp <workflow> <tool> --help
+```
+
+Use this discovery path instead of memorizing static tool lists.
+
+## Step 3: Keep Execution Minimal
+
+- Choose the smallest command sequence that satisfies the request.
+- Prefer direct workflow commands over manual multi-step chains unless explicitly requested.
+- For simulator run intent, prefer the combined `build-and-run` command.
+- Do not chain `build` then `build-and-run` unless explicitly requested.
+
+## Capability Overview
+
+`xcodebuildmcp` supports:
+- simulator and device build/test/run
+- debugging and log capture
+- UI automation
+- project discovery and scaffolding
+- session defaults and workflow configuration
+
+## Exit Criteria
+
+- CLI presence is verified or installation steps are provided.
+- Commands are discovered via `--help` / `tools`.
+- Session defaults are checked before first build/run/test action.

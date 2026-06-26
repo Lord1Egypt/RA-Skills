@@ -1,0 +1,12 @@
+# Ask Leonidas OpenClaw Skill — Environment Setup
+# Copy these lines into your shell profile or a .env file.
+# Get your API key at https://askleonidas.com
+
+# Required
+ASK_LEONIDAS_API_BASE=https://askleonidas.com
+ASK_LEONIDAS_API_KEY=alk_live_your_key_here
+
+# Optional
+# ASK_LEONIDAS_TIMEOUT_SECONDS=30
+# ASK_LEONIDAS_DEFAULT_SOURCE=claude-desktop
+# ASK_LEONIDAS_DEFAULT_SKILL_VERSION=2.1.0

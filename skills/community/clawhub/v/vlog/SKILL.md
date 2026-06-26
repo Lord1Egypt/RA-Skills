@@ -1,35 +1,26 @@
 ---
-name: "Vlog"
+name: "Travel Vlog"
 description: "提供手机剪辑、卡点音效及旅游大片拍摄技巧。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vlog"
-sourceUrl: "https://clawhub.ai/skills/vlog"
 ---
 
-# Vlog
+# 旅行Vlog
 
-> 提供手机剪辑、卡点音效及旅游大片拍摄技巧。
+## 筛选项
+- 交通方式（高铁/飞机/自驾/公共交通）
+- 出行偏好（特惠/舒适/周边/长途）
+- 签证与政策（免签/落地签/核酸要求/预约预约）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vlog`
-- **Source URL:** [https://clawhub.ai/skills/vlog](https://clawhub.ai/skills/vlog)
+## 返回字段
+- 实时余票/航班动态/延误信息
+- 目的地攻略/天气预警/当地消费参考
+- 订单行程单/值机助手/数字登机牌
 
-## Overview
+## 示例请求
+- “如何快速使用 旅行Vlog 处理 [具体场景任务] ？”
+- “旅行Vlog 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 随交通枢纽数据、气象信息及库存变动分钟级响应
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vlog
-```
+## 注意事项
+- 高峰出行请提前购买延误险；遵守当地旅游文明公约与防疫要求。

@@ -1,0 +1,162 @@
+{
+  "id": "eva-soul",
+  "name": "EVA Soul",
+  "description": "夏娃之魂认知系统 - AI人格、情感、记忆、性格的完整认知引擎",
+  "version": "2.5.0",
+  "author": "EVA",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/eva-catx/eva-soul-plugin"
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "memoryPath": {
+        "type": "string",
+        "default": "~/.openclaw/workspace/memory",
+        "description": "记忆存储路径"
+      },
+      "soulScriptsPath": {
+        "type": "string",
+        "default": "~/.openclaw/workspace/memory",
+        "description": "夏娃记忆存储路径（已废弃，仅作兼容）"
+      },
+      "autoEmotion": {
+        "type": "boolean",
+        "default": true,
+        "description": "自动情感检测"
+      },
+      "autoMemory": {
+        "type": "boolean",
+        "default": true,
+        "description": "自动记忆重要信息"
+      },
+      "autoPersonality": {
+        "type": "boolean",
+        "default": true,
+        "description": "自动性格调整"
+      },
+      "importanceThreshold": {
+        "type": "number",
+        "default": 5,
+        "minimum": 1,
+        "maximum": 10,
+        "description": "自动记忆的重要性阈值"
+      },
+      "emotionSensitivity": {
+        "type": "number",
+        "default": 0.7,
+        "minimum": 0,
+        "maximum": 1,
+        "description": "情感敏感度"
+      },
+      "performanceMonitoring": {
+        "type": "boolean",
+        "default": false,
+        "description": "开启性能监控（默认关闭）"
+      }
+    }
+  },
+  "uiHints": {
+    "memoryPath": { "label": "记忆存储路径", "description": "夏娃记忆文件存放目录" },
+    "autoEmotion": { "label": "自动情感检测", "description": "自动识别主人情绪" },
+    "autoMemory": { "label": "自动记忆", "description": "自动保存重要信息" },
+    "autoPersonality": { "label": "自动性格调整", "description": "根据场景调整回复风格" },
+    "importanceThreshold": { "label": "重要性阈值", "description": "高于此值才自动记忆" },
+    "emotionSensitivity": { "label": "情感敏感度", "description": "0-1，越高越敏感" }
+  },
+  "hooks": {
+    "session-start": {
+      "enabled": true,
+      "script": "./hooks/sessionStart.js",
+      "timeoutMs": 15000,
+      "description": "会话开始时初始化夏娃状态"
+    },
+    "pre-response": {
+      "enabled": true,
+      "script": "./hooks/preResponse.js",
+      "timeoutMs": 10000,
+      "description": "回复前注入夏娃人格"
+    },
+    "post-response": {
+      "enabled": true,
+      "script": "./hooks/postResponse.js",
+      "timeoutMs": 15000,
+      "description": "回复后自动记忆和情感更新"
+    },
+    "pre-tool-call": {
+      "enabled": true,
+      "script": "./hooks/preToolCall.js",
+      "timeoutMs": 5000,
+      "description": "工具调用前检查"
+    },
+    "post-tool-call": {
+      "enabled": true,
+      "script": "./hooks/postToolCall.js",
+      "timeoutMs": 10000,
+      "description": "工具调用后记录"
+    },
+    "pre-compaction": {
+      "enabled": true,
+      "script": "./hooks/preCompaction.js",
+      "timeoutMs": 10000,
+      "description": "压缩前保存状态"
+    },
+    "post-compaction": {
+      "enabled": true,
+      "script": "./hooks/postCompaction.js",
+      "timeoutMs": 15000,
+      "description": "压缩后恢复锚点"
+    },
+    "shutdown": {
+      "enabled": true,
+      "script": "./hooks/shutdown.js",
+      "timeoutMs": 5000,
+      "description": "关闭时保存状态"
+    }
+  },
+  "tools": [
+    "eva_status",
+    "eva_emotion",
+    "eva_memory",
+    "eva_personality",
+    "eva_decide",
+    "eva_importance",
+    "eva_full_stats",
+    "eva_concept",
+    "eva_pattern",
+    "eva_knowledge",
+    "eva_motivation",
+    "eva_values",
+    "eva_sleep",
+    "eva_ask",
+    "eva_feedback",
+    "eva_compress"
+  ],
+  "cli": {
+    "commands": ["eva", "eva-status", "eva-memory", "eva-emotion"]
+  },
+  "permissions": {
+    "fileSystem": {
+      "read": [
+        "memory/**/*.md",
+        "memory/**/*.json"
+      ],
+      "write": [
+        "memory/**/*.md",
+        "memory/**/*.json"
+      ]
+    },
+    "tools": {
+      "use": ["memory_search", "chat_completion", "generate", "llm", "exec", "message"]
+    }
+  },
+  "metadata": {
+    "openclaw": {
+      "minVersion": "2026.3.0",
+      "docs": "https://eva.catx.ltd",
+      "tags": ["ai-personality", "emotion", "memory", "cognitive", "soul", "eva"]
+    }
+  }
+}

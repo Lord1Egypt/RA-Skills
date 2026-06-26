@@ -1,35 +1,59 @@
----
-name: "Reading Retention Engineer"
-description: "帮助设计个性化阅读笔记系统，提升阅读留存，将书籍内容转化为可长期记忆和实用知识。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reading-retention-engineer"
-sourceUrl: "https://clawhub.ai/skills/reading-retention-engineer"
----
-
 # Reading Retention Engineer
 
-> 帮助设计个性化阅读笔记系统，提升阅读留存，将书籍内容转化为可长期记忆和实用知识。
+> 阅读留存工程师 — 将阅读从"看过"升级为"记住并可用"，设计个人化的知识吸收系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reading-retention-engineer`
-- **Source URL:** [https://clawhub.ai/skills/reading-retention-engineer](https://clawhub.ai/skills/reading-retention-engineer)
+## Description
 
-## Overview
+大多数人读完一本书只记住5%。本Skill整合主动阅读法、间隔重复、费曼技巧和Zettelkasten笔记法，构建从阅读到长期记忆的完整管道。
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reading-retention-engineer
+当用户需要：
+- 提升阅读留存率
+- 建立阅读笔记系统
+- 将阅读转化为可用的知识
+- 设计个人知识库
+- 加速学习新领域
+
+## Key Concepts
+
+### 1. 三遍阅读法
+- **第一遍**（浏览）：目录→章节标题→首尾段，建立骨架（15min）
+- **第二遍**（精读）：标注关键论点，边缘写问题（正常速度）
+- **第三遍**（输出）：用自己的话重述，写3句核心总结
+
+### 2. 知识原子化
+- 每个笔记 = 一个原子观点（可独立理解）
+- 格式：观点 + 来源 + 与已有知识的连接
+- 原子间通过链接形成网络，不是文件夹
+
+### 3. 间隔重复阅读计划
 ```
+阅读后 1天 → 回顾笔记（5min）
+阅读后 3天 → 写一段总结（不翻笔记）
+阅读后 7天 → 与他人讲解/写短文
+阅读后30天 → 应用到实际问题
+```
+
+### 4. 费曼检验
+- 如果你不能用简单的话向非专家解释，说明你没真懂
+- 卡壳的地方 = 需要重读的部分
+
+## Instructions
+
+1. 评估用户当前的阅读-留存瓶颈
+2. 选择适合的笔记工具（纸笔/Notion/Obsidian）
+3. 建立标准化笔记模板
+4. 设计间隔重复计划
+5. 建立每周阅读回顾流程
+
+## Examples
+
+**输入**: "读了很多书但感觉什么都没记住"
+**输出**: 三遍法 + Zettelkasten原子笔记 + 7天间隔计划 + 每周输出一篇读书笔记
+
+## Boundaries
+
+- 不追求100%留存（不可能也不必要）
+- 享阅读乐趣优先，系统化其次
+- 不同类型书籍用不同策略

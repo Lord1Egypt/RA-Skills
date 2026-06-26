@@ -1,0 +1,209 @@
+# 引擎配置 - Execution Engines Configuration
+#
+# 用于 EngineRouter 的路由规则和引擎参数配置
+#
+# Change Log:
+#   - 2026-04-14: 初始版本，支持三引擎热切换
+#   - 2026-04-14: v3.0 新增 GPT-6 引擎（超长上下文/多模态）
+
+# ============================================================================
+# 路由配置
+# ============================================================================
+
+routing:
+  # 默认引擎（当所有规则都不匹配时使用）
+  default_engine: "local-self-built"
+
+  # 路由规则（按 priority 从小到大匹配）
+  rules:
+    # ── 最高优先级：合规场景 → 国产模型 ──────────────────────────────────
+    - name: "compliance_certified"
+      engine: "domestic-deepseek-chat"
+      priority: 10
+      scenes:
+        - compliance
+        - regulated
+      keywords:
+        - 合规
+        - 等保
+        - 信创
+        - 国产化
+      confidence_boost: 0.5
+
+    # ── 场景：离线/开发环境 → Local ──────────────────────────────────────
+    - name: "offline_environment"
+      engine: "local-self-built"
+      priority: 15
+      scenes:
+        - offline
+        - dev
+        - local
+      confidence_boost: 0.4
+
+    # ── 意图：垂直行业任务 → Local（带垂直知识）─────────────────────────
+    - name: "vertical_industry_tasks"
+      engine: "local-self-built"
+      priority: 20
+      intent_types:
+        - stock_query
+        - purchase
+        - logistics
+        - finance
+        - replenishment
+        - document
+        - procurement_with_logistics
+      confidence_boost: 0.3
+
+    # ── 关键词：国产/合规相关 → 国产模型 ─────────────────────────────────
+    - name: "domestic_keywords"
+      engine: "domestic-deepseek-chat"
+      priority: 25
+      keyword_patterns:
+        - "^合规"
+        - "信创"
+        - "国产替代"
+        - "等保"
+        - "domestic"
+        - "compliance_required"
+      keywords:
+        - 国产模型
+        - 使用国产
+        - 合规要求
+      confidence_boost: 0.2
+
+    # ── 意图：通用开发任务 → Claude MA ──────────────────────────────────
+    - name: "general_dev_tasks"
+      engine: "claude-managed-agents"
+      priority: 30
+      intent_types:
+        - code
+        - analysis
+        - general
+      keywords:
+        - 写代码
+        - 调试
+        - 重构
+        - 代码审查
+        - debug
+        - refactor
+        - code review
+      confidence_boost: 0.2
+
+    # ── 能力：超长上下文/多模态 → GPT-6 ─────────────────────────────────
+    - name: "long_context_or_multimodal"
+      engine: "gpt-6"
+      priority: 35
+      keywords:
+        - 超长
+        - 200万token
+        - 2M
+        - 多模态
+        - multimodal
+        - Symphony
+        - 合同分析
+        - 整本书
+        - 整本
+        - 代码库分析
+        - long_context
+        - 文档理解
+      scenes:
+        - long_document
+        - multimodal
+        - complex_reasoning
+      confidence_boost: 0.25
+
+    # ── 用户角色：admin 可用所有引擎，viewer 默认 Local ──────────────────
+    - name: "viewer_default_local"
+      engine: "local-self-built"
+      priority: 50
+      user_roles:
+        - viewer
+      confidence_boost: 0.1
+
+# ============================================================================
+# 引擎实例配置
+# ============================================================================
+
+engines:
+  # ── Claude Managed Agents ────────────────────────────────────────────────
+  claude_managed_agents:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 4096
+    temperature: 0.3
+    # base_url: "https://api.anthropic.com/v1/managed_agents"  # 使用默认
+    # api_key 从环境变量 ANTHROPIC_API_KEY 读取
+
+  # ── Local Self-Built Engine ─────────────────────────────────────────────
+  local_self_built:
+    enabled: true
+    default_role: "admin"
+    enable_streaming: true
+    max_subtasks: 20
+    evolution_enabled: true
+    # 学习日志路径: .learnings/engine_execution_log.md
+
+  # ── DeepSeek / Domestic Models ──────────────────────────────────────────
+  deepseek:
+    enabled: true
+    api_key_env: "DEEPSEEK_API_KEY"      # 从环境变量读取
+    model: "deepseek-chat"               # deepseek-chat 或 deepseek-reasoner
+    base_url: "https://api.deepseek.com"
+    max_tokens: 4096
+    temperature: 0.3
+    reasoning_effort: 0.5                # 仅 R1 模型生效
+
+    # 备选国产模型（可扩展）
+    alternatives:
+      - name: "pangu-chat"
+        base_url: "https://wenzhou.huawei.com/v1/chat"
+        enabled: false
+      - name: "ernie-4"
+        base_url: "https://aip.baidubce.com/v1/ernie-4"
+        enabled: false
+
+  # ── GPT-6 (OpenAI 第六代) ─────────────────────────────────────────────────
+  gpt6:
+    enabled: true
+    api_key_env: "OPENAI_API_KEY"        # 从环境变量读取
+    model: "gpt-6"                        # gpt-6 或 gpt-6-turbo
+    base_url: "https://api.openai.com/v1"
+    max_tokens: 4096                      # 生产环境建议 8192
+    temperature: 0.3
+    timeout: 120.0                        # 请求超时（秒）
+    context_window: 2000000               # 200万 Token 上下文
+
+# ============================================================================
+# 降级配置
+# ============================================================================
+
+fallback:
+  # 降级策略：主引擎失败时按此顺序尝试备用引擎
+  order:
+    - local-self-built          # 默认降级到本地引擎（离线可用）
+    - claude-managed-agents     # 其次 Claude MA
+    - gpt-6                     # GPT-6（超长上下文备用）
+    - domestic-deepseek-chat     # 最后国产模型
+
+  # 降级条件
+  conditions:
+    timeout_seconds: 60         # 执行超时降级
+    max_retries: 1             # 每个引擎最多重试次数
+    retry_on_error: true       # 是否在错误时重试
+
+# ============================================================================
+# 监控配置
+# ============================================================================
+
+monitoring:
+  # 路由统计
+  stats_enabled: true
+  stats_interval_seconds: 300  # 统计输出间隔
+
+  # 健康检查
+  health_check:
+    enabled: true
+    interval_seconds: 60       # 健康检查间隔
+    timeout_seconds: 10        # 健康检查超时
+    # 连续失败 N 次后标记为不健康
+    failure_threshold: 3

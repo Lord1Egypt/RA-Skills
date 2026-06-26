@@ -1,0 +1,55 @@
+{
+  "id": "openclaw-plugin-edicts",
+  "name": "Edicts OpenClaw Integration",
+  "description": "Ground truth for AI agents — provide verified facts in system context and expose read/search tools. Write tools are opt-in. Keep configSchema in sync with src/openclaw/schema.ts.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "path": { "type": "string" },
+      "format": { "type": "string", "enum": ["yaml", "json"] },
+      "maxEdicts": { "type": "number" },
+      "tokenBudget": { "type": "number" },
+      "categories": { "type": "array", "items": { "type": "string" } },
+      "staleThresholdDays": { "type": "number" },
+      "categoryLimits": { "type": "object", "additionalProperties": { "type": "number" } },
+      "defaultCategoryLimit": { "type": "number" },
+      "defaultEphemeralTtlSeconds": { "type": "number" },
+      "autoSave": { "type": "boolean" },
+      "renderFormat": { "type": "string", "enum": ["plain", "markdown", "json"] },
+      "includeSystemContext": { "type": "boolean" },
+      "systemContextHeading": { "type": "string" },
+      "emptySystemContext": { "type": "string" },
+      "contextMaxEdicts": { "type": "number" },
+      "contextCategories": { "type": "array", "items": { "type": "string" } },
+      "contextTags": { "type": "array", "items": { "type": "string" } },
+      "contextConfidence": {
+        "type": "array",
+        "items": { "type": "string", "enum": ["verified", "inferred", "user"] }
+      },
+      "tools": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "edicts_list",
+                "edicts_get",
+                "edicts_add",
+                "edicts_update",
+                "edicts_remove",
+                "edicts_search",
+                "edicts_stats"
+              ]
+            }
+          },
+          "optional": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

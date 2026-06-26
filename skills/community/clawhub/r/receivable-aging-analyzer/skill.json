@@ -1,0 +1,25 @@
+{
+  "name": "Receivable Aging Analyzer",
+  "slug": "receivable-aging-analyzer",
+  "version": "1.0.0",
+  "description": "Analyzes accounts receivable aging and suggests prioritization strategies for collections.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "receivable"
+  ],
+  "trigger_keywords": [
+    "receivable aging analyzer",
+    "receivable aging analyzer",
+    "receivable",
+    "aging",
+    "analyzer"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

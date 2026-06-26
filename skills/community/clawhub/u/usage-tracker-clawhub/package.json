@@ -1,0 +1,22 @@
+{
+  "name": "usage-tracker",
+  "description": "AI Agent usage tracking and billing verification tool",
+  "version": "1.0.0",
+  "author": "Claw",
+  "main": "index.js",
+  "dependencies": {},
+  "license": "MIT",
+  "keywords": ["tracking", "billing", "analytics", "ai-agent"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeterTTT/usage-tracker-clawhub"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "openclaw": {
+    "skillKey": "usage-tracker",
+    "category": "utility",
+    "tags": ["tracking", "billing", "analytics", "ai-agent", "freemium"]
+  }
+}

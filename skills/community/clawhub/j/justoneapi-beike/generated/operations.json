@@ -1,0 +1,169 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Beike workflows with JustOneAPI, including resale Housing Details, resale Housing List, and community List.",
+  "displayName": "Beike",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Beike community List data, including - Community name and unique ID and Average listing price and historical price trends, for identifying popular residential areas in a city and comparing average housing prices across different communities.",
+      "method": "GET",
+      "operationId": "communityListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The ID of the city (e.g., '110000' for Beijing).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cityId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Filter conditions for communities.",
+          "enumValues": [],
+          "location": "query",
+          "name": "condition",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination offset, starting from 0 (e.g., 0, 20, 40...).",
+          "enumValues": [],
+          "location": "query",
+          "name": "limitOffset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/beike/community/list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Community List",
+      "tags": [
+        "Beike"
+      ]
+    },
+    {
+      "description": "Get Beike resale Housing Details data, including - Pricing (total and unit price), Physical attributes (area, and layout, for displaying a full property profile to users and detailed price comparison between specific listings.",
+      "method": "GET",
+      "operationId": "ershoufangDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The ID of the city (e.g., '110000' for Beijing).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cityId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique identifier for the property listing.",
+          "enumValues": [],
+          "location": "query",
+          "name": "houseCode",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/beike/ershoufang/detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Resale Housing Details",
+      "tags": [
+        "Beike"
+      ]
+    },
+    {
+      "description": "Get Beike resale Housing List data, including - Supports filtering by city/region, price range, and layout, for building search result pages for property portals and aggregating market data for regional housing trends.",
+      "method": "GET",
+      "operationId": "getErshoufangListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The ID of the city (e.g., '110000' for Beijing).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cityId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Filter conditions (e.g., region, price range, layout).",
+          "enumValues": [],
+          "location": "query",
+          "name": "condition",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination offset, starting from 0 (e.g., 0, 20, 40...).",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/beike/get-ershoufang-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Resale Housing List",
+      "tags": [
+        "Beike"
+      ]
+    }
+  ],
+  "platformKey": "beike",
+  "primaryTag": "Beike",
+  "skillName": "justoneapi_beike",
+  "slug": "justoneapi-beike",
+  "sourceTitle": "OpenAPI definition"
+}

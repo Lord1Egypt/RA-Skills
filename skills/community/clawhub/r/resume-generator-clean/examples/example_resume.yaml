@@ -1,0 +1,63 @@
+# Resume Configuration Example
+# 简历配置文件示例
+
+name: "张三"
+title: "高级工程师 · 某某科技有限公司"
+
+contact:
+  phone: "138-0000-0000"
+  email: "example@example.com"
+  address: "北京市海淀区示例路1号"
+
+sections:
+  - title: "工作经历"
+    items:
+      - title: "高级工程师"
+        org: "某某科技有限公司"
+        period: "2020-至今"
+        detail: "软件开发 · 系统架构设计 · 人工智能应用"
+      
+      - title: "软件工程师"
+        org: "某某科技有限公司"
+        period: "2015-2020"
+        detail: "后端开发 · 数据库设计 · 系统优化"
+      
+      - title: "研究助理"
+        org: "某某研究院"
+        period: "2013-2015"
+        detail: "算法研究 · 数据分析"
+
+  - title: "教育背景"
+    items:
+      - title: "计算机科学硕士"
+        org: "某某大学"
+        period: "2010-2013"
+        detail: "导师：某某教授"
+      
+      - title: "软件工程学士"
+        org: "某某大学"
+        period: "2006-2010"
+        detail: null
+
+  - title: "科研项目"
+    items:
+      - title: "企业级项目"
+        org: "大规模分布式系统架构设计"
+        period: "2022-2024"
+        detail: "项目负责人"
+      
+      - title: "国家重点研发计划"
+        org: "人工智能应用示范项目"
+        period: "2020-2023"
+        detail: "核心成员"
+
+  - title: "发表论文"
+    type: "publications"
+    items:
+      - "[1] 张三, 等. 示例论文标题[J]. 计算机学报, 2023."
+      - "[2] 张三, 等. 示例论文标题[C]. 国际会议论文集, 2022."
+
+  - title: "软件著作权"
+    type: "software"
+    items:
+      - "[1] 张三, 李四. 示例软件系统. 登记号：2023SRXXXXXX"

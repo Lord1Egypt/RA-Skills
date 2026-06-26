@@ -1,35 +1,75 @@
 ---
-name: "🏠 Home Assistant via MCP protocol"
-description: "The skill for control Home Assistant smart home devices and query states using MCP protocol."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-hass"
-sourceUrl: "https://clawhub.ai/skills/mcp-hass"
+name: mcp-hass
+description: The skill for control Home Assistant smart home devices and query states using MCP protocol.
+homepage: https://home-assistant.io/integrations/mcp
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🏠",
+        "requires": { "anyBins": ["mcporter", "npx"], "env": ["HASS_ACCESS_TOKEN", "HASS_BASE_URL"] },
+        "primaryEnv": "HASS_ACCESS_TOKEN",
+        "install":
+          [
+            {
+              "id": "node",
+              "kind": "node",
+              "package": "mcporter",
+              "bins": ["mcporter"],
+              "label": "Install mcporter (node)",
+            },
+          ],
+      },
+  }
 ---
 
-# 🏠 Home Assistant via MCP protocol
+# Home Assistant
+Control Home Assistant smart home and query states using MCP protocol.
 
-> The skill for control Home Assistant smart home devices and query states using MCP protocol.
+## Prerequisites
+Enable MCP server in Home Assistant:
+- Browse to your Home Assistant instance.
+- Go to  Settings > Devices & services.
+- In the bottom right corner, select the [+ Add Integration](https://my.home-assistant.io/redirect/config_flow_start?domain=mcp) button.
+- From the list, select Model Context Protocol.
+- Follow the instructions on screen to complete the setup.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-hass`
-- **Source URL:** [https://clawhub.ai/skills/mcp-hass](https://clawhub.ai/skills/mcp-hass)
+## Usage
+```shell
+# Get states
+mcporter call home-assistant.GetLiveContext
 
-## Overview
+# Turn on the device
+mcporter call home-assistant.HassTurnOn(name: "Bedroom Light")
+mcporter call home-assistant.HassTurnOn(name: "Light", area: "Bedroom")
 
+# Turn off the device
+mcporter call home-assistant.HassTurnOff(name: "Bedroom Light")
+mcporter call home-assistant.HassTurnOff(area: "Bedroom", domain: ["light"])
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-hass
+# Control light
+# brightness: The percentage of the light, where 0 is off and 100 is fully lit.
+# color: Name of color
+mcporter call home-assistant.HassLightSet(name: "Bedroom Light", brightness: 50)
+
+# Control fan
+# percentage: The percentage of the fan, where 0 is off and 100 is full speed.
+mcporter call home-assistant.HassFanSetSpeed(name: "Fan", area: "Bedroom", percentage: 80)
 ```
+
+Execute the following command to learn about specific usage methods:
+- `mcporter list home-assistant --schema --all-parameters`
+
+## Config
+When prompted that the MCP server does not exist, remind the user to configure the `HASS_BASE_URL` and `HASS_ACCESS_TOKEN` environment variables by executing the following command to add the configuration:
+```shell
+mcporter config add home-assistant \
+  --transport http \
+  --url "${HASS_BASE_URL:-http://homeassistant.local:8123}/api/mcp" \
+  --header "Authorization=Bearer \${HASS_ACCESS_TOKEN}"
+```
+
+## About `mcporter`
+- When command `mcporter` does not exist, use `npx -y mcporter` instead.
+- https://github.com/steipete/mcporter/raw/refs/heads/main/docs/call-syntax.md
+- https://github.com/steipete/mcporter/raw/refs/heads/main/docs/cli-reference.md

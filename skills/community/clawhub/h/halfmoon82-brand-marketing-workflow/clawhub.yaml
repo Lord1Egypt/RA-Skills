@@ -1,0 +1,53 @@
+name: brand-marketing-workflow
+version: "2.1.0"
+author: halfmoon82
+license: MIT
+
+metadata:
+  title: "Brand Marketing Workflow"
+  description: >
+    端到端品牌营销自动化工作流。从品牌输入到营销内容生产、竞品分析、效果评估的完整闭环。
+    核心功能：品牌简报生成、多平台内容生产、竞品信号分析、授权边界管理、效果评分与迭代。
+    技术亮点：并行执行、TTL缓存、智能授权跳过、指数退避重试。
+    LLM配置：读取用户 openclaw.json，支持任意 OpenAI-compatible API。
+  author: halfmoon82
+  tags:
+    - marketing
+    - brand
+    - content-generation
+    - competitor-analysis
+    - workflow
+    - automation
+
+clawhub:
+  category: marketing
+  featured: false
+  verified: false
+
+install: |
+  ## 安装步骤
+  1. 确保 OpenClaw 已安装并配置
+  2. 配置 LLM：编辑 ~/.openclaw/openclaw.json
+  3. 可选：配置 Brave Search API Key
+  4. 运行 run.py --demo fashion 测试
+
+requirements:
+  - openclaw >= 1.0.0
+  - python >= 3.9
+
+examples:
+  - command: python3 run.py --demo fashion
+    description: 使用时尚品牌示例运行完整工作流
+  - command: python3 run.py --demo tech
+    description: 使用科技品牌示例运行完整工作流
+  - command: python3 run.py --input brand_input.json
+    description: 使用自定义品牌输入运行工作流
+  - command: python3 scripts/integration_test.py
+    description: 运行集成测试套件
+
+changelog: |
+  v2.1.0 (2026-03-26)
+  - 添加 TTL 缓存机制
+  - 智能授权跳过
+  - 并行执行优化
+  - Live Mode 验证通过

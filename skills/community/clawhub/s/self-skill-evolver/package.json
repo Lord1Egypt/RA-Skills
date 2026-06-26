@@ -1,0 +1,22 @@
+{
+  "name": "self-skill-evolver",
+  "version": "0.1.2",
+  "description": "Analyze and improve OpenClaw agent skills with monitoring, health scoring, and reports.",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "analysis",
+    "monitoring",
+    "optimization",
+    "cli"
+  ],
+  "main": "skill_evolver/cli.py",
+  "bin": {
+    "self-skill-evolver": "./skill_evolver/cli.py"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

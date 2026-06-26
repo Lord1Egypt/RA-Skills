@@ -1,0 +1,199 @@
+{
+  "_comment": "Funnel Builder — business model configs. Agent reads this to select the right template.",
+  "models": {
+    "b2b-saas": {
+      "funnel_type": "demo_trial",
+      "ticket_ladder": [
+        "free_demo",
+        "€97-497/month",
+        "€2000-10000 enterprise"
+      ],
+      "top_funnel": "LinkedIn + cold email (acquisition-master)",
+      "lead_magnet": "free audit / demo / 14-day trial",
+      "deadline_mechanism": "trial expiry or cohort close",
+      "conversion_rate_target": "2-5%",
+      "reconversion": "webinar + case study sequence",
+      "affiliate": "20% recurring — ideal for B2B advocates",
+      "close_strategy": "human_required",
+      "close_threshold": "€2,000+",
+      "close_method": "Blanco C5 — discovery call 20-30 min → ROI calculation → 48h proposal",
+      "autonomous_mechanisms": "N/A — human close required above €2K",
+      "pre_qualify_form": [
+        "Current monthly revenue?",
+        "Budget allocated?",
+        "Timeline to start?"
+      ]
+    },
+    "b2c-subscription": {
+      "funnel_type": "free_trial_to_paid",
+      "ticket_ladder": [
+        "7-day free trial",
+        "€29-97/month",
+        "€297-997 annual VIP"
+      ],
+      "top_funnel": "Short-form content + organic (content-creator)",
+      "lead_magnet": "7-day free access",
+      "deadline_mechanism": "trial expiry — hard cutoff",
+      "conversion_rate_target": "3-8%",
+      "reconversion": "Yomi model — webinar 2x/year with 50% promo",
+      "affiliate": "30-40% — consumers are vocal advocates",
+      "close_strategy": "fully_autonomous",
+      "close_threshold": "< €97/month",
+      "close_method": "Phase 4B — deadline engine + behavioral triggers + proof engine",
+      "autonomous_mechanisms": [
+        "evergreen_deadline",
+        "behavioral_triggers",
+        "proof_engine"
+      ],
+      "sequence_length": "10 emails over 10 days",
+      "upsell": "annual plan at day 30 (save 30%)"
+    },
+    "trading-signals": {
+      "funnel_type": "free_signal_to_vip",
+      "ticket_ladder": [
+        "weekly free signal",
+        "€47-97/month VIP",
+        "€500+ mentoring"
+      ],
+      "top_funnel": "Twitter + Telegram public channel + YouTube trades",
+      "lead_magnet": "1 real signal per week — show the actual result",
+      "deadline_mechanism": "Monday signal — subscribe before or wait a week",
+      "conversion_rate_target": "5-12%",
+      "reconversion": "result update emails + quarterly promo week",
+      "affiliate": "20-25% — traders love to share what works",
+      "close_strategy": "fully_autonomous",
+      "close_threshold": "< €97/month",
+      "close_method": "Phase 4B — weekly signal as proof engine + deadline on VIP",
+      "autonomous_mechanisms": [
+        "proof_engine",
+        "evergreen_deadline",
+        "behavioral_triggers"
+      ],
+      "sequence_length": "7 emails — result-driven (each email shows a real signal outcome)",
+      "upsell": "mentoring at day 60 after 2 months of results"
+    },
+    "content-media": {
+      "funnel_type": "lead_magnet_to_paid",
+      "ticket_ladder": [
+        "free resource (PDF/checklist)",
+        "€9-29/month newsletter",
+        "€99-297 premium archive"
+      ],
+      "top_funnel": "YouTube + Substack + Twitter",
+      "lead_magnet": "real mini-formation or deep analysis (not a checklist)",
+      "deadline_mechanism": "price increase on day 7 or cohort close",
+      "conversion_rate_target": "1-3%",
+      "reconversion": "weekly free content keeps them warm → seasonal offer",
+      "affiliate": "35-50% — content creators share freely",
+      "close_strategy": "fully_autonomous",
+      "close_threshold": "< €49/month",
+      "close_method": "Phase 4B — lead magnet → nurture → deadline engine",
+      "autonomous_mechanisms": [
+        "evergreen_deadline",
+        "proof_engine",
+        "behavioral_triggers"
+      ],
+      "sequence_length": "7 emails over 7 days",
+      "upsell": "premium archive or annual plan at day 7"
+    },
+    "digital-product": {
+      "funnel_type": "optin_to_sale",
+      "ticket_ladder": [
+        "free sample/preview",
+        "€47-297 core product",
+        "€497-997 premium bundle"
+      ],
+      "top_funnel": "Twitter threads + YouTube + TikTok",
+      "lead_magnet": "the first chapter / first module / first template — real value",
+      "deadline_mechanism": "launch window 5 days or evergreen with bonus expiry",
+      "conversion_rate_target": "2-6%",
+      "reconversion": "email sequence day 30 + launch window 2x/year",
+      "hormozi_stack": [
+        "core product",
+        "bonus 1: quick win",
+        "bonus 2: complementary",
+        "guarantee: 30-day refund"
+      ],
+      "affiliate": "40-50% — high margin, easy to share",
+      "close_strategy": "fully_autonomous",
+      "close_threshold": "< €497 one-time",
+      "close_method": "Phase 4B — Hormozi bonus stack + deadline engine + evergreen webinar",
+      "autonomous_mechanisms": [
+        "evergreen_deadline",
+        "proof_engine",
+        "evergreen_webinar",
+        "behavioral_triggers"
+      ],
+      "sequence_length": "9 emails over 10 days",
+      "upsell": "premium bundle immediately post-purchase (one-click)"
+    },
+    "services": {
+      "funnel_type": "lead_to_call_to_close",
+      "ticket_ladder": [
+        "free audit/session",
+        "€500-2000/month retainer",
+        "€5000-20000 project"
+      ],
+      "top_funnel": "LinkedIn organic + cold email (acquisition-master)",
+      "lead_magnet": "free 30-min audit — shows expertise, creates desire",
+      "deadline_mechanism": "limited spots per month (real capacity constraint)",
+      "conversion_rate_target": "10-20% of calls → client",
+      "reconversion": "case study sequence + quarterly outreach to old leads",
+      "affiliate": "10-15% — referral bonus for existing clients",
+      "close_strategy": "hybrid",
+      "close_threshold": "€500-20,000",
+      "close_method": "Automation pre-qualifies → human closes on call (Blanco C5)",
+      "autonomous_mechanisms": [
+        "qualification_form",
+        "proof_engine",
+        "behavioral_triggers"
+      ],
+      "pre_qualify_form": [
+        "Monthly revenue?",
+        "Biggest challenge?",
+        "Budget?",
+        "Timeline?"
+      ],
+      "note": "Form filters non-buyers before they reach the calendar"
+    }
+  },
+  "universal_rules": {
+    "ticket_ladder_minimum": 3,
+    "channels_minimum": 3,
+    "email_sequence_minimum": 5,
+    "reconversion_webinars_per_year": 2,
+    "affiliate_program": "required on all models",
+    "mobile_optimization": "required",
+    "guarantee_minimum": "7 days",
+    "deadline_always_real": "never fake scarcity — lose trust permanently"
+  },
+  "conversion_benchmarks": {
+    "landing_page_optin": "15-35%",
+    "email_open_rate": "30-50%",
+    "email_click_rate": "3-8%",
+    "trial_to_paid": "3-8%",
+    "call_to_close": "15-30%",
+    "affiliate_activation_rate": "10-20%",
+    "behavioral_trigger_open_rate": "45-65%",
+    "cart_abandonment_recovery": "10-20%",
+    "upsell_post_purchase": "15-30%",
+    "evergreen_webinar_conversion": "5-15%",
+    "reengagement_sequence": "3-8%"
+  },
+  "autonomous_funnel_defaults": {
+    "deadline_duration_hours": 72,
+    "sequence_trigger": "email capture",
+    "behavioral_triggers": {
+      "opened_no_click": "follow_up_24h",
+      "clicked_no_purchase": "objection_sequence",
+      "purchased_level1": "upsell_day7",
+      "no_opens_14days": "reengagement_sequence",
+      "abandoned_checkout": "cart_recovery_3emails"
+    },
+    "proof_email_position": "email_4_in_every_sequence",
+    "evergreen_webinar_trigger": "day_30_non_buyer",
+    "upsell_timing": "immediately_post_purchase",
+    "close_threshold_autonomous": "under_997_eur",
+    "close_threshold_human": "above_997_eur"
+  }
+}

@@ -1,0 +1,450 @@
+{
+  "version": "1.0",
+  "created_at": "2026-03-24T18:19:00+08:00",
+  "description": "审批规则引擎配置 - 定义触发条件、审批人、超时处理等核心规则",
+  
+  "rules": [
+    {
+      "id": "quotation-approval",
+      "name": "报价超权限审批",
+      "description": "当销售报价超出权限时需要审批",
+      "enabled": true,
+      "trigger": {
+        "type": "threshold",
+        "field": "quotation.amount",
+        "operator": ">",
+        "reference": "thresholds.quotation_amount_limit"
+      },
+      "conditions": [
+        {
+          "field": "sales.owner",
+          "operator": "!=",
+          "value": "manager"
+        }
+      ],
+      "approvers": [
+        {
+          "level": 1,
+          "role": "sales_manager",
+          "user_ids": ["wilson"],
+          "notification_channel": "discord"
+        },
+        {
+          "level": 2,
+          "role": "general_manager",
+          "user_ids": ["jaden"],
+          "notification_channel": "discord",
+          "trigger_condition": "amount > thresholds.quotation_amount_limit * 2"
+        }
+      ],
+      "approval_type": "serial",
+      "timeout_hours": 24,
+      "timeout_action": "escalate",
+      "notification_channel": "discord",
+      "templates": {
+        "discord": "quotation_approval_request",
+        "email": "quotation_approval_request"
+      }
+    },
+    {
+      "id": "exception-order-alert",
+      "name": "异常订单告警",
+      "description": "订单出现异常状态时自动告警并升级",
+      "enabled": true,
+      "trigger": {
+        "type": "status",
+        "field": "order.status",
+        "operator": "in",
+        "value": ["exception", "delayed", "cancelled"]
+      },
+      "conditions": [],
+      "approvers": [
+        {
+          "level": 1,
+          "role": "order_manager",
+          "user_ids": ["wilson"],
+          "notification_channel": "discord"
+        }
+      ],
+      "approval_type": "parallel",
+      "timeout_hours": 4,
+      "timeout_action": "notify_admin",
+      "notification_channel": "discord",
+      "templates": {
+        "discord": "exception_order_alert",
+        "email": "exception_order_alert"
+      }
+    },
+    {
+      "id": "customer-complaint-escalation",
+      "name": "客户投诉升级",
+      "description": "客户投诉自动升级流程",
+      "enabled": true,
+      "trigger": {
+        "type": "event",
+        "event_type": "complaint_received",
+        "source": "okki"
+      },
+      "conditions": [
+        {
+          "field": "complaint.severity",
+          "operator": "in",
+          "value": ["high", "critical"]
+        }
+      ],
+      "approvers": [
+        {
+          "level": 1,
+          "role": "customer_service_lead",
+          "user_ids": ["wilson"],
+          "notification_channel": "discord"
+        },
+        {
+          "level": 2,
+          "role": "general_manager",
+          "user_ids": ["jaden"],
+          "notification_channel": "discord",
+          "trigger_condition": "complaint.severity == 'critical'"
+        }
+      ],
+      "approval_type": "serial",
+      "timeout_hours": 12,
+      "timeout_action": "escalate",
+      "notification_channel": "discord",
+      "templates": {
+        "discord": "complaint_escalation",
+        "email": "complaint_escalation"
+      }
+    },
+    {
+      "id": "discount-approval",
+      "name": "折扣超权限审批",
+      "description": "当销售给予客户的折扣超出权限时需要审批",
+      "enabled": true,
+      "trigger": {
+        "type": "threshold",
+        "field": "quotation.discount_rate",
+        "operator": ">",
+        "reference": "thresholds.discount_limit"
+      },
+      "conditions": [],
+      "approvers": [
+        {
+          "level": 1,
+          "role": "sales_manager",
+          "user_ids": ["wilson"],
+          "notification_channel": "discord"
+        }
+      ],
+      "approval_type": "serial",
+      "timeout_hours": 12,
+      "timeout_action": "auto_reject",
+      "notification_channel": "discord",
+      "templates": {
+        "discord": "discount_approval_request",
+        "email": "discount_approval_request"
+      }
+    },
+    {
+      "id": "bulk-order-approval",
+      "name": "批量订单审批",
+      "description": "大批量订单需要额外审批",
+      "enabled": true,
+      "trigger": {
+        "type": "threshold",
+        "field": "order.quantity",
+        "operator": ">=",
+        "reference": "thresholds.bulk_order_quantity"
+      },
+      "conditions": [
+        {
+          "field": "customer.level",
+          "operator": "!=",
+          "value": "VIP"
+        }
+      ],
+      "approvers": [
+        {
+          "level": 1,
+          "role": "sales_manager",
+          "user_ids": ["wilson"],
+          "notification_channel": "discord"
+        },
+        {
+          "level": 2,
+          "role": "production_manager",
+          "user_ids": ["production_lead"],
+          "notification_channel": "discord"
+        }
+      ],
+      "approval_type": "parallel",
+      "timeout_hours": 48,
+      "timeout_action": "notify_admin",
+      "notification_channel": "discord",
+      "templates": {
+        "discord": "bulk_order_approval_request",
+        "email": "bulk_order_approval_request"
+      }
+    }
+  ],
+  
+  "thresholds": {
+    "quotation_amount_limit": 50000,
+    "quotation_amount_currency": "USD",
+    "discount_limit": 0.15,
+    "bulk_order_quantity": 10000,
+    "vip_customer_discount_limit": 0.25,
+    "sample_order_max_value": 500,
+    "rush_order_surcharge_threshold": 0.20
+  },
+  
+  "escalation_rules": [
+    {
+      "id": "timeout-escalation",
+      "name": "超时自动升级",
+      "description": "审批超时后自动升级到下一级审批人",
+      "trigger": "timeout_expired",
+      "action": {
+        "type": "escalate",
+        "target": "next_level",
+        "notification": true,
+        "message_template": "escalation_timeout"
+      }
+    },
+    {
+      "id": "rejection-escalation",
+      "name": "连续拒绝升级",
+      "description": "同一审批被连续拒绝 2 次后升级到上级",
+      "trigger": "consecutive_rejections",
+      "condition": {
+        "count": 2,
+        "time_window_hours": 72
+      },
+      "action": {
+        "type": "escalate",
+        "target": "admin",
+        "notification": true,
+        "message_template": "escalation_rejection"
+      }
+    },
+    {
+      "id": "critical-auto-escalate",
+      "name": "紧急事项自动升级",
+      "description": "标记为 critical 的事项自动升级到最高级别",
+      "trigger": "severity_critical",
+      "condition": {
+        "field": "item.severity",
+        "value": "critical"
+      },
+      "action": {
+        "type": "escalate",
+        "target": "general_manager",
+        "notification": true,
+        "message_template": "escalation_critical"
+      }
+    }
+  ],
+  
+  "auto_recovery": {
+    "enabled": true,
+    "strategies": [
+      {
+        "id": "retry-on-failure",
+        "name": "失败自动重试",
+        "trigger": "notification_send_failure",
+        "max_retries": 3,
+        "retry_interval_minutes": 5,
+        "fallback": "alternate_channel"
+      },
+      {
+        "id": "degrade-to-email",
+        "name": "降级到邮件通知",
+        "trigger": "discord_unavailable",
+        "fallback_channel": "email",
+        "notify_admin": true
+      },
+      {
+        "id": "manual-intervention",
+        "name": "人工介入",
+        "trigger": "auto_recovery_exhausted",
+        "action": "create_support_ticket",
+        "notify_admin": true
+      }
+    ]
+  },
+  
+  "templates": {
+    "discord": {
+      "quotation_approval_request": {
+        "channel_id": "approval-requests",
+        "embed": {
+          "title": "💰 报价审批请求",
+          "color": 3447003,
+          "fields": [
+            {"name": "销售", "value": "{{sales.owner}}", "inline": true},
+            {"name": "客户", "value": "{{customer.name}}", "inline": true},
+            {"name": "金额", "value": "{{quotation.amount}} {{quotation.currency}}", "inline": true},
+            {"name": "折扣", "value": "{{quotation.discount_rate}}%", "inline": true},
+            {"name": "产品", "value": "{{quotation.products}}", "inline": false},
+            {"name": "备注", "value": "{{quotation.notes}}", "inline": false}
+          ],
+          "footer": {"text": "请在 {{timeout_hours}} 小时内审批"}
+        },
+        "components": {
+          "buttons": [
+            {"label": "✅ 批准", "style": "success", "action": "approve"},
+            {"label": "❌ 拒绝", "style": "danger", "action": "reject"}
+          ]
+        }
+      },
+      "exception_order_alert": {
+        "channel_id": "order-alerts",
+        "embed": {
+          "title": "⚠️ 异常订单告警",
+          "color": 15158332,
+          "fields": [
+            {"name": "订单号", "value": "{{order.id}}", "inline": true},
+            {"name": "客户", "value": "{{customer.name}}", "inline": true},
+            {"name": "状态", "value": "{{order.status}}", "inline": true},
+            {"name": "异常原因", "value": "{{order.exception_reason}}", "inline": false},
+            {"name": "交期", "value": "{{order.delivery_date}}", "inline": true},
+            {"name": "金额", "value": "{{order.amount}}", "inline": true}
+          ]
+        }
+      },
+      "complaint_escalation": {
+        "channel_id": "customer-service",
+        "embed": {
+          "title": "🔴 客户投诉升级",
+          "color": 15158332,
+          "fields": [
+            {"name": "客户", "value": "{{customer.name}}", "inline": true},
+            {"name": "严重性", "value": "{{complaint.severity}}", "inline": true},
+            {"name": "来源", "value": "{{complaint.source}}", "inline": true},
+            {"name": "内容", "value": "{{complaint.content}}", "inline": false},
+            {"name": "当前处理人", "value": "{{current_handler}}", "inline": true}
+          ]
+        }
+      },
+      "discount_approval_request": {
+        "channel_id": "approval-requests",
+        "embed": {
+          "title": "🏷️ 折扣审批请求",
+          "color": 3447003,
+          "fields": [
+            {"name": "销售", "value": "{{sales.owner}}", "inline": true},
+            {"name": "客户", "value": "{{customer.name}}", "inline": true},
+            {"name": "申请折扣", "value": "{{quotation.discount_rate}}%", "inline": true},
+            {"name": "权限上限", "value": "{{thresholds.discount_limit}}%", "inline": true},
+            {"name": "订单金额", "value": "{{quotation.amount}}", "inline": false},
+            {"name": "理由", "value": "{{quotation.discount_reason}}", "inline": false}
+          ]
+        },
+        "components": {
+          "buttons": [
+            {"label": "✅ 批准", "style": "success", "action": "approve"},
+            {"label": "❌ 拒绝", "style": "danger", "action": "reject"}
+          ]
+        }
+      },
+      "bulk_order_approval_request": {
+        "channel_id": "approval-requests",
+        "embed": {
+          "title": "📦 批量订单审批",
+          "color": 3447003,
+          "fields": [
+            {"name": "销售", "value": "{{sales.owner}}", "inline": true},
+            {"name": "客户", "value": "{{customer.name}}", "inline": true},
+            {"name": "数量", "value": "{{order.quantity}}", "inline": true},
+            {"name": "阈值", "value": "{{thresholds.bulk_order_quantity}}", "inline": true},
+            {"name": "产品", "value": "{{order.products}}", "inline": false},
+            {"name": "交期要求", "value": "{{order.delivery_date}}", "inline": false}
+          ]
+        },
+        "components": {
+          "buttons": [
+            {"label": "✅ 批准", "style": "success", "action": "approve"},
+            {"label": "❌ 拒绝", "style": "danger", "action": "reject"}
+          ]
+        }
+      },
+      "escalation_timeout": {
+        "channel_id": "admin-alerts",
+        "content": "⏰ 审批超时升级：{{item.type}} ({{item.id}}) 已超时 {{timeout_hours}} 小时，已升级到 {{target_approver}}"
+      },
+      "escalation_rejection": {
+        "channel_id": "admin-alerts",
+        "content": "🔄 连续拒绝升级：{{item.type}} ({{item.id}}) 被连续拒绝 {{rejection_count}} 次，已升级到管理员"
+      },
+      "escalation_critical": {
+        "channel_id": "admin-alerts",
+        "content": "🔴 紧急事项升级：{{item.type}} ({{item.id}}) 标记为 critical，已升级到总经理"
+      }
+    },
+    "email": {
+      "quotation_approval_request": {
+        "subject": "报价审批请求 - {{customer.name}} - {{quotation.amount}} {{quotation.currency}}",
+        "body_template": "approval_request_email"
+      },
+      "exception_order_alert": {
+        "subject": "异常订单告警 - {{order.id}}",
+        "body_template": "exception_alert_email"
+      },
+      "complaint_escalation": {
+        "subject": "客户投诉升级 - {{customer.name}}",
+        "body_template": "complaint_escalation_email"
+      },
+      "discount_approval_request": {
+        "subject": "折扣审批请求 - {{customer.name}}",
+        "body_template": "approval_request_email"
+      },
+      "bulk_order_approval_request": {
+        "subject": "批量订单审批 - {{customer.name}}",
+        "body_template": "approval_request_email"
+      }
+    }
+  },
+  
+  "notification_channels": {
+    "discord": {
+      "enabled": true,
+      "webhook_url_env": "DISCORD_WEBHOOK_URL",
+      "channels": {
+        "approval-requests": "1234567890123456789",
+        "order-alerts": "1234567890123456790",
+        "customer-service": "1234567890123456791",
+        "admin-alerts": "1234567890123456792"
+      }
+    },
+    "email": {
+      "enabled": true,
+      "smtp_config_env": "SMTP_CONFIG",
+      "from_address": "approval@farreach.com"
+    },
+    "okki": {
+      "enabled": true,
+      "api_config_env": "OKKI_API_CONFIG",
+      "trail_type": 105
+    }
+  },
+  
+  "global_settings": {
+    "working_hours": {
+      "timezone": "Asia/Shanghai",
+      "start": "09:00",
+      "end": "18:00",
+      "workdays": [1, 2, 3, 4, 5],
+      "exclude_holidays": true
+    },
+    "logging": {
+      "level": "info",
+      "file": "/Users/wilson/.openclaw/workspace/skills/approval-engine/logs/approval.log",
+      "max_size_mb": 10,
+      "retention_days": 30
+    },
+    "metrics": {
+      "enabled": true,
+      "output_file": "/Users/wilson/.openclaw/workspace/skills/approval-engine/metrics/approval-stats.json"
+    }
+  }
+}

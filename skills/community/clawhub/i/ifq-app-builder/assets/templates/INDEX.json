@@ -1,0 +1,129 @@
+{
+  "version": "1.0.1",
+  "author": "ifq-app-builder",
+  "description": "IFQ App Builder · 12 build-bundle templates. Each template is a paste-ready prompt the calling coding agent can execute end-to-end (scaffold → run → verify → package). Templates are forked into the user's workspace and filled with their three-sentence intent; never start from a blank prompt.",
+  "modeRoutes": [
+    {
+      "mode": "A-01",
+      "templateId": "T-pc-tauri",
+      "templateFile": "pc-tauri.prompt.md",
+      "triggers": ["PC 桌面", "跨平台桌面", "Win + Mac", "desktop tool", "Tauri", "Electron 替代"],
+      "stack": "Tauri 2 + React + Vite + TypeScript",
+      "artifact": ".dmg / .exe / .AppImage",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "做一个 Mac + Windows 桌面工具，把 PDF 发票批量整理成 Excel 台账。"
+    },
+    {
+      "mode": "A-02",
+      "templateId": "T-macos-swiftui",
+      "templateFile": "macos-swiftui.prompt.md",
+      "triggers": ["macOS 原生", "Mac App", "menu bar", "状态栏", "AppKit", "Swift"],
+      "stack": "SwiftUI + AppKit bridge + Swift 5.9 + Xcode 15",
+      "artifact": ".app / .dmg (optionally Mac App Store)",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "Mac 状态栏小工具，监控我每天写作字数。"
+    },
+    {
+      "mode": "A-03",
+      "templateId": "T-windows-winui",
+      "templateFile": "windows-winui.prompt.md",
+      "triggers": ["Windows 原生", "WinUI", "WPF", ".NET", "MSIX"],
+      "stack": "WinUI 3 + .NET 8 + C#",
+      "artifact": "MSIX / .exe installer",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "Windows 本地工具，把扫描件 OCR 后按公司/日期归档。"
+    },
+    {
+      "mode": "A-04",
+      "templateId": "T-ios-swiftui",
+      "templateFile": "ios-swiftui.prompt.md",
+      "triggers": ["iOS App", "iPhone", "App Store", "SwiftUI iOS", "TestFlight"],
+      "stack": "SwiftUI + iOS 17 + Swift Package Manager",
+      "artifact": ".ipa (Development / Ad-hoc / App Store)",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "iOS App：把宝宝睡眠记录成时间轴，一周一张分享图。",
+      "fallback_note": "If user also needs Android, prefer A-07 Flutter to share one codebase."
+    },
+    {
+      "mode": "A-05",
+      "templateId": "T-android-compose",
+      "templateFile": "android-compose.prompt.md",
+      "triggers": ["Android App", "安卓", "Play 商店", "Jetpack Compose", "Kotlin"],
+      "stack": "Kotlin + Jetpack Compose + Android Gradle Plugin 8 + minSdk 26",
+      "artifact": ".apk / .aab",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "Android App：通勤时把语音备忘自动整理成每日 brief。",
+      "fallback_note": "If user also needs iOS, prefer A-07 Flutter or A-08 Expo."
+    },
+    {
+      "mode": "A-06",
+      "templateId": "T-harmonyos-arkts",
+      "templateFile": "harmonyos-arkts.prompt.md",
+      "triggers": ["鸿蒙", "HarmonyOS", "ArkTS", "ArkUI", "华为应用市场", "Stage 模型"],
+      "stack": "ArkTS + ArkUI (Stage model) + DevEco Studio + API 12",
+      "artifact": ".hap / .app (HarmonyOS Next)",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "鸿蒙 Next App：给老人用的大字体公交查询，离线可用。"
+    },
+    {
+      "mode": "A-07",
+      "templateId": "T-flutter-cross",
+      "templateFile": "flutter-cross.prompt.md",
+      "triggers": ["Flutter", "一份代码多端", "跨端移动", "Dart", "Riverpod"],
+      "stack": "Flutter 3.x + Dart 3 + Riverpod + go_router",
+      "artifact": "iOS .ipa + Android .apk/.aab",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "iOS + Android 一份代码的家庭账本 App，端到端加密同步。"
+    },
+    {
+      "mode": "A-08",
+      "templateId": "T-react-native-expo",
+      "templateFile": "react-native-expo.prompt.md",
+      "triggers": ["React Native", "Expo", "RN", "Expo Router", "EAS Build"],
+      "stack": "Expo SDK 51 + React Native + TypeScript + Expo Router",
+      "artifact": "iOS .ipa + Android .apk via EAS Build",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "Expo 跨端 App：会议室预订，公司域账号登录。"
+    },
+    {
+      "mode": "A-09",
+      "templateId": "T-wechat-miniprogram",
+      "templateFile": "wechat-miniprogram.prompt.md",
+      "triggers": ["微信小程序", "WeChat MiniProgram", "wx", "小程序", "wxapkg"],
+      "stack": "原生小程序 + TypeScript + Skyline 渲染 + 云开发 (可选)",
+      "artifact": ".wxapkg via 微信开发者工具",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "微信小程序：员工健康打卡，一周自动出统计表。"
+    },
+    {
+      "mode": "A-10",
+      "templateId": "T-local-web-nextjs",
+      "templateFile": "local-web-nextjs.prompt.md",
+      "triggers": ["本地部署", "self-host", "内网 web", "私有部署", "Next.js Docker"],
+      "stack": "Next.js 15 (App Router) + TypeScript + PostgreSQL + Docker Compose",
+      "artifact": "docker image + docker-compose.yml (self-hosted)",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "公司内网研发周报系统，Docker 一键起，登录走 LDAP。"
+    },
+    {
+      "mode": "A-11",
+      "templateId": "T-pwa-vite",
+      "templateFile": "pwa-vite.prompt.md",
+      "triggers": ["PWA", "离线 Web", "可安装网页", "Service Worker", "Workbox"],
+      "stack": "Vite + React + TypeScript + Workbox + Web Manifest",
+      "artifact": "static site + Service Worker, installable to home screen",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "可装在手机桌面的 PWA：跑步配速节拍器，离线可用。"
+    },
+    {
+      "mode": "A-12",
+      "templateId": "T-cli-node-python",
+      "templateFile": "cli-node-python.prompt.md",
+      "triggers": ["CLI", "命令行", "脚本", "终端工具", "npx", "pipx"],
+      "stack": "Node 20 + TypeScript + commander  ·or·  Python 3.11 + typer",
+      "artifact": "npm package (npx-runnable) or pipx-installable wheel",
+      "verify_command": "npm run verify:lite -- <bundle.prompt.md>",
+      "example_prompt": "命令行工具：扫一个文件夹里所有截图，按内容自动改名。"
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>银发每日头条 · 2026年3月23日</title>
+  <style>
+    :root {
+      --gold: #c8922a;
+      --gold-light: #f0d080;
+      --silver: #8a9bb0;
+      --ink: #1a1a2e;
+      --bg: #faf8f5;
+      --card-bg: #ffffff;
+      --border: #e8e0d0;
+      --muted: #7a7a8a;
+      --tag-bg: #f5f0e8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Serif SC', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ───── HEADER ───── */
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4e 60%, #3a2a1a 100%);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(200,146,42,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(200,146,42,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .header-logo {
+      font-size: 13px;
+      color: var(--gold-light);
+      letter-spacing: 4px;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+    .header-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 3px;
+      position: relative;
+    }
+    .header-title span {
+      color: var(--gold);
+    }
+    .header-date {
+      margin-top: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1px;
+    }
+    .header-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 12px auto 0;
+    }
+
+    /* ───── DIGEST BAR ───── */
+    .digest-bar {
+      background: linear-gradient(90deg, #2d2419, #3d3020);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .digest-label {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      white-space: nowrap;
+      border: 1px solid var(--gold);
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+    .digest-scroll {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    /* ───── LAYOUT ───── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* ───── SECTION HEADER ───── */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 28px 0 14px;
+    }
+    .section-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+    .section-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 1px;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+    .section-count {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--tag-bg);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    /* ───── NEWS CARD ───── */
+    .news-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .news-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .news-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .news-card.featured {
+      border-left: 3px solid var(--gold);
+      background: linear-gradient(to right, #fffdf7, #fff);
+    }
+
+    .news-rank {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold-light);
+      min-width: 26px;
+      text-align: center;
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+    }
+    .news-rank.top { color: var(--gold); }
+
+    .news-body { flex: 1; min-width: 0; }
+    .news-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 5px;
+    }
+    .news-card:hover .news-title { color: #8a5a10; }
+    .news-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .news-source {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .news-source::before { content: '📰 '; }
+    .news-time {
+      font-size: 12px;
+      color: #b0a890;
+    }
+    .news-tag {
+      font-size: 11px;
+      background: var(--tag-bg);
+      color: var(--gold);
+      padding: 1px 7px;
+      border-radius: 10px;
+      border: 1px solid rgba(200,146,42,0.2);
+    }
+    .news-summary {
+      font-size: 13px;
+      color: #555;
+      margin-top: 5px;
+      line-height: 1.6;
+    }
+
+    /* ───── FEATURE CARD (TOP STORY) ───── */
+    .top-story {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2640 100%);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 18px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .top-story::before {
+      content: '头条';
+      position: absolute;
+      top: -2px; right: 14px;
+      font-size: 11px;
+      background: var(--gold);
+      color: #fff;
+      padding: 3px 10px 4px;
+      border-radius: 0 0 6px 6px;
+      letter-spacing: 2px;
+    }
+    .top-story-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .top-story-summary {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+    .top-story-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid rgba(200,146,42,0.4);
+      padding: 5px 14px;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+    .top-story-link:hover { background: rgba(200,146,42,0.15); }
+
+    /* ───── STATS ROW ───── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 16px 0 28px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 12px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+    .stat-num sup { font-size: 13px; font-weight: 400; }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ───── FOOTER ───── */
+    .footer {
+      text-align: center;
+      padding: 24px 16px;
+      background: linear-gradient(180deg, var(--bg), #f0ece4);
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-brand {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .header-title { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">SILVER AGE DAILY · 银发每日头条</div>
+  <div class="header-title">银发<span>每日</span>头条</div>
+  <div class="header-date">2026年3月23日 · 星期一 · 第 487 期</div>
+  <div class="header-line"></div>
+</div>
+
+<!-- DIGEST BAR -->
+<div class="digest-bar">
+  <div class="digest-label">今日速览</div>
+  <div class="digest-scroll">
+    国务院部署银发消费补贴扩围 &nbsp;·&nbsp;
+    养老机器人春晚后订单翻倍 &nbsp;·&nbsp;
+    旅居养老今年迎两会政策红利 &nbsp;·&nbsp;
+    长护险新文书2026版正式实施 &nbsp;·&nbsp;
+    成都老博会800家企业亮相
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">3.2<sup>亿</sup></div>
+      <div class="stat-label">60岁以上老年人口</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">30<sup>万亿</sup></div>
+      <div class="stat-label">2026年银发经济规模</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">20<sup>%</sup></div>
+      <div class="stat-label">老龄人口占总人口比</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">600<sup>+</sup></div>
+      <div class="stat-label">今年银发相关研究论文</div>
+    </div>
+  </div>
+
+  <!-- TOP STORY -->
+  <div class="top-story">
+    <div class="top-story-title">国务院常务会议：进一步释放银发消费需求，打造消费新场景新业态</div>
+    <div class="top-story-summary">2026年2月24日，国务院常务会议明确要求发挥消费补贴政策牵引作用，将银发经济纳入扩内需核心战略。会议提出要推动老年用品、旅居养老、养老金融三大方向协同发力，预计相关补贴政策细则将于二季度密集落地。</div>
+    <a href="https://www.gov.cn/zhengce/202602/content_7059238.htm" class="top-story-link" target="_blank">查看全文 →</a>
+  </div>
+
+  <!-- ① 政策解读 -->
+  <div class="section-head">
+    <div class="section-icon">🏛️</div>
+    <div class="section-name">政策解读</div>
+    <div class="section-line"></div>
+    <div class="section-count">4 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://zhuanlan.zhihu.com/p/2013178662007112635" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">2026政府工作报告深度解读：银发经济七大重点，影响整个行业</div>
+        <div class="news-meta">
+          <span class="news-source">知乎·AgeClub</span>
+          <span class="news-time">3月6日</span>
+          <span class="news-tag">两会</span>
+        </div>
+        <div class="news-summary">报告提出制定推进银发经济高质量发展的措施，完善老年用品、养老金融、旅居养老等支持政策，是"银发经济"首次被明确写入政府工作报告重点任务。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://www.sohu.com/a/996069103_481016" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">政策协同持续赋能银发经济，推动万亿级市场迈向新里程</div>
+        <div class="news-meta">
+          <span class="news-source">搜狐财经</span>
+          <span class="news-time">3月13日</span>
+          <span class="news-tag">政策</span>
+        </div>
+        <div class="news-summary">2026年消费补贴覆盖老年辅具、适老家居改造、智慧养老设备等，消费补贴"搭桥"有望带动相关市场规模增长超30%。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://www.nhsa.gov.cn/art/2025/12/1/art_104_18899.html" target="_blank">
+      <div class="news-rank">3</div>
+      <div class="news-body">
+        <div class="news-title">长期护理保险服务管理文书（2026年版）正式印发</div>
+        <div class="news-meta">
+          <span class="news-source">国家医保局</span>
+          <span class="news-time">12月1日</span>
+          <span class="news-tag">长护险</span>
+        </div>
+        <div class="news-summary">国家医保局更新长护险服务管理文书标准，规范失能老人照护服务流程，试点城市扩展至全国49个，预计覆盖人群超1.2亿。</div>
+      </div>
+    </a>
+    <a class="news-card" href="http://www.centek.com.cn/dynamics/532.html" target="_blank">
+      <div class="news-rank">4</div>
+      <div class="news-body">
+        <div class="news-title">2026两会聚焦：银发经济与养老政策一览，科技赋能成核心议题</div>
+        <div class="news-meta">
+          <span class="news-source">北京中关村科技</span>
+          <span class="news-time">3月13日</span>
+          <span class="news-tag">两会·科技</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ② 银发消费 -->
+  <div class="section-head">
+    <div class="section-icon">🛍️</div>
+    <div class="section-name">银发消费</div>
+    <div class="section-line"></div>
+    <div class="section-count">3 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://ageclub.net/article-detail/8165" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">银发经济爆发！2026年中国市场趋势全解读：3亿"新老人"重塑消费版图</div>
+        <div class="news-meta">
+          <span class="news-source">AgeClub</span>
+          <span class="news-time">1月28日</span>
+          <span class="news-tag">市场</span>
+        </div>
+        <div class="news-summary">2026年中国60岁以上人口达2.54亿，银发消费呈现"悦己化、品质化、场景化"三大趋势——旅居、康养、智能硬件成三大爆发赛道。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://baijiahao.baidu.com/s?id=1858601404188216021" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">掘金30万亿风口：银发经济四大黄金赛道与实战路径</div>
+        <div class="news-meta">
+          <span class="news-source">百家号</span>
+          <span class="news-time">近期</span>
+          <span class="news-tag">赛道</span>
+        </div>
+        <div class="news-summary">智慧养老、医疗康养、老年消费、文旅教育四大赛道齐头并进，功能性食品、适老家居改造、老年教育等细分品类增速超行业均值2倍。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://finance.sina.com.cn/jjxw/2026-03-18/doc-inhrizpe3512648.shtml" target="_blank">
+      <div class="news-rank">3</div>
+      <div class="news-body">
+        <div class="news-title">消费新趋势：老年人"悦己消费"崛起，高端护肤、银发时尚品牌迎来窗口期</div>
+        <div class="news-meta">
+          <span class="news-source">新浪财经</span>
+          <span class="news-time">3月18日</span>
+          <span class="news-tag">消费升级</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ③ 老年金融 -->
+  <div class="section-head">
+    <div class="section-icon">💰</div>
+    <div class="section-name">老年金融</div>
+    <div class="section-line"></div>
+    <div class="section-count">3 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://finance.sina.com.cn/jjxw/2026-03-18/doc-inhrizpe3512648.shtml" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">养老金融多维突破：个人养老金账户扩围，商业养老险迎政策窗口</div>
+        <div class="news-meta">
+          <span class="news-source">中国消费者报</span>
+          <span class="news-time">3月18日</span>
+          <span class="news-tag">养老金</span>
+        </div>
+        <div class="news-summary">个人养老金账户已在全国推广，2026年政府工作报告明确支持养老金融高质量发展，商业银行加速推出"养老专属"理财产品，银发金融资管规模预计突破5万亿元。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://www.gov.cn/zhengce/zhengceku/202503/content_7016311.htm" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">银行业保险业养老金融高质量发展实施方案出台</div>
+        <div class="news-meta">
+          <span class="news-source">中国政府网</span>
+          <span class="news-time">2025年3月</span>
+          <span class="news-tag">监管</span>
+        </div>
+        <div class="news-summary">国家金融监管总局印发实施方案，要求银行保险机构打造养老储蓄、养老理财、养老保险、养老信托"四位一体"产品体系，推动资产配置长期化。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://www.163.com/dy/article/KOF8V0AM05565ZS2.html" target="_blank">
+      <div class="news-rank">3</div>
+      <div class="news-body">
+        <div class="news-title">30位两会代表委员建言：商业养老险税优扩展、长护险全国推开</div>
+        <div class="news-meta">
+          <span class="news-source">网易财经</span>
+          <span class="news-time">3月20日</span>
+          <span class="news-tag">两会·保险</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ④ 银发科技 -->
+  <div class="section-head">
+    <div class="section-icon">🤖</div>
+    <div class="section-name">银发科技</div>
+    <div class="section-line"></div>
+    <div class="section-count">3 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://business.cctv.cn/2026/03/05/ARTIkoUbodguruWPA1dGPOi4260305.shtml" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">养老机器人加速破局：春晚亮相后，情感陪护机器人订单翻倍增长</div>
+        <div class="news-meta">
+          <span class="news-source">央视网</span>
+          <span class="news-time">3月5日</span>
+          <span class="news-tag">机器人</span>
+        </div>
+        <div class="news-summary">宇树科技、银河通用等四家企业的养老陪护机器人春晚后热度暴涨，情感陪伴、生活辅助、健康监测三大功能成养老机构采购首选，头部品牌预期年出货量破万台。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://finance.people.com.cn/n1/2026/0114/c1004-40644848.html" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">八部门联合发文：培育养老服务新业态，AI+养老迎来政策"双保险"</div>
+        <div class="news-meta">
+          <span class="news-source">人民网财经</span>
+          <span class="news-time">1月14日</span>
+          <span class="news-tag">AI·政策</span>
+        </div>
+        <div class="news-summary">民政部等八部门印发方案，鼓励人工智能、物联网、大数据在养老服务中的应用，智能可穿戴、AI健康管家、远程照护平台获国家专项扶持资金。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://news.qq.com/rain/a/20260317A07V3O00" target="_blank">
+      <div class="news-rank">3</div>
+      <div class="news-body">
+        <div class="news-title">第九届成都老博会：800家企业展示银发科技，AI健康管家成最大亮点</div>
+        <div class="news-meta">
+          <span class="news-source">腾讯新闻</span>
+          <span class="news-time">3月17日</span>
+          <span class="news-tag">展会</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ⑤ 医疗健康 -->
+  <div class="section-head">
+    <div class="section-icon">🏥</div>
+    <div class="section-name">医疗健康</div>
+    <div class="section-line"></div>
+    <div class="section-count">3 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://news.qq.com/rain/a/20260312A08HWN00" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">3.2亿老人老有所依：医养结合加速，社区嵌入式养老服务网络全面铺开</div>
+        <div class="news-meta">
+          <span class="news-source">腾讯新闻</span>
+          <span class="news-time">3月12日</span>
+          <span class="news-tag">医养结合</span>
+        </div>
+        <div class="news-summary">两会数据显示中国60岁以上老年人口已达3.2亿，政策大力推动"居家社区机构"三级照护体系，15分钟养老服务圈成各地核心建设指标，覆盖率目标2026年底达80%。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://www.cncaprc.gov.cn/xxllsy/769813.jhtml" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">2025老龄工作综述：老年志愿者超5358万人，健康促进行动覆盖全国</div>
+        <div class="news-meta">
+          <span class="news-source">全国老龄工作委员会</span>
+          <span class="news-time">12月24日</span>
+          <span class="news-tag">健康促进</span>
+        </div>
+        <div class="news-summary">全国在册老年志愿者达5358万人，服务时长超16.4亿小时；老年人健康素养提升工程覆盖2600余个社区，慢病管理、口腔健康、心理干预服务体系持续完善。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://www.zhihu.com/tardis/bd/art/680340837" target="_blank">
+      <div class="news-rank">3</div>
+      <div class="news-body">
+        <div class="news-title">2026养老行业顶级报告汇总：老年照护、康复辅具、认知症干预成三大热点</div>
+        <div class="news-meta">
+          <span class="news-source">知乎·养老专栏</span>
+          <span class="news-time">2月3日</span>
+          <span class="news-tag">行业报告</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ⑥ 银发文娱 -->
+  <div class="section-head">
+    <div class="section-icon">🎭</div>
+    <div class="section-name">银发文娱</div>
+    <div class="section-line"></div>
+    <div class="section-count">3 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://wlt.hlj.gov.cn/wlt/c115793/202603/c00_31924109.shtml" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">两会聚焦：银发旅游升温，旅居养老纳入国家政策支持，市场潜力巨大</div>
+        <div class="news-meta">
+          <span class="news-source">黑龙江省文旅厅</span>
+          <span class="news-time">3月16日</span>
+          <span class="news-tag">旅居养老</span>
+        </div>
+        <div class="news-summary">政府工作报告明确支持旅居养老，老年人年均出行次数已超4次，"异地候鸟"式旅居模式在海南、云南、广西形成规模效应，旅游+养老融合市场规模预计年内突破5000亿元。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://news.cctv.com/2026/01/19/ARTIMvjGDM5M8BDbHdQ77qbF260119.shtml" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">外媒聚焦中国"新潮银发"：咖啡拉花课、银发电竞、AI体验馆走进养老院</div>
+        <div class="news-meta">
+          <span class="news-source">央视新闻</span>
+          <span class="news-time">1月19日</span>
+          <span class="news-tag">文娱新潮</span>
+        </div>
+        <div class="news-summary">开设咖啡拉花课、组织"银发电竞"表演赛、打造"AI+养老"体验馆……中国多地面向老年人的娱乐产品与文化服务持续"上新"，引发国际媒体广泛关注与报道。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://baijiahao.baidu.com/s?id=1858601404188216021" target="_blank">
+      <div class="news-rank">3</div>
+      <div class="news-body">
+        <div class="news-title">银发教育崛起：老年大学招生爆满，在线学习平台老年用户规模突破8000万</div>
+        <div class="news-meta">
+          <span class="news-source">百家号</span>
+          <span class="news-time">近期</span>
+          <span class="news-tag">老年教育</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ⑦ 居家养老 -->
+  <div class="section-head">
+    <div class="section-icon">🏠</div>
+    <div class="section-name">居家养老</div>
+    <div class="section-line"></div>
+    <div class="section-count">2 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://cn.chinadaily.com.cn/a/202512/17/WS6941f0a3a310942cc4996fc9.html" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">AI+养老解锁新机遇：智能居家照护系统进入千家万户，跌倒检测准确率超95%</div>
+        <div class="news-meta">
+          <span class="news-source">中国日报</span>
+          <span class="news-time">12月17日</span>
+          <span class="news-tag">智慧居家</span>
+        </div>
+        <div class="news-summary">AI健康监测设备、智能呼叫系统、远程探视平台在城市社区加速推广，物联网居家安全感应套件进入家政补贴清单，2026年适老化改造补贴户数较去年增长40%。</div>
+      </div>
+    </a>
+    <a class="news-card" href="http://dpc.qingdao.gov.cn/zfxxgk/fdzdgknr/zdly/shfz/202506/t20250625_9735608.shtml" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">中国银发经济发展报告（2025）：居家养老服务覆盖率成核心考核指标</div>
+        <div class="news-meta">
+          <span class="news-source">青岛市发展改革委</span>
+          <span class="news-time">2025年6月</span>
+          <span class="news-tag">行业报告</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ⑧ 银发就业 -->
+  <div class="section-head">
+    <div class="section-icon">💼</div>
+    <div class="section-name">银发就业·老有所为</div>
+    <div class="section-line"></div>
+    <div class="section-count">2 条</div>
+  </div>
+  <div class="news-list">
+    <a class="news-card featured" href="https://paper.people.com.cn/rmlt/pc/content/202512/02/content_30125637.html" target="_blank">
+      <div class="news-rank top">1</div>
+      <div class="news-body">
+        <div class="news-title">面向"十五五"：激发银发经济新动能，稳妥推进延迟退休是重要路径</div>
+        <div class="news-meta">
+          <span class="news-source">人民论坛</span>
+          <span class="news-time">12月2日</span>
+          <span class="news-tag">延迟退休</span>
+        </div>
+        <div class="news-summary">推动老有所为与发展银发经济相互依存：优化就业年龄政策、积极开发老年人力资源，退而不休的"银发经济参与者"正成为万亿市场的创造者与消费者。</div>
+      </div>
+    </a>
+    <a class="news-card" href="https://news.qq.com/rain/a/20260312A08HWN00" target="_blank">
+      <div class="news-rank">2</div>
+      <div class="news-body">
+        <div class="news-title">两会热议：积极开发老年人力资源，银龄志愿服务体系扩展至农村</div>
+        <div class="news-meta">
+          <span class="news-source">腾讯新闻</span>
+          <span class="news-time">3月12日</span>
+          <span class="news-tag">银龄行动</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">银发每日头条</div>
+  <div>聚焦银发经济 · 关注亿万老年人的美好生活</div>
+  <div style="margin-top:8px; color:#b0a890;">内容来源于公开新闻资讯，仅供参考 · Silver Age Daily · 第487期</div>
+</div>
+
+</body>
+</html>

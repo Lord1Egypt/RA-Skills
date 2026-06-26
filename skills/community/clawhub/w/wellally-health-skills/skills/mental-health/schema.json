@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/mental-health-tracker.json",
+  "title": "MentalHealthTracker",
+  "description": "心理健康管理数据结构定义",
+  "type": "object",
+  "properties": {
+    "psychological_assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "scale": {
+            "type": "string",
+            "enum": ["phq9", "gad7", "psqi", "gds", "epds"]
+          },
+          "total_score": {"type": "integer"},
+          "max_score": {"type": "integer"},
+          "severity": {"type": "string"},
+          "items": {
+            "type": "array",
+            "items": {"type": "integer"}
+          },
+          "recommendation": {"type": "string"}
+        },
+        "required": ["assessment_date", "scale", "total_score"]
+      }
+    },
+    "mood_diary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "time": {"type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"},
+          "mood": {
+            "type": "string",
+            "enum": ["happy", "calm", "anxious", "sad", "angry", "tired", "frustrated", "excited", "depressed", "irritable", "nervous"]
+          },
+          "intensity": {"type": "integer", "minimum": 1, "maximum": 10},
+          "triggers": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "coping_strategies": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "effectiveness": {
+            "type": "string",
+            "enum": ["very_helpful", "helpful", "somewhat_helpful", "not_helpful"]
+          },
+          "notes": {"type": "string"},
+          "created_at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["id", "date", "mood", "intensity"]
+      }
+    },
+    "therapy_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "session_number": {"type": "integer", "minimum": 1},
+          "date": {"type": "string", "format": "date"},
+          "duration_minutes": {"type": "integer", "minimum": 15, "maximum": 120},
+          "therapy_type": {
+            "type": "string",
+            "enum": ["CBT", "psychodynamic", "humanistic", "family", "group", "DBT", "EMDR", "other"]
+          },
+          "topics_discussed": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "mood_before": {
+            "type": "string",
+            "enum": ["happy", "calm", "anxious", "sad", "angry", "tired", "depressed", "irritable"]
+          },
+          "mood_after": {
+            "type": "string",
+            "enum": ["happy", "calm", "anxious", "sad", "angry", "tired", "depressed", "irritable", "calmer"]
+          },
+          "homework_assigned": {"type": "string"},
+          "homework_completed": {
+            "type": "string",
+            "enum": ["completed", "partial", "not_completed"]
+          },
+          "notes": {"type": "string"}
+        },
+        "required": ["session_number", "date"]
+      }
+    },
+    "crisis_plan": {
+      "type": "object",
+      "properties": {
+        "created_date": {"type": "string", "format": "date"},
+        "updated_date": {"type": "string", "format": "date"},
+        "warning_signs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["hopelessness", "social_withdrawal", "extreme_mood_swings", "talk_of_death", "giving_away_possessions", "self_harm", "suicidal_thoughts", "substance_abuse"]
+          }
+        },
+        "emergency_contacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["spouse", "parent", "friend", "therapist", "colleague", "other"]
+              },
+              "name": {"type": "string"},
+              "phone": {"type": "string"},
+              "availability": {
+                "type": "string",
+                "enum": ["24/7", "evening", "weekend", "work_hours"]
+              }
+            },
+            "required": ["type", "phone"]
+          }
+        },
+        "coping_strategies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["deep_breathing", "grounding_technique", "progressive_muscle_relaxation", "mindfulness", "call_friend", "safe_space", "sensory_grounding"]
+          }
+        },
+        "current_risk_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "professional_resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"type": "string"},
+              "contact": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "therapy_goals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "goal_id": {"type": "string"},
+          "description": {"type": "string"},
+          "category": {
+            "type": "string",
+            "enum": ["symptom_reduction", "coping_skills", "behavior_change", "relationship", "self_esteem", "other"]
+          },
+          "baseline": {"type": "integer", "minimum": 0, "maximum": 10},
+          "current": {"type": "integer", "minimum": 0, "maximum": 10},
+          "target": {"type": "integer", "minimum": 0, "maximum": 10},
+          "target_date": {"type": "string", "format": "date"},
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "on_track", "behind", "achieved", "cancelled"]
+          }
+        },
+        "required": ["goal_id", "description"]
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "last_phq9_score": {"type": "integer"},
+        "last_gad7_score": {"type": "integer"},
+        "mood_trend_7days": {
+          "type": "string",
+          "enum": ["improving", "stable", "declining"]
+        },
+        "therapy_sessions_count": {"type": "integer"},
+        "most_common_mood": {"type": "string"},
+        "avg_mood_intensity": {"type": "number"}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

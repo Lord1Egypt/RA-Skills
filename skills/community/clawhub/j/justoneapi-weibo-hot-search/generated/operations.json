@@ -1,0 +1,43 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/weibo/hot-search/v1 for Weibo Hot Search through JustOneAPI.",
+  "displayName": "Weibo Hot Search",
+  "endpointPath": "hot-search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo hot Search data, including ranking data, for trend monitoring, newsroom workflows, and topic discovery.",
+      "method": "GET",
+      "operationId": "hotSearchV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/hot-search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Hot Search",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo_hot_search",
+  "skillType": "interface",
+  "slug": "justoneapi-weibo-hot-search",
+  "sourceTitle": "OpenAPI definition"
+}

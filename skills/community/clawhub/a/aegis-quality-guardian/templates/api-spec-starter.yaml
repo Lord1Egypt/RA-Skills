@@ -1,0 +1,104 @@
+openapi: "3.1.0"
+info:
+  title: "{Project Name} API"
+  version: "0.1.0"
+  description: |
+    API contract for {Project Name}.
+    This is the single source of truth for all API endpoints.
+    
+    ⚠️ Do not modify without going through Contract Change Protocol.
+
+servers:
+  - url: http://localhost:8080
+    description: Local development
+  - url: "{production-url}"
+    description: Production
+
+paths:
+  /api/health:
+    get:
+      summary: Health check
+      operationId: healthCheck
+      tags: [system]
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                  timestamp:
+                    type: string
+                    format: date-time
+                required: [status, timestamp]
+
+  # Add your endpoints here following this pattern:
+  # /api/resource:
+  #   get:
+  #     summary: List resources
+  #     operationId: listResources
+  #     tags: [resources]
+  #     parameters:
+  #       - name: page
+  #         in: query
+  #         schema:
+  #           type: integer
+  #           default: 1
+  #       - name: pageSize
+  #         in: query
+  #         schema:
+  #           type: integer
+  #           default: 20
+  #     responses:
+  #       "200":
+  #         description: Success
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/PaginatedResourceResponse"
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
+        error:
+          $ref: "#/components/schemas/ApiError"
+      required: [success]
+
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: "Error code from errors.yaml"
+        message:
+          type: string
+      required: [code, message]
+
+    PaginationMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+      required: [page, pageSize, total]
+
+  # securitySchemes:
+  #   bearerAuth:
+  #     type: http
+  #     scheme: bearer
+  #     bearerFormat: JWT
+
+# security:
+#   - bearerAuth: []

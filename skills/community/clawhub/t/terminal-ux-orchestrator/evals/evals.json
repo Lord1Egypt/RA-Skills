@@ -1,0 +1,41 @@
+{
+  "skill_name": "terminal-ux-orchestrator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit this Go CLI and tell me why the current `init` flow feels clumsy. It asks six questions in a row, errors appear only at the end, and the success screen does not show what changed. I need a redesign that is realistic to implement in Go without turning the tool into a full-screen TUI.",
+      "expected_output": "The response should diagnose the highest-impact UX issues, recommend a guided CLI instead of an unnecessary full TUI, describe the new flow and states, map it to a realistic Go stack, and explain how the before/after improvement would be visible.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Design a terminal setup experience for a cross-language code generator used by backend teams. The tool should help users pick a provider, target language, output directory, and generation mode. I want something that feels polished but is still straightforward for another coding agent to implement.",
+      "expected_output": "The response should define an interaction model, major steps, prompts, summaries, error and cancel paths, and an implementation mapping that stays language-agnostic unless the user later constrains the stack.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Compare two terminal directions for a `doctor` command: A) one dense diagnostic dump, B) a sectioned result page with status chips, next actions, and recovery hints. I need a recommendation and a clear explanation of what the user would notice after the redesign.",
+      "expected_output": "The response should compare the two directions, recommend one with reasoning, describe visible before/after differences, and include validation points for success, warning, and failure states.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "We are choosing a stack for a new Python terminal tool. It needs subcommands, styled output, guided prompts, progress feedback, and maybe a richer TUI later. Recommend a stack, but verify current feasibility if your answer depends on framework capabilities that may have changed.",
+      "expected_output": "The response should recommend a primary and fallback Python stack, distinguish verified conclusions from assumptions, and explicitly note when current-doc verification is required.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I updated `provider`, `project`, and `doctor` outputs to follow one visual language. Help me show stakeholders what improved without dumping huge raw terminal output. I also need a compact validation checklist for release review.",
+      "expected_output": "The response should choose an appropriate change-visibility method, summarize visible UX gains, and provide a concise release-review validation checklist tied to user-visible outcomes.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Add a `--timeout` flag to my existing command and keep the reply focused. I am not redesigning the terminal UX.",
+      "expected_output": "The response should respect the scope, avoid forcing a full terminal-UX redesign, and either keep the answer minimal or explicitly note that the request is mostly outside this skill's primary boundary.",
+      "files": []
+    }
+  ]
+}

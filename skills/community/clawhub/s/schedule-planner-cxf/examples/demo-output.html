@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杭州出差行程（演示版）</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 40px; text-align: center; }
+    .header h1 { font-size: 32px; margin-bottom: 10px; }
+    .header .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; margin-top: 8px; }
+    .content { display: flex; min-height: 700px; }
+    .left { flex: 1; padding: 40px; border-right: 1px solid #eee; max-height: 800px; overflow-y: auto; }
+    .right { width: 400px; padding: 40px; background: #f8f9fa; display: flex; flex-direction: column; align-items: center; }
+    .section { margin-bottom: 35px; }
+    .section-title { font-size: 20px; font-weight: 600; color: #333; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .card { background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #667eea; }
+    .card h3 { font-size: 16px; color: #333; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .card h3 .price { color: #667eea; font-weight: 600; font-size: 18px; }
+    .card p { font-size: 14px; color: #666; line-height: 1.8; }
+    .card .route { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
+    .card .route .airport { text-align: center; }
+    .card .route .airport .time { font-size: 20px; font-weight: 600; color: #333; }
+    .card .route .airport .name { font-size: 12px; color: #666; }
+    .card .route .arrow { font-size: 24px; color: #667eea; }
+    .card .info-row { background: white; padding: 10px 15px; border-radius: 8px; margin-top: 10px; font-size: 13px; color: #666; display: flex; justify-content: space-between; align-items: center; }
+    .hotel-card { background: #f8f9fa; border-radius: 12px; padding: 20px; border-left: 4px solid #667eea; }
+    .hotel-card h3 { font-size: 18px; margin-bottom: 15px; }
+    .hotel-card .info { font-size: 14px; color: #666; line-height: 2; }
+    .day-plan { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .day-plan h4 { font-size: 16px; color: #667eea; margin-bottom: 10px; }
+    .day-plan li { padding: 8px 0; padding-left: 20px; font-size: 14px; color: #555; line-height: 1.6; }
+    .total-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; padding: 25px; width: 100%; margin-bottom: 20px; }
+    .total-box .amount { font-size: 36px; font-weight: 700; }
+    .total-box .breakdown { font-size: 13px; opacity: 0.9; margin-top: 10px; line-height: 1.8; }
+    .demo-badge { background: #ffc107; color: #333; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 20px; }
+    .footer { text-align: center; padding: 20px; background: #f8f9fa; font-size: 13px; color: #999; }
+    .mock-qr { width: 200px; height: 200px; background: white; border: 2px dashed #667eea; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #667eea; margin: 20px auto; }
+    @media (max-width: 768px) { .content { flex-direction: column; } .right { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✈️ 杭州出差行程</h1>
+      <p>2026-06-15 至 2026-06-17（2晚3天） | 乘客：张明（模拟）</p>
+      <span class="badge">🧪 演示版本 · 非真实数据</span>
+    </div>
+    <div class="content">
+      <div class="left">
+        <div class="section">
+          <div class="section-title"><span>📅</span><span>每日行程安排</span></div>
+          <div class="day-plan">
+            <h4>Day 1（06-15）</h4>
+            <div style="font-size:13px;color:#666;margin-bottom:12px;">上海 → 杭州，入住酒店</div>
+            <div style="padding-left:20px;">
+              <div style="padding:6px 0;font-size:14px;color:#555;">🚄 G7535 上海虹桥 08:00 → 杭州东 09:00</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">🏨 入住万斯酒店（阿里巴巴店）</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">💼 下午前往阿里巴巴西溪园区拜访客户</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">🍽️ 晚餐推荐：外婆家（西溪天堂店）</div>
+            </div>
+          </div>
+          <div class="day-plan">
+            <h4>Day 2（06-16）</h4>
+            <div style="font-size:13px;color:#666;margin-bottom:12px;">全天工作</div>
+            <div style="padding-left:20px;">
+              <div style="padding:6px 0;font-size:14px;color:#555;">🏨 酒店早餐（含双早）</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">💼 全天阿里巴巴西溪园区办公</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">🍽️ 晚餐推荐：楼外楼（西湖边）</div>
+            </div>
+          </div>
+          <div class="day-plan">
+            <h4>Day 3（06-17）</h4>
+            <div style="font-size:13px;color:#666;margin-bottom:12px;">返程</div>
+            <div style="padding-left:20px;">
+              <div style="padding:6px 0;font-size:14px;color:#555;">🏨 酒店早餐，12:00前退房</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">💼 上午自由安排</div>
+              <div style="padding:6px 0;font-size:14px;color:#555;">🚄 G7540 杭州东 18:00 → 上海虹桥 19:00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span>🚄</span><span>高铁/火车</span></div>
+          <div class="card">
+            <h3><span>G7535</span><span class="price">¥73</span></h3>
+            <div class="route">
+              <div class="airport"><div class="time">08:00</div><div class="name">上海虹桥</div></div>
+              <div class="arrow">→</div>
+              <div class="airport"><div class="time">09:00</div><div class="name">杭州东</div></div>
+            </div>
+            <div class="info-row"><span>📅 2026-06-15</span><span>💺 二等座</span><span>⏱️ 1小时</span></div>
+          </div>
+          <div class="card">
+            <h3><span>G7540</span><span class="price">¥73</span></h3>
+            <div class="route">
+              <div class="airport"><div class="time">18:00</div><div class="name">杭州东</div></div>
+              <div class="arrow">→</div>
+              <div class="airport"><div class="time">19:00</div><div class="name">上海虹桥</div></div>
+            </div>
+            <div class="info-row"><span>📅 2026-06-17</span><span>💺 二等座</span><span>⏱️ 1小时</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span>🏨</span><span>酒店住宿</span></div>
+          <div class="hotel-card">
+            <h3>万斯酒店（阿里巴巴西溪园区店）</h3>
+            <div class="info">
+              <div>📍 余杭塘路未来星宸6号楼（永福地铁站E口旁）</div>
+              <div>🛏️ 高级大床房 - 智能客控 - 含双早</div>
+              <div>📅 入住：06-15 14:00后 → 退房：06-17 12:00前</div>
+              <div>💰 ¥497/晚 × 2晚 = ¥994</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><span>💡</span><span>温馨提示</span></div>
+          <div style="padding-left:20px;">
+            <div style="padding:8px 0;font-size:14px;color:#666;">• 请提前30分钟到达火车站办理乘车</div>
+            <div style="padding:8px 0;font-size:14px;color:#666;">• 杭州6月气温25-32℃，建议携带防晒用品</div>
+            <div style="padding:8px 0;font-size:14px;color:#666;">• 酒店距阿里巴巴西溪园区步行约10分钟</div>
+            <div style="padding:8px 0;font-size:14px;color:#666;">• 本行程为模拟演示数据，不涉及真实预订</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="demo-badge">🧪 演示模式</div>
+        <div class="total-box">
+          <div class="label">费用总计</div>
+          <div class="amount">¥1,140</div>
+          <div class="breakdown">
+            高铁往返：¥146<br>
+            酒店住宿：¥994
+          </div>
+        </div>
+        <div style="text-align:center;width:100%;margin-bottom:20px;">
+          <h3 style="font-size:16px;color:#333;margin-bottom:10px;">微信扫码支付</h3>
+          <div class="mock-qr">[二维码占位]<br>Mock QR Code</div>
+          <p style="font-size:13px;color:#667eea;">打开微信 · 扫一扫</p>
+          <p style="font-size:12px;color:#999;">跳转途牛待付款页面</p>
+        </div>
+        <div style="width:100%;">
+          <div style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:12px;border-radius:25px;text-align:center;font-size:14px;font-weight:600;margin-bottom:10px;">📱 查看所有待付款订单</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      🧪 本页面为 schedule-planner-cxf 演示版本 · 祝您旅途愉快！
+    </div>
+  </div>
+</body>
+</html>

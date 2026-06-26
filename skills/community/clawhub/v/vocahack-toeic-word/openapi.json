@@ -1,0 +1,90 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TOEIC Etymology Master API",
+    "description": "API for VocaHack TOEIC AI Skill to fetch English words, roots, affixes, compounds, and topic relations mapped against TOEIC word lists.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://vocahack.com"
+    }
+  ],
+  "paths": {
+    "/api/skill/toeic": {
+      "get": {
+        "summary": "Fetch Japanese localized TOEIC word etymology",
+        "description": "Queries a specific word or root across TOEIC libraries (e.g., toeic_jp_900). Returns a combined family of words grouped by their common property (Root, Affix, Compound, Topic).",
+        "operationId": "getToeicWord",
+        "parameters": [
+          {
+            "name": "word",
+            "in": "query",
+            "description": "The target English word or word root to be analyzed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Target TOEIC word version table. Default: toeic_jp_900. Allowed: toeic_jp_900, toeic_jp_700, toeic_jp_500, toeic_jp_core.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "toeic_jp_900"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved etymology cluster data for TOEIC.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "The queried keyword."
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "tips": {
+                      "type": "string"
+                    },
+                    "grouped_words": {
+                      "type": "array",
+                      "description": "List of words sharing the same etymology trace or root string, meant to be grouped by AI using the 'mark' attribute mapping to [語源/接辞/複合語/話題].",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cigen": { "type": "string", "nullable": true },
+                          "word": { "type": "string" },
+                          "cixing": { "type": "string", "nullable": true },
+                          "ciyi": { "type": "string", "nullable": true },
+                          "mark": { "type": "string", "nullable": true }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter."
+          },
+          "403": {
+            "description": "Rate limit exceeded."
+          },
+          "404": {
+            "description": "Word not found in the specified database."
+          }
+        }
+      }
+    }
+  }
+}

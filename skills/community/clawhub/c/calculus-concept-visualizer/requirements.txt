@@ -1,0 +1,18 @@
+# Calculus Concept Visualizer 依赖
+# Python >= 3.8
+
+# 数值计算
+numpy>=1.20.0
+
+# 可视化
+matplotlib>=3.5.0
+plotly>=5.0.0
+
+# 符号数学（可选）
+sympy>=1.10.0
+
+# 数据处理
+pandas>=1.3.0
+
+# 测试
+pytest>=7.0.0

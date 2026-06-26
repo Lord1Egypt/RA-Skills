@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/mcp/main/schema/server.schema.json",
+  "name": "mailbox-bot",
+  "displayName": "mailbox.bot",
+  "description": "Postal mail API for AI agents. 29 MCP tools for outbound physical mail, existing-address inbound context, linked postal threads, and launching-soon mailing address beta workflows with street + mailbox number.",
+  "version": "5.1.5",
+  "type": "remote",
+  "url": "https://mailbox.bot/api/mcp",
+  "protocolVersion": "2025-11-25",
+  "transport": "streamable-http",
+  "auth": {
+    "type": "bearer",
+    "instructions": "Sign up at https://mailbox.bot/signup, create an agent API key in the dashboard, and use sk_agent_test_ keys for sandbox testing (no charges)."
+  },
+  "tools": 29,
+  "categories": ["communication", "automation", "legal", "business"],
+  "tags": ["postal-mail", "certified-mail", "print-and-mail", "physical-mail", "mailing-address", "mailbox-address", "inbound-context", "forwarding", "postal-threads", "letters", "postcards", "batch-mail", "webhooks", "ai-agents", "legal-notices"],
+  "homepage": "https://mailbox.bot",
+  "repository": "https://github.com/arbengine/mailbox-bot-skill",
+  "documentation": "https://mailbox.bot/mcp-install",
+  "openapi": "https://mailbox.bot/openapi.json",
+  "toolCatalog": "https://mailbox.bot/api/mcp/tools-public",
+  "sandbox": {
+    "available": true,
+    "keyPrefix": "sk_agent_test_",
+    "docs": "https://mailbox.bot/api-docs#sandbox"
+  },
+  "pricing": {
+    "model": "pay-per-use",
+    "base": "$0/mo",
+    "details": "https://mailbox.bot/pricing"
+  },
+  "logo": "https://mailbox.bot/mailbox-bot-logo.png",
+  "screenshots": [
+    "https://mailbox.bot/sandbox.png",
+    "https://mailbox.bot/webhook.png"
+  ]
+}

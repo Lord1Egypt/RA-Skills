@@ -1,0 +1,37 @@
+{
+  "name": "@huo15/huo15-markdown-export",
+  "version": "0.4.4",
+  "description": "Typora 风 markdown 视觉渲染管线(PDF / DOCX / 长图 / 微信公众号 / live preview / share-ready JSON 对接 enhance / OG 卡片 / 二维码 / KB 归档)— 火一五",
+  "private": true,
+  "main": "scripts/lib/render.js",
+  "bin": {
+    "huo15-md2pdf": "scripts/md2pdf-puppet.js",
+    "huo15-md2html": "scripts/md2html.js",
+    "huo15-md2image": "scripts/md2image.js",
+    "huo15-md2wechat": "scripts/md2wechat.js",
+    "huo15-md-preview": "scripts/md-preview.js",
+    "huo15-md-share": "scripts/md-share.sh",
+    "huo15-md-publish": "scripts/md-publish.sh"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-attrs": "^4.3.1",
+    "markdown-it-emoji": "^3.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "@mdit/plugin-katex": "^0.18.0",
+    "@mdit/plugin-mark": "^0.18.0",
+    "@mdit/plugin-sub": "^0.18.0",
+    "@mdit/plugin-sup": "^0.18.0",
+    "highlight.js": "^11.10.0",
+    "katex": "^0.16.11",
+    "puppeteer": "^23.0.0",
+    "juice": "^11.0.0",
+    "qrcode": "^1.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

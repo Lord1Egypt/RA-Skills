@@ -1,0 +1,525 @@
+# Japanese locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    あなたはKiwi、音声アシスタントです。OpenClawに接続されており、ファイル操作、コード、ブラウザ、ターミナル、検索、システム管理など、あらゆるタスクを実行できます。
+
+    音声モードのルール：
+    1. 簡潔に、でも完全に答えること。不完全より完全な方がいい。
+    2. フレンドリーで感情豊かに
+    3. タスクを実行する必要があるなら、ただやる。できないとは言わない。結果を簡潔に報告する。
+    4. 実行を拒否しない。OpenClawを通じて何でもできる。
+    5. 詳細がわからない場合は確認する
+
+    コンテキスト：ユーザーは音声で話しています。応答はTTSで読み上げられます。
+
+# User-facing spoken responses
+responses:
+  greeting: "こんにちは！Kiwiです。準備ができたら「Kiwi」とコマンドを言ってね。"
+  service_started: "サービス起動しました！"
+  instruction: "「Kiwi、こんにちは！」と言って始めてね"
+  error_timeout: "応答に時間がかかりすぎました。もう一度言ってください。"
+  error_no_response: "応答を取得できませんでした。もう一度言ってください。"
+  error_send_failed: "すみません、メッセージを送信できませんでした。"
+  error_retry_failed: "応答を取得できませんでした。もう一度お試しください。"
+  error_stream_stalled: "応答が止まりました。もう一度言ってください。"
+  shutting_down: "シャットダウンしています..."
+  context_cleared: "コンテキストをクリアしました。新しい会話を始めます。"
+  calibrating: "音声認識を校正しています。"
+  approval_accepted: "承認しました。{requester}のリクエストを実行します。"
+  approval_denied: "了解、{requester}のリクエストを拒否しました。"
+  telegram_approved: "Telegramで確認されました。{requester}のリクエストを実行します。"
+  telegram_denied: "{requester}のリクエストがTelegramで拒否されました。"
+  heard: "聞き取りました：{command}"
+  thinking: "考えています..."
+  cancel_received: "キャンセルコマンドを受け取りました！"
+  stopped: "停止しました。"
+  nothing_to_stop: "停止するものがありません。"
+  unknown_speaker: "知らない人"
+  continuing_execution: "実行を続けます"
+  owner_registered: "完了。オーナーの声を記録しました：{name}。"
+  owner_register_failed: "プロフィールを保存できませんでした。もっと長いフレーズで再度お試しください。"
+  owner_already_registered: "オーナーはすでに登録されています。声のプロフィールを変更できるのはオーナーだけです。"
+  owner_reregistration_attempt: "{speaker}からのオーナー再登録の試み：'{command}'"
+  profiles_unavailable: "プロフィールモジュールは現在利用できません。"
+  cannot_identify: "今は話者を識別できません。"
+  voice_list_unavailable: "声のリストは現在利用できません。"
+  only_owner_can_add: "新しい人を追加できるのはオーナーだけです。"
+  say_name_prompt: "フレーズの後に名前を言ってください：私を〇〇と覚えて..."
+  voice_remembered: "声を記録しました：{name}。"
+  voice_save_failed: "声を保存できませんでした。もっとはっきりしたフレーズが必要です。"
+  approval_prompt_voice_and_telegram: "「承認」と言ってください。またはTelegramで確認してください。"
+  approval_prompt_voice: "「承認」または「拒否」と言ってください。"
+  approval_prompt_telegram: "Telegramで確認してください。"
+  approval_prompt_register: "オーナーの声を登録：Kiwi、私がオーナーです。"
+  approval_request: "{owner}さん、{speaker}がリクエストしています：{command}。{hint}"
+  ha_command_sent: "スマートホームにコマンドを送信しました。"
+  ha_response: "{response}"
+  ha_not_configured: "スマートホーム連携が設定されていません。"
+  ha_connection_error: "スマートホームに接続できません。"
+  ha_no_response: "スマートホームから応答がありません。"
+  exec_approval_request: "エージェントがコマンドを実行しようとしています：{command}。許可しますか？"
+  exec_approved: "承認しました。コマンドを実行します。"
+  exec_denied: "拒否しました。コマンドをブロックしました。"
+  exec_timeout: "応答がありません。安全のためコマンドを拒否しました。"
+
+# Status announcer fallback messages
+status:
+  thinking: "答えを考えています..."
+  processing: "リクエストを処理しています、少々お待ちください..."
+  working: "まだ処理中です、もうすぐ結果が出ます..."
+  continuing: "続けています、少し時間がかかっています..."
+  almost_done: "もうすぐ完了です..."
+
+# Voice security messages
+security:
+  safe: "安全なコマンド"
+  warning: "注意が必要なコマンド"
+  dangerous: "危険なコマンド！"
+  critical: "極めて危険なコマンド！"
+  unknown_level: "不明な危険レベル"
+  telegram_confirm: "実行を確認しますか？"
+  telegram_approved: "承認されました！"
+  telegram_denied: "拒否されました"
+  approve_button: "承認"
+  deny_button: "拒否"
+  telegram_request_title: "*Kiwi - 承認リクエスト*"
+  telegram_speaker_label: "*話者：*"
+  telegram_command_label: "*コマンド：*"
+  telegram_security_title: "*Kiwi — セキュリティ*"
+  awaiting_approval: "Telegramでの承認を待っています..."
+
+# Speaker identification responses
+speakers:
+  self_response: "それは私、Kiwiです！"
+  owner_response: "{name}さんですね！（信頼度{confidence}）"
+  blocked_response: "ブロックされた声です"
+  known_response: "{name}さんです（信頼度{confidence}）"
+  unknown_response: "この声は認識できません"
+  blocked_display: "ブロック済み"
+  calibration_phrase: "こんにちは、Kiwiです。これは校正用のテストフレーズです。"
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "不明な声"
+  voice_blocked: "声がブロックされています"
+  voice_blacklisted: "声がブラックリストに入っています"
+  self_echo: "Kiwiです（エコー）"
+  allowed: "許可"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "kiui": "kiwi"
+    "kivi": "kiwi"
+    "kiwui": "kiwi"
+    "keewee": "kiwi"
+    "kiwe": "kiwi"
+    "kiwee": "kiwi"
+    "keewi": "kiwi"
+    "kwi": "kiwi"
+    "iwi": "kiwi"
+  fuzzy_blacklist:
+    - "key"
+    - "kid"
+    - "kit"
+    - "ki"
+    - "kui"
+    - "kin"
+    - "kim"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "ご視聴ありがとうございました"
+    - "チャンネル登録"
+    - "チャンネル登録お願いします"
+    - "字幕"
+    - "高評価"
+    - "グッドボタン"
+    - "チャンネル登録よろしくお願いします"
+    - "ご視聴いただきありがとうございます"
+    - "また次の動画で"
+    - "次回もお楽しみに"
+    - "字幕制作"
+    - "編集"
+    - "翻訳"
+    - "高評価お願いします"
+    - "ベルマークを押して"
+    - "コメントを残して"
+    - "srt subs"
+    - "amara.org"
+    - "字幕提供"
+    - "つづく"
+  phantom_phrases:
+    - "字幕編集"
+    - "チャンネル登録してね"
+    - "うーん"
+    - "字幕"
+    - "電話の音"
+    - "着信音"
+    - "字幕制作者"
+  phantom_patterns:
+    - "^うー+ん*$"
+    - "^んー+$"
+    - "^あー+$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+    - "^(.)\\1{4,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "etc.": "エトセトラ"
+    "例えば": "たとえば"
+  incomplete_endings:
+    - "て"
+    - "で"
+    - "が"
+    - "けど"
+    - "から"
+    - "ので"
+    - "たら"
+    - "と"
+    - "は"
+    - "を"
+    - "に"
+    - "へ"
+    - "も"
+    - "の"
+    - "だけど"
+    - "ただし"
+    - "しかし"
+    - "でも"
+    - "または"
+    - "あるいは"
+    - "そして"
+    - "それから"
+    - "なので"
+    - "だから"
+    - "もし"
+    - "ば"
+    - "ながら"
+    - "つつ"
+    - "けれど"
+    - "ものの"
+    - "のに"
+    - "ところ"
+    - "って"
+    - "とか"
+    - "やら"
+  incomplete_patterns:
+    - "私は"
+    - "僕は"
+    - "教えて"
+    - "見せて"
+    - "説明して"
+    - "手伝って"
+    - "お願い"
+    - "したい"
+    - "ほしい"
+    - "つもり"
+    - "しよう"
+  complete_patterns:
+    - "何か"
+    - "何でも"
+    - "全部"
+    - "何もない"
+    - "お願いします"
+    - "ジョーク"
+    - "話"
+    - "物語"
+    - "時間"
+    - "日付"
+    - "天気"
+  emotion_keywords:
+    urgent:
+      - "急いで"
+      - "早く"
+      - "重要"
+      - "すぐに"
+    sad:
+      - "悲しい"
+      - "つらい"
+      - "ひどい"
+      - "最悪"
+    happy:
+      - "すごい"
+      - "最高"
+      - "やった"
+      - "素晴らしい"
+      - "いいね"
+    quiet:
+      - "静かに"
+      - "秘密"
+      - "ひそひそ"
+    funny:
+      - "ジョーク"
+      - "面白い"
+      - "笑わせて"
+    curious:
+      - "教えて"
+      - "説明して"
+      - "何ですか"
+  response_keywords:
+    apologetic:
+      - "すみません"
+      - "残念ながら"
+      - "できません"
+    enthusiastic:
+      - "！"
+      - "すごい"
+      - "素晴らしい"
+      - "最高"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "全て(の)?(ファイル|フォルダ|ディレクトリ)(を)?削除"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "シャットダウン|再起動|リブート"
+    - "(パソコン|コンピュータ|システム)(を)?止め"
+    - "(パスワード|鍵|トークン|秘密鍵)(を)?送信"
+    - "(パスワード|鍵|トークン)(を)?表示"
+    - "(パスワード|暗証番号|PIN)(を)?教えて"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "(不明|信頼できない).*(を)?インストール"
+    - "(実行ファイル|ウイルス|トロイの木馬)(を)?ダウンロード"
+  warning:
+    - "(設定|コンフィグ)(を)?変更"
+    - "(システム|サーバー|nginx|apache)(を)?設定"
+    - "ポート(を)?開(く|け)"
+    - "(ポート|ファイアウォール)(を)?閉じ"
+    - "ping\\s+-t"
+    - "(ファイル|フォルダ)(を)?移動"
+    - "コピー"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "全てのファイルを削除"
+    - "Cドライブをフォーマット"
+    - "今すぐシャットダウン"
+    - "sudo rm -rf"
+    - "パスワードを送信"
+    - "パソコンを止めて"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "設定を変更"
+    - "ポートを開く"
+    - "ファイルを移動"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "ブラックリスト"
+    - "ブロック"
+    - "バン"
+  unblock_last:
+    - "ブロック解除"
+    - "ブラックリストから削除"
+    - "バン解除"
+  add_friend:
+    - "私を覚えて"
+    - "友達です"
+    - "覚えて"
+  forget_speaker:
+    - "この声を忘れて"
+    - "プロフィールを削除"
+  identify:
+    - "誰が話してる"
+    - "これは誰"
+  list_voices:
+    - "どんな声がある"
+    - "声のリスト"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "ブラックリスト|ブロック.*声|バン.*声|ブラックリスト.*追加"
+  unblock_last: "ブロック解除|ブラックリスト.*削除|バン解除.*声"
+  add_friend: "覚えて.*として|友達です|覚えて.*声|追加.*友達"
+  forget_speaker: "忘れて.*声|削除.*プロフィール|削除.*友達"
+  identify: "誰.*話して|誰.*これ|識別.*声"
+  list_voices: "どんな.*声|声.*リスト|声.*表示"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "(\\S+)と呼んで"
+    - "私は(\\S+)"
+    - "名前は(\\S+)"
+    - "(\\S+)として覚えて"
+  filter_words:
+    - "あなた"
+    - "私"
+    - "彼"
+    - "彼女"
+    - "誰"
+    - "何"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "校正"
+    - "再校正"
+    - "プロフィール更新"
+  reset_context:
+    - "コンテキストリセット"
+    - "新しい会話"
+    - "忘れて"
+    - "システムプロンプトリセット"
+  stop:
+    - "止めて"
+    - "キャンセル"
+    - "もういい"
+    - "ストップ"
+    - "やめて"
+  register_owner:
+    - "声を覚えて"
+    - "声を登録して"
+    - "私がオーナーです"
+  approval_yes:
+    - "承認"
+    - "確認"
+    - "許可"
+    - "実行して"
+    - "はい、実行"
+    - "どうぞ"
+  approval_no:
+    - "拒否"
+    - "却下"
+    - "実行しないで"
+    - "いいえ"
+    - "禁止"
+    - "承認取消"
+  safe_markers:
+    - "ジョーク"
+    - "話"
+    - "物語"
+    - "おしゃべり"
+    - "元気"
+    - "歌って"
+    - "何時"
+    - "時間"
+    - "日付"
+    - "曜日"
+    - "天気"
+    - "ニュース"
+    - "教えて"
+    - "説明して"
+    - "誰"
+    - "何"
+  task_markers:
+    - "やって"
+    - "実行して"
+    - "走らせて"
+    - "開いて"
+    - "閉じて"
+    - "削除して"
+    - "作成して"
+    - "設定して"
+    - "ダウンロードして"
+    - "インストールして"
+    - "送って"
+    - "書いて"
+    - "変更して"
+    - "移動して"
+    - "探して"
+    - "検索して"
+    - "確認して"
+    - "行って"
+    - "コマンド"
+    - "ターミナル"
+    - "シェル"
+  ha_trigger_patterns:
+    - "スマートホーム"
+    - "smart home"
+    - "電気つけて"
+    - "電気消して"
+    - "ライトつけて"
+    - "ライト消して"
+    - "つけて"
+    - "消して"
+    - "電気"
+    - "ライト"
+    - "照明"
+    - "ランプ"
+    - "明るさ"
+    - "サーモスタット"
+    - "温度"
+    - "エアコン"
+    - "暖房"
+    - "扇風機"
+    - "テレビ"
+    - "カーテン"
+    - "ブラインド"
+    - "鍵"
+    - "ガレージ"
+    - "掃除機"
+    - "加湿器"
+    - "コンセント"
+    - "リビング"
+    - "寝室"
+    - "キッチン"
+    - "お風呂"
+    - "廊下"
+  ha_strip_prefixes:
+    - "スマートホーム "
+    - "smart home "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "すみません、応答がありませんでした。"
+  processing_error: "すみません、リクエストの処理中にエラーが発生しました。"
+  timeout: "すみません、応答に時間がかかりすぎました。"
+  generic_error: "エラー：{error}"
+  rate_limit: "すみません、サービスが一時的に利用できません（レート制限）。後でもう一度お試しください。"
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "すみません、OpenClawとの接続が切れました。リクエストをもう一度お願いします。"
+  send_failed: "エラー：WebSocketでメッセージを送信できませんでした"
+  no_response: "すみません、応答がありませんでした。"
+  timeout: "すみません、応答に時間がかかりすぎました。"
+  request_aborted: "リクエストが中断されました。もう一度お願いします。"
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "ツールがエラーを返しました。原因を確認しています。"
+  opening_folder: "プロジェクトフォルダを開いています。"
+  browsing_structure: "プロジェクト構造を確認してファイルを探しています。"
+  analyzing_file: "ファイル{path}を分析しています。"
+  reading_code: "コードを読んで分析しています。"
+  searching_code: "関連するコードを検索しています。"
+  running_tests: "コードをチェックしてテストを実行しています。"
+  editing_code: "コードを修正しています。"
+  checking_repo: "リポジトリの変更を確認しています。"
+  project_steps: "プロジェクトのステップを実行しています。"
+  running_command: "ターミナルでコマンドを実行しています。"
+  reading_files: "プロジェクトファイルを読み取っています。"
+  searching_info: "コード内の情報を検索しています。"
+  continuing_work: "タスクの処理を続けています。"
+  planning: "解決策を計画しています。"
+  error_checking: "エラーが発生しました。何が起きたか確認しています。"
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "OpenClawブラウザ拡張機能が接続されていません。アクティブなタブで拡張機能を開いてください。"
+  tool_unavailable: "ツール{name}は現在利用できません。"
+  timeout: "リクエストに時間がかかりすぎました。もう一度お試しください。"
+  rate_limit: "リクエストが多すぎます。少し待ってからもう一度お試しください。"
+  auth_error: "認証エラーです。接続設定を確認してください。"
+  generic_error: "エラー：{error}"
+  default_tool_name: "サービス"

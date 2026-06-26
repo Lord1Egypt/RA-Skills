@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>{{ModName}}</AssemblyName>
+    <RootNamespace>{{Namespace}}</RootNamespace>
+    <Version>1.0.0</Version>
+    <Description>{{Description}}</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="StardewValley">
+      <HintPath>/Users/geyize/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents/MacOS/Stardew Valley.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    
+    <Reference Include="StardewModdingAPI">
+      <HintPath>/Users/geyize/Library/Application Support/Steam/steamapps/common/Stardew Valley/Contents/MacOS/smapi-internal/StardewModdingAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

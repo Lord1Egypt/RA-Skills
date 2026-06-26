@@ -1,35 +1,58 @@
 ---
-name: "Loan Calculator"
+version: "2.0.0"
+name: loan-calculator
 description: "贷款计算器。等额本息/等额本金计算、方案对比、提前还款分析、贷款能力评估、还款计划表、再融资分析。Loan calculator with equal installment/principal, comparison, prepayment analysis, affordability, schedule."
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/loan-calculator"
-sourceUrl: "https://clawhub.ai/skills/loan-calculator"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# loan-calculator
 
-# Loan Calculator
+贷款计算器。等额本息/等额本金计算、方案对比、提前还款分析、贷款能力评估、还款计划表、再融资分析。Loan calculator with equal installment/principal, comparison, prepayment analysis, affordability, schedule, refinance.
 
-> 贷款计算器。等额本息/等额本金计算、方案对比、提前还款分析、贷款能力评估、还款计划表、再融资分析。Loan calculator with equal installment/principal, comparison, prepayment analysis, affordability, schedule.
+## 如何使用
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/loan-calculator`
-- **Source URL:** [https://clawhub.ai/skills/loan-calculator](https://clawhub.ai/skills/loan-calculator)
+1. 选择你需要的功能命令
+2. 输入你的具体需求描述
+3. 获取专业的输出结果
+4. 根据需要调整和完善
 
-## Overview
+## 命令列表
 
+| 命令 | 功能 |
+|------|------|
+| `calculate` | calculate |
+| `compare` | compare |
+| `prepay` | prepay |
+| `afford` | afford |
+| `schedule` | schedule |
+| `refinance` | refinance |
+| `help` | help |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 专业建议
+
+- `calculate` 默认使用等额本息（月供固定），加 `equal-principal` 切换等额本金
+- `afford` 按月收入的40%计算最大月供，保守安全
+- 等额本息**：每月还款相同，前期利息多，适合收入稳定者
+- 等额本金**：每月递减，总利息少，适合收入较高者
+- 贷款前1/3时间提前还款最划算（利息占比大）
+
+---
+*loan-calculator by BytesAgain*
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/loan-calculator
+# Show help
+loan-calculator help
+
+# Run
+loan-calculator run
 ```
+
+## Commands
+
+Run `loan-calculator help` to see all available commands.

@@ -1,0 +1,17 @@
+name: amazon-expansion-playbook
+version: 1.0.0
+description: "亚马逊全球扩展实战手册 — 从美国到全球，帮助卖家突破单一市场增长瓶颈。覆盖北美→欧洲→日本→中东→东南亚五大市场，提供每个市场的入场策略、本地化和合规指南。"
+tags:
+  - amazon
+  - expansion
+  - global
+  - international
+  - ecommerce
+  - cross-border
+author:
+  name: WangM-A3
+  homepage: https://github.com/amazon-ops
+license: MIT
+homepage: https://github.com/amazon-ops/amazon-expansion-playbook
+repository: https://github.com/amazon-ops/amazon-expansion-playbook
+issues: https://github.com/amazon-ops/amazon-expansion-playbook/issues

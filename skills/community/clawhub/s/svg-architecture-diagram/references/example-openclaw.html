@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1600px; height: 1100px;
+  background: #fafafa;
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  overflow: hidden;
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="1600" height="1100">
+  <defs>
+    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#10b981"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arr-slate" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arr-pink" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ec4899"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- ========== 标题 ========== -->
+  <text x="800" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#1f2937">OpenClaw 完整技术架构图</text>
+  <text x="800" y="58" text-anchor="middle" font-size="12" fill="#9ca3af">Multi-Channel AI Agent Platform · Gateway → Sessions → Agent Loop → Tools</text>
+
+  <!-- ========== 第一层：消息渠道 Channels ========== -->
+  <rect x="195" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="247" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Telegram</text>
+  <text x="247" y="118" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.8)">grammY</text>
+
+  <rect x="310" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="362" y="101" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">WhatsApp</text>
+  <text x="362" y="118" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.8)">Baileys</text>
+
+  <rect x="425" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="477" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Discord</text>
+
+  <rect x="540" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="592" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Slack</text>
+
+  <rect x="655" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="707" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Signal</text>
+
+  <rect x="770" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="822" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">iMessage</text>
+
+  <rect x="885" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="937" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">WebChat</text>
+
+  <rect x="1000" y="80" width="105" height="48" rx="8" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="1052" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">CLI</text>
+
+  <!-- ========== 第二层：Gateway ========== -->
+  <rect x="195" y="155" width="910" height="55" rx="12" fill="#6366f1" filter="url(#shadow)"/>
+  <text x="650" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">🌐 Gateway（单一守护进程 · WebSocket 127.0.0.1:18789）</text>
+  <text x="650" y="198" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.85)">消息路由 · 认证 · 设备配对 · JSON Schema 协议 · Canvas Host · HTTP API + WS API</text>
+
+  <!-- 渠道 → Gateway 连线 -->
+  <line x1="362" y1="128" x2="362" y2="152" stroke="#ec4899" stroke-width="2" marker-end="url(#arr-pink)"/>
+  <line x1="592" y1="128" x2="592" y2="152" stroke="#ec4899" stroke-width="2" marker-end="url(#arr-pink)"/>
+  <line x1="822" y1="128" x2="822" y2="152" stroke="#ec4899" stroke-width="2" marker-end="url(#arr-pink)"/>
+  <line x1="1052" y1="128" x2="1052" y2="152" stroke="#ec4899" stroke-width="2" marker-end="url(#arr-pink)"/>
+
+  <!-- ========== 第三层左：Agent Loop ========== -->
+  <rect x="60" y="240" width="280" height="40" rx="10" fill="#6366f1" filter="url(#shadow)"/>
+  <text x="200" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🔄 Agent Loop 核心循环</text>
+
+  <rect x="60" y="290" width="280" height="34" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="200" y="311" text-anchor="middle" font-size="11" font-weight="600" fill="#6366f1">① RPC 接收 → 解析 Session</text>
+
+  <rect x="60" y="346" width="280" height="34" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="200" y="367" text-anchor="middle" font-size="11" font-weight="600" fill="#6366f1">② 会话队列串行化</text>
+
+  <rect x="60" y="402" width="280" height="34" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="200" y="423" text-anchor="middle" font-size="11" font-weight="600" fill="#6366f1">③ Prompt 组装</text>
+
+  <rect x="60" y="458" width="280" height="34" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="200" y="479" text-anchor="middle" font-size="11" font-weight="600" fill="#6366f1">④ 模型推理（流式输出）</text>
+
+  <rect x="60" y="514" width="280" height="34" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="200" y="535" text-anchor="middle" font-size="11" font-weight="600" fill="#6366f1">⑤ 工具执行</text>
+
+  <rect x="60" y="570" width="280" height="34" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="200" y="591" text-anchor="middle" font-size="11" font-weight="600" fill="#6366f1">⑥ Transcript 持久化</text>
+
+  <rect x="60" y="626" width="280" height="34" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="200" y="647" text-anchor="middle" font-size="11" font-weight="600" fill="#d97706">⑦ 生命周期 (end/error)</text>
+
+  <!-- Agent Loop 步骤连线 (22px gap, line+arrow clearly visible) -->
+  <line x1="200" y1="324" x2="200" y2="343" stroke="#6366f1" stroke-width="2" marker-end="url(#arr-indigo)"/>
+  <line x1="200" y1="380" x2="200" y2="399" stroke="#6366f1" stroke-width="2" marker-end="url(#arr-indigo)"/>
+  <line x1="200" y1="436" x2="200" y2="455" stroke="#6366f1" stroke-width="2" marker-end="url(#arr-indigo)"/>
+  <line x1="200" y1="492" x2="200" y2="511" stroke="#6366f1" stroke-width="2" marker-end="url(#arr-indigo)"/>
+  <line x1="200" y1="548" x2="200" y2="567" stroke="#6366f1" stroke-width="2" marker-end="url(#arr-indigo)"/>
+  <line x1="200" y1="604" x2="200" y2="623" stroke="#6366f1" stroke-width="2" marker-end="url(#arr-indigo)"/>
+
+  <!-- 循环箭头 -->
+  <path d="M60,645 L35,645 L35,298 L57,298" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arr-indigo)"/>
+  <text x="30" y="440" font-size="9" fill="#6366f1" transform="rotate(-90, 30, 440)" text-anchor="middle">循环</text>
+
+  <!-- Gateway → Agent Loop -->
+  <path d="M400,210 L200,210 L200,237" stroke="#6366f1" stroke-width="2" fill="none" marker-end="url(#arr-indigo)"/>
+
+  <!-- ========== 第三层中左：Context Engine ========== -->
+  <rect x="380" y="240" width="280" height="40" rx="10" fill="#10b981" filter="url(#shadow)"/>
+  <text x="520" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🧠 Context Engine 上下文引擎</text>
+
+  <rect x="380" y="292" width="280" height="42" rx="10" fill="#fff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="312" font-size="11" font-weight="700" fill="#10b981">System Prompt Builder</text>
+  <text x="400" y="327" font-size="10" fill="#9ca3af">组装系统提示 + 注入上下文</text>
+
+  <rect x="380" y="344" width="280" height="42" rx="10" fill="#fff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="364" font-size="11" font-weight="700" fill="#10b981">Skills Loader</text>
+  <text x="400" y="379" font-size="10" fill="#9ca3af">扫描 + 注入技能描述到 Prompt</text>
+
+  <rect x="380" y="396" width="280" height="42" rx="10" fill="#fff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="416" font-size="11" font-weight="700" fill="#10b981">Memory System</text>
+  <text x="400" y="431" font-size="10" fill="#9ca3af">MEMORY.md + memory/*.md + lossless-claw</text>
+
+  <rect x="380" y="448" width="280" height="42" rx="10" fill="#fff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="468" font-size="11" font-weight="700" fill="#10b981">Bootstrap Files</text>
+  <text x="400" y="483" font-size="10" fill="#9ca3af">SOUL / IDENTITY / USER / TOOLS / AGENTS</text>
+
+  <rect x="380" y="500" width="280" height="36" rx="10" fill="#fff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="522" font-size="11" font-weight="700" fill="#10b981">Transcript Repair</text>
+
+  <!-- Agent Loop → Context Engine -->
+  <line x1="340" y1="395" x2="377" y2="395" stroke="#10b981" stroke-width="2" marker-end="url(#arr-green)"/>
+  <text x="348" y="388" font-size="9" fill="#10b981" font-weight="500">上下文</text>
+
+  <!-- ========== 第三层中右：Sessions + Cron ========== -->
+  <rect x="700" y="240" width="240" height="40" rx="10" fill="#10b981" filter="url(#shadow)"/>
+  <text x="820" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">📋 Sessions 会话管理</text>
+
+  <rect x="700" y="292" width="240" height="100" rx="10" fill="#fff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="720" y="312" font-size="11" font-weight="700" fill="#10b981">会话管理</text>
+  <text x="720" y="330" font-size="10" fill="#6b7280">• Session Key 解析</text>
+  <text x="720" y="346" font-size="10" fill="#6b7280">• Transcript 存储 + 写锁</text>
+  <text x="720" y="362" font-size="10" fill="#6b7280">• Model Overrides</text>
+  <text x="720" y="378" font-size="10" fill="#6b7280">• Sub-agent 编排</text>
+
+  <!-- Cron -->
+  <rect x="700" y="408" width="240" height="40" rx="10" fill="#f59e0b" filter="url(#shadow)"/>
+  <text x="820" y="433" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">⏰ Cron 定时任务</text>
+
+  <rect x="700" y="458" width="240" height="80" rx="10" fill="#fff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="720" y="478" font-size="11" font-weight="700" fill="#d97706">Schedule Types</text>
+  <text x="720" y="496" font-size="10" fill="#6b7280">at / every / cron expression</text>
+  <text x="720" y="512" font-size="10" fill="#6b7280">Payload: systemEvent / agentTurn</text>
+  <text x="720" y="528" font-size="10" fill="#6b7280">Delivery: announce / webhook</text>
+
+  <!-- Gateway → Sessions -->
+  <path d="M700,210 L820,210 L820,237" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arr-green)"/>
+
+  <!-- Gateway → Cron -->
+  <path d="M900,210 L950,210 L950,425 L940,425" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-amber)"/>
+
+  <!-- ========== 第三层右：LLM Providers ========== -->
+  <rect x="980" y="240" width="230" height="40" rx="10" fill="#8b5cf6" filter="url(#shadow)"/>
+  <text x="1095" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🧠 LLM Providers 模型层</text>
+
+  <rect x="980" y="292" width="230" height="42" rx="10" fill="#fff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="312" font-size="11" font-weight="700" fill="#8b5cf6">Anthropic</text>
+  <text x="1000" y="327" font-size="10" fill="#9ca3af">Claude Opus / Sonnet / Haiku</text>
+
+  <rect x="980" y="344" width="230" height="42" rx="10" fill="#fff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="364" font-size="11" font-weight="700" fill="#8b5cf6">AWS Bedrock</text>
+  <text x="1000" y="379" font-size="10" fill="#9ca3af">Anthropic / Amazon / Stability</text>
+
+  <rect x="980" y="396" width="230" height="42" rx="10" fill="#fff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="416" font-size="11" font-weight="700" fill="#8b5cf6">OpenAI</text>
+  <text x="1000" y="431" font-size="10" fill="#9ca3af">GPT-4o / o1 / o3</text>
+
+  <rect x="980" y="448" width="110" height="42" rx="10" fill="#fff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="468" font-size="11" font-weight="700" fill="#8b5cf6">Google</text>
+  <text x="1000" y="483" font-size="10" fill="#9ca3af">Gemini</text>
+
+  <rect x="1100" y="448" width="110" height="42" rx="10" fill="#fff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1120" y="468" font-size="11" font-weight="700" fill="#8b5cf6">Mistral</text>
+  <text x="1120" y="483" font-size="10" fill="#9ca3af">Large / Medium</text>
+
+  <rect x="980" y="500" width="230" height="36" rx="10" fill="#fff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="522" font-size="11" font-weight="700" fill="#8b5cf6">本地模型 Ollama / vLLM</text>
+
+  <!-- Agent Loop → LLM -->
+  <path d="M340,445 Q360,445 360,360 L360,260 L650,210 L1000,210 L1095,210 L1095,237" stroke="#8b5cf6" stroke-width="2" fill="none" marker-end="url(#arr-purple)"/>
+
+  <!-- ========== 右侧上：Nodes ========== -->
+  <rect x="1260" y="240" width="280" height="40" rx="10" fill="#ec4899" filter="url(#shadow)"/>
+  <text x="1400" y="265" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">📱 Nodes 伴侣设备</text>
+
+  <rect x="1260" y="292" width="135" height="42" rx="10" fill="#fff" stroke="#ec4899" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1327" y="312" text-anchor="middle" font-size="11" font-weight="700" fill="#ec4899">macOS App</text>
+  <text x="1327" y="327" text-anchor="middle" font-size="9" fill="#9ca3af">camera/screen</text>
+
+  <rect x="1405" y="292" width="135" height="42" rx="10" fill="#fff" stroke="#ec4899" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1472" y="312" text-anchor="middle" font-size="11" font-weight="700" fill="#ec4899">iOS App</text>
+  <text x="1472" y="327" text-anchor="middle" font-size="9" fill="#9ca3af">location/canvas</text>
+
+  <rect x="1260" y="344" width="135" height="42" rx="10" fill="#fff" stroke="#ec4899" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1327" y="364" text-anchor="middle" font-size="11" font-weight="700" fill="#ec4899">Android App</text>
+  <text x="1327" y="379" text-anchor="middle" font-size="9" fill="#9ca3af">camera/screen</text>
+
+  <rect x="1405" y="344" width="135" height="42" rx="10" fill="#fff" stroke="#ec4899" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1472" y="364" text-anchor="middle" font-size="11" font-weight="700" fill="#ec4899">Headless Node</text>
+  <text x="1472" y="379" text-anchor="middle" font-size="9" fill="#9ca3af">server mode</text>
+
+  <!-- Gateway → Nodes -->
+  <path d="M1105,182 L1200,182 L1400,182 L1400,237" stroke="#ec4899" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-pink)"/>
+  <text x="1250" y="175" font-size="10" fill="#ec4899" font-weight="500">WebSocket</text>
+
+  <!-- ========== 右侧中：Skills 系统 ========== -->
+  <rect x="1260" y="408" width="280" height="40" rx="10" fill="#f59e0b" filter="url(#shadow)"/>
+  <text x="1400" y="433" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">⚡ Skills 技能系统</text>
+
+  <rect x="1260" y="458" width="280" height="80" rx="10" fill="#fff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1280" y="478" font-size="11" font-weight="700" fill="#d97706">Skill Sources</text>
+  <text x="1280" y="496" font-size="10" fill="#6b7280">• 本地 Skills (~/.openclaw/skills/)</text>
+  <text x="1280" y="512" font-size="10" fill="#6b7280">• ClawHub（社区 Skill 市场）</text>
+  <text x="1280" y="528" font-size="10" fill="#6b7280">• Workspace Skills · 安全扫描</text>
+
+  <!-- Skills → Context Engine -->
+  <path d="M1260,480 L680,420 L663,420" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-amber)"/>
+  <text x="950" y="445" font-size="10" fill="#d97706" font-weight="500">注入 Skill 描述</text>
+
+  <!-- ========== 第四层：Tool System ========== -->
+  <rect x="60" y="625" width="860" height="40" rx="10" fill="#64748b" filter="url(#shadow)"/>
+  <text x="490" y="650" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">🛠️ Tool System 工具系统</text>
+
+  <rect x="60" y="678" width="120" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="120" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">exec</text>
+  <text x="120" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">Shell 执行</text>
+
+  <rect x="190" y="678" width="120" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="250" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">read/write/edit</text>
+  <text x="250" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">文件操作</text>
+
+  <rect x="320" y="678" width="120" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="380" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">web_search</text>
+  <text x="380" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">网络搜索+抓取</text>
+
+  <rect x="450" y="678" width="120" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="510" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">sessions</text>
+  <text x="510" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">子Agent编排</text>
+
+  <rect x="580" y="678" width="120" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="640" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">memory</text>
+  <text x="640" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">记忆检索</text>
+
+  <rect x="710" y="678" width="100" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="760" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">image</text>
+  <text x="760" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">图像分析</text>
+
+  <rect x="820" y="678" width="100" height="48" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="870" y="698" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">MCP</text>
+  <text x="870" y="715" text-anchor="middle" font-size="9" fill="#9ca3af">外部工具协议</text>
+
+  <!-- Agent Loop → Tools -->
+  <path d="M200,592 L200,622" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arr-slate)"/>
+  <text x="210" y="612" font-size="9" fill="#64748b" font-weight="500">工具调用</text>
+
+  <!-- ========== 第四层右：Plugin System ========== -->
+  <rect x="960" y="625" width="280" height="40" rx="10" fill="#f59e0b" filter="url(#shadow)"/>
+  <text x="1100" y="650" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🔌 Plugin System 插件系统</text>
+
+  <rect x="960" y="678" width="280" height="80" rx="10" fill="#fff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="980" y="698" font-size="11" font-weight="700" fill="#d97706">Plugin Architecture</text>
+  <text x="980" y="716" font-size="10" fill="#6b7280">• Activation Planner · Plugin SDK</text>
+  <text x="980" y="732" font-size="10" fill="#6b7280">• Hook: tool lifecycle + gateway pipeline</text>
+  <text x="980" y="748" font-size="10" fill="#6b7280">• lossless-claw · clawguard-bench ...</text>
+
+  <!-- Plugin ↔ Agent Loop -->
+  <path d="M960,645 L400,530" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-amber)"/>
+  <text x="680" y="578" font-size="10" fill="#d97706" font-weight="500">插件钩子</text>
+
+  <!-- ========== 底部右：Security ========== -->
+  <rect x="1260" y="625" width="280" height="40" rx="10" fill="#ef4444" filter="url(#shadow)"/>
+  <text x="1400" y="650" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🛡️ Security 安全层</text>
+
+  <rect x="1260" y="678" width="280" height="80" rx="10" fill="#fff" stroke="#ef4444" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1280" y="698" font-size="11" font-weight="700" fill="#ef4444">Security Controls</text>
+  <text x="1280" y="716" font-size="10" fill="#6b7280">• Exec Approvals（执行审批）</text>
+  <text x="1280" y="732" font-size="10" fill="#6b7280">• Device Pairing（设备配对）</text>
+  <text x="1280" y="748" font-size="10" fill="#6b7280">• Auth: shared-secret / tailscale / ...</text>
+
+  <!-- Security → Gateway (渗透全局) -->
+  <path d="M1400,625 L1400,580 L1150,210 L1110,210" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="6,4" marker-end="url(#arr-red)"/>
+  <text x="1300" y="560" font-size="9" fill="#ef4444" font-weight="500">安全策略</text>
+
+  <!-- ========== 图例 ========== -->
+  <rect x="60" y="790" width="1480" height="100" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="100" y="818" font-size="13" font-weight="700" fill="#1f2937">图例 Legend</text>
+
+  <!-- 颜色图例 -->
+  <rect x="100" y="832" width="14" height="14" rx="3" fill="#ec4899"/>
+  <text x="122" y="844" font-size="11" fill="#6b7280">Channels / Nodes</text>
+
+  <rect x="260" y="832" width="14" height="14" rx="3" fill="#6366f1"/>
+  <text x="282" y="844" font-size="11" fill="#6b7280">Gateway / Agent Loop</text>
+
+  <rect x="450" y="832" width="14" height="14" rx="3" fill="#10b981"/>
+  <text x="472" y="844" font-size="11" fill="#6b7280">Context / Sessions</text>
+
+  <rect x="630" y="832" width="14" height="14" rx="3" fill="#8b5cf6"/>
+  <text x="652" y="844" font-size="11" fill="#6b7280">LLM Providers</text>
+
+  <rect x="790" y="832" width="14" height="14" rx="3" fill="#f59e0b"/>
+  <text x="812" y="844" font-size="11" fill="#6b7280">Skills / Plugins / Cron</text>
+
+  <rect x="980" y="832" width="14" height="14" rx="3" fill="#64748b"/>
+  <text x="1002" y="844" font-size="11" fill="#6b7280">Tool System</text>
+
+  <rect x="1120" y="832" width="14" height="14" rx="3" fill="#ef4444"/>
+  <text x="1142" y="844" font-size="11" fill="#6b7280">Security</text>
+
+  <!-- 线条图例 -->
+  <line x1="100" y1="866" x2="140" y2="866" stroke="#6366f1" stroke-width="2"/>
+  <text x="150" y="870" font-size="10" fill="#6b7280">数据流</text>
+  <line x1="260" y1="866" x2="300" y2="866" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="310" y="870" font-size="10" fill="#6b7280">反馈/异步</text>
+
+  <!-- 底部来源 -->
+  <text x="800" y="920" text-anchor="middle" font-size="10" fill="#d1d5db">基于 OpenClaw 源码架构分析 · 2026-04-25</text>
+
+</svg>
+</body>
+</html>

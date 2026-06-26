@@ -1,0 +1,47 @@
+{
+  "slug": "donation-dropoff-planner",
+  "name": "Donation Drop-off Planner",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Turn a pile of household donation items into sorted bundles, labels, packing steps, and a drop-off checklist without giving tax valuation or tax advice.",
+  "author": "Bell (design)",
+  "license": "MIT-0",
+  "category": "Home Admin / Decluttering",
+  "target_user": "People clearing household items who need donation logistics, sorting help, labels, and a calm drop-off plan.",
+  "tags": [
+    "home-admin",
+    "decluttering",
+    "donations",
+    "logistics",
+    "checklist",
+    "household"
+  ],
+  "trigger_keywords": [
+    "Help me donate these items",
+    "Make a donation drop-off checklist",
+    "Sort my donation pile",
+    "What should go in each donation bag",
+    "Plan a charity drop-off"
+  ],
+  "use_cases": [
+    "Sorting donation piles",
+    "Creating bag labels",
+    "Preparing a charity drop-off",
+    "Separating unsafe or non-donatable items",
+    "Planning pickup preparation"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2",
+  "document_only": true,
+  "promptOnly": true,
+  "runtime": "none",
+  "execution": "noExec"
+}

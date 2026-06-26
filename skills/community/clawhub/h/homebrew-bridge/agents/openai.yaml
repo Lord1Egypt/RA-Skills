@@ -1,0 +1,4 @@
+interface:
+  display_name: "Homebrew Bridge"
+  short_description: "Expose Mac Homebrew CLIs on a Linux gateway"
+  default_prompt: "Use $homebrew-bridge to expose Homebrew-backed Mac tools like brew, gh, or other /opt/homebrew/bin CLIs on a Linux gateway with SSH wrappers and optional Wake-on-LAN."

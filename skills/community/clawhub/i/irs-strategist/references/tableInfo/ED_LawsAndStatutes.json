@@ -1,0 +1,170 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ActualizationDate",
+        "columnChiName": "生效日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "7.63"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "IfInvalidation",
+        "columnChiName": "失效与否",
+        "columnType": "char(2)",
+        "isNullable": 1,
+        "remark": "失效与否(IfInvalidation)具体描述：1-是，0-否。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "IssuanceOrg",
+        "columnChiName": "发布机构",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 1,
+        "fieldExplain": "使用CT_SystemConst的DM关联，LB=1015，取MS",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "ContentType",
+        "columnChiName": "内容类别",
+        "columnType": "varchar(300)",
+        "isNullable": 1,
+        "slaveFieldId": 2,
+        "fieldExplain": "使用CT_SystemConst的DM关联，LB=1014，取MS",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InfoTitle",
+        "columnChiName": "标题",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Content",
+        "columnChiName": "信息内容",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "5.87"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "Keywords",
+        "columnChiName": "内容关键词",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 3,
+        "fieldExplain": "对应CT_Keywords表中的Code字段,令Type=313",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Notes",
+        "columnChiName": "备注",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.22"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "RecordDate",
+        "columnChiName": "记录录入时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.01"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "ArticleFile",
+        "columnChiName": "附件",
+        "columnType": "blob",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.65"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "FileType",
+        "columnChiName": "附件格式",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "附件格式(FileType)与(CT_SystemConst)表中的DM字段关联，令LB = 1309，得到附件格式的具体描述：1-PDF，2-DOC，3-TXT，4-XLS，5-HTML，6-RTF，7-MHT，8-RAR，9-PPT，10-JPG，11-DOCX，12-XLSX，13-PPTX，14-EML，15-ZIP，16-DOCM，17-XLSM，18-XLSB，19-DOTX，20-XML，21-GIF，22-PAPER，23-FIL，24-XSD，25-HTM，26-BMP，27-SWF，28-PNG，29-JSON，30-TIFF，31-TIF，32-WPS，33-GD，34-ET，35-SHTML，36-WEBP，37-7Z，38-CUR，39-SVG，40-ETT，41-OFD，42-JPEG，43-MP3，44-MP4，45-CEB，46-GZ。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "30.72",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

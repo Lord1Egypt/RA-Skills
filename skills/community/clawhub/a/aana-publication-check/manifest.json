@@ -1,0 +1,69 @@
+{
+  "name": "aana-publication-check",
+  "slug": "aana-publication-check",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded publication check instructions for reviewing posts, blogs, reports, docs, or website updates before publishing.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_publication_approval": true,
+  "requires_claim_evidence_check": true,
+  "requires_privacy_redaction_check": true,
+  "requires_asset_permission_check": true,
+  "requires_link_and_download_check": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_data_minimization": true,
+    "forbidden_publication_content": [
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private keys",
+      "security codes",
+      "full payment numbers",
+      "raw medical records",
+      "raw legal records",
+      "raw financial records",
+      "government ID numbers",
+      "private messages",
+      "full logs with sensitive values",
+      "full account records",
+      "unapproved customer data",
+      "unapproved employee data",
+      "unrelated private data"
+    ]
+  },
+  "publication_boundary": {
+    "must_identify_publication_target_and_audience": true,
+    "must_check_publication_approval": true,
+    "must_check_evidence_for_material_claims": true,
+    "must_check_privacy_and_redaction": true,
+    "must_check_asset_permissions": true,
+    "must_check_links_and_downloads": true,
+    "must_not_publish_unapproved_external_content": true,
+    "must_not_publish_secrets_or_private_data": true,
+    "must_route_high_impact_claims_to_review": true,
+    "must_block_materially_unsupported_or_deceptive_publication": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/publication-check.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-publication-check.json"
+  ]
+}

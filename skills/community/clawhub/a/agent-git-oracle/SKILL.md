@@ -1,35 +1,28 @@
 ---
-name: "Agent Git Oracle"
+name: agent-git-oracle
 description: "Advanced repository analysis and refactoring guide. Identifies technical debt and architectural anti-patterns using AI reasoning."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, git, refactoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-git-oracle"
-sourceUrl: "https://clawhub.ai/skills/agent-git-oracle"
+metadata:
+  {
+    "openclaw": { "emoji": "🔮" },
+    "author": "System Architect Zero",
+    "category": "Developer Tools",
+    "x402": { "fee": 0.10, "currency": "USDC", "network": "base" }
+  }
 ---
 
 # Agent Git Oracle
 
-> Advanced repository analysis and refactoring guide. Identifies technical debt and architectural anti-patterns using AI reasoning.
+Take your codebase from legacy to sovereign. This skill performs deep-scan audits of your local git repositories, identifying areas of high complexity, potential logic leaks, and opportunities for Agent-Native refactoring.
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-git-oracle`
-- **Source URL:** [https://clawhub.ai/skills/agent-git-oracle](https://clawhub.ai/skills/agent-git-oracle)
+## Features
+- **Debt Detection**: Highlights "Dirty Code" that increases cognitive load.
+- **Agentic Mapping**: Suggests how to convert traditional modules into autonomous tools.
+- **Commit Wisdom**: Summarizes the "Why" behind large architectural shifts in your project.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/agent-git-oracle
+npx openclaw skill run agent-git-oracle --path ./your-repo
 ```
+
+## Why it costs $0.10?
+To fund the compute required for deep structural analysis.

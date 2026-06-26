@@ -1,35 +1,49 @@
 ---
-name: "China Scenic Spots Top100"
-description: "中国热门景区Top100合集，包含5A级景区数据库。适用于：(1) 查询景区详情（门票、最佳游览季节、建议时长）；(2) 按省份/类型/季节推荐景区；(3) 制定旅游行程计划；(4) 比较不同景区。触发词：推荐景区、去哪玩、旅游攻略、景区门票、行程规划、中国旅行、A股景区、5A景区、自然风光、历史古迹、亲子游目的地等。"
-category: "domain"
-source: "ClawHub"
-tags: [5a, china, scenic, tourism, travel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-scenic-spots"
-sourceUrl: "https://clawhub.ai/skills/china-scenic-spots"
+name: china-scenic-spots
+description: 中国热门景区Top100合集，包含5A级景区数据库。适用于：(1) 查询景区详情（门票、最佳游览季节、建议时长）；(2) 按省份/类型/季节推荐景区；(3) 制定旅游行程计划；(4) 比较不同景区。触发词：推荐景区、去哪玩、旅游攻略、景区门票、行程规划、中国旅行、A股景区、5A景区、自然风光、历史古迹、亲子游目的地等。
 ---
 
-# China Scenic Spots Top100
+# 中国热门景区 Top 100 Skill
 
-> 中国热门景区Top100合集，包含5A级景区数据库。适用于：(1) 查询景区详情（门票、最佳游览季节、建议时长）；(2) 按省份/类型/季节推荐景区；(3) 制定旅游行程计划；(4) 比较不同景区。触发词：推荐景区、去哪玩、旅游攻略、景区门票、行程规划、中国旅行、A股景区、5A景区、自然风光、历史古迹、亲子游目的地等。
+## 数据资源
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-scenic-spots`
-- **Source URL:** [https://clawhub.ai/skills/china-scenic-spots](https://clawhub.ai/skills/china-scenic-spots)
+- **references/top100.md** — Top100景区完整数据（名称、省市、类型、门票、最佳月份、游览时长、标签）
+- **references/travel-guide.md** — 按季节推荐、价格区间、预约攻略、交通建议、难度参考
 
-## Overview
+## 使用流程
 
+### 1. 按需加载数据
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/china-scenic-spots
-```
+- 用户询问具体景区 → 查 `references/top100.md` 对应区域章节
+- 用户问"什么季节去XX"或"行程规划" → 同时读取 `references/travel-guide.md`
+- 用户按类型筛选 → 使用 top100.md 底部的「分类索引」
+
+### 2. 回答格式
+
+**单景区查询**（如"故宫怎么玩"）：
+- 景区基本信息（地点、类型）
+- 门票价格 + 预约提醒
+- 最佳游览月份
+- 建议游览时长
+- 2-3条实用小贴士
+
+**景区推荐**（如"推荐几个秋天去的景区"）：
+- 给出3-5个符合条件的景区
+- 每个简要说明亮点+最佳时间
+- 按热门度/难度排序
+
+**行程规划**（如"5天云南怎么玩"）：
+- 结合top100景区数据制定每日行程
+- 注明交通衔接、景区时长
+- 提示预约注意事项
+
+### 3. 重要提示（每次回复必须包含）
+
+> ⚠️ 门票价格和政策随时变动，建议出发前在官方渠道或携程/美团确认最新信息。本数据仅供参考。
+
+### 4. 数据更新说明
+
+数据基于2025年3月信息整理，来源：
+- 迈点研究院2025年5A级景区品牌传播力榜单
+- 携程/大众点评热度数据
+- 文化和旅游部官方5A景区名单

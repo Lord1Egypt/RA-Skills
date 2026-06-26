@@ -1,0 +1,39 @@
+{
+  "commitment_tiers": {
+    "short": {
+      "min_days": 1,
+      "max_days": 15,
+      "min_apy_pct": 5.0,
+      "description": "Short-term parking: 1-15 days, ≥5% APY"
+    },
+    "long": {
+      "min_days": 15,
+      "max_days": 100,
+      "min_apy_pct": 10.0,
+      "description": "Standard commitment: 15-100 days, ≥10% APY"
+    }
+  },
+  "market_filters": {
+    "chains": ["ethereum", "arbitrum", "base"],
+    "asset_types": ["stable-major", "stable-synthetic", "stable-rwa"],
+    "include_non_usd": false,
+    "min_liquidity_usd": 1000000,
+    "max_slippage_pct": 2.0,
+    "min_volume_24h_usd": 50000
+  },
+  "execution": {
+    "deposit_token": "USDC",
+    "slippage_tolerance": 0.01,
+    "aggregators": "kyberswap",
+    "auto_roll": true,
+    "dry_run": true
+  },
+  "risk_guardrails": {
+    "max_slippage_hard_stop_pct": 3.0,
+    "max_apy_warning_pct": 30.0,
+    "min_tvl_drop_alert_pct": 50,
+    "max_depeg_pct": 2.0,
+    "max_gas_cost_pct_of_deposit": 1.0,
+    "min_days_worth_gas": 3
+  }
+}

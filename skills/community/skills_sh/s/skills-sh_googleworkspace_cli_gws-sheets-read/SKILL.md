@@ -1,35 +1,48 @@
 ---
-name: "gws-sheets-read"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-sheets-read"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-sheets-read"
+name: gws-sheets-read
+description: "Google Sheets: Read values from a spreadsheet."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws sheets +read --help"
 ---
 
-# gws-sheets-read
+# sheets +read
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-sheets-read`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-sheets-read](https://skills.sh/googleworkspace/cli/gws-sheets-read)
+Read values from a spreadsheet
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-sheets-read
+gws sheets +read --spreadsheet <ID> --range <RANGE>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--spreadsheet` | ✓ | — | Spreadsheet ID |
+| `--range` | ✓ | — | Range to read (e.g. 'Sheet1!A1:B2') |
+
+## Examples
+
+```bash
+gws sheets +read --spreadsheet ID --range "Sheet1!A1:D10"
+gws sheets +read --spreadsheet ID --range Sheet1
+```
+
+## Tips
+
+- Read-only — never modifies the spreadsheet.
+- For advanced options, use the raw values.get API.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-sheets](../gws-sheets/SKILL.md) — All read and write spreadsheets commands

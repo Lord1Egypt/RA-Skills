@@ -1,0 +1,98 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/search-post/v1 for TikTok Post Search through JustOneAPI with keyword.",
+  "displayName": "TikTok Post Search",
+  "endpointPath": "search-post",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok post Search data, including key details such as video ID, description, and author information, for trend monitoring and content discovery and keyword-based market analysis and sentiment tracking.",
+      "method": "GET",
+      "operationId": "searchPostV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keywords (e.g., 'deepseek').",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Pagination offset, starting from 0 and stepping by 20.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "RELEVANCE",
+          "description": "Sorting criteria for search results.\n\nAvailable Values:\n- `RELEVANCE`: Relevance (Default)\n- `MOST_LIKED`: Most Liked",
+          "enumValues": [
+            "RELEVANCE",
+            "MOST_LIKED"
+          ],
+          "location": "query",
+          "name": "sortType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Filter posts by publishing time.\n\nAvailable Values:\n- `ALL`: All Time\n- `ONE_DAY`: Last 24 Hours\n- `ONE_WEEK`: Last 7 Days\n- `ONE_MONTH`: Last 30 Days\n- `THREE_MONTHS`: Last 90 Days\n- `HALF_YEAR`: Last 180 Days",
+          "enumValues": [
+            "ALL",
+            "ONE_DAY",
+            "ONE_WEEK",
+            "ONE_MONTH",
+            "THREE_MONTHS",
+            "HALF_YEAR"
+          ],
+          "location": "query",
+          "name": "publishTime",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "US",
+          "description": "ISO 3166-1 alpha-2 country code (e.g., 'US', 'GB').",
+          "enumValues": [],
+          "location": "query",
+          "name": "region",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/search-post/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Search",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_search_post",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-search-post",
+  "sourceTitle": "OpenAPI definition"
+}

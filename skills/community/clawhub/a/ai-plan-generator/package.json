@@ -1,0 +1,13 @@
+{
+  "name": "ai-plan-generator",
+  "version": "2.1.0",
+  "description": "AI Plan Generator v2 with comprehensive campaign document generation and Code Archaeology integration",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/test-runner.js"
+  },
+  "keywords": ["ai-plan-generator", "campaign-documents", "task-decomposition", "code-archaeology"],
+  "author": "OpenClaw Team",
+  "license": "MIT"
+}

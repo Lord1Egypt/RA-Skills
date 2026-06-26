@@ -1,0 +1,79 @@
+{
+  "schema": "v1",
+  "slug": "cold-flu-home-recovery-log",
+  "name": "cold-flu-home-recovery-log",
+  "displayName": "Cold & Flu Home Recovery Log",
+  "version": "1.0.0",
+  "description": "Create a short-term home illness log with symptom timeline, temperature entries, hydration and rest notes, medication timing as user-entered facts, red-flag checklist, and clinician-ready summary.",
+  "categories": [
+    "health",
+    "home",
+    "caregiving"
+  ],
+  "tags": [
+    "cold flu log",
+    "symptom tracker",
+    "home recovery",
+    "caregiver handoff",
+    "clinician summary",
+    "health organization"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "usage": {
+    "triggers": [
+      "Create a cold or flu symptom log",
+      "Track home recovery from illness",
+      "Prepare a symptom summary for a clinic",
+      "Make a caregiver handoff for someone sick at home"
+    ],
+    "inputRequirements": [
+      "Illness start date or estimate",
+      "Age group and household context if relevant",
+      "Main symptoms and current trend",
+      "Temperature readings if available",
+      "Sleep, hydration, appetite, rest, and energy notes",
+      "User-entered medication or care-action timing if available"
+    ],
+    "outputDeliverables": [
+      "Safety first note",
+      "Illness snapshot",
+      "Daily recovery log",
+      "Medication and care action log",
+      "Trend summary",
+      "Red-flag checklist",
+      "Clinician-ready summary",
+      "School, work, or caregiver update",
+      "Return-to-routine checklist",
+      "Next log entry prompt"
+    ]
+  },
+  "constraints": {
+    "noDiagnosis": true,
+    "noTreatmentAdvice": true,
+    "noMedicationDosing": true,
+    "noMedicationChanges": true,
+    "noEmergencyReplacement": true,
+    "noCredentials": true,
+    "noExternalNetwork": true,
+    "noExecution": true,
+    "safetyNotice": "This skill is an illness tracking and communication aid only. It does not diagnose, treat, prescribe, recommend medication changes, or replace professional medical care. Seek urgent medical guidance for red flags or any serious concern."
+  },
+  "triggerKeywords": [
+    "coldRecoveryLog",
+    "fluRecoveryLog",
+    "homeIllnessLog",
+    "symptomTimeline",
+    "illnessRecoveryCard",
+    "feverTracker",
+    "medicationTimeline"
+  ],
+  "execution": "noExec"
+}

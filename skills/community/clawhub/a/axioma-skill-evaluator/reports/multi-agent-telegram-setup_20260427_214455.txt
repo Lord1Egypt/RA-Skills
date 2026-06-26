@@ -1,0 +1,44 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — multi-agent-telegram-setup
+============================================================
+Path: /media/ezekiel/Morgana/skills/multi-agent-telegram-setup/SKILL.md
+Score: 67/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       18/20 [92m██████████████████░░[0m 90%
+CLARITY         16/20 [92m████████████████░░░░[0m 80%
+COMPLETENESS    14/20 [92m██████████████░░░░░░[0m 70%
+CONSISTENCY     10/20 [93m██████████░░░░░░░░░░[0m 50%
+FUNCTIONALITY    9/20 [91m█████████░░░░░░░░░░░[0m 45%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ✅ Sections: 3/3
+    ✅ Formatting: 5/5
+    ⚠️ Meta: 3/5
+  CLARITY:
+    ✅ Description présente
+    ✅ Commandes/exemples: 35
+    ✅ Exemples présents
+    ❌ Contraintes non documentées
+  COMPLETENESS:
+    ✅ Outils documentés: 24
+    ✅ Prérequis: 2
+    ⚠️ Erreurs partielles: 1
+    ❌ Cas limites non documentés
+  CONSISTENCY:
+    ✅ Cluster alignment: 4
+    ⚠️ Style: 2/5
+    ✅ Naming: 5/5
+    ⚠️ Integration partielle: 1
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 1/5
+    ⚠️ Résultats partiels
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [CONSISTENCY] Score bas (50%)
+  • [FUNCTIONALITY] Score bas (45%)
+  •   → ❌ Commandes problèmes: 1/5
+============================================================
+STATUS: ❌ NEEDS WORK (score < 50%)

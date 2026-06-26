@@ -1,0 +1,35 @@
+slug: memu
+title: "memU: Persistent Memory for 24/7 Agents"
+version: 1.0.0
+category: Memory Infrastructure / Long-term Context
+description: >
+  Long-term memory framework that transforms 24/7 agents from reactive to
+  proactive. Reduces token costs by 70-90% compared to raw history injection
+  while enabling agents to understand intent from context. Supports multi-modal
+  input (conversations, documents, images, logs) with hierarchical organization
+  (Resource → Memory Item → Memory Category) and dual-mode retrieval
+  (embedding for speed, LLM for reasoning). 92.09% accuracy on LoCoMo benchmark.
+
+keywords:
+  - agent memory
+  - long-term context
+  - proactive agents
+  - token optimization
+  - 24/7 systems
+  - memory infrastructure
+  - pgvector
+  - NevaMind
+
+author: "[your-clawhub-username]"
+repository: https://github.com/NevaMind-AI/memU
+official_docs: https://github.com/NevaMind-AI/memU#readme
+license: AGPL-3.0
+min_python: "3.13"
+dependencies:
+  required:
+    - memu-py>=1.4.0
+    - openai-compatible API key
+  optional:
+    - PostgreSQL 16 with pgvector (persistent storage)
+    - Docker (for quick PostgreSQL setup)
+    - httpx (for Cloud API usage)

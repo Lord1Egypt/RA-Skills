@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-TRADE-001",
+  "pci_list": [
+    {
+      "id": "PCI-001",
+      "source_test_point": "TP-003",
+      "type": "ambiguity",
+      "question": "已成交委托的撤单提示文案是否有明确规范？是否需要区分全部成交和已撤单状态的提示？",
+      "impact": "影响异常场景测试用例的预期结果定义",
+      "suggested_action": "与产品确认撤单失败的提示文案规范",
+      "status": "open",
+      "priority": "P1"
+    },
+    {
+      "id": "PCI-002",
+      "source_test_point": "TP-002",
+      "type": "missing_rule",
+      "question": "部分成交委托撤单后，冻结资金释放金额的计算规则是什么？是按剩余未成交数量×委托价格，还是按原始冻结金额-已成交金额？",
+      "impact": "影响资金释放准确性验证的测试数据构造",
+      "suggested_action": "与业务方确认部分成交撤单的资金释放计算公式",
+      "status": "open",
+      "priority": "P0"
+    }
+  ],
+  "pci_summary": {
+    "total": 2,
+    "by_type": {
+      "ambiguity": 1,
+      "missing_rule": 1
+    },
+    "blocking_count": 0
+  }
+}

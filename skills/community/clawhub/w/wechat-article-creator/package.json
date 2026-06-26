@@ -1,0 +1,25 @@
+{
+  "name": "wechat-article-creator",
+  "version": "1.0.0",
+  "description": "根据主题自动生成微信公众号文章草稿",
+  "main": "index.js",
+  "bin": {
+    "wechat-article-creator": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wechat",
+    "article",
+    "content",
+    "ai",
+    "generator"
+  ],
+  "author": "@onWalking",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.0"
+  }
+}

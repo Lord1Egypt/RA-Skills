@@ -1,0 +1,46 @@
+{
+  "defaults": {
+    "download_cover": false,
+    "replace_intro_with_cover": false,
+    "intro_seconds": 10,
+    "voice_type": "zh_male_m191_uranus_bigtts",
+    "use_intro_override": false
+  },
+  "channels": [
+    {
+      "channel_id": "UCUnc496-PPmFZVKlYxUnToA",
+      "download_cover": true,
+      "replace_intro_with_cover": true,
+      "intro_seconds": 12,
+      "voice_type": "zh_male_m191_uranus_bigtts",
+      "use_intro_override": true
+    },
+    {
+      "channel_id": "UCHqqf2BwNM4Oih-a_ikbWww",
+      "download_cover": false,
+      "replace_intro_with_cover": false,
+      "voice_type": "zh_male_beijingxiaoye_moon_bigtts",
+      "use_intro_override": false
+    },
+    {
+      "channel_id": "UCPdk3JuQGxOCMlZLLt4drhw",
+      "download_cover": false,
+      "replace_intro_with_cover": false,
+      "use_intro_override": false,
+      "voice_type": "zh_male_yuanboxiaoshu_moon_bigtts"
+    },
+    {
+      "channel_id": "UCa4srEj7tVeBWW2n_zIeQXA",
+      "download_cover": false,
+      "replace_intro_with_cover": false,
+      "use_intro_override": false
+    },
+    {
+      "channel_id": "UCNW2Ur4ni2n9rbSMdmocmrA",
+      "download_cover": false,
+      "replace_intro_with_cover": false,
+      "use_intro_override": false,
+      "voice_type": "zh_male_yuanboxiaoshu_moon_bigtts"
+    }
+  ]
+}

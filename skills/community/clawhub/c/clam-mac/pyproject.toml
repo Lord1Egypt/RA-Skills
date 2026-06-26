@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clam-mac"
+version = "0.2.0"
+description = "Give any AI Agent hands to control your Mac — auto-discover apps, generate CLI wrappers, return structured JSON."
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Miles Zhang", email = "chasezhang001@gmail.com" },
+]
+keywords = ["ai", "agent", "macos", "applescript", "cli", "mcp", "openclaw", "lobster", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = [
+    "click>=8.0",
+    "jinja2>=3.1",
+    "rich>=13.0",
+    "mcp>=1.0.0",
+]
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/mileszhang001-boom/cli-on-mac"
+Repository = "https://github.com/mileszhang001-boom/cli-on-mac"
+Issues = "https://github.com/mileszhang001-boom/cli-on-mac/issues"
+
+[project.scripts]
+clam = "clam.cli:cli"
+clam-mcp = "clam.mcp_server:main"
+
+[tool.pytest.ini_options]
+timeout = 30
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+clam = ["generator/templates/*.j2"]

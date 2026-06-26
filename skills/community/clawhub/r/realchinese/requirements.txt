@@ -1,0 +1,2 @@
+# RealChinese — Zero external dependencies. Python 3.9+ standard library only.
+# re, math, random, collections — all built-in.

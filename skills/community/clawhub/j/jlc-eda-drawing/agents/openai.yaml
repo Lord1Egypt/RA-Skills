@@ -1,0 +1,7 @@
+interface:
+  display_name: "JLC EDA Design Agent"
+  short_description: "Design PCB-ready JLC EDA circuits"
+  default_prompt: "Use $jlc-eda-drawing to design and draw a clean PCB-ready circuit in JLC EDA with real library components."
+
+policy:
+  allow_implicit_invocation: true

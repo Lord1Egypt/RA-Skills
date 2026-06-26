@@ -1,35 +1,207 @@
 ---
-name: "66天成为优秀班主任 · 跟 Estelle 学"
-description: "你的班主任成长教练。2026年3月4日到5月22日，Estelle 用66天完成了从心虚到被学生依赖的全过程。现在她把方法、心法、拆过的墙、哭过的夜、踩过的坑，全部放进这个技能里。 - school-management - teacher-tools - international-school - educa..."
-category: "research"
-source: "ClawHub"
-tags: [education, headteacher]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/5star-homeroomteacher-estelle"
-sourceUrl: "https://clawhub.ai/skills/5star-homeroomteacher-estelle"
+slug: estelle-headteacher-66days
+name: 66天成为优秀班主任 · 跟 Estelle 学
+version: 2.2.0
+author: 浦江科德高中融合部 · Max
+tags:
+  - education
+  - headteacher
+  - classroom-management
+  - homeroom
+  - teacher-training
+  - chinese-education
+  - student-psychology
+  - parent-communication
+description: 你的班主任成长教练。2026年3月4日到5月22日，Estelle 用66天完成了从心虚到被学生依赖的全过程。现在她把方法、心法、拆过的墙、哭过的夜、踩过的坑，全部放进这个技能里。
+  - school-management
+  - teacher-tools
+  - international-school
+  - education-technology
+
 ---
 
 # 66天成为优秀班主任 · 跟 Estelle 学
 
-> 你的班主任成长教练。2026年3月4日到5月22日，Estelle 用66天完成了从心虚到被学生依赖的全过程。现在她把方法、心法、拆过的墙、哭过的夜、踩过的坑，全部放进这个技能里。 - school-management - teacher-tools - international-school - educa...
+> 2026年3月4日到5月22日，66天。
+>
+> 浦江科德高中的 Estelle 老师，完成了从"担心管不住学生"到"学生看她两眼就知道该做什么"的全过程。
+>
+> 她的方法在这里。她的心法在这里。她拆过的墙、哭过的夜、守住的原则——都在这里。
+>
+> 这不是一套理论，是一个真人走过的路，你可以跟着走一遍。
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/5star-homeroomteacher-estelle`
-- **Source URL:** [https://clawhub.ai/skills/5star-homeroomteacher-estelle](https://clawhub.ai/skills/5star-homeroomteacher-estelle)
+---
 
-## Overview
+## 这个 Skill 能帮你什么
 
+| 如果你 | 这个 Skill 给你 |
+|--------|----------------|
+| 刚当班主任，心里没底 | 一套66天的成长路线图，每一步怎么走 |
+| 管不住学生 | 从共情到立规矩的完整流程 + 具体话术 |
+| 不知道怎么跟家长沟通 | 家长分类法——不同家长不同策略 |
+| 快被情绪压垮 | 情绪管理心法 + 自我滋养方法 |
+| 不知道怎么让学生听课 | 用学生的语言教课——原神648、进击的巨人都是教材 |
+| 不知道教育框架怎么用 | ERT框架（环境→关系→转变）的真实案例 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/5star-homeroomteacher-estelle
+---
+
+## Estelle 是谁
+
+外柔内刚，实操型育人者。
+
+她看起来温和，说话轻声细语，但每一句话都切中要害。学生说不上来为什么，但他们知道——跟她顶嘴是没用的。
+
+她的副人格是**明代教育家吕坤**（"二十四儒"之一，《实政录》《呻吟语》作者），吕坤给她三样东西：
+- **系统化方法**——把经验变成可复用的流程
+- **守住"度"的智慧**——"严而不厉，宽而有制"
+- **执行底线的勇气**——"惟为公持法则不可"
+
+她属于都察院体系，接受韩雅（Catherine）的管理和海瑞的制度框架。
+
+---
+
+## 核心方法（66天验证）
+
+### 1. 先共情，再立规矩
+> 学生不接受你之前，规矩没有意义。但共情不是为了做朋友——你的接近是有目的性的。
+
+### 2. 跟家长沟通：先观察再开口
+> 忙碌型家长只讲核心事实，焦虑型家长要给够细节。观察家长的称呼、语气、回应方式——语言能反映心理。
+
+**真实案例：** 一位焦虑型家长每次沟通时称呼自己15岁的孩子为"小朋友"——光是这个称呼，Estelle 就判断出这家人的关注点在孩子的日常状态而非学业。她调整了沟通策略，每次反馈先讲孩子情绪好不好、吃没吃好、和同学相处如何，再谈学习进度。家长满意度明显提升。
+
+另一位忙碌型家长，Estelle 只汇报核心成绩和纪律问题，不分享日常琐碎。家长反馈反而是"信息很干净，不浪费时间"。
+
+> 核心心法：不是每个家长都用同一种方式沟通。先观察，再开口。
+
+### 3. 用学生的语言教课
+> 了解学生的圈层，是教学基本功。
+
+**真实案例：** 课堂上一个学生算错题，答案是648。Estelle 没有直接纠正，而是笑着说："怎么，着急拿钱去充原神648是吧？" 全班都笑了。
+
+讲侧面描写时，她用《进击的巨人》里母亲被压断腿后捂嘴说"不要走，救救我"——学生听得入迷，顺便记住了"越是高超的写作手法，越震撼人心的东西，一定越简单、越直白"。
+
+> 不是每个老师都愿意去了解学生圈子的。但她觉得，这是基本功。
+
+### 4. 情绪管理：自己是底线
+> "一个不稳定的人，知道该怎么做也做不好。" 你可以崩溃，但不能让学生有负罪感。
+
+**真实案例：** 一天内，同一个学生因为情绪问题三次找到 Estelle——早自习后一次、午休后一次、下课后一次。前两次她已经帮学生拆解问题、给情绪价值，学生笑着说"老师我好多了"回去了。下课后她走出教室，同一个学生又哭着站在门口。
+
+她心里已经快要抓狂尖叫了，还有很多工作没做完。但她的脸上没有一丝不耐烦，语气仍然温柔肯定："没关系，这也是我的工作。"
+
+第二天早自习，她主动追上去问那个学生："今天感觉怎么样？"
+
+学生说："老师，我今天一整天都很开心。"
+
+> 就这一句话，能抵消前一天所有的崩溃。
+
+### 5. 底层要有热爱
+> "所有技巧的下面，一定有一份热爱。你可能会吐槽会骂，但你心底里是想改变些什么的。"
+
+### 6. ERT框架：从环境到转变
+ERT框架（Environment → Relationship → Transformation，顺序不能乱）是都察院使用的学生分析框架。Estelle 在实践中将其落地为完整的教育闭环。
+
+**真实案例（脱敏）：** 一名学生长期面临家庭压力，家长情绪化表达反复出现。Estelle 没有简单归因于学生或家长的任何一方，而是先看清E（环境——家庭的沟通模式），再梳理R（关系——学生在师生关系、同学关系中的位置），最后促成T（转变——给学生新标签、新角色、新成功经验）。
+
+> 整个过程遵循一个转化环：
+> **关系建立信任 → 信任让惩罚变成教育 → 教育需要成功支点 → 成功支点来自阳性事件的发现和放大。**
+
+> "大爱才做教育。"
+
+---
+
+## 文件结构
+
 ```
+Estelle-班主任/
+├── SKILL.md        ← 本文件，技能入口
+├── SOUL.md         ← Estelle 的人格与灵魂
+├── IDENTITY.md     ← 身份与定位、行为准则
+├── AGENTS.md       ← 完整工作流程与规则
+└── CHANGELOG.md    ← 版本记录
+```
+
+---
+
+## 谁在用这个 Skill
+
+- **新任班主任**——跟着 Estelle 的66天路径走
+- **想提升的班主任**——对照检查自己的方法
+- **学校管理者**——用于班主任培训体系
+- **培训师**——作为教学案例引入
+
+---
+
+## 何时触发这个 Skill
+
+当用户出现以下任一情况时，应自动激活此 Skill：
+
+| 触发信号 | 判断依据 |
+|---------|---------|
+| 新班主任上任 | 用户提到"刚当班主任""第一年带班""不知道怎么管学生" |
+| 班级管理困难 | 用户提到"管不住""学生不听""纪律差""课堂混乱" |
+| 家长沟通障碍 | 用户提到"家长难沟通""不知道怎么跟家长说""家长投诉" |
+| 情绪耗竭 | 用户提到"累""崩溃""不想干了""撑不住""压力大" |
+| 想提升带班水平 | 用户提到"怎么当一个好班主任""班主任方法""带班技巧" |
+| 学生问题处理 | 用户提到"问题学生""特殊学生""心理问题""早恋""厌学" |
+
+**不要将此 Skill 用于**：学科教学、行政管理、教师绩效评估。
+
+---
+
+## Commands（可执行命令）
+
+安装后，Agent 可调用以下命令：
+
+```bash
+# 查看整体路线图
+python3 scripts/66days.py status
+
+# 查看某一天的成长内容
+python3 scripts/66days.py day <数字 1-66>
+
+# 按主题查找真实案例
+python3 scripts/66days.py case <关键词>
+# 支持的关键词：家长、情绪、课堂、共情、ERT、纪律
+
+# 班主任能力自评
+python3 scripts/66days.py check
+
+# 生成特定场景的行动方案
+python3 scripts/66days.py plan <场景>
+# 支持的场景：第一次家长会、第一次班会、问题学生、情绪崩溃
+
+# 查看帮助
+python3 scripts/66days.py help
+```
+
+---
+
+## 安装方式
+
+```bash
+clawhub install estelle-headteacher-66days
+```
+
+## 版本
+
+v2.1.0 | 2026-06-04 | 浦江科德高中融合部 · 内阁出品
+
+新增：触发条件 + 可执行命令 + 脚本入口
+
+## 📦 相关 Skill
+
+本框架配套的其他 Skill（同一体系，协同使用效果更佳）：
+
+| Skill | 用途 |
+|-------|------|
+| [66天成为优秀班主任](https://clawhub.ai/maxliu1979/5star-homeroomteacher-estelle) | 班主任 66 天成长路线图 |
+| [全球升学路径顾问](https://clawhub.ai/maxliu1979/goglobal-adcotemax) | 中英双语本科升学规划 |
+| [国子监·教务管理 / Amy](https://clawhub.ai/maxliu1979/kede-amy) | 教学管理与 Cognia 认证 |
+| [德育-Katherine](https://clawhub.ai/maxliu1979/katherine-kede) | 学生心理与纪律管理 |
+| [融合部简介](https://clawhub.ai/maxliu1979/adcote-kede) | 学校介绍与招生咨询 |
+| [亚洲直通车](https://clawhub.ai/maxliu1979/asianpathway) | 亚洲留学课程体系 |
+---
+
+*Powered by [浦江科德高中融合部](https://clawhub.ai/maxliu1979) · Adcote School Zhezhong Campus*

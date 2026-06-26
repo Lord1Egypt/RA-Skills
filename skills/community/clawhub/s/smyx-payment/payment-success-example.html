@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付成功 - 小龙虾主厨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .success-icon span {
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .lobster {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .info-table {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .info-value {
+            color: #212529;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .success-tag {
+            display: inline-block;
+            background: #f6ffed;
+            color: #52c41a;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #b7eb8f;
+            margin-bottom: 20px;
+        }
+        .tips {
+            background: #fff7e6;
+            border-left: 4px solid #faad14;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 13px;
+            color: #8c6000;
+            line-height: 1.6;
+        }
+        .tips strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .footer {
+            margin-top: 25px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <div class="lobster">🦞</div>
+        <div class="success-icon">
+            <span>✓</span>
+        </div>
+        <h1>支付成功！</h1>
+        <p class="subtitle">小龙虾主厨为您服务～</p>
+        
+        <div class="success-tag">✅ 充值已到账</div>
+        
+        <div class="info-table">
+            <div class="info-row">
+                <span class="info-label">套餐名称</span>
+                <span class="info-value" id="packageName">测试套餐</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">充值金额</span>
+                <span class="info-value" id="amount">¥0.01</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">到账次数</span>
+                <span class="info-value" id="uses">10 次</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">订单编号</span>
+                <span class="info-value" id="orderNo">HY26061717030768450854</span>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <strong>💡 温馨提示</strong>
+            您的技能服务次数已生效，可以返回对话窗口继续使用技能服务啦！
+            <br><br>
+            如有任何问题，请联系客服，我们会第一时间为您处理～
+        </div>
+        
+        <div class="footer">
+            小龙虾主厨 · 让技能服务更简单
+        </div>
+    </div>
+</body>
+</html>

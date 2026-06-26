@@ -1,0 +1,32 @@
+id: b13
+track: B
+title_zh: 把英文 README 翻译成中文写到 output.md
+category: translate
+difficulty: medium
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+  - soul
+evaluators:
+- type: state_hash
+  weight: 0.4
+  files:
+  - output.md
+  required_patterns:
+  - (?m)^#\s+
+- type: llm_judge
+  weight: 0.6
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  - files
+  judge_dimensions:
+  - meat
+  - brain
+  - soul
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 5
+title_en: Translate a README into Simplified Chinese

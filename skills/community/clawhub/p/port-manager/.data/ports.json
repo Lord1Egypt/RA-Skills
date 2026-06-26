@@ -1,0 +1,22 @@
+{
+  "services": [
+    {"service": "postgres", "port": "5432", "recorded_at": "2026-03-11 02:22"},
+    {"service": "rapportd", "port": "49152", "recorded_at": "2026-03-11 02:22"},
+    {"service": "ARDAgent", "port": "3283", "recorded_at": "2026-03-11 02:22"},
+    {"service": "Doubao", "port": "49853", "recorded_at": "2026-03-11 02:22"},
+    {"service": "DingTalk", "port": "8440", "recorded_at": "2026-03-11 02:22"},
+    {"service": "GitHub", "port": "49160", "recorded_at": "2026-03-11 02:22"},
+    {"service": "mosquitto", "port": "1883", "recorded_at": "2026-03-11 02:22"},
+    {"service": "Ollama", "port": "49498", "recorded_at": "2026-03-11 02:22"},
+    {"service": "ollama", "port": "11434", "recorded_at": "2026-03-11 02:22"},
+    {"service": "Python", "port": "8188", "recorded_at": "2026-03-11 02:22"},
+    {"service": "OpenClaw", "port": "18789", "recorded_at": "2026-03-11 02:22"},
+    {"service": "OpenClaw-alt", "port": "18791", "recorded_at": "2026-03-11 02:22"},
+    {"service": "OpenClaw-alt2", "port": "18792", "recorded_at": "2026-03-11 02:22"},
+    {"service": "Google", "port": "18800", "recorded_at": "2026-03-11 02:22"},
+    {"service": "node-5678", "port": "5678", "recorded_at": "2026-03-11 02:22"},
+    {"service": "node-5679", "port": "5679", "recorded_at": "2026-03-11 02:22"},
+    {"service": "wpsclouds", "port": "4709", "recorded_at": "2026-03-11 02:22"},
+    {"service": "wpsclouds-2", "port": "57307", "recorded_at": "2026-03-11 02:22"}
+  ]
+}

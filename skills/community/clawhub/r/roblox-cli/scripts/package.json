@@ -1,0 +1,8 @@
+{
+  "name": "roblox-cli-scripts",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^25.4.0"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "deps": [
+    {
+      "body": "Seat",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_FL",
+      "ref": "Seat"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Seat"
+    },
+    {
+      "body": "Leg_BL",
+      "ref": "Seat"
+    },
+    {
+      "body": "Leg_BR",
+      "ref": "Seat"
+    },
+    {
+      "body": "TW_FL",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "TW_BL",
+      "ref": "Leg_BL"
+    },
+    {
+      "body": "TW_FR",
+      "ref": "Leg_FR"
+    },
+    {
+      "body": "TW_BR",
+      "ref": "Leg_BR"
+    },
+    {
+      "body": "Str_Left",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Str_Right",
+      "ref": "Leg_FR"
+    },
+    {
+      "body": "Str_Cross",
+      "ref": "Str_Left"
+    },
+    {
+      "body": "TW_SL_FL",
+      "ref": "Str_Left"
+    },
+    {
+      "body": "TW_SL_BL",
+      "ref": "Str_Left"
+    },
+    {
+      "body": "TW_SR_0",
+      "ref": "Str_Right",
+      "replicas": "TW_SR_*"
+    },
+    {
+      "body": "TW_SC_L",
+      "ref": "Str_Cross"
+    },
+    {
+      "body": "TW_SC_R",
+      "ref": "Str_Cross"
+    },
+    {
+      "body": "Spin_0",
+      "ref": "Seat",
+      "replicas": "Spin_*"
+    },
+    {
+      "body": "CrestRail",
+      "ref": "Spin_0"
+    }
+  ]
+}

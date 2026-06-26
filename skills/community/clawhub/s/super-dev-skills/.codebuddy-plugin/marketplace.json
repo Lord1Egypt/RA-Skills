@@ -1,0 +1,18 @@
+{
+  "name": "super-dev-skills",
+  "description": "全栈之神·自进化零缺陷交付套件。9 个 Skill 覆盖需求→架构→TDD→UX→安全→记忆→进化的全栈开发闭环。",
+  "owner": {
+    "name": "WeedFire"
+  },
+  "plugins": [
+    {
+      "name": "super-dev-skills",
+      "description": "全栈之神·自进化零缺陷交付套件 — 需求深访+共享语言+TDD+感官级UI/UX验证+供应链安全门禁+分层记忆系统+技能自我进化",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "WeedFire"
+      }
+    }
+  ]
+}

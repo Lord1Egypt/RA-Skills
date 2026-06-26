@@ -1,0 +1,65 @@
+{
+  "skill_name": "floracat-architecture-diagram",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "platform-overview",
+      "prompt": "为一个内容运营 AI 平台生成一张适合公众号展示的总体架构图，要求输出 standalone HTML + inline SVG，中文标签，人类可读，PPT 风格。",
+      "expected_output": "输出一份可直接打开的 HTML 架构图，结构分层清晰，中文可读，适合公众号截图展示。",
+      "files": [],
+      "output_files": [
+        "platform-overview.html"
+      ],
+      "expectations": [
+        "输出目录中生成 platform-overview.html",
+        "HTML 中包含 SVG 架构图",
+        "图中存在中文标签"
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "runtime-sequence",
+      "prompt": "为一个内容运营 AI 助手生成一张中文时序图，说明需求输入、Prompt 装配、Agent 执行、工具调用、结果回传的完整链路，要求适合公众号展示。",
+      "expected_output": "输出一份中文时序图 HTML，主链路完整，环路与回传关系清晰，整体适合公众号展示。",
+      "files": [],
+      "output_files": [
+        "runtime-sequence.html"
+      ],
+      "expectations": [
+        "输出目录中生成 runtime-sequence.html",
+        "HTML 中包含 SVG 时序图",
+        "图中体现需求输入、Agent 执行、工具调用、结果回传"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "agent-patterns-overview",
+      "prompt": "为公众号文章生成一张“常见 Agent 设计模式”总览架构图，要求对比 ReAct、Planner-Executor、Router、Multi-Agent 四种模式。输出 standalone HTML + inline SVG，中文标签，PPT 风格，人类一眼能看懂。",
+      "expected_output": "输出一份适合公众号展示的 Agent 设计模式总览图，四种模式结构分区明确，对比关系清楚，中文可读。",
+      "files": [],
+      "output_files": [
+        "agent-patterns-overview.html"
+      ],
+      "expectations": [
+        "输出目录中生成 agent-patterns-overview.html",
+        "HTML 中包含 SVG 总览图",
+        "图中体现 ReAct、Planner-Executor、Router、Multi-Agent 四种模式"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "multi-agent-collaboration",
+      "prompt": "生成一张多 Agent 协作架构图，描述用户请求如何经过 Router、Planner、多个 Specialist Agent、共享工具层和记忆层，最后回到结果汇总器并输出给用户。要求中文标签，standalone HTML + inline SVG，适合公众号展示。",
+      "expected_output": "输出一份多 Agent 协作架构图 HTML，体现路由、规划、专业 Agent 分工、共享工具和记忆、结果汇总的完整关系。",
+      "files": [],
+      "output_files": [
+        "multi-agent-collaboration.html"
+      ],
+      "expectations": [
+        "输出目录中生成 multi-agent-collaboration.html",
+        "HTML 中包含 SVG 架构图",
+        "图中体现 Router、Planner、Specialist Agent、工具层、记忆层、结果汇总器"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "latex-verbatim-center",
+  "version": "1.0.0",
+  "description": "LaTeX verbatim 环境居中解决方案 - 使用 varwidth 包实现代码块和 ASCII 图表的完美居中",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "tags": ["latex", "排版", "居中", "verbatim", "varwidth", "文档处理"],
+  "category": "文档处理",
+  "difficulty": "初级",
+  "readme": "README.md",
+  "files": [
+    "SKILL.md",
+    "QUICKREF.md",
+    "config-example.tex",
+    "test-template.tex",
+    "README.md"
+  ],
+  "requirements": {
+    "packages": ["varwidth", "needspace"],
+    "texlive": "2024+"
+  },
+  "usage": "在 LaTeX 文档 preamble 中添加 varwidth 包并重定义 verbatim 环境",
+  "examples": [
+    "test-template.tex",
+    "config-example.tex"
+  ]
+}

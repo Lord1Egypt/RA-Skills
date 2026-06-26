@@ -1,0 +1,16 @@
+# 敏感文件不过Git
+*.key
+*.pem
+*.priv
+*.secret
+*id_rsa*
+*id_ed25519*
+*.sock
+credentials*
+secrets*
+.env*
+TOOLS.md
+*.log
+wenyan-*.log
+node_modules/
+.DS_Store

@@ -1,35 +1,27 @@
 ---
-name: "recipe-create-events-from-sheet"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-events-from-sheet"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-events-from-sheet"
+name: recipe-create-events-from-sheet
+description: "Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-sheets
+        - gws-calendar
 ---
 
-# recipe-create-events-from-sheet
+# Create Google Calendar Events from a Sheet
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-sheets`, `gws-calendar`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-events-from-sheet`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-events-from-sheet](https://skills.sh/googleworkspace/cli/recipe-create-events-from-sheet)
+Read event data from a Google Sheets spreadsheet and create Google Calendar entries for each row.
 
-## Overview
+## Steps
 
+1. Read event data: `gws sheets +read --spreadsheet SHEET_ID --range "Events!A2:D"`
+2. For each row, create a calendar event: `gws calendar +insert --summary 'Team Standup' --start '2026-01-20T09:00:00' --end '2026-01-20T09:30:00' --attendee alice@company.com --attendee bob@company.com`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-events-from-sheet
-```

@@ -1,0 +1,27 @@
+{
+  "name": "shiyi",
+  "version": "0.1.0",
+  "description": "拾遗 — 通用考试备考追踪 OpenClaw Skill",
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "exam-prep",
+    "study-tracker",
+    "wrong-answers",
+    "GRE",
+    "IELTS",
+    "gaokao",
+    "kaoyan"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "dependencies": { "xlsx": "^0.18.5" },
+  "optionalDependencies": { "sharp": "^0.33.0" },
+  "scripts": {
+    "export":         "node scripts/export_xlsx.js",
+    "export:pending": "node scripts/export_xlsx.js --pending-only",
+    "summary":        "node scripts/daily_summary.js",
+    "review":         "node scripts/review_reminder.js"
+  }
+}

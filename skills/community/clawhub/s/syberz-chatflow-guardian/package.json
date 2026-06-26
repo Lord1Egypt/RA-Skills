@@ -1,0 +1,47 @@
+{
+  "name": "syberz-chatflow-guardian",
+  "version": "1.0.0",
+  "displayName": "畅聊守护者 (ChatFlow Guardian)",
+  "description": "【畅聊守护者】- 确保你的对话永远不会中断！智能监控对话状态，确保用户的消息永远不会是最后一条。支持多平台、预测性响应和深度学习优化。英文名: ChatFlow Guardian - Keep your conversations flowing smoothly!",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/run-tests.js",
+    "lint": "eslint src/",
+    "build": "node scripts/build.js"
+  },
+  "keywords": [
+    "不冷场",
+    "对话管理",
+    "自动回复",
+    "多平台",
+    "AI助手",
+    "预测响应",
+    "深度学习",
+    "冷场预防",
+    "智能对话",
+    "工作效率"
+  ],
+  "author": "syberZ <969027040@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-cron": "^3.0.2",
+    "winston": "^3.11.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/no-cold-chat-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/no-cold-chat-manager/issues"
+  },
+  "homepage": "https://github.com/openclaw/no-cold-chat-manager#readme"
+}

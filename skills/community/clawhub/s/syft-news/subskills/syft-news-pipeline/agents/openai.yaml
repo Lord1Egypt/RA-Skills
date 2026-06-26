@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syft News Pipeline"
+  short_description: "Run Syft-only profile, briefing, and storyline workflows"
+  default_prompt: "Use $syft-news-pipeline to choose and run the right Syft-only workflow for profiling, briefing, storyline building, backfill, or durable guidance."

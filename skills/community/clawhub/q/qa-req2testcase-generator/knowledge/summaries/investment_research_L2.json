@@ -1,0 +1,64 @@
+{
+  "domain": "投研域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_research.md",
+  "includes_L1": true,
+  "entity_states": {
+    "研报": ["撰写中(Drafting)", "内部评审(InternalReview)", "合规审查(ComplianceReview)", "待发布(PendingPublish)", "已发布(Published)", "已驳回(Rejected)", "已撤回(Withdrawn)", "已更正(Corrected)"],
+    "分析师": ["入职培训(Training)", "正常执业(Active)", "静默期(QuietPeriod)", "暂停执业(Suspended)", "离职交接(Handover)", "已离职(Left)"],
+    "量化模型": ["开发中(Developing)", "回测中(Backtesting)", "评审中(Reviewing)", "模拟运行(PaperTrading)", "已上线(Production)", "已下线(Offline)", "回测失败(BacktestFailed)"],
+    "数据采集": ["待采集(PendingCollect)", "采集中(Collecting)", "清洗中(Cleaning)", "已入库(Stored)", "采集失败(CollectFailed)", "质量异常(QualityIssue)"]
+  },
+  "state_transitions": [
+    {"entity": "研报", "from": "撰写中", "trigger": "提交评审", "to": "内部评审"},
+    {"entity": "研报", "from": "内部评审", "trigger": "评审通过", "to": "合规审查"},
+    {"entity": "研报", "from": "合规审查", "trigger": "合规通过", "to": "待发布"},
+    {"entity": "研报", "from": "待发布", "trigger": "到达发布时间", "to": "已发布"},
+    {"entity": "研报", "from": "已发布", "trigger": "发现重大错误", "to": "已撤回"},
+    {"entity": "分析师", "from": "正常执业", "trigger": "参与投行项目", "to": "静默期"},
+    {"entity": "分析师", "from": "静默期", "trigger": "项目结束/公告发布", "to": "正常执业"},
+    {"entity": "量化模型", "from": "开发中", "trigger": "提交回测", "to": "回测中"},
+    {"entity": "量化模型", "from": "回测中", "trigger": "回测达标", "to": "评审中"},
+    {"entity": "量化模型", "from": "评审中", "trigger": "评审通过", "to": "模拟运行"},
+    {"entity": "量化模型", "from": "模拟运行", "trigger": "3个月表现达标", "to": "已上线"},
+    {"entity": "量化模型", "from": "已上线", "trigger": "模型失效", "to": "已下线"}
+  ],
+  "allowed_operations": {
+    "研报-撰写中": ["编辑", "提交评审"],
+    "研报-已驳回": ["修改后重新提交"],
+    "研报-已发布": ["撤回(发现错误)", "发布更正版"],
+    "分析师-正常执业": ["撰写研报", "发布建议", "路演"],
+    "模型-已上线": ["监控性能", "下线(需走流程)"],
+    "模型-已下线": ["不可直接重新上线(需重新走评审)"]
+  },
+  "forbidden_operations": {
+    "研报-已发布": ["未经流程直接修改"],
+    "研报-已撤回": ["直接重新发布(需重新走审核流程)"],
+    "分析师-静默期": ["发布相关标的研报"],
+    "分析师-暂停执业": ["发布任何研报"],
+    "模型-已上线": ["未经评审直接修改"]
+  },
+  "role_permission_matrix": [
+    {"role": "分析师", "permissions": ["撰写研报", "提交评审", "因子研究", "模型开发"]},
+    {"role": "首席分析师", "permissions": ["内部评审", "研报质量把控", "团队管理"]},
+    {"role": "合规审查员", "permissions": ["合规审查", "敏感词检查", "利益冲突审核"]},
+    {"role": "量化研究员", "permissions": ["因子开发", "模型构建", "回测验证"]},
+    {"role": "数据工程师", "permissions": ["数据采集配置", "数据质量管理", "数据源维护"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "合规系统", "interaction": "研报审查、静默期管理、利益冲突检测"},
+    {"system": "投行系统", "interaction": "静默期标的同步、内幕信息知情人"},
+    {"system": "数据平台(Wind/Choice)", "interaction": "行情数据、财务数据、研报分发"},
+    {"system": "邮件/推送系统", "interaction": "研报推送、客户通知"},
+    {"system": "交易系统", "interaction": "模型信号执行、策略回测数据"}
+  ],
+  "core_calculation_rules": [
+    {"name": "因子IC", "formula": "因子值与下期收益率的截面相关系数"},
+    {"name": "因子IR", "formula": "IC均值 / IC标准差"},
+    {"name": "夏普比率", "formula": "(年化收益率 - 无风险利率) / 年化波动率"},
+    {"name": "最大回撤", "formula": "max(峰值到谷值的跌幅)"},
+    {"name": "数据缺失率", "formula": "缺失字段数 / 总字段数 ≤ 1%"},
+    {"name": "回测达标标准", "formula": "年化超额收益>基准N%、最大回撤<-15%、夏普≥1.0、IR≥0.5"}
+  ]
+}

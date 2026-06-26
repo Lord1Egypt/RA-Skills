@@ -1,0 +1,43 @@
+{
+  "defaultRole": "viewer",
+  "roles": {
+    "org_admin": {
+      "canViewTotals": true,
+      "canViewModelBreakdown": true,
+      "canViewModelNames": true,
+      "canViewSpikes": true,
+      "canViewMovers": true,
+      "canUseCustomReportBuilder": true
+    }
+  },
+  "organizations": {
+    "acme": {
+      "defaultRole": "viewer",
+      "roles": {
+        "dept_lead": {
+          "canViewTotals": true,
+          "canViewModelBreakdown": true,
+          "canViewModelNames": true,
+          "canViewSpikes": true,
+          "canViewMovers": false,
+          "canUseCustomReportBuilder": true
+        }
+      },
+      "users": {
+        "alice": { "role": "org_admin", "group": "engineering", "defaultDashboard": "eng-core" },
+        "bob": { "role": "dept_lead", "group": "analytics", "defaultDashboard": "analytics-view" },
+        "charlie": { "role": "viewer", "group": "finance" }
+      },
+      "groups": {
+        "engineering": { "dashboardViews": ["eng-core"] },
+        "analytics": { "dashboardViews": ["analytics-view"] },
+        "finance": { "dashboardViews": ["finance-30d"] }
+      },
+      "dashboardViews": {
+        "eng-core": { "allowedModels": ["gpt-5", "o3"], "maxDays": 90 },
+        "analytics-view": { "allowedModels": ["gpt-5"], "maxDays": 30 },
+        "finance-30d": { "maxDays": 30 }
+      }
+    }
+  }
+}

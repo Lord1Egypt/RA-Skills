@@ -1,0 +1,23 @@
+{
+  "name": "Bilibili Research Kit",
+  "tagline": "Extract metadata, subtitles, and danmaku from Bilibili videos — no API key needed",
+  "description": "A content research toolkit for Bilibili (B站). Extract video metadata, subtitles/CC, danmaku (bullet comments), UP主 profiles, multi-part video info, and collections — powered by yt-dlp locally. Perfect for Chinese content creators, researchers, and anyone analyzing Bilibili content.",
+  "category": "data",
+  "tags": [
+    "bilibili",
+    "b站",
+    "chinese",
+    "video",
+    "research",
+    "danmaku",
+    "subtitles",
+    "metadata",
+    "content-analysis",
+    "yt-dlp"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/xuya227939/bilibili-research-kit/issues",
+  "homepage": "https://snapvee.com"
+}

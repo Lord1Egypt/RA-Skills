@@ -1,0 +1,38 @@
+<!-- ca-cards-3 — 三列等宽卡片，适用于方案/类型/对比 -->
+<div class="content-area" style="align-items:flex-start;padding:40px 80px;flex-direction:column">
+  {{#if title}}
+  <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 28px 0;width:100%">{{title}}</h2>
+  {{/if}}
+  <div style="display:flex;gap:28px;width:100%;flex:1">
+    {{#each cards}}
+    <div style="flex:1;background:var(--color-bg);border:2px solid var(--color-border);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;position:relative">
+      {{#if badge}}
+      <!-- 推荐标签 -->
+      <div style="position:absolute;top:-12px;left:20px;padding:4px 16px;border-radius:9999px;background:var(--color-primary);color:#fff;font-family:var(--font);font-size:13px;font-weight:600">{{badge}}</div>
+      {{/if}}
+      <!-- 卡片图标 -->
+      {{#if icon}}
+      <div style="width:48px;height:48px;border-radius:50%;background:var(--color-primary-light);display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <use href="#{{icon}}"/>
+        </svg>
+      </div>
+      {{/if}}
+      <!-- 卡片标题 -->
+      <h3 style="font-family:var(--font);font-size:20px;font-weight:600;color:var(--color-text);margin:0 0 12px 0">{{card_title}}</h3>
+      <!-- 卡片列表 -->
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;flex:1">
+        {{#each items}}
+        <li style="font-family:var(--font);font-size:15px;color:var(--color-text-secondary);line-height:1.5;">{{text}}</li>
+        {{/each}}
+      </ul>
+      {{#if label}}
+      <!-- 卡片底部标签 -->
+      <div style="margin-top:16px;display:flex;align-items:center;justify-content:flex-end">
+        <span style="display:inline-flex;align-items:center;padding:3px 12px;border-radius:9999px;background:var(--color-primary-light);color:var(--color-primary);font-family:var(--font);font-size:12px;font-weight:500">{{label}}</span>
+      </div>
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
+</div>

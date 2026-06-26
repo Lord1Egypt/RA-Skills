@@ -1,0 +1,44 @@
+{
+  "deps": [
+    {
+      "body": "Seat",
+      "ref": "Leg_NL"
+    },
+    {
+      "body": "Leg_NL",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_NR",
+      "ref": "Leg_NL"
+    },
+    {
+      "body": "Leg_FL",
+      "ref": "Leg_NL"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Leg_NL"
+    },
+    {
+      "body": "Str_Back",
+      "ref": "Leg_NR"
+    },
+    {
+      "body": "Str_Front",
+      "ref": "Leg_NL"
+    },
+    {
+      "body": "Str_Left",
+      "ref": "Leg_NL"
+    },
+    {
+      "body": "Str_Right",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Footrest",
+      "ref": "Str_Front"
+    }
+  ]
+}

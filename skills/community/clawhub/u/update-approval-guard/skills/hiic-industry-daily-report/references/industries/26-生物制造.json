@@ -1,0 +1,34 @@
+{
+  "id": "26",
+  "name": "生物制造",
+  "category": "未来产业",
+  "keywords": [
+    "生物制造",
+    "合成生物",
+    "生物化工",
+    "生物材料",
+    "细胞工厂"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🧫",
+    "maxDescriptionLength": 200
+  }
+}

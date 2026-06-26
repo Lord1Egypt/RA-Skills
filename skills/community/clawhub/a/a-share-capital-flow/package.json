@@ -1,0 +1,13 @@
+{
+  "name": "capital-flow-analysis",
+  "version": "2.0.0",
+  "description": "A股资金流向分析框架 - 从数据到决策",
+  "author": "fan",
+  "license": "MIT",
+  "keywords": ["stock", "capital-flow", "A股", "investment", "trading"],
+  "openclaw": {
+    "type": "skill",
+    "triggers": ["资金流向", "持仓分析", "股票", "行情", "交易"],
+    "platform": "any"
+  }
+}

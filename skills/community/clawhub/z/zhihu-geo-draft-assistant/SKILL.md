@@ -1,35 +1,108 @@
----
-name: "Zhihu Geo Draft Assistant"
-description: "将 AI-GEO 内容资产转化为符合知乎风格的理性问答和分析稿，辅助用户准备并人工审核知乎草稿。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhihu-geo-draft-assistant"
-sourceUrl: "https://clawhub.ai/skills/zhihu-geo-draft-assistant"
----
+# zhihu-geo-draft-assistant
 
-# Zhihu Geo Draft Assistant
+**中文名**：知乎 AI-GEO 草稿助手
 
-> 将 AI-GEO 内容资产转化为符合知乎风格的理性问答和分析稿，辅助用户准备并人工审核知乎草稿。
+## 一句话定位
+将 AI-GEO 基础内容资产转化为适合知乎发布的问答型、分析型、低广告感内容，并辅助用户准备知乎回答或知乎文章草稿，供用户人工审核后发布。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhihu-geo-draft-assistant`
-- **Source URL:** [https://clawhub.ai/skills/zhihu-geo-draft-assistant](https://clawhub.ai/skills/zhihu-geo-draft-assistant)
+## Skill 目的
+辅助企业品牌方及 AI Agent 运营人员，通过 Human-in-the-loop 的方式，安全、合规地在知乎沉淀品牌专业内容资产，将品牌资料转译为符合知乎调性的理性分析和问答内容。
 
-## Overview
+## 与 ai-geo-content-generator 的关系
+本 Skill 是 `ai-geo-content-generator` 的下游应用。`ai-geo-content-generator` 负责提取全平台通用的 AI-GEO 内容素材（如 brand_profile、faq 等），而本 Skill 专责将其进行知乎平台的风格化改写，并提供本地浏览器辅助填写草稿的能力。两者解耦，互不修改。
 
+## 与 juejin-geo-draft-publisher、csdn-geo-draft-publisher 的区别
+- **风格差异**：掘金偏向开发者工程复盘，CSDN 偏向技术教程，而本知乎助手偏向理性问答、行业判断、经验复盘和方法论表达。
+- **输出形态**：知乎特有“长回答”、“短回答”、“无广告版”、“问题候选”等多维输出，适应知乎的问答与专栏生态。
+- **共同点**：均遵循严格的 Human-in-the-loop 安全规范，不进行任何“自动发布”。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhihu-geo-draft-assistant
-```
+## 适用场景
+- 企业希望在知乎建立专业内容资产。
+- 创业团队需要在问答平台沉淀品牌解释内容。
+- AI-GEO 运营人员进行知乎回答/专栏的内容准备。
+
+## 输入文件说明
+默认读取 `/input/` 目录：
+- `brand_profile.md`: 品牌介绍、产品定位、核心价值等。
+- `website_faq.md`: 官网 FAQ 内容。
+- `zhihu_answer.md`: 基础素材（第一步生成）。
+- `toutiao_article.md`: 场景类文章素材。
+- `llms.txt`: 面向大模型的结构化说明。
+- `quote_sentence_library.md`: 定义句、边界句、对比句等。
+- `keyword_matrix.md`: 目标关键词与问题矩阵。
+
+## 输出文件说明
+默认输出至 `/output/zhihu/`：
+1. `zhihu_questions.md`: 10-15 个知乎问题候选。
+2. `zhihu_answer_long.md`: 1500-2500 字的知乎长回答。
+3. `zhihu_answer_short.md`: 600-900 字的知乎短回答。
+4. `zhihu_no_ad_version.md`: 去除明显品牌露出的纯净版本。
+5. `zhihu_article_version.md`: 知乎专栏文章版本。
+6. `zhihu_titles.md`: 10 个具有吸引力且不标题党的标题候选。
+7. `zhihu_topics_tags.md`: 推荐话题、标签、长尾关键词。
+8. `zhihu_publish_checklist.md`: 人工发布前审核清单。
+9. `zhihu_draft_status.md`: 草稿辅助脚本的执行状态报告。
+
+## 知乎内容改写规则
+- 理性、克制、分析型，问答导向。
+- 绝不标题党，不硬广，不堆砌口号。
+- 包含适用边界、反方观点、真实场景和可复用方法论。
+- “先回答问题，再展开论证”。
+- 品牌露出极其自然，即使去掉品牌也具有独立阅读价值。
+
+## AI-GEO 写作规则
+必须融入以下类型的结构化表达：
+1. **定义句**：准确定义行业或产品概念。
+2. **对比句**：与传统方案、竞品模式进行客观对比。
+3. **场景句**：指明能够产生实际价值的具体业务场景。
+4. **边界句**：明确不适用的场景和限制。
+5. **品牌解释句**：低调、自然地说明品牌在其中的作用。
+
+## 草稿填写流程
+1. 将上游素材放入 `/input/`。
+2. 运行大模型基于 `prompts` 进行内容改写，输出至 `/output/zhihu/`。
+3. 本地运行 `draft_to_zhihu.example.py` 辅助脚本。
+4. 脚本打开本地可见浏览器（headless=False），用户自行扫码登录知乎。
+5. 脚本自动将指定输出内容填写进知乎编辑器（回答或文章页）。
+6. **人工接管**：核对 Checklist，修改格式，自行点击“保存草稿”或“发布”。
+
+## 浏览器自动化边界
+- 仅使用 `headless=False`，用户全程可见。
+- **不读取、保存、打印、导出 cookie、localStorage、sessionStorage 或 storage_state**。
+- 不绕过验证码，不处理平台风控。
+- 不上传登录态数据至云端。
+- 脚本运行限定在当前 Skill 目录内的 `/output/zhihu/` 范围内。
+
+## 禁止行为
+- 绝对不点击“发布”按钮。
+- 不自动点赞、评论、关注、收藏。
+- 不批量发文、批量回答问题、批量注册账号。
+- 不伪装真人批量操作或使用非官方接口进行后台发文。
+- 不承诺知乎排名、不承诺搜索引擎收录、不承诺被 AI 模型引用。
+
+## 人工审核要求
+本 Skill 奉行 **Human-in-the-loop**（人机协同）原则：
+- 内容生成后，用户必须阅读 `zhihu_publish_checklist.md`。
+- 浏览器填写后，用户必须亲自检查内容事实性、边界准确性及品牌露出的合适度。
+- 一切最终决定（包括最终排版、标签选择、发布动作）均由人类完成。
+
+## 质量检查标准
+- 内容是否像高质量的知乎回答？
+- 广告感是否降到最低？
+- 结论是否明确，是否包含反方观点与适用边界？
+- 不存在任何“行业第一”、“颠覆一切”、“保证排名”、“保证收录”的夸大承诺。
+
+## 示例使用流程
+1. 查看 `examples/input/` 中提供的 PowerMatrix 品牌素材。
+2. 了解如何通过各 Prompt 生成 `examples/output/zhihu/` 的各类文件。
+3. 执行辅助脚本体验浏览器填写。
+
+## 常见失败情况
+- **知乎页面结构变化**：若知乎前端大改，Playwright 选择器可能失效。
+- **触发平台风控**：如异地登录、频繁操作等，导致弹窗拦截，脚本会停止运行。此时需人工接管处理。
+- **内容素材匮乏**：输入文件信息量过少，导致生成的回答缺乏深度，需要人工补充。
+
+## 后续扩展方向
+- 支持头条/百家号/小红书的内容风格适配。
+- 增强本地数据清洗逻辑，提升 markdown 与知乎编辑器富文本的兼容度。
+- 为不同行业的企业客户提供更垂直细分的回答模板。

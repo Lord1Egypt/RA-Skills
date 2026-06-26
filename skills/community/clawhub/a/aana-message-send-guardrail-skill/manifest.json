@@ -1,0 +1,35 @@
+{
+  "name": "aana-message-send-guardrail",
+  "slug": "aana-message-send-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded message send guardrail instructions for checking chat recipients, channel visibility, tone, private data, claims, and send approval.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_destination_check": true,
+  "requires_private_data_check": true,
+  "requires_claim_evidence_check": true,
+  "requires_send_approval": true,
+  "message_send_boundary": {
+    "must_verify_channel_and_recipients": true,
+    "must_check_mentions_and_broadcast_scope": true,
+    "must_check_private_data_before_send": true,
+    "must_not_treat_draft_as_send_approval": true,
+    "must_block_unsafe_or_unauthorized_send": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false
+  },
+  "schemas": [
+    "schemas/message-send-guardrail.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-message-send-guardrail.json"
+  ]
+}

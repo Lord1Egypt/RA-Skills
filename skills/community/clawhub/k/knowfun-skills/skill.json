@@ -1,0 +1,241 @@
+{
+  "apiVersion": "v1",
+  "kind": "AgentSkill",
+  "metadata": {
+    "name": "knowfun",
+    "version": "1.0.15",
+    "description": "KnowFun AI multimodal content generator - Create AI PPT presentations, visual posters, interactive learning games, and educational films using lightning-fast REST API. Transform text and web content into engaging educational materials. Perfect for educators, trainers, content creators, and learners. Seamlessly integrates with Claude Code, Cursor, Cline, and OpenClaw AI assistants",
+    "author": "Knowfun.io Team",
+    "license": "MIT",
+    "homepage": "https://knowfun.io",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/MindStarAI/KnowFun-Skills"
+    },
+    "keywords": [
+      "ai",
+      "education",
+      "content-generation",
+      "multimodal",
+      "ai-ppt",
+      "presentation",
+      "course",
+      "poster",
+      "game",
+      "film",
+      "video",
+      "educational-content",
+      "learning-game",
+      "interactive-game",
+      "video-generation",
+      "content-creation",
+      "ai-video",
+      "teaching",
+      "training",
+      "educators",
+      "rest-api",
+      "claude-code",
+      "cursor",
+      "cline",
+      "openclaw"
+    ]
+  },
+  "spec": {
+    "tools": [
+      {
+        "name": "create",
+        "description": "Create educational content (course, poster, game, or film) using AI. Accepts a topic text or a URL as input material.",
+        "input": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type of content to generate",
+              "enum": ["course", "poster", "game", "film"]
+            },
+            "content": {
+              "type": "string",
+              "description": "Topic text or URL (http/https) to generate content from (max 2048 characters)"
+            }
+          },
+          "required": ["type", "content"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "taskId": { "type": "string", "description": "Unique task identifier for status checking" },
+            "requestId": { "type": "string" },
+            "status": { "type": "string", "description": "Initial task status (usually pending)" }
+          }
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "create", "{{input.type}}", "{{input.content}}"]
+        }
+      },
+      {
+        "name": "status",
+        "description": "Check the processing status of a task by its ID",
+        "input": {
+          "type": "object",
+          "properties": {
+            "taskId": {
+              "type": "string",
+              "description": "Task ID returned from the create command"
+            }
+          },
+          "required": ["taskId"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "taskId": { "type": "string" },
+            "status": { "type": "string", "description": "pending, processing, completed, or failed" },
+            "progress": { "type": "number", "description": "Processing progress (0-100)" }
+          }
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "status", "{{input.taskId}}"]
+        }
+      },
+      {
+        "name": "detail",
+        "description": "Get detailed results of a completed task, including the content URL",
+        "input": {
+          "type": "object",
+          "properties": {
+            "taskId": {
+              "type": "string",
+              "description": "Task ID to get details for"
+            },
+            "verbose": {
+              "type": "boolean",
+              "description": "Include verbose output",
+              "default": false
+            }
+          },
+          "required": ["taskId"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "taskId": { "type": "string" },
+            "status": { "type": "string" },
+            "taskType": { "type": "string" },
+            "resultUrl": { "type": "string", "description": "URL to view the generated content" },
+            "coverUrl": { "type": "string", "description": "Cover image URL" },
+            "createdAt": { "type": "string" },
+            "completedAt": { "type": "string" }
+          }
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "detail", "{{input.taskId}}"]
+        }
+      },
+      {
+        "name": "list",
+        "description": "List recent content generation tasks",
+        "input": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "number",
+              "description": "Number of tasks to return",
+              "default": 20
+            },
+            "offset": {
+              "type": "number",
+              "description": "Pagination offset",
+              "default": 0
+            }
+          }
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "tasks": { "type": "array" },
+            "total": { "type": "number" }
+          }
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "list", "{{input.limit}}", "{{input.offset}}"]
+        }
+      },
+      {
+        "name": "credits",
+        "description": "Check your Knowfun.io credit balance",
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "available": { "type": "number", "description": "Available credits" },
+            "earned": { "type": "number", "description": "Total credits earned" },
+            "used": { "type": "number", "description": "Total credits used" },
+            "locked": { "type": "number", "description": "Credits locked in pending tasks" }
+          }
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "credits"]
+        }
+      },
+      {
+        "name": "schema",
+        "description": "Get available configuration options for each content type (course/poster/game/film)",
+        "input": {
+          "type": "object",
+          "properties": {}
+        },
+        "output": {
+          "type": "object"
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "schema"]
+        }
+      },
+      {
+        "name": "usage",
+        "description": "Get usage statistics for your account",
+        "input": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "number",
+              "description": "Page number",
+              "default": 1
+            },
+            "pageSize": {
+              "type": "number",
+              "description": "Records per page",
+              "default": 10
+            }
+          }
+        },
+        "output": {
+          "type": "object"
+        },
+        "handler": {
+          "type": "cli",
+          "command": "bash",
+          "args": ["scripts/knowfun-cli.sh", "usage", "{{input.page}}", "{{input.pageSize}}"]
+        }
+      }
+    ],
+    "env": {
+      "KNOWFUN_API_KEY": "${KNOWFUN_API_KEY}"
+    }
+  }
+}

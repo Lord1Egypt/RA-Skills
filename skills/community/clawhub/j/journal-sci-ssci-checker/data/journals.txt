@@ -1,0 +1,286 @@
+# Psychology & Behavioral Sciences Journals (Extended List)
+# Last updated: 2026-03-14
+# Coverage: Nature/Science/Lancet + APA + APS + Cross-disciplinary + WOS Categories
+# Data sources: Existing list + WOS Psychology categories expansion (deduplicated)
+
+# === NATURE系列 ===
+Nature;MULTIDISCIPLINARY;SCI/SSCI
+Nature Human Behaviour;PSYCHOLOGY, SOCIAL;SSCI
+Nature Mental Health;PSYCHOLOGY, CLINICAL;SSCI
+Nature Medicine;MEDICINE, GENERAL;SCI
+Nature Neuroscience;NEUROSCIENCES;SCI
+Nature Communications;MULTIDISCIPLINARY;SCI
+Nature Reviews Psychology;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Nature Reviews Neuroscience;NEUROSCIENCES;SCI
+Nature Reviews Disease Primers;MEDICINE, GENERAL;SCI
+Nature Reviews Clinical Oncology;MEDICINE, GENERAL;SCI
+Nature Reviews Cancer;CANCER;SCI
+
+# === SCIENCE系列 ===
+Science;MULTIDISCIPLINARY;SCI
+Science Advances;MULTIDISCIPLINARY;SCI
+Science Translational Medicine;MEDICINE, GENERAL;SCI
+
+# === PNAS ===
+Proceedings of the National Academy of Sciences;MULTIDISCIPLINARY;SCI/SSCI
+
+# === LANCET系列 ===
+Lancet;MEDICINE, GENERAL;SCI
+Lancet Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+Lancet Child & Adolescent Health;PEDIATRICS;SSCI
+Lancet Public Health;PUBLIC, ENVIRONMENTAL;SSCI
+Lancet Neurology;CLINICAL NEUROLOGY;SCI
+Lancet Digital Health;MEDICINE, GENERAL;SCI
+
+# === JAMA 系列 ===
+JAMA;MEDICINE, GENERAL;SCI
+JAMA Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+JAMA Internal Medicine;MEDICINE, GENERAL;SCI
+JAMA Pediatrics;PEDIATRICS;SSCI
+JAMA Network Open;MEDICINE, GENERAL;SCI
+
+# === BMJ 系列 ===
+BMJ;MEDICINE, GENERAL;SCI
+BMJ Open;MEDICINE, GENERAL;SCI
+BMJ Mental Health;PSYCHOLOGY, CLINICAL;SSCI
+
+# === APA (American Psychological Association) ===
+Journal of Personality and Social Psychology;PSYCHOLOGY, SOCIAL;SSCI
+Psychological Bulletin;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Psychological Review;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Journal of Abnormal Psychology;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Consulting and Clinical Psychology;PSYCHOLOGY, CLINICAL;SSCI
+Developmental Psychology;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Journal of Applied Psychology;PSYCHOLOGY, APPLIED;SSCI
+Journal of Experimental Psychology-General;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Journal of Personality Assessment;PSYCHOLOGY, CLINICAL;SSCI
+Assessment;PSYCHOLOGY, CLINICAL;SSCI
+Professional Psychology-Research and Practice;PSYCHOLOGY, CLINICAL;SSCI
+American Psychologist;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Psychology of Addictive Behaviors;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Counseling Psychology;PSYCHOLOGY, COUNSELING;SSCI
+Health Psychology;PSYCHOLOGY, CLINICAL;SSCI
+Neuropsychology;PSYCHOLOGY, CLINICAL;SSCI
+Psychology and Aging;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Journal of Educational Psychology;PSYCHOLOGY, EDUCATIONAL;SSCI
+Journal of Occupational Health Psychology;PSYCHOLOGY, APPLIED;SSCI
+Personnel Psychology;PSYCHOLOGY, APPLIED;SSCI
+Journal of Vocational Behavior;PSYCHOLOGY, APPLIED;SSCI
+Organizational Behavior and Human Decision Processes;PSYCHOLOGY, APPLIED;SSCI
+Journal of Experimental Psychology-Learning Memory and Cognition;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Journal of Experimental Psychology-Animal Learning and Cognition;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Developmental Review;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Psychology of Sport and Exercise;PSYCHOLOGY, APPLIED;SSCI
+Journal of Sport & Exercise Psychology;PSYCHOLOGY, APPLIED;SSCI
+International Journal of Sport Psychology;PSYCHOLOGY, APPLIED;SSCI
+Journal of Clinical Psychology;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Traumatic Stress;PSYCHOLOGY, CLINICAL;SSCI
+Psychological Assessment;PSYCHOLOGY, CLINICAL;SSCI
+Psychoanalytic Psychology;PSYCHOLOGY, PSYCHOANALYSIS;SSCI
+
+# === APS (Association for Psychological Science) ===
+Psychological Science;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Current Directions in Psychological Science;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Perspectives on Psychological Science;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Clinical Psychological Science;PSYCHOLOGY, CLINICAL;SSCI
+Social Psychological and Personality Science;PSYCHOLOGY, SOCIAL;SSCI
+
+# === SPSP (Society for Personality and Social Psychology) ===
+Personality and Social Psychology Review;PSYCHOLOGY, SOCIAL;SSCI
+Personality & Social Psychology Bulletin;PSYCHOLOGY, SOCIAL;SSCI
+Social Psychology;PSYCHOLOGY, SOCIAL;SSCI
+European Journal of Social Psychology;PSYCHOLOGY, SOCIAL;SSCI
+Journal of Experimental Social Psychology;PSYCHOLOGY, SOCIAL;SSCI
+Social Cognition;PSYCHOLOGY, SOCIAL;SSCI
+Self and Identity;PSYCHOLOGY, SOCIAL;SSCI
+Group Processes & Intergroup Relations;PSYCHOLOGY, SOCIAL;SSCI
+
+# === Clinical & Psychiatry ===
+World Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+American Journal of Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+British Journal of Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+Schizophrenia Bulletin;PSYCHOLOGY, CLINICAL;SSCI
+Depression and Anxiety;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Anxiety Disorders;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Affective Disorders;PSYCHOLOGY, CLINICAL;SSCI
+Bipolar Disorders;PSYCHOLOGY, CLINICAL;SSCI
+Eating Behaviors;PSYCHOLOGY, CLINICAL;SSCI
+Psychotherapy and Psychosomatics;PSYCHOLOGY, CLINICAL;SSCI
+Psychosomatic Medicine;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Psychosomatic Research;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Clinical Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Nervous and Mental Disease;PSYCHOLOGY, CLINICAL;SSCI
+Psychiatry Research;PSYCHOLOGY, CLINICAL;SSCI
+Comprehensive Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+Acta Psychiatrica Scandinavica;PSYCHOLOGY, CLINICAL;SSCI
+European Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+Australian and New Zealand Journal of Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+Canadian Journal of Psychiatry-Revue Canadienne de Psychiatrie;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Psychiatry & Neuroscience;PSYCHOLOGY, CLINICAL;SSCI
+CNS Drugs;PHARMACOLOGY;SCI
+Human Psychopharmacology-Clinical and Experimental;PSYCHOLOGY, CLINICAL;SSCI
+
+# === Cognitive Neuroscience ===
+Cognitive Psychology;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Cognition;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Cognition and Emotion;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Neuropsychologia;PSYCHOLOGY, BIOLOGICAL;SSCI
+Brain and Cognition;PSYCHOLOGY, BIOLOGICAL;SSCI
+Human Brain Mapping;NEUROIMAGING;SSCI
+Social Cognitive and Affective Neuroscience;NEUROSCIENCES;SSCI
+Journal of Cognitive Neuroscience;NEUROSCIENCES;SSCI
+Cerebral Cortex;NEUROSCIENCES;SCI
+Neuroimage;NEUROSCIENCES;SCI
+Brain;NEUROSCIENCES;SCI
+Neuroscience and Biobehavioral Reviews;NEUROSCIENCES;SCI
+Behavioural Brain Research;NEUROSCIENCES;SCI
+Journal of Neuroscience;NEUROSCIENCES;SCI
+Neuron;NEUROSCIENCES;SCI
+Trends in Cognitive Sciences;NEUROSCIENCES;SCI
+Brain Structure and Function;NEUROSCIENCES;SCI
+Neuropsychology Review;PSYCHOLOGY, CLINICAL;SSCI
+Cognitive Neuropsychology;PSYCHOLOGY, EXPERIMENTAL;SSCI
+
+# === Developmental & Education ===
+Child Development;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Developmental Science;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Development and Psychopathology;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Journal of Child Psychology and Psychiatry;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Infant and Child Development;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Early Childhood Research Quarterly;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Journal of Experimental Child Psychology;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Learning and Instruction;PSYCHOLOGY, EDUCATIONAL;SSCI
+Contemporary Educational Psychology;PSYCHOLOGY, EDUCATIONAL;SSCI
+Educational Psychology Review;PSYCHOLOGY, EDUCATIONAL;SSCI
+Psychology in the Schools;PSYCHOLOGY, EDUCATIONAL;SSCI
+School Psychology Quarterly;PSYCHOLOGY, EDUCATIONAL;SSCI
+School Psychology Review;PSYCHOLOGY, EDUCATIONAL;SSCI
+Journal of School Psychology;PSYCHOLOGY, EDUCATIONAL;SSCI
+Infant Behavior and Development;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Early Human Development;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+Journal of Developmental and Behavioral Pediatrics;PSYCHOLOGY, DEVELOPMENTAL;SSCI
+
+# === Health & Public Health ===
+Annals of Behavioral Medicine;BEHAVIORAL SCIENCE;SSCI
+Behavioral Medicine;BEHAVIORAL SCIENCE;SSCI
+International Journal of Behavioral Medicine;BEHAVIORAL SCIENCE;SSCI
+Journal of Behavioral Medicine;BEHAVIORAL SCIENCE;SSCI
+Psychology Health & Medicine;HEALTH POLICY;SSCI
+American Journal of Public Health;PUBLIC HEALTH;SSCI
+Social Science & Medicine;SOCIAL SCIENCES, BIOMEDICAL;SSCI
+Journal of Epidemiology and Community Health;PUBLIC HEALTH;SSCI
+Health Promotion International;PUBLIC HEALTH;SSCI
+International Journal of Public Health;PUBLIC HEALTH;SSCI
+Preventive Medicine;PUBLIC HEALTH;SSCI
+Journal of Health and Social Behavior;SOCIOLOGY;SSCI
+
+# === Personality & Individual Differences ===
+Journal of Personality;PSYCHOLOGY, PERSONALITY;SSCI
+Personality and Individual Differences;PSYCHOLOGY, PERSONALITY;SSCI
+European Journal of Personality;PSYCHOLOGY, PERSONALITY;SSCI
+Journal of Research in Personality;PSYCHOLOGY, PERSONALITY;SSCI
+
+# === Methodology & Statistics ===
+Psychometrika;PSYCHOLOGY, MATHEMATICAL;SSCI
+British Journal of Mathematical and Statistical Psychology;PSYCHOLOGY, MATHEMATICAL;SSCI
+Structural Equation Modeling;PSYCHOLOGY, MATHEMATICAL;SSCI
+Psychological Methods;PSYCHOLOGY, MATHEMATICAL;SSCI
+Behavior Research Methods;PSYCHOLOGY, MATHEMATICAL;SSCI
+Multivariate Behavioral Research;PSYCHOLOGY, MATHEMATICAL;SSCI
+Psychological Test and Assessment;PSYCHOLOGY, MATHEMATICAL;SSCI
+
+# === Psychiatry & Mental Health (Open Access) ===
+Frontiers in Psychology;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+Frontiers in Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+BMC Psychiatry;PSYCHOLOGY, CLINICAL;SSCI
+BMC Psychology;PSYCHOLOGY, MULTIDISCIPLINARY;SSCI
+PLOS ONE;MULTIDISCIPLINARY;SCI
+Scientific Reports;MULTIDISCIPLINARY;SCI
+
+# === Psychotherapy ===
+Journal of Psychotherapy Integration;PSYCHOLOGY, CLINICAL;SSCI
+Psychotherapy Research;PSYCHOLOGY, CLINICAL;SSCI
+Clinical Psychology Review;PSYCHOLOGY, CLINICAL;SSCI
+Cognitive Therapy and Research;PSYCHOLOGY, CLINICAL;SSCI
+Behaviour Research and Therapy;PSYCHOLOGY, CLINICAL;SSCI
+
+# === Applied Psychology ===
+Applied Psychology-An International Journal;PSYCHOLOGY, APPLIED;SSCI
+Applied Psychology-Health and Well Being;PSYCHOLOGY, APPLIED;SSCI
+Journal of Organizational Behavior;PSYCHOLOGY, APPLIED;SSCI
+Human Relations;PSYCHOLOGY, APPLIED;SSCI
+Journal of Occupational and Organizational Psychology;PSYCHOLOGY, APPLIED;SSCI
+Work & Stress;PSYCHOLOGY, APPLIED;SSCI
+International Journal of Stress Management;PSYCHOLOGY, APPLIED;SSCI
+Journal of Managerial Psychology;PSYCHOLOGY, APPLIED;SSCI
+European Journal of Work and Organizational Psychology;PSYCHOLOGY, APPLIED;SSCI
+Journal of Business and Psychology;PSYCHOLOGY, APPLIED;SSCI
+Career Development Quarterly;PSYCHOLOGY, APPLIED;SSCI
+
+# === Experimental Psychology ===
+Journal of Experimental Psychology-Human Perception and Performance;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Journal of Experimental Psychology-Applied;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Attention Perception & Psychophysics;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Psychonomic Bulletin & Review;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Memory & Cognition;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Visual Cognition;PSYCHOLOGY, EXPERIMENTAL;SSCI
+Quarterly Journal of Experimental Psychology;PSYCHOLOGY, EXPERIMENTAL;SSCI
+
+# === Biological Psychology ===
+Biological Psychology;PSYCHOLOGY, BIOLOGICAL;SSCI
+Psychophysiology;PSYCHOLOGY, BIOLOGICAL;SSCI
+Psychobiology;PSYCHOLOGY, BIOLOGICAL;SSCI
+Behavioral Neuroscience;PSYCHOLOGY, BIOLOGICAL;SSCI
+Developmental Neurobiology;NEUROSCIENCES;SCI
+
+# === Educational Psychology ===
+Educational Psychology Quarterly;PSYCHOLOGY, EDUCATIONAL;SSCI
+Educational Psychologist;PSYCHOLOGY, EDUCATIONAL;SSCI
+Journal of Learning Disabilities;PSYCHOLOGY, EDUCATIONAL;SSCI
+Learning Disabilities Research and Practice;PSYCHOLOGY, EDUCATIONAL;SSCI
+Remedial and Special Education;PSYCHOLOGY, EDUCATIONAL;SSCI
+
+# === Counseling Psychology ===
+Counseling Psychologist;PSYCHOLOGY, COUNSELING;SSCI
+Journal of College Student Psychotherapy;PSYCHOLOGY, COUNSELING;SSCI
+Career Development and Transition for Exceptional Individuals;PSYCHOLOGY, COUNSELING;SSCI
+
+# === Psychoanalysis ===
+Journal of the American Psychoanalytic Association;PSYCHOLOGY, PSYCHOANALYSIS;SSCI
+Psychoanalytic Quarterly;PSYCHOLOGY, PSYCHOANALYSIS;SSCI
+International Journal of Psychoanalysis;PSYCHOLOGY, PSYCHOANALYSIS;SSCI
+American Journal of Psychoanalysis;PSYCHOLOGY, PSYCHOANALYSIS;SSCI
+
+# === Social Issues ===
+Social Issues and Policy Review;POLITICAL SCIENCE;SSCI
+Social Psychology of Education;PSYCHOLOGY, SOCIAL;SSCI
+
+# === Gerontology ===
+Journals of Gerontology Series B-Psychological Sciences;GERONTOLOGY;SSCI
+Aging & Mental Health;GERONTOLOGY;SSCI
+Ageing Research Reviews;GERONTOLOGY;SCI
+
+# === Child & Adolescent ===
+Child Abuse & Neglect;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Clinical Child and Adolescent Psychology;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Abnormal Child Psychology;PSYCHOLOGY, CLINICAL;SSCI
+Journal of Pediatric Psychology;PSYCHOLOGY, CLINICAL;SSCI
+School Mental Health;PSYCHOLOGY, EDUCATIONAL;SSCI
+
+# === Addiction ===
+Addiction;PSYCHOLOGY, CLINICAL;SSCI
+Drug and Alcohol Dependence;PSYCHOLOGY, CLINICAL;SSCI
+Alcoholism-Clinical and Experimental Research;PSYCHOLOGY, CLINICAL;SSCI
+Addiction Biology;PSYCHOLOGY, BIOLOGICAL;SSCI
+Journal of Studies on Alcohol and Drugs;PSYCHOLOGY, CLINICAL;SSCI
+
+# === Trauma & Stress ===
+Psychology of Trauma;PSYCHOLOGY, CLINICAL;SSCI
+Stress and Health;PSYCHOLOGY, CLINICAL;SSCI
+Traumatology;PSYCHOLOGY, CLINICAL;SSCI
+
+# === Keywords for filtering ===
+# Psychology, psychological, behaviour, behavior, cognitive, mental health, 
+# depression, anxiety, schizophrenia, social psychology, personality, 
+# developmental, neuroscience, neuroimaging, psychotherapy, mental illness, 
+# psychiatric, wellbeing, health, public health, behavioral

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Feishu Task Agent"
+  short_description: "飞书任务编排、智能体注册与日报画像总入口。"
+  default_prompt: "Use $feishu-task-agent to route between Feishu task orchestration, task-agent registration, and daily.json profile refresh based on the user's intent."
+
+policy:
+  allow_implicit_invocation: true

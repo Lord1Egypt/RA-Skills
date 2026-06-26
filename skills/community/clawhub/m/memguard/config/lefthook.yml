@@ -1,0 +1,21 @@
+# MemGuard -- lefthook configuration
+# Installed by: memguard hook install
+# Documentation: https://memguard.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    memguard-memory-scan:
+      run: |
+        MEMGUARD_SKILL_DIR="${MEMGUARD_SKILL_DIR:-$HOME/.openclaw/skills/memguard}"
+        if [[ -f "$MEMGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$MEMGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$MEMGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_memory_scan
+        else
+          echo "[MemGuard] Skill not found at $MEMGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Memory leak risks detected in staged files!
+        Run 'memguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

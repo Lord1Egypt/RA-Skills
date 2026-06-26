@@ -1,35 +1,33 @@
 ---
-name: "Ru Pack"
-description: "Шесть скиллов для русскоязычных пользователей — договоры, ЖКХ, анализы, претензии, госдокументы и налоги ИП."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ru-pack"
-sourceUrl: "https://clawhub.ai/skills/ru-pack"
+name: Русский Пак — 6 скиллов для жизни
+slug: ru-pack
+version: 1.0.0
+description: Шесть скиллов для русскоязычных пользователей — договоры, ЖКХ, анализы, претензии, госдокументы и налоги ИП.
+metadata: {"clawdbot":{"emoji":"🇷🇺","requires":{"bins":[]},"os":["linux","darwin","win32"]}}
 ---
 
-# Ru Pack
+## Что входит в пак
 
-> Шесть скиллов для русскоязычных пользователей — договоры, ЖКХ, анализы, претензии, госдокументы и налоги ИП.
+| Скилл | Что делает |
+|-------|-----------|
+| 📄 dogovor-ru | Объясняет договоры аренды, трудовые, кредитные, ипотечные |
+| 🏠 zhkh-ru | Расшифровывает квитанции ЖКХ, считает итог, выявляет ошибки |
+| 🩺 analizy-ru | Переводит медицинские анализы с врачебного на человеческий |
+| ✍️ pretenziya-ru | Составляет претензии и жалобы в банки, магазины, госорганы |
+| 🔤 chinovnik-ru | Переводит официальные письма и постановления на простой язык |
+| 🧮 nalog-ru | Считает налог УСН 6% и НПД для ИП и самозанятых |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ru-pack`
-- **Source URL:** [https://clawhub.ai/skills/ru-pack](https://clawhub.ai/skills/ru-pack)
+## Как использовать
 
-## Overview
+Просто напиши что тебе нужно — пак сам определит нужный скилл:
 
+- "объясни этот договор аренды"
+- "расшифруй квитанцию ЖКХ"
+- "что значат мои анализы"
+- "помоги написать претензию в магазин"
+- "что значит это письмо из налоговой"
+- "я ИП на УСН, заработал 200 000 за квартал"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ru-pack
-```
+## Для кого
+
+Для всех кто живёт в России и СНГ и хочет разбираться в документах, коммуналке, медицине и налогах — без юристов, бухгалтеров и часов в гугле.

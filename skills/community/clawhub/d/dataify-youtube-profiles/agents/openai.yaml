@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify YouTube Profiles"
+  short_description: "Choose URL or keyword mode for YouTube profile collection"
+  icon_small: "./assets/dataify-youtube-profiles-small.svg"
+  icon_large: "./assets/dataify-youtube-profiles-large.svg"
+  default_prompt: "Use $dataify-youtube-profiles to choose URL or keyword mode, submit a YouTube profiles Builder task through Dataify, and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

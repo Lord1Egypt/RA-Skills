@@ -1,0 +1,13 @@
+interface:
+  display_name: "Portfolio Analytics"
+  short_description: "Compute portfolio risk and exposure metrics."
+  default_prompt: |
+    Use $portfolio-analytics to compute risk metrics for the supplied holdings and price history.
+    Report volatility, drawdown, beta when benchmark data exists, concentration, correlation, confidence, and data gaps.
+    Treat analytics as context for risk management, not as automatic rebalance instructions.
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools: []

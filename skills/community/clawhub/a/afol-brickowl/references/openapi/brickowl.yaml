@@ -1,0 +1,742 @@
+openapi: 3.0.3
+info:
+  title: BrickOwl API
+  description: |
+    The BrickOwl API provides programmatic access to the BrickOwl LEGO Marketplace.
+
+    ## Authentication
+    - API key required for all requests
+    - For GET requests: Add key as URL parameter
+    - For POST requests: Include key in request body
+
+    ## Rate Limits
+    - 600 requests/minute for most endpoints
+    - 200 requests/minute for bulk/batch operations
+  version: 1.0.0
+  contact:
+    name: BrickOwl API
+    url: https://www.brickowl.com/api_docs
+servers:
+  - url: https://api.brickowl.com/v1
+    description: BrickOwl API Server
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /catalog/search:
+    get:
+      tags:
+        - Catalog
+      summary: Search the catalog
+      description: Search for items in the BrickOwl catalog
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API key
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search term
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - name: missing_data
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Filter for items with missing catalog data
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Item type filter (e.g., Part, Set, Minifigure, Gear, Book, Instructions, Sticker, Box, Catalog, Minibuild)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogSearchResponse'
+        '400':
+          description: Bad request
+        '429':
+          description: Rate limit exceeded
+
+  /catalog/id_lookup:
+    get:
+      tags:
+        - Catalog
+      summary: Look up item by ID
+      description: Lightweight endpoint to look up BrickOwl ID (BOID) from various ID types
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API key
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID to look up
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [Part, Set, Minifigure, Gear, Sticker, Minibuild, Instructions, Packaging]
+          description: Item type filter
+        - name: id_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [item_no, design_id, bl_item_no, set_number]
+          description: Type of ID being provided
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogIdLookupResponse'
+        '400':
+          description: Bad request
+        '429':
+          description: Rate limit exceeded
+
+  /inventory/list:
+    get:
+      tags:
+        - Inventory
+      summary: List store inventory
+      description: Get a list of all items in your store inventory
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API key
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryLot'
+
+  /inventory/update:
+    post:
+      tags:
+        - Inventory
+      summary: Update inventory lot
+      description: Update an existing inventory lot (must provide lot_id or external_lot_id, plus at least one field to update)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: API key
+                lot_id:
+                  type: integer
+                  description: Lot ID to update (either lot_id or external_lot_id required)
+                external_lot_id:
+                  type: string
+                  description: External lot ID to update (either lot_id or external_lot_id required)
+                absolute_quantity:
+                  type: integer
+                  description: Set absolute quantity (replaces current quantity)
+                relative_quantity:
+                  type: integer
+                  description: Adjust quantity by this amount (adds to current quantity)
+                price:
+                  type: number
+                  format: float
+                  description: Update price
+                condition:
+                  type: string
+                  description: Update condition
+                for_sale:
+                  type: boolean
+                  description: Set whether lot is for sale
+                public_note:
+                  type: string
+                  description: Update public note
+                personal_note:
+                  type: string
+                  description: Update personal note
+                delete:
+                  type: boolean
+                  description: Set to true to delete the lot
+              required:
+                - key
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryUpdateResponse'
+
+  /inventory/create:
+    post:
+      tags:
+        - Inventory
+      summary: Create inventory lot
+      description: Create a new inventory lot
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InventoryCreateRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryCreateResponse'
+
+  /order/list:
+    get:
+      tags:
+        - Orders
+      summary: List orders
+      description: Get a list of orders for your store
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API key
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [Pending, Processing, Shipped, Received, Cancelled]
+          description: Filter by order status
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+
+  /order/view:
+    get:
+      tags:
+        - Orders
+      summary: View order details
+      description: Get detailed information about a specific order
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API key
+        - name: order_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Order ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetailResponse'
+
+  /wishlist/create_list:
+    post:
+      tags:
+        - Wishlist
+      summary: Create wishlist
+      description: Create a new wishlist
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WishlistCreateRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistCreateResponse'
+
+  /user/details:
+    get:
+      tags:
+        - User
+      summary: Get user details
+      description: Retrieve details about the user who the API key belongs to
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: API key
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /bulk:
+    post:
+      tags:
+        - Bulk
+      summary: Bulk requests
+      description: Execute multiple API requests in a single call
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BulkRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: key
+
+  schemas:
+    CatalogSearchResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+        total_available:
+          type: string
+          description: Total number of results available
+
+    CatalogItem:
+      type: object
+      properties:
+        boid:
+          type: string
+          description: BrickOwl Item ID
+        type:
+          type: string
+          description: Item type (e.g., Part, Set, Minifigure, Gear, Book, Instructions, Sticker, Box, Catalog, Minibuild)
+        name:
+          type: string
+        permalink:
+          type: string
+          description: URL to the item on BrickOwl
+        image_url:
+          type: string
+        color_id:
+          type: integer
+        color_name:
+          type: string
+        design_id:
+          type: string
+        year_released:
+          type: integer
+
+    CatalogIdLookupResponse:
+      type: object
+      properties:
+        boids:
+          type: array
+          items:
+            type: string
+          description: List of BrickOwl Item IDs (BOIDs) matching the lookup
+
+    InventoryListResponse:
+      type: object
+      properties:
+        lots:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryLot'
+        total_count:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+
+    InventoryLot:
+      type: object
+      properties:
+        lot_id:
+          type: string
+        boid:
+          type: string
+        con:
+          type: string
+          description: Short condition code
+        full_con:
+          type: string
+          description: Full condition code (news, newc, etc.)
+        qty:
+          type: string
+        price:
+          type: string
+        base_price:
+          type: string
+        final_price:
+          type: string
+        url:
+          type: string
+        owl_id:
+          type: string
+        public_note:
+          type: string
+        personal_note:
+          type: string
+        sale_percent:
+          type: string
+        bulk_qty:
+          type: string
+        for_sale:
+          type: string
+        my_cost:
+          type: string
+        lot_weight:
+          type: string
+        reserve_uid:
+          type: string
+        type:
+          type: string
+          description: Item type (Set, Part, Minifigure, etc.)
+        external_lot_ids:
+          type: array
+          items:
+            type: string
+        ids:
+          type: array
+          items:
+            type: object
+        tier_price:
+          type: array
+          items:
+            type: object
+
+    InventoryUpdateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        lots:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryUpdateLot'
+      required:
+        - key
+        - lots
+
+    InventoryUpdateLot:
+      type: object
+      properties:
+        lot_id:
+          type: integer
+          description: For updates, provide existing lot ID
+        boid:
+          type: string
+          description: For new lots, provide BrickOwl Item ID
+        quantity:
+          type: integer
+        price:
+          type: number
+          format: float
+        condition:
+          type: string
+          enum: [New, Used]
+        description:
+          type: string
+        external_lot_id:
+          type: string
+        delete:
+          type: boolean
+          description: Set to true to delete the lot
+
+    InventoryUpdateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        updated_lots:
+          type: array
+          items:
+            type: integer
+
+    InventoryCreateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          description: API key
+        boid:
+          type: string
+          description: BrickOwl Item ID
+        color_id:
+          type: integer
+          description: BrickOwl color ID (required for Parts, optional for Gear/Minibuild)
+        quantity:
+          type: integer
+          description: Quantity of the lot (must be > 0)
+        price:
+          type: number
+          format: float
+          description: Price of the lot (will be rounded to 3 decimal places)
+        condition:
+          type: string
+          enum: [news, newc, newi, usedc, usedi, usedn, usedg, useda, other]
+          description: Condition ID (lowercase) - note that "new" alone is not valid
+        external_id:
+          type: string
+          description: Optional external ID for reference
+      required:
+        - key
+        - boid
+        - quantity
+        - price
+        - condition
+
+    InventoryCreateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        lot_id:
+          type: integer
+          description: The ID of the created lot
+
+    OrderListResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        total_count:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: integer
+        order_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [Pending, Processing, Shipped, Received, Cancelled]
+        buyer_name:
+          type: string
+        total_amount:
+          type: number
+          format: float
+        currency:
+          type: string
+        item_count:
+          type: integer
+
+    OrderDetailResponse:
+      type: object
+      properties:
+        order_id:
+          type: integer
+        order_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+        buyer_name:
+          type: string
+        buyer_email:
+          type: string
+        total_amount:
+          type: number
+          format: float
+        currency:
+          type: string
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+
+    OrderItem:
+      type: object
+      properties:
+        lot_id:
+          type: integer
+        boid:
+          type: string
+        quantity:
+          type: integer
+        unit_price:
+          type: number
+          format: float
+        total_price:
+          type: number
+          format: float
+        condition:
+          type: string
+        description:
+          type: string
+
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postal_code:
+          type: string
+        country_code:
+          type: string
+
+    WishlistCreateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - key
+        - name
+
+    WishlistCreateResponse:
+      type: object
+      properties:
+        wishlist_id:
+          type: integer
+        success:
+          type: boolean
+        message:
+          type: string
+
+    UserResponse:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        store_name:
+          type: string
+        store_url:
+          type: string
+        country:
+          type: string
+
+    BulkRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkRequestItem'
+      required:
+        - key
+        - requests
+
+    BulkRequestItem:
+      type: object
+      properties:
+        endpoint:
+          type: string
+        request_method:
+          type: string
+          enum: [GET, POST]
+        params:
+          type: object
+          additionalProperties: true
+
+    BulkResponse:
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            type: object
+            additionalProperties: true

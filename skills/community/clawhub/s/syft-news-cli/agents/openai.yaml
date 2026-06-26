@@ -1,0 +1,7 @@
+interface:
+  display_name: "Syft News Skills"
+  short_description: "Access Syft News for AI pre-recalled by-topic pools, keyword search, and news extraction."
+  default_prompt: "Use $syft-news-skills to build a profile-aware daily briefing from my followed topics and recent Syft news."
+
+policy:
+  allow_implicit_invocation: true

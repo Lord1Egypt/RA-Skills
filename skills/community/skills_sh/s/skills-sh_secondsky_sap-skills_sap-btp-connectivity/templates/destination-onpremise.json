@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "SAP BTP On-Premise Destinations - Templates",
+
+  "destinations": [
+    {
+      "$comment": "======== HTTP ON-PREMISE WITH PRINCIPAL PROPAGATION ========",
+      "Name": "onprem-sap-gateway",
+      "Type": "HTTP",
+      "URL": "http://virtual-host:443/sap/opu/odata/sap/API_BUSINESS_PARTNER",
+      "ProxyType": "OnPremise",
+      "Authentication": "PrincipalPropagation",
+      "Description": "User propagation to on-premise SAP Gateway",
+
+      "$comment_location": "Required if multiple Cloud Connectors",
+      "CloudConnectorLocationId": "loc1",
+
+      "$comment_headers": "Optional custom headers",
+      "sap-client": "100"
+    },
+    {
+      "$comment": "======== HTTP ON-PREMISE WITH BASIC AUTH ========",
+      "Name": "onprem-basic-auth",
+      "Type": "HTTP",
+      "URL": "http://virtual-host:443/api",
+      "ProxyType": "OnPremise",
+      "Authentication": "BasicAuthentication",
+      "Description": "Technical user access to on-premise system",
+
+      "User": "<technical-user>",
+      "Password": "<password>",
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== HTTP ON-PREMISE NO AUTH ========",
+      "Name": "onprem-no-auth",
+      "Type": "HTTP",
+      "URL": "http://virtual-host:8080/health",
+      "ProxyType": "OnPremise",
+      "Authentication": "NoAuthentication",
+      "Description": "Internal endpoint without authentication",
+
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== RFC DESTINATION ========",
+      "Name": "onprem-rfc-destination",
+      "Type": "RFC",
+      "ProxyType": "OnPremise",
+      "Description": "RFC connection to on-premise SAP system",
+
+      "$comment_auth": "User Logon Properties",
+      "User": "<rfc-user>",
+      "Password": "<password>",
+
+      "$comment_target": "Target System Configuration",
+      "jco.client.ashost": "virtual-host",
+      "jco.client.sysnr": "00",
+      "jco.client.client": "100",
+      "jco.client.lang": "EN",
+
+      "$comment_pool": "Optional Pooling Configuration",
+      "jco.destination.pool_capacity": "10",
+      "jco.destination.peak_limit": "50",
+
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== RFC WITH PRINCIPAL PROPAGATION ========",
+      "Name": "onprem-rfc-pp",
+      "Type": "RFC",
+      "ProxyType": "OnPremise",
+      "Authentication": "PrincipalPropagation",
+      "Description": "RFC with user propagation",
+
+      "jco.client.ashost": "virtual-host",
+      "jco.client.sysnr": "00",
+      "jco.client.client": "100",
+      "jco.client.lang": "EN",
+
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== LDAP DESTINATION ========",
+      "Name": "onprem-ldap",
+      "Type": "LDAP",
+      "URL": "ldap://virtual-host:389",
+      "ProxyType": "OnPremise",
+      "Authentication": "BasicAuthentication",
+      "Description": "LDAP directory access",
+
+      "User": "cn=admin,dc=example,dc=com",
+      "Password": "<ldap-password>",
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== LDAPS (SECURE) DESTINATION ========",
+      "Name": "onprem-ldaps",
+      "Type": "LDAP",
+      "URL": "ldaps://virtual-host:636",
+      "ProxyType": "OnPremise",
+      "Authentication": "BasicAuthentication",
+      "Description": "Secure LDAP directory access",
+
+      "User": "cn=admin,dc=example,dc=com",
+      "Password": "<ldap-password>",
+      "TrustStoreLocation": "<truststore-name>.jks",
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== MAIL (SMTP) DESTINATION ========",
+      "Name": "onprem-smtp",
+      "Type": "MAIL",
+      "ProxyType": "OnPremise",
+      "Authentication": "BasicAuthentication",
+      "Description": "SMTP mail server",
+
+      "User": "<smtp-user>",
+      "Password": "<smtp-password>",
+      "mail.smtp.host": "virtual-host",
+      "mail.smtp.port": "25",
+      "mail.smtp.auth": "true",
+      "CloudConnectorLocationId": "loc1"
+    },
+    {
+      "$comment": "======== TCP DESTINATION ========",
+      "Name": "onprem-tcp",
+      "Type": "TCP",
+      "ProxyType": "OnPremise",
+      "Description": "Generic TCP connection",
+
+      "Address": "virtual-host:3306",
+      "CloudConnectorLocationId": "loc1"
+    }
+  ],
+
+  "$cloud_connector_setup": {
+    "instructions": [
+      "1. Install Cloud Connector in on-premise network",
+      "2. Connect to your SAP BTP subaccount",
+      "3. Configure Access Control for each backend",
+      "4. Map virtual hosts to internal hosts",
+      "5. Expose required resources/paths",
+      "6. Note the Location ID if using multiple connectors"
+    ],
+    "system_mapping": {
+      "virtual_host": "Name exposed to BTP (use in destination URL)",
+      "internal_host": "Actual hostname in on-premise network",
+      "virtual_port": "Port exposed to BTP",
+      "internal_port": "Actual port on internal system"
+    }
+  },
+
+  "$usage": {
+    "instructions": [
+      "1. Ensure Cloud Connector is configured",
+      "2. Copy the appropriate destination configuration",
+      "3. Replace virtual-host with your Cloud Connector mapping",
+      "4. Replace all <placeholder> values",
+      "5. Remove $comment fields before import"
+    ]
+  }
+}

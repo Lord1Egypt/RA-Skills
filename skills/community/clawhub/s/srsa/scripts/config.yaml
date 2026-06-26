@@ -1,0 +1,4 @@
+desired_retention: 0.9
+database_path: cache/fsrs.sqlite
+enable_fuzzing: false
+maximum_interval: 36500

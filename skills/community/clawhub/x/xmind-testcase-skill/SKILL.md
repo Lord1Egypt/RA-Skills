@@ -1,35 +1,22 @@
----
-name: "hdyceshiceshi"
-description: "Generate structured XMind test cases from functional requirement descriptions for login, registration, checkout, search, and related features."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xmind-testcase-skill"
-sourceUrl: "https://clawhub.ai/skills/xmind-testcase-skill"
----
+name: xmind-testcase
+version: 0.1.0
+description: >
+  Generate XMind test cases from requirement descriptions.
+  This Skill analyzes functional requirements and automatically
+  produces structured test cases in XMind format. Supports login,
+  registration, checkout, search features, and more.
 
-# hdyceshiceshi
+entry:
+  type: script
+  command: python3 scripts/generate_xmind.py
 
-> Generate structured XMind test cases from functional requirement descriptions for login, registration, checkout, search, and related features.
+inputs:
+  requirement:
+    type: string
+    description: The functional requirement description.
+    example: "用户登录功能：支持用户名密码登录，密码错误提示，三次失败锁定"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xmind-testcase-skill`
-- **Source URL:** [https://clawhub.ai/skills/xmind-testcase-skill](https://clawhub.ai/skills/xmind-testcase-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xmind-testcase-skill
-```
+outputs:
+  xmind_file:
+    type: file
+    description: The generated XMind test case file.

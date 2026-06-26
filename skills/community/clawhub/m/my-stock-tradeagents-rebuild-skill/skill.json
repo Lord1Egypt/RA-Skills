@@ -1,0 +1,10 @@
+
+{
+  "name": "my_stock_tradeagents_rebuild_skill",
+  "slug": "canonxu/my_stock_tradeagents_rebuild_skill",
+  "version": "1.0.1",
+  "description": "在 ~/TradingAgents 目录下重新创建并激活 conda 环境（Python 3.13），重建 TradingAgents 开发环境",
+  "author": "canonxu",
+  "license": "MIT",
+  "main": "SKILL.md"
+}

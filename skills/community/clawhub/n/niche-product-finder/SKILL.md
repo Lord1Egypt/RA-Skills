@@ -1,35 +1,95 @@
 ---
-name: "Niche Product Finder"
-description: "发现蓝海商品和细分市场机会，适合电商选品、副业创业、市场分析师。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/niche-product-finder"
-sourceUrl: "https://clawhub.ai/skills/niche-product-finder"
+name: niche-product-finder
+version: 1.0.0
+description: 发现蓝海商品和细分市场机会，适合电商选品、副业创业、市场分析师。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔍",
+        "requires": { "bins": ["python3"] },
+        "install": [],
+      },
+  }
 ---
 
-# Niche Product Finder
+# 蓝海商品发现技能
 
-> 发现蓝海商品和细分市场机会，适合电商选品、副业创业、市场分析师。
+发现低竞争高利润的细分市场商品机会。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/niche-product-finder`
-- **Source URL:** [https://clawhub.ai/skills/niche-product-finder](https://clawhub.ai/skills/niche-product-finder)
+## 功能
 
-## Overview
+1. **蓝海发现**: 低竞争高需求商品
+2. **趋势分析**: 上升期品类预测
+3. **利润测算**: 估算毛利空间
+4. **竞品分析**: 现有卖家数量
+5. **供应链推荐**: 1688 货源对接
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/niche-product-finder
+**找蓝海商品**:
 ```
+帮我找 3 个蓝海商品，要求月利润 1 万+
+```
+
+**分析品类**:
+```
+分析一下宠物用品市场的竞争情况
+```
+
+**利润测算**:
+```
+在淘宝卖手机壳能赚多少钱？
+```
+
+**找货源**:
+```
+找一下瑜伽垫的 1688 货源，要求利润 50%+
+```
+
+## 输出示例
+
+```
+🔍 蓝海商品推荐 (2026-03-24)
+
+1️⃣ 商品：宠物智能饮水机
+├─ 市场需求：月搜索 5 万+
+├─ 竞争程度：中低（卖家 200+）
+├─ 平均售价：¥89-159
+├─ 1688 成本：¥35-55
+├─ 毛利空间：55-65%
+├─ 月销潜力：300-500 件
+└─ 预估月利：¥8,000-15,000
+
+💡 机会点：
+- 竞争相对较小
+- 复购率高（滤芯）
+- 可打造品牌
+
+⚠️ 风险：
+- 需要一定启动资金
+- 物流成本较高
+
+📦 货源推荐：
+- 1688 厂家：义乌市 XXX 宠物用品厂
+- 起订量：50 件
+- 支持一件代发：是
+```
+
+## 变现模式
+
+- 免费：每日 3 次查询
+- 付费 (¥99/月)：无限查询 + 详细报告
+- 付费 (¥299/月)：+ 定制选品 + 货源对接
+
+## 优势
+
+- ✅ 高客单价
+- ✅ B 端用户付费意愿强
+- ✅ 可延伸咨询服务
+- ✅ 数据驱动决策
+
+---
+
+**声明**: 数据仅供参考，投资有风险。

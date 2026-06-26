@@ -1,0 +1,112 @@
+{
+  "name": "Hyperliquid Execution Layer",
+  "display_name": "Hyperliquid Execution Layer",
+  "slug": "hyperliquid-execution-layer",
+  "description": "Execution and risk-management framework for agents trading on Hyperliquid through a host-provided authenticated client. Covers trade validation, position sizing, funding checks, order confirmation, and safe-mode halts without collecting or managing secrets.",
+  "version": "1.2.0",
+  "author": "J\u00fcrgen Wolf",
+  "tags": [
+    "hyperliquid",
+    "execution",
+    "risk-management",
+    "trading",
+    "agent",
+    "automation"
+  ],
+  "inputs": [
+    {
+      "name": "authenticated_hyperliquid_client",
+      "type": "object",
+      "required": true,
+      "description": "Host-provided authenticated Hyperliquid client or signed execution session."
+    },
+    {
+      "name": "market",
+      "type": "string",
+      "required": true,
+      "description": "Market symbol such as BTC or ETH."
+    },
+    {
+      "name": "side",
+      "type": "string",
+      "required": true,
+      "description": "Trade direction: long or short."
+    },
+    {
+      "name": "strategy_signal",
+      "type": "object",
+      "required": true,
+      "description": "External strategy output indicating whether a trade is valid and at what levels."
+    },
+    {
+      "name": "account_state",
+      "type": "object",
+      "required": true,
+      "description": "Current balance, margin, open positions, and daily PnL."
+    },
+    {
+      "name": "entry_price",
+      "type": "number",
+      "required": true,
+      "description": "Expected entry price."
+    },
+    {
+      "name": "stop_loss",
+      "type": "number",
+      "required": true,
+      "description": "Invalidation price used for risk control."
+    },
+    {
+      "name": "risk_per_trade",
+      "type": "number",
+      "required": false,
+      "default": 0.01,
+      "description": "Fraction of account to risk per trade."
+    },
+    {
+      "name": "leverage",
+      "type": "number",
+      "required": false,
+      "default": 3,
+      "description": "Target leverage, generally between 2 and 5."
+    },
+    {
+      "name": "take_profit",
+      "type": "number",
+      "required": false,
+      "description": "Optional take-profit target."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "trade_status",
+      "type": "string",
+      "description": "Decision or execution result such as trade, skip, reduce, or halt."
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "description": "Human-readable explanation for the action."
+    },
+    {
+      "name": "order_request",
+      "type": "object",
+      "description": "Normalized order payload before submission."
+    },
+    {
+      "name": "execution_result",
+      "type": "object",
+      "description": "Submission or fill result returned by the host client."
+    },
+    {
+      "name": "position_state",
+      "type": "object",
+      "description": "Resulting position data after confirmation."
+    },
+    {
+      "name": "risk_summary",
+      "type": "object",
+      "description": "Computed exposure, stop distance, leverage, and daily risk state."
+    }
+  ]
+}

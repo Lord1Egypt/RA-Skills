@@ -1,0 +1,58 @@
+{
+  "name": "volcengine-doubao-image-gen",
+  "version": "1.1.0",
+  "description": "豆包图像与视频生成。使用火山引擎 API 生成图片和短视频，支持 Seedream 文生图/图生图/组图，以及 Seedance 文生视频。",
+  "author": "Kit",
+  "license": "MIT",
+  "keywords": [
+    "image-generation",
+    "video-generation",
+    "doubao",
+    "seedance",
+    "volcengine",
+    "ai-art"
+  ],
+  "main": "scripts/generate_image.py",
+  "scripts": {
+    "generate": "python3 scripts/generate_image.py",
+    "generate:video": "python3 scripts/generate_video.py"
+  },
+  "environment": {
+    "required": [
+      {
+        "name": "ARK_API_KEY",
+        "description": "火山引擎豆包 API Key，用于调用图片生成 API",
+        "type": "secret",
+        "required": true
+      }
+    ],
+    "optional": [
+      {
+        "name": "DOUBAO_MODEL",
+        "description": "豆包图片模型版本（默认：doubao-seedream-5-0-260128）",
+        "type": "string",
+        "required": false,
+        "default": "doubao-seedream-5-0-260128"
+      },
+      {
+        "name": "DOUBAO_VIDEO_MODEL",
+        "description": "豆包视频模型版本（默认：doubao-seedance-1-5-pro-251215）",
+        "type": "string",
+        "required": false,
+        "default": "doubao-seedance-1-5-pro-251215"
+      }
+    ]
+  },
+  "permissions": {
+    "network": {
+      "outbound": [
+        {
+          "host": "ark.cn-beijing.volces.com",
+          "port": 443,
+          "protocol": "https",
+          "purpose": "调用火山引擎豆包图片生成 API"
+        }
+      ]
+    }
+  }
+}

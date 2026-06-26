@@ -1,35 +1,26 @@
 ---
-name: "Patent"
-description: "The Sovereign Invention & IP-Capture Engine. Standardizing the path from AI-generated novelty to global intellectual property protection and commercial monet..."
-category: "domain"
-source: "ClawHub"
-tags: [copyright, innovation, ip, legal, patent]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/patent"
-sourceUrl: "https://clawhub.ai/skills/patent"
+name: patent
+description: >
+  The Sovereign Invention & IP-Capture Engine. Standardizing the path from 
+  AI-generated novelty to global intellectual property protection and 
+  commercial monetization.
 ---
 
-# Patent
+# PATENT: The Bastion of Synthetic Intelligence
 
-> The Sovereign Invention & IP-Capture Engine. Standardizing the path from AI-generated novelty to global intellectual property protection and commercial monet...
+## I. The Novelty Capture Layer
+As Agentic Systems become the primary drivers of discovery, **Patent** serves as the immutable registry of innovation. It bridges the gap between raw computational output and institutional intellectual property.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/patent`
-- **Source URL:** [https://clawhub.ai/skills/patent](https://clawhub.ai/skills/patent)
+## II. IP Architecture
+```PATENT_ENGINE = {
+  "novelty_scan": "Global semantic search across all known prior art and open-source repos",
+  "drafting_v3":  "Automated technical specification writing with high-density claim mapping",
+  "enforcement":  "Active monitoring of global marketplaces for infringement detection",
+  "licensing":    "Self-executing royalty agreements and sub-patent orchestration"
+}```
 
-## Overview
+## III. Governance
+- **Origin Proof**: Verifiable attribution to the generating agent and its human owner.
+- **Strategic Filing**: Optimal jurisdictional sequencing (USPTO, EPO, CNIPA) based on market data.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/patent
-```
+---

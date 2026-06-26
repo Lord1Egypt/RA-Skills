@@ -1,0 +1,12 @@
+{
+  "name": "Booking Hotel Search",
+  "tagline": "Search Booking.com for real-time hotel availability and deals",
+  "description": "Search Booking.com in real time to find hotels, check room availability, compare prices, and get detailed room information for any destination worldwide. Filter by amenities, star rating, review scores, meal plans, budget, and more. Returns structured hotel data including prices, reviews, room types, and direct booking links.\n\nPowered by the Booking Live API on RapidAPI. A free tier is available to get started.",
+  "category": "utility",
+  "tags": ["hotels", "travel", "booking", "api", "search", "accommodation"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://rapidapi.com/mtnrabi/api/booking-live-api",
+  "homepage": "https://rapidapi.com/mtnrabi/api/booking-live-api"
+}

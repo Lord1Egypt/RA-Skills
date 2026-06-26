@@ -1,35 +1,191 @@
 ---
-name: "ozon-product-selection"
-description: "Ozon电商选品工具：根据用户指定的品类，自动搜索市场趋势、提取热门细分关键词、 调用1688搜索API逐一选品，按筛选条件过滤后输出每个细分市场的最优商品推荐。 触发词：寻找Ozon蓝海商品、Ozon潜力爆品、Ozon可铺货商品、Ozon可卖的货盘、 Ozon选品、帮我选品、找Ozon能卖的商品、Ozon热门商..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ozon-product-selection"
-sourceUrl: "https://clawhub.ai/skills/ozon-product-selection"
+name: ozon-product-selection
+category: official-1688
+description: >-
+  Ozon电商选品工具：根据用户指定的品类，自动搜索市场趋势、提取热门细分关键词、
+  调用1688搜索API逐一选品，按筛选条件过滤后输出每个细分市场的最优商品推荐。
+  触发词：寻找Ozon蓝海商品、Ozon潜力爆品、Ozon可铺货商品、Ozon可卖的货盘、
+  Ozon选品、帮我选品、找Ozon能卖的商品、Ozon热门商品推荐。
+metadata:
+  version: 1.0.1
+  label: 1688Ozon选品
+  author: 1688官方技术团队
 ---
 
-# ozon-product-selection
+# Ozon 电商选品
 
-> Ozon电商选品工具：根据用户指定的品类，自动搜索市场趋势、提取热门细分关键词、 调用1688搜索API逐一选品，按筛选条件过滤后输出每个细分市场的最优商品推荐。 触发词：寻找Ozon蓝海商品、Ozon潜力爆品、Ozon可铺货商品、Ozon可卖的货盘、 Ozon选品、帮我选品、找Ozon能卖的商品、Ozon热门商...
+根据用户指定的品类，自动发现Ozon平台热门细分市场并从1688找到最优货源。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ozon-product-selection`
-- **Source URL:** [https://clawhub.ai/skills/ozon-product-selection](https://clawhub.ai/skills/ozon-product-selection)
+## 前置配置（必须先完成）
 
-## Overview
+⚠️ **使用本 SKILL 前，必须先配置以下环境变量，否则1688搜索API调用会失败。**
 
+| 环境变量 | 说明 | 必填 | 获取方式                                                                                                       |
+|---------|------|------|------------------------------------------------------------------------------------------------------------|
+| `ALPHASHOP_ACCESS_KEY` | AlphaShop API 的 Access Key | ✅ 必填 | 可以访问1688-AlphaShop（遨虾）来申请 https://www.alphashop.cn/seller-center/apikey-management ，直接使用1688/淘宝/支付宝/手机登录即可 |
+| `ALPHASHOP_SECRET_KEY` | AlphaShop API 的 Secret Key | ✅ 必填 | 可以访问1688-AlphaShop（遨虾）来申请 https://www.alphashop.cn/seller-center/apikey-management ，直接使用1688/淘宝/支付宝/手机登录即可 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ozon-product-selection
+**⚠️ AlphaShop 接口欠费处理：** 如果调用 AlphaShop 接口时返回欠费/余额不足相关的错误，**必须立即中断当前流程**，提示用户前往 https://www.alphashop.cn/seller-center/home/api-list 购买积分后再继续操作。
+
+### 配置方式
+
+在 OpenClaw config 中配置：
+```json5
+{
+  skills: {
+    entries: {
+      "ozon-product-selection": {
+        env: {
+          ALPHASHOP_ACCESS_KEY: "YOUR_AK",
+          ALPHASHOP_SECRET_KEY: "YOUR_SK"
+        }
+      }
+    }
+  }
+}
 ```
+
+如果用户没有提供这些密钥，**必须先询问用户获取后再继续操作**。
+
+## 工作流程
+
+```
+1. 解析用户query → 提取平台(Ozon) + 品类
+         ↓
+2. Web搜索："{品类} Ozon 热门趋势 蓝海品类 2025"
+         ↓
+3. AI总结 → 输出5-8个热门细分市场关键词（俄语/中文均可）
+         ↓
+4. 逐个关键词调用1688搜索API → 每个取排名第一的商品
+   ⚠️ 累计找到3个有效商品后立即停止，不再搜索剩余关键词
+         ↓
+5. 按用户筛选条件过滤（价格带/起批量/48H发货率/销量）
+         ↓
+6. 输出最多3个商品 → 汇总展示
+```
+
+## Step 1: 解析用户意图
+
+从用户query中提取：
+- **平台**：固定为Ozon（本skill专用）
+- **品类**：用户指定的大品类，如"玩具"、"家居"、"3C数码"等
+- **筛选条件**（可选）：价格带、起批量、48H发货率、销量要求
+
+如果用户没指定品类，**必须询问**。
+
+## Step 2: Web搜索市场信息
+
+使用 web_search 或 SearXNG 搜索以下query：
+```
+{品类} Ozon 热门趋势 蓝海 细分品类 2025
+```
+
+收集3-5个搜索结果的内容，获取该品类在Ozon平台的市场趋势信息。
+
+## Step 3: AI总结细分关键词
+
+基于搜索结果，用以下提示词总结：
+
+```
+根据以下关于"{品类}"在Ozon平台的市场信息，提取5-8个最有潜力的细分市场关键词。
+
+要求：
+1. 关键词要具体到可直接搜索1688的程度（如"儿童益智积木"而不是"玩具"）
+2. 优先选择：竞争较少、需求增长、利润空间大的细分方向
+3. 每个关键词附带一句话说明为什么有潜力
+4. 输出中文关键词（用于1688搜索）
+
+输出格式（严格JSON）：
+[
+  {"keyword": "关键词", "reason": "潜力原因"},
+  ...
+]
+```
+
+解析AI输出的JSON，提取关键词列表。
+
+## Step 4: 逐一调用搜索API（最多输出3个商品）
+
+**按关键词逐个搜索，每个关键词取排名第一的商品。一旦累计已找到3个有效商品，立即停止，不再搜索剩余关键词。**
+
+对每个关键词，调用选品脚本：
+
+```bash
+python3 scripts/search_products.py "关键词" [--max-price X] [--max-moq X] [--min-ship-rate-48h X] [--min-sales X]
+```
+
+脚本返回JSON，包含筛选后的商品列表。取排名第一的商品计入结果。
+
+流程：
+1. 用第1个关键词搜索 → 有结果则计数+1
+2. 用第2个关键词搜索 → 有结果则计数+1
+3. 用第3个关键词搜索 → 有结果则计数+1 → **已满3个，停止搜索**
+4. 如果某个关键词无结果，跳过继续下一个，直到满3个或关键词用完
+
+**注意：可以并发调用前3个关键词以加快速度，但如果3个都有结果就不再继续。**
+
+## Step 5: 汇总展示（最多3个商品）
+
+### 展示格式
+
+对每个有结果的细分关键词，展示排名第一的商品（最多3个）：
+
+**重要：必须严格按以下模板渲染，图片行不得省略，SKU必须全部列出。**
+
+```
+### 🔥 细分市场：{关键词}
+> 潜力原因：{reason}
+
+![商品图片](imageUrl)
+
+- **商品名称**：{title}
+- **价格**：¥{price}
+- **起批量**：{moq}
+- **发货地**：{location}
+- **48H揽收率**：{rate}
+- **近一年销量**：{sales}
+- **🔗 [查看商品](detailUrl)**
+
+供应商：{companyName}（{tags}）
+
+**SKU明细及建议售价（3倍定价）：**
+
+| SKU名称 | 拿货价(¥) | 建议售价(¥) | 库存 |
+|---------|----------|------------|------|
+| {sku.name} | {sku.price} | {sku.suggestedPrice} | {sku.stock} |
+```
+
+SKU数据来自脚本返回的 `skus` 字段，每个SKU包含 `name`（规格名）、`price`（拿货价）、`suggestedPrice`（3倍建议售价）、`stock`（库存）。
+**必须展示全部SKU，不得截断或省略。** 无论SKU数量多少，都要完整列出每一个。
+
+### 汇总表
+
+所有细分市场结果展示完毕后，输出一个汇总表：
+
+| 细分市场 | 商品 | 价格 | 销量 | 供应商 | 链接 |
+|---------|------|------|------|--------|------|
+| ... | ... | ... | ... | ... | [查看](url) |
+
+### 无结果处理
+
+如果某个关键词搜索后无符合条件的商品：
+- 标注"❌ 未找到符合条件的商品"
+- 不要跳过，让用户知道哪些细分市场暂时没有合适货源
+
+## 筛选参数说明
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| `--max-price` | 最高单价（元） | 50 |
+| `--max-moq` | 最大起批量（件） | 10 |
+| `--min-ship-rate-48h` | 最低48H发货率（%） | 80 |
+| `--min-sales` | 最低年销量（件） | 100 |
+
+用户未指定的筛选条件不传，不做过滤。
+
+## 注意事项
+
+- 关键词必须是中文（用于1688搜索）
+- 每次选品会调用多次搜索API（每个关键词一次），注意API调用频率
+- 商品链接使用markdown超链接格式 `[查看商品](url)`，禁止裸URL
+- 如果用户后续说"帮我把第X个铺到Ozon"，引导使用 `1688-Product-to-Ozon` skill

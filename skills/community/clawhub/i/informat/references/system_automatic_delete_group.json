@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_automatic_delete_group",
+    "description": "Delete automation group.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+		"ID": {
+          "type": "string",
+          "description": "Automation group ID."
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

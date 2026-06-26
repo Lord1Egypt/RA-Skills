@@ -1,0 +1,67 @@
+{
+  "name": "decision-expert",
+  "version": "1.0.0",
+  "description": "A decision support skill for OpenClaw that helps users analyze options, weigh trade-offs, and apply decision frameworks",
+  "main": "lib/index.js",
+  "bin": {
+    "decision": "./cli.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "start": "node cli.js",
+    "dev": "node cli.js",
+    "build": "tsc --build tsconfig.json",
+    "prepublishOnly": "npm test && npm run lint"
+  },
+  "keywords": [
+    "decision",
+    "analysis",
+    "framework",
+    "swot",
+    "pros-cons",
+    "decision-matrix",
+    "openclaw",
+    "skill",
+    "assistant"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/decision-expert.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/decision-expert/issues"
+  },
+  "homepage": "https://skills.sh/openclaw/decision-expert",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "inquirer": "^9.2.0",
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.3",
+    "lodash": "^4.17.21",
+    "yaml": "^2.3.0",
+    "json2csv": "^6.0.0",
+    "markdown-table": "^3.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.50.0",
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "files": [
+    "lib/",
+    "cli.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

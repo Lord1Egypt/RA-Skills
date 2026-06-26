@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1920px;
+            height: 1080px;
+            background: transparent;
+            font-family: 'Segoe UI', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+        
+        .dashboard {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .info-panel {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .label {
+            font-size: 16px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .live-badge {
+            background: #ff0000;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .branding {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .crab {
+            font-size: 60px;
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="branding">
+        <span class="crab">🦀</span>
+        <span>Main Live</span>
+    </div>
+    
+    <div class="dashboard">
+        <div class="info-panel">
+            <div class="info-item">
+                <div class="label">Platform</div>
+                <div class="value">Civic Nexus</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Tools</div>
+                <div class="value">64+ Integrations</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Demo</div>
+                <div class="value">Canva Generation</div>
+            </div>
+        </div>
+        
+        <div class="live-badge">
+            <div class="dot"></div>
+            <span>LIVE</span>
+        </div>
+    </div>
+</body>
+</html>

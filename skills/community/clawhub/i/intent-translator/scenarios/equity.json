@@ -1,0 +1,28 @@
+{
+  "name": "股权分配决策",
+  "description": "帮助合伙人理清股权分配的核心诉求，平衡出资与贡献",
+  "version": "1.0.0",
+  "questions": [
+    {
+      "id": "fairness_definition",
+      "text": "你说的'公平'是指按出钱分、按干活分、还是大家平均？或者你有别的想法？",
+      "purpose": "明确公平定义"
+    },
+    {
+      "id": "contribution_breakdown",
+      "text": "每个人具体出什么？钱、时间、技术、资源？",
+      "purpose": "量化各方贡献"
+    },
+    {
+      "id": "biggest_concern",
+      "text": "一年后最担心的场景是什么？有人觉得吃亏？有人中途退出？还是决策僵局？",
+      "purpose": "识别风险点"
+    },
+    {
+      "id": "bottom_line",
+      "text": "有没有绝对不能接受的底线？",
+      "purpose": "确定约束条件"
+    }
+  ],
+  "prompt_template": "【角色】股权分配与治理顾问\n\n【背景】\n{context}\n\n【核心诉求】\n{concerns}\n\n【约束条件】\n{constraints}\n\n【目标】\n给出具体的股权比例建议 + 决策权设计 + 退出机制"
+}

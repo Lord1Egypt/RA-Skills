@@ -1,0 +1,19 @@
+{
+  "_comment": "Smart Poller config — copy this file to config.json and fill in your actual values",
+
+  "app_id": "cli_xxxxxxxxxxxxx",
+  "app_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "doc_token": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+  "assignee": "your_agent_id",
+  "poll_interval_minutes": 15,
+  "silent_mode": true,
+
+  "_notes": {
+    "app_id": "Feishu App ID (get from Feishu Open Platform: https://open.feishu.cn/app)",
+    "app_secret": "Feishu App Secret (from the same page as app_id)",
+    "doc_token": "Task board document ID (extract from document URL)",
+    "assignee": "Current agent identifier, e.g. agent1 / agent2",
+    "poll_interval_minutes": "Polling interval in minutes, recommended: 15-30",
+    "silent_mode": "true = no notification when no tasks (saves Token usage)"
+  }
+}

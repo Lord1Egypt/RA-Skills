@@ -1,35 +1,25 @@
 ---
-name: "new-terraform-provider"
-description: "Indexed by skills.sh from hashicorp/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "hashicorp"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/hashicorp/agent-skills/new-terraform-provider"
-sourceUrl: "https://skills.sh/hashicorp/agent-skills/new-terraform-provider"
+name: new-terraform-provider
+description: Use this when scaffolding a new Terraform provider.
+license: MPL-2.0
+metadata:
+  copyright: Copyright IBM Corp. 2026
+  version: "0.0.1"
 ---
 
-# new-terraform-provider
+To scaffold a new Terraform provider with Plugin Framework:
 
-> Indexed by skills.sh from hashicorp/agent-skills
+1. If I am already in a Terraform provider workspace, then confirm that I want
+   to create a new workspace. If I do not want to create a new workspace, then
+   skip all remaining steps.
+1. Create a new workspace root directory. The root directory name should be
+   prefixed with "terraform-provider-". Perform all subsequent steps in this
+   new workspace.
+1. Initialize a new Go module..
+1. Run `go get -u github.com/hashicorp/terraform-plugin-framework@latest`.
+1. Write a main.go file that follows [the example](assets/main.go).
+1. Remove TODO comments from `main.go`
+1. Run `go mod tidy`
+1. Run `go build -o /dev/null`
+1. Run `go test ./...`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** hashicorp
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/hashicorp/agent-skills/new-terraform-provider`
-- **Source URL:** [https://skills.sh/hashicorp/agent-skills/new-terraform-provider](https://skills.sh/hashicorp/agent-skills/new-terraform-provider)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/hashicorp/agent-skills/new-terraform-provider
-```

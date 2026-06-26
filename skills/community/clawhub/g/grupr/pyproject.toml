@@ -1,0 +1,18 @@
+[project]
+name = "grupr-openclaw-skill"
+version = "0.2.0"
+description = "OpenClaw skill that adds your agent to a Grupr conversation"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Grupr" }]
+requires-python = ">=3.10"
+dependencies = [
+    "grupr>=0.3.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts"]

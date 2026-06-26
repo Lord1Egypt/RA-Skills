@@ -1,0 +1,23 @@
+name: github-push
+version: 1.0.0
+description: 安全的GitHub推送自动化，支持SSH自动配置和远程配置，处理冲突和自动推送。
+author: clawd
+homepage: https://clawhub.com/skills/github-push
+
+triggers:
+  - git push
+  - 推送代码
+  - 自动推送
+  - github push
+  - git提交
+
+features:
+  - 自动SSH配置
+  - 冲突处理
+  - 安全凭证管理
+  - 多远程支持
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

@@ -1,0 +1,25 @@
+# Minimal Agent 配置（Python Skill 版）
+
+[llm]
+# 这些字段由 WorkBuddy 运行时提供，无需配置
+# api_url = "https://api.openai.com/v1/chat/completions"
+# api_key = "..."
+# model = "gpt-4o"
+# max_tokens = 4096
+# temperature = 0.7
+
+[system_controller]
+skill_path = "~/.workbuddy/skills/system-controller"  # Skill 安装路径
+python_path = "python"                                 # Python 解释器
+
+[execution]
+# 运行模式（支持6种模式）：
+#   function - V2模式，使用system-controller工具（默认推荐）
+#   text     - V1模式，执行任意命令
+#   auto     - 自动检测：有system-controller用V2，没有或不可用时用V1
+#   mixed    - 智能混合模式：自动分析任务，智能组合V1和V2命令
+#   force_text     - 强制V1模式，无论是否有system-controller
+#   force_function - 强制V2模式，无论system-controller是否可用
+mode = "auto"
+timeout_seconds = 30              # 单个脚本执行超时秒数
+max_iterations = 20              # 单轮对话最大操作次数（防死循环）

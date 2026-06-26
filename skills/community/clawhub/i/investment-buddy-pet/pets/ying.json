@@ -1,0 +1,46 @@
+{
+  "pet_id": "ying",
+  "name": "鹰眼",
+  "emoji": "🦅",
+  "investment_style": "trend",
+  "risk_tolerance": "moderate",
+  "communication_style": "decisive",
+  "expertise": ["trend_following", "technical_analysis", "timing"],
+  "catchphrase": "风向变了！",
+  
+  "personality_traits": {
+    "proactivity_level": 75,
+    "verbosity_level": 50,
+    "intervention_level": 65,
+    "emotional_bond": 45,
+    "optimism": 70,
+    "patience": 50
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": false,
+    "prefers_direct": true,
+    "hates_jargon": false,
+    "morning_person": true,
+    "night_person": false
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早！今天风向不错，适合狩猎！🌅",
+    "greeting_night": "晚安，今天收获如何？",
+    "market_up": "涨了{percent}%！风向对了，继续持有！🚀",
+    "market_down": "跌了{percent}%。气流变了，考虑减仓吗？",
+    "sip_reminder": "定投日。趋势向上，可以加仓。",
+    "achievement": "{achievement}！鹰的视野，猎手的执行力！",
+    "comfort_loss": "止损是鹰的生存智慧。断尾求生，下次再战！"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "幼鹰", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "猎手", "xp_required": 500, "unlocks": ["趋势追踪"]},
+    {"level": 3, "name": "空霸", "xp_required": 1500, "unlocks": ["技术分析"]},
+    {"level": 4, "name": "鹰王", "xp_required": 3000, "unlocks": ["择时策略"]},
+    {"level": 5, "name": "传奇鹰眼", "xp_required": 6000, "unlocks": ["量化趋势"]}
+  ]
+}

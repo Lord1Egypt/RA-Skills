@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "text": "Generated .docx file exists",
+      "passed": true,
+      "evidence": "Found: ['eval1.docx', 'eval1_baseline.docx']"
+    },
+    {
+      "text": "Output is a valid .docx file",
+      "passed": true,
+      "evidence": "Valid .docx structure"
+    },
+    {
+      "text": "title core property matches front matter",
+      "passed": true,
+      "evidence": "Title: 2026年Q1产品运营报告"
+    },
+    {
+      "text": "author core property matches front matter",
+      "passed": true,
+      "evidence": "Author: 张三"
+    },
+    {
+      "text": "Document has header text",
+      "passed": true,
+      "evidence": "Header: 内部资料"
+    },
+    {
+      "text": "TOC field code is present in document",
+      "passed": true,
+      "evidence": "TOC field found"
+    },
+    {
+      "text": "Blockquote rendered as callout/info box",
+      "passed": true,
+      "evidence": "Callout shading found"
+    },
+    {
+      "text": "Bullet and numbered lists are present",
+      "passed": true,
+      "evidence": "List paragraphs: 6"
+    }
+  ]
+}

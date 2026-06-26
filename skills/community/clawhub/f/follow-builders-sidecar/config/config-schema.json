@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "User configuration for Follow Builders Sidecar. Stored at ~/.follow-builders-sidecar/config.json",
+  "type": "object",
+  "required": ["version", "language", "timezone", "frequency", "delivery"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "default": "zarazhangrui"
+        },
+        "repo": {
+          "type": "string",
+          "default": "follow-builders"
+        },
+        "branch": {
+          "type": "string",
+          "default": "main"
+        }
+      }
+    },
+    "language": {
+      "type": "string",
+      "enum": ["en", "zh", "bilingual"],
+      "default": "zh"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Asia/Shanghai",
+      "description": "IANA timezone used for same-day commit checks and delivery semantics"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["daily", "weekly"],
+      "default": "daily"
+    },
+    "weeklyDay": {
+      "type": "string",
+      "enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "default": "monday"
+    },
+    "model": {
+      "type": "string",
+      "default": "openai-codex/gpt-5.4"
+    },
+    "delivery": {
+      "type": "object",
+      "required": ["driver", "openclaw", "feishu"],
+      "properties": {
+        "driver": {
+          "type": "string",
+          "enum": ["openclaw_announce", "feishu_card"],
+          "default": "openclaw_announce"
+        },
+        "openclaw": {
+          "type": "object",
+          "properties": {
+            "channel": {
+              "type": ["string", "null"]
+            },
+            "to": {
+              "type": ["string", "null"]
+            },
+            "accountId": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "feishu": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["openclaw_account", "direct_credentials"],
+              "default": "openclaw_account"
+            },
+            "accountId": {
+              "type": ["string", "null"]
+            },
+            "chatId": {
+              "type": ["string", "null"]
+            },
+            "domain": {
+              "type": ["string", "null"],
+              "default": "feishu"
+            }
+          }
+        },
+        "avatarFallbackAccountId": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "importedFrom": {
+      "type": "object",
+      "properties": {
+        "originalConfigPath": {
+          "type": ["string", "null"]
+        },
+        "importedAt": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  }
+}

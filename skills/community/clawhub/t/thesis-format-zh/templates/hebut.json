@@ -1,0 +1,65 @@
+{
+  "name": "河北经贸大学经济管理学院",
+  "version": "2024",
+  "page": {
+    "width_cm": 21.0,
+    "height_cm": 29.7,
+    "top_cm": 2.5,
+    "bottom_cm": 2.0,
+    "left_cm": 2.5,
+    "right_cm": 2.0,
+    "header_cm": 1.5,
+    "footer_cm": 1.75
+  },
+  "header_text": "河北经贸大学经济管理学院本科毕业论文（设计）",
+  "header_font": "宋体",
+  "header_size_pt": 10.5,
+  "heading1": {
+    "font": "黑体",
+    "size_pt": 15,
+    "align": "center",
+    "space_before_pt": 40,
+    "space_after_pt": 20
+  },
+  "heading2": {
+    "font": "黑体",
+    "size_pt": 14,
+    "align": "left",
+    "space_before_pt": 24,
+    "space_after_pt": 6
+  },
+  "heading3": {
+    "font": "黑体",
+    "size_pt": 12,
+    "align": "left",
+    "space_before_pt": 12,
+    "space_after_pt": 6
+  },
+  "normal": {
+    "font": "宋体",
+    "size_pt": 12,
+    "align": "justify",
+    "first_line_indent_char": 2,
+    "line_spacing_pt": 20
+  },
+  "caption": {
+    "font": "宋体",
+    "size_pt": 11,
+    "align": "center",
+    "bold": true
+  },
+  "reference": {
+    "font": "宋体",
+    "size_pt": 10.5,
+    "align": "justify",
+    "line_spacing_pt": 16,
+    "first_line_indent_char": 0
+  },
+  "abstract": {
+    "title_font": "黑体",
+    "title_size_pt": 15,
+    "align": "center",
+    "space_before_pt": 40,
+    "space_after_pt": 20
+  }
+}

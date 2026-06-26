@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Harness Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.min.js"></script>
+    <style>
+        .status-pending { @apply bg-gray-100 border-gray-300; }
+        .status-in_progress { @apply bg-blue-50 border-blue-400; }
+        .status-ready_for_review { @apply bg-yellow-50 border-yellow-400; }
+        .status-in_review { @apply bg-orange-50 border-orange-400; }
+        .status-needs_work { @apply bg-red-50 border-red-400; }
+        .status-passed { @apply bg-green-50 border-green-400; }
+        .status-accepted { @apply bg-emerald-50 border-emerald-500; }
+        .status-rejected { @apply bg-red-100 border-red-600; }
+        .status-blocked { @apply bg-purple-50 border-purple-400; }
+        
+        .agent-working { 
+            animation: pulse 2s infinite;
+            @apply ring-2 ring-blue-500 ring-offset-2;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .markdown-body {
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        .markdown-body ul, .markdown-body ol {
+            padding-left: 1.5em;
+            margin: 0.5em 0;
+        }
+        .markdown-body code {
+            background: #f3f4f6;
+            padding: 0.125em 0.375em;
+            border-radius: 0.25em;
+            font-size: 0.85em;
+        }
+        .markdown-body pre {
+            background: #f9fafb;
+            padding: 0.75em;
+            border-radius: 0.375em;
+            overflow-x: auto;
+            margin: 0.5em 0;
+        }
+        .markdown-body p { margin: 0.5em 0; }
+        
+        [v-cloak] { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" v-cloak>
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">🦞 OpenClaw Harness Dashboard</h1>
+                        <p class="text-sm text-gray-500 mt-1">多 Agent 项目进度监控平台</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500">最后更新</p>
+                            <p class="text-sm font-medium">{{ lastUpdateTime }}</p>
+                        </div>
+                        <button 
+                            @click="refreshData" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                            :disabled="loading"
+                        >
+                            <svg v-if="loading" class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                            </svg>
+                            <svg v-else class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                            {{ loading ? '刷新中...' : '刷新' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 py-6">
+            <!-- No projects message -->
+            <div v-if="allProjects.length === 0 && !loading" class="text-center py-20">
+                <div class="text-6xl mb-4">🦞</div>
+                <h2 class="text-xl font-bold text-gray-700 mb-2">暂无项目</h2>
+                <p class="text-gray-500">Harness 系统就绪，等待新的项目 request</p>
+            </div>
+
+            <!-- Project List -->
+            <div v-if="allProjects.length > 0" class="bg-white rounded-lg shadow p-4 mb-6">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-lg font-bold text-gray-900">📁 项目列表</h2>
+                    <div class="flex items-center gap-2 text-sm">
+                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded">已完成: {{ completedProjectsCount }}</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded">进行中: {{ inProgressProjectsCount }}</span>
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded">待启动: {{ pendingProjectsCount }}</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded">总计: {{ allProjects.length }}</span>
+                    </div>
+                </div>
+                
+                <!-- Project Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div v-for="project in allProjects" :key="project.id"
+                         @click="selectProject(project)"
+                         class="p-3 rounded-lg border cursor-pointer transition-all hover:shadow-md"
+                         :class="getProjectCardClass(project)"
+                    >
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <p class="font-medium text-sm">{{ project.name }}</p>
+                                <p v-if="project.description" class="text-xs text-gray-400 mt-1 line-clamp-2">{{ project.description }}</p>
+                                <p class="text-xs text-gray-500 mt-1">{{ project.total_modules }} 个模块</p>
+                            </div>
+                            <span class="text-xs px-2 py-0.5 rounded ml-2" :class="getProjectStatusBadgeClass(project.status)">
+                                {{ formatStatus(project.status) }}
+                            </span>
+                        </div>
+                        <div v-if="!project.is_request" class="mt-2">
+                            <div class="flex items-center justify-between text-xs text-gray-500">
+                                <span>{{ project.completed_modules }}/{{ project.total_modules }}</span>
+                                <span>{{ project.progress }}%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                                <div class="h-1.5 rounded-full transition-all" 
+                                     :class="getProjectProgressColor(project.status)"
+                                     :style="{ width: project.progress + '%' }"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Project Header -->
+            <div v-if="currentProject && !currentProject.is_request" class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg shadow-lg p-6 mb-6 text-white">
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold">{{ projectState.project_name || projectState.name || currentProject.name }}</h2>
+                        <div class="mt-1">
+                            <p class="text-blue-100" :class="descExpanded ? '' : 'line-clamp-2'">{{ projectState.description || currentProject.description }}</p>
+                            <button v-if="getFullDescription().length > 120" @click="descExpanded = !descExpanded"
+                                    class="text-xs text-blue-200 hover:text-white mt-1 underline">
+                                {{ descExpanded ? '收起' : '展开' }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-right ml-4">
+                        <p class="text-3xl font-bold">{{ summary.completion_percentage }}%</p>
+                        <p class="text-blue-100 text-sm">项目进度</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Request Banner -->
+            <div v-if="currentProject && currentProject.is_request" class="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg shadow-lg p-6 mb-6 text-white">
+                <div>
+                    <h2 class="text-2xl font-bold">⏳ {{ currentProject.name.replace('[待启动] ', '') }}</h2>
+                    <p class="text-yellow-100 mt-2">{{ currentProject.description }}</p>
+                    <p class="text-yellow-200 text-sm mt-2">{{ currentProject.total_modules }} 个模块，等待 Orchestrator 启动</p>
+                </div>
+            </div>
+
+            <!-- Project Overview Cards (only for active projects) -->
+            <div v-if="currentProject && !currentProject.is_request" class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <!-- Overall Status -->
+                <div class="bg-white rounded-lg shadow p-4 border-l-4" :class="overallStatusColor">
+                    <p class="text-xs text-gray-500 uppercase tracking-wide">整体状态</p>
+                    <p class="text-lg font-bold mt-1">{{ formatStatus(projectState.status) }}</p>
+                </div>
+                
+                <!-- Progress -->
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                    <div class="flex items-center justify-between">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide">实时进度</p>
+                        <span class="flex items-center gap-1 text-xs text-green-600">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            5s刷新
+                        </span>
+                    </div>
+                    <div class="flex items-end justify-between mt-1">
+                        <p class="text-2xl font-bold">{{ summary.completed_modules }}/{{ summary.total_modules }}</p>
+                        <p class="text-sm text-gray-500">{{ summary.completion_percentage }}%</p>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" :style="{ width: summary.completion_percentage + '%' }"></div>
+                    </div>
+                    <p v-if="recentActivity" class="mt-2 text-xs text-blue-600 animate-pulse">
+                        🔔 {{ recentActivity }}
+                    </p>
+                </div>
+                
+                <!-- In Review -->
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-yellow-500">
+                    <p class="text-xs text-gray-500 uppercase tracking-wide">审查中</p>
+                    <p class="text-2xl font-bold mt-1">{{ inReviewCount }}</p>
+                </div>
+                
+                <!-- Blocked -->
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 border-red-500">
+                    <p class="text-xs text-gray-500 uppercase tracking-wide">阻塞</p>
+                    <p class="text-2xl font-bold mt-1">{{ summary.blocked_modules || 0 }}</p>
+                </div>
+            </div>
+
+            <!-- Currently Working Agent -->
+            <div v-if="currentlyWorkingAgents.length > 0" class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md p-4 mb-6 border border-blue-200">
+                <div class="flex items-center gap-2 mb-3">
+                    <svg class="h-5 w-5 text-blue-600 animate-spin" style="animation-duration: 3s" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                    </svg>
+                    <h2 class="text-lg font-bold text-blue-900">正在工作的 Agent</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div v-for="agent in currentlyWorkingAgents" :key="agent.module_id" 
+                         class="bg-white rounded-lg p-3 agent-working">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs font-semibold px-2 py-0.5 rounded" :class="getAgentRoleBadgeClass(agent.role)">
+                                        {{ agent.role === 'builder' ? '🔨 Builder' : '👁️ Reviewer' }}
+                                    </span>
+                                    <span class="text-xs text-gray-500">{{ agent.agent_id }}</span>
+                                </div>
+                                <p class="text-sm font-medium text-gray-900">{{ getModuleName(agent.module_id) }}</p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    开始于 {{ formatTime(agent.started_at) }}
+                                    <span v-if="agent.elapsed_time" class="ml-2 text-gray-400">已工作 {{ agent.elapsed_time }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Panel -->
+            <div v-if="currentProject && !currentProject.is_request && allAgents.length > 0" class="bg-white rounded-lg shadow mb-6">
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <h2 class="text-lg font-bold text-gray-900">🤖 Agent 总览 <span class="text-sm font-normal text-gray-500">(共 {{ allAgents.length }} 位)</span></h2>
+                </div>
+                <div class="p-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div v-for="agent in allAgents" :key="agent.id" 
+                             class="rounded-lg border p-3"
+                             :class="agent.status === 'working' ? 'border-blue-400 bg-blue-50/50' : agent.status === 'idle' ? 'border-gray-200 bg-gray-50' : 'border-green-200 bg-green-50/50'">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-lg">{{ agent.role === 'builder' ? '🔨' : '👁️' }}</span>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">{{ agent.id }}</p>
+                                    <p class="text-xs text-gray-500">{{ agent.role === 'builder' ? 'Builder' : 'Reviewer' }}</p>
+                                </div>
+                                <span class="flex-shrink-0 text-xs px-2 py-0.5 rounded-full"
+                                      :class="{
+                                          'bg-blue-100 text-blue-700 animate-pulse': agent.status === 'working',
+                                          'bg-gray-100 text-gray-500': agent.status === 'idle',
+                                          'bg-green-100 text-green-700': agent.status === 'done'
+                                      }">
+                                    {{ agent.status === 'working' ? '工作中' : agent.status === 'idle' ? '空闲' : '已完成' }}
+                                </span>
+                            </div>
+                            <p class="text-xs text-gray-600 truncate">{{ agent.moduleName }}</p>
+                            <p v-if="agent.runtime || agent.elapsed" class="text-xs text-gray-400 mt-1">{{ agent.status === 'done' ? '⏱️ 运行' : '⏱️ 已运行' }}: {{ agent.runtime || agent.elapsed }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task List -->
+            <div v-if="currentProject && !currentProject.is_request" class="bg-white rounded-lg shadow">
+                <div class="px-4 py-3 border-b border-gray-200">
+                    <h2 class="text-lg font-bold text-gray-900">任务列表</h2>
+                </div>
+                
+                <div class="divide-y divide-gray-200">
+                    <div v-for="module in sortedModules" :key="module.module_id" 
+                         class="p-4 hover:bg-gray-50 transition-colors"
+                         :class="getModuleRowClass(module)"
+                    >
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-xs font-mono text-gray-500">{{ module.module_id }}</span>
+                                    <span class="text-xs px-2 py-0.5 rounded-full border" :class="getStatusBadgeClass(module.status)">
+                                        {{ formatStatus(module.status) }}
+                                    </span>
+                                    <span v-if="module.priority === 'high'" class="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-300">
+                                        🔥 高优先级
+                                    </span>
+                                </div>
+                                
+                                <h3 class="text-base font-semibold text-gray-900 mb-2">{{ module.name }}</h3>
+                                
+                                <!-- Assigned Agents -->
+                                <div v-if="module.assigned_to" class="flex items-center gap-3 mb-2">
+                                    <div class="flex items-center gap-1 text-sm">
+                                        <span class="text-gray-500">🔨 Builder:</span>
+                                        <span class="font-medium text-gray-700">{{ module.assigned_to.builder || '未分配' }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1 text-sm">
+                                        <span class="text-gray-500">👁️ Reviewer:</span>
+                                        <span class="font-medium text-gray-700">{{ module.assigned_to.reviewer || '未分配' }}</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Progress Info -->
+                                <div v-if="module.progress" class="flex items-center gap-4 text-xs text-gray-500">
+                                    <span>迭代：{{ module.progress.review_iterations || 0 }} 轮</span>
+                                    <span v-if="module.progress.started_at">
+                                        开始：{{ formatTime(module.progress.started_at) }}
+                                    </span>
+                                    <span v-if="module.progress.completed_at">
+                                        完成：{{ formatTime(module.progress.completed_at) }}
+                                    </span>
+                                </div>
+                                
+                                <!-- Dependencies -->
+                                <div v-if="module.dependencies && module.dependencies.length > 0" class="mt-2">
+                                    <span class="text-xs text-gray-500">依赖：</span>
+                                    <span v-for="dep in module.dependencies" :key="dep" class="text-xs text-blue-600 mr-2">
+                                        {{ dep }}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-shrink-0">
+                                <button 
+                                    @click="toggleModuleDetail(module.module_id)"
+                                    class="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                                >
+                                    {{ expandedModules.includes(module.module_id) ? '收起' : '展开' }}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Expanded Detail -->
+                        <div v-if="expandedModules.includes(module.module_id)" class="mt-4 pt-4 border-t border-gray-200">
+                            
+                            <!-- Metadata: Success Criteria -->
+                            <div v-if="module.metadata && module.metadata.success_criteria" class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">✅ 验收标准</h4>
+                                <ul class="list-disc list-inside text-xs text-gray-600 space-y-0.5">
+                                    <li v-for="(c, ci) in module.metadata.success_criteria" :key="ci">{{ c }}</li>
+                                </ul>
+                            </div>
+
+                            <!-- Deliverables -->
+                            <div v-if="getDeliverablesList(module).length > 0" class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">📦 交付物</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <a v-for="(item, idx) in getDeliverablesList(module)" :key="idx"
+                                       :href="getDeliverableLink(module.module_id, item)"
+                                       target="_blank"
+                                       class="px-2.5 py-1 bg-blue-50 rounded border border-blue-200 text-xs text-blue-700 font-mono hover:bg-blue-100 hover:border-blue-300 transition-colors inline-flex items-center gap-1">
+                                        <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                        <span class="truncate max-w-[200px]">{{ item }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Review Iterations -->
+                            <div v-if="module.review_history && module.review_history.length > 0" class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">📋 审查记录</h4>
+                                <div class="space-y-3">
+                                    <div v-for="(it, index) in module.review_history" :key="index"
+                                         class="rounded-lg overflow-hidden border"
+                                         :class="getIterationBorderClass(it.status)">
+                                        <!-- Header bar -->
+                                        <div class="flex items-center justify-between px-3 py-2"
+                                             :class="getIterationBgClass(it.status)">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-xs font-semibold">第 {{ it.iteration }} 轮</span>
+                                                <span class="text-xs px-2 py-0.5 rounded" :class="getIterationStatusClass(it.status)">
+                                                    {{ formatStatus(it.status) }}
+                                                </span>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-xs text-gray-500">{{ formatTime(it.timestamp) }}</span>
+                                                <button @click="toggleIterationDetail(module.module_id, it.iteration)"
+                                                        class="text-xs text-blue-600 hover:text-blue-800 transition-colors">
+                                                    {{ isIterationExpanded(module.module_id, it.iteration) ? '收起' : '展开详情' }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Detail panel -->
+                                        <div v-if="isIterationExpanded(module.module_id, it.iteration)" class="px-3 py-3 bg-white space-y-3">
+                                            
+                                            <!-- Parsed checklist -->
+                                            <div v-if="getParsedChecks(it.summary).length > 0">
+                                                <p class="text-xs font-medium text-gray-500 mb-1.5">检查项：</p>
+                                                <div class="space-y-1">
+                                                    <div v-for="(check, ci) in getParsedChecks(it.summary)" :key="ci"
+                                                         class="flex items-start gap-2 text-xs"
+                                                         :class="check.type === 'passed' ? 'text-green-700' : check.type === 'failed' ? 'text-red-700' : check.type === 'info' ? 'text-gray-500' : 'text-amber-700'">
+                                                        <span class="flex-shrink-0 mt-0.5 leading-none">{{ check.icon }}</span>
+                                                        <span class="leading-relaxed">{{ check.text }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Non-check summary lines -->
+                                            <div v-if="getNonCheckLines(it.summary).length > 0" class="text-xs text-gray-600 space-y-1">
+                                                <div v-for="(line, li) in getNonCheckLines(it.summary)" :key="li">{{ line }}</div>
+                                            </div>
+                                            
+                                            <!-- Feedback (only if different from summary) -->
+                                            <div v-if="it.feedback && !isSameAsSummary(it.summary, it.feedback)" class="pt-3 border-t border-gray-100">
+                                                <p class="text-xs font-medium text-gray-500 mb-1">反馈：</p>
+                                                <div class="text-xs text-gray-600 space-y-1 leading-relaxed" v-html="renderMarkdown(it.feedback)"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Handoff (only if distinct from review) -->
+                            <div v-if="module.handoff_summary && isHandoffDistinct(module)" class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">🤝 交接</h4>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                                    <div class="text-sm text-gray-700 markdown-body" v-html="renderMarkdown(module.handoff_summary)"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Notes -->
+                            <div v-if="module.notes" class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">📝 备注</h4>
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                                    <p class="text-sm text-gray-700">{{ module.notes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Logs Section -->
+            <div v-if="currentProject && !currentProject.is_request" class="bg-white rounded-lg shadow mt-6">
+                <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-gray-900">📜 Agent 活动日志 <span class="text-sm font-normal text-gray-500">({{ projectLogs.length }} 条)</span></h2>
+                    <button @click="toggleLogs" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                        {{ logsExpanded ? '收起' : '展开' }}
+                    </button>
+                </div>
+                
+                <div v-if="logsExpanded">
+                    <div v-if="projectLogs.length === 0" class="p-6 text-center text-gray-500 text-sm">
+                        暂无日志记录
+                    </div>
+                    <div v-else class="divide-y divide-gray-200">
+                        <div v-for="(log, idx) in projectLogs" :key="idx" class="p-4">
+                            <!-- Log header -->
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-lg">{{ getLogRoleIcon(log.agent) }}</span>
+                                <span class="text-sm font-medium text-gray-900">{{ getLogRoleLabel(log.agent) }}</span>
+                                <span class="text-xs text-gray-400">{{ getLogTimestamp(log.timestamp) }}</span>
+                            </div>
+                            <!-- Log entry -->
+                            <div class="flex items-start gap-2 font-mono text-xs">
+                                <span class="text-gray-400 whitespace-nowrap">{{ log.timestamp }}</span>
+                                <span class="px-1.5 py-0.5 rounded font-semibold whitespace-nowrap"
+                                      :class="getAgentBadgeClass(log.agent)">
+                                    {{ log.agent }}
+                                </span>
+                                <span class="text-gray-700 leading-relaxed">{{ log.message }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Final Deliverables (shown when project is 100%) -->
+            <div v-if="currentProject && !currentProject.is_request && summary.completion_percentage === 100" class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg shadow-lg p-6 mt-6 mb-6 text-white">
+                <h2 class="text-xl font-bold mb-4">🎉 项目最终交付物</h2>
+                <div v-if="getProjectFinalDeliverables().length > 0" class="space-y-3">
+                    <div v-for="(del, idx) in getProjectFinalDeliverables()" :key="idx" 
+                         class="bg-white/10 backdrop-blur rounded-lg p-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">{{ del.icon }}</span>
+                            <div class="flex-1">
+                                <p class="font-semibold">{{ del.label }}</p>
+                                <p class="text-green-100 text-sm">{{ del.description }}</p>
+                            </div>
+                            <a :href="del.url" :target="del.external ? '_blank' : ''"
+                               class="px-4 py-2 bg-white text-green-700 rounded-lg font-medium text-sm hover:bg-green-50 transition-colors flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                打开
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="text-green-100 text-sm italic">暂无自动检测的交付物（需 Orchestrator 标记最终交付物）</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const md = window.markdownit();
+
+        createApp({
+            data() {
+                return {
+                    projectState: { modules: [] },
+                    loading: false,
+                    expandedModules: [],
+                    _iterationExpanded: {},
+                    descExpanded: false,
+                    logsExpanded: false,
+                    projectLogs: [],
+                    expandedLogFiles: [],
+                    lastLoaded: null,
+                    refreshTimer: null,
+                    recentActivity: null,
+                    previousModules: [],
+                    allProjects: [],
+                    currentProject: null,
+                }
+            },
+            computed: {
+                lastUpdateTime() {
+                    if (!this.lastLoaded) return '从未加载';
+                    return dayjs(this.lastLoaded).format('HH:mm:ss');
+                },
+                completedProjectsCount() {
+                    return this.allProjects.filter(p => p.status === 'completed').length;
+                },
+                inProgressProjectsCount() {
+                    return this.allProjects.filter(p => p.status === 'in_progress').length;
+                },
+                pendingProjectsCount() {
+                    return this.allProjects.filter(p => p.status === 'pending' || p.is_request).length;
+                },
+                summary() {
+                    const modules = this.getModules();
+                    const total = modules.length;
+                    const completed = modules.filter(m => 
+                        (m.status || m.state) === 'accepted' || (m.status || m.state) === 'passed'
+                    ).length;
+                    const blocked = modules.filter(m => 
+                        (m.status || m.state) === 'blocked'
+                    ).length;
+                    // Use statistics if available for more accurate data
+                    const stats = this.projectState.statistics;
+                    if (stats) {
+                        return {
+                            total_modules: stats.total_modules || total,
+                            completed_modules: stats.completed_modules || completed,
+                            blocked_modules: stats.blocked_modules || blocked,
+                            completion_percentage: stats.completion_percentage != null ? stats.completion_percentage : (total > 0 ? Math.round((completed / total) * 100) : 0)
+                        };
+                    }
+                    return {
+                        total_modules: total,
+                        completed_modules: completed,
+                        blocked_modules: blocked,
+                        completion_percentage: total > 0 ? Math.round((completed / total) * 100) : 0
+                    };
+                },
+                inReviewCount() {
+                    const modules = this.getModules();
+                    return modules.filter(
+                        m => ['ready_for_review', 'in_review', 'needs_work'].includes(m.status || m.state)
+                    ).length;
+                },
+                currentlyWorkingAgents() {
+                    if (this.projectState.status === 'completed') return [];
+                    const agents = [];
+                    const modules = this.getModules();
+                    const now = dayjs();
+                    modules.forEach(module => {
+                        if (!module.assigned_to) return;
+                        if ((module.status || module.state) === 'in_progress') {
+                            const startedAt = dayjs(module.progress?.started_at || module.assigned_to.assigned_at);
+                            const elapsedHours = now.diff(startedAt, 'hour', true);
+                            const elapsedTime = elapsedHours < 0.1 ? '刚刚' : elapsedHours < 1 ? Math.round(elapsedHours * 60) + ' 分钟' : Math.round(elapsedHours * 10) / 10 + ' 小时';
+                            agents.push({
+                                module_id: module.module_id,
+                                role: 'builder',
+                                agent_id: module.assigned_to.builder,
+                                started_at: module.assigned_to.assigned_at,
+                                elapsed_time: elapsedTime
+                            });
+                        }
+                        if (['in_review', 'needs_work'].includes(module.status || module.state)) {
+                            const startedAt = dayjs(module.progress?.first_review_at || module.progress?.started_at || module.assigned_to.assigned_at);
+                            const elapsedHours = now.diff(startedAt, 'hour', true);
+                            const elapsedTime = elapsedHours < 0.1 ? '刚刚' : elapsedHours < 1 ? Math.round(elapsedHours * 60) + ' 分钟' : Math.round(elapsedHours * 10) / 10 + ' 小时';
+                            agents.push({
+                                module_id: module.module_id,
+                                role: 'reviewer',
+                                agent_id: module.assigned_to.reviewer,
+                                started_at: module.assigned_to.assigned_at,
+                                elapsed_time: elapsedTime
+                            });
+                        }
+                    });
+                    return agents;
+                },
+                allAgents() {
+                    const agents = [];
+                    const seen = new Set();
+                    const now = dayjs();
+                    const modules = this.getModules();
+                    const fmtDuration = (startMs, endMs) => {
+                        if (!startMs) return '';
+                        const diff = (endMs || now) - startMs;
+                        const mins = diff / 60000;
+                        if (mins < 1) return '刚刚';
+                        if (mins < 60) return Math.round(mins) + ' 分钟';
+                        const hrs = mins / 60;
+                        if (hrs < 24) return Math.round(hrs * 10) / 10 + ' 小时';
+                        const days = hrs / 24;
+                        return Math.round(days * 10) / 10 + ' 天';
+                    };
+                    modules.forEach(module => {
+                        const p = module.progress || {};
+                        // Check assigned_to field
+                        if (module.assigned_to && module.assigned_to.builder && !seen.has(module.assigned_to.builder)) {
+                            seen.add(module.assigned_to.builder);
+                            const isWorking = module.status === 'in_progress';
+                            const isDone = module.status === 'accepted' || module.status === 'passed';
+                            const startedAt = p.started_at ? dayjs(p.started_at) : null;
+                            const completedAt = p.completed_at ? dayjs(p.completed_at) : null;
+                            const runtime = startedAt ? fmtDuration(startedAt.valueOf(), completedAt ? completedAt.valueOf() : null) : '';
+                            const elapsed = isWorking && startedAt ? fmtDuration(startedAt.valueOf(), null) : '';
+                            agents.push({ id: module.assigned_to.builder, role: 'builder', status: isWorking ? 'working' : isDone ? 'done' : 'idle', moduleName: module.name, elapsed, runtime });
+                        }
+                        if (module.assigned_to && module.assigned_to.reviewer && !seen.has(module.assigned_to.reviewer)) {
+                            seen.add(module.assigned_to.reviewer);
+                            const isWorking = ['in_review','needs_work'].includes(module.status);
+                            const isDone = module.status === 'accepted' || module.status === 'passed';
+                            const startedAt = p.first_review_at ? dayjs(p.first_review_at) : null;
+                            const completedAt = p.completed_at ? dayjs(p.completed_at) : null;
+                            const runtime = startedAt ? fmtDuration(startedAt.valueOf(), completedAt ? completedAt.valueOf() : null) : '';
+                            const elapsed = isWorking && startedAt ? fmtDuration(startedAt.valueOf(), null) : '';
+                            agents.push({ id: module.assigned_to.reviewer, role: 'reviewer', status: isWorking ? 'working' : isDone ? 'done' : 'idle', moduleName: module.name, elapsed, runtime });
+                        }
+                        // Check agent_assignments field
+                        if (module.agent_assignments && Array.isArray(module.agent_assignments)) {
+                            module.agent_assignments.forEach(a => {
+                                const aid = a.agent_id || a.id;
+                                if (aid && !seen.has(aid)) {
+                                    seen.add(aid);
+                                    const role = a.role || 'builder';
+                                    const isWorking = a.status === 'working' || a.status === 'in_progress';
+                                    const isDone = a.status === 'done' || a.status === 'completed' || a.status === 'accepted';
+                                    agents.push({ id: aid, role, status: isWorking ? 'working' : isDone ? 'done' : 'idle', moduleName: module.name, elapsed: a.elapsed || '', runtime: a.runtime || '' });
+                                }
+                            });
+                        }
+                    });
+                    // Also extract agents from timeline logs
+                    if (this.projectLogs && this.projectLogs.length > 0) {
+                        const logAgents = new Map();
+                        this.projectLogs.forEach(log => {
+                            const agent = log.agent || '';
+                            const a = agent.toLowerCase();
+                            if (a.startsWith('builder-') || a.startsWith('reviewer-')) {
+                                if (!seen.has(agent)) {
+                                    const isBuilder = a.startsWith('builder-');
+                                    const role = isBuilder ? 'builder' : 'reviewer';
+                                    // Infer module from agent name: builder-game-engine-001 → game-engine
+                                    let moduleId = agent.replace(/^(builder|reviewer)-/, '').replace(/-\d+$/, '');
+                                    const mod = modules.find(m => m.module_id === moduleId);
+                                    const modName = mod ? mod.name : moduleId;
+                                    const isDone = mod && (mod.state === 'accepted' || mod.status === 'passed');
+                                    const isWorking = mod && (mod.state === 'in_progress' || mod.status === 'in_review');
+                                    logAgents.set(agent, { id: agent, role, status: isDone ? 'done' : isWorking ? 'working' : 'idle', moduleName: modName, elapsed: '', runtime: '' });
+                                    seen.add(agent);
+                                }
+                            }
+                        });
+                        logAgents.forEach(a => agents.push(a));
+                    }
+                    return agents;
+                },
+                sortedModules() {
+                    const priorityOrder = { high: 0, medium: 1, low: 2 };
+                    const statusOrder = {
+                        blocked: 0, needs_work: 1, in_review: 2, ready_for_review: 3,
+                        in_progress: 4, pending: 5, passed: 6, accepted: 7, rejected: 8
+                    };
+                    return [...this.getModules()].sort((a, b) => {
+                        const sa = statusOrder[a.status] ?? 9;
+                        const sb = statusOrder[b.status] ?? 9;
+                        if (sa !== sb) return sa - sb;
+                        return (priorityOrder[a.priority] ?? 1) - (priorityOrder[b.priority] ?? 1);
+                    });
+                },
+                overallStatusColor() {
+                    const colors = {
+                        planning: 'border-gray-500',
+                        in_progress: 'border-blue-500',
+                        blocked: 'border-red-500',
+                        completed: 'border-green-500',
+                        cancelled: 'border-gray-400'
+                    };
+                    return colors[this.projectState.status] || 'border-gray-500';
+                }
+            },
+            methods: {
+                getModules() {
+                    const m = this.projectState.modules || [];
+                    return Array.isArray(m) ? m : Object.values(m);
+                },
+                async refreshData() {
+                    this.loading = true;
+                    try {
+                        await this.scanProjects();
+                        if (this.currentProject?.id) {
+                            await this.loadProject(this.currentProject);
+                        } else if (this.allProjects.length > 0) {
+                            // Prefer in_progress projects, fallback to first
+                            const active = this.allProjects.find(p => p.status === 'in_progress') || this.allProjects[0];
+                            this.selectProject(active);
+                        }
+                    } catch (error) {
+                        console.error('Failed to load data:', error);
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+                async scanProjects() {
+                    try {
+                        const res = await fetch('/api/projects?t=' + Date.now());
+                        if (res.ok) {
+                            const projects = await res.json();
+                            // Preserve selection state
+                            const currentId = this.currentProject?.id;
+                            this.allProjects = projects.sort((a, b) => {
+                                const order = { in_progress: 0, planning: 1, pending: 2, completed: 3 };
+                                return (order[a.status] ?? 9) - (order[b.status] ?? 9);
+                            });
+                            // Re-select if project still exists
+                            if (currentId) {
+                                this.currentProject = this.allProjects.find(p => p.id === currentId) || this.currentProject;
+                            }
+                        }
+                    } catch (e) {
+                        console.error('API scan failed:', e);
+                    }
+                },
+                async loadProject(project) {
+                    if (project.is_request || !project.path) return;
+                    this.previousModules = JSON.parse(JSON.stringify(this.getModules()));
+                    try {
+                        const res = await fetch(project.path + '?t=' + Date.now());
+                        if (res.ok) {
+                            const newState = await res.json();
+                            this.detectChanges(newState);
+                            this.projectState = newState;
+                            this.lastLoaded = new Date().toISOString();
+                        }
+                    } catch (e) {
+                        console.error('Failed to load project:', e);
+                    }
+                    // Load logs
+                    this.loadLogs();
+                },
+                async loadLogs() {
+                    if (!this.currentProject) return;
+                    let projectId = this.currentProject.id;
+                    // For archived projects, try to find the actual project directory
+                    if (projectId.startsWith('archived-')) {
+                        // Try to find the matching project-state.json in subdirectories
+                        projectId = this.findProjectDirForArchive(this.currentProject);
+                    }
+                    if (!projectId) return;
+                    try {
+                        const res = await fetch('/api/logs/' + projectId + '?t=' + Date.now());
+                        if (res.ok) {
+                            this.projectLogs = await res.json();
+                        }
+                    } catch (e) {
+                        console.error('Failed to load logs:', e);
+                        this.projectLogs = [];
+                    }
+                },
+                findProjectDirForArchive(project) {
+                    // Try to find the actual project directory from the outputDir or name
+                    if (project.outputDir) return project.outputDir;
+                    // Fallback: search for matching project-state.json
+                    return null;
+                },
+                selectProject(project) {
+                    this.currentProject = project;
+                    this.expandedModules = [];
+                    this.recentActivity = null;
+                    this.logsExpanded = false;
+                    this.expandedLogFiles = [];
+                    this.projectLogs = [];
+                    if (!project.is_request) {
+                        this.loadProject(project);
+                    }
+                },
+                // Log display methods
+                toggleLogs() {
+                    this.logsExpanded = !this.logsExpanded;
+                    if (this.logsExpanded && this.projectLogs.length === 0) {
+                        this.loadLogs();
+                    }
+                },
+                toggleLogFile(filename) {
+                    const i = this.expandedLogFiles.indexOf(filename);
+                    if (i > -1) this.expandedLogFiles.splice(i, 1);
+                    else this.expandedLogFiles.push(filename);
+                },
+                isLogFileExpanded(filename) {
+                    return this.expandedLogFiles.includes(filename);
+                },
+                getLogRoleIcon(filename) {
+                    const f = filename.toLowerCase();
+                    if (f.includes('orchestrator')) return '🎭';
+                    if (f.includes('builder')) return '🔨';
+                    if (f.includes('reviewer')) return '👁️';
+                    return '📋';
+                },
+                getLogRoleLabel(filename) {
+                    const f = filename.toLowerCase();
+                    if (f.includes('orchestrator')) return 'Orchestrator';
+                    if (f.includes('builder')) return 'Builder';
+                    if (f.includes('reviewer')) return 'Reviewer';
+                    return 'Agent';
+                },
+                getLogTimestamp(val) {
+                    if (!val) return '';
+                    // If it's a full ISO timestamp (from timeline.log parsed format)
+                    const iso = val.match(/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})/);
+                    if (iso) {
+                        return dayjs(iso[1]).format('MM-DD HH:mm');
+                    }
+                    // If it's a filename format
+                    const m = val.match(/(\d{4}-\d{2}-\d{2})T?(\d{2})?(\d{2})?(\d{2})?/);
+                    if (m) {
+                        const date = m[1];
+                        const time = m[2] ? `${m[2]}:${m[3] || '00'}` : '';
+                        return time ? `${date} ${time}` : date;
+                    }
+                    return '';
+                },
+                getAgentBadgeClass(agentName) {
+                    const a = agentName.toLowerCase();
+                    if (a === 'orchestrator') return 'bg-blue-100 text-blue-700';
+                    if (a.startsWith('builder')) return 'bg-green-100 text-green-700';
+                    if (a.startsWith('reviewer')) return 'bg-orange-100 text-orange-700';
+                    return 'bg-gray-100 text-gray-600';
+                },
+                detectChanges(newState) {
+                    const old = this.previousModules;
+                    if (!old || old.length === 0) return;
+                    const newMods = this.getModules.call({ projectState: newState });
+                    const changes = [];
+                    newMods.forEach(nm => {
+                        const om = old.find(m => m.module_id === nm.module_id);
+                        if (om && (om.status !== nm.status)) {
+                            changes.push(`${nm.module_id}: ${this.formatStatus(om.status)} → ${this.formatStatus(nm.status)}`);
+                        }
+                    });
+                    if (changes.length > 0) {
+                        this.recentActivity = changes.join(', ');
+                        setTimeout(() => this.recentActivity = null, 5000);
+                    }
+                },
+                getProjectCardClass(project) {
+                    if (project.is_request) return 'border-yellow-200 bg-yellow-50';
+                    if (project.id === this.currentProject?.id) return 'border-blue-500 bg-blue-50 ring-2 ring-blue-200';
+                    if (project.status === 'completed') return 'border-green-200 bg-green-50';
+                    if (project.status === 'in_progress') return 'border-blue-200 bg-blue-50';
+                    return 'border-gray-200 bg-white';
+                },
+                getProjectStatusBadgeClass(status) {
+                    const c = { completed: 'bg-green-100 text-green-700', in_progress: 'bg-blue-100 text-blue-700', planning: 'bg-gray-100 text-gray-700', pending: 'bg-yellow-100 text-yellow-700' };
+                    return c[status] || 'bg-gray-100 text-gray-700';
+                },
+                getProjectProgressColor(status) {
+                    const c = { completed: 'bg-green-500', in_progress: 'bg-blue-500', planning: 'bg-gray-400', blocked: 'bg-red-500' };
+                    return c[status] || 'bg-gray-400';
+                },
+                toggleModuleDetail(moduleId) {
+                    const i = this.expandedModules.indexOf(moduleId);
+                    if (i > -1) this.expandedModules.splice(i, 1);
+                    else this.expandedModules.push(moduleId);
+                },
+                formatStatus(status) {
+                    const m = { pending: '等待中', in_progress: '进行中', ready_for_review: '待审查', in_review: '审查中', needs_work: '需修改', passed: '已通过', accepted: '已验收', rejected: '已打回', blocked: '已阻塞', planning: '规划中', completed: '已完成' };
+                    return m[status] || status;
+                },
+                getStatusBadgeClass(status) {
+                    const c = { pending: 'bg-gray-100 text-gray-700 border-gray-300', in_progress: 'bg-blue-100 text-blue-700 border-blue-300', ready_for_review: 'bg-yellow-100 text-yellow-700 border-yellow-300', in_review: 'bg-orange-100 text-orange-700 border-orange-300', needs_work: 'bg-red-100 text-red-700 border-red-300', passed: 'bg-green-100 text-green-700 border-green-300', accepted: 'bg-emerald-100 text-emerald-700 border-emerald-300', rejected: 'bg-red-200 text-red-800 border-red-400', blocked: 'bg-purple-100 text-purple-700 border-purple-300' };
+                    return c[status] || 'bg-gray-100 text-gray-700 border-gray-300';
+                },
+                getAgentRoleBadgeClass(role) {
+                    return role === 'builder' ? 'bg-blue-100 text-blue-700 border border-blue-300' : 'bg-purple-100 text-purple-700 border border-purple-300';
+                },
+                getIterationBorderClass(status) {
+                    return { needs_work: 'border-red-400', in_review: 'border-orange-400', passed: 'border-green-400', accepted: 'border-emerald-400' }[status] || 'border-gray-400';
+                },
+                getIterationBgClass(status) {
+                    return { needs_work: 'bg-red-50', in_review: 'bg-orange-50', passed: 'bg-green-50', accepted: 'bg-emerald-50' }[status] || 'bg-gray-50';
+                },
+                getIterationStatusClass(status) { return this.getStatusBadgeClass(status); },
+                getModuleRowClass(module) {
+                    return { in_progress: 'bg-blue-50/30', in_review: 'bg-orange-50/30', needs_work: 'bg-red-50/30', blocked: 'bg-purple-50/30' }[module.status] || '';
+                },
+                getFullDescription() {
+                    return (this.projectState.description || this.currentProject?.description || '');
+                },
+                getModuleName(moduleId) {
+                    return this.getModules().find(m => m.module_id === moduleId)?.name || moduleId;
+                },
+                formatTime(ts) {
+                    if (!ts) return '';
+                    return dayjs(ts).format('MM-DD HH:mm');
+                },
+                renderMarkdown(text) {
+                    if (!text) return '';
+                    return md.render(text);
+                },
+                // Iteration detail toggle (per module+iteration)
+                toggleIterationDetail(moduleId, iteration) {
+                    const key = `${moduleId}::${iteration}`;
+                    if (!this._iterationExpanded) this._iterationExpanded = {};
+                    this._iterationExpanded[key] = !this._iterationExpanded[key];
+                },
+                isIterationExpanded(moduleId, iteration) {
+                    if (!this._iterationExpanded) this._iterationExpanded = {};
+                    return !!this._iterationExpanded[`${moduleId}::${iteration}`];
+                },
+                // Parse [PASSED] / [FAILED] / [INFO] style checklist items from summary
+                getParsedChecks(summary) {
+                    if (!summary) return [];
+                    const checks = [];
+                    const lines = summary.split('\n');
+                    for (const line of lines) {
+                        const trimmed = line.trim();
+                        // Match [PASSED] ... or [FAILED] ... or [INFO] ...
+                        const m = trimmed.match(/^\[(PASSED|FAILED|INFO)\]\s+(.*)/);
+                        if (m) {
+                            checks.push({
+                                type: m[1].toLowerCase(),
+                                icon: m[1] === 'PASSED' ? '✅' : m[1] === 'FAILED' ? '❌' : 'ℹ️',
+                                text: m[2]
+                            });
+                        }
+                    }
+                    return checks;
+                },
+                // Get non-checklist lines from summary (overview text)
+                getNonCheckLines(summary) {
+                    if (!summary) return [];
+                    return summary.split('\n')
+                        .map(l => l.trim())
+                        .filter(l => l && !l.match(/^\[(PASSED|FAILED|INFO)\]/))
+                        .filter(l => !l.match(/^REVIEW\s*—/)); // skip header line
+                },
+                // Check if handoff_summary is the same as the last review summary
+                isHandoffDistinct(module) {
+                    const lastReview = module.review_history && module.review_history.length > 0
+                        ? module.review_history[module.review_history.length - 1] : null;
+                    if (!lastReview || !lastReview.summary) return true;
+                    if (!module.handoff_summary) return true;
+                    // Normalize whitespace for comparison
+                    const normalize = s => s.replace(/\s+/g, ' ').trim();
+                    return normalize(lastReview.summary) !== normalize(module.handoff_summary);
+                },
+                // Check if feedback is same as summary
+                isSameAsSummary(summary, feedback) {
+                    if (!summary || !feedback) return false;
+                    const normalize = s => s.replace(/\s+/g, ' ').trim();
+                    return normalize(summary) === normalize(feedback);
+                },
+                getDeliverablesList(module) {
+                    // Merge deliverables_completed with metadata.deliverables paths
+                    const items = new Set();
+                    if (module.deliverables_completed) {
+                        module.deliverables_completed.forEach(d => items.add(typeof d === 'string' ? d : d.path || d));
+                    }
+                    if (module.metadata && module.metadata.deliverables) {
+                        module.metadata.deliverables.forEach(d => items.add(typeof d === 'string' ? d : d.path));
+                    }
+                    return [...items];
+                },
+                getDeliverableLink(moduleId, item) {
+                    const clean = item.replace(/^\.\//, '');
+                    let projectDir = '';
+                    // Priority: outputDir > id from path > fallback
+                    if (this.currentProject?.outputDir) {
+                        projectDir = '/projects/' + this.currentProject.outputDir + '/';
+                    } else if (this.currentProject?.id && this.currentProject.id !== 'default') {
+                        projectDir = '/projects/' + this.currentProject.id + '/';
+                    } else if (this.currentProject?.path) {
+                        const parts = this.currentProject.path.split('/');
+                        projectDir = parts.slice(0, -1).join('/') + '/';
+                    } else {
+                        projectDir = '/projects/';
+                    }
+                    return projectDir + clean;
+                },
+                getProjectOutputDir() {
+                    // Priority: explicit outputDir from API
+                    if (this.currentProject?.outputDir) return this.currentProject.outputDir;
+                    if (this.currentProject?.id && this.currentProject.id !== 'default') {
+                        return this.currentProject.id;
+                    }
+                    // Fallback: infer from name
+                    if (this.projectState?.name?.includes('像素风')) return 'pixel-art-generator';
+                    if (this.projectState?.name?.includes('星空')) return 'realtime-sky-simulator-001/star-simulator';
+                    return '';
+                },
+                getProjectFinalDeliverables() {
+                    const modules = this.getModules();
+                    const allAccepted = modules.every(m => (m.state || m.status) === 'accepted');
+                    if (!allAccepted) return [];
+                    
+                    const outputDir = this.getProjectOutputDir();
+                    const projectDir = '/projects/' + outputDir + '/';
+                    
+                    const deliverables = [];
+                    const seen = new Set();
+                    
+                    // Find index.html entry points (deduplicate by URL)
+                    modules.forEach(m => {
+                        const paths = this.getDeliverablesList(m);
+                        paths.forEach(p => {
+                            if (p.endsWith('index.html')) {
+                                const url = projectDir + p;
+                                if (!seen.has(url)) {
+                                    seen.add(url);
+                                    const name = this.projectState?.name || this.currentProject?.name || '';
+                                    deliverables.push({
+                                        icon: '🌐',
+                                        label: name || 'Web 应用',
+                                        description: '可直接浏览器打开的入口文件',
+                                        url: url
+                                    });
+                                }
+                            }
+                        });
+                    });
+                    
+                    return deliverables;
+                },
+            },
+            mounted() {
+                this.refreshData();
+                this.refreshTimer = setInterval(() => this.refreshData(), 5000);
+            },
+            beforeUnmount() {
+                if (this.refreshTimer) clearInterval(this.refreshTimer);
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

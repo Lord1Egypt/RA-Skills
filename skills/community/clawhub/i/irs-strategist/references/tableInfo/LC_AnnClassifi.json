@@ -1,0 +1,94 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "非文本ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "remark": "非文本ID（RID）：与公司公告原文非文本（LC_NotTextAnnouncement）表ID关联或与公司公告（不含原文）（LC_AnnouncementInfo）表ID关联。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "Level1",
+        "columnChiName": "一级分类",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "一级分类（Level1）：与公告分类指引（LC_AnnounceStru）公告类别编码（TypeCode）关联，获取公告分类的详细信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Level2",
+        "columnChiName": "二级分类",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "二级分类（Level2）：与公告分类指引（LC_AnnounceStru）公告类别编码（TypeCode）关联，获取公告分类的详细信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "Level3",
+        "columnChiName": "三级分类",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "三级分类（Level3）：与公告分类指引（LC_AnnounceStru）公告类别编码（TypeCode）关联，获取公告分类的详细信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

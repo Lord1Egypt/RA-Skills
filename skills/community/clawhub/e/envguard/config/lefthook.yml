@@ -1,0 +1,21 @@
+# EnvGuard — lefthook configuration
+# Installed by: envguard hooks install
+# Documentation: https://envguard.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    envguard-secret-scan:
+      run: |
+        ENVGUARD_SKILL_DIR="${ENVGUARD_SKILL_DIR:-$HOME/.openclaw/skills/envguard}"
+        if [[ -f "$ENVGUARD_SKILL_DIR/scripts/scanner.sh" ]]; then
+          source "$ENVGUARD_SKILL_DIR/scripts/scanner.sh"
+          hook_secret_scan
+        else
+          echo "[EnvGuard] Skill not found at $ENVGUARD_SKILL_DIR — skipping scan"
+        fi
+      fail_text: |
+        Secrets detected in staged files!
+        Run 'envguard scan' to see details.
+        Run 'envguard allowlist add <pattern>' to allow known-safe patterns.
+        Or 'git commit --no-verify' to skip (NOT recommended).

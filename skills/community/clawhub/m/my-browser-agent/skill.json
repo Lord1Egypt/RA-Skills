@@ -1,0 +1,16 @@
+{
+  "name": "my-browser-agent",
+  "version": "1.0.0",
+  "description": "A custom browser automation skill using Playwright",
+  "main": "index.js",
+  "author": "stxy",
+  "permissions": ["network", "filesystem"],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "url": { "type": "string", "description": "The URL to visit" },
+      "action": { "type": "string", "description": "Action to perform: screenshot, title, click" }
+    },
+    "required": ["url"]
+  }
+}

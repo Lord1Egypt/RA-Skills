@@ -1,0 +1,32 @@
+# Default Verification Configuration
+policy: "basic" # basic | standard | deep
+max_correction_attempts: 1
+auto_correct: true # If false, just notify the user of inaccuracies
+log_results_to_dashboard: true
+model_override: null
+auto_verify: false
+
+knowledge_sources:
+  use_system_memory: true
+  document_paths: []
+  enable_web_search: false
+
+# LLM Provider (optional — set to use CoVe without the OpenClaw sidecar)
+# If not set, CoVe routes LLM calls through the sidecar at localhost:8888.
+# Set llm_provider + llm_api_key, or just set the env var (GEMINI_API_KEY,
+# ANTHROPIC_API_KEY, or OPENAI_API_KEY) and the provider is auto-detected.
+#
+# llm_provider: "gemini"       # gemini | anthropic | openai
+# llm_api_key: ""              # or use env var instead
+
+# Vector Store Configuration (optional)
+# Uncomment and configure to verify claims against a vector database.
+# Supported providers: qdrant, chroma, weaviate, milvus, redis, openviking
+#
+# vector_store:
+#   provider: "qdrant"
+#   url: "http://localhost:6333"
+#   collection: "knowledge"
+#   api_key: ""
+#   top_k: 5
+#   score_threshold: 0.7

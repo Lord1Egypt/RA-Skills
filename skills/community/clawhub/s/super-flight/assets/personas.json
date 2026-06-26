@@ -1,0 +1,58 @@
+{
+  "亲子": {
+    "aliases": ["family", "parent-child", "with-kids"],
+    "description": "Traveling with children (infants/kids included) / 带小孩出行（含婴儿/儿童）",
+    "hard_constraints": {
+      "reject_redeye_departure": true,
+      "min_transfer_minutes": 60
+    },
+    "soft_hints": [
+      "At least one child/infant in party; prioritize airlines' baggage allowance and child-ticket policy",
+      "Prefer daytime direct flights; transfer waits must be comfortable"
+    ]
+  },
+  "商务": {
+    "aliases": ["business", "work-trip"],
+    "description": "Business trip / meeting / 出差/商务会议",
+    "hard_constraints": {
+      "journey_type": 1
+    },
+    "soft_hints": [
+      "Schedule stability first; watch on-time rate",
+      "Short trips often mean early out / late back"
+    ]
+  },
+  "学生": {
+    "aliases": ["student", "budget"],
+    "description": "Student or budget-sensitive / 学生或预算敏感",
+    "hard_constraints": {},
+    "soft_hints": [
+      "Price first; red-eye and transfers are acceptable",
+      "Highest flexibility"
+    ]
+  },
+  "老人": {
+    "aliases": ["senior", "elderly", "with-parents"],
+    "description": "Traveling with seniors (incl. accompanying parents) / 老人出行（含陪父母）",
+    "hard_constraints": {
+      "journey_type": 1,
+      "reject_redeye_departure": true,
+      "reject_overnight_arrival": true
+    },
+    "soft_hints": [
+      "Avoid late-night arrivals",
+      "Avoid transfers and airport running-around"
+    ]
+  },
+  "蜜月": {
+    "aliases": ["honeymoon", "vacation"],
+    "description": "Honeymoon / vacation / 蜜月/度假旅行",
+    "hard_constraints": {
+      "reject_redeye_departure": true
+    },
+    "soft_hints": [
+      "Experience first; acceptable to pay for upgrade",
+      "Relatively flexible timing"
+    ]
+  }
+}

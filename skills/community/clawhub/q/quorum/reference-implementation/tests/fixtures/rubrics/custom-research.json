@@ -1,0 +1,22 @@
+{
+  "name": "custom-research",
+  "domain": "research",
+  "version": "1.0",
+  "description": "Custom rubric for testing",
+  "criteria": [
+    {
+      "id": "CR-001",
+      "criterion": "Abstract must summarize key findings",
+      "severity": "HIGH",
+      "evidence_required": "Quote from the abstract section",
+      "why": "Abstracts provide readers a quick summary"
+    },
+    {
+      "id": "CR-002",
+      "criterion": "Methodology section must describe data sources",
+      "severity": "MEDIUM",
+      "evidence_required": "Reference to data sources or methodology",
+      "why": "Reproducibility requires clear methodology"
+    }
+  ]
+}

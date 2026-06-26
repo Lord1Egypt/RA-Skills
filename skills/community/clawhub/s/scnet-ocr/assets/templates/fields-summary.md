@@ -1,0 +1,912 @@
+# 各识别类型的字段说明（elements 内容）
+
+根据 ocrType 不同，返回的 `elements` 对象包含以下字段：
+
+## GENERAL (通用文字)
+- `width`: 图像宽度（像素）
+- `height`: 图像高度（像素）
+- `angle`: 图像旋转角度（度）
+- `text`: 文字识别结果（List<Object>）
+  - `text`: 文字条内容
+  - `text_class`: 文本类别标识，1是竖向文本，2是横向文本
+  - `anglenet_class`: 角度分类标识
+  - `x`: 文本块左上角X坐标
+  - `y`: 文本块左上角Y坐标
+  - `width`: 文本块宽度（像素）
+  - `height`: 文本块高度（像素）
+  - `pos`: 文本块四边形坐标（左上、右上、右下、左下），List<Array>
+  - `confidences`: 文字条置信度
+  - `chars`: 字符识别结果（List<Object>）
+    - `pos`: 字符四点坐标，List<Array>
+    - `text`: 识别的字符
+
+## ID_CARD (大陆身份证)
+- `name`: 姓名
+- `gender`: 性别
+- `nation`: 民族
+- `bornDate`: 出生日期
+- `address`: 住址
+- `IDNumber`: 公民身份号码
+- `issueInstitution`: 签发机关
+- `validityPeriod`: 有效期
+
+## BANK_CARD (银行卡)
+- `bankName`: 银行名称
+- `cardNumber`: 卡号
+- `validThru`: 有效期
+- `cardHolder`: 持卡人
+
+## SOCIAL_SECURITY_CARD (社保卡)
+- `name`: 姓名
+- `gender`: 性别
+- `nation`: 民族
+- `bornDate`: 出生日期
+- `socialSecurityNumber`: 社会保障号码
+- `cardNumber`: 社会保障卡号
+- `issueDate`: 发卡日期
+- `bankCardNumber`: 银行卡号
+- `validityPeriod`: 有效期限
+- `issueInstitution`: 发卡机关
+
+## HOUSEHOLD_REGISTER (户口本)
+- `title`: 标题
+- `houseNo`: 户号
+- `householdType`: 户别
+- `fullName`: 姓名
+- `householdRelation`: 户主或与户主关系
+- `formerName`: 曾用名
+- `gender`: 性别
+- `birthPlace`: 出生地
+- `nation`: 民族
+- `nativePlace`: 籍贯
+- `birthDate`: 出生日期
+- `otherAddress`: 本市(县)其他住址
+- `religion`: 宗教信仰
+- `idNumber`: 公民身份证件编号
+- `height`: 身高
+- `bloodType`: 血型
+- `educationLevel`: 文化程度
+- `maritalStatus`: 婚姻状况
+- `militaryService`: 兵役状况
+- `workUnit`: 服务处所
+- `occupation`: 职业
+- `moveInCityDate`: 何时何地迁来本市
+- `moveInAddressDate`: 何时何地迁来本址
+- `registerDate`: 登记日期
+
+## BIRTH_CERTIFICATE (出生医学证明)
+- `title`: 标题
+- `newbornName`: 新生儿姓名
+- `gender`: 性别
+- `birthTime`: 出生时间
+- `gestationalWeeks`: 出生孕周
+- `birthWeight`: 出生体重
+- `birthLength`: 出生身长
+- `birthPlace`: 出生地点
+- `medicalInstitutionName`: 医疗机构名称
+- `motherName`: 母亲姓名
+- `motherAge`: 母亲年龄
+- `motherNationality`: 母亲国籍
+- `motherEthnicGroup`: 母亲民族
+- `motherAddress`: 母亲住址
+- `motherIdType`: 母亲身份证件类别
+- `motherIdNumber`: 母亲身份证件号码
+- `fatherName`: 父亲姓名
+- `fatherAge`: 父亲年龄
+- `fatherNationality`: 父亲国籍
+- `fatherEthnicGroup`: 父亲民族
+- `fatherAddress`: 父亲住址
+- `fatherIdType`: 父亲身份证件类别
+- `fatherIdNumber`: 父亲身份证件号码
+- `issuingAuthority`: 签发机构
+- `issueDate`: 签发日期
+- `certificateNumber`: 证书编号
+
+## HK_MACAU_PASS (往来港澳通行证)
+- `title`: 标题
+- `documentNumber`: 证件号码
+- `chineseName`: 中文姓名
+- `englishName`: 英文姓名
+- `birthDate`: 出生日期
+- `gender`: 性别
+- `validityPeriod`: 有效期限
+- `issuingAuthority`: 签发机关
+- `issuingPlace`: 签发地点
+- `machineReadableCode`: 机读码
+
+## TAIWAN_PASS (往来台湾通行证)
+- `title`: 标题
+- `documentNumber`: 证件号码
+- `chineseName`: 中文姓名
+- `englishName`: 英文姓名
+- `birthDate`: 出生日期
+- `gender`: 性别
+- `validityPeriod`: 有效期限
+- `issuingAuthority`: 签发机关
+- `issuingPlace`: 签发地点
+- `machineReadableCode`: 机读码
+
+## TAIWAN_MAINLAND_PASS (台湾居民来往大陆通行证)
+- `title`: 标题
+- `chineseName`: 中文姓名
+- `englishName`: 英文姓名
+- `birthDate`: 出生日期
+- `gender`: 性别
+- `validityPeriod`: 有效期限
+- `issuingAuthority`: 签发机关
+- `issuingPlace`: 签发地点
+- `documentNumber`: 证件号码
+- `issuingTimes`: 签发次数
+
+## HONG_KONG_IDENTITY_CARD (中国香港身份证)
+- `title`: 标题
+- `cnName`: 中文姓名
+- `enName`: 英文姓名
+- `credentialNumber`: 证件号码
+- `bornDate`: 出生日期
+- `gender`: 性别
+- `issueDate`: 签发日期
+- `idNumber`: 身份证号码
+
+## PERMANENT_RESIDENCE_ID_CARD_FOR (外国人永久居留身份证)
+- `cnName`: 中文姓名
+- `enName`: 英文姓名
+- `gender`: 性别
+- `bornDate`: 出生日期
+- `nationality`: 国籍
+- `validityPeriod`: 有效期限
+- `issueInstitution`: 签发机关
+- `idNumber`: 证件号码
+
+## MARRIAGE_CERTIFICATE (结婚证)
+- `certificateHolder`: 持证人
+- `registerDate`: 登记日期
+- `marriageCertificateNo`: 结婚证字号
+- `remarks`: 备注
+- `name1`: 姓名1
+- `gender1`: 性别1
+- `nationality1`: 国籍1
+- `bornDate1`: 出生日期1
+- `idNumber1`: 身份证件号1
+- `name2`: 姓名2
+- `gender2`: 性别2
+- `nationality2`: 国籍2
+- `bornDate2`: 出生日期2
+- `idNumber2`: 身份证件号2
+
+## REAL_ESTATE_OWNERSHIP_CERTIFICAT (不动产权证书)
+- `title`: 标题
+- `registerDate`: 登记日期
+- `certificateNumber`: 证书编号
+- `ownerName`: 权利人
+- `coOwnershipStatus`: 共有情况
+- `address`: 坐落
+- `propertyUnitCode`: 不动产单元号
+- `rightType`: 权利类型
+- `rightNature`: 权利性质
+- `usage`: 用途
+- `area`: 面积
+- `usageTerm`: 使用期限
+- `otherRightConditions`: 权力其他状况
+- `remarks`: 附记
+
+## FRONT_PAGE_OF_MOTOR_VEHICLE_DRIV (机动车行驶证正页)
+- `title`: 标题
+- `plateNo`: 号牌号码
+- `vehicleType`: 车辆类型
+- `owner`: 所有人
+- `address`: 住址
+- `useCharacter`: 使用性质
+- `model`: 品牌型号
+- `vin`: 车辆识别代号
+- `engineNo`: 发动机号码
+- `registerDate`: 注册日期
+- `issueDate`: 发证日期
+
+## SECOND_SHEET_OF_MOTOR_VEHICLE_DR (机动车行驶证副页)
+- `plateNo`: 号牌号码
+- `archiveNo`: 档案编号
+- `authorizedCapacity`: 核定载人数
+- `grossMass`: 总质量
+- `curbMass`: 整备质量
+- `ratedLoadMass`: 核定载质量
+- `overallDimensions`: 外廓尺寸
+- `permittedTowingMass`: 准牵引总质量
+- `remarks`: 备注
+- `inspectionRecord`: 检验记录
+- `fuelType`: 燃油类型
+- `certificateCoreNo`: 证芯编号
+
+## MOTOR_VEHICLE_DRIVING_LICENSE (机动车驾驶证正页)
+- `title`: 标题
+- `certificateNo`: 证号
+- `name`: 姓名
+- `gender`: 性别
+- `nationality`: 国籍
+- `address`: 住址
+- `bornDate`: 出生日期
+- `firstIssueDate`: 初次领证日期
+- `class`: 准驾车型
+- `validPeriod`: 有效期限
+
+## MOTOR_VEHICLE_DRIVING_LICENSE_SU (机动车驾驶证副页)
+- `title`: 标题
+- `certificateNo`: 证号
+- `name`: 姓名
+- `archiveNo`: 档案编号
+- `record`: 记录
+
+## CHINESE_PASSPORT (中国护照)
+- `title`: 标题
+- `type`: 类型
+- `countryCode`: 国家码
+- `passportNo`: 护照号码
+- `cnName`: 中文姓名
+- `enName`: 英文姓名
+- `gender`: 性别
+- `nationality`: 国籍
+- `birthDate`: 出生日期
+- `birthPlace`: 出生地点
+- `issueDate`: 签发日期
+- `issuePlace`: 签发地点
+- `expiryDate`: 有效期至
+- `issueInstitution`: 签发机关
+- `machineReadableCode`: 机读码
+
+## ACADEMIC_CERTIFICATE (学历证书)
+- `title`: 标题
+- `certificateHolder`: 持证人
+- `gender`: 性别
+- `bornDate`: 出生日期
+- `university`: 学校
+- `major`: 专业
+- `approvalNo`: 批准文号
+- `certificateNumber`: 证书编号
+- `issueDate`: 发证日期
+- `academicLevel`: 学历层次
+
+## ONLINE_VERIFICATION_REPORT_OF_HE (学历证书电子注册备案表)
+- `title`: 标题
+- `updateDate`: 更新日期
+- `name`: 姓名
+- `gender`: 性别
+- `bornDate`: 出生日期
+- `enrollmentDate`: 入学日期
+- `graduationDate`: 毕(结)业日期
+- `university`: 学校名称
+- `major`: 专业
+- `studyDuration`: 学制
+- `academicLevel`: 层次
+- `diplomaCategory`: 学历类别
+- `studyMode`: 学习形式
+- `graduationStatus`: 毕(结)业
+- `certificateNumber`: 证书编号
+- `principalName`: 校(院)长姓名
+
+## DIPLOMA (学位证书)
+- `title`: 标题
+- `certificateHolder`: 持证人
+- `gender`: 性别
+- `bornDate`: 出生日期
+- `university`: 学校
+- `major`: 专业
+- `degree`: 学位
+- `certificateNumber`: 证书编号
+- `issueDate`: 发证日期
+
+## HK_MAINLAND_PASS (港澳居民来往内地通行证)
+- `title`: 标题
+- `chineseName`: 中文姓名
+- `englishName`: 英文姓名
+- `birthDate`: 出生日期
+- `gender`: 性别
+- `nationality`: 国籍
+- `validityPeriod`: 有效期限
+- `issuingAuthority`: 签发机关
+- `documentNumber`: 证件号码
+- `renewalTimes`: 换证次数
+
+## BUSINESS_LICENSE (营业执照)
+- `title`: 标题
+- `socialCreditCode`: 统一社会信用代码
+- `name`: 名称
+- `capital`: 注册资本
+- `type`: 类型
+- `date`: 成立日期
+- `directorType`: 负责人类型
+- `director`: 负责人
+- `businessTerm`: 有效日期至
+- `businessScope`: 经营范围
+- `address`: 住所
+
+## SOCIAL_ORG_REG (社会团体法人登记证书)
+- `title`: 标题
+- `name`: 名称
+- `directorType`: 负责人类型
+- `director`: 负责人
+- `scope`: 业务范围
+- `regionAct`: 活动地域
+- `capital`: 注册资金
+- `address`: 住所
+- `businessUnit`: 业务主管单位
+- `code`: 统一社会信用代码
+- `due`: 有效期限
+- `issueUnit`: 发证机关
+- `issueDate`: 发证日期
+
+## TRADE_UNION_REG (工会法人资格证书)
+- `title`: 标题
+- `name`: 工会名称
+- `address`: 住所
+- `directorType`: 负责人类型
+- `director`: 负责人
+- `issueUnit`: 发证机关
+- `due`: 有效期
+- `code`: 社会统一信用代码
+- `issueDate`: 发证日期
+
+## RELIGIOUS_ACTIVITY_REG (宗教活动场所登记证)
+- `title`: 标题
+- `name`: 名称
+- `religion`: 教别
+- `orgNature`: 类别
+- `directorType`: 负责人类型
+- `director`: 负责人
+- `address`: 地址
+- `code`: 统一社会信用代码
+- `religionNo`: 宗场证字
+- `issueUnit`: 发证机关
+- `issueDate`: 发证日期
+
+## PRIVATE_NON_ENTERPRISE_REG (民办非企业单位登记证书)
+- `title`: 标题
+- `name`: 名称
+- `directorType`: 负责人类型
+- `director`: 法定代表人
+- `address`: 住所
+- `capital`: 开办资金
+- `scope`: 业务范围
+- `businessUnit`: 业务主管单位
+- `code`: 统一社会信用代码
+- `due`: 有效期限
+- `issueUnit`: 发证机关
+- `issueDate`: 发证日期
+
+## INSTITUTION_LEGAL_REG (事业单位法人证书)
+- `title`: 标题
+- `name`: 名称
+- `directorType`: 负责人类型
+- `director`: 法定代表人
+- `scope`: 宗旨和业务范围
+- `resource`: 经费来源
+- `capital`: 开办资金
+- `address`: 住所
+- `organizer`: 举办单位
+- `code`: 统一社会信用代码
+- `due`: 有效期
+
+## UNIFIED_SOCIAL_CREDIT_REG (统一社会信用代码证书)
+- `title`: 标题
+- `name`: 机构名称
+- `orgNature`: 机构性质
+- `address`: 机构地址
+- `directorType`: 负责人类型
+- `director`: 负责人
+- `code`: 统一社会信用代码
+- `due`: 有效期至
+- `issueDate`: 颁发日期
+
+## VAT_INVOICE (增值税发票)
+- `title`: 发票名称
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `printedCode`: 机打代码
+- `printedNo`: 机打号码
+- `checkCode`: 校验码
+- `machineCode`: 机器编号
+- `invoiceDate`: 开票日期
+- `passwordArea`: 密码区
+- `buyerName`: 购方名称
+- `buyerCode`: 购方纳税人识别号
+- `buyerAddressAndPhone`: 购方地址及电话
+- `buyerBankAndAccount`: 购方开户行及账号
+- `sellerName`: 销售方名称
+- `sellerCode`: 销售方纳税人识别号
+- `sellerAddressAndPhone`: 销售方地址及电话
+- `sellerBankAndAccount`: 销售方开户行及账号
+- `preTaxTotalAmount`: 税前合计金额
+- `totalTaxAmount`: 合计税额
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `invoiceForm`: 联次
+- `remarks`: 备注
+- `payee`: 收款人
+- `checker`: 复核
+- `drawer`: 开票人
+- `goodsDetails`: 发票商品明细
+  - `goodsName`: 货物服务名称
+  - `specification`: 规格
+  - `unit`: 单位
+  - `quantity`: 数量
+  - `unitPrice`: 单价
+  - `itemAmount`: 金额
+  - `taxRate`: 税率
+  - `taxAmount`: 税额
+
+## VAT_ROLL_INVOICE (增值税卷票)
+- `title`: 发票名称
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `printedNo`: 机打号码
+- `machineCode`: 机器编号
+- `invoiceDate`: 开票日期
+- `payee`: 收款员
+- `buyerName`: 购方名称
+- `buyerCode`: 购方纳税人识别号
+- `sellerName`: 销售方名称
+- `sellerCode`: 销售方纳税人识别号
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `checkCode`: 校验码
+- `goodsDetails`: 发票商品明细
+  - `goodsName`: 项目
+  - `unitPrice`: 单价
+  - `quantity`: 数量
+  - `itemAmount`: 金额
+
+## TAXI_INVOICE (出租车发票)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `vehicleNo`: 车号
+- `certificateNo`: 证号
+- `date`: 日期
+- `boardingTime`: 上车时间
+- `alightingTime`: 下车时间
+- `amount`: 金额
+- `actualAmount`: 实收金额
+
+## TRAIN_TICKET (火车票)
+- `title`: 标题
+- `ticketNo`: 车票编号
+- `departStation`: 起始站
+- `destinationStation`: 终止站
+- `trainNo`: 车次
+- `departDate`: 发车日期
+- `departTime`: 发车时间
+- `seatPostion`: 座位号
+- `seatNo`: 座次
+- `ticketPrice`: 票价
+- `passengerName`: 旅客姓名
+- `identifyId`: 身份证号
+- `invoiceNo`: 发票号码
+- `invoiceDate`: 开票日期
+- `preTaxAmount`: 税前金额
+- `taxRate`: 税率
+- `taxAmount`: 税额
+- `elecTicketNo`: 电子客票号
+- `originInvoiceNo`: 原发票号码
+- `buyerName`: 购买方名称
+- `socialCreditCode`: 统一社会信用代码
+- `refundTag`: 退票标识
+- `replaceTag`: 换开标识
+- `otherInfo`: 其他信息
+
+## AIRPORT_TICKET (航空运输电子客票行程单)
+- `title`: 标题
+- `domesticTag`: 国内国际标识
+- `gpBillNo`: GP单号
+- `issueStatus`: 开具状态
+- `invoiceNo`: 发票号码
+- `serialNumber`: 印刷序号
+- `passengerName`: 旅客姓名
+- `identifyIdNo`: 身份证号码
+- `endorsement`: 签注
+- `openMark`: OPEN标示
+- `refundMark`: 退票费标示
+- `ticketPrice`: 票价
+- `fuleDischarge`: 燃油附加费
+- `civilAviationFund`: 民航发展基金
+- `taxRate`: 增值税税率
+- `taxAmount`: 增值税税额
+- `otherTaxes`: 其他税费
+- `totalAmount`: 合计金额
+- `ticketNo`: 电子客票号码
+- `checkCode`: 验证码
+- `reminderInfo`: 提示信息
+- `insuranceCharge`: 保险费
+- `salesOutletCode`: 销售网点代号
+- `issueUnit`: 填开单位
+- `issueDate`: 填开日期
+- `buyerName`: 购买方名称
+- `taxPayerCode`: 纳税人识别号
+- `airTransportRoutes`: 行程信息
+  - `departPlace`: 始发地
+  - `destinationPlace`: 目的地
+  - `carrier`: 承运人
+  - `flightNo`: 航班号
+  - `seatLevel`: 座位等级
+  - `departDate`: 航班日期
+  - `departTime`: 航班时间
+  - `ticketLevel`: 客票级别
+  - `ticketEffectiveDate`: 客票生效日期
+  - `ticketExpirationDate`: 客票失效日期
+  - `freeLuggage`: 免费行李
+
+## VEHICLE_SALE_INVOICE (机动车销售统一发票)
+- `title`: 发票名称
+- `invoiceForm`: 发票联次
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `issueDate`: 开票日期
+- `printedCode`: 机打代码
+- `printedNo`: 机打号码
+- `machineCode`: 机器编号
+- `taxControlCode`: 税控码
+- `buyerName`: 购方名称
+- `buyerTaxId`: 购方纳税人识别号
+- `buyerCode`: 购买方身份证或组织机构代码
+- `vehicleType`: 车辆类型
+- `brandModel`: 厂牌型号
+- `originalPlace`: 产地
+- `qualifiedNo`: 合格证号
+- `importCertificateNo`: 进口证明书号
+- `commodityInspectionNo`: 商检单号
+- `engineNo`: 发动机号码
+- `vehicleIdentificationNo`: 车辆识别代号
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `sellerName`: 销售方名称
+- `sellerTaxId`: 销售方纳税人识别号
+- `sellerAddressAndPhone`: 销售方地址及电话
+- `sellerBankAndAccount`: 销售方开户行及账号
+- `taxRate`: 增值税税率
+- `taxAmount`: 增值税税额
+- `taxAuthorityName`: 主管税务机关名称
+- `taxAuthorityCode`: 主管税务机关代码
+- `preTaxAmount`: 不含税价
+- `taxPaymentVoucher`: 完税凭证号码
+- `tonnage`: 吨位
+- `maxCapacity`: 限乘人数
+- `drawer`: 开票人
+- `remark`: 备注
+
+## QUOTA_INVOICE (定额发票)
+- `title`: 发票名称
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票代码
+- `amountUpper`: 发票号码
+- `amountLower`: 开票日期
+
+## TOLL_INVOICE (过路过桥费发票)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票代码
+- `invoiceDate`: 开票日期
+- `entranceLocation`: 入口
+- `exitLocation`: 出口
+- `exitTime`: 出口时间
+- `totalAmountLower`: 合计金额(小写)
+
+## MEDICAL_INVOICE (医疗门诊发票)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `invoiceDate`: 开票日期
+- `checkCode`: 校验码
+- `payerName`: 交款人
+- `payerAccount`: 交款人统一社会信用代码
+- `payeeName`: 收款单位
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+
+## TAX_CERTIFICATE (税收完税证明)
+- `title`: 标题
+- `verifyCode`: 验证码
+- `billNo`: 票据号码
+- `fillDate`: 填发日期
+- `taxAuthority`: 税务机关
+- `taxCode`: 纳税人识别号
+- `taxPayerName`: 纳税人名称
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `issuer`: 填票人
+- `remarks`: 备注
+- `taxItems`: 纳税明细
+  - `originBillNo`: 原凭证号
+  - `taxType`: 税种
+  - `itemName`: 品目名称
+  - `taxPeriod`: 税款所属时期
+  - `treasuryDate`: 入(退)库日期
+  - `actualPayAmount`: 实缴(退)金额
+
+## SHIP_TICKET (船票)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `departureDate`: 开船日期
+- `departureTime`: 开船时间
+- `departStation`: 起始站
+- `destinationStation`: 终止站
+- `totalAmountLower`: 合计金额(小写)
+- `passengerName`: 旅客姓名
+
+## NON_TAX_BILL (非税票据)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `payerName`: 交款人
+- `payerSocialCreditCode`: 交款人统一社会信用代码
+- `checkCode`: 校验码
+- `invoiceDate`: 开票日期
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `payeeCompany`: 收款单位
+- `checker`: 复核人
+- `payee`: 收款人
+- `itemDetails`: 项目明细
+  - `itemCode`: 项目编码
+  - `itemName`: 项目名称
+  - `itemUnit`: 单位
+  - `itemCount`: 数量
+  - `itemCharge`: 标准
+  - `itemAmt`: 金额
+  - `itemRemark`: 备注
+
+## GENERAL_MACHINE_INVOICE (通用机打发票)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `invoiceDate`: 开票日期
+- `checkCode`: 验证码
+- `buyerName`: 购方名称
+- `buyerCode`: 购方纳税人识别号
+- `buyerAddressAndPhone`: 购方地址及电话
+- `buyerBankAndAccount`: 购方开户行及账号
+- `sellerName`: 销售方名称
+- `sellerCode`: 销售方纳税人识别号
+- `sellerAddressAndPhone`: 销售方地址及电话
+- `sellerBankAndAccount`: 销售方开户行及账号
+- `preTaxTotalAmount`: 税前合计金额
+- `totalTaxAmount`: 合计税额
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `remarks`: 备注
+- `payee`: 收款人
+- `checker`: 复核
+- `drawer`: 开票人
+- `goodsDetails`: 发票商品明细
+  - `goodsName`: 货物服务名称
+  - `specification`: 规格型号
+  - `unit`: 单位
+  - `quantity`: 数量
+  - `unitPrice`: 单价
+  - `itemAmount`: 金额
+  - `taxRate`: 税率
+  - `taxAmount`: 税额
+
+## BUS_TICKET (汽车票)
+- `title`: 标题
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `invoiceDate`: 开票日期
+- `departureDate`: 开车日期
+- `departureTime`: 开车时间
+- `departStation`: 起始站
+- `destinationStation`: 终止站
+- `totalAmountLower`: 合计金额(小写)
+- `passengerName`: 旅客姓名
+
+## BANK_DRAFT (银行汇票)
+- `title`: 标题
+- `billCode`: 票据代码
+- `billNo`: 票据号码
+- `issueDate`: 出票日期
+- `agentPayingBank`: 代理付款行
+- `agentPayingBankNo`: 代理付款行行号
+- `payeeName`: 收款人名称
+- `issueAmountUpper`: 出票金额(大写)
+- `issueAmountLower`: 出票金额(小写)
+- `settleAmountUpper`: 实际结算金额(大写)
+- `settleAmountLower`: 实际结算金额(小写)
+- `applicantName`: 申请人名称
+- `applicantAccount`: 申请人账号
+- `issueBank`: 出票行
+- `issueBankNo`: 出票行行号
+- `remark`: 备注
+- `cipherCode`: 密押
+- `surplusAmount`: 多余金额
+
+## BANK_ACCEPTANCE_BILL (银行承兑汇票)
+- `title`: 标题
+- `billCode`: 票据代码
+- `billNo`: 票据号码
+- `issueDate`: 出票日期
+- `drawerName`: 出票人全称
+- `drawerAccount`: 出票人账号
+- `payingBankName`: 付款行全称
+- `payingBankNo`: 付款行行号
+- `payingBankAddress`: 付款行地址
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户行
+- `issueAmountUpper`: 出票金额(大写)
+- `issueAmountLower`: 出票金额(小写)
+- `dueDate`: 汇票到期日
+- `acceptanceAgreementNo`: 承兑协议编号
+- `cipherCode`: 密押
+
+## ELECTRONIC_BANK_ACCEPTANCE_BILL (电子银行承兑汇票)
+- `title`: 标题
+- `billStatus`: 票据状态
+- `billNo`: 票据号码
+- `subBillRange`: 子票区间
+- `issueDate`: 出票日期
+- `dueDate`: 到期日期
+- `drawerName`: 出票人全称
+- `drawerAccount`: 出票人账号
+- `drawerBank`: 出票人开户行
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户行
+- `issueAmountUpper`: 出票金额(大写)
+- `issueAmountLower`: 出票金额(小写)
+- `acceptorName`: 承兑人名称
+- `acceptorAccount`: 承兑人账号
+- `acceptorBankNo`: 承兑人开户行行号
+- `acceptorBankName`: 承兑人开户行名称
+- `transContractNo`: 交易合同号
+- `transferableStatus`: 能否转让
+- `acceptanceDate`: 承兑日期
+
+## COMMERCIAL_ACCEPTANCE_BILL (商业承兑汇票)
+- `title`: 标题
+- `billCode`: 票据代码
+- `billNo`: 票据号码
+- `issueDate`: 出票日期
+- `payerName`: 付款人全称
+- `payerAccount`: 付款人账号
+- `payerOpeningBankName`: 付款人开户行
+- `payerOpeningBankNo`: 付款人开户行行号
+- `payerOpeningBankAddress`: 付款人开户行地址
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户行
+- `issueAmountUpper`: 出票金额(大写)
+- `issueAmountLower`: 出票金额(小写)
+- `dueDate`: 汇票到期日
+- `transactionContractNo`: 交易合同号码
+
+## ELECTRONIC_COMMERCIAL_ACCEPTANCE (电子商业承兑汇票)
+- `title`: 标题
+- `billStatus`: 票据状态
+- `billNo`: 票据号码
+- `subBillRange`: 子票区间
+- `issueDate`: 出票日期
+- `dueDate`: 到期日期
+- `drawerName`: 出票人全称
+- `drawerAccount`: 出票人账号
+- `drawerBank`: 出票人开户行
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户行
+- `issueAmountUpper`: 出票金额(大写)
+- `issueAmountLower`: 出票金额(小写)
+- `acceptorName`: 承兑人名称
+- `acceptorAccount`: 承兑人账号
+- `acceptorBankNo`: 承兑人开户行行号
+- `acceptorBankName`: 承兑人开户行名称
+- `transContractNo`: 交易合同号
+- `transferableStatus`: 能否转让
+- `acceptanceDate`: 承兑日期
+
+## BANK_CHECK (银行支票)
+- `title`: 标题
+- `bankName`: 银行名称
+- `billNo`: 票据号码
+- `issueDate`: 出票日期
+- `payingBankName`: 付款行名称
+- `payeeName`: 收款人
+- `drawerAccount`: 出票人账号
+- `amountUpper`: 大写金额
+- `amountLower`: 小写金额
+- `usage`: 用途
+- `password`: 密码
+- `bankCode`: 行号
+
+## BANK_RECEIPT (银行回单)
+- `title`: 标题
+- `bankName`: 银行名称
+- `payingName`: 付款人名称
+- `payingAccount`: 付款人账号
+- `payingBank`: 付款人开户行
+- `payeeName`: 收款人名称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户行
+- `adviceNo`: 回单编号
+- `amountUpper`: 大写金额
+- `amountLower`: 小写金额
+- `abstract`: 摘要
+- `businessType`: 业务种类
+- `usage`: 用途
+- `serialNo`: 流水号
+- `remarks`: 备注
+- `printDate`: 打印日期
+- `transDate`: 交易日期
+
+## DEPOSIT_SLIP (进账单)
+- `title`: 标题
+- `fillDate`: 填单日期
+- `drawerName`: 出票人全称
+- `drawerAccount`: 出票人账号
+- `drawerBank`: 出票人开户银行
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户银行
+- `amountUpper`: 大写金额
+- `amountLower`: 小写金额
+- `billType`: 票据种类
+- `billNum`: 票据张数
+- `billNo`: 票据号码
+- `remarks`: 备注
+
+## TELEGRAPHIC_TRANSFER_VOUCHER (电汇凭证)
+- `title`: 标题
+- `currency`: 币别
+- `fillDate`: 填单日期
+- `voucherNo`: 凭证编号
+- `remitterName`: 汇款人名称
+- `remitterAccount`: 汇款人账号
+- `remitterBank`: 汇款人汇出行名称
+- `payeeName`: 收款人名称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人汇入行名称
+- `amountUpper`: 大写金额
+- `amountLower`: 小写金额
+- `password`: 支付密码
+- `usage`: 附加信息及用途
+
+## WITHDRAWAL_VOUCHER (支款凭证)
+- `title`: 标题
+- `currency`: 账别
+- `fillDate`: 填单日期
+- `voucherNo`: 凭证编号
+- `payerName`: 支款人全称
+- `payerAccount`: 支款人账号
+- `payerBank`: 支款人开户行
+- `payeeName`: 收款人全称
+- `payeeAccount`: 收款人账号
+- `payeeBank`: 收款人开户行
+- `amountUpper`: 大写金额
+- `amountLower`: 小写金额
+- `usage`: 用途
+
+## MOBILE_PAYMENT_BILL (移动支付账单)
+- `title`: 标题
+- `transAmount`: 交易金额
+- `transStatus`: 交易状态
+- `transDate`: 交易时间
+- `goods`: 商品
+- `merchantName`: 商户全称
+- `acquiringInstitution`: 收单机构
+- `transType`: 交易方式
+- `transNo`: 交易单号
+- `merchantNo`: 商户单号
+- `remarks`: 备注
+- `refundNo`: 退款单号
+
+## BILL_MIXING_AND_IDENTIFICATION (票据混贴识别)
+
+## UNIFIED_IDENTIFICATION_OF_FINANC (财务票据统一识别)
+
+# 各识别类型的字段说明（stamps 内容）
+
+根据 ocrType 不同，返回的 `stamps` 对象包含以下字段：
+
+## SEAL_CHARACTER_RECOGNITION (印章文字识别)
+- `stampPosition`: 印章坐标：[x1,y1,x2,y2]，（x1, y1）是左上角坐标，（x2, y2）是右下角坐标
+- `stampConfidence`: 印章清晰度：取值范围[0, 1]
+- `stampShape`: 印章形状：圆形、椭圆形、方形、三角形、菱形
+- `stampColor`: 印章颜色：红色、黑色、蓝色
+- `stampType`: 印章类型：监制章、财务专用章、代开发票专用章、发票专用章、个人名章、公章、合同专用章、收费专用章、税收业务专用章、业务专用章、其他印章
+- `stampTextList`: 印章文字

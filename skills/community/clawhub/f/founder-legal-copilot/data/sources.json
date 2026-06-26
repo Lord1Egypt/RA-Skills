@@ -1,0 +1,104 @@
+[
+  {
+    "name": "YC Library",
+    "url": "https://ycombinator.com/library",
+    "type": "templates",
+    "description": "Y Combinator startup library and guides"
+  },
+  {
+    "name": "YC SAFE Documents",
+    "url": "https://ycombinator.com/documents",
+    "type": "templates",
+    "description": "Official YC SAFE templates (post-money, pre-money, MFN)"
+  },
+  {
+    "name": "NVCA Model Documents",
+    "url": "https://nvca.org/model-legal-documents",
+    "type": "templates",
+    "description": "National Venture Capital Association model legal documents"
+  },
+  {
+    "name": "SEC EDGAR",
+    "url": "https://sec.gov/edgar",
+    "type": "data",
+    "description": "SEC Electronic Data Gathering, Analysis, and Retrieval system"
+  },
+  {
+    "name": "Series Seed",
+    "url": "https://seriesseed.com",
+    "type": "templates",
+    "description": "Open-source Series Seed documents"
+  },
+  {
+    "name": "Cooley GO",
+    "url": "https://cooleygo.com",
+    "type": "guides",
+    "description": "Free startup legal resources from Cooley LLP"
+  },
+  {
+    "name": "Orrick Start-Up Forms",
+    "url": "https://orrick.com/practices/startups",
+    "type": "templates",
+    "description": "Free startup formation documents from Orrick"
+  },
+  {
+    "name": "Clerky",
+    "url": "https://clerky.com/library",
+    "type": "templates",
+    "description": "Startup legal document templates and guides"
+  },
+  {
+    "name": "Stripe Atlas Guides",
+    "url": "https://stripe.com/atlas/guides",
+    "type": "guides",
+    "description": "Business formation and incorporation guides"
+  },
+  {
+    "name": "SBA",
+    "url": "https://sba.gov",
+    "type": "government",
+    "description": "U.S. Small Business Administration resources"
+  },
+  {
+    "name": "Delaware Division of Corporations",
+    "url": "https://corp.delaware.gov",
+    "type": "government",
+    "description": "Delaware state corporate filings and information"
+  },
+  {
+    "name": "IRS Business",
+    "url": "https://irs.gov/businesses",
+    "type": "government",
+    "description": "IRS resources for businesses (EIN, entity classification, 409A)"
+  },
+  {
+    "name": "California AG (CCPA)",
+    "url": "https://oag.ca.gov",
+    "type": "government",
+    "description": "California Consumer Privacy Act resources"
+  },
+  {
+    "name": "GDPR.eu",
+    "url": "https://gdpr.eu",
+    "type": "compliance",
+    "description": "GDPR compliance resources and guides"
+  },
+  {
+    "name": "SRS Acquiom",
+    "url": "https://srsacquiom.com",
+    "type": "data",
+    "description": "Real M&A deal data and benchmarks"
+  },
+  {
+    "name": "DOL Worker Classification",
+    "url": "https://dol.gov",
+    "type": "government",
+    "description": "Department of Labor worker classification guidelines"
+  },
+  {
+    "name": "AngelList Venture",
+    "url": "https://venture.angellist.com",
+    "type": "data",
+    "description": "Venture capital deal data and benchmarks"
+  }
+]

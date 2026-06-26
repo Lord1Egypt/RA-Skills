@@ -1,0 +1,4 @@
+pyautogui>=0.9.53
+pygetwindow>=0.0.9
+pywinauto>=0.6.8
+Pillow>=9.0.0

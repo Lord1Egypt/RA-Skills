@@ -1,0 +1,98 @@
+# Excel 数据导入配置文件示例
+# 这是一个完整的配置示例，展示了所有可用的配置选项
+
+# 任务基本信息
+task_name: "人员信息导入示例"
+description: "从源数据表导入人员信息到模板表"
+
+# 源数据配置
+source:
+  file_path: "assets/examples/test_source.xlsx"  # 源数据文件路径
+  sheet_name: "Sheet1"                           # 工作表名称
+  # header_row 设置选项：
+  #   - 数字（如 1）: 手动指定表头行号
+  #   - "auto": 自动检测表头行号（推荐用于复杂表头）
+  header_row: 1                                  # 表头行号
+  # header_row: "auto"                           # 自动检测模式（示例）
+  data_start_row: 2                              # 数据起始行（可选，默认 header_row + 1）
+  key_field: "身份证号"                          # 用于匹配的关键字段
+
+# 目标模板配置
+target:
+  file_path: "assets/examples/test_template.xlsx"  # 目标模板文件路径
+  sheet_name: "人员信息"                           # 目标工作表名称
+  # header_row 设置选项：
+  #   - 数字（如 2）: 手动指定表头行号
+  #   - "auto": 自动检测表头行号（推荐用于复杂表头）
+  header_row: 2                                   # 表头行号（可能是多行表头）
+  # header_row: "auto"                            # 自动检测模式（示例）
+  data_start_row: 3                               # 数据起始行（可选，默认 header_row + 1）
+  output_path: "assets/examples/test_output.xlsx" # 输出文件路径
+
+# 字段映射配置
+field_mappings:
+  # 基本映射
+  - source: "姓名"              # 源字段名
+    target: "员工姓名"          # 目标字段名
+    required: true              # 是否必填
+
+  # 带转换的映射
+  - source: "身份证号"
+    target: "身份证号码"
+    required: true
+    transform: "strip"          # 去除首尾空格
+
+  # 带默认值的映射
+  - source: "手机号"
+    target: "联系电话"
+    required: false
+
+  # 带默认值的可选字段
+  - source: "部门"
+    target: "所属部门"
+    required: false
+    default: "未分配"           # 默认值（如果源字段为空）
+
+  # 日期转换
+  - source: "入职日期"
+    target: "参加工作时间"
+    required: false
+    transform: "date"
+
+# 验证规则（可选）
+validations:
+  # 身份证号验证
+  - field: "身份证号"
+    rules:
+      - type: "required"
+        message: "身份证号不能为空"
+      - type: "format"
+        pattern: "\\d{15}|\\d{18}"
+        message: "身份证号格式错误"
+
+  # 手机号验证
+  - field: "手机号"
+    rules:
+      - type: "format"
+        pattern: "1[3-9]\\d{9}"
+        message: "手机号格式错误"
+
+# 错误处理配置
+error_handling:
+  backup: true                              # 自动备份
+  backup_path: "assets/examples/backup/"    # 备份目录
+  stop_on_error: false                      # 遇到错误是否停止
+  log_errors: true                          # 记录错误日志
+  error_log_path: "assets/examples/logs/import_errors.log"
+
+# 高级选项
+options:
+  preserve_formatting: true                 # 保持格式（包括合并单元格）
+  skip_merged_cells: false                  # 跳过合并单元格（通常设为 false）
+  auto_resize_columns: false                # 自动调整列宽
+
+  # 字体设置（中文支持）
+  font_settings:
+    default_font: "微软雅黑"
+    fallback_fonts: ["宋体", "黑体"]
+    font_size: 11

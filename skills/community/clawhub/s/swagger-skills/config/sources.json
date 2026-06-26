@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "doc_auth": {
+      "type": "basic",
+      "username": "<DOC_USERNAME>",
+      "password": "<DOC_PASSWORD>"
+    },
+    "timeout": 30
+  },
+  "sources": [
+    {
+      "id": "example-service",
+      "name": "Example Service",
+      "swagger_url": "<SWAGGER_UI_OR_SPEC_URL>",
+      "base_url": "<API_BASE_URL>",
+      "description": "示例服务接口文档。请替换为真实 Swagger UI 页面或 OpenAPI/Swagger spec 地址。"
+    }
+  ]
+}

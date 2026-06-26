@@ -1,0 +1,270 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Project Nirvana Configuration Schema",
+  "properties": {
+    "nirvana": {
+      "type": "object",
+      "title": "Nirvana Plugin Configuration",
+      "properties": {
+        "ollama": {
+          "type": "object",
+          "title": "Ollama Local Inference Engine",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Enable Ollama integration"
+            },
+            "endpoint": {
+              "type": "string",
+              "default": "http://ollama:11434",
+              "pattern": "^https?://",
+              "description": "Ollama API endpoint (container or host)"
+            },
+            "models": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "qwen2.5:7b",
+                "qwen3.5:9b"
+              ],
+              "description": "Models to keep available locally (qwen2.5:7b is bundled & lightweight)"
+            },
+            "bundledModel": {
+              "type": "string",
+              "default": "qwen2.5:7b",
+              "description": "Pre-installed model (3.5GB, works out-of-box)"
+            },
+            "autoDownload": {
+              "type": "boolean",
+              "default": true,
+              "description": "Automatically pull missing models"
+            },
+            "healthCheckInterval": {
+              "type": "integer",
+              "default": 300000,
+              "minimum": 30000,
+              "description": "Health check interval in milliseconds"
+            },
+            "timeout": {
+              "type": "integer",
+              "default": 180000,
+              "minimum": 10000,
+              "description": "Inference timeout in milliseconds"
+            },
+            "maxConcurrentRequests": {
+              "type": "integer",
+              "default": 2,
+              "minimum": 1,
+              "description": "Max concurrent inference requests"
+            }
+          },
+          "required": [
+            "enabled",
+            "endpoint"
+          ]
+        },
+        "routing": {
+          "type": "object",
+          "title": "Query Routing Configuration",
+          "properties": {
+            "localFirst": {
+              "type": "boolean",
+              "default": true,
+              "description": "Route queries to local Ollama first"
+            },
+            "localThreshold": {
+              "type": "number",
+              "default": 0.8,
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Confidence threshold for local-only responses (0-1)"
+            },
+            "cloudFallback": {
+              "type": "boolean",
+              "default": true,
+              "description": "Fall back to cloud APIs if local inference fails"
+            },
+            "cloudModels": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "anthropic/claude-haiku-4-5",
+                "google/gemini-2.5-flash",
+                "xai/grok-3-mini-fast"
+              ],
+              "description": "Cloud models to use for fallback"
+            },
+            "routingLogic": {
+              "type": "string",
+              "enum": [
+                "task-complexity",
+                "token-count",
+                "domain-confidence",
+                "hybrid"
+              ],
+              "default": "hybrid",
+              "description": "Routing decision strategy"
+            },
+            "cachingEnabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Cache local inference results"
+            },
+            "cacheTTL": {
+              "type": "integer",
+              "default": 3600000,
+              "minimum": 60000,
+              "description": "Cache TTL in milliseconds"
+            }
+          },
+          "required": [
+            "localFirst"
+          ]
+        },
+        "privacy": {
+          "type": "object",
+          "title": "Privacy & Security Boundaries",
+          "properties": {
+            "identityFilesNeverExport": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": [
+                "SOUL.md",
+                "USER.md",
+                "AGENTS.md",
+                "MEMORY.md",
+                "memory/*",
+                "SESSION-STATE.md"
+              ],
+              "description": "Files that must never be sent to cloud APIs"
+            },
+            "enforceContextBoundary": {
+              "type": "boolean",
+              "default": true,
+              "description": "Enforce privacy boundary (strip identity before cloud query)"
+            },
+            "contextStripDepth": {
+              "type": "string",
+              "enum": [
+                "aggressive",
+                "moderate",
+                "minimal"
+              ],
+              "default": "moderate",
+              "description": "How aggressively to strip context before export"
+            },
+            "auditLog": {
+              "type": "boolean",
+              "default": true,
+              "description": "Log all privacy boundary enforcement decisions"
+            },
+            "auditLogPath": {
+              "type": "string",
+              "default": "memory/nirvana-audit.log",
+              "description": "Path to audit log file"
+            },
+            "allowManualOverride": {
+              "type": "boolean",
+              "default": false,
+              "description": "Allow user to override privacy boundaries (not recommended)"
+            }
+          },
+          "required": [
+            "enforceContextBoundary"
+          ]
+        },
+        "integration": {
+          "type": "object",
+          "title": "Response Integration & Memory Sync",
+          "properties": {
+            "responseIntegration": {
+              "type": "boolean",
+              "default": true,
+              "description": "Integrate cloud responses back into local memory"
+            },
+            "memorySync": {
+              "type": "boolean",
+              "default": true,
+              "description": "Sync cloud response learnings to local memory"
+            },
+            "updateInterval": {
+              "type": "integer",
+              "default": 300000,
+              "minimum": 60000,
+              "description": "Memory sync interval in milliseconds"
+            },
+            "cachingStrategy": {
+              "type": "string",
+              "enum": [
+                "lru",
+                "lfu",
+                "ttl"
+              ],
+              "default": "lru",
+              "description": "Cache eviction strategy"
+            },
+            "maxCacheSize": {
+              "type": "integer",
+              "default": 1000,
+              "minimum": 100,
+              "description": "Max number of cached responses"
+            }
+          }
+        },
+        "monitoring": {
+          "type": "object",
+          "title": "Observability & Monitoring",
+          "properties": {
+            "metricsEnabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Collect routing and performance metrics"
+            },
+            "metricsPath": {
+              "type": "string",
+              "default": "memory/nirvana-metrics.json",
+              "description": "Path to metrics file"
+            },
+            "debugLogging": {
+              "type": "boolean",
+              "default": false,
+              "description": "Enable verbose debug logging"
+            },
+            "performanceThresholds": {
+              "type": "object",
+              "properties": {
+                "localInferenceMs": {
+                  "type": "integer",
+                  "default": 5000,
+                  "description": "Warn if local inference exceeds this"
+                },
+                "cloudFallbackMs": {
+                  "type": "integer",
+                  "default": 30000,
+                  "description": "Warn if cloud fallback exceeds this"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "ollama",
+        "routing",
+        "privacy"
+      ]
+    }
+  },
+  "required": [
+    "nirvana"
+  ],
+  "additionalProperties": false
+}

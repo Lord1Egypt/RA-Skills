@@ -1,0 +1,14 @@
+{
+  "sites": {
+    "sample-site": {
+      "url": "https://example.com",
+      "username": "wp-api-user",
+      "app_password": "",
+      "description": "Sample WordPress site. Put real credentials only in local config/sites.json."
+    }
+  },
+  "groups": {
+    "sample": ["sample-site"],
+    "all": ["sample-site"]
+  }
+}

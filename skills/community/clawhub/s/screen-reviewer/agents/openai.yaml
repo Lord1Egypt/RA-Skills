@@ -1,0 +1,3 @@
+display_name: "Screen Reviewer"
+short_description: "Monitor computer activities and generate daily review reports with ROI analysis"
+default_prompt: "Help me review my computer activity from yesterday. Generate a daily review report with time allocation, ROI analysis, and actionable suggestions."

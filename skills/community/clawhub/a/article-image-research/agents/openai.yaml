@@ -1,0 +1,4 @@
+interface:
+  display_name: "文章配图调研"
+  short_description: "为文章快速查找、筛选和归因配图，输出可追溯的图片候选池。"
+  default_prompt: "使用 $article-image-research 为文章调研配图。先拆出图片需求，再搜索多来源图片，评估内容匹配、来源、授权和风险，最后输出推荐图、备选图、拒绝理由和图注归因。"

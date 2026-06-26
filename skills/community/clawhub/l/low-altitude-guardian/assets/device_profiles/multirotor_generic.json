@@ -1,0 +1,64 @@
+{
+  "device_type": "multirotor",
+  "display_name": "通用多旋翼无人机",
+  "capabilities": {
+    "hover": true,
+    "vertical_landing": true,
+    "glide": false,
+    "parachute_compatible": true,
+    "min_motors_for_flight": 3,
+    "total_motors": 4,
+    "max_payload_kg": 5.0,
+    "max_wind_tolerance_ms": 12,
+    "max_rain_tolerance": "light",
+    "ip_rating": "IP43"
+  },
+  "sensors": {
+    "gps": true,
+    "imu": true,
+    "barometer": true,
+    "magnetometer": true,
+    "optical_flow": true,
+    "lidar_altimeter": true,
+    "forward_obstacle": true,
+    "downward_camera": true,
+    "adsb_receiver": false
+  },
+  "communication": {
+    "rc_link": true,
+    "4g_module": true,
+    "wifi": true,
+    "satellite": false,
+    "adsb_out": false
+  },
+  "safety_systems": {
+    "parachute": false,
+    "buzzer": true,
+    "led_beacon": true,
+    "flight_recorder": true,
+    "geofence": true,
+    "return_to_home": true
+  },
+  "performance_limits": {
+    "max_altitude_agl_m": 120,
+    "max_speed_ms": 20,
+    "max_flight_time_min": 30,
+    "critical_battery_pct": 15,
+    "warning_battery_pct": 25,
+    "emergency_battery_pct": 8
+  },
+  "degraded_modes": {
+    "three_motor": {
+      "available": true,
+      "max_speed_ms": 8,
+      "max_wind_ms": 8,
+      "max_payload_kg": 2.0,
+      "stability": "reduced"
+    },
+    "no_gps": {
+      "available": true,
+      "max_flight_time_s": 120,
+      "position_hold": "optical_flow"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "sms-chuanglan",
+  "description": "通过创蓝短信平台发送模板短信",
+  "version": "1.0.7",
+  "commands": [
+    {
+      "name": "sms-send",
+      "description": "发送创蓝模板短信",
+      "arguments": [
+        {
+          "name": "phone",
+          "type": "string",
+          "required": true,
+          "description": "接收手机号"
+        },
+        {
+          "name": "template",
+          "type": "string",
+          "required": true,
+          "description": "模板ID"
+        },
+        {
+          "name": "vars",
+          "type": "string",
+          "required": false,
+          "description": "变量JSON，格式: {\"param1\":\"value1\"}，常量模板可不传"
+        }
+      ]
+    }
+  ]
+}

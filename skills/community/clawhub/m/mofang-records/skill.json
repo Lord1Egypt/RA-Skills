@@ -1,0 +1,29 @@
+{
+  "name": "mofang-records",
+  "version": "3.1.0",
+  "description": "魔方网表记录与 BPM 流程 Skill：面向 OpenClaw、Claude Code、Codex、Trae 和 Trae CN，提供记录 CRUD、查询、导入、待办、审批、转办、认领、跳转与加签事务等 CLI 操作。",
+  "author": "magicscape",
+  "requiredTools": ["shell", "terminal", "exec"],
+  "tags": ["mofang", "no-code", "records", "crud", "rest-api", "cli", "bpm", "workflow"],
+  "config": {
+    "BASE_URL": {
+      "type": "string",
+      "description": "魔方网表服务器地址，例如 https://example.mf999.com 或 http://host:9999",
+      "default": ""
+    },
+    "USERNAME": {
+      "type": "string",
+      "description": "魔方网表登录用户名",
+      "default": ""
+    },
+    "PASSWORD": {
+      "type": "string",
+      "description": "魔方网表登录密码",
+      "default": ""
+    }
+  },
+  "hooks": {
+    "onInstall": "npm install && npm run build",
+    "onActivate": "node cli.mjs --help"
+  }
+}

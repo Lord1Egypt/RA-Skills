@@ -1,0 +1,318 @@
+{
+  "date": "2026-03-26",
+  "tool": "a11y-audit report.js v1",
+  "pages": [
+    "https://sam-rogers.com/about/",
+    "https://sam-rogers.com/archive/",
+    "https://sam-rogers.com/blog/",
+    "https://sam-rogers.com/contact/",
+    "https://sam-rogers.com/now/",
+    "https://sam-rogers.com/privacy/",
+    "https://sam-rogers.com/projects/",
+    "https://sam-rogers.com/tags/",
+    "https://sam-rogers.com/blog/substack/",
+    "https://sam-rogers.com/blog/fringer/",
+    "https://sam-rogers.com/now/2022-11/",
+    "https://sam-rogers.com/now/2021-11/",
+    "https://sam-rogers.com/about/bio/",
+    "https://sam-rogers.com/about/colophon/",
+    "https://sam-rogers.com/"
+  ],
+  "lighthouse": {
+    "status": "skipped",
+    "reason": "Lighthouse disabled for this run"
+  },
+  "summary": {
+    "critical": 0,
+    "serious": 5,
+    "moderate": 28,
+    "minor": 0
+  },
+  "violations": [
+    {
+      "rule": "landmark-unique",
+      "impact": "moderate",
+      "wcag": [],
+      "pages": [
+        "https://sam-rogers.com/about/",
+        "https://sam-rogers.com/archive/",
+        "https://sam-rogers.com/blog/",
+        "https://sam-rogers.com/contact/",
+        "https://sam-rogers.com/now/",
+        "https://sam-rogers.com/privacy/",
+        "https://sam-rogers.com/projects/",
+        "https://sam-rogers.com/tags/",
+        "https://sam-rogers.com/blog/substack/",
+        "https://sam-rogers.com/blog/fringer/",
+        "https://sam-rogers.com/now/2022-11/",
+        "https://sam-rogers.com/now/2021-11/",
+        "https://sam-rogers.com/about/bio/",
+        "https://sam-rogers.com/about/colophon/",
+        "https://sam-rogers.com/"
+      ],
+      "instances": 15
+    },
+    {
+      "rule": "region",
+      "impact": "moderate",
+      "wcag": [],
+      "pages": [
+        "https://sam-rogers.com/about/",
+        "https://sam-rogers.com/archive/",
+        "https://sam-rogers.com/blog/",
+        "https://sam-rogers.com/contact/",
+        "https://sam-rogers.com/now/",
+        "https://sam-rogers.com/privacy/",
+        "https://sam-rogers.com/about/bio/",
+        "https://sam-rogers.com/about/colophon/"
+      ],
+      "instances": 8
+    },
+    {
+      "rule": "landmark-one-main",
+      "impact": "moderate",
+      "wcag": [],
+      "pages": [
+        "https://sam-rogers.com/archive/",
+        "https://sam-rogers.com/blog/"
+      ],
+      "instances": 2
+    },
+    {
+      "rule": "heading-order",
+      "impact": "moderate",
+      "wcag": [],
+      "pages": [
+        "https://sam-rogers.com/contact/",
+        "https://sam-rogers.com/privacy/"
+      ],
+      "instances": 2
+    },
+    {
+      "rule": "page-has-heading-one",
+      "impact": "moderate",
+      "wcag": [],
+      "pages": [
+        "https://sam-rogers.com/projects/"
+      ],
+      "instances": 1
+    },
+    {
+      "rule": "frame-title",
+      "impact": "serious",
+      "wcag": [
+        "4.1.2"
+      ],
+      "pages": [
+        "https://sam-rogers.com/blog/substack/"
+      ],
+      "instances": 1
+    },
+    {
+      "rule": "list",
+      "impact": "serious",
+      "wcag": [
+        "1.3.1"
+      ],
+      "pages": [
+        "https://sam-rogers.com/blog/substack/",
+        "https://sam-rogers.com/blog/fringer/",
+        "https://sam-rogers.com/now/2022-11/",
+        "https://sam-rogers.com/now/2021-11/"
+      ],
+      "instances": 4
+    }
+  ],
+  "matrix": {
+    "1.1.1": "pass",
+    "1.2.1": "manual",
+    "1.2.2": "not-applicable",
+    "1.2.3": "manual",
+    "1.2.4": "manual",
+    "1.2.5": "manual",
+    "1.3.1": "fail",
+    "1.3.2": "manual",
+    "1.3.3": "manual",
+    "1.3.4": "manual",
+    "1.3.5": "not-applicable",
+    "1.4.1": "pass",
+    "1.4.2": "not-applicable",
+    "1.4.3": "pass",
+    "1.4.4": "pass",
+    "1.4.5": "manual",
+    "1.4.10": "manual",
+    "1.4.11": "manual",
+    "1.4.12": "pass",
+    "1.4.13": "manual",
+    "2.1.1": "not-applicable",
+    "2.1.2": "manual",
+    "2.1.4": "manual",
+    "2.2.1": "not-applicable",
+    "2.2.2": "not-applicable",
+    "2.3.1": "manual",
+    "2.4.1": "pass",
+    "2.4.2": "pass",
+    "2.4.3": "manual",
+    "2.4.4": "pass",
+    "2.4.5": "manual",
+    "2.4.6": "manual",
+    "2.4.7": "manual",
+    "2.5.1": "manual",
+    "2.5.2": "manual",
+    "2.5.3": "manual",
+    "2.5.4": "manual",
+    "3.1.1": "pass",
+    "3.1.2": "not-applicable",
+    "3.2.1": "manual",
+    "3.2.2": "manual",
+    "3.2.3": "manual",
+    "3.2.4": "manual",
+    "3.3.1": "manual",
+    "3.3.2": "pass",
+    "3.3.3": "manual",
+    "3.3.4": "manual",
+    "4.1.1": "manual",
+    "4.1.2": "fail",
+    "4.1.3": "manual"
+  },
+  "expected_url": "https://sam-rogers.com",
+  "runtime_url": "https://sam-rogers.com",
+  "sampling": {
+    "source": "sitemap (/sitemap.xml)",
+    "totalPages": 206,
+    "selectedPages": 15,
+    "groups": [
+      {
+        "pattern": "about",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "archive",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "blog",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "contact",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "now",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "privacy",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "projects",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "tags",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      },
+      {
+        "pattern": "blog/*",
+        "count": 143,
+        "scanned": 2,
+        "entity": null
+      },
+      {
+        "pattern": "now/*",
+        "count": 52,
+        "scanned": 2,
+        "entity": null
+      },
+      {
+        "pattern": "about/*",
+        "count": 2,
+        "scanned": 2,
+        "entity": null
+      },
+      {
+        "pattern": "/",
+        "count": 1,
+        "scanned": 1,
+        "entity": null
+      }
+    ]
+  },
+  "sharedTemplates": [
+    {
+      "patterns": [
+        "about",
+        "now",
+        "about/*"
+      ],
+      "rules": [
+        "landmark-unique",
+        "region"
+      ],
+      "pageCount": 4
+    },
+    {
+      "patterns": [
+        "archive",
+        "blog"
+      ],
+      "rules": [
+        "landmark-one-main",
+        "landmark-unique",
+        "region"
+      ],
+      "pageCount": 2
+    },
+    {
+      "patterns": [
+        "contact",
+        "privacy"
+      ],
+      "rules": [
+        "heading-order",
+        "landmark-unique",
+        "region"
+      ],
+      "pageCount": 2
+    },
+    {
+      "patterns": [
+        "tags",
+        "/"
+      ],
+      "rules": [
+        "landmark-unique"
+      ],
+      "pageCount": 2
+    },
+    {
+      "patterns": [
+        "blog/*",
+        "now/*"
+      ],
+      "rules": [
+        "landmark-unique",
+        "list"
+      ],
+      "pageCount": 3
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "wordpress": {
+    "url": "http://airoom.ltd",
+    "username": "",
+    "password": ""
+  },
+  "target": {
+    "page_url": "http://airoom.ltd/index.php/airoom/"
+  },
+  "download": {
+    "output_dir": "./downloads",
+    "max_files": 0
+  }
+}

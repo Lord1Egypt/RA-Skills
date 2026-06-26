@@ -1,0 +1,4 @@
+interface:
+  display_name: "EMQ CLI"
+  short_description: "Install, query, and portfolio ops via emq"
+  default_prompt: "Use emq-cli via direct 'emq ...' commands after pip installation. Verify auth first, then choose domain commands (market/portfolio/quota/raw), and include concrete command lines with required flags."

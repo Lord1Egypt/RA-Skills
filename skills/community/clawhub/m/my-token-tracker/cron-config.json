@@ -1,0 +1,60 @@
+{
+  "name": "token-tracker-crons",
+  "description": "TokenTracker 定时任务配置",
+  "jobs": [
+    {
+      "name": "token-daily-report",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 59 23 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行以下任务：\n1. 运行 python \"C:\\Users\\admin\\.openclaw\\workspace\\skills\\token-tracker\\token_tracker.py\" report today 获取今日 token 用量\n2. 运行 python \"C:\\Users\\admin\\.openclaw\\workspace\\skills\\token-tracker\\token_tracker.py\" threshold 获取阈值\n3. 整理成友好格式回复给用户"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram"
+      },
+      "sessionTarget": "isolated",
+      "enabled": true
+    },
+    {
+      "name": "token-weekly-report",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 59 23 * * 0",
+        "tz": "Asia/Shanghai"
+      },
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行以下任务：\n1. 运行 python \"C:\\Users\\admin\\.openclaw\\workspace\\skills\\token-tracker\\token_tracker.py\" report week 获取本周 token 用量\n2. 运行 python \"C:\\Users\\admin\\.openclaw\\workspace\\skills\\token-tracker\\token_tracker.py\" threshold 获取阈值\n3. 整理成友好格式回复给用户"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram"
+      },
+      "sessionTarget": "isolated",
+      "enabled": true
+    },
+    {
+      "name": "token-hourly-alert",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行以下任务：\n1. 运行 python \"C:\\Users\\admin\\.openclaw\\workspace\\skills\\token-tracker\\token_tracker.py\" check-threshold 检查是否超标\n2. 如果超标，使用 message 工具发送警报消息给用户\n3. 如果未超过阈值，**不要调用任何消息工具**，静默结束"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram"
+      },
+      "sessionTarget": "isolated",
+      "enabled": false
+    }
+  ]
+}

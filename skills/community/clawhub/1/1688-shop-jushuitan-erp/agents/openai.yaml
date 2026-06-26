@@ -1,0 +1,8 @@
+interface:
+  display_name: "聚水潭 ERP"
+  short_description: "连接聚水潭并编排商家经营分析"
+  brand_color: "#2563EB"
+  default_prompt: "Use $jushuitan-erp to connect my Jushuitan ERP account and analyze merchant operations."
+
+policy:
+  allow_implicit_invocation: true

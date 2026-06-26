@@ -1,0 +1,49 @@
+{
+  "memories": [
+    {
+      "id": "test-001",
+      "content": "User prefers Python for automation scripts",
+      "type": "preference",
+      "tags": ["coding", "python", "automation"],
+      "created": "2026-04-15T10:00:00Z",
+      "expires": null,
+      "score": 0.95
+    },
+    {
+      "id": "test-002",
+      "content": "Approved inbox-triage skill for publishing to clawhub",
+      "type": "decision",
+      "tags": ["income", "skills", "approval"],
+      "created": "2026-04-15T20:37:00Z",
+      "expires": null,
+      "score": 0.98
+    },
+    {
+      "id": "test-003",
+      "content": "Building memory-augment skill, 60% complete",
+      "type": "context",
+      "tags": ["project", "development"],
+      "created": "2026-04-15T22:47:00Z",
+      "expires": "2026-04-22T22:47:00Z",
+      "score": 0.85
+    },
+    {
+      "id": "test-004",
+      "content": "Sub-agent spawning reduces context by ~30%",
+      "type": "learning",
+      "tags": ["pattern", "optimization"],
+      "created": "2026-04-15T21:00:00Z",
+      "expires": null,
+      "score": 0.88
+    },
+    {
+      "id": "test-005",
+      "content": "User is in UTC timezone",
+      "type": "preference",
+      "tags": ["timezone", "config"],
+      "created": "2026-04-15T12:00:00Z",
+      "expires": null,
+      "score": 0.92
+    }
+  ]
+}

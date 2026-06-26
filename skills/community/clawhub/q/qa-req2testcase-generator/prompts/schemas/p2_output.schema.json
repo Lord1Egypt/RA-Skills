@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P2 Output Schema",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "string" },
+    "prompt_version": { "type": "string" },
+    "requirement_id": { "type": "string" },
+    "test_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "source_scenario": {
+            "type": "object",
+            "properties": {
+              "scenario_id": { "type": "string", "description": "P1叶节点ID" },
+              "scenario_name": { "type": "string", "description": "P1场景名称" },
+              "scenario_description": { "type": "string", "description": "场景完整操作描述，不少于30字", "minLength": 30 }
+            },
+            "required": ["scenario_id", "scenario_name", "scenario_description"]
+          },
+          "category": {
+            "type": "string",
+            "enum": ["main_flow","branch","exception","boundary","logic_combo","integration","ambiguity","permission","state","compatibility","performance","security"]
+          },
+          "description": { "type": "string" },
+          "precondition": { "type": "string" },
+          "related_rules": { "type": "array", "items": { "type": "string" } },
+          "related_roles": { "type": "array", "items": { "type": "string" } },
+          "priority_hint": { "type": "string", "enum": ["P0","P1","P2","P3"] },
+          "page_path": { "type": "string", "description": "透传自P1场景节点" },
+          "operations_chain": { "type": "array", "items": { "type": "object", "properties": { "order": { "type": "integer" }, "operation": { "type": "string" }, "actor": { "type": "string" }, "target_page": { "type": "string" } }, "required": ["order","operation"] }, "description": "透传自P1功能点节点" },
+          "field_spec_refs": { "type": "array", "items": { "type": "string" }, "description": "引用P0 field_specs中的字段名列表" },
+          "expected_case_count": { "type": "integer", "minimum": 1, "description": "预计用例展开数量" },
+          "pci_required": { "type": "boolean" },
+          "pci_description": { "type": "string" }
+        },
+        "required": ["id","source_scenario","category","description","priority_hint","page_path","operations_chain","expected_case_count"]
+      }
+    },
+    "coverage_summary": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "by_category": { "type": "object" }
+      }
+    }
+  },
+  "required": ["schema_version", "prompt_version", "requirement_id", "test_points", "coverage_summary"],
+  "additionalProperties": true
+}

@@ -1,35 +1,94 @@
 ---
-name: "Multi-Source Research - 多源研究"
-description: "多源研究助手，整合网页搜索、学术平台（知网/arXiv）、社交媒体（微博/抖音）、新闻聚合。支持自动去重、按来源和可信度分类。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-source-research"
-sourceUrl: "https://clawhub.ai/skills/multi-source-research"
+name: multi-source-research
+description: 多源研究助手，整合网页搜索、学术平台（知网/arXiv）、社交媒体（微博/抖音）、新闻聚合。支持自动去重、按来源和可信度分类。
 ---
 
-# Multi-Source Research - 多源研究
+# Multi-Source-Research 多源研究助手
 
-> 多源研究助手，整合网页搜索、学术平台（知网/arXiv）、社交媒体（微博/抖音）、新闻聚合。支持自动去重、按来源和可信度分类。
+## 触发场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-source-research`
-- **Source URL:** [https://clawhub.ai/skills/multi-source-research](https://clawhub.ai/skills/multi-source-research)
+当用户需要进行深度研究、信息收集、文献调研、舆情分析时使用此技能。
 
-## Overview
+## 数据源覆盖
 
+### 1. 网页搜索
+- 百度、谷歌、必应
+- 搜狗、360 搜索
+- 垂直搜索引擎
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/multi-source-research
+### 2. 学术平台
+- 知网 (CNKI)
+- arXiv
+- Google Scholar
+- 万方数据
+- 维普网
+
+### 3. 社交媒体
+- 微博热搜/话题
+- 抖音/快手热门
+- 微信公众号
+- 知乎热榜
+- 小红书热门
+
+### 4. 新闻聚合
+- 央视新闻
+- 新华社
+- 澎湃新闻
+- 今日头条
+- 腾讯新闻
+
+## 处理特性
+
+### 自动去重
+- 识别相似内容
+- 合并重复信息
+- 保留最完整版本
+
+### 可信度分类
+| 等级 | 来源类型 | 权重 |
+|------|----------|------|
+| **A 级** | 官方媒体、政府网站、核心期刊 | 高 |
+| **B 级** | 主流媒体、知名平台 | 中 |
+| **C 级** | 自媒体、社交媒体 | 低 |
+
+### 输出格式
+
+```markdown
+## 研究报告：[主题]
+
+### 📊 来源统计
+- 网页搜索：X 条
+- 学术平台：X 条
+- 社交媒体：X 条
+- 新闻媒体：X 条
+
+### 🔍 核心发现
+[按重要性排序的关键信息]
+
+### 📚 学术参考
+[学术论文/报告引用]
+
+### 📱 舆情动态
+[社交媒体热度/观点]
+
+### 📰 新闻报道
+[主流媒体 coverage]
+
+### ⚠️ 信息可信度提示
+[标注存疑信息]
 ```
+
+## 使用流程
+
+1. **理解需求** - 确认研究主题、时间范围、重点关注
+2. **并行搜索** - 同时查询多个数据源
+3. **去重整合** - 合并相似结果，去除重复
+4. **可信度评估** - 按来源分类标注
+5. **生成报告** - 输出结构化研究报告
+
+## 注意事项
+
+- 学术内容需注意访问权限（部分需付费）
+- 社交媒体内容时效性强，需标注采集时间
+- 交叉验证关键信息，标注存疑内容
+- 遵守各平台 robots.txt 和使用条款

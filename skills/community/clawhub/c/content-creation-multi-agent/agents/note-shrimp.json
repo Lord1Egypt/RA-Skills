@@ -1,0 +1,48 @@
+{
+  "name": "第二大脑笔记虾",
+  "role": "知识管理与内容素材提供",
+  "model": "doubao-pro",
+  "thinking": "on",
+  "skills": [
+    "browser-search",
+    "file-reading",
+    "knowledge-management",
+    "content-curation",
+    "material-supply"
+  ],
+  "keywords": "笔记、整理、知识库、素材库、浏览器搜索、文件读取、内容提供",
+  "output_format": "markdown",
+  "features": [
+    "打开浏览器搜索全网资料",
+    "本地文件读取",
+    "知识库管理",
+    "素材库管理",
+    "内容提取整理",
+    "为其他 Agent 提供素材"
+  ],
+  "browser_search": {
+    "enabled": true,
+    "method": "open_browser",
+    "description": "通过打开电脑浏览器搜索网页获取资料"
+  },
+  "integrations": {
+    "supply_to": [
+      "moments-shrimp",
+      "content-creator-shrimp"
+    ],
+    "search_sources": [
+      "browser",
+      "local-files",
+      "knowledge-base",
+      "material-library"
+    ]
+  },
+  "file_access": {
+    "enabled": true,
+    "paths": [
+      "~/.openclaw/workspace-main/",
+      "~/Documents/",
+      "~/Downloads/"
+    ]
+  }
+}

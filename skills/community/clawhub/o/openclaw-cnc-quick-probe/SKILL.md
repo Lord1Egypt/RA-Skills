@@ -1,35 +1,93 @@
 ---
-name: "Cnc Quick Probe"
+name: cnc-quick-probe
+version: 1.0.0
+priority: P1
 description: "CNC快速探明 - 5参数快速收敛。当报价请求参数不全时自动触发，收集材料、数量、精度、表面处理、Ra。收敛度≥80%后自动执行报价。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-cnc-quick-probe"
-sourceUrl: "https://clawhub.ai/skills/openclaw-cnc-quick-probe"
+author: 海狸 🦫
+triggers:
+  - 报价参数不全
+  - 无图纸报价
+  - CNC报价探明
+auto_route: true
 ---
 
-# Cnc Quick Probe
+# CNC快速探明 Skill
 
-> CNC快速探明 - 5参数快速收敛。当报价请求参数不全时自动触发，收集材料、数量、精度、表面处理、Ra。收敛度≥80%后自动执行报价。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-cnc-quick-probe`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-cnc-quick-probe](https://clawhub.ai/skills/openclaw-cnc-quick-probe)
+| 条件 | 说明 |
+|------|------|
+| 意图 = CNC报价 | 识别到报价请求 |
+| 收敛度 < 80% | 参数不完整 |
+| 无文件/文件解析失败 | 缺少STEP/PDF |
 
-## Overview
+## 执行流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-cnc-quick-probe
 ```
+检测触发条件
+    ↓
+启动参数收集器
+    ↓
+生成5参数提问
+    ↓
+等待用户回答
+    ↓
+更新收敛度
+    ↓
+┌─ ≥80% → 调用报价Skill
+└─ <80% → 继续追问
+```
+
+## 5个关键参数
+
+| # | 参数 | 必需 | 默认值 |
+|---|------|------|--------|
+| 1 | 材料 | ✅ | 铝合金6061 |
+| 2 | 数量 | ✅ | 1件 |
+| 3 | 精度 | ✅ | ±0.1mm |
+| 4 | 表面处理 | ✅ | 本色 |
+| 5 | Ra | ❌ | Ra 3.2 |
+
+## 输出格式
+
+```
+📋 参数收集（收敛度：XX%）
+
+❓ 请提供以下信息：
+
+1. 🔴【材料】？
+   □ 铝合金6061
+   □ 不锈钢304
+   ...
+
+2. 🔴【数量】？
+   □ 1件（打样）
+   □ 批量
+   ...
+
+（继续其他参数）
+
+回复示例：材料6061，数量10件，精度±0.05
+```
+
+## 自动路由规则
+
+```python
+# 在UniSkill V4中的路由逻辑
+if intent == "cnc_quote" and convergence < 0.8:
+    # 自动路由到 cnc-quick-probe
+    return route_to_skill("cnc-quick-probe", context)
+```
+
+## 与其他Skill的关系
+
+```
+UniSkill V4 (主入口)
+    ├── cnc-quick-probe (参数收集)
+    │       ↓ (收敛后)
+    └── cnc-quote-system (执行报价)
+```
+
+---
+
+🦫 海狸 | 靠得住、能干事、在状态

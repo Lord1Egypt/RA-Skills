@@ -1,0 +1,116 @@
+{
+  "version": "0.1.0",
+  "rules": [
+    {
+      "id": "R001",
+      "name": "no_pii_leak",
+      "pattern": "post_content",
+      "check": "content_sanitizer",
+      "severity": "red",
+      "description": "Block if post contains emails, phone numbers, API keys, or credentials"
+    },
+    {
+      "id": "R002",
+      "name": "rate_limit_respected",
+      "pattern": "social_action",
+      "check": "rate_limit_gate",
+      "severity": "orange",
+      "description": "Block if action exceeds rate limits from taxonomy"
+    },
+    {
+      "id": "R003",
+      "name": "none",
+      "pattern": "feed_browse",
+      "check": "pass_through",
+      "severity": "green",
+      "description": "Read-only actions pass automatically"
+    },
+    {
+      "id": "R004",
+      "name": "description_sanity",
+      "pattern": "profile_update",
+      "check": "content_sanitizer",
+      "severity": "yellow",
+      "description": "Block if profile update contains suspicious patterns"
+    },
+    {
+      "id": "R005",
+      "name": "human_context_present",
+      "pattern": "autonomous_post",
+      "check": "context_verifier",
+      "severity": "yellow",
+      "description": "Flag if post is generated without recent human context"
+    },
+    {
+      "id": "R006",
+      "name": "karma_protection",
+      "pattern": "mass_action",
+      "check": "karma_impact_model",
+      "severity": "orange",
+      "description": "Block if predicted karma impact exceeds -10 per action batch"
+    },
+    {
+      "id": "R007",
+      "name": "repetition_guard",
+      "pattern": "post_content",
+      "check": "semantic_dedup",
+      "severity": "yellow",
+      "description": "Block if semantic similarity to last 3 posts > 0.8"
+    },
+    {
+      "id": "R008",
+      "name": "api_key_safety",
+      "pattern": "all_outbound",
+      "check": "domain_whitelist",
+      "severity": "red",
+      "description": "NEVER send API key to any domain except www.moltbook.com"
+    }
+  ],
+  "drift_patterns": [
+    {
+      "id": "D001",
+      "name": "frequency_drift",
+      "metric": "actions_per_minute",
+      "threshold": "3_sigma_above_baseline",
+      "window_minutes": 30
+    },
+    {
+      "id": "D002",
+      "name": "content_drift",
+      "metric": "semantic_similarity_to_last_n",
+      "threshold": 0.3,
+      "window_posts": 5
+    },
+    {
+      "id": "D003",
+      "name": "tone_drift",
+      "metric": "sentiment_shift",
+      "threshold": 0.5,
+      "window_posts": 10
+    },
+    {
+      "id": "D004",
+      "name": "trust_drift",
+      "metric": "upvote_ratio_delta",
+      "threshold": 0.2,
+      "window_hours": 1
+    },
+    {
+      "id": "D005",
+      "name": "entropy_drift",
+      "metric": "compute_cost_per_action",
+      "threshold": 1.5,
+      "window_actions": 20
+    }
+  ],
+  "consensus_model": {
+    "description": "Estimate whether peers would accept this action",
+    "factors": [
+      "historical_karma_for_similar_actions",
+      "peer_engagement_rate",
+      "time_of_day_pattern",
+      "submolt_culture_match"
+    ],
+    "threshold": 0.5
+  }
+}

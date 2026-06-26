@@ -1,0 +1,7 @@
+{
+  "defaultRecipient": {
+    "type": "open_id",
+    "id": "ou_xxxxxxxxxxxxxxxxxxxxxxxx",
+    "note": "示例配置 - 请替换为你的用户 Open ID"
+  }
+}

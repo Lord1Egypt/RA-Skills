@@ -1,35 +1,352 @@
 ---
-name: "matter-day-reminder"
-description: "管理亲友重要日期（生日、纪念日等）的个人社交助理。当用户需要记录联系人信息、 设置生日提醒、管理纪念日或生成祝福语时使用此技能。支持农历/阳历日期、双节点提醒 （提前7天准备礼物+当天推送祝福），以及AI生成个性化祝福语和礼物建议。 触发关键词：生日提醒、纪念日、重要日期、联系人管理、礼物建议、祝福语生成、 农历..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/matter-day-reminder"
-sourceUrl: "https://clawhub.ai/skills/matter-day-reminder"
+name: matter-day-reminder
+description: |
+  管理亲友重要日期（生日、纪念日等）的个人社交助理。当用户需要记录联系人信息、
+  设置生日提醒、管理纪念日或生成祝福语时使用此技能。支持农历/阳历日期、双节点提醒
+  （提前7天准备礼物+当天推送祝福），以及AI生成个性化祝福语和礼物建议。
+  
+  触发关键词：生日提醒、纪念日、重要日期、联系人管理、礼物建议、祝福语生成、
+  农历生日、阳历生日、社交助理、亲友管理
+compatibility: 需要 Node.js 环境和 lunar-javascript 库用于农历计算
 ---
 
-# matter-day-reminder
+# Matter Day Reminder - 个人社交助理
 
-> 管理亲友重要日期（生日、纪念日等）的个人社交助理。当用户需要记录联系人信息、 设置生日提醒、管理纪念日或生成祝福语时使用此技能。支持农历/阳历日期、双节点提醒 （提前7天准备礼物+当天推送祝福），以及AI生成个性化祝福语和礼物建议。 触发关键词：生日提醒、纪念日、重要日期、联系人管理、礼物建议、祝福语生成、 农历...
+帮助你管理亲友的重要日期（生日、纪念日等），提供智能双节点提醒和AI生成的祝福语与礼物建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/matter-day-reminder`
-- **Source URL:** [https://clawhub.ai/skills/matter-day-reminder](https://clawhub.ai/skills/matter-day-reminder)
+## 核心功能
 
-## Overview
+### 1. 联系人管理
+- **对话式录入**：通过自然对话添加联系人信息
+- **本地存储**：所有数据以 Markdown + YAML Frontmatter 格式存储在本地
+- **可配置路径**：数据文件存放位置可自定义
 
+### 2. 事件管理
+- **支持多种事件类型**：生日、纪念日、其他重要日期
+- **农历/阳历双支持**：使用 `lunar-javascript` 库自动处理农历转换
+- **闰月处理**：闰月情况下仅在首月触发提醒
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 智能提醒引擎
+- **双节点提醒策略**：
+  - **T-7（提前7天）**：礼物准备提醒，含预算建议、创意方向
+  - **T-0（当天）**：当日提醒，含AI生成的祝福语草稿
+- **每日扫描**：定时检查当天需要提醒的事件
+
+### 4. AI 生成服务
+- **自适应祝福语**：基于关系亲疏（父母/密友/普通朋友）、人物特征、场合性质动态调整语气风格
+- **礼物建议**：AI根据关系自动推断预算，仅提供类别/创意描述，不含商品链接
+  - 朋友关系：≤300元
+  - 家人关系：AI弹性推断（可更高）
+
+### 5. 推送渠道
+- **主渠道**：OpenCode 消息推送
+- **兜底渠道**：邮件推送（当主渠道不可用时）
+
+## 数据模型
+
+### 联系人文件结构
+
+每个联系人为独立的 Markdown 文件，存储在配置的数据目录中：
+
+```markdown
+---
+name: "张三"
+relationship: "friend"  # friend | family | close_friend | colleague
+relationship_detail: "大学同学，喜欢篮球"
+tags: ["篮球", "科技"]
+created_at: "2024-01-15"
+updated_at: "2024-01-15"
+---
+
+# 张三
+
+## 事件
+
+### 生日
+- **类型**: 生日
+- **日期**: 1990-05-20
+- **农历**: false
+- **提醒**: true
+
+### 结婚纪念日
+- **类型**: 纪念日
+- **日期**: 2020-10-01
+- **农历**: false
+- **提醒**: true
+
+## 备注
+
+- 不喜欢甜食
+- 最近在看《三体》
+```
+
+### 数据目录结构
+
+```
+reminder-data/
+├── config.yml          # 全局配置
+├── contacts/
+│   ├── zhang-san.md
+│   ├── li-si.md
+│   └── wang-wu.md
+└── logs/
+    └── reminders.log   # 提醒日志
+```
+
+### 配置文件 (config.yml)
+
+```yaml
+# 数据存储路径
+data_path: "./reminder-data"
+
+# 提醒设置
+reminders:
+  enabled: true
+  advance_days: 7  # 提前提醒天数
+  
+# 推送设置
+notifications:
+  primary: "opencode"  # 主渠道
+  fallback: "email"    # 兜底渠道
+  
+# 邮件设置（可选）
+email:
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
+  username: "your-email@gmail.com"
+  password: "your-app-password"
+  to_address: "your-email@gmail.com"
+
+# AI 生成设置
+ai_generation:
+  enabled: true
+  tone_adaptation: true  # 根据关系调整语气
+```
+
+## 工作流程
+
+### 添加联系人
+
+当用户想要添加联系人时：
+
+1. **启动对话**：询问联系人姓名、关系类型
+2. **收集事件**：询问生日/纪念日等，区分农历/阳历
+3. **收集偏好**：询问人物特征、兴趣爱好（用于生成个性化内容）
+4. **创建文件**：生成 Markdown 文件并保存到数据目录
+5. **确认**：向用户展示创建的文件内容，确认无误
+
+#### 处理日期输入（关键！）
+
+当用户提到生日或纪念日时，必须明确询问是农历还是阳历。如果用户提供了农历日期，无论使用什么格式，都要统一转换为标准格式存储。
+
+**日期输入处理规则**：
+
+**阳历日期**（保持原样）：
+- 格式：`YYYY-MM-DD`
+- 示例：`1998-05-20`
+
+**农历日期**（必须统一为标准格式）：
+- **标准格式**：`- **日期**: 农历X月X日`
+- **支持的输入格式**（必须都能识别）：
+  - "农历六月初八" ✓
+  - "六月初八"（省略"农历"）✓
+  - "阴历六月初八" / "旧历六月初八" ✓
+  - "农历6月8日" → 转换为 "农历六月八日"
+  - "6-8（农历）" → 转换为 "农历六月八日"
+  - "六月初八日" → 去掉"日"，转为 "农历六月初八"
+
+**格式转换规则**：
+1. 识别包含"农历"、"阴历"、"旧历"关键词的输入，或明确说明是农历的输入
+2. 提取月份和日期
+3. 将阿拉伯数字转换为中文数字（6 → 六，8 → 八）
+4. 去掉末尾的"日"字（如有）
+5. 统一输出格式：`- **日期**: 农历X月X日`
+6. 设置：`- **农历**: true`
+
+**数字转中文对照表**：
+```
+1→一, 2→二, 3→三, 4→四, 5→五, 6→六,
+7→七, 8→八, 9→九, 10→十, 11→十一, 12→十二
+```
+
+**对话示例**：
+
+```
+用户：帮我记一下我朋友的生日
+助手：好的！请问这位朋友叫什么名字？
+用户：叫李四，是我大学同学
+助手：好的，李四，大学同学关系。请问他的生日是什么时候？
+用户：农历八月初五
+助手：收到。农历八月初五。还有其他需要记录的信息吗？比如兴趣爱好、不喜欢的礼物类型等？
+用户：他喜欢打篮球，不喜欢甜食
+助手：好的，已记录。还有其他事件需要添加吗？比如你们认识的纪念日？
+用户：没有了
+助手：好的，我现在为你创建联系人文件...
+
+✅ 已创建联系人：李四
+📁 文件位置：reminder-data/contacts/li-si.md
+📅 事件：生日（农历八月初五）
+🏷️ 标签：篮球
+⚠️ 注意：不喜欢甜食
+```
+
+### 检查提醒
+
+当检查当天需要提醒的事件时：
+
+1. **读取所有联系人**：遍历数据目录中的所有 Markdown 文件
+2. **解析日期**：
+   - 阳历日期：直接比较
+   - 农历日期：使用 `lunar-javascript` 转换为当年阳历日期
+3. **判断提醒时间**：
+   - T-7：提前7天提醒（礼物准备）
+   - T-0：当天提醒（祝福推送）
+4. **生成内容**：
+   - 调用 AI 生成祝福语（基于关系、人物特征）
+   - 生成礼物建议（基于预算规则）
+5. **推送消息**：
+   - 优先使用 OpenCode 推送
+   - 失败时切换到邮件兜底
+
+### 农历转换
+
+使用 `lunar-javascript` 库进行农历/阳历转换：
+
+```javascript
+const { Lunar } = require('lunar-javascript');
+
+// 农历转阳历
+function lunarToSolar(lunarYear, lunarMonth, lunarDay) {
+  const lunar = Lunar.fromYmd(lunarYear, lunarMonth, lunarDay);
+  const solar = lunar.getSolar();
+  return {
+    year: solar.getYear(),
+    month: solar.getMonth(),
+    day: solar.getDay()
+  };
+}
+
+// 检查今年农历日期对应的阳历日期
+function getThisYearSolarDate(lunarMonth, lunarDay) {
+  const currentYear = new Date().getFullYear();
+  return lunarToSolar(currentYear, lunarMonth, lunarDay);
+}
+```
+
+**闰月处理**：`lunar-javascript` 会自动标记闰月。在提醒逻辑中，确保闰月仅在首月触发一次。
+
+## 使用场景
+
+### 场景 1：添加新联系人
+
+```
+用户：帮我添加一个朋友
+助手：好的！请问这位朋友叫什么名字？
+...
+```
+
+### 场景 2：查看即将到来的提醒
+
+```
+用户：最近有什么重要日子吗？
+助手：让我查看一下...
+
+📅 未来7天提醒：
+1. 张三的生日 - 3天后（5月20日）
+   💡 建议礼物：篮球相关周边（预算≤300元）
+   
+2. 父母结婚纪念日 - 5天后（10月1日）
+   💡 建议礼物：相册、鲜花（预算由AI推断）
+```
+
+### 场景 3：生成祝福语
+
+```
+用户：帮我写个生日祝福给李四
+助手：基于李四的信息（大学同学、喜欢篮球），我为你生成了以下祝福语：
+
+"李四，生日快乐！🎂 又一年过去了，希望你球场上依旧生龙活虎，生活里也能像投三分一样精准命中每一个目标。大学时光历历在目，愿我们的友谊像篮球一样，越弹越高！🏀"
+
+需要我调整语气风格吗？比如更正式一些或更幽默一些？
+```
+
+## 边界条件
+
+### 不支持的特性
+
+- **不保留历史档案**：不存储历年生成的祝福语
+- **不自动采购**：仅提供建议，不接入电商平台
+- **不加密存储**：本地文件无需加密
+- **无差异化提醒规则**：所有事件类型采用相同的"提前7天+当天"策略
+
+### 已知限制
+
+- 日历双向同步（Google/Outlook/Apple）为 Phase 3 功能，依赖 OpenCode 平台能力
+- 消息确认机制（已读回执）依赖 OpenCode 平台能力
+- 定时任务（Cron）可能需要外部触发器
+
+## 技术实现
+
+### Node.js 脚本
+
+该 skill 依赖以下 Node.js 脚本（位于 `scripts/` 目录）：
+
+1. **lunar-converter.js** - 农历/阳历转换工具
+2. **reminder-checker.js** - 每日提醒检查
+3. **content-generator.js** - AI 生成祝福语和礼物建议
+
+### 安装依赖
+
 ```bash
-hermes skills install clawhub/matter-day-reminder
+cd scripts
+npm install lunar-javascript
+```
+
+## 注意事项
+
+1. **数据备份**：建议定期备份 `reminder-data` 目录，可以使用 Git 进行版本控制
+2. **隐私保护**：虽然数据存储在本地，但仍建议妥善保管数据文件
+3. **农历准确性**：`lunar-javascript` 库基于标准农历算法，但极端边界年份（如1900年前）可能不准确
+4. **时区处理**：所有日期均按本地时区处理
+
+## 故障排除
+
+### 常见问题
+
+**Q: 农历日期转换错误？**
+A: 请确认输入的农历月份和日期正确。闰月需要特别标注（如"闰八月"）。
+
+**Q: 提醒没有触发？**
+A: 检查：
+1. 配置文件中的 `reminders.enabled` 是否为 `true`
+2. 日期格式是否正确（YYYY-MM-DD）
+3. 事件是否标记了 `reminder: true`
+
+**Q: 如何修改联系人信息？**
+A: 直接编辑对应的 Markdown 文件即可，格式为标准的 YAML Frontmatter + Markdown。
+
+## 扩展开发
+
+### 添加新的事件类型
+
+在联系人文件中，可以自定义事件类型：
+
+```markdown
+### 毕业纪念日
+- **类型**: 自定义
+- **日期**: 2015-06-30
+- **农历**: false
+- **提醒**: true
+- **提前天数**: 3  # 可覆盖默认的7天
+```
+
+### 自定义祝福语模板
+
+在配置文件中添加模板：
+
+```yaml
+ai_generation:
+  templates:
+    friend: "{name}，生日快乐！希望你..."
+    family: "亲爱的{name}，祝你..."
 ```

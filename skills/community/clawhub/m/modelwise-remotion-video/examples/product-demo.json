@@ -1,0 +1,79 @@
+{
+  "name": "Product Demo Video",
+  "description": "A product demonstration video template",
+  "composition": {
+    "id": "ProductDemo",
+    "durationInFrames": 450,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080
+  },
+  "scenes": [
+    {
+      "id": "logo",
+      "durationInFrames": 60,
+      "type": "logo-reveal",
+      "animation": {
+        "component": "ScaleIn",
+        "preset": "bouncy"
+      }
+    },
+    {
+      "id": "title",
+      "durationInFrames": 60,
+      "type": "text-reveal",
+      "animation": {
+        "component": "FadeIn",
+        "durationInFrames": 30
+      }
+    },
+    {
+      "id": "problem",
+      "durationInFrames": 90,
+      "type": "problem-statement",
+      "animation": {
+        "component": "SlideIn",
+        "direction": "left"
+      }
+    },
+    {
+      "id": "solution",
+      "durationInFrames": 90,
+      "type": "solution-reveal",
+      "animation": {
+        "component": "FadeIn",
+        "durationInFrames": 30
+      }
+    },
+    {
+      "id": "features",
+      "durationInFrames": 90,
+      "type": "feature-list",
+      "animation": {
+        "component": "SlideIn",
+        "direction": "bottom",
+        "stagger": true
+      }
+    },
+    {
+      "id": "cta",
+      "durationInFrames": 60,
+      "type": "call-to-action",
+      "animation": {
+        "component": "ScaleIn",
+        "preset": "snappy"
+      }
+    }
+  ],
+  "transitions": {
+    "type": "fade",
+    "durationInFrames": 15
+  },
+  "style": {
+    "backgroundColor": "#0f0f23",
+    "primaryColor": "#e94560",
+    "secondaryColor": "#16213e",
+    "textColor": "#ffffff",
+    "fontFamily": "Inter, sans-serif"
+  }
+}

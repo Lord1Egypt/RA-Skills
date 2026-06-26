@@ -1,0 +1,28 @@
+{
+  "deps": [
+    {
+      "body": "Leg_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BL",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BR",
+      "ref": "Leg_FR"
+    },
+    {
+      "body": "Top",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Shelf",
+      "ref": "Leg_FL"
+    }
+  ]
+}

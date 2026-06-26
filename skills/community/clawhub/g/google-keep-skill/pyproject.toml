@@ -1,0 +1,11 @@
+[project]
+name = "google-keep-skill"
+version = "0.3.0"
+description = "Google Keep integration skill for Nanobot via nodriver (undetected Chrome)"
+requires-python = ">=3.11"
+dependencies = [
+    "nodriver",
+]
+
+[dependency-groups]
+dev = []

@@ -1,0 +1,145 @@
+{
+  "templates": {
+    "software_engineer": {
+      "title": "Software Engineer",
+      "sections": {
+        "about_role": "We are looking for a talented {seniority} Software Engineer to join our {team} team. You will be responsible for {key_responsibility}.",
+        "requirements": [
+          "{years}+ years of experience in software development",
+          "Strong proficiency in {primary_language}",
+          "Experience with {framework_or_tool}",
+          "Familiarity with {secondary_skill}"
+        ],
+        "nice_to_have": [
+          "Experience with cloud platforms (AWS/GCP/Azure)",
+          "Open-source contributions",
+          "Experience in {industry} domain"
+        ],
+        "benefits": [
+          "Competitive salary and equity package",
+          "Flexible working arrangements",
+          "Professional development budget",
+          "Health and wellness benefits"
+        ]
+      }
+    },
+    "product_manager": {
+      "title": "Product Manager",
+      "sections": {
+        "about_role": "We are seeking a {seniority} Product Manager to drive product strategy and execution for {product_area}.",
+        "requirements": [
+          "{years}+ years of product management experience",
+          "Strong analytical and data-driven decision making skills",
+          "Experience with Agile/Scrum methodologies",
+          "Excellent communication and stakeholder management"
+        ],
+        "nice_to_have": [
+          "Technical background or engineering degree",
+          "Experience with {industry} products",
+          "MBA or equivalent"
+        ],
+        "benefits": [
+          "Competitive compensation",
+          "Remote-friendly culture",
+          "Learning and development opportunities",
+          "Comprehensive benefits package"
+        ]
+      }
+    },
+    "data_scientist": {
+      "title": "Data Scientist",
+      "sections": {
+        "about_role": "Join our data team as a {seniority} Data Scientist. You will leverage data to drive {business_goal}.",
+        "requirements": [
+          "{years}+ years of experience in data science or related field",
+          "Proficiency in Python and SQL",
+          "Experience with machine learning frameworks (scikit-learn, TensorFlow, PyTorch)",
+          "Strong statistical analysis and modeling skills"
+        ],
+        "nice_to_have": [
+          "Experience with big data tools (Spark, Hadoop)",
+          "Published research or Kaggle competitions",
+          "Domain expertise in {industry}"
+        ],
+        "benefits": [
+          "Competitive salary",
+          "Flexible work environment",
+          "Conference and training budget",
+          "Health benefits"
+        ]
+      }
+    },
+    "ux_designer": {
+      "title": "UX Designer",
+      "sections": {
+        "about_role": "We're looking for a {seniority} UX Designer to create intuitive and beautiful user experiences for {product_type}.",
+        "requirements": [
+          "{years}+ years of UX design experience",
+          "Proficiency with design tools (Figma, Sketch, Adobe XD)",
+          "Strong portfolio demonstrating user-centered design process",
+          "Experience conducting user research and usability testing"
+        ],
+        "nice_to_have": [
+          "Front-end development skills (HTML/CSS/JS)",
+          "Experience with design systems",
+          "Motion design or illustration skills"
+        ],
+        "benefits": [
+          "Competitive compensation",
+          "Creative freedom and ownership",
+          "Design tool subscriptions covered",
+          "Health and wellness benefits"
+        ]
+      }
+    },
+    "marketing_manager": {
+      "title": "Marketing Manager",
+      "sections": {
+        "about_role": "We need a {seniority} Marketing Manager to lead our {channel_or_area} marketing efforts and drive {goal}.",
+        "requirements": [
+          "{years}+ years of marketing experience",
+          "Proven track record in {channel_or_area}",
+          "Data-driven approach to campaign optimization",
+          "Excellent written and verbal communication"
+        ],
+        "nice_to_have": [
+          "Experience with marketing automation platforms",
+          "B2B SaaS experience",
+          "Experience managing marketing budgets"
+        ],
+        "benefits": [
+          "Competitive salary + performance bonus",
+          "Flexible work arrangements",
+          "Marketing conference budget",
+          "Comprehensive benefits"
+        ]
+      }
+    },
+    "sales_representative": {
+      "title": "Sales Representative",
+      "sections": {
+        "about_role": "Join our sales team as a {seniority} Sales Representative. Drive revenue growth by {sales_focus}.",
+        "requirements": [
+          "{years}+ years of B2B sales experience",
+          "Proven track record of exceeding sales targets",
+          "Strong negotiation and relationship-building skills",
+          "CRM experience (Salesforce, HubSpot)"
+        ],
+        "nice_to_have": [
+          "Experience selling {product_type}",
+          "Existing network in {industry}",
+          "Multilingual capabilities"
+        ],
+        "benefits": [
+          "Base salary + uncapped commission",
+          "Sales enablement tools provided",
+          "Career growth opportunities",
+          "Full benefits package"
+        ]
+      }
+    }
+  },
+  "seniority_levels": ["Junior", "Mid-level", "Senior", "Staff", "Principal", "Lead", "Head of", "Director", "VP"],
+  "work_arrangements": ["Remote", "Hybrid", "On-site"],
+  "employment_types": ["Full-time", "Part-time", "Contract", "Freelance", "Internship"]
+}

@@ -1,0 +1,215 @@
+# ModelSense Benchmark Knowledge Base
+# Last updated: 2026-03-05
+# Source: Papers, leaderboards, and model cards
+
+benchmarks:
+  - id: humaneval
+    name: HumanEval
+    full_name: "HumanEval (OpenAI)"
+    what_it_measures: >
+      Code generation ability. 164 Python programming problems with unit tests.
+      Measures whether the model can write correct, runnable code from a docstring.
+    best_for:
+      - code generation
+      - function writing
+      - Python programming
+      - software engineering tasks
+    not_great_for:
+      - security auditing
+      - multi-file refactoring
+      - long context code
+    score_leaders:
+      - model: claude-opus-4-6
+        score: "96.4%"
+      - model: gpt-5.2
+        score: "95.8%"
+      - model: gemini-3.1-pro
+        score: "~91%"
+        note: "est. based on Gemini 3.1 Pro Preview technical report"
+      - model: o3
+        score: "~91%"
+        note: "est.; o3 focuses on reasoning, not pure HumanEval optimization"
+      - model: deepseek-chat
+        score: "91.2%"
+    notes: "Pass@1 metric. SWE-bench is harder and more realistic for real-world coding."
+
+  - id: swe-bench
+    name: SWE-bench Verified
+    full_name: "SWE-bench Verified (Princeton)"
+    what_it_measures: >
+      Real-world software engineering. Tasks from actual GitHub issues: understand
+      a bug report, find the relevant code, write a fix. Far harder and more
+      realistic than HumanEval.
+    best_for:
+      - bug fixing
+      - code review
+      - engineering agent tasks
+      - multi-file code changes
+      - software architecture
+    not_great_for:
+      - simple code snippets
+      - non-Python languages (benchmark is Python-heavy)
+    score_leaders:
+      - model: claude-opus-4-6
+        score: "72.5%"
+      - model: gpt-5.2
+        score: "69.1%"
+      - model: o3
+        score: "~67%"
+        note: "est.; o3 excels at reasoning steps but Opus leads on real-world engineering"
+      - model: gemini-3.1-pro
+        score: "~59%"
+        note: "est.; Gemini leads in long-context but lags on multi-file code tasks"
+      - model: claude-sonnet-4-6
+        score: "61.3%"
+    notes: "Gold standard for agentic coding tasks. Prefer this over HumanEval for serious engineering work."
+
+  - id: gpqa
+    name: GPQA Diamond
+    full_name: "Graduate-Level Google-Proof Q&A (Diamond subset)"
+    what_it_measures: >
+      PhD-level questions in biology, chemistry, and physics. Designed to be
+      'Google-proof' — you can't just look up the answer. Tests genuine
+      deep reasoning.
+    best_for:
+      - scientific research
+      - medical/legal analysis
+      - complex multi-step reasoning
+      - domain expert tasks
+    not_great_for:
+      - everyday tasks
+      - casual questions
+    score_leaders:
+      - model: o3
+        score: "87.7%"
+      - model: claude-opus-4-6
+        score: "83.2%"
+      - model: gemini-3.1-pro
+        score: "~80%"
+        note: "est. based on Gemini 3.1 Pro Preview release; exact GPQA score not yet published"
+      - model: claude-sonnet-4-6
+        score: "74.1%"
+    notes: "Human expert baseline is ~69%. Models exceeding this are genuinely impressive."
+
+  - id: math
+    name: MATH
+    full_name: "MATH Benchmark (Hendrycks et al.)"
+    what_it_measures: >
+      Competition-style mathematics: algebra, geometry, number theory, calculus,
+      statistics. Problems range from AMC to AIME difficulty.
+    best_for:
+      - mathematical reasoning
+      - financial modeling
+      - quantitative analysis
+      - physics problems
+      - algorithm design
+    not_great_for:
+      - informal math questions
+      - word problems requiring common sense
+    score_leaders:
+      - model: o3
+        score: "97.9%"
+      - model: claude-opus-4-6
+        score: "95.1%"
+      - model: gpt-5.2
+        score: "93.4%"
+      - model: gemini-3.1-pro
+        score: "~93%"
+        note: "est.; Gemini 3.1 Pro strong on math, exact score from tech report pending public release"
+
+  - id: mmlu
+    name: MMLU
+    full_name: "Massive Multitask Language Understanding"
+    what_it_measures: >
+      57 subjects from elementary to professional level: law, medicine, history,
+      computer science, economics, and more. Tests broad knowledge breadth.
+    best_for:
+      - general knowledge Q&A
+      - multidomain research
+      - content writing requiring factual accuracy
+      - customer support / FAQ
+    not_great_for:
+      - tasks requiring deep expertise in one domain (use GPQA instead)
+      - coding (use HumanEval/SWE-bench)
+    score_leaders:
+      - model: claude-opus-4-6
+        score: "91.8%"
+      - model: gpt-5.2
+        score: "90.9%"
+      - model: o3
+        score: "~91%"
+        note: "est.; o3 prioritizes reasoning over broad knowledge, MMLU not officially published"
+      - model: gemini-3.1-pro
+        score: "89.4%"
+
+  - id: needle-in-haystack
+    name: Needle in a Haystack
+    full_name: "Needle in a Haystack (Long Context Retrieval)"
+    what_it_measures: >
+      Ability to find a specific piece of information buried in a very long
+      document (up to 1M+ tokens). Tests whether the model can maintain
+      attention across huge contexts without losing facts.
+    best_for:
+      - long document analysis
+      - contract review
+      - RAG (retrieval-augmented generation)
+      - codebase analysis
+      - research paper synthesis
+    not_great_for:
+      - short context tasks
+    score_leaders:
+      - model: gemini-3.1-pro
+        score: "99.1% @ 1M tokens"
+      - model: claude-opus-4-6
+        score: "98.4% @ 200K tokens"
+      - model: o3
+        score: "~97% @ 200K tokens"
+        note: "est.; 200K context window, strong retrieval but smaller window than Gemini"
+    notes: "Context window size matters as much as score. Gemini leads on very long contexts."
+
+  - id: mt-bench
+    name: MT-Bench
+    full_name: "MT-Bench (Multi-Turn Benchmark)"
+    what_it_measures: >
+      Multi-turn conversation quality, judged by GPT-4. Tests writing, roleplay,
+      reasoning, coding, and math across 80 high-quality questions in 8 categories.
+      Also see: Chatbot Arena (LMSys) for human preference rankings.
+    best_for:
+      - general chatting and dialogue
+      - creative writing
+      - instruction following
+      - customer-facing applications
+    score_leaders:
+      - model: claude-opus-4-6
+        score: "9.6/10"
+      - model: gpt-5.2
+        score: "9.5/10"
+      - model: gemini-3.1-pro
+        score: "~9.3/10"
+        note: "est.; Gemini strong at dialogue but MT-Bench score not officially published for 3.1"
+      - model: claude-sonnet-4-6
+        score: "9.3/10"
+      - model: o3
+        score: "~9.0/10"
+        note: "est.; o3 optimized for reasoning, not dialogue; tends to be verbose in conversation"
+
+  - id: bbh
+    name: BBH
+    full_name: "BIG-Bench Hard"
+    what_it_measures: >
+      23 especially hard tasks from BIG-Bench that stumped earlier models.
+      Tests logical reasoning, causal understanding, multi-step deduction,
+      spatial reasoning, and algorithmic thinking.
+    best_for:
+      - complex multi-step reasoning
+      - logical deduction
+      - planning tasks
+      - agentic workflows requiring careful reasoning
+    score_leaders:
+      - model: o3
+        score: "92.4%"
+      - model: claude-opus-4-6
+        score: "89.7%"
+      - model: gemini-3.1-pro
+        score: "~88%"
+        note: "est.; Gemini 3.1 strong on complex reasoning, exact BBH score not yet published"

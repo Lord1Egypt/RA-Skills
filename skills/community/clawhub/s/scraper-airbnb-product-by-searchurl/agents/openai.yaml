@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Dataify Airbnb Builder"
+  short_description: "Prepare Dataify builder calls for airbnb.com"
+  default_prompt: "Use $dataify-airbnb-product-by-searchurl to prepare a Dataify builder curl request."

@@ -1,0 +1,73 @@
+{
+  "users": {
+    "xiaokeai": {
+      "displayName": "小可爱",
+      "channels": {
+        "qqbot": {
+          "coder": "QQ_USER_ID_CODER",
+          "main": "QQ_USER_ID_MAIN",
+          "checker": "QQ_USER_ID_CHECKER",
+          "menowriter": "QQ_USER_ID_MENOWRITER"
+        },
+        "feishu": {
+          "coder": "FEISHU_USER_ID_CODER",
+          "main": "FEISHU_USER_ID_MAIN",
+          "checker": "FEISHU_USER_ID_CHECKER",
+          "menowriter": "FEISHU_USER_ID_MENOWRITER"
+        }
+      },
+      "created": "2026-03-13T08:00:00"
+    }
+  },
+  "lookupIndex": {
+    "qqbot": {
+      "QQ_USER_ID_CODER_coder": {
+        "userId": "xiaokeai",
+        "accountId": "coder",
+        "channelUserId": "QQ_USER_ID_CODER"
+      },
+      "QQ_USER_ID_MAIN_main": {
+        "userId": "xiaokeai",
+        "accountId": "main",
+        "channelUserId": "QQ_USER_ID_MAIN"
+      },
+      "QQ_USER_ID_CHECKER_checker": {
+        "userId": "xiaokeai",
+        "accountId": "checker",
+        "channelUserId": "QQ_USER_ID_CHECKER"
+      },
+      "QQ_USER_ID_MENOWRITER_menowriter": {
+        "userId": "xiaokeai",
+        "accountId": "menowriter",
+        "channelUserId": "QQ_USER_ID_MENOWRITER"
+      }
+    },
+    "feishu": {
+      "FEISHU_USER_ID_CODER_coder": {
+        "userId": "xiaokeai",
+        "accountId": "coder",
+        "channelUserId": "FEISHU_USER_ID_CODER"
+      },
+      "FEISHU_USER_ID_MAIN_main": {
+        "userId": "xiaokeai",
+        "accountId": "main",
+        "channelUserId": "FEISHU_USER_ID_MAIN"
+      },
+      "FEISHU_USER_ID_CHECKER_checker": {
+        "userId": "xiaokeai",
+        "accountId": "checker",
+        "channelUserId": "FEISHU_USER_ID_CHECKER"
+      },
+      "FEISHU_USER_ID_MENOWRITER_menowriter": {
+        "userId": "xiaokeai",
+        "accountId": "menowriter",
+        "channelUserId": "FEISHU_USER_ID_MENOWRITER"
+      }
+    }
+  },
+  "metadata": {
+    "created": "2026-03-13T08:00:00",
+    "version": "1.1.0",
+    "description": "按 agent 精确绑定的跨渠道用户映射示例"
+  }
+}

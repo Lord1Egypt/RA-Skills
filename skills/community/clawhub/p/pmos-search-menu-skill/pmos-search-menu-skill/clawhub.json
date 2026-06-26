@@ -1,0 +1,39 @@
+{
+  "name": "pmos-search-menu-skill",
+  "version": "1.0.0",
+  "description": "自动化爬取甘肃电力交易平台（PMOS）网站的菜单导航路径",
+  "author": "ClawTech",
+  "license": "MIT",
+  "keywords": [
+    "pmos",
+    "browser",
+    "navigation",
+    "sgcc",
+    "电力交易",
+    "菜单导航"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-workspace/skills.git",
+    "directory": "skills/pmos-search-menu-skill"
+  },
+  "engines": {
+    "openclaw": ">=0.8.0"
+  },
+  "tools": {
+    "required": ["browser"],
+    "optional": ["exec", "process"]
+  },
+  "triggers": {
+    "keywords": [
+      "PMOS 菜单导航",
+      "甘肃电力交易平台",
+      "sgcc.com.cn",
+      "信息披露菜单",
+      "电力交易菜单点击"
+    ]
+  },
+  "scripts": {
+    "navigate": "./scripts/navigate-pmos.ps1"
+  }
+}

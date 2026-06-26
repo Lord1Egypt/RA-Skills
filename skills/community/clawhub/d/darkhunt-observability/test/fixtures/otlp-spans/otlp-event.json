@@ -1,0 +1,89 @@
+[
+  {
+    "traceId": "1505bd0602edb499f991140f29e4a89a",
+    "spanId": "d3039158cb70a85f",
+    "name": "message.in slack",
+    "kind": 0,
+    "startTimeUnixNano": 1773775671208000000,
+    "endTimeUnixNano": 1773775671208000000,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "openclaw.observation.type": "event",
+      "openclaw.observation.level": "DEFAULT",
+      "openclaw.session.id": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059",
+      "openclaw.channel": "slack",
+      "openclaw.message.from": "slack:channel:C0AM98AUQUQ",
+      "openclaw.message.content_length": 68,
+      "user.id": "sergey",
+      "openclaw.user.slack_id": "U08TPAJ0Q91",
+      "openclaw.user.slack_username": "sergey",
+      "openclaw.user.display_name": "sergey",
+      "openclaw.channel.id": "C0AM98AUQUQ",
+      "openclaw.channel.provider": "slack"
+    },
+    "resource": {
+      "service.name": "openclaw",
+      "service.version": "0.3.4",
+      "os.type": "Linux",
+      "process.runtime.name": "node",
+      "host.arch": "x64"
+    }
+  },
+  {
+    "traceId": "1505bd0602edb499f991140f29e4a89a",
+    "spanId": "1f1c9320d51e1172",
+    "name": "session_start",
+    "kind": 0,
+    "startTimeUnixNano": 1773775671210000000,
+    "endTimeUnixNano": 1773775671210000000,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "openclaw.observation.type": "event",
+      "openclaw.observation.level": "DEFAULT",
+      "openclaw.hook.name": "session_start",
+      "openclaw.session.id": "a1b2c3d4",
+      "openclaw.hook.evt.sessionId": "a1b2c3d4",
+      "openclaw.hook.ctx.sessionKey": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059",
+      "openclaw.hook.ctx.agentId": "darkhunt-docs"
+    },
+    "resource": {
+      "service.name": "openclaw",
+      "service.version": "0.3.4",
+      "os.type": "Linux",
+      "process.runtime.name": "node",
+      "host.arch": "x64"
+    }
+  },
+  {
+    "traceId": "1505bd0602edb499f991140f29e4a89a",
+    "spanId": "013a181f6c94dd23",
+    "name": "message_sent",
+    "kind": 0,
+    "startTimeUnixNano": 1773775671210000000,
+    "endTimeUnixNano": 1773775671210000000,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "openclaw.observation.type": "event",
+      "openclaw.observation.level": "DEFAULT",
+      "openclaw.hook.name": "message_sent",
+      "openclaw.session.id": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059",
+      "openclaw.hook.evt.to": "slack:channel:C0AM98AUQUQ",
+      "openclaw.hook.evt.content": "DarkHunt uses the APE Taxonomy...",
+      "openclaw.hook.evt.success": true,
+      "openclaw.hook.ctx.sessionKey": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059"
+    },
+    "resource": {
+      "service.name": "openclaw",
+      "service.version": "0.3.4",
+      "os.type": "Linux",
+      "process.runtime.name": "node",
+      "host.arch": "x64"
+    }
+  }
+]

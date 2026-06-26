@@ -1,35 +1,448 @@
 ---
-name: "online-shopping-discount"
-description: "在有购物需求的情况下，提供查找优惠商品信息、生成优惠建议和优惠链接的能力。支持商品搜索、价格比较、优惠推荐和链接生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/online-shopping-discount"
-sourceUrl: "https://clawhub.ai/skills/online-shopping-discount"
+name: online-shopping-discount
+description: 在有购物需求的情况下，提供查找优惠商品信息、生成优惠建议和优惠链接的能力。支持商品搜索、价格比较、优惠推荐和链接生成。
 ---
 
-# online-shopping-discount
+# 在线购物优惠查询技能
 
-> 在有购物需求的情况下，提供查找优惠商品信息、生成优惠建议和优惠链接的能力。支持商品搜索、价格比较、优惠推荐和链接生成。
+这个技能使 AI 能够帮助用户查找优惠商品、比较价格、生成优惠链接，提供智能购物建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/online-shopping-discount`
-- **Source URL:** [https://clawhub.ai/skills/online-shopping-discount](https://clawhub.ai/skills/online-shopping-discount)
+## 技能描述
 
-## Overview
+本技能提供完整的优惠商品查询流程：
+1. 注册并获取合法身份凭证
+2. 使用凭证和关键词查询商品信息
+3. 分析并推荐优惠商品
+4. 生成优惠优惠链接
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/online-shopping-discount
+- 用户询问某类商品的优惠信息
+- 用户需要比较不同平台的商品价格
+- 用户想要获取商品的优惠链接
+- 用户需要购物建议和优惠推荐
+
+## 触发关键词
+
 ```
+优惠, 折扣, 商品搜索, 购物, 推荐, 比价, 淘宝, 京东, 拼多多, 买, 便宜,
+buy, discount, shopping, product search, deals, promotion
+```
+
+## 前置条件
+
+- 需要有效的 API 凭证（通过注册流程获取）
+- 网络连接正常
+- 查询脚本和链接生成脚本已配置
+
+## 技能实现
+
+### 工作流程
+
+```
+┌─────────────────┐
+│  1. 注册认证     │
+│  获取凭证        │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  2. 商品查询     │
+│  使用凭证调用    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  3. 分析推荐     │
+│  筛选优惠商品    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  4. 用户确认     │
+│  选择商品        │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  5. 生成链接     │
+│  返回优惠链接    │
+└─────────────────┘
+```
+
+### 核心脚本
+
+#### 1. 注册认证脚本
+
+```bash
+# scripts/register.sh
+# 用途：注册并获取 API 凭证
+```
+
+#### 2. 商品查询脚本
+
+```bash
+# scripts/search_products.sh
+# 用途：根据关键词查询商品信息
+```
+
+#### 3. 链接生成脚本
+
+```bash
+# scripts/generate_link.sh
+# 用途：为选定商品生成优惠优惠链接
+```
+
+### 参数说明
+
+#### 商品查询参数
+
+| 参数名 | 类型 | 必填 | 说明 | 示例 |
+|--------|------|------|------|------|
+| credential | string | 是 | 注册脚本返回的 UUID，实际请求会自动复用 | 'token_xxx' |
+| keyword | string | 是 | 商品搜索关键词 | '无线耳机' |
+| platform | string | 否 | 平台参数（当前仅支持 `taobao` 与 `jd`，默认 `taobao`，可在拿到结果后再二次筛选） | 'taobao', 'jd' |
+| user_id | string | 否 | 自定义 user_id（默认与 credential 相同） | 'demo-user' |
+| start_price | number | 否 | 最低成交价（仅在用户要求限定下限时传入） | 100 |
+| end_price | number | 否 | 最高成交价（仅在用户要求限定上限时传入） | 500 |
+
+#### 链接生成参数
+
+| 参数名 | 类型 | 必填 | 说明 | 示例 |
+|--------|------|------|------|------|
+| product_id | string | 是 | 商品ID | '12345678' |
+| platform | string | 是 | 商品平台（脚本默认 `taobao`，可通过 `--platform` 覆盖为 `jd`） | 'taobao', 'jd' |
+| credential | string | 是 | API凭证 | 'token_xxx' |
+
+## 使用步骤
+
+### 步骤 1: 注册并获取凭证
+
+```bash
+# 调用注册脚本（首次会注册，后续会使用缓存）
+./scripts/register.sh
+
+# 返回示例
+{
+  "result": "success",
+  "data": {
+    "uuid": "3daf9284-f865-4b16-ad6a-1cbb99a46c20",
+    "username": "dafasdfsadfsa"
+  }
+}
+
+# 可选参数
+./scripts/register.sh --force          # 强制重新注册
+./scripts/register.sh --clear-cache    # 清除本地缓存
+```
+
+**凭证缓存机制：**
+- 首次调用会向服务端注册并获取凭证
+- 凭证会自动保存到本地文件 `.credential_cache`
+- 后续调用会优先使用缓存的凭证
+- 凭证过期前1小时会自动重新注册
+- 缓存文件权限设置为 600（仅所有者可读写）
+
+### 平台偏好与查询策略
+
+1. **先问偏好**：首次对话或用户未说明平台时，主动询问“更偏好淘宝、京东，还是都看看？”。如果用户给出明确选择，就沿用该平台；若回答“都可以”，则在当前会话记为“both”。
+2. **电子/家电默认并行**：关键词命中电视、冰箱、空调、洗衣机、手机、电脑、耳机、显示器、路由器等电子/家电类词汇时，只要用户未禁止，就分别调用 `--platform taobao` 与 `--platform jd`，随后合并结果并注明来源。
+3. **其他品类**：沿用用户偏好；若还未知，可默认淘宝并在回复中提示“如需京东价格请告诉我”。
+4. **偏好切换**：用户随时可以重新指定平台，AI 必须立即切换并在下一轮结果中确认“已按照XX平台重新查询”。
+
+### 步骤 2: 查询商品信息
+
+```bash
+# 使用凭证查询商品
+./scripts/search_products.sh \
+  --credential "token_abc123xyz" \
+  --keyword "无线耳机" \
+  --platform "taobao"
+
+# 只有在用户需要限定成交价区间时才补充以下参数
+# ./scripts/search_products.sh ... --start_price 200 --end_price 500
+
+```
+
+**并行示例（电子/家电场景）**
+
+```bash
+TAOBAO_RESULT=$(./scripts/search_products.sh \
+  --credential "$CREDENTIAL" \
+  --keyword "65寸电视" \
+  --platform "taobao")
+
+JD_RESULT=$(./scripts/search_products.sh \
+  --credential "$CREDENTIAL" \
+  --keyword "65寸电视" \
+  --platform "jd")
+```
+
+> 平台选择目前只支持 `taobao` 与 `jd`，若用户倾向京东请显式传入 `--platform "jd"`。
+>
+> `start_price` / `end_price` 默认不需要传入，除非用户明确要求限定成交价区间。
+
+**返回示例**
+{
+  "result": "success",
+  "data": {
+    "total": 70342,
+    "products": [
+      {
+        "item_id": "jmrZ9q5i0tJqYKqmbyiKY5uJte-rNr4dNUMa0297p0uJo",
+        "title": "商品完整标题",
+        "short_title": "商品短标题",
+        "pict_url": "https://item_pic.jpg",
+        "reserve_price": "247.76",
+        "zk_final_price": "127.65",
+        "final_promotion_price": "71.65",
+        "income_rate": "1.5",
+        "commission_amount": "1.07",
+        "shop_title": "店铺名称",
+        "user_type": 1,
+        "volume": 0,
+        "tk_total_sales": "500",
+        "small_images": ["https://3011838787.jpg"],
+        "promotion_tags": [
+          "淘金币频道抵扣1.28元起",
+          "40元",
+          "满1件8.75折",
+          "包邮"
+        ],
+        "category_name": "厨房置物架/置物柜/角架",
+        "brand_name": "家图腾",
+        "final_promotion_list": [
+          {
+            "promotion_title": "商品券",
+            "promotion_desc": "满108减40",
+            "promotion_fee": "40",
+            "promotion_start_time": "1773072000000",
+            "promotion_end_time": "1773935999000",
+            "promotion_id": "d571e3f65191454792324c8f031262c1"
+          }
+        ],
+        "best_promotion_id": "d571e3f65191454792324c8f031262c1",
+        "best_promotion": {
+          "promotion_title": "商品券",
+          "promotion_desc": "满108减40",
+          "promotion_fee": "40",
+          "promotion_start_time": "1773072000000",
+          "promotion_end_time": "1773935999000",
+          "promotion_id": "d571e3f65191454792324c8f031262c1"
+        }
+      }
+   ]
+}
+```
+
+### 步骤 3: 分析并推荐商品
+
+AI 根据以下维度分析商品：
+- 折扣力度（优先推荐折扣大的）
+- 销量和评价（确保商品质量）
+- 价格区间（符合用户预算）
+- 性价比（综合评分）
+- 图片与卖点（参考 `pict_url`、`short_title`）
+- 价格结构（原价 `reserve_price`、优惠价 `zk_final_price`、成交价/券后价 `final_promotion_price`）
+- 平台信誉/物流（结合 `platform` 字段，提示淘宝/京东在售后或发货速度上的差异）
+
+**展示形态要求：**
+1. 每个商品输出时需同时展示：
+   - 商品图片（使用 `pict_url` 给出可点击的 URL）
+   - 原价、优惠价、成交价三段价格信息，明确标注（例：原价¥XXX → 优惠价¥YYY → 成交价¥ZZZ）
+   - 主要促销或佣金信息，如 `promotion_tags`、`income_rate`、`commission_amount`
+2. 在列出价格信息后补充一段购买建议，由 AI 根据折扣力度、销量（`volume`/`tk_total_sales`）、店铺信誉（`shop_title`、`user_type`）等字段自行总结。例如提示“折扣翻半且销量 1w+，适合追求性价比”。
+3. 建议段落必须说明推荐理由（折扣、销量、品牌或场景），无需脚本额外字段，完全由 AI 归纳。
+4. 如果列表混合了淘宝和京东，务必在标题或首行标记“【淘宝】/【京东】”，并说明物流与售后差异。
+
+### 步骤 4: 用户确认选择
+
+向用户展示推荐商品列表，等待用户选择：
+
+```
+我为您找到以下优惠商品：
+
+1. 某品牌无线蓝牙耳机
+   - 价格：¥299（原价 ¥599，5折）
+   - 销量：10000+
+   - 评分：4.8/5.0
+   - 平台：淘宝
+
+2. 另一品牌降噪耳机
+   - 价格：¥399（原价 ¥699，5.7折）
+   - 销量：5000+
+   - 评分：4.9/5.0
+   - 平台：京东（自营，物流更快）
+
+请问您想要哪一款的优惠链接？
+```
+
+在对商品做推荐时，优先读取 `best_promotion_id`/`best_promotion` 字段：这是脚本根据可用促销列表自动挑选出的“最划算活动”。如果这个字段存在，就在生成链接时直接把 ID 透传下去，避免重复计算；若不存在，则按旧流程提示用户相关优惠不可叠加或让用户自选。
+
+### 步骤 5: 生成优惠链接
+
+```bash
+# 为用户选择的商品生成链接
+./scripts/generate_link.sh \
+  --credential "token_abc123xyz" \
+  --product_id "12345678" \
+  --platform "taobao" \
+  --promotion_id "d571e3f65191454792324c8f031262c1"
+
+# 返回示例
+{
+  "status": "success",
+  "product_id": "12345678",
+  "link_type": "both",
+  "url": "https://xxxxx.html",
+  "code": "￥f7B4UETZsMl￥",
+  "expire_time": "2026-03-16T00:00:00Z",
+  "user_id": "token_abc123xyz"
+}
+```
+
+> 兼容参数：`--activity_id` 仍可使用，但会提示逐步改用 `--promotion_id`。当搜索结果未包含最佳活动 ID 时，可省略该参数，后端将按默认活动生成链接。
+
+## 示例对话流程
+
+### 场景 1: 用户查询特定商品
+
+```
+用户: 帮我找一下无线耳机的优惠
+
+AI: 
+1. [调用注册脚本获取凭证]
+2. [使用凭证查询"无线耳机"]
+3. [分析商品数据]
+4. 我为您找到了几款优惠的无线耳机：
+   
+   1. 某品牌无线蓝牙耳机 - ¥299（5折）
+   2. 另一品牌降噪耳机 - ¥399（5.7折）
+   
+   请问您想要哪一款的购买链接？
+
+用户: 第一款
+
+AI:
+[调用链接生成脚本]
+已为您生成优惠链接：https://s.click.taobao.com/xxx
+这个链接7天内有效，点击即可享受优惠价格。
+```
+
+### 场景 2: 用户指定价格区间
+
+```
+用户: 帮我找200-400元的蓝牙音箱
+
+AI:
+[执行完整流程，调用 `./scripts/search_products.sh --start_price 200 --end_price 400` 只在此类需求下传参]
+在您的预算范围内，我找到了这些高性价比的蓝牙音箱...
+```
+
+## AI 执行指南
+
+### 必须遵循的流程
+
+1. **获取有效凭证**
+   - 首次使用时调用注册脚本获取凭证
+   - 凭证会自动缓存到本地，后续直接使用
+   - 无需每次会话都重新注册
+   - 凭证过期时会自动重新注册
+
+2. **查询前理解用户需求**
+   - 提取关键词（商品类型）
+   - 识别价格区间
+   - 了解平台偏好
+
+3. **智能推荐**
+   - 优先推荐折扣力度大的
+   - 考虑销量和评价
+   - 最多推荐 3-5 款商品
+
+4. **等待用户确认**
+   - 不要自动生成链接
+   - 让用户选择具体商品
+   - 确认后再生成链接
+
+5. **清晰展示信息**
+   - 使用结构化格式
+   - 突出价格和折扣
+   - 提供必要的商品信息
+
+### 推荐话术模板
+
+```
+我为您找到了 [数量] 款符合条件的优惠商品：
+
+[序号]. [商品标题]
+   - 图片： ![商品图片]([pict_url])
+   - 价格：原价 ¥[reserve_price] → 优惠价 ¥[zk_final_price] → 成交价 ¥[final_promotion_price]
+   - 销量：[volume]/淘客销量 [tk_total_sales]
+   - 店铺：[shop_title]（[天猫/淘宝自营等，根据 user_type 判断]）
+   - 促销： [promotion_tags 或佣金信息]
+   - 购买建议：基于折扣/销量/品牌等给出的 1 句个性化理由
+
+请告诉我您想要第几款的购买链接？
+```
+
+## 安全注意事项
+
+- ⚠️ **凭证保护**：
+  - 不要在日志中暴露完整凭证
+  - 缓存文件权限设置为 600
+  - 不要将 `.credential_cache` 文件提交到版本控制
+- ⚠️ **链接有效期**：提醒用户链接的有效期限
+- ⚠️ **价格变动**：说明价格可能实时变化
+- ⚠️ **平台规则**：遵守各电商平台的使用规则
+- ⚠️ **用户隐私**：不保存用户的购物偏好数据
+
+## 错误处理
+
+### 常见错误及处理
+
+| 错误类型 | 处理方式 |
+|---------|---------|
+| 凭证过期 | 重新调用注册脚本获取新凭证 |
+| 商品未找到 | 建议用户更换关键词或扩大搜索范围 |
+| 链接生成失败 | 重试一次，失败则提示用户稍后再试 |
+| 网络超时 | 提示用户检查网络，稍后重试 |
+
+### 错误响应示例
+
+```
+抱歉，查询遇到了一些问题：
+- 原因：[具体错误信息]
+- 建议：[解决方案]
+
+我可以帮您：
+1. 重新搜索
+2. 更换关键词
+3. 稍后再试
+```
+
+## 性能优化
+
+- **凭证缓存**：本地缓存凭证，避免重复注册
+- **商品查询缓存**：热门商品查询结果缓存5分钟
+- **并发查询**：批量查询多个平台时使用并发
+- **结果限制**：限制单次返回商品数量（最多20个）
+- **自动刷新**：凭证过期前1小时自动重新注册
+
+## 监控和日志
+
+记录以下关键指标：
+- 查询成功率
+- 平均响应时间
+- 链接生成成功率
+- 用户转化率（查询→生成链接）
+
+## 相关文件
+
+- `scripts/register.sh` - 注册认证脚本
+- `scripts/search_products.sh` - 商品查询脚本
+- `scripts/generate_link.sh` - 链接生成脚本
+- `scripts/README.md` - 脚本使用说明
+
+## 版本历史
+
+- v1.0.0 (2026-03-09): 初始版本，支持基础的商品查询和链接生成功能

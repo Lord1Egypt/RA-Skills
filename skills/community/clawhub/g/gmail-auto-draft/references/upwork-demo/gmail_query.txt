@@ -1,0 +1,1 @@
+in:inbox is:unread -from:me -label:openclaw_auto_drafted (subject:(proposal OR quote OR pricing OR campaign OR marketing) OR "looking for" OR "need help" OR "can you help")

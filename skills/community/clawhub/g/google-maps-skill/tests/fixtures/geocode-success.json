@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "address_components": [
+        { "long_name": "Tokyo Tower", "short_name": "Tokyo Tower", "types": ["premise"] },
+        { "long_name": "4-chōme-2-8", "short_name": "4-chōme-2-8", "types": ["sublocality"] },
+        { "long_name": "Shibakoen", "short_name": "Shibakoen", "types": ["sublocality"] },
+        { "long_name": "Minato City", "short_name": "Minato City", "types": ["locality"] },
+        { "long_name": "Tokyo", "short_name": "Tokyo", "types": ["administrative_area_level_1"] },
+        { "long_name": "Japan", "short_name": "JP", "types": ["country"] }
+      ],
+      "formatted_address": "4-chōme-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan",
+      "geometry": {
+        "location": { "lat": 35.6585805, "lng": 139.7454329 },
+        "location_type": "ROOFTOP"
+      },
+      "place_id": "ChIJCewJkL2LGGAR2HQ6PeTfivU"
+    }
+  ],
+  "status": "OK"
+}

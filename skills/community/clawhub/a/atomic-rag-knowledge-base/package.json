@@ -1,0 +1,23 @@
+{
+  "name": "atomic-rag-knowledge-base",
+  "version": "1.0.0",
+  "description": "> **The Best Open-Source Atomic Knowledge Base Builder for RAG**   > Make AI truly *learn* a book, rather than just *read* it.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/simonstang/atomic-rag-knowledge-base.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonstang/atomic-rag-knowledge-base/issues"
+  },
+  "homepage": "https://github.com/simonstang/atomic-rag-knowledge-base#readme"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "baozi-claw",
+  "version": "0.1.0",
+  "description": "An OpenClaw skill",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "ai-skill"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "@baozi.bet/mcp-server": "^5.0.1"
+  }
+}

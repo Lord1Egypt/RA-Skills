@@ -1,0 +1,157 @@
+{
+  "_comment": "WeCom Task Manager 技能配置文件（模板）",
+  "_version": "1.2.0",
+  "_updatedAt": "2026-03-26",
+  
+  "skill": {
+    "name": "wecom-task-manager",
+    "description": "企业微信任务管理技能",
+    "version": "1.2.0",
+    "global": true,
+    "autoLoad": true
+  },
+  
+  "accessControl": {
+    "_comment": "访问控制配置 - 白名单模式",
+    "enabled": true,
+    "mode": "whitelist",
+    
+    "allowedAgents": [
+      {
+        "agentId": "da-yan",
+        "role": "主 agent",
+        "permissions": ["all"],
+        "description": "系统管理者，完全访问权限"
+      },
+      {
+        "agentId": "techlead",
+        "role": "技术团队老大",
+        "permissions": ["all"],
+        "description": "负责任务执行和技术团队协调"
+      },
+      {
+        "agentId": "opsdirector",
+        "role": "运维团队老大",
+        "permissions": ["all"],
+        "description": "负责任务执行和运维团队协调"
+      },
+      {
+        "agentId": "investment_coordinator",
+        "role": "投资团队老大",
+        "permissions": ["all"],
+        "description": "负责任务执行和投资团队协调"
+      },
+      {
+        "agentId": "general_coordinator",
+        "role": "通用团队老大",
+        "permissions": ["all"],
+        "description": "负责任务执行和通用团队协调"
+      }
+    ],
+    
+    "onDenied": {
+      "action": "reject",
+      "logLevel": "warning",
+      "message": "❌ 您没有权限调用 wecom-task-manager 技能。请联系 da-yan 或您的团队负责人。"
+    }
+  },
+  
+  "concurrency": {
+    "_comment": "并发控制配置",
+    "maxConcurrentTasks": 3,
+    "description": "最多同时 3 个任务进行中",
+    "onLimitReached": {
+      "action": "reject",
+      "message": "⚠️ 已达到最大并发任务数限制（{max}个），请等待其他任务完成"
+    }
+  },
+  
+  "retry": {
+    "_comment": "重试机制配置",
+    "enabled": true,
+    "maxRetries": 3,
+    "backoffSeconds": 2,
+    "backoffMultiplier": 1,
+    "description": "API 调用失败时重试，指数退避"
+  },
+  
+  "enterpriseWeChat": {
+    "_comment": "企业微信智能表格配置 - 请替换为你的实际配置",
+    "docId": "YOUR_DOC_ID_HERE",
+    "sheetId": "YOUR_SHEET_ID_HERE",
+    
+    "dateTimeFormat": {
+      "type": "timestamp_milliseconds",
+      "format": "string",
+      "wrapArray": false,
+      "description": "13 位毫秒时间戳，字符串格式，不包裹数组"
+    },
+    
+    "autoFillFields": [
+      "创建时间"
+    ],
+    
+    "manualFillFields": [
+      "截止时间",
+      "实际开始时间",
+      "实际完成时间"
+    ]
+  },
+  
+  "taskDefaults": {
+    "_comment": "任务默认值配置",
+    "defaultDeadlineDays": 7,
+    "defaultPriority": "P1",
+    "defaultStatus": "待办",
+    "defaultRiskLevel": "中",
+    "defaultAcceptanceStatus": "待验收",
+    
+    "taskTypeMapping": {
+      "开发": "techlead",
+      "后端": "backend",
+      "前端": "frontend",
+      "全栈": "fullstack",
+      "运维": "opsdirector",
+      "安全": "security_eng",
+      "监控": "monitoring_eng",
+      "投资": "investment_coordinator",
+      "数据": "dataanalyst",
+      "市场": "marketing",
+      "客服": "customersvc",
+      "学习": "copywriter",
+      "文档": "general_coordinator"
+    }
+  },
+  
+  "notifications": {
+    "_comment": "通知配置",
+    "enabled": false,
+    "channels": [],
+    "events": {
+      "taskCreated": false,
+      "taskStarted": false,
+      "taskCompleted": false,
+      "taskOverdue": true,
+      "accessDenied": false
+    }
+  },
+  
+  "logging": {
+    "_comment": "日志配置",
+    "enabled": true,
+    "level": "info",
+    "file": "~/.openclaw/logs/wecom-task-manager.log",
+    "maxSize": "10MB",
+    "backupCount": 3,
+    
+    "logEvents": {
+      "apiCall": true,
+      "accessGranted": false,
+      "accessDenied": true,
+      "taskCreated": true,
+      "taskUpdated": true,
+      "taskDeleted": true,
+      "error": true
+    }
+  }
+}

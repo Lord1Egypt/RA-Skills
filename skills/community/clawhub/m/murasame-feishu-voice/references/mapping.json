@@ -1,0 +1,16 @@
+{
+  "agree": ["mur314_016.mp3", "mur312_012.mp3"],
+  "thanks": ["mur313_093.mp3"],
+  "apology": ["mur302_032.mp3"],
+  "refuse": ["mur307_066.mp3"],
+  "wait": ["mur303_080.mp3", "mur306_055.mp3", "mur311_023.mp3"],
+  "rest": ["mur313_037.mp3", "mur312_031.mp3", "mur311_058.mp3"],
+  "encourage": ["mur312_045.mp3", "mur313_041.mp3"],
+  "care": ["mur312_027.mp3", "mur313_041.mp3"],
+  "compliment": ["mur313_049.mp3"],
+  "explain": ["mur302_097.mp3"],
+  "greet_morning": ["mur002_001.mp3", "mur315_023.mp3", "mur302_001.mp3"],
+  "greet_noon": ["mur310_058.mp3"],
+  "greet_evening": ["mur107_015.mp3"],
+  "greet_night": ["mur305_166.mp3", "mur314_019.mp3", "mur314_213.mp3"]
+}

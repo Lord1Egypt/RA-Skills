@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Ontology Graph</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; }
+#header { padding: 16px 24px; border-bottom: 1px solid #1e2535; }
+#header h1 { font-size: 16px; font-weight: 600; color: #f8fafc; }
+#header p { font-size: 12px; color: #475569; margin-top: 2px; }
+#main { display: flex; height: calc(100vh - 53px); }
+#canvas { flex: 1; overflow: hidden; cursor: grab; user-select: none; }
+#canvas:active { cursor: grabbing; }
+#sidebar { width: 260px; border-left: 1px solid #1e2535; padding: 16px; overflow-y: auto; background: #0d1018; flex-shrink: 0; }
+#sidebar h2 { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.legend { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; color: #94a3b8; }
+.ldot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+#detail { margin-top: 20px; border-top: 1px solid #1e2535; padding-top: 16px; }
+#detail-name { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+#detail-tag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 99px; margin-bottom: 10px; }
+#detail-desc { font-size: 12px; color: #94a3b8; line-height: 1.6; margin-bottom: 10px; }
+.prop-row { padding: 4px 0; border-bottom: 1px solid #1a2030; font-size: 11px; color: #7c8fa8; }
+#hint { color: #334155; font-size: 12px; }
+svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1 id="page-title">Palantir Ontology</h1>
+  <p>点击节点查看详情 · 拖拽节点 · 滚轮缩放</p>
+</div>
+<div id="main">
+  <div id="canvas"><svg id="svg"></svg></div>
+  <div id="sidebar">
+    <h2>图例</h2>
+    <div class="legend"><div class="ldot" style="background:#1a3a5c;border:1.5px solid #3b82f6"></div>Object Type</div>
+    <div class="legend"><div class="ldot" style="background:#3d1a08;border:1.5px dashed #f97316"></div>Interface</div>
+    <div class="legend"><div class="ldot" style="background:#0f3320;border:1.5px solid #22c55e"></div>Action Type</div>
+    <div class="legend"><div class="ldot" style="background:#2e0a52;border:1.5px solid #a855f7"></div>Function</div>
+    <div id="detail"><p id="hint">点击节点查看详细说明</p></div>
+  </div>
+</div>
+
+<script>
+// ── 替换此处数据 ──────────────────────────────────────────────────────────────
+const GRAPH = {
+  title: "Palantir Ontology — 五个一等公民",
+  nodes: [
+    {
+      id: "employee", label: "Employee", type: "object", x: 200, y: 220,
+      desc: "员工对象，把数据库的 employees 表变成会说话的业务对象。",
+      props: ["api_name: employee", "主键: employee_id (UUID)", "属性: name, department, level"]
+    },
+    {
+      id: "project", label: "Project", type: "object", x: 560, y: 220,
+      desc: "项目对象，代表公司内部的一个业务项目。",
+      props: ["api_name: project", "主键: project_id (UUID)", "属性: name, status, deadline"]
+    },
+    {
+      id: "task", label: "Task", type: "object", x: 560, y: 400,
+      desc: "任务对象，项目下的具体执行单元。",
+      props: ["api_name: task", "主键: task_id (UUID)", "属性: title, status, due_date"]
+    },
+    {
+      id: "assignable", label: "Assignable", type: "interface", x: 380, y: 400,
+      desc: "可分配接口。Project 和 Task 都能被分配，Interface 让一个"分配"页面统治所有实现者。",
+      props: ["共享属性: assignee_id, assigned_at", "实现者: Project, Task"]
+    },
+    {
+      id: "assign_action", label: "assign_employee\n_to_project", type: "action", x: 200, y: 400,
+      desc: "分配员工到项目。副作用是 Create Link（同步事务）。永远不信任前端数据——后端 Validation Function 才是安全边界。",
+      props: ["副作用: Create Link (同步)", "生命周期: 7阶段", "原则: 一个Action只做一件事"]
+    },
+    {
+      id: "perf_fn", label: "calculatePerformance\nScore", type: "function", x: 380, y: 80,
+      desc: "计算员工绩效评分的 Object Function，挂载在 Employee 上。必须是纯函数，不能修改 Ontology 数据。",
+      props: ["类型: Object Function", "缓存: TTL 5分钟", "纯函数: 不能有副作用"]
+    }
+  ],
+  edges: [
+    { from: "employee", to: "project", label: "participates_in (M:N)", curve: -40 },
+    { from: "employee", to: "project", label: "manages (M:N)", curve: 40 },
+    { from: "project", to: "assignable", label: "implements", dashed: true },
+    { from: "task", to: "assignable", label: "implements", dashed: true },
+    { from: "assign_action", to: "employee", label: "操作对象" },
+    { from: "perf_fn", to: "employee", label: "派生属性" }
+  ]
+};
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TYPE_STYLE = {
+  object:    { fill: "#1a3a5c", stroke: "#3b82f6", text: "#93c5fd", label: "Object Type" },
+  interface: { fill: "#3d1a08", stroke: "#f97316", text: "#fdba74", label: "Interface", dashed: true },
+  action:    { fill: "#0f3320", stroke: "#22c55e", text: "#86efac", label: "Action Type" },
+  function:  { fill: "#2e0a52", stroke: "#a855f7", text: "#d8b4fe", label: "Function" }
+};
+
+const NS = "http://www.w3.org/2000/svg";
+const svgEl = (tag, attrs) => {
+  const el = document.createElementNS(NS, tag);
+  if (attrs) Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+};
+
+// 文字宽度：CJK 约 14px，ASCII 约 7.5px
+function textWidth(str) {
+  let w = 0;
+  for (const ch of str) w += ch.charCodeAt(0) > 127 ? 14 : 7.5;
+  return w;
+}
+
+function nodeSize(node) {
+  const lines = node.label.split("\n");
+  const w = Math.max(...lines.map(textWidth)) + 32;
+  const h = lines.length * 22 + 16;
+  return { w, h };
+}
+
+const svg = document.getElementById("svg");
+let vx = 0, vy = 0, sc = 1, panStart = null;
+
+function render() {
+  svg.innerHTML = "";
+
+  // arrowhead markers
+  const defs = svgEl("defs");
+  Object.entries(TYPE_STYLE).forEach(([type, st]) => {
+    const m = svgEl("marker", { id: "arr-" + type, markerWidth: 8, markerHeight: 8, refX: 7, refY: 3, orient: "auto" });
+    const p = svgEl("path", { d: "M0,0 L0,6 L8,3 z", fill: st.stroke });
+    m.appendChild(p);
+    defs.appendChild(m);
+  });
+  svg.appendChild(defs);
+
+  const g = svgEl("g", { transform: `translate(${vx},${vy}) scale(${sc})` });
+
+  // edges
+  GRAPH.edges.forEach(edge => {
+    const src = GRAPH.nodes.find(n => n.id === edge.from);
+    const tgt = GRAPH.nodes.find(n => n.id === edge.to);
+    if (!src || !tgt) return;
+    const curve = edge.curve || 0;
+    const mx = (src.x + tgt.x) / 2 + curve;
+    const my = (src.y + tgt.y) / 2 - Math.abs(curve) * 0.3;
+
+    const path = svgEl("path", {
+      d: `M${src.x},${src.y} Q${mx},${my} ${tgt.x},${tgt.y}`,
+      fill: "none",
+      stroke: edge.dashed ? "#374151" : "#2d3f55",
+      "stroke-width": 1.5,
+      "marker-end": `url(#arr-${tgt.type})`
+    });
+    if (edge.dashed) path.setAttribute("stroke-dasharray", "5,3");
+    g.appendChild(path);
+
+    if (edge.label) {
+      const t = svgEl("text", { x: mx, y: my - 6, "text-anchor": "middle", "font-size": 10, fill: "#4b5563" });
+      t.textContent = edge.label;
+      g.appendChild(t);
+    }
+  });
+
+  // nodes
+  GRAPH.nodes.forEach(node => {
+    const st = TYPE_STYLE[node.type];
+    const { w, h } = nodeSize(node);
+    const ng = svgEl("g", { transform: `translate(${node.x},${node.y})` });
+    ng.style.cursor = "pointer";
+
+    const rect = svgEl("rect", {
+      x: -w / 2, y: -h / 2, width: w, height: h, rx: 6,
+      fill: st.fill, stroke: st.stroke, "stroke-width": 1.5
+    });
+    if (st.dashed) rect.setAttribute("stroke-dasharray", "5,3");
+    ng.appendChild(rect);
+
+    const lines = node.label.split("\n");
+    const lineH = 22;
+    const totalH = lines.length * lineH;
+    lines.forEach((line, i) => {
+      const t = svgEl("text", {
+        x: 0,
+        y: (-totalH / 2) + (lineH * i) + (lineH * 0.72),
+        "text-anchor": "middle",
+        "font-size": 12,
+        fill: st.text
+      });
+      t.style.fontWeight = "500";
+      t.style.pointerEvents = "none";
+      t.textContent = line;
+      ng.appendChild(t);
+    });
+
+    const tag = svgEl("text", {
+      x: 0, y: h / 2 + 14,
+      "text-anchor": "middle", "font-size": 10, fill: "#4b5563"
+    });
+    tag.style.pointerEvents = "none";
+    tag.textContent = st.label;
+    ng.appendChild(tag);
+
+    // drag
+    let dragging = false, ox = 0, oy = 0;
+    ng.addEventListener("mousedown", e => {
+      dragging = true;
+      ox = (e.clientX - vx) / sc - node.x;
+      oy = (e.clientY - vy) / sc - node.y;
+      e.stopPropagation();
+    });
+    window.addEventListener("mousemove", e => {
+      if (!dragging) return;
+      node.x = (e.clientX - vx) / sc - ox;
+      node.y = (e.clientY - vy) / sc - oy;
+      render();
+    });
+    window.addEventListener("mouseup", () => { dragging = false; });
+    ng.addEventListener("click", e => { showDetail(node); e.stopPropagation(); });
+
+    g.appendChild(ng);
+  });
+
+  svg.appendChild(g);
+}
+
+function showDetail(node) {
+  const st = TYPE_STYLE[node.type];
+  document.getElementById("hint")?.remove();
+  document.getElementById("detail").innerHTML = `
+    <div id="detail-name">${node.label.replace(/\n/g, " ")}</div>
+    <span id="detail-tag" style="background:${st.fill};color:${st.text};border:1px solid ${st.stroke}">${st.label}</span>
+    <div id="detail-desc">${node.desc || ""}</div>
+    <div>${(node.props || []).map(p => `<div class="prop-row">${p}</div>`).join("")}</div>
+  `;
+}
+
+// pan
+const canvas = document.getElementById("canvas");
+canvas.addEventListener("mousedown", e => { panStart = { x: e.clientX - vx, y: e.clientY - vy }; });
+window.addEventListener("mousemove", e => {
+  if (!panStart) return;
+  vx = e.clientX - panStart.x;
+  vy = e.clientY - panStart.y;
+  render();
+});
+window.addEventListener("mouseup", () => { panStart = null; });
+
+// zoom
+canvas.addEventListener("wheel", e => {
+  e.preventDefault();
+  sc = Math.max(0.3, Math.min(3, sc * (e.deltaY > 0 ? 0.9 : 1.1)));
+  render();
+}, { passive: false });
+
+document.getElementById("page-title").textContent = GRAPH.title;
+render();
+window.addEventListener("resize", render);
+</script>
+</body>
+</html>

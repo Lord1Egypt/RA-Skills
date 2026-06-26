@@ -1,35 +1,42 @@
 ---
-name: "image-face-recognition"
+name: jpeng-image-face-recognition
 description: "Recognize and identify faces"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-image-face-recognition"
-sourceUrl: "https://clawhub.ai/skills/jpeng-image-face-recognition"
+version: "1.0.0"
+author: "jpeng"
+tags: ["ai", "recognition", "image"]
 ---
 
-# image-face-recognition
+# Image Face Recognition
 
-> Recognize and identify faces
+Recognize and identify faces
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-image-face-recognition`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-image-face-recognition](https://clawhub.ai/skills/jpeng-image-face-recognition)
+## When to Use
 
-## Overview
+- User needs ai related functionality
+- Automating recognition tasks
+- Image operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-image-face-recognition
+python3 scripts/image_face_recognition.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export RECOGNITION_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

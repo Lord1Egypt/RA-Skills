@@ -1,35 +1,78 @@
 ---
-name: "场外基金查询"
-description: "查询场外基金（公募基金）的实时估值、净值、基本信息。支持天天基金代码查询。当用户询问基金净值、基金估值、基金涨跌时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fund-query"
-sourceUrl: "https://clawhub.ai/skills/fund-query"
+name: fund-query
+description: 查询场外基金（公募基金）的实时估值、净值、基本信息。支持天天基金代码查询。当用户询问基金净值、基金估值、基金涨跌时使用。
+metadata:
+  requires:
+    bins: [python3]
 ---
 
 # 场外基金查询
 
-> 查询场外基金（公募基金）的实时估值、净值、基本信息。支持天天基金代码查询。当用户询问基金净值、基金估值、基金涨跌时使用。
+查询公募基金的实时估值、历史净值和基本信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fund-query`
-- **Source URL:** [https://clawhub.ai/skills/fund-query](https://clawhub.ai/skills/fund-query)
+## 使用场景
 
-## Overview
+- 用户询问基金净值："005827 净值多少？"
+- 用户询问基金估值："易方达蓝筹现在估值多少？"
+- 用户询问基金涨跌："招商白酒今天涨了还是跌了？"
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/fund-query
+python3 {{SKILL_DIR}}/scripts/fund_query.py <基金代码> [命令]
 ```
+
+**命令**：
+- `estimate` 或不传 - 查询实时估值（默认）
+- `info` - 查询基金基本信息
+- `history` - 查询历史净值
+
+**示例**：
+```bash
+# 查询实时估值
+python3 {{SKILL_DIR}}/scripts/fund_query.py 005827
+
+# 查询基金信息
+python3 {{SKILL_DIR}}/scripts/fund_query.py 005827 info
+
+# 查询历史净值
+python3 {{SKILL_DIR}}/scripts/fund_query.py 005827 history
+```
+
+## 支持的基金代码格式
+
+- 6 位数字基金代码，如 `005827`、`110022`、`161725`
+- 天天基金/东方财富基金代码
+
+## 常见基金代码参考
+
+| 基金名称 | 基金代码 |
+|----------|----------|
+| 易方达蓝筹精选混合 | 005827 |
+| 易方达消费行业 | 110022 |
+| 招商中证白酒 | 161725 |
+| 景顺长城新兴成长 | 260108 |
+| 中欧医疗健康混合A | 003095 |
+| 诺安成长混合 | 320007 |
+
+## 数据来源
+
+天天基金网（fund.eastmoney.com）公开 API
+
+## 输出格式
+
+查询成功后以紧凑格式展示：
+
+```
+📊 **{基金名称}**（{基金代码}）
+
+💰 实时估值：{估值} 元 | 📈 涨跌幅：{涨跌幅}% ↑/↓
+📅 估值时间：{时间}
+📊 昨日净值：{昨日净值} 元（{净值日期}）
+```
+
+## 注意事项
+
+1. 实时估值仅在交易时段更新（9:30-15:00）
+2. 非交易时段显示最近一次的净值数据
+3. 基金代码必须为 6 位数字

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #06060a;
+  --surface-1: #0c0c14;
+  --surface-2: #11111c;
+  --surface-3: #181826;
+  --border: #1e1e32;
+  --border-bright: #2a2a44;
+  --accent: #00ffaa;
+  --accent-dim: #00cc88;
+  --ink: #e8e8f0;
+  --ink-muted: #7a7a96;
+  --ink-faint: #44445a;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-bright) transparent;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+
+/* Noise overlay for texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glow effect for accent elements */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(0, 255, 170, 0.15), 0 0 60px rgba(0, 255, 170, 0.05);
+}
+
+.glow-accent-strong {
+  box-shadow: 0 0 30px rgba(0, 255, 170, 0.25), 0 0 80px rgba(0, 255, 170, 0.08);
+}
+
+.glow-critical {
+  box-shadow: 0 0 20px rgba(255, 45, 85, 0.2), 0 0 60px rgba(255, 45, 85, 0.05);
+}
+
+/* Custom text gradient */
+.text-gradient-accent {
+  background: linear-gradient(135deg, #00ffaa, #00ddff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Radar sweep animation */
+.radar-sweep {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(0, 255, 170, 0.15) 30deg,
+    transparent 60deg
+  );
+}
+
+/* Scan line effect */
+.scanline-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 170, 0.015) 2px,
+    rgba(0, 255, 170, 0.015) 4px
+  );
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-color: var(--border-bright);
+}
+
+/* Severity bar animation */
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: var(--bar-width); }
+}
+
+.severity-bar {
+  animation: fillBar 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+  width: 0%;
+}
+
+/* Code block styling */
+.evidence-code {
+  background: linear-gradient(135deg, rgba(255, 45, 85, 0.08), rgba(255, 107, 53, 0.05));
+  border-left: 2px solid rgba(255, 45, 85, 0.4);
+}
+
+/* Focus styles */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(0, 255, 170, 0.1);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 170, 0.2);
+  color: white;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }

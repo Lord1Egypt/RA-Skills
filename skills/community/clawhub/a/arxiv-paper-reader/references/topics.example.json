@@ -1,0 +1,144 @@
+{
+  "defaults": {
+    "per_topic_limit": 5,
+    "sort_by": "submittedDate",
+    "sort_order": "descending"
+  },
+  "groups": [
+    {
+      "name": "Agent安全",
+      "topics": [
+        {
+          "name": "agent security",
+          "query": "agent security",
+          "slug": "agent-security",
+          "enabled": true
+        },
+        {
+          "name": "prompt injection",
+          "query": "prompt injection",
+          "slug": "prompt-injection",
+          "enabled": true
+        },
+        {
+          "name": "indirect prompt injection",
+          "query": "indirect prompt injection",
+          "slug": "indirect-prompt-injection",
+          "enabled": true
+        },
+        {
+          "name": "tool misuse",
+          "query": "tool misuse",
+          "slug": "tool-misuse",
+          "enabled": true
+        },
+        {
+          "name": "action grounding",
+          "query": "action grounding",
+          "slug": "action-grounding",
+          "enabled": true
+        },
+        {
+          "name": "browser agent attack",
+          "query": "browser agent attack",
+          "slug": "browser-agent-attack",
+          "enabled": true
+        },
+        {
+          "name": "autonomous agent safety",
+          "query": "autonomous agent safety",
+          "slug": "autonomous-agent-safety",
+          "enabled": true
+        },
+        {
+          "name": "planner attack",
+          "query": "planner attack",
+          "slug": "planner-attack",
+          "enabled": true
+        },
+        {
+          "name": "memory poisoning",
+          "query": "memory poisoning",
+          "slug": "memory-poisoning",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "深伪/真实性",
+      "topics": [
+        {
+          "name": "deepfake detection",
+          "query": "deepfake detection",
+          "slug": "deepfake-detection",
+          "enabled": true
+        },
+        {
+          "name": "provenance",
+          "query": "provenance",
+          "slug": "provenance",
+          "enabled": true
+        },
+        {
+          "name": "synthetic media",
+          "query": "synthetic media",
+          "slug": "synthetic-media",
+          "enabled": true
+        },
+        {
+          "name": "multimodal misinformation",
+          "query": "multimodal misinformation",
+          "slug": "multimodal-misinformation",
+          "enabled": true
+        },
+        {
+          "name": "content authenticity",
+          "query": "content authenticity",
+          "slug": "content-authenticity",
+          "enabled": true
+        },
+        {
+          "name": "media forensics",
+          "query": "media forensics",
+          "slug": "media-forensics",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "name": "鲁棒性",
+      "topics": [
+        {
+          "name": "adversarial robustness",
+          "query": "adversarial robustness",
+          "slug": "adversarial-robustness",
+          "enabled": true
+        },
+        {
+          "name": "multimodal robustness",
+          "query": "multimodal robustness",
+          "slug": "multimodal-robustness",
+          "enabled": true
+        },
+        {
+          "name": "jailbreak",
+          "query": "jailbreak",
+          "slug": "jailbreak",
+          "enabled": true
+        },
+        {
+          "name": "context poisoning",
+          "query": "context poisoning",
+          "slug": "context-poisoning",
+          "enabled": true
+        },
+        {
+          "name": "retrieval poisoning",
+          "query": "retrieval poisoning",
+          "slug": "retrieval-poisoning",
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

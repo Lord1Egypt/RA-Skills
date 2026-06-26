@@ -1,0 +1,19 @@
+{
+  "name": "ocas-corvus",
+  "version": "2.3.0",
+  "description": "Corvus: exploratory pattern analysis engine for the system knowledge graph and skill journals. Detects routines, emerging interests, anomalies, stalled threads, and cross-domain opportunities from accumulated activity signals. Trigger phrases: 'analyze patterns', 'detect routines', 'find anomalies', 'what patterns do you see', 'exploration cycle', 'run analysis', 'update corvus'. Do not use for web research (use Sift), person investigations (use Scout), or system architecture changes (use Mentor).",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-corvus/",
+      "~/openclaw/journals/ocas-corvus/",
+      "~/openclaw/db/ocas-elephas/chronicle.lbug",
+      "~/openclaw/journals/*/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-corvus/",
+      "~/openclaw/journals/ocas-corvus/"
+    ]
+  }
+}

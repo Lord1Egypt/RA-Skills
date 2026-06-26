@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "domain": "",
+  "members": [
+    {
+      "expert_id": "",
+      "role": "chair",
+      "weight": 0.25,
+      "joined_at": "",
+      "fast_tracked": false
+    }
+  ],
+  "routing_rules": [
+    {
+      "keyword": "",
+      "expert_ids": []
+    }
+  ],
+  "created_at": "",
+  "updated_at": "",
+  "scoring_history_refs": []
+}

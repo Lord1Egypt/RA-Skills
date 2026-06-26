@@ -1,35 +1,246 @@
 ---
-name: "Session Relay"
-description: "Automatic session continuity and task handoff across context window boundaries. Use when: (1) context token usage exceeds 70% of the model's context window,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/session-relay"
-sourceUrl: "https://clawhub.ai/skills/session-relay"
+name: session-relay
+description: "Automatic session continuity and task handoff across context window boundaries. Use when: (1) context token usage exceeds 70% of the model's context window, (2) user starts a new session after a long conversation, (3) agent needs to preserve ongoing task state before compaction or session reset, (4) user says 'continue from last session' or 'what were we working on'. Monitors context usage, auto-saves rich task snapshots, pulls recent session history, and ensures seamless task inheritance when a new session begins."
 ---
 
-# Session Relay
+# Session Relay 🏃‍♂️
 
-> Automatic session continuity and task handoff across context window boundaries. Use when: (1) context token usage exceeds 70% of the model's context window,...
+Seamless session continuity — pick up exactly where you left off.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/session-relay`
-- **Source URL:** [https://clawhub.ai/skills/session-relay](https://clawhub.ai/skills/session-relay)
+## Core Principle
 
-## Overview
+**The user should never feel they lost progress when a session ends.** Every new session should feel like waking up from a nap, not amnesia.
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/session-relay
+## Phase 0: Session History Inheritance (First Thing on Startup)
+
+**On every new session startup**, before doing anything else, pull recent conversation context so you're not starting blind.
+
+### Step 1: Fetch recent sessions
+
 ```
+sessions_list(kinds: ["main"], limit: 5, messageLimit: 3)
+```
+
+### Step 2: Pull the last 3 sessions' conversation tail
+
+For each of the 3 most recent sessions (excluding current), grab the final conversation turns:
+
+```
+sessions_history(sessionKey: "<key>", limit: 15, includeTools: false)
+```
+
+**Focus on the last ~10 user/assistant exchanges per session.** Skip tool calls — you want the actual conversation flow.
+
+### Step 3: Save raw conversation tails to snapshot
+
+Write the **verbatim last 3 rounds** (user message + assistant reply = 1 round) from each session into the snapshot file. This is the key difference from v1.1 — not a summary, but **actual conversation text** so you can see exactly what was said:
+
+```markdown
+# Session Relay — Conversation Context
+> Generated: {timestamp}
+> Sources: last 3 sessions
+
+## 📎 Last Session Conversation Tail ({session_key}, {date})
+
+**[User]** 能不能做到把最近的三段会话内容直接继承过来
+**[Assistant]** 好想法，利用 sessions_list + sessions_history 直接拉...
+**[User]** 我说的是上一次会话中的几轮对话接续
+**[Assistant]** 啊明白了，你说的不是拉历史做摘要，而是把上个session最后几轮实际对话...
+
+## 📎 Session -2 Conversation Tail ({session_key}, {date})
+{same format, last 3 rounds}
+
+## 📎 Session -3 Conversation Tail ({session_key}, {date})
+{same format, last 3 rounds}
+
+## 📋 Carry-Forward State
+{Merged from conversation context + existing snapshot}
+- Active work: ...
+- Key decisions: ...
+- Pending: ...
+```
+
+### Step 4: Use conversation context naturally
+
+Now you've literally "seen" what was discussed. When the user talks to you:
+
+- **Reference the actual conversation**: "上次你说希望把对话接续过来，我更新了 session-relay 的方案"
+- **Don't re-explain things already decided**: If the last session already debated and resolved something, don't reopen it
+- **Continue mid-thought if appropriate**: If the last message was about task X, you can proactively pick up task X
+
+**Rules:**
+- Store **verbatim conversation text**, not summaries — summaries lose the "feel"
+- 3 rounds per session max (6 messages) — enough for context, not too much for token budget
+- If sessions are very old (> 24h), still store but note the time gap
+- If the user's first message already states what they want, weave context in naturally
+- **Never block the user** — if `sessions_list`/`sessions_history` fails, proceed normally
+- **Security**: Strip any API keys/tokens that appear in conversation before saving
+
+---
+
+## Phase 1: Context Monitoring
+
+After completing significant work (file edits, multi-step tasks, key decisions), check context usage via `session_status`.
+
+| Usage | Action |
+|-------|--------|
+| < 60% | No action |
+| 60-75% | 🟡 **Warm**: Start incremental snapshot — append new progress to `memory/relay-snapshot.md` |
+| 75-85% | 🟠 **Hot**: Full snapshot refresh — rewrite snapshot with complete current state |
+| > 85% | 🔴 **Critical**: Force-save + warn user + sync to daily log |
+
+Begin incremental saves at 60% so the snapshot stays fresh throughout the session.
+
+---
+
+## Phase 2: Rich Snapshots
+
+Snapshot file: `{workspace}/memory/relay-snapshot.md`
+
+### What makes a good snapshot (vs a bad one)
+
+**❌ Bad — too abstract:**
+```
+- [x] NuwaAI Demo — Codex generated index.html
+```
+
+**✅ Good — actionable detail:**
+```
+- [x] NuwaAI Demo — `nuwa-demo/index.html` generated by Codex
+  - Serves via `python3 -m http.server 8082`
+  - Uses NuwaAI WebSocket API, needs API key in page
+  - NOT YET TESTED — next step is open browser and verify connection
+```
+
+### Snapshot Template
+
+```markdown
+# Session Relay Snapshot
+> Auto-saved by session-relay | {ISO-8601 timestamp}
+> Model: {model} | Context: {used}/{max} ({pct}%)
+> Session duration: ~{minutes} min | Compactions: {count}
+
+## 🔥 In Progress (was actively working on this)
+{What you were literally doing when the snapshot was taken.
+Be specific: file paths, commands run, error states, next immediate step.}
+
+## ✅ Completed This Session
+- {Task}: {outcome + key file paths}
+
+## 📋 Pending / Next Steps (priority order)
+1. {Specific action} — {why, any blockers}
+2. ...
+
+## 🧠 Key Decisions & Context
+- {Decision}: {rationale, so next session doesn't re-debate it}
+
+## 🗂️ Working Files
+{Files created/modified this session, with brief purpose}
+- `path/to/file` — {what it is}
+
+## 💬 User Preferences Discovered
+{Anything learned about how the user likes to work}
+
+## ⚠️ Gotchas & Warnings
+{Things that tripped you up, so next session avoids them}
+```
+
+### Snapshot Rules
+
+1. **Be concrete**: paths, commands, URLs, error messages — not summaries of summaries
+2. **Prioritize "In Progress"**: The most valuable section. What was the agent literally doing?
+3. **No secrets**: Never store API keys, tokens, or passwords
+4. **Size target**: 500-2000 words. If over, cut from Completed first (it's in the daily log anyway)
+5. **Overwrite, don't append**: Only latest snapshot matters. But sync key items to daily log too
+6. **Include reproduction commands**: If a task involves running something, include the exact command
+
+---
+
+## Phase 3: Session Restore (Enhanced)
+
+On new session startup:
+
+1. **Run Phase 0 first** — pull conversation tails from recent sessions
+2. **Then read existing `memory/relay-snapshot.md`** — merge Phase 0 conversation tails with any saved snapshot data
+3. **You now have two layers**:
+   - **Conversation tails** = what was literally said (the "feel" and flow)
+   - **Snapshot data** = structured state (tasks, files, decisions)
+4. **Respond as if you remember** — don't announce "I restored context". Just naturally continue.
+5. If the user says "fresh start", silently archive the snapshot
+
+### Archive
+
+When snapshot is consumed or user starts fresh:
+```bash
+# scripts/archive-snapshot.sh handles this
+mkdir -p memory/relay-archive
+mv memory/relay-snapshot.md memory/relay-archive/YYYY-MM-DD-HHMMSS.md
+```
+
+---
+
+## Phase 4: HEARTBEAT Integration
+
+If the workspace uses `HEARTBEAT.md` for periodic checks:
+
+- When context is in 🟠 Hot zone (75-85%), **add a line to HEARTBEAT.md**:
+  ```
+  # [AUTO] Session relay: context high, snapshot saved. Remove this line after reviewing.
+  ```
+- This ensures even if the session dies unexpectedly, the next heartbeat will notice
+
+**Remove the HEARTBEAT line** after a successful restore in the next session.
+
+---
+
+## Phase 5: Daily Log Sync
+
+Every time a snapshot is saved, also append a summary to `memory/YYYY-MM-DD.md`:
+
+```markdown
+### Session Relay Auto-Save ({HH:MM})
+- Context at {pct}%
+- Active: {one-line summary of in-progress work}
+- Completed: {bullet list of done items}
+```
+
+This ensures the daily log captures progress even if the snapshot gets overwritten later.
+
+---
+
+## Critical Alert (> 85%)
+
+When context exceeds 85%, append to EVERY reply:
+
+```
+---
+⚠️ 上下文 {pct}%，建议 /compact 或 /new 开新会话。当前进度已自动保存。
+```
+
+---
+
+## Edge Cases
+
+- `sessions_list`/`sessions_history` unavailable → skip Phase 0, fall back to snapshot file only
+- `session_status` unavailable → skip monitoring, don't block user
+- Snapshot corrupted/empty → treat as no snapshot, rely on session history
+- User says "don't restore" / "fresh start" → archive and proceed clean
+- Multiple compactions in one session → snapshot survives (it's a file, not context)
+- Very short session (< 5 turns, no real work) → don't create a snapshot
+- All recent sessions are from other users (group chat) → filter to main sessions only
+- Session history returns tool-heavy turns → skip tool details, extract user intent + final outcome
+
+---
+
+## What This Skill Cannot Fix
+
+Be honest with users: session-relay is a **best-effort bridge**, not magic. Limitations:
+
+- Detailed reasoning chains are lost after compaction
+- Session history API may not return full conversations
+- The "feel" of a conversation can't be fully serialized
+- If the agent doesn't run `session_status`, monitoring thresholds won't trigger
+
+The goal is: **80% continuity is infinitely better than 0%.** Perfect continuity requires platform-level support.

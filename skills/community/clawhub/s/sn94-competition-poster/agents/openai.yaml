@@ -1,0 +1,7 @@
+interface:
+  display_name: "SN94 Competition Poster"
+  short_description: "Build replayable SN94 task repos"
+  brand_color: "#150049"
+  default_prompt: "Use $sn94-competition-poster to turn this research competition idea into a replayable SN94 task repo and launch brief."
+policy:
+  allow_implicit_invocation: true

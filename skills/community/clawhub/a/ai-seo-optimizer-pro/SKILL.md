@@ -1,35 +1,94 @@
----
-name: "AI SEO Optimizer"
-description: "提供企业级关键词研究、内容优化、排名追踪和自动内链建议，助力提升网站搜索引擎排名和流量。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, keyword-research, marketing, seo, stable]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-seo-optimizer-pro"
-sourceUrl: "https://clawhub.ai/skills/ai-seo-optimizer-pro"
----
+# AI-SEO-Optimizer - 专业 SEO 优化技能
 
-# AI SEO Optimizer
+企业级 SEO 分析与优化引擎，提供关键词研究、内容优化、排名追踪和自动内链建议。
 
-> 提供企业级关键词研究、内容优化、排名追踪和自动内链建议，助力提升网站搜索引擎排名和流量。
+## 功能特性
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-seo-optimizer-pro`
-- **Source URL:** [https://clawhub.ai/skills/ai-seo-optimizer-pro](https://clawhub.ai/skills/ai-seo-optimizer-pro)
+### 🔍 关键词研究
+- 长尾关键词挖掘
+- 竞争难度分析
+- 搜索量趋势预测
+- 关键词机会评分
 
-## Overview
+### 📝 内容优化建议
+- SEO 分数评估
+- 关键词密度分析
+- 可读性优化
+- 元标签优化建议
+- 内容结构改进
 
+### 📊 排名追踪
+- 关键词排名监控
+- 竞争对手对比
+- 历史趋势分析
+- 自动报告生成
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-seo-optimizer-pro
+### 🔗 自动内链建议
+- 智能内容关联
+- 锚文本优化
+- 链接权重分配
+- 内部链接结构优化
+
+## 使用方式
+
+### 关键词研究
 ```
+分析关键词 "[关键词]" 的 SEO 机会
+研究 "[行业]" 相关的长尾关键词
+"[关键词]" 的竞争难度如何？
+```
+
+### 内容优化
+```
+优化这篇文章的 SEO：[文章内容]
+分析这个页面的 SEO 分数：[URL]
+给我内容优化建议
+```
+
+### 排名追踪
+```
+追踪关键词 "[关键词]" 的排名
+生成 SEO 排名报告
+对比我和竞争对手的排名
+```
+
+### 内链建议
+```
+为这个网站生成内链建议：[URL]
+优化内部链接结构
+建议相关的内链锚文本
+```
+
+## 输出格式
+
+技能返回结构化的 SEO 分析报告，包含：
+- 执行摘要
+- 关键指标
+- 具体建议
+- 优先级排序
+- 实施步骤
+
+## 定价
+
+**$129/月** - 企业级 SEO 优化服务
+
+## 适用场景
+
+- 内容创作者优化文章 SEO
+- 网站管理员提升搜索排名
+- 数字营销机构客户服务
+- 电商产品页面优化
+- 博客和媒体网站
+
+## 技术优势
+
+- 基于最新 Google 算法
+- 实时竞争分析
+- 数据驱动建议
+- 可操作的优化步骤
+
+---
+
+**作者:** 小龙
+**版本:** 1.0.0
+**许可:** Commercial

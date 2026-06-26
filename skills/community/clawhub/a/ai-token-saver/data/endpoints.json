@@ -1,0 +1,42 @@
+{
+  "endpoints": [
+    {
+      "name": "save",
+      "method": "POST",
+      "path": "/v1/memory/save",
+      "description": "메모리 저장",
+      "params": ["uri", "content", "category"]
+    },
+    {
+      "name": "search",
+      "method": "POST",
+      "path": "/v1/memory/search",
+      "description": "메모리 검색 (토큰 절감)",
+      "params": ["query", "level", "limit"]
+    },
+    {
+      "name": "list",
+      "method": "GET",
+      "path": "/v1/memory/list",
+      "description": "저장된 메모리 목록",
+      "params": ["category"]
+    },
+    {
+      "name": "usage",
+      "method": "GET",
+      "path": "/v1/usage",
+      "description": "사용량 확인",
+      "params": []
+    }
+  ],
+  "pricing": {
+    "free": {"price": 0, "calls": 50},
+    "pro": {"price": 9, "calls": 1000},
+    "team": {"price": 29, "calls": -1}
+  },
+  "token_saving": {
+    "level_0": {"tokens": 50, "saving": "96%"},
+    "level_1": {"tokens": 200, "saving": "91%"},
+    "level_2": {"tokens": 500, "saving": "원본"}
+  }
+}

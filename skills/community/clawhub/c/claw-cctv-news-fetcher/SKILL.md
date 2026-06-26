@@ -1,35 +1,28 @@
 ---
-name: "Claw Cctv News Fetcher"
-description: "Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-cctv-news-fetcher"
-sourceUrl: "https://clawhub.ai/skills/claw-cctv-news-fetcher"
+name: claw-cctv-news-fetcher
+description: Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date.
+user-invocable: true
 ---
 
-# Claw Cctv News Fetcher
+# CCTV News Fetcher
 
-> Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date.
+This skill allows you to fetch summary titles and content from the CCTV News Broadcast for any specific date.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-cctv-news-fetcher`
-- **Source URL:** [https://clawhub.ai/skills/claw-cctv-news-fetcher](https://clawhub.ai/skills/claw-cctv-news-fetcher)
+## Usage
 
-## Overview
+You can ask the agent to:
+- "Fetch CCTV news for 20250210"
+- "Give me the news highlights for yesterday"
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/claw-cctv-news-fetcher
-```
+When the user asks for news from a specific date:
+1. Format the date as `YYYYMMDD`. If the user says "yesterday" or "today", calculate the date relative to the current local time.
+2. Execute the script at `{baseDir}/scripts/news_crawler.js` using `bun` or `node`.
+   - Command: `bun {baseDir}/scripts/news_crawler.js <YYYYMMDD>`
+3. Parse the JSON output and summarize it for the user. Group news by "Domestic" and "International" if possible based on titles, or just list the highlights.
+
+## Configuration
+
+The skill depends on `node-html-parser`.
+Ensure `bun` is installed in the environment.

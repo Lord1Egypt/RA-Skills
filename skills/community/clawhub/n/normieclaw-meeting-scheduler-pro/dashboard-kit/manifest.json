@@ -1,0 +1,93 @@
+{
+  "name": "meeting-scheduler-pro",
+  "version": "1.0.0",
+  "prefix": "ms_",
+  "description": "Meeting Scheduler Pro dashboard metrics — meeting frequency, prep completion, follow-up tracking, calendar health.",
+  "metrics": [
+    {
+      "key": "ms_meetings_today",
+      "label": "Meetings Today",
+      "type": "gauge",
+      "description": "Number of meetings on today's calendar",
+      "unit": "count"
+    },
+    {
+      "key": "ms_meetings_week",
+      "label": "Meetings This Week",
+      "type": "gauge",
+      "description": "Total meetings scheduled for the current week (Mon–Fri)",
+      "unit": "count"
+    },
+    {
+      "key": "ms_prep_rate",
+      "label": "Prep Completion Rate",
+      "type": "percentage",
+      "description": "Percentage of meetings with a completed prep brief (last 30 days)",
+      "unit": "percent"
+    },
+    {
+      "key": "ms_followups_pending",
+      "label": "Follow-Ups Pending",
+      "type": "gauge",
+      "description": "Action items from meetings not yet completed",
+      "unit": "count"
+    },
+    {
+      "key": "ms_followups_done",
+      "label": "Follow-Ups Completed",
+      "type": "counter",
+      "description": "Action items completed this period",
+      "unit": "count"
+    },
+    {
+      "key": "ms_avg_daily",
+      "label": "Avg Meetings/Day",
+      "type": "gauge",
+      "description": "Rolling 30-day average meetings per weekday",
+      "unit": "count",
+      "precision": 1
+    },
+    {
+      "key": "ms_busiest_day",
+      "label": "Busiest Day",
+      "type": "string",
+      "description": "Day of week with the most meetings (rolling 30 days)"
+    },
+    {
+      "key": "ms_busiest_hour",
+      "label": "Busiest Hour",
+      "type": "string",
+      "description": "Hour of day with the most meetings (rolling 30 days)"
+    },
+    {
+      "key": "ms_noshow_rate",
+      "label": "No-Show Rate",
+      "type": "percentage",
+      "description": "Percentage of meetings where attendee didn't join (last 30 days)",
+      "unit": "percent"
+    },
+    {
+      "key": "ms_buffer_compliance",
+      "label": "Buffer Compliance",
+      "type": "percentage",
+      "description": "Percentage of meetings with proper buffer time before/after",
+      "unit": "percent"
+    },
+    {
+      "key": "ms_agent_booked",
+      "label": "Agent-Booked Meetings",
+      "type": "counter",
+      "description": "Meetings booked through the scheduling agent (vs manually created)",
+      "unit": "count"
+    },
+    {
+      "key": "ms_rescheduled",
+      "label": "Rescheduled Meetings",
+      "type": "counter",
+      "description": "Meetings moved after initial booking",
+      "unit": "count"
+    }
+  ],
+  "refresh_interval_seconds": 900,
+  "data_source": "google_calendar_via_gog"
+}

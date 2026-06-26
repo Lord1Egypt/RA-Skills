@@ -1,35 +1,12 @@
----
-name: "Funpay Assistant"
-description: "Автоматически отвечает на вопросы и проблемы в чатах FunPay, уведомляет о входе в аккаунт и пересылает неопознанные сообщения владельцу."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/funpay-assistant"
-sourceUrl: "https://clawhub.ai/skills/funpay-assistant"
----
+# FunPay Assistant Skill
 
-# Funpay Assistant
+Автоматизация ответов и мониторинг чатов FunPay.
 
-> Автоматически отвечает на вопросы и проблемы в чатах FunPay, уведомляет о входе в аккаунт и пересылает неопознанные сообщения владельцу.
+## Возможности
+- Автоматический ответ на проблемы с регионом (Chile/VPN).
+- Ответы на вопросы о наличии ("В наличии", "Ты тут?").
+- Уведомление в Telegram о согласии на вход в аккаунт.
+- Пересылка неопознанных сообщений владельцу.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/funpay-assistant`
-- **Source URL:** [https://clawhub.ai/skills/funpay-assistant](https://clawhub.ai/skills/funpay-assistant)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/funpay-assistant
-```
+## Использование
+Скрипт `monitor.py` проверяет новые сообщения и выполняет действия согласно логике.

@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "source": "盖世汽车/乘联会官方发布",
+    "update_time": "2026-05-15T16:35:00+08:00",
+    "data_period": "2026 年 4 月（最新数据）",
+    "note": "数据来自多渠道交叉验证，标注发布时间"
+  },
+  "rankings": [
+    {
+      "rank": 1,
+      "brand": "特斯拉",
+      "model": "Model 3",
+      "monthly_sales": 27335,
+      "yoy_growth": "+11.58%",
+      "market_segment": "中型纯电轿车",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 2,
+      "brand": "比亚迪",
+      "model": "宋 Pro DM-i",
+      "monthly_sales": 27107,
+      "yoy_growth": "+23.72%",
+      "market_segment": "紧凑型混动轿车",
+      "powertrain_type": "PHEV"
+    },
+    {
+      "rank": 3,
+      "brand": "小米汽车",
+      "model": "小米 SU7",
+      "monthly_sales": 26826,
+      "yoy_growth": "-6.15%",
+      "market_segment": "中型智能轿车",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 4,
+      "brand": "比亚迪",
+      "model": "海鸥",
+      "monthly_sales": 27204,
+      "yoy_growth": "-50.56%",
+      "market_segment": "A00 级纯电小车",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 5,
+      "brand": "比亚迪",
+      "model": "海豚",
+      "monthly_sales": 21930,
+      "yoy_growth": "+20.38%",
+      "market_segment": "A 级纯电轿车",
+      "powertrain_type": "BEV"
+    }
+  ],
+  "top10_extended": [
+    {
+      "rank": 6,
+      "brand": "比亚迪",
+      "model": "宋 PLUS DM-i",
+      "monthly_sales": 24563,
+      "market_segment": "中型混动 SUV 轿车跨界"
+    },
+    {
+      "rank": 7,
+      "brand": "奇瑞汽车",
+      "model": "探索 06 C-DM",
+      "monthly_sales": 24821,
+      "market_segment": "紧凑型插电混动 SUV"
+    },
+    {
+      "rank": 8,
+      "brand": "比亚迪",
+      "model": "元 UP",
+      "monthly_sales": 24602,
+      "market_segment": "A0 级纯电 SUV"
+    }
+  ],
+  "market_insights": {
+    "dominant_brands": ["特斯拉", "比亚迪"],
+    "rising_star": "小米 SU7 (品牌新势力标杆)",
+    "market_trend": "BEV 持续主导，A 级/中型轿车竞争激烈"
+  }
+}

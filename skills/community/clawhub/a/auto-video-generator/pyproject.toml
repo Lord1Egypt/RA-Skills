@@ -1,0 +1,125 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto-video-generator"
+version = "3.0.0"
+description = "Generate professional demo videos from HTML pages with AI voice narration"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "AVG Team", email = "team@avg.dev"}
+]
+maintainers = [
+    {name = "AVG Team", email = "team@avg.dev"}
+]
+keywords = [
+    "video-generation",
+    "demo",
+    "screenshot",
+    "automation",
+    "testing",
+    "playwright",
+    "tts",
+    "voice-over",
+    "presentation"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video :: Capture",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "playwright>=1.40.0",
+    "edge-tts>=6.1.0",
+    "Pillow>=10.0.0",
+    "ffmpeg-python>=0.2.0",
+    "pyyaml>=6.0",
+    "rich>=13.0.0",
+    "click>=8.1.0",
+    "aiofiles>=23.0.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+]
+web = [
+    "flask>=3.0.0",
+    "flask-cors>=4.0.0",
+    "flask-socketio>=5.3.0",
+]
+all = [
+    "auto-video-generator[dev,web]",
+]
+
+[project.urls]
+Homepage = "https://github.com/avg-team/auto-video-generator"
+Documentation = "https://auto-video-generator.readthedocs.io"
+Repository = "https://github.com/avg-team/auto-video-generator.git"
+Issues = "https://github.com/avg-team/auto-video-generator/issues"
+Changelog = "https://github.com/avg-team/auto-video-generator/blob/main/CHANGELOG.md"
+
+[project.scripts]
+avg = "auto_video_generator.cli:main"
+avg-generate = "auto_video_generator.cli:generate"
+avg-web = "auto_video_generator.web:start_web_ui"
+avg-init = "auto_video_generator.cli:init_project"
+
+[project.entry-points."avg.adapters"]
+ant-design-vue = "auto_video_generator.adapters:AntDesignVueAdapter"
+react-antd = "auto_video_generator.adapters:ReactAntdAdapter"
+element-ui = "auto_video_generator.adapters:ElementUIAdapter"
+vuetify = "auto_video_generator.adapters:VuetifyAdapter"
+naive-ui = "auto_video_generator.adapters:NaiveUIAdapter"
+arco-design = "auto_video_generator.adapters:ArcoDesignAdapter"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["auto_video_generator*"]
+
+[tool.setuptools.package-data]
+auto_video_generator = ["templates/*", "static/**/*", "config/*.yaml"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --cov=auto_video_generator --cov-report=term-missing"
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

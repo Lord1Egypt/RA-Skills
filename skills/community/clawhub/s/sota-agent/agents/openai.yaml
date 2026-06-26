@@ -1,0 +1,4 @@
+interface:
+  display_name: "SOTA Agent"
+  short_description: "SOTA-focused CV and DS benchmark planning, ablation design, and claim review"
+  default_prompt: "Use $sota-agent to freeze the benchmark target, triage the papers, plan ablations, and decide whether a candidate is a real SOTA step or only noise. Keep the benchmark contract fixed, require contamination checks, and point claim review at sanitized execution artifacts when they exist."

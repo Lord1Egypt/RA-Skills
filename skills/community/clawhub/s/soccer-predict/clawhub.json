@@ -1,0 +1,12 @@
+{
+  "name": "Soccer Predict",
+  "tagline": "AI-powered football betting prediction with 5-step quantitative analysis framework",
+  "description": "A comprehensive football match prediction and betting analysis system for OpenClaw. Automatically scrapes pre-match data from titan007.com including Asian handicap, over/under, European odds, team fundamentals, lineups, corner kicks, and half-time goals. Features a 5-step quantitative analysis framework: data organization, fundamental analysis, odds probability calculation, logistic regression models, and EV-based betting recommendations. Supports dual output modes (concise and visual), post-match review with automated learning, and iterative weight optimization to achieve 70%+ prediction accuracy.",
+  "category": "finance",
+  "tags": ["football", "soccer", "betting", "prediction", "sports", "analytics", "quantitative", "titan007", "odds", "handicap"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/superluigi0309/soccer-predict/issues",
+  "homepage": "https://github.com/superluigi0309/soccer-predict"
+}

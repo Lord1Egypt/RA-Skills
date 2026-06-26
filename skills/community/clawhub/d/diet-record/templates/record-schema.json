@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DietRecord",
+  "description": "A single diet/meal record entry",
+  "type": "object",
+  "required": ["id", "timestamp", "meal_type", "items", "total_calories"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "UUID identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp"
+    },
+    "meal_type": {
+      "type": "string",
+      "enum": ["breakfast", "lunch", "dinner", "snack"]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "portion_g", "calories_kcal", "protein_g", "fat_g", "carb_g", "fiber_g"],
+        "properties": {
+          "name": { "type": "string", "description": "食物名称" },
+          "portion_g": { "type": "number", "description": "份量（克）" },
+          "calories_kcal": { "type": "number", "description": "热量（千卡）" },
+          "protein_g": { "type": "number", "description": "蛋白质（克）" },
+          "fat_g": { "type": "number", "description": "脂肪（克）" },
+          "carb_g": { "type": "number", "description": "碳水化合物（克）" },
+          "fiber_g": { "type": "number", "description": "膳食纤维（克）" }
+        }
+      }
+    },
+    "total_calories": {
+      "type": "number",
+      "description": "Total calories for the meal (kcal)"
+    },
+    "notes": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

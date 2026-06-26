@@ -1,0 +1,7 @@
+{
+  "name": "multi-search-engine",
+  "version": "2.0.1",
+  "description": "Four search engines: Google, DuckDuckGo, Brave Search, WolframAlpha. Advanced operators, time filters, no API keys.",
+  "engines": 4,
+  "requires_api_key": false
+}

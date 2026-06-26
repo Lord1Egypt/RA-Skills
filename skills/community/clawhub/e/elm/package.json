@@ -1,0 +1,21 @@
+{
+  "name": "elm",
+  "version": "2.0.1",
+  "description": "饿了么下单 Skill - 自然语言下单、用户自助登录后按地址搜商品、优惠优化后加购物车",
+  "main": "SKILL.md",
+  "keywords": [
+    "elm",
+    "eleme",
+    "饿了么",
+    "waimai",
+    "takeout",
+    "delivery",
+    "coupon",
+    "hongbao",
+    "cart",
+    "budget",
+    "openclaw-skill"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

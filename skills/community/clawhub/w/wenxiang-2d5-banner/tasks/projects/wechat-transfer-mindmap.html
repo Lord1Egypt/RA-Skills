@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信转账自动化 - 思维导图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei"; background: linear-gradient(135deg, #fef9f3, #f8f4e8); padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 26px; color: #2c3e50; margin-bottom: 10px; }
+        .meta { color: #7f8c8d; font-size: 13px; }
+        .stats { display: flex; justify-content: center; gap: 30px; margin: 30px 0; flex-wrap: wrap; }
+        .stat-item { text-align: center; padding: 15px 30px; border: 3px solid #2c3e50; border-radius: 50px; min-width: 130px; background: #fff; box-shadow: 4px 4px 0 rgba(44,62,80,0.15); }
+        .stat-number { font-size: 32px; font-weight: bold; color: #2c3e50; display: block; }
+        .stat-label { font-size: 13px; color: #7f8c8d; margin-top: 5px; display: block; }
+        .diagram-container { background: #fff; border: 3px solid #2c3e50; border-radius: 20px; padding: 80px; margin: 30px auto; max-width: 1200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .mermaid { background: transparent; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💰 微信转账自动化项目</h1>
+        <div class="meta">生成时间：2026-03-08 12:58 | 思维导图 V2.0</div>
+    </header>
+    <div class="stats">
+        <div class="stat-item"><span class="stat-number">P0</span><span class="stat-label">优先级</span></div>
+        <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">技术方案</span></div>
+        <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">项目阶段</span></div>
+        <div class="stat-item"><span class="stat-number">🟡</span><span class="stat-label">技术验证中</span></div>
+    </div>
+    <div class="diagram-container">
+        <div class="mermaid">
+mindmap
+  root((💰 微信转账<br/>自动化项目))
+    📋 项目概述
+      语音指令触发
+      微信自动发消息
+      转账红包
+    ⚠️ 安全约束
+      不集成微信支付 API
+      半自动化方案
+      用户最后确认
+    🔧 技术方案
+      方案 A 半自动 (推荐)
+      方案 B RPA 全自动
+      方案 C 飞书审批流
+    📅 项目计划
+      阶段 1 需求确认
+      阶段 2 技术验证
+      阶段 3 开发实现
+      阶段 4 测试上线
+        </div>
+    </div>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'base', mindmap: { useMaxWidth: true, padding: 60 } });</script>
+</body>
+</html>

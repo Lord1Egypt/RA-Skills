@@ -1,0 +1,7 @@
+{
+  "appid": "你的 AppID（从火山引擎控制台获取）",
+  "access_token": "你的 Access Token（从火山引擎控制台获取）",
+  "cluster": "volcano_tts",
+  "voice_type": "BV700_streaming",
+  "emotion": "pleased"
+}

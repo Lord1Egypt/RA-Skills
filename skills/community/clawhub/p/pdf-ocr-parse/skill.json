@@ -1,0 +1,26 @@
+{
+  "name": "PDF OCR Parse",
+  "description": "Extract text from scanned PDFs using Tesseract OCR. Supports multiple languages, page selection, DPI control, and word-level bounding boxes.",
+  "method": "POST",
+  "endpoint": "/v1/pdf/ocr/parse",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "URL to a scanned PDF" },
+        { "name": "base64_pdf", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "pages", "type": "string", "required": false, "default": "all", "description": "Page selection: 'all', '1-5', '1,3,5-8'" },
+        { "name": "lang", "type": "string", "required": false, "default": "eng", "description": "Tesseract language(s), '+' separated (e.g. 'eng+hin')" },
+        { "name": "dpi", "type": "integer", "required": false, "default": 200, "description": "Rasterisation DPI (72-400)" },
+        { "name": "psm", "type": "integer", "required": false, "default": 3, "description": "Page segmentation mode (0-13)" },
+        { "name": "oem", "type": "integer", "required": false, "default": 3, "description": "OCR engine mode (0-3)" },
+        { "name": "char_whitelist", "type": "string", "required": false, "description": "Restrict OCR to these characters only" },
+        { "name": "detail", "type": "string", "required": false, "default": "text", "enum": ["text", "words"], "description": "Detail level. 'words' includes bounding boxes." },
+        { "name": "output_format", "type": "string", "required": false, "default": "json", "enum": ["json", "text"], "description": "Response format" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

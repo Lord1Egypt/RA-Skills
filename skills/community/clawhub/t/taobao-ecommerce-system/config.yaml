@@ -1,0 +1,158 @@
+# 2026 无货源电商运营系统配置
+# 版本：2.0.0
+
+# ==================== 选品配置 ====================
+product_selection:
+  batch_size: 100                     # 批量采集数量
+  min_profit_margin: 0.20             # 最低利润率 20%
+  max_competition: 5000               # 最大同款数
+  max_monopoly: 0.60                  # 最大垄断度 60%
+  min_new_opportunity: 0.15           # 最小新品机会 15%
+  
+  # 5 个数据指标
+  metrics:
+    - name: "同款数"
+      max: 5000
+      weight: 0.20
+    - name: "垄断度"
+      max: 0.60
+      weight: 0.20
+    - name: "新品机会"
+      min: 0.15
+      weight: 0.20
+    - name: "价格空间"
+      min: 1.00
+      weight: 0.20
+    - name: "搜索趋势"
+      trend: "rising"
+      weight: 0.20
+
+# ==================== 上架配置 ====================
+product_upload:
+  title_optimization: true            # 标题优化
+  main_image_processing: true         # 主图处理
+  detail_template: "trust"            # 详情页模板（trust/sale/scene）
+  auto_pricing: true                  # 自动定价
+  
+  # 价格设置
+  pricing:
+    markup_rate: 1.5                  # 加价倍率
+    min_margin: 0.20                  # 最低利润率
+    coupon_threshold: 159             # 优惠券门槛
+    coupon_amount: 20                 # 优惠券金额
+
+# ==================== 推广配置（万相台无界 4+2 模型） ====================
+marketing:
+  test_period_days: 7                 # 测款周期 7 天
+  daily_budget: 300                   # 日预算¥300
+  
+  # 4 个拉新计划
+  acquisition_plans:
+    - name: "智能计划"
+      budget: 100
+      bid_rate: 0.80
+    - name: "关键词计划"
+      budget: 100
+      bid_rate: 0.90
+      keywords_count: 10
+    - name: "人群计划"
+      budget: 100
+      age_range: "18-35"
+      gender: "male"
+    - name: "创意计划"
+      budget: 100
+      creatives_count: 5
+  
+  # 2 个收割计划（第 4 天开启）
+  retargeting_plans:
+    - name: "收藏加购收割"
+      budget: 50
+      premium: 1.20
+    - name: "浏览未购收割"
+      budget: 50
+      premium: 1.00
+  
+  # 达标线
+  targets:
+    day_1:
+      ctr: 0.015
+      cart_rate: 0.05
+    day_3:
+      ctr: 0.025
+      cart_rate: 0.10
+      cvr: 0.01
+    day_7:
+      ctr: 0.035
+      cart_rate: 0.15
+      cvr: 0.035
+      roi: 2.5
+  
+  # 止损规则
+  stop_loss:
+    warning_loss: 500                 # 亏损¥500 提醒
+    suggest_stop: 1000                # 亏损¥1000 建议停止
+    auto_stop: 1500                   # 亏损¥1500 自动暂停
+
+# ==================== 订单配置 ====================
+order_processing:
+  auto_push_1688: true                # 自动推单到 1688
+  auto_fill_tracking: true            # 自动回填单号
+  logistics_monitoring: true          # 物流监控
+  
+  # 超时预警
+  timeout_alerts:
+    ship_timeout_hours: 48            # 48 小时未发货预警
+    fill_timeout_hours: 24            # 24 小时未填单号预警
+    logistics_stall_days: 3           # 3 天物流未更新预警
+
+# ==================== 客服配置 ====================
+customer_service:
+  auto_reply: true                    # 自动回复
+  greeting_message: "您好，当前为智能客服服务，复杂问题将为您转接人工客服~"
+  
+  # 售后分类处理
+  after_sales_types:
+    - type: "quality"
+      action: "refund_return"
+      compensate: true
+    - type: "logistics"
+      action: "contact_courier"
+      compensate_amount: 10
+    - type: "seven_days"
+      action: "refund_return"
+      customer_pay_shipping: true
+    - type: "refund_only"
+      action: "manual_review"
+      risk_level: "high"
+  
+  # 差评挽回
+  bad_review_recovery:
+    enabled: true
+    compensate_amount: 20
+    max_attempts: 3
+
+# ==================== 合规风控配置 ====================
+compliance:
+  forbidden_words_check: true         # 违禁词检测
+  image_copyright_check: true         # 图片版权检测
+  attribute_truthfulness: true        # 属性真实性检测
+  
+  # 风险分级
+  risk_levels:
+    level_1:                          # 一级风险（直接终止）
+      - "API 违规"
+      - "爬虫"
+      - "虚假宣传"
+    level_2:                          # 二级风险（预警）
+      - "属性错漏"
+      - "材质不符"
+    level_3:                          # 三级风险（提醒）
+      - "库存不足"
+      - "物流异常"
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  file: "./logs/ecommerce.log"
+  max_size_mb: 10
+  backup_count: 7

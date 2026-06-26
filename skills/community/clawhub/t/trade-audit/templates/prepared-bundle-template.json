@@ -1,0 +1,38 @@
+{
+  "schema_version": 3,
+  "decision_goal": "<exact plain-language decision request>",
+  "input_mode": "prepared_bundle",
+  "context_label": "<short label>",
+  "prepared_material": {
+    "source_references": [
+      "<url-or-reference-1>",
+      "<url-or-reference-2>"
+    ],
+    "collected_facts": [
+      "<fact 1>",
+      "<fact 2>"
+    ],
+    "numeric_observations": [
+      {
+        "value": "<value>",
+        "context": "<context>"
+      }
+    ],
+    "rules_or_conditions": [
+      "<rule 1>",
+      "<rule 2>"
+    ],
+    "agent_observations": [
+      "<observation 1>",
+      "<observation 2>"
+    ],
+    "known_risks": [
+      "<risk 1>",
+      "<risk 2>"
+    ],
+    "unknowns": [
+      "<missing item 1>",
+      "<missing item 2>"
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Action Plan</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .readiness-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .readiness-score {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fb923c;
+  }
+  .readiness-meta .rm-label { font-size: 12px; color: #888; }
+  .readiness-meta .rm-type { font-size: 14px; font-weight: 600; color: #fff; text-transform: capitalize; }
+  
+  .period-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 20px 0 10px 0;
+  }
+  .block-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  .block-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .block-icon.nutrition { background: #1a3a2a; }
+  .block-icon.fitness { background: #3a2a1a; }
+  .block-icon.recovery { background: #1a2a3a; }
+  .block-info { flex: 1; }
+  .block-info h3 { font-size: 14px; margin-bottom: 2px; }
+  .block-info .block-meta { font-size: 11px; color: #666; }
+  .block-status {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📋 Today's Action Plan</h1>
+  <div class="subtitle">Saturday, March 14, 2026</div>
+</div>
+
+<div class="readiness-bar">
+  <div class="readiness-score">61</div>
+  <div class="readiness-meta">
+    <div class="rm-label">Readiness</div>
+    <div class="rm-type">🔄 Recovery Day</div>
+  </div>
+  <div style="flex:1"></div>
+  <span class="badge badge-orange">Moderate</span>
+</div>
+
+<div class="period-label">🌅 Morning</div>
+
+<div class="block-card">
+  <div class="block-icon recovery">😴</div>
+  <div class="block-info">
+    <h3>Wake Up</h3>
+    <div class="block-meta">Recovery</div>
+  </div>
+  <div class="block-status">✅</div>
+</div>
+
+<div class="block-card">
+  <div class="block-icon nutrition">🍳</div>
+  <div class="block-info">
+    <h3>Egg White & Chicken Sausage Frittata</h3>
+    <div class="block-meta">Breakfast</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="period-label">☀️ Afternoon</div>
+
+<div class="block-card">
+  <div class="block-icon nutrition">🥗</div>
+  <div class="block-info">
+    <h3>Turkey Breast & Large Mixed Green Salad</h3>
+    <div class="block-meta">Lunch</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="block-card">
+  <div class="block-icon nutrition">🥤</div>
+  <div class="block-info">
+    <h3>Protein Shake</h3>
+    <div class="block-meta">Snack</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="block-card">
+  <div class="block-icon nutrition">🥑</div>
+  <div class="block-info">
+    <h3>Avocado Slices with Everything Bagel Seasoning</h3>
+    <div class="block-meta">Snack</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="block-card">
+  <div class="block-icon fitness">🏃</div>
+  <div class="block-info">
+    <h3>Tempo Run</h3>
+    <div class="block-meta">Cardio Workout</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="period-label">🌙 Evening</div>
+
+<div class="block-card">
+  <div class="block-icon nutrition">🍽️</div>
+  <div class="block-info">
+    <h3>Lean Ground Turkey Stuffed Bell Peppers</h3>
+    <div class="block-meta">Dinner</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="block-card">
+  <div class="block-icon recovery">🌙</div>
+  <div class="block-info">
+    <h3>Go to Bed</h3>
+    <div class="block-meta">Recovery</div>
+  </div>
+  <div class="block-status">⬜</div>
+</div>
+
+<div class="footer">BestYou × OpenClaw</div>
+</body>
+</html>

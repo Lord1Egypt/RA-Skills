@@ -1,35 +1,33 @@
 ---
 name: "Listen"
 description: "Improve transcription accuracy over time. Learn corrections, configure STT."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/listen"
-sourceUrl: "https://clawhub.ai/skills/listen"
+metadata: {"clawdbot":{"emoji":"👂","os":["linux","darwin","win32"]}}
 ---
 
-# Listen
+## Active Listening
 
-> Improve transcription accuracy over time. Learn corrections, configure STT.
+This skill auto-evolves. Track transcription errors and learn corrections.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/listen`
-- **Source URL:** [https://clawhub.ai/skills/listen](https://clawhub.ai/skills/listen)
+**Rules:**
+- Detect when transcribed text seems off (wrong context, garbled names)
+- Learn from user corrections
+- Confirm patterns after 2+ occurrences
+- Keep entries ultra-compact
+- Check `config.md` for OpenClaw STT setup, `criteria.md` for format
 
-## Overview
+---
 
+### Corrections
+<!-- Mistranscriptions learned. Format: wrong → right (confidence) -->
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/listen
-```
+### Patterns  
+<!-- Recurring issues. Format: "pattern" -->
+
+### Context
+<!-- Domain-specific terms that get mangled. Format: "term" -->
+
+### Never
+<!-- False positives to ignore -->
+
+---
+*Empty sections = no corrections yet. Learn as you go.*

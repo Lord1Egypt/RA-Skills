@@ -1,0 +1,44 @@
+{
+  "name": "openclaw-skill-sharepoint",
+  "version": "1.2.0",
+  "description": "OpenClaw skill for Microsoft SharePoint — secure file operations and Office document intelligence via Graph API with certificate auth",
+  "type": "module",
+  "bin": {
+    "sharepoint": "./scripts/sharepoint.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/sharepoint.mjs",
+    "help": "node scripts/sharepoint.mjs --help"
+  },
+  "keywords": [
+    "openclaw",
+    "sharepoint",
+    "microsoft-graph",
+    "office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "ai-skill"
+  ],
+  "author": "Abdelkrim BOUJRAF <abdelkrim@alt-f1.be> (https://www.alt-f1.be)",
+  "license": "MIT",
+  "homepage": "https://www.alt-f1.be",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-sharepoint.git"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.0.0",
+    "@microsoft/microsoft-graph-client": "^3.0.0",
+    "commander": "^12.0.0",
+    "dotenv": "^16.0.0",
+    "exceljs": "^4.4.0",
+    "jszip": "^3.10.1",
+    "mammoth": "^1.8.0",
+    "pdf-parse": "^1.1.1",
+    "pptxgenjs": "^3.12.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

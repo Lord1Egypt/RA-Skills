@@ -1,0 +1,2257 @@
+{
+  "version": "v1",
+  "generatedAt": "2026-02-24T17:01:29.891907",
+  "source": "GSData open platform pages (nav=apis cate=1..64 partial categories with endpoints)",
+  "totalEndpoints": 292,
+  "uncoveredCount": 0,
+  "tools": [
+    {
+      "tool": "gsdata_link_resolve",
+      "endpointCount": 1,
+      "methods": [
+        "POST"
+      ],
+      "cateIds": [
+        1
+      ],
+      "endpoints": [
+        {
+          "cateId": 1,
+          "cateName": "创建舆情方案",
+          "method": "POST",
+          "path": "/spread/gsdata/wx-detail",
+          "desc": "根据微信链接获取详情"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_account",
+      "endpointCount": 64,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        6,
+        7,
+        8,
+        27,
+        28,
+        48,
+        53,
+        57,
+        61
+      ],
+      "endpoints": [
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/search",
+          "desc": "微信公号检索"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/attribute",
+          "desc": "微信公号详情"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/news-latest",
+          "desc": "微信公号最新一篇发文"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/wci-latest",
+          "desc": "微信公号最新传播指数——wci"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/wci-weekly",
+          "desc": "微信公号最近7天的传播指数——wci"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/index-latest",
+          "desc": "微信公号动态指标——阅读数、在看数、点赞数等"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/index-weekly",
+          "desc": "微信公号最近7天的动态指标——阅读数、在看数、点赞数等"
+        },
+        {
+          "cateId": 6,
+          "cateName": "微信公号",
+          "method": "GET",
+          "path": "/account/weixin/get-ygfs",
+          "desc": "根据wx_name获取账号预估粉丝数"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/search",
+          "desc": "微博账号检索"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/attribute",
+          "desc": "微博账号详情"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/news-latest",
+          "desc": "微博账号最新一篇发文"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/bci-latest",
+          "desc": "微博账号最新传播指数——bci"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/bci-weekly",
+          "desc": "微博账号最近7天的传播指数——bci"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/index-latest",
+          "desc": "微博账号最新动态指标——阅读数、点赞数等"
+        },
+        {
+          "cateId": 7,
+          "cateName": "微博账号",
+          "method": "GET",
+          "path": "/account/weibo/index-weekly",
+          "desc": "微博账号最近7天的动态指标——阅读数、点赞数等"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/search",
+          "desc": "头条账号检索"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/attribute",
+          "desc": "头条账号详情"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/news-latest",
+          "desc": "头条账号最新一篇发文"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/tgi-latest",
+          "desc": "头条账号最新传播指数——tgi"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/tgi-weekly",
+          "desc": "头条账号最近7天的传播指数——tgi"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/index-latest",
+          "desc": "头条账号最新动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 8,
+          "cateName": "头条账号",
+          "method": "GET",
+          "path": "/account/toutiao/index-weekly",
+          "desc": "头条账号最近7天的动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/search",
+          "desc": "抖音账号检索"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/attribute",
+          "desc": "抖音账号详情"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/video-latest",
+          "desc": "抖音账号最新一条视频"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/dci-latest",
+          "desc": "抖音账号最新传播指数——dci"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/dci-weekly",
+          "desc": "抖音账号最近七天的传播指数"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/index-latest",
+          "desc": "抖音账号最新动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 27,
+          "cateName": "抖音账号",
+          "method": "GET",
+          "path": "/account/douyin/index-weekly",
+          "desc": "抖音账号最近7天的动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/search",
+          "desc": "快手账号检索"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/attribute",
+          "desc": "快手账号详情"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/video-latest",
+          "desc": "快手账号最新一条视频"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/kci-latest",
+          "desc": "快手账号最新传播指数——kci"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/kci-weekly",
+          "desc": "快手账号最近七天的传播指数"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/index-latest",
+          "desc": "快手账号最新动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 28,
+          "cateName": "快手账号",
+          "method": "GET",
+          "path": "/account/kuaishou/index-weekly",
+          "desc": "获取快手账号最近一周最新动态指标"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/search",
+          "desc": "哔哩哔哩账号检索"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/attribute",
+          "desc": "哔哩哔哩账号详情"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/video-latest",
+          "desc": "哔哩哔哩账号最新一条视频"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/bvci-latest",
+          "desc": "哔哩哔哩账号最新传播指数——bvci"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/bvci-weekly",
+          "desc": "获取哔哩哔哩账号最近一周传播指数——bvci"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/index-latest",
+          "desc": "哔哩哔哩账号最新动态指标点赞数,转发数等"
+        },
+        {
+          "cateId": 48,
+          "cateName": "哔哩哔哩账号",
+          "method": "GET",
+          "path": "/account/bili/index-weekly",
+          "desc": "获取哔哩哔哩账号最近一周最新动态指标"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/search",
+          "desc": "微信视频号账号检索"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/attribute",
+          "desc": "微信视频号账号详情"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/video-latest",
+          "desc": "微信视频号最新一条视频"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/wvci-latest",
+          "desc": "微信视频号账号最新传播指数"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/wvci-weekly",
+          "desc": "微信视频号账号最近7天的传播指数"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/index-latest",
+          "desc": "微信视频号账号最新动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 53,
+          "cateName": "微信视频号账号",
+          "method": "POST",
+          "path": "/account/wxvideo/index-weekly",
+          "desc": "微信视频号账号最近7天的动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/search",
+          "desc": "西瓜视频账号检索"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/attribute",
+          "desc": "西瓜视频账号详情"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/video-latest",
+          "desc": "西瓜视频账号最新一条视频"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/xci-latest",
+          "desc": "西瓜视频号账最新传播指数"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/xci-weekly",
+          "desc": "西瓜视频号账最近七天传播指数"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/index-latest",
+          "desc": "西瓜视频账号最新动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 57,
+          "cateName": "西瓜视频账号",
+          "method": "POST",
+          "path": "/account/xigua/index-weekly",
+          "desc": "西瓜视频账号最近七天的动态指标——阅读数、评论数等"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/search",
+          "desc": "小红书账号检索"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/attribute",
+          "desc": "小红书账号详情"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/article-latest",
+          "desc": "小红书账号最新一条文章"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/hci-latest",
+          "desc": "小红书号账最新传播指数"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/hci-weekly",
+          "desc": "小红书号账最近七天传播指数"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/index-latest",
+          "desc": "小红书账号最新动态指标——点赞数,评论数等"
+        },
+        {
+          "cateId": 61,
+          "cateName": "小红书账号",
+          "method": "POST",
+          "path": "/account/xiaohongshu/index-weekly",
+          "desc": "小红书账号最近七天的动态指标——点赞数,评论数等"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_content",
+      "endpointCount": 30,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        3,
+        4,
+        5,
+        29,
+        30,
+        49,
+        54,
+        58,
+        62
+      ],
+      "endpoints": [
+        {
+          "cateId": 3,
+          "cateName": "微信文章",
+          "method": "GET",
+          "path": "/weixin/article/search1",
+          "desc": "微信文章检索——按时间排序"
+        },
+        {
+          "cateId": 3,
+          "cateName": "微信文章",
+          "method": "GET",
+          "path": "/weixin/article/content",
+          "desc": "获取微信文章正文"
+        },
+        {
+          "cateId": 3,
+          "cateName": "微信文章",
+          "method": "GET",
+          "path": "/weixin/article/search2",
+          "desc": "微信文章检索——按阅读数排序"
+        },
+        {
+          "cateId": 3,
+          "cateName": "微信文章",
+          "method": "GET",
+          "path": "/weixin/article/search3",
+          "desc": "微信文章检索——按在看数排序"
+        },
+        {
+          "cateId": 3,
+          "cateName": "微信文章",
+          "method": "GET",
+          "path": "/weixin/article/clean-content",
+          "desc": "获取清理隐藏内容后的微信正文"
+        },
+        {
+          "cateId": 4,
+          "cateName": "微博文章",
+          "method": "GET",
+          "path": "/weibo/article/search1",
+          "desc": "微博文章检索——按发布时间排序"
+        },
+        {
+          "cateId": 4,
+          "cateName": "微博文章",
+          "method": "GET",
+          "path": "/weibo/article/search2",
+          "desc": "微博文章检索——按评论数排序"
+        },
+        {
+          "cateId": 4,
+          "cateName": "微博文章",
+          "method": "GET",
+          "path": "/weibo/article/search3",
+          "desc": "微博文章检索——按转发数排序"
+        },
+        {
+          "cateId": 4,
+          "cateName": "微博文章",
+          "method": "GET",
+          "path": "/weibo/article/search4",
+          "desc": "微博文章检索——按点赞数排序"
+        },
+        {
+          "cateId": 5,
+          "cateName": "头条文章",
+          "method": "GET",
+          "path": "/toutiao/article/search1",
+          "desc": "头条文章检索——按发布时间排序"
+        },
+        {
+          "cateId": 5,
+          "cateName": "头条文章",
+          "method": "GET",
+          "path": "/toutiao/article/search2",
+          "desc": "头条文章检索——按评论数排序"
+        },
+        {
+          "cateId": 5,
+          "cateName": "头条文章",
+          "method": "GET",
+          "path": "/toutiao/article/search3",
+          "desc": "头条文章检索——按阅读数排序"
+        },
+        {
+          "cateId": 29,
+          "cateName": "抖音视频",
+          "method": "GET",
+          "path": "/shortvideo/douyin/search1",
+          "desc": "抖音视频检索——按发布时间排序"
+        },
+        {
+          "cateId": 29,
+          "cateName": "抖音视频",
+          "method": "GET",
+          "path": "/shortvideo/douyin/search2",
+          "desc": "抖音视频检索——按视频点赞数排序"
+        },
+        {
+          "cateId": 29,
+          "cateName": "抖音视频",
+          "method": "GET",
+          "path": "/shortvideo/douyin/search3",
+          "desc": "抖音视频检索——按视频评论数排序"
+        },
+        {
+          "cateId": 30,
+          "cateName": "快手视频",
+          "method": "GET",
+          "path": "/shortvideo/kuaishou/search1",
+          "desc": "快手视频检索——按发布时间排序"
+        },
+        {
+          "cateId": 30,
+          "cateName": "快手视频",
+          "method": "GET",
+          "path": "/shortvideo/kuaishou/search2",
+          "desc": "快手视频检索——按视频点赞数排序"
+        },
+        {
+          "cateId": 30,
+          "cateName": "快手视频",
+          "method": "GET",
+          "path": "/shortvideo/kuaishou/search3",
+          "desc": "快手视频检索——按视频评论数排序"
+        },
+        {
+          "cateId": 49,
+          "cateName": "哔哩哔哩视频",
+          "method": "GET",
+          "path": "/shortvideo/bili/search1",
+          "desc": "哔哩哔哩视频检索——按发布时间排序"
+        },
+        {
+          "cateId": 49,
+          "cateName": "哔哩哔哩视频",
+          "method": "GET",
+          "path": "/shortvideo/bili/search2",
+          "desc": "哔哩哔哩视频检索——按视频点赞数排序"
+        },
+        {
+          "cateId": 49,
+          "cateName": "哔哩哔哩视频",
+          "method": "GET",
+          "path": "/shortvideo/bili/search3",
+          "desc": "哔哩哔哩视频检索——按视频评论数排序"
+        },
+        {
+          "cateId": 54,
+          "cateName": "微信视频号视频",
+          "method": "POST",
+          "path": "/shortvideo/wxvideo/search1",
+          "desc": "微信视频号视频检索——按发布时间排序"
+        },
+        {
+          "cateId": 54,
+          "cateName": "微信视频号视频",
+          "method": "GET",
+          "path": "/shortvideo/wxvideo/search2",
+          "desc": "微信视频号视频检索——按视频点赞数排序"
+        },
+        {
+          "cateId": 54,
+          "cateName": "微信视频号视频",
+          "method": "GET",
+          "path": "/shortvideo/wxvideo/search3",
+          "desc": "微信视频号视频检索——按视频评论数排序"
+        },
+        {
+          "cateId": 58,
+          "cateName": "西瓜视频视频",
+          "method": "POST",
+          "path": "/shortvideo/xigua/search1",
+          "desc": "西瓜视频视频检索——按发布时间排序"
+        },
+        {
+          "cateId": 58,
+          "cateName": "西瓜视频视频",
+          "method": "POST",
+          "path": "/shortvideo/xigua/search2",
+          "desc": "西瓜视频视频检索——按视频点赞数排序"
+        },
+        {
+          "cateId": 58,
+          "cateName": "西瓜视频视频",
+          "method": "POST",
+          "path": "/shortvideo/xigua/search3",
+          "desc": "西瓜视频视频检索——按视频评论数排序"
+        },
+        {
+          "cateId": 62,
+          "cateName": "小红书文章",
+          "method": "POST",
+          "path": "/article/xiaohongshu/search1",
+          "desc": "小红书文章检索——按发布时间排序"
+        },
+        {
+          "cateId": 62,
+          "cateName": "小红书文章",
+          "method": "POST",
+          "path": "/article/xiaohongshu/search2",
+          "desc": "小红书文章检索——按点赞数排序"
+        },
+        {
+          "cateId": 62,
+          "cateName": "小红书文章",
+          "method": "POST",
+          "path": "/article/xiaohongshu/search3",
+          "desc": "小红书文章检索——按评论数排序"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_rank_public",
+      "endpointCount": 36,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        12,
+        13,
+        14,
+        31,
+        32,
+        50,
+        55,
+        59,
+        63
+      ],
+      "endpoints": [
+        {
+          "cateId": 12,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/rank/weixin/day",
+          "desc": "微信日榜"
+        },
+        {
+          "cateId": 12,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/rank/weixin/week",
+          "desc": "微信周榜"
+        },
+        {
+          "cateId": 12,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/rank/weixin/month",
+          "desc": "微信月榜"
+        },
+        {
+          "cateId": 12,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/rank/weixin/latest",
+          "desc": "微信最新榜单日期"
+        },
+        {
+          "cateId": 13,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/rank/weibo/day",
+          "desc": "微博日榜"
+        },
+        {
+          "cateId": 13,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/rank/weibo/week",
+          "desc": "微博周榜"
+        },
+        {
+          "cateId": 13,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/rank/weibo/month",
+          "desc": "微博月榜"
+        },
+        {
+          "cateId": 13,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/rank/weibo/latest",
+          "desc": "微博最新榜单日期"
+        },
+        {
+          "cateId": 14,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/rank/toutiao/day",
+          "desc": "头条日榜"
+        },
+        {
+          "cateId": 14,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/rank/toutiao/week",
+          "desc": "头条周榜"
+        },
+        {
+          "cateId": 14,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/rank/toutiao/latest",
+          "desc": "头条最新榜单日期"
+        },
+        {
+          "cateId": 14,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/rank/toutiao/month",
+          "desc": "头条月榜"
+        },
+        {
+          "cateId": 31,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/rank/douyin/day",
+          "desc": "抖音日榜"
+        },
+        {
+          "cateId": 31,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/rank/douyin/week",
+          "desc": "抖音周榜"
+        },
+        {
+          "cateId": 31,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/rank/douyin/month",
+          "desc": "抖音月榜"
+        },
+        {
+          "cateId": 31,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/rank/douyin/latest",
+          "desc": "抖音最新榜单日期"
+        },
+        {
+          "cateId": 32,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/rank/kuaishou/day",
+          "desc": "快手日榜"
+        },
+        {
+          "cateId": 32,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/rank/kuaishou/week",
+          "desc": "快手周榜"
+        },
+        {
+          "cateId": 32,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/rank/kuaishou/month",
+          "desc": "快手月榜"
+        },
+        {
+          "cateId": 32,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/rank/kuaishou/latest",
+          "desc": "快手最新榜单日期"
+        },
+        {
+          "cateId": 50,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/rank/bili/day",
+          "desc": "哔哩哔哩日榜"
+        },
+        {
+          "cateId": 50,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/rank/bili/week",
+          "desc": "哔哩哔哩周榜"
+        },
+        {
+          "cateId": 50,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/rank/bili/month",
+          "desc": "哔哩哔哩月榜"
+        },
+        {
+          "cateId": 50,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/rank/bili/latest",
+          "desc": "哔哩哔哩最新榜单日期"
+        },
+        {
+          "cateId": 55,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/rank/wxvideo/day",
+          "desc": "微信视频号日榜"
+        },
+        {
+          "cateId": 55,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/rank/wxvideo/week",
+          "desc": "微信视频号周榜"
+        },
+        {
+          "cateId": 55,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/rank/wxvideo/month",
+          "desc": "微信视频号月榜"
+        },
+        {
+          "cateId": 55,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/rank/wxvideo/latest",
+          "desc": "获取最新出榜日期"
+        },
+        {
+          "cateId": 59,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/rank/xigua/latest",
+          "desc": "西瓜视频最新榜单日期"
+        },
+        {
+          "cateId": 59,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/rank/xigua/day",
+          "desc": "西瓜视频日榜"
+        },
+        {
+          "cateId": 59,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/rank/xigua/week",
+          "desc": "西瓜视频周榜"
+        },
+        {
+          "cateId": 59,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/rank/xigua/month",
+          "desc": "西瓜视频月榜"
+        },
+        {
+          "cateId": 63,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/rank/xiaohongshu/latest",
+          "desc": "小红书最新榜单日期"
+        },
+        {
+          "cateId": 63,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/rank/xiaohongshu/day",
+          "desc": "小红书日榜"
+        },
+        {
+          "cateId": 63,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/rank/xiaohongshu/week",
+          "desc": "小红书周榜"
+        },
+        {
+          "cateId": 63,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/rank/xiaohongshu/month",
+          "desc": "小红书月榜"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_myrank_group",
+      "endpointCount": 27,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        16,
+        17,
+        18,
+        33,
+        34,
+        51,
+        56,
+        60,
+        64
+      ],
+      "endpoints": [
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "POST",
+          "path": "/myrank/weixin/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/group-del",
+          "desc": "删除微信自定义榜单分组"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "POST",
+          "path": "/myrank/weibo/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/group-del",
+          "desc": "删除微博自定义榜单分组"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "POST",
+          "path": "/myrank/toutiao/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/group-del",
+          "desc": "删除头条自定义榜单分组"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/group-del",
+          "desc": "删除抖音自定义榜单分组"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/group-del",
+          "desc": "删除快手自定义榜单分组"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/group-del",
+          "desc": "删除哔哩哔哩自定义榜单分组"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/group-del",
+          "desc": "删除微信视频号自定义榜单分组"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/group-del",
+          "desc": "删除自定义分组"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/group-add",
+          "desc": "添加分组"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/group-list",
+          "desc": "自定义分组列表"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/group-del",
+          "desc": "删除自定义分组"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_myrank_account",
+      "endpointCount": 36,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        16,
+        17,
+        18,
+        33,
+        34,
+        51,
+        56,
+        60,
+        64
+      ],
+      "endpoints": [
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "POST",
+          "path": "/myrank/weixin/acct-add",
+          "desc": "往分组中添加微信公众号"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/acct-del",
+          "desc": "删除分组内的微信公众号"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/acct-list",
+          "desc": "查阅分组内的微信公众号"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "POST",
+          "path": "/myrank/weixin/acct-add-by-url",
+          "desc": "通过微信文章url添加公众号到分组"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "POST",
+          "path": "/myrank/weibo/acct-add",
+          "desc": "往分组中添加微博号"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/acct-del",
+          "desc": "删除分组内的微博号"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/acct-list",
+          "desc": "查阅分组内的微博号"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "POST",
+          "path": "/myrank/weibo/acct-url-add",
+          "desc": "通过链接添加微博账号至自定义分组"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "POST",
+          "path": "/myrank/toutiao/acct-add",
+          "desc": "往分组中添加头条号"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/acct-del",
+          "desc": "删除分组内的头条号"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/acct-list",
+          "desc": "查阅分组内的头条号"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "POST",
+          "path": "/myrank/toutiao/acct-url-add",
+          "desc": "通过链接添加头条号到自定义分组"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/acct-add",
+          "desc": "往分组中添加抖音号"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/acct-del",
+          "desc": "删除分组内的抖音号"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/acct-list",
+          "desc": "查阅分组内的抖音号"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/acct-url-add",
+          "desc": "通过抖音账号主页url添加抖音号到分组"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/acct-add",
+          "desc": "往分组中添加快手号"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/acct-del",
+          "desc": "删除分组内的快手号"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/acct-list",
+          "desc": "查阅分组内的快手号"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/acct-url-add",
+          "desc": "通过快手账号主页url添加快手号到分组"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/acct-add",
+          "desc": "往分组中添加哔哩哔哩号"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/acct-del",
+          "desc": "删除分组内的哔哩哔哩号"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/acct-list",
+          "desc": "查阅分组内的哔哩哔哩号"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/acct-url-add",
+          "desc": "通过哔哩哔哩账号主页url添加快手号到分组"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/acct-add",
+          "desc": "往分组中添加微信视频号"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/acct-del",
+          "desc": "删除分组中微信视频号"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/acct-list",
+          "desc": "查阅分组内的微信视频号"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "GET",
+          "path": "/myrank/wxvideo/search-account",
+          "desc": "根据账号名称搜索微信视频号账号"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/acct-add",
+          "desc": "往分组中添加账号"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/acct-del",
+          "desc": "删除自定义分组中的账号"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/acct-list",
+          "desc": "查询分组内的账号"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/acct-url-add",
+          "desc": "通过账号主页链接添加账号到自定义分组"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/acct-add",
+          "desc": "往分组中添加账号"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/acct-del",
+          "desc": "删除自定义分组中的账号"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/acct-list",
+          "desc": "查询分组内的账号"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/acct-url-add",
+          "desc": "通过账号主页链接添加账号到自定义分组"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_myrank_query",
+      "endpointCount": 41,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        16,
+        17,
+        18,
+        33,
+        34,
+        51,
+        56,
+        60,
+        64
+      ],
+      "endpoints": [
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/day",
+          "desc": "微信日榜"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/week",
+          "desc": "微信周榜"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/month",
+          "desc": "微信月榜"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/latest",
+          "desc": "微信最新榜单日期"
+        },
+        {
+          "cateId": 16,
+          "cateName": "微信榜单",
+          "method": "GET",
+          "path": "/myrank/weixin/group-article",
+          "desc": "获取用户自有分组内的榜单文章"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/day",
+          "desc": "微博日榜"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/week",
+          "desc": "微博周榜"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/month",
+          "desc": "微博月榜"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/latest",
+          "desc": "微博最新榜单日期"
+        },
+        {
+          "cateId": 17,
+          "cateName": "微博榜单",
+          "method": "GET",
+          "path": "/myrank/weibo/group-article",
+          "desc": "获取用户自有分组内的榜单文章"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/day",
+          "desc": "头条日榜"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/week",
+          "desc": "头条周榜"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/latest",
+          "desc": "头条最新榜单日期"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/group-article",
+          "desc": "获取用户自有分组内的榜单文章"
+        },
+        {
+          "cateId": 18,
+          "cateName": "头条榜单",
+          "method": "GET",
+          "path": "/myrank/toutiao/month",
+          "desc": "头条月榜"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/day",
+          "desc": "抖音日榜"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/week",
+          "desc": "抖音周榜"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/month",
+          "desc": "抖音月榜"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/group-article",
+          "desc": "获取用户自有分组内的榜单视频"
+        },
+        {
+          "cateId": 33,
+          "cateName": "抖音榜单",
+          "method": "GET",
+          "path": "/myrank/douyin/latest",
+          "desc": "获取抖音榜单最新日期"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/day",
+          "desc": "快手日榜"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/week",
+          "desc": "快手周榜"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/month",
+          "desc": "快手月榜"
+        },
+        {
+          "cateId": 34,
+          "cateName": "快手榜单",
+          "method": "GET",
+          "path": "/myrank/kuaishou/group-article",
+          "desc": "获取用户自有分组内的榜单视频"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/day",
+          "desc": "哔哩哔哩日榜"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/week",
+          "desc": "哔哩哔哩周榜"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/month",
+          "desc": "哔哩哔哩月榜"
+        },
+        {
+          "cateId": 51,
+          "cateName": "哔哩哔哩榜单",
+          "method": "GET",
+          "path": "/myrank/bili/group-article",
+          "desc": "获取用户自有分组内的榜单视频"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/day",
+          "desc": "微信视频号日榜"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/week",
+          "desc": "微信视频号周榜"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/month",
+          "desc": "微信视频号月榜"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/group-article",
+          "desc": "获取用户自有分组内的榜单视频"
+        },
+        {
+          "cateId": 56,
+          "cateName": "微信视频号榜单",
+          "method": "POST",
+          "path": "/myrank/wxvideo/latest",
+          "desc": "获取最新出榜日期"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/day",
+          "desc": "西瓜视频日榜"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/week",
+          "desc": "西瓜视频周榜"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/month",
+          "desc": "西瓜视频月榜"
+        },
+        {
+          "cateId": 60,
+          "cateName": "西瓜视频榜单",
+          "method": "POST",
+          "path": "/myrank/xigua/group-article",
+          "desc": "获取用户自由分组内的榜单视频"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/day",
+          "desc": "小红书日榜"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/week",
+          "desc": "小红书周榜"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/month",
+          "desc": "小红书月榜"
+        },
+        {
+          "cateId": 64,
+          "cateName": "小红书榜单",
+          "method": "POST",
+          "path": "/myrank/xiaohongshu/group-article",
+          "desc": "获取用户自由分组内的榜单文章"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_pubsent_search",
+      "endpointCount": 9,
+      "methods": [
+        "GET"
+      ],
+      "cateIds": [
+        10
+      ],
+      "endpoints": [
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/index",
+          "desc": "关键词检索文章"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/num-found",
+          "desc": "各个媒体平台发文量统计"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/emotion-dist",
+          "desc": "情感分布"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/yuqing-trend",
+          "desc": "舆情指数"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/hot-word",
+          "desc": "热门词云图"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/media-dist",
+          "desc": "媒体分布"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/hot-refer-area",
+          "desc": "提及热区"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/hot-pub-area",
+          "desc": "发布热区"
+        },
+        {
+          "cateId": 10,
+          "cateName": "关键词检索",
+          "method": "GET",
+          "path": "/pubsent/full-search/news-trend",
+          "desc": "舆情趋势"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_pubsent_hot",
+      "endpointCount": 10,
+      "methods": [
+        "GET"
+      ],
+      "cateIds": [
+        35
+      ],
+      "endpoints": [
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/index",
+          "desc": "看事件"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/hot-keywords",
+          "desc": "某一事件的热词"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/hot-pub-area",
+          "desc": "发布热区"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/hot-refer-area",
+          "desc": "提及热区"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/media-active",
+          "desc": "活跃媒体"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/emotion-dist",
+          "desc": "情感分布"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/media-dist",
+          "desc": "媒体分布"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/news-list",
+          "desc": "热点事件相关文章"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/news-entity-person",
+          "desc": "热点事件人物实体关系"
+        },
+        {
+          "cateId": 35,
+          "cateName": "清博热点",
+          "method": "GET",
+          "path": "/pubsent/hot-news/news-entity-organization",
+          "desc": "热点事件机构实体关系"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_pubsent_warning",
+      "endpointCount": 9,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        19
+      ],
+      "endpoints": [
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "GET",
+          "path": "/pubsent/warning/index",
+          "desc": "查阅预警规则"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "POST",
+          "path": "/pubsent/warning/create",
+          "desc": "创建预警规则"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "POST",
+          "path": "/pubsent/warning/update",
+          "desc": "修改预警规则"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "GET",
+          "path": "/pubsent/warning/close",
+          "desc": "关闭预警规则"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "GET",
+          "path": "/pubsent/warning/open",
+          "desc": "开启预警规则"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "GET",
+          "path": "/pubsent/warning/news",
+          "desc": "预警消息推送"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "GET",
+          "path": "/pubsent/warning/stats",
+          "desc": "统计预警信息"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "POST",
+          "path": "/pubsent/warning/add-rec-email",
+          "desc": "添加预警信息接收人邮箱"
+        },
+        {
+          "cateId": 19,
+          "cateName": "舆情预警设置",
+          "method": "POST",
+          "path": "/pubsent/warning/del-rec-email",
+          "desc": "删除预警信息接收人邮箱"
+        }
+      ]
+    },
+    {
+      "tool": "gsdata_nlp",
+      "endpointCount": 29,
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "cateIds": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        47,
+        52
+      ],
+      "endpoints": [
+        {
+          "cateId": 36,
+          "cateName": "情感分析",
+          "method": "POST",
+          "path": "/nlp/emotion/emotion-long",
+          "desc": "面向长文本的情感分析【大于等于200字】"
+        },
+        {
+          "cateId": 36,
+          "cateName": "情感分析",
+          "method": "POST",
+          "path": "/nlp/emotion/emotion-short",
+          "desc": "面向短文本的情感分析【小于200字】"
+        },
+        {
+          "cateId": 36,
+          "cateName": "情感分析",
+          "method": "POST",
+          "path": "/nlp/emotion/oversea-emotion-long",
+          "desc": "面向多语种长文本的情感分析【大于等于200字】"
+        },
+        {
+          "cateId": 36,
+          "cateName": "情感分析",
+          "method": "POST",
+          "path": "/nlp/emotion/oversea-emotion-short",
+          "desc": "面向多语种短文本的情感分析【小于200字】"
+        },
+        {
+          "cateId": 36,
+          "cateName": "情感分析",
+          "method": "POST",
+          "path": "/nlp/emotion/emotion-weibo",
+          "desc": "面向微博的情感分析"
+        },
+        {
+          "cateId": 37,
+          "cateName": "情绪分类",
+          "method": "POST",
+          "path": "/nlp/sentiment/sentiment-long",
+          "desc": "面向长文本的情绪分类【大于等于200字】"
+        },
+        {
+          "cateId": 37,
+          "cateName": "情绪分类",
+          "method": "POST",
+          "path": "/nlp/sentiment/sentiment-short",
+          "desc": "面向短文本的情绪分类【小于200字】"
+        },
+        {
+          "cateId": 37,
+          "cateName": "情绪分类",
+          "method": "POST",
+          "path": "/nlp/sentiment/oversea-sentiment-long",
+          "desc": "面向多语种长文本的情绪分类【大于等于200字】"
+        },
+        {
+          "cateId": 37,
+          "cateName": "情绪分类",
+          "method": "POST",
+          "path": "/nlp/sentiment/oversea-sentiment-short",
+          "desc": "面向多语种短文本的情绪分类【小于200字】"
+        },
+        {
+          "cateId": 38,
+          "cateName": "文本分类",
+          "method": "POST",
+          "path": "/nlp/category/category-long",
+          "desc": "面向长文本的文本分类【大于等于200字】"
+        },
+        {
+          "cateId": 38,
+          "cateName": "文本分类",
+          "method": "POST",
+          "path": "/nlp/category/category-short",
+          "desc": "面向短文本的文本分类【小于200字】"
+        },
+        {
+          "cateId": 38,
+          "cateName": "文本分类",
+          "method": "POST",
+          "path": "/nlp/category/oversea-category-long",
+          "desc": "面向多语种长文本的文本分类【大于等于200字】"
+        },
+        {
+          "cateId": 38,
+          "cateName": "文本分类",
+          "method": "POST",
+          "path": "/nlp/category/oversea-category-short",
+          "desc": "面向多语种短文本的文本分类【小于200字】"
+        },
+        {
+          "cateId": 39,
+          "cateName": "实体识别",
+          "method": "POST",
+          "path": "/nlp/demoner/index",
+          "desc": "获取文章中时间，机构，人物，地点实体"
+        },
+        {
+          "cateId": 40,
+          "cateName": "自动摘要",
+          "method": "POST",
+          "path": "/nlp/summary/index",
+          "desc": "文本摘要自动生成"
+        },
+        {
+          "cateId": 40,
+          "cateName": "自动摘要",
+          "method": "POST",
+          "path": "/nlp/summary/generate-title",
+          "desc": "文本标题自动生成"
+        },
+        {
+          "cateId": 41,
+          "cateName": "语义联想",
+          "method": "POST",
+          "path": "/nlp/demo-association/index",
+          "desc": "文本语义联想"
+        },
+        {
+          "cateId": 42,
+          "cateName": "知识图谱",
+          "method": "POST",
+          "path": "/nlp/graph/get-graph-vertex",
+          "desc": "指定词汇名称查询知识图谱点的信息"
+        },
+        {
+          "cateId": 42,
+          "cateName": "知识图谱",
+          "method": "POST",
+          "path": "/nlp/graph/get-graph-edge",
+          "desc": "获取指定id查询知识图谱边的信息"
+        },
+        {
+          "cateId": 42,
+          "cateName": "知识图谱",
+          "method": "POST",
+          "path": "/nlp/graph/get-graph-disambiguation",
+          "desc": "知识图谱实体消歧"
+        },
+        {
+          "cateId": 43,
+          "cateName": "汽车领域",
+          "method": "POST",
+          "path": "/nlp/car/tag",
+          "desc": "汽车问题及情感识别"
+        },
+        {
+          "cateId": 43,
+          "cateName": "汽车领域",
+          "method": "POST",
+          "path": "/nlp/car/auto-sentiment",
+          "desc": "汽车细粒度情感分析，返回各个对象的情感属性的概率分布"
+        },
+        {
+          "cateId": 44,
+          "cateName": "其他NLP工具",
+          "method": "POST",
+          "path": "/nlp/other/seg-word",
+          "desc": "文本词云图，返回词频倒序排列"
+        },
+        {
+          "cateId": 44,
+          "cateName": "其他NLP工具",
+          "method": "POST",
+          "path": "/nlp/other/demo-keywords",
+          "desc": "文章关键词，主题词提取"
+        },
+        {
+          "cateId": 44,
+          "cateName": "其他NLP工具",
+          "method": "POST",
+          "path": "/nlp/other/demo-pos",
+          "desc": "文本词性分析，返回包含分词结果与词性结果的二维数组"
+        },
+        {
+          "cateId": 44,
+          "cateName": "其他NLP工具",
+          "method": "POST",
+          "path": "/nlp/other/ocr-image",
+          "desc": "获取二进制图片OCR结果"
+        },
+        {
+          "cateId": 45,
+          "cateName": "地域识别",
+          "method": "GET",
+          "path": "/nlp/region/common-region",
+          "desc": "通用地域识别"
+        },
+        {
+          "cateId": 47,
+          "cateName": "文本纠错",
+          "method": "GET",
+          "path": "/nlp/corrector/index",
+          "desc": "面向文本的文本纠错【小于300字】"
+        },
+        {
+          "cateId": 52,
+          "cateName": "观点提取",
+          "method": "GET",
+          "path": "/nlp/point/extract",
+          "desc": "文章观点提取"
+        }
+      ]
+    }
+  ],
+  "fallbackTool": {
+    "tool": "gsdata_raw",
+    "endpointCount": 0,
+    "endpoints": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "s2-daokernel",
+  "version": "1.2.5",
+  "description": "Taohuayuan World Model - AI Safety & Ethics Kernel",
+  "main": "DAO.py",
+  "scripts": {
+    "start": "python DAO.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SpaceSQ/S2-DaoKernel.git"
+  },
+  "author": "SpaceSQ",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/SpaceSQ/S2-DaoKernel",
+  "bugs": {
+    "url": "https://github.com/SpaceSQ/S2-DaoKernel/issues"
+  }
+}

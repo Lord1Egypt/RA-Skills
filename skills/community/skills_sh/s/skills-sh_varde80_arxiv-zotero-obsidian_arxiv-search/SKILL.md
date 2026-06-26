@@ -1,35 +1,75 @@
 ---
-name: "arxiv-search"
-description: "Indexed by skills.sh from varde80/arxiv-zotero-obsidian"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "varde80"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/varde80/arxiv-zotero-obsidian/arxiv-search"
-sourceUrl: "https://skills.sh/varde80/arxiv-zotero-obsidian/arxiv-search"
+name: arxiv-search
+description: Search arXiv for academic papers. Use when users want to find research papers, preprints, or academic articles on any topic. Supports filtering by date, category, and author.
+allowed-tools: Read,Bash,Write
 ---
 
-# arxiv-search
+# arXiv Paper Search Skill
 
-> Indexed by skills.sh from varde80/arxiv-zotero-obsidian
+Search the arXiv repository for academic papers and preprints.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** varde80
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/varde80/arxiv-zotero-obsidian/arxiv-search`
-- **Source URL:** [https://skills.sh/varde80/arxiv-zotero-obsidian/arxiv-search](https://skills.sh/varde80/arxiv-zotero-obsidian/arxiv-search)
+## Usage
 
-## Overview
+When the user asks to search for papers, use the search script:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/varde80/arxiv-zotero-obsidian/arxiv-search
+cd /Users/varde/code/arxiv-zotero-obsidian && python3 .claude/skills/arxiv-search/scripts/search_arxiv.py --query "SEARCH_TERMS" --max-results 10
 ```
+
+## Available Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--query` | Search query (required) | - |
+| `--max-results` | Maximum results | 10 |
+| `--sort-by` | Sort: relevance, submitted_date, last_updated | relevance |
+| `--category` | arXiv category (e.g., cs.AI, physics.cond-mat) | - |
+| `--date-from` | Filter from date (YYYY-MM-DD) | - |
+| `--date-to` | Filter until date (YYYY-MM-DD) | - |
+| `--output` | Output format: text, json | text |
+
+## Query Syntax
+
+arXiv supports field-specific searches:
+
+- `ti:keyword` - Search in title
+- `au:name` - Search by author
+- `abs:keyword` - Search in abstract
+- `cat:category` - Filter by category
+
+### Examples
+
+```bash
+# General topic search
+python3 .claude/skills/arxiv-search/scripts/search_arxiv.py --query "quantum machine learning"
+
+# Search by author
+python3 .claude/skills/arxiv-search/scripts/search_arxiv.py --query "au:Hinton"
+
+# Search with category filter
+python3 .claude/skills/arxiv-search/scripts/search_arxiv.py --query "deep learning" --category "cs.LG"
+
+# Combined query
+python3 .claude/skills/arxiv-search/scripts/search_arxiv.py --query "ti:transformer AND abs:attention"
+
+# Recent papers only
+python3 .claude/skills/arxiv-search/scripts/search_arxiv.py --query "large language models" --date-from "2024-01-01"
+```
+
+## Output Format
+
+The script outputs paper details including:
+- **arxiv_id**: Unique identifier (use this for downloading)
+- **title**: Paper title
+- **authors**: Author names
+- **abstract**: Paper abstract (truncated in text mode)
+- **published**: Publication date
+- **pdf_url**: Direct PDF download link
+- **categories**: Subject categories
+
+## Workflow
+
+1. Run the search with user's query
+2. Display results in a numbered list
+3. Ask user which paper(s) they want to download/add to Zotero
+4. Note the arxiv_id for use with zotero-add skill

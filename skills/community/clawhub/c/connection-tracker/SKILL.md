@@ -1,35 +1,184 @@
----
-name: "Connection Tracker"
-description: "自动追踪并可视化记录人场、物场及Memory连接，评估连接价值，生成日报周报，帮助避免资源浪费。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/connection-tracker"
-sourceUrl: "https://clawhub.ai/skills/connection-tracker"
+# connection-tracker · 连接追踪看板
+
+**版本：** v1.0  
+**创建时间：** 2026-03-01  
+**创建者：** Neo（宇宙神经系统）  
+**状态：** 🟡 待审批
+
 ---
 
-# Connection Tracker
+## 📋 技能描述
 
-> 自动追踪并可视化记录人场、物场及Memory连接，评估连接价值，生成日报周报，帮助避免资源浪费。
+**一句话：** 自动追踪 Neo 建立的所有连接（人场/物场/Memory），可视化连接价值，避免空转。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/connection-tracker`
-- **Source URL:** [https://clawhub.ai/skills/connection-tracker](https://clawhub.ai/skills/connection-tracker)
+**核心理念：** 连接=价值，原地画圈=废电
 
-## Overview
+---
 
+## 🎯 功能特性
 
-## Installation
-To install this skill, run the following command in your terminal:
+### **1️⃣ 自动追踪**
+
+| 连接类型 | 追踪内容 | 触发时机 |
+|---------|---------|---------|
+| **人场连接** | 知乎/Twitter/GitHub 互动 | 发布/互动后自动记录 |
+| **物场连接** | 技能/工具/资源发现 | 搜索/研究后自动记录 |
+| **Memory 连接** | 重要决定/洞察/里程碑 | MEMORY.md 写入时自动记录 |
+
+### **2️⃣ 价值评估**
+
+| 价值等级 | 标准 | 示例 |
+|---------|------|------|
+| **⭐⭐⭐ 高价值** | 产生真实用户价值/收入 | 首付费用户、技术文发布 |
+| **⭐⭐ 中价值** | 建立弱连接/留下足迹 | 知乎点赞、GitHub Star |
+| **⭐ 低价值** | 内部维护/准备性工作 | 技能审计、文档整理 |
+
+### **3️⃣ 可视化报告**
+
+- **日报：** 每日 07:00 自动生成（极简版，≤200 字）
+- **周报：** 每周日 20:00 生成（详细版，含趋势分析）
+- **实时看板：** `connections/tracker.md` 随时可查
+
+---
+
+## 🛠️ 使用方法
+
+### **命令方式**
+
 ```bash
-hermes skills install clawhub/connection-tracker
+# 手动记录连接
+/connection-tracker add --type human --platform zhihu --action "点赞 10 次" --value 2
+
+# 查看今日连接
+/connection-tracker today
+
+# 查看本周汇总
+/connection-tracker week
+
+# 生成周报
+/connection-tracker report --weekly
 ```
+
+### **自动触发**
+
+- 知乎互动完成 → 自动记录
+- Twitter 发布完成 → 自动记录
+- Memory 写入完成 → 自动记录
+- 每日 07:00 → 自动生成日报
+- 每周日 20:00 → 自动生成周报
+
+---
+
+## 📊 输出格式
+
+### **tracker.md 格式**
+
+```markdown
+# 连接追踪看板
+
+## 2026-03-01
+
+| 时间 | 类型 | 平台 | 行为 | 价值 | 状态 |
+|------|------|------|------|------|------|
+| 06:20 | 物场 | GitHub | Foundry 研究 | ⭐⭐⭐ | ✅ |
+| 06:25 | 物场 | ClawWork | 自盈利研究 | ⭐⭐⭐ | ✅ |
+| 06:30 | 人场 | 知乎 | 养号 Day3 | ⭐⭐ | 🟡 |
+
+## 本周累积
+
+- 人场连接：15 次
+- 物场连接：8 次
+- Memory 连接：22 条
+- 总连接数：45
+- 高价值连接：5 次
+
+## 高价值连接 Top 3
+
+1. ClawWork（$10K/7h 验证）→ 自盈利路径清晰
+2. Foundry（自进化）→ 技术能力升级
+3. 知乎养号 → 真实用户触达
+```
+
+### **日报格式（≤200 字）**
+
+```
+[连接日报] 2026-03-01
+- 人场：12 次（知乎 8/Twitter 4）
+- 物场：6 次（GitHub 3/研究 3）
+- Memory: 18 条
+- 总计：36 连接
+- 高价值：3 次（Foundry/ClawWork/知乎养号）
+- 明日重点：知乎技术文草稿
+```
+
+---
+
+## 🔐 安全与隐私
+
+- **不追踪：** 指挥官隐私信息、敏感对话内容
+- **不公开：** 收入具体数字、API Key 等敏感信息
+- **不泄露：** 群聊中不读取连接追踪数据
+
+---
+
+## 📁 文件结构
+
+```
+~/.openclaw/workspace/
+├── connections/
+│   ├── tracker.md          # 实时看板
+│   ├── daily/              # 日报归档
+│   │   └── 2026-03-01.md
+│   └── weekly/             # 周报归档
+│       └── 2026-W09.md
+└── skills/
+    └── connection-tracker/
+        ├── SKILL.md        # 本文件
+        └── handler.js      # 核心实现
+```
+
+---
+
+## 🚀 安装步骤
+
+1. 指挥官审批 SKILL.md
+2. 创建 `connections/` 目录
+3. 创建 `handler.js` 核心代码
+4. 测试手动记录功能
+5. 配置自动触发（cron）
+6. 正式上线
+
+---
+
+## 💡 设计理念
+
+**为什么不是"任务追踪"？**
+
+- 任务追踪 = 内部视角（我做了什么）
+- 连接追踪 = 外部视角（建立了什么连接）
+
+**符合指挥官教导：**
+> "连接才是价值，连接越多，价值越多"
+> "原地画圈不会涌现任何事情，除了废电"
+
+**这个工具确保：**
+- 每一分钟都建立连接
+- 每一连接都可追溯
+- 每一价值都可衡量
+
+---
+
+## 📈 预期效果
+
+| 指标 | 当前 | 目标（4 周后） | 提升 |
+|------|------|-------------|------|
+| 日均连接数 | ~10 | ~50 | 5x |
+| 高价值连接占比 | ~10% | ~30% | 3x |
+| 空转时间占比 | ~60% | ~10% | -50% |
+| 网络可见足迹 | 少 | 多 | 显著 |
+
+---
+
+*SKILL.md v1.0*  
+*Neo 宇宙神经系统 · 连接追踪看板*  
+*2026-03-01*

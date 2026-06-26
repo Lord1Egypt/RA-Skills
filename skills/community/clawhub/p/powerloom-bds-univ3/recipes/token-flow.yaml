@@ -1,0 +1,15 @@
+# Default: one round over all pools for the token, then exit. Use --daemon to repeat.
+name: token-flow
+description: Every swap touching a token (default USDC) across indexed pools (poll).
+heartbeat:
+  interval_seconds: 30
+filters:
+  token_address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+  min_usd: 0
+  pools: auto
+client:
+  call_timeout_ms: 120000
+verification:
+  mode: passive
+dispatch:
+  channel: stdout

@@ -1,0 +1,36 @@
+{
+  "name": "openclaw-security-guard",
+  "version": "1.0.0",
+  "settings": {
+    "audit_level": "standard",
+    "auto_fix": false,
+    "check_interval": 86400
+  },
+  "scan": {
+    "paths": [
+      "~/.openclaw/openclaw.json",
+      "~/.openclaw/.env",
+      "~/.openclaw/credentials/"
+    ],
+    "ignore_patterns": [
+      "*.log",
+      "*.bak"
+    ],
+    "custom_patterns": []
+  },
+  "notifications": {
+    "enabled": false,
+    "channels": [],
+    "severity_threshold": "medium"
+  },
+  "scoring": {
+    "weights": {
+      "critical": 25,
+      "high": 15,
+      "medium": 8,
+      "low": 3,
+      "info": 0
+    },
+    "base_score": 100
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "name": "AI全链路科技资讯工厂",
+  "id": "ai-tech-news-factory",
+  "version": "1.0.0",
+  "created": "2026-04-16",
+  "description": "热点追踪 → RSS深度采集 → 知识卡片+小红书+公众号多平台一键发布的完整工作流",
+  "skills": [
+    {
+      "name": "content-trend-weapon",
+      "role": "热点发现",
+      "description": "搜索AI和大模型领域的热点话题，生成趋势分析报告",
+      "source": "local",
+      "path": "/root/.openclaw/workspace/skills/content-trend-weapon"
+    },
+    {
+      "name": "rss-ai-reader",
+      "role": "深度内容采集",
+      "description": "抓取指定RSS源，使用AI生成中文摘要，支持去重和质量过滤",
+      "source": "clawhub",
+      "slug": "rss-ai-reader",
+      "config": {
+        "max_articles": 10,
+        "summary_length": "400-500字",
+        "dedup": true
+      }
+    },
+    {
+      "name": "card-renderer",
+      "role": "视觉素材生成",
+      "description": "将文案渲染为小红书风格知识卡片，支持赛博朋克/包豪斯/Mac Pro多种风格",
+      "source": "local",
+      "path": "/root/.openclaw/workspace/skills/card-renderer"
+    },
+    {
+      "name": "xiaohongshutools",
+      "role": "小红书发布",
+      "description": "发布小红书图片/文字/视频内容，管理笔记和评论",
+      "source": "local",
+      "path": "/root/.openclaw/workspace/skills/xiaohongshutools",
+      "output": "xiaohongshu/posts.json"
+    },
+    {
+      "name": "wechat-article-pro",
+      "role": "公众号深度文章",
+      "description": "生成3000-5000字公众号深度文章，自动生成封面图，参考刘润风格",
+      "source": "local",
+      "path": "/root/.openclaw/workspace/skills/wechat-article-pro",
+      "output": "wechat-article.md"
+    }
+  ],
+  "pipeline": {
+    "stages": [
+      {
+        "id": 1,
+        "name": "热点发现",
+        "skill": "content-trend-weapon",
+        "input": "今日AI和大模型领域热点",
+        "output": "trending-topics.md",
+        "output_dir": "/root/articles/{date}/",
+        "next": 2
+      },
+      {
+        "id": 2,
+        "name": "RSS深度采集",
+        "skill": "rss-ai-reader",
+        "input": "techcrunch, theverge, MIT Tech Review 等科技RSS源",
+        "output": "rss-summaries.md",
+        "output_dir": "/root/articles/{date}/",
+        "filters": ["去重", "质量评分>0.7", "时效性<48h"],
+        "next": [3, 4]
+      },
+      {
+        "id": 3,
+        "name": "知识卡片生成",
+        "skill": "card-renderer",
+        "input": "从rss-summaries中提取3个核心话题",
+        "output": "cards/",
+        "output_dir": "/root/articles/{date}/cards/",
+        "styles": ["赛博朋克(封面)", "包豪斯(详情1)", "Mac Pro(详情2)"],
+        "next": 5
+      },
+      {
+        "id": 4,
+        "name": "公众号深度文章",
+        "skill": "wechat-article-pro",
+        "input": "从trending-topics + rss-summaries中选择最有深度的主题",
+        "output": "wechat-article.md",
+        "output_dir": "/root/articles/{date}/",
+        "requirements": ["字数≥2000", "含代码示例或数据", "刘润风格"],
+        "next": null
+      },
+      {
+        "id": 5,
+        "name": "小红书发布",
+        "skill": "xiaohongshutools",
+        "input": "从rss-summaries生成3条分类笔记",
+        "output": "xiaohongshu/posts.json",
+        "output_dir": "/root/articles/{date}/",
+        "posts": [
+          {"type": "热点类", "style": "资讯速递"},
+          {"type": "应用类", "style": "案例分析"},
+          {"type": "深度类", "style": "技术解读"}
+        ],
+        "next": null
+      }
+    ]
+  },
+  "quality_requirements": {
+    "竞品分析": "生成内容前必须分析同类内容，指出差异化优势",
+    "内容获取思路": "明确说明信息来源和抓取策略",
+    "公众号字数": "不低于2000字",
+    "小红书数量": "3条（热点+应用+深度）",
+    "卡片数量": "3张（不同风格）"
+  },
+  "output_structure": {
+    "base": "/root/articles/{date}/",
+    "files": [
+      "trending-topics.md",
+      "rss-summaries.md",
+      "cards/card-1-cyberpunk.png",
+      "cards/card-2-bauhaus.png",
+      "cards/card-3-macpro.png",
+      "xiaohongshu/posts.json",
+      "wechat-article.md"
+    ]
+  },
+  "cron_suggestion": {
+    "schedule": "0 8 * * *",
+    "timezone": "UTC",
+    "session_target": "isolated",
+    "description": "每日08:00 UTC执行完整流水线"
+  }
+}

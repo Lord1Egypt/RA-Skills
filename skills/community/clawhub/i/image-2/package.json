@@ -1,0 +1,28 @@
+{
+  "name": "image-2-skill",
+  "version": "1.1.0",
+  "description": "GPT-4o Image Generation Skill - Generate, edit, and transform images using GPT-4o's image-2 API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Run tests with: npm run test:all\"",
+    "test:all": "node test/run-tests.js"
+  },
+  "keywords": [
+    "image-generation",
+    "AI-art",
+    "GPT-4o",
+    "image-2",
+    "visual-creation",
+    "openai",
+    "dall-e",
+    "image-editing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

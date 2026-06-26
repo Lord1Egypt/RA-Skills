@@ -1,0 +1,4 @@
+{
+  "locale": "en-US",
+  "_comment": "Copy to config.json (or run: python3 scripts/bootstrap_config.py). Locale: zh-CN | en-US"
+}

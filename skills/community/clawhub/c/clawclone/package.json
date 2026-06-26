@@ -1,0 +1,12 @@
+{
+  "name": "clawclone",
+  "version": "0.1.5",
+  "description": "OpenClaw backup and synchronization tool - Pack, upload, download, and restore. Save the Soul of your OpenClaw.",
+  "bin": {
+    "clawclone": "./clawclone.mjs"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "MIT"
+}

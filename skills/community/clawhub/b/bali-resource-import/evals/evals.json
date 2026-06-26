@@ -1,0 +1,35 @@
+{
+  "skill_name": "bali-resource-import",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我解析这份巴厘岛酒店供应商合同（PDF），提取酒店信息并入库",
+      "expected_output": "应识别为酒店资源，提取房型/价格/政策等35字段，追加到酒店CSV库",
+      "files": ["hotel_contract.pdf"]
+    },
+    {
+      "id": 2,
+      "prompt": "有一个蓝梦岛浮潜的供应商文档，帮我入库到活动库",
+      "expected_output": "应识别为活动资源，提取48个字段，标注三层标签，写入活动CSV",
+      "files": ["nusa_snorkeling.docx"]
+    },
+    {
+      "id": 3,
+      "prompt": "用户上传了一张餐厅图片，这是供应商拍的菜单照片，帮我OCR识别并入库",
+      "expected_output": "应使用tesseract OCR提取文字，识别为餐厅资源，入库到餐厅CSV",
+      "files": ["restaurant_menu.jpg"]
+    },
+    {
+      "id": 4,
+      "prompt": "有一份Google Drive链接，里面有多个资源类型的供应商文件，帮我全部解析入库",
+      "expected_output": "应按资源类型分别入库，支持多类型文档混合处理",
+      "files": ["drive_link.txt"]
+    },
+    {
+      "id": 5,
+      "prompt": "帮我入库这个SPA供应商，但价格字段缺失，怎么处理？",
+      "expected_output": "应检测到价格缺失异常，暂停入库并告警人工补充",
+      "files": ["spa_incomplete.xlsx"]
+    }
+  ]
+}

@@ -1,0 +1,558 @@
+项目类别与技术栈判断规则（含中文用途，需与 template.js 同步）
+
+一、快速定性（类型判定）
+- 前端：public/src/index.html/components/pages；构建配置（vite/webpack/rollup/esbuild/parcel/snowpack）
+- 后端：routes/controllers/services/models；入口 app.js/server.js/main.{go,py,java}
+- 全栈：client + server 或 api 目录，或前后端特征并存
+- 移动：android + ios，lib + pubspec.yaml，react-native/flutter 依赖
+- 桌面：main + renderer，electron 依赖
+- 数据科学：notebooks/data/models，pandas/numpy/tensorflow/pytorch/scikit-learn
+- DevOps：terraform/ansible/kubernetes/.github/Jenkinsfile/docker-compose
+- 工具/库：bin/__tests__/benchmark/tests 结构
+
+二、包管理文件
+- package.json (Node) | Cargo.toml (Rust) | go.mod (Go) | requirements.txt / pyproject.toml (Python) | pom.xml / build.gradle (Java/Android) | Gemfile (Ruby) | composer.json (PHP) | Podfile (iOS) | Package.swift (Swift) | project.clj (Clojure) | mix.exs (Elixir) | shard.yml (Crystal)
+
+三、前端技术栈（逐项中文说明）
+- 框架：React(前端UI)、Vue(前端UI)、Angular(企业前端)、Svelte(编译式前端)、Solid(高性能前端)、Preact(轻量React)
+- SSR/SSG：Next.js(React SSR/SSG)、Nuxt.js(Vue SSR/SSG)、Remix(React全栈路由)、SvelteKit(Svelte全栈)、Astro(多框架静态)、Gatsby(React静态)
+- 构建：Vite(现代构建)、Webpack(通用打包)、Rollup(库打包)、Esbuild(极速打包)、Parcel(零配置)、Snowpack(按需构建)
+- 样式：TailwindCSS/Bootstrap(样式框架)、Sass/SCSS/LESS(预处理)、styled-components/Emotion(CSS-in-JS)、PostCSS(样式管线)
+- 状态：Redux/Zustand/Jotai/Recoil(React状态)、Vuex/Pinia(Vue状态)、MobX(响应式状态)
+- 路由：React Router(React路由)、Vue Router(Vue路由)、TanStack Router(类型安全路由)、Wouter(轻量路由)
+- UI 组件库：Ant Design、Element+/UI、MUI、Chakra、Shadcn、HeadlessUI、Radix、Mantine（通用UI组件集）
+- HTTP/数据：Axios/Ky(HTTP)、React Query/SWR/Apollo/URQL(数据获取)
+- 测试/质量：Jest/Vitest/Mocha(单测)、Cypress/Playwright(E2E)、Testing Library(组件)、ESLint/Prettier/Husky/lint-staged、TypeScript(类型)
+
+四、后端技术栈（逐项中文说明，框架不少于 30 个）
+- Node.js 框架：Express(Node后端框架)、Koa(Node轻量框架)、Nest(TS后端框架)、Fastify(高性能Node)、Hapi(Node框架)、Sails(Node MVC 框架)、Adonis(Node全栈框架)、Strapi(无头CMS框架)、LoopBack(API框架)、Feathers(实时API框架)、Moleculer(微服务框架)、Restify(REST框架)、Egg(Node企业框架)、Midway(Node全栈框架)、Meteor(全栈框架)
+- Node.js 生态：Prisma/TypeORM/Sequelize/Mongoose（ORM/ODM）；Bull/Agenda（队列）；Passport/JWT（认证）；Winston/Pino/Bunyan（日志）；socket.io/ws（实时通信）
+- Python 框架：Django(后端框架)、Flask(轻量框架)、FastAPI(高性能Python)、Bottle(微框架)、Tornado(异步框架)、Sanic(异步框架)、Pyramid(Web框架)、Falcon(轻量API框架)、Aiohttp(异步HTTP框架)、Web2py(全栈框架)
+- Python 生态：SQLAlchemy(ORM框架)、Peewee(轻量ORM)、DRF(API框架)、Celery(任务队列)、gRPC(Python RPC)
+- Java 框架：Spring Boot(后端框架)、Spring Web(后端框架)、Spring Cloud(微服务框架)、Quarkus(云原生Java)、Micronaut(云原生Java)、Vert.x(响应式框架)、Play(全栈框架)、Dropwizard(REST框架)、JFinal(轻量框架)、Javalin(轻量框架)
+- Java 生态：MyBatis(ORM框架)、MyBatis-Plus(ORM增强)、Hibernate(JPA框架)、Dubbo(RPC框架)、gRPC(Java RPC)
+- Go 框架：Gin(Go后端框架)、Echo(Go后端框架)、Fiber(高性能Go)、Beego(Go全栈框架)、Chi(轻量路由)、Iris(Go Web框架)、Revel(Go全栈框架)
+- Go 生态：GORM(ORM框架)、sqlx(SQL工具)、Kratos(微服务框架)、gRPC(Go RPC)、Logrus(日志框架)、Zap(日志框架)
+- PHP 框架：Laravel(全栈框架)、Symfony(企业框架)、ThinkPHP(国产框架)、Yii(高性能框架)、Slim(微框架)、Lumen(微服务框架)、CodeIgniter(轻量框架)
+- PHP 生态：Doctrine(ORM框架)、Eloquent(ORM框架)、Blade(模板引擎)、Twig(模板引擎)
+- Rust 框架：Actix-web(Rust后端框架)、Rocket(Rust后端框架)、Warp(异步Web框架)、Axum(异步Web框架)、Tide(异步Web框架)
+- Rust 生态：Diesel(ORM框架)、SQLx(SQL框架)、Serde(序列化)
+- .NET 框架：ASP.NET Core(.NET后端框架)、Nancy(轻量.NET框架)
+- .NET 生态：Entity Framework(.NET ORM)、Dapper(.NET微ORM)、Serilog(.NET日志)、NLog(.NET日志)
+
+五、业务场景关键词
+- 金融/区块链、爬虫、管理后台、网关/代理、任务队列、即时通讯、支付/计费、电商、内容管理、博客/社区、OA/ERP/CRM、LMS/库存/预约、数据分析、AI/ML、IoT
+
+六、接口与文档
+- 检测 docs/api、api-docs、openapi、swagger、spec、postman 目录；无则跳过
+
+七、核心注释兜底
+- 无控制器/服务/路由且无文档时，从最大前 8 个代码文件提取注释（过滤 public/assets/apidoc/.min，文件 <512KB，每文件前 5 条，最多 3 文件）
+
+八、输出顺序
+1) README（或项目简介兜底）
+2) 项目概览（文件数、主要语言、目录、包管理器）
+3) 项目画像（类型/语言/技术栈）
+4) 依赖（用途标注，网格卡片）
+
+九、文案约束
+- 无数据则显示“暂无”，禁止虚构；GitHub API 推断语言需标明来源
+
+- 十、依赖用途映射（需与 template.js 一致）
+- express：Node后端框架
+- koa：Node轻量框架
+- nest：TS后端框架
+- fastify：高性能Node
+- hapi：Node框架
+- sails：Node MVC 框架
+- adonis：Node全栈框架
+- strapi：无头CMS框架
+- loopback：API框架
+- feathers：实时API框架
+- moleculer：微服务框架
+- restify：REST框架
+- egg：Node企业框架
+- midway：Node全栈框架
+- meteor：全栈框架
+- django：Python后端框架
+- flask：轻量Python框架
+- fastapi：高性能Python
+- bottle：微框架
+- tornado：异步框架
+- sanic：异步框架
+- pyramid：Web框架
+- falcon：轻量API框架
+- aiohttp：异步HTTP框架
+- web2py：全栈框架
+- sqlalchemy：ORM框架
+- peewee：轻量ORM
+- drf：API框架
+- celery：任务队列
+- grpc：RPC框架
+- requests：HTTP客户端
+- httpx：HTTP客户端
+- urllib3：HTTP库
+- yagmail：邮件发送
+- sendgrid：邮件发送
+- boto3：对象存储
+- minio：对象存储
+- google-cloud-storage：对象存储
+- tortoise-orm：异步ORM
+- pony：轻量ORM
+- loguru：日志框架
+- structlog：结构日志
+- cryptography：加解密
+- pyjwt：JWT库
+- passlib：密码哈希
+- bcrypt：密码哈希
+- cachetools：缓存框架
+- diskcache：磁盘缓存
+- aiocache：异步缓存
+- cacheout：内存缓存
+- pymemcache：Memcached
+- redis：Redis客户端
+- rq：任务队列
+- spring-boot：Java后端框架
+- spring-web：Java后端框架
+- spring-cloud：微服务框架
+- quarkus：云原生Java
+- micronaut：云原生Java
+- vertx：响应式框架
+- play：全栈框架
+- dropwizard：REST框架
+- dubbo：RPC框架
+- mybatis：ORM框架
+- mybatis-plus：ORM增强
+- hibernate：JPA框架
+- okhttp：HTTP客户端
+- httpclient：HTTP客户端
+- retrofit：HTTP客户端
+- webclient：HTTP客户端
+- jakarta-mail：邮件发送
+- spring-mail：邮件发送
+- commons-io：文件工具
+- commons-fileupload：文件上传
+- jooq：类型ORM
+- log4j：日志框架
+- log4j2：日志框架
+- logback：日志框架
+- slf4j：日志门面
+- bouncycastle：加解密
+- jjwt：JWT库
+- ehcache：缓存框架
+- caffeine：缓存框架
+- redisson：Redis客户端
+- gin：Go后端框架
+- echo：Go后端框架
+- fiber：高性能Go
+- beego：Go全栈框架
+- chi：轻量路由
+- iris：Go Web框架
+- revel：Go全栈框架
+- gorm：ORM框架
+- sqlx：SQL工具
+- kratos：微服务框架
+- logrus：日志框架
+- zap：日志框架
+- resty：HTTP客户端
+- fasthttp：高性能HTTP
+- gomail：邮件发送
+- gosimplemail：邮件发送
+- afero：文件系统
+- aws-sdk-go：对象存储
+- minio-go：对象存储
+- ent：模型ORM
+- bun：ORM框架
+- sqlc：SQL生成
+- zerolog：日志框架
+- jwt-go：JWT库
+- ristretto：缓存框架
+- bigcache：缓存框架
+- go-redis：Redis客户端
+- nats：消息队列
+- nsq：消息队列
+- amqp：消息队列
+- laravel：PHP全栈框架
+- symfony：PHP企业框架
+- thinkphp：国产PHP框架
+- yii：高性能PHP
+- slim：PHP微框架
+- lumen：微服务框架
+- codeigniter：轻量PHP框架
+- doctrine：ORM框架
+- eloquent：ORM框架
+- blade：模板引擎
+- twig：模板引擎
+- phpmailer：邮件发送
+- swiftmailer：邮件发送
+- symfony/mailer：邮件发送
+- guzzle：HTTP客户端
+- symfony/http-client：HTTP客户端
+- flysystem：文件系统
+- symfony/filesystem：文件系统
+- predis：Redis客户端
+- symfony/cache：缓存框架
+- php-amqplib：消息队列
+- php-jwt：JWT库
+- phpseclib：加解密
+- propel：ORM框架
+- rails：Ruby全栈框架
+- rocket：Rust后端框架
+- actix：Rust后端框架
+- warp：异步Web框架
+- axum：异步Web框架
+- tide：异步Web框架
+- diesel：ORM框架
+- sqlx：SQL框架
+- serde：序列化
+- reqwest：HTTP客户端
+- hyper：HTTP客户端
+- lettre：邮件发送
+- sea-orm：ORM框架
+- redis：Redis客户端
+- moka：缓存框架
+- tracing：链路日志
+- log：日志框架
+- env_logger：日志框架
+- ring：加解密
+- jsonwebtoken：JWT库
+- argon2：密码哈希
+- object_store：对象存储
+- async-std：异步文件
+- aspnetcore：.NET后端框架
+- nancy：轻量.NET框架
+- entity-framework：.NET ORM
+- dapper：.NET微ORM
+- serilog：.NET日志
+- nlog：.NET日志
+- mailkit：邮件发送
+- fluentemail：邮件发送
+- restsharp：HTTP客户端
+- refit：HTTP客户端
+- stackexchange.redis：Redis客户端
+- memorycache：内存缓存
+- masstransit：消息队列
+- rabbitmq.client：消息队列
+- awssdk.s3：对象存储
+- azure-storage-blob：对象存储
+- minio：对象存储
+- mongo.driver：Mongo驱动
+- log4net：日志框架
+- bouncycastle：加解密
+- jwtbearer：JWT认证
+- axios：HTTP 客户端
+- node-fetch / cross-fetch：HTTP 客户端
+- body-parser：请求体解析
+- consul：服务发现配置
+- cors：跨域中间件
+- crypto：加解密哈希
+- emailjs：邮件发送
+- excel-export：Excel 导出
+- excel-report：Excel 报表
+- fastdfs-client：FastDFS 客户端
+- file-stream-rotator：日志切割
+- forever：进程守护
+- http：HTTP 库
+- moment：时间日期
+- react / vue / angular / svelte / solid / preact：前端框架
+- next / nuxt / gatsby / astro / remix / sveltekit：SSR/SSG/静态站
+- vite / webpack / rollup / esbuild / babel / parcel / snowpack：构建/打包/转译
+- typescript / ts-node / ts-node-dev：类型支持与运行
+- react-router / vue-router / tanstack-router / wouter / redux / zustand / jotai / recoil / pinia / vuex / swr / react-query：路由与状态/数据
+- tailwind / tailwindcss / sass / less / styled-components / emotion / postcss / bootstrap：样式方案
+- antd / mui / element-plus / chakra / shadcn / headlessui / radix / mantine：UI 组件库
+- playwright / cypress / jest / vitest / mocha / testing-library：测试
+- eslint / prettier / husky / lint-staged：代码质量与 Git 钩子
+- prisma / typeorm / mongoose / sequelize / pg / mysql / redis：ORM/数据库/缓存
+- winston / pino / bunyan：日志
+- dotenv / config：配置管理
+- pm2 / nodemon：进程守护与开发重启
+- bull / agenda：队列/任务
+- socket.io / ws：实时通信
+- jsonwebtoken / passport：JWT/认证
+- swagger / openapi：接口文档
+- autoprefixer：CSS前缀
+- chalk：终端着色
+- connect-history-api-fallback：路由兜底
+- copy-webpack-plugin：文件拷贝
+- css-loader：CSS加载
+- babel-plugin-transform-runtime：运行时提取
+- eslint-plugin-html：HTML ESLint
+- eslint-plugin-promise：Promise规范
+- core-js：JS补丁库
+- electron：桌面框架
+- electron-rebuild：原生重编译
+- electron-devtools-installer：开发者工具
+- lndb：本地数据库
+- node-cmd：命令执行
+- node-notifier：系统通知
+- portfinder：端口探测
+- robotjs：桌面自动化
+- log4js：日志框架
+- @vue/cli-plugin-babel：Vue Babel
+- @vue/cli-plugin-eslint：Vue ESLint插件
+- @vue/cli-service：Vue 服务
+- vue-cli-plugin-electron-builder：Electron构建
+- vue-template-compiler：模板编译
+- eslint-plugin-vue：Vue ESLint
+- django：全栈Web框架
+- flask：轻量Web框架
+- fastapi：高性能API
+- scrapy：爬虫框架
+- dramatiq：轻量队列
+- pydantic：数据校验
+- alembic：数据迁移
+- beautifulsoup：HTML解析
+- lxml：HTML解析
+- selenium：浏览器自动化
+- playwright：自动化测试
+- pytest：单元测试
+- pandas：数据分析
+- numpy：数值计算
+- matplotlib：数据可视
+- seaborn：统计绘图
+- pytorch：深度学习
+- tensorflow：机器学习
+- transformers：NLP模型
+- pillow：图像处理
+- opencv：计算机视觉
+- jinja2：模板引擎
+- psycopg2：PostgreSQL驱动
+- pymongo：Mongo客户端
+- paramiko：SSH工具
+- fabric：部署自动化
+- schedule：定时任务
+- pyinstaller：可执行打包
+- fastcache：内存缓存
+- faker：测试造数
+- arrow：时间处理
+- tenacity：重试库
+- rich：终端美化
+- typer：CLI框架
+- poetry：依赖管理
+- pipenv：虚拟环境
+- locust：压力测试
+- streamlit：数据应用
+- luigi：工作流调度
+- prefect：工作流调度
+- spring-mvc：Java Web框架
+- spring-security：权限安全
+- shiro：轻量权限
+- netty：网络编程
+- quartz：定时任务
+- xxl-job：分布式任务
+- elasticsearch：搜索引擎
+- junit5：单元测试
+- mockito：Mock框架
+- assertj：断言库
+- springdoc：接口文档
+- mapstruct：对象映射
+- lombok：代码简化
+- hutool：工具包
+- guava：工具包
+- jackson：JSON序列化
+- fastjson2：高性能JSON
+- easyexcel：Excel处理
+- minio-sdk：对象存储
+- sentinel：限流熔断
+- seata：分布式事务
+- canal：Binlog订阅
+- hikari：连接池
+- skywalking：链路追踪
+- zipkin：链路追踪
+- easycaptcha：验证码
+- sa-token：轻量权限
+- jasypt：配置加密
+- flowable：工作流引擎
+- activiti：工作流引擎
+- cglib：动态代理
+- javassist：字节码
+- vavr：函数式
+- resilience4j：熔断限流
+- openfeign：声明式HTTP
+- loadbalancer：负载均衡
+- easyretry：重试框架
+- express：经典Web框架
+- koa：现代Web框架
+- nestjs：企业级框架
+- egg：企业框架
+- fastify：高性能Web
+- nextjs：React SSR
+- nuxtjs：Vue SSR
+- sveltekit：Svelte全栈
+- remix：React全栈
+- sequelize：ORM框架
+- typeorm：TS ORM
+- prisma：现代ORM
+- mongoose：Mongo ODM
+- mikro-orm：高性能ORM
+- objection：SQL ORM
+- socket.io：实时通信
+- ws：WebSocket
+- jest：单元测试
+- mocha：测试框架
+- chai：断言库
+- supertest：API测试
+- passport：登录认证
+- nextauth：全栈认证
+- axios：HTTP客户端
+- undici：高性能HTTP
+- winston：日志框架
+- pino：高性能日志
+- bull：Redis队列
+- agenda：Mongo队列
+- multer：文件上传
+- sharp：图片处理
+- nodemailer：邮件发送
+- joi：数据校验
+- zod：TS校验
+- ejs：模板引擎
+- handlebars：模板引擎
+- ioredis：Redis客户端
+- amqplib：RabbitMQ客户端
+- kafkajs：Kafka客户端
+- pm2：进程管理
+- dotenv：环境变量
+- dayjs：轻量时间
+- fakerjs：测试造数
+- helmet：安全防护
+- compression：压缩中间件
+- morgan：请求日志
+- nanoid：唯一ID
+- bcrypt：密码加密
+- aspnetcore：Web/API框架
+- entity-framework：ORM
+- blazor：前端框架
+- signalr：实时通信
+- automapper：对象映射
+- mediatR：中介者模式
+- fluentvalidation：数据验证
+- xunit：单元测试
+- nunit：测试框架
+- moq：Mock框架
+- nsubstitute：Mock框架
+- hangfire：后台任务
+- quartz.net：定时任务
+- aspnet-identity：身份认证
+- identityserver：OAuth授权
+- ocelot：API网关
+- steeltoe：微服务套件
+- sixlabors.imagesharp：图片处理
+- epplus：Excel处理
+- stackexchange.redis：Redis客户端
+- masstransit：消息总线
+- rebus：消息总线
+- easycaching：多级缓存
+- npgsql：PostgreSQL驱动
+- pomelo.mysql：MySQL驱动
+- miniprofiler：性能分析
+- swashbuckle：Swagger文档
+- faker.net：测试造数
+- humanizer：字符串美化
+- cronos：Cron解析
+- polly：熔断重试
+- benchmarkdotnet：性能基准
+- autofac：IOC容器
+- lamar：IOC容器
+- litedb：嵌入式库
+- elasticsearch.net：ES客户端
+- nest-client：ES高级客户端
+- dotnetty：网络编程
+- grpc.net：gRPC框架
+- graphql.net：GraphQL服务
+- hotchocolate：GraphQL框架
+- fluentassertions：断言库
+- sharpziplib：压缩解压
+- microsoft.ioc：内置容器
+- netescapades.enumgenerators：枚举增强
+- laravel：全栈Web框架
+- symfony：企业级框架
+- thinkphp：国产框架
+- codeigniter：轻量框架
+- yii：高性能框架
+- slim：API微框架
+- lumen：微服务框架
+- phalcon：高性能框架
+- cakephp：全栈框架
+- laminas：企业框架
+- phpunit：单元测试
+- codeception：全栈测试
+- monolog：日志框架
+- intervention-image：图片处理
+- phpspreadsheet：Excel操作
+- laravel-passport：OAuth2
+- laravel-sanctum：轻量认证
+- swoole：协程高性能
+- openswoole：协程框架
+- workerman：长连接服务
+- laravel-octane：协程加速
+- inertia：同构框架
+- livewire：无JS交互
+- laravel-horizon：队列管理
+- carbon：时间处理
+- hashids：ID加密
+- php-enums：枚举扩展
+- tinker：命令行交互
+- telescope：调试工具
+- socialite：第三方登录
+- laravel-scout：全文搜索
+- dusk：浏览器测试
+- breeze：认证脚手架
+- jetstream：增强脚手架
+- filament：后台管理
+- nova：官方后台
+- easywechat：微信开发
+- overtrue：工具包
+- php-di：IOC容器
+- php-cs-fixer：代码规范
+- phpstan：静态分析
+- php-jwt：JWT认证
+- ramsey/uuid：唯一ID
+- respect/validation：数据验证
+- medialibrary：文件管理
+- maatwebsite/excel：Excel导入导出
+- gin：高性能Web框架
+- echo：简洁Web框架
+- fiber：极速Web框架
+- beego：全栈Web框架
+- iris：全功能Web框架
+- go-zero：微服务框架
+- kratos：微服务框架
+- kitex：RPC框架
+- hertz：HTTP框架
+- gorm：ORM框架
+- xorm：轻量ORM
+- ent：模型ORM
+- sqlboiler：代码生成
+- grpc：远程调用
+- grpc-gateway：gRPC转HTTP
+- zap：高性能日志
+- logrus：经典日志
+- zerolog：极简日志
+- viper：配置管理
+- cobra：CLI框架
+- testify：测试工具
+- goconvey：可视化测试
+- goredis：Redis客户端
+- redigo：Redis客户端
+- sarama：Kafka客户端
+- ffmpeg-go：音视频
+- image：图片处理
+- cron：定时任务
+- asynq：异步任务
+- machinery：任务队列
+- ginkgo：测试框架
+- gomega：断言库
+- dig：依赖注入
+- wire：依赖注入
+- hystrix-go：熔断限流
+- sentinel-go：流量治理
+- opentelemetry：链路追踪
+- prometheus：监控指标
+- gops：进程诊断
+- pprof：性能分析
+- goldmark：Markdown解析
+- swaggo：Swagger文档
+- validator：数据校验
+- uuid：唯一ID生成
+- bcrypt-go：密码加密

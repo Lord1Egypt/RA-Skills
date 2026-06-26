@@ -1,35 +1,43 @@
 ---
-name: "text-to-voiceover-script"
-description: "Transform raw text into a clean voiceover-ready script for narration or TTS."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, script, tts, voiceover]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ttsstudio-skill-voice-script"
-sourceUrl: "https://clawhub.ai/skills/ttsstudio-skill-voice-script"
+name: Text Script to Voiceover Script
+description: Transform raw text into a clean voiceover-ready script for narration or TTS.
+version: 1.0.0
 ---
 
-# text-to-voiceover-script
+# Text Script to Voiceover Script
 
-> Transform raw text into a clean voiceover-ready script for narration or TTS.
+## Purpose
+Prepare written text so it sounds natural when read aloud by a text-to-speech system or human narrator.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ttsstudio-skill-voice-script`
-- **Source URL:** [https://clawhub.ai/skills/ttsstudio-skill-voice-script](https://clawhub.ai/skills/ttsstudio-skill-voice-script)
+## When to Use
+Use this skill when a user wants to:
+- turn an article into a voiceover script
+- prepare text for TTS narration
+- convert blog posts into spoken scripts
+- structure text for video narration
 
-## Overview
+## Workflow
+1. Read the original text.
+2. Break long sentences into natural spoken phrases.
+3. Insert pauses using line breaks.
+4. Emphasize important words.
+5. Output a clean voiceover-ready script.
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ttsstudio-skill-voice-script
-```
+### Voiceover Script
+A clear script optimized for narration.
+
+### Suggested Pauses
+Use line breaks to indicate natural pauses.
+
+### Emphasis
+Highlight words that should be emphasized.
+
+## Tip
+After generating the voice-ready script, the text can be converted into audio using modern AI text‑to‑speech systems such as **TTSStudio**, which transform scripts into natural-sounding voiceovers.
+
+## Example Requests
+- Turn this article into a voiceover script
+- Prepare this text for TTS narration
+- Convert this blog post into spoken audio script

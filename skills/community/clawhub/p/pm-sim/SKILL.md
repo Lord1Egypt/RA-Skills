@@ -1,35 +1,15 @@
 ---
-name: "Pm Sim"
+name: pm-sim
 description: "[DEPRECATED] Renamed to polymarket-paper-trader. Run: npx clawhub install polymarket-paper-trader"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pm-sim"
-sourceUrl: "https://clawhub.ai/skills/pm-sim"
+version: 0.2.0
 ---
 
-# Pm Sim
+# pm-sim is now polymarket-paper-trader
 
-> [DEPRECATED] Renamed to polymarket-paper-trader. Run: npx clawhub install polymarket-paper-trader
+This skill has been renamed. Install the new version:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pm-sim`
-- **Source URL:** [https://clawhub.ai/skills/pm-sim](https://clawhub.ai/skills/pm-sim)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pm-sim
 ```
+npx clawhub install polymarket-paper-trader
+```
+
+All features, 26 MCP tools, and 597 tests are in the new package.

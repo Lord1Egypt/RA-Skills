@@ -1,0 +1,20 @@
+name: Publish to ClawHub
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    uses: openclaw/clawhub/.github/workflows/skill-publish.yml@v0.20.0
+    with:
+      owner: ysdhb
+      dry_run: false
+      skill_path: .
+      bump: patch
+    secrets:
+      clawhub_token: ${{ secrets.CLAWHUB_TOKEN }}

@@ -1,0 +1,64 @@
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: memvault-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: memvault
+    ports:
+      - "${MEMVAULT_DB_PORT:-5432}:5432"
+    volumes:
+      - memvault-pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  embedding:
+    build:
+      context: .
+      dockerfile: Dockerfile.txt
+      target: embedding
+    container_name: memvault-embedding
+    ports:
+      - "${MEMVAULT_EMBEDDING_PORT:-8001}:8001"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  memvault:
+    build:
+      context: .
+      dockerfile: Dockerfile.txt
+      target: server
+    container_name: memvault-server
+    ports:
+      - "${MEMVAULT_PORT:-8002}:8002"
+    environment:
+      MEMVAULT_DB_DSN: postgresql://postgres:postgres@postgres:5432/memvault
+      MEMVAULT_EMBEDDING_URL: http://embedding:8001
+      MEMVAULT_EMBEDDING_MODEL: ${MEMVAULT_EMBEDDING_MODEL:-all-MiniLM-L6-v2}
+      MEMVAULT_LLM_BASE_URL: ${MEMVAULT_LLM_BASE_URL:-http://host.docker.internal:11434/v1}
+      MEMVAULT_LLM_API_KEY: ${MEMVAULT_LLM_API_KEY:-ollama}
+      MEMVAULT_LLM_MODEL: ${MEMVAULT_LLM_MODEL:-qwen2.5:3b}
+      MEMVAULT_TRANSLATION: ${MEMVAULT_TRANSLATION:-false}
+      MEMVAULT_TRANSLATION_LANG: ${MEMVAULT_TRANSLATION_LANG:-Chinese}
+      MEMVAULT_MEMORY_TYPES: ${MEMVAULT_MEMORY_TYPES:-event,knowledge}
+      MEMVAULT_HOST: "0.0.0.0"
+      MEMVAULT_PORT: "8002"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      embedding:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  memvault-pgdata:

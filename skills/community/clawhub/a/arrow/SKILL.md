@@ -1,35 +1,27 @@
 ---
-name: "Arrow"
-description: "Apache Arrow in-memory columnar format reference. Zero-copy data exchange, columnar memory layout with validity bitmaps, pyarrow Table/RecordBatch/compute, A..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/arrow"
-sourceUrl: "https://clawhub.ai/skills/arrow"
+name: "arrow"
+version: "1.0.0"
+description: "Apache Arrow in-memory columnar format reference. Zero-copy data exchange, columnar memory layout with validity bitmaps, pyarrow Table/RecordBatch/compute, Arrow Flight RPC for high-performance transfer, Dataset API with predicate pushdown, pandas/DuckDB/Polars/Spark integration, Gandiva LLVM compiler, and ADBC database connectivity."
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [arrow, columnar, memory, ipc, flight, data, analytics]
+category: "data"
 ---
 
-# Arrow
+# Apache Arrow
 
-> Apache Arrow in-memory columnar format reference. Zero-copy data exchange, columnar memory layout with validity bitmaps, pyarrow Table/RecordBatch/compute, A...
+Apache Arrow in-memory columnar format reference — zero-copy, cross-language.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/arrow`
-- **Source URL:** [https://clawhub.ai/skills/arrow](https://clawhub.ai/skills/arrow)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/arrow
-```
+| Command | Description |
+|---------|-------------|
+| `intro` | Arrow overview, zero-copy, architecture |
+| `format` | Columnar layout, buffers, record batches |
+| `python` | pyarrow arrays, tables, compute functions |
+| `flight` | Arrow Flight RPC server/client |
+| `dataset` | Dataset API, partitioning, pushdown |
+| `integration` | pandas/DuckDB/Polars/Spark/R interop |
+| `gandiva` | LLVM expression compiler |
+| `ecosystem` | Implementations, ADBC, projects |

@@ -1,35 +1,43 @@
 ---
-name: "deep-research"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/deep-research"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/deep-research"
+name: deep-research
+description: Orchestrate multi-phase deep research with web search, memory retrieval, pattern matching, and synthesis into structured findings
+argument-hint: "<topic>"
+allowed-tools: mcp__claude-flow__memory_store mcp__claude-flow__memory_search mcp__claude-flow__memory_search_unified mcp__claude-flow__agentdb_hierarchical-store mcp__claude-flow__agentdb_hierarchical-recall mcp__claude-flow__agentdb_pattern-search mcp__claude-flow__agentdb_pattern-store mcp__claude-flow__neural_predict mcp__claude-flow__hooks_intelligence_pattern-search mcp__claude-flow__hooks_intelligence_pattern-store mcp__claude-flow__task_create mcp__claude-flow__task_list mcp__claude-flow__task_summary Bash WebSearch WebFetch Read Write
 ---
 
-# deep-research
+# Deep Research
 
-> Indexed by skills.sh from ruvnet/ruflo
+Orchestrate multi-phase deep research campaigns that gather, cross-reference, and synthesize information from multiple sources.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/deep-research`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/deep-research](https://skills.sh/ruvnet/ruflo/deep-research)
+## When to use
 
-## Overview
+When you need to investigate a complex topic thoroughly — spanning web sources, codebase patterns, stored memory, and external documentation — and produce a structured synthesis.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/deep-research
-```
+1. **Define research scope** — break the question into 3-7 sub-questions that together answer the main question
+2. **Search existing knowledge** — call `mcp__claude-flow__memory_search_unified` and `mcp__claude-flow__agentdb_pattern-search` to check what's already known
+3. **Web research** — use `WebSearch` and `WebFetch` to gather external information for each sub-question
+4. **Codebase analysis** — use `Bash` (grep/find), `Read` to examine relevant source files
+5. **Cross-reference** — compare findings across sources, identify agreements and contradictions
+6. **Store findings** — call `mcp__claude-flow__memory_store` with namespace `research` for each key finding
+7. **Store patterns** — call `mcp__claude-flow__agentdb_pattern-store` for reusable patterns discovered
+8. **Synthesize** — produce a structured research report with:
+   - Executive summary (2-3 sentences)
+   - Key findings (bulleted)
+   - Evidence quality assessment (high/medium/low per finding)
+   - Open questions remaining
+   - Recommended next steps
+
+## Research depth levels
+
+- **Quick** — memory search + 1-2 web queries, 2-3 minutes
+- **Standard** — memory + web + codebase scan, 5-10 minutes
+- **Deep** — all sources + cross-referencing + pattern storage, 15-30 minutes
+- **Exhaustive** — deep + spawn sub-agents for parallel research threads, 30+ minutes
+
+## Memory namespaces
+
+- `research` — raw findings keyed by topic
+- `research-synthesis` — completed synthesis reports
+- `research-sources` — source URLs and references

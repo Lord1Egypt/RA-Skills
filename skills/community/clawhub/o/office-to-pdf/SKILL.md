@@ -1,35 +1,53 @@
 ---
-name: "office-to-pdf"
+name: office-to-pdf
 description: "Convert office files to pdf"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/office-to-pdf"
-sourceUrl: "https://clawhub.ai/skills/office-to-pdf"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📄",
+        "requires": { "bins": ["libreoffice"] },
+        "install":
+          [
+            {
+              "id": "apt",
+              "kind": "apt",
+              "package": "libreoffice",
+              "bins": ["libreoffice"],
+              "label": "Install via apt",
+            },
+          ],
+      },
+  }
 ---
 
-# office-to-pdf
+# convert office files to pdf
 
-> Convert office files to pdf
+Convert one or more LibreOffice-supported documents to PDF with LibreOffice in headless mode.
+Use this skill when an OpenClaw workflow needs to normalize office files such as:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/office-to-pdf`
-- **Source URL:** [https://clawhub.ai/skills/office-to-pdf](https://clawhub.ai/skills/office-to-pdf)
+- Presentations: `.ppt`, `.pptx`, `.odp`
+- Documents: `.doc`, `.docx`, `.odt`, `.rtf`
+- Spreadsheets: `.xls`, `.xlsx`, `.ods`
 
-## Overview
+to pdf.
 
+## Command Patterns
 
-## Installation
-To install this skill, run the following command in your terminal:
+Convert one file:
+
 ```bash
-hermes skills install clawhub/office-to-pdf
+libreoffice --headless --convert-to pdf --outdir ./out ./input.pptx
+```
+
+Convert multiple files:
+
+```bash
+libreoffice --headless --convert-to pdf --outdir ./out ./a.docx ./b.pptx ./c.xlsx
+```
+
+## Install
+
+```bash
+sudo apt install libreoffice
 ```

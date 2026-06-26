@@ -1,0 +1,154 @@
+{
+  "cpi-all-groups": {
+    "dataflow": "CPI",
+    "key": "1.10001.10.50.M",
+    "description": "CPI All Groups Index (Original, Australia, Monthly)",
+    "note": "Monthly CPI all groups index number for Australia. MEASURE=1 (index), INDEX=10001, TSEST=10 (original), REGION=50 (Australia). Source: ABS 6401.0",
+    "what_it_measures": "Headline price level index across all goods and services categories in Australia",
+    "when_to_use": "When you want the raw CPI index level rather than percentage change"
+  },
+  "cpi-annual-change": {
+    "dataflow": "CPI",
+    "key": "3.10001.10.50.M",
+    "description": "CPI All Groups - Annual % Change (Original, Australia, Monthly)",
+    "note": "Year-on-year CPI percentage change for Australia. MEASURE=3. Source: ABS 6401.0",
+    "what_it_measures": "Inflation rate: how much consumer prices have risen compared to the same month last year",
+    "when_to_use": "Best single number for current inflation rate; use for media-style briefings and economic snapshots"
+  },
+  "cpi-quarterly": {
+    "dataflow": "CPI",
+    "key": "1.10001.10.50.Q",
+    "description": "CPI All Groups Index (Original, Australia, Quarterly)",
+    "note": "Quarterly CPI headline figure for Australia. Source: ABS 6401.0",
+    "what_it_measures": "Quarterly CPI all groups index number for Australia",
+    "when_to_use": "When quarterly granularity is sufficient and you want the index level"
+  },
+  "unemployment-rate": {
+    "dataflow": "LF",
+    "key": "M13.3.1599.20.AUS.M",
+    "description": "Unemployment Rate - National (Seasonally Adjusted, Monthly)",
+    "note": "Seasonally adjusted national unemployment rate %. MEASURE=M13, SEX=3 (persons), AGE=1599 (total), TSEST=20. Source: ABS 6202.0",
+    "what_it_measures": "Percentage of the labour force actively seeking and available for work",
+    "when_to_use": "Best headline labour market indicator; use for monthly snapshots and trend analysis"
+  },
+  "unemployment-original": {
+    "dataflow": "LF",
+    "key": "M13.3.1599.10.AUS.M",
+    "description": "Unemployment Rate - National (Original, Monthly)",
+    "note": "Original (not seasonally adjusted) national unemployment rate %. Source: ABS 6202.0",
+    "what_it_measures": "Raw unemployment rate without seasonal adjustment",
+    "when_to_use": "When you need the unadjusted figure, e.g. for year-on-year comparisons"
+  },
+  "participation-rate": {
+    "dataflow": "LF_UNDER",
+    "key": "M12.3.1599.20.AUS.M",
+    "description": "Participation Rate - National (Seasonally Adjusted, Monthly)",
+    "note": "Percentage of the civilian population aged 15+ who are in the labour force. PARM_ITEM=M12, SEX=3, AGE=1599, TSEST=20. Source: ABS 6202.0",
+    "what_it_measures": "Share of working-age population either employed or actively seeking work",
+    "when_to_use": "Key labour market structural indicator; use alongside unemployment rate for fuller picture"
+  },
+  "employment-level": {
+    "dataflow": "LF",
+    "key": "M1.3.1599.20.AUS.M",
+    "description": "Employed Persons - National (Seasonally Adjusted, Monthly, thousands)",
+    "note": "Total employed persons (thousands), seasonally adjusted. MEASURE=M1, SEX=3, AGE=1599, TSEST=20. Source: ABS 6202.0",
+    "what_it_measures": "Number of employed persons in Australia (thousands)",
+    "when_to_use": "When you need an absolute count of employed persons rather than a rate"
+  },
+  "labour-force-size": {
+    "dataflow": "LF_UNDER",
+    "key": "M9.3.1599.20.AUS.M",
+    "description": "Labour Force Size - National (Seasonally Adjusted, Monthly, thousands)",
+    "note": "Total labour force (employed + unemployed), seasonally adjusted (thousands). PARM_ITEM=M9. Source: ABS 6202.0",
+    "what_it_measures": "Total persons in the labour force (employed + unemployed, thousands)",
+    "when_to_use": "When you need the total labour force size, e.g. for denominator calculations"
+  },
+  "underemployment-rate": {
+    "dataflow": "LF_UNDER",
+    "key": "M23.3.1599.20.AUS.M",
+    "description": "Underemployment Rate (Proportion of Labour Force, Seasonally Adjusted, Monthly)",
+    "note": "Underemployed persons as a percentage of the labour force. PARM_ITEM=M23, SEX=3, AGE=1599, TSEST=20. Source: ABS 6202.0",
+    "what_it_measures": "Share of the labour force that is underemployed (working fewer hours than desired)",
+    "when_to_use": "Broader slack measure than unemployment; useful for assessing labour market underutilisation"
+  },
+  "gdp-chain-volume": {
+    "dataflow": "ANA_AGG",
+    "key": "M1.GPM.20.AUS.Q",
+    "description": "GDP - Chain Volume Measures (Seasonally Adjusted, $M, Quarterly)",
+    "note": "Real GDP in chain volume terms, seasonally adjusted. MEASURE=M1, DATA_ITEM=GPM. Source: ABS 5206.0",
+    "what_it_measures": "Real (inflation-adjusted) GDP level in chain volume $M, seasonally adjusted",
+    "when_to_use": "When you need the GDP level to compute your own growth rates or examine absolute size"
+  },
+  "gdp-annual-change": {
+    "dataflow": "ANA_AGG",
+    "key": "M2.GPM.20.AUS.Q",
+    "description": "GDP - Annual % Change (Seasonally Adjusted, Quarterly)",
+    "note": "Real GDP percentage change from previous year. MEASURE=M2. Source: ABS 5206.0",
+    "what_it_measures": "Year-on-year real GDP growth rate",
+    "when_to_use": "Best single number for economic growth rate; use for macro snapshots"
+  },
+  "wage-index": {
+    "dataflow": "WPI",
+    "key": "1.THRPIB.7.TOT.10.AUS.Q",
+    "description": "Wage Price Index - All Industries, All Sectors (Original, Quarterly)",
+    "note": "WPI index including bonuses, all industries, private+public. MEASURE=1 (index), INDEX=THRPIB, SECTOR=7. Source: ABS 6345.0",
+    "what_it_measures": "Index level of wage price changes across all industries and sectors",
+    "when_to_use": "When you need the WPI index level rather than percentage change"
+  },
+  "wage-annual-change": {
+    "dataflow": "WPI",
+    "key": "3.THRPIB.7.TOT.10.AUS.Q",
+    "description": "Wage Price Index - Annual % Change, All Industries (Original, Quarterly)",
+    "note": "Year-on-year WPI growth. MEASURE=3 (pct change from corresponding quarter prev year). Source: ABS 6345.0",
+    "what_it_measures": "Annual wage growth rate across all industries and sectors",
+    "when_to_use": "Key wage pressure indicator; use alongside CPI for real wage comparison"
+  },
+  "population-national": {
+    "dataflow": "ERP_Q",
+    "key": "1.3.TOT.AUS.Q",
+    "description": "Estimated Resident Population - Australia, All Ages (Quarterly)",
+    "note": "ERP persons of all ages, Australia. MEASURE=1, SEX=3 (persons), AGE=TOT. Source: ABS 3101.0",
+    "what_it_measures": "Total estimated resident population of Australia",
+    "when_to_use": "When you need the national headcount for per-capita calculations or population trend analysis"
+  },
+  "dwelling-prices-mean": {
+    "dataflow": "RES_DWELL_ST",
+    "key": "5.AUS.Q",
+    "description": "Mean Price of Residential Dwellings - Australia (Quarterly, $000s)",
+    "note": "Mean price of all residential dwellings, Australia. MEASURE=5 (mean price), REGION=AUS. Value in thousands of dollars. Source: ABS 6416.0",
+    "what_it_measures": "Mean price of residential dwellings across Australia (thousands of dollars)",
+    "when_to_use": "Housing affordability and price trend analysis; more stable than median or city-level indices"
+  },
+  "trade-balance": {
+    "dataflow": "ITGS",
+    "key": "M1.170.20.AUS.M",
+    "description": "Balance on Goods - Australia (Seasonally Adjusted, Monthly, $M)",
+    "note": "Goods trade balance (exports minus imports), seasonally adjusted. DATA_ITEM=170. Source: ABS 5368.0",
+    "what_it_measures": "Net balance of goods trade (positive = surplus, negative = deficit), $M",
+    "when_to_use": "Monthly trade balance indicator; key external accounts measure"
+  },
+  "goods-exports": {
+    "dataflow": "ITGS",
+    "key": "M1.1000.20.AUS.M",
+    "description": "Total Goods Exports - Australia (Seasonally Adjusted, Monthly, $M)",
+    "note": "Total goods exports, seasonally adjusted. DATA_ITEM=1000. Source: ABS 5368.0",
+    "what_it_measures": "Total value of goods exported from Australia ($M)",
+    "when_to_use": "When you need exports separately from trade balance; use with goods-imports for full picture"
+  },
+  "goods-imports": {
+    "dataflow": "ITGS",
+    "key": "M1.2000.20.AUS.M",
+    "description": "Total Goods Imports - Australia (Seasonally Adjusted, Monthly, $M)",
+    "note": "Total goods imports, seasonally adjusted. DATA_ITEM=2000. Note: ABS records imports as negative in this series. Source: ABS 5368.0",
+    "what_it_measures": "Total value of goods imported into Australia ($M, reported as negative)",
+    "when_to_use": "When you need imports separately from trade balance"
+  },
+  "household-spending-change": {
+    "dataflow": "HSI_M",
+    "key": "9.TOT.CUR.20.AUS.M",
+    "description": "Household Spending - Annual % Change, Total (Seasonally Adjusted, Monthly)",
+    "note": "Through-the-year percentage change in total household spending, seasonally adjusted. MEASURE=9, CATEGORY=TOT, TSEST=20. Source: ABS 8501.0",
+    "what_it_measures": "Annual growth rate in total household spending across all categories",
+    "when_to_use": "Consumer spending momentum indicator; RT (Retail Trade) successor series"
+  }
+}

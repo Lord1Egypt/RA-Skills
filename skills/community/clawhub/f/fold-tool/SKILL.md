@@ -1,35 +1,19 @@
 ---
-name: "Fold Tool"
-description: "Wrap long lines of text to a specified width. Use for formatting text files to fit within column limits."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fold-tool"
-sourceUrl: "https://clawhub.ai/skills/fold-tool"
+name: fold-tool
+description: Wrap long lines of text to a specified width. Use for formatting text files to fit within column limits.
 ---
-
-# Fold Tool
-
-> Wrap long lines of text to a specified width. Use for formatting text files to fit within column limits.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fold-tool`
-- **Source URL:** [https://clawhub.ai/skills/fold-tool](https://clawhub.ai/skills/fold-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+# Fold - Line Wrapping Utility
+Break long lines of text at a specified width, making them fit within terminal columns or document margins.
+## Usage
 ```bash
-hermes skills install clawhub/fold-tool
+fold-tool [options] [file...]
+```
+## Options
+- `-w N`: Set line width to N characters (default: 80)
+- `-s`: Break at spaces only (don't split words)
+- `-b`: Count bytes instead of columns
+## Examples
+```bash
+fold-tool -w 72 longlines.txt
+fold-tool -w 100 -s paragraph.txt
 ```

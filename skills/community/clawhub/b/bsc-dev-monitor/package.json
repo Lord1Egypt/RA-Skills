@@ -1,0 +1,22 @@
+{
+  "name": "bsc-dev-monitor",
+  "version": "1.0.0",
+  "description": "BSC Dev Wallet Monitor - 监控指定 BSC 地址的代币转出行为",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js 0x4f0f84abd0b2d8a7ae5e252fb96e07946dbbb1a4 60"
+  },
+  "keywords": [
+    "bsc",
+    "monitor",
+    "trading",
+    "crypto",
+    "defi"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "prod-001",
+  "name": "Example Product A",
+  "model": "EPA-100",
+  "tagline": "Industrial-grade equipment for high-volume operations",
+  "description": "The EPA-100 is our flagship product designed for demanding industrial environments. Built with premium materials and backed by 10+ years of manufacturing expertise.",
+  "key_features": [
+    "High throughput: 100 units/hour continuous operation",
+    "Dual voltage support (220V/380V) for global deployment",
+    "CE and ISO 9001 certified",
+    "Low maintenance design with easy-access service panels",
+    "Optional IoT monitoring module"
+  ],
+  "specs": {
+    "capacity": "100 units/hr",
+    "power": "220V/380V, 50/60Hz",
+    "power_consumption": "15kW",
+    "weight": "500kg",
+    "dimensions": "2000x1500x1800mm",
+    "noise_level": "< 75dB",
+    "operating_temp": "0-45°C"
+  },
+  "pricing": {
+    "note": "Prices vary by configuration and volume. Contact for quote.",
+    "moq": 1,
+    "volume_tiers": [
+      {"min": 1, "max": 4, "discount": "0%"},
+      {"min": 5, "max": 9, "discount": "5%"},
+      {"min": 10, "max": null, "discount": "10-15% (negotiable)"}
+    ]
+  },
+  "logistics": {
+    "lead_time_days": 30,
+    "packaging": "Wooden crate, fumigated",
+    "hs_code": "8479.89",
+    "origin": "China",
+    "shipping_options": ["FOB", "CIF", "DDP"]
+  },
+  "after_sales": {
+    "warranty": "12 months parts + labor",
+    "spare_parts": "Available for 10 years",
+    "technical_support": "24/7 WhatsApp support",
+    "training": "Online video training included"
+  }
+}

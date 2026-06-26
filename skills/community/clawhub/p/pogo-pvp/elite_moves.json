@@ -1,0 +1,448 @@
+{
+  "groudon": [
+    "PRECIPICE_BLADES",
+    "FIRE_PUNCH"
+  ],
+  "kyogre": [
+    "ORIGIN_PULSE"
+  ],
+  "venusaur": [
+    "FRENZY_PLANT"
+  ],
+  "charizard": [
+    "BLAST_BURN"
+  ],
+  "blastoise": [
+    "HYDRO_CANNON"
+  ],
+  "swampert": [
+    "HYDRO_CANNON"
+  ],
+  "sceptile": [
+    "FRENZY_PLANT"
+  ],
+  "blaziken": [
+    "BLAST_BURN"
+  ],
+  "empoleon": [
+    "HYDRO_CANNON"
+  ],
+  "torterra": [
+    "FRENZY_PLANT"
+  ],
+  "infernape": [
+    "BLAST_BURN"
+  ],
+  "serperior": [
+    "FRENZY_PLANT"
+  ],
+  "samurott": [
+    "HYDRO_CANNON"
+  ],
+  "delphox": [
+    "BLAST_BURN"
+  ],
+  "chesnaught": [
+    "FRENZY_PLANT"
+  ],
+  "greninja": [
+    "HYDRO_CANNON"
+  ],
+  "decidueye": [
+    "FRENZY_PLANT"
+  ],
+  "incineroar": [
+    "BLAST_BURN"
+  ],
+  "primarina": [
+    "HYDRO_CANNON"
+  ],
+  "dragonite": [
+    "DRACO_METEOR"
+  ],
+  "salamence": [
+    "OUTRAGE"
+  ],
+  "garchomp": [
+    "EARTH_POWER"
+  ],
+  "metagross": [
+    "METEOR_MASH"
+  ],
+  "tyranitar": [
+    "SMACK_DOWN"
+  ],
+  "mewtwo": [
+    "PSYSTRIKE",
+    "SHADOW_BALL"
+  ],
+  "dialga": [
+    "ROAR_OF_TIME"
+  ],
+  "palkia": [
+    "SPACIAL_REND"
+  ],
+  "giratina_origin": [
+    "SHADOW_FORCE"
+  ],
+  "ho_oh": [
+    "SACRED_FIRE",
+    "AEROBLAST"
+  ],
+  "lugia": [
+    "AEROBLAST"
+  ],
+  "entei": [
+    "SACRED_FIRE"
+  ],
+  "raikou": [
+    "AURA_SPHERE"
+  ],
+  "suicune": [
+    "AQUA_TAIL"
+  ],
+  "celebi": [
+    "MAGICAL_LEAF"
+  ],
+  "jirachi": [
+    "DOOM_DESIRE"
+  ],
+  "victini": [
+    "V_CREATE"
+  ],
+  "reshiram": [
+    "FUSION_FLARE"
+  ],
+  "zekrom": [
+    "FUSION_BOLT"
+  ],
+  "kyurem": [
+    "GLACIATE"
+  ],
+  "zygarde": [
+    "THOUSAND_WAVES"
+  ],
+  "marshadow": [
+    "AURA_SPHERE"
+  ],
+  "zeraora": [
+    "PLASMA_FISTS"
+  ],
+  "meloetta": [
+    "RELIC_SONG"
+  ],
+  "volcanion": [
+    "STEAM_ERUPTION"
+  ],
+  "magearna": [
+    "FLEUR_CANNON"
+  ],
+  "diancie": [
+    "DIAMOND_STORM"
+  ],
+  "mawile": [
+    "PLAY_ROUGH"
+  ],
+  "gardevoir": [
+    "SYNCHRONOISE"
+  ],
+  "gallade": [
+    "AURA_SPHERE"
+  ],
+  "lucario": [
+    "AURA_SPHERE"
+  ],
+  "gengar": [
+    "SHADOW_PUNCH"
+  ],
+  "annihilape": [
+    "RAGE_FIST"
+  ],
+  "primeape": [
+    "RAGE_FIST"
+  ],
+  "machamp": [
+    "PAYBACK"
+  ],
+  "conkeldurr": [
+    "PAYBACK"
+  ],
+  "roserade": [
+    "WEATHER_BALL_FIRE"
+  ],
+  "dusknoir": [
+    "SHADOW_PUNCH"
+  ],
+  "golurk": [
+    "SHADOW_PUNCH"
+  ],
+  "runerigus": [
+    "SHADOW_PUNCH"
+  ],
+  "aegislash": [
+    "SACRED_SWORD"
+  ],
+  "cobalion": [
+    "SACRED_SWORD"
+  ],
+  "terrakion": [
+    "SACRED_SWORD"
+  ],
+  "virizion": [
+    "SACRED_SWORD"
+  ],
+  "keldeo": [
+    "SACRED_SWORD"
+  ],
+  "umbreon": [
+    "LAST_RESORT"
+  ],
+  "sylveon": [
+    "LAST_RESORT"
+  ],
+  "glaceon": [
+    "LAST_RESORT"
+  ],
+  "leafeon": [
+    "LAST_RESORT"
+  ],
+  "vaporeon": [
+    "LAST_RESORT"
+  ],
+  "jolteon": [
+    "LAST_RESORT"
+  ],
+  "flareon": [
+    "LAST_RESORT"
+  ],
+  "espeon": [
+    "LAST_RESORT"
+  ],
+  "eevee": [
+    "LAST_RESORT"
+  ],
+  "pikachu": [
+    "SURF",
+    "FLY",
+    "PRESENT"
+  ],
+  "raichu": [
+    "SURF"
+  ],
+  "alolan_raichu": [
+    "SURF"
+  ],
+  "flying_pikachu": [
+    "FLY"
+  ],
+  "slowbro": [
+    "SURF"
+  ],
+  "slowking": [
+    "SURF"
+  ],
+  "politoed": [
+    "SURF"
+  ],
+  "kingdra": [
+    "OUTRAGE"
+  ],
+  "scizor": [
+    "BULLET_PUNCH"
+  ],
+  "mamoswine": [
+    "ANCIENT_POWER"
+  ],
+  "tangrowth": [
+    "ANCIENT_POWER"
+  ],
+  "yanmega": [
+    "ANCIENT_POWER"
+  ],
+  "porygon_z": [
+    "TRI_ATTACK"
+  ],
+  "porygon2": [
+    "TRI_ATTACK"
+  ],
+  "togekiss": [
+    "AURA_SPHERE"
+  ],
+  "walrein": [
+    "ICICLE_SPEAR"
+  ],
+  "clodsire": [
+    "MEGAHORN"
+  ],
+  "greedent": [
+    "BODY_SLAM"
+  ],
+  "wigglytuff": [
+    "ICE_BEAM"
+  ],
+  "clefable": [
+    "METEOR_MASH"
+  ],
+  "beedrill": [
+    "FELL_STINGER"
+  ],
+  "pidgeot": [
+    "GUST"
+  ],
+  "aerodactyl": [
+    "ROCK_SLIDE"
+  ],
+  "mew": [
+    "SURF",
+    "FLY",
+    "DRAGON_CLAW"
+  ],
+  "smeargle": [
+    "LOCK_ON",
+    "FLY",
+    "V_CREATE",
+    "DOOM_DESIRE",
+    "TECHNO_BLAST"
+  ],
+  "deoxys": [
+    "ZEN_HEADBUTT"
+  ],
+  "heatran": [
+    "MAGMA_STORM"
+  ],
+  "cresselia": [
+    "GRASS_KNOT"
+  ],
+  "tapu_koko": [
+    "NATURE_MADNESS"
+  ],
+  "tapu_lele": [
+    "NATURE_MADNESS"
+  ],
+  "tapu_bulu": [
+    "NATURE_MADNESS"
+  ],
+  "tapu_fini": [
+    "NATURE_MADNESS"
+  ],
+  "naganadel": [
+    "SLUDGE_BOMB"
+  ],
+  "stakataka": [
+    "MAGNET_BOMB"
+  ],
+  "blacephalon": [
+    "MAGNET_BOMB"
+  ],
+  "xurkitree": [
+    "POWER_WHIP"
+  ],
+  "celesteela": [
+    "ACROBATICS"
+  ],
+  "kartana": [
+    "ACROBATICS"
+  ],
+  "guzzlord": [
+    "DRAGON_CLAW"
+  ],
+  "poipole": [
+    "DRAGON_PULSE"
+  ],
+  "dracovish": [
+    "METEOR_BEAM"
+  ],
+  "arctovish": [
+    "METEOR_BEAM"
+  ],
+  "dracozolt": [
+    "METEOR_BEAM"
+  ],
+  "arctozolt": [
+    "METEOR_BEAM"
+  ],
+  "zarude": [
+    "DARKEST_LARIAT"
+  ],
+  "calyrex": [
+    "ASTRAL_BARRAGE"
+  ],
+  "spectrier": [
+    "SHADOW_BALL"
+  ],
+  "glastrier": [
+    "BLIZZARD"
+  ],
+  "ursaluna": [
+    "HEADLONG_RUSH"
+  ],
+  "enamorus": [
+    "SPRING_STORM"
+  ],
+  "overqwil": [
+    "BARB_BARRAGE"
+  ],
+  "sneasler": [
+    "DIRE_CLAW"
+  ],
+  "kleavor": [
+    "STONE_AXE"
+  ],
+  "goodra": [
+    "AQUA_TAIL"
+  ],
+  "hisuian_arcanine": [
+    "ROCK_SLIDE"
+  ],
+  "hisuian_braviary": [
+    "ESPER_WING"
+  ],
+  "hisuian_decidueye": [
+    "TRIPLE_ARROWS"
+  ],
+  "hisuian_lilligant": [
+    "VICTORY_DANCE"
+  ],
+  "hisuian_samurott": [
+    "CEASELESS_EDGE"
+  ],
+  "hisuian_sneasel": [
+    "DIRE_CLAW"
+  ],
+  "hisuian_typhlosion": [
+    "INFERNAL_PARADE"
+  ],
+  "hisuian_zoroark": [
+    "BITTER_BLADE"
+  ],
+  "hisuian_voltorb": [
+    "WILD_CHARGE"
+  ],
+  "hisuian_electrode": [
+    "WILD_CHARGE"
+  ],
+  "wooper": [
+    "AQUA_TAIL"
+  ],
+  "quagsire": [
+    "AQUA_TAIL"
+  ],
+  "terapagos": [
+    "TRI_ATTACK"
+  ],
+  "ogerpon": [
+    "IVY_CUDGEL"
+  ],
+  "munkidori": [
+    "PARANOID_STING"
+  ],
+  "fezandipiti": [
+    "PARANOID_STING"
+  ],
+  "okidogi": [
+    "PARANOID_STING"
+  ],
+  "pecharunt": [
+    "MORTAL_SPIN"
+  ]
+}

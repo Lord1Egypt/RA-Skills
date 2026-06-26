@@ -1,0 +1,383 @@
+<!doctype html>
+<!--
+  IFQ Design Skills · Template Gallery
+  Visual preview of all 12 built-in templates.
+  Standalone page — no dependencies beyond optional Google Fonts.
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>IFQ Design Skills · Template Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --ifq-accent:#D4532B; --ifq-accent-deep:#A83518; --ifq-accent-soft:#FFB27A;
+    --ifq-ink:#111; --ifq-ink-soft:#3A3532; --ifq-paper:#FAF7F2; --ifq-cream:#F1EBE0;
+    --ifq-display:'Newsreader','Noto Serif SC',Georgia,serif;
+    --ifq-mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ifq-paper); }
+  body { color: var(--ifq-ink); font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; }
+
+  .page { max-width: 1400px; margin: 0 auto; padding: 48px 40px 100px; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 32px; border-bottom: 2px solid var(--ifq-ink); margin-bottom: 48px; }
+  .header__brand { display: flex; align-items: center; gap: 10px; font-family: var(--ifq-display); font-weight: 900; font-size: 20px; }
+  .header__brand svg { width: 16px; height: 16px; color: var(--ifq-accent); }
+  .header__brand b { color: var(--ifq-accent); }
+  .header__title { font-family: var(--ifq-display); font-size: 48px; font-weight: 900; letter-spacing: -1.5px; line-height: 1; margin-bottom: 8px; }
+  .header__subtitle { font-family: var(--ifq-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--ifq-ink-soft); }
+  .header__meta { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); opacity: .6; text-align: right; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid rgba(17,17,17,0.08); margin-bottom: 48px; }
+  .stats__cell { padding: 20px 24px; border-right: 1px solid rgba(17,17,17,0.08); }
+  .stats__cell:last-child { border-right: none; }
+  .stats__num { font-family: var(--ifq-display); font-size: 36px; font-weight: 900; letter-spacing: -1px; }
+  .stats__lbl { margin-top: 4px; font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ifq-ink-soft); }
+
+  /* Section label */
+  .section-label { display: flex; align-items: center; gap: 12px; margin: 48px 0 24px; }
+  .section-label__line { flex: 1; height: 1px; background: rgba(17,17,17,0.1); }
+  .section-label__text { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+
+  /* Card */
+  .card { border: 1px solid rgba(17,17,17,0.08); background: #fff; transition: box-shadow .2s, border-color .2s; }
+  .card:hover { border-color: rgba(17,17,17,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+
+  /* Preview area */
+  .card__preview { height: 200px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .card__preview--dark { background: var(--ifq-ink); }
+  .card__preview--warm { background: var(--ifq-cream); }
+  .card__preview--paper { background: var(--ifq-paper); }
+  .card__preview--rust { background: linear-gradient(135deg, var(--ifq-accent) 0%, var(--ifq-accent-deep) 100%); }
+
+  /* Mini mockups inside preview */
+  .mock { font-family: var(--ifq-display); color: var(--ifq-ink-soft); opacity: .6; text-align: center; padding: 20px; }
+  .mock--hero { text-align: left; padding: 24px 32px; }
+  .mock--hero .mock__line { height: 8px; background: var(--ifq-ink); opacity: .15; margin-bottom: 8px; border-radius: 1px; }
+  .mock--hero .mock__line:nth-child(1) { width: 60%; height: 24px; opacity: .3; }
+  .mock--hero .mock__line:nth-child(2) { width: 80%; }
+  .mock--hero .mock__line:nth-child(3) { width: 45%; }
+  .mock--hero .mock__accent { position: absolute; top: 16px; right: 20px; width: 32px; height: 32px; }
+  .mock--hero .mock__rule { position: absolute; left: 24px; top: 16px; bottom: 16px; width: 2px; background: var(--ifq-accent); }
+
+  .mock--dashboard { display: grid; grid-template-columns: 48px 1fr 1fr 1fr; gap: 6px; padding: 16px; width: 100%; height: 100%; }
+  .mock--dashboard .mock__nav { background: var(--ifq-ink); border-radius: 2px; }
+  .mock--dashboard .mock__kpi { background: rgba(17,17,17,0.04); border: 1px solid rgba(17,17,17,0.06); border-radius: 2px; }
+  .mock--dashboard .mock__kpi:nth-child(2) { grid-column: 2 / 5; height: 32px; }
+
+  .mock--slides { display: flex; gap: 8px; align-items: center; justify-content: center; }
+  .mock--slides .mock__slide { width: 80px; height: 50px; border: 1px solid rgba(17,17,17,0.12); background: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--ifq-mono); font-size: 9px; color: var(--ifq-ink-soft); }
+  .mock--slides .mock__slide:first-child { border-color: var(--ifq-accent); }
+
+  .mock--timeline { display: flex; flex-direction: column; gap: 8px; padding: 16px 24px; align-items: flex-start; }
+  .mock--timeline .mock__entry { display: flex; align-items: center; gap: 8px; }
+  .mock--timeline .mock__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ifq-accent); }
+  .mock--timeline .mock__bar { height: 6px; background: rgba(17,17,17,0.08); border-radius: 1px; }
+
+  .mock--social { width: 120px; height: 68px; background: var(--ifq-ink); display: flex; align-items: center; justify-content: center; }
+  .mock--social .mock__spark { width: 20px; height: 20px; color: var(--ifq-accent-soft); }
+
+  .mock--card { width: 120px; height: 72px; border: 1px solid rgba(17,17,17,0.12); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .mock--card .mock__line { height: 4px; background: rgba(17,17,17,0.12); border-radius: 1px; }
+
+  .mock--flow { display: flex; gap: 8px; align-items: center; }
+  .mock--flow .mock__phone { width: 36px; height: 64px; border: 2px solid rgba(17,17,17,0.15); border-radius: 6px; background: #fff; }
+  .mock--flow .mock__phone:first-child { border-color: var(--ifq-accent); }
+  .mock--flow .mock__arrow { font-family: var(--ifq-mono); font-size: 10px; color: var(--ifq-ink-soft); opacity: .4; }
+
+  .mock--compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 16px; width: 100%; }
+  .mock--compare .mock__col { border: 1px solid rgba(17,17,17,0.08); padding: 8px; }
+  .mock--compare .mock__col:first-child { border-color: var(--ifq-accent); }
+
+  .mock--radar { position: relative; width: 100px; height: 100px; }
+  .mock--radar .mock__hex { width: 100%; height: 100%; border: 1px solid rgba(17,17,17,0.1); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+  .mock--radar .mock__data { position: absolute; inset: 15%; background: rgba(212,83,43,0.15); border: 1px solid var(--ifq-accent); clip-path: polygon(50% 10%, 85% 35%, 75% 75%, 50% 90%, 20% 70%, 25% 30%); }
+
+  .mock--multi { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 12px; width: 100%; }
+  .mock--multi .mock__fmt { height: 32px; border: 1px solid rgba(17,17,17,0.08); display: flex; align-items: center; justify-content: center; font-family: var(--ifq-mono); font-size: 8px; color: var(--ifq-ink-soft); }
+  .mock--multi .mock__fmt:first-child { border-color: var(--ifq-accent); }
+
+  .mock--brand { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .mock--brand .mock__logo { width: 40px; height: 40px; border: 2px solid var(--ifq-accent); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+  .mock--brand .mock__palette { display: flex; gap: 4px; }
+  .mock--brand .mock__swatch { width: 16px; height: 16px; border-radius: 2px; }
+
+  .mock--report { padding: 16px 24px; text-align: left; width: 100%; }
+  .mock--report .mock__cover { height: 48px; background: var(--ifq-ink); margin-bottom: 8px; border-radius: 2px; }
+  .mock--report .mock__line { height: 4px; background: rgba(17,17,17,0.08); margin-bottom: 4px; border-radius: 1px; }
+  .mock--report .mock__line:nth-child(2) { width: 80%; }
+  .mock--report .mock__line:nth-child(3) { width: 65%; }
+
+  /* Card info */
+  .card__info { padding: 16px 20px; }
+  .card__mode { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-accent); margin-bottom: 4px; }
+  .card__name { font-family: var(--ifq-display); font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .card__trigger { font-size: 13px; color: var(--ifq-ink-soft); line-height: 1.5; }
+
+  /* Colophon */
+  .colophon { margin-top: 64px; padding-top: 20px; border-top: 1px solid rgba(17,17,17,0.08); display: flex; align-items: center; gap: 8px; opacity: 0.5; font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ifq-ink-soft); }
+  .colophon svg { width: 12px; height: 12px; }
+  .colophon b { color: var(--ifq-accent); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div>
+      <div class="header__brand">
+        <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        <span>ifq<b>.ai</b></span>
+      </div>
+      <h1 class="header__title">Template Gallery</h1>
+      <p class="header__subtitle">12 modes · 12 forkable templates · one prompt away</p>
+    </div>
+    <div class="header__meta">
+      <div data-ifq-authored-year>__IFQ_YEAR__</div>
+      <div>v2.4.3</div>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stats__cell"><div class="stats__num">12</div><div class="stats__lbl">Design Modes</div></div>
+    <div class="stats__cell"><div class="stats__num">12</div><div class="stats__lbl">Templates</div></div>
+    <div class="stats__cell"><div class="stats__num">0</div><div class="stats__lbl">Dependencies</div></div>
+    <div class="stats__cell"><div class="stats__num">5</div><div class="stats__lbl">Ambient Marks</div></div>
+  </div>
+
+  <div class="section-label"><div class="section-label__line"></div><span class="section-label__text">templates</span><div class="section-label__line"></div></div>
+
+  <div class="grid">
+    <!-- T-hero-landing -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock mock--hero">
+          <div class="mock__rule"></div>
+          <div class="mock__line"></div>
+          <div class="mock__line"></div>
+          <div class="mock__line"></div>
+          <svg class="mock__accent" viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="var(--ifq-accent)" opacity=".3"/></svg>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-hero-landing</div>
+        <div class="card__name">Editorial Hero Landing</div>
+        <div class="card__trigger">landing · hero page · homepage · portfolio</div>
+      </div>
+    </div>
+
+    <!-- T-slide-title -->
+    <div class="card">
+      <div class="card__preview card__preview--dark">
+        <div class="mock mock--slides">
+          <div class="mock__slide">01</div>
+          <div class="mock__slide">02</div>
+          <div class="mock__slide">03</div>
+          <div class="mock__slide">04</div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-slide-title</div>
+        <div class="card__name">Keynote Title Slide</div>
+        <div class="card__trigger">slides · deck · keynote · PPT · talk</div>
+      </div>
+    </div>
+
+    <!-- T-dashboard -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock mock--dashboard">
+          <div class="mock__nav"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+          <div class="mock__kpi"></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-dashboard</div>
+        <div class="card__name">Command Center Dashboard</div>
+        <div class="card__trigger">dashboard · KPI · monitor · command center</div>
+      </div>
+    </div>
+
+    <!-- T-infographic-vertical -->
+    <div class="card">
+      <div class="card__preview card__preview--warm">
+        <div class="mock mock--report">
+          <div class="mock__cover"></div>
+          <div class="mock__line" style="width:80%"></div>
+          <div class="mock__line" style="width:65%"></div>
+          <div class="mock__line" style="width:90%"></div>
+          <div class="mock__line" style="width:50%"></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-infographic-vertical</div>
+        <div class="card__name">Vertical Infographic</div>
+        <div class="card__trigger">whitepaper · report · infographic · changelog</div>
+      </div>
+    </div>
+
+    <!-- T-social-x -->
+    <div class="card">
+      <div class="card__preview card__preview--dark">
+        <div class="mock mock--social">
+          <svg class="mock__spark" viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-social-x</div>
+        <div class="card__name">X/Twitter Share Card</div>
+        <div class="card__trigger">social cover · X card · share card</div>
+      </div>
+    </div>
+
+    <!-- T-compare-vs -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock mock--compare">
+          <div class="mock__col"></div>
+          <div class="mock__col"></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-compare-vs</div>
+        <div class="card__name">A vs B Comparison Matrix</div>
+        <div class="card__trigger">compare · VS · benchmark · brand audit</div>
+      </div>
+    </div>
+
+    <!-- T-changelog -->
+    <div class="card">
+      <div class="card__preview card__preview--warm">
+        <div class="mock mock--timeline">
+          <div class="mock__entry"><div class="mock__dot"></div><div class="mock__bar" style="width:120px"></div></div>
+          <div class="mock__entry"><div class="mock__dot"></div><div class="mock__bar" style="width:80px"></div></div>
+          <div class="mock__entry"><div class="mock__dot"></div><div class="mock__bar" style="width:100px"></div></div>
+          <div class="mock__entry"><div class="mock__dot"></div><div class="mock__bar" style="width:60px"></div></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-changelog</div>
+        <div class="card__name">Changelog Timeline</div>
+        <div class="card__trigger">changelog · release notes · version record</div>
+      </div>
+    </div>
+
+    <!-- T-business-card -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock mock--card">
+          <div class="mock__line" style="width:60%"></div>
+          <div class="mock__line" style="width:40%"></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-business-card</div>
+        <div class="card__name">Business Card (90x54mm)</div>
+        <div class="card__trigger">business card · 名片 · invite · VIP card</div>
+      </div>
+    </div>
+
+    <!-- T-portfolio (NEW) -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock" style="padding:20px;text-align:left;font-size:11px;line-height:1.8;">
+          <div style="font-family:var(--ifq-mono);font-size:9px;color:var(--ifq-accent);margin-bottom:8px;">2026 / portfolio</div>
+          <div style="font-family:var(--ifq-display);font-size:20px;font-weight:900;margin-bottom:8px;">{ Name }</div>
+          <div style="display:flex;gap:12px;font-size:9px;">
+            <div style="flex:1;border-top:1px solid rgba(17,17,17,0.1);padding-top:4px;">Currently</div>
+            <div style="flex:1;border-top:1px solid rgba(17,17,17,0.1);padding-top:4px;">Writing</div>
+            <div style="flex:1;border-top:1px solid rgba(17,17,17,0.1);padding-top:4px;">Building</div>
+          </div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-portfolio</div>
+        <div class="card__name">Essay-Style Portfolio</div>
+        <div class="card__trigger">personal site · portfolio · about me · 5 variants</div>
+      </div>
+    </div>
+
+    <!-- T-onboarding (NEW) -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock mock--flow">
+          <div class="mock__phone"></div>
+          <span class="mock__arrow">→</span>
+          <div class="mock__phone"></div>
+          <span class="mock__arrow">→</span>
+          <div class="mock__phone"></div>
+          <span class="mock__arrow">→</span>
+          <div class="mock__phone"></div>
+          <span class="mock__arrow">→</span>
+          <div class="mock__phone"></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-onboarding</div>
+        <div class="card__name">Onboarding Flow Prototype</div>
+        <div class="card__trigger">onboarding · app prototype · flow demo · 5 screens</div>
+      </div>
+    </div>
+
+    <!-- T-diagnosis (NEW) -->
+    <div class="card">
+      <div class="card__preview card__preview--warm">
+        <div class="mock mock--radar">
+          <div class="mock__hex"></div>
+          <div class="mock__data"></div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-diagnosis</div>
+        <div class="card__name">Brand Diagnosis Report</div>
+        <div class="card__trigger">brand audit · diagnosis · brand upgrade · 体检</div>
+      </div>
+    </div>
+
+    <!-- T-social-multi (NEW) -->
+    <div class="card">
+      <div class="card__preview card__preview--paper">
+        <div class="mock mock--multi">
+          <div class="mock__fmt">X 1200x675</div>
+          <div class="mock__fmt">RedNote</div>
+          <div class="mock__fmt">IG 1080²</div>
+          <div class="mock__fmt">WeChat</div>
+        </div>
+      </div>
+      <div class="card__info">
+        <div class="card__mode">T-social-multi</div>
+        <div class="card__name">Multi-Platform Social Kit</div>
+        <div class="card__trigger">social kit · 小红书 · Instagram · WeChat header</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="#D4532B"/></svg>
+    <span>compiled by <b>ifq.ai</b> · template gallery · <span data-ifq-authored-year>__IFQ_YEAR__</span></span>
+  </div>
+</div>
+<script src="../ifq-brand/ifq_authored_year.js"></script>
+<script>window.IfqAuthoredYear && window.IfqAuthoredYear.apply(document);</script>
+</body>
+</html>

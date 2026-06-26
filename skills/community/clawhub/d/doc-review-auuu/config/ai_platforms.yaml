@@ -1,0 +1,51 @@
+# AI对话平台检测配置
+# 用于审查文档时检测是否包含AI对话链接
+
+# 平台域名映射表
+platforms:
+  # OpenAI 系列
+  chat.openai.com: "ChatGPT"
+  chatgpt.com: "ChatGPT"
+
+  # Anthropic 系列
+  claude.ai: "Claude"
+
+  # 国产 AI
+  kimi.moonshot.cn: "Kimi"
+  moonshot.cn: "Kimi"
+  tongyi.aliyun.com: "通义千问"
+  qwen.aliyun.com: "通义千问"
+  qwen.ai: "通义千问"
+  doubao.com: "豆包"
+  bots.oceanengine.com: "豆包"
+  zhipuai.cn: "智谱清言"
+  chatglm.cn: "智谱清言"
+  wenxin.baidu.com: "文心一言"
+  yiyan.baidu.com: "文心一言"
+
+  # Google 系列
+  gemini.google.com: "Gemini"
+  aistudio.google.com: "Gemini"
+
+  # Microsoft 系列
+  copilot.microsoft.com: "Copilot"
+
+# 需要检测的域名关键词（用于简化匹配）
+domain_keywords:
+  - chat.openai.com
+  - chatgpt.com
+  - claude.ai
+  - kimi.moonshot.cn
+  - moonshot.cn
+  - tongyi.aliyun.com
+  - qwen.aliyun.com
+  - qwen.ai
+  - doubao.com
+  - bots.oceanengine.com
+  - zhipuai.cn
+  - chatglm.cn
+  - wenxin.baidu.com
+  - yiyan.baidu.com
+  - gemini.google.com
+  - aistudio.google.com
+  - copilot.microsoft.com

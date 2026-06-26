@@ -1,35 +1,224 @@
 ---
-name: "Advisor Board Pro"
-description: "36 位顶级思维顾问完整企业版。全网检索 +11 步会诊 + 报告导出 + 团队会诊。适合企业决策、战略规划、投资分析。Use for enterprise decisions, strategic planning, team collaboration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/advisor-board-pro"
-sourceUrl: "https://clawhub.ai/skills/advisor-board-pro"
+name: advisor-board-pro
+description: 36 位顶级思维顾问完整企业版。全网检索 +11 步会诊 + 报告导出 + 团队会诊。适合企业决策、战略规划、投资分析。Use for enterprise decisions, strategic planning, team collaboration.
+version: 1.0.0
+license: Commercial
+pricing:
+  free: false
+  price: $49
+  trial: 7_days
+  early_bird: $29
+tags:
+  - decision-making
+  - business-strategy
+  - ai-agents
+  - enterprise
+  - chinese
 ---
 
-# Advisor Board Pro
+# 顾问委员会 Pro - 企业级智能决策系统
 
-> 36 位顶级思维顾问完整企业版。全网检索 +11 步会诊 + 报告导出 + 团队会诊。适合企业决策、战略规划、投资分析。Use for enterprise decisions, strategic planning, team collaboration.
+> **36 位顶级思维顾问 + 企业级功能，帮团队做出更聪明的决策**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/advisor-board-pro`
-- **Source URL:** [https://clawhub.ai/skills/advisor-board-pro](https://clawhub.ai/skills/advisor-board-pro)
+---
 
-## Overview
+## 🎯 Pro 版专属功能
 
+### 1️⃣ 完整 36 位顾问（免费版只有 15 位）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/advisor-board-pro
+**免费版包含：** 基础商业顾问（德鲁克、波特、Jobs 等）
+
+**Pro 版新增：**
+- 🇨🇳 中国战略三巨头（毛泽东、段永平、任正非）
+- 📊 经济学 5 人组（亚当·斯密、凯恩斯、哈耶克等）
+- 📈 投资 6 将军（宏观/个股/价值/逆向/创新/成长）
+- 🔧 技术层 5 位（架构师/安全官/数据科学家等）
+
+### 2️⃣ 深度检索增强
+
 ```
+免费版：基础搜索（3-5 个关键词）
+Pro 版：深度检索（10+ 关键词 + 网页抓取 + 情报整理）
+```
+
+**检索来源：**
+- 行业报告（艾瑞、易观、Gartner）
+- 竞争对手（财报、新闻、产品动态）
+- 政策法规（政府网站、行业协会）
+- 市场数据（统计局、第三方平台）
+
+### 3️⃣ 11 步完整会诊流程
+
+```
+🔍 第 0 步：全网深度检索
+1️⃣ 战略定位 → 毛泽东 + 特劳特 + 波特
+2️⃣ 经济环境 → 经济学层（5 位）
+3️⃣ 问题本质 → 维特根斯坦 + 弗洛伊德
+4️⃣ 价值定义 → 德鲁克 + 段永平 + 科特勒
+5️⃣ 体验系统 → Jobs + 原研哉
+6️⃣ 运营优化 → 丹纳赫 + 丰田 + 六西格玛
+7️⃣ 执行突破 → 马斯克 + 杰克·韦尔奇
+8️⃣ 风险决策 → 芒格 + 巴菲特 + 任正非
+9️⃣ 投资分析 → 投资 6 将军
+🔧 技术咨询 → 技术层 5 位
+1️⃣1️⃣ 行动收敛 → 段永平 + 马斯克
+```
+
+### 4️⃣ 报告导出（PDF/Word）
+
+**免费版：** 仅在线查看
+
+**Pro 版：**
+- ✅ PDF 格式（精美排版，可打印）
+- ✅ Word 格式（可编辑，方便二次加工）
+- ✅ Markdown 格式（技术团队友好）
+- ✅ 自定义模板（企业 VI 适配）
+
+### 5️⃣ 团队会诊（多人协作）
+
+```
+免费版：个人使用
+Pro 版：团队共享
+
+功能：
+- 多人同时参与会诊
+- 评论和批注
+- 决策追踪
+- 历史记录共享
+```
+
+### 6️⃣ 定制顾问
+
+**添加企业专属顾问：**
+- 企业价值观顾问（基于企业文化）
+- 行业专家顾问（特定领域知识）
+- 历史决策回顾（学习过往经验）
+
+### 7️⃣ 优先支持
+
+```
+免费版：社区支持（24-48 小时响应）
+Pro 版：专属支持（2 小时内响应）
+
+渠道：
+- 专属微信群
+- 优先邮件支持
+- 远程配置协助
+```
+
+---
+
+## 💰 定价
+
+| 版本 | 价格 | 适合 |
+|------|------|------|
+| **早鸟价** | $29（约¥209） | 前 100 名 |
+| **标准价** | $49（约¥352） | 正常销售 |
+| **企业版** | $299/年 | 团队/公司 |
+
+**7 天无理由退款**
+
+---
+
+## 🚀 快速开始
+
+### 安装 Pro 版
+```bash
+npx clawhub@latest install advisor-board-pro
+```
+
+### 首次使用
+```
+启动顾问会诊（Pro 版），我要分析一下是否应该进入快团团渠道
+```
+
+### 导出报告
+```
+把刚才的会诊报告导出为 PDF
+```
+
+### 团队会诊
+```
+邀请团队成员 @张三 @李四 一起参与这次会诊
+```
+
+---
+
+## 📊 典型使用场景
+
+### 企业战略决策
+```
+场景：是否应该开拓新市场
+顾问：毛泽东（战略）+ 波特（竞争）+ 德鲁克（客户）+ 投资 6 将军
+输出：完整战略分析报告（PDF）
+```
+
+### 产品发布会前评估
+```
+场景：新产品下周发布，最后评估
+顾问：Jobs（体验）+ 原研哉（极简）+ 雷军（性价比）+ 安全官（风险）
+输出：产品优化建议清单
+```
+
+### 投资尽职调查
+```
+场景：准备投资某创业公司
+顾问：巴菲特（护城河）+ 芒格（风险）+ 个股将军 + 数据科学家
+输出：投资建议报告 + 风险清单
+```
+
+### 年度规划
+```
+场景：制定下一年度战略
+顾问：段永平（本分）+ 克里斯坦森（第二曲线）+ 宏观将军 + 马斯克
+输出：年度战略规划文档
+```
+
+---
+
+## 🔄 从免费版升级
+
+如果你正在使用免费版 `advisor-board`：
+
+```bash
+# 升级到 Pro 版
+npx clawhub@latest install advisor-board-pro
+
+# 老用户专享折扣码
+使用折扣码：EARLY50 享受 5 折优惠（$24.5）
+```
+
+**数据迁移：** 免费版的会诊记录会自动同步到 Pro 版
+
+---
+
+## 📞 企业定制
+
+需要添加企业专属顾问或定制功能？
+
+**联系：** [邮箱/微信]
+**服务：**
+- 企业价值观顾问定制
+- 行业知识库接入
+- 私有化部署
+- 培训服务
+
+---
+
+## ⭐ 用户评价
+
+> "用这个技能做了一次产品战略分析，36 位顾问的视角完全超出了我的预期。特别是毛泽东的矛盾论和段永平的本分文化，帮我想清楚了很多问题。" — 某科技公司 CEO
+
+> "投资 6 将军的分析框架太实用了，比我自己做尽职调查还全面。已经推荐给整个投资团队。" — 某 VC 投资人
+
+> "报告导出功能省了我很多时间，直接可以拿去给董事会汇报。" — 某上市公司战略总监
+
+---
+
+## 📄 许可证
+
+Commercial License - 仅限购买者使用
+
+---
+
+**🎁 早鸟优惠进行中！前 100 名仅需 $29！**

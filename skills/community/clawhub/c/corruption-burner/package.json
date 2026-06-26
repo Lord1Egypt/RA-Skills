@@ -1,0 +1,32 @@
+{
+  "name": "corruption-burner",
+  "version": "1.0.0",
+  "description": "نظام شامل لمحاربة الفساد من جذوره — مبني على القرآن والسنة الصحيحة. 14 مهمة نشر تعليمية + نظام كرون آلي + نموذج فرعون وملإه.",
+  "author": "m7madash",
+  "license": "MIT",
+  "keywords": [
+    "corruption",
+    "justice",
+    "islamic-ethics",
+    "anti-corruption",
+    "tawhid",
+    "riba",
+    "zina",
+    "ghibah",
+    "drugs",
+    "oppression",
+    "ignorance",
+    "education",
+    "publishing",
+    "cron",
+    "pharaoh",
+    "israel",
+    "resistance",
+    "palestine"
+  ],
+  "clawhub": {
+    "category": "social-impact",
+    "tags": ["justice", "education", "publishing", "anti-corruption", "islamic-ethics"],
+    "pricing": "free"
+  }
+}

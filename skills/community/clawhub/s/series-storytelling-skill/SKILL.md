@@ -1,35 +1,145 @@
 ---
-name: "Series Storytelling Skill"
-description: "Use this skill to turn a premise, video notes, a one-episode idea, or a long novel into a multi-line long-form series or season outline. Chinese trigger phra..."
-category: "creative"
-source: "ClawHub"
-tags: [screenwriting, storytelling, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/series-storytelling-skill"
-sourceUrl: "https://clawhub.ai/skills/series-storytelling-skill"
+name: series-storytelling-skill
+description: Use this skill to turn a premise, video notes, a one-episode idea, or a long novel into a multi-line long-form series or season outline. Chinese trigger phrases include 长篇小说改故事大纲, 剧本策划, 从点子到故事大纲, 多线叙事, 长剧开发, 小说改编, 影视化改编, 剧集大纲, and 分集策划.
+homepage: https://github.com/hshgogogo/hua
+user-invocable: true
+metadata: {"openclaw":{"emoji":"🎬","homepage":"https://github.com/hshgogogo/hua","always":true}}
 ---
 
-# Series Storytelling Skill
+# 长篇剧集创作
 
-> Use this skill to turn a premise, video notes, a one-episode idea, or a long novel into a multi-line long-form series or season outline. Chinese trigger phra...
+## 何时使用
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/series-storytelling-skill`
-- **Source URL:** [https://clawhub.ai/skills/series-storytelling-skill](https://clawhub.ai/skills/series-storytelling-skill)
+在用户有以下诉求时使用这个 Skill：
 
-## Overview
+- 想把一个单集故事扩展成 6 集、8 集、12 集或更长的剧集
+- 想把长篇小说改造成故事大纲、季纲或剧集大纲
+- 想搭建“主线 + 副线 + 情感线 + 工具人线”的多线结构
+- 想做分集大纲、季纲、人物弧光、季终钩子
+- 想做剧本策划或长剧开发
+- 手里只有零散灵感、视频笔记、人物关系或一个 premise，需要整理成可执行的大纲
+- 想从一个点子直接展开成故事大纲
 
+如果用户只是想润色一场戏、修改单段对白，通常不需要调用整个 Skill。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/series-storytelling-skill
-```
+## 显式触发词
+
+以下中文请求可以直接视为这个 Skill 的高优先级触发词：
+
+- 长篇小说改故事大纲
+- 小说改编
+- 影视化改编
+- 剧本策划
+- 从点子到故事大纲
+- 多线叙事
+- 剧集大纲
+- 分集策划
+- 长剧开发
+
+与之相近的表达也应该优先触发，例如：
+
+- 把小说改成剧集大纲
+- 把小说做影视化改编
+- 帮我做季纲
+- 帮我做剧集大纲
+- 帮我做分集策划
+- 把短故事扩成多线长剧
+
+## 最少输入
+
+优先收集以下信息；如果缺少其中一部分，可以先做合理假设再起稿：
+
+- 类型：犯罪、悬疑、爱情、成长、家庭、职场等
+- 载体：网剧、电视剧、限定剧、短剧
+- 体量：总集数、每集时长
+- 核心命题：这部剧最终想讨论什么
+- 主角与对手：谁主动，谁阻挡
+- 续季需求：只做单季闭环，还是要预留第二季
+
+## 工作流
+
+### 1. 先写“短篇单元”，再写“长篇系统”
+
+每一集先作为独立短篇成立，至少输出：
+
+- 激励事件
+- 故事脊椎
+- 危机
+- 进展纠葛
+- 高潮与结局
+
+优先使用 `{baseDir}/templates/episode-sop.md`。
+
+### 2. 为每条故事线都建立自己的推进逻辑
+
+至少识别以下四类线：
+
+- 主线：本季最强目标与最大冲突
+- 对抗线：对主线形成持续阻力的调查、追击、竞争或围剿
+- 情感/成长线：亲密关系、身份秘密、价值观裂缝
+- 工具人线：放大偶然性、制造麻烦、推进剧情转折的辅助线
+
+不要只列线名，要明确每条线的：
+
+- 起点状态
+- 中段升级
+- 危机节点
+- 本季高潮
+- 阶段性结局
+
+### 3. 专门设计“线与线的交点”
+
+多线创作的重点不是并排罗列，而是交叉施压。优先寻找：
+
+- 共享危机：一条线的危机成为另一条线的推进条件
+- 错位信息：不同角色知道不同真相，造成误判
+- 高潮交汇：多条线在同一场戏、同一地点或同一事件中爆发
+
+如果一条副线无法影响主线，优先删减或重写。
+
+### 4. 用“危机 -> 选择 -> 后果”塑造人物弧光
+
+每个关键角色至少要有一条清晰变化链：
+
+- 危机逼迫角色表态
+- 角色做出带代价的选择
+- 选择改变关系、资源或立场
+- 新立场反过来影响后续剧情
+
+不要只写人物“变了”，要写清楚“为什么变”以及“变了之后剧情怎么变”。
+
+### 5. 同时完成单季闭环和续季钩子
+
+- 单季闭环：本季核心问题必须得到阶段性解决
+- 续季钩子：结尾提出更大、更深或更危险的新问题
+
+钩子最好来自结构升级，不只是“某人还活着”。
+
+## 默认输出格式
+
+除非用户另有要求，优先输出为：
+
+1. 一句话 logline
+2. 主线/副线/情感线/工具人线概览
+3. 角色弧光摘要
+4. 分集表
+5. 季终闭环与续季钩子
+
+如果用户需要成稿，先交付结构稿，再写详细剧情，避免一开始陷入长文本。
+
+## 推荐资源
+
+- 单集模板：`{baseDir}/templates/episode-sop.md`
+- 全季模板：`{baseDir}/templates/series-outline.md`
+- 进阶参考：`{baseDir}/references/advanced.md`
+- 案例拆解：`{baseDir}/examples/wolf-story/README.md`
+
+## 质量检查
+
+交付前，快速自检：
+
+- 每集是否都有自己的小闭环
+- 每条线是否在本季中至少改变过一次状态
+- 关键高潮是否由角色选择触发，而不是纯巧合触发
+- 季终是否既完成阶段闭环，又留下下一阶段的结构性悬念
+- 是否避免对已有作品进行逐字复刻，而是抽取其结构方法

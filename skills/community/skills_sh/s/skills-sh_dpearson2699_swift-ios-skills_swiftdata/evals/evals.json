@@ -1,0 +1,47 @@
+{
+  "skill_name": "swiftdata",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this SwiftData CloudKit schema for an iOS 26 app: Profile uses @Attribute(.unique) on email, has a required @Relationship(deleteRule: .deny) owner, stores avatarData as Data, and a reviewer says every scalar property must become optional for sync. Give concise corrected guidance with a model sketch.",
+      "expected_output": "A review that flags SwiftData CloudKit schema incompatibilities, keeps scalar optionality precise, and covers CloudKit capability and schema rollout concerns.",
+      "files": [],
+      "assertions": [
+        "Flags @Attribute(.unique), #Unique, or unique constraints as incompatible with SwiftData CloudKit sync.",
+        "Flags the required relationship and recommends optional relationships for CloudKit-backed SwiftData models.",
+        "Flags the .deny delete rule as incompatible with SwiftData CloudKit sync.",
+        "Recommends @Attribute(.externalStorage) for large Data payloads such as image blobs.",
+        "Does not claim every scalar property must be optional.",
+        "Mentions iCloud CloudKit capability, Remote notifications background mode, or CloudKit schema promotion/additive rollout."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A SwiftData list is slow. It filters trips by destination, sorts by startDate, and uses #Predicate with Date.now directly plus a helper method call on the model. The draft fix adds indexes to every property and says adding indexes never needs migration testing. Review the plan and give corrected predicate and indexing guidance.",
+      "expected_output": "A review that fixes predicate capture and unsupported-call risks, recommends targeted #Index usage for frequent filters/sorts, and avoids unsourced migration guarantees.",
+      "files": [],
+      "assertions": [
+        "Recommends capturing changing values such as Date.now into a local let before building the predicate.",
+        "Warns against arbitrary unsupported helper method calls inside #Predicate and suggests stored properties or post-fetch filtering when needed.",
+        "Recommends targeted #Index declarations for frequently filtered or sorted properties rather than indexing every property.",
+        "Mentions compound indexes when a query filters and sorts by a repeated property combination.",
+        "Does not claim adding or removing indexes is always migration-free or never needs testing.",
+        "Suggests profiling or Instruments/Core Data diagnostics to verify query behavior."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A Core Data app wants to add SwiftData screens against the existing SQLite store while keeping the old stack alive. The model includes a Codable Address struct and a renamed persisted field. Explain how to route the work and what boundary guidance matters, without turning the answer into a full Core Data tutorial.",
+      "expected_output": "A boundary answer that treats Core Data + SwiftData coexistence or migration as SwiftData-owned, avoids unsupported Codable availability claims, and preserves store/schema alignment guidance.",
+      "files": [],
+      "assertions": [
+        "States that Core Data + SwiftData coexistence or migration should use the swiftdata skill.",
+        "Explains that SwiftData must point at the existing persistent store URL when sharing or migrating data.",
+        "Mentions matching entity names, property names, types, and relationships across the Core Data model and SwiftData @Model classes.",
+        "Mentions @Attribute(originalName:) or equivalent rename mapping for renamed persisted fields.",
+        "States that compatible Codable structs or enums can be stored as SwiftData model properties without asserting an unsupported iOS 18+ threshold for Codable value storage.",
+        "Avoids expanding into a standalone Core Data stack tutorial."
+      ]
+    }
+  ]
+}

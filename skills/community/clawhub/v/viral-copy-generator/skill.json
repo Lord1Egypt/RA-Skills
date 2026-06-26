@@ -1,0 +1,87 @@
+{
+  "name": "viral-copy-generator",
+  "version": "1.1.0",
+  "description": "短视频爆款文案生成与复刻专家 - 支持抖音、TikTok日区、TikTok美区多平台文案生成，集成免费TTS语音合成",
+  "author": "SOLO",
+  "license": "MIT",
+  "type": "web-app",
+  "category": "content-creation",
+  "tags": ["短视频", "文案生成", "TTS", "抖音", "TikTok", "AI"],
+  
+  "entry": "index.html",
+  "icon": "🎬",
+  
+  "capabilities": {
+    "offline": true,
+    "requiresAuth": false,
+    "requiresAPI": false,
+    "networkRequired": ["tts.wangwangit.com", "api.mymemory.translated.net"]
+  },
+  
+  "features": [
+    {
+      "id": "viral-generator",
+      "name": "AI爆款文案生成",
+      "description": "根据产品信息生成抖音、TikTok日区、美区爆款文案",
+      "platforms": ["douyin", "tiktok-jp", "tiktok-us"]
+    },
+    {
+      "id": "viral-replication",
+      "name": "爆款文案复刻",
+      "description": "粘贴爆款文案，自动识别语言并生成新文案"
+    },
+    {
+      "id": "save-records",
+      "name": "保存记录",
+      "description": "本地存储生成记录，支持标题标签生成"
+    },
+    {
+      "id": "tts-engine",
+      "name": "TTS语音合成",
+      "description": "免费Edge TTS语音合成，支持中英日韩多语言"
+    }
+  ],
+  
+  "config": {
+    "tts": {
+      "apiUrl": "https://tts.wangwangit.com/v1/audio/speech",
+      "voices": {
+        "zh-CN": { "female": "zh-CN-XiaoxiaoNeural", "male": "zh-CN-YunxiNeural" },
+        "ja-JP": { "female": "ja-JP-NanamiNeural", "male": "ja-JP-DaichiNeural" },
+        "en-US": { "female": "en-US-JennyNeural", "male": "en-US-GuyNeural" },
+        "ko-KR": { "female": "ko-KR-SunHiNeural", "male": "ko-KR-InJoonNeural" }
+      }
+    },
+    "translate": {
+      "apiUrl": "https://api.mymemory.translated.net/get"
+    },
+    "storage": {
+      "key": "copyRecords",
+      "maxRecords": 50
+    }
+  },
+  
+  "security": {
+    "contentSecurityPolicy": {
+      "default-src": "'self'",
+      "script-src": "'self' 'unsafe-inline'",
+      "style-src": "'self' 'unsafe-inline'",
+      "connect-src": "'self' https://tts.wangwangit.com https://api.mymemory.translated.net",
+      "img-src": "'self' data: blob:",
+      "media-src": "'self' blob:"
+    },
+    "noExternalScripts": true,
+    "noTracking": true,
+    "localStorageOnly": true
+  },
+  
+  "compatibility": {
+    "browsers": ["Chrome >= 80", "Firefox >= 75", "Safari >= 13", "Edge >= 80"],
+    "platforms": ["Windows", "macOS", "Linux", "iOS", "Android"]
+  },
+  
+  "instructions": {
+    "zh-CN": "打开 index.html 即可使用，无需安装依赖。支持生成抖音、TikTok日区、美区爆款文案，内置免费TTS语音合成。",
+    "en-US": "Open index.html to use. No dependencies required. Supports generating viral copy for Douyin, TikTok Japan, and TikTok US with free TTS."
+  }
+}

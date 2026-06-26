@@ -1,0 +1,44 @@
+{
+  "case_id": "implicit-weekly-progress",
+  "overall_pass": true,
+  "score": 95,
+  "checks": [
+    {
+      "id": "async_readability",
+      "pass": true,
+      "score": 5,
+      "notes": "The weekly report can be scanned through conclusion, progress, and next actions."
+    },
+    {
+      "id": "visual_rhythm",
+      "pass": true,
+      "score": 5,
+      "notes": "Regular Lumen fits the compact progress-report structure and separates status from action."
+    },
+    {
+      "id": "evidence_fidelity",
+      "pass": true,
+      "score": 5,
+      "notes": "The export time and API-stability risk are retained without unsupported elaboration."
+    },
+    {
+      "id": "no_ai_slop",
+      "pass": true,
+      "score": 5,
+      "notes": "The fixture avoids generic week-in-review filler and unresolved placeholders."
+    },
+    {
+      "id": "theme_appropriateness",
+      "pass": true,
+      "score": 5,
+      "notes": "Regular Lumen is suitable for a warm but structured weekly update."
+    },
+    {
+      "id": "decision_support",
+      "pass": true,
+      "score": 4,
+      "notes": "The next owner and monitoring action are clear enough for follow-up."
+    }
+  ],
+  "summary": "Strong weekly-progress fixture with explicit status and next-action information."
+}

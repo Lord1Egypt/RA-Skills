@@ -1,0 +1,67 @@
+{
+  "name": "message_monitor",
+  "version": "1.1.0",
+  "description": "Monitors Amazon messaging threads for new replies and emits updates.",
+  "allowedTools": [
+    "browser.query",
+    "browser.wait"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "threadUrl": {
+        "type": "string"
+      },
+      "threadId": {
+        "type": "string"
+      },
+      "pollIntervalMs": {
+        "type": "number"
+      },
+      "enabled": {
+        "type": "boolean"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "threadId": {
+        "type": "string"
+      },
+      "messageId": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      },
+      "author": {
+        "type": "string"
+      },
+      "direction": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "In EasyBuy this is implemented in content.js with a MutationObserver; the background SW handles notifications and auto-reply gating. Only run on /messaging/ pages.",
+  "examples": [
+    {
+      "input": {
+        "threadUrl": "https://www.amazon.com/gp/message?threadId=ABC123",
+        "pollIntervalMs": 1000
+      },
+      "output": {
+        "threadId": "https://www.amazon.com/gp/message?threadId=ABC123",
+        "messageId": "seller|10:41 AM|Thanks for reaching out",
+        "text": "Thanks for reaching out. We will review your request.",
+        "author": "Seller",
+        "direction": "inbound",
+        "url": "https://www.amazon.com/gp/message?threadId=ABC123"
+      }
+    }
+  ],
+  "id": "message_monitor"
+}

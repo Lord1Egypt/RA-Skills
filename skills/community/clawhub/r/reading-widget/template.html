@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="{{REFRESH_SECONDS}}">
+<title>Reading</title>
+<style>
+  /* Material 3 baseline (light) tokens */
+  :root {
+    --primary: #6750A4;
+    --on-surface: #1D1B20;
+    --on-surface-variant: #49454F;
+    --outline: #79747E;
+    --tertiary: #7D5260;
+  }
+  .r-card, .r-card * { box-sizing: border-box; font-family: -apple-system, "SF Pro Display", "PingFang SC", sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  .r-card {
+    position: relative;
+    color: var(--on-surface);
+    width: 264px;
+    background:
+      linear-gradient(157deg, rgba(252,252,255,0.86) 0%, rgba(246,247,253,0.87) 100%);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(103, 80, 164, 0.18);
+    border-radius: 20px;
+    padding: 17px;
+    box-shadow: 0 20px 50px rgba(70,70,110,0.18), inset 0 1px 0 rgba(255,255,255,0.7);
+    overflow: hidden;
+  }
+  .header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+  .title { font-size: 13px; font-weight: 600; color: var(--on-surface); letter-spacing: 0.3px; }
+  .date { font-size: 10px; color: var(--on-surface-variant); font-variant-numeric: tabular-nums; }
+
+  .streak { display: flex; align-items: baseline; gap: 8px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(73,69,79,0.12); }
+  .streak-num { font-size: 42px; font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -1px; text-shadow: none; }
+  .streak-label { font-size: 11px; color: var(--on-surface-variant); }
+  .streak-fire { margin-left: auto; font-size: 21px; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+  .stat { position: relative; background: rgba(103,80,164,0.15); border-radius: 14px; padding: 11px 12px; cursor: pointer; user-select: none; -webkit-user-select: none; transition: background 0.15s; }
+  .stat:hover { background: rgba(103,80,164,0.20); }
+  .stat:active { transform: scale(0.98); }
+  .stat .face-back { display: none; }
+  .stat.flipped .face-front { display: none; }
+  .stat.flipped .face-back { display: block; }
+  .stat::after { content: ''; position: absolute; top: 12px; right: 11px; width: 5px; height: 5px; border-right: 1.5px solid rgba(73,69,79,0.45); border-bottom: 1.5px solid rgba(73,69,79,0.45); transform: rotate(45deg); transition: transform 0.2s, border-color 0.15s; }
+  .stat:hover::after { border-color: var(--primary); }
+  .stat.flipped::after { transform: rotate(225deg); }
+  .stat-label { font-size: 10px; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+  .stat-value { font-size: 19px; font-weight: 600; color: var(--on-surface); font-variant-numeric: tabular-nums; }
+  .stat-unit { font-size: 11px; font-weight: 400; color: var(--on-surface-variant); }
+  .stat-sub { font-size: 10px; color: var(--outline); margin-top: 2px; }
+
+  .progress-section { margin-bottom: 15px; }
+  .progress-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .progress-title { font-size: 11px; color: var(--on-surface-variant); }
+  .progress-pct { font-size: 11px; color: var(--primary); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bar { height: 6px; background: rgba(103,80,164,0.22); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--tertiary)); border-radius: 3px; transition: width 0.3s; }
+
+  .goal-input { background: transparent; border: none; color: var(--primary); font: inherit; font-weight: 600; width: 30px; text-align: center; padding: 0 2px; border-bottom: 1px dashed rgba(103,80,164,0.45); font-variant-numeric: tabular-nums; outline: none; cursor: text; }
+  .goal-input:focus { border-bottom-color: var(--primary); }
+  .goal-input::-webkit-inner-spin-button, .goal-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .current { background: rgba(103,80,164,0.15); border-radius: 14px; padding: 12px; margin-bottom: 15px; display: flex; gap: 12px; }
+  .cover { width: 40px; height: 54px; background: linear-gradient(135deg, #4F378B, #381E72); border-radius: 4px; flex-shrink: 0; box-shadow: 0 3px 10px rgba(0,0,0,0.45); background-size: cover; background-position: center; }
+  .current-info { flex: 1; min-width: 0; }
+  .current-label { font-size: 10px; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+  .current-title { font-size: 14px; font-weight: 600; color: var(--on-surface); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .current-author { font-size: 11px; color: var(--on-surface-variant); margin-bottom: 8px; }
+  .current-bar { height: 4px; background: rgba(103,80,164,0.22); border-radius: 2px; overflow: hidden; margin-bottom: 4px; }
+  .current-bar-fill { height: 100%; background: var(--primary); border-radius: 2px; }
+  .current-meta { display: flex; justify-content: flex-end; font-size: 10px; color: var(--on-surface-variant); font-variant-numeric: tabular-nums; }
+
+  .finished { display: flex; justify-content: space-between; align-items: center; padding: 11px 13px; background: rgba(103,80,164,0.13); border-radius: 14px; margin-bottom: 15px; }
+  .finished-left { display: flex; align-items: baseline; gap: 7px; }
+  .finished-num { font-size: 26px; font-weight: 700; color: var(--on-surface); font-variant-numeric: tabular-nums; letter-spacing: -0.5px; }
+  .finished-label { font-size: 11px; color: var(--on-surface-variant); }
+  .finished-meta { font-size: 10px; color: var(--outline); text-align: right; line-height: 1.4; }
+
+  .quote { font-size: 11px; color: var(--on-surface-variant); line-height: 1.5; padding: 11px 13px; margin-bottom: 15px; background: rgba(103,80,164,0.11); border-left: 2px solid var(--primary); border-radius: 0 8px 8px 0; }
+  .quote:empty { display: none; }
+
+  .footer { display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--outline); }
+  .last-read { display: flex; align-items: center; gap: 5px; }
+  .dot { width: 6px; height: 6px; background: #3FA968; border-radius: 50%; box-shadow: 0 0 6px rgba(63,169,104,0.45); }
+</style>
+</head>
+<body>
+  <div class="r-card">
+    <div class="header">
+      <div class="title">📖 阅读</div>
+      <div class="date">{{DATE}}</div>
+    </div>
+
+    <div class="streak">
+      <div class="streak-num">{{STREAK}}</div>
+      <div class="streak-label">连续阅读天数</div>
+      <div class="streak-fire">🔥</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat" onclick="this.classList.toggle('flipped')">
+        <div class="face face-front">
+          <div class="stat-label">今日</div>
+          <div class="stat-value">{{TODAY_MIN}}<span class="stat-unit"> 分</span></div>
+          <div class="stat-sub">日均 {{DAY_AVG}}</div>
+        </div>
+        <div class="face face-back">
+          <div class="stat-label">本周</div>
+          <div class="stat-value">{{WEEK_HM}}</div>
+          <div class="stat-sub">日均 {{WEEK_DAY_AVG}}</div>
+        </div>
+      </div>
+      <div class="stat" onclick="this.classList.toggle('flipped')">
+        <div class="face face-front">
+          <div class="stat-label">本月</div>
+          <div class="stat-value">{{MONTH_HOURS}}<span class="stat-unit"> 小时</span></div>
+          <div class="stat-sub">上月 {{LAST_MONTH_HOURS}}h</div>
+        </div>
+        <div class="face face-back">
+          <div class="stat-label">今年</div>
+          <div class="stat-value">{{YEAR_HOURS}}<span class="stat-unit"> 小时</span></div>
+          <div class="stat-sub">日均 {{YEAR_DAY_AVG}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-row">
+        <div class="progress-title">本月目标 · <input class="goal-input" id="goalInput" type="number" min="1" max="999" value="{{GOAL_HOURS}}" oninput="var g=Math.max(1,Math.min(999,parseInt(this.value)||1));var p=Math.min(100,Math.round({{MONTH_HOURS}}/g*100));document.getElementById('goalBar').style.width=p+'%';document.getElementById('goalPct').textContent=p+'%';clearTimeout(window.__goalTimer);window.__goalTimer=setTimeout(function(){fetch('http://127.0.0.1:47900/set-goal',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({goal:g})}).catch(function(){});},600);"> 小时</div>
+        <div class="progress-pct" id="goalPct">{{GOAL_PCT}}%</div>
+      </div>
+      <div class="bar"><div class="bar-fill" id="goalBar" style="width:{{GOAL_PCT}}%"></div></div>
+    </div>
+
+    <div class="current">
+      <div class="cover" style="background-image:url('{{BOOK_COVER}}')"></div>
+      <div class="current-info">
+        <div class="current-label">正在读</div>
+        <div class="current-title">{{BOOK_TITLE}}</div>
+        <div class="current-author">{{BOOK_AUTHOR}}</div>
+        <div class="current-bar"><div class="current-bar-fill" style="width:{{BOOK_PROGRESS}}%"></div></div>
+        <div class="current-meta"><span>{{BOOK_PROGRESS}}%</span></div>
+      </div>
+    </div>
+
+    <div class="finished">
+      <div class="finished-left">
+        <div class="finished-num">{{YEAR_FINISHED}}</div>
+        <div class="finished-label">今年读完</div>
+      </div>
+      <div class="finished-meta">
+        {{YEAR_NOTES}} 条笔记
+      </div>
+    </div>
+
+    <div class="quote">{{QUOTE}}</div>
+
+    <div class="footer">
+      <div class="last-read"><span class="dot"></span>{{LAST_READ}}在读</div>
+      <div>{{UPDATED_AT}} 更新</div>
+    </div>
+  </div>
+</body>
+</html>

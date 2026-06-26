@@ -1,0 +1,734 @@
+{
+  "agent-browser": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "agent-browser",
+      "installedVersion": "0.2.0",
+      "installedAt": 1773573733666
+    }
+  },
+  "gstack-openclaw-investigate": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "gstack-openclaw-investigate",
+      "installedVersion": "1.0.0",
+      "installedAt": 1776002281305
+    }
+  },
+  "self-improving-agent": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "careful": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "cso": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "nuwa": {
+    "references": [
+      "skill-creator"
+    ],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "openai-whisper": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "summarize": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "find-skills": {
+    "references": [],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "find-skills",
+      "installedVersion": "0.1.0",
+      "installedAt": 1773572161516
+    }
+  },
+  "openclaw-wendang": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "qa": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "bazi": {
+    "references": [],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {}
+  },
+  "minimax-monitor": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "skill-factory": {
+    "references": [
+      "clawhub"
+    ],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {}
+  },
+  "ontology": {
+    "references": [],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "ontology",
+      "installedVersion": "1.0.4",
+      "installedAt": 1773573902046
+    }
+  },
+  "session-continuity": {
+    "references": [
+      "proactive-agent"
+    ],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "session-continuity",
+      "installedVersion": "1.0.0",
+      "installedAt": 1778577649451
+    }
+  },
+  "implementation-plan": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "implementation-plan",
+      "installedVersion": "1.0.2",
+      "installedAt": 1775957043989
+    }
+  },
+  "gog-v2": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "gog-v2",
+      "installedVersion": "1.0.0",
+      "installedAt": 1775927190489
+    }
+  },
+  "review": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "office-hours": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "gupiao": {
+    "references": [],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {}
+  },
+  "proactive-agent": {
+    "references": [],
+    "referenced_by": [
+      "skill-net"
+    ],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "proactive-agent",
+      "installedVersion": "3.1.0",
+      "installedAt": 1776002044866
+    }
+  },
+  "openclaw-weixin": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "openclaw-weixin",
+      "installedVersion": "2.0.1",
+      "installedAt": 1777788177556
+    }
+  },
+  "weather": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "zoufeier-perspective": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "superpowers-writing-plans": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "superpowers-writing-plans",
+      "installedVersion": "1.0.1",
+      "installedAt": 1776005583796
+    }
+  },
+  "skill-net": {
+    "references": [
+      "humanizer-zh",
+      "proactive-agent",
+      "gupiao",
+      "skill-factory",
+      "session-continuity",
+      "ontology",
+      "bazi",
+      "clawhub",
+      "humanizer",
+      "find-skills"
+    ],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "minimax-feishu-tts": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "humanizer": {
+    "references": [],
+    "referenced_by": [
+      "humanizer-zh"
+    ],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "humanizer",
+      "installedVersion": "1.0.0",
+      "installedAt": 1775956803761
+    }
+  },
+  "stock-analysis-agent": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "stock-analysis-agent",
+      "installedVersion": "1.0.0",
+      "installedAt": 1775926804036
+    }
+  },
+  "openclaw-git-manager": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "skill-vetter": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {
+      "version": 1,
+      "registry": "https://clawhub.ai",
+      "slug": "skill-vetter",
+      "installedVersion": "1.0.0",
+      "installedAt": 1773573071598
+    }
+  },
+  "nano-pdf": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-solidity-smart-contract-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "support-legal-compliance-checker": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-seo-specialist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-kuaishou-strategist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-test-results-analyzer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-performance-benchmarker": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-growth-hacker": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "compliance-auditor": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-evidence-collector": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-ai-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "project-manager-senior": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-instagram-curator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-mobile-app-builder": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-app-store-optimizer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "humanizer-zh": {
+    "references": [
+      "humanizer"
+    ],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-security-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-ux-researcher": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "project-management-jira-workflow-steward": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-devops-automator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "identity-graph-operator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-backend-architect": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "product-trend-researcher": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "support-infrastructure-maintainer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-carousel-growth-engine": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "blockchain-security-auditor": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-embedded-firmware-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-bilibili-content-strategist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-autonomous-optimization-architect": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "support-finance-tracker": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "specialized-model-qa": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "report-distribution-agent": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "pdf": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "product-behavioral-nudge-engine": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "support-analytics-reporter": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-incident-response-commander": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "specialized-developer-advocate": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "mmx-cli": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-wechat-mini-program-developer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "zk-steward": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "product-feedback-synthesizer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "specialized-cultural-intelligence-strategist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "support-support-responder": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-reality-checker": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-inclusive-visuals-specialist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "data-analytics-reporter": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-visual-storyteller": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "agents-orchestrator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "data-consolidation-agent": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "agent-xlsx": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-rapid-prototyper": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-threat-detection-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-frontend-developer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "n8n-workflow-creator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "exa-web-search-free": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-wechat-official-account": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "support-executive-summary-generator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "project-management-studio-producer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-ux-architect": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-api-tester": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-whimsy-injector": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "accounts-payable-agent": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-zhihu-strategist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-image-prompt-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "agentic-identity-trust": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-content-creator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-tiktok-strategist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-xiaohongshu-specialist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-accessibility-auditor": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-technical-writer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-tool-evaluator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "superdesign": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "project-management-project-shepherd": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-senior-developer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "powerpoint-pptx": {
+    "references": [
+      "clawhub"
+    ],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "project-management-studio-operations": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "product-sprint-prioritizer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-social-media-strategist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "engineering-data-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-baidu-seo-specialist": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-twitter-engager": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-reddit-community-builder": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "sales-data-extraction-agent": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "marketing-china-ecommerce-operator": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-brand-guardian": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "word-docx": {
+    "references": [
+      "clawhub"
+    ],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "design-ui-designer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "testing-workflow-optimizer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "project-management-experiment-tracker": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "auto-updater": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  },
+  "lsp-index-engineer": {
+    "references": [],
+    "referenced_by": [],
+    "meta": {}
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "cloud-native": {
+    "id": "cloud-native",
+    "name_zh": "云原生企业",
+    "name_en": "Cloud Native",
+    "vibe_zh": "干净专业的 B2B SaaS 设计系统，卡片式布局，蓝灰主色，小圆角，信息密度中高，适合产品汇报",
+    "vibe_en": "Clean professional B2B SaaS design system, card-based layout, blue-grey primary, small rounded corners, medium-high density, ideal for product presentations",
+    "palette": {
+      "bg": "#FFFFFF",
+      "accent": "#1677FF",
+      "secondary": "#F5F7FA",
+      "text": "#1D2129",
+      "text_soft": "#8F959E",
+      "line": "#E5E6EB"
+    },
+    "is_dark": false
+  },
+  "swiss-grid": {
+    "id": "swiss-grid",
+    "name_zh": "瑞士网格",
+    "name_en": "Swiss Grid",
+    "vibe_zh": "严格网格系统，高密度数据展示，无衬线大写标题，直角，信号红强调，像机场标识或咨询报告",
+    "vibe_en": "Strict grid system, high-density data display, sans-serif uppercase headings, right angles, signal-red accents, like airport signage or consulting decks",
+    "palette": {
+      "bg": "#FFFFFF",
+      "accent": "#E30613",
+      "secondary": "#1A1A1A",
+      "text": "#1A1A1A",
+      "text_soft": "#666666",
+      "line": "#E6E6E6"
+    },
+    "is_dark": false
+  },
+  "editorial-magazine": {
+    "id": "editorial-magazine",
+    "name_zh": "杂志编辑",
+    "name_en": "Editorial Magazine",
+    "vibe_zh": "衬线字体主导的长文阅读体验，大图出血，双栏排版，大量留白，像《纽约时报杂志》或 Monocle",
+    "vibe_en": "Serif-led long-form reading experience, large image bleeds, two-column layout, generous whitespace, like NYT Magazine or Monocle",
+    "palette": {
+      "bg": "#FAF8F5",
+      "accent": "#8B6F4E",
+      "secondary": "#D4C5B9",
+      "text": "#1C1917",
+      "text_soft": "#6B6560",
+      "line": "#D4C5B9"
+    },
+    "is_dark": false
+  },
+  "sunlit-warmth": {
+    "id": "sunlit-warmth",
+    "name_zh": "阳光手账",
+    "name_en": "Sunlit Warmth",
+    "vibe_zh": "明亮温暖的社区感设计，奶油色底，阳光黄与暖橙点缀，大圆角，手写圆润感，像社区中心的手写海报",
+    "vibe_en": "Bright warm community-centric design, creamy base, sunshine yellow and warm orange accents, large rounded corners, handwritten roundness, like a community center hand-lettered poster",
+    "palette": {
+      "bg": "#FFF8F0",
+      "accent": "#FF8C42",
+      "secondary": "#FFB347",
+      "text": "#5D4037",
+      "text_soft": "#8D6E63",
+      "line": "#FFD6C1"
+    },
+    "is_dark": false
+  },
+  "terminal-hacker": {
+    "id": "terminal-hacker",
+    "name_zh": "终端骇客",
+    "name_en": "Terminal Hacker",
+    "vibe_zh": "纯黑终端界面，等宽字体，绿色命令行，高密度日志感，ASCII 装饰边框，像 Linux tty 或 cmatrix",
+    "vibe_en": "Pure black terminal interface, monospace fonts, green command line, high-density log feel, ASCII decorative borders, like Linux tty or cmatrix",
+    "palette": {
+      "bg": "#0D0D0D",
+      "accent": "#33FF00",
+      "secondary": "#4A5D4A",
+      "text": "#33FF00",
+      "text_soft": "#4A5D4A",
+      "line": "#1A2E1A"
+    },
+    "is_dark": true
+  },
+  "y2k-kawaii": {
+    "id": "y2k-kawaii",
+    "name_zh": "Y2K 可爱数字",
+    "name_en": "Y2K Kawaii",
+    "vibe_zh": "2000年代数字乐观主义，高饱和粉紫渐变，大圆角气泡按钮，粗体无衬线，活泼互动感",
+    "vibe_en": "2000s digital optimism, high-saturation pink-purple gradients, large rounded bubble buttons, bold sans-serif, playful interactive feel",
+    "palette": {
+      "bg": "#FFF0F5",
+      "accent": "#FF6B9D",
+      "secondary": "#9D4EDD",
+      "text": "#2C2C2E",
+      "text_soft": "#8E8E93",
+      "line": "#FFD6E8"
+    },
+    "is_dark": false
+  }
+}

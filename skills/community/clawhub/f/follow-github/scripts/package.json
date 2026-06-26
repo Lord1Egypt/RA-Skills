@@ -1,0 +1,13 @@
+{
+  "name": "follow-github-fetcher",
+  "version": "1.0.0",
+  "description": "Content fetcher for Follow GitHub skill — GitHub API + trending scraper",
+  "type": "module",
+  "scripts": {
+    "digest": "node prepare-digest.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.0"
+  }
+}

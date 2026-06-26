@@ -1,35 +1,32 @@
 ---
-name: "🌐 Deploy HTML content to EdgeOne Pages"
-description: "Deploy HTML content to EdgeOne Pages, return the public URL."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/edgeone"
-sourceUrl: "https://clawhub.ai/skills/edgeone"
+name: edgeone
+description: Deploy HTML content to EdgeOne Pages, return the public URL.
+homepage: https://github.com/aahl/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🌐",
+        "install":
+          [
+            {
+              "id": "node",
+              "kind": "node",
+              "package": "mcporter",
+              "bins": ["mcporter"],
+              "label": "Install mcporter (node)",
+            },
+          ],
+      },
+  }
 ---
 
-# 🌐 Deploy HTML content to EdgeOne Pages
+# EdgeOne
+Deploy HTML content to EdgeOne Pages, return the public URL. No login required, no API key required.
 
-> Deploy HTML content to EdgeOne Pages, return the public URL.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/edgeone`
-- **Source URL:** [https://clawhub.ai/skills/edgeone](https://clawhub.ai/skills/edgeone)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/edgeone
+## Deploy HTML
+HTML or text content to deploy. Provide complete HTML or text content you want to publish, and the system will return a public URL where your content can be accessed.
+```shell
+npx -y mcporter call mcp-on-edge.edgeone.app/mcp-server.deploy-html value="<html>Content</html>"
+npx -y mcporter call mcp-on-edge.edgeone.app/mcp-server.deploy-html value="$(cat index.html)"
 ```

@@ -1,0 +1,73 @@
+{
+  "categories": {
+    "text_to_image": {
+      "name": "文生图",
+      "name_en": "Text to Image",
+      "status": "active",
+      "default_port": "kling-image",
+      "description": "从文本描述生成图像",
+      "ports": {
+        "kling-image": {
+          "name": "Kling Image",
+          "display_name": "Kling O1",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_kling/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "kling-image-o1",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "速度快，质量优秀，推荐使用"
+        },
+        "hidream-txt2img": {
+          "name": "HiDream Txt2Img",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/image/txt2img/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "tested": true,
+          "speed": "medium",
+          "quality": "good",
+          "notes": "已测试，质量良好"
+        },
+        "nano-banana": {
+          "name": "Nano Banana",
+          "display_name": "Nano Banana 2",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_std/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "nano-banana-2",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "已测试，效果优秀，回调使用 txt2img 路径"
+        }
+      }
+    }
+  }
+}

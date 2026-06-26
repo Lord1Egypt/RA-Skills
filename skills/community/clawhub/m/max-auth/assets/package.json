@@ -1,0 +1,9 @@
+{
+  "name": "max-auth",
+  "version": "1.0.0",
+  "description": "Max Auth Server — biometric passkey + master password auth for OpenClaw sensitive actions",
+  "main": "auth-server.js",
+  "dependencies": {
+    "@simplewebauthn/server": "^13.0.0"
+  }
+}

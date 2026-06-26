@@ -1,35 +1,70 @@
 ---
-name: "leetcode-plan"
-description: "12周LeetCode跳槽刷题计划助手。当用户输入"第X天"或"DX"时触发，返回对应题目；当用户提交解题答案或表示未解出时，生成错题记录并写入errorset.md；根据当天进度推荐复习之前的错题。适用于系统性刷题打卡、错题管理和间隔复习场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/leetcode-plan"
-sourceUrl: "https://clawhub.ai/skills/leetcode-plan"
+name: leetcode-plan
+description: 12周LeetCode跳槽刷题计划助手。当用户输入"第X天"或"DX"时触发，返回对应题目；当用户提交解题答案或表示未解出时，生成错题记录并写入errorset.md；根据当天进度推荐复习之前的错题。适用于系统性刷题打卡、错题管理和间隔复习场景。
 ---
 
-# leetcode-plan
+# LeetCode 刷题计划助手
 
-> 12周LeetCode跳槽刷题计划助手。当用户输入"第X天"或"DX"时触发，返回对应题目；当用户提交解题答案或表示未解出时，生成错题记录并写入errorset.md；根据当天进度推荐复习之前的错题。适用于系统性刷题打卡、错题管理和间隔复习场景。
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/leetcode-plan`
-- **Source URL:** [https://clawhub.ai/skills/leetcode-plan](https://clawhub.ai/skills/leetcode-plan)
+### 1. 用户输入天数
 
-## Overview
+当用户说"第X天"或"DX"时：
 
+1. 查阅 `references/plan.md` 找到对应天数的题目
+2. 若为复盘日（D7/D14/D20/D21/D28/D36/D44/D51/D58/D66/D73/D80等）：提示用户复习错题，并运行：
+   ```bash
+   python3 scripts/manage_errors.py review <day>
+   ```
+3. 若为正常题目日：输出格式：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/leetcode-plan
 ```
+## 第X天 - [题型]
+
+**题号**：[题号]. [题目名称]
+**难度**：[Easy/Medium/Hard]
+**LeetCode链接**：https://leetcode.cn/problems/[slug]/
+
+---
+完成后请回复：
+- 你的解题方案（代码或思路）
+- 或「没做出来」+ 错误原因（可简短描述）
+```
+
+同时推荐当天需要复习的错题（若有）：
+```bash
+python3 scripts/manage_errors.py review <day>
+```
+
+### 2. 用户提交解答
+
+**用户解出了**：给出简短点评，指出可优化点，标注相似题（查 references/plan.md 相似题表）。若解法与最优解差距过大，则按未解出处理。
+
+**用户没做出来**：
+1. 请用户提供错误原因（一句话即可）
+2. 收到原因后，自动生成：
+   - **核心思路**：该题的关键解题思路（2-4句）
+   - **相似题**：从 references/plan.md 查找对应相似题
+3. 调用脚本记录到 `errorset.md`（路径：当前工作目录下）：
+   ```bash
+   python3 scripts/manage_errors.py add <day> "<题号>" "<题目名>" "<类型>" "<错误原因>" "<核心思路>" "<相似题>"
+   ```
+4. 确认记录成功，告知用户复习计划（D+1、D+3、D+7）
+
+### 3. 复习推荐
+
+每次用户说天数时，先检查当天是否有待复习错题，若有则在题目前展示：
+
+```
+## 今日复习提醒
+以下错题需要今天重做：
+- [题号] [题目名] （类型：XXX）
+  核心思路：...
+```
+
+## 注意事项
+
+- errorset.md 保存在**用户当前工作目录**，不是 skill 目录
+- 核心思路和相似题由 Claude 生成，不需要用户填写
+- 错误原因需用户提供，其余字段自动填充
+- 题号参考表在 `references/plan.md`，相似题也在该文件末尾

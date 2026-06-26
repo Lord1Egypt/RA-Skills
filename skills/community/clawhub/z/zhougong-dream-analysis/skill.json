@@ -1,0 +1,41 @@
+{
+  "name": "周公解梦 (ZhouGong Dream Analysis)",
+  "version": "1.0.1",
+  "description": "基于传统周公解梦和现代心理学的双语解梦系统。支持格式化梦境输入、交互式引导提问、双版本解读（传统版+科学版）、智能吉凶建议。当用户描述梦境或询问'周公解梦'、'dream interpretation'、'dream analysis'、'解梦'、'梦见'、'梦到'、'zhougong'时触发。",
+  "slug": "zhougong-dream-analysis",
+  "tags": ["dream", "analysis", "周公解梦", "解梦", "心理学", "传统文化", "Zhou Gong", "dream analysis"],
+  "author": "Agent2 Team",
+  "homepage": "https://github.com/Agent2Team/zhougong-interpretation",
+  "keywords": [
+    "dream analysis",
+    "dream interpretation",
+    "dream meaning",
+    "Chinese dream analysis",
+    "Zhou Gong dream analysis",
+    "周公解梦",
+    "解梦",
+    "梦见",
+    "梦到",
+    "梦境解析",
+    "ZhouGong Dream Analysis",
+    "Chinese dream analysis"
+  ],
+  "provides": [
+    {
+      "tool": "zhougong_dream",
+      "description": "Perform Zhou Gong dream analysis with traditional and modern psychology analysis",
+      "trigger": ["周公解梦", "dream analysis", "dream interpretation", "解梦", "梦见", "zhougong", "ZhouGong Dream Analysis"]
+    }
+  ],
+  "dependencies": [],
+  "install": {
+    "npm": "zhougong-dream-analysis@latest",
+    "clawhub": "zhougong-dream-analysis"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/zhougong_dream.py",
+    "trigger.py"
+  ]
+}

@@ -1,0 +1,172 @@
+/* Dark Editorial — Card News Design System */
+/* @lio_universe_00 기본 스타일 */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.card {
+  width: 1080px;
+  height: 1350px;
+  font-family: 'Pretendard', sans-serif;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+/* ===== 커버: 사진 + 다크 그라데이션 ===== */
+.cover { background: #000; }
+.cover .bg-img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.45;
+}
+.cover .gradient {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.92) 80%);
+}
+.cover .inner {
+  position: relative; z-index: 2;
+  padding: 80px; height: 100%;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.cover .handle {
+  position: absolute; top: 50px; left: 80px;
+  font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.35);
+}
+.cover h1 {
+  font-size: 104px; font-weight: 900; color: #fff;
+  line-height: 1.3; letter-spacing: -4px; word-break: keep-all;
+  margin-bottom: 24px;
+}
+.cover h1 .hl { color: #60A5FA; }
+.cover .sub {
+  font-size: 34px; font-weight: 500; color: rgba(255,255,255,0.45);
+  line-height: 1.5; margin-bottom: 48px;
+}
+.cover .dots { display: flex; gap: 6px; }
+.cover .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+.cover .dot.active {
+  width: 24px; border-radius: 4px; background: #fff;
+}
+
+/* ===== 다크 텍스트 카드 ===== */
+.dt { background: #0A0A0A; }
+.dt .inner {
+  padding: 110px 80px 90px; height: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.dt .top-bar {
+  position: absolute; top: 50px; left: 80px; right: 80px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.dt .label {
+  font-size: 18px; font-weight: 700; color: #60A5FA; letter-spacing: 2px;
+}
+.dt .page {
+  font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.2);
+}
+.dt .num {
+  font-size: 140px; font-weight: 900; color: rgba(255,255,255,0.03);
+  position: absolute; top: 60px; right: 80px; line-height: 1;
+}
+
+.dt h2 {
+  font-size: 44px; font-weight: 900; color: #fff;
+  line-height: 1.35; letter-spacing: -2px; word-break: keep-all;
+  margin-bottom: 36px;
+}
+.dt h2 .blue { color: #60A5FA; }
+.dt h2 .yellow { color: #FBBF24; }
+.dt h2 .dim { color: rgba(255,255,255,0.3); }
+
+.dt .body {
+  font-size: 27px; font-weight: 400; color: rgba(255,255,255,0.5);
+  line-height: 1.8; word-break: keep-all; margin-bottom: 32px;
+}
+.dt .body strong { color: rgba(255,255,255,0.9); font-weight: 700; }
+.dt .body .blue { color: #60A5FA; font-weight: 700; }
+.dt .body .green { color: #34D399; font-weight: 700; }
+.dt .body .yellow { color: #FBBF24; font-weight: 700; }
+
+.dt .divider {
+  width: 48px; height: 3px;
+  background: rgba(255,255,255,0.08); margin-bottom: 32px;
+}
+
+/* 프롬프트/코드 블록 */
+.dt .prompt-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 28px 36px; margin-bottom: 28px;
+}
+.dt .prompt-block .pl {
+  font-size: 16px; font-weight: 700; color: #60A5FA;
+  letter-spacing: 1px; margin-bottom: 16px;
+}
+.dt .prompt-block .pt {
+  font-size: 24px; font-weight: 500; color: rgba(255,255,255,0.7);
+  line-height: 1.7; word-break: keep-all;
+}
+.dt .prompt-block .pt em {
+  font-style: normal; color: #60A5FA; font-weight: 700;
+}
+.dt .prompt-block .pt .yellow { color: #FBBF24; font-weight: 700; }
+
+/* 결과/팁 블록 */
+.dt .result-block {
+  background: rgba(96,165,250,0.06);
+  border-left: 4px solid #60A5FA;
+  border-radius: 0 16px 16px 0;
+  padding: 24px 32px; margin-top: auto;
+}
+.dt .result-block .rl {
+  font-size: 16px; font-weight: 800; color: #60A5FA;
+  letter-spacing: 1px; margin-bottom: 12px;
+}
+.dt .result-block p {
+  font-size: 23px; font-weight: 500; color: rgba(255,255,255,0.7);
+  line-height: 1.65;
+}
+.dt .result-block strong { color: #fff; font-weight: 800; }
+
+.dt .handle-bottom {
+  position: absolute; bottom: 36px; left: 80px;
+  font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.08);
+}
+
+/* ===== CTA 카드 ===== */
+.cta { background: #0A0A0A; }
+.cta .inner {
+  padding: 80px; height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+}
+.cta .emoji { font-size: 64px; margin-bottom: 48px; }
+.cta h2 {
+  font-size: 56px; font-weight: 900; color: #fff;
+  line-height: 1.4; letter-spacing: -2px; margin-bottom: 20px;
+}
+.cta .sub {
+  font-size: 28px; color: rgba(255,255,255,0.3); margin-bottom: 64px;
+}
+.cta .items {
+  display: flex; flex-direction: column; gap: 20px;
+  margin-bottom: 64px; width: 100%; max-width: 700px;
+}
+.cta .item {
+  border: 1px solid rgba(255,255,255,0.06); border-radius: 20px;
+  padding: 28px 36px; font-size: 28px; font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  display: flex; align-items: center; gap: 16px; text-align: left;
+}
+.cta .btn {
+  background: #60A5FA; color: #fff; padding: 28px 80px;
+  border-radius: 60px; font-size: 30px; font-weight: 800;
+}
+.cta .handle-bottom {
+  margin-top: 40px; font-size: 20px; color: rgba(255,255,255,0.12);
+}

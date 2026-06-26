@@ -1,0 +1,22 @@
+{
+  "brand_name": "Stone & Stitch",
+  "category": "Handcrafted leather goods",
+  "products": ["Wallets", "Bags", "Belts"],
+  "founder_name": "Alex",
+  "founder_role": "sole maker",
+  "location": "Austin, TX",
+  "origin": "I couldn't find leather pieces that aged beautifully and lasted for years, so I began making my own after hours in a small studio.",
+  "mission": "make heirloom-quality leather goods that get better with time",
+  "audience": "people who value longevity over trends",
+  "differentiators": [
+    "cut, skive, and stitch each piece by hand in our studio",
+    "use full-grain leather and solid brass hardware",
+    "made-to-order to reduce waste and improve consistency"
+  ],
+  "values": ["no shortcuts", "transparent materials", "repair over replace"],
+  "proof": ["8 years making leather goods", "1,200+ orders fulfilled"],
+  "tone": "warm, direct, craft-forward, no hype",
+  "constraints": ["avoid health claims", "avoid competitor mentions"],
+  "primary_cta": "Shop the collection"
+}
+

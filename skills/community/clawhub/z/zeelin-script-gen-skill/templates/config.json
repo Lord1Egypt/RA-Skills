@@ -1,0 +1,9 @@
+{
+  "skill_name": "剧本生成技能V4",
+  "skill_version": "4.0.0",
+  "service_url": "http://47.98.180.113:8081",
+  "Zeelin_App_Key": "你的真实AppKey",
+  "Zeelin_Api_Url": "https://skills.zeelin.cn",
+  "Zeelin_Website_Url": "https://skills.zeelin.cn",
+  "description": "文本转影视分镜剧本，支持本地文件上传"
+}

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-key-pool"
+version = "0.1.0"
+description = "分层轮询多平台 LLM API Key 管理工具，支持故障转移与自动切换"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+dependencies = [
+    "pyyaml>=6.0.0",
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+llm-key-pool = "llm_key_pool.llm_client:main"
+
+[tool.setuptools.packages.find]
+include = ["llm_key_pool*"]

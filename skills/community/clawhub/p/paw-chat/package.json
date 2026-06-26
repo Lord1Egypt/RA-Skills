@@ -1,0 +1,46 @@
+{
+  "name": "paw-chat",
+  "version": "1.0.6",
+  "description": "🐾 Paw - OpenClaw Web Chat 前端",
+  "main": "paw-cli.js",
+  "bin": {
+    "paw": "./paw-cli.js"
+  },
+  "scripts": {
+    "start": "node paw-cli.js start",
+    "install-gateway": "node paw-cli.js install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "webchat",
+    "chat",
+    "ai",
+    "websocket",
+    "frontend"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/paw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/paw/issues"
+  },
+  "homepage": "https://github.com/openclaw/paw#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.html",
+    "paw-app.js",
+    "marked.min.js",
+    "highlight.min.js",
+    "github-dark.min.css",
+    "paw-cli.js",
+    "logo.jpg",
+    "README.md",
+    "LICENSE"
+  ]
+}

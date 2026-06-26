@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "activecampaign-claw"
+version = "1.9.4"
+description = "ActiveCampaign agent for marketers + sales: 50+ reports for list, campaign, automation, and pipeline analysis."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "ji282h7" }]
+requires-python = ">=3.9"
+keywords = [
+    "activecampaign",
+    "email-marketing",
+    "marketing-automation",
+    "crm",
+    "lead-scoring",
+    "deliverability",
+    "segmentation",
+    "drip-campaign",
+    "list-hygiene",
+    "campaign-analytics",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT No Attribution License (MIT-0)",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+    "Topic :: Communications :: Email",
+]
+# Pure stdlib — no runtime dependencies
+dependencies = []
+
+[project.optional-dependencies]
+# OS keychain support for API credentials. Without this the skill still works
+# via the AC_API_URL and AC_API_TOKEN environment variables.
+keychain = ["keyring>=24.0"]
+
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/ji282h7/activecampaign-claw"
+Repository = "https://github.com/ji282h7/activecampaign-claw"
+Issues = "https://github.com/ji282h7/activecampaign-claw/issues"
+Changelog = "https://github.com/ji282h7/activecampaign-claw/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+packages = []
+include-package-data = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["scripts/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 110
+exclude = ["tests/fixtures"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = [
+    "E501",  # line length handled by formatter
+    "B008",  # function calls in default args (argparse)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["E402"]
+"scripts/_ac_client.py" = ["E402"]

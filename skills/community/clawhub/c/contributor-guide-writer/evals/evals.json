@@ -1,0 +1,17 @@
+{
+  "skill_name": "contributor-guide-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我为当前项目写一份 CONTRIBUTING.md",
+      "expected_output": "A Chinese `CONTRIBUTING.md` document. It should include the standard sections (Local Setup, Workflow, PR process) and dynamically infer the package manager and run commands based on the local workspace (e.g., detecting `package.json` or `go.mod`).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Generate a contributor guide for this Python project.",
+      "expected_output": "An English `CONTRIBUTING.md` document. It should outline Python-specific commands (like `pip install -r requirements.txt` or `pytest`) in the workflow section.",
+      "files": []
+    }
+  ]
+}

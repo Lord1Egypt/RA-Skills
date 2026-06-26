@@ -1,0 +1,293 @@
+[
+  {
+    "namespace": {
+      "name": "ListInternal",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "List",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "String",
+      "typedefs": []
+    }
+  },
+  {
+    "namespace": {
+      "name": "Frac",
+      "typedefs": [
+        {
+          "name": "frac",
+          "typedef": {
+            "variant": [
+              {
+                "Pos": [
+                  "int",
+                  "int"
+                ]
+              },
+              {
+                "Zero": []
+              },
+              {
+                "Neg": [
+                  "int",
+                  "int"
+                ]
+              }
+            ]
+          },
+          "vars": []
+        }
+      ]
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [],
+          "name": "supported_decimals",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "curve_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "sell_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            },
+            {
+              "name": "_2",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            },
+            {
+              "name": "_2",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_sell_return",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "buy_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "_1",
+              "type": "int"
+            }
+          ],
+          "name": "sell_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_interface",
+      "name": "BondingCurve",
+      "payable": false,
+      "typedefs": []
+    }
+  },
+  {
+    "contract": {
+      "functions": [
+        {
+          "arguments": [],
+          "name": "get_k",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_initial_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_minimum_count",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_sell_return_percentage",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "get_sell_return_precision",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "curve_type",
+          "payable": false,
+          "returns": "string",
+          "stateful": false
+        },
+        {
+          "arguments": [],
+          "name": "supported_decimals",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            }
+          ],
+          "name": "buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            }
+          ],
+          "name": "sell_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            },
+            {
+              "name": "count",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_buy_price",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "total_supply",
+              "type": "int"
+            },
+            {
+              "name": "sell_tokens",
+              "type": "int"
+            }
+          ],
+          "name": "calculate_sell_return",
+          "payable": false,
+          "returns": "int",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "name": "buy_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        },
+        {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "name": "sell_curve",
+          "payable": false,
+          "returns": "Frac.frac",
+          "stateful": false
+        }
+      ],
+      "kind": "contract_main",
+      "name": "BondingCurveExponential",
+      "payable": false,
+      "typedefs": []
+    }
+  }
+]

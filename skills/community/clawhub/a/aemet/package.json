@@ -1,0 +1,31 @@
+{
+  "name": "aemet",
+  "version": "1.0.3",
+  "description": "Consulta alertas meteorológicas y predicciones de AEMET OpenData para España",
+  "main": "aemet.sh",
+  "scripts": {
+    "test": "./aemet.sh test"
+  },
+  "keywords": [
+    "weather",
+    "aemet",
+    "spain",
+    "meteorology",
+    "alerts",
+    "forecast",
+    "español"
+  ],
+  "author": "Pablo Martínez Crespo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "https://clawhub.ai/skills/aemet",
+  "openclaw": {
+    "skill": true,
+    "emoji": "🌤️",
+    "category": "weather",
+    "compatibility": ">=0.8.0"
+  }
+}

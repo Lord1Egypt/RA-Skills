@@ -1,0 +1,27 @@
+{
+  "name": "determinability-checker",
+  "version": "1.0.2",
+  "description": "Causal Sufficiency Determinability Checker — Meta-Skill Gatekeeper based on JEP Paper CheckDeterminability Algorithm",
+  "author": "Cognitive Emergence Lab <yuqiang@humanjudgment.org>",
+  "license": "MIT",
+  "protocol": "COE",
+  "entrypoint": "skill.api:app",
+  "host_targets": [
+    "mcp",
+    "api",
+    "python"
+  ],
+  "dependencies": [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.5.0"
+  ],
+  "tags": [
+    "jep",
+    "causality",
+    "audit",
+    "determinability",
+    "gatekeeper",
+    "meta-skill"
+  ]
+}

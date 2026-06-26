@@ -1,0 +1,7 @@
+{
+  "default_mode": "ai-review",
+  "max_frames": 15,
+  "frame_interval": 30,
+  "frame_time_offset": 5,
+  "whisper_model": "small"
+}

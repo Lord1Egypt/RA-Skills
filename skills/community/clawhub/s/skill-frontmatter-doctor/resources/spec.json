@@ -1,0 +1,37 @@
+{
+  "slug": "skill-frontmatter-doctor",
+  "title": "Skill Frontmatter 医生",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "skill_audit",
+  "summary": "修复 frontmatter、metadata、requires、install 和目录结构问题，贴合当前 OpenClaw 规范。",
+  "inputHint": "单个 skill 或 skills 根目录",
+  "sections": [
+    "前言问题",
+    "metadata 问题",
+    "requires/install 问题",
+    "目录问题",
+    "修复建议",
+    "复检步骤"
+  ],
+  "useCases": [
+    "发布修复",
+    "规范校验",
+    "批量整理"
+  ],
+  "positiveExamples": [
+    "检查这个 skill 的 frontmatter 合不合规",
+    "修 requires 和 metadata"
+  ],
+  "negativeExamples": [
+    "不要编造不存在的字段",
+    "不要忽略单行 JSON 约束"
+  ],
+  "risk": "聚焦规范修复与校验。",
+  "tags": [
+    "skills",
+    "frontmatter",
+    "validation",
+    "openclaw"
+  ]
+}

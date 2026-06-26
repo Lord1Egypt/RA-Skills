@@ -1,0 +1,22 @@
+{
+  "_doc": "飞书群聊配置模板 — 首次使用时自动复制为 config.json",
+  "_usage": "在 contacts 中添加联系人，在 groups 中添加群，members 引用 contacts 的 key",
+  "contacts": {
+    "example_contact": {
+      "open_id": "ou_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "name": "联系人名字"
+    }
+  },
+  "groups": {
+    "example_group": {
+      "chat_id": "oc_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "name": "群名称",
+      "members": [
+        "example_contact"
+      ],
+      "at_rules": {
+        "example_contact": true
+      }
+    }
+  }
+}

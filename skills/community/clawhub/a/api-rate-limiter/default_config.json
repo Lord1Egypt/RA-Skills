@@ -1,0 +1,33 @@
+{
+  "base_delay_ms": 800,
+  "max_requests_per_minute": 1,
+  "max_requests_per_hour": 40,
+  "concurrency_limit": 1,
+  "retry_count": 2,
+  "cache_enabled": true,
+  "cache_ttl_seconds": 600,
+  "request_types": {
+    "light": {
+      "delay_ms": 300,
+      "timeout_seconds": 30
+    },
+    "medium": {
+      "delay_ms": 600,
+      "timeout_seconds": 45
+    },
+    "heavy": {
+      "delay_ms": 1000,
+      "timeout_seconds": 90
+    },
+    "custom": {
+      "delay_ms": 500,
+      "timeout_seconds": 60
+    }
+  },
+  "circuit_breaker": {
+    "failure_threshold": 1,
+    "reset_timeout_seconds": 150,
+    "cooldown_after_trigger": 90
+  },
+  "enabled": true
+}

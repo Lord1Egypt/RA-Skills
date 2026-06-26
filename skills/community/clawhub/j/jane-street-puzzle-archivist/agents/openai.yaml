@@ -1,0 +1,4 @@
+version: 1
+display_name: Jane Street Puzzle Archivist
+short_description: Archive, compare, solve, and submit Jane Street monthly puzzles
+default_prompt: Solve or organize a Jane Street monthly puzzle using the local archive, reference index, and reproducible monthly workflow.

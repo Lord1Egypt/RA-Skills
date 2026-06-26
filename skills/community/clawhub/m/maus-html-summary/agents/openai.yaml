@@ -1,0 +1,7 @@
+interface:
+  display_name: "Maus HTML Summary"
+  short_description: "Illustrated HTML summaries from text"
+  default_prompt: "Use $maus-html-summary to turn this article, transcript, or text into a playful, illustrated HTML explainer."
+
+policy:
+  allow_implicit_invocation: true

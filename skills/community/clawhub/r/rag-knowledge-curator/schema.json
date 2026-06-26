@@ -1,0 +1,27 @@
+{
+  "name": "rag_knowledge_curator",
+  "description": "企业知识库治理引擎，提供智能分块、去重、标签分类、质量评分与版本管理，解决RAG数据质量问题",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "raw_documents": {
+        "type": "string",
+        "description": "原始文本/网页摘录/文档内容集合（建议单次输入不超过5000字以保证质量）"
+      },
+      "chunk_strategy": {
+        "type": "string",
+        "enum": ["semantic", "heading", "fixed", "paragraph"],
+        "description": "分块策略（默认：semantic，按语义完整性切割）"
+      },
+      "domain": {
+        "type": "string",
+        "enum": ["tech", "legal", "product", "manual", "sop", "academic", "other"],
+        "description": "文档所属领域，用于优化术语库与分块逻辑"
+      }
+    },
+    "required": ["raw_documents", "domain"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

@@ -1,0 +1,7 @@
+{
+  "name": "marcus-a-stock",
+  "version": "1.0.0",
+  "description": "Marcus A股日报分析Agent - 基于华尔街量化框架的A股本土化分析工具",
+  "author": "ycyjy",
+  "license": "MIT"
+}

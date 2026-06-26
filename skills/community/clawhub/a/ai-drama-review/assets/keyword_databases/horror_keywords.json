@@ -1,0 +1,21 @@
+{
+  "category": "horror",
+  "version": "1.0",
+  "keywords": {
+    "恐怖": {"severity": "moderate", "aliases": ["恐惧", "惊恐", "惊悚"]},
+    "鬼": {"severity": "mild", "aliases": ["鬼魂", "幽灵", "亡灵", "冤魂"]},
+    "丧尸": {"severity": "moderate", "aliases": ["僵尸", "行尸", "活死人"]},
+    "尸体": {"severity": "moderate", "aliases": ["死尸", "尸首", "遗体"]},
+    "腐烂": {"severity": "severe", "aliases": ["腐尸", "腐烂", "发臭"]},
+    "肢解": {"severity": "severe", "aliases": ["分尸", "碎尸", "断肢"]},
+    "诅咒": {"severity": "mild", "aliases": ["咒语", "诅咒", "邪咒"]},
+    "噩梦": {"severity": "mild", "aliases": ["梦魇", "恶梦"]},
+    "怪物": {"severity": "mild", "aliases": ["妖怪", "怪兽", "魔物"]},
+    "黑暗": {"severity": "mild", "aliases": ["阴森", "阴暗", "黑暗"]},
+    "尖叫": {"severity": "mild", "aliases": ["惨叫", "嘶叫"]},
+    "horror": {"severity": "moderate", "aliases": ["terrifying", "horrifying"]},
+    "zombie": {"severity": "moderate", "aliases": ["undead", "walking dead"]},
+    "ghost": {"severity": "mild", "aliases": ["haunted", "phantom", "specter"]},
+    "gore": {"severity": "severe", "aliases": ["gory", "gruesome", "grotesque"]}
+  }
+}

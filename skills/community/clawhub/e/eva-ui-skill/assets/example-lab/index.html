@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVA UI Example Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero frame">
+        <div>
+          <div class="eyebrow">NERV EXAMPLE LAB</div>
+          <h1>Emergency Instrument Board</h1>
+          <p>Standalone demo template for EVA-style control screens.</p>
+        </div>
+        <div class="hero__alerts">
+          <div class="alert alert--critical">EMERGENCY</div>
+          <div class="alert alert--warning">ENTRY PLUG EJECT</div>
+          <div class="alert alert--locked">LOCKED</div>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="panel frame">
+          <div class="panel__title">Pattern Language</div>
+          <div class="motif motif--stripe"></div>
+          <div class="motif motif--chevron"></div>
+          <div class="motif motif--ticks"></div>
+        </article>
+
+        <article class="panel frame panel--scope">
+          <div class="panel__title">Targeting Study</div>
+          <div class="scope">
+            <div class="scope__ring"></div>
+            <div class="scope__ring scope__ring--inner"></div>
+            <div class="scope__cross scope__cross--h"></div>
+            <div class="scope__cross scope__cross--v"></div>
+            <div class="scope__bracket scope__bracket--tl"></div>
+            <div class="scope__bracket scope__bracket--tr"></div>
+            <div class="scope__bracket scope__bracket--bl"></div>
+            <div class="scope__bracket scope__bracket--br"></div>
+            <div class="scope__blip"></div>
+          </div>
+        </article>
+
+        <article class="panel frame panel--wide">
+          <div class="panel__title">Data Elements</div>
+          <div class="telemetry">
+            <div class="rail">
+              <span>120</span><span>100</span><span>080</span><span>060</span><span>040</span>
+            </div>
+            <div class="plot">
+              <div class="plot__trace"></div>
+              <div class="plot__threshold plot__threshold--warn"></div>
+              <div class="plot__threshold plot__threshold--crit"></div>
+            </div>
+            <div class="bars">
+              <div class="bar bar--active"></div>
+              <div class="bar bar--active"></div>
+              <div class="bar bar--warning"></div>
+              <div class="bar bar--critical"></div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>宝宝必买清单（二）</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1440px;background:linear-gradient(160deg,#F0F8FF,#E8F4FF);font-family:"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden;position:relative}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,rgba(135,206,250,0.1)0%,transparent 50%);pointer-events:none}
+.top-bar{background:linear-gradient(135deg,#5B8DEF,#4A7FE8);padding:28px 50px 22px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.top-bar::after{content:"";position:absolute;bottom:-18px;left:0;right:0;height:18px;background:linear-gradient(135deg,#5B8DEF,#4A7FE8);clip-path:ellipse(55% 100% at 50% 100%)}
+.top-title{color:white;font-size:44px;font-weight:800;letter-spacing:2px}
+.top-sub{color:rgba(255,255,255,0.9);font-size:20px;margin-top:4px}
+.top-emoji{font-size:56px}
+.page-num{background:rgba(255,255,255,0.25);color:white;font-size:18px;font-weight:600;padding:6px 18px;border-radius:20px}
+.content{padding:50px 50px 30px}
+.label{background:linear-gradient(135deg,#5B8DEF,#4A7FE8);color:white;font-size:20px;font-weight:700;padding:8px 24px;border-radius:16px;display:inline-block;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
+.card{background:white;border:2px dashed #87CEEB;border-radius:16px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px}
+.num{width:34px;height:34px;background:linear-gradient(135deg,#5B8DEF,#4A7FE8);color:white;font-size:18px;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info{flex:1}
+.name{font-size:22px;font-weight:700;color:#333;margin-bottom:4px}
+.qty{font-size:17px;color:#5B8DEF;font-weight:600;margin-bottom:3px}
+.tip{font-size:14px;color:#999;line-height:1.4}
+.bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(135deg,#EEF4FF,#D6E8FF);border-top:2px dashed #87CEEB;padding:16px 50px;display:flex;align-items:center;gap:20px}
+.icon{font-size:36px}
+.text{font-size:20px;color:#5B8DEF;font-weight:600}
+.tag{background:#5B8DEF;color:white;font-size:13px;padding:4px 12px;border-radius:10px}
+.tags{display:flex;gap:8px;margin-left:auto}
+</style></head>
+<body>
+<div class="bg"></div>
+<div class="top-bar">
+  <div><div class="top-title">👶 宝宝必买清单（二）</div><div class="top-sub">这些也是必需品！</div></div>
+  <div class="top-emoji">🛁</div>
+  <div class="page-num">5/8</div>
+</div>
+<div class="content">
+  <div class="label">🛁 宝宝洗护 · 清洁篇</div>
+  <div class="grid">
+    <div class="card"><div class="num">1</div><div class="info"><div class="name">抱被</div><div class="qty">1条，选薄款</div><div class="tip">包裹宝宝，增加安全感</div></div></div>
+    <div class="card"><div class="num">2</div><div class="info"><div class="name">浴巾</div><div class="qty">准备2条，选纯棉款</div><div class="tip">宝宝洗澡后快速擦干，选A类纯棉</div></div></div>
+    <div class="card"><div class="num">3</div><div class="info"><div class="name">棉柔巾</div><div class="qty">多备几包，用量很大</div><div class="tip">擦脸、擦嘴、擦屁股，用途广泛</div></div></div>
+    <div class="card"><div class="num">4</div><div class="info"><div class="name">隔尿垫</div><div class="qty">2条，透气防水款</div><div class="tip">换尿布时垫在下面，防止尿液渗漏</div></div></div>
+    <div class="card"><div class="num">5</div><div class="info"><div class="name">方巾</div><div class="qty">准备3-5条，纱布款</div><div class="tip">洗脸、洗屁屁、擦口水，各有各的用处</div></div></div>
+    <div class="card"><div class="num">6</div><div class="info"><div class="name">护肤油 / 乳</div><div class="qty">1瓶，选婴儿专用款</div><div class="tip">抚触按摩用，保持皮肤湿润</div></div></div>
+    <div class="card"><div class="num">7</div><div class="info"><div class="name">洗护二合一</div><div class="qty">1瓶，沐浴洗发两用</div><div class="tip">选无泪配方，宝宝误入眼睛也不刺激</div></div></div>
+    <div class="card"><div class="num">8</div><div class="info"><div class="name">棉签</div><div class="qty">1盒，婴儿专用细棉签</div><div class="tip">清理鼻屎、耳垢、肚脐用</div></div></div>
+    <div class="card"><div class="num">9</div><div class="info"><div class="name">浴盆</div><div class="qty">1个，可折叠款更省空间</div><div class="tip">医院空间小，选可折叠款方便</div></div></div>
+  </div>
+</div>
+<div class="bar">
+  <div class="icon">👶</div>
+  <div class="text">以上9项，宝宝洗护必备！</div>
+  <div class="tags"><div class="tag">#待产包清单</div><div class="tag">#孕期囤货</div></div>
+</div>
+</body></html>

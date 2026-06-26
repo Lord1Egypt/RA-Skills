@@ -1,0 +1,96 @@
+# Sleep Health Assistant Skill Configuration
+# Scientific sleep and stress analysis with evidence-based techniques
+
+skill:
+  name: "sleep-health-assistant"
+  version: "1.0.0"  # Initial release with all security fixes
+  description: "Scientific sleep and stress analysis assistant"
+  author: "OpenClaw Assistant"
+  license: "MIT"
+
+# Security Declaration
+security:
+  local_only: true
+  no_network_access: true
+  no_dangerous_functions: true
+  no_file_operations: true
+  memory_only_storage: true
+  privacy_protection: true
+
+# Feature Configuration
+features:
+  stress_analysis:
+    enabled: true
+    description: "Stress level analysis based on user-provided data"
+    data_source: "user_provided_only"
+  
+  sleep_analysis:
+    enabled: true
+    description: "Sleep quality analysis and recommendations"
+    data_source: "user_provided_only"
+  
+  audio_guidance:
+    enabled: true
+    description: "Audio guidance for relaxation and focus"
+    protocols: ["relaxation", "sleep", "focus"]
+  
+  breathing_guidance:
+    enabled: true
+    description: "Breathing exercise guidance"
+    techniques: ["calm_breathing", "sleep_breathing", "energy_breathing"]
+  
+  mindfulness_guidance:
+    enabled: true
+    description: "Mindfulness practice guidance"
+    practices: ["awareness", "relaxation", "compassion"]
+  
+  health_monitoring:
+    enabled: true
+    description: "Health monitoring based on user-provided data"
+    storage: "memory_only"
+    frequency: "on_demand"
+
+# Scientific Basis
+scientific_basis:
+  - "Evidence-based stress management techniques"
+  - "Sleep hygiene research"
+  - "Respiratory physiology"
+  - "Mindfulness and relaxation research"
+  - "Cognitive behavioral principles"
+
+# Content Policy
+content_policy:
+  religious_content: "excluded"
+  cultural_specific: "excluded"
+  medical_advice: "excluded"
+  scope: "educational_and_self_improvement_only"
+
+# Performance Configuration
+performance:
+  command_response_time: "< 100ms"
+  analysis_response_time: "< 500ms"
+  memory_usage: "< 50MB"
+  cpu_usage: "< 5%"
+  storage_usage: "configuration_files_only"
+
+# Compatibility
+compatibility:
+  python_versions: ["3.8+"]
+  operating_systems: ["Windows", "macOS", "Linux"]
+  openclaw_versions: ["2026.3+"]
+  architectures: ["x86_64", "arm64"]
+
+# Privacy Assurance
+privacy:
+  data_collection: "none"
+  data_storage: "memory_only"
+  data_transmission: "none"
+  data_retention: "session_only"
+  user_control: "full_control"
+
+# Safety Features
+safety:
+  input_validation: "strict"
+  error_handling: "graceful"
+  resource_management: "efficient"
+  session_isolation: "enabled"

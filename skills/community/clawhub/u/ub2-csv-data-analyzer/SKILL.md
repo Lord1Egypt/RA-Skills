@@ -1,35 +1,35 @@
----
-name: "CSV Data Analyzer"
-description: "Load, explore, clean, analyze, and visualize CSV data to provide statistical summaries, correlations, filtered views, and charts for insights."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, csv, data, statistics, visualization]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ub2-csv-data-analyzer"
-sourceUrl: "https://clawhub.ai/skills/ub2-csv-data-analyzer"
----
-
 # CSV Data Analyzer
 
-> Load, explore, clean, analyze, and visualize CSV data to provide statistical summaries, correlations, filtered views, and charts for insights.
+A skill that enables Claw to load, explore, analyze, and visualize CSV datasets, providing statistical insights and answering questions about the data.
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ub2-csv-data-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/ub2-csv-data-analyzer](https://clawhub.ai/skills/ub2-csv-data-analyzer)
+## What This Skill Does
 
-## Overview
+This skill equips Claw with a structured approach to CSV data analysis:
 
+1. **Data Loading & Inspection** — Read CSV files, detect column types, and display basic structure (shape, columns, sample rows)
+2. **Data Cleaning** — Identify and handle missing values, duplicates, and type inconsistencies
+3. **Statistical Summary** — Compute descriptive statistics (mean, median, mode, standard deviation, percentiles) for numeric columns
+4. **Filtering & Grouping** — Slice data by conditions and aggregate by categories
+5. **Correlation Analysis** — Find relationships between numeric variables
+6. **Visualization** — Generate charts (bar, line, scatter, histogram) to illustrate patterns
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ub2-csv-data-analyzer
-```
+## How to Use
+
+Provide a CSV file and ask Claw to analyze it:
+
+- "Analyze this sales data and tell me which product category has the highest revenue"
+- "Find outliers in the temperature column of this dataset"
+- "Create a chart showing monthly trends from this CSV"
+- "Compare group A vs group B performance in this experiment data"
+
+## Requirements
+
+- Input must be a valid CSV file (comma-separated by default; other delimiters can be specified)
+- Python with pandas and matplotlib should be available in the environment
+
+## Output
+
+- Summary statistics table
+- Key insights in plain language
+- Charts saved as PNG files when visualization is requested
+- Cleaned dataset exported as a new CSV if data cleaning was performed

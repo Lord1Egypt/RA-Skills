@@ -1,0 +1,6 @@
+{
+  "name": "stock-top-gainers",
+  "version": "1.0.2",
+  "description": "获取 A 股近 10 日涨幅排名前 20 股票（排除 ST）",
+  "slug": "stock-top-gainers"
+}

@@ -1,35 +1,15 @@
----
-name: "Dupfile Finder"
-description: "Identify and list duplicate files in a specified directory to help manage and free up storage space efficiently."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dupfile-finder"
-sourceUrl: "https://clawhub.ai/skills/dupfile-finder"
----
+# DupFile Finder
 
-# Dupfile Finder
+This tool helps users quickly identify and manage duplicate files on their system, saving them time and storage space by eliminating unnecessary duplicates.
 
-> Identify and list duplicate files in a specified directory to help manage and free up storage space efficiently.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dupfile-finder`
-- **Source URL:** [https://clawhub.ai/skills/dupfile-finder](https://clawhub.ai/skills/dupfile-finder)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dupfile-finder
+To use the DupFile Finder, simply run the tool from the command line and provide the directory you want to search for duplicates. For example:
 ```
+python dupfile_finder.py /path/to/directory
+```
+This will print out a list of duplicate files found in the specified directory.
+
+## Price
+
+$1.50

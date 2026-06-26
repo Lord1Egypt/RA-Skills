@@ -1,0 +1,148 @@
+/* Theme: regular-lumen — Regular Lumen · 暖色调周期报告主题（日报/周报/月报，基于 Kami Tesla 风格） */
+:root {
+  --primary: #335490; --primary-light: rgba(51,84,144,.12); --accent: #3B82F6;
+  --bg: #F7F5F1; --surface: #FFFFFF; --surface-2: #FAFAF8;
+  --text: #202020; --text-muted: #949494;
+  --border: #E5E7EB; --success: #059669; --warning: #F59E0B; --danger: #DC2626;
+  --font-sans: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+  --font-sans-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Courier Prime', 'Courier New', monospace;
+  --radius: 12px;
+  --status-ok: #059669;
+  --status-warn: #F59E0B;
+  --status-err: #DC2626;
+  --status-done: #6B7280;
+  --accent-blue: #335490;
+  --text-black: #202020;
+}
+body { font-family: var(--font-sans); color: var(--text-black); background: var(--bg); margin: 0; line-height: 1.6; }
+h1 { font-size: 2.5rem; font-weight: 700; color: var(--text-black); letter-spacing: -.02em; margin-bottom: .3rem; }
+h2 { font-size: 1rem; font-weight: 700; color: var(--text-black); margin-top: .6rem; margin-bottom: .3rem; }
+h3 { font-size: .9rem; font-weight: 600; color: var(--accent-blue); margin-top: .6rem; margin-bottom: .3rem; }
+p { margin: .3rem 0; line-height: 1.6; }
+a { color: var(--primary); }
+strong { font-weight: 700; color: var(--text); }
+blockquote { border-left: 3px solid var(--primary); margin: .8rem 0; padding: .6rem 1rem; color: var(--text-muted); font-size: .85rem; line-height: 1.6; background: var(--surface-2); border-radius: var(--radius); }
+
+/* Section layout — 紧凑 poster-style 排版 */
+section[data-section] { margin-bottom: 1rem; }
+
+/* Layout */
+*, *::before, *::after { box-sizing: border-box; }
+.report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+@media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+
+/* Title meta line — 副标题 + 日期 */
+.report-subtitle { color: var(--text-muted); font-size: 1.1rem; line-height: 1.4; margin-top: .3rem; margin-bottom: .4rem; font-weight: 500; }
+.report-meta { font-family: var(--font-sans-ui); color: var(--text-muted); font-size: .85rem; margin-top: -.3rem; margin-bottom: 1.2rem; }
+
+/* === POST-SHARED OVERRIDE (append AFTER shared.css) === */
+
+/* Title meta — 右对齐日期（覆盖 shared.css） */
+.report-meta { text-align: right; font-variant-numeric: lining-nums tabular-nums; }
+
+/* KPI grid — 紧凑 poster-style，适中数值 */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: .8rem;
+  margin: .8rem 0;
+}
+.kpi-card {
+  background: var(--surface);
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem .8rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  border-top: none;
+  transition: box-shadow .2s ease;
+}
+.kpi-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.08);
+}
+.kpi-label { font-family: var(--font-sans-ui); font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+.kpi-value { font-family: var(--font-sans-ui); font-size: 2rem; font-weight: 700; font-variant-numeric: lining-nums tabular-nums; color: var(--text-black); line-height: 1; }
+.kpi-delta { font-size: .75rem; font-weight: 600; margin-top: .2rem; display: block; }
+.kpi-delta--up { color: var(--status-ok); }
+.kpi-delta--down { color: var(--status-err); }
+.kpi-delta--info { color: var(--status-done); }
+
+/* Badge — 柔和配色，poster-style */
+.badge { font-size: .75rem; font-weight: 600; padding: .18rem .55rem; border-radius: 999px; letter-spacing: .02em; border: none; }
+.badge--blue { background: rgba(59,130,246,.12); color: var(--accent-blue); }
+.badge--green { background: rgba(5,150,105,.12); color: var(--status-ok); }
+.badge--orange { background: rgba(107,114,128,.12); color: var(--status-done); }
+.badge--red { background: rgba(220,38,38,.12); color: var(--status-err); }
+.badge--gray { background: rgba(107,114,128,.12); color: var(--status-done); }
+.badge--wip { background: rgba(59,130,246,.12); color: var(--accent-blue); }
+.badge--warn { background: rgba(245,158,11,.12); color: var(--status-warn); }
+.badge--done { background: rgba(107,114,128,.12); color: var(--status-done); }
+
+/* Tables — 紧凑 poster-style */
+.table-wrapper { overflow-x: auto; margin: .6rem 0; }
+.report-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.report-table th {
+  text-align: left; color: var(--accent-blue); font-weight: 700; font-size: .75rem;
+  text-transform: uppercase; letter-spacing: .06em;
+  padding: .6rem .8rem; border-bottom: 2px solid var(--accent-blue); background: var(--surface);
+}
+.report-table td { padding: .6rem .8rem; border-bottom: 1px solid var(--border); color: var(--text-black); }
+.report-table td:first-child { font-family: var(--font-mono); }
+.report-table tr:last-child td { border-bottom: none; }
+.report-table tr:nth-child(even) td { background: var(--surface-2); }
+
+/* Callout — 紧凑 poster-style */
+.callout { display: flex; gap: .6rem; padding: .8rem 1rem; border-radius: var(--radius); margin: .6rem 0; border-left: 4px solid; align-items: flex-start; }
+.callout--note { background: rgba(59,130,246,.08); border-color: var(--accent-blue); }
+.callout--tip { background: rgba(5,150,105,.08); border-color: var(--status-ok); }
+.callout--warning { background: rgba(245,158,11,.08); border-color: var(--status-warn); }
+.callout--danger { background: rgba(220,38,38,.08); border-color: var(--status-err); }
+.callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+.callout--note .callout-icon { color: var(--accent-blue); }
+.callout--tip .callout-icon { color: var(--status-ok); }
+.callout--warning .callout-icon { color: var(--status-warn); }
+.callout--danger .callout-icon { color: var(--status-err); }
+.callout-body { flex: 1; min-width: 0; line-height: 1.6; font-size: .85rem; color: var(--text-black); }
+
+/* Timeline — 紧凑 poster-style */
+.timeline { position: relative; padding-left: 1.5rem; margin: .6rem 0; }
+.timeline::before { content: ''; position: absolute; left: .35rem; top: .3rem; bottom: .3rem; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: .8rem; display: flex; gap: .6rem; align-items: baseline; }
+.timeline-dot {
+  position: absolute; left: -1.15rem; top: .35rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-blue); border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--accent-blue);
+}
+.timeline-item.future .timeline-dot {
+  background: var(--border); border-color: var(--border);
+  box-shadow: none;
+}
+.timeline-date { font-size: .75rem; color: var(--text-muted); font-weight: 600; font-family: var(--font-mono); min-width: 5rem; flex-shrink: 0; }
+.timeline-content { font-size: .85rem; color: var(--text-black); line-height: 1.5; }
+.timeline-item.future .timeline-content { color: var(--text-muted); }
+
+/* Week divider — 紧凑 poster-style 本周期/下周期分界线 */
+.week-divider {
+  border: none;
+  border-top: 2px solid var(--primary);
+  opacity: .6;
+  margin: 1.2rem 0;
+  position: relative;
+}
+.week-divider::after {
+  content: '下周期 ▸';
+  position: absolute; right: 0; top: -.55rem;
+  background: var(--bg); padding: 0 .6rem;
+  font-size: .7rem; color: var(--primary); font-weight: 700; letter-spacing: .05em;
+  opacity: 1;
+}
+
+/* Footer — 紧凑 */
+.report-footer { margin-top: 1.5rem; padding-top: .6rem; border-top: 1px solid var(--border); font-size: .65rem; color: var(--text-muted); opacity: .5; text-align: center; }
+
+/* Number style for body text — 正文数字使用等宽字体 */
+.number { font-family: var(--font-sans-ui); font-variant-numeric: lining-nums tabular-nums; }
+
+/* Note: regular-lumen uses github.min.css for code blocks (light theme) */

@@ -1,0 +1,29 @@
+{
+  "skill_name": "cron-sentinel",
+  "evals": [
+    {
+      "id": 0,
+      "name": "setup-reliable-schedule",
+      "prompt": "I want my backup script at /home/me/backup.sh to run every night at 3am, and I want to actually find out if it ever stops running. Walk me through setting that up so it's reliable.",
+      "expected_output": "Uses cron_sentinel.py to produce a crontab line that wraps the backup command (wrap --name ... --expect-every 1d), plus a separate watchdog line that runs `check` on a short interval to alert on failures or silence. Explains the two-line pattern and why --expect-every enables silent-failure detection.",
+      "files": [],
+      "assertions": [
+        {"text": "Produces a crontab line that runs the backup through cron_sentinel.py wrap", "kind": "qualitative"},
+        {"text": "Sets an expected cadence (--expect-every) so overdue/silent runs can be detected", "kind": "qualitative"},
+        {"text": "Includes a separate watchdog (check) on its own schedule for alerting", "kind": "qualitative"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "detect-silent-failure",
+      "prompt": "My nightly job hasn't produced output for two days but I never got an error message. Going forward, how do I detect when a scheduled job silently stops running, not just when it crashes?",
+      "expected_output": "Explains the dead-man's-switch pattern: wrap the job so each run is recorded with an expected cadence, then run `check`, which flags jobs that are overdue (never ran) distinctly from jobs that crashed. Ideally demonstrates with cron_sentinel.py.",
+      "files": [],
+      "assertions": [
+        {"text": "Explains detecting overdue / never-ran jobs, not just crashes", "kind": "qualitative"},
+        {"text": "Recommends wrapping the job and running check on a schedule", "kind": "qualitative"},
+        {"text": "Distinguishes a silent/overdue failure from a loud crash", "kind": "qualitative"}
+      ]
+    }
+  ]
+}

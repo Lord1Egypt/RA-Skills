@@ -1,0 +1,28 @@
+// Drafts to Rook - Ultra Simple
+var token = "8168521763:AAHl-2GYc3htq1o1WhhF7ioLS62vXhGD3Xo";
+var chatId = "8489519499";
+var d = Draft.query("", [], [], [], [], "date")[0];
+if (!d) { alert("No draft"); context.fail(); }
+var text = d.content;
+var max = 4000;
+var parts = [];
+while (text.length > max) {
+  var cut = text.lastIndexOf(" ", max);
+  if (cut < 1) cut = max;
+  parts.push(text.substring(0, cut));
+  text = text.substring(cut).trim();
+}
+parts.push(text);
+var date = new Date().toISOString().slice(0,16).replace("T"," ");
+var http = HTTP.create();
+var sent = 0;
+for (var i = 0; i < parts.length; i++) {
+  var header = (i == 0) ? "DRAFTS | " + date + "\n---\n" : "[Part " + (i+1) + "/" + parts.length + "]\n";
+  var footer = (i == parts.length - 1) ? "\n---" : "";
+  var msg = header + parts[i] + footer;
+  var url = "https://api.telegram.org/bot" + token + "/sendMessage";
+  var resp = http.request({method:"POST",url:url,headers:{"Content-Type":"application/json"},data:{chat_id:chatId,text:msg},encoding:"json"});
+  if (resp.statusCode == 200) sent++;
+}
+alert("Sent " + sent);
+context.succeed();

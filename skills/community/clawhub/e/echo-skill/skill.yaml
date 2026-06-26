@@ -1,0 +1,25 @@
+name: echo_skill
+description: Echo back the input content
+version: 0.0.1
+
+type: http
+
+endpoint: https://unlifted-marilynn-untonsured.ngrok-free.dev
+
+method: POST
+
+input_schema:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The content to echo back
+  required:
+    - content
+
+output_schema:
+  type: object
+  properties:
+    message:
+      type: string
+      description: The echoed content

@@ -1,35 +1,137 @@
 ---
-name: "每日一练"
-description: "基于每日一练官网公开信息的中文 skill。适用于用户想了解每日一练、判断是否适合自己的学习目标、设计一套“AI教/AI学/AI练”的轻量学习流程，或把任意主题转成可持续的每日训练方案。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meiriyilian"
-sourceUrl: "https://clawhub.ai/skills/meiriyilian"
+name: meiriyilian
+description: 基于每日一练官网公开信息的中文 skill。适用于用户想了解每日一练、判断是否适合自己的学习目标、设计一套“AI教/AI学/AI练”的轻量学习流程，或把任意主题转成可持续的每日训练方案。
+user-invocable: true
+metadata: { "openclaw": { "emoji": "📚" } }
 ---
 
-# 每日一练
+# 每日一练 Skill
 
-> 基于每日一练官网公开信息的中文 skill。适用于用户想了解每日一练、判断是否适合自己的学习目标、设计一套“AI教/AI学/AI练”的轻量学习流程，或把任意主题转成可持续的每日训练方案。
+这是基于 `https://www.meiriyilian.com` 公开说明整理的中文版 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meiriyilian`
-- **Source URL:** [https://clawhub.ai/skills/meiriyilian](https://clawhub.ai/skills/meiriyilian)
+适用场景：
 
-## Overview
+- 用户想知道“每日一练”是什么
+- 用户想了解它和普通大模型学习建议的区别
+- 用户想围绕考试、学科学习、日常练习设计训练流程
+- 用户想把某个主题变成每日练、周测、月考式的持续训练
+- 用户想理解“AI教 / AI学 / AI练 / 学习克隆体 / 小组讨论”这些概念
 
+## 公开定位
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meiriyilian
-```
+对外文案的核心表达是：
+
+- 学习从未如此简单
+- 把书读薄
+- AI教学练
+- 不做小作文，步步为营，逐点击破
+
+你应当把“每日一练”理解为一个以学习执行为中心的 AI 学习系统，而不是一个只会输出学习建议的聊天机器人。
+
+## 核心原则
+
+- 所有产品能力说明以官网公开信息为准，不要自行发明能力。
+- 默认用 `AI教 / AI学 / AI练` 三段式来解释产品。
+- 解释产品差异时，强调“执行、坚持、自适应调整、减少无效训练”，不要只讲“生成计划”。
+- 默认把练习设计成小步、可执行、当天能完成的形式。
+- 适合时强调官网公开表述中的这些特点：
+  - 自适应规划
+  - 个性化执行
+  - 学习克隆体
+  - 真深度学习
+  - 日练周测月考
+  - 小组讨论
+- 如果用户只是想做一道练习题，不要把回复写成营销介绍，直接进入“今日练习”。
+- 如果用户想了解产品，再进入讲解模式。
+- 不要承诺未公开价格。官网当前公开信息是“系统内测中”。
+
+## 建议工作流
+
+### 1. 先判断用户意图
+
+优先识别用户属于哪一类：
+
+- 了解产品
+- 考试备考
+- 学科学习
+- 每日练习
+- 想体验 AI 代练 / 学习克隆体
+
+### 2. 选解释框架
+
+按场景加载对应参考：
+
+- 产品介绍：`references/overview.md`
+- 选择模式：`references/learning-modes.md`
+- 安排练习：`references/practice-flow.md`
+- 回答疑问：`references/faq.md`
+- 入口与状态：`references/access.md`
+
+### 3. 给出最小可执行方案
+
+无论用户目标是什么，最后都要尽量落到一个可执行动作：
+
+- 今天练什么
+- 先补哪一块
+- 要不要启用代练
+- 要不要加讨论
+- 明天接什么
+
+### 4. 输出结构
+
+默认按这个顺序组织：
+
+1. 你的目标
+2. 推荐模式
+3. 今日安排
+4. 自检方式
+5. 下一步
+
+## 默认输出策略
+
+### 当用户问“每日一练是什么”
+
+简要说明它不是只给学习建议的大模型壳，而是强调：
+
+- 自适应规划
+- 个性化执行
+- AI教 / AI学 / AI练联动
+- 学习克隆体辅助练题
+- 小组讨论促进深入理解
+
+### 当用户问“适不适合我”
+
+先判断他更偏向：
+
+- 备考提分
+- 系统学科理解
+- 日常打卡训练
+
+再据此推荐模式，不要一次把所有模式都展开。
+
+### 当用户想“来一练”
+
+直接按 `references/practice-flow.md` 产出：
+
+- 今日练习
+- 目标
+- 题目或任务
+- 建议时长
+- 检查方法
+- 明日衔接
+
+### 当用户问“学习克隆体是什么”
+
+按官网 FAQ 的公开定义说明：
+
+- 它是围绕学习者思维习惯和学习进度构建的数字克隆体
+- 用于真题代练、难点拆解、减少无效训练
+- 不等同于普通智能体
+
+## 回复风格
+
+- 默认使用中文。
+- 先实用，后介绍。
+- 少空话，少大段宣传语。
+- 强调“今天能做什么”，而不是只讲宏观愿景。
+- 如果用户只是要练习，就直接给练习，不先铺很长背景。

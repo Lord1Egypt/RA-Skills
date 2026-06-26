@@ -1,0 +1,190 @@
+{
+  "name": "stock-valuation-monitor",
+  "version": "4.5.0",
+  "description": "股票和ETF估值监控工具V4.5.0 - 修复优化版，基于PE/PB Band、历史百分位及ROE评估估值区间，支持A股和ETF分析",
+  "entry": "main.py",
+  "author": "AI Assistant",
+  "license": "MIT",
+  "repository": "https://github.com/ai-assistant/stock-valuation-monitor",
+  "keywords": [
+    "stock",
+    "valuation",
+    "PE",
+    "PB",
+    "ROE",
+    "percentile",
+    "ETF",
+    "A股",
+    "估值分析",
+    "定投",
+    "投资",
+    "finance",
+    "trading",
+    "quant",
+    "akshare"
+  ],
+  "categories": [
+    "finance",
+    "investment",
+    "data-analysis"
+  ],
+  "triggers": [
+    {
+      "type": "keyword",
+      "patterns": [
+        "查询股票估值",
+        "股票估值分析",
+        "PE百分位",
+        "PB百分位",
+        "估值监控",
+        "投资机会",
+        "风险评估",
+        "分析\\d{6}",
+        "查询\\d{6}"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "input": {
+        "message": "查询600519的估值"
+      },
+      "description": "查询贵州茅台估值（单只股票）"
+    },
+    {
+      "input": {
+        "message": "看看510050 ETF"
+      },
+      "description": "查询上证50ETF净值折溢价"
+    },
+    {
+      "input": {
+        "message": "分析300327、000001、002594"
+      },
+      "description": "批量查询多只股票（最多5只）"
+    },
+    {
+      "input": {
+        "message": "查询600519",
+        "export": "json"
+      },
+      "description": "导出JSON格式结果"
+    },
+    {
+      "input": {
+        "message": "查询300750",
+        "export": "csv"
+      },
+      "description": "导出CSV格式结果（Excel兼容）"
+    },
+    {
+      "input": {
+        "message": "查询000001",
+        "export": "excel"
+      },
+      "description": "导出Excel格式结果（需openpyxl）"
+    }
+  ],
+  "dependencies": [
+    "requests>=2.28.0",
+    "pandas>=1.5.0",
+    "numpy>=1.21.0"
+  ],
+  "optional_dependencies": [
+    "akshare>=1.10.0",
+    "openpyxl>=3.0.0"
+  ],
+  "config": {
+    "version": "4.5.0",
+    "history_years": 5,
+    "opportunity_threshold": 30,
+    "risk_threshold": 70,
+    "cache_ttl": 300,
+    "cache_precision": "10min",
+    "max_stocks_per_request": 5,
+    "circuit_breaker": {
+      "threshold": 5,
+      "window": 600,
+      "timeout": 300,
+      "algorithm": "sliding_window"
+    },
+    "fixes_from_v441": [
+      "缓存键时间戳精度修复（小时级→10分钟级）",
+      "熔断器算法优化（滑动窗口）",
+      "历史PE/PB数据获取优化（akshare stock_a_lg_indicator）",
+      "ETF净值解析增强（多字段回退）",
+      "并发超时控制",
+      "safe_float边界处理增强",
+      "系统健康检查接口",
+      "优雅关闭机制"
+    ]
+  },
+  "data_sources": [
+    {
+      "name": "EastMoney",
+      "priority": 1,
+      "description": "东方财富（主数据源）- 实时行情、财务数据"
+    },
+    {
+      "name": "Tencent",
+      "priority": 2,
+      "description": "腾讯财经（备用）- 实时行情"
+    },
+    {
+      "name": "Sina",
+      "priority": 3,
+      "description": "新浪财经（备用）- 实时行情"
+    },
+    {
+      "name": "AkShare",
+      "priority": 4,
+      "description": "AKShare（历史数据）- PE/PB历史、财务数据"
+    }
+  ],
+  "features": [
+    "A股PE/PB Band估值分析（基于5年历史数据）",
+    "ETF净值折溢价分析",
+    "历史百分位计算（支持多种数据源）",
+    "ROE盈利能力评估",
+    "智能投资建议（机会/合理/风险区间）",
+    "多数据源容错（自动故障转移）",
+    "数据导出（JSON/CSV/Excel）",
+    "并发处理优化（带超时控制）",
+    "熔断器保护（滑动窗口算法）",
+    "系统健康检查"
+  ],
+  "limitations": [
+    "历史数据依赖akshare（可选，未安装时功能受限）",
+    "财务数据按季度更新，可能滞后",
+    "新股/次新股历史数据不足（需60个交易日）",
+    "ETF不支持PE/PB分析（仅支持净值折溢价）",
+    "最多同时查询5只股票"
+  ],
+  "output_formats": [
+    "text",
+    "json",
+    "csv",
+    "excel"
+  ],
+  "response_schema": {
+    "status": "string (success|error)",
+    "message": "string (显示内容或错误信息)",
+    "code": "string (错误码)",
+    "data": {
+      "type": "object",
+      "properties": {
+        "codes": "array of string (查询的代码列表)",
+        "count": "integer (数量)",
+        "format": "string (text|json|csv|excel)",
+        "results": "array of object (估值结果摘要)",
+        "health": "object (系统健康状态)"
+      }
+    }
+  },
+  "performance": {
+    "cache_hit_rate": "~90% (10分钟级TTL)",
+    "avg_response_time": "<3s (缓存命中) / <10s (冷启动)",
+    "concurrent_limit": 5,
+    "timeout": "60s (可配置)"
+  }
+}

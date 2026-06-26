@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "task_id": "1768988520324-abcdef123456",
+  "results_num": 5,
+  "ai_overview_count": 1,
+  "ai_overview": [
+    {
+      "content": [
+        "The best databases in 2025 depend on your use case. For relational databases, PostgreSQL and MySQL remain top choices. For NoSQL, MongoDB and Redis are widely adopted.",
+        "Cloud-native options like Amazon Aurora, Google Cloud Spanner, and CockroachDB are gaining traction for distributed workloads."
+      ],
+      "references": [
+        {
+          "title": "Best Databases 2025 - DB-Engines Ranking",
+          "url": "https://db-engines.com/en/ranking",
+          "domain": "DB-Engines"
+        },
+        {
+          "title": "Top Databases Compared - TechRadar",
+          "url": "https://www.techradar.com/best/best-databases",
+          "domain": "TechRadar"
+        }
+      ]
+    }
+  ],
+  "organic_results": [
+    {
+      "title": "Best Databases in 2025: A Comprehensive Guide",
+      "url": "https://www.example.com/best-databases-2025",
+      "text": "We compared 15 popular databases across performance, scalability, and ease of use to find the best options for 2025..."
+    },
+    {
+      "title": "DB-Engines Ranking - Popularity Ranking of Database Management Systems",
+      "url": "https://db-engines.com/en/ranking",
+      "text": "The DB-Engines Ranking ranks database management systems according to their popularity. The ranking is updated monthly..."
+    },
+    {
+      "title": "PostgreSQL vs MySQL vs MongoDB: Which Database to Choose in 2025",
+      "url": "https://www.example.com/postgres-vs-mysql-vs-mongo",
+      "text": "A detailed comparison of the three most popular open-source databases, covering performance benchmarks and real-world use cases..."
+    },
+    {
+      "title": "Top 10 Cloud Databases for Modern Applications",
+      "url": "https://www.example.com/cloud-databases-2025",
+      "text": "Cloud-native databases offer automatic scaling, high availability, and managed operations. Here are the top 10 picks for 2025..."
+    },
+    {
+      "title": "Choosing the Right Database: SQL vs NoSQL in 2025",
+      "url": "https://www.example.com/sql-vs-nosql-2025",
+      "text": "Understanding when to use SQL versus NoSQL databases is crucial for application architecture. This guide covers the key decision factors..."
+    }
+  ],
+  "screenshot": "https://image.datasea.network/screenshots/example-best-databases-serp.png"
+}

@@ -1,0 +1,35 @@
+{
+  "version": "5.0",
+  "memory_dir": null,
+  "archive_days": 90,
+  "max_memory_md_size": 8000,
+  "distill_week": true,
+  "distill_day": "sunday",
+  "auto_backup": {
+    "enabled": false,
+    "git_remote": null,
+    "interval_hours": 6
+  },
+  "index": {
+    "enabled": true,
+    "rebuild_on_startup": false
+  },
+  "quality": {
+    "min_user_msg_length": 3,
+    "auto_flag_low_quality": true
+  },
+  "retention": {
+    "conversations_days": null,
+    "summaries_days": null,
+    "distillations_days": null,
+    "archive_days": null
+  },
+  "privacy": {
+    "encrypt_tags": [],
+    "auto_redact_patterns": []
+  },
+  "tags": {
+    "normalize": true,
+    "custom_aliases": {}
+  }
+}

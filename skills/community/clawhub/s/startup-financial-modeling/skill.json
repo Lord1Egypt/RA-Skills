@@ -1,0 +1,8 @@
+{
+  "name": "Startup Financial Modeling",
+  "description": "Create financial projections, build financial models, forecast revenue, calculate burn rate, estimate runway, model cash flow for startups.",
+  "version": "1.0.0",
+  "identifier": "startup-financial-modeling",
+  "author": "wshobson",
+  "category": "finance"
+}

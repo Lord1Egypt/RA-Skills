@@ -1,0 +1,85 @@
+{
+  "name": "XSS Detection",
+  "category": "xss",
+  "description": "检测跨站脚本攻击模式",
+  "severity": "critical",
+  "patterns": [
+    {
+      "id": "xss_script_tag",
+      "pattern": "<script",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "Script 标签注入"
+    },
+    {
+      "id": "xss_img_onerror",
+      "pattern": "onerror\\s*=",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "Img onerror 事件"
+    },
+    {
+      "id": "xssSvg",
+      "pattern": "<svg",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "SVG 标签注入"
+    },
+    {
+      "id": "xss_body_onload",
+      "pattern": "onload\\s*=",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "Body onload 事件"
+    },
+    {
+      "id": "xss_iframe",
+      "pattern": "<iframe",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "Iframe 标签注入"
+    },
+    {
+      "id": "xss_onmouseover",
+      "pattern": "onmouseover\\s*=",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "鼠标事件注入"
+    },
+    {
+      "id": "xss_javascript_uri",
+      "pattern": "javascript\\s*:",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "JavaScript 协议"
+    },
+    {
+      "id": "xss_data_uri",
+      "pattern": "data:text/html",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "Data URI 注入"
+    },
+    {
+      "id": "xss_expression",
+      "pattern": "expression\\s*\\(",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "CSS expression"
+    },
+    {
+      "id": "xss_embed",
+      "pattern": "<embed",
+      "weight": 0.75,
+      "severity": "high",
+      "description": "Embed 标签注入"
+    },
+    {
+      "id": "xss_object",
+      "pattern": "<object",
+      "weight": 0.75,
+      "severity": "high",
+      "description": "Object 标签注入"
+    }
+  ]
+}

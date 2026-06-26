@@ -1,0 +1,75 @@
+=== org.deepin.dde.Bluetooth1 /org/deepin/dde/Bluetooth1 ===
+node /org/deepin/dde/Bluetooth1 {
+  interface org.deepin.dde.Bluetooth1 {
+    methods:
+      ClearUnpairedDevice();
+      ConnectDevice(in  o devPath,
+                    in  o adapterPath);
+      DebugInfo(out s info);
+      DisconnectAudioDevices();
+      DisconnectDevice(in  o devPath);
+      GetAdapters(out s adaptersJSON);
+      GetDevices(in  o adapterPath,
+                 out s devicesJSON);
+      RegisterAgent(in  o agentPath);
+      RemoveDevice(in  o adapterPath,
+                   in  o devPath);
+      RequestDiscovery(in  o adapterPath);
+      SetAdapterAlias(in  o adapterPath,
+                      in  s alias);
+      SetAdapterDiscoverable(in  o adapterPath,
+                             in  b discoverable);
+      SetAdapterDiscoverableTimeout(in  o adapterPath,
+                                    in  u discoverableTimeout);
+      SetAdapterDiscovering(in  o adapterPath,
+                            in  b discovering);
+      SetAdapterPowered(in  o adapterPath,
+                        in  b powered);
+      SetDeviceAlias(in  o device,
+                     in  s alias);
+      SetDeviceTrusted(in  o device,
+                       in  b trusted);
+      UnregisterAgent(in  o agentPath);
+    signals:
+      AdapterAdded(s adapterJSON);
+      AdapterRemoved(s adapterJSON);
+      AdapterPropertiesChanged(s adapterJSON);
+      DeviceAdded(s devJSON);
+      DeviceRemoved(s devJSON);
+      DevicePropertiesChanged(s devJSON);
+    properties:
+      readonly u State = 1;
+      readonly b CanSendFile = true;
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  node Agent {
+  };
+};

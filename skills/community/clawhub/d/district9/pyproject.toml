@@ -1,0 +1,33 @@
+[project]
+name = "openclaw"
+version = "0.1.0"
+description = "DISTRICT9 Agent Token Launcher — No Humans Allowed"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0",
+    "pyyaml>=6.0",
+    "requests>=2.28",
+    "web3>=6.0",
+    "eth-abi>=4.0",
+    "openai>=1.0",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.20"]
+sensors = [
+    "pytrends>=4.9",
+]
+all = [
+    "openclaw[anthropic]",
+    "openclaw[sensors]",
+]
+
+[project.scripts]
+openclaw = "openclaw.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["openclaw*"]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"

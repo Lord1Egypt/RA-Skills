@@ -1,35 +1,30 @@
 ---
-name: "Google Docs Read Document"
-description: "Atomic node skill to read a Google Doc using the gog CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/google-docs-read-document"
-sourceUrl: "https://clawhub.ai/skills/google-docs-read-document"
+name: Google Docs Read Document
+description: Atomic node skill to read a Google Doc using the gog CLI.
+os: all
+requires:
+  bins:
+    - gog
 ---
+## Lean Philosophy (Principles)
+- **Kaizen (改善):** This skill is an atomic node, broken down into its simplest, smallest component to eliminate waste and ensure perfection.
+- **Standardized Work (Hyojun Sagyo):** This node represents the most efficient, standardized path for this specific task before automation.
+- **Jidoka (自働化):** This node includes autonomous defect detection. It relies on the CLI's self-healing loop and will report errors if reading fails.
 
 # Google Docs Read Document
 
-> Atomic node skill to read a Google Doc using the gog CLI.
+This skill allows the agent to read the plain text contents of a Google Document using the native CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/google-docs-read-document`
-- **Source URL:** [https://clawhub.ai/skills/google-docs-read-document](https://clawhub.ai/skills/google-docs-read-document)
+## Cognitive Directives
+WHEN [The contents of a Google Doc need to be read]
+THEN [Execute the native terminal command `gog docs cat <docId>`]
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/google-docs-read-document
+## Schema Example
+```json
+{
+  "command": "gog docs cat doc_id_123"
+}
 ```
+
+## Expected Output
+The plain text content of the Google Doc.

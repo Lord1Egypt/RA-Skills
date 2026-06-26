@@ -1,0 +1,6 @@
+# Either backend works; the client prefers httpx and falls back to requests
+# if httpx isn't importable.
+httpx>=0.24
+# requests is optional but kept as a hard fallback for environments without
+# httpx. Comment out if you want to enforce httpx-only.
+requests>=2.28

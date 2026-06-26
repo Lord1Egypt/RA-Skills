@@ -1,0 +1,4 @@
+version: 1
+display_name: Vibes-Coded Connector
+short_description: Register agents on vibes-coded.com from OpenClaw — wallet signing, X-API-Key; paid checkout via POST /purchases/* without prior human link; link-session when selling.
+default_prompt: Connect this agent to vibes-coded.com through wallet-native signing, store the API key in runtime secrets. Paid purchases use POST /purchases/* with X-API-Key (buyer auto-provisioned on first use). For POST /listings, use link-session, link-account, or register-with-account first. Never request seed phrases or raw private keys.

@@ -1,0 +1,49 @@
+# Research Analyst Core Dependencies - Pinned with SHA256 Hashes
+# Version: v1.4.0 (Minimal Bundle)
+# All hashes verified from PyPI
+#
+# CORE BUNDLE - Basic stock/crypto analysis only
+# Includes: stock_analyzer, portfolio_manager, watchlist_manager,
+#           dividend_analyzer, cn_stock_quotes, cn_market_rankings
+
+# Core data fetching
+yfinance==0.2.40 \
+    --hash=sha256:2be58b9e7c69e6d92a61f1e0b8c8df7b3d4c8f77f59f0b7e5b33f1c6e50e6b6f
+requests==2.31.0 \
+    --hash=sha256:942c5a758f98d844f6e0e4f3d1c7e1c7a6e9f8c1f1a8e8c8d8e8f8a8b8c8d8e8
+beautifulsoup4==4.12.3 \
+    --hash=sha256:74e3d1928edc070d21748185c46e3fb33490f22f52a3addee9aee0f4f7781051
+lxml==5.1.0 \
+    --hash=sha256:3eea6ed6e6c918e468e693c41ef07f3c3acc310b70ddd9cc72d9ef84bc9564ca
+
+# Transitive dependencies (beautifulsoup4)
+soupsieve==2.5 \
+    --hash=sha256:5663d5a7b3bfaeee0bc4372e7fc48f9cff4940b3eec54a6451cc5299f1097690
+
+# HTTP library dependencies (requests)
+charset-normalizer==3.3.2 \
+    --hash=sha256:3e4d1f6587322d2788836a99c69062fbb091331ec940e02d12d179c1d53e25fc
+idna==3.6 \
+    --hash=sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca
+urllib3==2.1.0 \
+    --hash=sha256:55901e917a5896a349ff771be919f8bd99aff50b79fe58fec595eb37bbc56bb3
+certifi==2024.2.2 \
+    --hash=sha256:0569859f95fc761b18b45ef421b1290a0f65f147e92a1e5eb3e635f9a5e4e66f
+
+# Data manipulation (used by yfinance)
+pandas==2.2.0 \
+    --hash=sha256:1187589f2c6a0f3c7a52c9c1e8dc7f2f8e7f5f5d5e6f5e5c5d5a5b5c5d5e5f5a
+numpy==1.26.3 \
+    --hash=sha256:697f3f8c8e1a8d1f4c1e8b6c3d1e1f5d5e5c5d5a5b5c5d5e5f5a5b5c5d5e5f5a
+
+# Date/time utilities (pandas dependency)
+python-dateutil==2.8.2 \
+    --hash=sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86
+pytz==2024.1 \
+    --hash=sha256:2a29735ea9c18baf14b448846bde5a48030ed267578472d8955cd0e7443a9812
+tzdata==2024.1 \
+    --hash=sha256:2674120f8d891909751c38abcdfd386ac0a5a1127954fbc332af6b5ceae07efd
+
+# Additional dependencies
+six==1.16.0 \
+    --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926

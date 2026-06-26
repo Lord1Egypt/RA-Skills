@@ -1,0 +1,1265 @@
+{
+  "_current_scene": "抵达埃尔托瑞尔",
+  "博德之门_坠入阿弗纳斯:博德之门_ 坠入阿弗纳斯 - Ch. 1 两个城市的故事.md": {
+    "filepath": "E:\\AI\\DND\\博德之门_ 坠入阿弗纳斯 - Ch. 1 两个城市的故事.md",
+    "total_lines": 1536,
+    "scenes": [
+      {
+        "title": "埃尔托瑞尔的陨落",
+        "start_line": 9,
+        "end_line": 18,
+        "type": "section",
+        "subsections": [],
+        "line_count": 10,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "博德之门的邪恶",
+        "start_line": 19,
+        "end_line": 28,
+        "type": "section",
+        "subsections": [],
+        "line_count": 10,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "运作本章",
+        "start_line": 29,
+        "end_line": 32,
+        "type": "section",
+        "subsections": [],
+        "line_count": 4,
+        "tags": [
+          "intro"
+        ]
+      },
+      {
+        "title": "石化蜥蜴之门",
+        "start_line": 33,
+        "end_line": 82,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "与佐迪队长见面",
+            "line": 57,
+            "tags": []
+          }
+        ],
+        "line_count": 50,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "精灵之歌酒馆",
+        "start_line": 83,
+        "end_line": 305,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "关于酒馆",
+            "line": 89,
+            "tags": []
+          },
+          {
+            "title": "酒馆顾客",
+            "line": 108,
+            "tags": []
+          },
+          {
+            "title": "酒馆地点",
+            "line": 122,
+            "tags": []
+          },
+          {
+            "title": "E1. 酒吧间",
+            "line": 126,
+            "type": "room"
+          },
+          {
+            "title": "E2. 休息室",
+            "line": 132,
+            "type": "room"
+          },
+          {
+            "title": "E3. 私人餐厅",
+            "line": 136,
+            "type": "room"
+          },
+          {
+            "title": "E4. 储藏凹室",
+            "line": 140,
+            "type": "room"
+          },
+          {
+            "title": "E5. 储藏室",
+            "line": 144,
+            "type": "room"
+          },
+          {
+            "title": "E6. 厨房",
+            "line": 148,
+            "type": "room"
+          },
+          {
+            "title": "E7. 上层餐厅",
+            "line": 152,
+            "type": "room"
+          },
+          {
+            "title": "E8. 私人餐厅",
+            "line": 158,
+            "type": "room"
+          },
+          {
+            "title": "E9. 梦幻套房",
+            "line": 162,
+            "type": "room"
+          },
+          {
+            "title": "E10. 私人餐厅",
+            "line": 168,
+            "type": "room"
+          },
+          {
+            "title": "E11. 大客房",
+            "line": 172,
+            "type": "room"
+          },
+          {
+            "title": "E12. 普通客房",
+            "line": 182,
+            "type": "room"
+          },
+          {
+            "title": "E13. 艾伦的卧室",
+            "line": 188,
+            "type": "room"
+          },
+          {
+            "title": "和塔丽娜打交道",
+            "line": 196,
+            "tags": []
+          },
+          {
+            "title": "在酒馆消磨时间",
+            "line": 204,
+            "type": "room"
+          },
+          {
+            "title": "精灵之歌",
+            "line": 212,
+            "tags": []
+          },
+          {
+            "title": "有像这样的朋友",
+            "line": 270,
+            "tags": []
+          },
+          {
+            "title": "宝藏",
+            "line": 287,
+            "type": "room"
+          },
+          {
+            "title": "塔丽娜所知道的事情",
+            "line": 295,
+            "tags": []
+          }
+        ],
+        "line_count": 223,
+        "tags": [
+          "exploration",
+          "social"
+        ]
+      },
+      {
+        "title": "死亡三神地城",
+        "start_line": 306,
+        "end_line": 665,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "到达澡堂",
+            "line": 312,
+            "tags": []
+          },
+          {
+            "title": "澡堂地点",
+            "line": 321,
+            "tags": []
+          },
+          {
+            "title": "D1. 庭院",
+            "line": 325,
+            "type": "room"
+          },
+          {
+            "title": "D2. 浴室",
+            "line": 334,
+            "type": "room"
+          },
+          {
+            "title": "D3. 南部按摩室",
+            "line": 345,
+            "type": "room"
+          },
+          {
+            "title": "D4. 北部按摩室",
+            "line": 353,
+            "type": "room"
+          },
+          {
+            "title": "D5. 欢迎来到地下城",
+            "line": 360,
+            "type": "room"
+          },
+          {
+            "title": "D6. 肿胀的尸体",
+            "line": 373,
+            "type": "room"
+          },
+          {
+            "title": "D7. 巴尔的祭坛",
+            "line": 377,
+            "type": "room"
+          },
+          {
+            "title": "D8. 发霉的挂毯",
+            "line": 388,
+            "type": "room"
+          },
+          {
+            "title": "D9. 死亡三神之门",
+            "line": 392,
+            "type": "room"
+          },
+          {
+            "title": "D10. 尸从房间",
+            "line": 402,
+            "type": "room"
+          },
+          {
+            "title": "D11. 部分坍塌的墓穴",
+            "line": 413,
+            "type": "room"
+          },
+          {
+            "title": "D12. 班恩的祭坛",
+            "line": 425,
+            "type": "room"
+          },
+          {
+            "title": "D13. 停尸房",
+            "line": 442,
+            "type": "room"
+          },
+          {
+            "title": "D14. 饥饿的老鼠",
+            "line": 457,
+            "type": "room"
+          },
+          {
+            "title": "D15. 被水淹没的房间",
+            "line": 463,
+            "type": "room"
+          },
+          {
+            "title": "D16. 被水淹没的墓穴",
+            "line": 467,
+            "type": "room"
+          },
+          {
+            "title": "D17. 米尔寇的祭坛",
+            "line": 475,
+            "type": "room"
+          },
+          {
+            "title": "D18. 瓦斯汇聚",
+            "line": 484,
+            "type": "room"
+          },
+          {
+            "title": "D19. 部分坍塌的墓穴",
+            "line": 490,
+            "type": "room"
+          },
+          {
+            "title": "D20. 被掠夺过的墓穴",
+            "line": 494,
+            "type": "room"
+          },
+          {
+            "title": "D21. 僵尸墓穴",
+            "line": 500,
+            "type": "room"
+          },
+          {
+            "title": "D22. 拷问室",
+            "line": 511,
+            "type": "room"
+          },
+          {
+            "title": "D23. 密门和岗哨",
+            "line": 528,
+            "type": "room"
+          },
+          {
+            "title": "D24. 米尔寇信徒休息区",
+            "line": 532,
+            "type": "room"
+          },
+          {
+            "title": "D25. 班恩信徒休息区",
+            "line": 541,
+            "type": "room"
+          },
+          {
+            "title": "D26. 巴尔信徒休息区",
+            "line": 547,
+            "type": "room"
+          },
+          {
+            "title": "D27. 战斗回响",
+            "line": 556,
+            "type": "room"
+          },
+          {
+            "title": "D28. 旧地窖",
+            "line": 560,
+            "type": "room"
+          },
+          {
+            "title": "D29. 摩特洛克·范萨姆普尔",
+            "line": 564,
+            "type": "room"
+          },
+          {
+            "title": "D30. 被盗的提亚马特宝藏",
+            "line": 590,
+            "type": "room"
+          },
+          {
+            "title": "D31. 火把",
+            "line": 604,
+            "type": "room"
+          },
+          {
+            "title": "D32. 失窃的货物",
+            "line": 608,
+            "type": "room"
+          },
+          {
+            "title": "D33. 死亡三神的契约",
+            "line": 614,
+            "type": "room"
+          },
+          {
+            "title": "惊喜！龙巫教徒！",
+            "line": 633,
+            "tags": []
+          },
+          {
+            "title": "下一步去哪里？",
+            "line": 650,
+            "tags": []
+          }
+        ],
+        "line_count": 360,
+        "tags": [
+          "exploration",
+          "dungeon"
+        ]
+      },
+      {
+        "title": "矮提灯",
+        "start_line": 666,
+        "end_line": 817,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "关于酒馆",
+            "line": 670,
+            "tags": []
+          },
+          {
+            "title": "酒馆顾客",
+            "line": 683,
+            "tags": []
+          },
+          {
+            "title": "酒馆地点",
+            "line": 697,
+            "tags": []
+          },
+          {
+            "title": "L1. 主甲板",
+            "line": 701,
+            "type": "room"
+          },
+          {
+            "title": "L2. 前甲板",
+            "line": 712,
+            "type": "room"
+          },
+          {
+            "title": "L3. 后甲板",
+            "line": 718,
+            "type": "room"
+          },
+          {
+            "title": "L4. 拉瑞娜的舱房",
+            "line": 724,
+            "type": "room"
+          },
+          {
+            "title": "L5. 酒吧与赌场",
+            "line": 742,
+            "type": "room"
+          },
+          {
+            "title": "L6. 酒馆休息室",
+            "line": 755,
+            "type": "room"
+          },
+          {
+            "title": "L7. 客房",
+            "line": 765,
+            "type": "room"
+          },
+          {
+            "title": "L8. 睡眠区",
+            "line": 771,
+            "type": "room"
+          },
+          {
+            "title": "和阿姆利克打交道",
+            "line": 777,
+            "tags": []
+          },
+          {
+            "title": "蕾娅·曼特勒蒙",
+            "line": 789,
+            "tags": []
+          },
+          {
+            "title": "蕾娅的故事",
+            "line": 800,
+            "type": "room"
+          },
+          {
+            "title": "如果蕾娅加入队伍",
+            "line": 812,
+            "type": "room"
+          }
+        ],
+        "line_count": 152,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "范萨姆普尔别墅",
+        "start_line": 818,
+        "end_line": 1010,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "前往别墅",
+            "line": 824,
+            "tags": []
+          },
+          {
+            "title": "范萨姆普尔家族",
+            "line": 830,
+            "tags": []
+          },
+          {
+            "title": "关于别墅",
+            "line": 843,
+            "tags": []
+          },
+          {
+            "title": "仆人",
+            "line": 849,
+            "type": "room"
+          },
+          {
+            "title": "别墅地点",
+            "line": 860,
+            "tags": []
+          },
+          {
+            "title": "V1. 庭院",
+            "line": 864,
+            "type": "room"
+          },
+          {
+            "title": "V2. 马厩",
+            "line": 870,
+            "type": "room"
+          },
+          {
+            "title": "V3. 门厅",
+            "line": 878,
+            "type": "room"
+          },
+          {
+            "title": "V4. 仆人宿舍",
+            "line": 891,
+            "type": "room"
+          },
+          {
+            "title": "V5. 厨房",
+            "line": 895,
+            "type": "room"
+          },
+          {
+            "title": "V6. 食品储藏室",
+            "line": 903,
+            "type": "room"
+          },
+          {
+            "title": "V7. 向下的楼梯",
+            "line": 907,
+            "type": "room"
+          },
+          {
+            "title": "V8. 客厅",
+            "line": 911,
+            "type": "room"
+          },
+          {
+            "title": "V9. 餐厅",
+            "line": 919,
+            "type": "room"
+          },
+          {
+            "title": "V10. 陈列室",
+            "line": 930,
+            "type": "room"
+          },
+          {
+            "title": "V11. 上层大厅",
+            "line": 938,
+            "type": "room"
+          },
+          {
+            "title": "V12. 阳台",
+            "line": 944,
+            "type": "room"
+          },
+          {
+            "title": "V13. 瑟斯维尔的卧室",
+            "line": 948,
+            "type": "room"
+          },
+          {
+            "title": "V14. 摩特洛克的卧室",
+            "line": 964,
+            "type": "room"
+          },
+          {
+            "title": "V15. 阿姆利克的卧室",
+            "line": 968,
+            "type": "room"
+          },
+          {
+            "title": "V16. 公爵的化妆间",
+            "line": 974,
+            "type": "room"
+          },
+          {
+            "title": "V17. 主卧室",
+            "line": 980,
+            "type": "room"
+          },
+          {
+            "title": "V18. 公爵的书房",
+            "line": 988,
+            "type": "room"
+          },
+          {
+            "title": "V19. 塔顶",
+            "line": 996,
+            "type": "room"
+          }
+        ],
+        "line_count": 193,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "别墅之下",
+        "start_line": 1011,
+        "end_line": 1223,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "地下城特征物",
+            "line": 1015,
+            "tags": []
+          },
+          {
+            "title": "地下城地区",
+            "line": 1029,
+            "tags": []
+          },
+          {
+            "title": "V20. 地下室",
+            "line": 1035,
+            "type": "room"
+          },
+          {
+            "title": "V21. 酒窖",
+            "line": 1046,
+            "type": "room"
+          },
+          {
+            "title": "V22. 污水管道",
+            "line": 1052,
+            "type": "room"
+          },
+          {
+            "title": "V23. 冷藏室",
+            "line": 1066,
+            "type": "room"
+          },
+          {
+            "title": "V24. 餐厅",
+            "line": 1070,
+            "type": "room"
+          },
+          {
+            "title": "V25. 厨房",
+            "line": 1074,
+            "type": "room"
+          },
+          {
+            "title": "V26. 扎瑞尔的神殿",
+            "line": 1078,
+            "type": "room"
+          },
+          {
+            "title": "V27. 撤离通道",
+            "line": 1100,
+            "type": "room"
+          },
+          {
+            "title": "V28. 秘密神殿",
+            "line": 1104,
+            "type": "room"
+          },
+          {
+            "title": "V29. 监狱",
+            "line": 1119,
+            "type": "room"
+          },
+          {
+            "title": "V30. 铁栅栏",
+            "line": 1144,
+            "type": "room"
+          },
+          {
+            "title": "V31. 祭衣室",
+            "line": 1155,
+            "type": "room"
+          },
+          {
+            "title": "V32. 连接隧道",
+            "line": 1159,
+            "type": "room"
+          },
+          {
+            "title": "V33. 教徒大厅宿舍",
+            "line": 1165,
+            "type": "room"
+          },
+          {
+            "title": "V34. 仪式室",
+            "line": 1173,
+            "type": "room"
+          },
+          {
+            "title": "V35. 塔维斯·克雷格的房间",
+            "line": 1182,
+            "type": "room"
+          },
+          {
+            "title": "V36. 范萨姆普尔的宝库",
+            "line": 1191,
+            "type": "room"
+          }
+        ],
+        "line_count": 213,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "博德之门的最终遭遇",
+        "start_line": 1224,
+        "end_line": 1260,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "向佐迪队长报告",
+            "line": 1232,
+            "tags": []
+          },
+          {
+            "title": "波提尔指挥官",
+            "line": 1238,
+            "tags": []
+          }
+        ],
+        "line_count": 37,
+        "tags": [
+          "combat",
+          "encounter"
+        ]
+      },
+      {
+        "title": "烛堡之旅",
+        "start_line": 1261,
+        "end_line": 1312,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "飞龙渡",
+            "line": 1270,
+            "tags": []
+          },
+          {
+            "title": "坚盾骑士团",
+            "line": 1283,
+            "tags": []
+          },
+          {
+            "title": "地狱骑士的传说",
+            "line": 1296,
+            "tags": []
+          }
+        ],
+        "line_count": 52,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "烛堡",
+        "start_line": 1313,
+        "end_line": 1444,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "雄狮小径",
+            "line": 1326,
+            "tags": []
+          },
+          {
+            "title": "进入烛堡",
+            "line": 1340,
+            "tags": []
+          },
+          {
+            "title": "炉边",
+            "line": 1357,
+            "type": "room"
+          },
+          {
+            "title": "西尔维拉·萨维卡斯",
+            "line": 1372,
+            "tags": []
+          },
+          {
+            "title": "塔维斯和谜语盒",
+            "line": 1392,
+            "type": "room"
+          },
+          {
+            "title": "加葛斯和盾牌",
+            "line": 1418,
+            "type": "room"
+          },
+          {
+            "title": "阿弗纳斯的地图",
+            "line": 1434,
+            "type": "room"
+          }
+        ],
+        "line_count": 132,
+        "tags": [
+          "exploration"
+        ]
+      },
+      {
+        "title": "前往阿弗纳斯",
+        "start_line": 1445,
+        "end_line": 1536,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "特拉克西哥的高塔",
+            "line": 1466,
+            "tags": []
+          },
+          {
+            "title": "圣象露露",
+            "line": 1481,
+            "tags": []
+          },
+          {
+            "title": "露露的背景",
+            "line": 1489,
+            "type": "room"
+          },
+          {
+            "title": "露露的记忆",
+            "line": 1508,
+            "type": "room"
+          },
+          {
+            "title": "重建记忆",
+            "line": 1519,
+            "type": "room"
+          },
+          {
+            "title": "扮演露露",
+            "line": 1525,
+            "type": "room"
+          },
+          {
+            "title": "位面转移",
+            "line": 1531,
+            "tags": []
+          }
+        ],
+        "line_count": 92,
+        "tags": [
+          "transition"
+        ]
+      }
+    ]
+  },
+  "_current_module_file": "博德之门_坠入阿弗纳斯:博德之门_ 坠入阿弗纳斯 - Ch. 2 埃尔图雷尔已陷落.md",
+  "博德之门_坠入阿弗纳斯:博德之门_ 坠入阿弗纳斯 - Ch. 2 埃尔图雷尔已陷落.md": {
+    "filepath": "E:\\AI\\DND\\博德之门_ 坠入阿弗纳斯 - Ch. 2 埃尔图雷尔已陷落.md",
+    "total_lines": 791,
+    "scenes": [
+      {
+        "title": "运作本章",
+        "start_line": 11,
+        "end_line": 18,
+        "type": "section",
+        "subsections": [],
+        "line_count": 8,
+        "tags": [
+          "intro"
+        ]
+      },
+      {
+        "title": "抵达埃尔托瑞尔",
+        "start_line": 19,
+        "end_line": 206,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "不受欢迎的聚会",
+            "line": 40,
+            "tags": []
+          },
+          {
+            "title": "后续",
+            "line": 57,
+            "type": "room"
+          },
+          {
+            "title": "埃尔托瑞尔中的更多遭遇",
+            "line": 85,
+            "tags": []
+          },
+          {
+            "title": "倒塌的建筑",
+            "line": 107,
+            "type": "room"
+          },
+          {
+            "title": "求救的呼喊",
+            "line": 117,
+            "type": "room"
+          },
+          {
+            "title": "恐怖大餐",
+            "line": 123,
+            "type": "room"
+          },
+          {
+            "title": "食尸鬼群",
+            "line": 129,
+            "type": "room"
+          },
+          {
+            "title": "可憎巡逻队",
+            "line": 135,
+            "type": "room"
+          },
+          {
+            "title": "小魔鬼推销",
+            "line": 139,
+            "type": "room"
+          },
+          {
+            "title": "魇骑魔骑士",
+            "line": 162,
+            "type": "room"
+          },
+          {
+            "title": "地狱火喷发",
+            "line": 168,
+            "type": "room"
+          },
+          {
+            "title": "鹫魔哲学",
+            "line": 174,
+            "type": "room"
+          },
+          {
+            "title": "丧尸群落",
+            "line": 182,
+            "type": "room"
+          },
+          {
+            "title": "托姆之桥",
+            "line": 190,
+            "tags": []
+          },
+          {
+            "title": "神圣符文",
+            "line": 203,
+            "type": "room"
+          }
+        ],
+        "line_count": 188,
+        "tags": [
+          "exploration",
+          "combat"
+        ]
+      },
+      {
+        "title": "至高大厅",
+        "start_line": 207,
+        "end_line": 433,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "至高大厅概述",
+            "line": 213,
+            "tags": []
+          },
+          {
+            "title": "接近至高大厅",
+            "line": 221,
+            "tags": []
+          },
+          {
+            "title": "大教堂突击",
+            "line": 238,
+            "tags": []
+          },
+          {
+            "title": "第一组：亚比莎龙魔和邪教徒",
+            "line": 248,
+            "type": "room"
+          },
+          {
+            "title": "第二组：蟹群攻击",
+            "line": 252,
+            "type": "room"
+          },
+          {
+            "title": "第三组：魔鬼强盗",
+            "line": 256,
+            "type": "room"
+          },
+          {
+            "title": "第四组：地狱猎人",
+            "line": 260,
+            "type": "room"
+          },
+          {
+            "title": "至高大厅大教堂",
+            "line": 264,
+            "tags": []
+          },
+          {
+            "title": "H1. 英雄大厅",
+            "line": 286,
+            "type": "room"
+          },
+          {
+            "title": "H2. 大门厅",
+            "line": 297,
+            "type": "room"
+          },
+          {
+            "title": "H3. 中央祭坛",
+            "line": 301,
+            "type": "room"
+          },
+          {
+            "title": "H4. 独立礼拜堂",
+            "line": 315,
+            "type": "room"
+          },
+          {
+            "title": "H5. 通往住宅的楼梯",
+            "line": 325,
+            "type": "room"
+          },
+          {
+            "title": "H6. 被亵渎的托姆神坛",
+            "line": 329,
+            "type": "room"
+          },
+          {
+            "title": "H7. 管风琴",
+            "line": 344,
+            "type": "room"
+          },
+          {
+            "title": "H8. 防御设施",
+            "line": 357,
+            "type": "room"
+          },
+          {
+            "title": "H9. 阳台",
+            "line": 365,
+            "type": "room"
+          },
+          {
+            "title": "H10. 壁龛陵墓",
+            "line": 369,
+            "type": "room"
+          },
+          {
+            "title": "H11. 地窖",
+            "line": 375,
+            "type": "room"
+          },
+          {
+            "title": "H12. 至高神殿",
+            "line": 379,
+            "type": "room"
+          },
+          {
+            "title": "H13. 学者大厅",
+            "line": 386,
+            "type": "room"
+          },
+          {
+            "title": "H14. 托姆议会的议事厅",
+            "line": 392,
+            "type": "room"
+          },
+          {
+            "title": "H15. 无名英雄",
+            "line": 396,
+            "type": "room"
+          },
+          {
+            "title": "H16. 主墓穴",
+            "line": 407,
+            "type": "room"
+          },
+          {
+            "title": "H17. 逃生隧道",
+            "line": 430,
+            "type": "room"
+          }
+        ],
+        "line_count": 227,
+        "tags": [
+          "exploration",
+          "dungeon"
+        ]
+      },
+      {
+        "title": "大墓地",
+        "start_line": 434,
+        "end_line": 673,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "吉迪恩·莱特沃德",
+            "line": 451,
+            "tags": []
+          },
+          {
+            "title": "恶魔传送门",
+            "line": 461,
+            "tags": []
+          },
+          {
+            "title": "探索墓地",
+            "line": 467,
+            "tags": []
+          },
+          {
+            "title": "接近教堂",
+            "line": 475,
+            "type": "room"
+          },
+          {
+            "title": "G1. 勇气步道",
+            "line": 486,
+            "type": "room"
+          },
+          {
+            "title": "G2. 光之教堂",
+            "line": 499,
+            "type": "room"
+          },
+          {
+            "title": "G3. 哀悼教堂",
+            "line": 512,
+            "type": "room"
+          },
+          {
+            "title": "G4. 圣衣间",
+            "line": 525,
+            "type": "room"
+          },
+          {
+            "title": "G5. 吉迪恩的住处",
+            "line": 542,
+            "type": "room"
+          },
+          {
+            "title": "G6. 亡灵坑洼",
+            "line": 555,
+            "type": "room"
+          },
+          {
+            "title": "G7. 工作室",
+            "line": 584,
+            "type": "room"
+          },
+          {
+            "title": "G8. 虔敬藏骨堂",
+            "line": 595,
+            "type": "room"
+          },
+          {
+            "title": "G9. 主藏骨堂",
+            "line": 606,
+            "type": "room"
+          },
+          {
+            "title": "G10. 冥想室",
+            "line": 619,
+            "type": "room"
+          },
+          {
+            "title": "G11. 荣誉宝库",
+            "line": 628,
+            "type": "room"
+          },
+          {
+            "title": "G12. 飞升之室",
+            "line": 641,
+            "type": "room"
+          },
+          {
+            "title": "离开教堂",
+            "line": 668,
+            "type": "room"
+          }
+        ],
+        "line_count": 240,
+        "tags": [
+          "exploration",
+          "dungeon"
+        ]
+      },
+      {
+        "title": "逃出围城",
+        "start_line": 674,
+        "end_line": 791,
+        "type": "section",
+        "subsections": [
+          {
+            "title": "返回大教堂",
+            "line": 680,
+            "tags": []
+          },
+          {
+            "title": "归还仪式",
+            "line": 684,
+            "tags": []
+          },
+          {
+            "title": "仪式准备",
+            "line": 690,
+            "type": "room"
+          },
+          {
+            "title": "进行祷告",
+            "line": 698,
+            "type": "room"
+          },
+          {
+            "title": "前进的道路",
+            "line": 715,
+            "tags": []
+          },
+          {
+            "title": "下一步行动",
+            "line": 730,
+            "type": "room"
+          },
+          {
+            "title": "离开埃尔托瑞尔",
+            "line": 736,
+            "tags": []
+          },
+          {
+            "title": "爬下",
+            "line": 740,
+            "type": "room"
+          },
+          {
+            "title": "飞行",
+            "line": 752,
+            "type": "room"
+          },
+          {
+            "title": "临时设备",
+            "line": 756,
+            "type": "room"
+          },
+          {
+            "title": "埃尔托瑞尔的战斗",
+            "line": 770,
+            "tags": []
+          },
+          {
+            "title": "前往指节骨要塞！",
+            "line": 789,
+            "tags": []
+          }
+        ],
+        "line_count": 118,
+        "tags": [
+          "transition",
+          "combat"
+        ]
+      }
+    ]
+  }
+}

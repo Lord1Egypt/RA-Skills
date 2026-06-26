@@ -1,35 +1,25 @@
 ---
-name: "landing-page-optimizer"
-description: "Indexed by skills.sh from onewave-ai/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "onewave-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/onewave-ai/claude-skills/landing-page-optimizer"
-sourceUrl: "https://skills.sh/onewave-ai/claude-skills/landing-page-optimizer"
+name: landing-page-optimizer
+description: Optimize landing pages for conversions, performance, and SEO. Use when improving landing pages, increasing conversions, or optimizing page performance.
 ---
 
-# landing-page-optimizer
+# Landing Page Optimizer
 
-> Indexed by skills.sh from onewave-ai/claude-skills
+Audit and optimize a landing page across conversion, performance, and SEO.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** onewave-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/onewave-ai/claude-skills/landing-page-optimizer`
-- **Source URL:** [https://skills.sh/onewave-ai/claude-skills/landing-page-optimizer](https://skills.sh/onewave-ai/claude-skills/landing-page-optimizer)
+## Contents
 
-## Overview
+- `references/checklists.md` — above-the-fold and quick-wins checklists
+- `references/page-structure.md` — optimal eight-section page layout
+- `references/cta-optimization.md` — CTA copy, friction reduction, placement
+- `references/performance.md` — image/CSS optimization, Core Web Vitals targets, mobile
+- `references/seo-and-tracking.md` — meta tags, structured data, GA4 tracking, A/B tests
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/onewave-ai/claude-skills/landing-page-optimizer
-```
+1. Audit the current page for speed, UX, and conversion elements. Score the above-the-fold area against `references/checklists.md`.
+2. Validate the page layout against the eight-section template in `references/page-structure.md`; flag missing or out-of-order sections.
+3. Optimize CTAs using `references/cta-optimization.md` — sharpen copy, reduce friction, and place CTAs at each high-intent point.
+4. Optimize performance per `references/performance.md`; meet the Core Web Vitals targets and apply mobile patterns.
+5. Apply SEO and tracking from `references/seo-and-tracking.md` — meta tags, structured data, and GA4 conversion events.
+6. Run the quick-wins checklist in `references/checklists.md` and queue prioritized A/B tests.

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "event_kind": "heartbeat",
+  "now": "2026-04-20T12:00:00+00:00",
+  "last_thread_activity": "2026-04-20T10:00:00+00:00",
+  "last_user_action": "2026-04-20T11:30:00+00:00",
+  "last_agent_action": "2026-04-20T11:50:00+00:00",
+  "user_operation_in_progress": false,
+  "agent_response_in_progress": false,
+  "tool_approval_pending": false,
+  "thread_runs_today": 0,
+  "user_runs_today": 0,
+  "no_clear_next_step": true,
+  "host": "OpenClaw",
+  "symptom": "cron research digest keeps reusing stale summary notes",
+  "constraint": "public-only search and advisory-only output",
+  "desired_outcome": "fresh cross-validated hint for the next relevant turn"
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Ultra-minimal favicon version: circle + 6 dots + center diamond -->
+  <circle cx="16" cy="16" r="12" fill="none" stroke="#7aa2f7" stroke-width="1.5" opacity="0.85"/>
+  <circle cx="16" cy="6" r="2.5" fill="#7aa2f7"/>
+  <circle cx="24.7" cy="11" r="2.5" fill="#bb9af7"/>
+  <circle cx="24.7" cy="21" r="2.5" fill="#7dcfff"/>
+  <circle cx="16" cy="26" r="2.5" fill="#9ece6a"/>
+  <circle cx="7.3" cy="21" r="2.5" fill="#ff9e64"/>
+  <circle cx="7.3" cy="11" r="2.5" fill="#c0caf5"/>
+  <rect x="14" y="14" width="4" height="4" rx="0.8" transform="rotate(45 16 16)" fill="#7aa2f7"/>
+</svg>

@@ -1,0 +1,49 @@
+{
+  "slug": "office-snack-drawer-map",
+  "name": "Office Snack Drawer Map",
+  "displayName": "Office Snack Drawer Map",
+  "version": "1.0.0",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Creates a printable office snack drawer map with zones, refill lines, stale checks, and work-context snack placement without nutrition advice or diet planning.",
+  "category": "Productivity",
+  "tags": [
+    "office snacks",
+    "drawer organizer",
+    "workday focus",
+    "restock checklist",
+    "printable map"
+  ],
+  "trigger_keywords": [
+    "office snack drawer map",
+    "organize work snacks",
+    "snack drawer organizer",
+    "office snack checklist",
+    "snack refill line",
+    "work snack station"
+  ],
+  "use_cases": [
+    "Map one office snack drawer with zones and labels.",
+    "Create refill lines and stale checks for work snacks.",
+    "Set up a small snack system for a focused workday without diet advice."
+  ],
+  "requires": {},
+  "requiresApi": false,
+  "requires_api": false,
+  "hasExecutableCode": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "promptOnly": true,
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Do not provide nutrition, medical, allergy, calorie, macro, supplement, weight-loss, or diet advice.",
+    "Do not create meal plans or tell the user what they should eat for health reasons.",
+    "Do not claim a snack is healthy, safe, allergen-free, low-risk, or medically suitable.",
+    "Keep the scope to organizing one snack drawer, shelf, basket, or small cabinet."
+  ],
+  "document_only": true,
+  "runtime": "none"
+}

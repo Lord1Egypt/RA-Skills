@@ -1,0 +1,8 @@
+{
+  "name": "温暖手绘",
+  "description": "纸纹+手绘下划线+胶带装饰+星星标记，适合个人故事",
+  "colors": { "background": "#FDF6EC", "text": "#3D2B1F", "accent": "#D97706", "secondary": "#A0896B" },
+  "fonts": { "title": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif", "body": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "130px", "titleSizeSquare": "100px", "titleSizeWide": "82px", "titleSizeCover": "60px", "contentSize": "36px" },
+  "badge": "随笔"
+}

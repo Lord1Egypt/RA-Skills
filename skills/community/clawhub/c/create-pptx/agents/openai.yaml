@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create PowerPoint"
+  short_description: "Generate PPTX presentations with python-pptx"
+  default_prompt: "帮我创建一个 PowerPoint 演示文稿"

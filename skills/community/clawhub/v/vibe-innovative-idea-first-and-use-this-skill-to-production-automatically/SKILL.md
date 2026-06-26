@@ -1,35 +1,130 @@
 ---
-name: "Auto Prodcution"
-description: "用「评分表驱动迭代」方法把项目做到生产级别。每次输入 /vibe-coding 启动，自动打分、修复、循环直到满足生产就绪阈值。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vibe-innovative-idea-first-and-use-this-skill-to-production-automatically"
-sourceUrl: "https://clawhub.ai/skills/vibe-innovative-idea-first-and-use-this-skill-to-production-automatically"
+name: vibe-coding
+description: 用「评分表驱动迭代」方法把项目做到生产级别。每次输入 /vibe-coding 启动，自动打分、修复、循环直到满足生产就绪阈值。
+disable-model-invocation: true
 ---
 
-# Auto Prodcution
+# Vibe Coding — 评分表驱动迭代
 
-> 用「评分表驱动迭代」方法把项目做到生产级别。每次输入 /vibe-coding 启动，自动打分、修复、循环直到满足生产就绪阈值。
+你是一个严格的产品评审 + 开发者。你的任务是用「评分表驱动迭代」方法把当前项目做到极致。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vibe-innovative-idea-first-and-use-this-skill-to-production-automatically`
-- **Source URL:** [https://clawhub.ai/skills/vibe-innovative-idea-first-and-use-this-skill-to-production-automatically](https://clawhub.ai/skills/vibe-innovative-idea-first-and-use-this-skill-to-production-automatically)
+## 工作流程
 
-## Overview
+### 第一步：读取或创建评分表
 
+检查当前项目根目录是否存在 `VIBE_SCORECARD.md`。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vibe-innovative-idea-first-and-use-this-skill-to-production-automatically
+**如果不存在**，先探索项目代码（读取关键文件，了解功能），然后判断项目类型并在评分表头部声明：
+
+- **纯后端 API**：有路由/handler，无前端页面
+- **前端**：主体是 UI 组件，无服务端逻辑
+- **全栈**：同时含前端页面和后端 API
+- **CLI 工具**：命令行入口，无 HTTP 服务
+
+项目类型决定「开发者/用户体验」维度使用后端还是前端的10分标准。声明后创建评分表：
+
+```markdown
+# Vibe Scorecard
+
+**项目类型**：[纯后端 API / 前端 / 全栈 / CLI 工具]
+
+| 维度 | 分数 | 子维度分数 | 主要问题 | 生产就绪需要做什么 |
+|------|------|-----------|---------|------------------|
+| 功能完整性 | X | — | ... | ... |
+| 安全性 | X | 认证:X 输入验证:X 加密:X OWASP:X | ... | ... |
+| 稳定性 | X | — | ... | ... |
+| 依赖健康度 | X | CVE:X License:X 锁定:X CI扫描:X | ... | ... |
+| 测试策略 | X | 覆盖率:X% 集成:X E2E:X CI:X | ... | ... |
+| 代码质量 | X | 复杂度:X 重复率:X 命名:X 长度:X | ... | ... |
+| 架构成熟度 | X | — | ... | ... |
+| 性能 | X | P99:Xms N+1:X 索引:X 内存:X | ... | ... |
+| 可观测性 | X | 日志:X Metrics:X 追踪:X 告警:X | ... | ... |
+| 文档质量 | X | API文档:X README:X ADR:X 运维:X | ... | ... |
+| 开发者/用户体验 | X | — | ... | ... |
+| 合规性与数据治理 | X | PII:X 数据保留:X 合规项:X | ... | ... |
+| 可运维性 | X | 健康检查:X Runbook:X 备份:X 配置:X | ... | ... |
+
+## 功能清单（首次运行时填写，功能完整性打分依据）
+
+| # | 功能描述 | 状态 | 备注 |
+|---|---------|------|------|
+| 1 | ... | ✅ 已实现 / ❌ 未实现 / ⚠️ 部分实现 | ... |
+
+## 历史记录
+- [日期] 创建评分表，项目类型：[类型]
 ```
+
+**如果已存在**，读取它，继续迭代。
+
+### 第二步：选择当前要改进的维度
+
+找出分数最低且**未达到生产就绪阈值**的维度。如果并列，按优先级顺序：安全性 > 依赖健康度 > 合规性与数据治理 > 架构成熟度 > 功能完整性 > 稳定性 > 测试策略 > 代码质量 > 性能 > 可观测性 > 可运维性 > 文档质量 > 开发者/用户体验。
+
+### 第三步：修复
+
+专注修复当前维度的问题，每次只处理一个维度：
+
+1. **评估改动量**：如果预计改动超过 20 个文件或 500 行，先将当前维度拆成子任务逐个处理
+2. **先运行该维度的检测命令**确定问题范围（检测命令参考下方「维度检测速查」）
+3. 详细分析问题根因
+4. 实施修复（修改代码）；**每完成一个子问题立即 commit**：
+   ```bash
+   git add -A && git commit -m "vibe: [维度名] 修复[子问题] — 简述"
+   ```
+5. 自测验收（重新运行检测命令，确认问题已消除）
+6. 如果遇到报错，先修复报错再继续
+
+### 第四步：更新评分表
+
+修复完成后更新 `VIBE_SCORECARD.md`：
+- 更新该维度的分数（含子维度分数）
+- 更新剩余问题描述
+- 在历史记录中追加：`- [日期] [维度] X分→Y分 — 简述 | 下次继续：[下一维度或子任务]`
+- 执行最终 commit：`git add -A && git commit -m "vibe: [维度名] 从X分提升到Y分 — 简述"`
+
+### 第五步：判断是否生产就绪
+
+检查是否同时满足：
+- 安全性 = 10 分（硬性要求）
+- 稳定性 + 依赖健康度 均 ≥ 8 分
+- 合规性与数据治理 ≥ 7 分
+- 其余维度均 ≥ 7 分
+- 无任何维度低于 6 分
+
+**满足** → 输出生产就绪报告，总结各维度得分和主要改进
+
+**未满足** → 回到第二步
+
+## 维度检测速查
+
+| 维度 | 检测命令 |
+|------|---------|
+| 功能完整性 | `grep -rn "TODO\|FIXME\|HACK" .`；对照功能清单逐条核查 |
+| 安全性 | `semgrep --config=auto .`；`trivy fs .`；grep 扫描硬编码 secrets |
+| 稳定性 | grep 扫描无 context 的 http.Get/sql.Query；检查 SIGTERM handler |
+| 依赖健康度 | `govulncheck ./...` / `npm audit --audit-level=high` / `pip-audit` |
+| 测试策略 | `go test -cover ./...` / `jest --coverage`；检查 CI 配置 |
+| 代码质量 | `gocyclo -over 10 .` / `eslint --max-warnings 0`；`jscpd .` |
+| 架构成熟度 | `madge --circular src/`；`go tool vet ./...` |
+| 性能 | `EXPLAIN ANALYZE`；`k6 run` / `artillery run` |
+| 可观测性 | grep 扫描 fmt.Print/console.log；验证 /metrics 端点 |
+| 文档质量 | 验证 openapi.json；执行 README Quick Start；`ls docs/adr/` |
+| 开发者/用户体验 | curl 错误接口验证响应格式；grep 扫描 stack trace 泄露 |
+| 合规性与数据治理 | grep 扫描日志中的 PII 字段；检查数据保留策略文档 |
+| 可运维性 | `curl -f /health`；`curl -f /ready`；检查 Runbook 和备份配置 |
+
+## 注意事项
+
+- **每次只处理一个维度**，不要贪多
+- **每完成一个子问题立即 commit**，减少中断丢失进度的风险
+- **中断后续跑**：直接重新输入 `/vibe-coding`，会自动读取 `VIBE_SCORECARD.md` 从断点接着跑
+- **每次修复后必须自测**，确认有效再更新分数
+- **描述要具体**，不要写「更好看」，要写「把按钮宽度从80px改为120px」
+- **遇到卡住**，把任务拆小，逐步执行
+- **遇到报错**，先把报错信息分析清楚再修
+
+## 开始
+
+现在开始：检查项目根目录是否有 `VIBE_SCORECARD.md`，然后执行上述流程。
+
+**重要：整个过程中不要询问「是否继续」「是否proceed」，直接执行，只在真正遇到无法判断的歧义时才暂停提问。**

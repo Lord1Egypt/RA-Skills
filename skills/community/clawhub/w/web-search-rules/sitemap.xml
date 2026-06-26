@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:skill="https://clawhub.ai/schemas/skill-sitemap/1.0">
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <skill:slug>web-search-rules</skill:slug>
+    <skill:version>4.0.0</skill:version>
+    <skill:title><![CDATA[Web Search Rules / 研究资料入库治理]]></skill:title>
+    <skill:name><![CDATA[Web Search Rules / 研究资料入库治理]]></skill:name>
+    <skill:summary_en><![CDATA[A bilingual research intake governance skill that turns web search results into controlled knowledge-base records using source trust levels, rules, staging, review queues, archive policies, cloud-upload safeguards, and audit logs.]]></skill:summary_en>
+    <skill:summary_zh><![CDATA[一个中英双语研究资料入库治理 Skill，用来源可信度、规则筛选、暂存区、审核队列、归档策略、云端上传保护和审计日志，把网页搜索结果安全地转化为知识库资料。]]></skill:summary_zh>
+    <skill:upgrade_note_en><![CDATA[This is the upgraded version of the previous Chinese and English Web Search Rules editions; going forward, both language editions will be maintained together in this single bilingual package.]]></skill:upgrade_note_en>
+    <skill:upgrade_note_zh><![CDATA[这是此前中文与英文 Web Search Rules 两版的升级版；以后中英文版本会合并在这个双语包里统一维护。]]></skill:upgrade_note_zh>
+    <skill:functions><![CDATA[Classifies web search results by trusted, allowed, review, and blocked source levels; supports whitelist/blacklist compatibility, automatic staging, review queues, confirmation-controlled archiving, cloud-upload safeguards, audit logs, topic-based rules, and platform adapters for Obsidian, IMA, Tencent Docs, Feishu Wiki, DingTalk Docs, NotebookLM, and custom knowledge bases.]]></skill:functions>
+    <skill:tags><![CDATA[web-search, knowledge-base, research, source-governance, whitelist, blacklist, audit-log, market-intelligence, bilingual, zh-cn, en]]></skill:tags>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/SKILL.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>SKILL.md</skill:file>
+    <skill:description><![CDATA[Main bilingual instruction file for Web Search Rules / 研究资料入库治理.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/skill-card.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>skill-card.md</skill:file>
+    <skill:description><![CDATA[ClawHub display card and public description.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/SECURITY.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>SECURITY.md</skill:file>
+    <skill:description><![CDATA[Security and privacy guidance for research intake and knowledge-base writes.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/references/rule-engine.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/rule-engine.md</skill:file>
+    <skill:description><![CDATA[Source trust levels, rule logic, and intake state machine.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/references/platform-adapters.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/platform-adapters.md</skill:file>
+    <skill:description><![CDATA[Platform adapter overview.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/references/platform-operation-guide-zh.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/platform-operation-guide-zh.md</skill:file>
+    <skill:description><![CDATA[中文平台操作说明。]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/references/migration-and-testing.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/migration-and-testing.md</skill:file>
+    <skill:description><![CDATA[Migration, dry-run, testing, and release guidance.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/web-search-rules/artifact/agents/openai.yaml</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>agents/openai.yaml</skill:file>
+    <skill:description><![CDATA[OpenAI agent configuration for this skill.]]></skill:description>
+  </url>
+</urlset>

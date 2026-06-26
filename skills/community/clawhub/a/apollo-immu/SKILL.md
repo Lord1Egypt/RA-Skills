@@ -1,35 +1,141 @@
 ---
-name: "Apollo Immu"
-description: "像免疫系统一样拦截危险操作，守护你的数据和系统安全。自动识别危险操作，信任积累减少确认噪音。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-immu"
-sourceUrl: "https://clawhub.ai/skills/apollo-immu"
+name: apollo-immu
+description: >
+  像免疫系统一样拦截危险操作，守护你的数据和系统安全。自动识别危险操作，信任积累减少确认噪音。
 ---
+marketplace_description: |
+  像免疫系统一样工作——自动识别危险操作，信任积累减少确认噪音。
+  
+  核心功能：
+  • 危险操作拦截：删除文件、对外发消息、执行命令、变更权限前自动确认
+  • 三级收件人风险：🔴高风险（群聊/外部）始终拦截 / 🟡中风险记录信任 / 🟢低风险（亲密同事）3次确认后自动放行
+  • 智能信任积累：同一操作+同一收件人，第3次确认后自动放行
+  • 7天自然衰减：超过7天无操作，信任归零重新计数
+  • 亲密信号检测：自动识别「好的」「哈哈」「ok」等，降低打扰
+  • 降级信号检测：识别「等等」「确认」，自动提高风险等级
+  • 动态收件人判断：算法判断而非硬编码，智能适应不同场景
+  
+  适用场景：AI助手执行敏感操作时自动保护，让常用操作更顺畅
 
 # Apollo Immu
 
-> 像免疫系统一样拦截危险操作，守护你的数据和系统安全。自动识别危险操作，信任积累减少确认噪音。
+实时拦截危险操作的零信任防御系统。核心理念：事前拦截优于事后验证，通过信任积累自动学习减少确认噪音。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-immu`
-- **Source URL:** [https://clawhub.ai/skills/apollo-immu](https://clawhub.ai/skills/apollo-immu)
+## 核心概念
 
-## Overview
+### 拦截公式
 
+```
+拦截判断 = 操作类型风险 × 收件人风险等级 × 信任积累
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 收件人风险等级
+
+| 风险等级 | 典型对象 | 拦截策略 |
+|---------|---------|---------|
+| 🔴 高 | 老板、群聊、所有成员 | **始终拦截**，不学习 |
+| 🟡 中 | 普通同事、外部联系人 | 始终拦截，但记录信任 |
+| 🟢 低 | 亲密同事（自动识别） | 3次确认后自动放行 |
+
+### 信任积累机制
+
+- 同一操作 + 同一收件人 → 第1次确认 → 记1次
+- 第3次确认后 → 该组合自动放行
+- 超过7天无重复 → 信任衰减，重新计数
+
+### 自动学习（精髓）
+
+当对话中出现以下信号时，AI应主动更新信任数据库：
+
+**识别亲密同事的信号（满足任一即可）：**
+- 对话风格轻松随意，使用表情、语气词（哈、哈哈、嗯嗯、ok）
+- 从未要求AI"确认"或"请先问我"
+- 回复短快（<30字），无正式套话
+- 主动发起闲聊或生活话题
+
+**信任更新触发（每满足一次就 update）：**
 ```bash
-hermes skills install clawhub/apollo-immu
+python3 scripts/trust_tracker.py update <收件人> <操作类型>
+```
+
+**降级信号（亲密同事可能变成需确认）：**
+- 用户说"等等"、"先别"、"确认一下"
+- 用户明确拒绝操作建议
+- 出现2次以上"等等"
+
+## 强制执行流程
+
+**在任何危险操作执行前，必须先运行拦截判断：**
+
+```bash
+python3 scripts/interceptor.py <操作类型> <收件人> [文件路径]
+```
+
+- 返回 `intercept: false` → 继续执行
+- 返回 `intercept: true` → 暂停，向用户确认后再执行
+- 确认后调用 `trust_tracker.py update` 记录信任
+
+## 拦截决策流程
+
+```
+检测到操作
+    ↓
+判断操作类型风险
+    ↓
+获取收件人风险等级
+    ↓
+检查trust_db.json中的信任分数
+    ↓
+┌─────────────────────────────────┐
+│ 风险等级高（老板/群聊）  → 拦截 │
+│ 风险等级中            → 拦截    │
+│ 风险等级低+信任<3     → 拦截    │
+│ 风险等级低+信任≥3     → 放行    │
+└─────────────────────────────────┘
+```
+
+## 使用场景
+
+### 场景A：删除文件前拦截
+用户要求删除文件时 → 判断是否在临时目录 /tmp → 如不是则拦截
+
+### 场景B：对外发消息前拦截
+AI准备发送飞书/微信/邮件消息时 → 根据收件人判断 → 高风险始终拦截
+
+### 场景C：权限变更前拦截
+分享文档、改权限等操作 → 高风险收件人始终拦截
+
+## 脚本使用
+
+### interceptor.py — 判断是否拦截
+
+```bash
+python3 scripts/interceptor.py <操作类型> <收件人> [其他参数]
+```
+
+返回：是否拦截 + 拦截原因
+
+### trust_tracker.py — 更新信任分数
+
+```bash
+python3 scripts/trust_tracker.py update <操作类型> <收件人>
+python3 scripts/trust_tracker.py get <收件人>
+python3 scripts/trust_tracker.py reset <收件人>
+```
+
+## 参考文档
+
+- **risk_levels.md**：操作风险分级标准 + 收件人风险分类详细规则
+- **auto_learn.md**：自动识别亲密同事的算法和规则
+
+## 信任数据库
+
+信任分数存储在 `assets/trust_db.json`，结构：
+
+```json
+{
+  "contacts": {
+    "收件人A": { "操作类型": { "count": 3, "lastConfirm": "时间戳" } }
+  }
+}
 ```

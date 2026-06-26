@@ -1,0 +1,15 @@
+Subject: Proposal for {{ project_name }}
+
+Hi {{ client_name }},
+
+It was great discussing the {{ project_name }} with you. Based on our conversation, here is a breakdown of the proposal:
+
+- **Project:** {{ project_name }}
+- **Scope:** {{ project_scope }}
+- **Investment:** {{ project_cost }}
+- **Timeline:** {{ project_timeline }}
+
+I am confident that we can achieve the goals we discussed. Please let me know if you have any questions or would like to proceed with the next steps.
+
+Best regards,
+{{ freelancer_name }}

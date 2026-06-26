@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "user_id": "test_user_001",
+    "created_at": "2026-04-06T21:50:55.587068",
+    "updated_at": "2026-04-06T21:50:55.587068",
+    "version": "1.0"
+  },
+  "persona": {
+    "identity": {
+      "name": "测试用户",
+      "archetype": "追问者",
+      "core_drive": "测试核心驱动力",
+      "chemistry": "测试互动方式"
+    },
+    "expression": {
+      "pace": "normal",
+      "sentence_length": "mixed",
+      "signature_phrases": [
+        "测试口头禅1",
+        "测试口头禅2"
+      ],
+      "attitude": "curious"
+    },
+    "memory_seed": [
+      {
+        "title": "测试记忆",
+        "content": "测试内容",
+        "tags": [
+          "测试",
+          "记忆"
+        ]
+      }
+    ]
+  }
+}

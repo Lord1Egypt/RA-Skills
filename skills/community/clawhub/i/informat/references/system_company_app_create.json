@@ -1,0 +1,38 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_create",
+    "description": "Create a team application. Must provide application name, optionally set color, icon, group, and create based on template.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Application name. Cannot contain special characters like , . / \\"
+        },
+        "color": {
+          "type": "string",
+          "description": "Application theme color, for example: #1890ff"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Application icon. Can only be filled with one of the following values:\nhome、flask、home-2、links、git-branch、task、global、file-add"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "Group ID, if empty, create under the default group"
+        },
+        "appDefineId": {
+          "type": "string",
+          "description": "Format: 2~100 characters of English, numbers, underscores_ and.",
+          "examples": [
+            "com.mycompany.MyApp"
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "signalgrid-activity",
+  "version": "1.0.0",
+  "description": "Send live-activities to your iOS / Android / Web via SignalGrid.",
+  "main": "signalgrid-activity.js",
+  "keywords": [
+    "openclaw-skill",
+    "notifications",
+    "signalgrid",
+    "live-activities",
+    "alert",
+    "critical",
+    "ongoing-notification"
+  ],
+  "author": "Signalgrid e.U.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

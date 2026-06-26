@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>库存健康诊断总览</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f0f;color:#e5e5e5;font-family:-apple-system,sans-serif;max-width:960px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin-bottom:20px;color:#fff}
+h2{font-size:16px;margin:24px 0 12px;color:#ccc}
+
+/* KPI 卡片行 */
+.kpi-row{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.kpi{flex:1;min-width:160px;background:linear-gradient(135deg,#1a1a1a,#242424);border-radius:12px;padding:16px}
+.kpi .val{font-size:26px;font-weight:700;color:#fff}
+.kpi .lbl{font-size:12px;color:#888;margin-top:4px}
+.kpi .chg{font-size:12px;margin-top:6px}
+.up{color:#22c55e} .down{color:#ef4444} .flat{color:#666}
+
+/* 四象限网格 */
+.quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:12px;overflow:hidden;margin:12px 0}
+.quad{padding:18px 16px;min-height:90px}
+.quad b{display:block;margin-bottom:6px;font-size:14px}
+.quad .items{font-size:13px;color:#ccc;line-height:1.6}
+.q1{background:rgba(34,197,94,.1);border-left:3px solid #22c55e}
+.q2{background:rgba(249,115,22,.1);border-left:3px solid #f97316}
+.q3{background:rgba(239,68,68,.1);border-left:3px solid #ef4444}
+.q4{background:rgba(234,179,8,.1);border-left:3px solid #eab308}
+.axis-label{text-align:center;font-size:11px;color:#555;margin:4px 0}
+
+/* 表格 */
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th{background:#1a1a1a;text-align:left;padding:10px 12px;font-size:12px;color:#888;font-weight:600}
+td{padding:10px 12px;border-bottom:1px solid #1f1f1f;font-size:13px}
+tr:hover{background:#161616}
+.sig{font-size:18px;text-align:center;width:40px}
+.val-bad{color:#ef4444} .val-warn{color:#eab308} .val-ok{color:#22c55e}
+
+/* 暂停提示 */
+.pause-box{background:#1a1a1a;border-left:4px solid #3b82f6;border-radius:8px;padding:16px;margin-top:28px;font-size:14px;line-height:1.7}
+.pause-box strong{color:#60a5fa}
+</style>
+</head>
+<body>
+
+<h1>📊 库存健康诊断总览</h1>
+
+<!-- ===== KPI 卡片 ===== -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="val">{{总库存市值}}</div>
+    <div class="lbl">总库存市值</div>
+    <div class="chg {{环比方向1}}">{{环比变化1}}</div>
+  </div>
+  <div class="kpi">
+    <div class="val">{{售罄率}}</div>
+    <div class="lbl">整体售罄率</div>
+    <div class="chg {{环比方向2}}">{{环比变化2}}</div>
+  </div>
+  <div class="kpi">
+    <div class="val">{{库销比}}</div>
+    <div class="lbl">整体库销比</div>
+    <div class="chg {{环比方向3}}">{{环比变化3}}</div>
+  </div>
+  <div class="kpi">
+    <div class="val">{{周转天数}}</div>
+    <div class="lbl">库存周转天数</div>
+    <div class="chg {{环比方向4}}">{{环比变化4}}</div>
+  </div>
+</div>
+
+<!-- ===== 动态感知摘要 ===== -->
+<div style="background:#1a1a1a;border-radius:12px;padding:16px;margin-bottom:24px">
+  <h2 style="margin-top:0">🔍 动态感知</h2>
+  <p style="font-size:13px;line-height:1.8;color:#ccc">
+    业务为<strong style="color:#fff">{{补货模式}}</strong>（库存覆盖约 {{覆盖天数}} 天销售）。
+    {{趋势发现}}。日均补货 {{日均补货}} 件 vs 日均销售 {{日均销售}} 件，
+    净盈余 {{净盈余}} 件/天。
+  </p>
+</div>
+
+<!-- ===== 四象限分布 ===== -->
+<h2>四象限分布（售罄率 × 库销比）</h2>
+<div class="axis-label">↑ 售罄率高</div>
+<div class="quad-grid">
+  <div class="quad q2">
+    <b>⚠️ Q2: 过季尾货</b>
+    <div class="items">售罄率≥40% + 库销比≥0.5<br>{{Q2_品类列表}}</div>
+  </div>
+  <div class="quad q1">
+    <b>🟢 Q1: 健康/热销</b>
+    <div class="items">售罄率≥40% + 库销比<0.5<br>{{Q1_品类列表}}</div>
+  </div>
+  <div class="quad q3">
+    <b>🔴 Q3: 滞销积压</b>
+    <div class="items">售罄率<40% + 库销比≥0.5<br>{{Q3_品类列表}}</div>
+  </div>
+  <div class="quad q4">
+    <b>🟡 Q4: 新品/观察</b>
+    <div class="items">售罄率<40% + 库销比<0.5<br>{{Q4_品类列表}}</div>
+  </div>
+</div>
+<div class="axis-label">库销比 → 高</div>
+
+<!-- ===== 品类诊断表 ===== -->
+<h2>品类诊断明细</h2>
+<table>
+  <tr>
+    <th class="sig">信号</th>
+    <th>商品中类</th>
+    <th>售罄率</th>
+    <th>库销比</th>
+    <th>到店天数</th>
+    <th>库存量</th>
+    <th>库存市值</th>
+    <th>所属象限</th>
+  </tr>
+  <!-- 🔴 红灯品类排在最前 -->
+  <tr>
+    <td class="sig">🔴</td>
+    <td><strong>{{品类名}}</strong></td>
+    <td class="val-bad">{{售罄率}}</td>
+    <td class="val-bad">{{库销比}}</td>
+    <td>{{到店天数}}</td>
+    <td>{{库存量}}</td>
+    <td>{{库存市值}}</td>
+    <td>Q3-滞销积压</td>
+  </tr>
+  <!-- 按 🔴 > ⚠️ > 🟡 > 🟢⚡ > 🟢 排序，每个品类一行 -->
+</table>
+
+<!-- ===== 阶段一暂停 ===== -->
+<div class="pause-box">
+  <strong>💬 需要重点下钻哪个品类？</strong><br>
+  以上是基于 <u>售罄率 × 库销比</u> 四象限模型的品类诊断。<br>
+  可以选择一个品类按品牌×季节下钻，也可以直接生成完整诊断报告和行动计划。
+</div>
+
+</body>
+</html>

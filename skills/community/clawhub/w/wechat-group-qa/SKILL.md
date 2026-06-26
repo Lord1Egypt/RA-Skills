@@ -1,35 +1,55 @@
 ---
-name: "wechat-group-qa/"
-description: "从企业微信群提取学员提问，按课程阶段分类并生成表格。当用户在企业微信群里@机器人提问时，自动记录问题并整理。"
-category: "other"
-source: "ClawHub"
-tags: [wechat group qa bot assistant]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-group-qa"
-sourceUrl: "https://clawhub.ai/skills/wechat-group-qa"
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: "00000000000000000000000000000000"
+    PropagateID: "00000000000000000000000000000000"
+    ReservedCode1: 3044022077e105c07afd6ebe7152569313c8b8837539e92b7f77370a999b6642dde8c70402202f18e36d2cb4e1f119397eeec12e84e86b706e55c39a734308f82aa6e26d0af0
+    ReservedCode2: 304502206f4a257ccf643a8acc3e0da80cde501821b24b6be7fe1a7a1ebd5ec38a01e85b022100f59672f4422459c14932484ad04a101a26cfcc77e94b88f617b9e4c6e9d128a6
+description: 从企业微信群提取学员提问，按课程阶段分类并生成表格。当用户在企业微信群里@机器人提问时，自动记录问题并整理。
+name: wechat-group-qa
 ---
 
-# wechat-group-qa/
+# 微信群学员提问提取技能
 
-> 从企业微信群提取学员提问，按课程阶段分类并生成表格。当用户在企业微信群里@机器人提问时，自动记录问题并整理。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-group-qa`
-- **Source URL:** [https://clawhub.ai/skills/wechat-group-qa](https://clawhub.ai/skills/wechat-group-qa)
+从企业微信群消息中提取学员提问，按课程阶段分类，生成结构化表格。
 
-## Overview
+## 支持的课程阶段
 
+- 入门期
+- 进阶期  
+- 冲刺期
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-group-qa
-```
+## 使用方式
+
+1. **群里@机器人提问**：学员在企业微信群里@机器人提问
+2. **自动记录**：技能自动提取问题信息
+3. **生成表格**：按课程阶段分类生成表格
+
+## 输出格式
+
+生成包含以下字段的表格：
+
+| 学员昵称 | 问题内容 | 提问时间 | 课程阶段 |
+|---------|---------|----------|----------|
+| 张三 | 如何开始跑步？ | 2024-01-15 10:30 | 入门期 |
+| 李四 | 5公里配速多少合适？ | 2024-01-15 11:00 | 进阶期 |
+
+## 触发方式
+
+当企业微信群里有@机器人的消息时，技能自动触发。
+
+## 数据存储
+
+问题记录保存在 `wechat-qa-records.md` 文件中，每次更新表格。
+
+## 使用示例
+
+用户发送：帮我整理今天群里的学员提问
+
+技能回复：好的，我来整理...
+
+（读取群消息记录，提取提问，生成表格）

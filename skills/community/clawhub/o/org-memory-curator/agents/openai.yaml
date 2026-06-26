@@ -1,0 +1,3 @@
+interface:
+  display_name: "Org Memory Curator"
+  short_description: "筛选、路由并归档长期有效的组织记忆"

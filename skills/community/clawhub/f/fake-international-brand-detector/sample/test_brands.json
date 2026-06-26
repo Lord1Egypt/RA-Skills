@@ -1,0 +1,126 @@
+{
+  "brand_examples": [
+    {
+      "brand": "NOW",
+      "origin": "United States",
+      "founded": 1968,
+      "whois_country": "US",
+      "email_domain": "@nowfoods.com",
+      "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.ca", "amazon.fr"],
+      "physical_stores": ["CVS", "Walgreens", "Boots UK"],
+      "media_coverage": true,
+      "media_sources": ["Forbes", "Reuters", "WebMD", "Health.com"],
+      "trademark_timeline": {
+        "china_first": false,
+        "us_first": true,
+        "australia_first": true
+      },
+      "quality_score": 8.75,
+      "verdict": "✅ 真国际品牌",
+      "confidence": 0.95
+    },
+    {
+      "brand": "Swisse",
+      "origin": "Australia",
+      "founded": 1987,
+      "whois_country": "AU",
+      "email_domain": "@swisse.com.au",
+      "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.fr", "amazon.it", "amazon.es", "amazon.ca", "amazon.jp"],
+      "physical_stores": [
+        "Chemist Warehouse",
+        "Priceline Pharmacy",
+        "Boots UK",
+        "Douglas Germany"
+      ],
+      "media_coverage": true,
+      "media_sources": ["Bloomberg", "Forbes AU", "ABC News Australia"],
+      "trademark_timeline": {
+        "china_first": false,
+        "australia_first": true,
+        "global_first": true
+      },
+      "quality_score": 8.45,
+      "verdict": "✅ 真国际品牌",
+      "confidence": 0.92
+    },
+    {
+      "brand": "NYO3 (Omega Nutrition)",
+      "origin": "China (青岛逢时科技)",
+      "claimed_origin": "Norway（宣称挪威，实为假）",
+      "founded": 2015,
+      "whois_country": "CN",
+      "email_domain": "@qq.com/@163.com",
+      "amazon_platforms": ["amazon.com", "amazon.de", "amazon.co.uk"],
+      "physical_stores": [],
+      "media_coverage": false,
+      "media_sources": [],
+      "trademark_timeline": {
+        "china_first": true,
+        "norway_later": true,
+        "european_later": true
+      },
+      "amazon_seller_location": {
+        "amazon_de": "CN",
+        "amazon_uk": "CN",
+        "expected_countries": ["DE", "UK"]
+      },
+      "quality_score": 2.0,
+      "false_international_flags": [
+        "WHOIS显示中国注册",
+        "商标时间线：中国市场早于海外",
+        "亚马逊欧洲店铺为中国卖家运营",
+        "无权威国际媒体报道"
+      ],
+      "verdict": "🚩 假国际品牌",
+      "confidence": 0.95
+    },
+    {
+      "brand": "LOEON",
+      "origin": "China",
+      "founded": "<5年",
+      "whois_country": "CN",
+      "email_domain": "@qq.com/@weixin.qq.com",
+      "amazon_platforms": ["amazon.cn"],
+      "physical_stores": [],
+      "media_coverage": false,
+      "media_sources": ["Baidu", "Sina Health"],
+      "trademark_timeline": {
+        "china_first": true,
+        "global_first": false
+      },
+      "quality_score": 2.5,
+      "verdict": "🚩 假国际品牌",
+      "confidence": 0.88
+    },
+    {
+      "brand": "Anta (安踏)",
+      "origin": "China",
+      "founded": 1991,
+      "whois_country": "CN",
+      "email_domain": "@anta-group.com.cn",
+      "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de"],
+      "physical_stores": [
+        "Foot Locker (部分)",
+        "Bata Asia"
+      ],
+      "media_coverage": true,
+      "media_sources": [
+        "Forbes China",
+        "South China Morning Post"
+      ],
+      "trademark_timeline": {
+        "china_first": true,
+        "global_expansion": true
+      },
+      "quality_score": 4.5,
+      "note": "中国国货出海，非假国际品牌，但有海外业务",
+      "verdict": "⚠️ 存疑品牌（中国本土品牌）",
+      "confidence": 0.75
+    }
+  ],
+  "evaluation_guide": {
+    "true_international_brand": "需满足：WHOIS=本土国家 + ≥5 项高质量验证 + 权威媒体报道",
+    "suspicious_brand": "部分海外业务但品牌起源为中国，如国货出海成功企业",
+    "false_international_brand": "WHOIS=CN + 商标时间线异常 + 亚马逊卖家为中国公司 + 无国际媒体报道"
+  }
+}

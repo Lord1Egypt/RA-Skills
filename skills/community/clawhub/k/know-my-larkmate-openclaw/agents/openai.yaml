@@ -1,0 +1,7 @@
+interface:
+  display_name: "Know My Larkmate"
+  short_description: "Sync recent Lark context into OpenClaw daily notes"
+  default_prompt: "Use $know-my-larkmate-openclaw to sync recent Lark activity into today's OpenClaw daily note and carry forward the most relevant recent context."
+
+policy:
+  allow_implicit_invocation: true

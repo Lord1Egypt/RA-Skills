@@ -1,35 +1,119 @@
 ---
-name: "Cup and Handle Pattern Detector"
-description: "检测股票日线是否符合"杯柄形态（Cup and Handle）"技术分析形态，并生成含轮廓线的识别示意图。触发场景：(1) 询问某只股票是否形成杯柄形态 (2) 查询杯柄形态股票 (3) 技术形态识别需求。触发词：杯柄形态、cup and handle、欧奈尔形态、技术形态识别。"
-category: "blockchain"
-source: "ClawHub"
-tags: [algorithmic-trading, candlestick, chart-analysis, cup-handle, financial-analysis, pattern-detector, stock-analysis, stock-pattern, technical-analysis, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cup-handle-detector"
-sourceUrl: "https://clawhub.ai/skills/cup-handle-detector"
+name: cup-handle-detector
+description: 检测股票日线是否符合"杯柄形态（Cup and Handle）"技术分析形态，并生成含轮廓线的识别示意图。触发场景：(1) 询问某只股票是否形成杯柄形态 (2) 查询杯柄形态股票 (3) 技术形态识别需求。触发词：杯柄形态、cup and handle、欧奈尔形态、技术形态识别。
 ---
 
-# Cup and Handle Pattern Detector
+# Cup Handle Detector
 
-> 检测股票日线是否符合"杯柄形态（Cup and Handle）"技术分析形态，并生成含轮廓线的识别示意图。触发场景：(1) 询问某只股票是否形成杯柄形态 (2) 查询杯柄形态股票 (3) 技术形态识别需求。触发词：杯柄形态、cup and handle、欧奈尔形态、技术形态识别。
+检测股票日线数据是否符合经典的"杯柄形态"技术分析形态，并生成可视化识别示意图（含杯柄轮廓线）。
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cup-handle-detector`
-- **Source URL:** [https://clawhub.ai/skills/cup-handle-detector](https://clawhub.ai/skills/cup-handle-detector)
+## 功能特性
 
-## Overview
+- **形态检测**：自动检测杯身（U型底部）和把手（下跌回调）
+- **轮廓绘制**：在K线图上绘制杯柄轮廓线（蓝色杯身+橙色把手）
+- **关键标注**：标记左杯口、杯底、右杯口、把手等关键点
+- **自适应日期**：日期标签自动调整间隔，避免重叠
+- **双语支持**：自动检测中文字体，无字体时使用英文标签
 
+## 依赖要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 必需依赖
+
+| 依赖 | 版本要求 | 说明 |
+|---|---|---|
+| Python | ≥3.10 | 运行环境 |
+| pandas | ≥1.5 | 数据处理 |
+| numpy | ≥1.20 | 数值计算 |
+| matplotlib | ≥3.6 | 图表生成 |
+
+### 可选依赖
+
+| 依赖 | 用途 | 说明 |
+|---|---|---|
+| tushare | 实时数据获取 | 需配置 `TUSHARE_TOKEN` 环境变量 |
+
+### 中文字体支持
+
+图表标签自动适配：
+- 检测系统中文字体（SimHei、WenQuanYi等）
+- 无中文字体时自动使用英文标签（避免乱码）
+
+## 快速使用
+
 ```bash
-hermes skills install clawhub/cup-handle-detector
+# 单股票检测（需要 TUSHARE_TOKEN）
+python3 scripts/cup_handle_detector.py <股票代码>
+
+# 批量扫描（从SQLite数据库）
+python3 scripts/batch_scan_cup_handle.py --db <数据库路径>
 ```
+
+### 示例
+
+```bash
+python3 scripts/cup_handle_detector.py 600519.SH
+python3 scripts/batch_scan_cup_handle.py --db data/stocks.sqlite
+```
+
+## 输出结果
+
+**符合杯柄形态时：**
+- 输出形态评分和各项参数
+- 生成含轮廓线的识别示意图（仅显示最近一年数据）
+- 图表保存至临时目录
+
+**不符合杯柄形态时：**
+- 输出 "不匹配杯柄形态"
+- 不生成图形文件
+
+## 图表特性
+
+生成的示意图包含：
+- **K线蜡烛图**（红涨绿跌，最近一年数据）
+- **杯身轮廓线**（蓝色U型曲线）
+- **把手轮廓线**（橙色回调曲线）
+- **颈线标注**（红色虚线，突破位）
+- **关键点标记**（左杯口、杯底、右杯口、把手）
+- **形态特征信息框**
+
+## 杯柄形态技术特征
+
+杯柄形态是威廉·欧奈尔提出的经典看涨持续形态。
+
+### 【重要】最新时间点约束
+
+本检测器只关注**最新一段时间内出现的杯柄形态**，历史过往形态不属于符合范畴。
+
+具体约束条件：
+- **右杯口距离最新交易日** ≤ 30 天
+- **把手终点距离最新交易日** ≤ 5 天
+
+这意味着形态的最后一个时间点必须是或接近最新的交易日，确保检测到的是**当前正在形成或刚完成**的形态，而非历史已完成的形态。
+
+### 杯身（Cup）
+- **形状**：U型底部（非V型）
+- **深度**：前期涨幅的1/3到1/2（15-33%）
+- **时间跨度**：1-6个月（30-180天）
+
+### 把手（Handle）
+- **位置**：位于杯子右侧
+- **形态**：向下倾斜或横向整理
+- **深度**：不超过杯深的1/3
+- **时间跨度**：1-4周（5-30天）
+
+### 前置趋势
+- 形成前应有明显上升趋势（≥30%涨幅）
+
+## 算法说明
+
+详见 [references/algorithm.md](references/algorithm.md)。
+
+## 注意事项
+
+1. **数据要求**：至少需要180天日线数据
+2. **形态主观性**：算法评分仅作参考
+3. **风险提示**：技术形态仅为参考工具，不构成投资建议
+
+---
+
+*基于威廉·欧奈尔《笑傲股市》CANSLIM投资体系*

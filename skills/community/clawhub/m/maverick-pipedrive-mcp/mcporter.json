@@ -1,0 +1,21 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-pipedrive": {
+      "command": "uv",
+      "args": ["run", "--script", "scripts/server.py"],
+      "auth": "refreshable_bearer",
+      "lifecycle": "ephemeral",
+      "refresh": {
+        "tokenEndpoint": "https://oauth.pipedrive.com/oauth/token",
+        "clientIdEnv": "MAVERICK_PIPEDRIVE_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_PIPEDRIVE_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_basic",
+        "accessTokenEnv": "MAVERICK_PIPEDRIVE_MCP_ACCESS_TOKEN"
+      },
+      "env": {
+        "MAVERICK_PIPEDRIVE_MCP_API_BASE": "${MAVERICK_PIPEDRIVE_MCP_API_BASE}"
+      }
+    }
+  }
+}

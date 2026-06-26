@@ -1,0 +1,11 @@
+{
+  "name": "sprintx-skill-repo",
+  "private": true,
+  "version": "0.1.3",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-skill.mjs && node scripts/check-contract.mjs",
+    "check:skill": "node scripts/check-skill.mjs",
+    "check:contract": "node scripts/check-contract.mjs"
+  }
+}

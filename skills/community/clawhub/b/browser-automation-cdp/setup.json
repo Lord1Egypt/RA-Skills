@@ -1,0 +1,22 @@
+{
+  "setupComplete": true,
+  "description": "CDP-based browser automation using user's existing Edge/Chrome browser. No API key needed.",
+  "prerequisites": {
+    "edgeOrChrome": {
+      "required": true,
+      "installed": true,
+      "description": "Microsoft Edge or Google Chrome with remote debugging port enabled"
+    },
+    "nodeWs": {
+      "required": true,
+      "installed": true,
+      "description": "Node.js with 'ws' module (bundled with OpenClaw)"
+    }
+  },
+  "setupInstructions": [
+    "1. 确保 Edge 或 Chrome 已开启 remote debugging: Edge --remote-debugging-port=9222",
+    "2. (可选) 查看 SKILL.md 了解平台踩坑经验",
+    "3. 测试: node -e \"require('~/.openclaw/workspace/skills/browser-automation/cdp-automation.js').edge.tabs().then(t=>console.log(t.length+' tabs'))\""
+  ],
+  "verifySetup": "Edge remote debugging port 9222 is listening: curl -s http://127.0.0.1:9222/json/version | head -c 100"
+}

@@ -1,0 +1,30 @@
+{
+  "reports": [
+    {
+      "name": "团队质量分",
+      "url": "https://kwaibi.corp.kuaishou.com/pc/dashboard/preview/single?chartId=7363424&dashboardId=2025386&filterConfig=46973490&shareId=14994&shareWay=DASHBOARD_PARAM&sheetId=277336",
+      "dataAPI": "https://kwaibi.corp.kuaishou.com/api/v1/data/query",
+      "column": {
+        "month": "月份",
+        "department": "部门",
+        "group": "小组",
+        "qualityScore": "质量分",
+        "teamCodeLines": "团队代码行数",
+        "personalCodeLines": "人均代码行数",
+        "bugRate": "千行 bug 率",
+        "faultScore": "故障分",
+        "dataFaultScore": "数据故障分",
+        "flaws": "漏洞数",
+        "onlineHighPriorityBugs": "线上高优 bug",
+        "offlineHighPriorityBugs": "线下高优 bug",
+        "reopenBugs": "bug 重开数",
+        "lowLevelBugs": "低级 bug 数",
+        "codeReviewRate": "CR 有效率",
+        "totalBugs": "总 bug 数",
+        "onlineBugs": "线上 bug",
+        "offlineBugs": "线下 bug",
+        "bugfixRate": "bug 一天内修复率"
+      }
+    }
+  ]
+}

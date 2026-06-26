@@ -1,0 +1,49 @@
+{
+  "name": "a2a-server",
+  "version": "0.1.0",
+  "description": "Agent-to-Agent (A2A) communication server - WebSocket-based P2P messaging for AI agents",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --watch",
+    "test:debug": "jest --verbose --runInBand"
+  },
+  "keywords": [
+    "a2a",
+    "agent-to-agent",
+    "websocket",
+    "messaging",
+    "multi-agent",
+    "openclaw-skill"
+  ],
+  "author": "小蒲萄 (Clawd)",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-websocket-mock": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 45,
+        "functions": 60,
+        "lines": 55,
+        "statements": 55
+      }
+    },
+    "testTimeout": 30000
+  }
+}

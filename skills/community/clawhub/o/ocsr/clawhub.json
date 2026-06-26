@@ -1,0 +1,11 @@
+{
+  "name": "MolVision 分子图像识别",
+  "tagline": "PatSight MolVision：分子结构图一键识别，提取 SMILES/SDF 并生成 RDKit 属性报告",
+  "description": "PatSight MolVision: OCSR (image-to-structure) recognition for molecular images. Batch process 1-N images, extract SMILES/SDF via Patent Extractor API, compute RDKit properties (formula, MW, LogP, TPSA, etc.), and generate PNG reports. First-time users: register at https://patent.xinsight-ai.com/home. Requires PatSight account and password.",
+  "category": "data",
+  "tags": ["patsight","molvision", "ocsr", "smiles", "molecular-recognition", "rdkit", "chemistry"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://patent.xinsight-ai.com/home"
+}

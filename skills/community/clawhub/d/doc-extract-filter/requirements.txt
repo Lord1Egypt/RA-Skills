@@ -1,0 +1,21 @@
+# 项目依赖
+
+# 核心依赖
+PyPDF2==3.0.1
+python-docx==0.8.11
+openpyxl==3.1.2
+
+# 新增依赖
+python-markdown  # 用于 Markdown 文件处理
+beautifulsoup4  # 用于从 HTML 中提取文本
+
+# CLI
+click==8.1.3
+
+# 其他
+tqdm==4.67.3
+
+# 可选依赖（用于 OCR 功能）
+pytesseract; python_version >= "3.6"  # 用于 OCR 文字识别
+pdf2image; python_version >= "3.6"  # 用于将 PDF 转换为图像
+Pillow; python_version >= "3.6"  # 用于图像处理

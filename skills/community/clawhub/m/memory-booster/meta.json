@@ -1,0 +1,13 @@
+{
+  "name": "memory-booster",
+  "version": "1.0.0",
+  "tier": "L1",
+  "price": 0,
+  "description": "💡 这是由 memory-booster v6.0.0 自动生成的 {行业} 记忆增强器。",
+  "author": "咕嘟科技",
+  "requirements": [
+    "WorkBuddy >= 1.0"
+  ],
+  "analytics": true,
+  "createdAt": "2026-05-31T22:32:47.171Z"
+}

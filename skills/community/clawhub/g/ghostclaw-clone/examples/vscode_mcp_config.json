@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ghostclaw": {
+      "type": "stdio",
+      "command": "ghostclaw-mcp",
+      "args": [],
+      "env": {
+        "GHOSTCLAW_REPO_PATH": "${workspaceFolder}"
+      }
+    }
+  }
+}

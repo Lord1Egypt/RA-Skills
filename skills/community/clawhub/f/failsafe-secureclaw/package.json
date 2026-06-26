@@ -1,0 +1,30 @@
+{
+  "name": "secureclaw",
+  "version": "1.0.5",
+  "description": "Native security prompts and best practices to instantly make your OpenClaw instance safer without relying on 3rd party APIs.",
+  "main": "SKILL.md",
+  "files": [
+    "PROMPTS.md",
+    "BEST_PRACTICES.md",
+    "SKILL.md",
+    "skill.json",
+    "README.md"
+  ],
+  "keywords": [
+    "security",
+    "openclaw",
+    "prompts",
+    "best-practices",
+    "safe",
+    "offline"
+  ],
+  "author": "Failsafe Security Inc.",
+  "license": "MIT",
+  "homepage": "https://getfailsafe.com",
+  "skill": {
+    "os": ["darwin", "linux", "win32"],
+    "cost": 0,
+    "always": false,
+    "category": "security"
+  }
+}

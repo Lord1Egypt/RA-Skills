@@ -1,0 +1,12 @@
+# CompShare API 配置文件
+# 请将此文件复制到 ./assets/config.yaml 并填入您的实际凭证信息
+
+compshare:
+  # API凭证 - 从 https://console.compshare.cn/uaccount/api_manage 获取
+  public_key: ""
+  private_key: ""
+  
+  # 区域配置 - 通常无需修改
+  region: "cn-wlcb"
+  zone: "cn-wlcb-01"
+  base_url: "https://api.compshare.cn"

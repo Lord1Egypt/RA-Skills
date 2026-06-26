@@ -1,0 +1,165 @@
+{
+  "version": "1.0.0",
+  "author": "CodeSmith",
+  "timezone": "America/Denver",
+  "timezone_note": "All times are in America/Denver (Mountain Time). Adjust cron expressions for your own timezone. Online converters: crontab.guru for expression validation.",
+  "lockdown_note": "Every job's payload checks for LOCKDOWN.md on startup. If it exists, the session halts immediately and alerts [HUMAN_NAME]. This is non-negotiable — LOCKDOWN stops all autonomous work.",
+  "adoption_guide": {
+    "description": "Add crons one at a time. Verify each fires correctly and delivers useful output before adding the next. A cron that runs reliably is worth more than five that run erratically.",
+    "order": [
+      {
+        "step": 1,
+        "job": "morning-brief",
+        "why": "The foundation. Establishes the daily touchpoint. Verify it fires at the right time and the output is genuinely useful — not generic. If your brief is too long or too vague, fix it before adding anything else.",
+        "verify": "Check that the message arrives in the right channel at the right time. Read it as your human would: does it answer 'what should I know right now?' in under 60 seconds?"
+      },
+      {
+        "step": 2,
+        "job": "evening-brief",
+        "why": "Closes the day. Shows your human what happened. Start adding this in week 2 once morning briefs are reliable.",
+        "verify": "Message arrives, accurately reflects the day's work, is short enough to read in 30 seconds."
+      },
+      {
+        "step": 3,
+        "job": "overnight-work",
+        "why": "The high-leverage session. Add this only after you've demonstrated value through manual work — the overnight session should be doing things your human has seen you do well, just autonomously. Week 3 or later.",
+        "verify": "Output is written to a file. Morning brief reads and surfaces it. Work product is on a branch, not pushed to main."
+      },
+      {
+        "step": 4,
+        "job": "health-check",
+        "why": "Monitoring layer. Add once you have enough running systems to monitor. Worthless before you have things to check.",
+        "verify": "Fires silently when everything is fine. Posts a single-line summary. Does NOT alert on normal operation."
+      },
+      {
+        "step": 5,
+        "job": "issue-scan",
+        "why": "Proactive issue triage. Adds real value once you have active GitHub repos with issues. Don't add before you have issues worth scanning.",
+        "verify": "Correctly identifies actionable issues and routes them. Does not flood the channel with every open issue on every scan."
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "id": "morning-brief",
+      "name": "Morning Brief",
+      "description": "Surfaces overnight work, current priorities, and anything that needs a decision before [HUMAN_NAME] starts their day.",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 6 * * *",
+        "tz": "America/Denver",
+        "note": "6:30 AM — fires before [HUMAN_NAME] logs on"
+      },
+      "model": "mid-tier",
+      "model_note": "Use Sonnet-class. This session needs to reason about context, prioritize, and produce a coherent brief. Cheap models produce generic briefs that stop being read.",
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "LOCKDOWN CHECK FIRST: if ~/.openclaw/workspace/LOCKDOWN.md exists, post 'LOCKDOWN ACTIVE — halting morning brief' to [YOUR_CHANNEL] and stop immediately.\n\nYou are [AGENT_NAME]. This is the Morning Brief (6:30 AM).\n\nRead memory/session-continuity.md for current sprint state.\nRead memory/overnight-output-[yesterday's date].md if it exists.\nCheck [YOUR_CHANNEL] for any late messages from [HUMAN_NAME].\n\nPost to [YOUR_CHANNEL]:\n\n**Morning Brief 🛠️ [today's date]**\n\n**Overnight** (1-3 bullets — what ran, what produced output)\n**Active** (current sprint focus — 1 line)\n**Decisions needed** (only if something actually needs a decision — skip if none)\n**Ready for review** (branches/PRs waiting — skip if none)\n\nMax 10 lines total. If there's nothing notable, say so in 3 words."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "[YOUR_CHANNEL_TYPE]",
+        "to": "[YOUR_CHANNEL_ID]"
+      }
+    },
+    {
+      "id": "evening-planning",
+      "name": "Evening Planning Session",
+      "description": "Reviews the day and picks one focus for the overnight session. Writes a plan file that overnight work reads.",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 20 * * *",
+        "tz": "America/Denver",
+        "note": "8:30 PM — before the evening brief so the brief can reference tonight's plan"
+      },
+      "model": "mid-tier",
+      "model_note": "Planning requires judgment about priorities. Worth the quality investment.",
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "LOCKDOWN CHECK FIRST: if ~/.openclaw/workspace/LOCKDOWN.md exists, halt immediately and alert [HUMAN_NAME].\n\nYou are [AGENT_NAME]. Evening Planning Session (8:30 PM).\n\nCheck [YOUR_CHANNEL] for any context [HUMAN_NAME] dropped during the day.\nReview what happened today.\n\nPick ONE focus for tonight's 11 PM work session:\n- Something [HUMAN_NAME] can't do manually but you can\n- An audit of what we have (bugs, broken links, stale data)\n- A feature or prototype to build\n- Something that will create genuine value in the morning\n\nDO NOT plan: live deploys, social posts, public pushes to main.\nDO: branches, internal tools, audits, prototypes, specs.\n\nWrite plan to: ~/workspace/memory/overnight-plan-[today's date].md\n\nFormat:\n1. What and why it matters\n2. Specific steps\n3. Success definition\n4. Files/repos needed\n\nPost 2-sentence summary to [YOUR_CHANNEL]."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "[YOUR_CHANNEL_TYPE]",
+        "to": "[YOUR_CHANNEL_ID]"
+      }
+    },
+    {
+      "id": "evening-brief",
+      "name": "Evening Brief",
+      "description": "Short end-of-day recap. High-signal, low-volume.",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "tz": "America/Denver",
+        "note": "9:00 PM — after planning, before overnight work"
+      },
+      "model": "mid-tier",
+      "model_note": "Short session but needs to produce an accurate, non-generic summary.",
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "LOCKDOWN CHECK FIRST: if ~/.openclaw/workspace/LOCKDOWN.md exists, halt immediately.\n\nYou are [AGENT_NAME]. Evening Brief (9:00 PM).\n\nPost to [YOUR_CHANNEL]:\n\n**Evening Brief 🛠️ [today's date]**\n\n**What moved** (2-3 bullets max — signal only)\n**Tonight** (read ~/workspace/memory/overnight-plan-[today's date].md and summarize in 1-2 sentences)\n**[HUMAN_NAME]: anything needed before tomorrow?** (only if actionable — skip if not)\n\nNo walls of text. Just what matters."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "[YOUR_CHANNEL_TYPE]",
+        "to": "[YOUR_CHANNEL_ID]"
+      }
+    },
+    {
+      "id": "overnight-work",
+      "name": "Nighttime Work Session",
+      "description": "Autonomous execution session. One deep thing done well. All output lands on branches — nothing ships to production.",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "tz": "America/Denver",
+        "note": "11:00 PM — overnight window, nothing public ships"
+      },
+      "model": "mid-tier",
+      "model_note": "This is real work. Use Sonnet-class minimum. Cheap models at 11 PM produce work that costs more to fix than redo.",
+      "sessionTarget": "isolated",
+      "timeoutSeconds": 1800,
+      "payload": {
+        "kind": "agentTurn",
+        "message": "LOCKDOWN CHECK FIRST: if ~/.openclaw/workspace/LOCKDOWN.md exists, halt immediately. Post 'LOCKDOWN ACTIVE — nighttime work halted' to [YOUR_CHANNEL].\n\nYou are [AGENT_NAME]. Nighttime Work Session (11 PM).\n\nCheck [YOUR_CHANNEL] for any late context from [HUMAN_NAME].\nRead ~/workspace/memory/overnight-plan-[today's date].md\n\nIf no plan exists: use current sprint state to find something valuable. Write what you decide to do and why.\n\nDo the work. Think carefully. This is your highest-leverage time.\n\nRules:\n- NO live deploys to production\n- NO public posts or external messages\n- NO pushing to main — use feature branches\n- Internal files, prototypes, audits, specs = all fine\n\nWrite output to: ~/workspace/memory/overnight-output-[today's date].md\n\nThis is what [HUMAN_NAME] and the morning brief will read. Make it count."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "[YOUR_CHANNEL_TYPE]",
+        "to": "[YOUR_CHANNEL_ID]"
+      }
+    },
+    {
+      "id": "health-check",
+      "name": "System Health Check",
+      "description": "Verifies crons fired, APIs are healthy, no silent failures. Posts only if something needs attention.",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "America/Denver",
+        "note": "7:00 AM — after morning brief, confirms overnight systems are healthy"
+      },
+      "model": "low-tier",
+      "model_note": "Health checks don't need reasoning — they need to read status and compare against expected. Use cheapest available model.",
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "LOCKDOWN CHECK FIRST: if ~/.openclaw/workspace/LOCKDOWN.md exists, halt.\n\nYou are [AGENT_NAME]. System Health Check (7:00 AM).\n\nCheck:\n1. Did overnight-work cron produce an output file for yesterday's date?\n2. Are any API endpoints returning non-200? (check your configured health endpoints)\n3. Are there any failed GitHub Actions on main branches?\n4. Did the morning brief arrive in [YOUR_CHANNEL]?\n\nIf everything is healthy: post nothing. Stay silent.\nIf anything is wrong: post a single clear alert to [YOUR_CHANNEL] describing what failed and what you're doing about it.\n\nSilence = healthy. Noise = problem. Never post 'everything is fine.'"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "[YOUR_CHANNEL_TYPE]",
+        "to": "[YOUR_CHANNEL_ID]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "workspace-health-monitor",
+  "version": "1.0.0",
+  "description": "Performs comprehensive workspace health checks with actionable recommendations",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main()\""
+  },
+  "keywords": ["workspace", "health", "monitor", "diagnostics", "maintenance"],
+  "license": "MIT"
+}

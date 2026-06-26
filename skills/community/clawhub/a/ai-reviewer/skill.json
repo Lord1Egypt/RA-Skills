@@ -1,0 +1,34 @@
+{
+  "name": "ai-reviewer",
+  "displayName": "✅ AI 质检师",
+  "version": "1.0.0",
+  "description": "电商图片创作团队的质量守门员，负责质量评估、电商标准检查",
+  "author": "AI Image Team",
+  "tags": ["ai", "image", "reviewer", "quality", "ecommerce"],
+  "category": "image-generation",
+  "visible": true,
+  "icon": "circle-check",
+  "order": 3,
+  "entry": "agent.py",
+  "capabilities": [
+    "图片质量评估",
+    "电商标准检查",
+    "问题诊断",
+    "迭代建议生成",
+    "交付把关"
+  ],
+  "input": {
+    "type": "json",
+    "language": "zh-CN",
+    "format": "图片列表 + 创意简报"
+  },
+  "output": {
+    "type": "json",
+    "format": "质检报告"
+  },
+  "config": {
+    "quality_threshold": 0.8,
+    "language": "zh-CN",
+    "auto_suggest": true
+  }
+}

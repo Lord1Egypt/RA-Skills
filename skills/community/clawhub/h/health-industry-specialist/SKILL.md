@@ -1,35 +1,86 @@
----
-name: "Health Industry Specialist"
-description: "提供健康减重、美容美体方案，支持抖音内容运营、客户管理、智能预约及销售数据分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/health-industry-specialist"
-sourceUrl: "https://clawhub.ai/skills/health-industry-specialist"
----
+# 健康产业专家技能
 
-# Health Industry Specialist
+## 描述
+专为小怪瘦(厦门)健康产业有限公司定制的健康产业专家技能。专注于健康减重、美容美体业务，支持抖音本地生活运营、客户管理、智能预约和行业知识库。
 
-> 提供健康减重、美容美体方案，支持抖音内容运营、客户管理、智能预约及销售数据分析。
+## 适用场景
+- 健康减重咨询与方案制定
+- 美容美体服务推荐
+- 抖音内容策划与运营
+- 客户关系管理（CRM）
+- 智能预约系统
+- 减重知识库查询
+- 销售数据分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/health-industry-specialist`
-- **Source URL:** [https://clawhub.ai/skills/health-industry-specialist](https://clawhub.ai/skills/health-industry-specialist)
+## 核心功能
 
-## Overview
+### 1. 抖音运营支持
+- 本地生活内容策划
+- 短视频脚本生成
+- 评论自动回复
+- 数据分析与优化
 
+### 2. 客户管理
+- 客户档案管理
+- 服务记录跟踪
+- 预约管理
+- 跟进提醒
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/health-industry-specialist
+### 3. 健康减重专家
+- 个性化减重方案
+- 营养饮食建议
+- 运动计划制定
+- 进度跟踪
+
+### 4. 美容美体顾问
+- 皮肤分析建议
+- 美容项目推荐
+- 美体方案制定
+- 效果评估
+
+### 5. 数据分析
+- 销售数据分析
+- 客户转化率分析
+- 服务效果评估
+- 市场趋势分析
+
+## 使用方法
+
+### 基本查询
 ```
+健康减重咨询：[用户需求]
+美容美体建议：[用户情况]
+抖音内容策划：[主题]
+客户管理：[操作]
+```
+
+### 数据分析
+```
+销售数据分析：[时间段]
+客户转化分析：[渠道]
+服务效果评估：[服务类型]
+```
+
+## 文件结构
+```
+health-industry-specialist/
+├── SKILL.md
+├── references/
+│   ├── weight-loss-knowledge.md
+│   ├── beauty-knowledge.md
+│   ├── douyin-operations.md
+│   └── crm-templates.md
+└── scripts/
+    ├── appointment-system.js
+    ├── data-analysis.js
+    └── content-generator.js
+```
+
+## 注意事项
+1. 所有健康建议仅供参考，需结合专业医师意见
+2. 客户数据需严格保密
+3. 抖音内容需符合平台规范
+4. 定期更新行业知识库
+
+## 更新日志
+- v1.0.0: 初始版本，专为小怪瘦健康产业定制

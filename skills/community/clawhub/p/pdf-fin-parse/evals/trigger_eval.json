@@ -1,0 +1,17 @@
+[
+  {"query": "帮我解析一下这份年报：samples/documents/600519_2023.pdf", "should_trigger": true},
+  {"query": "把这份A股10-K招股说明书转成Markdown", "should_trigger": true},
+  {"query": "提取这份合并资产负债表里的数值", "should_trigger": true},
+  {"query": "这是港股财报扫描件，能不能识别一下里面的表格", "should_trigger": true},
+  {"query": "把这个跨页表格抽出来变成结构化JSON", "should_trigger": true},
+  {"query": "用detail模式精细解析samples/documents/复杂财报附注.pdf", "should_trigger": true},
+  {"query": "Parse this annual report and extract all financial statements: report.pdf", "should_trigger": true},
+  {"query": "extract income statement from this 10-K filing", "should_trigger": true},
+
+  {"query": "帮我写一段Python代码读取PDF", "should_trigger": false},
+  {"query": "怎么把Word文件转成PDF", "should_trigger": false},
+  {"query": "给PDF文件加密码", "should_trigger": false},
+  {"query": "合并多个PDF文件", "should_trigger": false},
+  {"query": "压缩这个PDF体积太大", "should_trigger": false},
+  {"query": "讲讲什么是TEDS指标", "should_trigger": false}
+]

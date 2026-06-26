@@ -1,35 +1,16 @@
 ---
-name: "Scihub Paper Downloader"
+name: scihub-paper-downloader
 description: "Get a PDF link from Sci-Hub for a DOI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scihub-paper-downloader"
-sourceUrl: "https://clawhub.ai/skills/scihub-paper-downloader"
 ---
 
-# Scihub Paper Downloader
+# Sci-Hub Paper Downloader
 
-> Get a PDF link from Sci-Hub for a DOI.
+Given a DOI, use the bundled Python script to resolve a direct PDF URL through the current Sci-Hub and Sci-Net flow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scihub-paper-downloader`
-- **Source URL:** [https://clawhub.ai/skills/scihub-paper-downloader](https://clawhub.ai/skills/scihub-paper-downloader)
+Treat the script output as follows:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scihub-paper-downloader
-```
+- If it returns a URL, use that as the final PDF link.
+- If it returns `NOT_FOUND` and a second line starts with `OA_LINK `, treat that value as the OA entry link shown on the Sci-Hub page. It may be a publisher page, repository page, or another non-PDF landing page rather than a final PDF URL.
+- If it returns `NOT_FOUND` with no second line, report that Sci-Hub does not currently have the paper.
+- If it returns `MIRROR_ERROR`, report that Sci-Hub could not be resolved reliably and the result is inconclusive.
+- If it returns `INVALID_INPUT`, ask for a valid DOI.

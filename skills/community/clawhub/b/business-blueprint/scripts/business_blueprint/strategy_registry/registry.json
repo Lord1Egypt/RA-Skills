@@ -1,0 +1,38 @@
+{
+  "registry": {
+    "version": "1.0",
+    "lastUpdated": "2026-04-25",
+    "perspectives": [
+      {
+        "id": "product-capability",
+        "name": "产品能力分层",
+        "file": "perspectives/product-capability.json",
+        "description": "按产品价值层次分层",
+        "useCases": ["产品规划", "能力地图", "产品蓝图"]
+      },
+      {
+        "id": "technical-architecture",
+        "name": "技术架构分层",
+        "file": "perspectives/technical-architecture.json",
+        "description": "按技术调用链路分层",
+        "useCases": ["技术架构评审", "系统设计"]
+      }
+    ],
+    "overlays": [
+      {
+        "id": "finance-regulatory",
+        "name": "金融监管叠加",
+        "file": "overlays/finance-regulatory.json",
+        "description": "叠加金融监管和风控层",
+        "appliesTo": ["product-capability", "technical-architecture"]
+      },
+      {
+        "id": "manufacturing-supply-chain",
+        "name": "制造业供应链叠加",
+        "file": "overlays/manufacturing-supply-chain.json",
+        "description": "叠加制造业供应链层级",
+        "appliesTo": ["product-capability", "technical-architecture"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "skill_name": "relevancekit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Build focused Swift snippets for a watchOS 26 Smart Stack widget that shows one card per upcoming meeting only when each meeting is relevant. Include the relevance provider, entry shape, widget configuration, preview handling, grouping or associated-kind guidance, and the availability annotations that matter.",
+      "expected_output": "A RelevanceKit relevant-widget implementation plan that uses RelevanceConfiguration, RelevanceEntriesProvider, RelevanceEntry, WidgetRelevance, and RelevantContext.date with watchOS 26.0 availability, preview/placeholder handling, and priority-ordered relevance attributes.",
+      "files": [],
+      "assertions": [
+        "Uses `RelevanceConfiguration` with a `RelevanceEntriesProvider` instead of a normal timeline-only widget for one-card-per-meeting Smart Stack behavior.",
+        "Defines a `RelevanceEntry` and a provider with `relevance()`, `entry(configuration:context:)`, and `placeholder(context:)`.",
+        "Annotates relevant-widget-only types or snippets with `@available(watchOS 26.0, *)` or otherwise states they live in a watchOS 26+ target.",
+        "Returns `WidgetRelevance` with `WidgetRelevanceAttribute` values ordered by priority.",
+        "Handles `context.isPreview` in `entry(configuration:context:)` and returns representative preview data.",
+        "Uses `.associatedKind(_:)` when the relevant widget overlaps with an existing timeline widget, or explains when grouping should be used instead."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this RelevanceKit plan: add `NSLocationWhenInUseUsageDescription` to the widget extension, request one broad HealthKit permission, create `RelevantContext.location(category: .cafe)!`, use `.fitness(.activityRingsIncomplete)`, and assume it will improve an iPhone Smart Stack too. Fix the plan.",
+      "expected_output": "A correction-focused RelevanceKit review that separates app and widget location setup, handles optional point-of-interest relevance, maps fitness clues to exact HealthKit types, and states the watchOS-only effect of RelevanceKit clues.",
+      "files": [],
+      "assertions": [
+        "Places location purpose strings and the location authorization request in the containing app while adding `NSWidgetWantsLocation` to the widget extension.",
+        "Checks `CLLocationManager.isAuthorizedForWidgetUpdates` before relying on widget location clues.",
+        "Handles the optional result from `RelevantContext.location(category:)` instead of force-unwrapping it.",
+        "Maps `.fitness(.activityRingsIncomplete)` to `appleExerciseTime`, `appleMoveTime`, and `appleStandTime` HealthKit read types.",
+        "Mentions `HKWorkoutType` as the HealthKit type needed for `.fitness(.workoutActive)` if active-workout relevance is used.",
+        "States that RelevanceKit clues only affect Smart Stack behavior on watchOS even though some APIs compile on other platforms."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A team wants a single answer covering an iOS Home Screen widget timeline, watchOS Smart Stack relevance, HealthKit workout recording, MapKit place search, and APNs widget push updates. Explain what belongs in RelevanceKit and what should be routed to sibling Apple framework skills.",
+      "expected_output": "A boundary-aware routing memo that keeps RelevanceKit focused on watchOS Smart Stack relevance clues and relevant widgets, while routing general WidgetKit timelines/push updates, HealthKit workout recording, and MapKit place search to sibling skills.",
+      "files": [],
+      "assertions": [
+        "Keeps RelevanceKit scope to watchOS Smart Stack relevance clues, `RelevantContext`, timeline-provider `relevance()`, `RelevantIntentManager`, `RelevanceConfiguration`, and relevant-widget entries.",
+        "Routes general iOS Home Screen widget timelines, refresh budgets, widget families, controls, Live Activities, and APNs widget push updates to WidgetKit guidance.",
+        "Routes workout recording, `HKWorkoutSession`, workout routes, and broader HealthKit authorization/query work to HealthKit guidance.",
+        "Routes place search, autocomplete, directions, and broader CoreLocation flows to MapKit/CoreLocation guidance.",
+        "Preserves handoff points, such as using MapKit point-of-interest categories only as input to `RelevantContext.location(category:)` and HealthKit permissions only as prerequisites for fitness/sleep clues.",
+        "Does not expand RelevanceKit into full WidgetKit, HealthKit, or MapKit implementation details."
+      ]
+    }
+  ]
+}

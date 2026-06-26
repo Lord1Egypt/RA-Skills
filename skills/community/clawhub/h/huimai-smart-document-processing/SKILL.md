@@ -1,35 +1,68 @@
 ---
-name: "Summarize Pro"
-description: "长文档、合同、文章扔进来，自动抽骨架。20+种摘要模板，合同拆条款、论文抓结论、报告列数据。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, documents, huimai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-smart-document-processing"
-sourceUrl: "https://clawhub.ai/skills/huimai-smart-document-processing"
+name: 📝 文档摘要大师
+description: 长文档、合同、文章扔进来，自动抽骨架。20+种摘要模板，合同拆条款、论文抓结论、报告列数据。
+metadata: {"openclaw":{"emoji":"📝"}}
 ---
 
-# Summarize Pro
+# 📝 文档摘要大师
 
-> 长文档、合同、文章扔进来，自动抽骨架。20+种摘要模板，合同拆条款、论文抓结论、报告列数据。
+> 不是所有文档都值得从头读到尾。知道核心就够了——这个Skill帮你抓住那一页纸的精华。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-smart-document-processing`
-- **Source URL:** [https://clawhub.ai/skills/huimai-smart-document-processing](https://clawhub.ai/skills/huimai-smart-document-processing)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：新增执行清单模式——看完摘要直接出To Do
+- 新增：合同关键条款提取模板
+- 新增：论文摘要模式（问题→方法→结论→贡献）
+- 新增：多文档对比摘要
+- 优化：长文档分段策略，支持100+页
 
+### v1.0.1 (2026-04-30)
+- 优化截断逻辑，长文档更流畅
+- 增加阅读进度提示
 
-## Installation
-To install this skill, run the following command in your terminal:
+### v1.0.0 (2026-04-24)
+- 初版发布
+
+## 👤 为什么做这个
+
+每周读项目周报、竞品分析、政策文件，少说十几份。每份几十页，不读不行，全读又没时间。做完这个之后，每天早上把链接扔进去，一杯咖啡时间，当天的信息摄入就完成了。
+
+## 典型用法
+
+```
+你: "contract.pdf 帮我拆条款"
+我: 合同主体 → 金额支付条款 → 违约赔偿 → 保密协议 → 争议解决 → 风险点
+
+你: "这篇论文帮我总结"
+我: 研究问题 → 方法论 → 核心发现 → 局限性 → 贡献点
+```
+
+## 👔 适用人群
+- **管理层**：快速消化行业报告
+- **研究员**：文献综述效率翻倍
+- **项目经理**：看懂合同协议
+- **法务**：批量文档预审
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先出结论再展开，关键数据高亮
+- **专业模式（可选）**：直出结构化大纲
+
+## 💡 使用小贴士
+- 合同类建议先指定模板类型，提取精度更高
+- 50页以上文档分成2-3段分别处理
+- 英文文档同样支持，中英混排也ok
+
+## ⚠️ 免责与已知限制
+- 仅支持文本层PDF（非扫描件）
+- 超长文档末段可能压缩，建议分段调用
+- 提取的关键信息建议与原文核对
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-smart-document-processing
+clawhub install summarize-pro
 ```

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Feishu English Game"
+  short_description: "Run vocab, clue-guessing, and speaking games in Feishu/Lark with deterministic scoring and SenseASR transcription"

@@ -1,0 +1,38 @@
+/* themes/dark-gold.css — extracted from 02-dark-gold */
+
+[data-theme="dark-gold"] {
+  --bg: #1A1A2E;
+  --bg-soft: #16213E;
+  --surface: #2A2A4E;
+  --surface-2: #16213E;
+  --border: rgba(245,230,211,.10);
+  --border-strong: rgba(245,230,211,.20);
+  --text-1: #F5E6D3;
+  --text-2: #C9B894;
+  --text-3: #8A7E63;
+  --text: var(--text-1);
+  --accent: #E2B714;
+  --secondary: var(--text-2);
+  --bg-alt: var(--bg-soft);
+
+  --font-title: "Playfair Display", system-ui, -apple-system, "PingFang SC", serif;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+
+  --title-size-v: 130px;
+  --title-size-s: 100px;
+  --title-size-w: 84px;
+  --title-size-c: 64px;
+  --content-size: 36px;
+  --qr-size: 64px;
+
+  --decor-tl: none;
+  --decor-tr: radial-gradient(circle at 100% 0%, rgba(226,183,20,.18), transparent 50%);
+  --decor-bl: radial-gradient(circle, rgba(226,183,20,.10), transparent 70%);
+  --decor-br: linear-gradient(180deg, transparent, rgba(226,183,20,.05));
+
+  --accent-line: none;
+  --accent-block: none;
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "";
+}

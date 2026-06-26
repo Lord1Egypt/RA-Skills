@@ -1,0 +1,19 @@
+/* theme: tokyo-night — dark, neon, dev-friendly */
+/* Upstream: lewislulu/html-ppt-skill (MIT) */
+[data-theme="tokyo-night"] {
+  --bg: #1a1b26; --bg-soft: #1f2133; --surface: #24283b; --surface-2: #1a1b26;
+  --border: rgba(169,192,255,.12); --border-strong: rgba(169,192,255,.22);
+  --text-1: #c0caf5; --text-2: #a9b1d6; --text-3: #565f89;
+  --accent: #7aa2f7; --accent-2: #bb9af7; --accent-3: #ff9e64;
+  --good: #9ece6a; --warn: #e0af68; --bad: #f7768e;
+  --grad: linear-gradient(135deg,#7aa2f7,#bb9af7 55%,#ff9e64);
+  --grad-soft: linear-gradient(135deg,#1a1b26,#24283b);
+  --radius: 14px; --radius-sm: 8px; --radius-lg: 22px;
+  --shadow: 0 4px 16px rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.2);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
+  --font-sans: 'Inter','Noto Sans SC',sans-serif;
+  --font-mono: 'JetBrains Mono','IBM Plex Mono',monospace;
+  --font-display: 'Inter','Noto Sans SC',sans-serif;
+  --text: var(--text-1); --secondary: var(--text-2); --bg-alt: var(--bg-soft);
+  --font-body: var(--font-sans); --font-title: var(--font-display);
+}

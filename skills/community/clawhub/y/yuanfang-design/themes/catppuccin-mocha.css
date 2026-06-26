@@ -1,0 +1,19 @@
+/* theme: catppuccin-mocha — dark, rich, cozy */
+/* Upstream: lewislulu/html-ppt-skill (MIT), Catppuccin project */
+[data-theme="catppuccin-mocha"] {
+  --bg: #1e1e2e; --bg-soft: #181825; --surface: #313244; --surface-2: #181825;
+  --border: rgba(205,214,244,.10); --border-strong: rgba(205,214,244,.18);
+  --text-1: #cdd6f4; --text-2: #a6adc8; --text-3: #585b70;
+  --accent: #f5c2e7; --accent-2: #cba6f7; --accent-3: #f38ba8;
+  --good: #a6e3a1; --warn: #f9e2af; --bad: #f38ba8;
+  --grad: linear-gradient(135deg,#f5c2e7,#cba6f7 55%,#f38ba8);
+  --grad-soft: linear-gradient(135deg,#252536,#2a2740 55%,#362535);
+  --radius: 14px; --radius-sm: 8px; --radius-lg: 22px;
+  --shadow: 0 4px 16px rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.2);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
+  --font-sans: 'Inter','Noto Sans SC',sans-serif;
+  --font-serif: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-display: 'Inter','Noto Sans SC',sans-serif;
+  --text: var(--text-1); --secondary: var(--text-2); --bg-alt: var(--bg-soft);
+  --font-body: var(--font-sans); --font-title: var(--font-display);
+}

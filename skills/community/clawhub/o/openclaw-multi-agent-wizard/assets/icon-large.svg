@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="OpenClaw Multi-Agent Wizard logo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#115E59"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" rx="28" fill="url(#bg)"/>
+  <g transform="translate(30 34)">
+    <circle cx="34" cy="24" r="16" fill="#CCFBF1"/>
+    <circle cx="82" cy="24" r="16" fill="#99F6E4"/>
+    <circle cx="34" cy="72" r="16" fill="#5EEAD4"/>
+    <circle cx="82" cy="72" r="16" fill="#CCFBF1"/>
+    <path d="M34 24 L82 24 L82 72 L34 72 Z" fill="none" stroke="#042F2E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g fill="#F0FDFA">
+    <text x="145" y="78" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">OpenClaw</text>
+    <text x="145" y="110" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Multi-Agent Wizard</text>
+    <text x="145" y="138" font-family="Segoe UI, Arial, sans-serif" font-size="14">Beginner-friendly setup for bots, agents, and Feishu routing</text>
+  </g>
+</svg>

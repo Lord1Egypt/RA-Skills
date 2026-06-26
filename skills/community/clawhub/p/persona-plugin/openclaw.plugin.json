@@ -1,0 +1,37 @@
+{
+  "id": "persona",
+  "name": "Persona",
+  "description": "Caller identity, memory, and persona management via the HughKnew Persona API",
+  "skills": ["."],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["apiKey"],
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Persona API key (hk_live_...)"
+      },
+      "server": {
+        "type": "string",
+        "default": "http://localhost:3002",
+        "description": "Persona API server URL"
+      }
+    }
+  },
+  "uiHints": {
+    "apiKey": {
+      "label": "API Key",
+      "sensitive": true,
+      "placeholder": "hk_live_..."
+    },
+    "server": {
+      "label": "Server URL",
+      "advanced": true
+    }
+  }
+}

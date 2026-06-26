@@ -1,0 +1,16 @@
+{
+  "setupComplete": true,
+  "prerequisites": {
+    "playwright": {
+      "required": true,
+      "installed": true,
+      "description": "Playwright for browser automation (already installed)"
+    }
+  },
+  "setupInstructions": [
+    "1. npm install",
+    "2. If playwright not installed: npx playwright install chromium",
+    "3. Test: node collect.js https://shop.futvortexstore.com/"
+  ],
+  "verifySetup": "Run 'node collect.js https://shop.futvortexstore.com/' to verify"
+}

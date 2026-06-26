@@ -1,0 +1,12 @@
+# OpenClaw SKILL - Markdown 图表渲染器
+# Python 依赖
+
+# Markdown AST 解析
+mistletoe>=0.9.0
+
+# Graphviz 图表渲染
+graphviz>=0.20.0
+
+# 可选依赖（根据需要安装）：
+# - nodejs + @mermaid-js/mermaid-cli (用于 Mermaid 本地渲染)
+# - java + plantuml.jar (用于 PlantUML 本地渲染)

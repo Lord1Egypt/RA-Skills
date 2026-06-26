@@ -1,0 +1,133 @@
+{
+  "_description": "항공 기관별 웹 수집 프리셋. fetcher.py preset 명령에서 사용.",
+  "presets": {
+    "faa-ad": {
+      "name": "FAA Airworthiness Directives",
+      "base_url": "https://www.faa.gov/regulations_policies/airworthiness_directives",
+      "search_pattern": "site:faa.gov airworthiness directive {query}",
+      "selectors": {
+        "title": "h1, .page-title",
+        "items": ".ad-list-item, .views-row",
+        "links": "a[href*='airworthiness']"
+      },
+      "tags": ["FAA", "AD", "airworthiness"],
+      "category": "regulation"
+    },
+    "faa-notam": {
+      "name": "FAA NOTAMs",
+      "base_url": "https://notams.aim.faa.gov",
+      "search_pattern": "site:faa.gov NOTAM {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".notam-item, .result-row"
+      },
+      "tags": ["FAA", "NOTAM", "notice"],
+      "category": "notice"
+    },
+    "faa-news": {
+      "name": "FAA Press Releases",
+      "base_url": "https://www.faa.gov/newsroom/press_releases",
+      "search_pattern": "site:faa.gov press release {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".views-row, .news-item",
+        "date": ".date-display-single, time"
+      },
+      "tags": ["FAA", "news"],
+      "category": "news"
+    },
+    "icao-safety": {
+      "name": "ICAO Safety Information",
+      "base_url": "https://www.icao.int/safety/Pages/default.aspx",
+      "search_pattern": "site:icao.int safety {query}",
+      "selectors": {
+        "title": "h1, .page-title",
+        "items": ".ms-rtestate-field li, .news-list-item",
+        "links": "a[href*='safety']"
+      },
+      "tags": ["ICAO", "safety"],
+      "category": "safety"
+    },
+    "icao-aam": {
+      "name": "ICAO Advanced Air Mobility",
+      "base_url": "https://www.icao.int/safety/UA/Pages/Advanced-Air-Mobility-Study-Group-(AAM-SG).aspx",
+      "search_pattern": "site:icao.int advanced air mobility AAM {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".ms-rtestate-field li, .ExternalClass p",
+        "links": "a[href*='AAM'], a[href*='air-mobility']"
+      },
+      "tags": ["ICAO", "AAM", "UAM", "eVTOL"],
+      "category": "regulation"
+    },
+    "icao-news": {
+      "name": "ICAO Newsroom",
+      "base_url": "https://www.icao.int/Newsroom/Pages/default.aspx",
+      "search_pattern": "site:icao.int newsroom {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".news-list-item, .ms-rtestate-field li"
+      },
+      "tags": ["ICAO", "news"],
+      "category": "news"
+    },
+    "easa-ad": {
+      "name": "EASA Airworthiness Directives",
+      "base_url": "https://www.easa.europa.eu/en/document-library/airworthiness-directives",
+      "search_pattern": "site:easa.europa.eu airworthiness directive {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".views-row, .node--type-airworthiness-directive",
+        "links": "a[href*='airworthiness-directive']"
+      },
+      "tags": ["EASA", "AD", "airworthiness"],
+      "category": "regulation"
+    },
+    "easa-uam": {
+      "name": "EASA UAM/Drones",
+      "base_url": "https://www.easa.europa.eu/en/domains/drones-air-mobility",
+      "search_pattern": "site:easa.europa.eu drones air mobility UAM {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".views-row, .field--name-body p"
+      },
+      "tags": ["EASA", "UAM", "UAS", "eVTOL"],
+      "category": "regulation"
+    },
+    "molit-aviation": {
+      "name": "국토교통부 항공정책",
+      "base_url": "https://www.molit.go.kr",
+      "search_pattern": "site:molit.go.kr 항공 {query}",
+      "selectors": {
+        "title": "h1, .view_title",
+        "items": ".board_list tr, .bbs_list li",
+        "date": ".date, .txt_date"
+      },
+      "tags": ["MOLIT", "항공"],
+      "category": "regulation"
+    },
+    "ntsb-aviation": {
+      "name": "NTSB Aviation Accident Reports",
+      "base_url": "https://www.ntsb.gov/investigations/AccidentReports/Pages/aviation.aspx",
+      "search_pattern": "site:ntsb.gov aviation accident {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".reportList li, .views-row",
+        "links": "a[href*='AccidentReports']"
+      },
+      "tags": ["NTSB", "accident", "safety"],
+      "category": "safety"
+    },
+    "iata-stats": {
+      "name": "IATA Industry Statistics",
+      "base_url": "https://www.iata.org/en/iata-repository/publications/economic-reports/",
+      "search_pattern": "site:iata.org statistics economic report {query}",
+      "selectors": {
+        "title": "h1",
+        "items": ".content-list-item, .publication-item"
+      },
+      "tags": ["IATA", "statistics"],
+      "category": "statistics"
+    }
+  }
+}

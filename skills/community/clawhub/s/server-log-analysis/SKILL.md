@@ -1,35 +1,144 @@
 ---
-name: "server-log-analysis"
-description: "通过 SSH 连接远程服务器，读取同级 config.yaml 理解服务信息与日志位置，按需下载相关日志片段到本地 temp 目录，并分析日志定位问题。适用于用户要求排查远程服务日志、分析服务端异常或基于 SSH 访问进行日志诊断的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/server-log-analysis"
-sourceUrl: "https://clawhub.ai/skills/server-log-analysis"
+name: server-log-analysis
+description: 通过 SSH 连接远程服务器，读取同级 config.yaml 理解服务信息与日志位置，按需下载相关日志片段到本地 temp 目录，并分析日志定位问题。适用于用户要求排查远程服务日志、分析服务端异常或基于 SSH 访问进行日志诊断的场景。
 ---
 
-# server-log-analysis
+# 服务器日志分析
 
-> 通过 SSH 连接远程服务器，读取同级 config.yaml 理解服务信息与日志位置，按需下载相关日志片段到本地 temp 目录，并分析日志定位问题。适用于用户要求排查远程服务日志、分析服务端异常或基于 SSH 访问进行日志诊断的场景。
+## 目的
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/server-log-analysis`
-- **Source URL:** [https://clawhub.ai/skills/server-log-analysis](https://clawhub.ai/skills/server-log-analysis)
+当日志保存在远程服务器上时，使用此 Skill 进行服务问题排查。
 
-## Overview
+本 Skill 默认满足以下前提：
 
+- agent 可以通过 SSH 或等价的远程执行工具连接服务器
+- 本 Skill 目录下的 `config.yaml` 已定义服务信息、日志路径和业务背景
+- 详细分析前，应先按需将日志片段复制到本地 `temp/` 目录
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/server-log-analysis
-```
+## 必读文件
+
+- 先读取 `config.yaml`
+- 需要字段说明或命令模式时，再读取 `reference.md`
+
+## 核心流程
+
+1. 读取 `config.yaml`
+2. 将用户问题匹配到一个或多个已配置服务
+3. 确定最小必要排查范围：
+   - 目标服务
+   - 目标主机
+   - 相关时间窗口
+   - 可能涉及的日志文件
+4. 通过 SSH 或可用远程工具连接目标服务器
+5. 下载前先做远程检查：
+   - 文件是否存在、文件大小
+   - 最近修改时间
+   - 是否仅靠关键词过滤或 tail 即可满足分析
+6. 只下载最小必要日志片段到配置中的本地 `temp/` 目录
+7. 在本地副本上分析错误、时间关联、重复故障和可能根因
+8. 输出简洁的诊断结论、证据、不确定性和后续建议
+
+## 排查规则
+
+- 优先使用 `config.yaml` 中的服务定义和业务说明，不要凭空猜测
+- 优先在远端过滤，再考虑整文件下载：
+  - 先缩小时间窗口
+  - 再按关键词筛选
+  - 最近故障优先使用 tail
+- 只有在片段不足以判断时才下载完整日志
+- 本地保存的日志文件名要清晰体现服务、主机和时间范围
+- 除非用户明确要求，否则不要拉取敏感文件、二进制文件或无关的大型归档
+- 如果问题跨多个服务，先分析主服务，再扩展到相关依赖服务
+
+## 服务选择
+
+当用户请求不明确时：
+
+1. 使用 `config.yaml` 中的服务 `aliases`、`keywords` 和 `description`
+2. 优先选择语义匹配度最高的服务
+3. 仍不明确时，先询问用户要排查哪个服务，再进行远程连接
+
+## 远程检查清单
+
+下载日志前，先确认：
+
+- 主机配置是否与目标服务匹配
+- 配置中的日志文件是否存在
+- 哪个日志文件最近有更新
+- 是否存在需要关注的滚动日志
+- 本次问题是近期故障还是历史问题
+
+常见远程检查方式包括：
+
+- 文件元信息检查
+- 查看最近日志尾部
+- 快速关键词搜索
+- 按时间窗口提取日志
+- 必要时查看进程或服务状态
+
+## 本地下载规则
+
+下载后的日志统一保存在配置中的 `local_temp_dir` 下。
+
+推荐命名格式：
+
+`<service>__<host>__<log_name>__<time_hint>.log`
+
+优先级顺序如下：
+
+1. 最近日志尾部
+2. 关键词过滤片段
+3. 指定时间窗口片段
+4. 完整文件，作为最后手段
+
+## 分析重点
+
+重点关注：
+
+- 启动失败
+- 重复异常
+- 超时和连接类问题
+- 资源压力指标
+- 数据库、缓存、消息队列、DNS、HTTP 上游等依赖故障
+- 堆栈或启动日志暴露的配置错误
+- 关联服务之间的时间戳对齐情况
+
+回答结构应包含：
+
+- 问题摘要
+- 关键证据
+- 初步原因
+- 置信度
+- 下一步验证建议
+
+## 安全约束
+
+- 将 `config.yaml` 视为运维元数据，不要把明文敏感信息放进去
+- SSH 凭据优先使用环境变量、密钥文件或外部密钥管理方案
+- 未经用户明确要求，不要修改远端文件，也不要重启服务
+- 未经用户要求，不要自动删除已下载日志
+
+## 异常处理
+
+如果远程访问失败：
+
+1. 明确说明失败发生在哪一步
+2. 说明目标主机和目标服务
+3. 请求用户提供正确的 SSH 访问方式、网络路径或凭据
+
+如果配置的日志路径不存在：
+
+1. 明确指出缺失的路径
+2. 检查同一服务是否配置了可替代路径
+3. 询问用户部署路径是否发生变化
+
+## 快速执行顺序
+
+每次都按下面顺序执行：
+
+1. 读取 `config.yaml`
+2. 识别服务和主机
+3. 远程检查日志文件
+4. 将最小必要日志复制到 `temp/`
+5. 在本地分析
+6. 汇总结论并给出证据

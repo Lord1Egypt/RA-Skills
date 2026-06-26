@@ -1,0 +1,18 @@
+{
+  "name": "labor-dispute-check",
+  "version": "1.2.0",
+  "description": "Check China labor dispute issues and estimate severance, overtime, probation, arbitration, and evidence package needs. Use for 劳动纠纷、被辞退赔偿、N+1、2N、加班费、试用期、劳动仲裁、证据清单、经济补偿.",
+  "author": "harrylabsj",
+  "license": "MIT",
+  "keywords": ["labor", "employment", "dispute", "severance", "overtime", "arbitration", "evidence", "劳动纠纷", "劳动法", "劳动仲裁", "证据清单", "经济补偿"],
+  "category": "legal",
+  "homepage": "https://github.com/harrylabsj/labor-dispute-check",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/labor-dispute-check.git"
+  },
+  "openclaw": {
+    "skill": true,
+    "minVersion": "2026.3.0"
+  }
+}

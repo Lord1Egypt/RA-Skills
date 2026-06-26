@@ -1,0 +1,24 @@
+{
+  "name": "laosi-mcp-security-audit",
+  "displayName": "LAOSI MCP Security Audit",
+  "description": "Enterprise-grade MCP server security audit for OpenClaw agents - scans for vulnerabilities, malware, and compliance issues",
+  "version": "1.0.0",
+  "author": "laosi",
+  "homepage": "https://github.com/laosi/mcp-security-audit-skill",
+  "license": "MIT",
+  "keywords": ["security", "mcp", "audit", "enterprise", "compliance", "vulnerability", "malware"],
+  "category": "security",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "scripts": {
+    "audit": "python mcp_security_audit.py"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "claw.json",
+    "audit.py",
+    "mcp_security_audit.py"
+  ]
+}

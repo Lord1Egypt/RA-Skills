@@ -1,35 +1,73 @@
 ---
-name: "data-visualization"
-description: "AI智能数据可视化；支持多种图表类型（柱状图、折线图、饼图、散点图、直方图、箱线图、小提琴图、面积图、热力图、平行坐标图、旭日图等），根据数据特征自动分析并推荐最佳图表组合，生成精美交互式HTML仪表板"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-visualization-cloud"
-sourceUrl: "https://clawhub.ai/skills/data-visualization-cloud"
+name: data-visualization
+description: AI智能数据可视化；支持多种图表类型（柱状图、折线图、饼图、散点图、直方图、箱线图、小提琴图、面积图、热力图、平行坐标图、旭日图等），根据数据特征自动分析并推荐最佳图表组合，生成精美交互式HTML仪表板
+dependency:
+  python:
+    - plotly
+    - pandas
+    - numpy
 ---
 
-# data-visualization
+# 数据可视化Skill
 
-> AI智能数据可视化；支持多种图表类型（柱状图、折线图、饼图、散点图、直方图、箱线图、小提琴图、面积图、热力图、平行坐标图、旭日图等），根据数据特征自动分析并推荐最佳图表组合，生成精美交互式HTML仪表板
+## 任务目标
+- 本Skill用于：AI智能分析数据特征，自动推荐最佳图表组合，生成精美的交互式HTML可视化仪表板
+- 能力包含：智能数据分析、多种图表类型支持（柱状图、折线图、饼图、散点图、直方图、箱线图、小提琴图、面积图、热力图、平行坐标图、旭日图等）、自动图表推荐、综合仪表板生成
+- 触发条件：用户需要将数据可视化展示、不确定用什么图表类型、需要快速生成专业可视化效果
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-visualization-cloud`
-- **Source URL:** [https://clawhub.ai/skills/data-visualization-cloud](https://clawhub.ai/skills/data-visualization-cloud)
+## 前置准备
+- 依赖说明：
+  ```
+  plotly
+  pandas
+  numpy
+  ```
 
-## Overview
+## 操作步骤
+1. **数据准备与分析**
+   - 用户提供数据（可以是表格数据、CSV格式或结构化数据）
+   - AI智能分析数据特征（数据类型、维度、关系、相关性等）
+   - AI根据数据特征自动推荐最合适的图表类型组合
 
+2. **图表生成**
+   - 调用 `scripts/generate_chart.py` 生成交互式HTML可视化仪表板
+   - AI自动选择最佳图表类型（支持10+种图表类型）
+   - 所有图表统一展示在一个美观的页面中
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-visualization-cloud
-```
+3. **输出与优化**
+   - 生成单个HTML文件，包含多种交互式图表
+   - 支持鼠标悬停、缩放、平移等交互功能
+   - 响应式设计，适配不同屏幕尺寸
+
+## 资源索引
+- 必要脚本：见 [scripts/generate_chart.py](scripts/generate_chart.py)(用途：根据数据生成指定类型的图表)
+- 领域参考：见 [references/chart-types.md](references/chart-types.md)(何时读取：需要了解不同图表类型的适用场景和数据格式要求时)
+- 领域参考：见 [references/data-format.md](references/data-format.md)(何时读取：需要了解输入数据的格式规范时)
+
+## 注意事项
+- AI会自动分析数据特征并推荐最佳图表组合
+- 支持的图表类型：柱状图、折线图、饼图、散点图、直方图、箱线图、小提琴图、面积图、热力图、平行坐标图、旭日图等
+- 图表类型选择基于数据特征（数值列数量、分类列数量、数据分布、相关性等）
+- 图表支持缩放、平移等交互操作
+- 生成最多15个图表，按优先级排序
+
+## 使用示例
+
+### 示例1：AI自动分析并生成仪表板
+- 功能说明：AI分析数据特征，自动推荐并生成最佳图表组合
+- 执行方式：AI智能分析+脚本自动生成
+- 示例命令：python scripts/generate_chart.py --input sales.csv --output dashboard.html
+- 输出内容：单个HTML文件，包含AI推荐的多种图表（柱状图、折线图、饼图、散点图、热力图等）
+
+### 示例2：支持的图表类型
+- 柱状图：类别对比、值计数分布
+- 折线图：时间序列趋势分析
+- 饼图：占比分析
+- 散点图：变量相关性分析
+- 直方图：数值分布分析
+- 箱线图：数据分布差异对比
+- 小提琴图：分布密度展示
+- 面积图：趋势变化可视化
+- 热力图：相关性矩阵展示
+- 平行坐标图：多维度数据展示
+- 旭日图：层级数据分析

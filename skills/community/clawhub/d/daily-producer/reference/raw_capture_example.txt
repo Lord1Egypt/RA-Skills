@@ -1,0 +1,27 @@
+================================================================================
+captured_at: 2026-03-23T08:45:12+08:00
+date: 2026-03-23
+section: search
+query: OpenAI GPT latest coding agent update
+source: OpenAI
+source_type: official
+title: Introducing GPT-5.4
+url: https://openai.com/index/introducing-gpt-5-4/
+language: en
+--------------------------------------------------------------------------------
+GPT-5.4 is optimized for professional work, coding, and agentic tasks.
+Official release note excerpt...
+
+================================================================================
+captured_at: 2026-03-23T08:47:03+08:00
+date: 2026-03-23
+section: search
+query: AI Agent framework GitHub benchmark memory
+source: Hugging Face Forums
+source_type: community
+title: MemEval and PropMem for agent memory benchmarking
+url: https://discuss.huggingface.co/t/memeval-propmem-standardizing-agent-memory-benchmarks/174203
+language: en
+--------------------------------------------------------------------------------
+A discussion proposing standardized benchmarks for agent memory systems.
+Forum post excerpt...

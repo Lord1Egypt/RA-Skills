@@ -1,0 +1,20 @@
+# CDISC 批量查询示例文件
+# 每行一个查询，# 开头的为注释
+
+# QRS 量表查询
+qrs AIMS01
+qrs CGI01
+qrs HAM-D
+qrs HAM-A
+qrs MMSE
+
+# 量表项目查询
+items AIMS01 2-0
+items CGI01 1-0
+
+# ADaM 查询
+adam adam-2-1
+
+# 受控术语查询
+ct C102111
+ct C28077

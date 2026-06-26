@@ -1,0 +1,21 @@
+# DeadCode -- lefthook configuration
+# Installed by: deadcode hooks install
+# Documentation: https://deadcode.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    deadcode-scan:
+      run: |
+        DEADCODE_SKILL_DIR="${DEADCODE_SKILL_DIR:-$HOME/.openclaw/skills/deadcode}"
+        if [[ -f "$DEADCODE_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$DEADCODE_SKILL_DIR/scripts/patterns.sh"
+          source "$DEADCODE_SKILL_DIR/scripts/analyzer.sh"
+          hook_deadcode_scan
+        else
+          echo "[DeadCode] Skill not found at $DEADCODE_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Dead code detected in staged source files!
+        Run 'deadcode scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

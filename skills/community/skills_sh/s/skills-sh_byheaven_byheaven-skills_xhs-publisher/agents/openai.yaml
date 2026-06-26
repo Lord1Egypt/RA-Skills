@@ -1,0 +1,9 @@
+interface:
+  display_name: "XHS Publisher"
+  short_description: "Automates Xiaohongshu (Little Red Book) content publishing with step-by-step Creator Platform workflows"
+  icon_small: "../assets/favicon.png"
+  icon_large: "../assets/favicon.png"
+  brand_color: "#3B82F6"
+
+policy:
+  allow_implicit_invocation: false

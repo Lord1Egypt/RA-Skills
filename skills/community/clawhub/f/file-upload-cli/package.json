@@ -1,0 +1,25 @@
+{
+  "name": "file-upload-cli",
+  "version": "1.0.0",
+  "description": "Node.js CLI tool to upload files to litterbox.catbox.moe file sharing service using curl (72h expiry, 1GB limit)",
+  "main": "file-upload-cli.js",
+  "scripts": {
+    "start": "node file-upload-cli.js",
+    "test": "echo \"Manual testing - see quickstart.md\" && exit 0"
+  },
+  "keywords": [
+    "file-upload",
+    "cli",
+    "litterbox",
+    "catbox",
+    "file-sharing",
+    "curl",
+    "temporary-files"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

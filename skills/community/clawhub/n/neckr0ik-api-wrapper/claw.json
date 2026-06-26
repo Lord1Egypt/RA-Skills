@@ -1,0 +1,18 @@
+{
+  "name": "neckr0ik-api-wrapper",
+  "version": "1.0.0",
+  "description": "Convert any REST API into an OpenClaw skill automatically. Generates SKILL.md, scripts, and claw.json from OpenAPI spec.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "api",
+    "openapi",
+    "generator",
+    "wrapper",
+    "rest"
+  ],
+  "dependencies": {
+    "pyyaml": ">=6.0",
+    "requests": ">=2.28.0"
+  }
+}

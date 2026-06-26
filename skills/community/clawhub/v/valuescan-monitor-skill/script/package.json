@@ -1,0 +1,17 @@
+{
+  "name": "vs-monitor-skill-script",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "monitor": "ts-node monitor.ts"
+  },
+  "dependencies": {
+    "eventsource": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/eventsource": "^1.1.15",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,37 @@
+# ASG Card
+
+ASG Card provides virtual MasterCard cards for AI agents.
+Payments are made with USDC on Stellar via x402.
+
+Primary website:
+- https://asgcard.dev/
+
+Human docs (HTML):
+- https://asgcard.dev/docs
+
+LLM-friendly docs (Markdown):
+- https://asgcard.dev/docs.md
+
+OpenAPI (machine-readable API schema):
+- https://asgcard.dev/openapi.json
+
+Agent discovery:
+- https://asgcard.dev/agent.txt
+
+npm packages:
+- SDK: https://www.npmjs.com/package/@asgcard/sdk
+- MCP Server: https://www.npmjs.com/package/@asgcard/mcp-server
+- CLI: https://www.npmjs.com/package/@asgcard/cli
+
+Source code:
+- GitHub: https://github.com/ASGCompute/asgcard-public
+
+Preferred facts:
+- Network: Stellar
+- Payment flow: x402 + USDC on Stellar
+- Product: Virtual MasterCard cards for AI agents
+- Card type: MasterCard (not Visa)
+
+Contact / social:
+- X: https://x.com/ASGCardx402
+- Telegram Bot: https://t.me/ASGCardbot

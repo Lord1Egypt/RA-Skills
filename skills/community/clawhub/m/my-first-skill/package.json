@@ -1,0 +1,59 @@
+{
+  "name": "my-first-skill",
+  "version": "1.0.0",
+  "description": "招标项目分析技能 - 从招标文件提取信息、管理数据库、提供智能分析",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "python3 scripts/test_skill.py",
+    "analyze": "python3 scripts/analyze.py",
+    "import": "python3 scripts/import.py",
+    "query": "python3 scripts/query.py"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "bid",
+    "tender",
+    "analysis",
+    "database",
+    "mysql"
+  ],
+  "author": "迢迢 <1975467035@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "pandas": ">=1.5.0",
+    "mysql-connector-python": ">=8.0.0",
+    "openpyxl": ">=3.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "business",
+    "triggers": [
+      "招标",
+      "投标",
+      "项目分析",
+      "数据库",
+      "mysql",
+      "excel导入"
+    ],
+    "requirements": [
+      "mysql-server",
+      "python3",
+      "python3-pip"
+    ],
+    "install": "pip install pandas mysql-connector-python openpyxl",
+    "config": {
+      "mysql_host": "localhost",
+      "mysql_port": 3306,
+      "mysql_database": "bid_analysis_db"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.com/skills/my-first-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tiaotiao/my-first-skill/issues"
+  },
+  "homepage": "https://clawhub.com/skills/my-first-skill"
+}

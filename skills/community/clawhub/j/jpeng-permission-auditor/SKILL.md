@@ -1,35 +1,37 @@
 ---
-name: "permission-auditor"
-description: "Audit tool usage patterns and permissions to identify security risks and excessive access. Use when you need to review tool usage, check for permission issue..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-permission-auditor"
-sourceUrl: "https://clawhub.ai/skills/jpeng-permission-auditor"
+name: permission-auditor
+description: Audit tool usage patterns and permissions to identify security risks and excessive access. Use when you need to review tool usage, check for permission issues, or generate security audit reports.
 ---
 
-# permission-auditor
+# Permission Auditor
 
-> Audit tool usage patterns and permissions to identify security risks and excessive access. Use when you need to review tool usage, check for permission issue...
+Review tool usage and permissions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-permission-auditor`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-permission-auditor](https://clawhub.ai/skills/jpeng-permission-auditor)
+## Usage
 
-## Overview
+```javascript
+const { auditToolUsage, checkPermissions, generateReport } = require('./skills/permission-auditor');
 
+// Audit tool usage from logs
+const audit = auditToolUsage(toolLogs);
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jpeng-permission-auditor
+// Check if permissions are excessive
+const issues = checkPermissions(requiredPermissions, grantedPermissions);
+
+// Generate security report
+const report = generateReport(audit);
 ```
+
+## CLI
+
+```bash
+node skills/permission-auditor/index.js demo
+```
+
+## Features
+
+- Tool usage pattern analysis
+- High-risk operation detection
+- Permission scope verification
+- Security recommendations
+- Audit report generation

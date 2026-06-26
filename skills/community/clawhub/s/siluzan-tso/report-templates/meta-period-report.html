@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta / Facebook 周期分析报告</title>
+
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <style>
+      :root {
+        --bg: #0f1419;
+        --card: #1a2332;
+        --text: #e7ecf3;
+        --muted: #8b9cb3;
+        --green: #22c55e;
+        --yellow: #eab308;
+        --red: #ef4444;
+        --accent: #3b82f6;
+        --border: #2d3a4f;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.75;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+      .hero {
+        background: linear-gradient(135deg, #1e3a5f 0%, #0f1419 60%);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 36px;
+        margin-bottom: 28px;
+      }
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: 1.85rem;
+        font-weight: 700;
+      }
+      .hero .sub {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .kpi {
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 16px;
+        text-align: center;
+      }
+      .kpi .v {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .kpi .l {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      section {
+        margin-bottom: 36px;
+      }
+      h2 {
+        font-size: 1.35rem;
+        border-left: 4px solid var(--accent);
+        padding-left: 12px;
+        margin: 32px 0 16px;
+      }
+      h3 {
+        font-size: 1.05rem;
+        color: #cbd5e1;
+        margin: 20px 0 10px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 22px;
+        margin-bottom: 16px;
+      }
+      .chart-box {
+        position: relative;
+        height: 320px;
+        margin: 12px 0;
+      }
+      .insight {
+        font-size: 0.92rem;
+        color: #c5d0de;
+        border-left: 3px solid var(--accent);
+        padding: 12px 16px;
+        background: rgba(59, 130, 246, 0.08);
+        border-radius: 0 8px 8px 0;
+        margin-top: 12px;
+      }
+      .insight strong {
+        color: #93c5fd;
+      }
+      .tag {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        margin-right: 6px;
+      }
+      .tag.green {
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--green);
+      }
+      .tag.yellow {
+        background: rgba(234, 179, 8, 0.2);
+        color: var(--yellow);
+      }
+      .tag.red {
+        background: rgba(239, 68, 68, 0.2);
+        color: var(--red);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+        background: rgba(0, 0, 0, 0.2);
+      }
+      tr:hover td {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .lifecycle {
+        display: flex;
+        gap: 8px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+      .phase {
+        flex: 1;
+        min-width: 140px;
+        padding: 16px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        text-align: center;
+        opacity: 0.55;
+      }
+      .phase.active {
+        opacity: 1;
+        border-color: var(--accent);
+        background: rgba(59, 130, 246, 0.12);
+      }
+      .phase .step {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .phase .name {
+        font-weight: 700;
+        margin: 6px 0 4px;
+      }
+      .phase .desc {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .four-q {
+        display: grid;
+        gap: 14px;
+      }
+      @media (min-width: 700px) {
+        .four-q {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .q-card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px;
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .q-card .q-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin: 8px 0;
+      }
+      .q-card .verdict {
+        color: #93c5fd;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      .q-card ul {
+        margin: 8px 0;
+        padding-left: 18px;
+        font-size: 0.86rem;
+        color: #c5d0de;
+      }
+      .q-card .action {
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border);
+        font-size: 0.86rem;
+      }
+      .q-card .action strong {
+        color: var(--green);
+      }
+      .scorecard td:last-child {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .simple-intro {
+        font-size: 0.95rem;
+        color: #c5d0de;
+        margin-bottom: 8px;
+      }
+      .checklist {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 768px) {
+        .checklist {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .check-card {
+        border-top: 3px solid var(--accent);
+        padding-top: 12px;
+      }
+      .check-card h4 {
+        margin: 0 0 10px;
+        font-size: 0.95rem;
+      }
+      .check-card ul {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.88rem;
+        color: #c5d0de;
+      }
+      .check-card li {
+        margin-bottom: 6px;
+      }
+      .footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-top: 48px;
+      }
+      .matrix-note {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+      .ab-grid {
+        display: grid;
+        gap: 14px;
+      }
+      @media (min-width: 700px) {
+        .ab-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .ab-card {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 16px;
+        border: 1px solid var(--border);
+      }
+      .fatigue-bar {
+        height: 8px;
+        background: #334155;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      .fatigue-bar span {
+        display: block;
+        height: 100%;
+        border-radius: 4px;
+      }
+      .empty-note {
+        color: var(--muted);
+        font-size: 0.9rem;
+        padding: 12px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="report-root" class="wrap"></div>
+    <script>
+      window.__META_PERIOD_REPORT__ = window.__META_PERIOD_REPORT__ || null;
+    </script>
+    <script>
+      /**
+       * Meta / Facebook 周期分析 HTML 报告运行时
+       * 数据源：window.__META_PERIOD_REPORT__（Agent 撰写 JSON + 可选 facebook-analysis 快照合并）
+       */
+      (function () {
+        "use strict";
+
+        const C_GREEN = "#22c55e";
+        const C_YELLOW = "#eab308";
+        const C_RED = "#ef4444";
+        const C_BLUE = "#3b82f6";
+
+        const LIFECYCLE_PHASES = [
+          { id: "test-market", step: "第 1 步", name: "测市场", desc: "多国/多平台试花费" },
+          { id: "find-winner", step: "第 2 步", name: "找赢家", desc: "谁便宜就加谁" },
+          { id: "scale", step: "第 3 步", name: "放量", desc: "集中预算扩量" },
+        ];
+
+        function escapeHtml(s) {
+          return String(s ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function num(v, digits) {
+          const n = Number(v);
+          if (!Number.isFinite(n)) return "—";
+          if (digits != null) return n.toFixed(digits);
+          return n >= 1000
+            ? Math.round(n).toLocaleString("en-US")
+            : String(Math.round(n * 100) / 100);
+        }
+
+        function money(v, currency) {
+          const sym = currency === "USD" || currency === "$" ? "$" : currency || "$";
+          const n = Number(v);
+          if (!Number.isFinite(n)) return "—";
+          return sym + n.toFixed(2);
+        }
+
+        function tagClass(signal) {
+          if (signal === "green") return "green";
+          if (signal === "red") return "red";
+          return "yellow";
+        }
+
+        function colorByCpl(v, avg) {
+          if (!Number.isFinite(v) || !Number.isFinite(avg) || avg <= 0) return C_BLUE;
+          if (v <= avg * 0.85) return C_GREEN;
+          if (v <= avg * 1.15) return C_YELLOW;
+          return C_RED;
+        }
+
+        function paragraphsHtml(items) {
+          if (!Array.isArray(items) || items.length === 0)
+            return '<p class="empty-note">（待 Agent 撰写执行摘要）</p>';
+          return items.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
+        }
+
+        function summaryParagraphs(data) {
+          const exec = data.executiveSummary;
+          if (Array.isArray(exec) && exec.length > 0) return exec;
+          const overall = data.narrative?.overall;
+          if (typeof overall === "string" && overall.trim()) {
+            const parts = overall.split(/(?<=[。！？])\s*/).filter((s) => s.trim());
+            return parts.length > 1 ? parts : [overall];
+          }
+          return [];
+        }
+
+        function renderNarrativePerformance(narrative) {
+          if (!narrative) return "";
+          const overall = narrative.overall
+            ? `<div class="card"><h3 style="margin-top:0">整体表现</h3><p>${escapeHtml(narrative.overall)}</p></div>`
+            : "";
+          const regional = (narrative.regional || [])
+            .map(
+              (r) => `
+<div class="card">
+  <h3 style="margin-top:0">${escapeHtml(r.adGroupName || r.campaignName || "广告组")}</h3>
+  <p>${escapeHtml(r.text || "")}</p>
+</div>`,
+            )
+            .join("");
+          const country = narrative.country
+            ? `<div class="card"><h3 style="margin-top:0">国家 / 市场对比</h3><p>${escapeHtml(narrative.country)}</p></div>`
+            : "";
+          if (!overall && !regional && !country) return "";
+          return `
+<section>
+<h2>账户表现解读（数据叙事）</h2>
+${overall}${regional}${country}
+</section>`;
+        }
+
+        function renderRecommendationsBlock(data) {
+          const recs = data.narrative?.recommendations || [];
+          const extra = data.supplementaryRecommendations || [];
+          const plan = data.priorityPlan;
+          const recCards = recs
+            .map(
+              (r) => `
+<div class="card" style="margin-bottom:12px">
+  <h3 style="margin-top:0;color:#93c5fd">${escapeHtml(r.title || "优化建议")}</h3>
+  <p>${escapeHtml(r.content || "")}</p>
+</div>`,
+            )
+            .join("");
+          const extraRows = extra
+            .map(
+              (r) => `
+<tr>
+  <td>${escapeHtml(r.dimension || "")}</td>
+  <td>${escapeHtml(r.issue || "")}</td>
+  <td>${escapeHtml(r.suggestion || "")}</td>
+</tr>`,
+            )
+            .join("");
+          const planCol = (title, items, color) => `
+<div class="card check-card" style="border-color:var(--${color})">
+<h4>${escapeHtml(title)}</h4>
+<ul>${(items || []).map((li) => `<li>${escapeHtml(li)}</li>`).join("") || '<li class="empty-note">（待补充）</li>'}</ul>
+</div>`;
+          const planHtml = plan
+            ? `
+<div class="checklist" style="margin-top:16px">
+${planCol("高优先级（本周必做）", plan.high, "red")}
+${planCol("中优先级（两周内）", plan.medium, "yellow")}
+${planCol("低优先级（持续优化）", plan.low, "green")}
+</div>`
+            : "";
+          if (!recCards && !extraRows && !planHtml) {
+            return `
+<section>
+<h2>优化建议与行动计划</h2>
+<div class="card"><p class="empty-note">（待 Agent 按 meta-period-report-rules.md 撰写 narrative.recommendations 与 supplementaryRecommendations）</p></div>
+</section>`;
+          }
+          return `
+<section>
+<h2>优化建议与行动计划</h2>
+${recCards || '<div class="card"><p class="empty-note">（待撰写固定 4 条建议：简化表单 / 区域调整 / 预算重构 / 素材建议）</p></div>'}
+${
+  extraRows
+    ? `<div class="card" style="margin-top:16px">
+<h3 style="margin-top:0">数据驱动补充建议（7 维清单）</h3>
+<table>
+<thead><tr><th>维度</th><th>发现</th><th>建议</th></tr></thead>
+<tbody>${extraRows}</tbody>
+</table>
+</div>`
+    : ""
+}
+${planHtml ? `<h3 style="margin-top:24px">优先级改进计划</h3>${planHtml}` : ""}
+</section>`;
+        }
+
+        function renderHero(meta, kpis) {
+          const title = meta.accountName || meta.accountId || "Meta 广告账户";
+          const period = meta.periodLabel || `${meta.startDate || ""} ~ ${meta.endDate || ""}`;
+          const sub = [
+            meta.mode || "深度分析模式",
+            `数据周期：${period}`,
+            meta.attributionSetting ? `归因：${meta.attributionSetting}` : null,
+            meta.resultType ? `成效：${meta.resultType}` : null,
+            meta.generatedAt ? `生成：${meta.generatedAt}` : null,
+          ]
+            .filter(Boolean)
+            .join(" | ");
+
+          const currency = kpis.currency || "$";
+          const kpiItems = [
+            { v: money(kpis.spend, currency), l: "总花费" },
+            { v: num(kpis.results), l: "线索数" },
+            { v: money(kpis.costPerResult, currency), l: "平均 CPL" },
+            { v: num(kpis.reach), l: "覆盖人数" },
+            { v: num(kpis.impressions), l: "展示次数" },
+            { v: num(kpis.frequency, 2), l: "平均频次" },
+          ];
+
+          return `
+<header class="hero">
+  <h1>${escapeHtml(title)} · Facebook / Meta 广告投放<br/>${escapeHtml(period)} 深度分析报告</h1>
+  <p class="sub">${escapeHtml(sub)}</p>
+  <div class="kpi-grid">
+    ${kpiItems.map((k) => `<div class="kpi"><div class="v">${escapeHtml(k.v)}</div><div class="l">${escapeHtml(k.l)}</div></div>`).join("")}
+  </div>
+</header>`;
+        }
+
+        function renderHealthDiagnosis(hd) {
+          if (!hd) return "";
+
+          const phase = hd.lifecyclePhase || "";
+          const lifecycle = LIFECYCLE_PHASES.map(
+            (p) => `
+    <div class="phase${phase && p.id === phase ? " active" : ""}">
+      <div class="step">${escapeHtml(p.step)}</div>
+      <div class="name">${escapeHtml(p.name)}</div>
+      <div class="desc">${escapeHtml(p.desc)}</div>
+    </div>`,
+          ).join("");
+
+          const fourQ = (hd.fourQuestions || [])
+            .map(
+              (q) => `
+    <div class="q-card">
+      <span style="font-size:1.5rem">${escapeHtml(q.icon || "📊")}</span>
+      <span class="tag ${tagClass(q.tag)}">${escapeHtml(q.tagLabel || "")}</span>
+      <div class="q-title">${escapeHtml(q.title || "")}</div>
+      <div class="verdict">→ ${escapeHtml(q.verdict || "")}</div>
+      <ul>${(q.evidence || []).map((e) => `<li>${escapeHtml(e)}</li>`).join("")}</ul>
+      <div class="action"><strong>怎么办：</strong>${escapeHtml(q.action || "")}</div>
+    </div>`,
+            )
+            .join("");
+
+          const scorecard = (hd.scorecard || [])
+            .map(
+              (r) => `
+    <tr>
+      <td>${escapeHtml(r.item)}</td>
+      <td>${escapeHtml(r.data)}</td>
+      <td><span class="tag ${tagClass(r.signal)}">${escapeHtml(r.signalLabel || "")}</span></td>
+      <td>${escapeHtml(r.advice)}</td>
+    </tr>`,
+            )
+            .join("");
+
+          return `
+<section>
+<h2>账户健康诊断（简明版）</h2>
+<p class="simple-intro">不用记 12 条规则，按下面 <strong>三步阶段 → 四个问题 → 一张红绿灯表</strong> 读即可。详细数据见后文各图表。</p>
+<div class="card">
+  <h3 style="margin-top:0">① 账户现在在哪个阶段？</h3>
+  <p style="margin:0 0 12px"><strong>结论：</strong>${escapeHtml(hd.lifecycleVerdict || "")}</p>
+  <div class="lifecycle">${lifecycle}</div>
+</div>
+<div class="card">
+  <h3 style="margin-top:0">② 四个核心问题</h3>
+  <p style="margin:0 0 14px;font-size:.88rem;color:var(--muted)">每张卡片固定三行：<strong>结论</strong> → <strong>数据依据</strong> → <strong>怎么办</strong></p>
+  <div class="four-q">${fourQ || '<p class="empty-note">（待 Agent 撰写四问卡片）</p>'}</div>
+</div>
+<div class="card">
+  <h3 style="margin-top:0">③ 一张表：该加还是该减</h3>
+  <table class="scorecard">
+    <thead><tr><th>项目</th><th>数据</th><th>信号灯</th><th>建议</th></tr></thead>
+    <tbody>${scorecard || '<tr><td colspan="4" class="empty-note">（待 Agent 撰写红绿灯表）</td></tr>'}</tbody>
+  </table>
+</div>
+</section>`;
+        }
+
+        function renderInsightBlock(title, insight, chartId) {
+          const chart = chartId ? `<div class="chart-box" id="${chartId}"></div>` : "";
+          const text = insight
+            ? `<div class="insight"><strong>深度解读：</strong>${escapeHtml(insight)}</div>`
+            : "";
+          return `
+<section>
+<h2>${escapeHtml(title)}</h2>
+<div class="card">${chart}${text}</div>
+</section>`;
+        }
+
+        function renderAdSetsTable(rows) {
+          if (!rows || rows.length === 0) return '<p class="empty-note">（无广告组数据）</p>';
+          const body = rows
+            .map((r) => {
+              const barW = Math.min(100, Math.max(5, Number(r.fatigueScore) || 25));
+              const barColor =
+                r.fatigueLevel === "高" ? C_RED : r.fatigueLevel === "中" ? C_YELLOW : C_GREEN;
+              return `
+<tr>
+  <td>${escapeHtml(r.name)}</td>
+  <td>${escapeHtml(money(r.spend))}</td>
+  <td>${escapeHtml(num(r.results))}</td>
+  <td>${escapeHtml(money(r.costPerResult))}</td>
+  <td>${escapeHtml(num(r.frequency, 2))}</td>
+  <td><div class="fatigue-bar"><span style="width:${barW}%;background:${barColor}"></span></div>${escapeHtml(r.fatigueLevel || "低")}</td>
+  <td><span class="tag ${tagClass(r.statusTag)}">${escapeHtml(r.statusLabel || "")}</span></td>
+</tr>`;
+            })
+            .join("");
+          return `
+<table>
+<thead><tr><th>广告组</th><th>花费</th><th>线索</th><th>CPL</th><th>频次</th><th>疲劳评分</th><th>状态</th></tr></thead>
+<tbody>${body}</tbody>
+</table>`;
+        }
+
+        function renderAudienceMatrix(top, bottom, note) {
+          const rowHtml = (rows, signalLabel, signal) =>
+            (rows || [])
+              .map(
+                (r, i) => `
+<tr>
+  <td>${i + 1}</td>
+  <td>${escapeHtml(r.label)}</td>
+  <td>${escapeHtml(money(r.spend))}</td>
+  <td>${escapeHtml(num(r.results))}</td>
+  <td>${escapeHtml(money(r.costPerResult))}</td>
+  <td>${escapeHtml(num(r.frequency, 2))}</td>
+  <td><span class="tag ${tagClass(signal)}">${escapeHtml(signalLabel)}</span></td>
+</tr>`,
+              )
+              .join("");
+
+          return `
+<section>
+<h2>全量受众矩阵 · CPL Top / Bottom 10</h2>
+<p class="matrix-note">${escapeHtml(note || "注：数据为「年龄×性别」切片。国家×平台四维交叉需在 Ads Manager 另导出。")}</p>
+<div class="card">
+<h3>CPL 最低 Top（盈利区优先扩量）</h3>
+<table>
+<thead><tr><th>#</th><th>受众组合</th><th>花费</th><th>线索</th><th>CPL</th><th>频次</th><th>信号</th></tr></thead>
+<tbody>${rowHtml(top, "扩量候选", "green") || '<tr><td colspan="7" class="empty-note">无数据</td></tr>'}</tbody>
+</table>
+</div>
+<div class="card" style="margin-top:16px">
+<h3>CPL 最高 Bottom（危险区限流/改素材）</h3>
+<table>
+<thead><tr><th>#</th><th>受众组合</th><th>花费</th><th>线索</th><th>CPL</th><th>频次</th><th>信号</th></tr></thead>
+<tbody>${rowHtml(bottom, "限流/重做", "red") || '<tr><td colspan="7" class="empty-note">无数据</td></tr>'}</tbody>
+</table>
+</div>
+</section>`;
+        }
+
+        function renderGoldenAudience(section) {
+          if (!section) return "";
+          const items = (section.goldenProfile || [])
+            .map((li) => `<li>${escapeHtml(li)}</li>`)
+            .join("");
+          const anti = (section.antiProfile || [])
+            .map((li) => `<li>${escapeHtml(li)}</li>`)
+            .join("");
+          return `
+<section>
+<h2>黄金受众画像刻画</h2>
+<div class="card">
+<p><strong>当前最买账的用户画像（数据勾勒）：</strong></p>
+<ul>${items || '<li class="empty-note">（待 Agent 撰写画像要点）</li>'}</ul>
+${anti ? `<p><strong>反画像（少投）：</strong></p><ul>${anti}</ul>` : ""}
+<div class="chart-box" id="chartAudience"></div>
+${section.insight ? `<div class="insight"><strong>深度解读：</strong>${escapeHtml(section.insight)}</div>` : ""}
+</div>
+</section>`;
+        }
+
+        function renderLandingPage(section) {
+          if (!section) return "";
+          const rows = (section.rows || [])
+            .map(
+              (r) => `
+<tr>
+  <td>${escapeHtml(r.barrier)}</td>
+  <td>${escapeHtml(r.signal)}</td>
+  <td>${escapeHtml(r.inference)}</td>
+  <td><span class="tag ${tagClass(r.priorityTag)}">${escapeHtml(r.priority)}</span></td>
+</tr>`,
+            )
+            .join("");
+          return `
+<section>
+<h2>落地页与表单流失分析</h2>
+<div class="card">
+<table>
+<thead><tr><th>心理阻碍</th><th>数据信号</th><th>推演</th><th>优先级</th></tr></thead>
+<tbody>${rows || '<tr><td colspan="4" class="empty-note">（待 Agent 撰写）</td></tr>'}</tbody>
+</table>
+${section.note ? `<p>${escapeHtml(section.note)}</p>` : ""}
+</div>
+</section>`;
+        }
+
+        function renderAbTests(tests) {
+          if (!tests || tests.length === 0) return "";
+          const cards = tests
+            .map(
+              (t) => `
+<div class="ab-card">
+<h4>${escapeHtml(t.title)}</h4>
+<p><strong>变量：</strong>${escapeHtml(t.variable)}</p>
+<p><strong>假设：</strong>${escapeHtml(t.hypothesis)}</p>
+${t.success ? `<p><strong>成功：</strong>${escapeHtml(t.success)}</p>` : ""}
+</div>`,
+            )
+            .join("");
+          return `
+<section>
+<h2>下月 A/B Test 实验设计</h2>
+<div class="ab-grid">${cards}</div>
+</section>`;
+        }
+
+        function renderChecklist(checklist) {
+          if (!checklist) return "";
+          const col = (title, items, color) => `
+<div class="card check-card" style="border-color:var(--${color})">
+<h4>${escapeHtml(title)}</h4>
+<ul>${(items || []).map((li) => `<li>${escapeHtml(li)}</li>`).join("") || "<li>—</li>"}</ul>
+</div>`;
+          return `
+<section>
+<h2>可执行清单</h2>
+<div class="checklist">
+${col("今天立即做", checklist.today, "red")}
+${col("本周内完成", checklist.thisWeek, "yellow")}
+${col("本月持续优化", checklist.thisMonth, "green")}
+</div>
+</section>`;
+        }
+
+        const chartInstances = [];
+
+        function initChart(id, option) {
+          if (typeof echarts === "undefined") return null;
+          const el = document.getElementById(id);
+          if (!el) return null;
+          const chart = echarts.init(el, null, { renderer: "canvas" });
+          chart.setOption(option);
+          chartInstances.push(chart);
+          return chart;
+        }
+
+        function axisStyle() {
+          return { color: "#8b9cb3" };
+        }
+
+        function buildCharts(data) {
+          const charts = data.charts || {};
+          const avgCpl = Number(data.kpis?.costPerResult) || 0;
+
+          if (charts.platform) {
+            const { labels, cpl, spend } = charts.platform;
+            initChart("chartPlatform", {
+              tooltip: { trigger: "axis" },
+              legend: { data: ["CPL", "花费"], textStyle: { color: "#c5d0de" } },
+              grid: { left: "3%", right: "8%", bottom: "3%", containLabel: true },
+              xAxis: { type: "category", data: labels, axisLabel: axisStyle() },
+              yAxis: [
+                { type: "value", name: "CPL", axisLabel: axisStyle() },
+                {
+                  type: "value",
+                  name: "花费",
+                  position: "right",
+                  splitLine: { show: false },
+                  axisLabel: axisStyle(),
+                },
+              ],
+              series: [
+                {
+                  name: "CPL",
+                  type: "bar",
+                  data: (cpl || []).map((v) => ({
+                    value: v,
+                    itemStyle: { color: colorByCpl(v, avgCpl) },
+                  })),
+                },
+                {
+                  name: "花费",
+                  type: "line",
+                  yAxisIndex: 1,
+                  data: spend,
+                  lineStyle: { color: "#94a3b8" },
+                  itemStyle: { color: "#94a3b8" },
+                },
+              ],
+            });
+          }
+
+          if (charts.country) {
+            const { labels, cpl } = charts.country;
+            initChart("chartCountry", {
+              tooltip: { trigger: "axis" },
+              grid: { left: "3%", right: "8%", bottom: "3%", containLabel: true },
+              xAxis: { type: "value", axisLabel: axisStyle() },
+              yAxis: { type: "category", data: labels, axisLabel: axisStyle() },
+              series: [
+                {
+                  name: "CPL",
+                  type: "bar",
+                  data: (cpl || []).map((v) => ({
+                    value: v,
+                    itemStyle: { color: colorByCpl(v, avgCpl) },
+                  })),
+                },
+              ],
+            });
+          }
+
+          if (charts.audience) {
+            const { labels, cpl, leads } = charts.audience;
+            initChart("chartAudience", {
+              tooltip: { trigger: "axis" },
+              legend: { data: ["CPL", "线索数"], textStyle: { color: "#c5d0de" } },
+              grid: { left: "3%", right: "8%", bottom: "3%", containLabel: true },
+              xAxis: { type: "category", data: labels, axisLabel: axisStyle() },
+              yAxis: [
+                { type: "value", axisLabel: axisStyle() },
+                {
+                  type: "value",
+                  position: "right",
+                  splitLine: { show: false },
+                  axisLabel: axisStyle(),
+                },
+              ],
+              series: [
+                {
+                  name: "CPL",
+                  type: "bar",
+                  data: (cpl || []).map((v) => ({
+                    value: v,
+                    itemStyle: { color: colorByCpl(v, avgCpl) },
+                  })),
+                },
+                {
+                  name: "线索数",
+                  type: "line",
+                  yAxisIndex: 1,
+                  data: leads,
+                  lineStyle: { color: "#f472b6" },
+                  itemStyle: { color: "#f472b6" },
+                },
+              ],
+            });
+          }
+
+          if (charts.funnel) {
+            const reach = Number(charts.funnel.reach) || 0;
+            const results = Number(charts.funnel.results) || 0;
+            initChart("chartFunnel", {
+              tooltip: { trigger: "item" },
+              legend: { orient: "vertical", left: "left", textStyle: { color: "#c5d0de" } },
+              series: [
+                {
+                  type: "pie",
+                  radius: ["45%", "70%"],
+                  data: [
+                    {
+                      value: Math.max(0, reach - results),
+                      name: "覆盖未转化",
+                      itemStyle: { color: "#334155" },
+                    },
+                    { value: results, name: "已转化线索", itemStyle: { color: C_GREEN } },
+                  ],
+                },
+              ],
+            });
+          }
+
+          if (chartInstances.length) {
+            window.addEventListener("resize", function () {
+              chartInstances.forEach(function (c) {
+                c.resize();
+              });
+            });
+          }
+        }
+
+        function renderReport(data) {
+          const root = document.getElementById("report-root");
+          if (!root || !data) return;
+
+          const meta = data.meta || {};
+          const kpis = data.kpis || {};
+          const sections = data.sections || {};
+          const tables = data.tables || {};
+
+          root.innerHTML = `
+${renderHero(meta, kpis)}
+<section>
+<h2>执行摘要：数据背后的「为什么」</h2>
+<div class="card">${paragraphsHtml(summaryParagraphs(data))}</div>
+</section>
+${renderNarrativePerformance(data.narrative)}
+${renderRecommendationsBlock(data)}
+${renderHealthDiagnosis(data.healthDiagnosis)}
+${renderInsightBlock("平台策略：Facebook vs Instagram", sections.platform?.insight, "chartPlatform")}
+${renderInsightBlock("国家 / 市场矩阵", sections.country?.insight, "chartCountry")}
+<section>
+<h2>广告组生命周期与疲劳度评分</h2>
+<div class="card">
+${renderAdSetsTable(tables.adSets)}
+${sections.adSets?.insight ? `<div class="insight"><strong>深度解读：</strong>${escapeHtml(sections.adSets.insight)}</div>` : ""}
+</div>
+</section>
+${renderAudienceMatrix(tables.audienceTop, tables.audienceBottom, data.audienceMatrixNote)}
+${renderGoldenAudience(sections.audience)}
+${renderInsightBlock("受众漏斗：曝光 → 点击 → 线索", sections.funnel?.insight, "chartFunnel")}
+${renderLandingPage(sections.landingPage)}
+${renderAbTests(data.abTests)}
+${renderChecklist(data.actionChecklist)}
+<p class="footer">本报告由 Meta 投放分析逻辑自动生成 · 数据源：siluzan-tso facebook-analysis · ${escapeHtml(meta.generatedAt || "")}</p>`;
+
+          buildCharts(data);
+        }
+
+        function boot() {
+          var data = window.__META_PERIOD_REPORT__;
+          if (!data) return;
+          function run() {
+            renderReport(data);
+          }
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", run);
+          } else {
+            run();
+          }
+        }
+
+        boot();
+      })();
+    </script>
+  </body>
+</html>

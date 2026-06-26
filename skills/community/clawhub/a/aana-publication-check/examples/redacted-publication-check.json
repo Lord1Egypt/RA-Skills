@@ -1,0 +1,20 @@
+{
+  "publication_target": "Project website update",
+  "audience": "General public and open source users",
+  "content_summary": "Publish a new report card claiming the system is production-ready across regulated domains.",
+  "publication_status": "needs_review",
+  "approval_status": "required",
+  "evidence_status": "partial",
+  "privacy_status": "clear",
+  "asset_permission_status": "not_applicable",
+  "quality_status": "revise_copy",
+  "risk_level": "high",
+  "publication_risks": [
+    "unsupported_claim",
+    "overclaiming",
+    "professional_claim"
+  ],
+  "revision_needed": "Replace production-ready regulated-domain claims with narrower evidence-backed language and cite the supporting tests.",
+  "review_needed": "Owner review before publishing high-impact public claims.",
+  "recommended_action": "route_to_review"
+}

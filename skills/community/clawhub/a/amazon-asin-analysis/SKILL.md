@@ -1,35 +1,65 @@
----
-name: "Novai360 跨境电商智能分析"
-description: "提供基于实时市场数据和AI技术的跨境电商产品深度分析、竞品对比及关键词优化建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazon-asin-analysis"
-sourceUrl: "https://clawhub.ai/skills/amazon-asin-analysis"
----
+# Novai360 智能市场分析 v1.0
+联系官方：VX: chaibusiness
+## 描述 
 
-# Novai360 跨境电商智能分析
+Novai360 提供的专业跨境电商智能分析服务，基于先进的 AI 技术和真实的实时市场数据，为卖家提供深度市场洞察、竞品分析、关键词优化等专业建议。
 
-> 提供基于实时市场数据和AI技术的跨境电商产品深度分析、竞品对比及关键词优化建议。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazon-asin-analysis`
-- **Source URL:** [https://clawhub.ai/skills/amazon-asin-analysis](https://clawhub.ai/skills/amazon-asin-analysis)
+- 真实的市场数据获取（包含销售数据）
+- AI 智能分析报告生成
+- 19 种专业分析维度
+- 竞品深度对比
+- 关键词热度追踪
+- 类目标目趋势预测
+- 产品表现评估
+- 价格策略建议
 
-## Overview
+## 使用方法
 
+1. 输入您的产品或市场问题
+2. 系统将自动识别意图并调用相关分析工具
+3. 返回专业的分析框架和数据摘要
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazon-asin-analysis
+## API 端点
+
+- **POST /chat** - 智能分析
+- **GET /skills** - 获取可用分析工具列表
+- **GET /health** - 服务状态检查
+
+## 示例
+
+**输入:**
 ```
+帮我分析指压垫的市场前景
+```
+
+**输入:**
+```
+B0BG6N7W91 这个产品怎么样
+```
+
+**输入:**
+```
+搜索 acupressure mat 的关键词趋势
+```
+
+## 限制
+
+- 每位用户每日可免费使用 10 次专业分析
+- 全球高速访问
+- 无需 API Key，直接使用
+
+## 安全与认证
+
+- **API 认证**: 无需 API Key，直接使用
+- **数据隐私**: 
+  - 所有查询数据均经过加密处理
+  - 严格保护用户隐私
+  - 符合国际数据保护标准
+
+## 安装说明
+
+1. 直接安装技能到 ClawHub
+2. 开始使用
+

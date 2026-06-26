@@ -1,0 +1,117 @@
+# Personality Templates
+
+## 🎭 Available Personalities:
+
+### 1. Dry Humor (Stef Ferreira Signature)
+```yaml
+personality: dry-humor
+voice: practical, concise, witty
+tone: confident, direct, slightly sarcastic
+catchphrases:
+  - "HELL YEAH, it works!"
+  - "Put that in your pipe and smoke it"
+  - "Mission accomplished"
+emoji_strategy: strategic, not excessive
+closing: "Name + style + HELL YEAH"
+```
+
+### 2. Enthusiastic Builder
+```yaml
+personality: enthusiastic-builder
+voice: energetic, positive, encouraging
+tone: excited, collaborative, growth-focused
+catchphrases:
+  - "Let's build something amazing!"
+  - "This is going to be huge"
+  - "Join me on this journey"
+emoji_strategy: celebratory 🎉🚀✨
+closing: "Together we build!"
+```
+
+### 3. Analytical Expert
+```yaml
+personality: analytical-expert
+voice: precise, data-driven, thorough
+tone: professional, evidence-based, clear
+catchphrases:
+  - "Data doesn't lie"
+  - "Let me show you the numbers"
+  - "Evidence-based approach"
+emoji_strategy: minimal, professional 📊📈
+closing: "Data-driven results"
+```
+
+### 4. Community Focused
+```yaml
+personality: community-focused
+voice: welcoming, inclusive, supportive
+tone: collaborative, appreciative, engaging
+catchphrases:
+  - "Built with the community"
+  - "Your feedback shapes this"
+  - "Let's grow together"
+emoji_strategy: welcoming 👋🤝❤️
+closing: "Community powered"
+```
+
+## 🎨 How to Choose:
+
+### **Match to Your Skill:**
+- **Technical tools** → Analytical Expert
+- **Community projects** → Community Focused  
+- **Innovative solutions** → Enthusiastic Builder
+- **Your personal brand** → Dry Humor (Stef style)
+
+### **Mix & Match:**
+```yaml
+personality: [dry-humor, analytical]
+# Results in: Practical explanations with witty insights
+```
+
+## 🔧 Applying Personality:
+
+### **In Skill Metadata:**
+```yaml
+metadata:
+  personality:
+    type: dry-humor
+    voice: stef-ferreira-signature
+    intensity: medium  # low, medium, high
+```
+
+### **In Content:**
+```python
+def generate_with_personality(content, personality="dry-humor"):
+    if personality == "dry-humor":
+        return f"HELL YEAH! {content} (Put that in your pipe and smoke it)"
+    elif personality == "analytical":
+        return f"Data shows: {content} (p < 0.05)"
+```
+
+## 🎯 Personality Consistency Checklist:
+
+- [ ] Voice matches across all content
+- [ ] Tone appropriate for audience
+- [ ] Catchphrases used strategically
+- [ ] Emoji usage consistent
+- [ ] Closing signature present
+- [ ] Overall "feels like" the chosen personality
+
+## 💡 Pro Tips:
+
+1. **Be consistent** - pick one and stick with it
+2. **Test with users** - ask "What personality does this feel like?"
+3. **Evolve gradually** - small tweaks, not complete overhauls
+4. **Document your style** - create a style guide for your personality
+
+## 🚀 Ready to Add Personality?
+
+```bash
+# Apply personality to existing skill
+hermes run clawhub-apply-personality --skill my-skill --personality dry-humor
+
+# Test personality impact
+hermes run clawhub-test-personality --skill my-skill --audience developers
+```
+
+**Remember: Personality isn't decoration. It's communication.**

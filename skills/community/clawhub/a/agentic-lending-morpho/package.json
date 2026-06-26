@@ -1,0 +1,29 @@
+{
+  "name": "agentic-lending-morpho",
+  "version": "0.1.11",
+  "description": "Execution-capable OpenClaw Morpho skill bundle for Api3-backed market planning, deployment preparation, and verification.",
+  "type": "commonjs",
+  "bin": {
+    "agentic-lending-morpho": "scripts/bin/agentic-lending-morpho.js",
+    "api3-feed-manager": "scripts/bin/api3-feed-manager.js",
+    "part2-planner": "scripts/bin/part2-planner.js",
+    "part2-morpho-planner": "scripts/bin/part2-morpho-planner.js"
+  },
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check scripts/bin/agentic-lending-morpho.js && node --check scripts/bin/api3-feed-manager.js && node --check scripts/bin/part2-planner.js && node --check scripts/bin/part2-morpho-planner.js && node --check scripts/lib/api3-feed-manager.js && node --check scripts/lib/part2-chain-bootstrap.js && node --check scripts/lib/part2-planner.js && node --check scripts/lib/part2-recipes.js && node --check scripts/lib/part2-morpho-planner.js"
+  },
+  "dependencies": {
+    "@api3/contracts": "^37.0.0",
+    "@api3/dapi-management": "^4.15.0",
+    "ethers": "^6.15.0"
+  }
+}

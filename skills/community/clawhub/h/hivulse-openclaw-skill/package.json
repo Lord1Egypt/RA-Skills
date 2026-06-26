@@ -1,0 +1,10 @@
+{
+  "name": "hivulseAI",
+  "version": "1.0.0",
+  "openclaw": {
+    "skill": {
+      "name": "hivulseAI",
+      "version": "1.0.0"
+    }
+  }
+}

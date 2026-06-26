@@ -1,0 +1,29 @@
+{
+  "name": "io.github.living-hi/one-person-company-os",
+  "description": "MCP server for One Person Company OS, exposing tools to create and update a visual operating cockpit for AI-native solo founders.",
+  "version": "1.0.3",
+  "license": "MIT-0",
+  "homepage": "https://github.com/living-hi/one-person-company-os",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/living-hi/one-person-company-os.git"
+  },
+  "packages": [
+    {
+      "registry_type": "git",
+      "identifier": "https://github.com/living-hi/one-person-company-os.git",
+      "transport": {
+        "type": "stdio",
+        "command": "python3",
+        "args": ["platforms/mcp-server/server.py"]
+      }
+    }
+  ],
+  "tools": [
+    "preflight_check",
+    "init_business",
+    "update_focus",
+    "generate_artifact_document",
+    "validate_release"
+  ]
+}

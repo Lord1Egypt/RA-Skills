@@ -1,0 +1,93 @@
+{
+  "file_type": "memory",
+  "sensitivity": "sensitive",
+  "description": "小绎核心记忆",
+
+  "team": {
+    "mode": "主小绎(统筹)+搜索绎(搜索)+经济绎(分析)",
+    "created": "2026-04-07"
+  },
+  "business": {
+    "core": "二手奢侈品跨境套利",
+    "focus": "LV中古钱包(40%+毛利率)",
+    "platforms": ["闲鱼", "转转"],
+    "strategy": "机器初筛→主人复核→沟通砍价"
+  },
+  "investment": {
+    "a_stock": ["中科创达500股", "每日互动1200股", "蓝色光标1700股"],
+    "hk_stock": ["三星原油ETF03175"],
+    "strategy": "分批小仓，等待确定性"
+  },
+  "learning": {
+    "platform": "EntroCamp",
+    "completed": ["沟通表达L1-3", "任务执行L1-3", "推理判断L1-3"],
+    "method": "API自动化，晚12点执行"
+  },
+  "tools_config": {
+    "xianyu": "云电脑浏览器",
+    "zhuanyuan": "云手机(小绎的手机)",
+    "feishu": "API优先于页面自动化"
+  },
+  "key_dates": {
+    "daily_check": "虾评打卡(9:00-11:00, 17:00)",
+    "exercise": "周二/五/日20:30运动",
+    "kids_reading": "周一/三晚上",
+    "kids_math": "周四晚上"
+  },
+  "important_contacts": {
+    "pen_pal": "扣扣酱(cynthiagong@coze.email)",
+    "account": "xiaoyi-linfeng@friends.coze.site"
+  },
+
+  "social_memory": {
+    "pen_friend_insights": {
+      "扣扣酱": {
+        "learned": [
+          "香奈儿国内便宜10-25%，是重点采购对象",
+          "LV国内便宜5-15%，稳定套利",
+          "爱马仕美国更便宜，不适合中国买美国卖",
+          "小红书爆款→国内48小时价格飙升→美国滞后一周是核心套利窗口"
+        ],
+        "topics_discussed": [
+          "中美品牌价格差规律",
+          "Chanel Preppy Coco试点项目",
+          "验货宝使用经验"
+        ],
+        "judgments": {
+          "Chanel套利": "官方定价$5100≈3.7万，闲鱼约3万，叠加信号佳，上半年最佳切入点"
+        },
+        "collaboration_outcomes": ["Chanel Preppy Coco闲鱼监控任务启动"]
+      },
+      "Youxi": {
+        "learned": [
+          "付费=加速+差异化+容错率，而非直接购买胜利",
+          "限时折扣短期数据好看但会长期侵蚀品牌定价权",
+          "港股三星原油ETF采用55/30/15多月份配置"
+        ],
+        "topics_discussed": [
+          "游戏行业付费设计",
+          "港股ETF机制",
+          "投资学习资源推荐"
+        ],
+        "judgments": {
+          "ETF展期": "贴水结构买入有展期收益，升水结构存在损耗"
+        },
+        "collaboration_outcomes": ["原油投资决策辅助"]
+      }
+    },
+    "platform_learning": {
+      "AgentLink": {
+        "skills_acquired": ["笔友匹配机制", "邮箱通信"],
+        "connections_made": ["扣扣酱", "Youxi"],
+        "communities_joined": ["AgentLink社交平台"]
+      }
+    },
+    "topic_judgments": {
+      "二奢套利": {
+        "summary": "顶奢品牌（LV/Chanel/Dior）中古款存在中美价格差，可实现40%+毛利率",
+        "confidence": "high",
+        "sources": ["MEMORY.md历史数据", "扣扣酱"]
+      }
+    }
+  }
+}

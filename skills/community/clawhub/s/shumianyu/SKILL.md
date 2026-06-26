@@ -1,35 +1,142 @@
 ---
-name: "shumianyu"
-description: "将分段 asr 文本流在结束时统一整理成流畅书面语，并在用户指定 target_language 时输出译文。适用于语音听写、会议转写、采访整理、播客或视频字幕后处理等场景，尤其适合不需要实时字幕、只需要在整段结束后得到最终书面结果的任务。保持接口抽象、可替换，不绑定任何特定厂商 api。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shumianyu"
-sourceUrl: "https://clawhub.ai/skills/shumianyu"
+name: asr-written-rewriter-stream
+description: 将分段 asr 文本流在结束时统一整理成流畅书面语，并在用户指定 target_language 时输出译文。适用于语音听写、会议转写、采访整理、播客或视频字幕后处理等场景，尤其适合不需要实时字幕、只需要在整段结束后得到最终书面结果的任务。保持接口抽象、可替换，不绑定任何特定厂商 api。
 ---
 
-# shumianyu
+# ASR 结束后统一转书面语
 
-> 将分段 asr 文本流在结束时统一整理成流畅书面语，并在用户指定 target_language 时输出译文。适用于语音听写、会议转写、采访整理、播客或视频字幕后处理等场景，尤其适合不需要实时字幕、只需要在整段结束后得到最终书面结果的任务。保持接口抽象、可替换，不绑定任何特定厂商 api。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shumianyu`
-- **Source URL:** [https://clawhub.ai/skills/shumianyu](https://clawhub.ai/skills/shumianyu)
+接收分段 ASR 文本流，但**不要实时输出字幕**，而是在检测到整段结束、会话结束、录音结束或调用方显式提交结束信号后，再将累计文本一次性整理成流畅书面语。
 
-## Overview
+默认不翻译。只有在显式提供 `target_language` 时，才对最终书面结果进行翻译。
 
+此 Skill 适用于：
+- 会议发言结束后统一整理
+- 采访录音结束后整理为可读文本
+- 播客/视频整段转写后的书面化处理
+- 语音输入结束后再统一润色
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shumianyu
-```
+## 核心行为
+
+采用**单次最终输出**模型：
+
+1. 持续接收分段 ASR 文本流
+2. 将各分段合并到同一缓冲区
+3. 在结束信号到来前，不输出面向用户的临时字幕或中间结果
+4. 在结束时，对整段文本统一去口语化、补断句、修正重复和自我修正
+5. 输出一版流畅、完整的书面语结果
+6. 如提供 `target_language`，则输出目标语言结果；除非调用方明确要求，否则不同时返回原文和译文
+
+## 结束判定规则
+
+只有在满足以下任一条件时，才进入最终整理阶段：
+- 上游显式传入结束信号，例如 `is_session_final`、`end_of_stream`、`commit=true`
+- 调用方明确表示“结束”“停止”“提交本段”
+- 音频或识别流已经结束
+- 上游系统给出整段 final 标记
+
+不要仅因为一个句号、一次停顿或一句话结束，就提前输出最终结果。
+
+## 输入约定
+
+概念上可接收以下输入：
+- `chunk_text`：最新 ASR 分段文本
+- `recent_context`：可选，最近缓冲区或已累计文本
+- `domain_lexicon`：可选，领域词库，用于人名、产品名、术语、缩写的稳定化
+- `target_language`：可选，目标语言代码或语言名
+- `is_session_final` / `end_of_stream` / `commit`：可选，结束信号
+- `timestamps`：可选，时间戳元数据
+
+不要要求调用方必须使用某个固定字段名。接受语义等价字段。
+
+## 输出约定
+
+默认只输出**最终结果**，不要输出中间过程。
+
+### 未结束时
+- 不返回面向用户的正式内容
+- 如调用方需要，可仅返回“继续接收中”这一类内部状态，但不要生成临时字幕
+
+### 结束时
+- 输出整段整理后的书面语
+- 若设置 `target_language`，则输出翻译后的最终结果
+- 除非调用方明确要求结构化数据，否则直接返回最终文本本身
+
+## 书面化改写规则
+
+在最终整理时：
+- 改写成自然、流畅、可直接阅读的书面语
+- 删除语气词、口头禅、明显重复、自我修正、断裂表达
+- 保留原意、语气、问题/命令/不确定性
+- 保留专有名词、数字、时间、事实信息
+- 不新增原文没有的信息
+- 不写成提纲、要点或总结，除非调用方明确要求
+- 优先让整段逻辑顺畅，而不是逐词机械保留
+
+## 翻译规则
+
+只有在 `target_language` 被显式提供时才翻译。
+
+翻译时：
+- 先基于最终书面语结果再翻译，不直接翻译原始 ASR 碎片
+- 保留人名、数字、专有名词和领域术语
+- 如提供领域词库，优先保持术语一致性
+
+## API 抽象层
+
+所有外部能力都应描述为**可替换职责**，不要绑定具体厂商 API、SDK、认证方式或传输协议。
+
+推荐抽象接口：
+- `ingest_asr_chunk(...)` —— 接收并归一化新的 ASR 分段
+- `append_to_buffer(...)` —— 将分段并入当前整段缓冲区
+- `detect_stream_end(...)` —— 判断是否已到整段结束时刻
+- `rewrite_to_written(...)` —— 将累计口语内容统一改写为书面语
+- `translate_text(...)` —— 当 `target_language` 存在时翻译最终结果
+- `commit_final_output(...)` —— 提交最终结果并清空或归档当前缓冲区
+
+不要假设任何固定服务商。
+
+## 建议工作流
+
+1. 接收新的 ASR 分段并做基础归一化。
+2. 将分段追加到当前缓冲区。
+3. 检查是否收到整段结束信号。
+4. 若未结束，继续累计，不输出最终文本。
+5. 若已结束，对整个缓冲区执行书面化改写。
+6. 若设置了 `target_language`，再对最终书面语做翻译。
+7. 输出最终结果。
+8. 提交结果并清空当前缓冲区，准备处理下一段。
+
+## 领域词库处理
+
+如果提供 `domain_lexicon`：
+- 优先用它稳定专有名词、缩写和术语
+- 在上下文支持时，用它纠正同音误识别或 ASR 变体
+- 若上下文明显不支持某个术语，不要强行替换
+
+## 示例
+
+### 示例 1：结束前不输出最终结果
+输入分段：
+- `今天我们先把登录流程跑通`
+- `然后再看支付和埋点`
+
+如果尚未收到结束信号：
+- 不输出最终书面稿
+
+### 示例 2：结束后统一输出
+累计文本：
+- `今天我们先把登录流程跑通 然后再看支付和埋点` 
+- `嗯如果时间够的话再把告警顺手补一下`
+
+结束后最终结果：
+- `今天先完成登录流程，再处理支付和埋点。如果时间允许，再补充告警能力。`
+
+### 示例 3：结束后翻译
+若同时设置 `target_language: en`，则输出：
+- `Today, we will complete the login flow first, then handle payments and tracking. If time allows, we will also add alerting.`
+
+## 资源使用
+
+需要查看中文接入说明、可替换接口建议和结束式处理流程时，读取 [references/interface-guide-zh.md](references/interface-guide-zh.md)。

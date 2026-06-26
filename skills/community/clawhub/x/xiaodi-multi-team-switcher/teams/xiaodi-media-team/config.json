@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "agents": {
+    "video_editor": {
+      "name": "视频剪辑师",
+      "icon": "🎬",
+      "tools": ["ffmpeg"],
+      "supported_formats": ["mp4", "avi", "mov", "mkv", "webm", "flv"],
+      "default_settings": {
+        "format": "mp4",
+        "codec": "libx264",
+        "crf": 23,
+        "preset": "medium"
+      }
+    },
+    "video_creator": {
+      "name": "视频创作师",
+      "icon": "🎥",
+      "tools": ["runway", "pika", "kling", "sora", "jiming"],
+      "description": "AI视频生成，支持文生视频、图生视频",
+      "providers": {
+        "kling": {
+          "name": "可灵AI",
+          "url": "https://klingai.kuaishou.com",
+          "env_key": "KLING_API_KEY",
+          "features": ["文生视频", "图生视频", "视频延长"],
+          "max_duration": 10,
+          "pricing": "免费额度 + 付费"
+        },
+        "runway": {
+          "name": "Runway Gen-3",
+          "url": "https://runwayml.com",
+          "env_key": "RUNWAY_API_KEY",
+          "features": ["文生视频", "图生视频", "视频编辑"],
+          "max_duration": 10,
+          "pricing": "$12/月起"
+        },
+        "pika": {
+          "name": "Pika Labs",
+          "url": "https://pika.art",
+          "env_key": "PIKA_API_KEY",
+          "features": ["文生视频", "图生视频", "风格转换"],
+          "max_duration": 4,
+          "pricing": "免费额度 + 付费"
+        },
+        "sora": {
+          "name": "OpenAI Sora",
+          "url": "https://chat.openai.com",
+          "env_key": "OPENAI_API_KEY",
+          "features": ["文生视频", "图生视频", "Storyboard"],
+          "max_duration": 20,
+          "pricing": "ChatGPT Plus $20/月起"
+        },
+        "jiming": {
+          "name": "即梦AI",
+          "url": "https://jimeng.jianying.com",
+          "env_key": "JIMING_API_KEY",
+          "features": ["文生视频", "图生视频"],
+          "max_duration": 5,
+          "pricing": "免费额度 + 付费"
+        }
+      }
+    },
+    "subtitle_gen": {
+      "name": "字幕生成器",
+      "icon": "📝",
+      "tools": ["whisper", "ffmpeg"],
+      "supported_formats": ["srt", "vtt", "ass"],
+      "default_settings": {
+        "whisper_model": "medium",
+        "language": "zh",
+        "output_format": "srt"
+      }
+    },
+    "image_editor": {
+      "name": "图片处理师",
+      "icon": "🖼️",
+      "tools": ["imagemagick", "pillow"],
+      "supported_formats": ["jpg", "jpeg", "png", "gif", "webp", "bmp"],
+      "default_settings": {
+        "format": "jpg",
+        "quality": 85,
+        "max_size_mb": 10
+      }
+    },
+    "ai_artist": {
+      "name": "AI绘图师",
+      "icon": "🎨",
+      "tools": ["dalle", "stable-diffusion"],
+      "supported_formats": ["jpg", "png"],
+      "default_settings": {
+        "size": "1024x1024",
+        "quality": "standard"
+      },
+      "status": "developing"
+    },
+    "audio_editor": {
+      "name": "音频处理师",
+      "icon": "🎵",
+      "tools": ["ffmpeg"],
+      "supported_formats": ["mp3", "wav", "aac", "flac", "ogg", "m4a"],
+      "default_settings": {
+        "format": "mp3",
+        "bitrate": "192k",
+        "sample_rate": 44100
+      }
+    },
+    "quality_checker": {
+      "name": "质量检查员",
+      "icon": "📊",
+      "tools": ["ffprobe", "identify"],
+      "checks": ["format", "resolution", "size", "duration", "bitrate"]
+    }
+  },
+  "workflows": {
+    "video_compress": {
+      "name": "视频压缩",
+      "agents": ["video_editor", "quality_checker"],
+      "description": "压缩视频文件大小"
+    },
+    "video_create": {
+      "name": "视频生成",
+      "agents": ["video_creator"],
+      "description": "AI生成视频（文生视频/图生视频）"
+    },
+    "video_subtitle": {
+      "name": "视频字幕",
+      "agents": ["subtitle_gen", "video_editor", "quality_checker"],
+      "description": "为视频生成并嵌入字幕"
+    },
+    "image_batch": {
+      "name": "图片批量处理",
+      "agents": ["image_editor", "quality_checker"],
+      "description": "批量压缩/转换图片"
+    },
+    "audio_extract": {
+      "name": "音频提取",
+      "agents": ["audio_editor", "quality_checker"],
+      "description": "从视频中提取音频"
+    }
+  },
+  "settings": {
+    "max_file_size_mb": 500,
+    "temp_dir": "/tmp/xiaodi-media",
+    "output_dir": "{workspace}/output",
+    "cleanup_temp": true
+  }
+}

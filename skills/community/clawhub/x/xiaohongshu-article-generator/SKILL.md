@@ -1,35 +1,430 @@
 ---
-name: "小红书图文生成器"
-description: "小红书图文生成技能 - 基于热点话题自动生成小红书风格的图文内容（文案 +HTML+ 图片）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-article-generator"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-article-generator"
+name: xiaohongshu-article-generator
+version: 1.0.0
+description: 小红书图文生成技能 - 基于热点话题自动生成小红书风格的图文内容（文案 +HTML+ 图片）
+trigger: "小红书图文 | 小红书生成 | 小红书笔记 | 图文生成"
+tools: [filesystem, shell, browser]
+author: OpenClaw
 ---
 
-# 小红书图文生成器
+# 小红书图文生成技能
 
-> 小红书图文生成技能 - 基于热点话题自动生成小红书风格的图文内容（文案 +HTML+ 图片）
+当用户需要**生成小红书风格的图文内容**、**将热点话题转为小红书笔记**或**批量生成图文笔记**时，使用本技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-article-generator`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-article-generator](https://clawhub.ai/skills/xiaohongshu-article-generator)
+## When to Use
 
-## Overview
+- 用户要求生成小红书图文、笔记、种草内容
+- 需要将热点话题、新闻事件转为小红书风格内容
+- 需要批量生成多篇图文笔记
+- 需要为公众号/社群运营创作小红书风格内容
 
+## 完整执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-article-generator
+### Step 1: 话题分析（2 分钟）
+
+**1.1 获取热点数据**
+- 从脉脉、微博、知乎等平台获取热门话题
+- 提取话题关键词、热度、讨论点
+- 识别情绪倾向（吃瓜/吐槽/种草/科普）
+
+**1.2 确定内容方向**
+| 类型 | 特点 | 适用场景 |
+|------|------|----------|
+| 吃瓜爆料 | 热点事件 + 网友评论 | 大厂八卦、娱乐热点 |
+| 干货科普 | 知识点 + 图表说明 | 职场技巧、行业科普 |
+| 种草推荐 | 使用体验 + 对比 | 产品推荐、好物分享 |
+| 情感共鸣 | 个人经历 + 金句 | 职场感悟、生活吐槽 |
+
+### Step 2: 文案创作（5 分钟）
+
+**2.1 标题创作公式**
 ```
+情绪词 + 核心话题 + 数字/对比 + emoji
+示例：美团年终奖开奖❗️L7 系数 0.7 破防了😭
+```
+
+**2.2 正文结构**
+```markdown
+开场白（20-30 字）：吸引注意，引出话题
+分隔线：---
+核心内容（3-5 段）：网友评论/知识点/对比
+互动引导：评论区聊聊/你怎么看
+标签：5-10 个相关话题标签
+```
+
+**2.3 小红书文风要求**
+- ✅ 多用 emoji（每段 1-2 个）
+- ✅ 短句 + 分段（每段≤3 行）
+- ✅ 口语化表达（家人们/谁懂啊/破防了）
+- ✅ 情绪强烈（炸锅/绝了/真香）
+- ❌ 避免长段落、官方语气、枯燥说明
+
+### Step 3: HTML 生成（3 分钟）
+
+**3.1 页面结构**
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{标题}</title>
+  <style>
+    /* 小红书风格样式 */
+    .page { width: 375px; height: 667px; }
+    .cover { 渐变背景 + 大标题 }
+    .inner-page { 内页样式 }
+    .comment-card { 评论卡片 }
+    .info-box { 信息框 }
+    .question-box { 互动问题 }
+  </style>
+</head>
+<body>
+  <!-- 封面页 -->
+  <div class="page cover">...</div>
+  
+  <!-- 内页 1-N -->
+  <div class="page inner-page">...</div>
+</body>
+</html>
+```
+
+**3.2 设计规范**
+| 元素 | 规格 | 说明 |
+|------|------|------|
+| 页面尺寸 | 375x667px | 小红书标准比例 |
+| 封面背景 | 渐变色 | 使用话题相关品牌色 |
+| 字体大小 | 标题 28px/正文 13-15px | 确保移动端可读性 |
+| 颜色方案 | 主色 + 辅助色 | 不超过 3 种主色 |
+| emoji 使用 | 封面 1 个 + 内页适量 | 增强视觉吸引力 |
+
+**3.3 页面数量**
+- 封面页：1 页（必须）
+- 内页：2-4 页（根据内容量）
+- 总计：3-5 页为佳
+
+### Step 4: 图片转换（2 分钟）
+
+**4.1 调用 html-pages-to-images 技能**
+```javascript
+调用 html-pages-to-images 技能
+参数：
+- htmlFile: HTML 文件路径
+- outputDir: 输出图片目录
+- pageWidth: 375
+- pageHeight: 667
+- selector: .page
+```
+
+**4.2 输出规格**
+- 格式：PNG
+- 分辨率：375x667px @2x（750x1334 实际像素）
+- 质量：95%+
+- 命名：page-01.png（封面）、page-1.png、page-2.png...
+
+### Step 5: 交付用户（1 分钟）
+
+**5.1 输出内容**
+```
+输出目录结构：
+{xiaohongshu-output}/{topic-name}/
+├── {topic-name}.html          # HTML 源文件
+├── images/
+│   ├── page-01.png            # 封面图
+│   ├── page-1.png             # 内页 1
+│   ├── page-2.png             # 内页 2
+│   └── page-3.png             # 内页 3
+└── copywriting.md             # 文案（标题 + 正文 + 标签）
+```
+
+**5.2 发布建议**
+- 最佳发布时间
+- 互动引导话术
+- 预期数据范围
+
+## 技能依赖
+
+| 技能 | 用途 | 必需 |
+|------|------|------|
+| `html-pages-to-images` | HTML 转图片 | ✅ |
+| `maimai-fetch` | 获取脉脉热点 | ❌ |
+| `wechat-article-typeset` | 排版参考 | ❌ |
+
+## 输出示例
+
+### 文件名示例
+- `meituan-bonus/meituan-bonus.html`（美团年终奖）
+- `dewu-melon/dewu-double-melon.html`（得物双瓜）
+- `ali-qwen/ali-qwen-drama.html`（阿里 Qwen 人事）
+
+### 文案示例
+```markdown
+标题：美团年终奖开奖❗️L7 系数 0.7 破防了😭
+
+正文：
+家人们谁懂啊！！美团年终奖终于开奖了🎉
+今年系数到底怎么样？来听听大厂同学们的真实反馈👇
+
+---
+
+🔥 热搜第一：美团年终奖开奖，今年系数如何？
+
+💬 评论区炸锅了：
+「L7 符合预期 0.7 是在恶心人吗？」
+「L8 系数 0.8，无股票，是 2.1 还是 2.2？」
+
+---
+
+❓ 互动话题：
+你今年系数多少？年终奖满意吗？
+评论区聊聊👇
+
+#美团 #年终奖 #大厂爆料 #互联网大厂 #职场
+```
+
+## 模板库
+
+### 模板 1：吃瓜爆料型
+**适用**：大厂八卦、热点事件
+**结构**：
+- 封面：热点话题 + 情绪 emoji
+- 内页 1：事件概述
+- 内页 2：时间线/对比
+- 内页 3：网友评论
+- 内页 4：互动问题
+
+### 模板 2：干货科普型
+**适用**：职场技巧、行业知识
+**结构**：
+- 封面：核心问题 + 数字
+- 内页 1-2：知识点讲解
+- 内页 3：案例/图表
+- 内页 4：总结 + 互动
+
+### 模板 3：种草推荐型
+**适用**：产品推荐、好物分享
+**结构**：
+- 封面：产品名称 + 使用效果
+- 内页 1：使用体验
+- 内页 2：对比测评
+- 内页 3：购买建议 + 互动
+
+## 注意事项
+
+1. **版权问题**
+   - 使用原创文案，不直接复制他人内容
+   - 网友评论需匿名处理
+   - 品牌名称合理使用
+
+2. **内容合规**
+   - 避免敏感话题
+   - 不传播未经证实的消息
+   - 标注"仅供参考"等免责声明
+
+3. **图片质量**
+   - 确保文字清晰可读
+   - 检查颜色对比度
+   - 避免截图模糊
+
+4. **发布节奏**
+   - 单账号每日发布≤3 篇
+   - 避免相同时间段发布
+   - 注意内容多样性
+
+5. **文案格式要求（重要）**
+   - ⚠️ **copywriting.md 必须为纯文本**：不要使用 markdown 表格语法
+   - ✅ **对比信息用纯文本列表**：
+     ```
+     字节：7000 人 | 转正率 60-70% | 薪资 15-25k
+     腾讯：5000 人 | 转正率 50-60% | 薪资 14-22k
+     ```
+   - ✅ **价格信息用纯文本**：
+     ```
+     官方版本：免费 + 付费 | 基础功能免费
+     上门安装：666 元 | 二手平台服务
+     ```
+   - ✅ **Q&A 用纯文本**：
+     ```
+     Q1: 问题内容？
+     A：回答内容
+     ```
+
+6. **HTML 页面布局规范**
+   - ⚠️ **禁止使用表格**：HTML 中也不要用`<table>`，用`compare-list` 样式
+   - ✅ **使用列表代替表格**：用 `compare-list` 样式展示对比信息
+   - ✅ **使用信息框**：用 `info-box` 样式展示基本信息
+   - ✅ **使用高亮框**：用 `highlight-box` 样式强调重点内容
+   - ✅ **每页内容饱满**：使用固定高度 667px，确保内容填满页面
+   - ✅ **字体大小适中**：列表 13px，评论 11px，确保移动端可读性
+
+7. **页面布局规范**
+   - 封面页：大标题 + 副标题 + emoji + 徽章
+   - 内页：Page Header + 内容模块 + 评论 + 互动
+   - 每页元素：4-6 个模块，确保内容饱满不溢出
+   - 页面间距：padding 24px 18px，模块间距 12px
+
+8. **🚨 严格排版限制（重要！）**
+   
+   **页面尺寸锁定：**
+   ```css
+   .page {
+     width: 375px;
+     height: 667px;  /* 固定高度，不可更改 */
+     overflow: hidden;  /* 隐藏溢出内容 */
+     position: relative;
+   }
+   ```
+   
+   **内页布局约束：**
+   ```css
+   .inner-page {
+     padding: 30px 28px 35px;  /* 上 30px，左右 28px，下 35px */
+     display: flex;
+     flex-direction: column;
+     max-height: 667px;  /* 不可超过页面高度 */
+   }
+   ```
+   
+   **内容高度分配原则：**
+   - Page Header：50px（包含标题和分隔线）
+   - 信息框：每个 80-120px（根据内容量）
+   - 代码块：每个 60-80px
+   - 互动区：150px（固定）
+   - 标签区：80px（固定）
+   
+   **每页最大内容量：**
+   - 信息框：≤3 个
+   - 代码块：≤2 个
+   - 列表项：≤6 个
+   - 总行数：≤35 行（13px 字体）
+   
+   **间距规范：**
+   ```css
+   /* 模块间距 */
+   .info-box { margin-bottom: 14px; }
+   .code-block { margin: 12px 0; }
+   .step-item { margin-bottom: 12px; }
+   
+   /* 底部留白检查 */
+   .inner-page > :last-child {
+     margin-bottom: 0;  /* 最后一个元素不额外留白 */
+   }
+   ```
+   
+   **防溢出检查清单：**
+   - [ ] 所有元素在 667px 高度内
+   - [ ] 底部无多余留白（内容贴近底部边缘）
+   - [ ] 无内容被截断（检查 overflow）
+   - [ ] 文字行数可控（每段≤3 行）
+   - [ ] 图片尺寸适配（最大宽度 319px）
+   
+   **内容适配策略：**
+   - 如果内容过多 → 拆分为多页
+   - 如果内容过少 → 增加示例/说明
+   - 如果底部留白 → 调整 padding 或增加内容
+   - 如果内容溢出 → 删减文字或拆分页面
+   
+   **视觉平衡检查：**
+   - 封面页：内容垂直居中，上下留白均衡
+   - 内页：内容从上到下均匀分布
+   - 最后一页：互动区 + 标签，底部留白≤20px
+
+9. **🎨 颜色与对比度规范**
+   
+   **可读性要求：**
+   - 正文颜色：#333 或 #555（深灰色）
+   - 背景颜色：白色或浅灰色（#f5f5f5 或更浅）
+   - 对比度：≥4.5:1（WCAG AA 标准）
+   
+   **品牌色使用：**
+   - 主色：#667eea（紫蓝渐变起点）
+   - 辅助色：#764ba2（紫）、#f093fb（粉）
+   - 强调色：#FF6B6B（警告）、#48BB78（成功）
+   
+   **渐变背景规范：**
+   ```css
+   /* 封面渐变 */
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+   
+   /* 信息框渐变 */
+   background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+   ```
+
+10. **📱 移动端适配检查**
+    
+    **字体大小范围：**
+    - 大标题：28-36px（封面）
+    - 小标题：16-20px（内页标题）
+    - 正文：13-15px
+    - 辅助文字：11-12px
+    - 标签：11px
+    
+    **最小点击区域：**
+    - 按钮高度：≥40px
+    - 链接间距：≥8px
+    
+    **图片清晰度：**
+    - 输出分辨率：750x1334px（@2x）
+    - 文字边缘清晰（抗锯齿开启）
+    - 二维码最小尺寸：120x120px
+
+## 快速开始
+
+### 命令行调用
+```bash
+# 使用默认配置
+node index.js --topic "美团年终奖"
+
+# 完全自定义
+node index.js \
+  --topic "美团年终奖" \
+  --output-dir "./xiaohongshu-output" \
+  --template "gossip" \
+  --pages 4
+```
+
+### 代码调用
+```javascript
+import { generateXiaohongshuArticle } from './index.js';
+
+const result = await generateXiaohongshuArticle({
+  topic: '美团年终奖',
+  hotData: [...],  // 热点数据
+  template: 'gossip',
+  outputDir: './xiaohongshu-output'
+});
+
+console.log(result);
+```
+
+## 技能目录结构
+
+```
+skills/xiaohongshu-article-generator/
+├── SKILL.md              # 技能说明（本文件）
+├── index.js              # 主入口
+├── generator.js          # 文案 +HTML 生成
+├── templates/
+│   ├── gossip.js         # 吃瓜爆料模板
+│   ├── knowledge.js      # 干货科普模板
+│   └── recommendation.js # 种草推荐模板
+├── styles/
+│   └── xiaohongshu.css   # 小红书样式
+├── package.json
+└── README.md
+```
+
+## 效果评估
+
+| 指标 | 及格 | 良好 | 优秀 |
+|------|------|------|------|
+| 点赞数 | 500+ | 2000+ | 10000+ |
+| 收藏数 | 200+ | 800+ | 5000+ |
+| 评论数 | 100+ | 300+ | 2000+ |
+| 转化率 | 5%+ | 10%+ | 20%+ |
+
+**提升技巧**：
+- 标题抓眼球（数字 + 情绪）
+- 内容有干货（真实信息）
+- 互动引导清晰
+- 发布时间准确

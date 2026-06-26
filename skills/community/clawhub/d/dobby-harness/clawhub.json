@@ -1,0 +1,56 @@
+{
+  "name": "dobby-harness",
+  "version": "1.0.0",
+  "description": "多 Agent 编排系统，提供任务分解、并行执行、生产工作流和自进化能力",
+  "author": "Dobby",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Panb-KG/dobby-harness.git"
+  },
+  "homepage": "https://github.com/Panb-KG/dobby-harness#readme",
+  "bugs": {
+    "url": "https://github.com/Panb-KG/dobby-harness/issues"
+  },
+  "tags": [
+    "orchestration",
+    "multi-agent",
+    "workflow",
+    "harness",
+    "automation",
+    "code-review",
+    "test-generation",
+    "self-improvement"
+  ],
+  "capabilities": [
+    "task-decomposition",
+    "parallel-execution",
+    "workflow-automation",
+    "code-review",
+    "test-generation",
+    "documentation",
+    "cicd",
+    "wal-protocol",
+    "pattern-recognition"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "openclaw": ">=1.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "agent",
+    "orchestration",
+    "harness",
+    "multi-agent",
+    "workflow",
+    "automation"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

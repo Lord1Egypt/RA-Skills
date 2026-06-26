@@ -1,0 +1,50 @@
+{
+  "name": "@elvatis_com/openclaw-homeassistant",
+  "version": "0.2.1",
+  "description": "OpenClaw plugin - Home Assistant integration: control devices, read sensors, trigger automations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build",
+    "test:watch": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elvatis/openclaw-homeassistant.git"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "home-assistant",
+    "smart-home",
+    "iot"
+  ],
+  "author": "Elvatis <hello@elvatis.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "overrides": {
+    "test-exclude": "^7.0.1"
+  }
+}

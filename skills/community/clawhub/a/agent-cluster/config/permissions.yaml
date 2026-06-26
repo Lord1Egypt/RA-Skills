@@ -1,0 +1,124 @@
+# 权限配置
+# RBAC Permission Matrix
+
+# 角色定义
+roles:
+  admin:
+    name: "系统管理员"
+    permissions:
+      - "*"  # 所有权限
+
+  finance_manager:
+    name: "财务主管"
+    permissions:
+      - finance_agent.query_budget
+      - finance_agent.audit_payment
+      - finance_agent.financial_reporting
+      - inventory_agent.query_stock
+      - doc_agent.generate_document
+
+  procurement_manager:
+    name: "采购主管"
+    permissions:
+      - procurement_agent.supplier_lookup
+      - procurement_agent.place_order
+      - procurement_agent.track_order
+      - finance_agent.query_budget
+      - inventory_agent.query_stock
+      - logistics_agent.query_freight
+
+  warehouse_operator:
+    name: "仓库管理员"
+    permissions:
+      - inventory_agent.query_stock
+      - inventory_agent.calculate_safety_stock
+      - inventory_agent.trigger_replenishment
+      - logistics_agent.track_shipment
+
+  logistics_operator:
+    name: "物流专员"
+    permissions:
+      - logistics_agent.query_freight
+      - logistics_agent.plan_route
+      - logistics_agent.track_shipment
+
+  viewer:
+    name: "访客"
+    permissions:
+      - inventory_agent.query_stock
+      - logistics_agent.query_freight
+      - doc_agent.generate_document
+
+# 智能体操作权限矩阵
+agent_permissions:
+  inventory_agent:
+    query_stock: ["admin", "finance_manager", "procurement_manager", "warehouse_operator", "viewer"]
+    calculate_safety_stock: ["admin", "warehouse_operator"]
+    trigger_replenishment: ["admin", "procurement_manager", "warehouse_operator"]
+    erp_integration: ["admin", "warehouse_operator"]
+
+  logistics_agent:
+    query_freight: ["admin", "procurement_manager", "logistics_operator", "viewer"]
+    plan_route: ["admin", "procurement_manager", "logistics_operator"]
+    track_shipment: ["admin", "procurement_manager", "warehouse_operator", "logistics_operator"]
+    logistics_api: ["admin", "logistics_operator"]
+
+  procurement_agent:
+    supplier_lookup: ["admin", "procurement_manager"]
+    place_order: ["admin", "procurement_manager"]
+    track_order: ["admin", "procurement_manager"]
+    srm_integration: ["admin", "procurement_manager"]
+
+  finance_agent:
+    query_budget: ["admin", "finance_manager", "procurement_manager"]
+    audit_payment: ["admin", "finance_manager"]
+    financial_reporting: ["admin", "finance_manager"]
+    finance_system: ["admin", "finance_manager"]
+
+  doc_agent:
+    screenshot_to_form: ["admin", "finance_manager", "procurement_manager"]
+    generate_document: ["admin", "finance_manager", "procurement_manager", "viewer"]
+    plm_integration: ["admin"]
+    pdf_export: ["admin", "finance_manager", "procurement_manager", "viewer"]
+
+# 高风险操作（需要人工审批）
+high_risk_operations:
+  - agent: procurement_agent
+    action: place_order
+    threshold_amount: 50000  # 金额阈值（元）
+    always_require_approval: true
+
+  - agent: finance_agent
+    action: audit_payment
+    threshold_amount: 10000
+    always_require_approval: true
+
+  - agent: procurement_agent
+    action: cancel_order
+    always_require_approval: true
+
+  - agent: finance_agent
+    action: adjust_budget
+    always_require_approval: true
+
+# 数据敏感等级
+data_sensitivity:
+  stock_data: "internal"        # 内部数据
+  pricing_data: "confidential"  # 机密数据
+  financial_data: "restricted"  # 受限数据
+  supplier_data: "internal"     # 内部数据
+  personal_data: "pii"          # 个人隐私数据
+
+# 审计配置
+audit:
+  log_all_calls: true
+  log_payloads: true
+  log_responses: true
+  mask_sensitive_fields:
+    - "password"
+    - "token"
+    - "api_key"
+    - "card_number"
+    - "id_number"
+  retention_days: 365
+  alert_on_high_risk: true

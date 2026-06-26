@@ -1,0 +1,122 @@
+# 企业级智能体集群配置
+# Agent Cluster Configuration
+
+agents:
+  orchestrator:
+    name: "企业智能调度中心"
+    role: "orchestrator"
+    description: "企业级任务调度中心，负责理解用户意图、拆解任务、分发给专业智能体、汇总结果"
+    model: "混元-pro"
+    temperature: 0.3
+    max_tokens: 4096
+    capabilities:
+      - intent_understanding
+      - task_decomposition
+      - agent_routing
+      - result_aggregation
+    safety_level: "high"
+    human_approval_threshold: 0.85
+
+  inventory_agent:
+    name: "库存智能体"
+    role: "specialist"
+    description: "负责库存查询、安全水位计算、ERP接口调用"
+    model: "混元-standard"
+    temperature: 0.2
+    capabilities:
+      - query_stock
+      - calculate_safety_stock
+      - trigger_replenishment
+      - erp_integration
+    mcp_servers:
+      - erp
+      - wms
+    safety_level: "medium"
+
+  logistics_agent:
+    name: "物流智能体"
+    role: "specialist"
+    description: "负责运费查询、路线规划、物流API调用"
+    model: "混元-standard"
+    temperature: 0.2
+    capabilities:
+      - query_freight
+      - plan_route
+      - track_shipment
+      - logistics_api
+    mcp_servers:
+      - logistics
+    safety_level: "medium"
+
+  procurement_agent:
+    name: "采购智能体"
+    role: "specialist"
+    description: "负责供应商对接、订单下达、SRM接口调用"
+    model: "混元-standard"
+    temperature: 0.2
+    capabilities:
+      - supplier_lookup
+      - place_order
+      - track_order
+      - srm_integration
+    mcp_servers:
+      - srm
+    safety_level: "high"
+    requires_human_approval: true
+
+  finance_agent:
+    name: "财务智能体"
+    role: "specialist"
+    description: "负责预算查询、付款审核、财务系统对接"
+    model: "混元-standard"
+    temperature: 0.2
+    capabilities:
+      - query_budget
+      - audit_payment
+      - financial_reporting
+      - finance_system
+    mcp_servers:
+      - finance
+    safety_level: "high"
+    requires_human_approval: true
+
+  doc_agent:
+    name: "工艺文档智能体"
+    role: "specialist"
+    description: "负责截图填表、文档生成、PLM系统对接"
+    model: "混元-standard"
+    temperature: 0.3
+    capabilities:
+      - screenshot_to_form
+      - generate_document
+      - plm_integration
+      - pdf_export
+    mcp_servers:
+      - plm
+    safety_level: "medium"
+
+# 模型层配置
+models:
+  primary: "混元-pro"
+  fallback: "混元-standard"
+  local_fallback: "Qwen-72B"
+  timeout_seconds: 30
+  retry_count: 3
+
+# 协作模式
+collaboration:
+  serial:
+    enabled: true
+    description: "串行协作：指挥->查库存->缺货触发采购->下单"
+  parallel:
+    enabled: true
+    description: "并行协作：指挥同时呼叫多个专业智能体"
+  max_parallel_agents: 5
+  result_aggregation_timeout: 60
+
+# 日志与审计
+telemetry:
+  trace_enabled: true
+  audit_log_path: "./logs/audit.jsonl"
+  trace_path: "./logs/traces/"
+  pii_detection: true

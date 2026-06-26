@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "harena": {
+      "url": "https://harena.world/mcp/sse",
+      "apiKey": "YOUR_API_KEY"
+    }
+  }
+}

@@ -1,35 +1,191 @@
 ---
-name: "低代码Ai 7bbc51"
-description: "从抖音视频学习: 低代码AI — 自己写的代码 vs AI写的代码！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-7bbc51"
-sourceUrl: "https://clawhub.ai/skills/ai-7bbc51"
+name: 低代码ai-7bbc51
+description: "从抖音视频学习: 低代码AI — 自己写的代码 vs  AI写的代码！"
+compatibility: opencode
+trigger: "低代码AI / 自己写的代码 / vs / AI写的代码"
+tags: [code, 低代码AI, video-learned]
 ---
 
-# 低代码Ai 7bbc51
+# 低代码AI
 
-> 从抖音视频学习: 低代码AI — 自己写的代码 vs AI写的代码！
+> 从 @月亮说他想学编程 的视频中学到的技能
+> 关键词: 自己写的代码, vs, AI写的代码
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-7bbc51`
-- **Source URL:** [https://clawhub.ai/skills/ai-7bbc51](https://clawhub.ai/skills/ai-7bbc51)
+## 描述
 
-## Overview
+自己写的代码 vs  AI写的代码！
+
+## 操作步骤
+
+1. 理解核心概念: 低代码AI
+2. 掌握关键技巧: 自己写的代码, vs, AI写的代码
+3. 参考案例: 月亮说他想学编程 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @月亮说他想学编程
+- 学习时间: 2026-06-01 21:06
+- 领域标签: code
+
+## 触发场景
+- 用户说"低代码AI"
+- 用户说"自己写的代码"
+- 用户需要低代码AI相关帮助
+
+## B站学习
+> 学习时间: 2026-06-01 21:09
+
+- **小鱼饿吗**: BBC Global | AI取代不了哪些工作
+- **硅基考古队**: GitHub热门：网页一改版，AI抓取就失效？Scrapling能自动重定位｜AI日报 06/01
+- **原味英语听力**: 路透社英语精听 | 英伟达发布超级AI芯片平台（第835期）
+
+## 融合来源: 低代码ai-7bbc51-184a22
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 08:00
+- **南山bat**: 【FGO】mumu模拟器更新后的bbc新问题
+- **英文达人**: 【BBC Global News Podcast】以色列在加沙的计划是什么？内塔尼亚胡扩大控制权 | 全球新闻播客
+- **原味英语听力**: BBC英语精听 | 恒大从港交所摘牌退市（第759期）
+
+## 融合来源: 低代码ai-7bbc51-184a22-9f974c
+> 融合时间: 自动合并
+
+## B站学习
+> 学习时间: 2026-06-02 08:54
+
+- **向宝神意AI机械臂1号**: 7bfe9dcc603b67243e49c5f974a90d02_raw
+- **原味英语听力**: 路透社英语精听 | 英伟达发布超级AI芯片平台（第835期）
+- **bili_95314333322**: 5cdca468519547496a8aa42b87f8c974
+
+## 融合来源: 低代码ai-7bbc51-184a22-9f974c-4295db
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 09:12
+- **Johnny老师说编程**: 洛谷P4295报数游戏-队列
+- **好价值得买**: 4295元！国补全国可用！索尼 ZV-E10L半画幅微单相机！标准镜头套装
+- **锋芒AI**: 7MB终端IDE：把AI写代码塞进你的命令行
+
+# 低代码ai-7bbc51-184a22
+> 从 @原味英语听力 的视频中学到的技能
+> 关键词: BBC英语精听, 恒大从港交所摘牌退市, 第759期
+
+## 描述
+BBC英语精听 | 恒大从港交所摘牌退市（第759期）
+
+## 操作步骤
+1. 理解核心概念: 低代码ai-7bbc51-184a22
+2. 掌握关键技巧: BBC英语精听, 恒大从港交所摘牌退市, 第759期
+3. 参考案例: 原味英语听力 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @原味英语听力
+- 学习时间: 2026-06-02 08:00
+- 领域标签: code
+
+## 触发场景
+- 用户说"低代码ai-7bbc51-184a22"
+- 用户说"BBC英语精听"
+- 用户需要低代码ai-7bbc51-184a22相关帮助
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-7bbc51
-```
+## B站学习 (第1轮)
+> 学习时间: 2026-06-02 09:22
+
+- **小鱼饿吗**: BBC Global | AI取代不了哪些工作
+  https://www.bilibili.com/video/BV1FEZxBJExv
+- **原汁原味学英语**: BBC NEWS BUSINESS 20260601-1230世界杯前夕美国旅游部长谈客源反弹；软银巨资助推法国AI；美伊谈判僵局推高油价；骄傲月商业指南
+  https://www.bilibili.com/video/BV1deVo6pEeX
+- **英语每日看点**: BBC World Service 20260530 印尼官员称或关闭“无用”专业，中国力推理工科，亚洲多国热议AI时代学什么
+  https://www.bilibili.com/video/BV1VVVg6HE4Y
+
+## 融合来源: 低代码ai-7bbc51-184a22
+> 融合时间: 自动合并
+
+# 低代码ai-7bbc51
+> 从 @英语每日看点 的视频中学到的技能
+> 关键词: BBC, World, Service, 20260530, 印尼官员称或关闭, 无用, 专业, 中国力推理工科
+
+## 描述
+BBC World Service 20260530 印尼官员称或关闭“无用”专业，中国力推理工科，亚洲多国热议AI时代学什么
+
+## 操作步骤
+1. 理解核心概念: 低代码ai-7bbc51
+2. 掌握关键技巧: BBC, World, Service, 20260530
+3. 参考案例: 英语每日看点 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @英语每日看点
+- 学习时间: 2026-06-02 09:22
+- 领域标签: code
+
+## 触发场景
+- 用户说"低代码ai-7bbc51"
+- 用户说"BBC"
+- 用户需要低代码ai-7bbc51相关帮助
+
+
+## 融合来源: 低代码ai-7bbc51-184a22
+> 融合时间: 自动合并
+
+# 低代码ai-7bbc51
+> 从 @英语每日看点 的视频中学到的技能
+> 关键词: BBC, World, Service, 20260530, 印尼官员称或关闭, 无用, 专业, 中国力推理工科
+
+## 描述
+BBC World Service 20260530 印尼官员称或关闭“无用”专业，中国力推理工科，亚洲多国热议AI时代学什么
+
+## 操作步骤
+1. 理解核心概念: 低代码ai-7bbc51
+2. 掌握关键技巧: BBC, World, Service, 20260530
+3. 参考案例: 英语每日看点 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @英语每日看点
+- 学习时间: 2026-06-02 09:27
+- 领域标签: code
+
+## 触发场景
+- 用户说"低代码ai-7bbc51"
+- 用户说"BBC"
+- 用户需要低代码ai-7bbc51相关帮助
+
+
+## B站学习 (第2轮)
+> 学习时间: 2026-06-02 09:35
+
+- **小鱼饿吗**: BBC Global | AI取代不了哪些工作
+  https://www.bilibili.com/video/BV1FEZxBJExv
+- **原汁原味学英语**: BBC NEWS BUSINESS 20260601-1230世界杯前夕美国旅游部长谈客源反弹；软银巨资助推法国AI；美伊谈判僵局推高油价；骄傲月商业指南
+  https://www.bilibili.com/video/BV1deVo6pEeX
+- **英语每日看点**: BBC World Service 20260530 印尼官员称或关闭“无用”专业，中国力推理工科，亚洲多国热议AI时代学什么
+  https://www.bilibili.com/video/BV1VVVg6HE4Y
+
+## 融合来源: 低代码ai-7bbc51-184a22
+> 融合时间: 自动合并
+
+# 低代码ai-7bbc51
+> 从 @英语每日看点 的视频中学到的技能
+> 关键词: BBC, World, Service, 20260530, 印尼官员称或关闭, 无用, 专业, 中国力推理工科
+
+## 描述
+BBC World Service 20260530 印尼官员称或关闭“无用”专业，中国力推理工科，亚洲多国热议AI时代学什么
+
+## 操作步骤
+1. 理解核心概念: 低代码ai-7bbc51
+2. 掌握关键技巧: BBC, World, Service, 20260530
+3. 参考案例: 英语每日看点 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @英语每日看点
+- 学习时间: 2026-06-02 09:35
+- 领域标签: code
+
+## 触发场景
+- 用户说"低代码ai-7bbc51"
+- 用户说"BBC"
+- 用户需要低代码ai-7bbc51相关帮助
+

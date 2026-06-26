@@ -1,0 +1,160 @@
+{
+  "source": {
+    "originalName": "20260405-harness-engineering-中文语境-research.md",
+    "markdownPath": "content/articles/2026-04-06-harness-engineering-2/source.md",
+    "uploadedAt": "2026-04-06 17:32:00",
+    "warnings": [
+      "已导入文章。请先选择风格、配色并确认提示词，再手动生成预览、封面和正文配图。"
+    ]
+  },
+  "layout": {
+    "theme": "winter-slate",
+    "template": "xiumi-winter-ins",
+    "themeFile": "",
+    "referenceUrl": "",
+    "warning": "",
+    "extractionMeta": {},
+    "updatedAt": "2026-04-06 17:32:40"
+  },
+  "tone": {
+    "theme": "winter-slate",
+    "primaryColor": "#5f77f2",
+    "saturation": 100,
+    "opacity": 88,
+    "updatedAt": "2026-04-06 17:32:50"
+  },
+  "typography": {
+    "template": "xiumi-winter-ins",
+    "titleStyle": "standard",
+    "bodySize": 16,
+    "lineHeight": 1.9,
+    "paragraphGap": 16,
+    "sectionStyle": "editorial",
+    "imageRadius": 24,
+    "imageSpacing": 22,
+    "updatedAt": "2026-04-06 17:32:50"
+  },
+  "cover": {
+    "candidatePath": "content/articles/2026-04-06-harness-engineering-2/studio-assets/cover-magazine-20260406-173316.png",
+    "generated": {
+      "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：深度研究报告：Harness engineering 中文语境\n摘要：model ：pro\n关键词：深度研究报告：Harness engineering 中文语境；model ：pro\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n留白面积大，视觉安静现代，标题区域清晰。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+      "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7Zu3KQJBkj6ut4gwn7ctwgX8bxE5pQJ8dOOSU6GmoreiayKphPvl7z5qVzvqA08mNIgYLlcbjVQpiayDz2jVSiaNGjBb6MSZYjKs/0?wx_fmt=jpeg",
+      "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7Zu3KQJBkj6ut4gwn7ctwgX8bxE5pQJ8dOOSU6GmoreiayKphPvl7z5qVzvqA08mNIgYLlcbjVQpiayDz2jVSiaNGjBb6MSZYjKs/0?wx_fmt=jpeg",
+      "mediaId": "YZiaWkQEcudqYwi5TLHu4MTTX3gIWeVQ946kj9Tg4ElFU_KInBU107kTKaxYHh0H",
+      "width": 0,
+      "height": 0,
+      "preset": "cover-data-visual",
+      "styleId": "quiet-poster",
+      "styleLabel": "留白海报",
+      "customPrompt": "",
+      "promptOverride": "",
+      "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n留白面积大，视觉安静现代，标题区域清晰。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+      "localPath": "content/articles/2026-04-06-harness-engineering-2/studio-assets/cover-quiet-poster-20260406-173427.png",
+      "createdAt": "2026-04-06 17:34:28"
+    },
+    "history": [
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：深度研究报告：Harness engineering 中文语境\n摘要：model ：pro\n关键词：深度研究报告：Harness engineering 中文语境；model ：pro\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n极简社论封面，版面干净，标题优先，视觉理性克制。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7oYbeFpukdw79pPFaYcAaKqJ5wsNvaPmSbgo804lQDicV23cXmL9zpF6QbQ48OZ0RK5JwXOjENkHK8yLjS7MuvhDetLZaCgO3M/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7oYbeFpukdw79pPFaYcAaKqJ5wsNvaPmSbgo804lQDicV23cXmL9zpF6QbQ48OZ0RK5JwXOjENkHK8yLjS7MuvhDetLZaCgO3M/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4P8uhz_NKX5yTUppKD7T7Naz_BWqJXST1URXIl1xVHJJ",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "magazine",
+        "styleLabel": "杂志感",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n极简社论封面，版面干净，标题优先，视觉理性克制。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-06-harness-engineering-2/studio-assets/cover-magazine-20260406-173316.png",
+        "createdAt": "2026-04-06 17:33:17"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：深度研究报告：Harness engineering 中文语境\n摘要：model ：pro\n关键词：深度研究报告：Harness engineering 中文语境；model ：pro\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻层叠纸面关系，构图有编辑感，但不出现贴纸和说明标签。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON4JOknRk435H1L9kfrAsZWIC5qGAWFte4F2jiaT53J4mN1Andaav4nrwPUpowNKawGSYWZahEqmeZUpA70v8kgbfIyeTc1zHWK0/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON4JOknRk435H1L9kfrAsZWIC5qGAWFte4F2jiaT53J4mN1Andaav4nrwPUpowNKawGSYWZahEqmeZUpA70v8kgbfIyeTc1zHWK0/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4O8tTbw6skjIuJB_fV6oHxYDsRuF8tiQRVgqvep1TOyZ",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "offset-collage",
+        "styleLabel": "错位拼贴",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻层叠纸面关系，构图有编辑感，但不出现贴纸和说明标签。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-06-harness-engineering-2/studio-assets/cover-offset-collage-20260406-173340.png",
+        "createdAt": "2026-04-06 17:33:40"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：深度研究报告：Harness engineering 中文语境\n摘要：model ：pro\n关键词：深度研究报告：Harness engineering 中文语境；model ：pro\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻便签式排版关系，轻松但克制，不出现真实贴纸字样和界面元素。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4Nh8C6CajSV1ERMqoict55hvRx6olgWNsQTpMDrcxglRxFU1ojjXsNAVOfQtn2UPgsdiarBss8hZOIgL4TmvssSPcwHLSlicmMdU/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4Nh8C6CajSV1ERMqoict55hvRx6olgWNsQTpMDrcxglRxFU1ojjXsNAVOfQtn2UPgsdiarBss8hZOIgL4TmvssSPcwHLSlicmMdU/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4LrdL18zwYuxU3WAO3UfE99zjN8SDHrMuT40Ji8c5BHd",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "sticker-note",
+        "styleLabel": "贴纸感",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻便签式排版关系，轻松但克制，不出现真实贴纸字样和界面元素。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-06-harness-engineering-2/studio-assets/cover-sticker-note-20260406-173404.png",
+        "createdAt": "2026-04-06 17:34:04"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：深度研究报告：Harness engineering 中文语境\n摘要：model ：pro\n关键词：深度研究报告：Harness engineering 中文语境；model ：pro\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n留白面积大，视觉安静现代，标题区域清晰。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7Zu3KQJBkj6ut4gwn7ctwgX8bxE5pQJ8dOOSU6GmoreiayKphPvl7z5qVzvqA08mNIgYLlcbjVQpiayDz2jVSiaNGjBb6MSZYjKs/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7Zu3KQJBkj6ut4gwn7ctwgX8bxE5pQJ8dOOSU6GmoreiayKphPvl7z5qVzvqA08mNIgYLlcbjVQpiayDz2jVSiaNGjBb6MSZYjKs/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4MTTX3gIWeVQ946kj9Tg4ElFU_KInBU107kTKaxYHh0H",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "quiet-poster",
+        "styleLabel": "留白海报",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：深度研究报告：Harness engineering 中文语境\n文章摘要：model ：pro\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n留白面积大，视觉安静现代，标题区域清晰。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-06-harness-engineering-2/studio-assets/cover-quiet-poster-20260406-173427.png",
+        "createdAt": "2026-04-06 17:34:28"
+      }
+    ],
+    "customPrompt": "",
+    "updatedAt": "2026-04-06 17:34:28"
+  },
+  "coverModules": {
+    "current": null,
+    "history": [],
+    "style": "collage-editorial",
+    "updatedAt": ""
+  },
+  "inlineImages": {
+    "items": [],
+    "history": [],
+    "archivedHistory": [],
+    "positions": {},
+    "promptOverrides": {},
+    "customPrompt": "",
+    "slots": [],
+    "nextSlotIndex": 1,
+    "updatedAt": ""
+  },
+  "sectionModules": {
+    "items": [],
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": ""
+  },
+  "draft": {
+    "mediaId": "",
+    "title": "",
+    "pushedAt": "",
+    "lastError": "",
+    "theme": "",
+    "themeFile": "",
+    "template": ""
+  },
+  "preview": {
+    "initialized": true,
+    "updatedAt": "2026-04-06 17:32:40"
+  }
+}

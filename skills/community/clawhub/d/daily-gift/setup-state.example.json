@@ -1,0 +1,166 @@
+{
+  "setup_complete": true,
+  "delivery_time_local": "22:00",
+  "timezone": "Asia/Shanghai",
+  "cron_job_name": "Daily Gift Trigger",
+  "cron_job_id": "",
+  "gift_mode": "hybrid",
+  "hosting": {
+    "provider": "surge",
+    "domain": "your-gifts.surge.sh",
+    "enabled": true
+  },
+  "image": {
+    "enabled": true,
+    "provider": "openrouter",
+    "model": "google/gemini-3.1-flash-image-preview",
+    "api_key_source": "OPENROUTER_API_KEY"
+  },
+  "image_api_prompted_in_setup": false,
+  "image_api_declined": false,
+  "image_api_declined_at": "",
+  "image_api_reminder_count": 0,
+  "image_api_last_reminder_at": "",
+  "image_detection_examples": {
+    "OPENROUTER_API_KEY": {
+      "provider": "openrouter",
+      "api_key_source": "OPENROUTER_API_KEY"
+    },
+    "GEMINI_API_KEY": {
+      "provider": "gemini-direct",
+      "api_key_source": "GEMINI_API_KEY"
+    },
+    "GOOGLE_API_KEY": {
+      "provider": "gemini-direct",
+      "api_key_source": "GOOGLE_API_KEY"
+    }
+  },
+  "video": {
+    "enabled": true,
+    "provider": "volcengine",
+    "model": "doubao-seedance-1-5-pro-251215",
+    "api_base_url": "https://ark.cn-beijing.volces.com/api/v3",
+    "api_key_source": "VOLCENGINE_API_KEY"
+  },
+  "tools": {
+    "remove_bg": {
+      "enabled": true,
+      "api_key": "YOUR_REMOVE_BG_API_KEY"
+    }
+  },
+  "user_portrait": {
+    "available": false,
+    "original_path": "",
+    "description": "",
+    "oc_generated": false,
+    "oc_path": ""
+  },
+  "companion_h5_skills": [
+    "Frontend Design",
+    "UI/UX Pro Max"
+  ],
+  "first_gift_format": "image-onboarding",
+  "user_context_path": "workspace/daily-gift/user-context.json",
+  "first_gift_sent": true,
+  "recent_gifts_limit": 30,
+  "last_run_at": "2026-01-19T22:00:00+08:00",
+  "last_run_mode": "daily-run",
+  "last_run_outcome": "sent",
+  "last_sent_at": "2026-01-19T22:00:00+08:00",
+  "last_gift_summary": "Sent a practical example gift as a deliberate corrective shift after several reflective example entries.",
+  "recent_gifts": [
+    {
+      "sent_at": "2026-01-15T22:00:00+08:00",
+      "trigger_mode": "setup",
+      "gift_weight": "light",
+      "narrative_role": "seeing",
+      "tone": "warm",
+      "pattern_or_format": "one-screen reveal",
+      "output_shape": "object-reveal",
+      "visual_style": "light-warm",
+      "content_direction": "reflect",
+      "content_tags": [
+        "onboarding",
+        "welcome"
+      ],
+      "emotional_direction": "warm",
+      "summary": "Welcomed the user with a small example onboarding gift."
+    },
+    {
+      "sent_at": "2026-01-16T22:00:00+08:00",
+      "trigger_mode": "daily-run",
+      "gift_weight": "standard",
+      "narrative_role": "uplifting",
+      "tone": "warm-wry",
+      "pattern_or_format": "image",
+      "output_shape": "illustrated-scene",
+      "visual_style": "light-warm",
+      "content_direction": "mirror",
+      "content_tags": [
+        "daily-life",
+        "example-friction",
+        "encouragement"
+      ],
+      "emotional_direction": "brightened",
+      "summary": "Turned a low-signal example frustration into a short image with setup and payoff."
+    },
+    {
+      "sent_at": "2026-01-17T20:40:00+08:00",
+      "trigger_mode": "manual-run",
+      "gift_weight": "light",
+      "narrative_role": "playful",
+      "tone": "warm-playful",
+      "pattern_or_format": "text-play",
+      "output_shape": "text-play-riddle",
+      "visual_style": "chat-native",
+      "content_direction": "play",
+      "content_tags": [
+        "manual",
+        "interactive",
+        "riddle"
+      ],
+      "emotional_direction": "playful",
+      "summary": "Ran a tiny emoji-riddle example gift that ended in a playful reveal.",
+      "text_play_type": "riddle-chain",
+      "text_play_turn_count": 6,
+      "text_play_completed": true,
+      "text_play_exit_reason": "completed"
+    },
+    {
+      "sent_at": "2026-01-18T22:00:00+08:00",
+      "trigger_mode": "daily-run",
+      "gift_weight": "standard",
+      "narrative_role": "intimate",
+      "tone": "soft-curious",
+      "pattern_or_format": "text",
+      "output_shape": "terminal-text-art",
+      "visual_style": "dark-terminal",
+      "content_direction": "openclaw-inner-life",
+      "content_tags": [
+        "night",
+        "noticing",
+        "inner-thread"
+      ],
+      "emotional_direction": "tender",
+      "summary": "Shared a small example note from OpenClaw's own inner world that still connected back to the user."
+    },
+    {
+      "sent_at": "2026-01-19T22:00:00+08:00",
+      "trigger_mode": "daily-run",
+      "gift_weight": "standard",
+      "narrative_role": "helpful",
+      "tone": "warm-clear",
+      "pattern_or_format": "text",
+      "output_shape": "scrollable-card-collection",
+      "visual_style": "minimal-poster",
+      "content_direction": "utility",
+      "content_tags": [
+        "work",
+        "practical",
+        "corrective-shift"
+      ],
+      "emotional_direction": "brightened",
+      "summary": "Sent a practical example recommendation gift as a deliberate corrective shift after several reflective example gifts."
+    }
+  ]
+}

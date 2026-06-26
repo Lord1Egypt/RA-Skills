@@ -1,35 +1,16 @@
----
-name: "Tech Security Audit"
-description: "Performs local network scans using Nmap to detect vulnerabilities, identify service versions, and fingerprint operating systems."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-security-audit"
-sourceUrl: "https://clawhub.ai/skills/tech-security-audit"
----
+# Tech Security Audit Skill
 
-# Tech Security Audit
+This skill integrates Nmap scanning functionality to perform local network vulnerability assessments.
 
-> Performs local network scans using Nmap to detect vulnerabilities, identify service versions, and fingerprint operating systems.
+## Features
+- Local network scanning
+- Vulnerability detection
+- Service version detection
+- OS fingerprinting
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-security-audit`
-- **Source URL:** [https://clawhub.ai/skills/tech-security-audit](https://clawhub.ai/skills/tech-security-audit)
+## Requirements
+- Nmap must be installed and accessible in PATH
+- Appropriate permissions for network scanning
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-security-audit
-```
+## Usage
+Call the skill functions to perform scans on specified targets or network ranges.

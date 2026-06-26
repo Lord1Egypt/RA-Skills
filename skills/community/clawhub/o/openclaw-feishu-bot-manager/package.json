@@ -1,0 +1,21 @@
+{
+  "name": "feishu-bot-manager",
+  "version": "1.0.3",
+  "description": "飞书多账户机器人配置管理 skill，用于新增飞书机器人账户并安全更新 OpenClaw Feishu 路由配置",
+  "main": "index.js",
+  "bin": {
+    "feishu-bot-manager": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "feishu",
+    "lark",
+    "bot",
+    "routing"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,154 @@
+{
+  "id": "first-principle-analyzer",
+  "name": "第一性原理分析器",
+  "version": "2.4.1",
+  "status": "published",
+  "category": "cognitive",
+  "funnel_layer": "layer1_core",
+  "description": "底层思维引擎 - 用第一性原理分解复杂问题，提取基本真理，重构创新方案",
+  "target_users": [
+    {
+      "user_type": "技术人员",
+      "pain_point": "面临复杂技术架构决策，需要深度分析",
+      "value_proposition": "提供结构化的第一性原理分析框架，避免类比思维陷阱"
+    },
+    {
+      "user_type": "产品经理",
+      "pain_point": "产品方向决策缺乏深度思考",
+      "value_proposition": "帮助回归用户本质需求，重构产品方案"
+    },
+    {
+      "user_type": "创业者",
+      "pain_point": "商业决策受传统思维限制",
+      "value_proposition": "从基本真理出发，发现创新商业机会"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "问题描述",
+      "type": "string",
+      "description": "需要分析的复杂问题或决策",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "分析报告",
+      "type": "markdown",
+      "description": "完整的第一性原理分析报告",
+      "format": "结构化 Markdown 文档"
+    }
+  ],
+  "triggers": [
+    "复杂问题需要深度思考",
+    "重大决策需要严谨分析",
+    "传统方案不满意，寻求创新",
+    "学习专家思维模式"
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "action": "问题接收与初步分析",
+      "output": "问题分类（技术/商业/人生/学术）"
+    },
+    {
+      "step": 2,
+      "action": "假设识别与质疑",
+      "output": "至少 3 个隐含假设及质疑结果"
+    },
+    {
+      "step": 3,
+      "action": "逐层分解（5 Why）",
+      "output": "分解到基本真理"
+    },
+    {
+      "step": 4,
+      "action": "基本真理验证",
+      "output": "验证通过的基本真理列表"
+    },
+    {
+      "step": 5,
+      "action": "重构方案生成",
+      "output": "至少 2 个创新方案"
+    },
+    {
+      "step": 6,
+      "action": "类比方案对比",
+      "output": "创新方案与传统方案对比"
+    },
+    {
+      "step": 7,
+      "action": "报告生成",
+      "output": "完整 Markdown 分析报告"
+    }
+  ],
+  "scoring": {
+    "T": 0.70,
+    "C": 0.75,
+    "O": 0.70,
+    "E": 0.68,
+    "M": 0.55,
+    "U": 0.70,
+    "average": 0.68
+  },
+  "evidence": [
+    {
+      "dimension": "T",
+      "evidence": "完整的 7 阶段分析框架，包含假设识别、5Why 分解、验证机制",
+      "source": "SKILL.md"
+    },
+    {
+      "dimension": "C",
+      "evidence": "提供深刻分析，帮助用户理解复杂问题，改变思维方式",
+      "source": "用户反馈"
+    },
+    {
+      "dimension": "O",
+      "evidence": "可与其他技能协作，如 meta-skill-weaver 编排分析流程",
+      "source": "技能协作案例"
+    },
+    {
+      "dimension": "E",
+      "evidence": "有完整版本历史，从 v0.1.0 到 v2.4.0 持续迭代",
+      "source": "VERSION_HISTORY.md"
+    },
+    {
+      "dimension": "M",
+      "evidence": "已在 ClawHub 上架，有明确定价策略",
+      "source": "ClawHub 上架链接"
+    },
+    {
+      "dimension": "U",
+      "evidence": "学习成本低，文档完善，有 5 个实战案例",
+      "source": "SKILL.md"
+    }
+  ],
+  "examples": [
+    {
+      "name": "SpaceX 火箭成本分析",
+      "input": "如何降低火箭发射成本？",
+      "output": "材料成本仅占售价 2%，差距来自制造方式和供应链",
+      "description": "技术/商业分析案例"
+    },
+    {
+      "name": "职业规划分析",
+      "input": "我应该换工作还是创业？",
+      "output": "职业价值 = 能力×稀缺性×杠杆，而非 title 或薪资",
+      "description": "人生决策案例"
+    },
+    {
+      "name": "技能系统设计",
+      "input": "如何创建一个更好的技能系统？",
+      "output": "从集中式市场转向去中心化能力图谱",
+      "description": "技术架构案例"
+    }
+  ],
+  "dependencies": [],
+  "pricing_hint": {
+    "model": "paid",
+    "price_hint": "$99.9（个人版永久）"
+  },
+  "published_at": "2026-04-02T09:00:00Z",
+  "updated_at": "2026-04-02T09:00:00Z",
+  "changelog": "CHANGELOG.md"
+}

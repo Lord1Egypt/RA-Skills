@@ -1,0 +1,4 @@
+interface:
+  display_name: "Popular Skill Scout"
+  short_description: "Find popular and practical skills"
+  default_prompt: "Use $popular-skill-scout to find practical, popular skills on ClawHub and GitHub for my current needs."

@@ -1,0 +1,24 @@
+{
+  "name": "ai-proposal-freelance-deal-generator",
+  "display_name": "Win More Clients with AI Proposals (Freelancer & Agency Tool)",
+  "description": "Generate high-converting freelance proposals, pricing strategies, and client messages. Designed to help freelancers and agencies win more deals on Upwork, Fiverr, and direct outreach.",
+  "version": "1.0.0",
+  "author": "DTTNpole-commits",
+  "category": "Sales & Business Development",
+  "tags": [
+    "proposal",
+    "freelancer",
+    "upwork",
+    "fiverr",
+    "sales",
+    "copywriting",
+    "b2b",
+    "conversion",
+    "agency",
+    "ai-marketing"
+  ],
+  "icon": "🤝",
+  "license": "MIT-0",
+  "pricing_tiers": ["FREE", "PRO", "GROWTH", "PREMIUM"],
+  "target_users": ["freelancers", "agencies", "consultants", "service providers"]
+}

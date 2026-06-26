@@ -1,35 +1,62 @@
 ---
-name: "unity-ecs-patterns"
-description: "Indexed by skills.sh from wshobson/agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wshobson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wshobson/agents/unity-ecs-patterns"
-sourceUrl: "https://skills.sh/wshobson/agents/unity-ecs-patterns"
+name: unity-ecs-patterns
+description: Master Unity ECS (Entity Component System) with DOTS, Jobs, and Burst for high-performance game development. Use when building data-oriented games, optimizing performance, or working with large entity counts.
 ---
 
-# unity-ecs-patterns
+# Unity ECS Patterns
 
-> Indexed by skills.sh from wshobson/agents
+Production patterns for Unity's Data-Oriented Technology Stack (DOTS) including Entity Component System, Job System, and Burst Compiler.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wshobson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wshobson/agents/unity-ecs-patterns`
-- **Source URL:** [https://skills.sh/wshobson/agents/unity-ecs-patterns](https://skills.sh/wshobson/agents/unity-ecs-patterns)
+## When to Use This Skill
 
-## Overview
+- Building high-performance Unity games
+- Managing thousands of entities efficiently
+- Implementing data-oriented game systems
+- Optimizing CPU-bound game logic
+- Converting OOP game code to ECS
+- Using Jobs and Burst for parallelization
 
+## Core Concepts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wshobson/agents/unity-ecs-patterns
+### 1. ECS vs OOP
+
+| Aspect      | Traditional OOP   | ECS/DOTS        |
+| ----------- | ----------------- | --------------- |
+| Data layout | Object-oriented   | Data-oriented   |
+| Memory      | Scattered         | Contiguous      |
+| Processing  | Per-object        | Batched         |
+| Scaling     | Poor with count   | Linear scaling  |
+| Best for    | Complex behaviors | Mass simulation |
+
+### 2. DOTS Components
+
 ```
+Entity: Lightweight ID (no data)
+Component: Pure data (no behavior)
+System: Logic that processes components
+World: Container for entities
+Archetype: Unique combination of components
+Chunk: Memory block for same-archetype entities
+```
+
+## Detailed patterns and worked examples
+
+Detailed pattern documentation lives in `references/details.md`. Read that file when the navigation tier above is insufficient.
+
+## Best Practices
+
+### Do's
+
+- **Use ISystem over SystemBase** - Better performance
+- **Burst compile everything** - Massive speedup
+- **Batch structural changes** - Use ECB
+- **Profile with Profiler** - Identify bottlenecks
+- **Use Aspects** - Clean component grouping
+
+### Don'ts
+
+- **Don't use managed types** - Breaks Burst
+- **Don't structural change in jobs** - Use ECB
+- **Don't over-architect** - Start simple
+- **Don't ignore chunk utilization** - Group similar entities
+- **Don't forget disposal** - Native collections leak

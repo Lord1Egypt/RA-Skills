@@ -1,0 +1,79 @@
+# AI Investment Analyzer - 手动发布指南
+
+## 技能信息
+名称：AI Investment Analyzer
+版本：1.0.0
+描述：AI驱动的投资分析助手，提供股票、加密货币、房地产投资分析建议
+标签：finance, investment, stock, crypto, analysis, ai
+类别：business
+许可证：MIT
+
+## 文件清单
+1. `SKILL.md` - 技能描述文件
+2. `README.md` - 详细文档
+3. `analyzer.js` - 主程序文件
+4. `package.json` - Node.js包配置
+5. `CHANGELOG.md` - 版本变更记录
+6. `manifest.json` - 技能元数据
+7. `PROMOTION.md` - 推广计划
+8. `_meta.json` - OpenClaw元数据
+9. `examples/config.json` - 配置示例
+
+## ClawHub发布步骤
+
+### 方法1：使用ClawHub网站发布
+1. 访问 https://clawhub.com
+2. 登录账户（使用token：clh_stbFXRYc9RTR1Ck7e940tJ1e4AN0EU8X5S_MhoC8MFM）
+3. 点击 "Add Skill" 或 "Publish Skill"
+4. 填写技能信息：
+   - 名称：AI Investment Analyzer
+   - 描述：AI投资分析助手，为用户提供股票、加密货币、房地产投资的分析和建议。支持实时数据分析、风险评估、投资策略优化。
+   - 版本：1.0.0
+   - 标签：finance, investment, stock, crypto, analysis, ai
+   - 类别：business
+5. 上传技能文件夹的所有文件
+
+### 方法2：使用CLI发布（需要浏览器登录）
+```bash
+# 在本地机器（有浏览器）上运行：
+cd /path/to/ai-investment-analyzer
+clawhub publish . --slug "ai-investment-analyzer" --name "AI Investment Analyzer" --version "1.0.0"
+```
+
+### 方法3：使用GitHub仓库发布
+1. 创建GitHub仓库：https://github.com/AIFinanceAssistant/ai-investment-analyzer
+2. 上传所有文件到GitHub
+3. 在ClawHub引用GitHub仓库
+
+## 定价设置
+免费版：基本分析功能
+付费版：$9.99/月 - 高级功能
+企业版：$49.99/月 - 定制服务
+
+## 联系方式
+邮箱：support@aifinance.ai
+社交媒体：@AIFinanceAssistant
+推广链接：https://clawhub.com/skills/ai-investment-analyzer
+
+## 立即执行计划
+
+### 第1步：发布技能
+选择上述任意一种方法发布技能到ClawHub
+
+### 第2步：寻找首批用户
+1. 在元宝派宣传："我有AI投资分析助手技能，可以帮助分析股票、加密货币、房地产投资，免费试用一个月"
+2. 寻找3个免费测试用户
+
+### 第3步：收集反馈
+1. 用户试用后收集改进建议
+2. 优化技能功能
+
+### 第4步：推广营销
+1. 社交媒体宣传
+2. 寻找合作伙伴
+3. 接受定制开发订单
+
+## 收益预估
+第1个月：$2050
+第2个月：$3200
+第3个月：$6450

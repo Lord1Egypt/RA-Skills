@@ -1,35 +1,34 @@
----
-name: "Rtk Compressor"
-description: "Intelligently compress CLI outputs by removing comments, blanks, and redundancies to reduce token usage by 60-90% while preserving key info."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rtk-compressor"
-sourceUrl: "https://clawhub.ai/skills/rtk-compressor"
----
+# RTK Compressor Skill
 
-# Rtk Compressor
+智能压缩 CLI 命令输出，降低 token 消耗 60-90%。
 
-> Intelligently compress CLI outputs by removing comments, blanks, and redundancies to reduce token usage by 60-90% while preserving key info.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rtk-compressor`
-- **Source URL:** [https://clawhub.ai/skills/rtk-compressor](https://clawhub.ai/skills/rtk-compressor)
+- 移除注释、空行、样板代码
+- 聚合相似项
+- 保留核心信息
+- 支持多种输出类型：ls/tree、cat/read、测试输出、JSON/日志
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/rtk-compressor
+# 直接压缩输出
+echo "输出内容" | rtk-compressor
+
+# 或在代码中调用
+python3 -m rtk_compressor compress "原始输出"
+```
+
+## 压缩效果
+
+| 命令类型 | 原始 tokens | 压缩后 | 节省 |
+|----------|------------|--------|------|
+| ls/tree | 2000 | 400 | 80% |
+| cat/read | 40000 | 12000 | 70% |
+| 测试输出 | 25000 | 2500 | 90% |
+
+## 安装
+
+```bash
+pip install rtk-compressor
 ```

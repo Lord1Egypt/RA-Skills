@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "2024-v2",
+  "id": "certainlogicai.agentpathfinder",
+  "displayName": "AgentPathfinder",
+  "version": "1.3.0",
+  "description": "Signed, tamper-evident task tracking for AI agents. Records what agents claim (with cryptographic signatures). Does NOT independently verify that claims are true. Local-first: all data stays in ~/.agentpathfinder. No telemetry, no external servers, no usage caps.",
+  "repository": "https://github.com/CertainLogicAI/agentpathfinder",
+  "entrypoints": {
+    "cli": {
+      "command": ["python3", "-m", "agentpathfinder"]
+    },
+    "dashboard": {
+      "command": ["python3", "scripts/dashboard_v130.py"]
+    }
+  },
+  "exports": {
+    "task_tracking": "agentpathfinder.task_engine:TaskEngine",
+    "audit_trail": "agentpathfinder.audit_trail:AuditTrail"
+  },
+  "tags": [
+    "productivity",
+    "open-source",
+    "trust",
+    "tamper-evident",
+    "cryptography",
+    "task-tracking",
+    "accountability"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "CertainLogic",
+    "url": "https://github.com/CertainLogicAI"
+  },
+  "safety": "SAFETY.md"
+}

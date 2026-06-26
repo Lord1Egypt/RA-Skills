@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件管理器</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📁</text></svg>" type="image/svg+xml">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0066ff; --primary-soft: rgba(0,102,255,0.08);
+            --danger: #ff3b30; --success: #34c759; --warning: #ff9500;
+            --text: #1d1d1f; --text-secondary: #6e6e73; --text-tertiary: #86868b;
+            --bg-card: rgba(255,255,255,0.7); --bg-subtle: rgba(0,0,0,0.02);
+            --border: rgba(0,0,0,0.06); --shadow: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.08); --radius: 14px;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; 
+            background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+            min-height: 100vh; padding: 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { 
+            background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius); padding: 10px 18px; margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        .header-row { display: flex; align-items: center; gap: 14px; }
+        .header-title { font-size: 17px; color: var(--text); display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        .header-title span:first-child { font-size: 19px; }
+        .header-search { flex: 1; display: flex; gap: 0; min-width: 200px; align-items: center; }
+        .header-search input { 
+            flex: 1; width: 100%; padding: 7px 12px; border: none; 
+            background: var(--bg-subtle); border-radius: 8px 0 0 8px; 
+            font-size: 13px; min-width: 0; color: var(--text);
+            transition: background 0.2s;
+        }
+        .header-search input::placeholder { color: var(--text-tertiary); }
+        .header-search input:focus { outline: none; background: rgba(0,102,255,0.06); }
+        .header-search .btn { border-radius: 0; flex-shrink: 0; padding: 7px 12px; font-size: 13px; border: none; }
+        .header-search .btn:last-child { border-radius: 0 8px 8px 0; }
+        .regex-switch { display: flex; align-items: center; gap: 6px; padding: 0 8px; cursor: pointer; user-select: none; }
+        .regex-switch-label { font-size: 11px; font-weight: 500; color: var(--text-secondary); }
+        .regex-switch.active .regex-switch-label { color: var(--primary); }
+        .toggle { position: relative; width: 34px; height: 18px; background: #d1d1d6; border-radius: 9px; transition: background 0.3s; flex-shrink: 0; }
+        .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: #fff; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: transform 0.3s; }
+        .toggle.active { background: var(--primary); }
+        .toggle.active::after { transform: translateX(16px); }
+        .regex-switch input { display: none; }
+        .stats { display: flex; gap: 6px; flex-shrink: 0; }
+        .stat-item { text-align: center; padding: 5px 12px; background: var(--bg-subtle); border-radius: 8px; min-width: 60px; border: 1px solid var(--border); }
+        .stat-value { font-size: 15px; font-weight: 700; color: var(--primary); line-height: 1; }
+        .stat-label { font-size: 10px; color: var(--text-tertiary); margin-top: 2px; font-weight: 500; }
+        .breadcrumb { 
+            background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius); padding: 10px 20px; margin-bottom: 16px;
+            border: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        }
+        .breadcrumb-left { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex: 1; }
+        .breadcrumb-item { color: var(--primary); cursor: pointer; padding: 5px 10px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 0.2s; }
+        .breadcrumb-item:hover { background: var(--primary-soft); }
+        .breadcrumb-current { font-weight: 600; font-size: 13px; color: var(--text); }
+        .breadcrumb-right { display: flex; align-items: center; gap: 12px; }
+        .view-toggle { display: flex; gap: 3px; background: var(--bg-subtle); padding: 3px; border-radius: 9px; border: 1px solid var(--border); }
+        .view-btn { padding: 5px 10px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-size: 14px; transition: all 0.2s; color: var(--text-secondary); font-weight: 500; }
+        .view-btn:hover { color: var(--text); }
+        .view-btn.active { background: #fff; color: var(--primary); box-shadow: var(--shadow); }
+        .action-buttons { display: flex; gap: 8px; }
+        .action-buttons .btn { padding: 8px 16px; font-size: 13px; font-weight: 500; border: none; border-radius: 10px; transition: all 0.2s; }
+        .btn { 
+            padding: 9px 16px; border: none; border-radius: 10px; font-size: 13px; 
+            font-weight: 500; cursor: pointer; display: inline-flex !important; 
+            align-items: center; gap: 6px; white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: #0052cc; transform: translateY(-1px); }
+        .btn-success { background: var(--success); color: #fff; }
+        .btn-success:hover { background: #2da84a; transform: translateY(-1px); }
+        .btn-secondary { background: #e8e8ed; color: var(--text); }
+        .btn-secondary:hover { background: #d1d1d6; transform: translateY(-1px); }
+        .btn-info { background: #007aff; color: #fff; }
+        .btn-info:hover { background: #0062cc; transform: translateY(-1px); }
+        .btn-danger { background: var(--danger); color: #fff; }
+        .btn-danger:hover { background: #d63026; transform: translateY(-1px); }
+        .btn-sm { padding: 6px 12px; font-size: 12px; }
+        #save-btn { display: none !important; }
+        #save-btn[style*="inline-flex"] { display: inline-flex !important; }
+        .breadcrumb { background: #fff; border-radius: 12px; padding: 12px 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; gap: 6px; flex-wrap: wrap; }
+        .breadcrumb-item { color: var(--primary); cursor: pointer; padding: 4px 10px; border-radius: 6px; }
+        .breadcrumb-item:hover { background: rgba(26,115,232,0.1); }
+        .breadcrumb-current { font-weight: 600; }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+        .file-card { 
+            background: var(--bg-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius); padding: 16px; 
+            border: 1px solid var(--border);
+            cursor: pointer; position: relative;
+            transition: all 0.2s;
+        }
+        .file-card:hover { 
+            transform: translateY(-3px); 
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0,102,255,0.2);
+        }
+        .file-card.directory { background: linear-gradient(135deg, rgba(255,149,0,0.04) 0%, rgba(255,255,255,0.5) 100%); }
+        .file-card-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s; }
+        .file-card:hover .file-card-actions { opacity: 1; }
+        .action-btn { 
+            width: 28px; height: 28px; border: none; border-radius: 7px; 
+            cursor: pointer; font-size: 13px; display: flex; align-items: center; 
+            justify-content: center;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+        .action-btn:hover { transform: scale(1.1); }
+        .action-btn.note { color: #007aff; }
+        .action-btn.move { color: var(--text-secondary); }
+        .action-btn.download { color: #34c759; }
+        .action-btn.delete { color: #ff3b30; }
+        
+        /* 目录树样式 */
+        .tree-container { max-height: 250px; overflow-y: auto; border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-top: 8px; background: var(--bg-subtle); }
+        .tree-node { margin: 3px 0; }
+        .tree-item { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .tree-item:hover { background: var(--primary-soft); }
+        .tree-item.selected { background: rgba(0,102,255,0.15); border: 1px solid var(--primary); }
+        .tree-children { margin-left: 18px; border-left: 1px dashed var(--border); padding-left: 8px; }
+        .tree-toggle { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: var(--text-tertiary); cursor: pointer; }
+        .file-icon { font-size: 40px; margin-bottom: 10px; }
+        .file-name { font-size: 13px; font-weight: 600; margin-bottom: 5px; word-break: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--text); }
+        .file-note { font-size: 11px; color: var(--text-tertiary); margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-height: 30px; }
+        .file-meta { font-size: 11px; color: var(--text-tertiary); display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border); font-weight: 500; }
+        .file-list { background: var(--bg-card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+        .file-list-header, .file-list-item { display: grid; grid-template-columns: 35px minmax(200px, 1fr) 100px 120px 140px; padding: 12px 16px; align-items: center; }
+        .file-list-header { background: var(--bg-subtle); font-weight: 600; font-size: 12px; color: var(--text-tertiary); border-bottom: 1px solid var(--border); }
+        .file-list-item { border-bottom: 1px solid var(--border); font-size: 13px; transition: background 0.2s; }
+        .file-list-item:last-child { border-bottom: none; }
+        .file-list-item:hover { background: var(--primary-soft); }
+        .file-list-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .file-list-name { font-weight: 500; display: flex; align-items: center; gap: 6px; }
+        .file-list-note { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .file-list-actions { display: flex; gap: 4px; justify-content: flex-end; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-overlay.active { display: flex; }
+        .modal { 
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 18px; width: 98%; max-width: 1600px; height: 90vh; 
+            display: flex; flex-direction: column; overflow: hidden; z-index: 1001;
+            border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+        }
+        .modal-body { flex: 1; display: flex; overflow: hidden; position: relative; min-height: 0; }
+        .modal-header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; color: var(--text); }
+        .modal-close { width: 32px; height: 32px; border: none; background: var(--bg-subtle); border-radius: 8px; cursor: pointer; font-size: 18px; color: var(--text-secondary); transition: all 0.2s; }
+        .modal-close:hover { background: var(--danger); color: #fff; }
+        .modal-body { flex: 1; display: flex; overflow: hidden; }
+        .modal-footer { padding: 14px 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-shrink: 0; background: var(--bg-subtle); }
+        .editor-container { display: flex; flex: 1; overflow: hidden; min-height: 0; }
+        .editor-pane, .preview-pane { flex: 1; overflow: auto; position: relative; min-height: 0; }
+        .editor-pane { background: #1e1e1e; border-right: 1px solid var(--border); }
+        .editor-pane[style*="display: none"] { pointer-events: none; }
+        .code-editor { width: 100%; min-height: 100%; background: #1e1e1e; color: #d4d4d4; border: none; padding: 18px; font-family: "SF Mono", Consolas, Monaco, monospace; font-size: 14px; line-height: 1.6; resize: none; outline: none; cursor: text; }
+        .code-editor:focus { background: #252525; }
+        .code-editor[readonly] { background: #1e1e1e; cursor: not-allowed; }
+        .markdown-preview { padding: 24px; line-height: 1.7; min-height: 100%; color: var(--text); }
+        .preview-pane { background: #fff; }
+        .iframe-preview { width: 100%; height: 100%; border: none; }
+        .markdown-preview h1, .markdown-preview h2, .markdown-preview h3 { margin: 20px 0 12px; color: var(--text); font-weight: 600; }
+        .markdown-preview h1 { font-size: 1.5em; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .markdown-preview h2 { font-size: 1.25em; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+        .markdown-preview code { background: var(--bg-subtle); padding: 3px 8px; border-radius: 5px; font-family: "SF Mono", Consolas, monospace; font-size: 0.9em; }
+        .markdown-preview pre { background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 10px; overflow-x: auto; margin: 12px 0; }
+        .markdown-preview pre code { background: transparent; padding: 0; }
+        .view-tabs { display: flex; gap: 4px; background: var(--bg-subtle); padding: 4px; border-radius: 8px; border: 1px solid var(--border); }
+        .view-tab { padding: 6px 14px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; color: var(--text-secondary); transition: all 0.2s; }
+        .view-tab:hover { color: var(--text); }
+        .view-tab.active { background: #fff; color: var(--primary); box-shadow: var(--shadow); }
+        .empty-state { text-align: center; padding: 80px 20px; color: var(--text-tertiary); }
+        .empty-state-icon { font-size: 72px; margin-bottom: 20px; opacity: 0.4; }
+        .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-top: 8px; }
+        .loading { display: flex; align-items: center; justify-content: center; padding: 40px; }
+        .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .toast { 
+            position: fixed; bottom: 24px; right: 24px; padding: 12px 20px; 
+            border-radius: 12px; color: #fff; font-weight: 500; font-size: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); 
+            transform: translateY(80px); opacity: 0; transition: all 0.3s; z-index: 1001;
+            backdrop-filter: blur(10px);
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { background: rgba(52,199,89,0.95); }
+        .toast.error { background: rgba(255,59,48,0.95); }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); 
+            border-radius: 10px; font-size: 14px; font-family: inherit;
+            background: var(--bg-subtle); color: var(--text);
+            transition: all 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus { 
+            outline: none; border-color: var(--primary); 
+            background: rgba(0,102,255,0.04);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        @media (max-width: 768px) {
+            .header-row { flex-wrap: wrap; }
+            .header-search { order: 3; min-width: 100%; margin-top: 8px; }
+            .stats { flex-wrap: wrap; justify-content: flex-end; }
+            .breadcrumb { flex-direction: column; align-items: stretch; }
+            .breadcrumb-right { justify-content: center; margin-top: 8px; }
+            .file-list-header, .file-list-item { grid-template-columns: 30px minmax(150px, 1fr) 90px 100px; }
+            .file-list-header > *:nth-child(5), .file-list-item > *:nth-child(5) { display: none; }
+            .modal { width: 98%; height: 95vh; }
+            .editor-container { flex-direction: column; }
+            .editor-pane, .preview-pane { border-right: none; border-bottom: 1px solid var(--border); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-row">
+                <div class="header-title">📁 文件管理器</div>
+                <div class="header-search">
+                    <input type="text" id="search-input" placeholder="搜索..." onkeypress="if(event.key==='Enter')searchFiles()">
+                    <button class="btn btn-primary" onclick="searchFiles()">🔍</button>
+                    <button class="btn btn-secondary" onclick="loadDirectory('')">🏠</button>
+                    <label class="regex-switch" id="regex-switch" onclick="toggleRegex()" title="使用正则表达式搜索">
+                        <span class="regex-switch-label">正则</span>
+                        <div class="toggle" id="regex-toggle"></div>
+                        <input type="checkbox" id="regex-checkbox">
+                    </label>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><div class="stat-value" id="stat-files">-</div><div class="stat-label">文件</div></div>
+                    <div class="stat-item"><div class="stat-value" id="stat-dirs">-</div><div class="stat-label">目录</div></div>
+                    <div class="stat-item"><div class="stat-value" id="stat-size">-</div><div class="stat-label">大小</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb" id="breadcrumb"></div>
+        <div id="content"><div class="loading"><div class="spinner"></div></div></div>
+    </div>
+
+    <div class="modal-overlay" id="view-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title"><span id="modal-file-icon">📄</span><span id="modal-file-name"></span></div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="editor-container">
+                    <div class="editor-pane" id="editor-pane">
+                        <textarea class="code-editor" id="file-editor" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+                    </div>
+                    <div class="preview-pane" id="preview-pane">
+                        <div class="markdown-preview" id="markdown-preview" style="display:none;"></div>
+                        <iframe class="iframe-preview" id="html-preview" style="display:none;"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="view-tabs">
+                    <button class="view-tab active" id="btn-mode-edit" onclick="setEditorMode('edit')">编辑</button>
+                    <button class="view-tab" id="btn-mode-preview" onclick="setEditorMode('preview')">预览</button>
+                    <button class="view-tab" id="btn-mode-split" onclick="setEditorMode('split')">分屏</button>
+                </div>
+                <div style="display:flex;gap:8px;">
+                    <button class="btn btn-info" id="open-new-btn" onclick="openInNewTab()" style="display:none;">🔗 打开</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">取消</button>
+                    <button class="btn btn-success" id="save-btn" onclick="saveFile()" style="display:none;">💾 保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="create-modal">
+        <div class="modal" style="max-width:450px;height:auto;">
+            <div class="modal-header">
+                <div class="modal-title"><span id="create-icon">📁</span><span id="create-title">新建</span></div>
+                <button class="modal-close" onclick="closeCreateModal()">×</button>
+            </div>
+            <div class="modal-body" style="padding:20px;flex:none;">
+                <div class="form-group"><label>名称</label><input type="text" id="create-name" placeholder="输入名称..." onkeypress="if(event.key==='Enter')confirmCreate()"></div>
+                <div class="form-group" id="create-content-group" style="display:none;"><label>内容</label><textarea id="create-content" placeholder="初始内容..."></textarea></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" onclick="closeCreateModal()">取消</button><button class="btn btn-primary" onclick="confirmCreate()">创建</button></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="note-modal">
+        <div class="modal" style="max-width:500px;height:auto;min-height:320px;display:flex;flex-direction:column;">
+            <div class="modal-header">
+                <div class="modal-title">📝 编辑备注</div>
+                <button class="modal-close" onclick="closeNoteModal()">×</button>
+            </div>
+            <div class="modal-body" style="padding:0;flex:1;display:flex;flex-direction:column;min-height:0;">
+                <div style="flex:1;padding:20px 24px;display:flex;flex-direction:column;">
+                    <textarea id="note-input" placeholder="备注内容..." style="flex:1;width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;resize:none;background:var(--bg-subtle);color:var(--text);transition:all 0.2s;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeNoteModal()" style="padding:10px 28px;font-size:14px;font-weight:500;">取消</button>
+                <button class="btn btn-success" onclick="saveNote()" style="padding:10px 28px;font-size:14px;font-weight:500;">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal" style="max-width:500px;height:auto;">
+            <div class="modal-header">
+                <div class="modal-title"><span style="font-size:20px;margin-right:10px;">⚠️</span><span style="color:var(--danger);font-weight:600;">确认删除</span></div>
+                <button class="modal-close" onclick="closeDeleteModal()">×</button>
+            </div>
+            <div class="modal-body" style="padding:20px 24px;flex:none;">
+                <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
+                    <div style="font-size:15px;color:var(--text);line-height:1.4;">确定要删除以下内容吗？</div>
+                    <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:12px;padding:16px;width:100%;">
+                        <div style="font-size:15px;font-weight:600;color:var(--text);word-break:break-all;line-height:1.4;" id="delete-path"></div>
+                    </div>
+                    <div style="background:rgba(255,59,48,0.06);border-radius:12px;padding:14px 16px;width:100%;">
+                        <div style="display:flex;align-items:flex-start;gap:10px;">
+                            <span style="font-size:16px;flex-shrink:0;">⚠️</span>
+                            <div style="width:100%;">
+                                <div style="font-size:13px;font-weight:600;color:var(--danger);margin-bottom:4px;">此操作不可恢复</div>
+                                <div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">删除后文件将无法找回，请谨慎操作。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeDeleteModal()" style="padding:10px 28px;font-size:14px;font-weight:500;">取消</button>
+                <button class="btn btn-danger" id="confirm-delete-btn" style="padding:10px 28px;font-size:14px;font-weight:500;">删除</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="move-modal">
+        <div class="modal" style="max-width:700px;height:auto;">
+            <div class="modal-header">
+                <div class="modal-title">📤 移动文件/目录</div>
+                <button class="modal-close" onclick="closeMoveModal()">×</button>
+            </div>
+            <div class="modal-body" style="padding:20px;flex:none;display:flex;flex-direction:column;gap:16px;">
+                <div>
+                    <label style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;display:block;">源路径</label>
+                    <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text);line-height:1.5;" id="move-source-path"></div>
+                </div>
+                <div>
+                    <label style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:6px;display:block;">目标目录</label>
+                    <input type="text" id="move-dest-input" placeholder="输入或选择目标路径" onkeypress="if(event.key==='Enter')confirmMove()" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;background:var(--bg-subtle);color:var(--text);transition:all 0.2s;margin-bottom:10px;">
+                    <div class="tree-container" id="move-tree" style="display:none;max-height:250px;"></div>
+                    <p style="font-size:11px;color:var(--text-tertiary);margin-top:8px;">💡 点击目录选择，或手动输入路径</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeMoveModal()">取消</button>
+                <button class="btn btn-primary" onclick="confirmMove()">移动</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="upload-modal">
+        <div class="modal" style="max-width:800px;height:70vh;">
+            <div class="modal-header">
+                <div class="modal-title">⬆️ 上传文件</div>
+                <button class="modal-close" onclick="closeUploadModal()">×</button>
+            </div>
+            <div class="modal-body" style="padding:20px;display:flex;flex-direction:column;gap:16px;">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="selectFiles()" style="padding:8px 14px;font-size:12px;">📄 选择文件</button>
+                    <button class="btn btn-info btn-sm" onclick="selectFolder()" style="padding:8px 14px;font-size:12px;">📁 选择目录</button>
+                    <span id="upload-hint" style="font-size:12px;color:var(--muted);margin-left:8px;">支持多次选择，文件将累加到列表中</span>
+                </div>
+                <input type="file" id="upload-file-input" multiple style="display:none" onchange="onFilesSelected(this.files, 'file')">
+                <input type="file" id="upload-folder-input" webkitdirectory directory multiple style="display:none" onchange="onFilesSelected(this.files, 'folder')">
+                <div style="flex:1;overflow:hidden;display:flex;flex-direction:column;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                        <strong style="font-size:13px;">已选择文件 (<span id="upload-total-count">0</span>)</strong>
+                        <button class="btn btn-sm btn-secondary" onclick="clearAllFiles()" style="padding:4px 10px;font-size:11px;">🗑️ 清空列表</button>
+                    </div>
+                    <div id="upload-file-list" style="flex:1;overflow-y:auto;border:1px solid #e9ecef;border-radius:8px;padding:12px;">
+                        <div id="upload-file-items" style="display:flex;flex-direction:column;gap:6px;"></div>
+                        <div id="upload-empty-hint" style="text-align:center;color:var(--muted);padding:40px 20px;">
+                            <div style="font-size:32px;margin-bottom:8px;">📭</div>
+                            <div>暂无文件，点击上方按钮选择</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="upload-progress" style="display:none;">
+                    <div style="background:#e9ecef;border-radius:8px;height:8px;overflow:hidden">
+                        <div id="upload-progress-bar" style="background:var(--primary);height:100%;width:0%;transition:width 0.3s"></div>
+                    </div>
+                    <div id="upload-status" style="font-size:12px;color:var(--muted);margin-top:6px;text-align:center"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="upload-total-size" style="font-size:11px;color:var(--muted);margin-right:auto;"></span>
+                <button class="btn btn-secondary" onclick="closeUploadModal()">取消</button>
+                <button class="btn btn-primary" id="upload-confirm-btn" onclick="confirmUpload()" disabled>上传</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let currentPath = '', currentView = 'grid', deleteTarget = null, moveTarget = null, currentFilePath = '', originalContent = '', editorMode = 'edit', currentFileType = '', previewTimer = null, createType = 'dir', noteTargetPath = '';
+        const EDITABLE = ['.txt','.md','.html','.py','.js','.json','.yaml','.yml','.css','.xml','.log','.sh','.bash','.sql','.java','.go','.rs','.ts','.jsx','.tsx','.htm','.svg'];
+        const OPENABLE = ['.html','.htm','.svg','.pdf','.png','.jpg','.jpeg','.gif','.webp'];
+        const RENDERABLE = ['.html','.htm','.svg'];
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            loadDirectory(''); 
+            loadStats(); 
+            // 初始化正则开关状态
+            const checkbox = document.getElementById('regex-checkbox');
+            const toggle = document.getElementById('regex-toggle');
+            const switchEl = document.getElementById('regex-switch');
+            if (checkbox && toggle && switchEl && checkbox.checked) {
+                toggle.classList.add('active');
+                switchEl.classList.add('active');
+            }
+        });
+
+        async function loadDirectory(path) {
+            currentPath = path;
+            document.getElementById('content').innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            try {
+                const res = await fetch(`/api/files?path=${encodeURIComponent(path)}`);
+                const data = await res.json();
+                if (data.error) { showEmpty(data.error); return; }
+                renderBreadcrumb(path);
+                renderContent(data);
+            } catch (e) { showEmpty(e.message); }
+        }
+
+        function renderBreadcrumb(path) {
+            const parts = path ? path.split('/') : [];
+            let html = '<div class="breadcrumb-left">';
+            html += '<span class="breadcrumb-item" onclick="loadDirectory(\'\')">📂 projects</span>';
+            let acc = '';
+            parts.forEach((p, i) => {
+                acc = acc ? `${acc}/${p}` : p;
+                if (i === parts.length - 1) html += `<span class="breadcrumb-current"> / ${p}</span>`;
+                else html += `<span class="breadcrumb-item" onclick="loadDirectory('${acc}')"> / ${p}</span>`;
+            });
+            html += '</div>';
+            html += '<div class="breadcrumb-right">';
+            html += '<div class="view-toggle">';
+            html += `<button class="view-btn ${currentView === 'grid' ? 'active' : ''}" id="grid-view-btn" onclick="setView('grid')">▦</button>`;
+            html += `<button class="view-btn ${currentView === 'list' ? 'active' : ''}" id="list-view-btn" onclick="setView('list')">☰</button>`;
+            html += '</div>';
+            html += '<div class="action-buttons">';
+            html += '<button class="btn btn-info" onclick="showUploadModal()">⬆️ 上传</button>';
+            html += '<button class="btn btn-success" onclick="showCreateModal(\'dir\')">📁 新建</button>';
+            html += '<button class="btn btn-primary" onclick="showCreateModal(\'file\')">📄 文件</button>';
+            html += '</div></div>';
+            document.getElementById('breadcrumb').innerHTML = html;
+        }
+
+        function toggleRegex() {
+            const checkbox = document.getElementById('regex-checkbox');
+            const toggle = document.getElementById('regex-toggle');
+            const switchEl = document.getElementById('regex-switch');
+            if (checkbox && toggle && switchEl) {
+                checkbox.checked = !checkbox.checked;
+                toggle.classList.toggle('active', checkbox.checked);
+                switchEl.classList.toggle('active', checkbox.checked);
+            }
+        }
+
+        function renderContent(data) {
+            const c = document.getElementById('content');
+            if (!data.directories.length && !data.files.length) { showEmpty('空目录'); return; }
+            if (currentView === 'grid') renderGrid(c, data);
+            else renderList(c, data);
+        }
+
+        function showEmpty(msg) {
+            document.getElementById('content').innerHTML = `<div class="empty-state"><div class="empty-state-icon">📭</div><h3>${msg}</h3></div>`;
+        }
+
+        function renderGrid(c, data) {
+            let h = '<div class="file-grid">';
+            if (data.parent) h += `<div class="file-card directory" onclick="loadDirectory('${data.parent.path}')"><div class="file-icon">📁</div><div class="file-name">${data.parent.name}</div></div>`;
+            data.directories.forEach(d => {
+                h += `<div class="file-card directory" onclick="loadDirectory('${d.path}')"><div class="file-card-actions"><button class="action-btn note" onclick="event.stopPropagation();editNote('${d.path}')" title="备注">📝</button><button class="action-btn move" onclick="event.stopPropagation();showMoveModal('${d.path}')" title="移动">📤</button><button class="action-btn download" onclick="event.stopPropagation();downloadItem('${d.path}')" title="下载">⬇️</button><button class="action-btn delete" onclick="event.stopPropagation();confirmDelete('${d.path}')" title="删除">🗑️</button></div><div class="file-icon">📁</div><div class="file-name">${esc(d.name)}</div>${d.has_note ? `<div class="file-note" title="${esc(d.note)}">${truncate(d.note,50)}</div>`:''}<div class="file-meta"><span>${d.items_count}项</span><span>${d.modified.split(' ')[0]}</span></div></div>`;
+            });
+            data.files.forEach(f => {
+                const icon = getIcon(f.extension);
+                h += `<div class="file-card" onclick="viewFile('${f.path}')"><div class="file-card-actions">${OPENABLE.includes(f.extension)?`<button class="action-btn" onclick="event.stopPropagation();openDirect('${f.path}')" title="打开">🔗</button>`:''}${EDITABLE.includes(f.extension)?`<button class="action-btn" onclick="event.stopPropagation();editFile('${f.path}')" title="编辑">✏️</button>`:''}<button class="action-btn move" onclick="event.stopPropagation();showMoveModal('${f.path}')" title="移动">📤</button><button class="action-btn download" onclick="event.stopPropagation();downloadItem('${f.path}')" title="下载">⬇️</button><button class="action-btn delete" onclick="event.stopPropagation();confirmDelete('${f.path}')" title="删除">🗑️</button></div><div class="file-icon">${icon}</div><div class="file-name">${esc(f.name)}</div><div class="file-meta"><span>${f.size_formatted}</span><span>${f.modified.split(' ')[0]}</span></div></div>`;
+            });
+            c.innerHTML = h + '</div>';
+        }
+
+        function renderList(c, data) {
+            let h = '<div class="file-list"><div class="file-list-header"><div></div><div>名称</div><div>大小</div><div>修改时间</div><div>操作</div></div>';
+            if (data.parent) h += `<div class="file-list-item" onclick="loadDirectory('${data.parent.path}')"><div></div><div class="file-list-info"><span>${data.parent.name}</span></div><div>-</div><div>父目录</div><div></div></div>`;
+            data.directories.forEach(d => {
+                h += `<div class="file-list-item"><div></div><div class="file-list-info" onclick="loadDirectory('${d.path}')" style="cursor:pointer"><span style="font-weight:600">📁 ${esc(d.name)}</span>${d.has_note?`<span class="file-list-note" title="${esc(d.note)}">${truncate(d.note,30)}</span>`:''}</div><div>${d.items_count}项</div><div>${d.modified.split(' ')[0]}</div><div class="file-list-actions"><button class="btn btn-sm btn-info" onclick="editNote('${d.path}')" title="备注">📝</button><button class="btn btn-sm btn-secondary" onclick="showMoveModal('${d.path}')" title="移动">📤</button><button class="btn btn-sm btn-primary" onclick="downloadItem('${d.path}')" title="下载">⬇️</button><button class="btn btn-sm btn-danger" onclick="confirmDelete('${d.path}')" title="删除">🗑️</button></div></div>`;
+            });
+            data.files.forEach(f => {
+                h += `<div class="file-list-item"><div></div><div class="file-list-info" onclick="viewFile('${f.path}')" style="cursor:pointer"><span style="font-weight:600">${getIcon(f.extension)} ${esc(f.name)}</span></div><div>${f.size_formatted}</div><div>${f.modified.split(' ')[0]}</div><div class="file-list-actions">${OPENABLE.includes(f.extension)?`<button class="btn btn-sm btn-info" onclick="openDirect('${f.path}')" title="打开">🔗</button>`:''}${EDITABLE.includes(f.extension)?`<button class="btn btn-sm btn-warning" onclick="editFile('${f.path}')" title="编辑">✏️</button>`:''}<button class="btn btn-sm btn-success" onclick="downloadItem('${f.path}')" title="下载">⬇️</button><button class="btn btn-sm btn-secondary" onclick="showMoveModal('${f.path}')" title="移动">📤</button><button class="btn btn-sm btn-danger" onclick="confirmDelete('${f.path}')" title="删除">🗑️</button></div></div>`;
+            });
+            c.innerHTML = h + '</div>';
+        }
+
+        function getIcon(ext) { return {'.md':'📝','.txt':'📄','.py':'🐍','.js':'📜','.html':'🌐','.htm':'🌐','.css':'🎨','.json':'📋','.yaml':'⚙️','.yml':'⚙️','.svg':'🖼️'}[ext] || '📄'; }
+        function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+        function truncate(s, n) { return s.length > n ? s.substring(0, n) + '...' : s; }
+
+        async function viewFile(path) { await openFileModal(path, false); }
+        async function editFile(path) { await openFileModal(path, true); }
+
+        async function openFileModal(path, isEdit) {
+            try {
+                const res = await fetch(`/api/file/content?path=${encodeURIComponent(path)}`);
+                const data = await res.json();
+                if (data.error) { showToast(data.error, 'error'); return; }
+                currentFilePath = path;
+                originalContent = data.content;
+                currentFileType = data.extension;
+                document.getElementById('modal-file-name').textContent = data.name;
+                document.getElementById('modal-file-icon').textContent = getIcon(data.extension);
+                const editor = document.getElementById('file-editor');
+                editor.value = data.content;
+                editor.readOnly = false;
+                editor.disabled = false;
+                // 显示/隐藏新窗口打开按钮
+                const openBtn = document.getElementById('open-new-btn');
+                if (openBtn) openBtn.style.display = OPENABLE.includes(data.extension) ? 'inline-flex' : 'none';
+                document.getElementById('markdown-preview').innerHTML = '';
+                document.getElementById('html-preview').src = 'about:blank';
+                document.getElementById('view-modal').classList.add('active');
+                // 设置初始模式：编辑模式直接显示保存按钮，查看模式从预览开始
+                const initialMode = isEdit ? 'edit' : (RENDERABLE.includes(data.extension) ? 'preview' : (data.extension === '.md' ? 'split' : 'edit'));
+                setEditorMode(initialMode);
+                // 聚焦编辑器
+                setTimeout(() => { 
+                    editor.focus(); 
+                    if (isEdit) editor.select();
+                }, 100);
+            } catch (e) { showToast('加载失败：' + e.message, 'error'); }
+        }
+
+        function setEditorMode(mode) {
+            editorMode = mode;
+            const ep = document.getElementById('editor-pane'), pp = document.getElementById('preview-pane');
+            const saveBtn = document.getElementById('save-btn');
+            if (!ep || !pp) return;
+            
+            // 清除所有 tab 激活状态
+            document.getElementById('btn-mode-edit').classList.remove('active');
+            document.getElementById('btn-mode-preview').classList.remove('active');
+            document.getElementById('btn-mode-split').classList.remove('active');
+            
+            if (mode === 'edit') {
+                ep.style.display = 'block';
+                ep.style.pointerEvents = 'auto';
+                pp.style.display = 'none';
+                document.getElementById('btn-mode-edit').classList.add('active');
+                // 编辑模式下显示保存按钮
+                if (saveBtn) saveBtn.style.display = 'inline-flex';
+                setTimeout(() => document.getElementById('file-editor').focus(), 50);
+            }
+            else if (mode === 'preview') {
+                ep.style.display = 'none';
+                ep.style.pointerEvents = 'none';
+                pp.style.display = 'block';
+                document.getElementById('btn-mode-preview').classList.add('active');
+                // 预览模式下隐藏保存按钮
+                if (saveBtn) saveBtn.style.display = 'none';
+                updatePreview();
+            }
+            else {
+                ep.style.display = 'block';
+                ep.style.pointerEvents = 'auto';
+                pp.style.display = 'block';
+                document.getElementById('btn-mode-split').classList.add('active');
+                // 分屏模式下显示保存按钮
+                if (saveBtn) saveBtn.style.display = 'inline-flex';
+                updatePreview();
+                setTimeout(() => document.getElementById('file-editor').focus(), 50);
+            }
+        }
+
+        function updatePreview() {
+            const content = document.getElementById('file-editor').value;
+            const mp = document.getElementById('markdown-preview'), hp = document.getElementById('html-preview');
+            if (!mp || !hp) return;
+            if (RENDERABLE.includes(currentFileType)) {
+                mp.style.display = 'none'; hp.style.display = 'block';
+                hp.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(content);
+            } else if (currentFileType === '.md') {
+                hp.style.display = 'none'; mp.style.display = 'block';
+                if (typeof marked !== 'undefined') mp.innerHTML = marked.parse(content);
+            }
+        }
+
+        async function saveFile() {
+            const content = document.getElementById('file-editor').value;
+            try {
+                const res = await fetch('/api/file/save', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({path: currentFilePath, content}) });
+                const data = await res.json();
+                if (data.error) { showToast(data.error, 'error'); }
+                else { originalContent = content; updatePreview(); showToast('已保存', 'success'); closeModal(); loadDirectory(currentPath); loadStats(); }
+            } catch (e) { showToast('保存失败', 'error'); }
+        }
+
+        function closeModal() {
+            const editor = document.getElementById('file-editor');
+            if (editor && editor.value !== originalContent && !confirm('有未保存的修改，确定关闭？')) return;
+            document.getElementById('view-modal').classList.remove('active');
+        }
+
+        function showCreateModal(type) {
+            createType = type;
+            document.getElementById('create-icon').textContent = type === 'dir' ? '📁' : '📄';
+            document.getElementById('create-title').textContent = type === 'dir' ? '新建目录' : '新建文件';
+            document.getElementById('create-content-group').style.display = type === 'file' ? 'block' : 'none';
+            document.getElementById('create-name').value = '';
+            document.getElementById('create-content').value = '';
+            document.getElementById('create-modal').classList.add('active');
+            document.getElementById('create-name').focus();
+        }
+
+        function closeCreateModal() { document.getElementById('create-modal').classList.remove('active'); }
+
+        async function confirmCreate() {
+            const name = document.getElementById('create-name').value.trim();
+            if (!name) { showToast('名称不能为空', 'error'); return; }
+            const endpoint = createType === 'dir' ? '/api/create/dir' : '/api/create/file';
+            const body = {path: currentPath, name};
+            if (createType === 'file') body.content = document.getElementById('create-content').value;
+            try {
+                const res = await fetch(endpoint, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)});
+                const data = await res.json();
+                if (data.error) { showToast(data.error, 'error'); }
+                else { showToast(data.message, 'success'); closeCreateModal(); loadDirectory(currentPath); }
+            } catch (e) { showToast('创建失败', 'error'); }
+        }
+
+        async function editNote(path) {
+            noteTargetPath = path;
+            try {
+                const res = await fetch(`/api/notes/get?path=${encodeURIComponent(path)}`);
+                const data = await res.json();
+                document.getElementById('note-input').value = data.note || '';
+                document.getElementById('note-modal').classList.add('active');
+            } catch (e) { showToast('加载失败', 'error'); }
+        }
+
+        function closeNoteModal() { document.getElementById('note-modal').classList.remove('active'); }
+
+        async function saveNote() {
+            const note = document.getElementById('note-input').value;
+            try {
+                const res = await fetch('/api/notes/save', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({path: noteTargetPath, note})});
+                const data = await res.json();
+                if (data.error) { showToast(data.error, 'error'); }
+                else { showToast('已保存', 'success'); closeNoteModal(); loadDirectory(currentPath); }
+            } catch (e) { showToast('保存失败', 'error'); }
+        }
+
+        function confirmDelete(path) { deleteTarget = path; document.getElementById('delete-path').textContent = path; document.getElementById('delete-modal').classList.add('active'); }
+        function closeDeleteModal() { document.getElementById('delete-modal').classList.remove('active'); deleteTarget = null; }
+
+        document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+            if (!deleteTarget) return;
+            try {
+                const res = await fetch('/api/delete', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({path: deleteTarget})});
+                const data = await res.json();
+                showToast(data.error || data.message, data.error ? 'error' : 'success');
+                if (!data.error) { closeDeleteModal(); loadDirectory(currentPath); loadStats(); }
+            } catch (e) { showToast('删除失败', 'error'); }
+        });
+
+        function showMoveModal(path) {
+            moveTarget = path;
+            document.getElementById('move-source-path').textContent = `源路径：${path}`;
+            document.getElementById('move-dest-input').value = '';
+            document.getElementById('move-modal').classList.add('active');
+            // 加载目录树
+            loadMoveTree();
+            setTimeout(() => document.getElementById('move-dest-input').focus(), 100);
+        }
+
+        function closeMoveModal() {
+            document.getElementById('move-modal').classList.remove('active');
+            moveTarget = null;
+        }
+
+        async function confirmMove() {
+            if (!moveTarget) return;
+            const destPath = document.getElementById('move-dest-input').value.trim();
+            if (!destPath) {
+                showToast('请选择或输入目标路径', 'error');
+                return;
+            }
+            // 构建完整目标路径
+            const sourceParts = moveTarget.split('/');
+            const sourceName = sourceParts[sourceParts.length - 1];
+            const fullDestPath = destPath === '.' ? sourceName : `${destPath}/${sourceName}`;
+            
+            try {
+                const res = await fetch('/api/move', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({source: moveTarget, dest: fullDestPath})
+                });
+                const data = await res.json();
+                showToast(data.error || data.message, data.error ? 'error' : 'success');
+                if (!data.error) {
+                    closeMoveModal();
+                    loadDirectory(currentPath);
+                    loadStats();
+                }
+            } catch (e) {
+                showToast('移动失败：' + e.message, 'error');
+            }
+        }
+
+        async function downloadItem(path) {
+            const url = `/api/download?path=${encodeURIComponent(path)}`;
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast('开始下载：' + path, 'success');
+        }
+
+        async function loadMoveTree() {
+            try {
+                const res = await fetch('/api/tree?path=');
+                const data = await res.json();
+                if (data.error) return;
+                const treeContainer = document.getElementById('move-tree');
+                treeContainer.innerHTML = renderTreeNode(data, 0);
+                treeContainer.style.display = 'block';
+            } catch (e) {
+                console.error('加载目录树失败:', e);
+            }
+        }
+
+        function renderTreeNode(node, depth) {
+            let html = '';
+            if (node.type === 'directory') {
+                const hasChildren = node.children && node.children.length > 0;
+                html += `<div class="tree-node">`;
+                html += `<div class="tree-item" onclick="selectMoveDest('${node.path}')">
+                    ${hasChildren ? `<span class="tree-toggle" onclick="toggleTreeChildren(event, '${node.path}')">▼</span>` : '<span class="tree-toggle"></span>'}
+                    <span>📁</span>
+                    <span>${esc(node.name)}</span>
+                </div>`;
+                if (hasChildren) {
+                    html += `<div class="tree-children" id="tree-${node.path.replace(/\//g, '-')}">`;
+                    node.children.forEach(child => {
+                        html += renderTreeNode(child, depth + 1);
+                    });
+                    html += `</div>`;
+                }
+                html += `</div>`;
+            }
+            return html;
+        }
+
+        function toggleTreeChildren(event, path) {
+            event.stopPropagation();
+            const childrenDiv = document.getElementById(`tree-${path.replace(/\//g, '-')}`);
+            if (childrenDiv) {
+                childrenDiv.style.display = childrenDiv.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function selectMoveDest(path) {
+            document.getElementById('move-dest-input').value = path;
+            // 清除其他选中状态
+            document.querySelectorAll('.tree-item').forEach(item => item.classList.remove('selected'));
+            // 添加选中状态（通过事件目标）
+            event.currentTarget.classList.add('selected');
+        }
+
+        async function searchFiles() {
+            const q = document.getElementById('search-input').value.trim();
+            if (!q) { loadDirectory(''); return; }
+            const useRegex = document.getElementById('regex-checkbox')?.checked || false;
+            document.getElementById('content').innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            try {
+                const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&regex=${useRegex}`);
+                const data = await res.json();
+                if (data.error) { document.getElementById('content').innerHTML = `<div class="empty-state"><h3>${data.error}</h3></div>`; return; }
+                const total = data.files.length + data.directories.length;
+                if (!total) { document.getElementById('content').innerHTML = `<div class="empty-state"><div class="empty-state-icon">🔍</div><h3>未找到</h3></div>`; return; }
+                let h = '<div class="file-grid">';
+                data.directories.forEach(d => h += `<div class="file-card directory" onclick="loadDirectory('${d.path}')"><div class="file-icon">📁</div><div class="file-name">${esc(d.name)}</div><div class="file-meta">${d.path}</div></div>`);
+                data.files.forEach(f => h += `<div class="file-card" onclick="viewFile('${f.path}')"><div class="file-icon">${getIcon(f.extension)}</div><div class="file-name">${esc(f.name)}</div><div class="file-meta">${f.path}</div></div>`);
+                document.getElementById('content').innerHTML = h + '</div>';
+                document.getElementById('breadcrumb').innerHTML = `<span class="breadcrumb-item" onclick="loadDirectory('')">📂 projects</span><span class="breadcrumb-current"> / 🔍 ${q} (${total})</span>`;
+            } catch (e) { document.getElementById('content').innerHTML = `<div class="empty-state"><h3>搜索失败</h3></div>`; }
+        }
+
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/stats');
+                const d = await res.json();
+                document.getElementById('stat-files').textContent = d.total_files;
+                document.getElementById('stat-dirs').textContent = d.total_dirs;
+                document.getElementById('stat-size').textContent = d.total_size;
+            } catch (e) {}
+        }
+
+        // 上传功能
+        let uploadFiles = [];
+        let uploadMode = 'file';
+
+        function showUploadModal() {
+            document.getElementById('upload-progress').style.display = 'none';
+            document.getElementById('upload-confirm-btn').disabled = uploadFiles.length === 0;
+            document.getElementById('upload-modal').classList.add('active');
+            updateUploadFileList();
+        }
+
+        function selectFiles() {
+            document.getElementById('upload-file-input').click();
+        }
+
+        function selectFolder() {
+            document.getElementById('upload-folder-input').click();
+        }
+
+        function onFilesSelected(files, mode) {
+            if (!files || !files.length) return;
+            
+            // 累加文件而不是替换
+            const newFiles = Array.from(files);
+            uploadFiles = uploadFiles.concat(newFiles);
+            uploadMode = mode;
+            
+            console.log(`新增 ${newFiles.length} 个文件，当前共 ${uploadFiles.length} 个文件`);
+            
+            // 清空 input 以便下次选择相同文件
+            document.getElementById('upload-file-input').value = '';
+            document.getElementById('upload-folder-input').value = '';
+            
+            document.getElementById('upload-confirm-btn').disabled = false;
+            updateUploadFileList();
+        }
+
+        function removeFile(index) {
+            uploadFiles.splice(index, 1);
+            updateUploadFileList();
+        }
+
+        function clearAllFiles() {
+            uploadFiles = [];
+            updateUploadFileList();
+        }
+
+        function updateUploadFileList() {
+            const itemsDiv = document.getElementById('upload-file-items');
+            const emptyHint = document.getElementById('upload-empty-hint');
+            const totalCount = document.getElementById('upload-total-count');
+            const totalSize = document.getElementById('upload-total-size');
+            
+            totalCount.textContent = uploadFiles.length;
+            
+            if (!uploadFiles.length) {
+                itemsDiv.innerHTML = '';
+                emptyHint.style.display = 'block';
+                totalSize.textContent = '';
+                document.getElementById('upload-confirm-btn').disabled = true;
+                return;
+            }
+            
+            emptyHint.style.display = 'none';
+            
+            // 计算总大小
+            const totalBytes = uploadFiles.reduce((sum, f) => sum + f.size, 0);
+            totalSize.textContent = formatSize(totalBytes);
+            
+            // 显示文件列表（带删除按钮）
+            itemsDiv.innerHTML = '';
+            uploadFiles.forEach((f, idx) => {
+                const item = document.createElement('div');
+                item.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f8f9fa;border-radius:6px;gap:12px;';
+                
+                const info = document.createElement('div');
+                info.style.cssText = 'flex:1;min-width:0;display:flex;align-items:center;gap:8px;';
+                
+                const icon = document.createElement('span');
+                icon.textContent = f.webkitRelativePath ? '📁' : '📄';
+                icon.style.fontSize = '16px';
+                
+                const name = document.createElement('span');
+                name.textContent = f.webkitRelativePath || f.name;
+                name.style.cssText = 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;';
+                name.title = f.name + (f.size ? ` (${formatSize(f.size)})` : '');
+                
+                const size = document.createElement('span');
+                size.textContent = formatSize(f.size);
+                size.style.cssText = 'font-size:11px;color:var(--muted);min-width:60px;text-align:right;';
+                
+                info.appendChild(icon);
+                info.appendChild(name);
+                info.appendChild(size);
+                
+                const delBtn = document.createElement('button');
+                delBtn.textContent = '×';
+                delBtn.style.cssText = 'width:24px;height:24px;border:none;background:var(--danger);color:#fff;border-radius:4px;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+                delBtn.onclick = (e) => { e.stopPropagation(); removeFile(idx); };
+                delBtn.title = '删除此文件';
+                
+                item.appendChild(info);
+                item.appendChild(delBtn);
+                itemsDiv.appendChild(item);
+            });
+        }
+
+        function formatSize(bytes) {
+            if (!bytes) return '-';
+            const units = ['B', 'KB', 'MB', 'GB'];
+            let i = 0;
+            let size = bytes;
+            while (size >= 1024 && i < units.length - 1) {
+                size /= 1024;
+                i++;
+            }
+            return `${size.toFixed(1)} ${units[i]}`;
+        }
+
+        function closeUploadModal() {
+            document.getElementById('upload-modal').classList.remove('active');
+            uploadFiles = [];
+            uploadMode = 'file';
+            document.getElementById('upload-file-input').value = '';
+            document.getElementById('upload-folder-input').value = '';
+            document.getElementById('upload-progress').style.display = 'none';
+            updateUploadFileList();
+        }
+
+        async function confirmUpload() {
+            if (!uploadFiles || !uploadFiles.length) {
+                showToast('请先选择文件', 'error');
+                return;
+            }
+
+            console.log(`开始上传 ${uploadFiles.length} 个文件...`);
+            const formData = new FormData();
+            uploadFiles.forEach((file, idx) => {
+                formData.append('files[]', file);
+                console.log(`  - ${idx + 1}. ${file.name} (${formatSize(file.size)})`);
+            });
+            formData.append('path', currentPath || '');
+
+            document.getElementById('upload-progress').style.display = 'block';
+            document.getElementById('upload-progress-bar').style.width = '30%';
+            document.getElementById('upload-status').textContent = `正在上传 ${uploadFiles.length} 个文件...`;
+            document.getElementById('upload-confirm-btn').disabled = true;
+
+            try {
+                const res = await fetch('/api/upload-folder', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                }
+                
+                const data = await res.json();
+                console.log('上传响应:', data);
+                
+                document.getElementById('upload-progress-bar').style.width = '100%';
+                
+                if (data.error) {
+                    showToast(data.error, 'error');
+                } else {
+                    showToast(data.message, 'success');
+                    if (data.errors && data.errors.length) {
+                        console.error('上传错误:', data.errors);
+                        setTimeout(() => showToast(`${data.errors.length} 个文件失败`, 'error'), 1000);
+                    }
+                    setTimeout(() => {
+                        closeUploadModal();
+                        loadDirectory(currentPath);
+                        loadStats();
+                    }, 500);
+                }
+            } catch (e) {
+                console.error('上传失败:', e);
+                document.getElementById('upload-progress-bar').style.width = '0%';
+                showToast('上传失败：' + e.message, 'error');
+                document.getElementById('upload-confirm-btn').disabled = false;
+            }
+        }
+
+        function setView(v) { 
+            currentView = v; 
+            const gridBtn = document.getElementById('grid-view-btn');
+            const listBtn = document.getElementById('list-view-btn');
+            if (gridBtn) gridBtn.classList.toggle('active', v === 'grid');
+            if (listBtn) listBtn.classList.toggle('active', v === 'list');
+            loadDirectory(currentPath); 
+        }
+        function showToast(msg, type = 'success') { const t = document.getElementById('toast'); t.textContent = msg; t.className = `toast ${type} show`; setTimeout(() => t.classList.remove('show'), 2500); }
+        function openInNewTab() { if (currentFilePath) window.open(`/api/file/open?path=${encodeURIComponent(currentFilePath)}`, '_blank'); }
+        function openDirect(path) { window.open(`/api/file/open?path=${encodeURIComponent(path)}`, '_blank'); }
+
+        document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) { if (o.id === 'view-modal') closeModal(); else if (o.id === 'create-modal') closeCreateModal(); else if (o.id === 'note-modal') closeNoteModal(); else if (o.id === 'delete-modal') closeDeleteModal(); else if (o.id === 'move-modal') closeMoveModal(); }}));
+
+        // 优化：只在停止输入 500ms 后才更新预览
+        document.addEventListener('DOMContentLoaded', () => {
+            const editor = document.getElementById('file-editor');
+            if (editor) {
+                editor.addEventListener('input', () => {
+                    if (previewTimer) clearTimeout(previewTimer);
+                    if (editorMode === 'split' || editorMode === 'preview') {
+                        if (currentFileType === '.md' || RENDERABLE.includes(currentFileType)) {
+                            previewTimer = setTimeout(updatePreview, 500);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

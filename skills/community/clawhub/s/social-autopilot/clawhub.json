@@ -1,0 +1,12 @@
+{
+  "name": "Social Autopilot",
+  "tagline": "Full autopilot social media engine — posts, threads, reels, all automated",
+  "description": "Complete social media automation for OpenClaw. Auto-generates and posts human-sounding content to X (via tweepy), Instagram Reels (via Graph API), YouTube Shorts (via Data API), and Meta/Facebook. Features: data-driven X threads from CSV analysis, HTML-to-video reel generation with 8 color themes, smart hashtag rotation, content format rotation by day, answer-in-comments strategy. Requires API keys for each platform as environment variables. All credentials read from env — nothing hardcoded. Built by a developer running this system 24/7 in production.",
+  "category": "productivity",
+  "tags": ["social-media", "automation", "instagram", "twitter", "youtube", "reels", "threads", "video"],
+  "version": "1.2.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/abhinawtech/social-autopilot/issues",
+  "homepage": "https://github.com/abhinawtech/social-autopilot"
+}

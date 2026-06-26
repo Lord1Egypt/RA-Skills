@@ -1,0 +1,8 @@
+{
+  "operation": "modifier",
+  "parameters": {
+    "type": "fillet",
+    "target": "MyBox",
+    "radius": 2.0
+  }
+}

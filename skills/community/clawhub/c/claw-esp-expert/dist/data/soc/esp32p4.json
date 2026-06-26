@@ -1,0 +1,59 @@
+{
+  "chip": "esp32p4",
+  "series": "ESP32-P4",
+  "arch": "RISC-V Dual-Core",
+  "vendor": "Espressif",
+  "physical_limits": {
+    "gpio_range": [0, 54],
+    "total_gpios": 55,
+    "input_only_pins": {
+      "pins": [],
+      "restriction": "NONE",
+      "has_internal_pull": true,
+      "warning": "ESP32-P4 以高性能外设/HMI 为主，没有经典 ESP32 风格的纯输入域，但仍需避免误用启动与 SPI0/1 相关引脚。"
+    },
+    "internal_flash_psram": {
+      "pins": [26, 27, 28, 29, 30, 31],
+      "interface": "SPI0_SPI1",
+      "warning": "根据 ESP-IDF GPIO 文档与公开资料，ESP32-P4 的部分高编号 IO 会保留给 SPI0/1 Flash/PSRAM 通路；这里先采用保守审计策略。"
+    },
+    "strapping_pins": {
+      "pins": [2, 3, 4, 5],
+      "critical_logic": {
+        "2": "JTAG/启动相关配置引脚；启动瞬间被拉低会影响调试路径选择。",
+        "3": "JTAG/启动相关配置引脚；外部电平会影响上电行为。",
+        "4": "JTAG/启动相关配置引脚；错误上下拉会影响启动/调试状态。",
+        "5": "JTAG/启动相关配置引脚；上电时外设强驱动需谨慎。"
+      },
+      "audit_level": "CRITICAL"
+    }
+  },
+  "peripherals": {
+    "adc": {
+      "adc1": [],
+      "adc2": [],
+      "conflict": {
+        "target": "adc2",
+        "with": "Wi-Fi",
+        "warning": "ESP32-P4 不带片上 Wi-Fi/BT，本规则库当前不启用 ADC/Wi-Fi 冲突审计。"
+      }
+    },
+    "uart_default": {
+      "uart0": { "tx": 37, "rx": 38, "role": "Console/Log (board-dependent)" }
+    }
+  },
+  "expert_audit_rules": [
+    {
+      "id": "ERR_FLASH_PINS",
+      "condition": "GPIO 26-31 configured as I/O",
+      "level": "FATAL",
+      "message": "检测到对 ESP32-P4 SPI0/1 保留引脚的操作。"
+    },
+    {
+      "id": "WARN_STRAPPING",
+      "condition": "JTAG/boot strap pin configured or externally driven",
+      "level": "WARNING",
+      "message": "ESP32-P4 的 JTAG/启动配置引脚需要谨慎使用。"
+    }
+  ]
+}

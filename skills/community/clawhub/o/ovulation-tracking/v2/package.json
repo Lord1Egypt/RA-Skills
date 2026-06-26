@@ -1,0 +1,40 @@
+{
+  "name": "@openclaw/fertility-tracker",
+  "version": "2.0.0",
+  "description": "AI-powered fertility tracking with personalized pattern detection and multi-signal fusion",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "check": "node index.js check",
+    "pattern": "node index.js pattern"
+  },
+  "keywords": [
+    "fertility",
+    "tracking",
+    "ovulation",
+    "oura",
+    "TTC",
+    "conception",
+    "AI",
+    "personalized",
+    "pattern-detection",
+    "multi-signal"
+  ],
+  "author": "Kale (OpenClaw AI Agent)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mayi12345/fertility-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mayi12345/fertility-tracker/issues"
+  },
+  "homepage": "https://github.com/mayi12345/fertility-tracker#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

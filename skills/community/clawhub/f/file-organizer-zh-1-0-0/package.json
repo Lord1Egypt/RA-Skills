@@ -1,0 +1,9 @@
+{
+  "name": "file-organizer-zh",
+  "version": "1.0.0",
+  "description": "文件整理器，按类型自动分类（中文版）",
+  "main": "index.js",
+  "author": "黄豆豆",
+  "license": "MIT",
+  "keywords": ["文件", "整理", "效率", "工具", "中文"]
+}

@@ -1,0 +1,93 @@
+{
+  "source": {
+    "originalName": "20260405-harness-engineering-海内外原文与分析.md",
+    "markdownPath": "content/articles/2026-04-06-harness-engineering/source.md",
+    "uploadedAt": "2026-04-06 14:46:25",
+    "warnings": [
+      "已导入文章。请先选择风格、配色并确认提示词，再手动生成预览、封面和正文配图。"
+    ]
+  },
+  "layout": {
+    "theme": "winter-slate",
+    "template": "xiumi-winter-ins",
+    "themeFile": "",
+    "referenceUrl": "",
+    "warning": "",
+    "extractionMeta": {},
+    "updatedAt": "2026-04-06 14:46:56"
+  },
+  "tone": {
+    "theme": "winter-slate",
+    "primaryColor": "#5f77f2",
+    "saturation": 100,
+    "opacity": 88,
+    "updatedAt": "2026-04-06 14:46:56"
+  },
+  "typography": {
+    "template": "xiumi-winter-ins",
+    "titleStyle": "standard",
+    "bodySize": 16,
+    "lineHeight": 1.9,
+    "paragraphGap": 16,
+    "sectionStyle": "editorial",
+    "imageRadius": 24,
+    "imageSpacing": 22,
+    "updatedAt": "2026-04-06 14:46:56"
+  },
+  "cover": {
+    "candidatePath": "",
+    "generated": null,
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": ""
+  },
+  "coverModules": {
+    "current": null,
+    "history": [],
+    "style": "collage-editorial",
+    "updatedAt": ""
+  },
+  "inlineImages": {
+    "items": [],
+    "history": [],
+    "archivedHistory": [],
+    "positions": {},
+    "promptOverrides": {},
+    "customPrompt": "",
+    "slots": [
+      {
+        "slotId": "slot-1",
+        "order": 1,
+        "prompt": "visual theme winter-slate, layout template xiumi-winter-ins, selected primary color #5f77f2, saturation 100 percent, opacity 88 percent; use #5f77f2 as the dominant accent color and repeat it consistently across outlines, arrows, icons, labels, badges, ribbons, dividers, border strokes, highlight blocks, and data accents; supporting light tint #dce1fc, deeper companion tint #556ad2; keep the background mostly white or very light neutral; avoid unrelated default blue, orange, green, or purple accents unless they are clearly derived from #5f77f2; the image palette should feel tied to the selected primary color instead of a generic preset palette; article companion image; article title: 未命名文章; section focus: 1. Martin Fowler：Harness engineering for…; clean editorial infographic, no extra text",
+        "anchorBlockId": "heading:16",
+        "targetLabel": "1. Martin Fowler：Harness engineering for…",
+        "nearestHeading": "1. Martin Fowler：Harness engineering for…",
+        "selectedLocalPath": "",
+        "currentItem": null,
+        "history": [],
+        "updatedAt": "2026-04-06 14:47:53"
+      }
+    ],
+    "nextSlotIndex": 2,
+    "updatedAt": "2026-04-06 16:57:44"
+  },
+  "sectionModules": {
+    "items": [],
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": ""
+  },
+  "draft": {
+    "mediaId": "",
+    "title": "",
+    "pushedAt": "",
+    "lastError": "",
+    "theme": "",
+    "themeFile": "",
+    "template": ""
+  },
+  "preview": {
+    "initialized": true,
+    "updatedAt": "2026-04-06 14:46:56"
+  }
+}

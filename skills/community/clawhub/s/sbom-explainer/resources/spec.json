@@ -1,0 +1,37 @@
+{
+  "slug": "sbom-explainer",
+  "title": "SBOM 说明官",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "structured_brief",
+  "summary": "把依赖清单或 SBOM 翻译成非技术可读的风险说明，按影响面排序。",
+  "inputHint": "SBOM、依赖列表、已知问题",
+  "sections": [
+    "依赖概览",
+    "主要风险",
+    "影响面",
+    "优先处理项",
+    "缓解建议",
+    "沟通口径"
+  ],
+  "useCases": [
+    "管理层汇报",
+    "供应链风险沟通",
+    "发布说明"
+  ],
+  "positiveExamples": [
+    "把这份 SBOM 讲成人能看懂的话",
+    "按影响面排序风险"
+  ],
+  "negativeExamples": [
+    "不要伪造 CVE 状态",
+    "不要替代专业漏洞扫描"
+  ],
+  "risk": "适合作为解释层而非扫描层。",
+  "tags": [
+    "sbom",
+    "dependencies",
+    "risk",
+    "security"
+  ]
+}

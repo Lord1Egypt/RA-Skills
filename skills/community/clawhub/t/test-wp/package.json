@@ -1,0 +1,51 @@
+{
+  "name": "wordpress-auto-publish",
+  "version": "1.0.0",
+  "description": "自动将Markdown文章发布到WordPress博客",
+  "main": "publish.js",
+  "scripts": {
+    "start": "node publish.js",
+    "publish": "node publish.js",
+    "batch": "node batch-publish.js",
+    "list": "node list-posts.js",
+    "test": "echo \"运行测试: node test-connection.js\" && node test-connection.js",
+    "setup": "bash scripts/setup-wordpress.sh",
+    "help": "echo '可用命令: npm start, npm run batch, npm run list, npm test, npm run setup'"
+  },
+  "keywords": [
+    "wordpress",
+    "blog",
+    "publish",
+    "markdown",
+    "automation",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "marked": "^11.0.0",
+    "yargs": "^17.7.2",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://github.com/openclaw/skills#readme",
+  "files": [
+    "*.js",
+    "*.md",
+    "*.json",
+    "scripts/",
+    "posts/"
+  ]
+}

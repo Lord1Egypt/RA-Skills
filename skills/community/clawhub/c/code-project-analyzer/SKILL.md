@@ -1,35 +1,31 @@
 ---
-name: "Code Project Auto Analyzer"
-description: "自动分析任意代码目录的结构与内容，识别项目主要功能、模块划分、技术栈，自动生成规范的项目介绍文档，包含基础功能、应用场景、实现原理三个核心部分。使用当需要快速了解陌生项目结构、生成项目README/介绍文档、梳理代码架构时触发。"
-category: "other"
-source: "ClawHub"
-tags: [auto-doc-generator, code-analysis, project-documentation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-project-analyzer"
-sourceUrl: "https://clawhub.ai/skills/code-project-analyzer"
+name: code-project-analyzer
+description: 自动分析任意代码目录的结构与内容，识别项目主要功能、模块划分、技术栈，自动生成规范的项目介绍文档，包含基础功能、应用场景、实现原理三个核心部分。使用当需要快速了解陌生项目结构、生成项目README/介绍文档、梳理代码架构时触发。
 ---
-
-# Code Project Auto Analyzer
-
-> 自动分析任意代码目录的结构与内容，识别项目主要功能、模块划分、技术栈，自动生成规范的项目介绍文档，包含基础功能、应用场景、实现原理三个核心部分。使用当需要快速了解陌生项目结构、生成项目README/介绍文档、梳理代码架构时触发。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-project-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/code-project-analyzer](https://clawhub.ai/skills/code-project-analyzer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-project-analyzer
+# 代码项目分析助手
+## 功能说明
+扫描指定代码目录，自动完成：
+1. 识别项目技术栈、依赖、核心入口文件
+2. 分析模块划分与目录结构职责
+3. 提炼项目核心功能、应用场景
+4. 总结核心实现原理与架构特点
+5. 输出标准化的项目介绍文档（支持Markdown格式）
+## 触发关键词
+- "分析这个项目"
+- "生成项目介绍文档"
+- "梳理代码结构"
+- "这个项目是干啥的"
+- "帮我看下这个代码库的架构"
+## 使用方法
 ```
+分析代码目录 <本地路径>
+生成项目介绍文档到 <输出路径>
+梳理 <路径> 的代码架构
+```
+## 支持的项目类型
+- 前端项目（JS/TS/Vue/React等）
+- 后端项目（Node.js/Python/Go/Java等）
+- 工具类项目、脚本项目
+## 依赖
+- Node.js 18+
+- 本地文件读取权限

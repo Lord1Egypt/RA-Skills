@@ -1,0 +1,36 @@
+{
+  "name": "auto-login",
+  "version": "1.0.0",
+  "description": "通用网页自动登录 Skill - 集成验证码识别（本地 OCR + 阿里云 Qwen VL）。支持配置化登录流程、多网站规则、自动重试。",
+  "main": "index.mjs",
+  "type": "module",
+  "keywords": [
+    "auto-login",
+    "captcha",
+    "ocr",
+    "automation",
+    "qwen",
+    "vision",
+    "playwright",
+    "tesseract",
+    "web-automation"
+  ],
+  "author": "Lie Troksky and Athena",
+  "license": "MIT",
+  "dependencies": {
+    "playwright-core": "^1.40.0",
+    "tesseract.js": "^5.0.0"
+  },
+  "scripts": {
+    "test": "node index.mjs",
+    "demo": "node scripts/run.mjs --site=chaojiying"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "entry": "index.mjs",
+    "env": ["VISION_API_KEY", "VISION_BASE_URL", "VISION_MODEL"],
+    "bins": ["node", "google-chrome"]
+  }
+}

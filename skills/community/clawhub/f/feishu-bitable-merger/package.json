@@ -1,0 +1,20 @@
+{
+  "name": "feishu-bitable-merger",
+  "version": "1.0.0",
+  "description": "飞书多维表格合并工具 | 合并多个飞书多维表格的数据到一个表格",
+  "main": "index.js",
+  "bin": {
+    "feishu-bitable-merger": "./index.js"
+  },
+  "keywords": [
+    "feishu",
+    "bitable",
+    "merge",
+    "openclaw-skill"
+  ],
+  "author": "铲子",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
+}

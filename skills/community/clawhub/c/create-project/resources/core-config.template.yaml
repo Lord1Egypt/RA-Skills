@@ -1,0 +1,67 @@
+title: Orchestrix Core System
+description: >
+  The core agent framework for Orchestrix, providing the essential agents,
+  workflows, and data for building and managing AI-driven development teams.
+markdownExploder: true
+project:
+  name: '{{PROJECT_NAME}}'
+  mode: monolith
+  testCommand: '{{TEST_COMMAND}}'
+  multi_repo:
+    role: implementation
+    repository_id: '{{REPO_ID}}'
+    product_repo_path: ''
+    auto_filter_stories: false
+    assigned_stories: []
+prd:
+  prdFile: docs/prd.md
+  prdSharded: false
+  prdShardedLocation: docs/prd
+architecture:
+  architectureFile: docs/architecture.md
+  architectureSharded: false
+  architectureShardedLocation: docs/architecture
+  storyReviewsLocation: docs/architecture/story-reviews
+customTechnicalDocuments: null
+devLoadAlwaysFiles:
+  - docs/architecture/*coding-standards.md
+  - docs/architecture/*tech-stack.md
+  - docs/architecture/*source-tree.md
+devDebugLog: .ai/debug-log.md
+devStoryLocation: docs/stories
+verticalSliceStrategy: true
+dev:
+  devLogLocation: docs/dev/logs
+  devLogEnabled: true
+architect:
+  storyReviewsLocation: docs/architecture/story-reviews
+qa:
+  qaLocation: docs/qa
+  qaReviewsLocation: docs/qa/reviews
+  evidenceLocation: docs/qa/evidence
+  testDesignThresholds:
+    simple:
+      maxComplexity: 0
+      minQualityScore: 8.5
+      securitySensitive: false
+      tasks: []
+    standard:
+      maxComplexity: 2
+      minQualityScore: 7
+      tasks:
+        - test-design
+    comprehensive:
+      minComplexity: 3
+      securitySensitive: true
+      tasks:
+        - test-design
+        - risk-profile
+slashPrefix: Orchestrix
+version: 15.14.0
+i18n:
+  default_language: en
+  supported_languages:
+    - en
+    - zh
+  fallback_to_default: true
+  file_pattern: '{name}.{lang}.{ext}'

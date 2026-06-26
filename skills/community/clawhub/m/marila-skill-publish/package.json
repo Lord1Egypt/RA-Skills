@@ -1,0 +1,28 @@
+{
+  "name": "marila-skill-publish",
+  "version": "1.0.8",
+  "description": "发布和更新 OpenClaw 技能到 ClawHub，并同步 GitHub Release、metadata 审核修复、ClawHub CLI publish 兼容坑排查与手工 API 发布兜底。",
+  "keywords": [
+    "clawhub",
+    "skill-publish",
+    "openclaw",
+    "workflow",
+    "guide"
+  ],
+  "author": "Marila <aliramw>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliramw/marila-skill-publish.git"
+  },
+  "clawhub": {
+    "requiresBinaries": [
+      "clawhub",
+      "git",
+      "gh"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"No tests\" && exit 0"
+  }
+}

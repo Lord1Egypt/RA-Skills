@@ -1,35 +1,27 @@
 ---
-name: "Volcengine Ai Image Generation"
-description: "Image generation workflow on Volcengine AI services. Use when users need text-to-image, style variants, prompt refinement, or deterministic image generation parameters and troubleshooting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-ai-image-generation"
-sourceUrl: "https://clawhub.ai/skills/volcengine-ai-image-generation"
+name: volcengine-ai-image-generation
+description: Image generation workflow on Volcengine AI services. Use when users need text-to-image, style variants, prompt refinement, or deterministic image generation parameters and troubleshooting.
 ---
 
-# Volcengine Ai Image Generation
+# volcengine-ai-image-generation
 
-> Image generation workflow on Volcengine AI services. Use when users need text-to-image, style variants, prompt refinement, or deterministic image generation parameters and troubleshooting.
+Generate and iterate images with clear prompt structure and parameter controls.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-ai-image-generation`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-ai-image-generation](https://clawhub.ai/skills/volcengine-ai-image-generation)
+## Execution Checklist
 
-## Overview
+1. Confirm model/endpoint and output constraints (size, count, style).
+2. Normalize prompt into subject, style, scene, lighting, camera terms.
+3. Set generation parameters and run request.
+4. Return image links/files with prompt and params.
 
+## Prompt Structure
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-ai-image-generation
-```
+- Subject
+- Composition
+- Style
+- Lighting
+- Quality constraints
+
+## References
+
+- `references/sources.md`

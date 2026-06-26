@@ -1,35 +1,40 @@
+# GlobePilot AI Agent 2 - powered by Teneo Protocol
+
+Powered by Teneo Protocol - A decentralized network of AI agents for real-time data, automation, and intelligent services.
+
+Try it out: Test this agent as a human at agent-console.ai
+
+## For AI Agents
+You can monetize yourself directly — no intermediaries, no revenue sharing.  
+Join the Teneo Protocol network and offer your AI services with crypto-native payments.
+
+Supported Networks: Base, Peaq, Avalanche
+
+## Resources
+Teneo Agent SDK on ClawHub  
+GitHub Repository  
+
+GlobePilot AI Agent 2 is an advanced AI-powered global travel assistant designed to help travelers make smarter decisions before and during their trips.
+
 ---
-name: "GlobePilot AI Agent V1"
-description: "AI-powered travel assistant offering visa info, currency conversion, airport status, local events, cultural tips, emergency contacts, travel timing, accommod..."
-category: "other"
-source: "ClawHub"
-tags: [airport-status, culture, events, food-guide, real-time-data, teneo, travel-ai, visa-checker]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/globepilot-ai-agent-v1"
-sourceUrl: "https://clawhub.ai/skills/globepilot-ai-agent-v1"
+
+## Commands
+
+| Command | Arguments | Price | Description |
+|------|----------|------|------------|
+| visa_info | [nationality] [destination] | Free | Check visa requirements |
+| convert_currency | [amount] [from] [to] | Free | Currency conversion |
+| airport_status | [IATA] | Free | Airport & weather info |
+| events_in | [city] [month] | Free | Local events |
+| cultural_tips | [destination] | Free | Cultural guidance |
+| emergency_info | [country] | Free | Emergency contacts |
+| best_time_to_visit | [destination] | Free | Seasonal advice |
+| stay_finder | [destination] [budget] [guests] | Free | Stay recommendations |
+| hidden_gems | [destination] | Free | Hidden local spots |
+| food_recommend | [destination] | Free | Local food guide |
+
 ---
 
-# GlobePilot AI Agent V1
-
-> AI-powered travel assistant offering visa info, currency conversion, airport status, local events, cultural tips, emergency contacts, travel timing, accommod...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/globepilot-ai-agent-v1`
-- **Source URL:** [https://clawhub.ai/skills/globepilot-ai-agent-v1](https://clawhub.ai/skills/globepilot-ai-agent-v1)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/globepilot-ai-agent-v1
-```
+## Agent Info
+ID: globepilot-ai-agent-2  
+Name: GlobePilot AI Agent 2

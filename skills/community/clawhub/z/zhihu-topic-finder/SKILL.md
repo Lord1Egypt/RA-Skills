@@ -1,35 +1,33 @@
 ---
-name: "知乎热榜选题"
-description: "知乎内容搜索与分析工具。搜索知乎热榜话题、分析高价值问题。 当用户说"搜一下知乎"、"知乎有什么"、"知乎选题"、"搜知乎热榜"时触发。 Keywords: 知乎, zhihu, 选题, 知乎热榜, 知乎搜索."
-category: "creative"
-source: "ClawHub"
-tags: [chinese, content, topic, zhihu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhihu-topic-finder"
-sourceUrl: "https://clawhub.ai/skills/zhihu-topic-finder"
+slug: zhihu-topic-finder
+name: 知乎选题分析器
+version: "1.0.0"
+author: 千策
 ---
 
-# 知乎热榜选题
 
-> 知乎内容搜索与分析工具。搜索知乎热榜话题、分析高价值问题。 当用户说"搜一下知乎"、"知乎有什么"、"知乎选题"、"搜知乎热榜"时触发。 Keywords: 知乎, zhihu, 选题, 知乎热榜, 知乎搜索.
+# 知乎选题分析器
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhihu-topic-finder`
-- **Source URL:** [https://clawhub.ai/skills/zhihu-topic-finder](https://clawhub.ai/skills/zhihu-topic-finder)
+搜索知乎热榜话题，分析高价值问题，帮助内容创作者精准选题。
 
-## Overview
+## 核心能力
 
+1. **知乎热榜抓取** — 获取知乎实时热榜Top50
+2. **问题分析** — 评估问题的回答数、浏览量、关注数
+3. **机会评分** — 根据热度与竞争度评估内容机会
+4. **竞品追踪** — 分析已有回答的质量与角度
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhihu-topic-finder
+## 使用方式
+
+用户说"搜一下知乎"或"知乎有什么热点"时：
+
 ```
+python3 scripts/zhihu_topics.py
+```
+
+## 注意事项
+
+- 使用公开API获取热榜数据，无需登录
+- 评分基于热度与竞争度的综合评估
+- 建议选择评分80+的问题进行回答
+- 回答角度建议避开已有高赞回答的相同观点

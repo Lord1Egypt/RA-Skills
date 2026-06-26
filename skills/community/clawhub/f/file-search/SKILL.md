@@ -1,35 +1,67 @@
 ---
-name: "File Search"
+name: file-search
 description: "Fast file-name and content search using `fd` and `rg` (ripgrep)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-search"
-sourceUrl: "https://clawhub.ai/skills/file-search"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔍",
+        "requires": { "bins": ["fd", "rg"] },
+        "install":
+          [
+            {
+              "id": "dnf-fd",
+              "kind": "dnf",
+              "package": "fd-find",
+              "bins": ["fd"],
+              "label": "Install fd-find (dnf)",
+            },
+            {
+              "id": "dnf-rg",
+              "kind": "dnf",
+              "package": "ripgrep",
+              "bins": ["rg"],
+              "label": "Install ripgrep (dnf)",
+            },
+          ],
+      },
+  }
 ---
 
-# File Search
+# File Search Skill
 
-> Fast file-name and content search using `fd` and `rg` (ripgrep).
+Fast file-name and content search using `fd` and `rg` (ripgrep).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-search`
-- **Source URL:** [https://clawhub.ai/skills/file-search](https://clawhub.ai/skills/file-search)
+## Find Files by Name
 
-## Overview
+Search for files matching a pattern:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/file-search
+fd "\.rs$" /home/xrx/projects
+```
+
+Find files by exact name:
+
+```bash
+fd -g "Cargo.toml" /home/xrx/projects
+```
+
+## Search File Contents
+
+Search for a regex pattern across files:
+
+```bash
+rg "TODO|FIXME" /home/xrx/projects
+```
+
+Search with context lines:
+
+```bash
+rg -C 3 "fn main" /home/xrx/projects --type rust
+```
+
+## Install
+
+```bash
+sudo dnf install fd-find ripgrep
 ```

@@ -1,0 +1,56 @@
+# yuanfang-html-ppt 默认演示内容 (7 张, 基础布局)
+# 实际使用请替换为你的 PPT 内容
+
+brand: minimal-white
+theme: minimal-white          # 12 个主题之一
+title: 完整 Deck 演示
+author: 产品团队
+date: "2026-06-07"
+
+slides:
+  # ── 1. 封面 ──
+  - layout: cover
+    title: "完整 Deck 演示"
+    subtitle: "7 种布局全覆盖"
+
+  # ── 2. 章节分割 ──
+  - layout: section
+    title: "战略方向"
+
+  # ── 3. 内容页 ──
+  - layout: content
+    title: "核心目标"
+    points:
+      - "用户增长 +30%"
+      - "上线 5 个新功能"
+      - "性能优化 <200ms"
+
+  # ── 4. 双栏对比 ──
+  - layout: two-column
+    title: "竞品对比"
+    leftTitle: "我们"
+    leftPoints: ["开源", "可定制", "低成本"]
+    rightTitle: "竞品"
+    rightPoints: ["闭源", "标准化", "高成本"]
+
+  # ── 5. KPI 网格 ──
+  - layout: data
+    title: "关键指标"
+    metrics:
+      - { label: "MAU",  value: "120 万",  change: "+15%" }
+      - { label: "营收", value: "¥580 万", change: "+22%" }
+      - { label: "NPS",  value: "72",     change: "+8pts" }
+
+  # ── 6. 客户引用 ──
+  - layout: quote
+    title: "客户评价"
+    quote: "这个平台彻底改变了我们的工作方式"
+    attribution: "张伟, CTO"
+
+  # ── 7. 下一步 ──
+  - layout: summary
+    title: "下一步"
+    points:
+      - "7 月: Alpha 内测"
+      - "8 月: 公测"
+      - "9 月: 上线"

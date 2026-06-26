@@ -1,0 +1,14 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "decision": "long",
+    "outcome": "win",
+    "lesson_tags": ["trend-aligned", "good-volume"]
+  },
+  {
+    "symbol": "ETHUSDT",
+    "decision": "short",
+    "outcome": "loss",
+    "lesson_tags": ["high-volatility", "weak-structure"]
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "namespace": "user",
+  "name": "08-video-merge",
+  "displayName": "08 Video Merge",
+  "description": "视频+音频+字幕合成最终成片",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "video_url": { "type": "string" },
+      "audio_url": { "type": "string" },
+      "subtitle_url": { "type": "string" }
+    },
+    "required": ["video_url","audio_url"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "final_video_url": { "type": "string" }
+    },
+    "required": ["final_video_url"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js"
+}

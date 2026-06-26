@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Form 1040 Review Input",
+  "type": "object",
+  "required": ["returns"],
+  "properties": {
+    "returns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["tax_year", "filing_status", "major_items"],
+        "properties": {
+          "tax_year": {"type": "integer"},
+          "filing_status": {
+            "type": "string",
+            "description": "single | married_filing_jointly | married_filing_separately | head_of_household | qualifying_surviving_spouse"
+          },
+          "deduction_type": {
+            "type": "string",
+            "enum": ["standard", "itemized"],
+            "default": "standard"
+          },
+          "dependents_count": {"type": "integer", "minimum": 0, "default": 0},
+          "qualifying_children_ctc": {"type": "integer", "minimum": 0, "default": 0},
+          "additional_standard_deduction_count": {"type": "integer", "minimum": 0, "default": 0},
+          "has_preferential_income": {"type": "boolean", "default": false},
+          "major_items": {
+            "type": "object",
+            "description": "Use canonical keys from references/major_items_reference.md",
+            "properties": {
+              "wages": {"type": "number"},
+              "wages_subject_to_social_security": {"type": "number"},
+              "taxable_interest": {"type": "number"},
+              "ordinary_dividends": {"type": "number"},
+              "qualified_dividends": {"type": "number"},
+              "capital_gain_or_loss": {"type": "number"},
+              "business_income": {"type": "number"},
+              "self_employment_net_earnings": {"type": "number"},
+              "schedule_se_tax": {"type": "number"},
+              "unemployment_compensation": {"type": "number"},
+              "other_income": {"type": "number"},
+              "total_income": {"type": "number"},
+              "adjustments_to_income": {"type": "number"},
+              "agi": {"type": "number"},
+              "deduction_amount": {"type": "number"},
+              "qbi_deduction": {"type": "number"},
+              "taxable_income": {"type": "number"},
+              "tax_before_credits": {"type": "number"},
+              "nonrefundable_credits": {"type": "number"},
+              "ctc_claimed": {"type": "number"},
+              "actc_claimed": {"type": "number"},
+              "other_taxes": {"type": "number"},
+              "additional_medicare_tax": {"type": "number"},
+              "total_tax": {"type": "number"},
+              "withholding": {"type": "number"},
+              "estimated_tax_payments": {"type": "number"},
+              "refundable_credits": {"type": "number"},
+              "other_payments": {"type": "number"},
+              "total_payments": {"type": "number"},
+              "refund": {"type": "number"},
+              "amount_owed": {"type": "number"},
+              "earned_income": {"type": "number"}
+            },
+            "additionalProperties": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Optional source metadata such as source_file or extraction notes"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

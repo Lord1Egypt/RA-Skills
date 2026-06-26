@@ -1,35 +1,156 @@
 ---
-name: "holiday-enough"
-description: "评估旅行目的地需要几天才能玩好，判断用户的假期时间是否充足。通过真实旅行攻略提取各段路线实际耗时，给出"时间充裕/刚好/偏紧"的评估和精简方案建议。 当用户提到以下场景时使用此 skill：假期够不够、旅行时间评估、几天够玩、行程天数、时间够吗、假期天数够不够、去XX玩几天合适、XX天能玩完吗。 即使用户没有明确..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/holiday-enough"
-sourceUrl: "https://clawhub.ai/skills/holiday-enough"
+name: holiday-enough
+description:
+  评估旅行目的地需要几天才能玩好，判断用户的假期时间是否充足。通过真实旅行攻略提取各段路线实际耗时，给出"时间充裕/刚好/偏紧"的评估和精简方案建议。
+  当用户提到以下场景时使用此 skill：假期够不够、旅行时间评估、几天够玩、行程天数、时间够吗、假期天数够不够、去XX玩几天合适、XX天能玩完吗。
+  即使用户没有明确说"评估时间"，只要涉及"目的地 + 可用天数"的组合，就应该触发此 skill。
+user-invokable: true
 ---
 
-# holiday-enough
+# 假期够不够
 
-> 评估旅行目的地需要几天才能玩好，判断用户的假期时间是否充足。通过真实旅行攻略提取各段路线实际耗时，给出"时间充裕/刚好/偏紧"的评估和精简方案建议。 当用户提到以下场景时使用此 skill：假期够不够、旅行时间评估、几天够玩、行程天数、时间够吗、假期天数够不够、去XX玩几天合适、XX天能玩完吗。 即使用户没有明确...
+帮用户判断假期时间和旅行目的地是否匹配。核心逻辑：从社区平台获取真实攻略中的时间数据，与用户可用天数对比，给出实用建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/holiday-enough`
-- **Source URL:** [https://clawhub.ai/skills/holiday-enough](https://clawhub.ai/skills/holiday-enough)
+## 前置检查
 
-## Overview
+每次执行前先确认 CDP 环境可用：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/holiday-enough
+node "$SKILL_ROOT/scripts/check-deps.mjs"
 ```
+
+- 需要 **Node.js 22+**
+- 需要 **Chrome 远程调试已开启**
+
+如果脚本报告 Chrome 未连接，它会自动打开 `chrome://inspect/#remote-debugging` 页面。此时告诉用户：
+
+> 已为你打开 Chrome 调试设置页面。请勾选页面中的 **"Allow remote debugging for this browser instance"**，完成后告诉我，我会继续执行。
+
+用户确认后重新运行 `check-deps.mjs` 验证连接。
+
+## 输入获取
+
+从用户的描述中提取两个关键信息：
+
+1. **目的地** -- 具体城市、地区或景点（如"云南"、"成都"、"大阪+京都"）
+2. **可用假期天数** -- 用户有几天时间（如"国庆7天"、"清明3天"）
+
+如果用户只提了目的地没说天数，主动追问可用天数。如果用户只说了天数没说目的地，追问想去哪里。两个信息都齐了再开始检索。
+
+路线不需要用户提供，由真实攻略中获取。
+
+## 攻略检索流程
+
+数据源为反爬严格的社区平台，必须通过 CDP 浏览器模式访问，不要尝试 WebSearch 或 WebFetch。
+
+### 第一步：打开搜索页
+
+```bash
+# 启动搜索页（将 KEYWORD 替换为实际关键词）
+curl -s "http://localhost:3456/new?url=https://www.xiaohongshu.com/search_result?keyword=KEYWORD&source=web_search_result_note"
+```
+
+搜索关键词策略 -- 用多组关键词获取更全面的信息：
+- `"{目的地} 旅行攻略 时间安排"`
+- `"{目的地} 几天够玩"`
+- `"{目的地} X天行程"` （X 为用户提供的天数）
+
+记录返回的 targetId，后续操作都需要用到。
+
+### 第二步：提取笔记列表
+
+```bash
+# 等待页面加载后提取笔记链接和标题
+curl -s -X POST "http://localhost:3456/eval?target=TARGET_ID" \
+  -d 'JSON.stringify([...document.querySelectorAll("section.note-item a.cover")].slice(0, 10).map(a => ({title: a.closest("section")?.querySelector(".title")?.textContent?.trim() || "", url: a.href})))'
+```
+
+如果选择器未命中，先用 `/eval` 观察页面实际 DOM 结构再调整选择器。该平台前端频繁改版，选择器可能需要适配。
+
+可以用 `/scroll` 向下滚动加载更多结果：
+```bash
+curl -s "http://localhost:3456/scroll?target=TARGET_ID&direction=bottom"
+```
+
+### 第三步：逐篇提取笔记正文
+
+从搜索结果中选取 5-10 篇相关度高的笔记（标题中包含天数、攻略、行程等关键词的优先），逐一打开并提取正文：
+
+```bash
+# 在新标签页打开笔记
+curl -s "http://localhost:3456/new?url=NOTE_URL"
+
+# 提取正文内容
+curl -s -X POST "http://localhost:3456/eval?target=NOTE_TARGET_ID" \
+  -d 'document.querySelector("#detail-desc")?.textContent?.trim() || document.querySelector(".note-text")?.textContent?.trim() || ""'
+```
+
+提取完一篇后关闭标签页再打开下一篇，避免同时开太多标签页：
+```bash
+curl -s "http://localhost:3456/close?target=NOTE_TARGET_ID"
+```
+
+### 第四步：清理
+
+所有笔记提取完毕后，关闭搜索页标签页：
+```bash
+curl -s "http://localhost:3456/close?target=TARGET_ID"
+```
+
+### 检索注意事项
+
+- 该平台需要用户已登录才能看到完整内容。如果提取到的正文为空或内容不完整，提示用户在 Chrome 中登录后重试。
+- 不要短时间内密集打开大量标签页，每篇笔记操作之间自然间隔即可。
+- DOM 选择器可能随平台改版而变化。如果预设选择器失效，用 `/eval` 查看实际 DOM 结构并动态调整。
+- 如果某组关键词搜索结果不理想，换一组关键词重试。
+
+## 信息提取与分析
+
+这个 skill 的核心是**判断时间够不够**，不是帮用户做路线规划。提取信息时聚焦以下三点：
+
+1. **必去景点** -- 多篇攻略中高频出现的热门景点
+2. **各景点耗时** -- 每个景点建议游玩时间，以及景点间的交通时间
+3. **推荐总天数** -- 多数作者建议的行程天数
+
+交叉对比多篇笔记，关注共识性结论：
+- 多数人建议玩几天？
+- 哪些景点是公认必去的？
+- 哪些景点被多人标记为"可选"或"时间紧可以跳过"？
+
+## 输出格式
+
+结论先行，依据在后。语言简洁实用。
+
+### 1. 时间评估（结论）
+
+这是最重要的部分，放在最前面。明确回答用户"我的假期够不够"：
+
+- **推荐天数**：根据攻略综合得出的建议天数
+- **你的假期**：用户提供的可用天数
+- **结论**：三级判断
+  - **充裕** -- 可用天数 > 推荐天数，有余力深度游或增加周边
+  - **刚好** -- 可用天数 ≈ 推荐天数，核心景点都能覆盖但节奏较紧凑
+  - **偏紧** -- 可用天数 < 推荐天数，需要取舍
+
+### 2. 热门景点耗时（依据）
+
+列出该目的地的必去景点及各自所需时间，作为结论的支撑依据。格式：
+
+```
+[景点名]：游玩约X小时
+[景点名]：游玩约X小时（距上一景点车程约X小时）
+...
+合计：核心景点游玩约需X天
+```
+
+标注数据来源于真实用户攻略，可能因季节、交通方式等因素有所差异。
+
+### 3. 调整建议
+
+根据评估结论给出针对性建议：
+
+- **充裕时**：推荐可以增加的周边景点或深度体验
+- **刚好时**：提示哪些环节时间最紧，建议预留弹性
+- **偏紧时**：明确建议哪些景点可以跳过，给出精简方案
+
+每条建议要具体，比如"XX景点可以跳过，多数人反馈性价比不高"或"XX和XX距离近，可以安排在同一天"。

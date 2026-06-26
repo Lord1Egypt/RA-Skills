@@ -1,0 +1,19 @@
+{
+  "headline": "{{HEADLINE}}",
+  "panels": [
+    {
+      "text": "{{PANEL_1_TEXT}}"
+    },
+    {
+      "text": "{{PANEL_2_TEXT}}",
+      "stat": "{{PANEL_2_STAT}}"
+    },
+    {
+      "text": "{{PANEL_3_TEXT}}"
+    },
+    {
+      "text": "{{CTA_TEXT}}",
+      "url": "{{CTA_URL}}"
+    }
+  ]
+}

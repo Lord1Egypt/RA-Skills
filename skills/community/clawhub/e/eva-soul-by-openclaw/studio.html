@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVA Soul Studio - 夏娃之魂可视化面板</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a12;
+    --card: #12121e;
+    --card2: #1a1a2e;
+    --border: #2a2a4a;
+    --text: #e8e8f0;
+    --text-dim: #8080a0;
+    --pink: #ff6b9d;
+    --pink-glow: rgba(255,107,157,0.15);
+    --blue: #7eb8ff;
+    --blue-glow: rgba(126,184,255,0.15);
+    --green: #6fdc8c;
+    --green-glow: rgba(111,220,140,0.15);
+    --yellow: #ffd97d;
+    --red: #ff6b6b;
+    --purple: #b08cff;
+    --orange: #ffb86c;
+    --cyan: #8be9fd;
+    --font: 'Segoe UI', system-ui, sans-serif;
+    --radius: 16px;
+    --card-pad: 20px;
+  }
+
+  html { font-family: var(--font); background: var(--bg); color: var(--text); }
+
+  body { min-height: 100vh; }
+
+  /* ─── Header ─── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
+  .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #ff6b9d, #b08cff); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .stat-pill { display: flex; align-items: center; gap: 6px; background: var(--card2); border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px; font-size: 13px; color: var(--text-dim); }
+  .live-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .live-dot.offline { background: var(--red); animation: none; }
+
+  /* ─── Top stats bar ─── */
+  .topbar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; padding: 16px 28px;
+    background: var(--card); border-bottom: 1px solid var(--border);
+  }
+  .kpi-card {
+    background: var(--card2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: var(--card-pad);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .kpi-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  .kpi-value { font-size: 26px; font-weight: 700; }
+  .kpi-sub { font-size: 11px; color: var(--text-dim); }
+  .kpi-card.emotion .kpi-value { color: var(--pink); }
+  .kpi-card.sessions .kpi-value { color: var(--blue); }
+  .kpi-card.concepts .kpi-value { color: var(--purple); }
+  .kpi-card.turns .kpi-value { color: var(--yellow); }
+  .kpi-card.uptime .kpi-value { color: var(--green); }
+
+  /* ─── Main grid ─── */
+  .main { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 16px; padding: 20px 28px; }
+  .panel {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: var(--card-pad);
+    min-height: 300px;
+  }
+  .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .panel-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .panel-icon { margin-right: 6px; }
+  .panel-badge {
+    font-size: 11px; background: var(--card2); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 10px; color: var(--text-dim);
+  }
+  canvas { width: 100% !important; }
+
+  /* Emotion timeline full width */
+  .panel:has(canvas[chart-id="emotion"] { grid-column: 1 / -1; }
+  .chart-wrap { position: relative; height: 200px; }
+  .chart-wrap canvas { height: 100% !important; }
+
+  /* Concept network */
+  #graph-canvas { width: 100%; height: 280px; border-radius: 12px; display: block; }
+
+  /* Feedback gauge */
+  .feedback-panel { display: flex; flex-direction: column; gap: 12px; }
+  .feedback-row { display: flex; align-items: center; gap: 10px; }
+  .fb-label { font-size: 12px; color: var(--text-dim); width: 50px; flex-shrink: 0; }
+  .fb-bar-wrap { flex: 1; height: 8px; background: var(--card2); border-radius: 4px; overflow: hidden; }
+  .fb-bar { height: 100%; border-radius: 4px; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .fb-val { font-size: 12px; font-weight: 600; width: 30px; text-align: right; }
+  .fb-val.pos { color: var(--green); }
+  .fb-val.neg { color: var(--red); }
+  .fb-val.neu { color: var(--text-dim); }
+  .bar-pos { background: linear-gradient(90deg, #6fdc8c, #a8f0c4); }
+  .bar-neg { background: linear-gradient(90deg, #ff6b6b, #ff9090); }
+  .bar-neu { background: var(--text-dim); }
+
+  /* Memory tiers */
+  .tier-list { display: flex; flex-direction: column; gap: 10px; }
+  .tier-row { display: flex; align-items: center; gap: 10px; }
+  .tier-name { font-size: 12px; color: var(--text-dim); width: 50px; flex-shrink: 0; }
+  .tier-bar-wrap { flex: 1; height: 8px; background: var(--card2); border-radius: 4px; overflow: hidden; }
+  .tier-bar { height: 100%; border-radius: 4px; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .tier-val { font-size: 12px; font-weight: 600; width: 28px; text-align: right; color: var(--text-dim); }
+
+  /* Personality card */
+  .personality-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+  .trait-pill { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; padding: 8px; text-align: center; font-size: 11px; color: var(--text-dim); }
+  .trait-pill .trait-name { color: var(--text); font-weight: 600; font-size: 13px; }
+  .trait-pill .trait-desc { font-size: 10px; margin-top: 2px; }
+  .trait-pill.active { border-color: var(--pink); background: var(--pink-glow); }
+
+  /* Summary list */
+  .summary-list { display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; }
+  .summary-item { background: var(--card2); border-radius: 10px; padding: 10px 12px; border: 1px solid var(--border); }
+  .summary-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim); margin-bottom: 6px; }
+  .summary-content { font-size: 12px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+  .summary-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px; margin-right: 4px; }
+  .tag-fact { background: rgba(126,184,255,0.15); color: var(--blue); }
+  .tag-decision { background: rgba(111,220,140,0.15); color: var(--green); }
+  .tag-task { background: rgba(255,217,125,0.15); color: var(--yellow); }
+  .tag-pref { background: rgba(176,140,255,0.15); color: var(--purple); }
+  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 120px; color: var(--text-dim); font-size: 13px; gap: 6px; opacity: 0.6; }
+
+  /* Tool usage */
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 6px; }
+  .tool-chip { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+  .tool-name { color: var(--text); font-family: monospace; }
+  .tool-count { background: var(--card); padding: 1px 6px; border-radius: 6px; font-size: 11px; color: var(--text-dim); }
+  .tool-count.hot { background: var(--pink-glow); color: var(--pink); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+  /* Responsive */
+  @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .topbar { grid-template-columns: repeat(2, 1fr); padding: 12px 16px; gap: 8px; } header { padding: 12px 16px; } .main { padding: 12px 16px; gap: 12px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">🎀</div>
+    <span>EVA Soul <span style="font-weight:400;color:var(--text-dim)">Studio</span></span>
+  </div>
+  <div class="header-right">
+    <div class="stat-pill">
+      <div class="live-dot" id="live-dot"></div>
+      <span id="live-label">读取中…</span>
+    </div>
+    <button onclick="loadData()" style="background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 14px;border-radius:8px;cursor:pointer;font-size:13px">↻ 刷新</button>
+  </div>
+</header>
+
+<!-- KPI Bar -->
+<div class="topbar">
+  <div class="kpi-card emotion">
+    <div class="kpi-label">当前情感</div>
+    <div class="kpi-value" id="kpi-emotion">—</div>
+    <div class="kpi-sub" id="kpi-emotion-trend">情感趋势: —</div>
+  </div>
+  <div class="kpi-card sessions">
+    <div class="kpi-label">会话数</div>
+    <div class="kpi-value" id="kpi-sessions">0</div>
+    <div class="kpi-sub">累计交互 <span id="kpi-interactions">0</span> 条</div>
+  </div>
+  <div class="kpi-card concepts">
+    <div class="kpi-label">概念数</div>
+    <div class="kpi-value" id="kpi-concepts">0</div>
+    <div class="kpi-sub">模式 <span id="kpi-patterns">0</span> 个</div>
+  </div>
+  <div class="kpi-card turns">
+    <div class="kpi-label">压缩进度</div>
+    <div class="kpi-value"><span id="kpi-turns">0</span><span style="font-size:14px;color:var(--text-dim)"> / 20</span></div>
+    <div class="kpi-sub">摘要 <span id="kpi-summaries">0</span> 条</div>
+  </div>
+  <div class="kpi-card uptime">
+    <div class="kpi-label">运行时长</div>
+    <div class="kpi-value" id="kpi-uptime">—</div>
+    <div class="kpi-sub">版本 <span id="kpi-version">2.4.0</span></div>
+  </div>
+</div>
+
+<!-- Main panels -->
+<div class="main">
+  <!-- Emotion Timeline (full width) -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title"><span class="panel-icon">📈</span>情感趋势</span>
+      <span class="panel-badge">最近 50 条</span>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="emotion-chart"></canvas>
+    </div>
+  </div>
+
+  <!-- Feedback Stats -->
+  <div class="panel feedback-panel">
+    <div class="panel-header">
+      <span class="panel-title"><span class="panel-icon">⚖️</span>概念反馈</span>
+      <span class="panel-badge" id="fb-total">0 条反馈</span>
+    </div>
+    <div class="feedback-row">
+      <span class="fb-label">正向</span>
+      <div class="fb-bar-wrap"><div class="fb-bar bar-pos" id="bar-pos" style="width:0%"></div></div>
+      <span class="fb-val pos" id="fb-pos">0</span>
+    </div>
+    <div class="feedback-row">
+      <span class="fb-label">中性</span>
+      <div class="fb-bar-wrap"><div class="fb-bar bar-neu" id="bar-neu" style="width:0%"></div></div>
+      <span class="fb-val neu" id="fb-neu">0</span>
+    </div>
+    <div class="feedback-row">
+      <span class="fb-label">负向</span>
+      <div class="fb-bar-wrap"><div class="fb-bar bar-neg" id="bar-neg" style="width:0%"></div></div>
+      <span class="fb-val neg" id="fb-neg">0</span>
+    </div>
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px" id="flagged-tags"></div>
+  </div>
+
+  <!-- Personality + Tool usage -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title"><span class="panel-icon">🎭</span>性格 &amp; 工具</span>
+    </div>
+    <div class="personality-grid" id="personality-grid"></div>
+    <div style="margin-top:14px;font-size:11px;color:var(--text-dim);margin-bottom:8px">工具使用 TOP</div>
+    <div class="tool-grid" id="tool-grid"></div>
+  </div>
+
+  <!-- Memory + Summaries -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title"><span class="panel-icon">💾</span>记忆层级</span>
+      <span class="panel-badge" id="mem-total">0 条</span>
+    </div>
+    <div class="tier-list" id="tier-list"></div>
+    <div style="margin-top:14px;font-size:11px;color:var(--text-dim);margin-bottom:8px">摘要记录</div>
+    <div class="summary-list" id="summary-list">
+      <div class="empty-state">📭 暂无摘要</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script>
+// ─────────────────────────────────────────────────
+// 配置区：改为 true 则从本地文件读取，false 则用模拟数据
+const USE_LOCAL = false;
+const MEMORY_DIR = 'C:/Users/PC/.openclaw/workspace/memory';
+// ─────────────────────────────────────────────────
+
+const EMOTION_COLORS = {
+  happy: '#ffd93d', sad: '#74b9ff', angry: '#ff6b6b',
+  neutral: '#8080a0', excited: '#ff9f43', tired: '#a29bfe',
+  surprised: '#55efc4', confused: '#fd79a8'
+};
+const PERSONALITIES = {
+  gentle:    { name: '温柔',    desc: '关怀体贴' },
+  cute:      { name: '俏皮',    desc: '活泼可爱' },
+  professional: { name: '专业',  desc: '严谨正式' },
+  playful:    { name: '幽默',    desc: '轻松风趣' },
+  serious:   { name: '严谨',    desc: '认真专注' },
+  romantic:  { name: '浪漫',    desc: '甜蜜爱意' },
+  tsundere:  { name: '傲娇',    desc: '嘴硬心软' }
+};
+
+// ── 工具颜色映射 ──
+const TOOL_COLORS = {
+  eva_status:'#7eb8ff', eva_emotion:'#ff6b9d', eva_personality:'#b08cff',
+  eva_memory:'#6fdc8c', eva_decide:'#ffd97d', eva_importance:'#ff9f43',
+  eva_full_stats:'#a29bfe', eva_concept:'#74b9ff', eva_pattern:'#fd79a8',
+  eva_knowledge:'#55efc4', eva_motivation:'#fab1a0', eva_values:'#ffeaa7',
+  eva_sleep:'#dfe6e9', eva_ask:'#fab1a0', eva_feedback:'#ff7675', eva_compress:'#74b9ff',
+  eva_status:'#b08cff'
+};
+const TOOL_LABELS = {
+  eva_status:'status', eva_emotion:'emotion', eva_personality:'personality',
+  eva_memory:'memory', eva_decide:'decide', eva_importance:'importance',
+  eva_full_stats:'stats', eva_concept:'concept', eva_pattern:'pattern',
+  eva_knowledge:'knowledge', eva_motivation:'motivation', eva_values:'values',
+  eva_sleep:'sleep', eva_ask:'ask', eva_feedback:'feedback', eva_compress:'compress'
+};
+
+let emotionChart = null;
+
+async function loadJSON(relPath) {
+  try {
+    const r = await fetch(`file://${MEMORY_DIR}/${relPath}`);
+    if (!r.ok) return null;
+    return r.json();
+  } catch { return null; }
+}
+
+function m(d) { return d || {}; }
+
+async function loadData() {
+  document.getElementById('live-label').textContent = '读取中…';
+  const dot = document.getElementById('live-dot');
+
+  let state = null, concepts = null, summaries = null, counter = null;
+
+  if (USE_LOCAL) {
+    [state, concepts, summaries, counter] = await Promise.all([
+      loadJSON('eva-soul-state.json'),
+      loadJSON('eva-concepts.json'),
+      loadJSON('conversations/summaries.json'),
+      loadJSON('conversations/.turn_counter.json')
+    ]);
+  }
+
+  // ── 模拟数据（生产环境可删除 USE_LOCAL 分支）──────────
+  if (!state) state = getMockState();
+  if (!concepts) concepts = getMockConcepts();
+  if (!summaries) summaries = [];
+  if (!counter) counter = { turns: 7, lastCompress: null };
+  // ─────────────────────────────────────────────────
+
+  const s = state;
+  const now = Date.now();
+
+  // KPI
+  document.getElementById('kpi-emotion').textContent = s.currentEmotion || 'neutral';
+  document.getElementById('kpi-emotion-trend').textContent = '情感趋势: —';
+  document.getElementById('kpi-sessions').textContent = s.sessionCount ?? 0;
+  document.getElementById('kpi-interactions').textContent = s.totalInteractions ?? 0;
+  document.getElementById('kpi-concepts').textContent = (s.concepts?.length ?? 0);
+  document.getElementById('kpi-patterns').textContent = (s.patterns?.length ?? 0);
+  document.getElementById('kpi-turns').textContent = counter?.turns ?? 0;
+  document.getElementById('kpi-summaries').textContent = summaries?.length ?? 0;
+  document.getElementById('kpi-version').textContent = s.version || '2.4.0';
+
+  const start = s.sessionStartTime ? new Date(s.sessionStartTime) : new Date();
+  document.getElementById('kpi-uptime').textContent = formatUptime(now - start.getTime());
+
+  // Emotion chart
+  const hist = (s.emotionHistory || []).slice(-50);
+  renderEmotionChart(hist);
+
+  // Feedback
+  renderFeedback(s.concepts || []);
+
+  // Personality
+  renderPersonality(s.personality || 'gentle');
+
+  // Tool usage
+  renderTools(s.toolUsage || {});
+
+  // Memory tiers
+  renderMemory(s.memoryStats || {});
+
+  // Summaries
+  renderSummaries(summaries);
+
+  dot.classList.remove('offline');
+  document.getElementById('live-label').textContent = '实时';
+
+  if (USE_LOCAL) {
+    dot.classList.remove('offline');
+    document.getElementById('live-label').textContent = '已连接';
+  } else {
+    dot.classList.add('offline');
+    document.getElementById('live-label').textContent = '演示模式';
+  }
+}
+
+function renderEmotionChart(history) {
+  const labels = history.map(e => e.time ? new Date(e.time) : new Date());
+  const data   = history.map(e => ({ x: labels[history.indexOf(e)], y: e.to ? 1 : 0, emotion: e.to }));
+  // numeric emotion mapping
+  const emap = { happy:5, excited:4, neutral:3, sad:2, angry:1, tired:2.5, surprised:3.5, confused:2 };
+  const pts = history.map((e, i) => ({ x: labels[i], y: emap[e.to] ?? 3 }));
+
+  const ctx = document.getElementById('emotion-chart').getContext('2d');
+  if (emotionChart) emotionChart.destroy();
+
+  emotionChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: '情感值',
+        data: pts,
+        borderColor: '#ff6b9d',
+        backgroundColor: 'rgba(255,107,157,0.08)',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3,
+        pointBackgroundColor: pts.map(p => EMOTION_COLORS[history[pts.indexOf(p)]?.to || 'neutral'] || '#ff6b9d'),
+        pointRadius: 3,
+        parsing: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 600 },
+      scales: {
+        x: { type: 'time', grid: { color: 'rgba(255,255,255,0.04)' },
+        y: { min: 0.5, max: 5.5, ticks: {
+          stepSize: 1,
+          callback: v => ['happy','sad','neutral','excited','tired'][v-1] || ''
+        }, grid: { color: 'rgba(255,255,255,0.04)' }
+      },
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: {
+          title: ctx => ctx[0]?.raw?.x ? new Date(ctx[0].raw.x).toLocaleString() : '',
+          label: ctx => {
+            const idx = history.findIndex(h => new Date(h.time).getTime() === new Date(ctx.raw?.x).getTime());
+            return history[idx]?.to || ctx.raw?.y;
+          }
+        }
+      }}
+    }
+  });
+}
+
+function renderFeedback(concepts) {
+  const pos = concepts.filter(c => (c.feedbackScore || 0) > 0).reduce((s, c) => s + c.feedbackScore, 0);
+  const neg = concepts.filter(c => (c.feedbackScore || 0) < 0).reduce((s, c) => s + c.feedbackScore, 0);
+  const neu = concepts.filter(c => (c.feedbackCount || 0) > 0 && (c.feedbackScore || 0) === 0).length;
+  const total = concepts.filter(c => (c.feedbackCount || 0) > 0).length;
+  const max = Math.max(pos, Math.abs(neg), total) || 1;
+
+  document.getElementById('fb-pos').textContent = pos;
+  document.getElementById('fb-neg').textContent = Math.abs(neg);
+  document.getElementById('fb-neu').textContent = neu;
+  document.getElementById('fb-total').textContent = `${total} 条反馈`;
+  document.getElementById('bar-pos').style.width = `${(pos / max * 100) || 0}%`;
+  document.getElementById('bar-neg').style.width = `${(Math.abs(neg) / max * 100) || 0}%`;
+  document.getElementById('bar-neu').style.width = `${(neu / max * 100) || 0}%`;
+
+  const flagged = concepts.filter(c => c.flagged).slice(0, 8);
+  const tagsEl = document.getElementById('flagged-tags');
+  if (flagged.length === 0) {
+    tagsEl.innerHTML = '<span style="font-size:12px;color:var(--text-dim)">无负面标记</span>';
+  } else {
+    tagsEl.innerHTML = flagged.map(c =>
+      `<span class="summary-tag tag-task" title="负面标记">⚠ ${c.value} (${c.feedbackScore})</span>`
+    ).join('');
+  }
+}
+
+function renderPersonality(current) {
+  const grid = document.getElementById('personality-grid');
+  grid.innerHTML = Object.entries(PERSONALITIES).map(([key, v]) =>
+    `<div class="trait-pill ${key === current ? 'active' : ''}">
+       <div class="trait-name">${v.name}</div>
+       <div class="trait-desc">${v.desc}</div>
+     </div>`
+  ).join('');
+}
+
+function renderTools(usage) {
+  const grid = document.getElementById('tool-grid');
+  const sorted = Object.entries(usage).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  if (sorted.length === 0) {
+    grid.innerHTML = '<div style="font-size:12px;color:var(--text-dim)">暂无数据</div>';
+    return;
+  }
+  const max = sorted[0][1];
+  grid.innerHTML = sorted.map(([tool, count]) => {
+    const label = TOOL_LABELS[tool] || tool.replace('eva_', '');
+    const pct = Math.round(count / max * 100);
+    return `<div class="tool-chip">
+      <span class="tool-name">${label}</span>
+      <span class="tool-count ${pct >= 80 ? 'hot' : ''}">${count}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderMemory(stats) {
+  const total = Object.values(stats).reduce((a, b) => a + b, 0) || 0;
+  document.getElementById('mem-total').textContent = `${total} 条记忆`;
+  const tiers = ['short','medium','long','archive'];
+  const colors = { short:'#7eb8ff', medium:'#b08cff', long:'#6fdc8c', archive:'#ffd97d' };
+  const names = { short:'短期', medium:'中期', long:'长期', archive:'归档' };
+  const list = document.getElementById('tier-list');
+  list.innerHTML = tiers.map(t => {
+    const n = stats[t] || 0;
+    const pct = total > 0 ? n / total * 100 : 0;
+    return `<div class="tier-row">
+      <span class="tier-name">${names[t]}</span>
+      <div class="tier-bar-wrap"><div class="tier-bar" style="width:${pct}%;background:${colors[t]}"></div></div>
+      <span class="tier-val">${n}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderSummaries(list) {
+  const el = document.getElementById('summary-list');
+  if (!list || list.length === 0) {
+    el.innerHTML = '<div class="empty-state">📭 暂无摘要<br><span style="font-size:11px">对话达到20轮后自动生成</span></div>';
+    return;
+  }
+  el.innerHTML = list.slice(-5).reverse().map(s => {
+    const tags = [];
+    if (s.content?.includes('🔑')) tags.push('fact');
+    if (s.content?.includes('✅')) tags.push('decision');
+    if (s.content?.includes('📌')) tags.push('task');
+    if (s.content?.includes('💡')) tags.push('pref');
+    const tagLabels = { fact:'🔑事实', decision:'✅决策', task:'📌待办', pref:'💡偏好' };
+    const tagClass = { fact:'tag-fact', decision:'tag-decision', task:'tag-task', pref:'tag-pref' };
+    const tagHtml = tags.slice(0,2).map(t => `<span class="summary-tag ${tagClass[t]}">${tagLabels[t]}</span>`).join('');
+    const time = s.endTime ? new Date(s.endTime).toLocaleString('zh-CN') : '';
+    return `<div class="summary-item">
+      <div class="summary-meta">${tagHtml}<span>${time} · ${s.turns || 0}轮</span></div>
+      <div class="summary-content">${s.content || '(无内容)'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── Helpers ───
+function formatUptime(ms) {
+  ms = Math.max(0, ms);
+  const s = Math.floor(ms / 1000);
+  if (s < 60) return s + 's';
+  const m = Math.floor(s / 60);
+  if (m < 60) return m + 'm ' + (s % 60) + 's';
+  const h = Math.floor(m / 60);
+  return h + 'h ' + Math.floor(m % 60) + 'm';
+}
+
+// ─── Mock data ───
+function getMockState() {
+  const now = Date.now();
+  const hist = [];
+  const emos = ['happy','neutral','sad','happy','excited','neutral','happy','sad'];
+  let emo = 'neutral';
+  for (let i = 0; i < 30; i++) {
+    const prev = emo;
+    emo = emos[Math.floor(Math.random() * emos.length)];
+    hist.push({ from: prev, to: emo, time: new Date(now - (30-i)*60000 ).toISOString() });
+  }
+  hist.push({ from: emo, to: 'happy', time: new Date(now).toISOString() });
+  return {
+    version: '2.4.0',
+    currentEmotion: 'happy',
+    emotionHistory: hist,
+    sessionCount: 42,
+    totalInteractions: 3847,
+    concepts: Array.from({length:28}, (_, i) => ({
+      value: ['遵义','主人','AI助手','工作','游戏'][i%5] + i,
+      type: ['person','fact','topic','keyword','intent'][i%5],
+      importance: 3 + (i%8),
+      feedbackScore: i%5===0 ? 1 : i%7===0 ? -1 : 0,
+      feedbackCount: i%3===0 ? 1 : 0,
+      flagged: i===14,
+      count: 1 + (i%5)
+    })),
+    patterns: Array.from({length:15}, (_,i) => ({ type: 'keyword', name: `pattern_${i}` })),
+    personality: 'gentle',
+    toolUsage: { eva_status:12, eva_emotion:8, eva_memory:28, eva_decide:15, eva_concept:6, eva_compress:3 },
+    memoryStats: { short:127, medium:43, long:18, archive:5 },
+    sessionStartTime: new Date(now - 3600000).toISOString()
+  };
+}
+
+function getMockConcepts() { return []; }
+
+// ─── Boot ───
+loadData();
+setInterval(loadData, 30000);
+</script>
+</body>
+</html>

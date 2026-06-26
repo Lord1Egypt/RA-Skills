@@ -1,0 +1,208 @@
+{
+  "name": "Python Code Quality Rubric",
+  "domain": "python-code",
+  "version": "1.0",
+  "description": "Evaluates Python source code for correctness, design quality, error handling, security hygiene, documentation, and maintainability. Designed for code produced by AI agents or humans.",
+  "criteria": [
+    {
+      "id": "PC-001",
+      "criterion": "No logic errors — off-by-one, wrong comparison operators, or unreachable branches",
+      "severity": "CRITICAL",
+      "evidence_required": "Quote the exact line(s) containing the logic error and explain what the code does vs. what it should do",
+      "why": "Logic errors cause silent incorrect behavior or runtime failures that are often hard to trace back to their source (PEP 20: 'Errors should never pass silently')",
+      "category": "correctness"
+    },
+    {
+      "id": "PC-002",
+      "criterion": "Return values that can be None are checked before use at call sites",
+      "severity": "HIGH",
+      "evidence_required": "Quote the function signature or return statement showing None is possible, then quote the call site that uses the value without a None check",
+      "why": "Unguarded None dereferences are among the most common runtime exceptions in Python; Optional propagation must be explicit",
+      "category": "correctness"
+    },
+    {
+      "id": "PC-003",
+      "criterion": "Exception handling is appropriately scoped — no bare except, overly broad except Exception, or swallowed errors",
+      "severity": "HIGH",
+      "evidence_required": "Quote the except clause and show that it either hides a specific exception type, silently swallows errors without logging, or uses a bare except that catches BaseException",
+      "why": "Overly broad exception handling turns detectable bugs into silent failures and makes diagnosis extremely difficult (PEP 20: 'Errors should never pass silently')",
+      "category": "correctness"
+    },
+    {
+      "id": "PC-004",
+      "criterion": "Data type consistency — function signatures match actual return types and Optional types propagate correctly",
+      "severity": "HIGH",
+      "evidence_required": "Quote the function signature (or inferred return type) and then quote a code path that returns a value inconsistent with the declared or expected type",
+      "why": "Type inconsistencies cause AttributeError, TypeError, or subtle behavioral bugs that only surface at runtime under specific conditions (PEP 484: Type Hints, PEP 526: Variable Annotations)",
+      "category": "correctness"
+    },
+    {
+      "id": "PC-005",
+      "criterion": "Single Responsibility — functions and classes do not mix unrelated concerns",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the function or class definition and identify two or more distinct unrelated responsibilities it handles (e.g., parsing + persistence + formatting in one function)",
+      "why": "SRP violations create tight coupling, make testing harder, and cause unintended side effects when changing one concern (PEP 20: 'There should be one-- and preferably only one --obvious way to do it')",
+      "category": "design"
+    },
+    {
+      "id": "PC-006",
+      "criterion": "Appropriate abstraction level — no God functions over 50 lines mixing concerns, no unnecessary complexity",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the function header and state its approximate line count, describing the multiple concerns it conflates",
+      "why": "Excessively large functions are cognitively unmaintainable and resist refactoring, testing, and safe modification (PEP 20: 'Simple is better than complex', 'Readability counts')",
+      "category": "design"
+    },
+    {
+      "id": "PC-007",
+      "criterion": "No significant code duplication — near-duplicate logic should be extracted into reusable functions",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote two or more near-identical code blocks (showing the duplicated logic) that could be unified into a single parameterized function",
+      "why": "Code duplication creates divergence risk: one copy gets fixed or updated while others remain buggy (PEP 20: 'There should be one-- and preferably only one --obvious way to do it')",
+      "category": "design"
+    },
+    {
+      "id": "PC-008",
+      "criterion": "Dependencies are injected, not hardcoded — no global singletons or module-level instantiation that prevents testing",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the hardcoded dependency (e.g., direct module import with instantiation, global client object) and explain what makes it impossible to mock or substitute in tests",
+      "why": "Hardcoded dependencies couple business logic to infrastructure, making unit tests require live external systems (PEP 20: 'Complex is better than complicated')",
+      "category": "design"
+    },
+    {
+      "id": "PC-009",
+      "criterion": "Resource lifecycle is complete — files, connections, and locks are closed in all code paths including exceptions",
+      "severity": "HIGH",
+      "evidence_required": "Quote the resource acquisition (open(), connect(), acquire()) and show the code path where close/release is not guaranteed (missing try/finally or context manager)",
+      "why": "Resource leaks cause file descriptor exhaustion, connection pool starvation, and deadlocks under load or error conditions",
+      "category": "resilience"
+    },
+    {
+      "id": "PC-010",
+      "criterion": "Caught exceptions include sufficient diagnostic context before re-raising or logging",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the except block showing an exception caught and re-raised or logged without preserving the original traceback or adding contextual information",
+      "why": "Context-free exception handling hides the root cause and makes incident diagnosis require reproduction rather than log inspection",
+      "category": "resilience"
+    },
+    {
+      "id": "PC-011",
+      "criterion": "Component failures degrade gracefully — one failing component does not unnecessarily cascade to the whole system",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the code path where a single component failure propagates an unhandled exception that terminates a broader process that could have continued",
+      "why": "Unnecessary cascading failures turn partial problems into total outages, reducing system resilience",
+      "category": "resilience"
+    },
+    {
+      "id": "PC-012",
+      "criterion": "User or external input is validated and sanitized before use",
+      "severity": "HIGH",
+      "evidence_required": "Quote the code that receives external input (function parameter, request body, file read, environment variable) and show it is used without validation, type coercion, or bounds checking",
+      "why": "Unvalidated input is the root cause of injection attacks, unexpected crashes, and data corruption",
+      "category": "security"
+    },
+    {
+      "id": "PC-013",
+      "criterion": "Error messages do not disclose internal paths, stack traces, or system details to external consumers",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the error handler or response construction that includes a full traceback, absolute file path, or internal system identifier in a user-facing or API-facing message",
+      "why": "Information disclosure aids attackers in mapping internal system structure and identifying exploitable components",
+      "category": "security"
+    },
+    {
+      "id": "PC-014",
+      "criterion": "No unsafe patterns — eval/exec not used on untrusted input, pickle not used on untrusted sources, subprocess not called with shell=True and variable interpolation",
+      "severity": "HIGH",
+      "evidence_required": "Quote the exact call to eval(), exec(), pickle.loads(), or subprocess with shell=True, and show that the argument includes external or user-controlled data",
+      "why": "These patterns are direct code execution vectors — they allow arbitrary code execution if any attacker-controlled input reaches them",
+      "category": "security"
+    },
+    {
+      "id": "PC-015",
+      "criterion": "Docstrings are accurate — they describe what the code actually does, not an earlier or different version",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the docstring and then quote the code that contradicts it, explaining the specific discrepancy",
+      "why": "Inaccurate docstrings are worse than no docstrings — they actively mislead maintainers and API consumers (PEP 257: Docstring Conventions)",
+      "category": "documentation"
+    },
+    {
+      "id": "PC-016",
+      "criterion": "Variable and function names are clear and unambiguous — no misleading names or single-letter variables outside of accepted idioms",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the variable or function name and explain what it actually contains vs. what the name implies, or why the name is too ambiguous to understand without reading the implementation",
+      "why": "Misleading names are a form of technical debt that causes incorrect assumptions and subtle bugs during maintenance (PEP 8: Naming Conventions, PEP 20: 'Readability counts')",
+      "category": "documentation"
+    },
+    {
+      "id": "PC-017",
+      "criterion": "No magic numbers or strings — hardcoded literals with domain significance should be named constants",
+      "severity": "LOW",
+      "evidence_required": "Quote the hardcoded literal and explain what it represents semantically and why it should be a named constant (e.g., timeout values, status codes, buffer sizes)",
+      "why": "Magic literals are invisible — they make code unreadable and cause errors when the value needs changing and not all occurrences are found (PEP 8: Constants, PEP 20: 'Readability counts')",
+      "category": "documentation"
+    },
+    {
+      "id": "PC-018",
+      "criterion": "Async/sync boundaries are respected — no blocking calls inside async functions that would block the event loop",
+      "severity": "HIGH",
+      "evidence_required": "Quote the async function definition and the synchronous blocking call within it (e.g., time.sleep(), requests.get(), open() for large files, subprocess.run()) that would block the event loop",
+      "why": "Blocking calls in async functions starve the event loop, causing all concurrent tasks to freeze until the blocking operation completes",
+      "category": "concurrency"
+    },
+    {
+      "id": "PC-019",
+      "criterion": "Shared mutable state accessed from multiple threads or async tasks is protected by appropriate synchronization",
+      "severity": "HIGH",
+      "evidence_required": "Quote the shared mutable object (dict, list, counter, etc.) and show two or more code paths that read and write it from different threads or tasks without a lock, mutex, or thread-safe structure",
+      "why": "Unsynchronized shared state causes race conditions that manifest as data corruption, lost updates, or crashes under concurrent load",
+      "category": "concurrency"
+    },
+    {
+      "id": "PC-020",
+      "criterion": "asyncio.CancelledError is not swallowed by broad except clauses",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the except clause (e.g., except Exception) that would catch CancelledError and show there is no re-raise of CancelledError or check for it",
+      "why": "Swallowing CancelledError prevents cooperative cancellation in asyncio, causing tasks to run past their intended lifetime and making graceful shutdown impossible",
+      "category": "concurrency"
+    },
+    {
+      "id": "PC-021",
+      "criterion": "LLM API response fields are validated before access — no direct field access on unverified response structure",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the code that accesses response.choices[0].message.content or similar path without checking that the response, choices list, and nested fields are non-null and of expected shape",
+      "why": "LLM APIs can return malformed responses, empty choices lists, or content=None under error conditions; unguarded access causes AttributeError or IndexError",
+      "category": "agentic"
+    },
+    {
+      "id": "PC-022",
+      "criterion": "Transient API failures are handled with retry and exponential backoff logic",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the API call site and show there is no retry wrapper, tenacity decorator, or manual retry loop around it — or that the error handler reraises immediately without backoff",
+      "why": "Transient network and rate-limit errors (429, 503) are normal for LLM/API calls; without retry logic, temporary failures become hard failures",
+      "category": "agentic"
+    },
+    {
+      "id": "PC-023",
+      "criterion": "User or external input is not interpolated directly into LLM prompts without sanitization",
+      "severity": "HIGH",
+      "evidence_required": "Quote the prompt construction showing user-controlled or external data interpolated via f-string or concatenation without any filtering, escaping, or structural separation from instructions",
+      "why": "Direct interpolation of untrusted input into prompts is a prompt injection vector — attackers can override instructions, extract system prompts, or cause unexpected model behavior",
+      "category": "agentic"
+    },
+    {
+      "id": "PC-024",
+      "criterion": "LLM calls specify max_tokens or equivalent budget controls to prevent runaway token usage",
+      "severity": "LOW",
+      "evidence_required": "Quote the LLM API call and show that max_tokens (or max_completion_tokens, or equivalent provider parameter) is not set, leaving token usage unbounded",
+      "why": "Unbounded LLM calls can generate extremely long outputs, causing unexpected cost spikes and timeout failures in production",
+      "category": "agentic"
+    },
+    {
+      "id": "PC-025",
+      "criterion": "Functions separate pure logic from I/O side effects to enable unit testing without mocks",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the function that mixes computation with I/O (file reads/writes, network calls, database queries, random number generation) in a way that makes it impossible to test the logic without executing or mocking the I/O",
+      "why": "Functions that cannot be tested in isolation require integration test infrastructure for even basic logic verification, slowing development and reducing coverage (PEP 20: 'Simple is better than complex')",
+      "category": "testability"
+    }
+  ]
+}

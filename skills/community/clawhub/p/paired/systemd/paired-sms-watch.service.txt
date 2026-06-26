@@ -1,0 +1,19 @@
+[Unit]
+Description=Bluetooth SMS/MMS push notification listener (MAP-MNS) -> Telegram
+Documentation=file://${HOME}/bt-skill-expansion/RESUME-HERE.md
+After=bluetooth.service dbus.service
+Wants=bluetooth.service
+StartLimitIntervalSec=60
+StartLimitBurst=6
+
+[Service]
+Type=simple
+ExecStart=${HOME}/bin/paired-sms-watch --watch --hook ${HOME}/bin/paired-sms-watch-tg-hook
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

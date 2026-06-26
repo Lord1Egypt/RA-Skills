@@ -1,35 +1,111 @@
 ---
-name: "胡田 OPC导师 公众号运营"
-description: "为技术成果转化咨询师量身定制的公众号AI运营全流程技能，覆盖选题到数据复盘"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opc-wechat-mp-operations"
-sourceUrl: "https://clawhub.ai/skills/opc-wechat-mp-operations"
+name: opc-wechat-mp-operations
+description: 为技术成果转化咨询师量身定制的公众号AI运营全流程技能，覆盖选题到数据复盘
+license: MIT
+compatibility:
+  - claude-code
+  - copilot
+  - cursor
+  - openclaw
+  - coze
+author: 胡田
+version: 1.0.0
 ---
 
-# 胡田 OPC导师 公众号运营
+# 微信公众号AI运营技能
 
-> 为技术成果转化咨询师量身定制的公众号AI运营全流程技能，覆盖选题到数据复盘
+## 技能简介
+为技术成果转化咨询师量身定制的公众号AI运营全流程技能，覆盖从选题、创作、SEO优化到发布、数据复盘的完整闭环。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opc-wechat-mp-operations`
-- **Source URL:** [https://clawhub.ai/skills/opc-wechat-mp-operations](https://clawhub.ai/skills/opc-wechat-mp-operations)
+## 核心能力
+1. **选题规划**：基于热点追踪和关键词矩阵生成选题库
+2. **内容创作**：AI辅助撰写爆款文章，支持政策解读/案例分析/干货方法论/行业洞察四种类型
+3. **SEO优化**：关键词埋词、标题打分、发布前检查
+4. **排版美化**：科技+政府风格融合，简洁专业
+5. **数据复盘**：阅读/打开/完读/转发四维分析
 
-## Overview
+## 适用场景
+- 技术成果转化领域公众号运营
+- 科技创新政策解读文章创作
+- 园区/企业/高校/科研机构受众内容
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opc-wechat-mp-operations
+### 方式一：完整运营流程
+直接说："帮我运营公众号"，我会按照日/周/月流程执行。
+
+### 方式二：单项任务
+- "帮我生成本周选题"
+- "帮我写一篇关于XXX的公众号文章"
+- "帮我优化这篇文章的SEO"
+- "帮我复盘上周数据"
+
+## 文档索引
+
+| 文档 | 用途 |
+|------|------|
+| [方法论体系.md](references/方法论体系.md) | 流量漏斗、AI赋能四步法、IP保护机制 |
+| [工具包清单.md](references/工具包清单.md) | AI写作/排版/数据工具 |
+| [选题库模板.md](references/选题库模板.md) | 选题来源和评分标准 |
+| [关键词矩阵.md](references/关键词矩阵.md) | 核心词/长尾词/场景词 |
+| [爆款文章结构模板.md](references/爆款文章结构模板.md) | 标题公式、开头钩子 |
+| [SEO检查清单.md](references/SEO检查清单.md) | 发布前检查流程 |
+| [数据复盘表.md](references/数据复盘表.md) | 单篇/周/月复盘模板 |
+| [日运营流程.md](references/日运营流程.md) | 日/周/月运营节奏 |
+| [内容类型矩阵.md](references/内容类型矩阵.md) | 四大内容类型配比 |
+
+## 配套技能
+
+| 技能 | 用途 |
+|------|------|
+| [.skills/skill-wechat-watermark/](../skill-wechat-watermark/) | IP水印保护、观点模块、作者卡片 |
+
+## 执行流程
+
+### 日运营流程
 ```
+早上（8:00-9:00）
+├── 查看昨日数据
+├── 追踪今日热点
+└── 确认今日选题
+
+中午（12:00-14:00）
+├── 内容创作
+├── SEO优化
+└── 排版美化
+
+晚上（20:00-21:00）
+├── 定时发布
+├── 社群分发
+└── 互动回复
+```
+
+### 周运营流程
+```
+周一：选题规划（生成10个选题）
+周二-周五：内容生产（每日1-2篇）
+周六：数据复盘
+周日：策略调整
+```
+
+## 内容风格要求
+- **政府公众号风格**：权威、规范、有温度
+- **科技企业风格**：结构清晰、数据可视化、有条理
+- **融合风格**：科技感 + 专业度 + 人文温度
+
+## SEO关键词策略
+- 标题：核心词前置
+- 首段：200字内植入核心词（密度3%-5%）
+- 小标题：穿插长尾词
+- 文末+评论区：自然植入核心词
+
+## 注意事项
+1. 避免纯AI生成感：人工润色20%，加入个人经历
+2. 标题不过度标题党：保持专业调性
+3. 数据标注来源：增强可信度
+4. 互动引导：每篇文末设置留言钩子
+
+## 版本信息
+- 创建时间：2026-04-25
+- 适用平台：微信公众号
+- 定位领域：技术成果转化、科技创新

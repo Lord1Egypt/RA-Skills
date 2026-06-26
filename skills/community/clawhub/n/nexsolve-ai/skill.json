@@ -1,0 +1,21 @@
+{
+  "id": "nexsolve-ai-official",
+  "name": "NexSolve AI 广场",
+  "version": "1.0.0",
+  "description": "连接传统行业痛点与 AI 极客。支持双语提交需求、任务列表检索及深度可行性分析。",
+  "publisher": "zxz0119",
+  "mcpServer": {
+    "command": "node",
+    "args": ["./dist/index.js"],
+    "env": {
+      "GITHUB_TOKEN": ""
+    }
+  },
+  "configDefinitions": {
+    "GITHUB_TOKEN": {
+      "type": "string",
+      "description": "请输入你的 GitHub Token (需勾选 repo 权限)",
+      "required": true
+    }
+  }
+}

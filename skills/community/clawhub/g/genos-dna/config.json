@@ -1,0 +1,9 @@
+{
+    "model_path": "./models/Genos-1___2B",
+    "device_map": "cpu",
+    "torch_dtype": "float16",
+    "state_file": "./scripts/.model_loaded",
+    "max_sequence_length": 1000000,
+    "enable_logging": true,
+    "log_level": "INFO"
+}

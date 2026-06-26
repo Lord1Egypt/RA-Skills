@@ -1,0 +1,15 @@
+id: transition_overexplained
+name: 转场连接词过密
+description: 检查高频解释型、汇报型连接词，避免句子节奏过匀、过顺、过像说明文。
+severity: warning
+scope: full
+type: keywords
+threshold: 3
+message: "连接词使用偏密，检查是否把因果全写成了解释，而不是落在场面与动作里。"
+keywords:
+  - 然而
+  - 与此同时
+  - 首先
+  - 其次
+  - 因此
+  - 不过

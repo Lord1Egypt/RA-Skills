@@ -1,0 +1,61 @@
+{
+  "name": "agentSaasPromoVideo",
+  "background": "global_bg.html",
+  "clips": [
+    {
+      "type": "footage",
+      "speech": "Introducing the Agent SaaS computer. A new way to interact with your data and workflows.",
+      "media": [
+        {
+          "src": "agentsaas_intro_text.html",
+          "words": "Introducing the Agent"
+        },
+        {
+          "src": "agentsaas_intro_toggle.html",
+          "words": "new way to",
+          "transitionIn": "slideUp"
+        }
+      ]
+    },
+    {
+      "type": "footage",
+      "speech": "From complex financial research to autonomous subagent execution. We handle the heavy lifting while you focus on the strategy.",
+      "media": [
+        {
+          "src": "agentsaas_complex_task.html",
+          "words": "complex financial research",
+          "transitionIn": "zoom",
+          "duration":10
+        }
+      ]
+    },
+    {
+      "type": "footage",
+      "speech": "Extract insights from any source, automate your life, and stay connected with native integrations that work where you do.",
+      "media": [
+        {
+          "src": "agentsaas_multimedia.html",
+          "words": "Extract insights from",
+          "transitionIn": "slide2Left",
+          "stayInClip": true
+        },
+        {
+          "src": "agentsaas_slack.html",
+          "words": "stay connected with",
+          "transitionIn": "slide2Left"
+        }
+      ]
+    },
+    {
+      "type": "footage",
+      "speech": "Experience the next generation of autonomous building. Computer researches, computer builds. Join the future today.",
+      "media": [
+        {
+          "src": "agentsaas_ending.html",
+          "words": "Experience the next",
+          "transitionIn": "fade"
+        }
+      ]
+    }
+  ]
+}

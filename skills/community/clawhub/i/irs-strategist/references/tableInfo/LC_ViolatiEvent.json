@@ -1,0 +1,113 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EventCode",
+        "columnChiName": "事件编号",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "LatestInfoPublDate",
+        "columnChiName": "最新公告日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InitialInfoPublDate",
+        "columnChiName": "首次信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "NewestProcess",
+        "columnChiName": "最新事件进程",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "最新事件进程(NewestProcess)与(CT_SystemConst)表中的DM字段关联，令LB = 1747，得到最新事件进程的具体描述：1-正常，2-维持，3-立案调查，4-送达公告，5-举行听证，6-提起诉讼，7-审理终结，8-延期回复，9-已回复，98-不予受理，99-撤消。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "EventContent",
+        "columnChiName": "事项内容",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.69"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InvolvedCompany",
+        "columnChiName": "涉及公司",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 1,
+        "fieldExplain": "对应EP_CompanyMain表中的CompanyCode\t",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "InvolvedSecurity",
+        "columnChiName": "涉及证券",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 2,
+        "fieldExplain": "对应SecuMain中的InnerCode\t",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

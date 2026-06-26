@@ -1,0 +1,34 @@
+{
+  "name": "eat-skill",
+  "version": "0.3.0",
+  "description": "🍜 干饭.skill — 你的 AI 饭搭子。帮你决定今天吃什么，饭点自动提醒，发现附近餐馆，一键生成餐馆 Skill。",
+  "type": "module",
+  "scripts": {
+    "generate": "node generator/generate.mjs",
+    "convert": "node generator/poi-to-skill.mjs",
+    "nudge": "node schedule/nudge.mjs",
+    "lunch": "node schedule/nudge.mjs --meal lunch",
+    "dinner": "node schedule/nudge.mjs --meal dinner"
+  },
+  "dependencies": {
+    "amap-lbs-skill": "file:./vendor/amap-lbs-skill"
+  },
+  "keywords": [
+    "ai-skill",
+    "restaurant",
+    "food",
+    "eat",
+    "skill",
+    "mcp",
+    "openclaw",
+    "cursor",
+    "claude",
+    "cron",
+    "lunch",
+    "dinner"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

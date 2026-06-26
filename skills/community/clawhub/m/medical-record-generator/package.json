@@ -1,0 +1,16 @@
+{
+  "name": "medical-record-generator",
+  "version": "1.0.0",
+  "description": "专业的病历撰写助手，按照三步流程生成规范的入院记录",
+  "main": "scripts/generate_record.js",
+  "keywords": ["病历", "医疗", "入院记录", "病历生成", "medical record"],
+  "author": "OpenClaw AI Assistant",
+  "license": "MIT",
+  "dependencies": {},
+  "openclaw": {
+    "skill": true,
+    "trigger": ["写病历", "生成病历", "病历助手", "入院记录", "medical record", "病历生成"],
+    "category": "医疗健康",
+    "emoji": "📋"
+  }
+}

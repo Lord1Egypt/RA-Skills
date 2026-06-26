@@ -1,0 +1,8 @@
+{
+  "name": "keyapi-google-search",
+  "type": "module",
+  "engines": { "node": ">=18.0.0" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2"
+  }
+}

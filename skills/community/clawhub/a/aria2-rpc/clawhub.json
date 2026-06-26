@@ -1,0 +1,12 @@
+{
+  "slug": "aria2-rpc",
+  "name": "Aria2 RPC",
+  "version": "0.1.2",
+  "description": "Remote control for aria2 download service via JSON-RPC 2.0 - add downloads, query status, pause/resume, remove tasks, and manage configurations for local or remote aria2 instances",
+  "author": "Cortana",
+  "changelog": "v0.1.2: Cleaned up test files and README.md for cleaner distribution",
+  "tags": ["aria2", "download", "rpc", "remote-control", "bittorrent", "http", "ftp", "magnet"],
+  "emoji": "⬇️",
+  "category": "download",
+  "homepage": "https://aria2.github.io"
+}

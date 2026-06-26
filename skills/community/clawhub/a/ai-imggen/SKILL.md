@@ -1,35 +1,26 @@
 ---
-name: "Ai Imggen2"
+name: ai-imggen
 description: "Generate images from text prompts via API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-imggen"
-sourceUrl: "https://clawhub.ai/skills/ai-imggen"
+allowed-tools: Bash, Read
+metadata: {"clawdbot":{"requires":{"bins":["node"],"env":["SKILLBOSS_API_KEY"]},"primaryEnv":"SKILLBOSS_API_KEY"}}
 ---
 
-# Ai Imggen2
+# AI Image Generator
 
-> Generate images from text prompts via API.
+Generate images from text prompts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-imggen`
-- **Source URL:** [https://clawhub.ai/skills/ai-imggen](https://clawhub.ai/skills/ai-imggen)
+## Generate an Image
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-imggen
+node {baseDir}/scripts/generate.mjs "$SKILLBOSS_API_KEY" "A sunset over mountains"
 ```
+
+## Save the Image
+
+```bash
+URL=$(node {baseDir}/scripts/generate.mjs "$SKILLBOSS_API_KEY" "A sunset over mountains")
+curl -sL "$URL" -o image.png
+```
+
+Notes:
+- Get SKILLBOSS_API_KEY at https://www.skillboss.co

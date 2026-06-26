@@ -1,0 +1,15 @@
+{
+  "slug": "voice-transcriber",
+  "name": "Voice Transcriber",
+  "version": "1.0.0",
+  "description": "Voice note transcription and archival for OpenClaw agents. Powered by Deepgram Nova-3 or local Whisper. Transcribes audio messages, saves both audio files and text transcripts.",
+  "homepage": "https://clawhub.ai/skills/voice-transcriber",
+  "license": "MIT-0",
+  "tags": ["transcription", "voice", "whisper", "deepgram"],
+  "requires": {
+    "bins": ["ffmpeg", "python3"],
+    "os": ["linux", "darwin", "win32"]
+  },
+  "installedAt": "2026-05-06T00:18:00+03:00",
+  "source": "local"
+}

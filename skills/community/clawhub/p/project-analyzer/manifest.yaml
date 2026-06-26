@@ -1,0 +1,61 @@
+# Project Analyzer Skill Manifest
+# 用于 SkillHub 发布
+
+name: project-analyzer
+version: 1.0.0
+display_name: Project Analyzer - SDD文档生成器
+description: |
+  基于 Harness Engineering 模式的 SDD 软件设计文档生成器。
+  自动分析项目结构，生成完整的文档体系（SRS/SAD/SDD/DBD/APID/TSD）。
+short_description: 自动分析项目并生成完整SDD文档体系
+
+author: SDD Generator Team
+license: MIT-0
+tags:
+  - documentation
+  - sdd
+  - software-design
+  - api-doc
+  - database-design
+  - project-analysis
+  - java
+  - spring-boot
+  - nodejs
+  - python
+
+keywords:
+  - SDD文档生成
+  - 软件设计文档
+  - 项目分析
+  - API文档
+  - 数据库设计
+  - 架构文档
+
+platform:
+  - windows
+  - macos
+  - linux
+
+requirements:
+  runtime:
+    - python3
+
+capabilities:
+  - project_analysis
+  - documentation_generation
+  - database_analysis
+  - api_documentation
+  - architecture_design
+
+examples:
+  - "分析项目 D:\my-project 并生成完整 SDD 文档"
+  - "分析项目 D:\my-project 并生成数据库设计文档"
+  - "分析项目 D:\my-project 并对接 Apifox"
+
+changelog:
+  - version: 1.0.0
+    date: 2026-04-01
+    changes:
+      - 初始版本
+      - 支持 SRS/SAD/SDD/DBD/APID/TSD 文档生成
+      - 支持 Java/Node.js/Python/Go 技术栈

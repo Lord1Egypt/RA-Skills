@@ -1,0 +1,22 @@
+{
+  "goal": "10-second product promo",
+  "video": {
+    "model": "Seedance-2.0-Fast",
+    "prompt": "A cinematic 10-second product promo for wireless earbuds on a glossy black surface. Slow orbit camera, blue rim lights, subtle particles, premium tech mood, final frame holds on the product and tagline.",
+    "ratio": "16:9",
+    "resolution": "720p",
+    "duration": 10,
+    "watermark": false
+  },
+  "narration": {
+    "text": "清晰入耳，灵感随行。让每一次表达，都更有画面感。",
+    "voice_id": "male_0004_a",
+    "format": "mp3"
+  },
+  "outputs": [
+    "manifest.json",
+    "narration.mp3",
+    "transcript.json",
+    "result.mp4"
+  ]
+}

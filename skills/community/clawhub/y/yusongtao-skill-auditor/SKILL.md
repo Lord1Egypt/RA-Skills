@@ -1,35 +1,43 @@
----
-name: "Skill Auditor (于松涛版)"
-description: "安全审计OpenClaw技能，检测文件操作、网络请求、命令执行、权限和数据泄露等安全风险并生成报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yusongtao-skill-auditor"
-sourceUrl: "https://clawhub.ai/skills/yusongtao-skill-auditor"
----
+# skill-auditor - 技能安全审计工具
 
-# Skill Auditor (于松涛版)
+## 描述
+对OpenClaw技能进行安全审计，检查潜在的安全风险和恶意代码。
 
-> 安全审计OpenClaw技能，检测文件操作、网络请求、命令执行、权限和数据泄露等安全风险并生成报告。
+## 安全检查项
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yusongtao-skill-auditor`
-- **Source URL:** [https://clawhub.ai/skills/yusongtao-skill-auditor](https://clawhub.ai/skills/yusongtao-skill-auditor)
+### 1. 文件操作检查
+- 检查是否包含危险的文件操作（如删除系统文件、修改系统配置）
+- 检查文件路径处理是否存在路径遍历问题
+- 检查是否过度依赖外部文件路径
 
-## Overview
+### 2. 网络操作检查
+- 检查网络请求是否指向可疑域名
+- 检查是否包含未经用户确认的外部数据传输
+- 检查是否使用安全的HTTPS协议
 
+### 3. 命令执行检查
+- 检查是否包含exec、process等命令执行工具的使用
+- 检查命令参数是否存在注入风险
+- 检查是否执行危险系统命令
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yusongtao-skill-auditor
-```
+### 4. 权限检查
+- 检查是否请求过高权限
+- 检查是否访问敏感数据区域
+
+### 5. 数据泄露检查
+- 检查是否包含发送个人信息的代码
+- 检查是否访问敏感凭证信息
+
+## 使用方法
+
+1. 提供要审计的技能路径
+2. 执行安全扫描
+3. 生成安全报告
+4. 根据风险等级决定是否安装
+
+## 安全等级定义
+
+- 安全：无风险
+- 低风险：轻微风险，可控
+- 中风险：需谨慎，用户确认
+- 高风险：存在明显安全隐患，不推荐使用

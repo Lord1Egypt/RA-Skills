@@ -1,0 +1,47 @@
+[
+    {
+        "documento": "11111111000111",
+        "razao_social": "EMPRESA FICTICIA A LTDA",
+        "inscricao_municipal": "00000001",
+        "email": "contato@empresaficticia-a.com.br",
+        "endereco": {
+            "logradouro": "RUA FICTICIA UM",
+            "numero": "100",
+            "complemento": "SALA A",
+            "bairro": "CENTRO",
+            "cidade": "3550308",
+            "uf": "SP",
+            "cep": "01000000"
+        }
+    },
+    {
+        "documento": "22222222000122",
+        "razao_social": "HOSPITAL EXEMPLO SA",
+        "inscricao_municipal": "00000002",
+        "email": "nfe@hospitalexemplo.com.br",
+        "endereco": {
+            "logradouro": "AVENIDA EXEMPLO",
+            "numero": "200",
+            "complemento": "",
+            "bairro": "BAIRRO DAS CLINICAS",
+            "cidade": "3550308",
+            "uf": "SP",
+            "cep": "02000000"
+        }
+    },
+    {
+        "documento": "33333333000133",
+        "razao_social": "OPERADORA DE SAUDE MODELO",
+        "inscricao_municipal": "00000003",
+        "email": "faturamento@saudemodelo.com.br",
+        "endereco": {
+            "logradouro": "AVENIDA PRINCIPAL",
+            "numero": "1000",
+            "complemento": "ANDAR 5",
+            "bairro": "JARDIM PAULISTA",
+            "cidade": "3550308",
+            "uf": "SP",
+            "cep": "01400000"
+        }
+    }
+]

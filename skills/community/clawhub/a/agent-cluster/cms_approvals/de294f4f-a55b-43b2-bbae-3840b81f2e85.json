@@ -1,0 +1,27 @@
+{
+  "approval_id": "de294f4f-a55b-43b2-bbae-3840b81f2e85",
+  "plan_id": "test_plan",
+  "risk_level": "medium",
+  "agent_id": "test_agent",
+  "agent_role": "",
+  "status": "cancelled",
+  "tier": "agent_self",
+  "approver": "",
+  "reason": "",
+  "created_at": "2026-04-14T16:07:35.986681+00:00",
+  "expires_at": "2026-04-14T16:17:35.986658+00:00",
+  "history": [
+    {
+      "action": "submit",
+      "actor": "test_agent",
+      "note": "Risk: medium, Tier: agent_self",
+      "timestamp": "2026-04-14T16:07:35.986685+00:00"
+    },
+    {
+      "action": "cancel",
+      "actor": "requester",
+      "note": "",
+      "timestamp": "2026-04-14T16:07:36.041964+00:00"
+    }
+  ]
+}

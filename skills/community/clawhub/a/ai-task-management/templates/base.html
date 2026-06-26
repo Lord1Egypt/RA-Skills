@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>任务管理</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="stylesheet" href="/static/css/style.css?v=2">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="brand">📋 任务管理</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        {{template "content" .}}
+    </main>
+
+    <!-- 创建任务模态框 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreateModal()">&times;</span>
+            <h2>创建新任务</h2>
+            <form id="createForm" onsubmit="createTask(event)">
+                <div class="form-group">
+                    <label>标题 *</label>
+                    <input type="text" id="title" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>描述</label>
+                    <textarea id="description" class="form-control"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>优先级</label>
+                        <select id="priority" class="form-control">
+                            <option value="1">1 - Critical</option>
+                            <option value="2">2 - High</option>
+                            <option value="3" selected>3 - Medium</option>
+                            <option value="4">4 - Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>项目 *</label>
+                        <input type="text" id="project" required class="form-control" placeholder="例如：aitask-skill">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>负责人</label>
+                        <input type="text" id="assignee" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>父任务（可选）</label>
+                        <select id="parentTask" class="form-control">
+                            <option value="">无（主任务）</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>标签（用逗号分隔）</label>
+                    <input type="text" id="tags" class="form-control" placeholder="工作，紧急">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">创建任务</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeCreateModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

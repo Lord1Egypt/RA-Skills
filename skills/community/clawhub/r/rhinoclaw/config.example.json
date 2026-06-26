@@ -1,0 +1,29 @@
+{
+  "connection": {
+    "host": "YOUR_RHINO_HOST_IP",
+    "port": 1999,
+    "timeout": 15.0,
+    "max_retries": 3,
+    "retry_delay": 1.0
+  },
+  "_connection_help": {
+    "localhost": "Use 127.0.0.1 if Rhino runs on the same machine",
+    "wsl2": "Use your Windows gateway IP (run: ip route show default | awk '{print $3}')",
+    "remote": "Use the Tailscale/LAN IP of the Windows machine running Rhino"
+  },
+  "defaults": {
+    "layer": "Default",
+    "color": [128, 128, 128]
+  },
+  "screenshots": {
+    "default_width": 1920,
+    "default_height": 1080,
+    "linux_dir": "./captures",
+    "windows_dir": ""
+  },
+  "_screenshots_help": "linux_dir: where screenshots are saved. windows_dir: UNC path for WSL2 (e.g. \\\\wsl.localhost\\Ubuntu\\path\\to\\captures). Leave empty if not using WSL.",
+  "logging": {
+    "log_file": "",
+    "tail_lines": 30
+  }
+}

@@ -1,35 +1,93 @@
 ---
-name: "Parser"
+name: parser
+version: "3.0.2"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [parser, tool, utility]
 description: "Parse JSON, CSV, XML, and logs into structured output. Use when converting formats, validating structure, extracting fields, analyzing nested data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parser"
-sourceUrl: "https://clawhub.ai/skills/parser"
 ---
 
-# Parser
+# parser
 
-> Parse JSON, CSV, XML, and logs into structured output. Use when converting formats, validating structure, extracting fields, analyzing nested data.
+Parse and extract data from various file formats.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parser`
-- **Source URL:** [https://clawhub.ai/skills/parser](https://clawhub.ai/skills/parser)
+## Commands
 
-## Overview
+### `json`
 
+Parse JSON files (uses jq if available, else built-in)
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/parser
+scripts/script.sh json
 ```
+
+### `csv`
+
+Parse CSV files, optionally extract a column by name or number
+
+```bash
+scripts/script.sh csv
+```
+
+### `xml`
+
+Parse XML files with optional XPath (requires python3)
+
+```bash
+scripts/script.sh xml
+```
+
+### `yaml`
+
+Parse YAML files with optional key path (requires python3)
+
+```bash
+scripts/script.sh yaml
+```
+
+### `lines`
+
+Filter lines by pattern (grep-like, with context)
+
+```bash
+scripts/script.sh lines
+```
+
+### `split`
+
+Split file content by delimiter
+
+```bash
+scripts/script.sh split
+```
+
+### `extract`
+
+Extract text matching a regex pattern
+
+```bash
+scripts/script.sh extract
+```
+
+### `stats`
+
+Show file statistics (lines, words, chars, encoding)
+
+```bash
+scripts/script.sh stats
+```
+
+## Requirements
+
+- python3
+- jq (optional)
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*
+
+## Data Storage
+
+Parse results can be cached in `~/.local/share/parser/`.

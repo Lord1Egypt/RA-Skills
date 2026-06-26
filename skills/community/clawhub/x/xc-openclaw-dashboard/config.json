@@ -1,0 +1,36 @@
+{
+  "name": "openclaw-dashboard",
+  "version": "1.0.0",
+  "description": "可视化展示 OpenClaw 运行时状态",
+  "author": "Xu Chenglin",
+  "refreshInterval": 30000,
+  "enableFeishuCard": true,
+  "cardRefreshCron": "0 * * * *",
+  "theme": "dark",
+  "maxSessions": 20,
+  "feishuChatId": null,
+  "chartColors": {
+    "input": "#4ade80",
+    "output": "#60a5fa",
+    "total": "#f472b6",
+    "background": "#0f172a",
+    "surface": "#1e293b",
+    "border": "#334155",
+    "text": "#f1f5f9",
+    "textMuted": "#94a3b8",
+    "accent": "#38bdf8",
+    "warning": "#fbbf24",
+    "error": "#f87171"
+  },
+  "typography": {
+    "fontFamily": "'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif",
+    "fontSizeBase": "14px",
+    "fontSizeLarge": "18px",
+    "fontSizeXLarge": "24px"
+  },
+  "tokenLimit": 100000,
+  "breakpoints": {
+    "token": 100000,
+    "session": 10
+  }
+}

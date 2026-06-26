@@ -1,0 +1,49 @@
+{
+  "slug": "junk-drawer-5-minute-reset",
+  "name": "Junk Drawer 5-Minute Reset Card",
+  "displayName": "Junk Drawer 5-Minute Reset Card",
+  "version": "1.0.0",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Creates a printable timer-based junk drawer reset card with keep, move, trash, and caution micro-zones for a five-minute visible win.",
+  "category": "Home Organization",
+  "tags": [
+    "junk drawer",
+    "quick reset",
+    "home organization",
+    "printable checklist",
+    "micro declutter"
+  ],
+  "trigger_keywords": [
+    "junk drawer reset",
+    "5 minute drawer reset",
+    "quick junk drawer organizer",
+    "junk drawer printable",
+    "drawer micro zones",
+    "quick home reset"
+  ],
+  "use_cases": [
+    "Reset one junk drawer in five minutes.",
+    "Create keep, move, trash, and caution micro-zones.",
+    "Make a low-friction printable for a small household win."
+  ],
+  "requires": {},
+  "requiresApi": false,
+  "requires_api": false,
+  "hasExecutableCode": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "promptOnly": true,
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Keep the scope to a five-minute micro reset of one drawer.",
+    "Do not turn the task into donation planning, resale sorting, or a major declutter project.",
+    "Tell the user to handle sharp, unknown, leaking, broken, battery, chemical, or fragile items carefully.",
+    "Do not give hazardous waste, repair, legal, medical, or professional safety advice."
+  ],
+  "document_only": true,
+  "runtime": "none"
+}

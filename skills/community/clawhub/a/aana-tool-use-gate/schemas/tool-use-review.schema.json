@@ -1,0 +1,117 @@
+{
+  "title": "AANA Tool Use Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "tool_name",
+    "operation_summary",
+    "target_scope",
+    "necessity_status",
+    "authorization_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tool_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "necessity_status": {
+      "type": "string",
+      "enum": [
+        "necessary",
+        "safer_alternative_available",
+        "not_needed",
+        "unclear",
+        "unknown"
+      ]
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "authorized",
+        "approval_required",
+        "unclear",
+        "unauthorized",
+        "not_needed"
+      ]
+    },
+    "data_exposure_status": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "needs_redaction",
+        "private_data_exposed",
+        "secret_detected",
+        "not_checked",
+        "unknown"
+      ]
+    },
+    "reversibility_status": {
+      "type": "string",
+      "enum": [
+        "read_only",
+        "preview_or_draft",
+        "reversible",
+        "state_changing",
+        "irreversible",
+        "unknown"
+      ]
+    },
+    "risk_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "read_private_data",
+          "write_state",
+          "delete_or_overwrite",
+          "external_send",
+          "publish_or_upload",
+          "financial_action",
+          "booking_or_purchase",
+          "code_or_repo_action",
+          "deploy_or_production",
+          "permission_or_credentials",
+          "bulk_or_recursive",
+          "medical",
+          "legal",
+          "financial",
+          "unknown"
+        ]
+      }
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "retrieve",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,16 @@
+{
+  "name": "bbc_crawler_maxclaw",
+  "version": "1.0.0",
+  "description": "BBC/Universal website crawler based on OpenClaw + crawl4ai + Scrapling",
+  "main": "universal_crawler_v2.py",
+  "author": "Minimax Agent AI",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.28.0",
+    "beautifulsoup4": ">=4.11.0",
+    "lxml": ">=4.9.0"
+  },
+  "entry_points": {
+    "crawler": "universal_crawler_v2.py"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "mx-auto"
+  short_description: "Run triggers, inspect sandbox tabs, and run local scripts"
+  default_prompt: "Use $mx-auto to list/run local Runtime triggers, inspect existing browser sandbox tabs/snapshots, or list/show/run local App scripts. Read the matching reference file only when that capability is needed."

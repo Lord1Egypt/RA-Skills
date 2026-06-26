@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P5 Output Schema",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "string" },
+    "prompt_version": { "type": "string" },
+    "requirement_id": { "type": "string" },
+    "test_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "source_scenario": { "type": "string" },
+          "source": { "type": "array", "items": { "type": "string" } },
+          "category": {
+            "type": "string",
+            "enum": ["main_flow","branch","exception","boundary","logic_combo","integration","ambiguity","permission","state","compatibility","performance","security"]
+          },
+          "description": { "type": "string" },
+          "precondition": { "type": "string" },
+          "related_rules": { "type": "array", "items": { "type": "string" } },
+          "related_roles": { "type": "array", "items": { "type": "string" } },
+          "priority": { "type": "string", "enum": ["P0","P1","P2","P3"] },
+          "priority_reason": { "type": "string" },
+          "status": { "type": "string", "enum": ["active","blocked"] },
+          "blocked_by": { "type": "string" },
+          "smoke_candidate": { "type": "boolean" }
+        },
+        "required": ["id","source_scenario","source","category","description","priority","priority_reason","status"]
+      }
+    },
+    "merge_log": { "type": "object" },
+    "quality_warnings": { "type": "array" },
+    "coverage_summary": { "type": "object" }
+  },
+  "required": ["schema_version", "prompt_version", "requirement_id", "test_points", "merge_log", "quality_warnings", "coverage_summary"],
+  "additionalProperties": true
+}

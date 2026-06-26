@@ -1,0 +1,23 @@
+{
+  "microcompact": {
+    "similarity_threshold": 0.85,
+    "min_message_length": 100,
+    "max_tool_result_preview": 500,
+    "enabled": true
+  },
+  "autocompact": {
+    "context_window": 200000,
+    "max_output_tokens": 8192,
+    "safety_margin": 0.8,
+    "buffer_tokens": 13000,
+    "max_consecutive_failures": 3,
+    "max_files_to_restore": 5,
+    "enabled": true
+  },
+  "streaming_executor": {
+    "max_concurrent": 5,
+    "timeout_seconds": 30.0,
+    "enable_retry": true,
+    "enabled": true
+  }
+}

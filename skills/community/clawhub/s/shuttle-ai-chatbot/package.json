@@ -1,0 +1,22 @@
+{
+  "name": "shuttle-ai-chatbot",
+  "version": "2.0.1",
+  "description": "Shuttle AI Chatbot - 直接调用 /chat_direct API，支持日期格式 session_id (shuttle-cli-YYYYMMDD)",
+  "main": "index.js",
+  "bin": {
+    "shuttle-ai-chatbot": "./index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "shuttle",
+    "ai",
+    "chatbot",
+    "automation"
+  ],
+  "author": "Shuttle AI",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}

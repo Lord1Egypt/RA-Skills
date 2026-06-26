@@ -1,0 +1,13 @@
+{
+  "emoji": "🌡️",
+  "requires": {
+    "env": ["SIMMER_API_KEY", "TELEGRAM_BOT_TOKEN"],
+    "pip": ["simmer-sdk", "requests", "python-dotenv", "pytz"]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "scripts/sniper.py"
+  }
+}

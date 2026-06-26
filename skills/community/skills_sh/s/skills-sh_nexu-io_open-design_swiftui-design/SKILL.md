@@ -1,35 +1,43 @@
 ---
-name: "swiftui-design"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/swiftui-design"
-sourceUrl: "https://skills.sh/nexu-io/open-design/swiftui-design"
+name: swiftui-design
+description: |
+  SwiftUI 前端设计 skill — anti AI-slop rules, design direction advisor, brand asset protocol, and five-dimension review. Works with Claude Code, Cursor, Codex, and OpenCode.
+triggers:
+  - "swiftui design"
+  - "ios design"
+  - "native ui design"
+  - "apple frontend"
+  - "swiftui slop"
+od:
+  mode: design-system
+  category: design-systems
+  upstream: "https://github.com/wholiver/swiftui-design-skill"
 ---
 
 # swiftui-design
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from @wholiver.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/swiftui-design`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/swiftui-design](https://skills.sh/nexu-io/open-design/swiftui-design)
+## What it does
 
-## Overview
+SwiftUI 前端设计 skill — anti AI-slop rules, design direction advisor, brand asset protocol, and five-dimension review. Works with Claude Code, Cursor, Codex, and OpenCode.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/wholiver/swiftui-design-skill
+- Category: `design-systems`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/swiftui-design
+# Inspect the upstream README for exact paths
+open https://github.com/wholiver/swiftui-design-skill
 ```
+
+Then ask the agent to invoke this skill by name (`swiftui-design`) or with
+one of the trigger phrases listed in this skill's frontmatter.

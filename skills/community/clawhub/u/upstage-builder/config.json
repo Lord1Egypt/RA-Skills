@@ -1,0 +1,7 @@
+{
+  "projectRoot": "/data/.openclaw/workspace/projects",
+  "deploymentProvider": "vercel",
+  "deploymentVisibility": "password-protected",
+  "defaultWebStack": "nextjs-typescript",
+  "askOnWebappRequests": true
+}

@@ -1,0 +1,51 @@
+{
+  "name": "context-booster",
+  "version": "0.1.4",
+  "description": "L1 增强层 - ECC 式上下文管理，解决 AI 记忆限制",
+  "author": "王的奴隶 · 严谨专业版",
+  "license": "MIT",
+  "keywords": [
+    "context",
+    "memory",
+    "compression",
+    "retrieval",
+    "meta-skill",
+    "L1"
+  ],
+  "main": "src/index.js",
+  "bin": {
+    "context-booster": "./src/index.js"
+  },
+  "scripts": {
+    "test": "node tests/context.test.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloud-shrimp/meta-skill-system"
+  },
+  "bugs": {
+    "url": "https://github.com/cloud-shrimp/meta-skill-system/issues"
+  },
+  "homepage": "https://github.com/cloud-shrimp/meta-skill-system#readme",
+  "pricing": {
+    "personal": 49.9,
+    "commercial": 149.9,
+    "enterprise": 499.9
+  },
+  "clawhub": {
+    "category": "meta-skill",
+    "layer": "L1",
+    "tags": [
+      "上下文",
+      "记忆",
+      "压缩",
+      "检索"
+    ],
+    "screenshots": [
+      "screenshots/context-capture.png",
+      "screenshots/memory-compress.png",
+      "screenshots/semantic-retrieve.png"
+    ]
+  }
+}

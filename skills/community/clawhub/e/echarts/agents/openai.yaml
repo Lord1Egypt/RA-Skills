@@ -1,0 +1,4 @@
+interface:
+  display_name: "ECharts"
+  short_description: "Generate ECharts configs, pages, and image-ready artifacts"
+  default_prompt: "Use $echarts to turn my data or chart idea into an ECharts option, preview page, reusable artifact files, and PNG or SVG exports."

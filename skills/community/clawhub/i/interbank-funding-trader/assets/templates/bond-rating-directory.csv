@@ -1,0 +1,12 @@
+bond_code,bond_name,issuer,internal_rating,issuer_rating,bond_rating,implied_rating,is_good_name,custodian,bond_type,is_blacklisted,related_party_tags,notes
+2400001.IB,24特别国债01,财政部,AAA,0,0,锁,TRUE,中央国债登记结算有限责任公司,国债,FALSE,,示例行，请替换为真实券库；利率债不看评级
+112602075.IB,26工商银行CD075,中国工商银行,AAA,AAA,0,锁,TRUE,银行间市场清算所股份有限公司,同业存单,FALSE,,示例行，请替换为真实券库；CD需要评级
+102681857.IB,26苏交通MTN005,苏交通,AAA,AAA,0,锁,TRUE,银行间市场清算所股份有限公司,中期票据,FALSE,,
+102681853.IB,26苏交通MTN004,苏交通,AAA,AAA,0,锁,TRUE,银行间市场清算所股份有限公司,中期票据,FALSE,,
+101578004.IB,15中城建MTN002,中国城市建设控股集团,B,C,C,锁,TRUE,银行间市场清算所股份有限公司,中期票据,TRUE,,
+102681862.IB,26中电路桥MTN002,电建路桥,AAA,AAA,0,锁,TRUE,银行间市场清算所股份有限公司,中期票据,FALSE,,
+234893.IB,25上海10,上海市人民政府,AAA,0,0,锁,TRUE,中央国债登记结算有限责任公司,地方政府债,TRUE,,
+2271131.IB,22四川债65,四川省政府,AAA,0,0,锁,TRUE,中央国债登记结算有限责任公司,地方政府债,TRUE,,
+2271062.IB,22安徽债49,安徽省政府,AAA,0,0,锁,TRUE,中央国债登记结算有限责任公司,地方政府债,TRUE,,
+2605063.IB,26四川债04,四川省政府,AAA,0,0,锁,TRUE,中央国债登记结算有限责任公司,地方政府债,TRUE,,
+2271074.IB,22福建债48,福建省政府,AAA,0,0,锁,TRUE,中央国债登记结算有限责任公司,地方政府债,TRUE,,

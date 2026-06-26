@@ -1,0 +1,291 @@
+# Parameter summaries for high-frequency endpoints.
+# Checked after routing.yaml selects a candidate API.
+# Fields:
+#   method        : HTTP method
+#   purpose       : one-line description
+#   required      : params that MUST be provided (ask user if missing)
+#   optional      : commonly useful optional params
+#   body_example  : minimal valid request body
+#   response_keys : key fields to extract and display from the response
+
+endpoints:
+  /api/v2/scan/multiChain/account:
+    method: POST
+    purpose: Query multi-chain account info for an address (balances, assets across chains)
+    required:
+      address: string
+    optional: {}
+    body_example:
+      address: "14abc..."
+    response_keys:
+      - data.address
+      - data.balance
+      - data.assets
+      - data.chains
+
+  /api/scan/account/tokens:
+    method: POST
+    purpose: Query token holdings for an address
+    required:
+      address: string
+    optional:
+      row: integer   # items per page, default 10
+      page: integer  # page index, starts from 0
+    body_example:
+      address: "14abc..."
+      row: 10
+      page: 0
+    response_keys:
+      - data.count
+      - data.list[].symbol
+      - data.list[].balance
+
+  /api/v2/scan/transfers:
+    method: POST
+    purpose: List transfer records; filter by address, direction, asset, block range, etc.
+    required: {}
+    optional:
+      address: string       # filter by sender OR receiver
+      sender: string        # filter by sender only
+      receiver: string      # filter by receiver only
+      direction: string     # "sent" | "received"
+      asset_symbol: string
+      asset_unique_id: string
+      block_range: string   # e.g. "1000-2000"
+      success: boolean
+      row: integer          # default 10, max 100
+      page: integer         # starts from 0
+      order: string         # "desc" | "asc"
+    body_example:
+      address: "14abc..."
+      row: 10
+      page: 0
+    response_keys:
+      - data.count
+      - data.transfers[].from
+      - data.transfers[].to
+      - data.transfers[].amount
+      - data.transfers[].asset_symbol
+      - data.transfers[].block_num
+      - data.transfers[].extrinsic_index
+
+  /api/scan/extrinsic:
+    method: POST
+    purpose: Get full details for a single extrinsic by hash or extrinsic_index
+    required: {}
+    optional:
+      hash: string            # tx hash (use this OR extrinsic_index)
+      extrinsic_index: string # e.g. "1234-0"
+      hide_events: boolean
+      events_limit: integer
+    body_example:
+      hash: "0xabc..."
+    response_keys:
+      - data.extrinsic_index
+      - data.block_num
+      - data.block_timestamp
+      - data.from
+      - data.to
+      - data.fee
+      - data.success
+      - data.call_module
+      - data.call_module_function
+      - data.params
+
+  /api/v2/scan/extrinsics:
+    method: POST
+    purpose: List extrinsics; filter by address, module, call, block, signed status, etc.
+    required: {}
+    optional:
+      address: string
+      module: string
+      call: string
+      module_call: array     # [{module, call}] for multi-filter
+      block_num: integer
+      block_range: string    # e.g. "1000-2000"
+      signed: string         # "signed" | "unsigned" | "all"
+      success: boolean
+      row: integer
+      page: integer
+      order: string
+    body_example:
+      address: "14abc..."
+      row: 10
+      page: 0
+      signed: "signed"
+    response_keys:
+      - data.count
+      - data.extrinsics[].extrinsic_index
+      - data.extrinsics[].block_num
+      - data.extrinsics[].from
+      - data.extrinsics[].call_module
+      - data.extrinsics[].call_module_function
+      - data.extrinsics[].success
+
+  /api/scan/extrinsic/params:
+    method: POST
+    purpose: Batch-fetch decoded parameters for up to 100 extrinsics by index
+    required:
+      extrinsic_index: array   # list of extrinsic indexes, e.g. ["1234-0", "1235-1"]
+    optional: {}
+    body_example:
+      extrinsic_index: ["1234-0"]
+    response_keys:
+      - data[].extrinsic_index
+      - data[].params
+
+  /api/v2/scan/events:
+    method: POST
+    purpose: List on-chain events; filter by module, event_id, block, address, etc.
+    required: {}
+    optional:
+      module: string
+      event_id: string
+      module_event: array     # [{module, event_id}] for multi-filter
+      address: string
+      extrinsic_index: string
+      block_num: integer
+      block_range: string
+      finalized: boolean
+      row: integer
+      page: integer
+      order: string
+    body_example:
+      module: "balances"
+      event_id: "Transfer"
+      row: 10
+      page: 0
+    response_keys:
+      - data.count
+      - data.events[].event_index
+      - data.events[].block_num
+      - data.events[].module_id
+      - data.events[].event_id
+      - data.events[].extrinsic_index
+
+  /api/scan/event:
+    method: POST
+    purpose: Get details for a single event by event_index
+    required:
+      event_index: string   # e.g. "1234-0"
+    optional: {}
+    body_example:
+      event_index: "1234-0"
+    response_keys:
+      - data.event_index
+      - data.block_num
+      - data.module_id
+      - data.event_id
+      - data.params
+
+  /api/scan/event/params:
+    method: POST
+    purpose: Batch-fetch decoded parameters for up to 100 events by index
+    required:
+      event_index: array   # list of event indexes
+    optional: {}
+    body_example:
+      event_index: ["1234-0"]
+    response_keys:
+      - data[].event_index
+      - data[].params
+
+  /api/scan/block:
+    method: POST
+    purpose: Get block details by block number, hash, or timestamp
+    required: {}
+    optional:
+      block_num: integer
+      block_hash: string
+      block_timestamp: integer
+      only_head: boolean     # return only header info, not full extrinsics
+    body_example:
+      block_num: 1000000
+    response_keys:
+      - data.block_num
+      - data.block_timestamp
+      - data.hash
+      - data.validator
+      - data.extrinsics_count
+      - data.event_count
+      - data.finalized
+
+  /api/v2/scan/blocks:
+    method: POST
+    purpose: List recent blocks; filter by author or block range
+    required: {}
+    optional:
+      author: string
+      block_range: string
+      row: integer
+      page: integer
+    body_example:
+      row: 10
+      page: 0
+    response_keys:
+      - data.count
+      - data.blocks[].block_num
+      - data.blocks[].block_timestamp
+      - data.blocks[].hash
+      - data.blocks[].validator
+      - data.blocks[].extrinsics_count
+
+  /api/v2/scan/search:
+    method: POST
+    purpose: Universal search — resolves an address, hash, or block number to the matching entity
+    required:
+      key: string   # address / tx hash / block number
+    optional: {}
+    body_example:
+      key: "14abc..."
+    response_keys:
+      - data.account
+      - data.extrinsic
+      - data.block
+
+  /api/scan/price/history:
+    method: POST
+    purpose: Get token price history and EMA metrics for a date range
+    required:
+      start: string   # date string, e.g. "2024-01-01"
+      end: string     # date string, e.g. "2024-01-31"
+    optional:
+      currency: string   # e.g. "USD" (default)
+      format: string     # "day" | "hour"
+    body_example:
+      start: "2024-01-01"
+      end: "2024-01-31"
+      currency: "USD"
+      format: "day"
+    response_keys:
+      - data.list[].time
+      - data.list[].price
+      - data.list[].ema7
+      - data.list[].ema30
+
+  /api/scan/metadata:
+    method: POST
+    purpose: Get current network metadata (no params needed) — ss58 type, node name, decimals, symbol, etc.
+    required: {}
+    optional: {}
+    body_example: {}
+    response_keys:
+      - data.networkNode
+      - data.ss58Format
+      - data.tokenDecimals
+      - data.tokenSymbol
+      - data.blockTime
+
+  /api/scan/runtime/metadata:
+    method: POST
+    purpose: Get runtime module/pallet list for a given spec version
+    required: {}
+    optional:
+      spec: integer   # runtime spec version; omit to get current
+    body_example:
+      spec: 1000000
+    response_keys:
+      - data.modules[].name
+      - data.modules[].calls
+      - data.modules[].events
+      - data.modules[].storage

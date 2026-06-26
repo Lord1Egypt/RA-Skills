@@ -1,0 +1,61 @@
+{
+  "timezone": "Asia/Shanghai",
+  "quiet_hours": {
+    "start": "23:30",
+    "end": "07:00"
+  },
+  "profiles": {
+    "weekday": {
+      "days": ["Mon", "Tue", "Wed", "Thu", "Fri"]
+    },
+    "weekend": {
+      "days": ["Sat", "Sun"]
+    }
+  },
+  "rules": [
+    {
+      "id": "water-weekday",
+      "type": "hydration",
+      "message": "喝水 250-350ml",
+      "profile": "weekday",
+      "mode": "interval",
+      "window_start": "08:00",
+      "window_end": "22:00",
+      "every_minutes": 120
+    },
+    {
+      "id": "stand-weekday",
+      "type": "mobility",
+      "message": "起身活动 3-5 分钟",
+      "profile": "weekday",
+      "mode": "interval",
+      "window_start": "09:30",
+      "window_end": "18:30",
+      "every_minutes": 55
+    },
+    {
+      "id": "sleep-winddown-weekday",
+      "type": "sleep",
+      "message": "进入睡前流程，降低灯光，停止刷屏",
+      "profile": "weekday",
+      "mode": "fixed",
+      "times": ["22:30"]
+    },
+    {
+      "id": "supplement-am",
+      "type": "supplement",
+      "message": "早餐后补剂",
+      "profile": "weekday",
+      "mode": "fixed",
+      "times": ["08:20"]
+    },
+    {
+      "id": "workout-weekend",
+      "type": "workout",
+      "message": "开始训练（先热身 8-10 分钟）",
+      "profile": "weekend",
+      "mode": "fixed",
+      "times": ["09:30"]
+    }
+  ]
+}

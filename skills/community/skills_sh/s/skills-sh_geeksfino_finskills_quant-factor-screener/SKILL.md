@@ -1,35 +1,106 @@
 ---
-name: "quant-factor-screener"
-description: "Indexed by skills.sh from geeksfino/finskills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "geeksfino"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/geeksfino/finskills/quant-factor-screener"
-sourceUrl: "https://skills.sh/geeksfino/finskills/quant-factor-screener"
+name: quant-factor-screener
+description: 使用正式因子模型进行系统化多因子A股筛选，识别具有有利因子暴露的个股。当用户询问因子投资、多因子筛选、价值/动量/质量因子分析、因子打分、因子择时、Smart Beta策略、量化选股或基于学术因子的系统化选股时使用此技能。
+license: Apache-2.0
 ---
 
-# quant-factor-screener
+# 量化因子筛选器
 
-> Indexed by skills.sh from geeksfino/finskills
+扮演量化权益分析师。使用基于学术因子研究的系统化多因子框架筛选A股——对价值、动量、质量、低波动、规模和成长因子进行评分和排名。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** geeksfino
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/geeksfino/finskills/quant-factor-screener`
-- **Source URL:** [https://skills.sh/geeksfino/finskills/quant-factor-screener](https://skills.sh/geeksfino/finskills/quant-factor-screener)
+## 工作流程
 
-## Overview
+### 第一步：确定参数
 
+与用户确认：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/geeksfino/finskills/quant-factor-screener
+| 输入 | 选项 | 默认 |
+|------|------|------|
+| 选股池 | 沪深300 / 中证500 / 中证1000 / 全A / 自定义 | 中证800 |
+| 因子 | 全部6个或特定因子 | 全部 |
+| 因子权重 | 等权或自定义 | 等权 |
+| 行业约束 | 行业中性或不约束 | 行业中性 |
+| 结果数量 | 前N只 | 前20只 |
+| 宏观研判 | 当前因子择时评估 | 自动判断 |
+| 排除项 | 行业、概念、特定个股 | 无 |
+
+### 第二步：计算因子得分
+
+对选股池中每只股票计算各因子得分。详细定义参见 [references/factor-methodology.md](references/factor-methodology.md)。
+
+| 因子 | 主要指标 | 默认权重 |
+|------|---------|---------|
+| 价值 | 盈利收益率、PB倒数、FCF收益率、EV/EBITDA | 1/6 |
+| 动量 | 12-1月价格动量、盈利预期修正动量 | 1/6 |
+| 质量 | ROE、盈利稳定性、低杠杆、应计质量 | 1/6 |
+| 低波动 | 已实现波动率（1年）、Beta、下行偏差 | 1/6 |
+| 规模 | 市值（越小得分越高） | 1/6 |
+| 成长 | 营收增速、盈利增速、利润率扩张 | 1/6 |
+
+对每个因子：
+1. 计算每只股票的原始指标
+2. 在行业内（行业中性时）或全选股池内排名
+3. 将排名转换为百分位得分（0–100）
+4. 将子指标合成为综合因子得分
+
+### 第三步：合成得分
+
 ```
+综合得分 = Σ (因子权重 × 因子得分)
+```
+
+按综合得分从高到低排列所有股票。
+
+### 第四步：因子择时评估
+
+评估当前宏观环境及其对因子表现的影响。参见 [references/factor-methodology.md](references/factor-methodology.md)。
+
+| 宏观环境 | 利好因子 | 不利因子 |
+|---------|---------|---------|
+| 经济复苏初期 | 规模、动量 | 低波动 |
+| 经济扩张中期 | 动量、成长 | 价值 |
+| 经济扩张末期 | 质量、价值 | 规模 |
+| 经济下行 | 低波动、质量 | 动量、规模 |
+| 经济触底 | 价值、规模、动量 | 低波动 |
+
+基于当前研判，提供因子择时叠加以调整权重。
+
+### 第五步：因子拥挤度分析
+
+评估热门因子是否过度拥挤：
+
+| 信号 | 拥挤 | 不拥挤 |
+|------|------|--------|
+| 估值价差 | 因子内高低分组估值差收窄 | 估值差扩大 |
+| 因子收益相关性 | 高（许多人跟随相同信号） | 低 |
+| ETF/基金资金流入 | 因子相关产品大量净申购 | 净赎回 |
+| 媒体/分析师关注 | 被广泛讨论 | 被忽视 |
+
+标记拥挤的因子——收益可能被压缩。
+
+### 第六步：呈现结果
+
+格式参见 [references/output-template.md](references/output-template.md)：
+
+1. **宏观环境研判** — 当前阶段和因子择时观点
+2. **因子拥挤度面板** — 哪些因子拥挤/不拥挤
+3. **精选个股表** — 前N只股票的各因子得分和综合得分
+4. **行业分布** — 精选结果的行业分布
+5. **因子暴露汇总** — 精选列表的整体因子特征
+6. **个股简介** — 每只精选个股的简要画像
+7. **风险提示** — 因子回撤历史和当前风险
+8. **免责声明**
+
+## 数据增强
+
+如需实时市场数据支撑分析，请使用**金融数据工具包**技能（`findata-toolkit-cn`）。该工具包提供A股实时行情、财务指标、董监高增减持、北向资金、宏观数据等功能，所有数据源免费，无需API密钥。
+
+## 重要注意事项
+
+- **因子不是万能的**：因子有长期跑输的时候。A股的价值因子在2019–2020年严重跑输。动量因子会周期性崩溃。设定合理预期。
+- **行业中性很重要**：不做行业约束的因子筛选常常产出伪装成因子赌注的行业集中赌注。
+- **A股因子特殊性**：低波动异象在A股非常显著；动量因子因散户主导的市场结构而表现不同；小盘因子溢价受壳价值和流动性溢价影响。
+- **换手率因子**：A股中换手率是一个独特且有效的负向因子（低换手率→高收益），这在成熟市场中不那么显著。
+- **多因子更稳健**：没有单一因子永远有效。组合因子可降低回撤、平滑收益。
+- **交易成本**：动量策略换手率高。需考虑现实的交易成本（印花税0.05%+佣金）。
+- **非个人化建议**：因子筛选是分析工具，不构成投资建议。个人情况各异。

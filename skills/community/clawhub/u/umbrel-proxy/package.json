@@ -1,0 +1,27 @@
+{
+  "name": "umbrel-proxy",
+  "version": "1.0.3",
+  "description": "Efficiently manage and interact with Umbrel proxy services for Docker containers. Automatically discovers running services, maps internal Docker IPs to accessible host ports, and updates OpenClaw config.",
+  "author": "Qwistopher",
+  "license": "MIT",
+  "keywords": ["umbrel", "docker", "proxy", "services", "discovery", "openclaw", "automation"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "package.json"
+  ],
+  "scripts": {
+    "test": "bash scripts/simple_umbrel_sync.sh",
+    "discover": "python3 scripts/discover_umbrel_services.py",
+    "sync": "bash scripts/umbrel_proxy_sync.sh"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

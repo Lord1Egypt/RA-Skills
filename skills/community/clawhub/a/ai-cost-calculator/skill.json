@@ -1,0 +1,8 @@
+{
+  "name": "ai-cost-calculator",
+  "version": "1.2.0",
+  "description": "AI成本计算器 - 对比各大模型成本，优化API支出",
+  "author": "yang1002378395-cmyk",
+  "license": "MIT",
+  "keywords": ["ai", "cost", "calculator", "openai", "claude", "deepseek", "api"]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "senseaudio-voice-cn",
+  "version": "1.0.0",
+  "description": "SenseAudio Voice - 语音合成 (TTS) + 语音识别 (ASR)，支持中文/英语/日语自动切换",
+  "author": "wang",
+  "license": "MIT",
+  "keywords": [
+    "tts",
+    "asr",
+    "voice",
+    "senseaudio",
+    "edge-tts",
+    "speech",
+    "audio",
+    "chinese",
+    "english",
+    "japanese",
+    "http"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://clawhub.com/skills/senseaudio-voice",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "requests": "^2.31.0",
+    "edge-tts": "^6.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  }
+}

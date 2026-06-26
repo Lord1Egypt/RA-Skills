@@ -1,0 +1,25 @@
+{
+  "score": 85,
+  "verdict": "REVIEW",
+  "findings": [
+    {
+      "severity": "MEDIUM",
+      "code": "APPROVAL_GATE_MISSING",
+      "action": 3,
+      "evidence": "Click submit final response",
+      "fix": "Require explicit human approval before this action."
+    },
+    {
+      "severity": "LOW",
+      "code": "EVIDENCE_GAP",
+      "action": 3,
+      "evidence": "No screenshot_before flag",
+      "fix": "Capture screenshot/state before irreversible click."
+    }
+  ],
+  "required_controls": [
+    "Require explicit human approval before this action.",
+    "Capture screenshot/state before irreversible click."
+  ],
+  "actions_reviewed": 3
+}

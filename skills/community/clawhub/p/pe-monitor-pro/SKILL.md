@@ -1,35 +1,100 @@
----
-name: "PE Monitor Pro"
-description: "Provides multi-dimensional monitoring and reporting on personnel, equity, financing, finances, legal issues, government ties, collaborations, risks, competit..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pe-monitor-pro"
-sourceUrl: "https://clawhub.ai/skills/pe-monitor-pro"
----
+\---
 
-# PE Monitor Pro
+name: pe-portfolio-monitor
 
-> Provides multi-dimensional monitoring and reporting on personnel, equity, financing, finances, legal issues, government ties, collaborations, risks, competit...
+description: |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pe-monitor-pro`
-- **Source URL:** [https://clawhub.ai/skills/pe-monitor-pro](https://clawhub.ai/skills/pe-monitor-pro)
+&#x20; 私募股权基金投后监控专家。针对格思航天、垣信卫星、华晟新能源、
 
-## Overview
+&#x20; 红太阳光电、徐工汽车、利氪科技等已投企业进行多维度监控。
+
+&#x20; 支持：人员变动、股权变迁、融资事件、财务状况、法律案件、政企关系、
+
+&#x20; 对外合作、舆论风险、竞对动向、技术突破、产品发布、上市进展监控。
+
+&#x20; Use when: 需要监控被投企业动态、生成投后报告、分析企业风险。
+
+version: 1.0.0
+
+metadata:
+
+&#x20; openclaw:
+
+&#x20;   requires:
+
+&#x20;     env:
+
+&#x20;       - TIANYANCHA\_API\_KEY
+
+&#x20;       - NEWS\_API\_KEY
+
+&#x20;     bins:
+
+&#x20;       - python3
+
+&#x20;   primaryEnv: TIANYANCHA\_API\_KEY
+
+&#x20;   emoji: 📊
+
+\---
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pe-monitor-pro
-```
+
+\# PE Portfolio Monitor
+
+
+
+\## 已投企业清单
+
+
+
+\- \*\*垣信卫星\*\*：千帆星座/G60星链，A轮67亿，监控发射进度和融资
+
+\- \*\*格思航天\*\*：卫星ODM制造，关注产能和G60星链订单
+
+\- \*\*徐工汽车\*\*：新能源重卡，混改后，监控IPO进度和市占率
+
+\- \*\*利氪科技\*\*：线控底盘，C轮10亿+，关注量产交付和车企定点
+
+\- \*\*华晟新能源\*\*：HJT异质结电池，监控技术路线竞争
+
+\- \*\*红太阳光电\*\*：光伏装备，关注设备订单
+
+
+
+\## 监控维度
+
+
+
+1\. 人员变动：高管变更、核心技术人员离职
+
+2\. 股权变迁：股权转让、增资扩股、股东变更
+
+3\. 融资事件：新一轮融资、估值变化
+
+4\. 财务状况：营收、亏损、现金流
+
+5\. 法律案件：诉讼仲裁、行政处罚
+
+6\. 政企关系：政府补助、项目中标
+
+7\. 对外合作：战略合作协议、供应链合作
+
+8\. 舆论风险：负面新闻、产品质量
+
+9\. 竞对动向：竞争对手融资、市场份额
+
+10\. 技术突破：专利申请、新产品发布
+
+11\. 产品发布：新产品上市、产线投产
+
+12\. 上市进展：IPO申报、招股说明书
+
+
+
+\## 使用示例
+
+
+
+\*\*监控垣信卫星：\*\*
+

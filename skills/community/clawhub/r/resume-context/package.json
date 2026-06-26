@@ -1,0 +1,13 @@
+{
+  "name": "resume-context-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill bridge for the resume CLI — cached via Redis.",
+  "type": "module",
+  "main": "resume-mcp.js",
+  "dependencies": {
+    "redis": "^4.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

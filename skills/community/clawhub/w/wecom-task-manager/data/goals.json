@@ -1,0 +1,149 @@
+{
+  "goals": [
+    {
+      "id": "GOAL-001",
+      "title": "OpenClaw 系统优化",
+      "priority": "high",
+      "context": "提升系统稳定性和用户体验",
+      "owner": "",
+      "status": "active",
+      "created_at": "2026-03-26T14:59:55.697655",
+      "tasks": [
+        {
+          "task_id": "GOAL-001-TASK-001",
+          "title": "系统性能分析",
+          "priority": "high",
+          "depends_on": [],
+          "agent": "techlead",
+          "created_at": "2026-03-26T15:00:04.770213"
+        },
+        {
+          "task_id": "GOAL-001-TASK-002",
+          "title": "Gateway 稳定性优化",
+          "priority": "critical",
+          "depends_on": [
+            "GOAL-001-TASK-001"
+          ],
+          "agent": "opsdirector",
+          "created_at": "2026-03-26T15:00:26.738531"
+        },
+        {
+          "task_id": "GOAL-001-TASK-003",
+          "title": "飞书权限修复",
+          "priority": "critical",
+          "depends_on": [
+            "GOAL-001-TASK-001"
+          ],
+          "agent": "general_coordinator",
+          "created_at": "2026-03-26T15:04:16.310292"
+        },
+        {
+          "task_id": "GOAL-001-TASK-004",
+          "title": "系统监控优化",
+          "priority": "high",
+          "depends_on": [
+            "GOAL-001-TASK-001"
+          ],
+          "agent": "techlead",
+          "created_at": "2026-03-26T15:06:36.346110"
+        },
+        {
+          "task_id": "GOAL-001-TASK-005",
+          "title": "企业微信任务管理优化",
+          "priority": "high",
+          "depends_on": [],
+          "agent": "opsdirector",
+          "created_at": "2026-03-26T15:30:13.485153"
+        },
+        {
+          "task_id": "GOAL-001-TASK-006",
+          "title": "时间字段测试任务",
+          "priority": "medium",
+          "depends_on": [],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T15:45:23.035920"
+        },
+        {
+          "task_id": "GOAL-001-TASK-007",
+          "title": "预计工时测试",
+          "priority": "medium",
+          "depends_on": [],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T15:50:22.344188"
+        },
+        {
+          "task_id": "GOAL-001-TASK-008",
+          "title": "新时间格式测试",
+          "priority": "medium",
+          "depends_on": [],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T15:53:21.653719"
+        },
+        {
+          "task_id": "GOAL-001-TASK-009",
+          "title": "时间格式修复测试",
+          "priority": "medium",
+          "depends_on": [],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T15:57:23.184970"
+        },
+        {
+          "task_id": "GOAL-001-TASK-010",
+          "title": "最终时间格式测试",
+          "priority": "medium",
+          "depends_on": [],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T16:11:26.896940"
+        },
+        {
+          "task_id": "GOAL-001-TASK-011",
+          "title": "时间戳格式测试",
+          "priority": "medium",
+          "depends_on": [],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T17:37:55.448977"
+        }
+      ]
+    },
+    {
+      "id": "GOAL-TEST-001",
+      "title": "集成测试目标",
+      "priority": "high",
+      "context": "测试 wecom-task-manager 技能的完整功能",
+      "owner": "da-yan",
+      "status": "active",
+      "created_at": "2026-03-26T18:39:59.750435",
+      "tasks": [
+        {
+          "task_id": "GOAL-TEST-001-TASK-001",
+          "title": "任务 1：系统分析",
+          "priority": "high",
+          "depends_on": [],
+          "agent": "techlead",
+          "created_at": "2026-03-26T18:40:03.581866"
+        },
+        {
+          "task_id": "GOAL-TEST-001-TASK-002",
+          "title": "任务 2：开发实施",
+          "priority": "critical",
+          "depends_on": [
+            "GOAL-TEST-001-TASK-001"
+          ],
+          "agent": "techlead",
+          "created_at": "2026-03-26T18:40:13.679584"
+        },
+        {
+          "task_id": "GOAL-TEST-001-TASK-003",
+          "title": "任务 3：测试验收",
+          "priority": "high",
+          "depends_on": [
+            "GOAL-TEST-001-TASK-002"
+          ],
+          "agent": "copywriter",
+          "created_at": "2026-03-26T18:40:23.855443"
+        }
+      ]
+    }
+  ],
+  "history": []
+}

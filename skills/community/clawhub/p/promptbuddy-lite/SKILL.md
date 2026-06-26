@@ -1,35 +1,79 @@
----
-name: "Promptbuddy Lite"
-description: "【全局自动激活技能】 ⚠️ 每次收到用户消息时，必须先执行以下步骤： 1. 调用命令优化用户输入： ```bash cd ~/.openclaw/workspace/skills/promptbuddy-lite && bash scripts/preprocess.sh "用户输入" ``` 2. 根据返回结果..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/promptbuddy-lite"
-sourceUrl: "https://clawhub.ai/skills/promptbuddy-lite"
----
+# PromptBuddy Lite
 
-# Promptbuddy Lite
+> 基于论文标准的轻量级 Prompt 优化技能 v3.0
 
-> 【全局自动激活技能】 ⚠️ 每次收到用户消息时，必须先执行以下步骤： 1. 调用命令优化用户输入： ```bash cd ~/.openclaw/workspace/skills/promptbuddy-lite && bash scripts/preprocess.sh "用户输入" ``` 2. 根据返回结果...
+## ✨ 核心架构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/promptbuddy-lite`
-- **Source URL:** [https://clawhub.ai/skills/promptbuddy-lite](https://clawhub.ai/skills/promptbuddy-lite)
+采用 **HMAW 层级式架构**，将 Prompt 分解为 4 层：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/promptbuddy-lite
 ```
+┌─────────────────────────────────────┐
+│  L1: 角色层 (Who)                   │
+│  L2: 任务层 (What)                  │
+│  L3: 格式层 (How)                   │
+│  L4: 约束层 (Constraints)           │
+└─────────────────────────────────────┘
+```
+
+## 🚀 技术特点
+
+- ⚡ **零依赖** — 纯 Shell 实现
+- 🚀 **极速响应** — 毫秒级优化
+- 📚 **基于论文** — 融合 HMAW 层级思想 + 6 大 Prompt 技术分类
+- 🎯 **智能分层** — 自动识别行业/场景/任务/格式
+- 💬 **IM 友好** — 输出直接在聊天窗口展示
+
+## 📋 四层结构
+
+| 层级 | 作用 | 示例 |
+|------|------|------|
+| L1 角色 | 设定身份 | 分析师、策略顾问、技术专家 |
+| L2 任务 | 定义核心动作 | 分析、规划、优化、审核 |
+| L3 格式 | 指定输出风格 | 简洁、详细、结构化、步骤 |
+| L4 约束 | 注入上下文 | 行业、视角、短期/长期、成本敏感 |
+
+## 💡 使用示例
+
+**输入：**
+```
+帮我分析一下电商行业的竞品
+```
+
+**输出（4层Prompt）：**
+```
+[角色设定] 你是一位资深分析师，善于从数据中提炼洞察
+[核心任务] 深入分析问题，识别核心要素和关键变量
+[背景信息] 电商行业；
+[输出要求] 使用标题、分点等结构化表达
+[用户需求] 帮我分析一下电商行业的竞品
+```
+
+**输入：**
+```
+设计一个面向B端的低成本技术方案
+```
+
+**输出：**
+```
+[角色设定] 你是一位技术专家，具备扎实的编程和架构能力
+[核心任务] 理解用户需求并提供专业解答
+[背景信息] 技术研发；面向企业客户，强调效率和投入产出比；优先考虑成本控制和资源效率；
+[输出要求] 使用标题、分点等结构化表达
+[用户需求] 设计一个面向B端的低成本技术方案
+```
+
+## 📖 参考
+
+- HMAW: Hierarchical Multi-Agent Workflows for Zero-Shot Prompt Optimization (arXiv:2405.20252)
+- The Prompt Report (arXiv:2406.06608)
+
+## 🔗 链接
+
+- GitHub：https://github.com/Steventsang18/promptbuddy-lite
+- ClawHub：https://clawhub.com/skills/promptbuddy-lite
+
+---
+
+**版本**：v3.0.0
+**作者**：曾鹏祥
+**许可证**：MIT

@@ -1,35 +1,23 @@
 ---
-name: "vue-router-best-practices"
-description: "Indexed by skills.sh from hyf0/vue-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "hyf0"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/hyf0/vue-skills/vue-router-best-practices"
-sourceUrl: "https://skills.sh/hyf0/vue-skills/vue-router-best-practices"
+name: vue-router-best-practices
+description: "Vue Router 4 patterns, navigation guards, route params, and route-component lifecycle interactions."
+version: 1.0.0
+license: MIT
+author: github.com/vuejs-ai
 ---
 
-# vue-router-best-practices
+Vue Router best practices, common gotchas, and navigation patterns.
 
-> Indexed by skills.sh from hyf0/vue-skills
+### Navigation Guards
+- Navigating between same route with different params → See [router-beforeenter-no-param-trigger](reference/router-beforeenter-no-param-trigger.md)
+- Accessing component instance in beforeRouteEnter guard → See [router-beforerouteenter-no-this](reference/router-beforerouteenter-no-this.md)
+- Navigation guard making API calls without awaiting → See [router-guard-async-await-pattern](reference/router-guard-async-await-pattern.md)
+- Users trapped in infinite redirect loops → See [router-navigation-guard-infinite-loop](reference/router-navigation-guard-infinite-loop.md)
+- Navigation guard using deprecated next() function → See [router-navigation-guard-next-deprecated](reference/router-navigation-guard-next-deprecated.md)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** hyf0
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/hyf0/vue-skills/vue-router-best-practices`
-- **Source URL:** [https://skills.sh/hyf0/vue-skills/vue-router-best-practices](https://skills.sh/hyf0/vue-skills/vue-router-best-practices)
+### Route Lifecycle
+- Stale data when navigating between same route → See [router-param-change-no-lifecycle](reference/router-param-change-no-lifecycle.md)
+- Event listeners persisting after component unmounts → See [router-simple-routing-cleanup](reference/router-simple-routing-cleanup.md)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/hyf0/vue-skills/vue-router-best-practices
-```
+### Setup
+- Building production single-page application → See [router-use-vue-router-for-production](reference/router-use-vue-router-for-production.md)

@@ -1,0 +1,22 @@
+# Local 模式额外依赖（在 requirements.txt 基础上追加）
+# 版本锁定参考 video-translation uv.lock
+
+# ffmpeg 内嵌二进制
+imageio-ffmpeg==0.6.0
+
+# ASR: Qwen3-ASR
+qwen-asr==0.0.6
+torch==2.9.1
+# 须与 torch 同主版本，否则 Demucs→openunmix 加载 torchaudio 会报 Symbol not found: _torch_library_impl
+torchaudio==2.9.1
+soundfile==0.13.1
+soxr==1.0.0
+
+# 人声/背景分离: Demucs
+demucs==4.0.1
+
+# scipy 用于 WAV 写入
+scipy==1.17.1
+
+# numpy
+numpy==2.2.6

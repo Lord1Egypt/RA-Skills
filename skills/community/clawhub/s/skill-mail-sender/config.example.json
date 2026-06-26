@@ -1,0 +1,9 @@
+{
+  "sender_email": "your_email@163.com",
+  "sender_password": "your_auth_code_here",
+  "smtp_server": "smtp.163.com",
+  "smtp_port": 465,
+  "default_receivers": [
+    "default@example.com"
+  ]
+}

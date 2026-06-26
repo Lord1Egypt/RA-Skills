@@ -1,0 +1,10 @@
+{
+  "model_name": "legend",
+  "config_path": "data/config/legend.config",
+  "optimization": {
+    "multithread": true,
+    "batch_size": 10,
+    "cache_size": 100,
+    "timeout": 30
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "newsletter_labels_csv": "Newsletters",
+  "newsletter_senders_csv": null,
+  "digest_recipient_emails_csv": "reader@example.com, friend@example.com",
+  "recipient_delivery_mode": "individual"
+}

@@ -1,0 +1,246 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Generated Blueprint",
+    "industry": "finance",
+    "revisionId": "rev-20260413040725",
+    "parentRevisionId": null,
+    "lastModifiedAt": "2026-04-13T04:07:25Z",
+    "lastModifiedBy": "ai"
+  },
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [
+      {
+        "type": "inline-text",
+        "excerpt": "金融风控平台方案，需要信贷审批、风险评级、合规检查、客户画像。核心系统包括风控引擎、信贷系统、CRM、反欺诈系统。主要角色有风控分析师、信贷审批员、合规专员。"
+      }
+    ],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [
+      {
+        "id": "cap-risk-control",
+        "name": "风险控制",
+        "level": 1,
+        "description": "管理风险评估、预警和处置。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-riskengine",
+          "sys-antifraud"
+        ]
+      },
+      {
+        "id": "cap-credit",
+        "name": "信贷管理",
+        "level": 1,
+        "description": "管理信贷申请、审批和放款。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-creditsystem"
+        ]
+      },
+      {
+        "id": "cap-compliance",
+        "name": "合规管理",
+        "level": 1,
+        "description": "管理合规检查、审计和报告。",
+        "ownerActorIds": [],
+        "supportingSystemIds": []
+      },
+      {
+        "id": "cap-customer-profile",
+        "name": "客户画像",
+        "level": 1,
+        "description": "构建和维护客户360度画像。",
+        "ownerActorIds": [],
+        "supportingSystemIds": [
+          "sys-crm",
+          "sys-riskengine"
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "actor-risk-analyst",
+        "name": "风控分析师"
+      },
+      {
+        "id": "actor-credit-approver",
+        "name": "信贷审批员"
+      },
+      {
+        "id": "actor-compliance",
+        "name": "合规专员"
+      }
+    ],
+    "flowSteps": [
+      {
+        "id": "flow-risk-assessment",
+        "name": "风险评级",
+        "actorId": "actor-risk-analyst",
+        "capabilityIds": [
+          "cap-risk-control"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-compliance-check",
+        "name": "合规检查",
+        "actorId": "actor-compliance",
+        "capabilityIds": [
+          "cap-compliance"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      },
+      {
+        "id": "flow-customer-profiling",
+        "name": "客户画像构建",
+        "actorId": "actor-risk-analyst",
+        "capabilityIds": [
+          "cap-customer-profile"
+        ],
+        "systemIds": [],
+        "stepType": "task",
+        "inputRefs": [],
+        "outputRefs": []
+      }
+    ],
+    "systems": [
+      {
+        "id": "sys-crm",
+        "kind": "system",
+        "name": "CRM",
+        "aliases": [],
+        "description": "客户关系管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "CRM"
+        },
+        "capabilityIds": [
+          "cap-customer-profile"
+        ]
+      },
+      {
+        "id": "sys-riskengine",
+        "kind": "system",
+        "name": "risk-engine",
+        "aliases": [],
+        "description": "风控引擎系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "risk-engine"
+        },
+        "capabilityIds": [
+          "cap-risk-control",
+          "cap-customer-profile"
+        ]
+      },
+      {
+        "id": "sys-creditsystem",
+        "kind": "system",
+        "name": "credit-system",
+        "aliases": [],
+        "description": "信贷管理系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "credit-system"
+        },
+        "capabilityIds": [
+          "cap-credit"
+        ]
+      },
+      {
+        "id": "sys-antifraud",
+        "kind": "system",
+        "name": "anti-fraud",
+        "aliases": [],
+        "description": "反欺诈系统",
+        "resolution": {
+          "status": "canonical",
+          "canonicalName": "anti-fraud"
+        },
+        "capabilityIds": [
+          "cap-risk-control"
+        ]
+      }
+    ]
+  },
+  "relations": [],
+  "views": [
+    {
+      "id": "view-capability",
+      "type": "business-capability-map",
+      "title": "业务能力蓝图",
+      "includedNodeIds": [
+        "cap-risk-control",
+        "cap-credit",
+        "cap-compliance",
+        "cap-customer-profile"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-swimlane",
+      "type": "swimlane-flow",
+      "title": "泳道流程图",
+      "includedNodeIds": [
+        "actor-risk-analyst",
+        "actor-credit-approver",
+        "actor-compliance",
+        "flow-risk-assessment",
+        "flow-compliance-check",
+        "flow-customer-profiling"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "lanes": [
+          "actor-risk-analyst",
+          "actor-credit-approver",
+          "actor-compliance"
+        ]
+      },
+      "annotations": []
+    },
+    {
+      "id": "view-architecture",
+      "type": "application-architecture",
+      "title": "应用架构图",
+      "includedNodeIds": [
+        "sys-crm",
+        "sys-riskengine",
+        "sys-creditsystem",
+        "sys-antifraud",
+        "cap-risk-control",
+        "cap-credit",
+        "cap-compliance",
+        "cap-customer-profile"
+      ],
+      "includedRelationIds": [],
+      "layout": {
+        "groups": []
+      },
+      "annotations": []
+    }
+  ],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {}
+}

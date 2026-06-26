@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion"
+  short_description: "Read and write Notion pages and databases"
+  default_prompt: "Use the Notion MCP tools to help the user read, search, and update their Notion workspace."

@@ -1,0 +1,67 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+损坏或格式不支
+持
+400 BadRequestOutofContextErr
+orTotal tokens of
+image and text
+exceed max
+message tokens.当请求中包含图
+片时，文本和图
+片编码后的总
+token 数超过了
+模型上下文长度
+限制
+400 BadRequestInvalidParamete
+rThe given Lean
+code is not
+compilable
+under Lean
+version %s输入的不是一个
+合法的Lean
+Code。
+400 BadRequestInvalidParamete
+rThe format of
+the given lean
+code is not
+supported so far.输入的Lean
+code格式暂不支
+持。
+400 BadRequestInvalidParamete
+r/输入的Lean
+code必须包含
+theorem
+400 ForbiddenInvalidSubscripti
+onYour account
+({{account_identi
+fier}}) does not
+have a valid
+coding plan
+subscription, or
+your
+subscription has
+expired. Please
+visit
+{{subscription_ch
+eck_url}} to
+review your
+subscription
+status or
+complete the
+subscription or
+renewal process.Coding Plan 套
+餐未订阅或已过
+期。
+401 UnauthorizedAuthenticationEr
+rorThe API key or
+AK/SK in the
+request is
+missing or请求携带的 API
+Key 或 AK/SK 校
+验未通过，请您
+重新检查设置的
+鉴权凭证，或者API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 460/485

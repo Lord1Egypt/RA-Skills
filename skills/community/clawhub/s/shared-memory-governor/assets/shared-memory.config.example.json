@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "maintainer": {
+    "agentId": "main"
+  },
+  "paths": {
+    "sharedRoot": "<workspace-parent>/shared-memory",
+    "sharedFiles": {
+      "user": "shared-user.md",
+      "memory": "shared-memory.md",
+      "rules": "shared-rules.md"
+    },
+    "syncLogDir": "shared-sync-log",
+    "archiveDir": "archived"
+  },
+  "schedules": {
+    "timezone": "Asia/Shanghai",
+    "privateMaintenance": {
+      "enabled": true,
+      "every": "72h",
+      "time": "12:00",
+      "recommended": true
+    },
+    "sharedScan": {
+      "enabled": false,
+      "every": "6d",
+      "time": "12:30",
+      "recommended": true
+    },
+    "sharedMaintenance": {
+      "enabled": false,
+      "every": "12d",
+      "time": "13:00",
+      "recommended": true
+    }
+  },
+  "participants": {
+    "registeredAgents": [],
+    "includeSubagents": true,
+    "subagentsReadShared": true,
+    "subagentsWriteShared": false,
+    "subagentContributionMode": "relay-to-maintainer"
+  },
+  "attachment": {
+    "required": true,
+    "mode": "explicit",
+    "localGuideFile": "SHARED_ATTACH.md",
+    "primaryEntrypoint": "AGENTS.md"
+  },
+  "sharing": {
+    "shareAssistantIdentityContext": false,
+    "shareAssistantPersonaContext": false,
+    "shareAssistantToneContext": false,
+    "sharePrivateProjectContext": false,
+    "shareTemporaryTaskState": false,
+    "sharePlaintextSecrets": false
+  },
+  "readOrder": {
+    "privateFirst": true,
+    "sharedSecond": true,
+    "sharedCannotOverrideIdentityContext": true
+  },
+  "sourcePriority": [
+    "MEMORY.md",
+    "USER.md"
+  ],
+  "extraction": {
+    "allowDailyMemoryFallback": false,
+    "skipMarkedEntries": true,
+    "reextractIfUpdated": true,
+    "extractionMarker": {
+      "enabled": true,
+      "format": "> Status: Extracted to shared memory ({date})"
+    }
+  },
+  "maintenance": {
+    "deduplicateSharedMemory": true,
+    "mergeSimilarEntries": false,
+    "pruneOutdatedSharedEntries": true,
+    "markLocalExtractedEntries": true,
+    "modifyLocalMemoryDirectly": false
+  },
+  "reporting": {
+    "mode": "log-and-report",
+    "target": "current-chat",
+    "includeSummary": true,
+    "includeSkippedReasons": true
+  },
+  "syncLog": {
+    "enabled": true,
+    "retainDays": 180,
+    "fileNaming": "{date}_{time}_{type}.md"
+  },
+  "language": "en"
+}

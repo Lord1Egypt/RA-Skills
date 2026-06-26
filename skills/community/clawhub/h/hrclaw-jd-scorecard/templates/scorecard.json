@@ -1,0 +1,29 @@
+{
+  "role_title": "",
+  "summary": "",
+  "filters": {
+    "location": null,
+    "years_min": null,
+    "education_min": null
+  },
+  "must_have": [],
+  "nice_to_have": [],
+  "exclude": [],
+  "weights": {
+    "must_have": 42,
+    "nice_to_have": 12,
+    "title_match": 12,
+    "industry_match": 8,
+    "experience": 14,
+    "education": 7,
+    "location": 5
+  },
+  "thresholds": {
+    "recommend_min": 75,
+    "review_min": 55
+  },
+  "interview_questions": [],
+  "red_flags": [],
+  "assumptions": [],
+  "next_steps": []
+}

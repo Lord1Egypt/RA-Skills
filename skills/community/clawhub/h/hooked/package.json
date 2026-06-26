@@ -1,0 +1,26 @@
+{
+  "name": "hooked-video-api",
+  "version": "1.0.0",
+  "description": "AI Video API skill for Claude Code, Cursor, Windsurf, OpenClaw, and any agent that supports skills",
+  "keywords": [
+    "ai-skill",
+    "video-api",
+    "hooked",
+    "ai-video",
+    "tiktok",
+    "video-generation",
+    "claude-code",
+    "cursor",
+    "openclaw"
+  ],
+  "author": "Hooked <support@hooked.so>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hooked-so/hooked-skill.git"
+  },
+  "homepage": "https://hooked.so/agents",
+  "bugs": {
+    "url": "https://github.com/hooked-so/hooked-skill/issues"
+  }
+}

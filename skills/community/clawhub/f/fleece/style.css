@@ -1,0 +1,213 @@
+/* Fleece — Spirit Airlines tribute design
+   Colors: #FFD100 yellow · #111111 black · #FFFFFF white
+   Fonts:  Oswald (headings) · Source Sans 3 (body)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap');
+
+/* ── Global ─────────────────────────────────────────── */
+
+html, body, [class*="css"] {
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+/* ── Headings ───────────────────────────────────────── */
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111111;
+}
+
+h2, h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: #111111;
+    margin-top: 1rem;
+}
+
+/* ── Sidebar ────────────────────────────────────────── */
+
+section[data-testid="stSidebar"] {
+    background-color: #111111;
+}
+
+section[data-testid="stSidebar"] * {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3,
+section[data-testid="stSidebar"] .stMarkdown strong {
+    color: #FFD100 !important;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* ── Primary button — yellow/black ─────────────────── */
+
+.stButton > button[kind="primary"] {
+    background-color: #FFD100;
+    color: #111111;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.stButton > button[kind="primary"]:hover {
+    background-color: #e6bc00;
+    transform: translateY(-1px);
+}
+
+/* ── Secondary button ───────────────────────────────── */
+
+.stButton > button[kind="secondary"] {
+    background-color: transparent;
+    color: #111111;
+    border: 1.5px solid #111111;
+    border-radius: 100px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.stButton > button[kind="secondary"]:hover {
+    border-color: #FFD100;
+    color: #111111;
+    transform: none;
+}
+
+/* ── Chat messages ──────────────────────────────────── */
+
+.chat-message {
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message {
+    background-color: #FAFAFA;
+    border-left: 4px solid #FFD100;
+}
+
+.bot-message {
+    background-color: #F5F5F3;
+    border-left: 4px solid #111111;
+}
+
+/* ── Streamlit alert/info boxes ─────────────────────── */
+
+div[data-testid="stAlert"] {
+    border-radius: 4px;
+}
+
+/* Info → yellow tint */
+div[data-testid="stAlert"][data-type="info"] {
+    border-left-color: #FFD100;
+    background-color: #FFFBEB;
+}
+
+/* Success → black */
+div[data-testid="stAlert"][data-type="success"] {
+    border-left-color: #111111;
+}
+
+/* ── Expander ───────────────────────────────────────── */
+
+.stExpander {
+    border-radius: 4px;
+    border: 1px solid #E0E0E0;
+    margin-bottom: 0.75rem;
+}
+
+.stExpander summary {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* ── Text input ─────────────────────────────────────── */
+
+.stTextInput input {
+    border-radius: 4px;
+    border: 1.5px solid #E0E0E0;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.stTextInput input:focus {
+    border-color: #FFD100;
+    box-shadow: 0 0 0 2px rgba(255, 209, 0, 0.2);
+}
+
+/* ── Select box ─────────────────────────────────────── */
+
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
+    background-color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 4px;
+}
+
+section[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] * {
+    color: #111111 !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox [role="option"] {
+    color: #111111 !important;
+    background-color: #ffffff;
+}
+
+section[data-testid="stSidebar"] .stSelectbox [role="option"]:hover,
+section[data-testid="stSidebar"] .stSelectbox [aria-selected="true"] {
+    background-color: #FFD100 !important;
+    color: #111111 !important;
+}
+
+/* ── Download button ────────────────────────────────── */
+
+.stDownloadButton > button {
+    background-color: #111111;
+    color: #FFD100;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.stDownloadButton > button:hover {
+    background-color: #222222;
+}
+
+/* ── Images ─────────────────────────────────────────── */
+
+img {
+    border-radius: 4px;
+}
+
+/* ── Status widget ──────────────────────────────────── */
+
+div[data-testid="stStatusWidget"] {
+    border-left: 3px solid #FFD100;
+}
+
+/* ── Footer ─────────────────────────────────────────── */
+
+footer {
+    margin-top: 3rem;
+    color: #9A9A9A;
+    font-size: 0.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+}

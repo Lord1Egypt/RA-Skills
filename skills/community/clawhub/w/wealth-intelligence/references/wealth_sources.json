@@ -1,0 +1,44 @@
+{
+  "data_sources": [
+    {"name": "Yahoo Finance", "url": "https://finance.yahoo.com/", "type": "market_data", "coverage": "Stocks, ETFs, mutual funds, crypto, forex"},
+    {"name": "Morningstar", "url": "https://www.morningstar.com/", "type": "fund_analysis", "coverage": "Mutual fund/ETF ratings, portfolio X-ray"},
+    {"name": "Bankrate / NerdWallet", "url": "https://www.bankrate.com/ / https://www.nerdwallet.com/", "type": "personal_finance", "coverage": "CD rates, mortgage rates, credit cards, loans"},
+    {"name": "Investing.com", "url": "https://www.investing.com/", "type": "market_data", "coverage": "Global markets, commodities, bonds, economic calendar"},
+    {"name": "CoinGecko / CoinMarketCap", "url": "https://www.coingecko.com/ / https://coinmarketcap.com/", "type": "crypto", "coverage": "15K+ cryptocurrencies, 900+ exchanges"},
+    {"name": "Zillow / Redfin", "url": "https://www.zillow.com/ / https://www.redfin.com/", "type": "real_estate", "coverage": "Home values, rental comps, market trends"},
+    {"name": "IRS Tax Brackets", "url": "https://www.irs.gov/individuals/", "type": "tax", "coverage": "Federal tax rates, standard deduction, retirement limits"},
+    {"name": "Social Security Administration", "url": "https://www.ssa.gov/", "type": "retirement", "coverage": "Benefits estimator, retirement age, COLA"},
+    {"name": "Vanguard / Fidelity / Schwab", "url": "https://investor.vanguard.com/ / https://www.fidelity.com/ / https://www.schwab.com/", "type": "brokerage", "coverage": "Fund expense ratios, portfolio tools"},
+    {"name": "BLS / CPI Inflation Calculator", "url": "https://www.bls.gov/cpi/", "type": "inflation", "coverage": "Consumer price index, inflation adjustment"},
+    {"name": "FRED (Federal Reserve Economic Data)", "url": "https://fred.stlouisfed.org/", "type": "economic", "coverage": "823K+ time series, interest rates"},
+    {"name": "Kiplinger / The Balance", "url": "https://www.kiplinger.com/ / https://www.thebalancemoney.com/", "type": "personal_finance", "coverage": "Financial planning, retirement, tax tips"}
+  ],
+  "asset_classes": [
+    {"class": "Cash & Equivalents", "instruments": ["High-Yield Savings", "CDs", "Money Market Funds", "Treasury Bills"], "risk": "Low", "liquidity": "High", "expected_return": "2-5%"},
+    {"class": "Bonds", "instruments": ["US Treasuries", "Corporate Bonds", "Municipal Bonds", "TIPS", "International Bonds"], "risk": "Low-Medium", "liquidity": "Medium", "expected_return": "3-6%"},
+    {"class": "Stocks", "instruments": ["Individual Stocks", "Index ETFs (S&P 500, Total Market)", "Sector ETFs", "International ETFs", "Dividend Stocks"], "risk": "Medium-High", "liquidity": "High", "expected_return": "7-10%"},
+    {"class": "Real Estate", "instruments": ["REITs", "Real Estate Crowdfunding", "Rental Properties", "Home Equity"], "risk": "Medium", "liquidity": "Low", "expected_return": "6-9%"},
+    {"class": "Alternative Investments", "instruments": ["Gold/Silver", "Cryptocurrencies", "Private Equity/Venture Capital", "Collectibles (art, wine)"], "risk": "High", "liquidity": "Low", "expected_return": "Variable"}
+  ],
+  "retirement_accounts_us": [
+    {"account": "401(k)", "contribution_limit_2026": "$23,000 ($30,500 if 50+)", "employer_match": "Common (3-6% of salary)", "tax_advantage": "Traditional (pre-tax) or Roth (after-tax)"},
+    {"account": "IRA", "contribution_limit_2026": "$7,000 ($8,000 if 50+)", "employer_match": "None", "tax_advantage": "Traditional (deductible) or Roth (tax-free growth)"},
+    {"account": "HSA", "contribution_limit_2026": "$4,150 (individual) / $8,300 (family)", "employer_match": "Possible", "tax_advantage": "Triple tax-free (pre-tax contributions, tax-free growth, tax-free withdrawals for medical)"},
+    {"account": "529 Plan", "contribution_limit": "Varies by state (often $300K+ per beneficiary)", "tax_advantage": "Tax-free growth for qualified education expenses"},
+    {"account": "Taxable Brokerage", "contribution_limit": "None", "tax_advantage": "None (capital gains tax applies)"}
+  ],
+  "financial_planning_milestones": [
+    {"age_range": "20s", "focus": "Emergency fund (3-6 months), pay off high-interest debt, start retirement contributions, build credit"},
+    {"age_range": "30s", "focus": "Increase retirement savings (15%+ of income), buy home (if desired), start college savings for kids, term life insurance"},
+    {"age_range": "40s", "focus": "Maximize retirement contributions, pay down mortgage, invest in taxable accounts, consider long-term care insurance"},
+    {"age_range": "50s", "focus": "Catch-up contributions, assess retirement readiness, reduce risk in portfolio, plan for healthcare costs"},
+    {"age_range": "60s+", "focus": "Social Security claiming strategy, Medicare enrollment, required minimum distributions (RMDs), estate planning"}
+  ],
+  "debt_management": [
+    {"type": "Credit Card", "apr_range": "15-30%", "strategy": "Avalanche (highest APR first) or Snowball (smallest balance first)"},
+    {"type": "Student Loan", "apr_range": "3-8%", "strategy": "Income-driven repayment, PSLF, refinancing if rates lower"},
+    {"type": "Mortgage", "apr_range": "5-8%", "strategy": "Refinance if rates drop >1%, extra payments to principal"},
+    {"type": "Auto Loan", "apr_range": "4-10%", "strategy": "Pay off early, avoid long-term loans (>5 years)"},
+    {"type": "Personal Loan", "apr_range": "6-36%", "strategy": "Consolidate high-interest debt, avoid for discretionary spending"}
+  ]
+}

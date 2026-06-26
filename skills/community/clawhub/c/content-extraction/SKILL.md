@@ -1,35 +1,48 @@
 ---
-name: "content-extraction"
-description: "OpenClaw-native executable content extraction skill for URLs, Feishu, YouTube, and web pages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-extraction"
-sourceUrl: "https://clawhub.ai/skills/content-extraction"
+name: content-extraction
+description: OpenClaw-native executable content extraction skill for URLs, Feishu, YouTube, and web pages.
+version: 1.1.0
+author: halfmoon82
+tags: [browser, feishu, extraction, markdown, executable]
 ---
 
-# content-extraction
+# Content Extraction — Executable Skill
 
-> OpenClaw-native executable content extraction skill for URLs, Feishu, YouTube, and web pages.
+This skill is the **local executable version**. It keeps the source-aware routing design and restores a concrete extraction workflow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-extraction`
-- **Source URL:** [https://clawhub.ai/skills/content-extraction](https://clawhub.ai/skills/content-extraction)
+## What it does
+- Detects the input source
+- Selects the best extraction channel
+- Produces clean Markdown
+- Saves long content locally when needed
+- Explains fallback failures instead of hiding them
 
-## Overview
+## Main entrypoints
+- `scripts/extract_router.py` — classify input and build a route plan
+- `scripts/extract.py` — generate an executable extraction spec
 
+## Route priorities
+1. **WeChat** → browser chain
+2. **Feishu doc/wiki** → Feishu tools
+3. **YouTube** → transcript chain
+4. **Generic URL** → `r.jina.ai` → `defuddle.md` → `web_fetch` → browser fallback
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-extraction
-```
+## Output contract
+Always return:
+- title
+- author when available
+- source
+- url
+- summary
+- Markdown body
+- save path when content is long
+
+## Fallback rule
+Never claim success when extraction is partial. If a layer fails, report:
+- where it failed
+- why it failed
+- what fallback was tried next
+
+## Notes
+- The ClawHub abstracted package stays abstract.
+- This local version restores the executable workflow for OpenClaw use and ClawDex publishing.

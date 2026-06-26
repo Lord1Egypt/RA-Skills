@@ -1,0 +1,6 @@
+interface:
+  display_name: "UAPI 答案之书 接口"
+  short_description: "使用 UAPI 的答案之书接口，并说明参数、调用方式和返回码"
+  default_prompt: "使用 $uapi-get-answerbook-ask 直接调用 GET /answerbook/ask，并先确认必填参数、默认值和生效条件。"
+policy:
+  allow_implicit_invocation: true

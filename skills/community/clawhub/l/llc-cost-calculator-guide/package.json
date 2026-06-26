@@ -1,0 +1,23 @@
+{
+  "name": "llc-cost-calculator-guide",
+  "version": "1.0.0",
+  "description": "LLC cost and filing fee guide for LLCClass.com, covering formation fees, annual costs, hidden fees, and state comparisons.",
+  "keywords": [
+    "llc",
+    "llc-cost",
+    "filing-fees",
+    "annual-fees",
+    "business-formation",
+    "llcclass",
+    "cost-calculator"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/?page_id=1076",
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/?page_id=1076",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

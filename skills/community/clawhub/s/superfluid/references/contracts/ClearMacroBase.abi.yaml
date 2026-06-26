@@ -1,0 +1,126 @@
+# ClearMacroBase — abstract base for multi-action macros used with ClearMacroForwarder
+# Implements IClearMacro (which extends IMacro) and provides the EIP-712 type-derivation
+# and IMacro execution surface by dispatching on an actionId encoded into the action params.
+# Macro authors extend this contract, override _registerActions(), and register one
+# ActionSpec per supported actionId — they do NOT re-implement the external functions below.
+#
+# Note: ClearMacroBase is an abstract contract, not exported by @sfpro/sdk — it stays in
+# NON_SDK_ABIS in selectors.mjs. Its external ABI equals IClearMacro's (same five functions)
+# plus the two custom errors documented here.
+#
+# Calling convention for bytes arguments:
+#   encodedPayload — abi.encode(ClearMacroForwarder.Payload); same bytes passed to runMacro
+#   actionParams   — Payload.action.params; with ClearMacroBase this is the multi-action wire
+#                    format: abi.encode(uint8 actionId, bytes32 lang, bytes actionSpecificParams)
+
+meta:
+  name: ClearMacroBase
+  version: v1
+  notes:
+    - "Multi-action wire format: ClearMacroBase requires Payload.action.params to be abi.encode(uint8 actionId, bytes32 lang, bytes actionSpecificParams). actionId selects the registered ActionSpec; actionSpecificParams holds that action's own fields; lang (bytes32, e.g. \"en\") selects the localized description."
+    - "Authoring: extend ClearMacroBase and override _registerActions(), calling _registerAction(actionId, ActionSpec{primaryTypeName, actionTypeDefinition, getActionStructHash, buildOperations, postCheck}). Use _noOpPostCheck when no post-execution check is needed. Per-action handlers receive (bytes actionSpecificParams, bytes32 lang)."
+    - "Each registered action exposes its own EIP-712 Action type. The Action type name must be exactly 'Action' — the forwarder uses it verbatim when assembling the full type definition string."
+    - "Action type definition must be flat (no nested struct types). By convention the first field is 'string description' — a human-readable, localized summary derived from (lang, actionSpecificParams) and bound into the signed digest. Example: \"Action(string description,address token,address receiver,int96 flowRate)\"."
+    - "Single-action macros may implement IClearMacro directly without ClearMacroBase and skip the actionId/lang framing; the multi-action format above is the ClearMacroBase convention, not an IClearMacro requirement."
+    - "DashboardClearMacro is a chain-specific demo/reference macro built on ClearMacroBase, demonstrating multiple actions. Its address (e.g. 0x77232a2a953b570d1fee1fe16b1902299fe7b898) is chain-specific — use as an optional pointer only. In your own integration, treat the macro address as user-supplied."
+    - "ClearMacroBase is an abstract contract not exported by @sfpro/sdk — it remains in NON_SDK_ABIS in selectors.mjs."
+  source:
+    - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/e117279d761d65379e63b330be89e897d6ca7eb4/packages/ethereum-contracts/contracts/utils/ClearMacroBase.sol
+    - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/e117279d761d65379e63b330be89e897d6ca7eb4/packages/ethereum-contracts/contracts/interfaces/utils/IClearMacro.sol
+    - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/e117279d761d65379e63b330be89e897d6ca7eb4/packages/ethereum-contracts/contracts/interfaces/utils/IMacro.sol
+  implements: [IClearMacro]   # IClearMacro is IMacro
+  abstract: true   # extended by each macro implementation; not deployed standalone
+
+# == EIP-712 Type Derivation ==
+# Called by ClearMacroForwarder to construct the EIP-712 type definition and struct hash
+# for the payload the signer approves. The forwarder assembles the full type string as:
+#   "<PrimaryTypeName>(Action action,Security security)<ActionTypeDef><SecurityTypeDef>"
+# ClearMacroBase decodes the actionId from the payload and returns the matching ActionSpec.
+
+getPrimaryTypeName:
+  # Returns the EIP-712 primary type name rendered prominently by wallets.
+  # ClearMacroBase decodes actionId from the payload and returns the registered
+  # ActionSpec.primaryTypeName (e.g. "DashboardCreateFlow", "SetDCAPosition").
+  notes:
+    - "The returned name becomes the top-level type in the EIP-712 types object. Wallets typically display this name to the user as the action header."
+    - "ClearMacroBase decodes the actionId out of encodedPayload (Payload.action.params first field) to pick which registered action's type name to return."
+  mutability: view
+  inputs:
+    - encodedPayload: bytes   # abi.encode(IClearMacroForwarder.Payload)
+  outputs:
+    - name: string
+
+getActionTypeDefinition:
+  # Returns the EIP-712 type definition string for the selected action's Action struct.
+  # The type name MUST be 'Action'; only the field list differs per action.
+  # The type MUST be flat (no nested struct types). By convention the first field is
+  # 'string description'. Example: "Action(string description,address token,address receiver,int96 flowRate)"
+  notes:
+    - "ClearMacroBase decodes actionId from encodedPayload and returns the registered ActionSpec.actionTypeDefinition for that action."
+    - "Gotcha: the type name in the returned string must be exactly 'Action'. The forwarder concatenates this directly into the full type definition. A misnamed type produces an invalid digest."
+    - "Gotcha: nested struct types are not supported. All Action fields must be primitive ABI types (string, address, uint256, int96, bytes32, bytes, etc.)."
+  mutability: view
+  inputs:
+    - encodedPayload: bytes   # abi.encode(IClearMacroForwarder.Payload)
+  outputs:
+    - typeDef: string
+
+getActionStructHash:
+  # Computes the EIP-712 struct hash of the action for the given actionParams.
+  # ClearMacroBase decodes (uint8 actionId, bytes32 lang, bytes actionSpecificParams) from
+  # actionParams, then dispatches to the registered handler getActionStructHash(actionSpecificParams, lang).
+  # The handler builds the hash per EIP-712 using the Action type definition:
+  #   keccak256(abi.encode(keccak256(bytes(actionTypeDef)), keccak256(bytes(description)), field2, ...))
+  notes:
+    - "Gotcha: actionParams here is Payload.action.params, NOT the full encodedPayload. With ClearMacroBase it is abi.encode(uint8 actionId, bytes32 lang, bytes actionSpecificParams); the per-action handler receives only actionSpecificParams plus lang."
+    - "The 'description' field (and any other string/bytes field) must be keccak256-hashed before encoding per EIP-712. The description is derived from (lang, actionSpecificParams) — an unsupported lang reverts with UnsupportedLanguage."
+  mutability: view
+  inputs:
+    - actionParams: bytes     # Payload.action.params (abi.encode(actionId, lang, actionSpecificParams))
+  outputs:
+    - structHash: bytes32
+
+# == Macro Execution (from IMacro) ==
+# Inherited interface methods called by ClearMacroForwarder after security checks pass.
+# ClearMacroBase decodes the actionId and dispatches to the registered action handler.
+
+buildBatchOperations:
+  # Build the list of Host batch operations to execute on behalf of the signer.
+  # Called by the forwarder after all security and signature checks pass, before
+  # forwarding to Host.batchCall. ClearMacroBase decodes actionId from params and
+  # dispatches to the registered buildOperations(host, actionSpecificParams, account) handler.
+  notes:
+    - "Gotcha: params is Payload.action.params (same bytes as actionParams in getActionStructHash) — abi.encode(actionId, lang, actionSpecificParams), NOT the full encodedPayload. The per-action handler receives only actionSpecificParams."
+    - "The account argument is the signer — the address on whose behalf operations run inside the Host."
+  mutability: view
+  inputs:
+    - host: address           # ISuperfluid host contract
+    - params: bytes           # Payload.action.params
+    - account: address        # signer address
+  outputs:
+    - operations: tuple[]     # ISuperfluid.Operation[]
+
+postCheck:
+  # Called by the forwarder after Host.batchCall completes.
+  # ClearMacroBase decodes actionId and dispatches to the registered postCheck handler
+  # (use _noOpPostCheck when no post-execution check is needed).
+  # Inspect post-execution on-chain state and revert if the result is unexpected.
+  notes:
+    - "Gotcha: params is Payload.action.params, same as buildBatchOperations — not the full encodedPayload."
+    - "A revert here causes the entire runMacro call to revert, unwinding the batch execution."
+  mutability: view
+  inputs:
+    - host: address
+    - params: bytes
+    - account: address
+
+# == Errors ==
+errors:
+
+  # -- Action dispatch --
+  - UnknownActionId:                  # actionId in the payload has no registered ActionSpec
+      inputs:
+        - actionId: uint8
+
+  # -- Localization --
+  - UnsupportedLanguage               # lang (bytes32) is not handled by the action's description builder

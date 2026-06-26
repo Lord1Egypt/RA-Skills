@@ -1,0 +1,36 @@
+{
+  "enabled": true,
+  "timezone": "Asia/Shanghai",
+  "schedules": [
+    {
+      "id": "daily-evening-review",
+      "enabled": true,
+      "cron": "0 21 * * *",
+      "max_items": 1,
+      "max_total_per_day": 1,
+      "min_importance": "high",
+      "allowed_states": ["warm", "cold", "hot"],
+      "require_due": true,
+      "min_repetition": 0.35,
+      "require_relevance": false,
+      "context_required": false,
+      "min_relevance": 0.15,
+      "min_priority": 0.45,
+      "cooldown_hours": 24,
+      "global_cooldown_hours": 12,
+      "dedupe_by": "first_tag",
+      "delivery_mode": "prompt",
+      "quiet_hours": {
+        "enabled": true,
+        "start": "22:30",
+        "end": "08:00",
+        "delivery_mode": "gentle"
+      }
+    }
+  ],
+  "prompt_templates": {
+    "prompt": "你之前反复提过「{title}」，现在挺适合顺手强化一下，要不要我帮你把这条线拉回来？",
+    "gentle": "有一条最近反复出现的旧记忆，适合轻轻复习一下：「{title}」",
+    "direct": "建议强化回顾：{title}"
+  }
+}

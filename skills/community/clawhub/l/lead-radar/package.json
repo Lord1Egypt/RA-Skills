@@ -1,0 +1,21 @@
+{
+  "name": "lead-radar",
+  "version": "1.0.0",
+  "description": "Every morning, scans 9 social platforms for people actively asking for what you sell. Delivers top 10 buying-intent leads to Telegram with pre-drafted replies.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node cron.js",
+    "test": "node cron.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "dotenv": "^16.4.0",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["leads", "sales", "reddit", "twitter", "automation", "openclaw"],
+  "author": "bencpnd",
+  "license": "MIT"
+}

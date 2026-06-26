@@ -1,35 +1,47 @@
 ---
-name: "Receipt and Expense Reconciler"
-description: "Parse receipts and invoices, categorize spend, detect anomalies, and produce tax-ready expense summaries for freelancers and SMB operators."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/receipt-expense-reconciler"
-sourceUrl: "https://clawhub.ai/skills/receipt-expense-reconciler"
+name: receipt-expense-reconciler
+description: Parse receipts and invoices, categorize spend, detect anomalies, and produce tax-ready expense summaries for freelancers and SMB operators.
+metadata: {"openclaw":{"emoji":"🧾"}}
 ---
 
 # Receipt and Expense Reconciler
 
-> Parse receipts and invoices, categorize spend, detect anomalies, and produce tax-ready expense summaries for freelancers and SMB operators.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/receipt-expense-reconciler`
-- **Source URL:** [https://clawhub.ai/skills/receipt-expense-reconciler](https://clawhub.ai/skills/receipt-expense-reconciler)
+Turn messy receipts/invoices into clean, auditable expense data.
 
-## Overview
+## Core capabilities
 
+- extract key fields (date, vendor, amount, tax, currency, category hints)
+- normalize merchant names
+- categorize expenses using rule + confidence model
+- detect anomalies (duplicates, outliers, suspicious amounts)
+- generate monthly and quarterly tax-ready summaries
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/receipt-expense-reconciler
-```
+## Disclaimer
+
+This skill provides operational/accounting guidance only. It is not legal or tax advice. Always verify with a licensed accountant/tax advisor before filing.
+
+## Workflow
+
+1. Ingest receipts/invoices (PDF/image/text/CSV).
+2. Parse and normalize fields.
+3. Categorize with confidence score.
+4. Flag uncertain and anomalous rows for review.
+5. Produce reconciled ledger and summary report.
+
+## Output format
+
+1. Parsed records table
+2. Category summary
+3. Anomaly report
+4. Tax-ready export checklist
+
+## Setup
+
+Read [setup.md](setup.md).
+
+## Examples
+
+See [examples.md](examples.md).
+

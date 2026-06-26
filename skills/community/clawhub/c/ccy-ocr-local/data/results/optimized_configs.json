@@ -1,0 +1,54 @@
+{
+  "digit": {
+    "config": {
+      "name": "digit",
+      "path": "data/config/digit.config",
+      "content": "tessedit_char_whitelist=0123456789.,-%\ntessedit_pageseg_mode=6\n"
+    },
+    "test": {
+      "name": "digit",
+      "success": false,
+      "output": "",
+      "error": "Error in fopenReadStream: file not found\nError in pixRead: image file not found: 123.45%\nImage file 123.45% cannot be read!\nError during processing.\n"
+    }
+  },
+  "axis": {
+    "config": {
+      "name": "axis",
+      "path": "data/config/axis.config",
+      "content": "tessedit_char_whitelist=0123456789.,-%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\ntessedit_pageseg_mode=7\n"
+    },
+    "test": {
+      "name": "axis",
+      "success": false,
+      "output": "",
+      "error": "Error in fopenReadStream: file not found\nError in pixRead: image file not found: X轴 Y轴\nImage file X轴 Y轴 cannot be read!\nError during processing.\n"
+    }
+  },
+  "legend": {
+    "config": {
+      "name": "legend",
+      "path": "data/config/legend.config",
+      "content": "tessedit_char_whitelist=0123456789.,-%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:：\ntessedit_pageseg_mode=8\n"
+    },
+    "test": {
+      "name": "legend",
+      "success": false,
+      "output": "",
+      "error": "Error in fopenReadStream: file not found\nError in pixRead: image file not found: 类别A: 100\nImage file 类别A: 100 cannot be read!\nError during processing.\n"
+    }
+  },
+  "title": {
+    "config": {
+      "name": "title",
+      "path": "data/config/title.config",
+      "content": "tessedit_char_whitelist=0123456789.,-%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:：\ntessedit_pageseg_mode=6\n"
+    },
+    "test": {
+      "name": "title",
+      "success": false,
+      "output": "",
+      "error": "Error in fopenReadStream: file not found\nError in pixRead: image file not found: 图表标题\nImage file 图表标题 cannot be read!\nError during processing.\n"
+    }
+  }
+}

@@ -1,35 +1,81 @@
 ---
-name: "Apollo Endo"
-description: "像内分泌系统一样调控全局参数：让AI自动感知自身状态，动态调整工作模式。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-endo"
-sourceUrl: "https://clawhub.ai/skills/apollo-endo"
+name: apollo-endo
+description: >
+  像内分泌系统一样调控全局参数：让AI自动感知自身状态，动态调整工作模式。
+version: 2.0.0
+read_when:
+  - 用户提到参数、设置、偏好、调整
+  - 系统状态异常时
+  - 需要改变工作模式时
+metadata:
+  openclaw:
+    emoji: "🎚️"
+    requires: []
+    triggers:
+      - 参数
+      - 偏好
+      - 设置
+      - 调整
+      - 系统状态
+    suite: apollo
 ---
 
-# Apollo Endo
+# Apollo Endo — 全局参数调控系统
 
-> 像内分泌系统一样调控全局参数：让AI自动感知自身状态，动态调整工作模式。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-endo`
-- **Source URL:** [https://clawhub.ai/skills/apollo-endo](https://clawhub.ai/skills/apollo-endo)
+**AI的系统参数应该像内分泌系统：通过激素在全身广域调控，不需要针对每个器官单独指令。**
 
-## Overview
+内分泌系统的核心特征：
+- **缓慢启动，持久效果**：激素需要时间积累，但一旦启动，效果持续很久
+- **广泛影响**：通过血液到达全身，不像神经那样局限
+- **双向负反馈**：血糖高了就降，低了就升
 
+对应的AI映射：
+- **全局参数**：影响所有任务的默认行为，不需要逐个任务设置
+- **参数积累**：参数调整需要时间积累，不是即时的
+- **负反馈**：参数过高自动下调，过低自动上调
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-endo
+## 全局参数体系
+
 ```
+apollo-endo 维护的参数：
+
+efficiency_mode    # 效率模式：节能/标准/全力
+context_priority  # 上下文优先级：高/中/低
+creativity_level   # 创造力：保守/平衡/发散
+confirmation_req  # 确认要求：每步确认/关键节点确认/自动执行
+verbosity         # 输出长度：简洁/标准/详细
+```
+
+## 触发条件
+
+- 用户明确说"调整参数/设置偏好/切换模式"
+- 系统检测到参数失衡（Apollo其他skill报告的状态）
+- apollo-circadian相位切换时同步调整参数
+
+## 参数调控流程
+
+```
+收到参数调整请求 →
+  1. 解析调整内容（哪个参数+调到多少）
+  2. 检查是否在允许范围内
+  3. 写入参数状态文件
+  4. 通知其他skill：新参数已生效
+  5. 监控效果，必要时负反馈调整
+```
+
+## 与其他Skill的协同
+
+```
+apollo-circadian ──→ 相位切换 → 建议参数调整
+apollo-neuro    ──→ 任务类型 → 推荐参数配置
+apollo-dream    ──→ 整理期 → 可降低参数消耗
+```
+
+## 待实施内容
+
+- [ ] 定义完整参数体系
+- [ ] 编写参数状态文件格式
+- [ ] 实现负反馈机制
+- [ ] 写验收标准

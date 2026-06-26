@@ -1,0 +1,135 @@
+{
+  "comfyui_servers": {
+    "main": {
+      "enabled": true,
+      "name": "高算力设备",
+      "description": "局域网高算力设备，运行ComfyUI",
+      "base_url": "http://{{COMFYUI_SERVER_IP}}:{{COMFYUI_SERVER_PORT}}",
+      "api_endpoints": {
+        "prompt": "/prompt",
+        "queue": "/queue",
+        "history": "/history",
+        "upload": "/upload/image",
+        "view": "/",
+        "object_info": "/object_info"
+      },
+      "connection": {
+        "timeout": 30,
+        "retry_attempts": 3,
+        "retry_delay": 5,
+        "verify_ssl": false
+      },
+      "authentication": {
+        "enabled": false,
+        "type": "none",
+        "credentials": {}
+      },
+      "health_check": {
+        "enabled": true,
+        "endpoint": "/",
+        "interval": 60,
+        "timeout": 10
+      },
+      "performance": {
+        "max_concurrent_jobs": 2,
+        "queue_wait_timeout": 300,
+        "execution_timeout": 600
+      },
+      "workflows": {
+        "image_generation": "image_generation_workflow.json",
+        "text_to_video": "text_to_video_workflow.json",
+        "image_to_video": "image_to_video_workflow.json",
+        "upscale": "upscale_workflow.json"
+      },
+      "monitoring": {
+        "enabled": true,
+        "metrics": [
+          "response_time",
+          "success_rate",
+          "queue_length",
+          "error_rate"
+        ],
+        "alert_thresholds": {
+          "response_time": 30,
+          "error_rate": 0.1,
+          "queue_length": 5
+        }
+      }
+    }
+  },
+  "backup": {
+    "enabled": false,
+    "name": "备用服务器",
+    "base_url": "http://{{BACKUP_SERVER_IP}}:{{BACKUP_SERVER_PORT}}",
+    "api_endpoints": {
+      "prompt": "/prompt",
+      "queue": "/queue",
+      "history": "/history"
+    },
+    "connection": {
+      "timeout": 30,
+      "retry_attempts": 2
+    }
+  },
+  "load_balancing": {
+    "enabled": false,
+    "strategy": "round_robin",
+    "health_check_interval": 30
+  },
+  "failover": {
+    "enabled": false,
+    "primary": "main",
+    "backup": "backup",
+    "switch_threshold": 3,
+    "auto_recovery": true
+  },
+  "caching": {
+    "enabled": true,
+    "cache_results": true,
+    "cache_duration": 3600,
+    "max_cache_size": 100
+  },
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "log_file": "./logs/external_agents.log",
+    "max_file_size": 10485760,
+    "backup_count": 5
+  },
+  "statistics": {
+    "enabled": true,
+    "track_metrics": [
+      "total_requests",
+      "successful_requests",
+      "failed_requests",
+      "average_response_time",
+      "total_tokens_used"
+    ],
+    "report_interval": 3600
+  },
+  "security": {
+    "enabled": true,
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 60,
+      "burst_limit": 10
+    },
+    "request_validation": {
+      "enabled": true,
+      "validate_input": true,
+      "sanitize_input": true
+    },
+    "access_control": {
+      "enabled": false,
+      "allowed_ips": [],
+      "blocked_ips": []
+    }
+  },
+  "debug": {
+    "enabled": false,
+    "log_requests": false,
+    "log_responses": false,
+    "simulate_failures": false,
+    "failure_rate": 0.0
+  }
+}

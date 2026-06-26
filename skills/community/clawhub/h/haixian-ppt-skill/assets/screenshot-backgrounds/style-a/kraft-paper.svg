@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#d7bf91"/>
+  <filter id="paper"><feTurbulence baseFrequency=".035" numOctaves="4"/><feColorMatrix type="matrix" values=".25 0 0 0 0 0 .18 0 0 0 0 0 .08 0 0 0 0 0 .18 0"/></filter>
+  <rect width="1600" height="900" filter="url(#paper)" opacity=".55"/>
+  <path d="M0 180 C340 230 560 80 900 130 S1250 270 1600 190" fill="none" stroke="#4b3424" stroke-width="3" opacity=".08"/>
+</svg>

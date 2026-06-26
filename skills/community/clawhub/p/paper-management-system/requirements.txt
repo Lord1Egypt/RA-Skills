@@ -1,0 +1,15 @@
+# Paper Management System Dependencies
+
+# PDF processing
+PyMuPDF>=1.23.0
+
+# AI summarization (optional)
+openai>=1.0.0
+anthropic>=0.20.0
+
+# Configuration
+pyyaml>=6.0
+
+# Development
+pytest>=7.0.0
+pytest-cov>=4.0.0

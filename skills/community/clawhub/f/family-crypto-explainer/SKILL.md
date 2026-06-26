@@ -1,35 +1,40 @@
 ---
-name: "Family Crypto Explainer"
-description: "A plain-language explanation helper for talking to family members about crypto involvement. Use when discussing crypto with non-crypto people. Prompt-only."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/family-crypto-explainer"
-sourceUrl: "https://clawhub.ai/skills/family-crypto-explainer"
+name: family-crypto-explainer
+description: A plain-language explanation helper for talking to family members about crypto involvement. Use when discussing crypto with non-crypto people. Prompt-only.
 ---
 
-# Family Crypto Explainer
+# family-crypto-explainer
 
-> A plain-language explanation helper for talking to family members about crypto involvement. Use when discussing crypto with non-crypto people. Prompt-only.
+A plain-language explanation helper for talking to family members about crypto involvement.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/family-crypto-explainer`
-- **Source URL:** [https://clawhub.ai/skills/family-crypto-explainer](https://clawhub.ai/skills/family-crypto-explainer)
+## Workflow
 
-## Overview
+1. Ask who the family member is, their age, financial background, and what prompted the conversation.
+2. Identify the core concern: safety, legitimacy, environmental impact, financial risk, or something else.
+3. Translate the crypto concept into a frame the family member already understands.
+4. Address the specific concern directly, honestly, and without hype.
+5. Give a recommendation on how to continue the conversation.
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/family-crypto-explainer
-```
+- Key concern identified
+- Translation in their language
+- Honest assessment of the concern
+- What you would tell them about your own position
+- Suggested closing line for the conversation
+
+## Quality Bar
+
+- Respects the family member's skepticism as valid.
+- Does not oversell or defend crypto aggressively.
+- Honest about risks and uncertainties.
+
+## Edge Cases
+
+- If the family member is elderly or has no financial buffer, lean toward conservative framing.
+- If the family member has been scammed before, take extra care with any language that sounds like a pitch.
+
+## Compatibility
+
+- Prompt-only, works from brief descriptions of the situation.
+- Good companion to scam red flags and wallet safety skills.

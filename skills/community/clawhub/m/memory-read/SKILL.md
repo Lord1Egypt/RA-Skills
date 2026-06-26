@@ -1,35 +1,76 @@
----
-name: "Memory Read"
-description: "Reads indexed memory segments on demand based on trigger scenarios, prioritizing context rebuilding and controlled partial retrieval up to 50KB per request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-read"
-sourceUrl: "https://clawhub.ai/skills/memory-read"
+# memory-read / 读取机制
+
+> 版本：v0.2（从头推导版）
+> 创建：2026-03-31
+> 依据：memory-treasure v5.3 四层架构
+
 ---
 
-# Memory Read
+## 核心定位
 
-> Reads indexed memory segments on demand based on trigger scenarios, prioritizing context rebuilding and controlled partial retrieval up to 50KB per request.
+**读什么、什么时候读——由触发场景决定。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-read`
-- **Source URL:** [https://clawhub.ai/skills/memory-read](https://clawhub.ai/skills/memory-read)
+---
 
-## Overview
+## 触发场景与读取对应
 
+| 触发场景 | 读什么 | 目的 |
+|---------|---------|------|
+| 失忆后重建 | 小蜂日报/最近7天 | 重建工作上下文 |
+| 每日开始 | 小蜂日报/今日 | 了解今天要继续什么 |
+| 找历史定位 | 小蜂日报/指定日期的索引 | 找到目标文件位置 |
+| 彧哥问进展 | 我/对应目录 | 查彧哥的进度 |
+| 查共同知识 | 热/温 | 获取参考内容 |
+| 调取聊天 | 冷/ | 仅彧哥指令触发，手动，≤50KB |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-read
+---
+
+## 读取顺序
+
+### 失忆后重建
+
 ```
+1. 小蜂日报/最近7天  → 快速重建上下文
+2. 通过索引定位文件   → 找到目标
+3. 按需读取目标文件  → 获取详情
+```
+
+### 彧哥问"我之前做了什么"
+
+```
+1. 小蜂日报/最近N天 → 找到相关记录
+2. 索引定位文件位置  → 读取详情
+```
+
+---
+
+## 读取原则
+
+| 原则 | 说明 |
+|------|------|
+| 从索引开始 | 不盲目加载，先定位再读 |
+| 按需读取 | 需要什么读什么，不贪多 |
+| 一次≤50KB | 超过切分再读 |
+| 冷区手动 | 彧哥指令才读冷区 |
+
+---
+
+## 冷区读取规则
+
+- **只写不取**：冷区原始聊天不主动读取
+- **触发方式**：彧哥说"调取..."
+- **安全限制**：单次≤50KB，分片读取
+- **等向量检索就绪后**：激活全文检索（未来能力）
+
+---
+
+## 版本
+
+| 版本 | 日期 | 变更 |
+|------|------|------|
+| v0.1 | 2026-03-31 | 初始版本（搬运旧内容） |
+| v0.2 | 2026-03-31 | 从v5.3架构从头推导，脱离旧话 |
+
+---
+
+*本模块负责明确读取规则，不是主动加载。*

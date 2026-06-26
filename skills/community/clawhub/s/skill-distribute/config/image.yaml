@@ -1,0 +1,108 @@
+# 图片处理配置
+
+image_processing:
+  # 填充模式
+  # - blur: 模糊填充（推荐，美观）
+  # - solid: 纯色填充
+  # - extend: 智能延伸
+  # - crop: 智能裁剪
+  fill_mode: blur
+  
+  # 纯色填充时的背景色
+  background_color: "#000000"
+  
+  # 模糊半径（blur 模式）
+  blur_radius: 50
+  
+  # 输出图片质量 (1-100)
+  quality: 95
+  
+  # 输出格式: jpeg | png | webp
+  output_format: jpeg
+  
+  # 是否保留原图备份
+  keep_original: true
+  
+  # 临时文件清理（发布后删除）
+  auto_cleanup: true
+  
+  # 智能裁剪设置
+  smart_crop:
+    # 人脸检测（优先保留人脸区域）
+    face_detection: true
+    # 主体检测
+    subject_detection: true
+    
+  # 水印设置
+  watermark:
+    enabled: false
+    # 水印文字
+    text: ""
+    # 水印位置: topleft | topright | bottomleft | bottomright | center
+    position: bottomright
+    # 水印透明度 (0-1)
+    opacity: 0.5
+    # 水印大小（相对于图片宽度的比例）
+    size_ratio: 0.1
+
+# 各平台图片规格
+platform_specs:
+  xiaohongshu:
+    # 支持的比例
+    ratios:
+      - name: "3:4"
+        width: 900
+        height: 1200
+        description: "竖版推荐"
+      - name: "1:1"
+        width: 1080
+        height: 1080
+        description: "正方形"
+      - name: "4:3"
+        width: 1200
+        height: 900
+        description: "横版"
+    # 最大文件大小 (MB)
+    max_file_size: 20
+    # 支持格式
+    formats: ["jpg", "jpeg", "png", "webp"]
+    # 最大图片数量
+    max_images: 18
+    
+  douyin:
+    ratios:
+      - name: "9:16"
+        width: 1080
+        height: 1920
+        description: "竖版全屏"
+    max_file_size: 50
+    formats: ["jpg", "jpeg", "png"]
+    max_images: 35
+    
+  shipinhao:
+    ratios:
+      - name: "9:16"
+        width: 1080
+        height: 1920
+        description: "竖版"
+      - name: "16:9"
+        width: 1920
+        height: 1080
+        description: "横版"
+    max_file_size: 100
+    formats: ["jpg", "jpeg", "png"]
+    max_images: 9
+    
+  kuaishou:
+    ratios:
+      - name: "9:16"
+        width: 1080
+        height: 1920
+        description: "竖版"
+      - name: "1:1"
+        width: 1080
+        height: 1080
+        description: "正方形"
+    max_file_size: 50
+    formats: ["jpg", "jpeg", "png", "gif"]
+    max_images: 31

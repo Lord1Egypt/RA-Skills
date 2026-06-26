@@ -1,0 +1,12 @@
+{
+  "name": "bark-push-scripts",
+  "version": "1.0.0",
+  "description": "Bark push notification helper scripts",
+  "main": "bark-send.js",
+  "scripts": {
+    "send": "node bark-send.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

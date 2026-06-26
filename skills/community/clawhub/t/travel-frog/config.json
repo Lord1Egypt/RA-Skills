@@ -1,0 +1,13 @@
+{
+  "sleepTime": {
+    "start": 23,
+    "end": 8
+  },
+  "travel": {
+    "timeMultiplier": 3600
+  },
+  "rewards": {
+    "cloversOnReturn": 3,
+    "initialClovers": 10
+  }
+}

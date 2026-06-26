@@ -1,0 +1,14 @@
+{
+  "run_id": "sample-run",
+  "project": "MinerU",
+  "created_at": "2026-04-16T12:00:00Z",
+  "record_count": 5,
+  "artifacts": [
+    "raw_responses.jsonl",
+    "score_draft.jsonl",
+    "annotations.jsonl",
+    "summary.json",
+    "metrics.csv",
+    "weekly_report.md"
+  ]
+}

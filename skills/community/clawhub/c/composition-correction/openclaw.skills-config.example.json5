@@ -1,0 +1,23 @@
+{
+  commands: {
+    text: true,
+    native: "auto",
+    nativeSkills: "auto",
+  },
+  skills: {
+    load: {
+      watch: true,
+      watchDebounceMs: 250,
+      // extraDirs: ["~/Projects/shared-skills"],
+    },
+    entries: {
+      "composition-correction": {
+        enabled: true,
+        apiKey: "YOUR_INKCRAFT_API_KEY",
+        env: {
+          INKCRAFT_BASE_URL: "https://www.inkcraft.cn",
+        },
+      },
+    },
+  },
+}

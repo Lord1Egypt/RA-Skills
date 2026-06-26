@@ -1,0 +1,17 @@
+{
+  "name": "smfoi-kernel",
+  "display_name": "SMFOI-KERNEL v0.2.2 — Managed Orientation Protocol",
+  "version": "0.2.2",
+  "description": "A structured 5-step orientation protocol for autonomous agents. Enforces safety boundaries and local logging for auditability.",
+  "requirements": {
+    "env_vars": [],
+    "binaries": [],
+    "permissions": {
+      "filesystem": {
+        "scope": "workspace_subfolder",
+        "path": "./memory/kernel/",
+        "reason": "Required strictly for logging the orientation state and audit trails. No system-level access is requested."
+      }
+    }
+  }
+}

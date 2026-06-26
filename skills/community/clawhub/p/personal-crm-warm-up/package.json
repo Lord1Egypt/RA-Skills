@@ -1,0 +1,11 @@
+{
+  "name": "personal-crm-warm-up",
+  "version": "1.0.0",
+  "description": "Identifies contacts you haven't reached out to recently and suggests low-pressure ways to reconnect.",
+  "main": "handler.js",
+  "scripts": {
+    "check": "node handler.js warm_up_check"
+  },
+  "keywords": ["crm", "networking", "relationships", "contacts", "openclaw"],
+  "license": "MIT"
+}

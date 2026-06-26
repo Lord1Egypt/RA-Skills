@@ -1,0 +1,12 @@
+{
+  "name": "qwen-image-gen",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Qwen image generation skill for qclaw",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "gen": "node scripts/qwen-image-gen.js"
+  }
+}

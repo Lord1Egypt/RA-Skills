@@ -1,0 +1,13 @@
+{
+  "name": "learning-path-navigator",
+  "version": "0.1.0",
+  "description": "个性化学习路径导航仪 - 根据学习目标、当前水平和可用资源生成定制化学习计划",
+  "type": "module",
+  "main": "handler.js",
+  "scripts": {
+    "test": "node handler.js"
+  },
+  "keywords": ["learning", "education", "study-plan", "skill-development", "personalized-learning"],
+  "author": "harrylabsj",
+  "license": "MIT"
+}

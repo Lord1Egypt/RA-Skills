@@ -1,0 +1,19 @@
+{
+  "name": "feishu-video-editor",
+  "version": "1.0.0",
+  "description": "AI 视频剪辑 Skill - MVP 版本",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "dev": "tsc --watch"
+  },
+  "keywords": ["openclaw", "skill", "feishu", "video", "editor", "ffmpeg", "whisper"],
+  "author": "Spark",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}

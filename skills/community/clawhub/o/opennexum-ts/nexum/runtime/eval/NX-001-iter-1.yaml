@@ -1,0 +1,33 @@
+verdict: pass
+system_errors: []
+strategy_results:
+  - strategy_type: review
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "类型定义覆盖了契约要求的核心结构：`packages/core/src/types.ts:23-35` 定义 `Contract` 并包含 `scope`、`deliverables`、`eval_strategy`、`depends_on`、`max_iterations` 等字段；`packages/core/src/types.ts:37-44` 定义 `TaskStatus`；`packages/core/src/types.ts:46-64` 定义 `Task` 并包含运行态字段 `status`、`iteration`、`commit_hash`、`base_commit`、`head_commit`、`acp_session_key`、`tmux_session`、`last_error`、`eval_result_path`、`eval_tmux_session`、时间戳等；`packages/core/src/types.ts:66-68` 定义 `ActiveTasksFile`；`packages/core/src/types.ts:78-90` 定义 `EvalResult`。现有 bash 版任务文件 `nexum/active-tasks.json:3-17`、`nexum/active-tasks.json:27-40` 中出现的运行态字段如 `base_commit`、`tmux_session`、`last_error`、`commit_hash`、`eval_result_path`、`eval_tmux_session`、`iteration` 均已被 `Task` 覆盖。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "`packages/core/src/tasks.ts:32-44` 的 `writeTasks()` 先写入 `temporaryPath = ${filePath}.${process.pid}.${Date.now()}.tmp`，再执行 `rename(temporaryPath, filePath)`，失败时清理 tmp 文件；`packages/core/src/tasks.ts:52-68` 的 `updateTask()` 在锁内调用 `writeTasks()`。并发场景由 `packages/core/src/__tests__/tasks.test.ts:10-55` 覆盖，测试中并行执行两个 `updateTask()` 后仍能完整解析 `active-tasks.json` 且两个状态都正确。"
+        detail: null
+        score: null
+  - strategy_type: unit
+    criteria_results:
+      - id: C2
+        result: pass
+        evidence: "`packages/core/src/__tests__/contract.test.ts:14-22` 直接解析现有合约 `docs/nexum/contracts/NX-001.yaml`，断言 `id=NX-001`、`type=coding`、`scope.files[0]=pnpm-workspace.yaml`、`eval_strategy.criteria[0].id=C1`，且 `validateContract()` 返回 0 个错误。额外运行 `pnpm dlx --package=tsx tsx --eval '...parseContract...validateContract...'` 后，输出为 `NX-001.yaml NX-001 unit 0`、`NX-002.yaml NX-002 unit 0`、`NX-003.yaml NX-003 unit 0`、`NX-004.yaml NX-004 unit 0`、`NX-005.yaml NX-005 integration 0`，说明当前全部现有 contract YAML 都可被解析且字段映射通过校验。"
+        detail: null
+        score: null
+      - id: C4
+        result: pass
+        evidence: "`packages/core/src/tasks.ts:79-94` 先收集所有 `status === done` 的任务 ID，再把刚完成的 `completedTaskId` 加入集合，最后只返回 `status === pending`、`depends_on` 包含该任务且所有依赖都已满足的任务。`packages/core/src/__tests__/tasks.test.ts:57-112` 构造 5 个任务后调用 `getUnlockedTasks(projectDir, \"NX-002\")`，断言返回值仅为 `[\"NX-003\"]`。`pnpm test` 输出中该用例通过：`✔ getUnlockedTasks returns pending tasks whose dependencies are now satisfied`。"
+        detail: null
+        score: null
+      - id: C5
+        result: pass
+        evidence: "实际执行根目录命令成功：`pnpm build` 输出 `Tasks: 2 successful, 2 total`，其中 `@nexum/core:build` 运行 `../prompts/node_modules/.bin/tsc -p tsconfig.json` 成功，`@nexum/prompts:build` 成功；`pnpm test` 输出 `Tasks: 4 successful, 4 total`，`@nexum/core:test` 5/5 通过，`@nexum/prompts:test` 24/24 通过，全程无 TypeScript 编译错误。"
+        detail: null
+        score: null
+feedback: ""

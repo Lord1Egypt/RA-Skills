@@ -1,0 +1,33 @@
+{
+  "name": "automatic-skill",
+  "version": "1.4.1",
+  "description": "每日 Skill 自动工厂 — 10阶段流水线自主调研、设计、生成、测试并发布新 skill，支持已有 skill 迭代升级",
+  "homepage": "https://github.com/Cosmofang/automatic-skill",
+  "keywords": [
+    "automatic-skill", "skill-factory", "pipeline", "meta-skill", "daily-skill",
+    "自动skill", "技能工厂", "每日skill", "自动化", "skill迭代", "clawhub-publish"
+  ],
+  "author": "jiajiaoy",
+  "license": "MIT",
+  "scripts": {
+    "pipeline": "node scripts/pipeline.js",
+    "pipeline:dry": "node scripts/pipeline.js --dry-run",
+    "daily": "node scripts/daily-pipeline.js",
+    "research": "node scripts/research.js",
+    "design": "node scripts/design.js",
+    "create": "node scripts/create.js",
+    "review": "node scripts/review.js",
+    "self-run": "node scripts/self-run.js",
+    "self-check": "node scripts/self-check.js",
+    "upload": "node scripts/upload.js",
+    "verify": "node scripts/verify-upload.js",
+    "safety-check": "node scripts/scan-check.js",
+    "safety-rules": "node scripts/scan-fix.js",
+    "final-review": "node scripts/final-review.js",
+    "status": "node scripts/status.js",
+    "status:history": "node scripts/status.js --history",
+    "push-on": "node scripts/push-toggle.js on",
+    "push-off": "node scripts/push-toggle.js off",
+    "push-status": "node scripts/push-toggle.js status"
+  }
+}

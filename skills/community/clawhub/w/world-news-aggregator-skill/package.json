@@ -1,0 +1,45 @@
+{
+  "name": "world-news-aggregator-skill",
+  "version": "1.0.0",
+  "description": "全球信息参考 - 多元聚合全球科技、股市、AI 论文、军事技术、政策情报",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "news-aggregator",
+    "ai",
+    "global-news",
+    "intelligence",
+    "tech-news",
+    "stock-market",
+    "ai-papers",
+    "military-tech",
+    "china-policy"
+  ],
+  "author": "BODYsuperman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BODYsuperman/world-news-aggregator-skill.git"
+  },
+  "homepage": "https://github.com/BODYsuperman/world-news-aggregator-skill#readme",
+  "bugs": {
+    "url": "https://github.com/BODYsuperman/world-news-aggregator-skill/issues"
+  },
+  "skills": {
+    "entry": "SKILL.md",
+    "type": "openclaw-skill",
+    "category": "news",
+    "minOpenClawVersion": "2026.1.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "requirements.txt",
+    "scripts/"
+  ]
+}

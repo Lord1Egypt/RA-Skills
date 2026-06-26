@@ -1,0 +1,1 @@
+{"_comment": "极简万能 Agent 配置文件", "_usage": "复制此文件为 config.json 并填入你的 API Key", "api_key": "sk-your-api-key-here", "model": "gpt-4o", "base_url": "https://api.openai.com/v1", "dangerous_mode": false, "auto_save_memory": true, "memory_file": "universal_agent_memory.json", "command_timeout": 300, "script_timeout": 600}

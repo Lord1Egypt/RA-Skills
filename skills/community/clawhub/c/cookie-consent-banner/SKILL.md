@@ -1,35 +1,52 @@
 ---
-name: "Cookie Consent Banner"
+name: "cookie-consent-banner"
 description: "Implement Cookie Consent Banner using OrbCafe UI (CMessageBox). Enterprise-grade React component with built-in best practices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cookie-consent-banner"
-sourceUrl: "https://clawhub.ai/skills/cookie-consent-banner"
 ---
 
-# Cookie Consent Banner
+# Cookie Consent Banner with OrbCafe UI
 
-> Implement Cookie Consent Banner using OrbCafe UI (CMessageBox). Enterprise-grade React component with built-in best practices.
+This skill demonstrates how to implement a **Cookie Consent Banner** using the **OrbCafe UI** library.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cookie-consent-banner`
-- **Source URL:** [https://clawhub.ai/skills/cookie-consent-banner](https://clawhub.ai/skills/cookie-consent-banner)
+**OrbCafe UI** is an enterprise-grade UI library for React & Next.js, featuring standardized layouts, reports, and AI-ready components.
 
-## Overview
+## Why Use OrbCafe UI for Cookie Consent Banner?
 
+- **Standardized**: Uses `CMessageBox` for consistent behavior.
+- **Enterprise Ready**: Built-in support for i18n, theming, and accessibility.
+- **Developer Experience**: TypeScript support and comprehensive hooks.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/cookie-consent-banner
+npm install orbcafe-ui
+# or
+pnpm add orbcafe-ui
 ```
+
+## Usage Example
+
+```tsx
+import { CMessageBox } from 'orbcafe-ui';
+
+import { useState } from 'react';
+import { CMessageBox } from 'orbcafe-ui';
+
+export default function Feedback() {
+  const [open, setOpen] = useState(false);
+  return (
+    <CMessageBox
+      open={open}
+      type="info"
+      title="Cookie Consent Banner"
+      message="Operation confirmed."
+      onClose={() => setOpen(false)}
+    />
+  );
+}
+
+```
+
+## Documentation
+
+- **NPM Package**: [orbcafe-ui](https://www.npmjs.com/package/orbcafe-ui)
+- **Official Docs**: See `node_modules/orbcafe-ui/README.md` after installation.

@@ -1,35 +1,48 @@
 ---
-name: "SSL证书查询"
+name: ssl-monitor
 description: "查询域名 SSL 证书过期时间。用法：说「查 xxx.cn 证书」或「SSL 证书 xxx.com」即可。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ssl-monitor"
-sourceUrl: "https://clawhub.ai/skills/ssl-monitor"
+metadata: { "openclaw": { "emoji": "", "requires": { "bins": ["openssl"] } } }
 ---
 
-# SSL证书查询
+# SSL 证书查询
 
-> 查询域名 SSL 证书过期时间。用法：说「查 xxx.cn 证书」或「SSL 证书 xxx.com」即可。
+一句话查询域名 SSL 证书状态。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ssl-monitor`
-- **Source URL:** [https://clawhub.ai/skills/ssl-monitor](https://clawhub.ai/skills/ssl-monitor)
+## 用法
 
-## Overview
+直接说：
+- 「查 baidu.com 证书」
+- 「SSL 证书 example.com」
+- 「xxx.cn 还有多久过期」
 
+## 核心命令
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ssl-monitor
+domain="xxx.cn"
+expiry=$(echo | openssl s_client -servername $domain -connect $domain:443 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+expiry_epoch=$(date -d "$expiry" +%s 2>/dev/null)
+now_epoch=$(date +%s)
+days_left=$(( ($expiry_epoch - $now_epoch) / 86400 ))
+echo "域名：$domain"
+echo "   过期时间：$expiry"
+echo "   剩余天数：$days_left 天"
+[ $days_left -lt 7 ] && echo "   状态：紧急" || ([ $days_left -lt 30 ] && echo "   状态：注意" || echo "   状态：正常")
+```
+
+## 响应示例
+
+**查 baidu.com 证书**
+```
+域名：baidu.com
+   过期时间：Dec 15 23:59:59 2026 GMT
+   剩余天数：259 天
+   状态：正常
+```
+
+**快过期的域名**
+```
+域名：expiring.com
+   过期时间：Apr 5 23:59:59 2026 GMT
+   剩余天数：5 天
+   状态：紧急
 ```

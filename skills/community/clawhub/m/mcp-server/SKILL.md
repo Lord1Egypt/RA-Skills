@@ -1,35 +1,53 @@
 ---
-name: "MCP Server Creator"
-description: "Create and deploy Model Context Protocol (MCP) servers for AI agents. MCP enables AI models to interact with external tools and services."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, mcp, server, tools]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-server"
-sourceUrl: "https://clawhub.ai/skills/mcp-server"
+name: mcp-server
+description: Create and deploy Model Context Protocol (MCP) servers for AI agents. MCP enables AI models to interact with external tools and services.
 ---
 
 # MCP Server Creator
 
-> Create and deploy Model Context Protocol (MCP) servers for AI agents. MCP enables AI models to interact with external tools and services.
+Create Model Context Protocol servers that extend AI capabilities.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-server`
-- **Source URL:** [https://clawhub.ai/skills/mcp-server](https://clawhub.ai/skills/mcp-server)
+## What is MCP?
 
-## Overview
+MCP (Model Context Protocol) is an open protocol that allows AI models to:
+- Access external tools and services
+- Interact with databases, APIs, and file systems
+- Execute code and commands
 
+## Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-server
+### 1. Quick Server Templates
+- Weather API server
+- Database query server  
+- File management server
+- Custom API wrapper server
+
+### 2. Deployment
+- Deploy to various platforms
+- Connect to AI agents (Claude, OpenClaw, etc.)
+
+### 3. Examples
+
 ```
+# Create a weather MCP server
+mcp-server create weather --api open-meteo
+
+# Create a database MCP server  
+mcp-server create database --type postgres
+
+# Deploy to cloud
+mcp-server deploy --platform vercel
+```
+
+## Use Cases
+
+- Connect AI to external APIs
+- Create custom tool integrations
+- Build AI-powered automation
+- Enable AI to interact with databases
+
+## Requirements
+
+- Node.js 18+
+- npm or yarn
+- API keys for external services (if needed)

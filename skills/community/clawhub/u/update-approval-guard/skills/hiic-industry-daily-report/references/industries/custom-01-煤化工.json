@@ -1,0 +1,82 @@
+{
+  "id": "custom-01",
+  "name": "煤化工",
+  "category": "能源化工",
+  "keywords": [
+    "煤化工",
+    "coal chemical",
+    "煤制油",
+    "coal to liquids",
+    "煤制烯烃",
+    "coal to olefins",
+    "煤气化",
+    "coal gasification",
+    "现代煤化工",
+    "coal chemical industry",
+    "中煤能源",
+    "China Coal",
+    "兖矿",
+    "Yankuang",
+    "神华煤化工",
+    "Shenhua coal chemical",
+    "煤制乙二醇",
+    "煤制天然气",
+    "煤基新材料",
+    "煤炭清洁利用"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "百科",
+    "知道",
+    "经验分享",
+    "股票代码"
+  ],
+  "searchSettings": {
+    "maxResults": 25,
+    "days": 1,
+    "language": "zh-CN",
+    "freshness": "day",
+    "topic": "general",
+    "minResults": 5,
+    "qualityOverQuantity": true,
+    "sources": {
+      "include": [
+        "energy.cn",
+        "coal.com.cn",
+        "cctda.org.cn",
+        "china-nengyuan.com",
+        "coalchem.org.cn",
+        "ne21.com",
+        "bjx.com.cn",
+        "360qiyuan.com",
+        "chinabgao.com",
+        "cheminfo.gov.cn",
+        "cas.cn",
+        "ndrc.gov.cn",
+        "nea.gov.cn"
+      ]
+    }
+  },
+  "contentSettings": {
+    "extractContent": true,
+    "summaryMinLength": 60,
+    "summaryMaxLength": 200,
+    "fallbackToDescription": true
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🏭",
+    "maxDescriptionLength": 200,
+    "includeImages": false,
+    "minResults": 5,
+    "showNoNewsAlert": true
+  }
+}

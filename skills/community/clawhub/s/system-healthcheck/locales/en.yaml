@@ -1,0 +1,91 @@
+# English (en-US)
+
+meta:
+  title: "System Health Check"
+  duration: "Duration: {seconds}"
+  timestamp: "Timestamp: {time}"
+  hostname: "Hostname: {host}"
+
+checks:
+  disk: "Disk Usage"
+  memory: "Memory Usage"
+  cron: "Cron Service"
+  gateway: "OpenClaw Gateway"
+  logs: "Log Files"
+  python: "Python Environment"
+  scripts: "Critical Scripts"
+
+status:
+  ok: "[OK]"
+  warning: "[WARN]"
+  error: "[ERR]"
+  critical: "[CRIT]"
+  healthy: "Healthy"
+  has_issues: "Has Issues"
+  running: "Running"
+  not_running: "Not Running"
+
+messages:
+  # Disk
+  disk_ok: "{usage}% (threshold: {threshold}%)"
+  disk_warning: "{usage}% (exceeds {threshold}%)"
+  disk_critical: "{usage}% (CRITICAL threshold: {threshold}%)"
+  
+  # Memory
+  memory_ok: "{used:.1f}GB / {total:.1f}GB"
+  memory_warning: "{used:.1f}GB / {total:.1f}GB (low: {available}MB)"
+  
+  # Cron
+  cron_ok: "Running"
+  cron_failed: "NOT running"
+  
+  # Gateway
+  gateway_ok: "Healthy"
+  gateway_failed: "Not responding"
+  
+  # Logs
+  logs_ok: "{size}MB"
+  logs_warning: "{size}MB (large)"
+  
+  # Python
+  python_ok: "Python {version} available"
+  python_failed: "Python not found"
+  
+  # Scripts
+  scripts_ok: "All critical scripts exist"
+  scripts_missing: "Missing: {scripts}"
+
+# L1 Fast Check
+l1:
+  title: "L1 Fast Check"
+  ok: "✅ All definition files OK"
+  error: "❌ Missing files: {files}"
+
+# L2 Hourly Check
+l2:
+  title: "L2 Hourly Check"
+  interval: "Every {minutes} minutes"
+  
+# L3 Daily Audit
+l3:
+  title: "L3 Daily Audit"
+  schedule: "Daily at {time}"
+  updates: "System Updates"
+  swap: "Swap Usage"
+  processes: "Process Count"
+  old_logs: "Old Log Files"
+  disk_cleanup: "Disk Cleanup"
+
+# Heartbeat
+heartbeat:
+  title: "Heartbeat Check"
+  work_hours: "Work hours: {start}:00 - {end}:00"
+  suppressed: "Suppressed (all OK)"
+  active: "Active"
+
+# Summary
+summary:
+  all_ok: "✅ All checks passed"
+  has_warnings: "⚠️ {count} warning(s)"
+  has_errors: "❌ {count} error(s)"
+  total_checks: "Total: {total} checks"

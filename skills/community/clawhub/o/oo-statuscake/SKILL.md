@@ -1,35 +1,86 @@
 ---
-name: "StatusCake"
-description: "StatusCake (statuscake.com). Use this skill for ANY StatusCake request — reading, creating, updating, and deleting data. Whenever a task involves StatusCake,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-statuscake"
-sourceUrl: "https://clawhub.ai/skills/oo-statuscake"
+name: oo-statuscake
+description: "StatusCake (statuscake.com). Use this skill for ANY StatusCake request — reading, creating, updating, and deleting data. Whenever a task involves StatusCake, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "StatusCake"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["statuscake"]
+  icon: "https://static.oomol.com/logo/third-party/Statuscake.svg"
 ---
 
 # StatusCake
 
-> StatusCake (statuscake.com). Use this skill for ANY StatusCake request — reading, creating, updating, and deleting data. Whenever a task involves StatusCake,...
+Operate **StatusCake** through your OOMOL-connected account. This skill calls the `statuscake` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-statuscake`
-- **Source URL:** [https://clawhub.ai/skills/oo-statuscake](https://clawhub.ai/skills/oo-statuscake)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected StatusCake. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-statuscake
+oo connector schema "statuscake" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "statuscake" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `create_uptime_test` — Create a new StatusCake uptime test. [write]
+- `delete_uptime_test` — Delete a StatusCake uptime test. [destructive]
+- `get_uptime_test` — Get the full configuration and status of a single StatusCake uptime test.
+- `list_uptime_locations` — List available monitoring locations for StatusCake uptime tests.
+- `list_uptime_test_alerts` — List alerts triggered for a StatusCake uptime test.
+- `list_uptime_test_history` — List historical probe results for a StatusCake uptime test.
+- `list_uptime_test_periods` — List uptime or downtime periods recorded for a StatusCake uptime test.
+- `list_uptime_tests` — List uptime tests available in the connected StatusCake account.
+- `update_uptime_test` — Update an existing StatusCake uptime test. [write]
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change StatusCake state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — StatusCake is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=statuscake
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- StatusCake homepage: https://www.statuscake.com

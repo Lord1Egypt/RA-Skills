@@ -1,35 +1,195 @@
 ---
-name: "Museum Guide"
-description: "博物馆参观路线规划助手。支持故宫珍宝馆、国博、上博、陕历博、南博、河博等热门博物馆，根据参观时长、兴趣偏好、是否带儿童，自动生成必看文物清单、镇馆之宝路线和更高效的参观顺序。适合搜索：博物馆路线规划、国家博物馆必看、museum itinerary、must-see artifacts。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/museum-guide"
-sourceUrl: "https://clawhub.ai/skills/museum-guide"
+name: museum-guide
+description: 博物馆参观路线规划助手。支持故宫珍宝馆、国博、上博、陕历博、南博、河博等热门博物馆，根据参观时长、兴趣偏好、是否带儿童，自动生成必看文物清单、镇馆之宝路线和更高效的参观顺序。适合搜索：博物馆路线规划、国家博物馆必看、museum itinerary、must-see artifacts。
+metadata:
+  openclaw:
+    emoji: "🏛️"
+    requires:
+      env:
+        AUTH_GATEWAY_PORT:
+          description: ProSearch 代理端口
+          default: "19000"
+      config:
+        - path: scripts/config.json
+          description: 本地配置文件，需配置 API_KEY、API_BASE、MODEL_NAME
+trigger:
+  # 博物馆名称类
+  - 博物馆
+  - 国博
+  # 规划意图类
+  - 路线规划
+  - 怎么逛
+  - 参观路线
+  - 镇馆之宝
+  # 英文触发
+  - museum
+  - museum route
+  - museum itinerary
 ---
 
-# Museum Guide
+# 博物馆参观路线规划师
 
-> 博物馆参观路线规划助手。支持故宫珍宝馆、国博、上博、陕历博、南博、河博等热门博物馆，根据参观时长、兴趣偏好、是否带儿童，自动生成必看文物清单、镇馆之宝路线和更高效的参观顺序。适合搜索：博物馆路线规划、国家博物馆必看、museum itinerary、must-see artifacts。
+告诉我你想去哪个博物馆、打算逛多久、重点想看什么，我会给你一份更适合真实参观的路线建议，而不是只给你一堆泛泛介绍。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/museum-guide`
-- **Source URL:** [https://clawhub.ai/skills/museum-guide](https://clawhub.ai/skills/museum-guide)
+---
 
-## Overview
+## 适合场景
 
+- 第一次去大型博物馆，不知道从哪里开始看
+- 只有 2–3 小时，希望优先看最值得的文物
+- 想看"镇馆之宝 / 必看国宝 / 网红文物"
+- 带孩子一起去，希望路线轻松、重点直观
+- 只对某类文物感兴趣，例如青铜器、瓷器、书画、玉器
+- 对某些朝代更感兴趣，例如汉唐、宋元、明清
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/museum-guide
+---
+
+## 你可以这样问
+
+- 帮我规划国家博物馆 3 小时参观路线
+- 去国家博物馆半天，重点看书画和瓷器，怎么逛
+- 带孩子去博物馆，推荐一条轻松的重点路线
+- 我只想看青铜器和汉代文物，怎么走更高效
+- 上海博物馆 2 小时必看什么
+- 天津博物馆有什么镇馆之宝
+- Plan a 3-hour museum route for the National Museum of China
+
+---
+
+## 你会得到什么
+
+我通常会输出一份可直接照着走的参观建议，包括：
+
+- 推荐参观顺序
+- 必看文物清单
+- 镇馆之宝 / 核心文物优先级
+- 每件文物的推荐理由
+- 尽量减少折返的浏览路径
+- 针对亲子、时间限制、兴趣偏好的个性化取舍
+
+输出示例：
+
+| 序号 | 文物名称 | 展馆 | 时期 | 推荐理由 |
+|---|---|---|---|---|
+| 1 | 后母戊鼎 ⭐ | 青铜馆 | 商代 | 世界最重青铜礼器，镇国之宝 |
+| 2 | 四羊方尊 ⭐ | 青铜馆 | 商代 | 造型辨识度极高，青铜工艺巅峰 |
+| 3 | 孝端皇后凤冠 ⭐ | 明清展厅 | 明代 | 视觉冲击强，服饰饰品精品 |
+| 4 | 汝窑天青釉洗 | 陶瓷馆 | 宋代 | 汝窑存世极少，天青釉温润如玉 |
+| 5 | 清明上河图 | 书画馆 | 宋代 | 北宋风俗画长卷，汴京盛世全景 |
+
+说明：⭐ 表示镇馆之宝或高优先级重点文物。
+
+---
+
+## 推荐使用方式
+
+为了得到更准确的路线，建议在问题里尽量包含以下信息：
+
+- **博物馆名称**（必填）
+- **参观时长**（如：2小时、半天、一天）
+- **是否带儿童**
+- **兴趣领域**（如：青铜器、瓷器、书画、玉器）
+- **朝代偏好**（如：汉唐、宋元、明清）
+
+例如：
+
+- 故宫珍宝馆，半天，带孩子，想看皇家文物
+- 国家博物馆，3小时，不带孩子，重点看青铜器、玉器、汉唐文物
+- 上海博物馆，2小时，重点看书法、绘画、瓷器
+
+如果你没有提供完整信息，我会根据常见参观习惯进行合理补全，并先给你一个可调整版本。
+
+---
+
+## 工作流程
+
 ```
+用户输入 → 画像提取 → 文物检索 → 路线规划 → 输出表格
+```
+
+**阶段一：画像提取**
+- 从用户输入中解析博物馆名称、参观时长、兴趣偏好等
+- 缺失信息自动推断并确认
+
+**阶段二：文物检索**
+- 优先使用离线数据（references/ 目录下的 CSV）
+- 无离线数据时走 ProSearch 联网搜索
+
+**阶段三：路线规划**
+- 按权重评分筛选文物（朝代、种类、镇馆之宝等）
+- 按参观顺序排定路线
+- LLM 生成每件文物的推荐理由
+
+---
+
+## 输出控制
+
+**AI助手必须严格遵守以下顺序：**
+
+```
+Step 1 → 运行 Phase 1 → 拿到 confirmation_prompt → 展示给用户
+       ↑ 等待用户回复
+Step 2 → 用户确认后 → 运行 Phase 2 → 输出路线
+```
+
+**AI助手必须遵守以下输出规则：**
+
+1. **保持内容完整性**：不得删除脚本输出的文物列表、博物馆信息、表格格式等核心内容。
+2. **可优化格式**：可以调整表格格式或添加emoji以提升可读性。
+
+---
+
+### Phase 1：画像提取 + 确认
+
+```bash
+python3 scripts/museum_assistant.py "帮我规划国博的参观路线"
+```
+
+**输出示例：**
+```json
+{
+  "phase": 1,
+  "profile": { ... },
+  "confirmation_needed": true,
+  "confirmation_prompt": "📋 基于您的输入，我已提取以下参观信息：...",
+  "next_step": "phase2",
+  "usage_hint": "用户确认后，运行 Phase 2..."
+}
+```
+
+**此时AI助手必须：**
+- 将 `confirmation_prompt` 内容原样展示给用户
+- **等用户回复**（确认/修改/补充信息）
+- 禁止在此阶段调用 Phase 2
+
+### Phase 2：用户确认后，生成路线
+
+用户确认后，有两种方式运行 Phase 2：
+
+**方式 1：使用 --profile-json 参数**（适用于 Mac/Linux 系统）
+
+```bash
+python3 scripts/museum_assistant.py --phase2 --profile-json '<profile JSON>'
+```
+
+**方式 2：使用 --profile-file 参数**（适用于所有系统，特别是 Windows 系统）
+
+1. 将 Phase 1 返回的 `profile` JSON 保存到文件中，例如 `profile.json`
+2. 运行命令：
+
+```bash
+python3 scripts/museum_assistant.py --phase2 --profile-file profile.json
+```
+
+### ❌ 禁止行为
+
+- **禁止**将 Phase 1 + Phase 2 合并为一次调用
+- **禁止**在用户未回复确认的情况下自行生成路线
+
+---
+
+## 注意事项
+
+- 博物馆名称为**必填**，不可跳过
+- 离线模式：已支持故宫珍宝馆、国家博物馆等热门博物馆，无需联网即可使用
+- 在线模式：需要 ProSearch 代理服务（默认端口 19000）和大模型 API

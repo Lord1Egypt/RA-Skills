@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术全景调研报告：{{主题}}</title>
+<style>
+  :root {
+    --bg: #f8f9fa; --card: #fff; --text: #1a1a2e; --muted: #6c757d;
+    --border: #e9ecef; --accent: #4361ee; --success: #2ecc71;
+    --warn: #f39c12; --danger: #e74c3c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 48px 0; text-align: center; }
+  header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  header .meta { display: flex; justify-content: center; gap: 24px; font-size: 0.9rem; opacity: 0.85; flex-wrap: wrap; }
+  header .meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+  /* Sections */
+  section { background: var(--card); border-radius: 12px; padding: 32px; margin: 24px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  section h2 { font-size: 1.4rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+  section h3 { font-size: 1.15rem; margin: 24px 0 12px; color: var(--accent); }
+
+  /* Overview */
+  .overview-content { line-height: 1.8; }
+  .overview-content p { margin-bottom: 12px; }
+  .overview-content strong { color: var(--accent); }
+  .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
+  .key-point { background: #f0f4ff; border-radius: 8px; padding: 16px; border-left: 4px solid var(--accent); }
+  .key-point h4 { font-size: 0.9rem; color: var(--accent); margin-bottom: 4px; }
+  .key-point p { font-size: 0.85rem; color: var(--muted); }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th { background: #f0f4ff; font-weight: 600; text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--accent); white-space: nowrap; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: #fafbff; }
+  td.num { text-align: center; }
+
+  /* Platform Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: #fff; white-space: nowrap; }
+  .tag-zhihu     { background: #0066FF; }
+  .tag-csdn      { background: #FC5531; }
+  .tag-bilibili  { background: #FB7299; }
+  .tag-github    { background: #24292F; }
+  .tag-youtube   { background: #FF0000; }
+  .tag-arxiv     { background: #B31B1B; }
+  .tag-hn        { background: #FF6600; }
+  .tag-wechat    { background: #07C160; }
+  .tag-podcast   { background: #8E44AD; }
+  .tag-official  { background: #2ECC71; }
+  .tag-pypi      { background: #3775A9; }
+  .tag-blog      { background: #E67E22; }
+  .tag-juejin    { background: #1E80FF; }
+  .tag-xiaoyuzhou { background: #EE6723; }
+
+  /* Content type icons */
+  .type-article::before  { content: "📄 "; }
+  .type-video::before    { content: "▶️ "; }
+  .type-paper::before    { content: "📑 "; }
+  .type-code::before     { content: "💻 "; }
+  .type-podcast::before  { content: "🎙️ "; }
+  .type-doc::before      { content: "📚 "; }
+
+  /* Quality stars */
+  .stars { color: #f39c12; letter-spacing: 1px; white-space: nowrap; }
+
+  /* Links */
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .visit-link { display: inline-block; padding: 3px 10px; background: var(--accent); color: #fff !important; border-radius: 4px; font-size: 0.8rem; font-weight: 500; transition: background 0.2s; }
+  .visit-link:hover { background: #3451d1; text-decoration: none; }
+  .visit-link.video { background: #FF0000; }
+  .visit-link.video:hover { background: #cc0000; }
+  .visit-link.code { background: #24292F; }
+  .visit-link.code:hover { background: #1a1a1a; }
+
+  /* Diagnostics Panel */
+  .diag-grid { display: flex; flex-direction: column; gap: 8px; }
+  .diag-row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 8px; font-size: 0.9rem; }
+  .diag-row.success { background: #eafaf1; border-left: 4px solid var(--success); }
+  .diag-row.warn    { background: #fef9e7; border-left: 4px solid var(--warn); }
+  .diag-row.fail    { background: #fdedec; border-left: 4px solid var(--danger); }
+  .diag-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .diag-platform { font-weight: 600; min-width: 100px; }
+  .diag-count { font-weight: 600; min-width: 40px; }
+  .diag-reason { color: var(--muted); font-size: 0.85rem; }
+  .diag-summary { margin-top: 16px; padding: 12px 16px; background: #f0f4ff; border-radius: 8px; font-weight: 600; text-align: center; }
+
+  /* Stats cards */
+  .stat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 20px 0; }
+  .stat-card { text-align: center; padding: 20px; background: #f0f4ff; border-radius: 10px; }
+  .stat-card .num { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+  .stat-card .label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+  /* Level badges */
+  .level-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+  .level-1 { background: #d4edda; color: #155724; }
+  .level-2 { background: #cce5ff; color: #004085; }
+  .level-3 { background: #fff3cd; color: #856404; }
+  .level-4 { background: #f8d7da; color: #721c24; }
+
+  /* References list */
+  .ref-group { margin-bottom: 24px; }
+  .ref-group h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .ref-group ol { padding-left: 20px; }
+  .ref-group li { margin-bottom: 6px; font-size: 0.9rem; }
+  .ref-count { font-size: 0.8rem; color: var(--muted); }
+
+  /* Footer */
+  footer { text-align: center; padding: 32px 0; color: var(--muted); font-size: 0.85rem; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { box-shadow: none; border: 1px solid var(--border); break-inside: avoid; }
+    .visit-link { border: 1px solid var(--accent); }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .container { padding: 12px; }
+    section { padding: 20px; }
+    header h1 { font-size: 1.5rem; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 6px 8px; }
+    .key-points { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>📊 技术全景调研报告：{{主题}}</h1>
+    <div class="meta">
+      <span>📅 {{调研时间}}</span>
+      <span>🌐 {{平台数}} 个平台</span>
+      <span>📄 {{内容总数}} 条内容</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 技术概览 -->
+  <section id="overview">
+    <h2>📋 技术概览</h2>
+    <div class="overview-content">
+      {{技术概览内容}}
+    </div>
+    <div class="key-points">
+      <!-- 重复 key-point 块 -->
+      <div class="key-point">
+        <h4>{{要点标题}}</h4>
+        <p>{{要点内容}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分级学习资源 -->
+  <section id="resources">
+    <h2>📚 分级学习资源</h2>
+
+    <!-- 每个 Level 重复以下块 -->
+    <h3><span class="level-badge level-1">L1</span> 入门科普（概念理解）</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>标题</th>
+          <th>来源</th>
+          <th>类型</th>
+          <th>作者</th>
+          <th>质量</th>
+          <th>摘要</th>
+          <th>链接</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 重复 tr -->
+        <tr>
+          <td class="num">1</td>
+          <td>{{标题}}</td>
+          <td><span class="tag tag-github">GitHub</span></td>
+          <td><span class="type-article">文章</span></td>
+          <td>{{作者}}</td>
+          <td><span class="stars">★★★★☆</span></td>
+          <td>{{摘要}}</td>
+          <td><a href="{{URL}}" target="_blank" class="visit-link">访问</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Level 2, 3, 4 同理 -->
+  </section>
+
+  <!-- 平台获取诊断 -->
+  <section id="diagnostics">
+    <h2>🔍 平台获取诊断</h2>
+    <div class="diag-grid">
+      <!-- 成功示例 -->
+      <div class="diag-row success">
+        <span class="diag-icon">✅</span>
+        <span class="diag-platform">GitHub</span>
+        <span class="diag-count">12条</span>
+        <span class="diag-reason">web_fetch API 成功</span>
+      </div>
+      <!-- 部分成功示例 -->
+      <div class="diag-row warn">
+        <span class="diag-icon">⚠️</span>
+        <span class="diag-platform">知乎</span>
+        <span class="diag-count">3条</span>
+        <span class="diag-reason">web_fetch 403 反爬 → browser chrome-relay 搜索获取 3 条</span>
+      </div>
+      <!-- 失败示例 -->
+      <div class="diag-row fail">
+        <span class="diag-icon">❌</span>
+        <span class="diag-platform">B站</span>
+        <span class="diag-count">0条</span>
+        <span class="diag-reason">web_fetch 返回空 → browser 搜索维护中 → 跳过</span>
+      </div>
+    </div>
+    <div class="diag-summary">
+      总计：{{内容总数}} 条（{{成功平台数}}/{{总平台数}} 平台成功获取）
+    </div>
+  </section>
+
+  <!-- 平台统计 -->
+  <section id="statistics">
+    <h2>📊 平台数据统计</h2>
+    <div class="stat-cards">
+      <div class="stat-card"><div class="num">{{平台数}}</div><div class="label">调研平台</div></div>
+      <div class="stat-card"><div class="num">{{内容总数}}</div><div class="label">内容总数</div></div>
+      <div class="stat-card"><div class="num">{{平均质量}}</div><div class="label">平均质量</div></div>
+      <div class="stat-card"><div class="num">{{成功率}}</div><div class="label">平台成功率</div></div>
+    </div>
+
+    <h3>各平台明细</h3>
+    <table>
+      <thead>
+        <tr><th>平台</th><th>获取数量</th><th>相关性</th><th>质量均分</th><th>内容分布</th><th>获取状态</th></tr>
+      </thead>
+      <tbody>
+        <!-- 重复 tr -->
+        <tr>
+          <td><span class="tag tag-github">GitHub</span></td>
+          <td class="num">12</td>
+          <td class="num">高</td>
+          <td class="num"><span class="stars">★★★★★</span></td>
+          <td>L1:1 L2:5 L3:4 L4:2</td>
+          <td>✅ 成功</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>内容分级分布</h3>
+    <table>
+      <thead>
+        <tr><th>级别</th><th>数量</th><th>占比</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="level-badge level-1">L1</span> 入门科普</td><td class="num">{{数量}}</td><td class="num">{{百分比}}</td></tr>
+        <tr><td><span class="level-badge level-2">L2</span> 实践教程</td><td class="num">{{数量}}</td><td class="num">{{百分比}}</td></tr>
+        <tr><td><span class="level-badge level-3">L3</span> 深度原理</td><td class="num">{{数量}}</td><td class="num">{{百分比}}</td></tr>
+        <tr><td><span class="level-badge level-4">L4</span> 前沿动态</td><td class="num">{{数量}}</td><td class="num">{{百分比}}</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 参考资料汇总 -->
+  <section id="references">
+    <h2>🔗 参考资料汇总</h2>
+    <!-- 每个平台重复以下块 -->
+    <div class="ref-group">
+      <h4><span class="tag tag-github">GitHub</span> <span class="ref-count">({{数量}}条)</span></h4>
+      <ol>
+        <li><a href="{{URL}}" target="_blank">{{标题}}</a></li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>本报告由 Auto Tech Research Skill v3.0 自动生成 · {{生成时间}}</p>
+</footer>
+
+</body>
+</html>

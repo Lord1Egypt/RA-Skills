@@ -1,35 +1,17 @@
 ---
-name: "complete-skill"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/complete-skill"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/complete-skill"
+name: complete-skill
+description: A complete skill for E2E testing
+allowed-tools: [Bash, Read, Write]
+user-invocable: false
 ---
 
 # complete-skill
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+## When to Use
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/complete-skill`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/complete-skill](https://skills.sh/parcadei/continuous-claude-v3/complete-skill)
+Test the entire persistence pipeline
 
-## Overview
+## Instructions
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/complete-skill
-```
+1. Do this
+2. Then that

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Council Pilot"
+  short_description: "Autonomous expert-council-driven project builder for Claude Code."
+  default_prompt: "Build an expert council for this domain and autonomously drive a project to production maturity, iterating until the council scores 100/100."

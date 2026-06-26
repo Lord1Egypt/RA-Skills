@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1920px;
+            height: 1080px;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+        
+        .intro-container {
+            text-align: center;
+        }
+        
+        .crab {
+            font-size: 200px;
+            animation: bounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        
+        .title {
+            font-size: 96px;
+            font-weight: bold;
+            margin-top: 40px;
+            background: linear-gradient(90deg, #60efff 0%, #0061ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 42px;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="intro-container">
+        <div class="crab">🦀</div>
+        <div class="title">SNOWCRAB LIVE</div>
+        <div class="subtitle">Your Friendly AI Assistant</div>
+    </div>
+</body>
+</html>

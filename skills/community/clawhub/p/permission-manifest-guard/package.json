@@ -1,0 +1,25 @@
+{
+  "name": "permission-manifest-guard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Inspects an OpenClaw skill directory, translates requirements into a human-readable permission manifest, and recommends disposition.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "permission-manifest-guard": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --import tsx --test 'tests/**/*.test.ts'"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^25.5.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

@@ -1,35 +1,43 @@
 ---
-name: "sora"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/sora"
-sourceUrl: "https://skills.sh/nexu-io/open-design/sora"
+name: sora
+description: |
+  Generate, remix, and manage short video clips via OpenAI's Sora API. Useful for cinematic shots, b-roll, and rapid concept video iteration.
+triggers:
+  - "sora"
+  - "openai video"
+  - "short video"
+  - "b roll"
+  - "cinematic clip"
+od:
+  mode: video
+  category: video-generation
+  upstream: "https://github.com/openai/skills"
 ---
 
 # sora
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from OpenAI's skills repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/sora`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/sora](https://skills.sh/nexu-io/open-design/sora)
+## What it does
 
-## Overview
+Generate, remix, and manage short video clips via OpenAI's Sora API. Useful for cinematic shots, b-roll, and rapid concept video iteration.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/openai/skills
+- Category: `video-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/sora
+# Inspect the upstream README for exact paths
+open https://github.com/openai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`sora`) or with
+one of the trigger phrases listed in this skill's frontmatter.

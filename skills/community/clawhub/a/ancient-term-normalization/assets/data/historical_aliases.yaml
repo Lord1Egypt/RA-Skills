@@ -1,0 +1,19 @@
+荆:
+  aliases:
+    - 楚
+    - 荆楚
+  type: state_name
+  note: "先秦文献中常以“荆”指称楚。"
+
+隐公:
+  aliases:
+    - 鲁隐公
+  type: ruler_name
+  note: "可作为鲁国纪年线索。"
+
+春秋事语:
+  aliases:
+    - 帛书春秋事语
+    - 马王堆春秋事语
+  type: excavated_text
+  note: "马王堆三号汉墓出土帛书之一。"

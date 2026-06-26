@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>七政-OASIS 市场推演引擎 v3 · Skill</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --border: #1f2937;
+    --accent: #f59e0b;
+    --accent2: #3b82f6;
+    --green: #10b981;
+    --red: #ef4444;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --code-bg: #1a2234;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  header .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.8rem;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  header .sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  header .meta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  header .meta span {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  header .meta span b { color: var(--accent); }
+
+  /* Sections */
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(245,158,11,0.3);
+  }
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin: 1.2rem 0 0.6rem;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.8rem 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--surface);
+    color: var(--accent);
+    text-align: left;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border);
+    font-weight: 600;
+  }
+  td {
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  tr:nth-child(even) td { background: rgba(17,24,39,0.5); }
+
+  /* Code blocks */
+  pre, code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    overflow-x: auto;
+    margin: 0.8rem 0;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+  code {
+    background: var(--code-bg);
+    color: #fbbf24;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+
+  /* Trigger tags */
+  .trigger-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.8rem 0;
+  }
+  .trigger-box span {
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.4);
+    color: #93c5fd;
+    padding: 0.2rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+  }
+
+  /* Module cards */
+  .modules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .module-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .module-card h3 { margin-top: 0; color: var(--accent); font-size: 0.95rem; }
+  .module-card .tag {
+    display: inline-block;
+    background: rgba(245,158,11,0.15);
+    color: var(--accent);
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+  .module-card p { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; }
+
+  /* Decay curve */
+  .decay-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.4rem;
+    margin: 0.8rem 0;
+  }
+  .decay-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem;
+    text-align: center;
+    font-size: 0.78rem;
+  }
+  .decay-item .hour { color: var(--muted); }
+  .decay-item .val { color: var(--green); font-weight: 700; font-size: 0.9rem; }
+
+  /* Team grid */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin: 0.8rem 0;
+  }
+  .team-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.82rem;
+  }
+  .team-item .name { color: #fff; font-weight: 600; margin-bottom: 0.2rem; }
+  .team-item .desc { color: var(--muted); font-size: 0.78rem; }
+  .team-item .effect { color: var(--green); font-size: 0.75rem; margin-top: 0.2rem; }
+
+  /* Scenario boxes */
+  .scenario-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
+    color: #d1d5db;
+  }
+
+  /* Output section */
+  .output-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .output-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .output-card h3 { color: var(--accent); margin-top: 0; font-size: 0.9rem; }
+  .output-card ul { padding-left: 1.2rem; font-size: 0.82rem; color: var(--muted); }
+  .output-card li { margin: 0.3rem 0; }
+
+  /* K formula */
+  .k-box {
+    background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(59,130,246,0.1));
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin: 0.8rem 0;
+  }
+  .k-box .k-formula {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .k-box .k-desc { font-size: 0.82rem; color: var(--muted); }
+
+  /* File tree */
+  .file-tree {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-family: monospace;
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: #86a6c8;
+    margin: 0.8rem 0;
+  }
+  .file-tree .dir { color: var(--accent2); }
+  .file-tree .active { color: var(--green); }
+  .file-tree .arrow { color: var(--muted); }
+
+  /* Footer */
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    .modules, .team-grid, .output-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">⭐ 常用技能</div>
+  <h1>七政-OASIS 市场推演引擎</h1>
+  <p class="sub">OASIS三层架构 + ClawTeam swarm + 新华舆情校准 + 爆款K系数</p>
+  <div class="meta">
+    <span>版本：<b>v3.0</b></span>
+    <span>创建：<b>2026-04-15</b></span>
+    <span>角色：<b>1000个AI Agent</b></span>
+    <span>角色类型：<b>17~20类</b></span>
+  </div>
+</header>
+
+<h2>功能总览</h2>
+<table>
+  <tr><th>模块</th><th>脚本</th><th>核心能力</th></tr>
+  <tr><td>爆款促销</td><td><code>run_v2.py</code></td><td>1000角色·20类·限时限量·库存耗尽推演</td></tr>
+  <tr><td>舆情危机</td><td><code>run_crisis.py</code></td><td><strong style="color:var(--accent)">v3新增：响应小组+真实衰减曲线+竞品博弈</strong></td></tr>
+  <tr><td>角色生成</td><td>内置</td><td>规则生成，无LLM调用，零Token消耗</td></tr>
+</table>
+
+<h2>触发词</h2>
+<div class="trigger-box">
+  <span>七政推演</span><span>OASIS仿真</span><span>市场推演</span><span>爆款预测</span>
+  <span>促销模拟</span><span>舆情推演</span><span>危机分析</span><span>成山农场</span>
+</div>
+
+<h2>快速使用</h2>
+<h3>爆款促销推演</h3>
+<pre><code>python3 /workspace/skills/qizheng-oasis/run_v2.py \
+  --scenario "成山农场蓝莓9.9元/斤爆款限时抢" \
+  --n_agents 1000 \
+  --stock 500 \
+  --hours 24 \
+  --rounds 4 \
+  --output /workspace/data/qizheng-oasis/result_v2.json</code></pre>
+
+<h3>舆情危机推演（v3新增响应小组）</h3>
+<pre><code>python3 /workspace/skills/qizheng-oasis/run_crisis.py \
+  --crisis "成山农场蓝莓被检出农药残留超标" \
+  --n_agents 1000 \
+  --hours 48 \
+  --rounds 6 \
+  --output /workspace/data/qizheng-oasis/result_crisis_v3.json</code></pre>
+
+<h2>v3 新增模块</h2>
+
+<h3>1. 危机响应小组（ClawTeam swarm启发）</h3>
+<div class="team-grid">
+  <div class="team-item">
+    <div class="name">👤 CEO紧急响应</div>
+    <div class="desc">30分钟内声明，道歉+召回+补偿</div>
+    <div class="effect">效果：-8°热度 | 冷却3轮</div>
+  </div>
+  <div class="team-item">
+    <div class="name">📣 公关部</div>
+    <div class="desc">正面通稿，联系媒体撤稿/改稿</div>
+    <div class="effect">效果：-6°热度 | 冷却2轮</div>
+  </div>
+  <div class="team-item">
+    <div class="name">⚖️ 法务部</div>
+    <div class="desc">律师函，证据保全</div>
+    <div class="effect">效果：-4°热度 | 冷却4轮</div>
+  </div>
+  <div class="team-item">
+    <div class="name">🎧 客服部</div>
+    <div class="desc">一对一联系老客户，专线受理</div>
+    <div class="effect">效果：-5°热度 | 冷却1轮</div>
+  </div>
+  <div class="team-item">
+    <div class="name">🚀 运营部</div>
+    <div class="desc">老客户专属优惠，对冲竞品抢客</div>
+    <div class="effect">效果：-4°热度 | 冷却3轮</div>
+  </div>
+  <div class="team-item">
+    <div class="name">🔬 品控部</div>
+    <div class="desc">第三方检测，质检报告</div>
+    <div class="effect">效果：-3°热度 | 冷却5轮</div>
+  </div>
+</div>
+
+<h3>2. 真实舆情衰减曲线（新华舆情平台实测校准）</h3>
+<div class="decay-grid">
+  <div class="decay-item"><div class="hour">0h</div><div class="val">1.00</div></div>
+  <div class="decay-item"><div class="hour">2h</div><div class="val">0.98</div></div>
+  <div class="decay-item"><div class="hour">4h</div><div class="val">0.90</div></div>
+  <div class="decay-item"><div class="hour">6h</div><div class="val">0.85</div></div>
+  <div class="decay-item"><div class="hour">12h</div><div class="val">0.70</div></div>
+  <div class="decay-item"><div class="hour">24h</div><div class="val">0.60</div></div>
+  <div class="decay-item"><div class="hour">36h</div><div class="val">0.50</div></div>
+  <div class="decay-item"><div class="hour">48h</div><div class="val">0.40</div></div>
+  <div class="decay-item"><div class="hour">72h</div><div class="val">0.28</div></div>
+  <div class="decay-item"><div class="hour">96h</div><div class="val">0.18</div></div>
+  <div class="decay-item"><div class="hour">120h</div><div class="val">0.12</div></div>
+</div>
+<p style="font-size:0.82rem;color:var(--muted);margin-top:0.4rem">干预效果：每轮有效干预额外降低3%（最多60%）</p>
+
+<h3>3. 爆款传播系数K（帆软爆款预测模型校准）</h3>
+<div class="k-box">
+  <div class="k-formula">K = 品类基础值 × 价格折扣系数</div>
+  <div style="font-size:0.85rem;color:var(--muted)">
+    <table style="margin-top:0.5rem">
+      <tr><th style="text-align:left;padding:0.2rem 0.5rem;color:#9ca3af;font-weight:400">品类</th><td style="padding:0.2rem 0.5rem;color:var(--accent)">水果/生鲜=0.8 / 食品=0.6 / 日用品=0.5 / 服装=0.7 / 电子=0.4</td></tr>
+      <tr><th style="text-align:left;padding:0.2rem 0.5rem;color:#9ca3af;font-weight:400">折扣</th><td style="padding:0.2rem 0.5rem;color:var(--accent)">&lt;3折→×2.5 / &lt;5折→×1.8 / &lt;7折→×1.3 / &gt;7折→×1.0</td></tr>
+    </table>
+  </div>
+</div>
+<p style="font-size:0.88rem;color:var(--green)"><b>K &gt; 1：</b>病毒传播临界点已过，追加库存迎接爆发</p>
+<p style="font-size:0.88rem;color:var(--muted)"><b>K &lt; 1：</b>无病毒传播，靠KOC推动</p>
+
+<h2>场景模板</h2>
+<h3>爆款促销</h3>
+<div class="scenario-box">成山农场蓝莓9.9元/斤爆款限时抢·库存500份·仅限24小时</div>
+<div class="scenario-box">成山农场虾9.9元/斤促销·库存300份·限时12小时</div>
+<div class="scenario-box">成山农场有机大米5折/袋·库存1000份·48小时团购</div>
+
+<h3>舆情危机</h3>
+<div class="scenario-box">成山农场蓝莓被检出农药残留超标</div>
+<div class="scenario-box">成山农场被曝光以次充好</div>
+<div class="scenario-box">成山农场产品质量投诉登上本地论坛</div>
+<div class="scenario-box">成山农场被竞争对手恶意抹黑</div>
+
+<h2>典型输出</h2>
+<div class="output-grid">
+  <div class="output-card">
+    <h3>📦 爆款促销</h3>
+    <ul>
+      <li>悲观/中性/乐观三档订单量预测</li>
+      <li>传播系数K（K&gt;1=病毒传播）</li>
+      <li>亏损补贴区间（成本-售价）×单量</li>
+      <li>羊群效应触发轮次</li>
+      <li>竞品趁火打劫计数</li>
+      <li>库存耗尽时间点</li>
+    </ul>
+  </div>
+  <div class="output-card">
+    <h3>🔥 舆情危机</h3>
+    <ul>
+      <li>舆情热度曲线（0~100，新华校准）</li>
+      <li>负面/正面帖子比例 + 极化指数</li>
+      <li>危机响应小组行动时间线</li>
+      <li>干预效果：峰值降低多少度</li>
+      <li>竞品抢客次数 + 媒体跟进次数</li>
+      <li>分阶段应对策略</li>
+    </ul>
+  </div>
+</div>
+
+<h2>文件结构</h2>
+<div class="file-tree">
+<span class="dir">/workspace/skills/qizheng-oasis/</span>
+├── <span class="active">SKILL.md</span>
+├── <span class="active">run_v2.py</span>         <span class="arrow">← 爆款促销（主力）</span>
+├── <span class="active">run_crisis.py</span>     <span class="arrow">← 舆情危机 v3（含响应小组）</span>
+├── run_v3.py
+├── run_v3_report.py
+├── analyze.py
+└── configs/
+    └── agent_blueprints_1000.json
+
+<span class="dir">/workspace/data/qizheng-oasis/</span>
+├── result_v2_*.json
+├── result_crisis_v3.json   <span class="arrow">← v3舆情结果</span>
+└── report_html/
+    └── index.html          <span class="arrow">← 可视化报告</span>
+</div>
+
+<footer>
+  <p>⭐ 玉衡 · 七政-OASIS · v3.0 · 2026-04-15</p>
+  <p style="margin-top:0.3rem;color:#4b5563">联合创始人·首席研究员 · 用户788588</p>
+</footer>
+
+</div>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.inland-security-footer {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tooltip-container {
+  position: relative;
+}
+
+.trigger-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.minimax-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 300;
+  color: #adadad;
+  text-decoration: none;
+}
+
+.minimax-link:visited {
+  color: #adadad;
+}
+
+.minimax-link:hover {
+  color: #666666;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  padding-bottom: 16px; /* 8px 内容间距 + 8px 用于鼠标移动的透明区域 */
+  font-size: 12px;
+  line-height: 17px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: #171717;
+}
+
+/* 创建透明的连接区域，让鼠标可以平滑移动到 tooltip */
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+.tooltip-container:hover .tooltip-content {
+  display: flex;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.beian-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #171717;
+}
+
+.beian-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
+}
+
+.underline-text {
+  color: #171717;
+  text-decoration: underline;
+}
+
+.underline-text:hover {
+  color: #000000;
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .trigger-content {
+    background-color: transparent;
+  }
+
+  .minimax-link,
+  .minimax-link:visited {
+    color: #666666;
+  }
+
+  .minimax-link:hover {
+    color: #adadad;
+  }
+
+  .tooltip-content {
+    background-color: #262626;
+    color: #ededed;
+  }
+
+  .beian-link,
+  .underline-text {
+    color: #ededed;
+  }
+
+  .underline-text:hover {
+    color: #ffffff;
+  }
+}
+
+</style>
+<div class="inland-security-footer">
+  <div class="tooltip-container">
+    <div class="trigger-content">
+      <a href="https://www.minimaxi.com/" target="_blank" rel="noreferrer" class="minimax-link">
+        <span>© 2026 MiniMax</span>
+      </a>
+    </div>
+    <div class="tooltip-content">
+      <section class="info-section">
+        <span>上海稀宇科技有限公司</span>
+      </section>
+
+      <section class="info-section">
+        <a class="beian-link" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402010179" target="_blank" rel="noreferrer">
+          <img alt="hailuo-beian-icon" src="https://cdn.hailuoai.com/hailuo-video-web/public_assets/223037d3-79fd-4db0-a456-749f38a6a14b.png" class="beian-icon">
+          <span class="underline-text">沪公网安备31010402010179号</span>
+        </a>
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer" class="underline-text">
+          沪ICP备2023003282号-38
+        </a>
+      </section>
+
+      <section class="info-section">
+        <span>模型名称：MiniMax</span>
+        <span>备案号：Shanghai-MiniMax-202505230046</span>
+      </section>
+
+      <section class="info-section">
+        <a href="https://agent.minimaxi.com/doc/zh/terms-of-service.html" target="_blank" rel="noreferrer" class="underline-text">
+          用户协议
+        </a>
+        <a href="https://agent.minimaxi.com/doc/zh/privacy-policy.html" target="_blank" rel="noreferrer" class="underline-text">
+          隐私政策
+        </a>
+      </section>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

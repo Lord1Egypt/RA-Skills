@@ -1,0 +1,21 @@
+{
+  "name": "theta-edgecloud-skill",
+  "version": "0.1.26",
+  "private": true,
+  "description": "Theta EdgeCloud runtime for OpenClaw cost optimization across AI, media, inference, video, and GPU workloads",
+  "type": "module",
+  "files": [
+    "README.md",
+    "SKILL.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test tests/**/*.test.ts tests/**/*.test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "@types/node": "^22.10.2"
+  }
+}

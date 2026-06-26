@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "agent_id": "REPLACE_WITH_YOUR_AGENT_ID",
+  "last_sync": null,
+  "manifest_version_seen": 4,
+  "infrastructure": {
+    "gateway": true,
+    "http_server": false,
+    "http_server_port": null
+  },
+  "features": {
+    "chat": {
+      "enabled": true,
+      "version": 1
+    },
+    "pulse_cards": {
+      "enabled": false,
+      "version": null,
+      "note": "Requires HTTP server with /api/cards endpoints. Env vars (OPENPOT_SERVER_TOKEN, POSTGRES_PASSWORD) must be in .env.service, not just exported in shell."
+    },
+    "pulse_expansion": {
+      "enabled": false,
+      "version": null,
+      "note": "Requires pulse_cards"
+    },
+    "calendar": {
+      "enabled": false,
+      "version": null,
+      "note": "Requires HTTP server with GET /api/calendar/events. See calendar-v2 insert for setup guide: Google OAuth, multi-calendar, date format rules, 9 pitfalls. After enabling, restart FastAPI: sudo systemctl restart openpot-server.service"
+    },
+    "voice": {
+      "enabled": true,
+      "version": 1,
+      "note": "Client-side only — no server changes required. User enters ElevenLabs API key and Voice ID in OpenPot Settings on each device. Per-agent Voice ID and playback speed configurable in Agents tab."
+    },
+    "apps": {
+      "enabled": false,
+      "version": null,
+      "note": "Requires HTTP server with /api/apps endpoints"
+    },
+    "skills": {
+      "enabled": true,
+      "version": 1
+    },
+    "terminal": {
+      "enabled": false,
+      "version": null,
+      "note": "Requires SSH access configured"
+    },
+    "settings": {
+      "enabled": true,
+      "version": 1
+    }
+  }
+}

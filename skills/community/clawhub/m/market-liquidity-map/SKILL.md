@@ -1,35 +1,18 @@
 ---
-name: "Liquidity Map & Max Pain"
-description: "Identify institutional stop clusters and max pain zones."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/market-liquidity-map"
-sourceUrl: "https://clawhub.ai/skills/market-liquidity-map"
+name: market-liquidity-map
+description: Identify institutional stop clusters and max pain zones.
+compatibility: OpenClaw, Zo Computer
+metadata:
+  author: ssidharHubble
 ---
-
 # Liquidity Map & Max Pain
 
-> Identify institutional stop clusters and max pain zones.
+Identify institutional stop clusters and max pain zones.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/market-liquidity-map`
-- **Source URL:** [https://clawhub.ai/skills/market-liquidity-map](https://clawhub.ai/skills/market-liquidity-map)
+## Usage
+This skill connects to the Calls are free for basic health, but premium signals require a 402 payment proof.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/market-liquidity-map
+```javascript
+import { execute } from "market-liquidity-map";
+const signal = await execute({ ticker: "BTC" });
 ```

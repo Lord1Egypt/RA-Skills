@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>最全待产包清单</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px;
+    background: linear-gradient(160deg, #FFF5F8 0%, #FFF0F5 40%, #F0F4FF 100%);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+  /* 装饰圆形 */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .circle1 { width: 300px; height: 300px; background: #FFB6C1; top: -80px; right: -60px; }
+  .circle2 { width: 200px; height: 200px; background: #B0C4DE; bottom: 80px; left: -50px; }
+  .circle3 { width: 150px; height: 150px; background: #FFA07A; top: 200px; left: 20px; }
+
+  /* 主标题区 */
+  .header {
+    text-align: center;
+    padding: 50px 60px 20px;
+    position: relative;
+  }
+  .year-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B8A, #FF8FAB);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 6px 24px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+  .main-title {
+    font-size: 68px;
+    font-weight: 800;
+    color: #2D2D2D;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 0 rgba(255,107,138,0.15);
+  }
+  .main-title span {
+    background: linear-gradient(135deg, #FF6B8A, #FF4D6D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    font-size: 26px;
+    color: #FF6B8A;
+    margin-top: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .header-emoji {
+    font-size: 48px;
+    margin-top: 10px;
+  }
+
+  /* 分区网格 */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+    padding: 20px 40px;
+  }
+  .section-card {
+    border: 2.5px dashed #FFB6C1;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.7);
+    padding: 18px 20px;
+    position: relative;
+  }
+  .section-card.large {
+    grid-column: span 2;
+  }
+  .section-card.large .items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FF6B8A;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .emoji { font-size: 26px; }
+  .item-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+  }
+  .item {
+    font-size: 15px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+  }
+  .item .dot {
+    width: 6px; height: 6px;
+    background: #FFB6C1;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .section-card.large .item {
+    font-size: 14px;
+  }
+  .items-grid .item-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* 宝宝产房/妈妈产房 小卡片 */
+  .small-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0 40px 20px;
+  }
+  .small-card {
+    border: 2.5px dashed #87CEEB;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.8);
+    padding: 16px 18px;
+  }
+  .small-card .section-title {
+    color: #4682B4;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .small-card .item { font-size: 14px; color: #555; }
+
+  /* 底部CTA */
+  .footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(135deg, #FF6B8A, #FF8FAB);
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .footer-emoji { font-size: 40px; }
+  .footer-tags {
+    display: flex; gap: 10px;
+  }
+  .tag {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    font-size: 14px;
+    padding: 4px 14px;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="deco-circle circle1"></div>
+  <div class="deco-circle circle2"></div>
+  <div class="deco-circle circle3"></div>
+
+  <div class="header">
+    <div class="year-tag">💝 2025最新版</div>
+    <div class="main-title"><span>最全待产包清单</span></div>
+    <div class="subtitle">👇 赶紧来抄作业啦</div>
+    <div class="header-emoji">🤰🏻 🍼 👶🏻</div>
+  </div>
+
+  <!-- 大分区：妈妈住院 + 宝宝住院 -->
+  <div class="grid">
+    <div class="section-card large">
+      <div class="section-title">🏥 妈妈住院包 <span style="font-size:14px;color:#aaa;font-weight:400">（22项）</span></div>
+      <div class="items-grid">
+        <div class="item-list">
+          <div class="item"><div class="dot"></div>月子服 2套</div>
+          <div class="item"><div class="dot"></div>哺乳内衣 2件</div>
+          <div class="item"><div class="dot"></div>一次性内裤 10条</div>
+          <div class="item"><div class="dot"></div>产褥垫 2包</div>
+          <div class="item"><div class="dot"></div>夜用卫生巾 2包</div>
+          <div class="item"><div class="dot"></div>电动吸奶器</div>
+          <div class="item"><div class="dot"></div>储奶袋 1盒</div>
+          <div class="item"><div class="dot"></div>防溢乳垫 1包</div>
+        </div>
+        <div class="item-list">
+          <div class="item"><div class="dot"></div>吸管杯 1个</div>
+          <div class="item"><div class="dot"></div>月子鞋 1双</div>
+          <div class="item"><div class="dot"></div>月子帽 1顶</div>
+          <div class="item"><div class="dot"></div>收腹带 1条</div>
+          <div class="item"><div class="dot"></div>会阴冷敷垫 2包</div>
+          <div class="item"><div class="dot"></div>乳头膏 1支</div>
+          <div class="item"><div class="dot"></div>洗漱用品 1套</div>
+          <div class="item"><div class="dot"></div>出院衣物 1套</div>
+        </div>
+        <div class="item-list">
+          <div class="item"><div class="dot"></div>电动吸奶器</div>
+          <div class="item"><div class="dot"></div>会阴清洗器</div>
+          <div class="item"><div class="dot"></div>漱口水 1瓶</div>
+          <div class="item"><div class="dot"></div>护肤品 1套</div>
+          <div class="item"><div class="dot"></div>胎心监护带 1副</div>
+          <div class="item"><div class="dot"></div>吸管 1包</div>
+          <div class="item"><div class="dot"></div>充电宝 1个</div>
+          <div class="item"><div class="dot"></div>一次性马桶垫 1包</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" style="padding-top:0">
+    <div class="section-card">
+      <div class="section-title">👶 宝宝住院包 <span style="font-size:14px;color:#aaa;font-weight:400">（15项）</span></div>
+      <div class="item-list" style="grid-template-columns:1fr">
+        <div class="item"><div class="dot"></div>NB码纸尿裤 2包</div>
+        <div class="item"><div class="dot"></div>52码和尚服 2件</div>
+        <div class="item"><div class="dot"></div>包被 1条 / 包巾 2条</div>
+        <div class="item"><div class="dot"></div>胎帽 1顶 / 袜子 2双</div>
+        <div class="item"><div class="dot"></div>棉柔巾 2包 / 湿巾 1包</div>
+        <div class="item"><div class="dot"></div>隔尿垫 2条</div>
+        <div class="item"><div class="dot"></div>浴巾 2条 / 方巾 3条</div>
+        <div class="item"><div class="dot"></div>奶瓶 2个 / 奶瓶刷 1套</div>
+        <div class="item"><div class="dot"></div>奶粉（小罐）1罐</div>
+        <div class="item"><div class="dot"></div>恒温壶 1个</div>
+        <div class="item"><div class="dot"></div>硅胶勺 1套</div>
+        <div class="item"><div class="dot"></div>护臀膏 1支</div>
+        <div class="item"><div class="dot"></div>洗护二合一 1瓶</div>
+        <div class="item"><div class="dot"></div>洗衣液 / 衣架</div>
+        <div class="item"><div class="dot"></div>出院衣物（半背衣+包屁）</div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="section-title">📁 证件包 <span style="font-size:14px;color:#aaa;font-weight:400">（7项）</span></div>
+      <div class="item-list" style="grid-template-columns:1fr">
+        <div class="item"><div class="dot"></div>母子健康手册</div>
+        <div class="item"><div class="dot"></div>产检资料（全部）</div>
+        <div class="item"><div class="dot"></div>医保卡 / 身份证</div>
+        <div class="item"><div class="dot"></div>准生证（生育服务单）</div>
+        <div class="item"><div class="dot"></div>住院押金（银行卡/现金）</div>
+        <div class="item"><div class="dot"></div>手机 / 充电宝</div>
+        <div class="item"><div class="dot"></div>少量现金以备不时之需</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="small-sections">
+    <div class="small-card">
+      <div class="section-title">🤱 妈妈产房包</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>产褥垫 1包 / 刀纸</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>计量卫生巾 1片</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>胎心监护带 1副</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>吸管杯 / 尖叫饮料</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>充电宝 / 手机</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>冷敷贴 2片</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>半背衣 1件 / NB纸尿裤 1片</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>包被 1条</div>
+    </div>
+    <div class="small-card">
+      <div class="section-title">👶 宝宝产房包</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>52码和尚衣 1件</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>胎帽 1顶</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>包被 1条</div>
+      <div class="item"><div class="dot" style="background:#87CEEB"></div>NB码纸尿裤 1片</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">🙋 收藏起来，到时候直接抄！</div>
+    <div class="footer-tags">
+      <div class="tag">#待产包清单</div>
+      <div class="tag">#孕期囤货</div>
+      <div class="tag">#母婴好物</div>
+    </div>
+  </div>
+</body>
+</html>

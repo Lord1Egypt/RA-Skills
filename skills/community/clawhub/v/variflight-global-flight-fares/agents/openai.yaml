@@ -1,0 +1,4 @@
+interface:
+  display_name: "Variflight Global Flight Fares"
+  short_description: "Search one-way flight fares by departure IATA code, arrival IATA code, and date"
+  default_prompt: "使用 $variflight-global-flight-fares 查询 BJS 到 SHA 在 2026-04-21 的航班列表。"

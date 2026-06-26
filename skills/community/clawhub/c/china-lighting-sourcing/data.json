@@ -1,0 +1,341 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Lighting Industry Association (CALI), National Bureau of Statistics, 中国照明电器协会",
+    "industry_scale_2026_target": "¥980 billion revenue",
+    "growth_rate_target": "5.5% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Lighting Industry Overview (2026)",
+    "summary": "China is the world's largest producer and exporter of lighting products, accounting for over 60% of global lighting output. The industry has transitioned from traditional lighting to LED and smart lighting, driven by energy efficiency mandates, smart city initiatives, and human-centric lighting trends. In 2026, the industry is projected to exceed ¥980 billion in revenue, with LED lighting comprising over 85% of production.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Lighting Industry (2024-2026)",
+        "issuing_authorities": ["MIIT", "NDRC", "Ministry of Commerce"],
+        "key_measures": [
+          "Phase out inefficient lighting products",
+          "Promote smart lighting and IoT integration",
+          "Support R&D in human-centric lighting and Li-Fi",
+          "Establish national-level lighting innovation centers",
+          "Encourage green manufacturing and circular economy"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥930 billion",
+      "share_of_global_market": "62%",
+      "key_drivers": ["LED lighting", "smart lighting systems", "outdoor lighting (smart poles)", "automotive lighting", "plant lighting"],
+      "automation_rate": "58% (SMT and assembly lines in large factories)",
+      "export_value": "$55 billion",
+      "LED_penetration": "86% of total lighting production"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Lighting Products Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and R&D",
+      "categories": [
+        {
+          "name": "Light Sources",
+          "items": ["LED chips", "COB modules", "LED packages", "OLED panels", "fluorescent tubes", "halogen bulbs"],
+          "key_suppliers": ["Nichia (China ops)", "Epistar", "San'an Optoelectronics", "HC SemiTek", "LatticePower"]
+        },
+        {
+          "name": "Drivers & Electronics",
+          "items": ["LED drivers", "power supplies", "sensors", "controllers", "dimmers"],
+          "key_suppliers": ["Inventronics", "Mean Well", "Moso Power", "Tridonic China", "Self"]
+        },
+        {
+          "name": "Optical Components",
+          "items": ["lenses", "reflectors", "light guides", "diffusers", "heat sinks"],
+          "key_suppliers": ["Ledlink Optics", "Bicom Optics", "Auer Lighting China"]
+        },
+        {
+          "name": "Housings & Materials",
+          "items": ["aluminum profiles", "plastic housings", "PC covers", "stamping parts"],
+          "key_suppliers": ["Hongli Group", "Shenzhen Hongsheng", "Zhongshan Yongyi"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Lighting product manufacturing and assembly",
+      "subsectors": [
+        "LED lamps (bulbs, tubes, panels)",
+        "LED luminaires (downlights, spotlights, track lights)",
+        "outdoor lighting (street lights, floodlights, landscape lights)",
+        "smart lighting (connected bulbs, smart systems)",
+        "commercial lighting (office, retail, industrial)",
+        "residential lighting (ceiling, pendant, table lamps)",
+        "specialty lighting (plant grow lights, UV-C, aquarium)",
+        "automotive lighting (headlamps, fog lights, interior)"
+      ],
+      "key_companies_by_subsector": {
+        "LED_luminaires": ["MLS", "NVC", "Opple", "FSL", "Pak", "Yankon"],
+        "outdoor": ["Sanxing", "Huawei (smart poles)", "Zhongshan Huayi", "Sichuan Scimee"],
+        "smart_lighting": ["Yeelight (Xiaomi)", "Philips Hue (Signify China)", "Liangliang", "Honeywell China"],
+        "automotive": ["Hasco", "Changzhou Xingyu", "Zhejiang Tainergy"],
+        "specialty": ["Liangliang (plant lights)", "Signify China (UV-C)"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "retail (hardware stores, lighting specialty stores, supermarkets)",
+        "e-commerce (Tmall, JD.com, Alibaba, Amazon)",
+        "project business (commercial buildings, infrastructure, hospitality)",
+        "export to global markets (EU, US, Southeast Asia, Middle East)",
+        "OEM/ODM for international brands"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Zhongshan (Guzhen)", "Shenzhen", "Foshan", "Huizhou"],
+      "share_of_industry": "45% of national output",
+      "specializations": [
+        "LED lighting (Guzhen is 'Lighting Capital of China')",
+        "decorative lighting",
+        "outdoor lighting",
+        "LED drivers and components"
+      ],
+      "key_hubs": [
+        {
+          "city": "Zhongshan (Guzhen)",
+          "specialization": "All types of lighting, especially decorative, LED, and components",
+          "supplier_example": "Guzhen International Lighting Center – thousands of manufacturers and wholesalers"
+        },
+        {
+          "city": "Shenzhen",
+          "specialization": "LED chips, smart lighting, high-end design",
+          "supplier_example": "MLS Co., Ltd. – major LED lighting manufacturer, also produces LED packages"
+        },
+        {
+          "city": "Foshan",
+          "specialization": "Residential lighting, ceiling fans with lights",
+          "supplier_example": "FSL Lighting – one of China's oldest lighting brands"
+        }
+      ],
+      "strengths": [
+        "Complete supply chain",
+        "Fast prototyping",
+        "Proximity to ports"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "28% of national output",
+      "specializations": [
+        "LED industrial lighting",
+        "automotive lighting",
+        "smart lighting",
+        "high-end commercial lighting"
+      ],
+      "key_hubs": [
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Outdoor lighting, LED street lights, industrial lighting",
+          "supplier_example": "Ningbo Yaming Lighting – listed company, exports widely"
+        },
+        {
+          "city": "Changzhou (Jiangsu)",
+          "specialization": "LED lighting, landscape lighting",
+          "supplier_example": "Changzhou Xingyu Automotive Lighting Systems – automotive lighting leader"
+        },
+        {
+          "city": "Shanghai",
+          "specialization": "R&D, design, smart lighting",
+          "supplier_example": "Signify China (formerly Philips Lighting) HQ"
+        }
+      ],
+      "strengths": [
+        "Strong R&D",
+        "Automotive lighting expertise",
+        "International brand presence"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Fuzhou", "Xiamen", "Quanzhou"],
+      "share_of_industry": "12% of national output",
+      "specializations": [
+        "LED packaging",
+        "energy-saving lamps",
+        "outdoor lighting"
+      ],
+      "key_hubs": [
+        {
+          "city": "Xiamen",
+          "specialization": "LED packaging, energy-saving lamps",
+          "supplier_example": "San'an Optoelectronics – leading LED chip manufacturer"
+        },
+        {
+          "city": "Quanzhou",
+          "specialization": "LED landscape lighting",
+          "supplier_example": "Fujian Wanan Solar – solar lighting"
+        }
+      ],
+      "strengths": [
+        "Strong semiconductor base",
+        "Export-oriented"
+      ]
+    },
+    {
+      "region": "Chengdu-Chongqing (Western China)",
+      "provinces_cities": ["Sichuan", "Chongqing"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "LED street lights",
+        "landscape lighting",
+        "automotive lighting"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chongqing",
+          "specialization": "Automotive lighting, LED street lights",
+          "supplier_example": "Chongqing Scimee – environmental technology including lighting"
+        }
+      ],
+      "strengths": [
+        "Growing infrastructure projects",
+        "Lower costs"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "LED_lamps_luminaires": {
+      "description": "LED bulbs, tubes, panels, downlights, spotlights, troffers, high bay lights. Dominates the market.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Energy efficiency regulations",
+        "Long lifespan",
+        "Smart compatibility"
+      ],
+      "market_trends": "Filament LED bulbs; tunable white; color tuning; ultra-slim panels.",
+      "domestic_brand_share": "70% of domestic market"
+    },
+    "outdoor_lighting": {
+      "description": "Street lights, floodlights, garden lights, landscape lights, smart poles with integrated lighting.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Smart city projects",
+        "Urbanization",
+        "Road infrastructure"
+      ],
+      "market_trends": "Solar-powered street lights; smart poles with 5G, sensors; Li-Fi integration.",
+      "key_players": ["Sanxing", "Huawei (smart poles)", "Ningbo Yaming"]
+    },
+    "smart_lighting": {
+      "description": "Connected bulbs, smart switches, lighting control systems, human-centric lighting.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Smart home adoption",
+        "IoT platforms (Xiaomi, Huawei, Alibaba)",
+        "Energy management"
+      ],
+      "market_trends": "Matter protocol adoption; voice control; circadian rhythm lighting.",
+      "key_players": ["Yeelight", "Philips Hue", "Liangliang", "MIJIA"]
+    },
+    "automotive_lighting": {
+      "description": "Headlamps, fog lights, tail lights, interior lighting, adaptive driving beam systems.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "NEV production",
+        "ADAS integration",
+        "LED headlight penetration"
+      ],
+      "market_trends": "Matrix LED headlights; OLED tail lights; laser light.",
+      "key_players": ["Changzhou Xingyu", "Hasco", "Zhejiang Tainergy"]
+    },
+    "specialty_lighting": {
+      "description": "Plant grow lights, UV-C disinfection, aquarium lighting, medical lighting.",
+      "key_clusters": ["Pearl River Delta"],
+      "growth_drivers": [
+        "Vertical farming",
+        "UV-C demand (post-pandemic)",
+        "Healthcare"
+      ],
+      "market_trends": "Full-spectrum grow lights; far-UV for disinfection.",
+      "key_players": ["Liangliang", "Signify China", "Shenzhen Lianovation"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001; specific product certifications (CCC, CE, RoHS, UL, DLC, Energy Star)"
+      },
+      {
+        "metric": "Product compliance",
+        "target": "Lumens, CRI, color temperature accuracy; photometric reports (IES, LDT); safety certifications"
+      },
+      {
+        "metric": "Production capability",
+        "target": "SMT lines, assembly capacity, in-house testing (integrating sphere, goniophotometer)"
+      },
+      {
+        "metric": "R&D capability",
+        "target": "In-house design, optical simulation, ability to customize"
+      },
+      {
+        "metric": "Export experience",
+        "target": "Familiarity with target market certifications and requirements"
+      }
+    ],
+    "verification_methods": [
+      "Request certificates and test reports (LM-80, TM-21 for LED lifetime)",
+      "Conduct factory audit (SMT lines, QC processes, reliability testing)",
+      "Order samples for photometric testing and visual inspection",
+      "Check references from other buyers",
+      "Use third-party inspection for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed specifications: lumen output, color temperature, CRI, beam angle, dimensions",
+      "Discuss dimming and control options (0-10V, DALI, Bluetooth, Zigbee)",
+      "Clarify packaging requirements (retail box, bulk)",
+      "Request IES files for lighting design",
+      "Establish quality agreement (AQL levels, acceptable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment. For large orders, L/C at sight.",
+    "lead_times": {
+      "samples": "7-15 days (for standard products), 20-30 days (custom designs)",
+      "bulk_production": "25-45 days after sample approval",
+      "container_loading": "7-10 days after production"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for lighting products in China?",
+      "answer": "For standard LED bulbs, MOQ can be 500-2000 pieces. For luminaires, MOQ often 200-500 pieces. Custom products may have higher MOQs due to tooling. Some suppliers accept lower MOQs for sample orders."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom branding and packaging?",
+      "answer": "Yes, most offer OEM/ODM. They can apply your logo, use custom cartons, and include your manual. Custom packaging may have MOQ of 1000-3000 pieces."
+    },
+    {
+      "question": "How can I ensure LED products have good quality and longevity?",
+      "answer": "Request LM-80 reports for LEDs and TM-21 lifetime projections. Ensure drivers are from reputable brands. Check warranty terms. Conduct sample testing for lumen maintenance and thermal performance."
+    },
+    {
+      "question": "What certifications are required for importing lighting to Europe/US?",
+      "answer": "For EU: CE, RoHS, REACH, ERP (energy label). For US: UL, FCC, Energy Star (optional). Ensure supplier can provide these."
+    },
+    {
+      "question": "Can I get smart lighting products with my own app/ecosystem?",
+      "answer": "Yes, many manufacturers offer custom smart lighting solutions with APIs or SDKs. Discuss integration requirements early."
+    }
+  ],
+  "glossary": {
+    "LED": "Light Emitting Diode.",
+    "CRI": "Color Rendering Index – measure of light quality.",
+    "CCT": "Correlated Color Temperature – warm/cool light (K).",
+    "LM-80": "Standard for measuring lumen depreciation of LEDs.",
+    "TM-21": "Method for projecting LED lifetime.",
+    "DLC": "Design Lights Consortium – US efficiency standard.",
+    "IES": "Illuminating Engineering Society – photometric file format.",
+    "DALI": "Digital Addressable Lighting Interface – control protocol.",
+    "UL": "Underwriters Laboratories – US safety certification.",
+    "CCC": "China Compulsory Certification."
+  }
+}

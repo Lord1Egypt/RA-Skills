@@ -1,0 +1,56 @@
+{
+  "_comment": "Get笔记炼金术 配置文件 | 首次使用会自动引导填写必要项",
+
+  "user": {
+    "profession": "",
+    "industry": "",
+    "_hint": "你的职业和行业，影响蒸馏提示词（如'税务律师''咨询顾问''培训师'）"
+  },
+
+  "bitable": {
+    "app_token": "",
+    "table_id": "",
+    "url": "",
+    "_hint": "留空则首次运行时自动创建飞书多维表格"
+  },
+
+  "ima": {
+    "enabled": false,
+    "kb_id": "",
+    "_hint": "如需同步到IMA知识库，设enabled=true并填入kb_id。需配置IMA凭证（~/.config/ima/）"
+  },
+
+  "feishu_wiki": {
+    "enabled": false,
+    "space_id": "",
+    "_hint": "如需同步到飞书知识库，设enabled=true并填入space_id"
+  },
+
+  "categories": {
+    "mode": "default",
+    "custom_primary": [],
+    "custom_secondary": {},
+    "_hint": "mode=default使用内置分类；mode=custom时自定义。示例：custom_primary:['法律','财税'], custom_secondary:{'法律':['诉讼','合同']}"
+  },
+
+  "privacy": {
+    "auto_desensitize_p0": true,
+    "default_p1_action": "desensitize",
+    "p1_confirm_timeout_hours": 48,
+    "reminder_after_hours": 24,
+    "_hint": "P0自动脱敏；P1未确认超时后按default_p1_action处理（desensitize/skip/keep）"
+  },
+
+  "processing": {
+    "batch_size": 5,
+    "auto_scan_hours": 24,
+    "skip_short_duration_seconds": 30,
+    "_hint": "批量处理每批数量；自动扫描时间范围；跳过太短的录音"
+  },
+
+  "output": {
+    "progress_notify": true,
+    "summary_after_batch": true,
+    "_hint": "处理过程中是否发进度通知；批量处理后是否发汇总"
+  }
+}

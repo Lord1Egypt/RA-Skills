@@ -1,35 +1,41 @@
 ---
-name: "Skill Listing Polisher"
-description: "Improve a skill's public listing before publish. Use when tightening title, description, tags, changelog, and scan-friendly packaging so the listing looks cl..."
-category: "other"
-source: "ClawHub"
-tags: [clawhub, publishing, skills]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-listing-polisher"
-sourceUrl: "https://clawhub.ai/skills/skill-listing-polisher"
+name: skill-listing-polisher
+description: Improve a skill's public listing before publish. Use when tightening title, description, tags, changelog, and scan-friendly packaging so the listing looks clearer and less suspicious.
+version: 0.1.0
 ---
 
 # Skill Listing Polisher
 
-> Improve a skill's public listing before publish. Use when tightening title, description, tags, changelog, and scan-friendly packaging so the listing looks cl...
+Use this skill before publishing or updating a public ClawHub skill.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-listing-polisher`
-- **Source URL:** [https://clawhub.ai/skills/skill-listing-polisher](https://clawhub.ai/skills/skill-listing-polisher)
+## What to improve
 
-## Overview
+- title clarity
+- description length and truncation risk
+- tags that match the actual use case
+- changelog that says what changed in plain language
+- public package surface that looks normal in review
 
+## Review order
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. shorten the public description if it gets cut off
+2. remove internal-only scripts and private identifiers
+3. tighten tags to actual buyer intent
+4. make the changelog specific and boring
+5. check that the package only contains user-facing files
+
+## Fast checks
+
+Run the bundled script:
+
 ```bash
-hermes skills install clawhub/skill-listing-polisher
+./scripts/check-listing.sh /path/to/skill
 ```
+
+## Output style
+
+When reviewing a skill, return:
+
+1. what weakens trust
+2. what weakens discoverability
+3. the smallest edit that improves both

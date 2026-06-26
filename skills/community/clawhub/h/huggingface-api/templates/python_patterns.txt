@@ -1,0 +1,231 @@
+# Hugging Face Hub — Python Copy-Paste Patterns
+# All patterns use the huggingface_hub library (pip install huggingface_hub).
+# HF_TOKEN is read from environment — never hard-code tokens in source files.
+
+# ─────────────────────────────────────────────
+# SETUP
+# ─────────────────────────────────────────────
+
+# import os
+# from huggingface_hub import HfApi
+#
+# api = HfApi(token=os.environ.get("HF_TOKEN"))
+
+# ─────────────────────────────────────────────
+# DOWNLOAD A MODEL SNAPSHOT
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import snapshot_download
+# import os
+#
+# local_dir = snapshot_download(
+#     repo_id="google/gemma-2b",
+#     repo_type="model",
+#     ignore_patterns=["*.msgpack", "*.h5", "flax_model*"],
+#     token=os.environ.get("HF_TOKEN"),
+# )
+# print("Downloaded to:", local_dir)
+
+# ─────────────────────────────────────────────
+# DOWNLOAD A SINGLE FILE
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import hf_hub_download
+# import os
+#
+# path = hf_hub_download(
+#     repo_id="openai/whisper-large-v3",
+#     filename="config.json",
+#     token=os.environ.get("HF_TOKEN"),
+# )
+# print("File at:", path)
+
+# ─────────────────────────────────────────────
+# UPLOAD A FOLDER
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import HfApi
+# import os
+#
+# api = HfApi(token=os.environ.get("HF_TOKEN"))
+# api.upload_folder(
+#     folder_path="./model_output",
+#     repo_id="myorg/mymodel",
+#     repo_type="model",
+#     commit_message="Training run v3",
+#     ignore_patterns=["*.pyc", "__pycache__/", "*.tmp"],
+# )
+
+# ─────────────────────────────────────────────
+# UPLOAD A SINGLE FILE
+# ─────────────────────────────────────────────
+
+# api.upload_file(
+#     path_or_fileobj="weights.safetensors",
+#     path_in_repo="weights.safetensors",
+#     repo_id="myorg/mymodel",
+#     commit_message="Add safetensors weights",
+# )
+
+# ─────────────────────────────────────────────
+# ATOMIC MULTI-FILE COMMIT
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import CommitOperationAdd, CommitOperationDelete
+#
+# api.create_commit(
+#     repo_id="myorg/mymodel",
+#     operations=[
+#         CommitOperationAdd("README.md", b"# My Model\n"),
+#         CommitOperationAdd("config.json", open("config.json", "rb")),
+#         CommitOperationDelete("old_weights.bin"),
+#     ],
+#     commit_message="Restructure repo",
+# )
+
+# ─────────────────────────────────────────────
+# CREATE REPO
+# ─────────────────────────────────────────────
+
+# api.create_repo(
+#     repo_id="myorg/mymodel",
+#     repo_type="model",      # "model" | "dataset" | "space"
+#     private=True,
+#     exist_ok=True,
+# )
+
+# ─────────────────────────────────────────────
+# SEARCH MODELS
+# ─────────────────────────────────────────────
+
+# models = api.list_models(
+#     search="whisper",
+#     pipeline_tag="automatic-speech-recognition",
+#     library="transformers",
+#     sort="downloads",
+#     direction=-1,
+#     limit=10,
+# )
+# for m in models:
+#     print(m.id, f"{m.downloads:,} downloads")
+
+# ─────────────────────────────────────────────
+# LIST FILES IN A REPO
+# ─────────────────────────────────────────────
+
+# from huggingface_hub.hf_api import RepoFile
+#
+# for item in api.list_repo_tree("google/gemma-2b", recursive=True):
+#     if isinstance(item, RepoFile):
+#         print(f"{item.size:>12,}  {item.path}")
+
+# ─────────────────────────────────────────────
+# HfFileSystem — use Hub like a local filesystem
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import HfFileSystem
+# import os, json
+#
+# fs = HfFileSystem(token=os.environ.get("HF_TOKEN"))
+#
+# # Read a file
+# with fs.open("google/gemma-2b/config.json") as f:
+#     config = json.load(f)
+#
+# # Write a file
+# with fs.open("myorg/mymodel/notes.txt", "w") as f:
+#     f.write("Experiment notes")
+#
+# # Use with pandas
+# import pandas as pd
+# df = pd.read_parquet("hf://datasets/myorg/mydataset/train.parquet")
+
+# ─────────────────────────────────────────────
+# INFERENCE API
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import InferenceClient
+# import os
+#
+# client = InferenceClient(token=os.environ.get("HF_TOKEN"))
+#
+# # Text generation
+# out = client.text_generation("Once upon a time", model="gpt2", max_new_tokens=50)
+# print(out)
+#
+# # Chat completion (OpenAI-compatible)
+# resp = client.chat_completion(
+#     model="meta-llama/Llama-3-8B-Instruct",
+#     messages=[{"role": "user", "content": "Summarize this in one line."}],
+#     max_tokens=80,
+# )
+# print(resp.choices[0].message.content)
+#
+# # Text to image
+# image = client.text_to_image(
+#     "A serene mountain lake at sunset",
+#     model="stabilityai/stable-diffusion-xl-base-1.0",
+# )
+# image.save("output.png")
+#
+# # ASR
+# text = client.automatic_speech_recognition("recording.flac")
+# print(text)
+
+# ─────────────────────────────────────────────
+# SPACE MANAGEMENT
+# ─────────────────────────────────────────────
+
+# runtime = api.get_space_runtime("myorg/myspace")
+# print(runtime.stage, runtime.hardware)
+#
+# api.restart_space("myorg/myspace")
+# api.pause_space("myorg/myspace")
+# api.resume_space("myorg/myspace")
+#
+# # Duplicate a public Space to your org
+# api.duplicate_space(
+#     from_id="gradio/chatbot-streaming",
+#     to_id="myorg/my-chatbot",
+#     private=True,
+# )
+
+# ─────────────────────────────────────────────
+# CACHE INSPECTION AND CLEANUP
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import scan_cache_dir
+#
+# info = scan_cache_dir()
+# print(f"Total cached: {info.size_on_disk_str}")
+# for repo in sorted(info.repos, key=lambda r: r.size_on_disk, reverse=True)[:5]:
+#     print(f"  {repo.size_on_disk_str:>9}  {repo.repo_id}")
+#
+# # Free specific revisions
+# strategy = info.delete_revisions("sha1abc", "sha2def")
+# print(f"Will free: {strategy.expected_freed_size_str}")
+# strategy.execute()
+
+# ─────────────────────────────────────────────
+# MODEL CARD
+# ─────────────────────────────────────────────
+
+# from huggingface_hub import ModelCard
+#
+# # Read
+# card = ModelCard.load("google/gemma-2b")
+# print(card.text[:500])
+#
+# # Create and push
+# card_content = """
+# ---
+# language: en
+# license: apache-2.0
+# tags:
+#   - text-generation
+# ---
+# # My Model
+# Description here.
+# """
+# card = ModelCard(card_content)
+# card.push_to_hub("myorg/mymodel")

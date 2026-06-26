@@ -1,35 +1,115 @@
----
-name: "OpenClaw Daily Briefing"
-description: "整合天气、日程、待办、新闻和通勤建议，生成工作日早晨核心信息的一条简明晨间简报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-daily-briefing"
-sourceUrl: "https://clawhub.ai/skills/openclaw-daily-briefing"
+# daily-briefing
+
+每日晨间简报技能 - 整合天气、日历、待办、新闻，生成单条全天核心信息摘要。
+
 ---
 
-# OpenClaw Daily Briefing
+## 📖 描述
 
-> 整合天气、日程、待办、新闻和通勤建议，生成工作日早晨核心信息的一条简明晨间简报。
+基于 OpenClaw 70 用例中的"每日晨间简报"和"天气晨报"设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-daily-briefing`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-daily-briefing](https://clawhub.ai/skills/openclaw-daily-briefing)
+**核心功能：**
+- 天气信息 + 穿衣建议
+- 今日日程概览
+- 待办事项提醒
+- 多源新闻摘要
+- 通勤建议
 
-## Overview
+**触发方式：**
+- 定时任务（工作日上午 8:00）
+- 手动触发 `/daily-briefing`
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 🎯 能力
+
+| 能力 | 说明 |
+|------|------|
+| 天气集成 | 获取当前位置天气，给出穿衣建议 |
+| 日历整合 | 展示今日日程，提前提醒准备事项 |
+| 待办概览 | 列出今日到期/高优先级待办 |
+| 新闻摘要 | 多源新闻去重汇总 |
+| 通勤建议 | 基于天气和交通的建议 |
+
+---
+
+## 🚀 使用方法
+
+### 手动触发
+
 ```bash
-hermes skills install clawhub/openclaw-daily-briefing
+openclaw agent --message "生成今日晨间简报"
 ```
+
+### 定时任务
+
+```bash
+# 工作日早上 8 点自动发送
+cron add --schedule "0 8 * * 1-5" --message "生成晨间简报"
+```
+
+---
+
+## 📋 输出示例
+
+```
+☀️ 早安！今天是 2026 年 3 月 27 日 星期五
+
+🌤️ 天气
+- 当前：18°C 多云
+- 今日：15-22°C 降水概率 20%
+- 建议：薄外套 + 长裤，带伞备用
+
+📅 今日日程 (3 个)
+- 09:30 团队站会
+- 14:00 产品评审会（需准备演示材料）
+- 17:00 客户电话会议
+
+✅ 待办事项 (5 个)
+- 🔴 高优先级：2 个
+- 🟡 中优先级：2 个
+- 🟢 低优先级：1 个
+
+📰 新闻摘要
+- AI 领域：OpenClaw 发布新技能市场
+- 科技：苹果发布新款 MacBook Air
+- 本地：北京地铁新线路开通
+
+💡 今日建议
+- 早晚温差大，建议洋葱式穿衣
+- 14:00 会议前预留 30 分钟准备时间
+- 下班后可能有雨，记得带伞
+
+祝你有美好的一天！🌟
+```
+
+---
+
+## ⚙️ 配置参数
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `send_time` | 08:00 | 发送时间 |
+| `weekday_only` | true | 仅工作日发送 |
+| `include_news` | true | 是否包含新闻 |
+| `include_todo` | true | 是否包含待办 |
+| `location` | auto | 天气查询位置 |
+
+---
+
+## 🔧 依赖技能
+
+| 技能 | 用途 |
+|------|------|
+| `weather` | 天气查询 |
+| `wecom-schedule` | 日历查询 |
+| `wecom-get-todo-list` | 待办查询 |
+| `web-search-pro` | 新闻搜索 |
+
+---
+
+## 📝 变更记录
+
+| 日期 | 版本 | 说明 |
+|------|------|------|
+| 2026-03-27 | 1.0.0 | 初始版本 |

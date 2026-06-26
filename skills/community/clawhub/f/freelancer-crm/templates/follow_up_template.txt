@@ -1,0 +1,10 @@
+Hi {{ client_name }},
+
+I hope you're doing well!
+
+I'm just following up on our last conversation regarding the {{ project_name }}. I haven't heard from you in a few days, so I wanted to see if there's anything else you need from my side or if you're ready to proceed.
+
+Looking forward to hearing from you.
+
+Best regards,
+{{ freelancer_name }}

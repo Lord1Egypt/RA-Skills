@@ -1,0 +1,46 @@
+{
+  "ticker": "MRK",
+  "company": "Merck & Co., Inc.",
+  "analysis_year": 2020,
+  "data_source": "Merck FY2019 10-K, Merck Q3 2020 10-Q, Berkshire 2020-09-30 13F-HR, and Berkshire 2021-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.226, "metric_used": "ROE", "years_averaged": "2017-2019", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.58, "fcf": 6734, "net_income": 11517, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.27, "pass": true },
+    "g4_revenue_trend": { "description": "Sales rose from $40.12B in 2017 to $42.29B in 2018 to $46.84B in 2019, and nine-month 2020 sales of $35.48B were still above the comparable 2019 period. The business was not in structural decline at the decision point.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin improved rather than deteriorated: roughly 67.8% in 2017, 68.1% in 2018, and 69.9% in 2019 based on sales less cost of sales. There was no two-year margin erosion.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.05, "net_income_m": 11517, "ev_m": 231248, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Merck had exceptional scientific assets, global scale, and regulatory know-how, but the whole company was still a portfolio of patent-bound drug franchises rather than a single Buffett-style tollbooth. Keytruda was a tremendous asset in 2020, yet competitors could still chip away over time and the company had to keep replenishing its pipeline to defend economics. That is a good business, but not the sort of 10-year irreplicable moat this framework wants for a long-duration core holding.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "sales_2019_usd_m": 46840,
+    "net_income_2019_usd_m": 9843,
+    "operating_cash_flow_2019_usd_m": 13440,
+    "capital_expenditures_2019_usd_m": 3473,
+    "cash_2020q3_usd_m": 7356,
+    "debt_2020q3_usd_m": 28741,
+    "ttm_net_income_2020q3_usd_m": 11517,
+    "ttm_operating_cash_flow_2020q3_usd_m": 11041,
+    "ttm_capex_2020q3_usd_m": 4307,
+    "implied_price_2020q3_usd": 82.95,
+    "market_value_2020q3_usd_m": 209863,
+    "berkshire_shares_2020q3_m": 22.403,
+    "berkshire_value_2020q3_usd_m": 1858.3
+  },
+
+  "control_groups": [
+    { "ticker": "PFE", "company": "Pfizer Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — large-scale pharma peer, but the legacy portfolio and transaction-driven reshaping made the moat even less clean than Merck's." },
+    { "ticker": "GSK", "company": "GlaxoSmithKline plc", "year": 2020, "gates_failed": ["g1_roe_roic", "g4_revenue_trend", "g7_moat"], "conclusion": "PASS — another global pharma incumbent, but weaker recent economics and no clearer decade-long moat." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire disclosed 22,403,102 Merck shares worth about $1.86B at September 30, 2020 via its 13F-HR.",
+  "actual_result": "Merck remained a strong pharmaceutical company, but Berkshire did not turn the stake into a permanent core holding; by the 2021-12-31 13F the position no longer appeared.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A high-quality drug company can still be a pass if current cash conversion is soft, the earnings yield is only average, and the moat depends on continual pipeline renewal rather than a single irreplicable franchise."
+}

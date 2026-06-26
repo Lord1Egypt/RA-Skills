@@ -1,0 +1,1 @@
+已经弃用转移至https://clawhub.ai/etmnb/bytedance-ai-image-gen 请删除当前skill💖

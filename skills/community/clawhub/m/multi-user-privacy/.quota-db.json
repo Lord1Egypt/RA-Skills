@@ -1,0 +1,61 @@
+{
+  "ou_b96f5424607baf3a0455b55e0f4a2213": {
+    "diskQuotaMB": -1,
+    "tokenQuota": -1,
+    "messageQuota": -1,
+    "sessionTimeoutHours": -1,
+    "maxConcurrentSessions": -1,
+    "isAdmin": true,
+    "used": {
+      "disk": 0,
+      "tokens": 0,
+      "messages": 0,
+      "lastReset": "2026-03-12T02:00:13.266Z"
+    },
+    "createdAt": "2026-03-12T02:00:13.266Z"
+  },
+  "default": {
+    "diskQuotaMB": 100,
+    "tokenQuota": 100000,
+    "messageQuota": 1000,
+    "sessionTimeoutHours": 24,
+    "maxConcurrentSessions": -1,
+    "isAdmin": false,
+    "used": {
+      "disk": 0,
+      "tokens": 0,
+      "messages": 0,
+      "lastReset": "2026-03-12T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-12T00:00:00.000Z"
+  },
+  "ou_test_user123": {
+    "diskQuotaMB": 50,
+    "tokenQuota": 50000,
+    "messageQuota": 500,
+    "sessionTimeoutHours": 24,
+    "maxConcurrentSessions": 5,
+    "isAdmin": false,
+    "used": {
+      "disk": 0,
+      "tokens": 0,
+      "messages": 0,
+      "lastReset": "2026-03-12T03:48:10.324Z"
+    },
+    "createdAt": "2026-03-12T03:48:10.324Z"
+  },
+  "ou_test_quota_user": {
+    "diskQuotaMB": 100,
+    "tokenQuota": 1000,
+    "messageQuota": 100,
+    "sessionTimeoutHours": 24,
+    "maxConcurrentSessions": 5,
+    "used": {
+      "disk": 50,
+      "tokens": 500,
+      "messages": 100,
+      "lastReset": "2026-03-12T03:49:00.621Z"
+    },
+    "createdAt": "2026-03-12T03:49:00.621Z"
+  }
+}

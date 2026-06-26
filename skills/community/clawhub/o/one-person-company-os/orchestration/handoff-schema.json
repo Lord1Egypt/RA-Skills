@@ -1,0 +1,34 @@
+{
+  "version": "3.0",
+  "required_fields": [
+    "operating_model",
+    "primary_arena",
+    "working_language",
+    "role_id",
+    "role_display_name",
+    "objective",
+    "company_name",
+    "current_bottleneck",
+    "next_shortest_action",
+    "inputs",
+    "required_outputs",
+    "constraints",
+    "approval_gates",
+    "handoff_targets",
+    "continuation_context"
+  ],
+  "continuation_context_fields": [
+    "primary_goal",
+    "primary_arena",
+    "current_bottleneck",
+    "trigger_reason",
+    "next_shortest_action",
+    "pending_approvals",
+    "recommended_next_owner"
+  ],
+  "notes": [
+    "所有角色交接都必须保留当前主目标、当前主瓶颈、当前主战场与下一步最短动作。",
+    "当触发器触发时，trigger_reason 必填。",
+    "需要创始人拍板的事项必须显式进入 pending_approvals。"
+  ]
+}

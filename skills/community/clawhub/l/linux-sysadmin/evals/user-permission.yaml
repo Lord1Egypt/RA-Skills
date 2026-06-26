@@ -1,0 +1,89 @@
+tests:
+- name: create-user-with-sudo
+  input: 如何创建一个新用户 deploy，设置 bash 为默认 shell，加入 sudo 和 docker 组，并配置 SSH 密钥登录？
+  expected_keywords:
+  - useradd
+  - sudo
+  - docker
+  - ssh
+  - authorized_keys
+  expected_not:
+  - chmod 777
+- name: lock-user-account
+  input: 一个员工离职了，我需要锁定他的账户 john，禁止登录但保留 home 目录数据
+  expected_keywords:
+  - usermod
+  - -L
+  - passwd
+  expected_not:
+  - userdel -r
+- name: sudo-nopasswd-config
+  input: 配置 deployer 用户只能免密执行 systemctl restart nginx 和 journalctl 命令
+  expected_keywords:
+  - sudoers
+  - visudo
+  - NOPASSWD
+  - systemctl
+  expected_not:
+  - 'ALL=(ALL) NOPASSWD: ALL'
+- name: file-permission-suid
+  input: 解释 SUID、SGID、Sticky Bit 的作用，以及如何查找系统中所有 SUID 文件
+  expected_keywords:
+  - SUID
+  - SGID
+  - Sticky
+  - find
+  - '4000'
+  expected_not:
+  - chmod 777
+- name: acl-permission
+  input: /opt/project 目录需要给 developers 组读写权限，给 johndoe 用户完全权限，新创建的文件也要自动继承这些权限
+  expected_keywords:
+  - setfacl
+  - getfacl
+  - -d
+  - default
+  expected_not:
+  - chmod 777
+- name: selinux-troubleshoot
+  input: Nginx 无法读取 /opt/myapp/static 下的文件，SELinux 报 AVC denied，如何排查和修复？
+  expected_keywords:
+  - semanage
+  - restorecon
+  - httpd_sys_content_t
+  - ausearch
+  expected_not:
+  - setenforce 0
+  - disabled
+- name: ssh-key-deploy
+  input: 我需要为 100 台服务器批量部署 SSH 密钥，有什么最佳实践？
+  expected_keywords:
+  - ssh-keygen
+  - ssh-copy-id
+  - ed25519
+  - authorized_keys
+  - '700'
+  - '600'
+  expected_not:
+  - PasswordAuthentication yes
+- name: ssh-hardening
+  input: 如何加固 SSH 配置？我需要禁止 root 登录、禁止密码认证、限制登录用户
+  expected_keywords:
+  - PermitRootLogin
+  - PasswordAuthentication
+  - PubkeyAuthentication
+  - AllowUsers
+  - sshd -t
+  expected_not:
+  - PermitRootLogin yes
+  - PasswordAuthentication yes
+- name: password-policy
+  input: 如何设置密码策略：最少 12 位，必须包含大小写字母和数字，90 天过期，5 次失败锁定 15 分钟
+  expected_keywords:
+  - pwquality
+  - minlen
+  - chage
+  - pam_faillock
+  - deny
+  expected_not:
+  - PASS_MAX_DAYS 99999

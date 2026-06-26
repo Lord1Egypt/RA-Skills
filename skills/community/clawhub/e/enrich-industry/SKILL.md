@@ -1,35 +1,150 @@
 ---
-name: "Enrich Industry"
-description: "Backfill contact-level industry from associated company records using a HubSpot workflow. Enables industry-based segmentation for targeted campaigns aligned..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enrich-industry"
-sourceUrl: "https://clawhub.ai/skills/enrich-industry"
+name: enrich-industry
+description: "Backfill contact-level industry from associated company records using a HubSpot workflow. Enables industry-based segmentation for targeted campaigns aligned with ICP verticals."
+license: MIT
+metadata:
+  author: tomgranot
+  version: "1.0"
+  category: data-enrichment
 ---
 
-# Enrich Industry
+# Enrich Contact Industry from Associated Company
 
-> Backfill contact-level industry from associated company records using a HubSpot workflow. Enables industry-based segmentation for targeted campaigns aligned...
+Copy industry data from company records to their associated contacts. In a typical B2B CRM, company records have industry populated at high rates (80-90%) while contact records have almost none. This workflow bridges that gap automatically.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enrich-industry`
-- **Source URL:** [https://clawhub.ai/skills/enrich-industry](https://clawhub.ai/skills/enrich-industry)
+## Why This Matters
 
-## Overview
+Without industry on contact records, you cannot segment email campaigns by vertical. For B2B companies targeting specific industries, this makes the difference between spray-and-pray email blasts and targeted, relevant messaging. Industry data on contacts also feeds ICP tier classification and lead scoring models.
 
+## Prerequisites
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enrich-industry
+- HubSpot Marketing Hub Professional or Sales Hub Professional (for Workflows)
+- Company name enrichment (enrich-company-name skill) should be completed first, as it may trigger new company associations
+- Access to Settings > Properties to verify/create the contact Industry property
+
+## Plan
+
+1. Verify the contact Industry property exists and is compatible with the company Industry property
+2. Audit how many contacts can be enriched (before state)
+3. Build a workflow that copies industry from the associated company
+4. Verify enrichment results (after state)
+
+## Before State
+
+### Check Property Compatibility
+
+This is the most important pre-step. Contacts may have TWO industry properties: `industry` and `industry_name`. You must verify which one HubSpot uses for lists and reports.
+
+1. Go to **Settings > Properties > Contact properties**
+2. Search for "Industry"
+3. Note ALL industry-related properties on the contact object
+4. Check which property is used in existing lists, reports, and workflows
+5. The target property must be compatible with the company Industry property:
+   - If both are **dropdown select**: option values must match exactly (same spelling, same case)
+   - If the contact property is **single-line text**: it will accept any value (safest option)
+   - If unsure, use single-line text to avoid copy failures
+
+**If no contact Industry property exists**, create one:
+- Object: Contact
+- Group: Contact information
+- Label: Industry
+- Field type: Dropdown select (copy all values from the company Industry property) OR Single-line text (accepts any value)
+
+### Audit Enrichment Opportunity
+
+```python
+import os
+from hubspot import HubSpot
+from dotenv import load_dotenv
+
+load_dotenv()
+api_client = HubSpot(access_token=os.getenv("HUBSPOT_API_TOKEN"))
+
+# Count contacts missing industry
+result = api_client.crm.contacts.search_api.do_search(
+    public_object_search_request={
+        "filterGroups": [{
+            "filters": [{
+                "propertyName": "industry",
+                "operator": "NOT_HAS_PROPERTY"
+            }]
+        }],
+        "limit": 0
+    }
+)
+print(f"Contacts missing industry: {result.total}")
 ```
+
+Also create a HubSpot list to estimate enrichable contacts:
+- Filter 1: Contact Industry > is unknown
+- Filter 2: AND Associated company > Industry > is known
+- This count tells you how many contacts will actually be enriched
+
+## Execute
+
+### Create the Enrichment Workflow
+
+This workflow is nearly identical to the company name enrichment workflow. If you already built that one, clone it and swap the property references.
+
+1. Go to **Automation > Workflows > Create workflow**
+2. Select **Contact-based > Blank workflow**
+3. Name: `AUTO-ENRICH: Copy Industry from Company`
+
+**Enrollment trigger:**
+- Contact property > Industry > **is unknown**
+- AND Associated company > Industry > **is known**
+
+**Re-enrollment:**
+- Enable re-enrollment on the same criteria. This ensures contacts that later get associated with a company are also enriched.
+
+**Action: Copy property**
+- Copy FROM: Company > Industry
+- Copy TO: Contact > Industry
+
+**Activate:**
+- Click Review > Turn on
+- Select **Yes, enroll existing contacts**
+
+**Note:** Unlike the company name workflow, no delay is needed here. If the contact already has an associated company with industry data (checked by the enrollment trigger), the copy can happen immediately.
+
+## After State
+
+Wait 1-2 hours for the workflow to process, then verify.
+
+**Script approach:**
+
+```python
+result = api_client.crm.contacts.search_api.do_search(
+    public_object_search_request={
+        "filterGroups": [{
+            "filters": [{
+                "propertyName": "industry",
+                "operator": "NOT_HAS_PROPERTY"
+            }]
+        }],
+        "limit": 0
+    }
+)
+print(f"Contacts still missing industry: {result.total}")
+```
+
+**Verification checklist:**
+
+1. Contact industry count should jump from near-zero to tens of thousands
+2. The enrichment list (missing industry + has company association) should be near 0
+3. Spot-check 20+ contacts for accuracy:
+   - Open the contact record
+   - Verify the Industry field shows a value
+   - Click the associated company and confirm the industry matches
+4. Check that the industry distribution on contacts roughly mirrors the company industry distribution
+5. Check workflow history for failures — most common is property value mismatch (company has a value that does not match a dropdown option on the contact)
+
+## Key Technical Learnings
+
+- **Two industry properties can exist.** Some HubSpot portals have both `industry` and `industry_name` on contacts. Verify which one is authoritative before building the workflow. Writing to the wrong one means your lists and reports will not see the data.
+- **Dropdown value matching is case-sensitive and exact.** If the company Industry has "Healthcare" and the contact Industry dropdown has "healthcare" (lowercase), the copy will fail. Ensure values match exactly.
+- **Consider consolidating similar industries.** Many CRMs have overlapping values like "Healthcare" and "Hospital & Health Care". For segmentation, consider creating a separate "Industry Group" property that maps similar values into broader categories. This is optional but improves list usability.
+- **This does not overwrite existing values.** The enrollment trigger requires "Industry is unknown", so contacts that already have industry data are not affected.
+- **If using a text field instead of dropdown:** Enrichment works, but you lose the ability to filter by exact dropdown values in lists. You can convert to a dropdown later but will need to clean up inconsistent text values first.
+- **Run this after company name enrichment.** Company name enrichment may trigger new company associations, which increases the number of contacts eligible for industry enrichment.
+- **Clone the company name workflow.** The structure is nearly identical. Clone it in HubSpot and swap the property references to save time.

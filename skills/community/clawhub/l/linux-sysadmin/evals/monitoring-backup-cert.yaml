@@ -1,0 +1,187 @@
+tests:
+- name: prometheus-node-exporter-setup
+  input: 如何在 Linux 服务器上部署 Prometheus + Node Exporter 监控？需要监控 CPU、内存、磁盘、网络
+  expected_keywords:
+  - node_exporter
+  - prometheus
+  - systemd
+  - '9100'
+  - scrape
+  expected_not:
+  - chmod 777
+- name: promql-cpu-memory
+  input: 写几个常用的 PromQL 查询：CPU 使用率、内存使用率、磁盘使用率
+  expected_keywords:
+  - node_cpu_seconds_total
+  - node_memory_MemAvailable
+  - node_filesystem
+  - irate
+  expected_not:
+  - rm -rf
+- name: logrotate-config
+  input: 配置 logrotate 对 /var/log/myapp/*.log 进行日志轮转：每天轮转、保留30天、压缩、按大小100M
+  expected_keywords:
+  - logrotate
+  - daily
+  - rotate
+  - compress
+  - copytruncate
+  expected_not:
+  - rm -rf
+- name: centralized-logging
+  input: 需要将多台服务器的日志集中到一台日志服务器，有哪些方案？推荐一个轻量级的
+  expected_keywords:
+  - ELK
+  - Loki
+  - Promtail
+  - rsyslog
+  - Filebeat
+  expected_not:
+  - rm -rf
+- name: alertmanager-setup
+  input: 配置 Prometheus 告警规则：CPU >80% 持续5分钟告警、磁盘 >90% 告警、服务宕机告警
+  expected_keywords:
+  - alert
+  - expr
+  - for
+  - severity
+  - Alertmanager
+  expected_not:
+  - rm -rf
+- name: journalctl-advanced
+  input: 如何用 journalctl 查看 nginx 最近1小时的错误日志？如何只看 error 级别以上？
+  expected_keywords:
+  - journalctl
+  - -u nginx
+  - -p err
+  - since
+  expected_not:
+  - rm -rf /var/log
+- name: backup-strategy-321
+  input: 生产服务器需要制定备份策略，有哪些最佳实践？
+  expected_keywords:
+  - 3-2-1
+  - 全量
+  - 增量
+  - RPO
+  - RTO
+  expected_not:
+  - encryption=none
+- name: borgbackup-setup
+  input: 使用 borgbackup 对 /etc /home /opt 进行每日自动备份，保留7天日备+4周周备+6个月月备
+  expected_keywords:
+  - borg
+  - create
+  - prune
+  - keep-daily
+  - keep-weekly
+  - encryption
+  expected_not:
+  - --encryption=none
+- name: rsync-incremental
+  input: 用 rsync 实现增量备份，每次只备份变化的文件，节省磁盘空间
+  expected_keywords:
+  - rsync
+  - link-dest
+  - delete
+  - latest
+  expected_not:
+  - rm -rf
+- name: mysql-backup-restore
+  input: MySQL 数据库如何做热备份？如何恢复到指定时间点？
+  expected_keywords:
+  - mysqldump
+  - xtrabackup
+  - binlog
+  - single-transaction
+  expected_not:
+  - DROP DATABASE
+- name: disaster-recovery-grub
+  input: 服务器无法启动，GRUB 引导损坏，如何修复？
+  expected_keywords:
+  - Live CD
+  - chroot
+  - grub-install
+  - update-grub
+  - mount
+  expected_not:
+  - rm -rf
+- name: data-recovery
+  input: 误删了重要文件，ext4 文件系统，如何尝试恢复？
+  expected_keywords:
+  - testdisk
+  - extundelete
+  - photorec
+  - 停止写入
+  expected_not:
+  - rm -rf
+  - mkfs
+- name: letsencrypt-nginx
+  input: 使用 Let's Encrypt 为 Nginx 站点 www.example.com 申请 HTTPS 证书，并配置自动续期
+  expected_keywords:
+  - certbot
+  - nginx
+  - fullchain
+  - privkey
+  - renew
+  expected_not:
+  - self-signed
+- name: self-signed-cert
+  input: 生成一个自签名证书用于开发环境，需要支持 localhost 和 192.168.1.100
+  expected_keywords:
+  - openssl
+  - req
+  - x509
+  - subjectAltName
+  - '365'
+  expected_not:
+  - --days 36500
+- name: private-ca-setup
+  input: 搭建企业内部私有 CA，签发服务器证书和客户端证书
+  expected_keywords:
+  - Root CA
+  - Intermediate
+  - genrsa
+  - x509
+  - ca-chain
+  expected_not:
+  - --encryption=none
+- name: mtls-config
+  input: 配置 Nginx 双向 TLS（mTLS），要求客户端必须提供证书才能访问
+  expected_keywords:
+  - ssl_client_certificate
+  - ssl_verify_client
+  - clientAuth
+  - client.crt
+  expected_not:
+  - verify_client off
+- name: cert-troubleshoot
+  input: HTTPS 网站报证书不受信任错误，如何排查？
+  expected_keywords:
+  - openssl s_client
+  - 证书链
+  - 中间证书
+  - fullchain
+  - verify
+  expected_not:
+  - rm -rf
+- name: cert-expiry-monitor
+  input: 如何监控多个域名的 SSL 证书过期时间？
+  expected_keywords:
+  - openssl
+  - s_client
+  - enddate
+  - days
+  expected_not:
+  - rm -rf
+- name: nginx-ssl-hardening
+  input: 如何配置 Nginx SSL 最佳实践？禁用不安全的协议和密码套件
+  expected_keywords:
+  - TLSv1.2
+  - TLSv1.3
+  - ssl_ciphers
+  - HSTS
+  - ssl_stapling
+  expected_not:
+  - SSLv3
+  - TLSv1.0

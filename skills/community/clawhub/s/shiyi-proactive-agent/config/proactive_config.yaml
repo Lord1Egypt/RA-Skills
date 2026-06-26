@@ -1,0 +1,70 @@
+# Proactive Agent 配置
+
+# 主动程度 (1-10)
+proactive_level: 7
+
+# 监控间隔（秒）
+monitor_interval: 300
+
+# 提醒冷却时间（秒）
+alert_cooldown: 1800
+
+# 监控领域
+monitor_areas:
+  - time  # 时间触发
+  - market  # 市场状态
+  - content  # 内容发布
+  - tasks  # 待办任务
+  - learning  # 学习优化
+
+# 自动执行权限
+auto_execute:
+  - reminders  # 提醒
+  - research  # 研究
+  - preparation  # 准备工作
+
+# 需要确认的操作
+confirm_required:
+  - publish  # 发布内容
+  - trade  # 交易操作
+  - external_api  # 外部API调用
+
+# 时间规则
+time_rules:
+  morning_startup:
+    time: "06:00-09:00"
+    actions:
+      - check_portfolio
+      - check_content_data
+      - review_today_plan
+  
+  trading_hours:
+    time: "09:30-15:00"
+    actions:
+      - monitor_stocks
+      - alert_opportunities
+  
+  content_window:
+    time: "15:00-17:00"
+    actions:
+      - remind_publish
+      - prepare_content
+  
+  evening_routine:
+    time: "17:00-22:00"
+    actions:
+      - log_daily_summary
+      - update_memory
+
+# 优先级设置
+priority_weights:
+  trading: 10
+  content: 8
+  tasks: 6
+  learning: 4
+  routine: 3
+
+# 输出设置
+output:
+  log_file: "memory/logs/proactive_monitor.log"
+  tasks_file: "memory/proactive_tasks.json"

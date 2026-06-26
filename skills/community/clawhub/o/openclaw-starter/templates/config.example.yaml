@@ -1,0 +1,39 @@
+# OpenClaw 配置示例
+
+# Gateway 配置示例（不要直接编辑，使用 openclaw config.patch）
+gateway:
+  bind: "127.0.0.1"  # 建议绑定 localhost，不要暴露到公网
+  port: 8888
+  remote:
+    enabled: false  # 如需远程访问，建议使用 SSH 隧道或 Tailscale
+
+# 渠道配置示例
+channels:
+  telegram:
+    enabled: false
+    token: "${TELEGRAM_BOT_TOKEN}"  # 使用环境变量，不要硬编码
+
+  whatsapp:
+    enabled: false
+    # 通过二维码扫描配对，无需 token
+
+  discord:
+    enabled: false
+    botToken: "${DISCORD_BOT_TOKEN}"  # 使用环境变量
+    channelId: ""  # 可选：默认频道 ID
+
+  webchat:
+    enabled: true  # WebChat 默认启用
+
+# 插件配置示例
+plugins:
+  entries:
+    memory:
+      enabled: true
+    cron:
+      enabled: true
+
+# 日志配置
+logging:
+  level: info  # debug, info, warn, error
+  format: json  # json, text

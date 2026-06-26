@@ -1,0 +1,27 @@
+{
+  "method2": {
+    "method": "scan_and_assess",
+    "start_time": "2026-03-28T16:22:42.131188",
+    "scanned_plugins": 10,
+    "upgrade_candidates": [],
+    "no_upgrade_needed": [
+      {
+        "plugin": "ViaVersion",
+        "current": "5.8.0",
+        "latest": "5.8.0",
+        "status": "up_to_date"
+      }
+    ],
+    "failed_checks": [],
+    "summary": {
+      "total_candidates": 0,
+      "high_risk": 0,
+      "medium_risk": 0,
+      "low_risk": 0,
+      "recommended": 0
+    },
+    "installed_count": 12,
+    "success": true,
+    "end_time": "2026-03-28T16:22:44.619951"
+  }
+}

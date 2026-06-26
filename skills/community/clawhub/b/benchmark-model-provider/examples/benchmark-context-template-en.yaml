@@ -1,0 +1,8 @@
+purpose: Describe the main jobs the bot should help with.
+domain: Describe the work domain or industry.
+usage_frequency: Describe how often the bot is used.
+language: en
+notes:
+  - Optional extra constraints
+  - Preferred answer style
+  - Important evaluation concerns

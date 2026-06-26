@@ -1,0 +1,252 @@
+[
+  {
+    "timestamp": "2026-03-15T15:56:56.755873",
+    "input": "Create a new GitHub issue for bug report",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:56:56.779294",
+    "input": "What is the latest version of Node.js?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:56:56.829139",
+    "input": "Write a SQL query to find duplicate records",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:56:56.866654",
+    "input": "Summarize this article about AI advancements",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:56:56.906285",
+    "input": "Check my system for security vulnerabilities",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:15.633799",
+    "input": "How to implement JWT authentication in PHP?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:15.668861",
+    "input": "How to implement JWT authentication in PHP?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:15.687084",
+    "input": "How to implement JWT authentication in PHP?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:15.710629",
+    "input": "我想用 Vue 3 建立一個下拉選單",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:15.862311",
+    "input": "我想用 Vue 3 建立一個下拉選單",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:15.972915",
+    "input": "我想用 Vue 3 建立一個下拉選單",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.149419",
+    "input": "Write a Python script to scrape website data",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.244021",
+    "input": "Write a Python script to scrape website data",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.267006",
+    "input": "Write a Python script to scrape website data",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.535879",
+    "input": "Create a new GitHub issue for bug report",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.564127",
+    "input": "Create a new GitHub issue for bug report",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.621870",
+    "input": "Create a new GitHub issue for bug report",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.676356",
+    "input": "I need to review a pull request",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.707022",
+    "input": "I need to review a pull request",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.729164",
+    "input": "I need to review a pull request",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.742856",
+    "input": "What is the latest version of Node.js?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.783840",
+    "input": "What is the latest version of Node.js?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.870463",
+    "input": "What is the latest version of Node.js?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.909132",
+    "input": "Research the best practices for API design",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.960815",
+    "input": "Research the best practices for API design",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:16.976253",
+    "input": "Research the best practices for API design",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.036369",
+    "input": "How to connect to MSSQL database from PHP?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.128533",
+    "input": "How to connect to MSSQL database from PHP?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.184191",
+    "input": "How to connect to MSSQL database from PHP?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.211538",
+    "input": "Write a SQL query to find duplicate records",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.224835",
+    "input": "Write a SQL query to find duplicate records",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.257013",
+    "input": "Write a SQL query to find duplicate records",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.279875",
+    "input": "Summarize this article about AI advancements",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.353845",
+    "input": "Summarize this article about AI advancements",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.412918",
+    "input": "Summarize this article about AI advancements",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.451810",
+    "input": "summarize the following text: ...",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.466832",
+    "input": "summarize the following text: ...",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.500349",
+    "input": "summarize the following text: ...",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.537944",
+    "input": "Check my system for security vulnerabilities",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.606934",
+    "input": "Check my system for security vulnerabilities",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.665359",
+    "input": "Check my system for security vulnerabilities",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.702913",
+    "input": "Audit firewall rules and SSH configuration",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.748086",
+    "input": "Audit firewall rules and SSH configuration",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:57:17.773180",
+    "input": "Audit firewall rules and SSH configuration",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:59:30.100454",
+    "input": "What is the COM3 baud rate?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:59:57.042067",
+    "input": "What is the COM3 baud rate?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T15:59:57.089945",
+    "input": "What ESP32 model are we using?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T16:11:51.955260",
+    "input": "What is the COM3 baud rate?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T16:11:52.105360",
+    "input": "What ESP32 model are we using?",
+    "response": null
+  },
+  {
+    "timestamp": "2026-03-15T16:11:52.125853",
+    "input": "Why is the ESP32 connection failing?",
+    "response": null
+  }
+]

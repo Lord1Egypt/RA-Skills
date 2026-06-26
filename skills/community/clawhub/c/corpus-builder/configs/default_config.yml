@@ -1,0 +1,22 @@
+# Corpus Builder 默认配置
+
+chunking:
+  max_chunk_size: 2000      # 最大块大小（字）
+  min_chunk_size: 100       # 最小块大小（字）
+  overlap: 200              # 块重叠（字）
+
+processing:
+  batch_size: 5             # AI 标注批量大小
+  embedding_batch_size: 32  # 向量化批量大小
+  max_workers: 3            # 最大并行数
+
+models:
+  embedding: "BAAI/bge-small-zh-v1.5"   # 嵌入模型
+  annotation: "dashscope-coding/qwen3.5-plus"  # LLM 模型
+
+storage:
+  persist_directory: "./corpus/chroma"      # 向量库存储目录
+  checkpoint_dir: "./corpus/cache"          # 断点缓存目录
+
+memory:
+  limit_mb: 2500            # 内存限制（MB）

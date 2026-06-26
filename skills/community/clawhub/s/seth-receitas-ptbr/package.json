@@ -1,0 +1,10 @@
+{
+  "name": "seth-receitas-ptbr",
+  "version": "1.0.0",
+  "description": "Skill do OpenClaw para buscar receitas em português do Brasil (pt-BR) via Wikilivros e TheMealDB.",
+  "main": "index.js",
+  "keywords": ["receitas", "pt-br", "brasil", "cozinha", "culinaria", "wikilivros", "mealdb", "openclaw", "skill"],
+  "author": "runawaydevil",
+  "license": "ISC",
+  "type": "commonjs"
+}

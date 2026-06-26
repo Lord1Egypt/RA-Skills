@@ -1,35 +1,78 @@
 ---
-name: "Custom Morning Brief"
+name: 每日简报skill
 description: "================================。触发词：搜索, search, skill, 优化, 数据, data。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yuheng-morning-brief"
-sourceUrl: "https://clawhub.ai/skills/yuheng-morning-brief"
 ---
 
-# Custom Morning Brief
+# 定制晨报系统
+================================
 
-> ================================。触发词：搜索, search, skill, 优化, 数据, data。
+> 每天早上自动生成定制日报，推送到飞书
+> 版本: 1.0 | 2026-04-03 | 依赖: tianji-data + batch_web_search + hot.md
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yuheng-morning-brief`
-- **Source URL:** [https://clawhub.ai/skills/yuheng-morning-brief](https://clawhub.ai/skills/yuheng-morning-brief)
+---
 
-## Overview
+## 晨报内容结构
 
+每天 06:30 自动生成，08:00 前推送到飞书：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yuheng-morning-brief
+```
+【玉衡晨报 · YYYY-MM-DD 星期X】
+
+📊 今日大盘
+上证：XXXX点 (±X.XX%)
+深证：XXXX点 (±X.XX%)
+创业板：XXXX点 (±X.XX%)
+成交额：X.XX万亿
+北向资金：[流入/流出] XX亿
+
+🔥 昨日热点板块
+1. [板块名] [+X.XX%] — [核心逻辑]
+2. [板块名] [+X.XX%] — [核心逻辑]
+3. [板块名] [+X.XX%] — [核心逻辑]
+
+📋 持仓诊断（当前）
+[股票名] [代码]：[X万股] | 成本：[¥X] | 现价：[¥X] | 浮亏：[¥XXX]
+
+💡 今日重点关注
+1. [宏观事件] — 对A股影响
+2. [行业新闻] — 相关板块
+3. [外盘行情] — 纳指/恒指/原油
+
+🎯 今日操作建议
+[买/卖/观望] + 具体理由
+
+📅 本周重要日程
+- 周X：XXXX财报发布
+- 周X：XXXX政策会议
+```
+
+---
+
+## 触发机制
+
+| 时间 | 动作 |
+|------|------|
+| 每个交易日 06:30 | 自动生成晨报 |
+| 发送至 | 飞书私信用户 |
+
+---
+
+## 数据来源
+
+| 内容 | 来源 |
+|------|------|
+| 大盘数据 | tianji-data（腾讯接口） |
+| 热点板块 | hot.md 昨日记录 |
+| 持仓诊断 | USER.md |
+| 宏观事件 | batch_web_search |
+| 外盘行情 | 腾讯接口（纳指期货/恒指） |
+
+---
+
+## 配置
+
+晨报发送到飞书，通过 message tool：
+```
+channel: feishu
+target: ou_fd61d5ebc9af22913aa4c21c8e3cac14
 ```

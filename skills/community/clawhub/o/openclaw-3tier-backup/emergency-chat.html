@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Emergency AI Chat</title>
+<style>
+  body { font-family: system-ui; max-width: 800px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #e0e0e0; }
+  #chat { height: 400px; overflow-y: auto; border: 1px solid #333; padding: 10px; margin-bottom: 10px; border-radius: 8px; background: #16213e; }
+  .msg { margin: 8px 0; padding: 8px 12px; border-radius: 6px; }
+  .user { background: #0f3460; text-align: right; }
+  .ai { background: #1a1a2e; border: 1px solid #333; }
+  #input { width: calc(100% - 80px); padding: 10px; border: 1px solid #333; border-radius: 6px; background: #16213e; color: #e0e0e0; }
+  #send { padding: 10px 20px; background: #e94560; color: white; border: none; border-radius: 6px; cursor: pointer; }
+  #send:hover { background: #c73650; }
+  #status { color: #888; font-size: 12px; margin-bottom: 10px; }
+  h1 { color: #e94560; }
+</style>
+</head>
+<body>
+<h1>Emergency Chat</h1>
+<div id="status">Connecting to Ollama...</div>
+<div id="chat"></div>
+<input id="input" placeholder="Type a message..." onkeypress="if(event.key==='Enter')send()">
+<button id="send" onclick="send()">Send</button>
+<script>
+const MODELS = ['llama3.1:8b', 'qwen2.5:14b', 'gemma3:4b'];
+let model = MODELS[0];
+
+async function checkOllama() {
+  try {
+    const r = await fetch('http://127.0.0.1:11434/api/tags');
+    const d = await r.json();
+    const names = d.models.map(m => m.name.split(':')[0] + ':' + (m.name.split(':')[1]||'latest'));
+    for (const m of MODELS) { if (names.some(n => n.includes(m.split(':')[0]))) { model = m; break; } }
+    document.getElementById('status').textContent = 'Connected — using ' + model;
+  } catch(e) {
+    document.getElementById('status').textContent = 'Ollama not running. Start it with: ollama serve';
+  }
+}
+
+async function send() {
+  const input = document.getElementById('input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  
+  const chat = document.getElementById('chat');
+  chat.innerHTML += '<div class="msg user">' + msg.replace(/</g,'&lt;') + '</div>';
+  chat.innerHTML += '<div class="msg ai" id="thinking">Thinking...</div>';
+  chat.scrollTop = chat.scrollHeight;
+  
+  try {
+    const r = await fetch('http://127.0.0.1:11434/api/generate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ model, prompt: msg, stream: false })
+    });
+    const d = await r.json();
+    document.getElementById('thinking').outerHTML = '<div class="msg ai">' + (d.response||'No response').replace(/</g,'&lt;').replace(/\n/g,'<br>') + '</div>';
+  } catch(e) {
+    document.getElementById('thinking').outerHTML = '<div class="msg ai" style="color:#e94560">Error: ' + e.message + '</div>';
+  }
+  chat.scrollTop = chat.scrollHeight;
+}
+
+checkOllama();
+</script>
+</body>
+</html>

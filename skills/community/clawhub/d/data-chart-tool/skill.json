@@ -1,0 +1,8 @@
+{
+  "name": "data-chart-tool",
+  "description": "【爆款标题】数据不会说话？3步生成专业图表，让你的报告瞬间提升档次！\n\n你是不是经常拿到一堆 CSV 数据，却不知道怎么呈现？财务报告、销售分析、市场调研...数据还在用 Excel 基础图表，low 爆了？\n\n本工具用 3 步（加载数据 → 选择图表 → 导出），将你的 CSV/JSON 秒变专业级可视化图表（柱状/折线/饼图等），支持批量处理和多种输出格式。\n\n✨ **核心亮点**：\n- 一键生成：CSV/JSON/Excel → 图表（支持5种类型）\n- 专业样式：标题、标签、颜色、字体全可调\n- 多格式输出：PNG/JPEG/PDF/SVG，满足各种场景\n- 批量处理：一次N个文件，自动批量生成\n- 特别优化：无缝对接 tushare-finance，股票数据秒出图\n\n📁 **典型场景**：\n- 财务分析：月度/季度财报可视化\n- 销售报告：KPI趋势、产品对比\n- 学术研究：数据展示，论文配图\n- 个人项目：数据分析爱好者\n\n🎯 **为什么选我**：\n✅ 唯一支持 tushare-finance 深度集成\n✅ 批量处理 + 预览模式 = 高效工作流\n✅ Python 原生，可编程扩展\n\n👉 立即体验：`clawhub install data-chart-tool`",
+  "version": "1.1.0-premium",
+  "license": "MIT",
+  "premium": true,
+  "license_secret_env": "SKILL_LICENSE_SECRET"
+}

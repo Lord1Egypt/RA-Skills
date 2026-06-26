@@ -1,0 +1,14 @@
+{
+  "run_id": "sciverse-sample-run",
+  "project": "Sciverse API",
+  "created_at": "2026-04-21T12:00:00Z",
+  "record_count": 11,
+  "artifacts": [
+    "raw_responses.jsonl",
+    "score_draft.jsonl",
+    "annotations.jsonl",
+    "summary.json",
+    "metrics.csv",
+    "weekly_report.md"
+  ]
+}

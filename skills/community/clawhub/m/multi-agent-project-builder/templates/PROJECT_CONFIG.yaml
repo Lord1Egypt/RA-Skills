@@ -1,0 +1,68 @@
+# 多 Agent 项目构建器 - 项目配置文件
+# 根据你的项目需求修改此配置
+
+project:
+  name: "我的项目"
+  type: "custom"  # web-app, mobile-app, data-tool, automation, custom
+  description: "请在此描述你的项目目标和主要功能"
+  goals:
+    - "目标 1"
+    - "目标 2"
+    - "目标 3"
+
+# Agent 配置 - 可以启用/禁用、自定义每个 Agent
+agents:
+  - name: analyst
+    enabled: true
+    role: "需求分析师"
+    goal: "分析用户需求，制定详细的功能规划和产品规格"
+    custom_prompt: null  # 填入自定义提示词，或使用 null 使用默认
+
+  - name: researcher
+    enabled: true
+    role: "技术研究员"
+    goal: "调研技术方案，对比选型，提供最佳实践建议"
+    custom_prompt: null
+
+  - name: architect
+    enabled: true
+    role: "系统架构师"
+    goal: "设计系统架构、技术方案和 API 接口定义"
+    custom_prompt: null
+
+  - name: implementer
+    enabled: true
+    role: "代码实现者"
+    goal: "根据需求和架构实现完整的代码和项目结构"
+    custom_prompt: null
+
+  - name: tester
+    enabled: true
+    role: "测试验证者"
+    goal: "测试功能完整性，提供质量报告和优化建议"
+    custom_prompt: null
+
+# 工作流配置
+workflow:
+  # 并行执行阶段 - 这些 Agent 可以同时工作
+  parallel_phases:
+    - ["analyst", "researcher", "architect"]
+
+  # 顺序执行阶段 - 这些 Agent 按顺序工作
+  sequential_phases:
+    - ["implementer"]
+    - ["tester"]
+
+# 技术偏好（可选）
+tech_preferences:
+  frontend: null  # react, vue, angular, nextjs, null
+  backend: null   # nodejs, python, java, go, null
+  database: null  # postgresql, mysql, sqlite, mongodb, null
+  cloud: null     # aws, gcp, azure, null
+  other_tools: []
+
+# 输出配置
+outputs:
+  format: "markdown"  # markdown, json, both
+  directory: "./outputs"
+  include_templates: true

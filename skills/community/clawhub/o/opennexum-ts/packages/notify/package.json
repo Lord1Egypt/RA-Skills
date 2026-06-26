@@ -1,0 +1,17 @@
+{
+  "name": "@nexum/notify",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "../prompts/node_modules/.bin/tsc -p tsconfig.json",
+    "test": "pnpm dlx --package=tsx tsx --test src/__tests__/*.test.ts"
+  }
+}

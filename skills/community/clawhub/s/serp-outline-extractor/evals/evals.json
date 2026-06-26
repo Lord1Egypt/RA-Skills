@@ -1,0 +1,39 @@
+{
+  "skill_id": "skill_serp_outline_extractor",
+  "evaluation_version": "1.1",
+  "scenarios": [
+    {
+      "id": "claude_api_key_2026",
+      "task": "Build a search-informed outline for 'how to get a Claude API key in 2026'.",
+      "expected_properties": [
+        "identifies informational intent with practical setup needs",
+        "surfaces step-by-step sections and FAQ opportunities",
+        "includes freshness/year framing"
+      ]
+    },
+    {
+      "id": "api_gateway_comparison_query",
+      "task": "Create a content brief for 'OpenAI-compatible API gateway'.",
+      "expected_properties": [
+        "recognizes mixed informational and commercial intent",
+        "includes comparison angles and alternatives",
+        "produces an outline that matches likely evaluation behavior"
+      ]
+    },
+    {
+      "id": "pricing_comparison_topic",
+      "task": "Suggest headings and FAQs for 'AI model pricing comparison'.",
+      "expected_properties": [
+        "avoids generic blogging filler",
+        "includes table/list opportunities and comparison structure",
+        "captures likely objections or decision factors"
+      ]
+    }
+  ],
+  "summary": {
+    "with_skill_score": 4,
+    "without_skill_score": 2,
+    "delta": 2,
+    "confidence": "medium"
+  }
+}

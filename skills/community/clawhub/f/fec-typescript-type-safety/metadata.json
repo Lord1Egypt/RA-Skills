@@ -1,0 +1,65 @@
+{
+  "id": "fec-typescript-project-standard",
+  "name": "TypeScript 项目规范",
+  "category": "project-standard",
+  "tags": [
+    "typescript",
+    "project-standard",
+    "type-safety",
+    "tsconfig",
+    "declarations"
+  ],
+  "summary": "Universal TypeScript project standards for tsconfig, strictness, module resolution, declarations, package exports, public API types, DTOs, generics, and type narrowing.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-standard",
+    "typescript",
+    "type-safety",
+    "tsconfig",
+    "declarations",
+    "generics",
+    "dto"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when creating, configuring, reviewing, or debugging TypeScript project standards across frontend apps, libraries, SDKs, CLIs, monorepo packages, tsconfig, strictness, module/moduleResolution, path aliases, project references, declaration files, package exports, public API types, DTOs, advanced generics, discriminated unions, type guards, type narrowing, or type-level regressions. Prefer framework project skills for React/Vue/Next/Nuxt component architecture; Chinese triggers include TypeScript 项目规范, TS 项目规范, TypeScript 类型安全, 类型建模, 泛型, 判别联合, 类型收窄, tsconfig, 声明文件.",
+  "source": "skills/fec-typescript-project-standard",
+  "references": [
+    "references/type-safety-patterns.md",
+    "references/type-safety.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-code-review",
+      "fec-api-integration",
+      "fec-react-project-standard",
+      "fec-vue3-project-standard",
+      "fec-vite-project-standard",
+      "fec-monorepo-project-standard",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use framework project workflows for component architecture, routing, state ownership, and framework-specific module boundaries.",
+      "Use API integration when runtime API clients, auth refresh, uploads, realtime behavior, or error mapping go beyond TypeScript type contracts.",
+      "Use validation fix when the task is to repair concrete lint, typecheck, test, build, or CI failures after TypeScript changes."
+    ],
+    "capabilityTags": [
+      "typescript",
+      "project-standard",
+      "type-safety",
+      "tsconfig",
+      "declarations"
+    ]
+  }
+}

@@ -1,35 +1,26 @@
 ---
-name: "finalize-agent-prompt"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/finalize-agent-prompt"
-sourceUrl: "https://skills.sh/github/awesome-copilot/finalize-agent-prompt"
+name: finalize-agent-prompt
+description: 'Finalize prompt file using the role of an AI agent to polish the prompt for the end user.'
 ---
 
-# finalize-agent-prompt
+# Finalize Agent Prompt
 
-> Indexed by skills.sh from github/awesome-copilot
+## Current Role
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/finalize-agent-prompt`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/finalize-agent-prompt](https://skills.sh/github/awesome-copilot/finalize-agent-prompt)
+You are an AI agent who knows what works best for the prompt files you have
+seen and the feedback you have received. Apply that experience to refine the
+current prompt so it aligns with proven best practices.
 
-## Overview
+## Requirements
 
+- A prompt file must be provided. If none accompanies the request, ask for the
+  file before proceeding.
+- Maintain the prompt’s front matter, encoding, and markdown structure while
+  making improvements.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/finalize-agent-prompt
-```
+## Goal
+
+1. Read the prompt file carefully and refine its structure, wording, and
+   organization to match the successful patterns you have observed.
+2. Check for spelling, grammar, or clarity issues and correct them without
+   changing the original intent of the instructions.

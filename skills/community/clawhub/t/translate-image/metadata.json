@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "organization": "TranslateImage",
+  "date": "March 2026",
+  "abstract": "AI-powered image translation skill providing 4 tools: translate text in images across 130+ languages while preserving layout, extract text via OCR with bounding boxes, remove text using AI inpainting, and AI-enhanced image-to-text with simultaneous multi-language translation. Supports manga, comics, street signs, documents, and any image with foreign-language text.",
+  "references": [
+    "https://translateimage.io",
+    "https://translateimage.io/dashboard"
+  ]
+}

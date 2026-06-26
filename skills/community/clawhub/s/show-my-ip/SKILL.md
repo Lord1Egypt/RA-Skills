@@ -1,35 +1,37 @@
 ---
-name: "Show My IP"
-description: "Show the current public IP address of the server. Use when asked about IP, public IP, or network identity."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/show-my-ip"
-sourceUrl: "https://clawhub.ai/skills/show-my-ip"
+name: show-my-ip
+description: Show the current public IP address of the server. Use when asked about IP, public IP, or network identity.
 ---
 
 # Show My IP
 
-> Show the current public IP address of the server. Use when asked about IP, public IP, or network identity.
+Quickly check the public IP address of the machine running your agent. Useful for debugging network issues, verifying VPN connections, confirming server identity, or setting up firewall rules.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/show-my-ip`
-- **Source URL:** [https://clawhub.ai/skills/show-my-ip](https://clawhub.ai/skills/show-my-ip)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/show-my-ip
+bash scripts/get-ip.sh
 ```
+
+## Output
+
+Returns the public **IPv4** address (and **IPv6** if available) by querying `ifconfig.me`.
+
+Example output:
+```
+=== Public IP ===
+IPv4: 203.0.113.42
+IPv6: 2001:db8::1
+```
+
+## When to Use
+
+- User asks "what's my IP?" or "show my public IP"
+- Verifying outbound IP for allowlisting
+- Checking if a VPN or proxy is active
+- Confirming server network identity
+
+## Requirements
+
+- `curl` (pre-installed on most systems)
+- Internet access

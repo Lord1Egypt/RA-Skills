@@ -1,0 +1,185 @@
+# Windows API监控技能配置
+
+# 基础监控配置
+monitor:
+  # 监控间隔（秒）
+  interval: 300
+  
+  # 数据保留天数
+  retention_days: 30
+  
+  # 日志文件路径
+  log_dir: "~/.openclaw/logs"
+  
+  # 工作区路径
+  workspace_dir: "~/.openclaw/workspace"
+  
+  # 是否启用实时监控
+  realtime_enabled: false
+
+# 告警配置
+alerts:
+  # 是否启用告警
+  enabled: true
+  
+  # 调用次数告警阈值（单日）
+  threshold_calls: 100
+  
+  # 令牌数告警阈值（单日）
+  threshold_tokens: 10000
+  
+  # 成本告警阈值（单日，元）
+  threshold_cost: 1.0
+  
+  # 通知方式
+  notify_method: "log"  # log, email, webhook
+  
+  # 邮件通知配置（仅在notify_method为email时生效）
+  email:
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: ""
+    password: ""
+    from_address: ""
+    to_addresses: []
+  
+  # Webhook配置（仅在notify_method为webhook时生效）
+  webhook:
+    url: ""
+    headers:
+      Content-Type: "application/json"
+    timeout: 10
+
+# 报告配置
+reports:
+  # 是否启用每日报告
+  daily_enabled: true
+  
+  # 是否启用每周报告
+  weekly_enabled: true
+  
+  # 是否启用每月报告
+  monthly_enabled: true
+  
+  # 报告输出目录
+  output_dir: "./reports"
+  
+  # 报告格式
+  format: "text"  # text, json, html
+  
+  # 是否包含详细日志
+  include_details: true
+  
+  # 报告保留天数
+  retention_days: 90
+
+# 模型成本配置（元/百万令牌）
+model_costs:
+  # DeepSeek模型
+  "deepseek-ai": 0.001
+  "deepseek-chat": 0.001
+  "deepseek-coder": 0.001
+  
+  # GLM模型
+  "glm-5": 0.0015
+  "glm-4": 0.002
+  
+  # OpenAI模型
+  "gpt-4": 0.03
+  "gpt-4-turbo": 0.01
+  "gpt-3.5-turbo": 0.001
+  
+  # Anthropic模型
+  "claude-3": 0.015
+  "claude-3.5": 0.02
+  
+  # 其他模型
+  "gemini-pro": 0.001
+  "llama-3": 0.0008
+  
+  # 默认成本
+  "default": 0.002
+
+# 高级配置
+advanced:
+  # 是否启用调试模式
+  debug: false
+  
+  # 最大并发数
+  max_concurrent: 5
+  
+  # 缓存大小（MB）
+  cache_size: 100
+  
+  # 连接超时（秒）
+  timeout: 30
+  
+  # 重试次数
+  retry_attempts: 3
+  
+  # 重试延迟（秒）
+  retry_delay: 2
+
+# 自动化任务配置
+automation:
+  # 每日检查时间（24小时制）
+  daily_check_time: "08:00"
+  
+  # 每周检查时间
+  weekly_check_time: "09:00"
+  
+  # 每月检查时间
+  monthly_check_time: "10:00"
+  
+  # 是否自动清理旧文件
+  auto_cleanup: true
+  
+  # 清理间隔（天）
+  cleanup_interval: 7
+
+# 安全配置
+security:
+  # 是否加密敏感数据
+  encrypt_sensitive: false
+  
+  # 日志脱敏
+  log_redaction: true
+  
+  # 允许的IP范围（CIDR表示法）
+  allowed_networks:
+    - "127.0.0.1/32"
+    - "192.168.0.0/16"
+  
+  # API密钥存储方式
+  api_key_storage: "env"  # env, file, vault
+
+# 性能优化
+performance:
+  # 批量处理大小
+  batch_size: 100
+  
+  # 内存限制（MB）
+  memory_limit: 512
+  
+  # CPU使用限制（0-100）
+  cpu_limit: 80
+  
+  # 磁盘I/O限制（MB/s）
+  disk_io_limit: 50
+
+# 用户界面配置
+ui:
+  # 语言设置
+  language: "zh-CN"
+  
+  # 主题设置
+  theme: "dark"  # light, dark, auto
+  
+  # 是否显示详细日志
+  show_details: true
+  
+  # 自动刷新间隔（秒）
+  refresh_interval: 60
+  
+  # 图表类型
+  chart_type: "bar"  # bar, line, pie, table

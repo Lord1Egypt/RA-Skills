@@ -1,35 +1,29 @@
 ---
-name: "call-codex"
-description: "Indexed by skills.sh from dotneet/claude-code-marketplace"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dotneet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dotneet/claude-code-marketplace/call-codex"
-sourceUrl: "https://skills.sh/dotneet/claude-code-marketplace/call-codex"
+name: call-codex
+description: Call codex to perform a task.
 ---
 
-# call-codex
+# Call codex to perform a task
 
-> Indexed by skills.sh from dotneet/claude-code-marketplace
+Call codex to perform a task.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dotneet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dotneet/claude-code-marketplace/call-codex`
-- **Source URL:** [https://skills.sh/dotneet/claude-code-marketplace/call-codex](https://skills.sh/dotneet/claude-code-marketplace/call-codex)
+## Checking for the Existence of codex
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/dotneet/claude-code-marketplace/call-codex
+# Check if codex is installed. Exit code 0 means success, 1 means failure.
+# If not installed, skip the subsequent steps of the skill.
+which codex
+if [ $? -ne 0 ]; then
+  echo "codex is not installed"
+fi
+```
+
+## Requesting a Task to codex
+
+This task may take a long time. If the timeout value of the Bash tool can be set, please specify the maximum timeout value.
+
+```bash
+codex exec --sandbox danger-full-access <<EOT
+{task_description}
+EOT
 ```

@@ -1,0 +1,36 @@
+{
+  "deps": [
+    {
+      "body": "Side_Left",
+      "ref": "origin"
+    },
+    {
+      "body": "Side_Right",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Top",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Bottom",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Door_Left",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Door_Right",
+      "ref": "Door_Left"
+    },
+    {
+      "body": "Shelf",
+      "ref": "Bottom"
+    },
+    {
+      "body": "BackPanel",
+      "ref": "Side_Left"
+    }
+  ]
+}

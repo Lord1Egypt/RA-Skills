@@ -1,35 +1,118 @@
 ---
-name: "Temu Add Product US"
-description: "Temu 美国站发品（Add Product）API，经 LinkFox 网关转发 Partner US 商品接口：V2发品(temu.local.goods.v2.add)、类目属性、规格、图片上传、商品列表/详情/编辑、类目映射、SKU库存、供货价等。当用户提到 Temu 美国站发品、Temu US Add..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-temu-add-product-us"
-sourceUrl: "https://clawhub.ai/skills/linkfox-temu-add-product-us"
+name: linkfox-temu-add-product-us
+version: 1.0.0
+category: product-sourcing
+description: Temu 美国站发品（Add Product）API，经 LinkFox 网关转发 Partner US 商品接口：V2发品(temu.local.goods.v2.add)、类目属性、规格、图片上传、商品列表/详情/编辑、类目映射、SKU库存、供货价等。当用户提到 Temu 美国站发品、Temu US Add Product、goods.list、goods.detail、temu.local.goods.v2.add、商品类目映射、SKU库存、供货价、Partner US 发品文档 时触发。订单/物流请用其他 Temu skill。
 ---
 
-# Temu Add Product US
+# Temu 美国站发品 API（Partner US）
 
-> Temu 美国站发品（Add Product）API，经 LinkFox 网关转发 Partner US 商品接口：V2发品(temu.local.goods.v2.add)、类目属性、规格、图片上传、商品列表/详情/编辑、类目映射、SKU库存、供货价等。当用户提到 Temu 美国站发品、Temu US Add...
+本 skill（`linkfox-temu-add-product-us`）覆盖 Partner Platform for US **Product** 菜单（`menu_code=fb16b05f7a904765aac4af3a24b87d4a`）下 **19 个商品接口**：**4 个 V2 推荐发品** + **15 个标准商品 API**（查询、编辑、类目、库存、价格等）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-temu-add-product-us`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-temu-add-product-us](https://clawhub.ai/skills/linkfox-temu-add-product-us)
+**网关（本 skill 内置）**：
 
-## Overview
+| 能力 | 方法 | 网关路径 |
+|------|------|----------|
+| 商品 OpenAPI（全部 `us_goods_*`、`temu_us_proxy`） | POST | `https://tool-gateway.linkfox.com/temu/proxy` |
+| 加签文件下载（`temu_us_file_download`） | POST | `https://tool-gateway.linkfox.com/temu/fileDownload` |
 
+商品 `type` 写在 Body，**不是** URL 路径。
 
-## Installation
-To install this skill, run the following command in your terminal:
+> **不是订单 skill**：订单、发货、物流见 `linkfox-temu-order-us` 或其它履约类 skill。
+
+## API Usage
+
+完整入参/出参见 `references/`（已内联 Partner 文档要点，无需外链）：
+
+| 文档 | 内容 |
+|------|------|
+| [api.md](./references/api.md) | 网关、鉴权、通用响应、错误码 |
+| [partner-us-catalog.md](./references/partner-us-catalog.md) | 全部接口与 `sub_menu_code` 对照 |
+| [product-query-apis.md](./references/product-query-apis.md) | 列表、详情 |
+| [product-edit-apis.md](./references/product-edit-apis.md) | 更新、改属性、敏感品、迁移 |
+| [product-publish-apis.md](./references/product-publish-apis.md) | V2 发品、图片、legacy 发品 |
+| [category-spec-apis.md](./references/category-spec-apis.md) | 类目/属性/规格/品牌/映射 |
+| [stock-price-apis.md](./references/stock-price-apis.md) | 库存、供货价 |
+
+## 默认参数
+
+| 字段 | 默认 | 说明 |
+|------|------|------|
+| site | `us` | Partner US |
+| managementType | `semi-managed` | 半托管 |
+| tokenPurpose（storeKey） | `product-inventory` | 酷鸟卖家助手 token |
+
+## 鉴权
+
+1. **LinkFox**：`LINKFOXAGENT_API_KEY` → Header `Authorization` + `Token`
+2. **Temu**：`accessToken` 或 `storeKey`
+
+## Scripts
+
+### V2 推荐发品
+
+| 脚本 | type |
+|------|------|
+| `us_goods_attrs.py` | `temu.local.product.attributes.get` |
+| `us_goods_variation.py` | `temu.local.product.variation.get` |
+| `us_goods_image_upload.py` | `temu.local.goods.image.v2.upload` |
+| `us_goods_add.py` | `temu.local.goods.v2.add` |
+
+### 查询 / 编辑 / 类目 / 库存
+
+| 脚本 | type |
+|------|------|
+| `us_goods_list.py` | `temu.goods.list.get` |
+| `us_goods_detail.py` | `temu.goods.detail.get` |
+| `us_goods_update.py` | `temu.goods.update` |
+| `us_goods_edit_property.py` | `temu.goods.edit.property` |
+| `us_goods_edit_sensitive.py` | `temu.goods.edit.sensitive.attr` |
+| `us_goods_migrate.py` | `temu.goods.migrate` |
+| `us_goods_cats.py` | `bg.goods.cats.get` |
+| `us_goods_attrs_bg.py` | `bg.goods.attrs.get` |
+| `us_goods_parent_spec.py` | `bg.glo.goods.parentspec.get` |
+| `us_goods_brand.py` | `bg.glo.goods.brand.get` |
+| `us_goods_category_mapping.py` | `bg.goods.category.mapping` |
+| `us_goods_stock_get.py` | `bg.btg.goods.stock.quantity.get` |
+| `us_goods_stock_update.py` | `bg.btg.goods.stock.quantity.update` |
+| `us_goods_price_list.py` | `temu.goods.price.list.get` |
+| `us_goods_add_legacy.py` | `temu.goods.add` |
+| `temu_us_proxy.py` | 任意 `type` |
+| `temu_us_file_download.py` | 加签文件下载 |
+
+## 示例
+
 ```bash
-hermes skills install clawhub/linkfox-temu-add-product-us
+export LINKFOXAGENT_API_KEY="<key>"
+
+# 商品列表
+python scripts/us_goods_list.py '{"accessToken":"TOKEN","page":1,"pageSize":20}'
+
+# 类目映射
+python scripts/us_goods_category_mapping.py '{
+  "accessToken":"TOKEN",
+  "goodsName":"测试商品",
+  "goodsNameEn":"Test Product"
+}'
+
+# V2 发品流程
+python scripts/us_goods_attrs.py '{"accessToken":"TOKEN","params":{"catId":12345}}'
+python scripts/us_goods_image_upload.py '{"accessToken":"TOKEN","params":{"image":"<BASE64>"}}'
+python scripts/us_goods_add.py '{"accessToken":"TOKEN","params":{"..."}}'
 ```
+
+**Feedback：** `skillName`：`linkfox-temu-add-product-us`
+
+## 网关与授权脚本
+
+| 脚本 | 说明 |
+|------|------|
+| `check_linkfox_token.py` | 校验 LinkFox 用户 Token |
+| `temu_token_guide.py` | Temu accessToken 后台授权步骤 |
+| `save_temu_access_token.py` | 保存 accessToken 到本地 |
+| `list_temu_access_tokens.py` | 列出已保存 token |
+| `get_temu_access_token.py` | 读取已保存 token |
+| `temu_proxy.py` | 通用网关转发（多 site） |
+| `temu_file_download.py` | 加签文件下载（多 site） |
+
+授权说明：[references/access-token.md](./references/access-token.md)

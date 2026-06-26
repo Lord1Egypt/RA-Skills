@@ -1,0 +1,5 @@
+# Python dependencies for ima-video-ai skill
+# Install with: pip install -r requirements.txt
+
+requests>=2.25.0
+Pillow>=10.0.0

@@ -1,35 +1,141 @@
 ---
-name: "Terminal Mode"
-description: "终端模拟模式，当用户说"打开终端"、"进入终端模式"、"模拟终端"、"terminal mode"或类似表达时触发。提供类似Linux终端的交互体验，支持cd、ls、cat、pwd、mv、cp、rm、touch、mkdir、rmdir、find、grep、head、tail、chmod等常用命令，用于浏览和操作用..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/terminal-mode"
-sourceUrl: "https://clawhub.ai/skills/terminal-mode"
+name: terminal-mode
+description: 终端模拟模式，当用户说"打开终端"、"进入终端模式"、"模拟终端"、"terminal mode"或类似表达时触发。提供类似Linux终端的交互体验，支持cd、ls、cat、pwd、mv、cp、rm、touch、mkdir、rmdir、find、grep、head、tail、chmod等常用命令，用于浏览和操作用户文件系统。支持带参数的命令如"ls -la"、"ls -lath"等。
 ---
 
-# Terminal Mode
+# Terminal Mode - 终端模拟模式
 
-> 终端模拟模式，当用户说"打开终端"、"进入终端模式"、"模拟终端"、"terminal mode"或类似表达时触发。提供类似Linux终端的交互体验，支持cd、ls、cat、pwd、mv、cp、rm、touch、mkdir、rmdir、find、grep、head、tail、chmod等常用命令，用于浏览和操作用...
+这是一个终端模拟 skill，让用户可以用类似 Linux 终端的方式与 OpenClaw 交互，浏览和操作文件系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/terminal-mode`
-- **Source URL:** [https://clawhub.ai/skills/terminal-mode](https://clawhub.ai/skills/terminal-mode)
+## 触发条件
 
-## Overview
+当用户说以下任意一种表达时触发：
+- "打开终端" / "进入终端模式" / "模拟终端"
+- "terminal mode" / "terminal" / "进入 terminal"
+- 任何包含"终端"或"terminal"的启动指令
 
+## 终端提示符格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/terminal-mode
+进入终端模式后，使用以下格式显示提示符：
+
 ```
+user@openclaw:~/workspace$ 
+```
+
+或根据当前目录动态变化：
+
+```
+user@openclaw:/root/.openclaw/skills$ 
+```
+
+## 支持的命令
+
+### 目录操作
+- `cd <路径>` - 切换目录
+  - `cd ~` 或 `cd` - 切换到用户主目录
+  - `cd ..` - 切换到上级目录
+  - `cd -` - 切换到上次所在的目录
+  - `cd /path/to/dir` - 切换到指定绝对路径
+
+- `pwd` - 显示当前工作目录
+
+- `ls [选项] [路径]` - 列出目录内容
+  - `ls` - 基本列表
+  - `ls -l` - 详细列表（权限、所有者、大小、时间）
+  - `ls -la` 或 `ls -a` - 显示所有文件包括隐藏文件
+  - `ls -lh` - 人类可读的文件大小
+  - `ls -t` - 按时间排序
+  - `ls -r` - 反向排序
+  - 支持组合参数如 `ls -lath`、`ls -laht` 等
+
+### 文件查看
+- `cat <文件>` - 显示文件内容
+- `head [-n 行数] <文件>` - 显示文件开头
+- `tail [-n 行数] <文件>` - 显示文件结尾
+- `less <文件>` - 分页显示（模拟，实际显示全部）
+
+### 文件操作
+- `cp [-r] <源> <目标>` - 复制文件或目录
+  - `-r` 参数用于递归复制目录
+
+- `mv <源> <目标>` - 移动或重命名文件/目录
+
+- `rm [-r] [-f] [-y] <路径>` - 删除文件或目录
+  - `-r` 递归删除目录
+  - `-f` 强制删除（不询问）
+  - **重要**: 如果不带 `-y` 或 `-f` 参数，必须先询问用户确认后再执行删除
+  - 询问格式: "确定要删除 [路径] 吗? (y/N)"
+
+- `touch <文件>` - 创建空文件或更新时间戳
+
+- `mkdir [-p] <目录>` - 创建目录
+  - `-p` 创建多级目录
+
+- `rmdir <目录>` - 删除空目录
+
+### 搜索命令
+- `find [路径] [表达式]` - 查找文件
+  - `find . -name "*.md"` - 按名称查找
+  - `find . -type f` - 查找文件
+  - `find . -type d` - 查找目录
+
+- `grep [选项] <模式> [文件]` - 搜索文本内容
+  - `grep "text" file.txt` - 在文件中搜索
+  - `grep -r "text" .` - 递归搜索
+  - `grep -i "text"` - 忽略大小写
+  - `grep -n "text"` - 显示行号
+
+### 其他命令
+- `clear` - 清屏（发送空行）
+- `whoami` - 显示当前用户
+- `date` - 显示当前日期时间
+- `df -h` - 显示磁盘使用情况
+- `du [-h] [路径]` - 显示目录/文件大小
+- `file <文件>` - 检测文件类型
+- `which <命令>` - 查找命令路径
+
+## 命令执行规则
+
+1. **路径解析**
+   - 支持绝对路径 `/home/user/file`
+   - 支持相对路径 `./file`、`../file`
+   - 支持 `~` 展开为用户主目录
+   - 支持 `.` 表示当前目录，`..` 表示上级目录
+
+2. **错误处理**
+   - 命令不存在: `bash: <命令>: command not found`
+   - 文件不存在: `cat: <文件>: No such file or directory`
+   - 权限不足: `Permission denied`
+   - 不是目录: `Not a directory`
+   - 是目录: `Is a directory`
+
+3. **输出格式**
+   - 尽量模仿真实终端的输出格式
+   - `ls -l` 格式: `-rw-r--r-- 1 user group 1234 Jan 01 12:00 filename`
+   - 文件大小使用人类可读格式（K、M、G）
+
+## 工作流程
+
+1. 用户触发终端模式后，显示欢迎信息和当前目录提示符
+2. 用户输入命令，解析命令和参数
+3. 使用 `exec` 或 `read` 等工具执行相应的文件操作
+4. 显示命令输出
+5. 显示新的提示符，等待下一条命令
+6. 用户可以说"退出终端"或"exit"来退出终端模式
+
+## 安全注意事项
+
+- **删除操作必须确认**: 除非使用 `-y` 或 `-f` 参数，否则 rm 命令必须先询问用户
+- **限制危险操作**: 不支持直接执行任意 shell 命令（如 `bash -c`、`eval` 等）
+- **只操作工作目录内的文件**: 避免误操作系统关键文件
+
+## 退出终端模式
+
+当用户说以下任意一种表达时退出终端模式：
+- "退出终端"
+- "exit"
+- "quit"
+- "关闭终端"
+- "结束终端模式"
+
+退出时显示: `logout` 或 `Connection closed.`

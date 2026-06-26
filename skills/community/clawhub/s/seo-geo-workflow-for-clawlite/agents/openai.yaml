@@ -1,0 +1,5 @@
+interface:
+  display_name: "OpenClaw SEO-GEO Workflow"
+  short_description: "Runbook for daily OpenClaw SEO/GEO delivery"
+  brand_color: "#0F766E"
+  default_prompt: "Use $openclaw-seo-geo-workflow to inspect today's Hunter/Tony/Peter SEO-GEO workflow receipts and explain publish status."

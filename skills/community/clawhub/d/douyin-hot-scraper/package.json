@@ -1,0 +1,13 @@
+{
+  "name": "douyin-scraper",
+  "version": "2.0.0",
+  "description": "抖音热榜和搜索数据爬虫，支持自然语言调用",
+  "main": "scripts/scraper.py",
+  "scripts": {
+    "search": "python3 scripts/scraper.py search",
+    "hot": "python3 scripts/scraper.py hot"
+  },
+  "keywords": ["douyin", "scraper", "hot-search"],
+  "author": "",
+  "license": "MIT"
+}

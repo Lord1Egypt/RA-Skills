@@ -1,35 +1,56 @@
----
-name: "feishu-message"
-description: "Unified CLI toolkit for Feishu messaging tasks including fetching messages, sending audio, creating group chats, and listing pinned messages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-message"
-sourceUrl: "https://clawhub.ai/skills/feishu-message"
----
+# Feishu Message Skill
 
-# feishu-message
+A unified toolkit for Feishu messaging operations, providing a single CLI entry point for common tasks.
 
-> Unified CLI toolkit for Feishu messaging tasks including fetching messages, sending audio, creating group chats, and listing pinned messages.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-message`
-- **Source URL:** [https://clawhub.ai/skills/feishu-message](https://clawhub.ai/skills/feishu-message)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Use the unified CLI via `index.js`:
 ```bash
-hermes skills install clawhub/feishu-message
+node skills/feishu-message/index.js <command> [options]
 ```
+
+## Commands
+
+### 1. Get Message (`get`)
+Fetch message content by ID. Supports recursive fetching for merged messages.
+```bash
+node skills/feishu-message/index.js get <message_id> [--raw] [--recursive]
+```
+Example:
+```bash
+node skills/feishu-message/index.js get om_12345 --recursive
+```
+
+### 2. Send Audio (`send-audio`)
+Send an audio file as a voice bubble.
+```bash
+node skills/feishu-message/index.js send-audio --target <id> --file <path> [--duration <ms>]
+```
+- `--target`: User OpenID (`ou_`) or ChatID (`oc_`).
+- `--file`: Path to audio file (mp3/wav/etc).
+- `--duration`: (Optional) Duration in ms.
+
+### 3. Create Group Chat (`create-chat`)
+Create a new group chat with specified users.
+```bash
+node skills/feishu-message/index.js create-chat --name "Project Alpha" --users "ou_1" "ou_2" --desc "Description"
+```
+
+### 4. List Pins (`list-pins`)
+List pinned messages in a chat.
+```bash
+node skills/feishu-message/index.js list-pins <chat_id>
+```
+
+## Legacy Scripts
+Standalone scripts are still available for backward compatibility:
+- `get.js`
+- `send-audio.js`
+- `create_chat.js`
+- `list_pins_v2.js`
+
+## Dependencies
+- axios
+- form-data
+- music-metadata
+- commander

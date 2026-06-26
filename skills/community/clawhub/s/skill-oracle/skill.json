@@ -1,0 +1,26 @@
+{
+  "name": "Skill Oracle",
+  "version": "1.0.2",
+  "description": "Skill Oracle — Curated documentation of quality ClawHub skills. Markdown tables and JSON metadata. Not an API or query engine.",
+  "author": "CertainLogic",
+  "license": "MIT",
+  "category": "curation",
+  "tags": ["curation", "discovery", "knowledge-base", "pa", "small-business", "skill-verification"],
+  "entry": {
+    "skill_pack": "PA Pack",
+    "certification": "CertainLogic Approved"
+  },
+  "repository": "https://github.com/certainlogic/skill-oracle",
+  "homepage": "https://certainlogic.ai/docs/skill-oracle",
+  "bugs": "https://github.com/certainlogic/skill-oracle/issues",
+  "marketplace": {
+    "clawhub": "certainlogicai/skill-oracle",
+    "lobehub": "certainlogicai/skill-oracle",
+    "skills_sh": "certainlogicai/skill-oracle"
+  },
+  "attribution": {
+    "inspired_by": "LarryBrain",
+    "inspiration_note": "Skill discovery and agent knowledge base concept. Not a copy - focused honest curation layer that separates utility from junk.",
+    "built_by": "CertainLogic"
+  }
+}

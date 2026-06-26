@@ -1,0 +1,82 @@
+[
+  {
+    "id": "test_001",
+    "title": "数组求和函数",
+    "description": "实现一个计算数组元素总和的函数",
+    "language": "python",
+    "difficulty": "easy",
+    "input": {
+      "code": "def sum_array(arr):\n    return sum(arr)\n\n# 测试\nprint(sum_array([1, 2, 3, 4, 5]))\nassert sum_array([1, 2, 3]) == 6\nassert sum_array([]) == 0\nassert sum_array([-1, 1]) == 0\nprint('All tests passed!')",
+      "test_code": "assert sum_array([1, 2, 3]) == 6"
+    },
+    "expected_output": {
+      "success": true,
+      "tests_passed": 3
+    },
+    "tags": ["basic", "array", "math"]
+  },
+  {
+    "id": "test_002",
+    "title": "字符串反转",
+    "description": "实现字符串反转功能",
+    "language": "python",
+    "difficulty": "easy",
+    "input": {
+      "code": "def reverse_string(s):\n    return s[::-1]\n\n# 测试\nassert reverse_string('hello') == 'olleh'\nassert reverse_string('') == ''\nassert reverse_string('a') == 'a'\nprint('String reverse tests passed!')",
+      "test_code": "assert reverse_string('test') == 'tset'"
+    },
+    "expected_output": {
+      "success": true,
+      "tests_passed": 3
+    },
+    "tags": ["basic", "string", "manipulation"]
+  },
+  {
+    "id": "test_003",
+    "title": "斐波那契数列",
+    "description": "计算第 n 个斐波那契数",
+    "language": "python",
+    "difficulty": "medium",
+    "input": {
+      "code": "def fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n\n# 测试\nassert fibonacci(0) == 0\nassert fibonacci(1) == 1\nassert fibonacci(5) == 5\nassert fibonacci(10) == 55\nprint('Fibonacci tests passed!')",
+      "test_code": "assert fibonacci(7) == 13"
+    },
+    "expected_output": {
+      "success": true,
+      "tests_passed": 4
+    },
+    "tags": ["algorithm", "recursion", "math"]
+  },
+  {
+    "id": "test_004",
+    "title": "字典键值查找",
+    "description": "在嵌套字典中查找键对应的值",
+    "language": "python",
+    "difficulty": "medium",
+    "input": {
+      "code": "def find_key(data, target_key):\n    if isinstance(data, dict):\n        if target_key in data:\n            return data[target_key]\n        for key, value in data.items():\n            result = find_key(value, target_key)\n            if result is not None:\n                return result\n    elif isinstance(data, list):\n        for item in data:\n            result = find_key(item, target_key)\n            if result is not None:\n                return result\n    return None\n\n# 测试\ndata = {'a': 1, 'b': {'c': 2, 'd': {'e': 3}}}\nassert find_key(data, 'e') == 3\nassert find_key(data, 'a') == 1\nassert find_key(data, 'z') is None\nprint('Nested dict tests passed!')",
+      "test_code": "assert find_key({'x': {'y': 5}}, 'y') == 5"
+    },
+    "expected_output": {
+      "success": true,
+      "tests_passed": 3
+    },
+    "tags": ["data-structure", "recursion", "search"]
+  },
+  {
+    "id": "test_005",
+    "title": "JSON 数据验证",
+    "description": "验证 JSON 数据是否符合指定 schema",
+    "language": "python",
+    "difficulty": "hard",
+    "input": {
+      "code": "import json\n\ndef validate_json(json_str, schema):\n    try:\n        data = json.loads(json_str)\n        \n        for key, expected_type in schema.items():\n            if key not in data:\n                return False, f'Missing key: {key}'\n            \n            if expected_type == 'string' and not isinstance(data[key], str):\n                return False, f'Key {key} should be string'\n            elif expected_type == 'number' and not isinstance(data[key], (int, float)):\n                return False, f'Key {key} should be number'\n            elif expected_type == 'boolean' and not isinstance(data[key], bool):\n                return False, f'Key {key} should be boolean'\n            elif expected_type == 'array' and not isinstance(data[key], list):\n                return False, f'Key {key} should be array'\n            elif expected_type == 'object' and not isinstance(data[key], dict):\n                return False, f'Key {key} should be object'\n        \n        return True, 'Valid'\n    except json.JSONDecodeError as e:\n        return False, f'Invalid JSON: {str(e)}'\n\n# 测试\nschema = {'name': 'string', 'age': 'number', 'active': 'boolean'}\nvalid_json = '{\"name\": \"John\", \"age\": 30, \"active\": true}'\ninvalid_json = '{\"name\": \"John\", \"age\": \"thirty\"}'\n\nassert validate_json(valid_json, schema)[0] == True\nassert validate_json(invalid_json, schema)[0] == False\nprint('JSON validation tests passed!')",
+      "test_code": "schema = {'id': 'number'}\nassert validate_json('{\"id\": 123}', schema)[0] == True"
+    },
+    "expected_output": {
+      "success": true,
+      "tests_passed": 2
+    },
+    "tags": ["json", "validation", "schema"]
+  }
+]

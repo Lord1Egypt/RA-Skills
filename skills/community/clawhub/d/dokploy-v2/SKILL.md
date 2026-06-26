@@ -1,35 +1,207 @@
 ---
-name: "Dokploy"
+name: dokploy
 description: "Manage Dokploy deployments, projects, applications, and domains via the Dokploy API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dokploy-v2"
-sourceUrl: "https://clawhub.ai/skills/dokploy-v2"
+emoji: "🐳"
+metadata:
+  clawdhub:
+    requires:
+      bins: ["curl", "jq"]
 ---
 
-# Dokploy
+# Dokploy Skill
 
-> Manage Dokploy deployments, projects, applications, and domains via the Dokploy API.
+Interact with Dokploy's API to manage projects, applications, domains, and deployments.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dokploy-v2`
-- **Source URL:** [https://clawhub.ai/skills/dokploy-v2](https://clawhub.ai/skills/dokploy-v2)
+## Prerequisites
 
-## Overview
+1. **Dokploy instance** running with API access
+2. **API Key** generated from `/settings/profile` → "API/CLI Section"
+3. Set the `DOKPLOY_API_URL` environment variable (default: `http://localhost:3000`)
 
+## Configuration
 
-## Installation
-To install this skill, run the following command in your terminal:
+Set these environment variables or use the config command:
+
 ```bash
-hermes skills install clawhub/dokploy-v2
+# Dokploy instance URL
+export DOKPLOY_API_URL="https://your-dokploy-instance.com"
+
+# Your API token
+export DOKPLOY_API_KEY="your-generated-api-key"
+
+# Or run the config command
+dokploy-config set --url "https://your-dokploy-instance.com" --key "your-api-key"
 ```
+
+## Projects
+
+### List all projects
+```bash
+dokploy-project list
+```
+
+### Get project details
+```bash
+dokploy-project get <project-id>
+```
+
+### Create a new project
+```bash
+dokploy-project create --name "My Project" --description "Description here"
+```
+
+### Update a project
+```bash
+dokploy-project update <project-id> --name "New Name" --description "Updated"
+```
+
+### Delete a project
+```bash
+dokploy-project delete <project-id>
+```
+
+### List environments in a project
+```bash
+dokploy-project envs <project-id>
+```
+
+## Applications
+
+### List applications in a project
+```bash
+dokploy-app list --project <project-id>
+```
+
+### Get application details
+```bash
+dokploy-app get <application-id>
+```
+
+### Create an application
+```bash
+dokploy-app create \
+  --environment-id <environment-id> \
+  --name "my-app" \
+  --type "docker" \
+  --image "nginx:latest"
+```
+
+**Application types:** `docker`, `git`, `compose`
+
+### Trigger deployment
+```bash
+dokploy-app deploy <application-id>
+```
+
+### Get deployment logs
+```bash
+dokploy-app logs <application-id> --deployment <deployment-id>
+```
+
+### List deployments
+```bash
+dokploy-app deployments <application-id>
+```
+
+### Update application
+```bash
+dokploy-app update <application-id> --name "new-name" --env "KEY=VALUE"
+```
+
+### Delete an application
+```bash
+dokploy-app delete <application-id>
+```
+
+## Domains
+
+### List domains for an application
+```bash
+dokploy-domain list --app <application-id>
+```
+
+### Get domain details
+```bash
+dokploy-domain get <domain-id>
+```
+
+### Add a domain to an application
+```bash
+dokploy-domain create \
+  --app <application-id> \
+  --host "app.example.com" \
+  --path "/" \
+  --port 80
+```
+
+### Update a domain
+```bash
+dokploy-domain update <domain-id> --host "new.example.com"
+```
+
+### Delete a domain
+```bash
+dokploy-domain delete <domain-id>
+```
+
+## Environment Variables
+
+### List environment variables for an application
+```bash
+dokploy-app env list <application-id>
+```
+
+### Set environment variable
+```bash
+dokploy-app env set <application-id> --key "DATABASE_URL" --value "postgres://..."
+```
+
+### Delete environment variable
+```bash
+dokploy-app env delete <application-id> --key "DATABASE_URL"
+```
+
+## Utility Commands
+
+### Check API connection
+```bash
+dokploy-status
+```
+
+### View current config
+```bash
+dokploy-config show
+```
+
+## API Reference
+
+Base URL: `$DOKPLOY_API_URL/api`
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/project.all` | GET | List all projects |
+| `/project.create` | POST | Create project |
+| `/project.one` | GET | Get project by ID |
+| `/project.update` | POST | Update project |
+| `/project.remove` | POST | Delete project |
+| `/application.search` | GET | List applications |
+| `/application.create` | POST | Create application |
+| `/application.one` | GET | Get application by ID |
+| `/application.update` | POST | Update application |
+| `/application.delete` | POST | Delete application |
+| `/application.deploy` | POST | Trigger deployment |
+| `/deployment.all` | GET | List deployments |
+| `/deployment.byId` | GET | Get deployment by ID |
+| `/deployment.logs` | GET | Get deployment logs |
+| `/domain.all` | GET | List domains |
+| `/domain.create` | POST | Create domain |
+| `/domain.update` | PATCH | Update domain |
+| `/domain.delete` | DELETE | Delete domain |
+
+## Notes
+
+- All API calls require the `x-api-key` header
+- Use `jq` for JSON parsing in scripts
+- Some operations require admin permissions
+- Deployment is asynchronous — use status endpoint to check progress
+- **Note**: Currently, Dokploy only provides a REST API for **Deployment Logs**. Real-time **Application Runtime Logs** (container logs) are only available via WebSocket and cannot be accessed through this CLI skill.

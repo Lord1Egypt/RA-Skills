@@ -1,0 +1,7 @@
+{
+  "slug": "tokenview-address-balance",
+  "display_name": "Blockchain Balance Checker",
+  "description": "Query blockchain address balance via Tokenview API.",
+  "required_env_vars": ["TOKENVIEW_API_KEY"],
+  "entrypoint": "tokenview_api.py"
+}

@@ -1,35 +1,59 @@
 ---
-name: "test-upload-skill"
-description: "A simple test skill for verifying clawhub.ai upload functionality"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-upload-skill"
-sourceUrl: "https://clawhub.ai/skills/test-upload-skill"
+name: test-upload-skill
+description: Secondly: A simple test skill for verifying clawhub.ai upload functionality
+homepage: https://github.com/test/test-upload-skill
+metadata: {"clawdbot":{"emoji":"🧪"}}
 ---
 
-# test-upload-skill
+# Test Upload Skill
 
-> A simple test skill for verifying clawhub.ai upload functionality
+A minimal test skill designed to verify the upload and publishing process on clawhub.ai platform.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-upload-skill`
-- **Source URL:** [https://clawhub.ai/skills/test-upload-skill](https://clawhub.ai/skills/test-upload-skill)
+## Purpose
 
-## Overview
+Use this skill to test that the skill upload system is working correctly.
 
+## What it does
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-upload-skill
+When triggered, this skill will:
+1. Confirm successful loading
+2. Display a test message with timestamp
+3. Verify basic skill functionality
+
+## Usage
+
+Trigger this skill by saying:
+- "test upload"
+- "upload test"
+- "verify skill upload"
+
+## Instructions
+
+When this skill is invoked, respond with:
+
 ```
+✓ Test skill loaded successfully!
+Timestamp: [current ISO timestamp]
+Status: Skill system operational
+Platform: clawhub.ai
+Version: 1.0.0
+```
+
+Then confirm that all skill components are working:
+- Skill file parsed correctly
+- Metadata loaded
+- Trigger words recognized
+- Instructions executed
+
+## Testing checklist
+
+After upload, verify:
+- [ ] Skill appears in the platform
+- [ ] Metadata displays correctly
+- [ ] Trigger words work as expected
+- [ ] Skill can be invoked successfully
+- [ ] Instructions execute properly
+
+---
+
+**Note**: This is a minimal test skill for platform verification. Production skills should include comprehensive functionality, error handling, and detailed documentation.

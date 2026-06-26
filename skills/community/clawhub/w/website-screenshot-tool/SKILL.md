@@ -1,35 +1,53 @@
 ---
-name: "Website Screenshot Tool"
-description: "Website Screenshot Automation Tool - 网站截图自动化，支持响应式截图、批量处理、定时调度、视觉对比 | Automated website screenshots with responsive capture, batch processing, scheduling, vi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/website-screenshot-tool"
-sourceUrl: "https://clawhub.ai/skills/website-screenshot-tool"
+name: website-screenshot-tool
+description: Website Screenshot Automation Tool - 网站截图自动化，支持响应式截图、批量处理、定时调度、视觉对比 | Automated website screenshots with responsive capture, batch processing, scheduling, visual comparison
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
+    install:
+      - id: python-deps
+        kind: python
+        requirements: "requirements.txt"
 ---
 
 # Website Screenshot Tool
 
-> Website Screenshot Automation Tool - 网站截图自动化，支持响应式截图、批量处理、定时调度、视觉对比 | Automated website screenshots with responsive capture, batch processing, scheduling, vi...
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/website-screenshot-tool`
-- **Source URL:** [https://clawhub.ai/skills/website-screenshot-tool](https://clawhub.ai/skills/website-screenshot-tool)
+- **Capture** — 单页截图，支持全页面/视口截图
+- **Batch** — 批量截图多个URL
+- **Responsive** — 模拟多设备尺寸（Desktop/Tablet/Mobile）
+- **Compare** — 两个网页视觉差异对比
+- **Schedule** — 定时截图任务调度
+- **History** — 截图历史记录与导出
 
-## Overview
+## 使用
 
+```python
+from scripts.website_screenshot import WebsiteScreenshot, ScreenshotScheduler
 
-## Installation
-To install this skill, run the following command in your terminal:
+tool = WebsiteScreenshot(output_dir="screenshots")
+
+# 单页截图
+result = tool.capture("https://example.com", full_page=True)
+
+# 响应式截图（桌面/平板/手机）
+results = tool.capture_responsive("https://example.com")
+
+# 批量截图
+results = tool.capture_batch(["https://site1.com", "https://site2.com"])
+
+# 对比两个网页
+diff = tool.compare("https://site.com/v1", "https://site.com/v2")
+
+# 定时截图
+scheduler = ScreenshotScheduler(tool)
+scheduler.add_job("https://example.com", interval_minutes=60)
+```
+
+## CLI
+
 ```bash
-hermes skills install clawhub/website-screenshot-tool
+python3 scripts/website_screenshot.py
 ```

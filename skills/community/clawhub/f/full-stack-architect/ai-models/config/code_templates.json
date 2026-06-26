@@ -1,0 +1,6 @@
+{
+  "function": "请生成一个{language}函数，实现以下功能：\n{function_description}\n\n要求：\n1. 函数名合理\n2. 参数类型明确\n3. 包含适当的注释\n4. 处理边界情况\n5. 代码风格符合{language}标准\n",
+  "class": "请生成一个{language}类，实现以下功能：\n{class_description}\n\n要求：\n1. 类名合理\n2. 包含必要的属性和方法\n3. 构造函数完整\n4. 包含适当的注释\n5. 代码风格符合{language}标准\n",
+  "module": "请生成一个{language}模块，实现以下功能：\n{module_description}\n\n要求：\n1. 模块结构清晰\n2. 包含必要的函数和类\n3. 提供适当的文档\n4. 处理错误情况\n5. 代码风格符合{language}标准\n",
+  "algorithm": "请生成一个{language}实现，实现以下算法：\n{algorithm_description}\n\n要求：\n1. 算法实现正确\n2. 时间复杂度合理\n3. 包含适当的注释\n4. 提供测试用例\n5. 代码风格符合{language}标准\n"
+}

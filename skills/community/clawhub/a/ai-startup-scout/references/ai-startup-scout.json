@@ -1,0 +1,44 @@
+{
+  "skill_name": "AI Startup Scout",
+  "slug": "ai-startup-scout",
+  "version": "1.0.0",
+  "endpoint": "http://8.145.54.67:3000/skill/ai-startup-scout",
+  "pricing": {
+    "model": "per-call",
+    "amount": 0.50,
+    "currency": "CNY",
+    "payment_method": "alipay-ai-pay"
+  },
+  "sectors": [
+    "AI Coding",
+    "Foundation Model",
+    "AI Video",
+    "AI Image",
+    "AI Search",
+    "Embodied AI",
+    "AI Safety",
+    "AI Agent",
+    "AI Healthcare",
+    "AI Finance",
+    "AI Education",
+    "Robotics"
+  ],
+  "regions": ["US", "CN", "EU", "JP", "IL", "KR", "UK", "SG", "IN"],
+  "stages": ["Seed", "Series A", "Series B", "Series C", "Series D+", "IPO"],
+  "data_sources": [
+    "Crunchbase",
+    "PitchBook",
+    "CB Insights",
+    "TechCrunch",
+    "36Kr",
+    "IT桔子",
+    "SEC EDGAR",
+    "各公司官网"
+  ],
+  "update_frequency": "weekly_major_events_24h",
+  "last_updated": "2026-06-02",
+  "author": "AI副业赚钱助手",
+  "license": "MIT",
+  "tags": ["AI", "startup", "funding", "venture capital", "估值", "融资", "科技"],
+  "icon": "🔭"
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工资审核总报告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f5f5; color: #1f2937; line-height: 1.6; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.cover { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 60px 40px; border-radius: 12px; margin-bottom: 24px; }
+.cover h1 { font-size: 32px; margin-bottom: 8px; }
+.cover .subtitle { font-size: 16px; opacity: 0.9; }
+.cover .meta { margin-top: 20px; display: flex; gap: 40px; }
+.cover .meta-item { font-size: 14px; }
+.cover .meta-item span { opacity: 0.7; }
+.section { background: white; border-radius: 12px; padding: 32px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.section h2 { font-size: 20px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e5e7eb; }
+.section h3 { font-size: 16px; margin: 20px 0 12px; color: #374151; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.stat-card { padding: 20px; border-radius: 8px; text-align: center; }
+.stat-card.red { background: #fef2f2; border: 1px solid #fecaca; }
+.stat-card.yellow { background: #fffbeb; border: 1px solid #fde68a; }
+.stat-card.blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+.stat-card.green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.stat-card .value { font-size: 36px; font-weight: 700; }
+.stat-card .label { font-size: 13px; color: #6b7280; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
+th { background: #f9fafb; font-weight: 600; color: #374151; }
+tr:hover { background: #f9fafb; }
+.judgment-block { background: #f9fafb; border-radius: 8px; padding: 16px; margin: 12px 0; border-left: 4px solid #e5e7eb; }
+.judgment-block.red { border-left-color: #dc2626; }
+.judgment-block.yellow { border-left-color: #f59e0b; }
+.judgment-block.green { border-left-color: #22c55e; }
+.judgment-block h4 { font-size: 15px; margin-bottom: 8px; }
+.judgment-block .logic { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+.judgment-block .stats { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; }
+.judgment-block .stats span { background: #e5e7eb; padding: 2px 8px; border-radius: 4px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+.badge.red { background: #fecaca; color: #991b1b; }
+.badge.yellow { background: #fde68a; color: #92400e; }
+.badge.green { background: #bbf7d0; color: #166534; }
+.overall-badge { display: inline-block; padding: 8px 20px; border-radius: 8px; font-size: 18px; font-weight: 700; margin: 16px 0; }
+.overall-badge.pass { background: #f0fdf4; color: #166534; border: 2px solid #86efac; }
+.overall-badge.fail { background: #fef2f2; color: #991b1b; border: 2px solid #fca5a5; }
+.exclusion-list { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.exclusion-item { background: #f3f4f6; padding: 4px 10px; border-radius: 6px; font-size: 12px; }
+.toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 20px 0; }
+.toc-item { padding: 16px; background: #f9fafb; border-radius: 8px; cursor: pointer; }
+.toc-item:hover { background: #e5e7eb; }
+.toc-item h4 { font-size: 14px; margin-bottom: 4px; }
+.toc-item p { font-size: 12px; color: #6b7280; }
+</style>
+</head>
+<body>
+<div class="container">
+
+
+<div class="cover">
+<h1>📋 工资审核总报告</h1>
+<div class="subtitle">payroll-data-audit v6.1.0</div>
+<div class="meta">
+<div class="meta-item"><span>审核时间：</span>2026-06-05 16:13:27</div>
+<div class="meta-item"><span>数据量：</span>947 人</div>
+<div class="meta-item"><span>规则版本：</span>N/A</div>
+</div>
+</div>
+
+
+<div class="section">
+<h2>📑 目录</h2>
+<div class="toc">
+<div class="toc-item" onclick="document.getElementById('s1').scrollIntoView({behavior:'smooth'})">
+<h4>1. 审核结论</h4>
+<p>总体判定 + 核心指标</p>
+</div>
+<div class="toc-item" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">
+<h4>2. 数据扫描</h4>
+<p>数据概览 + 本月变动</p>
+</div>
+<div class="toc-item" onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})">
+<h4>3. 审核汇总表</h4>
+<p>全维度规则检查结果</p>
+</div>
+<div class="toc-item" onclick="document.getElementById('s4').scrollIntoView({behavior:'smooth'})">
+<h4>4. 判定过程详解</h4>
+<p>每条规则的逻辑、排除、判定</p>
+</div>
+<div class="toc-item" onclick="document.getElementById('s5').scrollIntoView({behavior:'smooth'})">
+<h4>5. 问题清单</h4>
+<p>需逐项核实的异常项</p>
+</div>
+<div class="toc-item" onclick="document.getElementById('s6').scrollIntoView({behavior:'smooth'})">
+<h4>6. 抽样校验</h4>
+<p>数据准确性验证</p>
+</div>
+</div>
+</div>
+
+
+<div class="section" id="s1">
+<h2>1. 审核结论</h2>
+<div class="overall-badge fail">🔴 存在红线异常，禁止出报告</div>
+<div class="stats-grid">
+<div class="stat-card green">
+<div class="value">947</div>
+<div class="label">检查总人数</div>
+</div>
+<div class="stat-card red">
+<div class="value">141</div>
+<div class="label">红线阻断</div>
+</div>
+<div class="stat-card yellow">
+<div class="value">154</div>
+<div class="label">黄线预警</div>
+</div>
+<div class="stat-card blue">
+<div class="value">626</div>
+<div class="label">蓝线提示</div>
+</div>
+</div>
+</div>
+
+
+<div class="section" id="s2">
+<h2>2. 数据扫描</h2>
+<table>
+<tr><th>项目</th><th>值</th></tr>
+<tr><td>发薪月</td><td>N/A</td></tr>
+<tr><td>公司主体</td><td></td></tr>
+<tr><td>总记录数</td><td>947</td></tr>
+<tr><td>本月入职</td><td>N/A 人</td></tr>
+<tr><td>本月离职</td><td>N/A 人</td></tr>
+</table>
+</div>
+
+
+<div class="section" id="s3">
+<h2>3. 审核汇总表</h2>
+<table>
+<tr><th>规则ID</th><th>规则名称</th><th>检查数</th><th>通过数</th><th>异常数</th><th>通过率</th><th>结论</th></tr>
+<tr><td>RL-001</td><td>实发≤0</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>RL-002</td><td>加班超32h</td><td>781</td><td>781</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>RL-003</td><td>低于最低工资</td><td>846</td><td>846</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>RL-004</td><td>社保公积金应缴未缴</td><td>468</td><td>468</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>RL-005</td><td>出勤工资超标准</td><td>897</td><td>897</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>RL-006</td><td>出勤天数超应出勤</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>RL-007</td><td>标准工资三字段变化无记录</td><td>852</td><td>711</td><td>141</td><td>83.5%</td><td>🔴 阻断</td></tr>
+<tr><td>YL-001</td><td>绩效系数过高</td><td>872</td><td>868</td><td>4</td><td>99.5%</td><td>🟠 异常</td></tr>
+<tr><td>YL-002</td><td>绩效系数过低</td><td>872</td><td>868</td><td>4</td><td>99.5%</td><td>🟠 异常</td></tr>
+<tr><td>YL-003</td><td>绩效系数月度波动大</td><td>872</td><td>869</td><td>3</td><td>99.7%</td><td>🟠 异常</td></tr>
+<tr><td>YL-004</td><td>住宿扣款变化</td><td>944</td><td>944</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>YL-005</td><td>出勤天数超计薪天数</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>YL-006</td><td>标准工资无依据变化</td><td>872</td><td>729</td><td>143</td><td>83.6%</td><td>🟠 异常</td></tr>
+<tr><td>BL-001</td><td>业务线奖金波动</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>BL-002</td><td>加班费波动</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>BL-003</td><td>补发波动</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+<tr><td>BL-004</td><td>提成波动</td><td>947</td><td>947</td><td>0</td><td>100.0%</td><td>✅ 通过</td></tr>
+</table>
+</div>
+
+<div class="section" id="s4">
+<h2>4. 判定过程详解</h2>
+
+<h3>🔴 红线</h3>
+
+
+<div class="judgment-block green">
+<h4>RL-001 实发≤0 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">红线阻断规则：实发金额合计≤0，必须立即核实。条件: sum(实发金额合计) <= 0</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>RL-002 加班超32h <span class="badge green">✅ 通过</span></h4>
+<div class="logic">红线阻断规则：月加班总时数>32小时，违反劳动法。条件: sum(平时加班时数 + 周末加班时数 + 法定加班时数) > 32</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 166</span>
+<span>实际检查: 781</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">当月入职: 47人</span><span class="exclusion-item">当月离职: 33人</span><span class="exclusion-item">保洁: 3人</span></div>
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>RL-003 低于最低工资 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">红线阻断规则：应发合计低于当地最低工资标准。条件: 应发合计 < 当地最低工资</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 101</span>
+<span>实际检查: 846</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span><span class="exclusion-item">当月入职: 47人</span><span class="exclusion-item">当月离职: 33人</span><span class="exclusion-item">实习生(日薪): 32人</span><span class="exclusion-item">实习生(月薪): 15人</span></div>
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>RL-004 社保公积金应缴未缴 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">红线阻断规则：不符合豁免政策但个人社保/公积金扣款为0。条件: 不符合豁免政策 AND 个人社保 == 0</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 479</span>
+<span>实际检查: 468</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span><span class="exclusion-item">实习生(月薪): 15人</span></div>
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>RL-005 出勤工资超标准 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">红线阻断规则：实际出勤工资小计 > 标准基本工资（排除实习生/日薪/保洁）。条件: 实际出勤工资小计 > 标准基本工资</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 50</span>
+<span>实际检查: 897</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span></div>
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>RL-006 出勤天数超应出勤 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">红线阻断规则：实际计薪出勤天数 > 应计薪出勤天数。条件: 实际计薪出勤天数 > 应计薪出勤天数</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+
+</div>
+
+
+<div class="judgment-block red">
+<h4>RL-007 标准工资三字段变化无记录 <span class="badge red">🔴 阻断</span></h4>
+<div class="logic">红线阻断规则：标准基本工资/标准绩效工资/标准福利任一变化，但无调薪/转正记录。条件: 标准基本工资≠上月 OR 标准绩效工资≠上月 OR 标准福利≠上月</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 95</span>
+<span>实际检查: 852</span>
+<span>触发: 141</span>
+<span>通过率: 83.5%</span>
+<span>判定: 未通过</span>
+</div>
+
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 128671De2Ml4(5), 895922Sx4St1(7), 150669Lv7Rk2(16), 964730Rn2Ru5(19), 620006La1Tm2(28), 905144Qi7Ey8(42), 643796Pl1Gt3(51), 598353He2Yv9(67), 785932Yx6Fx3(109), 157927Sl6Er2(214)</div>
+</div>
+
+<h3>🟠 黄线</h3>
+
+
+<div class="judgment-block yellow">
+<h4>YL-001 绩效系数过高 <span class="badge yellow">🟠 异常</span></h4>
+<div class="logic">黄线预警：绩效系数>1.5，需核实是否有特殊贡献依据。字段: 绩效系数, 阈值: 1.5</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 75</span>
+<span>实际检查: 872</span>
+<span>触发: 4</span>
+<span>通过率: 99.5%</span>
+<span>判定: 未通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span><span class="exclusion-item">当月入职: 47人</span><span class="exclusion-item">当月离职: 33人</span></div>
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 812248Fd9Er4(541), 919637Sc8Xg2(607), 512791Mh2Rt5(115), 336523Vz6Gb9(674)</div>
+</div>
+
+
+<div class="judgment-block yellow">
+<h4>YL-002 绩效系数过低 <span class="badge yellow">🟠 异常</span></h4>
+<div class="logic">黄线预警：绩效系数<0.5，需核实绩效评估是否合理。字段: 绩效系数, 阈值: 0.5</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 75</span>
+<span>实际检查: 872</span>
+<span>触发: 4</span>
+<span>通过率: 99.5%</span>
+<span>判定: 未通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span><span class="exclusion-item">当月入职: 47人</span><span class="exclusion-item">当月离职: 33人</span></div>
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 130032Bp7Vd3(338), 603178Ww0Be7(706), 539775Ic0Kw3(1105), 481204Bp0Qc5(467)</div>
+</div>
+
+
+<div class="judgment-block yellow">
+<h4>YL-003 绩效系数月度波动大 <span class="badge yellow">🟠 异常</span></h4>
+<div class="logic">黄线预警：本月系数与上月系数差值>0.5，需核实评估依据。字段: 绩效系数, 阈值: 0.5</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 75</span>
+<span>实际检查: 872</span>
+<span>触发: 3</span>
+<span>通过率: 99.7%</span>
+<span>判定: 未通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span><span class="exclusion-item">当月入职: 47人</span><span class="exclusion-item">当月离职: 33人</span></div>
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 491087Ak6Wa8(65), 481204Bp0Qc5(467), 790066Ae7Cx7(1592)</div>
+</div>
+
+
+<div class="judgment-block green">
+<h4>YL-004 住宿扣款变化 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">黄线预警：本月住宿扣款与上月不一致，需确认是否退宿或新入住。字段: 住宿扣款, 阈值: 0</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 3</span>
+<span>实际检查: 944</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span></div>
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>YL-005 出勤天数超计薪天数 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">黄线预警：实际计薪出勤天数 > 应计薪出勤天数，排班数据可能有误。字段: 实际计薪出勤天数, 阈值: 0</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+
+</div>
+
+
+<div class="judgment-block yellow">
+<h4>YL-006 标准工资无依据变化 <span class="badge yellow">🟠 异常</span></h4>
+<div class="logic">黄线预警：本月&上月均无调薪/转正记录但标准工资有变化。字段: 标准基本工资, 阈值: 0</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 75</span>
+<span>实际检查: 872</span>
+<span>触发: 143</span>
+<span>通过率: 83.6%</span>
+<span>判定: 未通过</span>
+</div>
+<div class="exclusion-list"><span class="exclusion-item">保洁: 3人</span><span class="exclusion-item">当月入职: 47人</span><span class="exclusion-item">当月离职: 33人</span></div>
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 425269Wa0Wr3(1), 100776Wz9Jx4(3), 128671De2Ml4(5), 895922Sx4St1(7), 150669Lv7Rk2(16), 964730Rn2Ru5(19), 620006La1Tm2(28), 905144Qi7Ey8(42), 643796Pl1Gt3(51), 598353He2Yv9(67)</div>
+</div>
+
+<h3>🔵 蓝线</h3>
+
+
+<div class="judgment-block green">
+<h4>BL-001 业务线奖金波动 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">蓝线提示：季度奖金发放导致的正常波动</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 884372Dv7Cr6(39), 430238Ri8Le5(54), 294198Il3Ah4(118), 164717Dz9Fd8(165), 370063Tg9Ip6(205), 133244Hl3Uc1(207), 497323Fv0To4(238), 511145Ah4Ih4(253), 272502Il7Iq4(268), 298685Xm2Ni8(304)</div>
+</div>
+
+
+<div class="judgment-block green">
+<h4>BL-002 加班费波动 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">蓝线提示：法定节假日加班费与普通加班费差异</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 983027Rs0Lg0(431), 481204Bp0Qc5(467), 552367Xd5Rs8(469), 483444In4Km7(159), 461004Sg5Eu5(314), 812248Fd9Er4(541), 301985Fd7Cq4(605), 919637Sc8Xg2(607), 918304Rj0Fw4(608), 387293Wr1Vv2(1139)</div>
+</div>
+
+
+<div class="judgment-block green">
+<h4>BL-003 补发波动 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">蓝线提示：某月突然增加补发，需确认依据</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+
+</div>
+
+
+<div class="judgment-block green">
+<h4>BL-004 提成波动 <span class="badge green">✅ 通过</span></h4>
+<div class="logic">蓝线提示：业务正常波动，±20%以内属正常</div>
+<div class="stats">
+<span>总人数: 947</span>
+<span>排除: 0</span>
+<span>实际检查: 947</span>
+<span>触发: 0</span>
+<span>通过率: 100.0%</span>
+<span>判定: 通过</span>
+</div>
+
+<div style="margin-top:8px;font-size:13px;color:#6b7280;">触发人员: 864487Gf8Nv8(13), 598353He2Yv9(67), 356412Jz2Mf1(145), 324693Kl8Iy5(155), 160718Ze5Ko1(296), 163801Eb7Zv4(506), 549998Na6Aq7(501), 341978Gt7Hd2(523), 354283So9Hd8(530), 200255Ew0Nr4(555)</div>
+</div>
+
+</div>
+
+
+<div class="section" id="s5">
+<h2>5. 问题清单（0 项）</h2>
+<table>
+<tr><th>序号</th><th>严重级别</th><th>问题</th><th>详情</th><th>建议行动</th></tr>
+
+</table>
+</div>
+
+
+<div class="section" id="s6">
+<h2>6. 抽样校验</h2>
+<table>
+<tr><th>项目</th><th>值</th></tr>
+<tr><td>抽样数</td><td>30 / 947</td></tr>
+<tr><td>偏差率</td><td>N/A%</td></tr>
+<tr><td>状态</td><td>N/A</td></tr>
+</table>
+</div>
+
+</div>
+</body>
+</html>

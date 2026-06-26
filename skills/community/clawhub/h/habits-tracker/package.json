@@ -1,0 +1,28 @@
+{
+  "name": "habits-tracker",
+  "version": "1.1.0",
+  "description": "A local CLI habit system for routines, streaks, logging, reminders, and weekly progress review",
+  "main": "scripts/habit-cli.js",
+  "bin": {
+    "habit": "./scripts/habit-cli.js"
+  },
+  "scripts": {
+    "test": "node scripts/habit-cli.js --help"
+  },
+  "keywords": [
+    "habit",
+    "habits",
+    "tracker",
+    "cli",
+    "productivity",
+    "streaks",
+    "routines",
+    "reminders"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {}
+}

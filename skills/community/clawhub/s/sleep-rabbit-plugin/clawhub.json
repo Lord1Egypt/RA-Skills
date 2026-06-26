@@ -1,0 +1,56 @@
+{
+  "name": "sleep-analyzer",
+  "version": "5.3.4",
+  "description": "Transparent sleep analysis with memory-first storage",
+  "author": "Sleep Analyzer Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/sleep-analyzer"
+  },
+  "keywords": [
+    "sleep",
+    "analysis",
+    "edf",
+    "eeg",
+    "health",
+    "transparent",
+    "memory-storage"
+  ],
+  "categories": ["health", "analysis", "science"],
+  "requirements": {
+    "python": ">=3.8",
+    "optional": ["mne>=1.0", "numpy>=1.20", "scipy>=1.7"]
+  },
+  "security": {
+    "runtime": {
+      "network": "none",
+      "file_writes": "optional_log_only",
+      "storage": "memory_only"
+    },
+    "installation": {
+      "network": "required_for_optional_deps"
+    }
+  },
+  "features": [
+    "sleep-stage-analysis",
+    "memory-first-storage",
+    "transparent-security",
+    "optional-logging"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

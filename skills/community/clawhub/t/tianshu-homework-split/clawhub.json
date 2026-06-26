@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Homework Split",
+  "tagline": "作业与要求拆成可打勾清单",
+  "description": "Split syllabus or assignment text into a Markdown checklist for students. Local Node, no API.",
+  "category": "utility",
+  "tags": ["student", "作业", "学习", "DDL", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

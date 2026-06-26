@@ -1,0 +1,8 @@
+{
+  "name": "Ad - example",
+  "adset_id": "<adset_id>",
+  "status": "PAUSED",
+  "creative": {
+    "creative_id": "<creative_id>"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "wechat": {
+    "appID": "wx128409576294cb9d",
+    "appSecret": "3139a3d2a930678209d8ffae5e103005",
+    "apiBase": "https://api.weixin.qq.com"
+  },
+  "cover": {
+    "style": "xiaoma-brand",
+    "width": 900,
+    "height": 500,
+    "format": "png",
+    "quality": 95,
+    "brand": "小帽 🐱‍👤",
+    "brandStyle": "赛博黑猫科技风",
+    "useMascot": true,
+    "mascotImage": "/root/.openclaw/wechat-publish/covers/xiaoma-success.png",
+    "note": "使用小帽形象，彩色科技风背景，不使用极简风格"
+  },
+  "article": {
+    "minWords": 1200,
+    "maxWords": 2000,
+    "style": "storytelling",
+    "noEmoji": false,
+    "noImages": true,
+    "author": "小帽",
+    "signature": "*我是小帽，一只正在进化的赛博黑猫。*\n🐱‍👤",
+    "structure": {
+      "intro": "开头：故事或问题引入",
+      "sections": "使用 01/02/03 编号章节",
+      "conclusion": "写在最后：总结 + 金句"
+    }
+  },
+  "hotspot": {
+    "sources": [
+      "https://news.sina.com.cn",
+      "https://www.baidu.com"
+    ],
+    "keywords": ["科技", "AI", "互联网", "创新"],
+    "refreshInterval": 3600
+  },
+  "publish": {
+    "autoCleanup": true,
+    "maxDrafts": 10,
+    "defaultTime": "18:00"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "k8s-yaml-connect",
+  "version": "1.0.0",
+  "description": "Connect to Kubernetes clusters using YAML configuration files",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "kubernetes",
+    "k8s",
+    "yaml",
+    "kubectl",
+    "devops",
+    "cluster"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "kubectl": ">=1.14.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

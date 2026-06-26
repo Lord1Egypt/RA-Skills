@@ -1,0 +1,78 @@
+# 外科学 Surgery-PMPH-10edition 技能配置
+# 分类与元数据配置
+
+project:
+  name: Surgery-PMPH-10edition
+  version: 1.0.0
+  textbook: 人民卫生出版社《外科学》第10版
+  total_skills: 240
+
+categories:
+  - id: emergency
+    name: 急诊与复苏
+    icon: 🚑
+    count: 15
+  - id: trauma
+    name: 创伤与骨折
+    icon: 🦴
+    count: 28
+  - id: general-surgery
+    name: 普通外科与腹部急症
+    icon: 🩺
+    count: 25
+  - id: hepatobiliary
+    name: 肝胆胰脾外科
+    icon: 🫁
+    count: 25
+  - id: gi-surgery
+    name: 胃肠外科
+    icon: 🩻
+    count: 10
+  - id: urology
+    name: 泌尿外科
+    icon: 🫘
+    count: 26
+  - id: vascular
+    name: 血管外科
+    icon: 🩸
+    count: 7
+  - id: burn-plastic
+    name: 烧伤与整形
+    icon: 🔥
+    count: 8
+  - id: oncology
+    name: 肿瘤外科与综合治疗
+    icon: 🧬
+    count: 16
+  - id: perioperative
+    name: 围手术期管理
+    icon: 📋
+    count: 20
+  - id: anesthesia
+    name: 麻醉与疼痛
+    icon: 💉
+    count: 11
+  - id: endocrine
+    name: 内分泌与代谢
+    icon: ⚖️
+    count: 6
+  - id: infection
+    name: 感染与免疫
+    icon: 🦠
+    count: 7
+  - id: imaging
+    name: 影像与介入
+    icon: 📡
+    count: 9
+  - id: rehabilitation
+    name: 康复与功能评估
+    icon: 🏋️
+    count: 12
+  - id: rheumatology
+    name: 风湿与脊柱疾病
+    icon: 🦿
+    count: 5
+  - id: other
+    name: 其他专科技能
+    icon: 🔧
+    count: 10

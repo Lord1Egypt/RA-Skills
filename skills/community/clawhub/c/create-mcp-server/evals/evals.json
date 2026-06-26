@@ -1,0 +1,89 @@
+{
+  "skill_name": "create-mcp-server",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to create an MCP server for my internal Notion workspace. We have pages, databases, and team wikis. I want tools to search pages, create new pages, and update existing ones. Walk me through creating it with the mcpheroctl CLI step by step.",
+      "expected_output": "A step-by-step walkthrough of the full wizard pipeline using mcpheroctl: create-session, conversation loop until is_ready, start, list/refine/submit tools, env vars, set-auth, generate-code, deploy. Should include actual commands with placeholder values and explain the polling pattern for async steps.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Response includes 'mcpheroctl wizard create-session' command",
+          "type": "contains"
+        },
+        {
+          "text": "Explains iterating wizard conversation until is_ready: true",
+          "type": "semantic"
+        },
+        {
+          "text": "Mentions polling 'wizard state' after async steps like start and generate-code",
+          "type": "semantic"
+        },
+        {
+          "text": "Shows --tool-id flags on wizard submit-tools command",
+          "type": "semantic"
+        },
+        {
+          "text": "Shows --var UUID=VALUE format for wizard submit-env-vars",
+          "type": "semantic"
+        },
+        {
+          "text": "Mentions server_url and bearer_token returned from wizard deploy",
+          "type": "semantic"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to build an MCP server that wraps our internal REST API (base URL: https://internal.mycompany.com/api, needs an Authorization header with a Bearer token). What tools should I create and how do I go through the wizard?",
+      "expected_output": "Guidance on using wizard conversation to describe the API, iterating until is_ready, then going through start, list-tools, submit-tools, list-env-vars, submit-env-vars, set-auth, generate-code, deploy. Should mention the polling pattern for async steps.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Explains iterating wizard conversation until is_ready: true",
+          "type": "semantic"
+        },
+        {
+          "text": "Correctly identifies async steps (start, generate-code) requiring polling",
+          "type": "semantic"
+        },
+        {
+          "text": "Explains calling wizard state and checking processing_status",
+          "type": "semantic"
+        },
+        {
+          "text": "Mentions env vars will be suggested for the API base URL and bearer token credential",
+          "type": "semantic"
+        },
+        {
+          "text": "Mentions server_url and bearer_token returned from wizard deploy",
+          "type": "semantic"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "How do I connect my newly deployed MCPHero server to Claude Desktop? The server_url is https://api.mcphero.app/mcp/abc123/mcp and the bearer_token is sk-abc123xyz.",
+      "expected_output": "Instructions to add the server to claude_desktop_config.json with the correct JSON structure using the provided server_url and bearer_token.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Mentions claude_desktop_config.json or Library/Application Support/Claude path",
+          "type": "semantic"
+        },
+        {
+          "text": "Shows the mcpServers JSON block with a url field containing the provided server URL",
+          "type": "semantic"
+        },
+        {
+          "text": "Includes the bearer token (sk-abc123xyz) in the config as an Authorization header",
+          "type": "semantic"
+        },
+        {
+          "text": "Uses the exact provided URL in the example",
+          "type": "contains"
+        }
+      ]
+    }
+  ]
+}

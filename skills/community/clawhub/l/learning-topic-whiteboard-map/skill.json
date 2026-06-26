@@ -1,0 +1,47 @@
+{
+  "slug": "learning-topic-whiteboard-map",
+  "name": "Learning Topic Whiteboard Map",
+  "displayName": "Learning Topic Whiteboard Map",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Turn a hard topic into a wall-ready learning map with modules, concept links, examples, practice tasks, confidence marks, uncertain-source labels, and next study actions.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Learning and Thinking",
+  "triggerKeywords": [
+    "learning roadmap",
+    "topic whiteboard map",
+    "concept map",
+    "study plan board",
+    "learn a hard topic",
+    "learning path map",
+    "study whiteboard",
+    "topic breakdown",
+    "practice task map",
+    "confidence marks"
+  ],
+  "tags": [
+    "learning",
+    "concept-map",
+    "whiteboard",
+    "study-plan",
+    "practice-tasks",
+    "source-labeling"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ],
+  "document_only": true,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires_api": false,
+  "runtime": "none"
+}

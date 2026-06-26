@@ -1,0 +1,35 @@
+{
+  "skill_name": "Belief State Runtime",
+  "version": "1.0",
+  "created_at": "2026-06-01",
+  "domain_rules": {
+    "gov": 0.9,
+    "edu": 0.9,
+    "who.int": 0.9,
+    "pubmed.ncbi": 0.9,
+    "nature.com": 0.9,
+    "science.org": 0.9,
+    "reuters.com": 0.7,
+    "bbc.com": 0.7,
+    "apnews.com": 0.7,
+    "nytimes.com": 0.7,
+    "theguardian.com": 0.7,
+    "arxiv.org": 0.6,
+    "wikipedia.org": 0.5,
+    "twitter.com": 0.3,
+    "x.com": 0.3,
+    "reddit.com": 0.3,
+    "default": 0.5
+  },
+  "keyword_rules": [],
+  "thresholds": {
+    "verify": 0.65,
+    "contest": 0.6
+  },
+  "signal_weights": {
+    "source_reliability": 0.4,
+    "evidence_density": 0.3,
+    "temporal_freshness": 0.2,
+    "provenance_quality": 0.1
+  }
+}

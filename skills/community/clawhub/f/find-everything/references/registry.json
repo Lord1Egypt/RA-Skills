@@ -1,0 +1,183 @@
+{
+  "version": "1.1",
+  "categories": {
+    "skill": "Agent Skills（可安装技能）",
+    "mcp": "MCP Servers",
+    "prompt": "提示词模板/角色扮演/图片生成",
+    "repo": "GitHub 开源项目"
+  },
+  "sources": [
+    {
+      "id": "skills-sh",
+      "name": "Skills.sh",
+      "url": "https://skills.sh",
+      "category": ["skill"],
+      "tier": 1,
+      "method": "cli",
+      "command": "npx skills find {query}",
+      "requires": "npx",
+      "enabled": true
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "url": "https://github.com",
+      "category": ["repo", "mcp", "skill"],
+      "tier": 1,
+      "method": "cli",
+      "command": "gh search repos {query} --sort stars --limit 10 --json name,owner,description,url,stargazersCount",
+      "requires": "gh",
+      "enabled": true
+    },
+    {
+      "id": "clawhub-cli",
+      "name": "ClawHub (CLI)",
+      "url": "https://clawhub.ai",
+      "category": ["skill"],
+      "tier": 1,
+      "method": "cli",
+      "command": "clawhub search {query}",
+      "requires": "clawhub",
+      "install_hint": "npm i -g clawhub",
+      "enabled": true
+    },
+    {
+      "id": "prompts-chat-prompts",
+      "name": "Prompts.chat (提示词 MCP)",
+      "url": "https://prompts.chat",
+      "category": ["prompt"],
+      "tier": 1,
+      "method": "mcp",
+      "tool": "search_prompts",
+      "tool_params": {
+        "query": "{query}",
+        "limit": 10
+      },
+      "requires": "mcp:prompts-chat",
+      "mcp_package": "@fkadev/prompts.chat-mcp",
+      "install_hint": "claude mcp add prompts-chat -- npx -y @fkadev/prompts.chat-mcp",
+      "enabled": true,
+      "verified": "2026-03-19"
+    },
+    {
+      "id": "prompts-chat-skills",
+      "name": "Prompts.chat (Skills MCP)",
+      "url": "https://prompts.chat",
+      "category": ["skill"],
+      "tier": 1,
+      "method": "mcp",
+      "tool": "search_skills",
+      "tool_params": {
+        "query": "{query}",
+        "limit": 10
+      },
+      "requires": "mcp:prompts-chat",
+      "mcp_package": "@fkadev/prompts.chat-mcp",
+      "install_hint": "claude mcp add prompts-chat -- npx -y @fkadev/prompts.chat-mcp",
+      "enabled": true,
+      "verified": "2026-03-19"
+    },
+    {
+      "id": "clawhub-web",
+      "name": "ClawHub",
+      "url": "https://clawhub.ai",
+      "category": ["skill"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:clawhub.ai",
+      "enabled": true
+    },
+    {
+      "id": "prompts-chat-web",
+      "name": "Prompts.chat",
+      "url": "https://prompts.chat",
+      "category": ["prompt", "skill"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:prompts.chat",
+      "enabled": true
+    },
+    {
+      "id": "skillhub-club",
+      "name": "SkillHub",
+      "url": "https://www.skillhub.club",
+      "category": ["skill"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:skillhub.club",
+      "enabled": true
+    },
+    {
+      "id": "mcpservers",
+      "name": "MCPServers.org",
+      "url": "https://mcpservers.org",
+      "category": ["mcp", "skill"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:mcpservers.org",
+      "enabled": true
+    },
+    {
+      "id": "skillsmp",
+      "name": "SkillsMP",
+      "url": "https://skillsmp.com",
+      "category": ["skill"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:skillsmp.com",
+      "note": "有 API (skillsmp.com/docs/api)，后续可升级为 Tier 1",
+      "enabled": true
+    },
+    {
+      "id": "aishort",
+      "name": "AI Short",
+      "url": "https://www.aishort.top",
+      "category": ["prompt"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:aishort.top",
+      "enabled": true
+    },
+    {
+      "id": "nanoprompts",
+      "name": "NanoPrompts",
+      "url": "https://nanoprompts.org",
+      "category": ["prompt"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:nanoprompts.org",
+      "enabled": true
+    },
+    {
+      "id": "aiart-pics",
+      "name": "AI Art Pics",
+      "url": "https://aiart.pics",
+      "category": ["prompt"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:aiart.pics",
+      "enabled": true
+    },
+    {
+      "id": "localbanana",
+      "name": "LocalBanana",
+      "url": "https://www.localbanana.io",
+      "category": ["prompt"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:localbanana.io",
+      "enabled": true
+    },
+    {
+      "id": "aiskillsshow",
+      "name": "AI Skills Show",
+      "url": "https://aiskillsshow.com",
+      "category": ["skill"],
+      "tier": 2,
+      "method": "web_search",
+      "search_prefix": "site:aiskillsshow.com",
+      "enabled": false,
+      "disabled_reason": "搜索引擎未收录，WebSearch 返回零结果（2026-03-19 测试）"
+    }
+  ]
+}

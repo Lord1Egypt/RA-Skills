@@ -1,0 +1,13 @@
+[INFO] ============================================================
+[INFO] subagent-archive v3.2 执行（通用化重构版，OpenClaw 6.1 适配）
+[INFO] ============================================================
+[INFO] 智能体: myagent
+[INFO] 模式: dry-run
+[INFO] OpenClaw 6.1 兼容: FixMissing=True, NoFixMissing=False, FixDmScope=False
+[INFO] ActiveKey: 
+[INFO] 时间: 2026-06-06 10:00:00
+[INFO] 
+[ERR] 检测到多个 workspace:
+[ERR]   - /home/user/.openclaw/workspace-work
+[ERR]   - /home/user/.openclaw/workspace-personal
+[ERR] 请用 -WorkspaceDir <path> 显式指定其中一个。

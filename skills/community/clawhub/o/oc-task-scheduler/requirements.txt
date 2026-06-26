@@ -1,0 +1,13 @@
+# Task Scheduler Dependencies
+
+# Async support
+# asyncio (built-in in Python 3.7+)
+
+# WebSocket support
+websockets>=11.0.0
+
+# Cron parsing for scheduled tasks
+# python-crontab>=2.6.0
+
+# Optional: Database persistence
+# aiosqlite>=0.19.0

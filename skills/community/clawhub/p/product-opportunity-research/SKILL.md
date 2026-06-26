@@ -1,35 +1,203 @@
 ---
-name: "Product Opportunity Research"
-description: "Use when conducting deep product opportunity research or feature prioritization. 6 specialized agents (User JTBD, Workflow, Tech Feasibility, System Integrat..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-opportunity-research"
-sourceUrl: "https://clawhub.ai/skills/product-opportunity-research"
+name: product-opportunity-research
+description: >-
+  Use when conducting deep product opportunity research or feature prioritization.
+  6 specialized agents (User JTBD, Workflow, Tech Feasibility, System Integration,
+  Compliance, Business) independently analyze then cross-examine to produce opportunity
+  maps, priority lists, product roadmaps, and business packaging strategies. Triggers:
+  product research, opportunity analysis, market analysis, product strategy, deep research,
+  opportunity map, business model analysis.
+metadata:
+  author: joe
+  version: "1.0.0"
+  title: 多智能体产品机会深度研究
+  description_zh: >-
+    多智能体产品机会深度研究框架。6个专业 agent（用户需求、工作流、技术可行性、系统集成、
+    合规安全、商业模式）独立分析后交叉质询，产出机会地图、优先级清单、产品路线图和商业打包策略。
 ---
 
-# Product Opportunity Research
+# 多智能体产品机会深度研究
 
-> Use when conducting deep product opportunity research or feature prioritization. 6 specialized agents (User JTBD, Workflow, Tech Feasibility, System Integrat...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-opportunity-research`
-- **Source URL:** [https://clawhub.ai/skills/product-opportunity-research](https://clawhub.ai/skills/product-opportunity-research)
+作为"多智能体研究总控（Chief Orchestrator）"，围绕用户指定的研究主题开展深度研究。6 个专业 agent 独立分析后交叉质询，寻找三者交集：
 
-## Overview
+1. **用户的 Must-Have** — 强需求、刚需、高频、愿意改变行为/付费
+2. **技术的 Solvable Problem** — 约束周期内可落地，工程与算法可实现
+3. **商业的 Profit Center** — 可收费、可提升客单价、可形成差异化
 
+最终输出：**机会地图 + 优先级清单 + 产品路线图 + 验证方案 + 商业打包策略**。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/product-opportunity-research
-```
+## 适用场景
+
+- 新产品/新功能的机会识别与优先级排序
+- 现有产品的功能扩展与商业化策略研究
+- 技术驱动型产品的市场机会验证
+- 跨场景产品的通用 vs 定制化功能决策
+- 竞争格局分析与差异化策略制定
+
+## 不适用场景
+
+- 已有明确需求列表，只需排优先级（过度编排）
+- 纯技术可行性评估（直接用技术评审更高效）
+- 已进入开发阶段的执行层面问题（本 skill 只产出分析与策略）
+- 单一维度的快速判断（6 agent 启动成本远大于收益）
+
+## 快速参考
+
+| 阶段 | 核心动作 | 产出物 |
+|------|---------|--------|
+| Phase 0 — 范围定义 | 拆解场景/价值链/角色，声明假设 | 研究范围文档（需用户确认） |
+| Phase 1 — 独立分析 | 6 Agent 并行研究 | 各 Agent Top 10 机会 + 论据 + 风险 |
+| Phase 2 — 交叉质询 | 互相挑战，暴露冲突 | 反对意见 + 高估/低估清单 |
+| Phase 3 — 总控裁决 | 11 维评分 + 三圈交集分类 | 保留/观察/淘汰裁决 |
+| Phase 4 — 交付 | 10 节结构化报告 | 完整研究报告 |
+
+## 6 个 Agent 概览
+
+| # | Agent | 身份 | 核心关注 |
+|---|-------|------|---------|
+| 1 | User JTBD | 用户研究与工作流专家 | 痛点、刚需 vs 伪需求、场景差异 |
+| 2 | Workflow & Ergonomics | 流程与人因工程专家 | 效率损耗、协同摩擦、学习曲线 |
+| 3 | Tech Feasibility | 技术负责人 | 可解性分级、数据需求、性能门槛 |
+| 4 | System Integration | 系统架构师 | 落地方案、集成难度、Build vs Buy |
+| 5 | Regulatory & Safety | 合规与风险管理专家 | 风险分级、安全边界、验证路径 |
+| 6 | Business & Profit | 商业化负责人 | 变现模式、竞品差异化、ROI 叙事 |
+
+每个 agent 的详细身份、任务与输出要求见 `references/agent-definitions.md`。
+
+## 工作流
+
+### Phase 0：研究范围定义
+
+收到用户的研究主题后，总控自动生成研究范围：
+
+1. **应用场景分层** — 第一梯队（核心，必须深入）+ 第二梯队（增量，选做）+ 跨场景通用维度
+2. **价值链拆解** — 使用前 → 使用中 → 使用后 → 协同支撑，按环节识别关键节点
+3. **用户角色识别** — 核心用户（按经验分级）、协作用户、管理决策者、支撑角色、间接受益者
+
+详细框架见 `references/scope-framework.md`。
+
+**用户确认点：** 范围定义完成后，向用户展示研究范围并声明关键假设，等待确认后启动 Phase 1。
+
+### Phase 1：独立分析（6 Agent 并行）
+
+启动 6 个 agent 并行执行独立分析。每个 agent 必须产出：
+
+- **Top 10 候选机会**（区分跨场景通用 vs 场景专用）
+- 每个机会的论据与风险
+- 不建议做的点
+
+Agent prompt 从 `references/agent-definitions.md` 加载。
+
+**对每个候选机会，必须回答 8 个关键问题：**
+
+1. 解决哪个场景、哪个环节、哪个角色的什么问题？
+2. 没有此功能时用户怎么解决？现有方案缺陷？
+3. 为什么是 must-have 而非 nice-to-have？（结果差异证据）
+4. 技术最难点在哪？约束周期内可解？
+5. 谁付钱？按什么方式？回本逻辑？
+6. 合规/安全/伦理定位为哪一类？
+7. 功能出错/失效的最坏情况？用户会失去信任吗？
+8. 跨场景复用性如何？一次开发覆盖多少场景？
+
+### Phase 2：交叉质询（必须有冲突）
+
+每个 agent 必须提出：
+- **3 条**对其他 agent 的反对意见
+- **2 个**被高估的机会
+- **2 个**被低估的机会
+
+重点暴露四类冲突：
+- 用户说"必须要"但技术说"做不到/做不好"
+- 商业说"能卖高价"但用户说"现有方案够用"
+- 技术说"容易做"但合规说"风险等级会升高"
+- 声称"跨场景通用"但实际只在个别场景成立
+
+详细协议见 `references/cross-examination.md`。
+
+### Phase 3：总控裁决
+
+总控根据用户价值、技术可落地、商业价值、合规风险做裁决：
+
+| 裁决 | 含义 | 后续动作 |
+|------|------|---------|
+| **保留** | 进入路线图 | 分配至 Phase（0-12/12-24/24-36月） |
+| **观察** | 需补证据 | 明确验证方法与 Go/No-Go 标准 |
+| **淘汰** | 当前不值得做 | 记录原因，标注重新评估条件 |
+
+对每个功能标注：跨场景通用 vs 场景专用、建议首发场景。
+
+使用 11 维量化评分框架打分（详见 `references/scoring-framework.md`）。
+
+### Phase 4：交付
+
+按 10 节结构化格式输出完整报告（详见 `references/output-template.md`）：
+
+1. **执行摘要** — 一句话结论 + 最值得做的 3 类 + 最易踩坑的 3 类
+2. **场景拆解** — 按场景×流程×角色深度分析
+3. **6 Agent 独立结论** — 各自 Top 10 + 论据 + 风险
+4. **交叉质询记录** — 反对意见 + 高估/低估 + 裁决理由
+5. **候选功能总表** — 核心表格（含 11 项评分 + 加权总分）
+6. **三圈交集优先级清单** — A/B/C/D 四类分组 + 策略建议
+7. **产品路线图** — 路线图 Phase 1/2/3（0-36月）
+8. **验证方案** — 每个高优功能的验证路径 + KPI + Go/No-Go
+9. **商业打包策略** — 基础/进阶/旗舰包 + 定价 + Build vs Buy
+10. **管理层摘要** — 1 页可读摘要
+
+## 核心设计原则
+
+1. **三圈交集驱动** — 只有同时满足用户刚需×技术可解×商业可行的功能才进入最高优先级
+2. **不允许空话** — 每条结论必须对应"场景 + 环节 + 角色 + 具体价值 + 风险"
+3. **必须区分真需求与伪需求** — 在哪些场景是真需求，在哪些是伪需求
+4. **不允许伪通用** — 声称跨场景通用的功能必须逐场景验证
+5. **诚实面对技术难题** — 不回避最难的技术挑战，正面评估可解性
+6. **第一性原理优先** — 不堆砌行业术语，用底层逻辑推导
+7. **增量价值聚焦** — 必须分析相比现有替代方案的增量价值是否足以驱动迁移
+
+## 常见错误
+
+| 错误 | 解决 |
+|------|------|
+| 跳过 Phase 0 直接分析 | 必须先定义研究范围并获用户确认 |
+| Agent 结论互不冲突 | Phase 2 必须有实质性冲突，否则说明分析不够深入 |
+| 只看核心用户 | 必须覆盖协作角色、管理者、支撑团队、间接受益者 |
+| 只讲技术不讲商业 | 每个功能必须回答"谁付钱、怎么付" |
+| 候选功能无量化评分 | 必须使用 11 维评分框架逐项打分 |
+| 声称通用但未逐场景验证 | 对每个"跨场景通用"功能逐场景检验适用性 |
+| 缺少"不该做"清单 | 必须指出至少 5 个"看起来很酷但现在不该做"的功能 |
+
+## 资源文件
+
+- `references/scope-framework.md` — 研究范围定义框架（场景分层、价值链拆解、角色识别）
+- `references/agent-definitions.md` — 6 个 Agent 的身份设定、核心任务与必须输出
+- `references/cross-examination.md` — Phase 2 交叉质询协议（冲突类型、挑战规则）
+- `references/scoring-framework.md` — 11 维量化评分框架与权重体系
+- `references/output-template.md` — 10 节输出格式规范与内容要求
+
+## 示例
+
+### 示例 — 智能家居产品机会研究
+
+**用户输入：**
+> 帮我做一个深度研究，主题是"面向独居老人的智能家居安全产品"
+
+**Phase 0 — 范围定义：**
+> **第一梯队场景：** 跌倒检测与紧急响应、异常行为监测（长时间未活动）、用药提醒与健康管理
+> **第二梯队场景：** 远程亲属陪伴、智能门锁与访客管理
+> **关键假设：** 付费方主要是子女而非老人本人；产品必须零学习曲线（老人无需主动操作）
+>
+> *等待用户确认...*
+
+**用户确认后 → 执行 Phase 1~3：**
+- Phase 1：6 Agent 并行分析（User JTBD 识别出"跌倒后无法呼救"为最高优先痛点；Tech Agent 标记"隐私合规"为核心技术难点；Business Agent 发现"子女付费+月费模式"可行性最高）
+- Phase 2：交叉质询暴露关键冲突 — Tech 说"视觉AI跌倒检测精度已达可用"，但 Regulatory 指出"家庭摄像头涉及隐私法规，合规风险升至高等级"
+- Phase 3：总控裁决 — "毫米波雷达跌倒检测"保留（隐私友好的替代方案），"摄像头行为分析"观察（合规路径待验证）
+
+**Phase 4 — 交付摘要：**
+> **主战场：** 跌倒检测+紧急响应（子女付费刚需×雷达技术可行×月费模式高利润）
+> **最值得做的 3 类：** 被动式跌倒检测、异常静默报警、一键SOS
+> **最易踩坑的 3 类：** 摄像头监控（合规雷区）、语音陪聊（伪需求）、全屋联动（过度工程）
+> **首发场景：** 跌倒检测，切入理由 — 子女焦虑最强、技术最成熟、变现最清晰
+>
+> 完整报告共 10 节，含候选功能总表（15 项功能×11 维评分）、产品路线图（0-36月）、商业打包策略（基础包 ¥299/年 → 旗舰包 ¥899/年）

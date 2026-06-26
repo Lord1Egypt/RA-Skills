@@ -1,0 +1,33 @@
+{
+  "_comment": "固定模型路由表。后端统一走 ModelZoo（endpoint 字段）。加新模型只改这里 + menus.json",
+  "image": {
+    "bpro-t2i": {"endpoint": "bza-image-b-pro-base/text-to-image", "name": "通用图片B.Pro"},
+    "fkmax-t2i": {"endpoint": "flux-kontext-max-base/text-to-image", "name": "通用图片F.K.Max"},
+    "seedream5-t2i": {"endpoint": "seedream-5-0-official/text-to-image", "name": "Seedream 5.0"},
+    "o2-t2i": {"endpoint": "bza-image-o2-base/text-to-image", "name": "通用图片O.2"},
+    "b2-t2i": {"endpoint": "bza-image-b2-base/text-to-image", "name": "通用图片B.2"}
+  },
+  "video": {
+    "v31pro-t2v": {"endpoint": "bza-video-v3-1-pro-base/text-to-video", "name": "通用视频V.3.1.Pro"},
+    "happyhorse-t2v": {"endpoint": "happyhorse-1-0-official/text-to-video", "name": "HappyHorse"},
+    "kling30-t2v": {"endpoint": "kling-3-0-pro-base/text-to-video", "name": "可灵3.0.Pro"},
+    "wan27-t2v": {"endpoint": "wan-2-7-official/text-to-video", "name": "万相2.7"},
+    "seedance2-t2v": {"endpoint": "seedance-2-0-official/text-to-video", "name": "Seedance 2.0"}
+  },
+  "scene_number_map": {
+    "1": "bpro-t2i",
+    "2": "fkmax-t2i",
+    "3": "seedream5-t2i",
+    "4": "o2-t2i",
+    "5": "b2-t2i",
+    "6": "modelzoo-search-flow",
+    "7": "remote-search-flow",
+    "v1": "v31pro-t2v",
+    "v2": "happyhorse-t2v",
+    "v3": "kling30-t2v",
+    "v4": "wan27-t2v",
+    "v5": "seedance2-t2v",
+    "v6": "modelzoo-video-search-flow",
+    "v7": "remote-video-search-flow"
+  }
+}

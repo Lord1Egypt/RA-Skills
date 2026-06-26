@@ -1,35 +1,115 @@
----
-name: "Qiaomai Skills"
-description: "荞麦饼 Skills 是基于八大维度优化的 OpenClaw 智能体操作系统，支持自然语言交互、智能任务规划和动态知识图谱等功能。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai-agent, knowledge-graph, memory-system, visualization]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qiaomai-skills"
-sourceUrl: "https://clawhub.ai/skills/qiaomai-skills"
+# 荞麦饼 Skills (QiaoMai)
+
+> OpenClaw 智能体增强工具包：记忆管理 · 知识图谱 · 报告生成
+
+**版本**: v1.0.5  
+**状态**: 稳定版  
+**兼容**: OpenClaw 1.x+
+
 ---
 
-# Qiaomai Skills
+## 简介
 
-> 荞麦饼 Skills 是基于八大维度优化的 OpenClaw 智能体操作系统，支持自然语言交互、智能任务规划和动态知识图谱等功能。
+荞麦饼 Skills 是为 OpenClaw 平台设计的智能体能力增强工具包，提供三大核心能力：
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qiaomai-skills`
-- **Source URL:** [https://clawhub.ai/skills/qiaomai-skills](https://clawhub.ai/skills/qiaomai-skills)
+- **OctoMemory（八层记忆系统）**：从瞬时记忆到专家级永久记忆的分层管理
+- **DynamicKnowledgeGraph（动态知识图谱）**：实体关系的智能建立与推理
+- **SmartReportGenerator（智能报告生成）**：多格式文档的自动化生成
 
-## Overview
+---
 
+## 核心模块
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qiaomai-skills
+### OctoMemory — 八层记忆系统
+
+将 Agent 的记忆分为 8 个层级，从毫秒级瞬时记忆到永久专家知识，实现跨会话的持续学习与知识积累。
+
+**记忆层级**：
+
+| 层级 | 类型 | 时效 |
+|------|------|------|
+| Layer 8 | 瞬时记忆 | 毫秒级 |
+| Layer 7 | 工作记忆 | 秒级 |
+| Layer 6 | 短期记忆 | 分钟级 |
+| Layer 5 | 会话记忆 | 小时级 |
+| Layer 4 | 上下文记忆 | 天级 |
+| Layer 3 | 长期记忆 | 月级 |
+| Layer 2 | 技能记忆 | 年级 |
+| Layer 1 | 专家记忆 | 永久 |
+
+### DynamicKnowledgeGraph — 动态知识图谱
+
+构建和维护实体间的语义关系网络，支持知识推理和关联发现。
+
+**支持实体类型**：人物、组织、概念、事件、文档
+
+**关系类型**：属于、相关、因果、时序、引用
+
+**核心能力**：路径发现、社区检测、影响力传播、增量更新、版本管理
+
+### SmartReportGenerator — 智能报告生成
+
+基于结构化数据自动生成多格式专业报告，支持 Markdown、HTML、PDF 等输出格式。
+
+---
+
+## 性能指标
+
+| 指标 | v1.0.5 |
+|------|--------|
+| 启动时间 | ~200ms |
+| 记忆检索 | ~5ms |
+| 并发处理 | 100 任务 |
+| 报告生成 | 支持 3 种格式 |
+
+---
+
+## 可选集成
+
+本工具包支持以下可选第三方服务（通过环境变量配置）：
+
+- **OpenAI API**：增强语义理解能力（可选）
+- **Perplexity API**：实时信息检索增强（可选）
+- **Grok API**：代码生成辅助（可选）
+
+所有第三方集成均为**可选**，不配置时工具包仍可正常运行核心功能。
+
+---
+
+## 项目结构
+
 ```
+qiaomai-skills/
+├── SKILL.md          # 本文件
+├── clawhub.json      # 元数据
+├── core/             # 核心模块
+│   ├── octo_memory.py        # 八层记忆系统
+│   ├── dynamic_kg.py         # 动态知识图谱
+│   ├── smart_report.py       # 报告生成
+│   ├── smart_executor.py     # 智能执行引擎
+│   ├── smart_db.py           # 数据存储
+│   ├── case_search.py        # 类案检索
+│   └── easy_use.py           # 易用性接口
+└── data/             # 数据目录
+```
+
+---
+
+## 版本历史
+
+- **v1.0.5** (2026-04-23) — 安全加固，清理冗余文件，规范元数据声明
+- **v1.0.4** (2026-04-20) — 统一元数据，声明 API keys
+- **v1.0.3** (2026-04-18) — 优化显示格式
+- **v1.0.2** (2026-04-15) — 简化描述，精简标签
+- **v1.0.1** (2026-04-13) — 首次发布更新
+- **v1.0.0** (2026-04-12) — 初始发布
+
+---
+
+## 许可证
+
+MIT License
+
+---
+
+*荞麦饼 Skills — 营养全面，易于消化，百搭实用。*

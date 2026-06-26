@@ -1,0 +1,13 @@
+{
+  "reports": [],
+  "schema": {
+    "date": "ISO date",
+    "industry": "string",
+    "stage": "idea|startup|growth|mature",
+    "language": "ar|en",
+    "analyses_run": ["list of prompt numbers"],
+    "user_revisited_sections": ["sections user asked follow-up about"],
+    "total_tokens": "estimated",
+    "quality_rating": "1-5 if user provided feedback"
+  }
+}

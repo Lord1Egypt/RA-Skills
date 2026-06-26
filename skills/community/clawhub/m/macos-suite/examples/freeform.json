@@ -1,0 +1,10 @@
+{
+  "boardTitle": "OpenClaw Freeform 示例",
+  "items": [
+    {"type": "text", "text": "标题\\n- 要点1\\n- 要点2"},
+    {"type": "sticky", "text": "TODO：联系供应商"},
+    {"type": "shape", "kind": "rectangle"},
+    {"type": "shape", "kind": "arrow"}
+  ]
+}
+

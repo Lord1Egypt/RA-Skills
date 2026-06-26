@@ -1,0 +1,17 @@
+# 图片AI搜索工具 - 依赖列表
+
+# 深度学习模型
+torch>=2.0.0
+transformers>=4.30.0
+
+# 向量数据库
+faiss-cpu>=1.7.0
+# 或 conda install faiss-cpu（如果pip安装失败）
+
+# 图片处理
+Pillow>=9.0.0
+
+# 进度条
+tqdm>=4.60.0
+
+# 注意：首次运行会自动下载CLIP模型（约340MB）

@@ -1,0 +1,34 @@
+{
+  "name": "getnote-notion-daily",
+  "version": "1.0.0",
+  "description": "每日自动将 Get笔记当天录音笔记、会议记录、待办汇总后写入 Notion，生成结构化日报（概览 + 待办 Top3 + 关键洞察）。",
+  "license": "MIT",
+  "author": "phoenixyy",
+  "keywords": [
+    "getnote",
+    "get笔记",
+    "notion",
+    "daily",
+    "日报",
+    "summary",
+    "录音笔记",
+    "openclaw",
+    "skill"
+  ],
+  "clawhub": {
+    "acceptLicenseTerms": true
+  },
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "primaryEnv": "NOTION_DATABASE_ID",
+    "requires": {
+      "env": [
+        "GETNOTE_API_KEY",
+        "GETNOTE_CLIENT_ID",
+        "NOTION_TOKEN",
+        "NOTION_DATABASE_ID"
+      ]
+    },
+    "optionalEnv": ["MY_NAME"]
+  }
+}

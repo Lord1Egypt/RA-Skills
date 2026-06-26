@@ -1,0 +1,7 @@
+{
+  "discovery_port": 83668,
+  "broadcast_interval": 5,
+  "node_timeout": 15,
+  "task_timeout": 30,
+  "max_parallel_tasks": 10
+}

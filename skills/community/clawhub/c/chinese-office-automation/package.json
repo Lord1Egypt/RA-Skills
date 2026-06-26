@@ -1,0 +1,9 @@
+{
+  "name": "chinese-office-automation",
+  "version": "1.0.0",
+  "description": "中文办公自动化 - 专为中文用户设计的办公自动化技能套件",
+  "author": "lijie",
+  "license": "MIT",
+  "keywords": ["chinese", "office", "automation", "lunar", "pinyin"],
+  "category": "office-automation"
+}

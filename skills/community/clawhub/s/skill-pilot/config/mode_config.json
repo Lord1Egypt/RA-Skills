@@ -1,0 +1,57 @@
+{
+  "current_mode": "full",
+  "default_tools": {
+    "search": "tavily-search",
+    "fetch": "web_fetch",
+    "summarize": "summarize",
+    "analyze": "tavily-search"
+  },
+  "tool_pools": {
+    "search": [
+      "multi-search-engine",
+      "exa-web-search-free",
+      "tavily-search"
+    ],
+    "fetch": [
+      "web_fetch",
+      "scrapling-fetch"
+    ],
+    "summarize": [
+      "summarize"
+    ],
+    "analyze": [
+      "tavily-search",
+      "exa-web-search-free"
+    ]
+  },
+  "tool_performance": {
+    "multi-search-engine": {
+      "category": "search",
+      "total_calls": 25,
+      "success_count": 10,
+      "total_response_time": 117403.74660491943,
+      "total_quality_score": 6.760000000000001,
+      "quality_count": 25,
+      "last_used": "2026-03-24T03:20:18.357323"
+    },
+    "exa-web-search-free": {
+      "category": "search",
+      "total_calls": 25,
+      "success_count": 6,
+      "total_response_time": 127651.54933929443,
+      "total_quality_score": 4.201718335712579,
+      "quality_count": 25,
+      "last_used": "2026-03-24T03:20:18.676789"
+    },
+    "tavily-search": {
+      "category": "search",
+      "total_calls": 32,
+      "success_count": 26,
+      "total_response_time": 171783.5032939911,
+      "total_quality_score": 24.268,
+      "quality_count": 32,
+      "last_used": "2026-03-24T03:20:25.856265"
+    }
+  },
+  "last_updated": "2026-03-24T03:20:25.856283"
+}

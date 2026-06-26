@@ -1,0 +1,9 @@
+{
+  "name": "zuma_desktop_agent",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "form-data": "^4.0.5",
+    "node-fetch": "^3.3.2"
+  }
+}

@@ -1,35 +1,63 @@
 ---
-name: "Netstat"
+name: "netstat"
+version: "3.0.0"
 description: "Display network connections, listening ports, and routing tables. Use when diagnosing network issues."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/netstat"
-sourceUrl: "https://clawhub.ai/skills/netstat"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Netstat
+# netstat
 
-> Display network connections, listening ports, and routing tables. Use when diagnosing network issues.
+Display network connections, listening ports, and routing tables. Use when diagnosing network issues.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/netstat`
-- **Source URL:** [https://clawhub.ai/skills/netstat](https://clawhub.ai/skills/netstat)
+## Commands
 
-## Overview
+### `listen`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/netstat
+scripts/script.sh listen
 ```
+
+### `connections`
+
+```bash
+scripts/script.sh connections <state>
+```
+
+### `ports`
+
+```bash
+scripts/script.sh ports <port>
+```
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+### `interfaces`
+
+```bash
+scripts/script.sh interfaces
+```
+
+### `route`
+
+```bash
+scripts/script.sh route
+```
+
+### `dns`
+
+```bash
+scripts/script.sh dns
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/netstat/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

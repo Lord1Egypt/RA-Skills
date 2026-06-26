@@ -1,0 +1,4 @@
+# ClawSoul Skill - Python 依赖
+# 核心逻辑仅用标准库；以下为可选依赖（LLM 觉醒/分析时使用）
+
+requests>=2.28.0

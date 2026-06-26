@@ -1,0 +1,22 @@
+# NutriCoach Skill Dependencies
+# Python 3.8+
+
+# Database
+# sqlite3 (built-in)
+
+# Configuration
+pyyaml>=5.4.0
+
+# Web Dashboard (Optional)
+flask>=2.0.0
+
+# OCR & Vision (Optional - only needed if using cloud OCR)
+# openai>=1.0.0
+
+# Optional: For macOS Vision fallback (Tesseract)
+# pytesseract>=0.3.10
+# Pillow>=9.0.0
+
+# Development & Testing
+# pytest>=7.0.0
+# pytest-cov>=4.0.0

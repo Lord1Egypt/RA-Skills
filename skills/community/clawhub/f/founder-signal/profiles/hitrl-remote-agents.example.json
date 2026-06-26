@@ -1,0 +1,82 @@
+{
+  "profile_id": "hitrl-remote-agents",
+  "enabled": false,
+  "product_name": "HITRL Remote Agents",
+  "product_one_liner": "A human-in-the-loop review layer for AI agents before they execute risky remote work.",
+  "target_audience": "founders, operators, automation builders, and engineering teams experimenting with AI agents that call tools, touch production systems, or hand work across teammates",
+  "keywords": [
+    "agent approval",
+    "human in the loop",
+    "review agent output",
+    "agent permissions",
+    "tool calls",
+    "agent workflow",
+    "supervise agents",
+    "AI agent handoff"
+  ],
+  "subreddits": [
+    "AutoGPT",
+    "LocalLLaMA",
+    "selfhosted",
+    "devops",
+    "n8n",
+    "automation",
+    "SaaS",
+    "ExperiencedDevs",
+    "ChatGPTCoding"
+  ],
+  "excluded_reddit_urls": [],
+  "verified_evidence_snapshots": [],
+  "discovery_mode": "live",
+  "discovery_terms": [
+    "AI agent workflow",
+    "agent tool calls",
+    "autonomous agent mistake",
+    "agent permissions",
+    "human approval",
+    "review agent output",
+    "agent automation"
+  ],
+  "live_discovery_terms": [
+    "human approval",
+    "review agent output",
+    "agent permissions",
+    "before execution"
+  ],
+  "research_terms": [
+    "AI agent workflow",
+    "agent tool calls",
+    "human approval",
+    "agent automation"
+  ],
+  "scoring_terms": [
+    "agent approval",
+    "human in the loop",
+    "review agent output",
+    "agent permissions",
+    "tool calls",
+    "agent workflow",
+    "supervise agents",
+    "approval step",
+    "agent handoff",
+    "before execution"
+  ],
+  "negative_scoring_terms": [
+    "agi",
+    "singularity",
+    "prediction",
+    "model release",
+    "benchmark",
+    "which model",
+    "subscription",
+    "token price",
+    "stock price"
+  ],
+  "max_candidates": 10,
+  "max_post_age_days": 7,
+  "preferred_post_age_hours": 48,
+  "min_comment_count": 0,
+  "max_comment_count": 150,
+  "history_ttl_days": 45,
+  "max_action_cards": 1
+}

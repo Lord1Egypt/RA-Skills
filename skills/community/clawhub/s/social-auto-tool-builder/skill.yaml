@@ -1,0 +1,29 @@
+name: social-auto-tool-builder
+title: 社媒自动化工具构建流程
+version: 1.1.0
+description: 将本地AI+Playwright自动化工具从需求到EXE交付流程标准化，并提供小红书/抖音/快手多平台选择器映射模板
+author: cruciata
+license: MIT
+tags:
+  - playwright
+  - ollama
+  - automation
+  - exe
+  - xiaohongshu
+  - douyin
+  - kuaishou
+
+files:
+  - SKILL.md
+
+examples:
+  - name: 新建多平台自动回复工具
+    input: "按这个skill帮我做一个抖音评论自动回复工具"
+    output: |
+      已按1.1.0流程完成：
+      1) 需求冻结与约束确认
+      2) Playwright + Ollama脚手架搭建
+      3) 多平台选择器映射初始化
+      4) 真实DOM调试与fallback完善
+      5) dry-run确认后开启真实发送
+      6) 参数化运行 + EXE打包 + 文档交付

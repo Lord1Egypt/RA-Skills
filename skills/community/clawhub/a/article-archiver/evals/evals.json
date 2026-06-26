@@ -1,0 +1,36 @@
+{
+  "skill_name": "article-archiver",
+  "evals": [
+    {
+      "id": "eval-1-simple-article",
+      "prompt": "保存这篇文章：https://note.mowen.cn/detail/sCcf75BwEV5ONYvR1es_P",
+      "expected_behavior": "应该归档到飞书，保留完整格式（引用块、粗体、列表），提取并上传图片"
+    },
+    {
+      "id": "eval-2-twitter-article",
+      "prompt": "收藏这条推文：https://x.com/example/status/123456789",
+      "expected_behavior": "应该识别为 Twitter Article，提取完整内容和图片，归档到飞书"
+    },
+    {
+      "id": "eval-3-wechat-article",
+      "prompt": "记录这篇微信文章：https://mp.weixin.qq.com/s/xxxxx",
+      "expected_behavior": "应该提取微信文章内容，保留格式和图片，归档到飞书"
+    },
+    {
+      "id": "eval-4-implicit-trigger",
+      "prompt": "https://note.mowen.cn/detail/abc123",
+      "expected_behavior": "应该自动识别为文章链接并归档，无需明确说'保存'或'收藏'"
+    }
+  ],
+  "success_criteria": [
+    "文档创建在正确位置（NqZvwBqMTiTEtkkMsRoc76rznce）",
+    "引用格式保留（> 开头的块）",
+    "粗体、列表等样式保留",
+    "图片成功上传到飞书",
+    "图片位置正确（在对应段落之后，不是随意放置）",
+    "元数据使用简洁文本格式（不是 Markdown 表格）",
+    "元数据和正文之间有分隔线",
+    "发送成功通知给用户",
+    "正文不重复显示标题（页面标题已经显示，正文不要再写一次）"
+  ]
+}

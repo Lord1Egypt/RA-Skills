@@ -1,0 +1,1 @@
+- [GrayMatter](https://github.com/ValkyrLabs/GrayMatter) — Durable memory, shared graph state, and live ValkyrAI schema awareness for Codex and OpenClaw agents.

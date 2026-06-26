@@ -1,0 +1,34 @@
+{
+  "name": "<Recipe Name>",
+  "slug": "<recipe-slug>",
+  "description": "<One-line specific value proposition>",
+  "onboarding": {
+    "inputContext": "Ask only for the minimal context needed to complete the micro-task.",
+    "prefilledFirstText": "Give me <minimal inputs>, and I will return <specific output>."
+  },
+  "integrations": {
+    "required": [
+      {
+        "name": "<Integration Name>",
+        "url": "<MCP URL or TODO>",
+        "shareWithUsers": false,
+        "notes": "Replace placeholder URL before publish."
+      }
+    ]
+  },
+  "automations": [],
+  "sandboxTestPrompts": [
+    "<happy path>",
+    "<edge case>",
+    "<ambiguous input>",
+    "<failure/recovery>",
+    "<concise summary output request>"
+  ],
+  "publishChecklist": [
+    "Integration reachable",
+    "First reply is useful in one turn",
+    "No over-scoped behavior",
+    "Sandbox prompts pass",
+    "Description matches actual behavior"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "ai_features": {
+    "enabled": true,
+    "version": "1.0.0",
+    "created_at": "2025-01-08",
+    "last_updated": "2025-01-08",
+
+    "analysis": {
+      "enabled": true,
+      "data_integration": true,
+      "pattern_recognition": true,
+      "anomaly_detection": true,
+      "trend_analysis": true,
+      "correlation_analysis": true,
+      "min_data_points": 3,
+      "default_time_range_days": 90
+    },
+
+    "predictions": {
+      "enabled": true,
+      "supported_risks": [
+        "hypertension",
+        "diabetes",
+        "cardiovascular",
+        "nutritional_deficiency",
+        "sleep_disorder"
+      ],
+      "models": {
+        "hypertension": {
+          "algorithm": "framingham_simplified",
+          "factors": ["age", "bmi", "blood_pressure", "family_history", "lifestyle"],
+          "time_horizon_years": 10
+        },
+        "diabetes": {
+          "algorithm": "ada_risk_score",
+          "factors": ["age", "bmi", "fasting_glucose", "family_history", "activity_level"],
+          "time_horizon_years": 10
+        },
+        "cardiovascular": {
+          "algorithm": "acc_aha_ascvd",
+          "factors": ["age", "gender", "blood_pressure", "cholesterol", "smoking_status"],
+          "time_horizon_years": 10
+        }
+      }
+    },
+
+    "personalization": {
+      "enabled": true,
+      "level": "basic",
+      "user_factors": [
+        "age",
+        "gender",
+        "bmi",
+        "activity_level",
+        "health_goals",
+        "dietary_preferences",
+        "medical_history"
+      ],
+      "adaptation_history": []
+    },
+
+    "nl_interaction": {
+      "enabled": true,
+      "supported_languages": ["zh-CN", "en"],
+"default_language": "en",
+"auto_detect": true
+      "query_types": [
+        "data_query",
+        "trend_analysis",
+        "correlation_inquiry",
+        "recommendation_request",
+        "risk_assessment"
+      ],
+      "max_history_turns": 10
+    },
+
+    "report_generation": {
+      "enabled": true,
+      "auto_generate": false,
+      "supported_formats": ["html"],
+      "report_types": [
+        "comprehensive",
+        "quick_summary",
+        "risk_assessment",
+        "trend_analysis"
+      ],
+      "default_output_dir": "data/ai-reports",
+      "include_charts": true,
+      "chart_library": "echarts"
+    },
+
+    "data_sources": {
+      "basic_indicators": {
+        "enabled": true,
+        "sources": [
+          "data/profile.json",
+          "data/medical_records/**/*.json"
+        ]
+      },
+      "lifestyle": {
+        "enabled": true,
+        "sources": [
+          "data-example/fitness-tracker.json",
+          "data-example/sleep-tracker.json",
+          "data-example/nutrition-tracker.json"
+        ]
+      },
+      "mental_health": {
+        "enabled": true,
+        "sources": [
+          "data-example/mental-health-tracker.json"
+        ]
+      },
+      "medical_history": {
+        "enabled": true,
+        "sources": [
+          "data/medications.json",
+          "data/allergies.json",
+          "data/surgeries.json",
+          "data/vaccinations.json"
+        ]
+      }
+    },
+
+    "privacy": {
+      "data_storage": "local_only",
+      "cloud_sync": false,
+      "anonymization": false,
+      "retention_days": 365,
+      "user_consent_required": false
+    },
+
+    "safety": {
+      "medical_disclaimer_required": true,
+      "diagnosis_prohibited": true,
+      "prescription_prohibited": true,
+      "prognosis_prohibited": true,
+      "referral_threshold": 0.7
+    },
+
+    "performance": {
+      "max_analysis_time_seconds": 5,
+      "max_report_generation_time_seconds": 10,
+      "max_memory_mb": 500,
+      "cache_enabled": true,
+      "cache_ttl_hours": 24
+    }
+  }
+}

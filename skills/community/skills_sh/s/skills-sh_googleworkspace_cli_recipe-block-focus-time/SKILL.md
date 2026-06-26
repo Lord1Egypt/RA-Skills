@@ -1,35 +1,26 @@
 ---
-name: "recipe-block-focus-time"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-block-focus-time"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-block-focus-time"
+name: recipe-block-focus-time
+description: "Create recurring focus time blocks on Google Calendar to protect deep work hours."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# recipe-block-focus-time
+# Block Focus Time on Google Calendar
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-block-focus-time`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-block-focus-time](https://skills.sh/googleworkspace/cli/recipe-block-focus-time)
+Create recurring focus time blocks on Google Calendar to protect deep work hours.
 
-## Overview
+## Steps
 
+1. Create recurring focus block: `gws calendar events insert --params '{"calendarId": "primary"}' --json '{"summary": "Focus Time", "description": "Protected deep work block", "start": {"dateTime": "2025-01-20T09:00:00", "timeZone": "America/New_York"}, "end": {"dateTime": "2025-01-20T11:00:00", "timeZone": "America/New_York"}, "recurrence": ["RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR"], "transparency": "opaque"}'`
+2. Verify it shows as busy: `gws calendar +agenda`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-block-focus-time
-```

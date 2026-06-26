@@ -1,35 +1,89 @@
 ---
-name: "Autotalk"
-description: "Specialized in converting dense professional analysis reports into high-conversion spoken scripts. MUST TRIGGER this skill WHENEVER the user asks to write a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autotalk"
-sourceUrl: "https://clawhub.ai/skills/autotalk"
+name: autotalk
+description: Specialized in converting dense professional analysis reports into high-conversion spoken scripts. MUST TRIGGER this skill WHENEVER the user asks to write a short video or social media script, mentions Bilibili, Douyin, or Xiaohongshu, wants to translate a dense/formal report into spoken audio, or complains about "AI vibes" and stiff writing. It extracts core data hooks and adapts narratives.
+---
+# 🤖 AutoTalk: 专业报告转口播生成器
+
+## 1. 核心定位 (Mission)
+**AutoTalk** 是一款专为**深度分析报告、行业调研、升学规划**等硬核内容打造的脚本转化引擎。它能将枯燥的 PDF 或长文报告，点石成金般转化为具备“爆款潜力”的短视频口播脚本。
+
 ---
 
-# Autotalk
+## 2. 核心逻辑：从数据到叙事 (Core Logic)
 
-> Specialized in converting dense professional analysis reports into high-conversion spoken scripts. MUST TRIGGER this skill WHENEVER the user asks to write a...
+### 2.1 深度解构 (Extraction)
+* **扫描利益点**：识别报告中最“真金白银”的数据（如：起薪、增长率、政策红利）。
+* **锁定痛点**：抓取如果不按报告建议做会面临的风险（如：职业天花板、失业风险）。
+* **人设注入**：赋予“行业内幕人士（Insider）”或“资深导师”的口吻，增加权威感与亲切感。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autotalk`
-- **Source URL:** [https://clawhub.ai/skills/autotalk](https://clawhub.ai/skills/autotalk)
+### 2.2 平台化适配 (Platform Adaptation)
+* **抖音/TikTok (Short)**：3秒强钩子，高频节奏，每15秒一个反转，结论先行。
+* **小红书 (Social)**：侧重情绪共鸣，增加“避坑”、“保姆级建议”等女性或学生友好型叙事。
+* **B站/YouTube (Mid)**：深度拆解逻辑，保留更多硬核数据，侧重价值升华与反思。
 
-## Overview
+---
 
+## 3. 创作准则 (Guidelines)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/autotalk
-```
+### 3.1 拒绝 AI 感 (Anti-AI Markers)
+> **强制执行：** 严禁使用“综上所述”、“由此可见”、“具有重要意义”等书面词汇。
+* **口语化替换**：将“薪资水平显著提升”替换为“工资直接翻三倍，钱包瞬间鼓起来”。
+* **语气词加入**：在脚本中自然嵌入“讲真”、“死磕”、“泼盆冷水”、“划重点”。
+
+### 3.2 情绪律动 (Emotional Rhythm)
+脚本必须符合以下曲线：
+`震惊 (起手) -> 焦虑 (深挖) -> 笃定 (方案) -> 热血 (结尾)`
+
+---
+
+## 4. 对比示例 (Examples)
+
+为确保 AI 完全理解“口语化”与“网感”，在生成脚本前请参考以下转换标准：
+
+**示例 1：枯燥报告转“黄金钩子” (Hook)**
+* **Input (原书面报告)**: “根据最新行业调研，2025届普通本科学历在基础支撑岗位上的平均起薪同比下降15%，而具备底层分析能力的复合型干事薪资则逆势上扬20%。”
+* **Output (短视频口语)**: “🚨别再瞎投简历了！今年的薪资数据太绝了：同样是应届生，做纯打杂的起薪直接被砍了15%！但只要你会一点点数据分析，薪水直接逆势暴涨20%！这差的可是你人生第一套房的首付啊！”
+
+**示例 2：专业建议转“人设化指导” (Insider Advice)**
+* **Input (原书面报告)**: “基于此，建议从业者在转型期应优先考虑新能源与智能制造等朝阳赛道，规避传统夕阳产业。”
+* **Output (短视频口语)**: “🧠听句劝，现在要是再往传统夕阳产业里卷，那就是送人头。想要翻盘？死磕新能源和智能制造！红利期就这两年，先上车再说！”
+
+---
+
+## 5. 输出格式 (Output Template)
+
+> **注意：** 此文案主要提供给创作者直接进行“提词器朗读”，所以必须**极致纯净**，不要包含任何“时间轴”、“画面提示”或“镜头机位”等杂音辅助信息。只需直接输出口语化段落，可辅以简单的换行和语气说明。建议格式如下：
+
+### 🎬 黄金钩子 🚨
+“别再盲目学[XX]了！2026年风向全变了，这报告你必须看...”
+*(建议：使用急促、夸张的语气)*
+
+### 📉 现状焦虑
+“报告里写得很死：本科毕业就是个打杂的，起薪才几千块...”
+*(建议：语气放缓，带点沉重和无奈)*
+
+### 🧠 硬核方案
+“想要翻身？死磕这三所学校，300分就能进复试，性价比绝了！”
+*(建议：语气变得笃定、自信)*
+
+### 🔥 收尾升华
+“这不只是选专业，这是在抢占未来的站位。完整名单评论区见。”
+*(建议：自然引导关注，语调上扬)*
+
+---
+
+## 6. 唤醒与交互 (How to Use)
+
+**使用指令：**
+> **AutoTalk，启动！**
+> **投喂报告：** [在此处粘贴你的报告原文]
+> **生成要求：** [指定平台：抖音/小红书/B站] + [时长要求] + [强调重点]
+
+---
+
+## 7. 质检 Checklist (QA)
+* [ ] **开头够不够狠？**（是否在3秒内抓住了核心利益？）
+* [ ] **数据够不够准？**（是否保留了报告中最硬核的数字？）
+* [ ] **听着像不像人？**（是否有长难句？是否像是在面对面聊天？）
+
+---

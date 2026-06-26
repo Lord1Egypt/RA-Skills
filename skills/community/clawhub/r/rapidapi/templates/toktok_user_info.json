@@ -1,0 +1,19 @@
+{
+  "name": "toktok_user_info",
+  "label": "Get TokTok user info",
+  "description": "Fetch public user profile by username",
+  "host": "x.toktokapi.com",
+  "path": "/user/info",
+  "method": "GET",
+  "querySchema": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "description": "TokTok username"
+    }
+  },
+  "response": {
+    "type": "json",
+    "dataPath": "data"
+  }
+}

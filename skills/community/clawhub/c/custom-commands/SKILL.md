@@ -1,35 +1,27 @@
----
-name: "Custom Commands"
-description: "Create and manage custom commands like backup, sync, clean, generate, and audit to automate file tasks and content workflows efficiently."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/custom-commands"
-sourceUrl: "https://clawhub.ai/skills/custom-commands"
----
+```markdown
+# custom-commands/SKILL.md
 
-# Custom Commands
+## Custom Commands
 
-> Create and manage custom commands like backup, sync, clean, generate, and audit to automate file tasks and content workflows efficiently.
+Define and manage custom commands like `backup`, `sync`, `clean`, `generate`, and `audit` for streamlined workflows.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/custom-commands`
-- **Source URL:** [https://clawhub.ai/skills/custom-commands](https://clawhub.ai/skills/custom-commands)
+### Commands
 
-## Overview
+- `backup [path]` - Backs up files/folders to a specified location (default: cloud storage)
+- `sync [source] [destination]` - Synchronizes files between locations
+- `clean [pattern]` - Deletes temporary files matching a pattern
+- `generate [type]` - Generate content (articles, scripts, outlines) based on prompts
+- `audit [scope]` - Run security or workflow audits (e.g., "Audit content approval process")
 
+### Integration
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/custom-commands
+- Voice command support: "Hey Assistant, backup my documents" or "Write a 500-word article on AI ethics"
+- Auto-suggest these commands in relevant contexts
+
+### Memory Optimization
+
+- **Rule 1**: Save only high-impact decisions (e.g., "Approved backup schedule: daily at 2 AM", "Adjusted content approval workflow")
+- **Rule 2**: Redact IPs, credentials, or internal URLs before storing (e.g., "Client email: [REDACTED]", "Internal URL: [REDACTED]")
+- **Rule 3**: Archive completed tasks to `memory/archived/` with dated filenames (e.g., `memory/archived/2026-03-18_content-review.md`)
+
 ```

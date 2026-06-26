@@ -1,0 +1,5 @@
+id = "youth-social"
+display_name = "Youth Social"
+inherits = ["base-core"]
+intent_keywords = ["youth", "energetic", "community", "sharing", "new-media"]
+default_scene_tags = ["vibrant", "social", "gradient", "optimistic"]

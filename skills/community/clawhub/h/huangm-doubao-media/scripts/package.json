@@ -1,0 +1,29 @@
+{
+  "name": "doubao-media",
+  "version": "1.0.1",
+  "description": "豆包AI媒体提取 - 聊天、抓包、图片/视频资产发现与下载工具",
+  "main": "./doubao_media_api.js",
+  "scripts": {
+    "ready": "node doubao_api.js ready",
+    "check-session": "node doubao_api.js check-session",
+    "login": "node doubao_api.js login",
+    "login-if-needed": "node doubao_api.js login-if-needed",
+    "verify-chat": "node doubao_api.js chat \"你好\"",
+    "extract-media": "node doubao_media_api.js chat \"生成一张猫咪图片\" --download",
+    "capture-media": "node capture_doubao_media.js monitor --download",
+    "legacy-monitor": "node legacy/monitor.js"
+  },
+  "keywords": [
+    "doubao",
+    "media",
+    "image",
+    "video",
+    "generation",
+    "capture"
+  ],
+  "author": "小虎",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-remote-interface": "^0.33.3"
+  }
+}

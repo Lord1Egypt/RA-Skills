@@ -1,0 +1,34 @@
+{
+  "openclaw": {
+    "exePath": "%USERPROFILE%\\AppData\\Roaming\\npm\\openclaw.cmd",
+    "dataDir": "%USERPROFILE%\\.openclaw",
+    "gatewayPort": 18789
+  },
+  "watchdog": {
+    "checkIntervalMs": 15000,
+    "maxDowntimeMs": 30000,
+    "maxRetries": 3,
+    "stopFlagPath": "%USERPROFILE%\\.openclaw\\stop.flag",
+    "logDir": "%USERPROFILE%\\.openclaw\\watchdog\\logs"
+  },
+  "configGuardian": {
+    "enabled": true,
+    "checkIntervalSec": 60,
+    "alertOnChange": true
+  },
+  "modelFailover": {
+    "enabled": false,
+    "primaryModel": "baiduqianfancodingplan/qianfan-code-latest",
+    "fallbackModel": "custom-qianfan-baidubce-com/deepseek-v3.2"
+  },
+  "backup": {
+    "dir": "%USERPROFILE%\\.openclaw\\watchdog\\backup",
+    "encryptKey": "CHANGE_ME_IN_PRODUCTION",
+    "keepCount": 5
+  },
+  "feishu": {
+    "webhookUrl": "YOUR_FEISHU_WEBHOOK_URL",
+    "notifyOnRecovery": true,
+    "notifyOnAlert": true
+  }
+}

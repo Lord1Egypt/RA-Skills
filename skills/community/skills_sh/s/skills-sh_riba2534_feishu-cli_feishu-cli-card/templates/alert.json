@@ -1,0 +1,180 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "enable_forward": true,
+    "width_mode": "fill"
+  },
+  "header": {
+    "template": "red",
+    "title": {
+      "tag": "plain_text",
+      "content": "🚨 __ALERT_TITLE__"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "__ALERT_SUBTITLE__"
+    },
+    "text_tag_list": [
+      {
+        "tag": "text_tag",
+        "text": { "tag": "plain_text", "content": "__LEVEL__" },
+        "color": "red"
+      },
+      {
+        "tag": "text_tag",
+        "text": { "tag": "plain_text", "content": "需处理" },
+        "color": "orange"
+      }
+    ]
+  },
+  "body": {
+    "direction": "vertical",
+    "vertical_spacing": "medium",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**__ALERT_SUMMARY__**\n\n影响范围：<font color='red'>__IMPACT__</font>"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "fields": [
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**🏷️ 服务**\n`__SERVICE__`" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**🚨 级别**\n<font color='red'>__LEVEL__</font>" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**⏰ 时间**\n__TIME__" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**📍 环境**\n__ENV__" }
+          },
+          {
+            "is_short": false,
+            "text": { "tag": "lark_md", "content": "**🎯 影响**\n<font color='red'>__IMPACT_DETAIL__</font>" }
+          }
+        ]
+      },
+      {
+        "tag": "collapsible_panel",
+        "expanded": true,
+        "header": {
+          "title": { "tag": "markdown", "content": "**📊 错误指标**" },
+          "background_color": "grey",
+          "padding": "4px 8px 4px 8px",
+          "icon": {
+            "tag": "standard_icon",
+            "token": "down-small-ccm_outlined",
+            "size": "16px 16px"
+          },
+          "icon_position": "right",
+          "icon_expanded_angle": -180
+        },
+        "elements": [
+          {
+            "tag": "chart",
+            "aspect_ratio": "16:9",
+            "chart_spec": {
+              "type": "line",
+              "title": { "text": "错误率趋势（最近 1 小时）" },
+              "data": {
+                "values": [
+                  { "时间": "T-60m", "错误率": 0.5 },
+                  { "时间": "T-50m", "错误率": 0.8 },
+                  { "时间": "T-40m", "错误率": 1.2 },
+                  { "时间": "T-30m", "错误率": 2.5 },
+                  { "时间": "T-20m", "错误率": 3.8 },
+                  { "时间": "T-10m", "错误率": 4.5 },
+                  { "时间": "T-0m", "错误率": 5.2 }
+                ]
+              },
+              "xField": "时间",
+              "yField": "错误率",
+              "point": { "visible": true },
+              "label": { "visible": true }
+            }
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "horizontal_spacing": "8px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "🔍 查看详情" },
+                "type": "danger",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__ALERT_URL__" }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "📖 Runbook" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "open_url", "default_url": "__RUNBOOK_URL__" }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "text": { "tag": "plain_text", "content": "✅ 已处理" },
+                "type": "default",
+                "width": "fill",
+                "confirm": {
+                  "title": { "tag": "plain_text", "content": "确认已处理？" },
+                  "text": { "tag": "plain_text", "content": "此操作会关闭该告警" }
+                },
+                "behaviors": [
+                  { "type": "callback", "value": { "action": "resolve", "alert_id": "__ALERT_ID__" } }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "text_size": "notation",
+        "content": "<font color='grey'>📡 来源：__SOURCE__ · 告警 ID：__ALERT_ID__</font>"
+      }
+    ]
+  }
+}

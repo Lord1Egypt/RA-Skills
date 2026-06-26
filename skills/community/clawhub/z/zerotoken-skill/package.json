@@ -1,0 +1,22 @@
+{
+  "name": "zerotoken-skill",
+  "version": "1.4.0",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "agents/"
+  ],
+  "description": "Default token-efficient assistant discipline for solving tasks with minimal precise prompts, concise context, and short actionable outputs.",
+  "author": "phoenixlucky",
+  "license": "GPL-3.0",
+  "keywords": [
+    "zerotoken",
+    "token-efficient",
+    "prompt-engineering",
+    "context-optimization",
+    "agent-discipline",
+    "concise-output",
+    "cost-control"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "fresh_film",
+  "version": "3.1.0",
+  "description": "示例 learned preset：清新胶片风格 — 用于演示 -p '@fresh_film' 调用",
+  "created_at": 1745000000,
+  "use_count": 0,
+  "category": "学习",
+  "tags": "kodak portra 400 film stock, soft natural light, muted earth tones, hazy atmospheric, lifestyle photography, japanese magazine aesthetic",
+  "quality": "raw photo, fine grain, scanned film, masterpiece, best quality",
+  "neg": "harsh contrast, oversaturated, hdr, plastic skin, digital sharpness, neon",
+  "camera": "35mm film camera, 50mm prime, shallow depth of field, slight handheld feel",
+  "lighting": "soft window light, golden hour rim, slightly underexposed, natural ambient fill",
+  "palette": "muted earth tones, faded film colors, sage green, warm cream, soft blush",
+  "aspect": "3:2",
+  "synthesis_notes": "日杂感的清新胶片风：自然光、克制色彩、留白构图、低饱和高级感",
+  "best_subject_examples": [
+    "咖啡馆里的窗边少女",
+    "雨后湿漉漉的窗台",
+    "夏末的乡村小路"
+  ],
+  "confidence": 0.85,
+  "source_count": 5,
+  "source_images": [
+    "(示例文件，源图省略)"
+  ]
+}

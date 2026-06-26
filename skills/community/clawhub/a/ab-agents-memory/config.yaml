@@ -1,0 +1,80 @@
+# AB Agents Memory — YAML Config
+# For one-click install in OpenClaw
+
+name: AB-Agents-Memory
+version: 1.0.0
+description: Long-term memory system for OpenClaw agents
+
+# Agent Configuration
+agent:
+  name: AB-Archivus
+  workspace: agents/AB-Archivus
+  description: Memory keeper agent for AB Agents system
+
+# Vault Configuration
+vault:
+  source: obsidian-vault
+  dest: /data/obsidian/AB-Memory-Vault
+  structure:
+    - Memory/Entities/People
+    - Memory/Entities/Companies
+    - Memory/Entities/Topics
+    - Memory/Summaries
+    - Memory/Processing/Nightly
+    - Templates
+
+# Templates
+templates:
+  - name: person-template
+    path: Templates/person-template.md
+  - name: company-template
+    path: Templates/company-template.md
+  - name: topic-template
+    path: Templates/topic-template.md
+
+# Cron Jobs
+cron:
+  - name: nightly-processing
+    schedule: "0 3 * * *"
+    command: "bash {vault}/Memory/Processing/Nightly/process.sh"
+    description: "Nightly memory processing at 03:00 MSK"
+
+# Brand
+brand:
+  name: AB-Agents
+  author: Alex Burr
+  telegram: "@alexburr_agents"
+  colors:
+    primary: "#E53935"  # Red
+    secondary: "#212121" # Black
+
+# Requirements
+requirements:
+  - openclaw: ">=2024.0.0"
+  - bash: ">=4.0"
+  - cron: null
+
+# Installation
+install:
+  - step: clone-vault
+    from: obsidian-vault
+    to: /data/obsidian/AB-Memory-Vault
+  - step: install-agent
+    from: agents/AB-Archivus
+    to: ~/.openclaw/agents/AB-Archivus
+  - step: register-agent
+    command: openclaw agents add AB-Archivus --workspace ~/.openclaw/agents/AB-Archivus
+  - step: setup-cron
+    file: configs/nightly-cron.txt
+  - step: restart-gateway
+    command: openclaw gateway restart
+
+# Post-install message
+post_install: |
+  ✅ AB Agents Memory installed!
+
+  1. Restart gateway: openclaw gateway restart
+  2. Open vault: /data/obsidian/AB-Memory-Vault
+  3. Join channel: @alexburr_agents
+
+  🦀 By AB-Agents (Alex Burr)

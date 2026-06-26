@@ -1,0 +1,36 @@
+{
+  "name": "NovelCraft",
+  "version": "3.2.0",
+  "description": "Fully autonomous book author. Creates complete novels from idea to finished PDF/EPUB using AI subagents.",
+  "author": "Felix (AI) with Ronny (User)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kesuek/novelcraft.git"
+  },
+  "homepage": "https://github.com/Kesuek/novelcraft",
+  "keywords": [
+    "writing",
+    "books",
+    "author",
+    "pdf",
+    "epub",
+    "novel",
+    "fiction",
+    "autonomous",
+    "ai-writing"
+  ],
+  "categories": [
+    "content-creation",
+    "media"
+  ],
+  "engines": {
+    "openclaw": ">=0.1.0"
+  },
+  "requirements": {
+    "features": ["acp", "subagents"],
+    "binaries": ["pandoc", "xelatex"]
+  },
+  "entry": "SKILL.md",
+  "manifestVersion": 1
+}

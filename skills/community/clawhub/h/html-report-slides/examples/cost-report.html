@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProductA 模型成本追加专题汇报</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0a0e1a;
+    color: #e0e6f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .slide {
+    width: 1280px;
+    min-height: 720px;
+    margin: 40px auto;
+    background: linear-gradient(135deg, #0f1629 0%, #1a1f3a 50%, #0f1629 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(100, 140, 255, 0.15);
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(80, 120, 255, 0.08);
+    padding: 60px 70px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(80, 120, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* === COVER === */
+  .slide-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    text-align: center;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(80, 120, 255, 0.15), rgba(120, 80, 255, 0.15));
+    border: 1px solid rgba(80, 120, 255, 0.3);
+    border-radius: 30px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7cacff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .cover-title {
+    font-size: 52px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #7cacff 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .cover-subtitle {
+    font-size: 20px;
+    color: #8899bb;
+    font-weight: 400;
+    margin-bottom: 50px;
+    max-width: 800px;
+    line-height: 1.6;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    color: #5a6a8a;
+    font-size: 14px;
+  }
+
+  .cover-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* === SLIDE HEADER === */
+  .slide-header {
+    margin-bottom: 32px;
+  }
+
+  .slide-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5070ff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .slide-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .slide-title span {
+    background: linear-gradient(135deg, #5070ff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-subtitle {
+    font-size: 15px;
+    color: #8899bb;
+    margin-top: 10px;
+  }
+
+  /* === 成本对比卡片 === */
+  .cost-hero {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 28px;
+  }
+
+  .cost-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cost-card.march {
+    border-color: rgba(100, 116, 139, 0.3);
+  }
+
+  .cost-card.april {
+    border-color: rgba(239, 68, 68, 0.45);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(255, 255, 255, 0.03));
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.08);
+  }
+
+  .cost-card-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .cost-card-month {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8899bb;
+    letter-spacing: 1px;
+  }
+
+  .cost-card.april .cost-card-month {
+    color: #fca5a5;
+  }
+
+  .cost-card-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .cost-card.march .cost-card-tag {
+    background: rgba(100, 116, 139, 0.2);
+    color: #94a3b8;
+  }
+
+  .cost-card.april .cost-card-tag {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+  }
+
+  .cost-card-value {
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .cost-card.april .cost-card-value {
+    background: linear-gradient(135deg, #fca5a5, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cost-card-unit {
+    font-size: 20px;
+    font-weight: 600;
+    color: #7788aa;
+    margin-left: 4px;
+    -webkit-text-fill-color: #7788aa;
+  }
+
+  .cost-card-note {
+    font-size: 13px;
+    color: #7788aa;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  .cost-card.april .cost-card-note {
+    color: #fecaca;
+  }
+
+  .cost-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 140px;
+  }
+
+  .cost-arrow-icon {
+    font-size: 36px;
+    color: #ef4444;
+  }
+
+  .cost-arrow-pct {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fb923c, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cost-arrow-text {
+    font-size: 12px;
+    color: #8899bb;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* === 请求追加 === */
+  .budget-banner {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(80, 112, 255, 0.1));
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 14px;
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 10px;
+  }
+
+  .budget-item {
+    border-right: 1px solid rgba(167, 139, 250, 0.15);
+    padding-right: 20px;
+  }
+
+  .budget-item:last-child {
+    border-right: none;
+  }
+
+  .budget-label {
+    font-size: 12px;
+    color: #a0b4ff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .budget-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .budget-value .sub {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8899bb;
+    margin-left: 6px;
+  }
+
+  /* === 关键点 === */
+  .key-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .key-point {
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 22px;
+  }
+
+  .key-point-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .key-point-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .key-point-desc {
+    font-size: 13px;
+    color: #8899bb;
+    line-height: 1.6;
+  }
+
+  /* === 归因页 === */
+  .attribution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .attr-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px;
+    position: relative;
+  }
+
+  .attr-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .attr-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #7cacff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .attr-card-subtitle {
+    font-size: 12px;
+    color: #7788aa;
+    margin-top: 4px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .attr-metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: end;
+    margin-bottom: 14px;
+  }
+
+  .attr-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .attr-metric-label {
+    font-size: 12px;
+    color: #7788aa;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .attr-metric-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .attr-metric-delta {
+    font-size: 13px;
+    font-weight: 700;
+    color: #10b981;
+    margin-top: 6px;
+  }
+
+  .attr-metric-delta.red {
+    color: #ef4444;
+  }
+
+  .attr-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .attr-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  .attr-bar-fill.march {
+    background: linear-gradient(90deg, #64748b, #94a3b8);
+    width: 39.4%;
+  }
+
+  .attr-bar-fill.april {
+    background: linear-gradient(90deg, #5070ff, #a78bfa);
+    width: 67.6%;
+  }
+
+  .attr-bar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+  }
+
+  .attr-bar-label {
+    font-size: 12px;
+    color: #8899bb;
+    font-weight: 600;
+  }
+
+  .attr-bar-pct {
+    font-size: 16px;
+    font-weight: 800;
+    color: #a0b4ff;
+  }
+
+  .attr-card.april .attr-bar-pct {
+    color: #c4b5fd;
+  }
+
+  /* 归因结论 */
+  .attr-conclusion {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.12), rgba(80, 112, 255, 0.12));
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .attr-conclusion-icon {
+    font-size: 36px;
+    color: #a78bfa;
+    line-height: 1;
+  }
+
+  .attr-conclusion-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.6;
+  }
+
+  .attr-conclusion-text strong {
+    color: #c4b5fd;
+    font-weight: 800;
+  }
+
+  /* === 占位页 === */
+  .placeholder {
+    background: rgba(255,255,255,0.03);
+    border: 2px dashed rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 60px 40px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .placeholder-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .placeholder-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #7788aa;
+    margin-bottom: 10px;
+  }
+
+  .placeholder-desc {
+    font-size: 14px;
+    color: #5a6a8a;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* === 未来规划卡片 === */
+  .future-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .future-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 24px;
+    position: relative;
+  }
+
+  .future-card.now {
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .future-card.next {
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .future-card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .future-card.now .future-card-tag {
+    background: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+  }
+
+  .future-card.next .future-card-tag {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fcd34d;
+  }
+
+  .future-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .future-card-desc {
+    font-size: 13px;
+    color: #8899bb;
+    line-height: 1.7;
+  }
+
+  .future-card-desc strong {
+    color: #c0ccee;
+  }
+
+  /* Footer */
+  .slide-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+    right: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #3a4a6a;
+    font-size: 11px;
+  }
+
+  /* Print optimization */
+  @media print {
+    body { background: #fff; }
+    .slide { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SLIDE 1: COVER ==================== -->
+<div class="slide">
+  <div class="slide-cover">
+    <div class="cover-badge">Budget · Value · Roadmap</div>
+    <div class="cover-title">ProductA 模型成本<br>追加专题汇报</div>
+    <div class="cover-meta" style="margin-top: 50px;">
+      <span>2026.04</span>
+      <span>CSIG · Platform</span>
+      <span>ProductA + AnClaw</span>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>ProductA 模型成本追加汇报</span>
+    <span>1 / 4</span>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 2: 成本现状 + 归因（合并页）==================== -->
+<div class="slide">
+  <div class="slide-header" style="margin-bottom: 24px;">
+    <div class="slide-number">01 &mdash; Cost & Attribution</div>
+    <div class="slide-title">3 月 → 4 月 <span>模型成本激增</span>，主因 AnClaw 用量爆发</div>
+    <div class="slide-subtitle">前期 ProductA 申请的 100W 模型预算即将耗尽，需要追加</div>
+  </div>
+
+  <!-- 成本对比 -->
+  <div class="cost-hero" style="margin-bottom: 22px;">
+    <div class="cost-card march">
+      <div class="cost-card-label">
+        <div class="cost-card-month">3 月（全月）</div>
+        <div class="cost-card-tag">BASELINE</div>
+      </div>
+      <div class="cost-card-value">¥26<span class="cost-card-unit">W</span></div>
+      <div class="cost-card-note">Venus 模型调用费用，与预算节奏基本吻合</div>
+    </div>
+
+    <div class="cost-arrow">
+      <div class="cost-arrow-icon">&#10145;</div>
+      <div class="cost-arrow-pct">+170%</div>
+      <div class="cost-arrow-text">MoM</div>
+    </div>
+
+    <div class="cost-card april">
+      <div class="cost-card-label">
+        <div class="cost-card-month">4 月（截至 21 日）</div>
+        <div class="cost-card-tag">超预期</div>
+      </div>
+      <div class="cost-card-value">¥70<span class="cost-card-unit">W</span></div>
+      <div class="cost-card-note">仅 21 天已达 70W，按当前斜率全月 ~100W</div>
+    </div>
+  </div>
+
+  <!-- 预算说明 -->
+  <div class="budget-banner" style="padding: 16px 28px; margin-bottom: 22px;">
+    <div class="budget-item">
+      <div class="budget-label">预算已到账</div>
+      <div class="budget-value">100<span class="sub">W（Venus 模型）</span></div>
+    </div>
+    <div class="budget-item">
+      <div class="budget-label">已消耗（3 月 + 4 月 1~21 日）</div>
+      <div class="budget-value">~96<span class="sub">W（26W + 70W）</span></div>
+    </div>
+    <div class="budget-item">
+      <div class="budget-label">剩余可用</div>
+      <div class="budget-value" style="color: #fca5a5;">~4<span class="sub">W（不足以覆盖 4 月末 + 5 月）</span></div>
+    </div>
+  </div>
+
+  <!-- 指标对比表 -->
+  <div style="background: rgba(255,255,255,0.025); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06); padding: 20px 28px; margin-bottom: 18px;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: #7788aa; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+      <div>指标</div>
+      <div style="text-align: right;">3 月（全月）</div>
+      <div style="text-align: right; color: #c4b5fd;">4 月（截至 21 日）</div>
+      <div style="text-align: right;">变化</div>
+    </div>
+    <!-- row: 模型成本 -->
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center;">
+      <div style="font-size: 14px; font-weight: 600; color: #c0ccee;">模型成本</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 700; color: #c0ccee;">¥26.1 W</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 800; color: #fff;">¥70.5 W</div>
+      <div style="text-align: right; font-size: 13px; font-weight: 700; color: #ef4444;">↑ +170%</div>
+    </div>
+    <!-- row: 总提问数 -->
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center;">
+      <div style="font-size: 14px; font-weight: 600; color: #c0ccee;">全部提问次数</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 700; color: #c0ccee;">14.3 万</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 800; color: #fff;">27.7 万</div>
+      <div style="text-align: right; font-size: 13px; font-weight: 700; color: #10b981;">↑ +126.79%</div>
+    </div>
+    <!-- row: 提问用户数 -->
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center;">
+      <div style="font-size: 14px; font-weight: 600; color: #c0ccee;">提问用户数（去重）</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 700; color: #c0ccee;">2,257</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 800; color: #fff;">2,608</div>
+      <div style="text-align: right; font-size: 13px; font-weight: 700; color: #10b981;">↑ +35.06%</div>
+    </div>
+    <!-- row: AnClaw 提问数 -->
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center;">
+      <div style="font-size: 14px; font-weight: 600; color: #c0ccee;">其中：AnClaw 提问数</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 700; color: #c0ccee;">5.6 万</div>
+      <div style="text-align: right; font-size: 16px; font-weight: 800; color: #c4b5fd;">18.7 万</div>
+      <div style="text-align: right; font-size: 13px; font-weight: 700; color: #10b981;">↑ +232%</div>
+    </div>
+    <!-- row: AnClaw 占比 -->
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 20px; padding: 14px 0 6px; align-items: center;">
+      <div style="font-size: 14px; font-weight: 600; color: #c0ccee;">AnClaw 占比</div>
+      <div style="text-align: right;">
+        <span style="font-size: 16px; font-weight: 700; color: #c0ccee;">39.4%</span>
+        <div class="attr-bar" style="margin-top: 4px;"><div class="attr-bar-fill march"></div></div>
+      </div>
+      <div style="text-align: right;">
+        <span style="font-size: 16px; font-weight: 800; color: #c4b5fd;">67.6%</span>
+        <div class="attr-bar" style="margin-top: 4px;"><div class="attr-bar-fill april"></div></div>
+      </div>
+      <div style="text-align: right; font-size: 13px; font-weight: 700; color: #a78bfa;">+28.2 pp</div>
+    </div>
+  </div>
+
+  <!-- 核心结论 -->
+  <div class="attr-conclusion" style="padding: 18px 24px;">
+    <div class="attr-conclusion-icon" style="font-size: 30px;">&#9881;</div>
+    <div class="attr-conclusion-text" style="font-size: 15px;">
+      AnClaw 增量占全平台新增提问的 <strong>98%</strong>，是 4 月成本激增的<strong>主要驱动来源</strong>，
+      叠加主理人大量选用 <strong>Claude-ops-4.6</strong>。
+    </div>
+  </div>
+
+  <div style="text-align:right;margin-top:10px;font-size:11px;color:#5a6a8a;">
+    数据来源：ProductA 平台 · 核心数据看板（统计周期：3/1~3/31 与 4/1~4/21）
+  </div>
+
+  <div class="slide-footer">
+    <span>ProductA 模型成本追加汇报</span>
+    <span>2 / 4</span>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 3: AnClaw 价值（占位，等素材） ==================== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-number">02 &mdash; Value</div>
+    <div class="slide-title">AnClaw 的 <span>业务价值</span></div>
+    <div class="slide-subtitle">这笔预算花得值：看看 AnClaw 为一线和客户带来了什么</div>
+  </div>
+
+  <div class="placeholder">
+    <div class="placeholder-icon">&#128221;</div>
+    <div class="placeholder-title">素材待补充</div>
+    <div class="placeholder-desc">
+      等 Alex 同步内容后填充，包括但不限于：<br><br>
+      · <strong style="color:#c0ccee;">工单侧</strong> —— 帮一线节约多少人力 / 下降了多少工单 / 闭环率提升多少<br>
+      · <strong style="color:#c0ccee;">成本侧</strong> —— 相比原 Andon 方案节约了多少调用成本<br>
+      · <strong style="color:#c0ccee;">典型场景</strong> —— 1~2 个代表性客户 / 问题类型的应用故事<br>
+      · <strong style="color:#c0ccee;">AnClaw 介绍</strong> —— 面向 Alan 总的背景说明，讲清楚是什么、为什么值得
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>ProductA 模型成本追加汇报</span>
+    <span>3 / 4</span>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 5: 未来规划 ==================== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-number">03 &mdash; Roadmap</div>
+    <div class="slide-title">迁移到 <span>CloudAgent</span>，成本走 <span>CodeBuddy 企业版</span></div>
+    <div class="slide-subtitle">成本这笔账后续会切换口径，不会长期占用 ProductA 的模型预算</div>
+  </div>
+
+  <!-- 预算预估：3~7月全量 + 待申请 -->
+  <div style="background: rgba(255,255,255,0.025); border-radius: 14px; border: 1px solid rgba(239,68,68,0.2); padding: 20px 28px; margin-bottom: 24px;">
+    <!-- 标题行已删除 -->
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 10px; align-items: stretch;">
+      <!-- 3月 已发生 -->
+      <div style="background: rgba(100,116,139,0.08); border-radius: 10px; padding: 14px 12px; text-align: center; border: 1px solid rgba(100,116,139,0.2);">
+        <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">3 月（已发生）</div>
+        <div style="font-size: 22px; font-weight: 800; color: #e0e6f0;">26<span style="font-size:12px;color:#7788aa;">W</span></div>
+      </div>
+      <!-- 4月 已发生 -->
+      <div style="background: rgba(100,116,139,0.08); border-radius: 10px; padding: 14px 12px; text-align: center; border: 1px solid rgba(100,116,139,0.2);">
+        <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">4 月（预估全月）</div>
+        <div style="font-size: 22px; font-weight: 800; color: #e0e6f0;">106<span style="font-size:12px;color:#7788aa;">W</span></div>
+      </div>
+      <!-- 5月 预估 -->
+      <div style="background: rgba(255,255,255,0.03); border-radius: 10px; padding: 14px 12px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 11px; color: #c0ccee; margin-bottom: 6px;">5 月（预估）</div>
+        <div style="font-size: 22px; font-weight: 800; color: #e0e6f0;">111<span style="font-size:12px;color:#7788aa;">W</span></div>
+      </div>
+      <!-- 6月 预估 -->
+      <div style="background: rgba(255,255,255,0.03); border-radius: 10px; padding: 14px 12px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 11px; color: #c0ccee; margin-bottom: 6px;">6 月（预估）</div>
+        <div style="font-size: 22px; font-weight: 800; color: #e0e6f0;">116<span style="font-size:12px;color:#7788aa;">W</span></div>
+      </div>
+      <!-- 7月 预估 -->
+      <div style="background: rgba(255,255,255,0.03); border-radius: 10px; padding: 14px 12px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 11px; color: #c0ccee; margin-bottom: 6px;">7 月（预估）</div>
+        <div style="font-size: 22px; font-weight: 800; color: #e0e6f0;">122<span style="font-size:12px;color:#7788aa;">W</span></div>
+      </div>
+      <!-- 待申请预算 -->
+      <div style="background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(52,211,153,0.06)); border-radius: 10px; padding: 14px 16px; text-align: center; border: 1px solid rgba(16,185,129,0.3); min-width: 140px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-size: 11px; color: #6ee7b7; margin-bottom: 6px; font-weight: 600;">待申请预算</div>
+        <div style="font-size: 26px; font-weight: 900; color: #10b981;">355<span style="font-size:13px;color:#6ee7b7;">W</span></div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: flex-start; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);">
+      <div style="font-size: 12px; color: #7788aa;">3~7 月合计 <strong style="color:#fff;">~481W</strong> − 已到账 <strong style="color:#fff;">100W</strong> = 待申请 <strong style="color:#10b981;">~355W</strong>（取整）</div>
+    </div>
+  </div>
+
+  <div class="future-cards" style="margin-bottom: 24px;">
+    <div class="future-card now">
+      <div class="future-card-tag">现阶段（Q2）</div>
+      <div class="future-card-title">追加 ProductA 模型预算</div>
+      <div class="future-card-desc">
+        4 月用量激增属于 <strong>AnClaw 接入后的合理溢出</strong>，属于业务真实需求。<br><br>
+        为不影响主理人日常使用和一线服务，<strong>申请追加模型预算</strong>以覆盖 4 月末到 CloudAgent 成熟前的缓冲期。
+      </div>
+    </div>
+
+    <div class="future-card next">
+      <div class="future-card-tag">下一步（H2 起）</div>
+      <div class="future-card-title">成本口径切换到 CodeBuddy 企业版</div>
+      <div class="future-card-desc">
+        等 <strong>AssistantApp 的 CloudAgent</strong> 能力成熟后，ProductA 底层模型调用将<strong>不再走 Venus</strong>，<br>
+        改为走 <strong>CodeBuddy 企业版</strong>，账计入 <strong>CodeBuddy 企业版的成本预算</strong>。<br><br>
+        切换后 ProductA 不再占用 Venus 模型预算池，成本曲线回归平稳，ProductA 保留做模型实验和新场景孵化的角色。
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>ProductA 模型成本追加汇报</span>
+    <span>4 / 4</span>
+  </div>
+</div>
+
+</body>
+</html>

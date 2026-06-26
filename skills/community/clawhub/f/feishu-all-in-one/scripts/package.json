@@ -1,0 +1,13 @@
+{
+  "name": "feishu-all-in-one",
+  "version": "1.0.0",
+  "description": "飞书 All-in-One 技能包 - 经过验证的飞书消息收发解决方案",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.59.0",
+    "axios": "^1.6.0"
+  }
+}

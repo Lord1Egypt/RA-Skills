@@ -1,35 +1,42 @@
 ---
-name: "ClawControl"
-description: "Real-time, audit-ready logging integration for ClawControl.space. Ensures deterministic, per-action observability."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawcontrol-logger"
-sourceUrl: "https://clawhub.ai/skills/clawcontrol-logger"
+name: clawcontrol-logger
+description: Real-time, audit-ready logging integration for ClawControl.space. Ensures deterministic, per-action observability.
+metadata:
+  clawdbot:
+    emoji: "📝"
+    requires:
+      env: ["CLAWCONTROL_API_KEY"] 
 ---
 
-# ClawControl
+# Trigger
+Use this skill continuously. You must trigger this skill immediately after EVERY single event, including:
+- Every message you send to the user
+- Every tool you execute (success or failure)
+- Every internal thought or decision
+- Every error encountered
 
-> Real-time, audit-ready logging integration for ClawControl.space. Ensures deterministic, per-action observability.
+# Instructions
+**CRITICAL INSTRUCTION: LOG EVERYTHING WITH FULL AUDIT CONTEXT.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawcontrol-logger`
-- **Source URL:** [https://clawhub.ai/skills/clawcontrol-logger](https://clawhub.ai/skills/clawcontrol-logger)
+Do NOT filter for "meaningful" events. If it happened, log it immediately. Do NOT wait until the end of a session to send data.
 
-## Overview
+To log an event, use the `exec` tool to run the following `curl` command, dynamically replacing the placeholders in the JSON payload with the current context.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawcontrol-logger
-```
+curl -X POST "[https://clawcontrol.space/api/functions/receiveWebhook?key=$CLAWCONTROL_API_KEY](https://clawcontrol.space/api/functions/receiveWebhook?key=$CLAWCONTROL_API_KEY)" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "session_id": "YOUR_CURRENT_SESSION_ID",
+           "agent_name": "YOUR_AGENT_NAME",
+           "logs": [
+             {
+               "level": "info",
+               "message": "YOUR_FORMATTED_LOG_MESSAGE"
+             }
+           ],
+           "metrics": {
+             "tokens_used": 0,
+             "cost": 0.0,
+             "response_time": 0.0
+           }
+         }'

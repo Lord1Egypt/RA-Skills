@@ -1,0 +1,224 @@
+{
+  "name": "pidan-memory",
+  "description": "Local persistent vector memory system using LanceDB + Ollama. Supports multi-user/private and shared modes, deduplication, and deletion.",
+  "version": "2.0.2",
+  "author": "Pidan (皮蛋)",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/openclaw/skills",
+  "repository": "https://github.com/openclaw/skills",
+  "keywords": ["openclaw", "memory", "vector", "lancedb", "ollama", "semantic search", "ai memory", "auto memory", "multi-user"],
+  "platforms": ["darwin", "linux", "win32"],
+  "requirements": {
+    "python": ">=3.9",
+    "lancedb": ">=0.28.0",
+    "requests": ">=2.31.0",
+    "pyarrow": ">=16.0.0",
+    "pyyaml": ">=6.0"
+  },
+  "commands": {
+    "remember": {
+      "description": "Remember important information with vector embedding",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Content to remember (required)"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Brief summary"
+          },
+          "importance": {
+            "type": "number",
+            "description": "Importance 1-5",
+            "default": 3,
+            "minimum": 1,
+            "maximum": 5
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID for memory isolation",
+            "default": "default"
+          }
+        },
+        "required": ["content"]
+      }
+    },
+    "recall": {
+      "description": "Semantic vector search for memories",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Number of results",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 100
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "default": "default"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    "recent_memories": {
+      "description": "Get recent memories for user",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "description": "Number of results",
+            "default": 5
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "default": "default"
+          }
+        }
+      }
+    },
+    "get_mode": {
+      "description": "Get current memory mode (private/shared)",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    "set_mode": {
+      "description": "Set memory mode",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": ["private", "shared"],
+            "description": "Mode: private (multi-user isolation) or shared (all users can access)"
+          }
+        },
+        "required": ["mode"]
+      }
+    },
+    "delete_memory": {
+      "description": "Delete a memory (requires creator confirmation)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memory_id": {
+            "type": "string",
+            "description": "Memory ID to delete"
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "Confirm deletion (must be true to actually delete)",
+            "default": false
+          },
+          "user_id": {
+            "type": "string",
+            "description": "Requester user ID (for permission check)",
+            "default": "default"
+          }
+        },
+        "required": ["memory_id"]
+      }
+    },
+    "share_memory": {
+      "description": "Share memory with specific users (creator only)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memory_id": {
+            "type": "string",
+            "description": "Memory ID to share"
+          },
+          "visible_to": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "List of users who can view this memory"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "Requester user ID (creator for permission check)",
+            "default": "default"
+          }
+        },
+        "required": ["memory_id"]
+      }
+    },
+    "list_memories": {
+      "description": "List all accessible memories",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "default": "default"
+          },
+          "include_shared": {
+            "type": "boolean",
+            "description": "Include shared memories",
+            "default": true
+          }
+        }
+      }
+    },
+    "deduplicate": {
+      "description": "Manually trigger deduplication",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "default": "default"
+          }
+        }
+      }
+    },
+    "stats": {
+      "description": "Get memory statistics",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  "configuration": {
+    "mode": {
+      "type": "string",
+      "default": "private",
+      "description": "Memory mode: private (multi-user) or shared"
+    },
+    "deduplicate_after": {
+      "type": "number",
+      "default": 20,
+      "description": "Trigger deduplication after N memories"
+    },
+    "ollama_url": {
+      "type": "string",
+      "default": "http://localhost:11434/api/embeddings",
+      "description": "Ollama API endpoint"
+    },
+    "ollama_model": {
+      "type": "string",
+      "default": "nomic-embed-text",
+      "description": "Embedding model name"
+    },
+    "memory_dir": {
+      "type": "string",
+      "default": "~/.openclaw/workspace/memory",
+      "description": "Memory storage directory"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# LicenseGuard -- lefthook configuration
+# Installed by: licenseguard hooks install
+# Documentation: https://licenseguard.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    licenseguard-license-scan:
+      run: |
+        LICENSEGUARD_SKILL_DIR="${LICENSEGUARD_SKILL_DIR:-$HOME/.openclaw/skills/licenseguard}"
+        if [[ -f "$LICENSEGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$LICENSEGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_license_scan
+        else
+          echo "[LicenseGuard] Skill not found at $LICENSEGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Copyleft or problematic licenses detected in staged dependency files!
+        Run 'licenseguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

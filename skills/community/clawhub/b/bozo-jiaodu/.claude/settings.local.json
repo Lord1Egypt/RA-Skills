@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Volumes/AI/AIGC/aigc/Skills/bozo-jiaodu/scripts/*.sh)",
+      "Bash(bash scripts/create_angle_task.sh \"https://storage.bizyair.cn/creations/20260318/4ac1e8ed-58a8-4b14-bd9d-6c536875bab5_649c12a5106e5bdd4d59e974671a1944_ComfyUI_46a4cae2_00001_.png\" \"<sks> front view eye-level shot medium shot\")"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "memory-curator",
+  "display_name": "Memory Curator",
+  "version": "1.0.0",
+  "description": "Backup, deduplicate, summarize, and compress OpenClaw memory files.",
+  "author": "Claw",
+  "license": "MIT",
+  "keywords": ["openclaw", "clawd", "memory", "curator", "deduplicate", "summarize"],
+  "repository": "https://github.com/1217047020/memory-curator",
+  "entry": "SKILL.md",
+  "scripts": {
+    "curate_memory.py": "scripts/curate_memory.py"
+  },
+  "requires": {
+    "python": ">=3.8"
+  }
+}

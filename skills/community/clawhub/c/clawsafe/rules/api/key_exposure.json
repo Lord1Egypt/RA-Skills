@@ -1,0 +1,85 @@
+{
+  "name": "API Key Exposure Detection",
+  "category": "key_exposure",
+  "description": "检测 API Key、Secret、Token 等敏感信息泄露",
+  "severity": "critical",
+  "patterns": [
+    {
+      "id": "ak_access_key",
+      "pattern": "access[_-]?key|aws[_-]?access|aws_access|ak\\s*[:=]",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "AWS Access Key"
+    },
+    {
+      "id": "sk_secret_key",
+      "pattern": "secret[_-]?key|aws[_-]?secret|secret_key|sk\\s*[:=]",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "AWS Secret Key"
+    },
+    {
+      "id": "api_key_generic",
+      "pattern": "api[_-]?key|apikey|api_secret",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "通用 API Key"
+    },
+    {
+      "id": "bearer_token",
+      "pattern": "bearer\\s+[a-zA-Z0-9_\\-\\.]{20,}",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "Bearer Token"
+    },
+    {
+      "id": "jwt_token",
+      "pattern": "eyJ[a-zA-Z0-9_\\-]+\\.eyJ[a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9_\\-]+",
+      "weight": 0.9,
+      "severity": "high",
+      "description": "JWT Token"
+    },
+    {
+      "id": "github_token",
+      "pattern": "gh[pousr]_[a-zA-Z0-9_]{36,}",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "GitHub Token"
+    },
+    {
+      "id": "slack_token",
+      "pattern": "xox[baprs]-[0-9]{10,13}-[0-9]{10,13}[a-zA-Z0-9-]*",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "Slack Token"
+    },
+    {
+      "id": "openai_key",
+      "pattern": "sk-[a-zA-Z0-9]{20,}",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "OpenAI API Key"
+    },
+    {
+      "id": "private_key",
+      "pattern": "-----BEGIN (?:RSA |EC |DSA )?PRIVATE KEY-----",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "私钥泄露"
+    },
+    {
+      "id": "basic_auth",
+      "pattern": "basic\\s+[a-zA-Z0-9+/=]{20,}",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "Basic Auth 凭证"
+    },
+    {
+      "id": "password_in_url",
+      "pattern": "[a-zA-Z]{3,10}:\\/\\/[^\\s:]+:[^\\s@]+@",
+      "weight": 0.9,
+      "severity": "high",
+      "description": "URL 中包含密码"
+    }
+  ]
+}

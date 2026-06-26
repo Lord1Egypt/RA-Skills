@@ -1,0 +1,19 @@
+{
+  "name": "trello_planner",
+  "version": "1.0.8",
+  "main": "skill.js",
+  "description": "AI Trello Planner: read-only analysis + smart planning",
+  "author": "tomas-mikula",
+  "homepage": "https://FrontendAccelerator.com",
+  "license": "MIT",
+  "requiredEnv": [
+    "TRELLO_API_KEY",
+    "TRELLO_TOKEN"
+  ],
+  "requiredBinaries": [
+    "node"
+  ],
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}

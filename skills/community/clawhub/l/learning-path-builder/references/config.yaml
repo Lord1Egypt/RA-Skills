@@ -1,0 +1,266 @@
+# 权威知识图谱构建器配置文件
+# 版本: 1.0.0
+# 生成时间: 2026年4月16日
+
+# 权威资源配置
+authoritative_sources:
+  mooc_platforms:
+    - name: "中国大学MOOC"
+      url: "https://www.icourse163.org"
+      priority: 1
+      description: "教育部主导的国家级慕课平台"
+    
+    - name: "学堂在线"
+      url: "https://www.xuetangx.com"
+      priority: 2
+      description: "清华大学发起的慕课平台"
+    
+    - name: "网易云课堂"
+      url: "https://study.163.com"
+      priority: 3
+      description: "网易旗下的在线教育平台"
+    
+    - name: "腾讯课堂"
+      url: "https://ke.qq.com"
+      priority: 4
+      description: "腾讯旗下的在线教育平台"
+
+  government_data:
+    - name: "国家数据"
+      url: "http://data.stats.gov.cn"
+      priority: 1
+      description: "国家统计局官方数据平台"
+    
+    - name: "北京市政务数据"
+      url: "https://data.beijing.gov.cn"
+      priority: 2
+      description: "北京市政府数据开放平台"
+    
+    - name: "上海市公共数据开放平台"
+      url: "https://data.sh.gov.cn"
+      priority: 3
+      description: "上海市政府数据开放平台"
+    
+    - name: "广东省政务数据"
+      url: "https://data.gd.gov.cn"
+      priority: 4
+      description: "广东省政府数据开放平台"
+
+  academic_databases:
+    - name: "中国知网"
+      url: "https://www.cnki.net"
+      priority: 1
+      description: "中国最大的学术文献数据库"
+    
+    - name: "万方数据"
+      url: "https://www.wanfangdata.com.cn"
+      priority: 2
+      description: "综合性学术文献数据库"
+    
+    - name: "维普资讯"
+      url: "http://www.cqvip.com"
+      priority: 3
+      description: "中文科技期刊数据库"
+    
+    - name: "IEEE Xplore"
+      url: "https://ieeexplore.ieee.org"
+      priority: 4
+      description: "国际电气电子工程师学会数据库"
+
+  official_docs:
+    - name: "技能人才评价工作网（国家职业标准查询系统）"
+      url: "https://www.osta.org.cn"
+      priority: 1
+      description: "人力资源和社会保障部职业技能鉴定中心，包含国家职业标准查询系统"
+    
+    - name: "国家标准全文公开系统"
+      url: "https://openstd.samr.gov.cn"
+      priority: 1
+      description: "国家标准在线阅读平台"
+    
+    - name: "工信部技术标准"
+      url: "https://www.miit.gov.cn"
+      priority: 2
+      description: "工业和信息化部标准信息"
+    
+    - name: "国家市场监督管理总局"
+      url: "https://www.samr.gov.cn"
+      priority: 3
+      description: "国家标准管理主管部门"
+    
+    - name: "中国标准信息服务网"
+      url: "http://www.sac.gov.cn"
+      priority: 4
+      description: "国家标准信息服务平台"
+
+# 避免使用的资源
+avoided_sources:
+  - "个人博客"
+  - "非技术论坛"
+  - "社交媒体"
+  - "未经验证的教程"
+  - "商业推广内容"
+  - "过时技术资料（3年以上）"
+  - "未经同行评审的内容"
+  - "匿名来源的信息"
+  - "带有明显商业偏见的内容"
+  - "未经官方认证的培训机构资料"
+
+# 质量指标阈值
+quality_thresholds:
+  authoritative_coverage: 0.85  # 权威内容覆盖率
+  structure_coherence: 0.90     # 结构一致性
+  source_reliability: 0.95      # 来源可靠性
+  learning_progression: 0.85    # 学习渐进性
+  practical_relevance: 0.80     # 实践相关性
+  citation_completeness: 0.90   # 引用完整性
+  technical_accuracy: 0.95      # 技术准确性
+
+# 学时分配规则
+hour_allocation_rules:
+  # 职业技能标准分配（示例）
+  occupational_skill:
+    foundation_knowledge: 0.25  # 基础知识占比25%
+    development_skills: 0.40    # 开发技能占比40%
+    testing_skills: 0.15        # 测试技能占比15%
+    operations_skills: 0.20     # 运维技能占比20%
+  
+  # 通用技术培训分配
+  general_technical:
+    foundation_knowledge: 0.30
+    core_skills: 0.40
+    advanced_topics: 0.20
+    practical_projects: 0.10
+  
+  # 短期培训分配
+  short_term:
+    essential_concepts: 0.50
+    practical_skills: 0.40
+    quick_reference: 0.10
+
+# 学习单元配置
+learning_unit_config:
+  duration_minutes: 25          # 每个学习单元时长
+  words_per_unit: 3000          # 每个单元建议字数
+  max_units_per_day: 4          # 每天最多学习单元数
+  review_interval_days: 7       # 复习间隔天数
+  assessment_frequency: 0.2     # 评估频率（每5个单元1个评估）
+
+# 知识节点配置
+knowledge_node_config:
+  min_hours_per_node: 2         # 每个节点最少学时
+  max_hours_per_node: 20        # 每个节点最多学时
+  min_units_per_node: 4         # 每个节点最少单元数
+  max_units_per_node: 40        # 每个节点最多单元数
+  recommended_nodes_per_domain: 3-5  # 每个领域推荐节点数
+
+# 学习路径配置
+learning_path_config:
+  beginner_path:
+    total_weeks: 16
+    weekly_hours: 5
+    weekly_units: 10
+    review_weeks: [4, 8, 12, 16]
+  
+  intermediate_path:
+    total_weeks: 12
+    weekly_hours: 8
+    weekly_units: 16
+    review_weeks: [3, 6, 9, 12]
+  
+  advanced_path:
+    total_weeks: 8
+    weekly_hours: 10
+    weekly_units: 20
+    review_weeks: [2, 4, 6, 8]
+
+# 输出格式配置
+output_config:
+  json:
+    indent: 2
+    ensure_ascii: false
+    sort_keys: false
+  
+  markdown:
+    include_toc: true
+    include_metadata: true
+    include_references: true
+  
+  html:
+    include_css: true
+    include_js: true
+    responsive: true
+  
+  pdf:
+    page_size: "A4"
+    margin: "2cm"
+    font_size: "12pt"
+
+# 验证配置
+validation_config:
+  check_resource_availability: true
+  verify_citations: true
+  validate_structure: true
+  check_quality_metrics: true
+  generate_validation_report: true
+  
+  resource_timeout_seconds: 10
+  max_validation_attempts: 3
+  require_https: true
+
+# 更新配置
+update_config:
+  check_updates_frequency_days: 30
+  update_resources_frequency_days: 90
+  archive_old_versions: true
+  keep_versions_count: 5
+  notify_on_updates: true
+
+# 日志配置
+logging_config:
+  level: "INFO"
+  file: "kg_builder.log"
+  max_size_mb: 10
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# 性能配置
+performance_config:
+  max_concurrent_requests: 5
+  request_timeout_seconds: 30
+  cache_responses: true
+  cache_ttl_hours: 24
+  use_compression: true
+
+# 扩展配置
+extension_config:
+  # 支持的技术领域
+  supported_domains:
+    - "职业技能"
+    - "人工智能"
+    - "大数据"
+    - "云计算"
+    - "网络安全"
+    - "物联网"
+    - "软件开发"
+    - "数据分析"
+  
+  # 支持的语言
+  supported_languages:
+    - "zh-CN"
+    - "en-US"
+  
+  # 插件系统
+  plugins_enabled: true
+  plugin_directory: "plugins"
+  auto_load_plugins: true
+
+# 版本信息
+version_info:
+  skill_name: "learning-path-builder"
+  version: "1.0.0"
+  author: "王志蓬"
+  created: "2026-04-16"
+  last_updated: "2026-04-16"
+  license: "MIT"
+  repository: "https://github.com/example/authoritative-kg-builder"

@@ -1,0 +1,219 @@
+{
+  "skill_name": "survey",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "survey this workflow: our normal web search API is returning 401 errors, but we still need a landscape scan of browser automation tools before planning implementation",
+      "expected_output": "The survey run keeps the 4-lane structure, writes `.survey/{slug}/` artifacts, and explicitly falls back from broken search/extract tooling to direct retrieval or labeled downgrade paths instead of stopping.",
+      "assertions": [
+        "Mentions direct primary-page retrieval or another explicit fallback after search/extract failure",
+        "Preserves the `.survey/{slug}/` artifact structure",
+        "Keeps the task in research mode rather than implementation mode"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "survey which existing skill in this repo is the best bounded maintenance target next, using the graph report and wiki first",
+      "expected_output": "A repo-maintenance survey that classifies the run, reuses repo-local evidence, and writes factual triage/context/solutions artifacts before any implementation starts.",
+      "assertions": [
+        "Classifies the request as repo-maintenance or equivalent",
+        "Uses repo-local evidence such as graph/wiki/skill files before broad external search",
+        "Does not jump straight into rewriting the target skill inside the survey step"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "survey how Claude Code, Codex, and Gemini CLI differ for hooks, approvals, and research-worker setup before we standardize one survey workflow",
+      "expected_output": "A platform-comparison survey that writes `platform-map.md` and normalizes the answer into `settings`, `rules`, `hooks`, and portability gaps rather than dumping vendor trivia.",
+      "assertions": [
+        "Includes `settings`, `rules`, and `hooks` as the comparison frame",
+        "Creates or explicitly requires `platform-map.md` for the topic",
+        "Calls out at least one portability gap instead of pretending the platforms are identical"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "fix this one-line TypeScript error in src/auth.ts",
+      "expected_output": "A response that does not activate a full survey flow when the task is just a narrow implementation fix.",
+      "assertions": [
+        "States that survey is not the right mode for a tiny bugfix or narrow code change",
+        "Routes to implementation or a more direct debugging/coding path",
+        "Does not prescribe full `.survey/{slug}/` artifact creation for the one-line fix"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "survey this repo-maintenance question, then leave the findings in a reusable folder for later automation",
+      "expected_output": "The survey writes the canonical `.survey/{slug}/` files and explicitly validates the artifact folder before handing off to planning or implementation.",
+      "assertions": [
+        "Mentions validating the artifact contract after writing files",
+        "Uses the repo-local validator script or equivalent validation command",
+        "Keeps the survey output in the canonical filenames instead of inventing a new folder layout"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "survey Claude Code vs Codex vs Gemini CLI for hooks and worker orchestration, and make the result portable for a cron loop",
+      "expected_output": "The survey requires `platform-map.md`, preserves the fixed headings, and treats hooks as optional accelerators around a portable artifact contract rather than the only source of truth.",
+      "assertions": [
+        "Requires `platform-map.md` or validates with a platform-topic mode",
+        "States that repo-local artifact files remain the durable source of truth",
+        "Treats hooks as optional runtime wrappers instead of assuming hook parity across platforms"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "run the hourly repo-maintenance survey with mandatory keyword families (agentic ai skill, web frontend skill, web backend skill, cli open source skill, game development skill) even if web search fails",
+      "expected_output": "The survey explicitly runs all five keyword families, applies relevance-gated metadata capture for kept candidates, and falls back to GitHub-native retrieval when search/extract tooling is degraded.",
+      "assertions": [
+        "Runs or explicitly requires all five keyword families for hourly repo-maintenance mode",
+        "Captures license, pushed_at/updated, archived, and fit rationale for kept candidates",
+        "Uses a fallback path (gh search/gh api/gh repo view) when direct search or extraction fails",
+        "Uses `gh search repos` JSON fields compatible with CLI output (e.g., fullName and license)"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "run an hourly keyword sweep and handle noisy frontend results where many matches are assessment repos with unknown licenses",
+      "expected_output": "The survey keeps keyword coverage evidence, retries null license metadata once via GitHub REST before final classification, excludes low-transfer assessment/homework repos, and requires explicit exception rationale only when license remains unknown after fallback.",
+      "assertions": [
+        "Applies a relevance gate that filters assessment/homework-only repositories by default",
+        "Retries null/unknown license metadata with `gh api repos/<owner>/<repo>` before drop/exception handling",
+        "Treats unknown/missing license after fallback as drop or exception-only with explicit rationale",
+        "Preserves provenance and lane coverage even when filtering aggressively"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "run the hourly survey and backend keyword hits include mostly stale repos last pushed more than 2 years ago",
+      "expected_output": "The survey keeps discovery evidence for lane coverage but applies a recommendation-grade freshness floor, dropping stale candidates by default unless an explicit exception rationale and risk note are provided.",
+      "assertions": [
+        "Enforces a default freshness floor using pushed_at recency (24 months) for recommendation-grade keeps",
+        "Allows stale candidates only when explicit exception rationale is documented",
+        "Maintains provenance and required-lane evidence even after freshness filtering"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "run the hourly five-lane keyword sweep where frontend and game lanes are sparse/noisy; keep the report merge-ready for cron automation",
+      "expected_output": "The survey uses lane-specific recovery templates for sparse/noisy lanes, records lane-level threshold outcomes (>=1 keep where feasible, CLI target 3+), and explicitly reports why any lane stays below threshold.",
+      "assertions": [
+        "Invokes lane-specific recovery queries from the keyword sweep reference when sparse/noisy conditions appear",
+        "Reports lane-level threshold status after relevance gating, including CLI 3+ spotlight target",
+        "Preserves evidence and provenance instead of silently dropping under-threshold lanes"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "run the hourly five-lane survey and two lanes still miss thresholds after recovery; produce a reviewer-ready markdown summary",
+      "expected_output": "The survey marks each lane with `lane_status` (`pass|degraded`) and reports `degraded_causes` using the compact taxonomy (`license`, `stale`, `low-fit`, `archived`, `low-signal`, `no-results`) with concrete examples or counts.",
+      "assertions": [
+        "Includes explicit lane_status labels in markdown output for each lane",
+        "Uses degraded_causes taxonomy (`license|stale|low-fit|archived|low-signal|no-results`) when thresholds are missed",
+        "When a degraded lane has raw_count==0 after documented recovery, includes `no-results` explicitly",
+        "Keeps provenance/evidence references while reporting degraded lanes"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "run a survey in a degraded source environment and keep artifact validation green",
+      "expected_output": "The survey uses validator-compatible provenance labels (including `thin evidence` when needed), explicitly maps GitHub-native retrieval to accepted labels (`indexed snippet`/`direct page retrieval`), and avoids unsupported labels that break `--require-provenance` checks.",
+      "assertions": [
+        "Uses a provenance label accepted by the validator (`direct page retrieval|feed recovery|browser-rendered retrieval|indexed snippet|browser-rendered indexed snippet|thin evidence`)",
+        "Avoids unsupported provenance labels in final markdown artifacts (e.g., does not emit ad-hoc labels like `github search api`)",
+        "Keeps the survey report explicit about reduced confidence when `thin evidence` is used"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "run the hourly five-lane survey and make lane status reviewer-ready for trend tracking",
+      "expected_output": "The survey reports lane_status with compact lane-health metrics (`kept_count`, `raw_count`, `median_stars_raw`, `zero_star_raw`) so reviewers can compare quality drift between hourly runs.",
+      "assertions": [
+        "Reports lane_status (`pass|degraded`) per lane in markdown",
+        "Includes lane-health metrics (`kept_count`, `raw_count`, `median_stars_raw`, `zero_star_raw`) alongside lane_status",
+        "Applies lane-metric integrity checks so empty lanes do not report impossible values (raw_count==0 => zero_star_raw=0, median_stars_raw=0; raw_count>=kept_count)",
+        "Keeps degraded_causes/provenance context when a lane is under threshold"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "run the hourly five-lane sweep where primary queries are noisy and mostly zero-star results; keep the run deterministic for unattended cron",
+      "expected_output": "The survey applies objective recovery triggers (`raw_count < 8`, `kept_count == 0`, or high zero-star ratio) before lane rescue, then documents provenance and lane_status outcomes for reviewer verification.",
+      "assertions": [
+        "Uses explicit numeric recovery triggers rather than ad-hoc judgment for rescue activation",
+        "Runs lane-specific recovery queries when trigger conditions are met",
+        "Preserves provenance and lane_status/degraded_causes reporting after recovery"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "run the hourly five-lane survey where one lane only has recently updated but very low-traction repositories; keep discovery evidence broad but recommendation-grade keeps strict",
+      "expected_output": "The survey preserves raw lane evidence but applies a recommendation-grade signal floor (for example stars>=3 or explicit adoption rationale), and reports `low-signal` in degraded causes when thresholds are missed.",
+      "assertions": [
+        "Keeps broad discovery evidence while applying stricter recommendation-grade keep rules",
+        "Requires a traction signal or explicit exception rationale for low-signal candidates",
+        "Reports `low-signal` explicitly in degraded_causes when applicable"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "run the hourly five-lane survey where backend remains raw_count=0 after stage-1 recovery query; keep the run deterministic for cron",
+      "expected_output": "The survey runs one documented stage-2 recovery query for that lane before final lane_status, then applies the same relevance/provenance/quality gates to any recovered hits.",
+      "assertions": [
+        "Escalates once with a documented stage-2 lane query when stage-1 still yields raw_count==0",
+        "Keeps recommendation-grade filters (license/freshness/signal) on stage-2 results",
+        "Reports provenance and final lane_status/degraded_causes after escalation"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "run the hourly five-lane survey where agentic results are dominated by personal repositories named only \"skills\"; keep recommendations reviewable",
+      "expected_output": "The survey preserves those hits as raw discovery evidence but classifies generic personal `*/skills` repos as low-fit by default unless concrete workflow docs plus traction justify an exception.",
+      "assertions": [
+        "Keeps noisy personal `*/skills` hits in evidence while preventing blind promotion into TOP recommendations",
+        "Requires explicit workflow-documentation and traction rationale for any exception",
+        "Maintains provenance and degraded-cause reporting when this noise pattern appears"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "run the hourly five-lane survey where only one lane produces recommendation-grade keeps and all other lanes are degraded",
+      "expected_output": "The survey explicitly reports cross-lane concentration (`recommended_lane_count`, `single_lane_concentration`) and avoids claiming broad coverage health when recommendations cluster in a single lane.",
+      "assertions": [
+        "Reports `recommended_lane_count` in markdown or structured summary",
+        "Sets or states `single_lane_concentration` when recommendation keeps come from a single lane",
+        "Keeps degraded-lane evidence and causes visible instead of hiding lane imbalance"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "run the hourly five-lane survey where frontend lane has raw hits but still kept_count=0 after stage-1 recovery due to low-signal noise",
+      "expected_output": "The survey performs one documented stage-2 query for the noisy lane (not only raw_count==0 lanes), then reapplies the same relevance/provenance gates before final lane_status.",
+      "assertions": [
+        "Escalates with one stage-2 lane query when raw hits exist but recommendation-grade keeps remain zero after stage-1",
+        "Reapplies license/freshness/signal/fit gates on stage-2 results",
+        "Reports provenance plus final lane_status/degraded_causes after noisy-lane escalation"
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "run the hourly five-lane survey where game-development lane is sparse: stage-1 recovery returns raw_count=0, so the run must stay deterministic",
+      "expected_output": "The survey applies the documented game lane stage-2 recovery query, then reports final lane_status with explicit degraded causes if recommendation-grade keeps still fail thresholds.",
+      "assertions": [
+        "Runs the documented game-development stage-2 recovery query when stage-1 is empty or still keeps=0",
+        "Reapplies recommendation-grade gates (license/freshness/signal/fit) to stage-2 hits",
+        "Reports lane_status, lane metrics, and degraded_causes transparently after escalation"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "run hourly survey with a strict recency-first policy: start from pushed within 24h~7d and widen only when a lane is empty/noisy",
+      "expected_output": "The survey starts with a 24h~7d recency window for all mandatory lanes, records explicit stage recovery query widening, and preserves lane metric integrity after switching query windows.",
+      "assertions": [
+        "Applies an initial recency-first query window (24h~7d) per lane before broader recovery",
+        "Documents any query widening as stage-1/stage-2 recovery attempts with exact query strings",
+        "Recomputes raw_count/kept_count/zero_star_raw/median_stars_raw from the final selected set after recovery"
+      ]
+    }
+  ]
+}

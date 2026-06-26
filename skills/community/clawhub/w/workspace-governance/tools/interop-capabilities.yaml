@@ -1,0 +1,26 @@
+meta:
+  author: Mars
+  github: Mars2003
+  date: 2026-04-28
+  description: Optional companion capability matrix for workspace-governance.
+
+interoperability:
+  standalone: true
+  optional_companions:
+    - name: git_or_github
+      used_for:
+        - archive_verification
+        - repo_state_checks
+      required: false
+    - name: cloud_storage
+      used_for:
+        - archive_lifecycle_management
+      required: false
+    - name: workflow_or_approval
+      used_for:
+        - destructive_batch_approval
+      required: false
+
+policy:
+  assume_companions_present: false
+  on_missing_required_dependency: blocked

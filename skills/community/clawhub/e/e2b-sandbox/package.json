@@ -1,0 +1,9 @@
+{
+  "name": "openclaw-skill-e2b-sandbox",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "e2b": "^2.14.1"
+  }
+}

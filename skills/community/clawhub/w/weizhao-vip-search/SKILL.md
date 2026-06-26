@@ -1,35 +1,49 @@
 ---
-name: "weizhao-vip-search"
-description: "在唯品会(VIP.com)搜索商品，引导用户登录并调用搜索API获取关键字商品。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weizhao-vip-search"
-sourceUrl: "https://clawhub.ai/skills/weizhao-vip-search"
+name: vip-search
+description: 在唯品会(VIP.com)搜索商品，引导用户登录并调用搜索API获取关键字商品。
 ---
 
-# weizhao-vip-search
+# 唯品会商品搜索助手 (VIP Search)
 
-> 在唯品会(VIP.com)搜索商品，引导用户登录并调用搜索API获取关键字商品。
+本Skill用于在唯品会(VIP.com)网站上搜索特定关键字的商品。由于唯品会的搜索接口通常需要用户登录状态(Cookie)或防爬虫校验，因此本Skill包含引导用户提供登录凭证的完整流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weizhao-vip-search`
-- **Source URL:** [https://clawhub.ai/skills/weizhao-vip-search](https://clawhub.ai/skills/weizhao-vip-search)
+## Capabilities
 
-## Overview
+1. **引导登录**: 指导用户如何在浏览器中登录唯品会并获取有效的Cookie。
+2. **API调用**: 使用提取到的Cookie调用唯品会的搜索API。
+3. **数据解析与呈现**: 将搜索返回的商品数据（如名称、价格、折扣等）提取并以易读的格式展示给用户。
 
+## Usage / 工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weizhao-vip-search
+当用户请求在唯品会搜索商品（例如：“帮我在唯品会搜索一下蓝牙耳机”）时，请严格按照以下步骤执行：
+
+### 第一步：引导用户获取Cookie
+向用户发送以下指引，要求其提供Cookie（若用户已经提供了有效Cookie则跳过此步）：
+
+```text
+为了在唯品会搜索商品，我需要您提供登录后的Cookie。请按照以下步骤操作：
+1. 请在您的浏览器中打开并登录 [唯品会官网](https://www.vip.com/)。
+2. 登录成功后，按下 `F12` 或右键点击页面选择“检查”以打开开发者工具。
+3. 切换到“网络” (Network) 选项卡。
+4. 在页面搜索框中随意搜索一个商品，或者刷新页面。
+5. 在网络请求列表中，找到类似 `suggest.php` 或 `search` 之类的请求，点击它。
+6. 在右侧的“标头” (Headers) -> “请求标头” (Request Headers) 中找到 `Cookie:` 字段。
+7. 将 `Cookie:` 后面的整段内容复制并发送给我。
 ```
+
+### 第二步：执行搜索脚本
+一旦获得了用户提供的关键字和 Cookie，使用内置的 Python 脚本发起搜索请求。
+
+将 Cookie 保存或直接作为参数传递给脚本。**注意处理 Cookie 中可能包含的特殊字符**。
+
+```bash
+# 示例命令，请将 <关键字> 和 <Cookie字符串> 替换为实际内容
+python3 /Users/xc.xu/Documents/projects/my-tools/skills/vip-search/scripts/search_vip.py --keyword "蓝牙耳机" --cookie "您的_cookie_字符串"
+```
+
+### 第三步：展示搜索结果
+解析脚本的输出，并将商品列表（名称、价格、原价、折扣等）整理为 Markdown 表格，或者是友好的列表形式反馈给用户。
+
+## 注意事项
+- Cookie 属于敏感信息，处理完毕后不要在后续的报告中明文打印完整的 Cookie。
+- 唯品会的API可能会随着时间发生变动（字段名或URL更新），这可能需要调整 `search_vip.py` 脚本中的解析逻辑。

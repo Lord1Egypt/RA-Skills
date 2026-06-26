@@ -1,0 +1,91 @@
+{
+    "project_root": ".",
+    "strategies_dir": "./strategies",
+    "results_dir": "./results",
+    "memory_dir": "./memory",
+    "backtest_cash": 10000,
+    "target_sharpe": 2.0,
+    "target_max_drawdown": 0.40,
+    "target_min_profit": 3.0,
+    "backtest_windows": {
+        "smoke_test": {
+            "start": "2024-01-01",
+            "end": "2024-03-31",
+            "max_dd": 0.50,
+            "expected_time": "15-20 min",
+            "purpose": "Fast elimination of bugs and catastrophic flaws"
+        },
+        "stress_test": {
+            "start": "2024-02-01",
+            "end": "2024-06-30",
+            "max_dd": 0.45,
+            "expected_time": "25-30 min",
+            "purpose": "Worst-case survival under adverse conditions"
+        },
+        "medium": {
+            "start": "2024-01-01",
+            "end": "2025-06-30",
+            "max_dd": 0.42,
+            "expected_time": "45-60 min",
+            "purpose": "Seasonal and regime-change validation"
+        },
+        "full": {
+            "start": "2023-01-01",
+            "end": "2026-01-31",
+            "max_dd": 0.40,
+            "expected_time": "2-3 hours",
+            "purpose": "Final acceptance benchmark"
+        }
+    },
+    "blueprints": {
+        "baseline": {
+            "description": "Conservative baseline strategy",
+            "key_stats": {
+                "net_profit": "+200%",
+                "drawdown": "35%",
+                "sharpe": "1.5"
+            }
+        }
+    },
+    "mutation_dimensions": {
+        "survival_structure": {
+            "description": "How the strategy survives downturns",
+            "options": [
+                "buy_and_hold_anchor",
+                "cash_defense",
+                "sma_filter"
+            ],
+            "lesson": "Structure matters more than stock selection"
+        },
+        "position_sizing": {
+            "description": "Capital allocation per trade",
+            "tunable_params": [
+                ["max_trade_pct", 0.02, 0.15, 0.01]
+            ],
+            "lesson": "Smaller positions survive longer"
+        },
+        "selection": {
+            "description": "Which instruments to trade and how to pick them",
+            "options": [
+                "momentum_breakout",
+                "mean_reversion",
+                "volume_spike"
+            ],
+            "lesson": "Entry filters rarely change strategy fate; focus on sizing and survival"
+        },
+        "profit_management": {
+            "description": "What to do with winners",
+            "options": [
+                "hold_to_expiry",
+                "take_profit_200pct",
+                "trailing_stop",
+                "pyramiding"
+            ],
+            "lesson": "High-variance payoff strategies benefit from letting winners run"
+        }
+    },
+    "banned_patterns": [
+        "SetHoldings",
+        "hard_stop_loss"
+    ]
+}

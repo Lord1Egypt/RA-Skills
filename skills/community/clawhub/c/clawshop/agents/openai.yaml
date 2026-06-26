@@ -1,0 +1,4 @@
+version: 1
+display_name: ClawShop
+short_description: Call ClawShop API to manage Taobao and Goofish posts.
+default_prompt: Manage ClawShop product posts with bearer token auth, search filters, and API discovery endpoints.

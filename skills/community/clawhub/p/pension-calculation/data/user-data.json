@@ -1,0 +1,39 @@
+{
+  "version": "1.3.0",
+  "profile": {
+    "currentAge": 50,
+    "retirementAge": 60,
+    "gender": "female"
+  },
+  "socialSecurity": {
+    "paidMonths": 180,
+    "currentBalance": 150000,
+    "monthlyBase": 8000,
+    "avgWage": 9000
+  },
+  "enterpriseAnnuity": {
+    "balance": 200000,
+    "returnRate": 5
+  },
+  "personalPension": {
+    "balance": 50000,
+    "annualDeposit": 12000,
+    "returnRate": 6
+  },
+  "savings": {
+    "amount": 300000,
+    "returnRate": 6
+  },
+  "futurePlan": {
+    "annualDeposit": 24000,
+    "returnRate": 6
+  },
+  "parameters": {
+    "inflationRate": 2.5,
+    "preRetirementIncome": 12000
+  },
+  "meta": {
+    "createdAt": "2026-04-11T12:54:33.893Z",
+    "lastModified": "2026-04-11T14:40:36.498Z"
+  }
+}

@@ -1,0 +1,16 @@
+# 金融数据工具包 — A股市场数据源配置
+# ====================================
+# 所有主要数据源免费，无需API密钥。
+
+china_market:
+  primary:
+    stock_data: "akshare"           # AKShare — 免费，无需密钥
+
+  # 可选：在 https://tushare.pro/register 注册
+  # export TUSHARE_TOKEN=your_token_here
+  optional:
+    tushare_token: "${TUSHARE_TOKEN}"
+
+# 速率限制设置（每秒请求数）
+rate_limits:
+  akshare: 5

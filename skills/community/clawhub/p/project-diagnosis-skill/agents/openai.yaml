@@ -1,0 +1,3 @@
+display_name: 项目诊断官
+short_description: 输入一个项目想法，快速判断风险、验证路径和下一步动作。
+default_prompt: 帮我诊断一个项目：我想做____，目标客户是____，目前最卡的是____。

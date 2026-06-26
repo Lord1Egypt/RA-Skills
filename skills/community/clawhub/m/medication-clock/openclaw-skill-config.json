@@ -1,0 +1,28 @@
+{
+  "name": "medication-reminder",
+  "description": "优甲乐服药提醒与记录系统",
+  "commands": {
+    "medication": {
+      "description": "管理优甲乐服药提醒和记录",
+      "handler": "openclaw_integration.handle_medication_command",
+      "examples": [
+        "/medication start - 启动每日提醒",
+        "/medication taken - 记录服药",
+        "/medication status - 查看状态",
+        "/medication report - 生成报告"
+      ]
+    }
+  },
+  "cronJobs": [
+    {
+      "name": "medication-first-reminder",
+      "schedule": "30 6 * * *",
+      "message": "⏰ 服药提醒：请服用优甲乐。回复 /medication taken 确认服药。"
+    }
+  ],
+  "dataFiles": [
+    "medication-records.json",
+    "stats.json",
+    "settings.json"
+  ]
+}

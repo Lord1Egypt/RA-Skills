@@ -1,0 +1,91 @@
+{
+  "name": "xianyu-search",
+  "version": "1.0.0",
+  "description": "闲鱼搜索技能 - 自动严格筛选个人闲置商品，排除商家和虚假价格",
+  "author": "Claw Assistant",
+  "license": "MIT",
+  "keywords": [
+    "闲鱼",
+    "二手搜索",
+    "价格筛选",
+    "个人闲置"
+  ],
+  "activation": {
+    "commands": [
+      "闲鱼搜索",
+      "闲鱼找",
+      "闲鱼买",
+      "帮我找闲鱼",
+      "闲鱼价格",
+      "二手搜索"
+    ],
+    "patterns": [
+      "闲鱼.*搜索",
+      "闲鱼.*找",
+      "闲鱼.*买",
+      "帮我.*闲鱼"
+    ]
+  },
+  "config": {
+    "default_filters": {
+      "personal_only": true,
+      "single_price_only": true,
+      "exclude_merchants": true,
+      "exclude_price_range": true
+    },
+    "result_limit": 10,
+    "sort_by": "price_asc",
+    "timeout_ms": 10000,
+    "retry_count": 3
+  },
+  "options": [
+    {
+      "name": "--max-price",
+      "description": "最高价格限制",
+      "type": "number"
+    },
+    {
+      "name": "--min-price",
+      "description": "最低价格限制",
+      "type": "number"
+    },
+    {
+      "name": "--region",
+      "description": "指定地区",
+      "type": "string"
+    },
+    {
+      "name": "--condition",
+      "description": "成色要求（全新/几乎全新/二手）",
+      "type": "string"
+    },
+    {
+      "name": "--shipping",
+      "description": "仅包邮",
+      "type": "boolean"
+    },
+    {
+      "name": "--verified",
+      "description": "仅验货宝",
+      "type": "boolean"
+    }
+  ],
+  "output": {
+    "format": "markdown",
+    "fields": [
+      "rank",
+      "price",
+      "title",
+      "region",
+      "want_count",
+      "link"
+    ],
+    "statistics": [
+      "min_price",
+      "max_price",
+      "avg_price"
+    ]
+  },
+  "created_at": "2026-03-06",
+  "updated_at": "2026-03-06"
+}

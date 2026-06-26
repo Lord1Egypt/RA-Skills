@@ -1,0 +1,13 @@
+crypto:
+  # SM4 密钥（Base64 编码），用于加密订单数据
+  # 请替换为你的 SM4 密钥
+  sm4_key: "WoDb5xjzDmsYPV875mvYqg=="
+
+payment:
+  # 收款方账号（京东支付 payTo）
+  # 请替换为你的收款账号
+  pay_to: "f91cfdba04fddf169afb419d152c5b39202604071400000010008651nJdJZZSrtcbsWJiCGhOsBcauJUi6R5SIbhH1KV5Ocu9Kxgg6HSj5BSYwx9BjoRFqNyxMqkVG"
+
+service:
+  # 服务定价（单位：人民币分）
+  amount: 1

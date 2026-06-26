@@ -1,35 +1,64 @@
 ---
-name: "report-generator"
-description: "Indexed by skills.sh from guia-matthieu/clawfu-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "guia-matthieu"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/guia-matthieu/clawfu-skills/report-generator"
-sourceUrl: "https://skills.sh/guia-matthieu/clawfu-skills/report-generator"
+name: report-generator
+description: "Generate PDF/HTML reports from templates and data. Use when: creating client reports; generating weekly summaries; producing marketing performance reports; automating recurring reports"
+license: MIT
+metadata:
+  author: ClawFu
+  version: 1.0.0
+  mcp-server: "@clawfu/mcp-skills"
 ---
 
-# report-generator
+# Report Generator
 
-> Indexed by skills.sh from guia-matthieu/clawfu-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** guia-matthieu
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/guia-matthieu/clawfu-skills/report-generator`
-- **Source URL:** [https://skills.sh/guia-matthieu/clawfu-skills/report-generator](https://skills.sh/guia-matthieu/clawfu-skills/report-generator)
-
-## Overview
+> Automate marketing report generation from templates and data sources.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+## What Claude Does vs What You Decide
+
+| Claude Does | You Decide |
+|-------------|------------|
+| Structures analysis frameworks | Metric definitions |
+| Identifies patterns in data | Business interpretation |
+| Creates visualization templates | Dashboard design |
+| Suggests optimization areas | Action priorities |
+| Calculates statistical measures | Decision thresholds |
+
+## Dependencies
+
 ```bash
-hermes skills install skills-sh/guia-matthieu/clawfu-skills/report-generator
+pip install jinja2 pandas click
+# For PDF output:
+pip install weasyprint
+```
+
+## Commands
+
+```bash
+python scripts/main.py generate template.html --data data.json --output report.html
+python scripts/main.py weekly metrics.csv --output weekly-report.html
+python scripts/main.py client data/ --template agency --output client-report.pdf
+```
+
+## Skill Boundaries
+
+### What This Skill Does Well
+- Structuring data analysis
+- Identifying patterns and trends
+- Creating visualization frameworks
+- Calculating statistical measures
+
+### What This Skill Cannot Do
+- Access your actual data
+- Replace statistical expertise
+- Make business decisions
+- Guarantee prediction accuracy
+
+## Skill Metadata
+
+
+- **Mode**: centaur
+```yaml
+category: automation
+dependencies: [jinja2, pandas]
+difficulty: intermediate
 ```

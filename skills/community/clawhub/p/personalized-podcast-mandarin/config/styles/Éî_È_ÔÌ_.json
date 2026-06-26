@@ -1,0 +1,38 @@
+{
+  "name": "深度对谈",
+  "description": "层层递进，深度追问，适合复杂话题的系统性解析",
+  "segment_count": {
+    "min": 4,
+    "max": 5
+  },
+  "dynamic_mode_preference": ["challenge", "collaborate"],
+  "emotional_arc": [0.3, 0.5, 0.7, 0.6],
+  "persona_interaction": {
+    "default_chemistry": "老搭档",
+    "role_distribution": "A负责挖掘深度，B负责提供视角",
+    "interaction_frequency": "高"
+  },
+  "content_characteristics": {
+    "data_density": "高",
+    "storytelling_ratio": "低",
+    "debate_intensity": "中"
+  },
+  "segment_guidelines": {
+    "setup": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "curious",
+      "key_elements": ["建立共鸣", "提出问题", "预告复杂性"]
+    },
+    "confrontation": {
+      "dynamic_mode": "challenge",
+      "emotional_tone": "tense",
+      "key_elements": ["呈现数据", "揭示冲突", "追问细节"]
+    },
+    "resolution": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "reflective",
+      "key_elements": ["总结insight", "给出框架", "开放结尾"]
+    }
+  },
+  "special_instructions": "每段必须有追问，必须有具体数据支撑，避免泛泛而谈"
+}

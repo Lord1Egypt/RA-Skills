@@ -1,0 +1,12 @@
+{
+  "api_id": "realtime-redfin-data",
+  "portal_api_id": "real_time_redfin_data",
+  "subscribe_api_id": "redfin_api",
+  "rapidapi_host": "real-time-redfin-data.p.rapidapi.com",
+  "notes": "U.S. & Canada Redfin real estate data. Page size set by num_homes (default 40, up to 350). Search results live at data.results; pagination via page param, data.has_more signals more pages. rapidapi_host is best-effort (could not verify on RapidAPI). subscribe_api_id is set because the dev-portal keys this API as 'redfin_api' (not the realtime_redfin_data convention), so self-subscribe must use that id; portal_api_id stays real_time_redfin_data for the api.openwebninja.com URL slug.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_redfin_data.yaml",
+  "last_updated_yaml": "2026-06-24T00:00:00.000Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-redfin-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-redfin-data"
+}

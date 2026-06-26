@@ -1,0 +1,25 @@
+{
+  "name": "drawio-coderknock",
+  "version": "1.0.0",
+  "description": "智能流程图生成器 - 根据用户描述自动生成 Mermaid 流程图，检查本地 Draw.io 安装状态，自动打开并导入",
+  "main": "generate_flow.py",
+  "scripts": {
+    "generate": "python generate_flow.py",
+    "test": "python generate_flow.py --test"
+  },
+  "keywords": [
+    "drawio",
+    "flowchart",
+    "mermaid",
+    "diagram",
+    "generator"
+  ],
+  "author": "AI Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/drawio-flow-generator-skill.git"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

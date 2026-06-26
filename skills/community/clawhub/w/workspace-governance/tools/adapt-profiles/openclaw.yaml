@@ -1,0 +1,92 @@
+meta:
+  author: Mars
+  github: Mars2003
+  date: 2026-04-28
+  version: 1.1.0
+  description: OpenClaw platform overlay profile for workspace-governance.
+  openclaw_version:
+    min: "2026.1.0"
+    max: "2026.12.99"
+    recommended: "2026.4.0"
+  compatibility_notes:
+    - "2026.4.0+ supports SKILL_ADAPT.yaml profile workflow."
+    - "2026.3.x may require environment-variable compatibility mode."
+
+platform_profile:
+  platform: openclaw
+
+  detection_signals:
+    - path: ".openclaw/"
+    - path: ".openclaw/openclaw.json"
+    - env: "OPENCLAW_HOME"
+    - env: "OPENCLAW_VERSION"
+
+  immutable_dirs:
+    - .openclaw/agents
+    - .openclaw/cron
+    - .openclaw/credentials
+    - .openclaw/identity
+    - .openclaw/logs
+    - .openclaw/extensions
+    - .openclaw/flows
+    - .openclaw/devices
+    - .openclaw/browser-existing-session
+    - .openclaw/memory-tdai
+    - .openclaw/delivery-queue
+    - .openclaw/media
+
+  protected_files:
+    - ".openclaw/credentials/**"
+    - ".openclaw/credentials/*.json"
+    - ".openclaw/identity/**"
+    - ".openclaw/**/*.key"
+    - ".openclaw/**/*.pem"
+    - ".openclaw/**/*.p12"
+    - ".openclaw/**/*.pfx"
+    - ".openclaw/**/*.cer"
+    - ".openclaw/**/*.crt"
+    - ".openclaw/**/token*"
+    - ".openclaw/**/secrets*"
+    - ".openclaw/**/secret*"
+    - ".openclaw/**/auth*"
+    - ".openclaw/**/*.json"
+
+  non_interactive_policy:
+    enforce_blocked_on_ask_user: true
+    enforce_fail_fast_on_unconfirmed_destructive: true
+
+  logs_policy:
+    immutable: false
+    allowed_actions:
+      - rotate
+      - compress
+      - archive
+    forbidden_actions:
+      - manual_delete
+      - immediate_delete
+    retention:
+      default_days: 90
+      min_days: 30
+      archive_older_than: 30days
+
+  extensions_policy:
+    allowed:
+      - install_new_extension
+      - update_extension
+    requires_confirmation:
+      - delete_extension
+      - rename_extension
+      - disable_extension
+    forbidden:
+      - modify_extension_code
+
+  merge_rules:
+    immutable_dirs:
+      strategy: union
+    protected_files:
+      strategy: union
+    destructive_guard:
+      strategy: override
+      constraint: strict_only
+    cache_policy:
+      strategy: override

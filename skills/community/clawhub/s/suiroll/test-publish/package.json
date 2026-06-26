@@ -1,0 +1,64 @@
+{
+  "name": "@suiroll/openclaw-skill",
+  "version": "1.0.0",
+  "description": "SUIROLL - Provably Fair Giveaway Tool for AI Agents on Sui",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "bin": {
+    "suiroll": "./dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js",
+    "postinstall": "npm run build",
+    "dev": "ts-node src/cli.ts",
+    "test": "echo \"Tests coming soon\""
+  },
+  "keywords": [
+    "openclaw",
+    "sui",
+    "lottery",
+    "giveaway",
+    "vrf",
+    "blockchain",
+    "web3"
+  ],
+  "author": "SUIROLL Team",
+  "license": "MIT",
+  "dependencies": {
+    "@mysten/sui": "^1.45.2",
+    "commander": "^12.1.0",
+    "dotenv": "^16.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suiroll/suiroll.git"
+  },
+  "openclaw": {
+    "type": "skill",
+    "commands": [
+      "suiroll:create",
+      "suiroll:enter",
+      "suiroll:draw",
+      "suiroll:verify",
+      "suiroll:list"
+    ],
+    "permissions": {
+      "filesystem": [
+        "~/.openclaw/suiroll/"
+      ],
+      "network": [
+        "api.sui.io",
+        "*.sui.io"
+      ]
+    }
+  }
+}

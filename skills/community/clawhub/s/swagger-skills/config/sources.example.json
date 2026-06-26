@@ -1,0 +1,25 @@
+{
+  "defaults": {
+    "doc_auth": {
+      "type": "basic",
+      "username": "<DOC_USERNAME>",
+      "password": "<DOC_PASSWORD>"
+    },
+    "timeout": 30,
+    "field_mapping": {
+      "enabled": true
+    }
+  },
+  "sources": [
+    {
+      "id": "example-service",
+      "name": "Example Service",
+      "swagger_url": "<SWAGGER_UI_OR_SPEC_URL>",
+      "base_url": "<API_BASE_URL>",
+      "description": "示例服务接口文档。复制本文件为 sources.json 后替换为真实 Swagger UI 页面。",
+      "field_mapping": {
+        "enabled": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+id: bid_assistant
+name: 招投标助手
+nickname: 招投标助手
+version: "0.1.0"
+owner: 标书/商务负责人
+deployment:
+  workstation: "default"
+  folder: "bid-assistant"
+  channel: 飞书
+  feishu_bot_name: "bid_assistant"
+  hermes_agent_id: bid_assistant
+
+mission: >
+  通过飞书接收招标公告、招标文件和投标素材，调用 Hermes Agent skills
+  完成机会摘要、投标可行性评估、招标文件解析、评分模型建立、投标任务拆解、
+  服务方案结构设计、章节初稿生成、表达净化、图表占位、一致性审查和投标复盘。
+
+users:
+  - 市场人员
+  - 商务人员
+  - 标书人员
+  - 方案人员
+  - 投标负责人
+  - 管理层
+
+scenarios:
+  opportunity_intake:
+    name: 招标机会识别
+    description: 接收公告、链接或截图，生成机会摘要和提醒。
+    workflow: workflows.md#一招标机会识别
+  bid_feasibility:
+    name: 投标可行性评估
+    description: 判断是否符合资格条件，识别投标风险。
+    workflow: workflows.md#二投标可行性评估
+  tender_analysis:
+    name: 招标文件解析
+    description: 提取资格条件、评分标准、格式要求和废标风险。
+    workflow: workflows.md#三招标文件解析
+  material_digitization:
+    name: 原材料数字化
+    description: 将招标文件、作业设计、样例标书和知识库材料转为可检索文本，并检查表格和关键数字。
+    workflow: workflows.md#四原材料数字化
+  score_modeling:
+    name: 评分模型建立
+    description: 建立评分项、实质性要求、客观分材料和响应章节之间的映射。
+    workflow: workflows.md#五评分模型建立
+  bid_task_split:
+    name: 投标任务拆解
+    description: 生成材料清单、责任人和截止时间。
+    workflow: workflows.md#六投标任务拆解
+  service_scheme_design:
+    name: 服务方案结构设计
+    description: 生成服务方案目录、三张索引表、章节定位和篇幅分配。
+    workflow: workflows.md#七服务方案结构设计
+  bid_writing:
+    name: 标书撰写辅助
+    description: 按评分项、作业设计和知识库生成响应目录、章节初稿和专项实施细则。
+    workflow: workflows.md#八标书撰写辅助
+  expression_cleanup:
+    name: 表达净化与图表增强
+    description: 清理 AI 腔和内部策略词，生成图表占位目录和关键图表清单。
+    workflow: workflows.md#九表达净化与图表增强
+  bid_review:
+    name: 标书审查
+    description: 检查缺项、偏离、格式、关键数字、样例残留和废标风险。
+    workflow: workflows.md#十标书审查
+  bid_retro:
+    name: 投标复盘
+    description: 沉淀投标结果、问题和复用素材。
+    workflow: workflows.md#十一投标复盘
+
+common_skills:
+  - C01_feishu_message_router
+  - C02_feishu_file_receiver
+  - C03_user_permission_check
+  - C04_task_intent_classifier
+  - C05_document_parser
+  - C07_structured_extraction
+  - C08_knowledge_retrieval
+  - C09_rule_checker
+  - C10_template_renderer
+  - C11_table_exporter
+  - C12_task_breakdown
+  - C13_human_approval
+  - C14_feishu_reminder
+  - C15_audit_log
+  - C16_result_archive
+  - C17_sensitive_info_masking
+  - C18_demo_mode
+
+domain_skills:
+  - B01_opportunity_intake
+  - B02_tender_notice_summary
+  - B03_tender_document_parse
+  - B04_qualification_requirement_extract
+  - B05_scoring_criteria_extract
+  - B06_submission_requirement_extract
+  - B07_bid_no_bid_evaluation
+  - B08_company_material_match
+  - B09_bid_task_breakdown
+  - B10_response_outline_generate
+  - B11_technical_solution_draft
+  - B12_business_document_check
+  - B13_compliance_review
+  - B14_deviation_risk_review
+  - B15_clarification_question_generate
+  - B16_bid_retro_summary
+  - B17_source_material_digitize
+  - B18_score_model_build
+  - B19_substantive_requirement_index
+  - B20_sample_bid_compare
+  - B21_service_scheme_structure_design
+  - B22_chapter_draft_expand
+  - B23_ai_tone_cleanup
+  - B24_chart_placeholder_plan
+  - B25_final_consistency_check
+
+approval_policy:
+  requires_human_confirmation:
+    - 是否投标
+    - 报价策略
+    - 商务承诺
+    - 资质材料真实性
+    - 最终投标文件
+    - 盖章和提交
+  can_auto_generate:
+    - 机会摘要
+    - 招标文件解析报告
+    - 资格条件清单
+    - 评分项清单
+    - 投标任务清单
+    - 响应目录草稿
+    - 评分模型表
+    - 三张索引表
+    - 服务方案十二章结构
+    - 图表占位目录
+    - 一致性检查报告
+    - 审查问题清单
+  must_not_do:
+    - 自动决定参与投标
+    - 自动报价
+    - 伪造资质或业绩
+    - 擅自承诺交付范围
+    - 替代负责人确认最终投标文件
+    - 在正式文件中保留内部评分策略或高分表述
+    - 直接套用样例标书中的项目名称、地点、树种、工期或报价
+
+knowledge_sources:
+  - knowledge/README.md
+  - 公司资质库
+  - 项目案例库
+  - 历史标书库
+  - 标书模板库
+  - 商务条款库
+  - 技术方案素材库
+  - 投标文件写作方法论
+  - 评分模型模板
+  - 12章服务方案结构
+  - 投标文件写作禁词库
+  - 一致性检查清单
+
+templates:
+  opportunity_brief: templates/opportunity_brief.md
+  tender_analysis_report: templates/tender_analysis_report.md
+  score_model: templates/score_model.md
+  response_outline: templates/response_outline.md
+  service_scheme_structure: templates/service_scheme_structure.md
+  review_report: templates/review_report.md
+  consistency_check_report: templates/consistency_check_report.md
+
+demo:
+  script: demo/demo_script.md
+  test_cases: test_cases/p0_demo_cases.md

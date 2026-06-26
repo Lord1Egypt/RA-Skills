@@ -1,0 +1,103 @@
+{
+  "name": "github-bounty-finder",
+  "version": "1.0.0",
+  "description": "Scan Algora/GitHub for high-value bounties with competition analysis and opportunity scoring",
+  "author": "OpenClaw Skills",
+  "license": "MIT",
+  "category": "developer-tools",
+  "tags": [
+    "github",
+    "bounty",
+    "algora",
+    "scanner",
+    "opensource",
+    "money",
+    "automation",
+    "cli"
+  ],
+  "pricing": {
+    "model": "subscription",
+    "amount": 149,
+    "currency": "USD",
+    "interval": "month",
+    "trialDays": 7
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-skills/github-bounty-finder"
+  },
+  "main": "bin/cli.js",
+  "files": [
+    "bin/**/*",
+    "src/**/*",
+    "package.json",
+    "README.md",
+    "SKILL.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "install": "npm install",
+    "postinstall": "chmod +x bin/cli.js || true"
+  },
+  "keywords": [
+    "github-bounty",
+    "algora",
+    "bounty-hunter",
+    "opportunity-scanner",
+    "developer-tools",
+    "passive-income",
+    "open-source"
+  ],
+  "meta": {
+    "featured": true,
+    "trending": false,
+    "verified": false,
+    "createdAt": "2026-03-15T13:29:00+08:00",
+    "updatedAt": "2026-03-15T13:29:00+08:00"
+  },
+  "marketing": {
+    "headline": "Find $3,000-8,000/month in GitHub Bounties",
+    "subheadline": "Automated scanner with competition analysis and smart recommendations",
+    "valueProps": [
+      "🔍 Scan GitHub & Algora simultaneously",
+      "📊 AI-powered opportunity scoring",
+      "🎯 Filter low-competition, high-value bounties",
+      "💰 Average ROI: 3-6x subscription cost",
+      "⚡ Save 10-20 hours/week on manual searching"
+    ],
+    "targetAudience": [
+      "Bounty hunters",
+      "Open source contributors",
+      "Freelance developers",
+      "Dev agencies",
+      "Job seekers"
+    ],
+    "competitorComparison": {
+      "Gitcoin": "We support GitHub + Algora, not just crypto",
+      "Bountysource": "Modern UX with AI scoring",
+      "Manual Search": "10x faster with automation"
+    }
+  },
+  "requirements": [
+    "Node.js 18.0.0 or higher",
+    "GitHub Personal Access Token (free)",
+    "Algora API Key (free)"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-15",
+      "changes": [
+        "Initial release",
+        "GitHub Issues scanning",
+        "Algora bounties integration",
+        "Competition analysis algorithm",
+        "Opportunity scoring (0-100)",
+        "CLI with advanced options",
+        "JSON export support"
+      ]
+    }
+  ]
+}

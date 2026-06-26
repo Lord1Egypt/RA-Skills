@@ -1,0 +1,35 @@
+{
+  "slug": "openclaw-context-budgeting",
+  "name": "Context Budgeting",
+  "description": "上下文管理 - 优化 context window 使用",
+  "version": "1.0.0",
+  "tags": [
+    "context",
+    "memory",
+    "optimization",
+    "token"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "references/"
+  ],
+  "main": "SKILL.md",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "optimization": {
+    "optimized": true,
+    "date": "2026-03-16",
+    "principles": [
+      "karpathy-minimalism",
+      "education-first",
+      "test-coverage"
+    ],
+    "quality_score": 93.8,
+    "batch": "2026-03-16-mass-optimization"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "cities": [
+    {
+      "name": "上海",
+      "query": "Shanghai",
+      "alias": "上海"
+    },
+    {
+      "name": "北京",
+      "query": "Beijing",
+      "alias": "北京"
+    }
+  ]
+}

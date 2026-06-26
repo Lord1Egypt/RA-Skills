@@ -1,0 +1,84 @@
+{
+  "$schema": "./matching-config.schema.json",
+  "description": "Matching configuration for Master Data Intelligent Matching System",
+  "version": "1.0.0",
+  "thresholds": {
+    "exactMatch": 0.92,
+    "vectorSemantic": 0.70,
+    "autoAdjustThreshold": {
+      "enabled": true,
+      "errorRateThreshold": 0.3,
+      "minObservations": 5,
+      "adjustmentStep": 0.02
+    }
+  },
+  "colors": {
+    "confidence": {
+      "high": { "color": "#22c55e", "label": "green", "minScore": 0.92 },
+      "medium": { "color": "#eab308", "label": "yellow", "minScore": 0.70 },
+      "low": { "color": "#ef4444", "label": "red", "minScore": 0.0 },
+      "dbOnly": { "color": "#3b82f6", "label": "blue" }
+    },
+    "verification": {
+      "match": "#22c55e",
+      "mismatch": "#ef4444",
+      "new_info": "#eab308",
+      "db_only": "#3b82f6"
+    }
+  },
+  "ocrMapping": {
+    "similarityThreshold": 0.5,
+    "normalization": {
+      "trim": true,
+      "lowercase": true,
+      "collapseWhitespace": true,
+      "removePunctuation": false
+    }
+  },
+  "hitl": {
+    "autoConfirmThreshold": 0.98,
+    "autoRejectThreshold": 0.3,
+    "requireHumanReviewBelow": 0.92,
+    "reviewActions": [
+      { "action": "confirm_match", "label": "Confirm Match", "requiresNotes": false },
+      { "action": "reject_match", "label": "Reject Match", "requiresNotes": true, "requiresReason": true },
+      { "action": "create_new", "label": "Create New Record", "requiresNotes": false },
+      { "action": "update_fields", "label": "Update & Confirm", "requiresNotes": false, "requiresCorrectedData": true }
+    ]
+  },
+  "activeLearning": {
+    "enabled": true,
+    "persistenceFile": ".mdm-learning-stats.json",
+    "trackFieldErrorRates": true,
+    "trackDomainStats": true,
+    "autoAdjustThresholds": true
+  },
+  "similarity": {
+    "stringMethod": "jaccardBigrams",
+    "numberTolerance": 0.01,
+    "dateFormat": "YYYY-MM-DD",
+    "nullHandling": {
+      "bothEmpty": 1.0,
+      "oneEmpty": 0.0,
+      "bothNull": 1.0
+    }
+  },
+  "domains": {
+    "procurement": {
+      "matchingPriority": ["tax_id", "vendor_code", "vendor_name"],
+      "fuzzyNameThreshold": 0.85
+    },
+    "finance": {
+      "matchingPriority": ["tax_id", "registration_number", "company_name"],
+      "fuzzyNameThreshold": 0.85
+    },
+    "sales": {
+      "matchingPriority": ["customer_code", "customer_name"],
+      "fuzzyNameThreshold": 0.80
+    },
+    "hr": {
+      "matchingPriority": ["id_number", "employee_id", "employee_name"],
+      "fuzzyNameThreshold": 0.80
+    }
+  }
+}

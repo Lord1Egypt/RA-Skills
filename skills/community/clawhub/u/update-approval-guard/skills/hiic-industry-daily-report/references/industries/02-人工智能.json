@@ -1,0 +1,36 @@
+{
+  "id": "02",
+  "name": "人工智能",
+  "category": "战略性新兴产业",
+  "keywords": [
+    "人工智能",
+    "AI",
+    "大模型",
+    "GPT",
+    "机器学习",
+    "深度学习",
+    "自然语言处理"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🤖",
+    "maxDescriptionLength": 200
+  }
+}

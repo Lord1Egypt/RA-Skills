@@ -1,0 +1,7 @@
+{
+  "_meta": {
+    "description": "Operation frequency tracker. Operations exceeding 3 occurrences should become playbooks.",
+    "version": "1.0"
+  },
+  "operations": {}
+}

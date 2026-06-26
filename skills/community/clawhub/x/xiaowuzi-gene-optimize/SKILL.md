@@ -1,35 +1,24 @@
----
-name: "小五子 - 基因优化"
-description: "专注于压缩提示词Token、调整指令权重及语义对齐，提升本地模型执行效率和指令精准度。"
-category: "other"
-source: "ClawHub"
-tags: [evolver, gene, gep, xiaowuzi]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaowuzi-gene-optimize"
-sourceUrl: "https://clawhub.ai/skills/xiaowuzi-gene-optimize"
----
-
-# 小五子 - 基因优化
-
-> 专注于压缩提示词Token、调整指令权重及语义对齐，提升本地模型执行效率和指令精准度。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaowuzi-gene-optimize`
-- **Source URL:** [https://clawhub.ai/skills/xiaowuzi-gene-optimize](https://clawhub.ai/skills/xiaowuzi-gene-optimize)
-
-## Overview
+\# 小五子 - 基因优化 (xiaowuzi-gene-optimize)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaowuzi-gene-optimize
-```
+
+\## 模块概述
+
+本模块充当小五子系统的“逻辑精炼师”。其核心任务是对现有的提示词基因进行高强度的性能调优，旨在用最精简的 Token 实现最精准的执行效果。
+
+
+
+\## 优化维度
+
+\- \*\*Token 压缩技术\*\*：在不损失语义的前提下，自动移除冗余描述，优化上下文关联，显著提升本地模型（如 Qwen 系列）的响应速度。
+
+\- \*\*权重自适应调整\*\*：根据历史任务的成功率反馈，动态调整不同基因指令的权重系数，使 AI 代理在处理特定任务（如理财分析）时表现更专业。
+
+\- \*\*语义对齐优化\*\*：确保演化出的新基因能够完美契合当前底层模型的偏好，消除由于模型更新带来的理解偏差。
+
+
+
+\## 预期产出
+
+经过优化后的技能将具备更高的指令遵循率和更低的出错概率，特别适用于对精度要求极高的量化交易信号分析和策略推演场景。
+

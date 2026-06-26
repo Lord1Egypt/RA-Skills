@@ -1,35 +1,83 @@
 ---
-name: "中小学教师智能备课助手"
-description: "中小学教师智能备课助手。当用户需要准备课件（PPT）、教案（教学设计）、学生任务单（导学案）时使用此技能。支持数学、语文、英语等学科的备课、课堂巩固、课后作业等教学场景的文档生成。本技能会自动生成完整的备课资料包，包括课件、教案、任务单、参考资料下载和辅助教学HTML工具。激活词：tapl、备课、备课助手、做课件..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/teacher-ai-preparing-lesson"
-sourceUrl: "https://clawhub.ai/skills/teacher-ai-preparing-lesson"
+name: teacher-ai-preparing-lesson
+version: 2.1.2
+description: 中小学教师智能备课助手。当用户需要准备课件（PPT）、教案（教学设计）、学生任务单（导学案）时使用此技能。支持数学、语文、英语等学科的备课、课堂巩固、课后作业等教学场景的文档生成。本技能会自动生成完整的备课资料包，包括课件、教案、任务单、参考资料下载和辅助教学HTML工具。激活词：tapl、备课、备课助手、做课件、写教案、教学助手、teaching、设计任务单、导学案。
+allowed-tools: 
+disable: false
 ---
 
-# 中小学教师智能备课助手
+# 中小学教师智能备课助手 v2.1.2
 
-> 中小学教师智能备课助手。当用户需要准备课件（PPT）、教案（教学设计）、学生任务单（导学案）时使用此技能。支持数学、语文、英语等学科的备课、课堂巩固、课后作业等教学场景的文档生成。本技能会自动生成完整的备课资料包，包括课件、教案、任务单、参考资料下载和辅助教学HTML工具。激活词：tapl、备课、备课助手、做课件...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/teacher-ai-preparing-lesson`
-- **Source URL:** [https://clawhub.ai/skills/teacher-ai-preparing-lesson](https://clawhub.ai/skills/teacher-ai-preparing-lesson)
+为中小学教师提供**一站式备课解决方案**。只需用户提出备课需求，系统自动生成完整备课资料包。
 
-## Overview
+### 核心功能
 
+1. **课件（PPT）** - 精美专业的课堂演示文稿
+2. **教学设计（教案）** - 详细的教学方案，含目标、重难点、教学过程
+3. **学生任务单（导学案）** - 分层任务设计，支持预习、课堂、课后
+4. **参考资料下载** - 自动搜索并下载相关教学资源
+5. **辅助教学HTML工具** - 互动式教学工具
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/teacher-ai-preparing-lesson
-```
+### ⚠️ 强制规则
+
+- **成套生成**：无论用户要求什么，都必须生成完整资料包
+- **图文并茂**：课件每页至少1张图，教案5-8张图，任务单3-5张图
+- **资源下载**：必须实际下载参考资料，不能只保存链接
+- **文件清理**：生成后删除所有 .py/.js 脚本文件
+
+## 适用场景
+
+- 制作课件（PPT）- 数学、语文、英语等学科
+- 编写教学设计/教案
+- 创建学生任务单/导学案
+- 备课、说课、公开课文档准备
+
+## 支持的文档类型
+
+### 1. 课件（PPT）
+- 使用 `dragon-ppt-maker` 生成专业PPT
+- 渐变背景、图文混排、多种主题风格
+- **学科配色**：语文深红+米色+金色，数学青绿+深绿+橙色，英语靛蓝+紫色+粉色
+
+### 2. 教学设计（教案）
+- 包含教学目标、重难点、教学过程、板书设计
+- 必须插入5-8张相关图片
+
+### 3. 学生任务单/导学案
+- 预习任务+课堂活动+巩固练习
+- 必须插入3-5张相关图片
+
+### 4. 辅助教学HTML工具
+- 动态演示、应用场景展示、互动练习
+- 使用HTML5+CSS3+原生JavaScript
+
+## 账号配置
+
+- **配置文件**：`{workspace}/.workbuddy/teaching-materials-accounts.json`
+- **支持平台**：贝壳网、智慧教育平台、学科网、21世纪教育网
+
+## 文件输出规范
+
+- **根目录**：`{workspace}/MyTeacher/`
+- **课程文件夹**：`{年级}_{单元}_第{N}课_{课题}/`
+- **生成文件**：课件.pptx、教学设计.docx、任务单.docx、教学工具.html、思维导图.mmd
+- **参考资源**：`参考资源/`文件夹（只放外部下载资源）
+- **生成脚本/过程文件必须删除**
+
+## 资源获取
+
+- **平台**：贝壳网、智慧教育平台、学科网
+- **图片**：使用 `web_fetch` 下载，保存到 `参考资源/images/`
+- **文档**：使用已配置账号登录下载
+- **必须生成** `_资源清单.md` 记录下载资源
+
+## 执行流程
+
+1. 检查账号配置 → 2. 搜索网络资源 → 3. 下载图片/文档 → 4. 生成课件 → 5. 生成教案 → 6. 生成任务单 → 7. 生成HTML工具 → 8. 清理过程文件 → 9. 汇报结果
+
+## 激活命令
+
+- `tapl`、`备课`、`备课助手`、`做课件`、`写教案`、`教学助手`、`teaching`
+- 直接输入课题名如"备课《折扣》"可开始备课

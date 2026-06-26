@@ -1,0 +1,35 @@
+{
+  "pipelineId": "e4d38573-938f-4d94-86fa-4c12bd6be57e",
+  "taskId": "task-sevo-web-simplify-6a0b38a2",
+  "level": "L2+",
+  "requiredStages": [
+    "spec",
+    "spec-review-gate",
+    "implement",
+    "review",
+    "smoke-test",
+    "ux-acceptance",
+    "deploy",
+    "verify",
+    "ledger"
+  ],
+  "skippedStages": [],
+  "stages": {
+    "spec": {
+      "stageId": "spec",
+      "status": "completed",
+      "artifacts": [
+        {
+          "type": "spec",
+          "path": "docs/design/web-console-ui-simplify-spec.md",
+          "createdAt": "2026-05-18T16:04:50.552154+00:00"
+        }
+      ],
+      "startedAt": "2026-05-18T16:04:50.552154+00:00",
+      "completedAt": "2026-05-18T16:04:50.552154+00:00"
+    }
+  },
+  "currentStage": "spec-review-gate",
+  "createdAt": "2026-05-18T16:04:50.552154+00:00",
+  "updatedAt": "2026-05-18T16:04:50.552154+00:00"
+}

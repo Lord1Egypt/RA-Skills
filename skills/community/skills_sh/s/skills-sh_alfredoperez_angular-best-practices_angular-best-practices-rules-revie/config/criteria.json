@@ -1,0 +1,141 @@
+{
+  "rule": {
+    "maxLines": 50,
+    "idealLines": 40,
+    "minCodeBlocks": 0,
+    "maxCodeBlocks": 2,
+    "idealCodeLinesPerBlock": 3,
+    "maxCodeLinesPerBlock": 5,
+    "descriptionMaxSentences": 1,
+    "requiredH2Count": 1,
+    "titleFormat": "imperative",
+    "forbidden": [
+      "npm install",
+      "yarn add",
+      "pnpm add",
+      "tsconfig.json",
+      ".eslintrc",
+      "folder structure diagrams over 5 lines"
+    ]
+  },
+  "textOnlyRules": {
+    "description": "Rules that work as single sentences with inline code",
+    "indicators": [
+      "Single syntax difference",
+      "Naming convention",
+      "Single annotation addition",
+      "Informational guidance"
+    ],
+    "examples": [
+      "ts-import-type.md",
+      "ts-return-types.md",
+      "ts-default-exports.md",
+      "ts-libraries.md",
+      "ts-naming.md"
+    ]
+  },
+  "codeExamples": {
+    "needsBothIncorrectAndCorrect": [
+      "RxJS operator patterns",
+      "Memory leak prevention",
+      "Performance optimizations (O(n) vs O(1))",
+      "SSR hydration patterns",
+      "Subtle API differences"
+    ],
+    "onlyCorrectNeeded": [
+      "Simple API usage",
+      "Configuration patterns",
+      "When anti-pattern is obvious"
+    ],
+    "qualityIndicators": {
+      "good": [
+        "2-3 lines per block",
+        "Inline comments explaining WHY",
+        "Minimum code to demonstrate pattern",
+        "Realistic but simple variable names"
+      ],
+      "bloatIndicators": [
+        "More than 5 lines in code block",
+        "Multiple variants of same pattern",
+        "Setup/boilerplate obscuring core pattern",
+        "Showing 3+ ways to do same thing"
+      ]
+    }
+  },
+  "usefulness": {
+    "criteria": [
+      {
+        "id": "ai_mistake",
+        "question": "Would AI make this mistake?",
+        "keep": "AI commonly makes this mistake",
+        "improve": "Depends on context",
+        "remove": "AI already knows this"
+      },
+      {
+        "id": "ai_discoverable",
+        "question": "Is this AI-discoverable?",
+        "keep": "Tribal knowledge not in docs",
+        "improve": "Docs exist but scattered",
+        "remove": "Easy to find in Angular docs"
+      },
+      {
+        "id": "specific_guidance",
+        "question": "Is guidance specific enough?",
+        "keep": "Clear, measurable criteria",
+        "improve": "Some specifics but missing thresholds",
+        "remove": "Too vague (use when appropriate)"
+      },
+      {
+        "id": "prevents_bugs",
+        "question": "Does it prevent real bugs?",
+        "keep": "Prevents bugs, memory leaks, or perf issues",
+        "improve": "Minor issues",
+        "remove": "Style preference only"
+      }
+    ],
+    "scoring": {
+      "keep": 4,
+      "improve": "2-3",
+      "remove": "0-1"
+    }
+  },
+  "validity": {
+    "requiredEvidence": true,
+    "sources": [
+      "angular.dev",
+      "Angular GitHub",
+      "Angular blog",
+      "Community consensus"
+    ]
+  },
+  "decisionCriteria": {
+    "required": ["when to use", "when not to use"],
+    "mustBeSpecific": true,
+    "avoidVaguePhrases": [
+      "when needed",
+      "when appropriate",
+      "for complex scenarios",
+      "if you want",
+      "as needed"
+    ]
+  },
+  "verdict": {
+    "keep": {
+      "usefulnessScore": 4,
+      "description": "High-value rule, keep as-is"
+    },
+    "improve": {
+      "usefulnessScore": "2-3",
+      "description": "Useful but needs specific fixes"
+    },
+    "remove": {
+      "usefulnessScore": "0-1",
+      "reasons": [
+        "AI already knows this",
+        "Easily found in Angular docs",
+        "Style preference only",
+        "Too vague to apply"
+      ]
+    }
+  }
+}

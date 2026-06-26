@@ -1,0 +1,28 @@
+{
+  "name": "wechat-helper",
+  "version": "1.1.0",
+  "description": "WeChat File Helper web automation. Send text messages via filehelper.weixin.qq.com with automatic QR code handling.",
+  "main": "scripts/monitor.sh",
+  "scripts": {
+    "start": "bash scripts/monitor.sh",
+    "capture-qr": "bash scripts/capture_qrcode.sh",
+    "monitor": "bash scripts/monitor.sh",
+    "cron": "bash scripts/cron-wechat.sh"
+  },
+  "keywords": [
+    "wechat",
+    "file-helper",
+    "wechat-filehelper",
+    "weixin"
+  ],
+  "author": "qidu",
+  "license": "MIT",
+  "homepage": "https://filehelper.weixin.qq.com",
+  "engines": {
+    "bash": ">=4.0"
+  },
+  "dependencies": {},
+  "optionalDependencies": {
+    "openclaw": ">=2025.0.0"
+  }
+}

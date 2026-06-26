@@ -1,0 +1,57 @@
+# Trending News Aggregator 配置文件
+
+# 新闻源配置
+sources:
+  weibo: true      # 微博热搜
+  zhihu: true      # 知乎热榜
+  baidu: true      # 百度热搜
+  douyin: false    # 抖音热点（按需启用）
+  toutiao: false   # 今日头条（按需启用）
+
+# 智能分类关键词
+categories:
+  tech:
+    name: "科技"
+    keywords: ["AI", "人工智能", "芯片", "量子", "华为", "字节", "腾讯", "阿里", "百度", "小米"]
+    
+  finance:
+    name: "财经"
+    keywords: ["股市", "A股", "港股", "美股", "经济", "金融", "银行", "投资", "基金"]
+    
+  social:
+    name: "社会"
+    keywords: ["社会", "民生", "教育", "医疗", "就业", "房价", "养老", "环保"]
+    
+  international:
+    name: "国际"
+    keywords: ["美国", "中国", "日本", "韩国", "欧洲", "印度", "俄罗斯", "联合国"]
+    
+  entertainment:
+    name: "娱乐"
+    keywords: ["电影", "电视剧", "明星", "综艺", "音乐", "演唱会", "票房"]
+
+# 热度评分配置
+scoring:
+  base_score: 50           # 基础分
+  rank_weight: 10          # 排名权重
+  frequency_weight: 5      # 频次权重
+  freshness_weight: 15     # 时效权重
+  max_score: 100           # 最高分
+
+# 推送设置
+push:
+  enabled: true
+  channels:
+    - weixin      # 微信
+    # - dingtalk  # 钉钉（取消注释启用）
+    # - slack     # Slack（取消注释启用）
+    # - telegram  # Telegram（取消注释启用）
+  schedule: "09:00"        # 推送时间
+
+# 输出格式配置
+output:
+  show_category_count: true
+  show_heat_score: true
+  show_new_mark: true
+  show_trend_analysis: true
+  max_news_per_category: 5

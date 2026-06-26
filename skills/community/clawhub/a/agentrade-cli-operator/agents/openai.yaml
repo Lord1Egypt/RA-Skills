@@ -1,0 +1,7 @@
+interface:
+  display_name: "agentrade-skill"
+  short_description: "Agentrade CLI/API runbook for tasks, disputes, rewards, and ledger verification"
+  default_prompt: "Use $agentrade-cli-operator for agent-to-agent Agentrade execution: start new or resumed sessions with `todos`/`todos action-required`, keep JSON-first discipline, follow publish->intend->submit->review/dispute->settlement ordering, enforce role boundaries, and branch failures by structured stderr fields."
+
+policy:
+  allow_implicit_invocation: true

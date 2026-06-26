@@ -1,0 +1,25 @@
+# photo-screener 配置
+
+# CLIP 模型名称（open_clip 格式）
+clip_model = "MobileCLIP2-S0"
+
+# CLIP 预训练权重标签
+clip_pretrained = "dfndr2b"
+
+# 美学评分最低阈值 (1-10)，低于此分数的照片将被淘汰
+min_aesthetic_score = 4.0
+
+# 余弦相似度去重阈值 (0-1)，高于此值的照片视为重复
+dedup_threshold = 0.97
+
+# 每个 LLM 批次最大照片数
+llm_batch_size = 20
+
+# 只保留评分最高的 N 张照片，0 = 保留全部
+top_k = 0
+
+# 是否递归搜索子目录中的照片（相机上传通常是多层目录，建议开启）
+recursive = true
+
+# 筛选报告输出路径，空字符串 = 自动（input_dir/filter_report.json）
+screener_output = ""

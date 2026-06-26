@@ -1,0 +1,6 @@
+﻿Datum;Konto;Typ av transaktion;Värdepapper/beskrivning;Antal;Kurs;Belopp;Transaktionsvaluta;Courtage;Valutakurs;Instrumentvaluta;ISIN;Resultat
+2024-04-11;SavingsAccount;Insättning;Direktinsättning från Nordea Bank;;;30000;SEK;;;;;
+2024-03-29;SavingsAccount;Preliminärskatt kapitalränta;;;;-18,09;SEK;;;;;
+2024-03-29;SavingsAccount;Inlåningsränta;;;;60,3;SEK;;;;;
+2024-02-23;SavingsAccount;Uttag;Uttag till 1234567890;;;-49136;SEK;;;;;
+2024-01-23;SavingsAccount;Insättning;Direktinsättning från Nordea Bank;;;20000;SEK;;;;;

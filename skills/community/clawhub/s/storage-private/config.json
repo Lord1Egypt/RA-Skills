@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "description": "Storage Private — Node Registry. Manual nodes are your trusted core. Discovered nodes are auto-added by `discover.mjs` from the FilStream seeder network.",
+  "replication": {
+    "min_replicas": 2,
+    "write_quorum": 1,
+    "read_strategy": "first-success"
+  },
+  "discovery": {
+    "enabled": true,
+    "index_url": "http://[2a05:a00:2::10:11]:8080",
+    "memory_store_port": 8081,
+    "max_nodes": 20,
+    "auto_update_interval": "6h",
+    "notes": "Run `node scripts/discover.mjs --update-config` to refresh. As FilStream grows, new seeder nodes that run memory-stores are auto-discovered."
+  },
+  "nodes": [
+    {
+      "id": "local-mac-mini",
+      "type": "local",
+      "path": "~/.openclaw/workspace/.storage-private/blobs",
+      "location": "USA (Mac mini, Rick's home)",
+      "priority": 0,
+      "enabled": true
+    },
+    {
+      "id": "norway-primary",
+      "type": "memory-store",
+      "url": "http://[2a05:a00:2::10:11]:8081",
+      "location": "Norway — 4-GPU server (Hetzner)",
+      "priority": 1,
+      "enabled": true,
+      "notes": "Also reachable as ::190 (same machine)"
+    },
+    {
+      "id": "norway-replica",
+      "type": "memory-store",
+      "url": "http://[2a05:a00:2::150]:8081",
+      "location": "Norway — 2-GPU server (Hetzner)",
+      "priority": 2,
+      "enabled": true
+    },
+    {
+      "id": "filstream-network",
+      "type": "filstream",
+      "index_url": "http://[2a05:a00:2::10:11]:8080",
+      "seeder_url": "http://[2a05:a00:2::150]:4001",
+      "location": "Distributed (FilStream CDN)",
+      "priority": 3,
+      "enabled": true,
+      "notes": "Content-addressed P2P. As seeders join, distribution improves automatically."
+    },
+    {
+      "id": "filstream-2a05-a00-2-190",
+      "type": "memory-store",
+      "url": "http://[2a05:a00:2::190]:8081",
+      "location": "europe (2a05:a00:2::190)",
+      "priority": 10,
+      "enabled": true,
+      "discovered": true,
+      "discoveredAt": "2026-03-03T16:05:38.972Z",
+      "seederId": "seeder-7927c0ad4bcd"
+    }
+  ],
+  "lastDiscovery": "2026-03-03T16:05:38.976Z",
+  "discoveredNodeCount": 1
+}

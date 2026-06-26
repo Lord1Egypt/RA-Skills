@@ -1,0 +1,12 @@
+{
+  "name": "agent-code-no7-audit-eagle",
+  "version": "1.0.0",
+  "description": "Agent Code No.7 审计鹰眼 - 财务分析与审计辅助",
+  "keywords": ["agent", "audit", "finance", "accounting", "analysis"],
+  "author": "monarchmio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monarchmio/agent-code-no7"
+  }
+}

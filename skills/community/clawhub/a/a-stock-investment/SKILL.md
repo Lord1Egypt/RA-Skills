@@ -1,35 +1,69 @@
 ---
-name: "a-stock-investment"
-description: "A股每日行情分析工具，提供大盘走势、板块轮动、资金流向、热点板块分析功能。当用户询问A股行情、A股走势、A股分析、股市行情、今日A股、大盘分析、板块轮动等相关问题时触发此 Skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-investment"
-sourceUrl: "https://clawhub.ai/skills/a-stock-investment"
+name: a-stock-investment
+description: A股每日行情分析工具，提供大盘走势、板块轮动、资金流向、热点板块分析功能。当用户询问A股行情、A股走势、A股分析、股市行情、今日A股、大盘分析、板块轮动等相关问题时触发此 Skill。
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📈",
+        "requires":
+          {
+            "env": ["TAVILY_API_KEY"],
+          },
+      },
+  }
 ---
 
-# a-stock-investment
+# A股行情分析 Skill
 
-> A股每日行情分析工具，提供大盘走势、板块轮动、资金流向、热点板块分析功能。当用户询问A股行情、A股走势、A股分析、股市行情、今日A股、大盘分析、板块轮动等相关问题时触发此 Skill。
+A股每日行情分析工具，提供大盘走势、板块轮动、资金流向、热点板块分析功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-investment`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-investment](https://clawhub.ai/skills/a-stock-investment)
+## 环境要求
 
-## Overview
+**必需环境变量：**
+- `TAVILY_API_KEY` - Tavily API 密钥
 
+申请地址：https://tavily.com/
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 功能模块
+
+### 1. 大盘走势分析
+- 上证指数、深证成指、创业板指
+- 成交量能分析
+- 涨跌幅统计
+
+### 2. 板块轮动分析
+- 今日强势板块
+- 板块资金流入流出
+- 轮动规律分析
+
+### 3. 资金流向
+- 北向资金动向
+-主力资金流向
+- 散户情绪指标
+
+### 4. 热点分析
+- 涨停板分析
+- 概念板块热度
+- 龙头股表现
+
+## 数据来源
+
+使用 Tavily API 搜索获取A股相关信息：
 ```bash
-hermes skills install clawhub/a-stock-investment
+node {baseDir}/scripts/search-stock.mjs <query> [--type market|sector|funding|hot]
 ```
+
+## 输出格式
+
+分析报告包含：
+1. **大盘概览** - 主要指数表现、成交量
+2. **板块表现** - 今日强势/弱势板块
+3. **资金流向** - 北向资金、主力资金
+4. **风险提示** - 注意事项
+
+## 使用示例
+
+用户说 "今天A股怎么样" 或 "帮我分析一下股市" 时：
+1. 运行搜索脚本获取最新数据
+2. 综合分析给出投资建议

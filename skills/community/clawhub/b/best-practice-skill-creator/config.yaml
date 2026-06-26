@@ -1,0 +1,34 @@
+# Best Practice Skill Creator - MLLM Configuration
+# Environment variables override these values:
+#   MLLM_PROVIDER, MLLM_API_KEY, MLLM_BASE_URL, MLLM_MODEL
+
+# Active provider: "openai" or "gemini"
+provider: openai
+
+# Provider configurations
+providers:
+  openai:
+    api_key: "sk-9Ld6xm13fTFHmfQYigDyStTcVrXEjxerlLxizlu6nRs"
+    base_url: "https://api.cloubic.com/v1"
+    model: "gemini-3.1-pro-preview"
+
+  gemini:
+    api_key: ""           # or set MLLM_API_KEY
+    base_url: "https://generativelanguage.googleapis.com/v1beta"
+    model: "gemini-3.1-pro-preview"
+
+# Video processing settings
+video:
+  max_frames: 30          # Maximum frames to extract from video
+  frame_interval_sec: 2   # Seconds between extracted frames
+  max_resolution: [1280, 720]  # Resize frames to fit within this resolution
+
+# Image processing settings
+image:
+  max_resolution: [1280, 720]
+  supported_formats: ["png", "jpg", "jpeg", "webp", "bmp"]
+
+# Skill generation settings
+skill:
+  default_os: ["darwin", "linux", "win32"]
+  default_emoji: "🔧"

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>幻灯片模板 - 封面</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+            position: relative;
+        }
+        
+        /* 装饰元素 */
+        .decor-circle-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            right: -150px;
+            top: -200px;
+            background: radial-gradient(circle, rgba(0,102,255,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .decor-circle-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            left: -150px;
+            bottom: -150px;
+            background: radial-gradient(circle, rgba(0,204,102,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .decor-line {
+            position: absolute;
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0,102,255,0.5), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* 主内容区 */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+        
+        /* 图标 */
+        .icon-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, #0066ff, #00cc66);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0,102,255,0.4);
+        }
+        
+        .icon-wrapper i {
+            font-size: 60px;
+            color: white;
+        }
+        
+        /* 标题 */
+        .title {
+            font-size: 72px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 36px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .date {
+            font-size: 24px;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .date i {
+            color: #00cc66;
+        }
+        
+        /* 底部装饰 */
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #0066ff, transparent);
+        }
+        
+        .footer-text {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="decor-circle-1"></div>
+    <div class="decor-circle-2"></div>
+    <div class="decor-line"></div>
+    
+    <div class="content">
+        <div class="icon-wrapper">
+            <i class="fas fa-robot"></i>
+        </div>
+        <h1 class="title">SenseNova 6.7 Flash-Lite</h1>
+        <p class="subtitle">工作效果展示与未来展望</p>
+        <p class="date"><i class="fas fa-calendar"></i> 2026年5月3日 - 5月4日</p>
+    </div>
+    
+    <div class="footer">
+        <div class="footer-line"></div>
+        <span class="footer-text">商汤科技 AI 助手</span>
+        <div class="footer-line"></div>
+    </div>
+</body>
+</html>

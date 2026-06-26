@@ -1,0 +1,20 @@
+{
+  "name": "valuation-mastery",
+  "version": "1.0.0",
+  "description": "估值大师：融合达莫达兰/CFA协会/中证协2025指引/110案例/建模手册的完整估值体系",
+  "author": "Wang Dongjie, CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "keywords": [
+    "估值",
+    "DCF",
+    "市场乘数法",
+    "自由现金流",
+    "WACC",
+    "并购",
+    "非上市公司",
+    "流动性折扣",
+    "CGMA",
+    "CFA",
+    "达莫达兰"
+  ]
+}

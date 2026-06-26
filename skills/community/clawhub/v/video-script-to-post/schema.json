@@ -1,0 +1,32 @@
+{
+  "name": "video_script_to_post",
+  "description": "短视频全链路编导引擎，从热点选题→分镜脚本→AI生成提示词→多平台排期，一站式输出可执行内容包",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "topic_or_product": {
+        "type": "string",
+        "description": "核心主题/产品名/活动名称（例：新型降噪耳机/秋季露营Vlog/双十一宠粉专场）"
+      },
+      "target_platform": {
+        "type": "string",
+        "enum": ["douyin", "bilibili", "video_account", "xiaohongshu"],
+        "description": "目标发布平台"
+      },
+      "video_duration": {
+        "type": "string",
+        "enum": ["15s", "30s", "60s", "3min"],
+        "description": "目标视频时长（默认：30s）"
+      },
+      "tone_style": {
+        "type": "string",
+        "enum": ["专业科普", "剧情反转", "情绪共鸣", "干货拆解", "生活记录"],
+        "description": "内容调性风格"
+      }
+    },
+    "required": ["topic_or_product", "target_platform"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

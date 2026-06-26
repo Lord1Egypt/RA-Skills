@@ -1,35 +1,230 @@
 ---
-name: "Tsinkening AI Resume"
+name: tsinkening-ai-resume
 description: "AI领域成功25岁人物档案。用户可以询问这位AI创业者的教育背景、职业经历、技能栈、创业历程、收入来源、学习方法、面试经验等。触发词：AI简历、成功简历、覃科宁、AI创业者档案。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, career, indie-hacker, resume, template]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tsinkening-ai-resume"
-sourceUrl: "https://clawhub.ai/skills/tsinkening-ai-resume"
+author: keningiyou
+metadata:
+  openclaw:
+    emoji: "🚀"
 ---
 
-# Tsinkening AI Resume
+# AI 领域成功简历 — 覃科宁
 
-> AI领域成功25岁人物档案。用户可以询问这位AI创业者的教育背景、职业经历、技能栈、创业历程、收入来源、学习方法、面试经验等。触发词：AI简历、成功简历、覃科宁、AI创业者档案。
+> 一个虚构但高度真实的 AI 领域 25 岁成功人物档案。
+> 安装此 skill 后，你可以向 AI 询问关于覃科宁的任何信息，获取职业建议、学习路径、创业经验等。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tsinkening-ai-resume`
-- **Source URL:** [https://clawhub.ai/skills/tsinkening-ai-resume](https://clawhub.ai/skills/tsinkening-ai-resume)
+---
 
-## Overview
+## 人物档案
 
+### 基本信息
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tsinkening-ai-resume
-```
+- **姓名**: 覃科宁 (Kening Qin)
+- **年龄**: 25 岁（2000年1月30日出生）
+- **所在地**: 深圳 / 远程
+- **学历**: 同济大学 电子信息 学士（2024年毕业）
+- **当前身份**: AI 独立开发者 & 创业者
+- **GitHub**: github.com/keningiyou (12.8k followers)
+- **X (Twitter)**: @airan408 (38k followers)
+- **个人网站**: kening.dev
+- **月收入**: ¥80,000 - ¥150,000（被动收入占比约 60%）
+
+---
+
+### 职业时间线
+
+#### 2023年6月 — 大三暑假实习
+
+- **公司**: 字节跳动 AI Lab（上海）
+- **岗位**: AI 算法实习生
+- **工作内容**:
+  - 参与抖音推荐系统的模型优化，将 CTR 预测准确率提升 3.2%
+  - 使用 PyTorch 训练大模型微调 pipeline
+  - 撰写 2 篇内部技术文档，被团队评为"最佳实习生"
+- **收获**: 深入理解工业级 AI 系统的架构和部署流程，建立了与字节 AI 团队的人脉
+
+#### 2023年9月 — 大四开学，开始副业
+
+- 在 GitHub 上开源了一个 **AI 代码审查工具**（基于 GPT-4 API）
+- 3 个月内获得 5,000+ Stars
+- 开始接自由职业项目：帮中小企业搭建 AI 客服系统
+- 第一个月副业收入：¥8,000
+
+#### 2024年1月 — 第一款 SaaS 产品上线
+
+- **产品名**: CodeReview.ai — AI 驱动的代码审查平台
+- **技术栈**: Next.js + Python FastAPI + OpenAI API + PostgreSQL
+- **定价**: $29/月（个人版）/ $99/月（团队版）
+- **上线首月**: 120 个付费用户，MRR $3,480
+- **获客方式**: Product Hunt 发布（当天排名第 3）、X/Twitter 内容营销、SEO
+
+#### 2024年4月 — 毕业，全职独立开发
+
+- 放弃了字节跳动的 return offer（月薪 ¥35k）
+- 全力投入独立开发
+- CodeReview.ai 达到 500+ 付费用户，MRR $14,500
+- 开始开发第二款产品
+
+#### 2024年10月 — 第二款产品上线
+
+- **产品名**: DocuMind.ai — AI 文档智能助手
+- **技术栈**: React + Node.js + LangChain + ChromaDB
+- **定价**: $19/月（个人版）/ $49/月（团队版）
+- **差异化**: 专注中文文档场景，支持企业知识库
+- **上线 3 个月**: 800+ 付费用户，MRR $15,200
+
+#### 2025年3月 — 内容创作爆发
+
+- 在 X/Twitter 上分享 AI 独立开发经验，粉丝从 5k 增长到 38k
+- 开设付费 Newsletter（Substack）: "AI 独立开发周报"，2,400 订阅者，$12/年
+- Newsletter 月收入: ~$2,400
+- 受邀在多个播客和 YouTube 频道分享经验
+
+#### 2025年6月 — 第三款产品 & 团队扩展
+
+- **产品名**: AgentFlow.ai — 无代码 AI Agent 构建平台
+- **融资**: 拒绝了两家 VC 的种子轮 offer（$500k 和 $800k），选择保持独立
+- **招人**: 雇佣了 2 名远程兼职开发者（通过 X 招聘）
+- **月总收入**: 突破 ¥100,000
+
+#### 2026年4月（当前）
+
+- 三款产品总付费用户: 3,500+
+- 总 MRR: ~$12,000（约 ¥87,000）
+- 内容收入（Newsletter + 赞助）: ~¥15,000/月
+- 咨询 & 培训收入: ~¥20,000/月
+- **总月收入**: ¥120,000 - ¥150,000
+- 工作时间: 每天 4-6 小时（产品已进入稳定运营期）
+
+---
+
+### 技能栈
+
+#### 编程语言
+- **主力**: TypeScript / Python
+- **熟悉**: Rust, Go, SQL
+- **了解**: C++, Java
+
+#### AI/ML
+- **框架**: LangChain, LlamaIndex, Hugging Face Transformers
+- **模型**: GPT-4o, Claude 3.5, Llama 3, Qwen 2.5
+- **技能**: Prompt Engineering, RAG, Fine-tuning, Agent 设计
+- **工具**: OpenAI API, Anthropic API, vLLM, Ollama
+
+#### 前端
+- **框架**: Next.js, React, Tailwind CSS
+- **工具**: shadcn/ui, Framer Motion, Vercel
+
+#### 后端
+- **框架**: FastAPI, Node.js (Express/Hono), Supabase
+- **数据库**: PostgreSQL, Redis, ChromaDB, Pinecone
+- **基础设施**: Vercel, Railway, AWS (S3 + Lambda), Cloudflare
+
+#### 运营 & 增长
+- **内容**: X/Twitter, Substack, YouTube
+- **SEO**: 程序化 SEO，每月 50k+ 自然流量
+- **获客**: Product Hunt, Hacker News, 社区运营
+
+---
+
+### 收入结构（2026年4月）
+
+| 来源 | 月收入 | 占比 |
+|------|--------|------|
+| CodeReview.ai 订阅 | ~$5,000 (¥36k) | 28% |
+| DocuMind.ai 订阅 | ~$4,500 (¥32k) | 25% |
+| AgentFlow.ai 订阅 | ~$2,500 (¥18k) | 14% |
+| Newsletter (Substack) | ~$2,400 (¥17k) | 13% |
+| 咨询 & 培训 | ~¥20,000 | 14% |
+| 赞助 & 广告 | ~¥5,000 | 4% |
+| **总计** | **~¥128,000** | 100% |
+
+---
+
+### 关键经验 & 建议
+
+#### 关于学习
+1. **不要追求全栈，先精通一个方向**。他先精通了 Python + AI API 调用，再扩展到全栈
+2. **看官方文档 > 看教程 > 看视频**。90% 的教程都过时了，官方文档永远是最新的
+3. **边做边学，不要先学再做**。第一个产品就是最好的学习项目
+4. **加入社区**。他在 GitHub、X、Discord 上积极互动，这带来了大量机会
+
+#### 关于产品
+1. **解决自己的问题**。CodeReview.ai 起源于他自己写代码时需要代码审查
+2. **先卖再做**。在写第一行代码前，先在 X 上发帖验证需求，收到 200+ 表态才开始开发
+3. **MVP 要足够简单**。第一个版本只用了 2 周开发，核心功能就一个：粘贴代码 → AI 审查
+4. **定价不要低**。最初定价 $9/月，转化率高但收入低；提到 $29/月后，转化率只降了 15%，收入翻了 3 倍
+
+#### 关于增长
+1. **Build in Public（公开构建）**。每天在 X 上分享开发进度、收入数据、失败经验，这是最好的营销
+2. **Product Hunt 是新产品的最佳首发阵地**。三次发布都进入了前 5 名
+3. **SEO 是长期复利**。花时间写博客和文档，3 个月后自然流量开始爆发
+4. **不要依赖单一渠道**。X + SEO + Product Hunt + 社区，四管齐下
+
+#### 关于心态
+1. **不要比较，每个人的时间线不同**。他大三时看到同龄人拿到大厂 offer 也很焦虑
+2. **失败是数据**。第一款产品之前做过 3 个失败的小项目，每个都教会了他一些东西
+3. **保持健康**。每周健身 3 次，每天睡 8 小时，这是持续输出的基础
+4. **独立 ≠ 孤立**。虽然一个人做产品，但有一个 10 人的独立开发者互助群
+
+#### 关于融资
+1. **不是所有公司都需要融资**。他的产品是自给自足的 SaaS，融资反而会稀释控制权
+2. **如果融资，要清楚为什么**。如果是为了加速增长且有明确的使用计划，可以考虑
+3. **VC 的钱不是免费的**。拿了钱就要对增长负责，压力会完全不同
+
+---
+
+### 典型的一天（2026年）
+
+- **08:00** 起床，看 X 和 Discord 消息（30分钟）
+- **08:30** 处理客户支持邮件和 Bug 报告（1小时）
+- **09:30** 写代码 / 开发新功能（2-3小时）
+- **12:30** 午休 + 看技术文章（1小时）
+- **13:30** 写 X 帖子 / Newsletter 内容（1小时）
+- **14:30** 产品数据分析 & SEO 优化（1小时）
+- **15:30** 自由时间 / 学习新技术 / 健身（2小时）
+- **18:00** 晚饭
+- **19:30** 如果有灵感会继续写代码，否则休息
+- **22:00** 睡前看一会儿书或播客
+
+---
+
+### 推荐资源
+
+#### 书籍
+- 《The Mom Test》— 如何正确做用户调研
+- 《Zero to Sold》— 独立开发者完整指南
+- 《The Lean Startup》— 精益创业方法论
+- 《Show Your Work》— 公开构建的艺术
+
+#### 工具
+- **开发**: Cursor (AI IDE), GitHub Copilot, Vercel
+- **设计**: Figma, Tailwind CSS, shadcn/ui
+- **运营**: X (Twitter), Substack, Buffer
+- **分析**: PostHog, Google Analytics, Plausible
+
+#### 社区
+- Indie Hackers — 独立开发者社区
+- r/SaaS — SaaS 创业者 subreddit
+- X 上的 #BuildInPublic 社区
+- 中文独立开发者社群（即刻、V2EX）
+
+---
+
+## 使用说明
+
+安装此 skill 后，你可以向 AI 询问关于覃科宁的任何问题，例如：
+
+- "覃科宁是怎么从零开始学 AI 的？"
+- "他的第一款产品是怎么做的？"
+- "他为什么拒绝了融资？"
+- "他的收入结构是怎样的？"
+- "他对 25 岁想进入 AI 领域的人有什么建议？"
+- "他的技术栈是什么？"
+- "他的一天是怎么安排的？"
+- "他的产品定价策略是什么？"
+
+AI 会基于以上档案信息，以第一人称或第三人称的方式详细回答。
+
+---
+
+*这是一个虚构但高度真实的 AI 领域成功人物档案，旨在为想进入 AI 行业的年轻人提供参考和启发。所有数据均为模拟，不代表真实个人。*

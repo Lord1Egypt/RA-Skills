@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Proposal Skill"
+  short_description: "Create agentic development proposals"
+  default_prompt: "Use $agentic-proposal-skill to choose and draft the right proposal or SOW for an agentic development opportunity."
+
+policy:
+  allow_implicit_invocation: false

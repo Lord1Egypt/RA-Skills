@@ -1,35 +1,46 @@
 ---
-name: "pr-workflow"
-description: "Indexed by skills.sh from tursodatabase/turso"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tursodatabase"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tursodatabase/turso/pr-workflow"
-sourceUrl: "https://skills.sh/tursodatabase/turso/pr-workflow"
+name: pr-workflow
+description: General guidelines for Commits, formatting, CI, dependencies, security
 ---
+# PR Workflow Guide
 
-# pr-workflow
+## Commit Practices
 
-> Indexed by skills.sh from tursodatabase/turso
+- **Atomic commits.** Small, focused, single purpose
+- **Don't mix:** logic + formatting, logic + refactoring
+- **Good message** = easy to write short description of intent
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tursodatabase
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tursodatabase/turso/pr-workflow`
-- **Source URL:** [https://skills.sh/tursodatabase/turso/pr-workflow](https://skills.sh/tursodatabase/turso/pr-workflow)
+Learn `git rebase -i` for clean history.
 
-## Overview
+## PR Guidelines
 
+- Keep PRs focused and small
+- Run relevant tests before submitting
+- Each commit tells part of the story
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tursodatabase/turso/pr-workflow
-```
+## CI Environment Notes
+
+If running as GitHub Action:
+- Max-turns limit in `.github/workflows/claude.yml`
+- OK to commit WIP state and push
+- OK to open WIP PR and continue in another action
+- Don't spiral into rabbit holes. Stay focused on key task
+
+## Security
+
+Never commit:
+- `.env` files
+- Credentials
+- Secrets
+
+## Third-Party Dependencies
+
+When adding:
+1. Add license file under `licenses/`
+2. Update `NOTICE.md` with dependency info
+
+## External APIs/Tools
+
+- Never guess API params or CLI args
+- Search official docs first
+- Ask for clarification if ambiguous

@@ -1,35 +1,38 @@
 ---
-name: "Wolfram Alpha"
-description: "Perform complex mathematical calculations, physics simulations, data analysis, and scientific queries via the Wolfram|Alpha LLM API. Use this skill when you..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wolfram-alpha"
-sourceUrl: "https://clawhub.ai/skills/wolfram-alpha"
+name: wolfram-alpha
+description: Perform complex mathematical calculations, physics simulations, data analysis, and scientific queries via the Wolfram|Alpha LLM API. Use this skill when you need exact answers to quantitative questions.
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🔢",
+      "requires": { 
+        "bins": ["python3"], 
+        "pip": ["requests"],
+        "env": ["WOLFRAM_APP_ID"]
+      }
+    }
+  }
 ---
 
-# Wolfram Alpha
+# Wolfram|Alpha Skill
 
-> Perform complex mathematical calculations, physics simulations, data analysis, and scientific queries via the Wolfram|Alpha LLM API. Use this skill when you...
+This skill leverages the Wolfram|Alpha LLM API to provide accurate answers to scientific and mathematical questions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wolfram-alpha`
-- **Source URL:** [https://clawhub.ai/skills/wolfram-alpha](https://clawhub.ai/skills/wolfram-alpha)
+## Usage
 
-## Overview
+Call the script with your query as an argument:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/wolfram-alpha
+python3 wolfram_query.py "integrate x^2 from 0 to 3"
 ```
+
+## Features
+
+- **Mathematics**: Calculus, algebra, statistics.
+- **Science**: Physics, chemistry, astronomy.
+- **Data**: Economic data, geographic facts, demographics.
+- **Units**: Unit conversions and currency exchange.
+
+## Configuration
+
+Requires a `WOLFRAM_APP_ID` in the environment variables (typically set in your `.env` file).

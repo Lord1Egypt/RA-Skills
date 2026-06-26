@@ -1,35 +1,171 @@
----
-name: "macos-wechat-send"
-description: "Automates sending messages on WeChat Mac by controlling the app via AppleScript and clipboard to reliably deliver text to specified contacts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/macos-wechat-send"
-sourceUrl: "https://clawhub.ai/skills/macos-wechat-send"
----
+# wechat-send - 微信自动发送技能
 
-# macos-wechat-send
+## 描述
 
-> Automates sending messages on WeChat Mac by controlling the app via AppleScript and clipboard to reliably deliver text to specified contacts.
+通过 AppleScript 控制微信 Mac 版自动发送消息和文件。使用剪贴板复制粘贴方式，避免输入法影响。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/macos-wechat-send`
-- **Source URL:** [https://clawhub.ai/skills/macos-wechat-send](https://clawhub.ai/skills/macos-wechat-send)
+**触发场景：**
+- 用户要求发送微信消息
+- 需要自动化微信操作
+- macOS 系统 + 微信 Mac 版环境
 
-## Overview
+## 环境检查
 
+1. **系统检查** - 必须是 macOS
+2. **微信检查** - 微信必须已打开并登录
+3. **权限检查** - 需要辅助功能权限
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/macos-wechat-send
+# 检查微信是否运行
+osascript -e 'tell application "System Events" to get name of every process' | grep -i wechat
 ```
+
+## 使用方法
+
+### 基本用法
+
+```bash
+# 发送单条消息
+wechat-send "联系人名字" "消息内容"
+
+# 发送多条消息（连续发送）
+wechat-send "联系人名字" "消息 1" "消息 2" "消息 3"
+
+# 发送文件
+wechat-send "联系人名字" "/path/to/file.xlsx"
+
+# 混合发送（文字 + 文件，按顺序发送）
+wechat-send "联系人名字" "说明文字" "/path/to/file.pdf" "补充说明"
+
+# 从 stdin 读取消息
+echo "消息内容" | wechat-send "联系人名字"
+```
+
+### 参数说明
+
+| 参数 | 说明 |
+|------|------|
+| 联系人名字 | 微信中的联系人名字，必须完全匹配 |
+| 消息内容 | 要发送的消息文本（支持特殊字符） |
+| 文件路径 | 本地文件绝对路径，自动检测并发送 |
+
+### 发送顺序
+
+**按参数顺序发送**，用户可自由控制：
+
+```bash
+# 先文字后文件
+wechat-send "罗红" "这是文件请查收" "/path/to/file.xlsx"
+
+# 先文件后文字
+wechat-send "罗红" "/path/to/file.xlsx" "请查收"
+
+# 交错发送
+wechat-send "罗红" "说明 1" "file1.xlsx" "说明 2" "file2.xlsx"
+```
+
+## 操作流程
+
+### 文字消息发送
+
+1. **激活微信窗口**（四重保障）
+   - `open -a WeChat`
+   - `tell application "WeChat" to activate`
+   - `set frontmost of process "WeChat" to true`
+   - `perform action "AXRaise" of window 1`
+
+2. **搜索联系人**（仅第一条消息或新联系人时）
+   - **新联系人**：先用"文件传输助手"垫脚石确保聚焦 → 再搜索目标
+   - **同一联系人**：窗口已打开，直接发送
+   - 按 ESC 清除状态 → Cmd+F 搜索 → 粘贴名字 → 回车打开
+
+3. **发送消息**
+   - 粘贴消息内容到剪贴板
+   - Cmd+V 粘贴
+   - 回车发送
+
+### 文件发送
+
+1. **激活微信窗口**（同上）
+
+2. **搜索联系人**（仅第一条消息或新联系人时，同上）
+
+3. **复制文件**
+   - 激活 Finder
+   - 选中目标文件（`select POSIX file "路径"`）
+   - Cmd+C 复制
+
+4. **粘贴发送**
+   - 切换回微信
+   - Cmd+V 粘贴文件
+   - 回车发送
+
+## 连续发送优化
+
+| 场景 | 行为 |
+|------|------|
+| **第 1 条 + 新联系人** | 垫脚石 → 搜索目标 → 发送 |
+| **第 1 条 + 同一联系人** | 直接发送（窗口已打开） |
+| **第 2-N 条** | 直接粘贴发送（跳过搜索） |
+
+**优势：**
+- 连续发送时不重复搜索联系人
+- 每条消息间隔 0.5 秒，避免发送过快
+- 自动检测文件路径，区分文件和文字
+
+## 脚本文件
+
+- `wechat-send.py` - 主脚本（支持文字 + 文件）
+- `wechat-send.sh` - 快捷脚本（参数解析）
+
+## 依赖
+
+- Python 3
+- macOS AppleScript
+- pyautogui（可选）
+
+## 常见问题
+
+### 1. 辅助功能权限
+如果提示权限不足：
+```
+系统设置 → 隐私与安全性 → 辅助功能
+```
+勾选"终端"或你使用的终端应用。
+
+### 2. 联系人找不到
+- 检查名字是否完全匹配
+- 确认联系人确实存在
+- 尝试使用备注名
+
+### 3. 文件发送失败
+- 确认文件路径正确且存在
+- 确认 Finder 有访问权限
+- 大文件可能需要更长时间
+
+### 4. 消息发送失败
+- 确认微信已登录
+- 确认网络正常
+- 检查是否有多个同名联系人
+
+## 示例
+
+```bash
+# 发送 5 个笑话
+wechat-send "罗红" "笑话 1" "笑话 2" "笑话 3" "笑话 4" "笑话 5"
+
+# 发送文件 + 说明
+wechat-send "罗红" "/Users/sincere/Downloads/report.xlsx" "这是本月报表，请查收"
+
+# 复杂场景：文字 + 多文件 + 文字
+wechat-send "罗红" "以下是附件" "file1.pdf" "file2.xlsx" "有任何问题随时联系我"
+```
+
+## ⚠️ 免责声明
+
+本工具仅供学习和个人使用。使用者应遵守：
+1. 微信服务条款
+2. 当地法律法规
+3. 道德规范
+
+**请勿用于骚扰、诈骗或其他非法活动。**

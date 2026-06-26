@@ -1,0 +1,2 @@
+# Email Manager Skill Dependencies
+PyYAML>=6.0

@@ -1,0 +1,2 @@
+moonshine-voice
+requests # For Aliyun ASR fallback, if used, and general HTTP requests

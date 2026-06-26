@@ -1,0 +1,17 @@
+﻿{
+  "simulation_type": "optoelectronic",
+  "name": "thin_active_layer_template",
+  "description": "Template for testing a thinner user-defined active or transport layer. Configure the actual layer, baseline value, and sweep criterion before running.",
+  "requires_configuration": true,
+  "base_template": "optoelectronic_template",
+  "variation": {
+    "target_field": "device_stack.layers[<CONFIGURE_LAYER_INDEX>].thickness_nm",
+    "value": "<CONFIGURE_THIN_LAYER_THICKNESS_NM>",
+    "hypothesis": "<CONFIGURE_USER_HYPOTHESIS>"
+  },
+  "device_stack": "<CONFIGURE_OR_COPY_DEVICE_STACK_FROM_YOUR_PROJECT_CONFIG>",
+  "optical_generation": "<CONFIGURE_OPTICAL_GENERATION>",
+  "bias_range": "<CONFIGURE_BIAS_RANGE>",
+  "temperature_K": "<CONFIGURE_TEMPERATURE_K>",
+  "output_dir": "output/opto_thin_active_layer_configured_project"
+}

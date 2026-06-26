@@ -1,35 +1,21 @@
 ---
-name: "视频创作"
-description: "video-creation-pro - 从云端仓库同步的技能"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-creation-suite"
-sourceUrl: "https://clawhub.ai/skills/video-creation-suite"
+name: video-creation-pro
+description: video-creation-pro - 从云端仓库同步的技能
+allowed-tools: Bash(*)
 ---
 
-# 视频创作
+# video-creation-pro
 
-> video-creation-pro - 从云端仓库同步的技能
+此技能从云端仓库同步。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-creation-suite`
-- **Source URL:** [https://clawhub.ai/skills/video-creation-suite](https://clawhub.ai/skills/video-creation-suite)
+## 来源
+- 仓库: https://github.com/anbeime/skill
+- 路径: skills/video-creation-pro/
 
-## Overview
+## 状态
+- [ ] 已下载完整内容
+- [ ] 已配置环境变量
+- [ ] 已测试运行
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-creation-suite
-```
+## 说明
+请访问云端仓库获取完整的技能文件和使用说明。

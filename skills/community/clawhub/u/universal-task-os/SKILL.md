@@ -1,35 +1,44 @@
 ---
-name: "Universal Task OS"
-description: "通用三轴任务操作系统。将任意任务沿三个正交轴处理：执行轴（6大元操作+管线编排）管怎么做，内容轴（清单法+样本法）管造什么，创新轴（4种模式+10种元框架）管怎么不一样。执行轴必选，内容轴和创新轴按需激活。触发词：三轴、执行、内容、创新、任务系统、管线+清单+创新、全栈任务、任务操作系统。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/universal-task-os"
-sourceUrl: "https://clawhub.ai/skills/universal-task-os"
+name: universal-task-os
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 通用三轴任务操作系统。将任意任务沿三个正交轴处理：执行轴（6大元操作+管线编排）管怎么做，内容轴（清单法+样本法）管造什么，创新轴（4种模式+10种元框架）管怎么不一样。执行轴必选，内容轴和创新轴按需激活。触发词：三轴、执行、内容、创新、任务系统、管线+清单+创新、全栈任务、任务操作系统。
 ---
 
-# Universal Task OS
+# Universal Task OS - 通用三轴任务操作系统
 
-> 通用三轴任务操作系统。将任意任务沿三个正交轴处理：执行轴（6大元操作+管线编排）管怎么做，内容轴（清单法+样本法）管造什么，创新轴（4种模式+10种元框架）管怎么不一样。执行轴必选，内容轴和创新轴按需激活。触发词：三轴、执行、内容、创新、任务系统、管线+清单+创新、全栈任务、任务操作系统。
+三个轴的源技能参考文件（按需读取）：执行轴→`references/capability-pipeline-os.md`（Schema/管线编排/IPO统一/通用管线模式/身份叠加/领域校准/实例化演示/执行规则/工具策略/呈现规则/事实纪律），内容轴→`references/compose-methods.md`，创新轴→`references/innovation-os.md`（四种模式处理能力含提示词原文/10种框架提示词原文/基元嵌入vs独立对比/迁移4类型+源领域质量检验/构建完整流程/领域场景适配指引15领域/方案输出格式/工作流总览/事实纪律）。完整定义（核心理念/Step0三轴判定/执行轴完整定义/内容轴清单法与样本法/创新轴四维评估与四种模式/三轴协同5种模式/统一执行流程Step1-4/工具调用策略/呈现规则/事实纪律）在 `references/universal-task-os.md`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/universal-task-os`
-- **Source URL:** [https://clawhub.ai/skills/universal-task-os](https://clawhub.ai/skills/universal-task-os)
+三轴正交：执行轴（How/必选）+ 内容轴（What/按需）+ 创新轴（Why Different/按需）。
 
-## Overview
+## Step 0：三轴判定
 
+### 0-1 复杂度判定
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/universal-task-os
-```
+| 复杂度 | 判定标准 | 执行路径 |
+|--------|----------|----------|
+| **简单** | 可直接完成 | 单一IPO基元执行 |
+| **中等** | 3-7步协调 | 单层管线编排 |
+| **复杂** | 8+步或多层嵌套 | 多层管线+IPO递归 |
+
+### 0-2 创新需求判定
+
+| 判定 | 激活 |
+|------|------|
+| 常规执行，结果可预测 | 不激活创新轴 |
+| 需要突破默认路径 | 激活创新轴 |
+
+### 0-3 内容类型判定
+
+| 判定 | 激活 |
+|------|------|
+| 简单答案、数据、操作结果 | 不激活内容轴 |
+| 文档、方案、报告等结构化成品 | 激活内容轴 |
+
+### 判定组合
+
+| 组合 | 激活轴 |
+|------|--------|
+| 简单+无创新+非结构化 | 执行轴（IPO基元） |
+| 中等+无创新+结构化 | 执行轴+内容轴 |
+| 中等+创新+非结构化 | 执行轴+创新轴 |
+| 复杂+创新+结构化 | 三轴全开 |

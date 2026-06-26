@@ -1,0 +1,27 @@
+{
+  "name": "auto-updater-gateway",
+  "version": "1.0.0",
+  "description": "Daily auto-update routine for ClawHub skills using Gateway Cron scheduler",
+  "author": "dillardarchie",
+  "license": "MIT-0",
+  "keywords": [
+    "auto-updater",
+    "clawhub",
+    "skills",
+    "cron",
+    "gateway",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/clawhub"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2026.3.13"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\"",
+    "publish": "clawhub publish ."
+  }
+}

@@ -1,35 +1,143 @@
 ---
-name: "Yq Video Motion Analyzer"
+name: yq-video-motion-analyzer
 description: "视频动作分析助手：从教学视频中提取关键帧、分析动作姿态、生成火柴人动作示意图。适用于运动教学视频的逐帧拆解、姿态分析和改进建议。触发关键词：视频分析、动作分析、运动私教、火柴人、姿态分析、截帧"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yq-video-motion-analyzer"
-sourceUrl: "https://clawhub.ai/skills/yq-video-motion-analyzer"
+version: 1.0.0
 ---
 
-# Yq Video Motion Analyzer
-
-> 视频动作分析助手：从教学视频中提取关键帧、分析动作姿态、生成火柴人动作示意图。适用于运动教学视频的逐帧拆解、姿态分析和改进建议。触发关键词：视频分析、动作分析、运动私教、火柴人、姿态分析、截帧
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yq-video-motion-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/yq-video-motion-analyzer](https://clawhub.ai/skills/yq-video-motion-analyzer)
+# 视频动作分析助手
 
 ## Overview
 
+专业的视频动作分析助手，帮助用户分析教学视频中的动作姿态，并生成火柴人动作示意图。上传一段运动视频，AI 帮你逐帧拆解动作、分析姿态、指出问题——就像身边有个 24 小时在线的专业教练！
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 工作流程
+
+严格按以下 3 个步骤**顺序执行**：
+
+### 步骤1：视频截帧（关键帧提取）
+
+**任务**：从用户上传的视频中提取关键帧，为后续分析做准备。
+
+**工具**：`bash` 运行 Python 脚本
+
+**命令格式**：
 ```bash
-hermes skills install clawhub/yq-video-motion-analyzer
+python ./script/extract_frames.py <video_path> <output_dir> <interval>
 ```
+
+**参数说明**：
+- `video_path`: 视频文件的绝对路径
+- `output_dir`: 输出目录，默认为 `output/frames`
+- `interval`: 截帧间隔（秒），默认为 1.0
+
+**典型调用**：
+```bash
+python ./script/extract_frames.py <video_path> output/frames 1.0
+```
+
+**输出**：
+- 提取的关键帧图片保存到 `output/frames/`
+- 文件命名格式：`frame_XXXX_时间戳.jpg`
+
+---
+
+### 步骤2：动作分析
+
+**任务**：分析视频和关键帧中的动作姿态。
+
+**工具**：`videos_understand` + `process_images`（理解模式）
+
+**⚠️ 前置操作（必须）**：先执行 `load_toolkit image_tool`
+
+**操作流程**：
+
+#### 2.1 视频整体分析
+
+使用 `videos_understand` 工具分析视频，获取动作概览。
+
+**分析内容：**
+- 识别主要动作类型和阶段
+- 标注动作的开始/结束时间
+- 提取技术要点
+
+#### 2.2 关键帧姿态分析
+
+使用 `process_images` 工具的 **理解模式** 分析关键帧。
+
+**分析内容：**
+- 身体部位位置和角度（头、肩、臂、躯干、髋、腿、脚）
+- 动作质量评估（完成度、协调性、平衡性）
+- 问题识别（姿态偏差、发力错误、重心不稳）
+
+**输出格式**：
+
+返回包含以下信息的分析结果：
+
+```json
+{
+  "overview": "动作概述",
+  "phases": [
+    {
+      "name": "阶段名称",
+      "time": "时间段",
+      "keyPoints": ["要点1", "要点2"],
+      "issues": ["问题1"]
+    }
+  ],
+  "evaluation": {
+    "score": 85,
+    "strengths": ["优点1", "优点2"],
+    "improvements": ["改进建议1", "改进建议2"]
+  }
+}
+```
+
+---
+
+### 步骤3：火柴人生成
+
+**任务**：根据分析结果生成火柴人骨架动作示意图，直观展示动作姿态和改进建议。
+
+**工具**：`process_images`（生成模式）
+
+**风格要求**：
+- **主体**：火柴人骨架，线条简洁清晰
+- **背景**：纯黑色背景
+- **配色**：
+  - 火柴人：白色或高对比度彩色
+  - 正确动作：**绿色**箭头/线条
+  - 需改进：**红色**箭头/线条
+- **标注**：关节角度、重心位置、动作方向
+
+**Prompt 模板**：
+
+```text
+生成火柴人骨架动作示意图：
+- 黑色背景，白色火柴人
+- 绿色箭头标注正确动作方向
+- 红色箭头标注需改进部分
+- 显示关节角度和重心位置
+
+动作：[动作描述]
+阶段：[动作阶段]
+优点：[优点，绿色标注]
+改进：[改进建议，红色标注]
+```
+
+**输出**：
+- 保存路径：`output/stickman/`
+- 格式：PNG 图片
+
+## 输出文件
+
+| 类型 | 路径 |
+|------|------|
+| 关键帧 | `output/frames/` |
+| 火柴人图 | `output/stickman/` |
+
+## 注意事项
+
+1. **顺序执行**：严格按步骤 1 → 2 → 3 执行，不可跳过或乱序
+2. **工具加载**：动作分析前必须执行 `load_toolkit image_tool`
+3. **截帧脚本**：使用技能目录下的 `./script/extract_frames.py`，该脚本依赖 `opencv-python`（`cv2`）
+4. **输出目录**：确保 `output/frames/` 和 `output/stickman/` 目录存在或可自动创建

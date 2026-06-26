@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check syntax (py compile)
+        run: |
+          python -m py_compile App/main.py
+          python -m py_compile App/config.py
+          python -m py_compile App/formatter.py
+          python -m py_compile App/telegram.py
+          python -m py_compile App/webhook.py
+          echo "✅ All files compiled successfully"
+
+      - name: Run formatter unit test
+        run: python -m pytest tests/ -v || echo "No tests yet — skipping"

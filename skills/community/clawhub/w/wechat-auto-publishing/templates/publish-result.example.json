@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "timestamp": "2026-04-05T15:47:43.363Z",
+  "media_id": "example_media_id",
+  "title": "文章标题示例",
+  "summary": "一句话摘要示例",
+  "author": "作者名",
+  "thumb_media_id": "example_thumb_media_id",
+  "publish_id": 2247483950,
+  "article_id": "example_article_id",
+  "article_url": "http://mp.weixin.qq.com/s?__biz=xxx",
+  "publish_status": 0
+}

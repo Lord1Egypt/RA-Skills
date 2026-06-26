@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Error Dashboard — Credara Admin</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; background: #0a0a0f; color: #e0e0e0; padding: 2rem; }
+  h1 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .subtitle { color: #888; margin-bottom: 1.5rem; font-size: 0.9rem; }
+  .auth-bar { display: flex; gap: 8px; margin-bottom: 2rem; }
+  .auth-bar input { flex: 1; padding: 8px 12px; background: #141420; border: 1px solid #2a2a3a; border-radius: 6px; color: #e0e0e0; font-family: inherit; }
+  .btn { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+  .btn-sm { background: #6366f1; color: white; }
+  .btn-sm:hover { background: #5558e6; }
+  .btn-danger { background: #7f1d1d; color: #fca5a5; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .stat { background: #141420; border: 1px solid #2a2a3a; border-radius: 8px; padding: 1rem; text-align: center; }
+  .stat-value { font-size: 1.8rem; font-weight: 700; color: #f87171; }
+  .stat-label { font-size: 0.75rem; color: #888; margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  th { text-align: left; padding: 8px; color: #888; border-bottom: 1px solid #2a2a3a; }
+  td { padding: 8px; border-bottom: 1px solid #1a1a2a; vertical-align: top; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  td:hover { white-space: normal; }
+  .route { color: #60a5fa; }
+  .status-5xx { color: #f87171; }
+  .status-4xx { color: #fbbf24; }
+  .ts { color: #888; font-size: 0.75rem; }
+  .top-routes { margin-bottom: 2rem; }
+  .route-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .route-bar-fill { height: 6px; background: #f87171; border-radius: 3px; }
+  .route-bar-label { font-size: 0.75rem; color: #888; min-width: 200px; }
+  .route-bar-count { font-size: 0.75rem; color: #f87171; font-weight: 600; }
+  #content { display: none; }
+  .refresh { color: #888; font-size: 0.75rem; }
+</style>
+</head>
+<body>
+<h1>🔴 Error Dashboard</h1>
+<p class="subtitle">Production error tracking — auto-refreshes every 30s</p>
+
+<div class="auth-bar">
+  <input type="password" id="adminKey" placeholder="Admin API Key" />
+  <button class="btn btn-sm" onclick="load()">Load</button>
+  <button class="btn btn-danger" onclick="pruneOld()">Prune 7d+</button>
+  <span class="refresh" id="refreshTimer"></span>
+</div>
+
+<div id="content">
+  <div class="stats">
+    <div class="stat"><div class="stat-value" id="total24h">-</div><div class="stat-label">Errors (24h)</div></div>
+    <div class="stat"><div class="stat-value" id="total1h" style="color:#fbbf24">-</div><div class="stat-label">Errors (1h)</div></div>
+  </div>
+
+  <div class="top-routes" id="topRoutes"></div>
+
+  <table>
+    <thead><tr><th>Time</th><th>Method</th><th>Route</th><th>Status</th><th>Error</th><th>Request ID</th></tr></thead>
+    <tbody id="errorTable"></tbody>
+  </table>
+</div>
+
+<script>
+const API = window.location.origin;
+let key = '';
+let refreshInterval;
+
+async function api(path) {
+  const res = await fetch(`${API}${path}`, { headers: { 'X-Admin-Key': key }});
+  if (!res.ok) throw new Error(`${res.status}`);
+  return res.json();
+}
+
+async function load() {
+  key = document.getElementById('adminKey').value;
+  if (!key) return;
+  document.getElementById('content').style.display = 'block';
+  await refresh();
+  if (refreshInterval) clearInterval(refreshInterval);
+  refreshInterval = setInterval(refresh, 30000);
+}
+
+async function refresh() {
+  try {
+    const [stats24, stats1, errors] = await Promise.all([
+      api('/api/admin/errors/stats?hours=24'),
+      api('/api/admin/errors/stats?hours=1'),
+      api('/api/admin/errors?limit=100'),
+    ]);
+
+    document.getElementById('total24h').textContent = stats24.total;
+    document.getElementById('total1h').textContent = stats1.total;
+
+    // Top routes
+    const maxCount = Math.max(...stats24.byRoute.map(r => r.count), 1);
+    document.getElementById('topRoutes').innerHTML = stats24.byRoute.slice(0, 5).map(r => `
+      <div class="route-bar">
+        <span class="route-bar-label">${r.route || '(unknown)'}</span>
+        <div class="route-bar-fill" style="width:${(r.count/maxCount)*200}px"></div>
+        <span class="route-bar-count">${r.count}</span>
+      </div>
+    `).join('');
+
+    // Error table
+    document.getElementById('errorTable').innerHTML = (errors.errors || []).map(e => `
+      <tr>
+        <td class="ts">${new Date(e.timestamp).toLocaleString()}</td>
+        <td>${e.method || '-'}</td>
+        <td class="route">${e.route || '-'}</td>
+        <td class="${e.status_code >= 500 ? 'status-5xx' : 'status-4xx'}">${e.status_code || '-'}</td>
+        <td>${e.error_message || '-'}</td>
+        <td class="ts">${(e.request_id || '-').slice(0,8)}</td>
+      </tr>
+    `).join('');
+
+    document.getElementById('refreshTimer').textContent = `Last refresh: ${new Date().toLocaleTimeString()}`;
+  } catch (e) {
+    alert('Failed to load: ' + e.message);
+  }
+}
+
+async function pruneOld() {
+  if (!confirm('Delete errors older than 7 days?')) return;
+  const data = await api('/api/admin/errors/old');
+  alert(`Deleted ${data.deleted} old errors`);
+  refresh();
+}
+
+// Auto-load if key in URL hash
+if (window.location.hash) {
+  document.getElementById('adminKey').value = window.location.hash.slice(1);
+  load();
+}
+</script>
+<div class="legal-footer" style="text-align:center;padding:2rem 0 1rem;font-size:.7rem;color:#888;font-family:'Space Mono',monospace">
+  &copy; 2026 Credara &middot;
+  <a href="/terms" style="color:#888;margin:0 .5rem">Terms</a> &middot;
+  <a href="/privacy" style="color:#888;margin:0 .5rem">Privacy</a> &middot;
+  <a href="/disclosures" style="color:#888;margin:0 .5rem">Legal</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{# ── 单概念完整区块 ── #}
+{# concept: { name, definition, principle, analogy: {scenario, mapping, limitation}, insight, layer } #}
+<div class="concept-block">
+    {# 概念标题 #}
+    <div class="concept-header" style="background: linear-gradient(135deg, #00a1d6, #0087b5); color: white;">
+        <strong>{{ concept.name }}</strong>
+        {% if concept.layer == 'concept' %}
+        <span class="layer-tag">📖 概念层</span>
+        {% else %}
+        <span class="layer-tag">🔧 操作层</span>
+        {% endif %}
+    </div>
+
+    {# Definition #}
+    {% if concept.definition %}
+    <div class="concept-definition">
+        <div style="font-size: 9pt; color: #888; margin-bottom: 4px;">📌 定义</div>
+        {{ concept.definition }}
+    </div>
+    {% endif %}
+
+    {# Principle（理论阐述）★ #}
+    {% if concept.principle %}
+    <div class="concept-principle">
+        <div style="font-size: 9pt; color: #555; margin-bottom: 6px; font-weight: bold;">📚 理论阐述</div>
+        <div style="line-height: 1.9; font-size: 10pt;">{{ concept.principle }}</div>
+    </div>
+    {% endif %}
+
+    {# Analogy #}
+    {% if concept.analogy %}
+    <div class="concept-analogy">
+        <div style="font-size: 9pt; color: #856404; margin-bottom: 6px;">💡 生活类比</div>
+        {% if concept.analogy.scenario %}
+        <div><strong>场景：</strong>{{ concept.analogy.scenario }}</div>
+        {% endif %}
+        {% if concept.analogy.mapping %}
+        <div style="margin-top: 6px;"><strong>映射：</strong>{{ concept.analogy.mapping }}</div>
+        {% endif %}
+        {% if concept.analogy.limitation %}
+        <div style="margin-top: 6px; color: #dc3545;"><strong>⚠️ 局限：</strong>{{ concept.analogy.limitation }}</div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {# Insight #}
+    {% if concept.insight %}
+    <div class="concept-insight">
+        <div style="font-size: 9pt; color: #00a1d6; margin-bottom: 4px;">🧠 个人洞察</div>
+        {{ concept.insight }}
+    </div>
+    {% endif %}
+</div>

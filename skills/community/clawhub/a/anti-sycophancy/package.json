@@ -1,0 +1,33 @@
+{
+  "name": "anti-sycophancy",
+  "version": "1.0.0",
+  "description": "Three-layer sycophancy defense skill for Claude Code and OpenClaw",
+  "author": "0xcjl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xcjl/anti-sycophancy"
+  },
+  "clawhHub": {
+    "slug": "anti-sycophancy",
+    "owner": "0xcjl",
+    "tags": [
+      "sycophancy",
+      "defense",
+      "anti-sycophancy",
+      "ask-dont-tell",
+      "critical-thinking",
+      "claude-code",
+      "openclaw",
+      "ai-safety"
+    ],
+    "languages": ["en", "zh-CN"],
+    "readme": {
+      "en": "README.md",
+      "zh-CN": "README.zh-CN.md"
+    }
+  },
+  "peerDependencies": {
+    "clawhub": ">=1.0.0"
+  }
+}

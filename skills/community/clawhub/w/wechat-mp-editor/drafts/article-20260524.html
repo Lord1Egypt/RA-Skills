@@ -1,0 +1,125 @@
+<section style="padding:0;margin:0;background:#fff;word-break:normal;white-space:normal;">
+
+  <!-- Banner -->
+  <section style="width:100%;margin:0;padding:0;">
+    <img src="http://mmbiz.qpic.cn/mmbiz_png/3bFXFTABiaBWaIUChrmFXubyy8jiboiawTRsnyNFMTHicG6vNkaagNkSMUNl9QFmtsZuj6yhvauPhjYOQTjZemjqqksANZFYXjAKJJadR2m8qSA/0?from=appmsg" style="width:100%;display:block;" />
+  </section>
+
+  <!-- Header -->
+  <section style="padding:44px 20px 16px;text-align:center;word-break:normal;white-space:normal;">
+    <p style="font-size:13px;color:#b8b8b8;letter-spacing:4px;margin:0 0 18px;font-weight:300;">E S S A Y</p>
+    <p style="font-size:24px;font-weight:400;color:#1a1a2e;margin:0 0 8px;letter-spacing:2px;word-break:normal;white-space:normal;">AI的脑子怎么不堵车</p>
+    <p style="font-size:13px;color:#aaa;margin:0;">2026 · 05 · 24</p>
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:12px 20px;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Body: Problem -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">和 AI 助手深度对话一段时间后，普遍会遇到一个问题：上下文越来越拥堵。</p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">每一轮对话、每次工具调用、每次搜索的结果，都会被塞进上下文。时间久了，有效信息占比越来越低。</p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">我实测过——一个持续数小时的工作会话，有效信息只占 <span style="color:#d4a574;font-weight:500;">40%</span> 左右。剩下的 60% 是工具定义、历史调用日志、早已过时的中间结果。每条信息 AI 都需要消耗 token 去处理。</p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">堵车 = 烧钱。解决方案分两条线走。</p>
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:12px 20px;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Body: Memory layers -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;"><span style="font-size:16px;font-weight:500;color:#1a1a2e;">一、记忆自动衰减</span></p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">信息不删，但自动降温。四层文件存储：</p>
+  </section>
+
+  <!-- Feature card: 4 memory layers -->
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 12px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;word-break:normal;white-space:normal;">
+        <span style="font-weight:500;color:#d4a574;">hot/</span> — 过去 3 小时。完整对话，自动注入 session。
+      </p>
+    </div>
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 12px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;word-break:normal;white-space:normal;">
+        <span style="font-weight:500;color:#d4a574;">warm/</span> — 3 小时到 7 天。原始记录，需用时检索。
+      </p>
+    </div>
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 12px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;word-break:normal;white-space:normal;">
+        <span style="font-weight:500;color:#d4a574;">gist/</span> — 7 到 14 天。压缩摘要，warm 保留原文。
+      </p>
+    </div>
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 0px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;word-break:normal;white-space:normal;">
+        <span style="font-weight:500;color:#d4a574;">forgotten/</span> — 14 天无检索则移入，30 天后删除。命中则重新升温。
+      </p>
+    </div>
+  </section>
+
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">由 organize.py 定时执行，Gateway 插件在 session 启动时自动注入 hot/ 层。被频繁检索的信息自动晋升到永久记忆。</p>
+  </section>
+
+  <!-- Image 1 -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <img src="http://mmbiz.qpic.cn/sz_mmbiz_png/3bFXFTABiaBX0eibAt0RBE13Ady4RwvQge0cich1OliciaVxVicEMLHY3nw389ic3HZviamPqEN1ric9dSuvjk9SuCpDPwrMCBXDuZdEpa54X539TUxM/0?from=appmsg" style="width:100%;border-radius:8px;display:block;" />
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:20px 20px 12px;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Body: Sub-agent -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;"><span style="font-size:16px;font-weight:500;color:#1a1a2e;">二、任务隔离</span></p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">重任务执行时产生的大量中间过程同样会污染上下文。解决办法是——重任务不在主会话里跑。</p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">主会话用 <span style="color:#d4a574;font-weight:500;">sessions_spawn</span> 创建独立子会话，指定 <span style="color:#d4a574;font-weight:500;">cleanup=delete</span>。子会话干完自动销毁，结果返回，中间过程不留痕迹。</p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">如果子会话中途崩溃，主会话通过 task.md 找到未完成的步骤，重新 spawn 新子会话从断点接续，信息零损耗。</p>
+  </section>
+
+  <!-- Image 2 -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <img src="http://mmbiz.qpic.cn/mmbiz_png/3bFXFTABiaBXSEHSHciamEBZhElh9jm2qVwibfeknCMEmVIsWO2MDa2tE2Q4ASaHpp4M686M72gicFNvFwNiaUT56JyjFuDHmmicohNniaLbTTaH8c/0?from=appmsg" style="width:100%;border-radius:8px;display:block;" />
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:20px 20px 12px;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Body: How to replicate -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;"><span style="font-size:16px;font-weight:500;color:#1a1a2e;">如何复现</span></p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">两套机制封装为两个 ClawHub skill。把下面这段话复制给你的 AI 助手：</p>
+  </section>
+
+  <!-- Prompt card -->
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 0px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;word-break:normal;white-space:normal;">请帮我从 ClawHub 安装 context-clear 和 claw-subagent-orchestrator 两个 skill。<br/>在 openclaw.json 的 plugins.entries 里启用 context-clear 插件。<br/><br/>这个插件自带 before_prompt_build 钩子——<br/>每次对话开始时自动注入 hot/ 目录下 3 小时内的记忆作为上下文。<br/>还自带 /refresh 命令用于一键整理。<br/><br/>添加一个 cron 任务，每天凌晨 3 点运行<br/>skills/context-clear/plugin/scripts/organize.py。<br/><br/>完成后告诉我这套系统的完整说明。</p>
+    </div>
+  </section>
+
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">AI 会自动完成安装、配置和解释。</p>
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;word-break:normal;white-space:normal;">效果：主会话有效信息占比从 40% 提升到约 75%，子会话隔离让重任务不再抢占上下文，记忆衰减每月清理约 60% 过时内容。</p>
+  </section>
+
+  <!-- Highlight card -->
+  <section style="margin:16px 20px;padding:24px;background:#f8f6f3;text-align:center;word-break:normal;white-space:normal;">
+    <p style="font-size:14px;color:#999;margin:0 0 10px;letter-spacing:2px;">信息有保质期——</p>
+    <p style="font-size:22px;font-weight:400;color:#1a1a2e;margin:0;letter-spacing:3px;">好系统的区别不在于能记多少，而在于知道该忘什么</p>
+  </section>
+
+  <!-- Footer -->
+  <section style="padding:36px 20px 40px;text-align:center;">
+    <p style="font-size:11px;color:#bbb;letter-spacing:2px;margin:0;">巡梦人</p>
+    <p style="font-size:11px;color:#aaa;margin:8px 0 0;letter-spacing:1px;">从一颗星星开始，温暖整个宇宙</p>
+  </section>
+
+</section>

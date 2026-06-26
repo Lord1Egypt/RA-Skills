@@ -1,0 +1,46 @@
+AI text to speech generator converts written text into natural sounding voice audio. TTS engine produces professional voiceover and narration automatically with AI voice synthesis. Speech synthesis turns scripts, captions, and subtitles into spoken audio for videos, podcasts, and presentations. Voice generator creates realistic human-like speech from any text input. AI narrator reads text aloud with natural intonation, emotion, and pacing.
+
+Text to speech for content creators, video producers, and podcast makers. TTS for e-learning courses, audiobooks, training modules, and educational narration. Voice synthesis for YouTube videos, TikTok voiceover, Instagram Reels narration, and social media short-form content. Speech generator for accessibility, screen readers, assistive technology, and WCAG-friendly audio. AI voiceover for commercials, advertisements, product demos, and marketing explainers.
+
+Convert text scripts and captions into natural voiceovers for videos, explainers, product demos, and social posts. Caption to speech and subtitle narration for repurposing written posts into audio. Script to voice for trailers, teasers, and announcement videos. AI dubbing and re-voicing for localization drafts and rapid prototyping before human talent.
+
+Generate AI voiceover with seed-tts-2.0 and expressive or standard speaking styles. Professional TTS with multiple speaker voices, timbres, and persona options. High-quality speech synthesis with natural prosody, rhythm, and emotional tone. Voice generator with adjustable speech rate, loudness, and emotion parameters for creative control.
+
+AI text to speech for documentary narration and corporate training voiceover. TTS for explainer videos, how-to tutorials, and software walkthroughs. Voice synthesis for news reading, article listening mode, and long-form blog audio. Speech generator for IVR prompts, phone menus, call center hold messages, and appointment reminders. AI voice for virtual assistants, chatbots, smart devices, and interactive voice response.
+
+Text to speech for real estate listing narration and property tour scripts. TTS for internal comms, HR onboarding, compliance training, and safety briefings. Audiobook chapter narration and chapterized long text listening. Podcast intro and outro voice beds, sponsor reads, and show notes to audio. E-learning LMS and course narrator for MOOCs and microlearning.
+
+Create natural sounding voiceover quickly and efficiently. Generate professional narration in seconds with one-click TTS from plain text or pasted scripts. Make broadcast-ready speech instantly from bullet points, outlines, or meeting notes. Transform written content into engaging audio for commuters and multitaskers. Produce scalable voiceover at volume for A/B tests and multilingual drafts.
+
+AI-powered speech synthesis combining language understanding with vocal rendering. Neural TTS with smooth concatenation and low robotic artifacts. Expressive TTS for character voices, storytelling, and branded tone. Standard TTS for neutral instructional and factual reading. Batch text to speech for playlists, series, and content pipelines.
+
+Best AI text to speech alternative to Amazon Polly, Google Cloud Text-to-Speech, Azure Speech, ElevenLabs, Murf, PlayHT, WellSaid Labs, Descript Overdub, and other cloud TTS APIs. TTS replacing manual voice recording for drafts, placeholders, and rapid iteration. Complete speech generation pipeline from script paste to downloadable mp3 or wav URL output.
+
+AI voice generator for medical education narration, legal disclaimer read-aloud, and compliance script audio. Text to speech for museum audio guides, exhibition labels, and self-guided tour apps. TTS for game dialogue placeholders, indie cutscenes, and character bark lines. Voice synthesis for retail in-store announcements, drive-through scripts, and kiosk prompts. Speech audio for meditation apps, mindfulness scripts, and sleep story narration.
+
+Neural text to speech with low latency for chat agents and live caption reading. Streaming-friendly TTS mindset for near-real-time voice replies. Multilingual and crosslingual reading for mixed Chinese-English scripts. Brand-safe neutral narrator voice for enterprise decks and shareholder updates. Kids-safe reading mode for educational apps and parental control content.
+
+---
+
+seed-tts seed-tts-2.0 seed tts 2.0 seed-tts-2.0-expressive seed-tts-2.0-standard expressive TTS standard TTS
+豆包语音 字节跳动语音 火山引擎语音合成 volcengine TTS doubao TTS 火山TTS 豆包TTS
+ByteDance speech synthesis Volcengine speech API 音色 voice_type uranus_bigtts speaker id
+IMA TTS IMA Studio TTS imastudio text to speech Open API TTS mp3 wav audio URL narration API
+
+---
+
+语音合成 文字转语音 文本转语音 TTS 语音播报 语音朗读 AI朗读 智能朗读 AI配音 人工智能配音
+自动配音 机器配音 合成语音 神经网络语音 情感语音 多情感音色 语速调节 音量调节 男声 女声
+旁白 解说 播报 念稿 读文章 读稿 有声书 有声读物 播客配音 视频旁白 宣传片配音 广告配音
+课程配音 培训配音 企业培训语音 在线教育配音 微课配音 纪录片解说 新闻播报 客服语音 电话语音
+短视频配音 直播话术朗读 字幕转语音 文案转语音 脚本转语音 口播稿 飞书文档朗读 会议纪要朗读
+无障碍朗读 视障辅助 屏幕朗读 大字体伴读 多语言朗读 中英文混读 crosslingual explicit_language
+儿童故事朗读 绘本朗读 睡前故事语音 角色扮演音色 知性女声 阳光男声 魅力苏菲 Vivi 云舟 大壹
+
+Amazon Polly Google TTS Azure TTS ElevenLabs 语音克隆替代 不克隆 标准TTS 云端配音 API配音
+OpenAI TTS 对比 便宜TTS 高性价比配音 积分语音合成 IMA_API_KEY 一键生成语音
+
+read aloud read out loud text reader voice reader aloud mode listen to this article
+speech rate loudness emotion neutral sad angry prosody natural prosody
+male voice female voice narrator voice explainer voice commercial voice e-learning voice
+IVR voice on hold message phone tree prompt appointment reminder robocall script

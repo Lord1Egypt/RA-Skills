@@ -1,0 +1,16 @@
+{
+  "name": "overseas-adaptation-validator",
+  "version": "1.0.0",
+  "description": "Static + interaction validator for the miniprogram-overseas-adaptation skill",
+  "type": "commonjs",
+  "scripts": {
+    "scan": "node scan-project.js"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.2"
+  },
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

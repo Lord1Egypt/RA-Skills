@@ -1,35 +1,52 @@
----
-name: "MP3 Tag Cleaner"
-description: "Batch remove promotional metadata from MP3 ID3v1 and ID3v2 tags while preserving audio data and file integrity."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mp3-tag-cleaner"
-sourceUrl: "https://clawhub.ai/skills/mp3-tag-cleaner"
----
-
 # MP3 Tag Cleaner
 
-> Batch remove promotional metadata from MP3 ID3v1 and ID3v2 tags while preserving audio data and file integrity.
+清除MP3文件元数据中的推广信息（标题、唱片集、艺术家、作者等），让你的音频库干净整洁。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mp3-tag-cleaner`
-- **Source URL:** [https://clawhub.ai/skills/mp3-tag-cleaner](https://clawhub.ai/skills/mp3-tag-cleaner)
+**核心功能**：批量清除MP3文件的ID3v1和ID3v2标签中的推广信息，同时保留音频数据完整性。
 
-## Overview
+## 触发词
 
+- 清除MP3属性
+- 清理MP3标签
+- 删除MP3推广信息
+- 清除音频文件元数据
+- 清理歌曲属性
+- 删除音频推广
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mp3-tag-cleaner
-```
+## 功能说明
+
+批量清除MP3文件中的ID3v1和ID3v2标签，包括：
+- 标题 (TIT2)
+- 唱片集 (TALB)
+- 艺术家 (TPE1)
+- 专辑艺术家 (TPE2)
+- 参与艺术家 (TPE3)
+- 作者 (TYER)
+- 评论 (COMM)
+- 封面图片 (APIC)
+- 等其他所有文本标签
+
+## 使用方法
+
+用户指定要清理的文件夹路径后，执行以下步骤：
+
+1. 生成该文件夹内所有MP3文件的路径列表（UTF-8编码）
+2. 运行 `tools/id3clear2.exe` 清除标签
+3. 验证清理结果
+
+## 工具文件
+
+- `tools/id3clear2.exe` - 已编译的可执行程序
+- `tools/ClearID3v12.cs` - C#源码（如需重新编译）
+
+## 技术细节
+
+- 直接操作MP3二进制文件，移除ID3v1（文件末尾128字节）和ID3v2（文件开头）标签
+- 保留MP3音频数据和文件可播放性
+- 使用临时目录策略避免百度网盘等文件夹的写保护问题
+- 编译命令：`C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /out:tools/id3clear2.exe tools/ClearID3v12.cs`
+
+## 注意事项
+
+- 处理前程序会自动复制文件到临时目录，修改后再移回原位
+- 会删除ID3v1标签（可能导致文件末尾128字节的专辑信息消失），但保留音频数据

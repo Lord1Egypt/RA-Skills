@@ -1,0 +1,38 @@
+brand: 产品团队
+theme: pitch-deck-vc
+title: YAML 输入测试
+author: 测试
+date: 2026-06-07
+
+slides:
+  - layout: cover
+    kicker: KEYNOTE · 2026
+    title: 'YAML 输入 <span class="gradient-text">也能工作</span>'
+    subtitle: 内容用 YAML 写更友好
+    tags: [YAML, Test]
+    notes: |
+      开场白：
+      1. 这是 YAML 格式的测试
+      2. 验证 yaml-loader 工作
+
+  - layout: section
+    kicker: Part · 01
+    title: 'Section <span class="gradient-text">Divider</span>'
+    notes: 这是章节分隔页
+
+  - layout: content
+    kicker: YAML
+    title: 三件事
+    points:
+      - YAML 比 JSON 更易手写
+      - 注释语法更舒服
+      - 与 Markdown 兼容性更好
+    notes: |
+      这页内容点：
+      1. YAML 缩进代表层级
+      2. 用 | 表示多行字符串
+
+  - layout: thanks
+    subtitle: 完
+    points: [test@yuanfang.dev, 2026]
+    notes: 谢谢

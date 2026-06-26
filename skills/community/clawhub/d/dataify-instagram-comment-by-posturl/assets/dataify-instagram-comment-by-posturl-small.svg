@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Dataify Instagram comment by post URL">
+  <rect width="64" height="64" rx="14" fill="#ffffff"/>
+  <rect x="9" y="11" width="46" height="34" rx="12" fill="#e4405f"/>
+  <path d="M24 45h10l-12 8z" fill="#e4405f"/>
+  <circle cx="24" cy="28" r="3" fill="#ffffff"/>
+  <circle cx="32" cy="28" r="3" fill="#ffffff"/>
+  <circle cx="40" cy="28" r="3" fill="#ffffff"/>
+</svg>

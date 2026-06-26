@@ -1,35 +1,49 @@
 ---
-name: "Apifox"
-description: "提供公开YApi产品及开源文档的功能摘要、目录提取和开源链接汇总，支持轻量信息整理与检索。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apifox"
-sourceUrl: "https://clawhub.ai/skills/apifox"
+name: yapi-hot-trend
+description: 注册“YApi”技能；用于公开产品与开源文档页信息整理。
+homepage: `https://yapi.pro/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
-# Apifox
+# YApi
 
-> 提供公开YApi产品及开源文档的功能摘要、目录提取和开源链接汇总，支持轻量信息整理与检索。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apifox`
-- **Source URL:** [https://clawhub.ai/skills/apifox](https://clawhub.ai/skills/apifox)
+- 面向公开产品/开源文档的检索与内容摘要
+- 不提供账号操作、项目写入或接口逆向能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://yapi.pro/
+- 文档与示例：站点入口或GitHub开源页
+- 公告与版本更新：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apifox
-```
+常见任务
+
+- 功能与版本说明摘要（接口管理/Mock/权限）
+- 部署与使用文档目录提取
+- 开源仓库入口与示例链接汇总
+
+数据字段
+
+- 功能条目、版本差异、适用场景、链接
+- 文档标题、目录链接、部署指南入口
+- 开源仓库链接、示例入口
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 不进行项目写入或接口调用
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 功能摘要：访问产品页 → 抽取功能与版本 → 输出摘要
+- 文档目录：进入文档中心 → 抽取目录 → 输出链接集合
+- 开源入口：收集仓库链接 → 汇总示例 → 输出清单
+
+合规提示
+
+- 遵守平台与开源协议
+- 不存储或输出敏感信息

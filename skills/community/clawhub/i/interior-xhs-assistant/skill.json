@@ -1,0 +1,13 @@
+
+{
+  "id": "interior-xiaohongshu-copywriter",
+  "name": "室内设计师小红书文案助手",
+  "version": "1.0.0",
+  "description": "专为本地室内设计师打造的小红书内容助手，自动生成选题、标题、正文文案，贴合设计师IP调性，助力本地获客",
+  "author": "温州隐室空间设计",
+  "license": "MIT",
+  "keywords": ["室内设计", "小红书", "文案", "自媒体", "获客", "隐室空间"],
+  "requirements": ["python3"],
+  "bins": [],
+  "main": "generate.py"
+}

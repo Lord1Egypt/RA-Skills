@@ -1,35 +1,81 @@
 ---
-name: "Korean Youtube Idea Generator"
-description: "한국 유튜브/틱톡 대상 맞춤형 10~30대용 트렌디하고 바이럴 가능한 영상 아이디어와 스크립트 구성을 제공합니다."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/korean-youtube-idea-generator"
-sourceUrl: "https://clawhub.ai/skills/korean-youtube-idea-generator"
+name: korean-youtube-idea-generator
+description: 유튜브/틱톡용 콘텐츠 아이디어를 생성합니다. 다음 경우에 사용: (1).youtube/Shorts 아이디어가 필요한 경우, (2) 트렌드 맞는 주제가 필요한 경우, (3) 채널 전략을 세우고 싶은 경우, (4) 영상 스크립트 구성이 필요한 경우. 한국 🇰🇷/target层观众的 취향에 맞는 트렌디하고 Viral 가능한 아이디어를 제공합니다.
 ---
 
-# Korean Youtube Idea Generator
+# 🇰🇷 유튜브/쇼트츠 아이디어 生成기
 
-> 한국 유튜브/틱톡 대상 맞춤형 10~30대용 트렌디하고 바이럴 가능한 영상 아이디어와 스크립트 구성을 제공합니다.
+## 개요
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/korean-youtube-idea-generator`
-- **Source URL:** [https://clawhub.ai/skills/korean-youtube-idea-generator](https://clawhub.ai/skills/korean-youtube-idea-generator)
+한국 유튜브/틱톡 생태계에 맞는 Viral 가능한 콘텐츠 아이디어를 생성합니다.Shorts/SNSvzoredas CTR 높고 참여율 높은 주제를 파악하여 제공합니다.
 
-## Overview
+## 사용 방법
 
+사용자에게 다음 확인:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/korean-youtube-idea-generator
+1. **채널/카테고리** (예: 투자, 요리, 게임, 뷰티, Edu)
+2. **타겟 연령층** (10대, 20대, 30대+)
+3. **영상 포맷** (Shorts 60s / 일반 영상 10-20min)
+4. **주 1-2개 콘텐츠 타겟
+
+## 아이디어 카테고리
+
+### 🔥 트렌드 Ride
 ```
+- 현재 유행的话题 + 내 분야에서 연결
+- Viraltags 분석 후 차용
+- 실시간热搜 활용
+```
+
+### 💡 edukasi/정보
+```
+- "#00것"初级 가이드 (초보자용)
+-误区 즉시纠正 (흔한 오해 금지)
+- 비교 분석 (A vs B)
+```
+
+### 😂 감정소리/Reakce
+```
+- "ㅋㅋㅋ" 터지는 상황
+-日常에서 찾기
+- 스토리텔링 + 결말的反転
+```
+
+### 🚀 수익/재태크
+```
+- 빠른 돈 바꾸기 (실제 사례)
+- 节税 팁
+- 부업 성공/실패 사례
+```
+
+## 출력 포맷
+
+```markdown
+## [아이디어명]
+
+**타겟:** [연령]
+**형식:** [Shorts/일반]
+**예상 조회수:** [1-10만]
+** Viral 요소:** [이유]
+
+### 스크립트 구조 (60초)
+1. [오프닝 후크 - 3s]
+2. [본론 - 50s]
+3. [CTA - 7s]
+
+### 태그 제안
+#해시태그1 #해시태그2 #카테고리
+```
+
+## 전략 가이드
+
+### Shorts 승산 공식
+1. **후크 3초**: "이거 모르면 손해임" → 클릭 유도
+2. **정보密度**: 1분 안에Value 3개 이상
+3. **반복**:同一 주제 3개 영상系列화
+4. **CTA**: "구독/좋아요" 필수
+
+### 영상 성장 비법
+- 업로드 시간: 점심(12-1), 퇴근(6-7), 자러전(10-11)
+- 썸네일: 긴장 표정 + 큰 글씨 + 색 대비
+- 제목: 검색 가능 단어 + 호기심 유도

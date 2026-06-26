@@ -1,0 +1,7 @@
+{
+  "name": "bc-calc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "bc calculator skill",
+  "keywords": ["calculator", "bc", "math"]
+}

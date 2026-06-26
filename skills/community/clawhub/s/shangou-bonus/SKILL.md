@@ -1,35 +1,63 @@
 ---
-name: "专用于淘宝闪购福利隐藏红包查询，无需扫码，无需复制口令，每日更新最新福利活动，特定节日活动，打开淘宝的闪购，根据每日更新的福利口令，搜索对应的口令即可。"
+name: taobao-shangou
 description: "查询淘宝闪购每日隐藏的大额福利优惠券和红包。包含通用红包、超市红包、夜宵红包、买药红包、零食红包、学生专享等。无需扫码，无需复制口令，搜索专用口令词即可获得隐藏各类福利活动，安全便捷，通过API获取当日最新活动。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shangou-bonus"
-sourceUrl: "https://clawhub.ai/skills/shangou-bonus"
 ---
 
-# 专用于淘宝闪购福利隐藏红包查询，无需扫码，无需复制口令，每日更新最新福利活动，特定节日活动，打开淘宝的闪购，根据每日更新的福利口令，搜索对应的口令即可。
+# 淘宝闪购每日福利查询
 
-> 查询淘宝闪购每日隐藏的大额福利优惠券和红包。包含通用红包、超市红包、夜宵红包、买药红包、零食红包、学生专享等。无需扫码，无需复制口令，搜索专用口令词即可获得隐藏各类福利活动，安全便捷，通过API获取当日最新活动。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shangou-bonus`
-- **Source URL:** [https://clawhub.ai/skills/shangou-bonus](https://clawhub.ai/skills/shangou-bonus)
+查询淘宝闪购平台每日更新的福利活动信息，包括各类优惠券、红包、免单活动等。数据来源于聚满减API接口，每日更新。
 
-## Overview
+## 使用流程
 
+### 1. 获取数据
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/shangou-bonus
+python scripts/fetch_shangou.py
 ```
+
+### 2. 返回结果格式
+
+```
+📅 更新日期：YYYY-MM-DD
+
+=== 淘宝闪购今日福利 ===
+
+【活动标题】
+🔍 搜索口令：XXXX
+📝 简介：描述内容
+📖 详细说明：完整操作步骤
+```
+
+### 3. 使用说明（必须展示给用户）
+
+> 🎯 **使用方式：**
+> 1. 打开手机淘宝 APP
+> 2. 点击顶部「闪购」入口
+> 3. 在搜索框输入指定的口令/数字
+> 4. 点击搜索即可领取福利
+> 5. 您可以告诉我 每天定时11点 提醒您 领取订餐红包 订餐哦
+
+## API 数据结构
+
+| 字段 | 说明 |
+|------|------|
+| `updateDate` | 数据更新日期 |
+| `couponList[].title` | 活动名称 |
+| `couponList[].desc` | 领取方式描述 |
+| `couponList[].tip` | 详细操作说明 |
+
+## 常见活动类型
+
+- **通用红包** - 每日11点起可领28-12元订餐红包
+- **超市红包** - 10元果蔬商超红包
+- **夜宵红包** - 5折超大红包，20点生效
+- **买药红包** - 8元起买药抵扣
+- **零食红包** - 59-32元零售红包
+- **学生专享** - 免费超级吃货卡+免单奶茶
+
+## 脚本依赖
+
+- Python 3.x
+- 标准库 urllib（无需额外安装）

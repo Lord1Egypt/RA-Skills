@@ -1,35 +1,56 @@
 ---
-name: "YouTube Music"
-description: "Manage YouTube Music library, playlists, and discovery via ytmusicapi."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ytmusic"
-sourceUrl: "https://clawhub.ai/skills/ytmusic"
+name: ytmusic-librarian
+description: Manage YouTube Music library, playlists, and discovery via ytmusicapi.
 ---
 
-# YouTube Music
+# YTMusic Librarian
 
-> Manage YouTube Music library, playlists, and discovery via ytmusicapi.
+This skill uses the `ytmusicapi` Python library to interact with YouTube Music.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ytmusic`
-- **Source URL:** [https://clawhub.ai/skills/ytmusic](https://clawhub.ai/skills/ytmusic)
+## Prerequisites
 
-## Overview
+- Python 3.x
+- `ytmusicapi` package: `pip install ytmusicapi`
+- Authentication file (`oauth.json` or `browser.json`) in the skill folder.
 
+## Setup Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ytmusic
-```
+1. **Install the library:**
+   ```bash
+   pip install ytmusicapi
+   ```
+
+2. **Generate Authentication (The "cURL Handshake"):**
+   - Open **Microsoft Edge** and visit [music.youtube.com](https://music.youtube.com) (ensure you are logged in).
+   - Press `F12` to open DevTools, go to the **Network** tab.
+   - Click your **Profile Icon -> Library** on the page.
+   - Look for a request named `browse` in the network list.
+   - **Right-click** the `browse` request -> **Copy -> Copy as cURL (bash)**.
+   - Paste that cURL command into a file named `headers.txt` in the skill folder.
+   - Run the following Python snippet to generate `browser.json`:
+     ```python
+     from ytmusicapi.auth.browser import setup_browser
+     with open('headers.txt', 'r') as f:
+         setup_browser('browser.json', f.read())
+     ```
+   - Ensure `browser.json` is located in the skill folder.
+
+3. **Verify:**
+   ```bash
+   python -c "from ytmusicapi import YTMusic; yt = YTMusic('browser.json'); print(yt.get_library_songs(limit=1))"
+   ```
+
+## Workflows
+
+### Library Management
+- List songs/albums: `yt.get_library_songs()`, `yt.get_library_albums()`
+- Add/Remove: `yt.rate_song(videoId, 'LIKE')`, `yt.edit_song_library_status(feedbackToken)`
+
+### Playlist Management
+- Create: `yt.create_playlist(title, description)`
+- Add Tracks: `yt.add_playlist_items(playlistId, [videoIds])`
+- Remove Tracks: `yt.remove_playlist_items(playlistId, [videoIds])`
+
+### Metadata & Discovery
+- Get Lyrics: `yt.get_lyrics(browseId)`
+- Get Related: `yt.get_watch_playlist(videoId)` -> `related`

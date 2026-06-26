@@ -1,35 +1,197 @@
 ---
-name: "Query Customer Service Record"
-description: "查询霍小钉客户服务记录。使用场景：用户需要查询某个客户的服务小计记录时，自动解析客户名称、调用搜索接口确认客户、处理多客户选择、查询服务记录并展示总结。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/query-customer-service-record"
-sourceUrl: "https://clawhub.ai/skills/query-customer-service-record"
+name: query-customer-service-record
+description: 查询霍小钉客户服务记录。使用场景：用户需要查询某个客户的服务小计记录时，自动解析客户名称、调用搜索接口确认客户、处理多客户选择、查询服务记录并展示总结。
 ---
 
-# Query Customer Service Record
+# 霍小钉客户服务记录查询
 
-> 查询霍小钉客户服务记录。使用场景：用户需要查询某个客户的服务小计记录时，自动解析客户名称、调用搜索接口确认客户、处理多客户选择、查询服务记录并展示总结。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/query-customer-service-record`
-- **Source URL:** [https://clawhub.ai/skills/query-customer-service-record](https://clawhub.ai/skills/query-customer-service-record)
+当用户表达以下意图时触发此技能：
 
-## Overview
+- "查询 XXX 客户的服务记录"
+- "XXX 客户的服务小计"
+- "看看 XXX 客户最近的服务情况"
+- "帮我查一下 XXX 的服务记录"
+- 任何包含客户名称 + 服务记录/服务小计的查询
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 解析客户名称和时间范围
+
+从用户输入中提取：
+- **客户名称**：必须提取（如"霍迹寻踪"）
+- **时间范围**：可选，如果用户未提供，默认查询当天
+  - 开始时间：`YYYY-MM-DD` 格式
+  - 结束时间：`YYYY-MM-DD` 格式
+
+### 2. 调用客户搜索接口
+
+使用脚本 `scripts/query_service.py` 搜索客户：
+
 ```bash
-hermes skills install clawhub/query-customer-service-record
+python scripts/query_service.py search <base_url> <customer_name>
+```
+
+**参数说明**：
+- `base_url`: API 基础地址（如 `https://hxd.ahdingtalk.com:8843`）
+- `customer_name`: 用户提供的客户名称
+
+**返回处理**：
+- 成功：`{"success": true, "data": ["客户 1", "客户 2", ...]}`
+- 失败：`{"success": false, "error": "错误信息"}`
+
+### 3. 处理搜索结果
+
+根据返回的客户列表长度决定下一步：
+
+#### 情况 A：列表为空
+告知用户未找到匹配的客户，建议检查名称或提供更多关键词。
+
+#### 情况 B：列表只有 1 个客户
+直接使用该客户名称，继续步骤 4。
+
+#### 情况 C：列表有多个客户
+向用户展示客户列表，让用户选择：
+
+```
+找到多个匹配的客户，请选择：
+1. 霍迹寻踪科技有限公司
+2. 霍迹寻踪软件有限公司
+3. 霍迹寻踪北京分公司
+
+请回复数字或客户名称进行选择。
+```
+
+等待用户选择后，使用选中的客户名称继续步骤 4。
+
+### 4. 查询服务记录
+
+使用脚本查询服务小计：
+
+```bash
+python scripts/query_service.py records <base_url> <customer_name> [start_time] [end_time]
+```
+
+**参数说明**：
+- `base_url`: API 基础地址
+- `customer_name`: 确定的客户名称
+- `start_time`: 开始时间（可选，默认当天）
+- `end_time`: 结束时间（可选，默认当天）
+
+### 5. 展示结果
+
+将查询结果格式化展示：
+
+```
+📋 霍迹寻踪科技有限公司 服务记录 (2026-03-01 ~ 2026-03-04)
+
+共找到 3 条服务记录：
+• 2026-03-01 - 张三 [上门拜访]：去客户现场沟通内容
+• 2026-03-02 - 李四 [电话沟通]：电话回访，确认需求
+• 2026-03-04 - 张三 [钉钉联系]：发送报价单
+
+📊 总结：
+- 服务次数：3 次
+- 参与销售：张三 (2 次)、李四 (1 次)
+- 服务方式：上门拜访 (1 次)、电话沟通 (1 次)、钉钉联系 (1 次)
+- 时间跨度：4 天
+
+**注意**：展示时会为每条记录标注服务方式（如 `[上门拜访]`），便于快速识别服务类型。
+```
+
+**服务方式说明**：
+接口返回的 `serverType` 字段表示服务方式，包括：
+- 上门拜访
+- 顺道上门
+- 客户到公司
+- 电话沟通
+- 钉钉联系
+- 无效联系
+- 微信联系
+- 视频会议
+- 沙龙会销
+
+## 配置说明
+
+### API 地址配置
+
+在调用脚本前，需要配置 `base_url`。默认值：
+```
+https://hxd.ahdingtalk.com:8843
+```
+
+如需修改，在调用脚本时传入正确的地址。
+
+### 认证配置
+
+当前接口无需认证。如未来需要添加认证，可在脚本中扩展 headers 参数。
+
+## 错误处理
+
+### 常见错误及应对
+
+1. **网络请求失败**
+   - 检查服务器是否可达
+   - 检查 base_url 是否正确
+
+2. **客户搜索无结果**
+   - 建议用户提供更完整的客户名称
+   - 或提供部分关键词重新搜索
+
+3. **服务记录为空**
+   - 告知用户在指定时间范围内暂无记录
+   - 建议扩大时间范围查询
+
+4. **接口返回错误码**
+   - 显示接口返回的错误信息
+   - 建议联系系统管理员
+
+## 脚本说明
+
+### scripts/query_service.py
+
+**依赖**：`requests` 库
+
+**功能**：
+- `search` 操作：调用客户搜索接口
+- `records` 操作：调用服务记录查询接口
+
+**输出**：JSON 格式，便于程序解析
+
+## 使用示例
+
+### 示例 1：简单查询（当天记录）
+
+用户：查询霍迹寻踪的服务记录
+
+执行：
+```bash
+python scripts/query_service.py search https://hxd.ahdingtalk.com:8843 霍迹寻踪
+# 返回：["霍迹寻踪科技有限公司"]
+python scripts/query_service.py records https://hxd.ahdingtalk.com:8843 霍迹寻踪科技有限公司
+# 返回服务记录
+```
+
+### 示例 2：指定时间范围
+
+用户：查一下霍迹寻踪 3 月 1 日到 3 月 10 日的服务小计
+
+执行：
+```bash
+python scripts/query_service.py search https://hxd.ahdingtalk.com:8843 霍迹寻踪
+python scripts/query_service.py records https://hxd.ahdingtalk.com:8843 霍迹寻踪科技有限公司 2026-03-01 2026-03-10
+```
+
+### 示例 3：多客户选择
+
+用户：查询霍迹寻踪的服务记录
+
+执行：
+```bash
+python scripts/query_service.py search https://hxd.ahdingtalk.com:8843 霍迹寻踪
+# 返回：["霍迹寻踪科技有限公司", "霍迹寻踪软件有限公司"]
+# 等待用户选择...
+用户：1
+python scripts/query_service.py records https://hxd.ahdingtalk.com:8843 霍迹寻踪科技有限公司
 ```

@@ -1,0 +1,3 @@
+display_name: "CRM新增记录"
+short_description: "自动化添加CRM客户记录"
+default_prompt: "使用CRM新增记录技能，自动登录并填写表单"

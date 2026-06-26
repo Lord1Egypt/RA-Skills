@@ -1,35 +1,54 @@
 ---
-name: "拼团返利达人"
-description: "拼团与社群团购场景的返利优化工具，帮助用户在拼团购物中获得额外返利收益，团长和团员均可受益。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/group-rebate"
-sourceUrl: "https://clawhub.ai/skills/group-rebate"
+name: 拼团返利达人
+description: 拼团与社群团购场景的返利优化工具，帮助用户在拼团购物中获得额外返利收益，团长和团员均可受益。
+version: 0.1.0
 ---
 
 # 拼团返利达人
 
-> 拼团与社群团购场景的返利优化工具，帮助用户在拼团购物中获得额外返利收益，团长和团员均可受益。
+拼团与社群团购场景的返利优化工具。在拼多多拼团、社区团购、品牌团购等场景中，帮助用户找到最优拼团返利方案，团长可获得额外推广佣金，团员可享受团购价+返利双重优惠。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/group-rebate`
-- **Source URL:** [https://clawhub.ai/skills/group-rebate](https://clawhub.ai/skills/group-rebate)
+## 触发词
 
-## Overview
+拼团返利、团购返利、拼团省钱、社群团购、拼多多拼团、开团返利、group rebate、团长返利、拼团佣金
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/group-rebate
+### 核心功能
+
+- **拼团商品推荐**：筛选当前高返利的拼团商品，按品类和返利比例排序
+- **团长工具**：开团分享链接生成、团员管理、团长佣金计算
+- **团员省钱**：自动查找已开团的高返利商品，加入即享团购价+返利
+- **社群运营辅助**：为团购社群生成每日拼团推荐清单
+
+### 拼团返利模式
+
+| 模式 | 团长收益 | 团员收益 | 适用场景 |
+|------|---------|---------|---------|
+| 普通拼团 | 推广佣金 | 团购价+返利 | 拼多多日常拼团 |
+| 品牌团购 | 阶梯佣金 | 品牌折扣+返利 | 品牌清仓/新品推广 |
+| 社区团购 | 团长提成 | 社区价+返利 | 生鲜/日用品 |
+| 限时闪购 | 高额佣金 | 限时低价+返利 | 平台活动期间 |
+
+### 使用场景
+
+1. **团长开团**：选择高返利商品，生成拼团链接分享到社群
+2. **团员参团**：查找当前可参与的高返利拼团，一键加入
+3. **社群运营**：每日自动生成拼团推荐清单，发送到团购群
+4. **收益管理**：统计团长佣金和团员返利收益
+
+## 输出格式
+
+```
+👥 拼团返利推荐
+
+热门拼团商品：
+① [商品名] | 拼团价 ¥[价格] | 返利 [X]% | 还差[N]人成团
+② [商品名] | 拼团价 ¥[价格] | 返利 [X]% | 还差[N]人成团
+
+团长收益预估：
+  开团商品：[商品名]
+  团员人数：[N]人
+  团长佣金：¥[金额]
+  团员返利：每人 ¥[金额]
 ```

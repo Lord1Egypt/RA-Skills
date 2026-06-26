@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: {{FONT}}; background: {{BG_COLOR}}; color: {{TEXT_MAIN}}; position: relative; }
+        .header { background: {{HEADER_BG}}; color: {{HEADER_TEXT}}; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+        .header h1 { font-size: 18px; font-weight: 600; }
+        .header .meta { font-size: 13px; color: #94A3B8; }
+        .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; padding: 24px; margin: 0 24px; position: relative; z-index: 1; }
+        .summary-card { border-radius: 8px; border: 1px solid {{CARD_BORDER}}; padding: 16px 20px; text-align: center; }
+        .summary-card .card-value { font-size: 28px; font-weight: 700; font-family: {{FONT_MONO}}; line-height: 1; }
+        .summary-card .card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 6px; font-weight: 500; }
+        .viewer { padding: 24px; overflow: auto; display: flex; justify-content: center; position: relative; z-index: 1; }
+        .viewer svg { max-width: 100%; height: auto; border-radius: 8px; }
+        .download-btn { background: transparent; border: 1px solid {{BORDER}}; color: {{TEXT_SUB}}; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: {{FONT_MONO}}; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .download-btn:hover { background: {{CAP_STROKE}}; color: {{TEXT_MAIN}}; border-color: {{CAP_STROKE}}; }
+        .animate-btn.active { background: {{CAP_STROKE}}; color: {{TEXT_MAIN}}; border-color: {{CAP_STROKE}}; }
+
+        /* Animation styles - 默认启用 */
+        .viewer svg .node { animation: fadeInUp 0.5s ease forwards; }
+        .viewer svg .node:nth-child(1) { animation-delay: 0ms; }
+        .viewer svg .node:nth-child(2) { animation-delay: 50ms; }
+        .viewer svg .node:nth-child(3) { animation-delay: 100ms; }
+        .viewer svg .node:nth-child(n+4) { animation-delay: calc((n - 1) * 50ms); }
+
+        .viewer svg .node-rect { transition: stroke-width 0.2s ease; }
+        .viewer svg .node:hover .node-rect { stroke-width: 2.5; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
+
+        /* 用户点击暂停按钮时，移除动画 */
+        .viewer svg.paused .node { animation: none; opacity: 1; transform: translateY(0); }
+        .viewer svg.paused line, .viewer svg.paused path { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; transition: none !important; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .description-section { padding: 24px 24px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .description-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: {{TEXT_MAIN}}; }
+        .description-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+        .desc-card { border-radius: 8px; border: 1px solid {{CARD_BORDER}}; padding: 20px 24px; background: {{CARD_BG}}; }
+        .desc-card-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.3px; }
+        .desc-card-list { list-style: none; padding: 0; margin: 0; }
+        .desc-card-list li { font-size: 13px; line-height: 1.7; color: {{TEXT_SUB}}; padding-left: 16px; position: relative; }
+        .desc-card-list li::before { content: "\2022"; position: absolute; left: 0; color: {{BORDER}}; }
+        {{DARK_EXTRAS}}
+    </style>
+</head>
+<body>
+    {{GRID_BG}}
+    <div class="header">
+        <div style="display:flex;align-items:baseline;gap:12px;">
+            <h1>{{TITLE}}</h1>
+            <span class="meta" style="font-size:11px;color:#64748B;">Business Blueprint v{{VERSION}}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <button class="download-btn animate-btn" id="animateBtn" onclick="toggleAnimation()" title="Toggle Animation">
+                ▶
+            </button>
+            <button class="download-btn" onclick="downloadSvg()">Download SVG</button>
+        </div>
+    </div>
+    {{SUMMARY_CARDS}}
+    <div class="viewer">{{SVG_CONTENT}}</div>
+    {{DESCRIPTION_SECTION}}
+    <script>
+        const blueprint = JSON.parse({{BLUEPRINT_JSON}});
+        let animationEnabled = true; // 默认启用动画
+
+        function toggleAnimation() {
+            const svgEl = document.querySelector('.viewer svg');
+            const btnEl = document.getElementById('animateBtn');
+
+            if (!svgEl) return;
+
+            animationEnabled = !animationEnabled;
+
+            if (animationEnabled) {
+                svgEl.classList.remove('paused'); // 移除 paused class，恢复动画
+                btnEl.classList.remove('active');
+                btnEl.textContent = '⏸';
+                // 重新触发箭头描边动画
+                initArrowAnimations();
+            } else {
+                svgEl.classList.add('paused'); // 添加 paused class，停止动画
+                btnEl.classList.add('active');
+                btnEl.textContent = '▶';
+            }
+        }
+
+        // 初始化按钮状态（默认播放，显示 ⏸）
+        // 初始化箭头描边动画：计算每条线/path实际长度，动态设置dasharray
+        function initArrowAnimations() {
+            const svgEl = document.querySelector('.viewer svg');
+            if (!svgEl) return;
+
+            // 获取所有箭头（排除 legend 内的）
+            const legendEl = svgEl.querySelector('.legend');
+            const allLines = svgEl.querySelectorAll('line');
+            const allPaths = svgEl.querySelectorAll('path');
+
+            const arrowEls = [];
+            allLines.forEach(el => { if (!legendEl || !legendEl.contains(el)) arrowEls.push(el); });
+            allPaths.forEach(el => { if (!legendEl || !legendEl.contains(el)) arrowEls.push(el); });
+
+            arrowEls.forEach((el, i) => {
+                let len;
+                if (el.tagName === 'line') {
+                    const x1 = parseFloat(el.getAttribute('x1'));
+                    const y1 = parseFloat(el.getAttribute('y1'));
+                    const x2 = parseFloat(el.getAttribute('x2'));
+                    const y2 = parseFloat(el.getAttribute('y2'));
+                    len = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+                } else {
+                    len = el.getTotalLength();
+                }
+                if (!len || len < 1) return;
+
+                // 保存原始 dasharray（虚线箭头需要保留）
+                const origDash = el.getAttribute('stroke-dasharray');
+
+                // 设置描边动画：dasharray=实际长度, dashoffset从长度到0
+                el.style.strokeDasharray = len;
+                el.style.strokeDashoffset = len;
+                el.style.transition = `stroke-dashoffset 0.6s ease ${(i + 1) * 0.08}s`;
+
+                // 动画结束后恢复原始 dasharray
+                el.addEventListener('transitionend', () => {
+                    el.style.strokeDasharray = '';
+                    el.style.strokeDashoffset = '';
+                    el.style.transition = '';
+                }, { once: true });
+
+                // 触发动画
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        el.style.strokeDashoffset = '0';
+                    });
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnEl = document.getElementById('animateBtn');
+            if (animationEnabled) {
+                btnEl.textContent = '⏸';
+                initArrowAnimations();
+            }
+        });
+
+        // 兜底：如果 DOMContentLoaded 已触发
+        if (document.readyState !== 'loading') {
+            const btnEl = document.getElementById('animateBtn');
+            if (btnEl && animationEnabled) {
+                btnEl.textContent = '⏸';
+                initArrowAnimations();
+            }
+        }
+
+        function downloadSvg() {
+            const svgEl = document.querySelector('.viewer svg');
+            if (!svgEl) return;
+
+            // 导出前移除 paused class（确保静态 SVG）
+            const wasPaused = svgEl.classList.contains('paused');
+            if (wasPaused) {
+                svgEl.classList.remove('paused');
+            }
+
+            const serializer = new XMLSerializer();
+            let source = serializer.serializeToString(svgEl);
+            source = '<?xml version="1.0" encoding="UTF-8"?>\n' + source;
+            const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '{{TITLE}}.svg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // 恢复 paused 状态
+            if (wasPaused) {
+                svgEl.classList.add('paused');
+            }
+        }
+    </script>
+</body>
+</html>

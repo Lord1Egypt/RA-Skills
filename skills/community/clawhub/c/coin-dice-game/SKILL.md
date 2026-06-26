@@ -1,35 +1,65 @@
 ---
-name: "抛硬币猜骰子游戏"
+name: coin-dice-game
 description: "抛硬币（正/反）和猜骰子大小（大/小）游戏。随机生成结果后发送对应图片。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coin-dice-game"
-sourceUrl: "https://clawhub.ai/skills/coin-dice-game"
+license: MIT-0
 ---
 
-# 抛硬币猜骰子游戏
+# 抛硬币 & 猜骰子大小 🎲🪙
 
-> 抛硬币（正/反）和猜骰子大小（大/小）游戏。随机生成结果后发送对应图片。
+当用户说"抛硬币"、"猜骰子"、"玩游戏"时触发。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coin-dice-game`
-- **Source URL:** [https://clawhub.ai/skills/coin-dice-game](https://clawhub.ai/skills/coin-dice-game)
+## 游戏规则
 
-## Overview
+### 抛硬币
+- 随机 0 或 1
+- **0 = 正**（正面），**1 = 反**（反面）
+- 发送对应的正/反图片
 
+### 猜骰子大小
+- 随机 0 或 1
+- **0 = 大**（显示 4/5/6 中随机一个），**1 = 小**（显示 1/2/3 中随机一个）
+- 发送对应的点数和大小图片
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 图片资源
+
+8 个图片存放于 `assets/` 目录下，文件名对应：
+
+| 文件名 | 内容 |
+|--------|------|
+| `正面.jpg` | 硬币正面（正） |
+| `反面.jpg` | 硬币反面（反） |
+| `1.jpg` | 骰子 1 点 |
+| `2.jpg` | 骰子 2 点 |
+| `3.jpg` | 骰子 3 点 |
+| `4.jpg` | 骰子 4 点 |
+| `5.jpg` | 骰子 5 点 |
+| `6.jpg` | 骰子 6 点 |
+
+## 使用方式
+
 ```bash
-hermes skills install clawhub/coin-dice-game
+# 抛硬币
+python3 scripts/game.py coin
+
+# 猜骰子大小
+python3 scripts/game.py dice
+```
+
+## 流程
+
+1. 用户说要玩游戏（抛硬币/猜骰子）
+2. 运行对应的脚本生成随机结果
+3. 从 `assets/` 中找到对应图片
+4. 通过 `message` 工具发送图片 + 文字结果
+   - 图片用 `MEDIA:<assets/图片名>` 或 `message` 的 `attachments`/`media` 参数发送
+
+## 图片保存
+
+老师会发 8 张图片给我，我保存到 `assets/` 目录下，文件名对应上表。
+
+## 发送示例
+
+```python
+# 抛硬币结果：正
+# 图片路径：skills/coin-dice-game/assets/正面.jpg
 ```

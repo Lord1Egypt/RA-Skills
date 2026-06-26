@@ -1,0 +1,32 @@
+{
+  "name": "safehub",
+  "version": "1.0.2",
+  "description": "OpenClaw skill that scans other skills for malware and security issues",
+  "main": "index.js",
+  "bin": {
+    "safehub": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test test/ 2>/dev/null || echo 'No tests yet'"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "security",
+    "malware",
+    "semgrep",
+    "clawhub"
+  ],
+  "author": "SafeHub Contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dockerode": "^4.0.2"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}

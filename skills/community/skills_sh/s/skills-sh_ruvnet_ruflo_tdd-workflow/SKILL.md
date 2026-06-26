@@ -1,35 +1,22 @@
 ---
-name: "tdd-workflow"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/tdd-workflow"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/tdd-workflow"
+name: tdd-workflow
+description: TDD London School workflow -- mock-first, outside-in test development
+argument-hint: "<module-path>"
+allowed-tools: Bash(npx * npm *) mcp__claude-flow__hooks_pre-task mcp__claude-flow__hooks_post-task Read Write Edit
 ---
+Follow the TDD London School (mock-first) approach:
 
-# tdd-workflow
+1. **Write the failing test first** -- define expected behavior with mocked dependencies
+2. **Run the test** -- confirm it fails for the right reason
+3. **Implement minimal code** -- make the test pass with the simplest solution
+4. **Refactor** -- clean up while keeping tests green
+5. **Repeat** -- add the next behavior
 
-> Indexed by skills.sh from ruvnet/ruflo
+Before starting: `mcp__claude-flow__hooks_pre-task({ description: "TDD: FEATURE_NAME" })`
+After completing: `mcp__claude-flow__hooks_post-task({ taskId: "tdd-FEATURE", success: true, storeResults: true })`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/tdd-workflow`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/tdd-workflow](https://skills.sh/ruvnet/ruflo/tdd-workflow)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/tdd-workflow
-```
+Principles:
+- Mock external dependencies at boundaries
+- Test behavior, not implementation
+- One assertion per test when possible
+- Descriptive names: `should [behavior] when [condition]`

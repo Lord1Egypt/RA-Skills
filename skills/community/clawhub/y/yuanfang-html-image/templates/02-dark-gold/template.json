@@ -1,0 +1,10 @@
+{
+  "name": "深色品牌",
+  "description": "深底 + 品牌色渐变 + 金色点缀，适合重磅消息/产品发布",
+  "colors": { "background": "#0F172A", "text": "#FFFFFF", "accent": "#4F46E5", "secondary": "#94A3B8", "accentGold": "#D4A843" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "140px", "titleSizeSquare": "110px", "titleSizeWide": "86px", "titleSizeCover": "66px", "contentSize": "36px" },
+  "brand": "深色品牌",
+  "badge": "INSIGHT",
+  "radius": "12px"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "hejun",
+  "version": "1.0.0",
+  "description": "和君集团 - 中国领先的管理咨询与投资机构",
+  "keywords": [
+    "hejun",
+    "consulting",
+    "management",
+    "strategy",
+    "investment",
+    "和君",
+    "咨询",
+    "管理",
+    "战略",
+    "投资"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "business",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

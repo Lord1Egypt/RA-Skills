@@ -1,35 +1,32 @@
----
-name: "Wechat Automation"
-description: "Automate WeChat on macOS for auto-replies, keyword alerts, message summaries, and forwarding by controlling the desktop app."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-automation"
-sourceUrl: "https://clawhub.ai/skills/wechat-automation"
----
+# WeChat Automation - 微信自动化
 
-# Wechat Automation
+用 AI 自动处理微信消息，节省时间。
 
-> Automate WeChat on macOS for auto-replies, keyword alerts, message summaries, and forwarding by controlling the desktop app.
+## 用途
+- 自动回复常见问题
+- 消息摘要（每日汇总）
+- 关键词提醒
+- 自动转发到其他平台
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-automation`
-- **Source URL:** [https://clawhub.ai/skills/wechat-automation](https://clawhub.ai/skills/wechat-automation)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-automation
+## 使用方法
 ```
+/wechat-automation
+```
+
+## 功能
+1. 连接微信（通过 macOS 窗口控制）
+2. 设置自动回复规则
+3. 关键词监控
+4. 消息导出/分析
+
+## 适用场景
+- 客服自动回复
+- 群消息管理
+- 重要消息提醒
+
+## 注意
+- 仅支持 macOS
+- 需要保持微信桌面端运行
+
+---
+价格：¥99 | 包含：完整脚本 + 配置指南

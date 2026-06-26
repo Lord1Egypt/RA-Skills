@@ -1,0 +1,38 @@
+{
+  "name": "Academic Thesis Review",
+  "slug": "academic-thesis-review",
+  "version": "1.1.0",
+  "description": "A reusable agent skill for multi-round review of Chinese management-oriented master's theses, especially MBA, MEM, and MPA, while remaining applicable to similar applied research theses.",
+  "author": {
+    "name": "wmpluto",
+    "github": "https://github.com/wmpluto"
+  },
+  "entry": "SKILL.md",
+  "repository": {
+    "url": "https://github.com/wmpluto/academic-thesis-review-skill",
+    "visibility": "public"
+  },
+  "homepage": "https://github.com/wmpluto/academic-thesis-review-skill",
+  "license": "MIT",
+  "tags": [
+    "agent-skill",
+    "prompt",
+    "academic-review",
+    "thesis",
+    "markdown",
+    "opencode",
+    "openclaw",
+    "claude-code"
+  ],
+  "compatibility": {
+    "formats": [
+      "markdown"
+    ],
+    "targets": [
+      "OpenCode",
+      "OpenClaw",
+      "Claude Code"
+    ]
+  },
+  "status": "draft"
+}

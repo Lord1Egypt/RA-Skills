@@ -1,35 +1,30 @@
 ---
-name: "Bilibili Transcript Redirect"
+name: bilibili-transcript
+version: "3.0.0"
 description: "⚠️ 已升级：本 skill 已由 bilibili-auto-transcript 取代。请安装替代品：clawhub install bilibili-auto-transcript。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibili-transcript"
-sourceUrl: "https://clawhub.ai/skills/bilibili-transcript"
+metadata:
+  openclaw:
+    emoji: "📼"
+    superseded: true
+    replacement: "bilibili-auto-transcript"
 ---
 
-# Bilibili Transcript Redirect
+# 📼 Bilibili Auto Transcript（新版）
 
-> ⚠️ 已升级：本 skill 已由 bilibili-auto-transcript 取代。请安装替代品：clawhub install bilibili-auto-transcript。
+> ⚠️ **本 skill 已停止维护，已被 [bilibili-auto-transcript](https://clawhub.ai/54lynnn/bilibili-auto-transcript) 取代。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibili-transcript`
-- **Source URL:** [https://clawhub.ai/skills/bilibili-transcript](https://clawhub.ai/skills/bilibili-transcript)
+新版功能更全、体验更好：
 
-## Overview
+- ✅ 手动挡 — 发链接即转
+- ✅ 自动挡 — 收藏夹自动监控
+- ✅ 三级降级 — CC字幕 → AI字幕 → Whisper
+- ✅ AI 自动生成摘要
+- ✅ 与 Knowledge RAG 无缝对接
 
+## 迁移方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bilibili-transcript
+clawhub install bilibili-auto-transcript
 ```
+
+安装后旧版自动被覆盖，不需要手动卸载。

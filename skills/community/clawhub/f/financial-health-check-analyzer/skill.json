@@ -1,0 +1,26 @@
+{
+  "name": "Financial Health Check Analyzer",
+  "slug": "financial-health-check-analyzer",
+  "version": "1.0.0",
+  "description": "Provides a multi-dimensional assessment of financial health with actionable improvement recommendations.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "financial"
+  ],
+  "trigger_keywords": [
+    "financial health check analyzer",
+    "financial health check analyzer",
+    "financial",
+    "health",
+    "check",
+    "analyzer"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

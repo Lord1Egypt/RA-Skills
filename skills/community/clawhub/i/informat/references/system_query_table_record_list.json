@@ -1,0 +1,195 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_table_record_list",
+		"description": "Query data table records by conditions. Supports filtering, pagination, sorting, grouping, and aggregation operations. Field ID refers to the id property of each field in the fieldList obtained by calling query_table_define. All places involving fieldId below are field IDs. The key of the returned data table records is also the field ID",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"excludeFields": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "List of field IDs to exclude from return",
+					"example": [
+						"created_by",
+						"updated_time"
+					]
+				},
+				"includeFields": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Only query and return the fields specified in includeFields; if includeFields is not provided, all fields are queried and returned by default.",
+					"example": [
+						"name",
+						"age"
+					]
+				},
+				"tableId": {
+					"type": "string",
+					"description": "Data table ID obtained through the query_all_table_list interface"
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page number, starting from 1",
+					"default": 1
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Number of records per page. Default 1000. 【Important rule】When no filter is specified and no aggregationQueryList is specified, the maximum pageSize is 1000 and must not exceed.",
+					"default": 1000
+				},
+				"filter": {
+					"type": "object",
+					"description": "Tree-shaped filter condition structure",
+					"properties": {
+						"opt": {
+							"type": "string",
+							"default": "and",
+							"description": "Logical operator. Only one of the following values can be filled: and (AND), or (OR). Default and."
+						},
+						"conditionList": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"fieldId": {
+										"type": "string",
+										"description": "Field ID"
+									},
+									"opt": {
+										"type": "string",
+										"description": "Operator type. Only one of the following values can be filled: \neq (equal, exact match, not applicable for list fields), ne (not equal), gt (greater than), ge (greater than or equal), lt (less than), le (less than or equal), \ncontains (contains substring/list contains), notcontains (does not contain substring/list does not contain), startswith (starts with specified string), endswith (ends with specified string), \nisnull (field is empty), isnotnull (field is not empty), in (value is in collection), notin (value is not in collection), between (value is in range), notbetween (value is outside range), \nparentrooteq (root node match), parenteq (parent node match), parentcontains (parent node path contains), intree (in subtree)"
+									},
+									"value": {
+										"anyOf": [
+											{
+												"type": "string"
+											},
+											{
+												"type": "number"
+											},
+											{
+												"type": "boolean"
+											},
+											{
+												"type": "array",
+												"items": {
+													"type": [
+														"string",
+														"number",
+														"boolean"
+													]
+												}
+											},
+											{
+												"type": "null"
+											}
+										],
+										"description": "Value that dynamically changes based on operator type. If the field type is Cascader, the value should be an array like [\"Zhejiang Province\", \"Hangzhou City\"]"
+									},
+									"func": {
+										"type": "string",
+										"description": "Special field processing function. Only one of the following values can be filled: month, week, dayofyear, dayofmonth, weekofyear, quarter, year, daytonow, weektonow, yeartonow, monthtonow, quartertonow, fmtday, fmtmonth, fmtquarter, fmtyear, fmtweek.\nImportant rule: When the field is Date type and using opt=eq to query by a certain day, func=fmtday must be used, and value should use yyyy-MM-dd format (e.g., 2025-05-15), otherwise records cannot be matched because the field contains hours, minutes, and seconds."
+									}
+								},
+								"required": [
+									"fieldId",
+									"opt"
+								]
+							}
+						},
+						"children": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/filterCondition"
+							},
+							"description": "Nested child conditions"
+						}
+					},
+					"required": [
+						"opt"
+					],
+					"definitions": {
+						"filterCondition": {
+							"type": "object",
+							"properties": {
+								"opt": {
+									"$ref": "#/properties/filter/properties/opt"
+								},
+								"conditionList": {
+									"$ref": "#/properties/filter/properties/conditionList"
+								},
+								"children": {
+									"$ref": "#/properties/filter/properties/children"
+								}
+							}
+						}
+					}
+				},
+				"orderByList": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"field": {
+								"type": "string",
+								"description": "Field ID when not sorting by aggregated value; in aggregation queries (count, sum, max, min, avg), for example, when sorting by salary sum, the field should be: fieldID_sum"
+							},
+							"type": {
+								"type": "string",
+								"default": "asc",
+								"description": "Sorting method. Only one of the following values can be filled: asc (ascending, default), desc (descending)."
+							}
+						},
+						"required": [
+							"field",
+							"type"
+						]
+					},
+					"description": "Supports multi-field sorting, priority is based on array order"
+				},
+				"groupByList": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"description": "Group field ID (obtained through query_table_define); if it is an aggregation query by date, the format is: group field ID$func, func has the following options: day, month, quarter, year, week. For example, query by month grouping is: group field ID$month"
+					},
+					"description": "Group field list (used with aggregationQueryList)"
+				},
+				"aggregationQueryList": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"func": {
+								"type": "string",
+								"description": "Aggregation function type. Only one of the following values can be filled: count (count), avg (average), sum (sum), max (maximum), min (minimum)."
+							},
+							"fieldId": {
+								"type": "string",
+								"description": "Field ID to be aggregated (obtained through query_table_define)"
+							},
+							"distinct": {
+								"type": "boolean",
+								"default": false,
+								"description": "Whether to calculate distinct"
+							}
+						},
+						"required": [
+							"func",
+							"fieldId"
+						]
+					},
+					"description": "Aggregation query configuration list (used when statistics such as average, total, etc. are needed)"
+				}
+			},
+			"required": [
+				"tableId"
+			]
+		}
+	}
+}

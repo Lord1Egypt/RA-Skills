@@ -1,35 +1,47 @@
 ---
-name: "Pku Alumni Association"
-description: "北京大学校友会信息查询工具，提供校友会简介、各地分会、校友活动、校友服务、联系方式、捐赠渠道等信息查询。当用户提到北大校友、北京大学、校友会、PKU alumni、校友活动、校友分会、校友服务、校友捐赠等相关需求时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pku-alumni-association"
-sourceUrl: "https://clawhub.ai/skills/pku-alumni-association"
+name: pku-alumni-association
+description: 北京大学校友会信息查询工具，提供校友会简介、各地分会、校友活动、校友服务、联系方式、捐赠渠道等信息查询。当用户提到北大校友、北京大学、校友会、PKU alumni、校友活动、校友分会、校友服务、校友捐赠等相关需求时使用此技能。
 ---
 
-# Pku Alumni Association
+# 北大校友会信息查询
 
-> 北京大学校友会信息查询工具，提供校友会简介、各地分会、校友活动、校友服务、联系方式、捐赠渠道等信息查询。当用户提到北大校友、北京大学、校友会、PKU alumni、校友活动、校友分会、校友服务、校友捐赠等相关需求时使用此技能。
+北京大学校友会官方信息查询助手，提供全面的校友会相关信息服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pku-alumni-association`
-- **Source URL:** [https://clawhub.ai/skills/pku-alumni-association](https://clawhub.ai/skills/pku-alumni-association)
+## 核心功能
 
-## Overview
+- **校友会简介**：了解北京大学校友会的历史、宗旨和组织架构
+- **各地分会**：查询全国各省市及海外校友会分会的联系方式
+- **校友活动**：查询近期校友会举办的各类活动信息
+- **校友服务**：校友卡办理、校友邮箱、图书借阅、返校服务等说明
+- **联系方式**：校友会办公室地址、电话、邮箱等联络方式
+- **校友捐赠**：捐赠渠道、项目介绍和捐赠方式
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pku-alumni-association
-```
+1. 分析用户查询意图，确定用户想了解哪方面的信息
+2. 调用 `main.py` 脚本，传入用户查询的类别和关键词
+3. 根据返回结果，以清晰、友好的方式呈现给用户
+4. 如果用户查询内容不在现有分类中，引导用户查询相关类别
+
+## 输入参数
+
+- **category**：查询类别，可选值：
+  - `overview` - 校友会简介
+  - `chapters` - 各地分会
+  - `events` - 校友活动
+  - `services` - 校友服务
+  - `contact` - 联系方式
+  - `donation` - 校友捐赠
+  - `all` - 查询全部信息
+- **keyword**（可选）：搜索关键词，用于模糊匹配
+
+## 输出格式
+
+返回结构化的查询结果，包含标题、内容和相关链接等信息。输出时保持自然语言表达，适当使用列表、加粗等格式增强可读性。
+
+## 边界情况
+
+- 如果用户查询的类别不存在，提示支持的查询类别列表
+- 如果关键词没有匹配结果，返回该类别下的全部信息
+- 如果用户的问题比较宽泛，先概述再引导用户深入了解具体方面
+- 所有信息仅供参考，重大事项建议以官方发布为准

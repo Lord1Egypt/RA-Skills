@@ -1,0 +1,8 @@
+{
+  "interval_hours": 24,
+  "min_sessions": 5,
+  "max_memory_lines": 200,
+  "backup_enabled": true,
+  "dry_run": false,
+  "verbose": false
+}

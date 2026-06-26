@@ -1,35 +1,145 @@
 ---
-name: "daily-hot-ai-news"
-description: "当用户想要获取AI领域的最新新闻、热点、动态、资讯或话题时使用此技能。 触发场景包括：询问"今天AI有什么新闻"、"最近AI热点"、"最新AI资讯"、 "AI圈发生了什么"、"帮我看看AI动态"等类似表达。 不需要定时任务，仅当用户主动请求时执行。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-hot-ai-news"
-sourceUrl: "https://clawhub.ai/skills/daily-hot-ai-news"
+name: daily-ai-news
+description: >
+  当用户想要获取AI领域的最新新闻、热点、动态、资讯或话题时使用此技能。
+  触发场景包括：询问"今天AI有什么新闻"、"最近AI热点"、"最新AI资讯"、
+  "AI圈发生了什么"、"帮我看看AI动态"等类似表达。
+  不需要定时任务，仅当用户主动请求时执行。
 ---
 
-# daily-hot-ai-news
+# Daily AI News
 
-> 当用户想要获取AI领域的最新新闻、热点、动态、资讯或话题时使用此技能。 触发场景包括：询问"今天AI有什么新闻"、"最近AI热点"、"最新AI资讯"、 "AI圈发生了什么"、"帮我看看AI动态"等类似表达。 不需要定时任务，仅当用户主动请求时执行。
+提供AI领域热点新闻简报，包含行业动态、技术突破、观点评论等内容，
+以通俗易懂的中文解读呈现，每条新闻附带来源链接。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-hot-ai-news`
-- **Source URL:** [https://clawhub.ai/skills/daily-hot-ai-news](https://clawhub.ai/skills/daily-hot-ai-news)
+## When to Use This Skill
 
-## Overview
+当用户表达以下意图时使用此技能：
 
+- 获取今日/最近AI新闻、热点、动态
+- 了解AI行业最新进展
+- 查看AI领域的热点话题和讨论
+- 关键词：AI + 新闻/热点/动态/资讯/话题/事件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-hot-ai-news
+示例触发语句：
+- "今天AI有什么新闻？"
+- "最近AI圈在讨论什么？"
+- "帮我看看最新的AI热点"
+- "AI行业最近有什么大事？"
+- "/ai-news"
+
+## 实现流程
+
+### Step 1: 语义匹配
+
+检测用户消息是否触发此 skill：
+
 ```
+同时包含：
+1. AI相关词：AI、人工智能、大模型、LLM、ChatGPT、GPT、Claude、Midjourney、OpenAI、Google、Meta等
+2. 意图词：新闻、热点、动态、资讯、话题、事件、发生了什么、最近
+或 直接调用 /ai-news 命令
+```
+
+### Step 2: 搜索新闻
+
+使用 WebSearch 工具并行搜索多个来源：
+
+```bash
+# 并行搜索
+- "今日AI新闻 2026年3月" (国内)
+- "AI news today March 2026" (国外)
+- "AI 热点话题 微博" (社交媒体)
+- "AI 融资 收购 2026"
+```
+
+### Step 3: 整理简报
+
+将搜索结果整理为 Markdown 格式，完整披露所有内容：
+
+```markdown
+## 🔥 今日最热
+
+### 1. 事件标题
+
+**热度**: ⭐⭐⭐⭐⭐
+
+**发生了什么**
+
+[简要说明]
+
+**详细解读**
+
+[300-500字深度分析，通俗易懂，让用户看完基本不需要再看原文]
+
+**实际影响**
+
+- 影响点1
+- 影响点2
+
+**来源**: [链接1](url) | [链接2](url)
+
+---
+
+### 2. 事件标题
+...
+
+---
+
+## 💡 观点与评论
+
+### 业界领袖观点
+
+- **黄仁勋 (NVIDIA CEO)**: "AI 将成为每个公司的基础能力，就像电力一样。"
+  - **支撑**: 英伟达数据中心业务年营收突破 600 亿美元，AI 芯片需求持续爆发，三大云服务商都在大量采购 GPU。
+
+- **Sam Altman (OpenAI CEO)**: "我们可能高估了AI短期内的发展，但低估了长期影响。"
+  - **支撑**: GPT-5 研发进度不及预期，但长期来看 AI 渗透率将持续提升。
+
+### 社区热议
+
+- **#AI取代程序员#**: 5.2万讨论
+  - **观点**: 乐观派认为 AI 是工具增强而非替代，悲观派担忧初级开发者需求下降。
+  - **数据**: GitHub Copilot 用户已超过 200 万，但程序员数量仍在增长。
+
+- **#Claude4 vs GPT5#**: 3.8万讨论
+  - **观点**: 开发者社区对编程助手选择产生分歧，Claude 4 在代码能力上首次超越 GPT-4。
+
+---
+
+## 🌐 国外AI动态
+
+### 美国
+
+- **OpenAI 正在测试 GPT-5**: 预计下月发布，推理能力提升显著，但训练成本高达 5 亿美元。OpenAI 估值已达 1500 亿美元，正在冲刺 IPO。
+
+### 欧洲
+
+- **欧盟 AI 法案正式生效**: 基础模型提供商需在 2027 年前完成合规注册。欧洲 AI 创业公司可能面临更高合规成本，但有利于规范市场。
+
+### 其他
+
+- **Google DeepMind 发布 AlphaFold 3**: 蛋白质预测精度提升 50%，将免费向科研机构开放。这可能加速新药研发进程。
+```
+
+### Step 4: 输出
+
+按以下结构组织简报：
+
+1. **今日最热** - 当日热度最高的话题（2-3条），每条300-500字深度分析
+2. **行业大事件** - 重大发布、融资、并购（表格形式）
+3. **观点与评论** - 业界观点、社区讨论，每条2-3句话 + 证据/逻辑支撑
+4. **国外AI动态** - 国际要闻，每条2-3句话 + 简要分析
+
+## 数据来源（使用WebSearch自动获取）
+
+- 公众号：机器之心、AI科技评论
+- 国内媒体：36Kr、虎嗅、极客公园、腾讯科技
+- 国外媒体：TechCrunch、VentureBeat、The Verge
+
+## 注意事项
+
+- 每条新闻需要附带来源链接
+- 内容解读要通俗易懂，立场中立
+- 完整披露所有内容，不使用折叠
+- 简报长度适中，核心内容控制在合理范围

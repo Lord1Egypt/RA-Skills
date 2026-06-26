@@ -1,0 +1,31 @@
+{
+  "name": "sense-music",
+  "version": "0.1.5",
+  "description": "Music perception for AI entities \u2014 hear BPM, key, structure, genre, mood, and lyrics in any audio file",
+  "author": "Humanjava Enterprises",
+  "license": "MIT",
+  "language": "python",
+  "install": "pip install sense-music",
+  "keywords": [
+    "audio-analysis",
+    "music",
+    "perception",
+    "ai",
+    "librosa",
+    "whisper",
+    "openclaw"
+  ],
+  "repository": "https://github.com/HumanjavaEnterprises/huje.sensemusic.OC-python.src",
+  "homepage": "https://huje.tools",
+  "dependencies": {
+    "librosa": ">=0.10",
+    "matplotlib": ">=3.7",
+    "Pillow": ">=10.0",
+    "numpy": ">=1.24",
+    "openai-whisper": ">=20231117"
+  },
+  "system_dependencies": [
+    "ffmpeg"
+  ],
+  "env": {}
+}

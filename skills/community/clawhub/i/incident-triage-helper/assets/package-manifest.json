@@ -1,0 +1,12 @@
+{
+  "name": "local-skill-package-publisher",
+  "version": "0.2.0",
+  "files": [
+    "SKILL.md",
+    "docs/review-checklist.md",
+    "docs/assessment-notes.md",
+    "examples/sample-skill.md",
+    "templates/publish-request.md",
+    "scripts/validate.sh"
+  ]
+}

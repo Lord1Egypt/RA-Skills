@@ -1,0 +1,103 @@
+{
+  "name": "designkit-skills",
+  "version": "1.0.0",
+  "author": "meitu",
+  "description": "Official DesignKit skill bundle for background removal, image restoration, ecommerce product-image generation, and A+ detail-page workflows, with runtime guidance optimized for Chinese-language users.",
+  "license": "MIT",
+  "entry": "SKILL.md",
+  "homepage": "https://www.designkit.cn/openclaw",
+  "documentation": "https://github.com/meitu/designkit-skills#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meitu/designkit-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meitu/designkit-skills/issues"
+  },
+  "tags": [
+    "designkit",
+    "designkit-official",
+    "ai-image-editing",
+    "background-removal",
+    "remove-background",
+    "transparent-background",
+    "white-background",
+    "image-restoration",
+    "ecommerce-listing-images",
+    "a-plus-detail-page",
+    "a-plus-content",
+    "product-image-set",
+    "chinese-workflows",
+    "抠图",
+    "去背景",
+    "画质修复",
+    "商品套图",
+    "A+详情",
+    "详情页"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "permissions": ["network", "filesystem", "shell"],
+  "triggers": {
+    "keywords": [
+      "remove background",
+      "background removal",
+      "transparent background",
+      "white background",
+      "matting",
+      "image restoration",
+      "restore blurry image",
+      "enhance image quality",
+      "generate listing image set",
+      "product image set",
+      "amazon listing images",
+      "a+ detail page",
+      "a+ content",
+      "detail page images",
+      "designkit",
+      "抠图",
+      "去背景",
+      "透明底",
+      "白底图",
+      "画质修复",
+      "变清晰",
+      "生成电商套图",
+      "商品套图",
+      "商品主图",
+      "A+详情",
+      "详情页",
+      "A+页面",
+      "详情图",
+      "亚马逊套图",
+      "美图设计室"
+    ]
+  },
+  "config": {
+    "DESIGNKIT_OPENCLAW_AK": {
+      "type": "string",
+      "description": "API key used to authenticate all bundled DesignKit / OpenClaw workflows.",
+      "required": true
+    },
+    "DESIGNKIT_OPENCLAW_AK_URL": {
+      "type": "string",
+      "description": "Optional billing or key-management page shown in user-facing guidance. Default: https://www.designkit.cn/openclaw.",
+      "required": false
+    }
+  },
+  "skills": {
+    "designkit-edit-tools": {
+      "entry": "skills/designkit-edit-tools/SKILL.md",
+      "description": "Single-image editing for background removal and image restoration.",
+      "status": "active"
+    },
+    "designkit-ecommerce-product-kit": {
+      "entry": "skills/designkit-ecommerce-product-kit/SKILL.md",
+      "description": "Multi-step ecommerce listing-image workflow from a product photo.",
+      "status": "active"
+    },
+    "designkit-ecommerce-a-plus-detail": {
+      "entry": "skills/designkit-ecommerce-a-plus-detail/SKILL.md",
+      "description": "Two-step A+ detail workflow from 1-3 product images: planning then rendering.",
+      "status": "active"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "trutu-photo-verify-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for 今日水印相机 photo authenticity verification via Trutu openapi",
+  "main": "mcp_server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node mcp_server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "keywords": ["mcp", "watermark", "photo", "verification", "trutu", "clawhub", "openclaw"]
+}

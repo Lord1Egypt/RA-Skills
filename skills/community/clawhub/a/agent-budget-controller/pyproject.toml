@@ -1,0 +1,23 @@
+[project]
+name = "agent-budget-controller"
+version = "1.0.0"
+description = "Control LLM API spending per agent with budget limits and alerts"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT-0" }
+authors = [
+    { name = "UBIK Collective", email = "dev@ubik.systems" }
+]
+
+# No external dependencies - stdlib only
+dependencies = []
+
+[project.scripts]
+budget = "scripts.budget:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []

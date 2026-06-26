@@ -1,0 +1,55 @@
+{
+  "name": "code-review-assistant",
+  "version": "1.0.0",
+  "description": "AI驱动的智能代码审查助手，自动化代码质量、安全和性能分析",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/basic.test.js",
+    "dev": "node src/index.js",
+    "build": "echo 'No build required'"
+  },
+  "keywords": [
+    "astronclaw",
+    "code-review",
+    "ai",
+    "static-analysis",
+    "code-quality",
+    "security-scan"
+  ],
+  "author": "蒲公英",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "@babel/types": "^7.26.0",
+    "typescript": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "openclaw": {
+    "skill": {
+      "id": "code-review-assistant",
+      "name": "AI Code Review Assistant",
+      "description": "AI驱动的智能代码审查助手，提供代码质量、安全、性能和架构多维度分析",
+      "version": "1.0.0",
+      "capabilities": {
+        "tools": ["CodeReview", "CodeQualityScan", "SecurityAudit", "PerformanceAnalysis", "GenerateReviewReport"],
+        "config": {
+          "reviewLevel": {
+            "type": "string",
+            "enum": ["basic", "standard", "advanced"],
+            "default": "standard",
+            "description": "审查深度级别"
+          },
+          "aiEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用AI智能分析"
+          }
+        }
+      }
+    }
+  }
+}

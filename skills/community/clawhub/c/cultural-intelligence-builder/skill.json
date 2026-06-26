@@ -1,0 +1,24 @@
+{
+  "name": "Cultural Intelligence Builder",
+  "slug": "cultural-intelligence-builder",
+  "version": "1.0.0",
+  "description": "Develops cultural awareness, cross-cultural communication skills, and global mindset adaptability.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "cultural-awareness",
+    "communication",
+    "global",
+    "growth"
+  ],
+  "trigger_keywords": [
+    "cross-cultural communication",
+    "cultural awareness",
+    "global mindset",
+    "cultural intelligence CQ",
+    "work with people from different cultures"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

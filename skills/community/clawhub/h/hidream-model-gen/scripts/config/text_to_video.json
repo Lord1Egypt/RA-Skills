@@ -1,0 +1,86 @@
+{
+  "categories": {
+    "text_to_video": {
+      "name": "文生视频",
+      "name_en": "Text to Video",
+      "status": "testing",
+      "default_port": "v3L",
+      "description": "从文本描述生成视频",
+      "warning": "生成时间较长(2-3分钟)，请谨慎调用",
+      "ports": {
+        "v3L": {
+          "name": "V3 Lite",
+          "display_name": "Vivago.ai 2.0 360p",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "360p文生视频/图生视频，速度快"
+        },
+        "v3Pro": {
+          "name": "V3 Pro",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3Pro",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "高质量文生视频/图生视频"
+        },
+        "kling-video": {
+          "name": "Kling Video",
+          "display_name": "Kling video O1",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_gen2vid/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "kling-video-o1",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "medium",
+          "quality": "excellent",
+          "notes": "文生视频/图生视频已测试，使用 gen2vid 端点"
+        }
+      }
+    }
+  }
+}

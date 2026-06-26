@@ -1,0 +1,28 @@
+CHANGELOG — Semantic Prospect
+Published by Simply Semantics
+================================================================================
+
+v1.0.0 — 2026-03-03
+--------------------
+Initial ClawHub release.
+
+Features:
+  - AI-powered lead discovery from online forums and communities
+  - Three search strategies: Mock (testing), Brave Search API, LLM Web Search
+  - Zero-configuration free tier — Brave Search and LLM work immediately with platform-provided keys
+  - Free tier: 10 searches/week, 5 LLM queries (3 results each), 50 leads/month
+  - Users can add their own Brave or LLM API key for unlimited usage (up to 10 results per LLM query)
+  - Only enabled LLM providers shown in config (providers without platform keys hidden)
+  - Free tier result limits clearly indicated in UI and API response (free_tier.maxResults)
+  - Interactive web dashboard with tabs: Dashboard, Extract Leads, Search Strategies,
+    Leads History, Forum Filters, Settings
+  - Semantic intent scoring and lead qualification
+  - Automatic lead deduplication and URL validation (dead links removed)
+  - Niche and keyword management with custom niches
+  - Forum source filtering (allowlist/blocklist)
+  - Weekly and monthly usage quotas with clear remaining-count indicators
+  - Account link and tier badge in navbar
+  - "Try It" button on Search Strategies navigates to Extract Leads with strategy pre-selected
+  - SSO authentication via SimplySemantics.com
+  - MCP-compatible API endpoint (POST /sp/mcp/forum-leads-api) with strategy override support
+

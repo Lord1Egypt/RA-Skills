@@ -1,35 +1,32 @@
 ---
-name: "bilanz"
+name: bilanz
+version: 0.1.0
 description: "Austrian-style Bilanz (annual accounts) generator"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilanz"
-sourceUrl: "https://clawhub.ai/skills/bilanz"
+author: kleberbaum
+tags: [finance, netsnek]
 ---
 
 # bilanz
 
-> Austrian-style Bilanz (annual accounts) generator
+Prepare Bilanz reports following Austrian UGB standards with Aktiva and Passiva sections.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilanz`
-- **Source URL:** [https://clawhub.ai/skills/bilanz](https://clawhub.ai/skills/bilanz)
+## Aktiva Overview
 
-## Overview
+Use `--aktiva` to access the aktiva overview functionality.
 
+## Passiva Overview
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilanz
-```
+Use `--passiva` for the passiva overview view.
+
+## Gewinn- und Verlustrechnung
+
+Run `scripts/bilanz-check.sh --status` to display metadata and copyright.
+
+## UGB Compliance
+
+Additional compliance and validation features are planned for future releases.
+
+## License
+
+Copyright (c) 2026 Netsnek e.U. All rights reserved.
+Website: https://netsnek.com

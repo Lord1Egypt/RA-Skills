@@ -1,0 +1,14 @@
+---
+name: governance-explainer
+description: Explain DAO governance rules and implications clearly; translate constraints into allowed/forbidden actions with consequences.
+version: 2.0.0
+display_name: "Governance Explainer"
+triggers:
+  - governance explainer
+  - explain dao rule
+  - what is allowed
+  - is this permitted
+  - governance implications
+  - policy constraints
+  - dao vote rules
+---

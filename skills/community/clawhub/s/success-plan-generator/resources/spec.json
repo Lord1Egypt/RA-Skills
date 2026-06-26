@@ -1,0 +1,37 @@
+{
+  "slug": "success-plan-generator",
+  "title": "成功计划生成器",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "为 B2B 客户生成成功计划，绑定里程碑、可验证结果与复盘节奏。",
+  "inputHint": "客户目标、里程碑、资源情况",
+  "sections": [
+    "客户目标",
+    "关键里程碑",
+    "成功指标",
+    "责任分工",
+    "复盘节奏",
+    "续约信号"
+  ],
+  "useCases": [
+    "客户成功计划",
+    "QBR 准备",
+    "续约前规划"
+  ],
+  "positiveExamples": [
+    "给这个客户做一份 success plan",
+    "把里程碑和结果绑定"
+  ],
+  "negativeExamples": [
+    "不要承诺合同外服务",
+    "不要替代正式项目计划"
+  ],
+  "risk": "输出为客户成功草案。",
+  "tags": [
+    "success-plan",
+    "customer-success",
+    "b2b",
+    "roadmap"
+  ]
+}

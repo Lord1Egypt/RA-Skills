@@ -1,0 +1,64 @@
+{
+  "_comment": "job-search-tailor config — copy to ~/.job-search/config.json and fill in your values",
+
+  "_comment_target_roles": "Job title keywords to search. Mix broad and specific.",
+  "target_roles": ["Data Scientist", "ML Engineer", "Applied Scientist", "AI Engineer"],
+
+  "_comment_locations": "Target locations. Use 'remote US' for remote-only.",
+  "locations": ["remote US", "New York"],
+
+  "_comment_job_boards": "v1 supports linkedin only.",
+  "job_boards": ["linkedin"],
+
+  "_comment_dedup": "Skip jobs already seen within this many days.",
+  "dedup_window_days": 30,
+
+  "_comment_max_per_company": "Max jobs from the same company per digest.",
+  "max_per_company": 2,
+
+  "_comment_target_count": "Aim for this many final jobs in each digest.",
+  "target_count": 8,
+
+  "_comment_tracking_file": "Path to dedup tracking JSON. Created automatically if missing.",
+  "tracking_file": "~/.job-search/memory/shared_jobs.json",
+
+  "_comment_archetypes_dir": "Folder where archetype resume markdown files are stored.",
+  "archetypes_dir": "~/.job-search/archetypes/",
+
+  "_comment_threshold": "Min keyword match score (0–1) to use an existing archetype. Below this → create new.",
+  "archetype_match_threshold": 0.5,
+
+  "_comment_google_docs": "Set true to push new archetypes to Google Docs. Requires OAuth setup.",
+  "google_docs_enabled": false,
+
+  "_comment_delivery": "Delivery target. Use 'telegram:YOUR_CHAT_ID' or leave empty to print only.",
+  "delivery_channel": "telegram:YOUR_CHAT_ID",
+
+  "_comment_archetypes": "Your resume archetypes. Add more after first-run setup or manually.",
+  "archetypes": [
+    {
+      "name": "mle",
+      "keywords": ["machine learning engineer", "ml engineer", "mlops", "ml platform"],
+      "resume_path": "~/.job-search/archetypes/mle.md",
+      "resume_url": ""
+    },
+    {
+      "name": "data-scientist",
+      "keywords": ["data scientist", "data science", "statistical modeling", "analytics"],
+      "resume_path": "~/.job-search/archetypes/data-scientist.md",
+      "resume_url": ""
+    },
+    {
+      "name": "applied-scientist",
+      "keywords": ["applied scientist", "research scientist", "applied research"],
+      "resume_path": "~/.job-search/archetypes/applied-scientist.md",
+      "resume_url": ""
+    },
+    {
+      "name": "ai-engineer",
+      "keywords": ["ai engineer", "genai", "llm engineer", "ai platform"],
+      "resume_path": "~/.job-search/archetypes/ai-engineer.md",
+      "resume_url": ""
+    }
+  ]
+}

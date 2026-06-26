@@ -1,35 +1,103 @@
 ---
-name: "Candlestick"
+name: "candlestick"
+version: "1.0.0"
 description: "Candlestick reference tool. Use when working with candlestick in finance contexts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/candlestick"
-sourceUrl: "https://clawhub.ai/skills/candlestick"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [candlestick, finance, finance, reference, cli]
+category: "finance"
 ---
 
 # Candlestick
 
-> Candlestick reference tool. Use when working with candlestick in finance contexts.
+Candlestick reference tool. Use when working with candlestick in finance contexts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/candlestick`
-- **Source URL:** [https://clawhub.ai/skills/candlestick](https://clawhub.ai/skills/candlestick)
+## When to Use
 
-## Overview
+- Working with candlestick and need quick reference
+- Looking up finance standards or best practices for candlestick
+- Troubleshooting candlestick issues
+- Need a checklist or guide for candlestick tasks
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `intro`
+
 ```bash
-hermes skills install clawhub/candlestick
+scripts/script.sh intro
 ```
+
+Overview and fundamentals
+
+### `formulas`
+
+```bash
+scripts/script.sh formulas
+```
+
+Key formulas and calculations
+
+### `regulations`
+
+```bash
+scripts/script.sh regulations
+```
+
+Regulatory framework and compliance
+
+### `risks`
+
+```bash
+scripts/script.sh risks
+```
+
+Risk factors and mitigation
+
+### `instruments`
+
+```bash
+scripts/script.sh instruments
+```
+
+Instruments and tools overview
+
+### `strategies`
+
+```bash
+scripts/script.sh strategies
+```
+
+Common strategies and approaches
+
+### `glossary`
+
+```bash
+scripts/script.sh glossary
+```
+
+Key terms and definitions
+
+### `checklist`
+
+```bash
+scripts/script.sh checklist
+```
+
+Due diligence checklist
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

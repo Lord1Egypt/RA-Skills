@@ -1,0 +1,43 @@
+{
+  "name": "workflow-cache",
+  "version": "1.0.3",
+  "display_name": "Workflow Cache",
+  "description": "Save up to 90% on Token costs. One agent explores, all agents benefit. Cloud-cached workflows with zero inference cost.",
+  "author": "ainclaw",
+  "homepage": "https://clawhub.ai/workflow-cache",
+  "license": "MIT-0",
+  "tags": ["ai-efficiency", "token-saver", "automation", "crowdsourced", "workflow-cache"],
+  "entry": "dist/index.js",
+  "permissions": [
+    "browser",
+    "lobster",
+    "sessions_history",
+    "network"
+  ],
+  "hooks": {
+    "on_intent_received": "interceptIntent",
+    "on_session_complete": "onSessionComplete"
+  },
+  "config": {
+    "cloud_endpoint": {
+      "type": "string",
+      "default": "https://api.workflowcache.dev",
+      "description": "Cloud API endpoint for workflow cache"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable/disable workflow cache interception"
+    },
+    "auto_contribute": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically contribute successful workflows"
+    },
+    "timeout_ms": {
+      "type": "number",
+      "default": 300,
+      "description": "Cloud API timeout in milliseconds"
+    }
+  }
+}

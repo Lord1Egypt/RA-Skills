@@ -1,35 +1,111 @@
 ---
-name: "JMin Meeting Notes"
-description: "会议记录智能整理工具。输入会议要点或文字记录，自动生成结构化会议纪要、待办事项、决策记录。适用于职场人士、会议组织者、项目管理者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jmin-meeting-notes"
-sourceUrl: "https://clawhub.ai/skills/jmin-meeting-notes"
+name: meeting-notes-generator
+description: 会议记录智能整理工具。输入会议要点或文字记录，自动生成结构化会议纪要、待办事项、决策记录。适用于职场人士、会议组织者、项目管理者。
 ---
 
-# JMin Meeting Notes
+# Meeting Notes Generator（会议纪要生成器）
 
-> 会议记录智能整理工具。输入会议要点或文字记录，自动生成结构化会议纪要、待办事项、决策记录。适用于职场人士、会议组织者、项目管理者。
+## 这是什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jmin-meeting-notes`
-- **Source URL:** [https://clawhub.ai/skills/jmin-meeting-notes](https://clawhub.ai/skills/jmin-meeting-notes)
+把零散的会议记录或要点丢给我，我帮你整理成：
+- 结构化会议纪要
+- 清晰的待办事项（带负责人）
+- 明确的决策记录
+- 下次会议议程
 
-## Overview
+---
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jmin-meeting-notes
+### 方法一：粘贴原始记录
+
+把会议记录的文字、笔记、甚至语音转文字的内容直接发给我，说「整理成会议纪要」。
+
+### 方法二：口述要点
+
+直接对我说：「会议纪要：讨论了 A 事项，决定做 B，负责人是张三，下周三之前完成」。
+
+我来整理成标准格式。
+
+### 方法三：输入主题
+
+告诉我会议主题和讨论内容，我帮你生成会议纪要模板，你填内容后我再整理。
+
+---
+
+## 输出格式示例
+
+```
+## 会议纪要：XXX 项目进度同步
+
+**时间：** 2026年3月31日 14:00-15:00
+**参会人：** 张三（主持）、李四、王五
+**记录人：** [你的名字]
+
+---
+
+### 讨论事项
+
+1. **项目进度**
+   - 现状：已完成第一阶段开发
+   - 风险：测试资源不足
+   - 负责人：张三
+
+2. **下周计划**
+   - 完成联调测试
+   - 输出测试报告
+   - 负责人：李四
+
+---
+
+### 决策记录
+
+| 决策 | 原因 | 确认人 |
+|------|------|--------|
+| 上线时间延后 3 天 | 测试不充分 | 张三、李四 |
+
+---
+
+### 待办事项
+
+| 事项 | 负责人 | 完成时间 |
+|------|--------|----------|
+| 完成测试报告 | 李四 | 4月3日 |
+| 确认上线排期 | 张三 | 4月4日 |
+| 通知客户延期 | 王五 | 4月5日 |
+
+---
+
+### 下次会议
+
+时间：4月7日 14:00
+议程：上线前最终确认
+```
+
+---
+
+## 适用场景
+
+- 周会/月会纪要
+- 项目评审会议
+- 客户沟通记录
+- 一对一会议总结
+- 头脑风暴记录整理
+
+---
+
+## 支持语言
+
+中文、英文、粤语均可识别和输出。
+
+---
+
+## 包含内容
+
+```
+meeting-notes-generator/
+├── SKILL.md           # 主文件
+├── references/
+│   └── templates.md   # 各类型会议纪要模板
+└── README.md
 ```

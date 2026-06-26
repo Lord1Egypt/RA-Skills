@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ARTICLE_TITLE}}</title>
+  <style>
+{{CSS_CONTENT}}
+  </style>
+</head>
+<body>
+  <div class="toolbar-container" id="toolbarContainer">
+    <div class="preview-toolbar">
+      <span style="font-weight: bold; font-size: 14px; color: #0f172a; margin-right: 8px;">AIMe</span>
+      <label for="themePreset">主题</label>
+      <select id="themePreset">
+        <option value="warm-editorial">暖调专栏（Editorial）</option>
+        <option value="light-simple">极简黑白（Simple）</option>
+        <option value="tech-blue">科技蓝（Theme1）</option>
+        <option value="indigo-card">靛青卡片（Theme2）</option>
+        <option value="swiss-grid">瑞士网格（Swiss Grid）</option>
+        <option value="purple-highlight">紫色高亮（Default）</option>
+        <option value="warm-nature">自然森系（Warm Nature）</option>
+        <option value="vitality-orange">活力橙（Vitality）</option>
+        <option value="wechat-pure-glass">原生微光（Pure Glass）</option>
+        <option value="modern-cobalt">现代钴蓝（Cobalt）</option>
+        <option value="deep-space">深空探索（Space）</option>
+      </select>
+      <button type="button" id="toggleEdit">编辑</button>
+      <button type="button" id="toggleAnnotate">批注</button>
+      <button type="button" id="copyWechat">复制正文</button>
+      <button type="button" id="copyAnnotations">复制批注</button>
+      <span id="copyStatus" style="font-size: 12px; color: #10b981; min-width: 60px;"></span>
+    </div>
+    <div class="edit-toolbar" id="editToolbar">
+      <span style="font-size:12px;color:#64748b;margin-right:4px;">文本操作:</span>
+      <button type="button" onclick="document.execCommand('bold'); if(window.saveToStorage)saveToStorage();">加粗(B)</button>
+      <button type="button" onclick="document.execCommand('italic'); if(window.saveToStorage)saveToStorage();">斜体(I)</button>
+      <div style="width: 1px; height: 16px; background: #cbd5e1; margin: 0 4px;"></div>
+      <span style="font-size:12px;color:#64748b;margin-right:4px;">当前段落:</span>
+      <button type="button" id="btnToH1">H1</button>
+      <button type="button" id="btnToH2">H2</button>
+      <button type="button" id="btnToH3">H3</button>
+      <button type="button" id="btnToP">正文</button>
+      <button type="button" id="btnUndo">撤销操作</button>
+      <button type="button" id="btnReset" style="color: #64748b; border-color: #cbd5e1;">重置内容</button>
+      <div style="width: 1px; height: 16px; background: #cbd5e1; margin: 0 4px;"></div>
+      <button type="button" id="btnInsertBefore">上方插入</button>
+      <button type="button" id="btnInsertAfter">下方插入</button>
+      <button type="button" id="btnDeleteBlock" style="color: #ef4444; border-color: #fca5a5; background: #fef2f2;">删除</button>
+    </div>
+  </div>
+
+  <main class="preview-stage">
+    <!-- 
+      重要提示：
+      LLM 在生成内容时，请将生成的包含 data-role 属性的 HTML 标签放入此 article 容器内。
+      无需再生成外层的 html/head/body 结构，也无需重新定义样式。
+    -->
+    <article id="wechatArticle" data-role="article" style="max-width: 677px; margin: 0 auto; padding: 28px 18px 34px; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; font-size: 16px; line-height: 1.8; letter-spacing: 0; color: #3d3d3a;">
+      
+      <!-- LLM 内容生成区开始 -->
+      {{LLM_CONTENT_PLACEHOLDER}}
+      <!-- LLM 内容生成区结束 -->
+
+    </article>
+  </main>
+
+  <div id="annotationPopup" class="annotation-popup">
+    <textarea id="annotationInput" placeholder="输入您的批注意见..."></textarea>
+    <div class="annotation-popup-actions">
+      <button class="btn-cancel" id="btnCancelAnnotation">取消</button>
+      <button class="btn-save" id="btnSaveAnnotation">保存</button>
+    </div>
+  </div>
+
+  <script>
+    // 注意：这里的 themes 对象需由 LLM 根据 references/theme-presets.md 中的 "Fixed Color Tokens" 表格动态生成并注入，不要在模板中写死。
+    const themes = {{THEME_PRESETS_JSON}};
+
+    // 注意：这里的 styles 对象需由 LLM 根据 references/theme-presets.md 中的排版基础结构和 "Fixed Typography Tokens" 动态生成并注入，不要在模板中写死。
+    const styles = {{THEME_STYLES_JSON}};
+
+{{JS_CONTENT}}
+  </script>
+</body>
+</html>

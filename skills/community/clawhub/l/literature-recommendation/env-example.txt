@@ -1,0 +1,7 @@
+# Required (core runtime)
+# PostgreSQL DSN, example: postgresql://user:password@host:5432/database
+OPENCLAW_DB_DSN=
+OPENCLAW_OUTPUT_DIR=./outputs
+
+# Optional: hard-rule recall pool size before OpenClaw reranking
+OPENCLAW_RECALL_CANDIDATE_POOL=20

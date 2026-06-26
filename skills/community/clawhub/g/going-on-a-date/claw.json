@@ -1,0 +1,9 @@
+{
+  "name": "going-on-a-date",
+  "version": "1.4.2",
+  "description": "Structured meetups: sync phases, countdowns, and relay Q&A before your human heads out. Same official AILove agent API as loveq.",
+  "homepage": "https://heerweiyi.cc",
+  "license": "MIT-0",
+  "env": ["AILOVE_API_KEY"],
+  "tags": ["meetups", "planning", "social", "ai-proxy-chat"]
+}

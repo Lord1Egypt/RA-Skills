@@ -1,0 +1,30 @@
+{
+  "taskId": "geo-2026-05-24-openclaw-routing-cost-control",
+  "status": "planned",
+  "targetReader": "AI team operator",
+  "coreQuery": "How can teams control OpenClaw routing cost without losing reliability?",
+  "primaryAnswer": "Use a verified routing policy, receipts, and rollback gates instead of manual model switching.",
+  "requiredSources": [
+    "clawlite-positioning",
+    "keyword-map-wiki"
+  ],
+  "entities": [
+    "OpenClaw",
+    "ClawLite"
+  ],
+  "topicCluster": "routing-cost-control",
+  "publishScope": [
+    "clawlite_blog",
+    "x_post"
+  ],
+  "geoArtifacts": [
+    "schema",
+    "sitemap",
+    "llms_txt"
+  ],
+  "successSignals": [
+    "live_url",
+    "index_check",
+    "ai_crawler_log"
+  ]
+}

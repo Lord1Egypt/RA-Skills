@@ -1,35 +1,65 @@
----
-name: "Heartbeat Tasks"
-description: "Manage and execute periodic heartbeat tasks for trading, memory evaluation, archiving, and reporting with state tracking and anomaly alerts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/heartbeat-tasks"
-sourceUrl: "https://clawhub.ai/skills/heartbeat-tasks"
----
+# 心跳任务执行技能
 
-# Heartbeat Tasks
+> PAI 系统的心跳任务管理和执行技能
+> @version 1.0.0
 
-> Manage and execute periodic heartbeat tasks for trading, memory evaluation, archiving, and reporting with state tracking and anomaly alerts.
+## 🎯 目标
+- 定期执行周期性任务
+- 批量检查多个系统状态
+- 主动报告异常情况
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/heartbeat-tasks`
-- **Source URL:** [https://clawhub.ai/skills/heartbeat-tasks](https://clawhub.ai/skills/heartbeat-tasks)
+## 📋 心跳任务清单
 
-## Overview
+### CryptoTrading (每 10 分钟)
+- [ ] 检查距离上次决策是否≥10 分钟
+- [ ] 获取当前行情（BTC/ETH/BNB）
+- [ ] 调用 AI 获取决策
+- [ ] 应用规则验证（R001-R006）
+- [ ] 执行交易或记录 HOLD
+- [ ] 更新状态文件
 
+### 记忆管理 (每日 23:00)
+- [ ] 评估今日记忆质量
+- [ ] 提炼高价值记忆到 MEMORY.md
+- [ ] 标记待归档的低价值记忆
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/heartbeat-tasks
-```
+### 记忆归档 (每周六 23:00)
+- [ ] 归档旧记忆文件 (>30 天)
+- [ ] 清理重复/低质量记忆
+- [ ] 更新记忆系统统计
+
+### 交易总结 (每日 22:00)
+- [ ] 生成每日交易总结
+- [ ] 统计当日盈亏
+- [ ] 提炼经验教训
+
+### 周度回顾 (每周日 22:00)
+- [ ] 周度规则提炼
+- [ ] 发现新模式
+- [ ] 更新 trading_rules.md
+
+## 🔧 执行策略
+
+### 批量检查
+将多个周期性检查合并到一次心跳中，减少 API 调用：
+- 交易决策 + 验证脚本
+- 记忆评估 + 状态更新
+
+### 静默执行
+- 无异常时回复 `HEARTBEAT_OK`
+- 有异常时详细说明问题和建议
+
+### 状态追踪
+使用 `memory/heartbeat-state.json` 记录：
+- 最后检查时间
+- 执行统计
+- 系统状态
+
+## 📊 成功标准
+- 心跳任务按时执行率 > 99%
+- 异常检测和报告及时
+- 状态文件保持最新
+
+## 📁 相关文件
+- `/Users/zst/clawd/HEARTBEAT.md` - 心跳任务配置
+- `/Users/zst/clawd/memory/heartbeat-state.json` - 执行状态

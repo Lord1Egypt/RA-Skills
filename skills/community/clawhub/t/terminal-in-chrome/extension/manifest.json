@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "terminal-in-chrome",
+  "version": "1.0.0",
+  "description": "Injects a local terminal into any website.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost/*",
+    "ws://localhost/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": [
+        "lib/xterm.css",
+        "content.css"
+      ],
+      "js": [
+        "lib/xterm.js",
+        "lib/xterm-addon-fit.js",
+        "content.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Web Terminal Settings",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

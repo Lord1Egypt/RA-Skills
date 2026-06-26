@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "layer": "tool",
+  "runtime": {
+    "skill_mode": "single",
+    "stdlib_only": true,
+    "no_host_text_copy": true
+  },
+  "tool_groups": {
+    "shape": {
+      "title": "Request Shaping",
+      "tools": ["AskUserQuestion", "TodoWrite"]
+    },
+    "discover": {
+      "title": "Code Discovery",
+      "tools": ["Read", "LS", "Glob", "Grep", "SearchCodebase"]
+    },
+    "change": {
+      "title": "Smallest Change",
+      "tools": ["Edit", "MultiEdit", "Write", "Bash(git checkout:*)", "Bash(git reset:*)"]
+    },
+    "verify": {
+      "title": "Execution Verification",
+      "tools": ["Bash(python3:*)", "Bash(git diff:*)", "Bash(git status:*)"]
+    },
+    "deliver": {
+      "title": "Delivery & Snapshot",
+      "tools": ["Bash(git add:*)", "Bash(git commit:*)"]
+    }
+  },
+  "phase_tool_groups": {
+    "clarify": ["shape", "discover"],
+    "map": ["discover", "shape"],
+    "implement": ["discover", "change"],
+    "verify": ["verify", "discover"],
+    "deliver": ["verify", "discover", "deliver"]
+  }
+}

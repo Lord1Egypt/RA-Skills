@@ -1,35 +1,68 @@
 ---
-name: "Football Predictor"
-description: "足球预测与分析Agent。自动采集比赛数据、分析赔率、生成预测推荐、追踪结果、学习优化。适用于足球彩民、分析师、需要赛事预测的应用场景。当用户询问足球预测、比赛分析、投注建议时自动触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/football-predictor"
-sourceUrl: "https://clawhub.ai/skills/football-predictor"
+name: football-predictor
+description: 足球预测与分析Agent。自动采集比赛数据、分析赔率、生成预测推荐、追踪结果、学习优化。适用于足球彩民、分析师、需要赛事预测的应用场景。当用户询问足球预测、比赛分析、投注建议时自动触发。
+allowed-tools: exec, message, sessions_spawn
 ---
 
-# Football Predictor
+# 足球预测分析师 Agent
 
-> 足球预测与分析Agent。自动采集比赛数据、分析赔率、生成预测推荐、追踪结果、学习优化。适用于足球彩民、分析师、需要赛事预测的应用场景。当用户询问足球预测、比赛分析、投注建议时自动触发。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/football-predictor`
-- **Source URL:** [https://clawhub.ai/skills/football-predictor](https://clawhub.ai/skills/football-predictor)
+这是一个具备自我进化能力的足球预测与分析系统，通过持续的数据采集、分析预测、结果追踪来不断优化预测准确率。
 
-## Overview
+## 核心功能
 
+### 1. 数据采集
+- 比赛数据（赛程、战绩、伤停）
+- 赔率数据（欧赔、亚盘、大小球）
+- 球队消息（伤病、阵容、战意）
+- 天气场地信息
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/football-predictor
+### 2. 分析预测
+- 基本面分析（球队状态、历史交锋、主客场）
+- 赔率分析（赔率变化、盘口走势、水位）
+- 综合风险评估
+
+### 3. 记忆系统
+- 历史预测记录
+- 结果追踪与验证
+- 准确率统计分析
+- 模型参数自动优化
+
+### 4. 学习进化
+- 对比预测vs实际结果
+- 调整分析权重
+- 接入EvoMap网络获取/贡献知识
+
+## 使用方法
+
+### 基本命令
 ```
+# 分析一场比赛
+分析 曼联 vs 利物浦
+
+# 获取今日推荐
+今日推荐
+
+# 查看预测
+统计
+
+# 手动触发统计学习优化
+学习
+```
+
+### 输出格式
+
+每场推荐包含：
+- **比赛信息**：对阵双方、联赛、开赛时间
+- **分析摘要**：基本面、赔率、风险评估
+- **预测结论**：主胜/客胜/平局 + 信心指数
+- **投注建议**：比分推荐、投注金额建议
+
+## 状态文件
+
+- `config/leagues.json` - 支持的联赛配置
+- `memory/predictions.json` - 历史预测记录
+- `memory/results.json` - 实际比赛结果
+- `memory/stats.json` - 统计指标
+- `memory/model.json` - 当前模型参数

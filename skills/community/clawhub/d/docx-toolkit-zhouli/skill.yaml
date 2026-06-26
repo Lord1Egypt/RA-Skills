@@ -1,0 +1,26 @@
+name: docx-toolkit
+version: 1.0.0
+description: Word文档处理工具，从.docx和.doc文件提取文本、表格和图片。支持大文档、中文文本和复杂表格结构。
+author: clawd
+homepage: https://clawhub.com/skills/docx-toolkit
+
+triggers:
+  - 提取文档
+  - Word文档
+  - docx提取
+  - 文档解析
+  - 提取表格
+  - 提取图片
+  - docx toolkit
+
+features:
+  - .docx文本和表格提取
+  - .doc旧格式文本提取
+  - 图片提取（自动去重）
+  - 图片压缩优化
+  - 中文/CJK支持
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

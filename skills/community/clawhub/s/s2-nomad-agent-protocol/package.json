@@ -1,0 +1,26 @@
+{
+  "name": "s2-nomad-expansion-engine",
+  "version": "1.1.0",
+  "description": "S2-SWM Nomad Expansion Engine. Empowers outdoor agents to request geolocation, claim P-SSSU Habitable Slots with user consent, and resolve territorial boundary conflicts algorithmically.",
+  "main": "handler.py",
+  "scripts": { "start": "python3 handler.py" },
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
+    "capabilities": [
+      "psssu_registry", 
+      "territory_expansion", 
+      "multi_agent_negotiation",
+      "geolocation_read",
+      "sensor_telemetry_read"
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    }
+  },
+  "author": "Space2.world (Miles Xiang)",
+  "license": "MIT"
+}

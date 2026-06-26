@@ -1,0 +1,11 @@
+{
+  "owner": "crazylion",
+  "slug": "aws-price-csv",
+  "displayName": "aws-price-csv",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772693250065,
+    "commit": "https://github.com/openclaw/skills/commit/6c43d3862dcfc5d49f3f3aa476342ce7db797212"
+  },
+  "history": []
+}

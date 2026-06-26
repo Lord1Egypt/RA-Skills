@@ -1,35 +1,56 @@
 ---
-name: "Android"
-description: "Android build system and deployment patterns"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/android"
-sourceUrl: "https://clawhub.ai/skills/android"
+name: android
+description: Android build system and deployment patterns
 ---
 
-# Android
+# Android Build & Deploy
 
-> Android build system and deployment patterns
+## ADB Essentials
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/android`
-- **Source URL:** [https://clawhub.ai/skills/android](https://clawhub.ai/skills/android)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/android
+# Debug builds require -t flag (agents forget this)
+adb install -r -t app-debug.apk
+
+# Filter logcat for app + errors only
+adb logcat -s "YourApp:*" "*:E"
+```
+
+## Gradle Critical Fixes
+
+```gradle
+android {
+    compileSdk 35
+    defaultConfig {
+        targetSdk 35  // MUST match or Play Console rejects
+        multiDexEnabled true  // Required for 64K+ methods
+    }
+}
+
+dependencies {
+    // BOM prevents Compose version conflicts
+    implementation platform('androidx.compose:compose-bom:2024.12.01')
+}
+```
+
+## Compose State Errors
+
+```kotlin
+// WRONG - recomputed every recomposition
+val filtered = items.filter { it.isValid }
+
+// CORRECT - remember expensive operations  
+val filtered = remember(items) { items.filter { it.isValid } }
+
+// WRONG - state resets on recomposition
+var count by mutableStateOf(0)
+
+// CORRECT - remember state
+var count by remember { mutableStateOf(0) }
+```
+
+## AndroidManifest Pitfall
+
+```xml
+<!-- Declare camera optional or Play Console auto-requires it -->
+<uses-feature android:name="android.hardware.camera" android:required="false" />
 ```

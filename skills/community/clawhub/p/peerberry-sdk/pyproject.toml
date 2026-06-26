@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "peerberry-sdk"
+version = "2.0.0"
+authors = [
+    { name = "FortressQuant" }
+]
+dependencies = [
+    "cloudscraper>=1.2"
+]
+description = "Python SDK for the Peerberry investor API with typed models, authentication, retries, and export helpers."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = [
+    "peerberry",
+    "peerberry-api",
+    "peerberry-sdk",
+    "python-sdk",
+    "api-client",
+    "investing",
+    "p2p-lending",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/FortressQuant/peerberry-sdk"
+Documentation = "https://github.com/FortressQuant/peerberry-sdk/tree/main/docs"
+Repository = "https://github.com/FortressQuant/peerberry-sdk"
+Issues = "https://github.com/FortressQuant/peerberry-sdk/issues"
+
+[project.optional-dependencies]
+otp = ['pyotp>=2.7.0,<3']
+docs = [
+    'zensical>=0.0,<1',
+    'mkdocs-gen-files>=0.5,<1',
+    'mkdocstrings-python>=1.11,<2',
+    'ruff>=0.6,<1',
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+license-files = ["LICENSE.md"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["peerberry_sdk", "peerberry_sdk.*"]
+
+[tool.setuptools.package-data]
+peerberry_sdk = ["py.typed"]

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Skills Monitor — 推送设置</title>
+<link rel="stylesheet" href="/static/css/h5.css">
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="header-icon">⚙️</div>
+    <h1>推送设置</h1>
+  </header>
+
+  <section class="card">
+    <div class="setting-item">
+      <div class="setting-info">
+        <div class="setting-label">每日报告推送</div>
+        <div class="setting-desc">每天定时推送 Skills 健康报告</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="pushEnabled" {{ 'checked' if user.push_enabled else '' }}>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <div class="setting-info">
+        <div class="setting-label">推送时间</div>
+        <div class="setting-desc">当前：每日 {{ '%02d' % user.push_hour }}:00</div>
+      </div>
+      <select id="pushHour" class="select-time">
+        {% for h in range(24) %}
+        <option value="{{ h }}" {{ 'selected' if user.push_hour == h else '' }}>
+          {{ '%02d' % h }}:00
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">📌 说明</h2>
+    <ul class="info-list">
+      <li>推送通过微信公众号模板消息发送</li>
+      <li>请确保已关注公众号且未禁止接收消息</li>
+      <li>报告内容包含：健康度、运行统计、Top Skills</li>
+      <li>点击推送消息可查看详细报告页</li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <p>Skills Monitor v0.4.0 · Powered by CodeBuddy</p>
+  </footer>
+</div>
+
+<script>
+const openid = '{{ user.openid }}';
+
+function save(key, value) {
+  fetch('/api/h5/settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ openid, [key]: value }),
+  });
+}
+
+document.getElementById('pushEnabled').addEventListener('change', function() {
+  save('push_enabled', this.checked);
+});
+
+document.getElementById('pushHour').addEventListener('change', function() {
+  save('push_hour', parseInt(this.value));
+});
+</script>
+</body>
+</html>

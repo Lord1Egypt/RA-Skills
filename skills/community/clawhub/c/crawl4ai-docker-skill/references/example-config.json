@@ -1,0 +1,73 @@
+{
+  "docker_compose": {
+    "version": "3.8",
+    "services": {
+      "crawl4ai": {
+        "image": "unclecode/crawl4ai:latest",
+        "ports": ["11235:11235"],
+        "env_file": [".llm.env"],
+        "volumes": ["/dev/shm:/dev/shm"],
+        "deploy": {
+          "resources": {
+            "limits": {
+              "memory": "4G"
+            },
+            "reservations": {
+              "memory": "1G"
+            }
+          }
+        },
+        "restart": "unless-stopped",
+        "healthcheck": {
+          "test": ["CMD", "curl", "-f", "http://localhost:11235/health"],
+          "interval": "30s",
+          "timeout": "10s",
+          "retries": 3,
+          "start_period": "40s"
+        }
+      }
+    }
+  },
+  "llm_env_example": {
+    "OPENROUTER_API_KEY": "your-api-key-here",
+    "LLM_PROVIDER": "openrouter/free",
+    "LLM_MAX_TOKENS": 2000,
+    "LLM_TEMPERATURE": 0.7,
+    "OPENAI_API_KEY": "sk-your-key",
+    "OPENAI_BASE_URL": "https://your-custom-api.com/v1"
+  },
+  "api_examples": {
+    "basic_crawl": {
+      "method": "POST",
+      "endpoint": "/crawl",
+      "body": {
+        "urls": ["https://example.com"],
+        "extraction_strategy": "markdown"
+      }
+    },
+    "llm_extraction": {
+      "method": "POST",
+      "endpoint": "/crawl",
+      "body": {
+        "urls": ["https://example.com"],
+        "extraction_strategy": {
+          "type": "llm",
+          "provider": "openrouter/free",
+          "instruction": "总结网页的主要内容",
+          "max_tokens": 1000
+        }
+      }
+    },
+    "screenshot": {
+      "method": "POST",
+      "endpoint": "/screenshot",
+      "body": {
+        "url": "https://example.com",
+        "options": {
+          "full_page": true,
+          "quality": 80
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,455 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/dezritawre/.openclaw/workspace",
+      "model": {
+        "primary": "ollama/gemma4"
+      },
+      "models": {
+        "ollama/gemma4": {}
+      },
+      "elevatedDefault": "on",
+      "thinkingDefault": "low"
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    },
+    "handshakeTimeoutMs": 30000
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "reset": {
+      "mode": "idle"
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "provider": "duckduckgo",
+        "enabled": true
+      }
+    },
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "discord": [
+          "1196026771036975145"
+        ]
+      }
+    },
+    "exec": {
+      "timeoutSec": 30,
+      "ask": "always"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "ollama": {
+        "enabled": true
+      },
+      "duckduckgo": {
+        "enabled": true
+      },
+      "openclaw-mem0": {
+        "enabled": true,
+        "config": {
+          "anonymousTelemetryId": "openclaw-anon-a3a1cd69da024492b4cd53913fd4e304",
+          "oss": {
+            "llm": {
+              "provider": "ollama",
+              "config": {
+                "model": "llama3.1:8b",
+                "url": "http://localhost:11434"
+              }
+            },
+            "embedder": {
+              "provider": "ollama",
+              "config": {
+                "model": "nomic-embed-text",
+                "url": "http://localhost:11434",
+                "embeddingDims": 768
+              }
+            },
+            "vectorStore": {
+              "provider": "qdrant",
+              "config": {
+                "url": "http://localhost:6333",
+                "onDisk": true,
+                "dimension": 768,
+                "embeddingModelDims": 768,
+                "collectionName": "mem0_768d"
+              }
+            }
+          },
+          "userId": "your-George",
+          "mode": "open-source",
+          "skills": {
+            "triage": {
+              "enabled": true
+            },
+            "recall": {
+              "enabled": true,
+              "tokenBudget": 1500,
+              "rerank": true,
+              "keywordSearch": true,
+              "identityAlwaysInclude": true
+            },
+            "dream": {
+              "enabled": true
+            },
+            "domain": "companion"
+          }
+        },
+        "hooks": {
+          "allowConversationAccess": true
+        }
+      }
+    },
+    "slots": {
+      "memory": "openclaw-mem0"
+    },
+    "allow": [
+      "openclaw-mem0",
+      "browser",
+      "device-pair",
+      "file-transfer",
+      "phone-control",
+      "talk-voice",
+      "tts-local-cli",
+      "discord",
+      "ollama",
+      "duckduckgo"
+    ],
+    "bundledDiscovery": "allowlist"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434",
+        "api": "ollama",
+        "models": [
+          {
+            "id": "gemma4",
+            "name": "gemma4",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsUsageInStreaming": true
+            }
+          },
+          {
+            "id": "Llama3.1:8B",
+            "name": "Llama3.1:8B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsTools": true,
+              "supportsUsageInStreaming": true
+            }
+          },
+          {
+            "id": "qwen3.6:27b-q4_K_M",
+            "name": "qwen3.6:27b-q4_K_M",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsTools": true,
+              "supportsUsageInStreaming": true
+            }
+          },
+          {
+            "id": "gemma2:9b",
+            "name": "gemma2:9b",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 8192,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsTools": true,
+              "supportsUsageInStreaming": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-05-11T07:22:52.873Z",
+    "lastRunVersion": "2026.5.7",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.7",
+    "lastTouchedAt": "2026-05-11T07:22:52.928Z"
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "bluebubbles": {
+        "enabled": false
+      },
+      "clawhub": {
+        "enabled": true
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": true
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "notion": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": true,
+        "env": {
+          "SHERPA_ONNX_RUNTIME_DIR": "~/.openclaw/tools/sherpa-onnx-tts/runtime",
+          "SHERPA_ONNX_MODEL_DIR": "~/.openclaw/tools/sherpa-onnx-tts/models/vits-piper-en_US-lessac-high"
+        }
+      },
+      "slack": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "voice-call": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      },
+      "memory-dream": {
+        "enabled": false
+      },
+      "memory-triage": {
+        "enabled": false
+      }
+    }
+  },
+  "channels": {
+    "discord": {
+      "configWrites": true,
+      "allowBots": true,
+      "dmPolicy": "pairing",
+      "enabled": true,
+      "healthMonitor": {
+        "enabled": true
+      },
+      "heartbeat": {
+        "showAlerts": true,
+        "showOk": true,
+        "useIndicator": true
+      },
+      "name": "George",
+      "status": "online",
+      "groupPolicy": "allowlist",
+      "agentComponents": {
+        "enabled": true
+      },
+      "dm": {
+        "enabled": true,
+        "groupEnabled": true,
+        "policy": "pairing"
+      },
+      "allowFrom": [
+        "",
+        "*"
+      ],
+      "dangerouslyAllowNameMatching": true
+    }
+  },
+  "env": {
+    "shellEnv": {
+      "enabled": true
+    }
+  },
+  "logging": {
+    "redactSensitive": "off"
+  },
+  "cli": {
+    "banner": {
+      "taglineMode": "random"
+    }
+  },
+  "update": {
+    "channel": "stable",
+    "checkOnStart": true,
+    "auto": {
+      "enabled": true
+    }
+  },
+  "commitments": {
+    "enabled": true
+  },
+  "messages": {
+    "suppressToolErrors": true,
+    "groupChat": {
+      "visibleReplies": "message_tool"
+    },
+    "tts": {
+      "provider": "cli",
+      "auto": "always"
+    }
+  },
+  "hooks": {
+    "internal": {
+      "entries": {
+        "session-memory": {
+          "enabled": false
+        }
+      }
+    }
+  },
+  "commands": {
+    "ownerAllowFrom": [
+      "discord:"
+    ]
+  }
+}

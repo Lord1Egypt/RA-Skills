@@ -1,0 +1,16 @@
+{
+  "repos": [
+    "owner/repo"
+  ],
+  "rules": {
+    "labelers": [
+      {
+        "match": "^docs|typo",
+        "labels": ["documentation"]
+      }
+    ],
+    "auto_assign": true,
+    "maintainers": ["alice","bob"]
+  },
+  "cron": "0 */1 * * *" // every hour
+}

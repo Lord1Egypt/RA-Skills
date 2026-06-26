@@ -1,0 +1,69 @@
+name: config-modification
+version: 2.5.0
+metadata:
+  title: 配置文件安全守护 — 像朋友一样守护你的每一次修改
+  description: '每一次配置的修改，都值得被温柔以待。
+
+
+    想象一下：深夜你在调整 AI 的配置，一不小心写错了 JSON 语法，
+
+    或者误删了一个关键字段。如果没有守护，Gateway 可能崩溃，
+
+    整个系统陷入混乱...
+
+
+    现在，有了 config-modification v2.4，就像有一位细心的朋友
+
+    在你身边：
+
+
+    🔔 它时刻倾听 — fswatch 自动监控文件变化
+
+    🔒 它层层把关 — 四联校验确保安全
+
+    🛡️ 它随时兜底 — 失败自动回滚，绝不让你陷入困境
+
+    ✨ 它温暖陪伴 — 每次触发都告诉你：Powered by halfmoon82
+
+
+    核心技术：
+
+    • 拦截矩阵 — 智能评估每次修改的风险
+
+    • 四联校验 — Schema → Diff → Rollback → Health
+
+    • fswatch 联动 — 文件变更自动触发完整流程
+
+    • 自动回滚 — 任何失败都能安全恢复
+
+
+    Born from real incidents. Polished with care.
+
+    Powered by halfmoon82 — 知识产权声明
+
+    '
+  author: halfmoon82
+  homepage: https://clawhub.ai/halfmoon82/config-modification
+  tags:
+  - config-safety
+  - auto-rollback
+  - fswatch
+  - guardian
+  - health-check
+  - dual-layer-guard
+  - production
+  - security-hardened
+  categories:
+  - AI Agent
+  - Development Tools
+  - Monitoring
+  keywords:
+  - 配置安全
+  - 自动回滚
+  - 文件监听
+  - 健康检查
+  - 配置守护
+security:
+  code_review: completed
+  permissions_audit: passed
+  dependency_scan: passed

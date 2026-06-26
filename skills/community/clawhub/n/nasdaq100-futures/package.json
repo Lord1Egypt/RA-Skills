@@ -1,0 +1,11 @@
+{
+  "name": "nasdaq100-futures",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "Nasdaq-100 futures quote skill (Node.js) for OpenClaw/ClawHub",
+  "engines": {
+    "node": ">=18"
+  }
+}
+

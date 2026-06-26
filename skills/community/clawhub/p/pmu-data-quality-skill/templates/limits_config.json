@@ -1,0 +1,56 @@
+{
+    "system": {
+        "nominal_frequency_hz": 60.0,
+        "reporting_rate_fps": 30,
+        "voltage_base_kv": 500.0,
+        "voltage_unit": "pu",
+        "description": "Default config for 60Hz system with 30 fps PMU reporting rate"
+    },
+    "limits": {
+        "frequency": {
+            "min_hz": 59.95,
+            "max_hz": 60.05,
+            "warn_min_hz": 59.97,
+            "warn_max_hz": 60.03,
+            "rocof_max_hz_per_sec": 0.5,
+            "description": "NERC frequency limits. Alert outside 59.95-60.05, warn outside 59.97-60.03"
+        },
+        "voltage_magnitude": {
+            "min_pu": 0.90,
+            "max_pu": 1.10,
+            "warn_min_pu": 0.95,
+            "warn_max_pu": 1.05,
+            "description": "Voltage magnitude in per-unit. Alert outside 0.90-1.10, warn outside 0.95-1.05"
+        },
+        "voltage_angle": {
+            "min_deg": -180.0,
+            "max_deg": 180.0,
+            "max_rate_deg_per_sec": 30.0,
+            "description": "Voltage phasor angle in degrees. Rate of change limit for detecting angle instability"
+        },
+        "current_magnitude": {
+            "min_pu": 0.0,
+            "max_pu": 2.0,
+            "warn_max_pu": 1.5,
+            "description": "Current magnitude in per-unit. Alert above 2.0, warn above 1.5"
+        },
+        "current_angle": {
+            "min_deg": -180.0,
+            "max_deg": 180.0,
+            "description": "Current phasor angle in degrees"
+        }
+    },
+    "column_mapping": {
+        "timestamp": "timestamp",
+        "frequency": "frequency",
+        "voltage_mag": "voltage_mag",
+        "voltage_angle": "voltage_angle",
+        "current_mag": "current_mag",
+        "current_angle": "current_angle"
+    },
+    "quality_flags": {
+        "max_missing_pct": 5.0,
+        "max_gap_samples": 3,
+        "description": "Flag file if >5% missing data or gaps longer than 3 consecutive samples"
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "analyze_commands_system",
+  "prompt": "请分析 /Users/mars/.openclaw/workspace/claude-code-source/src/commands.ts 文件。\n\n重点关注：\n1. Slash命令系统架构\n2. 命令注册和解析机制\n3. 与工具系统的集成\n4. 权限控制设计\n\n输出简洁的技术分析，不超过300字。",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T09:56:21.017226",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/analyze_commands_system.json"
+}

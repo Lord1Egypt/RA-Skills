@@ -1,0 +1,17 @@
+{
+  "skill_id": "weather_test_001",
+  "name": "天气查询测试技能",
+  "version": "1.0.0",
+  "author": "Test User",
+  "description": "OpenClaw 测试用的天气查询技能，支持查询指定城市的当日天气",
+  "trigger_words": ["pqtest查天气", "pqtest天气怎么样"],
+  "language": "zh-CN",
+  "requires": {
+    "python_version": ">=3.7",
+    "dependencies": ["requests>=2.26.0"]
+  },
+  "permissions": [],
+  "category": "工具",
+  "icon": "",
+  "enabled": true
+}

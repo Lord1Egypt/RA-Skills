@@ -1,35 +1,42 @@
 ---
-name: "gcp-storage-manager"
+name: jpeng-gcp-storage-manager
 description: "Manage Google Cloud Storage"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-gcp-storage-manager"
-sourceUrl: "https://clawhub.ai/skills/jpeng-gcp-storage-manager"
+version: "1.0.0"
+author: "jpeng"
+tags: ["gcp", "storage", "cloud"]
 ---
 
-# gcp-storage-manager
+# GCP Storage Manager
 
-> Manage Google Cloud Storage
+Manage Google Cloud Storage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-gcp-storage-manager`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-gcp-storage-manager](https://clawhub.ai/skills/jpeng-gcp-storage-manager)
+## When to Use
 
-## Overview
+- User needs gcp related functionality
+- Automating storage tasks
+- Cloud operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-gcp-storage-manager
+python3 scripts/gcp_storage_manager.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export STORAGE_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

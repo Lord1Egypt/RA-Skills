@@ -1,35 +1,81 @@
----
-name: "Microservices Starter"
-description: "Set up and deploy production-ready microservices with API gateway, service templates, service mesh support, distributed tracing, and container orchestration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/microservices-starter"
-sourceUrl: "https://clawhub.ai/skills/microservices-starter"
----
-
 # Microservices Starter
 
-> Set up and deploy production-ready microservices with API gateway, service templates, service mesh support, distributed tracing, and container orchestration.
+Build production-ready microservices architecture.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/microservices-starter`
-- **Source URL:** [https://clawhub.ai/skills/microservices-starter](https://clawhub.ai/skills/microservices-starter)
+## Features
 
-## Overview
+### API Gateway
+- Request routing
+- Rate limiting
+- Authentication
+- Load balancing
 
+### Service Templates
+- Node.js microservice
+- Python microservice
+- Go microservice
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Service Mesh Ready
+- Kubernetes manifests
+- Istio configurations
+- Prometheus metrics
+
+### Distributed Tracing
+- OpenTelemetry integration
+- Jaeger support
+- Request tracing
+
+### Container Orchestration
+- Docker Compose
+- Kubernetes manifests
+- Helm charts
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/microservices-starter
+# Create new service
+./create-service.sh user-service --lang node
+
+# Create API gateway
+./create-gateway.sh
+
+# Deploy to K8s
+./deploy.sh production
+
+# Add monitoring
+./monitor.sh install
 ```
+
+## Architecture
+
+```
+┌─────────────┐
+│   Gateway   │
+└──────┬──────┘
+       │
+┌──────┴──────┐
+│  Services   │
+└──────┬──────┘
+       │
+┌──────┴──────┐
+│  Database   │
+└─────────────┘
+```
+
+## Services Included
+
+- User Service
+- Order Service
+- Product Service
+- Payment Service
+- Notification Service
+
+## Requirements
+
+- Docker 20.10+
+- Kubernetes 1.24+
+- Helm 3.8+
+
+## Author
+
+Sunshine-del-ux

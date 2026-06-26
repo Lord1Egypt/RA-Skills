@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lululemon AU Finder"
+  short_description: "Find AU products with anti-bot fallback handling."
+  default_prompt: "Use $lululemon-au-product-finder to find a Lululemon Australia item from a natural-language description and return structured variants with fallback provenance when pages are blocked."

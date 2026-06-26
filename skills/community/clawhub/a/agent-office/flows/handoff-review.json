@@ -1,0 +1,53 @@
+{
+  "name": "handoff-review",
+  "display_name": "串行推进 + 并行评审 + 汇总",
+  "description": "先由规划岗位拆解，再交给执行岗位产出，随后并行交给两位评审，最后由汇总岗位出总结。",
+  "slots": {
+    "planner": "负责拆解任务的岗位",
+    "executor": "负责核心执行的岗位",
+    "reviewer_a": "第一位评审岗位",
+    "reviewer_b": "第二位评审岗位",
+    "finalizer": "负责最终汇总的岗位"
+  },
+  "steps": [
+    {
+      "id": "plan",
+      "type": "single",
+      "worker_slot": "planner",
+      "title": "任务拆解：{{input.title}}",
+      "description": "请先拆解下面这个任务，明确目标、关键点、风险与建议执行顺序。\n\n原始任务：\n{{input.description}}"
+    },
+    {
+      "id": "execute",
+      "type": "single",
+      "worker_slot": "executor",
+      "title": "执行任务：{{input.title}}",
+      "description": "请根据下面的任务拆解继续推进，并给出你的产出。\n\n任务拆解：\n{{steps.plan.content}}\n\n原始任务：\n{{input.description}}"
+    },
+    {
+      "id": "review",
+      "type": "parallel",
+      "branches": [
+        {
+          "id": "review_a",
+          "worker_slot": "reviewer_a",
+          "title": "评审A：{{input.title}}",
+          "description": "请从质量和风险角度评审以下执行结果，并指出主要问题或建议。\n\n执行结果：\n{{steps.execute.content}}"
+        },
+        {
+          "id": "review_b",
+          "worker_slot": "reviewer_b",
+          "title": "评审B：{{input.title}}",
+          "description": "请从可读性、可交付性和下一步建议的角度评审以下执行结果。\n\n执行结果：\n{{steps.execute.content}}"
+        }
+      ]
+    },
+    {
+      "id": "finalize",
+      "type": "single",
+      "worker_slot": "finalizer",
+      "title": "汇总结论：{{input.title}}",
+      "description": "请综合以下信息，输出一个最终结论和下一步建议。\n\n任务拆解：\n{{steps.plan.content}}\n\n执行结果：\n{{steps.execute.content}}\n\n并行评审结果：\n{{steps.review.combined_content}}"
+    }
+  ]
+}

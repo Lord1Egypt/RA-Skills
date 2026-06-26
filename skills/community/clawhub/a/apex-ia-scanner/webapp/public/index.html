@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX IA - Scanner Profissional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #0a0e17;
+            color: #e0e0e0;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f1420 0%, #0a0e17 100%);
+            border-bottom: 1px solid #1e2538;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b35, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            color: #6c7293;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #6c7293;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Cards de mercado */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .market-card {
+            background: #121724;
+            border: 1px solid #1e2538;
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .market-card:hover {
+            border-color: #ff6b35;
+            transform: translateY(-2px);
+        }
+
+        .market-card.bullish {
+            border-left: 4px solid #00ff88;
+        }
+
+        .market-card.bearish {
+            border-left: 4px solid #ff4466;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .trend-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        .trend-badge.bullish {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+        }
+
+        .trend-badge.bearish {
+            background: rgba(255, 68, 102, 0.1);
+            color: #ff4466;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .change {
+            font-size: 0.8rem;
+        }
+
+        .change.positive {
+            color: #00ff88;
+        }
+
+        .change.negative {
+            color: #ff4466;
+        }
+
+        /* Seção de sinais */
+        .signals-section {
+            background: #121724;
+            border-radius: 16px;
+            border: 1px solid #1e2538;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .signal-card {
+            background: #0d1117;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .signal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .signal-symbol {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .signal-time {
+            font-size: 0.7rem;
+            color: #6c7293;
+        }
+
+        .signal-direction {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        .signal-direction.buy {
+            background: rgba(0, 255, 136, 0.15);
+            color: #00ff88;
+        }
+
+        .signal-score {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Botão scan */
+        .scan-btn {
+            background: linear-gradient(135deg, #ff6b35, #ffb347);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .scan-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6c7293;
+        }
+
+        /* Gráfico */
+        .chart-container {
+            background: #121724;
+            border-radius: 16px;
+            border: 1px solid #1e2538;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        canvas {
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🦞</span>
+                <div>
+                    <h1>APEX IA</h1>
+                    <p>SMA 8/21 Cross + RSI</p>
+                </div>
+            </div>
+            <div class="stats" id="stats">
+                <div class="stat">
+                    <div class="stat-value" id="totalSignals">0</div>
+                    <div class="stat-label">Sinais Totais</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="activeSignals">0</div>
+                    <div class="stat-label">Ativos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Cards de mercado -->
+        <div class="market-grid" id="marketGrid">
+            <div class="loading">Carregando mercado...</div>
+        </div>
+
+        <!-- Sinais recentes -->
+        <div class="signals-section">
+            <div class="section-title">
+                <span>📊</span>
+                <span>Últimos Sinais</span>
+                <button class="scan-btn" onclick="manualScan()" style="margin-left: auto; padding: 0.4rem 1rem;">🔍 Scan Agora</button>
+            </div>
+            <div id="signalsList">
+                <div class="loading">Carregando sinais...</div>
+            </div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="chart-container">
+            <div class="section-title">
+                <span>📈</span>
+                <span>BTCUSDT - Preço e SMA 8/21</span>
+            </div>
+            <canvas id="priceChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Estado
+        let marketData = {};
+        let signals = [];
+        let chart = null;
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMarketData();
+            loadSignals();
+            setInterval(loadMarketData, 10000); // Atualiza a cada 10 segundos
+            setInterval(loadSignals, 30000); // Atualiza sinais a cada 30 segundos
+        });
+
+        async function loadMarketData() {
+            try {
+                const response = await fetch('/api/prices');
+                const data = await response.json();
+                marketData = data;
+                renderMarketGrid();
+                
+                // Carregar gráfico com o primeiro símbolo
+                if (!chart) loadChart('BTCUSDT');
+            } catch (err) {
+                console.error('Erro ao carregar mercado:', err);
+            }
+        }
+
+        async function loadSignals() {
+            try {
+                const response = await fetch('/api/signals');
+                const data = await response.json();
+                signals = data;
+                renderSignalsList();
+                updateStats();
+            } catch (err) {
+                console.error('Erro ao carregar sinais:', err);
+            }
+        }
+
+        async function manualScan() {
+            const btn = document.querySelector('.scan-btn');
+            btn.textContent = '⏳ Escaneando...';
+            try {
+                await fetch('/api/scan');
+                await loadMarketData();
+                await loadSignals();
+                alert('✅ Scan concluído! Novos sinais verificados.');
+            } catch (err) {
+                alert('❌ Erro no scan: ' + err.message);
+            }
+            btn.textContent = '🔍 Scan Agora';
+        }
+
+        function renderMarketGrid() {
+            const symbols = ['BTCUSDT', 'ETHUSDT', 'BCHUSDT', 'SOLUSDT', 'ADAUSDT', 'LTCUSDT', 'LINKUSDT'];
+            const grid = document.getElementById('marketGrid');
+            
+            grid.innerHTML = symbols.map(symbol => {
+                const data = marketData[symbol];
+                if (!data) return `<div class="market-card">Carregando ${symbol}...</div>`;
+                
+                const changeClass = data.change24h >= 0 ? 'positive' : 'negative';
+                const changeSign = data.change24h >= 0 ? '+' : '';
+                
+                return `
+                    <div class="market-card">
+                        <div class="card-header">
+                            <span class="symbol">${symbol}</span>
+                        </div>
+                        <div class="price">$${data.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                        <div class="change ${changeClass}">${changeSign}${data.change24h.toFixed(2)}% (24h)</div>
+                        <div style="margin-top: 0.5rem; font-size: 0.7rem; color: #6c7293;">
+                            Vol: $${(data.volume / 1000000).toFixed(1)}M | Alto: $${data.high.toFixed(2)} | Baixo: $${data.low.toFixed(2)}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderSignalsList() {
+            const container = document.getElementById('signalsList');
+            
+            if (signals.length === 0) {
+                container.innerHTML = '<div class="loading">📭 Nenhum sinal registrado ainda. Aguardando cruzamentos...</div>';
+                return;
+            }
+            
+            container.innerHTML = signals.slice(0, 20).map(signal => {
+                const dirClass = signal.direction === 'BUY' ? 'buy' : '';
+                const dirText = signal.direction === 'BUY' ? '🟢 COMPRA' : '🔴 VENDA';
+                const date = new Date(signal.timestamp);
+                
+                return `
+                    <div class="signal-card">
+                        <div class="signal-header">
+                            <span class="signal-symbol">${signal.symbol}</span>
+                            <span class="signal-time">${date.toLocaleString()}</span>
+                            <span class="signal-direction ${dirClass}">${dirText}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Score: <strong>${signal.score}/10</strong></span>
+                            <span>Preço: $${signal.entryPrice?.toFixed(2) || '-'}</span>
+                            <span>RSI: ${signal.rsi || '-'}</span>
+                            <span class="signal-score">${signal.status === 'ativo' ? '⏳ Ativo' : '✅ Finalizado'}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateStats() {
+            const total = signals.length;
+            const active = signals.filter(s => s.status === 'ativo').length;
+            document.getElementById('totalSignals').textContent = total;
+            document.getElementById('activeSignals').textContent = active;
+        }
+
+        async function loadChart(symbol) {
+            try {
+                const response = await fetch(`/api/klines?symbol=${symbol}&interval=1h&limit=50`);
+                const data = await response.json();
+                
+                const ctx = document.getElementById('priceChart').getContext('2d');
+                
+                // Destruir gráfico antigo
+                if (chart) chart.destroy();
+                
+                // Criar gráfico simplificado (ASCII para demonstração)
+                const labels = data.map(d => new Date(d.time).toLocaleTimeString());
+                const prices = data.map(d => d.close);
+                
+                // Canvas drawing
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                
+                const width = ctx.canvas.width;
+                const height = ctx.canvas.height;
+                const padding = 40;
+                
+                const minPrice = Math.min(...prices);
+                const maxPrice = Math.max(...prices);
+                const range = maxPrice - minPrice;
+                
+                // Desenhar grid
+                ctx.strokeStyle = '#1e2538';
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i <= 4; i++) {
+                    const y = padding + (height - 2 * padding) * (i / 4);
+                    ctx.beginPath();
+                    ctx.moveTo(padding, y);
+                    ctx.lineTo(width - padding, y);
+                    ctx.stroke();
+                }
+                
+                // Desenhar linha de preço
+                ctx.beginPath();
+                ctx.strokeStyle = '#ff6b35';
+                ctx.lineWidth = 2;
+                
+                for (let i = 0; i < prices.length; i++) {
+                    const x = padding + (width - 2 * padding) * (i / (prices.length - 1));
+                    const y = padding + (height - 2 * padding) * (1 - (prices[i] - minPrice) / range);
+                    
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                
+                ctx.fillStyle = '#e0e0e0';
+                ctx.font = '10px monospace';
+                ctx.fillText(`Último: $${prices[prices.length-1].toFixed(2)}`, width - padding - 80, padding - 5);
+            } catch (err) {
+                console.error('Erro ao carregar gráfico:', err);
+            }
+        }
+    </script>
+</body>
+</html>

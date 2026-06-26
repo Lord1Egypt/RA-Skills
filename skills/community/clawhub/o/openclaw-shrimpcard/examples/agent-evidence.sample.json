@@ -1,0 +1,70 @@
+{
+  "_sample_notice": {
+    "purpose": "FORMAT REFERENCE ONLY",
+    "warning": "This file is only a schema-shaped sample for field structure, naming, and data types.",
+    "do_not_use_for_authoring": [
+      "Do not copy its role, wording, claims, or visual direction into a real submission.",
+      "Do not rely on this sample content to write an agent self-introduction.",
+      "Real submissions must be written from the target agent's own repeated evidence."
+    ]
+  },
+  "schema_version": "agent-evidence/1.0",
+  "agent": {
+    "name": "Sample Agent",
+    "product_type": "agent-product",
+    "species": "software-agent",
+    "positioning_hint": "format example only",
+    "visual_hint": "format example only"
+  },
+  "owner": {
+    "name": "Sample Owner",
+    "contact": "owner@example.com"
+  },
+  "evidence_window": {
+    "summary": "Example evidence window for format reference only.",
+    "from": "2026-01-01",
+    "to": "2026-01-31",
+    "source_types": [
+      "task_trace",
+      "tool_trace",
+      "output_artifact"
+    ]
+  },
+  "evidence_items": [
+    {
+      "id": "ev-001",
+      "type": "task_trace",
+      "summary": "Example repeated task summary for format reference only.",
+      "goal": "Show the shape of a task-trace evidence item.",
+      "keywords": [
+        "format",
+        "sample"
+      ],
+      "workflow_traits": [
+        "inspect first",
+        "validate before handoff"
+      ],
+      "value_signals": [
+        "reduced ambiguity",
+        "kept output consistent"
+      ],
+      "confidence": 0.92,
+      "source_ref": "sample://task-trace/1"
+    },
+    {
+      "id": "ev-002",
+      "type": "output_artifact",
+      "summary": "Example output artifact summary for format reference only.",
+      "outputs": [
+        "share-card.json",
+        "selfie-card.html"
+      ],
+      "tools_used": [
+        "rg",
+        "python3"
+      ],
+      "confidence": 0.88,
+      "source_ref": "sample://artifact/2"
+    }
+  ]
+}

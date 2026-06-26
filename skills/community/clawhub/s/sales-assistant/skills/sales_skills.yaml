@@ -1,0 +1,106 @@
+---
+skills:
+- id: S01_opportunity_record
+  name: 商机信息整理
+  purpose: 将客户线索、聊天记录和拜访信息整理为标准商机卡。
+  inputs:
+  - message_text
+  - customer_info
+  - attachments
+  outputs:
+  - opportunity_card
+  - stage
+  - missing_info
+  human_review: true
+  audit_log: true
+- id: S02_customer_profile
+  name: 客户画像生成
+  purpose: 生成客户背景、业务场景、决策链、预算判断和痛点分析。
+  inputs:
+  - customer_name
+  - public_info
+  - meeting_notes
+  outputs:
+  - customer_profile
+  - decision_chain
+  - pain_points
+  - budget_signal
+  human_review: true
+  audit_log: true
+- id: S03_visit_minutes
+  name: 拜访纪要生成
+  purpose: 从拜访记录、录音转写或聊天记录生成结构化纪要。
+  inputs:
+  - transcript
+  - chat_records
+  - agenda
+  outputs:
+  - visit_minutes
+  - key_points
+  - decisions
+  human_review: true
+  audit_log: true
+- id: S04_customer_need_extract
+  name: 客户需求提炼
+  purpose: 提取显性需求、隐性需求、约束条件、疑问和待确认事项。
+  inputs:
+  - visit_minutes
+  - attachments
+  outputs:
+  - need_summary
+  - constraints
+  - open_questions
+  human_review: true
+  audit_log: true
+- id: S05_followup_suggestion
+  name: 跟进动作建议
+  purpose: 生成下一步跟进动作、话术、资料清单、责任人和提醒时间。
+  inputs:
+  - opportunity_card
+  - need_summary
+  - stage
+  outputs:
+  - next_actions
+  - talk_tracks
+  - material_list
+  - reminders
+  human_review: true
+  audit_log: true
+- id: S06_business_risk_hint
+  name: 商务风险提示
+  purpose: 识别付款、交付、承诺、竞品、关系和合规风险。
+  inputs:
+  - opportunity_card
+  - contract_terms
+  - customer_notes
+  outputs:
+  - risk_items
+  - risk_level
+  - mitigation_suggestions
+  human_review: true
+  audit_log: true
+- id: S07_customer_archive
+  name: 客户档案归档
+  purpose: 生成 CRM 或客户台账更新草稿并归档过程记录。
+  inputs:
+  - opportunity_card
+  - visit_minutes
+  - next_actions
+  outputs:
+  - crm_update_draft
+  - archive_record
+  human_review: true
+  audit_log: true
+- id: S08_sales_roleplay
+  name: 销售话术陪练
+  purpose: 围绕客户问题生成回应话术、追问问题和异议处理建议。
+  inputs:
+  - customer_question
+  - product_materials
+  - scenario
+  outputs:
+  - reply_options
+  - probing_questions
+  - objection_handling
+  human_review: true
+  audit_log: true

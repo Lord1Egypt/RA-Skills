@@ -1,35 +1,62 @@
 ---
-name: "Github Auto"
-description: "管PR、盯Issue、跑CI、发Release——GitHub仓库日常运维扔给它。少开几个Chrome标签页。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, calibration, github, huimai, pr]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-github-auto"
-sourceUrl: "https://clawhub.ai/skills/huimai-github-auto"
+name: 🤖 GitHub自动管家
+description: 管PR、盯Issue、跑CI、发Release——GitHub仓库日常运维扔给它。少开几个Chrome标签页。
+metadata: {"openclaw":{"emoji":"🤖"}}
 ---
 
-# Github Auto
+# 🤖 GitHub自动管家
 
-> 管PR、盯Issue、跑CI、发Release——GitHub仓库日常运维扔给它。少开几个Chrome标签页。
+> 每天PR合并、Issue回复、CI状态检查……GitHub通知太多看不完。这个Skill帮你盯着，需要的时候才喊你。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-github-auto`
-- **Source URL:** [https://clawhub.ai/skills/huimai-github-auto](https://clawhub.ai/skills/huimai-github-auto)
+## 📜 更新日志
 
-## Overview
+### v2.0.0 (2026-05-03)
+- **大改版**：新增自动CI状态监测+失败预警
+- 新增：PR合并冲突检测与自动建议
+- 新增：关联Issue→PR自动追踪
+- 优化：支持多仓库同时管理
 
+### v1.0.0 (2026-04-30)
+- 初版发布
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 👤 为什么做这个
+
+之前维护几个开源项目，每天GitHub通知能堆上百条。PR有没有冲突？CI挂了没？哪个Issue该进这个Sprint了？实在盯不过来。后来写了个脚本帮自己筛——把真正需要我决定的事挑出来，剩下的自动处理。
+
+## 典型用法
+
+```
+你: "帮我看下这个仓库待处理的PR"
+我: 列表 → 冲突检测 → CI状态 → 审核人 → 建议排序
+
+你: "这个Issue有没有关联的PR"
+我: 搜索关联 → 显示进展 → 检查是否已解决
+```
+
+## 👔 适用人群
+- **项目维护者**：多仓库PR管理
+- **技术管理者**：了解团队开发进展
+- **开源贡献者**：快速找到自己可以帮上忙的任务
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先写汇总再列明细
+- **专业模式（可选）**：纯数据，适合对接CI/CD
+
+## 💡 使用小贴士
+- 首次使用需要配置GITHUB_TOKEN环境变量
+- 查CI日志时，"失败原因"比"失败通知"更有用
+- 多仓库管理建议先用"list repos"看概览
+
+## ⚠️ 免责与已知限制
+- 需要GitHub Token（个人访问令牌）
+- 私有仓库需要有对应Token权限
+- 不执行破坏性操作（合并PR/删除分支需你确认）
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-github-auto
+clawhub install github-auto
 ```

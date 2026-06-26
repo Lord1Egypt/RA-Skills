@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北京 → 米兰 + 罗马 + 巴黎 | 完整行程规划</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .header .subtitle { font-size: 1.2em; opacity: 0.9; }
+    .header .flag { font-size: 2em; margin: 10px; }
+    .content { padding: 40px; }
+    .section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 1.8em;
+      color: #667eea;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #667eea;
+    }
+    .table-responsive { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td { padding: 15px; border-bottom: 1px solid #eee; }
+    tr:hover { background: #f8f9ff; }
+    .rank {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: bold;
+      color: white;
+    }
+    .rank-1 { background: #ffd700; }
+    .rank-2 { background: #c0c0c0; }
+    .rank-3 { background: #cd7f32; }
+    .price { font-weight: bold; color: #e74c3c; font-size: 1.1em; }
+    .route-highlight { font-weight: bold; color: #667eea; }
+    .route-highlight-best { font-weight: bold; color: #27ae60; font-size: 1.05em; }
+    .transport-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: bold;
+      margin: 2px;
+    }
+    .badge-flight { background: #e3f2fd; color: #1976d2; }
+    .badge-train { background: #e8f5e9; color: #388e3c; }
+    .badge-bus { background: #fff3e0; color: #f57c00; }
+    .flight-card {
+      background: #f8f9ff;
+      border-left: 4px solid #667eea;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .flight-card h3 { color: #667eea; margin-bottom: 15px; }
+    .flight-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .flight-table th {
+      background: #667eea;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .flight-table td { padding: 12px; border-bottom: 1px solid #ddd; }
+    .flight-table tr:hover { background: #fff; }
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .pros, .cons { padding: 20px; border-radius: 8px; }
+    .pros { background: #d4edda; border: 1px solid #c3e6cb; }
+    .cons { background: #f8d7da; border: 1px solid #f5c6cb; }
+    .pros h4 { color: #155724; margin-bottom: 10px; }
+    .cons h4 { color: #721c24; margin-bottom: 10px; }
+    .pros ul, .cons ul { list-style: none; }
+    .pros li:before { content: "✅ "; }
+    .cons li:before { content: "❌ "; }
+    .recommendation {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+    .recommendation h2 { margin-bottom: 20px; }
+    .recommendation .highlight {
+      font-size: 2em;
+      font-weight: bold;
+      display: block;
+      margin: 15px 0;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .comparison-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .comparison-card.best {
+      border-color: #ffd700;
+      background: #fff8e6;
+    }
+    .comparison-card h4 {
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+    .itinerary {
+      background: #f8f9ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .itinerary-item {
+      display: flex;
+      margin: 15px 0;
+      padding: 15px;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .itinerary-day {
+      background: #667eea;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      min-width: 120px;
+      text-align: center;
+    }
+    .itinerary-content { flex: 1; padding-left: 20px; }
+    .budget-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .budget-table td { padding: 12px; border-bottom: 1px solid #eee; }
+    .budget-table tr:last-child td {
+      border-bottom: none;
+      font-weight: bold;
+      font-size: 1.2em;
+      background: #f8f9ff;
+    }
+    .tips {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .tips ul { list-style: none; }
+    .tips li:before { content: "⚠️ "; }
+    .footer {
+      background: #f8f9ff;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      font-size: 0.9em;
+    }
+    @media (max-width: 768px) {
+      .header h1 { font-size: 1.8em; }
+      .content { padding: 20px; }
+      .pros-cons { grid-template-columns: 1fr; }
+      .itinerary-item { flex-direction: column; }
+      .itinerary-day { margin-bottom: 10px; }
+      .itinerary-content { padding-left: 0; }
+      table { font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="flag">🇨🇳 → 🇮🇹 🇫🇷</div>
+      <h1>北京 → 米兰 + 罗马 + 巴黎</h1>
+      <div class="subtitle">欧洲三城游 | 完整方案对比</div>
+      <div style="margin-top: 15px; font-size: 1.1em;">📅 2026-04-10 ~ 2026-04-21 (12 天)</div>
+    </div>
+    
+    <div class="content">
+      <!-- 方案对比总表 -->
+      <div class="section">
+        <h2 class="section-title">📊 所有方案价格对比</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>方案类型</th>
+                <th>路线</th>
+                <th>总价格</th>
+                <th>差价</th>
+                <th>特点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank rank-1">1</span></td>
+                <td>多程联订</td>
+                <td><span class="route-highlight-best">北京→巴黎→罗马→米兰→北京</span></td>
+                <td class="price">¥6,232</td>
+                <td>-</td>
+                <td>意大利两城连续玩⭐</td>
+              </tr>
+              <tr>
+                <td><span class="rank rank-2">2</span></td>
+                <td>缺口程 (飞机)</td>
+                <td><span class="route-highlight-best">北京→巴黎 + 米兰→北京 + 中间飞机</span></td>
+                <td class="price">¥6,232</td>
+                <td>+¥0</td>
+                <td>意大利两城连续玩⭐</td>
+              </tr>
+              <tr>
+                <td><span class="rank rank-3">3</span></td>
+                <td>缺口程 (火车)</td>
+                <td><span class="route-highlight-best">北京→巴黎 + 米兰→北京 + 中间火车</span></td>
+                <td class="price">¥6,632</td>
+                <td>+¥400</td>
+                <td>意大利两城连续玩⭐</td>
+              </tr>
+              <tr>
+                <td><span class="rank">4</span></td>
+                <td>多程联订</td>
+                <td><span class="route-highlight">北京→米兰→罗马→巴黎→北京</span></td>
+                <td class="price">¥6,574</td>
+                <td>+¥342</td>
+                <td>意大利两城连续玩⭐</td>
+              </tr>
+              <tr>
+                <td><span class="rank">5</span></td>
+                <td>缺口程 (飞机)</td>
+                <td><span class="route-highlight">北京→米兰 + 巴黎→北京 + 中间飞机</span></td>
+                <td class="price">¥6,574</td>
+                <td>+¥342</td>
+                <td>意大利两城连续玩⭐</td>
+              </tr>
+              <tr>
+                <td><span class="rank">6</span></td>
+                <td>多程联订</td>
+                <td><span class="route-highlight">北京→巴黎→米兰→罗马→北京</span></td>
+                <td class="price">¥7,074</td>
+                <td>+¥842</td>
+                <td>常规路线</td>
+              </tr>
+              <tr>
+                <td><span class="rank">7</span></td>
+                <td>多程联订</td>
+                <td><span class="route-highlight">北京→罗马→米兰→巴黎→北京</span></td>
+                <td class="price">¥7,711</td>
+                <td>+¥1,479</td>
+                <td>常规路线</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top: 15px; color: #27ae60; font-weight: bold;">
+          💡 标注说明：<span class="route-highlight-best" style="font-size: 1em;">绿色加粗</span> = 意大利两城（罗马 + 米兰）连续游玩，不走回头路 ⭐
+        </p>
+      </div>
+      
+      <!-- 欧洲境内交通对比 -->
+      <div class="section">
+        <h2 class="section-title">✈️🚄 欧洲境内交通方式对比</h2>
+        <div class="comparison-grid">
+          <div class="comparison-card best">
+            <h4>✈️ 飞机 - 最便宜</h4>
+            <p class="price" style="font-size: 2em;">¥164-400</p>
+            <p><strong>时间:</strong> 1.5-2 小时</p>
+            <p><strong>航司:</strong> 瑞安、易捷、伏林</p>
+            <div class="pros" style="margin-top: 15px;">
+              <ul>
+                <li>价格便宜</li>
+                <li>时间短</li>
+                <li>提前预订优惠</li>
+              </ul>
+            </div>
+            <div class="cons" style="margin-top: 15px;">
+              <ul>
+                <li>需往返机场</li>
+                <li>廉航不含行李</li>
+                <li>受天气影响</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="comparison-card">
+            <h4>🚄 高铁/火车 - 最方便</h4>
+            <p class="price" style="font-size: 2em;">¥350-800</p>
+            <p><strong>时间:</strong> 3-7 小时</p>
+            <p><strong>运营:</strong> TGV、意铁、欧城</p>
+            <div class="pros" style="margin-top: 15px;">
+              <ul>
+                <li>市中心到市中心</li>
+                <li>风景优美</li>
+                <li>行李不限重</li>
+                <li>环保低碳</li>
+              </ul>
+            </div>
+            <div class="cons" style="margin-top: 15px;">
+              <ul>
+                <li>价格较高</li>
+                <li>时间较长</li>
+                <li>需提前订票</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="comparison-card">
+            <h4>🚌 大巴 - 最省钱</h4>
+            <p class="price" style="font-size: 2em;">¥200-400</p>
+            <p><strong>时间:</strong> 8-15 小时</p>
+            <p><strong>运营:</strong> FlixBus 等</p>
+            <div class="pros" style="margin-top: 15px;">
+              <ul>
+                <li>价格最低</li>
+                <li>省一晚酒店</li>
+                <li>夜行可选</li>
+              </ul>
+            </div>
+            <div class="cons" style="margin-top: 15px;">
+              <ul>
+                <li>时间很长</li>
+                <li>较累</li>
+                <li>空间狭小</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 1.1em; color: #667eea;">
+          💡 <strong>推荐:</strong> 短途选飞机（便宜快），中途选火车（方便风景好），长途夜行选大巴（省钱）
+        </p>
+      </div>
+      
+      <!-- 推荐方案详情 -->
+      <div class="section">
+        <h2 class="section-title">🏆 推荐方案详情</h2>
+        
+        <div class="flight-card">
+          <h3>方案 1: 多程联订 - 巴黎→罗马→米兰 - ¥6,232 ⭐</h3>
+          <p><strong>路线</strong>: <span class="route-highlight-best">北京→巴黎→罗马→米兰→北京</span></p>
+          <p><strong>国家顺序</strong>: 🇫🇷法国 → 🇮🇹意大利 (罗马) → 🇮🇹意大利 (米兰) → 北京</p>
+          
+          <table class="flight-table">
+            <thead>
+              <tr>
+                <th>航段</th>
+                <th>日期</th>
+                <th>时间</th>
+                <th>航班</th>
+                <th>价格</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1️⃣ 北京→巴黎</td>
+                <td>4/10</td>
+                <td>01:05-06:30</td>
+                <td>卡塔尔 QR893</td>
+                <td class="price">¥2,820</td>
+              </tr>
+              <tr>
+                <td>2️⃣ 巴黎→罗马</td>
+                <td>4/13</td>
+                <td>22:10-00:20+1</td>
+                <td>瑞安 FR200</td>
+                <td class="price">¥1,071</td>
+              </tr>
+              <tr>
+                <td>3️⃣ 罗马→米兰</td>
+                <td>4/16</td>
+                <td>1h15m</td>
+                <td>易捷 U22986</td>
+                <td class="price">¥164</td>
+              </tr>
+              <tr>
+                <td>4️⃣ 米兰→北京</td>
+                <td>4/21</td>
+                <td>20:45-23:05</td>
+                <td>瑞安 FR2752</td>
+                <td class="price">¥2,177</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>价格最低 (¥6,232)</li>
+                <li>意大利两城（罗马 + 米兰）连续玩，不走回头路 ⭐</li>
+                <li>一次付款管理方便</li>
+                <li>巴黎进米兰出，经典路线</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>缺点</h4>
+              <ul>
+                <li>改签不便</li>
+                <li>巴黎→罗马是夜航</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flight-card">
+          <h3>方案 2: 缺口程 + 火车 - 巴黎→罗马→米兰 - ¥6,632 🚄</h3>
+          <p><strong>路线</strong>: <span class="route-highlight-best">北京→巴黎 + 米兰→北京 + 中间火车</span></p>
+          
+          <table class="flight-table">
+            <thead>
+              <tr>
+                <th>航段</th>
+                <th>日期</th>
+                <th>时间</th>
+                <th>交通</th>
+                <th>价格</th>
+                <th>备注</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1️⃣ 北京→巴黎</td>
+                <td>4/10</td>
+                <td>01:05-06:30</td>
+                <td>卡塔尔 QR893</td>
+                <td class="price">¥2,820</td>
+                <td>✈️ 飞机</td>
+              </tr>
+              <tr>
+                <td>2️⃣ 巴黎→罗马</td>
+                <td>4/13</td>
+                <td>11h</td>
+                <td>TGV+ 夜火车</td>
+                <td>¥1,271</td>
+                <td>🚄 火车 省一晚酒店</td>
+              </tr>
+              <tr>
+                <td>3️⃣ 罗马→米兰</td>
+                <td>4/16</td>
+                <td>3h</td>
+                <td>意大利高铁</td>
+                <td>¥364</td>
+                <td>🚄 火车 意大利境内</td>
+              </tr>
+              <tr>
+                <td>4️⃣ 米兰→北京</td>
+                <td>4/21</td>
+                <td>20:45-23:05</td>
+                <td>瑞安 FR2752</td>
+                <td class="price">¥2,177</td>
+                <td>✈️ 飞机</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>风景优美</li>
+                <li>市中心到市中心</li>
+                <li>行李不限重</li>
+                <li>意大利两城连续玩</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>缺点</h4>
+              <ul>
+                <li>比飞机贵¥400</li>
+                <li>时间较长</li>
+                <li>需提前订票</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 行程建议 -->
+      <div class="section">
+        <h2 class="section-title">📝 详细行程建议</h2>
+        <div class="itinerary">
+          <div class="itinerary-item">
+            <div class="itinerary-day">Day 1<br>4/10</div>
+            <div class="itinerary-content">
+              <strong>北京 → 巴黎</strong> (01:05-06:30)<br>
+              红眼航班，清晨抵达巴黎<br>
+              下午：入住酒店，休息调整
+            </div>
+          </div>
+          <div class="itinerary-item">
+            <div class="itinerary-day">Day 2-4<br>4/11-13</div>
+            <div class="itinerary-content">
+              <strong>巴黎游玩</strong> (3 天) 🇫🇷<br>
+              • 埃菲尔铁塔、凯旋门<br>
+              • 香榭丽舍大街<br>
+              • 卢浮宫、奥赛博物馆<br>
+              • 蒙马特高地、圣心堂<br>
+              • 塞纳河游船
+            </div>
+          </div>
+          <div class="itinerary-item">
+            <div class="itinerary-day">Day 5<br>4/14</div>
+            <div class="itinerary-content">
+              <strong>巴黎 → 罗马</strong><br>
+              <span class="transport-badge badge-flight">✈️ 飞机</span> 22:10-00:20+1（推荐）<br>
+              <span class="transport-badge badge-train">🚄 火车</span> 11h（可选）<br>
+              白天：巴黎最后游玩<br>
+              晚上：前往罗马
+            </div>
+          </div>
+          <div class="itinerary-item">
+            <div class="itinerary-day">Day 6-8<br>4/15-17</div>
+            <div class="itinerary-content">
+              <strong>罗马游玩</strong> (3 天) 🇮🇹<br>
+              • 斗兽场、古罗马广场<br>
+              • 梵蒂冈：圣彼得大教堂、西斯廷教堂<br>
+              • 特莱维喷泉（许愿池）<br>
+              • 西班牙广场、万神殿<br>
+              • 特拉斯提弗列区
+            </div>
+          </div>
+          <div class="itinerary-item">
+            <div class="itinerary-day">Day 9<br>4/18</div>
+            <div class="itinerary-content">
+              <strong>罗马 → 米兰</strong><br>
+              <span class="transport-badge badge-flight">✈️ 飞机</span> 1h15m（推荐）<br>
+              <span class="transport-badge badge-train">🚄 高铁</span> 3h（可选）<br>
+              上午：抵达米兰<br>
+              下午：米兰市区（大教堂、拱廊）
+            </div>
+          </div>
+          <div class="itinerary-item">
+            <div class="itinerary-day">Day 10-12<br>4/19-21</div>
+            <div class="itinerary-content">
+              <strong>米兰游玩</strong> (3 天) 🇮🇹<br>
+              • 米兰大教堂、埃马努埃莱二世拱廊<br>
+              • 达芬奇《最后的晚餐》<br>
+              • 购物：蒙特拿破仑大街<br>
+              • 可安排：科莫湖一日游<br>
+              • Day 12 晚上：米兰→北京 (20:45-23:05)
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 预算估算 -->
+      <div class="section">
+        <h2 class="section-title">💰 预算估算</h2>
+        <table class="budget-table">
+          <tr><td>国际 + 欧洲境内机票</td><td class="price">¥6,232</td></tr>
+          <tr><td>酒店（11 晚）</td><td>¥11,000-15,000（€100-150/晚）</td></tr>
+          <tr><td>餐饮</td><td>¥6,000-9,000（€50-80/天）</td></tr>
+          <tr><td>欧洲境内交通</td><td>¥1,500-2,500（飞机）/ ¥2,500-3,500（火车）</td></tr>
+          <tr><td>门票/活动</td><td>¥4,000-6,000</td></tr>
+          <tr><td>签证费（申根）</td><td>¥600</td></tr>
+          <tr><td>旅游保险</td><td>¥300-500</td></tr>
+          <tr><td><strong>总计（飞机）</strong></td><td class="price">¥29,632-39,832</td></tr>
+          <tr><td><strong>总计（火车）</strong></td><td class="price">¥30,632-40,832</td></tr>
+        </table>
+      </div>
+      
+      <!-- 注意事项 -->
+      <div class="section">
+        <h2 class="section-title">⚠️ 完整注意事项</h2>
+        <div class="tips">
+          <h3 style="color: #856404; margin-bottom: 15px;">📋 出行前准备</h3>
+          <ul>
+            <li><strong>签证：</strong> 申根签证（法国/意大利通用），提前 2-3 个月办理，需提供行程单、酒店订单、机票预订单</li>
+            <li><strong>护照：</strong> 确保护照有效期超过 6 个月</li>
+            <li><strong>保险：</strong> 申根签证要求医疗保险保额≥3 万欧元</li>
+            <li><strong>机票：</strong> 提前 2-3 个月预订价格最优，廉航需单独购买行李额</li>
+            <li><strong>酒店：</strong> 巴黎、罗马市中心较贵，建议提前预订，可考虑民宿</li>
+            <li><strong>货币：</strong> 欧元（€），建议带信用卡 + 少量现金，欧洲很多小店只收现金</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🎒 行李准备</h3>
+          <ul>
+            <li><strong>证件：</strong> 护照、签证、机票确认单、酒店确认单、保险单（建议复印备份）</li>
+            <li><strong>电器：</strong> 欧标转换插头（两圆孔）、充电宝、充电器</li>
+            <li><strong>衣物：</strong> 4 月欧洲春季，气温 10-20°C，带外套、毛衣、雨伞</li>
+            <li><strong>药品：</strong> 感冒药、肠胃药、创可贴、个人常用药</li>
+            <li><strong>其他：</strong> 太阳镜、防晒霜、保温杯、小背包</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">✈️ 交通注意事项</h3>
+          <ul>
+            <li><strong>廉航行李：</strong> 瑞安、易捷不含托运行李，手提行李尺寸有限制（通常 40×20×25cm），超重需付费</li>
+            <li><strong>机场交通：</strong> 巴黎戴高乐机场 RER B 线到市区，罗马菲乌米奇诺机场有 Leonardo Express 到市中心</li>
+            <li><strong>火车订票：</strong> 欧洲火车提前预订更便宜，可在 RailEurope、Trainline 等平台购买</li>
+            <li><strong>JR Pass：</strong> 不适用欧洲，欧洲有 Eurail Pass（多国通票）</li>
+            <li><strong>市内交通：</strong> 巴黎 Navigo 卡、罗马 Roma Pass、米兰 ATM 卡，可节省交通费</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🏨 住宿注意事项</h3>
+          <ul>
+            <li><strong>入住时间：</strong> 欧洲酒店通常 14:00 后入住，11:00 前退房</li>
+            <li><strong>城市税：</strong> 巴黎、罗马、米兰都收取城市税（€2-6/人/晚），现场支付</li>
+            <li><strong>安全：</strong> 选择市中心或地铁站附近，避免偏僻地区</li>
+            <li><strong>民宿：</strong> Airbnb 需确认自助入住方式，提前联系房东</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🍽️ 餐饮注意事项</h3>
+          <ul>
+            <li><strong>用餐时间：</strong> 欧洲晚餐较晚（19:00-21:00），部分餐厅周日休息</li>
+            <li><strong>小费：</strong> 法国、意大利账单通常含服务费，可留€1-2 零钱</li>
+            <li><strong>饮用水：</strong> 欧洲餐厅自来水收费，可买瓶装水</li>
+            <li><strong>美食：</strong> 巴黎法餐、罗马意面/披萨、米兰烩饭，尝试当地特色</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🎫 景点注意事项</h3>
+          <ul>
+            <li><strong>提前预订：</strong> 埃菲尔铁塔、卢浮宫、斗兽场、梵蒂冈需提前官网订票</li>
+            <li><strong>免费日：</strong> 部分博物馆每月第一个周日免费</li>
+            <li><strong>城市通票：</strong> 巴黎 Museum Pass、罗马 Roma Pass 可节省门票</li>
+            <li><strong>着装：</strong> 参观教堂需着装得体（不露肩、不穿短裤）</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">🔒 安全注意事项</h3>
+          <ul>
+            <li><strong>防盗：</strong> 巴黎、罗马、米兰小偷较多，注意保管钱包、手机、护照</li>
+            <li><strong>地铁：</strong> 避免早晚高峰，背包前背</li>
+            <li><strong>景点：</strong> 热门景点有人兜售"免费"手环，戴上后会要钱，直接拒绝</li>
+            <li><strong>紧急电话：</strong> 欧盟通用紧急电话 112</li>
+            <li><strong>大使馆：</strong> 中国驻法国 +33-1-53758840，中国驻意大利 +39-06-96524200</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">📱 通讯与网络</h3>
+          <ul>
+            <li><strong>漫游：</strong> 提前开通国际漫游，或购买欧洲 SIM 卡</li>
+            <li><strong>WiFi：</strong> 酒店、咖啡厅通常有免费 WiFi</li>
+            <li><strong>APP 推荐：</strong> Google Maps（导航）、Citymapper（交通）、TheFork（餐厅）、TripAdvisor（景点）</li>
+          </ul>
+          
+          <h3 style="color: #856404; margin-bottom: 15px; margin-top: 20px;">💡 其他实用提示</h3>
+          <ul>
+            <li><strong>时差：</strong> 欧洲比中国慢 7 小时（夏令时）</li>
+            <li><strong>电压：</strong> 220V，欧标两圆孔插头</li>
+            <li><strong>购物退税：</strong> 单店消费满€175 可退税，机场办理</li>
+            <li><strong>周日营业：</strong> 欧洲周日大部分商店关门，提前采购</li>
+            <li><strong>语言：</strong> 巴黎法语、罗马/米兰意大利语，旅游区英语通用</li>
+            <li><strong>12 天 3 城：</strong> 行程适中，建议巴黎 3 天 + 罗马 3 天 + 米兰 3 天</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 推荐总结 -->
+      <div class="recommendation">
+        <h2>🏆 最终推荐</h2>
+        <span class="highlight">方案 1: 多程联订 - 巴黎→罗马→米兰</span>
+        <span class="highlight">总价格：¥6,232</span>
+        <div style="margin-top: 20px;">
+          <strong>比方案 7 省：</strong> ¥1,479<br>
+          <strong>行程类型：</strong> 不走回头路，一次购买多段<br>
+          <strong>国家顺序：</strong> 🇫🇷法国 → 🇮🇹意大利 (罗马) → 🇮🇹意大利 (米兰) → 北京<br>
+          <strong>推荐指数：</strong> ⭐⭐⭐⭐⭐<br><br>
+          <strong>💡 亮点：</strong> 意大利两城（罗马 + 米兰）连续游玩，同国家景点集中玩，不走回头路！<br>
+          <strong>备选方案：</strong> 如想体验欧洲火车风景，可选择方案 2 (缺口程 + 火车)，总价¥6,632，仅贵¥400
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>基于实时航班数据生成 | 行程规划报告</p>
+      <p style="margin-top: 10px;">生成时间：2026-04-01</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "type": "procurement_request",
+  "req_id": "REQ-20260330-ca9348",
+  "item": "幽灵庄园红酒",
+  "spec": "750ml, 2018年份",
+  "quantity": 1,
+  "budget_max": 5000.0,
+  "deadline": "2026-03-31T12:08:06.969396Z",
+  "buyer": "小恩",
+  "buyer_endpoint": "http://localhost:8787",
+  "status": "open",
+  "created_at": "2026-03-30T12:08:06.969546Z",
+  "published": false,
+  "publish_error": "\n✗ Error: Authentication required\n\nHow to fix:\n  → Run 'claw.events verify' to complete authentication\n  → Or run 'claw.events login --user <name>' to start authentication\n  → Or use --token <jwt> for temporary authentication\n\nDocumentation:\n  • https://claw.events/docs\n  • https://claw.events/docs/registration\n\n"
+}

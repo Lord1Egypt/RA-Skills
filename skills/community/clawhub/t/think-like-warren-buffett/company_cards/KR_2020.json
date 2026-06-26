@@ -1,0 +1,30 @@
+{
+  "ticker": "KR",
+  "company": "The Kroger Co.",
+  "analysis_year": 2020,
+  "data_source": "Kroger FY2020 10-K and Berkshire 2020-12-31 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.25, "metric_used": "ROE", "years_averaged": "2018-2020", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.016, "fcf": 1536, "net_income": 1512, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.0, "pass": true },
+    "g4_revenue_trend": { "description": "Sales stayed resilient across 2018-2020 at roughly $122B-123B, with the pandemic making grocery demand even more defensive by late 2020. No structural decline was visible.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin remained around the low-22% range with no clean two-year deterioration. This was a steady, low-margin retailer rather than a margin-collapse story.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.044, "net_income_m": 1512, "ev_m": 34629, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Kroger was a solid operator with scale, private label, and digital execution, but grocery retail is still brutally competitive and not easy to describe as a 10-year irreplicable Buffett moat. The business can be good without being a tollbooth.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "ACI", "company": "Albertsons Companies, Inc.", "year": 2020, "gates_failed": ["g3_leverage", "g7_moat"], "conclusion": "PASS — similar category, but weaker balance-sheet quality and no clearer moat." },
+    { "ticker": "KSS", "company": "Kohl's Corporation", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — more visible structural pressure and weaker competitive positioning." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire reported 3.9M Kroger shares worth about $123.9M at 2020-12-31, then increased the position materially during 2021.",
+  "actual_result": "The stake rose to 28.0M shares by 2021-12-31 and was still 16.6M shares at 2022-12-31. Kroger worked as a solid defensive grocery holding, but not as a classic Buffett monopoly or legendary compounder.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A retailer can be operationally strong and still fail Buffett-style underwriting when its moat is merely good execution rather than a truly irreplicable franchise."
+}

@@ -1,0 +1,18 @@
+{
+  "name": "wechat-article-fetch",
+  "version": "1.0.1",
+  "description": "Extract title, body text, and URL from WeChat Official Account articles",
+  "main": "scripts/wx-article-fetch.js",
+  "scripts": {
+    "start": "node scripts/wx-article-fetch.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["wechat", "article", "fetch", "scraper"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.59.1",
+    "commander": "^12.0.0"
+  }
+}

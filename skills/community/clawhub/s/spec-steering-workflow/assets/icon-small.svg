@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Spec Steering Workflow">
+  <rect width="64" height="64" rx="16" fill="#0F766E"/>
+  <path d="M20 18h18a8 8 0 0 1 8 8v20a8 8 0 0 1-8 8H20a2 2 0 0 1-2-2V20a2 2 0 0 1 2-2Z" fill="#F0FDFA"/>
+  <path d="M24 26h16M24 34h16M24 42h10" stroke="#0F766E" stroke-linecap="round" stroke-width="4"/>
+  <circle cx="48" cy="20" r="8" fill="#99F6E4"/>
+  <path d="m48 14 1.9 3.8 4.1.6-3 2.9.7 4.1-3.7-2-3.7 2 .7-4.1-3-2.9 4.1-.6Z" fill="#115E59"/>
+</svg>

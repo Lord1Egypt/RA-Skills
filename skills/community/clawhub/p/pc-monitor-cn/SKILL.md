@@ -1,35 +1,32 @@
----
-name: "Pc Monitor Cn"
-description: "实时监控PC系统资源状态，包括CPU、内存、磁盘和网络使用情况。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pc-monitor-cn"
-sourceUrl: "https://clawhub.ai/skills/pc-monitor-cn"
----
+# pc-monitor-cn
+name: pc-monitor-cn
+version: 1.0.0
 
-# Pc Monitor Cn
+监控系统资源状态（CPU、内存、磁盘、网络）。
 
-> 实时监控PC系统资源状态，包括CPU、内存、磁盘和网络使用情况。
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pc-monitor-cn`
-- **Source URL:** [https://clawhub.ai/skills/pc-monitor-cn](https://clawhub.ai/skills/pc-monitor-cn)
+提供系统资源的实时监控功能，包括：
+- CPU 使用率
+- 内存使用率
+- 磁盘空间
+- 网络状态
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pc-monitor-cn
+# 查看所有系统状态
+~/.openclaw/workspace/skills/system-monitor/scripts/monitor.sh
+
+# 或者使用 Python 版本
+~/.openclaw/workspace/skills/system-monitor/scripts/monitor.py
 ```
+
+## 依赖
+
+- Python 3.6+
+- psutil (可选，用于更详细的监控)
+
+## 配置
+
+无特殊配置要求。

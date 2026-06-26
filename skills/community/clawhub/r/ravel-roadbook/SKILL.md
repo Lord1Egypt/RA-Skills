@@ -1,35 +1,273 @@
 ---
-name: "Self-drive Travel Roadbook"
-description: "自驾旅游路书完整工具箱 — 路书创建/更新、照片归档、路线图生成（Leaflet+OSRM）、路书PDF生成"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ravel-roadbook"
-sourceUrl: "https://clawhub.ai/skills/ravel-roadbook"
+name: roadbook
+description: 自驾旅游路书完整工具箱 — 路书创建/更新、照片归档、路线图生成（Leaflet+OSRM）、路书PDF生成
+category: travel
 ---
 
-# Self-drive Travel Roadbook
+# 🚗 自驾路书完整工具箱
 
-> 自驾旅游路书完整工具箱 — 路书创建/更新、照片归档、路线图生成（Leaflet+OSRM）、路书PDF生成
+集路书模板、照片管理、地图生成、PDF输出于一体的自驾游记录系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ravel-roadbook`
-- **Source URL:** [https://clawhub.ai/skills/ravel-roadbook](https://clawhub.ai/skills/ravel-roadbook)
+---
 
-## Overview
+## 1. 文件路径规范
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ravel-roadbook
 ```
+路书文件:    /mnt/c/Users/zhou/Desktop/目的地自驾路书.md
+路书HTML:    /mnt/c/Users/zhou/Desktop/目的地路书_打印版.html
+路书PDF:     /mnt/c/Users/zhou/Desktop/目的地路书.pdf
+照片目录:    /mnt/c/Users/zhou/Desktop/目的地自驾_全部照片/
+封面地图:    /mnt/c/Users/zhou/Desktop/目的地自驾_全部照片/map_cover.jpg
+地图HTML:    /mnt/c/Users/zhou/Desktop/目的地自驾_OSRM路线图.html
+路线缓存:    /tmp/目的地_routes.json
+```
+
+> ⚠️ **命名规则**：
+> - 路书HTML/PDF：不带"自驾"二字（如 `成都至西昌路书_打印版.html`）
+> - 照片目录：带"自驾"和"全部照片"（如 `成都至西昌自驾_全部照片/`）
+> - 路书文件可放在 Desktop 或其子文件夹中（如 `云贵旅行/成都至西昌自驾路书.md`）
+> - **数据唯一性**：路书 MD 文件是唯一真相，所有生成操作（地图、统计）前必须先读取该文件获取最新数据。
+
+---
+
+## 2. 📝 路书录入流程
+
+### 2.1 新建路书模板
+
+```markdown
+# 🚗 目的地自驾路书
+
+> ✅ 行程状态：进行中/已结束
+> 开启时间：YYYY年MM月DD日 HH:MM
+> 结束时间：YYYY年MM月DD日
+> 路线总览：出发地 → 途经地1 → 途经地2 → 目的地
+
+---
+
+## 📅 行程统计
+| 天数 | 路线 | 里程 | 消费 |
+|------|------|------|------|
+| Day 1 (MM/DD) | 起点→终点 | XXXkm | ¥XXX |
+| **累计** | — | **X,XXXkm** | **¥XX,XXX** |
+
+---
+
+## 📅 Day 1 — YYYY年MM月DD日 | 起点 → 终点
+## 📅 Day 9 — YYYY年MM月DD日 | 拉萨休整
+```
+
+### 2.2 录入原则：每录入一个地点，立即查询海拔
+
+> ⚠️ **重要**：每录入一个城市/景点/途经点，**立即调用海拔查询**，将结果填入表格。不要等到最后统一录入，否则容易遗漏。
+
+**需要查询海拔的地点：**
+- **起点海拔**：查询出发地的海拔
+- **终点海拔**：查询目的地的海拔
+- **途经点/景点海拔**：查询每个途经景点的海拔
+
+### 2.3 海拔查询方式
+
+#### 方式一：批量自动查询（推荐）
+运行脚本，自动读取路书中所有地点并填充海拔：
+```bash
+python ~/.hermes/skills/travel/roadbook/scripts/lookup_elevation.py <路书MD路径>
+```
+
+#### 方式二：单独查询
+```python
+from scripts.lookup_elevation import lookup_elevation
+elevation = lookup_elevation("拉萨")  # 返回: 3650（米）
+```
+
+### 2.4 每日录入模板
+
+```markdown
+## 📅 Day 1 — YYYY年MM月DD日 | 起点 → 终点
+
+### 🛣️ 行程信息
+| 项目 | 内容 |
+|------|------|
+| 起点 | 起点名称（海拔：XXX m） |
+| 终点 | 终点名称（海拔：XXX m） |
+| 出发时间 | HH:MM |
+| 到达时间 | HH:MM |
+| 行程耗时 | 约X小时XX分 |
+| 行驶里程 | XXXXX km → XXXXX km |
+| 当日总里程 | **XXX km** |
+| 入住宾馆 | **宾馆名称**（地点） |
+
+### 💰 今日消费
+| 类别 | 金额 |
+|------|------|
+| 住宿费 | ¥XXX |
+| 用餐费 | ¥XX |
+| 加油费 | ¥XXX |
+| 高速过路费 | ¥XXX |
+| 门票/观光费 | ¥XXX |
+| 其他杂费 | ¥XX |
+| **合计** | **¥XXX** |
+
+### 🏔️ 景点驻留
+| 景点 | 海拔 | 停留时间 | 主要风光 |
+|------|------|----------|----------|
+| 景点名称 | XXXX m | XX分钟 | 风光描述 |
+
+### 😊 有趣的人与事
+1. 描述1
+2. 描述2
+
+### 📷 精彩瞬间
+- Day1_景点名_01~03.jpg（共3张）
+```
+
+> 📌 **景点海拔来源**：
+> 1. 使用 `lookup_elevation.py` 脚本自动查询
+> 2. 或通过网络搜索确认（部分著名景点如珠峰大本营有精确海拔）
+> 3. **所有景点都必须有海拔数据**，格式：`XXXX m`（纯数字+空格+m）
+
+### 2.5 标题格式规则
+
+> 📌 **格式规则**：
+> - **有 `→`**（如 `成都 → 雅江`）：跨城行程，解析为起点 → 终点
+> - **无 `→`**（如 `拉萨休整`）：同城/休整，起点终点自动相同（自动去除"休整/休息/玩"等后缀）
+>
+> ⚠️ 两种格式不可混用，同一路书保持统一格式。
+
+---
+
+## 3. 📷 照片处理流程
+
+1. 照片自动存入 `~/.hermes/image_cache/`，文件名 `img_xxxxxxxxxx.jpg`
+2. **立即复制**到统一照片目录：`/mnt/c/Users/zhou/Desktop/目的地+自驾_全部照片/`
+3. **不要猜测**照片内容，等用户确认是第几天+景点后再重命名
+4. 重命名格式：`DayX_景点_序号.jpg`（如 `Day6_珠峰_01.jpg`）
+5. 统一文件夹是唯一真相来源，image_cache 仅作临时缓存
+
+---
+
+## 4. 🗺️ 地图生成
+
+使用 Leaflet + OSRM 生成交互式 HTML 地图。**生成时自动调用 OSRM API 获取真实道路路线，无需用户触发**。城市标签、地名、图例等**默认全部使用中文**。
+
+> ⚠️ **重要**：地图默认就是 OSRM 真实道路轨迹图，不是简单示意图；如果生成了无轨迹的示意图，说明没有正确执行代码中的 OSRM 调用。
+
+### 4.1 生成脚本
+
+```bash
+# 修改脚本中的路径配置后运行
+python ~/.hermes/skills/travel/roadbook/scripts/generate_map.py
+```
+
+### 4.2 回头路/返程检测逻辑
+
+- 记录城市首次出现的顺序（`visitedOrder` 数组）
+- 如果某段路线的起点在城市访问顺序中位于终点之后，判定为回头路
+- `label === '返程'` 或判定为回头路的路线均以虚线（`dashArray: '8, 8'`）显示
+
+### 4.3 图例显示逻辑
+
+- 格式：`第X天 起点→途经点1→途经点2→终点 XXkm`
+- 途经点直接嵌入路线字符串（如 Day5：`拉萨→羊卓雍错→日喀则 356km`）
+- 虚线图例说明：`虚线为回头路/返程`
+
+### 4.4 坐标参考表
+
+| 主要城市 | 经度 | 纬度 |  | 川藏线景点 | 经度 | 纬度 |  | 青藏线/西藏景点 | 经度 | 纬度 |
+|----------|------|------|--|------------|------|------|--|----------------|------|------|
+| 成都 | 104.07 | 30.57 |  | 折多山 | 101.56 | 30.29 |  | 羊卓雍错 | 90.35 | 29.13 |
+| 雅江 | 101.02 | 30.03 |  | 高尔寺山 | 101.12 | 30.04 |  | 卡若拉山 | 90.22 | 29.05 |
+| 如美镇 | 98.42 | 30.08 |  | 卡子拉山 | 100.77 | 30.08 |  | 纳木措 | 90.53 | 30.73 |
+| 波密 | 95.77 | 30.87 |  | 理塘 | 100.27 | 30.00 |  | 念青唐古拉山 | 90.55 | 30.46 |
+| 拉萨 | 91.10 | 29.65 |  | 姊妹湖 | 99.92 | 30.12 |  | 羊八井 | 90.08 | 30.05 |
+| 日喀则 | 89.58 | 29.28 |  | 巴塘 | 99.52 | 30.02 |  | 嘉措拉山 | 88.08 | 28.88 |
+| 珠峰 | 86.93 | 28.53 |  | 芒康 | 98.78 | 30.03 |  | 加乌拉山 | 87.08 | 28.63 |
+| 那曲 | 91.00 | 31.47 |  | 东达山 | 97.77 | 30.33 |  | 珠峰大本营 | 86.93 | 28.53 |
+| 攀枝花 | 101.72 | 26.58 |  | 怒江72拐 | 97.42 | 30.20 |  |  |  |  |
+| 西昌 | 102.27 | 27.89 |  | 然乌湖 | 96.68 | 30.13 |  |  |  |  |
+| 昆明 | 102.71 | 25.04 |  | 色季拉山 | 95.62 | 30.72 |  |  |  |  |
+| 抚仙湖 | 102.85 | 24.45 |  | 鲁朗 | 95.33 | 30.47 |  |  |  |  |
+| 万峰林 | 104.90 | 25.10 |  | 林芝 | 94.37 | 30.02 |  |  |  |  |
+| 石棉 | 102.36 | 29.23 |  | 米拉山 | 93.48 | 30.37 |  |  |  |  |
+
+---
+
+## 5. 📄 路书HTML/PDF生成
+
+从路书MD文件生成美观的HTML路书，**使用与现有正常工作路书完全相同的CSS和布局**。可导出PDF或生成长图格式。
+
+### 5.0 已知格式差异
+
+不同路书的 `---` 分隔符格式可能不同：
+- **西藏路书**：`---` 后跟单换行 `\n`
+- **云贵路书**：`---` 后跟双换行 `\n\n`
+
+**调试方法**：如果 `re.split()` 只返回1个块，先打印 `---` 的位置确认格式，再调整正则。正确模式应为 `\n---\n\n(?=## 📅 Day)`（双换行）。
+
+### 5.1 汇总表格式（关键）
+
+⚠️ **不同路书的汇总表格式不同，必须分别用不同正则匹配**：
+
+**格式A — 有里程行**（如 `| Day 1 (05/02) | 成都→西昌 | 356km | ¥718 |`）：
+```python
+for m in re.finditer(r'\|\s*Day\s*(\d+)\s*\(([^)]+)\)\s*\|\s*(.+?)\s*\|\s*([\d,]+)\s*km\s*\|\s*(¥[\d,.]+)\s*\|', content):
+    summary.append({'day': int(m.group(1)), 'date': m.group(2), 'route': ..., 'km': m.group(4)+'km', 'cost': m.group(5)})
+```
+
+**格式B — 休整日行**（如 `| Day 3 (05/04) | 昆明休整 | — | ¥530 |`）：
+```python
+for m in re.finditer(r'\|\s*Day\s*(\d+)\s*\(([^)]+)\)\s*\|\s*(.+?)\s*\|\s*—\s*\|\s*(¥[\d,.]+)\s*\|', content):
+    summary.append({'day': int(m.group(1)), 'date': m.group(2), 'route': ..., 'km': '—', 'cost': m.group(4)})
+```
+
+> ⚠️ **注意**：路书 MD 文件中的汇总表，`km` 数字前**没有空格**（如 `356km` 而非 `356 km`），必须用 `([\d,]+)\s*km` 匹配，不能用 `\d+\s+km`。
+
+### 5.2 当日总里程解析
+
+⚠️ **里程数据必须从路书MD文件解析，不可硬编码**。不同路书的表格列数可能不同，简单的列索引匹配会漏掉Day3/5/7等休整日。
+
+**正确方法**：遍历MD文件的每一行，查找含"当日总里程"的行，然后向上回溯至多40行找到Day标题，取其中的数字：
+
+```python
+lines = content.split('\n')
+mileage = {}
+for i, line in enumerate(lines):
+    if '当日总里程' in line:
+        for j in range(i-1, max(0, i-40), -1):
+            dm = re.search(r'## 📅 Day (\d+)', lines[j])
+            if dm:
+                m = re.search(r'\*\*(\d+)\s*km\*\*', line)
+                if m:
+                    mileage[int(dm.group(1))] = int(m.group(1))
+                break
+```
+
+> ⚠️ **注意**：`当日总里程` 表格行的格式为 `| 当日总里程 | **356 km** |`，其中 `**356 km**` 包含空格，应匹配 `\*\*(\d+)\s*km\*\*`。
+
+**错误方法**：用正则匹配表格某列（如 `\|\s*\d+\s*km\s*\|`），因为列索引因路书不同而变化，会漏掉部分天数。
+
+### 5.3 生成流程
+
+#### Step 1: 生成HTML（Python脚本）
+
+```bash
+# 修改脚本中的路径配置后运行
+python ~/.hermes/skills/travel/roadbook/scripts/generate_roadbook_html.py
+```
+
+#### Step 2: 导出PDF
+
+```bash
+cd /mnt/c/Users/zhou/Desktop
+google-chrome --headless --disable-gpu --no-sandbox \
+    --print-to-pdf="成都自驾西藏路书.pdf" --print-to-pdf-no-header "成都自驾西藏路书_打印版.html"
+```
+
+---
+
+## Scripts
+
+| 脚本 | 功能 |
+|------|------|
+| `scripts/generate_map.py` | 生成OSRM路线图（Leaflet交互式HTML） |
+| `scripts/generate_roadbook_html.py` | 生成路书HTML打印版（含封面、统计、每日行程） |
+| `scripts/lookup_elevation.py` | 查询并填充路书中各地点的海拔 |

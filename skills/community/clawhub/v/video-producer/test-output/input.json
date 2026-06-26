@@ -1,0 +1,15 @@
+{
+  "topic": "牛顿发现苹果",
+  "points": [
+    {
+      "text": "牛顿坐在苹果树下思考",
+      "emoji": "🍎",
+      "title": "发现苹果"
+    }
+  ],
+  "ending": {
+    "endingText": "牛顿由此发现万有引力定律",
+    "endingTitle": "原理发现",
+    "endingDesc": ""
+  }
+}

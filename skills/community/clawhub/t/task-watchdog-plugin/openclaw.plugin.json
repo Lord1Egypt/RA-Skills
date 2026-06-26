@@ -1,0 +1,59 @@
+{
+  "id": "task-watchdog",
+  "name": "Task Watchdog",
+  "description": "Injects failure notifications into parent session when subagents fail or exec processes exit abnormally. Uses idempotencyKey to avoid duplicate notifications with OpenClaw's built-in announce delivery.",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "subagentNotifyOn": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["error", "timeout", "killed", "reset", "deleted"]
+        },
+        "default": ["error", "timeout", "killed"],
+        "description": "Subagent outcomes that trigger a notification injection"
+      },
+      "execNotifyOnAbnormal": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to inject notification on exec abnormal exit (non-zero exit code, timeout, OOM)"
+      },
+      "injectionTtlMs": {
+        "type": "integer",
+        "minimum": 5000,
+        "maximum": 600000,
+        "default": 300000,
+        "description": "TTL for next-turn injection messages (default 5 minutes)"
+      },
+      "heartbeatPatrol": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable heartbeat-based patrol (default false). Only effective when timerPatrol is disabled."
+      },
+      "timerPatrol": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable gateway_start timer-based patrol (default true). When enabled, heartbeat patrol is skipped."
+      },
+      "timerPatrolIntervalMs": {
+        "type": "integer",
+        "minimum": 30000,
+        "maximum": 600000,
+        "default": 120000,
+        "description": "Timer patrol interval in milliseconds (default 2 minutes)"
+      },
+      "staleThresholdMs": {
+        "type": "integer",
+        "minimum": 60000,
+        "maximum": 7200000,
+        "default": 1800000,
+        "description": "How long a running task is considered stale (default 30 minutes)"
+      }
+    }
+  }
+}

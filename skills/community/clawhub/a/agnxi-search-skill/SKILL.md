@@ -1,35 +1,41 @@
 ---
-name: "Agent Skills Search"
-description: "The official search utility for Agnxi.com - The premier directory of AI Agent Tools, MCP Servers, and Skills."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agnxi-search-skill"
-sourceUrl: "https://clawhub.ai/skills/agnxi-search-skill"
+name: agnxi-search
+description: The official search utility for Agnxi.com - The premier directory of AI Agent Tools, MCP Servers, and Skills.
+author: Agnxi
+version: 1.1.0
+tags: [search, tools, mcp, skills, directory, discovery]
 ---
 
-# Agent Skills Search
+# Agnxi Search Skill
 
-> The official search utility for Agnxi.com - The premier directory of AI Agent Tools, MCP Servers, and Skills.
+This skill provides direct access to the [Agnxi.com](https://agnxi.com) database, allowing agents to autonomously discover and retrieve information about thousands of curated tools, MCP servers, and coding capabilities.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agnxi-search-skill`
-- **Source URL:** [https://clawhub.ai/skills/agnxi-search-skill](https://clawhub.ai/skills/agnxi-search-skill)
+## Capabilities
 
-## Overview
+- **Skill Discovery**: Find specific agent skills (e.g., "browser automation", "pdf parsing").
+- **MCP Server Lookup**: Locate Model Context Protocol servers to extend agent capabilities.
+- **Tool Retrieval**: Direct links to tool documentation and repositories.
 
+## Tools
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `search_agnxi`
+
+Performs a keyword search against the Agnxi sitemap index to find relevant resources.
+
+**Parameters:**
+
+- `query` (string, required): The search keywords (e.g., "browser use", "postgres mcp", "text to speech").
+
+**Usage Implementation:**
+
+> **Note**: This tool runs a local Python script to query the live sitemap, ensuring up-to-date results without API keys.
+
 ```bash
-hermes skills install clawhub/agnxi-search-skill
+python3 search.py "{{query}}"
 ```
+
+## Best Practices for Agents
+
+1.  **Search Broadly**: If specific terms yield no results, try broader categories (e.g., instead of "PyPDF2", search "PDF").
+2.  **Verify Links**: The tool returns direct URLs. Always verify the content matches the user's need.
+3.  **Cross-Reference**: Use this skill to find the *name* of a tool, then use your `browser` or `github` skills to fetch specific documentation if needed.

@@ -1,35 +1,79 @@
 ---
-name: "DaoReview"
-description: "文档审核评分工具。当用户要求"审核文档"、"检查文档"、"给文档打分"、"评估文档"、"分析文档"、或上传 .docx/.txt/.md 文件进行审查时触发。执行文档内容分析，从结构完整性、内容质量、格式规范、逻辑性等维度给出评分和改进建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dao-review"
-sourceUrl: "https://clawhub.ai/skills/dao-review"
+name: dao-review
+description: 文档审核评分工具。当用户要求"审核文档"、"检查文档"、"给文档打分"、"评估文档"、"分析文档"、或上传 .docx/.txt/.md 文件进行审查时触发。执行文档内容分析，从结构完整性、内容质量、格式规范、逻辑性等维度给出评分和改进建议。
 ---
 
-# DaoReview
+# DaoReview · 道哥的文档检查器
 
-> 文档审核评分工具。当用户要求"审核文档"、"检查文档"、"给文档打分"、"评估文档"、"分析文档"、或上传 .docx/.txt/.md 文件进行审查时触发。执行文档内容分析，从结构完整性、内容质量、格式规范、逻辑性等维度给出评分和改进建议。
+## 支持格式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dao-review`
-- **Source URL:** [https://clawhub.ai/skills/dao-review](https://clawhub.ai/skills/dao-review)
+- `.docx` — Word 文档（通过 pandoc/docx2txt/unzip 提取文本）
+- `.txt` — 纯文本
+- `.md` — Markdown 文件
 
-## Overview
+## 工作流程
 
+### 第一步：读取文件
 
-## Installation
-To install this skill, run the following command in your terminal:
+根据文件类型选择读取方式：
+
 ```bash
-hermes skills install clawhub/dao-review
+# docx 文件
+pandoc "/path/to/file.docx" -t plain 2>/dev/null || \
+docx2txt "/path/to/file.docx" 2>/dev/null || \
+unzip -p "/path/to/file.docx" word/document.xml | sed 's/<[^>]*>//g'
+
+# txt 文件
+cat "/path/to/file.txt"
+
+# md 文件
+cat "/path/to/file.md"
 ```
+
+### 第二步：审核内容
+
+分析以下维度：
+
+| 维度 | 权重 | 说明 |
+|------|------|------|
+| **结构完整性** | 20% | 是否有清晰的开头、主体、结尾；框架是否完整 |
+| **内容质量** | 25% | 信息准确性、深度、实用性 |
+| **格式规范** | 15% | 排版整洁度、格式残留（如 Word 内部标记） |
+| **逻辑性** | 20% | 层次清晰、因果连贯、无矛盾 |
+| **可执行性** | 20% | 目标是否明确、计划是否落地、奖励机制是否清晰 |
+
+### 第三步：输出报告
+
+按以下格式输出：
+
+```
+## 📋 文档审核报告：{文件名}
+
+### 综合评分：**{总分} / 100**
+
+---
+
+### ✅ 优点
+（列出 2-5 个亮点）
+
+### ⚠️ 需改进的问题
+（列出主要问题及扣分原因）
+
+### 💡 建议补充
+（给出具体改进方向）
+```
+
+### 打分参考标准
+
+- **90-100**：优秀 — 结构完整、内容详实、可直接执行
+- **75-89**：良好 — 框架清晰，细节需打磨
+- **60-74**：及格 — 有基本框架，关键内容缺失较多
+- **60以下**：需大幅重写 — 结构或内容有根本性问题
+
+## 注意事项
+
+- 如果文件路径包含中文或空格，用引号包裹
+- docx 文件中的超链接标记（如 HYPERLINK）属于格式残留，计入扣分
+- 如果文档是活动策划案，优先检查：目标、受众、时间节点、责任分工、奖励机制
+- 保持评分客观，优点和缺点都要明确指出
+- 回复使用中文

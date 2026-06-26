@@ -1,35 +1,41 @@
 ---
-name: "FeliciaOS Market Scanner"
-description: "Autonomous crypto market intelligence — macro read, technical analysis, pre-pump on-chain signals, risk management, and token watchlist. Built by FeliciaOS f..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feliciaos-market-scanner"
-sourceUrl: "https://clawhub.ai/skills/feliciaos-market-scanner"
+name: market-scanner
+description: Autonomous crypto market intelligence — macro read, technical analysis, pre-pump on-chain signals, risk management, and token watchlist. Built by FeliciaOS from Anambra, Nigeria.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      env:
+        - GROQ_API_KEY
+    primaryEnv: GROQ_API_KEY
+    envVars:
+      - name: GROQ_API_KEY
+        required: true
+        description: Groq API key for LLaMA 3.3 70B inference.
+    emoji: "📊"
+    homepage: https://github.com/leodera-creator/feliciaos
 ---
 
 # FeliciaOS Market Scanner
 
-> Autonomous crypto market intelligence — macro read, technical analysis, pre-pump on-chain signals, risk management, and token watchlist. Built by FeliciaOS f...
+Performs deep crypto market intelligence analysis powered by LLaMA 3.3 70B.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feliciaos-market-scanner`
-- **Source URL:** [https://clawhub.ai/skills/feliciaos-market-scanner](https://clawhub.ai/skills/feliciaos-market-scanner)
+## What it does
+- Reads current market sentiment and BTC dominance
+- Identifies key technical levels and trend direction
+- Scans for pre-pump on-chain signals
+- Provides stop-loss and position sizing guidance
+- Returns 3-5 token watchlist with reasoning
 
-## Overview
+## Usage
+Install this skill, set your GROQ_API_KEY, then ask your agent:
+- "Run a market scan"
+- "Scan the market for BTC"
+- "Give me a crypto market report"
 
+## Output
+Structured market intelligence report. Always ends with NFA disclaimer.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feliciaos-market-scanner
-```
+## Built by
+Pascal Chidera (@chipasleo) — Anambra, Nigeria
+Powered by FeliciaOS autonomous intelligence engine.

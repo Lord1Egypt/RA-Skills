@@ -1,35 +1,33 @@
 ---
-name: "C#"
-description: "Avoid common C# mistakes — null traps, async pitfalls, LINQ gotchas, and disposal leaks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/csharp"
-sourceUrl: "https://clawhub.ai/skills/csharp"
+name: C#
+slug: csharp
+version: 1.0.1
+description: Write robust C# avoiding null traps, async deadlocks, and LINQ pitfalls.
+metadata: {"clawdbot":{"emoji":"💜","requires":{"bins":["dotnet"]},"os":["linux","darwin","win32"]}}
 ---
 
-# C#
+## Quick Reference
 
-> Avoid common C# mistakes — null traps, async pitfalls, LINQ gotchas, and disposal leaks.
+| Topic | File |
+|-------|------|
+| Null reference, nullable types | `nulls.md` |
+| Async/await, deadlocks | `async.md` |
+| Deferred execution, closures | `linq.md` |
+| Value vs reference, boxing | `types.md` |
+| Iteration, equality | `collections.md` |
+| IDisposable, using, finalizers | `dispose.md` |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/csharp`
-- **Source URL:** [https://clawhub.ai/skills/csharp](https://clawhub.ai/skills/csharp)
+## Critical Rules
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/csharp
-```
+- `?.` and `??` prevent NRE but `!` overrides warnings — still crashes if null
+- `.Result` or `.Wait()` on UI thread — deadlock, use `await` or `ConfigureAwait(false)`
+- LINQ is lazy — `query.Where(...)` doesn't execute until iteration
+- Multiple enumeration of IEnumerable — may re-query database, call `.ToList()` first
+- Closure captures variable, not value — loop variable in lambda captures last value
+- Struct in async method — copied, modifications lost after await
+- String comparison culture — `StringComparison.Ordinal` for code, `CurrentCulture` for UI
+- `GetHashCode()` must be stable — mutable fields break dictionary lookup
+- Modifying collection while iterating — throws, use `.ToList()` to iterate copy
+- `decimal` for money — `float`/`double` have precision loss
+- `readonly struct` prevents defensive copies — use for performance
+- `sealed` prevents inheritance — enables devirtualization optimization

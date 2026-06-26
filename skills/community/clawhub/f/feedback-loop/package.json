@@ -1,0 +1,37 @@
+{
+  "name": "@openclaw/skills-feedback-loop",
+  "version": "1.0.0",
+  "description": "Feedback Loop - A feedback collection, analysis and improvement tracking skill for OpenClaw agents",
+  "main": "src/index.js",
+  "bin": {
+    "feedback-loop": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "cli": "node bin/cli.js",
+    "test": "node test/run.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "feedback",
+    "analytics",
+    "improvement",
+    "agent"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills-feedback-loop"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills-feedback-loop/issues"
+  },
+  "homepage": "https://github.com/openclaw/skills-feedback-loop#readme"
+}

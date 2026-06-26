@@ -1,0 +1,40 @@
+{
+  "name": "invoice-scan",
+  "version": "2.2.0",
+  "description": "AI-powered invoice scanning skill for OpenClaw — extract structured data from any invoice document",
+  "main": "index.js",
+  "bin": {
+    "invoice-scan": "./cli.js"
+  },
+  "scripts": {
+    "test": "node tests/run-all.js",
+    "test:normalisation": "node tests/unit/test-normalisation.js",
+    "test:validation": "node tests/unit/test-validation.js",
+    "test:schema": "node tests/unit/test-schema.js",
+    "scan": "node src/cli.js scan",
+    "lint": "echo 'TODO: add linter'"
+  },
+  "keywords": [
+    "invoice",
+    "scanning",
+    "ocr",
+    "document-processing",
+    "openclaw",
+    "clawhub",
+    "ai",
+    "extraction"
+  ],
+  "author": "Count Vlad 🦇 + Mark (mr-muddle)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mr-muddle/invoice-scan.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0",
+    "xlsx": "^0.18.5"
+  }
+}

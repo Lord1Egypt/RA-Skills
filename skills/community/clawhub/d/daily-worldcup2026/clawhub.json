@@ -1,0 +1,16 @@
+{
+  "name": "daily-worldcup2026",
+  "displayName": "Daily World Cup 2026 Reporter",
+  "version": "1.1.0",
+  "description": "Generate TikTok scripts about FIFA World Cup 2026 qualifiers, host preparations, team news, and tournament developments using free sports news sources.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 2499,
+    "interval": "monthly"
+  },
+  "tags": ["world-cup-2026", "fifa", "football", "soccer", "tiktok", "content", "qualifiers", "tournament"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "content-generation"
+}

@@ -1,0 +1,21 @@
+{
+  "_comment": "配置模板 - 请复制为 config.json 并填入你的凭证",
+  "knowledge_base": {
+    "name": "YOUR_KB_NAME",
+    "root_path": "YOUR_KB_NAME/raw_docs",
+    "indexed_files_path": "YOUR_KB_NAME/indexed_files.json"
+  },
+  "dashvector": {
+    "_instructions": "请登录 https://dashvector.console.aliyun.com 获取以下信息",
+    "api_key": "YOUR_DASHVECTOR_API_KEY",
+    "endpoint": "https://vrs-cn-xxxx.dashvector.cn-hangzhou.aliyuncs.com",
+    "collection_name": "YOUR_COLLECTION_NAME",
+    "dimension": 1024,
+    "model": "text-embedding-v3"
+  },
+  "bailian": {
+    "_instructions": "请登录 https://bailian.console.aliyun.com 获取以下信息",
+    "api_key": "YOUR_BAILIAN_API_KEY",
+    "model": "text-embedding-v3"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "Testing Best Practices",
+  "version": "2.0.0",
+  "description": "Unit testing, integration testing, and TDD principles for reliable, maintainable test suites. Contains 34 rules across 7 categories using TypeScript with Jest/Vitest.",
+  "license": "MIT",
+  "author": {
+    "name": "Agent Skills Contributors",
+    "url": "https://github.com/AsyrafHussin/agent-skills"
+  },
+  "categories": [
+    {
+      "name": "Test Structure",
+      "prefix": "struct",
+      "impact": "CRITICAL",
+      "ruleCount": 6
+    },
+    {
+      "name": "Test Isolation",
+      "prefix": "iso",
+      "impact": "CRITICAL",
+      "ruleCount": 6
+    },
+    {
+      "name": "Assertions",
+      "prefix": "assert",
+      "impact": "HIGH",
+      "ruleCount": 5
+    },
+    {
+      "name": "Test Data",
+      "prefix": "data",
+      "impact": "HIGH",
+      "ruleCount": 6
+    },
+    {
+      "name": "Mocking",
+      "prefix": "mock",
+      "impact": "MEDIUM",
+      "ruleCount": 4
+    },
+    {
+      "name": "Coverage",
+      "prefix": "cov",
+      "impact": "MEDIUM",
+      "ruleCount": 4
+    },
+    {
+      "name": "Performance",
+      "prefix": "perf",
+      "impact": "LOW",
+      "ruleCount": 3
+    }
+  ],
+  "references": [
+    "https://vitest.dev",
+    "https://jestjs.io",
+    "https://testing-library.com",
+    "https://mswjs.io"
+  ],
+  "keywords": [
+    "testing",
+    "unit-tests",
+    "integration-tests",
+    "tdd",
+    "vitest",
+    "jest",
+    "mocking",
+    "coverage"
+  ],
+  "rulesTotal": 34,
+  "lastUpdated": "2026-03-14"
+}

@@ -1,0 +1,7 @@
+yfinance>=0.2.54
+pandas>=2.0.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+feedparser>=6.0.10
+mcp>=1.0.0
+httpx>=0.27.0

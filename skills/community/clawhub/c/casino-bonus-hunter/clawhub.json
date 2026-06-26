@@ -1,0 +1,13 @@
+{
+  "emoji": "🎰",
+  "version": "1.0.0",
+  "requires": {
+    "pip": [],
+    "env": []
+  },
+  "cron": "0 */6 * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "casino_bonus_hunter.py"
+  }
+}

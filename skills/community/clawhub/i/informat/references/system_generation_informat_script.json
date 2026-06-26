@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_generation_informat_script",
+		"description": "You can generate Informat scripts to implement business logic through context and prompts.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"prompt": {
+					"description": "Prompt context",
+					"type": "string"
+				}
+			},
+			"required": [
+				"prompt"
+			]
+		}
+	}
+}

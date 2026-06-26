@@ -1,0 +1,18 @@
+competitors:
+  - name: "OpenAI"
+    domain: "openai.com"
+    blog_rss: "https://openai.com/blog/rss.xml"
+    github_org: "openai"
+    keywords: ["ChatGPT", "GPT-4", "OpenAI"]
+
+  - name: "Anthropic"
+    domain: "anthropic.com"
+    blog_rss: "https://www.anthropic.com/rss.xml"
+    github_org: "anthropic"
+    keywords: ["Claude", "Anthropic"]
+
+  - name: "Google DeepMind"
+    domain: "deepmind.google"
+    blog_rss: "https://deepmind.google/blog/rss.xml"
+    github_org: "google-deepmind"
+    keywords: ["Gemini", "DeepMind", "Google AI"]

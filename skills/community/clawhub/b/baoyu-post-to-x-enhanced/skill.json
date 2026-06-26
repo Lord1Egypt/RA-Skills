@@ -1,0 +1,29 @@
+{
+  "name": "baoyu-post-to-x-enhanced",
+  "version": "3.0.0",
+  "description": "Posts content and articles to X (Twitter) via real Chrome browser with CDP automation. Custom fork with three-tier text insertion (CDP insertText → execCommand → osascript), Unicode hashtag truncation, Smart Reset editor cleanup, beforeunload handling, and CDP timeout optimization.",
+  "author": "clawstore-labs",
+  "author_display": "Clawstore Labs",
+  "license": "Commercial",
+  "permissions": [],
+  "entryPoint": {
+    "type": "natural",
+    "path": "SKILL.md"
+  },
+  "tags": [
+    "x",
+    "twitter",
+    "publishing",
+    "cdp",
+    "browser-automation",
+    "social-media",
+    "marketing"
+  ],
+  "category": "marketing",
+  "sourcePersonas": [
+    "viralix-x-marketing"
+  ],
+  "compatiblePersonas": [
+    "viralix-x-marketing"
+  ]
+}

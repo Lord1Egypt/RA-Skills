@@ -1,35 +1,57 @@
 ---
-name: "Schema Builder"
+name: "schema-builder"
+version: "3.0.0"
 description: "Build database schemas with SQL generation and relationship modeling. Use when designing databases."
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/schema-builder"
-sourceUrl: "https://clawhub.ai/skills/schema-builder"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Schema Builder
+# schema-builder
 
-> Build database schemas with SQL generation and relationship modeling. Use when designing databases.
+Build database schemas with SQL generation and relationship modeling. Use when designing databases.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/schema-builder`
-- **Source URL:** [https://clawhub.ai/skills/schema-builder](https://clawhub.ai/skills/schema-builder)
+## Commands
 
-## Overview
+### `create`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/schema-builder
+scripts/script.sh create <table cols>
 ```
+
+### `alter`
+
+```bash
+scripts/script.sh alter <table action col>
+```
+
+### `show`
+
+```bash
+scripts/script.sh show <table>
+```
+
+### `export`
+
+```bash
+scripts/script.sh export <format>
+```
+
+### `validate`
+
+```bash
+scripts/script.sh validate <file>
+```
+
+### `er`
+
+```bash
+scripts/script.sh er <t1 t2 relation>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/schema-builder/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

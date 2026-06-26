@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文小说写作"
+  short_description: "中文长篇小说单书工作流：章节 preflight、连续性记忆、写作原则、质量门和 Markdown 交付"
+  default_prompt: "创建或延续中文小说项目：使用单书隔离工作区、章节 preflight、紧凑规划、连续性追踪、五层次写作原则、质量门、Markdown 章节交付和本书专属学习记忆。"

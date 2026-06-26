@@ -1,35 +1,21 @@
----
-name: "@openclaw/orchestration"
-description: "Framework for coordinating multi-agent tasks with atomic claims, dependencies, retries, and markdown task visibility using a shared SQLite queue."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-orchestration"
-sourceUrl: "https://clawhub.ai/skills/openclaw-orchestration"
----
+# Orchestration Skill
 
-# @openclaw/orchestration
+Multi-agent task orchestration framework. Agents delegate tasks via a shared SQLite queue, with .md interchange files for visibility.
 
-> Framework for coordinating multi-agent tasks with atomic claims, dependencies, retries, and markdown task visibility using a shared SQLite queue.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-orchestration`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-orchestration](https://clawhub.ai/skills/openclaw-orchestration)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
 ```bash
-hermes skills install clawhub/openclaw-orchestration
+cd skills/orchestration
+npm install
+node src/cli.js agent register my-agent --capabilities "coding,research"
+node src/cli.js task create "Build feature X" --desc "..." --priority high
+node src/cli.js task claim <task-id> --agent my-agent
+node src/cli.js task complete <task-id> --summary "Done"
+node src/cli.js refresh
 ```
+
+## Design
+- **DB is source of truth** — .md files are read-only projections
+- **Atomic claims** — only one agent can claim a pending task
+- **Dependencies** — tasks can depend on other tasks
+- **Timeout + retry** — `sweep` handles stale tasks
+- **Interchange** — `refresh` generates .md files via @openclaw/interchange

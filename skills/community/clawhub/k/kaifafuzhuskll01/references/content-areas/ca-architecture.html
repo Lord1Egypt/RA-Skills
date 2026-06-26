@@ -1,0 +1,27 @@
+<!-- ca-architecture — 水平架构/流程图，节点+箭头+标签 -->
+<div class="content-area" style="align-items:center;padding:40px 80px;flex-direction:column;justify-content:center">
+  {{#if title}}
+  <h2 style="font-family:var(--font);font-size:26px;font-weight:600;color:var(--color-text);margin:0 0 32px 0;width:100%;text-align:center">{{title}}</h2>
+  {{/if}}
+  <div style="display:flex;align-items:center;gap:0;width:100%;justify-content:center;flex-wrap:wrap">
+    {{#each nodes}}
+    <!-- 节点框 -->
+    <div style="background:var(--color-primary-light);border:2px solid var(--color-border);border-radius:12px;padding:20px 28px;text-align:center;min-width:140px;max-width:200px;display:flex;flex-direction:column;align-items:center">
+      <div style="font-family:var(--font);font-size:17px;font-weight:600;color:var(--color-primary);margin-bottom:6px">{{title}}</div>
+      {{#if desc}}
+      <div style="font-family:var(--font);font-size:13px;color:var(--color-text-secondary);line-height:1.4">{{desc}}</div>
+      {{/if}}
+    </div>
+    {{#unless @last}}
+    <!-- 箭头连接线 -->
+    <div style="display:flex;align-items:center;flex-shrink:0;margin:0 4px">
+      <div style="width:32px;height:2px;background:var(--color-primary-mid)"></div>
+      <div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid var(--color-primary-mid)"></div>
+    </div>
+    {{/unless}}
+    {{/each}}
+  </div>
+  {{#if note}}
+  <div style="margin-top:24px;font-family:var(--font);font-size:14px;color:var(--color-text-secondary);text-align:center">{{note}}</div>
+  {{/if}}
+</div>

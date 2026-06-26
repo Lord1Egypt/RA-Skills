@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日分享</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 800px;
+            height: 1000px;
+            background: linear-gradient(145deg, #ffffff 0%, #fff5f0 100%);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -30%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 142, 83, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            align-self: flex-start;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .title {
+            font-size: 52px;
+            font-weight: 800;
+            color: #1a1a2e;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(90deg, #FF6B6B 0%, #FF8E53 100%);
+            border-radius: 3px;
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            font-size: 24px;
+            color: #4a4a6a;
+            line-height: 1.9;
+            flex: 1;
+        }
+        
+        .content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content li {
+            padding: 12px 0;
+            padding-left: 36px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        
+        .content li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 32px;
+            border-top: 1px solid #eee;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .author-info {
+            font-size: 17px;
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+        
+        .date {
+            font-size: 14px;
+            color: #999;
+            margin-top: 2px;
+        }
+        
+        .emoji {
+            font-size: 72px;
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            opacity: 0.25;
+        }
+        
+        .tips {
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-size: 14px;
+            color: #FF6B6B;
+            letter-spacing: 4px;
+            font-weight: 600;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="tag">📢 今日分享</span>
+        <h1 class="title">10个提升效率的<br>小技巧</h1>
+        <div class="divider"></div>
+        <div class="content">
+            <ul>
+                <li>每天早上先做最重要的三件事</li>
+                <li>用番茄工作法专注25分钟</li>
+                <li>睡前整理好明天的待办事项</li>
+                <li>减少手机通知的干扰</li>
+                <li>学会说"不"，拒绝无效社交</li>
+                <li>定期整理电脑桌面和文件</li>
+                <li>善用快捷键提高操作速度</li>
+                <li>保持充足的睡眠和精神状态</li>
+                <li>定期复盘总结经验教训</li>
+                <li>养成运动习惯保持精力充沛</li>
+            </ul>
+        </div>
+        <div class="footer">
+            <div class="author">
+                <div class="avatar">P</div>
+                <div class="author-info">
+                    <div>Parker</div>
+                    <div class="date">2026年3月12日</div>
+                </div>
+            </div>
+        </div>
+        <div class="emoji">💡</div>
+        <div class="tips">收藏起来慢慢看</div>
+    </div>
+</body>
+</html>

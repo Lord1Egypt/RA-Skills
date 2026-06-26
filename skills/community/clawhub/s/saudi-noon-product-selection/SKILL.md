@@ -1,35 +1,148 @@
 ---
-name: "沙特 Noon 选品工具"
-description: "沙特 Noon 电商选品工具。分析指定市场的竞争情况，识别蓝海产品。触发条件：用户要求选品、分析市场、查找蓝海产品。完整流程：市场翻译 → Noon 商品搜索 → 语义分析卖点 → 供给量搜索 → 蓝海识别 → 定价建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/saudi-noon-product-selection"
-sourceUrl: "https://clawhub.ai/skills/saudi-noon-product-selection"
+name: saudi-noon-product-selection
+description: 沙特 Noon 电商选品工具。分析指定市场的竞争情况，识别蓝海产品。触发条件：用户要求选品、分析市场、查找蓝海产品。完整流程：市场翻译 → Noon 商品搜索 → 语义分析卖点 → 供给量搜索 → 蓝海识别 → 定价建议。
 ---
 
 # 沙特 Noon 选品工具
 
-> 沙特 Noon 电商选品工具。分析指定市场的竞争情况，识别蓝海产品。触发条件：用户要求选品、分析市场、查找蓝海产品。完整流程：市场翻译 → Noon 商品搜索 → 语义分析卖点 → 供给量搜索 → 蓝海识别 → 定价建议。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/saudi-noon-product-selection`
-- **Source URL:** [https://clawhub.ai/skills/saudi-noon-product-selection](https://clawhub.ai/skills/saudi-noon-product-selection)
+用户要求以下任一内容时触发：
+- "选品"
+- "分析市场"
+- "查找蓝海产品"
+- "Noon 哪个市场好"
+- "帮我选个品"
+- "市场调研"
 
-## Overview
+## 工作流程
 
+### 第一步：翻译市场词
+将用户给的中文市场词翻译成阿拉伯语。使用 `zh-to-ar-translator` 技能：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/saudi-noon-product-selection
+node ~/.openclaw/workspace/skills/zh-to-ar-translator/index.js "中文市场词"
+```
+
+如果词典没有对应翻译，用 web_search 搜索确认正确阿语。
+
+### 第二步：获取商品明细
+使用 `noon-product-search` 搜索阿语关键词，获取第一页 50 个商品（标题、评分、评价数、价格）：
+
+```bash
+node ~/.openclaw/workspace/skills/noon-product-search/index.js "阿语关键词"
+```
+
+### 第三步：获取市场总供给量
+使用 `noon-product-count` 获取市场总供给：
+
+```bash
+node ~/.openclaw/workspace/skills/noon-product-count/index.js "阿语关键词"
+```
+
+### 第四步：语义分析卖点
+**核心步骤** - 理解每个商品标题的语义，识别：
+- **主体**：卖的是什么（产品类型）
+- **卖点**：有什么特点/属性/场景
+
+提取所有 unique 的卖点词。
+
+### 第五步：搜索卖点供给
+对每个提取的卖点词，使用 `noon-product-count` 搜索供给量：
+
+```bash
+node ~/.openclaw/workspace/skills/noon-product-count/index.js "卖点阿语"
+```
+
+可并行搜索多个词（每批 3-4 个）。
+
+### 第六步：生成选品报告
+汇总数据，生成选品报告，包含：
+1. 市场总供给量
+2. 产品主体分析
+3. 卖点及供给量
+4. 价格带分布
+5. 评分/评论分析
+6. **蓝海机会识别**
+7. **定价建议**
+
+## 输出格式
+
+```
+# [市场名] Noon 选品报告
+
+## 📊 市场总览
+- 搜索词: [阿语]
+- 总供给量: X 个商品
+
+## 🏷️ 产品主体分析
+
+| 产品类型 | 占比 | 说明 |
+|---------|-----|------|
+| 类型A | XX% | 描述 |
+| 类型B | XX% | 描述 |
+
+## 🎯 卖点分析
+
+| 卖点 | 阿语 | 供给量 | 需求度 |
+|-----|------|-------|-------|
+| 卖点1 | xxx | X,XXX | ⭐⭐⭐ |
+| 卖点2 | xxx | X,XXX | ⭐⭐⭐ |
+
+## 💰 价格带
+
+| 价格区间 | 商品类型 | 竞争情况 |
+|---------|---------|---------|
+| XX-XX | xxx | ⭐⭐⭐ |
+
+## 🔵 蓝海机会
+
+| 机会点 | 评论数 | 供给量 | 判断 |
+|-------|-------|-------|------|
+| xxx | XX+ | X,XXX | ⭐⭐⭐ |
+
+## 💡 定价建议
+
+| 定位 | 价格区间 | 片数 | 策略 |
+|-----|---------|------|------|
+| 引流款 | XX-XX | XXX片 | 低价走量 |
+| 利润款 | XX-XX | XXX片 | 差异化 |
+| 高端款 | XX-XX | XXX片 | 高溢价 |
+
+## 📌 结论
+
+1. 红海：xxx
+2. 蓝海：xxx
+3. 建议：xxx
+```
+
+## 表格展示原则
+
+- **卖点分析表格**：中文卖点 | 对应阿语 | 供给量数字 | 需求度
+- **市场总览先展示阿语**：在"搜索词"行一次性展示阿语
+- **价格带展示**：只写数字范围，不写货币符号
+- **评论数标注**："XX+" 表示XX条以上评论
+- **检查输出**：生成完报告后，快速检查表格列是否对齐，数量级是否合理（千位用逗号分隔）
+
+## 依赖技能
+
+- `zh-to-ar-translator`: 中阿翻译
+- `noon-product-search`: Noon 商品搜索
+- `noon-product-count`: Noon 商品数量统计
+
+## 注意事项
+
+- 阿拉伯语分词必须人工语义理解，不要机械分词
+- 蓝海判断标准：评论数高（100+）但供给相对少
+- 沙特用户常关注：防晒(户外)、逼真(品质)、婚礼场景
+- 本工具只做市场分析，不包含利润计算、供应链分析等
+- 趋势数据暂未接入，需手动查看 Google Trends
+
+## 使用示例
+
+```
+用户：帮我选个品，分析一下咖啡滤纸
+AI：好的，开始分析咖啡过滤器市场...
+（执行翻译、搜索、分析流程）
+（输出选品报告）
 ```

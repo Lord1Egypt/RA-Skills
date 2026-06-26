@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/hr-recruiting-tracker/candidate_draft.schema.json",
+  "title": "Resume Candidate Draft",
+  "type": "object",
+  "required": ["schema_version", "source", "identity", "profile", "resume", "extraction_notes"],
+  "properties": {
+    "schema_version": {
+      "const": "resume-candidate-draft/v0.1"
+    },
+    "source": {
+      "type": "object",
+      "required": ["file_name", "sha256"],
+      "properties": {
+        "file_name": { "type": "string" },
+        "sha256": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "object",
+      "required": ["name", "phone", "email"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] },
+        "email": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "profile": {
+      "type": "object",
+      "required": ["current_company", "years_of_experience", "education_evidence", "skill_mentions"],
+      "properties": {
+        "current_company": { "type": ["string", "null"] },
+        "years_of_experience": { "type": ["number", "null"] },
+        "education_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "skill_mentions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "resume": {
+      "type": "object",
+      "required": ["summary", "markdown_file", "raw_json_file"],
+      "properties": {
+        "summary": { "type": ["string", "null"] },
+        "markdown_file": { "type": "string" },
+        "raw_json_file": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "extraction_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

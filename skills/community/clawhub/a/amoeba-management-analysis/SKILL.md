@@ -1,35 +1,119 @@
 ---
-name: "Amoeba Management Analysis"
-description: "阿米巴经营分析技能。基于稻盛和夫阿米巴经营理念，提供单位时间核算、经营会计报表分析、阿米巴组织划分评估、业绩改善诊断等能力。 当用户需要做阿米巴经营分析、单位时间核算、经营会计、阿米巴组织划分、利润中心分析、内部交易定价、业绩评价时触发。 触发词：阿米巴、阿米巴经营、单位时间核算、经营会计、利润中心、内部交易、阿..."
-category: "domain"
-source: "ClawHub"
-tags: [accounting, amoeba, analysis, business, hourly, management, value]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amoeba-management-analysis"
-sourceUrl: "https://clawhub.ai/skills/amoeba-management-analysis"
+name: amoeba-management-analysis
+description: |
+  阿米巴经营分析技能。基于稻盛和夫阿米巴经营理念，提供单位时间核算、经营会计报表分析、阿米巴组织划分评估、业绩改善诊断等能力。
+  当用户需要做阿米巴经营分析、单位时间核算、经营会计、阿米巴组织划分、利润中心分析、内部交易定价、业绩评价时触发。
+  触发词：阿米巴、阿米巴经营、单位时间核算、经营会计、利润中心、内部交易、阿米巴划分、巴长、稻盛和夫、京瓷会计学
 ---
 
-# Amoeba Management Analysis
+# 阿米巴经营分析技能
 
-> 阿米巴经营分析技能。基于稻盛和夫阿米巴经营理念，提供单位时间核算、经营会计报表分析、阿米巴组织划分评估、业绩改善诊断等能力。 当用户需要做阿米巴经营分析、单位时间核算、经营会计、阿米巴组织划分、利润中心分析、内部交易定价、业绩评价时触发。 触发词：阿米巴、阿米巴经营、单位时间核算、经营会计、利润中心、内部交易、阿...
+基于稻盛和夫阿米巴经营理念，结合经营分析五层级框架，提供完整的阿米巴经营分析能力。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amoeba-management-analysis`
-- **Source URL:** [https://clawhub.ai/skills/amoeba-management-analysis](https://clawhub.ai/skills/amoeba-management-analysis)
+## 核心理念
 
-## Overview
+阿米巴经营的三大支柱：
+1. **阿米巴组织划分** — 将企业划分为独立核算的小组织（阿米巴），每个阿米巴独立计算收支
+2. **单位时间核算** — 以"每小时创造的附加值"为核心指标，取代传统财务指标
+3. **经营哲学** — "敬天爱人"，以人心为基础的经营
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amoeba-management-analysis
+### Step 1：明确分析目标
+
+判断用户需求属于哪类：
+- **组织划分分析** → 参见 `references/organization-division.md`
+- **单位时间核算** → 参见 `references/hourly-value-accounting.md`
+- **经营会计报表** → 参见 `references/management-accounting.md`
+- **业绩改善诊断** → 参见 `references/performance-improvement.md`
+- **内部交易定价** → 参见 `references/internal-pricing.md`
+
+### Step 2：数据收集
+
+引导用户提供以下数据（按需）：
+
+| 数据类型 | 关键字段 | 来源 |
+|---------|---------|------|
+| 收入数据 | 分阿米巴收入、分产品/客户收入 | ERP/财务系统 |
+| 成本数据 | 直接材料、直接人工、制造费用 | 成本模块 |
+| 费用数据 | 按阿米巴分摊的间接费用 | 费用分摊表 |
+| 时间数据 | 各阿米巴总工时、出勤天数 | 考勤系统 |
+| 人员数据 | 各阿米巴人数、人均产值 | HR系统 |
+
+### Step 3：单位时间核算
+
+核心公式：
 ```
+附加值 = 总收入 - 外部采购成本（材料费+外包费+杂费）
+单位时间附加值 = 附加值 ÷ 总劳动时间
+单位时间人事费 = 人事费 ÷ 总劳动时间
+单位时间利润 = 单位时间附加值 - 单位时间人事费
+```
+
+京瓷七原则（数据核算准则）：
+1. 一一对应原则 — 钱和物一一对应
+2. 双重确认原则 — 至少两人确认
+3. 完美主义原则 — 不允许暧昧
+4. 肌肉型经营原则 — 剔除一切冗余
+5. 现金本位原则 — 以现金为基础
+6. 提高核算原则 — 追求单位时间附加值最大化
+7. 玻璃般透明原则 — 信息全员公开
+
+### Step 4：分析与诊断
+
+按五个层级逐层深入：
+
+**L1 数据记录** — 各阿米巴经营数据概览
+**L2 原因分析** — 附加值变动因素拆解（量差×价差×结构差）
+**L3 逻辑识别** — 阿米巴间联动效应（如：前工序影响后工序成本）
+**L4 预测预警** — 趋势预测与风险预警
+**L5 决策推动** — 具体改善方案
+
+### Step 5：输出报告
+
+使用 `references/report-template.md` 生成结构化报告。
+
+## 分析报告模板结构
+
+```markdown
+# [期间] 阿米巴经营分析报告
+
+## 一、核心结论
+> 一句话总结本期各阿米巴经营状况及关键行动建议
+
+## 二、整体经营概况
+- 企业总附加值：XX，单位时间附加值：XX元/小时
+- 目标达成率：XX%，同比±XX%
+
+## 三、各阿米巴单位时间核算
+| 阿米巴 | 总收入 | 外购成本 | 附加值 | 总工时 | 单位时间附加值 | 目标达成率 |
+|--------|-------|---------|-------|-------|-------------|----------|
+| ... | ... | ... | ... | ... | ... | ... |
+
+## 四、变动分析（L2-L3）
+### 优异阿米巴分析
+### 滞后阿米巴分析
+### 阿米巴间联动分析
+
+## 五、趋势与预警（L4）
+## 六、改善方案（L5）
+```
+
+## 管理层经营理念与实战要点
+
+基于实际经营复盘提炼，参见 `references/management-philosophy.md`：
+- 三大核心原则 + 现金流为王
+- 从"销售导向"到"经营导向"的转变
+- 阿米巴长常见经营问题诊断
+- 战区健康度红旗信号
+- 经营复盘机制（日/周/月/专项）
+- 客户经营方法论（分层/标杆/续签）
+- 市场下沉策略
+
+## 配合工具
+
+- **searxng** — 搜索行业对标数据
+- **feishu-sheet** — 用电子表格呈现数据
+- **feishu-bitable** — 多维表格管理分析
+- **feishu-create-doc** — 生成飞书文档报告
+- **business-analysis-framework** — 通用经营分析框架补充

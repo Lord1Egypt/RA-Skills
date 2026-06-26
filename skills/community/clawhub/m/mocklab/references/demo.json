@@ -1,0 +1,358 @@
+{
+  "name": "奇易融汽融-B平台",
+  "interfaces": [
+    {
+      "name": "1.01-获取网关Token",
+      "path": "/brcp-front-proxy.applyAccessToken",
+      "method": "GET",
+      "delay": "",
+      "error": "",
+      "req_fields": [
+        { "name": "channel", "type": "string", "desc": "合作方渠道ID", "required": true, "rule": "fixed:20046" },
+        { "name": "random", "type": "string", "desc": "6位随机数", "required": true, "rule": "random:6" },
+        { "name": "timestamp", "type": "long", "desc": "毫秒时间戳", "required": true, "rule": "timestamp:ms" },
+        { "name": "sign", "type": "string", "desc": "SM2签名", "required": true, "rule": "skip" }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:0" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" },
+        { "name": "accessToken", "type": "string", "rule": "token:32", "is_ref": true },
+        { "name": "expireTime", "type": "long", "rule": "timestamp:ms" }
+      ]
+    },
+    {
+      "name": "1.03-授权协议查询",
+      "path": "/cfss_echannel.api.outer.queryAgreement",
+      "method": "POST",
+      "delay": "3000",
+      "error": "",
+      "req_fields": [
+        { "name": "accessToken", "type": "string", "desc": "令牌", "required": true, "rule": "state:accessToken" },
+        { "name": "channel", "type": "string", "required": true, "rule": "fixed:20046" },
+        { "name": "partnerNo", "type": "string", "required": true, "rule": "fixed:1177" },
+        { "name": "signType", "type": "string", "required": true, "rule": "fixed:SM3" },
+        { "name": "sign", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData", "type": "string", "required": true, "desc": "业务参数JSON",
+          "rule": "nested:queryAgreement_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:000000" },
+        { "name": "signType", "type": "string", "rule": "fixed:SM3" },
+        { "name": "sign", "type": "string", "rule": "skip" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" },
+        {
+          "name": "data", "type": "object", "desc": "加密数据",
+          "rule": "nested:queryAgreement_resp"
+        }
+      ]
+    },
+    {
+      "name": "1.04-授权协议提交",
+      "path": "/cfss_echannel.api.outer.signAgreement",
+      "method": "POST",
+      "delay": "200-500",
+      "error": "",
+      "req_fields": [
+        { "name": "accessToken", "type": "string", "required": true, "rule": "state:accessToken" },
+        { "name": "channel", "type": "string", "required": true, "rule": "fixed:20046" },
+        { "name": "partnerNo", "type": "string", "required": true, "rule": "fixed:1177" },
+        { "name": "signType", "type": "string", "required": true, "rule": "fixed:SM3" },
+        { "name": "sign", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData", "type": "string", "required": true,
+          "rule": "nested:signAgreement_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:000000" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" },
+        { "name": "data", "type": "string", "rule": "nested:signAgreement_resp" }
+      ]
+    },
+    {
+      "name": "1.05-提交线索信息",
+      "path": "/cfss_echannel.api.alipay.LoanApplyCreate",
+      "method": "POST",
+      "delay": "300-800",
+      "error": "",
+      "req_fields": [
+        { "name": "accessToken", "type": "string", "required": true, "rule": "state:accessToken" },
+        { "name": "channel", "type": "string", "required": true, "rule": "fixed:20046" },
+        { "name": "partnerNo", "type": "string", "required": true, "rule": "fixed:1177" },
+        { "name": "signType", "type": "string", "required": true, "rule": "fixed:SM3" },
+        { "name": "sign", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData", "type": "string", "required": true,
+          "rule": "nested:loanApplyCreate_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:000000" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" },
+        { "name": "data", "type": "object", "rule": "nested:loanApplyCreate_resp" }
+      ]
+    },
+    {
+      "name": "1.06-提交试算进件",
+      "path": "/cfss_echannel.api.alipay.submitArchives",
+      "method": "POST",
+      "delay": "500-1000",
+      "error": "500@0.02",
+      "req_fields": [
+        { "name": "accessToken", "type": "string", "required": true, "rule": "state:accessToken" },
+        { "name": "channel", "type": "string", "required": true, "rule": "fixed:20046" },
+        { "name": "partnerNo", "type": "string", "required": true, "rule": "fixed:1177" },
+        { "name": "signType", "type": "string", "required": true, "rule": "fixed:SM3" },
+        { "name": "sign", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData", "type": "string", "required": true,
+          "rule": "nested:submitArchives_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:000000" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" }
+      ]
+    },
+    {
+      "name": "1.07-断点查询",
+      "path": "/cfss_echannel.api.outer.queryClueStatus",
+      "method": "POST",
+      "delay": "100-200",
+      "error": "",
+      "req_fields": [
+        { "name": "accessToken", "type": "string", "required": true, "rule": "state:accessToken" },
+        { "name": "channel", "type": "string", "required": true, "rule": "fixed:20046" },
+        { "name": "partnerNo", "type": "string", "required": true, "rule": "fixed:1177" },
+        { "name": "signType", "type": "string", "required": true, "rule": "fixed:SM3" },
+        { "name": "sign", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData", "type": "string", "required": true,
+          "rule": "nested:queryClueStatus_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:000000" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" },
+        { "name": "data", "type": "object", "rule": "nested:queryClueStatus_resp" }
+      ]
+    },
+    {
+      "name": "1.08-还款计划查询",
+      "path": "/cfss_echannel.api.queryRepaymentPlan",
+      "method": "POST",
+      "delay": "200-400",
+      "error": "",
+      "req_fields": [
+        { "name": "accessToken", "type": "string", "required": true, "rule": "state:accessToken" },
+        { "name": "channel", "type": "string", "required": true, "rule": "fixed:20046" },
+        { "name": "partnerNo", "type": "string", "required": true, "rule": "fixed:1177" },
+        { "name": "ciphertext", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData_plain", "type": "string", "required": true,
+          "rule": "nested:repaymentPlan_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:001" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" },
+        { "name": "ciphertext", "type": "string", "rule": "skip" },
+        { "name": "data", "type": "object", "rule": "nested:repaymentPlan_resp" }
+      ]
+    },
+    {
+      "name": "1.09-状态回传（模拟银行推送）",
+      "path": "/cfss_echannel.callback.statusPush",
+      "method": "POST",
+      "delay": "50-150",
+      "error": "",
+      "req_fields": [
+        { "name": "ciphertext", "type": "string", "required": true, "rule": "skip" },
+        {
+          "name": "reqData_plain", "type": "string", "required": true,
+          "rule": "nested:statusPush_req"
+        }
+      ],
+      "resp_fields": [
+        { "name": "responseCode", "type": "string", "rule": "fixed:001" },
+        { "name": "responseMsg", "type": "string", "rule": "fixed:成功" }
+      ]
+    }
+  ],
+  "inner_schemas": {
+    "queryAgreement_req": {
+      "fields": [
+        { "name": "productCode", "type": "string", "rule": "fixed:qyloan" },
+        { "name": "grantType", "type": "string", "rule": "enum:0,1,7,8" },
+        { "name": "identityCard", "type": "string", "rule": "idcard" },
+        { "name": "mobileNumber", "type": "string", "rule": "phone" },
+        { "name": "name", "type": "string", "rule": "name" }
+      ]
+    },
+    "queryAgreement_resp": {
+      "fields": [
+        {
+          "name": "list", "type": "array", "rule": "array:agreementItem"
+        }
+      ]
+    },
+    "agreementItem": {
+      "fields": [
+        { "name": "sceneCode", "type": "string", "rule": "fixed:SCENE_001" },
+        { "name": "forceRead", "type": "string", "rule": "fixed:1" },
+        { "name": "forceBottom", "type": "string", "rule": "fixed:1" },
+        { "name": "forceDuration", "type": "string", "rule": "fixed:30" },
+        { "name": "grantType", "type": "string", "rule": "enum:01,02,07,08" },
+        { "name": "grantName", "type": "string", "rule": "enum:个人信息采集,征信授权书,电子签名授权,CFCA认证授权" },
+        { "name": "title", "type": "string", "rule": "fixed:个人信息授权书" },
+        { "name": "content", "type": "string", "rule": "fixed:请确认您的授权信息，同意以上条款并签署。" },
+        { "name": "basePolicyId", "type": "string", "rule": "fixed:POLICY_10001" },
+        { "name": "version", "type": "string", "rule": "fixed:1.0" }
+      ]
+    },
+    "signAgreement_req": {
+      "fields": [
+        { "name": "productCode", "type": "string", "rule": "fixed:qyloan" },
+        { "name": "identityCard", "type": "string", "rule": "idcard" },
+        { "name": "mobileNumber", "type": "string", "rule": "phone" },
+        { "name": "grantType", "type": "string", "rule": "enum:0,1,7,8" },
+        { "name": "nodeList", "type": "array", "rule": "array:nodeList_item" }
+      ]
+    },
+    "nodeList_item": {
+      "fields": [
+        { "name": "grantTypeItem", "type": "string", "rule": "enum:0,1,7,8" },
+        { "name": "startTime", "type": "string", "rule": "datetime" },
+        { "name": "endTime", "type": "string", "rule": "datetime" },
+        { "name": "sceneCode", "type": "string", "rule": "fixed:SCENE_001" }
+      ]
+    },
+    "signAgreement_resp": {
+      "fields": [
+        { "name": "grantAuthId", "type": "string", "rule": "sequence:grantAuthId", "is_ref": true }
+      ]
+    },
+    "loanApplyCreate_req": {
+      "fields": [
+        { "name": "apply_no", "type": "string", "rule": "sequence:apply_no" },
+        { "name": "cust_name", "type": "string", "rule": "name" },
+        { "name": "id_card", "type": "string", "rule": "idcard" },
+        { "name": "mobile", "type": "string", "rule": "phone" },
+        { "name": "car_license", "type": "string", "rule": "plate" },
+        { "name": "residence_province_code", "type": "string", "rule": "province:code" },
+        { "name": "residence_province", "type": "string", "rule": "province:name" },
+        { "name": "residence_city_code", "type": "string", "rule": "city:province_code" },
+        { "name": "residence_city", "type": "string", "rule": "city:name" }
+      ]
+    },
+    "loanApplyCreate_resp": {
+      "fields": [
+        { "name": "out_apply_no", "type": "string", "rule": "sequence:out_apply_no", "is_ref": true },
+        { "name": "apply_no", "type": "string", "rule": "body:apply_no" }
+      ]
+    },
+    "submitArchives_req": {
+      "fields": [
+        { "name": "apply_no", "type": "string", "rule": "body:apply_no" },
+        { "name": "out_apply_no", "type": "string", "rule": "body:out_apply_no" },
+        { "name": "grantAuthId", "type": "string", "rule": "state:grantAuthId" },
+        {
+          "name": "identity_verification", "type": "object",
+          "rule": "nested:identityVerification"
+        },
+        {
+          "name": "vehicle", "type": "object",
+          "rule": "nested:vehicle"
+        },
+        {
+          "name": "file_list", "type": "array",
+          "rule": "array:approveFile"
+        },
+        {
+          "name": "other", "type": "object",
+          "rule": "nested:other"
+        }
+      ]
+    },
+    "identityVerification": {
+      "fields": [
+        { "name": "verify_type", "type": "string", "rule": "fixed:FACE" },
+        { "name": "verify_time", "type": "string", "rule": "datetime" }
+      ]
+    },
+    "vehicle": {
+      "fields": [
+        { "name": "license_no", "type": "string", "rule": "plate" }
+      ]
+    },
+    "approveFile": {
+      "fields": [
+        { "name": "type", "type": "string", "rule": "enum:01,02,03" },
+        { "name": "file_path", "type": "string", "rule": "fixed:/upload/test.jpg" },
+        { "name": "transfer_version", "type": "string", "rule": "fixed:1" }
+      ]
+    },
+    "other": {
+      "fields": [
+        { "name": "user_ip", "type": "string", "rule": "fixed:127.0.0.1" },
+        { "name": "auth_agree_time", "type": "string", "rule": "datetime" }
+      ]
+    },
+    "queryClueStatus_req": {
+      "fields": [
+        { "name": "mobileNumber", "type": "string", "rule": "phone" },
+        { "name": "orderId", "type": "string", "rule": "body:orderId" },
+        { "name": "clueNo", "type": "string", "rule": "body:clueNo" }
+      ]
+    },
+    "queryClueStatus_resp": {
+      "fields": [
+        { "name": "status", "type": "string", "rule": "enum:01,13,20,21" },
+        { "name": "url", "type": "string", "rule": "fixed:https://example.com/page?id=MOCK" }
+      ]
+    },
+    "repaymentPlan_req": {
+      "fields": [
+        { "name": "archivesCode", "type": "string", "rule": "body:archivesCode" },
+        { "name": "putoutNo", "type": "string", "rule": "body:putoutNo" }
+      ]
+    },
+    "repaymentPlan_resp": {
+      "fields": [
+        { "name": "repaymentNum", "type": "string", "rule": "fixed:1" },
+        { "name": "actualRepayDate", "type": "string", "rule": "date:2026-05-01" },
+        { "name": "actRepayDate", "type": "string", "rule": "skip" },
+        { "name": "payOverdueCorp", "type": "string", "rule": "amount:5000-20000" },
+        { "name": "actualOverdueCorp", "type": "string", "rule": "skip" },
+        { "name": "payInte", "type": "string", "rule": "amount:200-800" },
+        { "name": "actualInte", "type": "string", "rule": "skip" },
+        { "name": "payOverdueCorpInte", "type": "string", "rule": "fixed:0" },
+        { "name": "actualOverdueCorpInte", "type": "string", "rule": "skip" },
+        { "name": "payIntefine", "type": "string", "rule": "fixed:0" },
+        { "name": "actualIntefine", "type": "string", "rule": "skip" },
+        { "name": "payPoundageInte", "type": "string", "rule": "fixed:0" },
+        { "name": "actualPoundageInte", "type": "string", "rule": "skip" },
+        { "name": "poundage", "type": "string", "rule": "fixed:0" },
+        { "name": "payOffFlag", "type": "string", "rule": "fixed:0" },
+        { "name": "aheadFlag", "type": "string", "rule": "fixed:0" }
+      ]
+    },
+    "statusPush_req": {
+      "fields": [
+        { "name": "orderId", "type": "string", "rule": "body:orderId" },
+        { "name": "archivesCode", "type": "string", "rule": "body:archivesCode" },
+        { "name": "externalStatus", "type": "string", "rule": "enum:20003,20004,30008,30009" },
+        { "name": "loanList", "type": "array", "rule": "array:loanItem" }
+      ]
+    },
+    "loanItem": {
+      "fields": [
+        { "name": "approveRepayLimit", "type": "string", "rule": "fixed:12" },
+        { "name": "approveLoanAmt", "type": "string", "rule": "amount:30000-100000" },
+        { "name": "approveYearRate", "type": "string", "rule": "rate:5-15" }
+      ]
+    }
+  }
+}

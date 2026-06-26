@@ -1,0 +1,14 @@
+{
+  "name": "clawguard-auditor",
+  "version": "3.0.0",
+  "description": "ClawGuard v3 - Skill Security Auditor with Intent Drift Detection",
+  "main": "src/auditor.js",
+  "scripts": {
+    "audit": "node cli.js",
+    "audit:deep": "node cli.js --deep"
+  },
+  "keywords": ["clawguard", "security", "auditor", "openclaw"],
+  "author": "ClawGuard Team",
+  "license": "MIT",
+  "dependencies": {}
+}

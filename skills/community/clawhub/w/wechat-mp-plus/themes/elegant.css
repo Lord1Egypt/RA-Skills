@@ -1,0 +1,21 @@
+/* 优雅主题 - 文艺范 */
+section { font-family: "Georgia", "Songti SC", "SimSun", serif; font-size: 15px; line-height: 2; color: #2c3e50; padding: 10px 0; }
+h1 { font-size: 24px; font-weight: normal; color: #2c3e50; text-align: center; margin: 25px 0 20px; letter-spacing: 3px; }
+h1::after { content: ""; display: block; width: 60px; height: 2px; background: #e74c3c; margin: 10px auto 0; }
+h2 { font-size: 18px; color: #e74c3c; margin: 20px 0 12px; font-weight: normal; letter-spacing: 2px; }
+h3 { font-size: 16px; color: #555; margin: 15px 0 8px; font-style: italic; }
+p { margin: 12px 0; text-align: justify; text-indent: 2em; }
+img { max-width: 100%; border-radius: 2px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+blockquote { border-left: 3px solid #e74c3c; background: #fdf6f0; padding: 12px 18px; margin: 15px 0; color: #7f8c8d; font-style: italic; }
+code { background: #fdf6f0; padding: 2px 6px; border-radius: 2px; font-size: 13px; color: #c0392b; }
+pre { background: #faf8f5; padding: 15px; border-radius: 4px; border: 1px solid #ece5d8; font-size: 13px; line-height: 1.6; }
+pre code { background: none; color: #2c3e50; padding: 0; }
+a { color: #e74c3c; text-decoration: none; }
+ul, ol { padding-left: 20px; margin: 10px 0; }
+li { margin: 5px 0; }
+table { border-collapse: collapse; width: 100%; margin: 15px 0; font-size: 14px; }
+th { background: #2c3e50; color: #fff; padding: 10px 12px; }
+td { border: 1px solid #ddd; padding: 8px 12px; }
+hr { border: none; text-align: center; margin: 25px 0; }
+hr::after { content: "◆"; color: #e74c3c; font-size: 12px; }
+strong { color: #e74c3c; }

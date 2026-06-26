@@ -1,0 +1,12 @@
+{
+  "name": "AI Avatar by VideoAny",
+  "tagline": "Create talking AI avatar videos from one portrait and a voice track.",
+  "description": "Generate AI avatar videos via VideoAny at https://videoany.io/tools/ai-avatar. Upload an avatar image (JPG/PNG/WebP), add audio (MP3/WAV/OGG/M4A or record), optionally add script text, and render a talking avatar with lip sync guidance and responsible-use rules.",
+  "category": "utility",
+  "tags": ["ai-avatar", "avatar-ai", "talking-avatar", "lip-sync", "videoany", "ai-character", "avatar-video"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/tools/ai-avatar",
+  "homepage": "https://videoany.io/tools/ai-avatar"
+}

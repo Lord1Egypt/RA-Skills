@@ -1,0 +1,91 @@
+{
+  "id": "bf16a2dc-c7ac-4c42-870c-f58dc64e01af",
+  "label": "Geisha Allong\u00e9",
+  "type": "pro",
+  "description": "Light roast, Costarica, washed, 20g\u219270.0g (1:3.5), bloom profile",
+  "temperature": 92,
+  "phases": [
+    {
+      "name": "Fill",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 4,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 2,
+        "flow": 4
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Bloom",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 8,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 0,
+        "flow": 0
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Ramp",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 5,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 7,
+        "flow": 4
+      },
+      "transition": {
+        "type": "ease-in",
+        "duration": 4,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "pressure",
+          "operator": "gte",
+          "value": 6.5
+        }
+      ]
+    },
+    {
+      "name": "Brew",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 35,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 7,
+        "flow": 4
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 70.0
+        }
+      ]
+    }
+  ]
+}

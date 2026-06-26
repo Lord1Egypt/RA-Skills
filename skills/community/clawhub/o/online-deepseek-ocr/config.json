@@ -1,0 +1,14 @@
+{
+  "apiKey": "your-siliconflow-api-key-here",
+  "baseUrl": "https://api.siliconflow.cn/v1",
+  "model": "deepseek-ai/DeepSeek-OCR",
+  "preprocess": {
+    "resize_max_size": 2000,
+    "enhance_contrast": 1.5,
+    "sharpen": 0.5,
+    "denoise": true,
+    "to_grayscale": true,
+    "binarize": false,
+    "binarize_threshold": 128
+  }
+}

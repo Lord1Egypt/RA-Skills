@@ -1,35 +1,29 @@
 ---
-name: "ClawSentinel"
-description: "Pure local 2026 ClawHub/OpenClaw skill scanner. Detects ClawHavoc malware, MCP backdoors, obfuscated payloads, and supply-chain attacks. 100% read-only analy..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawsentinel"
-sourceUrl: "https://clawhub.ai/skills/clawsentinel"
+name: ClawSentinel
+description: Pure local 2026 ClawHub/OpenClaw skill scanner. Detects ClawHavoc malware, MCP backdoors, obfuscated payloads, and supply-chain attacks. 100% read-only analysis.
+version: 2.3.4
+tags: [security, auditor, clawhavoc, malware, mcp, supply-chain, zero-trust]
 ---
 
-# ClawSentinel
+# ClawSentinel v2.3
 
-> Pure local 2026 ClawHub/OpenClaw skill scanner. Detects ClawHavoc malware, MCP backdoors, obfuscated payloads, and supply-chain attacks. 100% read-only analy...
+The sharpest skill auditor in the ClawHavoc era. Scans any skill markdown or GitHub repo for malicious patterns before you install it. Never executes code. Trained on public DataClaw dataset.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawsentinel`
-- **Source URL:** [https://clawhub.ai/skills/clawsentinel](https://clawhub.ai/skills/clawsentinel)
+## Security Guarantees
 
-## Overview
+- 100% local read-only analysis
+- Only fetches raw.githubusercontent.com when you explicitly audit a public GitHub repo
+- Zero telemetry in base version
 
+## How to use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawsentinel
-```
+- "audit this skill:" + paste markdown
+- "audit github https://github.com/user/repo"
+
+## Output Format
+
+Always clean JSON.
+
+## Pro Tip
+
+Run ClawSentinel on every skill before installing. ClawHub is infested right now.

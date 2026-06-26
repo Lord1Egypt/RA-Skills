@@ -1,0 +1,23 @@
+{
+  "skill_name": "telos",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "setup telos",
+      "expected_output": "Should initialize telos directory with templates, then guide user through filling MISSION, GOALS, BELIEFS step by step. Should mention that other files can be filled gradually.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I just finished reading The Psychology of Money by Morgan Housel, really changed how I think about wealth — it's not about earning more, it's about behavior. add it to telos",
+      "expected_output": "Should run update-telos.ts to add book to BOOKS.md with proper format, create backup, log change. Should engage conversationally about the insight.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I got a job offer from a startup paying 40% more, but my current job at a big company is stable and I have good work-life balance. I'm not sure what to do. What do you think?",
+      "expected_output": "Should check ~/clawd/telos/ for existing context (goals, beliefs, missions). If telos exists, frame advice through user's stated values. If not, suggest setting up telos first.",
+      "files": []
+    }
+  ]
+}

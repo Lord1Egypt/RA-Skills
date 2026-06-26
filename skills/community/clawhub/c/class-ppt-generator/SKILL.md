@@ -1,35 +1,57 @@
 ---
-name: "class-ppt-generator"
-description: "生成初中班会课PPT或英语课PPT。触发条件：(1)用户要求做班会课PPT、主题班会、班主任PPT (2)用户要求做英语课PPT、英语公开课、初中英语教学PPT (3)用户提到"班会"或"英语课"与PPT结合"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/class-ppt-generator"
-sourceUrl: "https://clawhub.ai/skills/class-ppt-generator"
+name: class-ppt-generator
+description: 生成初中班会课PPT或英语课PPT。触发条件：(1)用户要求做班会课PPT、主题班会、班主任PPT (2)用户要求做英语课PPT、英语公开课、初中英语教学PPT (3)用户提到"班会"或"英语课"与PPT结合
 ---
 
-# class-ppt-generator
+# Class PPT Generator
 
-> 生成初中班会课PPT或英语课PPT。触发条件：(1)用户要求做班会课PPT、主题班会、班主任PPT (2)用户要求做英语课PPT、英语公开课、初中英语教学PPT (3)用户提到"班会"或"英语课"与PPT结合
+生成初中班会课或英语课PPT的技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/class-ppt-generator`
-- **Source URL:** [https://clawhub.ai/skills/class-ppt-generator](https://clawhub.ai/skills/class-ppt-generator)
+## 执行流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/class-ppt-generator
 ```
+用户需求 → 意图识别 → 信息检索 → 大纲生成 → PPT生成
+```
+
+### Step 1: 意图识别
+
+首先判断用户要的是哪种类型的课：
+
+| 类型 | 关键词 | 语言 | 目标 |
+|------|--------|------|------|
+| 班会课 | 班会、班主任、德育、主题班会 | 全中文 | 价值观、心理、班级管理 |
+| 英语课 | 英语课、公开课、英语教学 | 中英混合 | 语言能力、跨文化意识 |
+
+### Step 2: 多引擎检索
+
+根据课型检索对应素材：
+
+**班会课检索方向**：
+- 教育部德育工作指南
+- 班会课活动设计案例
+- 初中生心理教育素材
+
+**英语课检索方向**：
+- 人教版/外研版教材单元主题
+- 英语公开课获奖教案
+- CEFR A2-B1 核心句型
+
+### Step 3: 大纲生成
+
+生成符合百度AI PPT规范的标准化大纲，每页文字≤6行，重点词加粗。
+
+### Step 4: PPT生成
+
+调用 ai-ppt-generator 技能生成PPT。
+
+## 参考资料
+
+- [BARF模板](references/barf.md) - 详细的BARF prompts框架
+- [班会课主题库](references/class班会-topics.md) - 常用班会课主题及素材
+- [英语课主题库](references/english-topics.md) - 常用英语课主题及素材
+
+## 使用示例
+
+- "帮我做一节初二班会课，主题是手机管理"
+- "准备一节七年级英语公开课"
+- "做一节关于中考焦虑的班会课"

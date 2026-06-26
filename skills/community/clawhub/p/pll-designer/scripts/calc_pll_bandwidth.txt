@@ -1,0 +1,61 @@
+function [f_BW, zeta, wn, KPLLp, KPLLi] = calc_pll_bandwidth(KPLLp_pu, KPLLi_pu, Unom, f0)
+% calc_pll_bandwidth - 根据锁相环 (PLL) 的 PI 标幺值参数计算闭环带宽和阻尼比
+%
+% 输入参数:
+%   KPLLp_pu : 比例控制系数 (标幺值 pu) [必填]
+%   KPLLi_pu : 积分控制系数 (标幺值 pu) [必填]
+%   Unom     : 电网线电压有效值 (V) [可选，默认 690V]
+%   f0       : 电网额定基波频率 (Hz) [可选，默认 50Hz]
+%
+% 输出参数:
+%   f_BW  : 闭环带宽 (Hz)
+%   zeta  : 阻尼比
+%   wn    : 自然角频率 (rad/s)
+%   KPLLp : 比例控制系数 (物理实际值)
+%   KPLLi : 积分控制系数 (物理实际值)
+%
+% 示例:
+%   [f_BW, zeta, wn, Kp, Ki] = calc_pll_bandwidth(0.05, 0.8)
+%   [f_BW, zeta, wn, Kp, Ki] = calc_pll_bandwidth(0.05, 0.8, 380, 50)
+
+    % --- 1. 处理默认输入参数 ---
+    if nargin < 3 || isempty(Unom)
+        Unom = 690;
+    end
+    if nargin < 4 || isempty(f0)
+        f0 = 50;
+    end
+
+    % --- 2. 基准值换算 ---
+    % 计算电网相电压峰值
+    Uphnom_mag = Unom / sqrt(3) * sqrt(2);
+    % 额定角频率
+    w0 = 2 * pi * f0;
+
+    % --- 3. 标幺值转物理实际值 ---
+    % 换算逻辑: 标幺值 * (额定角频率 / 电压幅值)
+    KPLLp = KPLLp_pu * w0 / Uphnom_mag;
+    KPLLi = KPLLi_pu * w0 / Uphnom_mag;
+
+    % --- 4. 计算自然角频率和阻尼比 ---
+    % 根据特征方程 s^2 + U_mag*Kp*s + U_mag*Ki = 0
+    wn = sqrt(Uphnom_mag * KPLLi);
+    zeta = (Uphnom_mag * KPLLp) / (2 * wn);
+
+    % --- 5. 计算闭环带宽 ---
+    % 计算二阶系统的带宽扩展系数 C
+    C = sqrt(1 + 2*zeta^2 + sqrt(2 + 4*zeta^2 + 4*zeta^4));
+    % 换算为频率 (Hz)
+    f_BW = (wn * C) / (2 * pi);
+
+    % --- 6. 打印结果 ---
+    fprintf('=== PLL 带宽反推结果 ===\n');
+    fprintf('输入: KPLLp_pu = %.6f, KPLLi_pu = %.6f, Unom = %.0f V, f0 = %.0f Hz\n', ...
+        KPLLp_pu, KPLLi_pu, Unom, f0);
+    fprintf('中间量: U_mag = %.4f V, w0 = %.4f rad/s\n', Uphnom_mag, w0);
+    fprintf('物理值: KPLLp = %.6f, KPLLi = %.6f\n', KPLLp, KPLLi);
+    fprintf('自然角频率: wn = %.4f rad/s\n', wn);
+    fprintf('阻尼比: zeta = %.4f\n', zeta);
+    fprintf('闭环带宽: f_BW = %.4f Hz\n', f_BW);
+
+end

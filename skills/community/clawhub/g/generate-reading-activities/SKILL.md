@@ -1,35 +1,50 @@
 ---
-name: "生成读书活动"
-description: "根据书名生成读书活动，生成详细介绍、每日打卡计划、问答题库等文档"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-reading-activities"
-sourceUrl: "https://clawhub.ai/skills/generate-reading-activities"
+name: generate-reading-activities
+description: 根据书名生成读书活动，生成详细介绍、每日打卡计划、问答题库等文档
+author: generate-reading-activities
+version: 1.0.0
 ---
 
-# 生成读书活动
+# Generate Reading Activities
 
-> 根据书名生成读书活动，生成详细介绍、每日打卡计划、问答题库等文档
+## 功能说明
+根据用户提供的书名，生成详细介绍、每日打卡内容、问答题库。
+- 详细介绍：记录书籍的作者、出版日期、ISBN、推荐语、详细介绍、目录，
+- 每日打卡内容：根据书籍目录平均生成7天打卡计划
+- 
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-reading-activities`
-- **Source URL:** [https://clawhub.ai/skills/generate-reading-activities](https://clawhub.ai/skills/generate-reading-activities)
+## 触发场景
+- 用户说：“帮我生成一个《只有我一个人觉得特好笑吗？》的读书活动”
+- 用户说：“根据《只有我一个人觉得特好笑吗？》生成一个读书活动”
+- 用户说：“生成一个读书活动，只有我一个人觉得特好笑吗”
 
-## Overview
+## 调用逻辑
+1.从用户消息中获取书名;
+2.查询书名是否有名称相同但不同出版社或不同出版日期的书籍;
+3.获取书籍作者、出版日期、出版社、ISBN、推荐语、详细介绍、目录，生成详细介绍。
+	- 文件名称：E:\Temp\ReadingActivities\yyyymmddhhMMss_书名\详细介绍.md
+	- 格式要求：包含以下字段，书名、作者、出版日期、出版社、ISBN、推荐语、详细介绍、目录。
+4.根据目录、章节数，生成7天阅读打卡计划表，要求7天内完成整书阅读。使用excelUtils方法保存
+	- 文件名称：E:\Temp\ReadingActivities\yyyymmddhhMMss_书名\阅读打卡.xls，
+	- 格式要求：包含以下字段，天数、打卡内容、章节名称和页码。
+5.根据书籍内容生成50道问答题目，包含单选和多选题。使用excelUtils方法保存
+	- 文件名称：E:\Temp\ReadingActivities\yyyymmddhhMMss_书名\问答题库.xls
+	- 格式要求：包含以下字段，题目名称、题目类型(0代表单选题、1代表多选题）、正确选项的序号（多个用逗号分割）,用数字表示、答案解析、题目选项1、题目选项2、题目选项3、题目选项4、题目选项5、题目选项6、题目选项7、题目选项8、题目选项9、题目选项10
+	- 当生成的题目不足50道时多次生成，需要去除重复的题目。
+6.对新建的文件夹进行压缩处理，保存为yyyymmddhhMMss_书名.zip文件，将原文件放入回收站。
+
+## excelUtils方法说明
+- 代码路径：scripts/excelUtils.py
+- 依赖库：pandas、openpyxl
+- 核心函数：def export(filePath, data)
+- 参数说明：
+  - filePath：保存文件路径，如 E:\\Temp\\ReadingActivities\\text.xls
+  - data：需要保存的数据，如 {'Name': \['Alice', 'Bob'\], 'Age': \[25, 30\]}
+
+## 边缘场景
+- 未能找到书籍（如只有我一个人觉得你好看吗）：回复“未能找到相关书籍，请确认书籍名称是否正确”；
+- 找到多本名称相同但不同出版社或不同出版日期的书籍（如毛泽东语录）：回复“找到多本同名数据，请明确出版社和出版日期”；
+- 如果书籍有多本或多辑（如习近平用典（第一辑）、习近平用典（第二辑））：回复“找到书籍有多本或者多册，请确认是否合并生成”；
+- 如无法创建文件夹（如G:\Temp\ReadingActivities）：回复“无法生成文件夹G:\Temp\ReadingActivities，请确认路径或者权限是否正确”；
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-reading-activities
-```

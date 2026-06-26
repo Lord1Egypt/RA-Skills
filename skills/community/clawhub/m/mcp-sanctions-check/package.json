@@ -1,0 +1,33 @@
+{
+  "name": "@vbotholemu/mcp-sanctions-check",
+  "version": "1.0.0",
+  "description": "MCP tool that checks names against the OFAC SDN sanctions list",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mcp-sanctions-check": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "sanctions",
+    "ofac",
+    "sdn",
+    "compliance"
+  ],
+  "author": "velocibot",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "csv-parse": "^5.6.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}

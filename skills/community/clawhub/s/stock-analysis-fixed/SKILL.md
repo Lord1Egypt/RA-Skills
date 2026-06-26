@@ -1,35 +1,44 @@
 ---
-name: "Stock Analysis"
-description: "Use when analyzing stocks or cryptocurrencies with public market data, comparing tickers, and producing structured notes for a portfolio or watchlist."
-category: "data-science"
-source: "ClawHub"
-tags: [alerts, analysis, crypto, dividend, finance, portfolio, scanner, stock, trending, monitor, real-time, tracking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-analysis-fixed"
-sourceUrl: "https://clawhub.ai/skills/stock-analysis-fixed"
+name: stock-analysis-fixed
+description: Use when analyzing stocks or cryptocurrencies with public market data, comparing tickers, and producing structured notes for a portfolio or watchlist.
+tags: [stock, finance, analysis, portfolio, crypto, trending, alerts, dividend, scanner]
+version: 1.0.1
 ---
 
 # Stock Analysis
 
-> Use when analyzing stocks or cryptocurrencies with public market data, comparing tickers, and producing structured notes for a portfolio or watchlist.
+This skill is a research playbook for market analysis. It does not include a custom CLI, broker integration, or hidden installer.
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-analysis-fixed`
-- **Source URL:** [https://clawhub.ai/skills/stock-analysis-fixed](https://clawhub.ai/skills/stock-analysis-fixed)
+## When to use
 
-## Overview
+- You need a quick structured read on a stock or crypto asset.
+- You want to compare multiple tickers.
+- You want a repeatable checklist for portfolio reviews, dividend checks, or trend analysis.
 
+## Analysis workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-analysis-fixed
-```
+1. Start with the objective.
+   Decide whether you are reviewing a long-term thesis, short-term reaction, dividend profile, or relative comparison.
+2. Gather public data.
+   Price action, volume, trend, major news, earnings dates, valuation, and dividend metrics when relevant.
+3. Score the asset by dimension.
+   Momentum, valuation, balance-sheet quality, growth, volatility, market context, event risk, and thesis durability.
+4. Write the conclusion.
+   Summarize the key drivers, the main risks, and what would invalidate the view.
+
+## Useful output format
+
+- Ticker and market
+- Why it is being reviewed
+- Bull case
+- Bear case
+- Key metrics
+- Near-term catalysts
+- Decision for the watchlist or portfolio
+
+## Guardrails
+
+- Separate facts from interpretation.
+- Cite the data source you used when numbers matter.
+- Do not imply real-time or automated alerts unless they were actually configured elsewhere.
+- This skill is for research and education, not investment advice or order execution.

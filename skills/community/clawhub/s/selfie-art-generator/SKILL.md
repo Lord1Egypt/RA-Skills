@@ -1,35 +1,36 @@
 ---
-name: "Selfie Art Generator"
-description: "Generate AI selfie art portraits from text descriptions — cinematic portraits, anime illustrations, oil painting style, and artistic profile pictures via the..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/selfie-art-generator"
-sourceUrl: "https://clawhub.ai/skills/selfie-art-generator"
+name: selfie-art-generator
+description: Generate AI selfie art portraits from text descriptions — cinematic portraits, anime illustrations, oil painting style, and artistic profile pictures via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Selfie Art Generator
 
-> Generate AI selfie art portraits from text descriptions — cinematic portraits, anime illustrations, oil painting style, and artistic profile pictures via the...
+Generate AI selfie art portraits from text descriptions. Create cinematic portraits, anime-style illustrations, oil paintings, and artistic profile pictures. Returns a direct image URL instantly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/selfie-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/selfie-art-generator](https://clawhub.ai/skills/selfie-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token. Free trial available at <https://www.neta.art/open/>.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/selfie-art-generator
+export NETA_TOKEN=your_token_here
+node selfieartgenerator.js "your prompt" --token "$NETA_TOKEN"
+```
+
+## When to use
+Use when someone asks to generate or create AI portrait art, selfie art, or stylized profile pictures from a text description.
+
+## Quick start
+```bash
+node selfieartgenerator.js "cinematic portrait, golden hour lighting, sharp facial details" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--style` — `anime`, `cinematic`, `realistic` (default: `cinematic`)
+- `--ref` — reference image UUID for style inheritance (optional)
+
+## Install
+```bash
+npx skills add yangzhou-chaofan/selfie-art-generator
 ```

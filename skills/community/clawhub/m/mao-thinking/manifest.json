@@ -1,0 +1,12 @@
+{
+  "slug": "mao-thinking",
+  "name": "mao-thinking",
+  "version": "1.0.0",
+  "description": "毛泽东思想实践工具包 - 基于毛泽东选集核心思想的方法论工具集",
+  "author": "Mao Thought AI Team",
+  "license": "MIT",
+  "homepage": "https://github.com/your-repo/mao-thinking",
+  "keywords": ["mao", "zedong", "thought", "philosophy", "decision", "analysis"],
+  "python_requires": ">=3.7",
+  "categories": ["philosophy", "decision-making", "analysis-tools"]
+}

@@ -1,35 +1,105 @@
 ---
-name: "crypto-search-advisor"
-description: "国内零翻墙加密货币分析。Quick Scan v3秒级风险警报 + Signal Reconciliation多信息层交叉验证(S>A>B>C) + Confidence Engine自洽校验(OCR/MACD/量) + 六模差异化(稳定币/主流币/山寨币/Meme/大宗商品/股票代币) + GameFi白名单。..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-search-advisor"
-sourceUrl: "https://clawhub.ai/skills/crypto-search-advisor"
+name: crypto-search-advisor
+description: 截图即可分析加密货币行情，无需翻墙、无需API、无需注册。自动识别币种类型（稳定币/主流币/Meme/山寨币等），秒级风险预警 + 深度分析两段式输出，91项测试全通过。
+dependency:
+  python:
+    - requests>=2.28.0
 ---
 
-# crypto-search-advisor
+# 加密货币零翻墙拆解
 
-> 国内零翻墙加密货币分析。Quick Scan v3秒级风险警报 + Signal Reconciliation多信息层交叉验证(S>A>B>C) + Confidence Engine自洽校验(OCR/MACD/量) + 六模差异化(稳定币/主流币/山寨币/Meme/大宗商品/股票代币) + GameFi白名单。...
+## 定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-search-advisor`
-- **Source URL:** [https://clawhub.ai/skills/crypto-search-advisor](https://clawhub.ai/skills/crypto-search-advisor)
+**无需翻墙、无需付费、无需交易所接口，通过截图与搜索交叉验证分析加密货币行情。**
 
-## Overview
+本技能为信息观察工具，非交易终端。基于国内直连搜索与用户截图，提供趋势研判、支撑压力识别、情绪热度评估及风险预警。
 
+### 功能边界
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crypto-search-advisor
+- 读取交易所截图，分析 K 线形态与技术结构
+- 聚合国内可访问的公开市场信息
+- 六模分析：稳定币看锚定、主流币看结构、山寨币看流动性、Meme币看情绪、大宗商品看宏观、股票代币看基本面
+- 输出观察参考，辅助用户独立决策
+
+### 能力限制
+
+- 数据延迟：搜索来源存在 1-5 分钟延迟，不支持毫秒级行情
+- 无交易功能：不连接交易所 API，不提供下单或代操作服务
+- 非专业工具：不适合高频交易、量化回测、程序化套利等场景
+
+### 已知限制
+
+- **无历史回测**：当前版本为实时分析工具，所有评分与判定基于当前快照，不包含历史回测验证。回测功能在后续路线图中，暂无具体排期。
+
+### 适用场景
+
+| 场景 | 说明 |
+|------|------|
+| 趋势研判 | 识别主要趋势方向与关键转折点 |
+| 技术结构 | 定位支撑位、压力位、流动性区域 |
+| 情绪监测 | 评估市场热度与极端情绪信号 |
+| 风险识别 | Meme 币崩盘预警、稳定币脱钩警报 |
+| 快速解读 | 截图即传即分析，降低信息处理成本 |
+
+### 不适用场景
+
+高频交易、秒级套利、自动下单、实时程序化交易、链上深度数据分析。
+
+> 若需毫秒级行情、全量链上数据或量化回测能力，建议使用专业付费工具。本技能的设计边界即「国内网络环境可直接使用，截图即可获取分析参考」。
+
+## 六模分析
+
+按币种自动切换视角：
+
+| 类型 | 看什么 | 周期 | 代表币 |
+|------|--------|------|--------|
+| **稳定币** | 锚定健康度、储备透明度、脱钩风险 | 长线 | USDT/USDC/FDUSD |
+| **主流币** | 技术面+宏观+链上结构 | 中线 | BTC/ETH/SOL |
+| **Meme币** | 情绪热度、鲸鱼动向、崩盘信号 | 短线 | DOGE/SHIB/PEPE |
+
+## 🔴 两段式输出铁律（必读）
+
+**收到用户截图后，必须分两段输出，禁止打包一次性回复。**
+
+### 第一段：Quick Scan（目标 < 15 秒）
+
+1. 看图模型识别截图 → 提取 price / timeframe / MA / MACD / Volume 等关键数据
+2. 调用 `quick_scan.quick_scan(symbol, screenshot_data, indicators)`
+3. **立刻把 Quick Scan 文本发给用户**
+
+```python
+from quick_scan import quick_scan
+
+# 秒级：构建 indicators → 算信号 → 出文本
+indicators = {
+    'ma': {...}, 'macd': {...}, 'volume': {...},
+    'current_price': price, 'pct_change_24h': pct,
+    'price_extremes': {'high_24h': h, 'low_24h': l},
+}
+text = quick_scan(symbol, screenshot_data, indicators)
+# → 立刻输出这个 text，不要等第二段
 ```
+
+### 第二段：深度分析（异步补发）
+
+1. 分类（`classify_coin`）→ 搜索 → `analyze()` 生成 JSON
+2. **在第一段已发出的前提下**，补发深度分析结果
+
+### 为什么分两段
+
+- Quick Scan 是纯本地计算（< 0.1 秒），但看图模型本身需 5-15 秒
+- 深度分析含搜索/LLM，可能 20-60 秒
+- 打包等两段都完成 = 用户干等 1-2 分钟
+- 分开发：看图一完立刻有文字反馈，用户不焦虑
+
+### ⚠️ 违规判定
+
+- 截图分析回复超过 30 秒 → 流程违规
+- 第一段没出就等第二段 → 流程违规
+- 先发深度分析再补 Quick Scan → 顺序违规
+
+---
+
+## 免责声明
+
+仅信息整理与技术分析，不构成投资建议。用户需自行承担决策责任。

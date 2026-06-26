@@ -1,0 +1,413 @@
+- uid: 1lhnxnw13uq
+  name: 'Popup (Edit): Members'
+  type: popup
+  collection: nb_pm_members
+  targetUid: kjfq36ws3gb
+  file: popup/popup_edit_members.yaml
+  usageCount: 1
+- uid: 2ufybtokgud
+  name: Opportunity View
+  type: popup
+  collection: nb_crm_opportunities
+  targetUid: xzuvlcsgar6
+  file: popup/opportunity_view.yaml
+  usageCount: 2
+- uid: 3d77445kyzp
+  name: 'Form (Add new): nb_crm_leads'
+  type: block
+  collection: nb_crm_leads
+  targetUid: bd7f0823f37
+  file: block/form_add_new_nb_crm_leads.yaml
+  usageCount: 64
+- uid: 3tom9uwel06
+  name: 'Popup (Detail): Projects'
+  type: popup
+  collection: nb_pm_projects
+  targetUid: 0mow4hfqqrh
+  file: popup/popup_detail_projects.yaml
+  usageCount: 3
+- uid: 4woutkxn9vx
+  name: 'Popup (Detail): Tasks'
+  type: popup
+  collection: nb_pm_tasks
+  targetUid: y4yhqo2ea6j
+  file: popup/popup_detail_tasks.yaml
+  usageCount: 4
+- uid: 53hvsa4ggul
+  name: Leads Email
+  type: popup
+  collection: nb_crm_leads
+  targetUid: 6im0lrahx9q
+  file: popup/leads_email.yaml
+  usageCount: 3
+- uid: 581b3y9t87a
+  name: 'Popup (Edit): Entries'
+  type: popup
+  collection: nb_pm_time_entries
+  targetUid: xx3ua2a52ir
+  file: popup/popup_edit_entries.yaml
+  usageCount: 1
+- uid: 5tpe5cpsnuf
+  name: 'Form (Add new): Opportunities'
+  type: block
+  collection: nb_crm_opportunities
+  targetUid: d7e295047ff
+  file: block/form_add_new_opportunities.yaml
+  usageCount: 15
+- uid: 6fop0fna38y
+  name: 'Form (Add new): Nb Test Tasks'
+  type: block
+  collection: nb_test_tasks
+  targetUid: yd6jc1cngly
+  file: block/form_add_new_nb_test_tasks.yaml
+  usageCount: 1
+- uid: 9sa8z6s4kub
+  name: 'Detail: Members'
+  type: block
+  collection: nb_pm_members
+  targetUid: wophnkgz6xx
+  file: block/detail_members.yaml
+  usageCount: 1
+- uid: afkt6evyern
+  name: 'Form (Add new): nb_crm_opportunity_stages'
+  type: block
+  collection: nb_crm_opportunity_stages
+  targetUid: 064a59ddf9a
+  file: block/form_add_new_nb_crm_opportunity_stages.yaml
+  usageCount: 6
+- uid: b8yiiha802c
+  name: 'Detail: Tasks'
+  type: block
+  collection: nb_pm_tasks
+  targetUid: oy827m3x2hy
+  file: block/detail_tasks.yaml
+  usageCount: 1
+- uid: bj48v8jdky3
+  name: JS block
+  type: block
+  collection: null
+  targetUid: 4fb8ffb1c1b
+  file: block/js_block.yaml
+  usageCount: 0
+- uid: bkv14le27g4
+  name: 'Form (Add new): Nb Test Projects'
+  type: block
+  collection: nb_test_projects
+  targetUid: tje6b7z4j3y
+  file: block/form_add_new_nb_test_projects.yaml
+  usageCount: 1
+- uid: bpoczlmfqmn
+  name: 'Form (Add new): Milestones'
+  type: block
+  collection: nb_pm_milestones
+  targetUid: wp7efts8wbz
+  file: block/form_add_new_milestones.yaml
+  usageCount: 1
+- uid: dyuoxodhcj6
+  name: 'Form (Edit): Milestones'
+  type: block
+  collection: nb_pm_milestones
+  targetUid: vm5proh5u24
+  file: block/form_edit_milestones.yaml
+  usageCount: 2
+- uid: e2dlzncn3pu
+  name: 'Form (Edit): Customers > Contacts (Contacts)'
+  type: block
+  collection: nb_crm_contacts
+  targetUid: 26a1e02dba7
+  file: block/form_edit_customers_contacts_contacts.yaml
+  usageCount: 16
+- uid: f2b0l9m5axf
+  name: 'Popup (Edit): Milestones'
+  type: popup
+  collection: nb_pm_milestones
+  targetUid: j0hxi99dkpv
+  file: popup/popup_edit_milestones.yaml
+  usageCount: 1
+- uid: fepx596jfd5
+  name: Add new Activity
+  type: popup
+  collection: nb_crm_activities
+  targetUid: 630ligbb0op
+  file: popup/add_new_activity.yaml
+  usageCount: 1
+- uid: fggawimkpeo
+  name: 'Form (Add new): Currencies'
+  type: block
+  collection: nb_cbo_currencies
+  targetUid: c0547bc25a4
+  file: block/form_add_new_currencies.yaml
+  usageCount: 5
+- uid: fpq7iu2da59
+  name: 'Form (Add new): Activities'
+  type: block
+  collection: nb_crm_activities
+  targetUid: b9e42f19aab
+  file: block/form_add_new_activities.yaml
+  usageCount: 114
+- uid: gn64s38sjki
+  name: Activity View
+  type: popup
+  collection: nb_crm_activities
+  targetUid: ibbbzxrx5p3
+  file: popup/activity_view.yaml
+  usageCount: 14
+- uid: gu87q52q2tg
+  name: 'Form (Add new): New Orders from Quotations'
+  type: block
+  collection: nb_crm_orders
+  targetUid: c0141648ed2
+  file: block/form_add_new_new_orders_from_quotations.yaml
+  usageCount: 13
+- uid: gue1lmnb6dc
+  name: 'Popup (Add new): Members'
+  type: popup
+  collection: nb_pm_members
+  targetUid: ji0r295dxdq
+  file: popup/popup_add_new_members.yaml
+  usageCount: 1
+- uid: hr6f4cid3tx
+  name: 'Popup (Detail): Entries'
+  type: popup
+  collection: nb_pm_time_entries
+  targetUid: qmiqdvr3mcj
+  file: popup/popup_detail_entries.yaml
+  usageCount: 1
+- uid: j6wcp7ey1mi
+  name: 'Popup (Add new): Projects'
+  type: popup
+  collection: nb_pm_projects
+  targetUid: gt5vuqhn0q3
+  file: popup/popup_add_new_projects.yaml
+  usageCount: 1
+- uid: kr4tug9mak3
+  name: 'Popup (Edit): Tasks'
+  type: popup
+  collection: nb_pm_tasks
+  targetUid: 1tf90q2w7r4
+  file: popup/popup_edit_tasks.yaml
+  usageCount: 1
+- uid: ksdej6zqq7y
+  name: 'Detail: Time Entries'
+  type: block
+  collection: nb_pm_time_entries
+  targetUid: o4zctul9zgm
+  file: block/detail_time_entries.yaml
+  usageCount: 1
+- uid: l1declypil3
+  name: 'Detail: Projects'
+  type: block
+  collection: nb_pm_projects
+  targetUid: abxik2b89fp
+  file: block/detail_projects.yaml
+  usageCount: 1
+- uid: l74nolk778q
+  name: '[JS Block]Activities Calendar'
+  type: block
+  collection: null
+  targetUid: 05aef6e5ea7
+  file: block/js_block_activities_calendar.yaml
+  usageCount: 0
+- uid: llog4slwm27
+  name: 'Details: Customers > Contacts (Contacts)'
+  type: block
+  collection: nb_crm_contacts
+  targetUid: thd2lhmr5v3
+  file: block/details_customers_contacts_contacts.yaml
+  usageCount: 8
+- uid: ls0z7rdsrs3
+  name: 'Form (Add new): Exchange Rates'
+  type: block
+  collection: nb_crm_exchange_rates
+  targetUid: 0da9d0a6105
+  file: block/form_add_new_exchange_rates.yaml
+  usageCount: 4
+- uid: lvqgjptnoio
+  name: 'Details: Quotations'
+  type: block
+  collection: nb_crm_quotations
+  targetUid: 6c640569c31
+  file: block/details_quotations.yaml
+  usageCount: 4
+- uid: m39e2ahdwsf
+  name: 'Table: Opportunities'
+  type: block
+  collection: nb_crm_opportunities
+  targetUid: 14beb930c5a
+  file: block/table_opportunities.yaml
+  usageCount: 38
+- uid: mom6aqifosp
+  name: Contact View
+  type: popup
+  collection: nb_crm_contacts
+  targetUid: 43ca21fmix6
+  file: popup/contact_view.yaml
+  usageCount: 1
+- uid: nahehx62yn5
+  name: 'Form (Edit): Tasks'
+  type: block
+  collection: nb_pm_tasks
+  targetUid: 7pax6bupfpl
+  file: block/form_edit_tasks.yaml
+  usageCount: 2
+- uid: nasaoxhkp6o
+  name: 'Form (Edit): Members'
+  type: block
+  collection: nb_pm_members
+  targetUid: tlppnn9wgxs
+  file: block/form_edit_members.yaml
+  usageCount: 2
+- uid: npunu46v5aq
+  name: 'Popup (Add new): Entries'
+  type: popup
+  collection: nb_pm_time_entries
+  targetUid: ofgobj26n09
+  file: popup/popup_add_new_entries.yaml
+  usageCount: 1
+- uid: nykn04s2sjy
+  name: 'Form (Edit): Time Entries'
+  type: block
+  collection: nb_pm_time_entries
+  targetUid: idontlv9sil
+  file: block/form_edit_time_entries.yaml
+  usageCount: 2
+- uid: odc3k4if9n5
+  name: 'Form (Add new): Opportunities > Quotations (Quotations)'
+  type: block
+  collection: nb_crm_quotations
+  targetUid: 005986ec9fd
+  file: block/form_add_new_opportunities_quotations_quotations.yaml
+  usageCount: 22
+- uid: ofjq5s4okjz
+  name: 'Form (Edit): Projects'
+  type: block
+  collection: nb_pm_projects
+  targetUid: mbmyuezgjiw
+  file: block/form_edit_projects.yaml
+  usageCount: 2
+- uid: pbtedi2nlpi
+  name: 'Popup (Edit): Projects'
+  type: popup
+  collection: nb_pm_projects
+  targetUid: opkoloba75s
+  file: popup/popup_edit_projects.yaml
+  usageCount: 1
+- uid: psc47ak50zb
+  name: 'Form (Add new): Time Entries'
+  type: block
+  collection: nb_pm_time_entries
+  targetUid: byzmxdqqq6k
+  file: block/form_add_new_time_entries.yaml
+  usageCount: 1
+- uid: qjjq5pwpxlq
+  name: 'Detail: Milestones'
+  type: block
+  collection: nb_pm_milestones
+  targetUid: unolyvmalp3
+  file: block/detail_milestones.yaml
+  usageCount: 1
+- uid: rmwjdy07klk
+  name: 'Form (Add new): Tasks'
+  type: block
+  collection: nb_pm_tasks
+  targetUid: uwdlif07qe6
+  file: block/form_add_new_tasks.yaml
+  usageCount: 1
+- uid: spncb27xyh1
+  name: 'Popup (Detail): Milestones'
+  type: popup
+  collection: nb_pm_milestones
+  targetUid: q0hfq3xpgkg
+  file: popup/popup_detail_milestones.yaml
+  usageCount: 1
+- uid: sqw522ocqwx
+  name: Contacts View in Page
+  type: popup
+  collection: nb_crm_contacts
+  targetUid: zxsog8ixwmu
+  file: popup/contacts_view_in_page.yaml
+  usageCount: 5
+- uid: svd7qva1n07
+  name: 'Form (Add new): Members'
+  type: block
+  collection: nb_pm_members
+  targetUid: etfqfnnluen
+  file: block/form_add_new_members.yaml
+  usageCount: 1
+- uid: ugr26dob75f
+  name: 'Form (Add new): Projects'
+  type: block
+  collection: nb_pm_projects
+  targetUid: wazniejagf8
+  file: block/form_add_new_projects.yaml
+  usageCount: 1
+- uid: uihv9mohfqj
+  name: 'Popup (Add new): Tasks'
+  type: popup
+  collection: nb_pm_tasks
+  targetUid: 2fokyzmxe0y
+  file: popup/popup_add_new_tasks.yaml
+  usageCount: 1
+- uid: uwy04y2xqp7
+  name: 'Popup (Add new): Milestones'
+  type: popup
+  collection: nb_pm_milestones
+  targetUid: 5ml2xvg048r
+  file: popup/popup_add_new_milestones.yaml
+  usageCount: 1
+- uid: vj6vwmysk9t
+  name: 'Email table: Mail messages'
+  type: block
+  collection: mailMessages
+  targetUid: cb09a1ee275
+  file: block/email_table_mail_messages.yaml
+  usageCount: 3
+- uid: wew44bhsga9
+  name: Customer View
+  type: popup
+  collection: nb_crm_customers
+  targetUid: wsb6b480gtj
+  file: popup/customer_view.yaml
+  usageCount: 13
+- uid: wq7rth44sim
+  name: 'Form (Add new): nb_crm_customers'
+  type: block
+  collection: nb_crm_customers
+  targetUid: 001b8d6c620
+  file: block/form_add_new_nb_crm_customers.yaml
+  usageCount: 29
+- uid: wutkljuh1tj
+  name: 'Form (Add new): nb_crm_products'
+  type: block
+  collection: nb_crm_products
+  targetUid: e2c05329a23
+  file: block/form_add_new_nb_crm_products.yaml
+  usageCount: 71
+- uid: xpb4j0299pe
+  name: 'Popup (Detail): Members'
+  type: popup
+  collection: nb_pm_members
+  targetUid: 0mywxh2ecz6
+  file: popup/popup_detail_members.yaml
+  usageCount: 3
+- uid: yjwjoi4erle
+  name: 'Table: Orders'
+  type: block
+  collection: nb_crm_orders
+  targetUid: 4326c50faf8
+  file: block/table_orders.yaml
+  usageCount: 40
+- uid: z3ah4m1jm20
+  name: Leads View
+  type: popup
+  collection: nb_crm_leads
+  targetUid: 4tqukehsmqm
+  file: popup/leads_view.yaml
+  usageCount: 25
+- uid: zq14gdeeqvp
+  name: Add new opportunity
+  type: popup
+  collection: nb_crm_opportunities
+  targetUid: x7xircn7ok1
+  file: popup/add_new_opportunity.yaml
+  usageCount: 2

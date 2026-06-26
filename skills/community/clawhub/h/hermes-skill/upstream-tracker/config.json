@@ -1,0 +1,37 @@
+{
+  "upstream": {
+    "name": "Hermes Agent",
+    "repo": "nousresearch/hermes-agent",
+    "url": "https://github.com/nousresearch/hermes-agent",
+    "docs_url": "https://hermes-agent.nousresearch.com/docs/",
+    "local_fork_branch": "main"
+  },
+  "sync": {
+    "check_interval_hours": 24,
+    "auto_merge": false,
+    "notify_on_new_release": true
+  },
+  "local": {
+    "skills_dir": "~/Library/Application Support/QClaw/openclaw/config/skills/self-improving",
+    "self_improving_dir": "~/self-improving",
+    "workspace_dir": "~/.qclaw/workspace-main"
+  },
+  "focus_areas": [
+    "memory system",
+    "skill system",
+    "nudge system",
+    "learning loop",
+    "cross-session search",
+    "self-improvement",
+    "auto-evolution",
+    "agent prompting"
+  ],
+  "ignored_patterns": [
+    "messaging platform specific",
+    "provider specific",
+    "cli specific commands",
+    "docker specific"
+  ],
+  "current_local_version": "1.2.16",
+  "last_known_hermes_release": "v2026.4.8"
+}

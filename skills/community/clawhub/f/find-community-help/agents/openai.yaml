@@ -1,0 +1,7 @@
+interface:
+  display_name: "Find Community Help"
+  short_description: "Prepare outside-help lookup for blocked tasks"
+  default_prompt: "Use $find-community-help only when current work is blocked, stalled, looping, version-sensitive, likely covered by an existing solution, or the user asks for community or official help. Build a redacted dry-run query plan and keep hints advisory-only."
+
+policy:
+  allow_implicit_invocation: false

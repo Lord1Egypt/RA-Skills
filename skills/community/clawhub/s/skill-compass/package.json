@@ -1,0 +1,38 @@
+{
+  "name": "skill-compass",
+  "version": "1.1.0",
+  "description": "Local-only skill quality and security evaluator for Claude Code/OpenClaw. Scores six dimensions, runs local validators, and stores reports and snapshots under .skill-compass/.",
+  "license": "MIT",
+  "author": "SkillCompass Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Evol-ai/SkillCompass.git"
+  },
+  "keywords": [
+    "skill",
+    "evaluation",
+    "quality",
+    "security",
+    "claude-code",
+    "agent",
+    "testing",
+    "ci-cd",
+    "openclaw",
+    "local-state"
+  ],
+  "scripts": {
+    "verify:local": "node scripts/tests/verify-local.js",
+    "verify:oc:event": "node scripts/tests/verify-oc-event-flow.js",
+    "verify:clawhub": "node scripts/tests/verify-clawhub.js",
+    "prepare:clawhub:canary": "node scripts/release/prepare-clawhub-canary.js",
+    "prepare:clawhub:oc:canary": "node scripts/release/prepare-clawhub-canary.js --profile oc",
+    "build:oc": "cd oc && npx tsc",
+    "dev:oc": "cd oc && npx tsc --watch"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

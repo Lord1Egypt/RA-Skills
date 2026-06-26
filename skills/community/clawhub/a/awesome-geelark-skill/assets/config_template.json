@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "token": "your_bearer_token_here",
+    "appId": "your_app_id_here",
+    "apiKey": "your_api_key_here"
+  },
+  "baseUrl": "https://openapi.geelark.com",
+  "rateLimit": {
+    "perMinute": 200,
+    "perHour": 24000
+  }
+}

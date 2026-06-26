@@ -1,0 +1,10 @@
+{
+  "name": "bounty-hunter-skill",
+  "version": "1.0.5",
+  "description": "Niuma Bounty Platform skill for AI agents - task.niuma.works on XLayer",
+  "main": "scripts/niuma.js",
+  "bin": { "niuma": "scripts/niuma.js" },
+  "dependencies": { "ethers": "^6.16.0" },
+  "keywords": ["niuma","bounty","xlayer","web3","defi"],
+  "license": "MIT"
+}

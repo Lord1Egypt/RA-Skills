@@ -1,35 +1,92 @@
 ---
-name: "Korean Resume Builder"
-description: "한국 채용 시장에 최적화된 맞춤형 이력서와 자기소개서를 지원 직종, 경력, 기술에 맞춰 작성합니다."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/korean-resume-builder"
-sourceUrl: "https://clawhub.ai/skills/korean-resume-builder"
+name: korean-resume-builder
+description: 한국式 이력서와 자기소개서를 작성합니다. 다음 경우에 사용: (1) 취업 준비 중인 사람, (2) 이력서 양식이나写法이 필요한 경우, (3) 자기소개서 컨설팅이 필요한 경우, (4) 한국 채용 프로세스에 맞는 문서가 필요한 경우. 지원 직종, 경력 사항, 보유 기술을 기반으로 맞춤 이력서와자기소개를 생성합니다.
 ---
 
-# Korean Resume Builder
+# 🇰🇷 한국 이력서/자기소개서 빌더
 
-> 한국 채용 시장에 최적화된 맞춤형 이력서와 자기소개서를 지원 직종, 경력, 기술에 맞춰 작성합니다.
+## 개요
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/korean-resume-builder`
-- **Source URL:** [https://clawhub.ai/skills/korean-resume-builder](https://clawhub.ai/skills/korean-resume-builder)
+한국 채용 시장에 최적화된 전문 이력서와 자기소개서를 작성합니다. 한국 기업 문화와 채용 프로세스를 고려하여:a0eda 형태로 제공합니다.
 
-## Overview
+## 사용 방법
 
+사용자에게 다음 정보를 수집:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/korean-resume-builder
+1. **성명**, **연락처**, **이메일**
+2. **지원 직종/직무** (예: 서비스 기획, 마케팅, 개발 등)
+3. **경력 사항** (신입/경력, 회사명, 기간, 담당 업무)
+4. ** 보유 기술** (하드스킬, Sofskills)
+5. **학력** (학교, 학과, 재학 기간)
+6. **奖项/자격증** (해당 시)
+7. **하고 싶은 말** (핵심 가치관,の強み)
+
+## 출력물
+
+### 1. 이력서 (Resume/CV)
+
+```markdown
+# 이력서
+
+## 기본 정보
+- 성명: [이름]
+- 연락처: [전화번호]
+- 이메일: [이메일]
+
+## 학력
+- [학교명] / [학과] / [학위] / [기간]
+
+## 경력
+- [회사명] / [직함] / [기간]
+  - 담당 업무 1
+  - 담당 업무 2
+
+## 보유 기술
+- 기술 1, 기술 2, 기술 3
+
+##奖项/자격증
+- 자격증 1 / 취득 연도
+-奖项 1 / 수상 연도
 ```
+
+### 2. 자기소개서 (Cover Letter)
+
+한국 기업은 보통 500-1000자 분량의 자기소개를 요청합니다. 다음 구조로 작성:
+
+**구조:**
+1. **서론** (100-150자): 지원 동기와 회사를 알게 된 경로
+2. **본론1** (200-300자): 지원 직무와 관련된 경험/스킬
+3. **본론2** (200-300자): 나의 강점과 가치관, 회사에 기여할 방법
+4. **결론** (50-100자): 마무리 멘트
+
+## 한국 이력서 특징
+
+### 양식 포인트
+-*A4 1장以内*에 정리
+- 파일명: `이름_지원직무_이력서.pdf`
+- Tahoma나 Arial 폰트 사용 (가독성)
+-页边距: 위/아래 20mm, 왼쪽/오른쪽 25mm
+
+### 핵심 원칙
+1. **한눈에 들어오는 가독성**: 핵심 정보 스캔하기easy
+2. **量化된 경험**: "업무 수행" X → "월 100건 고객対応" O
+3. **지원 직무 맞춤**: 지원하는 직종의 핵심 역량 강조
+4. **빈칸 없는 깔끔함**: 설명不能 빈칸 만들기
+
+## 자기소개서 팁
+
+### 한국 기업별 선호 양식
+- **대기업**: 서류 전형中心, 자기소개서 2-3개 필수
+- **중소기업**: 면접中心, 이력서 위주
+- **스타트업**: 역량 중심, 자유 양식
+
+###避けるべき 것
+- 너무 긴 문장 (1문장 50자以下)
+- 일반적인 표현 ("열정적이다", "노력한다")
+- 타인과의 비교 ("남들보다")
+- 잘못된 정보/거짓
+
+### ✓ 좋은 표현
+- "구체적으로" → 수치로 증명
+- "팀을 위해" → 구체적 기여
+- "성장했다" → 어떻게 성장했는지

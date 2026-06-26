@@ -1,0 +1,20 @@
+{
+  "providerAliases": {
+    "gpt": "openai",
+    "openai": "openai",
+    "claude": "anthropic",
+    "anthropic": "anthropic",
+    "qwen": "qwen",
+    "qianwen": "qwen",
+    "通义千问": "qwen",
+    "minimax": "minimax"
+  },
+  "defaultAliases": [
+    "default",
+    "reset",
+    "恢复默认",
+    "恢复默认模型",
+    "取消模型切换",
+    "用回默认"
+  ]
+}

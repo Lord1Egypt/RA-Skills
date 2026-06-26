@@ -1,35 +1,40 @@
 ---
-name: "Gratitude Tracker"
-description: "感恩追踪 - 感恩日记、积极心态、幸福感提升"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaoming-gratitude-tracker"
-sourceUrl: "https://clawhub.ai/skills/xiaoming-gratitude-tracker"
+name: gratitude-tracker
+description: 感恩追踪 - 感恩日记、积极心态、幸福感提升
 ---
 
 # Gratitude Tracker
 
-> 感恩追踪 - 感恩日记、积极心态、幸福感提升
+感恩追踪工具，帮你培养积极心态。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaoming-gratitude-tracker`
-- **Source URL:** [https://clawhub.ai/skills/xiaoming-gratitude-tracker](https://clawhub.ai/skills/xiaoming-gratitude-tracker)
+## 功能
 
-## Overview
+- ✅ 感恩日记
+- ✅ 积极心态
+- ✅ 幸福感提升
+- ✅ 回顾功能
+- ✅ 统计报告
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xiaoming-gratitude-tracker
+# 写感恩
+clawhub gratitude add --text "今天天气很好"
+
+# 心情记录
+clawhub gratitude mood --rating 8
+
+# 回顾
+clawhub gratitude review --days 7
+
+# 导出
+clawhub gratitude export --format pdf
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 基础功能 |
+| Pro 版 | ¥29 | 全部功能 |
+| 订阅版 | ¥6/月 | Pro+ 云同步 |

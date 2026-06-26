@@ -1,35 +1,28 @@
 ---
-name: "aws-skills"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/aws-skills"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/aws-skills"
+name: aws-skills
+description: "AWS development with infrastructure automation and cloud architecture patterns"
+risk: safe
+source: "https://github.com/zxkane/aws-skills"
+date_added: "2026-02-27"
 ---
 
-# aws-skills
-
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/aws-skills`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/aws-skills](https://skills.sh/sickn33/antigravity-awesome-skills/aws-skills)
+# Aws Skills
 
 ## Overview
 
+AWS development with infrastructure automation and cloud architecture patterns
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/aws-skills
-```
+## When to Use This Skill
+
+Use this skill when you need to work with aws development with infrastructure automation and cloud architecture patterns.
+
+## Instructions
+
+This skill provides guidance and patterns for aws development with infrastructure automation and cloud architecture patterns.
+
+For more information, see the [source repository](https://github.com/zxkane/aws-skills).
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,35 +1,75 @@
 ---
-name: "灵犀六爻"
-description: "按中国传统六爻流程执行占卜：随机三钱起卦、排本卦变卦、计算日月建、给出用神与生克判断、生成通俗建议并保存历史。用户提到六爻、起卦、排盘、断卦、用神、空亡、世应或占卜解读时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lingxi-i-ching"
-sourceUrl: "https://clawhub.ai/skills/lingxi-i-ching"
+name: lingxi-i-ching
+description: 按中国传统六爻流程执行占卜：随机三钱起卦、排本卦变卦、计算日月建、给出用神与生克判断、生成通俗建议并保存历史。用户提到六爻、起卦、排盘、断卦、用神、空亡、世应或占卜解读时使用。
 ---
 
-# 灵犀六爻
+# 六爻占卜 Skill
 
-> 按中国传统六爻流程执行占卜：随机三钱起卦、排本卦变卦、计算日月建、给出用神与生克判断、生成通俗建议并保存历史。用户提到六爻、起卦、排盘、断卦、用神、空亡、世应或占卜解读时使用。
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lingxi-i-ching`
-- **Source URL:** [https://clawhub.ai/skills/lingxi-i-ching](https://clawhub.ai/skills/lingxi-i-ching)
+该 Skill 用于执行完整六爻流程，输出结构化结果，并可选调用 LLM 生成更自然的解读文本。
 
-## Overview
+## 流程要求（必须遵循）
 
+1. 起卦：三枚铜钱摇卦 6 次，自下而上成卦。
+2. 排盘：生成本卦、变卦、世应、六亲、六兽。
+3. 日月建：根据当前时间推算月建、日辰（简化干支算法）。
+4. 断卦：依据用神、生克、冲合、动爻、空亡（简化）给出判断。
+5. 解读：将术语翻译为通俗建议。
+6. 存储：保存历史卦例用于复盘。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 专业版规则引擎（当前实现）
+
+- 纳甲：按上下卦映射六爻地支。
+- 六亲：基于宫位五行与爻位地支五行关系判定（兄弟/子孙/妻财/官鬼/父母）。
+- 六神：按日干起六神（青龙、朱雀、勾陈、腾蛇、白虎、玄武）顺排六爻。
+- 世应：根据本卦与变卦差异映射世应位。
+- 旬空：按日柱所在旬推算两空亡支并参与断卦。
+- 断卦：对用神爻做评分（旺衰、临月日、发动、世应、旬空、动爻数量）并输出可解释依据。
+
+## 执行脚本
+
+使用 `scripts/liuyao.py`：
+
 ```bash
-hermes skills install clawhub/lingxi-i-ching
+python .cursor/skills/liuyao-divination/scripts/liuyao.py --question "我该不该换工作"
 ```
+
+## 参数
+
+- `--question`：占问主题（建议必填）。
+- `--seed`：可复现实验随机种子。
+- `--llm`：启用 LLM 解读增强。
+- `--model`：LLM 模型名，默认 `gpt-4o-mini`。
+- `--history`：历史保存文件，默认 `.cursor/skills/liuyao-divination/history.jsonl`。
+- `--gua-db`：卦库 JSON 路径，默认 `gua.json`。
+
+## LLM 解读说明
+
+启用 `--llm` 时：
+
+1. 读取环境变量 `OPENAI_API_KEY`。
+2. 调用 OpenAI Chat Completions。
+3. 若调用失败，自动回退到规则解读，不中断主流程。
+
+## 输出格式
+
+脚本会输出以下格式：
+
+```text
+┌─────────────────────────────────┐
+│ 六爻占卜结果                    │
+├─────────────────────────────────┤
+│ 本卦：{ben_gua.name} {ben_gua.symbol} │
+│ 变卦：{bian_gua.name} {bian_gua.symbol} │
+├─────────────────────────────────┤
+│ 断卦：{judgment}                │
+├─────────────────────────────────┤
+│ 建议：{advice}                  │
+└─────────────────────────────────┘
+```
+
+## 注意事项
+
+- 该实现为传统流程的工程化专业版，适合咨询与复盘，不替代专业命理师面断。
+- 若用户需要更高精度，可继续接入节气历法、月令旺衰细分与伏神飞神规则。

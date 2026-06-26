@@ -1,0 +1,19 @@
+{
+  "name": "Employee Onboarding",
+  "description": "New employee setup and integration checklist",
+  "category": "hr",
+  "items": [
+    {"id": 1, "text": "Send welcome email with first day instructions", "required": true},
+    {"id": 2, "text": "Create company accounts (email, Slack, etc.)", "required": true},
+    {"id": 3, "text": "Set up workstation/laptop", "required": true},
+    {"id": 4, "text": "Grant access to required systems", "required": true},
+    {"id": 5, "text": "Assign buddy/mentor", "required": true},
+    {"id": 6, "text": "Schedule orientation meeting", "required": true},
+    {"id": 7, "text": "Review company policies and handbook", "required": false},
+    {"id": 8, "text": "Complete HR paperwork", "required": true},
+    {"id": 9, "text": "Team introduction meeting", "required": true},
+    {"id": 10, "text": "Assign first project/task", "required": false},
+    {"id": 11, "text": "Schedule check-in after 1 week", "required": true},
+    {"id": 12, "text": "Schedule check-in after 1 month", "required": true}
+  ]
+}

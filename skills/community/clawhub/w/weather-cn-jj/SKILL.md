@@ -1,35 +1,144 @@
 ---
-name: "Weather Cn"
+name: weather-cn
 description: "国内天气+空气质量查询。支持城市和区县级，中文输出。数据源: wttr.in + Open-Meteo。无需 API Key。"
-category: "other"
-source: "ClawHub"
-tags: [aqi, china, cn, weather]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-cn-jj"
-sourceUrl: "https://clawhub.ai/skills/weather-cn-jj"
+user-invocable: true
+argument-hint: "<城市名> [--aqi] [--tomorrow]"
+metadata:
+  openclaw:
+    requires:
+      bins: ["python"]
+    os: ["win32", "darwin", "linux"]
 ---
 
-# Weather Cn
+# Weather CN — 国内天气 + 空气质量
 
-> 国内天气+空气质量查询。支持城市和区县级，中文输出。数据源: wttr.in + Open-Meteo。无需 API Key。
+纯中文输出，国内用户友好。天气数据来源 wttr.in，空气质量来源 Open-Meteo（US AQI 标准）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-cn-jj`
-- **Source URL:** [https://clawhub.ai/skills/weather-cn-jj](https://clawhub.ai/skills/weather-cn-jj)
+## 支持地区
 
-## Overview
+### 城市级别
+`北京`、`上海`、`杭州`、`深圳`、`广州`、`成都`、`武汉`、`西安`、`南京`、`重庆`、`天津`、`苏州`、`郑州`、`长沙`、`沈阳`、`青岛`、`大连`、`哈尔滨`、`长春`、`石家庄`、`福州`、`厦门`、`南昌`、`济南`、`太原`、`合肥`、`昆明`、`贵阳`、`南宁`、`海口`、`拉萨`、`兰州`、`银川`、`西宁`、`乌鲁木齐`、`呼和浩特`、`雄安新区`、`东阳`、`义乌`、`永康`、`金华`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-cn-jj
+### 区县级别（定位支持，天气以城市数据为准）
 ```
+北京: 朝阳、海淀、东城、西城、丰台、石景山、通州、顺义、大兴、昌平、房山...
+上海: 浦东、黄浦、徐汇、静安、普陀、虹口、杨浦、闵行、宝山、嘉定、松江...
+杭州: 西湖、上城、拱墅、滨江、萧山、余杭、临平、钱塘、富阳、临安、桐庐...
+广州: 天河、越秀、海珠、番禺、白云、黄埔、花都、南沙、从化、增城
+深圳: 福田、罗湖、南山、宝安、龙岗、龙华、坪山、光明、盐田、大鹏
+成都: 锦江、青羊、金牛、武侯、成华、龙泉驿、青白江、新都、温江、双流...
+武汉: 江岸、江汉、硚口、汉阳、武昌、青山、洪山、东西湖、汉南、蔡甸...
+南京: 玄武、秦淮、建邺、鼓楼、浦口、栖霞、雨花台、江宁、六合、溧水、高淳
+西安: 新城、碑林、莲湖、雁塔、灞桥、未央、阎良、临潼、长安、高陵、鄠邑...
+苏州: 姑苏、虎丘、吴中、相城、吴江、苏州工业园、昆山、常熟、张家港、太仓
+以及全国所有地级市的市辖区
+```
+
+### 支持的输入格式
+- `北京` （城市）
+- `北京朝阳` / `北京 朝阳` / `北京:朝阳` （区级）
+- `上海浦东` / `杭州西湖` / `广州天河` / `深圳南山` （区级）
+- `东阳` （城市，浙江金华下辖）
+
+**注意：** 部分区县在 wttr.in 无数据（如东阳白云街道），使用城市级别即可。
+
+## 快速查询
+
+### 城市天气
+```bash
+python3 scripts/weather_cn.py 北京
+```
+
+### 精确到区+AQI
+```bash
+python3 scripts/weather_cn.py 北京朝阳 --aqi
+python3 scripts/weather_cn.py 上海浦东 --aqi
+python3 scripts/weather_cn.py 杭州西湖 --aqi
+```
+
+### 明日预报
+```bash
+python3 scripts/weather_cn.py 广州天河 --tomorrow --aqi
+```
+
+## Python调用
+
+```python
+import sys
+sys.path.insert(0, 'skills/weather-cn/scripts')
+from weather_cn import fetch_weather, fetch_aqi_by_coords, format_weather
+
+# 仅天气
+weather = fetch_weather('上海')
+print(format_weather('上海', weather))
+
+# 天气+AQI
+weather = fetch_weather('上海')
+aqi = fetch_aqi_by_coords(31.2304, 121.4737)
+print(format_weather('上海', weather, aqi))
+
+# 明日预报
+weather = fetch_weather('上海', tomorrow=True)
+print(format_weather('上海', weather, tomorrow=True))
+```
+
+## AQI等级参考（US AQI标准）
+
+| AQI | 等级 | 建议 |
+|-----|------|------|
+| 0-50 | 优 | 空气质量令人满意 |
+| 51-100 | 良 | 空气质量可接受 |
+| 101-150 | 轻度污染 | 敏感人群减少户外 |
+| 151-200 | 中度污染 | 减少户外活动 |
+| 201-300 | 重度污染 | 避免外出 |
+| 300+ | 严重污染 | 停止户外活动 |
+
+**注：** AQI数据来源为 Open-Meteo（欧洲CAMS模型，US AQI标准），数据更新可能有数小时延迟。US AQI 100 对应中国 AQI 约150，同数值下 US AQI 标准更严格。
+
+## 天气代码映射
+
+| Code | 中文 |
+|------|------|
+| 113 | ☀️ 晴 |
+| 116 | ⛅ 多云 |
+| 119 | ☁️ 阴 |
+| 122 | 🌫️ 雾 |
+| 143 | 🌫️ 薄雾 |
+| 176 | 🌦️ 晴转阵雨 |
+| 179 | 🌨️ 阵雪 |
+| 182 | 🌨️ 小雪 |
+| 185 | 🌨️ 冻雨 |
+| 200 | ⛈️ 雷暴 |
+| 227 | 🌨️ 风雪 |
+| 230 | ❄️ 大雪 |
+| 248 | 🌫️ 大雾 |
+| 260 | 🌫️ 浓雾 |
+| 263 | 🌧️ 小雨 |
+| 266 | 🌧️ 小雨 |
+| 269 | 🌨️ 雨夹雪 |
+| 281 | 🌨️ 冻雨 |
+| 293 | 🌧️ 小雨 |
+| 296 | 🌧️ 中雨 |
+| 299 | 🌧️ 大雨 |
+| 302 | 🌨️ 雷阵雨 |
+| 308 | 🌧️ 暴雨 |
+| 353 | 🌧️ 中雨 |
+| 356 | 🌧️ 大雨 |
+| 359 | 🌧️ 雷阵雨 |
+| 362 | 🌨️ 小阵雨 |
+| 365 | 🌨️ 中阵雨 |
+| 368 | 🌨️ 大阵雨 |
+| 371 | 🌨️ 冰粒 |
+| 386 | ⛈️ 雷阵雨 |
+| 389 | ⛈️ 雷暴雨 |
+
+## 穿衣指数参考
+
+根据温度给出建议：
+- <5°C：羽绒服
+- 5-10°C：厚外套+毛衣
+- 10-15°C：外套+打底
+- 15-20°C：轻薄外套
+- 20-25°C：长袖/短袖
+- 25-30°C：短袖
+- >30°C：超薄短袖

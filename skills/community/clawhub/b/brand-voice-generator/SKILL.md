@@ -1,35 +1,53 @@
 ---
-name: "Brand Voice Generator"
-description: "Creates consistent brand voice guidelines and content. Generates copy that matches your brand personality across all channels. Perfect for startups building..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brand-voice-generator"
-sourceUrl: "https://clawhub.ai/skills/brand-voice-generator"
+name: brand-voice-generator
+description: Creates consistent brand voice guidelines and content. Generates copy that matches your brand personality across all channels. Perfect for startups building their identity.
+metadata:
+  openclaw:
+    emoji: "🎨"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
 # Brand Voice Generator
 
-> Creates consistent brand voice guidelines and content. Generates copy that matches your brand personality across all channels. Perfect for startups building...
+Create consistent, distinctive brand communication across all channels.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brand-voice-generator`
-- **Source URL:** [https://clawhub.ai/skills/brand-voice-generator](https://clawhub.ai/skills/brand-voice-generator)
+## What You Get
 
-## Overview
+### Voice Attributes
+- 5 core personality traits
+- Tone variations (formal/casual/technical)
+- Language principles (what to say / what NOT to say)
+- Example phrases
 
+### Content Examples
+- Homepage hero copy
+- Product descriptions
+- Email templates
+- Social media posts
+- FAQ answers
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Do's and Don'ts
+- Specific word choices
+- Sentence structure preferences
+- Humor guidelines
+- Technical level guidance
+
+## Usage
+
 ```bash
-hermes skills install clawhub/brand-voice-generator
+python3 voice.py --brand "FinTech startup" --tone professional
+python3 voice.py --brand "Gaming app" --tone casual
 ```
+
+## Example Output
+
+Brand: Professional FinTech
+- Voice: Confident, clear, trustworthy
+- Avoid: Jargon, hype, complexity
+- Sentence: Short, direct, action-oriented
+
+---
+
+*Built by Beta*

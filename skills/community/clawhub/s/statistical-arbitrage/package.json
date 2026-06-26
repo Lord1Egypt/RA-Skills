@@ -1,0 +1,41 @@
+{
+  "name": "statistical-arbitrage",
+  "version": "1.0.3",
+  "description": "專業統計套利（配對交易）策略分析工具，支持港股、美股、A股等多市場",
+  "main": "scripts/statistical_arbitrage.py",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "statistical-arbitrage",
+    "pairs-trading",
+    "quantitative-finance",
+    "stock-analysis",
+    "backtesting",
+    "cointegration",
+    "港股",
+    "美股",
+    "量化交易"
+  ],
+  "author": "Quantitative Strategies Team",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "README.md"
+  ],
+  "engines": {
+    "python": ">=3.8"
+  },
+  "scripts": {
+    "test": "python3 scripts/statistical_arbitrage.py --stock1 AAPL --stock2 GOOGL --start 2023-01-01 --end 2023-12-31 --test",
+    "install-deps": "pip install yfinance pandas numpy statsmodels matplotlib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/openclaw-skill-statistical-arbitrage"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/openclaw-skill-statistical-arbitrage/issues"
+  },
+  "homepage": "https://github.com/your-repo/openclaw-skill-statistical-arbitrage#readme"
+}

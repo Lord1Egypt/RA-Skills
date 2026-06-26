@@ -1,35 +1,29 @@
----
-name: "Stock Announcement"
-description: "Daily stock portfolio analysis with Gmail report delivery and Sonos voice announcement"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-announcement"
-sourceUrl: "https://clawhub.ai/skills/stock-announcement"
----
+# Stock Announcement Skill
 
-# Stock Announcement
+Daily stock portfolio analysis with Gmail report delivery and Sonos voice announcement.
 
-> Daily stock portfolio analysis with Gmail report delivery and Sonos voice announcement
+## What it does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-announcement`
-- **Source URL:** [https://clawhub.ai/skills/stock-announcement](https://clawhub.ai/skills/stock-announcement)
+1. Fetches portfolio performance via yfinance
+2. Sends an HTML email report via Gmail API
+3. Announces a summary on a Sonos speaker via TTS + sonoscli
 
-## Overview
+## Prerequisites
 
+- Python 3.9+ with `yfinance`, `pandas`, `google-api-python-client`, `google-auth-oauthlib`, `gtts`
+- `sonos` CLI installed and speakers discoverable on the network
+- Gmail OAuth token at `config/token.json` (relative to workspace root)
+- Environment variables: `RECIPIENT_EMAIL`, `SONOS_SPEAKER` (optional, defaults to "Living Room")
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
 ```bash
-hermes skills install clawhub/stock-announcement
+python scripts/daily_stock_announcement.py
 ```
+
+## Changelog (v1.1.0)
+
+- Fix: Gmail token path now resolved as absolute from script directory
+- Fix: Sonos announcement uses TTS audio generation + `sonos queue play` instead of unsupported `sonos say`
+- Fix: Retry with exponential backoff for Gmail and Sonos (3 retries, 5s base)
+- Fix: Non-zero exit code on critical step failure

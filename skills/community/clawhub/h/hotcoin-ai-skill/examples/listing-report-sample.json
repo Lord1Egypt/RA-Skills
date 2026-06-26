@@ -1,0 +1,65 @@
+{
+  "token": "NEXAI",
+  "name": "NexAI Protocol",
+  "listing_date": "2026-05-10T08:00:00Z",
+  "pair": "NEXAI/USDT",
+  "category": "AI",
+  "summary": "NexAI Protocol is a decentralized AI inference marketplace built on Arbitrum L2. It enables GPU providers to monetize idle compute by serving AI model inference requests. The protocol uses a proof-of-inference mechanism to verify computation integrity. Early traction includes partnerships with two mid-tier AI startups, though mainnet launched only 3 weeks before listing. Token utility centers on staking for inference priority and fee discounts.",
+  "tokenomics": {
+    "total_supply": 1000000000,
+    "circulating_at_listing": 120000000,
+    "circulating_ratio": 0.12,
+    "team_allocation_pct": 20,
+    "team_lock_months": 12,
+    "vesting_schedule": "cliff_12m_then_linear_24m"
+  },
+  "unlock_schedule": [
+    {
+      "date": "2027-05-10",
+      "amount": 50000000,
+      "category": "team",
+      "pct_of_total": 5.0
+    },
+    {
+      "date": "2026-11-10",
+      "amount": 80000000,
+      "category": "ecosystem",
+      "pct_of_total": 8.0
+    },
+    {
+      "date": "2026-08-10",
+      "amount": 100000000,
+      "category": "community",
+      "pct_of_total": 10.0
+    },
+    {
+      "date": "2027-05-10",
+      "amount": 150000000,
+      "category": "investor",
+      "pct_of_total": 15.0
+    }
+  ],
+  "initial_liquidity": {
+    "estimated_depth_usd": 350000,
+    "market_maker": "confirmed",
+    "initial_mcap_usd": 4800000
+  },
+  "risk_assessment": {
+    "level": "high",
+    "factors": [
+      "Low initial circulating ratio (12%) creates supply overhang risk",
+      "Mainnet live only 3 weeks before listing — limited battle-testing",
+      "No tier-1 audit completed (self-reported internal audit only)",
+      "AI narrative sector is crowded with 40+ competing tokens in 2026"
+    ],
+    "audit_status": "partial",
+    "auditor": null
+  },
+  "links": {
+    "website": "https://nexai.example.io",
+    "whitepaper": "https://docs.nexai.example.io/whitepaper.pdf",
+    "twitter": "https://x.com/NexAI_Protocol",
+    "github": "https://github.com/nexai-protocol",
+    "hotcoin_learn": "https://www.hotcoin.com/zh_CN/learn/article/nexai-listing-report"
+  }
+}

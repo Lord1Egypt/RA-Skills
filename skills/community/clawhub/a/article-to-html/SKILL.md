@@ -1,35 +1,48 @@
 ---
-name: "Article To Html"
-description: "文章转信息图。将文章/笔记转化为手机可读的 HTML 信息图，自动匹配视觉风格。触发场景：文章转图、笔记转图、信息图、转小红书图、做张图、可视化这篇文章、文生图。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/article-to-html"
-sourceUrl: "https://clawhub.ai/skills/article-to-html"
+name: article-to-html
+description: 文章转信息图。将文章/笔记转化为手机可读的 HTML 信息图，自动匹配视觉风格。触发场景：文章转图、笔记转图、信息图、转小红书图、做张图、可视化这篇文章、文生图。
 ---
 
-# Article To Html
+# 文章转 HTML 信息图
 
-> 文章转信息图。将文章/笔记转化为手机可读的 HTML 信息图，自动匹配视觉风格。触发场景：文章转图、笔记转图、信息图、转小红书图、做张图、可视化这篇文章、文生图。
+文章 → 提炼核心信息 → 生成 HTML 信息图 → 后处理 → 截图交付。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/article-to-html`
-- **Source URL:** [https://clawhub.ai/skills/article-to-html](https://clawhub.ai/skills/article-to-html)
+## 设计理念
 
-## Overview
+**你是设计师，不是模板填充机。** 根据文章内容自由设计视觉风格，不要每次都用同一个模板。
 
+- **内容决定形式** — 严肃分析用深色/衬线，轻松科普用手账/波普，技术教程用终端/蓝图
+- **信息精炼** — 一张图讲清一个核心论点 + 3-4 个支撑模块，不是把文章全文塞进去
+- **手机第一** — 图片在手机上缩放 3 倍，字号必须够大（详见 `rules/01-技术底线.md`）
+- **每次不同** — 配色、字体、布局每次都应该有变化，避免千篇一律
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/article-to-html
+## 工作流程
+
 ```
+用户给文章
+    ↓
+① 内容分析 — 提取核心论点、关键数据、对比维度、避坑要点、金句
+    ↓
+② 自由设计 — 根据内容调性，自主决定视觉风格、配色、布局
+              （可参考 rules/03-风格灵感.md 和 templates/ 获取灵感）
+    ↓
+③ 生成 HTML — 自包含 HTML，必须遵守 rules/01-技术底线.md
+    ↓
+④ 后处理 — 生成后立即执行：
+              bash ~/.openclaw/skills/article-to-html/scripts/post-process.sh <html文件>
+    ↓
+⑤ 截图交付 — 按 rules/02-截图流程.md 执行
+```
+
+**步骤④ 是强制的。** 无论你对自己生成的 HTML 多有信心，都必须跑后处理脚本。
+
+## 目录结构
+
+| 目录/文件 | 地位 | 说明 |
+|-----------|------|------|
+| `rules/01-技术底线.md` | **必读** | 字号、宽度、overflow 等硬性约束 |
+| `rules/02-截图流程.md` | 必读 | Chrome DevTools 截图 5 步流程 |
+| `rules/03-风格灵感.md` | 参考 | 9 种风格的配色/字体/特征，用于激发灵感 |
+| `templates/` | 参考 | 9 个 HTML 模板，可浏览获取灵感，**不要照抄** |
+| `scripts/post-process.sh` | 工具 | 一键后处理（fix CSS + 注入字号兜底） |
+| `scripts/fix-html.js` | 工具 | CSS 修复脚本（被 post-process.sh 调用） |

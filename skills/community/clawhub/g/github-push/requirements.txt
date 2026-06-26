@@ -1,0 +1,6 @@
+# GitHub Push - Requirements
+
+# No external dependencies required
+# Uses standard Git CLI (always available)
+# Optional: pyyaml for config file support
+# pip install pyyaml

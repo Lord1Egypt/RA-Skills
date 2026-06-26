@@ -1,35 +1,36 @@
 ---
-name: "openclaw message cli skill"
-description: "Use when the user explicitly wants to send outbound messages with the OpenClaw CLI rather than built-in tools, especially for `openclaw message send` command..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-message-cli-skill"
-sourceUrl: "https://clawhub.ai/skills/openclaw-message-cli-skill"
+name: openclaw-message-cli-skill
+description: Use when the user explicitly wants to send outbound messages with the OpenClaw CLI rather than built-in tools, especially for `openclaw message send` commands with a specific channel, target, and message body.
 ---
 
-# openclaw message cli skill
+# OpenClaw Message CLI Skill
 
-> Use when the user explicitly wants to send outbound messages with the OpenClaw CLI rather than built-in tools, especially for `openclaw message send` command...
+Use this skill when the task is specifically about sending a message with the OpenClaw CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-message-cli-skill`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-message-cli-skill](https://clawhub.ai/skills/openclaw-message-cli-skill)
+Prefer the built-in messaging tool when available. Use this skill only when the user explicitly asks for CLI usage, shell commands, scripting, or automation around `openclaw message send`.
 
-## Overview
+## Command Pattern
 
+Use:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-message-cli-skill
+openclaw message send --channel <channel> --target <target> --message "..."
 ```
+
+## Examples
+
+```bash
+openclaw message send --channel whatsapp --target <target> --message "hi"
+openclaw message send --channel telegram --target <target> --message "hi"
+```
+
+## Checks
+
+- verify the requested channel exists before sending
+- verify the target format matches the selected channel
+- quote message text safely, especially when it contains shell-sensitive characters
+
+## Scope
+
+Use this skill for direct outbound client delivery with the OpenClaw CLI.
+Do not use it for normal agent replies inside the current session.

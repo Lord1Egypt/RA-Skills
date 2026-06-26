@@ -1,0 +1,113 @@
+# 大明朝廷各部门配置
+
+# 中书省配置（决策部门）
+zhongshu:
+  enabled: true
+  decision_time_min: 10  # 最小决策时间（秒）
+  decision_time_max: 300 # 最大决策时间（秒）
+  require_multiple_options: true  # 是否需要提供多个方案
+  risk_assessment_required: true  # 是否需要风险评估
+  archive_path: "./projects/{project_id}/01-zhongshu-analysis.md"
+
+# 门下省配置（审核部门）
+menxia:
+  enabled: true
+  review_time_min: 5    # 最小审核时间（秒）
+  review_time_max: 180  # 最大审核时间（秒）
+  approval_rate_warning: 0.9  # 审核通过率超过90%时预警
+  require_modification_reason: true  # 修改建议需要理由
+  archive_path: "./projects/{project_id}/02-menxia-review.md"
+
+# 尚书省配置（执行协调部门）
+shangshu:
+  enabled: true
+  coordination_required: true
+  execution_deviation_warning: 0.2  # 执行偏差超过20%时预警
+  progress_report_interval: 60  # 进度报告间隔（秒）
+  archive_path: "./projects/{project_id}/03-shangshu-execution/"
+
+# 六部配置
+ministries:
+  # 吏部（人事）
+  libu:
+    enabled: true
+    task_allocation_strategy: "balanced"  # balanced/priority/skill_based
+    require_qualification_check: true
+    archive_path: "./projects/{project_id}/03-shangshu-execution/libu-allocation.md"
+  
+  # 户部（资源）
+  hubu:
+    enabled: true
+    resource_types:
+      - token
+      - compute
+      - storage
+      - network
+    budget_warning_threshold: 0.8  # 预算使用80%时预警
+    archive_path: "./projects/{project_id}/03-shangshu-execution/hubu-resources.md"
+  
+  # 礼部（质量）
+  libu_quality:
+    enabled: true
+    quality_standards:
+      - accuracy
+      - completeness
+      - timeliness
+      - reliability
+    inspection_required: true
+    quality_score_minimum: 0.7  # 最低质量分数
+    archive_path: "./projects/{project_id}/03-shangshu-execution/libu_quality-standards.md"
+  
+  # 兵部（监控）
+  bingbu:
+    enabled: true
+    monitoring_intervals:
+      progress: 30  # 进度监控间隔（秒）
+      resource: 60  # 资源监控间隔（秒）
+      error: 5      # 错误监控间隔（秒）
+    alert_channels:
+      - realtime
+      - daily_summary
+      - weekly_report
+    archive_path: "./projects/{project_id}/03-shangshu-execution/bingbu-monitoring.md"
+  
+  # 刑部（审计）
+  xingbu:
+    enabled: true
+    audit_types:
+      - compliance
+      - performance
+      - security
+      - resource_usage
+    audit_frequency: "per_project"  # per_project/daily/weekly/monthly
+    require_audit_report: true
+    archive_path: "./projects/{project_id}/03-shangshu-execution/xingbu-audit.md"
+  
+  # 工部（技术）
+  gongbu:
+    enabled: true
+    technology_stack:
+      - python
+      - openclaw
+      - skill_market
+    implementation_standards:
+      - code_quality
+      - documentation
+      - testing
+      - deployment
+    archive_path: "./projects/{project_id}/03-shangshu-execution/gongbu-implementation.md"
+
+# 锦衣卫配置（监控预警）
+jinyiwei:
+  enabled: true
+  monitoring_level: "comprehensive"  # basic/standard/comprehensive
+  alert_thresholds:
+    decision_too_fast: 5    # 决策时间少于5秒
+    approval_too_high: 0.95 # 审核通过率高于95%
+    deviation_too_high: 0.3 # 执行偏差高于30%
+    quality_too_low: 0.6    # 质量分数低于60%
+    coordination_too_low: 0.5 # 协同分数低于50%
+  archive_retention_days: 365  # 档案保留天数
+  realtime_alerts: true
+  daily_summaries: true
+  weekly_reports: true

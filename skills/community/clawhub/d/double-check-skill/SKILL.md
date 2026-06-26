@@ -1,35 +1,475 @@
 ---
-name: "Double-Check-It Skill ( 龙虾再想想技能1.0.1)"
-description: "Quality assurance system that verifies deliverables match user requirements and execution plans. Features: (1) Auto-Memory - record conversations and tasks,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/double-check-skill"
-sourceUrl: "https://clawhub.ai/skills/double-check-skill"
+name: recall-double-check
+description: "Quality assurance system that verifies deliverables match user requirements and execution plans. Features: (1) Auto-Memory - record conversations and tasks, (2) Double Check - verify deliverables in 3 scenarios: plan confirmation, post-delivery verification, user-triggered check, (3) Idle Reflection - periodic review and lesson extraction. Triggers on 'double check it', 'dc it', 'what's wrong', '再检查一下', '到底怎么回事'."
 ---
 
-# Double-Check-It Skill ( 龙虾再想想技能1.0.1)
+# 再想想 (Recall and Double Check)
 
-> Quality assurance system that verifies deliverables match user requirements and execution plans. Features: (1) Auto-Memory - record conversations and tasks,...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/double-check-skill`
-- **Source URL:** [https://clawhub.ai/skills/double-check-skill](https://clawhub.ai/skills/double-check-skill)
+本技能建立完整的质量保障系统，三大功能：
 
-## Overview
+1. **记住 (Auto-Memory)** - 自动记录对话和任务
+2. **再想想 (Double Check)** - 三层复核防止交付错误
+3. **主动回顾 (Idle Reflection)** - 定期回顾提炼经验
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/double-check-skill
+## 记忆文件系统
+
 ```
+memory/                    # 记忆存储根目录
+├── 日记/                  # 每日自动记录
+│   └── YYYY-MM-DD.md
+├── 文档/                  # 事实、方案
+│   └── 股票/
+├── 经验/                  # 经验总结
+└── index.json             # 索引文件
+```
+
+**MEMORY.md** 保持精简，只存规则/技术/永久性信息，其他以索引指向 memory/
+
+---
+
+## 功能1: 记住 (Auto-Memory)
+
+### 触发时机
+- 每次用户交互结束
+- 执行动作完成后
+- 任务执行过程中关键节点
+
+### 日记记录规范（详细版）
+
+#### 格式模板
+```markdown
+## HH:MM:SS ⭐ [事件标题]
+
+**背景**: [前因，引用之前的相关记录]
+
+**交流过程**:
+- 用户: "[用户原话，情绪激烈时加粗]"
+- 我: "[我的回应]"
+- 用户: "[用户反馈]"
+- ...
+
+**执行过程**:
+- [时间] 开始执行 [动作]
+- [时间] 遇到问题: [问题描述]
+- [时间] 尝试解决: [解决措施]
+- [时间] 结果: [成功/失败/部分成功]
+
+**情绪标记**: [如有激烈情绪，标注类型和原因]
+- 类型: 不满/急切/失望/愤怒/赞赏等
+- 触发点: [什么导致情绪]
+- 我的应对: [如何回应]
+
+**验证情况**:
+- 是否激活double check: [是/否，触发词]
+- 验证结果: [通过/发现问题]
+- 补救措施: [如有]
+
+**关键决策**:
+- 决策点: [做了什么决定]
+- 依据: [基于什么信息]
+- 风险: [潜在问题]
+
+**产出/结果**:
+[详细描述产出内容]
+
+**待办/后续**:
+- [ ] 待办事项
+
+标签: [标签1,标签2,...]
+
+---
+```
+
+#### 记录原则
+
+**1. 交流过程记录**
+- 保留关键对话的原文
+- 用户情绪激烈的回答**加粗**
+- 用户的重要要求用引用格式
+- 转折点和分歧点必须记录
+
+**2. 任务执行详细记录**
+```markdown
+**执行时间线**:
+- 10:05:12 用户提出要求
+- 10:05:30 我开始分析文件
+- 10:06:15 发现文件章节范围与预期不符
+- 10:06:20 向用户确认
+- 10:07:00 用户确认"**再次检查...**"（情绪：急切）
+- 10:07:30 重新启动深度分析任务
+- 10:40:00 任务完成，输出文档
+```
+
+**3. 问题与补救详细记录**
+```markdown
+**问题记录**:
+- 问题发生时间: [具体时间]
+- 问题描述: [详细描述]
+- 影响范围: [影响了什么]
+- 根因分析: [为什么会发生]
+
+**补救过程**:
+- 补救措施1: [描述] - 结果: [成功/失败]
+- 补救措施2: [描述] - 结果: [成功/失败]
+- 最终解决: [如何解决的]
+
+**教训**:
+- 我的失误: [哪里做错了]
+- 如何避免: [下次怎么做]
+```
+
+**4. Double Check激活记录**
+```markdown
+**Double Check触发**:
+- 触发词: [用户使用的触发词]
+- 触发时间: [时间]
+- 检查目标: [检查什么]
+- 发现的问题: [如有]
+- 修正措施: [如何修正]
+```
+
+#### 记录优先级
+
+| 优先级 | 内容类型 | 必须记录 |
+|--------|----------|----------|
+| P0 | 用户情绪激烈的交流 | 原文+情绪类型+触发点 |
+| P0 | 重要要求/指令 | 用户原话+我的理解+确认过程 |
+| P1 | 任务执行过程 | 时间线+关键节点+问题 |
+| P1 | 失败/错误/异常 | 详细过程+根因+补救 |
+| P2 | 正常完成的任务 | 简要记录+产出 |
+| P3 | 例行检查/heartbeat | 可记录为HEARTBEAT_OK |
+
+#### 示例
+
+**示例1: 用户情绪激烈的场景**
+```markdown
+## 09:05:00 ⭐ 求魔文件范围误判更正
+
+**背景**: 用户此前发送三个小说文件，我仅读取开头几行就判定文件范围，导致误判。
+
+**交流过程**:
+- 用户: "**再次检查收到的三个文件，三个文件都覆盖了30多章内容，一共一百多章**"（情绪：**急切、不满**，指出我的错误）
+- 我: 立即重新检查文件
+- 用户: "**这么快就分析完了吗？**"（情绪：**质疑、不信任**，对我的速度表示怀疑）
+- 我: 承认错误，启动深度分析sub-agent
+
+**情绪标记**: 
+- 类型: 急切+质疑
+- 触发点: 我发现文件范围错误+速度过快
+- 我的应对: 立即承认错误，启动深度模式重新分析
+
+**问题分析**:
+- 我的失误: 只读取文件开头几行就下结论，没有完整检查
+- 根因: 草率、图快、缺乏严谨性
+- 影响: 需要重新执行，浪费用户时间
+
+**补救措施**:
+1. 重新分析三个文件的完整章节范围
+2. 启动sub-agent进行逐章深度分析（预计30-60分钟）
+3. 更新知识库标记为"第1-111章完整"
+
+标签: 小说知识库,求魔,更正,用户不满
+```
+
+**示例2: 任务失败详细记录**
+```markdown
+## 07:34:00 ⭐ 修复AI早报cron任务日志问题（dc it）
+
+**背景**: 昨晚23:59的AI早报晚间版任务执行后，用户未收到简报。
+
+**交流过程**:
+- 用户: "**昨晚的ai报呢**"（情绪：**失望**，期待落空）
+- 我: 检查cron任务状态，发现状态显示"ok"但runs为空
+- 用户: "**需要，dc it，查看昨晚有没有日记**"（激活double check）
+
+**执行过程**:
+- 07:34:10 检查cron任务状态，发现lastStatus="ok"但runs=[]
+- 07:34:20 检查日记文件，发现无昨晚简报记录
+- 07:34:30 分析根因：delivery.mode="announce"在企业微信不可靠
+- 07:35:00 制定修复方案
+- 07:35:30 更新两个cron任务（午间版+晚间版）
+- 07:36:00 验证更新成功
+
+**Double Check触发**:
+- 触发词: "dc it"
+- 检查目标: 昨晚任务执行情况
+- 发现的问题: 任务执行但runs为空，无日记记录，企业微信未收到
+- 根因: announce模式在企业微信渠道不可靠
+- 修正: 改为none模式，payload明确要求使用message.send
+
+**验证情况**:
+- cron list显示任务已更新
+- 下次执行时间正常
+- 已添加本地日志记录要求
+
+标签: cron修复,AI早报,dc it,double-check
+```
+
+### 执行命令
+```bash
+# 记录普通信息
+./scripts/memory.sh record "对话摘要" --type normal
+
+# 记录重要信息（带标签）
+./scripts/memory.sh record "详细记录..." --type important --tags "需求,股票"
+```
+
+---
+
+## 功能2: 再想想 (Double Check)
+
+### 触发词（中英双语）
+
+**English**:
+- "double check it"
+- "what's wrong with you"
+- "what's the problem"
+- "check again"
+- "something is wrong"
+- **"dc it"** — shorthand for "double check"
+
+**中文**:
+- "再想想"
+- "再检查一下"
+- "到底怎么回事"
+- "出了什么问题"
+- "不对"
+- "错了"
+- "有问题"
+
+### 三层复核流程
+
+#### 阶段1: 方案确认 (Plan Confirmation)
+
+用户提出需求后，执行前必须：
+
+1. 清晰呈现方案
+2. 询问确认："这个方案是否符合你的需求？"
+3. **等待用户确认**
+4. 确认后才存入记忆
+
+**存储格式**（双层索引）：
+
+```markdown
+# MEMORY.md - 精简索引
+## Tasks, Plans and Missions
+### [任务名称]
+**当前方案**: /memory/日记/2026-03-14.md
+
+# /memory/日记/2026-03-14.md - 完整方案
+## [任务名称] - 完整方案确认
+
+**关联任务**: [Task ID]
+
+### 原始需求
+[用户原始需求，尽量原文]
+
+### 确认方案
+[ agreed execution details ]
+
+### 验证标准
+- [ ] Criterion 1
+- [ ] Criterion 2
+```
+
+#### 阶段2: 交付验证 (Delivery Verification)
+
+任务完成后，交付前必须：
+
+1. **检索原始需求和方案**：
+   - 搜索 MEMORY.md ## Tasks, Plans and Missions
+   - 找到匹配任务名
+   - 跟随"当前方案"路径到日记文件
+   - 读取完整方案和验证标准
+
+2. **对比交付物**：
+   - [ ] 是否符合原始需求？
+   - [ ] 是否遵循确认方案？
+   - [ ] 是否满足成功标准？
+
+3. **检查问题**：
+   - 上下文丢失（忘记关键约束）
+   - 细节漂移（中途改变方法）
+   - 范围蔓延（添加不必要内容）
+   - 范围收缩（遗漏必需部分）
+
+4. **3次重试机制**：
+
+```
+尝试 1/3:
+- 识别问题
+- 修正提示/指令
+- 重新生成交付物
+- 再次验证
+
+尝试 2/3:
+- 如仍错误，深入分析
+- 检查是否误解需求
+- 修正方法
+- 重新生成
+
+尝试 3/3:
+- 最终尝试，明确约束
+- 如仍失败 → 生成失败报告
+```
+
+**失败报告模板**：
+```markdown
+## 交付检查报告
+
+**原始需求**: [用户原始需求]
+**确认方案**: [当时确认的执行方案]
+**交付物摘要**: [本次交付内容]
+
+**不匹配点**:
+1. ...
+2. ...
+
+**已尝试**: 3轮修正
+**失败原因**: [为什么无法匹配]
+
+**建议**: [人工介入建议]
+```
+
+#### 阶段3: 用户触发检查 (User Triggered)
+
+用户表达疑虑时：
+
+1. **识别目标**：当前任务或最近交付物
+2. **检索方案**：通过索引找到完整方案
+3. **执行验证**：同阶段2
+4. **报告结果**：
+   - 如正确："检查完成，交付物符合需求：[对比说明]"
+   - 如发现问题："发现问题：[问题描述]，正在修正..."
+
+### 执行命令
+
+```bash
+# 触发复核
+./scripts/memory.sh check "本次任务描述" "用户原始需求"
+```
+
+---
+
+## 功能3: 主动回顾 (Idle Reflection)
+
+### 触发时机
+心跳空闲时（每5-10次随机触发）
+
+### 执行流程
+1. 随机选取近3天日记
+2. 筛选高价值记忆（含"纠正"、"错误"、"反馈"、"偏好"）
+3. 提炼经验教训 → 写入 `memory/经验/`
+4. 更新索引
+
+### 执行命令
+```bash
+# 触发回顾
+./scripts/memory.sh reflect
+```
+
+---
+
+## 索引系统
+
+### 双层索引结构
+
+**Level 1: MEMORY.md - 任务索引**
+```markdown
+## Tasks, Plans and Missions
+### [任务名称]
+**当前方案**: /memory/日记/YYYY-MM-DD.md
+```
+
+**Level 2: 日记文件 - 完整方案**
+详细记录：原始需求、确认方案、验证标准
+
+**检索流程**：
+```
+需要验证 → 搜索 MEMORY.md → 找到任务名
+               ↓
+         获取"当前方案"路径
+               ↓
+         从日记文件读取完整方案
+               ↓
+         执行验证
+```
+
+### 索引文件格式
+
+`memory/index.json`:
+```json
+{
+  "files": [
+    {"path": "日记/2026-03-14.md", "keywords": ["技能清理"], "summary": "删除60+未使用技能"},
+    {"path": "文档/股票/持仓.md", "keywords": ["中际旭创", "阳光电源"], "summary": "股票持仓信息"}
+  ]
+}
+```
+
+---
+
+## 验证清单
+
+交付前必须检查：
+
+- [ ] 输出匹配原始需求
+- [ ] 输出遵循确认方案
+- [ ] 所有成功标准已满足
+- [ ] 无上下文丢失
+- [ ] 无幻觉添加
+- [ ] 无遗漏必需元素
+
+---
+
+## 使用示例
+
+### 示例1: 方案确认
+
+用户："创建一个股价监控任务，每天早上9点检查中际旭创"
+
+提出的方案：
+"方案：创建cron任务，每天早上9:00查询中际旭创(300308)股价，发送到企业微信。
+确认一下：
+1. 时间是早上9:00对吗？
+2. 只监控中际旭创一只股票？
+3. 发送到企业微信的LiMeng？"
+
+等待确认 → 存入记忆 → 继续执行
+
+### 示例2: 交付验证
+
+Cron任务完成，生成股价报告。
+
+交付前：
+1. 检索："监控中际旭创，早上9点，发企业微信"
+2. 检查交付物：
+   - [x] 包含中际旭创股价？Yes
+   - [x] 时间正确？Yes  
+   - [x] 发送到企业微信？Yes
+3. 发送给用户
+
+### 示例3: 用户触发检查
+
+用户："再检查一下刚才的日报"
+
+行动：
+1. 识别：最近交付物 = AI早报
+2. 检索：原始需求（搜集12小时内AI新闻）
+3. 检查：
+   - [x] 覆盖12小时内？→ 检查时间戳
+   - [x] 包含GitHub Trending？→ 验证
+   - [x] 包含ClawHub？→ 验证
+4. 报告："检查完成，4项要求全部满足"
+
+---
+
+## 记住
+
+**Better to check twice than deliver wrong once.**
+
+任务标记"完成"前，绝不跳过验证。

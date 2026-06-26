@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>产业互联网硅基军团 · LookingPlas</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  .gradient-hero { background: linear-gradient(135deg, #0f0f2e, #1a1a3e, #0d1f3c); }
+  .text-gradient { background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .glow-blue { box-shadow: 0 0 60px rgba(96,165,250,0.1), 0 0 120px rgba(52,211,153,0.05); }
+  .card { transition: all 0.3s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .agent-card { transition: all 0.2s; }
+  .agent-card:hover { border-color: #60a5fa; background: rgba(96,165,250,0.05); }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  .pulse-dot { animation: pd 2s infinite; }
+  @keyframes pd { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .typing-demo { font-family: "Courier New", monospace; font-size: 13px; }
+</style>
+</head>
+<body class="bg-slate-950 text-white">
+
+<!-- Hero -->
+<section class="gradient-hero min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 50%, rgba(96,165,250,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(52,211,153,0.06) 0%, transparent 40%);"></div>
+  <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <!-- Left -->
+    <div>
+      <div class="inline-flex items-center gap-2 bg-blue-950/60 border border-blue-700/50 rounded-full px-4 py-1.5 mb-6 text-xs text-blue-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+        LookingPlas × 云旅智能体超市 · 产业AI落地
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black leading-tight mb-4">
+        <span class="text-gradient">产业互联网</span><br>
+        <span class="text-3xl text-slate-300">硅基军团</span>
+      </h1>
+      <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+        一个<span class="text-blue-300 font-bold">幕僚长</span> + <span class="text-emerald-300 font-bold">20个工业Agent</span>，覆盖制造企业从采购到售后全链路。
+        用自然语言指挥你的AI运营团队。
+      </p>
+      <div class="flex flex-wrap gap-4 mb-10">
+        <a href="#demo" class="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-black px-6 py-3 rounded-xl text-sm transition-all shadow-lg shadow-blue-900/40">
+          体验Demo →
+        </a>
+        <a href="#agents" class="border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white font-bold px-6 py-3 rounded-xl text-sm transition-all">
+          查看20个Agent
+        </a>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="text-center"><div class="text-2xl font-black text-blue-400">20</div><div class="text-xs text-slate-500">专业Agent</div></div>
+        <div class="text-center"><div class="text-2xl font-black text-emerald-400">5</div><div class="text-xs text-slate-500">业务链路</div></div>
+        <div class="text-center"><div class="text-2xl font-black text-purple-400">&lt;5s</div><div class="text-xs text-slate-500">响应时间</div></div>
+      </div>
+    </div>
+
+    <!-- Right: Demo -->
+    <div id="demo" class="bg-slate-900 border border-slate-700 rounded-2xl p-6 glow-blue">
+      <div class="flex items-center gap-2 mb-4">
+        <div class="text-xs text-slate-500 font-mono">LookingPlas Silicon Army v1.0</div>
+        <div class="flex-1"></div>
+        <div class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></div>
+        <div class="text-xs text-emerald-400">在线</div>
+      </div>
+
+      <div class="space-y-3 mb-4">
+        <div class="flex gap-2">
+          <div class="bg-blue-600 text-white text-xs rounded-xl rounded-bl-none px-3 py-2 max-w-xs">
+            原料库存告急了，帮我查一下供应商行情和替代方案
+          </div>
+        </div>
+        <div class="flex gap-2 justify-end">
+          <div class="bg-slate-800 border border-slate-700 text-slate-300 text-xs rounded-xl rounded-br-none px-3 py-2">
+            🎩 幕僚长路由：material_procurement + warehouse
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent results -->
+      <div class="space-y-2 mb-4">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-3 text-xs">
+          <div class="flex items-center gap-2 mb-1">
+            <span>🧪</span><span class="font-bold text-blue-300">原料采购Agent</span>
+            <span class="ml-auto text-slate-500">150t</span>
+          </div>
+          <div class="text-slate-400">供应商：华锦化工(浙江)、中石化A供应商</div>
+          <div class="text-slate-500 mt-1">1688报价：¥12.5/kg | 批量：¥11.8/kg</div>
+        </div>
+        <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-3 text-xs">
+          <div class="flex items-center gap-2 mb-1">
+            <span>🏭</span><span class="font-bold text-blue-300">仓储管理Agent</span>
+            <span class="ml-auto text-slate-500">150t</span>
+          </div>
+          <div class="text-amber-400">⚠️ 原料A库存15T，低于安全线20T</div>
+          <div class="text-slate-500 mt-1">建议：从A-03调整至A-01，拣货效率+15%</div>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <input id="task-input" type="text"
+          class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-blue-500"
+          placeholder="输入工业任务，如：帮我分析本月生产成本...">
+        <button onclick="runTask()"
+          class="bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold px-4 py-2.5 rounded-xl text-xs">
+          执行
+        </button>
+      </div>
+
+      <div id="demo-result" class="hidden mt-3 bg-slate-800/60 border border-slate-700 rounded-lg p-3 text-xs max-h-48 overflow-y-auto">
+        <div id="demo-result-content"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-6 py-16 space-y-16">
+
+<!-- 5 Business Lines -->
+<section id="agents">
+  <h2 class="text-3xl font-black text-center mb-3">🎩 全链路覆盖 · 5大业务线 · 20个专业Agent</h2>
+  <p class="text-slate-400 text-center mb-12">从战略到执行，AI幕僚长统一调度，你的24小时在线制造业运营团队</p>
+
+  <div class="space-y-8">
+
+    <!-- 采购与供应链 -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+      <div class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center gap-3">
+        <span class="text-2xl">🧪</span>
+        <div>
+          <div class="font-black text-sm">采购与供应链</div>
+          <div class="text-xs text-slate-500">4个Agent · 供应商管理/仓储/物流/采购</div>
+        </div>
+        <div class="ml-auto text-xs bg-blue-950 text-blue-300 px-3 py-1 rounded-full">关键词: 原料/库存/供应商/物流</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-y divide-slate-800">
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🧪</div>
+          <div class="font-bold text-xs mb-1">原料采购Agent</div>
+          <div class="text-xs text-slate-500">供应商匹配 · 行情分析 · 1688比价</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🏭</div>
+          <div class="font-bold text-xs mb-1">仓储管理Agent</div>
+          <div class="text-xs text-slate-500">库存预警 · ABC分类 · 周转分析</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🚛</div>
+          <div class="font-bold text-xs mb-1">物流调度Agent</div>
+          <div class="text-xs text-slate-500">车队匹配 · 路线优化 · 在途跟踪</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">📋</div>
+          <div class="font-bold text-xs mb-1">供应商管理Agent</div>
+          <div class="text-xs text-slate-500">评级 · 风控 · 合同 · 绩效</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 生产与研发 -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+      <div class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center gap-3">
+        <span class="text-2xl">⚙️</span>
+        <div>
+          <div class="font-black text-sm">生产与研发</div>
+          <div class="text-xs text-slate-500">4个Agent · 排产/配方/质量/设备</div>
+        </div>
+        <div class="ml-auto text-xs bg-emerald-950 text-emerald-300 px-3 py-1 rounded-full">关键词: 排产/交期/质量/设备</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-y divide-slate-800">
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">⚙️</div>
+          <div class="font-bold text-xs mb-1">生产调度Agent</div>
+          <div class="text-xs text-slate-500">智能排产 · 产能分析 · 交期承诺</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🧬</div>
+          <div class="font-bold text-xs mb-1">配方研发Agent</div>
+          <div class="text-xs text-slate-500">新材料 · 替代料 · 成本优化</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🔬</div>
+          <div class="font-bold text-xs mb-1">质量检测Agent</div>
+          <div class="text-xs text-slate-500">AQL · SPC · 不良品管理</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🔧</div>
+          <div class="font-bold text-xs mb-1">设备维护Agent</div>
+          <div class="text-xs text-slate-500">预测性维护 · MTBF · 备件</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 销售与市场 -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+      <div class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center gap-3">
+        <span class="text-2xl">💲</span>
+        <div>
+          <div class="font-black text-sm">销售与市场</div>
+          <div class="text-xs text-slate-500">4个Agent · 报价/订单/客户/竞品</div>
+        </div>
+        <div class="ml-auto text-xs bg-amber-950 text-amber-300 px-3 py-1 rounded-full">关键词: 报价/订单/客户/竞品</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-y divide-slate-800">
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">💲</div>
+          <div class="font-bold text-xs mb-1">报价Agent</div>
+          <div class="text-xs text-slate-500">快速报价 · 成本叠加 · 议价</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">📦</div>
+          <div class="font-bold text-xs mb-1">订单履约Agent</div>
+          <div class="text-xs text-slate-500">订单跟踪 · 异常处理 · 交期</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🤝</div>
+          <div class="font-bold text-xs mb-1">客户管理Agent</div>
+          <div class="text-xs text-slate-500">客户分级 · 跟进 · 复购</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🎯</div>
+          <div class="font-bold text-xs mb-1">竞品监控Agent</div>
+          <div class="text-xs text-slate-500">价格监测 · 替代品 · 市场份额</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 财务与合规 -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+      <div class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center gap-3">
+        <span class="text-2xl">💰</span>
+        <div>
+          <div class="font-black text-sm">财务与合规</div>
+          <div class="text-xs text-slate-500">4个Agent · 成本/合规/风控/政策</div>
+        </div>
+        <div class="ml-auto text-xs bg-violet-950 text-violet-300 px-3 py-1 rounded-full">关键词: 成本/合规/风险/政策</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-y divide-slate-800">
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">💰</div>
+          <div class="font-bold text-xs mb-1">成本核算Agent</div>
+          <div class="text-xs text-slate-500">标准成本 · 毛利分析 · 降本</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">⚖️</div>
+          <div class="font-bold text-xs mb-1">合规审查Agent</div>
+          <div class="text-xs text-slate-500">环保 · 安全 · 税务合规</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🚨</div>
+          <div class="font-bold text-xs mb-1">风险预警Agent</div>
+          <div class="text-xs text-slate-500">信用评估 · 呆账管理 · 预警</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">📜</div>
+          <div class="font-bold text-xs mb-1">政策解读Agent</div>
+          <div class="text-xs text-slate-500">补贴申报 · 税务优惠 · 政策</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 通用运营 -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+      <div class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center gap-3">
+        <span class="text-2xl">📊</span>
+        <div>
+          <div class="font-black text-sm">通用运营</div>
+          <div class="text-xs text-slate-500">4个Agent · 数据/报告/项目/客服</div>
+        </div>
+        <div class="ml-auto text-xs bg-cyan-950 text-cyan-300 px-3 py-1 rounded-full">关键词: 报表/报告/项目/售后</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-y divide-slate-800">
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">📊</div>
+          <div class="font-bold text-xs mb-1">数据分析Agent</div>
+          <div class="text-xs text-slate-500">日报生成 · 月报 · BI看板</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">📝</div>
+          <div class="font-bold text-xs mb-1">报告生成Agent</div>
+          <div class="text-xs text-slate-500">会议纪要 · 汇报材料 · PPT</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">📅</div>
+          <div class="font-bold text-xs mb-1">项目管理Agent</div>
+          <div class="text-xs text-slate-500">里程碑 · 甘特图 · 交付</div>
+        </div>
+        <div class="p-4 agent-card">
+          <div class="text-xl mb-1">🎧</div>
+          <div class="font-bold text-xs mb-1">客服支持Agent</div>
+          <div class="text-xs text-slate-500">售后处理 · 投诉 · FAQ</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Architecture -->
+<section>
+  <h2 class="text-3xl font-black text-center mb-12">🏗️ 系统架构</h2>
+  <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 text-center">
+        <div class="text-3xl mb-3">👤</div>
+        <div class="font-bold text-sm mb-1">用户层</div>
+        <div class="text-xs text-slate-500">自然语言 · 企业微信 · 飞书 · Web · API</div>
+      </div>
+      <div class="bg-blue-950/40 border border-blue-800 rounded-xl p-5 text-center">
+        <div class="text-3xl mb-3">🎩</div>
+        <div class="font-bold text-sm mb-1 text-blue-300">幕僚长</div>
+        <div class="text-xs text-slate-400">意图理解 · 任务分解 · 智能路由</div>
+      </div>
+      <div class="bg-emerald-950/40 border border-emerald-800 rounded-xl p-5 text-center">
+        <div class="text-3xl mb-3">🤖</div>
+        <div class="font-bold text-sm mb-1 text-emerald-300">20个工业Agent</div>
+        <div class="text-xs text-slate-400">并行执行 · 各司其职 · 结果整合</div>
+      </div>
+      <div class="bg-amber-950/40 border border-amber-800 rounded-xl p-5 text-center">
+        <div class="text-3xl mb-3">🔌</div>
+        <div class="font-bold text-sm mb-1 text-amber-300">企业系统</div>
+        <div class="text-xs text-slate-400">ERP · MES · WMS · CRM · 1688</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section>
+  <h2 class="text-3xl font-black text-center mb-12">💰 定价方案</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6">
+      <div class="text-sm text-slate-500 font-mono mb-1">BASIC</div>
+      <div class="text-3xl font-black mb-1">¥299<span class="text-base font-normal text-slate-500">/月</span></div>
+      <div class="text-xs text-slate-500 mb-6">适合：小型工厂/作坊</div>
+      <div class="space-y-2 text-xs text-slate-400 mb-8">
+        <div>✓ 10个核心Agent</div>
+        <div>✓ 采购/生产/销售链路</div>
+        <div>✓ 基础数据看板</div>
+        <div>✓ API接入</div>
+        <div class="text-slate-600">✗ 财务/合规Agent</div>
+        <div class="text-slate-600">✗ 私有部署</div>
+      </div>
+      <button class="w-full border border-slate-600 hover:border-slate-400 text-slate-300 font-bold py-2 rounded-xl text-sm">立即开通</button>
+    </div>
+
+    <div class="bg-blue-950/30 border-2 border-blue-600 rounded-2xl p-6 relative">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-emerald-600 text-xs font-black px-4 py-1 rounded-full">推荐</div>
+      <div class="text-sm text-blue-300 font-mono mb-1">PROFESSIONAL</div>
+      <div class="text-3xl font-black mb-1">¥999<span class="text-base font-normal text-slate-500">/月</span></div>
+      <div class="text-xs text-slate-500 mb-6">适合：中型制造企业</div>
+      <div class="space-y-2 text-xs text-slate-400 mb-8">
+        <div>✓ 全部20个Agent</div>
+        <div>✓ 全链路覆盖</div>
+        <div>✓ ERP/MES/WMS集成</div>
+        <div>✓ SLA 99.5%保障</div>
+        <div>✓ API接入</div>
+        <div class="text-slate-600">✗ 私有部署</div>
+      </div>
+      <button class="w-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-black py-2 rounded-xl text-sm shadow-lg shadow-blue-900/40">立即开通</button>
+    </div>
+
+    <div class="bg-slate-900 border border-amber-700/50 rounded-2xl p-6">
+      <div class="text-sm text-amber-400 font-mono mb-1">ENTERPRISE</div>
+      <div class="text-3xl font-black mb-1">¥9,999<span class="text-base font-normal text-slate-500">/月</span></div>
+      <div class="text-xs text-slate-500 mb-6">适合：大型集团/工厂</div>
+      <div class="space-y-2 text-xs text-slate-400 mb-8">
+        <div>✓ 全部功能</div>
+        <div>✓ 私有化部署</div>
+        <div>✓ 行业定制Agent</div>
+        <div>✓ 源码交付</div>
+        <div>✓ 专属行业顾问</div>
+        <div>✓ 7×24支持</div>
+      </div>
+      <button class="w-full border border-amber-600 hover:border-amber-400 text-amber-300 font-bold py-2 rounded-xl text-sm">联系销售</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="text-center py-12">
+  <div class="text-4xl font-black mb-4">Ready to build your <span class="text-gradient">Industrial AI Team</span>?</div>
+  <p class="text-slate-400 mb-8">从今天开始，用20个专业AI Agent运营你的制造企业</p>
+  <div class="inline-flex items-center gap-3 bg-slate-900 border border-slate-700 rounded-full px-6 py-3">
+    <span class="text-sm text-slate-400">📧 contact@lookingplas.com</span>
+    <span class="text-slate-600">|</span>
+    <span class="text-sm text-slate-400">🏭 LookingPlas × 云旅智能体超市</span>
+  </div>
+</section>
+
+</div>
+
+<footer class="border-t border-slate-800 py-8 text-center">
+  <div class="text-xs text-slate-600">产业互联网硅基军团 v1.0 · LookingPlas × 云旅智能体超市 · 2026</div>
+</footer>
+
+<script>
+// ── Demo routing ─────────────────────────────────────────────
+const TASK_ROUTING = {
+  material_procurement: ["原料","供应商","行情","比价","采购","货源","库存"],
+  warehouse: ["库存","库位","周转","仓储","呆滞"],
+  logistics: ["物流","车队","运输","发货"],
+  supplier_management: ["供应商","评级","合同","供应商绩效"],
+  production_schedule: ["排产","工单","交期","生产","产能"],
+  formula_rd: ["配方","新材料","研发","替代","成本优化"],
+  quality_inspection: ["质量","检测","合格","AQL","良率"],
+  equipment_maintenance: ["设备","维修","故障","停机"],
+  quoting: ["报价","价格","报价单","议价"],
+  order_fulfillment: ["订单","发货","交期","履约"],
+  customer_management: ["客户","跟进","复购"],
+  competitor_monitoring: ["竞品","竞争对手","市场"],
+  cost_accounting: ["成本","毛利","利润","盈亏"],
+  compliance_review: ["合规","环保","安全","税务"],
+  risk_alert: ["风险","预警","呆账"],
+  policy_interpretation: ["政策","补贴","税务优惠"],
+  data_analysis: ["数据","报表","日报","月报","经营"],
+  report_generation: ["报告","会议","纪要"],
+  project_management: ["项目","里程碑","进度"],
+  customer_service: ["售后","投诉","客服"],
+};
+
+const AGENTS_DISPLAY = {
+  material_procurement: {emoji:"🧪",name:"原料采购Agent",tokens:150,result:{suppliers:["华锦化工(浙江)","中石化A供应商","山东工程塑料厂"],market:"原料价格下行，建议分批补库",price:"¥12.5/kg | 批量¥11.8/kg"}},
+  warehouse: {emoji:"🏭",name:"仓储管理Agent",tokens:150,result:{alert:"⚠️原料A：15T，低于安全线20T",suggestion:"调整至A-01，效率+15%",slow:"3笔呆滞料超90天"}},
+  logistics: {emoji:"🚛",name:"物流调度Agent",tokens:150,result:{dispatch:"推荐德邦(快)或安能(便宜)",saving:"路线优化节省运费18%",delay:"2票异常（交通管制）"}},
+  supplier_management: {emoji:"📋",name:"供应商管理Agent",tokens:150,result:{rating:{A:"3家(优)",B:"8家(良)",C:"2家(淘汰)"},alert:"供应商B资金问题，降低采购20%"}},
+  production_schedule: {emoji:"⚙️",name:"生产调度Agent",tokens:150,result:{schedule:"急单A周四前，订单B周六前",capacity:"当前负荷78%，有22%余量",bottleneck:"注塑工序利用率97%，建议加设备"}},
+  formula_rd: {emoji:"🧬",name:"配方研发Agent",tokens:150,result:{cost_advice:"当前¥15.2/kg，目标¥13.8/kg(-9%)",substitute:"国产S供应商替代进口，成本-22%",patent:"建议申请核心配方发明专利"}},
+  quality_inspection: {emoji:"🔬",name:"质量检测Agent",tokens:150,result:{plan:"AQL=1.0抽样方案",pass:"近30天良率99.2%，较上月+0.3%",ncr:"2件缺陷隔离，MRB评审中"}},
+  equipment_maintenance: {emoji:"🔧",name:"设备维护Agent",tokens:150,result:{alert:"⚠️注塑机#3轴承温度偏高，7天内可能故障",mtbf:"820小时（行业标杆1000小时）"}},
+  quoting: {emoji:"💲",name:"报价Agent",tokens:150,result:{quote:"FOB ¥18.5/kg，CIF ¥22.3/kg",validity:"14天有效期",discount:">5吨可给予3%折扣"}},
+  order_fulfillment: {emoji:"📦",name:"订单履约Agent",tokens:150,result:{status:"在途12个，9正常，3异常(已升级)",csat:"4.6/5.0"}},
+  customer_management: {emoji:"🤝",name:"客户管理Agent",tokens:150,result:{seg:{A:"8家(65%营收)",B:"25家",C:"47家"},churn:"客户#12连续60天无下单，风险"}},
+  competitor_monitoring: {emoji:"🎯",name:"竞品监控Agent",tokens:150,result:{price:"我司¥18.5/kg，市场中偏高",competitor:"竞品A本周下调3%争夺份额"}},
+  cost_accounting: {emoji:"💰",name:"成本核算Agent",tokens:150,result:{cost:"标准¥14.2/kg，实际¥14.8/kg，差+4.2%",margin:"产品A毛利28%，B毛利18%"}},
+  compliance_review: {emoji:"⚖️",name:"合规审查Agent",tokens:150,result:{status:{环保:"通过✓",安全:"通过✓",税务:"通过✓"},alert:"2026年7月VOC新标准，需设备改造"}},
+  risk_alert: {emoji:"🚨",name:"风险预警Agent",tokens:150,result:{risk:"客户#15信用降级，暂停授信",bad_debt:"90+天应收¥28万，坏账准备¥8.4万"}},
+  policy_interpretation: {emoji:"📜",name:"政策解读Agent",tokens:150,result:{subsidy:"智能制造试点最高¥200万(截止6/30)",tax:"高企所得税15%（省10%）"}},
+  data_analysis: {emoji:"📊",name:"数据分析Agent",tokens:150,result:{today:{产量:"12.5吨",出货:"11.8吨",良率:"99.2%"},alert:"注塑工序良率偏低97.8%"}},
+  report_generation: {emoji:"📝",name:"报告生成Agent",tokens:150,result:{draft:"5页初稿已生成，约3000字",saving:"节省人工4小时/份"}},
+  project_management: {emoji:"📅",name:"项目管理Agent",tokens:150,result:{status:"关键里程碑达成率100%",alert:"供应商认证节点有延迟风险"}},
+  customer_service: {emoji:"🎧",name:"客服支持Agent",tokens:150,result:{pending:"5个",csat:"4.6/5.0",escalate:"1起升级至管理层"}},
+};
+
+function routeTask(task) {
+  const lower = task.toLowerCase();
+  const scores = {};
+  for (const [agentId, keywords] of Object.entries(TASK_ROUTING)) {
+    const score = keywords.filter(kw => lower.includes(kw)).length;
+    if (score > 0) scores[agentId] = score;
+  }
+  if (Object.keys(scores).length === 0) return ["data_analysis"];
+  return Object.entries(scores).sort((a,b) => b[1]-a[1]).map(e => e[0]);
+}
+
+async function runTask() {
+  const input = document.getElementById("task-input").

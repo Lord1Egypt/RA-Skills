@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "invocationName": "答案之书",
+  "intents": [
+    {
+      "name": "LaunchIntent",
+      "description": "欢迎用户进入答案之书",
+      "samples": [
+        "打开答案之书",
+        "开始",
+        "欢迎",
+        "我想进入答案之书"
+      ]
+    },
+    {
+      "name": "AskAnswerIntent",
+      "description": "提交自然语言问题，由系统在电影、文学、音乐书库中返回随机答案，也可显式指定书库",
+      "slots": [
+        {
+          "name": "question",
+          "type": "text"
+        }
+      ],
+      "samples": [
+        "{question}",
+        "我想问{question}",
+        "请帮我看看{question}",
+        "用电影答案之书问{question}",
+        "用文学答案之书问{question}",
+        "用音乐答案之书问{question}"
+      ]
+    },
+    {
+      "name": "SwitchBookIntent",
+      "description": "在上一题上下文基础上切换到电影、文学或音乐书库重新抽取",
+      "slots": [
+        {
+          "name": "book_name",
+          "type": "book"
+        }
+      ],
+      "samples": [
+        "那用电影版的再测一次",
+        "换电影之书",
+        "换文学之书",
+        "换音乐之书",
+        "那用文学版再来一次",
+        "那用音乐版再来一次"
+      ]
+    },
+    {
+      "name": "DailyFortuneIntent",
+      "description": "抽取每日一签",
+      "samples": [
+        "每日一签",
+        "来一张今日签文",
+        "今天的签"
+      ]
+    },
+    {
+      "name": "FallbackIntent",
+      "description": "处理纯数字、乱码或无法识别的输入",
+      "samples": [
+        "123456",
+        "？？？？",
+        "......"
+      ]
+    }
+  ]
+}

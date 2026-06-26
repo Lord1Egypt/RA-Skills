@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gen Music"
+  short_description: "Generate music with a local ACE-Step server."
+  default_prompt: "Use $gen-music to generate a song from a prompt or lyrics, save the audio, and optionally hand it to watch playback."

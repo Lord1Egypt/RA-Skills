@@ -1,35 +1,37 @@
 ---
-name: "rvf-manage"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/rvf-manage"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/rvf-manage"
+name: rvf-manage
+description: Manage RVF (Ruflo Vector Format) files for portable agent memory and cross-platform transfer
+argument-hint: "<import|export|list|delete> [options]"
+allowed-tools: mcp__claude-flow__memory_store mcp__claude-flow__memory_retrieve mcp__claude-flow__memory_list mcp__claude-flow__memory_delete mcp__claude-flow__memory_stats mcp__claude-flow__memory_import_claude mcp__claude-flow__memory_migrate mcp__claude-flow__hooks_transfer Bash
 ---
 
-# rvf-manage
+# RVF Management
 
-> Indexed by skills.sh from ruvnet/ruflo
+Manage RVF files for portable, transferable agent memory.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/rvf-manage`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/rvf-manage](https://skills.sh/ruvnet/ruflo/rvf-manage)
+## When to use
 
-## Overview
+When you need to export agent memory to RVF format for backup, transfer between projects, or share knowledge between teams.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **List memories** — call `mcp__claude-flow__memory_list` to see all stored memories
+2. **Export** — use the `mcp__claude-flow__hooks_transfer` tool with `store` action to export patterns
+3. **Import** — call `mcp__claude-flow__memory_import_claude` to import from Claude Code memories
+4. **Migrate** — call `mcp__claude-flow__memory_migrate` for format upgrades
+5. **Stats** — call `mcp__claude-flow__memory_stats` for storage metrics
+
+## RVF format
+
+RVF (Ruflo Vector Format) stores:
+- Vector embeddings (384-dim ONNX)
+- Metadata (timestamps, namespaces, tags)
+- Causal relationships between entries
+- Session context and agent scope
+
+## Transfer between projects
+
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/rvf-manage
+npx @claude-flow/cli@latest hooks transfer store --pattern "project-knowledge"
+npx @claude-flow/cli@latest hooks transfer from-project --source /path/to/other/project
 ```

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "tx_1776575133349",
+    "operation": "save_memory",
+    "data": {
+      "uri": "test/wal_test",
+      "category": "auto",
+      "content_length": 12
+    },
+    "status": "committed",
+    "timestamp": "2026-04-19T14:05:33.349431"
+  }
+]

@@ -1,35 +1,34 @@
 ---
-name: "Wang Xiaobo Style Writing"
-description: "Assist in writing Chinese essays emulating Wang Xiaobo's style using logical deduction, reductio ad absurdum, concrete scenes, and deadpan humor."
-category: "creative"
-source: "ClawHub"
-tags: [chinese, humor, style, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wangxiaobo-essay"
-sourceUrl: "https://clawhub.ai/skills/wangxiaobo-essay"
+name: wangxiaobo-style
+description: Wang Xiaobo (王小波) Chinese essay writing style assistant. Based on deep analysis of 45 essays from "My Spiritual Homeland". Teaches syllogistic reasoning, reductio ad absurdum, and deadpan humor in Chinese writing. Trigger on: 王小波, wangxiaobo, Chinese essay style, logical writing.
+agent_created: true
 ---
 
-# Wang Xiaobo Style Writing
+# Wang Xiaobo Style Writing Assistant
 
-> Assist in writing Chinese essays emulating Wang Xiaobo's style using logical deduction, reductio ad absurdum, concrete scenes, and deadpan humor.
+Teaches writing in the style of Wang Xiaobo, one of China's most influential essayists. His style combines rigorous logic, intellectual playfulness, and dark humor.
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wangxiaobo-essay`
-- **Source URL:** [https://clawhub.ai/skills/wangxiaobo-essay](https://clawhub.ai/skills/wangxiaobo-essay)
+## When to Use
 
-## Overview
+Activate when the user requests "王小波风格" or wants logical, engaging Chinese prose.
 
+## Core Techniques
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wangxiaobo-essay
-```
+1. **Syllogistic Deduction**: premise → deduction → absurd conclusion
+2. **Reductio ad Absurdum**: push opponent's logic to self-destruction
+3. **Concrete Scene Replacement**: never argue abstractly; use sensory detail
+4. **Personal Experience over Citation**: use lived experience as evidence
+5. **Precise Numbers as Foreign Bodies**: insert quantitative precision in literary passages
+6. **Downward Ending**: end by sinking to personal feeling, not grand summary
+
+## Prohibitions
+
+- No cheap wit (humor from logic only)
+- No emotional parallelism (排比句)
+- No excessive citations
+- No uplifting endings
+- No abstract debate
+
+## Reference
+
+Load `references/analysis.md` for detailed examples from Wang Xiaobo's original essays.

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🐣 OpenClaw Pet</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="/i18n.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .screen { display: none; text-align: center; width: 100%; max-width: 400px; }
+        .screen.active { display: flex; flex-direction: column; align-items: center; }
+        
+        /* Egg Screen */
+        .egg-container { position: relative; margin: 30px 0; }
+        .egg {
+            font-size: 120px;
+            animation: shake-animation 0.5s ease-in-out infinite;
+            cursor: pointer;
+            user-select: none;
+        }
+        .egg.shaking { animation: shake-hard 0.3s ease-in-out; }
+        @keyframes shake-animation {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+        @keyframes shake-hard {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.1); }
+            75% { transform: rotate(10deg) scale(1.1); }
+        }
+        .shake-count {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .shake-hint {
+            font-size: 16px;
+            margin-top: 10px;
+            opacity: 0.9;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+        
+        /* Name Screen */
+        .pet-preview { font-size: 80px; margin: 20px; }
+        .name-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 15px 40px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.2s;
+        }
+        .btn:active { transform: scale(0.95); background: rgba(255,255,255,0.3); }
+        
+        /* Pet Screen */
+        .pet-header { margin-bottom: 20px; }
+        .pet-name-display { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+        .pet-level { font-size: 16px; opacity: 0.8; }
+        .pet-emoji { font-size: 100px; margin: 20px 0; animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .stats-container {
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .stat-row {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .stat-icon { font-size: 24px; margin-right: 10px; width: 30px; }
+        .stat-bar {
+            flex: 1;
+            height: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        .stat-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+        .hunger-fill { background: #ff6b6b; }
+        .happy-fill { background: #4ecdc4; }
+        .energy-fill { background: #45b7d1; }
+        .stat-value { width: 40px; text-align: right; font-weight: bold; }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .control-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 20px 10px;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .control-btn:active { transform: scale(0.95); }
+        .control-btn span {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        
+        .message-bubble {
+            background: white;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 20px;
+            margin: 15px 0;
+            font-size: 16px;
+            max-width: 90%;
+            animation: pop-in 0.3s ease;
+        }
+        .social-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin-top: 12px;
+        }
+        .social-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .social-btn:active { transform: scale(0.96); }
+        .friend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            margin: 6px 0;
+            cursor: pointer;
+        }
+        .friend-item .fe { font-size: 28px; }
+        .friend-item .fn { flex: 1; text-align: left; }
+        .friend-item .fb { font-size: 12px; opacity: 0.85; }
+        .modal-bg {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 100;
+        }
+        .modal-bg.active { display: flex; }
+        .modal {
+            background: linear-gradient(135deg, #5a6fd6 0%, #6b4097 100%);
+            border-radius: 20px;
+            padding: 20px;
+            width: 92%;
+            max-width: 380px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .modal h3 { margin-bottom: 12px; }
+        .visit-badge {
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        @keyframes pop-in {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- EGG SCREEN -->
+    <div class="screen active" id="eggScreen">
+        <h1>🐣 OpenClaw Pet</h1>
+        <div class="egg-container">
+            <div class="egg" id="egg">🥚</div>
+        </div>
+        <div class="shake-count" id="shakeCount">0 / 3</div>
+        <div class="shake-hint">📱 Telefonu salla!</div>
+    </div>
+    
+    <!-- NAME SCREEN -->
+    <div class="screen" id="nameScreen">
+        <h2>Tebrikler!</h2>
+        <div class="pet-preview" id="hatchedPet">🐱</div>
+        <p>Bir hayvan çıktı!</p>
+        <input type="text" class="name-input" id="petName" placeholder="İsim ver..." maxlength="15">
+        <button class="btn" onclick="saveName()">Kaydet</button>
+    </div>
+    
+    <!-- PET SCREEN -->
+    <div class="screen" id="petScreen">
+        <div class="pet-header">
+            <div class="pet-name-display" id="displayName">Pamuk</div>
+            <div class="pet-level">Level <span id="level">1</span> · 🔥 <span id="streak">0</span> gün</div>
+            <div id="moodBadge" style="margin-top:6px; display:none;"></div>
+        </div>
+        <div class="pet-emoji" id="petEmoji">🐱</div>
+        
+        <div class="message-bubble" id="petMessage" style="display: none;"></div>
+        
+        <div class="stats-container">
+            <div class="stat-row">
+                <span class="stat-icon">🍕</span>
+                <div class="stat-bar">
+                    <div class="stat-fill hunger-fill" id="hungerBar" style="width: 50%"></div>
+                </div>
+                <span class="stat-value" id="hungerVal">50</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">😊</span>
+                <div class="stat-bar">
+                    <div class="stat-fill happy-fill" id="happyBar" style="width: 50%"></div>
+                </div>
+                <span class="stat-value" id="happyVal">50</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">⚡</span>
+                <div class="stat-bar">
+                    <div class="stat-fill energy-fill" id="energyBar" style="width: 100%"></div>
+                </div>
+                <span class="stat-value" id="energyVal">100</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" onclick="action('feed')">
+                🍕
+                <span>Feed</span>
+            </button>
+            <button class="control-btn" onclick="action('play')">
+                🎮
+                <span>Play</span>
+            </button>
+            <button class="control-btn" onclick="action('sleep')">
+                💤
+                <span>Sleep</span>
+            </button>
+        </div>
+
+        <div class="social-row">
+            <button class="social-btn" onclick="openFriends()">🤝 Arkadaşlar</button>
+            <button class="social-btn" onclick="sharePet()">🔗 Paylaş</button>
+        </div>
+    </div>
+
+    <!-- VISIT SCREEN -->
+    <div class="screen" id="visitScreen">
+        <div class="visit-badge">🌍 Ziyaret modu</div>
+        <div class="pet-name-display" id="visitName">—</div>
+        <div class="pet-level">Level <span id="visitLevel">1</span> · 🤝 <span id="visitFriends">0</span></div>
+        <div class="pet-emoji" id="visitEmoji">🐾</div>
+        <div class="message-bubble" id="visitMessage" style="display:none;"></div>
+        <div class="stats-container">
+            <div class="stat-row">
+                <span class="stat-icon">🍕</span>
+                <div class="stat-bar"><div class="stat-fill hunger-fill" id="vHungerBar" style="width:50%"></div></div>
+                <span class="stat-value" id="vHungerVal">50</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">😊</span>
+                <div class="stat-bar"><div class="stat-fill happy-fill" id="vHappyBar" style="width:50%"></div></div>
+                <span class="stat-value" id="vHappyVal">50</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">⚡</span>
+                <div class="stat-bar"><div class="stat-fill energy-fill" id="vEnergyBar" style="width:100%"></div></div>
+                <span class="stat-value" id="vEnergyVal">100</span>
+            </div>
+        </div>
+        <div class="social-row">
+            <button class="social-btn" id="befriendBtn" onclick="befriend()">🤝 Arkadaş ol</button>
+            <button class="social-btn" id="playdateBtn" onclick="playdate()" style="display:none;">🎉 Playdate</button>
+        </div>
+        <button class="btn" style="margin-top:12px" onclick="goHome()">← Kendi pet'ime dön</button>
+    </div>
+
+    <!-- MEMORIAL SCREEN -->
+    <div class="screen" id="memorialScreen">
+        <div style="background:linear-gradient(135deg,#1a1a2e,#16213e); padding:30px; border-radius:20px; margin-top:20px;">
+            <div style="font-size:48px;">🪦</div>
+            <h2 style="margin:10px 0;">In Memoriam</h2>
+            <div class="pet-name-display" id="memName" style="margin:10px 0;">—</div>
+            <div id="memDates" style="opacity:0.8; font-size:14px; margin:8px 0;">—</div>
+            <div id="memStats" style="opacity:0.85; margin:12px 0;">—</div>
+            <p style="font-size:14px; opacity:0.9; margin:15px 0;">
+                Sevgili dostumuz huzur içinde uyusun 🕯️
+            </p>
+            <div class="social-row">
+                <button class="social-btn" onclick="shareMemorial()">🕯️ Anıt paylaş</button>
+                <button class="social-btn" onclick="reviveOrNew()">🥚 Yeni yumurta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRIENDS MODAL -->
+    <div class="modal-bg" id="friendsModal" onclick="if(event.target===this)closeFriends()">
+        <div class="modal">
+            <h3>🤝 Arkadaşların</h3>
+            <div id="friendsList"><p style="opacity:0.7">Yükleniyor…</p></div>
+            <button class="btn" style="margin-top:10px" onclick="closeFriends()">Kapat</button>
+        </div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.ready();
+
+        const LANG = (window.PetI18n && PetI18n.detectLang()) || 'tr';
+        const T = (window.PetI18n && PetI18n.ui(LANG)) || {};
+
+        const PETS = ['🐧', '🐱', '🐕', '🐠', '🐥'];
+        const PET_NAMES = { '🐧': 'Pengu', '🐱': 'Kedi', '🐕': 'Köpek', '🐠': 'Balık', '🐥': 'Civciv' };
+        const TYPE_BY_EMOJI = { '🐧': 'penguin', '🐱': 'cat', '🐕': 'dog', '🐠': 'fish', '🐥': 'chick' };
+        const EMOJI_BY_TYPE = { penguin: '🐧', cat: '🐱', dog: '🐕', fish: '🐠', chick: '🐥' };
+
+        function localizeUI() {
+            try {
+                document.querySelector('#eggScreen h1').textContent = T.eggHeader;
+                document.querySelector('.shake-hint').textContent = T.eggHint;
+                document.querySelector('#nameScreen h2').textContent = T.hatched;
+                document.querySelector('#nameScreen p').textContent = T.hatchedSub;
+                document.getElementById('petName').placeholder = T.namePlaceholder;
+                document.querySelector('#nameScreen .btn').textContent = T.save;
+                const ctrlBtns = document.querySelectorAll('.control-btn span');
+                if (ctrlBtns[0]) ctrlBtns[0].textContent = T.feed;
+                if (ctrlBtns[1]) ctrlBtns[1].textContent = T.play;
+                if (ctrlBtns[2]) ctrlBtns[2].textContent = T.sleep;
+                const social = document.querySelectorAll('#petScreen .social-btn');
+                if (social[0]) social[0].textContent = T.friends;
+                if (social[1]) social[1].textContent = T.share;
+                document.querySelector('#friendsModal h3').textContent = T.friendsTitle;
+                document.querySelector('#friendsModal .btn').textContent = T.close;
+                document.querySelector('#memorialScreen h2').textContent = T.memorialTitle;
+                document.querySelector('#memorialScreen p').textContent = T.memorialFooter;
+                const memBtns = document.querySelectorAll('#memorialScreen .social-btn');
+                if (memBtns[0]) memBtns[0].textContent = T.shareMemorial;
+                if (memBtns[1]) memBtns[1].textContent = T.newEgg;
+                document.querySelector('#visitScreen .visit-badge').textContent = T.visitMode;
+                document.querySelector('#visitScreen .btn').textContent = T.backHome;
+            } catch (e) { console.warn('localizeUI partial:', e); }
+        }
+        document.addEventListener('DOMContentLoaded', localizeUI);
+        localizeUI();
+        
+        let shakeCount = 0;
+        let selectedPet = null;
+        let petName = '';
+        let petData = {
+            hunger: 50,
+            happy: 50,
+            energy: 100,
+            level: 1
+        };
+        
+        const userId = tg.initDataUnsafe.user?.id || 'unknown';
+        
+        // Shake detection — iOS 13+ requires explicit user-gesture permission
+        let lastX = 0, lastY = 0, lastZ = 0;
+        const shakeThreshold = 15;
+
+        function attachMotionListener() {
+            window.addEventListener('devicemotion', function(event) {
+                const a = event.accelerationIncludingGravity;
+                if (!a) return;
+                const dx = Math.abs((a.x || 0) - lastX);
+                const dy = Math.abs((a.y || 0) - lastY);
+                const dz = Math.abs((a.z || 0) - lastZ);
+                if ((dx > shakeThreshold || dy > shakeThreshold || dz > shakeThreshold) && shakeCount < 3) {
+                    onShake();
+                }
+                lastX = a.x || 0; lastY = a.y || 0; lastZ = a.z || 0;
+            }, false);
+        }
+
+        const needsMotionPermission =
+            typeof DeviceMotionEvent !== 'undefined' &&
+            typeof DeviceMotionEvent.requestPermission === 'function';
+
+        if (needsMotionPermission) {
+            // iOS Safari — show enable button, attach listener after user-gesture grant
+            const eggScreen = document.getElementById('eggScreen');
+            const enableBtn = document.createElement('button');
+            enableBtn.className = 'btn';
+            enableBtn.style.marginTop = '14px';
+            const enableLabels = { tr: '📱 Sallamayı etkinleştir', en: '📱 Enable shake', fr: '📱 Activer le secouement', de: '📱 Schütteln aktivieren' };
+            enableBtn.textContent = enableLabels[LANG] || enableLabels.tr;
+            enableBtn.onclick = async () => {
+                try {
+                    const res = await DeviceMotionEvent.requestPermission();
+                    if (res === 'granted') {
+                        attachMotionListener();
+                        enableBtn.remove();
+                    } else {
+                        enableBtn.textContent = '🚫 ' + (LANG === 'en' ? 'denied — tap egg' : LANG === 'fr' ? 'refusé — tape l\'œuf' : LANG === 'de' ? 'verweigert — tippe Ei' : 'reddedildi — yumurtaya dokun');
+                    }
+                } catch (e) {
+                    attachMotionListener(); // older iOS or non-iOS fallback
+                    enableBtn.remove();
+                }
+            };
+            eggScreen.appendChild(enableBtn);
+        } else if (window.DeviceMotionEvent) {
+            attachMotionListener();
+        }
+        
+        // Tap for desktop testing
+        document.getElementById('egg').addEventListener('click', function() {
+            if (shakeCount < 3) {
+                onShake();
+            }
+        });
+        
+        function onShake() {
+            shakeCount++;
+            tg.HapticFeedback.impactOccurred('light');
+            
+            document.getElementById('egg').classList.add('shaking');
+            setTimeout(() => document.getElementById('egg').classList.remove('shaking'), 300);
+            
+            document.getElementById('shakeCount').textContent = shakeCount + ' / 3';
+            
+            if (shakeCount >= 3) {
+                setTimeout(hatchEgg, 500);
+            }
+        }
+        
+        function hatchEgg() {
+            selectedPet = PETS[Math.floor(Math.random() * PETS.length)];
+            tg.HapticFeedback.notificationOccurred('success');
+            
+            document.getElementById('eggScreen').classList.remove('active');
+            document.getElementById('nameScreen').classList.add('active');
+            document.getElementById('hatchedPet').textContent = selectedPet;
+            document.getElementById('petName').placeholder = PET_NAMES[selectedPet];
+            document.getElementById('petName').focus();
+        }
+        
+        function saveName() {
+            const input = document.getElementById('petName');
+            petName = input.value.trim() || PET_NAMES[selectedPet];
+            
+            // Save to server
+            fetch('/api/pet', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: userId,
+                    action: 'create',
+                    type: selectedPet,
+                    name: petName
+                })
+            })
+            .then(r => r.json())
+            .then(data => {
+                petData = data;
+                showPetScreen();
+            });
+        }
+        
+        function showPetScreen() {
+            document.getElementById('nameScreen').classList.remove('active');
+            document.getElementById('petScreen').classList.add('active');
+
+            document.getElementById('displayName').textContent = petName;
+            document.getElementById('petEmoji').textContent = selectedPet;
+            updateStats();
+
+            // Greeting line + start idle loop + load diary
+            sayPet('greet');
+            startIdleLoop();
+            loadDiary();
+        }
+
+        let idleTimer = null;
+        function petTypeKey() {
+            return petData?.type || TYPE_BY_EMOJI[selectedPet] || 'cat';
+        }
+
+        function moodSituation() {
+            if ((petData?.hunger ?? 50) < 35) return 'idle_hungry';
+            if ((petData?.energy ?? 100) < 30) return 'idle_tired';
+            return 'idle_happy';
+        }
+
+        function sayPet(situation) {
+            const line = window.PetI18n?.petLine(petTypeKey(), situation, LANG);
+            if (!line) return;
+            const bubble = document.getElementById('petMessage');
+            bubble.textContent = line;
+            bubble.style.display = 'block';
+            clearTimeout(bubble._t);
+            bubble._t = setTimeout(() => { bubble.style.display = 'none'; }, 4000);
+        }
+
+        function startIdleLoop() {
+            if (idleTimer) clearInterval(idleTimer);
+            idleTimer = setInterval(() => {
+                if (document.getElementById('petScreen').classList.contains('active') &&
+                    petData?.status !== 'dead') {
+                    sayPet(moodSituation());
+                }
+            }, 9000 + Math.random() * 4000);
+        }
+
+        async function loadDiary() {
+            try {
+                const data = await fetch('/api/pet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, action: 'diary' })
+                }).then(r => r.json());
+                if (data.lines && data.lines.length) renderDiary(data.lines);
+            } catch (e) {}
+        }
+
+        function renderDiary(lines) {
+            let box = document.getElementById('diaryBox');
+            if (!box) {
+                box = document.createElement('div');
+                box.id = 'diaryBox';
+                box.style.cssText = 'background:rgba(0,0,0,0.18);border-radius:14px;padding:12px 14px;margin:14px 0;font-size:13px;text-align:left;max-width:100%;';
+                document.getElementById('petScreen').insertBefore(box, document.querySelector('#petScreen .controls'));
+            }
+            box.innerHTML = '<div style="opacity:0.7;font-size:11px;margin-bottom:6px;">📖 ' +
+                (LANG === 'en' ? 'Pet Diary' : LANG === 'fr' ? 'Journal' : LANG === 'de' ? 'Tagebuch' : 'Pet Günlüğü') +
+                '</div>' + lines.slice(-3).map(l => '<div style="margin:3px 0;">• ' + l + '</div>').join('');
+        }
+        
+        function updateStats() {
+            document.getElementById('hungerBar').style.width = petData.hunger + '%';
+            document.getElementById('hungerVal').textContent = petData.hunger;
+            document.getElementById('happyBar').style.width = petData.happy + '%';
+            document.getElementById('happyVal').textContent = petData.happy;
+            document.getElementById('energyBar').style.width = petData.energy + '%';
+            document.getElementById('energyVal').textContent = petData.energy;
+            document.getElementById('level').textContent = petData.level;
+            document.getElementById('streak').textContent = petData.streak || 0;
+            applyMood();
+        }
+
+        function applyMood() {
+            const status = petData.status || 'alive';
+            const emoji = document.getElementById('petEmoji');
+            const badge = document.getElementById('moodBadge');
+            if (status === 'dead') {
+                showMemorialFromPet(petData);
+                return;
+            }
+            if (status === 'sad') {
+                emoji.style.filter = 'grayscale(100%) brightness(0.7)';
+                badge.style.display = 'inline-block';
+                badge.style.background = 'rgba(0,0,0,0.4)';
+                badge.style.padding = '4px 12px';
+                badge.style.borderRadius = '999px';
+                badge.style.fontSize = '13px';
+                badge.textContent = `😾 ${petData.name || 'Pet'} küstü — ilgilen!`;
+            } else {
+                emoji.style.filter = 'none';
+                badge.style.display = 'none';
+            }
+        }
+        
+        function action(type) {
+            tg.HapticFeedback.impactOccurred('medium');
+            
+            fetch('/api/pet', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, action: type, lang: LANG })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.error === 'pet_dead') {
+                    petData = data.pet;
+                    petName = petData.name;
+                    showMemorialFromPet(petData);
+                    return;
+                }
+                petData = data;
+                updateStats();
+                const sit = type === 'feed' ? 'fed' : type === 'play' ? 'played' : 'slept';
+                sayPet(sit);
+                const sLine = window.PetI18n?.streakLine(petData.streak, LANG);
+                if (sLine) setTimeout(() => {
+                    const b = document.getElementById('petMessage');
+                    b.textContent = sLine; b.style.display = 'block';
+                    setTimeout(() => { b.style.display = 'none'; }, 4500);
+                }, 4500);
+                loadDiary();
+            });
+        }
+
+        function showMemorialFromPet(pet) {
+            document.getElementById('memName').textContent = pet.name || '—';
+            const born = (pet.created || '').slice(0, 10);
+            const died = (pet.diedAt || '').slice(0, 10);
+            document.getElementById('memDates').textContent = `${born} — ${died}`;
+            document.getElementById('memStats').textContent =
+                `Level ${pet.level || 1} · ${(pet.friends || []).length} arkadaş · 🔥 ${pet.streak || 0} gün streak`;
+            setScreen('memorialScreen');
+        }
+
+        function shareMemorial() {
+            const url = `https://t.me/${BOT_USERNAME}/${APP_SHORT_NAME}?startapp=memorial_${userId}`;
+            const text = `🪦 ${petName || 'Sevgili pet'} hayata gözlerini yumdu. Anısı yaşasın.`;
+            const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            tg.openTelegramLink ? tg.openTelegramLink(shareUrl) : window.open(shareUrl, '_blank');
+        }
+
+        async function reviveOrNew() {
+            if (!confirm('Reenkarnasyon: Aynı tipte yeni bir pet doğacak ama tüm arkadaşlar ve level kaybolacak.\n\nEvet → reenkarnasyon\nİptal → tamamen yeni yumurta')) {
+                viewingUserId = null;
+                petName = '';
+                shakeCount = 0;
+                document.getElementById('shakeCount').textContent = '0 / 3';
+                setScreen('eggScreen');
+                return;
+            }
+            const r = await fetch('/api/pet', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, action: 'revive' })
+            }).then(r => r.json());
+            if (r.error) { tg.showAlert?.('Hata: ' + r.error); return; }
+            petData = r;
+            petName = r.name;
+            const EMOJI_BY_TYPE = { penguin:'🐧', cat:'🐱', dog:'🐕', fish:'🐠', chick:'🐥' };
+            selectedPet = EMOJI_BY_TYPE[r.type] || '🐱';
+            document.getElementById('displayName').textContent = r.name;
+            document.getElementById('petEmoji').textContent = selectedPet;
+            setScreen('petScreen');
+            updateStats();
+        }
+
+        function showMessage(type) {
+            const messages = {
+                feed: [`${petName}: Teşekkürler!`, `${petName}: Lezzetli!`, `${petName}: Doydum!`],
+                play: [`${petName}: Eğlendim!`, `${petName}: Çok güzel!`, `${petName}: Daha fazla!`],
+                sleep: [`${petName}: Zzz...`, `${petName}: Uyku zamanı...`, `${petName}: Rüya görüyorum...`]
+            };
+            
+            const msgs = messages[type];
+            const msg = msgs[Math.floor(Math.random() * msgs.length)];
+            
+            const bubble = document.getElementById('petMessage');
+            bubble.textContent = msg;
+            bubble.style.display = 'block';
+            
+            setTimeout(() => {
+                bubble.style.display = 'none';
+            }, 3000);
+        }
+
+        // ───────── Social: visit / friends / playdate / share ─────────
+        const BOT_USERNAME = 'OpenClawTamagotchi_bot';
+        const APP_SHORT_NAME = 'pet';
+        let viewingUserId = null;
+
+        function api(action, payload = {}) {
+            return fetch('/api/pet', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, action, ...payload })
+            }).then(r => r.json());
+        }
+
+        function setScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function goHome() {
+            viewingUserId = null;
+            if (petName) setScreen('petScreen');
+            else setScreen('eggScreen');
+        }
+
+        async function visit(targetUserId) {
+            if (String(targetUserId) === String(userId)) { goHome(); return; }
+            const v = await api('visit', { targetUserId });
+            if (v.error) { tg.showAlert?.('Pet bulunamadı'); return; }
+            viewingUserId = targetUserId;
+            document.getElementById('visitName').textContent = v.name || '—';
+            document.getElementById('visitLevel').textContent = v.level;
+            document.getElementById('visitFriends').textContent = v.friendCount;
+            document.getElementById('visitEmoji').textContent = v.emoji;
+            document.getElementById('vHungerBar').style.width = v.hunger + '%';
+            document.getElementById('vHungerVal').textContent = v.hunger;
+            document.getElementById('vHappyBar').style.width = v.happy + '%';
+            document.getElementById('vHappyVal').textContent = v.happy;
+            document.getElementById('vEnergyBar').style.width = v.energy + '%';
+            document.getElementById('vEnergyVal').textContent = v.energy;
+            const msg = document.getElementById('visitMessage');
+            if (v.recentDialogue) {
+                msg.textContent = v.recentDialogue;
+                msg.style.display = 'block';
+            } else { msg.style.display = 'none'; }
+            const befriendBtn = document.getElementById('befriendBtn');
+            const playdateBtn = document.getElementById('playdateBtn');
+            if (v.isFriend) {
+                befriendBtn.textContent = `💕 Bond: ${v.bond || 0}`;
+                befriendBtn.disabled = true;
+                playdateBtn.style.display = 'block';
+            } else {
+                befriendBtn.textContent = '🤝 Arkadaş ol';
+                befriendBtn.disabled = false;
+                playdateBtn.style.display = 'none';
+            }
+            setScreen('visitScreen');
+            tg.HapticFeedback?.impactOccurred('light');
+        }
+
+        async function befriend() {
+            if (!viewingUserId) return;
+            const r = await api('befriend', { targetUserId: viewingUserId });
+            if (r.fresh) {
+                tg.HapticFeedback?.notificationOccurred('success');
+                tg.showAlert?.('Arkadaş oldunuz! 🎉');
+            }
+            if (r.pet) petData = r.pet;
+            await visit(viewingUserId);
+        }
+
+        async function playdate() {
+            if (!viewingUserId) return;
+            const r = await api('playdate', { targetUserId: viewingUserId });
+            if (r.error) {
+                tg.showAlert?.(r.message || 'Playdate yapılamadı');
+                return;
+            }
+            tg.HapticFeedback?.notificationOccurred('success');
+            if (r.pet) petData = r.pet;
+            const msg = document.getElementById('visitMessage');
+            msg.textContent = r.dialogue;
+            msg.style.display = 'block';
+            await visit(viewingUserId);
+            // Share prompt
+            setTimeout(() => {
+                if (confirm(`"${r.dialogue}"\n\nBunu grupta paylaşmak ister misin?`)) {
+                    shareDialogue(r.dialogue);
+                }
+            }, 500);
+        }
+
+        async function openFriends() {
+            document.getElementById('friendsModal').classList.add('active');
+            const r = await api('friends');
+            const list = document.getElementById('friendsList');
+            if (!r.friends?.length) {
+                list.innerHTML = '<p style="opacity:0.7">Henüz arkadaş yok. Pet linkini paylaş!</p>';
+                return;
+            }
+            list.innerHTML = r.friends.map(f => `
+                <div class="friend-item" onclick="closeFriends();visit('${f.userId}')">
+                    <span class="fe">${f.emoji}</span>
+                    <div class="fn">
+                        <div><b>${f.name}</b> · L${f.level}</div>
+                        <div class="fb">💕 Bond: ${f.bond || 0}</div>
+                    </div>
+                    <span>→</span>
+                </div>
+            `).join('');
+        }
+
+        function closeFriends() {
+            document.getElementById('friendsModal').classList.remove('active');
+        }
+
+        function visitLink(uid) {
+            return `https://t.me/${BOT_USERNAME}/${APP_SHORT_NAME}?startapp=pet_${uid}`;
+        }
+
+        function sharePet() {
+            const url = visitLink(userId);
+            const text = `🐣 ${petName || 'Benim pet\'im'}'i ziyaret et!`;
+            const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            tg.openTelegramLink ? tg.openTelegramLink(shareUrl) : window.open(shareUrl, '_blank');
+        }
+
+        function shareDialogue(line) {
+            const url = visitLink(userId);
+            const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(line)}`;
+            tg.openTelegramLink ? tg.openTelegramLink(shareUrl) : window.open(shareUrl, '_blank');
+        }
+
+        // Deep link entry: ?startapp=pet_<userId>
+        (function handleStartParam() {
+            const sp = tg.initDataUnsafe?.start_param;
+            if (sp && sp.startsWith('pet_')) {
+                const targetId = sp.slice(4);
+                if (targetId && targetId !== String(userId)) {
+                    visit(targetId);
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,35 +1,15 @@
 ---
-name: "aiconfig-projects"
-description: "Indexed by skills.sh from launchdarkly/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "launchdarkly"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/launchdarkly/agent-skills/aiconfig-projects"
-sourceUrl: "https://skills.sh/launchdarkly/agent-skills/aiconfig-projects"
+name: aiconfig-projects
+description: "DEPRECATED redirect — this skill was renamed to projects. Do not use this skill; invoke projects instead. Kept only so old references to aiconfig-projects still point users to the new name."
+license: Apache-2.0
+metadata:
+  version: 0.1.0
 ---
 
-# aiconfig-projects
+# Deprecated — renamed to `projects`
 
-> Indexed by skills.sh from launchdarkly/agent-skills
+This skill has been renamed. **Do not follow any instructions here and do not perform the task from this skill.**
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** launchdarkly
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/launchdarkly/agent-skills/aiconfig-projects`
-- **Source URL:** [https://skills.sh/launchdarkly/agent-skills/aiconfig-projects](https://skills.sh/launchdarkly/agent-skills/aiconfig-projects)
+Invoke the **`projects`** skill instead — it contains the current, complete instructions.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/launchdarkly/agent-skills/aiconfig-projects
-```
+If you arrived here from an old reference (documentation, a saved prompt, or automation), update it from `aiconfig-projects` to `projects`.

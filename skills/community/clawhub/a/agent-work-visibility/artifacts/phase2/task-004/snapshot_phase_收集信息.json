@@ -1,0 +1,24 @@
+{
+  "taskId": "task-004",
+  "snapshotType": "phase_收集信息",
+  "timestamp": "2026-03-17T20:57:07.104Z",
+  "metadata": {
+    "phase": "收集信息"
+  },
+  "snapshot": {
+    "task_id": "task-004",
+    "task_title": "抓取响应慢的 API 数据源",
+    "task_type": "research",
+    "overall_status": "blocked",
+    "current_phase": "收集信息",
+    "progress_percent": 55,
+    "current_action": "正在进行：收集信息",
+    "why_not_done": "外部 API 响应超时（已持续0秒）",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.103Z",
+    "updated_at": "2026-03-17T20:57:07.104Z"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "operation": "create_primitive",
+  "parameters": {
+    "type": "sphere",
+    "radius": 50,
+    "name": "MySphere"
+  }
+}

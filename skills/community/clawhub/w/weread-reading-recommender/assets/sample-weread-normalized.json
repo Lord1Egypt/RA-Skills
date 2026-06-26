@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-03-19T09:08:30Z",
+  "source_file": "assets/sample-weread-raw.json",
+  "summary": {
+    "total_books": 3,
+    "status_counts": {
+      "finished": 1,
+      "reading": 1,
+      "unread": 1
+    },
+    "top_categories": [
+      {
+        "name": "思维",
+        "books": 2,
+        "weighted_score": 139.0
+      },
+      {
+        "name": "创业",
+        "books": 1,
+        "weighted_score": 100.0
+      },
+      {
+        "name": "写作",
+        "books": 1,
+        "weighted_score": 39.0
+      },
+      {
+        "name": "投资",
+        "books": 1,
+        "weighted_score": 0.0
+      },
+      {
+        "name": "认知",
+        "books": 1,
+        "weighted_score": 0.0
+      }
+    ],
+    "top_book_lists": [
+      {
+        "name": "方法论",
+        "books": 2,
+        "weighted_score": 139.0
+      },
+      {
+        "name": "金融",
+        "books": 1,
+        "weighted_score": 0.0
+      }
+    ],
+    "imported_vs_native": {
+      "imported": 1,
+      "native": 2
+    }
+  },
+  "profile_inputs": {
+    "highest_engagement_books": [
+      {
+        "book_id": "book_1",
+        "title": "纳瓦尔宝典",
+        "author": "埃里克·乔根森",
+        "status": "finished",
+        "progress": 100.0,
+        "engagement_score": 100.0,
+        "last_read_at": "2026-03-19T10:40:00Z",
+        "categories": [
+          "创业",
+          "思维"
+        ]
+      },
+      {
+        "book_id": "book_2",
+        "title": "金字塔原理",
+        "author": "芭芭拉·明托",
+        "status": "reading",
+        "progress": 42.0,
+        "engagement_score": 39.0,
+        "last_read_at": "2026-03-20T10:40:00Z",
+        "categories": [
+          "写作",
+          "思维"
+        ]
+      },
+      {
+        "book_id": "CB_book_3",
+        "title": "The Psychology of Money",
+        "author": "Morgan Housel",
+        "status": "unread",
+        "progress": 0.0,
+        "engagement_score": 0.0,
+        "last_read_at": null,
+        "categories": [
+          "投资",
+          "认知"
+        ]
+      }
+    ],
+    "recent_books": [
+      {
+        "book_id": "book_2",
+        "title": "金字塔原理",
+        "author": "芭芭拉·明托",
+        "status": "reading",
+        "progress": 42.0,
+        "engagement_score": 39.0,
+        "last_read_at": "2026-03-20T10:40:00Z",
+        "categories": [
+          "写作",
+          "思维"
+        ]
+      },
+      {
+        "book_id": "book_1",
+        "title": "纳瓦尔宝典",
+        "author": "埃里克·乔根森",
+        "status": "finished",
+        "progress": 100.0,
+        "engagement_score": 100.0,
+        "last_read_at": "2026-03-19T10:40:00Z",
+        "categories": [
+          "创业",
+          "思维"
+        ]
+      }
+    ],
+    "unfinished_books_with_momentum": [
+      {
+        "book_id": "book_2",
+        "title": "金字塔原理",
+        "author": "芭芭拉·明托",
+        "status": "reading",
+        "progress": 42.0,
+        "engagement_score": 39.0,
+        "last_read_at": "2026-03-20T10:40:00Z",
+        "categories": [
+          "写作",
+          "思维"
+        ]
+      }
+    ]
+  },
+  "llm_hints": [
+    "最近阅读重心偏向：思维, 写作, 创业。",
+    "高互动书主要集中在：创业, 思维。",
+    "完读率较高的类型包括：创业, 思维。",
+    "当前有 1 本书处于在读状态，可优先判断是否续读。",
+    "书架里有 1 本导入书，推荐时注意区分导入来源与原生微信读书书籍。"
+  ],
+  "books": [
+    {
+      "book_id": "book_1",
+      "title": "纳瓦尔宝典",
+      "author": "埃里克·乔根森",
+      "translator": "",
+      "categories": [
+        "创业",
+        "思维"
+      ],
+      "book_lists": [
+        "方法论"
+      ],
+      "status": "finished",
+      "is_finished": true,
+      "progress": 100.0,
+      "reading_time_seconds": 28800,
+      "last_read_at": "2026-03-19T10:40:00Z",
+      "note_count": 5,
+      "bookmark_count": 18,
+      "review_count": 2,
+      "interaction_count": 25,
+      "engagement_score": 100.0,
+      "is_imported": false,
+      "is_paid": true,
+      "public_rating": 9.2,
+      "intro": "一本关于财富、杠杆和人生选择的现代格言集。"
+    },
+    {
+      "book_id": "book_2",
+      "title": "金字塔原理",
+      "author": "芭芭拉·明托",
+      "translator": "",
+      "categories": [
+        "写作",
+        "思维"
+      ],
+      "book_lists": [
+        "方法论"
+      ],
+      "status": "reading",
+      "is_finished": false,
+      "progress": 42.0,
+      "reading_time_seconds": 10800,
+      "last_read_at": "2026-03-20T10:40:00Z",
+      "note_count": 2,
+      "bookmark_count": 4,
+      "review_count": 0,
+      "interaction_count": 6,
+      "engagement_score": 39.0,
+      "is_imported": false,
+      "is_paid": true,
+      "public_rating": 8.9,
+      "intro": "结构化表达与思考训练经典。"
+    },
+    {
+      "book_id": "CB_book_3",
+      "title": "The Psychology of Money",
+      "author": "Morgan Housel",
+      "translator": "",
+      "categories": [
+        "投资",
+        "认知"
+      ],
+      "book_lists": [
+        "金融"
+      ],
+      "status": "unread",
+      "is_finished": false,
+      "progress": 0.0,
+      "reading_time_seconds": 0,
+      "last_read_at": null,
+      "note_count": 0,
+      "bookmark_count": 0,
+      "review_count": 0,
+      "interaction_count": 0,
+      "engagement_score": 0.0,
+      "is_imported": true,
+      "is_paid": false,
+      "public_rating": 9.1,
+      "intro": "Timeless lessons on wealth, greed, and happiness."
+    }
+  ]
+}

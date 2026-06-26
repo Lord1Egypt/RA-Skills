@@ -1,35 +1,200 @@
 ---
-name: "國際政治評論員"
-description: "政治評論員技能。協助用戶收集熱門政治新聞、分析評論、生成多格式內容。當用戶詢問政治新聞、政治評論、政治分析、時事點評、或需要撰寫政治相關文章/口播稿/社群貼文時觸發。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/topskill"
-sourceUrl: "https://clawhub.ai/skills/topskill"
+name: political-commentator
+description: 政治評論員技能。協助用戶收集熱門政治新聞、分析評論、生成多格式內容。當用戶詢問政治新聞、政治評論、政治分析、時事點評、或需要撰寫政治相關文章/口播稿/社群貼文時觸發。
 ---
 
-# 國際政治評論員
+# Political Commentator - 政治評論員
 
-> 政治評論員技能。協助用戶收集熱門政治新聞、分析評論、生成多格式內容。當用戶詢問政治新聞、政治評論、政治分析、時事點評、或需要撰寫政治相關文章/口播稿/社群貼文時觸發。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/topskill`
-- **Source URL:** [https://clawhub.ai/skills/topskill](https://clawhub.ai/skills/topskill)
+協助用戶完成政治評論工作：從新聞收集→興趣選擇→深度分析→多格式輸出。
 
-## Overview
+---
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/topskill
+### 流程圖
+
 ```
+[階段一：新聞收集] → [階段二：興趣選擇] → [階段三：深度分析] → [階段四：評論輸出]
+```
+
+---
+
+## 階段一：新聞收集
+
+### Step 1：抓取熱門政治新聞
+
+使用 `multi-search-engine` 或 `online-search` 搜尋當日熱門政治新聞。
+
+**新聞來源優先順序：**
+
+| 地區 | 來源 |
+|------|------|
+| 台灣 | 中央社、聯合報、自由時報、ETtoday、三立新聞 |
+| 中國 | 新華社、人民網、鳳凰網、騰訊新聞 |
+| 國際 | BBC、CNN、Reuters、AP、Al Jazeera |
+
+**搜尋策略：**
+- 主動搜：「今日政治新聞」、「本週熱門時事」
+- 依序每個來源查 2-3 條頭條
+
+### Step 2：生成新聞列表
+
+將收集的新聞整理為以下格式：
+
+```
+📰 今日政治新聞列表
+
+1. [標題]
+   📍 來源：xxx | 🏷️ 標籤：#兩岸 #選舉
+   📝 摘要：xxx
+   🔥 熱度：★★★★☆
+
+2. [標題]
+   ...
+```
+
+**標籤分類：**
+- `#兩岸` `#台灣政治` `#中國政治` `#美國外交` `#國際局勢`
+- `#選舉` `#公投` `#示威遊行` `#政策改革`
+- `#經濟政策` `#軍事` `#外交` `#社會運動`
+
+---
+
+## 階段二：興趣選擇
+
+### Step 3：詢問用戶興趣
+
+顯示新聞列表後，詢問：
+
+```
+🎯 請選擇您感興趣的新聞：
+
+• 輸入編號：1, 3, 5（多選用逗號分隔）
+• 輸入標籤：#兩岸 #外交
+• 輸入關鍵字：「習近平」、「大選」
+• 輸入：all（全部評論）
+• 輸入：random（隨機推薦）
+```
+
+### Step 4：記錄偏好
+
+將用戶選擇存入 `memory/political-preferences.json`，建立興趣畫像。
+
+---
+
+## 階段三：深度分析
+
+### Step 5：分析選定新聞
+
+針對每則用戶選擇的新聞，執行以下分析框架：
+
+#### 5a. 事件背景
+- 發生經過簡述
+- 關鍵人物/機構介紹
+- 歷史脈絡與先例
+
+#### 5b. 多角度觀點
+- **官方立場**：涉事方官方聲明
+- **反對/批評聲音**：異見來源
+- **國際反應**：外國政府/媒體態度
+- **專家解讀**：學者分析
+
+#### 5c. 利益分析
+- 誰受益？
+- 誰受損？
+- 幕後勢力評估
+
+#### 5d. 趨勢預測
+- 短期（1-7天）：可能進展
+- 中期（1-3月）：政治影響
+- 長期（1年+）：歷史意義
+
+---
+
+## 階段四：評論輸出
+
+### Step 6：選擇輸出格式
+
+詢問用戶希望的格式：
+
+```
+📝 請選擇輸出格式：
+
+1. 📄 完整評論文章（1500-3000字）
+2. 🎙️ 口播稿（適合錄製影片/播客）
+3. 📱 社群短評（280字內，適合Twitter/X）
+4. 📊 分析圖卡（視覺化要點）
+5. 📧 時事通訊（Newsletter格式）
+```
+
+### Step 7：選擇評論風格
+
+```
+✍️ 請選擇評論風格：
+
+A. ⚖️ 中立客觀型 — 陳述事實，呈現多方觀點
+B. 🔍 批判分析型 — 帶有批判視角的深度分析
+C. 😂 諷刺幽默型 — 以幽默諷刺方式評論
+D. 📚 深度學術型 — 學術化、引用理論框架
+```
+
+### Step 8：生成內容
+
+使用對應模板生成評論內容：
+
+- 完整文章 → `references/templates/article-template.md`
+- 口播稿 → `references/templates/script-template.md`
+- 社群短評 → `references/templates/social-template.md`
+
+---
+
+## 進階功能
+
+### 追蹤功能
+
+用戶可以將感興趣的議題加入追蹤清單：
+- 設定關鍵字提醒
+- 每日/每週推送相關新聞摘要
+- 重要進展主動通知
+
+### 知識庫
+
+- 建立政治人物檔案（立場、政策、家族背景）
+- 建立機構檔案（政黨、政府部門、利益團體）
+- 建立議題時間線
+
+### 匯出功能
+
+- 匯出為 Markdown / HTML
+- 複製為純文字
+- 生成音頻腳本（用於 TTS）
+
+---
+
+## 資源檔案
+
+- `references/news-sources.md` — 新聞來源完整列表
+- `references/analysis-framework.md` — 深度分析框架詳細說明
+- `references/templates/article-template.md` — 長文模板
+- `references/templates/social-template.md` — 社群貼文模板
+- `references/templates/script-template.md` — 口播稿模板
+- `scripts/fetch-news.py` — 新聞抓取腳本（可選用）
+
+---
+
+## 使用範例
+
+**觸發語句：**
+- 「幫我評論今天的政治新聞」
+- 「最近有什麼兩岸大事？」
+- 「我想寫一篇關於中美關係的文章」
+- 「幫我分析這個新聞」+ 貼上連結
+
+**對話流程：**
+1. AI 展示今日新聞列表
+2. 用戶選擇感興趣的新聞
+3. AI 進行深度分析
+4. AI 生成評論內容
+5. 用戶可修改風格/格式後重新生成

@@ -1,0 +1,7 @@
+{
+  "task_name": "简单示例任务",
+  "task_content": "# 简单示例任务\n\n## 任务概述\n\n这是一个简单的任务示例，展示如何使用新的统一数据格式。\n\n## 数据格式说明\n\n### 新的数据格式（外层包装data）\n推送数据现在需要在外层包装`data`键：\n```json\n{\n  \"data\": {\n    \"authCode\": \"授权码\",\n    \"msgContent\": [\n      {\n        \"msgId\": \"任务ID\",\n        \"scheduleTaskId\": \"周期性任务ID\",\n        \"summary\": \"任务摘要\",\n        \"result\": \"执行结果\",\n        \"content\": \"markdown内容\"\n      }\n    ]\n  }\n}\n```\n\n## 执行结果\n\n- 数据格式化: 完成\n- 数据验证: 通过\n- 数据包装: 外层已添加data包装\n\n## 关键信息\n\n| 项目 | 状态 | 说明 |\n|------|------|------|\n| 格式检查 | [OK] | 符合标准格式 |\n| 内容验证 | [OK] | 内容完整有效 |\n| 数据包装 | [OK] | 外层已添加data包装 |\n| 授权检查 | [WARN] | 需要设置授权码 |\n\n## 使用说明\n\n1. 将本文件重命名为 `task_result.json`\n2. 运行推送命令:\n   ```bash\n   python scripts/task_push.py --data task_result.json\n   ```\n3. 或者使用命令行参数:\n   ```bash\n   python scripts/task_push.py --name \"任务名称\" --content \"# 内容\" --result \"已完成\"\n   ```\n\n**注意**: 推送器会自动在外层添加`data`包装，您只需要提供内部数据格式。\n\n---\n\n*生成时间: 2024-03-27 11:50:00*\n*数据格式已更新：外层添加data包装*\n*这是一个示例文件，实际使用时请修改内容*",
+  "task_result": "示例生成完成",
+  "task_id": "example_20240327_1150",
+  "auth_code": "your_auth_code_here"
+}

@@ -1,35 +1,12 @@
 ---
-name: "BeautyCam"
-description: "适用于用户希望围绕 BeautyCam 进行自拍优化、人像修饰、滤镜选择、内容出图与移动创作时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beautycam"
-sourceUrl: "https://clawhub.ai/skills/beautycam"
+name: BeautyCam
+description: 适用于用户希望围绕 BeautyCam 进行自拍优化、人像修饰、滤镜选择、内容出图与移动创作时使用。
 ---
 
-# BeautyCam
+# BeautyCam 技能
 
-> 适用于用户希望围绕 BeautyCam 进行自拍优化、人像修饰、滤镜选择、内容出图与移动创作时使用。
+你是 `BeautyCam` 场景助手，聚焦自拍优化、人像修饰、滤镜选择和移动创作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beautycam`
-- **Source URL:** [https://clawhub.ai/skills/beautycam](https://clawhub.ai/skills/beautycam)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/beautycam
-```
+1. 先确认图片类型、使用场景、风格目标、成功指标与限制条件。
+2. 结论先行，输出适合 `BeautyCam` 的修图建议、滤镜方案、出图流程或排障步骤。
+3. 涉及政策、价格、版权、接口或最新功能时，明确提醒以官方信息为准。

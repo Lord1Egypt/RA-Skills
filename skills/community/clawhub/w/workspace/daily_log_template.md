@@ -1,0 +1,69 @@
+# Jira Work Log - {{DATE}}
+
+## Summary
+**Date:** {{DATE}}
+**Total Time:** {{TOTAL_TIME}}
+**Issues Worked On:** {{ISSUE_COUNT}}
+
+---
+
+## Morning Session ({{MORNING_START}} - {{MORNING_END}})
+
+### Issues Worked
+- **{{ISSUE_1}}**: {{TIME_1}} - {{DESCRIPTION_1}}
+- **{{ISSUE_2}}**: {{TIME_2}} - {{DESCRIPTION_2}}
+
+### Notes
+{{MORNING_NOTES}}
+
+---
+
+## Afternoon Session ({{AFTERNOON_START}} - {{AFTERNOON_END}})
+
+### Issues Worked
+- **{{ISSUE_3}}**: {{TIME_3}} - {{DESCRIPTION_3}}
+- **{{ISSUE_4}}**: {{TIME_4}} - {{DESCRIPTION_4}}
+
+### Notes
+{{AFTERNOON_NOTES}}
+
+---
+
+## End of Day Summary
+
+### Accomplishments
+1. {{ACCOMPLISHMENT_1}}
+2. {{ACCOMPLISHMENT_2}}
+3. {{ACCOMPLISHMENT_3}}
+
+### Blockers/Issues
+- {{BLOCKER_1}}
+- {{BLOCKER_2}}
+
+### Tomorrow's Plan
+1. {{TOMORROW_TASK_1}}
+2. {{TOMORROW_TASK_2}}
+3. {{TOMORROW_TASK_3}}
+
+---
+
+## Jira Time Entries Made Today
+- [ ] {{ISSUE_1}}: {{TIME_1}} - {{DESCRIPTION_1}}
+- [ ] {{ISSUE_2}}: {{TIME_2}} - {{DESCRIPTION_2}}
+- [ ] {{ISSUE_3}}: {{TIME_3}} - {{DESCRIPTION_3}}
+- [ ] {{ISSUE_4}}: {{TIME_4}} - {{DESCRIPTION_4}}
+
+## Quick Commands
+```bash
+# Test connection
+./jira_log.sh test
+
+# List recent issues
+./jira_log.sh list
+
+# Log work quickly
+./jira_log.sh log
+
+# Create today's log file
+./create_daily_log.sh
+```

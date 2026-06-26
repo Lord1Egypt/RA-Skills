@@ -1,35 +1,172 @@
----
-name: "fco-monitor"
-description: "自动监控FC Online官网最新活动，定时抓取26TOTY、TY礼包、赛季卡及版本更新并智能通知用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fco-monitor"
-sourceUrl: "https://clawhub.ai/skills/fco-monitor"
----
+# FC Online官网监控Skill
 
-# fco-monitor
+## 概述
+这是一个专门用于监控FC Online（足球在线4）官网活动的自动化Skill。它会定期检查官网最新活动，并在发现新活动时通知用户。
 
-> 自动监控FC Online官网最新活动，定时抓取26TOTY、TY礼包、赛季卡及版本更新并智能通知用户。
+## 适用场景
+当用户需要：
+1. 监控FC Online官网最新活动
+2. 获取26TOTY/TOTYN赛季卡信息
+3. 跟踪TY礼包更新
+4. 了解赛季卡运营策略
+5. 获取游戏版本更新信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fco-monitor`
-- **Source URL:** [https://clawhub.ai/skills/fco-monitor](https://clawhub.ai/skills/fco-monitor)
+## 核心功能
 
-## Overview
+### 1. 官网内容获取
+- 访问 `https://fco.qq.com/main.shtml` 获取最新官网内容
+- 解析新闻列表，提取最新活动信息
+- 重点关注：26TOTY/TOTYN、TY礼包、赛季卡、版本更新
 
+### 2. 定时监控
+- 支持设置定时检查任务
+- 默认：每天8:00-23:00整点检查
+- 可自定义检查频率和时间范围
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 智能通知
+- **有新活动**：总结关键信息（活动名称、时间、内容、奖励）
+- **无新活动**：保持安静，不打扰用户
+- **重要活动**：特别标注（如绝版礼包、限时折扣）
+
+## 使用方法
+
+### 基本监控设置
 ```bash
-hermes skills install clawhub/fco-monitor
+# 设置每天8:00-23:00整点检查
+fco-monitor setup --start 8 --end 23 --interval 60
 ```
+
+### 手动立即检查
+```bash
+# 立即检查官网最新活动
+fco-monitor check-now
+```
+
+### 查看监控状态
+```bash
+# 查看当前监控任务状态
+fco-monitor status
+```
+
+### 停止监控
+```bash
+# 停止所有监控任务
+fco-monitor stop
+```
+
+## 技术实现
+
+### 1. 内容获取策略
+- 使用curl直接获取HTML内容
+- 解析GBK编码（官网使用GBK编码）
+- 提取新闻标题、发布时间、链接
+- 过滤重复内容，只关注新活动
+
+### 2. 活动识别逻辑
+- **关键词匹配**：26TOTY、TOTYN、TY礼包、绝版、赛季
+- **时间判断**：发布时间在最近24小时内
+- **优先级排序**：绝版活动 > 限时折扣 > 常规活动
+
+### 3. 通知格式
+```
+🎯 【FC Online新活动通知】
+📅 活动时间：2026-03-20 至 2026-03-31
+💰 活动类型：26TOTY绝版礼包
+🎁 核心奖励：26TY/TYN赛季BEST1人9强球员包
+⏰ 限时优惠：3月20日-3月31日折扣阶段
+🔗 详情链接：https://fco.qq.com/...
+```
+
+## 配置选项
+
+### 时间配置
+```yaml
+monitor:
+  start_hour: 8      # 开始检查时间（24小时制）
+  end_hour: 23       # 结束检查时间
+  interval_minutes: 60 # 检查间隔（分钟）
+```
+
+### 通知配置
+```yaml
+notification:
+  enabled: true      # 是否启用通知
+  only_new: true     # 只在新活动时通知
+  format: "detailed" # 通知格式：simple/detailed
+```
+
+### 关键词配置
+```yaml
+keywords:
+  high_priority:    # 高优先级关键词
+    - "26TOTY"
+    - "绝版"
+    - "TY礼包"
+    - "限时折扣"
+  normal_priority:  # 普通优先级关键词
+    - "赛季"
+    - "活动"
+    - "更新"
+    - "公告"
+```
+
+## 示例场景
+
+### 场景1：监控26TOTY绝版活动
+用户想知道26TOTY绝版礼包何时上线，设置监控后：
+- 3月20日8:00自动检查发现新活动
+- 立即通知用户26TOTY绝版活动详情
+- 提醒限时折扣阶段（3月20日-31日）
+
+### 场景2：跟踪TY礼包更新
+用户想了解TY礼包第4期何时上线：
+- 监控发现"TY礼包第3期"今日结束
+- 预测第4期可能明天上线
+- 设置重点关注，第一时间通知
+
+### 场景3：赛季卡策略分析
+用户想了解26ty赛季卡运营策略：
+- 分析版本更新页面内容
+- 总结分层放卡、现实表现联动等策略
+- 提供运营规律分析报告
+
+## 故障处理
+
+### 常见问题
+1. **官网无法访问**：重试3次，间隔5秒
+2. **编码解析错误**：尝试多种编码方式
+3. **内容提取失败**：使用备用解析策略
+
+### 日志记录
+- 每次检查记录到日志文件
+- 包含：检查时间、结果状态、发现的活动数量
+- 日志路径：`/tmp/fco-monitor-YYYY-MM-DD.log`
+
+## 安装说明
+
+### 自动安装
+```bash
+# 从技能库安装
+skill install fco-monitor
+```
+
+### 手动安装
+1. 将本Skill目录复制到OpenClaw的skills目录
+2. 重启OpenClaw网关
+3. 验证安装：`skill list | grep fco-monitor`
+
+## 更新历史
+- v1.0.0 (2026-03-19)：初始版本，支持基本监控功能
+- v1.1.0 (计划)：增加活动预测功能
+- v1.2.0 (计划)：支持多官网监控
+
+## 注意事项
+1. 官网内容可能动态加载，需要定期更新解析策略
+2. 活动发布时间可能不固定，建议设置较频繁的检查
+3. 重要活动建议设置特别关注关键词
+
+---
+
+**维护者**：OpenClaw助手  
+**最后更新**：2026-03-19  
+**版本**：v1.0.0

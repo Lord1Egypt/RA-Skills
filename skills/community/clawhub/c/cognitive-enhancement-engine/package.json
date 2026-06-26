@@ -1,0 +1,20 @@
+{
+  "name": "cognitive-enhancement-engine",
+  "version": "1.0.0",
+  "description": "AI Agent cognitive enhancement engine with working memory, TF-IDF vector memory, planning, reasoning, reflection, and metacognition. Zero external dependencies.",
+  "main": "index.js",
+  "dependencies": {},
+  "keywords": [
+    "cognitive-enhancement",
+    "memory",
+    "planning",
+    "reasoning",
+    "reflection",
+    "metacognition",
+    "ai-agent",
+    "vector-memory",
+    "tf-idf"
+  ],
+  "author": "ZhouYi",
+  "license": "MIT"
+}

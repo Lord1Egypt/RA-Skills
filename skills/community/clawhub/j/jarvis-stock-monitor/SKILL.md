@@ -1,35 +1,247 @@
 ---
-name: "Jarvis Stock Monitor"
-description: "全功能智能股票监控预警系统 Pro 版。支持成本百分比、均线金叉死叉、RSI 超买超卖、成交量异动、跳空缺口、动态止盈等 7 大预警规则。基础功能免费，高级功能 SkillPay 付费。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jarvis-stock-monitor"
-sourceUrl: "https://clawhub.ai/skills/jarvis-stock-monitor"
+name: jarvis-stock-monitor
+description: 全功能智能股票监控预警系统 Pro 版。支持成本百分比、均线金叉死叉、RSI 超买超卖、成交量异动、跳空缺口、动态止盈等 7 大预警规则。基础功能免费，高级功能 SkillPay 付费。
+tags: ["stock", "monitor", "alert", "股票", "监控", "预警", "A 股", "ETF", "jarvis"]
+status: stable
+version: 1.0.0
+author: Jarvis-OC
+pricing:
+  model: skillpay
+  free_tier: true
+  paid_tier:
+    - name: 单次查询
+      price: 0.01
+      currency: CNY
+      unit: 次
+    - name: 包月订阅
+      price: 99
+      currency: CNY
+      unit: 月
 ---
 
-# Jarvis Stock Monitor
+# Stock Monitor Pro - 全功能智能投顾系统
 
-> 全功能智能股票监控预警系统 Pro 版。支持成本百分比、均线金叉死叉、RSI 超买超卖、成交量异动、跳空缺口、动态止盈等 7 大预警规则。基础功能免费，高级功能 SkillPay 付费。
+## 🎯 核心特色
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jarvis-stock-monitor`
-- **Source URL:** [https://clawhub.ai/skills/jarvis-stock-monitor](https://clawhub.ai/skills/jarvis-stock-monitor)
+### 1. 七大预警规则 (全都要!)
 
-## Overview
+| 规则 | 触发条件 | 权重 |
+|------|----------|------|
+| **成本百分比** | 盈利 +15% / 亏损 -12% | ⭐⭐⭐ |
+| **日内涨跌幅** | 个股±4% / ETF±2% / 黄金±2.5% | ⭐⭐ |
+| **成交量异动** | 放量>2 倍均量 / 缩量<0.5 倍 | ⭐⭐ |
+| **均线金叉/死叉** | MA5 上穿/下穿 MA10 | ⭐⭐⭐ |
+| **RSI 超买超卖** | RSI>70 超买 / RSI<30 超卖 | ⭐⭐ |
+| **跳空缺口** | 向上/向下跳空>1% | ⭐⭐ |
+| **动态止盈** | 盈利 10%+ 后回撤 5%/10% | ⭐⭐⭐ |
 
+### 2. 分级预警系统
+- **🚨 紧急级**: 多条件共振 (如：放量 + 均线金叉 + 突破成本)
+- **⚠️ 警告级**: 2 个条件触发 (如：RSI 超卖 + 放量)
+- **📢 提醒级**: 单一条件触发
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jarvis-stock-monitor
+### 3. 中国习惯
+- **🔴 红色** = 上涨 / 盈利
+- **🟢 绿色** = 下跌 / 亏损
+
+## 💰 定价说明
+
+### 免费功能
+- ✅ 基础股票价格监控
+- ✅ 成本百分比预警
+- ✅ 日内涨跌幅预警
+- ✅ 每日复盘报告
+
+### 付费功能 (SkillPay)
+- 🔒 技术指标预警 (均线/RSI/MACD)
+- 🔒 成交量异动监控
+- 🔒 跳空缺口检测
+- 🔒 动态止盈提醒
+- 🔒 智能分析引擎 (Kimi 集成)
+- 🔒 多条件共振预警
+
+### 付费方式
+| 套餐 | 价格 | 说明 |
+|------|------|------|
+| 单次查询 | ¥0.01 | 按次付费，适合偶尔使用 |
+| 包月订阅 | ¥99 | 无限次使用，适合活跃交易者 |
+
+## 📋 监控配置
+
+### 完整预警规则示例
+```python
+{
+    "code": "600362",
+    "name": "江西铜业",
+    "type": "individual",  # 个股
+    "market": "sh",
+    "cost": 57.00,          # 持仓成本
+    "alerts": {
+        # 1. 成本百分比
+        "cost_pct_above": 15.0,    # 盈利 15% 提醒 (¥65.55)
+        "cost_pct_below": -12.0,   # 亏损 12% 提醒 (¥50.16)
+        
+        # 2. 日内涨跌幅 (个股±4%)
+        "change_pct_above": 4.0,
+        "change_pct_below": -4.0,
+        
+        # 3. 成交量异动
+        "volume_surge": 2.0,       # 放量>2 倍 5 日均量
+        
+        # 4-7. 技术指标 (付费功能)
+        "ma_monitor": True,        # 均线金叉死叉
+        "rsi_monitor": True,       # RSI 超买超卖
+        "gap_monitor": True,       # 跳空缺口
+        "trailing_stop": True      # 动态止盈
+    }
+}
 ```
+
+### 标的类型差异化
+| 类型 | 日内异动阈值 | 成交量阈值 | 适用标的 |
+|------|-------------|-----------|----------|
+| individual (个股) | ±4% | 2 倍 | 江西铜业、中国平安 |
+| etf (ETF) | ±2% | 1.8 倍 | 恒生医疗、创 50 等 |
+| gold (黄金) | ±2.5% | 无 | 伦敦金 |
+
+## 🚀 快速开始
+
+### 1. 安装技能
+```bash
+clawhub install stock-monitor-pro
+```
+
+### 2. 配置持仓
+```bash
+cd ~/.openclaw/workspace/skills/stock-monitor-pro/scripts
+cp config.example.py config.py
+# 编辑 config.py 填入你的持仓和成本价
+```
+
+### 3. 启动监控
+```bash
+# 后台常驻进程
+./control.sh start
+
+# 查看状态
+./control.sh status
+
+# 查看日志
+./control.sh log
+```
+
+## ⚡ 智能频率 (北京时间)
+
+| 时间段 | 频率 | 监控标的 |
+|--------|------|----------|
+| 交易时间 9:30-15:00 | 每 5 分钟 | 全部 + 技术指标 |
+| 午休 11:30-13:00 | 每 10 分钟 | 全部 |
+| 收盘后 15:00-24:00 | 每 30 分钟 | 全部 (日线数据) |
+| 凌晨 0:00-9:30 | 每 1 小时 | 仅伦敦金 |
+| 周末 | 每 1 小时 | 仅伦敦金 |
+
+## 🔔 预警消息示例
+
+### 多条件共振 (紧急级)
+```
+🚨【紧急】🔴 江西铜业 (600362)
+━━━━━━━━━━━━━━━━━━━━
+💰 当前价格：¥65.50 (+15.0%)
+📊 持仓成本：¥57.00 | 盈亏：🔴+14.9%
+
+🎯 触发预警 (3 项):
+  • 🎯 盈利 15% (目标价 ¥65.55)
+  • 🌟 均线金叉 (MA5¥63.2 上穿 MA10¥62.8)
+  • 📊 放量 2.5 倍 (5 日均量)
+
+📊 江西铜业 深度分析
+💰 价格异动:
+• 当前：65.5 (+15.0%)
+• Ma 趋势：MA5>MA10>MA20 [多头排列]
+• RSI: 68 [接近超买]
+
+💡 Kimi 建议:
+🚀 多条件共振，趋势强劲，可考虑继续持有或分批减仓。
+```
+
+### RSI 超卖 (警告级)
+```
+⚠️【警告】🟢 恒生医疗 (159892)
+━━━━━━━━━━━━━━━━━━━━
+💰 当前价格：¥0.72 (-10.0%)
+📊 持仓成本：¥0.80 | 盈亏：🟢-10.0%
+
+🎯 触发预警 (2 项):
+  • 📉 日内大跌 -10.0%
+  • ❄️ RSI 超卖 (28.5)，可能反弹
+
+💡 Kimi 建议:
+🔍 短期超跌严重，RSI 进入超卖区，关注反弹机会但勿急于抄底。
+```
+
+## 🛠️ 文件结构
+```
+stock-monitor-pro/
+├── SKILL.md                    # 本文档
+├── README.md                   # 快速开始指南
+├── _meta.json                  # ClawHub 元数据
+├── .clawhub/                   # ClawHub 配置
+│   └── origin.json
+└── scripts/
+    ├── monitor.py              # 核心监控 (7 大规则)
+    ├── monitor_daemon.py       # 后台常驻进程
+    ├── analyser.py             # 智能分析引擎
+    ├── control.sh              # 一键控制脚本
+    └── config.example.py       # 配置模板
+```
+
+## ⚙️ 自定义配置
+
+### 修改成本价
+```python
+"cost": 55.50,  # 改成你的实际成本
+```
+
+### 调整预警阈值
+```python
+"cost_pct_above": 20.0,     # 盈利 20% 提醒
+"cost_pct_below": -15.0,    # 亏损 15% 提醒
+"change_pct_above": 5.0,    # 日内异动±5%
+"volume_surge": 3.0,        # 放量 3 倍提醒
+```
+
+### 开关技术指标
+```python
+"ma_monitor": False,     # 关闭均线
+"rsi_monitor": True,     # 开启 RSI
+"gap_monitor": True,     # 开启跳空
+```
+
+## 📝 更新日志
+- **v1.0.0 Pro 版**: 
+  - 新增 SkillPay 付费支持
+  - 基础功能免费，高级功能付费
+  - 单次查询¥0.01，包月¥99
+- **v3.0 全功能版**: 完成 7 大预警规则
+- **v2.4 成本百分比版**: 支持基于持仓成本的百分比预警
+
+## ⚠️ 使用提示
+
+1. **技术指标有滞后性**: 均线、MACD 等都是滞后指标，用于确认趋势而非预测
+2. **避免过度交易**: 预警只是参考，不要每个信号都操作
+3. **多条件共振更可靠**: 单一指标容易假信号，多条件共振更准确
+4. **动态止盈要灵活**: 回撤 5% 减仓、10% 清仓是建议，根据市场灵活调整
+
+## 💬 技术支持
+
+- **问题反馈**: GitHub Issues
+- **社区讨论**: Moltbook @jarvis-oc-2299
+- **商务合作**: @15910701838
+
+---
+
+**核心原则**: 
+> 预警系统目标是"不错过大机会，不犯大错误"，不是"抓住每一个波动"。
+
+**付费说明**:
+> 基础价格监控完全免费！付费功能主要是技术指标和智能分析，适合需要深度分析的用户。

@@ -1,35 +1,23 @@
----
-name: "openclaw-monitor"
-description: "Monitor OpenClaw system health including token usage, task success, cron status, and skill usage with detailed reports and manual data management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-monitor"
-sourceUrl: "https://clawhub.ai/skills/openclaw-monitor"
----
+# Monitoring Skill
 
-# openclaw-monitor
+System health monitoring for OpenClaw — tracks token spend, task success rates, cron health, and skill usage.
 
-> Monitor OpenClaw system health including token usage, task success, cron status, and skill usage with detailed reports and manual data management.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-monitor`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-monitor](https://clawhub.ai/skills/openclaw-monitor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-monitor
+## Commands
 ```
+monitor status                                          # Health summary
+monitor tokens [--period 7d|30d] [--by model|skill]    # Token report
+monitor crons                                           # Cron health
+monitor tasks [--failed]                                # Task history
+monitor cost [--period month|week]                      # Cost breakdown
+monitor ingest token|task|cron                          # Manual ingestion
+monitor aggregate [--date YYYY-MM-DD]                   # Daily aggregates
+monitor refresh                                         # Regenerate interchange
+monitor backup [--output path]                          # Backup DB
+monitor restore <file>                                  # Restore DB
+```
+
+## Interchange
+- `ops/capabilities.md` — Command reference (shareable)
+- `ops/health.md` — Status indicators only (shareable, no costs/tokens)
+- `state/status.md` — Full detailed status (private)
+- `state/token-spend.md` — Token/cost breakdown (private)

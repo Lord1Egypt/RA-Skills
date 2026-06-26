@@ -1,0 +1,4 @@
+# Core dependencies — required by all AML scripts:
+#   risk_check.py, batch_risk_check.py, transfer_security_check.py,
+#   address_investigation.py, multisig_analysis.py
+requests>=2.28

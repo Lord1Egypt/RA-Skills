@@ -1,0 +1,5 @@
+{
+  "slug": "dancetempo-clawhub",
+  "version": "1.0.0",
+  "note": "Copy to _meta.json only if your tooling requires it; ClawHub may inject ownerId/publishedAt on publish."
+}

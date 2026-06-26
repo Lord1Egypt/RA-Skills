@@ -1,35 +1,44 @@
 ---
-name: "Interview Questions Zh"
-description: "专为HR招聘人员和面试官设计的结构化面试题库生成工具，根据岗位名称及要求， 自动生成包含行为面试题、技术能力题、情景模拟题和综合素质题的完整面试题库。 适用于校园招聘、社会招聘、内部晋升等多种场景，支持按岗位级别、部门职能 定制题目难度与侧重点。涵盖"面试题库/面试问题/结构化面试/行为面试/ interview..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interview-questions-zh"
-sourceUrl: "https://clawhub.ai/skills/interview-questions-zh"
+name: interview-questions-zh
+description: >
+  专为HR招聘人员和面试官设计的结构化面试题库生成工具，根据岗位名称及要求，  
+  自动生成包含行为面试题、技术能力题、情景模拟题和综合素质题的完整面试题库。  
+  适用于校园招聘、社会招聘、内部晋升等多种场景，支持按岗位级别、部门职能  
+  定制题目难度与侧重点。涵盖"面试题库/面试问题/结构化面试/行为面试/  
+  interview questions/招聘题目/岗位测评"等多种使用场景。
+tags: [面试题库, 结构化面试, 行为面试, HR招聘, 情景面试题, interview-questions, 人力资源, 岗位评估]
 ---
 
-# Interview Questions Zh
+# 结构化面试题库生成器
 
-> 专为HR招聘人员和面试官设计的结构化面试题库生成工具，根据岗位名称及要求， 自动生成包含行为面试题、技术能力题、情景模拟题和综合素质题的完整面试题库。 适用于校园招聘、社会招聘、内部晋升等多种场景，支持按岗位级别、部门职能 定制题目难度与侧重点。涵盖"面试题库/面试问题/结构化面试/行为面试/ interview...
+根据岗位信息，自动生成分类清晰、覆盖全面的结构化面试题库，助力HR和面试官高效完成候选人评估。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interview-questions-zh`
-- **Source URL:** [https://clawhub.ai/skills/interview-questions-zh](https://clawhub.ai/skills/interview-questions-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "我需要为产品经理岗位生成一套完整的结构化面试题库，包含行为面试题和情景题"
+- "帮我出10道适合高级Java工程师的技术面试题，要有参考答案和评分要点"
+- "我们下周要招销售总监，请帮我设计一套包含行为面试和情景模拟的面试问题清单"
+- "生成一份适合校招应届生的综合素质面试题，岗位是市场专员"
 
+## Examples
+输入：产品经理（3-5年经验），重点考察用户需求分析、跨部门协作和数据驱动决策能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interview-questions-zh
-```
+输出：
+**【行为面试题】**
+1. 请描述一次你发现产品数据异常并推动改进的经历，你是如何识别问题、分析原因并协调资源解决的？
+   - 参考要点：数据敏感度、问题拆解逻辑、跨团队沟通能力
+
+**【情景模拟题】**
+2. 假设研发团队评估某核心需求需要3个月，但业务方要求1个月上线，你会如何处理这一冲突？
+   - 参考要点：优先级判断、需求拆解能力、stakeholder管理
+
+**【技术能力题】**
+3. 请说明你常用的用户需求收集与验证方法，并举例说明如何避免需求失真？
+   - 参考要点：用户访谈、问卷设计、A/B测试、需求文档规范
+
+**【综合素质题】**
+4. 回顾你过去负责的产品，哪个版本迭代你最不满意？原因是什么，你从中学到了什么？
+   - 参考要点：自我反思能力、成长心态、复盘思维

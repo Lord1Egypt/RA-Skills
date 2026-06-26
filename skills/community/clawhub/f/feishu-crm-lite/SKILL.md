@@ -1,35 +1,136 @@
----
-name: "Feishu CRM Lite"
-description: "管理客户信息、记录跟进、自动提醒及销售漏斗，支持数据统计和飞书多维表格同步。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-crm-lite"
-sourceUrl: "https://clawhub.ai/skills/feishu-crm-lite"
----
-
 # Feishu CRM Lite
 
-> 管理客户信息、记录跟进、自动提醒及销售漏斗，支持数据统计和飞书多维表格同步。
+飞书客户管理 + 自动跟进 + 提醒技能。支持客户信息管理、跟进记录、自动提醒、销售漏斗等功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-crm-lite`
-- **Source URL:** [https://clawhub.ai/skills/feishu-crm-lite](https://clawhub.ai/skills/feishu-crm-lite)
+## 触发词
 
-## Overview
+飞书、crm、客户管理、跟进、提醒、销售、feishu、customer
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-crm-lite
+### 1. 客户信息管理
+
+- 创建/更新/删除客户记录
+- 客户分类和标签管理
+- 客户详情查看
+- 批量导入导出
+
+### 2. 跟进记录
+
+- 记录每次客户沟通
+- 跟进状态管理 (新建/联系中/已成交/流失)
+- 跟进历史查询
+- 沟通内容归档
+
+### 3. 自动提醒
+
+- 设置跟进提醒时间
+- 到期自动通知
+- 周期性提醒配置
+- 逾期客户标记
+
+### 4. 销售漏斗
+
+- 销售阶段管理
+- 转化率分析
+- 预计收入追踪
+- 漏斗可视化
+
+### 5. 数据统计
+
+- 客户增长统计
+- 跟进频率分析
+- 成交率计算
+- 业绩报表生成
+
+## 配置
+
+### 飞书配置
+
+本技能使用已有的飞书 API 权限，无需额外配置。
+
+### 数据存储
+
+客户数据存储在飞书多维表格 (Bitable) 中，自动创建以下表格:
+
+- 客户信息表
+- 跟进记录表
+- 提醒配置表
+
+## 使用示例
+
+### 添加客户
+
 ```
+添加一个新客户
+公司名称：XX 科技有限公司
+联系人：张三
+电话：13800138000
+邮箱：zhangsan@example.com
+来源：公众号
+```
+
+### 记录跟进
+
+```
+记录一次客户跟进
+客户：张三
+跟进方式：电话
+跟进内容：介绍了产品价格方案，客户感兴趣
+下次跟进时间：下周一
+```
+
+### 设置提醒
+
+```
+提醒我明天下午 3 点联系李四
+```
+
+### 查看客户列表
+
+```
+查看所有客户
+查看本周需要跟进的客户
+查看已成交客户
+```
+
+### 销售数据
+
+```
+查看本月销售数据
+生成本月业绩报表
+查看销售漏斗
+```
+
+## 定价
+
+- **免费版**: $0 - 最多 50 个客户 + 基础功能
+- **专业版**: $14.99/月 - 无限客户 + 自动提醒 + 数据分析
+- **团队版**: $39.99/月 - 多用户协作 + API 访问 + 定制报表
+
+## 变现方式
+
+1. **SkillPay**: 通过 ClawHub 订阅收费
+2. **定制服务**: 为企业定制飞书 CRM 工作流
+3. **培训服务**: CRM 使用培训和咨询
+
+## 开发状态
+
+- [x] 技能框架创建
+- [ ] 飞书多维表格集成
+- [ ] 客户管理功能
+- [ ] 跟进记录功能
+- [ ] 自动提醒功能
+- [ ] 销售漏斗功能
+- [ ] 数据统计功能
+- [ ] ClawHub 发布
+
+## 更新日志
+
+### v0.1.0 (2026-03-13)
+- 初始版本创建
+- 基础框架搭建
+
+---
+
+*本技能由周田田开发 💕*

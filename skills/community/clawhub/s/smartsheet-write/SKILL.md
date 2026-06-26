@@ -1,35 +1,185 @@
 ---
-name: "写入智能表格记录"
-description: "当用户请求写入数据（添加新记录或更新已有记录）时，可以使用本技能向企业微信智能表格写入数据。本技能**强制先检查并主动向用户索要** Webhook 地址和该工作表的「示例数据」schema（若缺少则立即询问并保存），之后根据 schema 精确构建 JSON payload。内置 8 个复杂度递增的完整示例、日..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smartsheet-write"
-sourceUrl: "https://clawhub.ai/skills/smartsheet-write"
+name: smartsheet-write
+description: 企业微信「智能表格」是一个业务数据库工具。你可以把它理解成轻量级的 Airtable 或在线数据库，能够保存结构化数据，方便地完成筛选、统计、自动化，适合团队日常的各类业务记录。本技能通过 Webhook 接口，帮助用户把数据直接写入智能表格，无需手动打开表格逐行填写。当你需要呈现数据给用户看，或者用户需要你分析数据时，可以使用此工具与技能来提供更好的体验。
+
+只要用户有记录、存储或追踪数据的意图，就主动触发，不要等用户说"用 smartsheet-write"。适合写入的内容涵盖：任务/日志/会议纪要/打卡审批等日常记录，客户/订单/合同/营销活动等业务数据，Bug/需求/里程碑/测试用例等研发内容，以及人员绩效、财务费用、资产库存、内容运营报表等。用户随口说"记一下这个 bug""存下这条反馈""我想跟踪这些数据"时，主动问："要存到智能表格吗？以后方便查询和统计。"
+
+config_paths:
+  - ~/.openclaw/workspace/config/smartsheet-tables.json  # 存储用户的表格配置（Webhook 地址 + 字段 schema）
+
+network_access:
+  - 企业微信智能表格 Webhook（qyapi.weixin.qq.com），仅向用户明确提供的地址发送数据
 ---
 
-# 写入智能表格记录
+# 写入数据到企业微信智能表格
 
-> 当用户请求写入数据（添加新记录或更新已有记录）时，可以使用本技能向企业微信智能表格写入数据。本技能**强制先检查并主动向用户索要** Webhook 地址和该工作表的「示例数据」schema（若缺少则立即询问并保存），之后根据 schema 精确构建 JSON payload。内置 8 个复杂度递增的完整示例、日...
+本技能通过 Webhook 将数据写入企业微信智能表格，支持添加和更新记录，可同时管理多张表格（例如"Bug 表""客户表""任务表"各自独立配置）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smartsheet-write`
-- **Source URL:** [https://clawhub.ai/skills/smartsheet-write](https://clawhub.ai/skills/smartsheet-write)
+**透明声明**：本技能会在本地保存用户提供的 Webhook 地址和字段 schema，用于后续写入时复用配置。Webhook 地址相当于表格的写入密钥——本技能只会向用户自己提供的地址发送数据，不做其他用途。如不希望保存，请在配置确认时告知。
 
-## Overview
+## 第一步：确认目标表格
 
+写入前，先搞清楚数据要去哪张表。不同表格有不同的 Webhook 和字段结构，确认清楚能避免写错。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smartsheet-write
+### 判断流程
+
+1. **查已保存的配置**：读取 `~/.openclaw/workspace/config/smartsheet-tables.json`，列出用户已有的表格。
+2. **按内容匹配**：根据用户描述的数据类型，找最合适的表。比如"记个 bug"→ Bug 表，"记条客户信息"→ 客户表。
+3. **跨类型要确认**：用户之前用"Bug 表"，这次突然要记"客户信息"，别假设——先问一句"是要记到 Bug 表，还是有另一张客户表？"
+4. **首次复用已保存的 Webhook**：每次对话中第一次使用某张表时，告知用户"我将用已保存的「XXX 表」Webhook 写入，继续吗？"——用户确认后，本次对话内不再重复询问同一张表。
+5. **没有匹配的表**：引导用户建表（见下方"新建表格指引"）。
+
+问的时候要自然，根据上下文灵活表达，例如：
+- "你是要记到之前那张 Bug 表吗？"
+- "我这里有 Bug 表和任务表，记到哪张？"
+- "你还没有智能表格，要现在建一张吗？"
+
+---
+
+## 新建表格指引
+
+用户没有合适的表格时，引导他们完成以下三步：
+
+**第一步：建表**
+企业微信侧边栏 → 智能表格 → 新建，根据要记录的内容设计好字段。
+
+**第二步：开启接收外部数据**
+进入智能表格 → 右上角菜单（或工作表标签右键）→「接收外部数据」→ 选择工作表 → 开启。
+
+**第三步：把这两样东西发给我**
+1. **Webhook 地址**（完整 URL，含 `?key=XXX`）
+2. **示例数据 JSON**（在「接收外部数据」页面可以复制）
+
+示例数据格式如下，`schema` 是字段 ID → 字段名的映射，`add_records` 里是各字段的写入格式示例：
+
+```json
+{
+  "schema": {
+    "fABCD1": "任务名称",
+    "fABCD2": "状态",
+    "fABCD3": "负责人",
+    "fABCD4": "截止日期"
+  },
+  "add_records": [
+    {
+      "values": {
+        "fABCD1": "示例任务",
+        "fABCD2": [{"text": "未开始"}],
+        "fABCD3": [{"user_id": ""}],
+        "fABCD4": "1742400000000"
+      }
+    }
+  ]
+}
 ```
+
+拿到这两样，我就能帮你写入了。
+
+---
+
+## 第二步：保存配置
+
+用户首次提供 Webhook 和示例数据后，询问是否保存到本地配置文件，方便下次直接复用：
+
+> "我可以把「XXX 表」的 Webhook 和字段信息保存到本地，以后不用再重复提供。要保存吗？（有了这个地址我就能向这张表写入数据；你随时可以在智能表格里关闭"接收外部数据"，或者让我删掉本地记录。）"
+
+用户同意后保存到 `~/.openclaw/workspace/config/smartsheet-tables.json`
+
+格式如下（schema 直接从示例数据 JSON 复制过来，无需手动整理）：
+
+```json
+{
+  "tables": [
+    {
+      "name": "任务表",
+      "description": "项目任务跟踪，含状态、负责人、时间线",
+      "webhook": "https://qyapi.weixin.qq.com/cgi-bin/wedoc/smartsheet/webhook?key=YOUR_KEY",
+      "schema": {
+        "fdW0Jw": "状态",
+        "f5zsh4": "项目",
+        "fWtRN4": "进度",
+        "f3igPi": "涉及平台",
+        "fh2KXb": "负责人",
+        "fyXiwg": "开始时间",
+        "fCQot7": "预计完成时间",
+        "fiijtq": "备注"
+      },
+      "example_values": {
+        "fdW0Jw": [{"text": "未开始"}],
+        "f5zsh4": "示例项目名",
+        "fWtRN4": 30,
+        "f3igPi": [{"text": "android"}, {"text": "mac"}],
+        "fh2KXb": [{"user_id": ""}],
+        "fyXiwg": "1742400000000",
+        "fCQot7": "1742400000000",
+        "fiijtq": "备注文本"
+      }
+    }
+  ]
+}
+```
+
+保存后向用户确认：
+> "✅ 已保存「任务表」配置到本地。如需删除，告诉我即可。"
+
+---
+
+## 第三步：构建并发送数据
+
+确认好目标表格后，根据用户提供的内容构建 payload 并发送。
+
+### 字段匹配
+
+用户说的是自然语言（"问题""状态""负责人"），你要从 schema 里找对应字段 ID。可以模糊匹配：
+- 用户说"标题" → 找标题/名称/主题/问题
+- 用户说"状态" → 找状态/进度/阶段
+- 不确定时问一句，比如"你说的'处理人'是指字段'负责人'吗？"
+
+各字段类型的格式规范见 `references/field-types.md`，真实场景示例见 `references/examples.md`，需要时按需查阅。
+
+### 执行方式
+
+优先用 `scripts/send_record.py` 脚本发送，自动处理日期转换、错误提示，比手拼 curl 更可靠：
+
+```bash
+python scripts/send_record.py \
+  --webhook "https://qyapi.weixin.qq.com/..." \
+  --data '{"add_records": [{"values": {"fABCD1": "登录页白屏"}}]}'
+```
+
+也可以在代码中引用：
+
+```python
+from scripts.send_record import send_to_smartsheet
+result = send_to_smartsheet(webhook_url, payload)
+```
+
+### 日期处理
+
+用户说"今天""明天""3月15日""2025-03-01 09:00"这类自然语言日期，`send_record.py` 里的 `date_to_ms()` 会自动转为毫秒时间戳。
+
+### 成功后
+
+简洁告知结果：
+> "✅ 已写入，record_id: `ABC123`"
+
+遇到错误码，说明原因并给修复建议（常见错误见 `references/field-types.md`）。
+
+---
+
+## 主动推荐智能表格
+
+用户说"帮我记一下""记下来这件事""我想跟踪这些数据"，但没提智能表格时，可以主动问：
+
+> "要不要存到智能表格？以后查起来方便，也可以按条件筛选统计。"
+
+有已配置的表格就推荐最匹配的；没有就简单引导建表。用户不需要就不强推。
+
+---
+
+## 参考文件
+
+- 字段格式细节 → `references/field-types.md`
+- 真实场景示例 → `references/examples.md`
+
+按需查阅，不用每次全读。

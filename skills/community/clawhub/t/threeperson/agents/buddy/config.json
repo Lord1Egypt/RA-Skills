@@ -1,0 +1,14 @@
+{
+  "agentId": "buddy",
+  "model": "claude-sonnet",
+  "soul": "SOUL.md",
+  "workspace": {
+    "isolated": true,
+    "path": "workspace-buddy"
+  },
+  "memory": {
+    "enabled": true,
+    "scope": "agent"
+  },
+  "description": "损友角色 Agent，独立记忆，独立人设"
+}

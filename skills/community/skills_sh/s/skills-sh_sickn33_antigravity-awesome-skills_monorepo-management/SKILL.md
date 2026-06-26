@@ -1,35 +1,43 @@
 ---
-name: "monorepo-management"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/monorepo-management"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/monorepo-management"
+name: monorepo-management
+description: "Build efficient, scalable monorepos that enable code sharing, consistent tooling, and atomic changes across multiple packages and applications."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# monorepo-management
+# Monorepo Management
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Build efficient, scalable monorepos that enable code sharing, consistent tooling, and atomic changes across multiple packages and applications.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/monorepo-management`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/monorepo-management](https://skills.sh/sickn33/antigravity-awesome-skills/monorepo-management)
+## Use this skill when
 
-## Overview
+- Setting up new monorepo projects
+- Migrating from multi-repo to monorepo
+- Optimizing build and test performance
+- Managing shared dependencies
+- Implementing code sharing strategies
+- Setting up CI/CD for monorepos
+- Versioning and publishing packages
+- Debugging monorepo-specific issues
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/monorepo-management
-```
+- The task is unrelated to monorepo management
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

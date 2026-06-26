@@ -1,35 +1,40 @@
 ---
-name: "Habithero"
+name: HabitHero
 description: "Habit tracker with streak counting and visual calendars. Use when you need habithero."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/habithero"
-sourceUrl: "https://clawhub.ai/skills/habithero"
+version: "2.0.0"
+author: "BytesAgain"
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+tags: ["habits","streak","daily","routine","tracking","goals","motivation","selfimprovement"]
+categories: ["Personal Management", "Productivity", "Health & Wellness"]
 ---
 
-# Habithero
+# HabitHero
 
-> Habit tracker with streak counting and visual calendars. Use when you need habithero.
+Build habits. Track streaks. Become your best self.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/habithero`
-- **Source URL:** [https://clawhub.ai/skills/habithero](https://clawhub.ai/skills/habithero)
+## Commands
 
-## Overview
+- `add <name>` — Add a new habit to track
+- `done <name>` — Mark habit as done for today
+- `list` — Show all habits with today's status and streaks
+- `streak` — View streak leaderboard with visual bars
+- `calendar <name>` — Show 28-day completion calendar
+- `help` — Show commands
 
+## Usage Examples
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/habithero
+habithero add "Morning meditation"
+habithero add "Exercise"
+habithero add "Read 30 minutes"
+habithero done "Morning meditation"
+habithero done "Exercise"
+habithero list
+habithero streak
+habithero calendar "Exercise"
 ```
+
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com

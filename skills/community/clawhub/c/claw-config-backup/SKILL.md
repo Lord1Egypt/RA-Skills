@@ -1,35 +1,61 @@
 ---
-name: "openclaw configure backup"
-description: "Backup OpenClaw configuration file with hash-based change detection. Use when user asks to backup, create backup of, or save OpenClaw config (openclaw.json)...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-config-backup"
-sourceUrl: "https://clawhub.ai/skills/claw-config-backup"
+name: clawbackup
+description: Backup OpenClaw configuration file with hash-based change detection. Use when user asks to backup, create backup of, or save OpenClaw config (openclaw.json). Automatically skips backup if file hasn't changed.
 ---
 
-# openclaw configure backup
+# Clawbackup
 
-> Backup OpenClaw configuration file with hash-based change detection. Use when user asks to backup, create backup of, or save OpenClaw config (openclaw.json)....
+Backup OpenClaw configuration file with automatic change detection.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-config-backup`
-- **Source URL:** [https://clawhub.ai/skills/claw-config-backup](https://clawhub.ai/skills/claw-config-backup)
+## Quick Start
 
-## Overview
+### Backup Config
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+From workspace directory:
 ```bash
-hermes skills install clawhub/claw-config-backup
+python config_backup.py ..\openclaw.json
+```
+
+Or with custom backup directory:
+```bash
+python config_backup.py ..\openclaw.json -o backup
+```
+
+## Features
+
+- **JSON5 Validation**: Validates config file before backup
+- **Hash-based Change Detection**: Skips backup if file hasn't changed (compares SHA256 hash)
+- **Timestamped Backups**: Creates backups with timestamp format: `openclaw_20260319_143052_123456.json`
+- **Custom Output Directory**: Specify backup location with `-o` flag
+
+## Script Location
+
+The script is located in "scripts" directory
+
+## Usage
+
+```
+usage: config_backup.py [-h] [-o OUTPUT] file
+
+Validate JSON5 and backup with hash check
+
+positional arguments:
+  file                  JSON5 file path
+
+options:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output   Backup directory (default: backup)
+```
+
+## Example Output
+
+```
+✅ JSON5 validate passed
+📦 已备份: backup\openclaw_20260319_143052_123456.json
+```
+
+If file unchanged:
+```
+✅ JSON5 validate passed
+⚠️ config file unchange, skip backup
 ```

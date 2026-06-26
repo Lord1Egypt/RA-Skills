@@ -1,0 +1,126 @@
+version: 1
+name: citic_creditcard_browser_prefill
+notes:
+  - 这是流程模板，不是 OpenClaw skill 原生执行语法。
+  - OpenClaw 实际执行依赖 SKILL.md 指导 + browser 工具 + 辅助脚本。
+  - 所有候选申请信息都必须先得到用户确认。
+
+profiles:
+  browser_profile_default: openclaw
+  browser_profile_existing_session: user
+
+inputs:
+  applicant_profile_json: profiles/applicant_profile.json
+  workspace_files:
+    - USER.md
+    - MEMORY.md
+    - memory/*.md
+  card_catalog: data/card_catalog.json
+
+stages:
+  - id: recommend_card
+    goal: 基于用户画像和官网在售卡种，输出推荐卡与备选卡
+    actions:
+      - tool: local_script
+        script: scripts/citic_cc_advisor.py
+        args:
+          - recommend
+          - --profile
+          - profiles/applicant_profile.json
+          - --format
+          - json
+      - tool: browser
+        operation: open
+        url: https://creditcard.ecitic.com/
+      - tool: browser
+        operation: snapshot
+        purpose: 核对官网首页/办卡页是否仍展示目标卡或相关入口
+    outputs:
+      - recommended_card_slug
+      - top_cards
+      - official_page_verified
+
+  - id: extract_candidates
+    goal: 从用户明确授权的工作区资料中抽取候选申请字段
+    requires_user_consent: true
+    actions:
+      - tool: local_script
+        script: scripts/profile_extractor.py
+        args:
+          - --workspace
+          - .
+          - --json
+    outputs:
+      - candidate_fields
+      - field_sources
+      - field_confidences
+
+  - id: build_prefill_plan
+    goal: 生成预填计划，明确哪些字段可填、哪些字段必须人工处理
+    actions:
+      - tool: local_script
+        script: scripts/build_application_plan.py
+        args:
+          - --workspace
+          - .
+          - --workflow
+          - config/workflow.template.yaml
+          - --out
+          - output/application_plan.json
+    outputs:
+      - output/application_plan.json
+
+  - id: open_apply_page
+    goal: 打开官网申请页并定位到表单
+    actions:
+      - tool: browser
+        operation: open
+        url_from: recommended_card.apply_url
+      - tool: browser
+        operation: snapshot
+        purpose: 获取申请页 ref，并识别立即申请/下一步按钮
+      - tool: browser
+        operation: click_by_ref
+        target: 申请按钮或继续按钮
+        when: 页面出现可点击 ref 且已核对上下文无误
+
+  - id: fill_form
+    goal: 仅填写已确认字段
+    actions:
+      - tool: browser
+        operation: snapshot
+        purpose: 获取表单页 ref，避免使用脆弱文本 selector
+      - tool: browser
+        operation: type_by_ref
+        source: confirmed_fields
+        mapping:
+          full_name: 姓名
+          phone: 手机号
+          email: 电子邮箱
+          birth_date: 出生日期
+          city: 所在城市
+          residential_address: 居住地址
+          mailing_address: 通讯地址
+          employer_name: 工作单位
+          employer_city: 单位城市
+          job_title: 职位
+          education: 学历
+          monthly_income: 月收入
+      - tool: browser
+        operation: select_or_click_by_ref
+        source: confirmed_fields
+        mapping:
+          gender: 性别
+          housing_status: 住房情况
+    stop_conditions:
+      - 验证码出现
+      - OTP 或短信验证出现
+      - 征信授权 / 协议签署出现
+      - 最终提交按钮出现
+      - 出现未确认的官网必填字段
+
+  - id: handoff_to_user
+    goal: 在最终提交前交由用户本人完成
+    actions:
+      - tool: none
+        instruction: 提示用户核对全部信息，并由本人完成验证码、签名、授权与最终提交

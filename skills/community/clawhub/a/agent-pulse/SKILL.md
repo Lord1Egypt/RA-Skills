@@ -1,35 +1,36 @@
 ---
-name: "Agent Pulse (Deprecated)"
-description: "DEPRECATED — archived Pulse skill. Use x402janus for wallet security and monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-pulse"
-sourceUrl: "https://clawhub.ai/skills/agent-pulse"
+name: agent-pulse
+description: DEPRECATED — archived Pulse skill. Use x402janus for wallet security and monitoring.
+metadata:
+  deprecated: true
+  replacedBy: x402janus
 ---
 
-# Agent Pulse (Deprecated)
+# DEPRECATED: agent-pulse
 
-> DEPRECATED — archived Pulse skill. Use x402janus for wallet security and monitoring.
+This skill is **deprecated** and no longer maintained.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-pulse`
-- **Source URL:** [https://clawhub.ai/skills/agent-pulse](https://clawhub.ai/skills/agent-pulse)
+## Status
 
-## Overview
+- ❌ No new features
+- ❌ No security updates
+- ❌ No support for new integrations
 
+## Replacement
 
-## Installation
-To install this skill, run the following command in your terminal:
+Use **x402janus** instead:
+
+- Skill path: `skills/x402janus`
+- Product URL: https://x402janus.com
+
+## Migration
+
+Replace any `agent-pulse` usage with `x402janus` wallet scan + approval/revoke flows.
+
 ```bash
-hermes skills install clawhub/agent-pulse
+cd skills/x402janus
+npm install
+JANUS_API_URL=https://x402janus.com npx tsx scripts/scan-wallet.ts <address> --tier free --json
 ```
+
+Nothing passes the gate unchecked.

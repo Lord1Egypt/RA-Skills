@@ -1,0 +1,5 @@
+packages:
+  - "caixu-shared-core/packages/*"
+  - "caixu-ocr-mcp"
+  - "caixu-data-mcp"
+  - "caixu-skill-tests"

@@ -1,0 +1,23 @@
+{
+  "user_profile": {
+    "name": "王女士",
+    "age": 32,
+    "gender": "女",
+    "insurance": "医保",
+    "preferred_hospital_level": "三甲",
+    "preferred_doctor_title": "副主任医师及以上",
+    "budget_level": "中"
+  },
+  "chief_complaint": "发热三天，咳嗽，胸闷",
+  "history": "既往有轻度哮喘史，无药物过敏史",
+  "symptoms": [
+    "发热",
+    "咳嗽",
+    "胸闷"
+  ],
+  "duration_days": 3,
+  "current_region": "朝阳区",
+  "need_registration": true,
+  "need_escort": true,
+  "preferred_time_window": "近两天"
+}

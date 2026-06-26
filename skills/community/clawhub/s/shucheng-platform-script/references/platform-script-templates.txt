@@ -1,0 +1,2059 @@
+# 平台代码模板 - Platform Script Templates
+
+## 基础脚本代码 (Basic Script Operations)
+
+### 数据增加 (Create Data)
+```groovy
+def 新数据 = DataModelUtils.createCIByCIClassName("数据模型")
+新数据.dataFieldMap.ID = ID
+新数据.dataFieldMap.Captain = Captain
+新数据.dataFieldMap.FirstOfficer = FirstOfficer
+新数据.dataFieldMap.FlightAttendant = FlightAttendant
+saveCi(新数据)
+```
+
+### 数据删除 (Delete Data)
+```groovy
+def 主表数据 = DataModelUtils.getCIByPK("BudgetMainTable",['ID':主表 ID])
+def 明细表数据 = DataModelUtils.getCIByAttr("BudgetDetailTable",['MainTableID':主表 ID])
+DataModelUtils.deleteCi(主表数据)
+DataModelUtils.deleteCis(明细表数据)
+```
+
+### 数据修改 (Update Data)
+```groovy
+// 单条修改
+def 主表数据 = DataModelUtils.getCIByPK("BudgetMainTable",['ID':主表 ID])
+主表数据.dataFieldMap.ID = 1 
+主表数据.dataFieldMap.Captain = "张三"
+saveCi(主表数据)
+
+// 多条修改
+def 明细表数据 = DataModelUtils.getCIByAttr("BudgetDetailTable",['MainTableID':主表 ID])
+for(aa in 明细表数据){
+    aa.dataFieldMap.ID = 1 
+    aa.dataFieldMap.Captain = "张三"
+    saveCi(aa)
+}
+
+// SQL 更新
+def updateSql = """
+UPDATE "暂估提醒流水表"
+SET "邮件提醒时间" = '1766462427000'
+"""
+JDBCUtils.update(updateSql, null)
+```
+
+### 数据查询 (Query Data)
+```groovy
+// 单条
+def 主表数据 = DataModelUtils.getCIByPK("BudgetMainTable",['ID':主表 ID])
+
+// 多条
+def 明细表数据 = DataModelUtils.getCIByAttr("BudgetDetailTable",['MainTableID':主表 ID])
+
+// 查询出的数据集合可使用 findAll 进一步复杂逻辑筛选
+费用科目 List.findAll{v->(v.dataFieldMap.费用管理部门.contains(当前部门)||v.dataFieldMap.费用管理部门.size()==0)}
+```
+
+### 调用脚本 (Call Script)
+```groovy
+def 返回值 = ScriptUtils.runScriptByCode("name",["字段 1":"","字段 2":""])
+def uri = ScriptUtils.runScriptByCode("置换账单导出",["账单 ID":账单 ID,"操作来源":"脚本调用"])
+```
+
+### 获取当前账号信息 (Get Current Account Info)
+```groovy
+def 当前账号 = AccountUtils.getCurrentAccountNo()
+def 当前账号数据 = DataModelUtils.getCIByPK("gdmp_account",['accountNo':当前账号])
+def 当前账号角色数组 = 获取账号角色数组 (当前账号)
+def 部门 = AccountUtils.getCurrentAccountDeptCode()
+def 当前部门 = AccountUtils.getCurrentAccountDeptName()
+def 当前部门数据 = DataModelUtils.getCIByAttr("员工所在部门表",['所在部门':当前部门])
+
+/*
+* 获取账号角色数组 ("wudan")
+* [部门总经理，销售部总经理，客户经理，销售政策管理员，北京包机]
+*/
+def 获取账号角色数组 (account){
+    def 账号角色 Sql = """
+        SELECT "roles" 
+        FROM "gdmp_account" 
+        WHERE "accountNo" = ?
+    """
+    def 账号角色列表 = DataModelUtils.queryForListMap(账号角色 Sql, [account])
+    return 账号角色列表.roles[0]
+}
+```
+
+## 日期相关 (Date Operations)
+```groovy
+import java.text.SimpleDateFormat
+import java.util.Date
+
+def 当前日期时间戳 = System.currentTimeMillis()
+
+// 2025 年 7 月 07 日
+new SimpleDateFormat("yyyy 年 MM 月 dd 日").format(new Date(当前日期时间戳))
+
+// 2025-7-07
+new SimpleDateFormat("yyyy-MM-dd").format(new Date(当前日期时间戳))
+
+// 2025/7/07
+new SimpleDateFormat("yyyy/MM/dd").format(new Date(当前日期时间戳))
+
+// 7-Jul-2025
+new SimpleDateFormat("d-MMM-yyyy", Locale.ENGLISH).format(new Date(当前日期时间戳))
+
+// Jul
+new SimpleDateFormat("MMM", Locale.ENGLISH).format(new Date(当前日期时间戳))
+```
+
+## 正则表达式 (Regular Expression)
+```
+name 这个字段，表单填写时，需要在 20 个字以内
+【不满足这个正则表达式进行提醒】，超过 20 字之后提示
+```
+
+## 监听脚本示例 (Listener Script Example)
+```groovy
+// ci$.dataFieldMap 为当前监听数据
+def 账号数据 = DataModelUtils.getCIByAttr("gdmp_account")
+for(aa in 账号数据){
+    if(aa.dataFieldMap.accountNo != "admin" && aa.dataFieldMap.accountNo != "guest"){
+        def 原始账号 = aa.dataFieldMap.accountNo
+        println "原始账号==" + 原始账号
+        def 原始密码 = aa.dataFieldMap.password
+        println "原始密码==" + 原始密码
+        
+        def 修改密码 = "123456"
+        println "修改密码==" + 修改密码
+        
+        aa.dataFieldMap.password = 修改密码
+        DataModelUtils.saveCi(aa)
+    }
+}
+
+// 包机参数联动删除监听
+def 基地四字码 = ci$.dataFieldMap.四字码
+def 飞机号 = ci$.dataFieldMap.飞机号
+def 机型 = ci$.dataFieldMap.机型
+
+def 飞行小时费数据 = DataModelUtils.getCIByAttr("飞行小时费单价",['基地四字码':基地四字码,'飞机号':飞机号])
+if(飞行小时费数据) DataModelUtils.deleteCis(飞行小时费数据)
+
+def 地面附加时间数据 = DataModelUtils.getCIByAttr("地面附加时间",['基地四字码':基地四字码,'飞机号':飞机号])
+if(地面附加时间数据) DataModelUtils.deleteCis(地面附加时间数据)
+
+def 地面保障服务加收税金数据 = DataModelUtils.getCIByAttr("地面保障服务加收税金",['基地四字码':基地四字码,'飞机号':飞机号])
+if(地面保障服务加收税金数据) DataModelUtils.deleteCis(地面保障服务加收税金数据)
+
+def 最低飞行小时数据 = DataModelUtils.getCIByAttr("最低飞行小时",['基地四字码':基地四字码,'飞机号':飞机号])
+if(最低飞行小时数据) DataModelUtils.deleteCis(最低飞行小时数据)
+
+def 机组差旅补助数据 = DataModelUtils.getCIByAttr("机组差旅补助",['基地四字码':基地四字码,'飞机号':飞机号])
+if(机组差旅补助数据) DataModelUtils.deleteCis(机组差旅补助数据)
+
+def 额外增加机组收费数据 = DataModelUtils.getCIByAttr("额外增加机组收费",['基地四字码':基地四字码,'飞机号':飞机号])
+if(额外增加机组收费数据) DataModelUtils.deleteCis(额外增加机组收费数据)
+
+def 国际航班差旅补贴数据 = DataModelUtils.getCIByAttr("国际航班差旅补贴",['基地四字码':基地四字码,'飞机号':飞机号])
+if(国际航班差旅补贴数据) DataModelUtils.deleteCis(国际航班差旅补贴数据)
+```
+
+## 脚本数据集模板 (Script Dataset Template)
+```groovy
+// 1. 定义表头（与查询结果字段一一对应，补充必要字段）
+def headers = [
+    ['name': "id", 'dataType': "string"],
+    ['name': "提醒编号", 'dataType': "string"],
+    ['name': "实际新增人", 'dataType': "string"],
+    ['name': "新增时间", 'dataType': "date"],
+]
+
+// 2. 执行 SQL 查询
+def sql = """ """
+def data = DataModelUtils.queryForListMap(sql, null)
+println "#########SQL 查询 data#########" + data
+
+// 3. 数据自定义处理
+for(aa in data){
+    // 处理逻辑
+}
+
+// 4. 返回标准格式结果（表头 + 格式化数据 + 总数）
+return [
+    headers: headers,
+    results: 超 90 天数据列表，
+    others: "",
+    total: 超 90 天数据列表.size()
+]
+```
+
+## 脚本数据集入参处理 (Script Dataset Input Parameters)
+```groovy
+def 飞机号
+def 起飞机场
+def 到达机场
+
+if(args$&&args$.attrKVs){
+    args$.attrKVs.each{
+        if(it.attribute=="飞机号"&&it.value){
+            飞机号=it.value
+        }
+        if(it.attribute=="起飞机场全称"&&it.value){
+            起飞机场=it.value
+        }
+        if(it.attribute=="到达机场全称"&&it.value){
+            到达机场=it.value
+        }
+    }
+}
+
+// 2. 执行 SQL 查询（保留原有查询逻辑，格式对齐参考案例）
+def sql = """ """
+if(飞机号){
+    sql += """
+        AND RN = '${飞机号}'
+    """
+}
+if(起飞机场){
+    sql += """
+        AND Dep_Airport_CN = '${起飞机场}'
+    """
+}
+if(到达机场){
+    sql += """
+        AND Arr_Airport_CN = '${到达机场}'
+    """
+}
+
+def data = ScriptUtils.runScriptByCode("调用北京华龙通用接口",attrmap);
+
+// 4. 返回标准格式结果（表头 + 数据列表 + 总数）
+return [
+    headers: headers,
+    results: data,
+    others: "",
+    total: data.size()
+]
+```
+
+## 脚本数据集分页 (Script Dataset Pagination)
+```groovy
+def pageNo=args$.pageNo
+def pageSize=args$.pageSize
+
+/* 各种数据处理过程 */
+
+// 返回数据前，传入原始数据，页码，页大小得到分页后的数据
+if(pageNo && pageSize){
+    def newdata = getPagedData(datalist,pageNo,pageSize)
+    return ['count': 原数据.size(),'total': 原数据.size(),'headers': headers, 'results': newdata, 'others': ''];
+}
+
+// 分页核心逻辑：基于页码/页大小计算截取范围，避免 Limit，兼容边界场景
+def getPagedData(List data, Integer pageNo, Integer pageSize) {
+    // 1. 基础校验：空数据直接返回空列表
+    if (!data) {
+        return []
+    }
+    // 2. 入参合法性修正：页码≥1，页大小≥1（非法值按默认值处理）
+    int validPageNo = (pageNo ?: 1) < 1 ? 1 : (pageNo ?: 1)
+    int validPageSize = (pageSize ?: 10) < 1 ? 10 : (pageSize ?: 10)
+    
+    // 3. 计算起始/结束索引（核心优化：合并分支逻辑）
+    int startIndex = (validPageNo - 1) * validPageSize // 起始索引（包含）
+    int endIndex = startIndex + validPageSize           // 结束索引（不包含）
+    
+    // 4. 边界修正：结束索引不超过数据长度，起始索引不小于 0
+    startIndex = Math.max(startIndex, 0)
+    endIndex = Math.min(endIndex, data.size())
+    
+    // 5. 截取数据（Groovy/Java List.subList 是视图，如需新列表可加.collect()）
+    return startIndex >= endIndex ? [] : data.subList(startIndex, endIndex)
+}
+```
+
+## 模型数据源模板 (Model Data Source Template)
+```groovy
+println "---------------脚本返回组件数据 start------------------";
+println "传参:" + args$;
+// args$ = [pageStatus: true, pageNo: 1, pageSize: 1, inputParams: []];
+
+def pageStatus = false;
+def pageNo; // 页码
+def pageSize; // 每页显示数
+def inputParams; // 画布传入参数
+
+def obj = [:];
+// 判断传参是数组还是对象
+if(args$.getClass() == obj.getClass()) {
+    pageStatus = args$.pageStatus;
+    pageNo = args$.pageNo;
+    pageSize = args$.pageSize;
+    inputParams = args$.inputParams ?: [];
+} else {
+    inputParams = args$;
+}
+
+println "是否开启分页:" + pageStatus;
+println "inputParams:" + inputParams;
+
+// ********** 步骤 1：定义字段 **********
+def fields = [
+    ["name": "高", "displayName": "高风险数量", "dataType": "integer"],
+    ["name": "中", "displayName": "中风险数量", "dataType": "integer"],
+    ["name": "低", "displayName": "低风险数量", "dataType": "integer"]
+];
+
+// ********** 步骤 2：执行 SQL 查询 **********
+def 风险统计 Sql = """ """
+def datas = DataModelUtils.queryForListMap(风险统计 Sql, []);
+
+// ********** 步骤 3：异常处理 **********
+if(datas == null || datas.isEmpty()) {
+    datas = [["高": 0, "中": 0, "低": 0]];
+}
+
+println "---------------脚本返回组件数据 end--------------------";
+
+def results = [:];
+if(pageStatus) {
+    def newList = [];
+    def temp = pageSize * pageNo;
+    def count = pageSize * (pageNo -1);
+    if(temp > datas.size()) {
+        for(int x = count; x <= datas.size()-1; x++){
+            newList.add(datas.get(x));
+        }
+    } else {
+        for(int x = count; x <= temp - 1; x++){
+            newList.add(datas.get(x));
+        }
+    }
+    results.put('fields', fields);
+    results.put('results', newList);
+    results.put('total', datas.size());
+    results.put('pageNo', pageNo);
+    results.put('pageSize', pageSize);
+} else {
+    results.put('fields', fields);
+    results.put('results', datas);
+}
+
+return results;
+```
+
+## 表单脚本相关 (Form Script Operations)
+
+### 表单脚本示例 - 自定义检查数据 (Custom Data Validation Before Save)
+```javascript
+/**
+* JavaScript 脚本自定义检查数据  在保存之前执行
+* args$ 脚本参数变量
+* args$.data object 表单输入的数据
+* args$.parentForm 父表单对象
+* args$.parentFormData 父表单数据
+* args$.globalVariable object 页面元件上文变量
+* args$.getGlobalContextValue function 获取全局/上下文变量的方法
+* args$.setValidateMessage function 设置属性验证信息  方法接收两个参数 name 属性名称 / message 验证信息
+* args$.setFieldValueFunc function 设置属性的值  方法接收两个参数 name 属性名称 / value 属性值
+* args$.formatDateFunc function 格式化时间类型数据
+* args$.getFieldValueFunc function 获取表单上属性的值
+* args$.getFieldValuesFunc function 获取表单上属性的值 (无参数)
+* args$.notification function 打印信息方法 error/warning/info/success
+* args$.runScriptFunc function 调用后台脚本   参数 code string / params object
+* args$.runWorkFlowFunc function 调用自动化引擎   参数 params object
+* args$.getTokenFunc function 获取当前的 token 信息
+* return 返回动态修改方法列表
+**/
+```
+
+### 固定值模式 - 控制下拉框选项 (Fixed Value Mode - Control Dropdown Options)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var filters = data["合并展示"] || [];
+        var fieldFilterNinOptions = {
+            "追加任务来源":filters
+        };
+        return {
+            "scriptFilterNinOptions":fieldFilterNinOptions
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+```
+
+### 调用脚本模式 - 控制下拉框选项 (Script Mode - Control Dropdown Options)
+```javascript
+if(args$){
+    var changeFunc = async function(value){
+        return await args$.runScriptFunc('初始化下拉框选项值', { value });
+    }
+    var scriptFilterInOptions = {
+        "追加任务来源":changeFunc
+    }
+    return {
+        "scriptFilterInOptions":scriptFilterInOptions
+    };
+}else{
+    return null;
+}
+```
+
+### 调用自动化引擎 (Call Automation Engine)
+```javascript
+if(args$){
+    let params = { 
+        code:'63748ff7e909f4792d6ed97d',
+        traceId:'64d0a165e94a9aea92033850',
+        parameters: {}
+    };
+    var changeFunc = async function(value){
+        return await args$.runWorkFlowFunc(params);
+    }
+    return {
+        "scriptFilterInOptions":changeFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 数据校验 (Data Validation)
+```javascript
+if(args$){
+    var validatorField = function(value){
+        var retObj = {
+            'status':true
+        };
+        if(!value){
+            retObj = {
+                'status':false,
+                'message':'名称不能为空!'
+            }
+        }else{
+            if(value.length < 10){
+                args$.notification["warning"]({message: "名称长度不能小于 10"});
+                retObj = {
+                    'status':false,
+                    'message':'名称长度不能小于 10，还差 '+(10-value.length)+' 字!'
+                }
+            }
+        }
+        return retObj;
+    }
+    var feildMapFunc = {
+        '名称':validatorField
+    };
+    return {
+        "validatorFunctions":feildMapFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 初始化时动态禁用属性 (Dynamic Disable Attributes on Init)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var list = [ ];
+        if(data["类型"] === '类型二'){
+            list.push('名称');
+        }
+        return {
+            "disabledAttributes":list
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+```
+
+### 动态禁用属性 - 固定值模式 (Dynamic Disable - Fixed Value Mode)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var changeFunc = function(value){
+            var list = [ ];
+            if(value === '北京'){
+                list.push('区');
+            }
+            return list
+        }
+        return {
+            "dynamicDisabledAttrs":{
+                '省':changeFunc
+            }
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+```
+
+### 动态禁用属性 - 脚本模式 (Dynamic Disable - Script Mode)
+```javascript
+if(args$){
+    var changeFunc = async function(value){
+        return await args$.runScriptFunc('动态禁用', { value });
+    }
+    return {
+        "dynamicDisabledAttrs":{
+            省:changeFunc
+        }
+    };
+}else{
+    return null;
+}
+```
+
+### 动态修改属性值 (Dynamic Change Field Values)
+```javascript
+if(args$){
+    var changeFunc = function(value){
+        if(value){
+            var retVal = Number(value) * 10;
+            args$.setFieldValueFunc('整型',retVal);
+        }
+        return false;
+    }
+    var feildMapFunc = {
+        '字符型':changeFunc
+    };
+    return {
+        "changeFunctions":feildMapFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 动态修改表单显示标签 (Dynamic Change Field Labels)
+```javascript
+if(args$){
+    var changeFunc = function(value){
+        var mapping = {
+            '佛系':{
+                '备注':'标记',
+                '日期':'计划日期'
+            },
+            '道系':{
+                '备注':'说明',
+                '日期':'规划日期'
+            }
+        };
+        if(value && mapping[value]){
+            return mapping[value];
+        }
+        return null;
+    }
+    var feildMapFunc = {
+        '类型':changeFunc
+    };
+    return {
+        "changeFeildLabel":feildMapFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 动态帮助信息 - 固定值模式 (Dynamic Help - Fixed Value Mode)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var text = '';
+        if(data['类型'] === '测试类'){
+            text = '此项为测试!';
+        }
+        var attrsDynamicHelps = {
+            "备注":text
+        };
+        return {
+            "scriptDynamicHelps":attrsDynamicHelps
+        };
+    }else{
+        return null;
+    }
+}else{
+    return null;
+}
+```
+
+### 动态帮助信息 - 动态选择属性 (Dynamic Help - Dynamic Selection)
+```javascript
+if(args$){
+    var dynamicHelpFunc = function(value){
+        var mapping = {};
+        if(value === '类型一'){
+            mapping = {
+                '备注':"请填写备注!"
+            };
+        } else if (value === '类型二'){
+            mapping = {
+                '备注':"备注可选填!"
+            };
+        }
+        return mapping;
+    }
+    var dynamicHelpFuncMap = {
+        '类型':dynamicHelpFunc
+    };
+    return {
+        "changeDynamicHelpLabel":dynamicHelpFuncMap
+    };
+}else{
+    return null;
+}
+```
+
+### 设置初始值 (Set Initial Values)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var initData = {};
+        if(data["类型"] === '类型二'){
+            initData = {'备注':'已备注'};
+        }
+        return {
+            "scriptInitFormData":initData
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+```
+
+### 设置表单状态 (Set Form Status)
+```javascript
+if(args$){
+    var setFormStatusFunc = function(value){
+        if(value){
+            args$.setFormValueFunc('view');
+        }
+        return false;
+    }
+    return {
+        "setFormActionFunc":setFormStatusFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 检查初始数据 (Check Initial Data)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var initData = {};
+        if(!data["名称"]){
+            initData['名称'] = {
+                "status":"error",
+                "message":"名称不能为空！"
+            };
+        }
+        return {
+            "scriptCheckInitFormData":initData
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+```
+
+### 动态改变下拉框选项 (Dynamic Change Dropdown Options)
+```javascript
+if(args$){
+    var changeFunc = function(value){
+        if(value === '葡萄') {
+            return {"特点":[
+                {name: '紫色', value: '紫色'},
+                {name: '酸酸的', value: '酸酸的'},
+            ]};
+        } else if(value === '香蕉') {
+            return {"特点":[
+                {name: '好吃', value: '好吃'},
+                {name: '黄色', value: '黄色'},
+            ]};
+        } else if(value === '火龙果') {
+            return {"特点":[
+                {name: '种子多', value: '种子多'},
+                {name: '红心好吃', value: '红心好吃'},
+            ]};
+        }else{
+            return {"特点":[
+                {name: '种子多', value: '种子多'},
+            ]};
+        }
+    }
+    return {
+        "setSelectOptionsFunc": {
+            '名称': changeFunc
+        }
+    };
+}else{
+    return null;
+}
+```
+
+### 初始化下拉框选项 (Initialize Dropdown Options)
+```javascript
+if(args$){
+    var data = args$.data;
+    if(data){
+        var initData = {};
+        initData['dept'] = [
+            {name: '好吃', value: '好吃'},
+            {name: '黄色', value: '黄色'},
+        ];
+        return {
+            "initSelectOptionsFunc":initData
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+```
+
+### 追加下拉框选项 (Append Dropdown Options)
+```javascript
+if(args$){
+    var addSelectOptionsFunc = function(value){
+        return {
+            "特点":[
+                {"name": "好吃", "value": "好吃"},
+                {"name": "酸酸的", "value": "酸酸的"}
+            ]
+        };
+    }
+    return {
+        "appendSelectOptionsFunc":{'名称':addSelectOptionsFunc}
+    };
+}else{
+    return null;
+}
+```
+
+### 控制字段显示隐藏 (Control Field Display)
+```javascript
+if(args$){
+    var changeAgeFunc = function(value){
+        if(value >= 18) {
+            return {name: true, salary: true};
+        } else {
+            return {name: false, salary: false};
+        }
+    }
+    var changeSexFunc = function(value){
+        if(value === '男') {
+            return {id: 0};
+        } else {
+            return {id: false};
+        }
+    }
+    return {
+        "controlFieldDisplayFunc": {
+            'age': changeAgeFunc,
+            'sex': changeSexFunc
+        }
+    };
+}else{
+    return null;
+}
+```
+
+### 初始化时控制字段显示隐藏 (Control Field Display on Init)
+```javascript
+if(args$){
+    let data = args$.data || {};
+    let initDisplayData = {};
+    if(data.姓名 === '张三') {
+        initDisplayData = {年龄：0};
+    } else {
+        initDisplayData = {年龄：false};
+    }
+    return {
+        "initFieldDisplayFunc": initDisplayData,
+    };
+}else{
+    return null;
+}
+```
+
+### 智能回填初始化 (Smart Fill Initialization)
+```javascript
+// 固定值模式
+if(args$){
+    var initBackFillData = { 
+        "姓名": '张三',
+        "省": '河北',
+        "市": '石家庄',
+    };
+    return {"initBackFillData":initBackFillData}
+}
+
+// 调用脚本
+if(args$){
+    var changeFunc = async function(value){
+        return await args$.runScriptFunc('初始化智能回填', { value });
+    }
+    return {
+        "initBackFillData":changeFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 自动补全 (Auto Complete)
+```javascript
+if(args$){
+    var changeFunc = function(value){
+        if(value === '河') {
+            return [{value: '河北', label: '河北'},{value: '河南', label: '河南'}];
+        } else if(value === '北'){
+            return [{value: '河北', label: '河北'},{value: '北京', label: '北京'}];
+        }
+    }
+    return {
+        "controlAutoCompleteFunc": {
+            '省': changeFunc,
+        }
+    };
+}else{
+    return null;
+}
+```
+
+### 子表单添加监听 (Sub-form Add Observer)
+```javascript
+if(args$){
+    var setFieldValue = function(changedParentFieldValue){
+        console.log('父表单::初始数据:', args$.parentFormData);
+        console.log('父表单::当前数据：监听字段修改前数据:', args$.parentForm.getFieldsValue())
+        console.log('父表单::监听字段::修改后数据:', changedParentFieldValue);
+        args$.setFieldValueFunc('名称','张三');
+    }
+    var addObserver = [{
+        "parentField":"名称",
+        "hookFunc":setFieldValue,
+    }];
+    return {
+        "addObserver":addObserver,
+    };
+}else{
+    return null;
+}
+```
+
+### 子通知父 (Child Notify Parent)
+```javascript
+// 父表单脚本
+if(args$){
+    var data = args$.data;
+    if(data){
+        var callMe = function(notifyParam, subFormData){
+            console.log('子订单::变值字段& 值：', notifyParam);
+            console.log('子订单::表单变化前数据：', subFormData);
+        }
+        return {
+            "notifyFunc":callMe
+        };
+    }else{
+        return {};
+    }
+}else{
+    return null;
+}
+
+// 子表单脚本
+if(args$){
+    var notifyParent = ['编码'];
+    return {
+        "notifyParent":notifyParent,
+    };
+}else{
+    return null;
+}
+```
+
+### 回填多组子表单初始化 (Initialize Nested Sub-forms)
+```javascript
+// 固定值模式
+if(args$){
+    var initNestedFormData = [
+        {"申请人": ['ccc', 'qq'], "手机号": '13256765432'},
+        {"申请人": ['aa', 'h1'], "手机号": '13256765432'}
+    ];
+    return {"initNestedFormData":initNestedFormData}
+}
+
+// 调用脚本
+if(args$){
+    var changeFunc = async function(value){
+        return await args$.runScriptFunc('测试用_回填子表单多组', { value });
+    }
+    return {
+        "initNestedFormData":changeFunc
+    };
+}else{
+    return null;
+}
+```
+
+### 表单脚本初始化 (Form Script Initialization)
+```groovy
+println "根据 id 查询运维复制数据：" + args$
+// 1. 从入参中提取暂估 ID
+def tempId = args$?.componentInnerParams?.get("新增运维暂估表单-id")
+if (!tempId) {
+    println "暂估 ID 为空，查询失败"
+    return [:]
+}
+
+// 2. 根据暂估 ID 从费用暂估表查询数据
+def 数据 = DataModelUtils.getCIByPK("费用暂估表", ['id': tempId])
+if (!数据 || ! 数据.dataFieldMap) {
+    println "未查询到暂估 ID 为 ${tempId} 的费用暂估数据"
+    return [:]
+}
+
+// 3. 提取所有字段并构建返回 map
+def resultMap = [:]
+数据.dataFieldMap.each { key, value ->
+    resultMap[key] = value
+}
+
+// 4. 返回最终结果
+return resultMap
+```
+
+### 案例：控制字段显示隐藏 (Control Field Display Example)
+```javascript
+if(args$){
+    var changeReasonFunc1 = async function(value){
+        const res = await args$.runScriptFunc("判断日期间隔显示未及时暂估原因",{value})
+        
+        console.log(res)
+        console.log("未及时暂估原因" + res.content.未及时暂估原因);
+        
+        if(res.content.未及时暂估原因 == true){
+            args$.setFieldValueFunc('是否超时',"是")
+        }else{
+            args$.setFieldValueFunc('是否超时',"否")
+        }
+        
+        return res
+    }
+    
+    return {
+        "controlFieldDisplayFunc": {
+            '行程 id': changeReasonFunc1,
+        }
+    };
+}else{
+    return null;
+}
+```
+
+### 案例：某字段值改变时动态控制其它字段的值 (Dynamic Change Other Fields When Field Changes)
+```javascript
+if(args$){
+    var changeFunc = async function(value){
+        if(value){
+            var data = await args$.runScriptFunc("动态修改行程暂估新增表单",{value})
+            console.log(data.content[0])
+            var map = data.content[0]
+            if(map){
+                args$.setFieldValueFunc('公司',map.公司)
+                args$.setFieldValueFunc('客户',map.客户)
+                args$.setFieldValueFunc('客户 id',map.客户 id)
+                var time1 = args$.formatDateFunc(map.开始日期)
+                var time2 = args$.formatDateFunc(map.结束日期)
+                args$.setFieldValueFunc('开始日期',time1)
+                args$.setFieldValueFunc('结束日期',time2)
+                args$.setFieldValueFunc('编号',map.编号)
+                args$.setFieldValueFunc('航班状态',map.航班状态)
+                args$.setFieldValueFunc('行程摘要',map.行程摘要)
+                args$.setFieldValueFunc('飞机号',map.飞机号)
+                args$.setFieldValueFunc('公司 id',map.公司 id) 
+            }else{
+                args$.setFieldValueFunc('飞机号',null)
+            }
+        }
+    }
+    
+    var feildMapFunc = {
+        '行程 id':changeFunc
+    };
+    
+    return {
+        "changeFunctions":feildMapFunc,
+    };
+}else{
+    return null;
+}
+```
+
+### 案例：字段必填提示 (Required Field Validation)
+```javascript
+if(args$){
+    var validateFeeDateFields = function(value, fieldName, args){
+        var retObj = {
+            'status': true
+        };
+        
+        var triggerFieldName = '是否年费';
+        var triggerValue = '是';
+        var startDateField = '费用发生开始日期';
+        var endDateField = '费用发生结束日期';
+        
+        var triggerFieldValue = args$.getFieldValueFunc 
+            ? args$.getFieldValueFunc(triggerFieldName) 
+            : (args$.data || {})[triggerFieldName];
+        
+        if(triggerFieldValue === triggerValue){
+            var startDateValue = args$.getFieldValueFunc 
+                ? args$.getFieldValueFunc(startDateField) 
+                : (args$.data || {})[startDateField] || '';
+            var endDateValue = args$.getFieldValueFunc 
+                ? args$.getFieldValueFunc(endDateField) 
+                : (args$.data || {})[endDateField] || '';
+            
+            var errorMessage = '';
+            if(!startDateValue || startDateValue.toString().trim() === ''){
+                errorMessage = `${startDateField} 不能为空！`;
+            } else if(!endDateValue || endDateValue.toString().trim() === ''){
+                errorMessage = `${endDateField} 不能为空！`;
+            }
+            
+            if(errorMessage){
+                retObj = {
+                    'status': false,
+                    'message': errorMessage
+                };
+            }
+        }
+        
+        return retObj;
+    };
+    
+    var fieldValidateMap = {
+        '是否年费': validateFeeDateFields
+    };
+    
+    return {
+        "validatorFunctions": fieldValidateMap
+    };
+}else{
+    return null;
+}
+```
+
+### 案例：动态设置下拉框内容 (Dynamic Set Dropdown Content)
+```javascript
+if(args$){
+    var changeFunc = async function(value) {
+        console.log("value1: 当前客户代码", value);
+        
+        const scriptResult = await args$.runScriptFunc(
+            '返回当前客户经理客户飞机号', 
+            { "客户代码": value }
+        );
+        
+        console.log("脚本返回原始数据:", scriptResult);
+        
+        const planeList = scriptResult?.飞机 ID || [];
+        
+        const validPlanes = planeList.filter(plane => 
+            plane && typeof plane.name !== 'undefined' && typeof plane.value !== 'undefined'
+        );
+        
+        console.log("处理后有效飞机列表:", validPlanes);
+        
+        return { "飞机 ID": validPlanes };
+    };
+    
+    return {
+        "setSelectOptionsFunc": {
+            '客户代码': changeFunc
+        },
+    };
+}else{
+    return null;
+}
+```
+
+## 通用排序函数 (Generic Sort Function)
+```groovy
+/**
+ * 通用列表排序函数，支持多字段依次排序
+ * @param list 要排序的列表（元素为 Map）
+ * @param sortFields 排序字段数组，按优先级从高到低排列
+ * @param sortDirections 排序方向数组，true 为升序，false 为降序，默认全部升序
+ * @return 排序后的新列表（不修改原列表）
+ */
+List<Map> sortMapList(List<Map> list, List<String> sortFields, List<Boolean> sortDirections = null) {
+    if (!list) {
+        return []
+    }
+    
+    if (!sortFields) {
+        return new ArrayList<>(list)
+    }
+    
+    List<Boolean> directions = sortDirections ?: []
+    while (directions.size() < sortFields.size()) {
+        directions.add(true)
+    }
+    
+    List<Map> sortedList = new ArrayList<>(list)
+    
+    sortedList.sort { Map a, Map b ->
+        int compareResult = 0
+        
+        for (int i = 0; i < sortFields.size() && compareResult == 0; i++) {
+            String field = sortFields[i]
+            boolean isAsc = directions[i]
+            
+            def valueA = a.get(field)
+            def valueB = b.get(field)
+            
+            if (valueA == null && valueB == null) {
+                compareResult = 0
+            } else if (valueA == null) {
+                compareResult = isAsc ? -1 : 1
+            } else if (valueB == null) {
+                compareResult = isAsc ? 1 : -1
+            } else {
+                compareResult = valueA <=> valueB
+                if (!isAsc) {
+                    compareResult = -compareResult
+                }
+            }
+        }
+        
+        return compareResult
+    }
+    
+    return sortedList
+}
+```
+
+## 对象快速复制 (Quick Object Copy)
+```groovy
+// 遍历 A，若 B 中存在 A 的 key，将 B 的 value 赋值为 A 的 value
+A.dataFieldMap.each{
+    B.dataFieldMap.put(it.key,it.value);
+}
+B.dataFieldMap.put("主键 ID", ToolsUtils.V4_UUID())
+B.dataFieldMap.put("其它字段", 其它值)
+saveCi(B)
+```
+
+## 脚本抛出信息 (Script Throw Message)
+```groovy
+// 1. 抛异常
+throw new Exception("模板表头不正确，请使用标准模板，谢谢！！！")
+
+// 2. 返回信息对象（格式美观）
+def rsp = new CMSResponse()
+def status = ""
+def message = ""
+if(args$.rows.size() == 0 ){
+    rsp.setStatus("fail")
+    rsp.setMessage("请勾选需要保存的航段")
+    return rsp
+}
+```
+
+## 发送邮件 (Send Email)
+```groovy
+def str = '''
+1、李志民，胡莉，李庆童有一个运维暂估项目：T201010-航油，金额￥10，飞机号：B-8159，超过 112 天未报销，可以在  综合财务 - 运行运维类暂估 - 暂估提醒概览  菜单查询，搜索编号：S202512170032，请关注
+</br>
+'''
+
+def 邮件对象 = new MessageNotificationVO()
+邮件对象.type = 2
+邮件对象.title = "暂估超时未报销提醒"
+def accach = []
+邮件对象.attachments = accach
+邮件对象.receiver = ["2898408767@qq.com","fuchuan@sinojet.org.cn"]
+邮件对象.message = str
+
+def 单个邮箱 = 邮件对象.receiver.join(";")
+def 原始邮件内容列表 = str.split(/\n/).findAll { it.trim().startsWith(/\d+、/) }
+
+println "===== 准备向邮箱【${单个邮箱}】发送汇总邮件 ====="
+println "邮件主题：${邮件对象.title}"
+println "邮件内容（共 ${原始邮件内容列表.size()} 条提醒）：\n${邮件对象.message}"
+
+sendNotification(邮件对象)
+println "【批量发送邮件】生产环境：邮件已成功发送至【${单个邮箱}】"
+```
+
+## 批量发送邮件 (Batch Send Email)
+```groovy
+/**
+ * 批量发送邮件核心函数
+ * @param 邮箱邮件内容 Map Map<String, List<String>> 键=邮箱地址，值=该邮箱对应的多条邮件原始内容列表
+ */
+def 批量发送邮件 (Map<String, List<String>> 邮箱邮件内容 Map) {
+    if (!邮箱邮件内容 Map || 邮箱邮件内容 Map.isEmpty()) {
+        println "【批量发送邮件】邮箱 - 邮件内容映射 Map 为空，无需执行发送操作"
+        return
+    }
+    
+    邮箱邮件内容 Map.each { 单个邮箱，原始邮件内容列表 ->
+        try {
+            if (!单个邮箱 || 单个邮箱.trim().isEmpty() || !原始邮件内容列表 || 原始邮件内容列表.isEmpty()) {
+                println "【批量发送邮件】邮箱为空或邮件内容列表为空，跳过该邮箱"
+                return
+            }
+            
+            def 汇总邮件内容 = new StringBuilder()
+            
+            原始邮件内容列表.eachWithIndex { 单条原始内容，索引 ->
+                def 有效内容 = 单条原始内容 ?: ""
+                if (StringUtils.isNotEmpty(有效内容.trim())) {
+                    汇总邮件内容.append("${索引 + 1}、${有效内容.trim()}</br>")
+                }
+            }
+            
+            if (汇总邮件内容.toString().trim().isEmpty()) {
+                println "【批量发送邮件】邮箱【${单个邮箱}】格式化后无有效内容，跳过发送"
+                return
+            }
+            
+            def 邮件对象 = new MessageNotificationVO()
+            邮件对象.type = 2
+            邮件对象.title = "暂估超时未报销提醒"
+            def accach = []
+            邮件对象.attachments = accach
+            邮件对象.receiver = [单个邮箱]
+            邮件对象.message = 汇总邮件内容.toString().trim()
+            
+            println "===== 准备向邮箱【${单个邮箱}】发送汇总邮件 ====="
+            println "邮件主题：${邮件对象.title}"
+            println "邮件内容（共 ${原始邮件内容列表.size()} 条提醒）：\n${邮件对象.message}"
+            
+            if (globalVars$.系统环境 == "prod") {
+                println "【批量发送邮件】生产环境：邮件已成功发送至【${单个邮箱}】"
+            } else {
+                println "【批量发送邮件】测试/非生产环境：跳过实际邮件发送，仅打印日志"
+            }
+        } catch (Exception e) {
+            println "【批量发送邮件】邮箱【${单个邮箱}】发送失败，异常信息：${e.getMessage()}"
+            e.printStackTrace()
+        }
+    }
+    
+    println "【批量发送邮件】所有邮箱处理完毕"
+}
+```
+
+## SQL 脚本代码 (SQL Script Code)
+
+### 查询数据 SQL (Query SQL)
+```groovy
+def 客户代码 = "aasd123"
+def 客户信息 Sql = """
+    SELECT "客户经理账号" 
+    FROM "TSos_ClientInfo_客户信息" 
+    WHERE "ClientNo" = ?
+"""
+def 客户信息列表 = DataModelUtils.queryForListMap(客户信息 Sql, [客户代码])
+```
+
+### 修改数据 SQL (Update SQL)
+```groovy
+def updateSql = """
+UPDATE "暂估提醒流水表"
+SET "邮件提醒时间" = '1766462427000'
+"""
+JDBCUtils.update(updateSql, null)
+```
+
+### SQL 分页 (SQL Pagination)
+```groovy
+def pageNo=args$.pageNo
+def pageSize=args$.pageSize
+
+def 当前日期 = System.currentTimeMillis()
+def headers = []
+headers << ['name': "id", 'dataType':"string"];
+headers << ['name': "提醒人", 'dataType':"string"];
+headers << ['name': "飞机号", 'dataType':"string"];
+
+def sql = """ """
+def totalData = DataModelUtils.queryForListMap(sql,null)
+def total = totalData.size()
+
+sql += "LIMIT ${pageSize} OFFSET (${pageNo} - 1) * ${pageSize}"
+def data = DataModelUtils.queryForListMap(sql,null)
+
+return [headers: headers, results: data, others: "", total: total]
+```
+
+### 逻辑分页 (Logical Pagination)
+```groovy
+def pageNo=args$.pageNo
+def pageSize=args$.pageSize
+
+/* 各种数据处理过程 */
+
+def newdata = getPagedData(data,pageNo,pageSize)
+return [headers: headers, results: newdata, others: "", total:data.size()]
+
+def getPagedData(List data, Integer pageNo, Integer pageSize) {
+    if (!data) {
+        return []
+    }
+    
+    int validPageNo = (pageNo ?: 1) < 1 ? 1 : (pageNo ?: 1)
+    int validPageSize = (pageSize ?: 10) < 1 ? 10 : (pageSize ?: 10)
+    
+    int startIndex = (validPageNo - 1) * validPageSize
+    int endIndex = startIndex + validPageSize
+    
+    startIndex = Math.max(startIndex, 0)
+    endIndex = Math.min(endIndex, data.size())
+    
+    return startIndex >= endIndex ? [] : data.subList(startIndex, endIndex)
+}
+```
+
+## 附件处理 (Attachment Handling)
+
+### 双表连接消除主表冗余字段 (Eliminate Redundant Fields in Multi-table Join)
+```groovy
+// 使用 SQL 查出来的附件字段，是大文本，需要转化为 JSON
+def 附件 JSON = 附件转换 (aa.附件)
+for (def file : 附件 JSON) {
+    if (file.type == 'pdf' || file.fileType == 'application/pdf') {
+        def fileName = file.fileName ?: ""
+    }
+}
+
+// 如果只想判断附件是否为空
+if (附件转换 (aa.附件))
+if (!附件转换 (aa.附件))
+或
+if (aa.附件)
+if(aa.附件 == "[]")
+
+def 附件转换 (largeText){
+    if(largeText != null && largeText != ""){
+        def jsonSlurper = new JsonSlurper()
+        def jsonArray = jsonSlurper.parseText(largeText)
+        return jsonArray
+    }
+}
+或
+def sss = JsonUtils.parseObject(aa.附件，Object.class)
+```
+
+### SQL 示例 - 消除冗余字段
+```sql
+SELECT
+    CASE WHEN t.rn = 1 THEN t."主表 ID" ELSE '' END AS "主表 ID",
+    CASE WHEN t.rn = 1 THEN t."客户代码" ELSE '' END AS "客户代码",
+    t."明细 ID",
+    t."明细台账 ID"
+FROM (
+    SELECT 
+        a."ID" AS "主表 ID", 
+        a."客户代码" AS "客户代码",
+        b."ID" AS "明细 ID",
+        b."台账 ID" AS "明细台账 ID",
+        ROW_NUMBER() OVER(PARTITION BY a."ID" ORDER BY b."ID") AS rn
+    FROM "Credit 台账" a
+    LEFT JOIN "Credit 台账明细" b ON a."ID" = b."台账 ID"
+    WHERE a."ID" = '69296cada6849b2c6165e86b'
+) t
+ORDER BY t."主表 ID", t.rn
+```
+
+## 导出相关 (Export Operations)
+
+### 生成/导出 Excel/Word/PDF/压缩包
+```groovy
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import com.aspose.words.*
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.util.zip.Deflater
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
+import java.util.HashSet
+import groovy.json.JsonSlurper
+
+// 1. 定义静态的返回数据
+def 返回数据 = [
+    "飞机号": "N2708E",
+    "客户": "737-700 BBJ",
+    "list": [
+        ["编号": 1, "行程号": "24-Jul-2025", "详情": "ZBAA", "金额": "ZSSS"],
+        ["编号": 1, "行程号": "24-Jul-2025", "详情": "ZBAA", "金额": "ZSSS"],
+        ["编号": 1, "行程号": "24-Jul-2025", "详情": "ZBAA", "金额": "ZSSS"],
+    ]
+]
+
+// 2. 模板名 文件名
+def templateName = "测试"
+def exportFileName = new SimpleDateFormat("yyyyMMdd").format(new Date()) + "测试"
+
+// 3. 生成 Word 并转 PDF
+def wordUri = genWordFile(templateName, 返回数据，[], [])
+def Exceluri = genExcelFile(templateName, "Excel 文件名", 返回数据，[]);
+def wordFilePath = AttachmentsUtils.getAttachment(wordUri)?.toString()
+def pdfUri = WordReportUtils.genPdfFile(new Document(wordFilePath))
+
+// 6. 封装到压缩包，导出压缩包
+def uploadPath = VariableUtils.getSysConfigVar('upload.path')
+def list1 = []
+def map11 = [:]
+map11.put("name",exportFileName+".DOC")
+map11.put("fileAddress",uploadPath+wordUri)
+list1.add(map11)
+
+HashSet<String> addedEntries = new HashSet<>()
+ByteArrayOutputStream bos = new ByteArrayOutputStream()
+ZipOutputStream zos = new ZipOutputStream(bos)
+zos.setLevel(Deflater.BEST_COMPRESSION)
+
+void addFilesToZip(zos,fileList, folderName,addedEntries) {
+    for(aa in fileList){
+        def name = aa.name
+        def fileAddress = aa.fileAddress
+        def file = new File(fileAddress)
+        if (file.exists()) {
+            String entryName = "${folderName}/${name}"
+            if (!addedEntries.contains(entryName)) {
+                ZipEntry zipEntry = new ZipEntry(entryName)
+                zos.putNextEntry(zipEntry)
+                FileInputStream fis = new FileInputStream(file)
+                byte[] buffer = new byte[1024]
+                int bytesRead
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    zos.write(buffer, 0, bytesRead)
+                }
+                fis.close()
+                zos.closeEntry()
+                addedEntries.add(entryName)
+            }
+        }
+    }
+}
+
+addFilesToZip(zos,list1, '账单集合',addedEntries)
+zos.close()
+byte[] zipBytes = bos.toByteArray()
+bos.close()
+
+def sss = AttachmentsUtils.saveFileWithBytes("zip",zipBytes)
+AttachmentsUtils.exportFile(sss,"测试"+".zip")
+```
+
+### 导出压缩包内带文件夹 (Export Zip with Folders)
+```groovy
+println "变动费用附件列表" + 变动费用附件列表
+println "飞行费用附件列表" + 飞行费用附件列表
+println "补贴费用附件列表" + 补贴费用附件列表
+
+HashSet<String> addedEntries = new HashSet<>()
+ByteArrayOutputStream bos = new ByteArrayOutputStream()
+ZipOutputStream zos = new ZipOutputStream(bos)
+zos.setLevel(Deflater.BEST_COMPRESSION)
+
+void addFilesToZip(zos, fileList, folderName, addedEntries) {
+    for(aa in fileList) {
+        def name = aa.name
+        def fileAddress = aa.fileAddress
+        def file = new File(fileAddress)
+        if (file.exists()) {
+            String entryName = folderName ? "${folderName}/${name}" : name
+            if (!addedEntries.contains(entryName)) {
+                ZipEntry zipEntry = new ZipEntry(entryName)
+                zos.putNextEntry(zipEntry)
+                FileInputStream fis = new FileInputStream(file)
+                byte[] buffer = new byte[1024]
+                int bytesRead
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    zos.write(buffer, 0, bytesRead)
+                }
+                fis.close()
+                zos.closeEntry()
+                addedEntries.add(entryName)
+            }
+        }
+    }
+}
+
+addFilesToZip(zos, 变动费用附件列表，'变动费用', addedEntries)
+addFilesToZip(zos, 飞行费用附件列表，'飞行费用', addedEntries)
+addFilesToZip(zos, 补贴费用附件列表，'补贴费用', addedEntries)
+
+zos.close()
+byte[] zipBytes = bos.toByteArray()
+bos.close()
+
+def sss = AttachmentsUtils.saveFileWithBytes("zip", zipBytes)
+AttachmentsUtils.exportFile(sss, 标题 + ".zip")
+```
+
+## 数据格式与模板占位符写法 (Data Format and Template Placeholders)
+
+```
+// 1. 渲染 Map
+数据格式：返回 Map ["年龄":"18"]
+模板格式：{{年龄}}
+
+// 2. 渲染 Map 数组
+数据格式：[s1: ["年龄":"18"]]
+模板格式：{{{s1.年龄 }}}
+
+// 3. 渲染行数据
+数据格式：
+[
+    "maplist": 
+        [
+            {"序号": 1, "项目": "飞机的管理费"},
+            {"序号": 2, "项目": "维修管理费"}
+        ]
+]
+模板格式：
+{{$fe: maplist t.序号  t.项目 }}
+
+// 4. 复杂数据
+数据：
+[
+    "s2": 
+        [
+            "maplist": 
+                [
+                    {"序号": 1, "项目": "飞机的管理费"},
+                    {"序号": 2, "项目": "维修管理费"}
+                ],
+            "maplist1": 
+                [
+                    {"合计": "=ROUND(SUM(F5:F22),2)"},
+                ],
+            "币种": "美元",
+            "sum": 
+                [
+                    {"合计": "ROUND(SUM(E5:E9),2)"}
+                ],
+            "标题": "M-SZSZ 飞机 2025 年 9 月固定费用对账单",
+            "任务空时合计": "SUM(E5:E9)"
+        ]
+]
+模板：
+{{s2.标题 }}
+{{$fe: s2.maplist t.序号  t.项目 }}
+{{$fe: s2.sum t.合计 }}
+{{$fe: s2.maplist1 t.合计 }}
+```
+
+## 导出 Excel 时插入公式 (Insert Formula in Excel Export)
+```groovy
+// 插入公式 (数据)
+map.put("任务空时合计", new ConvertCellNumberVO(返回币种公式 (""),"ROUND(SUM(M6:M"+(行程单 list.size()+5)+"),2)"));
+
+def 返回币种公式 (币种){
+    def 公式 = 币种+'#,##0.00'
+    if(币种=="HK\$"){
+        公式 = "[\$HK\$-C04]#,##0.00;-[\$HK\$-C04]#,##0.00"
+    }
+    if(币种=="S\$"){
+        公式 = "[\$S\$-C04]#,##0.00;-[\$S\$-C04]#,##0.00"
+    }
+    if(币种=="A\$"){
+        公式 = "[\$A\$-C04]#,##0.00;-[\$A\$-C04]#,##0.00"
+    }
+    if(币种=="NZ\$"){
+        公式 = "[\$NZ\$-C04]#,##0.00;-[\$NZ\$-C04]#,##0.00"
+    }
+    if(币种=="MOP\$"){
+        公式 = "[\$MOP\$\$-C04]#,##0.00;-[\$MOP\$\$-C04]#,##0.00"
+    }
+    return 公式
+}
+```
+
+## 导出 Excel 时插入图片 (Insert Image in Excel Export)
+```groovy
+def 飞机图片附件地址 = 根据飞机号获取飞机封面图片 (置换账单基础数据。飞机号)
+
+Map<String, Object> map = new HashMap<String, Object>();
+map.put("标题", "占位结构字段");
+map.put("公司地址", 汇总页信息。公司地址);
+map.put("公司电话", 汇总页信息。公司电话);
+
+def imageVO = new ConvertImageVO()
+imageVO.width = 12000
+imageVO.height = 5500
+imageVO.uri = 飞机图片附件地址
+map.put("飞机图片", imageVO);
+
+return map
+```
+
+## 指定 Excel 单元格列合并 (Merge Excel Cells)
+```groovy
+// 调用方式，合并 listMap 的序号列和项目列
+List<Map<String, Object>> mergedList = processCellMerging(listMap, ["序号", "项目"])
+
+/**
+ * 通用单元格合并处理方法
+ * @param dataList 原始数据列表
+ * @param columnsToMerge 需要合并的列名列表
+ * @param mergeVOClass 合并标记类
+ * @return 处理后带合并标记的数据列表
+ */
+def processCellMerging(
+    List<Map<String, Object>> dataList,
+    List<String> columnsToMerge,
+    Class<?> mergeVOClass = ConvertCellMergeVO.class
+) {
+    if (!dataList || dataList.isEmpty()) {
+        println "[processCellMerging] 警告：传入的数据列表为空，无需合并"
+        return new ArrayList<>(dataList)
+    }
+    if (!columnsToMerge || columnsToMerge.isEmpty()) {
+        println "[processCellMerging] 警告：未指定需要合并的列，无需合并"
+        return new ArrayList<>(dataList)
+    }
+    
+    List<Map<String, Object>> mergedResult = new ArrayList<>()
+    for (Map<String, Object> row : dataList) {
+        mergedResult.add(new HashMap<>(row))
+    }
+    
+    for (String targetColumn : columnsToMerge) {
+        int totalRows = mergedResult.size()
+        int currentMergeStartRow = 0
+        
+        while (currentMergeStartRow < totalRows) {
+            Map<String, Object> startRow = mergedResult.get(currentMergeStartRow)
+            Object rawBaseValue = startRow.getOrDefault(targetColumn, "")
+            String baseValue = normalizeValue(rawBaseValue)
+            
+            int mergeRowCount = 1
+            for (int i = currentMergeStartRow + 1; i < totalRows; i++) {
+                Map<String, Object> currentRow = mergedResult.get(i)
+                Object rawCompareValue = currentRow.getOrDefault(targetColumn, "")
+                String compareValue = normalizeValue(rawCompareValue)
+                
+                if (baseValue.equals(compareValue)) {
+                    mergeRowCount++
+                } else {
+                    break
+                }
+            }
+            
+            if (mergeRowCount > 1) {
+                ConvertCellMergeVO mergeVO = new ConvertCellMergeVO(baseValue, mergeRowCount)
+                mergedResult.get(currentMergeStartRow).put(targetColumn, mergeVO)
+                
+                for (int i = currentMergeStartRow + 1; i < currentMergeStartRow + mergeRowCount; i++) {
+                    mergedResult.get(i).put(targetColumn, "")
+                }
+            }
+            
+            currentMergeStartRow += mergeRowCount
+        }
+    }
+    
+    return mergedResult
+}
+
+def normalizeValue(Object value) {
+    if (value == null) {
+        return ""
+    }
+    if (value instanceof Number) {
+        return value.toString()
+    }
+    String strValue = value.toString().trim()
+    return strValue
+}
+```
+
+## 移除数字末尾多余的 0 (Remove Trailing Zeros)
+```groovy
+def removeTrailingZeros(number) {
+    if (number instanceof Integer || number instanceof Long) {
+        return number.toString()
+    }
+    
+    def stringValue = number.toString()
+    
+    if (stringValue.contains('E')) {
+        BigDecimal bd = new BigDecimal(stringValue)
+        stringValue = bd.toPlainString()
+    }
+    
+    if (!stringValue.contains('.')) {
+        return stringValue
+    }
+    
+    stringValue = stringValue.replaceAll('0*$', '')
+    
+    if (stringValue.endsWith('.')) {
+        stringValue = stringValue.substring(0, stringValue.length() - 1)
+    }
+    
+    return stringValue
+}
+```
+
+## 系统内置附件函数 (System Built-in Attachment Functions)
+
+```groovy
+// 将已上传的文件作为附件挂载到 CI 的指定附件类型字段上
+AttachmentsUtils.attachment(ci, ciAttributeName, uri, fileName)
+AttachmentsUtils.attachment(ci, ciAttributeName, uri, fileName, remark)
+
+// 复制附件并返回新生成的附件存储位置 uri
+AttachmentsUtils.copyAttachment(uri)
+
+// 标记附件为删除状态
+AttachmentsUtils.deleteAttachment(uri)
+AttachmentsUtils.deleteAttachment(uri, foreDelete)
+
+// 删除 CI 记录上附件字段的指定附件
+AttachmentsUtils.deleteByIDs(ciID, fileAttrName, ids)
+AttachmentsUtils.deleteByIDs(ciID, fileAttrName, ids, foreDelete)
+
+// 获取附件
+AttachmentsUtils.getAttachment(uri)
+AttachmentsUtils.getAttachmentWithBytes(String uri)
+AttachmentsUtils.getAttachmentFileSize(String uri)
+
+// 保存文件为附件
+AttachmentsUtils.saveFileWithBytes(String suffix, byte[] dataBytes)
+AttachmentsUtils.saveFileWithBase64(String suffix, String base64String)
+AttachmentsUtils.saveFileWithStream(String suffix, InputStream source)
+AttachmentsUtils.saveFileByPost(MultipartFile[] files)
+
+// 更新文件
+AttachmentsUtils.modifyURI(String srcURI, String targetURI)
+
+// 导出文件
+AttachmentsUtils.exportFile(String uri, String fileName)
+
+// 打包附件到 zip
+AttachmentsUtils.exportZip(List<String> uris, String fileName, boolean fileNameIsSort)
+AttachmentsUtils.exportZip(List<String> uris, String fileName, boolean fileNameIsSort, Map uri2name)
+```
+
+## 获取当前登录网站 IP 端口 (Get Current Login Site IP/Port)
+```groovy
+import java.net.URLEncoder;
+def request = SysUtil.getCurrentRequest();
+def heads = [:]
+def headerNames = request.getHeaderNames();
+while (headerNames.hasMoreElements()) {
+    def headerName = headerNames.nextElement();
+    def _nameArr = headerName.toLowerCase().toCharArray();
+    for (int i = 0; i < _nameArr.length; i++) {
+        if (i == 0 || (i > 0 && _nameArr[i - 1] == '-')) {
+            _nameArr[i] = (_nameArr[i] - 32) as char;
+        }
+    }
+    def newHeaderName = new String(_nameArr);
+    heads.put(newHeaderName, request.getHeader(headerName));
+}
+println heads.Origin  // http://39.96.198.200:81
+```
+
+## 多个 CI 附件转为 PDF (Merge Multiple CI Attachments to PDF)
+```groovy
+// 调用方式
+def 账单 ID = "695e0d326fb0ff0000d40128"
+def 固定费用列表 = DataModelUtils.getCIByAttr("Management_Fee_Bill",['bill_id':账单 ID]) ?: []
+def 固定费用数据 = []
+固定费用列表.each { ci ->
+    if(ci?.dataFieldMap) 固定费用数据.add(ci.dataFieldMap)
+}
+def 所有附件 pdf = ScriptUtils.runScriptByCode("账单导出_合并多个 CI 的附件为 PDF",["CI":固定费用数据])
+```
+
+## 多个 PDF 合并成一个 PDF (Merge Multiple PDFs)
+```groovy
+// 调用方式
+def pdf 数组 = []
+pdf 数组.add(pdfurl)
+def 合并 pdf 结果 = ScriptUtils.runScriptByCode("账单导出_PDF 合并",["filelist":pdf 数组,"filename":""])
+def 合并 pdfurl = 合并 pdf 结果？.url ?: ""
+```
+
+## 多个 Word 合并成一个 Word (Merge Multiple Words)
+```groovy
+def mergeWordDocuments(String sourcePath, String appendPath, String outputPath) {
+    def sourceFile = new File(sourcePath)
+    def appendFile = new File(appendPath)
+    if (!sourceFile.exists() || !appendFile.exists()) {
+        throw new RuntimeException("待合并的 Word 文件不存在！")
+    }
+    
+    def sourceDoc = new Document(sourcePath)
+    def appendDoc = new Document(appendPath)
+    
+    def builder = new DocumentBuilder(sourceDoc)
+    builder.moveToDocumentEnd()
+    builder.insertBreak(BreakType.PAGE_BREAK)
+    
+    def importer = new NodeImporter(appendDoc, sourceDoc, ImportFormatMode.KEEP_SOURCE_FORMATTING)
+    for (Section section : appendDoc.getSections()) {
+        def importedSection = importer.importNode(section, true)
+        sourceDoc.appendChild(importedSection)
+    }
+    
+    sourceDoc.save(outputPath)
+    println("Word 文档合并成功！保存路径：${outputPath}")
+}
+```
+
+## 根据账单年月生成时间戳 (Generate Timestamp from Billing Year/Month)
+```groovy
+def 账单年 = 账单表数据.Billing_Year
+def 账单月 = 账单表数据.Billing_Month
+
+def 当月 1 号时间戳 = generateMonthFirstTimestamp(账单年，账单月)
+
+def generateMonthFirstTimestamp(Long billYear, Long billMonth) {
+    if (!billYear || !billMonth) {
+        println "生成时间戳失败：账单年/月不能为空"
+        return null
+    }
+    if (billMonth < 1 || billMonth > 12) {
+        println "生成时间戳失败：账单月 ${billMonth} 不合法，必须是 1-12 的整数"
+        return null
+    }
+    
+    Calendar cal = Calendar.getInstance()
+    cal.set(Calendar.YEAR, billYear as int)
+    cal.set(Calendar.MONTH, (billMonth as int) - 1)
+    cal.set(Calendar.DAY_OF_MONTH, 1)
+    cal.set(Calendar.HOUR_OF_DAY, 0)
+    cal.set(Calendar.MINUTE, 0)
+    cal.set(Calendar.SECOND, 0)
+    cal.set(Calendar.MILLISECOND, 0)
+    
+    return cal.getTimeInMillis()
+}
+```
+
+## 给单条 CI 贴附件 (Attach File to CI)
+```groovy
+def 账单表 data = DataModelUtils.getCIByPK("Online_Bill",['bill_id':账单 ID])
+账单表 data.dataFieldMap.Attachments=" "
+账单表 data.dataFieldMap.Attn=Attn
+账单表 data.dataFieldMap.due_date=due_date
+DataModelUtils.saveCi(账单表 data)
+
+AttachmentsUtils.attachment(账单表 data, "Attachments", zipFileUri, 压缩包导出名)
+DataModelUtils.saveCi(账单表 data)
+```
+
+## 审批流程相关 (Workflow Operations)
+
+### 自定义提交流程 (Custom Submit Process)
+```groovy
+入参 = [
+    "操作类型":'提交',
+    "触发数据模型实例": DataModelUtils.getCIByPK("暂估流程记录",['id':args$.id]),
+    '流程名称':'行程费用暂估'
+]
+ScriptUtils.runScriptByCode('flow_base_start', 入参)
+```
+
+### 自定义通过流程 (Custom Pass Process)
+```groovy
+def 流程实例进程=DataModelUtils.getCIByPK('flow_instance_process',
+    ['flowInstanceId':航油账单.dataFieldMap.天合航油账单_审批单号,'nodeState':'待办','nodeName':'收款登记'])
+def map=[:]
+map.put("流程审批单号", 流程实例进程.dataFieldMap.flowInstanceId)
+map.put("待办记录号", 流程实例进程.dataFieldMap.ID)
+ScriptUtils.runScriptByCode('flow_pass',map)
+```
+
+### 自定义加签脚本 (Custom Add-Signature Script)
+```groovy
+def 加签类型 = "审批前加签"
+def 加签人数组 = []
+def 会或签 = "会签"
+def 加签原因 = args$.form.dataFieldMap.addObjReason
+def 进程表数据 id = args$.form.id
+def ciClassID = args$.form.ciClassID
+def 加签选择器 ID = args$.componentInnerParams."加签选择-ID"
+
+加签人数组 = 获取加签人列表 (进程表数据 id)
+def 加签结果 = 调用加签脚本 (加签类型，加签人数组，会或签，加签原因，进程表数据 id, 加签选择器 ID, ciClassID)
+
+if (加签结果) {
+    println "审批前加签成功！加签人：${加签人数组}，规则：${会或签}"
+} else {
+    println "审批前加签失败，请检查参数是否正确！"
+}
+```
+
+## 事件调用脚本入参 (Event Call Script Parameters)
+```groovy
+/* 入参示例：
+[触发数据模型实例：{id=xxx, key='xxx', ...},
+ 触发流程实例表实例：{id=xxx, key='xxx', ...},
+ 节点状态：[{id=xxx, key='节点状态，通过', ...}, ...],
+ 触发流程实例进程实例：{id=xxx, key='xxx', ...},
+ 流程发布表实例：{id=xxx, key='10，部门预算调整', ...},
+ 待流转节点对象:[],
+ 当前新增进程集合:[]]
+*/
+
+def 调整内部 ID = args$.触发数据模型实例.id
+def 业务数据=DataModelUtils.getCi(调整内部 ID)
+def 调整 ID = 业务数据.dataFieldMap.部门调整主表 id
+```
+
+## 华龙业务相关 (Hualong Business Operations)
+
+### [视图]View_Flight_Legs
+```groovy
+def sql="SELECT LegID,TripID,FlightDate,ATD,FlightTypeCN,Dep_City_CN,Arr_City_CN,ATA,FlighTimes,PEK_ATA,PEK_ATD,UTC_TA,UTC_TD,PEK_ETA,ETA,LOC_ETA,FlightNo,LOC_TD,LOC_TA,PEK_TD,TripNo,PEK_TA,STD,STA,LOC_ATD,LOC_ATA,RN,Arr_Airport,Dep_Airport,Dep_Airport_CN,Arr_Airport_CN,Marking,FlightType FROM [dbo].[View_Flight_Legs] where LegID = ?"
+
+hd.dataFieldMap.实起 word = ls.ATD
+hd.dataFieldMap.实起 bj = ls.PEK_ATD
+hd.dataFieldMap.实起 local = ls.LOC_ATD
+hd.dataFieldMap.实落 word = ls.ATA
+hd.dataFieldMap.实落 bj = ls.PEK_ATA
+hd.dataFieldMap.实落 local = ls.LOC_ATA
+hd.dataFieldMap.飞机起飞 = ls.ATD
+hd.dataFieldMap.飞机落地 = ls.ATA
+hd.dataFieldMap.飞机起飞 bj = ls.PEK_ATD
+hd.dataFieldMap.飞机落地 bj = ls.PEK_ATA
+hd.dataFieldMap.飞机起飞 local = ls.LOC_ATD
+hd.dataFieldMap.飞机落地 local = ls.LOC_ATA
+hd.dataFieldMap.预计落地时间 = ls.LOC_ETA
+hd.dataFieldMap.预计落地时间北京 = ls.PEK_ETA
+hd.dataFieldMap.预计落地时间世界 = ls.ETA
+hd.dataFieldMap.起飞机场四字码 = ls.Dep_Airport
+hd.dataFieldMap.到达机场四字码 = ls.Arr_Airport
+hd.dataFieldMap.tripID = ls.TripID+""
+hd.dataFieldMap.legID = ls.LegID+""
+hd.dataFieldMap.客户经理 = AccountUtils.getCurrentAccountNo()
+hd.dataFieldMap.申请人 = AccountUtils.getCurrentAccountNo()
+hd.dataFieldMap.预起北京时间 = DateTimeUtils.format("yyyy-MM-dd HH:mm:ss", ls.PEK_TD)
+hd.dataFieldMap.预落北京时间 = DateTimeUtils.format("yyyy-MM-dd HH:mm:ss", ls.PEK_TA)
+hd.dataFieldMap.预起世界时间 = DateTimeUtils.format("yyyy-MM-dd HH:mm:ss", ls.STD)
+hd.dataFieldMap.预落世界时间 = DateTimeUtils.format("yyyy-MM-dd HH:mm:ss", ls.STA)
+hd.dataFieldMap.出发地城市 = ls.Dep_City_CN
+hd.dataFieldMap.目的地城市 = ls.Arr_City_CN
+hd.dataFieldMap.出发地所在城市或国家 = ls.Dep_City_CN
+hd.dataFieldMap.目的地所在城市或国家 = ls.Arr_City_CN
+hd.dataFieldMap.预起世界时间 word = ls.STD
+```
+
+### 北京华龙查询 FOS (Beijing Hualong Query FOS)
+```groovy
+def TripID = 123456
+def 行程日期查询 Sql = """
+    SELECT 
+        "StartDate",
+        "EndDate",
+        FORMAT("StartDate", 'yyyy-MM-dd') AS "FormatStartDate",
+        FORMAT("EndDate", 'yyyy-MM-dd') AS "FormatEndDate"
+    FROM "FlightTrip" 
+    WHERE "TripID" = ${TripID}
+"""
+
+sqlmap=[:]
+sqlmap.put("sql", 行程日期查询 Sql)
+sqlmap.put("attr",null)
+
+def 行程日期列表 = ScriptUtils.runScriptByCode("查询 FOS 数据通用接口",sqlmap);
+```
+
+### 年度飞机境内外比例 (Annual Aircraft Domestic/International Ratio)
+```groovy
+def 年度飞机境内外比例 (飞机号，年度){
+    def sqL = """
+    SELECT FLTArea, COUNT(1) AS count
+    FROM View_Flight_Legs
+    WHERE ImTripID IS NULL
+    AND Company_ID IN (1, 5)
+    AND YEAR(FlightDate) = '${年度}'
+    AND RN = '${飞机号}'
+    AND Status = 'Closed'
+    GROUP BY FLTArea
+    """
+    
+    sqlmap=[:]
+    sqlmap.put("sql",sqL)
+    sqlmap.put("attr",null)
+    
+    def 国内外飞行量 = ScriptUtils.runScriptByCode("查询 FOS 数据通用接口",sqlmap);
+}
+```
+
+### 香港查询北京 FOS (Hong Kong Query Beijing FOS)
+```groovy
+def sql =""" """ ;
+def attr = []
+attr.add();
+def attrmap=["sql":sql,"attr":attr]
+def data = ScriptUtils.runScriptByCode("调用北京华龙通用接口",attrmap);
+```
+
+## 脚本字符串插值返回异常 (Script String Interpolation Return Exception)
+```groovy
+// 错误写法 - 字符串插值会导致乱码
+return ["年度": "${year}年度"]
+
+// 正确写法 - 拼接好返回变量即可
+return ["年度": year + "年度"]
+```
+
+## 速出系统操作手册 (Quick System Operation Manual)
+准备好系统所有原型图的 Word（做好标题），将以下话术发送 AI，生成各个原型图描述：
+
+> 我上传了一份文档，是关于 XXX 系统的一份操作手册，手册中含有系统各个功能模块的图片截图，你需要从图片中读取相关信息给出我对应图片的功能描述，格式如下，首先是一段图片内的内容描述，其次是各个功能按钮的功能描述，哪些图片没有描述，请给我依次列出。
+>
+> 格式内容如下：
+> 进入风险预警/风险特征库页面，查询区域包含：风险特征内容输入框、领域名称输入框、领域编码下拉框、风险点名称下拉框、风险点详细描述输入框、特征状态下拉框，数据列表区域展示：操作、领域名称、领域编码、风险点编码、风险点名称、风险点详细描述、风险特征内容、特征状态、创建时间字段信息，分页区域显示数据总量、当前页码、每页显示数量。
+>
+> 【新增】：点击新增按钮，即可创建新的风险特征信息
+> 【批量启用】：点击批量启用按钮，即可对选中的多条风险特征记录执行启用操作（无选中数据时按钮置灰）
+> 【编辑】：点击操作列的编辑按钮，即可修改对应风险特征的信息
+> 【删除】：点击操作列的删除按钮，即可移除对应风险特征记录
+> 【查询】：点击输入框右侧放大镜图标按钮，即可执行对应条件的风险特征检索

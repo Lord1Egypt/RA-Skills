@@ -1,0 +1,8 @@
+# Contract Risk Reviewer - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+PyMuPDF>=1.23.0
+pdfplumber>=0.10.0
+pytesseract>=0.3.10
+pdf2image>=1.16.0
+openai>=1.0.0

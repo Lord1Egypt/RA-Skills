@@ -1,35 +1,45 @@
 ---
-name: "image-collect"
-description: "This skill extracts knowledge from an image and saves it locally."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-collect"
-sourceUrl: "https://clawhub.ai/skills/image-collect"
+name: image-collect
+description: This skill extracts knowledge from an image and saves it locally.
 ---
 
-# image-collect
+# Image Collect Skill
 
-> This skill extracts knowledge from an image and saves it locally.
+This skill extracts knowledge from an image and saves it locally.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-collect`
-- **Source URL:** [https://clawhub.ai/skills/image-collect](https://clawhub.ai/skills/image-collect)
+## When to use
 
-## Overview
+Use this skill when:
 
+- User sends an image
+- User asks to save image as knowledge
+- Image needs OCR or content understanding
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/image-collect
-```
+## What it does
+
+1. Download image
+2. Extract text and meaning
+3. Generate summary
+4. Save image locally
+5. Append knowledge to JSON database
+
+## Command
+
+Run:
+
+node dist/index.js "<image_url>"
+
+Example:
+
+node dist/index.js "https://example.com/image.png"
+node dist/index.js "data:image/png;base64,xxxx"
+node dist/index.js "/tmp/image.png"
+
+## Output
+
+Returns extracted knowledge including:
+
+- summary
+- keywords
+- text
+- saved image path

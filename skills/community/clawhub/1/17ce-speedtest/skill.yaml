@@ -1,0 +1,11 @@
+name: 17ce-speedtest
+description: >
+  17CE Global Website Speed Test Tool. Tests HTTP response time, Time to First Byte (TTFB), and DNS resolution time from monitoring nodes globally via WebSocket. Supports adaptive HTML reports for mobile/desktop UI and structured JSON output for downstream integration.
+version: 1.0.1
+
+entry: scripts/speedtest_ws.py
+
+permissions:
+  - network
+
+author: Huang Wangen

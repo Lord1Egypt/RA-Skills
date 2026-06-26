@@ -1,35 +1,44 @@
----
-name: "Email Tool"
-description: "Send and search emails via Zoho using specified recipients, subject, body, and search queries with optional CC, BCC, and read marking."
-category: "productivity"
-source: "ClawHub"
-tags: [email, imap, smtp, zoho]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-tool"
-sourceUrl: "https://clawhub.ai/skills/email-tool"
----
+# Email Skill
 
-# Email Tool
+**Description:** Use this skill to send and read emails (IMAP/SMTP). Designed for Zoho Mail but configurable.
+**Capabilities:** `email.send`, `email.search`
 
-> Send and search emails via Zoho using specified recipients, subject, body, and search queries with optional CC, BCC, and read marking.
+## Tools
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-tool`
-- **Source URL:** [https://clawhub.ai/skills/email-tool](https://clawhub.ai/skills/email-tool)
+### `email.send`
+Send an email to one or more recipients.
 
-## Overview
+Parameters:
+- `to` (string, required): Comma-separated list of recipients.
+- `subject` (string, required): The email subject.
+- `body` (string, required): The email body (HTML or plain text).
+- `cc` (string, optional): CC recipients.
+- `bcc` (string, optional): BCC recipients.
 
+### `email.search`
+Search for emails in the inbox.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-tool
-```
+Parameters:
+- `query` (string, required): Search query (e.g. `from:example.com`, `subject:Invoice`).
+- `limit` (number, optional): Max results (default 10).
+- `markRead` (boolean, optional): Mark as read after fetching (default false).
+
+## Configuration (NO HARDCODED SECRETS)
+This skill **must not** contain credentials.
+
+It loads secrets from either:
+1) A JSON file at `%OPENCLAW_SECRETS_DIR%/email-tool.json` (recommended), or
+2) Environment variables (fallback).
+
+Required keys:
+- `EMAIL_USER`
+- `EMAIL_PASS`
+
+Optional (defaults shown):
+- `HOST_IMAP` (imap.zoho.com)
+- `PORT_IMAP` (993)
+- `HOST_SMTP` (smtp.zoho.com)
+- `PORT_SMTP` (465)
+- `SECURE_SMTP` (true)
+
+If you are packaging/uploading this skill: run `node scripts/secret-scan.js` first.

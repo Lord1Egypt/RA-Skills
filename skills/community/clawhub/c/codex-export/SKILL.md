@@ -1,35 +1,28 @@
 ---
-name: "codex-export"
-description: "Export a Codex CLI or Codex Desktop (App) session to a Markdown transcript. Use when the user asks to export, save, share, or review a past chat, session, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/codex-export"
-sourceUrl: "https://clawhub.ai/skills/codex-export"
+name: codex-export
+description: Export a Codex CLI or Codex Desktop (App) session to a Markdown transcript. Use when the user asks to export, save, share, or review a past chat, session, or transcript. Supports --brief mode (user + assistant only, no tool calls) and --list to browse recent sessions. Works with both Codex CLI and Codex Desktop app sessions (unlike similar tools that only support CLI).
 ---
 
 # codex-export
 
-> Export a Codex CLI or Codex Desktop (App) session to a Markdown transcript. Use when the user asks to export, save, share, or review a past chat, session, or...
+Export any Codex session (`~/.codex/sessions/**/*.jsonl`) to a clean Markdown file.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/codex-export`
-- **Source URL:** [https://clawhub.ai/skills/codex-export](https://clawhub.ai/skills/codex-export)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/codex-export
+# List recent sessions (pick by number or copy the ID)
+python3 scripts/export.py --list
+
+# Export by session ID
+python3 scripts/export.py <session-id> output.md
+
+# Brief mode: user + assistant only, no tool calls
+python3 scripts/export.py <session-id> output.md --brief
 ```
+
+## Notes
+
+- Works with **Codex Desktop** (`source=vscode`) and **Codex CLI** (`source=cli/exec`)
+- Session IDs come from `~/.codex/state_5.sqlite` or the rollout filename
+- System/developer messages and `<environment_context>` blocks are filtered automatically
+- Tool call outputs are included by default; use `--brief` to strip them

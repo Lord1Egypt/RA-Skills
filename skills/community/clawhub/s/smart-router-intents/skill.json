@@ -1,0 +1,35 @@
+{
+  "name": "smart-router-intents",
+  "version": "1.0.1",
+  "description": "Route any query by intent. Code, analysis, creative, realtime, general. Each goes to the cheapest model that can handle it.",
+  "author": "CertainLogic <anton@certainlogic.ai>",
+  "license": "MIT",
+  "category": "ai-optimization",
+  "tags": [
+    "model-routing",
+    "intent-detection",
+    "cost-reduction",
+    "ai-costs",
+    "smart-router",
+    "open-source"
+  ],
+  "entry": {
+    "cli": "scripts/smart_router_intents.py"
+  },
+  "commands": [
+    {
+      "name": "route",
+      "description": "Classify query intent and recommend cheapest capable model tier",
+      "args": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "The query to route"
+        }
+      ]
+    }
+  ],
+  "homepage": "https://certainlogic.ai",
+  "repository": "https://github.com/CertainLogicAI/smart-router-intents"
+}

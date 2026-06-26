@@ -1,0 +1,82 @@
+{
+  "type": "object",
+  "required": [
+    "keyword"
+  ],
+  "properties": {
+    "page": {
+      "type": "number",
+      "title": "页码",
+      "default": 1,
+      "minimum": 1,
+      "description": "页码，从1开始"
+    },
+    "keyword": {
+      "type": "string",
+      "title": "搜索关键词",
+      "description": "输入关键词搜索 KOL（如：美妆、美食、穿搭...）",
+      "x-component-props": {
+        "maxLength": 100,
+        "placeholder": "输入关键词搜索 KOL"
+      }
+    },
+    "contentTag": {
+      "enum": [
+        "",
+        "tag-1",
+        "tag-6",
+        "tag-11",
+        "tag-15",
+        "tag-23",
+        "tag-25",
+        "tag-27",
+        "tag-31",
+        "tag-36",
+        "tag-41",
+        "tag-48",
+        "tag-55",
+        "tag-60",
+        "tag-64",
+        "tag-68",
+        "tag-72",
+        "tag-79",
+        "tag-85",
+        "tag-87",
+        "tag-91",
+        "tag-97",
+        "tag-139",
+        "tag-1001"
+      ],
+      "type": "string",
+      "title": "内容标签",
+      "default": "",
+      "enumNames": [
+        "不限",
+        "美妆",
+        "时尚",
+        "萌宠",
+        "测评",
+        "游戏",
+        "二次元",
+        "旅行",
+        "汽车",
+        "生活",
+        "音乐",
+        "美食",
+        "母婴亲子",
+        "运动健身",
+        "科技数码",
+        "教育培训",
+        "颜值达人",
+        "才艺技能",
+        "影视娱乐",
+        "艺术文化",
+        "财经投资",
+        "剧情搞笑",
+        "房产",
+        "生活家居"
+      ],
+      "description": "选择内容分类标签进行筛选"
+    }
+  }
+}

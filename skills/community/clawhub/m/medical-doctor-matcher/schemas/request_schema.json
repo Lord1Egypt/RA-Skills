@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "required": [
+    "chief_complaint",
+    "current_region"
+  ],
+  "properties": {
+    "user_profile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "insurance": {
+          "type": "string"
+        },
+        "preferred_hospital_level": {
+          "type": "string"
+        },
+        "preferred_doctor_title": {
+          "type": "string"
+        },
+        "budget_level": {
+          "type": "string"
+        }
+      }
+    },
+    "chief_complaint": {
+      "type": "string"
+    },
+    "history": {
+      "type": "string"
+    },
+    "symptoms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "duration_days": {
+      "type": "integer"
+    },
+    "current_region": {
+      "type": "string"
+    },
+    "need_registration": {
+      "type": "boolean"
+    },
+    "need_escort": {
+      "type": "boolean"
+    },
+    "preferred_time_window": {
+      "type": "string"
+    }
+  }
+}

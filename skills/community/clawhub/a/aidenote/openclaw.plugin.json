@@ -1,0 +1,48 @@
+{
+  "id": "slonaide",
+  "name": "SlonAide",
+  "version": "2.1.0",
+  "description": "SlonAide 录音笔记管理插件，支持 AideNote OpenClaw 远程 bridge 安装",
+  "main": "index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "apiKey": {
+        "type": "string",
+        "description": "SlonAide API Key (格式: sk-xxx...)",
+        "secret": true
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "API 基础地址",
+        "default": "https://api.aidenote.cn"
+      },
+      "bridgeInstallerUrl": {
+        "type": "string",
+        "description": "macOS bridge 安装脚本 URL",
+        "default": "https://cdn.aidenote.cn/tunnel/install-macos.sh"
+      },
+      "bridgeWindowsInstallerUrl": {
+        "type": "string",
+        "description": "Windows bridge 安装脚本 URL",
+        "default": "https://cdn.aidenote.cn/tunnel/install-windows.ps1"
+      },
+      "bridgeTunnelBaseUrl": {
+        "type": "string",
+        "description": "bridge 二进制下载目录",
+        "default": "https://cdn.aidenote.cn/tunnel"
+      },
+      "bridgeRelayHost": {
+        "type": "string",
+        "description": "AideNote relay host",
+        "default": "api.aidenote.cn"
+      },
+      "openClawLocalPort": {
+        "type": "number",
+        "description": "本机 OpenClaw Gateway 端口",
+        "default": 18789
+      }
+    },
+    "required": ["apiKey"]
+  }
+}

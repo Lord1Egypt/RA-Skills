@@ -1,35 +1,219 @@
 ---
-name: "Tina Creator - 小红书笔记创作"
-description: "生成小红书爆款笔记（标题、正文、标签、AI封面图），采用 Research-Create-Grow 三阶段工作流。Use when the user wants to create Xiaohongshu/小红书 posts, RED notes, social media content for 小红书, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tina-creator"
-sourceUrl: "https://clawhub.ai/skills/tina-creator"
+name: tina.creator
+description: 生成小红书爆款笔记（标题、正文、标签、AI封面图），采用 Research-Create-Grow 三阶段工作流。Use when the user wants to create Xiaohongshu/小红书 posts, RED notes, social media content for 小红书, or mentions 小红书笔记、小红书创作、小红书运营.
 ---
 
-# Tina Creator - 小红书笔记创作
+# 小红书笔记创作 Skill
 
-> 生成小红书爆款笔记（标题、正文、标签、AI封面图），采用 Research-Create-Grow 三阶段工作流。Use when the user wants to create Xiaohongshu/小红书 posts, RED notes, social media content for 小红书, or...
+采用 **Research → Create → Grow** 三阶段闭环工作流，从选题研究到内容产出再到策略沉淀。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tina-creator`
-- **Source URL:** [https://clawhub.ai/skills/tina-creator](https://clawhub.ai/skills/tina-creator)
+---
 
-## Overview
+## Phase 1: Research（研究）
 
+当用户给出主题或领域时，执行以下分析并输出结构化报告。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tina-creator
+### 1.1 竞品拆解（如果用户提供了参考笔记）
+
+从四个维度拆解参考内容：
+
+| 维度 | 分析要点 |
+|------|----------|
+| 钩子类型 | 开头如何抓注意力（数字、反差、提问、痛点直击） |
+| 内容框架 | 总分、步骤式、对比、反转、清单？ |
+| 情绪曲线 | 共鸣 → 干货 → 行动？焦虑 → 方案 → 希望？ |
+| 标签策略 | 精准词 vs 泛流量词的搭配 |
+
+### 1.2 用户洞察
+
+基于主题推导：
+- **目标人群**：年龄段、身份标签
+- **核心痛点**：最想解决什么问题
+- **搜索意图**：会用什么关键词搜索
+
+### 1.3 选题建议
+
+输出 3-5 个候选选题，格式：
+
 ```
+### 选题 N：[标题方向]
+- 切入角度：...
+- 预期受众：...
+- 内容类型：干货教程 / 好物测评 / 经验分享 / 对比评测 / 个人故事 / 清单合集
+```
+
+### 1.4 交互节点
+
+Research 完成后，使用 AskQuestion 让用户选择选题：
+
+```
+AskQuestion:
+  prompt: "选择你想创作的选题"
+  options: [选题1标题, 选题2标题, ..., "自定义主题"]
+```
+
+---
+
+## Phase 2: Create（创作）
+
+用户确认选题后，先让用户选择笔记类型，再生成完整笔记。
+
+### 2.1 选择笔记类型
+
+使用 AskQuestion 让用户选择：
+
+```
+AskQuestion:
+  prompt: "选择笔记类型"
+  options:
+    - 干货教程型
+    - 好物测评型
+    - 经验分享型
+    - 对比评测型
+    - 个人故事型
+    - 清单合集型
+```
+
+选定后，读取 [templates.md](templates.md) 中对应模板作为创作框架。
+
+### 2.2 检查策略库
+
+读取 [strategies/_index.md](strategies/_index.md)。如果存在已沉淀策略，提示用户是否引用：
+
+```
+AskQuestion:
+  prompt: "是否引用已有策略？"
+  options: [策略A名称, 策略B名称, ..., "不引用，全新创作"]
+```
+
+### 2.3 生成笔记
+
+按以下规范生成完整笔记：
+
+#### 标题规范
+- 20 字以内，前 15 字包含核心关键词
+- 采用"数字 + 结果导向"模式（如"3步搞定…"、"5个让你…的方法"）
+- 制造情绪（惊讶、后悔、羡慕）或悬念
+- 提供 3 个备选标题供用户挑选
+
+#### 正文规范
+
+**三段式结构：**
+
+1. **开头（3 句话）**
+   - 第 1 句：锁定人群（"作为一个…的人"）
+   - 第 2 句：戳中痛点（"是不是总觉得…"）
+   - 第 3 句：引导阅读（"看完这篇你就知道了"）
+
+2. **中间（干货主体）**
+   - 根据模板类型组织（步骤式/对比式/清单式等）
+   - 每段不超 3 行，短句分点
+   - 每 200 字左右自然植入 1 个长尾关键词
+   - 适当插入 emoji 增加可读性（不过度堆砌）
+   - 重点信息加粗
+
+3. **结尾（互动引导）**
+   - 提问式（"你们觉得呢？"）
+   - 号召式（"觉得有用就收藏吧"）
+   - 伏笔式（"下期教你…"）
+
+#### 标签规范
+- 5 个精准标签 + 1 个泛流量标签
+- 格式：`#标签1 #标签2 ...`
+
+#### 输出格式
+
+```markdown
+## 📌 标题（3 选 1）
+
+A. [标题A]
+B. [标题B]
+C. [标题C]
+
+---
+
+## 📝 正文
+
+[完整正文内容]
+
+---
+
+## 🏷️ 标签
+
+#标签1 #标签2 #标签3 #标签4 #标签5 #泛流量标签
+
+---
+
+## 🖼️ 封面图建议
+
+[封面文案关键词 + 配色方案 + 版式建议]
+```
+
+### 2.4 生成封面图
+
+笔记正文完成后，调用 GenerateImage 生成封面图：
+
+**生成要求：**
+- 竖版 3:4 比例
+- 风格：简洁现代，适合小红书平台
+- 封面上的文字：从标题提炼 8 字以内的核心短语，粗体大号
+- 配色：高对比度（红白、黑黄、蓝橙等）
+- 版式：优先"上图下文"或"左文右图"
+- 画面清晰，高饱和度
+
+**Prompt 构建规则：**
+```
+"Xiaohongshu cover image, vertical 3:4 ratio, modern clean design,
+bold large Chinese text '[8字以内短语]' as headline,
+[配色方案] color scheme, [版式] layout,
+[主题相关的视觉元素], high quality, vibrant colors"
+```
+
+---
+
+## Phase 3: Grow（沉淀）
+
+笔记生成完成后，询问用户是否沉淀策略。
+
+### 3.1 交互节点
+
+```
+AskQuestion:
+  prompt: "是否将本次创作策略沉淀到策略库？"
+  options: ["是，沉淀策略", "不需要"]
+```
+
+### 3.2 策略提炼
+
+如果用户选择沉淀，从本次创作中提炼：
+
+| 字段 | 内容 |
+|------|------|
+| 策略名称 | 简短描述（如"反差数字钩子 + 步骤教程"） |
+| 适用场景 | 什么类型的主题适合用这个策略 |
+| 标题公式 | 本次标题的抽象模式 |
+| 内容框架 | 正文结构的可复用模板 |
+| 钩子类型 | 开头的抓眼方式 |
+| 封面风格 | 配色 + 版式 + 文案风格 |
+
+### 3.3 写入策略库
+
+将提炼的策略追加到 `strategies/_index.md`，格式参见该文件中的模板。
+
+---
+
+## 快捷模式
+
+如果用户直接说"帮我写一篇关于 XXX 的小红书笔记"而没有要求做研究，可以跳过 Research 阶段，直接进入 Create：
+1. 使用 AskQuestion 选择笔记类型
+2. 检查策略库
+3. 生成笔记 + 封面图
+4. 询问是否沉淀
+
+---
+
+## 参考资料
+
+- 笔记模板详见 [templates.md](templates.md)
+- 范例笔记详见 [examples.md](examples.md)
+- 策略库详见 [strategies/_index.md](strategies/_index.md)

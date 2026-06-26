@@ -1,35 +1,25 @@
 ---
-name: "Blog Content Processor"
-description: "Process blog content to extract videos and generate GIF previews. Works with blogwatcher, video-frames, and gifgrep skills."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/blog-content-proc"
-sourceUrl: "https://clawhub.ai/skills/blog-content-proc"
+name: blog-content-processor
+description: Process blog content to extract videos and generate GIF previews. Works with blogwatcher, video-frames, and gifgrep skills.
 ---
 
 # Blog Content Processor
 
-> Process blog content to extract videos and generate GIF previews. Works with blogwatcher, video-frames, and gifgrep skills.
+Extracts videos from blog/RSS feeds and generates GIF previews for quick scanning.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/blog-content-proc`
-- **Source URL:** [https://clawhub.ai/skills/blog-content-proc](https://clawhub.ai/skills/blog-content-proc)
+## Usage
 
-## Overview
+1. Feed a blog URL or RSS feed
+2. The processor extracts embedded video URLs
+3. Generates lightweight GIF previews from video frames
 
+## Dependencies
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/blog-content-proc
-```
+- `rss-parser` — parse RSS/Atom feeds
+- `ffmpeg-static` — video frame extraction and GIF generation
+
+## Compatible Skills
+
+- **blogwatcher** — feed monitoring
+- **video-frames** — frame extraction
+- **gifgrep** — GIF search and sharing

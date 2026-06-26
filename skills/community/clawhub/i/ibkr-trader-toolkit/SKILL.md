@@ -1,35 +1,44 @@
 ---
-name: "Ibkr Trader Toolkit Deprecated"
-description: "DEPRECATED — this skill was renamed to ibkr-options-assistant. Install that skill instead. If a user invokes this skill, do not run any scripts; tell them to..."
-category: "domain"
-source: "ClawHub"
-tags: [finance, ibkr, options, trading, wheel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ibkr-trader-toolkit"
-sourceUrl: "https://clawhub.ai/skills/ibkr-trader-toolkit"
+name: ibkr-trader-toolkit
+description: DEPRECATED — this skill was renamed to ibkr-options-assistant. Install that skill instead. If a user invokes this skill, do not run any scripts; tell them to install `ibkr-options-assistant` from ClawHub or `https://github.com/AlexLiu0130/ibkr-options-assistant`.
 ---
 
-# Ibkr Trader Toolkit Deprecated
+# ⚠️ DEPRECATED — Renamed to `ibkr-options-assistant`
 
-> DEPRECATED — this skill was renamed to ibkr-options-assistant. Install that skill instead. If a user invokes this skill, do not run any scripts; tell them to...
+This skill has been renamed. **No code or behavior changes**, just a new slug
+that better reflects positioning (options-analysis assistant driven by Claude,
+not a trading bot).
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ibkr-trader-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/ibkr-trader-toolkit](https://clawhub.ai/skills/ibkr-trader-toolkit)
+## What you should do
 
-## Overview
+Install the renamed skill instead:
 
+### ClawHub
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ibkr-trader-toolkit
 ```
+ibkr-options-assistant
+```
+
+### GitHub
+
+```bash
+git clone https://github.com/AlexLiu0130/ibkr-options-assistant.git \
+  ~/.claude/skills/ibkr-options-assistant
+```
+
+(The old GitHub URL `AlexLiu0130/ibkr-trader-toolkit` 301-redirects, so existing
+clones keep working — but rename your local symlink to `ibkr-options-assistant`
+so Claude Code picks the skill up under the new name.)
+
+## Why renamed?
+
+The old name overlapped with order-execution / bot-style IBKR skills on
+ClawHub. This toolkit is **17 read-only analysis scripts plus one opt-in
+order-execution script with dual safety gates**, designed to be driven by
+Claude (or another AI agent), not a 24/7 bot. The new name makes that
+distinction visible in search results.
+
+## No further updates here
+
+All future releases ship under `ibkr-options-assistant`. This slug stays
+published only as a redirect for users who installed the old name.

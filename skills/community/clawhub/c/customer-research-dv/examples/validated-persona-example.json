@@ -1,0 +1,248 @@
+{
+  "persona_name": "Tech PM High Earner",
+  "validated_at": "2026-03-08T17:35:00.000000",
+  "data_source": "tax software",
+  "subreddits_analyzed": ["personalfinance", "tax", "fatFIRE"],
+  "confidence_score": 78,
+  "pain_points": {
+    "validated": [
+      {
+        "pain_point": "Too many tools, fragmented workflow",
+        "evidence_count": 12,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example1",
+            "text": "Using 5 different tools to track expenses, investments, and taxes. Nothing talks to each other.",
+            "score": 145,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/fatFIRE/comments/example2",
+            "text": "Frustrated by having to manually consolidate data from brokerage, bank, and tax software",
+            "score": 123,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example3",
+            "text": "Wish everything integrated - tired of export/import CSV hell",
+            "score": 98,
+            "sentiment": "negative"
+          }
+        ]
+      },
+      {
+        "pain_point": "Difficult to track tax deductions for side projects",
+        "evidence_count": 18,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example4",
+            "text": "Side hustle deductions are confusing - never sure what qualifies",
+            "score": 156,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example5",
+            "text": "Tracking business expenses throughout the year is a nightmare",
+            "score": 134,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example6",
+            "text": "I know I'm missing deductions for my side project but don't know what",
+            "score": 112,
+            "sentiment": "negative"
+          }
+        ]
+      },
+      {
+        "pain_point": "Tax optimization takes too much time during filing season",
+        "evidence_count": 22,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example7",
+            "text": "Spent 8+ hours on TurboTax last year for what should be straightforward",
+            "score": 167,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example8",
+            "text": "Tax season stress is real - procrastinate until the last minute",
+            "score": 143,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/fatFIRE/comments/example9",
+            "text": "Time is money - would pay to reduce tax prep burden",
+            "score": 128,
+            "sentiment": "neutral"
+          }
+        ]
+      },
+      {
+        "pain_point": "Uncertainty about RSU/stock option tax implications",
+        "evidence_count": 15,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/fatFIRE/comments/example10",
+            "text": "Stock options tax is so confusing - paid way more than expected",
+            "score": 189,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example11",
+            "text": "RSU vest created huge tax bill I didn't plan for",
+            "score": 154,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example12",
+            "text": "Need better guidance on equity compensation tax treatment",
+            "score": 132,
+            "sentiment": "neutral"
+          }
+        ]
+      },
+      {
+        "pain_point": "Missing deductions due to lack of awareness",
+        "evidence_count": 24,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example13",
+            "text": "Feel like I'm leaving money on the table but don't know what I'm missing",
+            "score": 198,
+            "sentiment": "negative"
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example14",
+            "text": "CPA found deductions I never knew existed - wish I'd known earlier",
+            "score": 176,
+            "sentiment": "neutral"
+          },
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example15",
+            "text": "Don't know what I don't know about tax optimization",
+            "score": 145,
+            "sentiment": "negative"
+          }
+        ]
+      }
+    ],
+    "unvalidated": [
+      {
+        "pain_point": "Expensive CPA fees for relatively straightforward situations",
+        "note": "No direct evidence found in Reddit data"
+      }
+    ],
+    "additional_signals": [
+      {
+        "theme": "audit",
+        "note": "Found in Reddit data but not in persona"
+      },
+      {
+        "theme": "quarterly",
+        "note": "Found in Reddit data but not in persona"
+      },
+      {
+        "theme": "estimated",
+        "note": "Found in Reddit data but not in persona"
+      }
+    ]
+  },
+  "demographics": {
+    "validated": [],
+    "assumptions": [
+      {
+        "field": "age_range",
+        "claimed_value": "30-45",
+        "note": "Demographic data not available in Reddit insights. Validate via survey or interviews."
+      },
+      {
+        "field": "income",
+        "claimed_value": "$200K+",
+        "note": "Demographic data not available in Reddit insights. Validate via survey or interviews."
+      },
+      {
+        "field": "job_title",
+        "claimed_value": "Product Manager, Senior PM, Director of Product",
+        "note": "Demographic data not available in Reddit insights. Validate via survey or interviews."
+      },
+      {
+        "field": "industry",
+        "claimed_value": "Tech, SaaS",
+        "note": "Demographic data not available in Reddit insights. Validate via survey or interviews."
+      },
+      {
+        "field": "location",
+        "claimed_value": "Urban, tech hubs (SF, NYC, Seattle, Austin)",
+        "note": "Demographic data not available in Reddit insights. Validate via survey or interviews."
+      }
+    ],
+    "notes": []
+  },
+  "goals": {
+    "validated": [
+      {
+        "goal": "Maximize tax efficiency without spending hours researching",
+        "evidence_count": 16,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example16",
+            "text": "Want to optimize taxes but don't have time to become a tax expert",
+            "score": 167
+          },
+          {
+            "source": "https://reddit.com/r/fatFIRE/comments/example17",
+            "text": "Looking for automated tax optimization - research is too time-consuming",
+            "score": 143
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example18",
+            "text": "Need tax efficiency without the learning curve",
+            "score": 128
+          }
+        ]
+      },
+      {
+        "goal": "Automate deduction tracking throughout the year",
+        "evidence_count": 19,
+        "top_evidence": [
+          {
+            "source": "https://reddit.com/r/personalfinance/comments/example19",
+            "text": "Would love automatic expense categorization for tax purposes",
+            "score": 178
+          },
+          {
+            "source": "https://reddit.com/r/tax/comments/example20",
+            "text": "Wish there was year-round tracking instead of April scramble",
+            "score": 154
+          },
+          {
+            "source": "https://reddit.com/r/fatFIRE/comments/example21",
+            "text": "Looking for proactive tax planning tool",
+            "score": 132
+          }
+        ]
+      }
+    ],
+    "unvalidated": [
+      {
+        "goal": "Understand tax impact of compensation (equity, bonuses, etc.)",
+        "note": "No direct evidence in feature requests"
+      },
+      {
+        "goal": "Reduce stress during tax season",
+        "note": "No direct evidence in feature requests"
+      },
+      {
+        "goal": "Save money on tax preparation fees",
+        "note": "No direct evidence in feature requests"
+      }
+    ],
+    "additional_goals": []
+  },
+  "recommendations": [
+    "HIGH CONFIDENCE: Persona is well-supported by data. Consider additional validation for demographic assumptions.",
+    "UNVALIDATED PAIN POINTS: 1 pain point(s) lack evidence. Verify in customer interviews.",
+    "MISSING THEMES: 3 theme(s) found in data but not in persona. Consider adding: audit, quarterly, estimated"
+  ]
+}

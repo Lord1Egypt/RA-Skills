@@ -1,0 +1,23 @@
+{
+  "name": "agent-wallet",
+  "version": "0.1.0",
+  "description": "Agent Wallet — USDC wallet for AI agents with x402 payment support on Base",
+  "type": "module",
+  "main": "wallet.mjs",
+  "scripts": {
+    "balance": "node wallet.mjs balance",
+    "status": "node wallet.mjs status"
+  },
+  "keywords": [
+    "wallet",
+    "x402",
+    "usdc",
+    "base",
+    "payments",
+    "agents"
+  ],
+  "license": "MIT-0",
+  "dependencies": {
+    "viem": "^2.50.4"
+  }
+}

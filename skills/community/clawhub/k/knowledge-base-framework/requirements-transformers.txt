@@ -1,0 +1,37 @@
+# KB Framework - HuggingFace Transformers LLM Engine Dependencies
+#
+# Install: pip install -r requirements-transformers.txt
+#
+# These dependencies are optional and only needed when using
+# TransformersEngine (model_source="huggingface").
+# They are NOT required for OllamaEngine.
+#
+# Core requirements.txt must also be installed.
+
+-r requirements.txt
+
+# ── Core LLM Engine ──────────────────────────────────────────────
+# PyTorch for model inference
+# Used by: kb/biblio/engine/transformers_engine.py (lazy import)
+torch>=2.1
+
+# HuggingFace Transformers for model loading and generation
+# Used by: kb/biblio/engine/transformers_engine.py (AutoModelForCausalLM, AutoTokenizer, etc.)
+transformers>=4.36
+
+# ── Quantization (optional - Linux/CUDA only) ────────────────────
+# 4-bit/8-bit quantization via bitsandbytes
+# Used by: kb/biblio/engine/transformers_engine.py (BitsAndBytesConfig)
+# Uncomment if you need quantization:
+# bitsandbytes>=0.41
+
+# ── Multi-GPU (optional) ─────────────────────────────────────────
+# Multi-GPU and device_map="auto" via accelerate
+# Used by: kb/biblio/engine/transformers_engine.py (lazy import)
+# Uncomment if you need multi-GPU support:
+# accelerate>=0.25
+
+# ── Tokenizer backends (model-dependent, optional) ────────────────
+# Some models require sentencepiece or protobuf:
+# sentencepiece>=0.1
+# protobuf>=3.20

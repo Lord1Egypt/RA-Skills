@@ -1,0 +1,16 @@
+{
+  "name": "tempo-wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tempo_cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.16.0",
+    "minimist": "^1.2.8"
+  }
+}

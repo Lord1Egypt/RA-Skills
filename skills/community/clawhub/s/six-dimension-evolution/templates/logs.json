@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "skill": "<skill-name>",
+    "version": "0.1.0",
+    "created": "YYYY-MM-DD"
+  },
+  "stats": {
+    "totalInvokes": 0,
+    "successes": 0,
+    "failures": 0,
+    "platforms": {}
+  },
+  "invokes": []
+}

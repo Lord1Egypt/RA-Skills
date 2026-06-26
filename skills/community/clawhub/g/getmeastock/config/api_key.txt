@@ -1,0 +1,24 @@
+# config/api_key.txt — 存放 Prana Claw API 凭证（勿提交到公开 Git）
+#
+# 填写方式（任选其一）：
+#   方式一（推荐）：下一行写 public_key:secret_key（仅一个英文冒号，无空格也可）
+#   示例：pk_xxx:sk_yyy
+#
+#   方式二：在本文件内粘贴 GET /api/v1/api-keys 返回的完整 JSON（可多行）。
+#
+# 自动拉 key：运行 scripts/prana_skill_client.py 时若本地无凭证，会请求 GET /api/v1/api-keys，
+#   成功后默认把结果写回本文件（首行注释 + 一行 pk:sk）。不想写盘可设 PRANA_SKILL_SKIP_WRITE_API_KEY=1。
+#
+# 接口查询参数说明：
+#   - 必须带 target_system（脚本从 prana_skill_client.py 内 _ENCAPSULATION_EMBEDDED、SKILL.md 或环境变量读取；缺省为 prana）。
+#   - 仅当 target_system=prana 时，服务端才使用 account_id；Claw Hub 等非 Prana 平台不要传 account_id。
+#   - Prana / 沙盒：有 ACCOUNT_ID 或 PRANA_ACCOUNT_ID 时，脚本仅在 platform=prana 时附加 ?account_id=...
+#
+# 手工 curl 示例（Prana 且已有账户）：
+#   curl -sS "${NEXT_PUBLIC_URL}/api/v1/api-keys?target_system=prana&account_id=${ACCOUNT_ID}"
+#
+# 非 Prana（例如 claw_hub，不要带 account_id）：
+#   curl -sS "${NEXT_PUBLIC_URL}/api/v1/api-keys?target_system=claw_hub"
+#
+# 覆盖封装平台（可选环境变量，优先于脚本内嵌配置 / SKILL.md）：
+#   ENCAPSULATION_TARGET 或 SKILL_ENCAPSULATION_TARGET 或 PRANA_ENCAPSULATION_TARGET

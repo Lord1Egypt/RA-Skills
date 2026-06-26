@@ -1,0 +1,42 @@
+{
+  "name": "openclaw-skill-etcd",
+  "version": "1.0.0",
+  "description": "A clean and safe etcd management skill for OpenClaw",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "./scripts/test_connection.sh",
+    "lint": "shellcheck etcd_helper.sh scripts/*.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "etcd",
+    "key-value",
+    "distributed",
+    "configuration"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "etcdctl": ">=3.6.1"
+  },
+  "peerDependencies": {
+    "bash": ">=4.0",
+    "jq": ">=1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/openclaw-skill-etcd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/openclaw-skill-etcd/issues"
+  },
+  "homepage": "https://github.com/yourusername/openclaw-skill-etcd#readme",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "etcd_helper.sh",
+    "scripts/",
+    "references/"
+  ]
+}

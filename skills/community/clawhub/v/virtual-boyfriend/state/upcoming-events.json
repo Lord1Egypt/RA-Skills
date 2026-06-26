@@ -1,0 +1,15 @@
+{
+  "_comment": "用户近期重要事件，从对话中提取，用于主动关怀",
+  "events": [],
+  "event_schema": {
+    "id": "uuid或简短唯一标识",
+    "event": "事件描述，如'技术面试'",
+    "date": "YYYY-MM-DD或自然语言描述",
+    "importance": "high/medium/low",
+    "care_sent": false,
+    "same_day_sent": false,
+    "follow_up_sent": false,
+    "extracted_from": "原始对话片段",
+    "created_at": "ISO8601"
+  }
+}

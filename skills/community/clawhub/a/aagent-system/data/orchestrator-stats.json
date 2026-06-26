@@ -1,0 +1,51 @@
+{
+  "updated": "2026-02-28T23:13:25.809Z",
+  "stats": {
+    "total": 74,
+    "last1h": 74,
+    "last24h": 74,
+    "sources": {
+      "npm-registry": 74
+    },
+    "topKeywords": [
+      [
+        "langchain-cli",
+        30
+      ],
+      [
+        "@mcp-server",
+        29
+      ],
+      [
+        "extension",
+        15
+      ]
+    ],
+    "suspicious": 0,
+    "progress": "0.07"
+  },
+  "health": {
+    "issues": [
+      "采集效率低 (1小时<100)",
+      "数据来源单一"
+    ],
+    "suggestions": [
+      "检查API限流或关键词质量",
+      "扩展采集来源 (GitHub, MCP Market等)"
+    ],
+    "score": 60
+  },
+  "recs": [
+    {
+      "priority": "high",
+      "action": "增加采集器数量",
+      "reason": "进度过慢"
+    },
+    {
+      "priority": "medium",
+      "action": "预计1350天达到目标",
+      "reason": "进度预测"
+    }
+  ],
+  "processes": 5
+}

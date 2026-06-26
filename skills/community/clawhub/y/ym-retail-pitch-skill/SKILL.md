@@ -1,35 +1,30 @@
----
-name: "ym-retail-pitch-skill"
-description: "自动生成包含卖点、使用场景和促单语的简洁零售商品销售话术，便于门店导购推广使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ym-retail-pitch-skill"
-sourceUrl: "https://clawhub.ai/skills/ym-retail-pitch-skill"
----
+# 零售商品话术生成器
 
-# ym-retail-pitch-skill
+## 描述
+根据用户输入的商品名称（如“红富士苹果”、“儿童保温杯”），自动生成一段简洁、有吸引力的销售话术，包含：卖点 + 场景 + 促单语。
 
-> 自动生成包含卖点、使用场景和促单语的简洁零售商品销售话术，便于门店导购推广使用。
+## 触发关键词
+- 写一段XX的话术
+- XX怎么介绍
+- 帮我推销XX
+- 商品话术
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ym-retail-pitch-skill`
-- **Source URL:** [https://clawhub.ai/skills/ym-retail-pitch-skill](https://clawhub.ai/skills/ym-retail-pitch-skill)
+## 使用方法
+用户只需在对话中说：
+> 帮我写一段红富士苹果的销售话术
 
-## Overview
+AI 将返回一段可用于门店导购的标准化话术。
 
+## 安全声明
+- 纯文本生成，无需网络权限
+- 不存储用户输入
+- 话术基于通用零售原则，不含虚假宣传
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ym-retail-pitch-skill
-```
+## 作者
+WMDIGIT
+
+## 版本
+1.0.0
+
+## License
+MIT

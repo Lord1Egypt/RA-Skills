@@ -1,0 +1,7 @@
+interface:
+  display_name: "西之月扫码登录"
+  short_description: "获取西之月二维码并持久化登录态供后续技能复用"
+  default_prompt: "Use $westmoon-qrcode-login to start Westmoon QR login, show the QR code, and persist the token for reuse."
+
+policy:
+  allow_implicit_invocation: true

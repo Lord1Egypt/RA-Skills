@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "name": "deepseek-v4-pro",
+      "kind": "api",
+      "env": ["DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL"],
+      "requires": "any",
+      "model": "deepseek-v4-pro",
+      "notes": "Example custom reviewer route. Adjust env/model names to match the local agent runtime."
+    },
+    {
+      "name": "hermes-custom-reviewer",
+      "kind": "api",
+      "env": ["HERMES_MODEL", "HERMES_API_BASE_URL"],
+      "requires": "any",
+      "model_env": "HERMES_MODEL",
+      "notes": "Example Hermes/custom provider route."
+    }
+  ]
+}

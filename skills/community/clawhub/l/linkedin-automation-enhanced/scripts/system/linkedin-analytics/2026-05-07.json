@@ -1,0 +1,28 @@
+{
+  "extraction_date": "2026-05-07",
+  "period": "Últimos 7 dias",
+  "extraction_method": "browser_automation",
+  "status": "success",
+  "posts": [
+    {
+      "post_id": "pending_parser",
+      "post_date": "pending",
+      "content_preview": "pending",
+      "impressions": 0,
+      "reactions": 0,
+      "comments": 0,
+      "reposts": 0,
+      "engagement_rate": 0,
+      "comment_rate": 0
+    }
+  ],
+  "summary": {
+    "total_impressions": 0,
+    "total_engagements": 0,
+    "avg_engagement_rate": 0,
+    "avg_comment_rate": 0,
+    "follower_change": "pending",
+    "profile_views": "pending"
+  },
+  "notes": "Versão inicial - parser completo em desenvolvimento"
+}

@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-14T02:04:43.561Z",
+  "sources": [
+    {
+      "category": "科技",
+      "fetch_interval": 30,
+      "id": "69514599b65ba9154199a58f",
+      "isCustom": false,
+      "name": "36氪",
+      "rss_url": "https://36kr.com/feed"
+    },
+    {
+      "category": "股票资讯",
+      "fetch_interval": 30,
+      "id": "695e72232ef20390f7f00dbb",
+      "isCustom": false,
+      "name": "雪球热话题",
+      "rss_url": "https://xueqiu.com/hots/topic/rss"
+    },
+    {
+      "category": "",
+      "fetch_interval": 30,
+      "id": "34b925c3190a8ec060901df516892af1",
+      "isCustom": true,
+      "name": "杨康平同学",
+      "rss_url": "http://localhost:1200/wechat/sogou/%E6%9D%A8%E5%BA%B7%E5%B9%B3%E5%90%8C%E5%AD%A6"
+    },
+    {
+      "category": "",
+      "fetch_interval": 30,
+      "id": "62a6fa07e756b0da3bd4c40231ef8328",
+      "isCustom": true,
+      "name": "猫笔刀",
+      "rss_url": "http://localhost:1200/wechat/sogou/%E7%8C%AB%E7%AC%94%E5%88%80"
+    },
+    {
+      "category": "",
+      "fetch_interval": 30,
+      "id": "206cf34d93aeed1a8ef044dc874912f1",
+      "isCustom": true,
+      "name": "发牌手杰克",
+      "rss_url": "http://localhost:1200/wechat/sogou/%E5%8F%91%E7%89%8C%E6%89%8B%E6%9D%B0%E5%85%8B"
+    },
+    {
+      "category": "",
+      "fetch_interval": 30,
+      "id": "097f9b91079941301e72fc59aa10359b",
+      "isCustom": true,
+      "name": "政信三公子",
+      "rss_url": "http://localhost:1200/wechat/sogou/%E6%94%BF%E4%BF%A1%E4%B8%89%E5%85%AC%E5%AD%90"
+    },
+    {
+      "category": "",
+      "fetch_interval": 30,
+      "id": "99b7507525cf9b10223efa9a0ec7522a",
+      "isCustom": true,
+      "name": "白刃行走",
+      "rss_url": "http://localhost:1200/wechat/sogou/%E7%99%BD%E5%88%83%E8%A1%8C%E8%B5%B0"
+    }
+  ]
+}

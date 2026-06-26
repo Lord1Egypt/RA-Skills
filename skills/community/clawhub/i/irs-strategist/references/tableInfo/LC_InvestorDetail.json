@@ -1,0 +1,138 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "RID",
+        "columnChiName": "投资者关系活动ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "SerialNumber",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "Participant",
+        "columnChiName": "调研机构",
+        "columnType": "varchar(140)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "ParticipantID",
+        "columnChiName": "调研机构编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "调研机构编码（ParticipantID）：与企业码表（EP_CompanyMain）中的企业编号（CompanyCode）关联，可取得调研机构详细信息。\n",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "95.51",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "PersonalName",
+        "columnChiName": "调研人员",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "62.07"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "PersonalID",
+        "columnChiName": "调研人员编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "调研人员编码（PersonalID）：该字段暂不维护。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "PostName",
+        "columnChiName": "职位名称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.47"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "PostCode",
+        "columnChiName": "职位代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "职位代码(PostCode)与(CT_SystemConst)表中的DM字段关联，令LB = 2092，得到职位代码的具体描述：1-分析师，2-研究员，3-总经理，4-副总经理，5-经理，6-董事长，7-总裁，8-主管，9-总监，10-顾问，11-助理，12-董事，13-证券事务代表，14-组长，15-负责人，16-首席，17-CEO，18-合伙人，19-保荐代表人，20-监事会主席，21-董事会秘书，22-记者，23-基金经理，24-投资经理，25-副总裁，27-副总监，99-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 1,
+        "fieldExplain": "与系统常量表（CT_SystemConst)中的“代码（DM）”关联，令LB=2092，得到职位代码的详细信息。",
+        "isEffective": true,
+        "tableVersion": null,
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

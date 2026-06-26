@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.2",
+  "paper_id": "<paper_id>",
+  "research_equation": {
+    "old_success_or_paradigm": "<A(P)>",
+    "broken_assumption": "<C and not-C>",
+    "hard_setting_or_constraint": "<T>",
+    "borrowed_tool_or_method_family": "<M>",
+    "ideal_unavailable_mechanism": "<Y>",
+    "surrogate_mechanism": "<Z>",
+    "compact_formula": "A(P) ∩ ¬C ∩ T ∩ M => Z≈Y",
+    "claim_ids": []
+  },
+  "tri_pass_notes": {
+    "pass_1_five_c": {
+      "category": "<paper category>",
+      "context": "<field context and ancestor methods>",
+      "correctness": "<initial assumption and evidence plausibility>",
+      "contributions": "<claimed contributions>",
+      "clarity": "<argument clarity>",
+      "direction_promise": "<hidden assumption or research trigger noticed in triage>"
+    },
+    "pass_2_chain": "<problem -> assumption -> module -> formula -> figure/table -> experiment -> claim reconstruction>",
+    "pass_3_virtual_reimplementation": "<assumptions, missing details, special cases, dropped-assumption failures>"
+  },
+  "direction_reconstruction": {
+    "likely_starting_dissatisfaction": "<plausible pain point>",
+    "tempting_transfer": "<nearby method that almost transfers>",
+    "blocking_constraint": "<why direct transfer fails>",
+    "conceptual_replacement": "<what the paper uses instead>",
+    "interpretation_type": "<evidence-backed interpretation | plausible inference | speculation>",
+    "claim_ids": []
+  },
+  "challenge_to_module_map": [
+    {
+      "challenge": "<challenge>",
+      "failure_mode": "<failure mode>",
+      "design_principle": "<design principle>",
+      "module": "<module>",
+      "evidence": "<claim ids or evidence notes>",
+      "claim_ids": []
+    }
+  ],
+  "module_hidden_assumptions": [
+    {
+      "module": "<module>",
+      "failure_fixed": "<failure>",
+      "ideal_unavailable_solution": "<ideal solution>",
+      "available_proxy": "<proxy>",
+      "design_choice": "<choice>",
+      "hidden_assumption": "<assumption>",
+      "risk_if_assumption_fails": "<risk>",
+      "future_research_point": "<research seed>",
+      "claim_ids": []
+    }
+  ],
+  "citation_logic": [
+    {
+      "citation_cluster": "<cluster>",
+      "narrative_function": "<field anchor | limitation evidence | method ancestor | neighboring inspiration | baseline pressure | protocol justification | contrast boundary>",
+      "assumption_inherited": "<assumption>",
+      "how_paper_modifies_it": "<modification>",
+      "claim_ids": []
+    }
+  ],
+  "experiments_as_story_evidence": [
+    {
+      "experiment_block": "<experiment>",
+      "claim": "<supported claim>",
+      "counterfactual": "<alternative explanation ruled out>",
+      "metric": "<metric>",
+      "stress_condition": "<hard setting tested>",
+      "alignment_judgment": "<strong | partial | weak>",
+      "claim_ids": []
+    }
+  ],
+  "reviewer_lens_summary": {
+    "novelty": "<audit>",
+    "significance": "<audit>",
+    "soundness": "<audit>",
+    "methodology_rigor": "<audit>",
+    "reproducibility": "<audit>",
+    "limitations_honesty": "<audit>",
+    "actionable_objections": []
+  },
+  "story_pattern": {
+    "pattern_name": "<replacement story | closed loop | two-axis empty cell | other>",
+    "compact_formula": "<pattern formula>",
+    "reusable_lesson": "<lesson>",
+    "claim_ids": []
+  },
+  "future_directions": [
+    {
+      "direction": "<direction>",
+      "seed_type": "<seed type>",
+      "trigger": "<hidden assumption, proxy mismatch, evidence gap, successor gap, reviewer objection, or negative result>",
+      "minimum_viable_experiment": "<small test>",
+      "killer_objection": "<objection>",
+      "killer_result": "<decisive result>",
+      "direction_seed_id": "<D1>",
+      "claim_ids": []
+    }
+  ],
+  "top_direction_seed_ids": ["D1"],
+  "direction_board_path": "direction_board.json"
+}

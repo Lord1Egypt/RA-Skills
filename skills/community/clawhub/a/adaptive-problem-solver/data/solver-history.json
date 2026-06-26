@@ -1,0 +1,36 @@
+[
+  {
+    "solutionId": "sec-001",
+    "success": true,
+    "feedback": {
+      "preferred": "createStepByStepGuide"
+    },
+    "executionTime": "8分钟",
+    "timestamp": "2026-03-03T22:02:37.179Z"
+  },
+  {
+    "solutionId": "sec-002",
+    "success": false,
+    "feedback": {
+      "feedback": "太复杂"
+    },
+    "executionTime": "12分钟",
+    "timestamp": "2026-03-03T22:02:37.262Z"
+  },
+  {
+    "solutionId": "skill-001",
+    "success": true,
+    "feedback": {
+      "preferred": "oneClickScript"
+    },
+    "executionTime": "3分钟",
+    "timestamp": "2026-03-03T22:02:37.263Z"
+  },
+  {
+    "solutionId": "perm-001",
+    "success": true,
+    "feedback": {},
+    "executionTime": "6分钟",
+    "timestamp": "2026-03-03T22:02:37.336Z"
+  }
+]

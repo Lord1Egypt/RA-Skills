@@ -1,35 +1,101 @@
 ---
-name: "agentic-devops"
-description: "Production-grade agent DevOps toolkit — Docker, process management, log analysis, and health monitoring. Built by engineers who run production."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentic-devops"
-sourceUrl: "https://clawhub.ai/skills/agentic-devops"
+name: agentic-devops
+version: 1.0.0
+description: Production-grade agent DevOps toolkit — Docker, process management, log analysis, and health monitoring. Built by engineers who run production.
+author: Anvil AI
+license: MIT
+homepage: https://github.com/cacheforge-ai/cacheforge-skills
+user-invocable: true
+tags:
+  - cacheforge
+  - devops
+  - docker
+  - monitoring
+  - log-analysis
+  - health-check
+  - infrastructure
+  - sre
+  - discord
+  - discord-v2
+metadata: {"openclaw":{"emoji":"🛠️","homepage":"https://github.com/cacheforge-ai/cacheforge-skills","requires":{"bins":["python3"]}}}
 ---
 
-# agentic-devops
+## When to use this skill
 
-> Production-grade agent DevOps toolkit — Docker, process management, log analysis, and health monitoring. Built by engineers who run production.
+Use this skill when the user wants to:
+- Run system diagnostics or health checks
+- Manage Docker containers (status, logs, health, compose)
+- Inspect running processes, ports, or resource hogs
+- Analyze log files for errors, patterns, or frequency
+- Check HTTP endpoint availability or port status
+- Get a quick one-command system overview
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentic-devops`
-- **Source URL:** [https://clawhub.ai/skills/agentic-devops](https://clawhub.ai/skills/agentic-devops)
+## Commands
 
-## Overview
+### Quick Diagnostics (start here)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agentic-devops
+# Full system health report — CPU, memory, disk, Docker, ports, errors, top processes
+python3 skills/agentic-devops/devops.py diag
 ```
+
+### Docker Operations
+
+```bash
+# Container status overview
+python3 skills/agentic-devops/devops.py docker status
+
+# Tail container logs with pattern filtering
+python3 skills/agentic-devops/devops.py docker logs <container> --tail 100 --grep "error|warn"
+
+# Docker health summary (running, stopped, unhealthy)
+python3 skills/agentic-devops/devops.py docker health
+
+# Docker Compose service status
+python3 skills/agentic-devops/devops.py docker compose-status --file docker-compose.yml
+```
+
+### Process Management
+
+```bash
+# List processes sorted by resource usage
+python3 skills/agentic-devops/devops.py proc list --sort cpu
+
+# Show ports in use
+python3 skills/agentic-devops/devops.py proc ports
+
+# Detect zombie processes
+python3 skills/agentic-devops/devops.py proc zombies
+```
+
+### Log Analysis
+
+```bash
+# Analyze log file for error patterns
+python3 skills/agentic-devops/devops.py logs analyze /var/log/syslog --pattern "error|fail|critical"
+
+# Tail log file with highlighted patterns
+python3 skills/agentic-devops/devops.py logs tail /var/log/app.log --highlight "ERROR|WARN"
+
+# Frequency analysis of log patterns
+python3 skills/agentic-devops/devops.py logs frequency /var/log/app.log --top 20
+```
+
+### Health Checks
+
+```bash
+# Check HTTP endpoint health
+python3 skills/agentic-devops/devops.py health check https://myapp.com/healthz
+
+# Scan specific ports
+python3 skills/agentic-devops/devops.py health ports 80,443,8080,5432
+
+# System resource health (CPU, memory, disk)
+python3 skills/agentic-devops/devops.py health system
+```
+
+## Requirements
+
+- Python 3.8+ (stdlib only, no external dependencies)
+- Docker CLI (optional — Docker sections degrade gracefully if not installed)
+- Standard Unix utilities (ps, ss/netstat)

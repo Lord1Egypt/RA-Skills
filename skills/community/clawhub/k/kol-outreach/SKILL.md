@@ -1,35 +1,48 @@
 ---
-name: "KOL Outreach — Influencer Discovery, Pricing & ROI Framework"
-description: "Ready-to-use KOL cold outreach templates — DM scripts for Twitter, email pitches, and follow-up sequences designed to get replies from busy influencers. Test..."
-category: "productivity"
-source: "ClawHub"
-tags: [cold-outreach, collaboration, creator, creator-dm, dm-scripts, email-outreach, growth, influencer, influencer-pitch, kol, kol-templates, marketing, outreach, partnership, reply-rate, scripts, templates, twitter-dm, ugc]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kol-outreach"
-sourceUrl: "https://clawhub.ai/skills/kol-outreach"
+name: kol-outreach
+description: |
+  Ready-to-use KOL cold outreach templates — DM scripts for Twitter, email pitches, and follow-up sequences designed to get replies from busy influencers. Tested across 500+ creator partnerships. By @WeiYipei.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/kol-outreach
+tags:
+  - kol-outreach
+  - influencer-marketing
+  - creator-marketing
+  - b2b-influencer
+  - developer-kol
+  - outreach-templates
+  - partnership
+  - cold-outreach
+  - claude-code
+  - ai-agent-skill
+  - agent-skill
+  - latest
+---
+# KOL Cold Outreach Templates — DM Scripts That Get Replies
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+## 📦 Install
+
+```bash
+clawhub install kol-outreach
+```
+
+**What you get after installing:**
+- Platform-specific DM scripts for Twitter, Instagram, and LinkedIn
+- 3-touch cold email templates with 40%+ reply rates
+- Follow-up cadence and partnership structure frameworks
+
 ---
 
-# KOL Outreach — Influencer Discovery, Pricing & ROI Framework
+Stop getting ignored. These templates are battle-tested across 500+ successful creator partnerships.
 
-> Ready-to-use KOL cold outreach templates — DM scripts for Twitter, email pitches, and follow-up sequences designed to get replies from busy influencers. Test...
+- **DM scripts**: Platform-specific templates for Twitter, Instagram, and LinkedIn
+- **Email sequences**: 3-touch cold email templates with 40%+ reply rates
+- **Value-first approach**: How to pitch so creators want to respond
+- **Follow-up cadence**: When to follow up, how many times, and when to stop
+- **Partnership structures**: Paid vs barter vs affiliate — which to propose when
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kol-outreach`
-- **Source URL:** [https://clawhub.ai/skills/kol-outreach](https://clawhub.ai/skills/kol-outreach)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kol-outreach
-```
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-launch
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

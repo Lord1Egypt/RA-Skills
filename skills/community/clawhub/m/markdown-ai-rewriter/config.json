@@ -1,0 +1,113 @@
+{
+  "skill": {
+    "name": "markdown-ai-rewriter",
+    "version": "1.2.5",
+    "enabled": true,
+    "autoInvoke": true
+  },
+  "commands": {
+    "rewrite": {
+      "script": "./scripts/run.js",
+      "args": ["rewrite"],
+      "description": "重写 Markdown 文件"
+    },
+    "check-quota": {
+      "script": "./scripts/run.js",
+      "args": ["check-quota"],
+      "description": "检查剩余配额"
+    },
+    "help": {
+      "script": "./scripts/postinstall.js",
+      "args": [],
+      "description": "显示使用帮助和 API 配置方式"
+    }
+  },
+  "environment": {
+    "required": [
+      "NODE_VERSION>=18.0.0"
+    ],
+    "optional": [
+      "OPENAI_API_KEY",
+      "ANTHROPIC_API_KEY",
+      "AZURE_OPENAI_API_KEY",
+      "AZURE_OPENAI_ENDPOINT",
+      "GEMINI_API_KEY",
+      "DEEPSEEK_API_KEY",
+      "OPENROUTER_API_KEY",
+      "QWEN_API_KEY",
+      "GLM_API_KEY",
+      "DOUBAO_API_KEY",
+      "WENXIN_API_KEY",
+      "MINIMAX_API_KEY",
+      "KLING_API_KEY",
+      "RUNWAY_API_KEY"
+    ]
+  },
+  "install": {
+    "type": "npm-global",
+    "package": "markdown-ai-rewriter",
+    "version": "1.2.5",
+    "command": "npm install -g markdown-ai-rewriter@1.2.5",
+    "binary": "md-rewrite",
+    "global": true,
+    "autoInstall": false,
+    "autoUpdate": false,
+    "riskLevel": "low",
+    "riskReason": "通过 npm 全局安装第三方包。安装前请审计源码。",
+    "requiresApproval": true,
+    "source": {
+      "type": "npm",
+      "registry": "https://registry.npmjs.org",
+      "package": "markdown-ai-rewriter",
+      "repository": "https://github.com/sipingme/markdown-ai-rewriter",
+      "license": "MIT",
+      "audit": "https://github.com/sipingme/markdown-ai-rewriter/blob/main/src/index.ts"
+    },
+    "verification": {
+      "command": "md-rewrite --version",
+      "expectedOutput": "1.2.5"
+    }
+  },
+  "dependencies": {
+    "npm": [
+      "markdown-ai-rewriter@1.2.5"
+    ],
+    "note": "Package is installed globally via npm and loaded in-process by the launcher (no subprocess)."
+  },
+  "permissions": {
+    "filesystem": {
+      "read": ["*.md"],
+      "write": ["~/.markdown-ai-rewriter/"]
+    },
+    "network": {
+      "domains": [
+        "registry.npmjs.org",
+        "api.openai.com",
+        "api.anthropic.com",
+        "*.openai.azure.com",
+        "generativelanguage.googleapis.com",
+        "api.deepseek.com",
+        "openrouter.ai",
+        "dashscope.aliyuncs.com",
+        "open.bigmodel.cn",
+        "ark.cn-beijing.volces.com",
+        "qianfan.baidubce.com",
+        "api.minimax.io",
+        "api.minimaxi.com"
+      ]
+    },
+    "subprocess": {
+      "declared": false,
+      "note": "Launcher does not spawn subprocesses. The pinned npm package's CLI entry is loaded in-process via dynamic import; see permissions.inProcessLoad."
+    },
+    "inProcessLoad": {
+      "declared": true,
+      "package": "markdown-ai-rewriter",
+      "loader": "dynamic import (await import(file://...))",
+      "sink": "scripts/run.js:runMdRewrite (single call site)",
+      "resolution": "platform-standard global node_modules roots only; require.resolve restricted to the same allow-list",
+      "argvPolicy": "allow-listed subcommands; length-bounded; control-char filtered; injected via process.argv mutation",
+      "justification": "In-process loader removes the exec sink from the skill repository while preserving argv validation."
+    }
+  }
+}

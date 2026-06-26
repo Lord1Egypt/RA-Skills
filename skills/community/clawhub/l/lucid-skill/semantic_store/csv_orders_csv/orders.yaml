@@ -1,0 +1,89 @@
+source: csv:orders.csv
+table: orders
+description: 订单记录，包含销售额、折扣、利润等关键商业指标
+businessDomain: 电商/交易
+tags:
+  - 核心表
+  - 财务
+  - 订单
+confirmed: false
+updatedAt: '2026-03-15T05:34:02.779Z'
+columns:
+  - name: Order ID
+    semantic: 订单唯一标识
+    role: primary_key
+    confirmed: false
+  - name: Sales
+    semantic: 订单销售额
+    role: measure
+    unit: CNY
+    aggregation: sum
+    confirmed: false
+  - name: Profit
+    semantic: 订单利润
+    role: measure
+    unit: CNY
+    aggregation: sum
+    confirmed: false
+  - name: Quantity
+    semantic: 购买数量
+    role: measure
+    aggregation: sum
+    confirmed: false
+  - name: Discount
+    semantic: 折扣率
+    role: measure
+    confirmed: false
+  - name: Category
+    semantic: 商品分类
+    role: dimension
+    confirmed: false
+  - name: Sub-Category
+    semantic: 商品子分类
+    role: dimension
+    confirmed: false
+  - name: Segment
+    semantic: 客户段（消费者/企业/居家办公）
+    role: dimension
+    confirmed: false
+  - name: Region
+    semantic: 区域
+    role: dimension
+    confirmed: false
+  - name: City
+    semantic: 城市
+    role: dimension
+    confirmed: false
+  - name: State
+    semantic: 省份
+    role: dimension
+    confirmed: false
+  - name: Customer Name
+    semantic: 客户名称
+    role: dimension
+    confirmed: false
+  - name: Product Name
+    semantic: 产品名称
+    role: dimension
+    confirmed: false
+  - name: Order Date
+    semantic: 下单时间
+    role: timestamp
+    granularity:
+      - day
+      - month
+      - year
+    confirmed: false
+  - name: Ship Date
+    semantic: 发货时间
+    role: timestamp
+    confirmed: false
+relations: []
+metrics:
+  - name: 总销售额
+    expression: SUM(Sales)
+  - name: 总利润
+    expression: SUM(Profit)
+  - name: 日订单数
+    expression: COUNT(DISTINCT "Order ID")
+    groupBy: CAST("Order Date" AS DATE)

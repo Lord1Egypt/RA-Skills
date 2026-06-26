@@ -1,0 +1,38 @@
+{
+  "name": "autonomous-research",
+  "version": "1.0.0",
+  "description": "Autonomous research pipeline - from idea to paper (based on AutoResearchClaw)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "pip install -e .",
+    "run": "node index.js"
+  },
+  "keywords": [
+    "research",
+    "academic",
+    "paper",
+    "automated",
+    "autonomous",
+    "latex",
+    "experiment"
+  ],
+  "author": "AutoResearchClaw Team (integrated by SuperMike)",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "python": ">=3.11"
+  },
+  "engines": {
+    "node": ">=18",
+    "python": ">=3.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aiming-lab/AutoResearchClaw"
+  },
+  "homepage": "https://github.com/aiming-lab/AutoResearchClaw#readme",
+  "bugs": {
+    "url": "https://github.com/aiming-lab/AutoResearchClaw/issues"
+  }
+}

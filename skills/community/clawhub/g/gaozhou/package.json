@@ -1,0 +1,26 @@
+{
+  "name": "gaozhou",
+  "version": "1.0.0",
+  "description": "高州市 - 中国荔乡 · 冼夫人故里 · 粤西明珠",
+  "keywords": [
+    "gaozhou",
+    "maoming",
+    "guangdong",
+    "lychee",
+    "travel",
+    "高州",
+    "茂名",
+    "广东",
+    "荔枝",
+    "冼夫人",
+    "旅游"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "travel",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

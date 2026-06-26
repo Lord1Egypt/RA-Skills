@@ -1,0 +1,20 @@
+{
+  "name": "grok-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scrape.js",
+  "scripts": {
+    "login": "node login.js",
+    "scrape": "node scrape.js",
+    "inspect": "node inspect-dom.js",
+    "start": "bash run.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.58.2",
+    "turndown": "^7.2.2"
+  }
+}

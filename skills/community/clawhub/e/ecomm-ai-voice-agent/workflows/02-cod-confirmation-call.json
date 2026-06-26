@@ -1,0 +1,260 @@
+{
+  "name": "eComm AI — 02 COD Confirmation Call",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/cod-confirm",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "COD Order Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-cod-confirm",
+      "id": "47c6b64e-82f3-4c88-996b-4dba9d5b1fae"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build Vapi call payload for COD confirmation\nconst order = $input.first().json;\n\nconst script = `Hello ${order.customer_name}, this is a confirmation call for your order #${order.order_number}. `\n  + `You ordered ${order.items_summary} for a total of ${order.currency} ${order.total_amount}. `\n  + `This is a Cash on Delivery order. Can you please confirm you would like to proceed with this order?`;\n\nreturn [{ json: {\n  ...order,\n  call_script: script,\n  vapi_payload: {\n    assistantId: '{{$env.VAPI_COD_ASSISTANT_ID}}',\n    customer: {\n      number: order.customer_phone,\n      name: order.customer_name\n    },\n    assistantOverrides: {\n      firstMessage: script,\n      model: {\n        messages: [{\n          role: 'system',\n          content: `You are an order confirmation agent. Order #${order.order_number}: ${order.items_summary}, total ${order.currency} ${order.total_amount} (COD). Confirm the order. If customer confirms, respond with tool call confirm_order. If they decline, use decline_order. If they want changes, use modify_order. Be polite, brief, professional.`\n        }]\n      },\n      metadata: {\n        order_id: order.order_id,\n        order_number: order.order_number,\n        type: 'cod_confirmation'\n      }\n    }\n  }\n}}];"
+      },
+      "name": "Prepare Call Script",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "25a2a816-9b97-4dbc-9689-f354239c8a82"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.vapi_payload) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        }
+      },
+      "name": "Vapi Outbound Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        400
+      ],
+      "id": "ccc71ae0-6b3e-4644-9c40-56f0eeab0962"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract call ID from Vapi response\nconst vapiResp = $input.first().json;\nconst order = $('Prepare Call Script').first().json;\n\nreturn [{ json: {\n  order_id: order.order_id,\n  order_number: order.order_number,\n  customer_phone: order.customer_phone,\n  customer_name: order.customer_name,\n  call_id: vapiResp.id || vapiResp.call_id || '',\n  call_status: vapiResp.status || 'initiated',\n  attempt: 1,\n  timestamp: new Date().toISOString()\n}}];"
+      },
+      "name": "Process Call Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "819cc79b-fede-497b-a5f6-1ebc06d0d69b"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "order_number": "={{ $json.order_number }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "call_id": "={{ $json.call_id }}",
+            "call_type": "cod_confirmation",
+            "attempt": "={{ $json.attempt }}",
+            "status": "={{ $json.call_status }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Call Attempt",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1180,
+        400
+      ],
+      "id": "ae81c9b2-39b8-480c-a5a3-e7cf6fb8d7c1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "status": "call_initiated",
+            "last_call_id": "={{ $json.call_id }}",
+            "last_call_at": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [
+            "order_id"
+          ],
+          "schema": [
+            {
+              "id": "order_id",
+              "displayName": "order_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Update Order Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1420,
+        400
+      ],
+      "id": "1bb11457-af7c-47b4-a1c8-0c95e1843b71",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', call_id: $json.call_id, order_id: $json.order_id }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1660,
+        400
+      ],
+      "id": "21ec2da8-7815-4f84-858b-1cbfdf33d6b6"
+    }
+  ],
+  "connections": {
+    "COD Order Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Call Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Call Script": {
+      "main": [
+        [
+          {
+            "node": "Vapi Outbound Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi Outbound Call": {
+      "main": [
+        [
+          {
+            "node": "Process Call Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Call Response": {
+      "main": [
+        [
+          {
+            "node": "Log Call Attempt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Call Attempt": {
+      "main": [
+        [
+          {
+            "node": "Update Order Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Order Status": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,115 @@
+node /org/deepin/dde/Accounts1/User1000 {
+  interface org.deepin.dde.Accounts1.User {
+    methods:
+      AddGroup(in  s group);
+      DeleteGroup(in  s group);
+      DeleteIconFile(in  s icon);
+      DeleteSecretKey();
+      EnableNoPasswdLogin(in  b enabled);
+      EnableWechatAuth(in  b value);
+      GetReminderInfo(out (s(iiiiii)(sssss)(sssss)i) info);
+      GetSecretKey(in  s username,
+                   out s outArg0);
+      GetSecretQuestions(out ai list);
+      IsPasswordExpired(out b outArg0);
+      PasswordExpiredInfo(out i expiredStatus,
+                          out x dayLeft);
+      SetAutomaticLogin(in  b enabled);
+      SetCurrentWorkspace(in  i currentWorkspace);
+      SetDesktopBackgrounds(in  as val);
+      SetFullName(in  s name);
+      SetGreeterBackground(in  s bg);
+      SetGroups(in  as groups);
+      SetHistoryLayout(in  as list);
+      SetHomeDir(in  s home);
+      SetIconFile(in  s iconURI);
+      SetLayout(in  s layout);
+      SetLocale(in  s locale);
+      SetLocked(in  b locked);
+      SetLongDateFormat(in  i value);
+      SetLongTimeFormat(in  i value);
+      SetMaxPasswordAge(in  i nDays);
+      SetPassword(in  s password);
+      SetPasswordHint(in  s hint);
+      SetQuickLogin(in  b enabled);
+      SetSecretKey(in  s secretKey);
+      SetSecretQuestions(in  a{iay} list);
+      SetShell(in  s shell);
+      SetShortDateFormat(in  i value);
+      SetShortTimeFormat(in  i value);
+      SetUse24HourFormat(in  b value);
+      SetWeekBegins(in  i value);
+      SetWeekdayFormat(in  i value);
+      UpdateWechatAuthState();
+      VerifySecretQuestions(in  a{is} answers,
+                            out ai failed);
+    signals:
+    properties:
+      readonly s XSession = 'deepin';
+      readonly i AccountType = 1;
+      readonly b Use24HourFormat = true;
+      readonly s FullName = '';
+      readonly s Uid = '1000';
+      readonly s Gid = '1000';
+      readonly i WeekdayFormat = 0;
+      readonly i ShortTimeFormat = 0;
+      readonly as Groups = ['lp', 'lpadmin', 'netdev', 'sambashare', 'scanner', 'sudo', 'users', 'zane'];
+      readonly i MaxPasswordAge = 99999;
+      readonly s UUID = 'c022d476-2d8c-4dc6-9f7b-7b2b06c4db68';
+      readonly b NoPasswdLogin = false;
+      readonly as HistoryLayout = ['cn;'];
+      readonly b Locked = false;
+      readonly i ShortDateFormat = 3;
+      readonly i LongTimeFormat = 0;
+      readonly s Shell = '/bin/bash';
+      readonly b SystemAccount = false;
+      readonly s IconFile = 'file:///var/lib/AccountsService/icons/illustration/pumpkin_carriage.png';
+      readonly s Locale = 'zh_CN.UTF-8';
+      readonly i WeekBegins = 0;
+      readonly as IconList = ['file:///var/lib/AccountsService/icons/animal/penguin.png', 'file:///var/lib/AccountsService/icons/animal/horse.png', 'file:///var/lib/AccountsService/icons/animal/tiger.png', 'file:///var/lib/AccountsService/icons/animal/monkey.png', 'file:///var/lib/AccountsService/icons/animal/ox.png', 'file:///var/lib/AccountsService/icons/animal/snake.png', 'file:///var/lib/AccountsService/icons/animal/sheep.png', 'file:///var/lib/AccountsService/icons/animal/panda.png', 'file:///var/lib/AccountsService/icons/animal/rabbit.png', 'file:///var/lib/AccountsService/icons/animal/dragon.png', 'file:///var/lib/AccountsService/icons/animal/chook.png', 'file:///var/lib/AccountsService/icons/animal/raccoon.png', 'file:///var/lib/AccountsService/icons/animal/cat.png', 'file:///var/lib/AccountsService/icons/animal/lion.png', 'file:///var/lib/AccountsService/icons/animal/pig.png', 'file:///var/lib/AccountsService/icons/animal/mouse.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_trophy.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_complacent.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_apple.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_cute.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_cry-and-laugh.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_yeah.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_think.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_ping-pong.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_sunflower.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_celebrate.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_666.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_cover-eye.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_gold-medal.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_shit.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_cheese.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_heart.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_piano.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_flower.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_guitar.png', 'file:///var/lib/AccountsService/icons/emoji/emoji_love.png', 'file:///var/lib/AccountsService/icons/human/dimensional/houyi.png', 'file:///var/lib/AccountsService/icons/human/dimensional/zhinv.png', 'file:///var/lib/AccountsService/icons/human/dimensional/wangzhaojun.png', 'file:///var/lib/AccountsService/icons/human/dimensional/guanyu.png', 'file:///var/lib/AccountsService/icons/human/dimensional/baoqingtian.png', 'file:///var/lib/AccountsService/icons/human/dimensional/libai.png', 'file:///var/lib/AccountsService/icons/human/dimensional/yangyuhuan.png', 'file:///var/lib/AccountsService/icons/human/dimensional/tangbohu.png', 'file:///var/lib/AccountsService/icons/human/dimensional/xishi.png', 'file:///var/lib/AccountsService/icons/human/dimensional/zhugeliang.png', 'file:///var/lib/AccountsService/icons/human/dimensional/caocao.png', 'file:///var/lib/AccountsService/icons/human/dimensional/kongzi.png', 'file:///var/lib/AccountsService/icons/human/dimensional/huamulan.png', 'file:///var/lib/AccountsService/icons/human/dimensional/zhanzhao.png', 'file:///var/lib/AccountsService/icons/human/dimensional/wusong.png', 'file:///var/lib/AccountsService/icons/human/dimensional/lvbu.png', 'file:///var/lib/AccountsService/icons/human/dimensional/diaochan.png', 'file:///var/lib/AccountsService/icons/human/dimensional/baisuzhen.png', 'file:///var/lib/AccountsService/icons/human/dimensional/niulang.png', 'file:///var/lib/AccountsService/icons/human/dimensional/jiabaoyu.png', 'file:///var/lib/AccountsService/icons/human/dimensional/wangxifeng.png', 'file:///var/lib/AccountsService/icons/human/dimensional/lindaiyu.png', 'file:///var/lib/AccountsService/icons/human/dimensional/tangsheng.png', 'file:///var/lib/AccountsService/icons/human/dimensional/zhangfei.png', 'file:///var/lib/AccountsService/icons/human/dimensional/change.png', 'file:///var/lib/AccountsService/icons/human/dimensional/tieshangongzhu.png', 'file:///var/lib/AccountsService/icons/human/dimensional/liqingzhao.png', 'file:///var/lib/AccountsService/icons/human/dimensional/wuzetian.png', 'file:///var/lib/AccountsService/icons/human/dimensional/nezha.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/7.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/4.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/14.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/18.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/26.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/3.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/13.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/12.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/5.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/20.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/15.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/9.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/25.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/21.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/1.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/6.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/19.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/8.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/24.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/2.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/16.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/11.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/23.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/17.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/10.png', 'file:///var/lib/AccountsService/icons/human/dimensional_v2/22.png', 'file:///var/lib/AccountsService/icons/human/flat/little_boy.png', 'file:///var/lib/AccountsService/icons/human/flat/man_glasses.png', 'file:///var/lib/AccountsService/icons/human/flat/man_old.png', 'file:///var/lib/AccountsService/icons/human/flat/blue_hair.png', 'file:///var/lib/AccountsService/icons/human/flat/short_hair.png', 'file:///var/lib/AccountsService/icons/human/flat/brown_hair.png', 'file:///var/lib/AccountsService/icons/human/flat/man_jacket.png', 'file:///var/lib/AccountsService/icons/human/flat/yellow_hair.png', 'file:///var/lib/AccountsService/icons/human/flat/little_girl.png', 'file:///var/lib/AccountsService/icons/human/flat/man_hat.png', 'file:///var/lib/AccountsService/icons/human/flat/man_bowknot.png', 'file:///var/lib/AccountsService/icons/illustration/train.png', 'file:///var/lib/AccountsService/icons/illustration/toaster.png', 'file:///var/lib/AccountsService/icons/illustration/pumpkin_carriage.png', 'file:///var/lib/AccountsService/icons/illustration/suitcase.png', 'file:///var/lib/AccountsService/icons/illustration/fan.png', 'file:///var/lib/AccountsService/icons/illustration/mushroom_house.png', 'file:///var/lib/AccountsService/icons/illustration/iceberg.png', 'file:///var/lib/AccountsService/icons/illustration/computer.png', 'file:///var/lib/AccountsService/icons/illustration/crystal_ball.png', 'file:///var/lib/AccountsService/icons/illustration/sofa.png', 'file:///var/lib/AccountsService/icons/illustration/milk_house.png', 'file:///var/lib/AccountsService/icons/illustration/player.png', 'file:///var/lib/AccountsService/icons/illustration/barn_lantern.png', 'file:///var/lib/AccountsService/icons/illustration/flower.png', 'file:///var/lib/AccountsService/icons/illustration/alarm_clock.png', 'file:///var/lib/AccountsService/icons/illustration/boat.png', 'file:///var/lib/AccountsService/icons/illustration/butterfly.png', 'file:///var/lib/AccountsService/icons/illustration/doughnut.png', 'file:///var/lib/AccountsService/icons/illustration/book.png', 'file:///var/lib/AccountsService/icons/illustration/tomato.png', 'file:///var/lib/AccountsService/icons/illustration/record_player.png', 'file:///var/lib/AccountsService/icons/illustration/submarine.png', 'file:///var/lib/AccountsService/icons/illustration/ger.png', 'file:///var/lib/AccountsService/icons/illustration/plant.png', 'file:///var/lib/AccountsService/icons/scenery/33.png', 'file:///var/lib/AccountsService/icons/scenery/47.png', 'file:///var/lib/AccountsService/icons/scenery/7.png', 'file:///var/lib/AccountsService/icons/scenery/4.png', 'file:///var/lib/AccountsService/icons/scenery/14.png', 'file:///var/lib/AccountsService/icons/scenery/29.png', 'file:///var/lib/AccountsService/icons/scenery/18.png', 'file:///var/lib/AccountsService/icons/scenery/3.png', 'file:///var/lib/AccountsService/icons/scenery/30.png', 'file:///var/lib/AccountsService/icons/scenery/28.png', 'file:///var/lib/AccountsService/icons/scenery/13.png', 'file:///var/lib/AccountsService/icons/scenery/39.png', 'file:///var/lib/AccountsService/icons/scenery/12.png', 'file:///var/lib/AccountsService/icons/scenery/46.png', 'file:///var/lib/AccountsService/icons/scenery/49.png', 'file:///var/lib/AccountsService/icons/scenery/34.png', 'file:///var/lib/AccountsService/icons/scenery/5.png', 'file:///var/lib/AccountsService/icons/scenery/43.png', 'file:///var/lib/AccountsService/icons/scenery/50.png', 'file:///var/lib/AccountsService/icons/scenery/27.png', 'file:///var/lib/AccountsService/icons/scenery/20.png', 'file:///var/lib/AccountsService/icons/scenery/15.png', 'file:///var/lib/AccountsService/icons/scenery/9.png', 'file:///var/lib/AccountsService/icons/scenery/48.png', 'file:///var/lib/AccountsService/icons/scenery/25.png', 'file:///var/lib/AccountsService/icons/scenery/45.png', 'file:///var/lib/AccountsService/icons/scenery/21.png', 'file:///var/lib/AccountsService/icons/scenery/1.png', 'file:///var/lib/AccountsService/icons/scenery/40.png', 'file:///var/lib/AccountsService/icons/scenery/35.png', 'file:///var/lib/AccountsService/icons/scenery/6.png', 'file:///var/lib/AccountsService/icons/scenery/19.png', 'file:///var/lib/AccountsService/icons/scenery/31.png', 'file:///var/lib/AccountsService/icons/scenery/42.png', 'file:///var/lib/AccountsService/icons/scenery/32.png', 'file:///var/lib/AccountsService/icons/scenery/24.png', 'file:///var/lib/AccountsService/icons/scenery/2.png', 'file:///var/lib/AccountsService/icons/scenery/41.png', 'file:///var/lib/AccountsService/icons/scenery/16.png', 'file:///var/lib/AccountsService/icons/scenery/11.png', 'file:///var/lib/AccountsService/icons/scenery/23.png', 'file:///var/lib/AccountsService/icons/scenery/10.png', 'file:///var/lib/AccountsService/icons/scenery/37.png', 'file:///var/lib/AccountsService/icons/scenery/22.png'];
+      readonly s HomeDir = '/home/zane';
+      readonly i LongDateFormat = 1;
+      readonly s GreeterBackground = 'file:///usr/share/wallpapers/deepin/nirvana-wallpaper-light.jpg';
+      readonly t LoginTime = 0;
+      readonly t CreatedTime = 1773275360;
+      readonly b WechatAuthEnabled = false;
+      readonly s Layout = 'cn;';
+      readonly s PasswordHint = '';
+      readonly as DesktopBackgrounds = ['file:///usr/share/backgrounds/default_background.jpg'];
+      readonly i PasswordLastChange = 20524;
+      readonly i Workspace = 1;
+      readonly s UserName = 'zane';
+      readonly b AutomaticLogin = false;
+      readonly b QuickLogin = true;
+      readonly s PasswordStatus = 'P';
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

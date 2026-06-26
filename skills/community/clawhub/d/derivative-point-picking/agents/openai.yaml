@@ -1,0 +1,4 @@
+interface:
+  display_name: "导数取点"
+  short_description: "高考导数题的取点式证明写法"
+  default_prompt: "Use $derivative-point-picking to solve this derivative problem with grader-friendly point selection proof writing."

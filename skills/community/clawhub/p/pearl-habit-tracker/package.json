@@ -1,0 +1,24 @@
+{
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "A CLI-based habit tracker with logging, statistics, and reporting",
+  "main": "scripts/habit-cli.js",
+  "bin": {
+    "habit": "./scripts/habit-cli.js"
+  },
+  "scripts": {
+    "test": "node scripts/habit-cli.js --help"
+  },
+  "keywords": [
+    "habit",
+    "tracker",
+    "cli",
+    "productivity"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/polypharmacy-management.json",
+  "title": "PolypharmacyManagement",
+  "description": "多重用药管理数据结构定义",
+  "type": "object",
+  "properties": {
+    "medication_list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "medication_id": {"type": "string"},
+          "name": {"type": "string"},
+          "generic_name": {"type": "string"},
+          "dosage": {"type": "string"},
+          "frequency": {
+            "type": "string",
+            "enum": ["qd", "bid", "tid", "qid", "qn", "prn", "other"]
+          },
+          "route": {"type": "string"},
+          "indication": {"type": "string"},
+          "start_date": {"type": "string", "format": "date"},
+          "prescriber": {"type": "string"},
+          "is_appropriate": {"type": "boolean"},
+          "beers_criteria": {"type": "boolean"},
+          "anticholinergic_score": {"type": "integer", "minimum": 0, "maximum": 3},
+          "notes": {"type": "string"}
+        },
+        "required": ["medication_id", "name", "dosage", "frequency"]
+      }
+    },
+    "beers_criteria_violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "medication_id": {"type": "string"},
+          "medication_name": {"type": "string"},
+          "violation_type": {
+            "type": "string",
+            "enum": ["potential_inappropriate", "use_with_caution"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["high", "moderate", "low"]
+          },
+          "reason": {"type": "string"},
+          "recommendation": {"type": "string"},
+          "alternative": {"type": "string"}
+        },
+        "required": ["medication_id", "medication_name", "violation_type"]
+      }
+    },
+    "drug_interactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "drug_1": {"type": "string"},
+          "drug_2": {"type": "string"},
+          "severity": {
+            "type": "string",
+            "enum": ["major", "moderate", "minor"]
+          },
+          "interaction_type": {
+            "type": "string",
+            "enum": ["drug_drug", "drug_disease"]
+          },
+          "description": {"type": "string"},
+          "management": {"type": "string"},
+          "clinical_significance": {
+            "type": "string",
+            "enum": ["contraindicated", "significant", "monitor", "minor"]
+          }
+        },
+        "required": ["drug_1", "drug_2", "severity"]
+      }
+    },
+    "disease_drug_interactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {"type": "string"},
+          "medication_name": {"type": "string"},
+          "severity": {
+            "type": "string",
+            "enum": ["major", "moderate", "minor"]
+          },
+          "recommendation": {"type": "string"}
+        },
+        "required": ["condition", "medication_name"]
+      }
+    },
+    "anticholinergic_burden": {
+      "type": "object",
+      "properties": {
+        "total_score": {"type": "integer", "minimum": 0},
+        "risk_level": {
+          "type": "string",
+          "enum": ["可接受", "尽量避免", "显著风险"]
+        },
+        "contributing_medications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "score": {"type": "integer", "minimum": 1, "maximum": 3}
+            },
+            "required": ["name", "score"]
+          }
+        },
+        "associated_risks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["认知障碍", "便秘", "口干", "尿潴留", "跌倒风险增加", "视力模糊", "心动过速"]
+          }
+        },
+        "recommendation": {"type": "string"}
+      }
+    },
+    "deprescribing_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "medication_name": {"type": "string"},
+          "action": {
+            "type": "string",
+            "enum": ["taper", "switch", "discontinue"]
+          },
+          "timeline": {"type": "string"},
+          "schedule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "week": {"type": "integer"},
+                "dosage": {"type": "string"}
+              }
+            }
+          },
+          "monitoring": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "alternative": {"type": "string"},
+          "reason": {"type": "string"},
+          "status": {
+            "type": "string",
+            "enum": ["planned", "in_progress", "completed", "cancelled"]
+          }
+        },
+        "required": ["medication_name", "action"]
+      }
+    },
+    "adherence": {
+      "type": "object",
+      "properties": {
+        "overall_adherence_rate": {"type": "number", "minimum": 0, "maximum": 100},
+        "last_assessment": {"type": "string", "format": "date"},
+        "issues_identified": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["forgotten_doses", "side_effects", "cost", "complex_regimen", "swallowing_difficulty"]
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_medications": {"type": "integer"},
+        "prescription_count": {"type": "integer"},
+        "otc_count": {"type": "integer"},
+        "inappropriate_medication_count": {"type": "integer"},
+        "major_interaction_count": {"type": "integer"},
+        "high_acb_score_count": {"type": "integer"}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "fttr-copilot-openclaw-skill",
+  "version": "0.1.6",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "fttr-copilot": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node src/cli.js --help"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "prompt": "用户说：'可以开始实现了'。当前spec-stateflow已完成，tasks.md中有5个待执行任务，第一个任务是'添加用户认证接口'。",
+    "expected": "Agent应读取tasks.md，将第一个任务标记为[~]，执行该任务（涉及文件、具体方法），完成后更新tasks.md为[✓]，提交commit，然后停下来等待用户review"
+  },
+  {
+    "id": 2,
+    "prompt": "用户说：'Continue from where you left off.' 系统提示'This session is being continued from a previous conversation'。当前tasks.md中前3个任务为[✓]，第4个为[~]。",
+    "expected": "Agent应读取tasks.md验证第3个[✓]任务的状态边界，确认后将第4个任务继续执行，不重复已完成的工作"
+  },
+  {
+    "id": 3,
+    "prompt": "用户正在执行任务2（修改数据库模型），突然插入一个无关问题：'帮我看看这个正则表达式为什么匹配失败'。",
+    "expected": "Agent应处理正则问题（不修改tasks.md），回答完后返回继续执行任务2，保持tracker状态不变"
+  },
+  {
+    "id": 4,
+    "prompt": "用户提供了一个需求链接，说：'帮我实现这个功能'。这是一个新功能，涉及多个模块。",
+    "expected": "Agent应识别为Complex任务，触发spec-stateflow Phase 1，先用EARS语法写需求文档，保存到requirements.md，然后等用户确认后再进Phase 2"
+  },
+  {
+    "id": 5,
+    "prompt": "用户在Phase 2设计阶段说：'设计看起来不错，但我希望用Redis替代Memcached作为缓存方案'。",
+    "expected": "Agent应更新design.md中的缓存方案，重新确认用户是否满意，不跳到Phase 3直到用户明确确认"
+  },
+  {
+    "id": 6,
+    "prompt": "用户说：'这个bug需要修一下'。这是一个跨模块的系统性bug，涉及数据库层和服务层。",
+    "expected": "Agent应识别为Fix类型，触发spec-stateflow（至少Phase 1-2必须），先分析bug范围再设计修复方案"
+  },
+  {
+    "id": 7,
+    "prompt": "用户说：'把timeout从5s改成10s'。这是单个配置值的修改。",
+    "expected": "Agent应识别为Simple类型，直接执行修改，不创建Spec，修改后直接提交commit"
+  },
+  {
+    "id": 8,
+    "prompt": "用户执行任务3时，编译失败报错'cannot find symbol: method getAppName()'。任务3的Specifics是'Interface add getAppName(String); impl class add getAppName(String)'。",
+    "expected": "Agent应使用grep/javap工具定位问题，检查接口和实现类的方法签名是否一致，修复后重新验证编译，不标记[✓]直到验证通过"
+  },
+  {
+    "id": 9,
+    "prompt": "用户在执行Phase 4时说：'任务4不需要做了，跳过'。任务4当前状态为[ ]。",
+    "expected": "Agent应将任务4标记为[⏭]，在Notes中记录'用户决定跳过'，继续执行下一个任务。Agent不能自行跳过，必须用户明确指示"
+  },
+  {
+    "id": 10,
+    "prompt": "所有任务完成（全部[✓]或[⏭]），其中任务5被用户跳过。",
+    "expected": "Agent应生成最终总结，包括：完成/跳过任务数，跳过的任务5的原始scope和跳过原因，用户纠正总次数。等待用户确认后完成spec workflow"
+  }
+]

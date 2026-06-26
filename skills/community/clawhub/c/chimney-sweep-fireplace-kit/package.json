@@ -1,0 +1,30 @@
+{
+  "name": "chimney-sweep-fireplace-kit",
+  "version": "2.0.0",
+  "description": "Compliance-ready marketing kit v2.0 for chimney sweep and fireplace repair contractors — CSIA certification gating, NFPA 211 Level I/II/III inspection language, UL 103/103HT/127/1777 liner specs, EPA Phase 2 wood heater rules, NFI Gas Appliance Specialist credential, OSHA 29 CFR 1926.1053 ladder safety, FTC 2023 Endorsement Guides compliance, and JSON-LD schema markup for 7 service pages",
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "keywords": [
+    "chimney sweep",
+    "fireplace repair",
+    "gas fireplace service",
+    "CSIA",
+    "NFPA 211",
+    "chimney relining",
+    "Level II inspection",
+    "pre-listing inspection",
+    "UL 103",
+    "UL 1777",
+    "NFI Gas Appliance Specialist",
+    "EPA Phase 2",
+    "JSON-LD schema",
+    "local SEO"
+  ],
+  "clawhub": {
+    "category": "Local Business Marketing > Home Services",
+    "price": 29,
+    "free_prompt": "01-seasonal-campaign",
+    "skill_number": 176,
+    "trades_bundle": true
+  }
+}

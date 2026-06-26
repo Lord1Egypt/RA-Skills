@@ -1,0 +1,23 @@
+{
+  "name": "ad-production-ai-generation",
+  "version": "1.0.0",
+  "description": "AI生成技能 - 负责广告创意的AI生成处理",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai",
+    "generation",
+    "ad-production"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

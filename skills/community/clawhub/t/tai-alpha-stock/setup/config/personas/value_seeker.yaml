@@ -1,0 +1,14 @@
+id: value_seeker
+display_name: Value Seeker
+display_name_zh: 价值猎手
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-CN
+narrative_tone: conservative
+terminology_profile: mixed
+ensemble_weight: 1.0
+overlay:
+  conviction_scale: 1.02
+  conviction_bias: 2
+  pe_bonus_weight: 1.1
+  high_rsi_penalty_extra: 3

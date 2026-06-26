@@ -1,0 +1,14 @@
+{
+  "_note": "REQUIRED: replace all example values before first use (deviceId should be plug_<normalized_uuid>, aliases, meross.uuid, channel).",
+  "devices": [
+    {
+      "deviceId": "plug_REPLACE_DEVICE_ID",
+      "aliases": ["REPLACE_ALIAS_1", "REPLACE_ALIAS_2"],
+      "meross": {
+        "uuid": "REPLACE_WITH_REAL_DEVICE_UUID",
+        "channel": 0
+      },
+      "capabilities": ["switch"]
+    }
+  ]
+}

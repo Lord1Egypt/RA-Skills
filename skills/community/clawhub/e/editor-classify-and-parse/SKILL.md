@@ -1,35 +1,103 @@
----
-name: "editor-classify-and-parse"
-description: "自动识别输入内容的剧本层级（-1到4），并提取场景、角色、台词及动作等结构信息以支持后续处理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/editor-classify-and-parse"
-sourceUrl: "https://clawhub.ai/skills/editor-classify-and-parse"
+# Skill: editor-classify-and-parse — 输入分类与解析
+
+## 用途
+解析任意形式的输入内容，识别输入层级（Level -1~4），提取剧本结构，为后续创作流程提供分流决策依据。
+
+## 触发时机
+- 阶段 2：识别输入层级 + 解析剧本结构
+
 ---
 
-# editor-classify-and-parse
+## 核心能力：Input Level Classification（输入层级分类）
 
-> 自动识别输入内容的剧本层级（-1到4），并提取场景、角色、台词及动作等结构信息以支持后续处理。
+### Level 定义与判定标准
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/editor-classify-and-parse`
-- **Source URL:** [https://clawhub.ai/skills/editor-classify-and-parse](https://clawhub.ai/skills/editor-classify-and-parse)
+| Level | 名称 | 判定标准 | 关键特征 |
+|-------|------|---------|---------|
+| **-1** | 前提不成立 | Story Premise 四要素缺失或无张力 | Want=Need、Stake 为零、无核心戏剧问题 |
+| 0 | 空任务号 | 缺少本集实质性剧情内容 | 仅有系列描述/前集剧本等参考背景 |
+| 1 | 故事大纲 | 纯叙述，无场景划分，无台词格式 | 连续文字段落，叙述性语言为主 |
+| 2 | 故事剧本 | 有场景划分和台词，无分镜 | 存在场景头标、角色对白，但无镜头描述 |
+| 3 | 粗稿分镜 | 有场景和镜头意图描述，缺少细节 | 存在镜头/画面意图关键词，但描写粗糙 |
+| 4 | 详细稿 | 已有完整场景/台词/动作描述 | 场景、台词、动作描写均完整 |
 
-## Overview
+### 判定流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/editor-classify-and-parse
 ```
+1. 输入存在吗？
+   ├─ 否 → Level 0
+   └─ 是 ↓
+
+2. Story Premise 四要素是否成立？
+   ├─ 否 → Level -1（前提不成立）
+   └─ 是 ↓
+
+3. 输入中有场景划分（场景头标）吗？
+   ├─ 否 → Level 1（故事大纲）
+   └─ 是 ↓
+
+4. 输入中有台词（对白行）吗？
+   ├─ 否 → Level 1（仍是大纲，只是分了段）
+   └─ 是 ↓
+
+5. 输入中有镜头/画面意图描述吗？
+   ├─ 否 → Level 2（故事剧本）
+   └─ 是 ↓
+
+6. 场景/台词/动作描写是否完整？
+   ├─ 否 → Level 3（粗稿分镜）
+   └─ 是 → Level 4（详细稿）
+```
+
+---
+
+## 核心能力：Script Structure Extraction（剧本结构提取）
+
+对 Level 2+ 的输入，提取以下结构信息：
+
+### 提取项
+
+1. **场景列表**：所有场景头标 + 时间/室内外标记
+2. **角色列表**：所有出场角色 + 首次出场位置
+3. **台词统计**：每个角色的台词行数占比（用于声纹校验密度评估）
+4. **动作描写密度**：△ 行数 vs 台词行数比值（检测是否满足"每3句台词内1行△"规则）
+5. **道具/场景元素**：所有提到的道具、宠物、特殊物品
+6. **变装/特殊形象**：角色变装标注是否规范
+
+### 输出格式
+
+```json
+{
+  "detected_level": 2,
+  "level_confidence": 0.9,
+  "level_evidence": "检测到7个场景头标、23句对白、0处镜头意图描述",
+  "structure": {
+    "scene_count": 7,
+    "character_list": ["张飞", "关羽", "诸葛亮"],
+    "first_appearances": {"张飞": "场景1", "关羽": "场景2", "诸葛亮": "场景3"},
+    "dialogue_stats": {"张飞": 8, "关羽": 6, "诸葛亮": 9},
+    "action_density": 0.4,
+    "props": ["羽扇", "长矛", "战马"],
+    "costumes": []
+  },
+  "risk_flags": ["动作描写密度不足（0.4 < 0.5 阈值）"]
+}
+```
+
+---
+
+## 与其他 Skill 的协作
+
+- **editor-story-architect**：classify-and-parse 提供 detected_level，story-architect 提供 premise 校验结果，两者共同决定执行计划
+- **editor-consistency-checker**：提取的角色列表和道具列表供一致性检查使用
+- **editor-dialogue-craft**：台词统计用于评估声纹校验的工作量
+- **editor-format-script-v4**：结构提取结果指导格式转换时的模块映射
+
+---
+
+## 禁止事项
+
+- ❌ 不得在分类阶段修改任何输入内容——只读取、分析、判定
+- ❌ 不得跳过 Level 判定直接进入创作——Level 决定后续所有流程的分流
+- ❌ Level 判定不得模棱两可——必须给出明确的 Level 和 confidence，confidence < 0.7 时上报 help_requested
+- ❌ 不得将 Level 3/4 的输入降级为 Level 1 处理——高级别输入的台词保护规则更严格

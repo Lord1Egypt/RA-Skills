@@ -1,35 +1,49 @@
----
-name: "知乎高赞回答生成器"
-description: "自动生成结构清晰、风格多样且具爆款潜力的知乎高赞回答，支持冷启动、争议与专业深度三种模式。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhihu-top-answer-generator"
-sourceUrl: "https://clawhub.ai/skills/zhihu-top-answer-generator"
----
+# 知乎高赞回答生成器 v1.0
 
-# 知乎高赞回答生成器
+## 核心功能
+输入问题/话题，自动生成结构完整、有爆款潜力的知乎回答。支持冷启动、争议性观点、专业深度三种风格。
 
-> 自动生成结构清晰、风格多样且具爆款潜力的知乎高赞回答，支持冷启动、争议与专业深度三种模式。
+## 定价
+- 单次：14.9元
+- 包月：79元
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhihu-top-answer-generator`
-- **Source URL:** [https://clawhub.ai/skills/zhihu-top-answer-generator](https://clawhub.ai/skills/zhihu-top-answer-generator)
+## 输入参数
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| topic | string | 知乎问题或话题 |
+| style | string | cold_start（冷启动） / debate（争议性） / professional（专业深度） |
+| word_count | number | 目标字数（300-3000） |
 
-## Overview
+## 输出结构
+1. **开篇钩子** — 吸引点击的前3句话
+2. **回答正文** — 分段清晰，带小标题
+3. **金句收尾** — 便于截图传播的总结句
+4. **标签建议** — 10个高热度标签
+5. **发布时间建议** — 最佳时段分析
 
+## 执行流程
+1. 分析问题的搜索量和竞争程度
+2. 选择最佳回答角度（差异化定位）
+3. 生成开头钩子（冲突/数据/反常识）
+4. 撰写正文（故事+干货+情绪）
+5. 生成结尾金句
+6. 给出标签和发布时机建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhihu-top-answer-generator
+## 适用场景
+- 知识博主冷启动
+- 个人品牌建立
+- 引流私域
+- 软广植入
+
+## Skill配置
+```json
+{
+  "name": "知乎高赞回答生成器",
+  "category": "内容创作",
+  "price_single": 14.9,
+  "price_monthly": 79,
+  "icon": "💬",
+  "delivery": "即时",
+  "requires_input": ["topic", "style", "word_count"]
+}
 ```

@@ -1,35 +1,21 @@
 ---
-name: "QuickNote Timestamp"
-description: "Quickly append a timestamped note to a local markdown file. Use when you need to jot down a fleeting thought, observation, or reminder without leaving the cu..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/demo-quicknote-timestamp"
-sourceUrl: "https://clawhub.ai/skills/demo-quicknote-timestamp"
+name: quicknote
+description: Quickly append a timestamped note to a local markdown file. Use when you need to jot down a fleeting thought, observation, or reminder without leaving the current workflow.
+metadata: { "openclaw": { "emoji": "📝" } }
 ---
 
-# QuickNote Timestamp
+# QuickNote
 
-> Quickly append a timestamped note to a local markdown file. Use when you need to jot down a fleeting thought, observation, or reminder without leaving the cu...
+Append a timestamped line to a note file.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/demo-quicknote-timestamp`
-- **Source URL:** [https://clawhub.ai/skills/demo-quicknote-timestamp](https://clawhub.ai/skills/demo-quicknote-timestamp)
+## Usage
 
-## Overview
+1. Pick or create a target file (default: `notes.md` in workspace root).
+2. Append the note with an ISO timestamp prefix.
+3. Done — no further action needed.
 
+## Example
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/demo-quicknote-timestamp
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) — Draft the weekly summary" >> notes.md
 ```

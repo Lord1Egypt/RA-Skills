@@ -1,0 +1,24 @@
+{
+  "contentManageUrl": "https://creator.douyin.com/creator-micro/content/manage",
+  "selectors": {
+    "videoItem": "[class*=\"video-item\"], [class*=\"VideoItem\"], [class*=\"content-item\"]",
+    "videoLink": "a[href*=\"/video/\"]",
+    "videoTitle": "[class*=\"title\"], [class*=\"Title\"]",
+    "commentCount": "[class*=\"comment\"]",
+    "likeCount": "[class*=\"like\"]"
+  },
+  "scrollConfig": {
+    "enabled": true,
+    "scrollTimes": 5,
+    "scrollDelay": 1000
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 3600000
+  },
+  "monitorDefaults": {
+    "maxVideos": 10,
+    "minComments": 0,
+    "monitorDepth": 2
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "bailian-usage",
+  "version": "1.0.1",
+  "displayName": "百炼用量查询 | Bailian Usage",
+  "description": "自动查询阿里云百炼 Coding Plan 套餐用量和有效期 | Auto-query Alibaba Cloud Bailian Coding Plan usage & quota. Uses OpenClaw browser tool, no external dependencies.",
+  "author": "jackwude",
+  "license": "MIT",
+  "repository": "https://github.com/jackwude/bailian-usage-skill",
+  "main": "query_browser.sh",
+  "tags": [
+    "bailian",
+    "aliyun",
+    "quota",
+    "usage",
+    "browser",
+    "chinese"
+  ],
+  "keywords": [
+    "百炼",
+    "阿里云",
+    "用量查询",
+    "额度",
+    "Coding Plan"
+  ],
+  "triggerWords": [
+    "查百炼额度",
+    "百炼用量",
+    "百炼套餐",
+    "看看阿里云还剩多少额度",
+    "Coding Plan"
+  ],
+  "requirements": {
+    "openclaw": ">=1.0.0",
+    "tools": [
+      "browser",
+      "exec"
+    ]
+  },
+  "configuration": {
+    "credentials": {
+      "location": "TOOLS.md",
+      "format": "## 🔐 阿里云百炼账号",
+      "fields": ["账号", "密码"],
+      "security": {
+        "note": "Credentials stored locally in TOOLS.md (user workspace, not committed to VCS). Script does not log or transmit credentials externally."
+      }
+    }
+  },
+  "security": {
+    "declaredPatterns": [
+      "browser-automation",
+      "local-credential-read"
+    ],
+    "justification": "This skill automates login to Alibaba Cloud Bailian console using credentials stored locally in the user's TOOLS.md file. Credentials are never logged, transmitted externally, or committed to version control. Browser automation is required for data extraction from the authenticated console page."
+  },
+  "readme": "README.md",
+  "readmeEn": "README.en.md",
+  "skillFile": "SKILL.md"
+}

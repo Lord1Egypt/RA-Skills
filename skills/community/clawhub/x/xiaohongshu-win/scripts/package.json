@@ -1,0 +1,12 @@
+{
+  "name": "xhs-win",
+  "version": "1.0.0",
+  "description": "Xiaohongshu Windows-native tool using Playwright",
+  "main": "xhs.js",
+  "scripts": {
+    "install-browsers": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

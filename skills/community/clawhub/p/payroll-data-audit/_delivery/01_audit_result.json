@@ -1,0 +1,2415 @@
+{
+  "version": "7.0.0",
+  "audit_time": "2026-06-05T16:13:26.249840",
+  "total_records": 947,
+  "field_check": {
+    "passed": true,
+    "missing": {},
+    "format_errors": {},
+    "total_fields_checked": 65
+  },
+  "formula_check": {
+    "passed": true,
+    "formula_results": [
+      {
+        "rule_id": "FR-001",
+        "rule_name": "应发合计校验",
+        "passed": true,
+        "total_checked": 947,
+        "violation_count": 0,
+        "violations": []
+      },
+      {
+        "rule_id": "FR-002",
+        "rule_name": "实发合计校验",
+        "passed": true,
+        "total_checked": 947,
+        "violation_count": 0,
+        "violations": []
+      },
+      {
+        "rule_id": "FR-003",
+        "rule_name": "出勤工资校验",
+        "passed": true,
+        "total_checked": 947,
+        "violation_count": 0,
+        "violations": []
+      },
+      {
+        "rule_id": "FR-004",
+        "rule_name": "计薪天数校验",
+        "passed": true,
+        "total_checked": 947,
+        "violation_count": 0,
+        "violations": []
+      }
+    ]
+  },
+  "business_check": {
+    "rule_results": [
+      {
+        "rule_id": "BR-001",
+        "rule_name": "出勤工资不超过标准工资",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 915,
+        "details": [
+          {
+            "index": 0,
+            "姓名代号": "425269Wa0Wr3",
+            "工号": "1"
+          },
+          {
+            "index": 1,
+            "姓名代号": "100776Wz9Jx4",
+            "工号": "3"
+          },
+          {
+            "index": 2,
+            "姓名代号": "313161Hq4Dj6",
+            "工号": "4"
+          },
+          {
+            "index": 3,
+            "姓名代号": "128671De2Ml4",
+            "工号": "5"
+          },
+          {
+            "index": 4,
+            "姓名代号": "334147Fa4Zk5",
+            "工号": "6"
+          },
+          {
+            "index": 5,
+            "姓名代号": "895922Sx4St1",
+            "工号": "7"
+          },
+          {
+            "index": 6,
+            "姓名代号": "548516Xu2Vm8",
+            "工号": "8"
+          },
+          {
+            "index": 7,
+            "姓名代号": "108562Gp2Qz7",
+            "工号": "12"
+          },
+          {
+            "index": 8,
+            "姓名代号": "864487Gf8Nv8",
+            "工号": "13"
+          },
+          {
+            "index": 9,
+            "姓名代号": "721859My7Go6",
+            "工号": "15"
+          },
+          {
+            "index": 10,
+            "姓名代号": "150669Lv7Rk2",
+            "工号": "16"
+          },
+          {
+            "index": 11,
+            "姓名代号": "356598Lt2Pr3",
+            "工号": "17"
+          },
+          {
+            "index": 12,
+            "姓名代号": "964730Rn2Ru5",
+            "工号": "19"
+          },
+          {
+            "index": 13,
+            "姓名代号": "631963Zi2Sz3",
+            "工号": "20"
+          },
+          {
+            "index": 14,
+            "姓名代号": "624709Vx1Gv4",
+            "工号": "22"
+          },
+          {
+            "index": 15,
+            "姓名代号": "702606Dl4Zk3",
+            "工号": "23"
+          },
+          {
+            "index": 16,
+            "姓名代号": "620006La1Tm2",
+            "工号": "28"
+          },
+          {
+            "index": 17,
+            "姓名代号": "477143Xt0Zb3",
+            "工号": "29"
+          },
+          {
+            "index": 18,
+            "姓名代号": "568991Xc1Cd5",
+            "工号": "31"
+          },
+          {
+            "index": 19,
+            "姓名代号": "651354Ww9Fm9",
+            "工号": "36"
+          }
+        ]
+      },
+      {
+        "rule_id": "BR-002",
+        "rule_name": "出勤天数不超过应出勤天数",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 947,
+        "details": [
+          {
+            "index": 0,
+            "姓名代号": "425269Wa0Wr3",
+            "工号": "1"
+          },
+          {
+            "index": 1,
+            "姓名代号": "100776Wz9Jx4",
+            "工号": "3"
+          },
+          {
+            "index": 2,
+            "姓名代号": "313161Hq4Dj6",
+            "工号": "4"
+          },
+          {
+            "index": 3,
+            "姓名代号": "128671De2Ml4",
+            "工号": "5"
+          },
+          {
+            "index": 4,
+            "姓名代号": "334147Fa4Zk5",
+            "工号": "6"
+          },
+          {
+            "index": 5,
+            "姓名代号": "895922Sx4St1",
+            "工号": "7"
+          },
+          {
+            "index": 6,
+            "姓名代号": "548516Xu2Vm8",
+            "工号": "8"
+          },
+          {
+            "index": 7,
+            "姓名代号": "108562Gp2Qz7",
+            "工号": "12"
+          },
+          {
+            "index": 8,
+            "姓名代号": "864487Gf8Nv8",
+            "工号": "13"
+          },
+          {
+            "index": 9,
+            "姓名代号": "721859My7Go6",
+            "工号": "15"
+          },
+          {
+            "index": 10,
+            "姓名代号": "150669Lv7Rk2",
+            "工号": "16"
+          },
+          {
+            "index": 11,
+            "姓名代号": "356598Lt2Pr3",
+            "工号": "17"
+          },
+          {
+            "index": 12,
+            "姓名代号": "964730Rn2Ru5",
+            "工号": "19"
+          },
+          {
+            "index": 13,
+            "姓名代号": "631963Zi2Sz3",
+            "工号": "20"
+          },
+          {
+            "index": 14,
+            "姓名代号": "624709Vx1Gv4",
+            "工号": "22"
+          },
+          {
+            "index": 15,
+            "姓名代号": "702606Dl4Zk3",
+            "工号": "23"
+          },
+          {
+            "index": 16,
+            "姓名代号": "620006La1Tm2",
+            "工号": "28"
+          },
+          {
+            "index": 17,
+            "姓名代号": "477143Xt0Zb3",
+            "工号": "29"
+          },
+          {
+            "index": 18,
+            "姓名代号": "568991Xc1Cd5",
+            "工号": "31"
+          },
+          {
+            "index": 19,
+            "姓名代号": "651354Ww9Fm9",
+            "工号": "36"
+          }
+        ]
+      },
+      {
+        "rule_id": "BR-003",
+        "rule_name": "绩效系数在合理范围",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 947,
+        "details": [
+          {
+            "index": 0,
+            "姓名代号": "425269Wa0Wr3",
+            "工号": "1"
+          },
+          {
+            "index": 1,
+            "姓名代号": "100776Wz9Jx4",
+            "工号": "3"
+          },
+          {
+            "index": 2,
+            "姓名代号": "313161Hq4Dj6",
+            "工号": "4"
+          },
+          {
+            "index": 3,
+            "姓名代号": "128671De2Ml4",
+            "工号": "5"
+          },
+          {
+            "index": 4,
+            "姓名代号": "334147Fa4Zk5",
+            "工号": "6"
+          },
+          {
+            "index": 5,
+            "姓名代号": "895922Sx4St1",
+            "工号": "7"
+          },
+          {
+            "index": 6,
+            "姓名代号": "548516Xu2Vm8",
+            "工号": "8"
+          },
+          {
+            "index": 7,
+            "姓名代号": "108562Gp2Qz7",
+            "工号": "12"
+          },
+          {
+            "index": 8,
+            "姓名代号": "864487Gf8Nv8",
+            "工号": "13"
+          },
+          {
+            "index": 9,
+            "姓名代号": "721859My7Go6",
+            "工号": "15"
+          },
+          {
+            "index": 10,
+            "姓名代号": "150669Lv7Rk2",
+            "工号": "16"
+          },
+          {
+            "index": 11,
+            "姓名代号": "356598Lt2Pr3",
+            "工号": "17"
+          },
+          {
+            "index": 12,
+            "姓名代号": "964730Rn2Ru5",
+            "工号": "19"
+          },
+          {
+            "index": 13,
+            "姓名代号": "631963Zi2Sz3",
+            "工号": "20"
+          },
+          {
+            "index": 14,
+            "姓名代号": "624709Vx1Gv4",
+            "工号": "22"
+          },
+          {
+            "index": 15,
+            "姓名代号": "702606Dl4Zk3",
+            "工号": "23"
+          },
+          {
+            "index": 16,
+            "姓名代号": "620006La1Tm2",
+            "工号": "28"
+          },
+          {
+            "index": 17,
+            "姓名代号": "477143Xt0Zb3",
+            "工号": "29"
+          },
+          {
+            "index": 18,
+            "姓名代号": "568991Xc1Cd5",
+            "工号": "31"
+          },
+          {
+            "index": 19,
+            "姓名代号": "651354Ww9Fm9",
+            "工号": "36"
+          }
+        ]
+      },
+      {
+        "rule_id": "BR-004",
+        "rule_name": "班天数不超过计薪天数",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": []
+      },
+      {
+        "rule_id": "BR-005",
+        "rule_name": "轮班天数不超过计薪天数",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 2,
+        "details": [
+          {
+            "index": 745,
+            "姓名代号": "847238Vf1Cg1",
+            "工号": "570",
+            "shift_days": 24.0,
+            "actual_days": 22.0
+          },
+          {
+            "index": 802,
+            "姓名代号": "388095Mf1Ay6",
+            "工号": "913",
+            "shift_days": 23.0,
+            "actual_days": 22.0
+          }
+        ]
+      }
+    ]
+  },
+  "red_lines": {
+    "passed": false,
+    "total_triggered": 141,
+    "rule_results": [
+      {
+        "rule_id": "RL-001",
+        "rule_name": "实发≤0",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "红线阻断规则：实发金额合计≤0，必须立即核实。条件: sum(实发金额合计) <= 0",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "RL-002",
+        "rule_name": "加班超32h",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "红线阻断规则：月加班总时数>32小时，违反劳动法。条件: sum(平时加班时数 + 周末加班时数 + 法定加班时数) > 32",
+          "total_records": 947,
+          "exclusion_count": 166,
+          "excluded_reasons": {
+            "当月入职": 47,
+            "当月离职": 33,
+            "保洁": 3
+          },
+          "actually_checked": 781,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "RL-003",
+        "rule_name": "低于最低工资",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "红线阻断规则：应发合计低于当地最低工资标准。条件: 应发合计 < 当地最低工资",
+          "total_records": 947,
+          "exclusion_count": 101,
+          "excluded_reasons": {
+            "保洁": 3,
+            "当月入职": 47,
+            "当月离职": 33,
+            "实习生(日薪)": 32,
+            "实习生(月薪)": 15
+          },
+          "actually_checked": 846,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "RL-004",
+        "rule_name": "社保公积金应缴未缴",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "红线阻断规则：不符合豁免政策但个人社保/公积金扣款为0。条件: 不符合豁免政策 AND 个人社保 == 0",
+          "total_records": 947,
+          "exclusion_count": 479,
+          "excluded_reasons": {
+            "保洁": 3,
+            "实习生(月薪)": 15
+          },
+          "actually_checked": 468,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "RL-005",
+        "rule_name": "出勤工资超标准",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "红线阻断规则：实际出勤工资小计 > 标准基本工资（排除实习生/日薪/保洁）。条件: 实际出勤工资小计 > 标准基本工资",
+          "total_records": 947,
+          "exclusion_count": 50,
+          "excluded_reasons": {
+            "保洁": 3
+          },
+          "actually_checked": 897,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "RL-006",
+        "rule_name": "出勤天数超应出勤",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "红线阻断规则：实际计薪出勤天数 > 应计薪出勤天数。条件: 实际计薪出勤天数 > 应计薪出勤天数",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "RL-007",
+        "rule_name": "标准工资三字段变化无记录",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 141,
+        "details": [
+          {
+            "index": 3,
+            "姓名代号": "128671De2Ml4",
+            "工号": "5",
+            "value": 43888.47
+          },
+          {
+            "index": 5,
+            "姓名代号": "895922Sx4St1",
+            "工号": "7",
+            "value": 39543.02
+          },
+          {
+            "index": 10,
+            "姓名代号": "150669Lv7Rk2",
+            "工号": "16",
+            "value": 41493.02
+          },
+          {
+            "index": 12,
+            "姓名代号": "964730Rn2Ru5",
+            "工号": "19",
+            "value": 24161.72
+          },
+          {
+            "index": 16,
+            "姓名代号": "620006La1Tm2",
+            "工号": "28",
+            "value": 24793.02
+          },
+          {
+            "index": 21,
+            "姓名代号": "905144Qi7Ey8",
+            "工号": "42",
+            "value": 29543.02
+          },
+          {
+            "index": 23,
+            "姓名代号": "643796Pl1Gt3",
+            "工号": "51",
+            "value": 21355.1
+          },
+          {
+            "index": 24,
+            "姓名代号": "598353He2Yv9",
+            "工号": "67",
+            "value": 35943.02
+          },
+          {
+            "index": 27,
+            "姓名代号": "785932Yx6Fx3",
+            "工号": "109",
+            "value": 24125.18
+          },
+          {
+            "index": 30,
+            "姓名代号": "157927Sl6Er2",
+            "工号": "214",
+            "value": 24243.02
+          },
+          {
+            "index": 31,
+            "姓名代号": "516628Zx4Rk3",
+            "工号": "255",
+            "value": 21393.02
+          },
+          {
+            "index": 32,
+            "姓名代号": "608716Lv4Na3",
+            "工号": "267",
+            "value": 28193.02
+          },
+          {
+            "index": 35,
+            "姓名代号": "160718Ze5Ko1",
+            "工号": "296",
+            "value": 54190.63
+          },
+          {
+            "index": 37,
+            "姓名代号": "875611Jr9Gd6",
+            "工号": "320",
+            "value": 26743.02
+          },
+          {
+            "index": 45,
+            "姓名代号": "879265Ph8Ta0",
+            "工号": "457",
+            "value": 17586.15
+          },
+          {
+            "index": 46,
+            "姓名代号": "641792Ck9Yi4",
+            "工号": "452",
+            "value": 21912.77
+          },
+          {
+            "index": 47,
+            "姓名代号": "482269Ma5Sh4",
+            "工号": "461",
+            "value": 23193.01
+          },
+          {
+            "index": 48,
+            "姓名代号": "220828Ux6Ec4",
+            "工号": "466",
+            "value": 17433.02
+          },
+          {
+            "index": 50,
+            "姓名代号": "802239Co5Lt3",
+            "工号": "473",
+            "value": 22293.02
+          },
+          {
+            "index": 51,
+            "姓名代号": "446494Ug8Fy7",
+            "工号": "477",
+            "value": 25417.22
+          }
+        ],
+        "judgment": {
+          "rule_logic": "红线阻断规则：标准基本工资/标准绩效工资/标准福利任一变化，但无调薪/转正记录。条件: 标准基本工资≠上月 OR 标准绩效工资≠上月 OR 标准福利≠上月",
+          "total_records": 947,
+          "exclusion_count": 95,
+          "excluded_reasons": {},
+          "actually_checked": 852,
+          "threshold": null,
+          "triggered": 141,
+          "pass_rate": "83.5%",
+          "verdict": "未通过"
+        }
+      }
+    ]
+  },
+  "yellow_lines": {
+    "passed": false,
+    "total_triggered": 154,
+    "rule_results": [
+      {
+        "rule_id": "YL-001",
+        "rule_name": "绩效系数过高",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 4,
+        "details": [
+          {
+            "index": 493,
+            "姓名代号": "812248Fd9Er4",
+            "工号": "541"
+          },
+          {
+            "index": 495,
+            "姓名代号": "919637Sc8Xg2",
+            "工号": "607"
+          },
+          {
+            "index": 659,
+            "姓名代号": "512791Mh2Rt5",
+            "工号": "115"
+          },
+          {
+            "index": 761,
+            "姓名代号": "336523Vz6Gb9",
+            "工号": "674"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "黄线预警：绩效系数>1.5，需核实是否有特殊贡献依据。字段: 绩效系数, 阈值: 1.5",
+          "total_records": 947,
+          "exclusion_count": 75,
+          "excluded_reasons": {
+            "保洁": 3,
+            "当月入职": 47,
+            "当月离职": 33
+          },
+          "actually_checked": 872,
+          "threshold": 1.5,
+          "triggered": 4,
+          "pass_rate": "99.5%",
+          "verdict": "未通过"
+        }
+      },
+      {
+        "rule_id": "YL-002",
+        "rule_name": "绩效系数过低",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 4,
+        "details": [
+          {
+            "index": 396,
+            "姓名代号": "130032Bp7Vd3",
+            "工号": "338"
+          },
+          {
+            "index": 419,
+            "姓名代号": "603178Ww0Be7",
+            "工号": "706"
+          },
+          {
+            "index": 447,
+            "姓名代号": "539775Ic0Kw3",
+            "工号": "1105"
+          },
+          {
+            "index": 474,
+            "姓名代号": "481204Bp0Qc5",
+            "工号": "467"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "黄线预警：绩效系数<0.5，需核实绩效评估是否合理。字段: 绩效系数, 阈值: 0.5",
+          "total_records": 947,
+          "exclusion_count": 75,
+          "excluded_reasons": {
+            "保洁": 3,
+            "当月入职": 47,
+            "当月离职": 33
+          },
+          "actually_checked": 872,
+          "threshold": 0.5,
+          "triggered": 4,
+          "pass_rate": "99.5%",
+          "verdict": "未通过"
+        }
+      },
+      {
+        "rule_id": "YL-003",
+        "rule_name": "绩效系数月度波动大",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 3,
+        "details": [
+          {
+            "index": 284,
+            "姓名代号": "491087Ak6Wa8",
+            "工号": "65"
+          },
+          {
+            "index": 474,
+            "姓名代号": "481204Bp0Qc5",
+            "工号": "467"
+          },
+          {
+            "index": 602,
+            "姓名代号": "790066Ae7Cx7",
+            "工号": "1592"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "黄线预警：本月系数与上月系数差值>0.5，需核实评估依据。字段: 绩效系数, 阈值: 0.5",
+          "total_records": 947,
+          "exclusion_count": 75,
+          "excluded_reasons": {
+            "保洁": 3,
+            "当月入职": 47,
+            "当月离职": 33
+          },
+          "actually_checked": 872,
+          "threshold": 0.5,
+          "triggered": 3,
+          "pass_rate": "99.7%",
+          "verdict": "未通过"
+        }
+      },
+      {
+        "rule_id": "YL-004",
+        "rule_name": "住宿扣款变化",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "黄线预警：本月住宿扣款与上月不一致，需确认是否退宿或新入住。字段: 住宿扣款, 阈值: 0",
+          "total_records": 947,
+          "exclusion_count": 3,
+          "excluded_reasons": {
+            "保洁": 3
+          },
+          "actually_checked": 944,
+          "threshold": 0,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "YL-005",
+        "rule_name": "出勤天数超计薪天数",
+        "passed": true,
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "黄线预警：实际计薪出勤天数 > 应计薪出勤天数，排班数据可能有误。字段: 实际计薪出勤天数, 阈值: 0",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": 0,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "YL-006",
+        "rule_name": "标准工资无依据变化",
+        "passed": false,
+        "total_checked": 947,
+        "triggered": 143,
+        "details": [
+          {
+            "index": 0,
+            "姓名代号": "425269Wa0Wr3",
+            "工号": "1"
+          },
+          {
+            "index": 1,
+            "姓名代号": "100776Wz9Jx4",
+            "工号": "3"
+          },
+          {
+            "index": 3,
+            "姓名代号": "128671De2Ml4",
+            "工号": "5"
+          },
+          {
+            "index": 5,
+            "姓名代号": "895922Sx4St1",
+            "工号": "7"
+          },
+          {
+            "index": 10,
+            "姓名代号": "150669Lv7Rk2",
+            "工号": "16"
+          },
+          {
+            "index": 12,
+            "姓名代号": "964730Rn2Ru5",
+            "工号": "19"
+          },
+          {
+            "index": 16,
+            "姓名代号": "620006La1Tm2",
+            "工号": "28"
+          },
+          {
+            "index": 21,
+            "姓名代号": "905144Qi7Ey8",
+            "工号": "42"
+          },
+          {
+            "index": 23,
+            "姓名代号": "643796Pl1Gt3",
+            "工号": "51"
+          },
+          {
+            "index": 24,
+            "姓名代号": "598353He2Yv9",
+            "工号": "67"
+          },
+          {
+            "index": 27,
+            "姓名代号": "785932Yx6Fx3",
+            "工号": "109"
+          },
+          {
+            "index": 30,
+            "姓名代号": "157927Sl6Er2",
+            "工号": "214"
+          },
+          {
+            "index": 31,
+            "姓名代号": "516628Zx4Rk3",
+            "工号": "255"
+          },
+          {
+            "index": 32,
+            "姓名代号": "608716Lv4Na3",
+            "工号": "267"
+          },
+          {
+            "index": 35,
+            "姓名代号": "160718Ze5Ko1",
+            "工号": "296"
+          },
+          {
+            "index": 37,
+            "姓名代号": "875611Jr9Gd6",
+            "工号": "320"
+          },
+          {
+            "index": 45,
+            "姓名代号": "879265Ph8Ta0",
+            "工号": "457"
+          },
+          {
+            "index": 46,
+            "姓名代号": "641792Ck9Yi4",
+            "工号": "452"
+          },
+          {
+            "index": 47,
+            "姓名代号": "482269Ma5Sh4",
+            "工号": "461"
+          },
+          {
+            "index": 48,
+            "姓名代号": "220828Ux6Ec4",
+            "工号": "466"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "黄线预警：本月&上月均无调薪/转正记录但标准工资有变化。字段: 标准基本工资, 阈值: 0",
+          "total_records": 947,
+          "exclusion_count": 75,
+          "excluded_reasons": {
+            "保洁": 3,
+            "当月入职": 47,
+            "当月离职": 33
+          },
+          "actually_checked": 872,
+          "threshold": 0,
+          "triggered": 143,
+          "pass_rate": "83.6%",
+          "verdict": "未通过"
+        }
+      }
+    ]
+  },
+  "blue_lines": {
+    "total_triggered": 626,
+    "rule_results": [
+      {
+        "rule_id": "BL-001",
+        "rule_name": "业务线奖金波动",
+        "total_checked": 947,
+        "triggered": 131,
+        "details": [
+          {
+            "姓名代号": "884372Dv7Cr6",
+            "工号": "39"
+          },
+          {
+            "姓名代号": "430238Ri8Le5",
+            "工号": "54"
+          },
+          {
+            "姓名代号": "294198Il3Ah4",
+            "工号": "118"
+          },
+          {
+            "姓名代号": "164717Dz9Fd8",
+            "工号": "165"
+          },
+          {
+            "姓名代号": "370063Tg9Ip6",
+            "工号": "205"
+          },
+          {
+            "姓名代号": "133244Hl3Uc1",
+            "工号": "207"
+          },
+          {
+            "姓名代号": "497323Fv0To4",
+            "工号": "238"
+          },
+          {
+            "姓名代号": "511145Ah4Ih4",
+            "工号": "253"
+          },
+          {
+            "姓名代号": "272502Il7Iq4",
+            "工号": "268"
+          },
+          {
+            "姓名代号": "298685Xm2Ni8",
+            "工号": "304"
+          },
+          {
+            "姓名代号": "589725Tn0Kk3",
+            "工号": "317"
+          },
+          {
+            "姓名代号": "504142Uc6Pr5",
+            "工号": "382"
+          },
+          {
+            "姓名代号": "903624Ds7Aq4",
+            "工号": "389"
+          },
+          {
+            "姓名代号": "224282La4Zh4",
+            "工号": "410"
+          },
+          {
+            "姓名代号": "947118Nr8Xn2",
+            "工号": "423"
+          },
+          {
+            "姓名代号": "341137Yt7Yz4",
+            "工号": "429"
+          },
+          {
+            "姓名代号": "539697Xv5Pc6",
+            "工号": "458"
+          },
+          {
+            "姓名代号": "795120Vm1We9",
+            "工号": "465"
+          },
+          {
+            "姓名代号": "858745Vu5Ru2",
+            "工号": "479"
+          },
+          {
+            "姓名代号": "777821Ad5Xt1",
+            "工号": "532"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "蓝线提示：季度奖金发放导致的正常波动",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "BL-002",
+        "rule_name": "加班费波动",
+        "total_checked": 947,
+        "triggered": 169,
+        "details": [
+          {
+            "姓名代号": "983027Rs0Lg0",
+            "工号": "431"
+          },
+          {
+            "姓名代号": "481204Bp0Qc5",
+            "工号": "467"
+          },
+          {
+            "姓名代号": "552367Xd5Rs8",
+            "工号": "469"
+          },
+          {
+            "姓名代号": "483444In4Km7",
+            "工号": "159"
+          },
+          {
+            "姓名代号": "461004Sg5Eu5",
+            "工号": "314"
+          },
+          {
+            "姓名代号": "812248Fd9Er4",
+            "工号": "541"
+          },
+          {
+            "姓名代号": "301985Fd7Cq4",
+            "工号": "605"
+          },
+          {
+            "姓名代号": "919637Sc8Xg2",
+            "工号": "607"
+          },
+          {
+            "姓名代号": "918304Rj0Fw4",
+            "工号": "608"
+          },
+          {
+            "姓名代号": "387293Wr1Vv2",
+            "工号": "1139"
+          },
+          {
+            "姓名代号": "644764Ua6Iz0",
+            "工号": "1165"
+          },
+          {
+            "姓名代号": "461514En4Pp8",
+            "工号": "1235"
+          },
+          {
+            "姓名代号": "132626Qy5Aw1",
+            "工号": "1393"
+          },
+          {
+            "姓名代号": "615601Xi2Fx7",
+            "工号": "1579"
+          },
+          {
+            "姓名代号": "240342Cm8Bi2",
+            "工号": "1580"
+          },
+          {
+            "姓名代号": "162278Bu8Os4",
+            "工号": "1588"
+          },
+          {
+            "姓名代号": "882666Wn8Nj7",
+            "工号": "1462"
+          },
+          {
+            "姓名代号": "889776De5Fh5",
+            "工号": "637"
+          },
+          {
+            "姓名代号": "349933Eg5Id8",
+            "工号": "656"
+          },
+          {
+            "姓名代号": "677505Cq7Pp3",
+            "工号": "889"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "蓝线提示：法定节假日加班费与普通加班费差异",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "BL-003",
+        "rule_name": "补发波动",
+        "total_checked": 947,
+        "triggered": 0,
+        "details": [],
+        "judgment": {
+          "rule_logic": "蓝线提示：某月突然增加补发，需确认依据",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": null,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      },
+      {
+        "rule_id": "BL-004",
+        "rule_name": "提成波动",
+        "total_checked": 947,
+        "triggered": 326,
+        "details": [
+          {
+            "姓名代号": "864487Gf8Nv8",
+            "工号": "13"
+          },
+          {
+            "姓名代号": "598353He2Yv9",
+            "工号": "67"
+          },
+          {
+            "姓名代号": "356412Jz2Mf1",
+            "工号": "145"
+          },
+          {
+            "姓名代号": "324693Kl8Iy5",
+            "工号": "155"
+          },
+          {
+            "姓名代号": "160718Ze5Ko1",
+            "工号": "296"
+          },
+          {
+            "姓名代号": "163801Eb7Zv4",
+            "工号": "506"
+          },
+          {
+            "姓名代号": "549998Na6Aq7",
+            "工号": "501"
+          },
+          {
+            "姓名代号": "341978Gt7Hd2",
+            "工号": "523"
+          },
+          {
+            "姓名代号": "354283So9Hd8",
+            "工号": "530"
+          },
+          {
+            "姓名代号": "200255Ew0Nr4",
+            "工号": "555"
+          },
+          {
+            "姓名代号": "300113La7Qn7",
+            "工号": "600"
+          },
+          {
+            "姓名代号": "252664Lx8Lk0",
+            "工号": "700"
+          },
+          {
+            "姓名代号": "752040Bv4Zq9",
+            "工号": "854"
+          },
+          {
+            "姓名代号": "896458Sx3Mq8",
+            "工号": "927"
+          },
+          {
+            "姓名代号": "991312Xb6Cq6",
+            "工号": "966"
+          },
+          {
+            "姓名代号": "626718Af5Mc8",
+            "工号": "980"
+          },
+          {
+            "姓名代号": "960266Oi8Il7",
+            "工号": "1387"
+          },
+          {
+            "姓名代号": "350396Sv1Qs5",
+            "工号": "1392"
+          },
+          {
+            "姓名代号": "451049Wm0Ua8",
+            "工号": "1408"
+          },
+          {
+            "姓名代号": "606152Sa2Uy8",
+            "工号": "1409"
+          }
+        ],
+        "judgment": {
+          "rule_logic": "蓝线提示：业务正常波动，±20%以内属正常",
+          "total_records": 947,
+          "exclusion_count": 0,
+          "excluded_reasons": {},
+          "actually_checked": 947,
+          "threshold": 0.2,
+          "triggered": 0,
+          "pass_rate": "100.0%",
+          "verdict": "通过"
+        }
+      }
+    ]
+  },
+  "policy_check": {
+    "rule_results": [
+      {
+        "policy_id": "POL-001",
+        "policy_name": "15号后入职当月不缴社保公积金",
+        "matched_count": 445,
+        "violation_count": 0,
+        "violations": [],
+        "passed": true,
+        "note": "入职当月15号后可以不缴纳，次月起缴纳。已缴纳的也合理（公司代缴），不做违规判定。"
+      },
+      {
+        "policy_id": "POL-002",
+        "policy_name": "实习生/保洁豁免社保公积金",
+        "matched_count": 50,
+        "violation_count": 0,
+        "violations": [],
+        "passed": true
+      },
+      {
+        "policy_id": "POL-003",
+        "policy_name": "离职当月社保公积金缴纳规则",
+        "matched_count": 6,
+        "violation_count": 0,
+        "violations": [],
+        "passed": true,
+        "note": "离职当月社保规则：仅提示，不做违规判定。15号前离职可以不缴，已缴也合理。"
+      },
+      {
+        "policy_id": "POL-004",
+        "policy_name": "道旅国际-社保豁免",
+        "matched_count": 11,
+        "violation_count": 0,
+        "violations": [],
+        "passed": true
+      },
+      {
+        "policy_id": "POL-005",
+        "policy_name": "道旅国际-公积金豁免",
+        "matched_count": 11,
+        "violation_count": 0,
+        "violations": [],
+        "passed": true,
+        "note": "道旅国际员工入职2个月内可以不缴纳个人公积金。已缴纳的也合理，不做违规判定。"
+      }
+    ]
+  },
+  "comparison": {
+    "headcount": {
+      "current": 947,
+      "previous": 954,
+      "change_pct": -0.73
+    },
+    "metrics": {
+      "应发合计": {
+        "current": 15020896.91,
+        "previous": 15340224.52,
+        "change_pct": -2.08
+      },
+      "实发金额合计": {
+        "current": 13307957.6,
+        "previous": 14272482.74,
+        "change_pct": -6.76
+      },
+      "实际出勤工资小计": {
+        "current": 11250834.86,
+        "previous": 10943184.83,
+        "change_pct": 2.81
+      },
+      "实际绩效工资": {
+        "current": 2847173.33,
+        "previous": 2847352.23,
+        "change_pct": -0.01
+      },
+      "加班费小计": {
+        "current": 92748.43,
+        "previous": 1201.79,
+        "change_pct": 7617.52
+      },
+      "业务线奖金合计": {
+        "current": 42770.04,
+        "previous": 952910.07,
+        "change_pct": -95.51
+      },
+      "提成&其他&奖金": {
+        "current": 290518.16,
+        "previous": 362796.92,
+        "change_pct": -19.92
+      },
+      "补发": {
+        "current": 260654.04,
+        "previous": 158.65,
+        "change_pct": 164195.01
+      }
+    }
+  },
+  "continuous_analysis": {
+    "skipped": false,
+    "summary": {
+      "total_continuous": 898,
+      "total_excluded": 76,
+      "excluded_reasons": {
+        "实习生": 23,
+        "保洁": 3,
+        "当月离职": 26,
+        "当月调薪": 21,
+        "当月转正": 7
+      },
+      "actually_analyzed": 824,
+      "应发合计": {
+        "avg_curr": 17275.27,
+        "avg_prev": 17647.25,
+        "total_curr": 14234818.66,
+        "total_prev": 14541331.22,
+        "change_pct": -2.11,
+        "anomaly_count": 264,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "实发金额合计": {
+        "avg_curr": 15265.26,
+        "avg_prev": 15842.13,
+        "total_curr": 12578574.29,
+        "total_prev": 13053914.65,
+        "change_pct": -3.64,
+        "anomaly_count": 256,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "实际出勤工资小计": {
+        "avg_curr": 12893.52,
+        "avg_prev": 12632.67,
+        "total_curr": 10624257.74,
+        "total_prev": 10409317.86,
+        "change_pct": 2.06,
+        "anomaly_count": 76,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "实际绩效工资": {
+        "avg_curr": 3325.51,
+        "avg_prev": 3270.11,
+        "total_curr": 2740219.62,
+        "total_prev": 2694567.13,
+        "change_pct": 1.69,
+        "anomaly_count": 35,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "加班费小计": {
+        "avg_curr": 101.17,
+        "avg_prev": 1.19,
+        "total_curr": 83365.1,
+        "total_prev": 984.14,
+        "change_pct": 8370.86,
+        "anomaly_count": 0,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "业务线奖金合计": {
+        "avg_curr": 51.91,
+        "avg_prev": 1127.35,
+        "total_curr": 42770.04,
+        "total_prev": 928938.7,
+        "change_pct": -95.4,
+        "anomaly_count": 123,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "提成&其他&奖金": {
+        "avg_curr": 331.17,
+        "avg_prev": 380.95,
+        "total_curr": 272882.59,
+        "total_prev": 313905.18,
+        "change_pct": -13.07,
+        "anomaly_count": 20,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "补发": {
+        "avg_curr": 316.33,
+        "avg_prev": 0.19,
+        "total_curr": 260654.04,
+        "total_prev": 158.65,
+        "change_pct": 164195.01,
+        "anomaly_count": 0,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "个人社保": {
+        "avg_curr": 577.82,
+        "avg_prev": 561.15,
+        "total_curr": 476119.73,
+        "total_prev": 462389.72,
+        "change_pct": 2.97,
+        "anomaly_count": 0,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      },
+      "个人公积金": {
+        "avg_curr": 186.78,
+        "avg_prev": 178.33,
+        "total_curr": 153907.35,
+        "total_prev": 146940.26,
+        "change_pct": 4.74,
+        "anomaly_count": 4,
+        "anomaly_threshold": "±10%且绝对值>1000元"
+      }
+    },
+    "flagged_changes": [
+      {
+        "工号": "1",
+        "姓名代号": "425269Wa0Wr3",
+        "field": "应发合计",
+        "curr_value": 30000.0,
+        "prev_value": 36116.0,
+        "diff": -6116.0,
+        "pct_change": -16.93
+      },
+      {
+        "工号": "3",
+        "姓名代号": "100776Wz9Jx4",
+        "field": "应发合计",
+        "curr_value": 23000.0,
+        "prev_value": 103790.0,
+        "diff": -80790.0,
+        "pct_change": -77.84
+      },
+      {
+        "工号": "5",
+        "姓名代号": "128671De2Ml4",
+        "field": "应发合计",
+        "curr_value": 55000.0,
+        "prev_value": 45000.0,
+        "diff": 10000.0,
+        "pct_change": 22.22
+      },
+      {
+        "工号": "42",
+        "姓名代号": "905144Qi7Ey8",
+        "field": "应发合计",
+        "curr_value": 32500.0,
+        "prev_value": 24500.0,
+        "diff": 8000.0,
+        "pct_change": 32.65
+      },
+      {
+        "工号": "51",
+        "姓名代号": "643796Pl1Gt3",
+        "field": "应发合计",
+        "curr_value": 28000.0,
+        "prev_value": 22000.0,
+        "diff": 6000.0,
+        "pct_change": 27.27
+      },
+      {
+        "工号": "214",
+        "姓名代号": "157927Sl6Er2",
+        "field": "应发合计",
+        "curr_value": 27000.0,
+        "prev_value": 23000.0,
+        "diff": 4000.0,
+        "pct_change": 17.39
+      },
+      {
+        "工号": "267",
+        "姓名代号": "608716Lv4Na3",
+        "field": "应发合计",
+        "curr_value": 31000.0,
+        "prev_value": 27000.0,
+        "diff": 4000.0,
+        "pct_change": 14.81
+      },
+      {
+        "工号": "296",
+        "姓名代号": "160718Ze5Ko1",
+        "field": "应发合计",
+        "curr_value": 65000.0,
+        "prev_value": 55666.0,
+        "diff": 9334.0,
+        "pct_change": 16.77
+      },
+      {
+        "工号": "320",
+        "姓名代号": "875611Jr9Gd6",
+        "field": "应发合计",
+        "curr_value": 29500.0,
+        "prev_value": 24500.0,
+        "diff": 5000.0,
+        "pct_change": 20.41
+      },
+      {
+        "工号": "452",
+        "姓名代号": "641792Ck9Yi4",
+        "field": "应发合计",
+        "curr_value": 27000.0,
+        "prev_value": 21000.0,
+        "diff": 6000.0,
+        "pct_change": 28.57
+      },
+      {
+        "工号": "506",
+        "姓名代号": "163801Eb7Zv4",
+        "field": "应发合计",
+        "curr_value": 20000.0,
+        "prev_value": 16666.0,
+        "diff": 3334.0,
+        "pct_change": 20.0
+      },
+      {
+        "工号": "534",
+        "姓名代号": "332212Fw9Bu3",
+        "field": "应发合计",
+        "curr_value": 19823.27,
+        "prev_value": 16000.0,
+        "diff": 3823.27,
+        "pct_change": 23.9
+      },
+      {
+        "工号": "530",
+        "姓名代号": "354283So9Hd8",
+        "field": "应发合计",
+        "curr_value": 27600.0,
+        "prev_value": 25000.0,
+        "diff": 2600.0,
+        "pct_change": 10.4
+      },
+      {
+        "工号": "600",
+        "姓名代号": "300113La7Qn7",
+        "field": "应发合计",
+        "curr_value": 20000.0,
+        "prev_value": 16800.0,
+        "diff": 3200.0,
+        "pct_change": 19.05
+      },
+      {
+        "工号": "615",
+        "姓名代号": "396734Yb0Vy9",
+        "field": "应发合计",
+        "curr_value": 27000.0,
+        "prev_value": 23000.0,
+        "diff": 4000.0,
+        "pct_change": 17.39
+      },
+      {
+        "工号": "681",
+        "姓名代号": "592679Av6Iv4",
+        "field": "应发合计",
+        "curr_value": 27000.0,
+        "prev_value": 20000.0,
+        "diff": 7000.0,
+        "pct_change": 35.0
+      },
+      {
+        "工号": "679",
+        "姓名代号": "374204Pm5Og5",
+        "field": "应发合计",
+        "curr_value": 20000.0,
+        "prev_value": 18000.0,
+        "diff": 2000.0,
+        "pct_change": 11.11
+      },
+      {
+        "工号": "678",
+        "姓名代号": "777073Oo7Lh9",
+        "field": "应发合计",
+        "curr_value": 19000.0,
+        "prev_value": 16000.0,
+        "diff": 3000.0,
+        "pct_change": 18.75
+      },
+      {
+        "工号": "739",
+        "姓名代号": "761844Jd4Cn9",
+        "field": "应发合计",
+        "curr_value": 55000.0,
+        "prev_value": 45000.0,
+        "diff": 10000.0,
+        "pct_change": 22.22
+      },
+      {
+        "工号": "740",
+        "姓名代号": "931512Wf6Es3",
+        "field": "应发合计",
+        "curr_value": 17000.0,
+        "prev_value": 15000.0,
+        "diff": 2000.0,
+        "pct_change": 13.33
+      },
+      {
+        "工号": "775",
+        "姓名代号": "397915Le9Da1",
+        "field": "应发合计",
+        "curr_value": 13000.0,
+        "prev_value": 11000.0,
+        "diff": 2000.0,
+        "pct_change": 18.18
+      },
+      {
+        "工号": "779",
+        "姓名代号": "980510Av7Df3",
+        "field": "应发合计",
+        "curr_value": 28500.0,
+        "prev_value": 18500.0,
+        "diff": 10000.0,
+        "pct_change": 54.05
+      },
+      {
+        "工号": "803",
+        "姓名代号": "710972Iy5Hy9",
+        "field": "应发合计",
+        "curr_value": 33000.0,
+        "prev_value": 26000.0,
+        "diff": 7000.0,
+        "pct_change": 26.92
+      },
+      {
+        "工号": "852",
+        "姓名代号": "408280Qs1Rh6",
+        "field": "应发合计",
+        "curr_value": 26000.0,
+        "prev_value": 22000.0,
+        "diff": 4000.0,
+        "pct_change": 18.18
+      },
+      {
+        "工号": "1537",
+        "姓名代号": "514303Bu4Tr4",
+        "field": "应发合计",
+        "curr_value": 43454.55,
+        "prev_value": 50000.0,
+        "diff": -6545.45,
+        "pct_change": -13.09
+      },
+      {
+        "工号": "358",
+        "姓名代号": "302578Pn6Eg4",
+        "field": "应发合计",
+        "curr_value": 22000.0,
+        "prev_value": 18000.0,
+        "diff": 4000.0,
+        "pct_change": 22.22
+      },
+      {
+        "工号": "243",
+        "姓名代号": "428371Ni1Fm5",
+        "field": "应发合计",
+        "curr_value": 30500.0,
+        "prev_value": 22500.0,
+        "diff": 8000.0,
+        "pct_change": 35.56
+      },
+      {
+        "工号": "208",
+        "姓名代号": "268957Bu9Qb4",
+        "field": "应发合计",
+        "curr_value": 14486.0,
+        "prev_value": 9500.0,
+        "diff": 4986.0,
+        "pct_change": 52.48
+      },
+      {
+        "工号": "213",
+        "姓名代号": "239663Hu5Yz6",
+        "field": "应发合计",
+        "curr_value": 34000.0,
+        "prev_value": 28000.0,
+        "diff": 6000.0,
+        "pct_change": 21.43
+      },
+      {
+        "工号": "124",
+        "姓名代号": "185119Cg6Ek2",
+        "field": "应发合计",
+        "curr_value": 28764.36,
+        "prev_value": 25000.0,
+        "diff": 3764.36,
+        "pct_change": 15.06
+      },
+      {
+        "工号": "135",
+        "姓名代号": "344628Qk3Sm7",
+        "field": "应发合计",
+        "curr_value": 17386.0,
+        "prev_value": 12400.0,
+        "diff": 4986.0,
+        "pct_change": 40.21
+      },
+      {
+        "工号": "321",
+        "姓名代号": "749493Mr4Oj3",
+        "field": "应发合计",
+        "curr_value": 14368.18,
+        "prev_value": 10500.0,
+        "diff": 3868.18,
+        "pct_change": 36.84
+      },
+      {
+        "工号": "337",
+        "姓名代号": "991249Qi1Ip1",
+        "field": "应发合计",
+        "curr_value": 9708.47,
+        "prev_value": 7700.0,
+        "diff": 2008.47,
+        "pct_change": 26.08
+      },
+      {
+        "工号": "380",
+        "姓名代号": "421009Gn0Is2",
+        "field": "应发合计",
+        "curr_value": 9600.0,
+        "prev_value": 8000.0,
+        "diff": 1600.0,
+        "pct_change": 20.0
+      },
+      {
+        "工号": "451",
+        "姓名代号": "618028Rh3Kz5",
+        "field": "应发合计",
+        "curr_value": 14976.36,
+        "prev_value": 11000.0,
+        "diff": 3976.36,
+        "pct_change": 36.15
+      },
+      {
+        "工号": "572",
+        "姓名代号": "405257Dv1Zy0",
+        "field": "应发合计",
+        "curr_value": 13136.0,
+        "prev_value": 11000.0,
+        "diff": 2136.0,
+        "pct_change": 19.42
+      },
+      {
+        "工号": "598",
+        "姓名代号": "727559Tf0Oe6",
+        "field": "应发合计",
+        "curr_value": 15548.47,
+        "prev_value": 12484.73,
+        "diff": 3063.74,
+        "pct_change": 24.54
+      },
+      {
+        "工号": "609",
+        "姓名代号": "381274Pa4Nf7",
+        "field": "应发合计",
+        "curr_value": 24000.0,
+        "prev_value": 20000.0,
+        "diff": 4000.0,
+        "pct_change": 20.0
+      },
+      {
+        "工号": "822",
+        "姓名代号": "829582Td8Xe9",
+        "field": "应发合计",
+        "curr_value": 23400.0,
+        "prev_value": 19000.0,
+        "diff": 4400.0,
+        "pct_change": 23.16
+      },
+      {
+        "工号": "899",
+        "姓名代号": "384831Yl7Sy2",
+        "field": "应发合计",
+        "curr_value": 10000.0,
+        "prev_value": 11500.0,
+        "diff": -1500.0,
+        "pct_change": -13.04
+      },
+      {
+        "工号": "1351",
+        "姓名代号": "612953Zx3Ho1",
+        "field": "应发合计",
+        "curr_value": 11000.0,
+        "prev_value": 9500.0,
+        "diff": 1500.0,
+        "pct_change": 15.79
+      },
+      {
+        "工号": "1593",
+        "姓名代号": "152533Wl7Fe1",
+        "field": "应发合计",
+        "curr_value": 33000.0,
+        "prev_value": 16500.0,
+        "diff": 16500.0,
+        "pct_change": 100.0
+      },
+      {
+        "工号": "1599",
+        "姓名代号": "310778Rb0Vm3",
+        "field": "应发合计",
+        "curr_value": 17500.0,
+        "prev_value": 7954.55,
+        "diff": 9545.45,
+        "pct_change": 120.0
+      },
+      {
+        "工号": "1600",
+        "姓名代号": "854927On8Xr6",
+        "field": "应发合计",
+        "curr_value": 23000.0,
+        "prev_value": 10454.55,
+        "diff": 12545.45,
+        "pct_change": 120.0
+      },
+      {
+        "工号": "1603",
+        "姓名代号": "933332Ai2Xq4",
+        "field": "应发合计",
+        "curr_value": 30041.82,
+        "prev_value": 9863.64,
+        "diff": 20178.18,
+        "pct_change": 204.57
+      },
+      {
+        "工号": "1610",
+        "姓名代号": "619568Up4Fj4",
+        "field": "应发合计",
+        "curr_value": 9000.0,
+        "prev_value": 2045.45,
+        "diff": 6954.55,
+        "pct_change": 340.0
+      },
+      {
+        "工号": "39",
+        "姓名代号": "884372Dv7Cr6",
+        "field": "应发合计",
+        "curr_value": 19612.8,
+        "prev_value": 22028.29,
+        "diff": -2415.49,
+        "pct_change": -10.97
+      },
+      {
+        "工号": "54",
+        "姓名代号": "430238Ri8Le5",
+        "field": "应发合计",
+        "curr_value": 27162.0,
+        "prev_value": 39560.77,
+        "diff": -12398.77,
+        "pct_change": -31.34
+      },
+      {
+        "工号": "65",
+        "姓名代号": "491087Ak6Wa8",
+        "field": "应发合计",
+        "curr_value": 39810.91,
+        "prev_value": 56800.0,
+        "diff": -16989.09,
+        "pct_change": -29.91
+      },
+      {
+        "工号": "117",
+        "姓名代号": "921823Sn2Ph3",
+        "field": "应发合计",
+        "curr_value": 10631.17,
+        "prev_value": 9401.55,
+        "diff": 1229.62,
+        "pct_change": 13.08
+      },
+      {
+        "工号": "1",
+        "姓名代号": "425269Wa0Wr3",
+        "field": "实发金额合计",
+        "curr_value": 26793.02,
+        "prev_value": 34616.0,
+        "diff": -7822.98,
+        "pct_change": -22.6
+      },
+      {
+        "工号": "3",
+        "姓名代号": "100776Wz9Jx4",
+        "field": "实发金额合计",
+        "curr_value": 21477.98,
+        "prev_value": 102290.0,
+        "diff": -80812.02,
+        "pct_change": -79.0
+      },
+      {
+        "工号": "5",
+        "姓名代号": "128671De2Ml4",
+        "field": "实发金额合计",
+        "curr_value": 43888.47,
+        "prev_value": 38134.25,
+        "diff": 5754.22,
+        "pct_change": 15.09
+      },
+      {
+        "工号": "42",
+        "姓名代号": "905144Qi7Ey8",
+        "field": "实发金额合计",
+        "curr_value": 29543.02,
+        "prev_value": 22942.99,
+        "diff": 6600.03,
+        "pct_change": 28.77
+      },
+      {
+        "工号": "51",
+        "姓名代号": "643796Pl1Gt3",
+        "field": "实发金额合计",
+        "curr_value": 21355.1,
+        "prev_value": 16300.55,
+        "diff": 5054.55,
+        "pct_change": 31.01
+      },
+      {
+        "工号": "214",
+        "姓名代号": "157927Sl6Er2",
+        "field": "实发金额合计",
+        "curr_value": 24243.02,
+        "prev_value": 20962.99,
+        "diff": 3280.03,
+        "pct_change": 15.65
+      },
+      {
+        "工号": "267",
+        "姓名代号": "608716Lv4Na3",
+        "field": "实发金额合计",
+        "curr_value": 28193.02,
+        "prev_value": 24702.99,
+        "diff": 3490.03,
+        "pct_change": 14.13
+      },
+      {
+        "工号": "320",
+        "姓名代号": "875611Jr9Gd6",
+        "field": "实发金额合计",
+        "curr_value": 26743.02,
+        "prev_value": 22702.99,
+        "diff": 4040.03,
+        "pct_change": 17.8
+      },
+      {
+        "工号": "452",
+        "姓名代号": "641792Ck9Yi4",
+        "field": "实发金额合计",
+        "curr_value": 21912.77,
+        "prev_value": 17307.82,
+        "diff": 4604.95,
+        "pct_change": 26.61
+      },
+      {
+        "工号": "506",
+        "姓名代号": "163801Eb7Zv4",
+        "field": "实发金额合计",
+        "curr_value": 18983.02,
+        "prev_value": 15749.05,
+        "diff": 3233.97,
+        "pct_change": 20.53
+      },
+      {
+        "工号": "534",
+        "姓名代号": "332212Fw9Bu3",
+        "field": "实发金额合计",
+        "curr_value": 18015.44,
+        "prev_value": 14908.02,
+        "diff": 3107.42,
+        "pct_change": 20.84
+      },
+      {
+        "工号": "530",
+        "姓名代号": "354283So9Hd8",
+        "field": "实发金额合计",
+        "curr_value": 24633.02,
+        "prev_value": 22293.01,
+        "diff": 2340.01,
+        "pct_change": 10.5
+      },
+      {
+        "工号": "600",
+        "姓名代号": "300113La7Qn7",
+        "field": "实发金额合计",
+        "curr_value": 18111.98,
+        "prev_value": 15684.03,
+        "diff": 2427.95,
+        "pct_change": 15.48
+      },
+      {
+        "工号": "615",
+        "姓名代号": "396734Yb0Vy9",
+        "field": "实发金额合计",
+        "curr_value": 24093.02,
+        "prev_value": 20602.99,
+        "diff": 3490.03,
+        "pct_change": 16.94
+      },
+      {
+        "工号": "681",
+        "姓名代号": "592679Av6Iv4",
+        "field": "实发金额合计",
+        "curr_value": 24712.98,
+        "prev_value": 18893.03,
+        "diff": 5819.95,
+        "pct_change": 30.8
+      },
+      {
+        "工号": "678",
+        "姓名代号": "777073Oo7Lh9",
+        "field": "实发金额合计",
+        "curr_value": 17267.98,
+        "prev_value": 14908.03,
+        "diff": 2359.95,
+        "pct_change": 15.83
+      },
+      {
+        "工号": "739",
+        "姓名代号": "761844Jd4Cn9",
+        "field": "实发金额合计",
+        "curr_value": 49507.23,
+        "prev_value": 40793.01,
+        "diff": 8714.22,
+        "pct_change": 21.36
+      },
+      {
+        "工号": "740",
+        "姓名代号": "931512Wf6Es3",
+        "field": "实发金额合计",
+        "curr_value": 15677.98,
+        "prev_value": 13938.03,
+        "diff": 1739.95,
+        "pct_change": 12.48
+      },
+      {
+        "工号": "775",
+        "姓名代号": "397915Le9Da1",
+        "field": "实发金额合计",
+        "curr_value": 11998.02,
+        "prev_value": 10058.03,
+        "diff": 1939.99,
+        "pct_change": 19.29
+      },
+      {
+        "工号": "779",
+        "姓名代号": "980510Av7Df3",
+        "field": "实发金额合计",
+        "curr_value": 25757.98,
+        "prev_value": 17378.03,
+        "diff": 8379.95,
+        "pct_change": 48.22
+      },
+      {
+        "工号": "803",
+        "姓名代号": "710972Iy5Hy9",
+        "field": "实发金额合计",
+        "curr_value": 29493.02,
+        "prev_value": 23193.01,
+        "diff": 6300.01,
+        "pct_change": 27.16
+      },
+      {
+        "工号": "852",
+        "姓名代号": "408280Qs1Rh6",
+        "field": "实发金额合计",
+        "curr_value": 23185.82,
+        "prev_value": 19836.91,
+        "diff": 3348.91,
+        "pct_change": 16.88
+      },
+      {
+        "工号": "1537",
+        "姓名代号": "514303Bu4Tr4",
+        "field": "实发金额合计",
+        "curr_value": 36494.15,
+        "prev_value": 44785.81,
+        "diff": -8291.66,
+        "pct_change": -18.51
+      },
+      {
+        "工号": "358",
+        "姓名代号": "302578Pn6Eg4",
+        "field": "实发金额合计",
+        "curr_value": 17305.88,
+        "prev_value": 14516.97,
+        "diff": 2788.91,
+        "pct_change": 19.21
+      },
+      {
+        "工号": "243",
+        "姓名代号": "428371Ni1Fm5",
+        "field": "实发金额合计",
+        "curr_value": 27235.82,
+        "prev_value": 20496.91,
+        "diff": 6738.91,
+        "pct_change": 32.88
+      },
+      {
+        "工号": "208",
+        "姓名代号": "268957Bu9Qb4",
+        "field": "实发金额合计",
+        "curr_value": 13431.68,
+        "prev_value": 8595.27,
+        "diff": 4836.41,
+        "pct_change": 56.27
+      },
+      {
+        "工号": "213",
+        "姓名代号": "239663Hu5Yz6",
+        "field": "实发金额合计",
+        "curr_value": 30385.82,
+        "prev_value": 24985.81,
+        "diff": 5400.01,
+        "pct_change": 21.61
+      },
+      {
+        "工号": "124",
+        "姓名代号": "185119Cg6Ek2",
+        "field": "实发金额合计",
+        "curr_value": 25673.74,
+        "prev_value": 22285.81,
+        "diff": 3387.93,
+        "pct_change": 15.2
+      },
+      {
+        "工号": "135",
+        "姓名代号": "344628Qk3Sm7",
+        "field": "实发金额合计",
+        "curr_value": 16244.68,
+        "prev_value": 11408.27,
+        "diff": 4836.41,
+        "pct_change": 42.39
+      },
+      {
+        "工号": "321",
+        "姓名代号": "749493Mr4Oj3",
+        "field": "实发金额合计",
+        "curr_value": 13317.4,
+        "prev_value": 9565.27,
+        "diff": 3752.13,
+        "pct_change": 39.23
+      },
+      {
+        "工号": "337",
+        "姓名代号": "991249Qi1Ip1",
+        "field": "实发金额合计",
+        "curr_value": 8797.48,
+        "prev_value": 6849.27,
+        "diff": 1948.21,
+        "pct_change": 28.44
+      },
+      {
+        "工号": "380",
+        "姓名代号": "421009Gn0Is2",
+        "field": "实发金额合计",
+        "curr_value": 8692.26,
+        "prev_value": 7140.27,
+        "diff": 1551.99,
+        "pct_change": 21.74
+      },
+      {
+        "工号": "451",
+        "姓名代号": "618028Rh3Kz5",
+        "field": "实发金额合计",
+        "curr_value": 13907.33,
+        "prev_value": 10050.27,
+        "diff": 3857.06,
+        "pct_change": 38.38
+      },
+      {
+        "工号": "572",
+        "姓名代号": "405257Dv1Zy0",
+        "field": "实发金额合计",
+        "curr_value": 12122.18,
+        "prev_value": 10050.27,
+        "diff": 2071.91,
+        "pct_change": 20.62
+      },
+      {
+        "工号": "598",
+        "姓名代号": "727559Tf0Oe6",
+        "field": "实发金额合计",
+        "curr_value": 14462.28,
+        "prev_value": 11490.45,
+        "diff": 2971.83,
+        "pct_change": 25.86
+      },
+      {
+        "工号": "609",
+        "姓名代号": "381274Pa4Nf7",
+        "field": "实发金额合计",
+        "curr_value": 15991.82,
+        "prev_value": 12922.91,
+        "diff": 3068.91,
+        "pct_change": 23.75
+      },
+      {
+        "工号": "822",
+        "姓名代号": "829582Td8Xe9",
+        "field": "实发金额合计",
+        "curr_value": 20845.82,
+        "prev_value": 17556.91,
+        "diff": 3288.91,
+        "pct_change": 18.73
+      },
+      {
+        "工号": "899",
+        "姓名代号": "384831Yl7Sy2",
+        "field": "实发金额合计",
+        "curr_value": 9206.46,
+        "prev_value": 10706.46,
+        "diff": -1500.0,
+        "pct_change": -14.01
+      },
+      {
+        "工号": "1593",
+        "姓名代号": "152533Wl7Fe1",
+        "field": "实发金额合计",
+        "curr_value": 31200.81,
+        "prev_value": 16155.0,
+        "diff": 15045.81,
+        "pct_change": 93.13
+      },
+      {
+        "工号": "1599",
+        "姓名代号": "310778Rb0Vm3",
+        "field": "实发金额合计",
+        "curr_value": 16355.27,
+        "prev_value": 7865.91,
+        "diff": 8489.36,
+        "pct_change": 107.93
+      },
+      {
+        "工号": "1600",
+        "姓名代号": "854927On8Xr6",
+        "field": "实发金额合计",
+        "curr_value": 21690.27,
+        "prev_value": 10290.91,
+        "diff": 11399.36,
+        "pct_change": 110.77
+      },
+      {
+        "工号": "1603",
+        "姓名代号": "933332Ai2Xq4",
+        "field": "实发金额合计",
+        "curr_value": 28520.83,
+        "prev_value": 9717.73,
+        "diff": 18803.1,
+        "pct_change": 193.49
+      },
+      {
+        "工号": "1610",
+        "姓名代号": "619568Up4Fj4",
+        "field": "实发金额合计",
+        "curr_value": 8198.9,
+        "prev_value": 2045.45,
+        "diff": 6153.45,
+        "pct_change": 300.84
+      },
+      {
+        "工号": "39",
+        "姓名代号": "884372Dv7Cr6",
+        "field": "实发金额合计",
+        "curr_value": 17444.54,
+        "prev_value": 20558.82,
+        "diff": -3114.28,
+        "pct_change": -15.15
+      },
+      {
+        "工号": "54",
+        "姓名代号": "430238Ri8Le5",
+        "field": "实发金额合计",
+        "curr_value": 21466.72,
+        "prev_value": 32625.6,
+        "diff": -11158.88,
+        "pct_change": -34.2
+      },
+      {
+        "工号": "65",
+        "姓名代号": "491087Ak6Wa8",
+        "field": "实发金额合计",
+        "curr_value": 35781.59,
+        "prev_value": 51103.02,
+        "diff": -15321.43,
+        "pct_change": -29.98
+      },
+      {
+        "工号": "117",
+        "姓名代号": "921823Sn2Ph3",
+        "field": "实发金额合计",
+        "curr_value": 9700.26,
+        "prev_value": 8507.53,
+        "diff": 1192.73,
+        "pct_change": 14.02
+      },
+      {
+        "工号": "163",
+        "姓名代号": "777591Xo5Ed7",
+        "field": "实发金额合计",
+        "curr_value": 17180.3,
+        "prev_value": 12874.9,
+        "diff": 4305.4,
+        "pct_change": 33.44
+      },
+      {
+        "工号": "165",
+        "姓名代号": "164717Dz9Fd8",
+        "field": "实发金额合计",
+        "curr_value": 14016.41,
+        "prev_value": 18242.68,
+        "diff": -4226.27,
+        "pct_change": -23.17
+      },
+      {
+        "工号": "205",
+        "姓名代号": "370063Tg9Ip6",
+        "field": "实发金额合计",
+        "curr_value": 16390.97,
+        "prev_value": 20029.28,
+        "diff": -3638.31,
+        "pct_change": -18.16
+      }
+    ]
+  },
+  "summary": {
+    "blocked": true,
+    "total_issues": 921,
+    "p0_count": 141,
+    "p1_count": 154,
+    "p2_count": 626,
+    "formula_passed": true,
+    "field_check_passed": true,
+    "status": "blocked"
+  }
+}

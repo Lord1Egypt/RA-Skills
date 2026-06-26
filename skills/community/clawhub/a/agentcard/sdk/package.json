@@ -1,0 +1,43 @@
+{
+  "name": "@asgcard/sdk",
+  "version": "1.0.7",
+  "description": "SDK for ASG Card — virtual MasterCard cards for AI agents, paid via x402 on Stellar",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "asgcard",
+    "virtual-card",
+    "ai-agent",
+    "x402",
+    "stellar",
+    "usdc",
+    "soroban"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ASGCompute/asgcard-public"
+  },
+  "homepage": "https://asgcard.dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "typescript": "^5.8.3"
+  }
+}

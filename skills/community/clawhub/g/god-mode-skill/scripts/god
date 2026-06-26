@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+# god-mode: Developer oversight and agent coaching
+# Main entry point - routes to subcommands
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GOD_MODE_HOME="${GOD_MODE_HOME:-$HOME/.god-mode}"
+GOD_MODE_CONFIG="${GOD_MODE_CONFIG:-$HOME/.config/god-mode/config.yaml}"
+
+# Source libraries
+source "$SCRIPT_DIR/lib/output.sh" 2>/dev/null || true
+
+# Version
+VERSION="0.1.0"
+
+# Show help
+show_help() {
+    cat << EOF
+god-mode v$VERSION - Developer oversight and agent coaching
+
+USAGE:
+    god <command> [options]
+
+COMMANDS:
+    status              Show overview of all projects
+    sync                Fetch/update data from repositories  
+    projects            List and manage configured projects
+    agents analyze      Analyze and improve your agents.md
+    agents generate     Generate agents.md for a project (coming soon)
+    review              Monthly activity reviews
+    logs                View activity logs
+    
+    setup               First-run setup
+    help                Show this help
+
+OPTIONS:
+    -h, --help          Show help for a command
+    -v, --version       Show version
+    --no-color          Disable colored output
+
+EXAMPLES:
+    god status                    # Overview of all projects
+    god status myproject          # Details for one project
+    god sync                      # Sync all projects
+    god sync --force              # Force full refresh
+    god agents analyze myproject  # Analyze agents.md
+
+CONFIGURATION:
+    Config file: $GOD_MODE_CONFIG
+    Data directory: $GOD_MODE_HOME
+
+For more information, see: https://github.com/InfantLab/god-mode-skill
+EOF
+}
+
+# Show version
+show_version() {
+    echo "god-mode v$VERSION"
+}
+
+# Route to subcommand
+main() {
+    # Handle global flags
+    case "${1:-}" in
+        -v|--version)
+            show_version
+            exit 0
+            ;;
+        -h|--help|help|"")
+            show_help
+            exit 0
+            ;;
+    esac
+
+    local cmd="$1"
+    shift
+
+    # Route to command script
+    case "$cmd" in
+        status)
+            exec "$SCRIPT_DIR/commands/status.sh" "$@"
+            ;;
+        sync)
+            exec "$SCRIPT_DIR/commands/sync.sh" "$@"
+            ;;
+        projects)
+            exec "$SCRIPT_DIR/commands/projects.sh" "$@"
+            ;;
+        agents)
+            exec "$SCRIPT_DIR/commands/agents.sh" "$@"
+            ;;
+        review)
+            exec "$SCRIPT_DIR/commands/review.sh" "$@"
+            ;;
+        logs)
+            exec "$SCRIPT_DIR/commands/logs.sh" "$@"
+            ;;
+        setup)
+            exec "$SCRIPT_DIR/setup.sh" "$@"
+            ;;
+        *)
+            echo "Unknown command: $cmd" >&2
+            echo "Run 'god help' for usage." >&2
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

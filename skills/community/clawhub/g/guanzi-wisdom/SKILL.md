@@ -1,35 +1,123 @@
 ---
-name: "管仲（管子）智慧"
-description: "管子智慧 - 管仲学派治国经济思想，涵盖轻重之术、四维治国（礼义廉耻）、牧民之道、富国强兵、调查统计、法治思想、心术哲学等核心体系，适用于宏观经济调控、国家治理、组织管理"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guanzi-wisdom"
-sourceUrl: "https://clawhub.ai/skills/guanzi-wisdom"
+name: guanzi-wisdom
+description: 管子智慧 - 管仲学派治国经济思想，涵盖轻重之术、四维治国（礼义廉耻）、牧民之道、富国强兵、调查统计、法治思想、心术哲学等核心体系，适用于宏观经济调控、国家治理、组织管理
+version: 1.0
+author: 管仲（春秋齐国相）
+category: methodology
+tags:
+  - 经济思想
+  - 治国之道
+  - 轻重之术
+  - 法家先驱
+  - 需家兼容
+related_skills:
+  - shiji-huozhi
+  - yantielun-wisdom
+  - shangjunshu
+  - hanfeizi-wisdom
 ---
 
-# 管仲（管子）智慧
+# 管子智慧
 
-> 管子智慧 - 管仲学派治国经济思想，涵盖轻重之术、四维治国（礼义廉耻）、牧民之道、富国强兵、调查统计、法治思想、心术哲学等核心体系，适用于宏观经济调控、国家治理、组织管理
+## 核心思想
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guanzi-wisdom`
-- **Source URL:** [https://clawhub.ai/skills/guanzi-wisdom](https://clawhub.ai/skills/guanzi-wisdom)
+### 一、牧民之道
 
-## Overview
+**四维治国**
+- 礼：上下有节，贵贱有等
+- 义：不逾等，不悖伦
+- 廉：不蔽恶，不苟得
+- 耻：不从枉，不羞辱
+- 四维不张，国乃灭亡
+
+**士经五事**
+- 山泽救于火
+-沟渎遂于隘
+- 鄣安于藏
+- 场圃安于艺
+- 鰌梁安于修
+
+### 二、轻重之术
+
+**核心机制**
+- 国家调控物价，以轻御重
+- 币重则万物轻，币轻则万物重
+- 调敛散，平市价，权轻重
+- 藏则重，发则轻
+
+**盐铁专营**
+- 官山海，国家垄断资源
+- 盐铁专营，财政收入来源
+- 以轻重之术调控经济
+
+### 三、富国之道
+
+**民本思想**
+- 仓廪实则知礼节
+- 衣食足则知荣辱
+- 民富则国安，民贫则国危
+
+**开源节流**
+- 五谷食米，民之司命
+- 一年树谷，十年树木，终身树人
+- 取于民有度，用之有止
+
+### 四、法治思想
+
+**重令必信**
+- 法令为治国之本
+- 君法臣守法，上下同欲
+- 刑赏必信，令出必行
+
+### 五、调查统计
+
+**八观调查**
+- 行其田野，观耕耘
+- 行其山泽，观桑麻
+- 入其都城，观宫室
+- 观其车马衣服
+- 观其四境仓廪
+- 观其乡里风俗
+- 观其朝廷君臣
+- 观其法令刑赏
+
+**问篇76条**
+- 详细调查问卷
+- 全面掌握国情
+
+### 六、心术哲学
+
+**静因之道**
+- 心术上下、白心三篇
+- 内业修养，心气之学
+- 静因之道，感而后应
+
+### 七、兵法思想
+
+**富国强兵**
+- 兵器储备充足
+- 三患五败警戒
+- 作内政而寓军令
+
+## 应用场景
+
+- 宏观经济调控
+- 国家治理策略
+- 组织管理制度
+- 调查统计方法
+- 资源配置优化
+
+## 与其他智慧的关系
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guanzi-wisdom
-```
+- 史记货殖：同属经济思想体系
+- 盐铁论：轻重之术实践应用
+- 商君书：法治思想补充
+- 韩非子：法家思想延续
+
+## 核心格言
+
+- "仓廪实则知礼节，衣食足则知荣辱"
+- "礼义廉耻，国之四维；四维不张，国乃灭亡"
+- "一年之计莫如树谷，十年之计莫如树木，终身之计莫如树人"
+- "币重则万物轻，币轻则万物重"

@@ -1,35 +1,55 @@
----
-name: "Auto Article Writer"
-description: "基于AI自动生成符合公众号、知乎、小红书等多平台风格的原创自媒体文章，支持多格式导出与批量生产。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-article-writer"
-sourceUrl: "https://clawhub.ai/skills/auto-article-writer"
----
+# Auto Article Writer - 自媒体文章自动生成器
 
-# Auto Article Writer
+## 功能描述
+基于 AI 的自媒体文章自动生成工具，支持公众号/知乎/小红书/头条等平台风格。
 
-> 基于AI自动生成符合公众号、知乎、小红书等多平台风格的原创自媒体文章，支持多格式导出与批量生产。
+## 使用场景
+- 公众号文章批量生成
+- 知乎回答自动撰写
+- 小红书笔记生成
+- 今日头条文章
+- 百家号/搜狐号内容
+- SEO 文章批量生产
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-article-writer`
-- **Source URL:** [https://clawhub.ai/skills/auto-article-writer](https://clawhub.ai/skills/auto-article-writer)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-article-writer
+### 生成公众号文章
 ```
+生成公众号文章 主题=AI 如何改变生活 字数=2000 风格=专业
+```
+
+### 生成小红书笔记
+```
+生成小红书笔记 主题=护肤心得 字数=500 风格=种草
+```
+
+### 生成知乎回答
+```
+生成知乎回答 问题=如何评价 XXX 字数=1500 风格=分析
+```
+
+### 批量生成
+```
+批量生成文章 主题列表=主题 1，主题 2，主题 3 平台=公众号 输出目录=./articles
+```
+
+## 支持平台
+- 微信公众号
+- 知乎
+- 小红书
+- 今日头条
+- 百家号
+- 简书
+- 掘金
+
+## 输出格式
+- Markdown (.md)
+- Word (.docx)
+- HTML (.html)
+
+## 特性
+- AI 智能生成
+- 多平台风格适配
+- 自动配图建议
+- SEO 优化
+- 去重处理

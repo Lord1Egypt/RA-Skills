@@ -1,35 +1,237 @@
 ---
-name: "马斯克进化系统"
+name: maske-evolution
 description: "统一进化系统，自动化技能发现、评估、安装、进化。当用户需要技能管理、系统进化、能力评估、技能搜索安装时使用此技能。支持ClawHub技能搜索、VFM评估、自动安装、每日进化流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/maske-evolution"
-sourceUrl: "https://clawhub.ai/skills/maske-evolution"
+version: 1.0.0
+author: skillforge-JOJO
+keywords: [skill, evolution, clawhub, skillhub, install, search, evaluate, agent, upgrade, self-improve]
 ---
 
-# 马斯克进化系统
+# 🏆 马斯克进化系统 (Maske Evolution)
 
-> 统一进化系统，自动化技能发现、评估、安装、进化。当用户需要技能管理、系统进化、能力评估、技能搜索安装时使用此技能。支持ClawHub技能搜索、VFM评估、自动安装、每日进化流程。
+**一句话描述**: 统一进化系统，自动化技能发现、评估、安装、进化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/maske-evolution`
-- **Source URL:** [https://clawhub.ai/skills/maske-evolution](https://clawhub.ai/skills/maske-evolution)
+**目标**: 打造地表最强智能体 — 通过持续技能进化实现自我提升。
 
-## Overview
+---
 
+## 功能概述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/maske-evolution
+马斯克进化系统是一个统一的技能管理和自我进化框架，整合技能发现、评估、安装和持续改进的全流程。
+
+### 核心能力
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| 🔍 技能发现 | 多平台搜索 | ClawHub、GitHub、SkillHub 聚合搜索 |
+| 📊 VFM评估 | 价值评估 | 基于多维度评分的技能价值评估 |
+| 📦 自动安装 | 一键安装 | 自动安装通过评估的技能 |
+| 🔄 每日进化 | 定时进化 | 每日19:00自动执行技能搜罗和进化 |
+| 📝 反思记录 | 团队反思 | 18:30团队进化反思，聚焦子体成长 |
+
+---
+
+## 使用场景
+
+### 场景1: 搜索并安装技能
+
 ```
+用户: "帮我找一下处理PDF的技能"
+→ 触发技能搜索
+→ VFM评估
+→ 安装推荐技能
+```
+
+### 场景2: 每日进化
+
+```
+定时任务: 每天19:00
+→ 技能搜罗
+→ VFM评估
+→ 安装/创建技能
+→ 记录进化日志
+```
+
+### 场景3: 团队反思
+
+```
+定时任务: 每天18:30
+→ 子体成长扫描
+→ 前缘技术扫描
+→ 进化方式评估
+→ 记录反思
+```
+
+---
+
+## 核心参数
+
+### VFM评分维度
+
+| 维度 | 权重 | 问题 |
+|------|------|------|
+| 高频使用 | 3x | 每天用？ |
+| 失败减少 | 3x | 把失败变成功？ |
+| 负担降低 | 2x | JOJO少说一句话？ |
+| 自我成本 | 2x | 省token/时间？ |
+
+**阈值**: < 50 → 跳过
+
+### 子体系统架构
+
+| 子体 | 角色 | 核心任务 |
+|------|------|---------|
+| specialist | 深度执行 | 复杂任务深度处理 |
+| explorer | 广度探索 | 信息搜集与趋势扫描 |
+| critic | 质量审查 | VFM评估与质量把关 |
+| builder | 技能创建 | 技能开发与实现 |
+| integrator | 整合协调 | 多技能融合与协调 |
+| evolver | 系统进化 | 反思记录与系统迭代 |
+
+---
+
+## 使用示例
+
+### 示例1: 搜索技能
+
+```python
+# 搜索技能
+results = search_skills(query="pdf processing", sources=["clawhub", "github"])
+```
+
+### 示例2: VFM评估
+
+```python
+# 评估技能价值
+score = vfm_evaluate(skill, dimensions={
+    "frequency": 3,      # 高频使用权重
+    "failure_reduction": 3,  # 失败减少权重
+    "burden_reduction": 2,   # 负担降低权重
+    "cost_saving": 2     # 成本节省权重
+})
+# threshold = 50
+```
+
+### 示例3: 安装技能
+
+```bash
+# 通过ClawHub安装
+clawhub install <skill-slug>
+
+# 通过SkillHub安装
+skillhub install <skill-name>
+```
+
+### 示例4: 每日进化流程
+
+```python
+def daily_evolution():
+    # 1. 技能搜罗
+    skills = search_skills(platforms=["clawhub", "github"])
+    
+    # 2. VFM评估
+    for skill in skills:
+        score = vfm_evaluate(skill)
+        if score >= 50:
+            # 3. 安装或创建
+            install_or_create(skill)
+    
+    # 4. 记录进化
+    log_evolution(results)
+```
+
+---
+
+## 每日流程
+
+### 18:30 团队反思（30分钟）
+
+```
+┌─────────────────────────────────────────┐
+│         18:30 团队进化反思                │
+├─────────────────────────────────────────┤
+│ 1. 子体成长扫描                          │
+│    - 6架构子体状态？                      │
+│    - 任务执行情况？                       │
+│    - 能力是否提升？                       │
+│                                         │
+│ 2. 前缘技术扫描                          │
+│    - 最新Agent架构趋势？                 │
+│    - 最新训练技能/框架？                 │
+│    - 最前缘进化方式？                    │
+│                                         │
+│ 3. 进化方式评估                          │
+│    - 当前进化效率如何？                   │
+│    - 子体状态符合进化需要？               │
+│    - 有更好进化路径？                    │
+│                                         │
+│ 4. 记录反思                              │
+│    → evolution/REFLECTION.md            │
+└─────────────────────────────────────────┘
+```
+
+### 19:00 任务执行（60分钟）
+
+```
+1. 技能搜罗 — ClawHub/GitHub/npm
+2. VFM评估 — 评分>=50 → 安装或创建
+3. 卡帕西研究 — 三次灵魂拷问
+4. 记录备份 — 日志 + 增量备份
+```
+
+---
+
+## 反思问题清单
+
+| 维度 | 问题 |
+|------|------|
+| 子体成长 | 子体是否在成长？新架构有效？协作顺畅？ |
+| 前缘技术 | 最新架构趋势？最新训练技能？进化方式？ |
+| 进化效率 | 当前方式最优？子体状态符合需要？有更好路径？ |
+
+---
+
+## 反思记录格式
+
+```markdown
+## [YYYY-MM-DD] 每日反思
+
+### 一、团队进化状态
+- 子体状态：...
+- 协作效率：...
+
+### 二、前缘技术扫描
+- 最新趋势：...
+- 新技能机会：...
+
+### 三、进化方式评估
+- 当前方式：...
+- 改进建议：...
+
+### 四、昨日完成 / 未完成
+
+### 五、经验教训 / 今日调整
+```
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 变化 |
+|------|------|------|
+| v1.0-v6.0 | 2026-03-25~28 | 框架+技能融合 |
+| v7.0 | 2026-03-29 | 反思版：18:30反思+19:00执行 |
+| v7.1 | 2026-03-29 | 团队反思版：反思聚焦团队进化 |
+| **v1.0.0** | **2026-04-12** | **ClawHub发布版** |
+
+---
+
+## 相关技能
+
+- `adaptive-reasoning` — 自适应推理评估
+- `neural-memory` — 神经记忆系统
+- `elite-longterm-memory` — 精英长期记忆
+- `karpathy-research` — 卡帕西研究系统
+
+---
+
+*🎩 马斯克出品 | 打造地表最强智能体*

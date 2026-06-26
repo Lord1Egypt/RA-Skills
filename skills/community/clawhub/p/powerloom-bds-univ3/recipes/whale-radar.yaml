@@ -1,0 +1,21 @@
+# -----------------------------------------------------------------------------
+# Default: one poll round over all pools, then exit (cron-friendly). Use --daemon to repeat.
+# For all pools in one bounded MCP batch, use scripts/whale-cron.mjs.
+# -----------------------------------------------------------------------------
+name: whale-radar
+description: Whale swap alerts via per-pool snapshot polls (fixed pool list below).
+heartbeat:
+  mode: poll
+  interval_seconds: 30
+filters:
+  threshold_usd: 25000
+client:
+  call_timeout_ms: 60000
+  max_alerts_per_heartbeat: 10
+  poll_fallback_pools:
+    - "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640"
+    - "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8"
+verification:
+  mode: passive
+dispatch:
+  channel: stdout

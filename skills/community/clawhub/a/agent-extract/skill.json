@@ -1,0 +1,12 @@
+{
+  "name": "agent-extract",
+  "version": "1.1.0",
+  "description": "将技能/功能从 main agent 剥离成独立 agent，实现 session 隔离和独立保活",
+  "author": "OpenClaw",
+  "scripts": [
+    {
+      "name": "verify.sh",
+      "description": "验证 agent 剥离过程是否符合约束"
+    }
+  ]
+}

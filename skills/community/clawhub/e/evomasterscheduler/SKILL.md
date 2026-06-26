@@ -1,35 +1,21 @@
----
-name: "Evomasterscheduler"
-description: "Automates daily health checks, fixes, memory cleanup, backups, improvements, upgrades, and security audits for the OpenClaw environment."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evomasterscheduler"
-sourceUrl: "https://clawhub.ai/skills/evomasterscheduler"
----
+# EvoMasterScheduler Skill
 
-# Evomasterscheduler
+The EvoMasterScheduler is a self-evolving system of daily maintenance tasks designed to ensure the health, security, and continuous improvement of the OpenClaw environment.
 
-> Automates daily health checks, fixes, memory cleanup, backups, improvements, upgrades, and security audits for the OpenClaw environment.
+## Daily Schedule
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evomasterscheduler`
-- **Source URL:** [https://clawhub.ai/skills/evomasterscheduler](https://clawhub.ai/skills/evomasterscheduler)
+| Time | Script | Purpose |
+|------|--------|---------|
+| 03:00 | `cron-diagnose.sh` | System health check and error detection |
+| 03:00 | `cron-fix.sh` | Automated remediation of detected issues |
+| 03:00 | `cron-memory.sh` | Memory optimization and debris cleanup |
+| 03:05 | `cron-backup.sh` | Critical configuration and state backup |
+| 03:10 | `cron-improve.sh` | Analysis of logs to suggest/apply improvements |
+| 03:15 | `cron-upgrade.sh` | Check for and apply stable component updates |
+| 03:20 | `cron-security.sh` | Security audit and permission validation |
 
-## Overview
-
+## Logging
+All scripts log to `~/.openclaw/logs/evomaster-$(date +%Y-%m-%d).log`.
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/evomasterscheduler
-```
+Run `consolidate-crontab.sh` to synchronize these tasks with the system crontab.

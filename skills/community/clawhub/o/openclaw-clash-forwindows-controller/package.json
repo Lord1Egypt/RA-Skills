@@ -1,0 +1,8 @@
+{
+  "name": "clash-forwindows-controller",
+  "version": "1.0.0",
+  "description": "Control Clash for Windows via API",
+  "main": "skill.js",
+  "author": "IceNoodle",
+  "license": "MIT"
+}

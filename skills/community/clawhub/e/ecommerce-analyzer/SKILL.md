@@ -1,35 +1,67 @@
----
-name: "Ecommerce Analyzer"
-description: "Provides data analysis and monitoring for sales, prices, reviews, keywords, and competitors across major Chinese ecommerce platforms."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecommerce-analyzer"
-sourceUrl: "https://clawhub.ai/skills/ecommerce-analyzer"
----
+# Ecommerce Analyzer - 电商数据分析工具
 
-# Ecommerce Analyzer
+## 功能描述
+电商数据分析工具，支持淘宝/京东/拼多多/抖音电商等平台数据分析。
 
-> Provides data analysis and monitoring for sales, prices, reviews, keywords, and competitors across major Chinese ecommerce platforms.
+## 使用场景
+- 商品销售数据分析
+- 竞品监控
+- 价格趋势分析
+- 评论情感分析
+- 关键词优化
+- 店铺运营分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecommerce-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/ecommerce-analyzer](https://clawhub.ai/skills/ecommerce-analyzer)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecommerce-analyzer
+### 商品分析
 ```
+分析商品 商品 ID=xxx 平台=淘宝 时间范围=30 天
+```
+
+### 竞品监控
+```
+监控竞品 店铺 ID=xxx 平台=京东 监控项=价格，销量，评论
+```
+
+### 评论分析
+```
+分析评论 商品 ID=xxx 平台=拼多多 情感=正面/负面/中性
+```
+
+### 关键词优化
+```
+关键词分析 类目=女装 平台=淘宝 输出=top50 关键词
+```
+
+### 价格追踪
+```
+追踪价格 商品列表=ID1,ID2,ID3 平台=京东 通知=降价 5%
+```
+
+## 支持平台
+- 淘宝/天猫
+- 京东
+- 拼多多
+- 抖音电商
+- 快手电商
+- 亚马逊
+
+## 分析维度
+- 销售数据
+- 价格趋势
+- 评论情感
+- 关键词排名
+- 竞品对比
+- 流量分析
+
+## 输出格式
+- Excel (.xlsx)
+- CSV (.csv)
+- PDF 报告
+
+## 特性
+- 实时监控
+- 自动报告
+- 价格预警
+- 情感分析
+- 数据可视化

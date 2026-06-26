@@ -1,0 +1,321 @@
+{
+  "name": "eComm AI — 01 New Order Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/new-order",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "New Order Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-new-order",
+      "id": "7b92328b-ebee-4122-aa67-07b73f244703"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse incoming Shopify/WooCommerce order\nconst body = $input.first().json.body || $input.first().json;\n\nconst order = {\n  order_id: body.order_id || body.id || body.order_number || '',\n  order_number: body.order_number || body.name || body.id || '',\n  customer_name: body.customer?.first_name ? `${body.customer.first_name} ${body.customer.last_name || ''}`.trim() : (body.billing?.first_name ? `${body.billing.first_name} ${body.billing.last_name || ''}`.trim() : body.customer_name || ''),\n  customer_phone: body.customer?.phone || body.billing?.phone || body.shipping_address?.phone || body.phone || '',\n  customer_email: body.customer?.email || body.billing?.email || body.email || '',\n  payment_method: (body.payment_method || body.gateway || body.payment_gateway_names?.[0] || 'unknown').toLowerCase(),\n  total_amount: parseFloat(body.total_price || body.total || body.order_total || 0),\n  currency: body.currency || 'USD',\n  items: (body.line_items || body.items || []).map(i => ({\n    name: i.name || i.title,\n    quantity: i.quantity || 1,\n    price: i.price || i.total\n  })),\n  shipping_address: body.shipping_address || body.shipping || {},\n  platform: body.platform || (body.order_number?.toString().startsWith('#') ? 'shopify' : 'woocommerce'),\n  is_cod: false,\n  is_high_value: false,\n  timestamp: new Date().toISOString(),\n  status: 'new'\n};\n\n// Determine COD\nconst codMethods = ['cod', 'cash_on_delivery', 'cash on delivery', 'cashondelivery'];\norder.is_cod = codMethods.includes(order.payment_method);\n\n// High value threshold\norder.is_high_value = order.total_amount >= 100;\n\n// Item summary for call script\norder.items_summary = order.items.map(i => `${i.quantity}x ${i.name}`).join(', ');\n\nreturn [{ json: order }];"
+      },
+      "name": "Parse Order",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "9ea54f10-5e65-4008-83a0-84f9900fb1ae"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "12abfd38-8033-4dd3-abf4-019370dae305",
+              "leftValue": "={{ $json.customer_phone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isNotEmpty"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Has Phone?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        680,
+        400
+      ],
+      "id": "f0c230dd-4475-4963-af24-61c1bae6606b"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'skipped', reason: 'no_phone', order_id: $json.order_id }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "name": "Respond No Phone",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        560
+      ],
+      "id": "495a767f-2e82-4eaa-a44a-bb1986db554c"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "order_number": "={{ $json.order_number }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "customer_email": "={{ $json.customer_email }}",
+            "payment_method": "={{ $json.payment_method }}",
+            "total_amount": "={{ $json.total_amount }}",
+            "currency": "={{ $json.currency }}",
+            "items_summary": "={{ $json.items_summary }}",
+            "platform": "={{ $json.platform }}",
+            "is_cod": "={{ $json.is_cod }}",
+            "status": "new",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Order",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        900,
+        300
+      ],
+      "id": "cab470b2-13a9-44bc-b779-86166c052e9e",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "f7c31ae1-ab7f-405d-8181-e44fc9822508",
+                    "leftValue": "={{ $json.is_cod }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "COD"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "name": "Route by Payment",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        400
+      ],
+      "id": "6450abaf-6520-4292-b6ed-d4d4eff29076"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/cod-confirm",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "name": "→ COD Confirmation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1360,
+        300
+      ],
+      "id": "b5b1c9f9-ddc5-42e4-ae2e-95dc308a2bd8"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/prepaid-confirm",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "name": "→ Prepaid Confirmation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1360,
+        500
+      ],
+      "id": "8d62c770-2a46-46bb-9a83-6bf11821eece"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', order_id: $json.order_id, routed: $json.is_cod ? 'cod' : 'prepaid' }) }}",
+        "options": {}
+      },
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1600,
+        400
+      ],
+      "id": "85cd8022-dd6d-49c4-887d-9068587a658e"
+    }
+  ],
+  "connections": {
+    "New Order Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Order": {
+      "main": [
+        [
+          {
+            "node": "Has Phone?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Phone?": {
+      "main": [
+        [
+          {
+            "node": "Log Order",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond No Phone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Order": {
+      "main": [
+        [
+          {
+            "node": "Route by Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Payment": {
+      "main": [
+        [
+          {
+            "node": "→ COD Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "→ Prepaid Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ COD Confirmation": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ Prepaid Confirmation": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

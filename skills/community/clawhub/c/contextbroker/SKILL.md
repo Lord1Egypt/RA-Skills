@@ -1,35 +1,40 @@
 ---
-name: "Contextbroker"
-description: "A cross-agent memory and context SDK for AI systems. Provides structured context injection, conversation memory portability, and context enrichment."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agents, context, memory, sdk]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/contextbroker"
-sourceUrl: "https://clawhub.ai/skills/contextbroker"
+name: contextbroker
+description: A cross-agent memory and context SDK for AI systems. Provides structured context injection, conversation memory portability, and context enrichment.
+metadata:
+  openclaw:
+    emoji: "🔗"
+    requires:
+      bins: ["contextbroker"]
+    install:
+      - id: skill-install
+        kind: skill
+        label: "Context Broker skill is installed — type /contextbroker in any chat"
 ---
 
-# Contextbroker
+# contextbroker — Cross-Agent Memory SDK
 
-> A cross-agent memory and context SDK for AI systems. Provides structured context injection, conversation memory portability, and context enrichment.
+## What It Is
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/contextbroker`
-- **Source URL:** [https://clawhub.ai/skills/contextbroker](https://clawhub.ai/skills/contextbroker)
+A **cross-agent memory SDK** — gives AI agents structured, persistent context across sessions, tools, and platforms. Works with any AI Model.
 
-## Overview
+## When to Use
 
+- Building multi-agent orchestration systems
+- Giving agents persistent memory across sessions
+- Migrating context between AI platforms
+- Structured context injection for RAG pipelines
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/contextbroker
+## Syntax
+
 ```
+/contextbroker push --session-id abc123 --context "user preferences..."
+/contextbroker pull --session-id abc123
+/contextbroker export --format openai --output memory.json
+```
+
+## Free Tier
+
+**100 context operations/month free** with any Signalloom API key.
+
+Get your free key: https://signalloomai.com/signup

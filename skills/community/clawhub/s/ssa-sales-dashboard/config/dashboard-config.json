@@ -1,0 +1,161 @@
+{
+  "version": "1.0.0",
+  "description": "Farreach 销售仪表盘配置",
+  "kpis": {
+    "email_sent": {
+      "label": "邮件发送量",
+      "unit": "封",
+      "source": "campaign-tracker",
+      "required": false
+    },
+    "email_reply_rate": {
+      "label": "邮件回复率",
+      "unit": "%",
+      "source": "campaign-tracker",
+      "required": false,
+      "alert": {
+        "condition": "below",
+        "threshold": 10,
+        "message": "⚠️ 邮件回复率低于 10%，需检查模板质量或客户定位"
+      }
+    },
+    "new_leads": {
+      "label": "新线索数",
+      "unit": "条",
+      "source": "okki",
+      "required": true
+    },
+    "new_customers": {
+      "label": "新客户数",
+      "unit": "个",
+      "source": "okki",
+      "required": true
+    },
+    "quotation_count": {
+      "label": "报价单数",
+      "unit": "份",
+      "source": "okki",
+      "required": true
+    },
+    "quotation_amount": {
+      "label": "报价总金额",
+      "unit": "USD",
+      "source": "okki",
+      "required": true
+    },
+    "order_count": {
+      "label": "订单数",
+      "unit": "份",
+      "source": "okki",
+      "required": true
+    },
+    "order_amount": {
+      "label": "订单总金额",
+      "unit": "USD",
+      "source": "okki",
+      "required": true,
+      "alert": {
+        "condition": "drop_percent",
+        "threshold": 50,
+        "message": "⚠️ 订单金额环比下降超 50%，需关注"
+      }
+    },
+    "opportunity_count": {
+      "label": "商机数",
+      "unit": "个",
+      "source": "okki",
+      "required": true
+    },
+    "conversion_rate": {
+      "label": "询盘转化率",
+      "unit": "%",
+      "source": "calculated",
+      "formula": "order_count / quotation_count * 100",
+      "required": true
+    }
+  },
+  "sources": {
+    "okki": {
+      "type": "api",
+      "required": true,
+      "client_path": "/Users/wilson/.openclaw/workspace/xiaoman-okki/api/okki_client.py",
+      "config_path": "/Users/wilson/.openclaw/workspace/xiaoman-okki/api/config.json",
+      "endpoints": {
+        "customers": "/v1/company/list",
+        "orders": "/v1/invoices/order/list",
+        "quotations": "/v1/invoices/quotation/list",
+        "leads": "/v1/lead/list",
+        "opportunities": "/v1/opportunity/list"
+      },
+      "time_filter": {
+        "supported": true,
+        "params": {
+          "start": "start_time",
+          "end": "end_time",
+          "type_field": "time_type",
+          "type_created": "2",
+          "type_updated": "1"
+        }
+      }
+    },
+    "campaign-tracker": {
+      "type": "file",
+      "required": false,
+      "analytics_script": "/Users/wilson/.openclaw/workspace/skills/campaign-tracker/scripts/analytics-report.js",
+      "reports_dir": "/Users/wilson/.openclaw/workspace/skills/campaign-tracker/reports",
+      "data_fields": {
+        "email_sent": "total_sent",
+        "email_reply_rate": "reply_rate",
+        "replied_count": "replied_count"
+      }
+    },
+    "follow-up-engine": {
+      "type": "file",
+      "required": false,
+      "metrics_path": "/Users/wilson/.openclaw/workspace/skills/follow-up-engine/data/metrics-export.json"
+    },
+    "order-tracker": {
+      "type": "file",
+      "required": false,
+      "metrics_path": "/Users/wilson/.openclaw/workspace/skills/order-tracker/data/metrics-export.json"
+    },
+    "customer-segmentation": {
+      "type": "file",
+      "required": false,
+      "metrics_path": "/Users/wilson/.openclaw/workspace/skills/customer-segmentation/data/metrics-export.json"
+    },
+    "pricing-engine": {
+      "type": "file",
+      "required": false,
+      "metrics_path": "/Users/wilson/.openclaw/workspace/skills/pricing-engine/data/metrics-export.json"
+    }
+  },
+  "alerts": {
+    "enabled": true,
+    "discord_channel": "#🧠-hq-指挥中心",
+    "thresholds": {
+      "reply_rate_min": 10,
+      "order_amount_drop_max": 50,
+      "zero_orders_days": 7
+    }
+  },
+  "reports": {
+    "weekly": {
+      "day": "monday",
+      "time": "09:00",
+      "timezone": "Asia/Shanghai"
+    },
+    "monthly": {
+      "day": 1,
+      "time": "09:00",
+      "timezone": "Asia/Shanghai"
+    },
+    "output_dir": "data/reports",
+    "format": "markdown"
+  },
+  "snapshots": {
+    "dir": "data/snapshots",
+    "latest_file": "data/latest.json",
+    "naming": "{period}-{date}.json"
+  }
+}

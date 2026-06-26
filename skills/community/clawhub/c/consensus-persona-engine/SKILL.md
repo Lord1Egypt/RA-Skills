@@ -1,35 +1,32 @@
 ---
-name: "consensus-persona-engine"
-description: "Deterministic persona reputation engine that applies guard decision effects to persona_set state and emits explicit reputation_delta artifacts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/consensus-persona-engine"
-sourceUrl: "https://clawhub.ai/skills/consensus-persona-engine"
+name: consensus-persona-engine
+description: Deterministic persona reputation engine that applies guard decision effects to persona_set state and emits explicit reputation_delta artifacts.
+homepage: https://github.com/kaicianflone/consensus-persona-engine
+source: https://github.com/kaicianflone/consensus-persona-engine
+metadata:
+  {"openclaw": {"requires": {"bins": ["node"]}}}
 ---
 
 # consensus-persona-engine
 
-> Deterministic persona reputation engine that applies guard decision effects to persona_set state and emits explicit reputation_delta artifacts.
+`consensus-persona-engine` is the state transition layer for persona reputation updates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/consensus-persona-engine`
-- **Source URL:** [https://clawhub.ai/skills/consensus-persona-engine](https://clawhub.ai/skills/consensus-persona-engine)
+## What this skill does
 
-## Overview
+- takes `decision`, `vote_batch`, and current `persona_set`
+- applies deterministic reputation rules
+- emits `reputation_delta`
+- returns updated `persona_set` with lineage-safe fields
 
+## Invoke contract
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/consensus-persona-engine
-```
+- `invoke(input, opts?) -> Promise<OutputJson | ErrorJson>`
+
+Required input:
+- `board_id`
+- `decision`
+- `vote_batch`
+- `persona_set`
+- optional `ruleset`
+
+No provider credentials required.

@@ -1,0 +1,16 @@
+{# ── 思考题区块 ── #}
+{% if thinking_questions %}
+<div style="margin-top: 15px;">
+    <div style="font-size: 11pt; color: #004085; border-left: 4px solid #004085; padding-left: 10px; margin-bottom: 10px; font-weight: bold;">
+        💭 思考题
+    </div>
+    {% for item in thinking_questions %}
+    <div class="thinking-block">
+        <div class="thinking-question">Q{{ loop.index }}: {{ item.question }}</div>
+        {% if item.hint %}
+        <div class="thinking-hint">💡 提示：{{ item.hint }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

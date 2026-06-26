@@ -1,0 +1,5 @@
+pyyaml>=6.0
+jieba>=0.42
+pypinyin>=0.49
+openai>=1.0
+anthropic>=0.20

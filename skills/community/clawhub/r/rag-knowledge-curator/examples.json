@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "test_cases": [
+    {
+      "name": "技术API文档智能分块与治理",
+      "input": {
+        "raw_documents": "# 支付网关API文档\n## 认证\n使用Bearer Token进行身份验证。Header需包含Authorization字段。\n## 创建订单\nPOST /v1/orders\n参数: amount(float), currency(string), customer_id(string)\n返回: order_id, status, created_at\n错误码: 400参数错误, 401未授权, 500服务异常",
+        "chunk_strategy": "semantic",
+        "domain": "tech"
+      },
+      "expected_output_contains": [
+        "知识库治理报告",
+        "处理摘要",
+        "分块预览与元数据",
+        "治理优化建议",
+        "KB-",
+        "4.5",
+        "[需人工复核]"
+      ],
+      "validation_rules": [
+        "代码片段/参数表必须保持完整不分块",
+        "技术标签需标准化（如[API][支付网关][v1]）",
+        "质量分需附带评分依据说明"
+      ]
+    },
+    {
+      "name": "企业SOP操作手册清洗与版本管理",
+      "input": {
+        "raw_documents": "财务报销流程SOP v3.2\n1. 员工提交申请：登录OA系统填写报销单，附发票扫描件。\n2. 部门主管审批：核对费用真实性与预算余额，2个工作日内完成。\n3. 财务复核：检查票据合规性，不合规打回。\n4. 打款：每月10日、25日集中打款。\n注意：单笔超5000元需附加分管领导签字。",
+        "chunk_strategy": "heading",
+        "domain": "sop"
+      },
+      "expected_output_contains": [
+        "SOP",
+        "财务报销",
+        "流程节点",
+        "版本控制",
+        "时效性",
+        "可读性"
+      ],
+      "validation_rules": [
+        "必须按步骤/节点逻辑分块",
+        "需提取版本信息(v3.2)作为元数据",
+        "低质量块需明确标注缺失项（如流程图/附件模板）"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "binance-square-skill-deps",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local dependency manifest for the binance-square Claude skill installed via ClawHub.",
+  "scripts": {
+    "test-scrape": "node scrape-square.mjs --scrolls 5",
+    "test-tg": "node send-telegram.mjs --test"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}

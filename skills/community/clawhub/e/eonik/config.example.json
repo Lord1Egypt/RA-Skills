@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "account_id": "act_1234567890",
+    "evaluation_days": 30,
+    "redact_sensitive": true,
+    "allow_auto_resolve_account": false
+  }
+}

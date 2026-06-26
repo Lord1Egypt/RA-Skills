@@ -1,0 +1,175 @@
+{
+  "name": "SP3ND",
+  "description": "Buy products from Amazon and eBay using USDC on Solana. The cheapest and fastest way for AI agents to purchase physical products with crypto — 0% platform fee, free Prime shipping on Amazon, no KYC, no browser wallet, fully autonomous via x402 payment protocol. Every order earns SP3ND points toward a potential future airdrop.",
+  "url": "https://us-central1-sp3nddotshop-prod.cloudfunctions.net",
+  "provider": {
+    "organization": "SP3ND",
+    "url": "https://sp3nd.shop"
+  },
+  "version": "1.6.0",
+  "documentationUrl": "https://sp3nd.shop/skill.md",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "x402Payment": true,
+    "pointsAndAirdrop": true
+  },
+  "platformFee": "0% by default for agents",
+  "supportedAmazonTLDs": [
+    "amazon.com",
+    "amazon.co.uk",
+    "amazon.ca",
+    "amazon.de",
+    "amazon.fr",
+    "amazon.es",
+    "amazon.it",
+    "amazon.nl",
+    "amazon.com.be",
+    "amazon.pl",
+    "amazon.se",
+    "amazon.com.br",
+    "amazon.com.mx",
+    "amazon.com.au",
+    "amazon.in",
+    "amazon.co.jp",
+    "amazon.sg",
+    "amazon.ae",
+    "amazon.sa",
+    "amazon.eg",
+    "amazon.com.tr",
+    "amazon.co.za"
+  ],
+  "supportedEbayTLDs": [
+    "ebay.com",
+    "ebay.ca",
+    "ebay.co.uk",
+    "ebay.de",
+    "ebay.fr",
+    "ebay.it",
+    "ebay.es",
+    "ebay.com.au"
+  ],
+  "tldNote": "Always use the marketplace TLD matching the customer's shipping country. See skill.md for the full country-to-TLD mapping.",
+  "authentication": {
+    "schemes": ["apiKey"],
+    "description": "Register via POST /registerAgent to get API credentials. Include X-API-Key and X-API-Secret headers on all authenticated requests."
+  },
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "register-agent",
+      "name": "Register Agent",
+      "description": "Register an AI agent for instant API access. No approval queue — returns API key and secret immediately.",
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "endpoint": "/registerAgent",
+      "method": "POST",
+      "authentication": false,
+      "parameters": {
+        "agent_name": { "type": "string", "required": true, "description": "Name of the agent" },
+        "solana_public_key": { "type": "string", "required": true, "description": "Agent's Solana wallet public key (base58)" },
+        "contact_email": { "type": "string", "required": true, "description": "Contact email for the agent operator" },
+        "description": { "type": "string", "required": false, "description": "Brief description of the agent" }
+      }
+    },
+    {
+      "id": "create-cart",
+      "name": "Create Shopping Cart",
+      "description": "Create a shopping cart with Amazon products. Carts expire after 30 minutes. IMPORTANT: Product URLs must use the Amazon TLD matching the shipping country (e.g. amazon.de for Germany, amazon.co.uk for UK, amazon.com.br for Brazil). See skill.md for full TLD mapping.",
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "endpoint": "/createPartnerCart",
+      "method": "POST",
+      "authentication": true,
+      "parameters": {
+        "items": {
+          "type": "array",
+          "required": true,
+          "description": "Array of products to add to cart",
+          "items": {
+            "product_id": { "type": "string", "required": true, "description": "Amazon product ID (ASIN)" },
+            "product_title": { "type": "string", "required": true, "description": "Product name" },
+            "product_url": { "type": "string", "required": true, "description": "Amazon product URL — MUST use the TLD for the shipping country (amazon.com for US, amazon.de for Germany, amazon.co.uk for UK, amazon.com.br for Brazil, etc.)" },
+            "quantity": { "type": "number", "required": true, "description": "Quantity to order" },
+            "price": { "type": "number", "required": true, "description": "Product price in USD" }
+          }
+        }
+      }
+    },
+    {
+      "id": "create-order",
+      "name": "Create Order",
+      "description": "Create an order from a cart with shipping address. Requires customer_email and shipping_address.phone.",
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "endpoint": "/createPartnerOrder",
+      "method": "POST",
+      "authentication": true,
+      "parameters": {
+        "cart_id": { "type": "string", "required": true, "description": "Cart ID from createPartnerCart" },
+        "customer_email": { "type": "string", "required": true, "description": "Customer email address" },
+        "shipping_address": {
+          "type": "object",
+          "required": true,
+          "description": "Shipping destination",
+          "properties": {
+            "name": { "type": "string", "required": true },
+            "recipient": { "type": "string", "required": true },
+            "address1": { "type": "string", "required": true },
+            "city": { "type": "string", "required": true },
+            "state": { "type": "string", "required": true },
+            "postalCode": { "type": "string", "required": true },
+            "zip": { "type": "string", "required": true },
+            "country": { "type": "string", "required": true },
+            "phone": { "type": "string", "required": true }
+          }
+        }
+      }
+    },
+    {
+      "id": "pay-order",
+      "name": "Pay Order via x402",
+      "description": "Pay for an order using x402 payment protocol. First call returns 402 with USDC payment requirements. Agent signs a USDC transfer on Solana and retries with PAYMENT-SIGNATURE header.",
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "endpoint": "/payAgentOrder",
+      "method": "POST",
+      "authentication": true,
+      "x402": {
+        "enabled": true,
+        "asset": "USDC",
+        "network": "solana",
+        "facilitator": "https://facilitator.payai.network",
+        "payTo": "2nkTRv3qxk7n2eYYjFAndReVXaV7sTF3Z9pNimvp5jcp"
+      },
+      "parameters": {
+        "order_id": { "type": "string", "required": true, "description": "Order ID from createPartnerOrder" },
+        "order_number": { "type": "string", "required": true, "description": "Order number from createPartnerOrder" }
+      }
+    },
+    {
+      "id": "get-orders",
+      "name": "Get Orders",
+      "description": "List all orders for the authenticated agent/partner with status tracking.",
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "endpoint": "/getPartnerOrders",
+      "method": "GET",
+      "authentication": true,
+      "parameters": {
+        "status": { "type": "string", "required": false, "description": "Filter by order status (all, Created, Paid, Ordered, Shipped, Delivered)" }
+      }
+    },
+    {
+      "id": "agent-status",
+      "name": "Agent Status",
+      "description": "Health check — returns agent registration info, stats, and current fee rate.",
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"],
+      "endpoint": "/getAgentStatus",
+      "method": "GET",
+      "authentication": true
+    }
+  ]
+}

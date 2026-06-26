@@ -1,35 +1,260 @@
 ---
-name: "Cat Therapy"
-description: "跨平台治愈系撸猫技能。当用户说"休息一下"、"累了"、"tired"、"need a break"等触发词时，自动发送可爱猫咪图片 + 猫叫声（TTS 音频 + 文字双保险）+ 治愈语录。支持用户上传自定义猫咪图片和叫声，支持 QQ/微信/钉钉/飞书/Discord/Telegram/WhatsApp 等多平台，..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cat-therapy"
-sourceUrl: "https://clawhub.ai/skills/cat-therapy"
+name: cat-therapy
+description: 跨平台治愈系撸猫技能。当用户说"休息一下"、"累了"、"tired"、"need a break"等触发词时，自动发送可爱猫咪图片 + 猫叫声（TTS 音频 + 文字双保险）+ 治愈语录。支持用户上传自定义猫咪图片和叫声，支持 QQ/微信/钉钉/飞书/Discord/Telegram/WhatsApp 等多平台，支持中英文多语言，自动降级确保送达。适用于全球用户的减压放松场景。
 ---
 
-# Cat Therapy
+# 🐱 Cat Therapy - 跨平台治愈系撸猫技能
 
-> 跨平台治愈系撸猫技能。当用户说"休息一下"、"累了"、"tired"、"need a break"等触发词时，自动发送可爱猫咪图片 + 猫叫声（TTS 音频 + 文字双保险）+ 治愈语录。支持用户上传自定义猫咪图片和叫声，支持 QQ/微信/钉钉/飞书/Discord/Telegram/WhatsApp 等多平台，...
+## 触发场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cat-therapy`
-- **Source URL:** [https://clawhub.ai/skills/cat-therapy](https://clawhub.ai/skills/cat-therapy)
+### 主要触发词
+**中文：** "休息一下"、"累了"、"想撸猫"、"看看猫"、"压力大"、"放松一下"、"治愈我"、"喵"
+**英文：** "tired"、"need a break"、"show me cats"、"cat pics"、"stress"、"relax"、"meow"
 
-## Overview
+### 设置触发词（需要明确意图）
 
+**保存自定义猫咪（需满足以下条件）：**
+1. 包含关键词 + 图片：
+   - "这是我的猫" + [图片]
+   - "保存这只猫" + [图片]
+   - "以后用这只猫治愈我" + [图片]
+   - "设置这只猫为治愈猫" + [图片]
+   - "这是我家主子" + [图片]
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cat-therapy
+2. 或在技能上下文中：
+   - 刚触发"休息一下"等治愈词
+   - 随后发送图片并说"用这只"
+
+**保存自定义声音：**
+- "这是我家猫的声音：喵～咪～"
+- "保存这个猫叫：[音频]"
+
+**重置：**
+- "重置猫咪" → 清除自定义，恢复随机
+- "恢复默认猫咪" → 同上
+
+## 核心功能
+
+### 1. 跨平台图片发送
+
+**图片源优先级：**
 ```
+1. 用户上传的自定义猫咪图片（最高优先级）
+2. TheCatAPI 随机猫咪
+3. 备用图床（cataas.com 等）
+```
+
+**平台适配：**
+| 平台 | 发送方式 |
+|------|----------|
+| QQ | `<qqimg>URL</qqimg>` |
+| 微信/钉钉/飞书 | `MEDIA:URL` |
+| Discord/Telegram | `message` 工具 `media` 参数 |
+
+### 2. 音频 + 文字双保险
+
+**同时发送：**
+1. **TTS 音频** - 调用 tts 工具生成真实声音
+2. **文字模拟** - "喵～咕噜咕噜～" 🐱（立即可见）
+
+**优点：**
+- ✅ 文字立即可见，无需等待
+- ✅ 音频可选播放，增强体验
+- ✅ 双重保障，确保送达
+
+### 3. 用户自定义猫咪
+
+**保存用户猫咪：**
+```json
+{
+  "image": "https://user-cat-photo.jpg",
+  "sound": "喵～咪～",
+  "updatedAt": "2026-03-04"
+}
+```
+
+**设置方式：**
+- 用户发送猫咪图片 → 自动保存图片 URL
+- 用户发送"这是我家猫" → 标记为偏好
+- 用户发送猫叫文字 → 保存自定义声音
+
+**清除自定义：**
+- 用户说"重置猫咪" → 删除偏好，恢复随机
+
+### 4. 多语言支持
+
+**自动检测：**
+- 中文消息 → 中文回复
+- 英文消息 → 英文回复
+
+**i18n 文件：**
+- `i18n/zh.json` - 中文语录
+- `i18n/en.json` - 英文语录
+
+## 完整工作流程
+
+```
+1. 检测触发词 → 识别用户意图
+2. 检查用户偏好 → 是否有自定义猫咪/声音
+3. 检测平台 → 选择发送方式
+4. 检测语言 → 选择回复语言
+5. 获取猫咪图片 → 用户自定义 或 随机 API
+6. 获取猫叫声 → 用户自定义 或 默认 TTS
+7. 选择治愈语录 → 根据语言随机
+8. 组合回复 → TTS 音频 + 文字声音 + 图片 + 语录
+9. 发送 → 使用平台对应方式
+10. 降级处理 → 失败时用文字 + emoji
+```
+
+## 示例回复
+
+### 标准场景（随机猫咪）
+```
+喵～咕噜咕噜～ 🐱💕
+
+[TTS 音频：喵～]
+
+[猫咪图片]
+
+工作再忙也要记得休息哦～✨
+```
+
+### 用户自定义猫咪
+```
+喵～咪～ 🐱💕 (这是你家的小可爱！)
+
+[TTS 音频：喵～咪～]
+
+[用户猫咪图片]
+
+你家主子来治愈你啦～✨
+```
+
+### 英文场景
+```
+Meow~ Purr purr~ 🐱
+
+[TTS audio: Meow~]
+
+[Cat image]
+
+Take a break and relax! ✨
+```
+
+### 降级方案（图片失败）
+```
+喵～咕噜咕噜～ 🐱💕
+
+虽然图片加载失败了，但想象有只小猫咪在你腿上～
+
+深呼吸，所有的疲惫都会消失的！✨
+```
+
+## 脚本说明
+
+### cat_therapy.py（主逻辑）
+```python
+# 完整技能逻辑
+# - 检查用户偏好
+# - 获取猫咪图片（自定义或随机）
+# - 获取猫叫声（自定义或默认）
+# - 选择治愈语录
+# - 返回完整响应数据
+```
+
+### get_cat_image.py
+```python
+# 获取猫咪图片（多源 fallback）
+# 返回：{"url": "...", "source": "thecatapi|user|fallback"}
+```
+
+### cat_sound.py
+```python
+# 获取猫叫声（TTS 文本或本地音频）
+# 返回：{"text": "喵～", "source": "default|user"}
+```
+
+### generate_cat_sound.py
+```python
+# 生成猫叫声效（.wav 文件）
+# 生成：meow.wav, purr.wav
+```
+
+## 用户偏好存储
+
+### user_cats.json
+```json
+{
+  "userId": "8E8893DDD10A138203887E503C535A33",
+  "image": "https://user-cat-photo.jpg",
+  "sound": "喵～咪～",
+  "updatedAt": "2026-03-04T12:00:00Z",
+  "language": "zh"
+}
+```
+
+**存储位置：** 技能目录下的 `user_cats.json`
+
+**管理命令：**
+- 查看：`cat user_cats.json`
+- 删除：`rm user_cats.json`
+- 编辑：手动修改 JSON
+
+## 配置示例
+
+### config.json
+```json
+{
+  "defaultLanguage": "zh",
+  "supportedLanguages": ["zh", "en"],
+  "imageSources": [
+    "https://api.thecatapi.com/v1/images/search",
+    "https://cataas.com/cat"
+  ],
+  "fallbackToText": true,
+  "enableUserCustomization": true,
+  "sendBothAudioAndText": true
+}
+```
+
+## 注意事项
+
+1. **音频 + 文字双发** - 确保用户无论哪种方式都能收到
+2. **用户隐私** - 自定义猫咪仅存储在本地
+3. **图片源稳定性** - 多源 fallback 确保可用性
+4. **平台兼容** - 不同平台媒体发送方式不同
+5. **语言检测** - 根据用户消息自动切换
+6. **回复简洁** - 控制在 2-4 句话，避免冗长
+
+## 扩展建议
+
+### 1. 更多动物
+- 🐶 Dog Therapy - 治愈狗狗
+- 🐰 Bunny Therapy - 小兔子
+- 🦊 Fox Therapy - 小狐狸
+
+### 2. 猫咪品种
+- 橘猫模式
+- 布偶猫模式
+- 黑猫模式
+
+### 3. 定时提醒
+- 工作 1 小时后提醒撸猫
+- 下午 3 点固定治愈时间
+
+### 4. 互动功能
+- 猫咪心情选择
+- 用户上传多张猫图轮播
+- 猫咪百科知识
+
+## 测试清单
+
+- [ ] 随机猫咪图片发送
+- [ ] 用户自定义猫咪保存
+- [ ] 用户自定义猫咪使用
+- [ ] TTS 音频发送
+- [ ] 文字声音显示
+- [ ] 中英文切换
+- [ ] 图片失败降级
+- [ ] 重置功能
+- [ ] 多平台兼容

@@ -1,0 +1,19 @@
+{
+	"version": "1.3.0",
+	"organization": "Community",
+	"date": "April 2026",
+	"abstract": "Comprehensive PocketBase development best practices and performance optimization guide. Contains 63 rules across 9 categories, prioritized by impact from critical (collection design, API rules, authentication) to incremental (production deployment). Includes server-side extending rules for Go and JavaScript (JSVM): event hooks, custom routing, transactions with scoped txApp, server-side filter binding, filesystem handling, cron job scheduling, and Go schema migrations. Updated for PocketBase v0.36.8 and JS SDK v0.26.8 (getFullList default batch size 1000, authWithOAuth2 cancellation fix, getURL null param handling, v0.36.7 fixed-window rate limiter, v0.36.0 strftime() filter function, OTP auth flow). Each rule includes detailed explanations, incorrect vs. correct code examples, and specific guidance to help AI agents generate better PocketBase code.",
+	"references": [
+		"https://pocketbase.io/docs/",
+		"https://github.com/pocketbase/pocketbase",
+		"https://github.com/pocketbase/js-sdk",
+		"https://pocketbase.io/docs/api-records/",
+		"https://pocketbase.io/docs/api-rules-and-filters/",
+		"https://pocketbase.io/docs/go-overview/",
+		"https://pocketbase.io/docs/js-overview/",
+		"https://pocketbase.io/docs/go-migrations/",
+		"https://pocketbase.io/docs/go-jobs-scheduling/",
+		"https://pocketbase.io/docs/js-jobs-scheduling/",
+		"https://pocketbase.io/docs/going-to-production/"
+	]
+}

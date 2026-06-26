@@ -1,0 +1,90 @@
+skill:
+  name: leadership-coach
+  version: 1.0.0
+  description: 领导力教练 - 提供完整的领导力与团队管理解决方案（领导力 21 法则/工作效率 26 条/员工留任 9 因/执行力设计/反浑蛋领导）
+  author: 董国华（清醒建造者）
+  created: 2026-04-02
+  type: cli
+  language: zh-CN
+  license: CC-BY-NC-SA-4.0
+
+execution:
+  entry: script.py
+  timeout: 300
+  sandbox: false
+
+parameters:
+  - name: action
+    type: string
+    required: true
+    description: "执行动作（list/show/solve/plan/diagnose）"
+  - name: solution
+    type: string
+    required: false
+    description: "解决方案名称（用于 show 动作）"
+  - name: problem
+    type: string
+    required: false
+    description: "问题描述（用于 solve 动作）"
+  - name: goal
+    type: string
+    required: false
+    description: "目标描述（用于 plan 动作）"
+  - name: type
+    type: string
+    required: false
+    description: "诊断类型（用于 diagnose 动作）"
+
+dependencies:
+  - name: python3
+    type: cli
+    required: true
+  - name: pyyaml
+    type: python
+    required: true
+
+tags:
+  - leadership
+  - management
+  - productivity
+  - team
+  - execution
+  - employee-retention
+  - chinese
+
+examples:
+  - description: "列出所有解决方案"
+    command: "python3 script.py list"
+  - description: "查看领导力 21 法则"
+    command: "python3 script.py show leadership-21-laws"
+  - description: "解决执行力问题"
+    command: "python3 script.py solve --problem '团队执行力差'"
+  - description: "规划提升领导力"
+    command: "python3 script.py plan --goal '成为更好的领导者'"
+  - description: "领导力诊断"
+    command: "python3 script.py diagnose --type leadership"
+
+notes: |
+  leadership-coach v1.0 - 领导力教练
+  
+  核心解决方案：
+  - 领导力 21 法则（麦克斯维尔）- 完整 21 条法则详解
+  - 工作效率 26 条（扎克伯格）- Facebook 内部高效工作原则
+  - 员工留任 9 因 - 优秀员工离职的 9 个原因及应对
+  - 执行力系统设计 - 顶层设计方法论 + 五问法
+  - 反浑蛋领导 - 识别和拒绝威吓型领导
+  
+  使用场景：
+  - 提升个人领导力
+  - 解决团队管理问题
+  - 降低员工离职率
+  - 提升工作效率
+  - 建立健康组织文化
+  
+  注意事项：
+  - 实践重于理论
+  - 持续改进
+  - 情境适配
+  - 自我觉察
+  
+  许可证：CC BY-NC-SA 4.0（非商业使用）

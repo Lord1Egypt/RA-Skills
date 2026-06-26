@@ -1,35 +1,38 @@
 ---
-name: "Smart Data Scraper"
-description: "数据抓取工具 - 从任何网站提取结构化数据"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-data-scraper"
-sourceUrl: "https://clawhub.ai/skills/smart-data-scraper"
+name: smart-data-scraper
+description: 数据抓取工具 - 从任何网站提取结构化数据
+version: 1.0.0
+emoji: 🤖
+license: MIT-0
+metadata:
+  openclaw:
+    requires:
+      env: []
+      bins: ["curl"]
+    primaryEnv: bash
 ---
 
-# Smart Data Scraper
+# smart-data-scraper
 
-> 数据抓取工具 - 从任何网站提取结构化数据
+数据抓取工具 - 从任何网站提取结构化数据
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-data-scraper`
-- **Source URL:** [https://clawhub.ai/skills/smart-data-scraper](https://clawhub.ai/skills/smart-data-scraper)
+## 价格：$300 USDC
 
-## Overview
+## 功能特性
+- 自动化执行，7x24 小时运行
+- API 集成，支持主流平台
+- 配置灵活，易于定制
+- 实时监控，自动优化
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装方式
 ```bash
-hermes skills install clawhub/smart-data-scraper
+clawhub install smart-data-scraper
 ```
+
+## 使用示例
+详见文档
+
+## 收益潜力
+- 预期月收益：$600-$((300 * 4))
+- 回本周期：1-2 个月
+- 边际成本：几乎为零

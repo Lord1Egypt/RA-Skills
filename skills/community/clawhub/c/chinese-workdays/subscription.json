@@ -1,0 +1,10 @@
+{
+  "pricing": {
+    "monthly": 0.10,
+    "quarterly": 0.30,
+    "yearly": 1.00
+  },
+  "trial_days": 7,
+  "auto_renew": true,
+  "currency": "USD"
+}

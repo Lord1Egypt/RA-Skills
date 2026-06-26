@@ -1,0 +1,14 @@
+{
+  "enable": false,
+  "mode": "simple",
+  "enabledModules": {
+    "table": true,
+    "flowchart": true,
+    "statistics": false,
+    "detailedLog": false,
+    "saveToFile": false,
+    "filters": false,
+    "exportFormat": "markdown"
+  },
+  "language": "auto"
+}

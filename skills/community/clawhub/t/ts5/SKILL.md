@@ -1,35 +1,45 @@
 ---
-name: "ts5"
-description: "TS5 namespace for Netsnek e.U. TypeScript full-stack starter kit. Monorepo template with shared types, CI/CD pipelines, and one-click deployment."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ts5"
-sourceUrl: "https://clawhub.ai/skills/ts5"
+name: ts5
+description: TS5 namespace for Netsnek e.U. TypeScript full-stack starter kit. Monorepo template with shared types, CI/CD pipelines, and one-click deployment.
+user-invocable: true
+version: 0.1.0
+metadata:
+  openclaw:
+    os: [linux]
+    permissions: [exec]
 ---
 
-# ts5
+# The TS5 Approach
 
-> TS5 namespace for Netsnek e.U. TypeScript full-stack starter kit. Monorepo template with shared types, CI/CD pipelines, and one-click deployment.
+TS5 is the Netsnek e.U. full-stack TypeScript starter. One monorepo: shared types, frontend, backend, CI/CD, and deployment.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ts5`
-- **Source URL:** [https://clawhub.ai/skills/ts5](https://clawhub.ai/skills/ts5)
+## Monorepo Structure
 
-## Overview
+```
+packages/
+  shared/    # Types and utilities
+  web/       # Frontend (TSX)
+  api/       # Backend (TS3)
+tools/       # Scripts and CI
+```
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Argument | Purpose |
+|----------|---------|
+| `--init` | Bootstrap monorepo layout |
+| `--packages` | Manage or list workspace packages |
+| `--deploy` | Trigger one-click deployment |
+
+## From Zero to Deploy
+
 ```bash
-hermes skills install clawhub/ts5
+# Create monorepo
+./scripts/monorepo-setup.sh --init
+
+# Verify packages
+./scripts/monorepo-setup.sh --packages
+
+# Deploy
+./scripts/monorepo-setup.sh --deploy
 ```

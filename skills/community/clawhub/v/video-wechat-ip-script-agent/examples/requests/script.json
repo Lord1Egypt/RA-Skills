@@ -1,0 +1,11 @@
+{
+  "action": "script",
+  "payload": {
+    "topic": "顾客不是嫌贵，是你不会讲价值",
+    "style": "老板表达型",
+    "scriptStructure": "boss_point_v1",
+    "outputProfile": "full_publish_pack",
+    "platform": "wechat_video",
+    "duration": 60
+  }
+}

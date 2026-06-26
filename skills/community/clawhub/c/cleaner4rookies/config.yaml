@@ -1,0 +1,59 @@
+# ============================================================
+# openclaw-cleaner — 配置文件
+# 用户覆盖：复制此文件到 ~/.openclaw/workspace/cleaner.yaml
+# ============================================================
+
+# 清理规则
+# pattern  : bash glob 模式（多个用空格分隔）
+# action   : archive | delete
+# age_days : 超过 N 天触发（0 = 立即）
+# comment  : 备注
+rules:
+  # 音频测试残留 → 立即删除
+  - pattern: "*.mp3 *.wav *.m4a *.ogg *.flac"
+    action: delete
+    age_days: 0
+    comment: "测试音频残留，无保留价值"
+
+  # 临时测试文件 → 7天后删除
+  - pattern: "*.html *.htm *.tmp *.temp"
+    action: delete
+    age_days: 7
+    comment: "测试产物，默认归档"
+
+  # 图片 → 7天后删除（图片通常已归档到 Obsidian/BeforeKMD）
+  - pattern: "*.png *.jpg *.jpeg *.gif *.webp *.svg"
+    action: delete
+    age_days: 7
+    comment: "图片通常已归档，保留一周足够"
+
+  # 文档 → 1天后归档（留档）
+  - pattern: "*.docx *.doc *.pdf *.xlsx *.pptx"
+    action: archive
+    age_days: 1
+    comment: "文档留档，不直接删除"
+
+  # 日志文件 → 7天后删除
+  - pattern: "*.log"
+    action: delete
+    age_days: 7
+    comment: "日志累积无用"
+
+  # media/inbound 整体 → 3天后归档
+  - pattern: "media/inbound/*"
+    action: archive
+    age_days: 3
+    comment: "Telegram等下载文件尽快分流"
+
+# 执行控制
+dry_run: true               # 默认预览（安全），设为 false 才真正执行
+archive_dir: "~/.openclaw/workspace/cleaner-archive"
+cron_schedule: ""            # 空=手动；填 cron 表达式启用（如 "0 3 * * *"）
+
+# 日志详细度：summary | verbose
+log_level: summary
+
+# 白名单（绝对路径，不会被删除或归档）
+whitelist:
+  - "~/.openclaw/workspace/SOUL.md"
+  - "~/.openclaw/workspace/MEMORY.md"

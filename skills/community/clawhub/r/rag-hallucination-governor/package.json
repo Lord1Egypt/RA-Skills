@@ -1,0 +1,15 @@
+{
+  "name": "rag-hallucination-governor",
+  "version": "1.0.0",
+  "description": "RAG幻觉治理助手。诊断检索、引用、冲突、权限、阈值和人工转接风险。",
+  "main": "src/generator.js",
+  "bin": {
+    "rag-hallucination-governor": "./cli.js"
+  },
+  "scripts": {
+    "start": "node src/generator.js",
+    "test": "node tests/run-tests.js"
+  },
+  "keywords": ["rag", "hallucination", "retrieval", "reliability"],
+  "license": "MIT-0"
+}

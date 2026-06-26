@@ -1,0 +1,27 @@
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "loopback",
+    "port": 18789
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "Main Agent"
+      }
+    ]
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.15",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "template": "minimal"
+  },
+  "description": "最小有效配置 - 仅包含必需字段，适合快速启动和测试"
+}

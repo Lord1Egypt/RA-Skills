@@ -1,0 +1,13 @@
+{
+  "app_id": "",
+  "app_secret": "",
+  "cover_media_id": "",
+  "template": "v5-simple",
+  "retry_count": 3,
+  "retry_delay": 5,
+  "wait_seconds": 0,
+  "news_count": 15,
+  "timezone": "Asia/Shanghai",
+  "trial_count": 50,
+  "license": null
+}

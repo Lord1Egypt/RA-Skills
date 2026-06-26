@@ -1,0 +1,8 @@
+{
+  "name": "x",
+  "version": "1.2.0",
+  "description": "X platform skill for SurfAgent, covering route-aware workflows, proof rules, blockers, and when to use the X adapter over raw browser control.",
+  "author": "MoonstoneLabs",
+  "keywords": ["x", "twitter", "surfagent", "browser", "automation", "mcp"],
+  "files": ["SKILL.md", "X_STATE_MAP.md"]
+}

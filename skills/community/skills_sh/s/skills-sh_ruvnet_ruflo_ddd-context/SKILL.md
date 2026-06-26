@@ -1,35 +1,45 @@
 ---
-name: "ddd-context"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/ddd-context"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/ddd-context"
+name: ddd-context
+description: Create and manage a DDD bounded context with standard directory structure
+argument-hint: "<context-name>"
+allowed-tools: Bash(mkdir * find * ls *) Read Write Edit Grep Glob mcp__claude-flow__memory_store mcp__claude-flow__memory_search mcp__claude-flow__agentdb_hierarchical-store
 ---
+Create a bounded context directory structure for the given context name.
 
-# ddd-context
+Parse `$ARGUMENTS` as the context name (kebab-case). If empty, list existing contexts.
 
-> Indexed by skills.sh from ruvnet/ruflo
+## Steps
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/ddd-context`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/ddd-context](https://skills.sh/ruvnet/ruflo/ddd-context)
+1. **Validate name**: Ensure the context name is kebab-case and does not already exist under `src/`.
 
-## Overview
+2. **Create directory structure**:
+   ```
+   src/<context-name>/
+     domain/
+       entities/
+       value-objects/
+       events/
+       services/
+       repositories/
+     application/
+     infrastructure/
+   ```
 
+3. **Generate index files**:
+   - `src/<context-name>/domain/entities/index.ts` -- barrel export for entities
+   - `src/<context-name>/domain/value-objects/index.ts` -- barrel export for value objects
+   - `src/<context-name>/domain/events/index.ts` -- barrel export for domain events
+   - `src/<context-name>/domain/services/index.ts` -- barrel export for domain services
+   - `src/<context-name>/domain/repositories/index.ts` -- barrel export for repository interfaces
+   - `src/<context-name>/domain/index.ts` -- re-export all domain submodules
+   - `src/<context-name>/application/index.ts` -- barrel export for application services
+   - `src/<context-name>/infrastructure/index.ts` -- barrel export for infrastructure implementations
+   - `src/<context-name>/index.ts` -- public API of the bounded context (re-exports domain and application only, NOT infrastructure)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/ddd-context
-```
+4. **Store in domain model graph**:
+   ```
+   mcp__claude-flow__agentdb_hierarchical-store --parent "domain" --child "context:<context-name>" --relation "contains"
+   mcp__claude-flow__memory_store --key "ddd-context-<context-name>" --value "Created bounded context" --namespace tasks
+   ```
+
+5. **Report**: Confirm the context was created and list the generated files.

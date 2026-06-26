@@ -1,0 +1,73 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_send_system_email",
+		"description": "Send system email.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"recipients": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"address": {
+								"type": "string",
+								"description": "Recipient email address"
+							},
+							"personal": {
+								"type": "string",
+								"description": "Recipient nickname"
+							},
+							"type": {
+								"type": "string",
+								"description": "Email sending method, default is TO. Optional values: TO (direct recipient), CC (carbon copy), BCC (blind carbon copy)"
+							}
+						},
+						"required": [
+							"address",
+							"type"
+						]
+					},
+					"description": "Recipient list"
+				},
+				"subject": {
+					"type": "string",
+					"description": "Email subject"
+				},
+				"personal": {
+					"type": "string",
+					"description": "Sender nickname"
+				},
+				"multiparts": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"content": {
+								"type": "string",
+								"description": "Body content"
+							},
+							"contentType": {
+								"type": "string",
+								"description": "Body type, default is text/html;charset=utf-8"
+							},
+							"type": {
+								"type": "string",
+								"description": "Content type identifier, fixed to content"
+							}
+						},
+						"required": [
+							"content",
+							"type"
+						]
+					},
+					"description": "Email content list"
+				}
+			},
+			"required": [
+				"recipients", "subject", "personal", "multiparts"
+			]
+		}
+	}
+}

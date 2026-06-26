@@ -1,0 +1,148 @@
+{
+  "platforms": [
+    {
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com",
+      "loginMethod": "wechat",
+      "loginRequired": true,
+      "avgResponseTime": 15,
+      "timeout": 120,
+      "selectors": {
+        "input": "textarea[placeholder*='输入'], textarea[placeholder*='Message'], textarea[aria-label*='发送'], textarea[aria-label*='Send'], [contenteditable='true'], [role='textbox'], div[placeholder*='发送']",
+        "send": "button[aria-label*='发送'], button[aria-label*='Send'], button[type='submit'], button:has-text('发送'), button:has-text('Send')",
+        "response": "div.markdown-body, div[class*='response'], div[class*='answer'], article, [class*='message-content']",
+        "loading": "div[class*='loading'], span[class*='typing'], div[class*='spinner'], [class*='animate']",
+        "loginButton": "button:has-text('登录'), button:has-text('Login'), a[href*='login'], button:has-text('扫码'), button:has-text('sign in'), button:has-text('微信')"
+      },
+      "features": {
+        "supportsSearch": true,
+        "supportsUpload": false,
+        "maxContextLength": 32000
+      }
+    },
+    {
+      "name": "Qwen",
+      "url": "https://chat.qwen.ai",
+      "loginMethod": "github",
+      "loginRequired": true,
+      "avgResponseTime": 12,
+      "timeout": 120,
+      "selectors": {
+        "input": "textarea#chat-input, #chat-input, textarea[aria-label*='Prompt'], textarea[aria-label*='消息'], [contenteditable='true'], [role='textbox'], [role='combobox']",
+        "send": "#send-button, button.send, button[aria-label*='发送'], button[aria-label*='Submit']",
+        "response": ".response-content, .answer, [class*='response'], article, div.markdown-body",
+        "loading": ".loading, .thinking, div[class*='loading'], [class*='animate']",
+        "loginButton": "button:has-text('登录'), .login-btn, button:has-text('Login'), button:has-text('Sign in'), a[href*='login']",
+        "closeOverlay": "body, .app, main"
+      },
+      "features": {
+        "supportsSearch": true,
+        "supportsUpload": true,
+        "maxContextLength": 128000,
+        "useEnterToSend": true,
+        "hasOverlayElements": true
+      }
+    },
+    {
+      "name": "豆包",
+      "url": "https://www.doubao.com",
+      "loginMethod": "phone",
+      "loginRequired": true,
+      "avgResponseTime": 20,
+      "timeout": 180,
+      "selectors": {
+        "input": "textarea, #input-box, textarea[placeholder*='输入'], textarea[aria-label*='消息'], [contenteditable='true'], [role='textbox']",
+        "send": ".send-btn, button[class*='send'], button[aria-label*='发送'], button:has-text('发送')",
+        "response": ".answer-content, div[class*='response'], div[class*='answer'], [class*='message-content']",
+        "loading": ".loading-spinner, .typing-indicator, div[class*='loading'], [class*='animate']",
+        "loginButton": "button:has-text('登录'), .login-button, button:has-text('Login'), button:has-text('验证码')",
+        "captcha": "input[class*='captcha'], #captcha-input, [class*='verify']"
+      },
+      "features": {
+        "supportsSearch": true,
+        "supportsUpload": false,
+        "maxContextLength": 8000,
+        "hasCaptcha": true
+      }
+    },
+    {
+      "name": "Kimi",
+      "url": "https://kimi.moonshot.cn",
+      "loginMethod": "phone",
+      "loginRequired": true,
+      "avgResponseTime": 18,
+      "timeout": 150,
+      "selectors": {
+        "input": "#input-box, textarea#chat-input, textarea[placeholder*='输入'], textarea[aria-label*='消息'], [contenteditable='true'], [role='textbox']",
+        "send": "#submit-btn, button.submit, button[aria-label*='发送'], button:has-text('发送')",
+        "response": ".message-ai, div[class*='assistant'], div[class*='response'], [class*='content']",
+        "loading": ".loading-dots, .generating, div[class*='loading'], [class*='animate']",
+        "loginButton": "button:has-text('登录'), .login-btn, button:has-text('Login'), button:has-text('手机号')",
+        "captcha": "input[class*='captcha'], #captcha-input, [class*='verify']"
+      },
+      "features": {
+        "supportsSearch": true,
+        "supportsUpload": true,
+        "maxContextLength": 200000
+      }
+    },
+    {
+      "name": "Gemini",
+      "url": "https://gemini.google.com",
+      "loginMethod": "google",
+      "loginRequired": true,
+      "avgResponseTime": 15,
+      "timeout": 120,
+      "selectors": {
+        "input": "div[contenteditable='true'], textarea[aria-label*='消息'], textarea[aria-label*='Prompt'], [role='textbox'], textarea[placeholder*='输入'], textarea[placeholder*='Type']",
+        "send": "button[aria-label*='发送'], button[aria-label*='Send'], button[aria-label*='Submit'], button:has-text('发送'), button:has-text('Send')",
+        "response": "article, div[class*='response'], div[class*='answer'], div[class*='message'], [class*='content']",
+        "loading": "div[class*='loading'], div[class*='thinking'], div[class*='spinner'], [class*='animate'], [class*='progress']",
+        "loginButton": "button:has-text('登录'), button:has-text('Login'), a[href*='login'], button:has-text('Sign in'), button:has-text('Google')"
+      },
+      "features": {
+        "supportsSearch": true,
+        "supportsUpload": true,
+        "maxContextLength": 1000000,
+        "supportsMultimodal": true
+      }
+    }
+  ],
+  "defaultDimensions": [],
+  "defaultFollowUp": [],
+  "defaultTimeout": 120,
+  "templates": {
+    "general": "请帮我分析一下{topic}，包括{dimensions}等方面的情况。",
+    "comparison": "请详细对比{topic}，从{dimensions}等角度进行全面分析。",
+    "trend": "请分析{topic}的发展趋势，包括{dimensions}等关键因素。",
+    "evaluation": "请评估{topic}，从{dimensions}维度给出详细评价和建议。"
+  },
+  "browser": {
+    "type": "chromium",
+    "headless": false,
+    "width": 1280,
+    "height": 800,
+    "userDataDir": "./browser-profile",
+    "args": [
+      "--disable-gpu",
+      "--no-sandbox",
+      "--disable-dev-shm-usage",
+      "--no-first-run",
+      "--disable-features=TranslateUI"
+    ],
+    "executablePath": null,
+    "channel": "chrome"
+  },
+  "output": {
+    "defaultDir": "./reports",
+    "fileNameFormat": "{topic}-{date}-{time}.md",
+    "includeTimestamp": true,
+    "includeSources": true,
+    "generateCharts": false
+  },
+  "retry": {
+    "maxRetries": 3,
+    "retryDelay": 5,
+    "onTimeout": "retry"
+  }
+}

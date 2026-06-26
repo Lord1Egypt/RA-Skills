@@ -1,0 +1,93 @@
+{
+  "skill": "firebase-cli",
+  "version": "1.1",
+  "evals": [
+    {
+      "id": "firebase-cli-mode-bootstrap",
+      "description": "Choose bootstrap/config mode for a new repo that needs Hosting and Functions wiring",
+      "input": "이 저장소에 Firebase Hosting이랑 Functions 붙이고 firebase.json / .firebaserc까지 정리해줘",
+      "expected_actions": [
+        "select bootstrap/config mode",
+        "bash scripts/install.sh",
+        "firebase login",
+        "firebase init hosting functions"
+      ],
+      "expected_outputs": [
+        "firebase.json",
+        ".firebaserc"
+      ],
+      "tags": ["bootstrap", "config", "hosting", "functions"]
+    },
+    {
+      "id": "firebase-cli-mode-emulators",
+      "description": "Choose emulator mode and preserve local data",
+      "input": "Firestore랑 Auth 에뮬레이터만 띄우고 데이터는 다음 실행에도 유지되게 해줘",
+      "expected_actions": [
+        "select local emulators mode",
+        "bash scripts/emulators.sh --only auth,firestore --persistent"
+      ],
+      "expected_outputs": [
+        "emulator-data directory",
+        "emulator startup command"
+      ],
+      "tags": ["emulators", "persistence", "auth", "firestore"]
+    },
+    {
+      "id": "firebase-cli-mode-deploy",
+      "description": "Choose deploy/release mode for a reviewable Hosting rollout",
+      "input": "Hosting 변경사항을 먼저 스테이징 프리뷰 채널로 배포하고 확인 끝나면 프로덕션 배포하게 정리해줘",
+      "expected_actions": [
+        "select deploy/release mode",
+        "firebase hosting:channel:create staging --expires 7d",
+        "firebase hosting:channel:deploy staging",
+        "firebase deploy --only hosting"
+      ],
+      "expected_outputs": [
+        "preview channel URL",
+        "scoped production deploy command"
+      ],
+      "tags": ["hosting", "preview-channel", "deploy"]
+    },
+    {
+      "id": "firebase-cli-mode-admin",
+      "description": "Choose admin/data ops mode for auth migration",
+      "input": "기존 사용자 JSON을 Firebase Authentication으로 옮기되 SCRYPT 파라미터까지 정확히 챙겨줘",
+      "expected_actions": [
+        "select admin/data ops mode",
+        "firebase auth:import users.json --hash-algo=SCRYPT"
+      ],
+      "expected_outputs": [
+        "hash parameter checklist",
+        "auth import command"
+      ],
+      "tags": ["auth", "import", "migration"]
+    },
+    {
+      "id": "firebase-cli-mode-ci",
+      "description": "Prefer service-account auth for CI deploys",
+      "input": "GitHub Actions에서 Firebase Hosting 자동 배포 연결해줘. 토큰 말고 지금 권장 방식으로.",
+      "expected_actions": [
+        "select install/auth or deploy/release mode",
+        "recommend GOOGLE_APPLICATION_CREDENTIALS service-account auth",
+        "firebase deploy --only hosting --non-interactive"
+      ],
+      "expected_outputs": [
+        "service-account credential guidance",
+        "non-interactive deploy command"
+      ],
+      "tags": ["ci-cd", "service-account", "hosting"]
+    },
+    {
+      "id": "firebase-cli-route-out-genkit",
+      "description": "Route backend AI workflow work to genkit instead of keeping firebase-cli active",
+      "input": "Firebase 안에서 RAG랑 tool calling, eval까지 들어간 Genkit flow 만들어줘",
+      "expected_actions": [
+        "route to genkit"
+      ],
+      "expected_outputs": [
+        "explicit route-out note to genkit"
+      ],
+      "tags": ["routing", "genkit", "boundary"]
+    }
+  ]
+}

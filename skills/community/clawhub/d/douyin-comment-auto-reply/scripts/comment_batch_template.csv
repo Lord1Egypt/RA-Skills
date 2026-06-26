@@ -1,0 +1,5 @@
+comment,video_topic,intent_hint,priority_hint,notes
+"这个怎么做的？","AI自动化","inquiry","high","new viewer"
+"多少钱？","AI安装服务","buying_intent","high","price sensitive"
+"真的假的","AI助理","skepticism","medium","needs trust"
+"求出教程第二集","工作流","engagement","medium","good for boosting"

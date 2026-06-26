@@ -1,0 +1,26 @@
+name: frontend-design
+version: 1.0.0
+description: 创建独特、生产级的前端界面。高设计质量，避免AI生成风格。支持HTML/CSS/JS、React、Vue、Svelte、Tailwind等框架。
+author: clawd
+homepage: https://clawhub.com/skills/frontend-design
+
+triggers:
+  - 前端设计
+  - 网页设计
+  - 页面开发
+  - 组件设计
+  - frontend design
+  - web design
+  - build page
+
+features:
+  - 独特美学方向设计
+  - 生产级代码实现
+  - 精致视觉细节
+  - 动画和微交互
+  - 多框架支持
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

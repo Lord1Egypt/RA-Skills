@@ -1,0 +1,35 @@
+{
+  "name": "daily-news-push",
+  "version": "1.0.0",
+  "description": "每日科技新闻自动推送服务 - 获取机器之心热榜，推送到飞书并保存到Get笔记",
+  "author": "小爪",
+  "homepage": "https://github.com/openclaw/skills",
+  "keywords": ["news", "feishu", "getnote", "automation", "cron"],
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "requires": {
+      "env": [
+        {
+          "name": "JI_ZHIXIN_TOKEN",
+          "description": "机器之心 MCP Token (格式: mcp-sk-xxx)",
+          "required": true
+        },
+        {
+          "name": "GETNOTE_API_KEY",
+          "description": "Get笔记 API Key (格式: gk_live-xxx)",
+          "required": true
+        },
+        {
+          "name": "GETNOTE_CLIENT_ID",
+          "description": "Get笔记 Client ID (格式: cli_xxx)",
+          "required": true
+        },
+        {
+          "name": "FEISHU_TARGET",
+          "description": "飞书用户ID或群ID",
+          "required": true
+        }
+      ]
+    }
+  }
+}

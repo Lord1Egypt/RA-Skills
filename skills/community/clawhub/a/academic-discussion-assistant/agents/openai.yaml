@@ -1,0 +1,7 @@
+interface:
+  display_name: "学术讨论纪要助手"
+  short_description: "上传组会或导师讨论录音，输出老师意见、学生待办、原文和语音摘要"
+  default_prompt: "Use $meeting-assistant to transcribe a research group meeting or advisor-student discussion recording, distinguish teacher and student roles, emphasize the advisor's feedback, and return both the transcript and a spoken summary."
+
+policy:
+  allow_implicit_invocation: true

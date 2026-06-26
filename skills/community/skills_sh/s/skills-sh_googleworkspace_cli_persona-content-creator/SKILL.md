@@ -1,35 +1,39 @@
 ---
-name: "persona-content-creator"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-content-creator"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-content-creator"
+name: persona-content-creator
+description: "Create, organize, and distribute content across Workspace."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-docs
+        - gws-drive
+        - gws-gmail
+        - gws-chat
+        - gws-slides
 ---
 
-# persona-content-creator
+# Content Creator
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-docs`, `gws-drive`, `gws-gmail`, `gws-chat`, `gws-slides`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-content-creator`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-content-creator](https://skills.sh/googleworkspace/cli/persona-content-creator)
+Create, organize, and distribute content across Workspace.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +file-announce`
 
+## Instructions
+- Draft content in Google Docs with `gws docs +write`.
+- Organize content assets in Drive folders — use `gws drive files list` to browse.
+- Share finished content by announcing in Chat with `gws workflow +file-announce`.
+- Send content review requests via email with `gws gmail +send`.
+- Upload media assets to Drive with `gws drive +upload`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-content-creator
-```
+## Tips
+- Use `gws docs +write` for quick content updates — it handles the Docs API formatting.
+- Keep a 'Content Calendar' in a shared Sheet for tracking publication schedules.
+- Use `--format yaml` for human-readable output when debugging API responses.
+

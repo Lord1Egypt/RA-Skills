@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    font-family: "PingFang SC", "Noto Sans CJK SC", "Source Han Sans", "Microsoft YaHei", sans-serif;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('{{BG_IMAGE}}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.15) 40%,
+      rgba(0,0,0,0.55) 75%,
+      rgba(0,0,0,0.75) 100%
+    );
+  }
+
+  .subtitle-wrap {
+    position: absolute;
+    bottom: 220px;
+    left: 60px;
+    right: 60px;
+    text-align: center;
+  }
+
+  .subtitle {
+    display: inline-block;
+    color: #fff;
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.55;
+    letter-spacing: 2px;
+    text-shadow:
+      0 2px 8px rgba(0,0,0,0.9),
+      0 0 24px rgba(0,0,0,0.7),
+      2px 2px 0 rgba(0,0,0,0.8),
+      -2px -2px 0 rgba(0,0,0,0.8),
+      2px -2px 0 rgba(0,0,0,0.8),
+      -2px 2px 0 rgba(0,0,0,0.8);
+  }
+
+  .brand {
+    position: absolute;
+    top: 60px;
+    right: 70px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.45);
+    border-radius: 40px;
+    padding: 10px 22px;
+    backdrop-filter: blur(8px);
+  }
+
+  .brand-emoji { font-size: 32px; }
+
+  .brand-text {
+    color: rgba(255,255,255,0.90);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .index-badge {
+    position: absolute;
+    top: 60px;
+    left: 70px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,80,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="index-badge">{{INDEX}}</div>
+  <div class="brand">
+    <span class="brand-emoji">🦞</span>
+    <span class="brand-text">龙虾哥</span>
+  </div>
+  <div class="subtitle-wrap">
+    <span class="subtitle">{{SUBTITLE}}</span>
+  </div>
+</body>
+</html>

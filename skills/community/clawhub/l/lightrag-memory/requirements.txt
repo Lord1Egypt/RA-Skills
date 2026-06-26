@@ -1,0 +1,4 @@
+lightrag-hku
+openai
+python-dotenv
+numpy

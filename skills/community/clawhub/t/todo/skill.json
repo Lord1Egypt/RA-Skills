@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "3.0.1",
+  "description": "Personal execution engine for tasks, projects, reminders, commitments, follow-ups, and next actions.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/add_item.py",
+    "scripts/what_next.py",
+    "scripts/update_item.py",
+    "scripts/daily_sync.py",
+    "scripts/weekly_review.py",
+    "scripts/archive_item.py",
+    "scripts/refresh_scores.py",
+    "scripts/init_storage.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/scoring.py",
+    "references/philosophy.md"
+  ]
+}

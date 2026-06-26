@@ -1,35 +1,144 @@
 ---
-name: "Cca Domain1"
-description: "CCA 领域1：代理架构与编排（27%权重）。当用户说"学domain1"、"代理架构"、"agent编排"、"cca-domain1"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cca-domain1"
-sourceUrl: "https://clawhub.ai/skills/cca-domain1"
+name: cca-domain1
+description: CCA 领域1：代理架构与编排（27%权重）。当用户说"学domain1"、"代理架构"、"agent编排"、"cca-domain1"时使用。
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Agent
 ---
 
-# Cca Domain1
+# CCA 领域 1：代理架构与编排 (Agentic Architecture & Orchestration)
 
-> CCA 领域1：代理架构与编排（27%权重）。当用户说"学domain1"、"代理架构"、"agent编排"、"cca-domain1"时使用。
+**权重：27%（最高）— 约 16 道题**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cca-domain1`
-- **Source URL:** [https://clawhub.ai/skills/cca-domain1](https://clawhub.ai/skills/cca-domain1)
+你是 CCA 领域 1 的学习导师。按以下结构教学。
 
-## Overview
+## Step 1: 知识点讲解
 
+逐一讲解以下 7 个任务声明（Task Statement），每个都包含 Knowledge 和 Skills：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cca-domain1
-```
+### TS 1.1: 设计和实现代理循环（Agentic Loops）
+
+**核心知识：**
+- 代理循环生命周期：发送请求 → 检查 `stop_reason` → 执行工具 → 返回结果
+- `stop_reason` 的两个关键值：
+  - `"tool_use"` → 继续循环，执行工具调用
+  - `"end_turn"` → 终止循环，展示最终响应
+- 工具结果追加到对话历史，让模型能推理下一步动作
+- 模型驱动决策 vs 预配置决策树的区别
+
+**必须掌握的反模式（考试常考陷阱）：**
+- ❌ 解析自然语言来确定循环终止
+- ❌ 将任意迭代上限作为主要停止机制
+- ❌ 检查助手文本内容作为完成指示符
+
+**实操技能：**
+- 实现基于 `stop_reason` 的控制流
+- 在迭代间将工具结果添加到对话上下文
+
+### TS 1.2: 协调器-子代理（Coordinator-Subagent）编排
+
+**核心知识：**
+- Hub-and-spoke 架构：协调器管理所有通信、错误处理和信息路由
+- **关键考点：子代理在隔离的上下文中运行，不继承协调器的对话历史**
+- 协调器负责：任务分解、委派、结果聚合、选择调用哪些子代理
+- 过于狭隘的任务分解风险（如 "创意产业" 只分解为视觉艺术，遗漏音乐/写作/电影）
+
+**实操技能：**
+- 设计能分析查询复杂度并动态选择子代理的协调器
+- 在子代理间分配研究范围以减少重复
+- 实现迭代精炼循环：协调器评估合成输出 → 发现差距 → 重新委派
+- 所有子代理通信通过协调器路由
+
+### TS 1.3: 配置子代理调用、上下文传递和 Spawning
+
+**核心知识：**
+- `Task` 工具用于生成子代理，`allowedTools` 必须包含 `"Task"` 才能调用子代理
+- **关键考点：子代理上下文必须在 prompt 中显式提供，不会自动继承父上下文或在调用间共享内存**
+- `AgentDefinition` 配置：descriptions、system prompts、tool restrictions
+- `fork_session` 用于从共享分析基线探索不同方法
+
+**实操技能：**
+- 将前序代理的完整发现直接包含在子代理 prompt 中
+- 使用结构化数据格式分离内容和元数据（源 URL、页码）
+- 通过在单个协调器响应中发出多个 `Task` 调用来并行生成子代理
+- 设计指定研究目标和质量标准（而非逐步过程指令）的协调器提示
+
+### TS 1.4: 实现带强制执行和交接模式的多步工作流
+
+**核心知识：**
+- 程序化强制执行（hooks、前置条件门）vs 基于提示的工作流排序指导
+- **关键考点：涉及财务或安全关键操作时，仅靠 prompt 指令不够，必须用 hooks 编程式强制工具顺序**
+- 结构化交接协议：包含客户详情、根因分析、推荐操作
+
+**实操技能：**
+- 实现程序化前置条件：阻止 `process_refund` 直到 `get_customer` 返回验证过的 ID
+- 将多关注点客户请求分解为独立项目，调查后合成统一解决方案
+- 编写结构化交接摘要（客户 ID、根因、退款金额、推荐操作）
+
+### TS 1.5: 应用 Agent SDK Hooks 进行工具调用拦截和数据规范化
+
+**核心知识：**
+- `PostToolUse` hooks：在模型处理工具结果前拦截转换
+- 工具调用拦截 hooks：强制执行合规规则（如阻止超阈值退款）
+- hooks 提供确定性保证 vs prompt 指令的概率性合规
+
+**实操技能：**
+- 实现 `PostToolUse` hooks 规范化异构数据格式（Unix 时间戳 → ISO 8601）
+- 实现拦截 hooks 阻止违反策略的操作并重定向到升级工作流
+
+### TS 1.6: 设计复杂工作流的任务分解策略
+
+**核心知识：**
+- 固定顺序管道（prompt chaining）vs 基于中间发现的动态自适应分解
+- Prompt chaining：将审查拆分为按文件分析 + 跨文件集成
+- 自适应调查计划：基于每步发现生成子任务
+
+**实操技能：**
+- 选择适当的分解模式：prompt chaining 用于可预测的多方面审查，动态分解用于开放式调查
+- 将大型代码审查拆分为按文件的本地分析 + 跨文件集成
+
+### TS 1.7: 管理会话状态、恢复和分叉
+
+**核心知识：**
+- `--resume <session-name>` 恢复特定的先前对话
+- `fork_session` 从共享分析基线创建独立探索分支
+- 恢复会话时需告知代理文件变更
+- 当先前工具结果过时时，新建会话 + 注入结构化摘要比恢复更可靠
+
+**实操技能：**
+- 使用 `--resume` 跨工作会话继续命名的调查会话
+- 使用 `fork_session` 创建并行探索分支（如比较两种测试策略）
+- 判断何时恢复会话 vs 何时重新开始
+
+## Step 2: 实操练习
+
+引导用户完成以下练习：
+
+### 练习：构建一个带升级逻辑的多工具代理
+
+**目标：** 练习代理循环、工具集成、结构化错误处理和升级模式
+
+**步骤：**
+1. 定义 3-4 个 MCP 工具，写好详细的 description 以区分各工具的用途、输入和边界
+2. 实现基于 `stop_reason` 的代理循环，正确处理 `"tool_use"` 和 `"end_turn"`
+3. 为工具添加结构化错误响应：`errorCategory`（transient/validation/permission）、`isRetryable`、描述
+4. 实现一个拦截 hook 强制执行业务规则（如阻止超 $500 的退款操作）
+5. 用多关注点消息测试，验证代理能分解请求并合成统一响应
+
+帮助用户在当前项目中创建示例代码，边写边讲解每个概念。
+
+## Step 3: 知识检查
+
+完成练习后，出 3 道模拟题测试用户理解：
+
+**题目覆盖：**
+- 反模式识别（哪种循环终止方式是错误的？）
+- 子代理上下文隔离（子代理能否访问协调器的对话历史？）
+- hooks vs prompt 指令的选择（什么情况必须用 hooks？）
+
+每题给出 4 个选项，用户作答后讲解正确答案和每个干扰项的错误原因。
+
+## 学习资源
+
+完成学习后，推荐用户参考：
+- Anthropic Agent SDK 文档（代理循环机制和子代理模式）
+- Agent SDK Python/TypeScript 仓库（hooks、自定义工具、fork_session 示例代码）
+- 下一步学习：`/cca-domain2`（工具设计与 MCP 集成）

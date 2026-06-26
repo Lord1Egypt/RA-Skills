@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "title": "机电安装工程量配比详细参数",
+  "description": "基于设计规范和工程实践的机电安装配比数据",
+  "data": {
+    "electrical": {
+      "cable_sizes": {
+        "title": "电缆截面配比参考",
+        "categories": [
+          {"type": "主干电缆", "sizes": ["120", "150", "185", "240"], "unit": "mm²"},
+          {"type": "分支电缆", "sizes": ["50", "70", "95"], "unit": "mm²"},
+          {"type": "照明支路", "sizes": ["2.5", "4"], "unit": "mm²"},
+          {"type": "动力支路", "sizes": ["4", "6", "10", "16"], "unit": "mm²"}
+        ]
+      },
+      "distribution_boxes": {
+        "title": "配电箱柜配置",
+        "categories": [
+          {"type": "变配电室", "spec": "按设计", "ratio": "1套/变配电室", "location": "地下一层/一层"},
+          {"type": "应急配电柜", "spec": "按设计", "ratio": "1台/栋", "location": "电气井"},
+          {"type": "楼层配电箱", "spec": "8-24回路", "ratio": "2-4台/层", "location": "强电井/配电间"},
+          {"type": "户内配电箱", "spec": "8-12回路", "ratio": "1台/户", "location": "玄关/客厅"},
+          {"type": "双电源切换箱", "spec": "按设计", "ratio": "1台/消防分区", "location": "楼层配电间"}
+        ]
+      },
+      "lighting_fixtures": {
+        "title": "照明器具配比",
+        "categories": [
+          {"place": "办公室", "fixture": "LED平板灯", "ratio": "4-6套/百㎡", "power": "8-12W/㎡"},
+          {"place": "教室", "fixture": "LED护眼灯", "ratio": "5-7套/百㎡", "power": "9-13W/㎡"},
+          {"place": "商场", "fixture": "筒灯/射灯", "ratio": "8-12套/百㎡", "power": "15-25W/㎡"},
+          {"place": "酒店大堂", "fixture": "吊灯+筒灯", "ratio": "6-10套/百㎡", "power": "10-18W/㎡"},
+          {"place": "地下车库", "fixture": "LED灯管", "ratio": "2-3套/百㎡", "power": "3-5W/㎡"},
+          {"place": "楼梯间", "fixture": "LED吸顶灯", "ratio": "1-2套/百㎡", "power": "2-4W/㎡"},
+          {"place": "卫生间", "fixture": "LED吸顶灯", "ratio": "1-2套/百㎡", "power": "4-6W/㎡"}
+        ]
+      }
+    },
+    "plumbing": {
+      "pipe_materials": {
+        "title": "管材类型配比",
+        "categories": [
+          {"system": "室内给水", "materials": ["PP-R", "PE", "薄壁不锈钢"], "sizes": "DN20-DN100"},
+          {"system": "室内排水", "materials": ["PVC-U", "铸铁管"], "sizes": "DN50-DN300"},
+          {"system": "消防管道", "materials": ["镀锌钢管", "涂覆钢管"], "sizes": "DN25-DN200"},
+          {"system": "雨水管道", "materials": ["PVC-U", "HDPE"], "sizes": "DN75-DN300"}
+        ]
+      },
+      "fixtures": {
+        "title": "卫生器具配比（套/百人）",
+        "categories": [
+          {"building": "住宅", "toilet_squat": 0, "toilet_seated": "40-50", "urinal": 0, "washbasin": "40-50"},
+          {"building": "办公楼", "toilet_squat": "20-30", "toilet_seated": "30-40", "urinal": "20-30", "washbasin": "40-50"},
+          {"building": "学校", "toilet_squat": "80-100", "toilet_seated": "10-20", "urinal": "30-40", "washbasin": "40-50"},
+          {"building": "商场", "toilet_squat": "15-20", "toilet_seated": "15-20", "urinal": "10-15", "washbasin": "30-40"},
+          {"building": "医院", "toilet_squat": "10-15", "toilet_seated": "30-40", "urinal": "15-20", "washbasin": "50-60"}
+        ]
+      },
+      "fire_protection": {
+        "title": "消防系统配置",
+        "categories": [
+          {"type": "消火栓", "standard": "间距≤30m，充实水柱10m", "ratio": "1套/1-2个防火分区"},
+          {"type": "喷淋系统", "standard": "标准喷头间距≤3.6m", "ratio": "覆盖面积按设计"},
+          {"type": "火灾自动报警", "standard": "感烟探测器保护面积60㎡", "ratio": "按保护面积计算"},
+          {"type": "应急照明", "standard": "疏散通道1lx", "ratio": "1套/楼梯间+疏散通道"}
+        ]
+      }
+    },
+    "hvac": {
+      "ductwork": {
+        "title": "风管材料类型",
+        "categories": [
+          {"type": "镀锌钢板风管", "thickness": "0.5-1.2mm", "sizes": "周长≤800mm用δ=0.5mm"},
+          {"type": "无机玻璃钢风管", "thickness": "3-8mm", "application": "防腐/耐火要求"},
+          {"type": "复合风管", "thickness": "25-50mm", "application": "低中压系统"}
+        ]
+      },
+      "air_outlets": {
+        "title": "风口器具配比",
+        "categories": [
+          {"type": "送风口", "spec": "600×600/400×400", "ratio": "2-4个/百㎡"},
+          {"type": "回风口", "spec": "600×600/500×500", "ratio": "2-4个/百㎡"},
+          {"type": "散流器", "spec": "Φ200-400", "ratio": "2-5个/百㎡"},
+          {"type": "调节阀", "spec": "按风口配套", "ratio": "1:1配套"}
+        ]
+      },
+      "systems": {
+        "title": "空调系统类型",
+        "categories": [
+          {"type": "全空气系统", "application": "商场/大空间", "duct_ratio": 1.5},
+          {"type": "风机盘管+新风", "application": "酒店/办公楼", "duct_ratio": 1.0},
+          {"type": "VRF多联机", "application": "小型建筑", "duct_ratio": 0.5},
+          {"type": "净化空调", "application": "医院/实验室", "duct_ratio": 2.0}
+        ]
+      }
+    },
+    "smart_building": {
+      "title": "智能建筑系统配置",
+      "categories": [
+        {"system": "综合布线", "ratio": "8-15点/百㎡", "description": "语音+数据+光纤"},
+        {"system": "安防监控", "ratio": "1-2个摄像头/百㎡", "description": "含存储30天"},
+        {"system": "门禁系统", "ratio": "1-2个点位/层", "description": "主要出入口"},
+        {"system": "楼宇自控", "ratio": "按设备数量", "description": "HVAC联动控制"},
+        {"system": "无线对讲", "ratio": "1套/500-1000㎡", "description": "覆盖全场"}
+      ]
+    }
+  }
+}

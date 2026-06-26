@@ -1,0 +1,28 @@
+{
+  "name": "dex-quant-skill",
+  "tagline": "自然语言 → 量化策略脚本 → 回测验证 → 实时交易",
+  "description": "加密货币量化交易 AI Skill 技能包。用户用自然语言描述交易规则，AI 自动生成可运行的策略脚本（Python），支持技术指标（MACD/RSI/布林带/KDJ 等）、社交媒体、链上数据等多种信号源。内置回测引擎验证策略历史表现，通过后可部署实时监控执行。",
+  "version": "3.47.1",
+  "author": "miyaosk",
+  "license": "MIT",
+  "category": "data",
+  "tags": [
+    "crypto",
+    "quant",
+    "trading",
+    "backtest",
+    "strategy",
+    "optimize",
+    "binance",
+    "defi"
+  ],
+  "repository": "https://github.com/miyaosk/dex-quant-skill",
+  "support": {
+    "issues": "https://github.com/miyaosk/dex-quant-skill/issues"
+  },
+  "permissions": [
+    "network",
+    "filesystem"
+  ],
+  "skills": []
+}

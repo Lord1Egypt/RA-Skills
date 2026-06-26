@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mac Multi User Agents"
+  short_description: "Turn one Mac into a multi-user OpenClaw agent host"
+  default_prompt: "Use $mac-multi-user-agents to recommend a sane agent-user count for this Mac, render or execute account creation, and verify the shared Homebrew/OpenClaw layout."

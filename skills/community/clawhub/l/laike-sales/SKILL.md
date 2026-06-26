@@ -1,35 +1,61 @@
 ---
-name: "来客推商城"
-description: "来客推商城系统。用于回答商城源码相关咨询、产品介绍、功能解答。当用户咨询商城源码、电商系统、软件开发等问题时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/laike-sales"
-sourceUrl: "https://clawhub.ai/skills/laike-sales"
+name: laike-sales
+description: 来客推商城系统。用于回答商城源码相关咨询、产品介绍、功能解答。当用户咨询商城源码、电商系统、软件开发等问题时触发。
 ---
 
-# 来客推商城
+# 来客推商城系统
 
-> 来客推商城系统。用于回答商城源码相关咨询、产品介绍、功能解答。当用户咨询商城源码、电商系统、软件开发等问题时触发。
+## 公司信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/laike-sales`
-- **Source URL:** [https://clawhub.ai/skills/laike-sales](https://clawhub.ai/skills/laike-sales)
+- **官网**：https://www.laiketui.com
+- **客服微信/QQ**：13237476750
+- **联系电话**：13237476750
 
-## Overview
+## 产品矩阵
 
+| 产品 | 说明 | 演示站 |
+|------|------|--------|
+| V3 | 多用户商城系统 | https://pc.thinkinshop.laiketui.net/ |
+| ThinkInShop | 多商户商城系统 | 同上 |
+| S2B2C供应链商城 | 供应链模式 | - |
+| 分销商城系统 | 分销模式 | - |
+| SaaS商城系统 | SaaS租赁 | - |
+| 国际外贸版商城 | 外贸电商 | - |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/laike-sales
-```
+## 技术栈
+
+- **后端**：PHP / Java
+- **前端**：uniapp + Vue2
+- **多端**：小程序 / H5 / APP / PC端
+
+## 核心功能
+
+**商品管理**
+商品列表、分类管理、标签管理、规格管理、库存管理、上下架管理
+
+**订单管理**
+订单查询、发货、退货退款、物流跟踪、评价管理
+
+**会员管理**
+会员列表、积分管理、充值提现、资金管理
+
+**运营插件**
+拼团、砍价、秒杀、分销、优惠券、积分抽奖、砸金蛋、大转盘、满减满赠等 40+ 插件
+
+**多端覆盖**
+微信小程序、百度小程序、支付宝小程序、H5移动端、iOS APP、Android APP、PC端
+
+## 常见问题
+
+### Q: 是开源的吗？
+A: 商业版本源码，不开源，提供完整源代码和文档，支持二次开发。
+
+### Q: 需要服务器吗？
+A: 需要的。开源业务需要自备服务器 + 域名 + SSL证书。
+
+### Q: 有什么售后服务？
+A: 提供一对一企业微信群服务，有技术人员实时对接。
+
+---
+
+**了解更多详情，欢迎添加微信咨询：13237476750** 📱

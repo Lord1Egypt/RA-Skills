@@ -1,0 +1,5 @@
+# short-play-writer
+# 本技能为纯Prompt驱动创作技能，无需额外Python依赖
+# 仅依赖OpenClaw核心框架，所有依赖均已包含在基础环境中
+
+# 无额外依赖需要安装

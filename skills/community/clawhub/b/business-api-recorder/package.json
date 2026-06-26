@@ -1,0 +1,28 @@
+{
+  "name": "business-api-recorder",
+  "version": "1.0.0",
+  "description": "通过Chrome扩展自动拦截浏览器API，分析业务流程并生成完整的AI重构文档",
+  "author": "周坚",
+  "email": "zhoujdev@163.com",
+  "license": "MIT",
+  "homepage": "https://github.com/zhoujian/business-api-recorder",
+  "repository": "https://github.com/zhoujian/business-api-recorder.git",
+  "keywords": [
+    "api-recorder",
+    "browser-automation",
+    "api-documentation",
+    "business-analysis",
+    "chrome-extension",
+    "network-monitoring"
+  ],
+  "category": "Developer Tools",
+  "dependencies": {
+    "openclaw": ">=1.0.0",
+    "chrome-extension": ">=1.0.0"
+  },
+  "requires": [
+    "browser",
+    "write",
+    "exec"
+  ]
+}

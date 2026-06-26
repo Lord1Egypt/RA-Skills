@@ -1,0 +1,13 @@
+{
+  "name": "wechat-publisher",
+  "version": "1.0.0",
+  "description": "将精美排版的 HTML 文章直接推送到微信公众号草稿箱",
+  "type": "module",
+  "scripts": {
+    "publish": "node publish.js",
+    "preview": "node preview.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

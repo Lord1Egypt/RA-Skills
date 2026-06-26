@@ -1,0 +1,28 @@
+{
+  "cover": "imgs/cover-img.webp",
+  "steps": [
+    {
+      "stepNumber": 1,
+      "description": "安装openclaw",
+      "images-paths": [
+        "imgs/1-1.png",
+        "imgs/1-2.png"
+      ]
+    },
+    {
+      "stepNumber": 2,
+      "description": "创建第一个agent",
+      "images-paths": [
+        "imgs/2-1.png"
+      ]
+    },
+    {
+      "stepNumber": 3,
+      "description": "创建多个agent",
+      "images-paths": [
+        "imgs/3-1.png",
+        "imgs/3-2.jpg"
+      ]
+    }
+  ]
+}

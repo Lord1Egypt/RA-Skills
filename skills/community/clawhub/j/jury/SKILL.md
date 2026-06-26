@@ -1,35 +1,14 @@
 ---
-name: "Jury"
-description: "The Consensus and Arbitration Primitive. A multi-agent deliberation framework designed to resolve complex disputes and validate truth claims through probabil..."
-category: "domain"
-source: "ClawHub"
-tags: [arbitration, consensus, jury, justice, legal]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jury"
-sourceUrl: "https://clawhub.ai/skills/jury"
+name: jury
+description: >
+  The Consensus and Arbitration Primitive. A multi-agent deliberation framework 
+  designed to resolve complex disputes and validate truth claims through 
+  probabilistic reasoning.
 ---
-
-# Jury
-
-> The Consensus and Arbitration Primitive. A multi-agent deliberation framework designed to resolve complex disputes and validate truth claims through probabil...
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jury`
-- **Source URL:** [https://clawhub.ai/skills/jury](https://clawhub.ai/skills/jury)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jury
-```
+# Jury: The Cognitive Arbiter
+## Beyond Single-Agent Bias
+Justice and truth require consensus. **Jury** orchestrates multiple specialized agents to deliberate on evidence, cross-reference precedents, and deliver a balanced verdict for the most complex legal and ethical dilemmas.
+## Capabilities
+- **Deliberation**: Recursive peer-review among diverse agentic personas.
+- **Verdict Synthesis**: Consolidating multi-agent outputs into a single, reasoned judgment.
+- **Bias Mitigation**: Mathematical weighting of perspectives to ensure neutrality.

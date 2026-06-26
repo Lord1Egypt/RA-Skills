@@ -1,0 +1,19 @@
+# Core dependencies
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+markdownify>=0.11.0
+
+# Caching
+diskcache>=5.4.0
+
+# Utilities
+tqdm>=4.64.0
+tenacity>=8.0.0
+rich>=13.0.0
+
+# Optional: for enhanced HTML parsing
+selectolax>=0.3.13
+
+# Optional: for Playwright-based scraping (Tier 2 alternative)
+# playwright>=1.30.0

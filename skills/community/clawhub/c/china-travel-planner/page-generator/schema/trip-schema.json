@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/travel-page-framework/trip-schema.json",
+  "title": "Travel Page Data Schema",
+  "type": "object",
+  "required": [
+    "meta",
+    "hero",
+    "stats",
+    "hotels",
+    "metroCoverage",
+    "days",
+    "sideTrips",
+    "attractions",
+    "tips"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "subtitle", "description"],
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "required": ["title", "subtitle", "dateRange", "tags", "summary"],
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "dateRange": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "summary": { "type": "string" },
+        "heroImage": { "type": "string" }
+      }
+    },
+    "stats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "value"],
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "transport": {
+      "type": "object",
+      "properties": {
+        "departure": { "type": "string" },
+        "return": { "type": "string" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "hotels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["phase", "name", "dateRange", "status", "price", "highlights"],
+        "properties": {
+          "type": { "type": "string", "const": "hotel" },
+          "phase": { "type": "string" },
+          "name": { "type": "string" },
+          "dateRange": { "type": "string" },
+          "station": { "type": "string" },
+          "status": { "type": "string" },
+          "price": { "type": "string" },
+          "distanceToMetro": { "type": "string" },
+          "image": { "type": "string" },
+          "highlights": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "metroCoverage": {
+      "type": "object",
+      "required": ["goal", "lines"],
+      "properties": {
+        "goal": { "type": "string" },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "day", "status"],
+            "properties": {
+              "name": { "type": "string" },
+              "day": { "type": "string" },
+              "status": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "days": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["day", "date", "theme", "city", "metroLines", "segments", "note"],
+        "properties": {
+          "type": { "type": "string", "const": "day-plan" },
+          "day": { "type": "string" },
+          "date": { "type": "string" },
+          "theme": { "type": "string" },
+          "city": { "type": "string" },
+          "hotel": { "type": ["string", "null"] },
+          "metroLines": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "segments": {
+            "type": "object",
+            "required": ["morning", "afternoon", "evening"],
+            "properties": {
+              "morning": { "type": "array", "items": { "type": "string" } },
+              "afternoon": { "type": "array", "items": { "type": "string" } },
+              "evening": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "sideTrips": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "date", "role", "description"],
+        "properties": {
+          "type": { "type": "string", "const": "side-trip" },
+          "name": { "type": "string" },
+          "date": { "type": "string" },
+          "role": { "type": "string" },
+          "description": { "type": "string" },
+          "image": { "type": "string" }
+        }
+      }
+    },
+    "attractions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "city", "type", "description", "bestFor"],
+        "properties": {
+          "cardType": { "type": "string", "const": "attraction" },
+          "name": { "type": "string" },
+          "city": { "type": "string" },
+          "type": { "type": "string" },
+          "image": { "type": "string" },
+          "description": { "type": "string" },
+          "bestFor": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "tips": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string" },
+        "accent": { "type": "string" },
+        "heroStyle": { "type": "string" }
+      }
+    }
+  }
+}

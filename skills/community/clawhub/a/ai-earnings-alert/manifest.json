@@ -1,0 +1,9 @@
+{
+  "name": "ai-earnings-alert",
+  "version": "1.0.0",
+  "description": "追踪科技/AI公司财报，自动获取财报日历、预警提醒、生成摘要报告",
+  "author": "newaiguy",
+  "tags": ["earnings", "finance", "ai", "tracking", "alerts"],
+  "main": "SKILL.md",
+  "license": "MIT"
+}

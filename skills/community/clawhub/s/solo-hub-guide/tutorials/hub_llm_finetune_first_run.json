@@ -1,0 +1,229 @@
+{
+  "tutorial_id": "hub_llm_finetune_first_run",
+  "title": "Your First LLM Fine-tune on Solo Hub",
+  "description": "End-to-end flow: account setup → credits → dataset prep → 6-step wizard → monitoring. Available on all plans including Basic.",
+  "domains_used": ["account", "credits", "finetune_llm", "monitoring"],
+  "entry_point": "check_account",
+
+  "nodes": {
+    "check_account": {
+      "type": "branch",
+      "instruction": "Do you already have a Solo Hub account?",
+      "branches": {
+        "yes_have_account": "check_email_verified",
+        "no_need_account": "create_account"
+      }
+    },
+
+    "create_account": {
+      "type": "action",
+      "action": "create_account",
+      "instruction": "Go to hub.getsolo.tech, click Sign Up, complete the profile onboarding. Fill in all required fields and accept Terms & Code of Conduct.",
+      "on_success": "check_email_verified",
+      "on_failure": {
+        "error": "Not redirected after signup",
+        "recovery": "Try refreshing — if you signed up via a shared link, Hub auto-redirects back"
+      }
+    },
+
+    "check_email_verified": {
+      "type": "branch",
+      "instruction": "Is your email verified? (Check — is there a verification banner at the top of Hub?)",
+      "branches": {
+        "yes_verified": "check_credits",
+        "no_banner_visible": "verify_email"
+      }
+    },
+
+    "verify_email": {
+      "type": "action",
+      "action": "verify_email",
+      "instruction": "Click 'Resend Verification Email' in the top banner, check your inbox, and click the link. You need this to access billing.",
+      "on_success": "check_credits",
+      "on_failure": {
+        "error": "Email not arriving",
+        "recovery": "Check spam folder. Wait 2-3 minutes and try resending. Confirm email address in Settings → Profile."
+      }
+    },
+
+    "check_credits": {
+      "type": "branch",
+      "instruction": "Look at your credit balance in the top navbar. Do you have credits?",
+      "branches": {
+        "yes_have_credits": "prepare_dataset",
+        "no_zero_credits": "buy_credits"
+      }
+    },
+
+    "buy_credits": {
+      "type": "action",
+      "action": "buy_credits",
+      "instruction": "Go to Settings → Billing → Buy Credits. The Bronze pack ($10, 50 credits) is a safe starting point for your first job.",
+      "on_success": "prepare_dataset",
+      "on_failure": {
+        "error": "Billing page not accessible",
+        "recovery": "You need Admin role on your org. Or email not verified — check both."
+      }
+    },
+
+    "prepare_dataset": {
+      "type": "branch",
+      "instruction": "Do you have your training dataset ready on HuggingFace? (You need: the repo ID, and the exact column name containing your training text)",
+      "branches": {
+        "yes_dataset_ready": "wizard_step1_type",
+        "no_need_dataset": "dataset_guidance",
+        "want_to_use_solo_example": "use_example_dataset"
+      }
+    },
+
+    "dataset_guidance": {
+      "type": "informational",
+      "instruction": "Your dataset needs to be on HuggingFace in one of two formats:\n1. A 'messages' column with list-of-turn conversation objects (preferred)\n2. Paired columns like instruction+response or question+answer\n\nUpload your dataset to HuggingFace at huggingface.co/new-dataset. Then come back here.",
+      "on_ready": "wizard_step1_type"
+    },
+
+    "use_example_dataset": {
+      "type": "informational",
+      "instruction": "Solo provides example datasets you can use to test the wizard:\n- GetSoloTech/Math-Reasoning (math Q&A) — Text Field: messages\n- GetSoloTech/Code-Reasoning (code tasks) — Text Field: messages\n\nFor Math-Reasoning: Dataset = GetSoloTech/Math-Reasoning, Text Field = messages",
+      "on_ready": "wizard_step1_type"
+    },
+
+    "wizard_step1_type": {
+      "type": "action",
+      "action": "finetune_llm_step1_type",
+      "instruction": "Open the fine-tuning wizard in Solo Hub. On Step 1, click 'LLM' (brain icon).",
+      "on_success": "wizard_step1_model",
+      "on_failure": {
+        "error": "VLA is locked / wizard reverts",
+        "message": "This is expected if you previously had VLA selected and are on Basic. Click LLM button explicitly."
+      }
+    },
+
+    "wizard_step1_model": {
+      "type": "action",
+      "action": "finetune_llm_step1_model",
+      "instruction": "Select a base model. Llama-3.1-8B (marked Recommended) is the best starting point for most tasks.",
+      "on_success": "wizard_step2_gpu",
+      "on_failure": { "recovery": "Ensure you clicked LLM type first — model list only appears after type is selected" }
+    },
+
+    "wizard_step2_gpu": {
+      "type": "action",
+      "action": "finetune_llm_step2_gpu",
+      "instruction": "Select H100 80GB (Recommended). It finishes faster, burning fewer total credits despite the higher per-minute rate. Do NOT select A10 24GB — it is marked Insufficient VRAM.",
+      "on_success": "wizard_step3_params",
+      "on_failure": {
+        "error": "Selecting A10 24GB",
+        "recovery": "This GPU has insufficient VRAM for LLM fine-tuning. Select A100 40GB or H100 80GB."
+      }
+    },
+
+    "wizard_step3_params": {
+      "type": "action",
+      "action": "finetune_llm_step3_params",
+      "instruction": "Set training parameters. For your first run, use the recommended values: Epochs=3, Max Steps=1000, LoRA Rank=16, Batch Size=8, LoRA Alpha=32, Gradient Accumulation=4.",
+      "on_success": "wizard_step4_data",
+      "on_failure": { "recovery": "Use the recommended values shown in the wizard UI if uncertain" }
+    },
+
+    "wizard_step4_data": {
+      "type": "action",
+      "action": "finetune_llm_step4_data",
+      "instruction": "Connect your dataset. Enter the HuggingFace repo ID (format: owner/dataset-name). CRITICAL: verify the Text Field value exactly matches the column name in your dataset. A mismatch is the #1 cause of LLM job failures.",
+      "validation_prompt": "Before proceeding: go to your dataset page on HuggingFace and confirm the column name you entered as Text Field matches exactly.",
+      "on_success": "wizard_step5_integrations",
+      "on_failure": {
+        "error": "Wrong text field",
+        "recovery": "Open your dataset on HuggingFace, look at the actual column names in the dataset viewer, and correct the Text Field value"
+      }
+    },
+
+    "wizard_step5_integrations": {
+      "type": "branch",
+      "instruction": "Do you want to push the trained model to HuggingFace Hub or use W&B tracking?",
+      "branches": {
+        "skip_integrations": "wizard_step6_launch",
+        "enable_hf_push": "configure_hf_push",
+        "enable_wandb": "configure_wandb"
+      }
+    },
+
+    "configure_hf_push": {
+      "type": "action",
+      "action": "finetune_llm_step5_integrations",
+      "instruction": "Toggle on 'Push to HuggingFace Hub'. Enter your HF token (format: hf_xxx) and repo name (format: username/model-name). Ensure token has write access.",
+      "on_success": "wizard_step6_launch",
+      "on_failure": {
+        "error": "Invalid token",
+        "recovery": "Generate a new token at huggingface.co/settings/tokens with write permission"
+      }
+    },
+
+    "configure_wandb": {
+      "type": "action",
+      "action": "finetune_llm_step5_integrations",
+      "instruction": "Toggle on 'Weights & Biases'. Enter your W&B API token. Ensure your W&B project exists before launching.",
+      "on_success": "wizard_step6_launch",
+      "on_failure": {
+        "error": "Invalid W&B token or project missing",
+        "recovery": "Verify token at wandb.ai/settings. Create the target project in W&B first."
+      }
+    },
+
+    "wizard_step6_launch": {
+      "type": "action",
+      "action": "finetune_llm_step6_launch",
+      "instruction": "Review the cost estimate panel. Note: burn rate (credits/hr), per-minute cost, and your max runtime. Credits deduct from Provisioning onward — job auto-stops at zero balance. When satisfied, click 'Start Training'.",
+      "validation_prompt": "After clicking Start Training: do you see a results card with a Job ID and status = QUEUED?",
+      "on_success": "monitor_job",
+      "on_failure": {
+        "error_map": {
+          "Start Training disabled": "Check plan permissions; verify you're logged in to correct org",
+          "Insufficient credits": "Add credits via Settings → Billing → Buy Credits",
+          "Job already exists": "Change the Output Model Name to something unique",
+          "Maximum concurrent jobs": "Wait for an existing job to reach Completed/Failed/Cancelled"
+        }
+      }
+    },
+
+    "monitor_job": {
+      "type": "action",
+      "action": "monitor_pipeline",
+      "instruction": "Click the model link in the results card. Open the Diagnostics tab. You'll see the pipeline move through: QUEUED → Provisioning → Initializing → Training → Uploading → Completed. Credits start at Provisioning.",
+      "validation_prompt": "Is the job visible in the Diagnostics tab? What stage is it currently in?",
+      "on_success": "tutorial_complete",
+      "on_failure": {
+        "error": "Job stopped at Provisioning or Initializing",
+        "recovery": "dataset_failure_triage"
+      }
+    },
+
+    "dataset_failure_triage": {
+      "type": "branch",
+      "instruction": "Did the job fail? What type of error appeared in Diagnostics?",
+      "branches": {
+        "dataset_error": "fix_text_field",
+        "credit_error": "check_credits",
+        "hf_push_error": "fix_hf_credentials"
+      }
+    },
+
+    "fix_text_field": {
+      "type": "informational",
+      "instruction": "Go back to your HuggingFace dataset page and verify the exact column name. Open the Dataset Viewer and check the column headers. Then re-launch the wizard with the corrected Text Field value.",
+      "on_ready": "wizard_step1_type"
+    },
+
+    "fix_hf_credentials": {
+      "type": "informational",
+      "instruction": "Go to huggingface.co/settings/tokens. Generate a new token with write scope. Update the token in the wizard's integrations step and re-launch.",
+      "on_ready": "wizard_step5_integrations"
+    },
+
+    "tutorial_complete": {
+      "type": "terminal",
+      "instruction": "Your LLM fine-tuning job has completed. Your model is now in your Solo Hub org's catalog. Open the model's detail page → Usage tab to see how to run inference.",
+      "next_tutorials": ["hub_vla_finetune"]
+    }
+  }
+}

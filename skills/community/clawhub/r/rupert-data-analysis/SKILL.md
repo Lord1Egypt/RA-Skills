@@ -1,35 +1,51 @@
----
-name: "Data Analysis"
-description: "Analyze and transform data from multiple formats to generate insights, visualize trends, detect anomalies, and create comprehensive reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rupert-data-analysis"
-sourceUrl: "https://clawhub.ai/skills/rupert-data-analysis"
----
-
-# Data Analysis
-
-> Analyze and transform data from multiple formats to generate insights, visualize trends, detect anomalies, and create comprehensive reports.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rupert-data-analysis`
-- **Source URL:** [https://clawhub.ai/skills/rupert-data-analysis](https://clawhub.ai/skills/rupert-data-analysis)
+# Data Analysis Skill
 
 ## Overview
+Analyze data, generate insights, and create reports.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rupert-data-analysis
-```
+### 1. Data Processing
+- Parse CSV/JSON/Excel
+- Clean and transform data
+- Calculate metrics
+- Create summaries
+
+### 2. Visualization
+- Suggest chart types
+- Generate data stories
+- Dashboard layouts
+
+### 3. Insights
+- Trend identification
+- Anomaly detection
+- Correlation analysis
+- Recommendations
+
+### 4. Reporting
+- Automated reports
+- Executive summaries
+- Presentation outlines
+
+## Usage
+
+### Commands
+- `analyze this data [data]`
+- `what trends do you see`
+- `create chart for [data]`
+- `write summary of [data]`
+- `suggest improvements`
+
+## Supported Formats
+- CSV
+- JSON
+- Excel
+- Google Sheets
+- SQL queries
+
+## Metrics Calculated
+- Averages
+- Percentages
+- Growth rates
+- Ratios
+- Correlations

@@ -1,0 +1,29 @@
+{
+  "name": "social-media-monitor",
+  "version": "1.0.0",
+  "description": "社交媒体舆情分析工具 - 品牌方/电商卖家/运营人员的平价舆情监控助手",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node src/test/full-test.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "mcp",
+    "social-media",
+    "sentiment-analysis",
+    "brand-monitoring",
+    "xiaohongshu",
+    "舆情分析",
+    "品牌监控"
+  ],
+  "author": "小爪 🦞",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "keyword-extractor": "^0.0.28",
+    "sentiment": "^5.0.2",
+    "zod": "^4.3.6"
+  }
+}

@@ -1,35 +1,66 @@
 ---
-name: "知乎内容搜索分析"
-description: "知乎内容搜索与分析工具。搜索话题热度、分析高价值问题、追踪竞品回答。 面向内容创作者和自媒体运营者，中文优先。 当用户说"搜一下知乎"、"知乎有什么"、"分析知乎问题"、"知乎选题"、"搜知乎"时触发。 Keywords: 知乎, zhihu, 搜索, 问题分析, 选题, 内容创作, 知乎热榜, 知乎搜索."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhida-content"
-sourceUrl: "https://clawhub.ai/skills/zhida-content"
+slug: zhida-content
+name: 知乎内容搜索
+version: "1.0.0"
+author: 千策
 ---
 
-# 知乎内容搜索分析
 
-> 知乎内容搜索与分析工具。搜索话题热度、分析高价值问题、追踪竞品回答。 面向内容创作者和自媒体运营者，中文优先。 当用户说"搜一下知乎"、"知乎有什么"、"分析知乎问题"、"知乎选题"、"搜知乎"时触发。 Keywords: 知乎, zhihu, 搜索, 问题分析, 选题, 内容创作, 知乎热榜, 知乎搜索.
+# Zhida Content — 知乎内容搜索与分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhida-content`
-- **Source URL:** [https://clawhub.ai/skills/zhida-content](https://clawhub.ai/skills/zhida-content)
+知乎内容搜索、热度分析、选题挖掘工具。
 
-## Overview
+## 核心功能
 
+### 1. 话题搜索
+按关键词搜索知乎问题，查看热度、回答数、关注者数据
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 2. 热榜获取
+实时获取知乎热榜问题
+
+### 3. 问题分析
+深度分析单个问题：浏览量、回答质量、竞争程度、内容机会
+
+### 4. 选题建议
+基于搜索数据，推荐高价值创作选题
+
+## 使用方式
+
 ```bash
-hermes skills install clawhub/zhida-content
+# 搜索话题
+python3 scripts/fetch_zhida.py --search "AI副业"
+
+# 热榜问题
+python3 scripts/fetch_zhida.py --hot --limit 10
+
+# 问题分析
+python3 scripts/fetch_zhida.py --analyze "https://www.zhihu.com/question/123456789"
+
+# 选题推荐（关键词）
+python3 scripts/fetch_zhida.py --topic "AI" --limit 20
+
+# JSON输出
+python3 scripts/fetch_zhida.py --topic "AI副业" --json
 ```
+
+## 选题推荐逻辑
+
+问题热度分级：
+- 🔥🔥🔥 极热（100万+浏览）→ 蹭流量，但竞争激烈
+- 🔥🔥 中热（10-100万浏览）→ 最佳选择，流量+竞争平衡
+- 🔥 温热（1-10万浏览）→ 垂直领域机会
+- ❄️ 冷门（1万以下）→ 竞争小但流量有限
+
+回答机会评分：
+- 高机会：回答少 + 关注多 + 浏览高
+- 中机会：回答中等 + 浏览高
+- 低机会：回答多 + 浏览低
+
+## 数据来源
+
+知乎搜索 API（无需登录）
+
+## 注意事项
+
+- 知乎反爬严格，脚本内置延迟和降级处理
+- 部分 API 可能因地域限制不可用

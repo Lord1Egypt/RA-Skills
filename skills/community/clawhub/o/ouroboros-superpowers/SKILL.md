@@ -1,35 +1,208 @@
 ---
-name: "Ouroboros + Superpowers"
+name: dev-workflow
+version: 1.2.0
 description: "명시적 요청 시에만 사용. 트리거: '우로보로스/ouroboros'(인터뷰→스펙), '슈퍼파워/superpowers'(계획→실행), '스펙부터/풀플로우'(전체)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ouroboros-superpowers"
-sourceUrl: "https://clawhub.ai/skills/ouroboros-superpowers"
 ---
 
-# Ouroboros + Superpowers
+# Dev Workflow - Ouroboros + Superpowers 통합
 
-> 명시적 요청 시에만 사용. 트리거: '우로보로스/ouroboros'(인터뷰→스펙), '슈퍼파워/superpowers'(계획→실행), '스펙부터/풀플로우'(전체).
+## 트리거별 시작점
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ouroboros-superpowers`
-- **Source URL:** [https://clawhub.ai/skills/ouroboros-superpowers](https://clawhub.ai/skills/ouroboros-superpowers)
+| 트리거 | 시작 | 끝 | 용도 |
+|--------|------|-----|------|
+| "우로보로스", "ouroboros" | Phase 1 | Phase 2 | 스펙만 정리 |
+| "슈퍼파워", "superpowers" | Phase 3 | Phase 5 | 계획+실행 (스펙 있을 때) |
+| "스펙부터", "풀플로우", "전체" | Phase 1 | Phase 5 | 처음부터 끝까지 |
 
-## Overview
+---
 
+## 전체 플로우
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ouroboros-superpowers
 ```
+[Phase 1-2: Ouroboros]        [Phase 3-5: Superpowers]
+질문 → 스펙                    계획 → 실행 → 검증
+```
+
+---
+
+## Phase 1: 소크라테스 인터뷰 (Ouroboros)
+
+**목표:** 숨겨진 가정을 노출하고 모호성을 제거
+
+### 규칙
+- 한 번에 질문 하나만
+- "~하면 되죠?"가 아닌 "~는 무엇인가요?" (존재론적 질문)
+- 객관식 선호, 필요시 주관식
+- 최소 3-5개 질문으로 핵심 파악
+
+### 질문 프레임워크
+
+1. **본질 (Essence):** "이것의 본질은 무엇인가요?" 
+2. **근본 원인 (Root Cause):** "이게 근본 원인인가요, 증상인가요?"
+3. **전제 조건 (Prerequisites):** "이를 위해 먼저 존재해야 하는 것은?"
+4. **숨겨진 가정 (Hidden Assumptions):** "우리가 당연시하는 가정은?"
+
+### 모호성 점수 (Ambiguity Score)
+
+인터뷰가 끝나면 내부적으로 평가:
+- 목표 명확성 (Goal): 40%
+- 제약 조건 명확성 (Constraints): 30%  
+- 성공 기준 명확성 (Success Criteria): 30%
+
+**Ambiguity ≤ 0.2** 일 때만 다음 단계로 진행.
+(80% 이상 명확해야 스펙 작성 가능)
+
+---
+
+## Phase 2: 스펙 결정화 (Seed)
+
+인터뷰 결과를 불변 스펙으로 결정화:
+
+```markdown
+# [기능명] 스펙
+
+## 목표
+[한 문장으로 정의]
+
+## 범위
+### 포함
+- ...
+### 제외 (YAGNI)
+- ...
+
+## 핵심 컴포넌트
+1. [컴포넌트]: [책임]
+2. ...
+
+## 데이터 흐름
+[입력] → [처리] → [출력]
+
+## 성공 기준
+- [ ] ...
+- [ ] ...
+
+## 제약 조건
+- ...
+
+## 열린 질문 (있다면)
+- ...
+```
+
+**저장 위치:** `docs/specs/YYYY-MM-DD-<topic>.md`
+
+---
+
+## Phase 3: 구현 계획 (Plan)
+
+스펙을 바이트 사이즈 태스크로 분해:
+
+### 태스크 원칙
+- 각 태스크는 2-5분 분량
+- TDD: 테스트 작성 → 실패 확인 → 구현 → 통과 확인 → 커밋
+- 정확한 파일 경로와 코드 포함
+- DRY, YAGNI 준수
+
+### 계획 구조
+
+```markdown
+# [기능명] 구현 계획
+
+**목표:** [한 문장]
+**아키텍처:** [2-3문장]
+
+---
+
+### Task 1: [컴포넌트명]
+
+**파일:**
+- 생성: `path/to/file.ts`
+- 테스트: `tests/path/to/test.ts`
+
+- [ ] Step 1: 실패하는 테스트 작성
+- [ ] Step 2: 테스트 실행, 실패 확인
+- [ ] Step 3: 최소 구현
+- [ ] Step 4: 테스트 통과 확인
+- [ ] Step 5: 커밋
+```
+
+**저장 위치:** `docs/plans/YYYY-MM-DD-<topic>.md`
+
+---
+
+## Phase 4: 실행 (Execute)
+
+두 가지 모드 제공:
+
+### A. 서브에이전트 모드 (권장)
+태스크당 새 서브에이전트 파견:
+1. 구현 서브에이전트 → 태스크 실행
+2. 스펙 리뷰 서브에이전트 → 스펙 준수 확인
+3. 코드 품질 리뷰 서브에이전트 → 품질 확인
+4. 다음 태스크로
+
+### B. 인라인 모드
+현재 세션에서 직접 실행:
+- 3-5개 태스크마다 체크포인트
+- 사용자 확인 후 진행
+
+---
+
+## Phase 5: 검증 (Evaluate)
+
+3단계 검증:
+
+1. **기계적 검증:** 테스트 통과, 린트 통과, 빌드 성공
+2. **의미론적 검증:** 스펙의 성공 기준 충족 여부
+3. **합의 검증:** 사용자 확인
+
+---
+
+## 빠른 시작
+
+사용자가 개발 요청을 하면:
+
+```
+1. "몇 가지 질문으로 시작하겠습니다."
+2. 소크라테스 인터뷰 (3-5개 질문)
+3. "스펙을 정리하겠습니다." → 스펙 제시 → 승인 요청
+4. "구현 계획을 세우겠습니다." → 계획 제시 → 승인 요청
+5. "실행 모드를 선택해주세요: [서브에이전트/인라인]"
+6. 실행 → 검증 → 완료
+```
+
+---
+
+## 단축 모드
+
+간단한 작업은 풀 프로세스가 과할 수 있음.
+
+**단축 조건:**
+- 단일 파일 수정
+- 명확한 요구사항 (모호성 낮음)
+- 사용자가 "빨리" 또는 "간단히" 요청
+
+**단축 시:**
+- 질문 1-2개로 축소
+- 스펙 없이 바로 계획
+- 계획도 간소화 가능
+
+---
+
+## 참고 자료
+
+원본 저장소:
+- `ouroboros-ref/` - Ouroboros 원본
+- `superpowers-ref/` - Superpowers 원본
+
+### 에이전트 역할 (Ouroboros)
+- **Socratic Interviewer:** 질문만 함, 구현 약속 금지
+- **Ontologist:** 본질/근본원인/전제조건/가정 분석
+- **Seed Architect:** 대화를 스펙으로 결정화
+- **Evaluator:** 3단계 검증
+
+### 스킬 (Superpowers)  
+- **brainstorming:** 디자인 도출
+- **writing-plans:** 바이트 사이즈 계획
+- **subagent-driven-development:** 서브에이전트 실행
+- **test-driven-development:** RED-GREEN-REFACTOR
+- **systematic-debugging:** 체계적 디버깅

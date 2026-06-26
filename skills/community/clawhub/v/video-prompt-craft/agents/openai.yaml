@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Prompt Craft"
+  short_description: "Guide users through structured Q&A to craft professional AI video generation prompts."
+  default_prompt: "Use $video_prompt_craft when the user wants to write or improve a video generation prompt, or when the user's video idea is too vague to use directly with a generation tool."

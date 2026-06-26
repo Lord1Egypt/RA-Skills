@@ -1,35 +1,49 @@
----
-name: "Parental Controls"
-description: "Provides a guardian portal for monitoring child activity, managing screen time, setting content filters, and receiving real-time alerts with PIN protection."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parental-controls"
-sourceUrl: "https://clawhub.ai/skills/parental-controls"
----
+# Parental Controls Skills
 
-# Parental Controls
+Skills for parent/guardian management and monitoring.
 
-> Provides a guardian portal for monitoring child activity, managing screen time, setting content filters, and receiving real-time alerts with PIN protection.
+## Essential Skills
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parental-controls`
-- **Source URL:** [https://clawhub.ai/skills/parental-controls](https://clawhub.ai/skills/parental-controls)
+### 1. Parent Portal
+**Skill ID**: `parent-portal`
 
-## Overview
+**Purpose**: Guardian interface for monitoring and configuration
 
+**Features**:
+- Weekly activity reports
+- Real-time alerts (high-risk content)
+- Settings lock (PIN protection)
+- Screen time management
+- Content review dashboard
+- Whitelist/blacklist management
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/parental-controls
+**Installation**: Download from ClawHub
+
+**Configuration**:
+```javascript
+{
+  "skill": "parent-portal",
+  "settings": {
+    "pinProtection": true,
+    "weeklyReports": true,
+    "realTimeAlerts": true,
+    "categories": ["csam", "self-harm", "high-nsfw"],
+    "alertEmail": "parent@example.com"
+  }
+}
 ```
+
+**Features**:
+- **Activity Dashboard**: See what was blocked and when
+- **PIN Lock**: Children can't disable protection
+- **Reports**: Weekly summary emails (opt-in)
+- **Alerts**: Immediate notification for critical content
+
+**Use Cases**:
+- Family internet safety
+- School monitoring (with consent)
+- Child protection
+
+---
+
+*For complete skill index, see [RECOMMENDED_SKILLS.md](../RECOMMENDED_SKILLS.md).*

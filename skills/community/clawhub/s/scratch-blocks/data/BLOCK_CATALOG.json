@@ -1,0 +1,2004 @@
+[
+  {
+    "opcode": "motion_movesteps",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "move",
+      "steps"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_turnright",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "turn ↱",
+      "degrees"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "15"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_turnleft",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "turn ↰",
+      "degrees"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "15"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_gotoxy",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "go to x:",
+      "y:"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "0"
+      },
+      {
+        "type": "number",
+        "value": "0"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_glidesecstoxy",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "glide",
+      "secs to x:",
+      "y:"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "number",
+        "value": "0"
+      },
+      {
+        "type": "number",
+        "value": "0"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_pointindirection",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "point in direction"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "90"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_changexby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "change x by"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_setx",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "set x to"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "0"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_changeyby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "change y by"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_sety",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "set y to"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "0"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_ifonedgebounce",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "if on edge, bounce"
+    ]
+  },
+  {
+    "opcode": "motion_setrotationstyle",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "set rotation style"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "left-right",
+          "don't rotate",
+          "all around"
+        ],
+        "value": "left-right"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_xposition",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "motion",
+    "text": [
+      "x position"
+    ]
+  },
+  {
+    "opcode": "motion_yposition",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "motion",
+    "text": [
+      "y position"
+    ]
+  },
+  {
+    "opcode": "motion_direction",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "motion",
+    "text": [
+      "direction"
+    ]
+  },
+  {
+    "opcode": "looks_nextbackdrop",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "next backdrop"
+    ]
+  },
+  {
+    "opcode": "looks_changeeffectby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "change",
+      "effect by"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "color",
+          "fisheye",
+          "whirl",
+          "pixelate",
+          "mosaic",
+          "brightness",
+          "ghost"
+        ],
+        "value": "color"
+      },
+      {
+        "type": "number",
+        "value": "25"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_seteffectto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "set",
+      "effect to"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "color",
+          "fisheye",
+          "whirl",
+          "pixelate",
+          "mosaic",
+          "brightness",
+          "ghost"
+        ],
+        "value": "color"
+      },
+      {
+        "type": "number",
+        "value": "0"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_cleargraphiceffects",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "clear graphic effects"
+    ]
+  },
+  {
+    "opcode": "looks_backdropnumbername",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "looks",
+    "text": [
+      "backdrop"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "number",
+          "name"
+        ],
+        "value": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_sayforsecs",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "say",
+      "for",
+      "seconds"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "Hello!"
+      },
+      {
+        "type": "number",
+        "value": "2"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_say",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "say"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "Hello!"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_thinkforsecs",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "think",
+      "for",
+      "seconds"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "Hmm..."
+      },
+      {
+        "type": "number",
+        "value": "2"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_think",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "think"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "Hmm..."
+      }
+    ]
+  },
+  {
+    "opcode": "looks_nextcostume",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "next costume"
+    ]
+  },
+  {
+    "opcode": "looks_changesizeby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "change size by"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_setsizeto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "set size to",
+      "%"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "100"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_show",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "show"
+    ]
+  },
+  {
+    "opcode": "looks_hide",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "hide"
+    ]
+  },
+  {
+    "opcode": "looks_gotofrontback",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "go to",
+      "layer"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "front",
+          "back"
+        ],
+        "value": "front"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_goforwardbackwardlayers",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "go",
+      "forward",
+      "layers"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "forward",
+          "backward"
+        ],
+        "value": "forward"
+      },
+      {
+        "type": "number",
+        "value": "1"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_costumenumbername",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "looks",
+    "text": [
+      "costume"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "number",
+          "name"
+        ],
+        "value": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_size",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "looks",
+    "text": [
+      "size"
+    ]
+  },
+  {
+    "opcode": "looks_switchcostumeto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "switch costume to"
+    ],
+    "params": [
+      {
+        "type": "dropdown-costume"
+      }
+    ]
+  },
+  {
+    "opcode": "looks_switchbackdropto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "looks",
+    "text": [
+      "switch backdrop to"
+    ],
+    "params": [
+      {
+        "type": "dropdown-backdrop"
+      }
+    ]
+  },
+  {
+    "opcode": "sound_stopallsounds",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "stop all sounds"
+    ]
+  },
+  {
+    "opcode": "sound_changeeffectby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "change",
+      "effect by"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "pitch",
+          "pan left/right"
+        ],
+        "value": "pitch"
+      },
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "sound_seteffectto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "set",
+      "effect to"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "pitch",
+          "pan left/right"
+        ],
+        "value": "pitch"
+      },
+      {
+        "type": "number",
+        "value": "100"
+      }
+    ]
+  },
+  {
+    "opcode": "sound_cleareffects",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "clear sound effects"
+    ]
+  },
+  {
+    "opcode": "sound_changevolumeby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "change volume by"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "-10"
+      }
+    ]
+  },
+  {
+    "opcode": "sound_setvolumeto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "set volume to",
+      "%"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "100"
+      }
+    ]
+  },
+  {
+    "opcode": "event_whenflagclicked",
+    "shapes": [
+      "hat"
+    ],
+    "category": "events",
+    "text": [
+      "when Flag clicked"
+    ]
+  },
+  {
+    "opcode": "event_whenkeypressed",
+    "shapes": [
+      "hat"
+    ],
+    "category": "events",
+    "text": [
+      "when",
+      "key pressed"
+    ],
+    "params": [
+      {
+        "type": "dropdown-key"
+      }
+    ]
+  },
+  {
+    "opcode": "event_whengreaterthan",
+    "shapes": [
+      "hat"
+    ],
+    "category": "events",
+    "text": [
+      "when",
+      ">"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "loudness",
+          "timer"
+        ],
+        "value": "loudness"
+      },
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "control_wait",
+    "shapes": [
+      "stack"
+    ],
+    "category": "control",
+    "text": [
+      "wait",
+      "seconds"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      }
+    ]
+  },
+  {
+    "opcode": "control_repeat",
+    "shapes": [
+      "c-block",
+      "c-1"
+    ],
+    "category": "control",
+    "text": [
+      "repeat"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ],
+    "branch_labels": [
+      {
+        "text": "↺",
+        "position": "right"
+      }
+    ]
+  },
+  {
+    "opcode": "control_forever",
+    "shapes": [
+      "c-block",
+      "c-1",
+      "end"
+    ],
+    "category": "control",
+    "text": [
+      "forever"
+    ],
+    "branch_labels": [
+      {
+        "text": "↺",
+        "position": "right"
+      }
+    ]
+  },
+  {
+    "opcode": "control_if",
+    "shapes": [
+      "c-block",
+      "c-1"
+    ],
+    "category": "control",
+    "text": [
+      "if",
+      "then"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      }
+    ],
+    "branch_labels": [
+      {
+        "text": "",
+        "position": "left"
+      }
+    ]
+  },
+  {
+    "opcode": "control_if_else",
+    "shapes": [
+      "c-block",
+      "c-2"
+    ],
+    "category": "control",
+    "text": [
+      "if",
+      "else"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      }
+    ],
+    "branch_labels": [
+      {
+        "text": "else",
+        "position": "left"
+      },
+      {
+        "text": "",
+        "position": "left"
+      }
+    ]
+  },
+  {
+    "opcode": "control_wait_until",
+    "shapes": [
+      "stack"
+    ],
+    "category": "control",
+    "text": [
+      "wait until"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      }
+    ]
+  },
+  {
+    "opcode": "control_repeat_until",
+    "shapes": [
+      "c-block",
+      "c-1"
+    ],
+    "category": "control",
+    "text": [
+      "repeat until"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      }
+    ],
+    "branch_labels": [
+      {
+        "text": "↺",
+        "position": "right"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_answer",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "answer"
+    ]
+  },
+  {
+    "opcode": "sensing_keypressed",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "sensing",
+    "text": [
+      "key",
+      "pressed?"
+    ],
+    "params": [
+      {
+        "type": "dropdown-key"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_mousedown",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "sensing",
+    "text": [
+      "mouse down?"
+    ]
+  },
+  {
+    "opcode": "sensing_mousex",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "mouse x"
+    ]
+  },
+  {
+    "opcode": "sensing_mousey",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "mouse y"
+    ]
+  },
+  {
+    "opcode": "sensing_loudness",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "loudness"
+    ]
+  },
+  {
+    "opcode": "sensing_timer",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "timer"
+    ]
+  },
+  {
+    "opcode": "sensing_resettimer",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sensing",
+    "text": [
+      "reset timer"
+    ]
+  },
+  {
+    "opcode": "sensing_current",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "current"
+    ],
+    "params": [
+      {
+        "type": "dropdown-timeunit"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_dayssince2000",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "days since 2000"
+    ]
+  },
+  {
+    "opcode": "sensing_online",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "sensing",
+    "text": [
+      "online?"
+    ]
+  },
+  {
+    "opcode": "sensing_username",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "username"
+    ]
+  },
+  {
+    "opcode": "operator_add",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "+"
+    ],
+    "params": [
+      {
+        "type": "number"
+      },
+      {
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_subtract",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "-"
+    ],
+    "params": [
+      {
+        "type": "number"
+      },
+      {
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_multiply",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "*"
+    ],
+    "params": [
+      {
+        "type": "number"
+      },
+      {
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_divide",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "/"
+    ],
+    "params": [
+      {
+        "type": "number"
+      },
+      {
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_random",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "pick random",
+      "to"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "number",
+        "value": "10"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_gt",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      ">"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": ""
+      },
+      {
+        "type": "number",
+        "value": "50"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_lt",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "<"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": ""
+      },
+      {
+        "type": "number",
+        "value": "50"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_equals",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "="
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": ""
+      },
+      {
+        "type": "number",
+        "value": "50"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_and",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "and"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      },
+      {
+        "type": "boolean"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_or",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "or"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      },
+      {
+        "type": "boolean"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_not",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "not"
+    ],
+    "params": [
+      {
+        "type": "boolean"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_mod",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "mod"
+    ],
+    "params": [
+      {
+        "type": "number"
+      },
+      {
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_round",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "round"
+    ],
+    "params": [
+      {
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_mathop",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "of"
+    ],
+    "params": [
+      {
+        "type": "dropdown-mathop"
+      }
+    ]
+  },
+  {
+    "opcode": "sounds_volume",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sounds",
+    "text": [
+      "volume"
+    ]
+  },
+  {
+    "opcode": "event_whenthisspriteclicked",
+    "shapes": [
+      "hat"
+    ],
+    "category": "events",
+    "text": [
+      "when this sprite clicked"
+    ]
+  },
+  {
+    "opcode": "control_start_as_clone",
+    "shapes": [
+      "hat"
+    ],
+    "category": "control",
+    "text": [
+      "when I start as a clone"
+    ]
+  },
+  {
+    "opcode": "control_delete_this_clone",
+    "shapes": [
+      "stack",
+      "end"
+    ],
+    "category": "control",
+    "text": [
+      "delete this clone"
+    ]
+  },
+  {
+    "opcode": "sensing_touchingcolor",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "sensing",
+    "text": [
+      "touching color",
+      "?"
+    ],
+    "params": [
+      {
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_coloristouchingcolor",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "sensing",
+    "text": [
+      "color",
+      "is touching",
+      "?"
+    ],
+    "params": [
+      {
+        "type": "color"
+      },
+      {
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_askandwait",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sensing",
+    "text": [
+      "ask",
+      "and wait"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "What's your name?"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_setdragmode",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sensing",
+    "text": [
+      "set drag mode"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "draggable",
+          "not draggable"
+        ],
+        "value": "draggable"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_join",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "join"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "apple"
+      },
+      {
+        "type": "text",
+        "value": "banana"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_letter_of",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "letter",
+      "of"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "text",
+        "value": "apple"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_length",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "operators",
+    "text": [
+      "length of"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "apple"
+      }
+    ]
+  },
+  {
+    "opcode": "operator_contains",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "operators",
+    "text": [
+      "",
+      "contains",
+      "?"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "apple"
+      },
+      {
+        "type": "text",
+        "value": "a"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_goto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "go to"
+    ],
+    "params": [
+      {
+        "type": "dropdown-position"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_glideto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "glide",
+      "secs to"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "dropdown-position"
+      }
+    ]
+  },
+  {
+    "opcode": "motion_pointtowards",
+    "shapes": [
+      "stack"
+    ],
+    "category": "motion",
+    "text": [
+      "point towards"
+    ],
+    "params": [
+      {
+        "type": "dropdown-position"
+      }
+    ]
+  },
+  {
+    "opcode": "sound_playuntildone",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "play sound",
+      "until done"
+    ],
+    "params": [
+      {
+        "type": "dropdown-sound"
+      }
+    ]
+  },
+  {
+    "opcode": "sound_play",
+    "shapes": [
+      "stack"
+    ],
+    "category": "sounds",
+    "text": [
+      "start sound"
+    ],
+    "params": [
+      {
+        "type": "dropdown-sound"
+      }
+    ]
+  },
+  {
+    "opcode": "event_whenbackdropswitchesto",
+    "shapes": [
+      "hat"
+    ],
+    "category": null,
+    "text": [
+      "when backdrop switches to"
+    ],
+    "params": [
+      {
+        "type": "dropdown-backdrop"
+      }
+    ]
+  },
+  {
+    "opcode": "event_whenbroadcastreceived",
+    "shapes": [
+      "hat"
+    ],
+    "category": "events",
+    "text": [
+      "when I receive"
+    ],
+    "params": [
+      {
+        "type": "dropdown-broadcast-message"
+      }
+    ]
+  },
+  {
+    "opcode": "event_broadcast",
+    "shapes": [
+      "stack"
+    ],
+    "category": "events",
+    "text": [
+      "broadcast"
+    ],
+    "params": [
+      {
+        "type": "dropdown-broadcast-message"
+      }
+    ]
+  },
+  {
+    "opcode": "event_broadcastandwait",
+    "shapes": [
+      "stack"
+    ],
+    "category": "events",
+    "text": [
+      "broadcast",
+      "and wait"
+    ],
+    "params": [
+      {
+        "type": "dropdown-broadcast-message"
+      }
+    ]
+  },
+  {
+    "opcode": "control_stop",
+    "shapes": [
+      "stack",
+      "end"
+    ],
+    "category": "control",
+    "text": [
+      "stop"
+    ],
+    "params": [
+      {
+        "type": "dropdown",
+        "options": [
+          "all",
+          "this script",
+          "other scripts in sprite"
+        ],
+        "value": "all"
+      }
+    ]
+  },
+  {
+    "opcode": "control_create_clone_of",
+    "shapes": [
+      "stack"
+    ],
+    "category": "control",
+    "text": [
+      "create clone of"
+    ],
+    "params": [
+      {
+        "type": "dropdown-sprite"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_touchingobject",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "sensing",
+    "text": [
+      "touching",
+      "?"
+    ],
+    "params": [
+      {
+        "type": "dropdown-touch"
+      }
+    ]
+  },
+  {
+    "opcode": "sensing_distanceto",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "sensing",
+    "text": [
+      "distance to"
+    ],
+    "params": [
+      {
+        "type": "dropdown-touch"
+      }
+    ]
+  },
+  {
+    "opcode": "data_setvariableto",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data",
+    "text": [
+      "set",
+      "to"
+    ],
+    "params": [
+      {
+        "type": "dropdown-variable"
+      }
+    ]
+  },
+  {
+    "opcode": "data_changevariableby",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data",
+    "text": [
+      "change",
+      "by"
+    ],
+    "params": [
+      {
+        "type": "dropdown-variable"
+      },
+      {
+        "type": "number",
+        "value": "1"
+      }
+    ]
+  },
+  {
+    "opcode": "data_showvariable",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data",
+    "text": [
+      "show variable"
+    ],
+    "params": [
+      {
+        "type": "dropdown-variable"
+      }
+    ]
+  },
+  {
+    "opcode": "data_hidevariable",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data",
+    "text": [
+      "hide variable"
+    ],
+    "params": [
+      {
+        "type": "dropdown-variable"
+      }
+    ]
+  },
+  {
+    "opcode": "data_addtolist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "add",
+      "to"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "thing"
+      },
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_deleteoflist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "delete",
+      "of"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_deletealloflist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "delete all of"
+    ],
+    "params": [
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_insertatlist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "insert",
+      "at",
+      "of"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "thing"
+      },
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_replaceitemoflist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "replace item",
+      "of",
+      "with"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "dropdown-list"
+      },
+      {
+        "type": "text",
+        "value": "thing"
+      }
+    ]
+  },
+  {
+    "opcode": "data_itemoflist",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "data-lists",
+    "text": [
+      "item",
+      "of"
+    ],
+    "params": [
+      {
+        "type": "number",
+        "value": "1"
+      },
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_itemnumoflist",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "data-lists",
+    "text": [
+      "item # of",
+      "in"
+    ],
+    "params": [
+      {
+        "type": "text",
+        "value": "thing"
+      },
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_lengthoflist",
+    "shapes": [
+      "reporter",
+      "round"
+    ],
+    "category": "data-lists",
+    "text": [
+      "length of"
+    ],
+    "params": [
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_listcontainsitem",
+    "shapes": [
+      "reporter",
+      "boolean"
+    ],
+    "category": "data-lists",
+    "text": [
+      "",
+      "contains",
+      "?"
+    ],
+    "params": [
+      {
+        "type": "dropdown-list"
+      },
+      {
+        "type": "text",
+        "value": "thing"
+      }
+    ]
+  },
+  {
+    "opcode": "data_showlist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "show list"
+    ],
+    "params": [
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  },
+  {
+    "opcode": "data_hidelist",
+    "shapes": [
+      "stack"
+    ],
+    "category": "data-lists",
+    "text": [
+      "hide list"
+    ],
+    "params": [
+      {
+        "type": "dropdown-list"
+      }
+    ]
+  }
+]

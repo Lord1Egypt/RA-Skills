@@ -1,0 +1,15 @@
+{
+  "history": [
+    {
+      "id": 1,
+      "original": "cat in moonlight",
+      "optimized": "A cat sitting...",
+      "platform": "midjourney",
+      "style": "cinematic",
+      "ratio": "1:1",
+      "created": "2026-03-06T08:52:15.891387",
+      "favorite": false
+    }
+  ],
+  "favorites": []
+}

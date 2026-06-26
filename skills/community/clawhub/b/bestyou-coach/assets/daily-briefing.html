@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Daily Briefing</title>
+<style>
+  /* === Shared Design System (inlined from shared.css) === */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #e5e5e5;
+    padding: 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #333; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #222;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 13px;
+    color: #888;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-green { background: #1a3a2a; color: #4ade80; }
+  .badge-orange { background: #3a2a1a; color: #fb923c; }
+  .badge-blue { background: #1a2a3a; color: #60a5fa; }
+  .badge-red { background: #3a1a1a; color: #f87171; }
+  .badge-purple { background: #2a1a3a; color: #c084fc; }
+  .badge-yellow { background: #3a3a1a; color: #facc15; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #aaa;
+  }
+  .pill strong { color: #ddd; font-weight: 600; }
+
+  .section {
+    margin-bottom: 28px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .text-muted { color: #666; font-size: 12px; }
+  .text-sm { font-size: 13px; }
+  .text-positive { color: #4ade80; }
+  .text-negative { color: #f87171; }
+  .text-neutral { color: #facc15; }
+  .text-white { color: #fff; }
+
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid #222;
+    font-size: 12px;
+    color: #444;
+  }
+
+  /* Gauge */
+  .gauge-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 20px 0;
+  }
+  .gauge {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+  .gauge svg { transform: rotate(-90deg); }
+  .gauge-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .gauge-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .gauge-sub {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+  }
+
+  /* Score bar */
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .score-label {
+    width: 100px;
+    font-size: 12px;
+    color: #aaa;
+    text-transform: capitalize;
+  }
+  .score-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+  .score-num {
+    width: 32px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ddd;
+  }
+
+  /* Timeline */
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .timeline-dot.completed { background: #1a3a2a; color: #4ade80; }
+  .timeline-dot.upcoming { background: #1a1a1a; border: 1px solid #333; color: #666; }
+
+  /* Macro ring */
+  .macro-row {
+    display: flex;
+    justify-content: space-around;
+    margin: 16px 0;
+  }
+  .macro-item { text-align: center; }
+  .macro-value { font-size: 20px; font-weight: 700; color: #fff; }
+  .macro-unit { font-size: 11px; color: #888; }
+  .macro-label { font-size: 11px; color: #666; margin-top: 2px; }
+
+  /* === Daily Briefing Specific === */
+  .headline {
+    font-size: 16px;
+    color: #ccc;
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .readiness-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 24px 0;
+  }
+  .day-type { text-align: center; }
+  .day-type .label { font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 4px; }
+  .day-type .value { font-size: 14px; font-weight: 600; color: #fb923c; text-transform: capitalize; }
+  .insight-card {
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+  }
+  .insight-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .insight-body h4 { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .insight-body p { font-size: 12px; color: #888; line-height: 1.5; }
+  .action-item {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    align-items: flex-start;
+  }
+  .action-priority {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #3a2a1a;
+    color: #fb923c;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .action-text h4 { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .action-text p { font-size: 12px; color: #666; line-height: 1.4; }
+  .plan-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #ccc;
+    margin: 4px;
+  }
+  .plan-tag .plan-type { font-size: 10px; color: #666; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>☀️ Daily Briefing</h1>
+  <div class="subtitle" id="briefing-date"></div>
+</div>
+
+<div class="headline" id="headline"></div>
+
+<div class="readiness-row">
+  <div class="gauge">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#1a1a1a" stroke-width="8"/>
+      <circle id="gauge-arc" cx="60" cy="60" r="50" fill="none" stroke="#fb923c" stroke-width="8"
+        stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round"/>
+    </svg>
+    <div class="gauge-label">
+      <div class="gauge-value" id="gauge-value">—</div>
+      <div class="gauge-sub">Readiness</div>
+    </div>
+  </div>
+  <div class="day-type">
+    <div class="label">Day Type</div>
+    <div class="value" id="day-type">—</div>
+  </div>
+</div>
+
+<div class="section" id="section-highlights">
+  <h2>Yesterday's Highlights</h2>
+  <div id="highlights-container"></div>
+</div>
+
+<div class="section" id="section-priorities">
+  <h2>Today's Priorities</h2>
+  <div id="priorities-container"></div>
+</div>
+
+<div class="section" id="section-plans">
+  <h2>Today's Plans</h2>
+  <div id="plans-container" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+</div>
+
+<div class="section" id="section-insights">
+  <h2>💡 Cross-Domain Insight</h2>
+  <div id="insights-container"></div>
+</div>
+
+<div class="footer">BestYou × OpenClaw</div>
+
+<script>
+(function() {
+  var DAY_TYPE_ICONS = {
+    recovery: '🔄',
+    push: '🔥',
+    rest: '😴',
+    active: '💪',
+    moderate: '⚖️'
+  };
+
+  function scoreColor(score) {
+    if (score == null) return '#666';
+    if (score >= 70) return '#4ade80';
+    if (score >= 40) return '#fb923c';
+    return '#f87171';
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    var parts = dateStr.split('-');
+    var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function el(id) { return document.getElementById(id); }
+
+  function clearChildren(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function renderInsightCard(item) {
+    var div = document.createElement('div');
+    div.className = 'insight-card';
+
+    var iconDiv = document.createElement('div');
+    iconDiv.className = 'insight-icon';
+    iconDiv.textContent = item.icon || '';
+    div.appendChild(iconDiv);
+
+    var bodyDiv = document.createElement('div');
+    bodyDiv.className = 'insight-body';
+
+    var h4 = document.createElement('h4');
+    h4.textContent = item.text || item.shortSummary || '';
+    bodyDiv.appendChild(h4);
+
+    var p = document.createElement('p');
+    p.textContent = item.detail || item.fullInsight || '';
+    bodyDiv.appendChild(p);
+
+    div.appendChild(bodyDiv);
+    return div;
+  }
+
+  function renderData(data) {
+    var b = data && data.briefing && data.briefing.briefing;
+    if (!b) {
+      el('headline').textContent = 'No briefing data available.';
+      el('section-highlights').style.display = 'none';
+      el('section-priorities').style.display = 'none';
+      el('section-plans').style.display = 'none';
+      el('section-insights').style.display = 'none';
+      return;
+    }
+
+    // Date
+    var dateStr = data.briefing.date || '';
+    el('briefing-date').textContent = formatDate(dateStr);
+
+    // Headline
+    el('headline').textContent = b.headline || '';
+
+    // Readiness gauge
+    var score = b.readinessScore;
+    var color = scoreColor(score);
+    var arc = el('gauge-arc');
+    if (score != null) {
+      arc.setAttribute('stroke', color);
+      arc.setAttribute('stroke-dashoffset', String(314 - (314 * score / 100)));
+      el('gauge-value').textContent = String(score);
+      el('gauge-value').style.color = '#fff';
+    } else {
+      arc.setAttribute('stroke-dashoffset', '314');
+      el('gauge-value').textContent = '—';
+    }
+
+    // Day type
+    var dt = b.dayType || '';
+    var dtIcon = DAY_TYPE_ICONS[dt.toLowerCase()] || '';
+    el('day-type').textContent = (dtIcon ? dtIcon + ' ' : '') + dt;
+    el('day-type').style.color = color;
+
+    // Yesterday's highlights + areas
+    var highlightsEl = el('highlights-container');
+    clearChildren(highlightsEl);
+    var sectionHighlights = el('section-highlights');
+    var items = [];
+    if (b.yesterday) {
+      if (b.yesterday.highlights) items = items.concat(b.yesterday.highlights);
+      if (b.yesterday.areas) items = items.concat(b.yesterday.areas);
+    }
+    if (items.length === 0) {
+      sectionHighlights.style.display = 'none';
+    } else {
+      sectionHighlights.style.display = '';
+      items.forEach(function(item) {
+        highlightsEl.appendChild(renderInsightCard(item));
+      });
+    }
+
+    // Today's priorities
+    var prioritiesEl = el('priorities-container');
+    clearChildren(prioritiesEl);
+    var sectionPriorities = el('section-priorities');
+    var actions = (b.today && b.today.topActions) || [];
+    if (actions.length === 0) {
+      sectionPriorities.style.display = 'none';
+    } else {
+      sectionPriorities.style.display = '';
+      actions.forEach(function(action) {
+        var div = document.createElement('div');
+        div.className = 'action-item';
+
+        var priorityDiv = document.createElement('div');
+        priorityDiv.className = 'action-priority';
+        priorityDiv.textContent = action.priority || '';
+        div.appendChild(priorityDiv);
+
+        var textDiv = document.createElement('div');
+        textDiv.className = 'action-text';
+
+        var h4 = document.createElement('h4');
+        h4.textContent = (action.icon ? action.icon + ' ' : '') + (action.shortTitle || '');
+        textDiv.appendChild(h4);
+
+        var p = document.createElement('p');
+        p.textContent = action.fullDetail || '';
+        textDiv.appendChild(p);
+
+        div.appendChild(textDiv);
+        prioritiesEl.appendChild(div);
+      });
+    }
+
+    // Today's plans
+    var plansEl = el('plans-container');
+    clearChildren(plansEl);
+    var sectionPlans = el('section-plans');
+    var plans = (b.today && b.today.scheduledPlans) || [];
+    if (plans.length === 0) {
+      sectionPlans.style.display = 'none';
+    } else {
+      sectionPlans.style.display = '';
+      var planIcons = { fitness: '🏃', meal: '🥗', mindfulness: '🧘', sleep: '😴' };
+      plans.forEach(function(plan) {
+        var div = document.createElement('div');
+        div.className = 'plan-tag';
+
+        var icon = planIcons[plan.planType] || '📋';
+        var iconSpan = document.createElement('span');
+        iconSpan.textContent = icon;
+        div.appendChild(iconSpan);
+
+        var infoSpan = document.createElement('span');
+        var nameText = document.createTextNode(plan.planName || '');
+        infoSpan.appendChild(nameText);
+
+        var br = document.createElement('br');
+        infoSpan.appendChild(br);
+
+        var typeSpan = document.createElement('span');
+        typeSpan.className = 'plan-type';
+        typeSpan.textContent = plan.dayLabel || '';
+        infoSpan.appendChild(typeSpan);
+
+        div.appendChild(infoSpan);
+        plansEl.appendChild(div);
+      });
+    }
+
+    // Cross-domain insights
+    var insightsEl = el('insights-container');
+    clearChildren(insightsEl);
+    var sectionInsights = el('section-insights');
+    var insights = b.insightCards || [];
+    if (insights.length === 0) {
+      sectionInsights.style.display = 'none';
+    } else {
+      sectionInsights.style.display = '';
+      insights.forEach(function(insight) {
+        var div = document.createElement('div');
+        div.className = 'card';
+
+        var h3 = document.createElement('h3');
+        h3.textContent = insight.shortSummary || '';
+        div.appendChild(h3);
+
+        var p = document.createElement('p');
+        p.className = 'text-muted';
+        p.style.marginTop = '8px';
+        p.style.lineHeight = '1.6';
+        p.textContent = insight.fullInsight || '';
+        div.appendChild(p);
+
+        insightsEl.appendChild(div);
+      });
+    }
+  }
+
+  // Global injection point for agents
+  window.loadData = function(json) {
+    var data = (typeof json === 'string') ? JSON.parse(json) : json;
+    renderData(data);
+  };
+
+  // Template is populated at runtime via window.loadData(json)
+  // No standalone preview — agent injects live MCP data before presenting via canvas
+})();
+</script>
+</body>
+</html>

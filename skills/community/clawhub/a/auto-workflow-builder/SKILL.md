@@ -1,35 +1,54 @@
----
-name: "Auto Workflow Builder"
-description: "Create and manage automated workflows visually with drag-and-drop triggers, actions, conditions, and 100+ integrations without coding."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-workflow-builder"
-sourceUrl: "https://clawhub.ai/skills/auto-workflow-builder"
----
-
 # Auto Workflow Builder
 
-> Create and manage automated workflows visually with drag-and-drop triggers, actions, conditions, and 100+ integrations without coding.
+Build automated workflows without writing code.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-workflow-builder`
-- **Source URL:** [https://clawhub.ai/skills/auto-workflow-builder](https://clawhub.ai/skills/auto-workflow-builder)
+## Features
 
-## Overview
+- **Visual Workflow Builder** - Drag and drop connections
+- **100+ Integrations** - APIs, webhooks, schedules
+- **Triggers** - Webhooks, schedules, events
+- **Actions** - Send email, HTTP requests, database operations
+- **Conditions** - If/else logic, filters
+- **History** - Execution logs and debugging
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/auto-workflow-builder
+# Create workflow
+./workflow.sh create my-workflow
+
+# Add trigger
+./workflow.sh add-trigger my-workflow schedule "*/5 * * * *"
+
+# Add action
+./workflow.sh add-action my-workflow http "https://api.example.com"
+
+# Run
+./workflow.sh run my-workflow
 ```
+
+## Triggers Supported
+
+- Schedule (cron)
+- Webhook
+- HTTP
+- Database changes
+- File changes
+
+## Actions Supported
+
+- HTTP Requests
+- Email
+- SMS
+- Database
+- Slack/Discord notifications
+- AWS Lambda
+
+## Requirements
+
+- Node.js 18+
+- Redis (optional)
+
+## Author
+
+Sunshine-del-ux

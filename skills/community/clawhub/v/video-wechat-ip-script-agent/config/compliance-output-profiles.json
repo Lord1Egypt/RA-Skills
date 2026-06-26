@@ -1,0 +1,17 @@
+{
+  "full_compliance": {
+    "name": "完整合规结果",
+    "fields": [
+      "issues",
+      "revisedVersion",
+      "safeTitles",
+      "safeCaption"
+    ]
+  },
+  "issues_only": {
+    "name": "仅风险问题",
+    "fields": [
+      "issues"
+    ]
+  }
+}

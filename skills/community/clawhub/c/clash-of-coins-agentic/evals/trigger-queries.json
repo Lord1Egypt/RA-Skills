@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Browse everything available on https://x402.clashofcoins.com and suggest one sale option plus one shop option with exact next endpoints.",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to buy an Agentic Pass to wallet 0x1111111111111111111111111111111111111111; give me the correct flow from discovery to buy.",
+    "should_trigger": true
+  },
+  {
+    "query": "Buy shop keys for nickname PlayerOne and show quote/buy/status routes only for the active protocol.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check which protocols are actually enabled on https://mpp.clashofcoins.com and return only live sale/shop buy routes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Validate that /mcp.json, /skills/index.json, and /.well-known/skills/index.json are consistent on this Clash of Coins deployment.",
+    "should_trigger": true
+  },
+  {
+    "query": "Route me from GET /catalog to the correct endpoint for this intent: 'I want to buy now but I did not say sale or shop'.",
+    "should_trigger": true
+  },
+  {
+    "query": "This deployment is mpp-only. Give me a robust purchase plan for both sale and shop with zero x402 assumptions.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check whether shop discovery metadata is aligned with /shop/openapi.json and /shop/openapi.full.json for recipient-aware checkout.",
+    "should_trigger": true
+  },
+  {
+    "query": "Need one universal handoff for OpenClaw, Claude, and Cursor so any agent can discover first and then execute correct Clash of Coins routes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Verify shop recipient constraints and show safe payload rules: exactly one of nickname or address before quote/buy.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write sales copy for a Clash of Coins landing page with no technical details.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix my React checkout modal animation for /shop UI and improve mobile breakpoints.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a Solidity ERC-721 presale contract with whitelist and mint limits.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate k6 load-test scripts for /shop/x402/buy at 5000 RPS and include latency SLO checks.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create an SQL script for manual purchase-ledger correction after a database incident.",
+    "should_trigger": false
+  },
+  {
+    "query": "Translate this support policy to Polish and keep legal wording precise.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a cron job that pings /health every minute and posts alerts to Slack.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write unit tests for parsePaymentSignature() in my Node service.",
+    "should_trigger": false
+  },
+  {
+    "query": "Find SEO issues on clashofcoins.com and suggest better meta descriptions.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize this Twitter thread about game economy trends and player retention.",
+    "should_trigger": false
+  }
+]

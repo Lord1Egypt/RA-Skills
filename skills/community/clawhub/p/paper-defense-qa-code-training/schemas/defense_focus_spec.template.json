@@ -1,0 +1,58 @@
+{
+  "paper_id": "",
+  "paper_slug": "",
+  "paper_title": "",
+  "venue": "",
+  "year": "",
+  "paper_subfield": "",
+  "defense_context": "lab_meeting",
+  "target_audience": [
+    "advisor",
+    "peer",
+    "reviewer"
+  ],
+  "available_time_minutes": 30,
+  "expected_qna_minutes": 30,
+  "risk_tolerance": "conservative",
+  "input_artifacts": {
+    "deep_read_report_path": "",
+    "paper_pdf_path": "",
+    "supplement_path": "",
+    "openreview_digest_path": "",
+    "code_repo_path": "",
+    "training_logs_dir": "",
+    "configs_dir": "",
+    "checkpoints_dir": "",
+    "slides_path": ""
+  },
+  "known_weaknesses": [],
+  "known_sensitive_points": [],
+  "must_prepare_axes": [
+    "novelty",
+    "soundness",
+    "experiments",
+    "code",
+    "training",
+    "reproducibility",
+    "limitations"
+  ],
+  "output_language": "zh-CN",
+  "visual_mode": {
+    "enabled": false,
+    "text_first_then_image": true,
+    "target_environment": "chatgpt_web | codex_cli | api_pipeline",
+    "preferred_image_model": "Codex imagegen skill first when running inside Codex; otherwise ChatGPT Images 2.0 / gpt-image-2 when available",
+    "series_style": "clean academic infographic, PPT-friendly, consistent layout",
+    "aspect_ratio": "16:9",
+    "max_cards": 12,
+    "prioritize_questions": [
+      "P0",
+      "P1",
+      "code",
+      "training",
+      "reproducibility",
+      "limitations"
+    ],
+    "exact_text_policy": "overlay exact equations/code/text outside generated image when precision matters"
+  }
+}

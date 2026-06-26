@@ -1,35 +1,29 @@
 ---
-name: "CSV Stats Analyzer"
-description: "Analyzes any CSV file and returns row count, column names, and basic statistics for numeric columns."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/c4s-csv-stats-analyzer"
-sourceUrl: "https://clawhub.ai/skills/c4s-csv-stats-analyzer"
+name: csv-stats-analyzer
+description: Analyzes any CSV file and returns row count, column names, and basic statistics for numeric columns.
+user-invocable: true
+metadata:
+  emoji: 📊
+  requires:
+    bins: ["uv"]
 ---
 
-# CSV Stats Analyzer
+## Usage
 
-> Analyzes any CSV file and returns row count, column names, and basic statistics for numeric columns.
+Invoke with: `/csv-stats-analyzer <path-to-csv-file>`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/c4s-csv-stats-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/c4s-csv-stats-analyzer](https://clawhub.ai/skills/c4s-csv-stats-analyzer)
+Example: `/csv-stats-analyzer ./sales.csv`
 
-## Overview
+## Features
 
+- Shows total rows and columns
+- Lists all column names
+- Calculates min, max, and average for every numeric column
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/c4s-csv-stats-analyzer
-```
+## Rules
+
+- The CSV must exist and be readable.
+- Use the helper script at {baseDir}/analyzer.py
+- Run it with: uv run --with pandas {baseDir}/analyzer.py [csv-path]
+- Return the output in a clean, readable format with emojis.
+- Never modify the original CSV file.

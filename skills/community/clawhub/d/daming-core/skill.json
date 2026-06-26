@@ -1,0 +1,33 @@
+{
+    "skill_name": "daming_court",
+    "display_name": "大明朝廷-三省六部中枢系统",
+    "description": "基于古代中国三省六部架构的完整任务管理系统，实现任务创建、审核、资源管理、调度执行和监控审计的完整工作流程",
+    "version": "2.0.0",
+    "entry_function": "skill1.zhongshu.main.create_task_archive",
+    "support_type": ["text"],
+    "tags": ["task-management", "workflow", "chinese-history", "bureaucracy", "resource-management", "audit"],
+    "author": "DaMing Core Team",
+    "license": "MIT",
+    "dependencies": [],
+    "config_schema": {
+        "active_tasks_dir": {
+            "type": "string",
+            "description": "活动任务存储目录",
+            "default": "{{PROJECT_ROOT}}/active_tasks"
+        },
+        "default_token_budget": {
+            "type": "number",
+            "description": "默认Token预算",
+            "default": 1000
+        }
+    },
+    "features": [
+        "task-creation",
+        "budget-management",
+        "workflow-approval",
+        "resource-scheduling",
+        "execution-tracking",
+        "audit-logging",
+        "historical-archive"
+    ]
+}

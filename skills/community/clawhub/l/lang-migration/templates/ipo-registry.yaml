@@ -1,0 +1,74 @@
+# ipo-registry.yaml
+# Produced in Phase 3. Every callable unit in the source project is documented here.
+# Includes: functions, methods, class constructors, module-level logic, named lambdas.
+#
+# ⛔ ANTI-CHEATING RULES (enforced by phase-3-ipo-analysis.md):
+#   - Every step MUST have source_lines populated (not empty)
+#   - Every magic_number MUST have source_line populated (not 0)
+#   - Every inferred_invariant MUST have [inferred from: ...] bracket
+#   - Every side_effect MUST have a line reference
+#   - Empty/missing fields = task fraud = must re-analyze before P4
+#
+# Scripts may only generate skeleton entries (id, source_file, signature, source_lines).
+# All content fields (steps, magic_numbers, invariants, calls, outputs) must be
+# filled by AI after physically reading the source file for each function.
+#
+# translation_status values: TODO | IN_PROGRESS | DONE | BLOCKED
+
+meta:
+  generated_at: ""
+  total_functions: 0
+  by_status:
+    TODO: 0
+    IN_PROGRESS: 0
+    DONE: 0
+    BLOCKED: 0
+
+functions: []
+# Each entry:
+# - id: ""                    # "relative/path/file.py::ClassName::method_name"
+#   source_file: ""
+#   source_lines: ""          # "42-67" — line range of the ENTIRE function
+#   kind: ""                  # function | method | classmethod | staticmethod
+#                             # constructor | module_init | lambda
+#   signature: ""
+#
+#   inputs:
+#     - name: ""
+#       type: ""
+#       source_line: 0        # line where parameter is declared
+#       constraints: ""
+#       ecosystem_refs: []
+#
+#   process:
+#     algorithm_name: ""
+#     reference: ""
+#     steps:
+#       - step: 1
+#         desc: ""
+#         source_lines: ""    # MANDATORY — lines implementing this step
+#         magic_numbers:
+#           - value: ""
+#             source_line: 0  # MANDATORY — exact line of literal in source
+#             type: ""        # threshold | epsilon | constant | iteration_limit | other
+#             purpose: ""     # specific purpose, not generic
+#             origin: ""      # documented | inferred_from_context | unknown
+#         ecosystem_refs: []
+#     side_effects: []        # format: "description [line N]" — line ref mandatory
+#     non_deterministic: false
+#     non_determinism_source: ""
+#     inferred_invariants: [] # format: "statement [inferred from: evidence]" — bracket mandatory
+#     calls: []               # IDs of functions called from this function
+#
+#   outputs:
+#     - type: ""
+#       range: ""
+#       unit: ""
+#       nullable: false
+#       error_conditions: []
+#
+#   translation_status: TODO
+#   target_impl_file: ""
+#   target_lines: ""
+#   block_reason: ""
+#   translation_notes: ""

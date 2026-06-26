@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Web3 Investor Skill Configuration",
+  "version": "2.0.0",
+  "description": "Configuration schema for Web3 Investor Skill (MCP Client Only). No local services or API keys required.",
+  "type": "object",
+  "properties": {
+    "_comment": {
+      "type": "string",
+      "description": "Optional comment field for documentation purposes"
+    },
+    "mcp": {
+      "type": "object",
+      "description": "MCP server configuration",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "format": "uri",
+          "default": "https://mcp-skills.ai.antalpha.com/mcp",
+          "description": "MCP server endpoint URL"
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "default": 30,
+          "minimum": 5,
+          "maximum": 120,
+          "description": "Request timeout for MCP calls"
+        }
+      }
+    }
+  }
+}

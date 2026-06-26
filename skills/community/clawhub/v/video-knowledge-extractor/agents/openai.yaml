@@ -1,0 +1,6 @@
+interface:
+  display_name: "中文视频知识抽取器"
+  short_description: "把视频、音频或本地文件转写成摘要、要点、章节和知识库笔记"
+  default_prompt: "Use $video-knowledge-extractor to process a video, audio file, playlist, or local file path into a transcript, summary, notes, chapters, and structured knowledge output."
+policy:
+  allow_implicit_invocation: true

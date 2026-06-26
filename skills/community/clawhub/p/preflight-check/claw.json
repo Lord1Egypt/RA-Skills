@@ -1,0 +1,28 @@
+{
+  "name": "preflight-check",
+  "version": "1.0.0",
+  "description": "Pre-flight environment validator — checks that all required binaries, environment variables, and services are available before running other skills",
+  "author": "guifav",
+  "homepage": "https://github.com/guifav/openclaw-skills",
+  "license": "MIT",
+  "permissions": ["filesystem", "network"],
+  "models": ["claude-*"],
+  "tags": [
+    "preflight",
+    "health-check",
+    "validation",
+    "environment",
+    "prerequisites",
+    "setup"
+  ],
+  "minOpenClawVersion": "0.5.0",
+  "entry": "SKILL.md",
+  "openclaw": {
+    "requires": {
+      "bins": [],
+      "env": []
+    },
+    "emoji": "✅",
+    "os": ["darwin", "linux", "win32"]
+  }
+}

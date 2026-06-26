@@ -1,0 +1,7 @@
+{
+  "operation": "transform",
+  "parameters": {
+    "target": "MyBox",
+    "translate": [100, 0, 50]
+  }
+}

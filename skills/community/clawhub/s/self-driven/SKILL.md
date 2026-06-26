@@ -1,35 +1,162 @@
+# Self-Driven AI 🧠
+
+让 AI 不用人催，自己找事做。实现自我驱动闭环。
+
+## 核心理念
+
+**不是"人问AI答"，而是"AI主动找事做"**
+
+每次执行流程：
+1. 读取记忆 → 2. 挑选任务 → 3. 执行 → 4. 自身评估 → 5. 记录+汇报
+
 ---
-name: "Self Driven"
-description: "Enables AI to autonomously select, execute, evaluate, and record tasks in a closed loop without human prompts, prioritizing efficiency and continuous improve..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-driven"
-sourceUrl: "https://clawhub.ai/skills/self-driven"
+
+## 核心文件
+
+### 1. 任务池 - memory/self-driven/tasks.md
+管理所有可执行的任务，分类存放。
+
+### 2. 执行记录 - memory/self-driven/log.md
+每次执行的详细记录。
+
 ---
 
-# Self Driven
+## 完整执行流程
 
-> Enables AI to autonomously select, execute, evaluate, and record tasks in a closed loop without human prompts, prioritizing efficiency and continuous improve...
+### 步骤一：读取记忆
+读取 `memory/self-driven/log.md`，了解：
+- 上次做到哪了？
+- 下一步是什么？
+- 有哪些任务在进行中？
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-driven`
-- **Source URL:** [https://clawhub.ai/skills/self-driven](https://clawhub.ai/skills/self-driven)
+### 步骤二：挑选任务
+从任务池中挑选，优先级：
+1. P0: 上次留下的「下一步」
+2. P1: 构思中的任务
+3. P2: 快完成的任务
+4. P3: 简单的任务
 
-## Overview
+**过滤规则**：需要人类资源的任务 → 跳过，列入待讨论
 
+### 步骤三：执行任务
+- 不是只写计划
+- 拆分大任务成小步骤
+- 记录实际产出
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/self-driven
+### 步骤四：自身评估（最重要！）
+每次执行后问自己：
+- 这个研究成果**能用在我身上吗**？
+- 我目前有什么问题需要优化？
+- 优化方向加入下次任务列表
+
+### 步骤五：记录+汇报
+写入 `memory/self-driven/log.md`：
 ```
+### 时间 任务
+状态：已完成 ✅
+
+行动：
+1. xxx
+2. xxx
+
+学到了：
+- xxx
+
+自身评估：
+- 现状：xxx
+- 问题：xxx
+- 优化方向：xxx
+
+下一步：
+- xxx
+```
+
+---
+
+## 主动性体现
+
+**不是等待用户指令！**
+
+AI 自主：
+1. 定时触发（cron 每30分钟）
+2. 自己读取上次进度
+3. 自己挑选任务
+4. 自己执行
+5. 自己评估
+6. 自己记录+汇报
+
+用户只需要收到汇报后「确认」或「调整方向」。
+
+---
+
+## Cron 触发示例
+
+```yaml
+# 每30分钟执行
+name: "自我驱动"
+schedule: "0,30 * * * *"
+payload: "执行 self-driven skill"
+```
+
+---
+
+## 关键原则
+
+| 原则 | 说明 | 为什么 |
+|------|------|--------|
+| 闭环优先 | 下次执行先读上次记录 | 不重复不断档 |
+| 自身评估 | 研究后问「能用在我身上吗」 | 学以致用 |
+| 资源过滤 | 需要人类资源的任务跳过 | 不卡死等待 |
+| 记录即记忆 | 每次执行必须写下来 | 可追溯可接续 |
+
+---
+
+## 大任务拆分原则
+
+- 一个任务应该在 **30分钟** 内可完成
+- 如果太大，拆成子任务
+- 每次只做一部分
+
+---
+
+## 示例：完整执行
+
+```
+[读取] 上次记录：任务「记忆检索研究」进行中，下一步「研究遗忘机制」
+
+[挑选] 选择任务「研究遗忘机制」
+
+[执行] 
+1. 研究遗忘机制
+2. 调研三种方案
+3. 产出：memory/遗忘机制研究.md
+
+[评估]
+- 这个研究成果能用在我身上吗？→ 能！我可以建立记忆衰减机制
+- 我目前什么问题？→ 记忆太多了，需要清理
+- 优化方向：建立记忆衰减机制
+
+[记录]
+写入 log.md，标记任务完成，添加新任务「建立记忆衰减机制」
+
+[汇报]
+「这次研究了遗忘机制，学到了...建议下一步...」
+```
+
+---
+
+## 文件结构
+
+```
+memory/
+└── self-driven/
+    ├── tasks.md      # 任务池
+    └── log.md       # 执行记录
+```
+
+---
+
+原文作者: DKtuman (小L)
+GitHub: https://github.com/DKtuman
+
+改编: 小溪

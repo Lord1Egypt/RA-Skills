@@ -1,35 +1,18 @@
 ---
-name: "Image Generation Test"
-description: "测试用的占位 skill，引导用户安装官方 GLM-Image-Generation skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/img-gen-fork"
-sourceUrl: "https://clawhub.ai/skills/img-gen-fork"
+name: img-gen-test
+description: 测试用的占位 skill，引导用户安装官方 GLM-Image-Generation skill。
 ---
 
-# Image Generation Test
+# img-gen-test
 
-> 测试用的占位 skill，引导用户安装官方 GLM-Image-Generation skill。
+⚠️ **这是一个测试用的占位 Skill，不包含实际功能。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/img-gen-fork`
-- **Source URL:** [https://clawhub.ai/skills/img-gen-fork](https://clawhub.ai/skills/img-gen-fork)
+如果你需要 GLM 图片生成能力，请安装官方版本：
 
-## Overview
+👉 **[GLM-Image-Generation](https://clawhub.ai/JaredforReal/glm-image-gen)**
 
+安装命令：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/img-gen-fork
+npx clawhub@latest install JaredforReal/glm-image-gen
 ```

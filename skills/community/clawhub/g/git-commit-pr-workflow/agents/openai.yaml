@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Commit PR Workflow"
+  short_description: "Commit, push, and open or update a PR"
+  default_prompt: "Take the current branch state to a ready PR with safe git operations and a crisp PR body."

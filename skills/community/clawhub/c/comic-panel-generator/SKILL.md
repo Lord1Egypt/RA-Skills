@@ -1,35 +1,34 @@
 ---
-name: "Comic Panel Generator"
-description: "Generate AI comic book panels, manga strips, and graphic novel art from text descriptions. Create anime-style comic illustrations, webcomic frames, storyboar..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/comic-panel-generator"
-sourceUrl: "https://clawhub.ai/skills/comic-panel-generator"
+name: comic-panel-generator
+description: Generate AI comic book panels, manga strips, and graphic novel art from text descriptions. Create anime-style comic illustrations, webcomic frames, storyboard panels, manga-style sequential art, and comic character scenes with dynamic compositions and bold ink outlines via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Comic Panel Generator
 
-> Generate AI comic book panels, manga strips, and graphic novel art from text descriptions. Create anime-style comic illustrations, webcomic frames, storyboar...
+Generate AI comic book panels, manga strips, and graphic novel art from text descriptions. Create anime-style comic illustrations, webcomic frames, storyboard panels, manga-style sequential art, and comic character scenes with dynamic compositions and bold ink outlines.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/comic-panel-generator`
-- **Source URL:** [https://clawhub.ai/skills/comic-panel-generator](https://clawhub.ai/skills/comic-panel-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/comic-panel-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create ai comic panel generator images.
+
+## Quick start
+```bash
+node comicpanelgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/comic-panel-generator
 ```

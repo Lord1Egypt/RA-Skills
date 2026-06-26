@@ -1,35 +1,56 @@
 ---
-name: "Pharmacology-PMPH-10edition"
-description: "基于人民卫生出版社《药理学》第10版的临床药学技能手册 — 180 项核心药理学技能"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pharmacology-pmph-10edition"
-sourceUrl: "https://clawhub.ai/skills/pharmacology-pmph-10edition"
+name: pharmacology-pmph-10edition
+description: 基于人民卫生出版社《药理学》第10版的临床药学技能手册 — 180 项核心药理学技能
+version: 1.0.0
+metadata:
+  openclaw:
+    emoji: "💊"
+    homepage: https://github.com/xllgreen/pharmacology-pmph-10edition
+    install:
+      - kind: git
+        repo: https://github.com/xllgreen/pharmacology-pmph-10edition
+        ref: main
+    os:
+      - macos
+      - linux
+      - windows
+    requires:
+      bins: []
 ---
 
-# Pharmacology-PMPH-10edition
+# 《药理学核心技能手册》Pharmacology Core Skills
 
-> 基于人民卫生出版社《药理学》第10版的临床药学技能手册 — 180 项核心药理学技能
+> *「21世纪医学生指南 — 药理学卷」*
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pharmacology-pmph-10edition`
-- **Source URL:** [https://clawhub.ai/skills/pharmacology-pmph-10edition](https://clawhub.ai/skills/pharmacology-pmph-10edition)
+基于人民卫生出版社《药理学》第10版整理，涵盖 **180 项核心药理学技能**，覆盖药物作用机制、临床合理用药、不良反应管理、特殊人群剂量调整、抗菌与抗肿瘤治疗策略、神经系统药物应用、心血管药理、内分泌与代谢药物调控、免疫调节治疗及新药研发原理等知识体系。
 
-## Overview
+## 安装
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pharmacology-pmph-10edition
+openclaw skills install pharmacology-pmph-10edition
 ```
+
+## 使用
+
+本技能包包含 180 个独立技能，每个技能对应一个文件夹，内含 `SKILL.md` 文件。通过技能索引 (`index.md`) 可快速定位所需知识点。
+
+## 技能分类
+
+| 分类 | 技能数 | 说明 |
+|------|--------|------|
+| 💊 药理学基础与研究框架 | 10 | 药理学定义、受体理论、量效关系、不良反应、药动学等 |
+| 🧠 自主神经系统药理 | 17 | 胆碱能/肾上腺素能递质、受体激动药与阻断药、局麻药等 |
+| ❤️ 心血管系统药理 | 22 | 抗心律失常、抗高血压、抗心绞痛、抗心衰药物等 |
+| 🧬 中枢神经系统药理 | 22 | 镇痛药、镇静催眠药、抗癫痫药、抗帕金森病药等 |
+| 🎭 精神与情绪障碍药物 | 8 | 抗精神病药、抗抑郁药、5-HT受体药物等 |
+| ⚖️ 内分泌与代谢药理 | 15 | 糖皮质激素、胰岛素、甲状腺药物、骨质疏松药物等 |
+| 🦠 抗菌与抗感染治疗 | 17 | β-内酰胺类、氨基糖苷类、喹诺酮类、抗真菌药等 |
+| 🦟 抗病毒与抗寄生虫药 | 6 | 抗HIV、抗流感、抗疱疹病毒、抗疟药等 |
+| 🎯 抗肿瘤与靶向治疗 | 15 | 细胞毒药物、靶向治疗、免疫治疗、ADC等 |
+| 🛡️ 免疫调节与生物制剂 | 9 | 免疫抑制剂、免疫增强剂、单克隆抗体等 |
+| 🔬 特殊药物与临床应用 | 13 | 抗痛风药、抗凝药、利尿药、电解质平衡用药等 |
+| 📚 教材与教育支持 | 18 | 教材修订原则、数字化教程、核心理论框架等 |
+
+## 许可证
+
+本项目内容基于人民卫生出版社《药理学》第10版整理，仅供学习参考。

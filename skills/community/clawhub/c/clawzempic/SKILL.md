@@ -1,35 +1,69 @@
 ---
-name: "Clawzempic"
-description: "Save 70-95% on LLM costs with smart routing, caching, and memory."
-category: "security"
-source: "ClawHub"
-tags: [anthropic, caching, cost-optimization, memory, openrouter, proxy, routing, claude, openclaw, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawzempic"
-sourceUrl: "https://clawhub.ai/skills/clawzempic"
+name: clawzempic
+version: 2.3.5
+description: Save 70-95% on LLM costs with smart routing, caching, and memory.
+author: Clawzempic
+homepage: https://clawzempic.ai
+license: MIT
+keywords: [llm, proxy, routing, caching, cost-optimization, memory, anthropic, openrouter]
+metadata:
+  openclaw:
+    emoji: "⚡"
+    category: ai-tools
+    requires:
+      env: []
 ---
 
 # Clawzempic
 
-> Save 70-95% on LLM costs with smart routing, caching, and memory.
+Drop-in LLM proxy that routes simple requests to cheaper models, caches repeated context, and adds cross-session memory. Works with Anthropic and OpenRouter keys.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawzempic`
-- **Source URL:** [https://clawhub.ai/skills/clawzempic](https://clawhub.ai/skills/clawzempic)
+## Install
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawzempic
+openclaw plugins install clawzempic
 ```
+
+The plugin handles signup, auth, and model registration automatically.
+
+Or standalone:
+
+```bash
+npx clawzempic
+```
+
+## How It Works
+
+Every request is scored for complexity in <2ms and routed to the right tier:
+
+| Tier | Traffic | Savings |
+|------|---------|---------|
+| Simple | ~45% | up to 95% |
+| Mid | ~25% | up to 80% |
+| Complex | ~20% | 0% (full quality) |
+| Reasoning | ~10% | 0% (full quality) |
+
+No LLM classifier in the hot path. Weighted multi-dimension scorer handles routing.
+
+## Memory
+
+Server-side memory across sessions. No plugins, no extra API keys, no config. Your agent doesn't need to "remember" to remember.
+
+- Recent activity (per-session)
+- Scratchpad (cross-session working notes)
+- Context windowing (per-request)
+- Core memory (permanent facts and preferences)
+- Long-term recall (embedding-based)
+
+## Verify
+
+```bash
+npx clawzempic doctor    # Check config + test connection
+npx clawzempic savings   # Savings dashboard
+```
+
+## Links
+
+- Website: https://clawzempic.ai
+- Dashboard: https://www.clawzempic.ai/dash
+- npm: https://www.npmjs.com/package/clawzempic

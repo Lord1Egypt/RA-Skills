@@ -1,0 +1,79 @@
+{
+  "updated_at": "2026-04-01",
+  "release_state": "svg_gated_preview",
+  "stock_analysis": {
+    "migrated_assets": [
+      "DATA_ACQUISITION.md",
+      "SVG_SPEC.md",
+      "EVAL.md",
+      "flow_contract.md",
+      "orchestration_contract.md",
+      "quality_gate/README.md",
+      "shared_context_template.md",
+      "orchestrator_system.md",
+      "worker_system.md",
+      "synthesizer_notes.md",
+      "modules/*"
+    ],
+    "deferred_assets": [
+      {
+        "name": "ROADMAP.md",
+        "status": "deferred",
+        "reason": "不作为当前 svg-gated preview/release gate 的实现真源"
+      },
+      {
+        "name": "CHANGELOG.md",
+        "status": "deferred",
+        "reason": "source-skill changelog 只作迁移参考，不直接进入当前 release gate"
+      }
+    ]
+  },
+  "sector_analysis": {
+    "migrated_assets": [
+      "SVG_SPEC.md",
+      "EVAL.md",
+      "flow_contract.md",
+      "orchestration_contract.md",
+      "quality_gate/README.md",
+      "shared_context_template.md",
+      "orchestrator_system.md",
+      "worker_system.md",
+      "synthesizer_notes.md",
+      "modules/*"
+    ],
+    "deferred_assets": [
+      {
+        "name": "ROADMAP.md",
+        "status": "deferred",
+        "reason": "不作为当前 svg-gated preview/release gate 的实现真源"
+      },
+      {
+        "name": "SECTOR_ANALYSIS_WHITEPAPER_v5.2.1.md",
+        "status": "deferred",
+        "reason": "whitepaper 尚未转成当前 repo 的 release-critical asset"
+      },
+      {
+        "name": "source-skill changelog set",
+        "status": "deferred",
+        "reason": "source-skill changelog 只作迁移参考，不直接进入当前 release gate"
+      }
+    ]
+  },
+  "release_baseline": {
+    "verify_commands": [
+      "cd skills/kungfu_finance && npm run check",
+      "cd skills/kungfu_finance && npm test",
+      "cd /Users/jc34/Work/kf_skill/kungfu-skills && make workflow-check"
+    ],
+    "publish_blockers": [],
+    "accepted_risks": [
+      "source-roadmap-and-changelog-not-release-critical",
+      "sector-whitepaper-not-release-critical",
+      "adapter-parity-remains-follow-up"
+    ],
+    "notes": [
+      "preview research runtimes now include repo-controlled SVG output and executable quality gates",
+      "remaining deferred assets are explicitly treated as non-release-critical follow-up material"
+    ]
+  }
+}

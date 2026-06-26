@@ -1,35 +1,22 @@
 ---
-name: "fullbackup"
-description: "Create a full local backup of the OpenClaw workspace and configuration using the existing backup-local.sh script. Use for /fullbackup in Telegram or when the user asks for a complete local backup."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fullbackup"
-sourceUrl: "https://clawhub.ai/skills/fullbackup"
+name: fullbackup
+description: Create a full local backup of the OpenClaw workspace and configuration using the existing backup-local.sh script. Use for /fullbackup in Telegram or when the user asks for a complete local backup.
 ---
 
-# fullbackup
-
-> Create a full local backup of the OpenClaw workspace and configuration using the existing backup-local.sh script. Use for /fullbackup in Telegram or when the user asks for a complete local backup.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fullbackup`
-- **Source URL:** [https://clawhub.ai/skills/fullbackup](https://clawhub.ai/skills/fullbackup)
+# Full Backup (local archive)
 
 ## Overview
+Run the local full-backup script and store the archive in `/root/.openclaw/backups`.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick start
+Run the bundled wrapper:
 ```bash
-hermes skills install clawhub/fullbackup
+bash /root/.openclaw/workspace/skills/fullbackup/scripts/full-backup.sh
 ```
+
+## Output
+Print the archive path and size.
+
+## Notes
+- The backup script already applies safe exclusions (caches/logs).
+- Do not delete older archives.

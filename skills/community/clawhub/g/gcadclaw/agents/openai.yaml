@@ -1,0 +1,4 @@
+interface:
+  display_name: "GcadClaw"
+  short_description: "Generate 2D GstarCAD drawings with feedback."
+  default_prompt: "Use $gcadclaw to create and validate 2D GstarCAD drawings through pygcadwin with mandatory screenshots and feedback artifacts."

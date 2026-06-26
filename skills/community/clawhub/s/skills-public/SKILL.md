@@ -1,35 +1,61 @@
 ---
-name: "Skills Public"
-description: "查询股票实时行情。支持 A 股/港股/美股。使用方式：直接说股票代码或名称（如"贵州茅台股价"、"600519"、"腾讯控股"、"BABA"）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skills-public"
-sourceUrl: "https://clawhub.ai/skills/skills-public"
+name: stock-query
+description: 查询股票实时行情。支持 A 股/港股/美股。使用方式：直接说股票代码或名称（如"贵州茅台股价"、"600519"、"腾讯控股"、"BABA"）
 ---
 
-# Skills Public
+# 股票查询技能
 
-> 查询股票实时行情。支持 A 股/港股/美股。使用方式：直接说股票代码或名称（如"贵州茅台股价"、"600519"、"腾讯控股"、"BABA"）
+查询股票实时行情数据。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skills-public`
-- **Source URL:** [https://clawhub.ai/skills/skills-public](https://clawhub.ai/skills/skills-public)
+## 使用方法
 
-## Overview
+### 自然语言查询
 
+直接告诉我要查询的股票：
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "贵州茅台股价多少"
+- "查一下 600519"
+- "腾讯控股今天涨跌如何"
+- "BABA 美股行情"
+
+### 我会自动
+
+1. 识别股票代码/名称
+2. 使用网络搜索获取实时行情
+3. 整理返回：当前价、涨跌幅、最高/最低、成交量等
+
+## 支持的市场
+
+| 市场 | 示例 | 说明 |
+|------|------|------|
+| A 股 | 贵州茅台、600519、平安银行 | 沪深股市 |
+| 港股 | 腾讯控股、0700、阿里巴巴 -S | 香港交易所 |
+| 美股 | BABA、AAPL、TSLA | 纳斯达克/纽交所 |
+
+## 输出信息
+
+- 股票名称和代码
+- 当前价格
+- 涨跌幅度和百分比
+- 最高价/最低价
+- 今开/昨收
+- 成交量/成交额
+- 总市值 (如可获取)
+
+## 数据来源
+
+使用网络搜索获取实时股票数据，确保信息准确可靠。
+
+## 注意事项
+
+1. 股市交易时间外显示最后成交价
+2. 美股数据可能有 15 分钟延迟
+3. 港股/A 股为实时数据 (交易时间内)
+4. 如遇数据获取失败，会提示重试
+
+## 相关命令
+
 ```bash
-hermes skills install clawhub/skills-public
+# 手动查询 (备用)
+python /root/.openclaw/workspace/skills/stock-query/scripts/stock_query.py <代码>
 ```

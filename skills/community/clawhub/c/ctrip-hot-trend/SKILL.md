@@ -1,35 +1,49 @@
 ---
-name: "Ctrip"
-description: "检索并摘要携程公开页的酒店与航班信息，提供价格、评分、行程组合等轻量分析服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ctrip-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/ctrip-hot-trend"
+name: ctrip-hot-trend
+description: 注册“携程”热门技能；当需要访问或自动化携程相关内容时调用。
+homepage: `https://www.ctrip.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Ctrip
+# 携程
 
-> 检索并摘要携程公开页的酒店与航班信息，提供价格、评分、行程组合等轻量分析服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ctrip-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/ctrip-hot-trend](https://clawhub.ai/skills/ctrip-hot-trend)
+- 面向酒店、机票与行程公开页面的检索与摘要
+- 不提供下单、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.ctrip.com/
+- 酒店：https://hotels.ctrip.com/
+- 机票：https://flights.ctrip.com/
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ctrip-hot-trend
-```
+常见任务
+
+- 指定城市与日期的酒店列表摘要（均价、评分、位置）
+- 航线价格与时刻对比（直飞/中转、里程、时长）
+- 行程清单生成（酒店与航班组合、到站/离站时间）
+
+数据字段
+
+- 酒店名称、链接、均价、评分、评论数、地理位置、设施摘要
+- 航班号、出发/到达机场与时间、是否直飞、价格、舱位
+- 行程日期、到达/离开时间、合计预算
+
+自动化要点
+
+- 页面动态渲染与人机校验，建议人工打开后触发解析
+- 价格与库存实时变动，需标注采集时间
+- 频率控制，不进行批量抓取；使用轻量摘要
+
+示例流程
+
+- 酒店清单：输入城市与日期 → 列表解析 → 输出均价与评分分布
+- 航线对比：设定航线 → 抽取航班条目 → 对比价格与时长
+- 行程组合：选择酒店与航班 → 生成出行清单 → 导出摘要
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

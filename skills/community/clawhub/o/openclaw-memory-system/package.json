@@ -1,0 +1,59 @@
+{
+  "name": "openclaw-memory-system",
+  "version": "1.0.0",
+  "description": "OpenClaw 多模态记忆系统 - 支持图片/工具记忆、项目/Agent/用户隔离、自然语言修正",
+  "main": "skills/multimodal-memory/image-memory.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "install": "node scripts/install.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw-memory-system.git"
+  },
+  "keywords": [
+    "openclaw",
+    "memory",
+    "multimodal",
+    "ai-agent",
+    "skill"
+  ],
+  "author": "刘哈娜",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openclaw/openclaw-memory-system/issues"
+  },
+  "homepage": "https://github.com/openclaw/openclaw-memory-system#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "skills/",
+    "configs/",
+    "tests/",
+    "scripts/",
+    "README.md",
+    "SKILL.md",
+    "LICENSE"
+  ],
+  "clawhub": {
+    "type": "skill",
+    "category": "memory",
+    "tags": ["记忆", "多模态", "项目隔离", "自然语言修正"],
+    "dependencies": [],
+    "configFiles": [
+      "configs/multimodal-config.json",
+      "configs/memory-namespaces.json"
+    ],
+    "skillFiles": [
+      "skills/multimodal-memory/",
+      "skills/project-memory-isolation/",
+      "skills/memory-feedback/"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

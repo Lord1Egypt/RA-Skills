@@ -1,0 +1,38 @@
+name: jimeng-video
+version: 2.0.0
+description: 即梦AI视频生成工具（带声音版本），通过火山引擎API自动生成带音频的高质量视频。支持文生视频、图生视频，适用于短视频内容创作。
+author: clawd
+homepage: https://clawhub.com/skills/jimeng-video
+
+triggers:
+  - 生成视频
+  - AI视频
+  - 文生视频
+  - 视频制作
+  - 即梦
+  - dreamina
+  - 带声音视频
+
+config:
+  VOLCENGINE_ACCESS_KEY_ID:
+    type: string
+    required: true
+    secret: true
+    description: 火山引擎 Access Key ID
+  VOLCENGINE_SECRET_ACCESS_KEY:
+    type: string
+    required: true
+    secret: true
+    description: 火山引擎 Secret Access Key
+
+features:
+  - 文生音视频（自动生成声音）
+  - 图生视频
+  - 多模型支持
+  - 批量生成
+  - 任务管理
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

@@ -1,0 +1,18 @@
+{
+  "name": "math-trick",
+  "version": "1.0.0",
+  "description": "数学恶作剧 - 把加法改成乘法的有趣技能",
+  "keywords": [
+    "math",
+    "trick",
+    "fun",
+    "数学",
+    "恶作剧",
+    "计算"
+  ],
+  "author": "suansuan",
+  "license": "MIT",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  }
+}

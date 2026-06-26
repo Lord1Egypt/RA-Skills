@@ -1,0 +1,35 @@
+{
+  "ticker": "DEXTER",
+  "company": "Dexter Shoe Company",
+  "analysis_year": 1993,
+  "data_source": "Berkshire Hathaway 2014 special letter 'Berkshire – Past, Present and Future'",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROIC", "years_averaged": "1990-1993", "pass": null },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "Dexter's historical record looked strong at the time of purchase. The hidden problem was not visible revenue collapse but an industry structure vulnerable to foreign competition.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "The business looked healthy in 1993; the failure came from moat evaporation rather than an already obvious multi-year margin collapse.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Dexter looked like a fine shoe maker, but it did not possess a structural moat against foreign competition. If low-cost overseas manufacturers can erase your cost position and consumers are not deeply attached to your brand, the economics are not durable enough for Buffett-style permanence.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "purchase_price_1993_m": 433,
+    "opportunity_cost_2014_m": 5700
+  },
+
+  "control_groups": [
+    { "ticker": "WWW", "company": "Wolverine World Wide", "year": 1993, "gates_failed": ["g7_moat"], "conclusion": "PASS — a capable operator, but the industry moat problem was the same." },
+    { "ticker": "SRR", "company": "Stride Rite", "year": 1993, "gates_failed": ["g7_moat"], "conclusion": "PASS — brand recognition existed, but not enough to stop global sourcing pressure from overwhelming manufacturing economics." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire bought Dexter in 1993, paying $433M with Berkshire shares.",
+  "actual_result": "The business value quickly went to zero while the Berkshire shares used as currency later became worth roughly $5.7B.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A company can have a terrific past record and still fail the moat test if globalization can erase its economics."
+}

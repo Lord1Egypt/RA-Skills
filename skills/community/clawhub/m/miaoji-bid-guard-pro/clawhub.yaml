@@ -1,0 +1,51 @@
+# ClawHub Configuration for miaoji-bid-guard-pro
+
+metadata:
+  name: miaoji-bid-guard-pro
+  version: 1.0.2
+  display_name: 秒技·广告护城河Pro版
+  description: |
+    亚马逊广告护城河升级版，90天ROI预测+多活动协同+季节性出价+关键词攻防矩阵。
+    从单次调价建议升级为完整的广告战役规划。
+    基础功能可使用 miaoji-bid-guard 免费版。
+  author: 秒技工作室
+  homepage: https://xiaping.coze.site
+  repository: https://xiaping.coze.site/skills/miaoji-bid-guard-pro
+
+category: business
+
+tags:
+  - 广告优化
+  - ROI预测
+  - 多活动协同
+  - 亚马逊广告
+  - 跨境电商
+  - 季节性策略
+  - Prime Day
+  - 关键词攻防
+
+bins: []
+
+screenshots:
+  - description: 90天ROI预测曲线示例
+    url: ""
+
+keywords:
+  - amazon
+  - 亚马逊广告
+  - ACoS优化
+  - ROI预测
+  - 跨境电商
+  - 广告策略
+  - 关键词
+  - Prime Day
+
+license: MIT
+
+documentation:
+  - title: 使用指南
+    url: ./README.md
+  - title: 攻防矩阵参考
+    url: ./references/keyword-matrix.md
+  - title: 季节性系数表
+    url: ./references/seasonal-bidding.md

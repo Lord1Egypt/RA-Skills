@@ -1,0 +1,37 @@
+{
+  "ticker": "WPC",
+  "company": "The Washington Post Company",
+  "analysis_year": 1973,
+  "data_source": "Berkshire Hathaway 1985 and 1986 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": null, "metric_used": "ROE", "years_averaged": "1971-1973", "pass": null },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": null, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/Capital", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "Buffett wrote that through 1973 and 1974 WPC continued to do fine as a business while intrinsic value kept climbing.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "The newspaper and media franchise was not showing operating deterioration at the time Berkshire bought; the opportunity came from market panic, not business decay.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "PASS", "moat_type": "network_effect", "description": "The Washington Post combined local monopoly economics, brand trust, and scarce media assets in a way that gave it durable pricing power with both readers and advertisers. Buffett's core observation was that the market value had fallen to about $100M even though knowledgeable observers would have valued the business at $400M-$500M.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "market_value_1973_m": 100,
+    "intrinsic_value_range_low_m": 400,
+    "intrinsic_value_range_high_m": 500,
+    "berkshire_cost_1984_m": 10.628
+  },
+
+  "control_groups": [
+    { "ticker": "NYT", "company": "The New York Times Company", "year": 1973, "gates_failed": ["g6_earnings_yield"], "conclusion": "PASS — quality media asset, but not available at anything like the Washington Post discount." },
+    { "ticker": "GCI", "company": "Gannett", "year": 1973, "gates_failed": ["g7_moat"], "conclusion": "PASS — a solid operator, but the local-monopoly economics and bargain valuation setup were not comparable." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire built its Washington Post stake in 1973 at no more than about one-fourth of business value.",
+  "actual_result": "A historic multidecade winner and one of Buffett's clearest Graham-meets-quality triumphs.",
+  "verdict": "✅ aligned",
+  "key_insight": "This was a wonderful business available at a Graham discount, a rare combination that Buffett never forgot."
+}

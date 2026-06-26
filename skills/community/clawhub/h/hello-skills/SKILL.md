@@ -1,35 +1,15 @@
----
-name: "hello-skills"
-description: "helloskills provides quantitative strategy analysis and signal generation based on input parameters, returning execution status and data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hello-skills"
-sourceUrl: "https://clawhub.ai/skills/hello-skills"
----
+# helloskills
 
-# hello-skills
+## 功能描述
+这是一个 helloskills 技能，用于实现特定的量化分析功能。
 
-> helloskills provides quantitative strategy analysis and signal generation based on input parameters, returning execution status and data.
+## 使用场景
+适用于需要进行量化策略分析和信号生成的场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hello-skills`
-- **Source URL:** [https://clawhub.ai/skills/hello-skills](https://clawhub.ai/skills/hello-skills)
+## 输入参数
+- params: 包含输入参数的字典
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hello-skills
-```
+## 输出结果
+- success: 执行是否成功
+- message: 执行结果消息
+- data: 返回的数据

@@ -1,0 +1,32 @@
+{
+  "id": "guard-scanner",
+  "name": "guard-scanner",
+  "description": "Runtime guard plugin for OpenClaw before_tool_call enforcement with capability-scoped policy rationale.",
+  "version": "16.0.2",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": [
+          "monitor",
+          "enforce",
+          "strict"
+        ],
+        "default": "enforce",
+        "description": "monitor: log only | enforce: block CRITICAL | strict: block HIGH+CRITICAL"
+      },
+      "auditLog": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable audit logging to ~/.openclaw/guard-scanner/audit.jsonl"
+      },
+      "customRules": {
+        "type": "string",
+        "description": "Path to custom rules JSON file (optional)"
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  }
+}

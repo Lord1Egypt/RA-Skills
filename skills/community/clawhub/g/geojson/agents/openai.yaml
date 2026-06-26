@@ -1,0 +1,7 @@
+interface:
+  display_name: "GeoJSON"
+  short_description: "Inspect and validate GeoJSON safely."
+  default_prompt: "Use $geojson to summarize a GeoJSON file or payload, count geometry types, compute bbox, and report obvious coordinate issues."
+
+policy:
+  allow_implicit_invocation: true

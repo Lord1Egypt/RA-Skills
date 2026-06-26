@@ -1,0 +1,1 @@
+﻿This is a test file that contains multiple lines of text. The quick brown fox jumps over the lazy dog. Today is a good day for compression.

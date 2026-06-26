@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ICT Custom Rule Schema",
+  "description": "自定义安全检测规则格式",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "规则版本"
+    },
+    "rules": {
+      "type": "array",
+      "description": "规则列表",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "pattern", "severity"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "规则唯一标识"
+          },
+          "name": {
+            "type": "string",
+            "description": "规则名称"
+          },
+          "description": {
+            "type": "string",
+            "description": "规则描述"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "正则表达式"
+          },
+          "languages": {
+            "type": "array",
+            "description": "适用的语言",
+            "items": {
+              "type": "string",
+              "enum": ["py", "sh", "js", "ts", "all"]
+            }
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"]
+          },
+          "whitelist": {
+            "type": "array",
+            "description": "白名单模式",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["version", "rules"]
+}

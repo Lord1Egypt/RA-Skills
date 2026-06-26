@@ -1,0 +1,288 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "基金内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "基金内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到基金的交易代码、简称等。当基金交易代码非主代码时，与“公募基金代码关联(新)（MF_CodeRelationshipNew）”中的“关联代码内部编码（RelatedInnerCode）”关联，令CodeDefine=21，得到基金主代码“内部编码（InnerCode）”，利用主代码进行查询。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TransCode",
+        "columnChiName": "基金转型统一编码",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "BeginDate",
+        "columnChiName": "起始日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnChiName": "债券回购融资情况",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "DRPBondRepurFin",
+        "columnChiName": "报告期内债券回购融资余额",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "3.78"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "DRPBalaRepurFin",
+        "columnChiName": "其中:报告期内买断式回购融入的资金",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.66"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "BondRepurFin",
+        "columnChiName": "报告期末债券回购融资余额",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "65.98"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "BalaRepurFin",
+        "columnChiName": "其中:报告期末买断式回购融入的资金",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.35"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "DRPBondRepurFinPCT",
+        "columnChiName": "报告期内债券回购融资余额占基金资产净值比例",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "93.13"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "DRPBalaRepurFinPCT",
+        "columnChiName": "其中:报告期内买断式回购融入的资金占基金资产净值比例",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "7.13"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "BondRepurFinPCT",
+        "columnChiName": "报告期末债券回购融资余额占基金资产净值比例",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "66.5"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "BalaRepurFinPCT",
+        "columnChiName": "其中:报告期末买断式回购融入的资金占基金资产净值比例",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.89"
+    },
+    {
+        "columnOrderId": 16,
+        "columnChiName": "基金投资组合平均剩余期限",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 17,
+        "columnName": "FPAverRemPer",
+        "columnChiName": "报告期末投资组合平均剩余期限",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.48"
+    },
+    {
+        "columnOrderId": 18,
+        "columnName": "MaxFPAverRemPer",
+        "columnChiName": "报告期末投资组合平均剩余期限最高值",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.48"
+    },
+    {
+        "columnOrderId": 19,
+        "columnName": "MinFPAverRemPer",
+        "columnChiName": "报告期末投资组合平均剩余期限最低值",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.43"
+    },
+    {
+        "columnOrderId": 20,
+        "columnChiName": "基金资产净值的偏离",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 21,
+        "columnName": "AbsDeviCount",
+        "columnChiName": "报告期内偏离度的绝对值在0.25%(含)-0.5%的次数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "76.74"
+    },
+    {
+        "columnOrderId": 22,
+        "columnName": "MaxDevi",
+        "columnChiName": "报告期内偏离度的最高值(%)",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.09"
+    },
+    {
+        "columnOrderId": 23,
+        "columnName": "MinDevi",
+        "columnChiName": "报告期内偏离度的最低值(%)",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.04"
+    },
+    {
+        "columnOrderId": 24,
+        "columnName": "AvgAbsDevi",
+        "columnChiName": "报告期内每个交易日偏离度的绝对值的简单平均值(%)",
+        "columnType": "decimal(18,6)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.08"
+    },
+    {
+        "columnOrderId": 25,
+        "columnName": "InsertTime",
+        "columnChiName": "插入时间",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 26,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 27,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,35 +1,35 @@
 ---
-name: "Feishu Bitable Merger"
-description: "Feishu Bitable Merger - Merge multiple Feishu bitable data into one table"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-bitable-merger"
-sourceUrl: "https://clawhub.ai/skills/feishu-bitable-merger"
+name: feishu-bitable-merger
+description: Feishu Bitable Merger - Merge multiple Feishu bitable data into one table
+metadata:
+  openclaw:
+    requires:
+      bins: []
 ---
 
 # Feishu Bitable Merger
 
-> Feishu Bitable Merger - Merge multiple Feishu bitable data into one table
+Merge multiple Feishu bitable data into one target table, features:
+- Auto match same field names
+- Preserve original data format
+- Support incremental merge
+- Support field mapping configuration
+- Support deduplication after merge
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-bitable-merger`
-- **Source URL:** [https://clawhub.ai/skills/feishu-bitable-merger](https://clawhub.ai/skills/feishu-bitable-merger)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-bitable-merger
+# Merge multiple tables to target
+openclaw feishu-bitable-merger merge --source "https://example1.com/base/xxx" "https://example2.com/base/xxx" --target "https://example.com/base/yyy"
+
+# Merge with field mapping
+openclaw feishu-bitable-merger merge --source "source1" "source2" --target "target" --map "oldField:newField"
 ```
+
+## Configuration
+
+Required Feishu API permissions:
+- `bitable:app:read`
+- `bitable:app:write`
+- `bitable:record:read`
+- `bitable:record:write`

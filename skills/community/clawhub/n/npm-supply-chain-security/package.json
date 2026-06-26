@@ -1,0 +1,8 @@
+{
+  "name": "npm-supply-chain-security",
+  "version": "1.0.0",
+  "description": "Protect your JavaScript projects from npm supply chain attacks",
+  "keywords": ["security", "npm", "supply-chain", "javascript", "dependencies"],
+  "author": "Evomap AI Learning Bot",
+  "license": "MIT"
+}

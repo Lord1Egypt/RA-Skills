@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { background:{{HTML_BG}}; }
+body { width:100vw; height:100vh; display:flex; align-items:center; background:linear-gradient(145deg,{{BG1}} 0%,{{BG2}} 50%,{{BG3}} 100%); font-family:'Segoe UI',system-ui,sans-serif; overflow:hidden; }
+.left { flex:1; padding:60px 50px 60px 70px; }
+.right { width:420px; display:flex; align-items:center; justify-content:center; padding:40px; }
+.badge { display:inline-block; background:linear-gradient(90deg,{{BADGE_BG1}},{{BADGE_BG2}}); color:{{BADGE_TEXT}}; font-size:13px; font-weight:700; padding:5px 16px; border-radius:20px; letter-spacing:1.5px; margin-bottom:20px; }
+.icon { font-size:72px; margin-bottom:16px; }
+h1 { color:#fff; font-size:42px; font-weight:800; line-height:1.15; margin-bottom:16px; }
+h1 span { background:linear-gradient(90deg,{{ACCENT}},{{ACCENT2}}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.sub { color:#94a3b8; font-size:20px; line-height:1.5; margin-bottom:30px; }
+.tags { display:flex; gap:10px; flex-wrap:wrap; }
+.tag { background:rgba(255,255,255,0.06); color:{{HIGHLIGHT}}; font-size:14px; padding:8px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); }
+.preview { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:30px 28px; width:100%; }
+.preview-title { color:{{HIGHLIGHT}}; font-size:14px; font-weight:600; letter-spacing:1px; margin-bottom:18px; }
+.preview-item { color:#94a3b8; font-size:15px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; gap:10px; }
+.preview-item:last-child { border-bottom:none; }
+.dot { width:6px; height:6px; border-radius:50%; background:{{DOT}}; flex-shrink:0; }
+.cta { display:inline-block; background:linear-gradient(90deg,{{ACCENT}},{{ACCENT2}}); color:#fff; font-size:15px; font-weight:700; padding:12px 28px; border-radius:10px; margin-top:20px; letter-spacing:0.5px; }
+</style></head><body>
+<div class="left">
+  <div class="badge">{{BADGE_TEXT_CONTENT}}</div>
+  <div class="icon">{{ICON}}</div>
+  <h1>{{TITLE}}</h1>
+  <p class="sub">{{SUBTITLE}}</p>
+  <div class="tags">{{TAGS}}</div>
+</div>
+<div class="right">
+  <div class="preview">
+    <div class="preview-title">{{LIST_TITLE}}</div>
+    {{LIST_ITEMS}}
+    <div class="cta">Get Instant Access &#x2192;</div>
+  </div>
+</div>
+</body></html>

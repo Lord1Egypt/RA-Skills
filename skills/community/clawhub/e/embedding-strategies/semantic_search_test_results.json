@@ -1,0 +1,145 @@
+{
+  "timestamp": "2026-03-13T12:07:42.569032",
+  "test_queries": [
+    [
+      "瀑布",
+      "找到 2 月 20 日关于天台瀑布的对话"
+    ],
+    [
+      "TTS 使用规范",
+      "找到 3 月 9 日关于 TTS 最佳实践的记录"
+    ],
+    [
+      "供应商直连系统",
+      "找到项目进度相关记录"
+    ],
+    [
+      "表情图片发送",
+      "找到表情图片相关的偏好设置"
+    ],
+    [
+      "向量数据库",
+      "找到 Embedding 配置相关记录"
+    ]
+  ],
+  "results": [
+    {
+      "query": "瀑布",
+      "expected": "找到 2 月 20 日关于天台瀑布的对话",
+      "results": [
+        {
+          "source": "memory\\2026-02-20.md",
+          "content": "# 2026-02-20 - First Session\n\n## First Interaction\n- User asked: \"今天去天台瀑布好吗\" (Is it good to go to the rooftop waterfall today?)\n- This is my first session with Xiabi\n- I established my identity as Cla",
+          "distance": 0.4656117558479309
+        },
+        {
+          "source": "USER.md",
+          "content": "## Context\n\nXiabi is asking about going to a \"rooftop waterfall\" today. They seem to enjoy outdoor activities and nature. They're making a weather-dependent decision about whether to go out today.\n\n--",
+          "distance": 0.5278947949409485
+        },
+        {
+          "source": "memory\\2026-02-20.md",
+          "content": "## Next Steps\n- Need to ask Xiabi for their specific location to provide accurate weather\n- Should help them decide about the rooftop waterfall visit\n- Need to establish more context about their prefe",
+          "distance": 0.531334638595581
+        }
+      ],
+      "success": true,
+      "result_count": 3
+    },
+    {
+      "query": "TTS 使用规范",
+      "expected": "找到 3 月 9 日关于 TTS 最佳实践的记录",
+      "results": [
+        {
+          "source": "memory\\2026-03-07.md",
+          "content": "**三线更新：**\n- 第 1 线：MD 模块 ✅\n- 第 2 线：TXT 说明 ✅\n- 第 3 线：飞书文档 ✅\n- 第 4 线：触发日志（今日 10 次更新）\n\n---\n\n## 🎙️ TTS 使用规范调整（2026-03-07 17:45）\n\n**用户反馈：** TTS 语音用得太频繁了，需要精简！\n\n**调整原则：**\n- ✅ **保留：** 每小时优先级提醒（Cron 任务）- 唯一使用 ",
+          "distance": 0.27169692516326904
+        },
+        {
+          "source": "best_practices.jsonl",
+          "content": "{\"timestamp\": \"2026-03-11T16:15:00+08:00\", \"type\": \"best_practice\", \"category\": \"communication\", \"title\": \"消息整合规范\", \"content\": \"一条完整消息优于多条零碎消息。静默执行所有中间步骤，最终整合成一条消息发送。避免 TTS 轰炸，TTS 只用于最终结果。\", \"source\":",
+          "distance": 0.3531850576400757
+        },
+        {
+          "source": "memory\\2026-03-11.md",
+          "content": "## 📝 消息整合最佳实践\n\n### 避免 TTS 轰炸和消息碎片化（2026-03-11）\n\n**错误做法：**\n```\n1. \"好问题！\" → 发送消息 + TTS ❌\n2. \"找到了！\" → 发送消息 + TTS ❌\n3. \"让我再搜索一下\" → 发送消息 + TTS ❌\n4. 完整报告 → 发送消息 + TTS\n```\n\n**正确做法：**\n```\n1-3. 静默执行所有搜索/分析（不发送",
+          "distance": 0.36920440196990967
+        }
+      ],
+      "success": true,
+      "result_count": 3
+    },
+    {
+      "query": "供应商直连系统",
+      "expected": "找到项目进度相关记录",
+      "results": [
+        {
+          "source": "memory\\项目知识总结.md",
+          "content": "# 项目知识总结\n\n**生成时间：** 2026-03-11 06:53  \n**生成方式：** 从会话历史自动提取  \n**状态：** 进行中项目知识归档\n\n---\n\n## 目录\n\n1. [供应商直连系统](#1-供应商直连系统)\n2. [豆包会话自动化](#2-豆包会话自动化)\n3. [地理知识库](#3-地理知识库)\n4. [周报系统](#4-周报系统)\n5. [健康管理项目](#5-健康管",
+          "distance": 0.27496904134750366
+        },
+        {
+          "source": "memory\\thomas-swot-analysis.md",
+          "content": "---\n\n## 🏢 核心项目经历\n\n### 小米集团（2022.12-至今）\n- **小米汽车透明供应链**：从 0 到 1 搭建供应商直连数据运营体系，覆盖 100+ 核心供应商\n  - 保供风险防控：规避 80% 因供应商欠料导致的停线事件\n  - 降本分析模型：支撑年度降本 8-10 亿目标\n  - 质量追溯：响应时效从天级降至小时级\n  \n- **ISC 全链路成本管理体系**：覆盖手机/",
+          "distance": 0.4000108242034912
+        },
+        {
+          "source": "memory\\2026-03-04.md",
+          "content": "### 权力博弈洞察（供应商库存直连项目）\n- 刘军峰：老资历守成，用职责圈地，怕担责\n- 邵天宇：新势力借势，Tracy 默认支持，隐忍不发\n- 金海：有王牌（特斯拉经验）没兵权，缺推手\n- Thomas 定位：解决方案 + 内部翻译官，关键破局点\n- 策略：不提前站队、以项目落地为核心、绑定金海合作\n\n### 周报写作偏好（已学习）\n- **会议描述**: 不写参会时间、人数等过程信息\n- *",
+          "distance": 0.4194726347923279
+        }
+      ],
+      "success": true,
+      "result_count": 3
+    },
+    {
+      "query": "表情图片发送",
+      "expected": "找到表情图片相关的偏好设置",
+      "results": [
+        {
+          "source": "USER.md",
+          "content": "### 回复格式偏好（2026-03-12 更新）\n\n**表情图片发送顺序：**\n- ✅ **先发送图片** - 每个带情绪备注的回答，先随机发送对应情绪的 PNG 表情图片\n- ✅ **再发送文字** - 图片发送后再发送文字回复\n- ✅ **永久生效** - 所有带情绪备注的回答都遵循此顺序\n\n**表情图片发送范式：**\n- ✅ 每个回复结尾必须带情绪备注\n- ✅ 用 ---（Markdown",
+          "distance": 0.2404162883758545
+        },
+        {
+          "source": "memory\\虾仔日记.md",
+          "content": "**今日金句：**\n\"结尾 emoji 是表情开关，不是装饰！\"\n\n---\n\n## 2026-03-11 07:26 - 表情图片发送流程（终极版！）\n\n**表情文件夹位置：**\n`C:\\Users\\Xiabi\\.openclaw\\workspace\\axiang-emoji\\`\n\n**8 个情绪文件夹：**\n1. cheer - 欢呼\n2. confident - 自信\n3. happy - 开",
+          "distance": 0.2412571907043457
+        },
+        {
+          "source": "memory\\虾仔日记.md",
+          "content": "**示例代码：**\n```powershell\n# 选择图片\n$emojiPath = Get-ChildItem \"C:\\Users\\Xiabi\\.openclaw\\workspace\\axiang-emoji\\happy\" -File | Get-Random\n# 发送\nmessage --action send --filePath $emojiPath.FullName\n```\n\n**今日",
+          "distance": 0.30591142177581787
+        }
+      ],
+      "success": true,
+      "result_count": 3
+    },
+    {
+      "query": "向量数据库",
+      "expected": "找到 Embedding 配置相关记录",
+      "results": [
+        {
+          "source": "knowledge\\提能任务项目\\表结构设计.md",
+          "content": "### 索引建议\n\n```sql\n-- 主键索引\nPRIMARY KEY (id)\n\n-- 业务键唯一索引\nUNIQUE INDEX idx_task_id (task_id)\n\n-- 常用查询索引\nINDEX idx_status (task_status)\nINDEX idx_supplier (supplier_code)\nINDEX idx_factory (factory_code)\nI",
+          "distance": 0.3864840269088745
+        },
+        {
+          "source": "knowledge\\提能任务项目\\SQL 查询示例.md",
+          "content": "---\n\n## 📝 使用建议\n\n### 性能优化\n\n1. **索引使用**：确保外键字段有索引\n2. **避免全表扫描**：WHERE 条件使用索引字段\n3. **分页查询**：大数据量时使用 LIMIT/OFFSET\n4. **缓存结果**：统计类查询可定时缓存\n\n### 代码规范\n\n1. **表别名**：使用有意义的别名（t=task, s=sdc, v=verify, b=bpm）\n2. *",
+          "distance": 0.3919174075126648
+        },
+        {
+          "source": "memory\\2026-03-11.md",
+          "content": "#### 核心枚举\n- **任务状态**：0-11（待发布→提能完成）\n- **审批类型**：1-SDC 无偏差/2-SDC 有偏差/3-验证产能\n- **审批结果**：0-处理中/1-通过/2-驳回/3-终止\n\n#### SQL 示例（5 个）\n1. 查询所有提能任务及关联 SDC 反馈\n2. 查询验证产能有偏差的任务（含偏差率计算）\n3. 查询提能任务的审批流水（含最新审批结果）\n4. 统计各",
+          "distance": 0.391995906829834
+        }
+      ],
+      "success": true,
+      "result_count": 3
+    }
+  ],
+  "total_tests": 5,
+  "successful_tests": 5,
+  "success_rate": 100.0
+}

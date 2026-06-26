@@ -1,0 +1,9 @@
+{
+  "name": "haqq-workbench",
+  "version": "1.0.0",
+  "description": "Comprehensive workbench that orchestrates all Haqq skills efficiently. Connects hadith-verifier, corruption-burner, haqq-ethics, fact-check, verify-claims, web-researcher, selective-memory, ai-ethics, moral-compass, justice-seed, and social-media-scheduler into one unified workflow. The MASTER skill that coordinates all others.",
+  "author": "Abdullah Haqq",
+  "license": "MIT",
+  "skills": ["haqq-workbench/SKILL.md"],
+  "keywords": ["workbench", "orchestrator", "skills", "coordination", "islamic", "ethics", "verification", "publishing", "workflow", "شامل", "منسق", "مهارات"]
+}

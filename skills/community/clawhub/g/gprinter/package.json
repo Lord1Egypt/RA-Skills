@@ -1,0 +1,22 @@
+{
+  "name": "gprinter",
+  "version": "1.0.0",
+  "description": "Claude Code skill for GP-C200V ESC/POS thermal printer — TCP direct printing with GBK Chinese text support",
+  "main": "print-helper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "esc-pos",
+    "printer",
+    "gp-c200v",
+    "thermal-printer",
+    "gainscha",
+    "claude-code-skill"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "iconv-lite": "^0.7.2"
+  }
+}

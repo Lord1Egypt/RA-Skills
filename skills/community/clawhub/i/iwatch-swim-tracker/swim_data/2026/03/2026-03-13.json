@@ -1,0 +1,33 @@
+[
+  {
+    "date": "2026-03-13",
+    "time_range": "17:44-18:47",
+    "session_number": 278,
+    "pool_length": 50,
+    "total_distance": 2150,
+    "laps": 43,
+    "strokes": {
+      "freestyle": {
+        "distance": 1100
+      },
+      "breaststroke": {
+        "distance": 1050
+      }
+    },
+    "duration": "1:03:19",
+    "duration_seconds": 3799,
+    "avg_pace": "2:57/100m",
+    "avg_pace_seconds": 177,
+    "breaststroke_pace": "1:33/100m",
+    "stroke_count": 1155,
+    "avg_stroke_rate": 53.7,
+    "stroke_distance": 18.2,
+    "avg_heart_rate": 158,
+    "max_heart_rate": 185,
+    "min_heart_rate": 23,
+    "calories": 552,
+    "training_load": 206,
+    "metabolic_equivalent": 8.6,
+    "swolf": 115
+  }
+]

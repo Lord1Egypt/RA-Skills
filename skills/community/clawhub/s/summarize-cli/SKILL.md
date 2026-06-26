@@ -1,35 +1,52 @@
 ---
-name: "Summarize Cli"
-description: "Automation skill for Summarize Cli."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/summarize-cli"
-sourceUrl: "https://clawhub.ai/skills/summarize-cli"
----
+name: summarize-cli
+description: Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
+homepage: https://summarize.sh
+metadata: {"clawdbot":{"emoji":"🧾","requires":{"bins":["summarize"]},"install":[{"id":"brew","kind":"brew","formula":"steipete/tap/summarize","bins":["summarize"],"label":"Install summarize (brew)"}]}}
 
-# Summarize Cli
+# Summarize
 
-> Automation skill for Summarize Cli.
+Summarize URLs or files with the summarize CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/summarize-cli`
-- **Source URL:** [https://clawhub.ai/skills/summarize-cli](https://clawhub.ai/skills/summarize-cli)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Summarize a URL:
 ```bash
-hermes skills install clawhub/summarize-cli
+summarize https://example.com/article
+```
+
+Summarize a file:
+```bash
+summarize path/to/file.pdf
+```
+
+## Supported formats
+
+- URLs (web pages)
+- PDFs
+- Images (with text content)
+- Audio files
+- YouTube videos
+
+## Options
+
+- `--length <short|medium|long>` - Control summary length
+- `--format <text|markdown|json>` - Output format
+- `--output <file>` - Save to file
+
+## Examples
+
+Quick summary:
+```bash
+summarize https://example.com --length short
+```
+
+Markdown output:
+```bash
+summarize document.pdf --format markdown --output summary.md
+```
+
+JSON output:
+```bash
+summarize https://example.com --format json | jq
 ```

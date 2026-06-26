@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Resume-Judge | 简历评分系统</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3a;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --accent3: #ff6b6b;
+    --text: #e0e0e8;
+    --text2: #8888a0;
+    --green: #00d4aa;
+    --yellow: #ffc107;
+    --red: #ff6b6b;
+    --blue: #63b3ff;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    width: 100%;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: var(--text2);
+    font-size: 0.95rem;
+  }
+
+  /* Score Card */
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 24px;
+    display: none;
+  }
+
+  .score-card.visible { display: block; }
+
+  .score-main {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+
+  .score-circle {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+  }
+  .score-circle svg {
+    transform: rotate(-90deg);
+  }
+  .score-circle circle {
+    fill: none;
+    stroke-width: 10;
+  }
+  .score-bg { stroke: var(--border); }
+  .score-fill {
+    stroke: var(--accent);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .score-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .score-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .score-unit {
+    font-size: 1rem;
+    color: var(--text2);
+  }
+  .rating-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  .rating-S { background: linear-gradient(135deg,#6c63ff,#00d4aa); color: #fff; }
+  .rating-A { background: #00d4aa33; color: var(--green); border: 1px solid var(--green); }
+  .rating-B { background: #63b3ff33; color: var(--blue); border: 1px solid var(--blue); }
+  .rating-C { background: #ffc10733; color: var(--yellow); border: 1px solid var(--yellow); }
+  .rating-D { background: #ff6b6b33; color: var(--red); border: 1px solid var(--red); }
+  .rating-F { background: #ff6b6b55; color: var(--red); border: 1px solid var(--red); }
+
+  .score-meta {
+    flex: 1;
+  }
+  .score-meta h2 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .field-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .field-tag.ai { border-color: var(--accent); color: var(--accent); }
+  .field-tag.non-ai { border-color: var(--accent3); color: var(--accent3); }
+
+  .equiv-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 12px;
+    display: none;
+  }
+  .equiv-box.visible { display: block; }
+  .equiv-box h4 {
+    font-size: 0.85rem;
+    color: var(--text2);
+    margin-bottom: 8px;
+  }
+  .equiv-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .equiv-score {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent2);
+  }
+  .equiv-label {
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+
+  /* Dimension Bars */
+  .dimensions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .dim-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .dim-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .dim-name {
+    font-size: 0.85rem;
+    color: var(--text2);
+  }
+  .dim-score {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .dim-score span {
+    font-size: 0.75rem;
+    color: var(--text2);
+    font-weight: 400;
+  }
+  .bar-bg {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bar-high { background: var(--green); }
+  .bar-mid { background: var(--yellow); }
+  .bar-low { background: var(--red); }
+
+  /* Detailed Analysis */
+  .analysis-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 24px;
+    display: none;
+  }
+  .analysis-section.visible { display: block; }
+  .analysis-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .improvement-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .improvement-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .improvement-list .num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Input Area */
+  .input-area {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .input-area h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+  .input-area textarea {
+    width: 100%;
+    min-height: 280px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-area textarea:focus {
+    border-color: var(--accent);
+  }
+  .input-area textarea::placeholder {
+    color: var(--text2);
+  }
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .btn {
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    color: #fff;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Loading */
+  .loading {
+    display: none;
+    text-align: center;
+    padding: 40px;
+  }
+  .loading.visible { display: block; }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading p { color: var(--text2); font-size: 0.9rem; }
+
+  /* Reference Samples */
+  .ref-section {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ref-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .ref-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ref-card.high { border-color: var(--green); }
+  .ref-card.low { border-color: var(--red); }
+  .ref-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ref-tag {
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    background: var(--surface2);
+    color: var(--text2);
+  }
+  .ref-card.high .ref-tag.good { background: var(--green)22; color: var(--green); }
+  .ref-card.low .ref-tag.bad { background: var(--red)22; color: var(--red); }
+
+  @media (max-width: 640px) {
+    .score-main { flex-direction: column; }
+    .dimensions { grid-template-columns: 1fr; }
+    .ref-section { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🤖 AI-Resume-Judge</h1>
+    <p>基于 AI 领域满分 & 及格线简历的智能评分系统 · 满分100分</p>
+  </div>
+
+  <!-- Input -->
+  <div class="input-area">
+    <h3>📄 输入简历内容（Markdown 或纯文本）</h3>
+    <textarea id="resumeInput" placeholder="粘贴简历内容，或直接输入简历文本...
+
+例如：
+[姓名]
+资深AI工程师
+邮箱：xxx@example.com | GitHub：github.com/xxx
+- 主导XX项目，QPS提升4倍，延迟降低60%
+..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="runScoring()">🚀 开始评分</button>
+      <button class="btn btn-secondary" onclick="loadSamples(100)">📋 加载100分样本</button>
+      <button class="btn btn-secondary" onclick="loadSamples(60)">📋 加载60分样本</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>AI 正在分析简历中...</p>
+  </div>
+
+  <!-- Score Card -->
+  <div class="score-card" id="scoreCard">
+    <div class="score-main">
+      <div class="score-circle">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle class="score-bg" cx="80" cy="80" r="68"/>
+          <circle class="score-fill" id="scoreArc" cx="80" cy="80" r="68"
+            stroke-dasharray="427" stroke-dashoffset="427"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-number" id="scoreNumber">0</div>
+          <div class="score-unit">/ 100</div>
+          <div class="rating-badge rating-F" id="ratingBadge">F</div>
+        </div>
+      </div>
+      <div class="score-meta">
+        <h2 id="scoreTitle">简历评分报告</h2>
+        <div class="field-tag ai" id="fieldTag">
+          <span>🔍</span> <span id="fieldLabel">AI领域</span>
+        </div>
+        <div class="equiv-box" id="equivBox">
+          <h4>🔄 跨行业等价分析</h4>
+          <div class="equiv-bar">
+            <div class="equiv-score" id="equivScore">0</div>
+            <div class="equiv-label" id="equivLabel">在[行业]中<br>等价于X分AI简历</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dimensions" id="dimensions"></div>
+  </div>
+
+  <!-- Analysis -->
+  <div class="analysis-section" id="analysisSection">
+    <h3>🎯 改进建议（Top 3）</h3>
+    <ul class="improvement-list" id="improvementList"></ul>
+  </div>
+
+  <!-- Reference -->
+  <div class="ref-section">
+    <div class="ref-card high">
+      <h4>🌟 100分简历特征 <span style="color:var(--green)">参考基准</span></h4>
+      <div class="ref-tags">
+        <span class="ref-tag good">完整联系方式</span>
+        <span class="ref-tag good">量化成就（%/x/¥）</span>
+        <span class="ref-tag good">技术栈分层</span>
+        <span class="ref-tag good">主导动词</span>
+        <span class="ref-tag good">GitHub⭐2k+</span>
+        <span class="ref-tag good">顶会论文</span>
+        <span class="ref-tag good">头部公司背书</span>
+        <span class="ref-tag good">国际证书</span>
+        <span class="ref-tag good">演讲/博客</span>
+      </div>
+    </div>
+    <div class="ref-card low">
+      <h4>⚠️ 60分简历特征 <span style="color:var(--red)">及格底线</span></h4>
+      <div class="ref-tags">
+        <span class="ref-tag bad">无GitHub/LinkedIn</span>
+        <span class="ref-tag bad">无量化数字</span>
+        <span class="ref-tag bad">参与/配合动词</span>
+        <span class="ref-tag bad">技能平铺无层次</span>
+        <span class="ref-tag bad">自我评价套话</span>
+        <span class="ref-tag bad">项目无技术深度</span>
+        <span class="ref-tag bad">无公司背书</span>
+        <span class="ref-tag bad">无开源贡献</span>
+        <span class="ref-tag bad">无个人品牌</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// 评分引擎（纯JS版，与 scorer.py 逻辑一致）
+// ============================================================
+
+const DIMENSIONS = {
+  basic_info: { name: "基本信息完整性", max: 15 },
+  quantification: { name: "成就量化程度", max: 25 },
+  tech_depth: { name: "技术深度与广度", max: 20 },
+  experience: { name: "工作经历质量", max: 20 },
+  education: { name: "教育背景", max: 8 },
+  brand: { name: "个人品牌/影响力", max: 7 },
+  expression: { name: "表达能力", max: 5 },
+};
+
+const INDUSTRY_EQUIV = {
+  "ai":1.00,"llm":1.00,"大模型":1.00,"机器学习":1.00,"深度学习":1.00,
+  "自动驾驶":0.88,"机器人":0.88,"嵌入式":0.82,"金融":0.92,"量化":0.92,
+  "投行":0.88,"咨询":0.80,"游戏":0.82,"图形学":0.82,"前端":0.70,
+  "移动开发":0.70,"ios":0.70,"android":0.70,"后端":0.72,"devops":0.72,
+  "云计算":0.75,"数据":0.65,"数据分析":0.65,"bi":0.65,"产品":0.60,
+  "pm":0.60,"运营":0.55,"市场":0.50,"财务":0.55,"会计":0.50,
+  "行政":0.45,"人力资源":0.45,"教育":0.55,"医疗":0.70,"建筑":0.65,
+  "设计":0.60,"法律":0.58,"供应链":0.62,"电商":0.68,"新媒体":0.48,
+  "销售":0.45,"通用":0.60,
+};
+
+const AI_STRONG = ["llm","大模型","gpt","transformer","rlhf","lora","rag","agent","prompt","vllm","langchain"];
+const AI_WEAK = ["nlp","cv","机器学习","深度学习","算法","tensorflow","pytorch","huggingface"];
+const NON_AI = ["会计","财务","金融","投行","银行","建筑","施工","法律","医疗","教育","行政","人力","市场","销售","物流","游戏","产品"];
+const WEAK_VERBS = ["参与","配合","协助","做一些","做过","参与过","协助过","配合完成"];
+const STRONG_VERBS = ["主导","负责","设计","构建","落地","推动","独立","从零","搭建","实现","优化","提升"];
+
+function detectField(text) {
+  const t = text.toLowerCase();
+  for (const kw of NON_AI) {
+    if (t.includes(kw)) return { isAI: false, industry: kw };
+  }
+  const strongCount = AI_STRONG.filter(k => t.includes(k)).length;
+  const weakCount = AI_WEAK.filter(k => t.includes(k)).length;
+  if (strongCount >= 2 || weakCount >= 4) return { isAI: true, industry: "AI / 大模型" };
+  return { isAI: false, industry: "通用" };
+}
+
+function scoreBasicInfo(text) {
+  let s = 0;
+  if (/\S+@\S+\.\S+/.test(text)) s += 2;
+  if (/1[3-9]\d{9}|\d{3}-\d{4}-\d{4}/.test(text)) s += 2;
+  if (/github\.com/i.test(text)) s += 3;
+  if (/linkedin\.com/i.test(text)) s += 3;
+  if (/(北京|上海|深圳|杭州|广州|成都|武汉|南京)/.test(text)) s += 1;
+  if (/(个人简介|about|summary)/i.test(text)) s += 1.5;
+  if (/(工作经验|工作经历)/i.test(text)) s += 1;
+  if (/(教育背景|学历)/i.test(text)) s += 1;
+  if (/(技能|技术栈)/i.test(text)) s += 0.5;
+  return Math.min(s, 15);
+}
+
+function scoreQuantification(text) {
+  let s = 0;
+  const qMatches = (text.match(/\d+%|[\d,]+万|[\d,]+亿|QPS|P99|ms|\d+倍/g) || []).length;
+  s += Math.min(qMatches * 1.5, 8);
+  const strongCount = STRONG_VERBS.filter(v => text.includes(v)).length;
+  s += Math.min(strongCount * 1.0, 6);
+  const weakCount = WEAK_VERBS.filter(v => text.includes(v)).length;
+  s -= weakCount * 1.5;
+  const lines = text.split("\n").filter(l => /\d+%|\d+倍|\d+万|\d+亿/.test(l));
+  s += Math.min(lines.length * 1.2, 6);
+  const impacts = ["日均","每月","每年","覆盖","服务","用户量","提升","降低","节省"];
+  s += Math.min(impacts.filter(p => text.includes(p)).length * 0.5, 5);
+  return Math.max(0, Math.min(s, 25));
+}
+
+function scoreTechDepth(text) {
+  const t = text.toLowerCase();
+  let s = 0;
+  const aiTech = [...AI_STRONG, ...AI_WEAK].filter(k => t.includes(k.toLowerCase())).length;
+  s += Math.min(aiTech * 0.8, 10);
+  const frontier = ["llm","agent","rag","rlhf","dpo","vllm","langgraph","autogen","harness"];
+  s += Math.min(frontier.filter(k => t.includes(k)).length * 1.0, 5);
+  if (/(精通|熟练|掌握|了解|master|proficient|familiar)/i.test(text)) s += 3;
+  else s -= 1;
+  const tools = ["docker","k8s","kubernetes","terraform","aws","gcp","hadoop","spark"];
+  s += Math.min(tools.filter(t => t.includes(t)).length * 0.4, 2);
+  return Math.max(0, Math.min(s, 20));
+}
+
+function scoreExperience(text) {
+  let s = 0;
+  const companies = ["google","meta","apple","microsoft","amazon","openai","字节","腾讯","阿里","百度","华为","商汤","大疆","蚂蚁","京东","美团"];
+  s += Math.min(companies.filter(c => text.toLowerCase().includes(c.toLowerCase())).length * 1.5, 5);
+  const expMatches = (text.match(/20(1[5-9]|2[0-9]).{0,20}(工程师|算法|开发|研究|设计)/g) || []).length;
+  s += Math.min(expMatches * 1.5, 4);
+  const years = (text.match(/201[5-9]|202[0-9]/g) || []);
+  if ([...new Set(years)].length >= 5) s += 4;
+  else if ([...new Set(years)].length >= 3) s += 2;
+  else if (years.length > 0) s += 1;
+  const leadCount = ["主导","负责","独立","从零","搭建","带领"].filter(v => text.includes(v)).length;
+  s += Math.min(leadCount * 0.8, 4);
+  if (/(senior|lead|专家|资深|负责人|主管|总监|principal)/i.test(text)) s += 3;
+  return Math.max(0, Math.min(s, 20));
+}
+
+function scoreEducation(text) {
+  let s = 0;
+  if (/(博士|phd|doctor)/i.test(text)) s += 5;
+  else if (/(硕士|master|研究生)/i.test(text)) s += 4;
+  else if (/(本科|bachelor|大学)/i.test(text)) s += 2;
+  if (/(985|211|top\s*30|C9)/i.test(text)) s += 2;
+  if (/gpa[:\s]*[3-4]/i.test(text)) s += 1;
+  if (/(paper|论文|publication|arxiv|emlnlp|icml|neurips|kdd)/i.test(text)) s += 1.5;
+  return Math.max(0, Math.min(s, 8));
+}
+
+function scoreBrand(text) {
+  let s = 0;
+  const stars = (text.match(/⭐\s*([\d,]+)|star[s]?\s*([\d,]+)/gi) || [])
+    .map(m => parseInt((m.match(/\d+/) || [0])[0]));
+  if (stars.some(n => n >= 1000)) s += 3;
+  else if (stars.some(n => n >= 100)) s += 2;
+  else if (stars.some(n => n >= 10)) s += 1;
+  if (/(github|开源|open.?source)/i.test(text)) s += 1;
+  if (/(演讲|分享|speak|conference|顶会|大会)/i.test(text)) s += 1.5;
+  if (/(博客|blog|专栏|article|medium)/i.test(text)) s += 1;
+  const certs = ["aws","google","azure","tensorflow","pytorch","kubernetes"];
+  s += Math.min(certs.filter(c => text.toLowerCase().includes(c)).length * 0.5, 1.5);
+  return Math.max(0, Math.min(s, 7));
+}
+
+function scoreExpression(text) {
+  let s = 0;
+  const headers = (text.match(/^#{1,3}\s+/gm) || []).length;
+  s += Math.min(headers * 0.3, 2);
+  const clichés = ["认真负责","学习能力强","能吃苦耐劳","良好的团队合作精神","吃苦耐劳","积极乐观","踏实肯干","责任心强"];
+  const clichéCount = clichés.filter(c => text.includes(c)).length;
+  if (clichéCount >= 2) s -= 2;
+  else if (clichéCount === 1) s -= 1;
+  const lines = text.split("\n").filter(l => l.trim());
+  if (lines.length < 10) s -= 1;
+  return Math.max(0, Math.min(s, 5));
+}
+
+function getRating(score) {
+  if (score >= 90) return { label: "S (顶尖)", cls: "rating-S" };
+  if (score >= 80) return { label: "A (优秀)", cls: "rating-A" };
+  if (score >= 70) return { label: "B (良好)", cls: "rating-B" };
+  if (score >= 60) return { label: "C (及格)", cls: "rating-C" };
+  if (score >= 45) return { label: "D (较差)", cls: "rating-D" };
+  return { label: "F (不及格)", cls: "rating-F" };
+}
+
+function getSuggestions(dims) {
+  const suggestions = [];
+  if (dims.basic_info.pct < 60) suggestions.push("补充GitHub、LinkedIn等可验证技术档案，展示真实影响力");
+  if (dims.quantification.pct < 60) suggestions.push("将「参与XX项目」改为「主导XX项目，QPS提升4倍，延迟降低60%」");
+  if (dims.tech_depth.pct < 60) suggestions.push("补充LLM全链路经验（训练→微调→推理优化→RAG→Agent）");
+  if (dims.experience.pct < 60) suggestions.push("使用「主导/设计/落地」等强动词，避免「参与/配合」等模糊词");
+  if (dims.education.pct < 60) suggestions.push("补充GPA、排名、论文或导师项目等学术亮点");
+  if (dims.brand.pct < 60) suggestions.push("在GitHub/HuggingFace发布开源项目，撰写技术博客");
+  if (dims.expression.pct < 50) suggestions.push("删除「认真负责、学习能力强」等自我评价，用具体成就替代");
+  return suggestions.length ? suggestions.slice(0, 3) : ["简历质量已经很高，继续保持优势并针对细节优化"];
+}
+
+function scoreResume(text) {
+  const { isAI, industry } = detectField(text);
+  const raw = {
+    basic_info: scoreBasicInfo(text),
+    quantification: scoreQuantification(text),
+    tech_depth: scoreTechDepth(text),
+    experience: scoreExperience(text),
+    education: scoreEducation(text),
+    brand: scoreBrand(text),
+    expression: scoreExpression(text),
+  };
+  const total = Object.values(raw).reduce((a, b) => a + b, 0);
+  const coeff = INDUSTRY_EQUIV[industry] || 0.60;
+  const equivScore = isAI ? total : Math.round(total * coeff * 10) / 10;
+  const dims = {};
+  for (const [k, v] of Object.entries(raw)) {
+    dims[k] = { name: DIMENSIONS[k].name, score: Math.round(v * 10) / 10, max: DIMENSIONS[k].max, pct: Math.round(v / DIMENSIONS[k].max * 100) };
+  }
+  return {
+    isAI, industry,
+    rawScore: Math.round(total * 10) / 10,
+    dims,
+    rating: getRating(total),
+    equivScore: Math.round(equivScore * 10) / 10,
+    coeff,
+    suggestions: getSuggestions(dims),
+  };
+}
+
+// ============================================================
+// UI
+// ============================================================
+
+function runScoring() {
+  const text = document.getElementById("resumeInput").value.trim();
+  if (!text) { alert("请输入简历内容"); return; }
+
+  document.getElementById("loading").classList.add("visible");
+  document.getElementById("scoreCard").classList.remove("visible");
+  document.getElementById("analysisSection").classList.remove("visible");
+
+  setTimeout(() => {
+    const result = scoreResume(text);
+    renderResult(result);
+    document.getElementById("loading").classList.remove("visible");
+    document.getElementById("scoreCard").classList.add("visible");
+    document.getElementById("analysisSection").classList.add("visible");
+  }, 600);
+}
+
+function renderResult(result) {
+  // Score circle
+  const arc = document.getElementById("scoreArc");
+  const circumference = 2 * Math.PI * 68;
+  const pct = result.rawScore / 100;
+  arc.style.strokeDashoffset = circumference * (1 - pct);
+  arc.style.stroke = result.rawScore >= 80 ? "#00d4aa" : result.rawScore >= 60 ? "#ffc107" : "#ff6b6b";
+
+  document.getElementById("scoreNumber").textContent = result.rawScore;
+  const badge = document.getElementById("ratingBadge");
+  badge.textContent = result.rating.label;
+  badge.className = "rating-badge " + result.rating.cls;
+
+  // Field tag
+  const tag = document.getElementById("fieldTag");
+  tag.className = "field-tag " + (result.isAI ? "ai" : "non-ai");
+  document.getElementById("fieldLabel").textContent = result.isAI ? "✅ AI领域" : `❌ ${result.industry}`;
+
+  // Cross-industry
+  const equivBox = document.getElementById("equivBox");
+  if (!result.isAI) {
+    equivBox.classList.add("visible");
+    document.getElementById("equivScore").textContent = result.equivScore + " 分";
+    document.getElementById("equivLabel").innerHTML = `在<span style="color:var(--accent2)">${result.industry}</span>行业中<br>等价于AI简历的分数`;
+  } else {
+    equivBox.classList.remove("visible");
+  }
+
+  // Dimension bars
+  const dimsEl = document.getElementById("dimensions");
+  dimsEl.innerHTML = "";
+  for (const [k, v] of Object.entries(result.dims)) {
+    const barClass = v.pct >= 70 ? "bar-high" : v.pct >= 45 ? "bar-mid" : "bar-low";
+    dimsEl.innerHTML += `
+      <div class="dim-card">
+        <div class="dim-header">
+          <span class="dim-name">${v.name}</span>
+          <span class="dim-score">${v.score} <span>/ ${v.max}</span></span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill ${barClass}" style="width:${v.pct}%"></div></div>
+      </div>`;
+  }
+
+  // Improvements
+  const listEl = document.getElementById("improvementList");
+  listEl.innerHTML = result.suggestions.map((s, i) =>
+    `<li><span class="num">${i + 1}</span><span>${s}</span></li>`
+  ).join("");
+}
+
+function loadSamples(score) {
+  const samples = {
+    100: `# [姓名]
+资深 AI 工程师 | Senior AI Engineer
+
+📧 your.email@example.com　｜　📱 +86 138-XXXX-XXXX　｜　🌐 github.com/yourhandle　｜　🔗 linkedin.com/in/yourhandle　｜　📍 北京
+
+---
+
+## 个人简介
+
+拥有 **8 年以上** AI 工程领域全栈经验，专注于大语言模型（LLM）系统架构、生产级 AI Pipeline 构建与 MLOps 体系落地。在百亿参数模型训练、推理优化、RAG 系统及 AI Agent 框架方面有深厚积累。
+
+---
+
+## 核心技能
+
+### 大语言模型与 Generative AI
+- **模型训练与微调**：SFT、RLHF、DPO、LoRA / QLoRA，具备完整的对齐流程实施经验
+- **推理优化**：vLLM、TensorRT-LLM；量化（GPTQ / AWQ）；推理延迟降低 **60%+**
+- **RAG 系统**：向量数据库（Milvus、Qdrant）、混合检索、Reranking Pipeline；准确率提升 **35%**
+
+### AI Agent 与工程框架
+- **Agent 框架**：LangGraph、AutoGen、CrewAI；设计并落地多 Agent 协作系统
+- **工具链**：LangChain、LlamaIndex、OpenAI API、HuggingFace Transformers
+
+### MLOps 与基础设施
+- **训练平台**：PyTorch FSDP / DeepSpeed ZeRO-3；在 A100/H100 集群上完成千亿参数模型分布式训练
+- **平台工具**：MLflow、Weights & Biases、Kubeflow Pipelines
+- **容器与编排**：Docker、Kubernetes；生产环境 AI 服务 SLA ≥ 99.95%
+
+---
+
+## 工作经验
+
+### 某头部 AI 科技公司　｜　资深 AI 工程师 / AI Engineering Lead　｜　2022.03 — 至今
+
+- **LLM 推理平台重构**：主导将单体推理服务迁移至基于 vLLM + Kubernetes 的弹性推理平台，QPS 提升 **4.2 倍**，P99 延迟从 3.2s 降至 **0.8s**，每月推理成本节省 **¥180 万**
+- **企业级 RAG 系统**：设计并实现混合检索（BM25 + 向量）+ 多路 Reranking 的 RAG 架构，知识问答准确率从 61% 提升至 **89%**
+- **模型对齐流水线**：构建完整 RLHF 训练流水线（奖励模型训练、PPO 迭代），主导 7B/13B 模型的 SFT + DPO 微调，MMLU 基准提升 **+8.3 点**
+
+### 某互联网大厂 NLP 部门　｜　NLP 算法工程师 → 高级工程师　｜　2018.07 — 2022.02
+
+- **搜索意图理解**：主导搜索 Query 理解模型（BERT 微调 → 自研双塔模型），搜索点击率提升 **+12%**，日均覆盖搜索量 **5 亿次**
+- **智能客服 NLU**：构建多意图识别与槽位填充系统，意图识别 F1 达到 **0.943**，客服转人工率降低 **28%**
+- **数据工程**：设计并维护 NLP 训练数据平台，管理 **200 亿 token** 规模语料库
+
+---
+
+## 教育背景
+
+**某 985/211 高校**　｜　**计算机科学与技术 硕士**　｜　2013.09 — 2016.06
+- 研究方向：自然语言处理、序列标注模型
+- 发表 EMNLP 会议论文 1 篇
+
+---
+
+## 个人品牌
+
+- **开源项目**：`llm-eval-harness-cn`：中文 LLM 评测框架，GitHub ⭐ **2.4k**
+- **HuggingFace**：发布 3 个微调模型，累计下载量 **50 万次**
+- **演讲**：BAAI 2024 大会分享《生产环境 LLM 推理优化实践》，线上观看人数 **8000+**
+
+---
+
+## 证书
+
+- AWS Certified Machine Learning – Specialty | 2024
+- Google Professional Machine Learning Engineer | 2023`,
+    60: `# [姓名]
+
+📧 example@email.com | 📱 138-0000-0000 | 北京
+
+---
+
+## 求职意向
+
+AI工程师
+
+---
+
+## 教育背景
+
+**XX大学** — 计算机科学与技术，本科
+2015 – 2019
+
+---
+
+## 工作经验
+
+### AI工程师 · 某互联网公司
+*2021 – 至今*
+
+- 参与了公司的AI项目开发
+- 负责模型训练和部署相关工作
+- 配合团队完成了一些NLP任务
+- 使用Python编写了一些脚本
+- 研究了大语言模型的相关技术
+
+---
+
+## 技能
+
+- Python
+- TensorFlow / PyTorch
+- 机器学习
+- 深度学习
+- NLP
+- Linux
+- Git
+
+---
+
+## 自我评价
+
+本人工作认真负责，学习能力强，对AI领域有浓厚兴趣，能吃苦耐劳，具有良好的团队合作精神，希望能在贵公司得到进一步发展。
+
+---
+
+## 项目经历
+
+**智能客服系统**
+- 做了一个聊天机器人
+- 用了一些NLP技术
+- 系统上线了`
+  };
+  document.getElementById("resumeInput").value = samples[score];
+}
+</script>
+</body>
+</html>

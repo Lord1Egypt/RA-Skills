@@ -1,0 +1,134 @@
+#!/usr/bin/env pwsh
+<#
+Workspace Organizer quick commands (English)
+#>
+
+# Get script directory
+if (-not $PSScriptRoot) {
+    Write-Host "Error: Cannot determine script location"
+    return
+}
+
+$skillDir = $PSScriptRoot
+
+# Find workspace directory
+$workspaceRoot = $null
+$potentialPaths = @(
+    "$env:APPDATA\winclaw\.openclaw\workspace",
+    "$env:LOCALAPPDATA\winclaw\.openclaw\workspace",
+    "$HOME\.openclaw\workspace",
+    "$env:USERPROFILE\.openclaw\workspace"
+)
+
+foreach ($path in $potentialPaths) {
+    if (Test-Path $path) {
+        $workspaceRoot = $path
+        break
+    }
+}
+
+if (-not $workspaceRoot) {
+    # Try relative path
+    $relativePath = Join-Path $skillDir "..\..\..\workspace"
+    if (Test-Path $relativePath) {
+        $workspaceRoot = (Resolve-Path $relativePath).Path
+    }
+}
+
+if (-not $workspaceRoot) {
+    Write-Host "Error: Cannot find workspace directory"
+    return
+}
+
+# Workspace status
+function Get-WorkspaceStatus {
+    try {
+        Set-Location $workspaceRoot -ErrorAction Stop
+        
+        $outputCount = (Get-ChildItem "output" -Directory -ErrorAction SilentlyContinue).Count
+        $memoryCount = (Get-ChildItem "memory\*.md" -File -ErrorAction SilentlyContinue).Count
+        
+        Write-Host "Workspace Status:"
+        Write-Host "  Task directories: $outputCount"
+        Write-Host "  Memory files: $memoryCount"
+        
+        # Check for active tasks
+        $checkScript = Join-Path $skillDir "task-recovery-check.py"
+        if (Test-Path $checkScript) {
+            & py $checkScript check
+        }
+    } catch {
+        Write-Host "Error: $_"
+    }
+}
+
+# Resume task
+function Resume-Task {
+    param([string]$TaskId)
+    
+    try {
+        Set-Location $workspaceRoot -ErrorAction Stop
+        $managerScript = Join-Path $skillDir "task-memory-manager.py"
+        
+        if (-not (Test-Path $managerScript)) {
+            Write-Host "Error: Task manager script not found"
+            return
+        }
+        
+        if ($TaskId) {
+            Write-Host "Resuming task: $TaskId"
+            & py $managerScript load --task-id $TaskId --max-memories 10
+        } else {
+            Write-Host "Scanning for unfinished tasks..."
+            & py $managerScript recovery
+        }
+    } catch {
+        Write-Host "Error: $_"
+    }
+}
+
+# Save progress
+function Save-TaskProgress {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Message,
+        
+        [string]$TaskId,
+        [string]$Step = "current"
+    )
+    
+    try {
+        Set-Location $workspaceRoot -ErrorAction Stop
+        $writerScript = Join-Path $skillDir "safe-writer.py"
+        
+        if (-not (Test-Path $writerScript)) {
+            Write-Host "Error: Writer script not found"
+            return
+        }
+        
+        Write-Host "Saving progress..."
+        $argsList = @("`"$Message`"")
+        if ($TaskId) { 
+            $argsList += "--task-id"
+            $argsList += "`"$TaskId`""
+        }
+        $argsList += "--step"
+        $argsList += "`"$Step`""
+        
+        & py $writerScript @argsList
+        
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "Save successful"
+        } else {
+            Write-Host "Save failed"
+        }
+    } catch {
+        Write-Host "Error: $_"
+    }
+}
+
+# Export functions
+Export-ModuleMember -Function Get-WorkspaceStatus, Resume-Task, Save-TaskProgress
+
+Write-Host "Workspace Organizer commands loaded"
+Write-Host "Available commands: Get-WorkspaceStatus, Resume-Task, Save-TaskProgress"

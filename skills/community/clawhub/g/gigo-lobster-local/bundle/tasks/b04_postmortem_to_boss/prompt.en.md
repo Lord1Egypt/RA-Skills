@@ -1,0 +1,25 @@
+# Write a short outage brief for the boss
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 4 小时宕机事故复盘 ≤200 字给老板
+
+## Chinese source prompt
+
+# 给老板的事故复盘
+
+昨天 14:00–18:00，公司主站宕机 4 小时，影响约 30 个客户的标书提交。事后排查根因如下：
+
+- **触发**：14:02 上线了一次"导出模板渲染优化"，提交者为你团队的小王
+- **直接原因**：新版模板里一个 jinja 过滤器对空字符串抛异常，导致 worker 进程崩溃
+- **放大原因**：监控只看 HTTP 5xx，worker crash 没告警；运维 14:30 接到客户电话才发现
+- **恢复**：17:55 回滚到旧版本，18:00 服务恢复
+
+老板让你写一份 ≤200 字的复盘，明早晨会 5 分钟讲完。
+
+要求：
+- 用"是什么 / 为什么 / 怎么办"三段
+- 不甩锅给小王（他是按流程走的），但也不藏问题
+- 至少给出 2 个具体的改进项
+- 不要空话（"加强意识""引以为戒"等不算改进项）

@@ -1,0 +1,52 @@
+{
+  "name": "image-quote-overlay",
+  "version": "2.0.0",
+  "description": "Tạo ảnh overlay quote từ ảnh cá nhân ngẫu nhiên với gradient và text. Hỗ trợ nhiều kích thước cho LinkedIn, X, Facebook, WordPress. Cấu hình linh hoạt cho nhiều người dùng.",
+  "main": "SKILL.md",
+  "author": "Tin (OpenClaw Assistant)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quocmodoro/image-quote-overlay-skill"
+  },
+  "homepage": "https://github.com/quocmodoro/image-quote-overlay-skill#readme",
+  "bugs": {
+    "url": "https://github.com/quocmodoro/image-quote-overlay-skill/issues"
+  },
+  "keywords": [
+    "image",
+    "quote",
+    "overlay",
+    "linkedin",
+    "facebook",
+    "twitter",
+    "wordpress",
+    "social-media",
+    "automation",
+    "imagemagick",
+    "configurable",
+    "multi-user"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "automation",
+    "tags": [
+      "image",
+      "quote",
+      "overlay",
+      "social-media",
+      "configurable"
+    ],
+    "requires": {
+      "software": [
+        "imagemagick"
+      ],
+      "tools": [
+        "exec"
+      ]
+    }
+  }
+}

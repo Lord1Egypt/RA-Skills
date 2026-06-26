@@ -1,0 +1,12 @@
+{
+  "slug": "agent-governance-auditor",
+  "name": "Agent Governance Auditor",
+  "version": "1.0.0",
+  "description": "Paste a SOUL.md or system prompt, get a scored governance assessment (0-100) with specific gaps and fixes. Checks scope enforcement, escalation rules, memory architecture, security boundaries, decision-making framework, and accountability.",
+  "author": "Resomnium",
+  "tags": ["governance", "agent", "audit", "security", "compliance", "soul", "system-prompt"],
+  "category": "governance",
+  "price": 0,
+  "license": "free",
+  "entrypoint": "SKILL.md"
+}

@@ -1,0 +1,67 @@
+{
+  "skill_name": "job-search-tracker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, I just applied to a Product Operations Manager role at Stripe. Applied through their careers page about 20 minutes ago. The posting is at https://stripe.com/jobs/12345. Salary listed as $120-150k. I used my 'ops-focused' resume version. No cover letter for this one. Can you start tracking it?",
+      "expected_output": "An applications.md file created with the Stripe entry fully populated: company, role, status (Applied), date, URL, salary range, resume version, cover letter (no), source (Company Site). Timeline with today's date. Follow-up reminder set for 7 days. Dashboard header with counts.",
+      "files": [],
+      "expectations": [
+        "An applications.md file is created",
+        "The file contains a '## Stripe - Product Operations Manager' section",
+        "Status is set to 'Applied'",
+        "Salary range '$120-150k' is recorded",
+        "Resume version 'ops-focused' is noted",
+        "Cover letter is marked as no",
+        "Source is identified as Company Site",
+        "A follow-up section exists with a date ~7 days from now",
+        "The file header includes application counts"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I've got a few applications going. Here's my current tracker file. Can you tell me what needs attention and give me the dashboard view?\n\n[Use the file at evals/files/sample-applications.md]",
+      "expected_output": "A dashboard view showing: applications needing follow-up (stale ones), pipeline summary with counts by status, recent activity, and flagged items. Should identify the Acme Corp application as stale (applied 12 days ago, no response).",
+      "files": ["evals/files/sample-applications.md"],
+      "expectations": [
+        "A dashboard summary is generated",
+        "Acme Corp is flagged as needing follow-up (applied 12+ days ago with no response)",
+        "Pipeline counts are accurate (matches the data in the sample file)",
+        "A 'Needs Attention' section highlights overdue items",
+        "Recent activity is summarized",
+        "Specific actionable suggestions are given for flagged items"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have an interview with Notion on Thursday for the Solutions Engineer role. I'm meeting with their Head of Solutions Engineering, Jamie Park. Can you prep me? I want a company brief and some practice questions.",
+      "expected_output": "A company research brief on Notion (what they do, recent news, culture signals) and 8-10 interview questions tailored to a Solutions Engineer role, mixing behavioral, technical, and situational. Should include answer outlines and questions to ask the interviewer.",
+      "files": [],
+      "expectations": [
+        "A company research brief is generated covering what Notion does",
+        "The brief includes recent news or product information",
+        "At least 8 interview questions are provided",
+        "Questions include a mix of behavioral, role-specific, and situational",
+        "Answer outlines or talking point structures are provided for each question",
+        "Questions the user should ask the interviewer are included",
+        "The prep references the Solutions Engineer role specifically, not generic interview advice",
+        "Jamie Park's role (Head of Solutions Engineering) is acknowledged in the prep"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I need to follow up with the recruiter at Datadog - it's been 10 days since my phone screen and I haven't heard anything. The recruiter's name is Marcus Williams. Can you draft a follow-up email? Keep it short.",
+      "expected_output": "A short follow-up email (under 150 words) that references the specific role, the phone screen, and Marcus by name. Should be direct and professional without being pushy. Should also offer to log this follow-up in the tracker.",
+      "files": [],
+      "expectations": [
+        "A follow-up email draft is provided",
+        "The email is under 150 words",
+        "It addresses Marcus Williams by name",
+        "It references the phone screen specifically",
+        "It has a clear ask or next step",
+        "The tone is professional and direct, not desperate or overly formal",
+        "The skill offers to log this follow-up in the tracker"
+      ]
+    }
+  ]
+}

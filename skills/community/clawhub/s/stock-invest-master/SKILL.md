@@ -1,35 +1,63 @@
 ---
-name: "Stock Invest Master"
-description: "股票投资分析技能。道法+大师+AI的三位分析框架，支持A股、港股、美股。适用场景：个股分析、公司估值、财报解读、行业研究、投资决策、基本面分析、技术面分析、风险评估、资金流向、13F机构持仓、南北向资金、买入卖出建议、投资大师视角（格雷厄姆/巴菲特/芒格/段永平/林奇/费雪/索罗斯/马克斯/达利欧/西蒙斯）、价值..."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, financial-analysis, fundamental-analysis, investment, macro, masters, quantitative, stock-analysis, valuation, value-investing, finance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stock-invest-master"
-sourceUrl: "https://clawhub.ai/skills/stock-invest-master"
+name: stock-invest-master
+version: 3.9.1
+license: MIT
+description: |
+  股票投资分析技能。道法+大师+AI的三位分析框架，支持A股、港股、美股。适用场景：个股分析、公司估值、财报解读、行业研究、投资决策、基本面分析、技术面分析、风险评估、资金流向、13F机构持仓、南北向资金、买入卖出建议、投资大师视角（格雷厄姆/巴菲特/芒格/段永平/林奇/费雪/索罗斯/马克斯/达利欧/西蒙斯）、价值投资、成长股分析、价值股筛选、PE/PB/ROE估值、DCF估值、PEG估值、护城河分析、安全边际、财务健康检查、盈利质量分析、现金流分析等、分析师评级。触发关键词：股票、分析、估值、投资。
 ---
 
 # Stock Invest Master
+## 1. 核心分析框架：志·道·势·法·术·器
+* **志 (信仰)**：验证价值投资信仰与心性成熟度。**不通过则停止分析。**
+* **道 (逻辑)**：商业本质、能力圈、护城河、定价权。
+* **势 (时机)**：马克斯周期、索罗斯反身性、达利欧债务周期。
+* **法 (方法)**：林奇PEG、费雪15点、格雷厄姆定量筛选、财务质量(ROE/ROIC/FCF)。
+* **术 (执行)**：金字塔建仓、仓位管理、大师卖出标准。
+* **器 (量化)**：西蒙斯量化验证、PE/PB历史分位、技术指标辅助。
 
-> 股票投资分析技能。道法+大师+AI的三位分析框架，支持A股、港股、美股。适用场景：个股分析、公司估值、财报解读、行业研究、投资决策、基本面分析、技术面分析、风险评估、资金流向、13F机构持仓、南北向资金、买入卖出建议、投资大师视角（格雷厄姆/巴菲特/芒格/段永平/林奇/费雪/索罗斯/马克斯/达利欧/西蒙斯）、价值...
+## 2. 快速筛选 (25问红旗)
+* **核心：** Q18(管理层诚信)=否，直接淘汰。任何主题>3个“否”或总计>8个“否”则放弃。
+* **分类：** 志(Q1-4)、道(Q5-9)、势(Q10-13)、法(Q14-18)、术(Q19-21)、器(Q22-25)。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stock-invest-master`
-- **Source URL:** [https://clawhub.ai/skills/stock-invest-master](https://clawhub.ai/skills/stock-invest-master)
+## 3. 数据检索与质量协议
+1.  **市场识别**：A股(.SZ/.SH)、港股(.HK)、美股(纯英文代码)。
+2.  **数据源**：
+    * A/港股：`neodata-financial-search` (实时/估值), `finance-data-retrieval` (历史/财务)。
+    * 美股：`financial-datasets` (SEC/财务), `WebSearch` (13F/评级)。
+3.  **必查项**：重大公告(近12月)、内部人交易、机构持仓(13F/南北向资金)、融资融券、分析师评级。
+4.  **校验**：PE ≈ PB/ROE；市值 ≈ 股价 × 股本。
 
-## Overview
+## 4. 十大师视角映射
+| 大师 | 核心逻辑 | 对应层级 |
+| :--- | :--- | :--- |
+| **格雷厄姆** | 安全边际、内在价值 | 志/道/法 |
+| **巴菲特** | 护城河、能力圈 | 志/道 |
+| **芒格** | 逆向思维、心智模型 | 道 |
+| **林奇** | 六类分类、PEG | 法 |
+| **费雪** | 15点、管理层质量 | 法 |
+| **马克斯** | 周期定位、第二层次思维 | 势 |
+| **段永平** | 本分、Stop Doing | 志/道 |
+| **达利欧** | 债务周期、全天候 | 势 |
+| **索罗斯** | 反身性、试错加仓 | 势/术 |
+| **西蒙斯** | 量化模型、统计验证 | 器 |
 
+## 5. 报告输出规范
+* **保存路径**：`~/.stock-invest-master/yyyymmdd_公司名.md`。
+* **报告速览卡片**：使用 `claude-design` 或 HTML 截图生成包含：评级、星级(赛道/公司/价格)、安全边际、关键数据、大师共识。
+* **深度风险分析**：必须量化财务(债务/现金流)、行业(份额/技术)、估值(泡沫)风险。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stock-invest-master
-```
+## 6. 自动化工作流指令
+1.  **识别**：确认市场与代码。
+2.  **检索**：调用工具获取财务、公告、资金流向数据。
+3.  **筛选**：执行25问快速评估，记录红旗。
+4.  **建模**：DCF、PEG、格雷厄姆公式交叉估值。
+5.  **注入**：按六层架构逐层注入对应大师视角。
+6.  **诊断**：违背“志道法”专项检查。
+7.  **存档**：生成报告、保存图片、启动Web服务。
+
+## 7. 违背诊断与红旗 (Stop Doing List)
+* **自动否决**：财务造假、管理层失信、持续价值毁灭(ROIC<WACC)、反身性泡沫末期。
+* **风险等级**：对每项红旗标注：[无/轻微/严重/致命]。
+
+---
+**提示**：分析前必须先读取 `references/` 下对应的框架文件，禁止仅依赖内置知识。

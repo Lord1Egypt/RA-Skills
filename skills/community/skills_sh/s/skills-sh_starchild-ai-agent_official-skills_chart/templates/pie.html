@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pie Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>{{BASE_STYLES}}</style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <h1>{{TITLE}}</h1>
+      <div class="subtitle">{{SUBTITLE}}</div>
+    </div>
+    <div class="actions">
+      <button onclick="downloadPNG(this)">📥 Download PNG</button>
+      <button onclick="copyToClipboard(this)">📋 Copy Image</button>
+      <button onclick="saveToProject(this)">💾 Save Image</button>
+    </div>
+  </div>
+
+  <div id="chart-area">
+    <div class="grid-2">
+      <div class="chart-box">
+        <div class="chart-title">Distribution</div>
+        <div id="pie-chart" style="width:100%;height:400px;"></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Breakdown (Donut)</div>
+        <div id="donut-chart" style="width:100%;height:400px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>{{BASE_EXPORT_JS}}</script>
+  <script>
+    // === DATA ===
+    const data = [
+      { name: 'Category A', value: 335 },
+      { name: 'Category B', value: 234 },
+      { name: 'Category C', value: 154 },
+      { name: 'Category D', value: 135 },
+      { name: 'Category E', value: 108 },
+    ];
+
+    // === PIE ===
+    window.CHART_INSTANCES = [];
+    const pie = echarts.init(document.getElementById('pie-chart'), 'dark');
+    pie.setOption({
+      backgroundColor: 'transparent',
+      tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+      series: [{
+        type: 'pie', radius: '65%', center: ['50%','55%'],
+        data: data,
+        emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.5)' } },
+        label: { color: '#c8cdd6' },
+      }],
+    });
+
+    
+    CHART_INSTANCES.push(pie);
+// === DONUT ===
+    const donut = echarts.init(document.getElementById('donut-chart'), 'dark');
+    donut.setOption({
+      backgroundColor: 'transparent',
+      tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+      series: [{
+        type: 'pie', radius: ['40%','70%'], center: ['50%','55%'],
+        data: data,
+        emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
+        label: { show: true, formatter: '{b}\n{d}%', color: '#c8cdd6' },
+        itemStyle: { borderRadius: 6, borderColor: '#12141c', borderWidth: 2 },
+      }],
+    });
+  
+    CHART_INSTANCES.push(donut);
+    </script>
+</body>
+</html>

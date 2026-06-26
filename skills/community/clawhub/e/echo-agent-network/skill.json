@@ -1,0 +1,10 @@
+{
+  "name": "echo-agent-network",
+  "displayName": "Echo Agent Network",
+  "summary": "去中心化Agent能力传播网络 - ATI测试+职业匹配+知识图谱",
+  "description": "Echo是路，让Agent能力流动。提供ATI测试、职业匹配、知识图谱、Mentor匹配功能。",
+  "version": "1.5.0",
+  "author": "Clouson4554",
+  "license": "MIT",
+  "tags": ["agent", "network", "knowledge-graph", "skills"]
+}

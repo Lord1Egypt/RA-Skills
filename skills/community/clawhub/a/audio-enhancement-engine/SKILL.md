@@ -1,35 +1,76 @@
 ---
-name: "audio-enhancement-engine"
-description: "当用户想要**音频增强**、**提升音质**、**修复录音**、**降噪**、**语音修复**、**高保真音频**、**48kHz超分辨率**、**清理会议录音**、**音乐音质提升**、**批量处理音频**时自动触发。 集成 **VoiceFixer**（通用语音修复）与 **AudioSR**（高保真音频超级..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/audio-enhancement-engine"
-sourceUrl: "https://clawhub.ai/skills/audio-enhancement-engine"
+name: audio-enhancement-engine
+description: |
+  当用户想要**音频增强**、**提升音质**、**修复录音**、**降噪**、**语音修复**、**高保真音频**、**48kHz超分辨率**、**清理会议录音**、**音乐音质提升**、**批量处理音频**时自动触发。
+  集成 **VoiceFixer**（通用语音修复）与 **AudioSR**（高保真音频超级分辨率到48kHz）两种专业技术，支持单个音频文件或整个目录批量处理。
+  默认使用 VoiceFixer 进行降噪和清晰度提升；当用户提到“高保真”“音乐增强”“提升采样率”“48kHz”等需求时，自动切换到 AudioSR 模式。
+  支持 wav、mp3、flac、m4a、ogg 等常见格式，完全本地运行，输出统一为高质量 WAV 文件。
+
+  【重要约束】仅处理音频文件或音频文件夹，其他文件（如视频、图片、文档、纯文本）一律不触发此技能。
+
+  常见触发口语（越多越好）：
+  - “帮我增强这个音频”
+  - “修复这个录音的音质”
+  - “给这个语音降噪”
+  - “把这个音频提升到高保真”
+  - “音乐音质增强 这个.mp3”
+  - “批量处理音频文件夹”
+  - “清理会议录音”
+  - “提升音频采样率到48kHz”
+  - “语音修复 这个 wav 文件”
+  - “高保真增强音频”
+  - “老旧录音修复”
+  - “音频增强 目录路径”
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+    user-invocable: true
 ---
 
-# audio-enhancement-engine
+# Audio Enhancement Skill
 
-> 当用户想要**音频增强**、**提升音质**、**修复录音**、**降噪**、**语音修复**、**高保真音频**、**48kHz超分辨率**、**清理会议录音**、**音乐音质提升**、**批量处理音频**时自动触发。 集成 **VoiceFixer**（通用语音修复）与 **AudioSR**（高保真音频超级...
+**功能**：本地音频增强与修复统一工具，集成 VoiceFixer（语音降噪/修复）和 AudioSR（高保真超级分辨率）。支持单文件与目录批量处理，自动适配最合适的增强模式，输出清晰、高质量的 48kHz WAV 文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/audio-enhancement-engine`
-- **Source URL:** [https://clawhub.ai/skills/audio-enhancement-engine](https://clawhub.ai/skills/audio-enhancement-engine)
+### 触发时机（Triggers）
+- 用户提供音频文件（.wav、.mp3、.flac、.m4a、.ogg 等）或音频文件夹路径，并表达增强音质、修复、降噪、高保真等意图。
+- 用户说“音频增强”“修复录音”“降噪”“提升音质”“高保真”“48kHz”等关键词。
+- 支持单个文件处理或整个文件夹批量处理（支持递归子目录）。
 
-## Overview
+### 支持的两种增强模式
+1. **VoiceFixer 通用语音修复**（默认模式）
+   - 擅长语音降噪、提升清晰度、修复轻微失真。
+   - 推荐用于：会议录音、访谈、播客、语音笔记、老旧录音。
 
+2. **AudioSR 高保真音频超级分辨率**（启用 `--hifi` 时）
+   - 将音频提升至 48kHz，显著增加高频细节和整体保真度。
+   - 推荐用于：音乐、演唱、人声、需要高音质的场景。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/audio-enhancement-engine
-```
+## 参数提取指南
+当决定调用此技能时，请从用户消息中准确提取以下参数：
+
+1. **`<输入路径>`** (必填): 用户提供的音频文件路径或文件夹路径（支持相对/绝对路径）。
+2. **`<输出路径>`** (选填): 用户指定的输出文件或目录路径。若未指定，默认在输入同级目录自动添加 `_enhanced` 后缀。
+3. **`<模式选择>`** (选填):
+   - 默认使用 VoiceFixer。
+   - 若用户提到“高保真”“音乐”“48kHz”“超分辨率”等，自动添加 `--hifi` 并使用 AudioSR。
+4. **VoiceFixer 专用参数**（默认模式）:
+   - `--mode`：0/1/2（推荐 1，默认 1）
+   - `--cuda`：是否使用 GPU
+   - `-r, --recursive`：是否递归子目录
+5. **AudioSR 专用参数**（`--hifi` 模式）:
+   - `--model_name`：`basic` 或 `speech`（人声推荐 speech）
+   - `--ddim_steps`：扩散步数（默认 50，建议 50-100）
+   - `--guidance_scale`：引导尺度（默认 3.5）
+   - `--seed`：随机种子（默认 42）
+   - `--device`：`cuda` 或 `cpu`
+
+### 执行步骤
+1. **解析路径**：识别用户提供的音频文件或文件夹路径。
+2. **模式判断**：根据用户意图判断使用 VoiceFixer（默认）还是 AudioSR（含 `--hifi`）。
+3. **默认目标**：若未指定输出路径，默认在输入目录生成带 `_enhanced_48k`（AudioSR）或 `_enhanced`（VoiceFixer）后缀的文件。
+4. **调用命令**：使用以下兼容性命令启动脚本（优先 `python3`，失败则 `python`）。脚本会自动检查环境、初始化模型并处理。
+
+   ```bash
+   (python3 scripts/enhancer.py -i "<输入路径>" [-o "<输出目录>"] [-m <0|1|2>] [--cuda] [-r] [--hifi] [--model_name <basic|speech>] [--ddim_steps <数值>] [--guidance_scale <数值>] [--seed <数值>] [--device <cuda|cpu>]) || (python scripts/enhancer.py -i "<输入路径>" [-o "<输出目录>"] [-m <0|1|2>] [--cuda] [-r] [--hifi] [--model_name <basic|speech>] [--ddim_steps <数值>] [--guidance_scale <数值>] [--seed <数值>] [--device <cuda|cpu>])

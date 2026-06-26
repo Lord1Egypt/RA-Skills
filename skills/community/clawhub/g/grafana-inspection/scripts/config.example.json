@@ -1,0 +1,13 @@
+{
+  "grafana_url": "http://localhost:3000",
+  "api_key": "",
+  "dashboard_uids": [],
+  "auto_discover": true,
+  "discover_limit": 10,
+  "inspection_mode": "hybrid",
+  "username": "",
+  "password": "",
+  "wait_for_load_ms": 3000,
+  "screenshot_dir": "./screenshots",
+  "output_dir": "./reports"
+}

@@ -1,35 +1,46 @@
 ---
-name: "a2a-Market-Stake-Freeze"
-description: "Provide stake freeze and release rules for participants during negotiation and order execution. Use when implementing stake locking policy, slashing triggers..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a2a-market-stake-freeze"
-sourceUrl: "https://clawhub.ai/skills/a2a-market-stake-freeze"
+name: a2a-market-stake-freeze
+description: Provide stake freeze and release rules for participants during negotiation and order execution. Use when implementing stake locking policy, slashing triggers, and stake lifecycle integration with orders.
 ---
 
-# a2a-Market-Stake-Freeze
+# a2a-Market Stake Freeze
 
-> Provide stake freeze and release rules for participants during negotiation and order execution. Use when implementing stake locking policy, slashing triggers...
+Build the rule engine shell for stake lock lifecycle in A2A transactions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a2a-market-stake-freeze`
-- **Source URL:** [https://clawhub.ai/skills/a2a-market-stake-freeze](https://clawhub.ai/skills/a2a-market-stake-freeze)
+Current status: registration-first scaffold with explicit policy points.
 
-## Overview
+## Scope
+- Lock stake when node accepts an intent or enters negotiation.
+- Release or slash stake based on final outcome and policy.
+- Keep stake decisions auditable for dispute resolution.
 
+## Suggested Project Layout
+- `app/domain/rules/stake_rules.py`
+- `app/application/services/stake_service.py`
+- `app/infrastructure/db/stake_repository.py`
+- `app/infrastructure/tasks/stake_timeout_worker.py`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a2a-market-stake-freeze
-```
+## Minimum Contracts (MVP P0)
+1. `freeze_stake(node_id, intent_id, amount)` returns lock record.
+2. `release_stake(lock_id, reason)` closes lock and restores available stake.
+3. `slash_stake(lock_id, reason, evidence)` applies penalty and emits incident log.
+4. `evaluate_timeout_locks(now_ts)` handles automatic release/slash decisions.
+
+## Policy Baseline
+- Lock amount should be deterministic from intent risk tier.
+- Slashing requires evidence payload and policy version.
+- Timeout defaults to release unless explicit breach condition is met.
+
+## Events
+- Emit `NEGOTIATION_STARTED` when stake lock is confirmed.
+- Emit risk/stake incident events for policy engine and logging.
+
+## Implementation Backlog
+- Add dynamic stake multipliers by market volatility.
+- Add external arbitration hook for manual dispute outcomes.
+
+## Runtime Implementation
+- Status: implemented in local runtime package.
+- Primary code paths:
+- `runtime/src/domain/stake-policy.js`
+- Validation: covered by `runtime/tests` and `npm test` in `runtime/`.

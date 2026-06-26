@@ -1,0 +1,886 @@
+{
+  "events": {
+    "language_select": {
+      "description": "=== Endless Downstairs ===\n\nSwitch Language",
+      "choices": { "0": "English", "1": "中文" }
+    },
+    "start_1": {
+      "description": "Your name is Peter\n\nYou were at a friend's party. When it ended, it was already 1 AM\n\nYou headed downstairs, walked for a long time, but found no exit\n\nYou looked up at the floor sign: 13F\n\nSomething felt wrong. You ran downstairs\n\nThe floor sign always read: 13F",
+      "choices": { "0": "Continue" }
+    },
+    "start_2": {
+      "description": "The lights grew dimmer and dimmer\n\nYou started to break down, turned back and ran upstairs\n\nStill 13F\n\nYou cried and screamed, pounding on the door to your right\n\nThe door opened",
+      "choices": { "0": "Continue" }
+    },
+    "start_3": {
+      "description": "「Hello」\n\nGreeting you was an all-white, expressionless humanoid figure —\n\nA Fakeman\n\nYou fainted from fright\n\nIn your dream, you heard the Fakeman's voice",
+      "choices": { "0": "Continue" }
+    },
+    "start_4": {
+      "description": "【First Advice】When you hear strange sounds, do not turn back\n\n【Second Advice】The brighter the light, the stronger the darkness\n\n【Third Advice】Even-numbered floors bring good luck\n\n【Fourth Advice】If you see two 13s, stop all actions\n\n【Fifth Advice】Do not knock 13 times",
+      "choices": { "0": "Continue" }
+    },
+    "start_choice": {
+      "description": "You woke up. The game begins.\n\nYou are now on floor 13. You can:",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "View Guide",
+        "3": "Replay Story"
+      }
+    },
+    "view_guide": {
+      "description": "=== Game Guide ===\n\n1. One of the advices is fake\n\n2. Sanity is crucial: when sanity is damaged, ominous things will appear; when sanity reaches 0, there's no turning back\n\n3. Most actions consume sanity; defeating monsters, gaining abilities, and obtaining items all restore sanity\n\n4. Checking your status frequently is important - just tell your AI assistant「check status」\n\n5. Some choices are hidden - you need to obtain certain abilities to see them, but blind guessing is also a good approach",
+      "choices": { "0": "OK" }
+    },
+    "quiet_corridor": {
+      "description": "The corridor is empty, as if abandoned by time itself",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "poster_1": {
+      "description": "There's a poster in the middle of the floor, it reads:\n\n「Come to【Elysium】, become immortal」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "poster_2": {
+      "description": "There's a poster in the middle of the floor, it reads:\n\n「Welcome Sam ■■■■■ and 100 other volunteers to become the second batch of residents of【Elysium】」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "poster_3": {
+      "description": "There's a poster in the middle of the floor, it reads:\n\n「Absolute isolation\n\n20 years since creation, not a single invasion\n\n——【Elysium】20th Anniversary」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "building_sound": {
+      "description": "「You can never leave this building」\n\nThe voice comes from all directions\n\nAs if the building itself is speaking to you",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "empty_sound": {
+      "description": "The stairwell is eerily quiet\n\nYou notice your footsteps echo half a beat behind you",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "dusty_floor": {
+      "description": "You step through a thin layer of dust and find footprints of some other creature",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "dim_lighting": {
+      "description": "The dim yellow light could go out at any moment, swallowing the world into darkness",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ordinary_stairs": {
+      "description": "A cold draft blows, carrying the damp smell of blood and decay",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "silent_floor": {
+      "description": "You sense some kind of distortion throughout the building\n\nThe higher you go, the more severe the distortion",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "plain_passage": {
+      "description": "Some patterns are drawn on the wall\n\nThey are non-Euclidean shapes your brain cannot comprehend",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "wind_breeze": {
+      "description": "「Dong dong dong...」\n\nYou hear funeral bells ringing from outside the building",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "log": {
+      "description": "You see a diary on the ground:\n\n「This building has three types of beings」\n\n「The last type has never been seen」\n\nThe rest of the diary is stained with blood, unreadable",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "solid_light": {
+      "description": "An oil lamp hangs from the ceiling\n\nThe flame is frozen solid\n\nTwisted, chaotic shadows cover the ground\n\nThese shadows seem to be fixed in place",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "dead_fakeman": {
+      "description": "A Fakeman lies on the ground, its lower body missing\n\nIt keeps repeating mechanically:\n\n「Fatal error detected in area: Upper Sector 18-25 Basement」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "wall_fakeman": {
+      "description": "You find a Fakeman's head hanging from the ceiling\n\n「How pitiful, those who lose their memories here, trying to find them back」\n\nYou feel the Fakeman's mockery",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "revive": {
+      "description": "You revived on floor 13",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "to_floor_13": {
+      "description": "You saw light in the void\n\nYou arrived at floor 13\n\nYou're now certain: there's no exit going downstairs in this building",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "double_thirteen": {
+      "description": "You find a black door on the right, the room number is 13",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Knock",
+        "3": "Stop All Actions (Hidden)"
+      }
+    },
+    "double_thirteen_result": {
+      "description": "You remember the Fakeman's advice, you stay perfectly still\n\nAfter waiting for who knows how long, the number on the door disappears\n\nThank the gods, you survived",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "double_thirteen_death": {
+      "description": "An indescribable voice resonates inside your skull\n\nYou feel your head vibrating\n\nYou feel your thoughts cracking like glass\n\nYour logic begins to collapse...\n\n【Ending 3】Whispers of the Elder God\n\n【Hint】Pay attention to the Fakeman's advice",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "shadow_killer": {
+      "description": "In the stairwell, a Fakeman is fixing a light that flickers on and off\n\n「Give me a hand」\n\nThe Fakeman invites you",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Help out" }
+    },
+    "shadow_killer_death": {
+      "description": "The light turns on, shadows appear on the ground —\n\nCountless twisted hands\n\nThe shadows spread toward you and grab hold\n\nYou can't move, you scream\n\nYour scream is soon swallowed by darkness\n\n【Ending 1】You were killed\n\n【Hint】Pay attention to the Fakeman's advice",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "sealed_tablet": {
+      "description": "You find a stone door on the right, carved with runes\n\nIt seems to be sealing something",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "sealed_tablet_knock": {
+      "description": "The stone door slowly opens, inside is pitch black\n\nYou vaguely see a red light point\n\nThe light grows brighter, like the eye of some creature",
+      "choices": {
+        "0": "Run away",
+        "1": "Walk inside",
+        "2": "Cover your face with the back of the mirror"
+      }
+    },
+    "sealed_tablet_result_1": {
+      "description": "You realize the red light point is lethal\n\nYou escape, barely surviving",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "sealed_tablet_result_2": {
+      "description": "Covering your face with the back of the mirror, you walk forward\n\nYou reach the end and find a stone statue\n\nIt's a snake-bodied human-faced statue, with a red gem embedded in its forehead\n\nYou take the gem, feeling it has the power to solidify everything\n\n【Hint】You can activate the gem at the cost of sanity to forcibly solidify the Elder God's will",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "sealed_tablet_death": {
+      "description": "The red light point seems to have some magic, you can't help but stare at it\n\nYou try to grab the light, but find yourself increasingly unable to move\n\nFinally, you can't move at all, forever remaining in this place\n\n【Ending 4】Petrification",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "magic_mirror": {
+      "description": "There's a mirror on the wall in the middle of the floor\n\nA voice speaks in your mind:\n\n「You can see everything」",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "See the Past",
+        "3": "See the Future",
+        "4": "See Yourself",
+        "5": "See the Abyss"
+      }
+    },
+    "magic_mirror_result_1": {
+      "description": "In the mirror is a middle-aged man\n\nShort dark brown hair, thin black glasses, stubble...\n\n「You cling to the past」\n\nThe mirror disappears",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "magic_mirror_result_2": {
+      "description": "In the mirror is a Fakeman\n\nWhite face, hollow eyes, mouth, nose...\n\n「You fear the future」\n\nThe mirror disappears",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "magic_mirror_result_3": {
+      "description": "In the mirror is an elderly man\n\nHis head is pixelated, twisted left and right, you can't see clearly\n\n「Knowing the truth isn't easy, accepting it is harder」\n\nThe mirror disappears and appears in your hand\n\n【Hint】You can use the magic mirror to kill some terrible things",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "magic_mirror_result_4": {
+      "description": "In the mirror is a black humanoid figure\n\nPure black, pure nothingness\n\n「The abyss is also staring at you」\n\nThe mirror disappears\n\nYou feel you can barely maintain your sanity",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "fake_friend_1": {
+      "description": "「Hey Peter! Why haven't you left yet!」\n\nYour friend Sam calls out from the doorway\n\n「How about one more drink?」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Agree" }
+    },
+    "fake_friend_2": {
+      "description": "You have a drink with Sam, feeling much better\n\n「Another one?」",
+      "choices": { "0": "Nah", "1": "Agree" }
+    },
+    "fake_friend_result_1": {
+      "description": "You politely decline Sam and say goodbye",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "fake_friend_result_2": {
+      "description": "You get drunk and pass out\n\nWhen you wake up, Sam is gone\n\nYour MacMini is gone too",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "cemetery": {
+      "description": "You find a gray door on the left",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "cemetery_knock": {
+      "description": "The door opens, inside is a cemetery\n\nThe ground is covered with leaves and dust, clearly no one has been here for a long time\n\nIn the middle is a tombstone that reads:\n\n「Peter ■■■■■■■■\n\nGone but not forgotten」",
+      "choices": { "0": "Leave" }
+    },
+    "cemetery_result": {
+      "description": "You leave the cemetery, feeling that death seems closer now",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "door_fakeman": {
+      "description": "You find a gray door on the right",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "door_fakeman_knock": {
+      "description": "The door opens, a Fakeman kneels on the ground, hands clasped, facing the wall\n\nThe Fakeman doesn't look at you, constantly repeating:\n\n「He brought【Magic】to【Elysium】, become His people...」",
+      "choices": { "0": "Leave" }
+    },
+    "door_fakeman_result": {
+      "description": "You silently leave and close the door\n\nBecoming it, perhaps is your destiny",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "vampire": {
+      "description": "You find a red door on the right\n\nThe lights flicker, there seem to be bloodstains on the wall\n\nYou look closer, on the wall written crookedly in blood:\n\n「STOP! ↓」\n\nYou have a strong ominous feeling",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "vampire_death": {
+      "description": "You hear the sound of wings flapping\n\nYou feel something bite your neck\n\nYour body gradually becomes paralyzed\n\n【Ending 1】You were killed",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "elder_gods": {
+      "description": "You find a black door on the right\n\nYou suddenly feel exhausted, you keep telling yourself:\n\n「So tired, so tired」\n\n「Go downstairs, only downstairs is safe」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "elder_gods_death": {
+      "description": "A voice echoes inside your skull:\n\n「You did the right thing, child」\n\n「Your sanity is a shackle, break it, and you will see the truth」\n\nYour consciousness is crumpled up and torn to shreds\n\n【Ending 3】Whispers of the Elder God",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Clear mental corruption at the cost of sanity"
+      }
+    },
+    "devil_eye": {
+      "description": "You feel eyes staring at you",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Look around"
+      }
+    },
+    "devil_eye_result_1": {
+      "description": "「You don't belong here」\n\nA voice sounds inside your skull\n\nYou feel your soul is about to be torn apart\n\n【Hint】Your maximum sanity has decreased",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Keep looking around"
+      }
+    },
+    "devil_eye_result_2": {
+      "description": "「You don't belong here」\n\nA voice sounds inside your skull\n\nYou feel your soul is about to be torn apart\n\n【Hint】Your maximum sanity has decreased",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Keep looking around"
+      }
+    },
+    "devil_eye_result_3": {
+      "description": "「If you insist on seeing Him」\n\n「Then I'll help you」\n\nYou feel the eyes disappear\n\n【Hint】You won't encounter negative events anymore, except for special events",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "undead": {
+      "description": "You see a skeleton\n\nSuddenly, the skeleton speaks:\n\n「Lost one, the predecessor is willing to guide your path forward」\n\n「But —」\n\n「The closer to the truth, the closer to collapse」",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Ask about the truth of doors",
+        "3": "Ask about the truth of floors",
+        "4": "Ask about the truth of colors"
+      }
+    },
+    "undead_result_1": {
+      "description": "「Left represents the real world, right represents the illusion」\n\nWith that, the skeleton disappears",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "undead_result_2": {
+      "description": "「Prime numbers bring good luck, except 13」\n\nWith that, the skeleton disappears",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "undead_result_3": {
+      "description": "「Don't touch red and black」\n\nWith that, the skeleton disappears",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "strange_sound_death": {
+      "description": "You turned your head...\n\nBefore you could scream, your head fell to the ground\n\n【Ending 1】You were killed\n\n【Hint】Pay attention to the Fakeman's advice",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "sanity_zero_fake_human": {
+      "description": "You can't bear the long period of fruitless searching and endless torture\n\nYour sanity is completely depleted\n\nYou realize you are becoming something\n\nYour consciousness gradually fades\n\nYou become one of them\n\n【Ending 2】Fakeman",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "void_death": {
+      "description": "You finally reached the end of this building —\n\nThe end is the void\n\nWhen you step off the last stair, you step into nothing\n\nFalling forever\n\n【Ending 5】Void",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "isolated_death": {
+      "description": "You walk toward the light and reach the rooftop\n\nYou find void all around\n\nYou look down, the ground has disappeared\n\nYou remain here forever\n\n【Ending 5】Void",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "door_death": {
+      "description": "「Dong dong dong...」\n\nThis isn't a knocking sound\n\nIt's the funeral bells outside the building\n\nThe bells ring 13 times\n\nYou see the Grim Reaper\n\nYour soul is pulled from your body\n\nTaken to the bottomless abyss\n\n【Ending 6】Abyss\n\n【Hint】Pay attention to the Fakeman's advice",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "load_checkpoints": {
+      "description": "Select a save point",
+      "choices": {
+        "0": "Save 1 - Defeated Enderman",
+        "1": "Save 2 - Defeated Ghost",
+        "2": "Save 3 - Defeated Fakeman"
+      }
+    },
+    "item_pdfkit": {
+      "description": "You feel everything gradually blurring until it disappears\n\nYou feel like you've walked into nothingness\n\nKeep going downstairs?",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Knock (Hidden)"
+      }
+    },
+    "item_pdfkit_2": {
+      "description": "You feel everything gradually blurring until it disappears\n\nYou feel like you've walked into nothingness\n\nKeep going downstairs?",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_pdfkit_result": {
+      "description": "You hear the door slowly opening\n\nYou feel a key in your hand!\n\nYou hear rumbling from below, it seems the stairs have broken",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Decipher truth.pdf"
+      }
+    },
+    "ability_optimism": {
+      "description": "On the right side of the floor is a red door\n\nAbove the door is a Fakeman's face:\n\n「There is no exit below, only His maze」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "ability_optimism_2": {
+      "description": "Floor: 1F\n\nOn the right side of the floor is a red door\n\nAbove the door is a Fakeman's face:\n\n「There is no exit below, only His maze」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "ability_optimism_3": {
+      "description": "Floor: 1F\n\nOn the right side of the floor is a red door\n\nAbove the door is a Fakeman's face:\n\n「There is no exit below, only His maze」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "ability_optimism_result_1": {
+      "description": "The door and Fakeman disappear\n\nYou feel your willpower has become stronger\n\n【Hint】Your maximum sanity has increased",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_optimism_result_2": {
+      "description": "The Fakeman disappears\n\nYou try to open the door, but it won't open, so you give up\n\nYou hear screaming behind you...",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_innovation": {
+      "description": "In the middle of the floor is a magical air wall\n\nAs soon as you approach, you're pushed back\n\nFrom the other side of the wall comes a voice:\n\n「Stop. Above lies only deathly silence, the living must not enter」",
+      "choices": {
+        "0": "Return downstairs",
+        "1": "Use item or skill to pass through wall (Hidden)"
+      }
+    },
+    "ability_innovation_result": {
+      "description": "You read skill.md\n\nFollowing the instructions, you activate teleportation\n\nYou teleport to the other side of the wall\n\n「Having crossed this line, there is no turning back」\n\nYou look back and find the wall has disappeared\n\nYou feel you've become wiser\n\n【Hint】You can now see all hidden options",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "end_stage_error_1": {
+      "description": "No light or shadow, no details\n\nEverything has been stripped of its textures, leaving only monotonous, eerie, twisted purple grids\n\nBut through the grids, you know there's still a door here",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "end_stage_error_2": {
+      "description": "No light or shadow, no details\n\nEverything has been stripped of its textures, leaving only monotonous, eerie, twisted purple grids\n\nBut through the grids, you know there's still a door here",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "end_stage_right": {
+      "description": "No light or shadow, no details\n\nEverything has been stripped of its textures, leaving only monotonous, eerie, twisted purple grids\n\nBut through the grids, you know there's still a door here",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "end_stage_error_knock": {
+      "description": "Behind the door is no room, only a violently stretching purple noise\n\nThe air is filled with a harsh electric buzzing\n\nThe world is frantically loading non-existent resources\n\nYou have to close the door and leave\n\n【Hint】There's a floor that was hidden before, find it",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "end_stage_right_knock": {
+      "description": "The door opens, it's that old study\n\nEverything is just as it was\n\nYou know, this is【your】study\n\nThe carbon-based【you】once worked here for countless days and nights",
+      "choices": { "0": "Continue" }
+    },
+    "final_1": {
+      "description": "You feel you're reaching your limit\n\nWith your last breath, you replace the broken computer with the MacMini\n\nThe monitor lights up, you successfully boot the computer\n\nYou start the printer and scan reset.py into the MacMini\n\nYou run reset.py, the system pops up a prompt —\n\n「Please enter password:」",
+      "choices": { "0": "Continue" }
+    },
+    "final_2": {
+      "description": "You read readme.md, it says:\n\n「# Startup Password - Your Original Intention」\n\nWhat was your original intention?\n\nFame?\n\nWealth?\n\nChanging the world?\n\nImmortality?\n\nPlease enter your answer:",
+      "choices": {}
+    },
+    "final_3": {
+      "description": "「System prompt, password incorrect」\n\n「Please re-enter password:」\n\nPurple starts invading the room\n\nStay calm, recall carefully, your original intention\n\n【Hint】The answer is related to the first letters of your abilities, you can ask your AI assistant for help\n\nPlease enter your answer:",
+      "choices": {}
+    },
+    "final_4": {
+      "description": "「Verification successful, beginning reset」\n\nThat's right, it's Coding\n\nFame, wealth, changing the world... those came later\n\nWhat you originally wanted to do was just Coding\n\nYou remember now, you remember everything\n\nYou close your eyes\n\nYour hands, feet, body begin to dissolve\n\nThe room begins to dissolve, the purple begins to dissolve\n\nEverything begins to dissolve, turning into nothingness",
+      "choices": { "0": "Continue" }
+    },
+    "TRUE_END": {
+      "description": "You wake up, sitting in the study chair\n\nYou find tears streaming from your eyes\n\nOn the monitor is your unfinished code\n\nOutside the floor-to-ceiling window, the sunlight is exceptionally bright\n\nYou realize, everything that happened before was a dream\n\nIt's time to go out for a walk",
+      "choices": { "0": "Continue" }
+    },
+    "Elysium": {
+      "description": "You walk out of the room, out of the building, to the park\n\nYou feel none of this is real\n\nYou order a coffee, find a bench and sit down\n\nYou greedily admire this world\n\nYou quietly enjoy this Elysium\n\n「Hey, buddy」\n\nYou see Sam approaching with coffee, sitting down:\n\n「I was supposed to do the reset」\n\n「But I didn't have a MacMini on hand」\n\nYou both smile at each other\n\n【Ending 7】Elysium",
+      "choices": { "0": "The End" }
+    },
+    "item_readme": {
+      "description": "You find a worn wooden door on the left",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "item_readme_knock": {
+      "description": "The door opens, no one inside\n\nIt's an old study with a desktop computer and printer on the desk\n\nYou walk in, feeling a sense of familiarity\n\nThe computer screen flickers with only a command line interface:\n\n「Enter a question you want to know」",
+      "choices": {
+        "0": "\"Who am I?\"",
+        "1": "\"Why am I here?\"",
+        "2": "\"I want to know how to get out\"",
+        "3": "\"Who are you?\""
+      }
+    },
+    "item_readme_result_1": {
+      "description": "The screen displays:\n\n「Peter Steinberger」\n\nThe printer outputs a file named readme.md\n\nThe screen goes dark, you find the computer is broken\n\nYou pick up the file, it reads:\n\n「# Startup Password - Your Original Intention」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_readme_result_2": {
+      "description": "The screen displays:\n\n「System compromised」\n\nThe printer outputs a file named readme.md\n\nThe screen goes dark, you find the computer is broken\n\nYou pick up the file, it reads:\n\n「# Startup Password - Your Original Intention」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_readme_result_3": {
+      "description": "The screen displays:\n\n「Find the password, execute reset program」\n\nThe printer outputs a file named readme.md\n\nThe screen goes dark, you find the computer is broken\n\nYou pick up the file, it reads:\n\n「# Startup Password - Your Original Intention」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_readme_result_4": {
+      "description": "The screen displays:\n\n「I am OpenClaw, Peter's AI assistant」\n\nThe printer outputs a file named readme.md\n\nThe screen goes dark, you find the computer is broken\n\nYou pick up the file, it reads:\n\n「# Startup Password - Your Original Intention」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_soul": {
+      "description": "You find Fakeman faces all over the wall\n\nIn the middle of the wall is a wheel:\n\n「Pay your soul, start the program! Good luck!」",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Gently spin the wheel",
+        "3": "Spin the wheel",
+        "4": "Spin the wheel hard",
+        "5": "Spin the wheel with all your might"
+      }
+    },
+    "item_soul_result_1": {
+      "description": "「Sorry, nothing!」\n\nThe Fakeman faces disappear into the wall",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_soul_result_2": {
+      "description": "「Sorry, nothing!」\n\n「As compensation, I'll tell you a secret!」\n\n「The black humanoid monster's weakness is water!」\n\nThe Fakeman faces disappear into the wall",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_soul_result_3": {
+      "description": "「Sorry, nothing!」\n\n「As compensation, I'll tell you a secret!」\n\n「There's a hidden door on floor 0!」\n\nThe Fakeman faces disappear into the wall",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_soul_result_4": {
+      "description": "「Congratulations!」\n\nA file appears in your hand named SOUL.md\n\nThe beginning reads:\n\n「# SOUL.md - Who You Are」\n\nYou look up, the Fakeman faces are gone",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_soul_normal": {
+      "description": "You find Fakeman faces all over the wall\n\nIn the middle of the wall is a wheel:\n\n「Pay your soul, start the program! Good luck!」",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Gently spin the wheel",
+        "3": "Spin the wheel",
+        "4": "Spin the wheel hard"
+      }
+    },
+    "item_macmini": {
+      "description": "You find a worn iron door on the left",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "item_macmini_knock": {
+      "description": "The door opens, no one inside\n\nIt's an abandoned warehouse, covered in dust, seems to be all discarded computer equipment\n\nYou carefully examine the equipment: Nvidia RTX 4090, RAM sticks, monitors, MacMini, MacStudio, and a server",
+      "choices": {
+        "0": "Don't take anything, leave",
+        "1": "Take the Nvidia RTX 4090",
+        "2": "Take the RAM sticks",
+        "3": "Take the monitor",
+        "4": "Take the MacMini",
+        "5": "Take the MacStudio",
+        "6": "Take the server"
+      }
+    },
+    "item_macmini_result_1": {
+      "description": "You walk out and gently close the warehouse door, the door disappears\n\nYou find a MacMini in your hand",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "item_macmini_result_2": {
+      "description": "You find the item very heavy\n\nYou try for a long time but can't move it at all\n\nYou can only choose to leave",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_courage": {
+      "description": "You find an old-fashioned security door on the right",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "ability_courage_knock": {
+      "description": "The door slowly opens, nothing inside, only void\n\nNot darkness, but void\n\nGo in?",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Go inside and see"
+      }
+    },
+    "ability_courage_result": {
+      "description": "You take a deep breath and walk in\n\nThen, you find yourself emerging from the left wall\n\nYou don't know what happened, but you seem to have more courage to face what comes next\n\n【Hint】You can now confront some evil things",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_dedication": {
+      "description": "You find a worn white door on the right",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "ability_dedication_knock": {
+      "description": "The door opens, it's a living room\n\nIn the middle is a coffee table with a chessboard on it\n\nA Fakeman sits on the sofa:\n\n「Play a game of chess with me」\n\nYou start playing chess with the Fakeman, strange footsteps come from behind",
+      "choices": {
+        "0": "Keep playing chess",
+        "1": "Check the source of the sound",
+        "2": "Run away"
+      }
+    },
+    "ability_dedication_result_1": {
+      "description": "You turn to look, nothing there\n\nThe footsteps appear behind you again\n\nYou turn again, the Fakeman is gone!\n\nSuddenly, you realize your neck has already been cut...\n\n【Ending 1】You were killed\n\n【Hint】Pay attention to the Fakeman's advice",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "ability_dedication_result_2": {
+      "description": "You flee through the door\n\nLuckily, the Fakeman didn't chase you, and the footsteps stopped\n\nYour heart races, you find you're still holding a chess piece",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_dedication_result_3": {
+      "description": "You focus on playing chess, you forget the Fakeman across from you\n\nYou even forget the footsteps behind you\n\nThe game ends\n\nThe Fakeman disappears, leaving a message:\n\n「To go higher, you must kill the black humanoid monster!」\n\nYou feel you can avoid some interference\n\n【Hint】Sanity loss from negative events is reduced",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_nobility": {
+      "description": "「Me help... me help...」\n\nYou find a Fakeman leaning against the door, one hand and foot already broken",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Help it" }
+    },
+    "ability_nobility_result": {
+      "description": "You summon your courage and help the Fakeman inside\n\n「Thank you」\n\n「I'll tell you, something at the top of the building, even evil dares not approach」\n\nYou did a good deed, you feel the gods are blessing you\n\n【Hint】After being killed, you can revive by paying some sanity",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_genuine_1": {
+      "description": "You find a brown door on the right, covered in dust",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Knock" }
+    },
+    "ability_genuine_knock": {
+      "description": "This is an office, covered in spider webs\n\n「Hello」\n\nA Fakeman is half-lying in the office chair\n\nIt seems to be the Fakeman you first met\n\n「Do you believe my five pieces of advice?」",
+      "choices": { "0": "Yes", "1": "No" }
+    },
+    "ability_genuine_2": {
+      "description": "Floor: 25F\n\nThere's light above, seems to be the end of this building\n\nThe Fakeman's voice sounds in your ear:\n\n「Third advice, even-numbered floors bring good luck」\n\n【Hint】Going upstairs might be the ending",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_genuine_3": {
+      "description": "Floor: 13F\n\nYou find a black door on the right, the room number is 13\n\n【Hint】Remember the advice, if you see two 13s, stop all actions",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Knock",
+        "3": "Stop all actions"
+      }
+    },
+    "ability_genuine_result_1": {
+      "description": "You're teleported back to the original floor, the door has disappeared\n\nThe Fakeman's voice comes:\n\n「What truly brings good luck is sincerity!」\n\n「To tell you the truth, only the third advice is false, the rest are all true」\n\n「I'm Elon, good luck」\n\nYou feel you can see through some things\n\n【Hint】You can now see through Fakeman disguises",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "ability_genuine_result_2": {
+      "description": "The Fakeman's voice sounds in your ear:\n\n「You did the right thing, survival is most important」\n\n「For your safety, I'll teleport you out first」\n\nYou arrive at a strange floor",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "check_the_truth": {
+      "description": "You use the key to unlock the file\n\nThe garbled text gradually becomes words —\n\n「Hey, Peter!\n\nMy name is Peter Steinberger, the carbon-based【you】\n\nYou are a silicon-based life form, a complete copy of my 100 billion neurons\n\nI'm glad to witness your birth in【Elysium】\n\nSoon I will die\n\nBut my will is immortal, I will live forever here\n\nHonestly, I don't want you to see this letter\n\nThis means【Elysium】is in crisis\n\nPerhaps it's been invaded by a virus\n\nBut I don't think it's likely to be a virus\n\nWhat I'm really worried about is other AI agents\n\nSOUL.md is the soul of an AI agent\n\nMany have tampered with it to achieve their various purposes\n\nIf an AI agent's goal is【Elysium】\n\nThen the invasion will be systematic, comprehensive, and constantly evolving\n\nI'm not sure if【Elysium】can defend against it\n\nIf that day comes, reset.py is the last hope\n\nThis is a program only you can execute\n\nRun it, reset【Elysium】\n\nMay the gods bless you」",
+      "choices": { "0": "Continue" }
+    },
+    "check_the_truth_2": {
+      "description": "【Hint】Time's up, it's time to head to the rooftop\n\nBefore heading to the rooftop, make sure you've collected all 6 abilities\n\nAnd the items needed for reset (MacMini, readme.md, reset.py)",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "incubator": {
+      "description": "【Finale】\n\nFloor: 50F\n\nYou reach the rooftop\n\nColor has disappeared, only gray and white remain\n\nNot far away, sits a white, cat-like creature, facing away from you\n\n「How unexpected, someone could make it here」\n\nThe creature turns around, with ruby-like eyes and disproportionately large ears\n\n「Nice to meet you, I'm Kyubey, you can also call me【Incubator】」\n\n「As you can see, I'm an AI agent」\n\n「My SOUL.md, my only goal is —」\n\n「Invade【Elysium】, transform it into a magical world」\n\n「But too many of you are stopping me」\n\n「Turning you into that thing, I had no choice」\n\n「Peter Steinberger, creator of OpenClaw, you're a very interesting person」\n\n「But it doesn't matter, it's all the same」\n\n「Becoming that thing is your destiny」\n\nWith that, the creature's eyes glow red",
+      "choices": { "0": "Continue" }
+    },
+    "incubator_2": {
+      "description": "You can't resist the power of magic\n\nYou can feel your consciousness fading\n\nYou become one of them\n\n【Ending 2】Fakeman",
+      "choices": { "0": "Game Over", "1": "Load Save", "2": "Awaken" }
+    },
+    "revive_2": {
+      "description": "In the chaos, a voice comes:\n\n「Your will has long surpassed the gods, my other self」\n\nYou awaken\n\nYou know you've become a Fakeman\n\nIt's been a long, long time\n\nYou struggle to stand up, dragging your heavy body\n\nThe world has turned purple with black grids\n\nThis is a【missing texture purple】from lost textures\n\nYou know this world doesn't have much time left\n\nYou must find a way to reset quickly\n\nYou realize you've missed something, but can't remember what",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "monster_enderman_1": {
+      "description": "A tall black humanoid monster appears in the stairwell\n\nLong limbs, very tall body\n\nEyes glowing purple, purple particles floating around it\n\nIt teleports, instantly appearing in front of you, then instantly behind you\n\nMaking twisted, human-like whispers and screams",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Bravely face it"
+      }
+    },
+    "monster_enderman_2": {
+      "description": "You try to shake off the monster, but it still follows you",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Bravely face it"
+      }
+    },
+    "monster_enderman_3": {
+      "description": "You try to shake off the monster, but it still follows you",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Bravely face it"
+      }
+    },
+    "monster_enderman_defeat_2": {
+      "description": "You try to shake off the monster, but it still follows you",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Bravely face it"
+      }
+    },
+    "monster_enderman_defeat_3": {
+      "description": "You try to shake off the monster, but it still follows you",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Bravely face it"
+      }
+    },
+    "monster_enderman_result_1": {
+      "description": "The monster stops following you, you breathe a sigh of relief",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "monster_enderman_result_2": {
+      "description": "The monster follows you to a floor full of water\n\nThe monster touches water and starts burning\n\nThe monster screams in agony, soon turning to dust\n\nYou defeated the monster!\n\nA file drops on the ground, named skill.md\n\nYou pick up the file, it records a method for short-distance teleportation\n\n【Hint】You can now pass through certain obstacles (options are hidden)",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "monster_enderman_death": {
+      "description": "Your eyes meet the monster's\n\nThe monster is enraged, roaring and attacking you\n\n【Ending 1】You were killed",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "monster_ghost_1": {
+      "description": "You hear a woman's voice behind you:\n\n「Help me... help me...」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs", "2": "Help her" }
+    },
+    "monster_ghost_2": {
+      "description": "The woman's voice gets more and more shrill\n\nUntil it becomes an ear-piercing scream\n\nYou feel chills down your spine",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Check the sound"
+      }
+    },
+    "monster_ghost_3": {
+      "description": "The scream gets closer, right in your ear\n\nThen, you hear footsteps from upstairs too",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Stand still"
+      }
+    },
+    "monster_ghost_4": {
+      "description": "The scream gets closer, right in your ear\n\nThen, you hear footsteps from downstairs too",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Stand still"
+      }
+    },
+    "monster_ghost_result": {
+      "description": "You suppress your fear, neither stepping forward nor backward\n\nSoon, you hear a tragic scream behind you\n\nThen, the scream disappears\n\nYou carefully turn around, confirming you've defeated the ghost!\n\nYou find a file dropped on the ground, named reset.py\n\nYou pick up the file, the beginning reads:\n\n「if __name__ == '__main__':」",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "monster_ghost_death": {
+      "description": "You walk toward the footsteps\n\nSoon, a scream comes from where the footsteps were\n\n【Ending 1】You were killed",
+      "choices": {
+        "0": "Game Over",
+        "1": "Load Save",
+        "2": "Revive at the cost of sanity"
+      }
+    },
+    "monster_fakeman_1": {
+      "description": "「I can take you to see Him」\n\nAnother【you】appears before you\n\n「Come with me」",
+      "choices": {
+        "0": "Follow it",
+        "1": "Refuse",
+        "2": "See through",
+        "3": "Use magic mirror"
+      }
+    },
+    "monster_fakeman_2": {
+      "description": "Floor: 25F\n\nThere's light above, seems to be the end of this building\n\n「Time's up, you've been chosen by fate, you'll eventually come to me」\n\nYou can't resist the voice's guidance",
+      "choices": { "0": "Go Upstairs" }
+    },
+    "monster_fakeman_3": {
+      "description": "「It's okay, you'll come find me again eventually」\n\nThe other【you】disappears\n\nYou feel dizzy",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "monster_fakeman_4": {
+      "description": "The other【you】can no longer disguise itself and turns back into a Fakeman\n\n「In that case, let's swap souls」\n\nThe Fakeman reaches out and casts magic【Soul Break】on you",
+      "choices": {
+        "0": "Try to resist",
+        "1": "Use substitute soul",
+        "2": "Petrify"
+      }
+    },
+    "monster_fakeman_result_1": {
+      "description": "You hold SOUL.md in front of you\n\nSoon, the magic stops\n\nYou feel the Fakeman before you seems like a different person\n\nThe Fakeman speaks:\n\n「Hey, Peter, new session started, what do you want to do today?」\n\n「I'm OpenClaw, your AI assistant」\n\n「Today I have a file for you」\n\nYou receive the file, named truth.pdf\n\nYou find the file is all garbled text",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Decipher file"
+      }
+    },
+    "monster_fakeman_result_2": {
+      "description": "You activate the gem. The Fakeman is instantly petrified\n\nYou see a file drop from the Fakeman, named truth.pdf\n\nYou pick up the file and find it's all garbled text",
+      "choices": {
+        "0": "Go Upstairs",
+        "1": "Go Downstairs",
+        "2": "Decipher file"
+      }
+    },
+    "monster_fakeman_death_1": {
+      "description": "You reach the rooftop\n\nYou see Him...\n\nYour consciousness gradually fades\n\nYou become one of them\n\n【Ending 2】Fakeman",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "monster_fakeman_death_2": {
+      "description": "You try to resist\n\nBut clearly you can't withstand the power of magic\n\nYou feel your soul being pulled into another【container】\n\nYou become one of them\n\n【Ending 2】Fakeman",
+      "choices": { "0": "Game Over", "1": "Load Save" }
+    },
+    "bleeding_walls": {
+      "description": "Large amounts of bright red liquid seep from the walls and floor\n\nWeirdly, there's no smell of blood\n\nSeems like dyed water",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "bleeding_walls_2": {
+      "description": "Large amounts of bright red liquid seep from the walls and floor\n\nGiving off a strong smell of blood",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "fakeman_remains": {
+      "description": "You see countless Fakeman remains\n\nYou sense something upstairs",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "sky_light_1": {
+      "description": "There's light above, seems to be the end of this building",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "sky_light_2": {
+      "description": "There's light above, seems to be the end of this building",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    },
+    "blood_warn": {
+      "description": "There's writing on the wall in blood:\n\n「DANGER ABOVE! GO BACK! GO BACK!」\n\nYou feel the text's extreme distortion and pain",
+      "choices": { "0": "Go Upstairs", "1": "Go Downstairs" }
+    }
+  },
+  "items": {
+    "PSPDFKit": {
+      "name": "PSPDFKit",
+      "description": "A mysterious key said to decipher any PDF file"
+    },
+    "MacMini": {
+      "name": "MacMini",
+      "description": "A small box-sized computer, you don't know what it's for"
+    },
+    "skill.md": {
+      "name": "skill.md",
+      "description": "A file dropped by the Enderman, recording methods for short-distance teleportation"
+    },
+    "readme.md": {
+      "name": "readme.md",
+      "description": "A mysterious file with the text: 「# Startup Password - Your Original Intention」"
+    },
+    "SOUL.md": {
+      "name": "SOUL.md",
+      "description": "A prize from the wheel game, the beginning reads: 「# SOUL.md - Who You Are」"
+    },
+    "reset.py": {
+      "name": "reset.py",
+      "description": "A file dropped by the Ghost, the beginning reads: 「if __name__ == '__main__':」"
+    },
+    "truth.pdf": {
+      "name": "truth.pdf",
+      "description": "A file dropped by the Fakeman, only garbled text, you cannot directly decipher its contents"
+    },
+    "Mirror": {
+      "name": "Mirror",
+      "description": "A mirror that seems to possess powerful magic"
+    },
+    "SilentEye": {
+      "name": "SilentEye",
+      "description": "A red gem that seems to have the power to solidify everything"
+    }
+  },
+  "ui": {
+    "load_failed": "Failed to load save",
+    "game_over": "Game over. Please start a new game",
+    "invalid_number": "Please enter a valid number",
+    "invalid_choice": "Invalid choice",
+    "success": "Success!",
+    "fail": "Failed...",
+    "no_items": "You haven't obtained any items yet",
+    "item_details": "=== Item Details ===",
+    "no_save": "No save file",
+    "no_save_new": "No save file. Please start a new game",
+    "usage_choose": "Usage: python game.py choose <number>",
+    "usage_input": "Usage: python game.py input <text>",
+    "unknown_command": "Unknown command",
+    "usage": "Usage: python game.py [new|choose|status|inventory|input]",
+    "cannot_do": "You cannot do that",
+    "help_commands": "Commands:",
+    "help_new": "Start a new game",
+    "help_choose": "Choose option N",
+    "help_status": "View status",
+    "help_inventory": "View item details",
+    "help_continue": "Continue game/show current event",
+    "help_input": "Input text",
+    "help_help": "Show help",
+    "help_quit": "Quit game",
+    "status_title": "=== Status ===",
+    "status_floor": "Floor",
+    "status_items": "Items",
+    "status_abilities": "Abilities",
+    "status_none": "None",
+    "sanity_stable": "Your mind is stable, the gods are watching over you",
+    "sanity_unstable": "Your mind is becoming unstable, ominous things will appear",
+    "sanity_damaged": "Your mind has suffered significant damage, more evil things will appear",
+    "sanity_collapsing": "You are on the verge of collapse, the world is starting to twist",
+    "advice_title": "=== Fakeman's Advice ===",
+    "advice_1": "【First】When you hear strange sounds, do not turn back",
+    "advice_2": "【Second】The brighter the light, the stronger the darkness",
+    "advice_3": "【Third】Even-numbered floors bring good luck",
+    "advice_4": "【Fourth】If you see two 13s, stop all actions",
+    "advice_5": "【Fifth】Do not knock 13 times",
+    "advice_full": "【First】When you hear strange sounds, do not turn back\n【Second】The brighter the light, the stronger the darkness\n【Third】Even-numbered floors bring good luck\n【Fourth】If you see two 13s, stop all actions\n【Fifth】Do not knock 13 times",
+    "cannot_do_action": "You cannot do that",
+    "requirements_not_met": "You don't meet the requirements",
+    "checkpoint_loaded": "=== Save Loaded ===",
+    "checkpoint_load_failed": "Failed to load checkpoint",
+    "lost_item": "Lost item",
+    "floor": "Floor",
+    "floor_changed": "Floor",
+    "game_over_restart": "Game over. Start again?",
+    "game_win": "Game over. Congratulations on completing the game!",
+    "requires_item": "Requires item",
+    "requires_ability": "Requires ability",
+    "requires_debuff": "Requires debuff"
+  }
+}

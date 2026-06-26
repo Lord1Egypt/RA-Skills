@@ -1,0 +1,17 @@
+{
+  "name": "earnings-tracker",
+  "version": "2.1.0",
+  "description": "AI Earnings Tracker - 追踪科技/AI公司财报",
+  "main": "fetch-earnings.js",
+  "scripts": {
+    "calendar": "node fetch-earnings.js calendar",
+    "check": "node fetch-earnings.js check",
+    "list": "node fetch-earnings.js list"
+  },
+  "keywords": ["earnings", "finance", "AI", "stocks", "tracker"],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

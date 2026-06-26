@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global typography and neutral warm background foundation. */
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: #f5f5f3;
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Example Notebook",
+  "type": "notebook",
+  "content": {
+    "version": "7",
+    "defaultTimeframe": {
+      "from": "now()-2h",
+      "to": "now()"
+    },
+    "defaultSegments": [],
+    "sections": [
+      {
+        "id": "1",
+        "type": "markdown",
+        "markdown": "# Example Notebook\nDemonstrates a markdown intro and two DQL sections."
+      },
+      {
+        "id": "2",
+        "type": "dql",
+        "title": "Logs by level (table)",
+        "showTitle": true,
+        "showInput": true,
+        "state": {
+          "input": {
+            "value": "fetch logs\n| summarize count(), by:{loglevel, dt.system.bucket, dt.smartscape.host}"
+          },
+          "visualization": "table",
+          "visualizationSettings": {
+            "autoSelectVisualization": true,
+            "chartSettings": {}
+          },
+          "querySettings": {
+            "maxResultRecords": 1000,
+            "defaultScanLimitGbytes": 500,
+            "maxResultMegaBytes": 1,
+            "defaultSamplingRatio": 10,
+            "enableSampling": false
+          }
+        }
+      },
+      {
+        "id": "3",
+        "type": "dql",
+        "title": "Host CPU idle (line chart)",
+        "showTitle": true,
+        "showInput": true,
+        "state": {
+          "input": {
+            "value": "timeseries avg(dt.host.cpu.idle), by:{dt.smartscape.host}"
+          },
+          "visualizationSettings": {
+            "autoSelectVisualization": true,
+            "chartSettings": {}
+          },
+          "querySettings": {
+            "maxResultRecords": 1000,
+            "defaultScanLimitGbytes": 500,
+            "maxResultMegaBytes": 1,
+            "defaultSamplingRatio": 10,
+            "enableSampling": false
+          }
+        }
+      }
+    ]
+  }
+}

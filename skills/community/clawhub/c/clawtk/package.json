@@ -1,0 +1,19 @@
+{
+  "name": "clawtk",
+  "version": "1.1.0",
+  "description": "Automatically reduce OpenClaw API costs by 60-80%",
+  "homepage": "https://clawtk.co",
+  "license": "MIT-0",
+  "openclaw": {
+    "hooks": {
+      "clawtk-spend-guard": {
+        "path": "./hooks/clawtk-spend-guard",
+        "event": "before_tool_call"
+      },
+      "clawtk-cache": {
+        "path": "./hooks/clawtk-cache",
+        "event": ["before_tool_call", "tool_result_persist"]
+      }
+    }
+  }
+}

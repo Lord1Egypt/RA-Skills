@@ -1,0 +1,13 @@
+{
+  "name": "inflynce-create-campaign",
+  "tagline": "BOOST any link with Inflynce Marketing—reward real users by Mindshare",
+  "description": "Inflynce Marketing lets anyone boost a link (tweet, website, cast) with USDC and reward real Farcaster users by Mindshare. Each campaign: 0.25 USDC fee, minimum budget 5 USDC. Create via postBoostWeb API. No custody of funds.",
+  "category": "integrations",
+  "tags": ["inflynce", "inflynce-marketing", "mindshare", "boost", "campaign", "tweet", "x.com", "website", "farcaster", "warpcast", "base"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://boost.inflynce.com",
+  "requires": {
+    "env": ["GRAPHQL_URL"]
+  }
+}

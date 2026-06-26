@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>概况统计报告</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title .icon {
+            font-size: 28px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-top: 30px;
+        }
+        
+        .funnel-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .funnel-label {
+            min-width: 100px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .funnel-bar {
+            flex: 1;
+            height: 30px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 15px;
+            margin: 0 15px;
+            position: relative;
+            transition: width 0.5s ease;
+        }
+        
+        .funnel-value {
+            min-width: 120px;
+            text-align: right;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .funnel-rate {
+            min-width: 80px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .vendor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .vendor-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .vendor-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .vendor-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .vendor-stat {
+            text-align: center;
+        }
+        
+        .vendor-stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .vendor-stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.5s ease;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box p {
+            color: #1976d2;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 概况统计报告</h1>
+            <p id="report-info">生成时间：<span id="generate-time"></span></p>
+        </div>
+        
+        <!-- 应用概况部分 -->
+        <div class="section" id="app-overview-section">
+            <h2 class="section-title">
+                <span class="icon">📱</span>
+                应用概况
+            </h2>
+            
+            <div class="info-box">
+                <p><strong>应用 Key:</strong> <span id="appkey"></span></p>
+            </div>
+            
+            <div class="metrics-grid" id="app-metrics">
+                <!-- 动态生成指标卡片 -->
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="appOverviewChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- 推送转换部分 -->
+        <div class="section" id="transform-section">
+            <h2 class="section-title">
+                <span class="icon">🔄</span>
+                推送转换分析
+            </h2>
+            
+            <div class="info-box">
+                <p>
+                    <strong>消息类型:</strong> <span id="msg-type"></span> | 
+                    <strong>时间范围:</strong> <span id="date-type"></span>
+                </p>
+            </div>
+            
+            <div id="funnel-container">
+                <!-- 动态生成漏斗图 -->
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="funnelChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- 厂商额度部分 -->
+        <div class="section" id="vendor-section">
+            <h2 class="section-title">
+                <span class="icon">🏭</span>
+                厂商通道额度
+            </h2>
+            
+            <div class="info-box">
+                <p>💡 提示：仅安卓应用显示此项数据</p>
+            </div>
+            
+            <div class="vendor-grid" id="vendor-container">
+                <!-- 动态生成厂商标签 -->
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="vendorChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 设置生成时间
+        document.getElementById('generate-time').textContent = new Date().toLocaleString('zh-CN');
+        
+        // Chart.js 全局配置
+        Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+        Chart.defaults.color = '#666';
+        
+        // 颜色方案
+        const colors = {
+            primary: 'rgba(102, 126, 234, 1)',
+            primaryLight: 'rgba(102, 126, 234, 0.2)',
+            secondary: 'rgba(118, 75, 162, 1)',
+            secondaryLight: 'rgba(118, 75, 162, 0.2)',
+            gradient1: ['rgba(102, 126, 234, 1)', 'rgba(102, 126, 234, 0.2)'],
+            gradient2: ['rgba(118, 75, 162, 1)', 'rgba(118, 75, 162, 0.2)']
+        };
+        
+        /**
+         * 格式化数字（添加千分位）
+         */
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        /**
+         * 创建指标卡片
+         */
+        function createMetricCard(value, label) {
+            return `
+                <div class="metric-card">
+                    <div class="metric-value">${formatNumber(value)}</div>
+                    <div class="metric-label">${label}</div>
+                </div>
+            `;
+        }
+        
+        /**
+         * 渲染应用概况数据
+         */
+        function renderAppOverview(data) {
+            if (!data) return;
+            
+            // 填充指标卡片
+            const metricsHtml = `
+                ${createMetricCard(data.totalDevices || 0, '总设备数')}
+                ${createMetricCard(data.todayActive || 0, '今日活跃')}
+                ${createMetricCard(data.todayPush || 0, '今日推送')}
+                ${createMetricCard(data.todayArrive || 0, '今日送达')}
+                ${createMetricCard(data.todayShow || 0, '今日展示')}
+                ${createMetricCard(data.todayClick || 0, '今日点击')}
+            `;
+            document.getElementById('app-metrics').innerHTML = metricsHtml;
+            
+            // 渲染柱状图
+            const ctx = document.getElementById('appOverviewChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['总设备数', '今日活跃', '今日推送', '今日送达', '今日展示', '今日点击'],
+                    datasets: [{
+                        label: '设备数量',
+                        data: [
+                            data.totalDevices || 0,
+                            data.todayActive || 0,
+                            data.todayPush || 0,
+                            data.todayArrive || 0,
+                            data.todayShow || 0,
+                            data.todayClick || 0
+                        ],
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(118, 75, 162, 0.8)',
+                            'rgba(102, 126, 234, 0.6)',
+                            'rgba(118, 75, 162, 0.6)',
+                            'rgba(102, 126, 234, 0.4)',
+                            'rgba(118, 75, 162, 0.4)'
+                        ],
+                        borderColor: [
+                            colors.primary,
+                            colors.secondary,
+                            colors.primary,
+                            colors.secondary,
+                            colors.primary,
+                            colors.secondary
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString() + ' 台';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        /**
+         * 渲染推送转换漏斗
+         */
+        function renderTransformData(data, msgType, dateType) {
+            if (!data) return;
+            
+            document.getElementById('msg-type').textContent = msgType === 'notification' ? '通知栏消息' : '消息';
+            document.getElementById('date-type').textContent = dateType === '1d' ? '昨日' : dateType === '3d' ? '近 3 日' : '近 7 日';
+            
+            const pushCnt = data.pushCnt || 0;
+            const arriveCnt = data.arriveCnt || 0;
+            const showCnt = data.showCnt || 0;
+            const clickCnt = data.clickCnt || 0;
+            
+            const arriveRate = pushCnt > 0 ? (arriveCnt / pushCnt * 100) : 0;
+            const showRate = arriveCnt > 0 ? (showCnt / arriveCnt * 100) : 0;
+            const clickRate = showCnt > 0 ? (clickCnt / showCnt * 100) : 0;
+            
+            // 填充漏斗容器
+            const maxBar = 100;
+            document.getElementById('funnel-container').innerHTML = `
+                <div class="funnel-item">
+                    <div class="funnel-label">推送</div>
+                    <div class="funnel-bar" style="width: ${maxBar}%"></div>
+                    <div class="funnel-value">${formatNumber(pushCnt)}</div>
+                    <div class="funnel-rate">-</div>
+                </div>
+                <div class="funnel-item">
+                    <div class="funnel-label">送达</div>
+                    <div class="funnel-bar" style="width: ${arriveRate}%"></div>
+                    <div class="funnel-value">${formatNumber(arriveCnt)}</div>
+                    <div class="funnel-rate">${arriveRate.toFixed(2)}%</div>
+                </div>
+                <div class="funnel-item">
+                    <div class="funnel-label">展示</div>
+                    <div class="funnel-bar" style="width: ${showRate}%"></div>
+                    <div class="funnel-value">${formatNumber(showCnt)}</div>
+                    <div class="funnel-rate">${showRate.toFixed(2)}%</div>
+                </div>
+                <div class="funnel-item">
+                    <div class="funnel-label">点击</div>
+                    <div class="funnel-bar" style="width: ${clickRate}%"></div>
+                    <div class="funnel-value">${formatNumber(clickCnt)}</div>
+                    <div class="funnel-rate">${clickRate.toFixed(2)}%</div>
+                </div>
+            `;
+            
+            // 渲染漏斗图
+            const ctx = document.getElementById('funnelChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['推送', '送达', '展示', '点击'],
+                    datasets: [{
+                        label: '转换数量',
+                        data: [pushCnt, arriveCnt, showCnt, clickCnt],
+                        backgroundColor: [
+                            'rgba(102, 126, 234, 0.8)',
+                            'rgba(102, 126, 234, 0.6)',
+                            'rgba(102, 126, 234, 0.4)',
+                            'rgba(102, 126, 234, 0.2)'
+                        ],
+                        borderColor: colors.primary,
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const rates = ['-', `${arriveRate.toFixed(2)}%`, `${showRate.toFixed(2)}%`, `${clickRate.toFixed(2)}%`];
+                                    return context.parsed.x.toLocaleString() + ' (' + rates[context.dataIndex] + ')';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        /**
+         * 渲染厂商额度数据
+         */
+        function renderVendorData(data) {
+            if (!data) return;
+            
+            const vendors = {
+                'huawei': '华为',
+                'xiaomi': '小米',
+                'oppo': 'OPPO',
+                'vivo': 'VIVO',
+                'honor': '荣耀',
+                'meizu': '魅族'
+            };
+            
+            let hasData = false;
+            const vendorLabels = [];
+            const usageRates = [];
+            const remainingData = [];
+            const usedData = [];
+            
+            // 填充厂商卡片
+            let vendorHtml = '';
+            for (const [key, name] of Object.entries(vendors)) {
+                const vendorData = data[key] || {};
+                const remaining = vendorData.remaining || 0;
+                const total = vendorData.total || 0;
+                
+                if (total > 0) {
+                    hasData = true;
+                    const used = total - remaining;
+                    const usageRate = (used / total * 100);
+                    
+                    vendorLabels.push(name);
+                    usageRates.push(usageRate);
+                    remainingData.push(remaining);
+                    usedData.push(used);
+                    
+                    vendorHtml += `
+                        <div class="vendor-card">
+                            <div class="vendor-name">${name}</div>
+                            <div class="vendor-stats">
+                                <div class="vendor-stat">
+                                    <div class="vendor-stat-value">${formatNumber(remaining)}</div>
+                                    <div class="vendor-stat-label">剩余额度</div>
+                                </div>
+                                <div class="vendor-stat">
+                                    <div class="vendor-stat-value">${formatNumber(total)}</div>
+                                    <div class="vendor-stat-label">总额度</div>
+                                </div>
+                                <div class="vendor-stat">
+                                    <div class="vendor-stat-value">${usageRate.toFixed(1)}%</div>
+                                    <div class="vendor-stat-label">使用率</div>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${usageRate}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            if (!hasData) {
+                document.getElementById('vendor-container').innerHTML = '<p style="text-align:center;color:#999;padding:40px;">暂无厂商额度数据</p>';
+                return;
+            }
+            
+            document.getElementById('vendor-container').innerHTML = vendorHtml;
+            
+            // 渲染堆叠柱状图
+            const ctx = document.getElementById('vendorChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: vendorLabels,
+                    datasets: [
+                        {
+                            label: '已使用',
+                            data: usedData,
+                            backgroundColor: colors.secondary,
+                            borderColor: colors.secondary,
+                            borderWidth: 2
+                        },
+                        {
+                            label: '剩余',
+                            data: remainingData,
+                            backgroundColor: colors.primaryLight,
+                            borderColor: colors.primary,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 从 window 对象读取数据（由 Python 脚本注入）
+        if (window.appOverviewData) {
+            renderAppOverview(window.appOverviewData);
+        }
+        
+        if (window.transformData) {
+            renderTransformData(
+                window.transformData, 
+                window.msgType || 'notification', 
+                window.dateType || '1d'
+            );
+        }
+        
+        if (window.vendorData) {
+            renderVendorData(window.vendorData);
+        }
+    </script>
+</body>
+</html>

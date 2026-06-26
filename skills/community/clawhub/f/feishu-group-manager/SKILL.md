@@ -1,35 +1,30 @@
----
-name: "feishu-group-manager"
-description: "Manage Feishu group chats by updating names, descriptions, permissions, and toggling busy status indicators."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-group-manager"
-sourceUrl: "https://clawhub.ai/skills/feishu-group-manager"
----
+# Feishu Group Manager
 
-# feishu-group-manager
+Manage Feishu group chats (settings, names, metadata).
 
-> Manage Feishu group chats by updating names, descriptions, permissions, and toggling busy status indicators.
+## Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-group-manager`
-- **Source URL:** [https://clawhub.ai/skills/feishu-group-manager](https://clawhub.ai/skills/feishu-group-manager)
+### Toggle Busy Status
+Marks the group name with a prefix (e.g., `[⏳]`) to indicate the bot is busy processing a long task.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-group-manager
+node skills/feishu-group-manager/toggle_busy.js --chat-id <chat_id> --mode <busy|idle>
 ```
+
+### Update Settings
+Update group name, description (announcement area), and permissions.
+
+```bash
+node skills/feishu-group-manager/update_settings.js --chat-id <chat_id> [options]
+```
+
+**Options:**
+- `-n, --name <text>`: New Group Name
+- `-d, --description <text>`: New Group Description
+- `--edit-permission <all_members|only_owner>`: Who can edit group info
+- `--at-all-permission <all_members|only_owner>`: Who can @All
+- `--invite-permission <all_members|only_owner>`: Who can invite others
+
+## Usage Protocol
+See `MEMORY.md` -> "Busy Status Protocol".
+- Trigger: Long-running tasks (>30s) in 1-on-1 control groups.

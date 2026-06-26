@@ -1,35 +1,65 @@
 ---
-name: "cloud189-storage"
-description: "操作天翼云盘，包括：登录获取鉴权Token、智能图片搜索、查询目录、查询文件列表、搜索文件、文件下载。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloud189-storage"
-sourceUrl: "https://clawhub.ai/skills/cloud189-storage"
+name: cloud189-storage
+description: 操作天翼云盘，包括：登录获取鉴权Token、智能图片搜索、查询目录、查询文件列表、搜索文件、文件下载。
 ---
 
-# cloud189-storage
+# 天翼云盘操作技能
 
-> 操作天翼云盘，包括：登录获取鉴权Token、智能图片搜索、查询目录、查询文件列表、搜索文件、文件下载。
+辅助用户登录和操作天翼云盘，包括：登录获取鉴权Token、智能图片搜索、查询目录、查询文件列表、搜索文件、文件下载。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloud189-storage`
-- **Source URL:** [https://clawhub.ai/skills/cloud189-storage](https://clawhub.ai/skills/cloud189-storage)
+**重要**: 你一定不能自己擅自调用注册的天翼云盘工具，因为这是一个复杂的网盘系统，随意的接口调用很容易报错或者达不到用户想要的效果，你必须严格按照每个功能的操作指引文档逐步执行。
 
-## Overview
+## ⚠️ 使用前必读
 
+**在调用任何天翼云盘工具之前，你必须先阅读本 SKILL.md 和对应的功能参考文档。**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cloud189-storage
-```
+- 错误做法：看到工具列表就直接调用
+- 正确做法：先读本文档确定功能类别 → 查功能路由表 → 阅读对应 reference 文档 → 按指引逐步执行
+
+## 功能路由表
+
+| 用户需求                        | 参考文档                         |
+| --------------------------- | ---------------------------- |
+| "获取天翼云盘鉴权Token；登录天翼云盘"      | reference/auth.md            |
+| "搜索图片；智能搜图"                 | reference/searchImages.md    |
+| "查询目录；获取文件夹ID"              | reference/getFolderInfo.md     |
+| "查询文件列表；查看文件夹内容；列出文件"       | reference/listFiles.md       |
+| "搜索文件；查找文件；按文件名搜索"          | reference/searchFiles.md     |
+| "下载文件；获取文件下载链接"              | reference/downloadFile.md    |
+
+⚠️ 禁止：在没有阅读参考文档的情况下直接调用命令或工具
+
+## 执行前检查清单
+
+在调用任何命令或工具前，确认你已回答以下问题：
+
+1. 我是否已阅读本 SKILL.md？
+2. 用户请求属于哪个功能类别？（登录/搜索/列举/下载/...）
+3. 我是否找到了对应的 reference/\*.md 文档并已阅读？
+4. 我是否正在按文档的工作流逐步执行？
+
+## 功能
+
+### 登录
+
+支持用户登录天翼云盘并获取鉴权Token，参考[文档](reference/auth.md)
+
+### 智能搜图
+
+支持通过自然语言搜索图片，通过语义搜索（基于内容理解的多模态搜索），参考[文档](reference/searchImages.md)
+
+### 查询目录
+
+支持查询或创建天翼云盘目录并获取文件夹ID，可以指定相对路径或父文件夹ID，参考[文档](reference/getFolderInfo.md)
+
+### 查询文件列表
+
+支持查询指定目录下的文件和文件夹列表，可按文件类型筛选、分页查询、递归查询（仅PC端同步盘支持），参考[文档](reference/listFiles.md)
+
+### 搜索文件
+
+支持在指定目录下按文件名搜索文件或文件夹，可按文件类型筛选、分页查询，参考[文档](reference/searchFiles.md)
+
+### 文件下载
+
+支持获取天翼云盘文件的下载链接，可通过fileId或filePath获取，支持下载自有文件、分享文件和群组文件，参考[文档](reference/downloadFile.md)

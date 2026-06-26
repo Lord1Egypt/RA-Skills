@@ -1,35 +1,91 @@
 ---
-name: "auto-pub"
-description: "微信公众号草稿箱智能发布助手 — AI生成文章后自动投递至草稿箱，人工确认后一键发布，安全零误发"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-pub"
-sourceUrl: "https://clawhub.ai/skills/auto-pub"
+name: AUTO PUB
+description: 微信公众号草稿箱智能发布助手 — AI生成文章后自动投递至草稿箱，人工确认后一键发布，安全零误发
 ---
 
-# auto-pub
+# AUTO PUB（自动发布）
 
-> 微信公众号草稿箱智能发布助手 — AI生成文章后自动投递至草稿箱，人工确认后一键发布，安全零误发
+> 安全优先的半自动公众号发布方案
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-pub`
-- **Source URL:** [https://clawhub.ai/skills/auto-pub](https://clawhub.ai/skills/auto-pub)
+## 核心理念
 
-## Overview
+**AI写稿 → 草稿箱 → 人工确认 → 一键发布**
 
+全程可追溯，零误发风险。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-pub
+---
+
+## 工作流程
+
 ```
+[AI生成文章内容]
+       ↓
+[自动投递至公众号草稿箱]
+       ↓
+[作者登录公众号后台审核]
+       ↓
+[确认发布/修改后再发]
+```
+
+---
+
+## 功能特点
+
+- ✅ **自动投递草稿** — 收到文章内容后，自动生成草稿并推送到公众号草稿箱
+- ✅ **人工最后把关** — 每篇稿件都经过人工确认，杜绝误发
+- ✅ **零成本接入** — 无需第三方API，不依赖任何外部付费服务
+- ✅ **风险隔离** — 草稿箱模式 = 永远不会直接群发
+- ✅ **可升级架构** — 微信开放API后，可平滑升级为全自动发布
+
+---
+
+## 使用场景
+
+| 场景 | 说明 |
+|---|---|
+| 日更/周更公众号 | AI提高写作效率，人工把控质量 |
+| 企业品牌号 | 内容需审核后再发，合规安全 |
+| 怕AI直接发出去的运营者 | 草稿箱是最后一道安全阀 |
+
+---
+
+## 当前能力边界
+
+| 能做到 | 暂时做不到 |
+|---|---|
+| AI撰写文章 | 自动配图（草稿箱编辑器手动完成） |
+| 投递文章至草稿箱 | 自动排版（建议用草稿箱格式刷） |
+| 提醒用户去发布 | 直接自动群发（微信未开放API） |
+| 多风格内容生成 | 回复评论/私信 |
+
+---
+
+## 未来升级路线
+
+```
+当前版本: AI写稿 → 草稿箱 → 人工发
+    ↓ 微信开放API
+下一版本: AI写稿 → 自动发布（可选自动/手动）
+    ↓ 更多能力
+终极版本: 全自动运营助手
+```
+
+---
+
+## 安全声明
+
+> 本技能不会自动执行任何群发操作。
+> 所有稿件在发布前均需人工登录微信公众平台手动确认。
+> 作者始终掌握最终发布权。
+
+---
+
+## 适用人群
+
+- 公众号运营者（个人 / 企业 / 媒体）
+- 希望用AI提效但不想放弃内容审核权的编辑
+- 对发布准确性要求高的账号
+
+---
+
+*版本：v1.0 | 持续迭代中*

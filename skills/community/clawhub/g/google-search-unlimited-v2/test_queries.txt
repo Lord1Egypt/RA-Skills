@@ -1,0 +1,8 @@
+# Fichier de test pour le batch processing
+OpenClaw documentation
+Python programming
+AI developments 2026
+machine learning
+web scraping techniques
+OpenClaw documentation  # Duplicate to test cache
+Python programming      # Another duplicate

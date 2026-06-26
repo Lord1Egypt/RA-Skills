@@ -1,0 +1,18 @@
+{
+  "name": "baoyu-seedream-ppt",
+  "version": "1.0.0",
+  "description": "\u57fa\u4e8e\u5b9d\u7389baoyu-infographic\u5e03\u5c40\u6846\u67b6 + \u8c46\u5305Seedream 5.0\u6587\u751f\u56fe\uff0c\u667a\u80fd\u751f\u6210\u56fe\u7247PPT",
+  "main": "baoyu_seedream_ppt.py",
+  "scripts": {
+    "generate": "python3 baoyu_seedream_ppt.py"
+  },
+  "keywords": [
+    "ppt",
+    "infographic",
+    "seedream",
+    "baoyu",
+    "image-generation"
+  ],
+  "author": "JimLiu",
+  "license": "MIT"
+}

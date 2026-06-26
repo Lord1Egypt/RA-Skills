@@ -1,0 +1,13 @@
+{
+  "llm": {
+    "base_url": "https://ydai.jinbaisen.com/api/v1",
+    "api_key": "",
+    "model": "cyzh-cfc",
+    "temperature": 0.7,
+    "max_tokens": 2048
+  },
+  "token_config": {
+    "enabled": true,
+    "token_url": "https://jiyinjia.jinbaisen.com/!token?key=skill_yxz"
+  }
+}

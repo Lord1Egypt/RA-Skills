@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00a1d6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fb7299;stop-opacity:1" />
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+    </filter>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#0d1117" stroke="url(#glow)" stroke-width="2"/>
+  <!-- Glow effect -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="url(#glow)" stroke-width="1" opacity="0.3" filter="url(#blur)"/>
+  <!-- Book/Reading icon -->
+  <path d="M60 70 L100 55 L140 70 L140 130 L100 115 L60 130 Z" fill="none" stroke="url(#glow)" stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="55" x2="100" y2="115" stroke="url(#glow)" stroke-width="2"/>
+  <!-- Play button (video) -->
+  <polygon points="88,82 88,100 105,91" fill="url(#glow)" opacity="0.9"/>
+  <!-- Bookmark accent -->
+  <path d="M130 60 L130 85 L137 78 L144 85 L144 60" fill="#fb7299" opacity="0.8"/>
+</svg>

@@ -1,35 +1,113 @@
 ---
-name: "hot-it-news"
-description: "获取量子位、人人都是产品经理、虎嗅的站内热门文章，并按友好格式输出。适用于用户想查看 IT、IT 行业资讯、科技新闻、互联网新闻、AI 资讯、产品动态、商业科技、热点文章、热文、今日资讯、行业热点等内容时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hot-it-news"
-sourceUrl: "https://clawhub.ai/skills/hot-it-news"
+name: hot-it-news
+description: 获取量子位、人人都是产品经理、虎嗅的站内热门文章，并按友好格式输出。适用于用户想查看 IT、IT 行业资讯、科技新闻、互联网新闻、AI 资讯、产品动态、商业科技、热点文章、热文、今日资讯、行业热点等内容时触发。
 ---
 
 # hot-it-news
 
-> 获取量子位、人人都是产品经理、虎嗅的站内热门文章，并按友好格式输出。适用于用户想查看 IT、IT 行业资讯、科技新闻、互联网新闻、AI 资讯、产品动态、商业科技、热点文章、热文、今日资讯、行业热点等内容时触发。
+## 遵守原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hot-it-news`
-- **Source URL:** [https://clawhub.ai/skills/hot-it-news](https://clawhub.ai/skills/hot-it-news)
+这是一个**以站点首页明确热门区块为准**的资讯技能，不是搜索引擎拼凑技能。
 
-## Overview
+必须遵守：
 
+- **每次执行都必须先使用 `agent-browser` 技能，以有头/可见浏览器方式真实打开目标站点首页，再读取指定区块**
+- **默认禁止无头模式；默认禁止跳过真实页面交互；默认禁止用`web_fetch`、`web_search`、搜索引擎结果、缓存记忆或历史回答替代首选数据源**
+- **所有正式结果必须包含真实文章链接，不编造、不冒充、不拿首页/栏目页/搜索页/站内搜索页充当文章页**
+- **当本任务已明确适配到本 skill 时，必须将本 skill 视为执行规范本身；若用户要求“严格按 skill 执行/输出”，则流程、取数范围、格式、措辞都必须服从本 skill，不得随意扩散或夹带额外发挥**
+- **未命中指定区块、未完成合格的有头抓取、或无法确认真实链接时，必须明确说明，不得伪装成已严格完成**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hot-it-news
+## 目标站点与正确获取方式
+
+### 1) 量子位
+
+- 网址：`https://www.qbitai.com/`
+- 目标区块：**首页右侧「热门文章」**
+
+### 2) 人人都是产品经理
+
+- 网址：`https://www.woshipm.com/`
+- 目标区块：**首页「推荐文章」模块**
+- 获取逻辑：必须获取**完整可访问树**，不要只获取可交互元素；定位 `StaticText "推荐文章"`，提取其后第一个 `list` 中的文章标题与真实链接，范围截止到 `StaticText "好书推荐"` 之前
+- 注意：这里的「推荐文章」不是首页内容流里的「推荐」Tab；不要依赖“右侧栏/右边”等视觉方位作为主要定位依据
+
+### 3) 虎嗅
+
+- 网址：`https://www.huxiu.com/`
+- 目标区块：**首页右侧「48 小时热文」**
+
+## 推荐工作流
+
+### Step 0：检查 `agent-browser` 是否可用
+
+- 先执行 `agent-browser --version` 或等效检查
+- 若不可用，先明确告知用户必须安装 `agent-browser` 技能，并停止后面步骤
+
+### Step 1：按站点串行抓取
+
+必须串行，不要并发。
+
+每个站点都按以下顺序：
+
+1. `agent-browser --headed open <url>`
+2. `agent-browser wait --load networkidle`
+3. `agent-browser snapshot --json` 获取完整可访问树
+4. 必要时滚动、再次 wait、再次 snapshot
+5. 读取目标区块内条目的真实的标题和链接
+6. `agent-browser close --all`
+
+### Step 2：结果校验
+
+输出前逐条自检：
+
+- 是否命中指定区块
+- 是否有标题
+- 是否有真实文章链接
+- 链接是否直达文章页
+- 是否基于本轮实际打开页面得到
+
+### Step 3：重试
+
+只有以下情况才允许重试 1 次：
+
+- 页面持续打不开
+- 页面结构无法稳定读取
+- 指定区块无法确认
+- 如果标题可确认但真实链接无法补全，则应判定该站抓取不完整，不得把该条当作正式结果输出
+
+重试失败后，告诉用户执行失败及原因。
+
+## 输出格式
+
+输出格式必须符合以下格式：
+
+```markdown
+以下是最近业内热门文章
+
+**[量子位](https://www.qbitai.com/) | 热门文章**
+1. [标题](link)
+2. [标题](link)
+3. [标题](link)
+4. [标题](link)
+5. [标题](link)
+
+**[人人都是产品经理](https://www.woshipm.com/) | 推荐文章**
+1. [标题](link)
+2. [标题](link)
+3. [标题](link)
+4. [标题](link)
+5. [标题](link)
+
+**[虎嗅](https://www.huxiu.com/) | 48 小时热文**
+1. [标题](link)
+2. [标题](link)
+3. [标题](link)
+4. [标题](link)
+5. [标题](link)
 ```
+
+## 风格要求
+
+- 输出简洁、好读、可直接转发
+- 不写花哨废话
+- 用户没要求摘要，就只给标题 + 链接

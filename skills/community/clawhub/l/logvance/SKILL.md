@@ -1,35 +1,20 @@
----
-name: "Logvance"
-description: "Converts UTC or ISO timestamps in logs to local time to simplify log analysis for developers and system administrators."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/logvance"
-sourceUrl: "https://clawhub.ai/skills/logvance"
----
-
 # Logvance
 
-> Converts UTC or ISO timestamps in logs to local time to simplify log analysis for developers and system administrators.
+Converts UTC or ISO-formatted timestamps in log files to local system time, making log analysis faster and more intuitive for developers and sysadmins.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/logvance`
-- **Source URL:** [https://clawhub.ai/skills/logvance](https://clawhub.ai/skills/logvance)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/logvance
+# Process a log file
+python logvance.py app.log
+
+# Pipe logs directly
+journalctl -u myservice | python logvance.py
+
+# Save to output file
+python logvance.py server.log -o local_time.log
 ```
+
+## Price
+
+$2.50

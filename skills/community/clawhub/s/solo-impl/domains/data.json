@@ -1,0 +1,67 @@
+[
+  {
+    "id": "record_dataset",
+    "domain": "data",
+    "description": "Record teleoperation episodes as a training dataset",
+    "command": "solo robo --record",
+    "inputs": [],
+    "parameters": {
+      "--robot-type": "SO100 | SO101 | Koch | bimanual | RealMan",
+      "--repo-id": "local/<name> or HuggingFace repo ID (e.g. local/my_task or username/my_dataset)",
+      "--single-task": "Human-readable description of the task (e.g. 'pick up the red block')",
+      "--episode-time-s": "Duration per episode in seconds (e.g. 30)",
+      "--num-episodes": "Number of episodes to record (e.g. 10)",
+      "--leader-arms": "Leader arm ID from calibration config (e.g. leader_arm_1 or main_leader)",
+      "--follower-arms": "Follower arm ID from calibration config (e.g. follower_arm_1 or main_follower)",
+      "--cameras": "Optional: camera IDs and angles (omit flag entirely if no cameras)",
+      "--push-to-hub": "0 (local only) or 1 (push to HuggingFace Hub after recording)"
+    },
+    "command_construction": "solo robo --record --robot-type <type> --repo-id <repo_id> --single-task \"<task>\" --episode-time-s <secs> --num-episodes <n> --leader-arms <leader_id> --follower-arms <follower_id> [--cameras <cam_config>] [--push-to-hub 1]",
+    "explanation": "Records leader→follower teleoperation as structured dataset episodes (images, joint states, actions). Dataset format: LeRobot-compatible. ALL parameters should be passed as flags so the terminal does not re-prompt for them.",
+    "expected_output": "Episodes recorded, videos encoded, dataset saved",
+    "validation": {
+      "type": "path_exists",
+      "rule": "Dataset directory must exist locally OR repo visible on HuggingFace Hub"
+    },
+    "keyboard_controls": {
+      "Right Arrow": "Early stop current episode, advance to next",
+      "Left Arrow": "Cancel and re-record current episode",
+      "ESC": "Stop session, encode videos, upload if enabled"
+    },
+    "common_errors": [
+      "Dataset already exists — choose resume (adds episodes) or rename",
+      "Incomplete dataset directory from failed recording — prompted to delete or rename",
+      "Ports changed mid-session — auto-detected and retried once",
+      "HuggingFace auth required only if pushing to Hub",
+      "Wrong leader/follower arm ID — check available IDs in ~/.solo/ config files"
+    ],
+    "prerequisites": ["calibrate_arm (both arms)", "start_teleop (verified working)"],
+    "docs_ref": "/solotrain/record"
+  },
+  {
+    "id": "replay_episode",
+    "domain": "data",
+    "description": "Replay a recorded dataset episode on the follower arm",
+    "command": "solo robo --replay",
+    "inputs": ["dataset_repo_id", "episode_index"],
+    "parameters": {
+      "--dataset": "Dataset repo ID (e.g. organize_fennel_seed or local/my_dataset)",
+      "--episode": "Episode index, default 0",
+      "--follower-id": "e.g. follower_right",
+      "--fps": "Playback FPS, default 30",
+      "--yes / -y": "Auto-apply saved replay settings"
+    },
+    "explanation": "Plays back stored action trajectories from a dataset on the follower (open-loop). Leader not required — only follower needs calibration. Use to verify recordings without holding the leader arm.",
+    "expected_output": "Follower arm replays recorded trajectory",
+    "validation": {
+      "type": "visual_physical",
+      "rule": "Follower arm physically replicates the recorded movement sequence"
+    },
+    "common_errors": [
+      "Episode index out of range — check total episode count in dataset",
+      "Wrong follower-id — use --follower-id to specify correct arm ID"
+    ],
+    "prerequisites": ["calibrate_arm (follower only)"],
+    "docs_ref": "/solotrain/replay"
+  }
+]

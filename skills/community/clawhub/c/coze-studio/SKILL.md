@@ -1,35 +1,46 @@
 ---
-name: "Coze Studio"
+version: "2.0.0"
+name: Coze Studio
 description: "An AI agent development platform with all-in-one visual tools, simplifying agent creation, debugging coze studio, typescript, agent, agent-platform."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coze-studio"
-sourceUrl: "https://clawhub.ai/skills/coze-studio"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
 # Coze Studio
 
-> An AI agent development platform with all-in-one visual tools, simplifying agent creation, debugging coze studio, typescript, agent, agent-platform.
+An AI agent development platform with all-in-one visual tools, simplifying agent creation, debugging, and deployment like never before. Coze your way to AI Agent creation. ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coze-studio`
-- **Source URL:** [https://clawhub.ai/skills/coze-studio](https://clawhub.ai/skills/coze-studio)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from coze-dev/coze-studio
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `coze-studio <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/coze-studio
+# Show help
+coze-studio help
+
+# Run
+coze-studio run
 ```
+
+- Run `coze-studio help` for all commands
+
+- Run `coze-studio help` for all commands
+
+## Configuration
+
+Set `COZE_STUDIO_DIR` to change data directory. Default: `~/.local/share/coze-studio/`

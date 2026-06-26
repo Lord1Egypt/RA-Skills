@@ -1,0 +1,46 @@
+name: prompt-injection-scanner
+version: 1.0.0
+description: Audits agent skill instructions and system prompts for vulnerabilities to prompt hijacking and indirect injection. Use when designing new agent skills or before deploying agents to public environments where users provide untrusted input.
+inputs:
+  skill_path:
+    type: string
+    description: Path to the SKILL.md or skill.yaml to analyze.
+    required: true
+  severity_threshold:
+    type: string
+    enum: [low, medium, high]
+    default: medium
+outputs:
+  security_report:
+    type: object
+    properties:
+      vulnerabilities:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+            description:
+              type: string
+            mitigation:
+              type: string
+capabilities:
+  - Pattern matching for common injection vectors (e.g., "Ignore previous instructions").
+  - Semantic analysis of instruction boundaries and variable usage.
+  - Verification of clear separation between instructions and user-provided data.
+constraints:
+  - Heuristic analysis based on known injection patterns.
+  - Cannot guarantee 100% protection against novel or creative injection techniques.
+security:
+  - Analyzes instruction text only; does not require access to live agent keys.
+  - Safe for local use during the development lifecycle.
+examples:
+  - input:
+      skill_path: "./agent-skills/my-skill/SKILL.md"
+    output:
+      security_report:
+        vulnerabilities:
+          - type: "Instruction Overlap"
+            description: "Instruction block ends directly before a user variable without a delimiter."
+            mitigation: "Use clear delimiters like <input> tags."

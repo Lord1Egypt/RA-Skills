@@ -1,0 +1,24 @@
+# ============================================================
+# 账号配置 - 主账号（不期而遇）
+# ============================================================
+
+profile:
+  id: "default"
+  name: "不期而遇"
+  category: "期货/财经"
+  stage: "growth"
+
+  # 账号识别标志
+  identity:
+    nickname: "不期而遇"
+    profile_url_fragment: ""
+
+  # 账号专属策略覆盖（覆盖 nurture-config.yaml 中的对应配置）
+  # 留空则使用全局配置
+  strategy_override: {}
+
+  # 专属过滤器覆盖
+  filter_override: {}
+
+  # 评论风格
+  comment_style: "professional"

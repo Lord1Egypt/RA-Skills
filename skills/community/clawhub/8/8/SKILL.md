@@ -1,35 +1,54 @@
----
-name: "娱乐八卦"
-description: "提供与数字8相关的明星八卦、娱乐新闻、事件分析及娱乐数字密码解读，关联娱乐热点与八卦趋势。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/8"
-sourceUrl: "https://clawhub.ai/skills/8"
----
+name: 8
+version: 1.0.0
+description: "娱乐八卦技能包，提供与8相关的娱乐八卦内容，包括明星八卦、娱乐新闻、八卦分析等。Use when: user wants to explore entertainment gossip related to the number 8, get celebrity news, or analyze gossip trends."
 
-# 娱乐八卦
+***
 
-> 提供与数字8相关的明星八卦、娱乐新闻、事件分析及娱乐数字密码解读，关联娱乐热点与八卦趋势。
+# 娱乐八卦技能包
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/8`
-- **Source URL:** [https://clawhub.ai/skills/8](https://clawhub.ai/skills/8)
+娱乐八卦技能包是一个以数字8为核心的娱乐八卦工具集合，为用户提供与8相关的各种娱乐八卦内容和分析。
 
-## Overview
+## 功能特点
 
+### 1. 明星与8的缘分
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/8
-```
+- 分析明星与数字8的缘分，包括出生日期、出道日期、重要事件与8的关联
+- 提供与8相关的明星八卦故事和趣闻
+- 预测明星在8相关日期的运势和可能的新闻事件
+
+### 2. 娱乐八卦排行榜
+
+- 基于数字8的算法生成娱乐八卦排行榜
+- 提供每日、每周、每月与8相关的热门八卦
+- 分析八卦热度与数字8的关联性
+
+### 3. 八卦事件分析
+
+- 分析与数字8相关的重大娱乐事件
+- 预测未来可能发生的与8相关的娱乐事件
+- 提供八卦事件的深度分析和解读
+
+### 4. 娱乐数字密码
+
+- 解码明星社交账号、作品编号等中的数字8含义
+- 分析娱乐行业中数字8的使用频率和象征意义
+- 提供与8相关的娱乐数字密码解读
+
+## 使用场景
+
+- 当用户想了解明星与数字8的缘分时
+- 当用户想查看与8相关的热门娱乐八卦时
+- 当用户想分析娱乐事件与数字8的关联时
+- 当用户想解码娱乐行业中的数字8密码时
+
+## 技术特点
+
+- 实时更新娱乐八卦数据
+- 智能分析数字8与娱乐事件的关联
+- 个性化推荐与用户兴趣相关的八卦内容
+- 界面友好，易于使用
+
+## 版本历史
+
+- 1.0.0: 初始版本，包含基本功能
+

@@ -1,0 +1,257 @@
+{
+  "template_name": "standard-zh",
+  "template_description": "标准中文简历模板，适用于中国大陆求职市场",
+  "language": "zh",
+  "sections": {
+    "contact": {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "wechat": "",
+      "website": "",
+      "notes": "联系方式置于顶部，左对齐。中文简历通常不需要照片（除非企业明确要求）。"
+    },
+    "summary": {
+      "title": "个人简介",
+      "content": "",
+      "guidelines": "2-3句话，突出3-5个核心优势，根据目标岗位定制，包含工作年限。",
+      "example": "8年以上互联网行业经验的高级软件工程师，精通Python、React和AWS技术栈。曾带领10人团队按时交付15+个项目，预算节省20%。擅长架构设计和敏捷开发。"
+    },
+    "work_experience": {
+      "title": "工作经历",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "title": "",
+          "company": "",
+          "location": "",
+          "start_date": "",
+          "end_date": "",
+          "bullet_points": [],
+          "guidelines": "每个岗位3-5条要点，以动词开头，量化成果，突出业绩而非职责描述。",
+          "example_bullet": "开发Python自动化脚本处理数据，将人工工作量减少20小时/周"
+        }
+      ],
+      "notes": "最近的经历放在最前面。使用标准日期格式（YYYY.MM）。"
+    },
+    "education": {
+      "title": "教育背景",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "degree": "",
+          "field": "",
+          "institution": "",
+          "graduation_date": "",
+          "gpa": "",
+          "honors": [],
+          "relevant_coursework": [],
+          "notes": "GPA仅当大于3.5/4.0（或85/100）时列出。如果有大学学历，不需要列出高中。"
+        }
+      ]
+    },
+    "skills": {
+      "title": "专业技能",
+      "categories": {
+        "technical_skills": {
+          "title": "技术技能",
+          "items": [],
+          "examples": ["Python", "Java", "SQL", "React", "AWS"]
+        },
+        "tools_platforms": {
+          "title": "工具与平台",
+          "items": [],
+          "examples": ["Git", "Docker", "Jenkins", "Jira", "VS Code"]
+        },
+        "soft_skills": {
+          "title": "软技能",
+          "items": [],
+          "examples": ["沟通能力", "领导力", "团队协作", "问题解决"]
+        }
+      },
+      "notes": "按类别分组技能，匹配JD关键词，列出10-15个最相关的技能。"
+    },
+    "projects": {
+      "title": "项目经验",
+      "entries": [
+        {
+          "name": "",
+          "description": "",
+          "technologies": [],
+          "role": "",
+          "url": "",
+          "guidelines": "应届生或相关个人项目建议包含。提供GitHub/作品集链接。",
+          "example": "电商平台 - 使用React、Node.js、MongoDB构建全栈电商应用，部署在AWS上，6个月内正常运行时间达99.9%。github.com/username/project"
+        }
+      ],
+      "notes": "可选部分。仅当与目标岗位相关时包含。"
+    },
+    "certifications": {
+      "title": "资格证书",
+      "entries": [
+        {
+          "name": "",
+          "issuing_organization": "",
+          "date_obtained": "",
+          "notes": "包含与目标岗位相关的行业认可证书。"
+        }
+      ],
+      "notes": "可选部分。仅当证书是近期的（5年内）且相关时包含。"
+    },
+    "awards": {
+      "title": "荣誉奖项",
+      "entries": [
+        {
+          "name": "",
+          "date": "",
+          "description": "",
+          "notes": "包含专业奖项、学术奖项或行业认可。"
+        }
+      ],
+      "notes": "可选部分。"
+    }
+  },
+  "formatting": {
+    "font": {
+      "name": "微软雅黑",
+      "fallback": "SimHei, Arial",
+      "size_body": 11,
+      "size_headings": 14,
+      "size_name": 20,
+      "notes": "中文简历使用微软雅黑或SimHei字体。确保字体嵌入PDF中。"
+    },
+    "spacing": {
+      "margins": 0.75,
+      "line_spacing": 1.15,
+      "section_spacing": 12,
+      "bullet_spacing": 3
+    },
+    "layout": {
+      "columns": 1,
+      "alignment": "left",
+      "notes": "使用单栏布局以保证ATS兼容性。不使用表格、文本框或图形。"
+    },
+    "file_format": {
+      "preferred": "docx",
+      "acceptable": "pdf (文本型)",
+      "avoid": "pdf (扫描件/图片型), pages, txt"
+    }
+  },
+  "ats_guidelines": {
+    "do": [
+      "使用标准章节标题（工作经历、教育背景、专业技能）",
+      "使用单栏布局",
+      "使用标准字体（微软雅黑、SimHei、Arial）",
+      "保存为 .docx 或文本型 .pdf",
+      "联系方式放在正文区（不是页眉/页脚）",
+      "使用标准项目符号（•、-、*）"
+    ],
+    "dont": [
+      "使用表格、文本框或图形",
+      "在页眉/页脚放置联系方式",
+      "使用多栏布局（会导致ATS解析混乱）",
+      "使用特殊字符或符号",
+      "使用扫描型PDF（文字必须可选中）"
+    ]
+  },
+  "chinese_specific": {
+    "notes": [
+      "中文简历通常不需要照片（除非企业明确要求）",
+      "不需要包含年龄、性别、婚姻状况等个人信息",
+      "日期格式建议使用 YYYY.MM（如 2023.06）",
+      "教育背景中，985/211/双一流院校可以特别标注",
+      "工作经历中，大厂/知名企业可以加粗公司名"
+    ],
+    "date_format": "YYYY.MM",
+    "common_sections": [
+      "个人简介",
+      "工作经历",
+      "教育背景",
+      "专业技能",
+      "项目经验",
+      "资格证书",
+      "荣誉奖项"
+    ]
+  },
+  "example_resume": {
+    "contact": {
+      "name": "张三",
+      "email": "zhangsan@email.com",
+      "phone": "138-0000-0000",
+      "location": "北京",
+      "wechat": "zhangsan_wx",
+      "website": "github.com/zhangsan"
+    },
+    "summary": "8年以上互联网行业经验的高级软件工程师，精通Python、React和AWS技术栈。曾带领10人团队按时交付15+个项目，预算节省20%。擅长架构设计和敏捷开发，具有丰富的大型项目经验。",
+    "work_experience": [
+      {
+        "title": "高级软件工程师",
+        "company": "某某科技有限公司",
+        "location": "北京",
+        "start_date": "2020.01",
+        "end_date": "至今",
+        "bullet_points": [
+          "带领10人团队按时交付15+个项目，预算节省20%",
+          "使用Python和Django架构微服务平台，日活用户100万+",
+          "通过云迁移和优化，降低服务器成本40%（年节省50万元）",
+          "指导5名初级工程师，其中3人在2年内晋升为高级工程师"
+        ]
+      },
+      {
+        "title": "软件工程师",
+        "company": "某某互联网公司",
+        "location": "上海",
+        "start_date": "2016.06",
+        "end_date": "2019.12",
+        "bullet_points": [
+          "使用Python和Flask开发RESTful API，日均处理50万+请求",
+          "使用React和Redux构建响应式前端，用户参与度提升35%",
+          "使用Jenkins搭建CI/CD流水线，部署时间从2小时缩短至15分钟",
+          "与产品和设计团队协作，12个月内上线3个主要功能"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "本科",
+        "field": "计算机科学与技术",
+        "institution": "北京大学",
+        "graduation_date": "2016.06",
+        "gpa": "3.8/4.0",
+        "honors": ["国家奖学金", "优秀毕业生"],
+        "relevant_coursework": ["数据结构", "算法", "机器学习", "数据库系统"]
+      }
+    ],
+    "skills": {
+      "technical_skills": ["Python", "JavaScript", "TypeScript", "Java", "SQL", "C++"],
+      "frameworks": ["React", "Redux", "Django", "Flask", "Node.js", "Spring Boot"],
+      "tools_platforms": ["AWS", "Docker", "Kubernetes", "Git", "Jenkins", "Jira"],
+      "soft_skills": ["领导力", "沟通能力", "团队协作", "问题解决", "敏捷开发"]
+    },
+    "projects": [
+      {
+        "name": "电商平台",
+        "description": "构建全栈电商Web应用，包含用户认证、支付处理和订单跟踪功能",
+        "technologies": ["React", "Node.js", "MongoDB", "Stripe API"],
+        "role": "全栈开发",
+        "url": "github.com/zhangsan/ecommerce-platform"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS认证解决方案架构师 - 助理级",
+        "issuing_organization": "Amazon Web Services",
+        "date_obtained": "2022.03",
+        "expiration_date": "2025.03"
+      }
+    ],
+    "awards": [
+      {
+        "name": "公司年度最佳工程师",
+        "date": "2022.12",
+        "description": "表彰在项目交付和技术创新方面的卓越贡献"
+      }
+    ]
+  }
+}

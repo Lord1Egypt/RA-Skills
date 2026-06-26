@@ -1,35 +1,33 @@
 ---
-name: "File Finder"
-description: "A simple, fast and user-friendly alternative to 'find' Based on sharkdp/fd (42,080+ GitHub stars). file finder, rust, cli, command-line, filesystem, hacktobe..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/file-finder"
-sourceUrl: "https://clawhub.ai/skills/file-finder"
+name: File Finder
+description: "A simple, fast and user-friendly alternative to 'find' Based on sharkdp/fd (42,080+ GitHub stars). file finder, rust, cli, command-line, filesystem, hacktoberfest, regex"
+version: 1.0.0
+license: Apache-2.0
+runtime: python3
 ---
 
 # File Finder
 
-> A simple, fast and user-friendly alternative to 'find' Based on sharkdp/fd (42,080+ GitHub stars). file finder, rust, cli, command-line, filesystem, hacktobe...
+A simple, fast and user-friendly alternative to 'find'
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/file-finder`
-- **Source URL:** [https://clawhub.ai/skills/file-finder](https://clawhub.ai/skills/file-finder)
+Inspired by [sharkdp/fd](https://github.com/sharkdp/fd) (42,080+ GitHub stars).
 
-## Overview
+## Commands
 
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/file-finder
-```
+## Features
+
+- Core functionality from sharkdp/fd
+
+## Usage
+
+Run any command: `file-finder <command> [args]`
+
+---
+> **Disclaimer**: This skill is an independent, original implementation. It is not affiliated with, endorsed by, or derived from the referenced open-source project. No code was copied. The reference is for context only.
+
+Powered by BytesAgain | bytesagain.com | hello@bytesagain.com

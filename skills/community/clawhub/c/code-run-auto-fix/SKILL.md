@@ -1,35 +1,17 @@
----
-name: "代码自动运行和修复"
-description: "自动运行并调试 Python、C 和 x86_64 汇编代码，错误时自动修复并返回可执行版本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-run-auto-fix"
-sourceUrl: "https://clawhub.ai/skills/code-run-auto-fix"
----
+# 代码自动执行与修复 Skill
 
-# 代码自动运行和修复
+## 功能介绍
+支持自动运行 Python / C / 汇编代码，捕获报错后使用龙虾平台内置 LLM 自动修复，并直接返回修复后的完整代码，实现代码运行-报错-修复-更新全自动化闭环。
 
-> 自动运行并调试 Python、C 和 x86_64 汇编代码，错误时自动修复并返回可执行版本。
+## 支持语言
+- Python
+- C 语言
+- x86_64 汇编
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-run-auto-fix`
-- **Source URL:** [https://clawhub.ai/skills/code-run-auto-fix](https://clawhub.ai/skills/code-run-auto-fix)
+## 提供工具
+- run_python：执行并自动修复 Python 代码
+- run_c：编译、执行并自动修复 C 代码
+- run_assembly：汇编、链接、执行并自动修复 x86_64 汇编代码
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-run-auto-fix
-```
+## 使用说明
+用户传入代码 → 自动运行 → 捕获错误 → 龙虾 LLM 修复 → 返回最终可运行代码

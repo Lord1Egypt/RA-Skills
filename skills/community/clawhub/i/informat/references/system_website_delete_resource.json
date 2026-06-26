@@ -1,0 +1,21 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_delete_resource",
+		"description": "Delete website module resource.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"websiteId": {
+					"type": "string",
+					"description": "Website module ID."
+				},
+				"id": {
+					"type": "string",
+					"description": "Website module resource ID."
+				}
+			},
+			"required": ["websiteId", "id"]
+		}
+	}
+}

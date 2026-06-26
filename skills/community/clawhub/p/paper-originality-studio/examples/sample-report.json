@@ -1,0 +1,119 @@
+{
+  "summary": {
+    "paragraphs": 3,
+    "sentences": 12,
+    "characters": 429,
+    "risk_level": "中",
+    "risk_score": 32
+  },
+  "phrase_hits": [
+    {
+      "category": "空泛引入",
+      "hits": [
+        {
+          "phrase": "随着",
+          "count": 1
+        },
+        {
+          "phrase": "近年来",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "机械衔接",
+      "hits": [
+        {
+          "phrase": "首先",
+          "count": 1
+        },
+        {
+          "phrase": "其次",
+          "count": 1
+        },
+        {
+          "phrase": "最后",
+          "count": 1
+        },
+        {
+          "phrase": "综上所述",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "弱信息表达",
+      "hits": [
+        {
+          "phrase": "在一定程度上",
+          "count": 1
+        },
+        {
+          "phrase": "相关研究表明",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "AI腔标记",
+      "hits": [
+        {
+          "phrase": "总体而言",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "ai_style_hits": [
+    {
+      "phrase": "首先",
+      "count": 1
+    },
+    {
+      "phrase": "其次",
+      "count": 1
+    },
+    {
+      "phrase": "最后",
+      "count": 1
+    },
+    {
+      "phrase": "综上所述",
+      "count": 1
+    },
+    {
+      "phrase": "总体而言",
+      "count": 1
+    },
+    {
+      "phrase": "与此同时",
+      "count": 1
+    },
+    {
+      "phrase": "从而",
+      "count": 1
+    }
+  ],
+  "repeated_sentences_count": 0,
+  "repeated_sentences": [],
+  "repeated_shingles": [],
+  "paragraph_lengths": [
+    156,
+    170,
+    98
+  ],
+  "long_paragraph_indexes": [],
+  "short_paragraph_indexes": [],
+  "quote_ratio": 0.0,
+  "citation_counts": {
+    "numeric_style": 0,
+    "author_year_en": 0,
+    "author_year_zh": 0,
+    "doi_mentions": 0
+  },
+  "warnings": [],
+  "recommendations": [
+    "优先清理套话开头和空泛过渡句，不要只做近义词替换。",
+    "减少机械连接词，改为显式因果、对比或限制关系。"
+  ]
+}

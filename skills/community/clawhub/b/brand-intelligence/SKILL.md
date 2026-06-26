@@ -1,35 +1,29 @@
----
-name: "Brand Intelligence"
-description: "Search, compare, and analyze 5,600+ companies with AI visibility scores, knowledge graphs, and competitive intelligence across 30 industry verticals."
-category: "other"
-source: "ClawHub"
-tags: [ai-visibility, brand-intelligence, competitive-analysis, market-research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brand-intelligence"
-sourceUrl: "https://clawhub.ai/skills/brand-intelligence"
----
-
 # Brand Intelligence
 
-> Search, compare, and analyze 5,600+ companies with AI visibility scores, knowledge graphs, and competitive intelligence across 30 industry verticals.
+Search, compare, and analyze 5,600+ companies across 30 verticals. AI visibility scores, knowledge graph, competitive intelligence — powered by [geo.sig.ai](https://geo.sig.ai).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brand-intelligence`
-- **Source URL:** [https://clawhub.ai/skills/brand-intelligence](https://clawhub.ai/skills/brand-intelligence)
+## Tools
 
-## Overview
+- `sigai_search_brands` — Search brands by name, vertical, keyword
+- `sigai_get_brand` — Full brand profile
+- `sigai_get_brand_brief` — Concise citation-ready summary
+- `sigai_get_brand_graph` — Knowledge graph: edges, capabilities, parent/children
+- `sigai_get_brand_digest` — Compact digest for multiple brands
+- `sigai_compare_brands` — Structured comparison with bottom-line summary
+- `sigai_find_alternatives` — Graph-powered alternatives with reasons
+- `sigai_get_landscape` — Vertical landscape: leaders, challengers, emerging
+- `sigai_find_by_capability` — Find brands by capability
 
+## Install
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/brand-intelligence
+openclaw plugins install openclaw-brand-intelligence
 ```
+
+## Example Prompts
+
+- "What is Cursor and how visible is it in AI search?"
+- "Compare Salesforce and HubSpot"
+- "Find alternatives to Datadog"
+- "What are the top cybersecurity companies?"
+- "Give me a weekly update on Stripe, Plaid, and Adyen"

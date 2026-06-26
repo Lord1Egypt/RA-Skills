@@ -1,0 +1,115 @@
+{
+  "created_at": "2025-01-02T00:00:00.000Z",
+  "last_updated": "2025-01-02T00:00:00.000Z",
+  "fall_risk_assessment": {
+    "user_id": "user_001",
+    "age": null,
+    "assessment_date": null,
+
+    "fall_history": {
+      "fallen_last_year": false,
+      "fall_count_last_year": 0,
+      "fall_count_last_6_months": 0,
+      "last_fall": {
+        "date": null,
+        "location": null,
+        "time": null,
+        "cause": null,
+        "injury": null,
+        "required_medical_attention": false,
+        "fracture": false
+      }
+    },
+
+    "risk_factors": {
+      "age_over_65": false,
+      "previous_falls": false,
+      "balance_impairment": false,
+      "gait_abnormality": false,
+      "muscle_weakness": false,
+      "visual_impairment": false,
+      "cognitive_impairment": false,
+      "medications": [],
+      "chronic_conditions": []
+    },
+
+    "balance_tests": {
+      "tug_test": {
+        "date": null,
+        "time_seconds": null,
+        "interpretation": null,
+        "reference": "<10_seconds_normal"
+      },
+
+      "berg_balance_scale": {
+        "date": null,
+        "score": null,
+        "max_score": 56,
+        "interpretation": null
+      },
+
+      "single_leg_stance": {
+        "date": null,
+        "eyes_open_seconds": null,
+        "eyes_closed_seconds": null,
+        "age_reference": ">5_seconds_normal",
+        "result": null
+      }
+    },
+
+    "gait_analysis": {
+      "date": null,
+      "speed_m_per_s": null,
+      "interpretation": null,
+      "abnormalities": []
+    },
+
+    "home_safety": {
+      "living_room": {
+        "floor_slippery": null,
+        "adequate_lighting": null,
+        "obstacles_removed": null,
+        "rugs_secure": null
+      },
+      "bedroom": {
+        "bedside_light": null,
+        "night_light": null,
+        "bed_height_appropriate": null,
+        "clutter_free": null
+      },
+      "bathroom": {
+        "non_slip_mat": null,
+        "grab_bars": null,
+        "shower_chair": null,
+        "easy_access": null
+      },
+      "stairs": {
+        "handrails": null,
+        "non_slip_treads": null,
+        "adequate_lighting": null,
+        "clutter_free": null
+      },
+      "overall_safety": null,
+      "recommendations": []
+    },
+
+    "overall_risk": null,
+    "risk_score": null,
+    "max_score": 18,
+
+    "interventions": [],
+
+    "next_assessment": null
+  },
+  "statistics": {
+    "total_falls": 0,
+    "assessments_count": 0,
+    "risk_level": "low",
+    "last_assessment_date": null,
+    "high_risk_factors_count": 0
+  },
+  "settings": {
+    "reminder_months": 6,
+    "enabled": true
+  }
+}

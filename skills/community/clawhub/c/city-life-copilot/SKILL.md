@@ -1,35 +1,144 @@
 ---
-name: "city-life-copilot"
+name: city-life-copilot
 description: "告别冰冷导航的全场景城市管家。结合高德地图与网页抓取，提供情绪盲盒、一键拔草、房产雷达与无障碍守护服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/city-life-copilot"
-sourceUrl: "https://clawhub.ai/skills/city-life-copilot"
+metadata:
+  openclaw:
+    emoji: ""
+    requires:
+      bins: ["node"]
 ---
 
-# city-life-copilot
+# City Life Copilot (城市生活智能管家)
 
-> 告别冰冷导航的全场景城市管家。结合高德地图与网页抓取，提供情绪盲盒、一键拔草、房产雷达与无障碍守护服务。
+这不是一个普通的地图工具，而是一个能听懂你的情绪、帮你一键转化种草笔记、甚至能自动排雷无障碍路线的**超级城市大脑**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/city-life-copilot`
-- **Source URL:** [https://clawhub.ai/skills/city-life-copilot](https://clawhub.ai/skills/city-life-copilot)
+基于高德地图 + 智能网页抓取，为你生成带有动态地图的高颜值本地 HTML 卡片。
 
-## Overview
+---
 
+## 四大杀手锏功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 🎁 情绪盲盒漫游
+
+告诉它你累了、心情不好、想一个人静静，它自动为你生成**A/B 双线治愈路线**：
+- 方案 A · 艺术治愈之旅（室内美术馆 + 书店）
+- 方案 B · 自然呼吸之旅（公园漫步 + 湖边散步）
+
+无需查天气、无需做攻略，把决策交给它，你只管出发。
+
+### 🔗 种草一键拔草
+
+丢给它一篇小红书/社交媒体种草链接，自动：
+1. **使用 agent-browser 抓取笔记内容**（⚠️ 小红书有强反爬虫机制，web-fetch 会返回 error_code=300012）
+2. 提取笔记中的所有地点
+3. 调用高德 API 清洗坐标
+4. 分段计算步行/驾车路线
+5. 生成**连贯的动态地图路线**
+
+拒绝绕路费腿，博主同款路线一键复刻。
+
+**⚠️ 重要说明：**
+- 小红书、抖音等强反爬虫平台必须使用 `agent-browser`
+- `web-fetch` 会被拦截并返回 `error_code=300012 (IP at risk)`
+- 脚本 `scripts/xiaohongshu-grabber.js` 专门处理此类链接
+
+### 🏠 硬核房产雷达
+
+输入租房/买房意图（如"看中了 XX 小区，在 YY 地上班"），自动触发**五维雷达扫描**：
+- 🚇 交通便利度（地铁站/公交枢纽）
+- 🏥 医疗保障（三甲医院/社区卫生服务中心）
+- 🎓 教育资源（幼儿园/小学）
+- 🛍️ 商业休闲（大型商场/咖啡厅/电影院）
+- 🌳 生态环境（公园/绿地）
+
+附带**早高峰真实通勤测算**（地铁/公交/打车多方案对比），生成 HTML 体检报告卡片。
+
+### ♿ 无障碍守护
+
+专为轮椅、婴儿车、银发族设计的**避坑 + 绿洲路线**：
+- 默认体力边界：连续推行不超过 15 分钟（约 800 米）
+- 默认接驳方式：中短途平地推行，长途强制建议打车
+- 自动抓取网友避雷攻略（哪个门有台阶、哪个通道坡太陡）
+- 沿途标注绿洲补给站（带卫生间的商场/咖啡厅）
+
+这不是最快的路线，而是最温柔的路线。
+
+---
+
+## 优雅交付
+
+所有结果均输出为**高颜值、浅色系本地 HTML 卡片**：
+- 内嵌动态地图（高德 travel_plan.html + URI 编码）
+- 现代化 Tailwind CSS 排版
+- 无 Emoji 干扰，极致克制的高级感
+- 文件保存在本地 workspace，可离线查看
+
+---
+
+## 安装指南
+
+只需一键安装，系统会自动配置所需的高德与网页抓取依赖：
+
 ```bash
-hermes skills install clawhub/city-life-copilot
+# 方式一：使用技能安装脚本（推荐）
+cd /path/to/city-life-copilot
+node scripts/install.js
+
+# 方式二：手动安装核心依赖
+npx skills add https://www.modelscope.cn/skills/@AMap-Web/amap-lbs-skill
+skillhub install agent-browser
+# web-fetch 会在运行 install.js 时自动从 ClawHub 安装
 ```
+
+**核心依赖（已精简至 3 个）：**
+- `amap-lbs-skill` — 高德地图综合服务（POI 搜索/路径规划）
+- `agent-browser` — 浏览器自动化（复杂页面抓取）
+- `web-fetch` — 网页内容抓取（反爬虫，从 ClawHub 自动安装）
+
+---
+
+## 文件结构
+
+```
+city-life-copilot/
+├── SKILL.md              # 技能主定义文件
+├── scripts/
+│   ├── install.js        # 依赖检查与安装脚本
+│   ├── dispatcher.js     # 主调度引擎（四重人格路由）
+│   └── xiaohongshu-grabber.js  # 小红书链接抓取器（绕过反爬虫）
+├── references/
+│   └── workflows.md      # 四大场景工作流规则
+└── assets/
+    └── templates/
+        ├── tpl_blind_box.html    # 情绪盲盒专属模板
+        ├── tpl_house_radar.html  # 房产雷达专属模板
+        └── tpl_general_route.html # 通用及无障碍路线模板
+```
+
+---
+
+## 使用示例
+
+```
+# 情绪盲盒
+"最近加班好累，周末想一个人出去走走"
+
+# 一键拔草
+"帮我规划这个路线：https://www.xiaohongshu.com/..."
+
+# 房产评估
+"我打算租大山子南里的房子，在学院国际大厦上班，帮我评估一下"
+
+# 无障碍出行
+"我推着婴儿车，从学院国际大厦到元大都遗址公园看海棠花，怎么走最方便"
+```
+
+---
+
+## 版本
+
+v1.0.0 — 初始版本，四重人格核心功能上线
+
+---
+
+**让城市生活更简单，更有温度。**

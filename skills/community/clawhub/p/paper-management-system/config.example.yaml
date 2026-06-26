@@ -1,0 +1,30 @@
+# Paper Management System Configuration
+
+database:
+  path: ./data/index.db
+
+papers:
+  dir: ./papers
+  extensions:
+    - .pdf
+
+downloads:
+  dir: ./downloads
+  keywords:
+    - 科研通
+    - ablesci
+
+logging:
+  path: ./logs/auto_index.log
+  level: INFO
+
+ai:
+  enabled: false
+  provider: openai
+  model: gpt-3.5-turbo
+  api_key: ""
+  max_text_length: 50000
+
+notification:
+  enabled: false
+  cmd: ""

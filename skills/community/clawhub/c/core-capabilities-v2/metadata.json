@@ -1,0 +1,20 @@
+{
+  "name": "core-capabilities",
+  "version": "2.0.1",
+  "description": "工作助手核心能力完整包 - 包含 memory_query_agent.py 自然语言查询工具、monitor_server.py 监控服务、setup_cron.sh 配置脚本",
+  "author": "AI Assistant",
+  "tags": ["obsidian", "git", "memory", "database", "monitoring", "capabilities", "query-tool"],
+  "files": [
+    "SKILL.md",
+    "README.md", 
+    "metadata.json",
+    "memory_query_agent.py",
+    "monitor_server.py",
+    "setup_cron.sh"
+  ],
+  "main": "memory_query_agent.py",
+  "dependencies": {
+    "python": ">=3.6",
+    "sqlite3": ">=3.0"
+  }
+}

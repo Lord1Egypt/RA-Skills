@@ -1,0 +1,17 @@
+{
+  "name": "session-memory",
+  "version": "2.0.0",
+  "description": "Persistent memory toolkit for AI agents. Save, recall, consolidate, and manage context across sessions.",
+  "main": "SKILL.md",
+  "keywords": [
+    "memory", "agent", "persistent", "context", "recall",
+    "session", "clawhub", "skill", "ai-agent", "continuity"
+  ],
+  "author": "voidborne-d",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voidborne-d/session-memory-skill.git"
+  },
+  "homepage": "https://github.com/voidborne-d/session-memory-skill#readme"
+}

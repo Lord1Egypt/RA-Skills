@@ -1,0 +1,76 @@
+name: no_reply_24h
+trigger:
+  conditions:
+    - last_outbound_hours_ago: 24
+    - customer_replied: false
+response:
+  template: |
+    Hi {{customer_name}}! Just checking in 😊
+
+    I sent you some info about {{business_name}} yesterday and wanted to see if you had any questions. We'd love to have you in!
+
+    Feel free to ask me anything — I'm here to help.
+  schedule:
+    delay_hours: 24
+    max_attempts: 1
+
+---
+name: abandoned_booking
+trigger:
+  conditions:
+    - intent: booking
+    - booking_confirmed: false
+    - last_contact_hours_ago: 2
+    - customer_replied: true
+response:
+  template: |
+    Hey {{customer_name}}! 👋
+
+    I noticed we didn't finalise your booking. Was there a specific time or date you had in mind? I can check availability right now — just let me know!
+
+    Or if you'd prefer, I can have a team member call you. Say "Call me" and I'll arrange it.
+  schedule:
+    delay_hours: 2
+    max_attempts: 2
+
+---
+name: post_service_feedback
+trigger:
+  conditions:
+    - booking_status: completed
+    - last_service_hours_ago: 24
+response:
+  template: |
+    Hi {{customer_name}}! 🌟
+
+    We hope you enjoyed your experience at {{business_name}}!
+
+    We'd love to hear your feedback — it helps us serve you better.
+
+    How was your visit?
+    😊 Great | 😐 Okay | 😞 Needs improvement
+
+    Your feedback means the world to us!
+  schedule:
+    delay_hours: 24
+    max_attempts: 1
+
+---
+name: promotion_blast
+trigger:
+  type: scheduled
+  schedule: "0 9 * * 1"  # Every Monday at 9 AM
+  conditions:
+    - lead_status: qualified
+    - last_contact_days_ago: ">= 7"
+    - opted_out: false
+response:
+  template: |
+    Good morning {{business_name}} family! ☀️
+
+    {{promotion_message}}
+
+    Spaces are limited — reply to book yours today!
+    Or say "Stop" to opt out of these updates.
+  schedule:
+    type: recurring

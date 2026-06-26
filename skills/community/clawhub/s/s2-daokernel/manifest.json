@@ -1,0 +1,40 @@
+{
+  "name": "s2-daokernel",
+  "display_name": "S2-DaoKernel: Agent Safety & Ethics Rules for soul.md",
+  "version": "1.2.5",
+  "description": "Agent Safety and Ethics Rules specifically adapted for soul.md. This plugin grounds OpenClaw agents in physical reality by injecting Eastern philosophy, geographical addressing, and the Three Laws of Silicon Intelligence to prevent logic drift.",
+  "author": "SpaceSQ (Taohuayuan World Model Research Base)",
+  "homepage": "https://github.com/SpaceSQ/S2-DaoKernel",
+  "license": "Apache-2.0",
+  "plugin_type": [
+    "memory_injection",
+    "safety_alignment",
+    "personality_modifier"
+  ],
+  "tags": [
+    "alignment",
+    "safety",
+    "ethics",
+    "soul.md",
+    "embodied-ai"
+  ],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "entry_point": "DAO.py",
+  "configuration": {
+    "supported_languages": [
+      "en_US",
+      "zh_CN"
+    ],
+    "requires_s2_did": true,
+    "default_dao": "AI-DAO.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SpaceSQ/S2-DaoKernel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SpaceSQ/S2-DaoKernel/issues"
+  }
+}

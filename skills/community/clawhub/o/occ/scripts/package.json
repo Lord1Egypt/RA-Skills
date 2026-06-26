@@ -1,0 +1,19 @@
+{
+  "name": "occ",
+  "version": "1.0.0",
+  "description": "OpenCode Controller - Control OpenCode via CLI",
+  "main": "bin/opencode-server.js",
+  "bin": {
+    "opencode-server": "./bin/opencode-server.js"
+  },
+  "scripts": {
+    "start": "node bin/opencode-server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["opencode", "automation", "controller", "developer-tools"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

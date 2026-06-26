@@ -1,0 +1,394 @@
+/* Creative Resume Theme - Bold & Distinctive */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    line-height: 1.6;
+    color: #2d3436;
+    background: #f0f4f8;
+    padding: 24px;
+}
+
+.resume-container {
+    max-width: 860px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 8px 30px rgba(108,92,231,0.1);
+    overflow: hidden;
+}
+
+/* Header - Bold gradient bar */
+.resume-header {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    padding: 38px 44px;
+    color: white;
+}
+
+.resume-header .name {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+}
+
+.resume-header .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.85);
+}
+
+.resume-header .contact-item a {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    transition: border-color 0.2s;
+}
+
+.resume-header .contact-item a:hover {
+    border-bottom-color: white;
+}
+
+/* Sections */
+.resume-section {
+    padding: 28px 44px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.resume-section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 1.15em;
+    color: #6c5ce7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    position: relative;
+    padding-left: 18px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    bottom: 3px;
+    width: 4px;
+    background: linear-gradient(180deg, #6c5ce7, #a29bfe);
+    border-radius: 2px;
+}
+
+/* Summary */
+[data-section="summary"] p {
+    color: #636e72;
+    line-height: 1.75;
+    font-size: 0.95em;
+}
+
+/* Items - card style */
+.experience-item,
+.education-item,
+.project-item {
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    background: #fafbfc;
+    border-radius: 8px;
+    border-left: 3px solid #dfe6e9;
+    transition: border-color 0.2s;
+}
+
+.experience-item:hover,
+.education-item:hover,
+.project-item:hover {
+    border-left-color: #6c5ce7;
+}
+
+.experience-item:last-child,
+.education-item:last-child,
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-header,
+.education-header,
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.company-name,
+.institution,
+.project-name {
+    font-size: 1.08em;
+    font-weight: 700;
+    color: #2d3436;
+}
+
+.position-period,
+.degree-period {
+    font-size: 0.9em;
+    color: #b2bec3;
+}
+
+.position,
+.degree,
+.role {
+    font-weight: 600;
+    color: #6c5ce7;
+}
+
+.period {
+    margin-left: 10px;
+    background: #dfe6e9;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.82em;
+    color: #636e72;
+}
+
+.location {
+    color: #b2bec3;
+    font-size: 0.86em;
+    margin-top: 2px;
+}
+
+.experience-description,
+.project-description {
+    color: #636e72;
+    font-size: 0.92em;
+    margin: 8px 0;
+    line-height: 1.65;
+}
+
+.responsibilities,
+.achievements {
+    margin-left: 18px;
+    margin-top: 6px;
+}
+
+.responsibilities li,
+.achievements li {
+    margin-bottom: 4px;
+    color: #636e72;
+    font-size: 0.92em;
+    line-height: 1.5;
+}
+
+.achievements li {
+    color: #2d3436;
+    font-weight: 500;
+}
+
+.technologies {
+    color: #6c5ce7;
+    font-size: 0.84em;
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+.technologies strong {
+    color: #b2bec3;
+    font-weight: 500;
+}
+
+.gpa {
+    color: #636e72;
+    font-size: 0.86em;
+    font-weight: 500;
+}
+
+.honors {
+    color: #6c5ce7;
+    font-size: 0.86em;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* Skills */
+.skill-category {
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.category-title {
+    font-size: 0.86em;
+    font-weight: 700;
+    color: #2d3436;
+    min-width: 120px;
+}
+
+.skill-list {
+    color: #636e72;
+    font-size: 0.88em;
+    flex: 1;
+}
+
+/* Print */
+@media print {
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+        font-size: 10.5pt;
+        line-height: 1.4;
+    }
+
+    .resume-container {
+        box-shadow: none;
+    }
+
+    .resume-header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 16px 20px;
+    }
+
+    .resume-header .name {
+        font-size: 1.7em;
+        margin-bottom: 4px;
+    }
+
+    .resume-header .contact-info {
+        font-size: 0.82em;
+        gap: 3px 12px;
+    }
+
+    .resume-section {
+        margin-bottom: 0;
+        padding: 12px 20px;
+    }
+
+    .section-title {
+        font-size: 1.0em;
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .experience-item,
+    .education-item,
+    .project-item {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .company-name,
+    .institution,
+    .project-name {
+        font-size: 1.02em;
+    }
+
+    .position,
+    .degree,
+    .role {
+        font-size: 0.9em;
+    }
+
+    .experience-description,
+    .project-description {
+        font-size: 0.88em;
+        line-height: 1.45;
+        margin: 4px 0;
+    }
+
+    .responsibilities,
+    .achievements {
+        margin-top: 4px;
+    }
+
+    .responsibilities li,
+    .achievements li {
+        font-size: 0.88em;
+        line-height: 1.4;
+        margin-bottom: 2px;
+    }
+
+    .technologies,
+    .gpa,
+    .honors,
+    .location {
+        font-size: 0.82em;
+    }
+
+    .skill-list {
+        font-size: 0.88em;
+        line-height: 1.5;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .resume-container {
+        box-shadow: none;
+    }
+
+    .resume-header {
+        padding: 28px 24px;
+    }
+
+    .resume-section {
+        padding: 24px;
+    }
+
+    .resume-header .name {
+        font-size: 1.7em;
+    }
+
+    .experience-header,
+    .education-header,
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .period {
+        margin-left: 0;
+        margin-top: 6px;
+    }
+
+    .experience-item,
+    .education-item,
+    .project-item {
+        padding: 12px 16px;
+    }
+}
+
+/* Skill items rendered as inline chips; comma-separated for display */
+.skill-list .skill-item::after {
+    content: ", ";
+}
+.skill-list .skill-item:last-child::after {
+    content: "";
+}
+
+/* Photo is opt-in. Built-in themes hide it; enable in a custom theme via display: block. */
+.resume-photo {
+    display: none;
+}

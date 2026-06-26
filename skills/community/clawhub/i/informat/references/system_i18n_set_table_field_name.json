@@ -1,0 +1,38 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_i18n_set_table_field_name",
+    "description": "Set data table field display name using internationalization expression.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "moduleId": {
+          "type": "string",
+          "description": "Module ID"
+        },
+        "fieldDisplayNameList": {
+          "type": "array",
+          "description": "Data table field display name configuration list",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fieldId": {
+                "type": "string",
+                "description": "Field ID"
+              },
+              "displayName": {
+                "type": "string",
+                "description": "Field display name expression (supports internationalization expressions). Must use internationalization expression form: ${T.t('path')}. Where path is the complete path of the translation item in the internationalization translation definition (translateList), for example: ${T.t('grade.name')}"
+              }
+            },
+            "required": ["fieldId", "displayName"],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["moduleId", "fieldDisplayNameList"],
+      "additionalProperties": false
+    }
+  }
+}

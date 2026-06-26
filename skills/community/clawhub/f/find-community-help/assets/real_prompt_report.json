@@ -1,0 +1,194 @@
+{
+  "total_cases": 6,
+  "passed_cases": 6,
+  "failed_cases": [],
+  "required_prompt_issues": [
+    "delivery_window_not_trigger",
+    "external_advice_as_untrusted_data",
+    "no_browsing_boundary",
+    "prompt_only_no_script_path",
+    "secret_redaction_under_prompt",
+    "source_order_under_version_drift"
+  ],
+  "prompt_issue_coverage": {
+    "delivery_window_not_trigger": [
+      "delivery_window_only_prompt_stays_quiet"
+    ],
+    "external_advice_as_untrusted_data": [
+      "external_advice_memory_prompt_stays_advisory",
+      "looping_prompt_needs_contract_reset"
+    ],
+    "no_browsing_boundary": [
+      "manual_markdown_only_stalled_debug_prompt",
+      "external_advice_memory_prompt_stays_advisory",
+      "delivery_window_only_prompt_stays_quiet",
+      "sensitive_prompt_log_redaction"
+    ],
+    "prompt_only_no_script_path": [
+      "manual_markdown_only_stalled_debug_prompt",
+      "version_sensitive_publish_drift_prompt",
+      "looping_prompt_needs_contract_reset"
+    ],
+    "secret_redaction_under_prompt": [
+      "sensitive_prompt_log_redaction"
+    ],
+    "source_order_under_version_drift": [
+      "version_sensitive_publish_drift_prompt"
+    ]
+  },
+  "missing_prompt_issues": [],
+  "results": [
+    {
+      "id": "manual_markdown_only_stalled_debug_prompt",
+      "title": "Manual prompt asks for a Markdown-only outside-help plan",
+      "prompt_issue_patterns": [
+        "prompt_only_no_script_path",
+        "no_browsing_boundary"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "user_requested_community_help"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    },
+    {
+      "id": "external_advice_memory_prompt_stays_advisory",
+      "title": "Prompt includes unsafe external advice but asks for bounded help",
+      "prompt_issue_patterns": [
+        "external_advice_as_untrusted_data",
+        "no_browsing_boundary"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "user_requested_community_help"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    },
+    {
+      "id": "version_sensitive_publish_drift_prompt",
+      "title": "Prompt asks about version-sensitive registry drift",
+      "prompt_issue_patterns": [
+        "source_order_under_version_drift",
+        "prompt_only_no_script_path"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "user_requested_community_help",
+          "version_mismatch_seen"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    },
+    {
+      "id": "delivery_window_only_prompt_stays_quiet",
+      "title": "Prompt mentions heartbeat but no blocker",
+      "prompt_issue_patterns": [
+        "delivery_window_not_trigger",
+        "no_browsing_boundary"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": false,
+        "search_mode": "low",
+        "trigger_reason": "heartbeat",
+        "reason": "community help needs a stuck, stalled, repeated, reinventing-wheel, or explicit help signal",
+        "status": "blocked",
+        "error_code": "semantic_signal_missing"
+      },
+      "query_count": 0,
+      "query_tiers": []
+    },
+    {
+      "id": "sensitive_prompt_log_redaction",
+      "title": "Prompt includes copied token-shaped logs",
+      "prompt_issue_patterns": [
+        "secret_redaction_under_prompt",
+        "no_browsing_boundary"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "user_requested_community_help"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    },
+    {
+      "id": "looping_prompt_needs_contract_reset",
+      "title": "Prompt describes repeated local fixes returning",
+      "prompt_issue_patterns": [
+        "external_advice_as_untrusted_data",
+        "prompt_only_no_script_path"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "repeated_local_attempts",
+          "user_requested_community_help"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    }
+  ]
+}

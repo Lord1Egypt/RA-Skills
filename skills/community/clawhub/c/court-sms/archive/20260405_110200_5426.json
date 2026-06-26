@@ -1,0 +1,45 @@
+{
+  "id": "20260405_110200_5426",
+  "timestamp": "2026-04-05T11:02:00+08:00",
+  "sms_raw": "【苏州工业园区人民法院】马青松，您好！您有案件文书送达，请点击链接查收：https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=4dc5bdbecfb4451b9279ffb548ef934f&sdbh=610e2cfeb52a4a17af6f65fedf1893ff&sdsin=b791e9a8183a662188a9373deca955e8",
+  "parsed": {
+    "type": "document_delivery",
+    "case_number": "（2026）苏0591民初5426号",
+    "parties": ["苏州物睿科技有限公司（原告）", "顾忆芬（被告）"],
+    "court": "苏州工业园区人民法院",
+    "case_type": "劳动合同纠纷",
+    "sms_recipient": "马青松（非当事人，仅为短信接收人）"
+  },
+  "download": {
+    "source_url": "https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=4dc5bdbecfb4451b9279ffb548ef934f&sdbh=610e2cfeb52a4a17af6f65fedf1893ff&sdsin=b791e9a8183a662188a9373deca955e8",
+    "params": {
+      "qdbh": "4dc5bdbecfb4451b9279ffb548ef934f",
+      "sdbh": "610e2cfeb52a4a17af6f65fedf1893ff",
+      "sdsin": "b791e9a8183a662188a9373deca955e8"
+    },
+    "method": "curl",
+    "status": "success",
+    "document_count": 12,
+    "documents": [
+      "传票（东沙湖法庭）",
+      "应诉通知书",
+      "(合)起诉状（素）",
+      "证据目录",
+      "(合)证据1：仲裁申请书、不予受理通知书",
+      "(合)证据2：劳动合同、保密协议",
+      "(合)证据3：被告工资表",
+      "(合)证据4：泄露账号密码的电脑截图",
+      "(合)证据5：打印及拷贝资料的电脑截图_1",
+      "(合)证据5：打印及拷贝资料的电脑截图_2",
+      "(合)证据6：删除电脑操作痕迹的截图",
+      "E法桥平台使用告知书"
+    ],
+    "api_response": "success, 12 documents retrieved via curl API"
+  },
+  "archive": {
+    "matched_case": "（2026）苏0591民初5426号 苏州物睿科技有限公司与顾忆芬劳动合同纠纷",
+    "target_path": "（2026）苏0591民初5426号 苏州物睿科技有限公司与顾忆芬劳动合同纠纷/08 - 🏛️ 法院送达/",
+    "auto_created": true,
+    "summary": "传票：2026年5月7日 09:30 东沙湖第六法庭开庭。案由：劳动合同纠纷。原告苏州物睿科技有限公司诉被告顾忆芬，诉请退还保密费11,992.45元。审理程序：小额诉讼。查询密码：503398。"
+  }
+}

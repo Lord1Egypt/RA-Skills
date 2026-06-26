@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: NEIS School CLI
+  short_description: Query Korean school lunch menus and timetables from NEIS.
+  default_prompt: Search schools, meals, or timetables with the bundled NEIS CLI.

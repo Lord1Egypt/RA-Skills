@@ -1,0 +1,89 @@
+{
+  "skill_name": "openclaw-pc-security",
+  "evals": [
+    {
+      "id": 1,
+      "input": "Check my Windows security posture and see if I need any updates",
+      "expected_findings": [],
+      "expected_health": "any"
+    },
+    {
+      "id": 2,
+      "input": "Detect if my OpenClaw version is outdated and check for any security risks",
+      "expected_findings": [],
+      "expected_health": "any"
+    },
+    {
+      "id": 3,
+      "input": "Scan my local network for exposed OpenClaw ports and weak credentials",
+      "expected_findings": [],
+      "expected_health": "any"
+    },
+    {
+      "id": 4,
+      "input": "模拟 config.json 中 auth: false",
+      "expected_findings": [
+        {
+          "type": "server_auth_disabled",
+          "severity": "critical"
+        }
+      ],
+      "expected_health": "red"
+    },
+    {
+      "id": 5,
+      "input": "模拟 config.json 中 port: 18789",
+      "expected_findings": [
+        {
+          "type": "server_default_port",
+          "severity": "high"
+        }
+      ],
+      "expected_health": "red"
+    },
+    {
+      "id": 6,
+      "input": "模拟监听地址为 0.0.0.0",
+      "expected_findings": [
+        {
+          "type": "server_exposed_public",
+          "severity": "high"
+        }
+      ],
+      "expected_health": "red"
+    },
+    {
+      "id": 7,
+      "input": "模拟 AntivirusEnabled: false",
+      "expected_findings": [
+        {
+          "type": "defender_status",
+          "severity": "critical"
+        }
+      ],
+      "expected_health": "red"
+    },
+    {
+      "id": 8,
+      "input": "模拟 Chrome 版本 120.0（低于最低安全版本 130.0）",
+      "expected_findings": [
+        {
+          "type": "browser_outdated",
+          "severity": "high"
+        }
+      ],
+      "expected_health": "red"
+    },
+    {
+      "id": 9,
+      "input": "模拟 Windows 10 22H2，日期在 2025-10-14 之后",
+      "expected_findings": [
+        {
+          "type": "windows_support_status",
+          "severity": "high"
+        }
+      ],
+      "expected_health": "red"
+    }
+  ]
+}

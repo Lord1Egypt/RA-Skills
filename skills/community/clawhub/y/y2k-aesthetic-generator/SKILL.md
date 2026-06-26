@@ -1,35 +1,34 @@
 ---
-name: "Y2k Aesthetic Generator"
-description: "Y2K aesthetic generator for nostalgic early-2000s and 2010s throwback photos — recreate the viral '2026 is the new 2016' trend with flash-photography selfies..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/y2k-aesthetic-generator"
-sourceUrl: "https://clawhub.ai/skills/y2k-aesthetic-generator"
+name: y2k-aesthetic-generator
+description: Y2K aesthetic generator for nostalgic early-2000s and 2010s throwback photos — recreate the viral '2026 is the new 2016' trend with flash-photography selfies, Snapchat-era looks, low-res iPhone vibes, butterfly clips, frosted makeup, and dreamy mall-photo nostalgia. Perfect for TikTok, Instagram Reels, profile pics, retro fashion moodboards, Y2K party invites, nostalgia core content, and 2000s/2010s aesthetic edits via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Y2k Aesthetic Generator
+# Y2K Aesthetic Generator
 
-> Y2K aesthetic generator for nostalgic early-2000s and 2010s throwback photos — recreate the viral '2026 is the new 2016' trend with flash-photography selfies...
+Y2K aesthetic generator for nostalgic early-2000s and 2010s throwback photos — recreate the viral '2026 is the new 2016' trend with flash-photography selfies, Snapchat-era looks, low-res iPhone vibes, butterfly clips, frosted makeup, and dreamy mall-photo nostalgia. Perfect for TikTok, Instagram Reels, profile pics, retro fashion moodboards, Y2K party invites, nostalgia core content, and 2000s/2010s aesthetic edits.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/y2k-aesthetic-generator`
-- **Source URL:** [https://clawhub.ai/skills/y2k-aesthetic-generator](https://clawhub.ai/skills/y2k-aesthetic-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/y2k-aesthetic-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create y2k aesthetic photo generator images.
+
+## Quick start
+```bash
+node y2kaestheticgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/y2k-aesthetic-generator
 ```

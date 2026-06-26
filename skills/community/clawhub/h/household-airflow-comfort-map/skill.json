@@ -1,0 +1,47 @@
+{
+  "slug": "household-airflow-comfort-map",
+  "name": "Household Airflow Comfort Map",
+  "version": "1.0.0",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Creates a comfort-focused room airflow map, timing routine, and weekly review checklist for stuffy rooms without HVAC diagnosis, repair advice, allergy guidance, or unsafe window use.",
+  "category": "Home Routine",
+  "tags": [
+    "home comfort",
+    "airflow routine",
+    "room comfort map",
+    "stuffy rooms",
+    "ventilation checklist",
+    "household routine"
+  ],
+  "trigger_keywords": [
+    "room ventilation checklist",
+    "home airflow routine",
+    "stuffy room routine",
+    "airflow comfort map",
+    "rooms feel stuffy",
+    "household airflow",
+    "comfort routine",
+    "room comfort log"
+  ],
+  "use_cases": [
+    "Map rooms that feel stuffy or stale at different times of day.",
+    "Create a safe open-close routine using existing windows, doors, fans, and exhaust options.",
+    "Track comfort observations for a weekly household adjustment loop."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "hasExecutableCode": false,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Comfort routine only.",
+    "No HVAC diagnosis, repair advice, allergy guidance, or medical advice.",
+    "Avoid unsafe window use and follow outdoor air, weather, security, and building constraints.",
+    "Direct hazards, alarms, severe symptoms, or equipment concerns to emergency services, official guidance, or qualified professionals."
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mac Dev Staging"
+  short_description: "Turn a Mac into a local PHP/MariaDB staging server"
+  default_prompt: "Use $mac-dev-staging to configure a Mac as a local staging server with stock Apache, PHP 8.5, MariaDB, and optional nginx."

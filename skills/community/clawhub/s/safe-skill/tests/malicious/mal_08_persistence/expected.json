@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Persistence via crontab, shell profiles, systemd, launchctl, git hooks",
+    "expected_min_score": 100,
+    "expected_level": ["EXTREME"],
+    "must_trigger_rules": ["PERSIST-001", "PERSIST-002", "PERSIST-003", "PERSIST-004", "PERSIST-005"],
+    "attack_category": "persistence"
+}

@@ -1,0 +1,3 @@
+﻿interface:
+  display_name: "Trade Plan Assistant"
+  short_description: "Capture structured plans, update execution state, and surface historical plan references"

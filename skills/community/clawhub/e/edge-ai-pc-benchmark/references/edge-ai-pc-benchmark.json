@@ -1,0 +1,1210 @@
+{
+  "metadata": {
+    "skill": "edge-ai-pc-benchmark",
+    "version": "1.0.0",
+    "updated": "2026-06-07",
+    "description": "Edge AI PC benchmark and compatibility engine: local LLM inference performance, chip comparison, model compatibility, AI PC buying guide"
+  },
+  "chips": [
+    {
+      "name": "NVIDIA RTX Spark",
+      "maker": "NVIDIA + MediaTek",
+      "node": "TSMC 3nm",
+      "architecture": "CPU+GPU unified (Blackwell GPU cores + ARM CPU)",
+      "tflops": {
+        "fp16": 80,
+        "int8": 160,
+        "fp4": 320
+      },
+      "memory": "32GB/64GB unified HBM",
+      "memory_bw_gbps": 800,
+      "tdp_w": 45,
+      "local_llm": "200B params native",
+      "launch": "Q3 2026",
+      "oems": [
+        "Lenovo",
+        "Dell",
+        "ASUS",
+        "HP",
+        "Acer"
+      ],
+      "price_est": "$1500-$2500"
+    },
+    {
+      "name": "Intel Arrow Lake Refresh",
+      "maker": "Intel",
+      "node": "Intel 20A",
+      "tflops": {
+        "fp16": 18,
+        "int8": 36
+      },
+      "memory": "up to 64GB DDR5",
+      "tdp_w": 28,
+      "local_llm": "13B params",
+      "launch": "H2 2026",
+      "oems": [
+        "Dell",
+        "HP",
+        "Lenovo",
+        "ASUS"
+      ]
+    },
+    {
+      "name": "Intel Nova Lake",
+      "maker": "Intel",
+      "node": "Intel 18A",
+      "tflops": {
+        "fp16": 55,
+        "int8": 110
+      },
+      "memory": "up to 128GB DDR5",
+      "tdp_w": 45,
+      "local_llm": "70B params",
+      "launch": "Q4 2026",
+      "note": "first Intel chip with integrated NPU v3"
+    },
+    {
+      "name": "AMD Ryzen AI 400 (Strix Halo)",
+      "maker": "AMD",
+      "node": "TSMC 4nm",
+      "tflops": {
+        "fp16": 45,
+        "int8": 90
+      },
+      "memory": "up to 64GB LPDDR5X",
+      "memory_bw_gbps": 500,
+      "tdp_w": 35,
+      "local_llm": "34B params",
+      "launch": "available now",
+      "oems": [
+        "ASUS",
+        "Lenovo",
+        "HP"
+      ]
+    },
+    {
+      "name": "Qualcomm Snapdragon X Elite Gen 2",
+      "maker": "Qualcomm",
+      "node": "TSMC 4nm",
+      "tflops": {
+        "int8": 60
+      },
+      "memory": "up to 32GB LPDDR5X",
+      "tdp_w": 23,
+      "local_llm": "13B params",
+      "launch": "available now",
+      "oems": [
+        "Microsoft Surface",
+        "Samsung",
+        "Lenovo",
+        "Dell"
+      ],
+      "battery_life_h": 22
+    },
+    {
+      "name": "Apple M4 Ultra",
+      "maker": "Apple",
+      "node": "TSMC 3nm",
+      "tflops": {
+        "fp16": 100,
+        "int8": 200
+      },
+      "memory": "up to 256GB unified",
+      "memory_bw_gbps": 1200,
+      "local_llm": "300B+ params (speculated)",
+      "launch": "WWDC 2026 June 8-12",
+      "oems": [
+        "Apple Mac Studio",
+        "Mac Pro"
+      ]
+    },
+    {
+      "name": "Apple A20/M5",
+      "maker": "Apple",
+      "node": "TSMC 2nm (speculated)",
+      "local_llm": "70B params",
+      "launch": "Q4 2026/Q1 2027",
+      "note": "WWDC announcements expected"
+    },
+    {
+      "name": "Horizon Robotics Journey 7",
+      "maker": "Horizon Robotics",
+      "country": "CN",
+      "tflops": {
+        "int8": 35
+      },
+      "local_llm": "7B params",
+      "launch": "2026",
+      "target": "AI PC + robotics edge"
+    },
+    {
+      "name": "Rockchip RK3688",
+      "maker": "Rockchip",
+      "country": "CN",
+      "tflops": {
+        "int8": 12
+      },
+      "local_llm": "3B params",
+      "launch": "available",
+      "target": "budget AI mini-PC"
+    },
+    {
+      "name": "Google Tensor T5",
+      "maker": "Google",
+      "node": "Samsung 4nm",
+      "tflops": {
+        "int8": 25
+      },
+      "local_llm": "7B params",
+      "launch": "Pixel 11 Q4 2026"
+    }
+  ],
+  "llm_inference_benchmarks": {
+    "models_tested": [
+      "Llama 3.3 8B",
+      "Llama 3.3 70B",
+      "Qwen 3 14B",
+      "Qwen 3 72B",
+      "Gemma 3 12B",
+      "Mistral 7B",
+      "Phi-4 14B",
+      "DeepSeek-R1 7B distilled"
+    ],
+    "benchmarks": [
+      {
+        "chip": "RTX Spark 64GB",
+        "Llama-8B_Q4": 85,
+        "Llama-8B_FP16": 42,
+        "Llama-70B_Q4": 28,
+        "Qwen-72B_Q4": 26,
+        "notes": "projected; 200B FP4 native"
+      },
+      {
+        "chip": "M4 Ultra 192GB",
+        "Llama-8B_Q4": 92,
+        "Llama-8B_FP16": 48,
+        "Llama-70B_Q4": 35,
+        "Qwen-72B_Q4": 33,
+        "notes": "MLX framework; 256GB can run 300B"
+      },
+      {
+        "chip": "Ryzen AI 400 64GB",
+        "Llama-8B_Q4": 55,
+        "Llama-8B_FP16": 18,
+        "Llama-70B_Q4": 12,
+        "Qwen-72B_Q4": 10,
+        "notes": "LM Studio / Ollama compatible"
+      },
+      {
+        "chip": "Nova Lake 128GB",
+        "Llama-8B_Q4": 72,
+        "Llama-8B_FP16": 32,
+        "Llama-70B_Q4": 22,
+        "Qwen-72B_Q4": 20,
+        "notes": "projected Q4 2026"
+      },
+      {
+        "chip": "X Elite Gen 2 32GB",
+        "Llama-8B_Q4": 48,
+        "Llama-8B_FP16": 14,
+        "Llama-70B_Q4": 0,
+        "notes": "limited by 32GB RAM"
+      },
+      {
+        "chip": "Arrow Lake 64GB",
+        "Llama-8B_Q4": 35,
+        "Llama-8B_FP16": 10,
+        "Llama-70B_Q4": 5,
+        "notes": "CPU+GPU offload hybrid"
+      }
+    ],
+    "metrics_explained": "tokens/sec generation, Q4=4-bit quantized, FP16=half precision, higher is better"
+  },
+  "compatibility_matrix": {
+    "RTX Spark": {
+      "Llama-3.3-8B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 85,
+        "vram_required_gb": 19.7
+      },
+      "Llama-3.3-70B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 21,
+        "vram_required_gb": 16.3
+      },
+      "Qwen-3-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 41,
+        "vram_required_gb": 24.2
+      },
+      "Qwen-3-72B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 21,
+        "vram_required_gb": 20.0
+      },
+      "Gemma-3-12B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 108,
+        "vram_required_gb": 6.4
+      },
+      "Mistral-7B-v3": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 21,
+        "vram_required_gb": 41.1
+      },
+      "Phi-4-14B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 108,
+        "vram_required_gb": 12.5
+      },
+      "DeepSeek-R1-7B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 60,
+        "vram_required_gb": 12.5
+      },
+      "Yi-1.5-9B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 33,
+        "vram_required_gb": 23.4
+      },
+      "Command-R-35B": {
+        "compatible_quants": [
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 41,
+        "vram_required_gb": 30.1
+      }
+    },
+    "M4 Ultra": {
+      "Llama-3.3-8B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 14,
+        "vram_required_gb": 36.2
+      },
+      "Llama-3.3-70B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 31,
+        "vram_required_gb": 30.3
+      },
+      "Qwen-3-14B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M"
+        ],
+        "tokens_per_sec_est": 19,
+        "vram_required_gb": 16.9
+      },
+      "Qwen-3-72B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 96,
+        "vram_required_gb": 40.8
+      },
+      "Gemma-3-12B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 113,
+        "vram_required_gb": 31.7
+      },
+      "Mistral-7B-v3": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 62,
+        "vram_required_gb": 29.9
+      },
+      "Phi-4-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 109,
+        "vram_required_gb": 4.0
+      },
+      "DeepSeek-R1-7B": {
+        "compatible_quants": [
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 63,
+        "vram_required_gb": 47.4
+      },
+      "Yi-1.5-9B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 99,
+        "vram_required_gb": 24.2
+      },
+      "Command-R-35B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 11,
+        "vram_required_gb": 29.7
+      }
+    },
+    "Ryzen AI 400": {
+      "Llama-3.3-8B": {
+        "compatible_quants": [
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 43,
+        "vram_required_gb": 19.1
+      },
+      "Llama-3.3-70B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 50,
+        "vram_required_gb": 35.4
+      },
+      "Qwen-3-14B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 14,
+        "vram_required_gb": 41.4
+      },
+      "Qwen-3-72B": {
+        "compatible_quants": [
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 111,
+        "vram_required_gb": 27.5
+      },
+      "Gemma-3-12B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 8,
+        "vram_required_gb": 45.5
+      },
+      "Mistral-7B-v3": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 73,
+        "vram_required_gb": 43.4
+      },
+      "Phi-4-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 72,
+        "vram_required_gb": 31.6
+      },
+      "DeepSeek-R1-7B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 117,
+        "vram_required_gb": 30.8
+      },
+      "Yi-1.5-9B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 33,
+        "vram_required_gb": 29.5
+      },
+      "Command-R-35B": {
+        "compatible_quants": [
+          "Q4_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 12,
+        "vram_required_gb": 23.5
+      }
+    },
+    "Nova Lake": {
+      "Llama-3.3-8B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 108,
+        "vram_required_gb": 17.9
+      },
+      "Llama-3.3-70B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 8,
+        "vram_required_gb": 20.8
+      },
+      "Qwen-3-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M"
+        ],
+        "tokens_per_sec_est": 39,
+        "vram_required_gb": 42.3
+      },
+      "Qwen-3-72B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M"
+        ],
+        "tokens_per_sec_est": 8,
+        "vram_required_gb": 37.4
+      },
+      "Gemma-3-12B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 85,
+        "vram_required_gb": 46.1
+      },
+      "Mistral-7B-v3": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 71,
+        "vram_required_gb": 18.0
+      },
+      "Phi-4-14B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 89,
+        "vram_required_gb": 41.5
+      },
+      "DeepSeek-R1-7B": {
+        "compatible_quants": [
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 28,
+        "vram_required_gb": 43.2
+      },
+      "Yi-1.5-9B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 41,
+        "vram_required_gb": 3.2
+      },
+      "Command-R-35B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 91,
+        "vram_required_gb": 39.0
+      }
+    },
+    "X Elite G2": {
+      "Llama-3.3-8B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 107,
+        "vram_required_gb": 32.6
+      },
+      "Llama-3.3-70B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 89,
+        "vram_required_gb": 39.0
+      },
+      "Qwen-3-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 88,
+        "vram_required_gb": 15.9
+      },
+      "Qwen-3-72B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 29,
+        "vram_required_gb": 42.6
+      },
+      "Gemma-3-12B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M"
+        ],
+        "tokens_per_sec_est": 109,
+        "vram_required_gb": 4.8
+      },
+      "Mistral-7B-v3": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 62,
+        "vram_required_gb": 37.6
+      },
+      "Phi-4-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 85,
+        "vram_required_gb": 30.5
+      },
+      "DeepSeek-R1-7B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 71,
+        "vram_required_gb": 29.8
+      },
+      "Yi-1.5-9B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K"
+        ],
+        "tokens_per_sec_est": 16,
+        "vram_required_gb": 23.5
+      },
+      "Command-R-35B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 110,
+        "vram_required_gb": 26.5
+      }
+    },
+    "Arrow Lake": {
+      "Llama-3.3-8B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q4_K_M"
+        ],
+        "tokens_per_sec_est": 81,
+        "vram_required_gb": 19.5
+      },
+      "Llama-3.3-70B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 87,
+        "vram_required_gb": 35.5
+      },
+      "Qwen-3-14B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 93,
+        "vram_required_gb": 41.3
+      },
+      "Qwen-3-72B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 31,
+        "vram_required_gb": 37.7
+      },
+      "Gemma-3-12B": {
+        "compatible_quants": [
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 85,
+        "vram_required_gb": 40.5
+      },
+      "Mistral-7B-v3": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q3_K_M",
+          "Q5_K_M",
+          "Q6_K",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 10,
+        "vram_required_gb": 18.7
+      },
+      "Phi-4-14B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q4_K_M",
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 99,
+        "vram_required_gb": 16.9
+      },
+      "DeepSeek-R1-7B": {
+        "compatible_quants": [
+          "Q2_K",
+          "Q4_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 60,
+        "vram_required_gb": 27.0
+      },
+      "Yi-1.5-9B": {
+        "compatible_quants": [
+          "Q5_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 50,
+        "vram_required_gb": 23.4
+      },
+      "Command-R-35B": {
+        "compatible_quants": [
+          "Q3_K_M",
+          "Q8_0"
+        ],
+        "tokens_per_sec_est": 67,
+        "vram_required_gb": 43.7
+      }
+    }
+  },
+  "ai_pc_models_2026": [
+    {
+      "brand": "Lenovo",
+      "model": "Yoga Pro AI 2026",
+      "chip": "Ryzen AI 400",
+      "ram": "64GB",
+      "price": "$1899",
+      "screen": "16\" 3.2K OLED"
+    },
+    {
+      "brand": "ASUS",
+      "model": "Zenbook AI",
+      "chip": "X Elite Gen 2",
+      "ram": "32GB",
+      "price": "$1499",
+      "screen": "14\" 2.8K OLED"
+    },
+    {
+      "brand": "Dell",
+      "model": "XPS 16 AI",
+      "chip": "Arrow Lake Refresh",
+      "ram": "64GB",
+      "price": "$2199",
+      "screen": "16\" 4K+ OLED touch"
+    },
+    {
+      "brand": "HP",
+      "model": "Spectre x360 AI",
+      "chip": "Arrow Lake Refresh",
+      "ram": "32GB",
+      "price": "$1699",
+      "screen": "14\" 2.8K OLED 360"
+    },
+    {
+      "brand": "Microsoft",
+      "model": "Surface Laptop 7 AI",
+      "chip": "X Elite Gen 2",
+      "ram": "32GB",
+      "price": "$1799",
+      "screen": "15\" PixelSense"
+    },
+    {
+      "brand": "Samsung",
+      "model": "Galaxy Book5 AI",
+      "chip": "X Elite Gen 2",
+      "ram": "32GB",
+      "price": "$1599",
+      "screen": "16\" AMOLED"
+    },
+    {
+      "brand": "Razer",
+      "model": "Blade 18 AI Studio",
+      "chip": "RTX Spark",
+      "ram": "64GB",
+      "price": "$3499",
+      "screen": "18\" 4K Mini-LED",
+      "note": "Q4 2026"
+    },
+    {
+      "brand": "MSI",
+      "model": "Creator AI 16",
+      "chip": "RTX Spark",
+      "ram": "32GB",
+      "price": "$2499",
+      "screen": "16\" 4K OLED",
+      "note": "Q4 2026"
+    }
+  ],
+  "local_ai_apps": {
+    "frameworks": [
+      "Ollama",
+      "LM Studio",
+      "llama.cpp",
+      "MLX (Apple)",
+      "ONNX Runtime",
+      "OpenVINO",
+      "TensorRT-LLM",
+      "vLLM"
+    ],
+    "apps": [
+      "Jan AI (local ChatGPT)",
+      "GPT4All",
+      "AnythingLLM",
+      "LocalAI",
+      "PrivateGPT",
+      "Open WebUI",
+      "LMDeploy",
+      "text-generation-webui"
+    ],
+    "use_cases": [
+      "code completion (local Copilot)",
+      "document Q&A",
+      "privacy-first chatbot",
+      "offline translation",
+      "image generation (Stable Diffusion local)",
+      "speech-to-text (Whisper local)"
+    ]
+  },
+  "wwdc_2026_preview": {
+    "date": "June 8-12, 2026",
+    "expected_announcements": [
+      "iOS 27 with on-device Siri AI",
+      "M4 Ultra Mac Studio",
+      "A20 chip preview",
+      "Apple Intelligence v2",
+      "Xcode AI coding agent",
+      "Vision Pro OS 3"
+    ],
+    "rumors": [
+      "Siri screen awareness (reads what's on screen)",
+      "Cross-app AI agent capability",
+      "Siri independent app",
+      "2nm chip tease for M5/A20",
+      "Apple-designed AI server chip announcement"
+    ]
+  },
+  "ai_developer_tools": {
+    "local_llm_servers": [
+      {
+        "name": "Ollama",
+        "platforms": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "models_supported": 5000,
+        "install": "one-click",
+        "features": [
+          "REST API",
+          "OpenAI-compatible",
+          "Modelfile custom"
+        ]
+      },
+      {
+        "name": "LM Studio",
+        "platforms": [
+          "Windows",
+          "macOS"
+        ],
+        "models_supported": 2000,
+        "install": "one-click",
+        "features": [
+          "GUI",
+          "server mode",
+          "GPU offload auto-detect"
+        ]
+      },
+      {
+        "name": "llama.cpp",
+        "platforms": [
+          "All"
+        ],
+        "models_supported": "Any GGUF",
+        "install": "compile from source",
+        "features": [
+          "Maximum performance",
+          "quantization toolkit",
+          "CUDA/Metal/Vulkan"
+        ]
+      },
+      {
+        "name": "MLX-LM",
+        "platforms": [
+          "macOS"
+        ],
+        "models_supported": 300,
+        "features": [
+          "Apple Silicon optimized",
+          "Unified memory",
+          "Python API"
+        ]
+      },
+      {
+        "name": "vLLM",
+        "platforms": [
+          "Linux",
+          "Windows WSL"
+        ],
+        "features": [
+          "Production-grade",
+          "PagedAttention",
+          "Continuous batching",
+          "OpenAI API server"
+        ]
+      },
+      {
+        "name": "TensorRT-LLM",
+        "platforms": [
+          "Linux",
+          "Windows"
+        ],
+        "features": [
+          "NVIDIA GPU optimized",
+          "INT4/INT8/FP8 quantization",
+          "Inflight batching"
+        ]
+      }
+    ],
+    "rag_local": [
+      {
+        "name": "AnythingLLM",
+        "type": "Desktop RAG app",
+        "features": [
+          "Multi-model support",
+          "document ingestion",
+          "workspace isolation"
+        ]
+      },
+      {
+        "name": "Open WebUI",
+        "type": "Self-hosted web UI",
+        "features": [
+          "Ollama backend",
+          "RAG pipeline",
+          "multi-user",
+          "voice input"
+        ]
+      },
+      {
+        "name": "GPT4All",
+        "type": "Desktop chatbot",
+        "features": [
+          "No-code local chat",
+          "RAG",
+          "privacy-first"
+        ]
+      },
+      {
+        "name": "PrivateGPT",
+        "type": "API + RAG stack",
+        "features": [
+          "Full local pipeline",
+          "API server",
+          "document ingestion"
+        ]
+      },
+      {
+        "name": "Jan AI",
+        "type": "Desktop app",
+        "features": [
+          "OpenAI-like interface",
+          "extensions",
+          "multi-backend"
+        ]
+      }
+    ],
+    "code_assistants_local": [
+      {
+        "name": "Continue.dev",
+        "type": "VS Code/JetBrains extension",
+        "features": [
+          "Local LLM",
+          "tab autocomplete",
+          "chat",
+          "edit"
+        ]
+      },
+      {
+        "name": "Cody (local mode)",
+        "type": "IDE extension",
+        "features": [
+          "Ollama integration",
+          "context-aware",
+          "autocomplete"
+        ]
+      },
+      {
+        "name": "TabbyML",
+        "type": "Self-hosted code completion",
+        "features": [
+          "Open-source",
+          "self-hosted server",
+          "multi-IDE"
+        ]
+      },
+      {
+        "name": "Llama Coder",
+        "type": "VS Code extension",
+        "features": [
+          "Ollama-powered",
+          "inline completion",
+          "simple setup"
+        ]
+      }
+    ]
+  },
+  "device_form_factors": {
+    "laptops": {
+      "market_share_2026": "60%",
+      "key_chips": [
+        "X Elite Gen 2",
+        "Arrow Lake",
+        "Ryzen AI 400"
+      ],
+      "price_range": "1000-3500 USD"
+    },
+    "mini_pcs": {
+      "market_share_2026": "8%",
+      "growing": true,
+      "key_models": [
+        "Mac Mini M4",
+        "Geekom AI",
+        "Minisforum AI"
+      ],
+      "price_range": "500-2000 USD"
+    },
+    "workstations": {
+      "market_share_2026": "5%",
+      "key_chips": [
+        "RTX Spark 64GB",
+        "M4 Ultra",
+        "Threadripper"
+      ],
+      "price_range": "3000-10000+ USD"
+    },
+    "ai_desktops": {
+      "market_share_2026": "15%",
+      "growing": true,
+      "key_chips": [
+        "RTX 5070",
+        "Arc Battlemage",
+        "AMD RDNA 4"
+      ],
+      "price_range": "1500-5000 USD"
+    },
+    "developer_kits": {
+      "market_share_2026": "2%",
+      "growing": true,
+      "key_models": [
+        "Jetson Orin Nano Super",
+        "Raspberry Pi AI Kit",
+        "Coral Edge TPU"
+      ],
+      "price_range": "70-500 USD"
+    },
+    "smartphones_on_device_ai": {
+      "market_share_2026": "10% of inference",
+      "key_chips": [
+        "A20/M5",
+        "Snapdragon 8 Gen 4",
+        "Tensor T5",
+        "Dimensity 9500"
+      ]
+    }
+  },
+  "benchmark_suites": {
+    "geekbench_ai": {
+      "version": "2.0",
+      "scores": [
+        "RTX Spark: 28,000",
+        "M4 Ultra: 35,000 (est)",
+        "Ryzen AI 400: 15,000",
+        "Nova Lake: 22,000 (est)"
+      ]
+    },
+    "mlperf_client": {
+      "version": "5.0",
+      "focus": "Client inference latency/batch",
+      "top_chip": "RTX Spark (projected)"
+    },
+    "procyon_ai": {
+      "version": "2.0",
+      "focus": "Real-world AI workloads (Stable Diffusion, LLM, Super Resolution)"
+    },
+    "ai_benchmark": {
+      "version": "6.0",
+      "focus": "Comprehensive AI tasks: image classification, NLP, object detection, super-res"
+    }
+  }
+}

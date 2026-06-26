@@ -1,0 +1,3223 @@
+meta:
+  id: finance-bp-067-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-067
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:22.380878+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  upgraded_from: finance-bp-067-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:13.710708+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-067--firesale_stresstest/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-067--firesale_stresstest/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-REGTECH-001
+  title: Missing attribute initialization on data structures
+  description: 'When loading account lists or creating entity dictionaries, failing to initialize required list/dict attributes
+    (e.g., normal_models, statement IDs) causes KeyError or ValueError at runtime. The code path that reads these structures
+    assumes they exist, but the initialization path omits them. Consequence: pipeline crashes or data loss for affected entities.'
+  project_source: finance-bp-060--AMLSim, finance-bp-071--opensanctions
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-002
+  title: Self-loops in transaction graphs violate domain rules
+  description: 'When generating directed transaction graphs or AML typologies, allowing source == destination edges creates
+    self-loops. In AML simulation, self-loops represent accounts sending money to themselves, which is not a valid money laundering
+    pattern. In fire-sale models, self-loops cause undefined behavior. Consequence: corrupted graph topology and invalid typology
+    validation.'
+  project_source: finance-bp-060--AMLSim, finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-003
+  title: Unvalidated floating-point inputs cause runtime crashes
+  description: 'When parsing CSV files or computing statistical functions on raw data, failing to validate inputs against
+    acceptable ranges (e.g., DDP near 0 or 1 for norm.ppf, unvalidated floats from CSV) causes ValueError or infinite/NaN
+    values. Consequence: entire model crashes before simulation or corrupted downstream calculations.'
+  project_source: finance-bp-062--ifrs9, finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-004
+  title: Division by zero in financial calculations produces inf/NaN
+  description: 'When calculating ratios like DDP (downgrade observations / total observations) or price impact denominators
+    (total_quantities), zero-denominator cases are not guarded. The resulting inf/NaN propagates through all downstream calculations,
+    corrupting CCI, ECL, or market clearing. Consequence: systematic data corruption across the entire calculation pipeline.'
+  project_source: finance-bp-062--ifrs9, finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-005
+  title: Incorrect amortization windows violate IFRS 9 compliance
+  description: 'Stage 1 ECL requires exactly 12-month amortization (11 zero-indexed iterations) while Stage 2/3 requires full
+    remaining tenor (tenor-1 iterations). Using identical windows for all stages causes ECL over/understatement. Consequence:
+    regulatory non-compliance and materially incorrect loan loss provisions.'
+  project_source: finance-bp-062--ifrs9
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-006
+  title: Wrong leverage formula in threshold-based decisions
+  description: 'Computing leverage as equity-to-liabilities (E/L) instead of equity-to-assets (E/A) produces different values.
+    This causes deleveraging triggers and insolvency detection to fire at wrong thresholds. Consequence: zombie banks continue
+    operating with negative equity, or healthy banks unnecessarily deleverage.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-007
+  title: Confusing deleveraging buffer threshold with insolvency threshold
+  description: 'Banks below 3% leverage are insolvent and must default, but deleveraging should trigger at 4% buffer. Using
+    the same threshold eliminates the buffer zone, causing immediate default with no intermediate corrective action. Consequence:
+    excessive bank failures amplify systemic contagion.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-008
+  title: Cache keys omit request body for state-changing methods
+  description: 'Using only URL for cache fingerprints on POST/PATCH requests means different request bodies return identical
+    cached content. This causes stale data, missing entities, and data corruption in compliance screening pipelines. Consequence:
+    sanctions matches missed or false positives from stale entity data.'
+  project_source: finance-bp-071--opensanctions
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-009
+  title: ID collision in entity construction creates false sanctions matches
+  description: 'When constructing entity IDs from source identifiers, insufficient identifying attributes cause different
+    real-world entities to receive identical IDs. The database then merges them into one entity. Consequence: a sanctioned
+    entity''s ID matches an innocent entity, causing false positive compliance alerts.'
+  project_source: finance-bp-071--opensanctions
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-010
+  title: Incorrect cumulative PD ordering corrupts lifetime ECL term structure
+  description: 'Using cumprod(1-conPD) without shift(1) and fillna(1) produces corrupted first-period survival probability.
+    This cascades into all subsequent marginal and cumulative PD calculations, violating IFRS 9 lifetime ECL requirements.
+    Consequence: systematically incorrect provisions across all remaining tenor periods.'
+  project_source: finance-bp-062--ifrs9
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-011
+  title: Mismatched configuration parameters across coupled components
+  description: 'When TransactionGenerator and Nominator use different degree_threshold values, Nominator identifies hub accounts
+    using different criteria than TransactionGenerator. This causes incorrect fan-in/fan-out candidate selection. Consequence:
+    AML typology patterns placed on wrong accounts, invalidating simulation results.'
+  project_source: finance-bp-060--AMLSim
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-012
+  title: Reverse property assignment corrupts entity construction
+  description: 'Stub (reverse) properties represent inverse relationships and raise InvalidData when directly assigned. Attempting
+    to add values to stub properties instead of forward properties causes ValueError, aborting entity construction. Consequence:
+    entities lost from output, incomplete compliance datasets.'
+  project_source: finance-bp-071--opensanctions
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-013
+  title: Order-dependent execution creates first-mover advantage bias
+  description: 'Without separating step() and act() phases, first-acting banks sell assets before others decide, creating
+    systematic first-mover advantage. This distorts the competitive equilibrium and fire-sale dynamics. Consequence: unreliable
+    systemic risk estimates that understate contagion for late-acting banks.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-014
+  title: Immediate asset sales cause double-selling and undefined state
+  description: 'Executing asset sales immediately rather than queuing them to a buffer allows multiple banks holding the same
+    asset to sell simultaneously without accounting for concurrent intentions. Consequence: undefined price impact and incorrect
+    cash transfers in market clearing.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-015
+  title: Missing EAD component in ECL formula produces incomplete provisions
+  description: 'IFRS 9 requires ECL = PD x LGD x EAD. When the EAD module is missing or not integrated, the ECL calculation
+    is incomplete and unusable for provisioning. Consequence: regulatory rejection of ECL calculations, blocking of provisioning
+    and reporting processes.'
+  project_source: finance-bp-062--ifrs9
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+cross_project_wisdom:
+- wisdom_id: CW-REGTECH-001
+  source_project: finance-bp-062--ifrs9, finance-bp-067--firesale_stresstest
+  pattern_name: Input bounds validation before statistical computation
+  description: Statistical functions like norm.ppf() and cumprod() have strict input requirements that, if violated, produce
+    infinite or NaN values corrupting entire pipelines. Always validate inputs against domain constraints (DDP in (0,1), counts
+    > 0) before passing to statistical functions. Apply to any statistical or inverse-CDF computation.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-002
+  source_project: finance-bp-060--AMLSim, finance-bp-067--firesale_stresstest
+  pattern_name: Graph/topology invariant verification before construction
+  description: 'Before constructing graph structures (transaction networks, transition matrices), verify invariants: sum(in-degrees)
+    = sum(out-degrees), matrix row sums = 1.0, degree sequence length divisibility. This catches data corruption early before
+    expensive graph construction operations. Apply to any bipartite or directed graph generation.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-003
+  source_project: finance-bp-062--ifrs9
+  pattern_name: Regulatory amortization window discipline
+  description: 'IFRS 9 mandates different ECL calculation windows: exactly 12-month for Stage 1 (11 zero-indexed iterations),
+    full remaining tenor for Stage 2/3. Mixing these up violates compliance requirements. Always encode stage-specific window
+    logic explicitly rather than reusing a single loop variable across stages.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-004
+  source_project: finance-bp-071--opensanctions
+  pattern_name: Fingerprint composition must include all request dimensions
+  description: 'Cache keys must include all request parameters that affect response content: URL, HTTP method, authentication
+    headers, and request body for state-changing methods. POST requests with different bodies returning identical cache is
+    a silent data corruption bug. Always compose fingerprints from the union of all content-affecting parameters.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-005
+  source_project: finance-bp-067--firesale_stresstest
+  pattern_name: Floating-point zero-equivalence with explicit epsilon tolerance
+  description: IEEE 754 floating-point precision causes exact zero comparisons to fail in financial calculations. Always use
+    eps=1e-9 tolerance for zero-equivalence checks in market clearing, leverage ratios, and price impact calculations. This
+    prevents division-by-zero crashes and incorrect cash transfers.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-006
+  source_project: finance-bp-062--ifrs9
+  pattern_name: Stage classification threshold ordering enforcement
+  description: 'IFRS 9 SICR thresholds must be ordered: BUCKETS 2-3 trigger Stage 2, BUCKETS >=4 trigger Stage 3. Applying
+    thresholds in wrong order or omitting absolute DPD triggers causes material ECL misstatement. Validate threshold ordering
+    and document bucket-to-stage mapping explicitly.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-007
+  source_project: finance-bp-067--firesale_stresstest
+  pattern_name: Initialization-before-use dependency ordering
+  description: 'Operational dependencies must initialize before dependent objects use them: AssetMarket before bank registration,
+    CSV file existence before parsing, entity ID before statement addition. Violations cause AttributeError or FileNotFoundError
+    that abort entire initialization. Always encode dependency ordering explicitly in initialization sequences.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-008
+  source_project: finance-bp-071--opensanctions
+  pattern_name: Sufficient entity ID collision prevention
+  description: Entity IDs must include enough identifying attributes (dataset prefix, source, identifier type, document number)
+    to guarantee uniqueness. Collisions create false equivalence between unrelated entities, directly causing false positive
+    sanctions matches. Include the maximum available discriminating attributes in ID construction.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-009
+  source_project: finance-bp-060--AMLSim
+  pattern_name: Hub selection with candidate removal before addition
+  description: When selecting hub accounts for typology placement, always call remove_typology_candidate BEFORE add_node for
+    each selected account. Reversing this order causes hub self-selection (accounts choosing themselves) and duplicate assignment
+    across overlapping patterns. Apply to any allocation algorithm with candidate pooling.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-010
+  source_project: finance-bp-067--firesale_stresstest
+  pattern_name: Insolvency detection before operational decisions
+  description: Banks below the insolvency threshold (3% leverage) must trigger default immediately, not enter the deleveraging
+    decision logic. Checking operational thresholds before insolvency creates zombie banks with negative equity. Always gate
+    operational decisions on prior insolvency state.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+domain_constraints_injected: []
+resources_injected: {}
+component_capability_map:
+  project: finance-bp-067--firesale_stresstest
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 5
+    total_classes: 23
+    total_functions: 0
+    total_stages: 5
+  modules:
+    model_initialization:
+      class_count: 4
+      stage_id: initialization
+      stage_order: 1
+      responsibility: 'Load bank balance sheets from EBA data and initialize market infrastructure. WHY: Provides reproducible
+        starting state from real European banking data.'
+      classes:
+      - name: Model.initialize
+        file: model_initialization/model-initialize.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Bank.__init__
+        file: model_initialization/bank-init.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AssetMarket.__init__
+        file: model_initialization/assetmarket-init.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: data_source
+        file: model_initialization/data-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    shock_application:
+      class_count: 5
+      stage_id: shock_application
+      stage_order: 2
+      responsibility: 'Apply exogenous initial shock to asset prices, triggering potential deleveraging cascade. WHY: Models
+        contagion from external market shock (e.g., sovereign debt crisis).'
+      classes:
+      - name: Model.apply_initial_shock
+        file: shock_application/model-apply-initial-shock.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AssetMarket.update_price
+        file: shock_application/assetmarket-update-price.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Tradable.update_price
+        file: shock_application/tradable-update-price.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: shock_asset
+        file: shock_application/shock-asset.py
+        line: 0
+        kind: replaceable_point
+      - name: shock_fraction
+        file: shock_application/shock-fraction.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    agent_decision_phase:
+      class_count: 5
+      stage_id: agent_decision
+      stage_order: 3
+      responsibility: 'Each bank evaluates solvency and chooses deleveraging actions. WHY: Separating decision from execution
+        ensures order independence.'
+      classes:
+      - name: Bank.act
+        file: agent_decision_phase/bank-act.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BankLeverageConstraint.check
+        file: agent_decision_phase/bankleverageconstraint-check.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: do_delever.execute
+        file: agent_decision_phase/do-delever-execute.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: delever_strategy
+        file: agent_decision_phase/delever-strategy.py
+        line: 0
+        kind: replaceable_point
+      - name: leverage_threshold
+        file: agent_decision_phase/leverage-threshold.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 6
+    market_clearing:
+      class_count: 6
+      stage_id: market_clearing
+      stage_order: 4
+      responsibility: 'Execute each queued sell orders and compute price impact. WHY: Batch execution isolates market mechanics
+        from agent decision-making.'
+      classes:
+      - name: AssetMarket.clear_the_market
+        file: market_clearing/assetmarket-clear-the-market.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Order.settle
+        file: market_clearing/order-settle.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: compute_price_impact
+        file: market_clearing/compute-price-impact.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: clearing_mode
+        file: market_clearing/clearing-mode.py
+        line: 0
+        kind: replaceable_point
+      - name: price_impact_function
+        file: market_clearing/price-impact-function.py
+        line: 0
+        kind: replaceable_point
+      - name: execution_price
+        file: market_clearing/execution-price.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 6
+    default_handling:
+      class_count: 3
+      stage_id: default_handling
+      stage_order: 5
+      responsibility: 'Process bank defaults and redistribute assets. WHY: Defaults are terminal events that affect systemic
+        risk calculations.'
+      classes:
+      - name: Bank.do_trigger_default
+        file: default_handling/bank-do-trigger-default.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: sell_assets_proportionally
+        file: default_handling/sell-assets-proportionally.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: default_treatment
+        file: default_handling/default-treatment.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.5607476635514018
+    evidence_invalid: 47
+    evidence_verified: 60
+    evidence_auto_fixed: 0
+    audit_coverage: 32/32 (100%)
+    audit_pass_rate: 1/32 (3%)
+    audit_fail_total: 22
+    audit_finance_universal:
+      pass: 1
+      warn: 6
+      fail: 13
+    audit_subdomain_totals:
+      pass: 0
+      warn: 3
+      fail: 9
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-067. Evidence verify ratio
+    = 56.1% and audit fail total = 22. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-067-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries: []
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 143
+    fatal_constraints_count: 42
+    non_fatal_constraints_count: 127
+    use_cases_count: 0
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 22 source groups: agent_decision(6),
+        behaviour_strategy(5), behaviours(2), constraint_definition(7), constraints(1), default_handling(11), and 16 more.'
+      key_decisions: 143 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-008
+      type: B
+      summary: Two-phase step (step + act) for order independence
+    - id: BD-009
+      type: B/BA
+      summary: Insolvent banks trigger default (raise exception)
+    - id: BD-010
+      type: B
+      summary: Order-independent buffer putForSale_
+    - id: BD-011
+      type: B/BA
+      summary: 'Deleveraging priority: pay loans first, then sell'
+    - id: BD-012
+      type: B/BA
+      summary: 'Threshold model: act when leverage < buffer (4%)'
+    - id: BD-013
+      type: B
+      summary: Perform proportionally across each actions of same type
+    - id: BD-043
+      type: B/DK
+      summary: Proportional delevering across each assets/liabilities
+    - id: BD-044
+      type: B/BA
+      summary: Pay liabilities first, then sell assets to raise liquidity
+    - id: BD-059
+      type: B
+      summary: Perform proportional delevering by max-amount weighting
+    - id: BD-061
+      type: B
+      summary: Truncate loan payment to notional to prevent overpayment
+    - id: BD-063
+      type: B
+      summary: Available actions reconstructed from scratch each step
+    - id: BD-085
+      type: B
+      summary: Sell/proportional deleveraging strategy
+    - id: BD-086
+      type: B
+      summary: 'Two-step delever: pay liabilities first, then sell assets'
+    - id: BD-025
+      type: B/BA
+      summary: Minimum leverage (insolvency threshold) = 3%
+    - id: BD-026
+      type: B/BA
+      summary: Leverage buffer threshold = 4% triggers delevering behavior
+    - id: BD-027
+      type: B/BA
+      summary: Target leverage = 5% when delevering
+    - id: BD-041
+      type: B/BA
+      summary: Solvency measured purely by leverage ratio (equity/assets)
+    - id: BD-064
+      type: B/DK
+      summary: Asset valuation = quantity * price for tradables
+    - id: BD-065
+      type: B/BA
+      summary: Loan valuation = principal (face value)
+    - id: BD-066
+      type: B/DK
+      summary: Other assets/liabilities use principal amount as valuation
+    - id: BD-071
+      type: B/DK
+      summary: Use leverage ratio lambda = E/A for insolvency detection
+    - id: BD-020
+      type: B/BA
+      summary: Default deferred to next step() phase
+    - id: BD-021
+      type: B/BA
+      summary: Bank alive flag prevents further actions
+    - id: BD-022
+      type: B/BA
+      summary: Default sells each assets proportionally
+    - id: BD-046
+      type: B/BA
+      summary: Upon default, sell ALL tradable assets immediately
+    - id: BD-092
+      type: BA/DK
+      summary: SIMULTANEOUS_FIRESALE=True batches each sells before price impact
+    - id: BD-093
+      type: BA/DK
+      summary: PRICE_IMPACTS defaults to 0.05 (5% price drop per 5% market sold)
+    - id: BD-094
+      type: BA
+      summary: BANK_LEVERAGE_BUFFER=0.04 is threshold for initiating deleveraging
+    - id: BD-095
+      type: BA
+      summary: BANK_LEVERAGE_MIN=0.03 is insolvency trigger (leverage < 3%)
+    - id: BD-101
+      type: BA
+      summary: ASSET_TO_SHOCK defaults to GOV_BONDS for initial price shock
+    - id: BD-105
+      type: BA
+      summary: Loan/OtherLiability split 50-50 from total liability
+    - id: BD-107
+      type: BA/DK
+      summary: 'Exponential price impact formula: 5% sold -> 5% drop at beta=~10.5'
+    - id: BD-108
+      type: B/BA
+      summary: 'INTERACTION: [BD-005/BD-029] × [BD-014/BD-032] × [BD-015/BD-038] → Amplification of cascade severity through
+        simultaneous fire sale compression'
+    - id: BD-109
+      type: B/BA
+      summary: 'INTERACTION: [BD-026/BD-073] → [BD-043] → [BD-014] → [BD-015] → [BD-026] → Risk Cascade feedback loop: deleveraging
+        buffer triggers fire sales that erode buffer again'
+    - id: BD-110
+      type: BA
+      summary: 'INTERACTION: [BD-026/BD-073] vs [BD-027/BD-074] → Contradiction: 1% buffer between trigger (4%) and target
+        (5%) is insufficient for stabilization'
+    - id: BD-111
+      type: BA
+      summary: 'INTERACTION: [BD-043] × [BD-017/BD-083] × [BD-015] → Hidden dependency: Proportional deleveraging with midpoint
+        pricing undervalues assets under stress'
+    - id: BD-112
+      type: BA/DK
+      summary: 'INTERACTION: [BD-014/BD-032] × [BD-048] → Hidden dependency: Simultaneous firesale requires price impact computed
+        BEFORE settlement, breaking if order reversed'
+    - id: BD-113
+      type: BA/M
+      summary: 'INTERACTION: [BD-045] × [BD-051] × [BD-052] → Hidden dependency: Random shuffle for fairness requires fixed
+        seed AND sufficient Monte Carlo runs for validity'
+    - id: BD-114
+      type: BA/M
+      summary: 'INTERACTION: [BD-018] × [BD-022] → Hidden dependency: Per-asset-type price impact assumes fungibility that
+        breaks under default liquidation'
+    - id: BD-115
+      type: BA
+      summary: 'INTERACTION: [BD-002/BD-067] × [BD-071] × [BD-003/BD-033] → Risk Cascade: Balance sheet derivation with 5%
+        cash creates liquidity-solvency timing mismatch'
+    - id: BD-116
+      type: BA
+      summary: 'INTERACTION: [BD-007] × [BD-062] × [BD-040] → Hidden dependency: Default price of 1.0 for unknown assets creates
+        silent failures in parameter sweep results'
+    - id: BD-117
+      type: BA/DK
+      summary: 'INTERACTION: [BD-041] (leverage-only insolvency) × [BD-065] (loan at face value) × [BD-064] (tradables at
+        market) → Contradiction: Mixed valuation creates arbitrary solvency boundaries'
+    - id: BD-118
+      type: B/BA
+      summary: 'INTERACTION: [BD-009] × [BD-020] × [BD-042] → Risk Cascade: Deferred default execution creates accumulation
+        of silent distress across timesteps'
+    - id: BD-119
+      type: BA
+      summary: 'INTERACTION: [BD-006] × [BD-049] → Amplification: Per-bank price update combined with asymmetric price dynamics
+        creates systematic underpricing'
+    - id: BD-106
+      type: M
+      summary: Contract extends ESLContract from external economicsl library
+    - id: BD-001
+      type: B/BA
+      summary: Banks derived from real EBA 2018 CSV data
+    - id: BD-002
+      type: B/BA
+      summary: 'Balance sheet formula: asset=CET1E/leverage, liability=asset-CET1E'
+    - id: BD-003
+      type: BA
+      summary: Cash fixed at 5% of total assets
+    - id: BD-004
+      type: BA/M
+      summary: Other liability split 50/50 with loan
+    - id: BD-023
+      type: B/BA
+      summary: Use 48 banks from EBA 2018 EU-wide stress test data as model population
+    - id: BD-033
+      type: B/BA
+      summary: Cash allocation = 5% of total assets
+    - id: BD-034
+      type: B/BA
+      summary: Loans and other liabilities split 50/50
+    - id: BD-035
+      type: B/RC
+      summary: Corporate bonds = debt securities minus government bonds
+    - id: BD-067
+      type: B/BA
+      summary: 'Balance sheet derived: asset = CET1E / (leverage/100)'
+    - id: BD-068
+      type: B/RC
+      summary: Other assets = total assets - debt securities - cash
+    - id: BD-072
+      type: B/BA
+      summary: Insolvency threshold at leverage < 3%
+    - id: BD-073
+      type: B/BA
+      summary: Trigger deleveraging when leverage < 4% (buffer zone)
+    - id: BD-074
+      type: B/BA
+      summary: Target leverage of 5% (100/20 leverage ratio)
+    - id: BD-079
+      type: B/BA
+      summary: 'Systemic risk threshold: EOSE < 5% returns 0 (no systemic event)'
+    - id: BD-080
+      type: B/BA
+      summary: EOSE = number_of_defaulted_banks / NBANKS (48 banks)
+    - id: BD-081
+      type: B/BA
+      summary: Run simulation for exactly 6 timesteps
+    - id: BD-084
+      type: B
+      summary: 'Two-phase execution: simultaneous vs random shuffle firesale'
+    - id: BD-088
+      type: B/BA
+      summary: Initial shock applied to government bonds market
+    - id: BD-GAP-001
+      type: DK
+      summary: 'Missing: as-of vs processing time'
+    - id: BD-GAP-002
+      type: DK
+      summary: 'Missing: Trading calendar isolation'
+    - id: BD-GAP-003
+      type: DK
+      summary: 'Missing: Timezone explicit annotation'
+    - id: BD-GAP-004
+      type: M
+      summary: 'Missing: Matrix ill-conditioning'
+    - id: BD-GAP-005
+      type: DK
+      summary: 'Missing: Point-in-Time data availability'
+    - id: BD-GAP-006
+      type: DK
+      summary: 'Missing: Stale data detection'
+    - id: BD-GAP-007
+      type: B
+      summary: 'Missing: PnL conservation'
+    - id: BD-GAP-008
+      type: DK
+      summary: 'Missing: Model and data version snapshot'
+    - id: BD-GAP-009
+      type: RC
+      summary: 'Missing: Price/quantity precision (tick/lot)'
+    - id: BD-GAP-010
+      type: M
+      summary: 'Missing: Transition matrix time homogeneity'
+    - id: BD-GAP-011
+      type: B
+      summary: 'Missing: Overdue definition (DPD 30/60/90)'
+    - id: BD-GAP-012
+      type: RC
+      summary: 'Missing: Collection priority & compliance'
+    - id: BD-GAP-013
+      type: DK
+      summary: 'Missing: Reconciliation timeliness'
+    - id: BD-GAP-014
+      type: DK
+      summary: 'Missing: as-of vs processing time'
+    - id: BD-GAP-015
+      type: DK
+      summary: 'Missing: Trading calendar isolation'
+    - id: BD-GAP-016
+      type: DK
+      summary: 'Missing: Timezone explicit annotation'
+    - id: BD-GAP-017
+      type: M
+      summary: 'Missing: Matrix ill-conditioning'
+    - id: BD-GAP-018
+      type: DK
+      summary: 'Missing: Stale data detection'
+    - id: BD-GAP-019
+      type: B
+      summary: 'Missing: PnL conservation'
+    - id: BD-GAP-020
+      type: M/DK
+      summary: 'Missing: Day count convention'
+    - id: BD-GAP-021
+      type: RC
+      summary: 'Missing: Price/quantity precision (tick/lot)'
+    - id: BD-GAP-022
+      type: B
+      summary: 'Missing: Default definition & IFRS 9 stages'
+    - id: BD-GAP-023
+      type: B
+      summary: 'Missing: PD/LGD/EAD estimation (IRB vs Standard)'
+    - id: BD-GAP-024
+      type: B
+      summary: 'Missing: Vasicek single-factor correlation (rho)'
+    - id: BD-096
+      type: DK/B
+      summary: putForSale_ tracks pending sales to ensure order independence
+    - id: BD-097
+      type: DK/B
+      summary: oldPrices stored before price update for mid-point settlement pricing
+    - id: BD-102
+      type: DK
+      summary: cash = 0.05 * asset (5% cash buffer) during balance sheet init
+    - id: BD-014
+      type: B/DK
+      summary: SIMULTANEOUS_FIRESALE=True batches each sales
+    - id: BD-015
+      type: B/BA
+      summary: Exponential price impact per Cifuentes 2005
+    - id: BD-016
+      type: BA/DK
+      summary: 5% market cap sold = 5% price drop by default
+    - id: BD-017
+      type: B
+      summary: Midpoint price execution
+    - id: BD-018
+      type: B
+      summary: Price impact per asset type, not per asset
+    - id: BD-019
+      type: BA
+      summary: Floating point tolerance eps=1e-9
+    - id: BD-031
+      type: B/BA
+      summary: Default price impact = 5% (5% market sold causes 5% price drop) linear baseline
+    - id: BD-032
+      type: B
+      summary: Simultaneous firesale batch processing enabled
+    - id: BD-037
+      type: B
+      summary: Asset sales settle at midpoint price (current + old price) / 2
+    - id: BD-038
+      type: B/BA
+      summary: Exponential price impact function per Cifuentes 2005
+    - id: BD-039
+      type: B/DK
+      summary: Beta calibrated so 5% market cap sold = 5% price drop
+    - id: BD-040
+      type: B/BA
+      summary: Default asset prices initialized at 1.0
+    - id: BD-048
+      type: B/DK
+      summary: Price impact computed before sales settle in clear_the_market()
+    - id: BD-049
+      type: B/BA
+      summary: Update asset prices only when price loss > 0
+    - id: BD-050
+      type: B/DK
+      summary: Cumulative quantities tracked separately from per-step
+    - id: BD-056
+      type: B/DK
+      summary: putForSale_ accumulator ensures order independence in asset sales
+    - id: BD-058
+      type: B/BA
+      summary: Price impact function uses exponential decay
+    - id: BD-062
+      type: B/BA
+      summary: 'Use defaultdict with lambda: 1.0 for default prices'
+    - id: BD-069
+      type: B/DK
+      summary: Use exponential price impact function for asset pricing
+    - id: BD-070
+      type: B/BA
+      summary: Calibrate price impact so 5% market sell causes 5% price drop
+    - id: BD-083
+      type: B/BA
+      summary: 'Settle sales at midpoint price: (current + old_price) / 2'
+    - id: BD-036
+      type: B/BA
+      summary: Floating point tolerance = 1e-9 EUR for zero checks
+    - id: BD-060
+      type: B/DK
+      summary: Do not execute action if amount is effectively zero
+    - id: BD-089
+      type: T
+      summary: step() MUST be called before act() per simulation tick
+    - id: BD-090
+      type: RC
+      summary: put_for_sale() MUST be called before clear_the_market() in same tick
+    - id: BD-091
+      type: T
+      summary: act() raises DefaultException, trigger_default() executes in NEXT step()
+    - id: BD-104
+      type: RC
+      summary: do_delever pays liabilities BEFORE selling assets (priority order)
+    - id: BD-098
+      type: B
+      summary: 'Contract pattern: get_action() returns action objects, is_eligible() filters'
+    - id: BD-099
+      type: B/DK
+      summary: perform_proportionally() distributes actions by max-amount weighting
+    - id: BD-103
+      type: B/DK
+      summary: random.shuffle(allAgents) ensures order independence across simulation runs
+    - id: BD-075
+      type: B
+      summary: Run 100 Monte Carlo simulations per parameter set
+    - id: BD-076
+      type: B
+      summary: Use sample mean and standard deviation for aggregating MC results
+    - id: BD-077
+      type: B/DK
+      summary: Set price impact parameter sweep from 0% to 10% in 21 points
+    - id: BD-082
+      type: B
+      summary: Use fixed random seed 1337 for reproducibility
+    - id: BD-024
+      type: B/BA
+      summary: Systemic event threshold = 5% average bank defaults (Gai-Kapadia 2010)
+    - id: BD-052
+      type: B
+      summary: Run 100 simulations for random shuffling benchmark
+    - id: BD-053
+      type: B/DK
+      summary: Price impact parameter sweep from 0% to 10%
+    - id: BD-054
+      type: B/BA
+      summary: Initial shock parameter sweep from 0% to 30%
+    - id: BD-055
+      type: B/BA
+      summary: Leverage buffer = 1.0 for leverage targeting comparison baseline
+    - id: BD-057
+      type: B/BA
+      summary: Leverage targeting comparison uses 100% buffer override
+    - id: BD-005
+      type: BA
+      summary: Initial shock defaults to 20% on government bonds
+    - id: BD-006
+      type: B/DK
+      summary: Price shock propagates by updating each bank asset prices
+    - id: BD-007
+      type: BA
+      summary: Default price is 1.0 for unknown asset types
+    - id: BD-028
+      type: B/BA
+      summary: Government bonds selected as asset to shock
+    - id: BD-029
+      type: B/BA
+      summary: Initial shock magnitude = 20% price drop
+    - id: BD-078
+      type: B/BA
+      summary: Set initial shock sweep from 0% to 30% in 21 points
+    - id: BD-087
+      type: B/BA
+      summary: Use 100% leverage buffer (1.0) for leverage targeting simulation
+    - id: BD-030
+      type: B/BA
+      summary: Simulation runs for 6 timesteps
+    - id: BD-042
+      type: B/BA
+      summary: Default execution deferred to step() phase
+    - id: BD-045
+      type: B/BA
+      summary: Random shuffle of agent order each simulation round
+    - id: BD-047
+      type: B/BA
+      summary: 'Step/act split: step() handles defaults, act() handles delevering'
+    - id: BD-051
+      type: B/DK
+      summary: Fixed random seed = 1337 for reproducibility
+    - id: BD-100
+      type: M/DK
+      summary: random_shuffling.py compares SIMULTANEOUS_FIRESALE vs sequential clearing
+resources:
+  packages:
+  - name: numpy
+    version_pin: latest
+  - name: py-economicsl
+    version_pin: latest
+  - name: matplotlib
+    version_pin: latest
+  - name: jupytext
+    version_pin: latest
+  - name: rise
+    version_pin: latest
+  - name: py-destilledESL
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install numpy
+    - python3 -m pip install py-economicsl
+    - python3 -m pip install matplotlib
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When initializing banks from EBA_2018.csv
+    action: Create exactly 48 bank agents matching the NBANKS constant
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Model systemic risk calculations will be incorrect if fewer or more than 48 banks are created, as the get_extent_of_systemic_event
+      function divides by NBANKS=48 and the balance sheet aggregation will not match EBA 2018 reported values
+    stage_ids:
+    - initialization
+  - id: finance-C-002
+    when: When creating the AssetMarket during initialization
+    action: Initialize asset prices to exactly 1.0 for each asset types using defaultdict
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Initial price of 1.0 is required for consistent price impact calculations using Cifuentes 2005 formula. If
+      prices differ, the initial shock magnitude and contagion dynamics will be miscalibrated
+    stage_ids:
+    - initialization
+  - id: finance-C-003
+    when: When calculating bank balance sheet values from EBA data
+    action: Verify each parsed CSV values convert to valid floats without errors
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: CSV parsing with float() on unvalidated strings will raise ValueError at runtime, causing the entire model
+      to crash before any simulation can run
+    stage_ids:
+    - initialization
+  - id: finance-C-005
+    when: When initializing model state
+    action: Verify EBA_2018.csv file exists in the working directory
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: FileNotFoundError will crash the model initialization if EBA_2018.csv is missing, preventing any stress test
+      simulation from running
+    stage_ids:
+    - initialization
+  - id: finance-C-010
+    when: When initializing the model
+    action: Create AssetMarket instance before initializing any bank balance sheets
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Bank balance sheet initialization registers assets with the AssetMarket (institutions.py:48, 55); if AssetMarket
+      does not exist yet, AttributeError will crash initialization
+    stage_ids:
+    - initialization
+  - id: finance-C-014
+    when: When implementing deleveraging logic for banks
+    action: Check leverage ratio against the insolvency threshold (3%) first, before any deleveraging decision
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Banks below 3% leverage are insolvent and must trigger default, not deleverage. Failure to check insolvency
+      first causes zombie banks to continue operating with negative equity
+    stage_ids:
+    - agent_decision
+  - id: finance-C-015
+    when: When implementing the agent decision phase execution order
+    action: Separate step() and act() phases, executing each step() calls before each act() calls within each simulation round
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without two-phase execution, agent decisions become order-dependent. First-acting banks can sell assets before
+      others decide, creating first-mover advantage that distorts systemic risk measurement
+    stage_ids:
+    - agent_decision
+  - id: finance-C-016
+    when: When implementing asset sale actions
+    action: Queue asset sales to the putForSale_ buffer rather than executing sales immediately
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Immediate asset sales cause double-selling when multiple banks hold the same asset, as the market cannot
+      account for concurrent sale intentions before execution
+    stage_ids:
+    - agent_decision
+  - id: finance-C-019
+    when: When calculating leverage for decision thresholds
+    action: Compute leverage ratio as equity-to-assets (λ = E/A), not equity-to-liabilities
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect leverage formula causes wrong threshold comparisons, potentially triggering deleveraging at wrong
+      leverage levels or failing to detect insolvency
+    stage_ids:
+    - agent_decision
+  - id: finance-C-020
+    when: When implementing the deleveraging trigger condition
+    action: Trigger deleveraging when leverage < 4% buffer, not when leverage < 3% minimum
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using wrong threshold causes banks to delay deleveraging until insolvency or react prematurely, breaking
+      the threshold model designed to avoid excessive trading at minor losses
+    stage_ids:
+    - agent_decision
+  - id: finance-C-027
+    when: When calibrating the leverage thresholds
+    action: Use the same threshold value for both insolvency trigger and deleveraging buffer
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Equal thresholds eliminate the buffer zone, causing banks to either do nothing or immediately default with
+      no intermediate deleveraging option
+    stage_ids:
+    - agent_decision
+  - id: finance-C-029
+    when: When implementing the market clearing stage
+    action: Use a floating-point tolerance eps=1e-9 for zero-equivalence checks in financial calculations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without eps=1e-9 tolerance, IEEE 754 floating-point precision errors cause division-by-zero crashes or incorrect
+      cash transfers, corrupting the simulation's financial state
+    stage_ids:
+    - market_clearing
+  - id: finance-C-030
+    when: When adding orders to the orderbook
+    action: Assert quantity > 0 before adding orders to prevent invalid sales
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Zero or negative quantities in the orderbook cause incorrect price impact calculations and cash transfers,
+      corrupting the market clearing mechanism
+    stage_ids:
+    - market_clearing
+  - id: finance-C-031
+    when: When calculating price impact from asset sales
+    action: Implement the Cifuentes 2005 exponential price impact formula with beta calibrated to 5% impact at 5% sold
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using a linear or incorrect price impact formula causes the model to misestimate fire-sale contagion dynamics,
+      leading to unreliable systemic risk estimates
+    stage_ids:
+    - market_clearing
+  - id: finance-C-042
+    when: When tracking cumulative sales for price impact
+    action: Initialize total_quantities with actual market capitalization values from bank balance sheets
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Zero or uninitialized total_quantities causes division-by-zero or undefined price impact calculations, crashing
+      the market clearing stage
+    stage_ids:
+    - market_clearing
+  - id: finance-C-043
+    when: When implementing bank default handling logic
+    action: defer default execution to the step() phase by using do_trigger_default flag
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Immediate default execution in act() phase causes order-dependent effects when default triggers bilateral
+      funding pulls, leading to non-reproducible simulation results depending on agent processing order
+    stage_ids:
+    - default_handling
+  - id: finance-C-044
+    when: When processing a bank marked as dead
+    action: prevent the dead bank from executing any further actions by checking the alive flag
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Dead banks continue to execute actions, corrupting systemic risk calculations by including already defaulted
+      institutions in deleveraging decisions
+    stage_ids:
+    - default_handling
+  - id: finance-C-045
+    when: When liquidating defaulting bank's assets
+    action: sell assets proportionally using the same sell_assets_proportionally function as normal deleveraging
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-proportional fire sale liquidation creates inconsistent market dynamics compared to normal deleveraging,
+      causing skewed price impact calculations and incorrect systemic risk measurements
+    stage_ids:
+    - default_handling
+  - id: finance-C-052
+    when: When processing agent actions in the simulation loop
+    action: execute each step() calls for each agents before any act() calls
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Interleaving step() and act() calls causes defaults triggered during act() to execute out of order, breaking
+      the deferred execution design and causing inconsistent systemic outcomes
+    stage_ids:
+    - default_handling
+  - id: finance-C-055
+    when: When validating that fire sale assets enter the market orderbook
+    action: confirm each defaulted bank assets are added to the market orderbook before price clearing
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Defaulting bank assets not entering the orderbook means they are not included in price impact calculations,
+      causing fire sale prices to be artificially inflated and systemic risk to be understated
+    stage_ids:
+    - default_handling
+  - id: finance-C-056
+    when: When initializing the model from EBA_2018.csv balance sheet data
+    action: create exactly 48 Bank agents as specified by NBANKS constant
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Systemic risk calculations (eose = sum(out) / NBANKS) will produce incorrect results if the bank count differs
+      from 48, causing misleading stress test conclusions
+    stage_ids:
+    - initialization
+    - shock_application
+  - id: finance-C-057
+    when: When creating Bank balance sheets during initialization
+    action: populate balance sheet with exactly 4 asset components (cash, corp_bonds, gov_bonds, other_asset) and 2 liability
+      components (loan, other_liability)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Balance sheet integrity violations will cause incorrect leverage calculations, leading to wrong insolvency
+      detection and potentially masked systemic failures
+    stage_ids:
+    - initialization
+    - shock_application
+  - id: finance-C-058
+    when: When AssetMarket is created during initialization
+    action: initialize prices dict with default value of 1.0 for each asset types and record oldPrices as empty dict
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Uninitialized price structures will cause KeyError exceptions during shock application or price impact calculations,
+      halting simulation
+    stage_ids:
+    - initialization
+    - shock_application
+  - id: finance-C-066
+    when: When checking bank solvency via leverage constraint
+    action: raise DefaultException when leverage ratio (equity/assets) falls below BANK_LEVERAGE_MIN threshold (3%)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Insolvent banks will continue operating, accumulating losses and creating misleading systemic risk metrics
+      in the stress test
+    stage_ids:
+    - market_clearing
+    - default_handling
+  - id: finance-C-074
+    when: When implementing leverage ratio calculations for bank solvency checks
+    action: Use equity_valuation divided by asset_valuation (lambda = E/A), not debt-to-equity or other ratios
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Bank solvency status will be incorrectly assessed, causing insolvent banks to continue trading or solvent
+      banks to default unnecessarily
+  - id: finance-C-075
+    when: When implementing any financial comparisons involving price, quantity, or monetary values
+    action: Use eps = 1e-9 tolerance threshold to avoid floating-point edge cases in IEEE 754 arithmetic
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Financial comparisons may fail silently due to floating-point precision errors, causing assets with near-zero
+      prices to be incorrectly sold or loans with negligible amounts to be processed
+  - id: finance-C-076
+    when: When determining whether a bank has defaulted and must liquidate each tradable assets
+    action: Use BankLeverageConstraint.is_insolvent() which checks if lambda < BANK_LEVERAGE_MIN (3%)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Insolvent banks will not be properly defaulted, causing them to continue deleveraging and selling assets
+      at depressed prices, accelerating systemic contagion
+  - id: finance-C-077
+    when: When implementing any Action class for bank deleveraging behavior
+    action: Implement perform() method for execution logic and get_max() method returning maximum executable amount
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Bank deleveraging actions will fail to execute or return incorrect amounts, breaking the contagion model
+      and producing invalid systemic risk estimates
+  - id: finance-C-078
+    when: When implementing any Contract class to be considered for agent deleveraging
+    action: Implement is_eligible(me) method returning boolean to filter which contracts are acted upon
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Contracts will always return False for eligibility, preventing banks from selling assets or paying loans
+      to delever, breaking the fire-sale cascade mechanism
+  - id: finance-C-080
+    when: When executing the simulation tick loop for agent-based model
+    action: Call step() on each agents before calling act() on each agents, with market clearing between them
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Order-dependent execution will produce different results based on agent ordering, invalidating simulation
+      reproducibility and academic results
+  - id: finance-C-081
+    when: When processing asset sales within a simulation tick
+    action: Call put_for_sale() on the market before calling clear_the_market() in the same tick to preserve orderbook integrity
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Assets will be sold at current prices without accumulated orders, eliminating price impact effects and breaking
+      the fire-sale contagion model
+  - id: finance-C-082
+    when: When tracking asset quantities during settlement in the orderbook
+    action: Decrement putForSale_ buffer when settling a sale to prevent double-selling the same asset
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Assets will be sold multiple times in the same tick, causing phantom cash generation and incorrect balance
+      sheet calculations that corrupt systemic risk metrics
+  - id: finance-C-086
+    when: When presenting or reporting this system's simulation results to users or stakeholders
+    action: Claim that simulation results represent real-time trading system capabilities or live market execution
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will make investment or policy decisions based on inapplicable simulation assumptions, leading to severe
+      misallocation of capital or incorrect regulatory assessments
+  - id: finance-C-087
+    when: When using this model for credit risk assessment or regulatory capital calculations
+    action: Claim regulatory-grade accuracy or compliance with Basel/CRR capital adequacy frameworks
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Regulatory submissions based on simplified fire-sale contagion model will violate compliance requirements,
+      exposing institutions to penalties and supervisory action
+  - id: finance-C-095
+    when: When implementing bank asset initialization
+    action: Calculate corporate bonds as total debt securities minus government bonds — government bonds must be allocated
+      first, corporate bonds are whatever remains in the debt securities bucket
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrectly treating corporate bonds as direct allocation instead of residual breaks regulatory data structure,
+      causing balance sheet mismatch and invalid stress test results
+    derived_from_bd_id: BD-035
+  - id: finance-C-099
+    when: When implementing contract inheritance hierarchy
+    action: Verify ESLContract base class is available from the economicsl library before using contract inheritance — verify
+      the dependency is installed and the library version is compatible
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Contract inheritance from missing external library causes immediate initialization failure, preventing any
+      simulation from running
+    derived_from_bd_id: BD-106
+  - id: finance-C-101
+    when: When implementing market operation sequence within a tick
+    action: Call put_for_sale() before clear_the_market() in the same tick — the pending sales must be registered before market
+      finalization
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Reversing the operation order causes clear_the_market() to execute with stale market state, leading to incorrect
+      price settlement and violating the intended market operation sequence
+    derived_from_bd_id: BD-090
+  - id: finance-C-116
+    when: When implementing asset valuation for tradable securities in constraint_definition
+    action: 'Use mark-to-market valuation: value = quantity × current price for each tradable assets — do not substitute with
+      amortized cost or historical cost'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using non-market valuations during stress scenarios masks actual leverage ratios; mark-to-market reveals
+      true asset values needed for regulatory compliance and contagion detection
+    derived_from_bd_id: BD-064
+  - id: finance-C-124
+    when: When implementing the delevering behavior for financial institutions
+    action: Pay each liabilities first, then sell assets to raise liquidity — liability payments must occur before any asset
+      sales within each delevering step
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Paying liabilities first reflects legal obligation hierarchy; reversing this order (selling assets before
+      liabilities) violates both regulatory requirements and behavioral realism for regulated banks
+    derived_from_bd_id: BD-044
+  - id: finance-C-139
+    when: When configuring or verifying price impact computation models for liquidation scenarios
+    action: Verify price impact computation differentiates between liquid and illiquid assets within the same asset type;
+      DO NOT apply uniform price impact coefficients across asset-type groupings when liquidity characteristics differ
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Uniform price impact coefficients applied to mixed-liquidity asset groups cause systematic mispricing of
+      illiquid asset liquidations, with execution shortfalls accumulating silently in backtests
+    derived_from_bd_id: BD-114
+  - id: finance-C-160
+    when: When implementing insolvency detection in the banking model
+    action: Trigger bank default when leverage falls below 3% — banks with leverage >= 3% must remain solvent and tradable;
+      banks with leverage < 3% must be marked as insolvent and excluded from trading
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Setting incorrect insolvency threshold causes either premature defaults (threshold too high) or late defaults
+      allowing insolvent banks to continue trading (threshold too low), both violating regulatory capital adequacy assumptions
+    derived_from_bd_id: BD-072
+  - id: finance-C-162
+    when: When setting initial capital structure constraints in the banking model
+    action: Set target leverage at 5% representing 2% buffer above the 4% deleveraging trigger — verify target > deleveraging_trigger
+      > insolvency_threshold (5% > 4% > 3%) hierarchical ordering is maintained
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Setting target leverage <= deleveraging trigger removes the buffer hierarchy, preventing banks from maintaining
+      safe capital buffers above the deleveraging activation level
+    derived_from_bd_id: BD-074
+  regular:
+  - id: finance-C-004
+    when: When initializing bank balance sheets
+    action: Allow banks to be created with non-positive leverage ratios
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Banks with zero or negative leverage ratios will cause division by zero in asset calculation (CET1E/leverage)
+      or immediately trigger insolvency, corrupting the model's initial state
+    stage_ids:
+    - initialization
+  - id: finance-C-006
+    when: When initializing the model
+    action: Use real EBA 2018 data as the sole source for bank balance sheet initialization
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: The model claims reproducibility from real European banking data; using synthetic or modified data would
+      invalidate the empirical grounding that distinguishes this stress test from arbitrary simulations
+    stage_ids:
+    - initialization
+  - id: finance-C-007
+    when: When initializing banks from EBA CSV data
+    action: Parse gov_bonds field using eval() to handle compound expressions like '13+27682'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: The EBA_2018.csv uses additive notation for government bond holdings (e.g., '13+27682' meaning 13+27682 units);
+      using simple int() parsing would fail, causing ValueError and model crash
+    stage_ids:
+    - initialization
+  - id: finance-C-008
+    when: When initializing banks from EBA CSV data
+    action: Split CSV rows using space delimiter as the data format specifies
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: The EBA_2018.csv uses space-separated values with no quoted fields; using comma splitting would misalign
+      columns, causing bank_name, CET1E, leverage to be incorrectly parsed and balance sheet calculations to fail
+    stage_ids:
+    - initialization
+  - id: finance-C-009
+    when: When initializing the model
+    action: Set random seeds before any simulation runs to verify reproducibility
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without deterministic random seeds, the random.shuffle() in run_simulation (model.py:89) will produce different
+      agent ordering each run, causing non-reproducible systemic risk measurements
+    stage_ids:
+    - initialization
+  - id: finance-C-011
+    when: When initializing bank balance sheets
+    action: 'Maintain correct order of balance sheet component calculations: asset→cash→liability→loan→other_liability'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Balance sheet components have dependencies (liability=asset-CET1E, loan=liability/2); incorrect calculation
+      order will produce invalid negative values or incorrect leverage ratios
+    stage_ids:
+    - initialization
+  - id: finance-C-012
+    when: When initializing the model
+    action: Claim that stress test results represent actual live trading outcomes
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: This is a simplified fire sale contagion model using EBA 2018 data snapshots; presenting model outputs as
+      predictions of actual bank behavior or market outcomes would mislead stakeholders about real-world risk
+    stage_ids:
+    - initialization
+  - id: finance-C-013
+    when: When initializing the model
+    action: Present model outputs as regulatory-grade capital adequacy assessments
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The model uses simplified tier-1 leverage ratio (CET1E/leverage) rather than risk-weighted capital ratios
+      from Basel frameworks; presenting it as regulatory assessment would misrepresent compliance status
+    stage_ids:
+    - initialization
+  - id: finance-C-017
+    when: When implementing deleveraging priority
+    action: Execute loan repayment before asset sales when both actions are available
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Selling assets before repaying loans triggers asset price impact (per Cifuentes 2005), reducing collateral
+      value and potentially accelerating systemic contagion compared to liability reduction first
+    stage_ids:
+    - agent_decision
+  - id: finance-C-018
+    when: When implementing proportional allocation across multiple contracts
+    action: Distribute deleveraging amounts proportionally based on each contract's maximum action value
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-proportional allocation allows one large position to monopolize deleveraging, causing concentration risk
+      and violating Cont-Schaanning 2017 fire sale stress testing principles
+    stage_ids:
+    - agent_decision
+  - id: finance-C-021
+    when: When running batch simulations for systemic risk measurement
+    action: Randomly shuffle agent processing order each simulation round
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Fixed agent order creates systematic first-mover bias across simulations, causing deterministic results that
+      mask true systemic risk variance and correlation effects
+    stage_ids:
+    - agent_decision
+  - id: finance-C-022
+    when: When default is triggered during the decision phase
+    action: Defer default execution to the step() phase rather than executing immediately
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Immediate default execution during act() creates order dependency, as the defaulting bank's asset liquidation
+      affects other banks' decisions in the same round
+    stage_ids:
+    - agent_decision
+  - id: finance-C-023
+    when: When calculating monetary amounts in deleveraging operations
+    action: Use epsilon tolerance (eps = 1e-9) to avoid floating-point edge cases
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Without epsilon tolerance, near-zero quantities trigger infinite loops or NaN values in exponential price
+      impact calculations, corrupting simulation results
+    stage_ids:
+    - agent_decision
+  - id: finance-C-024
+    when: When implementing the deleveraging strategy
+    action: Use a hardcoded fixed order for contract selection; strategy must be parameterized
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Hardcoded strategy prevents testing different allocation behaviors (e.g., proportional vs. equal-weighted),
+      limiting stress test coverage and validation
+    stage_ids:
+    - agent_decision
+  - id: finance-C-025
+    when: When running the model for firesale scenarios
+    action: Enable SIMULTANEOUS_FIRESALE mode to clear market between step and act phases
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without simultaneous firesale mode, asset prices update sequentially during step(), causing price discovery
+      timing to depend on agent order rather than aggregate demand
+    stage_ids:
+    - agent_decision
+  - id: finance-C-026
+    when: When presenting simulation results
+    action: Claim simulated returns represent expected live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested stress test results do not guarantee live execution outcomes due to market impact assumptions,
+      simplified behavioral rules, and absence of counterparty reactions
+    stage_ids:
+    - agent_decision
+  - id: finance-C-028
+    when: When determining asset eligibility for deleveraging
+    action: Only include assets with quantity greater than already-marked-for-sale amount
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Including already-sold assets in available actions causes attempts to sell non-existent quantities, leading
+      to negative balances or invalid state
+    stage_ids:
+    - agent_decision
+  - id: finance-C-032
+    when: When settling sell orders in the market clearing stage
+    action: Execute sales at the midpoint of pre-sale and post-sale prices to prevent front-running
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using only post-sale prices creates an unfair advantage for late sellers, violating the batch execution guarantee
+      and distorting market clearing fairness
+    stage_ids:
+    - market_clearing
+  - id: finance-C-033
+    when: When preventing zero-quantity or zero-price sales
+    action: Skip sale execution when asset price or computed quantity is effectively zero
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Executing sales with zero price or zero quantity causes division errors or incorrect cash accounting, corrupting
+      the market clearing settlement
+    stage_ids:
+    - market_clearing
+  - id: finance-C-034
+    when: When modeling market clearing behavior
+    action: Batch each asset sales before computing price impact when SIMULTANEOUS_FIRESALE=True
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Sequential execution with price signals affecting subsequent sales creates look-ahead bias, preventing realistic
+      modeling of illiquid market dynamics
+    stage_ids:
+    - market_clearing
+  - id: finance-C-035
+    when: When executing the market clearing sequence
+    action: Capture oldPrices BEFORE computing price impact, then compute price impact BEFORE settling orders
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Capturing oldPrices after price impact or settling before price impact breaks the midpoint price guarantee,
+      causing incorrect cash transfers to selling banks
+    stage_ids:
+    - market_clearing
+  - id: finance-C-036
+    when: When computing price impact across multiple asset types
+    action: Aggregate quantities sold per asset type before computing price impact for that type
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Computing price impact per individual asset instead of per asset type violates the assumption that same-type
+      assets are perfect substitutes, causing incorrect price trajectories
+    stage_ids:
+    - market_clearing
+  - id: finance-C-037
+    when: When configuring the stress testing model
+    action: Claim the model produces real-time trading signals or actual market prices
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting model outputs as live trading signals misleads stakeholders about the model's purpose as a stress
+      testing and systemic risk estimation tool
+    stage_ids:
+    - market_clearing
+  - id: finance-C-038
+    when: When presenting stress testing results
+    action: Claim backtest returns equal expected live trading returns without specified caveats
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested systemic risk estimates reflect model assumptions and historical data patterns, not guaranteed
+      future market behavior under stress conditions
+    stage_ids:
+    - market_clearing
+  - id: finance-C-039
+    when: When configuring the clearing mode
+    action: Understand that SIMULTANEOUS_FIRESALE=True batches each sales, preventing price signals from affecting subsequent
+      sales in the same round
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Setting SIMULTANEOUS_FIRESALE=False allows cascading price impacts where each sale affects subsequent prices,
+      fundamentally changing the market clearing semantics
+    stage_ids:
+    - market_clearing
+  - id: finance-C-040
+    when: When selecting the price impact function
+    action: Use exponential price impact rather than linear to capture nonlinear liquidity drain where small sales have limited
+      impact and large sales trigger steep drops
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Linear price impact underestimates fire-sale contagion for large sales and overestimates impact for small
+      sales, producing misleading systemic risk estimates
+    stage_ids:
+    - market_clearing
+  - id: finance-C-041
+    when: When configuring price impact parameters
+    action: Set the default price impact to 0.05 (5%) meaning selling 5% of market cap causes 5% price drop
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Using non-calibrated price impact parameters produces unrealistic liquidity assumptions, either overstating
+      or understating systemic risk
+    stage_ids:
+    - market_clearing
+  - id: finance-C-046
+    when: When a DefaultException is raised during agent decision phase
+    action: increment the bank_defaults_this_round counter for record keeping
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing counter increment breaks systemic risk tracking and makes it impossible to calculate the extent of
+      system-wide stress events from simulation output
+    stage_ids:
+    - default_handling
+  - id: finance-C-047
+    when: When executing agent actions in the main simulation loop
+    action: include the defaulting bank in the current round's agent list to verify its assets enter the orderbook
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Removing the defaulting bank before its assets are sold means fire sale liquidation never occurs, breaking
+      the contagion mechanism and producing incorrect systemic risk estimates
+    stage_ids:
+    - default_handling
+  - id: finance-C-048
+    when: When market clearing occurs during simultaneous fire sale mode
+    action: clear the market and update asset prices before the next round of agent decisions
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Surviving banks receive stale prices from before fire sales, causing them to make incorrect deleveraging
+      decisions based on inflated asset valuations
+    stage_ids:
+    - default_handling
+  - id: finance-C-049
+    when: When implementing default handling for the stress testing model
+    action: restrict default handling to SOLVENCY type only (not liquidity or margin call failures)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Including unsupported default types (liquidity, margin call) in the model produces results that do not match
+      the documented model specification, misleading stakeholders about systemic risk
+    stage_ids:
+    - default_handling
+  - id: finance-C-050
+    when: When selecting the default treatment algorithm
+    action: treat default_treatment as a replaceable module that can be swapped without breaking the core simulation loop
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Hardcoding default treatment logic prevents experimentation with alternative resolution strategies and makes
+      the model less adaptable to different stress scenarios
+    stage_ids:
+    - default_handling
+  - id: finance-C-051
+    when: When running the simulation to ensure order independence
+    action: shuffle the agent list before each round of step() and act() calls
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without shuffling, agent processing order affects default timing and fire sale sequencing, producing non-deterministic
+      results that cannot be replicated across simulation runs
+    stage_ids:
+    - default_handling
+  - id: finance-C-053
+    when: When interpreting simulation results for policy decisions
+    action: claim that backtest stress test results predict actual live trading outcomes
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting simulation outputs as expected real-world results ignores model simplification, assumptions, and
+      the well-documented gap between backtest and live performance
+    stage_ids:
+    - default_handling
+  - id: finance-C-054
+    when: When presenting the stress testing framework capabilities
+    action: claim real-time trading support for a pure backtesting simulation framework
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The system uses polling-based simulation with no live market connectivity, so claiming real-time capabilities
+      would mislead users about actual system functionality
+    stage_ids:
+    - default_handling
+  - id: finance-C-059
+    when: When applying the initial shock to asset prices
+    action: reduce price by exactly the INITIAL_SHOCK fraction (default 20%) and propagate price changes to each Bank agents
+      via update_asset_price()
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Agents will retain stale asset valuations causing incorrect leverage calculations, leading to wrong deleveraging
+      decisions and distorted systemic risk results
+    stage_ids:
+    - shock_application
+    - agent_decision
+  - id: finance-C-060
+    when: When propagating shocked prices to agent balance sheets
+    action: update the price attribute of each Tradable contract to match the new market price from AssetMarket.prices
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Agents will calculate leverage based on outdated prices, causing incorrect insolvency detection and potential
+      domino effects in the contagion chain
+    stage_ids:
+    - shock_application
+    - agent_decision
+  - id: finance-C-061
+    when: When Banks submit sell orders to the AssetMarket
+    action: pass orders only with quantity greater than zero (enforced by assert) and append Order objects to the orderbook
+      list
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: AssertionError will terminate the simulation when zero-quantity orders are submitted, preventing completion
+      of stress test runs
+    stage_ids:
+    - agent_decision
+    - market_clearing
+  - id: finance-C-062
+    when: When SIMULTANEOUS_FIRESALE mode is enabled (default)
+    action: accumulate each orders in orderbook during agent decisions before calling clear_the_market() once per timestep
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: If clear_the_market() is called per-order instead of batched, price impact calculations will be fragmented
+      and produce incorrect cascading price effects
+    stage_ids:
+    - agent_decision
+    - market_clearing
+  - id: finance-C-063
+    when: When clearing the market and computing price impact
+    action: save oldPrices BEFORE updating prices so that settlement uses the correct pre-impact price for calculating proceeds
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Settlement will use incorrect price reference, causing wrong cash proceeds calculations and breaking conservation
+      of value across the edge
+    stage_ids:
+    - market_clearing
+    - agent_decision
+  - id: finance-C-064
+    when: When updating agent asset prices after market clearing
+    action: propagate price changes to agents only when price decreases (priceLost > 0), not on price increases
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Agents will receive incorrect positive price signals on asset sales, causing artificial equity increases
+      and distorted deleveraging behavior
+    stage_ids:
+    - market_clearing
+    - agent_decision
+  - id: finance-C-065
+    when: When settling asset sale orders
+    action: use midpoint pricing formula (current_price + old_price) / 2 for settlement, not the new impacted price
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using the post-impact price would undervalue seller proceeds, causing systematic underestimation of cash
+      raised and distorted leverage calculations
+    stage_ids:
+    - market_clearing
+    - agent_decision
+  - id: finance-C-067
+    when: When catching DefaultException in agent decision phase
+    action: set the bank's alive flag to False and increment bank_defaults_this_round counter for tracking
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Dead banks will remain in active agent lists, causing errors in subsequent rounds and corrupting systemic
+      risk calculations
+    stage_ids:
+    - default_handling
+    - agent_decision
+  - id: finance-C-068
+    when: When filtering agents for the next simulation round
+    action: process banks marked as not alive (alive=False) through step() or act() methods
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Processing dead banks will cause KeyError or attribute errors as their balance sheets have been liquidated,
+      halting the simulation
+    stage_ids:
+    - default_handling
+    - agent_decision
+  - id: finance-C-069
+    when: When iterating over agents in each simulation timestep
+    action: shuffle agent list randomly before processing to verify order independence in the simultaneous firesale scenario
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Systematic processing order will bias results as earlier agents get better prices in sequential clearing,
+      creating non-reproducible and unfair outcomes
+    stage_ids:
+    - default_handling
+    - agent_decision
+  - id: finance-C-070
+    when: When presenting stress test results as system-wide risk metrics
+    action: claim that simulated bank defaults directly predict actual bank failures in a real stress scenario
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting simulated defaults as predictions will mislead policymakers as the model uses simplified balance
+      sheet structures and threshold-based triggers
+    stage_ids:
+    - market_clearing
+    - default_handling
+    - agent_decision
+  - id: finance-C-071
+    when: When calibrating price impact parameters based on literature
+    action: set beta coefficient such that selling 5% of market cap causes exactly 5% price drop (the Cifuentes 2005 convention)
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Incorrect beta calibration will distort systemic risk estimates, leading to either underestimation of fire
+      sale contagion or excessive conservatism
+    stage_ids:
+    - agent_decision
+    - market_clearing
+  - id: finance-C-072
+    when: When interpreting simulation results for policy decisions
+    action: assume that backtested stress test parameters (leverage thresholds, price impacts) will remain valid without recalibration
+      for changing market conditions
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Stale calibration parameters will produce misleading risk assessments as market microstructure and bank balance
+      sheet compositions evolve over time
+    stage_ids:
+    - shock_application
+    - agent_decision
+    - market_clearing
+  - id: finance-C-073
+    when: When encountering unexpected insolvency behavior or price anomalies
+    action: assume the problem is due to data quality without investigating the leverage calculation and price update chain
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Misattributing cascading failures to data issues will mask implementation bugs in the contagion mechanics,
+      leading to persistent incorrect results
+    stage_ids:
+    - shock_application
+    - agent_decision
+    - market_clearing
+  - id: finance-C-079
+    when: When representing asset quantities in tradable contracts
+    action: Store quantities as floats, not integers, to support fractional sales and proportional allocation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Integer quantities prevent proportional deleveraging when a bank needs to sell 33.5% of its assets, breaking
+      the Greenwood 2015 and Cont-Schaanning 2017 behavioral models
+  - id: finance-C-083
+    when: When calculating settlement prices during asset sales
+    action: Use midpoint of current price and oldPrices (pre-update price) for settlement to prevent look-ahead bias
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Settlement at updated prices allows agents to profit from their own price-impacting trades, introducing strategic
+      arbitrage and invalidating the economic model
+  - id: finance-C-084
+    when: When conducting agent-based simulation to ensure reproducible yet stochastic results
+    action: Shuffle agent execution order randomly each tick to verify order-independent execution
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Simulation results become deterministic with agent ordering, producing biased systemic risk estimates that
+      depend on input data ordering rather than structural factors
+  - id: finance-C-085
+    when: When using py-economicsl external library dependency
+    action: Pin to specific git commit or version tag as this is a research library without PyPI release
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Dependency breakage or API changes will cause simulation to fail, blocking academic research and reproducibility
+      efforts
+  - id: finance-C-088
+    when: When interpreting the model's price impact function
+    action: Claim that the Cifuentes 2005 exponential price impact model equals actual market microstructure or high-frequency
+      trading dynamics
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Policy recommendations based on simplified price impact will underestimate or overestimate systemic risk
+      in real markets with order book dynamics, dark pools, and HFT
+  - id: finance-C-089
+    when: When using this model for high-frequency trading strategy development
+    action: Claim applicability to tick-by-tick trading or intraday arbitrage strategies
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Trading algorithms based on daily timestep model will fail to capture sub-second market dynamics, latency
+      effects, and adverse selection from HFT counterparties
+  - id: finance-C-090
+    when: When presenting simulation outputs without proper caveats
+    action: Omit disclosure that results are based on 2018 EBA data, simplified behavioral assumptions, and exponential price
+      impact approximation
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Stakeholders will misinterpret outputs as current market conditions rather than historical stress test scenario,
+      leading to inappropriate resource allocation or policy decisions
+  - id: finance-C-091
+    when: When comparing simulation results across different parameter configurations
+    action: Re-initialize model from scratch (model.initialize()) before each simulation run to prevent state leakage
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Residual state from previous runs will corrupt systemic risk measurements, producing false comparisons between
+      price impact or shock scenarios
+  - id: finance-C-092
+    when: When initializing bank balance sheets from external data
+    action: Parse government bond holdings correctly using eval() for the 'n+m' notation in EBA_2018.csv
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Banks with split government bond holdings will have incorrect balance sheets, distorting asset allocation
+      and systemic risk calculations
+  - id: finance-C-093
+    when: When modeling bank deleveraging behavior in the simulation
+    action: Pay off liabilities first, then sell assets proportionally if cash is insufficient to meet deleveraging target
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Banks will sell assets before reducing liabilities, incorrectly amplifying fire-sale pressure and overestimating
+      systemic contagion
+  - id: finance-C-094
+    when: When implementing execution order in agent_decision logic
+    action: 'Execute actions in two-phase structure: first decide in act() method, then execute in step() method — never execute
+      trades directly in the decision method'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Combining decision and execution in a single phase creates first-mover advantage in simultaneous firesale
+      scenarios, causing parallel execution to produce unfair outcomes where the first actor gets better prices
+    derived_from_bd_id: BD-008
+  - id: finance-C-096
+    when: When implementing bank initialization with cash buffer parameters
+    action: Verify that cash=0.05*total_assets ratio matches actual bank behavior for the time period being modeled; adjust
+      to actual historical cash ratios if analyzing different regulatory environments
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Hardcoded 5% cash buffer does not reflect actual bank behavior across different time periods and regulatory
+      environments, causing stress test results to overestimate or underestimate bank liquidity during crises
+    derived_from_bd_id: BD-003
+  - id: finance-C-097
+    when: When implementing market clearing price impact calculations
+    action: Verify PRICE_IMPACTS calibration matches actual liquidity conditions — beta=-1/0.05*log(1-price_impact) calibrates
+      to 5% impact at 5% sold; adjust parameters if modeling different liquidity regimes
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default price impact calibration may not match actual market liquidity, causing strategies to assume execution
+      at unrealistic prices and produce backtest results that cannot be replicated in live trading
+    derived_from_bd_id: BD-016
+  - id: finance-C-098
+    when: When implementing liability allocation logic
+    action: Verify liability_split_ratio==0.5 when granular data is unavailable — if actual distribution differs significantly,
+      use historical proportions instead of equal split to avoid modeler bias
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Equal 50/50 split is an arbitrary assumption that may not match actual liability composition, introducing
+      systematic bias into balance sheet calculations that compounds over time
+    derived_from_bd_id: BD-004
+  - id: finance-C-100
+    when: When implementing market clearing for fire sale simulations
+    action: Validate that the selected clearing mode (SIMULTANEOUS_FIRESALE or sequential) matches the intended scenario —
+      if strategy depends on a specific mode, the alternative mode must produce comparable results for robustness
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect clearing mode produces materially different market outcomes, causing strategy backtests to
+      be invalid for scenarios with different execution assumptions
+    derived_from_bd_id: BD-100
+  - id: finance-C-102
+    when: When implementing Monte Carlo simulation with agent order randomization in backtesting
+    action: Use random shuffle (BD-045) with fixed seed 1337 (BD-051) AND run across 100 Monte Carlo simulations (BD-052)
+      together; each three components are required for statistical validity - using any subset produces biased or non-reproducible
+      results
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using random shuffle without fixed seed produces non-reproducible results; using fixed seed without sufficient
+      MC runs produces statistically biased results that misrepresent fair agent ordering
+    derived_from_bd_id: BD-113
+  - id: finance-C-103
+    when: When implementing state transition modeling with transition matrices in backtesting
+    action: Assume transition matrices are time-homogeneous by default - this capability is missing; matrices may vary across
+      different time periods without explicit homogeneity handling
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Assuming time-homogeneous transition matrices when the framework does not enforce this causes incorrect state
+      evolution modeling, producing biased Monte Carlo simulation results
+    derived_from_bd_id: BD-GAP-010
+  - id: finance-C-104
+    when: When implementing position deleveraging logic during stress scenarios
+    action: Execute proportional delevering based on max-amount weighting — larger positions must be reduced proportionally
+      more than smaller ones to maintain portfolio composition structure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing deleveraging from proportional to equal-weighting causes portfolio composition to shift toward smaller
+      positions, creating artificial diversification that does not reflect actual deleveraging behavior in stress scenarios
+    derived_from_bd_id: BD-059
+  - id: finance-C-105
+    when: When implementing loan payment calculation logic in contract execution
+    action: Truncate loan payment amounts at the original notional principal — accumulated interest payments must not exceed
+      the loan principal amount
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing the notional truncation allows accumulated interest to exceed the original loan principal, causing
+      banks to overpay lenders in simulation and creating non-realistic financial outcomes
+    derived_from_bd_id: BD-061
+  - id: finance-C-106
+    when: When implementing action generation logic for bank decision-making
+    action: Recompute available actions from scratch at each simulation step — do not cache or reuse action lists from previous
+      steps
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Caching available actions causes stale action data when balance sheet state changes between steps, potentially
+      allowing banks to select actions that are no longer valid and producing inconsistent simulation behavior
+    derived_from_bd_id: BD-063
+  - id: finance-C-107
+    when: When implementing default/fire-sale liquidation logic in bank resolution
+    action: Execute fire-sale asset sales proportionally across each asset types — maintain the same relative weighting as
+      normal deleveraging to verify behavioral consistency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-proportional asset selection during default creates inconsistent behavior compared to normal deleveraging,
+      introducing arbitrary asset type preferences that distort resolution outcomes and create unrealistic liquidation patterns
+    derived_from_bd_id: BD-022
+  - id: finance-C-108
+    when: When initializing the model population for EU banking sector simulation
+    action: Use the 48-bank population from EBA 2018 EU-wide stress test data — verify that any alternative bank set maintains
+      similar systemic representativeness characteristics (total assets, tier 1 capital ratios, geographic distribution)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using synthetic or alternative bank populations without empirical grounding may produce simulation results
+      that do not reflect actual EU banking sector behavior, creating false claims about systemic risk and resolution outcomes
+    derived_from_bd_id: BD-023
+  - id: finance-C-109
+    when: When implementing asset sale order execution in market clearing
+    action: Accumulate each putForSale orders before executing any sales — do not execute individual sales immediately upon
+      request to verify price discovery fairness across each participants
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Executing asset sales immediately upon request creates first-mover advantages where early sellers receive
+      better prices before aggregate selling pressure affects market prices, distorting simulation fairness and producing
+      unrealistic price distributions
+    derived_from_bd_id: BD-056
+  - id: finance-C-110
+    when: When implementing action execution logic for any transaction type
+    action: Skip execution of actions with amounts below epsilon threshold (1e-9) — do not process micro-transactions that
+      could cause floating-point numerical artifacts
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Processing zero or near-zero amounts without epsilon filtering introduces floating-point rounding errors
+      that accumulate across simulation steps, potentially causing incorrect balance calculations and non-deterministic results
+    derived_from_bd_id: BD-060
+  - id: finance-C-111
+    when: When implementing leverage targeting and deleveraging trigger logic
+    action: Verify that the gap between deleveraging trigger threshold and target leverage is sufficient (recommend minimum
+      3-5 percentage points) — the 1 percentage point buffer between 4% trigger and 5% target is mathematically insufficient
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: The 1% buffer causes oscillation behavior where banks overshoot below 3% leverage before reaching the 5%
+      target due to price impact during asset sales reducing the asset base denominator, leading to insolvency outcomes that
+      could be avoided with wider buffer
+    derived_from_bd_id: BD-110
+  - id: finance-C-112
+    when: When implementing proportional deleveraging combined with midpoint pricing in stress scenarios
+    action: Apply stress-adjusted pricing multiplier for proportional deleveraging under high aggregate selling pressure —
+      the midpoint pricing formula (old_price + new_price) / 2 undervalues assets when exponential price impact is active
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Proportional deleveraging combined with midpoint pricing systematically undervalues asset sales during stress
+      because exponential price impact makes new_price significantly lower under high aggregate selling, causing banks to
+      receive below-fair-value prices for proportional amounts
+    derived_from_bd_id: BD-111
+  - id: finance-C-113
+    when: When implementing Monte Carlo result aggregation logic in the random_shuffling module
+    action: Use sample mean and standard deviation to aggregate simulation results across runs — do not replace with median/MAD
+      or other robust statistics
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Replacing mean/std with median/MAD changes the statistical characterization of simulation outcomes; tail
+      risk identification and scenario comparison become inconsistent with the documented analytical framework
+    derived_from_bd_id: BD-076
+  - id: finance-C-114
+    when: When configuring the systemic risk threshold for cascade detection in risk_measurement
+    action: Use exactly 5% as the systemic event threshold based on Gai-Kapadia (2010) cascade model literature — do not change
+      to alternative values without re-validation against academic grounding
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Changing the 5% threshold alters what constitutes a systemic event; higher thresholds miss moderate cascades
+      while lower thresholds over-flag normal bank failures, both causing misaligned risk management responses
+    derived_from_bd_id: BD-024
+  - id: finance-C-115
+    when: When implementing leverage buffer logic in constraint_definition
+    action: Set leverage buffer threshold to exactly 4% — banks at or below this level must initiate delevering actions, maintaining
+      1% gap above insolvency threshold
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The 1% buffer (4% minus 3% insolvency) provides critical reaction time for banks to reduce risk before failure;
+      changing this buffer reduces or eliminates the safety margin
+    derived_from_bd_id: BD-026
+  - id: finance-C-117
+    when: When implementing valuation for non-market assets/liabilities in constraint_definition
+    action: Use principal amount as valuation for Other assets and liabilities — accept that principal may differ from economic
+      value for items with prepayment options or embedded derivatives
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using principal provides consistent accounting treatment across non-market items; replacing with fair value
+      estimation requires additional data and adds complexity that was explicitly rejected
+    derived_from_bd_id: BD-066
+  - id: finance-C-118
+    when: When implementing price impact calculation in markets
+    action: Use exponential price impact function for asset pricing — do not replace with linear models which underestimate
+      market impact for large trades
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Linear price impact models underestimate cascading losses during stress; exponential functions capture realistic
+      fire-sale dynamics where large sell orders cause disproportionately large price drops
+    derived_from_bd_id: BD-069
+  - id: finance-C-119
+    when: When running parameter sweeps over price impact or initial shock magnitudes
+    action: Add explicit validation to detect unknown asset types before sweep execution — do not rely on defaultdict(lambda:1.0)
+      default price which silently returns 1.0 for misspelled or missing asset types
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Unknown assets silently receiving price 1.0 causes parameter sweep results to include incorrect valuations;
+      during shock magnitude sweeps, misspelled asset types always show price 1.0 regardless of the shock parameter, corrupting
+      the entire analysis
+    derived_from_bd_id: BD-116
+  - id: finance-C-120
+    when: When implementing or modifying price impact calculations in market clearing
+    action: Use the exponential price impact function per Cifuentes 2005 — the exponential form ensures price impacts accelerate
+      as volume sold increases, capturing realistic market depth constraints in fire sale scenarios
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using linear price impact underestimates fire sale severity in illiquid conditions, causing strategies to
+      appear more resilient than they would be in actual market stress scenarios
+    derived_from_bd_id: BD-038
+  - id: finance-C-121
+    when: When initializing asset prices in the market model
+    action: Verify that initial asset prices are normalized to 1.0 (not actual market prices), and understand this assumes
+      each assets start at par before percentage shocks are applied
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using actual market prices instead of normalized values introduces heterogenous starting conditions that
+      make leverage calculations and shock comparisons inconsistent across different asset price scales
+    derived_from_bd_id: BD-040
+  - id: finance-C-122
+    when: When implementing solvency determination logic for financial institutions
+    action: Determine solvency using ONLY the leverage ratio (equity/assets) — do not incorporate liquidity ratios, credit
+      quality, or off-balance-sheet items into insolvency determination
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Adding multi-factor solvency criteria changes default timing and cascade dynamics, making backtest results
+      inconsistent with the model's designed behavior aligned to Basel III leverage standards
+    derived_from_bd_id: BD-041
+  - id: finance-C-123
+    when: When implementing default resolution logic in the simulation
+    action: Defer default execution to the step() phase only — defaults must be resolved at step boundaries; mid-step insolvencies
+      must accumulate without triggering default until the next step() call
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Immediate default execution creates ambiguous ordering dependencies where banks observe different market
+      states, breaking the consistent cascade ordering the model relies on for reproducibility
+    derived_from_bd_id: BD-042
+  - id: finance-C-125
+    when: When implementing agent ordering in the simulation round loop
+    action: Randomly shuffle the agent order each simulation round — fixed ordering introduces systematic bias where earlier-acting
+      banks consistently gain artificial advantages or disadvantages based purely on initialization order
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Fixed ordering creates reproducible but biased results where bank outcomes depend on initialization order
+      rather than actual financial position, making backtest conclusions about bank resilience unreliable
+    derived_from_bd_id: BD-045
+  - id: finance-C-126
+    when: When implementing default trigger handling for financial institutions
+    action: Immediately sell each tradable assets upon default — maximize recovery for creditors by liquidating each tradable
+      positions; non-tradable loans and positions should be written off
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Partial or gradual liquidation changes creditor recovery rates and fire sale pressure dynamics, creating
+      inconsistent cascade severity compared to the model's maximum fire sale scenario design
+    derived_from_bd_id: BD-046
+  - id: finance-C-127
+    when: When implementing simulation control flow
+    action: Maintain strict separation between step() and act() — step() must handle each default resolution, act() must handle
+      each delevering; defaults must be finalized before banks can act
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Interleaved or concurrent execution creates circular dependencies where delevering triggers default which
+      triggers more delevering, causing unpredictable cascade dynamics and breaking model reproducibility
+    derived_from_bd_id: BD-047
+  - id: finance-C-128
+    when: When implementing asset price update logic in market clearing
+    action: Update asset prices only when price loss > 0 — prices can only decrease during stress events; gains during market
+      stress must not be applied (asymmetric dynamics)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Symmetric price updates during fire sales allow prices to recover mid-crisis, underestimating the duration
+      and severity of fire sale cascades by allowing unrealistically quick market rebounds
+    derived_from_bd_id: BD-049
+  - id: finance-C-129
+    when: When configuring initial shock parameters for stress testing scenarios
+    action: Set initial shock parameters to sweep from 0% (no stress) to 30% (severe crisis) — verify shock values are within
+      the calibrated range and not using default assumptions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using default shock values without calibration may miss resilience thresholds; values outside 0-30% range
+      may capture unrealistic scenarios not observed in historical financial crises
+    derived_from_bd_id: BD-054
+  - id: finance-C-132
+    when: When implementing or refactoring the balance sheet initialization logic
+    action: Calculate total_assets as CET1E/leverage_ratio and liabilities as total_assets - CET1E, maintaining the fundamental
+      accounting identity asset = liability + equity
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Breaking the accounting identity causes the balance sheet to fail balancing, producing incorrect leverage
+      ratios and making all regulatory capital calculations meaningless
+    derived_from_bd_id: BD-002
+  - id: finance-C-133
+    when: When configuring the model's capital structure parameters for regulatory stress testing
+    action: Verify that CET1E (Common Equity Tier 1 capital) and leverage_ratio values match the intended regulatory framework
+      requirements, and document the source of these parameters
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Incorrect capital assumptions produce wrong leverage ratios, causing the stress test to misrepresent the
+      bank's actual capital adequacy and regulatory standing
+    derived_from_bd_id: BD-002
+  - id: finance-C-134
+    when: When implementing the fire sale clearing logic during market stress events
+    action: Process each fire sale orders simultaneously before computing price impact — aggregate each sell orders first,
+      then calculate price impact once on the combined quantity, not sequentially on each individual order
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Sequential price impact application underestimates the true market impact of aggregate fire sales, causing
+      the stress test to overstate remaining portfolio value during realistic liquidity crises
+    derived_from_bd_id: BD-014
+  - id: finance-C-135
+    when: When initializing the bank's asset portfolio in the stress test model
+    action: Calculate other_assets as total_assets - gov_bonds - corp_bonds - cash, ensuring the balance sheet identity holds
+      after explicit asset allocation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect residual calculation breaks the balance sheet identity, causing total assets to not equal the sum
+      of allocated assets plus other assets, invalidating all subsequent stress calculations
+    derived_from_bd_id: BD-068
+  - id: finance-C-136
+    when: When configuring the initial shock parameters for sovereign debt stress testing
+    action: Verify that the 20% initial shock default on government bonds matches the intended stress scenario severity, and
+      adjust if modeling a different crisis magnitude (e.g., mild 5%, extreme 40%)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using the wrong shock magnitude produces non-representative stress test results — too low understates contagion
+      risk, too high may trigger unrealistic cascading defaults in the model
+    derived_from_bd_id: BD-005
+  - id: finance-C-137
+    when: When implementing the default handling and fire sale execution logic
+    action: Batch each sell orders together before computing price impact — set SIMULTANEOUS_FIRESALE=True to calculate impact
+      once on aggregate quantity, preserving the illiquidity assumption that orders don't move prices until clearing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Disabling batch mode causes price signals from early sales to affect subsequent sales, breaking the illiquidity
+      assumption and understating the cascade severity in stress scenarios
+    derived_from_bd_id: BD-092
+  - id: finance-C-138
+    when: When implementing liquidation logic using default liquidation that sells each tradable assets proportionally
+    action: Verify that per-asset-type price impact assumptions hold for the specific assets being liquidated; assets with
+      different liquidity characteristics (e.g., government bonds vs corporate bonds from defaulted entity) should NOT be
+      treated as fungible substitutes
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Treating illiquid assets as fungible with liquid counterparts underestimates liquidation costs by 10-30%
+      for distressed securities, causing backtest results to overstate actual recovery values
+    derived_from_bd_id: BD-114
+  - id: finance-C-140
+    when: When implementing or extending initialization and scheduling logic in the trading framework
+    action: Assume trading calendar operations work correctly without explicit isolation from system calendar operations;
+      trading calendar interactions with system calendar can cause incorrect scheduling and missed trading windows
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit trading calendar isolation, batch jobs and scheduled tasks may execute on non-trading days
+      or miss trading windows, causing strategies to fail or positions to remain unmanaged during critical periods
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-141
+    when: When implementing trading calendar management in the framework
+    action: Implement explicit trading calendar isolation by maintaining a separate calendar instance for trading operations,
+      ensuring each date/time operations involving trading schedules use this isolated calendar and validate against trading
+      day rules
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without isolated trading calendar, system calendar changes or timezone shifts can corrupt trading schedules,
+      causing strategies to attempt trading on non-trading days or skip valid trading opportunities
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-142
+    when: When implementing any date/time handling in the trading framework
+    action: Assume date/time values are implicitly in the correct timezone; implicit timezone handling leads to execution
+      at wrong times, causing strategies to trade before or after market opens
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Implicit timezone handling causes trades to execute at wrong times (e.g., buying after market close, selling
+      before open), resulting in missed opportunities or execution at unfavorable prices
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-143
+    when: When implementing any datetime or timestamp fields in the trading framework
+    action: Add explicit timezone annotation to each datetime fields and enforce timezone validation at data ingestion; verify
+      each timestamps are converted to a canonical timezone (e.g., UTC) before processing and converted to market timezone
+      only at display/execution time
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit timezone annotation, backtests use incorrect timestamps leading to trades at wrong times,
+      with live trading failing to match backtest behavior due to timezone mismatches
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-144
+    when: When implementing default account fund collection logic
+    action: Assume the framework handles collection priority and compliance automatically; failure to implement explicit collection
+      priority rules violates regulatory requirements and may result in improper fund handling
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit collection priority and compliance controls, fund collection may violate regulatory sequencing
+      requirements, leading to compliance violations, penalties, or customer disputes
+    derived_from_bd_id: BD-GAP-012
+  - id: finance-C-145
+    when: When implementing account fund collection and recovery operations
+    action: Implement explicit collection priority rules defining the sequence of fund sources (e.g., cash accounts first,
+      then securities, then other assets) and add compliance validation checks to verify collection follows regulatory requirements
+      for the applicable jurisdiction
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Explicit collection priority ensures regulatory compliance and prevents improper fund seizure; without it,
+      collection may violate customer protections or regulatory sequencing rules
+    derived_from_bd_id: BD-GAP-012
+  - id: finance-C-146
+    when: When implementing price execution logic for batch trade matching
+    action: Use midpoint pricing (average of pre/post prices) for each executions in batch mode; verify sellers receive the
+      midpoint price to prevent front-running and guarantee fair execution symmetry for each participants
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Deviating from midpoint pricing creates front-running opportunities where participants trade at favorable
+      prices at the expense of others, breaking batch execution fairness and potentially causing disputes or regulatory scrutiny
+    derived_from_bd_id: BD-017
+  - id: finance-C-147
+    when: When implementing or modifying insolvency detection logic in bank default handling
+    action: Preserve the insolvency trigger at leverage < 3% (BANK_LEVERAGE_MIN=0.03) as the hard stop for forced liquidation
+      — any modification to this threshold must be explicitly reviewed
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Changing the insolvency threshold below 3% allows banks with inadequate asset coverage to continue trading,
+      amplifying losses that should have triggered forced liquidation and distorting systemic risk measurements
+    derived_from_bd_id: BD-095
+  - id: finance-C-148
+    when: When implementing firesale settlement logic that handles simultaneous bank liquidations
+    action: Compute price impact BEFORE settling any firesale orders — the ordering of compute_price_impact then settle is
+      critical and must be preserved; reversing this order corrupts each cascade result
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Reversing the firesale order causes the first sale to update market prices before subsequent sales execute,
+      resulting in later sales receiving worse execution at artificially depressed prices and silently corrupting the entire
+      cascade
+    derived_from_bd_id: BD-112
+  - id: finance-C-149
+    when: When implementing solvency determination logic that combines market-valued and face-valued assets
+    action: Recognize that solvency boundaries are determined by a mixed valuation approach — tradable assets use market prices
+      while loans use face value, creating arbitrary cutoff points where market declines are masked
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Mixed valuation may show a bank as solvent when market-valued assets have declined substantially, because
+      unchanged loan face values mask actual credit deterioration and market conditions are not reflected in solvency calculations
+    derived_from_bd_id: BD-117
+  - id: finance-C-150
+    when: When implementing data initialization or lookback logic for historical data queries
+    action: Assume the framework provides point-in-time data availability — historical data queries may return current values
+      rather than values as of a specific date; the framework does not implement temporal data versioning
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without point-in-time data handling, historical backtests use current values for past dates, introducing
+      look-ahead bias that makes backtest results completely non-reproducible in live trading
+    derived_from_bd_id: BD-GAP-005
+  - id: finance-C-151
+    when: When implementing data layer initialization or historical data retrieval
+    action: Implement point-in-time data retrieval using temporal query fields (e.g., as_of_date, valid_start, valid_end)
+      in the data schema, ensuring historical queries return values as they existed at each specific point in time
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without point-in-time data retrieval, historical backtests use current values for past dates, introducing
+      look-ahead bias that causes live trading returns to fall far below backtested results
+    derived_from_bd_id: BD-GAP-005
+  - id: finance-C-152
+    when: When implementing firesale execution logic in market clearing that handles simultaneous bank liquidations
+    action: Process each firesale orders in a batch at the same pre-settlement price — execute each orders in the firesale
+      simultaneously at the price computed before any settlement occurs; do NOT interleave with other transactions or change
+      to sequential processing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing from simultaneous batch processing to sequential or interleaved execution gives first-mover advantage
+      to early sellers and understates the liquidity pressure of simultaneous liquidations during systemic stress, producing
+      unrealistic stress test results
+    derived_from_bd_id: BD-032
+  - id: finance-C-153
+    when: When initializing asset prices in market simulation
+    action: 'Verify that each assets are explicitly initialized with known prices before use; the defaultdict(lambda: 1.0)
+      default may mask missing initialization and silently propagate placeholder values'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using default price of 1.0 for unseen assets can silently propagate placeholder values through calculations,
+      causing incorrect simulation results that appear valid without explicit validation
+    derived_from_bd_id: BD-062
+  - id: finance-C-154
+    when: When implementing loan valuation in banking simulation
+    action: Assume loans are valued at face value regardless of credit quality; impaired loans must be marked down to reflect
+      actual recoverable value, not held at principal
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Valuing impaired loans at face value overstates asset values, causing incorrect leverage ratios and capital
+      adequacy calculations; in live trading, impaired loan portfolios would trigger regulatory violations not apparent in
+      backtest
+    derived_from_bd_id: BD-065
+  - id: finance-C-155
+    when: When configuring leverage targeting sensitivity analysis
+    action: Document that buffer=1.0 (100%) is an extreme edge case where target equals regulatory minimum; results represent
+      worst-case targeting behavior and do not reflect conservative banking practices
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using buffer=1.0 as a general-purpose baseline produces unrealistic results; actual banks maintain buffers
+      of 0.5-3% for safety, so leverage targeting at minimum threshold is an atypical edge case that will not generalize to
+      practical scenarios
+    derived_from_bd_id: BD-055
+  - id: finance-C-156
+    when: When configuring leverage targeting sensitivity analysis with 100% buffer
+    action: Document that 100% buffer represents aggressive targeting with no safety margin; results are not generalizable
+      to more conservative targeting approaches that maintain actual safety buffers
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Leverage targeting with 100% buffer isolates targeting from buffer effects but creates results that apply
+      only to edge-case configurations; practical targeting strategies maintain 0.5-3% buffers, so comparative analysis may
+      mislead if this boundary is not documented
+    derived_from_bd_id: BD-057
+  - id: finance-C-157
+    when: When implementing price impact calculations for large-volume trades
+    action: Use exponential decay price impact function; do not replace with linear models as they underestimate large-volume
+      impacts during market stress conditions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Linear price impact models systematically underestimate market impact for large trades, causing backtested
+      execution costs to appear lower than actual costs in live trading with realistic market depth constraints
+    derived_from_bd_id: BD-058
+  - id: finance-C-158
+    when: When implementing balance sheet initialization in the banking model
+    action: 'Calculate total assets from CET1E and leverage ratio using formula: assets = CET1E / (leverage/100) — do not
+      reverse the calculation by starting from assets and deriving capital'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reversing the calculation order (assets → capital) breaks the iterative loop for capital ratio calculation,
+      causing either non-convergence or incorrect leverage ratios that misrepresent regulatory capital adequacy
+    derived_from_bd_id: BD-067
+  - id: finance-C-159
+    when: When implementing market stress price impact in the banking model
+    action: Calibrate price impact using fixed 1:1 ratio where 5% market sell causes 5% price drop — do not optimize or adjust
+      this ratio unless explicitly testing alternative liquidity scenarios
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using higher ratios overstates fire-sale dynamics causing excessive price drops in stress tests; using lower
+      ratios understates liquidity risk leading to inaccurate stress scenario results
+    derived_from_bd_id: BD-070
+  - id: finance-C-161
+    when: When implementing deleveraging logic in the banking model
+    action: Activate deleveraging when leverage falls below 4% — this creates a 1% buffer zone above the 3% insolvency threshold
+      allowing banks remediation opportunity before default
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Removing or changing the buffer zone eliminates the remediation window, causing banks to default immediately
+      when hitting insolvency threshold instead of attempting to reduce leverage proactively
+    derived_from_bd_id: BD-073
+  - id: finance-C-163
+    when: When configuring stress test shock sweep parameters
+    action: Verify that the shock sweep range covers 0-30% with at least 21 points (1.5% increments) to capture threshold
+      effects where contagion becomes systemic
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Incorrect shock range causes critical crisis scenarios to be missed entirely, making systemic risk assessments
+      incomplete and potentially causing underestimation of tail risk exposure
+    derived_from_bd_id: BD-078
+  - id: finance-C-164
+    when: When computing systemic risk classification in stress test simulations
+    action: 'Apply 5% EOSE threshold: values below 5% indicate no systemic event, values at or above 5% indicate systemic
+      crisis'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using an incorrect EOSE threshold causes misclassification of systemic events; wrong threshold may trigger
+      false alerts or miss critical contagion scenarios, leading to incorrect risk management decisions
+    derived_from_bd_id: BD-079
+  - id: finance-C-165
+    when: When configuring stress test simulation duration
+    action: Verify that 6 timesteps are sufficient to capture full contagion dynamics including initial shock, first wave,
+      stabilization, and final state resolution
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Reducing timesteps below 6 may cause late-stage contagion effects to be missed entirely, resulting in incomplete
+      systemic risk assessment and underestimation of cascade failures
+    derived_from_bd_id: BD-081
+  - id: finance-C-166
+    when: When implementing settlement price calculation for asset sales in stress test simulations
+    action: 'Calculate settlement price as midpoint: (current_price + old_price) / 2 — this represents fair value OTC execution
+      preventing extreme fire-sale valuations'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using only current price undervalues assets during fire sales while using only old price overvalues; either
+      deviation causes systematic misvaluation leading to incorrect loss calculations and suboptimal risk management
+    derived_from_bd_id: BD-083
+  - id: finance-C-167
+    when: When configuring leverage targeting simulation parameters
+    action: Document and validate that leverage_buffer=1.0 produces specific simulation outcomes — this creates an aggressive
+      deleveraging target (2x current leverage), and strategies using different buffer values will yield materially different
+      cascade dynamics
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using fixed buffer=1.0 means the simulation only tests aggressive deleveraging scenarios; strategies assuming
+      different buffer values may produce different cascade behaviors not captured in this backtest
+    derived_from_bd_id: BD-087
+  - id: finance-C-168
+    when: When running stress test simulations with initial market shocks
+    action: Verify that initial shock targeting government bonds only (no equity shock) aligns with the stress scenario hypothesis
+      — other asset classes may behave differently under stress
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Applying initial shock only to government bonds means equity-driven stress scenarios produce different cascade
+      patterns not captured in the simulation; backtest results are specific to sovereign risk events, not general market
+      stress
+    derived_from_bd_id: BD-088
+  - id: finance-C-169
+    when: When interpreting cascade severity results from stress testing
+    action: Recognize that 20% initial bond shock combined with SIMULTANEOUS_FIRESALE batch processing produces 2-3x higher
+      cascade severity than sequential selling — this amplification effect is specific to simultaneous execution and does
+      not represent each fire sale scenarios
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The triple interaction effect (BD-108) causes cascade severity 2-3x higher than any single mechanism; interpreting
+      results as representative of sequential fire sales would overestimate systemic risk by 200-300%
+    derived_from_bd_id: BD-108
+  - id: finance-C-170
+    when: When analyzing long-duration stress scenarios or cascade persistence
+    action: 'Account for the deleveraging feedback loop: leverage_buffer triggers fire sales, which erode asset values, which
+      drop leverage further, re-triggering the buffer threshold — this creates extended cascade duration not seen in single-pass
+      simulations'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The BD-109 feedback loop causes cascades to persist until assets are fully sold or banks default; single-timestep
+      severity metrics underestimate total systemic impact by not capturing the iterative erosion pattern
+    derived_from_bd_id: BD-109
+  - id: finance-C-171
+    when: When designing or validating stress test timing mechanisms
+    action: 'Account for deferred default execution: insolvent banks continue operating during the interval between detection
+      and next step(), accumulating positions that may create additional interdependencies before defaults execute'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Deferred execution (BD-118) allows insolvent banks to accumulate positions between detection and execution;
+      cascade timing and severity differ from immediate-execution models, potentially masking or amplifying systemic risk
+      depending on step granularity
+    derived_from_bd_id: BD-118
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-067 / UC-101
+    version: v5.3
+    intent_keywords: []
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 0
+        ucs: []
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    - uc_id: UC-101
+      beginner_prompt: Try capability UC-101
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try capability UC-102
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 0 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+    - Custom Transformer + Accumulator factor with per-entity rolling state
+    - Bollinger Band mean-reversion factor with BollTransformer (window=20, window_dev=2)
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

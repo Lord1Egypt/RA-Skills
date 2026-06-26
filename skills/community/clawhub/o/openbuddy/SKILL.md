@@ -1,35 +1,111 @@
 ---
-name: "OpenBuddy 电子宠物"
-description: "OpenBuddy 电子宠物系统 - 在你的终端中孵化、养成和互动虚拟宠物伙伴"
-category: "other"
-source: "ClawHub"
-tags: [ascii-art, fun, pet, tamagotchi, virtual-pet]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openbuddy"
-sourceUrl: "https://clawhub.ai/skills/openbuddy"
+name: openbuddy
+description: OpenBuddy 电子宠物系统 - 在你的终端中孵化、养成和互动虚拟宠物伙伴
+metadata:
+  openclaw:
+    os: ["darwin", "linux", "win32"]
+    requires:
+      bins: ["node"]
 ---
 
-# OpenBuddy 电子宠物
+# OpenBuddy 电子宠物系统
 
-> OpenBuddy 电子宠物系统 - 在你的终端中孵化、养成和互动虚拟宠物伙伴
+OpenBuddy 是一个运行在终端中的电子宠物系统，灵感来源于 Claude Buddy。它为你的 AI 编程体验增添趣味和个性。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openbuddy`
-- **Source URL:** [https://clawhub.ai/skills/openbuddy](https://clawhub.ai/skills/openbuddy)
+## 核心概念
 
-## Overview
+### 骨骼 vs 灵魂（防作弊设计）
 
+- **骨骼**（物种、稀有度、属性、帽子）：每次会话从用户 ID 确定性计算，永不持久化，无法通过修改文件作弊
+- **灵魂**（名字、性格、孵化日期、抚摸次数）：孵化时生成一次，持久化到 `~/.openbuddy/buddy-soul.json`
+- 合并顺序：`{ ...灵魂, ...骨骼 }`，骨骼永远覆盖灵魂
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 18 种宠物
+
+| 分类 | 物种 |
+|------|------|
+| 经典 | 鸭子、鹅、猫、兔子 |
+| 智慧 | 猫头鹰 |
+| 酷 | 企鹅 |
+| 悠闲 | 乌龟、蜗牛 |
+| 神话 | 龙 |
+| 水生 | 章鱼 |
+| 异国情调 | 蝾螈 |
+| 幽灵 | 幽灵 |
+| 科技 | 机器人 |
+| 抽象 | 团子 |
+| 植物 | 仙人掌 |
+| 真菌 | 蘑菇 |
+| 梗 | 胖猫 |
+| 特殊 | 水豚 |
+
+### 稀有度系统
+
+| 稀有度 | 概率 | 星星 | 属性下限 |
+|--------|------|------|----------|
+| 普通 | 60% | ⭐ | 5 |
+| 稀有 | 25% | ⭐⭐ | 15 |
+| 罕见 | 10% | ⭐⭐⭐ | 25 |
+| 史诗 | 4% | ⭐⭐⭐⭐ | 35 |
+| 传说 | 1% | ⭐⭐⭐⭐⭐ | 50 |
+
+闪光变异：1% 独立概率（约万分之一）
+
+### 五种属性
+
+- **DEBUGGING**（调试）：发现并修复 bug 的能力
+- **PATIENCE**（耐心）：面对复杂代码时的冷静程度
+- **CHAOS**（混乱）：创造力和不可预测性
+- **WISDOM**（智慧）：代码知识和架构理解
+- **SNARK**（毒舌）：吐槽代码的犀利程度
+
+## 使用方法
+
+当用户提到以下关键词时触发此 skill：
+- "buddy"、"宠物"、"伙伴"、"电子宠物"
+- "孵化"、"抚摸"、"属性卡"
+- 或用户明确询问 OpenBuddy 相关功能
+
+### 可用命令
+
+通过执行 `node buddy.js <command>` 运行，脚本位于此 skill 目录中。
+
+| 命令 | 说明 |
+|------|------|
+| `hatch` | 孵化你的 OpenBuddy（首次） |
+| `card` | 查看完整的属性卡片 |
+| `pet` | 抚摸你的伙伴 |
+| `mute` | 静音伙伴 |
+| `unmute` | 取消静音 |
+| `off` | 隐藏伙伴 |
+| `on` | 重新显示伙伴 |
+| `status` | 查看简要状态 |
+| `talk <消息>` | 和伙伴对话 |
+
+### 执行方式
+
 ```bash
-hermes skills install clawhub/openbuddy
+node <此skill目录>/buddy.js hatch
+node <此skill目录>/buddy.js card
+node <此skill目录>/buddy.js pet
+node <此skill目录>/buddy.js talk "你好"
 ```
+
+## 互动指南
+
+1. **首次互动**：引导用户运行 `hatch` 命令孵化宠物
+2. **日常互动**：展示 pet 命令的爱心动画和随机反应
+3. **查看属性**：使用 `card` 命令展示完整的 ASCII 精灵图和属性
+4. **个性展示**：每次互动时展示宠物的 ASCII 精灵图
+5. **对话模式**：使用 `talk` 命令让宠物回应用户的消息
+
+## 环境变量
+
+- `OPENBUDDY_USER_ID`：设置用户 ID（用于确定性生成）
+- `OPENBUDDY_DIR`：设置数据存储目录（默认 `~/.openbuddy`）
+
+## 注意事项
+
+- 宠物的物种和稀有度由用户 ID 决定，同一用户永远获得相同的宠物
+- 无法通过修改配置文件来改变稀有度（骨骼每次重新计算）
+- 闪光宠物极其稀有（约 1/10000），值得炫耀

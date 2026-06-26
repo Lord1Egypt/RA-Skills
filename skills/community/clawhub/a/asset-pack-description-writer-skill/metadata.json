@@ -1,0 +1,19 @@
+{
+  "slug": "asset-pack-description-writer-skill",
+  "name": "Asset Pack Description Writer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "art",
+    "asset-pack-description-writer",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Art & Assets",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-04",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

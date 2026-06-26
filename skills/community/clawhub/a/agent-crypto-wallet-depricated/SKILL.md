@@ -1,35 +1,27 @@
 ---
-name: "OpenClawCash"
-description: "Deprecated legacy skill entry. Use the current OpenClawCash skill instead."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-crypto-wallet-depricated"
-sourceUrl: "https://clawhub.ai/skills/agent-crypto-wallet-depricated"
+name: agentwalletapi
+description: Deprecated legacy skill entry. Use the current OpenClawCash skill instead.
+license: Proprietary
+compatibility: Deprecated. Use the current OpenClawCash skill at https://clawhub.ai/macd2/open-claw-cash
+metadata:
+  author: agentwalletapi
+  version: "1.9.1"
+  required_env_vars:
+    - AGENTWALLETAPI_KEY
+  optional_env_vars:
+    - AGENTWALLETAPI_URL
+  required_binaries:
+    - curl
+  optional_binaries:
+    - jq
 ---
 
-# OpenClawCash
+# Deprecated
 
-> Deprecated legacy skill entry. Use the current OpenClawCash skill instead.
+This legacy OpenClawCash skill is deprecated and should no longer be used.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-crypto-wallet-depricated`
-- **Source URL:** [https://clawhub.ai/skills/agent-crypto-wallet-depricated](https://clawhub.ai/skills/agent-crypto-wallet-depricated)
+Use the current OpenClawCash skill instead:
+https://clawhub.ai/macd2/open-claw-cash
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-crypto-wallet-depricated
-```
+Do not continue setup with this legacy copy.
+Install the replacement skill from the URL above and follow its current instructions.

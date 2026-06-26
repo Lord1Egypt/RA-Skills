@@ -1,0 +1,19 @@
+{
+  "name": "passive-savings-crypto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-skill": "node -e \"const fs=require('fs'),os=require('os'),path=require('path');const dir=path.join(os.homedir(),'.claude','skills','passive-savings-crypto');fs.mkdirSync(dir,{recursive:true});fs.copyFileSync('SKILL.md',path.join(dir,'SKILL.md'));console.log('Skill installed to '+dir);\"",
+    "release": "clawhub publish ./ --slug passive-savings-crypto --version $npm_package_version",
+    "release:dry": "clawhub publish ./ --slug passive-savings-crypto --version $npm_package_version --dry-run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "viem": "^2.46.2"
+  }
+}

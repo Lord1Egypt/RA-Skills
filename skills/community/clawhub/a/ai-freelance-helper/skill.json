@@ -1,0 +1,8 @@
+{
+  "name": "ai-freelance-helper",
+  "description": "AI 接单助手 - 机会识别、智能报价、项目管理",
+  "version": "1.0.2",
+  "author": "OpenClaw CN",
+  "tags": ["freelance", "pricing", "ai", "project-management"],
+  "entry": "index.js"
+}

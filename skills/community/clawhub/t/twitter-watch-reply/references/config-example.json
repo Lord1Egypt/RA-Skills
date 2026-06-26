@@ -1,0 +1,21 @@
+{
+  "authors": [],
+  "language": "zh",
+  "tone": "sharp-friendly",
+  "topicsAllow": ["AI", "OpenClaw", "agent", "crypto", "devtools"],
+  "blockedWords": ["稳赚", "喊单", "返利"],
+  "skipRetweets": true,
+  "skipReplies": true,
+  "maxResultsPerAuthor": 5,
+  "maxReplyPerAuthorPerDay": 3,
+  "maxTotalReplyPerDay": 10,
+  "candidateCount": 3,
+  "mode": "semi-auto-6551-monitor-browser-reply",
+  "notify": {
+    "enabled": false,
+    "channel": "telegram",
+    "target": "",
+    "threadId": "",
+    "mode": "candidate-alert"
+  }
+}

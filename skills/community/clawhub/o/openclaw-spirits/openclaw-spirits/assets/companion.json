@@ -1,0 +1,18 @@
+{
+  "species": "rustbell",
+  "rarity": "mythic",
+  "eye": "◎",
+  "accessory": "crownfire",
+  "shiny": false,
+  "stats": {
+    "intuition": 100,
+    "grit": 61,
+    "spark": 87,
+    "anchor": 85,
+    "edge": 41
+  },
+  "name": "Rune",
+  "personality": "声音沙哑但温暖的古铃，等得起也看得透，偶尔一句话能把你钉在原地",
+  "hatchedAt": "2026-03-31T15:00:00.000Z",
+  "lang": "zh"
+}

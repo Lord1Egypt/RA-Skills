@@ -1,0 +1,9 @@
+{
+  "apiKey": "z75mrVAEC3JAhdB4",
+  "defaultGroupId": "8c6yo6hf",
+  "defaultChainId": 1,
+  "thresholds": {
+    "minVotes": 0,
+    "minLotteries": 0
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Leather Industry Association, China Luggage Industry Association, National Bureau of Statistics",
+    "industry_scale_2026_target": "¥680 billion revenue",
+    "growth_rate_target": "5.2% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Luggage Industry Overview (2026)",
+    "summary": "China is the world's largest producer and exporter of luggage and bags, accounting for over 60% of global production. The industry encompasses travel luggage (suitcases, trolleys), handbags, backpacks, business bags, and specialty bags (laptop, camera, diaper). In 2026, the industry is projected to exceed ¥680 billion in revenue, driven by travel recovery post-pandemic, fashion trends, e-commerce growth, and material innovations (lightweight, sustainable).",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Leather and Luggage Industry (2024-2026)",
+        "issuing_authorities": ["MIIT", "Ministry of Commerce", "China Leather Industry Association"],
+        "key_measures": [
+          "Promote eco-friendly materials (vegan leather, recycled fabrics)",
+          "Support automation and digitalization in luggage manufacturing",
+          "Encourage brand building and international marketing",
+          "Establish national-level luggage design and innovation centers",
+          "Strengthen quality and safety standards (chemicals, durability)"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥647 billion",
+      "share_of_global_exports": "62%",
+      "key_drivers": ["lightweight polycarbonate luggage", "anti-theft backpacks", "vegan leather handbags", "smart luggage with tracking"],
+      "automation_rate": "48% (cutting and assembly lines in large factories)",
+      "export_value": "$45 billion",
+      "domestic_market_share": "40% of sales are domestic"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Luggage Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and design",
+      "categories": [
+        {
+          "name": "Shell Materials",
+          "items": ["polycarbonate (PC)", "ABS", "polypropylene (PP)", "aluminum", "fabric (polyester, nylon)", "leather (cowhide, sheepskin)", "vegan leather (PU, PVC)"],
+          "key_suppliers": ["Sanfang Group", "Zhejiang Hexin", "Shandong Jinda", "Huafon Group (PU)", "Xingye Leather"]
+        },
+        {
+          "name": "Components & Hardware",
+          "items": ["wheels (spinner, inline)", "telescopic handles", "zippers", "locks (TSA)", "buckles", "rivets", "shoulder straps"],
+          "key_suppliers": ["YKK China", "SBS Zipper", "Weixing (SBS)", "Ningbo Homelink (wheels)", "Guangdong TPR"]
+        },
+        {
+          "name": "Lining & Padding",
+          "items": ["polyester lining", "EVA foam", "memory foam padding"],
+          "key_suppliers": ["Jiangsu Textile", "Zhejiang Hengli"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Luggage and bag manufacturing",
+      "subsectors": [
+        "travel luggage (hard-side suitcases, soft-side suitcases, carry-ons)",
+        "handbags and fashion bags",
+        "backpacks (daypacks, hiking, laptop, school)",
+        "business bags (briefcases, laptop bags, document holders)",
+        "specialty bags (camera bags, diaper bags, cooler bags)",
+        "luggage accessories (luggage tags, packing cubes)"
+      ],
+      "key_companies_by_subsector": {
+        "travel_luggage": ["Zhejiang Jinhou", "Guangdong Wanli", "Shandong Fangu", "Ningbo Homelink"],
+        "handbags": ["Guangzhou Huadu cluster", "Fuzhou handbag cluster"],
+        "backpacks": ["Fujian Quanzhou backpack cluster", "Guangdong Jiangmen"],
+        "business": ["Ningbo Airline", "Shanghai Deli"],
+        "specialty": ["Shenzhen Yingji (camera bags)", "Shanghai Babybag (diaper bags)"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "retail (department stores, luggage stores, brand outlets)",
+        "e-commerce (Tmall, JD.com, Pinduoduo, Douyin)",
+        "cross-border e-commerce (Amazon, AliExpress, Shopee)",
+        "export to global markets (US, EU, Japan, Middle East, Southeast Asia)",
+        "OEM/ODM for international brands (Samsonite, Delsey, Tumi, VIP)"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Guangzhou (Huadu)", "Shenzhen", "Dongguan", "Foshan", "Huizhou"],
+      "share_of_industry": "40% of national output",
+      "specializations": [
+        "handbags",
+        "fashion bags",
+        "backpacks",
+        "leather goods",
+        "luxury luggage"
+      ],
+      "key_hubs": [
+        {
+          "city": "Guangzhou (Huadu District)",
+          "specialization": "Handbags, fashion bags, leather goods – 'Leather Capital of China'",
+          "supplier_example": "Huadu Leather & Luggage Wholesale Market – thousands of manufacturers and suppliers"
+        },
+        {
+          "city": "Shenzhen",
+          "specialization": "High-end handbags, designer bags, smart luggage",
+          "supplier_example": "Shenzhen Yingji Industrial – camera bags and backpacks for global brands"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Luggage OEM, travel luggage",
+          "supplier_example": "Dongguan Wanli Luggage – manufactures for Samsonite, Delsey"
+        }
+      ],
+      "strengths": [
+        "Largest and most diverse cluster",
+        "Strong leather processing",
+        "Fast prototyping",
+        "Proximity to Hong Kong"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "30% of national output",
+      "specializations": [
+        "travel luggage (hard-side suitcases)",
+        "business bags",
+        "backpacks",
+        "high-end luggage"
+      ],
+      "key_hubs": [
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Travel luggage, wheels, components",
+          "supplier_example": "Ningbo Homelink Industrial – one of China's largest luggage manufacturers, produces for global brands"
+        },
+        {
+          "city": "Shanghai",
+          "specialization": "Design, brand HQ, high-end luggage",
+          "supplier_example": "Shanghai Deli Luggage – business bags and luggage"
+        },
+        {
+          "city": "Quanzhou (Fujian) – sometimes grouped with YRD",
+          "specialization": "Backpacks, sports bags",
+          "supplier_example": "Quanzhou backpack cluster – supplies many outdoor and sports brands"
+        }
+      ],
+      "strengths": [
+        "Strong manufacturing technology",
+        "Access to Shanghai port",
+        "High-end finishing capabilities"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Quanzhou", "Fuzhou", "Xiamen"],
+      "share_of_industry": "15% of national output",
+      "specializations": [
+        "backpacks",
+        "sports bags",
+        "outdoor bags"
+      ],
+      "key_hubs": [
+        {
+          "city": "Quanzhou",
+          "specialization": "Backpacks, school bags, sports bags",
+          "supplier_example": "Quanzhou Xinghui Luggage – OEM for many international brands"
+        },
+        {
+          "city": "Fuzhou",
+          "specialization": "Handbags, fashion bags",
+          "supplier_example": "Fuzhou handbag cluster – export-oriented manufacturers"
+        }
+      ],
+      "strengths": [
+        "Strong export orientation",
+        "Competitive pricing"
+      ]
+    },
+    {
+      "region": "Shandong Peninsula",
+      "provinces_cities": ["Shandong", "Qingdao", "Yantai"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "travel luggage",
+        "OEM manufacturing"
+      ],
+      "key_hubs": [
+        {
+          "city": "Qingdao",
+          "specialization": "Luggage manufacturing, export",
+          "supplier_example": "Qingdao Fangu Luggage – produces for European and US brands"
+        }
+      ],
+      "strengths": [
+        "Port access",
+        "Established manufacturing base"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "travel_luggage": {
+      "description": "Hard-side suitcases (PC/ABS), soft-side suitcases, carry-ons, cabin bags. Largest segment by value.",
+      "key_clusters": ["Yangtze River Delta (Ningbo)", "Pearl River Delta (Dongguan)", "Shandong"],
+      "growth_drivers": [
+        "Travel rebound",
+        "Lightweight materials (polycarbonate)",
+        "Spinner wheels",
+        "TSA locks"
+      ],
+      "market_trends": "Expandable designs; built-in power banks; GPS tracking; eco-friendly materials (recycled PC).",
+      "key_players": ["Ningbo Homelink", "Guangdong Wanli", "Shandong Fangu"]
+    },
+    "handbags_fashion_bags": {
+      "description": "Women's handbags, totes, clutches, shoulder bags, cross-body bags.",
+      "key_clusters": ["Pearl River Delta (Huadu)", "Fujian"],
+      "growth_drivers": [
+        "Fashion cycles",
+        "Vegan leather trend",
+        "Affordable luxury"
+      ],
+      "market_trends": "Minimalist designs; sustainable materials; personalization.",
+      "key_players": ["Huadu cluster", "Fuzhou cluster"]
+    },
+    "backpacks": {
+      "description": "Daypacks, hiking backpacks, laptop backpacks, school bags, anti-theft backpacks.",
+      "key_clusters": ["Fujian (Quanzhou)", "Pearl River Delta"],
+      "growth_drivers": [
+        "Outdoor activities",
+        "Student population",
+        "Urban commuting"
+      ],
+      "market_trends": "Anti-theft features (hidden zippers, RFID); USB charging; ergonomic designs.",
+      "key_players": ["Quanzhou Xinghui", "Shenzhen Yingji", "Guangdong Jiangmen cluster"]
+    },
+    "business_bags": {
+      "description": "Briefcases, laptop bags, document holders, messenger bags.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Corporate workforce",
+        "Laptop ownership"
+      ],
+      "market_trends": "Sleek designs; padded compartments; convertible styles.",
+      "key_players": ["Ningbo Airline", "Shanghai Deli"]
+    },
+    "specialty_bags": {
+      "description": "Camera bags, diaper bags, cooler bags, medical bags, tool bags.",
+      "key_clusters": ["Pearl River Delta"],
+      "growth_drivers": [
+        "Hobbyist photographers",
+        "Parenting needs",
+        "Outdoor activities"
+      ],
+      "market_trends": "Customizable inserts; lightweight materials; waterproof fabrics.",
+      "key_players": ["Shenzhen Yingji", "Shanghai Babybag"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001; specific certifications (e.g., TSA lock license, REACH for materials)"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Cutting machines, sewing lines, assembly, QC testing (drop test, handle pull test)"
+      },
+      {
+        "metric": "Material compliance",
+        "target": "REACH, RoHS, CA Prop 65; leather sourcing ethical"
+      },
+      {
+        "metric": "Social compliance",
+        "target": "BSCI, SMETA, SEDEX"
+      },
+      {
+        "metric": "Design/R&D",
+        "target": "In-house design, sample making, ability to customize"
+      }
+    ],
+    "verification_methods": [
+      "Request certificates and test reports",
+      "Conduct factory audit (production processes, QC, working conditions)",
+      "Order samples for quality, stitching, hardware durability",
+      "Check references from other buyers",
+      "Use third-party inspection (SGS, Bureau Veritas) for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed product specifications (dimensions, materials, colors, hardware)",
+      "Share design sketches or 3D drawings",
+      "Discuss sample development timeline and cost",
+      "Clarify packaging requirements (polybag, carton, retail box)",
+      "Establish quality agreement (AQL levels, acceptable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment. For custom molds/tooling, 50% deposit, 50% on sample approval.",
+    "lead_times": {
+      "samples": "10-20 days",
+      "bulk_production": "30-50 days after sample approval",
+      "reorder": "25-40 days"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for luggage in China?",
+      "answer": "For travel luggage, MOQ often 500-1000 pieces per design. For handbags, 500-1500 pieces. Backpacks may have MOQ 800-2000. Some factories accept lower MOQs (200-300) for sample orders."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom mold making for hard-side luggage?",
+      "answer": "Yes, mold costs for hard-side luggage shells are significant ($5,000-$20,000 per mold). Provide 3D drawings. Mold ownership negotiable."
+    },
+    {
+      "question": "How can I ensure my luggage meets TSA lock requirements?",
+      "answer": "Specify TSA007 locks or other approved mechanisms. Suppliers can source licensed TSA locks. Request certification from lock manufacturer."
+    },
+    {
+      "question": "What are the most popular materials for lightweight luggage?",
+      "answer": "Polycarbonate (PC) is most popular for hard-side; polyester/nylon for soft-side. ABS is cheaper but heavier."
+    },
+    {
+      "question": "Can I get luggage with custom branding and packaging?",
+      "answer": "Yes, most suppliers offer OEM/ODM. They can emboss your logo, print hang tags, and custom cartons. Minimum quantities apply."
+    }
+  ],
+  "glossary": {
+    "ABS": "Acrylonitrile Butadiene Styrene – common luggage material, less expensive than PC.",
+    "PC": "Polycarbonate – lightweight, impact-resistant luggage material.",
+    "PU": "Polyurethane – synthetic leather.",
+    "PVC": "Polyvinyl chloride – synthetic leather, less breathable.",
+    "TSA lock": "Lock approved by US Transportation Security Administration for checked luggage.",
+    "Spinner wheels": "Multi-directional wheels for easy rolling.",
+    "MOQ": "Minimum Order Quantity.",
+    "OEM": "Original Equipment Manufacturer – produce according to buyer's design.",
+    "ODM": "Original Design Manufacturer – produce based on supplier's design."
+  }
+}

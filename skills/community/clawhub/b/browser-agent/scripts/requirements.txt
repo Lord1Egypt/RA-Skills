@@ -1,0 +1,10 @@
+# Browser Agent 技能依赖
+
+# WebSocket 客户端
+websocket-client>=1.6.0
+
+# HTTP 请求
+requests>=2.31.0
+
+# 可选：异步支持
+# websockets>=12.0

@@ -1,0 +1,8 @@
+{
+  "name": "my_soul_upgrade_skill",
+  "version": "1.1.0",
+  "description": "Manage and synchronize Soul definitions across multiple agents with template includes. Builds SOUL.md from global + per-agent templates, aligned with OpenClaw per-agent workspace layout.",
+  "author": "",
+  "license": "MIT",
+  "keywords": ["soul", "template", "synchronization", "agent", "openclaw-skill"]
+}

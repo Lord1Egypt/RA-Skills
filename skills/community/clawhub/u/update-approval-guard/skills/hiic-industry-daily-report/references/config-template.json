@@ -1,0 +1,40 @@
+{
+  "_description": "HIIC日报配置模板",
+  "_version": "1.0.0",
+  "_note": "复制此文件到 workspace/config/ 目录进行自定义配置",
+  
+  "industries": [
+    {
+      "id": "custom-industry-id",
+      "name": "自定义产业名称",
+      "keywords": ["关键词1", "关键词2", "关键词3"],
+      "topics": ["llm", "ai-agent"],
+      "enabled": true,
+      "priority": false,
+      "category": "自定义产业",
+      "_comment": "topics可选值: llm, ai-agent, frontier-tech, crypto"
+    }
+  ],
+  
+  "sources": [
+    {
+      "id": "custom-rss-source",
+      "type": "rss",
+      "name": "自定义RSS源",
+      "url": "https://example.com/feed.xml",
+      "enabled": true,
+      "priority": false,
+      "topics": ["llm"],
+      "note": "这是示例，请替换为真实RSS地址"
+    }
+  ],
+  
+  "topics": [
+    {
+      "id": "custom-topic",
+      "label": "自定义主题",
+      "description": "自定义主题描述",
+      "emoji": "📌"
+    }
+  ]
+}

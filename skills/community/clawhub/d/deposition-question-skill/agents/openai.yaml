@@ -1,0 +1,4 @@
+interface:
+  display_name: "Relativity Deposition Questions"
+  short_description: "Build deposition questions from Relativity PDFs"
+  default_prompt: "Use $relativity-deposition-question-builder to analyze Relativity-exported PDFs and draft deposition questions tied to my legal theory with supporting quotes."

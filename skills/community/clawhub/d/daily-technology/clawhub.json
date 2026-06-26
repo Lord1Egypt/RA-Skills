@@ -1,0 +1,16 @@
+{
+  "name": "daily-technology",
+  "displayName": "Daily Technology Content Generator",
+  "version": "1.1.0",
+  "description": "Generate 60-90 second TikTok scripts about technology news, AI developments, product launches, and tech industry trends using free tech news sources.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 2999,
+    "interval": "monthly"
+  },
+  "tags": ["technology", "tech", "AI", "tiktok", "content", "startups", "product-launches", "innovation"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "content-generation"
+}

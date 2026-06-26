@@ -1,0 +1,50 @@
+{
+  "skill_name": "financekit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm adding FinanceKit to a budgeting app. Outline the entitlement and Info.plist setup, U.S./U.K. availability checks, authorization flow, and a Swift snippet that queries recent transactions for one selected account.",
+      "expected_output": "A source-grounded FinanceKit setup and query outline that covers managed entitlement eligibility, region/platform support, data availability, authorization, and transaction query details without treating amounts as signed values.",
+      "files": [],
+      "assertions": [
+        "States that `com.apple.developer.financekit` is a managed entitlement requested by the Account Holder for an organization-level Apple Developer account and approved per bundle ID.",
+        "Mentions App Store Finance category and iPhone distribution in the U.S. or U.K. as entitlement eligibility constraints.",
+        "Distinguishes U.S. Apple Card, Apple Cash, and Savings data from U.K. open-banking connected-account support and includes relevant iOS availability.",
+        "Adds `NSFinancialDataUsageDescription` and checks `FinanceStore.isDataAvailable(.financialData)` before authorization or financial-data API calls.",
+        "Uses `try await FinanceStore.shared.requestAuthorization()` or `authorizationStatus()` and handles `.authorized`, `.denied`, and `.notDetermined`.",
+        "Builds a `TransactionQuery` with predicate, sort descriptors, limit, and offset, and calls `try await store.transactions(query:)`.",
+        "Treats `CurrencyAmount.amount` as positive and applies `creditDebitIndicator` for direction or sign."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this import plan: use TransactionPicker for expense reports, store the selected Transaction IDs forever, then use those IDs later to keep syncing updates. If users want full-budgeting sync, ask for all accounts and fetch complete snapshots every launch.",
+      "expected_output": "A correction-focused answer that keeps TransactionPicker as ephemeral selective access, uses FinanceKit authorization plus history tokens for persistent sync, handles deletions/token invalidation, and avoids over-querying.",
+      "files": [],
+      "assertions": [
+        "Explains that `TransactionPicker` selected transactions are passed directly for immediate use and access is ephemeral, not persistent sync authorization.",
+        "Recommends FinanceKit authorization and account selection for ongoing account, balance, and transaction access.",
+        "Uses `transactionHistory(forAccountID:since:isMonitoring:)` with persisted `FinanceStore.HistoryToken` for resumable incremental sync.",
+        "Saves every `changes.newToken` and applies inserted, updated, and deleted changes, including removing locally stored deleted data.",
+        "Handles `FinanceError.historyTokenInvalid` by discarding the token and immediately resynchronizing the affected stream.",
+        "Prefers `isMonitoring: false` for catch-up-only sync and avoids fetching complete snapshots every launch.",
+        "Keeps the answer in FinanceKit/FinanceKitUI rather than drifting into PassKit payment processing or generic data-store architecture."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want an iOS 26 widget to update spending totals when Wallet financial data changes in the background. Show the background delivery extension shape, registration calls, shared-storage requirements, and anything that should remain outside FinanceKit.",
+      "expected_output": "An iOS 26 background delivery plan that uses the current synchronous registration APIs, implements BackgroundDeliveryExtension entry points, shares data through App Groups, inherits app authorization, and routes unrelated widget UI/payment work to the right domains.",
+      "files": [],
+      "assertions": [
+        "States that FinanceKit background delivery is iOS/iPadOS 26+ and uses a Background Delivery Extension target.",
+        "Adds the FinanceKit entitlement to both app and extension targets and uses the same App Group for app, extension, and widget shared data.",
+        "Notes that authorization is requested in the main app and inherited by the background delivery extension.",
+        "Calls `store.enableBackgroundDelivery(for:frequency:)`, `disableBackgroundDelivery(for:)`, and `disableAllBackgroundDelivery()` without `try` or `await`.",
+        "Uses documented background data types such as `.transactions`, `.accountBalances`, and `.accounts` with `.hourly`, `.daily`, or `.weekly` update frequency.",
+        "Implements async `didReceiveData(for:)` and `willTerminate()` on `BackgroundDeliveryExtension` and explains that returning from `didReceiveData` ends the extension's work.",
+        "Keeps WidgetKit UI/timeline code, PassKit Apple Pay checkout, and order-tracking email optimization outside FinanceKit's core background delivery guidance."
+      ]
+    }
+  ]
+}

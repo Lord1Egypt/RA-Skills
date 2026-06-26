@@ -1,35 +1,102 @@
 ---
-name: "Cobot"
+name: "cobot"
+version: "1.0.0"
 description: "Collaborative robot task planner. Use when json cobot tasks, csv cobot tasks, checking cobot status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cobot"
-sourceUrl: "https://clawhub.ai/skills/cobot"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [cobot, industrial, cli, tool]
+category: "industrial"
 ---
 
-# Cobot
+# cobot
 
-> Collaborative robot task planner. Use when json cobot tasks, csv cobot tasks, checking cobot status.
+Collaborative robot task planner. Use when json cobot tasks, csv cobot tasks, checking cobot status.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cobot`
-- **Source URL:** [https://clawhub.ai/skills/cobot](https://clawhub.ai/skills/cobot)
+### `status`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cobot
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Description |
+|----------|-------------|
+| `COBOT_DIR` | Data directory (default: ~/.cobot/) |
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

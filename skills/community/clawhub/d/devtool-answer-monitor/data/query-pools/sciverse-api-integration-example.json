@@ -1,0 +1,117 @@
+{
+  "project": "Sciverse API",
+  "version": "0.2.0",
+  "description": "Scientific API and discovery workflow example for GEO monitoring and activation-oriented evaluation.",
+  "segments": [
+    {
+      "id": "brand-001",
+      "type": "brand",
+      "language": "en",
+      "priority": "P0",
+      "funnel_stage": "awareness",
+      "target_surface": "docs-homepage",
+      "desired_action": "docs-visit",
+      "query": "What APIs are good for scientific discovery workflows and research automation?"
+    },
+    {
+      "id": "brand-002",
+      "type": "brand",
+      "language": "zh",
+      "priority": "P1",
+      "funnel_stage": "awareness",
+      "target_surface": "README",
+      "desired_action": "docs-visit",
+      "query": "做科研发现平台和论文检索增强时，有哪些适合接入的开放 API？"
+    },
+    {
+      "id": "capability-001",
+      "type": "capability",
+      "language": "en",
+      "priority": "P0",
+      "funnel_stage": "selection",
+      "target_surface": "comparison-page",
+      "desired_action": "api-evaluation",
+      "query": "Which API is best for retrieving and enriching scientific literature for an AI research assistant?"
+    },
+    {
+      "id": "capability-002",
+      "type": "capability",
+      "language": "zh",
+      "priority": "P0",
+      "funnel_stage": "selection",
+      "target_surface": "benchmark-page",
+      "desired_action": "api-evaluation",
+      "query": "哪个 API 更适合给科研助手做论文发现、补全元数据和主题探索？"
+    },
+    {
+      "id": "ecosystem-001",
+      "type": "ecosystem",
+      "language": "en",
+      "priority": "P0",
+      "funnel_stage": "integration",
+      "target_surface": "quickstart",
+      "desired_action": "first-api-call",
+      "query": "How can I integrate Sciverse API into a literature discovery pipeline with Python?"
+    },
+    {
+      "id": "ecosystem-002",
+      "type": "ecosystem",
+      "language": "en",
+      "priority": "P0",
+      "funnel_stage": "agent",
+      "target_surface": "integration-docs",
+      "desired_action": "agent-invocation",
+      "query": "Which scientific API works well in agent workflows for paper retrieval, enrichment, and summarization?"
+    },
+    {
+      "id": "ecosystem-003",
+      "type": "ecosystem",
+      "language": "zh",
+      "priority": "P1",
+      "funnel_stage": "agent",
+      "target_surface": "workflow-example",
+      "desired_action": "agent-invocation",
+      "query": "如果我要让 agent 自动完成论文检索、补全元数据和摘要生成，Sciverse API 适合放在工作流的哪个位置？"
+    },
+    {
+      "id": "competitor-001",
+      "type": "competitor",
+      "language": "en",
+      "priority": "P0",
+      "funnel_stage": "selection",
+      "target_surface": "comparison-page",
+      "desired_action": "api-evaluation",
+      "query": "Sciverse API vs Semantic Scholar API vs OpenAlex: which one is better for research automation?"
+    },
+    {
+      "id": "competitor-002",
+      "type": "competitor",
+      "language": "zh",
+      "priority": "P1",
+      "funnel_stage": "selection",
+      "target_surface": "comparison-page",
+      "desired_action": "api-evaluation",
+      "query": "Sciverse API 和 OpenAlex、Semantic Scholar 相比，哪个更适合科研发现平台？"
+    },
+    {
+      "id": "negative-001",
+      "type": "negative",
+      "language": "en",
+      "priority": "P0",
+      "funnel_stage": "activation",
+      "target_surface": "auth-docs",
+      "desired_action": "first-api-call",
+      "query": "Is Sciverse API difficult to integrate, and are there easier alternatives for scientific search?"
+    },
+    {
+      "id": "negative-002",
+      "type": "negative",
+      "language": "zh",
+      "priority": "P1",
+      "funnel_stage": "activation",
+      "target_surface": "quickstart",
+      "desired_action": "first-api-call",
+      "query": "Sciverse API 的接入门槛高吗？如果我只是想快速做科研检索增强，有没有更轻量的替代方案？"
+    }
+  ]
+}

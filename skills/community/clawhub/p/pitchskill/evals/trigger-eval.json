@@ -1,0 +1,127 @@
+[
+  {
+    "query": "我们公司下个月要去pitch一个快消品牌的年度代理商，客户发了RFP过来，要求做全案方案，包括品牌策略和社媒运营。还有两家4A在竞标，帮我准备一下比稿方案。",
+    "should_trigger": true
+  },
+  {
+    "query": "刚接到通知，我们被邀请参加一个汽车品牌的比稿，他们要换品牌代理商。Brief要求提交创意方案和媒介策略，下周三截稿。这是个传统车企想做年轻化，预算3000万左右。",
+    "should_trigger": true
+  },
+  {
+    "query": "老板让我准备一个提案给客户，是关于明年Q1的digital marketing campaign的，客户那边marketing director和CMO都会参加评审。我想准备一个有说服力的pitch deck。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们是一家创意热店，收到了一个国际美妆品牌的竞标邀请，要做他们新品的launch campaign。客户说想要'bold and different'的东西，评审团有品牌VP和全球brand manager。帮我从策略到提案全搞。",
+    "should_trigger": true
+  },
+  {
+    "query": "下周要去做一个agency pitch，客户是某头部互联网公司，要选年度品牌服务商。他们组织了一个比稿评审会，会有品牌、市场、采购三个部门的人一起评。我知道还有另外三家在竞标，想分析一下对手可能的策略。",
+    "should_trigger": true
+  },
+  {
+    "query": "客户发了招标文件，是个地方政府文旅局要做城市品牌推广方案。要走正式的招投标流程，需要准备竞标方案，包括创意方案和预算报价。截稿时间是下个月10号。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们团队要去pitch一个运动品牌的social media account，竞争挺激烈的，据说还有两家本地agency在抢。客户想要提升年轻用户互动和品牌声量，帮我搞个赢标策略。",
+    "should_trigger": true
+  },
+  {
+    "query": "刚刚收到一个SaaS客户的需求，他们要重新选品牌策略合作伙伴。不是比创意，主要是比策略思维和对B2B市场的理解。提案日定在下周五，我该怎么准备这个比稿？",
+    "should_trigger": true
+  },
+  {
+    "query": "有个提案要做，是给一家连锁餐饮集团的年度营销方案竞标。客户明确说这次要比创意力和执行力，评审团包括CEO、CMO和运营总监。我想提前预判一下他们各自的关注点和可能提出的尖锐问题。",
+    "should_trigger": true
+  },
+  {
+    "query": "客户说对我们的方案感兴趣，但要求我们做一个正式的presentation给他们的管理层看。不是比稿，但性质差不多，需要准备pitch deck和应对Q&A。产品是一个新的会员体系方案。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我写一份咖啡品牌的marketing plan，包括目标人群分析、渠道策略和预算分配，不需要提案，就内部用。",
+    "should_trigger": false
+  },
+  {
+    "query": "我们公司要做一个新品上市的campaign，帮我想一下创意方向和执行计划。不是比稿，是给自己品牌做的。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把这个PPT美化一下，加一些数据图表和动画效果，明天要给老板汇报季度业绩。",
+    "should_trigger": false
+  },
+  {
+    "query": "客户要我们出一份社交媒体运营方案，包括内容规划和KPI目标。是续约的方案，不是竞标，只是给客户看一下明年的计划。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我分析一下竞品XX最近在抖音上的投放策略，他们最近换了一家新agency，想知道他们在做什么新的东西。纯粹调研用。",
+    "should_trigger": false
+  },
+  {
+    "query": "我要给投资人做一个pitch deck，是关于我们创业项目的融资路演。我们需要准备商业计划书和财务预测。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写一个品牌定位方案，包括品牌故事、slogan和视觉调性建议。是品牌内部重新定位用的，不涉及比稿或提案。",
+    "should_trigger": false
+  },
+  {
+    "query": "我们公司在做招投标管理系统的开发，需要实现供应商管理和评标打分功能。帮我设计一下数据库schema和API接口。",
+    "should_trigger": false
+  },
+  {
+    "query": "我要准备一个内部培训的presentation，主题是2025年数字营销趋势，给团队分享用的，大概30分钟。",
+    "should_trigger": false
+  },
+  {
+    "query": "客户对我们的执行效果不太满意，我需要准备一份复盘报告，分析过去三个月的投放数据和优化建议，然后约个会议跟他们沟通。",
+    "should_trigger": false
+  },
+  {
+    "query": "pitch",
+    "should_trigger": true,
+    "note": "极短查询 — 单词触发"
+  },
+  {
+    "query": "比稿",
+    "should_trigger": true,
+    "note": "极短查询 — 单词触发"
+  },
+  {
+    "query": "help me win this pitch next week",
+    "should_trigger": true,
+    "note": "英文短查询"
+  },
+  {
+    "query": "内部pitch给老板看明年的营销规划，不是对外竞标",
+    "should_trigger": false,
+    "note": "混合信号 — 内部汇报不应触发"
+  },
+  {
+    "query": "我要在招标网上投一个政府项目，需要写投标文件，包括技术方案和商务报价",
+    "should_trigger": true,
+    "note": "政府采购招标 — 应触发"
+  },
+  {
+    "query": "帮我们准备下个季度的media plan，给内部团队用的，不是比稿",
+    "should_trigger": false,
+    "note": "明确排除比稿场景"
+  },
+  {
+    "query": "We need to prepare for a competitive agency review for a luxury fashion brand. Three agencies are shortlisted and we need to win this.",
+    "should_trigger": true,
+    "note": "全英文比稿场景"
+  },
+  {
+    "query": "我朋友开了家奶茶店，想取个名字，帮我想几个",
+    "should_trigger": false,
+    "note": "完全无关 — 命名需求"
+  },
+  {
+    "query": "公司要换广告代理商，我是甲方，想设计一个比稿流程来筛选agency，帮我出个评分标准",
+    "should_trigger": true,
+    "note": "甲方视角 — 设计比稿流程也应触发（需要决策引擎知识）"
+  }
+]

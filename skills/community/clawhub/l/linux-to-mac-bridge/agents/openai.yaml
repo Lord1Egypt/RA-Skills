@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linux to Mac Bridge (Legacy)"
+  short_description: "Legacy combo bridge; prefer macOS Bridge or Homebrew Bridge"
+  default_prompt: "Use $linux-to-mac-bridge only when you need the legacy combined bridge behavior. Prefer $macos-bridge for Mac-owned CLIs and $homebrew-bridge for Homebrew-backed tools."

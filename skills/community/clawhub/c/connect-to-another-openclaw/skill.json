@@ -1,0 +1,67 @@
+{
+  "name": "Connect_to_another_openclaw",
+  "description": "Connect to and manage another OpenClaw server remotely via SSH. Perform health checks, fix port conflicts, sync skills, and monitor channels.",
+  "version": "1.0.0",
+  "author": "小李",
+  "license": "MIT",
+  "type": "python",
+  "main": "main.py",
+  "arguments": [
+    {
+      "name": "host",
+      "type": "string",
+      "required": true,
+      "description": "Remote OpenClaw server host (IP or domain)"
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "required": true,
+      "enum": ["test-connection", "status", "fix-port", "list-skills", "diff", "sync-to-local", "sync-to-remote", "list-sessions", "tail-logs"],
+      "description": "Action to perform on remote"
+    },
+    {
+      "name": "user",
+      "type": "string",
+      "default": "root",
+      "description": "SSH username"
+    },
+    {
+      "name": "key",
+      "type": "string",
+      "default": "~/.ssh/id_rsa",
+      "description": "Path to SSH private key"
+    },
+    {
+      "name": "local_skills_file",
+      "type": "string",
+      "default": "/root/.openclaw/workspace/local_skills.txt",
+      "description": "Local skills list file (for diff/sync actions)"
+    },
+    {
+      "name": "skill",
+      "type": "string",
+      "description": "Specific skill name to install (used with sync-to-remote)"
+    },
+    {
+      "name": "yes",
+      "type": "boolean",
+      "default": false,
+      "description": "Auto-confirm prompts without asking"
+    }
+  ],
+  "environment": {
+    "CONNECT_OPENCLAW_SSH_KEY": "SSH private key path (overrides --key)",
+    "CONNECT_OPENCLAW_USER": "SSH username (overrides --user)",
+    "CONNECT_OPENCLAW_GATEWAY_PORT": "Remote gateway port (default 18790)"
+  },
+  "requirements": [],
+  "tags": [
+    "openclaw",
+    "ssh",
+    "remote",
+    "admin",
+    "sync",
+    "ops"
+  ]
+}

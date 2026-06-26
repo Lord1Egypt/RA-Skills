@@ -1,35 +1,54 @@
 ---
-name: "Moodle Web Services Skill"
-description: "Integrate with Moodle 4.x via REST Web Services to create courses, manage enrollments, activities, grades, and list courses or students."
-category: "software-development"
-source: "ClawHub"
-tags: [api, automation, external, integration, lms, moodle, rest, skill, webservices]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moodle-ws-skill"
-sourceUrl: "https://clawhub.ai/skills/moodle-ws-skill"
+name: moodle-ws
+description: >
+  Integrar con Moodle 4.x usando Web Services REST. Usar esta skill cuando el usuario pida crear cursos,
+  inscribir o desinscribir usuarios, crear o actualizar actividades (quiz, assignment, forum),
+  enviar calificaciones o listar cursos/estudiantes en un campus Moodle con Web Services habilitados.
 ---
 
-# Moodle Web Services Skill
+# Moodle Web Services (REST) – Skill
 
-> Integrate with Moodle 4.x via REST Web Services to create courses, manage enrollments, activities, grades, and list courses or students.
+## 1. Contexto y requisitos
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moodle-ws-skill`
-- **Source URL:** [https://clawhub.ai/skills/moodle-ws-skill](https://clawhub.ai/skills/moodle-ws-skill)
+Esta skill sirve para trabajar con **Moodle 4.x** mediante **Web Services (REST)**.
 
-## Overview
+Funcionalidades principales:
 
+- Crear curso
+- Inscribir / desinscribir usuarios
+- Crear / actualizar actividades:
+  - Quiz (cuestionarios)
+  - Assignment (tareas / entregas)
+  - Forum (foros)
+- Enviar calificaciones
+- Obtener listas de cursos y estudiantes
 
-## Installation
-To install this skill, run the following command in your terminal:
+Requisitos:
+
+- URL base de Moodle (por ejemplo: `https://moodle.ejemplo.com`)
+- Token de Web Service con los permisos adecuados (role con capabilities para:
+  - crear cursos,
+  - gestionar matriculaciones,
+  - gestionar actividades,
+  - gestionar notas).
+
+**Importante:** nunca guardar el token en el chat. Pedirle al usuario que lo configure en un archivo local o variable de entorno.
+
+Sugerencia: guardar en un archivo de config no versionado, por ejemplo:
+
 ```bash
-hermes skills install clawhub/moodle-ws-skill
-```
+~/.openclaw/workspace/secrets/moodle-ws.json
+
+## 7. Autoría y uso
+
+Skill **moodle-ws** diseñada por **Exe Andino**.
+
+Pensada para:
+- integrar Moodle 4.x con asistentes OpenClaw,
+- automatizar tareas docentes y administrativas (creación de cursos, matriculaciones, actividades, notas),
+- siempre usando tokens de Web Services con permisos limitados y entornos controlados.
+
+Se recomienda:
+- usar tokens específicos para este tipo de integración,
+- no versionar ni exponer la configuración de URL + token,
+- probar primero en entornos de prueba antes de producción.

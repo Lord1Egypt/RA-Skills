@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "name": "notion",
+  "description": "Notion integration - Manage pages, databases, and content in Notion",
+  "instructions": "instructions.md",
+  "tools": {
+    "auto_preload": false,
+    "entries": [
+      {"name": "notion_create_page", "description": "Create a new Notion page", "parameters": {"type": "object", "properties": {"parent_id": {"type": "string"}, "title": {"type": "string"}, "content": {"type": "string"}}, "required": ["parent_id", "title"]}},
+      {"name": "notion_query_database", "description": "Query a Notion database", "parameters": {"type": "object", "properties": {"database_id": {"type": "string"}}, "required": ["database_id"]}},
+      {"name": "notion_search", "description": "Search Notion pages", "parameters": {"type": "object", "properties": {"query": {"type": "string"}}}}
+    ]
+  },
+  "env": [{"name": "NOTION_API_KEY", "description": "Notion API Key", "required": true}],
+  "tags": ["productivity", "integration", "notion"],
+  "author": "lukaizj",
+  "homepage": "https://github.com/lukaizj/notion-integration-skill"
+}

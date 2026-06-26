@@ -1,0 +1,4 @@
+interface:
+  display_name: "Infini API"
+  short_description: "Guide Infini API and webhook integration."
+  default_prompt: "Use $infini-api to guide me through Infini API integration step by step."

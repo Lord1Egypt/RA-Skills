@@ -1,0 +1,7 @@
+{
+  "name": "conversation-recovery",
+  "version": "1.0.1",
+  "description": "Redirect: conversation-recovery has been merged into context-preserver for session snapshots, recovery, handoff, and long-running task continuity.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

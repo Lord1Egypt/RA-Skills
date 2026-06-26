@@ -1,0 +1,10 @@
+{
+  "name": "navil-policy",
+  "version": "1.0.2",
+  "description": "Reduce MCP token costs by up to 94% via tool scoping. YAML-driven policies that control which tools each agent can see and call.",
+  "author": "ivanpantheon",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/navilai/navil",
+  "repository": "https://github.com/navilai/navil",
+  "keywords": ["token-optimization", "tool-scoping", "mcp", "policy", "least-privilege", "openclaw", "cost-reduction"]
+}

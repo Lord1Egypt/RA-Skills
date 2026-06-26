@@ -1,35 +1,113 @@
 ---
-name: "HR ArchSystem"
-description: "HR组织架构与职级体系设计系统。触发场景包括： （1）组织架构设计——设计或调整公司/部门架构、部门划分、汇报关系、决策流； （2）职级体系设计——建立职级序列、职级数量、晋升通道、双通道模型； （3）胜任力模型词典——为岗位序列构建胜任力维度表、行为分级标尺； （4）职级评价（任职资格评定）——用胜任力词典评定..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hr-archsystem"
-sourceUrl: "https://clawhub.ai/skills/hr-archsystem"
+name: hr-archsystem
+description: >
+  HR组织架构与职级体系设计系统。触发场景包括：
+  （1）组织架构设计——设计或调整公司/部门架构、部门划分、汇报关系、决策流；
+  （2）职级体系设计——建立职级序列、职级数量、晋升通道、双通道模型；
+  （3）胜任力模型词典——为岗位序列构建胜任力维度表、行为分级标尺；
+  （4）职级评价（任职资格评定）——用胜任力词典评定具体人的职级。
+  同时处理：AI时代下这些系统的重构与迭代。
 ---
 
-# HR ArchSystem
+# HR ArchSystem — 组织架构·职级体系·胜任力模型·职级评价
 
-> HR组织架构与职级体系设计系统。触发场景包括： （1）组织架构设计——设计或调整公司/部门架构、部门划分、汇报关系、决策流； （2）职级体系设计——建立职级序列、职级数量、晋升通道、双通道模型； （3）胜任力模型词典——为岗位序列构建胜任力维度表、行为分级标尺； （4）职级评价（任职资格评定）——用胜任力词典评定...
+## 设计理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hr-archsystem`
-- **Source URL:** [https://clawhub.ai/skills/hr-archsystem](https://clawhub.ai/skills/hr-archsystem)
+组织架构、职级体系、胜任力模型、职级评价是四个相互咬合的模块，组成一个完整的人力资源基础设施系统：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hr-archsystem
 ```
+组织架构设计
+    ↓ 产出：部门划分 + 职类序列
+职级体系设计
+    ↓ 产出：职级序列表 + 晋升通道
+胜任力词典
+    ↓ 产出：能力维度 × 分级标尺
+职级评价
+    ↓ 产出：评价结果 + 职级建议
+```
+
+四个模块必须保持内部一致性。改变任何一个，其他三个都需要重新检视。
+
+---
+
+## 核心方法论来源
+
+| 方法论 | 适用模块 | 核心贡献 |
+|--------|---------|---------|
+| McKinsey 7S | 组织架构 | 组织内部七要素对齐诊断 |
+| Korn Ferry Hay Method | 职级评价 | Know-How / Problem Solving / Accountability 三因子计分 |
+| AIHR T-Shaped Model | 胜任力词典 | HR专业能力深度 + 业务理解广度 |
+| WTW AI-Enhanced Leveling | 职级体系 | AI辅助的动态职级框架 |
+
+---
+
+## 模块导航
+
+### 1. 组织架构设计
+→ `references/org-design.md`
+- McKinsey 7S 七要素诊断
+- 部门划分原则（复杂度系数）
+- AI时代人机协同架构新增考量
+- 职类序列定义（管理/专业/技术/技能四大序列）
+
+### 2. 职级体系设计
+→ `references/job-level.md`
+- 职级序列表（典型 L1-L9 结构）
+- 双通道模型（管理序列 + 专业序列）
+- 宽带薪酬映射
+- 晋升校准机制
+- AI渗透率差异对职级的影响
+
+### 3. 胜任力词典
+→ `references/competency-dictionary.md`
+- 胜任力建模流程（BEI访谈 + 编码）
+- 能力维度定义模板
+- 分级标尺（每项能力4-5级描述）
+- AI协同能力分级（Level 1-5）
+- 按职类序列的差异化能力要求
+
+### 4. 职级评价
+→ `references/job-evaluation.md`
+- 评价流程（准备 → 证据收集 → 评分 → 校准 → 输出）
+- Korn Ferry Hay 三因子评分卡
+- 证据收集模板（行为证据 / 项目证据 / AI效能证据）
+- 校准会机制
+- 评价结果输出格式
+
+---
+
+## 通用流程顺序
+
+对于完整的体系建设，按以下顺序使用各模块：
+
+```
+Step 1: org-design    → 产出《架构说明书》
+Step 2: job-level      → 产出《职级序列表》
+Step 3: competency     → 产出《胜任力词典》
+Step 4: evaluation     → 产出《个人评价报告》
+```
+
+---
+
+## 关键原则
+
+1. **架构决定层级** — 先有架构和职类序列，才能设计职级
+2. **能力锚定职级** — 职级本质是对能力深度的计量
+3. **评价依赖词典** — 没有词典就不要做评价
+4. **AI能力分层** — 每一级胜任力都内置AI协同能力等级，不做附录
+5. **保持动态** — 这些系统都是活的，每半年至少review一次
+
+---
+
+## 启动方式
+
+当用户提供以下类型信息时，识别其需求并导航到对应模块：
+
+| 用户输入信号 | 触发模块 |
+|------------|---------|
+| "我们公司要重新设计组织架构" | org-design |
+| "怎么建立职级体系" / "双通道怎么设计" | job-level |
+| "需要一套胜任力模型" / "能力词典怎么做" | competency-dictionary |
+| "怎么评定某人的职级" / "任职资格怎么写" | job-evaluation |
+| "AI时代这些体系怎么调整" | 所有模块（带AI视角）|
+| "我要建整套HR体系" | 完整流程（所有模块）|

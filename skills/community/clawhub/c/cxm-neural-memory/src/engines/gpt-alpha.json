@@ -1,0 +1,6 @@
+{
+  "engine": "gpt_alpha",
+  "format": "json",
+  "wrapper": "System: Maximize Logic-Density. Expect JSON input.\n\n{content}\n\nOutput MUST be valid JSON.",
+  "notes": "GPT Alpha (o1/o3) bevorzugt hochdichte JSON Strukturen ohne Füllwörter."
+}

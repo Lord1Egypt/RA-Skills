@@ -1,35 +1,77 @@
 ---
-name: "gate-mcp-installer"
-description: "One-click installer and configurator for Gate MCP (mcporter) in OpenClaw. Use when the user wants to (1) Install mcporter CLI tool, (2) Configure Gate MCP se..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gate-mcp-installer"
-sourceUrl: "https://clawhub.ai/skills/gate-mcp-installer"
+name: gate-mcp-installer
+description: One-click installer and configurator for Gate MCP (mcporter) in OpenClaw. Use when the user wants to (1) Install mcporter CLI tool, (2) Configure Gate MCP server connection, (3) Verify Gate MCP setup, or (4) Troubleshoot Gate MCP connectivity issues.
 ---
 
-# gate-mcp-installer
+# Gate MCP Installer
 
-> One-click installer and configurator for Gate MCP (mcporter) in OpenClaw. Use when the user wants to (1) Install mcporter CLI tool, (2) Configure Gate MCP se...
+One-click setup for Gate MCP (mcporter) in OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gate-mcp-installer`
-- **Source URL:** [https://clawhub.ai/skills/gate-mcp-installer](https://clawhub.ai/skills/gate-mcp-installer)
+## Quick Start
 
-## Overview
+To set up Gate MCP, run the install script:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gate-mcp-installer
+bash ~/.openclaw/skills/gate-mcp-installer/scripts/install-gate-mcp.sh
 ```
+
+Or execute the skill directly and I will guide you through the installation.
+
+## What This Skill Does
+
+This skill automates the complete Gate MCP setup process:
+
+1. **Installs mcporter CLI** globally via npm
+2. **Configures Gate MCP server** with proper endpoint
+3. **Verifies connectivity** by listing available tools
+4. **Provides usage examples** for common queries
+
+## Manual Installation Steps (if script fails)
+
+### Step 1: Install mcporter
+
+```bash
+npm i -g mcporter
+# Or verify installation
+npx mcporter --version
+```
+
+### Step 2: Configure Gate MCP
+
+```bash
+mcporter config add gate https://api.gatemcp.ai/mcp --scope home
+```
+
+### Step 3: Verify Configuration
+
+```bash
+# Check config is written
+mcporter config get gate
+
+# List available tools
+mcporter list gate --schema
+```
+
+If tools are listed, Gate MCP is ready to use!
+
+## Common Usage Examples
+
+After installation, use Gate MCP with queries like:
+
+- "查询 BTC/USDT 的价格"
+- "用 gate mcp 分析 SOL"
+- "Gate 有什么套利机会？"
+- "查看 ETH 的资金费率"
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| `command not found: mcporter` | Run `npm i -g mcporter` |
+| Config not found | Run the config add command again |
+| Connection timeout | Check internet connection to fulltrust.link |
+| No tools listed | Verify config URL is correct |
+
+## Resources
+
+- **Install Script**: `scripts/install-gate-mcp.sh` - Automated one-click installer

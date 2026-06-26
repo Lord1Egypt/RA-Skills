@@ -1,0 +1,9 @@
+{
+  "optimize_interval": 604800,
+  "max_db_size_mb": 100,
+  "orphan_threshold": 10,
+  "auto_vacuum": true,
+  "auto_reindex": true,
+  "auto_cleanup_orphans": true,
+  "backup_before_optimize": true
+}

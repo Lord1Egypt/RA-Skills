@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin/get-video-detail/v2 for Douyin (TikTok China) Video Details through JustOneAPI with videoId.",
+  "displayName": "Douyin (TikTok China) Video Details",
+  "endpointPath": "get-video-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin (TikTok China) video Details data, including author details, publish time, and engagement counts, for video research, archiving, and performance analysis.",
+      "method": "GET",
+      "operationId": "getDouyinVideoDetailV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique video identifier (aweme_id or model_id).",
+          "enumValues": [],
+          "location": "query",
+          "name": "videoId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/get-video-detail/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Details",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    }
+  ],
+  "platformKey": "douyin",
+  "primaryTag": "Douyin (TikTok China)",
+  "skillName": "justoneapi_douyin_get_video_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-get-video-detail",
+  "sourceTitle": "OpenAPI definition"
+}

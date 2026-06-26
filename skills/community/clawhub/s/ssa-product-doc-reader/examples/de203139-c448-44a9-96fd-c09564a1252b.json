@@ -1,0 +1,96 @@
+{
+  "product_name": "HDMIDVIMF",
+  "length_mm": "",
+  "material_code": "599-006",
+  "packaging_spec": "BJ0599-0007",
+  "mold_info": "",
+  "mold_number": "",
+  "bom": [
+    {
+      "no": "1",
+      "part_name": "接头",
+      "spec": "HDMI AM 19P PIN:G/F,SHELL: 铁壳镀金",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "2",
+      "part_name": "接头",
+      "spec": "DVI 24+1 PIN:G/F,SHELL: 铁壳镀金",
+      "quantity": "1PCS"
+    },
+    {
+      "no": "3",
+      "part_name": "内模",
+      "spec": "",
+      "quantity": ""
+    },
+    {
+      "no": "4",
+      "part_name": "透明 PE 料",
+      "spec": "",
+      "quantity": "g"
+    },
+    {
+      "no": "5",
+      "part_name": "外模 45P",
+      "spec": "黑色PVC成型",
+      "quantity": "g"
+    },
+    {
+      "no": "6",
+      "part_name": "辅料 DVI(24+1)",
+      "spec": "防尘帽",
+      "quantity": "2PCS"
+    },
+    {
+      "no": "7",
+      "part_name": "辅料 HDMI",
+      "spec": "防尘帽",
+      "quantity": "1PCS"
+    }
+  ],
+  "tolerances": [
+    {
+      "hardware": "0.5-3.0/±0.05mm",
+      "plastic": "0.5-3.0/±0.1mm"
+    },
+    {
+      "hardware": "3.0-6.0/±0.05mm",
+      "plastic": "3.0-6.0/±0.1mm"
+    },
+    {
+      "hardware": "6.0-30.0/±0.05mm",
+      "plastic": "6.0-30.0/±0.2mm"
+    },
+    {
+      "hardware": "/±0.05mm",
+      "plastic": "/±0.3mm"
+    }
+  ],
+  "pin_assignment": {
+    "connectors": [
+      "HDMI AF",
+      "DVI(24+1)F",
+      "CN1",
+      "CN2"
+    ],
+    "pin_labels": [
+      "SHELL",
+      "SHELL",
+      "pin18",
+      "pin1",
+      "pin2",
+      "pin1"
+    ],
+    "description": "HDMI AF ↔ DVI(24+1)F"
+  },
+  "notes": [
+    "注意 、所有材质符合RoHS 2.0 和REACH 最新环保标准"
+  ],
+  "company": "SKW / 珠海福睿电子 / FARREACH",
+  "date": "",
+  "source_file": "de203139-c448-44a9-96fd-c09564a1252b.pdf",
+  "extraction_method": "docling",
+  "confidence": 100.0,
+  "warnings": []
+}

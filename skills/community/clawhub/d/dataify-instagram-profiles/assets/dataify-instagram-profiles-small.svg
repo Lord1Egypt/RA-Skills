@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Dataify Instagram profiles">
+  <rect width="64" height="64" rx="14" fill="#ffffff"/>
+  <rect x="10" y="10" width="44" height="44" rx="13" fill="#e4405f"/>
+  <circle cx="32" cy="31" r="11" fill="none" stroke="#ffffff" stroke-width="5"/>
+  <circle cx="45" cy="19" r="4" fill="#ffffff"/>
+</svg>

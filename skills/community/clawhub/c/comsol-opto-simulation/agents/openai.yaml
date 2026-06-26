@@ -1,0 +1,8 @@
+interface:
+  display_name: "COMSOL Simulation"
+  short_description: "Configure and audit COMSOL simulations"
+  brand_color: "#4F46E5"
+  default_prompt: "Use $comsol-opto-simulation to configure and validate a topic-neutral COMSOL simulation workflow."
+
+policy:
+  allow_implicit_invocation: true

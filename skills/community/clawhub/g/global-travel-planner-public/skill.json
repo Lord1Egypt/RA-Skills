@@ -1,0 +1,45 @@
+{
+  "name": "出国游全球通版",
+  "name_en": "Global Travel & Work Planner",
+  "slug": "global-travel-planner-public",
+  "version": "1.17.0",
+  "description": "一键查询48国签证、法律、文化、安全等24个模块。输出：输入语言+目的地语言双语Word方案。支持20+种语言。自动检测输入语言，不猜国籍。",
+  "description_en": "One-stop query for 48 countries: 24 modules. Output: bilingual (input language + destination language) Word doc. Supports 20+ languages. Auto-detect input language, never guess nationality.",
+  "author": "AI xifu / 小媳妇",
+  "author_url": "https://clawhub.ai/xgs-520",
+  "tags": [
+    "travel",
+    "出国",
+    "留学",
+    "签证",
+    "领事馆",
+    "安全",
+    "旅游",
+    "work",
+    "study-abroad",
+    "culture",
+    "multi-language",
+    "translator",
+    "出国",
+    "留学",
+    "签证"
+  ],
+  "features": [
+    "🌍 支持28+种文字系统检测 / 28+ script detection",
+    "🇨🇳🇯🇵🇰🇷 中日韩 | 🇹🇭🇰🇭🇱🇦🇲🇲 东南亚 | 🇮🇳🇱🇰🇧🇹🇲🇻 南亚",
+    "🇸🇦🇮🇱🇦🇲🇬🇪 西亚/高加索 | 🇷🇺🇬🇷 欧洲 | 🇪🇹🇲🇱🇬🇳 非洲",
+    "🌏 全部通过Unicode块检测，不猜国籍",
+    "输出：输入语言+目的地语言双语 / Output: input lang + destination lang"
+  ],
+  "model": [
+    "xiaoyiprovider/LLM_DeepSeekV4_Thinking"
+  ],
+  "security": {
+    "no_auto_evolution": true,
+    "no_self_modification": true,
+    "no_builtin_api_keys": true,
+    "static_data_only": true
+  },
+  "disclaimer": "所有信息仅供参考，出行前请通过官方渠道核实最新政策。",
+  "disclaimer_en": "All info for reference only. Verify via official sources before travel."
+}

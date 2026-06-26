@@ -1,0 +1,34 @@
+{
+  "name": "openclaw-skill-atlassian-bitbucket",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Atlassian Bitbucket Cloud — full CRUD via REST API 2.0",
+  "type": "module",
+  "bin": {
+    "bitbucket": "./scripts/bitbucket.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/bitbucket.mjs",
+    "help": "node scripts/bitbucket.mjs --help"
+  },
+  "keywords": [
+    "openclaw",
+    "bitbucket",
+    "atlassian",
+    "bitbucket-cloud",
+    "ai-skill"
+  ],
+  "author": "Abdelkrim BOUJRAF <abdelkrim@alt-f1.be> (https://www.alt-f1.be)",
+  "license": "MIT",
+  "homepage": "https://www.alt-f1.be",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ALT-F1-OpenClaw/openclaw-skill-atlassian-bitbucket-by-altf1be.git"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

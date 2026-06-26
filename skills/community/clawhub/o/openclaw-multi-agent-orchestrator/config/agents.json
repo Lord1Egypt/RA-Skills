@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-03-15T15:00:00",
+  "agents": [
+    {
+      "name": "search-agent",
+      "capabilities": ["search", "web", "research", "information"],
+      "status": "idle",
+      "tasks_completed": 0,
+      "current_load": 0,
+      "max_load": 10,
+      "performance_score": 100
+    },
+    {
+      "name": "writer-agent",
+      "capabilities": ["writing", "creative", "content", "editing"],
+      "status": "idle",
+      "tasks_completed": 0,
+      "current_load": 0,
+      "max_load": 10,
+      "performance_score": 100
+    },
+    {
+      "name": "coder-agent",
+      "capabilities": ["coding", "programming", "debugging", "review"],
+      "status": "idle",
+      "tasks_completed": 0,
+      "current_load": 0,
+      "max_load": 10,
+      "performance_score": 100
+    },
+    {
+      "name": "analyst-agent",
+      "capabilities": ["analysis", "data", "statistics", "report"],
+      "status": "idle",
+      "tasks_completed": 0,
+      "current_load": 0,
+      "max_load": 10,
+      "performance_score": 100
+    }
+  ],
+  "task_history": []
+}

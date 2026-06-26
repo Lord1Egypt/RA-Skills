@@ -1,0 +1,269 @@
+// pages/{{name}}ListPage.ets
+// {{name}}列表页面
+
+import { {{viewModelName}} } from '../viewmodels/{{viewModelName}}';
+import { {{modelName}} } from '../models/{{modelName}}';
+import { GlobalErrorHandler } from '../common/utils/GlobalErrorHandler';
+
+@Entry
+@Component
+struct {{name}}ListPage {
+  private viewModel: {{viewModelName}} = new {{viewModelName}}();
+  private errorHandler: GlobalErrorHandler = GlobalErrorHandler.getInstance();
+
+  @State isLoading: boolean = false;
+  @State isRefreshing: boolean = false;
+  @State hasMore: boolean = true;
+  @State listData: {{modelName}}[] = [];
+  @State searchKeyword: string = '';
+
+  aboutToAppear() {
+    this.loadData();
+  }
+
+  build() {
+    Column() {
+      // 搜索栏
+      this.buildSearchBar()
+
+      // 列表内容
+      List({ space: 12 }) {
+        ListItem() {
+          this.buildFilterBar()
+        }
+
+        ForEach(this.listData, (item: {{modelName}}, index: number) => {
+          ListItem() {
+            this.buildListItem(item, index)
+          }
+          .onClick(() => this.handleItemClick(item))
+        }, (item: {{modelName}}) => item.id)
+
+        // 加载更多
+        if (this.hasMore) {
+          ListItem() {
+            this.buildLoadMore()
+          }
+        }
+      }
+      .width('100%')
+      .layoutWeight(1)
+      .padding({ left: 16, right: 16, bottom: 16 })
+      .edgeEffect(EdgeEffect.Spring)
+      .scrollBar(BarState.Auto)
+      .refresh({
+        refreshing: this.isRefreshing,
+        builder: this.buildRefreshHeader(),
+        onRefreshing: () => this.handleRefresh()
+      })
+      .onReachEnd(() => this.handleLoadMore())
+
+      // 空状态
+      if (this.listData.length === 0 && !this.isLoading) {
+        this.buildEmptyState()
+      }
+
+      // 添加按钮
+      this.buildFabButton()
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5F5F5')
+  }
+
+  @Builder
+  buildSearchBar() {
+    Row({ space: 12 }) {
+      Search({ placeholder: '搜索...', value: this.searchKeyword })
+        .width('100%')
+        .height(40)
+        .backgroundColor(Color.White)
+        .onChange((value: string) => {
+          this.searchKeyword = value;
+          this.debounceSearch();
+        })
+        .onSubmit(() => this.handleSearch())
+    }
+    .width('100%')
+    .height(56)
+    .padding({ left: 16, right: 16 })
+    .backgroundColor(Color.White)
+  }
+
+  @Builder
+  buildFilterBar() {
+    Row({ space: 8 }) {
+      // [TODO] 添加筛选条件
+      Text('全部')
+        .fontSize(14)
+        .fontColor('#FF6B35')
+        .padding({ left: 12, right: 12, top: 6, bottom: 6 })
+        .backgroundColor('#FFF2E8')
+        .borderRadius(16)
+    }
+    .width('100%')
+    .padding({ top: 8, bottom: 8 })
+  }
+
+  @Builder
+  buildListItem(item: {{modelName}}, index: number) {
+    Column({ space: 8 }) {
+      // [TODO] 根据实际模型调整展示字段
+      Row() {
+        Text(`Item ${index + 1}`)
+          .fontSize(16)
+          .fontWeight(FontWeight.Medium)
+
+        Blank()
+
+        Text(item.id)
+          .fontSize(12)
+          .fontColor('#999')
+      }
+      .width('100%')
+
+      Text('描述信息...')
+        .fontSize(14)
+        .fontColor('#666')
+        .maxLines(2)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+    }
+    .width('100%')
+    .padding(16)
+    .backgroundColor(Color.White)
+    .borderRadius(8)
+  }
+
+  @Builder
+  buildLoadMore() {
+    Row() {
+      if (this.isLoading) {
+        LoadingProgress()
+          .width(24)
+          .height(24)
+          .color('#FF6B35')
+      }
+      Text(this.isLoading ? '加载中...' : '加载更多')
+        .fontSize(14)
+        .fontColor('#999')
+    }
+    .width('100%')
+    .height(48)
+    .justifyContent(FlexAlign.Center)
+    .onClick(() => this.handleLoadMore())
+  }
+
+  @Builder
+  buildRefreshHeader() {
+    Row() {
+      LoadingProgress()
+        .width(32)
+        .height(32)
+        .color('#FF6B35')
+      Text('下拉刷新')
+        .fontSize(14)
+        .fontColor('#999')
+        .margin({ left: 8 })
+    }
+    .width('100%')
+    .height(48)
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder
+  buildEmptyState() {
+    Column({ space: 16 }) {
+      Image($r('app.media.ic_empty'))
+        .width(120)
+        .height(120)
+        .fillColor('#CCC')
+
+      Text('暂无数据')
+        .fontSize(16)
+        .fontColor('#999')
+
+      Button('刷新试试')
+        .fontColor('#FF6B35')
+        .backgroundColor(Color.Transparent)
+        .onClick(() => this.handleRefresh())
+    }
+    .width('100%')
+    .layoutWeight(1)
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder
+  buildFabButton() {
+    Button('+')
+      .fontSize(24)
+      .fontWeight(FontWeight.Bold)
+      .fontColor(Color.White)
+      .width(56)
+      .height(56)
+      .backgroundColor('#FF6B35')
+      .borderRadius(28)
+      .position({ x: '80%', y: '85%' })
+      .shadow({ radius: 8, color: 'rgba(255, 107, 53, 0.3)', offsetX: 0, offsetY: 4 })
+      .onClick(() => this.handleAddNew())
+  }
+
+  // 数据加载
+  private async loadData() {
+    this.isLoading = true;
+    try {
+      // [TODO] 调用Service加载数据
+      // const result = await this.viewModel.loadList();
+      // this.listData = result.data;
+      // this.hasMore = result.hasMore;
+    } catch (error) {
+      this.errorHandler.handle(error, 'loadData');
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  // 下拉刷新
+  private async handleRefresh() {
+    this.isRefreshing = true;
+    try {
+      // [TODO] 刷新数据
+      await this.loadData();
+    } finally {
+      this.isRefreshing = false;
+    }
+  }
+
+  // 加载更多
+  private async handleLoadMore() {
+    if (this.isLoading || !this.hasMore) return;
+    this.isLoading = true;
+    try {
+      // [TODO] 加载下一页
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  // 搜索
+  private handleSearch() {
+    // [TODO] 执行搜索
+    this.loadData();
+  }
+
+  // 防抖搜索
+  private debounceSearch() {
+    // [TODO] 实现防抖搜索
+  }
+
+  // 点击列表项
+  private handleItemClick(item: {{modelName}}) {
+    // [TODO] 跳转到详情页
+    // router.pushUrl({ url: 'pages/{{name}}DetailPage', params: { id: item.id } });
+  }
+
+  // 添加新项
+  private handleAddNew() {
+    // [TODO] 跳转到添加页或弹出添加对话框
+    // router.pushUrl({ url: 'pages/{{name}}FormPage' });
+  }
+}

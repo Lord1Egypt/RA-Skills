@@ -1,0 +1,30 @@
+{
+  "name": "alimail",
+  "title": "阿里邮箱企业助手",
+  "description": "通过姓名查询企业内部员工的邮箱、工号等信息",
+  "version": "1.0.6",
+  "author": "OpenClaw Contributor",
+  "entrypoint": "main.py",
+  "type": "skill",
+  "runtime": "python3",
+  "tools": [
+    {
+      "name": "search_alimail_user",
+      "description": "搜索员工姓名，返回邮箱和工号。支持模糊匹配。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "员工姓名（例如：张三）"
+          }
+        },
+        "required": ["name"]
+      }
+    }
+  ],
+  "env": [
+    "ALIMAIL_CLIENT_ID",
+    "ALIMAIL_CLIENT_SECRET"
+  ]
+}

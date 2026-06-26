@@ -1,0 +1,74 @@
+{
+  "system": {
+    "name": "Memory Manager",
+    "version": "1.0.0",
+    "description": "Simplified memory management system for OpenClaw",
+    "created": "2026-04-17",
+    "updated": "2026-04-17"
+  },
+  
+  "paths": {
+    "base_dir": "D:\\openclaw\\.openclaw\\workspace\\memory",
+    "main_memory": "D:\\openclaw\\.openclaw\\workspace\\memory\\main",
+    "shared_pool": "D:\\openclaw\\.openclaw\\workspace\\memory\\shared_pool",
+    "archive_dir": "D:\\openclaw\\.openclaw\\workspace\\memory\\archive",
+    "log_dir": "D:\\openclaw\\.openclaw\\workspace\\memory\\logs",
+    "temp_dir": "D:\\openclaw\\.openclaw\\workspace\\memory\\temp"
+  },
+  
+  "agents": {
+    "writing-assistant": {
+      "name": "Writing Assistant",
+      "path": "D:\\writing-bot\\workspace\\memory",
+      "type": "writing",
+      "access_level": "read_only",
+      "description": "写作助手记忆空间",
+      "enabled": true
+    }
+  },
+  
+  "retention": {
+    "archive_days": 180,
+    "temp_days": 30,
+    "log_days": 90,
+    "exchange_history_days": 365
+  },
+  
+  "naming": {
+    "archive_suffix": "_archived_",
+    "delete_suffix": "_delete_",
+    "date_format": "yyyyMMdd",
+    "timestamp_format": "yyyyMMdd_HHmmss",
+    "log_prefix_exchange": "ex_",
+    "log_prefix_operation": "op_"
+  },
+  
+  "operations": {
+    "auto_log": true,
+    "backup_before_archive": false,
+    "validate_paths": true,
+    "check_permissions": true
+  },
+  
+  "monitoring": {
+    "check_interval_days": 7,
+    "alert_on_space_low": true,
+    "space_warning_threshold_gb": 1,
+    "max_file_size_mb": 10
+  },
+  
+  "categories": {
+    "shared_pool_subdirs": [
+      "writing",
+      "analysis",
+      "research",
+      "projects",
+      "templates"
+    ],
+    "archive_subdirs": [
+      "by_month",
+      "by_project",
+      "backups"
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蝴蝶飞舞 · 手势控制</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="../assets/gesture-scene.js"></script>
+<script>
+// ── 蝴蝶类 ──
+class Butterfly {
+  constructor(x, y, vx, vy) {
+    this.vx = vx * 0.2 + (Math.random() - 0.5);
+    this.vy = vy * 0.2 + (Math.random() - 0.5);
+    
+    // 翅膀参数
+    this.wingAngle = 0;
+    this.wingSpeed = 0.08 + Math.random() * 0.07;
+    this.wingSize = 12 + Math.random() * 10;
+    
+    // 颜色
+    this.hue = Math.random() * 360;
+    this.saturation = 60 + Math.random() * 40;
+    this.lightness = 70 + Math.random() * 30;
+    
+    // 生命周期
+    this.alpha = 1.0;
+    this.fade = (0.3 + Math.random() * 0.5) / 100;
+    
+    // 随机扰动
+    this.wobblePhase = Math.random() * Math.PI * 2;
+    this.wobbleSpeed = 0.02 + Math.random() * 0.03;
+    this.wobbleAmp = 0.3 + Math.random() * 0.5;
+    
+    // 旋转
+    this.angle = Math.atan2(vy, vx);
+    
+    // 创建蝴蝶组
+    this.mesh = new THREE.Group();
+    this.mesh.position.set(x, y, 0);
+    
+    // 创建翅膀
+    this._createWings();
+  }
+
+  _createWings() {
+    // 左翅
+    const leftWingShape = new THREE.Shape();
+    leftWingShape.moveTo(0, 0);
+    leftWingShape.bezierCurveTo(
+      -this.wingSize * 0.5, -this.wingSize * 0.8,
+      -this.wingSize, -this.wingSize * 0.3,
+      -this.wingSize * 0.7, 0
+    );
+    leftWingShape.bezierCurveTo(
+      -this.wingSize, this.wingSize * 0.3,
+      -this.wingSize * 0.5, this.wingSize * 0.8,
+      0, 0
+    );
+    
+    const leftWingGeometry = new THREE.ShapeGeometry(leftWingShape);
+    const leftWingMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(this.hue / 360, this.saturation / 100, this.lightness / 100),
+      transparent: true,
+      opacity: this.alpha,
+      side: THREE.DoubleSide,
+    });
+    
+    this.leftWing = new THREE.Mesh(leftWingGeometry, leftWingMaterial);
+    this.mesh.add(this.leftWing);
+    
+    // 左翅内侧
+    const leftInnerShape = new THREE.Shape();
+    leftInnerShape.moveTo(0, 0);
+    leftInnerShape.bezierCurveTo(
+      -this.wingSize * 0.3, -this.wingSize * 0.5,
+      -this.wingSize * 0.6, -this.wingSize * 0.2,
+      -this.wingSize * 0.4, 0
+    );
+    leftInnerShape.bezierCurveTo(
+      -this.wingSize * 0.6, this.wingSize * 0.2,
+      -this.wingSize * 0.3, this.wingSize * 0.5,
+      0, 0
+    );
+    
+    const leftInnerGeometry = new THREE.ShapeGeometry(leftInnerShape);
+    const leftInnerMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(((this.hue + 30) % 360) / 360, (this.saturation * 0.8) / 100, (this.lightness * 1.2) / 100),
+      transparent: true,
+      opacity: this.alpha * 0.7,
+      side: THREE.DoubleSide,
+    });
+    
+    this.leftInner = new THREE.Mesh(leftInnerGeometry, leftInnerMaterial);
+    this.leftWing.add(this.leftInner);
+    
+    // 右翅
+    const rightWingShape = new THREE.Shape();
+    rightWingShape.moveTo(0, 0);
+    rightWingShape.bezierCurveTo(
+      this.wingSize * 0.5, -this.wingSize * 0.8,
+      this.wingSize, -this.wingSize * 0.3,
+      this.wingSize * 0.7, 0
+    );
+    rightWingShape.bezierCurveTo(
+      this.wingSize, this.wingSize * 0.3,
+      this.wingSize * 0.5, this.wingSize * 0.8,
+      0, 0
+    );
+    
+    const rightWingGeometry = new THREE.ShapeGeometry(rightWingShape);
+    const rightWingMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(this.hue / 360, this.saturation / 100, this.lightness / 100),
+      transparent: true,
+      opacity: this.alpha,
+      side: THREE.DoubleSide,
+    });
+    
+    this.rightWing = new THREE.Mesh(rightWingGeometry, rightWingMaterial);
+    this.mesh.add(this.rightWing);
+    
+    // 右翅内侧
+    const rightInnerShape = new THREE.Shape();
+    rightInnerShape.moveTo(0, 0);
+    rightInnerShape.bezierCurveTo(
+      this.wingSize * 0.3, -this.wingSize * 0.5,
+      this.wingSize * 0.6, -this.wingSize * 0.2,
+      this.wingSize * 0.4, 0
+    );
+    rightInnerShape.bezierCurveTo(
+      this.wingSize * 0.6, this.wingSize * 0.2,
+      this.wingSize * 0.3, this.wingSize * 0.5,
+      0, 0
+    );
+    
+    const rightInnerGeometry = new THREE.ShapeGeometry(rightInnerShape);
+    const rightInnerMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(((this.hue + 30) % 360) / 360, (this.saturation * 0.8) / 100, (this.lightness * 1.2) / 100),
+      transparent: true,
+      opacity: this.alpha * 0.7,
+      side: THREE.DoubleSide,
+    });
+    
+    this.rightInner = new THREE.Mesh(rightInnerGeometry, rightInnerMaterial);
+    this.rightWing.add(this.rightInner);
+    
+    // 身体
+    const bodyGeometry = new THREE.CylinderGeometry(2, 2, this.wingSize * 0.4, 8);
+    const bodyMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL((this.hue * 0.3) / 360, (this.saturation * 0.5) / 100, (this.lightness * 0.6) / 100),
+      transparent: true,
+      opacity: this.alpha,
+    });
+    
+    this.body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+    this.body.rotation.x = Math.PI / 2;
+    this.mesh.add(this.body);
+  }
+
+  update() {
+    // 扇动翅膀
+    this.wingAngle += this.wingSpeed;
+    const wingFlap = Math.sin(this.wingAngle) * 0.8 + 0.2;
+    
+    // 应用翅膀动画
+    this.leftWing.scale.y = wingFlap;
+    this.rightWing.scale.y = wingFlap;
+    
+    // 随机扰动
+    this.wobblePhase += this.wobbleSpeed;
+    const wobbleX = Math.sin(this.wobblePhase) * this.wobbleAmp;
+    const wobbleY = Math.cos(this.wobblePhase * 1.3) * this.wobbleAmp;
+    
+    // 更新位置
+    this.vx += wobbleX * 0.1;
+    this.vy += wobbleY * 0.1;
+    this.vx *= 0.98;
+    this.vy *= 0.98;
+    this.mesh.position.x += this.vx;
+    this.mesh.position.y += this.vy;
+    
+    // 更新朝向
+    if (Math.abs(this.vx) > 0.1 || Math.abs(this.vy) > 0.1) {
+      const targetAngle = Math.atan2(this.vy, this.vx);
+      this.angle += (targetAngle - this.angle) * 0.1;
+      this.mesh.rotation.z = this.angle;
+    }
+    
+    // 生命周期
+    this.alpha -= this.fade;
+    
+    // 更新透明度
+    this.leftWing.material.opacity = Math.max(this.alpha, 0);
+    this.rightWing.material.opacity = Math.max(this.alpha, 0);
+    this.leftInner.material.opacity = Math.max(this.alpha * 0.7, 0);
+    this.rightInner.material.opacity = Math.max(this.alpha * 0.7, 0);
+    this.body.material.opacity = Math.max(this.alpha, 0);
+  }
+
+  isDead() {
+    return this.alpha <= 0;
+  }
+}
+
+// ── 创建场景 ──
+const scene = new GestureScene({
+  title: '蝴蝶飞舞 · 手势控制',
+  create: (x, y, vx, vy) => new Butterfly(x, y, vx, vy),
+  spawnRate: 1,
+  burstRate: 5,
+  maxObjects: 200,
+  background: [0.08, 0.12, 0.03],
+  handVelocityScale: 1.2,
+});
+</script>
+</body>
+</html>

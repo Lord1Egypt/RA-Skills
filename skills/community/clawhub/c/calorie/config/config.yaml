@@ -1,0 +1,39 @@
+# Food Calorie Calculator 配置
+
+# 视觉识别配置
+vision:
+  # 视觉服务提供商：kimi, openai, claude, qwen
+  provider: kimi        # 推荐使用 Kimi（中文识别好，便宜）
+  model: k2.5           # Allegretto 套餐使用 K2.5 模型
+                        # 备选：moonshot-v1-auto, moonshot-v1-8k
+  
+# 营养数据配置
+nutrition:
+  # 营养 API 提供商：nutritionix, fatsecret, local
+  provider: local       # 使用本地数据库（免费）
+  
+# API Keys（从环境变量读取或在此配置）
+api_keys:
+  # Kimi API Key (推荐，用于视觉识别)
+  kimi: ""  # 或从环境变量 KIMI_API_KEY 读取
+  
+  # OpenAI API Key (备选)
+  openai: ""  # 或从环境变量 OPENAI_API_KEY 读取
+  
+  # Nutritionix API Key (用于营养数据，可选)
+  nutritionix_app_id: ""  # 或从环境变量 NUTRITIONIX_APP_ID 读取
+  nutritionix_api_key: ""  # 或从环境变量 NUTRITIONIX_API_KEY 读取
+  
+  # 备选：FatSecret API Key
+  fatsecret: ""  # 或从环境变量 FATSECRET_KEY 读取
+
+# 输出配置
+output:
+  language: zh  # zh=中文，en=英文
+  include_macros: true  # 显示宏量营养素（蛋白质/碳水/脂肪）
+  include_micros: false  # 显示微量营养素（维生素/矿物质）
+  
+# 日志配置
+logging:
+  level: INFO
+  file: data/calorie.log

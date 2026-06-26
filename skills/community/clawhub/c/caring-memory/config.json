@@ -1,0 +1,39 @@
+{
+  "version": "2.0",
+  "created": "2026-04-04",
+  "reminder_schedule": {
+    "urgent": ["08:00", "12:00", "18:00", "21:00"],
+    "high": ["09:00", "20:00"],
+    "medium": ["10:00"],
+    "low": ["10:00"]
+  },
+  "ebbinghaus_intervals_hours": [1, 24, 96, 168, 360],
+  "priority_upgrade": {
+    "hours_before_deadline": {
+      "high_to_urgent": 24,
+      "medium_to_high": 48,
+      "low_to_medium": 96
+    }
+  },
+  "activity_learning": {
+    "enabled": true,
+    "bucket_hours": 1,
+    "min_samples": 7
+  },
+  "gamification": {
+    "enabled": true,
+    "levels": [
+      {"name": "虾苗", "xp": 0},
+      {"name": "虾农", "xp": 100},
+      {"name": "虾匠", "xp": 500},
+      {"name": "虾师", "xp": 1500},
+      {"name": "虾王", "xp": 5000}
+    ],
+    "xp_rules": {
+      "complete_task": 20,
+      "daily_chat": 10,
+      "streak_bonus_per_day": 5,
+      "complete_5_tasks_in_day": 50
+    }
+  }
+}

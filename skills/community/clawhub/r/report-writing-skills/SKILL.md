@@ -1,35 +1,48 @@
----
-name: "report-writing-skills"
-description: "Automates collecting, downloading, and analyzing recent research reports with customizable focus and real-time progress feedback."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/report-writing-skills"
-sourceUrl: "https://clawhub.ai/skills/report-writing-skills"
----
+# Report-Writing Skill v1.03
 
-# report-writing-skills
+## 📊 自动化研究报告收集与分析系统
 
-> Automates collecting, downloading, and analyzing recent research reports with customizable focus and real-time progress feedback.
+**版本**: 1.03  
+**核心功能**: 自动化从研究网站（如 sgpjbg.com）收集、下载和分析最近3天的报告
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/report-writing-skills`
-- **Source URL:** [https://clawhub.ai/skills/report-writing-skills](https://clawhub.ai/skills/report-writing-skills)
+### 🆕 v1.03 新增功能
+- **报告需求确认**: 在生成最终报告前暂停并询问用户的具体要求
+- **自定义思路指导**: 支持用户提供大纲、重点方向或写作思路
+- **灵活报告生成**: 根据用户反馈调整分析角度和内容重点
 
-## Overview
+### 🆕 v1.02 新增功能
+- **实时进度条**: 显示整体执行进度和剩余时间
+- **详细执行状态**: 清晰显示当前执行到哪个步骤
+- **增强用户体验**: 避免长时间等待无法确认执行状态
 
+### 🆕 v1.01 新增功能  
+- **保存位置确认**: 下载/生成文件前主动询问保存位置
+- **桌面默认**: 默认保存到桌面，支持自定义路径
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/report-writing-skills
-```
+### 主要工作流程（7步）
+1. **网站认证** - 使用提供的凭据登录研究网站
+2. **主题确认** - 确认要搜索的报告类型（如"黄金"、"AI"等）
+3. **日期筛选搜索** - 仅搜索最近3天的报告
+4. **报告选择** - 识别最多5个最相关的报告
+5. **内容下载** - 下载到指定的本地目录
+6. **分析合成** - 提取关键洞察并生成综合分析摘要
+7. **输出交付** - 保存为标准化命名的PDF文件
+
+### 主要能力
+- 🔐 **安全认证处理** - 安全管理登录凭据
+- 🎯 **智能报告发现** - 关键词搜索 + 日期过滤
+- ⚡ **自动化内容处理** - 批量下载和元数据提取
+- 📝 **专业分析生成** - 原创分析内容（非简单聚合）
+- 🛡️ **错误处理和恢复** - 3次重试策略 + 备用方案
+- 📊 **实时进度反馈** - 进度条 + 详细执行状态
+- 💾 **智能文件管理** - 保存位置确认 + 桌面默认
+
+### 使用示例
+- "从sgpjbg.com获取最近3天的黄金价格报告，生成分析总结"
+- "帮我收集AI行业最近的研报并写一份综合分析"
+- "登录网站下载特斯拉相关的最新研究报告"
+
+### 技术实现
+- Python + Playwright (无头浏览器)
+- tqdm 进度条库
+- 智能错误处理和恢复机制

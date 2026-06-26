@@ -1,0 +1,8 @@
+# 服务端依赖
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# 客户端依赖
+requests>=2.31.0

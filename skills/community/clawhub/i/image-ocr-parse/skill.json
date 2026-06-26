@@ -1,0 +1,28 @@
+{
+  "name": "Image OCR Parse",
+  "description": "Extract text from images via the PDFAPIHub cloud OCR API. Images are uploaded to pdfapihub.com for Tesseract OCR processing. Supports preprocessing and word-level bounding boxes.",
+  "method": "POST",
+  "endpoint": "/v1/image/ocr/parse",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "image_url", "type": "string", "required": false, "description": "URL to an image" },
+        { "name": "base64_image", "type": "string", "required": false, "description": "Base64-encoded image (raw or data-URL)" },
+        { "name": "lang", "type": "string", "required": false, "default": "eng", "description": "Tesseract language(s)" },
+        { "name": "psm", "type": "integer", "required": false, "default": 3, "description": "Page segmentation mode" },
+        { "name": "oem", "type": "integer", "required": false, "default": 3, "description": "OCR engine mode" },
+        { "name": "char_whitelist", "type": "string", "required": false, "description": "Restrict OCR to these characters" },
+        { "name": "detail", "type": "string", "required": false, "default": "text", "enum": ["text", "words"], "description": "Detail level" },
+        { "name": "output_format", "type": "string", "required": false, "default": "json", "enum": ["json", "text"], "description": "Response format" },
+        { "name": "grayscale", "type": "boolean", "required": false, "default": false, "description": "Convert to grayscale before OCR" },
+        { "name": "sharpen", "type": "boolean", "required": false, "default": false, "description": "Apply sharpening filter" },
+        { "name": "threshold", "type": "integer", "required": false, "default": 0, "description": "Binarization threshold (1-255). 0 = disabled." },
+        { "name": "resize", "type": "number", "required": false, "default": 0, "description": "Scale factor (e.g. 2.0 = 2x). 0 = disabled. Max 4x." }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

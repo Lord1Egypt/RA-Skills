@@ -1,0 +1,34 @@
+{
+  "name": "second-brain-ai",
+  "version": "2.3.3",
+  "description": "Second Brain for a user-specified local markdown vault with controlled write operations, explicit vault-path configuration, search, backlinks, context packs, and smart linking",
+  "main": "scripts/search_notes.js",
+  "scripts": {
+    "init": "node scripts/init_vault.js",
+    "search": "node scripts/search_notes.js",
+    "capture": "node scripts/capture_note.js",
+    "append": "node scripts/append_note.js",
+    "related": "node scripts/find_related.js",
+    "backlinks": "node scripts/get_backlinks.js",
+    "context": "node scripts/build_context_pack.js",
+    "suggest": "node scripts/suggest_links.js",
+    "rebuild": "node scripts/rebuild_index.js"
+  },
+  "keywords": [
+    "second-brain",
+    "knowledge-base",
+    "obsidian",
+    "logseq",
+    "markdown",
+    "pkm",
+    "notes",
+    "zettelkasten",
+    "ai",
+    "controlled-write"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

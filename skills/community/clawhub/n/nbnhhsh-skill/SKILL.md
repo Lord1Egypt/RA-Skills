@@ -1,35 +1,32 @@
----
-name: "Nbnhhsh Skill"
-description: "Translate Chinese pinyin initialisms and internet abbreviations to their possible full Chinese meanings, supporting multiple terms at once."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nbnhhsh-skill"
-sourceUrl: "https://clawhub.ai/skills/nbnhhsh-skill"
----
+# nbnhhsh - Pinyin Initialism Translator
 
-# Nbnhhsh Skill
+Use this skill when:
+- User asks what an abbreviation means (e.g., "what does xswl mean", "what is yyds")
+- User provides a pinyin initialism for lookup
+- User says something like "don't understand", "what's this"
+- User inputs a confusing string of letters that might be a pinyin initialism
 
-> Translate Chinese pinyin initialisms and internet abbreviations to their possible full Chinese meanings, supporting multiple terms at once.
+## Function
+- Translate pinyin initialisms to Chinese (e.g., xswl → 笑死我了)
+- Support batch queries, multiple abbreviations separated by commas
+- Return multiple possible interpretations
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nbnhhsh-skill`
-- **Source URL:** [https://clawhub.ai/skills/nbnhhsh-skill](https://clawhub.ai/skills/nbnhhsh-skill)
+## Usage
 
-## Overview
+Run curl:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/nbnhhsh-skill
+curl -s -X POST "https://lab.magiconch.com/api/nbnhhsh/guess" \
+  -H "Content-Type: application/json" \
+  -d '{"text":"abbreviation to query"}'
 ```
+
+## Example
+
+Input: `xswl`
+Output: 笑死了, 吓死了, 想死了... (multiple possible results)
+
+## Notes
+- API may have rate limits, please do not abuse
+- Same abbreviation may have multiple interpretations, returned in trans array
+- If trans is null but inputting has values, it means awaiting review

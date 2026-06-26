@@ -1,0 +1,74 @@
+{
+  "weekdays": ["Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota", "Nedelja"],
+
+  "note_title":      "CPAP Dnevnik",
+  "callout_title":   "Automatski generisano",
+  "callout_body":    "Ova beleška je automatski kreirana iz podataka PrismaAPP API (Löwenstein Medical).",
+
+  "summary_heading": "Pregled",
+  "col_metric":      "Metrika",
+  "col_value":       "Vrednost",
+  "col_rating":      "Ocena",
+
+  "row_sleep":       "Trajanje sna",
+  "row_deepsleep":   "Duboki san",
+  "row_ahi":         "AHI",
+  "row_leakage":     "Curenje",
+  "row_snoring":     "Hrkanje",
+  "row_mask":        "Prianjanje maske",
+  "row_therapy":     "Način terapije",
+
+  "overall_prefix":  "Ukupna ocena",
+
+  "sleep_heading":   "San",
+  "sleep_duration":  "Trajanje",
+  "sleep_deepsleep": "Duboki san",
+  "sleep_goal":      "Cilj",
+  "goal_reached":    "✅ dostignut",
+  "goal_not_reached":"❌ nije dostignut",
+
+  "therapy_heading": "CPAP Terapija",
+  "therapy_rating":  "Ocena",
+  "therapy_mode":    "Način terapije",
+  "pressure_label":  "Pritisak",
+
+  "snoring_heading": "Hrkanje & Maska",
+  "snoring_of_time": "vremena sna",
+  "mask_label":      "Prianjanje maske",
+  "mask_perfect":    "🟢 Savršeno",
+  "mask_ok":         "🟡 Prihvatljivo",
+  "mask_bad":        "🔴 Loše",
+
+  "ahi_0":           "≤ 5 — normalno",
+  "ahi_1":           "5–15 — blago povišeno",
+  "ahi_2":           "15–30 — umereno povišeno",
+  "ahi_3":           "> 30 — jako povišeno",
+  "ahi_4":           "—",
+
+  "q_0":             "🟢 Dobro",
+  "q_1":             "🟡 Prihvatljivo",
+  "q_2":             "🔴 Loše",
+  "q_3":             "🟠 Granično",
+  "q_4":             "—",
+
+  "overall_great":   "🟢 Odlično",
+  "overall_good":    "🟢 Dobro",
+  "overall_ok":      "🟡 Prihvatljivo",
+  "overall_border":  "🟠 Granično",
+  "overall_bad":     "🔴 Loše",
+  "overall_none":    "— Nema podataka",
+
+  "tag_great":       "odlicno",
+  "tag_good":        "dobro",
+  "tag_ok":          "prihvatljivo",
+  "tag_border":      "granicno",
+  "tag_bad":         "lose",
+  "tag_none":        "nema-podataka",
+
+  "no_data_msg":     "Nema podataka za ovaj datum (uređaj nije korišćen ili još nije sinhronizovan).",
+
+  "fm_weekday_key":  "dan",
+  "fm_source":       "PrismaAPP / Löwenstein prisma SOFT max",
+  "tag_health":      "zdravlje",
+  "tag_auto":        "auto-generisano"
+}

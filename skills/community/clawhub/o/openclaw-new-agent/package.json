@@ -1,0 +1,24 @@
+{
+  "name": "@itzhouq/openclaw-new-agent",
+  "version": "1.2.1",
+  "description": "在 OpenClaw 上创建新的独立飞书机器人（多账号模式）",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests\""
+  },
+  "keywords": [
+    "openclaw",
+    "feishu",
+    "lark",
+    "multi-agent",
+    "chatbot",
+    "robot",
+    "skill"
+  ],
+  "author": "itzhouq",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itzhouq/openclaw-new-agent"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "db_path": "~/.openclaw/workspace/skills/tag-memory/data/memory.db",
+  "bm25": {
+    "k1": 1.5,
+    "b": 0.75
+  },
+  "summary": {
+    "trigger_interval": 50,
+    "daily_time": "20:00"
+  },
+  "verify": {
+    "after_store": true,
+    "after_search": false,
+    "periodic_days": 7
+  },
+  "llm": {
+    "provider": "minimax",
+    "model": "MiniMax-M2.5"
+  },
+  "tags": [
+    "#偏好",
+    "#决定",
+    "#项目",
+    "#人",
+    "#事件",
+    "#知识",
+    "#错误"
+  ]
+}

@@ -1,35 +1,63 @@
 ---
-name: "learning-dashboard-plugin"
-description: "学完一节课后更新错题集和课程地图。当用户说"更新进度"、"存档"、"下课"时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learning-dashboard-plugin"
-sourceUrl: "https://clawhub.ai/skills/learning-dashboard-plugin"
+name: learning-dashboard-update
+description: 学完一节课后更新错题集和课程地图。当用户说"更新进度"、"存档"、"下课"时调用。
 ---
 
-# learning-dashboard-plugin
+# 学习进度更新 Skill
 
-> 学完一节课后更新错题集和课程地图。当用户说"更新进度"、"存档"、"下课"时调用。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learning-dashboard-plugin`
-- **Source URL:** [https://clawhub.ai/skills/learning-dashboard-plugin](https://clawhub.ai/skills/learning-dashboard-plugin)
+当用户说以下任何一种时触发：
 
-## Overview
+- "更新错题集"、"更新进度"、"更新学习看板"
+- "存档"、"保存进度"
+- "今天到这"、"下课"、"结束今天的学习"
+- "记录一下今天学了什么"
+
+**不触发**：
+
+- 只是问"我学到哪了"（查询，不更新）
+- 正在上课中途（还没学完一节课）
+
+## 行为规则
+
+1. **确认更新范围**
+   
+   - 如果用户明确说了（如"只更新错题集"），按用户说的做
+   - 如果用户只说"存档"或"下课"，默认全部更新
+
+2. **定位目标文件**
+   
+   - 错题集：`wiki/projects/错题集.md`
+   - 课程地图：`wiki/projects/AI学习全系列课程地图.md`
+
+3. **更新内容**
+   
+   - 错题集：根据本次课程中的新错误，添加条目或更新状态（🔴→🟡→✅）
+   - 课程地图：标记本节课为 ✅，更新日期
+
+4. **验证与反馈**
+   
+   - 更新完后，输出一句话总结："已更新：第 X 课标记完成，进度 Y/41"
+   - 不要输出完整文件内容
+
+5. **约束**
+   
+   - 不要删除已有内容，只增加或修改
+   - 保持原有格式（表格、emoji、缩进）
+   - 如果文件不存在，报错并询问用户
+
+## 示例
+
+**输入**：用户说"今天到这，存档"
+
+**输出**：
+
+已更新学习进度：
+
+- 第 27 课标记完成 ✅
+- 总进度：27/41（66%）
+- 第三阶段：5/7
+- 新增错题 0 条
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learning-dashboard-plugin
-```

@@ -1,0 +1,50 @@
+{
+  "data_retention": {
+    "market": 5,
+    "north_flow": 5,
+    "lhb": 3,
+    "sentiment": 2,
+    "financial": 3
+  },
+  "storage": {
+    "base_path": "./data",
+    "paths": {
+      "market": "./data/market",
+      "north_flow": "./data/north_flow",
+      "lhb": "./data/lhb",
+      "sentiment": "./data/sentiment",
+      "financial": "./data/financial"
+    }
+  },
+  "parquet": {
+    "compression": "snappy",
+    "engine": "pyarrow"
+  },
+  "partition": {
+    "market": {
+      "strategy": "by_date",
+      "granularity": "month",
+      "description": "按月分区，格式为 year=YYYY/month=MM"
+    },
+    "north_flow": {
+      "strategy": "by_date",
+      "granularity": "month",
+      "description": "按月分区，格式为 year=YYYY/month=MM"
+    },
+    "lhb": {
+      "strategy": "by_date",
+      "granularity": "month",
+      "description": "按月分区，格式为 year=YYYY/month=MM"
+    },
+    "sentiment": {
+      "strategy": "by_date",
+      "granularity": "day",
+      "description": "按日分区，格式为 year=YYYY/month=MM/day=DD"
+    },
+    "financial": {
+      "strategy": "by_date",
+      "granularity": "year",
+      "description": "按年分区，格式为 year=YYYY"
+    }
+  }
+}

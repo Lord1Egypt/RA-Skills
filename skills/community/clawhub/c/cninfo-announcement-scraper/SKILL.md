@@ -1,35 +1,29 @@
----
-name: "Cninfo Announcement Scraper"
-description: "Fetch and filter CNINFO official disclosures by event and industry to extract positive catalysts for A-share monitoring with structured output."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cninfo-announcement-scraper"
-sourceUrl: "https://clawhub.ai/skills/cninfo-announcement-scraper"
----
+# cninfo-announcement-scraper
 
-# Cninfo Announcement Scraper
+Use this skill to pull CNINFO official disclosures and extract positive catalysts for A-share monitoring.
 
-> Fetch and filter CNINFO official disclosures by event and industry to extract positive catalysts for A-share monitoring with structured output.
+## Inputs
+- Time window (default: current trading day)
+- Event filter (default: 业绩预增, 重大合同, 政策扶持)
+- Industry filter (default: 新能源, 消费)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cninfo-announcement-scraper`
-- **Source URL:** [https://clawhub.ai/skills/cninfo-announcement-scraper](https://clawhub.ai/skills/cninfo-announcement-scraper)
+## Procedure
+1. Fetch latest CNINFO announcements.
+2. Parse and normalize: code, company, title, announcement_time, url.
+3. Classify announcement type.
+4. Keep only allowed event types and industries.
+5. Return structured rows for alert generation.
 
-## Overview
+## Output Schema
+- ticker
+- company
+- catalyst
+- source_url
+- timestamp
+- confidence
+- trigger_price
+- invalidation_condition
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cninfo-announcement-scraper
-```
+## Safety
+- Use official disclosure links only.
+- Never provide auto-trade instructions.

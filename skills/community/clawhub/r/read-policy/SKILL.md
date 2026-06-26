@@ -1,35 +1,23 @@
 ---
-name: "Read Policy"
-description: "Read OpenClaw policies from PostgreSQL through the local Supabase Docker stack. Use for inspecting policy keys such as auto_approve, priority_routing, or ava..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/read-policy"
-sourceUrl: "https://clawhub.ai/skills/read-policy"
+name: read-policy
+description: Read OpenClaw policies from PostgreSQL through the local Supabase Docker stack. Use for inspecting policy keys such as auto_approve, priority_routing, or available_skills.
+metadata: {"clawdbot":{"notes":["Reads public.openclaw_policies through docker exec on supabase-db"]}}
 ---
 
 # Read Policy
 
-> Read OpenClaw policies from PostgreSQL through the local Supabase Docker stack. Use for inspecting policy keys such as auto_approve, priority_routing, or ava...
+Read policy values from the real OpenClaw database.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/read-policy`
-- **Source URL:** [https://clawhub.ai/skills/read-policy](https://clawhub.ai/skills/read-policy)
+## Commands
 
-## Overview
+- Read one policy key  
+  `{baseDir}/scripts/read-policy.sh get "auto_approve"`
 
+- List all policy keys  
+  `{baseDir}/scripts/read-policy.sh list`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/read-policy
-```
+## Notes
+
+- Uses the local Docker container `supabase-db`
+- Reads from `public.openclaw_policies`
+- Intended for inspection only

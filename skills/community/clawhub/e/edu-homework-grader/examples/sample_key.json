@@ -1,0 +1,5 @@
+{
+  "Q1": {"answer": "B"},
+  "Q2": {"answer": "叶绿素", "synonyms": ["chlorophyll"]},
+  "Q3": {"keypoints": [{"text":"叶绿体","weight":2},{"text":"二氧化碳","weight":2},{"text":"水","weight":2},{"text":"有机物","weight":2},{"text":"氧气","weight":2}]}
+}

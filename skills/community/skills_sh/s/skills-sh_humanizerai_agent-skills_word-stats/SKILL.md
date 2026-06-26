@@ -1,35 +1,64 @@
 ---
-name: "word-stats"
-description: "Indexed by skills.sh from humanizerai/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "humanizerai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/humanizerai/agent-skills/word-stats"
-sourceUrl: "https://skills.sh/humanizerai/agent-skills/word-stats"
+name: word-stats
+description: Get word count, character count, reading time, and text statistics. Quick analysis without questions.
+user-invocable: true
+argument-hint: "[text to analyze]"
 ---
 
-# word-stats
+# Word Statistics
 
-> Indexed by skills.sh from humanizerai/agent-skills
+Provide quick, accurate statistics about the provided text.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** humanizerai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/humanizerai/agent-skills/word-stats`
-- **Source URL:** [https://skills.sh/humanizerai/agent-skills/word-stats](https://skills.sh/humanizerai/agent-skills/word-stats)
+## Input
 
-## Overview
+The user provides text in $ARGUMENTS.
 
+**Important:** If text is provided, immediately output stats. Don't ask clarifying questions - they want the numbers.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/humanizerai/agent-skills/word-stats
+## Output Format
+
 ```
+## Word Statistics
+
+### Counts
+| Metric | Value |
+|--------|-------|
+| Words | [X] |
+| Characters (with spaces) | [X] |
+| Characters (no spaces) | [X] |
+| Sentences | [X] |
+| Paragraphs | [X] |
+
+### Time
+| Metric | Value |
+|--------|-------|
+| Reading time | [X] min |
+| Speaking time | [X] min |
+
+### Words
+| Metric | Value |
+|--------|-------|
+| Unique words | [X] ([Y]%) |
+| Avg word length | [X] chars |
+| Longest word | [word] ([X] chars) |
+
+### Sentences
+| Metric | Value |
+|--------|-------|
+| Avg length | [X] words |
+| Longest | [X] words |
+| Shortest | [X] words |
+```
+
+## Calculations
+
+- **Reading time**: words ÷ 238 (average adult reading speed)
+- **Speaking time**: words ÷ 150 (average speaking pace)
+- **Unique words**: distinct words ÷ total words × 100
+
+## Keep It Simple
+
+- Tables for metrics
+- No unnecessary prose
+- No recommendations unless asked
+- Just the numbers

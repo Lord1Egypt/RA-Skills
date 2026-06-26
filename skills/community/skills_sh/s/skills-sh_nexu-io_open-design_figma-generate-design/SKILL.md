@@ -1,35 +1,42 @@
 ---
-name: "figma-generate-design"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/figma-generate-design"
-sourceUrl: "https://skills.sh/nexu-io/open-design/figma-generate-design"
+name: figma-generate-design
+description: |
+  Build or update screens in Figma from code or description using design system components. Translate app pages into Figma using design tokens.
+triggers:
+  - "figma generate design"
+  - "code to figma"
+  - "screen generation"
+  - "figma from code"
+od:
+  mode: design-system
+  category: figma
+  upstream: "https://github.com/figma/skills"
 ---
 
 # figma-generate-design
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Figma's MCP server guide.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/figma-generate-design`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/figma-generate-design](https://skills.sh/nexu-io/open-design/figma-generate-design)
+## What it does
 
-## Overview
+Build or update screens in Figma from code or description using design system components. Translate app pages into Figma using design tokens.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/figma/skills
+- Category: `figma`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/figma-generate-design
+# Inspect the upstream README for exact paths
+open https://github.com/figma/skills
 ```
+
+Then ask the agent to invoke this skill by name (`figma-generate-design`) or with
+one of the trigger phrases listed in this skill's frontmatter.

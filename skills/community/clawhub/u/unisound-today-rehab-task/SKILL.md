@@ -1,35 +1,173 @@
 ---
-name: "unisound-today-rehab-task"
-description: "病人端术后康复今日康复任务。参考 CareKit 的 daily tasks/scheduling 部分，构建日常康复执行任务能力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/unisound-today-rehab-task"
-sourceUrl: "https://clawhub.ai/skills/unisound-today-rehab-task"
+name: med-patient-today-rehab-task
+description: 病人端术后康复今日康复任务。参考 CareKit 的 daily tasks/scheduling 部分，构建日常康复执行任务能力。
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "✅"
+      }
+  }
 ---
 
-# unisound-today-rehab-task
+# 今日康复任务
 
-> 病人端术后康复今日康复任务。参考 CareKit 的 daily tasks/scheduling 部分，构建日常康复执行任务能力。
+概述
+----
+本 skill 对应：病人端 / 术后康复 / 今日康复任务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/unisound-today-rehab-task`
-- **Source URL:** [https://clawhub.ai/skills/unisound-today-rehab-task](https://clawhub.ai/skills/unisound-today-rehab-task)
+要求：日常康复执行任务。
 
-## Overview
+来源核验
+--------
+- 匹配来源：CareKit
+- 来源类型：公开开源护理计划框架
+- 来源链接：https://github.com/carekit-apple/CareKit
+- 匹配结论：匹配。CareKit 包含任务、日程、事件和完成结果，适合参考今日康复任务的生成与打卡结构。
 
+参考部分
+--------
+只参考 CareKit 的 **daily tasks/scheduling** 部分：
+- Daily Tasks
+- Schedule
+- Event
+- Outcome
+- Completion 状态
 
-## Installation
-To install this skill, run the following command in your terminal:
+不参考部分
+----------
+- 不参考 iOS 页面实现
+- 不参考复杂通知系统
+- 不参考护理团队联系人模块
+- 不扩展到康复计划生成
+
+构建方式
+--------
+OpenClaw 中应构建为一个独立的任务型 skill：
+- 输入康复计划和日期
+- 筛选当天需要执行的康复任务
+- 输出任务清单、执行要求和完成状态
+- 支持任务完成、未完成、跳过等状态记录
+
+建议输入字段
+------------
+- `plan_id`：计划 ID
+- `tasks`：任务列表（含 name/date/scheduled_dates/weekdays/status）
+
+建议输出字段
+------------
+- `skill`：`今日康复任务`
+- `date`
+- `today_tasks`
+- `completion_summary`
+- `pending_tasks`
+
+医疗边界
+--------
+本 skill 只根据既有计划展示和记录任务，不自行调整训练强度。
+
+快速开始
+--------
+从本 skill 目录执行：
+
 ```bash
-hermes skills install clawhub/unisound-today-rehab-task
+python3 scripts/run.py --input input.json --date 2026-04-29 --output output.json --appkey YOUR_KEY
 ```
+
+最小输入示例
+------------
+```json
+{
+  "plan_id": "rehab-plan-001",
+  "tasks": [
+    {"name": "踝泵运动", "date": "2026-04-29", "status": "pending"},
+    {"name": "伤口观察", "date": "2026-04-29", "status": "completed"}
+  ]
+}
+```
+
+参数说明
+--------
+- `--input PATH`：输入 JSON。
+- `--date YYYY-MM-DD`：筛选哪一天的康复任务，默认当天。
+- `--output PATH`：输出 JSON；不传则输出到 stdout。
+
+输出约定
+--------
+输出 UTF-8 JSON，采用统一格式：
+
+```json
+{
+  "skill": "技能名称",
+  "status": "ok",
+  "data": { /* 结构化数据 */ },
+  "text": "API 生成的 Markdown/自然语言内容，OpenClaw 直接渲染给用户"
+}
+```
+
+- `data`：本地预处理得到的结构化数据
+- `text`：内部医疗大模型生成的自然语言解读/分析/提醒，Markdown 格式
+
+支持的输入格式
+--------------
+除 JSON 外，还支持以下格式（通过 `--input-type` 自动检测或手动指定）：
+
+| 格式 | 说明 |
+|------|------|
+| JSON | 默认，直接读取结构化输入 |
+| CSV / XLSX / XLS | 表格数据，按列头自动映射字段 |
+| TXT / MD | key:value 文本格式（支持中文/英文字段名） |
+| PDF / DOC / DOCX | 文档，提取文本后解析 |
+| PNG / JPG 等图片 | OCR 提取文本后解析 |
+
+文本格式示例
+-----------
+```
+计划ID：rehab-001
+```
+
+CSV 格式示例
+-----------
+```
+计划ID
+rehab-001
+```
+
+统一入口附加参数
+----------------
+- `--input-type auto|pdf|doc|docx|xls|xlsx|csv|txt|json`：输入类型；默认 `auto`。
+- `--sheet STRING`：读取 Excel 时指定 sheet（可选）。
+- `--encoding STRING`：`txt/csv` 编码（默认：`utf-8`）。
+- `--save-prepared`：保存预处理后的 JSON，便于调试。
+- `--appkey STRING`：**必填**。调用内部医疗大模型的鉴权 key，由平台分配。
+
+依赖
+----
+### 运行环境
+- Python 3.7+
+
+### Python 第三方包（可选，按输入格式需要）
+| 包名 | 用途 | 必要条件 |
+|------|------|---------|
+| `openpyxl` | 读取 `.xlsx` 文件 | 输入为 xlsx 时必须 |
+| `pypdf` | 提取 PDF 文本 | 输入为 pdf 时必须 |
+
+### 外部工具（可选，按输入格式需要）
+| 工具 | 用途 | 必要条件 |
+|------|------|---------|
+| LibreOffice (`soffice`) | 转换 `.doc` / `.xls` | 输入为 doc/xls 时必须 |
+| `pdftotext`（poppler-utils） | 提取 PDF 文本 | 输入为 pdf 且未安装 pypdf 时 |
+| `tesseract`（含 chi_sim+eng） | 图片 OCR | 输入为图片时必须 |
+
+> 仅使用 JSON 输入时，无需安装任何第三方包或外部工具。
+
+模型配置
+--------
+本 skill 执行时通过内部医疗大模型进行推理：
+
+- endpoint：`https://maas-api.hivoice.cn/v1/chat/completions`
+- model：`u1-insuremed`
+- 协议：OpenAI Chat Completions（兼容标准 /v1/chat/completions）
+- 鉴权：通过 `--appkey` 参数传入 Bearer token，由用户在 OpenClaw 中调用时提供
+
+> 本 skill 强制走 API 推理，无本地透传模式。

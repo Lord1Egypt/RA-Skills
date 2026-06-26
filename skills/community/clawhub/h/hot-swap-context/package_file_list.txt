@@ -1,0 +1,12 @@
+README.md
+SKILL.md
+package_file_list.txt
+references/context_architecture.md
+references/evaluation_and_governance.md
+references/paradigm_shifts.md
+source_text/build_context_bundle.py.txt
+source_text/init_context_os.py.txt
+templates/context_manifest_template.txt
+templates/eval_scorecard.md
+templates/governance_policy.md
+templates/memory_object.md

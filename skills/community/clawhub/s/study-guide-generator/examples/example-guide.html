@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《习概》主观题考前突击指南 (演示互动版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626', // Red
+                        secondary: '#991b1b', // Darker Red
+                        accent: '#fef08a', // Yellow for highlights
+                        bgLight: '#fef2f2', // Very light red
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f8fafc; }
+        .glass-card { background: #ffffff; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border-radius: 1rem; border: 1px solid #f1f5f9; }
+        .highlight-text { background: linear-gradient(transparent 60%, #fef08a 60%); display: inline; padding: 0 4px; }
+        .gradient-header { background: linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%); }
+        
+        /* 交互过渡动画 */
+        .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
+        .expand-content { transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; overflow: hidden; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* 隐藏滚动条但允许滚动 */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased leading-relaxed pb-20">
+
+    <!-- Header (适合演示的宽屏头部) -->
+    <header class="gradient-header text-white py-16 px-6 shadow-2xl relative overflow-hidden text-center">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CgkJPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiLz4KCTwvc3ZnPg==')]"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="inline-block bg-accent text-primary font-bold px-4 py-1.5 rounded-full text-sm md:text-base mb-6 shadow-md cursor-pointer hover:bg-white transition" onclick="alert('进入演示模式！讲课时可点击带✨或有边框的元素进行互动。')">
+                <i class="fas fa-chalkboard-teacher mr-2"></i> 广东自考 · 考前2周冲刺专用 (讲师演示版)
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight">《习概》主观题满分突击指南</h1>
+            <p class="text-red-100 text-xl md:text-2xl font-light">掌握底层逻辑与话语体系，把零散知识变成考场肌肉记忆。</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto p-4 md:p-6 space-y-12 -mt-10 relative z-20">
+
+        <!-- Section 1: 核心策略 (标签页互动) -->
+        <section class="glass-card p-8 md:p-10 relative">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-primary inline-block relative">
+                    一、 阅卷老师眼中的“满分流水线”
+                    <div class="absolute -bottom-3 left-1/4 right-1/4 h-1 bg-red-200 rounded"></div>
+                </h2>
+                <p class="mt-4 text-gray-500 text-lg">点击下方步骤，逐步拆解主观题的“三段论四步拼装法”</p>
+            </div>
+            
+            <!-- Tabs Navigation -->
+            <div class="flex flex-wrap md:flex-nowrap justify-center gap-3 mb-8">
+                <button onclick="showTab('step1')" id="btn-step1" class="tab-btn flex-1 py-3 px-6 rounded-lg font-bold text-lg bg-primary text-white shadow-md transition-all transform hover:scale-105">1. 破题定性</button>
+                <button onclick="showTab('step2')" id="btn-step2" class="tab-btn flex-1 py-3 px-6 rounded-lg font-bold text-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all transform hover:scale-105">2. 硬核踩分</button>
+                <button onclick="showTab('step3')" id="btn-step3" class="tab-btn flex-1 py-3 px-6 rounded-lg font-bold text-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all transform hover:scale-105">3. 政治胶水</button>
+                <button onclick="showTab('step4')" id="btn-step4" class="tab-btn flex-1 py-3 px-6 rounded-lg font-bold text-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all transform hover:scale-105">4. 万金油结语</button>
+            </div>
+
+            <!-- Tabs Content -->
+            <div class="min-h-[250px] flex items-center justify-center bg-gray-50 rounded-xl p-8 border-2 border-dashed border-gray-200">
+                
+                <!-- Step 1 -->
+                <div id="step1" class="tab-content text-center fade-in">
+                    <i class="fas fa-flag text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-2xl text-gray-800 mb-4">第一步：破题定性（写在开头）</h3>
+                    <p class="text-lg mb-6 text-gray-600">开门见山，告诉老师“我审题了，而且我的政治站位很高”。</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-red-100 inline-block text-left text-lg">
+                        <span class="text-gray-500 font-mono block mb-2">✍️ 话术模板：</span>
+                        <span class="text-red-700 font-bold">"材料中提到的……现象/问题，本质上体现了……的重要论述。<br>我的个人理解是：第一，……；第二，……。"</span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="step2" class="tab-content hidden text-center fade-in">
+                    <i class="fas fa-crosshairs text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-2xl text-gray-800 mb-4">第二步：硬核踩分（强行植入考点）</h3>
+                    <p class="text-lg mb-6 text-gray-600">这是拿分的主阵地！结合材料关键词，默写14个必背理论标题凑字数。</p>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-red-100 inline-block text-left text-lg">
+                        <span class="text-gray-500 font-mono block mb-2">✍️ 过渡与植入模板：</span>
+                        <span class="text-red-700 font-bold">"结合我在《习概》课程中的学习，我认为：<br>第一，这体现了坚持党的全面领导；<br>第二，这体现了推动高质量发展……"</span>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div id="step3" class="tab-content hidden text-center fade-in">
+                    <i class="fas fa-link text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-2xl text-gray-800 mb-4">第三步：加“政治胶水”（润色词汇）</h3>
+                    <p class="text-lg mb-6 text-gray-600">不要只写干瘪的标题，用以下“提分词”把标题变成长句！</p>
+                    <div class="grid grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary text-lg">🔥 党的领导 = <span class="text-primary font-bold ml-2">根本保证 / 最大优势</span></div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary text-lg">🔥 高质量发展 = <span class="text-primary font-bold ml-2">首要任务</span></div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary text-lg">🔥 共同富裕 = <span class="text-primary font-bold ml-2">本质要求</span></div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary text-lg">🔥 教育科技人才 = <span class="text-primary font-bold ml-2">战略支撑</span></div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div id="step4" class="tab-content hidden text-center fade-in">
+                    <i class="fas fa-star text-4xl text-accent drop-shadow-md mb-4"></i>
+                    <h3 class="font-bold text-2xl text-gray-800 mb-4">第四步：万金油结语（全篇背诵）</h3>
+                    <p class="text-lg mb-6 text-gray-600">不管题目问什么，最后一段全部默写这段话进行升华！</p>
+                    <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200 text-left text-lg shadow-inner max-w-3xl mx-auto">
+                        <p class="text-gray-800 leading-loose">
+                            “最后，我认为，习近平新时代中国特色社会主义思想是科学社会主义理论逻辑和中国社会发展历史逻辑的辩证统一。它是在长期实践中探索出来的符合中国国情、能够引领中国发展进步的正确道路，已经取得了举世瞩目的成就。这些理论成果正确回答了如何建设社会主义、巩固和发展社会主义等一系列基本问题，为中国的发展提供了科学的理论依据。中国新时代的全面深化改革开放不仅造福中国人民，也对世界经济格局有着深远影响，为人类进步贡献了中国智慧。”
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 2: 核心素材库 (互动测试) -->
+        <section class="glass-card p-8 md:p-10">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b-2 border-red-100 pb-4 mb-8">
+                <h2 class="text-3xl font-bold text-primary flex items-center">
+                    <i class="fas fa-layer-group mr-4"></i>二、 14个必背考点（连线测试）
+                </h2>
+                <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-bold mt-4 md:mt-0 shadow-sm animate-pulse">互动：点击下方情景，匹配考点 👇</span>
+            </div>
+            
+            <!-- 讲师互动区 -->
+            <div class="bg-gray-800 rounded-xl p-6 mb-8 text-white shadow-lg">
+                <h3 class="text-xl font-bold mb-4 text-accent"><i class="fas fa-question-circle mr-2"></i> 随堂测试：看到以下关键词，该写哪个点？</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <button onclick="highlightPoint([4, 5])" class="text-left bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg transition border border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent">
+                        🔍 芯片、科技创新、实体经济升级...
+                    </button>
+                    <button onclick="highlightPoint([2, 9])" class="text-left bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg transition border border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent">
+                        🔍 精准扶贫、就业、医疗、养老保障...
+                    </button>
+                    <button onclick="highlightPoint([1])" class="text-left bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg transition border border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent">
+                        🔍 反腐倡廉、党的建设、巡视工作...
+                    </button>
+                    <button onclick="highlightPoint([10])" class="text-left bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg transition border border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent">
+                        🔍 碳达峰、绿水青山、污染治理...
+                    </button>
+                </div>
+                <div class="mt-4 text-center">
+                    <button onclick="resetPoints()" class="text-sm text-gray-400 hover:text-white underline">重置高亮</button>
+                </div>
+            </div>
+
+            <!-- 14 Points Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="points-container">
+                <!-- Point Items will be injected by JS for cleaner HTML, or hardcoded here -->
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-1"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">1</span> 体现 <strong>坚持党的全面领导</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-2"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">2</span> 体现 <strong>坚持以人民为中心</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-3"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">3</span> 体现 <strong>全面深化改革开放</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-4"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">4</span> 体现 <strong>推动高质量发展</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-5"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">5</span> 体现现代化建设的 <strong>教育、科技、人才战略</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-6"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">6</span> 体现发展 <strong>全过程人民民主</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-7"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">7</span> 体现 <strong>全面依法治国</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-8"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">8</span> 体现建设 <strong>社会主义文化强国</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-9"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">9</span> 体现以民生为重点加强 <strong>社会建设</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-10"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">10</span> 体现建设 <strong>社会主义生态文明</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-11"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">11</span> 体现维护和塑造 <strong>国家安全</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-12"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">12</span> 体现建设 <strong>巩固国防和强大人民军队</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-13"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">13</span> 体现坚持 <strong>“一国两制”和推进祖国完全统一</strong></div>
+                <div class="point-card bg-white p-4 border border-gray-200 rounded-lg transition-all duration-300" id="pt-14"><span class="inline-block bg-gray-100 text-gray-500 rounded-full w-6 h-6 text-center text-sm mr-2 leading-6">14</span> <strong>中国特色大国外交和构建人类命运共同体</strong></div>
+            </div>
+        </section>
+
+        <!-- Section 3: 实战演练 (一键魔法) -->
+        <section class="glass-card p-8 md:p-10">
+            <h2 class="text-3xl font-bold text-primary border-b-2 border-red-100 pb-4 mb-8 flex items-center">
+                <i class="fas fa-magic mr-4"></i>三、 实战演练：一键升级满分卷面
+            </h2>
+
+            <!-- 演练案例 -->
+            <div class="border-2 border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <!-- 题目区 -->
+                <div class="bg-gray-100 px-6 py-5 border-b border-gray-200">
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded text-sm font-bold mb-3 inline-block">论述题</span>
+                    <h3 class="font-bold text-xl text-gray-800 leading-snug">试述全面深化改革路线图的主要内容。</h3>
+                </div>
+                
+                <div class="p-6 md:p-8 bg-white">
+                    <!-- 初始状态：干瘪答案 -->
+                    <div id="bad-answer" class="mb-6">
+                        <div class="text-gray-500 font-bold mb-3 flex items-center text-lg">
+                            <i class="fas fa-times-circle text-red-500 mr-2 text-xl"></i> 原版答案（字数太少，且没结构）：
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg text-gray-600 font-mono leading-relaxed border border-gray-200">
+                            紧紧围绕使市场在资源配置中起决定性作用和更好发挥政府作用，深化经济体制改革；紧紧围绕坚持党的领导、人民当家作主、依法治国有机统一，深化政治体制改革；...深化文化体制改革；...深化社会体制改革；...深化生态文明体制改革：...深化党的建设制度改革。
+                        </div>
+                    </div>
+
+                    <!-- 互动按钮 -->
+                    <div class="text-center py-6 border-t border-b border-dashed border-gray-300 my-6 bg-gray-50 rounded-lg">
+                        <p class="text-gray-500 mb-4">讲师提示：如果在考场上直接默写上面这段话，得分不高。请点击下方按钮体验排版包装的威力。</p>
+                        <button onclick="revealGoodAnswer()" id="magic-btn" class="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition-all hover:scale-105 text-lg flex items-center mx-auto">
+                            <i class="fas fa-wand-magic-sparkles mr-3"></i> 施展魔法：利用“三段论”升级卷面
+                        </button>
+                    </div>
+
+                    <!-- 升级状态：满分卷面 (初始隐藏) -->
+                    <div id="good-answer" class="hidden opacity-0 expand-content bg-yellow-50 p-8 rounded-xl border-2 border-yellow-300 shadow-inner">
+                        <div class="text-green-700 font-bold mb-6 flex items-center text-xl border-b border-yellow-200 pb-3">
+                            <i class="fas fa-check-circle mr-3 text-2xl"></i> 包装后的高分卷面（清晰、丰满、高度）：
+                        </div>
+                        
+                        <div class="space-y-6 text-lg text-gray-800 font-mono leading-relaxed">
+                            <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-400">
+                                <p class="text-blue-500 text-sm mb-2 font-bold select-none"><i class="fas fa-comment-dots"></i> 第一段：破题定性</p>
+                                <p><strong>答：</strong><span class="highlight-text">材料中提到“实现两个一百年奋斗目标，要以改革开放为抓手”，这深刻体现了全面深化改革开放的重要战略地位。我的个人理解是：改革是一项系统工程，必须坚持正确的方向，加强顶层设计，才能破除体制机制障碍。</span></p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm border-l-4 border-red-400">
+                                <p class="text-red-500 text-sm mb-2 font-bold select-none"><i class="fas fa-list-ol"></i> 第二段：踩分核心区（原答案加上序号分点）</p>
+                                <p class="mb-2"><span class="highlight-text">结合我在《习近平新时代中国特色社会主义思想概论》课程中的学习，我认为，</span>全面深化改革是一项复杂的系统工程，其路线图主要紧紧围绕以下六个方面展开：</p>
+                                <p class="pl-4"><strong>第一，</strong>紧紧围绕使市场在资源配置中起决定性作用和更好发挥政府作用，深化经济体制改革。<br>
+                                <strong>第二，</strong>紧紧围绕坚持党的领导、人民当家作主、依法治国有机统一，深化政治体制改革。<br>
+                                <strong>第三，</strong>紧紧围绕建设社会主义核心价值体系、社会主义文化强国深化文化体制改革。<br>
+                                <strong>第四，</strong>紧紧围绕更好保障和改善民生、促进社会公平正义，深化社会体制改革。<br>
+                                <strong>第五，</strong>紧紧围绕建设美丽中国，深化生态文明体制改革。<br>
+                                <strong>第六，</strong>紧紧围绕提高科学执政、民主执政、依法执政水平，深化党的建设制度改革。</p>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm border-l-4 border-yellow-400">
+                                <p class="text-yellow-600 text-sm mb-2 font-bold select-none"><i class="fas fa-star"></i> 第三段：默写万金油结尾</p>
+                                <p><span class="highlight-text">最后，我认为，习近平新时代中国特色社会主义思想是科学社会主义理论逻辑和中国社会发展历史逻辑的辩证统一。它是在长期实践中探索出来的符合中国国情、能够引领中国发展进步的正确道路，已经取得了举世瞩目的成就。这些理论成果正确回答了如何建设社会主义、巩固和发展社会主义等一系列基本问题，为中国的发展提供了科学的理论依据。中国新时代的全面深化改革开放对世界经济格局有着深远影响。</span></p>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <button onclick="resetAnswer()" class="text-gray-500 hover:text-gray-800 underline text-sm">隐藏高分答案</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: 简答题真题演练 (互动翻牌) -->
+        <section class="glass-card p-8 md:p-10 border-t-8 border-blue-500">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b-2 border-blue-100 pb-4 mb-8">
+                <h2 class="text-3xl font-bold text-blue-700 flex items-center">
+                    <i class="fas fa-tasks mr-4"></i>四、 高频简答题真题演练（自测翻牌）
+                </h2>
+                <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mt-4 md:mt-0 shadow-sm animate-pulse">互动：先尝试自己背诵，再点击翻牌 👇</span>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Question 1 -->
+                <div class="border border-gray-200 rounded-lg p-5 bg-white shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3 flex-shrink-0 mt-0.5">1</span>
+                        2024年7月，党的二十届三中全会在北京胜利召开。全会强调，必须深刻领悟“两个确立”的决定性意义，“两个确立”的完整表述是什么？
+                    </h3>
+                    <div class="ml-10">
+                        <button onclick="toggleCardAnswer('ans-1', this)" class="text-blue-600 font-bold text-sm bg-blue-50 px-4 py-2 rounded hover:bg-blue-100 transition focus:outline-none">
+                            <i class="fas fa-eye mr-1"></i> 查看标准答案
+                        </button>
+                        <div id="ans-1" class="hidden mt-4 p-5 bg-gray-50 border-l-4 border-blue-500 rounded text-gray-800 font-mono text-base leading-relaxed">
+                            党确立 <span class="text-primary font-bold">习近平同志党中央的核心、全党的核心</span> 地位，确立 <span class="text-primary font-bold">习近平新时代中国特色社会主义思想的指导</span> 地位。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="border border-gray-200 rounded-lg p-5 bg-white shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3 flex-shrink-0 mt-0.5">2</span>
+                        简述习近平新时代中国特色社会主义思想的历史地位。
+                    </h3>
+                    <div class="ml-10">
+                        <button onclick="toggleCardAnswer('ans-2', this)" class="text-blue-600 font-bold text-sm bg-blue-50 px-4 py-2 rounded hover:bg-blue-100 transition focus:outline-none">
+                            <i class="fas fa-eye mr-1"></i> 查看标准答案
+                        </button>
+                        <div id="ans-2" class="hidden mt-4 p-5 bg-gray-50 border-l-4 border-blue-500 rounded text-gray-800 font-mono text-base leading-relaxed">
+                            （1）<span class="text-primary font-bold">当代中国马克思主义、二十一世纪马克思主义</span>；<br>
+                            （2）<span class="text-primary font-bold">中华文化和中国精神的时代精华</span>；<br>
+                            （3）<span class="text-primary font-bold">马克思主义中国化时代化新的飞跃</span>。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="border border-gray-200 rounded-lg p-5 bg-white shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3 flex-shrink-0 mt-0.5">3</span>
+                        如何坚持人民立场？
+                    </h3>
+                    <div class="ml-10">
+                        <button onclick="toggleCardAnswer('ans-3', this)" class="text-blue-600 font-bold text-sm bg-blue-50 px-4 py-2 rounded hover:bg-blue-100 transition focus:outline-none">
+                            <i class="fas fa-eye mr-1"></i> 查看标准答案
+                        </button>
+                        <div id="ans-3" class="hidden mt-4 p-5 bg-gray-50 border-l-4 border-blue-500 rounded text-gray-800 font-mono text-base leading-relaxed">
+                            （1）坚持 <span class="text-primary font-bold">人民是创造历史的根本动力</span>；<br>
+                            （2）坚持 <span class="text-primary font-bold">全心全意为人民服务的根本宗旨</span>；<br>
+                            （3）把 <span class="text-primary font-bold">人民对美好生活的向往作为奋斗目标</span>；<br>
+                            （4）<span class="text-primary font-bold">依靠人民创造历史伟业</span>。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="border border-gray-200 rounded-lg p-5 bg-white shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3 flex-shrink-0 mt-0.5">4</span>
+                        简述高质量发展的重大战略意义。
+                    </h3>
+                    <div class="ml-10">
+                        <button onclick="toggleCardAnswer('ans-4', this)" class="text-blue-600 font-bold text-sm bg-blue-50 px-4 py-2 rounded hover:bg-blue-100 transition focus:outline-none">
+                            <i class="fas fa-eye mr-1"></i> 查看标准答案
+                        </button>
+                        <div id="ans-4" class="hidden mt-4 p-5 bg-gray-50 border-l-4 border-blue-500 rounded text-gray-800 font-mono text-base leading-relaxed">
+                            高质量发展是 <span class="text-primary font-bold">全面建设社会主义现代化国家的首要任务</span>。<br>
+                            （1）它是保持经济持续健康发展的 <span class="text-primary font-bold">必然要求</span>；<br>
+                            （2）它是适应我国社会主要矛盾变化和全面建设社会主义现代化国家的 <span class="text-primary font-bold">必然要求</span>；<br>
+                            （3）它是遵循经济规律发展的 <span class="text-primary font-bold">必然要求</span>。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="border border-gray-200 rounded-lg p-5 bg-white shadow-sm hover:shadow-md transition">
+                    <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3 flex-shrink-0 mt-0.5">5</span>
+                        中华文明的五个突出特性有哪些？
+                    </h3>
+                    <div class="ml-10">
+                        <button onclick="toggleCardAnswer('ans-5', this)" class="text-blue-600 font-bold text-sm bg-blue-50 px-4 py-2 rounded hover:bg-blue-100 transition focus:outline-none">
+                            <i class="fas fa-eye mr-1"></i> 查看标准答案
+                        </button>
+                        <div id="ans-5" class="hidden mt-4 p-5 bg-gray-50 border-l-4 border-blue-500 rounded text-gray-800 font-mono text-base leading-relaxed">
+                            中华文明具有突出的：<span class="text-primary font-bold">连续性、创新性、统一性、包容性、和平性</span>。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 5: 考场急救 (手风琴折叠) -->
+        <section class="glass-card p-8 md:p-10 border-t-8 border-red-500">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-ambulance text-red-500 mr-3 text-3xl"></i> 五、 考场“急救”避坑指南
+            </h2>
+            <div class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-red-50 focus:outline-none flex justify-between items-center font-bold text-lg text-gray-800 transition" onclick="toggleAccordion('faq1', this)">
+                        <span><i class="fas fa-question-circle text-red-500 mr-2"></i> 遇到完全看不懂的题目怎么办？</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-300 accordion-icon"></i>
+                    </button>
+                    <div id="faq1" class="hidden px-6 py-5 bg-white border-t border-gray-200 text-lg leading-relaxed text-gray-700">
+                        <strong class="text-red-600">绝招：找材料高频词。</strong> 如果毫无头绪，直接写这三个万尊之神：<br><br>
+                        <div class="bg-red-50 p-4 border-l-4 border-red-500 rounded font-bold">
+                            “第一，坚持党的全面领导；<br>
+                            第二，坚持以人民为中心；<br>
+                            第三，全面深化改革开放。”
+                        </div>
+                        <br>任何发展问题都能往这三个点上套，绝对能拿到踩分点！
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-red-50 focus:outline-none flex justify-between items-center font-bold text-lg text-gray-800 transition" onclick="toggleAccordion('faq2', this)">
+                        <span><i class="fas fa-question-circle text-red-500 mr-2"></i> 感觉字数凑不够怎么办？</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-300 accordion-icon"></i>
+                    </button>
+                    <div id="faq2" class="hidden px-6 py-5 bg-white border-t border-gray-200 text-lg leading-relaxed text-gray-700">
+                        <strong class="text-red-600">绝招：全方位发散。</strong> 把“是什么”、“为什么”、“怎么办”全写一遍。<br>
+                        比如题目只问了“为什么”，你答完原因后，强行加一句 <span class="highlight-text font-bold">“因此，我们必须做到……”</span>，然后开始默写你的14个理论标题作为措施凑字数。
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-red-50 focus:outline-none flex justify-between items-center font-bold text-lg text-gray-800 transition" onclick="toggleAccordion('faq3', this)">
+                        <span><i class="fas fa-question-circle text-red-500 mr-2"></i> 卷面排版有什么必须注意的？</span>
+                        <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-300 accordion-icon"></i>
+                    </button>
+                    <div id="faq3" class="hidden px-6 py-5 bg-white border-t border-gray-200 text-lg leading-relaxed text-gray-700">
+                        <strong class="text-red-600">绝招：排版必须像“产品说明书”。</strong><br>
+                        切忌密密麻麻写成一团！每一个踩分点必须换行，并且在句首标上明确的汉字序号（<strong>第一、第二、第三</strong>）。老师批卷速度极快，他们是<span class="font-bold text-primary border-b-2 border-red-500">“见序号找关键词给分”</span>。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 交互脚本 -->
+    <script>
+        // Section 1: Tabs Logic
+        function showTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('fade-in');
+            });
+            // Reset all buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                el.classList.add('bg-gray-100', 'text-gray-600');
+            });
+            
+            // Show selected content
+            const content = document.getElementById(tabId);
+            content.classList.remove('hidden');
+            // trigger reflow to restart animation
+            void content.offsetWidth;
+            content.classList.add('fade-in');
+            
+            // Highlight selected button
+            const btn = document.getElementById('btn-' + tabId);
+            btn.classList.remove('bg-gray-100', 'text-gray-600');
+            btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+        }
+
+        // Section 2: Points Highlight Logic
+        function resetPoints() {
+            document.querySelectorAll('.point-card').forEach(el => {
+                el.classList.remove('bg-red-50', 'border-red-400', 'scale-105', 'shadow-md', 'z-10');
+                el.classList.add('bg-white', 'border-gray-200');
+                // Reset number badge
+                const badge = el.querySelector('span');
+                badge.classList.remove('bg-primary', 'text-white');
+                badge.classList.add('bg-gray-100', 'text-gray-500');
+            });
+        }
+
+        function highlightPoint(ids) {
+            resetPoints();
+            ids.forEach(id => {
+                const el = document.getElementById('pt-' + id);
+                if(el) {
+                    el.classList.remove('bg-white', 'border-gray-200');
+                    el.classList.add('bg-red-50', 'border-red-400', 'scale-105', 'shadow-md', 'z-10');
+                    
+                    const badge = el.querySelector('span');
+                    badge.classList.remove('bg-gray-100', 'text-gray-500');
+                    badge.classList.add('bg-primary', 'text-white');
+                }
+            });
+        }
+
+        // Section 3: Magic Reveal Logic
+        function revealGoodAnswer() {
+            const goodAnswer = document.getElementById('good-answer');
+            const magicBtn = document.getElementById('magic-btn');
+            
+            magicBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i> 正在生成高分卷面...';
+            magicBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                magicBtn.style.display = 'none';
+                goodAnswer.classList.remove('hidden');
+                setTimeout(() => {
+                    goodAnswer.classList.remove('opacity-0');
+                }, 50);
+            }, 800);
+        }
+
+        function resetAnswer() {
+            const goodAnswer = document.getElementById('good-answer');
+            const magicBtn = document.getElementById('magic-btn');
+            
+            goodAnswer.classList.add('opacity-0');
+            setTimeout(() => {
+                goodAnswer.classList.add('hidden');
+                magicBtn.style.display = 'flex';
+                magicBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles mr-3"></i> 施展魔法：利用“三段论”升级卷面';
+                magicBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }, 500);
+        }
+        
+        // Section 4: Card Toggle Logic (简答题翻牌)
+        function toggleCardAnswer(id, btnElement) {
+            const content = document.getElementById(id);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.classList.add('fade-in');
+                btnElement.innerHTML = '<i class="fas fa-eye-slash mr-1"></i> 隐藏答案';
+                btnElement.classList.replace('bg-blue-50', 'bg-gray-100');
+                btnElement.classList.replace('hover:bg-blue-100', 'hover:bg-gray-200');
+                btnElement.classList.replace('text-blue-600', 'text-gray-600');
+            } else {
+                content.classList.add('hidden');
+                content.classList.remove('fade-in');
+                btnElement.innerHTML = '<i class="fas fa-eye mr-1"></i> 查看标准答案';
+                btnElement.classList.replace('bg-gray-100', 'bg-blue-50');
+                btnElement.classList.replace('hover:bg-gray-200', 'hover:bg-blue-100');
+                btnElement.classList.replace('text-gray-600', 'text-blue-600');
+            }
+        }
+
+        // Section 5: Accordion Logic
+        function toggleAccordion(id, btnElement) {
+            const content = document.getElementById(id);
+            const icon = btnElement.querySelector('.accordion-icon');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                btnElement.classList.add('bg-red-50');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                btnElement.classList.remove('bg-red-50');
+            }
+        }
+    </script>
+</body>
+</html>

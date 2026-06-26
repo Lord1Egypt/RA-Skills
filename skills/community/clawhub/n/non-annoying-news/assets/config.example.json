@@ -1,0 +1,69 @@
+{
+  "version": "0.2.1",
+  "onboarding": {
+    "complete": false,
+    "note": "Starter config only. Complete the Personalization Gate before generating a personal issue or scheduling a recurring job.",
+    "requiredBeforePersonalIssue": [
+      "newspaper.title",
+      "newspaper.language",
+      "editorial.readerPromise",
+      "editorial.topics",
+      "editorial.exclusions",
+      "signals",
+      "cadence",
+      "delivery",
+      "design"
+    ]
+  },
+  "newspaper": {
+    "title": null,
+    "subtitle": null,
+    "language": null,
+    "timezone": "local"
+  },
+  "cadence": {
+    "mode": null,
+    "day": null,
+    "time": null,
+    "createCron": false
+  },
+  "editorial": {
+    "readerPromise": null,
+    "topics": [],
+    "exclusions": [],
+    "sections": [],
+    "tone": null,
+    "selectionBias": "user-saved signals first, general discovery second"
+  },
+  "signals": [
+    { "id": "manual_urls", "type": "manual_urls", "enabled": true, "priority": 100 },
+    { "id": "x_bookmarks", "type": "x_bookmarks", "enabled": false, "priority": 90, "limit": 30 },
+    { "id": "browser_reading_list", "type": "browser_reading_list", "enabled": false, "priority": 80 },
+    { "id": "read_later", "type": "read_later", "enabled": false, "priority": 75 },
+    { "id": "rss", "type": "rss", "enabled": false, "priority": 60, "feeds": [] },
+    { "id": "newsletter", "type": "newsletter", "enabled": false, "priority": 55 },
+    { "id": "web_search", "type": "web_search", "enabled": false, "priority": 40, "queries": [] }
+  ],
+  "issue": {
+    "maxPages": 3,
+    "targetStories": { "lead": 1, "features": 4, "briefs": 10 },
+    "sourceWindowDays": 7,
+    "dedupe": true
+  },
+  "design": {
+    "preset": "classic-newspaper",
+    "density": "compact",
+    "accentColor": "#6f3b1b",
+    "pageSize": "A4",
+    "imagePolicy": "source-only"
+  },
+  "delivery": {
+    "mode": null,
+    "format": ["html", "pdf"],
+    "requireApprovalBeforeExternalSend": true
+  },
+  "reasoning": {
+    "recommendedThinking": "xhigh",
+    "proofreadingRequired": true
+  }
+}

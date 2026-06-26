@@ -1,0 +1,47 @@
+{
+  "skill_name": "shareplay-activities",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm adding SharePlay to a SwiftUI movie app. Show the Group Activities setup, the activity type and metadata, how to start the activity from the app, how to listen for sessions, and how to sync AVPlayer playback. Keep custom messages only where they are actually needed.",
+      "expected_output": "A source-grounded SharePlay media implementation plan that uses the Group Activities capability, a codable GroupActivity, prepareForActivation/activate or GroupActivitySharingController, long-lived session observation with join/leave cleanup, and AVPlaybackCoordinator for player rate/time sync.",
+      "files": [],
+      "assertions": [
+        "Adds the Group Activities capability to the app target and references the `com.apple.developer.group-session` entitlement without inventing unsupported Info.plist keys.",
+        "Defines a `GroupActivity` with codable stored data, concise `GroupActivityMetadata`, `.watchTogether`, and a fallback URL or equivalent content identifier.",
+        "Uses `GroupStateObserver.isEligibleForGroupSession` to choose between direct activation and presenting `GroupActivitySharingController` when no conversation is active.",
+        "Observes `Activity.sessions()` in a long-lived manager, stores cancellable `Task<Void, Never>` handles, calls `session.join()`, and cleans up on invalidation or leave.",
+        "Uses `player.playbackCoordinator.coordinateWithSession(session)` for AVPlayer rate/time synchronization and avoids redundant play/pause/seek messenger messages.",
+        "Keeps app-specific `GroupSessionMessenger` messages separate from AVPlayer transport sync."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this collaborative whiteboard SharePlay design: every stroke is sent reliably, image drops are sent through GroupSessionMessenger as Data, late joiners rebuild from whatever messages they happen to receive, and the sessions() listener is in a SwiftUI view task. Fix the architecture.",
+      "expected_output": "A correction-focused SharePlay architecture that separates reliable and unreliable message streams, uses GroupSessionJournal for large Transferable attachments, sends state snapshots to late joiners, and moves session observation into a retained manager.",
+      "files": [],
+      "assertions": [
+        "Moves `sessions()` observation out of a recreated SwiftUI view and into a retained manager or model object.",
+        "Uses unreliable messaging for high-frequency ephemeral stroke or cursor updates and reliable messaging for durable state-changing commands such as clear canvas or selections.",
+        "Mentions that messenger payloads should stay under 256 KB and should not carry large image/file data.",
+        "Uses `GroupSessionJournal` for larger non-time-sensitive attachments, notes `Transferable` item requirements, and includes the 100 MB attachment limit.",
+        "Handles late joiners by detecting new participants and sending a full state snapshot or equivalent canonical state.",
+        "Includes leave/end and task cleanup so abandoned sessions and message listeners do not leak."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want a SharePlay launch path that works from a normal SwiftUI share button, over AirDrop when people are nearby, and from a custom UIKit button when no FaceTime call is active. Also call out what belongs in GameKit, TabletopKit, or AVKit instead of this SharePlay layer.",
+      "expected_output": "A boundary-aware SharePlay UI plan that uses Transferable for ShareLink/AirDrop/share sheets, GroupActivitySharingController for no active conversation, and keeps Game Center services, TabletopKit board mechanics, and AVKit playback UI or media player details in sibling framework domains.",
+      "files": [],
+      "assertions": [
+        "States that SwiftUI `ShareLink`, SharePlay over AirDrop, and system share sheets require the activity or shared item to conform to `Transferable`.",
+        "Keeps the transferable payload minimal by sharing IDs, URLs, or activity descriptors instead of large media or documents.",
+        "Uses `GroupActivitySharingController` when no FaceTime call or Messages conversation is active and direct `prepareForActivation()`/`activate()` when one is active.",
+        "Mentions the `shareplay` SF Symbol or equivalent UI affordance and concise activity metadata as discoverability guidance.",
+        "Keeps GameKit authentication, leaderboards, matchmaking, and voice/chat out of the SharePlay implementation except for handoff boundaries.",
+        "Keeps TabletopKit board equipment/seat/action mechanics and AVKit playback UI details outside the SharePlay layer while allowing GroupActivities session coordination handoffs."
+      ]
+    }
+  ]
+}

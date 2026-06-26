@@ -1,0 +1,52 @@
+# 简历 JD 匹配 - 配置模板
+# 复制此文件为 config_resume_match.yaml 并根据需要修改
+
+# ========== 运行模式 ==========
+# "subagent" - OpenClaw skill 模式（无需 API 配置，推荐使用）
+# "api" - 独立脚本模式（需要配置 API）
+mode: "subagent"
+
+# ========== API 配置（仅当 mode="api" 时需要） ==========
+api:
+  # 当前使用的供应商（从下方 api_providers 中选择）
+  active_provider: "tencent"
+  
+  # 通用参数
+  max_tokens: 3000
+  timeout: 120
+  
+  # 多供应商配置
+  api_providers:
+    # 腾讯 - Hunyuan-T1
+    tencent:
+      name: "腾讯 Hunyuan"
+      api_key: "YOUR_TENCENT_API_KEY"
+      api_url: "https://api.lkeap.cloud.tencent.com/coding/anthropic/v1/messages"
+      model: "hunyuan-t1"
+      description: "腾讯 Hunyuan-T1，适合长文本分析"
+    
+    # 阿里 - 通义千问
+    alibaba:
+      name: "阿里通义千问"
+      api_key: "YOUR_ALIBABA_API_KEY"
+      api_url: "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
+      model: "qwen-plus"
+      description: "阿里通义千问 Plus，性价比高"
+    
+    # 中国移动 - Qwen3 235B
+    cmhk:
+      name: "中国移动 Qwen3"
+      api_key: "YOUR_CMHK_API_KEY"
+      api_url: "https://opensseapi.cmhk.com/CMHK-LMMP-PRD_Qwen3_235B/CMHK-LMMP-PRD/v1/chat/completions"
+      model: "Qwen3-235B"
+      description: "中国移动 Qwen3 235B 模型"
+
+# ========== 路径配置 ==========
+paths:
+  jd_folder: "D:\\JD"
+  jl_folder: "D:\\JL"
+  output_folder: "D:\\jg"
+
+# ========== 简历配置 ==========
+resume:
+  max_chars: 0  # 0 表示不限制字符数，发送完整简历给 AI 分析

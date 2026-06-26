@@ -1,0 +1,18 @@
+# MiniMax TTS Plus - Environment Variables
+# Copy this file to .env and fill in your values.
+# NEVER commit .env to version control.
+
+# === Required: MiniMax API (https://api.minimaxi.com) ===
+# Get your API Secret Key from: https://platform.minimax.io → Account → API Keys
+MINIMAX_API_KEY=your-minimax-secret-key-here
+
+# === Optional: Telegram sending ===
+# Only needed if you want to send voice messages to Telegram.
+# Get bot token from: https://t.me/BotFather
+# Get your chat ID from: https://t.me/useridbot or check @userinfobot
+TELEGRAM_BOT_TOKEN=your-telegram-bot-token-here
+TELEGRAM_TARGET=your-telegram-chat-id-here
+
+# === Optional: TTS model override ===
+# Default: speech-2.8-hd (highest quality)
+# TTS_MODEL=speech-2.8-hd

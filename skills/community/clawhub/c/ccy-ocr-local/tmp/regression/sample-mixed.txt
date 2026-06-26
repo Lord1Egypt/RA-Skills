@@ -1,0 +1,3 @@
+OpenClaw OCR Test 123
+Hello OCR
+中文测试 ABC 456

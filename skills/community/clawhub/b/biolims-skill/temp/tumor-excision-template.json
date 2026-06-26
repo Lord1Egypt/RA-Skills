@@ -1,0 +1,106 @@
+{
+  "templateName": "Tumor Excision and Weighing",
+  "experimentType": "SYLX2026000009",
+  "experimentTypeName": "Excision",
+  "experimentGroup": "GLY",
+  "experimentGroupName": "Admin Group",
+  "auditor": "approver",
+  "auditorName": "Reviewer",
+  "stepDetails": [
+    {
+      "stepName": "Tumor Excision And Weighing",
+      "sort": 1,
+      "jsonDatas": [
+        {
+          "label": "Material",
+          "type": "material",
+          "size": 1,
+          "value": "[{\"id\":\"SJ2026000012\",\"name\":\"PBS (optional for rinsing)\",\"type\":{\"id\":\"17177306921520209913\",\"name\":\"material\"},\"changeEvent\":0,\"flag\":false,\"states\":0}]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": {},
+          "formula": {},
+          "keyId": "material_001"
+        },
+        {
+          "label": "Equipment",
+          "type": "equipment",
+          "size": 1,
+          "value": "[]",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": {},
+          "formula": {},
+          "keyId": "equipment_001"
+        },
+        {
+          "label": "Text box",
+          "type": "editor",
+          "size": 1,
+          "value": "<ol><li>Euthanize mouse by CO₂ inhalation at study endpoint or humane endpoint.</li><li>Excise tumor, remove surrounding tissue, weigh immediately.</li></ol>",
+          "propList": "[]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": {},
+          "formula": {},
+          "keyId": "editor_001"
+        },
+        {
+          "label": "Custom Table",
+          "type": "table",
+          "size": 1,
+          "value": "[]",
+          "propList": "[{\"label\":\"Mouse ID\",\"prop\":\"MouseID\",\"type\":\"text\",\"value\":null,\"headerType\":\"Customize\",\"required\":\"0\"},{\"label\":\"Tumor weight (TW, g)\",\"prop\":\"TumorweightTWg\",\"type\":\"number\",\"value\":null,\"headerType\":\"Customize\",\"required\":\"0\"},{\"label\":\"Date of excision\",\"prop\":\"Dateofexcision\",\"type\":\"date\",\"value\":null,\"headerType\":\"Customize\",\"required\":\"0\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": {},
+          "formula": {},
+          "keyId": "table_001"
+        },
+        {
+          "label": "Sample List",
+          "type": "detailTable",
+          "size": 1,
+          "value": "[]",
+          "propList": "[{\"label\":\"Orig Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"\",\"prop\":\"sampleTypeId\",\"disabled\":true,\"show\":true},{\"label\":\"Product Name\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Type\",\"prop\":\"productType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Product Qty\",\"prop\":\"productNum\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Mix Sample\",\"prop\":\"mixNumber\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Index\",\"prop\":\"indexCode\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Remaining Qty\",\"prop\":\"sumTotal\",\"type\":\"number\",\"disabled\":false,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Storage Status\",\"prop\":\"storageState\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection of Genes\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Is Split\",\"prop\":\"isSplit\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Quantity\",\"prop\":\"splitQuantity\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Split Proportion\",\"prop\":\"splitProportion\",\"disabled\":true,\"show\":true,\"headerType\":\"fixed\"},{\"label\":\"Mouse ID\",\"prop\":\"MouseID\",\"type\":\"text\",\"value\":null,\"headerType\":\"Customize\",\"required\":\"0\"},{\"label\":\"Group assignment\",\"prop\":\"Groupassignment\",\"type\":\"text\",\"value\":null,\"headerType\":\"Customize\",\"required\":\"0\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": {},
+          "formula": {},
+          "keyId": "detailTable_001"
+        },
+        {
+          "label": "Result Table",
+          "type": "resultTable",
+          "size": 1,
+          "value": "[]",
+          "propList": "[{\"label\":\"Orig Sample ID\",\"prop\":\"originalSampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample ID\",\"prop\":\"sampleCode\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Sample Type\",\"prop\":\"sampleType\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Project\",\"prop\":\"testProjectName\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Volume\",\"prop\":\"volume\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Sum\",\"prop\":\"total\",\"type\":\"number\",\"headerType\":\"fixed\"},{\"label\":\"Unit\",\"prop\":\"sampleUnit\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Next Step\",\"prop\":\"nextFlow\",\"disabled\":true,\"headerType\":\"fixed\",\"required\":true},{\"label\":\"Result\",\"prop\":\"result\",\"disabled\":true,\"required\":1,\"headerType\":\"fixed\"},{\"label\":\"Submit to QC\",\"prop\":\"tjzk\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Detection of Genes\",\"prop\":\"detectionGene\",\"disabled\":true,\"headerType\":\"fixed\"},{\"label\":\"Tumor weight inhibition (TWI, %)\",\"prop\":\"TumorweightinhibitionTWI\",\"type\":\"text\",\"value\":null,\"headerType\":\"Customize\",\"required\":\"0\"}]",
+          "menuList": "[]",
+          "productList": "[]",
+          "plate": {},
+          "formula": "{\"TumorweightinhibitionTWI\":\"[1 – (TW_T / TW_C)] × 100\"}",
+          "keyId": "resultTable_001"
+        }
+      ]
+    }
+  ],
+  "logArrays": [
+    {"id": null, "type": "main", "flag": "", "logs": "Experiment Template：<br>'Template Name' :to' Null 'Change to' Tumor Excision and Weighing '<br>'Experiment Type' :to' Null 'Change to' Excision '<br>'Experiment Group' :to' Null 'Change to' Admin Group '<br>'Reviewer' :to' Null 'Change to' Admin '"},
+    {"type": "step", "flag": "1", "logs": "1"},
+    {"type": "step", "flag": "1", "logs": "Experiment Template：<br>'Step Name' :to' Null 'Change to' Tumor Excision And Weighing '"},
+    {"type": "material", "flag": "1", "logs": "Material:<br>'Component Name' :to' Null 'Change to' Material '"},
+    {"type": "material", "flag": "1", "logs": []},
+    {"type": "equipment", "flag": "1", "logs": "Equipment:<br>'Component Name' :to' Null 'Change to' Equipment '"},
+    {"type": "equipment", "flag": "1", "logs": []},
+    {"type": "editor", "flag": "1", "logs": "Rich Text:<br>'Component Name' :to' Null 'Change to' Text box '"},
+    {"type": "editorValue", "flag": "1", "logs": "Rich Text:<br>'Text box' :to' Null 'Change to' &lt;ol&gt;&lt;li&gt;Euthanize mouse by CO₂ inhalation at study endpoint or humane endpoint.&lt;/li&gt;&lt;li&gt;Excise tumor, remove surrounding tissue, weigh immediately.&lt;/li&gt;&lt;/ol&gt; '"},
+    {"type": "table", "flag": "1", "logs": "Table:<br>'Component Name' :to' Null 'Change to' Custom Table '<br>'Header' :to' Null 'Change to' Mouse ID,Tumor weight (TW, g),Date of excision '"},
+    {"type": "table", "flag": "1", "logs": []},
+    {"type": "detailTable", "flag": "1", "logs": "Detail:<br>'Component Name' :to' Null 'Change to' Sample List '<br>'Header' :to' Null 'Change to' Orig Sample ID,Sample ID,Sample Type,,Product Name,Product Type,Product Qty,Mix Sample,Index,Remaining Qty,Unit,Storage Status,Detection of Genes,Is Split,Split Quantity,Split Proportion,Mouse ID,Group assignment '"},
+    {"type": "detailTable", "flag": "1", "logs": []},
+    {"type": "resultTable", "flag": "1", "logs": "Result:<br>'Component Name' :to' Null 'Change to' Result Table '<br>'Header' :to' Null 'Change to' Orig Sample ID,Sample ID,Sample Type,Project,Volume,Sum,Unit,Next Step,Result,Submit to QC,Detection of Genes,Tumor weight inhibition (TWI, %) '"},
+    {"type": "resultTable", "flag": "1", "logs": []}
+  ]
+}

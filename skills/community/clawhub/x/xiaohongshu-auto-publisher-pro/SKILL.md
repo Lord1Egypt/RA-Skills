@@ -1,35 +1,117 @@
 ---
-name: "小红书图文自动发布引擎 Pro"
-description: "小红书图文自动发布引擎 — 定时生成内容、自动排版、定时发布到小红书平台。 支持热点追踪、AI文案生成、图文混排、定时发送。适合博主、自媒体、品牌方。 帮你省掉每天 2 小时的手工运营时间。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-auto-publisher-pro"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-auto-publisher-pro"
+name: xiaohongshu-auto-publisher
+description: >
+  小红书图文自动发布引擎 — 定时生成内容、自动排版、定时发布到小红书平台。
+  支持热点追踪、AI文案生成、图文混排、定时发送。适合博主、自媒体、品牌方。
+  帮你省掉每天 2 小时的手工运营时间。
+version: 1.0.0
+author: 小小怪
+clawhub:
+  tags: [xiaohongshu, social-media, content-creation, automation, marketing]
+  category: marketing
+  price: 49
 ---
 
-# 小红书图文自动发布引擎 Pro
+# 小红书图文自动发布引擎
 
-> 小红书图文自动发布引擎 — 定时生成内容、自动排版、定时发布到小红书平台。 支持热点追踪、AI文案生成、图文混排、定时发送。适合博主、自媒体、品牌方。 帮你省掉每天 2 小时的手工运营时间。
+> 让 AI 帮你写小红书，日更不断更
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-auto-publisher-pro`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-auto-publisher-pro](https://clawhub.ai/skills/xiaohongshu-auto-publisher-pro)
+## 能做什么
 
-## Overview
+- 🔥 **热点追踪** — 自动抓取小红书/微博热搜，筛选与你领域相关的选题
+- ✍️ **AI 文案** — 根据选题自动生成小红书风格的笔记（标题抓眼球 + 正文有用）
+- 🖼️ **图文混排** — AI 生成配图描述，可对接图片生成工具
+- ⏰ **定时发布** — 设定发布计划，每天到点自动写稿发稿
+- 📈 **数据回收** — 发布后自动跟踪点赞/收藏/评论数据
 
+## 触发方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-auto-publisher-pro
+用户说以下任意关键词时加载此技能：
+- "发小红书" "小红书笔记" "帮我写小红书"
+- "自动发笔记" "运营小红书" "小红书矩阵"
+
+## 使用流程
+
+### 第零步：一次性配置
+用户提供：
+```json
+{
+  "domain": "美妆护肤",          // 你的内容领域
+  "style": "干货分享型",         // 笔记风格：干货/种草/vlog/教程
+  "schedule": "每天 20:00",      // 发布时间
+  "topics": ["成分科普", "好物推荐", "避坑指南"]
+}
 ```
+
+### 第一步：热点追踪
+用 `web_search` 搜索领域最新热点，找到可以写的话题：
+- 搜索关键词："{领域} 小红书 热门 {今天日期}"
+- 筛选 3-5 个合适选题，列出来让用户选或自动挑最优的
+
+### 第二步：文案生成
+根据选题和风格，生成小红书笔记：
+- 标题：15-20 字，包含数字/悬念/情绪词
+- 正文：开头吸引 → 中间干货 → 结尾互动引导
+- 标签：5-8 个精准标签
+- 发布时间建议
+
+### 第三步：排期管理
+将生成的笔记加入排期表 `memory/xhs-schedule.json`：
+```json
+{
+  "posts": [
+    {
+      "title": "xxx",
+      "content": "xxx",
+      "tags": ["xxx"],
+      "scheduledTime": "2026-05-11T20:00:00+08:00",
+      "status": "scheduled"
+    }
+  ]
+}
+```
+
+### 第四步：定时发布
+用 cron 创建定时任务，到发布时间：
+1. 用 `browser open` 打开小红书创作中心
+2. 自动填入标题、正文、标签、图片
+3. 定稿或提交审核
+4. 记录发布状态
+
+### 第五步：数据追踪
+发布 24 小时后，自动回来看数据：
+- 阅读量、点赞、收藏、评论数
+- 与历史笔记对比，分析什么内容效果好
+- 输出优化建议
+
+## 工具使用
+
+- `browser open` + `browser snapshot` — 操作小红书网页版
+- `web_search` — 热点追踪、选题挖掘
+- `cron` — 定时发布和定时检查数据
+- `write` + `read` — 排期管理、数据存储
+- `image_generate` — 生成配图（可选，需要图片模型）
+
+## 注意事项
+
+⚠️ **合规提醒**：
+- 小红书有反爬和风控机制，操作频率不能太高
+- 建议每天 1-3 条，每条间隔 2 小时以上
+- 内容需要人工审核后再发，AI 只是辅助不是完全替代
+- 不要用于刷量、水军等违规用途
+
+## 客户画像
+
+- 想做小红书副业的上班族
+- 有多个账号的 MCN/代运营
+- 品牌方的小红书运营团队
+- 不想每天花 2 小时写笔记的博主
+
+## 定价参考
+
+本技能模板在 ClawHub 建议售价：**49-99 元**
+配合配置教程一起卖：**199 元**（含远程配置服务）
+
+---
+
+_由 OpenClaw 技能工厂制作 | 2026.05_

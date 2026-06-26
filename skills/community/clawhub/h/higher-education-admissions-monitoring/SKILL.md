@@ -1,35 +1,176 @@
 ---
-name: "高校招生监控"
-description: "监控指定高校的研究生招生通知，自动爬取最新信息并生成报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/higher-education-admissions-monitoring"
-sourceUrl: "https://clawhub.ai/skills/higher-education-admissions-monitoring"
+name: 高校招生监控
+version: 1.0.1
+description: 监控指定高校的研究生招生通知，自动爬取最新信息并生成报告。
+author: SIXADD1 (seven)
 ---
 
-# 高校招生监控
+# 高校招生监控 🎓
 
-> 监控指定高校的研究生招生通知，自动爬取最新信息并生成报告。
+监控指定高校的研究生院/学院招生网站，自动提取最新通知。支持自动重试、错误分类提示。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/higher-education-admissions-monitoring`
-- **Source URL:** [https://clawhub.ai/skills/higher-education-admissions-monitoring](https://clawhub.ai/skills/higher-education-admissions-monitoring)
+---
 
-## Overview
+## 📋 功能
 
+| 功能 | 说明 |
+|------|------|
+| 🔍 查询通知 | 从学校库中选择目标学校，获取最新招生通知 |
+| 📄 导出 Word | 将查询结果生成 Word 文档并发送 |
+| ⏰ 定时监控 | 设置 cron 定时任务自动运行 |
+| 🔄 自动重试 | 访问失败自动重试3次，并给出详细错误原因 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 🚀 使用方式
+
+### 1️⃣ 查看可选学校
+
 ```bash
-hermes skills install clawhub/higher-education-admissions-monitoring
+python3 scripts/monitor.py
 ```
+
+列出所有可监控的学校及其网站。
+
+### 2️⃣ 查询指定学校
+
+```bash
+# 查询单个学校
+python3 scripts/monitor.py --schools 深圳大学
+
+# 查询多个学校
+python3 scripts/monitor.py --schools 深圳大学,武汉理工大学,暨南大学
+```
+
+### 3️⃣ 生成 Word 文档（询问用户后操作）
+
+查询完成后，询问用户是否需要整理成 Word 文档。如用户需要：
+
+```bash
+python3 scripts/to_word.py --schools 深圳大学,武汉理工大学
+```
+
+生成后直接通过 QQ 发送文件，发完即删。
+
+### 4️⃣ 查看帮助
+
+```bash
+python3 scripts/monitor.py --help
+```
+
+---
+
+## 📁 文件结构
+
+```
+高校招生监控/
+├── SKILL.md              # 核心文件（AI说明书）
+├── schools.json          # 学校库配置（43所高校）
+├── scripts/
+│   ├── monitor.py        # 监控脚本（v1.0.1）
+│   └── to_word.py        # Word文档生成脚本
+├── examples/
+│   └── 运行效果示例.md    # 实际运行效果展示
+└── references/
+    └── 常见问题FAQ.md     # 使用指南与排错
+```
+
+---
+
+## ⚙️ 配置学校库
+
+编辑 `schools.json`，按以下格式添加学校：
+
+```json
+{
+  "name": "学校名称",
+  "sites": [
+    {"site_name": "研究生院", "url": "https://yz.example.edu.cn/tzgg.htm"}
+  ]
+}
+```
+
+每个学校可配置多个网站（研究生院 + 学院），脚本会自动遍历。
+
+---
+
+## 🧪 运行效果示例
+
+### 正常查询
+
+```
+🎯 高校招生通知监控
+======================================================================
+
+📡 正在查询: 深圳大学
+----------------------------------------
+  ▶ 研究生院: https://yz.szu.edu.cn/sszs/gg.htm
+  ✅ 获取到 8 条通知
+
+📡 正在查询: 武汉理工大学
+----------------------------------------
+  ▶ 研究生院: http://gd.whut.edu.cn/zs/tzgg/
+  ✅ 获取到 6 条通知
+
+🎓 高校招生通知监控 - 精确获取
+📅 时间: 2026-04-08 10:30:00
+======================================================================
+
+🏫 深圳大学
+  📢 研究生院:
+    1. [2026-03-28] 深圳大学2026年硕士研究生招生复试分数线公布
+       链接: https://yz.szu.edu.cn/...
+    2. [2026-03-25] 深圳大学2026年硕士生招生考试考生进入复试...
+       ...
+
+📈 统计: 2个学校, 2个网站, 14条通知
+======================================================================
+```
+
+### 网站不可用时
+
+```
+📡 正在查询: 武汉理工大学
+----------------------------------------
+  ▶ 研究生院: http://gd.whut.edu.cn/zs/tzgg/
+  🔄 第2次重试（等待4秒）...
+  🔄 第3次重试（等待8秒）...
+  ❌ 请求超时
+     ⚠️ 网站响应时间过长，可能是网络问题或网站较慢
+```
+
+---
+
+## 🌐 能力边界
+
+| 能力 | 支持 |
+|------|:----:|
+| 静态网页抓取 | ✅ |
+| JavaScript 动态页面 | ❌ |
+| 需要登录的页面 | ❌ |
+| 单次查询学校数 | 不限 |
+| 自动重试 | ✅ 最多3次 |
+| 导出 Word 文档 | ✅ 生成后直接发送 |
+| 定时自动运行 | ✅ 通过 cron |
+
+---
+
+## 🔧 安装依赖
+
+```bash
+pip install requests beautifulsoup4
+```
+
+---
+
+## 📝 更新日志
+
+
+### v1.0.1 (2026-05-25)
+- ✨ 新增自动重试机制（最多3次，间隔递增）
+- ✨ 新增错误分类提示（区分超时/403/404/503/连接失败）
+- ✨ 新增从父元素中提取日期（适配武汉大学等外部日期结构）
+- ✨ 修复关键词+短标题被误过滤的问题
+- ✨ 新增 Word 文档生成脚本（to_word.py）
+- 🐛 改进通知查重逻辑
+- 📝 优化文档结构

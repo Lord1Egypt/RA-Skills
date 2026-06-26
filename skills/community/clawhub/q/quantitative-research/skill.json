@@ -1,0 +1,8 @@
+{
+  "name": "Quantitative Research",
+  "description": "World-class systematic trading research - backtesting, alpha generation, factor models, statistical arbitrage. Transform hypotheses into edges.",
+  "version": "1.0.0",
+  "identifier": "quantitative-research",
+  "author": "omer-metin",
+  "category": "finance"
+}

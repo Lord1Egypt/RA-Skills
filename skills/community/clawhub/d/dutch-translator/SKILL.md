@@ -1,35 +1,12 @@
----
-name: "Dutch Translator"
-description: "Translates Dutch news text into English with interlinear formatting for language learning and detailed analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dutch-translator"
-sourceUrl: "https://clawhub.ai/skills/dutch-translator"
----
+# Skill: Dutch News Interlinear Translator
+## Description
+Translates Dutch news text into English using an interlinear format (Original Dutch line -> English Translation line). Useful for learning the language or analyzing source text nuances.
 
-# Dutch Translator
+## Usage
+Provide the Dutch text. The agent will split it by sentence/meaningful clause and output:
+> 🇳🇱 [Original Dutch]
+> 🇬🇧 [English Translation]
 
-> Translates Dutch news text into English with interlinear formatting for language learning and detailed analysis.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dutch-translator`
-- **Source URL:** [https://clawhub.ai/skills/dutch-translator](https://clawhub.ai/skills/dutch-translator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dutch-translator
-```
+## Example
+> 🇳🇱 Lente in de tuin: wat kan, mag of moet nog even wachten?
+> 🇬🇧 Spring in the garden: what can, may, or must wait a little longer?

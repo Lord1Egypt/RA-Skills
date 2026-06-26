@@ -1,35 +1,155 @@
 ---
-name: "risk-sentiment-scanner"
-description: "企业舆情信用风险扫描。当用户提供企业名称列表时，自动抓取各企业最新公开舆情（新闻、公告、监管信息），结合风险评分模型输出结构化信用风险报告。触发场景：（1）用户说"扫描风险"、"舆情分析"、"信用风险评级"；（2）用户提供了一份企业名单需要批量评估；（3）用户上传含企业名称的CSV/TXT文件；（4）定期复检提醒..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/risk-sentiment-scanner"
-sourceUrl: "https://clawhub.ai/skills/risk-sentiment-scanner"
+name: risk-sentiment-scanner
+description: 企业舆情信用风险扫描。当用户提供企业名称列表时，自动抓取各企业最新公开舆情（新闻、公告、监管信息），结合风险评分模型输出结构化信用风险报告。触发场景：（1）用户说"扫描风险"、"舆情分析"、"信用风险评级"；（2）用户提供了一份企业名单需要批量评估；（3）用户上传含企业名称的CSV/TXT文件；（4）定期复检提醒时自动触发。数据来源：公开网络搜索（新浪财经、证券时报、21财经、腾讯新闻等）。
 ---
 
-# risk-sentiment-scanner
+# Risk Sentiment Scanner
 
-> 企业舆情信用风险扫描。当用户提供企业名称列表时，自动抓取各企业最新公开舆情（新闻、公告、监管信息），结合风险评分模型输出结构化信用风险报告。触发场景：（1）用户说"扫描风险"、"舆情分析"、"信用风险评级"；（2）用户提供了一份企业名单需要批量评估；（3）用户上传含企业名称的CSV/TXT文件；（4）定期复检提醒...
+对目标企业进行公开舆情信息抓取 + LLM 驱动信用风险评级，输出结构化 JSON 报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/risk-sentiment-scanner`
-- **Source URL:** [https://clawhub.ai/skills/risk-sentiment-scanner](https://clawhub.ai/skills/risk-sentiment-scanner)
+## 工作流程
 
-## Overview
+### Step 1 — 接收企业列表
 
+支持三种输入方式：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/risk-sentiment-scanner
+**方式 A（对话直接提供）：**
 ```
+蚂蚁集团
+贵州茅台
+碧桂园
+```
+
+**方式 B（上传文件）：**
+读取用户上传的 `.txt` 或 `.csv` 文件，每行一个企业名称，自动去重。
+
+**方式 C（Cron 定时触发）：**
+从 `memory/risk-watchlist.md` 读取企业名单（可由用户提前维护）。
+
+### Step 2 — 舆情信息抓取
+
+对每个企业执行以下操作：
+
+```bash
+# 搜索近6个月相关舆情（多关键词组合）
+企业名称 + "风险"
+企业名称 + "违规 / 处罚 / 调查"
+企业名称 + "债务 / 重组 / 违约"
+企业名称 + "监管 / 合规"
+企业名称 + "经营 / 财报 / 转型"
+```
+
+使用 `batch_web_search` 工具，每个企业最多抓取 **8 条搜索结果**。
+
+**重点来源优先级：**
+1. 证券时报 (stcn.com)
+2. 21财经 (21jingji.com)
+3. 新浪财经 (finance.sina.com.cn)
+4. 腾讯新闻 (news.qq.com)
+5. 东方财富网 (eastmoney.com)
+
+### Step 3 — 正文提取
+
+对每家企业，取搜索结果中 **最新且相关的 3 条 URL**，使用 `extract_content_from_websites` 提取正文内容。
+
+提取策略：
+- 每篇正文最多读 2000 字（截断后半部分）
+- 保留：标题、时间、风险相关段落
+- 丢弃：广告、评论区、导航内容
+
+### Step 4 — LLM 风险评级
+
+将整理后的舆情文本发给 LLM，按以下结构输出（每家企业独立评分）：
+
+```json
+{
+  "company": "企业名称",
+  "risk_level": "R1-低风险 | R2-中低风险 | R3-中高风险 | R4-高风险",
+  "risk_score": 0-100,
+  "risk_trend": "上升 | 稳定 | 下降",
+  "key_positive_factors": ["利好因素1", "利好因素2"],
+  "key_negative_factors": ["风险因素1", "风险因素2"],
+  "red_flags": ["需重点关注信号1", "信号2"],
+  "news_summary": "近6月舆情摘要（100字内）",
+  "recommended_action": "业务合作建议",
+  "review_frequency": "月度 | 季度 | 半年度",
+  "data_sources": ["来源1 URL", "来源2 URL"],
+  "last_updated": "YYYY-MM-DD"
+}
+```
+
+### Step 5 — 风险评分模型（参考）
+
+| 维度 | 权重 | 评分逻辑 |
+|------|------|----------|
+| 监管/处罚 | 30% | 有处罚记录+R25，有重大违法+R40 |
+| 财务压力 | 25% | 债务重组进行中+R30，违约记录+R50 |
+| 公司治理 | 20% | 高管被查/反腐+R25，持续动荡+R40 |
+| 舆情情绪 | 15% | 主流负面报道占比>60%+R20 |
+| 经营状况 | 10% | 营收/利润持续下滑+R15 |
+
+**最终等级：**
+- R1（0–25分）：低风险，舆情正面
+- R2（26–50分）：中低风险，有可管理风险敞口
+- R3（51–75分）：中高风险，偿债能力承压
+- R4（76–100分）：高风险，业务可持续性存疑
+
+### Step 6 — 输出与推送
+
+**输出内容（JSON 格式）：**
+
+```json
+{
+  "report_date": "2026-03-18",
+  "total_companies": 3,
+  "summary": {
+    "R1_count": 0,
+    "R2_count": 1,
+    "R3_count": 1,
+    "R4_count": 1,
+    "high_risk_companies": ["碧桂园", "贵州茅台"]
+  },
+  "companies": [ /* 每家企业的完整评级 JSON */ ]
+}
+```
+
+**输出位置（按用户偏好）：**
+- 默认：直接输出到当前对话
+- 可选：保存至 `memory/risk-reports/YYYY-MM-DD.md`
+- 可选：推送至飞书文档（通过 Feishu Skill 接口）
+
+### Step 7 — 异常告警
+
+若扫描结果中出现 **R4 级企业**，自动在报告顶部输出红色告警：
+
+```
+🚨 【高风险预警】碧桂园 — R4(78分)
+   触发原因：177亿美元债务重组仅支付2%本金，净资产极度薄弱
+   建议动作：建议回避新增敞口，存量业务降级处理
+```
+
+---
+
+## 维护企业监控名单
+
+用户可通过以下方式管理要跟踪的企业列表：
+
+1. **对话更新**：直接告诉我"把 XXX 公司加入监控列表"
+2. **文件维护**：编辑 `memory/risk-watchlist.md`，每行一个企业名称+备注
+
+格式示例：
+```
+# 风险监控名单
+蚂蚁集团        # 科技/金融，头部
+贵州茅台        # 白酒，R3观察中
+碧桂园          # 房地产，R4，存量处置
+宁德时代        # 新能源，季度复检
+```
+
+---
+
+## 注意事项
+
+- 本 Skill 仅基于**公开信息**，不构成正式信用评级
+- 风险评分为 LLM 判断结果，供参考，不当作为唯一决策依据
+- 涉及投资、信贷等重大决策前，建议咨询专业金融顾问

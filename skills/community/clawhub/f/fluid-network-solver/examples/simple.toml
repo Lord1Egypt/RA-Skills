@@ -1,0 +1,42 @@
+[nodes]
+  [nodes.source]
+  type = "source"
+  pressure = 5.0
+
+  [nodes.tank]
+  type = "source"
+  pressure = 0.0
+
+  [nodes.junction]
+  type = "junction"
+
+  [nodes.load]
+  type = "load"
+  min_flow = 10.0
+  min_pressure = 2.0
+
+[[edges]]
+from = "source"
+to = "junction"
+resistance = 0.1
+
+[[edges]]
+from = "junction"
+to = "load"
+resistance = 0.2
+
+[[edges]]
+from = "load"
+to = "tank"
+resistance = 0.01
+
+[scenarios]
+  [scenarios.normal]
+  description = "正常工况"
+  node_states = []
+
+  [scenarios.source_low]
+  description = "源压力降低"
+  node_states = [
+    { node = "source", pressure = 2.0 }
+  ]

@@ -1,35 +1,78 @@
+
 ---
-name: "CRUD"
-description: "管理OpenClaw操作按CRUD分类，创建查询无审批，更新编辑删除需返回操作清单并二次确认。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crud"
-sourceUrl: "https://clawhub.ai/skills/crud"
+name: crud
+description: CRUD Approval Mode - Categorize OpenClaw operations by CRUD, allow Read freely, require confirmation for Create/Update/Edit/Delete
+metadata:
+  version: 2.0.0
+  author: Slava Chan @UyNewNas
+  category: governance
+  tags: [approval, security, crud, workflow]
 ---
 
-# CRUD
+# CRUD Approval Mode Skill
 
-> 管理OpenClaw操作按CRUD分类，创建查询无审批，更新编辑删除需返回操作清单并二次确认。
+Categorize and manage OpenClaw operations by CRUD (Create/Read/Update/Delete) for fine-grained approval control.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crud`
-- **Source URL:** [https://clawhub.ai/skills/crud](https://clawhub.ai/skills/crud)
+## Core Design Philosophy
 
-## Overview
+- **Read**: Fully unrestricted for maximum efficiency
+- **Create + Update + Edit + Delete**: Add an isolation layer, return action list for secondary confirmation
 
+## Category Definitions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crud
+| Operation Type | Approval Required | Description |
+|---------------|------------------|-------------|
+| **Read** | ❌ No approval | File reading, search queries, directory browsing, etc. |
+| **Create** | ✅ Requires confirmation | File creation, new skill creation, directory creation, etc. |
+| **Update/Edit** | ✅ Requires confirmation | File modification, code editing, config updates, etc. |
+| **Delete** | ✅ Requires confirmation | File deletion, directory deletion, skill deletion, etc. |
+
+## Workflow
+
+### 1. No Approval Flow (Read)
 ```
+User Request → Execute Directly → Return Result
+```
+
+### 2. Approval Flow (Create/Update/Edit/Delete)
+```
+User Request → Analyze Operation → Generate Action List → User Confirmation → Execute Operation → Return Result
+                            ↓
+                       Display: operation type, affected files, change preview
+```
+
+## Action List Format
+
+When confirmation is needed, return the list in the following format:
+
+```
+⚠️ **Operation Confirmation** - [Operation Type]
+
+**Scope:**
+- File 1: path/to/file1
+- File 2: path/to/file2
+
+**Description:**
+[Detailed description of the operation to be performed]
+
+Please reply with one of the following to continue:
+- ✅ **Confirm** - Proceed with this operation
+- ❌ **Cancel** - Cancel this operation
+- 🔄 **Modify** - Modify operation and re-confirm
+```
+
+## Use Cases
+
+- Daily development: Quick read operations without approval restrictions
+- Critical operations: Confirmation mechanism before all write operations
+- Skill development: New skill creation requires confirmation for safety
+
+## Configuration
+
+This skill requires no additional configuration files and is automatically injected into sessions.
+
+---
+
+## References
+
+- OpenClaw Documentation: https://docs.openclaw.ai/

@@ -1,35 +1,207 @@
----
-name: "bilibiliextractor"
-description: "从 B 站视频提取字幕并自动总结核心观点、主要话题与关键结论，支持完整字幕输出请求。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bilibiliextractor"
-sourceUrl: "https://clawhub.ai/skills/bilibiliextractor"
+# Bilibili 视频字幕提取与总结 Workflow
+
+## 📋 概述
+
+本 Skill 用于从 B 站视频提取字幕内容，并对字幕进行结构化总结。
+
+**适用场景：** 用户分享 B 站视频链接，希望提取并分析视频内容。
+
+**默认行为：** 提取字幕后**直接总结**，如用户明确要求只输出完整内容则只输出。
+
 ---
 
-# bilibiliextractor
+## 🔧 前置条件与 Agent 约束 (🚨 必读)
 
-> 从 B 站视频提取字幕并自动总结核心观点、主要话题与关键结论，支持完整字幕输出请求。
+### 1. 脚本位置与寻址指令
+本 Skill 目录下的 `bilibili_extractor.py`（始终与你正在阅读的 `SKILL.md` 同目录）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bilibiliextractor`
-- **Source URL:** [https://clawhub.ai/skills/bilibiliextractor](https://clawhub.ai/skills/bilibiliextractor)
+> **🚨 Agent 寻址约束**：
+> 在执行任何 Python 命令前，你**必须**先通过 `cd` 命令切换到当前这份 `SKILL.md` 所在的绝对路径（在 OpenClaw 环境下通常为 `~/.openclaw/workspace/skills/bilibili_extractor/`）。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bilibiliextractor
+### 2. 环境依赖与安装策略
+运行脚本需要以下 Python 包：
 ```
+requests
+```
+
+> **🚨 Agent 依赖安装约束**：
+> **绝对不要**在每次执行前主动安装依赖！
+> 只有当你运行 `bilibili_extractor.py` 时明确遇到了 `ModuleNotFoundError: No module named 'requests'` 报错，你才被允许执行以下安装命令并重试：
+> `pip install requests --target=/tmp/pylibs`
+
+### 3. 环境变量
+音频转录依赖的 API 密钥需由人类开发者在 `~/.openclaw/.env` 中配置：
+
+```bash
+SILICONFLOW_API_KEY=sk-你的硅基流动API密钥
+```
+
+---
+
+## 🚀 标准执行流程
+
+### Step 1：提取字幕
+确保已 `cd` 到本技能目录后，使用简化后的 BV 号或完整 URL 执行脚本。
+
+**命令模板 (Agent 严格遵守)：**
+
+> 注意：命令会自动尝试加载系统的 .env 文件获取真实密钥。你绝不能在命令中自行捏造或填写 `SILICONFLOW_API_KEY=sk-xxx` 这样的明文参数。
+
+```bash
+# 自动寻找并加载环境变量，然后使用相对路径执行脚本
+if [ -f ~/.openclaw/.env ]; then source ~/.openclaw/.env; fi && PYTHONPATH=/tmp/pylibs python3 bilibili_extractor.py "<视频URL或BV号>"
+```
+
+**执行时长预估：** 30秒～3分钟（取决于是否有字幕、是否需要 ASR 转录）
+
+### Step 2：自动总结（默认行为）
+
+提取字幕完成后（读取终端中 `--- B站视频提取内容开始 ---` 和结束标记之间的纯文本），默认进行总结，使用以下提示词自我要求：
+
+```
+你是一个专业的视频内容提炼助手，阅读这段文本，总结核心观点、主要讨论的话题以及任何有价值的结论。排版要清晰，分点列出。
+
+要求：
+1. 核心论点清晰突出
+2. 主要话题分类整理（建议 3-5 个大类）
+3. 关键结论单独列出，可用表格对比
+4. 保留有价值的原话引用
+5. 逻辑清晰，层次分明
+```
+
+### Step 3：用户要求完整内容时
+
+**仅当用户明确要求**"完整输出"、"不要总结"、"给我原始字幕"时，才完整输出字幕内容，不做任何总结。
+
+**提示词：**
+```
+请完整输出上方提取的字幕内容，不要做任何总结或删减。
+```
+
+---
+
+## ⚠️ 注意事项
+
+### 1. BV 号提取
+
+从复杂 URL 中提取 BV 号的正则表达式：
+```
+BV[1-9A-HJ-NP-Za-km-z]{10}
+```
+
+**示例：**
+```
+原始: https://www.bilibili.com/list/watchlater?oid=116283622295274&bvid=BV1GyQBBtEkU&spm_id_from=333.1007.top_right_bar_window_view_later.content.click&vd_source=233aa624b67fb14acf6f4ff7dee008db
+
+提取: BV1GyQBBtEkU
+```
+
+### 2. 环境变量问题 (Agent 注意)
+
+绝对不要在命令中显式传入你瞎猜的 API Key。
+
+执行命令模板中的 `source ~/.openclaw/.env` 会自动注入 Key。如果仍然提示缺失 Key，说明开发者未正确配置，请直接按照下方的"故障排查"回复用户。
+
+### 3. 字幕提取优先级
+
+脚本内部已有优先级逻辑：
+1. **优先**官方/AI生成的 CC 字幕（快）
+2. **回退**音频流下载 + 硅基流动 ASR 转录（慢，可能需要 1-3 分钟）
+
+### 4. 依赖安装问题
+
+- `pip install --user` 可能因权限问题失败
+- 优先使用 `--target=/tmp/pylibs` 方案
+- 使用前需设置 `PYTHONPATH=/tmp/pylibs`（命令模板中已包含）
+
+### 5. ASR 转录失败处理
+
+- 如果音频流也被防盗链拦截，脚本会输出 `"提取失败：该视频既无自带字幕，也无法获取音频流。"`
+- 此时只能告知用户无法提取。
+
+### 6. 临时音频文件清理
+
+- 脚本使用 `tempfile.NamedTemporaryFile` 创建临时音频文件
+- ASR 转录完成后，**必须删除临时音频文件**（脚本已在 `finally` 块中处理）
+- 如发现 `/tmp` 目录下有残留的 `.m4a` 文件，Agent 可通过命令清理：
+```bash
+rm -f /tmp/tmp*.m4a
+```
+
+### 7. 输出格式
+
+- 脚本输出的字幕带有 `--- B站视频提取内容开始 ---` 和 `--- B站视频提取内容结束 ---` 标记
+- 总结时应去除这些标记，只输出纯净内容。
+
+---
+
+## 📝 总结模板示例
+
+```markdown
+## 视频核心观点总结
+
+---
+
+### 一、核心论点
+
+[一句话概括视频主旨]
+
+---
+
+### 二、主要讨论话题
+
+**1. [话题名称]**
+- 要点1
+- 要点2
+
+**2. [话题名称]**
+- 要点1
+- 要点2
+
+---
+
+### 三、关键结论
+
+| 结论 | 说明 |
+|------|------|
+| [结论1] | [说明] |
+| [结论2] | [说明] |
+
+---
+
+### 四、最终判断
+
+[视频作者的核心结论或预言]
+```
+
+---
+
+## 🔄 完整对话流程示例
+
+```
+用户：请提取这个B站视频的内容：https://www.bilibili.com/video/BV1GyQBBtEkU
+
+助手：
+[定位到技能目录并执行脚本提取字幕]
+[等待脚本返回纯文本]
+[自动排版并总结字幕内容]
+
+用户：请给我完整的字幕内容，不要总结
+
+助手：
+[直接完整输出纯文本字幕，不做任何附加说明]
+```
+
+---
+
+## 🛠️ 故障排查与应急话术 (Agent 必读)
+
+遇到以下错误时，Agent 应立即停止重试，并向用户反馈对应的话术：
+
+| 错误表现 / 终端日志 | 解决方案与 Agent 话术 |
+|------|------|
+| `ModuleNotFoundError: No module named 'requests'` | Agent 自行执行 `pip install requests --target=/tmp/pylibs` 然后重试。 |
+| `[错误] 缺失硅基流动 API Key` | 告知用户："系统缺少 API 密钥，请检查 `~/.openclaw/.env` 配置文件中是否已正确写入 `SILICONFLOW_API_KEY`。" |
+| 视频无字幕且音频流获取失败 | 告知用户无法提取，该视频可能已被删除或限制了访问权限。 |
+| ASR 转录超时或脚本卡死 | 告知用户："提取耗时过长导致超时，这通常是因为视频较长且没有自带字幕。请尝试提取其他视频。" |
+| 临时音频文件残留 | Agent 自行执行 `rm -f /tmp/tmp*.m4a` 进行清理。 |

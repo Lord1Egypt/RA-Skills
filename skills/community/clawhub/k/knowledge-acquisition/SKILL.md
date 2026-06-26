@@ -1,35 +1,18 @@
 ---
-name: "知识获取"
-description: "知识获取：多平台内容解析（小红书/微信/网站等）、8类分类、Markdown 笔记生成、可选飞书云盘归档"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-acquisition"
-sourceUrl: "https://clawhub.ai/skills/knowledge-acquisition"
+name: knowledge-acquisition
+description: 知识获取：多平台内容解析（小红书/微信/网站等）、8类分类、Markdown 笔记生成、可选飞书云盘归档
+user-invocable: true
+metadata: {"openclaw":{"emoji":"🐶","requires":{"anyBins":["node"]}}}
 ---
 
-# 知识获取
+## 核心能力
+1. 解析小红书、微信、抖音、普通网站链接，抽取文字/图片/视频
+2. 视频场景自动执行音频抽取与字幕输出（含时间戳）
+3. 6大分类：AI、产品经理、经济（投资/股票/保险/加密货币）、心理学、商业机会、灵感
+4. 分类置信度阈值 90%，低于阈值自动发起人工确认
+5. 生成标准 Markdown 笔记并输出分类依据日志
+6. 飞书归档路径：快乐小狗空间/分类/标题+日期，并返回文档 URL 与 token
+7. 外链安全扫描、24 小时缓存清理、关键步骤 3 次重试
 
-> 知识获取：多平台内容解析（小红书/微信/网站等）、8类分类、Markdown 笔记生成、可选飞书云盘归档
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-acquisition`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-acquisition](https://clawhub.ai/skills/knowledge-acquisition)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/knowledge-acquisition
-```
+## 使用方式
+直接发送链接/文本即可，支持批量换行发送和混合输入

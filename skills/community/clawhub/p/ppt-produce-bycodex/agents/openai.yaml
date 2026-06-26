@@ -1,0 +1,4 @@
+interface:
+  display_name: "PPT Produce by Codex"
+  short_description: "企业方案PPT PNG制作与交付流程"
+  default_prompt: "Use $ppt-produce-bycodex to start an enterprise solution PPT PNG production workflow."

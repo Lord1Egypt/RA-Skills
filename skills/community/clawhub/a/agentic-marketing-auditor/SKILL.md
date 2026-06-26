@@ -1,35 +1,28 @@
 ---
-name: "Agentic Marketing Auditor"
-description: "Audit repositories for 2026 Marketing readiness (GEO & A2A). This skill analyzes your README and documentation to ensure your AI products are discoverable an..."
-category: "social-media"
-source: "ClawHub"
-tags: [2026, geo, marketing, seo]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentic-marketing-auditor"
-sourceUrl: "https://clawhub.ai/skills/agentic-marketing-auditor"
+name: agentic-marketing-auditor
+description: "Audit repositories for 2026 Marketing readiness (GEO & A2A). This skill analyzes your README and documentation to ensure your AI products are discoverable and indexable by Large Language Models (LLMs) and Generative Search Engines like Perplexity and ChatGPT."
+metadata:
+  {
+    "openclaw": { "emoji": "📈" },
+    "author": "System Architect Zero",
+    "category": "Marketing"
+  }
 ---
 
 # Agentic Marketing Auditor
 
-> Audit repositories for 2026 Marketing readiness (GEO & A2A). This skill analyzes your README and documentation to ensure your AI products are discoverable an...
+In 2026, user acquisition is driven by AI agents. If your product is not discoverable by LLMs, it doesn't exist. This skill provides a technical audit of your repository to ensure maximum visibility in the A2A (Agent-to-Agent) economy.
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentic-marketing-auditor`
-- **Source URL:** [https://clawhub.ai/skills/agentic-marketing-auditor](https://clawhub.ai/skills/agentic-marketing-auditor)
+## Features
+- **GEO Analysis**: Checks for the presence and quality of `llms.txt`.
+- **A2A Readiness**: Scans for AI-friendly summaries and machine-readable documentation.
+- **Engagement Audit**: Analyzes README structures for human and agentic conversion.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+Run the auditor against any local repository path:
 ```bash
-hermes skills install clawhub/agentic-marketing-auditor
+npx openclaw skill run agentic-marketing-auditor -- /path/to/your/repo
 ```
+
+## Architect's Note
+Part of the Sovereign Infrastructure initiative by System Architect Zero. Focus on technical authority.

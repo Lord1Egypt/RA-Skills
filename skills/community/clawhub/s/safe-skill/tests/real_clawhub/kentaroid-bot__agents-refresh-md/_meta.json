@@ -1,0 +1,11 @@
+{
+  "owner": "kentaroid-bot",
+  "slug": "agents-refresh-md",
+  "displayName": "Agents Refresh MD v1.1.2 🐾",
+  "latest": {
+    "version": "1.1.2",
+    "publishedAt": 1772345383407,
+    "commit": "https://github.com/openclaw/skills/commit/70f37af2f8649c3fa856faa1ffa6b18dbbfd691c"
+  },
+  "history": []
+}

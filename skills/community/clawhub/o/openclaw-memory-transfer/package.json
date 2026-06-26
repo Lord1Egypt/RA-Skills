@@ -1,0 +1,30 @@
+{
+  "name": "openclaw-memory-transfer",
+  "version": "1.0.1",
+  "description": "Zero-friction memory migration for OpenClaw — bring your memories from ChatGPT, Claude, Gemini, Copilot and more.",
+  "main": "scripts/parse-chatgpt-export.js",
+  "bin": {
+    "parse-chatgpt-export": "scripts/parse-chatgpt-export.js"
+  },
+  "scripts": {
+    "test": "node scripts/parse-chatgpt-export.js --help || true"
+  },
+  "keywords": [
+    "openclaw",
+    "myclaw",
+    "memory-transfer",
+    "chatgpt",
+    "claude",
+    "gemini",
+    "copilot",
+    "ai-assistant",
+    "migration"
+  ],
+  "author": "MyClaw.ai",
+  "license": "MIT",
+  "homepage": "https://github.com/LeoYeAI/openclaw-memory-transfer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeoYeAI/openclaw-memory-transfer.git"
+  }
+}

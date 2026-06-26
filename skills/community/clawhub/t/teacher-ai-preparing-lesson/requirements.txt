@@ -1,0 +1,14 @@
+# 教学文档生成工具依赖
+
+# 注意：本工具主要依赖以下 WorkBuddy Skills
+# - docx: 用于生成 Word 教案和任务单
+# - pptx: 用于处理 PPT 文件
+# - dragon-ppt-maker: 用于生成精美的 PPT 课件
+# - diagram-generator: 用于生成思维导图
+
+# 如果需要单独运行本工具的 CLI 版本，需要安装:
+# python-docx>=0.8.11
+# python-pptx>=0.6.21
+# Pillow>=9.0.0
+
+# 推荐在 WorkBuddy 环境中使用，无需额外安装依赖

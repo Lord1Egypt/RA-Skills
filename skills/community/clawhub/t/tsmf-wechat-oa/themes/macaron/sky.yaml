@@ -1,0 +1,74 @@
+name: 马卡龙天空
+description: 清新明亮的马卡龙天空色系，适合旅行、自由、梦想向文章
+keywords:
+  - 旅行
+  - 自由
+  - 梦想
+  - 天空
+  - 飞行
+  - 希望
+  - 开阔
+  - 蓝天
+  - 云朵
+  - 自由感
+  - 梦想家
+  - 旅行者
+colors:
+  primary: "#38bdf8"
+  accent: "#0ea5e9"
+  secondary: "#e0f2fe"
+  background: "#f0f9ff"
+  text: "#4a5060"
+  text_light: "#4a5060"
+  border: "#7dd3fc"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.8"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "20px"
+    font_weight: "bold"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    text_align: "center"
+  h2:
+    font_size: "17px"
+    font_weight: "bold"
+    margin: "20px 0 12px 0"
+    padding: "12px 16px"
+    border_radius: "8px"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "4px solid #7dd3fc"
+    line_height: "1.7"
+  code_inline:
+    font_size: "14px"
+    padding: "2px 6px"
+    border_radius: "4px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "8px"
+    border: "1px solid #bae6fd"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.8"
+  separator:
+    border_top: "2px solid #bae6fd"
+    margin: "24px 20%"
+  image:
+    border_radius: "12px"

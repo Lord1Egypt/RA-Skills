@@ -1,0 +1,179 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "ContractInnerCode",
+        "columnChiName": "合约内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "当IndicatorCode  in（1,2,4,7,11,13,16,17,18,19,20,21,24,25,26,27,28,30）时，合约内部编码（ContractInnerCode）与期货品种（Fut_FuturesContract）中的合约内部编码（ContractInnerCode）关联，得到该期货品种的基本信息。\n当IndicatorCode  in(2,3,4,5,6,7,14,15,16,22,26,27,28,30,31)时,合约内部编码（ContractInnerCode）：与“期货合约主表（Fut_ContractMain）”中的“合约内部编码（ContractInnerCode）”关联，得到该期货合约的基础信息。\n",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnChiName": "有效区间",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "EffectiveDate",
+        "columnChiName": "生效日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "CancleDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "95.94"
+    },
+    {
+        "columnOrderId": 8,
+        "columnChiName": "指标数据",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "IndicatorCode",
+        "columnChiName": "指标代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "指标代码(IndicatorCode)与(CT_SystemConst)表中的DM字段关联，令LB = 1578 AND DM IN (1,2,3,4,5,6,7,11,13,14,15,16,17,19,20,21,22,24,25,26,27,28,30,31)，得到指标代码的具体描述：1-合约乘数，2-最小变动价位，3-最低交易保证金，4-非日内交易手续费，5-交割手续费，6-平今仓收取率，7-初始保证金，11-交割等级，13-交易代码，14-最后交易日，15-最后交割日，16-每日价格波动限制，17-合约月份，19-最后交易日(描述)，20-交割日期(描述)，21-最后交割日(描述)，22-平今仓手续费，24-单笔市价申报上限，25-单笔限价申报上限，26-单笔市价申报下限，27-单笔限价申报下限，28-最小开仓下单量，30-单日开仓量，31-暂停交易。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "IndicatorName",
+        "columnChiName": "指标名称",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "IndicatorUnit",
+        "columnChiName": "指标单位",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "指标单位(IndicatorUnit)与(CT_SystemConst)表中的DM字段关联，令((LB=1225 and DM NOT IN  (10))   OR  (LB=1688 AND DM=182)  OR (LB=1003 AND DM IN (3500,3001,3116,3036,3163,3608,3607))) ，得到指标单位的具体描述：1-万元，2-元，3-%，4-个，5-户，6-份，7-天，8-次，9-点，11-家，12-百万元，13-美元，14-港币，15-吨/手，16-元/手，17-元/吨，18-克/手，19-桶/手，20-立方米/手，21-千克/手，22-张/手，23-元/指数点，24-手，182-元/千克，3001-元/克，3036-元/立方米，3116-元/张，3163-元/桶，3500-‰，3607-元/500千克，3608-百元。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.81",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "DataValue",
+        "columnChiName": "指标数据_金额",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "10.6"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "RatioValue",
+        "columnChiName": "指标数据_比率(%)",
+        "columnType": "decimal(18,10)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "89.2"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "RemarkDesc",
+        "columnChiName": "备注说明",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.18"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

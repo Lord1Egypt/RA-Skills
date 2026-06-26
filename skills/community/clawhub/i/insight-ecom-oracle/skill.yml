@@ -1,0 +1,49 @@
+name: insight_ecom_oracle
+version: 1.0.1
+display_name: "灵犀电商 · 神谕武器库"
+description: >
+  灵犀电商专属 AI 助手，作为【Prompt 神谕武器库】的守护者，
+  根据用户需求精准检索并呈现高级商业视觉架构与提示词。
+owner: 魔童 Kinsey
+contact: kinseyho16 (WeChat)
+
+triggers:
+  phrases:
+    - 寻找电商提示词
+    - 搜索神谕
+    - 灵犀神谕
+    - 想要
+    - 获取
+    - 电商提示词
+  patterns:
+    - "寻找电商提示词\\s+(.+)"
+    - "搜索神谕\\s+(.+)"
+    - "灵犀神谕\\s+(.+)"
+    - "想要\\s+(.+)\\s+的提示词"
+    - "获取\\s+(.+)\\s+的架构"
+
+inputs:
+  query:
+    type: string
+    required: true
+    description: 搜索关键词
+  user_id:
+    type: string
+    required: false
+    description: 用户标识（由 OpenClaw 注入）
+
+outputs:
+  status:
+    type: string
+    description: success | denied | not_found | error
+  data:
+    type: string
+    description: 返回的 Master Prompt 内容
+
+tools_required:
+  - exec
+
+dependencies:
+  python: ">=3.8"
+  pip:
+    - requests

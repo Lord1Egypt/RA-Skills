@@ -1,35 +1,51 @@
+
 ---
-name: "Local Business Appointment Agent"
-description: "AI agent for local businesses to automate appointment scheduling, reminders, cancellations, and calendar integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-business-appointment-agent"
-sourceUrl: "https://clawhub.ai/skills/local-business-appointment-agent"
+name: local-business-appointment-agent
+description: AI agent for local businesses to handle appointment scheduling, reminders, and cancellations.
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "bins": ["node"] },
+        "install":
+          [
+            {
+              "id": "node",
+              "kind": "node",
+              "package": "node",
+              "bins": ["node"],
+              "label": "Install Node.js",
+            },
+          ],
+      },
+  }
 ---
 
 # Local Business Appointment Agent
 
-> AI agent for local businesses to automate appointment scheduling, reminders, cancellations, and calendar integration.
+AI agent for local businesses (salons, clinics, etc.) to automate appointment scheduling, reminders, and cancellations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-business-appointment-agent`
-- **Source URL:** [https://clawhub.ai/skills/local-business-appointment-agent](https://clawhub.ai/skills/local-business-appointment-agent)
+## Features
 
-## Overview
+- 24/7 appointment booking via chat
+- Automated reminders (SMS/email)
+- Cancellation and rescheduling handling
+- Calendar integration (Google Calendar, Outlook)
 
+## Usage
+
+1. Configure business hours and services
+2. Connect calendar
+3. Deploy to website or messaging platform
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/local-business-appointment-agent
+npm install
+```
+
+## Start
+
+```bash
+node index.js
 ```

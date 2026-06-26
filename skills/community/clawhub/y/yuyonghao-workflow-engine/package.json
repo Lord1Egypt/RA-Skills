@@ -1,0 +1,25 @@
+{
+  "name": "workflow-engine",
+  "version": "0.1.0",
+  "description": "OpenClaw 工作流编排引擎 - DAG 执行器 + 条件分支 + 并行执行",
+  "main": "src/workflow-engine.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/workflow-test.js",
+    "example:simple": "node examples/simple-workflow.js",
+    "example:conditional": "node examples/conditional-workflow.js",
+    "example:parallel": "node examples/parallel-workflow.js"
+  },
+  "dependencies": {},
+  "keywords": [
+    "workflow",
+    "dag",
+    "orchestration",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

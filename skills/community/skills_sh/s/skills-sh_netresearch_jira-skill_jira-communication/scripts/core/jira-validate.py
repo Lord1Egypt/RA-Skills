@@ -1,0 +1,405 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "atlassian-python-api>=3.41.0,<4",
+#     "click>=8.1.0,<9",
+#     "requests>=2.31.0,<3",
+# ]
+# ///
+"""Jira environment validation - verify runtime, configuration, and connectivity."""
+
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Shared library import (TR1.1.1 - PYTHONPATH approach)
+# ═══════════════════════════════════════════════════════════════════════════════
+_script_dir = Path(__file__).parent
+_lib_path = _script_dir.parent / "lib"
+if _lib_path.exists():
+    sys.path.insert(0, str(_lib_path.parent))
+
+import json as json_module
+
+import click
+import requests
+from lib.client import AuthenticationError, LazyJiraClient, SessionExpiredError, _sanitize_error
+from lib.config import (
+    DEFAULT_ENV_FILE,
+    PROFILES_FILE,
+    get_auth_mode,
+    is_cloud_url,
+    load_config,
+    load_profiles,
+    profile_to_config,
+    validate_config,
+)
+from lib.output import error, format_table, success, warning
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Exit Codes (TR2.3)
+# ═══════════════════════════════════════════════════════════════════════════════
+EXIT_SUCCESS = 0
+EXIT_RUNTIME_ERROR = 1
+EXIT_CONFIG_ERROR = 2
+EXIT_CONNECTION_ERROR = 3
+
+
+def check_runtime(verbose: bool = False) -> tuple[bool, dict]:
+    """Check runtime dependencies (D7)."""
+    checks_passed = True
+    info = {}
+
+    # Check uv/uvx
+    uv_path = shutil.which("uv")
+    if uv_path:
+        result = subprocess.run(["uv", "--version"], capture_output=True, text=True)  # nosec B603 B607
+        uv_version = result.stdout.strip() if result.returncode == 0 else "unknown"
+        info["uv_path"] = uv_path
+        info["uv_version"] = uv_version
+        if verbose:
+            success(f"uv found: {uv_path} ({uv_version})")
+    else:
+        error(
+            "Runtime check failed: 'uv' command not found",
+            "To install uv, run:\n"
+            "    pip install uv\n\n"
+            "  Or visit: https://docs.astral.sh/uv/getting-started/installation/",
+        )
+        checks_passed = False
+
+    # Check Python version
+    py_version = sys.version_info
+    info["python_version"] = f"{py_version.major}.{py_version.minor}.{py_version.micro}"
+    if py_version >= (3, 10):
+        if verbose:
+            success(f"Python version: {py_version.major}.{py_version.minor}.{py_version.micro}")
+    else:
+        error(
+            f"Python version {py_version.major}.{py_version.minor} < 3.10 required",
+            "Please upgrade Python to 3.10 or later",
+        )
+        checks_passed = False
+
+    return checks_passed, info
+
+
+def check_environment(env_file: str | None, profile: str | None = None, verbose: bool = False) -> dict | None:
+    """Check environment configuration."""
+    try:
+        config = load_config(env_file=env_file, profile=profile)
+        errors = validate_config(config)
+
+        if errors:
+            for err in errors:
+                error(f"Configuration error: {err}")
+            return None
+
+        if env_file and profile:
+            warning("--profile is ignored because --env-file was provided")
+
+        if verbose:
+            if env_file:
+                path = Path(env_file)
+                success(f"Environment file: {path}")
+            elif profile:
+                success(f"Profile: {profile} (from {PROFILES_FILE})")
+            else:
+                # Detect whether profiles.json or legacy env file was used
+                try:
+                    profiles_data = load_profiles()
+                    default_name = profiles_data.get("default", "unknown")
+                    success(f"Profile: {default_name} (default from {PROFILES_FILE})")
+                except (FileNotFoundError, ValueError):
+                    success(f"Environment file: {DEFAULT_ENV_FILE}")
+            success(f"JIRA_URL: {config['JIRA_URL']}")
+
+            # Show auth mode-specific credentials
+            auth_mode = get_auth_mode(config)
+            if auth_mode == "pat":
+                success("Auth mode: Personal Access Token (Server/DC)")
+                success("JIRA_PERSONAL_TOKEN: ******* (hidden)")
+            else:
+                success("Auth mode: Username + API Token (Cloud)")
+                success(f"JIRA_USERNAME: {config.get('JIRA_USERNAME', 'N/A')}")
+                success("JIRA_API_TOKEN: ******* (hidden)")
+
+            if "JIRA_CLOUD" in config:
+                success(f"JIRA_CLOUD: {config['JIRA_CLOUD']}")
+
+        return config
+
+    except (FileNotFoundError, ValueError) as e:
+        error(str(e))
+        return None
+
+
+def check_connectivity(
+    config: dict, project: str | None, profile: str | None = None, env_file: str | None = None, verbose: bool = False
+) -> tuple[bool, dict]:
+    """Check connectivity and authentication."""
+    url = config["JIRA_URL"]
+    info = {"url": url}
+
+    # Test server reachability
+    try:
+        response = requests.head(url, timeout=10, allow_redirects=True)
+        info["server_reachable"] = True
+        if verbose:
+            success(f"Server reachable: {url} (status: {response.status_code})")
+    except requests.exceptions.Timeout:
+        error(
+            f"Connection timeout: {url}",
+            "The server did not respond within 10 seconds.\n  Check your network connection and JIRA_URL.",
+        )
+        return False, info
+    except requests.exceptions.ConnectionError as e:
+        error(f"Connection failed: {url}", f"Could not connect to the server.\n  Error: {_sanitize_error(str(e))}")
+        return False, info
+
+    # Test authentication
+    try:
+        client = LazyJiraClient(env_file=env_file, profile=profile)
+        user = client.myself()
+        display_name = user.get("displayName", user.get("name", "Unknown"))
+        email = user.get("emailAddress", "N/A")
+        info["user"] = display_name
+        info["email"] = email
+
+        if verbose:
+            success(f"Authenticated as: {display_name} ({email})")
+
+    except SessionExpiredError as e:
+        error("Authentication failed", str(e))
+        return False, info
+    except AuthenticationError as e:
+        error("Authentication failed", str(e))
+        return False, info
+    except Exception as e:
+        error(
+            "Authentication failed",
+            f"Could not authenticate with the provided credentials.\n  Error: {_sanitize_error(str(e))}",
+        )
+        return False, info
+
+    # Test project access (optional)
+    if project:
+        try:
+            proj = client.project(project)
+            info["project_access"] = project
+            if verbose:
+                success(f"Project access: {project} ({proj.get('name', 'Unknown')})")
+            else:
+                success(f"Project access verified: {project}")
+        except Exception as e:
+            warning(f"Could not access project {project}: {e}")
+
+    return True, info
+
+
+def validate_all_profiles(output_json: bool = False, verbose: bool = False) -> int:
+    """Validate all profiles in ~/.jira/profiles.json.
+
+    Returns:
+        Exit code (0 = all passed, 2 = config error, 3 = connectivity error)
+    """
+    try:
+        data = load_profiles()
+    except (FileNotFoundError, ValueError) as e:
+        error(str(e))
+        return EXIT_CONFIG_ERROR
+
+    profiles = data["profiles"]
+    default_name = data.get("default", "")
+    results = []
+
+    for name, prof in profiles.items():
+        row = {
+            "Profile": name,
+            "URL": prof.get("url", "N/A"),
+            "Auth": prof.get("auth", "N/A"),
+            "Projects": ", ".join(prof.get("projects", [])) if isinstance(prof.get("projects"), list) else "-",
+            "Default": "Yes" if name == default_name else "",
+        }
+
+        try:
+            config = profile_to_config(prof)
+        except ValueError:
+            row["Status"] = "CONFIG ERROR"
+            results.append(row)
+            continue
+
+        errors = validate_config(config)
+        if errors:
+            row["Status"] = "CONFIG ERROR"
+            results.append(row)
+            continue
+
+        # Quick connectivity check
+        try:
+            response = requests.head(config["JIRA_URL"], timeout=5, allow_redirects=True)
+            if response.status_code < 400 or response.status_code in (401, 403):
+                row["Status"] = "OK"
+            else:
+                row["Status"] = f"HTTP {response.status_code}"
+        except Exception:
+            row["Status"] = "UNREACHABLE"
+
+        results.append(row)
+
+    if output_json:
+        print(json_module.dumps(results, indent=2))
+    else:
+        click.echo(f"Profiles from {PROFILES_FILE}:\n")
+        print(format_table(results, ["Profile", "URL", "Auth", "Projects", "Status", "Default"]))
+        click.echo()
+        ok_count = sum(1 for r in results if r["Status"] == "OK")
+        click.echo(f"{ok_count}/{len(results)} profiles reachable")
+
+    # Differentiate exit codes: config errors (2) vs connectivity errors (3)
+    has_config_errors = any(r["Status"] == "CONFIG ERROR" for r in results)
+    has_connectivity_errors = any(r["Status"] not in ("OK", "CONFIG ERROR") for r in results)
+
+    if has_connectivity_errors:
+        return EXIT_CONNECTION_ERROR
+    if has_config_errors:
+        return EXIT_CONFIG_ERROR
+    return EXIT_SUCCESS
+
+
+@click.command()
+@click.option("--json", "output_json", is_flag=True, help="Output as JSON")
+@click.option("--quiet", "-q", is_flag=True, help="Minimal output")
+@click.option("--verbose", "-v", is_flag=True, help="Show detailed output")
+@click.option("--project", "-p", help="Verify access to specific project")
+@click.option("--env-file", type=click.Path(exists=False), help="Path to environment file")
+@click.option("--profile", "-P", help="Validate a specific profile from ~/.jira/profiles.json")
+@click.option("--all-profiles", is_flag=True, help="Validate all profiles in ~/.jira/profiles.json")
+@click.option("--debug", is_flag=True, help="Show debug information on errors")
+def main(
+    output_json: bool,
+    quiet: bool,
+    verbose: bool,
+    project: str | None,
+    env_file: str | None,
+    profile: str | None,
+    all_profiles: bool,
+    debug: bool,
+):
+    """Validate Jira environment configuration.
+
+    Checks runtime dependencies, environment configuration, and connectivity
+    to ensure the Jira CLI scripts will work correctly.
+
+    \b
+    Exit codes:
+      0 - All checks passed
+      1 - Runtime dependency missing
+      2 - Environment configuration error
+      3 - Connectivity/authentication failure
+
+    \b
+    Examples:
+      # Validate default configuration
+      uv run scripts/core/jira-validate.py --verbose
+
+      # Validate a specific profile
+      uv run scripts/core/jira-validate.py --profile mkk --verbose
+
+      # Validate all profiles
+      uv run scripts/core/jira-validate.py --all-profiles
+    """
+    # Handle --all-profiles mode
+    if all_profiles:
+        exit_code = validate_all_profiles(output_json=output_json, verbose=verbose)
+        sys.exit(exit_code)
+
+    result = {"status": "ok"}
+
+    # Suppress verbose output if JSON or quiet mode
+    show_verbose = verbose and not output_json and not quiet
+
+    if show_verbose:
+        click.echo("=" * 60)
+        if profile:
+            click.echo(f"Jira Environment Validation (profile: {profile})")
+        else:
+            click.echo("Jira Environment Validation")
+        click.echo("=" * 60)
+        click.echo()
+
+    # Check 1: Runtime
+    if show_verbose:
+        click.echo("Runtime Checks:")
+    runtime_ok, runtime_info = check_runtime(show_verbose)
+    result["runtime"] = runtime_info
+    if not runtime_ok:
+        result["status"] = "error"
+        result["error"] = "runtime_check_failed"
+        if output_json:
+            print(json_module.dumps(result, indent=2))
+        elif quiet:
+            print("error")
+        sys.exit(EXIT_RUNTIME_ERROR)
+    if show_verbose:
+        click.echo()
+
+    # Check 2: Environment
+    if show_verbose:
+        click.echo("Environment Checks:")
+    config = check_environment(env_file, profile, show_verbose)
+    if config is None:
+        result["status"] = "error"
+        result["error"] = "config_error"
+        if output_json:
+            print(json_module.dumps(result, indent=2))
+        elif quiet:
+            print("error")
+        sys.exit(EXIT_CONFIG_ERROR)
+
+    if profile:
+        result["profile"] = profile
+    result["url"] = config["JIRA_URL"]
+    result["server_type"] = "cloud" if is_cloud_url(config["JIRA_URL"]) else "server"
+    auth_mode = get_auth_mode(config)
+    result["auth_mode"] = auth_mode
+    if auth_mode == "cloud":
+        result["username"] = config.get("JIRA_USERNAME", "N/A")
+    if show_verbose:
+        click.echo()
+
+    # Check 3: Connectivity
+    if show_verbose:
+        click.echo("Connectivity Checks:")
+    conn_ok, conn_info = check_connectivity(config, project, profile=profile, env_file=env_file, verbose=show_verbose)
+    result["user"] = conn_info.get("user", "Unknown")
+    if "project_access" in conn_info:
+        result["project_access"] = conn_info["project_access"]
+    if not conn_ok:
+        result["status"] = "error"
+        result["error"] = "connectivity_error"
+        if output_json:
+            print(json_module.dumps(result, indent=2))
+        elif quiet:
+            print("error")
+        sys.exit(EXIT_CONNECTION_ERROR)
+    if show_verbose:
+        click.echo()
+
+    # All passed
+    if output_json:
+        print(json_module.dumps(result, indent=2))
+    elif quiet:
+        print("ok")
+    else:
+        if show_verbose:
+            click.echo("=" * 60)
+        success("All validation checks passed!")
+    sys.exit(EXIT_SUCCESS)
+
+
+if __name__ == "__main__":
+    main()

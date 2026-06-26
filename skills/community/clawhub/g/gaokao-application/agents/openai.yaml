@@ -1,0 +1,4 @@
+interface:
+  display_name: "高考志愿填报助手"
+  short_description: "基于位次和规则辅助生成高考志愿方案"
+  default_prompt: "Use $gaokao-application to help me build a cautious Gaokao college application plan from my province, year, score, rank, subject choices, preferences, and admission data."

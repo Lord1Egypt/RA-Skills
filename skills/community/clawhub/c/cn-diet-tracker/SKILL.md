@@ -1,35 +1,47 @@
 ---
-name: "Cn Diet Tracker"
-description: "中文饮食记录助手。记录每日饮食、计算热量、营养分析。 本地存储，无需账号。 当用户说"饮食记录"、"今天吃了什么"、"热量计算"、"营养分析"时触发。 Keywords: 饮食, 热量, 卡路里, 营养, diet, food, meal."
-category: "health"
-source: "ClawHub"
-tags: [calories, chinese, diet, food, health, productivity, tools]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-diet-tracker"
-sourceUrl: "https://clawhub.ai/skills/cn-diet-tracker"
+slug: cn-diet-tracker
+name: 饮食记录追踪
+version: "1.0.0"
+author: 千策
 ---
 
-# Cn Diet Tracker
+# 🥗 CN Diet Tracker — 中文饮食记录
 
-> 中文饮食记录助手。记录每日饮食、计算热量、营养分析。 本地存储，无需账号。 当用户说"饮食记录"、"今天吃了什么"、"热量计算"、"营养分析"时触发。 Keywords: 饮食, 热量, 卡路里, 营养, diet, food, meal.
+记录饮食，关注健康。
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-diet-tracker`
-- **Source URL:** [https://clawhub.ai/skills/cn-diet-tracker](https://clawhub.ai/skills/cn-diet-tracker)
+## 核心功能
 
-## Overview
+| 功能 | 说明 |
+|------|------|
+| 记录饮食 | 一句话记录：食物名+估算热量 |
+| 热量统计 | 今日/本周摄入 |
+| 营养分析 | 碳水/蛋白/脂肪占比 |
+| 目标管理 | 设定每日热量目标 |
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-diet-tracker
+# 记录一餐
+python3 scripts/diet.py --add "白米饭一碗" 230 --category 主食
+python3 scripts/diet.py --add "番茄炒蛋" 180 --category 菜品
+python3 scripts/diet.py --add "苹果" 80 --category 水果
+
+# 今日统计
+python3 scripts/diet.py --today
+
+# 设定目标
+python3 scripts/diet.py --target 2000
+
+# 周报
+python3 scripts/diet.py --week
 ```
+
+## 数据存储
+
+本地 JSON：~/.qclaw/workspace/diet.json
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

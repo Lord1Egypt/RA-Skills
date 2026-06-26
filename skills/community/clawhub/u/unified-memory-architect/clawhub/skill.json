@@ -1,0 +1,134 @@
+{
+  "name": "unified-memory-architect",
+  "version": "1.0.0",
+  "displayName": "Unified Memory Architect",
+  "displayNameZh": "统一记忆架构师",
+  "description": "Efficient dream memory management system with 1760 memories, 49 tags, 181 entities, 7-layer directory structure, hybrid search (BM25 + Vector + RRF), and 5-10x search speedup.",
+  "descriptionZh": "高效的梦境记忆管理系统，支持1760个记忆、49个标签、181个实体、7层目录结构、混合搜索（BM25+向量+RRF）和5-10倍检索加速。",
+  "descriptionEn": "Efficient dream memory management system. Features: 1760 memories, 49 semantic tags, 181 entity recognition, 7-layer directory structure, hybrid search (BM25 + Vector + RRF fusion), 5-10x search speedup, 60% storage saving.",
+  "category": "memory",
+  "tags": [
+    "memory",
+    "dream",
+    "indexing",
+    "search",
+    "openclaw",
+    "unified-memory",
+    "hybrid-search",
+    "bm25",
+    "vector-search",
+    "rrf"
+  ],
+  "author": {
+    "name": "OpenClaw Team",
+    "contact": "support@openclaw.school",
+    "github": "https://github.com/openclaw/unified-memory-architect"
+  },
+  "homepage": "https://github.com/openclaw/unified-memory-architect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/unified-memory-architect.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "unified-memory",
+    "dream-memory",
+    "agent-memory",
+    "semantic-search",
+    "hybrid-search",
+    "bm25",
+    "vector-search",
+    "rrf",
+    "openclaw-skill"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "openclaw": {
+    "version": ">=2.7.0"
+  },
+  "readme": "SKILL.md",
+  "scripts": {
+    "query": "memory/scripts/query.cjs",
+    "verify": "memory/scripts/verify-system.cjs",
+    "migrate": "memory/scripts/migrate-simple.cjs"
+  },
+  "capabilities": {
+    "queryByTag": true,
+    "queryByDate": true,
+    "queryBySentiment": true,
+    "queryByEntity": true,
+    "queryByLanguage": true,
+    "searchMemories": true,
+    "getStats": true,
+    "hybridSearch": true,
+    "memoryCompression": true,
+    "associationRecommendation": true,
+    "laneIsolation": true
+  },
+  "performance": {
+    "totalMemories": 1760,
+    "uniqueTags": 49,
+    "uniqueEntities": 181,
+    "searchSpeedup": "5-10x",
+    "storageSaving": "60%",
+    "dateRange": "2026-04-06 to 2026-04-13"
+  },
+  "screenshots": [
+    "assets/screenshot-stats.png",
+    "assets/screenshot-query.png",
+    "assets/screenshot-architecture.png"
+  ],
+  "examples": [
+    {
+      "name": "Basic Usage",
+      "description": "Basic query examples",
+      "path": "examples/basic-usage.js"
+    },
+    {
+      "name": "Advanced Query",
+      "description": "Advanced query with filters",
+      "path": "examples/advanced-query.js"
+    },
+    {
+      "name": "Integration",
+      "description": "REST API integration example",
+      "path": "examples/integration.js"
+    }
+  ],
+  "configFiles": [
+    {
+      "name": "config.json",
+      "description": "Basic configuration example",
+      "path": "examples/config.json"
+    },
+    {
+      "name": "advanced-config.json",
+      "description": "Advanced configuration with all options",
+      "path": "examples/advanced-config.json"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-04-13",
+      "changes": [
+        "Initial release",
+        "1760 dream memories",
+        "49 semantic tags",
+        "181 entities",
+        "Hybrid search (BM25 + Vector + RRF)",
+        "7-layer directory structure"
+      ]
+    }
+  ],
+  "compatibility": {
+    "openclaw": ">=2.7.0",
+    "unifiedMemory": ">=5.0.1",
+    "node": ">=14.0.0"
+  },
+  "rating": {
+    "score": 0,
+    "reviews": 0
+  }
+}

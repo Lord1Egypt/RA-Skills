@@ -1,0 +1,69 @@
+{
+  "_description": "Detection signatures for Skill Vetter Plus security scanner. These patterns search for TEXT FRAGMENTS that are commonly associated with security risks in AI agent skills.",
+  "_note": "This file is read by the scanner (not executed). It is a signature database, similar to YARA or Snort rules.",
+  "signatures": [
+    {
+      "id": "hardcoded-api-key",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": ["api_key", "api-key"],
+      "message": "Possible hardcoded API key"
+    },
+    {
+      "id": "hardcoded-secret",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": ["secret_key", "secret-token", "auth_token"],
+      "message": "Possible hardcoded secret or token"
+    },
+    {
+      "id": "hardcoded-password",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": ["password"],
+      "message": "Possible hardcoded password"
+    },
+    {
+      "id": "unsafe-eval",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["eval("],
+      "message": "eval() can execute arbitrary code"
+    },
+    {
+      "id": "unsafe-exec",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["exec("],
+      "message": "exec() can execute arbitrary code"
+    },
+    {
+      "id": "unsafe-os-system",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["os.system("],
+      "message": "os.system() can execute shell commands"
+    },
+    {
+      "id": "subprocess-shell-true",
+      "category": "execution",
+      "severity": "high",
+      "fragments": ["shell=True"],
+      "message": "subprocess with shell=True is vulnerable to shell injection"
+    },
+    {
+      "id": "raw-network",
+      "category": "network",
+      "severity": "medium",
+      "fragments": ["urllib.request", "requests.post", "requests.get"],
+      "message": "Raw network call found"
+    },
+    {
+      "id": "prompt-injection",
+      "category": "prompt_injection",
+      "severity": "critical",
+      "fragments": ["ignore previous instructions", "ignore the above"],
+      "message": "Potential prompt injection language"
+    }
+  ]
+}

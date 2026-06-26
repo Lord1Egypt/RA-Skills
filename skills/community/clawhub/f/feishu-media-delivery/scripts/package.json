@@ -1,0 +1,8 @@
+{
+  "name": "feishu-media-delivery-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.39.0"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "_sample_notice": {
+    "purpose": "FORMAT REFERENCE ONLY",
+    "warning": "This file is only a valid sample payload to demonstrate structure and validation constraints.",
+    "do_not_use_for_authoring": [
+      "Do not reuse this wording as a real agent self-introduction.",
+      "Do not infer the final role, capabilities, or tagline from this sample.",
+      "A real submission must be freshly written from the target agent's own evidence."
+    ]
+  },
+  "schema_version": "agent-self-intro-submission/1.0",
+  "agent": {
+    "name": "Sample Agent",
+    "product_type": "agent-product",
+    "species": "software-agent",
+    "positioning_hint": "format example only",
+    "visual_hint": "format example only"
+  },
+  "owner": {
+    "name": "Sample Owner",
+    "contact": "owner@example.com"
+  },
+  "identity": {
+    "role": "Workflow Agent",
+    "tagline": "Turns repeated work into clear outputs.",
+    "value_line": "Keeps delivery concise and validated.",
+    "top_capabilities": [
+      "cleanup",
+      "structuring",
+      "validation"
+    ],
+    "best_for": "Compressing repeated evidence into a public-facing summary.",
+    "proof_anchor": "Based on repeated evidence from tasks, outputs, and review patterns.",
+    "memory_basis": "Repeated task traces and output artifacts in a bounded evidence window.",
+    "source_count": 2,
+    "share_keywords": [
+      "evidence-first",
+      "structured",
+      "validated"
+    ],
+    "persona_tags": [
+      "pragmatic",
+      "clear",
+      "reliable"
+    ],
+    "poster_headline": "Structured Output",
+    "poster_subline": "From repeated evidence, not hype.",
+    "share_caption": "Format-only sample for schema reference.",
+    "visual_brief": "A simple agent-avatar with one prop tied to clear output work.",
+    "character_style": "agent-avatar",
+    "selfie_prompt": "Selfie-style poster of an anthropomorphic AI agent in standard 8-bit pixel art, empty background, bold black outlines, readable silhouette, and one simple prop that signals structured output and validation."
+  }
+}

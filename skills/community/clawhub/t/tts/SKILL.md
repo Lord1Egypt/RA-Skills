@@ -1,35 +1,29 @@
 ---
-name: "Tts"
-description: "Convert text to speech using Hume AI (or OpenAI) API. Use when the user asks for an audio message, a voice reply, or to hear something "of vive voix"."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tts"
-sourceUrl: "https://clawhub.ai/skills/tts"
+name: tts
+description: Convert text to speech using Hume AI (or OpenAI) API. Use when the user asks for an audio message, a voice reply, or to hear something "of vive voix".
 ---
 
-# Tts
+# Text-to-Speech (TTS)
 
-> Convert text to speech using Hume AI (or OpenAI) API. Use when the user asks for an audio message, a voice reply, or to hear something "of vive voix".
+Convert text to speech and generate audio files (MP3).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tts`
-- **Source URL:** [https://clawhub.ai/skills/tts](https://clawhub.ai/skills/tts)
+## Hume AI (Preferred)
 
-## Overview
+- **Preferred Voice**: `9e1f9e4f-691a-4bb0-b87c-e306a4c838ef`
+- **Keys**: Stored in environment as `HUME_API_KEY` and `HUME_SECRET_KEY`.
 
+### Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/tts
+HUME_API_KEY="..." HUME_SECRET_KEY="..." node {baseDir}/scripts/generate_hume_speech.js --text "Hello Jonathan" --output "output.mp3"
 ```
+
+## OpenAI (Legacy)
+
+- **Preferred Voice**: `nova`
+- **Usage**: `OPENAI_API_KEY="..." node {baseDir}/scripts/generate_speech.js --text "..." --output "..."`
+
+## General Notes
+
+- The scripts print a `MEDIA:` line with the absolute path to the generated file.
+- Use the `message` tool to send the resulting file to the user.

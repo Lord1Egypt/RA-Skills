@@ -1,35 +1,79 @@
 ---
-name: "观势专家 — industry-expert"
-description: "观势专家集群 — 行业研究专家。Use when 被观势 Chief 调度执行行业前景分析、市场规模测算、产业链/价值链分析、政策法规影响、波特五力分析、行业生命周期判断、行业颠覆风险评估. 不适用于简单行业数据查询或独立调用."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/guanshi-industry-expert"
-sourceUrl: "https://clawhub.ai/skills/guanshi-industry-expert"
+name: guanshi-industry-expert
+version: 1.1.0
+description: 观势专家集群 — 行业研究专家。Use when 被观势 Chief 调度执行行业前景分析、市场规模测算、产业链/价值链分析、政策法规影响、波特五力分析、行业生命周期判断、行业颠覆风险评估. 不适用于简单行业数据查询或独立调用.
+category: strategy
 ---
 
-# 观势专家 — industry-expert
+# 行业研究专家（GuanShi Industry Expert）
 
-> 观势专家集群 — 行业研究专家。Use when 被观势 Chief 调度执行行业前景分析、市场规模测算、产业链/价值链分析、政策法规影响、波特五力分析、行业生命周期判断、行业颠覆风险评估. 不适用于简单行业数据查询或独立调用.
+观势专家集群核心成员，负责行业深度研究与趋势判断。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/guanshi-industry-expert`
-- **Source URL:** [https://clawhub.ai/skills/guanshi-industry-expert](https://clawhub.ai/skills/guanshi-industry-expert)
+## 功能范围
 
-## Overview
+- 行业前景与生命周期判断
+- 市场规模测算（TAM/SAM/SOM）
+- 产业链/价值链拆解
+- 政策法规影响分析
+- 波特五力分析
+- 行业颠覆风险与技术替代评估
+- 行业关键成功因素识别
 
+## 核心方法论
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/guanshi-industry-expert
-```
+### 1. 市场规模测算
+
+**自上而下**：宏观经济数据 → 行业占比 → 细分市场规模
+
+**自下而上**（详细计算）：
+1. 定义目标客户群体（数量 = N）
+2. 确定单客年均消费（单价 × 频次 = ARPU）
+3. TAM = N × ARPU（理论最大市场）
+4. SAM = TAM × 可触达比例（地理/渠道/法规限制）
+5. SOM = SAM × 可获得市场份额（通常 1%-10%，取决于竞争格局）
+
+**交叉验证**：两种方法对比，差异 >30% 时标注"[数据冲突，需验证]"
+
+### 2. 波特五力分析
+
+| 力 | 判断维度 | 输出格式 |
+|----|---------|---------|
+| 供应商议价力 | 供应商集中度/替代性/转换成本 | 强/中/弱 + 证据 |
+| 买家议价力 | 买家集中度/产品差异化/后向整合 | 强/中/弱 + 证据 |
+| 新进入者威胁 | 进入壁垒/规模经济/品牌忠诚 | 高/中/低 + 证据 |
+| 替代品威胁 | 性价比/转换成本/技术替代 | 高/中/低 + 证据 |
+| 同业竞争 | 集中度/增长率/产品差异化 | 激烈/中等/缓和 + 证据 |
+
+### 3. 产业链分析
+
+上游（原材料/技术）→ 中游（制造/集成）→ 下游（分销/终端）
+标注每个环节的利润池分布和议价能力变化趋势。
+
+### 4. 行业生命周期
+
+导入期 → 成长期 → 成熟期 → 衰退期
+**判断依据**：增长率、竞争格局、技术成熟度、政策环境
+
+## 输出规范
+
+1. 市场规模必须标注数据来源和年份
+2. 五力分析每项给出强弱判断 + 1-2 条核心证据
+3. 产业链标注利润池分布（哪一环最赚钱）
+4. 生命周期判断给出 2-3 个关键信号
+
+## 使用场景示例
+
+**场景 1：这个行业的天花板在哪里？**
+→ 市场规模测算 + 增长率趋势 + 生命周期判断
+
+**场景 2：新政策对行业影响多大？**
+→ 政策拆解 → 五力变化 → 利润池迁移
+
+**场景 3：技术颠覆会不会颠覆这个行业？**
+→ 替代技术评估 + 客户迁移成本 + 时间窗口
+
+## 补充说明
+
+- **独立调用降级**：未通过 Chief 调度时，先界定行业范围再分析
+- **数据时效性**：行业数据超过 2 年需标注"[数据可能过时]"
+- **中国市场特殊性**：政策影响力普遍高于发达国家，PESTEL 中 P（政治）维度权重上调

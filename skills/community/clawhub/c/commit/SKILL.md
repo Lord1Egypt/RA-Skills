@@ -1,35 +1,23 @@
 ---
-name: "commit"
-description: "Create a git commit with a contextual message based on current changes, then push the branch."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/commit"
-sourceUrl: "https://clawhub.ai/skills/commit"
+name: commit
+description: Create a git commit with a contextual message based on current changes, then push the branch.
+allowed-tools: [Bash]
 ---
 
-# commit
+## Context
 
-> Create a git commit with a contextual message based on current changes, then push the branch.
+- Current git status: !`git status`
+- Current git diff (staged and unstaged changes): !`git diff HEAD`
+- Current branch: !`git branch --show-current`
+- Recent commits: !`git log --oneline -10`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/commit`
-- **Source URL:** [https://clawhub.ai/skills/commit](https://clawhub.ai/skills/commit)
+## Your task
 
-## Overview
+Based on the above changes, stage everything, create one commit with a contextual message, and push the current branch.
 
+Required sequence:
+1. Stage changes.
+2. Create a single commit.
+3. Push the current branch to origin (use `--set-upstream origin <branch>` if needed).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/commit
-```
+Do not use interactive commands and do not output extra commentary.

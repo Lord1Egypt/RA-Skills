@@ -1,0 +1,47 @@
+{
+  "slug": "hydration-habit-tuner",
+  "name": "Hydration Habit Tuner",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a simple daily water habit around the user's schedule using personalized cues, a bottle plan, and a 7-day check-in sheet.",
+  "category": "Health & Routine",
+  "tags": [
+    "hydration",
+    "habit-design",
+    "daily-routine",
+    "water-intake",
+    "self-care",
+    "health-literacy"
+  ],
+  "trigger_keywords": [
+    "drink more water",
+    "hydration habit",
+    "water routine",
+    "forget to drink water",
+    "daily water plan",
+    "hydration reminders",
+    "water bottle plan",
+    "7 day hydration"
+  ],
+  "use_cases": [
+    "Identify dry spells in a user's normal day pattern.",
+    "Create hydration cues tied to existing routines rather than constant alarms.",
+    "Choose a practical bottle or container plan.",
+    "Provide a 7-day check-in sheet for reviewing the habit."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "hasExecutableCode": false,
+  "contentType": "document-only",
+  "language": "en",
+  "license": "MIT-0",
+  "document_only": true,
+  "promptOnly": true,
+  "runtime": "none",
+  "execution": "noExec",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

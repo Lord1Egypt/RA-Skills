@@ -1,35 +1,79 @@
 ---
-name: "bank-list-guider"
-description: "查询财资管理系统支持的银行列表。使用当客户询问：(1) 支持哪些银行，(2) 能否使用某家银行，(3) 银行接入情况，(4) 需要银行列表或银行目录时。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bank-list-guider"
-sourceUrl: "https://clawhub.ai/skills/bank-list-guider"
+name: bank-list
+description: 查询财资管理系统支持的银行列表。使用当客户询问：(1) 支持哪些银行，(2) 能否使用某家银行，(3) 银行接入情况，(4) 需要银行列表或银行目录时。
 ---
 
-# bank-list-guider
+# 银行列表查询技能
 
-> 查询财资管理系统支持的银行列表。使用当客户询问：(1) 支持哪些银行，(2) 能否使用某家银行，(3) 银行接入情况，(4) 需要银行列表或银行目录时。
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bank-list-guider`
-- **Source URL:** [https://clawhub.ai/skills/bank-list-guider](https://clawhub.ai/skills/bank-list-guider)
+本技能用于向客户展示财资管理系统支持的所有银行列表，帮助客户了解可以使用的银行。
 
-## Overview
+## 使用方式
 
+### 1. 查询完整银行列表
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bank-list-guider
+当客户询问"支持哪些银行"或"银行列表"时：
+
+1. 读取 `references/banks.md` 获取完整银行列表
+2. 以清晰的格式展示给客户（按银行类型或名称分组）
+3. 提供每家银行的关键信息（如支持的功能、接入状态等）
+
+### 2. 查询特定银行
+
+当客户询问某家具体银行（如"支持工商银行吗"）时：
+
+1. 读取 `references/banks.md` 搜索该银行
+2. 告知客户该银行是否支持
+3. 如支持，提供相关接入信息和使用说明
+
+### 3. 银行分类说明
+
+银行通常按以下类型分类：
+
+- **国有商业银行**：工商、农业、中国、建设、交通、邮储等
+- **股份制商业银行**：招商、中信、光大、华夏、民生、广发、平安等
+- **城市商业银行**：北京、上海、宁波、南京等
+- **农村商业银行**：各地农商行
+- **外资银行**：汇丰、渣打、东亚等
+
+## 输出格式建议
+
+### 完整列表展示
+
 ```
+## 财资系统支持银行列表
+
+### 国有商业银行 (6 家)
+- 中国工商银行 (ICBC) ✅
+- 中国农业银行 (ABC) ✅
+- 中国银行 (BOC) ✅
+- 中国建设银行 (CCB) ✅
+- 交通银行 (BOCOM) ✅
+- 中国邮政储蓄银行 (PSBC) ✅
+
+### 股份制商业银行 (12 家)
+- 招商银行 (CMB) ✅
+- 中信银行 (CITIC) ✅
+...
+```
+
+### 单家银行查询
+
+```
+✅ 支持 - 中国工商银行 (ICBC)
+
+接入状态：已接入
+支持功能：账户查询、转账支付、资金归集、票据业务
+接入方式：银企直连
+```
+
+## 注意事项
+
+- 银行列表可能更新，始终以 `references/banks.md` 为准
+- 如客户询问的银行不在列表中，记录需求并告知会反馈给产品团队
+- 对于外资银行或地方性银行，需确认是否有特殊接入要求
+
+## 相关文件
+
+- `references/banks.md` - 完整银行列表及详细信息

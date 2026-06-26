@@ -1,0 +1,12 @@
+{
+  "name": "nanobot-feishu-send",
+  "version": "0.1.0",
+  "description": "通过 nanobot 的 message 工具发送飞书附件（图片/文件/语音/视频），无需手动调用 API",
+  "author": "nanobot community",
+  "license": "MIT-0",
+  "homepage": "https://github.com/xinyuqinfeng/skills-nanobot-feishu-send",
+  "requirements": {
+    "bins": []
+  },
+  "tags": ["nanobot", "feishu", "lark", "file", "image", "audio", "video"]
+}

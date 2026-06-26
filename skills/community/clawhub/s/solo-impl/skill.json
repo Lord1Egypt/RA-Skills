@@ -1,0 +1,49 @@
+{
+  "skill": "solo_impl",
+  "skill_series": "solo",
+  "skill_type": "executor",
+  "version": "1.2.0",
+  "description": "Autonomous executor for Solo CLI — runs environment setup, motor configuration, calibration, teleoperation, dataset recording, policy training, and inference commands directly in the user's terminal",
+  "domains": ["environment", "device", "teleoperation", "data", "training"],
+  "robot_types_supported": ["SO100", "SO101", "Koch", "bimanual_SO100", "bimanual_SO101", "RealMan"],
+  "tutorials": ["solo_first_run", "solo_record_to_train"],
+  "docs_base_url": "https://docs.getsolo.tech",
+  "related_skills": ["solo_cli_guide", "solo_hub_guide"],
+  "command_tiers": {
+    "mode1_silent": [
+      "install_uv",
+      "create_venv",
+      "activate_venv",
+      "install_solo_cli",
+      "setup_usb_permissions",
+      "scan_motors",
+      "diagnose_arm"
+    ],
+    "mode2a_background": [
+      "replay_episode",
+      "train_policy",
+      "run_inference"
+    ],
+    "mode2b_terminal_popup": [
+      "setup_motors",
+      "calibrate_arm",
+      "start_teleop",
+      "record_dataset"
+    ]
+  },
+  "constraint": "Only execute commands sourced from this skill's bundled domain files. Never invent CLI flags, arguments, or behaviors.",
+  "requires": {
+    "env": {
+      "HUGGINGFACE_TOKEN": "Conditional — needed only when pushing datasets or trained models to HuggingFace Hub (--push-to-hub 1 or solo data push). If unset, git credential prompts will appear in the terminal. Never required for local-only workflows.",
+      "WANDB_API_KEY": "Conditional — needed only when Weights & Biases logging is enabled during train_policy. If unset, the agent will prompt the user to run `wandb login` before training starts. Never required if W&B logging is disabled."
+    },
+    "external_installs": [
+      {
+        "url": "https://astral.sh/uv/install.sh",
+        "method": "curl | sh",
+        "purpose": "Official uv Python package manager installer from astral.sh. Disclosed to user before execution.",
+        "alternatives": ["pip install uv", "brew install uv (macOS)"]
+      }
+    ]
+  }
+}

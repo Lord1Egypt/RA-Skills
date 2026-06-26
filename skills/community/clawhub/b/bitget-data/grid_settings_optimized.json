@@ -1,0 +1,30 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "gridNum": 35,
+    "priceMin": 64000,
+    "priceMax": 71000,
+    "amount": 10,
+    "maxPosition": 400,
+    "notes": "优化后：更密网格 + 更宽区间，提高交易频率"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "gridNum": 30,
+    "priceMin": 75,
+    "priceMax": 95,
+    "amount": 12,
+    "maxPosition": 400,
+    "notes": "优化后：中等密度 + 宽区间，平衡频率和利润"
+  },
+  "optimization": {
+    "date": "2026-03-08",
+    "goal": "提高交易频率，增加网格套利次数",
+    "changes": [
+      "BTC: 25 格→35 格，区间扩大至 64k-71k",
+      "SOL: 20 格→30 格，区间扩大至 75-95",
+      "降低每格金额，提高资金利用率",
+      "扩大价格区间，降低突破风险"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信文章排版预览"
+  short_description: "生成、规范化、主题化微信公众号文章 HTML，并输出可复制或可预览的正文。"
+  default_prompt: "使用 $wechat-article-formatter 生成微信友好的 HTML 文章正文，按需应用指定主题预设，并在需要时生成本地预览页。"

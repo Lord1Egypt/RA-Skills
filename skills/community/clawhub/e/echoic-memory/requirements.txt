@@ -1,0 +1,11 @@
+# EchoMemory 依赖
+# 安装: pip3 install -r requirements.txt
+
+# 照片 EXIF 读取
+Pillow>=10.0.0
+
+# 音频/视频分析（可选）
+# ffmpeg-python>=0.2.0
+
+# 其他工具
+# python-dateutil>=2.8.0

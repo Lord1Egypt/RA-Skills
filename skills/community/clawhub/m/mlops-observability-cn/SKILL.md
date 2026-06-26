@@ -1,35 +1,98 @@
 ---
-name: "MLOps Observability"
-description: "Full stack observability - reproducibility, lineage, monitoring, alerting"
-category: "mlops"
-source: "ClawHub"
-tags: [mlops, monitoring]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mlops-observability-cn"
-sourceUrl: "https://clawhub.ai/skills/mlops-observability-cn"
+name: mlops-observability-cn
+version: 1.0.0
+description: Full stack observability - reproducibility, lineage, monitoring, alerting
+license: MIT
 ---
 
-# MLOps Observability
+# MLOps Observability 👁️
 
-> Full stack observability - reproducibility, lineage, monitoring, alerting
+Glass box system - reproducible, traceable, monitored.
 
-- **Category:** MLOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mlops-observability-cn`
-- **Source URL:** [https://clawhub.ai/skills/mlops-observability-cn](https://clawhub.ai/skills/mlops-observability-cn)
+## Features
 
-## Overview
+### 1. MLflow Tracking 📊
 
+Complete tracking setup:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mlops-observability-cn
+cp references/mlflow-tracking.py ../your-project/src/tracking.py
 ```
+
+Tracks:
+- Config (params)
+- Metrics (accuracy, loss)
+- Models (sklearn/pytorch)
+- Datasets (lineage)
+- Git commit (reproducibility)
+
+### 2. Drift Detection 📉
+
+Using Evidently:
+
+```python
+from evidently import Report
+from evidently.metrics import DataDriftTable
+
+report = Report(metrics=[DataDriftTable()])
+report.run(reference_data=train, current_data=prod)
+```
+
+### 3. Explainability (SHAP) 🔍
+
+```python
+import shap
+
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X)
+shap.summary_plot(shap_values, X)
+```
+
+## Quick Start
+
+```bash
+# Copy tracking code
+cp references/mlflow-tracking.py ./src/
+
+# Add to training script:
+# from tracking import setup_tracking, log_training_run
+```
+
+## Reproducibility
+
+```python
+# Set all seeds
+import random, numpy as np, torch
+random.seed(42)
+np.random.seed(42)
+torch.manual_seed(42)
+
+# Track git commit
+import git
+commit = git.Repo().head.commit.hexsha
+mlflow.log_param("git_commit", commit)
+```
+
+## Monitoring Checklist
+
+- [ ] Random seeds fixed
+- [ ] MLflow tracking enabled
+- [ ] System metrics logged
+- [ ] Drift detection setup
+- [ ] SHAP explanations saved
+- [ ] Alerts configured
+
+## Alerting
+
+- **Local**: `plyer` notifications
+- **Production**: PagerDuty (critical) / Slack (warnings)
+
+## Author
+
+Converted from [MLOps Coding Course](https://github.com/MLOps-Courses/mlops-coding-skills)
+
+## Changelog
+
+### v1.0.0 (2026-02-18)
+- Initial OpenClaw conversion
+- Added MLflow tracking code

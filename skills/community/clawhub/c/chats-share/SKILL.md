@@ -1,35 +1,13 @@
 ---
-name: "Chat share"
+name: chats-share
 description: "Legacy alias for /clawpage. Redirects users to the new canonical command."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chats-share"
-sourceUrl: "https://clawhub.ai/skills/chats-share"
+metadata: {"openclaw":{"emoji":"💬","homepage":"https://github.com/imyelo/clawpage"}}
 ---
 
-# Chat share
+# chats-share (legacy)
 
-> Legacy alias for /clawpage. Redirects users to the new canonical command.
+This command has been renamed. Please use **`/clawpage`** instead — it is the canonical command going forward and will always be up to date.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chats-share`
-- **Source URL:** [https://clawhub.ai/skills/chats-share](https://clawhub.ai/skills/chats-share)
+If you haven't installed it yet, read https://clawhub.ai/imyelo/clawpage and follow the installation instructions.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chats-share
-```
+Then invoke with `/clawpage`.

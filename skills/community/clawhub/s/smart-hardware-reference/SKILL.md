@@ -1,35 +1,112 @@
 ---
-name: "Smart Hardware Reference"
-description: "智能硬件开发知识参考库——Universal Task OS的领域负载物。提供开发任务清单（9域68种任务类型）、结构要求槽位、优秀范本框架，由UTOS执行轴动态编排管线、内容轴按清单法/样本法组织产出。覆盖需求市场/架构规格/硬件设计/嵌入式软件/结构ID/原型验证/量产供应链/运维服务/项目管理全生命周期，特..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-hardware-reference"
-sourceUrl: "https://clawhub.ai/skills/smart-hardware-reference"
+name: smart-hardware-reference
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 智能硬件开发知识参考库——Universal Task OS的领域负载物。提供开发任务清单（9域68种任务类型）、结构要求槽位、优秀范本框架，由UTOS执行轴动态编排管线、内容轴按清单法/样本法组织产出。覆盖需求市场/架构规格/硬件设计/嵌入式软件/结构ID/原型验证/量产供应链/运维服务/项目管理全生命周期，特有维度包括硬软一体（MCU/BLE/OTA）、制造约束（DFM/DFT/供应链）、合规认证（CCC/FCC/CE/KC/SRRC）、EVT/DVT/PVT三阶段验证。触发词：智能硬件、嵌入式、IoT、物联网、固件、PCB、原理图、量产、NPI、EVT、DVT、PVT、认证、FCC、CE、SRRC、OTA、BLE、hardware、embedded、firmware、PCBA。
 ---
 
-# Smart Hardware Reference
+# 智能硬件开发知识参考库
 
-> 智能硬件开发知识参考库——Universal Task OS的领域负载物。提供开发任务清单（9域68种任务类型）、结构要求槽位、优秀范本框架，由UTOS执行轴动态编排管线、内容轴按清单法/样本法组织产出。覆盖需求市场/架构规格/硬件设计/嵌入式软件/结构ID/原型验证/量产供应链/运维服务/项目管理全生命周期，特...
+## 定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-hardware-reference`
-- **Source URL:** [https://clawhub.ai/skills/smart-hardware-reference](https://clawhub.ai/skills/smart-hardware-reference)
+本技能是 **Universal Task OS 的领域负载物仓库**，不包含任何执行框架。只提供智能硬件开发的"是什么"和"长什么样"——执行全部委托UTOS。
 
-## Overview
+| 本技能提供 | UTOS消费方式 |
+|-----------|-------------|
+| 开发任务清单（有哪些任务） | 内容轴·清单法的成品目录 |
+| 结构要求（每种任务的组件槽位） | 内容轴·清单法的组件清单 |
+| 优秀范本（待企业填充） | 内容轴·样本法的样本 |
+| 任务依赖拓扑（任务间先后关系） | 执行轴·管线编排的依赖输入 |
 
+## 三层结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-hardware-reference
 ```
+第一层：开发任务清单 + 依赖拓扑   →  references/hardware-catalog.md
+第二层：结构要求清单              →  references/structure-requirements.md
+第三层：优秀范本库                →  references/exemplars.md
+```
+
+## 依赖声明
+
+本技能**强依赖** Universal Task OS (universal-task-os)。没有UTOS，本技能只有参考查阅能力，无法执行任何开发产出任务。
+
+**加载检查流程**（每次激活时执行）：
+
+1. 检测 `universal-task-os` 技能是否已安装
+2. **未安装** → 自动安装 `universal-task-os` 技能
+3. **安装成功** → 同时加载UTOS，按本技能"使用规则"执行
+4. **安装失败** → 降级为**只读参考模式**：
+   - ✅ 允许：查阅任务清单、结构要求、范本索引
+   - ❌ 拒绝：任何涉及文档产出、管线编排、内容生成的任务，并提示"需先安装 Universal Task OS"
+
+**任务模式判定**：
+
+| 任务类型 | 无UTOS | 有UTOS |
+|---------|--------|--------|
+| 查阅任务清单/要求/范本 | ✅ 只读参考 | ✅ 完整 |
+| 按清单/范产出技术文档/方案 | ❌ 拒绝 | ✅ UTOS编排执行 |
+| 依赖拓扑推导开发管线 | ❌ 拒绝 | ✅ UTOS执行轴 |
+| 合规检查点插入 | ❌ 拒绝 | ✅ UTOS守护单元 |
+
+## 使用规则
+
+1. **依赖检查**：激活时按上述流程检测并安装UTOS
+2. **首次加载**：读取 `references/hardware-catalog.md`，获取域分类、依赖拓扑、UTOS元操作映射提示
+3. **按需深入**：确认目标任务类型后，读取 `references/structure-requirements.md` 获取组件清单；如需样本法，读取 `references/exemplars.md` 获取范本
+4. **委托UTOS**：将任务清单作为清单法输入、范本作为样本法输入、依赖拓扑作为管线编排输入，交给UTOS执行轴+内容轴处理
+5. **企业填充**：范本槽位标注 `[待企业提供]` 的条目需企业补充脱敏真实范本后才能使用样本法；结构要求中标注 `[待补充]` 的字段需企业定义后才能完整使用清单法
+
+## 与UTOS的接口
+
+当UTOS处理智能硬件领域任务时：
+
+- **Step 0 三轴判定**：硬件任务通常为复杂+结构化 → 三轴全开（创新驱动产品差异化，结构化产出贯穿全流程）
+- **Step 1 领域校准**：硬件=高规范性(R4)+高迭代性(R5)+中信息密度(R1) → G权重极高，循环多，自治度偏低（需专业验证）
+- **Step 2 内容轴**：清单法用本技能的structure-requirements；样本法用本技能的exemplars
+- **Step 3 执行轴**：管线编排基于本技能的依赖拓扑自动推导元操作序列
+- **Step 4 交付**：G类守护单元自动插入合规检查点（安规认证、EMC、环保法规）
+
+## 智能硬件特有维度
+
+与传统软件或纯电子硬件相比，智能硬件有以下必须考虑的特有维度：
+
+### 硬软一体
+
+| 维度 | 说明 |
+|------|------|
+| **嵌入式系统** | MCU选型→固件架构→OTA升级→低功耗策略，软硬件协同设计是核心挑战 |
+| **连接性** | Wi-Fi/BLE/Zigbee/NB-IoT/LoRa等协议选型与天线设计 |
+| **云端协同** | 设备接入→数据上报→远程控制→FOTA→设备影子 |
+
+### 制造约束
+
+| 维度 | 说明 |
+|------|------|
+| **DFM（可制造性设计）** | 元件选型（供货周期/替代料）、PCB布局（可生产性）、组装工艺 |
+| **DFT（可测试性设计）** | 测试点设计、产线测试方案、老化测试策略 |
+| **供应链风险** | 长期物料（LTA）、替代方案、最小起订量(MOQ)管理 |
+
+### 合规认证
+
+| 维度 | 说明 |
+|------|------|
+| **安全认证** | CCC/FCC/CE/KC/PSE等区域强制性认证 |
+| **无线认证** | SRRC/FCC ID/蓝牙SIG等无线型号核准 |
+| **行业专项** | 医疗(二类/三类)/车载(AEC-Q100/Q101)/工业级(宽温)等特殊领域 |
+
+## 域概览
+
+按硬件产品生命周期组织，共9域68种开发任务类型：
+
+| 域 | 任务数 | 典型任务 |
+|----|--------|---------|
+| H1 需求与市场 | 7 | 产品需求PRD、竞品拆解报告、用户场景分析、定价策略 |
+| H2 架构与规格 | 8 | 系统架构图、BOM初版、功耗预算、尺寸堆叠 |
+| H3 硬件设计 | 10 | 原理图、PCB Layout、射频调试、电源设计、EMC预评估 |
+| H4 嵌入式软件 | 8 | 固件架构、驱动开发、协议栈集成、OTA方案、低功耗策略 |
+| H5 结构与ID | 6 | ID设计、结构设计、散热方案、防水防尘、材料选型 |
+| H6 原型与验证 | 7 | 原型制作计划、功能验证、可靠性测试、安规预审、认证申请 |
+| H7 量产与供应链 | 8 | 产线工艺文件、试产报告、供应商管理、质量控制计划、包装设计 |
+| H8 运维与服务 | 8 | 云平台对接、数据分析、售后支持体系、固件迭代、召回预案 |
+| H9 项目管理 | 6 | 项目计划、风险管理、跨部门协同、里程碑追踪、成本控制 |
+
+完整清单见 `references/hardware-catalog.md`。

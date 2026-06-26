@@ -1,35 +1,32 @@
 ---
-name: "1.2.0"
-description: "Runbook-first incident triage workflow for service outages and high-error alerts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/incident-triage-playbook"
-sourceUrl: "https://clawhub.ai/skills/incident-triage-playbook"
+name: incident-triage-playbook
+description: Runbook-first incident triage workflow for service outages and high-error alerts.
+version: 1.2.0
 ---
 
-# 1.2.0
+# Incident Triage Assistant
 
-> Runbook-first incident triage workflow for service outages and high-error alerts.
+Use when an alert fires and you need a consistent first-15-min triage flow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/incident-triage-playbook`
-- **Source URL:** [https://clawhub.ai/skills/incident-triage-playbook](https://clawhub.ai/skills/incident-triage-playbook)
+## Inputs to Gather
 
-## Overview
+- Primary target (service, team, or dataset)
+- Current impact and urgency
+- Assigned owner and deadline
 
+## Core Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/incident-triage-playbook
-```
+- `triage intake --service <name> --severity <sev>`
+- `triage timeline --append "<event>"`
+- `triage owner --set "<oncall>"`
+- `workflow checklist --from templates/checklist.md`
+- `workflow report --from templates/report.md`
+
+## Operating Notes
+
+- Prefer explicit owner assignment before action.
+- Keep timeline notes concise and timestamped.
+- Save output artifacts for audit and handoff.
+- This version adds a structured report template for post-task summaries.
+
+Version marker: incident-triage-playbook 1.2.0

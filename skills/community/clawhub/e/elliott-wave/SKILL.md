@@ -1,35 +1,25 @@
 ---
-name: "Elliott Wave"
-description: "波浪理论（Elliott Wave）技术分析 — 艾略特股价波动规律。当用户说「波浪理论」「数浪」「推动浪」「调整浪」「延长浪」「斐波那契」时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/elliott-wave"
-sourceUrl: "https://clawhub.ai/skills/elliott-wave"
+name: elliott-wave
+description: 波浪理论（Elliott Wave）技术分析 — 艾略特股价波动规律。当用户说「波浪理论」「数浪」「推动浪」「调整浪」「延长浪」「斐波那契」时激活。
 ---
 
-# Elliott Wave
+# Elliott Wave Theory
 
-> 波浪理论（Elliott Wave）技术分析 — 艾略特股价波动规律。当用户说「波浪理论」「数浪」「推动浪」「调整浪」「延长浪」「斐波那契」时激活。
+5浪上升+3浪调整。铁律：2浪不破1浪起点；3浪非最短；4浪不与1浪重叠。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/elliott-wave`
-- **Source URL:** [https://clawhub.ai/skills/elliott-wave](https://clawhub.ai/skills/elliott-wave)
+## 8浪循环
+1-2-3-4-5(A-B-C)
 
-## Overview
+## 斐波那契回调
+23.6/38.2/50/61.8/78.6% — 2浪/4浪进场
+延伸：1.618/2.618倍
 
+## 数浪流程
+1. 判断大级别方向（周线）
+2. 数5浪推动结构
+3. 斐波那契测算目标
+4. RSI背离确认
+5. 在2/4浪回撤位进场
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/elliott-wave
-```
+## 参考
+详见 references/elliott-rules.md

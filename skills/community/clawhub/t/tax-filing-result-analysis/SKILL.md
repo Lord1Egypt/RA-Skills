@@ -1,35 +1,83 @@
 ---
-name: "分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。"
-description: "分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tax-filing-result-analysis"
-sourceUrl: "https://clawhub.ai/skills/tax-filing-result-analysis"
+name: 申报运维报告生成器
+description: 分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。
+version: 1.0
+author: 运维团队
+inputs:
+  - name: excel_path
+    type: file
+    required: true
+    description: 包含申报失败明细的Excel文件路径（支持.xlsx/.xls），至少包含以下字段：申报时间、业务类型、失败原因、申报渠道、处理状态。
+  - name: report_title
+    type: string
+    required: false
+    default: "XX系统申报运维报告"
+    description: 报告标题，可自定义。
+  - name: output_path
+    type: string
+    required: false
+    default: "./申报运维报告.docx"
+    description: 生成的Word报告保存路径。
 ---
 
-# 分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。
+# 技能执行步骤
 
-> 分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。
+## 1. 读取并解析Excel数据
+- 使用pandas或openpyxl读取 `excel_path` 文件。
+- 自动检测列名（支持中英文别名），标准字段映射如下：
+  - 时间字段：`申报时间` / `submit_time` / `date`
+  - 业务类型：`业务类型` / `biz_type`
+  - 失败原因：`失败原因` / `fail_reason` / `error_msg`
+  - 申报渠道：`渠道` / `channel`
+  - 处理状态：`状态` / `status`（仅统计“失败”记录，若存在“已修复”等状态则区分）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tax-filing-result-analysis`
-- **Source URL:** [https://clawhub.ai/skills/tax-filing-result-analysis](https://clawhub.ai/skills/tax-filing-result-analysis)
+## 2. 数据清洗与预处理
+- 删除全空行、重复记录。
+- 将时间列统一为 `datetime` 类型，按天或小时聚合。
+- 对失败原因进行文本标准化（如去除标点、统一大小写、提取核心错误码）。
 
-## Overview
+## 3. 统计分析（必须输出以下内容）
+### 3.1 总体概览
+- 总申报失败笔数
+- 时间范围（最早失败时间 ~ 最晚失败时间）
+- 涉及业务类型数量、渠道数量
 
+### 3.2 趋势分析
+- **日趋势**：每日失败数量折线图（用字符或文字描述，也可生成matplotlib图并嵌入Word）
+- **时段热点**：按小时统计失败高峰时段
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tax-filing-result-analysis
-```
+### 3.3 多维下钻
+- **按业务类型**：失败数 Top 5 业务，及其主要失败原因
+- **按渠道**：各渠道失败率（失败数 / 该渠道总申报数，若无总量则只列失败数）
+- **按失败原因**：聚类统计（如“网络超时”、“参数校验失败”、“数据不存在”等），列出 Top 5 原因及占比
+
+### 3.4 异常检测
+- 发现同一业务/同一原因持续超过3天的“顽固错误”
+- 发现短时间内（30分钟内）爆发式失败（阈值：>10笔）
+
+## 4. 生成Word报告
+- 使用 `python-docx` 库创建Word文档。
+- 报告结构如下：
+
+  **封面**：报告标题、生成日期、数据时间范围
+  **一、 执行摘要**：200字以内，概述总失败数、最严重业务/渠道、核心问题。
+  **二、 总体情况**：总失败笔数、业务/渠道分布表格。
+  **三、 趋势分析**：日趋势描述 + 时段热点表格。
+  **四、 问题明细**：
+      - 按失败原因分类的表（原因、次数、占比、典型错误样例）
+      - Top 5 业务+渠道组合的失败详情
+  **五、 顽固问题清单**：持续超过3天的相同失败，列出业务、原因、起始日期。
+  **六、 整改建议**：基于失败原因给出可执行建议（例如：优化超时重试机制、增加参数前置校验、联系渠道方排查接口）。
+
+- 将统计图表（如有）以图片形式插入对应章节。
+- 保存文件到 `output_path`。
+
+## 5. 输出确认
+- 打印生成成功信息及文件绝对路径。
+- 若Excel缺少必要字段，给出明确错误提示并建议手动映射列名。
+
+# 注意事项
+- 当Excel文件大于20MB时，启用分块读取。
+- 如果找不到标准列名，则以交互方式让用户选择对应的列。
+- 所有数值保留整数，百分比保留一位小数。
+- 报告语言为简体中文，日期格式 `YYYY-MM-DD`。

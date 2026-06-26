@@ -1,0 +1,165 @@
+# Small non-services workflow adapter example.
+# This proves the universal core is not hardcoded to CompleteTech services.
+
+workflow_type: hiring_pipeline
+label: Hiring Pipeline Workflow
+default: false
+schema_version: 1.0.0
+
+stages:
+  - id: role_intake
+    label: Role Intake
+    purpose: Confirm role need, hiring manager, compensation range, and success criteria.
+  - id: sourcing
+    label: Sourcing
+    purpose: Identify and qualify candidate sources.
+  - id: screening
+    label: Screening
+    purpose: Screen candidate fit against role requirements.
+  - id: interview
+    label: Interview
+    purpose: Coordinate interviews, scorecards, and feedback.
+  - id: offer
+    label: Offer
+    purpose: Prepare offer package after hiring and compensation approvals.
+  - id: onboarding
+    label: Onboarding
+    purpose: Handoff accepted candidate to onboarding owner.
+
+allowed_transitions:
+  - from: role_intake
+    to: sourcing
+    when: role brief and hiring owner are known
+  - from: sourcing
+    to: screening
+    when: candidate profile is ready
+  - from: screening
+    to: interview
+    when: candidate passes screen or hiring manager requests interview
+  - from: interview
+    to: offer
+    when: scorecards and hiring manager approval are current
+  - from: offer
+    to: onboarding
+    when: offer is accepted and start details are verified
+  - from: interview
+    to: role_intake
+    when: scorecards show role requirements are unclear or changed
+  - from: offer
+    to: interview
+    when: hiring manager approval is reopened or interview evidence must be corrected before offer action
+  - from: offer
+    to: role_intake
+    when: compensation range, role requirements, or employment terms are superseded
+  - from: onboarding
+    to: offer
+    when: accepted-offer details, start date, or employment terms need approved correction
+  - from: interview
+    to: screening
+    when: candidate record correction requires re-screening evidence before interview continuation
+
+artifacts:
+  - artifact_type: role_brief
+    owner: recruiter
+    version_policy: revise when role requirements or compensation range changes
+  - artifact_type: candidate_profile
+    owner: recruiter
+    version_policy: append verified candidate facts only
+  - artifact_type: interview_scorecard
+    owner: interview_panel
+    version_policy: preserve evaluator attribution and supersede only with evidence
+  - artifact_type: offer_package
+    owner: compensation_owner
+    version_policy: draft until compensation and hiring manager approvals are current
+
+specialist_owners:
+  role_intake: recruiter
+  sourcing: recruiter
+  screening: recruiter
+  interview: interview_panel
+  offer: compensation_owner
+  onboarding: onboarding_owner
+
+gates:
+  - gate_id: hiring_manager_approval
+    owner: hiring_manager
+    category: owner_approval
+    applies_when: advancing candidate to interview or offer
+  - gate_id: compensation_approval
+    owner: compensation_owner
+    category: owner_approval
+    applies_when: offer package, salary range, equity, or bonus terms are involved
+  - gate_id: legal_or_hr_approval
+    owner: hr_or_legal_owner
+    category: owner_approval
+    applies_when: offer language, employment terms, location restrictions, or compliance questions are involved
+  - gate_id: privacy_or_security_review
+    owner: privacy_or_security_owner
+    category: security_sensitive
+    applies_when: sensitive candidate data, background-check handling, system access, or regulated data is involved
+
+approval_states:
+  - unknown
+  - draft
+  - requested
+  - partial
+  - approved
+  - rejected
+  - expired
+  - superseded
+  - blocked
+  - conditional
+
+routing_rules:
+  - id: missing_role_facts
+    when: role brief, owner, or compensation range is missing
+    action: route to role_intake or ask targeted questions
+  - id: scorecard_gap
+    when: interviewer feedback is missing
+    action: keep candidate track active and add blocker to interview
+  - id: compensation_gate
+    when: offer package or compensation terms are requested
+    action: route to compensation_approval
+  - id: privacy_sensitive_candidate_data
+    when: sensitive candidate data, background checks, or regulated data are involved
+    action: route to privacy_or_security_review
+
+recovery_actions:
+  - id: targeted_questions
+    applies_when: required candidate, role, or owner facts are missing
+    output: shortest question set needed to unblock the candidate track
+  - id: draft_only_offer
+    applies_when: compensation or hiring manager approval is pending
+    output: draft offer package with approval blockers
+  - id: fallback_owner
+    applies_when: interviewer or hiring manager is unavailable
+    output: suggested alternate owner or `TBD`
+
+required_fields:
+  - role.title
+  - role.hiring_manager
+  - role.compensation_range
+  - candidate.name
+  - candidate.stage
+  - candidate.owner
+
+terminal_states:
+  - id: hired
+    allows_open_blockers: false
+  - id: rejected
+    allows_open_blockers: true
+    requires_rationale: true
+  - id: withdrawn
+    allows_open_blockers: true
+    requires_rationale: true
+
+validation_rules:
+  - invalid_transition
+  - missing_owner
+  - orphaned_blocker
+  - stale_approval
+  - artifact_without_source_or_version
+  - gate_bypassed_without_rationale
+  - unresolved_conflict
+  - terminal_state_with_open_blockers
+  - external_action_without_approval_evidence

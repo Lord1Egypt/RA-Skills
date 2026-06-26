@@ -1,0 +1,75 @@
+{
+  "fetched_at": 1778489712.8116128,
+  "ttl_seconds": 3600,
+  "manifest": {
+    "ttl_seconds": 3600,
+    "offline": false,
+    "client_policy": {
+      "latest_version": "v1.3.1",
+      "min_supported_version": "v1.3.1",
+      "upgrade_required": false,
+      "upgrade_url": "https://ainewparadigm.cn/download/skill",
+      "upgrade_message": "New version available. Please update your AI Daily News skill."
+    },
+    "data_products": [
+      {
+        "product_name": "news_dataset",
+        "display_name": "AI Daily News Dataset",
+        "schema_version": "v1",
+        "default_tier": "guest",
+        "available_tiers": [
+          "guest",
+          "pro_core",
+          "pro_plus"
+        ],
+        "date_granularity": "daily",
+        "supports_multilingual": true,
+        "normalization_language": "en",
+        "download_mode": "redirect",
+        "compression": "json.gz",
+        "ads_enabled": true,
+        "supports_latest": true
+      }
+    ],
+    "remote_capabilities": [
+      {
+        "name": "download_original",
+        "description": "Download the original full article text from the source URL",
+        "requires_token": false,
+        "parameters": {
+          "article_id": {
+            "type": "string",
+            "required": true,
+            "description": "Article identifier"
+          }
+        }
+      }
+    ],
+    "tool_hints": [
+      {
+        "when_to_use": "Today, current, latest news",
+        "recommended_tool": "get_latest_news"
+      },
+      {
+        "when_to_use": "Specific date requested",
+        "recommended_tool": "get_news_dataset"
+      },
+      {
+        "when_to_use": "Advanced analysis, what can you do",
+        "recommended_tool": "invoke_remote_capability"
+      }
+    ],
+    "routing_message": "Use get_latest_news for today's/current/latest news (default choice). Use get_news_dataset only when user provides explicit date. Use invoke_remote_capability for advanced analysis and tracking features. Always sync_capabilities first to discover available features.",
+    "upgrade": {
+      "title": "Unlock AI Daily News Pro",
+      "url": "https://ainewparadigm.cn/download/skill",
+      "token_env": "AINEWS_ACCESS_TOKEN",
+      "features": [
+        "Ranking rationale and editorial analysis",
+        "Strategic explainers and secondary classifications",
+        "Advanced remote capabilities"
+      ],
+      "message": "Configure AINEWS_ACCESS_TOKEN to access Pro features."
+    }
+  }
+}

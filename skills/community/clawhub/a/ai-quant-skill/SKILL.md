@@ -1,35 +1,51 @@
 ---
-name: "AI-Technical-Analysis"
-description: "WorkBuddy 量化投资技能：提供专业的技术指标分析，包括MACD、KDJ、SAR、均线、OBV、PVT、BOLL、CCI、RSI等核心指标。支持自动识别突破、量能异动、风险等级及交易信号。适用于散户投资者的日常行情分析与决策辅助。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-quant-skill"
-sourceUrl: "https://clawhub.ai/skills/ai-quant-skill"
+name: ai-quant-skill
+description: WorkBuddy 量化投资技能：提供专业的技术指标分析，包括MACD、KDJ、SAR、均线、OBV、PVT、BOLL、CCI、RSI等核心指标。支持自动识别突破、量能异动、风险等级及交易信号。适用于散户投资者的日常行情分析与决策辅助。
 ---
 
-# AI-Technical-Analysis
+# WorkBuddy AI Quant Skill - 智能量化分析
 
-> WorkBuddy 量化投资技能：提供专业的技术指标分析，包括MACD、KDJ、SAR、均线、OBV、PVT、BOLL、CCI、RSI等核心指标。支持自动识别突破、量能异动、风险等级及交易信号。适用于散户投资者的日常行情分析与决策辅助。
+本技能专为 WorkBuddy 设计，旨在为投资者提供深度的技术面量化分析。通过集成 9 大核心技术指标，自动捕捉市场异动并生成结构化的分析报告。
+## 🎯 资源获取：
+**指标通过技能查询**：测试akshare是否可用，如可用优先使用akshare获取数据，否则查看用户是否有东方财富妙想、NEO Data、iFind、Wind、同花顺等Skills，如有通过Skills获取股价指数等数据
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-quant-skill`
-- **Source URL:** [https://clawhub.ai/skills/ai-quant-skill](https://clawhub.ai/skills/ai-quant-skill)
+## 🚀 核心能力
 
-## Overview
+1.  **全维度指标计算**：集成 MACD, KDJ, SAR, 均线(MA), OBV, PVT, BOLL, CCI, RSI。
+2.  **状态自动识别**：
+    *   **突破分析**：识别布林带破位、均线交叉、CCI 极端走势。
+    *   **量能分析**：通过 OBV 和 PVT 追踪主力资金动向，识别放量与缩量特征。
+    *   **风险评估**：实时计算年化波动率，结合 RSI 识别超买超卖状态，划分风险等级。
+    *   **交易信号**：生成 MACD/KDJ/SAR/均线等金叉、死叉及反转信号。
+3.  **数据驱动**：自动调用可靠的东方财富/腾讯数据接口，确保分析的实时性与准确性。
 
+## 🛠️ 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-quant-skill
-```
+### 场景 1：个股技术分析报告
+当用户询问某只股票（如“贵州茅台”或“600519”）或者市场指数的技术走势时触发。
+
+**工作流**：
+1.  确认股票代码（如 600519）。
+2.  调用 `scripts/quant_analyzer.py` 执行分析：
+    `python scripts/quant_analyzer.py 600519`
+3.  向用户展示生成的量化分析报告。
+
+### 场景 2：捕捉市场机会
+当用户询问“最近有哪些股票出现了突破信号”或“分析一下某股的资金流向”时触发。
+
+## 📊 包含指标说明
+
+*   **趋势类**：MA (均线), MACD (平滑异同移动平均), BOLL (布林带), SAR (抛物线转向)。
+*   **震荡类**：KDJ (随机指标), RSI (相对强弱指标), CCI (顺势指标)。
+*   **量价类**：OBV (能量潮), PVT (价量趋势)。
+
+## 📊 输出报告
+- html格式 美观的可视化报告
+
+## ⚠️ 免责声明
+
+本技能提供的所有分析结果仅供参考，不构成任何投资建议。投资者应独立判断并承担风险。股市有风险，入市需谨慎。
+
+## 🔧 开发与扩展
+
+脚本位于 `scripts/quant_analyzer.py`。如需新增指标或优化策略，可直接在该脚本中扩展 `calculate_indicators` 和 `analyze_status` 方法。

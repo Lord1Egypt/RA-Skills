@@ -1,0 +1,41 @@
+# AsyncGuard -- lefthook configuration
+# Installed by: asyncguard hooks install
+# Documentation: https://asyncguard.pages.dev/docs/hooks
+#
+# This configuration integrates AsyncGuard with git hooks via lefthook.
+# Pre-commit: scans staged files for async issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    asyncguard-check:
+      run: |
+        ASYNCGUARD_SKILL_DIR="${ASYNCGUARD_SKILL_DIR:-$HOME/.openclaw/skills/asyncguard}"
+        if [[ -f "$ASYNCGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$ASYNCGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$ASYNCGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_asyncguard_check
+        else
+          echo "[AsyncGuard] Skill not found at $ASYNCGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Async issues detected in staged files!
+        Run 'asyncguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    asyncguard-full-scan:
+      run: |
+        ASYNCGUARD_SKILL_DIR="${ASYNCGUARD_SKILL_DIR:-$HOME/.openclaw/skills/asyncguard}"
+        if [[ -f "$ASYNCGUARD_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$ASYNCGUARD_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[AsyncGuard] Skill not found at $ASYNCGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        AsyncGuard detected async quality issues in your codebase.
+        Run 'asyncguard scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

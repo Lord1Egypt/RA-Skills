@@ -1,0 +1,73 @@
+{
+  "skill_name": "meta-mcp-wizard",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've got the Meta-MCP server set up in Claude Desktop. I want to build an MCP server that wraps our internal REST API (base URL: https://internal.mycompany.com/api, needs an Authorization header with a Bearer token). Walk me through using the wizard tools.",
+      "expected_output": "Guidance on using wizard_chat to describe the API, iterating until is_ready, then going through wizard_start, wizard_list_tools, wizard_submit_tools, wizard_list_env_vars, wizard_submit_env_vars, wizard_set_auth, wizard_generate_code, wizard_deploy. Should mention the polling pattern for async tool calls.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Explains iterating wizard_chat until is_ready: true",
+          "type": "semantic"
+        },
+        {
+          "text": "Correctly identifies async tools (wizard_start, wizard_generate_code) requiring polling",
+          "type": "semantic"
+        },
+        {
+          "text": "Explains calling wizard_state and checking processing_status",
+          "type": "semantic"
+        },
+        {
+          "text": "Mentions env vars will be suggested for the API base URL and bearer token credential",
+          "type": "semantic"
+        },
+        {
+          "text": "Shows {uuid: value} dict format for wizard_submit_env_vars",
+          "type": "semantic"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How do I connect the MCPHero Meta-MCP server to Claude Desktop?",
+      "expected_output": "Instructions to add the Meta-MCP server URL to claude_desktop_config.json with the correct mcpServers JSON structure.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Mentions claude_desktop_config.json path",
+          "type": "semantic"
+        },
+        {
+          "text": "Shows mcpServers JSON block with the meta-mcp URL https://api.mcphero.app/mcp/meta/mcp",
+          "type": "contains"
+        },
+        {
+          "text": "Mentions OAuth authentication is handled automatically",
+          "type": "semantic"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I just deployed an MCP server with MCPHero. The deploy returned server_url \"/mcp/abc-123/mcp\" and bearer_token \"sk-xyz\". How do I connect it to Claude Desktop?",
+      "expected_output": "Instructions to add the deployed server to claude_desktop_config.json with the full URL (https://api.mcphero.app/mcp/abc-123/mcp) and the bearer token as an Authorization header.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Constructs the full URL by prepending https://api.mcphero.app to the relative server_url",
+          "type": "semantic"
+        },
+        {
+          "text": "Shows mcpServers config with Authorization header using the bearer token",
+          "type": "semantic"
+        },
+        {
+          "text": "Uses the exact server path /mcp/abc-123/mcp in the config",
+          "type": "contains"
+        }
+      ]
+    }
+  ]
+}

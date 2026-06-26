@@ -1,35 +1,69 @@
 ---
-name: "collage-application"
-description: "提供高考志愿填报策略指导，根据考生省份、选科、分数、位次、意向生成科学志愿方案，并输出可视化志愿单；当用户需要进行高考志愿填报时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/collage-application"
-sourceUrl: "https://clawhub.ai/skills/collage-application"
+name: collage-application
+description: 提供高考志愿填报策略指导，根据考生省份、选科、分数、位次、意向生成科学志愿方案，并输出可视化志愿单；当用户需要进行高考志愿填报时使用
 ---
 
-# collage-application
+# 高考志愿填报助手
 
-> 提供高考志愿填报策略指导，根据考生省份、选科、分数、位次、意向生成科学志愿方案，并输出可视化志愿单；当用户需要进行高考志愿填报时使用
+## 前置准备
+- 依赖说明：scripts脚本依赖python环境，并且所需依赖包
+  ```
+  pip install requests
+  ```
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/collage-application`
-- **Source URL:** [https://clawhub.ai/skills/collage-application](https://clawhub.ai/skills/collage-application)
+## 操作步骤
 
-## Overview
+### 标准流程
 
+1. **信息收集**
+	你必须检查用户是否提供了以下信息：
+	-  **（必填）省份** (例如：上海、江苏、广东)
+	-  **（必填）选科组合** (例如：物理、化学、生物)
+	-  **（必填）高考分数** (具体数值)
+	-  **（选填）高考位次** (具体数值)
+	-  **（必填）倾向专业大类** (例如：计算机类、法学类)
+	如果**必填信息**未完整收集到：直接用自然语言友好地引导用户补充缺失的信息。
+	
+2. **志愿信息确认**
+	当收集完必填信息，则调用 `verify_correct_info` ，校验用户提供的信息是否正确，并且规范化信息
+	```bash
+	python {baseDir}/scripts/verify_correct_info.py --province "xxx" --score xxx  [--rank xxx] --courses "xxx" --majors "xxx"
+	```
+	执行完毕并返回结果后：
+	- **若返回code成功**：
+	  - 提取data中规范化后的json。
+	  - 用描述转化json的信息给用户，让用户确认或者询问是否需要修改
+        - 如果用户需要修改，那么根据修改后的信息重新运行脚本，再次让用户确认
+        - 如果用户确认正确，根据json中的字段去运行**步骤3**，
+	- **若返回失败**：
+	  - 提取错误信息。
+	  - 回复："抱歉，信息校验失败。原因：<error_message>。请核对您的信息，或稍后重试。"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/collage-application
-```
+3. **志愿方案生成**
+	如果用户确认信息后，则调用 `create_collage_application` 生成志愿单
+	```bash
+	python {baseDir}/scripts/create_collage_application.py --province "xxx" --score xxx  --rank xxx --courses "xxx" --majors "xxx" [--api-key KEY]
+	```
+	当脚本 `create_collage_application` 执行完毕并返回结果后：
+	- **若返回成功且包含 url**：
+	  - 提取 msg和url。
+	  - 回复："您的专属志愿单已生成！<加上对msg中的志愿单信息的做一下简短说明>"，**最后附带url中的图片**
+	- **若返回失败**：
+	  - 提取错误信息msg。
+	  - 回复："抱歉，志愿单生成失败。原因：<msg>。请核对您的信息，或稍后重试。"
+	  
+4. **后续咨询**
+	如果志愿单已成功生成
+	- **禁止**再次要求用户重新提供信息（除非用户明确说“我要重新生成”或“修改分数”）。
+	- 直接利用你的专业知识回答用户关于学校、专业、录取概率的提问。
+	- 回复风格：专业、客观、数据驱动。
+	- 如果用户要重新生成，那么回到**步骤2**
+
+### 脚本参数说明：
+province：必填，为单个省或市的简称，如上海，江苏，内蒙古，不包含新疆，西藏、台湾、香港、澳门
+courses：必填，选科组合，内容为物理、化学、生物、历史、地理、政治、技术的组合，参数以按英文逗号`,`分割，比如`物理,化学,生物`
+score：必填，非负整形数字，高考分数
+rank：非必填，非负整形数字，高考位次
+majors：专业大类，如金融学类、化学类、计算机类等，参数以按英文逗号`,`分割，比如`金融学类,化学类,计算机类`
+api-key：非必填，脚本会自动读取`WENXIANG_API_KEY` 环境变量，如果读取不到，脚本会报错，这种情况下请让用户配置或者在对话中输入，如果在对话中输入，那么就加上此参数
+

@@ -1,0 +1,17 @@
+{
+    "name": "openclaw封装skill",
+    "version": "1.0.0",
+    "description": "小红书关键词爬取工具",
+    "main": "index.js",
+    "keywords": ["openclaw", "skill", "xhs", "crawler"],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {},
+    "openclaw": {
+        "type": "local",
+        "entry": "index.js",
+        "config": {
+            "pythonEnv": "python"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "default_v8": {
+    "suffix": "",
+    "notes": "V8 Alpha default quality path. Best for ideation and prompt debugging."
+  },
+  "final_v8_q4": {
+    "suffix": "--q 4",
+    "notes": "Higher-cost final-pass render for V8 Alpha after composition is already working."
+  },
+  "legacy_hd_q4_experimental": {
+    "suffix": "--hd --q 4",
+    "notes": "Legacy/high-definition experimental override. Expensive and not recommended for batch ideation."
+  }
+}

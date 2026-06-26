@@ -1,35 +1,11 @@
----
-name: "Accessibility Checker"
-description: "Prüft UI-Komponenten auf WCAG-Verstöße, identifiziert Accessibility-Probleme und implementiert Verbesserungen wie ARIA-Labels und Farbkontrast."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/accessibility-checker"
-sourceUrl: "https://clawhub.ai/skills/accessibility-checker"
----
+# Skill: accessibility-checker
+# Description: Prüft und verbessert Zugänglichkeit (WCAG-Konformität, Screenreader-Unterstützung).
 
-# Accessibility Checker
+## Workflow
+1. **AUDIT:** Scanne UI-Komponenten auf Accessibility-Probleme.
+2. **IDENTIFY:** Finde Verstöße gegen WCAG-Richtlinien (z.B. fehlende Alt-Texte, Keyboard-Navigation).
+3. **FIX:** Implementiere Verbesserungen (ARIA-Labels, Farbkontraste, etc.).
+4. **TEST:** Validiere mit Tools wie Lighthouse oder Screenreadern.
 
-> Prüft UI-Komponenten auf WCAG-Verstöße, identifiziert Accessibility-Probleme und implementiert Verbesserungen wie ARIA-Labels und Farbkontrast.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/accessibility-checker`
-- **Source URL:** [https://clawhub.ai/skills/accessibility-checker](https://clawhub.ai/skills/accessibility-checker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/accessibility-checker
-```
+## Nutzen
+Verwende diesen Skill für barrierefreie Anwendungen.

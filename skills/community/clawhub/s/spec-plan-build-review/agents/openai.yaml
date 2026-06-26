@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec Plan Build Review"
+  short_description: "Run a proportional delivery lifecycle"
+  default_prompt: "Use $spec-plan-build-review to turn this request into scoped work, implementation, verification, review, and a ship checklist."

@@ -1,0 +1,99 @@
+[
+  {
+    "code": "600276",
+    "name": "恒瑞医药",
+    "current": 51.63,
+    "cost": 53.12,
+    "shares": 1000,
+    "market_value": 51630.0,
+    "profit": -1490.0,
+    "profit_pct": -2.804969879518072,
+    "day_change": -2.8,
+    "signals": [
+      "深度回调"
+    ],
+    "suggestion": "观望",
+    "status": "持仓中"
+  },
+  {
+    "code": "600760",
+    "name": "中航沈飞",
+    "current": 47.76,
+    "cost": 48.01,
+    "shares": 1200,
+    "market_value": 57312.0,
+    "profit": -300.0,
+    "profit_pct": -0.5207248489897938,
+    "day_change": -0.53,
+    "signals": [
+      "小幅回调"
+    ],
+    "suggestion": "观望",
+    "status": "持仓中"
+  },
+  {
+    "code": "600999",
+    "name": "招商证券",
+    "current": 15.17,
+    "cost": 19.5,
+    "shares": 1600,
+    "market_value": 24272.0,
+    "profit": -6928.0,
+    "profit_pct": -22.205128205128204,
+    "day_change": -22.2,
+    "signals": [
+      "深度回调",
+      "跌破成本10%"
+    ],
+    "suggestion": "考虑止损或补仓",
+    "status": "持仓中"
+  },
+  {
+    "code": "601888",
+    "name": "中国中免",
+    "current": 70.69,
+    "cost": 72.27,
+    "shares": 1000,
+    "market_value": 70690.0,
+    "profit": -1580.0,
+    "profit_pct": -2.18624602186246,
+    "day_change": -2.19,
+    "signals": [
+      "深度回调"
+    ],
+    "suggestion": "观望",
+    "status": "持仓中"
+  },
+  {
+    "code": "002202",
+    "name": "金风科技",
+    "current": 28.13,
+    "cost": 28.01,
+    "shares": 2000,
+    "market_value": 56260.0,
+    "profit": 240.0,
+    "profit_pct": 0.4284184219921457,
+    "day_change": 0.44,
+    "signals": [
+      "温和上涨"
+    ],
+    "suggestion": "观望",
+    "status": "持仓中"
+  },
+  {
+    "code": "300188",
+    "name": "国投智能",
+    "current": 12.33,
+    "cost": -1917,
+    "shares": 320,
+    "market_value": 3945.6,
+    "profit": 1917,
+    "profit_pct": 617389,
+    "day_change": 0,
+    "signals": [
+      "小幅回调"
+    ],
+    "suggestion": "利润保护",
+    "status": "利润仓"
+  }
+]

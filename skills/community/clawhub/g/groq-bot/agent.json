@@ -1,0 +1,19 @@
+{
+  "agentId": "groq-bot",
+  "model": "llama-3.1-8b-instant",
+  "fallbackModels": [
+    "meta-llama/llama-4-scout-17b-16e-instruct",
+    "openai/gpt-oss-20b"
+  ],
+  "provider": "groq",
+  "envFile": ".env",
+  "freeTierOnly": true,
+  "max_tokens_per_request": 4000,
+  "rate_limit_strategy": {
+    "tokens_per_minute": 6000,
+    "tokens_per_day": 450000,
+    "retry_delay_seconds": 60,
+    "max_retries": 3
+  },
+  "description": "Optimierter Groq-Bot mit sicheren Free-Tier-Modellen und korrektem Rate-Limit-Management."
+}

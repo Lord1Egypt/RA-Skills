@@ -1,0 +1,4 @@
+interface:
+  display_name: "TinyTroupe Feed Research Lab"
+  short_description: "Compare drafts with synthetic audience personas."
+  default_prompt: "Use $tinytroupe-feed-research-lab to compare draft posts with synthetic audience personas and produce a bounded research report."

@@ -1,0 +1,17 @@
+{
+  "owner": "gdperkins",
+  "slug": "reporead",
+  "displayName": "RepoRead",
+  "latest": {
+    "version": "1.1.0",
+    "publishedAt": 1772869094498,
+    "commit": "https://github.com/openclaw/skills/commit/bbf63400da2173d1f258278466e8b6c97b08fa30"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1772859244761,
+      "commit": "https://github.com/openclaw/skills/commit/b06cb2dfa7818787a81bbc4f2c21beb6192b6ffc"
+    }
+  ]
+}

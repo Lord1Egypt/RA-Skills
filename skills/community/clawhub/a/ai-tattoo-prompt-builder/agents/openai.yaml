@@ -1,0 +1,4 @@
+version: 1
+display_name: AI Tattoo Prompt Builder
+short_description: Turn vague tattoo ideas into stronger AI-ready prompts.
+default_prompt: Improve a tattoo idea by combining motif, style, placement, scale, and mood into a clearer prompt.

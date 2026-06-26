@@ -1,0 +1,36 @@
+{
+  "id": "rule_test_1775357225418",
+  "name": "简洁输出规则",
+  "type": "format",
+  "keywords": [
+    "太长",
+    "简短",
+    "啰嗦",
+    "简洁",
+    "重点"
+  ],
+  "description": "输出简洁明了，重点突出，不超过200字",
+  "createdAt": "2026-04-05T02:47:05.418Z",
+  "source": "auto_pattern",
+  "sourceCorrections": [
+    "corr_1775357157053_5pfw",
+    "corr_1775357157051_szga",
+    "corr_1775357157045_36ut"
+  ],
+  "priority": "medium",
+  "enabled": true,
+  "examples": [
+    {
+      "original": "太啰嗦了，说重点",
+      "correction": "结论先行，不超过3点"
+    },
+    {
+      "original": "能不能简短些？我没时间看长文",
+      "correction": "保持简洁，重点突出"
+    },
+    {
+      "original": "报告太长了，简洁一点",
+      "correction": "输出控制在200字以内"
+    }
+  ]
+}

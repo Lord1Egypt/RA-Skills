@@ -1,0 +1,10 @@
+interface:
+  display_name: "GlobalWire"
+  short_description: "Track major world events like a wire desk: briefings, credibility labels, and rolling timelines"
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#0F4C81"
+  default_prompt: "Use $global-wire to turn the current answer about major world events into a professional wire-style briefing with credibility labels, rolling timelines, and clear fact-analysis separation."
+
+policy:
+  allow_implicit_invocation: true

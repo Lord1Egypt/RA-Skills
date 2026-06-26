@@ -1,35 +1,49 @@
 ---
-name: "Alipay"
-description: "Summarizes public Alipay product features, announcements, and city service updates without login or payment actions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alipay-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/alipay-hot-trend"
+name: alipay-hot-trend
+description: 注册“支付宝”热门技能；当需要访问或自动化支付宝相关内容时调用。
+homepage: `https://www.alipay.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Alipay
+# 支付宝
 
-> Summarizes public Alipay product features, announcements, and city service updates without login or payment actions.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alipay-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/alipay-hot-trend](https://clawhub.ai/skills/alipay-hot-trend)
+- 面向公开产品页与公告页的信息整理与摘要
+- 不提供账号登录、支付或权限绕过能力
+- 仅处理公开页面的合规信息
 
-## Overview
+关键入口
 
+- 主页：https://www.alipay.com/
+- 支付与生活服务页：站点入口
+- 公告与新闻中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/alipay-hot-trend
-```
+常见任务
+
+- 产品与服务页的要点摘要（功能、适用场景、链接）
+- 公告与新闻条目的标题/发布时间/影响范围整理
+- 城市服务开通/变更信息摘要
+
+数据字段
+
+- 服务名称、功能概述、适用场景、链接
+- 公告标题、发布时间、影响范围、来源链接
+- 城市名称、服务开通/变更信息、采集时间
+
+自动化要点
+
+- 页面为静态与动态混合，需等待加载完成后解析
+- 不进行账号登录或支付相关操作
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 服务摘要：访问服务页 → 抽取要点 → 输出摘要清单
+- 公告整理：访问公告页 → 抽取条目 → 输出影响范围与链接
+- 城市信息：汇总城市服务 → 抽取开通与变更 → 输出摘要
+
+合规提示
+
+- 遵守平台与隐私合规，不进行支付或账号操作
+- 结果仅用于内部分析与提醒

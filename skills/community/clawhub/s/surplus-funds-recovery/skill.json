@@ -1,0 +1,26 @@
+{
+  "name": "surplus-funds-recovery",
+  "version": "1.0.0",
+  "description": "Turn unclaimed government funds into passive income. Automated scanning, skip-tracing, SMS outreach, e-signature capture, and claim filing.",
+  "category": "Business Automation",
+  "tags": ["passive-income", "automation", "real-estate", "sms", "skip-tracing"],
+  "price": {
+    "oneTime": 79,
+    "subscription": 19,
+    "currency": "USD"
+  },
+  "requirements": [
+    "Termux (Android) or Linux environment",
+    "Node.js v16+",
+    "OpenClaw agent system",
+    "API keys: Intelius, Twilio, RabbitSign"
+  ],
+  "author": {
+    "name": "Cod3Black",
+    "email": "support@cod3black.agency"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cod3black/surplus-funds-recovery"
+  }
+}

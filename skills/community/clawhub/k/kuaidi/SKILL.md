@@ -1,35 +1,112 @@
 ---
-name: "快递查询"
-description: "查询中国常见快递公司的官方客服电话、常用联系渠道、投诉与催件路径，并给出延误、长时间不更新、显示签收但未收到、驿站代收、破损、丢件、拒收退回、疑似诈骗短信或电话等常见快递问题的处理建议。Use when the user asks about 顺丰、京东快递、EMS、中通、圆通、申通、韵达、德邦、极兔等快递公司的..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kuaidi"
-sourceUrl: "https://clawhub.ai/skills/kuaidi"
+name: kuaidi
+description: "查询中国常见快递公司的官方客服电话、常用联系渠道、投诉与催件路径，并给出延误、长时间不更新、显示签收但未收到、驿站代收、破损、丢件、拒收退回、疑似诈骗短信或电话等常见快递问题的处理建议。Use when the user asks about 顺丰、京东快递、EMS、中通、圆通、申通、韵达、德邦、极兔等快递公司的电话、运单异常处理、投诉升级、理赔准备材料、或需要一个可执行的下一步动作清单。NOT for real-time tracking results, current fee quotes, or legally definitive compensation advice without checking the carrier's latest official rules."
+metadata: { "openclaw": { "emoji": "📦" } }
 ---
 
-# 快递查询
+# Kuaidi Skill
 
-> 查询中国常见快递公司的官方客服电话、常用联系渠道、投诉与催件路径，并给出延误、长时间不更新、显示签收但未收到、驿站代收、破损、丢件、拒收退回、疑似诈骗短信或电话等常见快递问题的处理建议。Use when the user asks about 顺丰、京东快递、EMS、中通、圆通、申通、韵达、德邦、极兔等快递公司的...
+用这个技能处理中文快递问题，目标是把“找电话”和“下一步怎么做”一次说清楚。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kuaidi`
-- **Source URL:** [https://clawhub.ai/skills/kuaidi](https://clawhub.ai/skills/kuaidi)
+## 核心原则
 
-## Overview
+- 先判断用户要的是哪一类帮助：
+  - 查客服电话或官网渠道
+  - 催件 / 投诉
+  - 异常状态解释
+  - 理赔、拒收、保价、举证准备
+  - 识别可疑短信、可疑电话、取件码诈骗
+- 先给最短可执行答案，再补充注意事项。
+- 如果问题涉及具体包裹，优先提醒用户准备：
+  - 运单号
+  - 收寄件手机号后四位
+  - 下单平台和订单号
+  - 异常时间线
+  - 破损/签收/派送相关截图或照片
+- 不猜实时物流状态。查实时轨迹、客服时间、最新理赔规则时，优先引导到官方 App、官网或热线。
 
+## 常用任务
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 查快递公司电话
+
+先用脚本查公司与别名：
+
 ```bash
-hermes skills install clawhub/kuaidi
+node {baseDir}/scripts/kuaidi.js carrier 顺丰
+node {baseDir}/scripts/kuaidi.js carrier sf --json
+node {baseDir}/scripts/kuaidi.js list
 ```
+
+如果用户只问“顺丰电话多少”，直接给：
+
+- 公司名
+- 官方客服热线
+- 是否有官网 / 在线客服
+- 适合处理什么问题
+
+详细表见 `references/carriers.md`。
+
+### 2. 给异常件处理步骤
+
+先匹配问题类型，再给 3 到 6 步操作清单：
+
+```bash
+node {baseDir}/scripts/kuaidi.js issue delay
+node {baseDir}/scripts/kuaidi.js issue delivered-missing --json
+node {baseDir}/scripts/kuaidi.js issue fraud-check
+```
+
+优先覆盖这些高频场景：
+
+- `delay`: 延误、催件、时效明显超预期
+- `no-update`: 轨迹长时间不更新
+- `delivered-missing`: 显示已签收但本人没收到
+- `station-dropoff`: 未经同意投放驿站、快递柜、代收点
+- `damaged`: 外包装或内件破损
+- `lost`: 疑似丢件
+- `refusal-return`: 拒收、退回、逆向件卡住
+- `fraud-check`: 可疑短信、电话、链接、取件码诈骗
+
+### 3. 识别该找卖家还是找快递
+
+默认规则：
+
+- 电商商品质量、错发漏发、退款责任归属：先找卖家或平台售后。
+- 物流停滞、派送异常、网点态度、驿站代收、签收争议：先找承运快递公司。
+- 两边都可能有责任时，分别留痕，不要只走单一渠道。
+
+### 4. 给投诉升级建议
+
+如果企业客服已建单但迟迟无进展：
+
+- 先记录客服工单号、时间、承诺时限。
+- 再补齐证据：轨迹截图、短信截图、照片、通话记录时间。
+- 仍无进展时，转向监管申诉渠道或平台侧售后渠道。
+
+这里要避免做法律结论，只给实操建议，不替代正式法律意见。
+
+## 回复模板
+
+适合直接复用的回答结构：
+
+1. 先确认承运公司和问题类型。
+2. 给官方热线或官方入口。
+3. 给最短下一步动作。
+4. 提醒要准备的材料。
+5. 涉及实时信息时，明确说明要以官方最新页面为准。
+
+例如：
+
+- “顺丰客服热线是 95338。先准备运单号和收件手机号后四位，拨打后按异常件/人工服务处理催件。若轨迹超过一天没有变化，再补一张物流轨迹截图留证。”
+- “这个更像‘已签收但未收到’，先联系承运快递核实签收人和投递位置，同时保留门口监控、驿站短信、签收截图；如果未经同意放驿站，可以按未按约定派送投诉。”
+
+## 参考资料
+
+- 快递公司电话、官网入口、官方来源链接：`references/carriers.md`
+- 常见异常件处理清单与回答边界：`references/issues.md`
+
+## 注意事项
+
+- 这个技能适合“快递问题分诊 + 给下一步动作”，不适合编造实时轨迹结果。
+- 电话、服务时间、投诉入口可能变化；如果用户要求“最新”“今天”“现在还能打吗”，必须再核实官方页面。
+- 对理赔金额、法定赔付、平台责任归属，只能给一般性建议；高风险场景要提示用户以最新条款或平台规则为准。

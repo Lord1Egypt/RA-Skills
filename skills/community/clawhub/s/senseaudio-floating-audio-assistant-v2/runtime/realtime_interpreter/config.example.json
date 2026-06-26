@@ -1,0 +1,66 @@
+{
+  "profile_name": "system-audio-single-stream",
+  "capture": {
+    "source": "system",
+    "input_device_name": "BlackHole 2ch",
+    "sample_rate": 16000,
+    "chunk_ms": 180,
+    "overlap_ms": 180,
+    "recognize_mode": "auto",
+    "silence_finalize_ms": 90,
+    "min_speech_duration_ms": 180,
+    "soft_max_duration_ms": 2200,
+    "hard_max_duration_ms": 4200,
+    "soft_silence_duration_ms": 35,
+    "vad_threshold": 0.5
+  },
+  "senseaudio": {
+    "asr": {
+      "transport": "websocket",
+      "endpoint": "wss://api.senseaudio.cn/ws/v1/audio/transcriptions",
+      "model": "senseaudio-asr-deepthink-1.5-260319"
+    },
+    "tts": {
+      "enabled": false,
+      "transport": "wss",
+      "endpoint": "wss://api.senseaudio.cn/ws/v1/t2a_v2",
+      "model": "senseaudio-tts-1.5-260319",
+      "voice_id": "female_0006_a",
+      "speed": 1.0
+    }
+  },
+  "local_fast": {
+    "enabled": true,
+    "provider": "cpu",
+    "num_threads": 2,
+    "model_dir": "models/sherpa-onnx-streaming-zipformer-small-ctc-zh-int8-2025-04-01",
+    "rule1_min_trailing_silence": 1.2,
+    "rule2_min_trailing_silence": 0.5,
+    "rule3_min_utterance_length": 8.0
+  },
+  "translation": {
+    "enabled": false,
+    "source_language": "auto",
+    "target_language": "zh",
+    "mode": "bilingual_subtitle",
+    "strategy": "single_bilingual_stream",
+    "translate_partials": false,
+    "min_commit_chars": 8
+  },
+  "subtitle": {
+    "show_original": true,
+    "show_translation": true,
+    "history_size": 4,
+    "always_on_top": true,
+    "click_through": false
+  },
+  "runtime": {
+    "reconnect_backoff_ms": 1200,
+    "connect_max_attempts": 4,
+    "watchdog_no_event_ms": 8000,
+    "watchdog_restart_cooldown_ms": 5000,
+    "watchdog_local_endpoint_streak": 2,
+    "local_activity_window_ms": 5000,
+    "persist_log_path": "state/realtime_interpreter/session.log"
+  }
+}

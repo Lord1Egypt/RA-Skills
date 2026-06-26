@@ -1,35 +1,55 @@
----
-name: "test_skill"
-description: "Web crawler using BFS and anti-scraping to extract and save structured BBC and general news content in Markdown with multi-site and dedup support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bbccrawlermaxclaw"
-sourceUrl: "https://clawhub.ai/skills/bbccrawlermaxclaw"
----
+# BBC Crawler MaxClaw
 
-# test_skill
+## Description
+A powerful, universal web crawler optimized for BBC News but capable of crawling other sites. It integrates advanced scraping technologies including Crawl4AI and Playwright to handle dynamic content and anti-bot protections.
 
-> Web crawler using BFS and anti-scraping to extract and save structured BBC and general news content in Markdown with multi-site and dedup support.
+## Features
+- **Multi-Method Extraction**: 
+  - `crawl4ai`: Primary method using AsyncWebCrawler for high performance and accuracy.
+  - `playwright`: Full browser rendering fallback for complex dynamic pages.
+  - `requests`: Fast fallback for static content.
+  - `auto`: Automatically detects the best method (Prioritizes Crawl4AI).
+- **Hierarchical Storage**: Saves content in a structured format: `YYYY-MM-DD/Category/Title.md`.
+- **Local Image Archiving**: Downloads images locally, names them by MD5 hash, and updates Markdown references.
+- **Content Filtering**: Intelligently extracts main article content and relevant images using CSS selectors.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bbccrawlermaxclaw`
-- **Source URL:** [https://clawhub.ai/skills/bbccrawlermaxclaw](https://clawhub.ai/skills/bbccrawlermaxclaw)
-
-## Overview
-
+## Requirements
+- Python 3.9+
+- See `requirements.txt` for Python packages.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/bbccrawlermaxclaw
+# 1. Install dependencies
+# Note: install.py supports passing arguments to pip, e.g., --break-system-packages
+python install.py
+
+# Example for environments requiring --break-system-packages:
+python install.py --break-system-packages
 ```
+
+## Usage
+
+### Basic Usage
+```bash
+python universal_crawler_v2.py --url https://www.bbc.co.uk/news --max-pages 50
+```
+
+### Advanced Usage
+```bash
+# Force Crawl4AI
+python universal_crawler_v2.py --url https://www.bbc.co.uk/news --method crawl4ai
+
+# Force Playwright
+python universal_crawler_v2.py --url https://www.bbc.co.uk/news --method playwright
+
+# Control depth and delay
+python universal_crawler_v2.py --url https://www.bbc.co.uk/news --depth 3 --delay 2.5
+
+# Specify output directory
+python universal_crawler_v2.py --url https://www.bbc.co.uk/news --output ./my_data
+```
+
+## Troubleshooting
+- **Import Errors**: If you see "No module named 'crawl4ai'" or similar, run `python install.py` again.
+- **Empty Responses**: Ensure you have the latest version of the crawler. Some sites may block specific IPs or user agents; try increasing delay or switching methods.

@@ -1,0 +1,29 @@
+{
+  "name": "opencode-guide",
+  "version": "1.0.0",
+  "description": "OpenCode 使用指南 - 让 OpenClaw 正确调用 opencode 的完整工作流",
+  "author": "wangning823-arch",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "workflow",
+    "guide",
+    "agent",
+    "automation",
+    "callback"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangning823-arch/opencode-guide.git"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "scripts/"
+  ],
+  "scripts": {
+    "postinstall": "cp -r scripts/* ~/.openclaw/scripts/ 2>/dev/null || true",
+    "preuninstall": "rm -f ~/.openclaw/scripts/opencode-*.sh ~/.openclaw/scripts/README-opencode-callback.md 2>/dev/null || true"
+  }
+}

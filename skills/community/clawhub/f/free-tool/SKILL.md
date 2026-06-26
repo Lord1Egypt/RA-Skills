@@ -1,35 +1,21 @@
 ---
-name: "Free Tool"
-description: "Display amount of free and used memory in the system. Use for monitoring memory usage and diagnosing performance issues."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/free-tool"
-sourceUrl: "https://clawhub.ai/skills/free-tool"
+name: free-tool
+description: Display amount of free and used memory in the system. Use for monitoring memory usage and diagnosing performance issues.
 ---
-
-# Free Tool
-
-> Display amount of free and used memory in the system. Use for monitoring memory usage and diagnosing performance issues.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/free-tool`
-- **Source URL:** [https://clawhub.ai/skills/free-tool](https://clawhub.ai/skills/free-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+# Free - Memory Usage Reporter
+Show system memory statistics including total, used, free, shared, buffer/cache, and available memory. Essential for system monitoring and capacity planning.
+## Usage
 ```bash
-hermes skills install clawhub/free-tool
+free-tool [options]
+```
+## Options
+- `-h`: Human-readable output (KB/MB/GB)
+- `-m`: Output in megabytes
+- `-g`: Output in gigabytes
+- `-t`: Show totals line
+## Examples
+```bash
+free-tool -h
+free-tool -m
+free-tool -h -t
 ```

@@ -1,0 +1,17 @@
+{
+  "name": "agent-swarm-dev-team",
+  "version": "1.0.0",
+  "description": "Agent Swarm 一人开发团队 - 编排多个 AI 编码 Agent",
+  "main": "scripts/init-swarm.cjs",
+  "scripts": {
+    "init": "node scripts/init-swarm.cjs"
+  },
+  "keywords": [
+    "agent-swarm",
+    "multi-agent",
+    "codex",
+    "claude-code"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT"
+}

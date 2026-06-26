@@ -1,0 +1,4 @@
+interface:
+  display_name: "image-deck: GPT Image 2 Slide Deck"
+  short_description: "image-deck creates GPT Image 2 slide decks with information-rich text by default, with balanced or concise modes available."
+  default_prompt: "Use image-deck to create a consistent GPT Image 2 slide deck / PPT / PowerPoint presentation with text and visuals generated together in each slide image. Recommend information-rich text by default, while letting me choose balanced or concise if preferred."

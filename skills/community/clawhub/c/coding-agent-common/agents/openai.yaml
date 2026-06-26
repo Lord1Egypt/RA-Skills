@@ -1,0 +1,19 @@
+version: 1
+display_name: Coding Agent
+short_description: 通用编码代理，支持 Codex、Claude Code、OpenCode 等工具
+default_prompt: |
+  使用此技能将编码任务委托给 AI 编码代理（Codex/Claude Code/OpenCode）。
+  
+  使用场景：
+  - 构建新功能或应用
+  - 重构代码
+  - Bug 修复
+  - 代码审查
+  - 迭代式开发
+  
+  规则：
+  - Codex/OpenCode/Pi 需要 pty:true
+  - Claude Code 使用 --print --permission-mode bypassPermissions
+  - 始终指定 workdir
+  - 后台任务使用 background:true
+  - 监控使用 process action:list/log/poll

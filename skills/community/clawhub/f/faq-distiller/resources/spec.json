@@ -1,0 +1,37 @@
+{
+  "slug": "faq-distiller",
+  "title": "FAQ 蒸馏器",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "从客服对话、评论、工单或聊天记录中提炼 FAQ，并按用户阶段分类。",
+  "inputHint": "工单文本、问答记录、评论",
+  "sections": [
+    "高频问题",
+    "按阶段分类",
+    "标准回答",
+    "需升级问题",
+    "缺失文档",
+    "后续维护建议"
+  ],
+  "useCases": [
+    "帮助中心",
+    "入门文档",
+    "售前 FAQ"
+  ],
+  "positiveExamples": [
+    "从这些客服记录提炼 FAQ",
+    "按新手和进阶用户分类"
+  ],
+  "negativeExamples": [
+    "不要暴露用户隐私",
+    "不要替代工单系统"
+  ],
+  "risk": "建议对个人信息做脱敏后再输入。",
+  "tags": [
+    "faq",
+    "support",
+    "knowledge",
+    "voice-of-customer"
+  ]
+}

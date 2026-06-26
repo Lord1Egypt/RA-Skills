@@ -1,0 +1,13 @@
+{
+  "name": "entj-coach",
+  "version": "1.0.0",
+  "description": "entj-coach - 基于《越过山丘》教练哲学 + MBTI 进阶指南（v1.5.0 符合 skill 3.0 标准）",
+  "author": "燃冰 + ant",
+  "license": "MIT",
+  "keywords": ["INTP", "教练", "成长", "职业", "学习", "分析瘫痪", "专注力"],
+  "category": "productivity",
+  "tags": ["intp", "coaching", "growth", "career", "learning", "analysis-paralysis"],
+  "main": "SKILL.md",
+  "files": ["SKILL.md", "README.md", "references", "examples"],
+  "repository": {"type": "git", "url": "https://github.com/lj22503/women-awakening-museum.git"}
+}

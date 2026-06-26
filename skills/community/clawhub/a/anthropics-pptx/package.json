@@ -1,0 +1,10 @@
+{
+  "name": "anthropics-pptx",
+  "version": "1.0.0",
+  "description": "Generate PowerPoint presentations from natural language",
+  "main": "SKILL.md",
+  "scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
+  "keywords": ["pptx", "powerpoint", "presentation"],
+  "author": "anthropics",
+  "license": "MIT"
+}

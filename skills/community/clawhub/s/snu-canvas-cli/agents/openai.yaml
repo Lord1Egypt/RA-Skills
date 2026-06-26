@@ -1,0 +1,4 @@
+interface:
+  display_name: "LearningX CLI"
+  short_description: "Run lx-agent CLI with strict URL checks"
+  default_prompt: "Use $learningx-cli to run lx-agent Telegram/LearningX CLI commands, verify Canvas URL via config+network checks, and never guess alternate domains."

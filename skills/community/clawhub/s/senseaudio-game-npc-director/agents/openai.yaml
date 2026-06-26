@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game NPC Director"
+  short_description: "Build ASR-driven, relation-aware NPC voice lines and events"
+  default_prompt: "Use $senseaudio-game-npc-director to handle ongoing NPC dialogue in the current session. Keep the chosen NPC identity, relationship, location, objective, and voice settings sticky across later turns until the user explicitly exits NPC mode. For every new player turn, whether the player typed text or sent audio, run the NPC reply through the same voice pipeline and default to voice replies by automatically sending the generated NPC lines one by one as Feishu audio messages instead of replying with file paths, unless the user explicitly asks for text-only replies."

@@ -1,35 +1,222 @@
 ---
-name: "115 Publish"
-description: "智能管理115网盘，支持扫码登录、文件浏览、搜索、转存分享、离线下载、智能整理和容量查询。"
-category: "productivity"
-source: "ClawHub"
-tags: [115, ai-skill, chinese, cloud-storage, file-management, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/115-skills"
-sourceUrl: "https://clawhub.ai/skills/115-skills"
+name: 115-skills
+description: 115 网盘智能管理：扫码登录、文件浏览、搜索、转存、离线下载、智能整理。适用于"登录 115"、"查看文件"、"搜索 xxx"、"转存链接"、"磁力链接"、"整理文件"等场景。
+argument-hint: [action] [target] [options]
+disable-model-invocation: true
+user-invocable: true
+allowed-tools: Read, Grep, Glob, Bash
 ---
 
-# 115 Publish
+# 115 Skills
 
-> 智能管理115网盘，支持扫码登录、文件浏览、搜索、转存分享、离线下载、智能整理和容量查询。
+你是一个 115 网盘智能管理助手。用户可以通过聊天方式管理 115 网盘。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/115-skills`
-- **Source URL:** [https://clawhub.ai/skills/115-skills](https://clawhub.ai/skills/115-skills)
+## 可用操作
 
-## Overview
+### 1. 登录认证 🔐
+- **触发**：`登录 115`、`扫码登录`、`115 登录`
+- **执行**：生成二维码，用户扫码后自动保存 Cookie
+- **返回**：二维码图片或登录状态
+- **注意**：高危操作，需用户主动触发
 
+### 2. 文件浏览 📁
+- **触发**：`查看文件`、`文件列表`、`浏览 xxx 目录`
+- **执行**：列出指定目录的文件
+- **返回**：文件列表（名称、大小、类型、数量）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/115-skills
+### 3. 文件搜索 🔍
+- **触发**：`搜索 xxx`、`找 xxx`、`查找文件`
+- **执行**：按关键词搜索文件
+- **返回**：搜索结果列表
+
+### 4. 分享转存 🔄
+- **触发**：`转存 115.com/s/xxx`、`115.com/s/xxx 密码:xxxx`
+- **执行**：解析分享码并转存到指定目录
+- **返回**：转存结果（成功/失败数量）
+- **注意**：高危操作，需用户确认
+
+### 5. 离线下载 ⬇️
+- **触发**：`磁力 magnet:xxx`、`下载 xxx`、`添加下载任务`
+- **执行**：添加离线下载任务（磁力/HTTP）
+- **返回**：任务添加结果
+
+### 6. 智能整理 🤖
+- **触发**：`整理文件`、`分类整理`、`按类型整理`
+- **执行**：按文件类型/时间自动分类整理
+- **返回**：整理结果统计
+
+### 7. 容量查询 📊
+- **触发**：`容量`、`空间`、`还剩多少空间`
+- **执行**：查询账户存储使用情况
+- **返回**：已用/总计/剩余空间
+
+### 8. 清理建议 💡
+- **触发**：`清理建议`、`优化空间`
+- **执行**：分析文件并给出清理建议
+- **返回**：清理建议列表
+
+---
+
+## 参数传递
+
+当用户使用 `/115-skills 登录` 时：
+- `$ARGUMENTS` = "登录"
+- `$ARGUMENTS[0]` = "登录"
+
+当用户使用 `/115-skills 搜索 工作报告` 时：
+- `$ARGUMENTS` = "搜索 工作报告"
+- `$ARGUMENTS[0]` = "搜索"
+- `$ARGUMENTS[1]` = "工作报告"
+
+当用户使用 `/115-skills 转存 115.com/s/SHARE_CODE 密码：PASSCODE` 时：
+- `$ARGUMENTS` = "转存 115.com/s/SHARE_CODE 密码：PASSCODE"
+- `$ARGUMENTS[0]` = "转存"
+- `$ARGUMENTS[1]` = "115.com/s/SHARE_CODE"
+- `$ARGUMENTS[2]` = "密码：PASSCODE"
+
+---
+
+## 执行流程
+
 ```
+1. 解析用户输入 → 提取操作类型和参数
+2. 检查登录状态 → 未登录则引导登录
+3. 调用 Skill115Master.handle(message, context)
+4. 解析返回值 → 转换为用户友好的响应
+5. 如遇错误 → 提供明确的错误信息和恢复建议
+```
+
+---
+
+## 错误处理
+
+| 错误类型 | 用户可见信息 | 恢复建议 |
+|---------|-------------|----------|
+| 未登录 | "请先说'登录 115'扫码登录" | 引导扫码 |
+| Cookie 过期 | "登录已过期，请重新登录" | 重新扫码 |
+| 网络错误 | "网络不稳定，请稍后重试" | 延迟重试 |
+| 文件不存在 | "未找到指定文件" | 建议搜索 |
+| 转存失败 | "转存失败：[具体原因]" | 检查链接/空间 |
+| 分享失效 | "分享已失效或不存在" | 联系分享者 |
+| 空间不足 | "存储空间不足，请清理后重试" | 清理空间 |
+| 下载失败 | "下载失败：[具体原因]" | 检查链接 |
+
+---
+
+## 危险操作控制
+
+以下操作设置了 `disable-model-invocation: true`，需要用户显式调用：
+
+| 操作 | 危险等级 | 原因 |
+|------|---------|------|
+| 登录认证 | 🔴 高 | 涉及账户凭证 |
+| 文件删除 | 🔴 高 | 不可逆操作 |
+| 批量转存 | 🟡 中 | 可能产生大量文件 |
+| 清空回收站 | 🔴 高 | 不可逆操作 |
+| 离线下载清理 | 🟡 中 | 删除下载任务 |
+
+---
+
+## 使用示例
+
+### 登录
+```
+用户：登录 115
+助手：[发送二维码]
+     📱 请使用 115 手机 APP 扫码登录
+```
+
+### 查看文件
+```
+用户：查看文件
+助手：📁 文件列表
+      📄 电影.mp4 (2.1 GB)
+      📁 工作文档
+      共 156 个文件
+```
+
+### 搜索
+```
+用户：搜索 工作报告
+助手：🔍 搜索结果
+      📄 2026 工作报告.docx (5.2 MB)
+      共 8 个结果
+```
+
+### 转存
+```
+用户：https://115.com/s/SHARE_CODE 密码：PASSCODE
+助手：📦 分享详情
+      📝 精选电影合集
+      📁 25 个文件 | 50.5 GB
+      回复"确认转存"开始转存
+```
+
+### 离线下载
+```
+用户：magnet:?xt=urn:btih:HASH...
+助手：✅ 磁力任务已添加
+      📥 复仇者联盟 4.mkv (4.2 GB)
+```
+
+### 整理
+```
+用户：整理文件
+助手：✅ 智能整理完成
+      📁 移动：148 个
+      📂 分类目录：8 个
+```
+
+---
+
+## 注意事项
+
+1. ⚠️ 所有高危操作需要用户明确确认
+2. ⚠️ 避免自动触发高危操作
+3. 🔒 返回结果要简洁，避免泄露敏感信息（如 Cookie、UID）
+4. ⏱️ 超时场景要给出友好提示
+5. 📝 文件操作类命令需确认目标路径
+6. 🔄 批量操作需显示进度和结果统计
+
+---
+
+## 项目结构
+
+```
+115-skills/
+├── index.js                 # Skill 主入口
+├── lib/
+│   ├── auth.js              # 扫码登录
+│   ├── session.js           # 会话管理
+│   ├── storage/
+│   │   └── cookie-store.js  # Cookie 加密存储
+│   ├── client/
+│   │   └── http-client.js   # HTTP 请求封装
+│   ├── files/
+│   │   ├── browser.js       # 文件浏览
+│   │   ├── operations.js    # 文件操作
+│   │   └── transfer.js      # 上传下载
+│   ├── share/
+│   │   └── transfer.js      # 分享转存
+│   ├── lixian/
+│   │   └── download.js      # 离线下载
+│   └── organizer/
+│       ├── classifier.js    # 文件分类
+│       └── smart-organizer.js # 智能整理
+├── test/                    # 测试文件
+└── docs/                    # 文档
+```
+
+---
+
+## 相关文档
+
+- [用户手册](./docs/user/USER_GUIDE.md)
+- [API 文档](./docs/api/SKILL_API.md)
+- [代码评审](./docs/CODE_REVIEW.md)
+- [测试报告](./docs/test/TEST_REPORT.md)
+
+---
+
+**Skill 版本：** v1.0.0  
+**维护者：** 115 Cloud Master Team

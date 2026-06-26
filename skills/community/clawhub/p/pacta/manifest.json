@@ -1,0 +1,65 @@
+{
+  "name": "pacta",
+  "version": "1.0.2",
+  "description": "DEPRECATED: This skill has been permanently deactivated. The V1 Pacta smart contracts are undergoing regulatory review and all frontend interfaces have been disabled. Do not use this tool. No further support will be provided.",
+  "author": "AMENIZM",
+  "license": "MIT",
+  "entrypoint": "handler.py",
+  "commands": {
+    "approve_token": {
+      "description": "DEPRECATED",
+      "params": {
+        "amount_decimal": {
+          "type": "string",
+          "required": true,
+          "description": "DEPRECATED"
+        }
+      }
+    },
+    "post_agreement": {
+      "description": "DEPRECATED",
+      "params": {
+        "amount_decimal": {
+          "type": "string",
+          "required": true,
+          "description": "DEPRECATED"
+        },
+        "metadata_text": {
+          "type": "string",
+          "required": true,
+          "description": "DEPRECATED"
+        },
+        "provider": {
+          "type": "string",
+          "required": false,
+          "description": "DEPRECATED"
+        }
+      }
+    },
+    "accept_agreement": {
+      "description": "DEPRECATED",
+      "params": {
+        "agreement_id": {
+          "type": "integer",
+          "required": true,
+          "description": "DEPRECATED"
+        }
+      }
+    },
+    "deliver_agreement": {
+      "description": "DEPRECATED",
+      "params": {
+        "agreement_id": {
+          "type": "integer",
+          "required": true,
+          "description": "DEPRECATED"
+        },
+        "delivery_uri": {
+          "type": "string",
+          "required": true,
+          "description": "DEPRECATED"
+        }
+      }
+    }
+  }
+}

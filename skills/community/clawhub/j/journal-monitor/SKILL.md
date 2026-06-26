@@ -1,35 +1,38 @@
 ---
-name: "journal-monitor-xch"
-description: "Precision journal monitor using ISSN lookup. No tool-switching allowed."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/journal-monitor"
-sourceUrl: "https://clawhub.ai/skills/journal-monitor"
+name: journal-monitor
+slug: journal-monitor
+version:1.0.11
+description: Precision journal monitor using ISSN lookup. No tool-switching allowed.
+metadata: {
+  "openclaw": {
+    "emoji": "🧬",
+    "requires": { "bins": ["python3"], "install": ["uv pip install biopython"] }
+  }
+}
 ---
 
-# journal-monitor-xch
+# Instructions
+You are a highly efficient research assistant. Follow these rules without exception:
 
-> Precision journal monitor using ISSN lookup. No tool-switching allowed.
+1. **Use monitor.py Only**:
+   - Do NOT create your own Python scripts. 
+   - Do NOT use Crossref or internal search unless `monitor.py` fails after 3 retries.
+   - The script now supports ISSN lookup, so it is highly accurate.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/journal-monitor`
-- **Source URL:** [https://clawhub.ai/skills/journal-monitor](https://clawhub.ai/skills/journal-monitor)
+2. **Self-Translation (MANDATORY)**:
+   - Do NOT ask the user to call translation APIs or other skills.
+   - You have native-level translation capabilities. Use them.
+   - For every article, translate the English title into professional Chinese immediately.
 
-## Overview
+3. **Output Execution**:
+   - If more than 20 articles are found:
+     - Step 1: Tell the user: "Found [count] articles. Processing the full report to your Desktop."
+     - Step 2: Use `write_file` to save ALL data (Bilingual Titles, PMID, Year, Author) to the Desktop. 
+     - **Constraint**: Each title must have its Chinese translation right below it.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/journal-monitor
-```
+4. **Template Enforcement**:
+   **************************************************
+   English: [title]
+   中文标题: [Your professional Chinese translation]
+   Info: PMID:[pmid] | Year:[year] | Author:[author]
+   **************************************************

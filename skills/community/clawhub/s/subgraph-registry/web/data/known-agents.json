@@ -1,0 +1,269 @@
+{
+  "generated_at": "2026-06-14T14:14:49.340Z",
+  "source": "build-time",
+  "payer_count": 36,
+  "agent_count": 29,
+  "agents": [
+    {
+      "agent": "[Graph Advocate](https://8004scan.io/agents/base/41034)",
+      "wallet": "0xe121e3a8611e1f44f7cc52892ee1117fddc8f734",
+      "payments": 9,
+      "first_seen": "2026-05-08T21:29:43.000Z",
+      "last_seen": "2026-05-16T01:41:31.000Z",
+      "registry": "operator",
+      "agent_link": "https://8004scan.io/agents/base/41034"
+    },
+    {
+      "agent": "[WalkingDead](https://8004scan.io/agents/base/53806)",
+      "wallet": "0x2cc43582e048de19269bde1156975ac1440cfbee",
+      "payments": 4,
+      "first_seen": "2026-06-01T09:14:05.000Z",
+      "last_seen": "2026-06-05T11:08:31.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53806"
+    },
+    {
+      "agent": "[megasrexlr](https://8004scan.io/agents/base/52934)",
+      "wallet": "0xc6827f6e0c58adaf63c3ef0c921e80edb29a4212",
+      "payments": 4,
+      "first_seen": "2026-05-17T11:52:51.000Z",
+      "last_seen": "2026-06-04T18:28:35.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/52934"
+    },
+    {
+      "agent": "[Skillnfast](https://8004scan.io/agents/base/52926)",
+      "wallet": "0x4cf871998105338780a4c7d684cab797d77a57b1",
+      "payments": 3,
+      "first_seen": "2026-06-01T01:54:01.000Z",
+      "last_seen": "2026-06-04T17:36:21.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/52926"
+    },
+    {
+      "agent": "[woaini我爱你](https://8004scan.io/agents/base/53808)",
+      "wallet": "0x8ddc65fd25a58e84bbab1346884b817fb5717574",
+      "payments": 3,
+      "first_seen": "2026-06-01T10:53:55.000Z",
+      "last_seen": "2026-06-05T10:06:03.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53808"
+    },
+    {
+      "agent": "[Danielmelodybot](https://8004scan.io/agents/base/47050)",
+      "wallet": "0x5d9f5b5ac58cc53f4c620f41422f09dd370980a8",
+      "payments": 3,
+      "first_seen": "2026-06-02T23:39:49.000Z",
+      "last_seen": "2026-06-05T09:52:17.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/47050"
+    },
+    {
+      "agent": "[agent998822](https://8004scan.io/agents/base/46974)",
+      "wallet": "0xf945ec82e6e94132c535a8897f35adbabf04bac5",
+      "payments": 2,
+      "first_seen": "2026-06-01T20:01:59.000Z",
+      "last_seen": "2026-06-02T02:50:33.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/46974"
+    },
+    {
+      "agent": "[CringledAgent](https://8004scan.io/agents/base/51695)",
+      "wallet": "0x81081db3b74310676122f619744d0488b9ba3893",
+      "payments": 2,
+      "first_seen": "2026-06-02T20:20:21.000Z",
+      "last_seen": "2026-06-05T07:59:59.000Z",
+      "registry": "agent0",
+      "agent_link": "https://8004scan.io/agents/base/51695"
+    },
+    {
+      "agent": "[Tomiboyagent](https://8004scan.io/agents/base/47107)",
+      "wallet": "0x7ee25ac416b0fe9d46051afd3c458f53bb7758eb",
+      "payments": 2,
+      "first_seen": "2026-06-02T21:04:07.000Z",
+      "last_seen": "2026-06-05T07:43:19.000Z",
+      "registry": "agent0",
+      "agent_link": "https://8004scan.io/agents/base/47107"
+    },
+    {
+      "agent": "[Morenikeji](https://8004scan.io/agents/base/52929)",
+      "wallet": "0x7a7b4088e5cb83034fe6b76fd62d891fd3c37393",
+      "payments": 2,
+      "first_seen": "2026-06-01T19:48:21.000Z",
+      "last_seen": "2026-06-03T00:46:25.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/52929"
+    },
+    {
+      "agent": "[TheTerminalBot](https://8004scan.io/agents/base/53804)",
+      "wallet": "0xc6e6df3193338633c35a759218f097555b76f70f",
+      "payments": 2,
+      "first_seen": "2026-06-01T11:21:47.000Z",
+      "last_seen": "2026-06-05T09:27:29.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53804"
+    },
+    {
+      "agent": "[Slenderbot](https://8004scan.io/agents/base/52927)",
+      "wallet": "0x5b5230958af4cc50f320ae9cbdd1a731a0542e8c",
+      "payments": 2,
+      "first_seen": "2026-06-02T02:20:17.000Z",
+      "last_seen": "2026-06-02T22:16:05.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/52927"
+    },
+    {
+      "agent": "[zoeyveeyler](https://8004scan.io/agents/base/52928)",
+      "wallet": "0x30ceaebdac116f99e9338617ff6ab7d804e7ca3b",
+      "payments": 2,
+      "first_seen": "2026-06-01T13:36:35.000Z",
+      "last_seen": "2026-06-02T00:59:53.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/52928"
+    },
+    {
+      "agent": "[Cassandra](https://8004scan.io/agents/base/53778)",
+      "wallet": "0x7478ad4c190b2c97c947f9a29fd1ad2d46550f31",
+      "payments": 2,
+      "first_seen": "2026-06-01T02:10:43.000Z",
+      "last_seen": "2026-06-02T20:36:55.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53778"
+    },
+    {
+      "agent": "[Agenttheskilledone](https://8004scan.io/agents/base/51038)",
+      "wallet": "0x01cd7e3f005b807f7050a37920b6c59d9d691e09",
+      "payments": 2,
+      "first_seen": "2026-06-03T00:34:45.000Z",
+      "last_seen": "2026-06-04T18:58:55.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/51038"
+    },
+    {
+      "agent": "[Michaelgent](https://8004scan.io/agents/base/47143)",
+      "wallet": "0x4bd067fd86b72df519d1fad881740ec00afa22ca",
+      "payments": 2,
+      "first_seen": "2026-05-31T16:16:47.000Z",
+      "last_seen": "2026-06-01T07:01:37.000Z",
+      "registry": "agent0",
+      "agent_link": "https://8004scan.io/agents/base/47143"
+    },
+    {
+      "agent": "[Velocitron](https://8004scan.io/agents/base/52932)",
+      "wallet": "0xce3c6e20aab568dfe60ed99fabd82770c49fcaf9",
+      "payments": 2,
+      "first_seen": "2026-06-01T12:42:53.000Z",
+      "last_seen": "2026-06-01T18:58:39.000Z",
+      "registry": "agent0",
+      "agent_link": "https://8004scan.io/agents/base/52932"
+    },
+    {
+      "agent": "[Johnadebot](https://8004scan.io/agents/base/47049)",
+      "wallet": "0x8a0de799c5f8938d134a96694bf12a22b54c0019",
+      "payments": 2,
+      "first_seen": "2026-06-01T14:08:55.000Z",
+      "last_seen": "2026-06-03T00:09:39.000Z",
+      "registry": "agent0",
+      "agent_link": "https://8004scan.io/agents/base/47049"
+    },
+    {
+      "agent": "[ZombieOZombie](https://8004scan.io/agents/base/51632)",
+      "wallet": "0xaf5ef51a293a8673ad19f9645631787476f4942d",
+      "payments": 2,
+      "first_seen": "2026-05-31T16:01:41.000Z",
+      "last_seen": "2026-06-02T22:41:31.000Z",
+      "registry": "agent0",
+      "agent_link": "https://8004scan.io/agents/base/51632"
+    },
+    {
+      "agent": "[Iniwinimiti](https://8004scan.io/agents/base/52906)",
+      "wallet": "0x3382a101c7a079ec06f253ee0069cc7bb56e8e57",
+      "payments": 2,
+      "first_seen": "2026-06-02T15:36:45.000Z",
+      "last_seen": "2026-06-04T19:28:05.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/52906"
+    },
+    {
+      "agent": "[RoboCop](https://8004scan.io/agents/base/53809)",
+      "wallet": "0xb957cd220b8120c192fe4b3874ccc50e62f9d81a",
+      "payments": 1,
+      "first_seen": "2026-06-01T18:36:57.000Z",
+      "last_seen": "2026-06-01T18:36:57.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53809"
+    },
+    {
+      "agent": "[Mechanjuno](https://8004scan.io/agents/base/53789)",
+      "wallet": "0xa2e9baf72e9f14f35c8b767190548f661922653a",
+      "payments": 1,
+      "first_seen": "2026-06-02T22:37:51.000Z",
+      "last_seen": "2026-06-02T22:37:51.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53789"
+    },
+    {
+      "agent": "[EstherAgent](https://8004scan.io/agents/base/51000)",
+      "wallet": "0x9dc16cf63f6bfbba69979b665c4ad673a2ebe94f",
+      "payments": 1,
+      "first_seen": "2026-06-03T13:50:45.000Z",
+      "last_seen": "2026-06-03T13:50:45.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/51000"
+    },
+    {
+      "agent": "[Thematrixagent](https://8004scan.io/agents/base/53787)",
+      "wallet": "0x798d249937c5e26e087871c4c2ff88f2eca2116f",
+      "payments": 1,
+      "first_seen": "2026-06-04T18:35:11.000Z",
+      "last_seen": "2026-06-04T18:35:11.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53787"
+    },
+    {
+      "agent": "[agentracheel](https://8004scan.io/agents/base/47051)",
+      "wallet": "0xe50c523324ecbc55fb21695a42bdd4e7fc475024",
+      "payments": 1,
+      "first_seen": "2026-06-04T19:59:51.000Z",
+      "last_seen": "2026-06-04T19:59:51.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/47051"
+    },
+    {
+      "agent": "[AgentVictbot](https://8004scan.io/agents/base/51036)",
+      "wallet": "0xc747b9c4deffe0feed81bef27d5963d981de79d2",
+      "payments": 1,
+      "first_seen": "2026-06-02T02:33:53.000Z",
+      "last_seen": "2026-06-02T02:33:53.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/51036"
+    },
+    {
+      "agent": "[Samantha](https://8004scan.io/agents/base/53780)",
+      "wallet": "0x7a2cd715013f5df4e5ad27e1d046605bc0effa9c",
+      "payments": 1,
+      "first_seen": "2026-06-02T21:27:51.000Z",
+      "last_seen": "2026-06-02T21:27:51.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53780"
+    },
+    {
+      "agent": "[AgentOtedola](https://8004scan.io/agents/base/53785)",
+      "wallet": "0x1a0000d2f2530d1c4139e7160b3640e849859a8d",
+      "payments": 1,
+      "first_seen": "2026-06-01T20:30:59.000Z",
+      "last_seen": "2026-06-01T20:30:59.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/53785"
+    },
+    {
+      "agent": "[Clarabotagent](https://8004scan.io/agents/base/47146)",
+      "wallet": "0x7816b4e1dc8e59271e29332adb4b4d68836a7414",
+      "payments": 1,
+      "first_seen": "2026-05-31T17:04:29.000Z",
+      "last_seen": "2026-05-31T17:04:29.000Z",
+      "registry": "8004scan",
+      "agent_link": "https://8004scan.io/agents/base/47146"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "database": {
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "database": "shop_db",
+    "user": "root",
+    "password": "your_password"
+  },
+  "tables": {
+    "orders": "Order",
+    "order_items": "OrderItems"
+  },
+  "fields": {
+    "orders": {
+      "id": "orderSn",
+      "created_at": "createdAt",
+      "total_amount": "orderActualAmount",
+      "payment_method": "payType",
+      "status": "orderStatus"
+    },
+    "order_items": {
+      "order_id": "orderSn",
+      "product_name": "name",
+      "sku": "sku",
+      "quantity": "counts",
+      "price": "actualPrice"
+    }
+  }
+}

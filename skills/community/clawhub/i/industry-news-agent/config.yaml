@@ -1,0 +1,79 @@
+# 行业资讯小哨兵 - 配置文件
+# ⚠️ 重要：只抓取【昨天】发布的文章，确保信息时效性
+
+# ========== RSS 订阅源 ==========
+# 可自主添加你关注的媒体（至少3个）
+rss_sources:
+  # 科技媒体
+  - name: 36氪
+    url: https://36kr.com/feed
+    description: 创投科技媒体
+  - name: 虎嗅
+    url: https://www.huxiu.com/rss/0.xml
+    description: 商业科技媒体
+  - name: 雷锋网
+    url: https://www.leiphone.com/feed
+    description: AI/智能硬件
+  - name: 少数派
+    url: https://sspai.com/feed
+    description: 数字生活效率
+  - name: 爱范儿
+    url: https://www.ifanr.com/feed
+    description: 科技数码媒体
+  
+  # 财经媒体
+  - name: 金融时报中文
+    url: https://www.ftchinese.com/rss/news
+    description: 国际财经
+  
+  # 科学媒体
+  - name: Science Daily
+    url: https://www.sciencedaily.com/rss/all.xml
+    description: 科学新闻
+  - name: Nature
+    url: https://www.nature.com/nature.rss
+    description: 顶级学术期刊
+
+# ========== 关键词配置 ==========
+
+# 关注关键词（至少3个，可自主配置）
+keywords_include:
+  # AI相关
+  - AI
+  - 智能体
+  - 大模型
+  - Agent
+  - OpenClaw
+  # 商业动态
+  - 发布
+  - 上线
+  - 合作
+  - 融资
+  - 商业化
+  - 调整
+  # 技术进展
+  - 技术突破
+  - 突破
+  - 创新
+
+# 排除关键词（至少3个）
+keywords_exclude:
+  - 招聘
+  - 培训
+  - 课程
+  - 广告
+  - 软文
+  - 营销
+
+# ========== 结果数量配置 ==========
+
+# 每个来源的搜索结果数量（建议 3-10）
+max_results_per_source: 5
+
+# 总结果数量上限（建议 10-20）
+max_total_results: 15
+
+# ========== 推送时间配置 ==========
+
+# 推送时间（cron格式）
+schedule: "0 9 * * *"

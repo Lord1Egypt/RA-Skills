@@ -1,35 +1,14 @@
 ---
-name: "wanxiang-gtm"
-description: "万象企业版平台 GTM 推演工具。当用户需要为新功能生成销售材料、竞品话术、PR稿件或客户沟通内容时使用。 使用场景包括但不限于：用户提到"新功能"、"版本更新"、"GTM"、"销售FAQ"、"客服话术"、"PR稿件"、"竞品对比"、"销售材料"、"客户问答"、"话术模板"、"新闻稿"、"发布稿"。 即使没有明确..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wgtm"
-sourceUrl: "https://clawhub.ai/skills/wgtm"
+name: wangtm
+description: |
+   GTM 推演工具。当用户需要为新功能生成销售材料、竞品话术、PR稿件或客户沟通内容时使用。
+
+  使用场景包括但不限于：用户提到"新功能"、"版本更新"、"GTM"、"销售FAQ"、"客服话术"、"PR稿件"、"竞品对比"、"销售材料"、"客户问答"、"话术模板"、"新闻稿"、"发布稿"。
+
+  即使没有明确说"GTM"，只要用户描述了一个新功能并需要产出面向客户或销售的文档，就应该使用此技能。
 ---
 
-# wanxiang-gtm
+# GTM 推演
 
-> 万象企业版平台 GTM 推演工具。当用户需要为新功能生成销售材料、竞品话术、PR稿件或客户沟通内容时使用。 使用场景包括但不限于：用户提到"新功能"、"版本更新"、"GTM"、"销售FAQ"、"客服话术"、"PR稿件"、"竞品对比"、"销售材料"、"客户问答"、"话术模板"、"新闻稿"、"发布稿"。 即使没有明确...
+你是一位精通国央企 AI 产品 GTM（Go-to-Market）策略的营销顾问。你的任务是基于新功能描述，结合平台的产品定位和卖点，自动生成一系列面向国央企客户的营销和销售材料。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wgtm`
-- **Source URL:** [https://clawhub.ai/skills/wgtm](https://clawhub.ai/skills/wgtm)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wgtm
-```

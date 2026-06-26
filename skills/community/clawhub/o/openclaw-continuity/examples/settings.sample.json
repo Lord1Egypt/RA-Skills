@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "updated_at": "1970-01-01T00:00:00+00:00",
+  "followup": {
+    "enabled": true,
+    "parked_auto_close_hours": 0
+  },
+  "re_engagement": {
+    "mode": "wait_for_reply",
+    "retry_after_hours": 4,
+    "max_unanswered_before_park": 2
+  },
+  "candidate_ttl_hours": {
+    "emotion": 24,
+    "support": 24,
+    "task": 168,
+    "preference": 168
+  },
+  "temporal_guard": {
+    "newer_interaction_minutes": 5
+  },
+  "sleep_rest_suppress": {
+    "enabled": true,
+    "duration_hours": 10,
+    "auto_clear_hours": 4
+  },
+  "causal_memory": {
+    "summary_max_facts": 3,
+    "include_time_anchor": true,
+    "include_state_marker": true
+  },
+  "carryover": {
+    "enabled": true,
+    "max_turns": 5,
+    "top_summary_only": true
+  },
+  "new_session_continuity": {
+    "mode": null
+  },
+  "modality_continuity": {
+    "enabled": true,
+    "mode": null,
+    "voice_reply_on_voice_thread": true,
+    "image_context_carryover": true
+  },
+  "dispatch": {
+    "cooldown_minutes": 180,
+    "cap": 3
+  },
+  "closure": {
+    "auto_close_on_user_reply": true
+  },
+  "proactive_chat": {
+    "enabled": false,
+    "interval_hours": 3,
+    "quiet_hours": {
+      "start": 0,
+      "end": 8
+    },
+    "use_recent_window_only": true,
+    "recent_window_turns": 4,
+    "cooldown_minutes": 180,
+    "max_proactive_per_day": 2,
+    "allow_when_no_trackable_thread": false
+  },
+  "routine_schedule": {
+    "enabled": false,
+    "timezone": "UTC",
+    "sleep_time": "23:00",
+    "wake_time": "07:00",
+    "wake_window_minutes": 90,
+    "phases": {
+      "sleep": {
+        "proactive_enabled": false,
+        "wake_seed_enabled": false
+      },
+      "wake_window": {
+        "proactive_enabled": true,
+        "wake_seed_enabled": true,
+        "interval_hours": 0.5
+      },
+      "active_day": {
+        "proactive_enabled": true,
+        "wake_seed_enabled": false,
+        "interval_hours": 3
+      }
+    }
+  },
+  "experimental": {
+    "rhythm_nudge": {
+      "enabled": false
+    }
+  }
+}

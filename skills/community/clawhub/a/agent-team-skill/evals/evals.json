@@ -1,0 +1,35 @@
+{
+  "skill_name": "agent-team-skill",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Add a new team member named Bob who is a backend developer with expertise in Python and Go, and weakness in frontend. Bob should not be a leader. Then list all team members to verify.",
+      "expected_output": "Bob appears in the team list with correct role and expertise",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Add two team members to different groups: Alice in 'backend-team' group and Bob in 'frontend-team' group. Alice should be the leader. Then list the team to verify grouping works.",
+      "expected_output": "Members are listed under their respective groups in the output",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Add a team member with load_workflow set to false. Then add another member as leader with load_workflow set to true. List the team and verify load_workflow field is displayed correctly.",
+      "expected_output": "load_workflow values are correctly shown in list output",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Change the team leader from current leader to a different member. Verify the old leader loses leader status and new leader gains it. Only one leader should exist after the change.",
+      "expected_output": "Only one leader exists after the change",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Add a member with group and load_workflow fields set. Then update only their name and role (keeping other fields unchanged). Verify new fields are updated but existing optional fields are preserved.",
+      "expected_output": "Existing optional fields (group, load_workflow) are preserved after partial update",
+      "files": []
+    }
+  ]
+}

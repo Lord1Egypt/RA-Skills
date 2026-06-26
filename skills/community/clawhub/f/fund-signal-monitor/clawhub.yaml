@@ -1,0 +1,26 @@
+name: fund-signal-monitor
+version: 1.1.0
+description: 基金信号监控 - 被动监控基金五大信号（季报/经理/规模/波动/风格）+ 买卖信号，自动推送提醒。实际实现已集成到 fund-analyzer-pro 的 signal_checker.py，本 skill 保留为文档参考。
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - fund-signal
+  - monitoring
+  - fund-manager-change
+  - quarterly-report
+  - fund-analyzer-pro
+
+related_skills:
+  - fund-analyzer-pro
+  - ttfund-skills
+  - qieman-mcp
+
+features:
+  - 季报/年报发布监控（每日 15:30）
+  - 基金经理变更监控（实时推送）
+  - 基金规模大幅变化监控（每周一 10:00）
+  - 业绩异常波动监控（实时）
+  - 风格漂移监控（季报发布后）
+  - 与 fund-analyzer-pro 联动（一键分析）
+  - 频率控制（24 小时不重复推送）

@@ -1,0 +1,45 @@
+{
+  "name": "kdp-generator",
+  "version": "3.0.0",
+  "description": "Generate Amazon KDP compatible books - both e-books from Markdown and low-content books (journals, planners, log books). Supports EPUB conversion, low-content PDF generation, metadata generation, and batch production.",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "tags": [
+    "kdp",
+    "amazon",
+    "kindle",
+    "publishing",
+    "ebook",
+    "low-content",
+    "journal",
+    "planner",
+    "pdf",
+    "epub"
+  ],
+  "skills": [
+    {
+      "name": "kdp-generator",
+      "entry": "SKILL.md"
+    }
+  ],
+  "triggers": [
+    "KDP",
+    "Amazon出版",
+    "电子书",
+    "日记本",
+    "计划本",
+    "low-content",
+    "kindle",
+    "书籍封面",
+    "出版",
+    "passive income"
+  ],
+  "dependencies": [
+    "reportlab",
+    "pillow",
+    "ebooklib",
+    "beautifulsoup4",
+    "markdown"
+  ],
+  "minOpenclawVersion": "0.9.0"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "dealpilot",
+  "version": "0.1.0",
+  "description": "Cross-Platform Shopping Decision Agent",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/test-stub.js"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "l76-core-arch",
+  "displayName": "L76 Core Architecture",
+  "version": "1.0.0",
+  "releaseType": "major",
+  "stability": "stable",
+  "releaseDate": "2026-03-22",
+  "author": "openclaw",
+  "emoji": "🏗️",
+  "description": "Demonstration skill showcasing complete AgentSkills core architecture. Includes SKILL.md structure, main entry logic, tool integration patterns, error handling, and production-ready patterns. Use as a template for building new skills.",
+  "minOpenClawVersion": "1.0.0",
+  "dependencies": {
+    "bins": ["node"]
+  },
+  "files": {
+    "skill": "SKILL.md",
+    "main": "index.js",
+    "readme": "README.md",
+    "memory": "MEMORY_ITEMS.md",
+    "release": "RELEASE-PACKAGE.md",
+    "examples": "references/examples.md",
+    "validate": ["scripts/validate.ps1", "scripts/validate.sh"]
+  },
+  "features": [
+    "Complete SKILL.md structure with frontmatter standards",
+    "Main entry logic with StateManager and SkillExecutor classes",
+    "5 tool integration patterns (Sequential, Conditional, Error Recovery, Batch, State)",
+    "Comprehensive error handling strategy with 3 categories",
+    "Validation scripts for PowerShell and Bash",
+    "8 memory items for knowledge capture",
+    "Usage examples and real-world patterns",
+    "ClawHub publishing workflow documented"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-22",
+      "type": "initial",
+      "changes": [
+        "Initial release: complete skill architecture template",
+        "5 tool integration patterns documented",
+        "Error handling strategy with categorized errors",
+        "Validation scripts (PowerShell + Bash)",
+        "8 memory items for knowledge retention",
+        "Real-world skill examples (File Organizer, Git Hygiene, Health Check)",
+        "ClawHub publishing workflow"
+      ]
+    }
+  },
+  "tags": [
+    "template",
+    "architecture",
+    "best-practices",
+    "education",
+    "skills",
+    "agent-skills",
+    "openclaw"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenClaw/workspace",
+    "directory": "skills/l76-core-arch"
+  }
+}

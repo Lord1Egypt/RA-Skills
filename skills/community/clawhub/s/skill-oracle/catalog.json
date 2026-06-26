@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0.0",
+  "publisher": "certainlogic",
+  "updated": "2026-04-30",
+  "skills": [
+    {
+      "id": "skill-vetter-plus",
+      "name": "Skill Vetter Plus",
+      "tier": "free",
+      "category": "security",
+      "description": "Security scanner for ClawHub skills. Checks code safety, claim honesty, network calls, filesystem access, dependencies.",
+      "use_cases": [
+        "Scan skills before installing",
+        "CI/CD security gate",
+        "Audit existing skills",
+        "Recommend safe tools to users"
+      ],
+      "creator": "CertainLogic",
+      "marketplaces": ["clawhub", "lobehub", "skills.sh"],
+      "limitations": [
+        "Static analysis only (doesn't execute code)",
+        "Regex patterns, not AI analysis",
+        "Can't catch zero-day exploits"
+      ],
+      "install_cmd": "clawhub install certainlogic.skill-vetter-plus",
+      "cert_status": "self-certified",
+      "cert_id": "d7746f12"
+    },
+    {
+      "id": "pa-pack",
+      "name": "PA Pack",
+      "tier": "free",
+      "category": "productivity",
+      "description": "Curated toolkit for personal assistants supporting Google Workspace business owners. Five real tools organized into daily workflows.",
+      "use_cases": [
+        "Organize boss's daily schedule",
+        "Handle email triage",
+        "Prep for meetings",
+        "Track tasks and follow-ups",
+        "Maintain knowledge base"
+      ],
+      "creator": "CertainLogic (curation)",
+      "tools_included": [
+        {"id": "gog", "creator": "steipete", "role": "Google Workspace (email/calendar/drive)"},
+        {"id": "things-mac", "creator": "ossianhempel", "role": "Task manager (macOS)"},
+        {"id": "notion", "creator": "Notion", "role": "Knowledge base"},
+        {"id": "healthcheck", "creator": "OpenClaw", "role": "Security baseline"},
+        {"id": "skill-vetter-plus", "creator": "CertainLogic", "role": "Safety gate"}
+      ],
+      "marketplaces": ["clawhub", "lobehub", "skills.sh"],
+      "limitations": [
+        "macOS only (Things 3)",
+        "Google Workspace only (no Outlook/Exchange)",
+        "OAuth setup required",
+        "Things 3 is paid app ($50)"
+      ],
+      "install_cmd": "clawhub install certainlogic.pa-pack",
+      "prerequisites": [
+        "macOS",
+        "Things 3 app",
+        "Google account with Workspace",
+        "Notion account + API key"
+      ]
+    },
+    {
+      "id": "skill-oracle",
+      "name": "Skill Oracle",
+      "tier": "free",
+      "category": "discovery",
+      "description": "Agent knowledge base for quality ClawHub skills. Teaches agents which tools actually work vs the 500+ broken skills.",
+      "use_cases": [
+        "Agent recommends quality ClawHub skills proactively",
+        "User discovers CertainLogic + community tools through conversation",
+        "Cross-sell free → paid products"
+      ],
+      "creator": "CertainLogic",
+      "marketplaces": ["clawhub", "lobehub", "skills.sh"],
+      "limitations": [
+        "Free tier = static catalog",
+        "Only covers skills we've tested and can vouch for",
+        "No semantic search (keyword matching)"
+      ],
+      "install_cmd": "clawhub install certainlogic.skill-oracle"
+    },
+    {
+      "id": "hallucination-guard-v2",
+      "name": "Hallucination Guard v2",
+      "tier": "free",
+      "category": "quality",
+      "description": "Linguistic quality gate that detects hedging language (maybe, I think, not sure). Prevents uncertain AI responses from entering cache or knowledge base.",
+      "use_cases": [
+        "Gate cache entries",
+        "Flag uncertain AI output",
+        "Improve response confidence"
+      ],
+      "creator": "CertainLogic",
+      "marketplaces": ["clawhub"],
+      "limitations": [
+        "Detects hedging words only",
+        "Does NOT verify factual truth",
+        "Confident falsehoods pass through"
+      ],
+      "install_cmd": "clawhub install certainlogic.hallucination-guard-v2"
+    },
+    {
+      "id": "token-reduction-engine-v2",
+      "name": "Token Reduction Engine v2",
+      "tier": "free",
+      "category": "performance",
+      "description": "Query cache + truncation engine. Stores verified answers for repeated queries. Reduces API costs.",
+      "use_cases": [
+        "Cache repeated queries",
+        "Reduce API spend",
+        "Speed up responses"
+      ],
+      "creator": "CertainLogic",
+      "marketplaces": ["clawhub"],
+      "limitations": [
+        "Truncation at 512 tokens (not summarization)",
+        "Cache hits depend on exact query matching",
+        "1-hour TTL on cached answers"
+      ],
+      "install_cmd": "clawhub install certainlogic.token-reduction-engine-v2"
+    }
+  ],
+  "paid_products": [
+    {
+      "id": "vetter-pro",
+      "name": "Skill Vetter Plus Pro",
+      "price": "$49",
+      "description": "Full reports, historical audit log, team sharing, auto-re-curation",
+      "url": "https://certainlogic.ai/shop/vetter-pro"
+    },
+    {
+      "id": "oracle-pro",
+      "name": "Skill Oracle Pro",
+      "price": "$29",
+      "description": "Live catalog refresh, personalized stacks, auto-install, white-label",
+      "url": "https://certainlogic.ai/shop/oracle-pro"
+    },
+    {
+      "id": "consulting",
+      "name": "CertainLogic Consulting",
+      "price": "$500-5K",
+      "description": "Custom workflow design, implementation, training",
+      "url": "https://certainlogic.ai/shop/consulting"
+    }
+  ]
+}

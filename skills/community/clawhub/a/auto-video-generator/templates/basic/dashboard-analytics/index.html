@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1890ff;
+            --success: #52c41a;
+            --warning: #faad14;
+            --error: #ff4d4f;
+            --text-primary: #262626;
+            --text-secondary: #8c8c8c;
+            --border-color: #e8e8e8;
+            --bg-light: #fafafa;
+            --white: #ffffff;
+            --sidebar-bg: #001529;
+            --sidebar-hover: #1890ff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            padding: 1.5rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #1890ff, #722ed1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            padding: 1rem 0;
+            list-style: none;
+        }
+
+        .nav-item {
+            padding: 0.85rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: rgba(255,255,255,0.75);
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background-color: rgba(24,144,255,0.15);
+            color: white;
+            border-left-color: var(--primary);
+        }
+
+        .nav-item.active {
+            background-color: rgba(24,144,255,0.2);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            transition: margin-left 0.3s;
+        }
+
+        /* Top Header */
+        .top-header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .breadcrumb {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            width: 300px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(24,144,255,0.15);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-light);
+        }
+
+        .badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            background: var(--error);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .user-profile:hover {
+            background: var(--bg-light);
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .user-info {
+            text-align: left;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* KPI Cards Row */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .kpi-icon.blue { background: #e6f7ff; color: var(--primary); }
+        .kpi-icon.green { background: #f6ffed; color: var(--success); }
+        .kpi-icon.orange { background: #fff7e6; color: var(--warning); }
+        .kpi-icon.purple { background: #f9f0ff; color: #722ed1; }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .kpi-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--error); }
+
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-container {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .chart-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-action-btn {
+            padding: 0.35rem 0.85rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .chart-action-btn:hover,
+        .chart-action-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #e6f7ff;
+        }
+
+        /* Simulated Charts using CSS */
+        .line-chart {
+            height: 280px;
+            position: relative;
+            border-left: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            margin: 1rem 0;
+        }
+
+        .chart-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(24,144,255,0.1), transparent);
+        }
+
+        .chart-line::after {
+            content: '';
+            position: absolute;
+            bottom: 30%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            clip-path: polygon(
+                0% 80%, 10% 60%, 20% 70%, 30% 45%, 
+                40% 55%, 50% 30%, 60% 40%, 70% 25%, 
+                80% 35%, 90% 20%, 100% 30%
+            );
+        }
+
+        .donut-chart {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 1.5rem auto;
+            position: relative;
+            background: conic-gradient(
+                var(--primary) 0deg 126deg,
+                var(--success) 126deg 216deg,
+                var(--warning) 216deg 288deg,
+                var(--error) 288deg 360deg
+            );
+        }
+
+        .donut-chart::before {
+            content: '';
+            position: absolute;
+            inset: 35%;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .legend {
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-value {
+            margin-left: auto;
+            font-weight: 600;
+        }
+
+        /* Data Table Section */
+        .table-section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 0.9rem 1rem;
+            background: var(--bg-light);
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-color);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .data-table th:hover {
+            color: var(--primary);
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.93rem;
+        }
+
+        .data-table tr:hover {
+            background: #fafafa;
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.85rem;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .status-active { background: #f6ffed; color: var(--success); }
+        .status-pending { background: #fff7e6; color: var(--warning); }
+        .status-inactive { background: #fff1f0; color: var(--error); }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.35rem 0.75rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .page-btn {
+            padding: 0.45rem 0.85rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #e6f7ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-250px);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .kpi-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon">D</div>
+                <div class="logo-text">DataViz</div>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    Analytics
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    Customers
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    Revenue
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    Products
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    Reports
+                </li>
+                <li class="nav-item" style="margin-top: 1rem;">
+                    <span class="nav-icon">⚙️</span>
+                    Settings
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">❓</span>
+                    Help Center
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        Home / <span>Dashboard</span>
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" placeholder="Search anything...">
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <button class="icon-btn" title="Notifications">
+                        🔔
+                        <span class="badge">5</span>
+                    </button>
+                    
+                    <button class="icon-btn" title="Messages">
+                        💬
+                        <span class="badge">3</span>
+                    </button>
+                    
+                    <div class="user-profile">
+                        <div class="avatar">JD</div>
+                        <div class="user-info">
+                            <div class="user-name">John Doe</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <h1 class="page-title">Analytics Overview</h1>
+                <p class="page-subtitle">Welcome back! Here's what's happening with your business today.</p>
+
+                <!-- KPI Cards -->
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Total Revenue</span>
+                            <div class="kpi-icon blue">💰</div>
+                        </div>
+                        <div class="kpi-value">$54,239</div>
+                        <div class="kpi-trend trend-up">
+                            ↑ 12.5% from last month
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Active Users</span>
+                            <div class="kpi-icon green">👥</div>
+                        </div>
+                        <div class="kpi-value">18,756</div>
+                        <div class="kpi-trend trend-up">
+                            ↑ 8.2% from last month
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Conversion Rate</span>
+                            <div class="kpi-icon orange">📈</div>
+                        </div>
+                        <div class="kpi-value">3.24%</div>
+                        <div class="kpi-trend trend-down">
+                            ↓ 0.3% from last month
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Avg. Order Value</span>
+                            <div class="kpi-icon purple">🛒</div>
+                        </div>
+                        <div class="kpi-value">$128.50</div>
+                        <div class="kpi-trend trend-up">
+                            ↑ 5.1% from last month
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="charts-grid">
+                    <!-- Line Chart -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Revenue Trend</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action-btn active">Weekly</button>
+                                <button class="chart-action-btn">Monthly</button>
+                                <button class="chart-action-btn">Yearly</button>
+                            </div>
+                        </div>
+                        
+                        <div class="line-chart">
+                            <div class="chart-line"></div>
+                        </div>
+                    </div>
+
+                    <!-- Donut Chart -->
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Traffic Sources</h3>
+                        </div>
+                        
+                        <div class="donut-chart"></div>
+                        
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: var(--primary);"></div>
+                                Direct
+                                <span class="legend-value">35%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: var(--success);"></div>
+                                Organic Search
+                                <span class="legend-value">25%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: var(--warning);"></div>
+                                Social Media
+                                <span class="legend-value">20%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: var(--error);"></div>
+                                Referral
+                                <span class="legend-value">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Table -->
+                <div class="table-section">
+                    <div class="table-header">
+                        <h3 class="chart-title">Recent Orders</h3>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View All →</button>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#ORD-7821</strong></td>
+                                <td>Sarah Johnson</td>
+                                <td>Pro Plan Annual</td>
+                                <td>2024-01-15</td>
+                                <td><strong>$299.00</strong></td>
+                                <td><span class="status-badge status-active">Completed</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">View</button>
+                                        <button class="action-btn">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#ORD-7820</strong></td>
+                                <td>Michael Chen</td>
+                                <td>Enterprise Suite</td>
+                                <td>2024-01-15</td>
+                                <td><strong>$999.00</strong></td>
+                                <td><span class="status-badge status-pending">Processing</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">View</button>
+                                        <button class="action-btn">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#ORD-7819</strong></td>
+                                <td>Emily Rodriguez</td>
+                                <td>Starter Monthly</td>
+                                <td>2024-01-14</td>
+                                <td><strong>$29.00</strong></td>
+                                <td><span class="status-badge status-active">Completed</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">View</button>
+                                        <button class="action-btn">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#ORD-7818</strong></td>
+                                <td>David Kim</td>
+                                <td>Pro Plan Annual</td>
+                                <td>2024-01-14</td>
+                                <td><strong>$299.00</strong></td>
+                                <td><span class="status-badge status-inactive">Cancelled</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">View</button>
+                                        <button class="action-btn">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#ORD-7817</strong></td>
+                                <td>Lisa Thompson</td>
+                                <td>Team Plan Quarterly</td>
+                                <td>2024-01-13</td>
+                                <td><strong>$179.00</strong></td>
+                                <td><span class="status-badge status-active">Completed</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn">View</button>
+                                        <button class="action-btn">Edit</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <button class="page-btn">← Previous</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Interactive elements for demo purposes
+        
+        // Table sorting visual feedback
+        document.querySelectorAll('.data-table th').forEach(th => {
+            th.addEventListener('click', function() {
+                this.style.color = 'var(--primary)';
+                setTimeout(() => {
+                    this.style.color = '';
+                }, 300);
+            });
+        });
+
+        // Nav item click effect
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Chart button toggle
+        document.querySelectorAll('.chart-action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.chart-action-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Action buttons hover effects
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

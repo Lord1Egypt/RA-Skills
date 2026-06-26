@@ -1,0 +1,12 @@
+{
+  "name": "autodesk-clean-uninstall",
+  "version": "2.1",
+  "description": "AutoCAD/Autodesk Clean Uninstall Tool - Thoroughly remove all residues, supports multi-PC and multi-user environments, step-by-step confirmation, intelligent discovery of non-standard installation directories",
+  "author": "gzjohny",
+  "license": "MIT",
+  "permissions": ["powershell"],
+  "entry": "SKILL.md",
+  "tags": ["autocad", "autodesk", "windows", "cleanup", "uninstall", "registry"],
+  "models": ["claude-*", "gpt-*"],
+  "minOpenClawVersion": "0.8.0"
+}

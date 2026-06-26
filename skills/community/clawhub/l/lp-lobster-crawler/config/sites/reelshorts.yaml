@@ -1,0 +1,55 @@
+# ReelShorts 站点配置
+# 注意：ReelShorts 主要通过 App 发布内容，网页版信息有限。
+# 部分 URL/API 需要通过 App 抓包获取，此处提供已知的网页端点。
+
+site:
+  name: reelshorts
+  display_name: ReelShorts
+  base_url: https://www.reelshort.com
+  content_type: short_drama
+  # 标记：此站点的完整爬取可能需要 App 抓包
+  requires_app_capture: true
+
+# URL 模式
+urls:
+  # 网页版入口
+  home: https://www.reelshort.com
+  # 剧集详情页（如果有网页版）
+  series_detail: https://www.reelshort.com/drama/{series_id}
+  # API 端点（需通过抓包确认，以下为推测格式）
+  series_list_api: https://api.reelshort.com/v1/series/list?page={page}&size=20
+  episode_list_api: https://api.reelshort.com/v1/series/{series_id}/episodes
+
+# 页面选择器（网页版）
+selectors:
+  series_list: "div.drama-card a::attr(href)"
+  series_title: "h1.drama-title::text"
+  series_cover: "div.drama-cover img::attr(src)"
+  series_summary: "div.drama-desc::text"
+  episode_count: "span.episode-count::text"
+
+# 字段映射（API JSON → 模型字段，需抓包确认）
+field_mapping:
+  series_list_path: "data.list"
+  series_id_field: "id"
+  series_title_field: "title"
+  series_cover_field: "coverUrl"
+  episode_list_path: "data.episodes"
+  episode_id_field: "id"
+  episode_title_field: "title"
+  episode_url_field: "videoUrl"
+  episode_duration_field: "duration"
+  episode_thumbnail_field: "thumbnailUrl"
+
+# 请求配置
+request:
+  headers:
+    Accept: "application/json"
+    # App 请求可能需要额外认证头
+  # 需要 App 抓包获取的 token
+  auth_required: true
+
+# 调度
+schedule:
+  cron: "0 */12 * * *"
+  enabled: true

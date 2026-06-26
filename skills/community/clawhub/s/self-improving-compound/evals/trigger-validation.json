@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Actually, our auth middleware reads the correlation ID from x-request-id, not x-correlation-id. Log that correction.",
+    "should_trigger": true
+  },
+  {
+    "query": "This workaround for flaky Docker layers is now proven. Promote it into project memory.",
+    "should_trigger": true
+  },
+  {
+    "query": "I wish you could export these results directly to CSV in future sessions.",
+    "should_trigger": true
+  },
+  {
+    "query": "We hit this Prisma migration issue again. Search related learnings before you try anything new.",
+    "should_trigger": true
+  },
+  {
+    "query": "Please write a Python script that renames these image files.",
+    "should_trigger": false
+  },
+  {
+    "query": "What is the capital of Portugal?",
+    "should_trigger": false
+  },
+  {
+    "query": "Run the failed test suite again.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a DOCX report from this markdown.",
+    "should_trigger": false
+  }
+]

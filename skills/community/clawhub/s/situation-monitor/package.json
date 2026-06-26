@@ -1,0 +1,16 @@
+{
+  "name": "situation-monitor-apify-actor",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Apify actor for Situation Monitor KubeWatch incident intake.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "apify": "^3.4.2"
+  }
+}

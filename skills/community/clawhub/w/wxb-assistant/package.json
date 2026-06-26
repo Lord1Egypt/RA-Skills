@@ -1,0 +1,27 @@
+{
+  "name": "wxb-assistant",
+  "version": "1.0.0",
+  "description": "旺小宝数据助手 - 查询金句、名片、客户、实时接待等数据",
+  "main": "scripts/api-client.js",
+  "scripts": {
+    "auth": "node scripts/auth-manager.js",
+    "auth:check": "node scripts/auth-manager.js check",
+    "auth:clear": "node scripts/auth-manager.js clear",
+    "api": "node scripts/api-client.js"
+  },
+  "keywords": [
+    "wangxiaobao",
+    "assistant",
+    "api",
+    "golden-quotes",
+    "card",
+    "customer",
+    "real-time"
+  ],
+  "author": "Wangxiaobao Team",
+  "license": "MIT",
+  "dependencies": {},
+  "optionalDependencies": {
+    "open": "^8.4.0"
+  }
+}

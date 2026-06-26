@@ -1,0 +1,25 @@
+{
+  "name": "jd-shopping-skill",
+  "version": "2.1.0",
+  "description": "JD.com shopping assistant. Input a JD product name or link; output self-operated/flagship trust checks, visible price, review risks, SKU recommendation, and cart-ready summary. Safe boundary: never logs in for the user, never submits orders, and never clicks checkout or payment.",
+  "main": "SKILL.md",
+  "keywords": [
+    "jd",
+    "jingdong",
+    "shopping-agent",
+    "shopping-decision",
+    "cart-preparation",
+    "price-compare",
+    "self-operated",
+    "buying-advice",
+    "openclaw",
+    "skill"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai/harrylabsj/jd-shopping",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/jd-shopping.git"
+  }
+}

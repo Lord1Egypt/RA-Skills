@@ -1,35 +1,34 @@
 ---
-name: "Miniature World Generator"
-description: "AI miniature world and diorama art generator — create tilt-shift miniature scenes, tiny world illustrations, hyper-detailed diorama art, and shallow-depth-of..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miniature-world-generator"
-sourceUrl: "https://clawhub.ai/skills/miniature-world-generator"
+name: miniature-world-generator
+description: AI miniature world and diorama art generator — create tilt-shift miniature scenes, tiny world illustrations, hyper-detailed diorama art, and shallow-depth-of-field fantasy landscapes. Perfect for Instagram art, Pinterest boards, desktop wallpapers, and creative visual storytelling via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Miniature World Generator
 
-> AI miniature world and diorama art generator — create tilt-shift miniature scenes, tiny world illustrations, hyper-detailed diorama art, and shallow-depth-of...
+AI miniature world and diorama art generator — create tilt-shift miniature scenes, tiny world illustrations, hyper-detailed diorama art, and shallow-depth-of-field fantasy landscapes. Perfect for Instagram art, Pinterest boards, desktop wallpapers, and creative visual storytelling.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miniature-world-generator`
-- **Source URL:** [https://clawhub.ai/skills/miniature-world-generator](https://clawhub.ai/skills/miniature-world-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/miniature-world-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create miniature world diorama art generator images.
+
+## Quick start
+```bash
+node miniatureworldgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `square`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/miniature-world-generator
 ```

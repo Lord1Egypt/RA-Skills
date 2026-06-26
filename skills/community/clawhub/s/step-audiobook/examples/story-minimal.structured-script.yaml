@@ -1,0 +1,44 @@
+# Minimal structured script example for audiobook.
+# This file is only a reference sample; copy it into your story workspace before real runs.
+
+version: "1"
+title: "雨后巷口"
+global_instruction: "整体氛围=雨后夜路、贴耳收声、情绪克制；旁白稳定清晰，对白自然真实。"
+characters:
+  - id: narrator
+    name: "旁白"
+    instruction: "中立清晰，轻微悬疑感，不抢角色情绪。"
+  - id: linzhou
+    name: "林舟"
+    instruction: "成年男性，警觉但不夸张，句尾控制收住。"
+  - id: xiaoyu
+    name: "小雨"
+    instruction: "年轻女性，轻声、敏感、略带迟疑。"
+
+segments:
+  - index: 0
+    speaker: narrator
+    raw_text: "雨停后，巷口只剩水滴顺着屋檐往下落。"
+    delivery_mode: narration
+  - index: 1
+    speaker: linzhou
+    raw_text: "（压低声音）你听见没有？"
+    delivery_mode: dialogue
+    scene_instruction: "两人已经停下脚步，距离很近。"
+  - index: 2
+    speaker: narrator
+    raw_text: "小雨站在路灯下，没有立刻回答。过了两秒，她才抬起眼。"
+    delivery_mode: narration
+  - index: 3
+    speaker: xiaoyu
+    raw_text: "（轻声）像是有人，在后面学我们走路。"
+    delivery_mode: dialogue
+    scene_instruction: "不要喊叫，像怕被身后的人听见。"
+  - index: 4
+    speaker: narrator
+    raw_text: "林舟回头看了一眼，只看到尽头那面湿漉漉的墙。"
+    delivery_mode: narration
+  - index: 5
+    speaker: linzhou
+    raw_text: "（勉强笑一下）先别自己吓自己，我们继续走。"
+    delivery_mode: dialogue

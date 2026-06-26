@@ -1,0 +1,6 @@
+{
+  "app_id": "your-app-id",
+  "app_secret": "your-app-secret",
+  "distribution_app_id": "your-distribution-app-id",
+  "distribution_app_secret": "your-distribution-app-secret"
+}

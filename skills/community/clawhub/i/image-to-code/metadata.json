@@ -1,0 +1,38 @@
+{
+  "name": "image-to-code",
+  "version": "2.0.0",
+  "description": "图片转代码格式转换器 - 集成百度 OCR（95%+ 准确率）",
+  "author": "小飞象",
+  "main": "image_to_code.py",
+  "dependencies": [
+    "opencv-python-headless",
+    "numpy",
+    "Pillow",
+    "requests"
+  ],
+  "config": {
+    "ocr_engine": "baidu_ocr",
+    "ocr_engine_fallback": "tesseract",
+    "ocr_lang": "ch",
+    "formula_detection": "auto",
+    "output": {
+      "encoding": "utf-8",
+      "line_ending": "\n"
+    }
+  },
+  "features": [
+    "百度 OCR 高精度识别（95%+）",
+    "Tesseract 离线备选（70-80%）",
+    "自动标题识别（3 级）",
+    "公式 LaTeX 转换",
+    "中文优化（无空格）"
+  ],
+  "examples": {
+    "text": "$word->body(\"正文=这是一段测试文字=".$F);",
+    "formula": "$word->formula(\"E = mc^2\");",
+    "image": "![image]",
+    "title1": "$word->title1(\"第一章 概述\");",
+    "title2": "$word->title2(\"核算压力降\");",
+    "title3": "$word->title3(\"管程压力降\");"
+  }
+}

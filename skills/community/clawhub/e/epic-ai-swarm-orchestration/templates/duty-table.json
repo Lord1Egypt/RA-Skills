@@ -1,0 +1,43 @@
+{
+  "version": "3.3.0-template",
+  "assessedAt": null,
+  "nextAssessment": null,
+  "note": "Template defaults only. Run ~/workspace/swarm/assess-models.sh --dry-run, then assess-models.sh, after provider CLIs are authenticated.",
+  "dutyTable": {
+    "architect": {
+      "agent": "codex",
+      "model": "gpt-5.5",
+      "reason": "Template default: strong planning/reasoning. Reassess after install.",
+      "nonInteractiveCmd": "codex exec --model gpt-5.5 --full-auto",
+      "fallback": { "agent": "gemini", "model": "gemini-2.5-pro" }
+    },
+    "builder": {
+      "agent": "deepseek",
+      "model": "deepseek-v4-pro-max",
+      "reason": "Template default: large-context builder. Reassess after install.",
+      "nonInteractiveCmd": "deepseek -m deepseek-v4-pro-max -y -p",
+      "fallback": { "agent": "codex", "model": "gpt-5.5" }
+    },
+    "reviewer": {
+      "agent": "deepseek",
+      "model": "deepseek-v4-pro-max",
+      "reason": "Template default: large-context reviewer/fixer. Reassess after install.",
+      "nonInteractiveCmd": "deepseek -m deepseek-v4-pro-max -y -p",
+      "fallback": { "agent": "gemini", "model": "gemini-2.5-pro" }
+    },
+    "integrator": {
+      "agent": "codex",
+      "model": "gpt-5.5",
+      "reason": "Template default: integration and final verification. Reassess after install.",
+      "nonInteractiveCmd": "codex exec --model gpt-5.5 --full-auto",
+      "fallback": { "agent": "gemini", "model": "gemini-2.5-pro" }
+    }
+  },
+  "history": [
+    {
+      "date": "template",
+      "changes": "Initial portable template defaults installed; run assess-models.sh on the target host.",
+      "dutyAssignments": "architect=codex/gpt-5.5, builder=deepseek/deepseek-v4-pro-max, reviewer=deepseek/deepseek-v4-pro-max, integrator=codex/gpt-5.5"
+    }
+  ]
+}

@@ -1,35 +1,25 @@
----
-name: "Pipeworx country-state-city"
-description: "Provides country, state, and city data including ISO codes, capitals, phone codes, currencies, and regions via Pipeworx CountryStateCity API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-country-state-city"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-country-state-city"
----
+# Country State City
 
-# Pipeworx country-state-city
+CountryStateCity MCP — wraps CountryStateCity API (api.countrystatecity.in/v1)
 
-> Provides country, state, and city data including ISO codes, capitals, phone codes, currencies, and regions via Pipeworx CountryStateCity API.
+## list_countries
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-country-state-city`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-country-state-city](https://clawhub.ai/skills/pipeworx-country-state-city)
+List all countries with ISO codes, capitals, phone codes, currencies, and regions. Returns ~250 coun
 
-## Overview
+## get_states
 
+Get all states or provinces for a country by ISO2 code (e.g., "US", "IN", "BR"). Returns state names
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-country-state-city
+## get_cities
+
+Get cities for a country, optionally filtered by state. Pass country_code (e.g., "US") and optionall
+
+```json
+{
+  "mcpServers": {
+    "country-state-city": {
+      "url": "https://gateway.pipeworx.io/country-state-city/mcp"
+    }
+  }
+}
 ```

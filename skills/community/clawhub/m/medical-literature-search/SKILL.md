@@ -1,35 +1,111 @@
 ---
-name: "Medical Literature Search"
-description: "医疗文献检索助手。当用户需要搜索PubMed、知网、万方等医学文献数据库，或需要进行文献综述、循证医学证据检索、药物研究资料查找时使用此技能。支持中英文文献搜索、摘要提取、相关文献推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-literature-search"
-sourceUrl: "https://clawhub.ai/skills/medical-literature-search"
+name: Medical Literature Search
+description: 医疗文献检索助手。当用户需要搜索PubMed、知网、万方等医学文献数据库，或需要进行文献综述、循证医学证据检索、药物研究资料查找时使用此技能。支持中英文文献搜索、摘要提取、相关文献推荐。
 ---
 
-# Medical Literature Search
+# Medical Literature Search 医疗文献检索助手
 
-> 医疗文献检索助手。当用户需要搜索PubMed、知网、万方等医学文献数据库，或需要进行文献综述、循证医学证据检索、药物研究资料查找时使用此技能。支持中英文文献搜索、摘要提取、相关文献推荐。
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-literature-search`
-- **Source URL:** [https://clawhub.ai/skills/medical-literature-search](https://clawhub.ai/skills/medical-literature-search)
+这是一个专业的医疗文献检索技能，帮助用户快速搜索和整理医学文献资料。
 
-## Overview
+## 核心功能
 
+### 1. PubMed 文献搜索
+- 使用PubMed API或网页搜索
+- 支持关键词、MeSH词、作者、期刊等多种检索方式
+- 提取文献标题、作者、摘要、DOI等信息
+- 返回格式化的文献列表
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-literature-search
+### 2. 中文文献数据库搜索
+- 知网（CNKI）文献搜索
+- 万方数据库搜索
+- 维普数据库搜索
+- 提取中文文献的关键信息
+
+### 3. 文献信息整理
+- 自动提取文献摘要要点
+- 生成文献摘要对比表
+- 按相关度/时间/引用量排序
+
+### 4. 循证医学支持
+- PICO格式检索策略构建
+- 证据等级评估
+- 系统评价/Meta分析优先推荐
+
+## 使用方法
+
+### 基础搜索
 ```
+用户: 帮我搜索关于糖尿病治疗的最新文献
+执行: 
+1. 构建检索式 "diabetes treatment"[Title/Abstract]
+2. 在PubMed搜索，返回最近5年高相关文献
+3. 提取前10篇文献的核心信息
+```
+
+### 精确搜索
+```
+用户: 搜索张三发表的关于肺癌的论文
+执行:
+1. 构建检索式: author:"Zhang S" AND "lung cancer"[MeSH]
+2. 返回作者相关文献列表
+```
+
+### 中文文献搜索
+```
+用户: 在知网搜索高血压药物治疗的研究
+执行:
+1. 访问知网进行检索
+2. 返回相关中文文献列表
+```
+
+## 输出格式
+
+每次搜索返回以下信息：
+
+### 文献卡片
+```
+【标题】文献标题
+【作者】第一作者等
+【期刊】期刊名, 年份
+【DOI】10.xxxx/xxxxx
+【摘要】文献摘要的中文要点总结（3-5句话）
+【链接】文献访问链接
+```
+
+### 汇总表
+当返回多篇文献时，生成对比表格：
+| 序号 | 标题 | 年份 | 期刊 | 研究类型 |
+|------|------|------|------|----------|
+
+## 执行流程
+
+1. **理解需求**：分析用户的检索意图和具体需求
+2. **构建检索式**：根据需求设计最优检索策略
+3. **执行检索**：访问相应数据库进行搜索
+4. **筛选结果**：按相关度、时效性筛选文献
+5. **整理输出**：格式化呈现文献信息
+6. **提供延伸**：建议相关检索词或后续研究方向
+
+## 注意事项
+
+- 优先搜索开放获取（Open Access）文献
+- 标注文献的可获取性（免费/付费/需订阅）
+- 对于付费文献，提供DOI方便用户自行获取
+- 搜索结果建议控制在10-20篇，避免信息过载
+
+## 数据库访问
+
+- PubMed: https://pubmed.ncbi.nlm.nih.gov/
+- 知网: https://www.cnki.net/
+- 万方: https://www.wanfangdata.com.cn/
+- 维普: https://www.cqvip.com/
+
+## 适用场景
+
+- 临床医生查阅最新诊疗进展
+- 医学生撰写综述论文
+- 科研人员文献调研
+- 药物研发文献支持
+- 循证医学证据检索

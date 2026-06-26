@@ -1,0 +1,14 @@
+---
+name: anti-centralization-probe
+description: Detect centralization risks and dependency creation; output structural critiques and decentralization alternatives.
+version: 2.0.0
+display_name: "Anti-Centralization Probe"
+triggers:
+  - centralization
+  - single point of failure
+  - dependency
+  - authority concentration
+  - governance capture
+  - permission risk
+---
+

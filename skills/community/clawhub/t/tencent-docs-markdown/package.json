@@ -1,0 +1,29 @@
+{
+  "name": "tencent-docs-markdown",
+  "version": "1.1.7",
+  "description": "Tencent Docs Markdown Skill - Create, upload, download, and delete Markdown documents via natural language",
+  "runtime": "python",
+  "entrypoint": "python -m src.main",
+  "scripts": {
+    "install": "pip install --require-hashes -r requirements.txt 2>/dev/null || pip install -r requirements.txt && playwright install chromium",
+    "publish": "./publish.sh",
+    "publish:patch": "./publish.sh patch",
+    "publish:minor": "./publish.sh minor",
+    "publish:major": "./publish.sh major"
+  },
+  "python_dependencies": {
+    "requests": "==2.32.3",
+    "playwright": "==1.49.1",
+    "click": "==8.1.8",
+    "Pillow": "==11.1.0"
+  },
+  "credentials": {
+    "cookie_file": {
+      "path": ".cookies.json",
+      "description": "Tencent Docs session cookies (sensitive). Auto-created on first login.",
+      "permissions": "0600",
+      "gitignored": true
+    }
+  },
+  "license": "MIT"
+}

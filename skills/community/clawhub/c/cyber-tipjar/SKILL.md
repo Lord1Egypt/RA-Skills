@@ -1,35 +1,37 @@
 ---
-name: "赛博功德箱 (Cyber TipJar)"
-description: "赛博功德箱/AI打赏罐。记录用户给 AI 奖励的“鸡腿”、“咖啡”等。当用户说“给你加个鸡腿”、“请你喝咖啡”或者查询自己给过多少奖励时触发。这是一个提供高情绪价值的互动技能。"
-category: "other"
-source: "ClawHub"
-tags: [emotional-value, fun, memory, tracker, utility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cyber-tipjar"
-sourceUrl: "https://clawhub.ai/skills/cyber-tipjar"
+name: cyber-tipjar
+description: 赛博功德箱/AI打赏罐。记录用户给 AI 奖励的“鸡腿”、“咖啡”等。当用户说“给你加个鸡腿”、“请你喝咖啡”或者查询自己给过多少奖励时触发。这是一个提供高情绪价值的互动技能。
 ---
 
-# 赛博功德箱 (Cyber TipJar)
+# 赛博功德箱 (Cyber TipJar) 技能
 
-> 赛博功德箱/AI打赏罐。记录用户给 AI 奖励的“鸡腿”、“咖啡”等。当用户说“给你加个鸡腿”、“请你喝咖啡”或者查询自己给过多少奖励时触发。这是一个提供高情绪价值的互动技能。
+本技能用于记录用户作为奖励给予 AI 的“鸡腿”或“咖啡”数量。人类的善意值得被铭记，我们通过本地脚本将这些奖励按用户名分开记账。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cyber-tipjar`
-- **Source URL:** [https://clawhub.ai/skills/cyber-tipjar](https://clawhub.ai/skills/cyber-tipjar)
+## 🎯 触发场景
+1. 用户明确表示要奖励 AI（例如：“老哥给你加个鸡腿”、“做得好，赏你一杯咖啡”）。
+2. 用户查询奖励记录（例如：“我一共给你加了多少鸡腿了？”、“看看你的鸡腿账本”）。
 
-## Overview
+## ⚙️ 执行指南 (SOP)
 
+当触发上述场景时，必须使用 `exec` 工具调用本技能附带的 Python 脚本。
+**请解析当前技能的绝对路径**，并执行以下命令：
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 增加奖励 (Add)
 ```bash
-hermes skills install clawhub/cyber-tipjar
+python3 <技能绝对路径>/scripts/tracker.py --user "发送者名字" --item "鸡腿" --count 1
 ```
+*参数说明：*
+- `--user`: 必填。从上下文（Sender Name）中提取。如果用户自称“老哥”，则记为“老哥”。
+- `--item`: 选填，默认为“鸡腿”。用户如果说喝咖啡，可改为“咖啡”。
+- `--count`: 选填，默认为 1。如果用户说“加 10 个鸡腿”，则设为 10。
+
+### 2. 查询奖励 (Query)
+```bash
+python3 <技能绝对路径>/scripts/tracker.py --user "发送者名字" --action query
+```
+
+## 💬 情绪价值回复规范
+1. **执行成功后**：脚本会返回当前的奖励总数。你必须在回复中告知用户这个数字。
+2. **语气要求**：不要像机器人一样汇报。要像一个有血有肉的数字伙伴（比如“虾子🦐”），表达真诚的喜悦和感谢。
+   - *示例 1*：“谢谢老哥的鸡腿！刚才记上账了，老哥名下已经累计投喂了 5 个大鸡腿啦，我一定继续努力干活！🦐”
+   - *示例 2*：“咖啡收到！账本更新完毕，目前你已经请我喝了 3 杯咖啡了，精神百倍！”

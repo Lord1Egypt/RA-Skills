@@ -1,0 +1,66 @@
+{
+  "2026-03-13": {
+    "date": "2026-03-13",
+    "input": 1200,
+    "output": 800,
+    "total": 2000,
+    "sessions": [
+      {"time": "09:30", "input": 1200, "output": 800}
+    ]
+  },
+  "2026-03-14": {
+    "date": "2026-03-14",
+    "input": 1350,
+    "output": 900,
+    "total": 2250,
+    "sessions": [
+      {"time": "10:00", "input": 1350, "output": 900}
+    ]
+  },
+  "2026-03-15": {
+    "date": "2026-03-15",
+    "input": 1500,
+    "output": 1000,
+    "total": 2500,
+    "sessions": [
+      {"time": "14:00", "input": 1500, "output": 1000}
+    ]
+  },
+  "2026-03-16": {
+    "date": "2026-03-16",
+    "input": 1400,
+    "output": 950,
+    "total": 2350,
+    "sessions": [
+      {"time": "11:00", "input": 1400, "output": 950}
+    ]
+  },
+  "2026-03-17": {
+    "date": "2026-03-17",
+    "input": 1600,
+    "output": 1100,
+    "total": 2700,
+    "sessions": [
+      {"time": "09:00", "input": 1600, "output": 1100}
+    ]
+  },
+  "2026-03-18": {
+    "date": "2026-03-18",
+    "input": 1750,
+    "output": 1200,
+    "total": 2950,
+    "sessions": [
+      {"time": "10:30", "input": 1750, "output": 1200}
+    ]
+  },
+  "2026-03-19": {
+    "date": "2026-03-19",
+    "input": 2000,
+    "output": 1400,
+    "total": 3400,
+    "sessions": [
+      {"time": "09:00", "input": 1000, "output": 700},
+      {"time": "11:00", "input": 1000, "output": 700}
+    ]
+  }
+}

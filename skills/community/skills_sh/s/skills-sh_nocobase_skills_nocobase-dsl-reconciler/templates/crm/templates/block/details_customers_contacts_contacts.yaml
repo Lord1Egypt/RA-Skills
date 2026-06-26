@@ -1,0 +1,118 @@
+uid: llog4slwm27
+name: 'Details: Customers > Contacts (Contacts)'
+type: block
+collectionName: nb_crm_contacts
+dataSourceKey: main
+targetUid: thd2lhmr5v3
+associationName: nb_crm_customers.contacts
+content:
+  key: details
+  type: details
+  coll: nb_crm_contacts
+  resource_binding:
+    filterByTk: '{{ctx.view.inputArgs.filterByTk}}'
+    associationName: nb_crm_customers.contacts
+    sourceId: '{{ctx.view.inputArgs.sourceId}}'
+  fields:
+    - type: markdown
+      key: _md_0
+      content_file: ./md/details_customers_contacts_contacts_details__md_0.md
+    - email
+    - phone
+    - salutation
+    - mobile
+    - title
+    - department
+    - wechat
+    - linkedin
+    - lead_source
+    - birthday
+    - address
+    - role
+    - level
+    - reports_to
+    - is_primary
+    - languages
+    - customer
+    - description
+    - type: markdown
+      key: _md_19
+      content_file: ./md/details_customers_contacts_contacts_details__md_19.md
+    - type: markdown
+      key: _md_20
+      content_file: ./md/details_customers_contacts_contacts_details__md_20.md
+    - type: markdown
+      key: _md_21
+      content_file: ./md/details_customers_contacts_contacts_details__md_21.md
+    - type: markdown
+      key: _md_22
+      content_file: ./md/details_customers_contacts_contacts_details__md_22.md
+    - type: markdown
+      key: _md_23
+      content_file: ./md/details_customers_contacts_contacts_details__md_23.md
+    - type: markdown
+      key: _md_24
+      content_file: ./md/details_customers_contacts_contacts_details__md_24.md
+    - type: markdown
+      key: _md_25
+      content_file: ./md/details_customers_contacts_contacts_details__md_25.md
+    - type: markdown
+      key: _md_26
+      content_file: ./md/details_customers_contacts_contacts_details__md_26.md
+    - type: markdown
+      key: _md_27
+      content_file: ./md/details_customers_contacts_contacts_details__md_27.md
+    - type: markdown
+      key: _md_28
+      content_file: ./md/details_customers_contacts_contacts_details__md_28.md
+    - type: markdown
+      key: _md_29
+      content_file: ./md/details_customers_contacts_contacts_details__md_29.md
+    - type: markdown
+      key: _md_30
+      content_file: ./md/details_customers_contacts_contacts_details__md_30.md
+    - type: markdown
+      key: _md_31
+      content_file: ./md/details_customers_contacts_contacts_details__md_31.md
+    - type: markdown
+      key: _md_32
+      content_file: ./md/details_customers_contacts_contacts_details__md_32.md
+  field_layout:
+    - - '[MD:_md_0]'
+    - - title
+      - salutation
+    - - customer
+      - department
+    - '--- Contact Details ---'
+    - - email
+    - - phone
+      - mobile
+    - - wechat
+      - linkedin
+    - - address
+    - '--- Role & Relationship ---'
+    - - role
+      - level
+    - - reports_to
+      - is_primary
+    - - birthday
+      - languages
+    - - lead_source
+    - '--- Other ---'
+    - - description
+    - - '[MD:_md_19]'
+    - - '[MD:_md_20]'
+    - - '[MD:_md_21]'
+    - - '[MD:_md_22]'
+    - - '[MD:_md_23]'
+    - - '[MD:_md_24]'
+    - - '[MD:_md_25]'
+    - - '[MD:_md_26]'
+    - - '[MD:_md_27]'
+    - - '[MD:_md_28]'
+    - - '[MD:_md_29]'
+    - - '[MD:_md_30]'
+    - - '[MD:_md_31]'
+    - - '[MD:_md_32]'
+  actions:
+    - edit

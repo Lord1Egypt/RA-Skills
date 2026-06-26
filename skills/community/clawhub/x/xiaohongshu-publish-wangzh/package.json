@@ -1,0 +1,22 @@
+{
+  "name": "xiaohongshu-publisher",
+  "version": "1.0.0",
+  "description": "Xiaohongshu (RED) long-form content publishing automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xiaohongshu",
+    "publishing",
+    "automation",
+    "browser-automation"
+  ],
+  "author": "OpenClaw Agent",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "social-media",
+    "tags": ["xiaohongshu", "publishing", "automation"]
+  }
+}

@@ -1,0 +1,41 @@
+# 龙虾爬虫全局配置
+
+project:
+  name: lobster-crawler-skill
+  version: 0.1.0
+
+database:
+  engine: sqlite
+  path: data/lobster.db
+
+scrapy:
+  user_agent: "Mozilla/5.0 (compatible; LobsterBot/0.1)"
+  concurrent_requests: 8
+  download_delay: 1.5
+  robotstxt_obey: true
+  log_level: INFO
+
+scheduler:
+  # 默认调度间隔（cron 表达式）
+  default_cron: "0 */6 * * *"   # 每 6 小时
+  timezone: Asia/Shanghai
+
+classifier:
+  # 分级阈值
+  high:
+    min_update_frequency_days: 2    # 2 天内有更新 → 高优先
+  medium:
+    min_update_frequency_days: 7    # 7 天内有更新 → 中优先
+  low:
+    min_update_frequency_days: 999  # 其余 → 低优先
+
+broadcast:
+  dingtalk:
+    enabled: true
+    # webhook 和 secret 从环境变量读取
+  strategies:
+    high: immediate       # 高优先 → 即时播报
+    medium: daily_digest  # 中优先 → 日汇总
+    low: weekly_digest    # 低优先 → 周汇总
+
+sites_dir: config/sites

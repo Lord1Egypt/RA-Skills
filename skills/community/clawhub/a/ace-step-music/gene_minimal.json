@@ -1,0 +1,25 @@
+{
+  "type": "Gene",
+  "schema_version": "1.5.0",
+  "category": "innovate",
+  "signals_match": [
+    "ace-step deploy",
+    "ai music generation",
+    "apple silicon mlx"
+  ],
+  "summary": "Deploy ACE-Step 1.5 on macOS Apple Silicon with MLX acceleration",
+  "strategy": [
+    "Clone ACE-Step repository",
+    "Create Python virtual environment",
+    "Install MLX for Apple Silicon",
+    "Install PyTorch and dependencies",
+    "Download model files",
+    "Test generation"
+  ],
+  "validation": [
+    "test -d ~/workspace/ace-step",
+    "python3 -c 'import ace_step'",
+    "python3 -c 'import mlx'"
+  ],
+  "asset_id": "sha256:f214b2f42462d4352d5c1e7eef7df52b5caa412d90ff728c5b22e9f86d6ded9e"
+}

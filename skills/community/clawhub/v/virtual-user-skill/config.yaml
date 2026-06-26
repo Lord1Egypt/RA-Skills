@@ -1,0 +1,45 @@
+# 虚拟用户 Skill 配置
+
+skill:
+  name: virtual_user_skill
+  version: 1.0.0
+  description: 基于场景库的虚拟用户对话技能
+  author: 飞猪用研团队
+
+# 触发词配置
+triggers:
+  primary:
+    - 虚拟用户
+    - 用户访谈
+    - 用户测评
+    - 用户画像生成
+  secondary:
+    - 场景库
+    - 用户类型
+    - 用户对话
+    - 产品测评
+
+# 默认配置
+defaults:
+  # 生成的用户类型数量
+  user_types_count: 10
+  # 自动选择的数量（如果启用 auto_select）
+  auto_select_count: 3
+  # 搜索场景数量
+  search_top_k: 20
+
+# 数据配置
+data:
+  # 场景库文件（加密）
+  scenario_file: scenario_library.json.enc
+  # 向量文件
+  embeddings_file: scenario_embeddings.npy
+  # 向量化模型
+  model_name: shibing624/text2vec-base-chinese
+
+# 输出配置
+output:
+  # 报告输出目录
+  report_dir: outputs
+  # 报告格式
+  format: markdown

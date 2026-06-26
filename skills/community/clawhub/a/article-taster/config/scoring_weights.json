@@ -1,0 +1,30 @@
+{
+  "technical_article": {
+    "technical_depth": 0.30,
+    "structure": 0.25,
+    "practicality": 0.20,
+    "originality": 0.15,
+    "readability": 0.10
+  },
+  "essay": {
+    "emotion_expression": 0.30,
+    "writing_style": 0.25,
+    "narrative_structure": 0.20,
+    "creativity": 0.15,
+    "resonance": 0.10
+  },
+  "novel": {
+    "plot_structure": 0.25,
+    "character_craft": 0.25,
+    "narrative_technique": 0.20,
+    "style_features": 0.15,
+    "world_building": 0.15
+  },
+  "other": {
+    "content_depth": 0.30,
+    "structure": 0.25,
+    "originality": 0.20,
+    "readability": 0.15,
+    "practicality": 0.10
+  }
+}

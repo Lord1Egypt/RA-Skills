@@ -1,35 +1,62 @@
 ---
-name: "concise-planning"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/concise-planning"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/concise-planning"
+name: concise-planning
+description: Use when a user asks for a plan for a coding task, to generate a clear, actionable, and atomic checklist.
 ---
 
-# concise-planning
+# Concise Planning
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Goal
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/concise-planning`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/concise-planning](https://skills.sh/davila7/claude-code-templates/concise-planning)
+Turn a user request into a **single, actionable plan** with atomic steps.
 
-## Overview
+## Workflow
 
+### 1. Scan Context
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/concise-planning
+- Read `README.md`, docs, and relevant code files.
+- Identify constraints (language, frameworks, tests).
+
+### 2. Minimal Interaction
+
+- Ask **at most 1–2 questions** and only if truly blocking.
+- Make reasonable assumptions for non-blocking unknowns.
+
+### 3. Generate Plan
+
+Use the following structure:
+
+- **Approach**: 1-3 sentences on what and why.
+- **Scope**: Bullet points for "In" and "Out".
+- **Action Items**: A list of 6-10 atomic, ordered tasks (Verb-first).
+- **Validation**: At least one item for testing.
+
+## Plan Template
+
+```markdown
+# Plan
+
+<High-level approach>
+
+## Scope
+
+- In:
+- Out:
+
+## Action Items
+
+[ ] <Step 1: Discovery>
+[ ] <Step 2: Implementation>
+[ ] <Step 3: Implementation>
+[ ] <Step 4: Validation/Testing>
+[ ] <Step 5: Rollout/Commit>
+
+## Open Questions
+
+- <Question 1 (max 3)>
 ```
+
+## Checklist Guidelines
+
+- **Atomic**: Each step should be a single logical unit of work.
+- **Verb-first**: "Add...", "Refactor...", "Verify...".
+- **Concrete**: Name specific files or modules when possible.

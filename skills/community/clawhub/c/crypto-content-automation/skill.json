@@ -1,0 +1,9 @@
+{
+  "name": "crypto-content-automation",
+  "version": "1.0.0",
+  "description": "加密货币自媒体运营自动化 - 热点扫描 + 内容策划 + 一键发布",
+  "author": "hongyun",
+  "tags": ["crypto", "content", "automation", "xiaohongshu", "social-media", "news"],
+  "homepage": "https://github.com/hongyun/crypto-content-automation",
+  "license": "MIT"
+}

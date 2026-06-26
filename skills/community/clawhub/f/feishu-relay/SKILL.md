@@ -1,35 +1,76 @@
 ---
-name: "Feishu Relay"
-description: "Unified Feishu notification system with automatic discovery, message queue, and reliable delivery. Use when user needs to send notifications via Feishu (Lark..."
-category: "other"
-source: "ClawHub"
-tags: [feishu, lark, notification]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-relay"
-sourceUrl: "https://clawhub.ai/skills/feishu-relay"
+name: feishu-relay
+description: Send Feishu (Lark) notifications via OpenClaw. Core only: send messages, queue, retry. No system modifications by default.
 ---
 
-# Feishu Relay
+# Feishu Notifier - Core
 
-> Unified Feishu notification system with automatic discovery, message queue, and reliable delivery. Use when user needs to send notifications via Feishu (Lark...
+**Version: 3.0 (Safe Mode)**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-relay`
-- **Source URL:** [https://clawhub.ai/skills/feishu-relay](https://clawhub.ai/skills/feishu-relay)
+A minimal, safe Feishu notification bridge for OpenClaw.
 
-## Overview
+## What This Does
 
+✅ **Core (always available)**:
+- Send messages to Feishu via Open API
+- JSON structured output
+- Config via environment or skill config
+- Retry on network failure
 
-## Installation
-To install this skill, run the following command in your terminal:
+❌ **Not included by default**:
+- No crontab installation
+- No systemd service setup
+- No global `/usr/local/bin/notify` link
+- No auto-discovery of other skills
+- No environment injection
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/feishu-relay
+# Configure (environment variables)
+export FEISHU_APP_ID="cli_xxx"
+export FEISHU_APP_SECRET="xxx"
+export FEISHU_RECEIVE_ID="ou_xxx"
+
+# Send notification
+./run.sh -t "Title" -m "Message body"
 ```
+
+## Configuration
+
+| Config | Env Variable | Required | Default |
+|--------|-------------|----------|---------|
+| appId | FEISHU_APP_ID | Yes | - |
+| appSecret | FEISHU_APP_SECRET | Yes | - |
+| receiveId | FEISHU_RECEIVE_ID | Yes | - |
+| receiveIdType | FEISHU_RECEIVE_ID_TYPE | No | open_id |
+
+## Usage
+
+```bash
+# Basic
+./run.sh -t "Title" -m "Message"
+
+# JSON output
+./run.sh -t "Title" -m "Message" --json
+
+# Test
+./run.sh --test
+```
+
+## Output Format
+
+```json
+{
+  "success": true,
+  "message_id": "om_xxx",
+  "create_time": "1234567890"
+}
+```
+
+## Safety
+
+- No secrets in logs
+- No system modifications
+- No root required for basic use
+- Config file: `chmod 600 config.json`

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "ad985ce3-9c59-4e0f-ba3f-909cdba7ce90",
+      "agentId": "main",
+      "sessionKey": "agent:main:telegram:direct:8612962104",
+      "name": "Daily AI Trends on Twitter",
+      "enabled": true,
+      "createdAtMs": 1777929097216,
+      "schedule": {
+        "expr": "30 6 * * *",
+        "tz": "Asia/Dubai",
+        "kind": "cron"
+      },
+      "sessionTarget": "session:agent:main:telegram:direct:8612962104",
+      "wakeMode": "now",
+      "payload": {
+        "toolsAllow": [
+          "web_search",
+          "browser"
+        ],
+        "kind": "agentTurn",
+        "message": "Using browser, check these X accounts for latest AI news (public, no login needed): @sama, @elonmusk, @AndrewYNg, @ylecun, Yester Su, @StabilityAI, @GoogleDeepMind, @AnthropicAI, @sutterray. For each account, scroll to see recent posts (last 2-3 tweets each). Focus on: product announcements, funding news, research releases, breaking AI news. Cross-reference with TechCrunch, VentureBeat for verification. Present top 5 stories with: account, tweet summary, why it matters."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:-1003916184688",
+        "accountId": "default"
+      },
+      "description": "Daily AI News from X via browser",
+      "state": {}
+    }
+  ]
+}

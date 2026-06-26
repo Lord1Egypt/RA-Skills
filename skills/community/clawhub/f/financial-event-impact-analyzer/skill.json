@@ -1,0 +1,245 @@
+{
+  "id": "financial-event-impact-analyzer",
+  "name": "financial-event-impact-analyzer",
+  "version": "1.1.0",
+  "description": "Analyze historical impact of financial events on related assets. Event-driven analysis similar to Kensho: identify event -> find historical precedents -> infer related assets -> analyze historical performance. Outputs Chinese reports and Chinese-labeled charts.",
+  "author": "laigen",
+  "created": "2026-03-27",
+  "updated": "2026-03-29",
+  "tags": ["financial-events", "event-analysis", "kensho", "historical-impact", "asset-performance", "causal-analysis"],
+  "entry": "scripts/fetch_indicator_data.py",
+  "triggers": [
+    "financial event impact analysis",
+    "event-driven analysis",
+    "historical impact analysis",
+    "oil price surge impact",
+    "gold price increase impact",
+    "interest rate hike impact",
+    "VIX spike impact",
+    "Fed balance sheet reduction impact",
+    "USD strength impact",
+    "Kensho analysis"
+  ],
+  "registry": {
+    "summary": {
+      "requiredEnvVars": ["TUSHARE_TOKEN"],
+      "optionalEnvVars": ["FRED_API_KEY"],
+      "primaryCredential": "TUSHARE_TOKEN",
+      "networkAccess": true,
+      "externalServices": ["Yahoo Finance", "Tushare API", "FRED API"],
+      "outputsFiles": true,
+      "writesFiles": true
+    }
+  },
+  "env": {
+    "TUSHARE_TOKEN": {
+      "required": true,
+      "description": "Tushare Pro API Token for Chinese A-share market data. Register at: https://tushare.pro/register",
+      "sensitive": true
+    },
+    "FRED_API_KEY": {
+      "required": false,
+      "description": "FRED API Key for US macroeconomic data (optional). Register at: https://fred.stlouisfed.org/docs/api/api_key.html",
+      "sensitive": true
+    }
+  },
+  "dependencies": {
+    "pip": [
+      "pandas>=1.5.0",
+      "numpy>=1.20.0",
+      "matplotlib>=3.5.0",
+      "yfinance>=0.2.0",
+      "tushare>=1.2.0"
+    ],
+    "fonts": [
+      "fonts-wqy-microhei",
+      "fonts-noto-cjk"
+    ]
+  },
+  "sideEffects": {
+    "readsFiles": true,
+    "writesFiles": true,
+    "networkAccess": true,
+    "externalServices": ["Yahoo Finance", "Tushare API", "FRED API"]
+  },
+  "security": {
+    "requiresApproval": false,
+    "sensitiveData": true,
+    "riskLevel": "low",
+    "credentialsRequired": ["TUSHARE_TOKEN"],
+    "credentialsOptional": ["FRED_API_KEY"],
+    "credentialSources": {
+      "TUSHARE_TOKEN": "https://tushare.pro/register",
+      "FRED_API_KEY": "https://fred.stlouisfed.org/docs/api/api_key.html"
+    }
+  },
+  "output": {
+    "formats": ["markdown", "png", "json"],
+    "location": "~/.openclaw/workspace/memory/reports/<analysis_folder>/",
+    "description": "Generate Chinese analysis reports, dual-axis time series comparison charts (one per asset), performance summary charts, event matrix heatmaps. Charts use Chinese labels. All output files are placed under workspace/memory/reports/<analysis_folder>/, not polluting the skill directory.",
+    "folderNaming": "<indicator>_<YYYYMMDD>_<direction> (e.g., brent_crude_20260328_increase)"
+  },
+  "preflight": {
+    "checks": [
+      "Chinese font availability check",
+      "TUSHARE_TOKEN environment variable check",
+      "Output directory permission check"
+    ],
+    "fontPriority": ["WenQuanYi Micro Hei", "SimHei", "Noto Sans CJK SC", "PingFang SC"],
+    "fallbackFont": "DejaVu Sans"
+  },
+  "workflow": [
+    {
+      "step": 0,
+      "description": "Create analysis output directory",
+      "command": "OUTPUT_DIR=\"$HOME/.openclaw/workspace/memory/reports/<indicator>_<timestamp>_<direction>\" && mkdir -p \"${OUTPUT_DIR}/data\" \"${OUTPUT_DIR}/charts\""
+    },
+    {
+      "step": 1,
+      "description": "Identify primary indicator",
+      "script": "scripts/fetch_indicator_data.py --list"
+    },
+    {
+      "step": 2,
+      "description": "Fetch historical data",
+      "script": "scripts/fetch_indicator_data.py <indicator> --years 30 --output ${OUTPUT_DIR}/data/<indicator>.json --json"
+    },
+    {
+      "step": 3,
+      "description": "Extract event characteristics and find similar events",
+      "script": "scripts/find_similar_events.py --data ${OUTPUT_DIR}/data/<indicator>.json --output ${OUTPUT_DIR}/events.json"
+    },
+    {
+      "step": 4,
+      "description": "Infer related assets",
+      "script": "scripts/infer_related_assets.py --indicator <indicator> --direction <increase|decrease> --output ${OUTPUT_DIR}/related.json"
+    },
+    {
+      "step": 5,
+      "description": "Fetch related indicator data",
+      "script": "for ind in $(cat ${OUTPUT_DIR}/related.json | jq -r '.benefited[].indicator, .harmed[].indicator'); do scripts/fetch_indicator_data.py $ind --years 30 --output ${OUTPUT_DIR}/data/$ind.json --json; done"
+    },
+    {
+      "step": 6,
+      "description": "Analyze historical performance",
+      "script": "scripts/analyze_related_performance.py --events ${OUTPUT_DIR}/events.json --related ${OUTPUT_DIR}/related.json --primary-indicator <indicator> --data-dir ${OUTPUT_DIR}/data --output ${OUTPUT_DIR}/performance.json"
+    },
+    {
+      "step": 7,
+      "description": "Generate charts (preflight check + red dashed boxes for historical event intervals + X-axis auto-adjust to avoid overlap)",
+      "script": "scripts/generate_charts.py --primary-indicator <indicator> --primary-data ${OUTPUT_DIR}/data/<indicator>.json --events ${OUTPUT_DIR}/events.json --related ${OUTPUT_DIR}/related.json --performance ${OUTPUT_DIR}/performance.json --output-dir ${OUTPUT_DIR}/charts"
+    },
+    {
+      "step": 8,
+      "description": "Generate report (embed all time series charts in Markdown)",
+      "script": "scripts/generate_report.py --primary-indicator <indicator> --events ${OUTPUT_DIR}/events.json --related ${OUTPUT_DIR}/related.json --performance ${OUTPUT_DIR}/performance.json --charts-manifest ${OUTPUT_DIR}/charts/charts_manifest.json --output-dir ${OUTPUT_DIR} --output report.md"
+    },
+    {
+      "step": 9,
+      "description": "Display report and charts",
+      "script": "Display ${OUTPUT_DIR}/report.md content with chart images"
+    }
+  ],
+  "usage": {
+    "example": "Analyze historical impact of oil price surge on related assets",
+    "workflow_example": [
+      "# Step 0: Create analysis output directory (workspace absolute path)",
+      "OUTPUT_DIR=\"$HOME/.openclaw/workspace/memory/reports/brent_crude_20260328_increase\"",
+      "mkdir -p \"${OUTPUT_DIR}/data\" \"${OUTPUT_DIR}/charts\"",
+      "",
+      "# Step 1-2: Fetch primary indicator data",
+      "python3 scripts/fetch_indicator_data.py brent_crude --years 30 --output \"${OUTPUT_DIR}/data/brent_crude.json\" --json",
+      "",
+      "# Step 3-4: Find similar events",
+      "python3 scripts/find_similar_events.py --data \"${OUTPUT_DIR}/data/brent_crude.json\" --output \"${OUTPUT_DIR}/events.json\"",
+      "",
+      "# Step 5: Infer related assets",
+      "python3 scripts/infer_related_assets.py --indicator brent_crude --direction increase --output \"${OUTPUT_DIR}/related.json\"",
+      "",
+      "# Step 6: Fetch related indicator data and analyze performance",
+      "for indicator in $(cat \"${OUTPUT_DIR}/related.json\" | jq -r '.benefited[].indicator, .harmed[].indicator'); do",
+      "    python3 scripts/fetch_indicator_data.py $indicator --years 30 --output \"${OUTPUT_DIR}/data/$indicator.json\" --json",
+      "done",
+      "python3 scripts/analyze_related_performance.py --events \"${OUTPUT_DIR}/events.json\" --related \"${OUTPUT_DIR}/related.json\" --primary-indicator brent_crude --data-dir \"${OUTPUT_DIR}/data\" --output \"${OUTPUT_DIR}/performance.json\"",
+      "",
+      "# Step 7: Generate charts (preflight check + red dashed boxes for historical event intervals + X-axis auto-adjust)",
+      "python3 scripts/generate_charts.py --primary-indicator brent_crude --primary-data \"${OUTPUT_DIR}/data/brent_crude.json\" --events \"${OUTPUT_DIR}/events.json\" --related \"${OUTPUT_DIR}/related.json\" --performance \"${OUTPUT_DIR}/performance.json\" --output-dir \"${OUTPUT_DIR}/charts\"",
+      "",
+      "# Step 8: Generate report (embed all time series charts in Markdown)",
+      "python3 scripts/generate_report.py --primary-indicator brent_crude --events \"${OUTPUT_DIR}/events.json\" --related \"${OUTPUT_DIR}/related.json\" --performance \"${OUTPUT_DIR}/performance.json\" --charts-manifest \"${OUTPUT_DIR}/charts/charts_manifest.json\" --output-dir \"${OUTPUT_DIR}\" --output report.md",
+      "",
+      "# Step 9: Display report and charts",
+      "# Report saved to: ${OUTPUT_DIR}/report.md, charts embedded in Markdown"
+    ]
+  },
+  "chart_specs": {
+    "dual_axis_timeseries": {
+      "description": "One dual-axis time series comparison chart per related asset",
+      "axes": {
+        "left": "Primary indicator (red line)",
+        "right": "Related asset indicator (blue line)"
+      },
+      "markers": {
+        "historical_events": "Red dashed boxes (with 20% opacity fill), marking past similar event time intervals",
+        "current_event": "Red solid boxes (with 30% opacity fill), marking current event",
+        "event_labels": "Event number + change percentage, displayed above the rectangle"
+      },
+      "x_axis": {
+        "auto_interval": "Auto-adjust tick interval based on data span",
+        "intervals": {
+          "≤12 months": "Monthly",
+          "≤24 months": "Quarterly",
+          "≤60 months": "Half-yearly",
+          "≤120 months": "Yearly",
+          ">120 months": "Biennially"
+        },
+        "format": "YYYY.MM",
+        "rotation": "30 degrees slanted, avoid label overlap"
+      },
+      "figure_size": {
+        "auto_width": "Auto-adjust chart width based on data span",
+        "width_range": "14-26 inches",
+        "height": "10 inches"
+      },
+      "language": "Chinese"
+    },
+    "performance_summary": {
+      "description": "Average return and win rate comparison chart for each asset",
+      "colors": {
+        "positive": "Red (#E74C3C)",
+        "negative": "Green (#27AE60)"
+      },
+      "language": "Chinese"
+    },
+    "event_matrix_heatmap": {
+      "description": "Event × Asset return matrix heatmap",
+      "colormap": "RdYlGn_r (red = positive return, green = negative return)",
+      "language": "Chinese"
+    }
+  },
+  "report_specs": {
+    "embedded_charts": {
+      "description": "All time series comparison charts embedded in Markdown report",
+      "format": "![Chart Name](charts/chart_file.png)",
+      "sections": [
+        "🎯 Core Conclusions",
+        "📋 Current Event Characteristics",
+        "📜 Historical Similar Events List",
+        "📊 Change Percentage Table",
+        "🔑 Summary Statistics",
+        "📈 Time Series Comparison Charts (Embedded)",
+        "📊 Performance Summary Chart",
+        "🔥 Event Matrix Heatmap",
+        "⚠️ Analysis Limitations"
+      ]
+    },
+    "change_table": {
+      "description": "Change percentage table (sorted from latest to earliest)",
+      "highlight_rule": "Same-direction change (high correlation) cells bolded"
+    },
+    "color_convention": {
+      "positive": "🔴 Red = Up (+)",
+      "negative": "🟢 Green = Down (-)"
+    }
+  }
+}

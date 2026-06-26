@@ -1,0 +1,7 @@
+interface:
+  display_name: "微信公众号写作发布助手"
+  short_description: "写公众号文章、生成封面和正文贴图、添加关注引导并上传草稿箱"
+  default_prompt: "Use $wechat-official-account-writer 帮我把一个主题、链接或素材写成公众号文章，生成封面和正文贴图，添加底部关注引导，并上传到微信公众号草稿箱。"
+
+policy:
+  allow_implicit_invocation: true

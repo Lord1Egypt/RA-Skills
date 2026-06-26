@@ -1,0 +1,24 @@
+# Sample Plane local config
+# Copy to ~/.plane_config.yaml and edit values to match your setup.
+#
+# Then either:
+#   export PLANE_CONFIG_FILE="$HOME/.plane_config.yaml"
+# Or hardcode paths in config.py.
+
+default_project: ai
+
+projects:
+  ai: "AI Assistant"
+  # alias: "Actual Plane project name"
+
+states:
+  todo: "Todo"
+  doing: "In Progress"
+  done: "Done"
+  blocked: "Blocked"
+
+priorities:
+  urgent: "urgent"
+  high: "high"
+  medium: "medium"
+  low: "low"

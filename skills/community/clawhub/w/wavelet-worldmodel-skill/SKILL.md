@@ -1,35 +1,17 @@
 ---
-name: "WaveletWorldModel"
-description: "Generates a world model representation from state inputs using discrete wavelet transforms (DWT) to capture multi-resolution temporal and spatial features."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wavelet-worldmodel-skill"
-sourceUrl: "https://clawhub.ai/skills/wavelet-worldmodel-skill"
+name: wavelet-world-model
+description: Generates a world model representation from state inputs using discrete wavelet transforms (DWT) to capture multi-resolution temporal and spatial features.
+author: tempguest
+version: 0.1.0
+license: MIT
 ---
 
-# WaveletWorldModel
+# Wavelet World Model Skill
 
-> Generates a world model representation from state inputs using discrete wavelet transforms (DWT) to capture multi-resolution temporal and spatial features.
+This skill allows your OpenClaw agent to transform high-dimensional sequential state data into a compact world model representation using Wavelet Transforms.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wavelet-worldmodel-skill`
-- **Source URL:** [https://clawhub.ai/skills/wavelet-worldmodel-skill](https://clawhub.ai/skills/wavelet-worldmodel-skill)
+It leverages multi-resolution analysis to efficiently encode BOTH high-frequency details (rapid changes) and low-frequency components (long-term dependencies), making it highly effective for robotic control, continuous state tracking, and predicting complex environments.
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wavelet-worldmodel-skill
-```
+- `wavelet-model`: standardized command to initialize the wavelet world model and process state inputs.

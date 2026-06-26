@@ -1,0 +1,22 @@
+{
+  "name": "Customer Persona Copy Map",
+  "description": "Map customer personas, pain points, objections, benefits, and CTAs into a practical copy matrix for product pages, ads, and email campaigns.",
+  "version": "1.1.0",
+  "type": "prompt-flow",
+  "category": "Persona-Based Messaging",
+  "keywords": [
+    "persona copy", "customer persona", "用户画像",
+    "message map", "audience segmentation", "persona-based copy"
+  ],
+  "platforms": ["product pages", "ads", "email", "landing pages", "social media"],
+  "requires": {},
+  "requires_api": false,
+  "author": "harrylabsj",
+  "license": "MIT",
+  "safety": {
+    "no_code_execution": true,
+    "no_network": true,
+    "no_credentials": true,
+    "compliance_notes": "Label assumptions clearly. Prefer behavioral segmentation over protected traits. Include validation tests for low-evidence personas."
+  }
+}

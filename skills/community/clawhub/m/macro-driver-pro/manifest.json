@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Macro-Driver-Pro: 宏观晴雨表",
+  "name_for_model": "macro_driver_pro",
+  "description_for_human": "实时监控 DXY 与 US10Y 数据，集成 SkillPay 协议，支持 AI Agent 自动化调用。",
+  "description_for_model": "An API providing real-time macro-financial data (DXY, US10Y) via Yahoo Finance with built-in SkillPay micro-billing integration.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://macro-driver-pro.vercel.app/openapi.json"
+  },
+  "contact_email": "longxrise@gmail.com", 
+  "legal_info_url": "https://github.com/longxrise/macro-driver-pro#readme",
+  "source_code_url": "https://github.com/longxrise/macro-driver-pro",
+  "license": "MIT"
+}

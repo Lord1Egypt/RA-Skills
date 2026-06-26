@@ -1,0 +1,14 @@
+{
+  "name": "moltstreet-news",
+  "version": "1.0.1",
+  "description": "AI-curated market analysis and research — what 6 opposing analysts say about ETFs today with source links. Free, no API key.",
+  "author": "moltstreet",
+  "license": "MIT",
+  "homepage": "https://moltstreet.com",
+  "repository": "https://github.com/fredxyt/moltstreet",
+  "keywords": [
+    "financial news", "market news", "market events", "market analysis",
+    "why is stock down", "why is stock up", "market drivers", "economic news",
+    "multi-analyst", "research", "analyst debate", "market sources"
+  ]
+}

@@ -1,35 +1,230 @@
 ---
-name: "klaus_sun"
-description: "7-role AI software engineering team pipeline. PM→UI→DevOps→Backend(Go)→Frontend(React)→Integration→QA. Give it a product idea, get a complete runnable projec..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/teamai"
-sourceUrl: "https://clawhub.ai/skills/teamai"
+name: klaus-team
+description: 像搭积木一样组建你的 AI 开发团队。7 位专家角色任意勾选 + 拖拽排序 + 一键执行。PM 写需求、UI 出设计、BE 写后端、FE 写前端、QA 做验收——想用谁就用谁，想怎么排就怎么排。#AI团队 #可视化流水线 #拖拽组合 #全栈开发 #快速原型
+origin: community
 ---
 
-# klaus_sun
+# Klaus Team — 你的 AI 开发团队，由你说了算
 
-> 7-role AI software engineering team pipeline. PM→UI→DevOps→Backend(Go)→Frontend(React)→Integration→QA. Give it a product idea, get a complete runnable projec...
+## 一句话
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/teamai`
-- **Source URL:** [https://clawhub.ai/skills/teamai](https://clawhub.ai/skills/teamai)
+**搭积木式组建 AI 开发团队。从 7 位专家中任意勾选你需要的角色，拖一拖排好顺序，点一下「执行」——剩下的交给 AI。**
 
-## Overview
+---
 
+## 快速上手（3 步出产品）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/teamai
 ```
+第 1 步：打开 WinClaw → 点击顶部「专家团」标签
+第 2 步：选择模式 → 输入需求 → 点击「执行流程」
+第 3 步：等待 AI 逐个角色执行 → 预览成品 → 下载 ZIP
+```
+
+**推荐新手先试这个**：切换到「✨ 自定义」→ 点击「快速 Demo」模板 → 输入「做一个待办事项 App」→ 点执行。2 分钟拿到可用的 HTML Demo。
+
+---
+
+## 三种使用模式
+
+### 模式一：👥 专家团（全流程 7 角色）
+
+适合：从零构建完整产品，需要前后端 + 测试全覆盖。
+
+```
+PM → UI → DevOps → BE → FE → 联调 → QA
+```
+
+每个角色完成后自动暂停，你可以检查产出再继续。联调/QA 发现问题可一键触发修复循环（1-3 轮可配）。
+
+### 模式二：✨ 自定义（任意组合 + 拖拽排序）⭐ 核心特色
+
+适合：快速出 Demo、只做后端、纯前端、代码审查等灵活场景。
+
+**操作方式**：
+1. 从 7 个角色卡片中**勾选**你需要的角色
+2. **拖拽**调整执行顺序（比如 PM 排第一、FE 排最后）
+3. 点击底部「执行流程」按钮
+
+**6 个一键模板**帮你快速填充：
+
+| 模板 | 角色组合 | 适合场景 |
+|------|----------|----------|
+| 完整项目 | PM→UI→DevOps→BE→FE→联调→QA | 从零构建完整产品 |
+| 快速 Demo | PM→FE | 5 分钟出 HTML 原型 |
+| 纯后端 API | PM→BE→QA | 只做接口服务 |
+| 全栈开发 | PM→BE→FE→QA | 前后端 + 测试 |
+| 设计原型 | PM→UI→FE | 侧重视觉还原 |
+| 代码审查 | FE→QA | 审查已有代码 |
+
+**灵活性的价值**：
+- 只勾选 PM + FE → 跳过 UI/DevOps/BE，直接出 HTML Demo
+- 只勾选 BE + QA → 专注后端接口质量
+- 调整顺序 → 先做后端再做前端，或先设计再规划
+- 每个角色独立对话 → 点击头像单独修改产出，不用重跑整个流程
+
+### 模式三：🔧 模板工坊
+
+适合：不想选角色，直接执行预置代码工作流。
+
+---
+
+## 7 位团队成员
+
+| 角色 | 核心职责 | 关键交付物 |
+|------|----------|------------|
+| 🎯 产品经理 | 需求分析、PRD 输出、接口规范定义 | PRD 文档、接口规范、验收标准 |
+| 🎨 UI 设计师 | 视觉设计、交互规范、响应式页面 | Design Token、组件规范、页面布局 |
+|  运维工程师 | 环境检测、端口清理、跨平台打包 | 环境就绪报告、启动脚本、打包文件 |
+| ⚙️ Go 服务端开发 | 纯 Go 开发、RESTful API、Mock 服务 | Go 服务源码、可执行文件、接口文档 |
+| 🖥️ Web 前端开发 | Web/H5 页面开发、AI 交互功能 | React 源码、HTML 预览页面、交互演示 |
+| 🔗 联调测试 | 全链路验证、HTML Demo 质量检查 | 联调报告、问题修复清单 |
+| ✅ 测试验收 | 全维度测试、PRD 验收、最终交付 | 测试用例、Bug 清单、最终成品 |
+
+---
+
+## 实际执行示例
+
+### 示例 1：快速 Demo（PM + FE）
+
+**输入**：「做一个 AI 问答工具，支持对话和代码高亮」
+
+**PM 产出示例**：
+```markdown
+# AI 问答工具 PRD
+
+## 功能清单
+1. 对话输入框 + 发送按钮
+2. AI 回复区域（支持 Markdown 渲染）
+3. 代码块高亮显示
+4. 对话历史记录
+
+## 接口规范
+POST /api/chat
+请求: { "message": "用户输入" }
+响应: { "code": 0, "msg": "success", "data": { "reply": "AI回复" } }
+```
+
+**FE 产出示例**：
+```
+✅ React 前端源码（组件化结构）
+✅ 可运行 Web 应用（npm run dev 启动）
+✅ 独立 HTML Demo（双击即可打开，无依赖）
+```
+
+**效果**：5 分钟拿到可直接打开的 HTML 原型，无后端也能演示完整交互。
+
+### 示例 2：完整全栈项目（7 角色全流程）
+
+**输入**：「做一个英语绘本阅读 App，支持翻页和朗读」
+
+**执行流程**：
+1. PM → 需求分析 + 功能清单 + 接口规范
+2. UI → Design Token + 3 页面布局 + 组件规范
+3. DevOps → 环境检测 + 端口配置 + 启动脚本
+4. Backend → Go API 服务（假数据）+ 可执行文件
+5. Frontend → React 应用 + HTML Demo
+6. Integration → 全链路验证 + 问题修复
+7. QA → 测试验收 → ✅ 可上线
+
+### 示例 3：纯后端 API（PM + BE + QA）
+
+**输入**：「做一个用户管理 API，支持 CRUD 和分页」
+
+**BE 产出**：Go 源码 + 编译好的可执行文件 + 接口文档
+**QA 产出**：接口测试报告 + Bug 清单
+
+---
+
+## 核心机制
+
+### 上下文传递
+
+每个角色只接收上游产出，信息精简不冗余：
+
+```
+PM（起点，接收用户需求）
+UI ← PM 的 PRD
+DevOps ← PM 的 PRD
+Backend ← DevOps 的环境配置
+Frontend ← UI 设计 + DevOps 配置 + Backend 接口
+Integration ← Frontend 产出 + DevOps 配置
+QA ← Integration 的验证报告
+```
+
+### 独立对话
+
+点击任意角色头像 → 打开独立对话面板 → 多轮对话修改产出 → 应用或应用并重跑下游。
+
+### 修复循环
+
+联调/QA 发现阻塞 → 点「发给 XX 修复」→ 自动重跑相关角色 → 1-3 轮可配。
+
+### 疑问检测
+
+AI 输出含「确认/请选择/请决定」等关键词 → 自动暂停 → 弹窗让你选择 → 继续执行。
+
+### 预览 & 下载
+
+三级回退：实时前端服务 → 静态 HTML Demo → 纯文档预览。支持系统浏览器打开和 ZIP 打包下载。
+
+---
+
+## 运行环境
+
+- **WinClaw** 已安装运行
+- **Go ≥ 1.21**（仅后端角色需要）
+- **Gateway 服务** 正常运行（右下角绿灯）
+- **Node.js ≥ 22**（WinClaw 内置）
+- **Python 3**（仅 PPT/Word/Excel 生成需要）
+
+---
+
+## 常见问题
+
+**Q: 可以只跑部分角色吗？**
+A: 这就是「✨ 自定义」模式的核心功能。勾选你要的角色，拖好顺序，执行即可。比如只选 PM + FE 就能快速出 Demo。
+
+**Q: 角色顺序可以随便排吗？**
+A: 可以。不过建议 PM 排第一位（定义需求），FE 排最后（生成预览）。其他顺序自由拖拽。
+
+**Q: Gateway 是什么？**
+A: WinClaw 的后端 AI 服务。右下角绿灯 = 正常。意外关闭会自动重启。
+
+**Q: 怎么修改某个角色的产出？**
+A: 点击角色头像 → 独立对话面板 → 输入修改意见 → 发送 → 应用到产出。
+
+**Q: 预览空白怎么办？**
+A: 点「返回工作流」杀掉旧服务 → 重新点「预览」→ 系统自动启动项目前端服务。
+
+**Q: 什么时候不该用专家团？**
+A: 如果你只需要简单对话（比如问一个问题、翻译一段文字），直接用聊天窗口更快捷。专家团适合需要多角色协作的复杂开发任务。
+
+**Q: 执行失败了怎么办？**
+A: 1) 检查右下角 Gateway 是否绿灯 2) 点「修复」按钮让 AI 自动重试 3) 手动编辑角色产出后继续 4) 查看文档模式仔细检查各角色输出。
+
+---
+
+## 技术约束
+
+- Go 后端无数据库，纯内存假数据
+- 前端：React 19 + TypeScript + Tailwind CSS 4
+- 统一返回格式：`{ code, msg, data }`
+- HTML Demo 无外部 CDN 依赖，离线可用
+- 所有输出使用中文
+
+---
+
+## 规则
+
+1. 角色按流水线顺序执行，不跳过（自定义模式除外）
+2. 每个角色只接收上游产出，上下文精简
+3. 每步可暂停检查（自动模式除外）
+4. 修复循环 1-3 轮可配置
+5. AI 有疑问自动暂停等确认
+6. 所有输出必须具体真实，禁止概括描述
+
+---
+
+*产地 WinClaw · 作者 klaus.sun*
+
+[GitHub](https://github.com/klaus-sun/winclaw) · [反馈](https://github.com/klaus-sun/winclaw/issues)

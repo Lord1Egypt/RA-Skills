@@ -1,35 +1,50 @@
 ---
-name: "web-security"
-description: "Indexed by skills.sh from academind/ai-config"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "academind"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/academind/ai-config/web-security"
-sourceUrl: "https://skills.sh/academind/ai-config/web-security"
+name: web-security
+description: Enforce web security and avoid security vulnerabilities
 ---
 
-# web-security
+# Web Security
 
-> Indexed by skills.sh from academind/ai-config
+We treat **web security as a core requirement**, not an afterthought.
+Assume hostile input and untrusted environments by default.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** academind
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/academind/ai-config/web-security`
-- **Source URL:** [https://skills.sh/academind/ai-config/web-security](https://skills.sh/academind/ai-config/web-security)
+## Core Principles
 
-## Overview
+- **NEVER** trust user input
+- **ALWAYS** validate and sanitize data at boundaries
+- Prefer secure defaults over configurability
 
+## XSS & Injection
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/academind/ai-config/web-security
-```
+- **AVOID** `dangerouslySetInnerHTML` and raw HTML injection
+- Escape and encode dynamic content properly
+- Never interpolate untrusted data into HTML, CSS, or JS contexts
+- Ensure SQL injection protection
+
+## Authentication & Authorization
+
+- Do not store secrets or tokens in insecure locations
+- **AVOID** localStorage for sensitive credentials when possible
+- Use HTTP-only, secure cookies where applicable
+- Always enforce authorization on the server
+
+## Browser Security APIs
+
+- Respect CORS, CSP, and browser security boundaries
+- Use Content Security Policy to restrict script and resource execution
+- Avoid inline scripts and styles when CSP is enabled
+
+## Data Handling
+
+- Minimize data exposure
+- Do not log sensitive information
+
+## Dependencies & Supply Chain
+
+- Avoid unnecessary packages
+- Treat third-party code as untrusted input
+
+## General Principles
+
+- Simplicity reduces attack surface
+- If unsure, choose the more restrictive option

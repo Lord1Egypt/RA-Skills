@@ -1,0 +1,6 @@
+# Step 0–5 仅使用 Python 标准库，无需安装任何第三方依赖。
+# Python >= 3.8 即可直接运行 file_transfer.py 和 submit_and_poll.py。
+#
+# Step 6（结果修改）需要 openpyxl 用于读写 Excel 文件：
+#   pip install openpyxl
+# 如果用户未安装，SKILL.md Step 6 / MODIFICATION.md 中会提示执行上述命令。

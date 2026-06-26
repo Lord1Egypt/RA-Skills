@@ -1,0 +1,23 @@
+{
+  "skill_name": "magnet-searcher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我找 沙丘2 (Dune Part Two) 的磁力链接",
+      "expected_output": "返回一个有效的 magnet 链接，格式为 magnet:?xt=urn:btih:...",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Find the torrent download link for the movie Poor Things (2023)",
+      "expected_output": "返回一个有效的 magnet 链接",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "帮我搜索 奥本海默 2023 年的电影，要能下载的链接",
+      "expected_output": "返回一个有效的 magnet 链接",
+      "files": []
+    }
+  ]
+}

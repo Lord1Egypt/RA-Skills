@@ -1,0 +1,3798 @@
+{
+  "CN": {
+    "code": "CN",
+    "name_cn": "中国",
+    "name_en": "China",
+    "alpha3": "CHN",
+    "continent": "亚洲",
+    "capital_cn": "北京",
+    "capital_en": "Beijing",
+    "currency_cn": "人民币",
+    "currency_en": "Chinese Yuan",
+    "currency_code": "CNY",
+    "currency_symbol": "¥",
+    "timezone": "Asia/Shanghai",
+    "timezone_offset": "+8",
+    "language_cn": "中文",
+    "language_en": "Chinese",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "C",
+      "I"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "110",
+      "ambulance": "120",
+      "fire": "119"
+    },
+    "visa_cn": {
+      "chinese_citizen": false,
+      "type_cn": "公民无需签证",
+      "type_en": "Citizen - No visa needed",
+      "processing_days": "—",
+      "fee_cn": "—",
+      "fee_en": "—",
+      "validity_cn": "—",
+      "validity_en": "—"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内公共场所禁烟，有吸烟区",
+      "drug_penalty": "极为严厉，吸毒贩毒最高死刑",
+      "photo_restriction": "军事设施、政府机关、边境口岸禁止拍照",
+      "tipping_culture_cn": "无小费文化，高档餐厅有时加收10-15%服务费",
+      "public_behavior": "公共场合禁止大声喧哗、随地吐痰、乱扔垃圾",
+      "driving_license_cn": "外国人需国际驾照或换领中国驾照"
+    },
+    "culture_cn": {
+      "greeting": "握手或点头，称呼职务+姓氏",
+      "dining_etiquette": "共用菜用公筷，点菜时注意主客之分，敬酒时杯沿低于长辈",
+      "taboo_cn": "避免谈论政治敏感话题、西藏/新疆/台湾问题，不要送钟/伞/梨",
+      "dress_code": "商务着装着正装，日常穿着随意",
+      "gift_cn": "高档茶叶、茅台、保健品受欢迎，红包用吉利数字"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "火车站假票、出租车绕路、街头棋局骗局、电信诈骗",
+      "night_safety": "大城市夜间较为安全，主要街道有监控",
+      "female_safety": "较高，但夜间建议结伴出行",
+      "emergency_words": "救命！/ 报警！/ 请帮我叫救护车",
+      "must_have_apps": "微信、支付宝、高德地图、滴滴出行、美团"
+    },
+    "cost_level_cn": "中低",
+    "cost_level_en": "Low-Medium",
+    "avg_meal_cn": "¥30-80",
+    "avg_hotel_cn": "¥200-500/晚"
+  },
+  "US": {
+    "code": "US",
+    "name_cn": "美国",
+    "name_en": "United States",
+    "alpha3": "USA",
+    "continent": "北美洲",
+    "capital_cn": "华盛顿",
+    "capital_en": "Washington D.C.",
+    "currency_cn": "美元",
+    "currency_en": "US Dollar",
+    "currency_code": "USD",
+    "currency_symbol": "$",
+    "timezone": "America/New_York",
+    "timezone_offset": "-5",
+    "language_cn": "英语",
+    "language_en": "English",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "B"
+    ],
+    "voltage": "120V",
+    "emergency_cn": {
+      "police": "911",
+      "ambulance": "911",
+      "fire": "911"
+    },
+    "china_embassy_cn": {
+      "city": "华盛顿",
+      "address": "3505 International Place NW, Washington DC 20008",
+      "phone": "+1-202-495-2266",
+      "after_hours": "+1-202-669-8024",
+      "website": "http://www.china-embassy.org"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "纽约",
+        "phone": "+1-212-244-9392",
+        "region": "东北部"
+      },
+      {
+        "city": "旧金山",
+        "phone": "+1-415-452-4114",
+        "region": "西海岸"
+      },
+      {
+        "city": "洛杉矶",
+        "phone": "+1-213-807-8088",
+        "region": "西海岸"
+      },
+      {
+        "city": "芝加哥",
+        "phone": "+1-312-803-0095",
+        "region": "中西部"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需B1/B2签证",
+      "type_en": "B1/B2 visa required",
+      "processing_days": "3-7",
+      "fee_cn": "$185",
+      "fee_en": "$185",
+      "validity_cn": "10年多次",
+      "validity_en": "10-year multi-entry"
+    },
+    "laws_cn": {
+      "drinking_age": 21,
+      "smoking_regulation": "21岁以上，室内公共场所全面禁烟",
+      "drug_penalty": "极为严厉，联邦层面大麻仍属非法，贩毒重罪最低10年",
+      "photo_restriction": "军事设施、政府建筑、机场安检区禁止拍照",
+      "tipping_culture_cn": "必须给小费！餐厅15-20%，酒店行李$1-2/件，出租车10-15%",
+      "public_behavior": "公共场所饮酒违法（纸袋装也不行），插队是大忌",
+      "driving_license_cn": "大部分州可使用中国驾照+NAATI翻译件，纽约/加州等30天有效"
+    },
+    "culture_cn": {
+      "greeting": "握手，目光接触表示真诚，称呼名字或Mr./Ms.",
+      "dining_etiquette": "AA制非常普遍，餐前等所有人到齐再吃，不要用手直接拿食物",
+      "taboo_cn": "⚠️ 避免询问收入/年龄/婚姻状况/政治立场，不要插队",
+      "dress_code": "商务正装，日常休闲装为主",
+      "gift_cn": "受邀做客带红酒或甜点，避免贵重礼品显得有压力"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "假警察查证件、出租车宰客、街头三张牌骗局、ATM盗刷",
+      "night_safety": "大城市部分地区夜间不安全，避免独自走暗巷",
+      "female_safety": "中等，避免夜间独行，地铁注意拥挤时咸猪手",
+      "emergency_words": "Help! / Call the police! / I need a doctor",
+      "must_have_apps": "Uber、Google Maps、Google Translate、Yelp、Venmo"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "$15-25",
+    "avg_hotel_cn": "$120-200/晚"
+  },
+  "GB": {
+    "code": "GB",
+    "name_cn": "英国",
+    "name_en": "United Kingdom",
+    "alpha3": "GBR",
+    "continent": "欧洲",
+    "capital_cn": "伦敦",
+    "capital_en": "London",
+    "currency_cn": "英镑",
+    "currency_en": "Pound Sterling",
+    "currency_code": "GBP",
+    "currency_symbol": "£",
+    "timezone": "Europe/London",
+    "timezone_offset": "+0",
+    "language_cn": "英语",
+    "language_en": "English",
+    "driving_side": "left",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "999",
+      "ambulance": "999",
+      "fire": "999"
+    },
+    "china_embassy_cn": {
+      "city": "伦敦",
+      "address": "49-51 Portland Place, London W1B 1JL",
+      "phone": "+44-20-7299-4049",
+      "after_hours": "+44-20-7436-7896",
+      "website": "http://www.chinese-embassy.org.uk"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "曼彻斯特",
+        "phone": "+44-161-224-7443",
+        "region": "英格兰北部"
+      },
+      {
+        "city": "爱丁堡",
+        "phone": "+44-131-618-2960",
+        "region": "苏格兰"
+      },
+      {
+        "city": "贝尔法斯特",
+        "phone": "+44-28-9057-2000",
+        "region": "北爱尔兰"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需标准访客签证",
+      "type_en": "Standard Visitor visa required",
+      "processing_days": "15-30",
+      "fee_cn": "£100",
+      "fee_en": "£100",
+      "validity_cn": "2年多次（可申请5/10年）",
+      "validity_en": "2-year multi (5/10 year options)"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内公共场所全面禁烟，公共交通禁烟",
+      "drug_penalty": "严厉，A类毒品最高无期徒刑",
+      "photo_restriction": "军事设施、皇室住所内部禁止拍照",
+      "tipping_culture_cn": "可选，高档餐厅10-15%，酒吧不用给",
+      "public_behavior": "排队是国民文化，插队会遭白眼。公共场所饮酒法律允许但不能醉酒闹事",
+      "driving_license_cn": "⚠️ 靠左行驶！中国驾照+翻译件可用12个月"
+    },
+    "culture_cn": {
+      "greeting": "握手，保持适当距离，说'How do you do?'/'Nice to meet you'",
+      "dining_etiquette": "刀叉用餐，左手持叉右手持刀，吃完后将刀叉并排放",
+      "taboo_cn": "⚠️ 不要问皇室事务、不要插队、不要讨论北爱尔兰问题",
+      "dress_code": "商务正式，日常随性但讲究得体",
+      "gift_cn": "红酒、巧克力、鲜花受欢迎，去别人家带瓶酒或甜点"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "街头假慈善捐款、出租车高价、假警察要求查钱包",
+      "night_safety": "大城市夜间注意，避免独自走偏僻小巷",
+      "female_safety": "中等，夜间公共交通注意安全",
+      "emergency_words": "Help! / Call the police! / I need a doctor",
+      "must_have_apps": "Uber、Google Maps、Trainline、Just Eat、Monzo"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "£12-20",
+    "avg_hotel_cn": "£100-200/晚"
+  },
+  "JP": {
+    "code": "JP",
+    "name_cn": "日本",
+    "name_en": "Japan",
+    "alpha3": "JPN",
+    "continent": "亚洲",
+    "capital_cn": "东京",
+    "capital_en": "Tokyo",
+    "currency_cn": "日元",
+    "currency_en": "Japanese Yen",
+    "currency_code": "JPY",
+    "currency_symbol": "¥",
+    "timezone": "Asia/Tokyo",
+    "timezone_offset": "+9",
+    "language_cn": "日语",
+    "language_en": "Japanese",
+    "driving_side": "left",
+    "plug_type": [
+      "A",
+      "B"
+    ],
+    "voltage": "100V",
+    "emergency_cn": {
+      "police": "110",
+      "ambulance": "119",
+      "fire": "119"
+    },
+    "china_embassy_cn": {
+      "city": "东京",
+      "address": "〒106-0046 东京都港区元麻布3-4-33",
+      "phone": "+81-3-3403-3388",
+      "after_hours": "+81-3-3403-3064",
+      "website": "http://www.china-embassy.or.jp"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "大阪",
+        "phone": "+81-6-6445-9481",
+        "region": "关西"
+      },
+      {
+        "city": "福冈",
+        "phone": "+81-92-713-1121",
+        "region": "九州"
+      },
+      {
+        "city": "札幌",
+        "phone": "+81-11-563-5563",
+        "region": "北海道"
+      },
+      {
+        "city": "名古屋",
+        "phone": "+81-52-932-1098",
+        "region": "中部"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "5-7",
+      "fee_cn": "免费（旅行社代办费约¥200-500）",
+      "fee_en": "Free (agency fee ¥200-500)",
+      "validity_cn": "单次/3年/5年多次",
+      "validity_en": "Single/3yr/5yr multi-entry"
+    },
+    "laws_cn": {
+      "drinking_age": 20,
+      "smoking_regulation": "⚠️ 街上禁止边走边吸烟！有指定吸烟区",
+      "drug_penalty": "⚠️ 极其严厉！大麻也不行，外国人涉毒直接遣返+禁止入境",
+      "photo_restriction": "⚠️ 神社寺庙内部、歌舞伎町部分区域、商店内禁止拍照",
+      "tipping_culture_cn": "⚠️ 不要给小费！会给店员造成困扰",
+      "public_behavior": "⚠️ 地铁/公交车内禁打电话，禁大声说话。排队有序是铁律",
+      "driving_license_cn": "⚠️ 靠左行驶！中国驾照不能直接使用，需考日本驾照或国际驾照"
+    },
+    "culture_cn": {
+      "greeting": "鞠躬（角度表示尊重程度），避免握手/拥抱",
+      "dining_etiquette": "吃面发出声音是礼貌！筷子不能竖插在饭上，不能互相用筷子夹菜",
+      "taboo_cn": "⚠️ 不要穿鞋进屋（玄关换拖鞋），不要直接对视太久，不要当众擤鼻涕",
+      "dress_code": "商务必须西装，日常干净整洁即可，进入寺庙需遮肩盖腿",
+      "gift_cn": "讲究包装，避免送白色（丧事）或4的倍数。土特产（手信）是文化"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少，注意车站附近拉客的酒吧、居酒屋，账单可能虚高",
+      "night_safety": "全球最安全国家之一，深夜一人走路也没问题",
+      "female_safety": "极高，女性独行非常安全，注意早晚高峰地铁",
+      "emergency_words": "助けて！/ 警察を呼んでください！/ 医者を呼んで！",
+      "must_have_apps": "Google Maps（日本最好用）、Suica/Pasmo、乘换案内、食べログ"
+    },
+    "cost_level_cn": "中高",
+    "cost_level_en": "Medium-High",
+    "avg_meal_cn": "¥800-2000",
+    "avg_hotel_cn": "¥8000-15000/晚"
+  },
+  "KR": {
+    "code": "KR",
+    "name_cn": "韩国",
+    "name_en": "South Korea",
+    "alpha3": "KOR",
+    "continent": "亚洲",
+    "capital_cn": "首尔",
+    "capital_en": "Seoul",
+    "currency_cn": "韩元",
+    "currency_en": "South Korean Won",
+    "currency_code": "KRW",
+    "currency_symbol": "₩",
+    "timezone": "Asia/Seoul",
+    "timezone_offset": "+9",
+    "language_cn": "韩语",
+    "language_en": "Korean",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "119",
+      "fire": "119"
+    },
+    "china_embassy_cn": {
+      "city": "首尔",
+      "address": "首尔市中区明洞2街27番地",
+      "phone": "+82-2-738-1038",
+      "after_hours": "+82-2-755-0453",
+      "website": "http://www.chinaemb.or.kr"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "釜山",
+        "phone": "+82-51-743-7985",
+        "region": "釜山/庆尚南道"
+      },
+      {
+        "city": "光州",
+        "phone": "+82-62-385-8873",
+        "region": "全罗南道"
+      },
+      {
+        "city": "济州",
+        "phone": "+82-64-749-8803",
+        "region": "济州岛"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证（济州岛免签30天）",
+      "type_en": "Tourist visa required (Jeju 30-day visa-free)",
+      "processing_days": "5-7",
+      "fee_cn": "单次约¥200-400",
+      "fee_en": "Single ~$30-60",
+      "validity_cn": "单次/5年多次",
+      "validity_en": "Single/5yr multi-entry"
+    },
+    "laws_cn": {
+      "drinking_age": 19,
+      "smoking_regulation": "室内禁烟，街头指定吸烟区，违反罚款",
+      "drug_penalty": "⚠️ 极其严厉！大麻在韩国同样违法，外国人涉毒立即遣返",
+      "photo_restriction": "军事设施、总统府（青瓦台）部分区域禁止拍照",
+      "tipping_culture_cn": "基本不需要给小费，高档酒店/餐厅可能加收10%服务费",
+      "public_behavior": "地铁有老弱病残孕专座，即使空着也不要坐。排队文化重要",
+      "driving_license_cn": "中国驾照+韩文翻译件（需韩国公证）可使用"
+    },
+    "culture_cn": {
+      "greeting": "鞠躬+握手，双手接递物品（尤其长辈）",
+      "dining_etiquette": "长辈动筷后才能吃，喝酒时侧身转脸喝，不能给自己倒酒",
+      "taboo_cn": "⚠️ 不要用红色笔写人名（死人用），不要在长辈面前翘腿",
+      "dress_code": "商务着装着正装，日常韩式打扮时尚",
+      "gift_cn": "高档水果（韩国水果贵）、红参产品受欢迎"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "明洞/东大门假货、出租车夜间附加费、换钱所汇率陷阱",
+      "night_safety": "较高，江南/弘大等区域夜生活丰富安全",
+      "female_safety": "较高，注意酒托酒吧",
+      "emergency_words": "도와주세요!/ 경찰 불러주세요!/ 의사 불러주세요!",
+      "must_have_apps": "Naver Map、KakaoMap、KakaoTaxi、Papago翻译"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "₩8000-15000",
+    "avg_hotel_cn": "₩80000-150000/晚"
+  },
+  "DE": {
+    "code": "DE",
+    "name_cn": "德国",
+    "name_en": "Germany",
+    "alpha3": "DEU",
+    "continent": "欧洲",
+    "capital_cn": "柏林",
+    "capital_en": "Berlin",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Berlin",
+    "timezone_offset": "+1",
+    "language_cn": "德语",
+    "language_en": "German",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "110",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "柏林",
+      "address": "Märkisches Ufer 54, 10179 Berlin",
+      "phone": "+49-30-27588-0",
+      "after_hours": "+49-30-27588-111",
+      "website": "http://www.china-botschaft.de"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "汉堡",
+        "phone": "+49-40-8227-600",
+        "region": "北部"
+      },
+      {
+        "city": "慕尼黑",
+        "phone": "+49-89-1730-1618",
+        "region": "巴伐利亚"
+      },
+      {
+        "city": "法兰克福",
+        "phone": "+49-69-7508-5530",
+        "region": "黑森州"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需申根签证",
+      "type_en": "Schengen visa required",
+      "processing_days": "15-30",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批，通常3个月-5年",
+      "validity_en": "Per itinerary, usually 3mo-5yr"
+    },
+    "laws_cn": {
+      "drinking_age": "16(啤酒/葡萄酒)/18(烈酒)",
+      "smoking_regulation": "室内公共场所禁烟，有吸烟室",
+      "drug_penalty": "严厉，大麻部分州合法但公共场所禁止",
+      "photo_restriction": "军事设施、政府机关、核电站禁止拍照",
+      "tipping_culture_cn": "一般给5-10%即可，说'stimmt so'（不用找了）",
+      "public_behavior": "⚠️ 周日商店全部关门！红灯过马路会被路人骂",
+      "driving_license_cn": "⚠️ 中国驾照+德语宣誓翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手+目光直视，用Mr./Ms.+姓氏称呼",
+      "dining_etiquette": "刀叉用餐，面包很重要，吃土豆是传统",
+      "taboo_cn": "⚠️ 不要谈论纳粹/二战（严肃场合），不要提前祝寿",
+      "dress_code": "商务必穿正装，日常舒适实用风格",
+      "gift_cn": "精装书、高品质厨具餐具受欢迎"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "车站假票、街头签名骗局（签了就要钱）",
+      "night_safety": "较高，但大城市火车站周边夜间注意",
+      "female_safety": "较高，注意醉酒人群",
+      "emergency_words": "Hilfe!/ Rufen Sie die Polizei!/ Ich brauche einen Arzt!",
+      "must_have_apps": "DB Navigator（火车）、Google Maps、Lieferando"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "€10-18",
+    "avg_hotel_cn": "€80-150/晚"
+  },
+  "FR": {
+    "code": "FR",
+    "name_cn": "法国",
+    "name_en": "France",
+    "alpha3": "FRA",
+    "continent": "欧洲",
+    "capital_cn": "巴黎",
+    "capital_en": "Paris",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Paris",
+    "timezone_offset": "+1",
+    "language_cn": "法语",
+    "language_en": "French",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "E"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "17",
+      "ambulance": "15",
+      "fire": "18"
+    },
+    "china_embassy_cn": {
+      "city": "巴黎",
+      "address": "20 Rue de Washington, 75008 Paris",
+      "phone": "+33-1-53-75-88-05",
+      "after_hours": "+33-1-53-75-88-06",
+      "website": "http://www.amb-chine.fr"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "里昂",
+        "phone": "+33-4-37-24-11-05",
+        "region": "里昂/奥弗涅"
+      },
+      {
+        "city": "马赛",
+        "phone": "+33-4-91-32-00-05",
+        "region": "南部"
+      },
+      {
+        "city": "斯特拉斯堡",
+        "phone": "+33-3-88-35-32-34",
+        "region": "东部"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需申根签证",
+      "type_en": "Schengen visa required",
+      "processing_days": "15-45",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "Per itinerary"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内公共场所禁烟，咖啡馆露台可吸烟",
+      "drug_penalty": "严厉，持有/使用毒品可判1年+罚款",
+      "photo_restriction": "埃菲尔铁塔夜景灯光秀照片商用需版权许可（奇怪！）",
+      "tipping_culture_cn": "服务费已包含，可额外留1-2€小费",
+      "public_behavior": "⚠️ 在法国不讲法语会被认为不礼貌，至少说Bonjour！",
+      "driving_license_cn": "中国驾照+官方翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼（左右各一次），关系好时使用",
+      "dining_etiquette": "面包直接放桌上，不要放盘子里。切奶酪时不要切尖端",
+      "taboo_cn": "⚠️ 不要批评法餐/葡萄酒，不要谈论钱",
+      "dress_code": "讲究时尚，穿得随便会被轻视",
+      "gift_cn": "花（避开白花和菊花）、红酒、巧克力"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "⚠️ 巴黎吉普赛人团伙作案：签名骗局、金戒指骗局、地铁掏包",
+      "night_safety": "巴黎部分地区（北站/东站/93省）夜间极其危险",
+      "female_safety": "中等偏低，注意地铁和旅游区",
+      "emergency_words": "Au secours!/ Appelez la police!/ J'ai besoin d'un médecin!",
+      "must_have_apps": "Uber、Citymapper、SNCF Connect、The Fork"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "€15-30",
+    "avg_hotel_cn": "€100-200/晚"
+  },
+  "IT": {
+    "code": "IT",
+    "name_cn": "意大利",
+    "name_en": "Italy",
+    "alpha3": "ITA",
+    "continent": "欧洲",
+    "capital_cn": "罗马",
+    "capital_en": "Rome",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Rome",
+    "timezone_offset": "+1",
+    "language_cn": "意大利语",
+    "language_en": "Italian",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F",
+      "L"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "罗马",
+      "address": "Via Bruxelles, 56, 00198 Roma",
+      "phone": "+39-06-9652-4200",
+      "after_hours": "+39-06-9652-4220",
+      "website": "http://www.ambasciatacinese.it"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "米兰",
+        "phone": "+39-02-569-4106",
+        "region": "伦巴第"
+      },
+      {
+        "city": "佛罗伦萨",
+        "phone": "+39-055-505-8188",
+        "region": "托斯卡纳"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需申根签证",
+      "type_en": "Schengen visa required",
+      "processing_days": "15-30",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "Per itinerary"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内公共场所禁烟",
+      "drug_penalty": "严厉，持有毒品可判监禁",
+      "photo_restriction": "教堂内部部分禁止闪光灯拍照",
+      "tipping_culture_cn": "不强制，服务费通常已含，可留点零钱",
+      "public_behavior": "⚠️ 在教堂内必须安静，不能穿短裤/露肩",
+      "driving_license_cn": "中国驾照+官方意大利语翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼（左右各一次），熟人之间",
+      "dining_etiquette": "意面不要用刀切！面包不要放酱汁里。卡布奇诺只在早上喝",
+      "taboo_cn": "⚠️ 不要在餐厅要求加奶酪到海鲜意面上（大忌！）",
+      "dress_code": "讲究时尚，意大利人很在意穿着",
+      "gift_cn": "红酒、高品质橄榄油"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "⚠️ 罗马/佛罗伦萨景点附近：喂鸽子要钱、假导游、玫瑰花骗局",
+      "night_safety": "大城市火车站周边夜间需注意",
+      "female_safety": "中等，注意搭讪骚扰",
+      "emergency_words": "Aiuto!/ Chiami la polizia!/ Ho bisogno di un medico!",
+      "must_have_apps": "Trenitalia、Italo、Google Maps、The Fork"
+    },
+    "cost_level_cn": "中高",
+    "cost_level_en": "Medium-High",
+    "avg_meal_cn": "€12-22",
+    "avg_hotel_cn": "€80-180/晚"
+  },
+  "SG": {
+    "code": "SG",
+    "name_cn": "新加坡",
+    "name_en": "Singapore",
+    "alpha3": "SGP",
+    "continent": "亚洲",
+    "capital_cn": "新加坡",
+    "capital_en": "Singapore",
+    "currency_cn": "新加坡元",
+    "currency_en": "Singapore Dollar",
+    "currency_code": "SGD",
+    "currency_symbol": "S$",
+    "timezone": "Asia/Singapore",
+    "timezone_offset": "+8",
+    "language_cn": "英语/华语/马来语/泰米尔语",
+    "language_en": "English/Chinese/Malay/Tamil",
+    "driving_side": "left",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "999",
+      "ambulance": "995",
+      "fire": "995"
+    },
+    "china_embassy_cn": {
+      "city": "新加坡",
+      "address": "150 Tanglin Road, Singapore 247969",
+      "phone": "+65-6471-2117",
+      "after_hours": "+65-6471-2117",
+      "website": "http://www.chinaembassy.org.sg"
+    },
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "3-7",
+      "fee_cn": "S$30",
+      "fee_en": "S$30",
+      "validity_cn": "多次/单次，一般2年",
+      "validity_en": "Multi/single, usually 2yr"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "⚠️ 极其严格！大部分室内外公共场所禁烟，仅指定点可吸，罚款S$200起",
+      "drug_penalty": "⚠️ 死刑！贩运海洛因500g以上即死刑，大麻也极为严厉",
+      "photo_restriction": "军事设施、政府建筑禁止拍照",
+      "tipping_culture_cn": "不鼓励给小费，酒店/餐厅账单已含10%服务费",
+      "public_behavior": "⚠️ 吐痰罚款S$1000！乱扔垃圾罚款S$300！地铁内吃东西罚款S$500！公共场所裸体（含家里窗口被看到）也违法！",
+      "driving_license_cn": "中国驾照+翻译件可用1年，需办理国际驾照认证"
+    },
+    "culture_cn": {
+      "greeting": "握手，华人之间可用华语打招呼",
+      "dining_etiquette": "小贩中心（Hawker Centre）是国粹，用纸巾占座是文化",
+      "taboo_cn": "⚠️ 不要讨论种族/宗教问题，不要用食指指人",
+      "dress_code": "日常轻松凉爽，商务着装着正装",
+      "gift_cn": "水果篮、茶叶受欢迎"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少，注意小贩中心纸巾占座被挪走",
+      "night_safety": "全球最安全国家之一，深夜出门也完全没问题",
+      "female_safety": "极高，安全系数顶尖",
+      "emergency_words": "Help!/ Call the police!/ I need a doctor",
+      "must_have_apps": "Grab、Google Maps、SG MRT"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "S$5-15（小贩中心）/ S$20-50（餐厅）",
+    "avg_hotel_cn": "S$150-300/晚"
+  },
+  "AU": {
+    "code": "AU",
+    "name_cn": "澳大利亚",
+    "name_en": "Australia",
+    "alpha3": "AUS",
+    "continent": "大洋洲",
+    "capital_cn": "堪培拉",
+    "capital_en": "Canberra",
+    "currency_cn": "澳元",
+    "currency_en": "Australian Dollar",
+    "currency_code": "AUD",
+    "currency_symbol": "A$",
+    "timezone": "Australia/Sydney",
+    "timezone_offset": "+10",
+    "language_cn": "英语",
+    "language_en": "English",
+    "driving_side": "left",
+    "plug_type": [
+      "I"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "000",
+      "ambulance": "000",
+      "fire": "000"
+    },
+    "china_embassy_cn": {
+      "city": "堪培拉",
+      "address": "15 Coronation Drive, Yarralumla, ACT 2600",
+      "phone": "+61-2-6228-8999",
+      "after_hours": "+61-2-6228-8999",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [
+      {
+        "city": "悉尼",
+        "phone": "+61-2-8595-8000",
+        "region": "新南威尔士"
+      },
+      {
+        "city": "墨尔本",
+        "phone": "+61-3-9822-0606",
+        "region": "维多利亚"
+      }
+    ],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天",
+      "fee_cn": "A$145",
+      "fee_en": "A$145",
+      "validity_cn": "1年/3年/5年多次",
+      "validity_en": "1年/3年/5年多次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内公共场所禁烟，部分室外也禁",
+      "drug_penalty": "极为严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制，高档餐厅10%",
+      "public_behavior": "遵守当地公共秩序",
+      "driving_license_cn": "靠左！中国驾照+NAATI翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手，轻松随意",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要讨论原住民问题、不要开玩笑说澳洲口音",
+      "dress_code": "日常非常随意",
+      "gift_cn": "红酒、啤酒受欢迎"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "极少，注意旅游区停车罚款骗局",
+      "night_safety": "非常安全",
+      "female_safety": "高",
+      "emergency_words": "Help!/Call 000!",
+      "must_have_apps": "Uber、Google Maps、PTV"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "A$18-30",
+    "avg_hotel_cn": "A$120-200/晚"
+  },
+  "NZ": {
+    "code": "NZ",
+    "name_cn": "新西兰",
+    "name_en": "New Zealand",
+    "alpha3": "NZL",
+    "continent": "大洋洲",
+    "capital_cn": "惠灵顿",
+    "capital_en": "Wellington",
+    "currency_cn": "新西兰元",
+    "currency_en": "New Zealand Dollar",
+    "currency_code": "NZD",
+    "currency_symbol": "NZ$",
+    "timezone": "Pacific/Auckland",
+    "timezone_offset": "+12",
+    "language_cn": "英语/毛利语",
+    "language_en": "English/Maori",
+    "driving_side": "left",
+    "plug_type": [
+      "I"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "111",
+      "ambulance": "111",
+      "fire": "111"
+    },
+    "china_embassy_cn": {
+      "city": "惠灵顿",
+      "address": "2-6 Glenmore Street, Kelburn, Wellington 6012",
+      "phone": "+64-4-474-9621",
+      "after_hours": [
+        {
+          "city": "奥克兰",
+          "phone": "+64-9-525-0586",
+          "region": "北岛"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天",
+      "fee_cn": "NZ$246",
+      "fee_en": "NZ$246",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内外公共场所全面禁烟",
+      "drug_penalty": "极为严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "遵守当地公共秩序",
+      "driving_license_cn": "靠左！中国驾照+翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免政治/宗教话题",
+      "dress_code": "日常得体",
+      "gift_cn": "小礼品"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Help!/Call 111!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "NZ$15-25",
+    "avg_hotel_cn": "NZ$100-180/晚"
+  },
+  "CA": {
+    "code": "CA",
+    "name_cn": "加拿大",
+    "name_en": "Canada",
+    "alpha3": "CAN",
+    "continent": "北美洲",
+    "capital_cn": "渥太华",
+    "capital_en": "Ottawa",
+    "currency_cn": "加元",
+    "currency_en": "Canadian Dollar",
+    "currency_code": "CAD",
+    "currency_symbol": "C$",
+    "timezone": "America/Toronto",
+    "timezone_offset": "-5",
+    "language_cn": "英语/法语",
+    "language_en": "English/French",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "B"
+    ],
+    "voltage": "120V",
+    "emergency_cn": {
+      "police": "911",
+      "ambulance": "911",
+      "fire": "911"
+    },
+    "china_embassy_cn": {
+      "city": "渥太华",
+      "address": "515 St. Patrick Street, Ottawa, ON K1N 5H3",
+      "phone": "+1-613-789-3434",
+      "after_hours": [
+        {
+          "city": "多伦多",
+          "phone": "+1-416-964-7260",
+          "region": "安大略省"
+        },
+        {
+          "city": "温哥华",
+          "phone": "+1-604-734-7492",
+          "region": "BC省"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天",
+      "fee_cn": "C$100",
+      "fee_en": "C$100",
+      "validity_cn": "10年多次",
+      "validity_en": "10年多次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "全面禁烟，各省规定不同",
+      "drug_penalty": "大麻合法但有限制",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "必须给小费！餐厅15-20%",
+      "public_behavior": "遵守当地公共秩序",
+      "driving_license_cn": "中国驾照+翻译件可用60-90天"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免政治/宗教话题",
+      "dress_code": "日常得体",
+      "gift_cn": "小礼品"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "极少",
+      "night_safety": "大城市夜间注意",
+      "female_safety": "高",
+      "emergency_words": "Help!/Call 911!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "C$15-25",
+    "avg_hotel_cn": "C$120-200/晚"
+  },
+  "TH": {
+    "code": "TH",
+    "name_cn": "泰国",
+    "name_en": "Thailand",
+    "alpha3": "THA",
+    "continent": "亚洲",
+    "capital_cn": "曼谷",
+    "capital_en": "Bangkok",
+    "currency_cn": "泰铢",
+    "currency_en": "Thai Baht",
+    "currency_code": "THB",
+    "currency_symbol": "฿",
+    "timezone": "Asia/Bangkok",
+    "timezone_offset": "+7",
+    "language_cn": "泰语",
+    "language_en": "Thai",
+    "driving_side": "left",
+    "plug_type": [
+      "A",
+      "B",
+      "C"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "191",
+      "ambulance": "1669",
+      "fire": "199"
+    },
+    "china_embassy_cn": {
+      "city": "曼谷",
+      "address": "57 Rachadaphisek Road, Din Daeng, Bangkok 10400",
+      "phone": "+66-2-245-0088",
+      "after_hours": [
+        {
+          "city": "清迈",
+          "phone": "+66-53-276-125",
+          "region": "北部"
+        },
+        {
+          "city": "宋卡",
+          "phone": "+66-74-322-034",
+          "region": "南部"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "落地签15-30天",
+      "fee_cn": "落地签2,000泰铢",
+      "fee_en": "落地签2,000泰铢",
+      "validity_cn": "15-30天(落地签)",
+      "validity_en": "15-30天(落地签)"
+    },
+    "laws_cn": {
+      "drinking_age": 20,
+      "smoking_regulation": "公共场所禁烟，违者罚款",
+      "drug_penalty": "死刑！泰国毒品法律极其严厉",
+      "photo_restriction": "寺庙内部分区域禁止拍照",
+      "tipping_culture_cn": "一般给20-50泰铢",
+      "public_behavior": "不尊重皇室是刑事犯罪！国王画像前要保持敬意",
+      "driving_license_cn": "中国驾照+国际驾照认证件可用"
+    },
+    "culture_cn": {
+      "greeting": "合十礼",
+      "dining_etiquette": "勺子+叉子，筷子吃面",
+      "taboo_cn": "不要触摸他人头部，不要用脚指东西/人，不要批评皇室",
+      "dress_code": "进入寺庙必须遮肩盖腿",
+      "gift_cn": "水果篮、手工艺品"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "景点喂鸽子(收费)、出租车不打表、大皇宫关闭骗局",
+      "night_safety": "旅游区夜间安全",
+      "female_safety": "中等",
+      "emergency_words": "ช่วยด้วย!/ โทรหาตำรวจ!",
+      "must_have_apps": "Grab、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "50-200泰铢",
+    "avg_hotel_cn": "800-3000泰铢/晚"
+  },
+  "MY": {
+    "code": "MY",
+    "name_cn": "马来西亚",
+    "name_en": "Malaysia",
+    "alpha3": "MYS",
+    "continent": "亚洲",
+    "capital_cn": "吉隆坡",
+    "capital_en": "Kuala Lumpur",
+    "currency_cn": "林吉特",
+    "currency_en": "Malaysian Ringgit",
+    "currency_code": "MYR",
+    "currency_symbol": "RM",
+    "timezone": "Asia/Kuala_Lumpur",
+    "timezone_offset": "+8",
+    "language_cn": "马来语/英语/华语",
+    "language_en": "Malay/English/Chinese",
+    "driving_side": "left",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "240V",
+    "emergency_cn": {
+      "police": "999",
+      "ambulance": "999",
+      "fire": "999"
+    },
+    "china_embassy_cn": {
+      "city": "吉隆坡",
+      "address": "229 Jalan Ampang, 50450 Kuala Lumpur",
+      "phone": "+60-3-2142-8496",
+      "after_hours": [
+        {
+          "city": "古晋",
+          "phone": "+60-82-453-344",
+          "region": "砂拉越"
+        },
+        {
+          "city": "哥打基纳巴卢",
+          "phone": "+60-88-218-128",
+          "region": "沙巴"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3-5天",
+      "fee_cn": "约200元",
+      "fee_en": "约200元",
+      "validity_cn": "单次15-30天",
+      "validity_en": "单次15-30天"
+    },
+    "laws_cn": {
+      "drinking_age": 21,
+      "smoking_regulation": "公共场所全面禁烟",
+      "drug_penalty": "贩毒最低死刑！极为严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制，账单已含服务费",
+      "public_behavior": "马来人较多地区注意宗教敏感",
+      "driving_license_cn": "中国驾照+翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手(右手)",
+      "dining_etiquette": "右手抓饭/筷子/刀叉",
+      "taboo_cn": "马来人面前不要用左手递物/吃饭，不要摸小孩头",
+      "dress_code": "进入清真寺需遮头盖腿",
+      "gift_cn": "避免送酒给穆斯林"
+    },
+    "safety_cn": {
+      "level": "中高",
+      "common_scams": "旅游区出租车高价",
+      "night_safety": "吉隆坡夜间安全",
+      "female_safety": "中等",
+      "emergency_words": "Tolong!/ Panggil polis!",
+      "must_have_apps": "Grab、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "RM5-15",
+    "avg_hotel_cn": "RM80-200/晚"
+  },
+  "AE": {
+    "code": "AE",
+    "name_cn": "阿联酋",
+    "name_en": "United Arab Emirates",
+    "alpha3": "ARE",
+    "continent": "亚洲",
+    "capital_cn": "阿布扎比",
+    "capital_en": "Abu Dhabi",
+    "currency_cn": "迪拉姆",
+    "currency_en": "UAE Dirham",
+    "currency_code": "AED",
+    "currency_symbol": "د.إ",
+    "timezone": "Asia/Dubai",
+    "timezone_offset": "+4",
+    "language_cn": "阿拉伯语/英语",
+    "language_en": "Arabic/English",
+    "driving_side": "right",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "999",
+      "ambulance": "998",
+      "fire": "997"
+    },
+    "china_embassy_cn": {
+      "city": "阿布扎比",
+      "address": "Plot 26, Sector W22, Al Mushrif Area, Abu Dhabi",
+      "phone": "+971-2-443-4276",
+      "after_hours": [
+        {
+          "city": "迪拜",
+          "phone": "+971-4-394-4733",
+          "region": "迪拜"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3-5天",
+      "fee_cn": "约$80-120",
+      "fee_en": "约$80-120",
+      "validity_cn": "30天单次",
+      "validity_en": "30天单次"
+    },
+    "laws_cn": {
+      "drinking_age": 21,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "零容忍！少量持有即长期监禁",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "一般不强制",
+      "public_behavior": "公共场所不得饮酒(仅限酒店)，公共亲热可能被捕",
+      "driving_license_cn": "中国驾照+翻译件可用"
+    },
+    "culture_cn": {
+      "greeting": "握手+碰鼻礼",
+      "dining_etiquette": "右手抓饭/刀叉",
+      "taboo_cn": "斋月期间白天禁止在公共场所吃/喝/抽烟！不要批评领导人",
+      "dress_code": "公共场所衣着保守",
+      "gift_cn": "椰枣、香水"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "高(但需衣着保守)",
+      "emergency_words": "المساعدة!/ اتصل بالشرطة!",
+      "must_have_apps": "Careem、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "AED30-80",
+    "avg_hotel_cn": "AED300-800/晚"
+  },
+  "SA": {
+    "code": "SA",
+    "name_cn": "沙特阿拉伯",
+    "name_en": "Saudi Arabia",
+    "alpha3": "SAU",
+    "continent": "亚洲",
+    "capital_cn": "利雅得",
+    "capital_en": "Riyadh",
+    "currency_cn": "沙特里亚尔",
+    "currency_en": "Saudi Riyal",
+    "currency_code": "SAR",
+    "currency_symbol": "﷼",
+    "timezone": "Asia/Riyadh",
+    "timezone_offset": "+3",
+    "language_cn": "阿拉伯语",
+    "language_en": "Arabic",
+    "driving_side": "right",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "911",
+      "ambulance": "911",
+      "fire": "911"
+    },
+    "china_embassy_cn": {
+      "city": "利雅得",
+      "address": "Building 225, Al-Hada District, Riyadh 12912",
+      "phone": "+966-11-483-2126",
+      "after_hours": [
+        {
+          "city": "吉达",
+          "phone": "+966-12-606-6226",
+          "region": "吉达"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3-7天",
+      "fee_cn": "SAR~535",
+      "fee_en": "SAR~535",
+      "validity_cn": "1年多次(每次90天)",
+      "validity_en": "1年多次(每次90天)"
+    },
+    "laws_cn": {
+      "drinking_age": 21,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "贩毒死刑！",
+      "photo_restriction": "禁止拍摄政府建筑/军事设施/王室宫殿",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "女性在公共场所需穿长袍(Abaya)，男女分开区域",
+      "driving_license_cn": "中国驾照+国际驾照可用1年"
+    },
+    "culture_cn": {
+      "greeting": "握手+碰鼻礼",
+      "dining_etiquette": "右手抓饭",
+      "taboo_cn": "禁酒！禁猪肉！斋月白天禁食！",
+      "dress_code": "公共场所衣着极其保守",
+      "gift_cn": "避免送酒"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "较少",
+      "night_safety": "相对安全",
+      "female_safety": "低(着装和行为规范极严)",
+      "emergency_words": "المساعدة!/ اتصل بالشرطة!",
+      "must_have_apps": "Uber/Careem"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "SAR20-50",
+    "avg_hotel_cn": "SAR300-600/晚"
+  },
+  "IN": {
+    "code": "IN",
+    "name_cn": "印度",
+    "name_en": "India",
+    "alpha3": "IND",
+    "continent": "亚洲",
+    "capital_cn": "新德里",
+    "capital_en": "New Delhi",
+    "currency_cn": "印度卢比",
+    "currency_en": "Indian Rupee",
+    "currency_code": "INR",
+    "currency_symbol": "₹",
+    "timezone": "Asia/Kolkata",
+    "timezone_offset": "+5:30",
+    "language_cn": "印地语/英语",
+    "language_en": "Hindi/English",
+    "driving_side": "left",
+    "plug_type": [
+      "C",
+      "D",
+      "M"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "100",
+      "ambulance": "102",
+      "fire": "101"
+    },
+    "china_embassy_cn": {
+      "city": "新德里",
+      "address": "50-D, Shantipath, Chanakyapuri, New Delhi 110021",
+      "phone": "+91-11-2611-2345",
+      "after_hours": [
+        {
+          "city": "孟买",
+          "phone": "+91-22-6632-3456",
+          "region": "马哈拉施特拉邦"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3-5天",
+      "fee_cn": "约$25-100",
+      "fee_en": "约$25-100",
+      "validity_cn": "1年多次(电子签)",
+      "validity_en": "1年多次(电子签)"
+    },
+    "laws_cn": {
+      "drinking_age": 21,
+      "smoking_regulation": "公共场所全面禁烟",
+      "drug_penalty": "极为严厉，贩毒可判20年",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10%，司机20-50卢比",
+      "public_behavior": "公共场所不要大声争吵",
+      "driving_license_cn": "印度交通混乱！建议请司机，中国驾照+国际驾照可用1年"
+    },
+    "culture_cn": {
+      "greeting": "合十礼(Namaste)",
+      "dining_etiquette": "右手抓饭是传统，左手不洁",
+      "taboo_cn": "不要用左手递物/握手/吃饭！不要摸小孩头！不要穿鞋进寺庙",
+      "dress_code": "女性穿着需保守",
+      "gift_cn": "避免送皮革给印度教徒"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "极多！出租车假表、TUTU车高价、假导游",
+      "night_safety": "夜间不建议单独出行",
+      "female_safety": "低",
+      "emergency_words": "बचाओ!/ पुलिस को बुलाओ!",
+      "must_have_apps": "Ola、Uber、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "₹100-400",
+    "avg_hotel_cn": "₹1000-5000/晚"
+  },
+  "RU": {
+    "code": "RU",
+    "name_cn": "俄罗斯",
+    "name_en": "Russia",
+    "alpha3": "RUS",
+    "continent": "欧洲",
+    "capital_cn": "莫斯科",
+    "capital_en": "Moscow",
+    "currency_cn": "俄罗斯卢布",
+    "currency_en": "Russian Ruble",
+    "currency_code": "RUB",
+    "currency_symbol": "₽",
+    "timezone": "Europe/Moscow",
+    "timezone_offset": "+3",
+    "language_cn": "俄语",
+    "language_en": "Russian",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "102",
+      "ambulance": "103",
+      "fire": "101"
+    },
+    "china_embassy_cn": {
+      "city": "莫斯科",
+      "address": "6, Druzhby Street, Moscow 117330",
+      "phone": "+7-495-956-1168",
+      "after_hours": [
+        {
+          "city": "圣彼得堡",
+          "phone": "+7-812-713-8009",
+          "region": "圣彼得堡"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "10-30天",
+      "fee_cn": "约$50-160",
+      "fee_en": "约$50-160",
+      "validity_cn": "单次/多次",
+      "validity_en": "单次/多次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "极为严厉，最高无期",
+      "photo_restriction": "军事设施、克里姆林宫部分区域、地铁内禁止拍照",
+      "tipping_culture_cn": "一般给10%",
+      "public_behavior": "入境后需3天内办理落地签证注册",
+      "driving_license_cn": "中国驾照+俄语公证翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手(不隔门槛)",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要送钟/黄色花/空钱包，不要隔着门槛握手",
+      "dress_code": "商务正装，日常讲究",
+      "gift_cn": "伏特加、俄罗斯巧克力"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "警察查证件要贿赂、假出租车",
+      "night_safety": "大城市中心较安全",
+      "female_safety": "中等",
+      "emergency_words": "Помогите!/ Вызовите полицию!",
+      "must_have_apps": "Yandex Taxi、Yandex Maps"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "₽500-1500",
+    "avg_hotel_cn": "₽3000-8000/晚"
+  },
+  "BR": {
+    "code": "BR",
+    "name_cn": "巴西",
+    "name_en": "Brazil",
+    "alpha3": "BRA",
+    "continent": "南美洲",
+    "capital_cn": "巴西利亚",
+    "capital_en": "Brasília",
+    "currency_cn": "巴西雷亚尔",
+    "currency_en": "Brazilian Real",
+    "currency_code": "BRL",
+    "currency_symbol": "R$",
+    "timezone": "America/Sao_Paulo",
+    "timezone_offset": "-3",
+    "language_cn": "葡萄牙语",
+    "language_en": "Portuguese",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "B",
+      "C"
+    ],
+    "voltage": "127V/220V",
+    "emergency_cn": {
+      "police": "190",
+      "ambulance": "192",
+      "fire": "193"
+    },
+    "china_embassy_cn": {
+      "city": "巴西利亚",
+      "address": "SES Quadra 803, Lote 18, Brasília DF 70443-900",
+      "phone": "+55-61-3245-1080",
+      "after_hours": [
+        {
+          "city": "圣保罗",
+          "phone": "+55-11-3064-8200",
+          "region": "圣保罗州"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天",
+      "fee_cn": "约$80-160",
+      "fee_en": "约$80-160",
+      "validity_cn": "多次",
+      "validity_en": "多次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉，持有可判监禁",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10%含在账单",
+      "public_behavior": "巴西治安差，避免展示贵重物品",
+      "driving_license_cn": "中国驾照+葡萄牙语翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手+拍背",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要用手比Ok手势(冒犯性)，不要讨论阿根廷",
+      "dress_code": "日常休闲",
+      "gift_cn": "巴西咖啡"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "极多！街头抢劫、ATM陷阱",
+      "night_safety": "夜间极其危险",
+      "female_safety": "低",
+      "emergency_words": "Socorro!/ Chame a polícia!",
+      "must_have_apps": "Uber、99Taxi"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "R$20-50",
+    "avg_hotel_cn": "R$150-350/晚"
+  },
+  "ZA": {
+    "code": "ZA",
+    "name_cn": "南非",
+    "name_en": "South Africa",
+    "alpha3": "ZAF",
+    "continent": "非洲",
+    "capital_cn": "比勒陀利亚",
+    "capital_en": "Pretoria",
+    "currency_cn": "南非兰特",
+    "currency_en": "South African Rand",
+    "currency_code": "ZAR",
+    "currency_symbol": "R",
+    "timezone": "Africa/Johannesburg",
+    "timezone_offset": "+2",
+    "language_cn": "祖鲁语/英语",
+    "language_en": "Zulu/English",
+    "driving_side": "left",
+    "plug_type": [
+      "C",
+      "D",
+      "M",
+      "N"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "10111",
+      "ambulance": "10177",
+      "fire": "10177"
+    },
+    "china_embassy_cn": {
+      "city": "比勒陀利亚",
+      "address": "225 Athlone Street, Arcadia, Pretoria 0083",
+      "phone": "+27-12-431-6500",
+      "after_hours": [
+        {
+          "city": "开普敦",
+          "phone": "+27-21-204-2900",
+          "region": "西开普省"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天",
+      "fee_cn": "约R1,350",
+      "fee_en": "约R1,350",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10-15%",
+      "public_behavior": "治安差，不要夜间步行",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免讨论种族隔离话题",
+      "dress_code": "日常休闲",
+      "gift_cn": "当地红酒"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "极高！ATM骗局、假警察、拦车抢劫",
+      "night_safety": "夜间绝对不要步行外出",
+      "female_safety": "低",
+      "emergency_words": "Help!/Call police!",
+      "must_have_apps": "Uber、WhatsApp"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "R50-150",
+    "avg_hotel_cn": "R500-1500/晚"
+  },
+  "ID": {
+    "code": "ID",
+    "name_cn": "印度尼西亚",
+    "name_en": "Indonesia",
+    "alpha3": "IDN",
+    "continent": "亚洲",
+    "capital_cn": "雅加达",
+    "capital_en": "Jakarta",
+    "currency_cn": "印尼盾",
+    "currency_en": "Indonesian Rupiah",
+    "currency_code": "IDR",
+    "currency_symbol": "Rp",
+    "timezone": "Asia/Jakarta",
+    "timezone_offset": "+7",
+    "language_cn": "印尼语",
+    "language_en": "Indonesian",
+    "driving_side": "left",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "110",
+      "ambulance": "119",
+      "fire": "113"
+    },
+    "china_embassy_cn": {
+      "city": "雅加达",
+      "address": "Jl. Mega Kuningan No.2, Jakarta 12950",
+      "phone": "+62-21-576-1037",
+      "after_hours": "+62-21-576-1037",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "落地签/电子签",
+      "fee_cn": "落地签$35",
+      "fee_en": "落地签$35",
+      "validity_cn": "30天",
+      "validity_en": "30天"
+    },
+    "laws_cn": {
+      "drinking_age": 21,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "贩毒死刑！",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅5-10%",
+      "public_behavior": "斋月期间尊重，公共场所不要过度亲热",
+      "driving_license_cn": "中国驾照+国际驾照可用"
+    },
+    "culture_cn": {
+      "greeting": "握手(右手)",
+      "dining_etiquette": "右手抓饭/勺叉",
+      "taboo_cn": "不要用左手递物/指人，不要摸小孩头，不要批评宗教",
+      "dress_code": "进入寺庙需纱笼遮腿",
+      "gift_cn": "避免送酒给穆斯林"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "巴厘岛换汇骗局、出租车高价",
+      "night_safety": "旅游区夜间安全",
+      "female_safety": "中等",
+      "emergency_words": "Tolong!/ Panggil polisi!",
+      "must_have_apps": "Gojek、Grab"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "Rp15,000-50,000",
+    "avg_hotel_cn": "Rp200,000-800,000/晚"
+  },
+  "VN": {
+    "code": "VN",
+    "name_cn": "越南",
+    "name_en": "Vietnam",
+    "alpha3": "VNM",
+    "continent": "亚洲",
+    "capital_cn": "河内",
+    "capital_en": "Hanoi",
+    "currency_cn": "越南盾",
+    "currency_en": "Vietnamese Dong",
+    "currency_code": "VND",
+    "currency_symbol": "₫",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "timezone_offset": "+7",
+    "language_cn": "越南语",
+    "language_en": "Vietnamese",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "C",
+      "F"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "113",
+      "ambulance": "115",
+      "fire": "114"
+    },
+    "china_embassy_cn": {
+      "city": "河内",
+      "address": "46 Hoang Dieu Street, Ba Dinh, Hanoi",
+      "phone": "+84-24-3845-3736",
+      "after_hours": [
+        {
+          "city": "胡志明市",
+          "phone": "+84-28-3829-2457",
+          "region": "南部"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3天",
+      "fee_cn": "电子签$25",
+      "fee_en": "电子签$25",
+      "validity_cn": "30天单次",
+      "validity_en": "30天单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉，贩毒可判死刑",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "遵守当地公共秩序",
+      "driving_license_cn": "中国驾照+翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "筷子+碗",
+      "taboo_cn": "避免谈论越战/中越关系",
+      "dress_code": "日常轻松",
+      "gift_cn": "当地咖啡、腰果"
+    },
+    "safety_cn": {
+      "level": "中高",
+      "common_scams": "胡志明市出租车骗局、飞车抢劫",
+      "night_safety": "旅游区较安全",
+      "female_safety": "中等",
+      "emergency_words": "Cứu!/ Gọi cảnh sát!",
+      "must_have_apps": "Grab、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "₫30,000-100,000",
+    "avg_hotel_cn": "₫300,000-1,000,000/晚"
+  },
+  "PH": {
+    "code": "PH",
+    "name_cn": "菲律宾",
+    "name_en": "Philippines",
+    "alpha3": "PHL",
+    "continent": "亚洲",
+    "capital_cn": "马尼拉",
+    "capital_en": "Manila",
+    "currency_cn": "菲律宾比索",
+    "currency_en": "Philippine Peso",
+    "currency_code": "PHP",
+    "currency_symbol": "₱",
+    "timezone": "Asia/Manila",
+    "timezone_offset": "+8",
+    "language_cn": "菲律宾语/英语",
+    "language_en": "Filipino/English",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "B",
+      "C"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "117",
+      "ambulance": "166",
+      "fire": "160"
+    },
+    "china_embassy_cn": {
+      "city": "马尼拉",
+      "address": "4896 Pasay Road, Dasmariñas Village, Makati City",
+      "phone": "+63-2-8844-3148",
+      "after_hours": "+63-2-8844-3148",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3-7天",
+      "fee_cn": "约$25-60",
+      "fee_en": "约$25-60",
+      "validity_cn": "30天单次",
+      "validity_en": "30天单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所全面禁烟",
+      "drug_penalty": "极为严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "一般不强制",
+      "public_behavior": "遵守当地公共秩序",
+      "driving_license_cn": "中国驾照+翻译件可用90天"
+    },
+    "culture_cn": {
+      "greeting": "握手+拍背",
+      "dining_etiquette": "刀叉/勺子",
+      "taboo_cn": "避免南海争端话题",
+      "dress_code": "日常休闲",
+      "gift_cn": "芒果干、椰子制品"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "马尼拉骗局多、飞车抢劫",
+      "night_safety": "马尼拉夜间非常危险",
+      "female_safety": "低",
+      "emergency_words": "Saklolo!/ Tawag ng pulis!",
+      "must_have_apps": "Grab、Angkas"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "₱100-300",
+    "avg_hotel_cn": "₱1000-3000/晚"
+  },
+  "ES": {
+    "code": "ES",
+    "name_cn": "西班牙",
+    "name_en": "Spain",
+    "alpha3": "ESP",
+    "continent": "欧洲",
+    "capital_cn": "马德里",
+    "capital_en": "Madrid",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Madrid",
+    "timezone_offset": "+1",
+    "language_cn": "西班牙语",
+    "language_en": "Spanish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "马德里",
+      "address": "Calle de Arturo Soria 111, 28043 Madrid",
+      "phone": "+34-91-519-4242",
+      "after_hours": [
+        {
+          "city": "巴塞罗那",
+          "phone": "+34-93-254-1199",
+          "region": "加泰罗尼亚"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "午休时间(Siesta)很多店关门",
+      "driving_license_cn": "中国驾照+官方翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼(左右各一次)",
+      "dining_etiquette": "刀叉用餐，吃饭时间晚",
+      "taboo_cn": "不要讨论加泰罗尼亚独立问题",
+      "dress_code": "时尚讲究",
+      "gift_cn": "红酒、西班牙火腿"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "巴塞罗那吉普赛人团伙扒窃极多！",
+      "night_safety": "大城市中心区域安全",
+      "female_safety": "中等",
+      "emergency_words": "Socorro!/ Llame a la policía!",
+      "must_have_apps": "Uber、Cabify"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "€10-20",
+    "avg_hotel_cn": "€70-150/晚"
+  },
+  "NL": {
+    "code": "NL",
+    "name_cn": "荷兰",
+    "name_en": "Netherlands",
+    "alpha3": "NLD",
+    "continent": "欧洲",
+    "capital_cn": "阿姆斯特丹",
+    "capital_en": "Amsterdam",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Amsterdam",
+    "timezone_offset": "+1",
+    "language_cn": "荷兰语",
+    "language_en": "Dutch",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "海牙",
+      "address": "Willem Lodewijklaan 10, 2517 JT The Hague",
+      "phone": "+31-70-306-5099",
+      "after_hours": "+31-70-306-5099",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内禁烟",
+      "drug_penalty": "大麻在咖啡店合法但有限制",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "自行车道不可行人",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手三次",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要混淆荷兰(Holland)和尼德兰(Netherlands)",
+      "dress_code": "实用风格",
+      "gift_cn": "郁金香花球、奶酪"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "阿姆斯特丹红灯区偷窃",
+      "night_safety": "非常安全",
+      "female_safety": "高",
+      "emergency_words": "Help!/ Bel de politie!",
+      "must_have_apps": "NS(火车)、Uber"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "€12-25",
+    "avg_hotel_cn": "€100-200/晚"
+  },
+  "CH": {
+    "code": "CH",
+    "name_cn": "瑞士",
+    "name_en": "Switzerland",
+    "alpha3": "CHE",
+    "continent": "欧洲",
+    "capital_cn": "伯尔尼",
+    "capital_en": "Bern",
+    "currency_cn": "瑞士法郎",
+    "currency_en": "Swiss Franc",
+    "currency_code": "CHF",
+    "currency_symbol": "CHF",
+    "timezone": "Europe/Zurich",
+    "timezone_offset": "+1",
+    "language_cn": "德语/法语/意大利语",
+    "language_en": "German/French/Italian",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "J"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "117",
+      "ambulance": "144",
+      "fire": "118"
+    },
+    "china_embassy_cn": {
+      "city": "伯尔尼",
+      "address": "Kalcheggweg 10, 3006 Bern",
+      "phone": "+41-31-352-7333",
+      "after_hours": [
+        {
+          "city": "苏黎世",
+          "phone": "+41-44-201-6673",
+          "region": "苏黎世"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "室内公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "周日商店关闭，垃圾分类严格",
+      "driving_license_cn": "中国驾照+翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼(三次)",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要问是否加入欧盟(没加入)",
+      "dress_code": "保守但精致",
+      "gift_cn": "瑞士军刀、巧克力"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Hilfe!/ Rufen Sie die Polizei!",
+      "must_have_apps": "SBB(火车)、Google Maps"
+    },
+    "cost_level_cn": "极高",
+    "cost_level_en": "Very High",
+    "avg_meal_cn": "CHF20-35",
+    "avg_hotel_cn": "CHF150-350/晚"
+  },
+  "SE": {
+    "code": "SE",
+    "name_cn": "瑞典",
+    "name_en": "Sweden",
+    "alpha3": "SWE",
+    "continent": "欧洲",
+    "capital_cn": "斯德哥尔摩",
+    "capital_en": "Stockholm",
+    "currency_cn": "瑞典克朗",
+    "currency_en": "Swedish Krona",
+    "currency_code": "SEK",
+    "currency_symbol": "kr",
+    "timezone": "Europe/Stockholm",
+    "timezone_offset": "+1",
+    "language_cn": "瑞典语",
+    "language_en": "Swedish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "斯德哥尔摩",
+      "address": "Lidovägen 8, 115 25 Stockholm",
+      "phone": "+46-8-579-364-00",
+      "after_hours": "+46-8-579-364-00",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所全面禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "排队文化，Fika(咖啡休息)是国粹",
+      "driving_license_cn": "中国驾照+翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "握手，保持距离",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要主动触碰陌生人",
+      "dress_code": "简约时尚",
+      "gift_cn": "北欧设计品"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Hjälp!/ Ring polisen!",
+      "must_have_apps": "SL(公交)、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "SEK100-200",
+    "avg_hotel_cn": "SEK1000-2000/晚"
+  },
+  "NO": {
+    "code": "NO",
+    "name_cn": "挪威",
+    "name_en": "Norway",
+    "alpha3": "NOR",
+    "continent": "欧洲",
+    "capital_cn": "奥斯陆",
+    "capital_en": "Oslo",
+    "currency_cn": "挪威克朗",
+    "currency_en": "Norwegian Krone",
+    "currency_code": "NOK",
+    "currency_symbol": "kr",
+    "timezone": "Europe/Oslo",
+    "timezone_offset": "+1",
+    "language_cn": "挪威语",
+    "language_en": "Norwegian",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "奥斯陆",
+      "address": "Holmenveien 1, 0374 Oslo",
+      "phone": "+47-22-49-36-50",
+      "after_hours": "+47-22-49-36-50",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "周日商店关闭",
+      "driving_license_cn": "中国驾照+翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "保持距离",
+      "dress_code": "实用休闲",
+      "gift_cn": "北欧设计品"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Hjelp!/ Ring politiet!",
+      "must_have_apps": "Ruter(公交)、Google Maps"
+    },
+    "cost_level_cn": "极高",
+    "cost_level_en": "Very High",
+    "avg_meal_cn": "NOK150-300",
+    "avg_hotel_cn": "NOK1000-2500/晚"
+  },
+  "DK": {
+    "code": "DK",
+    "name_cn": "丹麦",
+    "name_en": "Denmark",
+    "alpha3": "DNK",
+    "continent": "欧洲",
+    "capital_cn": "哥本哈根",
+    "capital_en": "Copenhagen",
+    "currency_cn": "丹麦克朗",
+    "currency_en": "Danish Krone",
+    "currency_code": "DKK",
+    "currency_symbol": "kr",
+    "timezone": "Europe/Copenhagen",
+    "timezone_offset": "+1",
+    "language_cn": "丹麦语",
+    "language_en": "Danish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F",
+      "E",
+      "K"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "哥本哈根",
+      "address": "Oeregaardsvej 25, 2900 Hellerup",
+      "phone": "+45-39-46-08-89",
+      "after_hours": "+45-39-46-08-89",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "自行车文化浓厚",
+      "driving_license_cn": "中国驾照+翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要批评丹麦",
+      "dress_code": "简约时尚",
+      "gift_cn": "丹麦曲奇、设计品"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Hjælp!/ Ring politiet!",
+      "must_have_apps": "DSB(火车)、Google Maps"
+    },
+    "cost_level_cn": "极高",
+    "cost_level_en": "Very High",
+    "avg_meal_cn": "DKK100-250",
+    "avg_hotel_cn": "DKK800-2000/晚"
+  },
+  "FI": {
+    "code": "FI",
+    "name_cn": "芬兰",
+    "name_en": "Finland",
+    "alpha3": "FIN",
+    "continent": "欧洲",
+    "capital_cn": "赫尔辛基",
+    "capital_en": "Helsinki",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Helsinki",
+    "timezone_offset": "+2",
+    "language_cn": "芬兰语/瑞典语",
+    "language_en": "Finnish/Swedish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "赫尔辛基",
+      "address": "Vanha Suurtori 3, 00570 Helsinki",
+      "phone": "+358-9-2289-0100",
+      "after_hours": "+358-9-2289-0100",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "桑拿文化很重要",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "保持充分个人空间，不要主动聊天",
+      "dress_code": "实用简约",
+      "gift_cn": "芬兰设计品"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Apua!/ Soita poliisille!",
+      "must_have_apps": "HSL(公交)、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "€12-25",
+    "avg_hotel_cn": "€80-200/晚"
+  },
+  "PT": {
+    "code": "PT",
+    "name_cn": "葡萄牙",
+    "name_en": "Portugal",
+    "alpha3": "PRT",
+    "continent": "欧洲",
+    "capital_cn": "里斯本",
+    "capital_en": "Lisbon",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Lisbon",
+    "timezone_offset": "+0",
+    "language_cn": "葡萄牙语",
+    "language_en": "Portuguese",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "里斯本",
+      "address": "Rua do Pau de Bandeira, 11, 1249-021 Lisboa",
+      "phone": "+351-21-394-0670",
+      "after_hours": "+351-21-394-0670",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制，留5-10%",
+      "public_behavior": "午休时间较长",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手/贴面礼",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要比较西班牙和葡萄牙",
+      "dress_code": "日常休闲",
+      "gift_cn": "波特酒"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "注意旅游区小偷",
+      "night_safety": "较安全",
+      "female_safety": "高",
+      "emergency_words": "Socorro!/ Chame a polícia!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "€8-18",
+    "avg_hotel_cn": "€60-130/晚"
+  },
+  "IE": {
+    "code": "IE",
+    "name_cn": "爱尔兰",
+    "name_en": "Ireland",
+    "alpha3": "IRL",
+    "continent": "欧洲",
+    "capital_cn": "都柏林",
+    "capital_en": "Dublin",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Dublin",
+    "timezone_offset": "+0",
+    "language_cn": "爱尔兰语/英语",
+    "language_en": "Irish/English",
+    "driving_side": "left",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "都柏林",
+      "address": "118 Merrion Road, Ballsbridge, Dublin 4",
+      "phone": "+353-1-260-0586",
+      "after_hours": "+353-1-260-0586",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10-15%",
+      "public_behavior": "酒吧文化浓厚",
+      "driving_license_cn": "靠左！中国驾照+翻译件可用12个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免讨论北爱尔兰问题",
+      "dress_code": "日常休闲",
+      "gift_cn": "爱尔兰威士忌"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "极少",
+      "night_safety": "较安全",
+      "female_safety": "高",
+      "emergency_words": "Help!/ Call the Guards!",
+      "must_have_apps": "Dublin Bus、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "€12-22",
+    "avg_hotel_cn": "€90-180/晚"
+  },
+  "AT": {
+    "code": "AT",
+    "name_cn": "奥地利",
+    "name_en": "Austria",
+    "alpha3": "AUT",
+    "continent": "欧洲",
+    "capital_cn": "维也纳",
+    "capital_en": "Vienna",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Vienna",
+    "timezone_offset": "+1",
+    "language_cn": "德语",
+    "language_en": "German",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "维也纳",
+      "address": "Metternichgasse 4, 1030 Wien",
+      "phone": "+43-1-710-3648",
+      "after_hours": "+43-1-710-3648",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "一般给5-10%",
+      "public_behavior": "周日商店关闭",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免谈论纳粹历史",
+      "dress_code": "讲究得体",
+      "gift_cn": "莫扎特巧克力球"
+    },
+    "safety_cn": {
+      "level": "极高",
+      "common_scams": "极少",
+      "night_safety": "非常安全",
+      "female_safety": "极高",
+      "emergency_words": "Hilfe!/ Rufen Sie die Polizei!",
+      "must_have_apps": "ÖBB(火车)、Google Maps"
+    },
+    "cost_level_cn": "中高",
+    "cost_level_en": "Medium-High",
+    "avg_meal_cn": "€10-20",
+    "avg_hotel_cn": "€70-160/晚"
+  },
+  "BE": {
+    "code": "BE",
+    "name_cn": "比利时",
+    "name_en": "Belgium",
+    "alpha3": "BEL",
+    "continent": "欧洲",
+    "capital_cn": "布鲁塞尔",
+    "capital_en": "Brussels",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Brussels",
+    "timezone_offset": "+1",
+    "language_cn": "荷兰语/法语/德语",
+    "language_en": "Dutch/French/German",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "E"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "布鲁塞尔",
+      "address": "Avenue de Tervuren 443-445, 1150 Bruxelles",
+      "phone": "+32-2-771-3309",
+      "after_hours": "+32-2-771-3309",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "周三下午很多店关门",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼(三次)",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要问瓦隆vs弗拉芒语区别",
+      "dress_code": "时尚得体",
+      "gift_cn": "比利时巧克力和啤酒"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "布鲁塞尔火车站需注意小偷",
+      "night_safety": "较安全",
+      "female_safety": "高",
+      "emergency_words": "Help!/ Bel de politie!",
+      "must_have_apps": "STIB(公交)、Google Maps"
+    },
+    "cost_level_cn": "中高",
+    "cost_level_en": "Medium-High",
+    "avg_meal_cn": "€12-22",
+    "avg_hotel_cn": "€80-160/晚"
+  },
+  "GR": {
+    "code": "GR",
+    "name_cn": "希腊",
+    "name_en": "Greece",
+    "alpha3": "GRC",
+    "continent": "欧洲",
+    "capital_cn": "雅典",
+    "capital_en": "Athens",
+    "currency_cn": "欧元",
+    "currency_en": "Euro",
+    "currency_code": "EUR",
+    "currency_symbol": "€",
+    "timezone": "Europe/Athens",
+    "timezone_offset": "+2",
+    "language_cn": "希腊语",
+    "language_en": "Greek",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "100",
+      "ambulance": "166",
+      "fire": "199"
+    },
+    "china_embassy_cn": {
+      "city": "雅典",
+      "address": "10-12, Dimokratias Street, P. Psychiko, 154 52 Athens",
+      "phone": "+30-210-678-3840",
+      "after_hours": [
+        {
+          "city": "萨洛尼卡",
+          "phone": "+30-231-034-1200",
+          "region": "马其顿"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "一般留小零钱",
+      "public_behavior": "午休时间长，很多店下午关门",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手/贴面礼",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要用张开手掌(冒犯性手势)",
+      "dress_code": "日常休闲",
+      "gift_cn": "橄榄油、ouzo酒"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "雅典旅游区扒手、出租车高价",
+      "night_safety": "雅典中心区域较安全",
+      "female_safety": "中等",
+      "emergency_words": "Βοήθεια!/ Καλέστε την αστυνομία!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "€8-18",
+    "avg_hotel_cn": "€50-120/晚"
+  },
+  "TR": {
+    "code": "TR",
+    "name_cn": "土耳其",
+    "name_en": "Turkey",
+    "alpha3": "TUR",
+    "continent": "亚洲",
+    "capital_cn": "安卡拉",
+    "capital_en": "Ankara",
+    "currency_cn": "土耳其里拉",
+    "currency_en": "Turkish Lira",
+    "currency_code": "TRY",
+    "currency_symbol": "₺",
+    "timezone": "Europe/Istanbul",
+    "timezone_offset": "+3",
+    "language_cn": "土耳其语",
+    "language_en": "Turkish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "155",
+      "ambulance": "112",
+      "fire": "110"
+    },
+    "china_embassy_cn": {
+      "city": "安卡拉",
+      "address": "Gölgeli Sokak No.34, GOP, 06700 Ankara",
+      "phone": "+90-312-436-0628",
+      "after_hours": [
+        {
+          "city": "伊斯坦布尔",
+          "phone": "+90-212-299-2188",
+          "region": "伊斯坦布尔"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签3-5天",
+      "fee_cn": "约$60",
+      "fee_en": "约$60",
+      "validity_cn": "单次30天",
+      "validity_en": "单次30天"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅5-10%",
+      "public_behavior": "清真寺进入需脱鞋",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要批评国父凯末尔，斋月期间注意",
+      "dress_code": "进入清真寺需遮头盖腿",
+      "gift_cn": "土耳其软糖、地毯"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "伊斯坦布尔换汇骗局、地毯店高价",
+      "night_safety": "旅游区较安全",
+      "female_safety": "中等",
+      "emergency_words": "Yardım!/ Polisi arayın!",
+      "must_have_apps": "Getir、BiTaksi、Google Maps"
+    },
+    "cost_level_cn": "中低",
+    "cost_level_en": "Low-Medium",
+    "avg_meal_cn": "₺50-150",
+    "avg_hotel_cn": "₺500-1500/晚"
+  },
+  "MX": {
+    "code": "MX",
+    "name_cn": "墨西哥",
+    "name_en": "Mexico",
+    "alpha3": "MEX",
+    "continent": "北美洲",
+    "capital_cn": "墨西哥城",
+    "capital_en": "Mexico City",
+    "currency_cn": "墨西哥比索",
+    "currency_en": "Mexican Peso",
+    "currency_code": "MXN",
+    "currency_symbol": "Mex$",
+    "timezone": "America/Mexico_City",
+    "timezone_offset": "-6",
+    "language_cn": "西班牙语",
+    "language_en": "Spanish",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "B"
+    ],
+    "voltage": "127V",
+    "emergency_cn": {
+      "police": "911",
+      "ambulance": "911",
+      "fire": "911"
+    },
+    "china_embassy_cn": {
+      "city": "墨西哥城",
+      "address": "Plaza Héroes de la Revolución, 5, Col. Juárez",
+      "phone": "+52-55-5616-0709",
+      "after_hours": "+52-55-5616-0709",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签/签证",
+      "fee_cn": "约$48",
+      "fee_en": "约$48",
+      "validity_cn": "单次/多次",
+      "validity_en": "单次/多次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "必须给！餐厅10-20%",
+      "public_behavior": "注意交通安全",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手+拍背",
+      "dining_etiquette": "刀叉用餐，玉米饼(taco)用手",
+      "taboo_cn": "不要讨论毒品战争",
+      "dress_code": "日常休闲",
+      "gift_cn": "龙舌兰酒、手工艺品"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "出租车绑架、假警察、ATM盗刷",
+      "night_safety": "夜间极其危险",
+      "female_safety": "低",
+      "emergency_words": "Ayuda!/ Llame a la policía!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "中低",
+    "cost_level_en": "Low-Medium",
+    "avg_meal_cn": "Mex$80-200",
+    "avg_hotel_cn": "Mex$800-2000/晚"
+  },
+  "EG": {
+    "code": "EG",
+    "name_cn": "埃及",
+    "name_en": "Egypt",
+    "alpha3": "EGY",
+    "continent": "非洲",
+    "capital_cn": "开罗",
+    "capital_en": "Cairo",
+    "currency_cn": "埃及镑",
+    "currency_en": "Egyptian Pound",
+    "currency_code": "EGP",
+    "currency_symbol": "E£",
+    "timezone": "Africa/Cairo",
+    "timezone_offset": "+2",
+    "language_cn": "阿拉伯语",
+    "language_en": "Arabic",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "122",
+      "ambulance": "123",
+      "fire": "180"
+    },
+    "china_embassy_cn": {
+      "city": "开罗",
+      "address": "23A Taha Hussein Street, Zamalek, Cairo",
+      "phone": "+20-2-2736-2556",
+      "after_hours": [
+        {
+          "city": "亚历山大",
+          "phone": "+20-3-482-9098",
+          "region": "亚历山大"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "落地签/电子签",
+      "fee_cn": "落地签$25",
+      "fee_en": "落地签$25",
+      "validity_cn": "30天单次",
+      "validity_en": "30天单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "极为严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "⚠️ 到处都要小费！5-10埃镑起",
+      "public_behavior": "⚠️ 女性需保守穿着，斋月期间注意",
+      "driving_license_cn": "中国驾照+翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "右手抓饭/刀叉",
+      "taboo_cn": "不要批评政府/宗教，不要用鞋底对别人",
+      "dress_code": "女性保守穿着",
+      "gift_cn": "避免送酒给穆斯林"
+    },
+    "safety_cn": {
+      "level": "中低",
+      "common_scams": "⚠️ 极多！金字塔导游骗局、纸莎草店高价、骆驼收费陷阱",
+      "night_safety": "夜间不建议独行",
+      "female_safety": "低，注意性骚扰",
+      "emergency_words": "المساعدة!/ اتصل بالشرطة!",
+      "must_have_apps": "Uber、Careem、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "E£50-150",
+    "avg_hotel_cn": "E£500-1500/晚"
+  },
+  "KE": {
+    "code": "KE",
+    "name_cn": "肯尼亚",
+    "name_en": "Kenya",
+    "alpha3": "KEN",
+    "continent": "非洲",
+    "capital_cn": "内罗毕",
+    "capital_en": "Nairobi",
+    "currency_cn": "肯尼亚先令",
+    "currency_en": "Kenyan Shilling",
+    "currency_code": "KES",
+    "currency_symbol": "KSh",
+    "timezone": "Africa/Nairobi",
+    "timezone_offset": "+3",
+    "language_cn": "斯瓦希里语/英语",
+    "language_en": "Swahili/English",
+    "driving_side": "left",
+    "plug_type": [
+      "G"
+    ],
+    "voltage": "240V",
+    "emergency_cn": {
+      "police": "999",
+      "ambulance": "999",
+      "fire": "999"
+    },
+    "china_embassy_cn": {
+      "city": "内罗毕",
+      "address": "Woodlands Road, Kilimani, Nairobi",
+      "phone": "+254-20-272-6851",
+      "after_hours": "+254-20-272-6851",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签",
+      "fee_cn": "约$50",
+      "fee_en": "约$50",
+      "validity_cn": "单次90天",
+      "validity_en": "单次90天"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10%",
+      "public_behavior": "不要穿过多贵重物品",
+      "driving_license_cn": "中国驾照+翻译件可用3个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉/右手抓饭",
+      "taboo_cn": "不要讨论部落政治",
+      "dress_code": "休闲舒适",
+      "gift_cn": "肯尼亚咖啡、茶"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "⚠️ 内罗毕街头劫持、假向导、换汇骗局",
+      "night_safety": "夜间极不安全",
+      "female_safety": "低",
+      "emergency_words": "Msaada!/ Piga polisi!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "KSh300-1000",
+    "avg_hotel_cn": "KSh2000-8000/晚"
+  },
+  "CL": {
+    "code": "CL",
+    "name_cn": "智利",
+    "name_en": "Chile",
+    "alpha3": "CHL",
+    "continent": "南美洲",
+    "capital_cn": "圣地亚哥",
+    "capital_en": "Santiago",
+    "currency_cn": "智利比索",
+    "currency_en": "Chilean Peso",
+    "currency_code": "CLP",
+    "currency_symbol": "CLP$",
+    "timezone": "America/Santiago",
+    "timezone_offset": "-4",
+    "language_cn": "西班牙语",
+    "language_en": "Spanish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "L"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "133",
+      "ambulance": "131",
+      "fire": "132"
+    },
+    "china_embassy_cn": {
+      "city": "圣地亚哥",
+      "address": "Av. Pedro de Valdivia 550, Providencia, Santiago",
+      "phone": "+56-2-2233-9880",
+      "after_hours": "+56-2-2233-9880",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "免签/签证",
+      "fee_cn": "约$50-100",
+      "fee_en": "约$50-100",
+      "validity_cn": "按审批",
+      "validity_en": "按审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10%",
+      "public_behavior": "地铁高峰期拥挤",
+      "driving_license_cn": "中国驾照+西班牙语翻译件可用"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼(一次)",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免讨论皮诺切特",
+      "dress_code": "时尚休闲",
+      "gift_cn": "智利红酒"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "圣地亚哥地铁扒手",
+      "night_safety": "中心区域较安全",
+      "female_safety": "中等",
+      "emergency_words": "¡Socorro!/ ¡Llame a la policía!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "中",
+    "cost_level_en": "Medium",
+    "avg_meal_cn": "CLP$5000-12000",
+    "avg_hotel_cn": "CLP$30000-80000/晚"
+  },
+  "CO": {
+    "code": "CO",
+    "name_cn": "哥伦比亚",
+    "name_en": "Colombia",
+    "alpha3": "COL",
+    "continent": "南美洲",
+    "capital_cn": "波哥大",
+    "capital_en": "Bogotá",
+    "currency_cn": "哥伦比亚比索",
+    "currency_en": "Colombian Peso",
+    "currency_code": "COP",
+    "currency_symbol": "COL$",
+    "timezone": "America/Bogota",
+    "timezone_offset": "-5",
+    "language_cn": "西班牙语",
+    "language_en": "Spanish",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "B"
+    ],
+    "voltage": "120V",
+    "emergency_cn": {
+      "police": "123",
+      "ambulance": "125",
+      "fire": "119"
+    },
+    "china_embassy_cn": {
+      "city": "波哥大",
+      "address": "Carrera 3, No. 76-65, Barrio Marly, Bogotá",
+      "phone": "+57-1-211-3181",
+      "after_hours": "+57-1-211-3181",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签",
+      "fee_cn": "约$50",
+      "fee_en": "约$50",
+      "validity_cn": "单次",
+      "validity_en": "单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉(毒品大国)",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10%",
+      "public_behavior": "注意安全",
+      "driving_license_cn": "中国驾照+翻译件可用"
+    },
+    "culture_cn": {
+      "greeting": "握手+拍背",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "避免谈论毒品话题",
+      "dress_code": "时尚休闲",
+      "gift_cn": "哥伦比亚咖啡"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "劫持、绑票、假警察",
+      "night_safety": "夜间极不安全",
+      "female_safety": "低",
+      "emergency_words": "¡Ayuda!/ ¡Llame a la policía!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "COP$15000-40000",
+    "avg_hotel_cn": "COP$80000-250000/晚"
+  },
+  "PE": {
+    "code": "PE",
+    "name_cn": "秘鲁",
+    "name_en": "Peru",
+    "alpha3": "PER",
+    "continent": "南美洲",
+    "capital_cn": "利马",
+    "capital_en": "Lima",
+    "currency_cn": "秘鲁索尔",
+    "currency_en": "Peruvian Sol",
+    "currency_code": "PEN",
+    "currency_symbol": "S/",
+    "timezone": "America/Lima",
+    "timezone_offset": "-5",
+    "language_cn": "西班牙语/克丘亚语",
+    "language_en": "Spanish/Quechua",
+    "driving_side": "right",
+    "plug_type": [
+      "A",
+      "C"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "105",
+      "ambulance": "117",
+      "fire": "116"
+    },
+    "china_embassy_cn": {
+      "city": "利马",
+      "address": "Jr. José de la Ureta 133, Magdalena del Mar, Lima",
+      "phone": "+51-1-462-0023",
+      "after_hours": "+51-1-462-0023",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签/签证",
+      "fee_cn": "约$30-60",
+      "fee_en": "约$30-60",
+      "validity_cn": "单次",
+      "validity_en": "单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅5-10%",
+      "public_behavior": "高原反应注意事项",
+      "driving_license_cn": "中国驾照+翻译件可用"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "马丘比丘不要爬墙",
+      "dress_code": "日常休闲",
+      "gift_cn": "羊驼毛制品"
+    },
+    "safety_cn": {
+      "level": "中低",
+      "common_scams": "利马出租车骗局、库斯科假向导",
+      "night_safety": "夜间注意安全",
+      "female_safety": "中等",
+      "emergency_words": "¡Socorro!/ ¡Llame a la policía!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "PEN15-40",
+    "avg_hotel_cn": "PEN80-250/晚"
+  },
+  "IL": {
+    "code": "IL",
+    "name_cn": "以色列",
+    "name_en": "Israel",
+    "alpha3": "ISR",
+    "continent": "亚洲",
+    "capital_cn": "耶路撒冷",
+    "capital_en": "Jerusalem",
+    "currency_cn": "新以色列谢克尔",
+    "currency_en": "Israeli New Shekel",
+    "currency_code": "ILS",
+    "currency_symbol": "₪",
+    "timezone": "Asia/Jerusalem",
+    "timezone_offset": "+2",
+    "language_cn": "希伯来语/阿拉伯语",
+    "language_en": "Hebrew/Arabic",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "H"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "100",
+      "ambulance": "101",
+      "fire": "102"
+    },
+    "china_embassy_cn": {
+      "city": "特拉维夫",
+      "address": "223 Ben Yehuda Street, Tel Aviv 6347302",
+      "phone": "+972-3-546-7314",
+      "after_hours": "+972-3-546-7314",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签/签证",
+      "fee_cn": "约$50-100",
+      "fee_en": "约$50-100",
+      "validity_cn": "单次/多次",
+      "validity_en": "单次/多次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10-15%",
+      "public_behavior": "安息日(周五日落至周六日落)许多店关门",
+      "driving_license_cn": "中国驾照+翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐，犹太教遵守Kosher",
+      "taboo_cn": "安息日不要要求工作/商业交易",
+      "dress_code": "进入宗教场所需遮头",
+      "gift_cn": "以色列葡萄酒、橄榄油"
+    },
+    "safety_cn": {
+      "level": "中",
+      "common_scams": "耶路撒冷旧城小贩高价",
+      "night_safety": "部分区域安全",
+      "female_safety": "中等",
+      "emergency_words": "הצילו!/ התקשרו למשטרה!",
+      "must_have_apps": "Gett、Moovit、Google Maps"
+    },
+    "cost_level_cn": "高",
+    "cost_level_en": "High",
+    "avg_meal_cn": "₪40-80",
+    "avg_hotel_cn": "₪400-800/晚"
+  },
+  "PL": {
+    "code": "PL",
+    "name_cn": "波兰",
+    "name_en": "Poland",
+    "alpha3": "POL",
+    "continent": "欧洲",
+    "capital_cn": "华沙",
+    "capital_en": "Warsaw",
+    "currency_cn": "波兰兹罗提",
+    "currency_en": "Polish Zloty",
+    "currency_code": "PLN",
+    "currency_symbol": "zł",
+    "timezone": "Europe/Warsaw",
+    "timezone_offset": "+1",
+    "language_cn": "波兰语",
+    "language_en": "Polish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "E"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "华沙",
+      "address": "Bonifraterska 1, 00-203 Warszawa",
+      "phone": "+48-22-831-3836",
+      "after_hours": [
+        {
+          "city": "格但斯克",
+          "phone": "+48-58-340-2626",
+          "region": "格但斯克"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "10%左右",
+      "public_behavior": "周日部分商店限制营业",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要讨论二战/俄波关系",
+      "dress_code": "正式得体",
+      "gift_cn": "波兰伏特加、琥珀"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "华沙火车站假出租车",
+      "night_safety": "较安全",
+      "female_safety": "高",
+      "emergency_words": "Pomocy!/ Dzwon na policję!",
+      "must_have_apps": "Uber、Jakdojade(公交)"
+    },
+    "cost_level_cn": "中低",
+    "cost_level_en": "Low-Medium",
+    "avg_meal_cn": "PLN25-60",
+    "avg_hotel_cn": "PLN150-350/晚"
+  },
+  "HU": {
+    "code": "HU",
+    "name_cn": "匈牙利",
+    "name_en": "Hungary",
+    "alpha3": "HUN",
+    "continent": "欧洲",
+    "capital_cn": "布达佩斯",
+    "capital_en": "Budapest",
+    "currency_cn": "匈牙利福林",
+    "currency_en": "Hungarian Forint",
+    "currency_code": "HUF",
+    "currency_symbol": "Ft",
+    "timezone": "Europe/Budapest",
+    "timezone_offset": "+1",
+    "language_cn": "匈牙利语",
+    "language_en": "Hungarian",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "F"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "布达佩斯",
+      "address": "Városligeti fasor 20-22, 1122 Budapest",
+      "phone": "+36-1-413-2401",
+      "after_hours": "+36-1-413-2401",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "10%左右",
+      "public_behavior": "注意温泉文化",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要讨论1956年历史",
+      "dress_code": "休闲得体",
+      "gift_cn": "匈牙利红酒、辣椒粉"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "布达佩斯出租车高价、换汇陷阱",
+      "night_safety": "中心区域安全",
+      "female_safety": "高",
+      "emergency_words": "Segítség!/ Hívja a rendőrséget!",
+      "must_have_apps": "BKK(公交)、Google Maps"
+    },
+    "cost_level_cn": "中低",
+    "cost_level_en": "Low-Medium",
+    "avg_meal_cn": "HUF2000-5000",
+    "avg_hotel_cn": "HUF15000-35000/晚"
+  },
+  "CZ": {
+    "code": "CZ",
+    "name_cn": "捷克",
+    "name_en": "Czech Republic",
+    "alpha3": "CZE",
+    "continent": "欧洲",
+    "capital_cn": "布拉格",
+    "capital_en": "Prague",
+    "currency_cn": "捷克克朗",
+    "currency_en": "Czech Koruna",
+    "currency_code": "CZK",
+    "currency_symbol": "Kč",
+    "timezone": "Europe/Prague",
+    "timezone_offset": "+1",
+    "language_cn": "捷克语",
+    "language_en": "Czech",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "E"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "布拉格",
+      "address": "Pelléova 18, 160 00 Praha 6-Bubeneč",
+      "phone": "+420-224-311-323",
+      "after_hours": "+420-224-311-323",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "15-30天(申根)",
+      "fee_cn": "€90",
+      "fee_en": "€90",
+      "validity_cn": "按行程审批",
+      "validity_en": "按行程审批"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "10%左右",
+      "public_behavior": "啤酒比水便宜",
+      "driving_license_cn": "中国驾照+翻译件可用6个月"
+    },
+    "culture_cn": {
+      "greeting": "握手",
+      "dining_etiquette": "刀叉用餐",
+      "taboo_cn": "不要叫Czechia",
+      "dress_code": "休闲得体",
+      "gift_cn": "捷克水晶、啤酒"
+    },
+    "safety_cn": {
+      "level": "高",
+      "common_scams": "布拉格换汇陷阱、出租车高价",
+      "night_safety": "中心区域安全",
+      "female_safety": "高",
+      "emergency_words": "Pomoc!/ Zavolejte policii!",
+      "must_have_apps": "PID(公交)、Google Maps"
+    },
+    "cost_level_cn": "中低",
+    "cost_level_en": "Low-Medium",
+    "avg_meal_cn": "Kč150-350",
+    "avg_hotel_cn": "Kč1000-2500/晚"
+  },
+  "AR": {
+    "code": "AR",
+    "name_cn": "阿根廷",
+    "name_en": "Argentina",
+    "alpha3": "ARG",
+    "continent": "南美洲",
+    "capital_cn": "布宜诺斯艾利斯",
+    "capital_en": "Buenos Aires",
+    "currency_cn": "阿根廷比索",
+    "currency_en": "Argentine Peso",
+    "currency_code": "ARS",
+    "currency_symbol": "ARS$",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "timezone_offset": "-3",
+    "language_cn": "西班牙语",
+    "language_en": "Spanish",
+    "driving_side": "right",
+    "plug_type": [
+      "C",
+      "I"
+    ],
+    "voltage": "220V",
+    "emergency_cn": {
+      "police": "911",
+      "ambulance": "911",
+      "fire": "911"
+    },
+    "china_embassy_cn": {
+      "city": "布宜诺斯艾利斯",
+      "address": "Crisólogo Larralde 5349, C1431 CABA",
+      "phone": "+54-11-4541-5088",
+      "after_hours": "+54-11-4541-5088",
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "电子签",
+      "fee_cn": "约$150",
+      "fee_en": "约$150",
+      "validity_cn": "单次",
+      "validity_en": "单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "餐厅10%",
+      "public_behavior": "注意通货膨胀(现金为王)",
+      "driving_license_cn": "中国驾照+西班牙语翻译件可用1年"
+    },
+    "culture_cn": {
+      "greeting": "贴面礼(一次)",
+      "dining_etiquette": "刀叉用餐，晚餐21:00后",
+      "taboo_cn": "不要讨论福克兰群岛/马尔维纳斯",
+      "dress_code": "时尚得体",
+      "gift_cn": "阿根廷红酒、马黛茶"
+    },
+    "safety_cn": {
+      "level": "低",
+      "common_scams": "布宜诺斯艾利斯街头骗局、换汇黑市",
+      "night_safety": "夜间危险",
+      "female_safety": "低",
+      "emergency_words": "¡Ayuda!/ ¡Llame a la policía!",
+      "must_have_apps": "Uber、Cabify"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "ARS$2000-5000",
+    "avg_hotel_cn": "ARS$15000-40000/晚"
+  },
+  "NG": {
+    "code": "NG",
+    "name_cn": "尼日利亚",
+    "name_en": "Nigeria",
+    "alpha3": "NGA",
+    "continent": "非洲",
+    "capital_cn": "阿布贾",
+    "capital_en": "Abuja",
+    "currency_cn": "尼日利亚奈拉",
+    "currency_en": "Nigerian Naira",
+    "currency_code": "NGN",
+    "currency_symbol": "₦",
+    "timezone": "Africa/Lagos",
+    "timezone_offset": "+1",
+    "language_cn": "英语/豪萨语",
+    "language_en": "English/Hausa",
+    "driving_side": "right",
+    "plug_type": [
+      "D",
+      "G"
+    ],
+    "voltage": "230V",
+    "emergency_cn": {
+      "police": "112",
+      "ambulance": "112",
+      "fire": "112"
+    },
+    "china_embassy_cn": {
+      "city": "阿布贾",
+      "address": "Plot 302-303, Zone B4, Apo District, Abuja",
+      "phone": "+234-9-461-4000",
+      "after_hours": [
+        {
+          "city": "拉各斯",
+          "phone": "+234-1-271-5350",
+          "region": "拉各斯"
+        }
+      ],
+      "website": "建议联网搜索"
+    },
+    "china_consulates_cn": [],
+    "visa_cn": {
+      "chinese_citizen": true,
+      "type_cn": "需旅游签证",
+      "type_en": "Tourist visa required",
+      "processing_days": "签证(较难)",
+      "fee_cn": "约$100-200",
+      "fee_en": "约$100-200",
+      "validity_cn": "单次",
+      "validity_en": "单次"
+    },
+    "laws_cn": {
+      "drinking_age": 18,
+      "smoking_regulation": "公共场所禁烟",
+      "drug_penalty": "极为严厉",
+      "photo_restriction": "军事/政府建筑禁止拍照",
+      "tipping_culture_cn": "不强制",
+      "public_behavior": "⚠️ 治安极差，避免独自出行",
+      "driving_license_cn": "中国驾照+国际驾照可用"
+    },
+    "culture_cn": {
+      "greeting": "握手(右手)",
+      "dining_etiquette": "右手抓饭",
+      "taboo_cn": "北部穆斯林区遵守伊斯兰教规",
+      "dress_code": "保守穿着",
+      "gift_cn": "当地手工艺品"
+    },
+    "safety_cn": {
+      "level": "⚠️ 极低",
+      "common_scams": "⚠️ 极高！绑架勒索、假警察、电商诈骗、419骗局",
+      "night_safety": "⚠️ 夜间绝对不要外出",
+      "female_safety": "极低",
+      "emergency_words": "Help!/ Call police!",
+      "must_have_apps": "Uber、Google Maps"
+    },
+    "cost_level_cn": "低",
+    "cost_level_en": "Low",
+    "avg_meal_cn": "₦1000-3000",
+    "avg_hotel_cn": "₦15000-50000/晚"
+  }
+}

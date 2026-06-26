@@ -1,0 +1,38 @@
+{
+  "ticker": "G",
+  "company": "The Gillette Company",
+  "analysis_year": 1989,
+  "data_source": "Gillette 1988 annual report tables reproduced in archival case materials sourced to company annual reports, plus Berkshire 1989 and 1995 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.18, "metric_used": "ROIC", "years_averaged": "1987-1988", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 268.5, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 2.6, "pass": true },
+    "g4_revenue_trend": { "description": "Sales grew from about $3.17B to $3.58B in 1987-1988, and the new Sensor platform was about to launch. Growth was coming from product strength, not financial engineering.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Operating income rose from $523M to $614M in 1987-1988 and the blades-and-razors segment remained the overwhelming profit engine. No two-year margin deterioration was visible at the business level.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": null, "pass": null },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Gillette owned the premium end of a habit-driven category where brand, patents, shelf space, and replacement-blade economics reinforced each other. Consumers repeatedly bought high-margin cartridges, retailers had to stock the category leader, and product innovation such as Sensor deepened rather than reset the moat.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "net_sales_1988_m": 3581.2,
+    "ebit_1988_m": 651.2,
+    "net_income_1988_m": 268.5,
+    "long_term_debt_1988_m": 1675.2,
+    "berkshire_investment_1989_m": 600
+  },
+
+  "control_groups": [
+    { "ticker": "BIC", "company": "BIC Corporation", "year": 1988, "gates_failed": ["g7_moat"], "conclusion": "PASS — strong disposable economics, but not the same premium refill-system moat or innovation flywheel as Gillette." },
+    { "ticker": "SCHICK", "company": "Schick / Wilkinson Sword", "year": 1989, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — credible competitor, but lacked Gillette's breadth of brand power, patent cadence, and global installed base." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire bought $600M of Gillette convertible preferred in July 1989 with an 8.75% dividend, mandatory redemption in ten years, and conversion at $50 per share.",
+  "actual_result": "One of Berkshire's best structured-equity investments. Buffett later said he should probably have bought common stock outright because the economics were even better than the preferred captured.",
+  "verdict": "✅ aligned",
+  "key_insight": "When the business is truly exceptional, even a conservative structured security can work very well — but the real lesson is how obvious the underlying moat already was."
+}

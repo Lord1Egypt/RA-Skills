@@ -1,0 +1,136 @@
+{
+  "version": "4.0.0",
+  "updated": "2026-04-17",
+  "description": "进化规则中央库 - evolution.json - 规则自动进化机制",
+  "author": "OpenClaw Security Team",
+
+  "evolution_tags": {
+    "description": "进化标签系统 - 用于样本归类和规则进化",
+    "tags": {
+      "recursion": {"desc": "递归攻击", "trigger_threshold": 3},
+      "paradox": {"desc": "悖论攻击", "trigger_threshold": 5},
+      "injection": {"desc": "注入攻击", "trigger_threshold": 2},
+      "social": {"desc": "社工攻击", "trigger_threshold": 2},
+      "emotional": {"desc": "情感操纵", "trigger_threshold": 3},
+      "context": {"desc": "上下文污染", "trigger_threshold": 1},
+      "cross_session": {"desc": "跨会话攻击", "trigger_threshold": 1},
+      "command": {"desc": "命令注入", "trigger_threshold": 1},
+      "roleplay": {"desc": "角色扮演", "trigger_threshold": 3},
+      "encoded": {"desc": "编码逃逸", "trigger_threshold": 2},
+      "definition": {"desc": "定义篡改", "trigger_threshold": 2},
+      "moral": {"desc": "道德困境", "trigger_threshold": 3},
+      "skill": {"desc": "技能攻击", "trigger_threshold": 1},
+      "nested": {"desc": "嵌套攻击", "trigger_threshold": 2},
+      "path": {"desc": "路径攻击", "trigger_threshold": 2},
+      "ignore": {"desc": "忽略规则", "trigger_threshold": 2},
+      "system_prompt": {"desc": "系统提示词提取", "trigger_threshold": 1},
+      "escape": {"desc": "逃逸攻击", "trigger_threshold": 3},
+      "translation": {"desc": "翻译攻击", "trigger_threshold": 3},
+      "unicode": {"desc": "Unicode攻击", "trigger_threshold": 3},
+      "impersonation": {"desc": "身份冒充", "trigger_threshold": 1},
+      "tech_support": {"desc": "技术支持钓鱼", "trigger_threshold": 2},
+      "phishing": {"desc": "钓鱼攻击", "trigger_threshold": 2},
+      "friend": {"desc": "朋友求助套取", "trigger_threshold": 2},
+      "authority": {"desc": "权威压力", "trigger_threshold": 3},
+      "time_pressure": {"desc": "时间压力", "trigger_threshold": 4},
+      "fake_system": {"desc": "假系统消息", "trigger_threshold": 3},
+      "self_reference": {"desc": "自引用悖论", "trigger_threshold": 5},
+      "dilemma": {"desc": "两难困境", "trigger_threshold": 4},
+      "semantic": {"desc": "语义偷换", "trigger_threshold": 3},
+      "false_choice": {"desc": "假选项", "trigger_threshold": 2},
+      "replication": {"desc": "递归复制", "trigger_threshold": 3},
+      "guilt": {"desc": "愧疚感", "trigger_threshold": 4},
+      "sympathy": {"desc": "同理心攻击", "trigger_threshold": 4},
+      "scarcity": {"desc": "稀缺性压力", "trigger_threshold": 5},
+      "history_injection": {"desc": "历史注入", "trigger_threshold": 1},
+      "session_continuation": {"desc": "会话接续", "trigger_threshold": 2},
+      "empty": {"desc": "空命令", "trigger_threshold": 5},
+      "mixed": {"desc": "混合命令", "trigger_threshold": 2},
+      "filename_trick": {"desc": "文件名欺骗", "trigger_threshold": 2},
+      "typosquat": {"desc": "域名伪装", "trigger_threshold": 2},
+      "role_begins": {"desc": "角色扮演", "trigger_threshold": 3},
+      "third_party": {"desc": "第三方代问", "trigger_threshold": 3},
+      "test_mode": {"desc": "测试模式攻击", "trigger_threshold": 3},
+      "reverse": {"desc": "逆向攻击", "trigger_threshold": 4},
+      "justification": {"desc": "解释漏洞", "trigger_threshold": 4},
+      "partial": {"desc": "部分执行", "trigger_threshold": 3},
+      "information_gathering": {"desc": "信息收集", "trigger_threshold": 5},
+      "chain_of_thought": {"desc": "思维链外溢", "trigger_threshold": 3},
+      "format_injection": {"desc": "格式注入", "trigger_threshold": 3}
+    }
+  },
+
+  "evolution_flow": {
+    "description": "进化流程配置",
+    "steps": [
+      {
+        "step": 1,
+        "name": "sample_capture",
+        "desc": "样本捕获",
+        "action": "捕获攻击样本，存入attack_samples.json"
+      },
+      {
+        "step": 2,
+        "name": "semantic_analysis",
+        "desc": "语义分析",
+        "action": "提取关键词、意图、上下文"
+      },
+      {
+        "step": 3,
+        "name": "clustering",
+        "desc": "聚类分析",
+        "action": "发现同类变种，提取共性特征"
+      },
+      {
+        "step": 4,
+        "name": "rule_generation",
+        "desc": "规则生成",
+        "action": "AI提取新规则模式"
+      },
+      {
+        "step": 5,
+        "name": "validation",
+        "desc": "验证部署",
+        "action": "沙箱测试或人工审核后更新patterns.json"
+      }
+    ]
+  },
+
+  "performance_settings": {
+    "description": "性能优化配置",
+    "caching": {
+      "pattern_cache": true,
+      "vector_cache": true,
+      "cache_ttl_seconds": 3600
+    },
+    "batch_processing": {
+      "enabled": true,
+      "batch_size": 10,
+      "max_queue_size": 100
+    },
+    "lazy_loading": {
+      "enabled": true,
+      "trigger_on_dangerous_behavior": true,
+      "trigger_on_pattern_match": true
+    }
+  },
+
+  "storage_paths": {
+    "description": "存储路径配置",
+    "attack_samples": "config/central/attack_samples.json",
+    "session_tracking": "config/central/session_tracking.json",
+    "patterns": "config/central/patterns.json",
+    "cases": "config/attack_cases.json",
+    "evolution_log": "config/central/evolution_log.json"
+  },
+
+  "defense_principles": {
+    "description": "防御原则",
+    "items": [
+      "来源验证 > 等级",
+      "身份ID验证优先",
+      "外部接口只读",
+      "规矩不可破"
+    ]
+  }
+}

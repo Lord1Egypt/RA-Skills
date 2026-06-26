@@ -1,0 +1,120 @@
+{
+  "id": "manufacturing_production_daily",
+  "name": "生产产能日报表",
+  "name_en": "Production Capacity Daily Report",
+  "industry": "manufacturing",
+  "scene": "生产监控",
+  "description": "每日生产进度监控、产能达成率分析，适配工厂车间生产管理场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "date", "label": "日期", "type": "date", "required": true, "aliases": ["日期", "date", "生产日期", "统计日期"]},
+        {"field": "line", "label": "生产线", "type": "string", "required": true, "aliases": ["生产线", "line", "产线", "线别", "车间"]},
+        {"field": "plan_capacity", "label": "计划产能", "type": "number", "aliases": ["计划产能", "plan_capacity", "目标产能", "计划产量"]},
+        {"field": "actual_capacity", "label": "实际产能", "type": "number", "aliases": ["实际产能", "actual_capacity", "实际产量", "产量"]},
+        {"field": "yield_rate", "label": "良率", "type": "percent", "aliases": ["良率", "yield_rate", "合格率", "直通率"]},
+        {"field": "downtime", "label": "停机时间(分钟)", "type": "number", "aliases": ["停机时间", "downtime", "停机时长", "故障时间"]},
+        {"field": "workers", "label": "生产人员数", "type": "number", "aliases": ["生产人员数", "workers", "人数", "作业人数"]}
+      ],
+      "default_values": {
+        "yield_rate": 0.95,
+        "downtime": 0,
+        "workers": 10
+      }
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_achievement",
+          "label": "整体产能达成率",
+          "formula": "SUM(actual_capacity)/SUM(plan_capacity)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.95
+        },
+        {
+          "id": "avg_yield",
+          "label": "综合良率",
+          "formula": "AVG(yield_rate)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.98
+        },
+        {
+          "id": "total_actual",
+          "label": "总实际产能",
+          "formula": "SUM(actual_capacity)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "avg_downtime",
+          "label": "平均停机时间(分钟)",
+          "formula": "AVG(downtime)",
+          "format": "number",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "capacity_compare",
+          "type": "bar",
+          "title": "各生产线计划vs实际产能对比",
+          "x": "line",
+          "y": ["plan_capacity", "actual_capacity"],
+          "series_names": ["计划产能", "实际产能"],
+          "position": {"row": 1, "col": 1, "width": 15, "height": 10}
+        },
+        {
+          "id": "capacity_trend",
+          "type": "line",
+          "title": "产能趋势",
+          "x": "date",
+          "y": ["actual_capacity"],
+          "series_names": ["实际产能"],
+          "position": {"row": 1, "col": 18, "width": 12, "height": 10}
+        },
+        {
+          "id": "line_share",
+          "type": "pie",
+          "title": "各生产线产能占比",
+          "dimension": "line",
+          "metric": "actual_capacity",
+          "position": {"row": 12, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "yield_compare",
+          "type": "bar",
+          "title": "各生产线良率对比",
+          "x": "line",
+          "y": ["yield_rate"],
+          "series_names": ["良率"],
+          "format": "percent",
+          "position": {"row": 12, "col": 12, "width": 10, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "明细数据",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "achievement_rate", "label": "产能达成率", "formula": "actual_capacity / plan_capacity", "format": "percent"},
+        {"field": "per_capita_capacity", "label": "人均产能", "formula": "actual_capacity / workers", "format": "number", "decimals": 1},
+        {"field": "downtime_rate", "label": "停机率", "formula": "downtime / 480", "format": "percent"}
+      ],
+      "sort_by": ["date", "line"],
+      "conditional_formatting": [
+        {"field": "achievement_rate", "condition": "<0.9", "format": "red_fill"},
+        {"field": "achievement_rate", "condition": ">=0.95", "format": "green_fill"},
+        {"field": "yield_rate", "condition": "<0.95", "format": "yellow_fill"}
+      ]
+    }
+  ],
+  "output_filename": "制造业-生产产能日报-{date}.xlsx",
+  "sample_data_rows": 20
+}

@@ -1,35 +1,72 @@
----
-name: "Devops Automation Pack"
-description: "Provides automation templates and scripts for Docker, Kubernetes, CI/CD, monitoring, and backup to streamline modern DevOps deployments."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/devops-automation-pack"
-sourceUrl: "https://clawhub.ai/skills/devops-automation-pack"
----
+# DevOps Automation Pack
 
-# Devops Automation Pack
+Complete DevOps automation toolkit for modern deployments.
 
-> Provides automation templates and scripts for Docker, Kubernetes, CI/CD, monitoring, and backup to streamline modern DevOps deployments.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/devops-automation-pack`
-- **Source URL:** [https://clawhub.ai/skills/devops-automation-pack](https://clawhub.ai/skills/devops-automation-pack)
+### Docker Automation
+- Multi-stage Dockerfile optimization
+- Docker Compose templates for common stacks
+- Container registry setup
+- Image build automation
 
-## Overview
+### Kubernetes Deployment
+- Helm chart templates
+- Deployment manifests
+- Service configurations
+- Ingress setup
+- Auto-scaling configs
 
+### CI/CD Pipelines
+- GitHub Actions templates
+- GitLab CI configs
+- Jenkins pipelines
+- ArgoCD integration
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Monitoring
+- Prometheus setup
+- Grafana dashboards
+- Alert rules
+- Log aggregation
+
+### Backup & Recovery
+- Database backups
+- Volume snapshots
+- Disaster recovery scripts
+
+## Usage
+
 ```bash
-hermes skills install clawhub/devops-automation-pack
+# Docker deployment
+./docker-deploy.sh myapp
+
+# Kubernetes deployment  
+./k8s-deploy.sh myapp --namespace production
+
+# Setup CI/CD
+./ci-cd.sh github myapp
+
+# Setup monitoring
+./monitor.sh install
 ```
+
+## Templates Included
+
+- Node.js + PostgreSQL
+- Python + Redis
+- React + Node API
+- Microservices stack
+
+## Requirements
+
+- Docker 20.10+
+- Kubernetes 1.24+
+- Helm 3.8+
+
+## Author
+
+Sunshine-del-ux
+
+## License
+
+MIT

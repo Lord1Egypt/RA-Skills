@@ -1,0 +1,4 @@
+interface:
+  display_name: "CTF Solver"
+  short_description: "Playbook for triaging and solving common CTF challenge types."
+  default_prompt: "Use $ctf-solver to analyze this challenge, choose the likely category, and propose the next concrete exploitation steps."

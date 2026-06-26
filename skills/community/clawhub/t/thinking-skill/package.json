@@ -1,0 +1,19 @@
+{
+  "name": "thinking-skill",
+  "version": "1.0.0",
+  "description": "Thinking Skill - 深度思考与规划引擎",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "publish": "claw skill publish"
+  },
+  "keywords": [
+    "thinking",
+    "planning",
+    "memory",
+    "openclaw-skill"
+  ],
+  "author": "Spark",
+  "license": "MIT"
+}

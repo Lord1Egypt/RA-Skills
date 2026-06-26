@@ -1,0 +1,23 @@
+{
+  "name": "friday-budgeting-pro",
+  "version": "1.0.7",
+  "description": "AI-powered personal finance tracker for OpenClaw. Connects to banks via Plaid, auto-classifies transactions, syncs daily, and exports to Excel.",
+  "slug": "friday-budgeting-pro",
+  "homepage": "https://github.com/Riddy21/Friday_Budgeting_Pro",
+  "keywords": [
+    "finance",
+    "budgeting",
+    "plaid",
+    "banking",
+    "mcp",
+    "openclaw"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Riddy21/Friday_Budgeting_Pro"
+  },
+  "openclaw": {
+    "skillFile": "SKILL.md",
+    "minVersion": "2026.1.0"
+  }
+}

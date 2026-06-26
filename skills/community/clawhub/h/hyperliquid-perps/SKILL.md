@@ -1,35 +1,18 @@
 ---
-name: "Hyperliquid Perps"
-description: "Paper and live perpetual futures trading on Hyperliquid. Smart leverage (1x/3x/5x based on signal strength), OBV divergence, auto-stop-loss. Use for Hyperliq..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hyperliquid-perps"
-sourceUrl: "https://clawhub.ai/skills/hyperliquid-perps"
+name: hyperliquid-perps
+version: 1.0.0
+description: Paper and live perpetual futures trading on Hyperliquid. Smart leverage (1x/3x/5x based on signal strength), OBV divergence, auto-stop-loss. Use for Hyperliquid trading, perp automation, or leverage management.
+author: JamieRossouw
+tags: [hyperliquid,perps,leverage,futures,crypto,trading,automation]
 ---
+# Hyperliquid Perps Trader
 
-# Hyperliquid Perps
+Paper and live perpetual futures trading on Hyperliquid. Smart leverage (1x/3x/5x based on signal strength), OBV divergence, auto-stop-loss. Use for Hyperliquid trading, perp automation, or leverage management.
 
-> Paper and live perpetual futures trading on Hyperliquid. Smart leverage (1x/3x/5x based on signal strength), OBV divergence, auto-stop-loss. Use for Hyperliq...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hyperliquid-perps`
-- **Source URL:** [https://clawhub.ai/skills/hyperliquid-perps](https://clawhub.ai/skills/hyperliquid-perps)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hyperliquid-perps
+## Usage
 ```
+Use hyperliquid-perps to get started
+```
+
+## Built by RHO Genesis
+Part of the RHO autonomous trading fleet. See also: rho-signals, argus-edge, polymarket-scout.

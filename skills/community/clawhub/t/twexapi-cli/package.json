@@ -1,0 +1,36 @@
+{
+  "name": "twexapi-cli",
+  "version": "0.1.1",
+  "description": "Command-line client for twexapi APIs with saved app auth and profiles",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://twexapi.io/dashboard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeahjjyy/twexapi-cli.git"
+  },
+  "bugs": {
+    "url": "https://twexapi.io/dashboard"
+  },
+  "keywords": [
+    "twexapi",
+    "twitter",
+    "x",
+    "cli",
+    "api"
+  ],
+  "files": [
+    "bin/",
+    "src/",
+    "README.md"
+  ],
+  "bin": {
+    "twexapi": "./bin/twexapi.js"
+  },
+  "scripts": {
+    "check": "node ./bin/twexapi.js --help"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

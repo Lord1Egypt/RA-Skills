@@ -1,0 +1,1010 @@
+[
+  {
+    "code": "ths_amt_q_spot",
+    "name": "季成交额",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_q_spot",
+    "name": "季成交均价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_q_spot",
+    "name": "季涨跌",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_q_spot",
+    "name": "季涨跌幅",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_q_spot",
+    "name": "季收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_q_spot",
+    "name": "季日均成交额",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_q_spot",
+    "name": "季日均持仓量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_q_spot",
+    "name": "季日均成交量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_q_spot",
+    "name": "季最高收盘价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_q_spot",
+    "name": "季最高收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_q_spot",
+    "name": "季最高价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_q_spot",
+    "name": "季最高结算价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_q_spot",
+    "name": "季最高结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_q_spot",
+    "name": "季最低收盘价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_q_spot",
+    "name": "季最低收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_q_spot",
+    "name": "季最低价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_q_spot",
+    "name": "季最低结算价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_q_spot",
+    "name": "季最低结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_q_spot",
+    "name": "季持仓量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_q_spot",
+    "name": "季开盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_q_spot",
+    "name": "季持仓变化",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_q_spot",
+    "name": "季前收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_q_spot",
+    "name": "季前结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_q_spot",
+    "name": "季涨跌(结算价)",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_q_spot",
+    "name": "季涨跌幅(结算价)",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_q_spot",
+    "name": "季结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_q_spot",
+    "name": "季振幅",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_q_spot",
+    "name": "季成交量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_y_spot",
+    "name": "年成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_y_spot",
+    "name": "年成交均价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_y_spot",
+    "name": "年涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_y_spot",
+    "name": "年涨跌",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_y_spot",
+    "name": "年收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_y_spot",
+    "name": "年日均成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_y_spot",
+    "name": "年日均持仓量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_y_spot",
+    "name": "年日均成交量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_y_spot",
+    "name": "年最高收盘价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_y_spot",
+    "name": "年最高收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_y_spot",
+    "name": "年最高结算价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_y_spot",
+    "name": "年最高结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_y_spot",
+    "name": "年最高价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_y_spot",
+    "name": "年最低收盘价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_y_spot",
+    "name": "年最低收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_y_spot",
+    "name": "年最低结算价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_y_spot",
+    "name": "年最低结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_y_spot",
+    "name": "年最低价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_y_spot",
+    "name": "年开盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_y_spot",
+    "name": "年持仓变化",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_y_spot",
+    "name": "年持仓量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_y_spot",
+    "name": "年前收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_y_spot",
+    "name": "年前结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_y_spot",
+    "name": "年涨跌幅(结算价)",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_y_spot",
+    "name": "年涨跌(结算价)",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_y_spot",
+    "name": "年结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_y_spot",
+    "name": "年振幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_y_spot",
+    "name": "年成交量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_int_spot",
+    "name": "区间成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_int_spot",
+    "name": "区间成交均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_int_spot",
+    "name": "区间涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_settle_int_spot",
+    "name": "区间涨跌幅(结算价)",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_settle_int_spot",
+    "name": "区间涨跌(结算价)",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_int_spot",
+    "name": "区间收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_int_spot",
+    "name": "区间日均成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_int_spot",
+    "name": "区间日均持仓量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_int_spot",
+    "name": "区间日均成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_int_spot",
+    "name": "区间最高收盘价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_int_spot",
+    "name": "区间最高收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_int_spot",
+    "name": "区间最高价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_int_spot",
+    "name": "区间最高结算价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_int_spot",
+    "name": "区间最高结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_int_chg_ratio_spot",
+    "name": "区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_int_spot",
+    "name": "区间最低收盘价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_int_spot",
+    "name": "区间最低收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_int_spot",
+    "name": "区间最低价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_int_spot",
+    "name": "区间最低结算价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_int_spot",
+    "name": "区间最低结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_chg_int_spot",
+    "name": "区间持仓变化",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_int_spot",
+    "name": "区间开盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_int_spot",
+    "name": "区间持仓量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_int_spot",
+    "name": "区间前收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_int_spot",
+    "name": "区间前结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_int_spot",
+    "name": "区间结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_int_spot",
+    "name": "区间振幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_int_spot",
+    "name": "区间成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_spot",
+    "name": "成交额",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_spot",
+    "name": "涨跌幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_spot",
+    "name": "涨跌",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_price_spot",
+    "name": "收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_delivery_vol_spot",
+    "name": "交收量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_price_spot",
+    "name": "最高价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_spot",
+    "name": "最低价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_spot",
+    "name": "持仓量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_price_spot",
+    "name": "开盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_spot",
+    "name": "持仓变化",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_spot",
+    "name": "前收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_spot",
+    "name": "前结算价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_spot",
+    "name": "涨跌幅(结算价)",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_spot",
+    "name": "涨跌(结算价)",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_spot",
+    "name": "结算价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_spot",
+    "name": "振幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_spot",
+    "name": "成交量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_wgt_avg_price_spot",
+    "name": "加权平均价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_m_spot",
+    "name": "月成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_m_spot",
+    "name": "月成交均价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_m_spot",
+    "name": "月涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chgm_spot",
+    "name": "月涨跌",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_m_spot",
+    "name": "月收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_m_spot",
+    "name": "月日均成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_m_spot",
+    "name": "月日均持仓量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_m_spot",
+    "name": "月日均成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_m_spot",
+    "name": "月最高收盘价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_m_spot",
+    "name": "月最高收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_m_spot",
+    "name": "月最高价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_m_spot",
+    "name": "月最高结算价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_m_spot",
+    "name": "月最高结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_m_spot",
+    "name": "月最低收盘价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_m_spot",
+    "name": "月最低收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_m_spot",
+    "name": "月最低价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_m_spot",
+    "name": "月最低结算价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_m_spot",
+    "name": "月最低结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_m_spot",
+    "name": "月持仓量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_m_spot",
+    "name": "月开盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chgm_spot",
+    "name": "月持仓变化",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_m_spot",
+    "name": "月前收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_m_spot",
+    "name": "月前结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_m_spot",
+    "name": "月涨跌幅(结算价)",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chgm_spot",
+    "name": "月涨跌(结算价)",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_m_spot",
+    "name": "月结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swingm_spot",
+    "name": "月振幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_m_spot",
+    "name": "月成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_w_spot",
+    "name": "周成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_w_spot",
+    "name": "周成交均价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_w_spot",
+    "name": "周涨跌幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_w_spot",
+    "name": "周涨跌",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_w_spot",
+    "name": "周收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_w_spot",
+    "name": "周日均成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_o_i_w_spot",
+    "name": "周日均持仓量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_w_spot",
+    "name": "周日均成交量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_w_spot",
+    "name": "周最高收盘价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_w_spot",
+    "name": "周最高收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_w_spot",
+    "name": "周最高结算价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_w_spot",
+    "name": "周最高结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_w_spot",
+    "name": "周最高价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_w_spot",
+    "name": "周最低收盘价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_w_spot",
+    "name": "周最低收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_w_spot",
+    "name": "周最低结算价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_w_spot",
+    "name": "周最低结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_w_spot",
+    "name": "周最低价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_w_spot",
+    "name": "周持仓量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_w_spot",
+    "name": "周开盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_w_spot",
+    "name": "周持仓变化",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_w_spot",
+    "name": "周前收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_w_spot",
+    "name": "周前结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_w_spot",
+    "name": "周涨跌幅(结算价)",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_w_spot",
+    "name": "周涨跌(结算价)",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_w_spot",
+    "name": "周结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_w_spot",
+    "name": "周振幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_w_spot",
+    "name": "周成交量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_current_delay_rate_spot",
+    "name": "当前延期费率",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_delivery_perf_bond_ratio_spot",
+    "name": "交收履约保证金比例",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_delivery_term_spot",
+    "name": "交收宽限期",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_listed_date_spot",
+    "name": "上市日期",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_mini_chg_price_spot",
+    "name": "最小变动价位",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_pick_up_charge_spot",
+    "name": "提货费",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_close_time_explain_spot",
+    "name": "结算休市时间说明",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_spot_code_spot",
+    "name": "现货代码",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_td_deposit_spot",
+    "name": "交易保证金",
+    "description": "基础资料",
+    "params": ""
+  },
+  {
+    "code": "ths_td_mkt_spot",
+    "name": "交易市场",
+    "description": "基础资料",
+    "params": ""
+  }
+]

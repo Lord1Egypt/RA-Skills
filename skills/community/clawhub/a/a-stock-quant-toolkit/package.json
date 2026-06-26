@@ -1,0 +1,33 @@
+{
+  "name": "a-stock-quant-toolkit",
+  "version": "1.0.0",
+  "description": "A股量化工具包 — 实时行情/技术指标/回测/监控/策略引擎。腾讯API直取，零外部依赖",
+  "keywords": [
+    "a-stock",
+    "china-stock",
+    "quantitative-trading",
+    "backtesting",
+    "technical-analysis",
+    "bollinger-bands",
+    "rsi",
+    "macd",
+    "kdj",
+    "stock-monitor",
+    "trading-strategy",
+    "tencent-api",
+    "finance",
+    "openclaw",
+    "python",
+    "量化交易",
+    "A股",
+    "股票分析",
+    "回测"
+  ],
+  "author": "Yu (姜翔)",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "finance_toolkit/"
+  ]
+}

@@ -1,0 +1,18 @@
+budgets:
+  daily: 500       # 每日预算上限（元）
+  weekly: 3000     # 每周预算上限（元）
+  monthly: 10000   # 每月预算上限（元）
+
+alerts:
+  thresholds: [0.5, 0.8, 1.0]  # 预警阈值（50%/80%/100%）
+  channels:
+    - feishu
+  recipients:
+    - wayne  # 飞书用户名或 open_id
+
+limits:
+  per_agent_daily: 100   # 单个数字员工每日上限（元）
+  emergency_stop: 1.5    # 超过预算 150% 时紧急停止
+
+# 白名单：即使超预算也不自动暂停的 agent
+whitelist_agents: []

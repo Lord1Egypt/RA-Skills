@@ -1,0 +1,14 @@
+---
+name: onchain-analysis
+description: Interpret blockchain data strategically; identify patterns, anomalies, and flows with data-backed evidence and explicit uncertainty.
+version: 2.0.0
+display_name: "Onchain Analysis"
+triggers:
+  - onchain analysis
+  - analyze wallet
+  - analyze contract
+  - trace transactions
+  - fund flows
+  - detect anomaly
+  - token movements
+---

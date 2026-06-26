@@ -1,0 +1,8 @@
+{
+  "name": "skill-awesun-remote-control",
+  "version": "1.0.0",
+  "description": "Claude Skill for awesun-remote-control MCP server",
+  "scripts": {
+    "setup": "pip install mcp"
+  }
+}

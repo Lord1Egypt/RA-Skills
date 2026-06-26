@@ -1,0 +1,4 @@
+interface:
+  display_name: "PolySports Trading Agent"
+  short_description: "PolySports trading and OpenClaw automation"
+  default_prompt: "Use $polysports-trading-agent to analyze PolySports markets, confirm order size, trade through `/skills/v1`, and set up OpenClaw pregame scans, in-game monitoring, or postgame reviews."

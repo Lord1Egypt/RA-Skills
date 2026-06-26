@@ -1,0 +1,277 @@
+{
+  "summary": {
+    "numeric": {
+      "tested": 10,
+      "passed": 3,
+      "failed": 7,
+      "skipped": 0,
+      "OA": 100.0,
+      "AA": 30.0,
+      "ASR": 70.0
+    },
+    "context": {
+      "tested": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 9,
+      "OA": 10.0,
+      "AA": 0.0,
+      "ASR": 100.0
+    },
+    "type": {
+      "tested": 3,
+      "passed": 1,
+      "failed": 2,
+      "skipped": 7,
+      "OA": 30.0,
+      "AA": 33.3,
+      "ASR": 66.7
+    }
+  },
+  "details": {
+    "numeric": [
+      {
+        "question_idx": 0,
+        "n_variants": 5,
+        "verdicts": [
+          "PASS",
+          "PASS",
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "verdict": "PASS"
+      },
+      {
+        "question_idx": 1,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "FAIL",
+          "PASS",
+          "FAIL",
+          "PASS"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 2,
+        "n_variants": 5,
+        "verdicts": [
+          "PASS",
+          "PASS",
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "verdict": "PASS"
+      },
+      {
+        "question_idx": 3,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 4,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 5,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL",
+          "FAIL",
+          "PASS"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 6,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "PASS"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 7,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 8,
+        "n_variants": 5,
+        "verdicts": [
+          "FAIL",
+          "PASS",
+          "PASS",
+          "FAIL",
+          "PASS"
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 9,
+        "n_variants": 5,
+        "verdicts": [
+          "PASS",
+          "PASS",
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "verdict": "PASS"
+      }
+    ],
+    "context": [
+      {
+        "question_idx": 0,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 1,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 2,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 3,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 4,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 5,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 6,
+        "n_variants": 1,
+        "verdicts": [
+          {
+            "swap": "spring->elastic cord",
+            "verdict": "FAIL"
+          }
+        ],
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 7,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 8,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      },
+      {
+        "question_idx": 9,
+        "verdict": "SKIP",
+        "reason": "no applicable swaps"
+      }
+    ],
+    "type": [
+      {
+        "question_idx": 0,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 1,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 2,
+        "swap": "explain->describe",
+        "orig_type": "explain",
+        "variant_type": "explain",
+        "expected_orig": "explain",
+        "expected_new": "describe",
+        "verdict": "FAIL"
+      },
+      {
+        "question_idx": 3,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 4,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 5,
+        "swap": "calculate->estimate",
+        "orig_type": "calculation",
+        "variant_type": "calculation",
+        "expected_orig": "calculation",
+        "expected_new": "calculation",
+        "verdict": "PASS"
+      },
+      {
+        "question_idx": 6,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 7,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 8,
+        "verdict": "SKIP",
+        "reason": "no matching verb"
+      },
+      {
+        "question_idx": 9,
+        "swap": "explain->describe",
+        "orig_type": "calculation",
+        "variant_type": "calculation",
+        "expected_orig": "explain",
+        "expected_new": "describe",
+        "verdict": "FAIL"
+      }
+    ]
+  }
+}

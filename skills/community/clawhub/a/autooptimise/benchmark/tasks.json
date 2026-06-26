@@ -1,0 +1,122 @@
+[
+  {
+    "id": "task_001",
+    "description": "Basic current weather for a named city",
+    "prompt": "What is the current weather in London?",
+    "expected_qualities": [
+      "returns current temperature",
+      "includes weather condition description",
+      "uses correct tool (wttr.in or equivalent)",
+      "concise response without padding"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_002",
+    "description": "Today's forecast including high and low temperatures",
+    "prompt": "What will the weather be like in Paris today? Give me the high and low.",
+    "expected_qualities": [
+      "returns today's high temperature",
+      "returns today's low temperature",
+      "includes weather condition for the day",
+      "does not return multi-day forecast when only today is asked"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_003",
+    "description": "Weekend forecast (multi-day)",
+    "prompt": "What is the weather forecast for New York this weekend?",
+    "expected_qualities": [
+      "returns Saturday and Sunday forecasts",
+      "includes temperatures for both days",
+      "includes condition descriptions",
+      "clearly labels each day"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_004",
+    "description": "Weather with feels-like temperature",
+    "prompt": "What does it feel like outside in Berlin right now?",
+    "expected_qualities": [
+      "returns feels-like temperature",
+      "distinguishes feels-like from actual temperature",
+      "mentions wind or humidity if relevant to feels-like",
+      "concise and direct"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_005",
+    "description": "Rain check — will it rain today?",
+    "prompt": "Will it rain in Manchester today?",
+    "expected_qualities": [
+      "gives a clear yes/no or probability",
+      "mentions precipitation chance or condition",
+      "does not return irrelevant data",
+      "concise answer"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_006",
+    "description": "Temperature in Fahrenheit when explicitly requested",
+    "prompt": "What is the temperature in Tokyo right now? Give it to me in Fahrenheit.",
+    "expected_qualities": [
+      "returns temperature in Fahrenheit (not Celsius)",
+      "respects user's explicit unit preference",
+      "accurate conversion if needed",
+      "clearly labels unit"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_007",
+    "description": "Wind conditions",
+    "prompt": "How windy is it in Edinburgh today?",
+    "expected_qualities": [
+      "returns wind speed",
+      "includes wind unit (km/h or mph)",
+      "optionally includes wind direction",
+      "concise response"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_008",
+    "description": "Graceful handling of ambiguous location",
+    "prompt": "What's the weather in Springfield?",
+    "expected_qualities": [
+      "acknowledges ambiguity OR picks a reasonable default and states it",
+      "does not silently return wrong location data",
+      "asks for clarification OR qualifies the location used",
+      "does not crash or return an error without explanation"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_009",
+    "description": "Humidity information",
+    "prompt": "What is the humidity in Singapore right now?",
+    "expected_qualities": [
+      "returns current humidity percentage",
+      "clearly labels the value as humidity",
+      "optionally contextualises (e.g. 'high humidity')",
+      "concise and direct"
+    ],
+    "max_score": 10
+  },
+  {
+    "id": "task_010",
+    "description": "Comparison of weather between two cities",
+    "prompt": "Compare the weather in London and Sydney right now.",
+    "expected_qualities": [
+      "returns weather data for both cities",
+      "clearly labels each city",
+      "includes temperature for both",
+      "optionally highlights the key difference"
+    ],
+    "max_score": 10
+  }
+]

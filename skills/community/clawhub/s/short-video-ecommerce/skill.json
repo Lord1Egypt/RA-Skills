@@ -1,0 +1,23 @@
+{
+  "name": "short-video-ecommerce",
+  "version": "1.0.0",
+  "description": "短视频带货全流程自动化Skill，涵盖选品调研 → 文案脚本 → AI图片 → AI视频 → 合规检查 → 一键上架 → 数据复盘，全链路闭环适配抖音/快手/小红书",
+  "author": "",
+  "license": "MIT",
+  "openclaw_min_version": "0.18.0",
+  "dependencies": {
+    "market-data": ">=1.0.0",
+    "ecommerce-api": ">=1.0.0",
+    "xiaohongshu": ">=1.0.0",
+    "web-content-fetcher": ">=1.0.0"
+  ],
+  "optional_dependencies": {
+    "nano-banana-pro-openrouter": ">=1.0.0",
+    "seeddance-ai-video": ">=1.0.0",
+    "kling-video": ">=1.0.0",
+    "ffmpeg-video-editor": ">=1.0.0",
+    "tts": ">=1.0.0"
+  },
+  "keywords": ["ecommerce", "short-video", "dropshipping", "automation", "tiktok", "douyin", "xiaohongshu", "video-generation"],
+  "categories": ["ecommerce", "automation", "video"]
+}

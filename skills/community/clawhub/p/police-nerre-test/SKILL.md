@@ -1,35 +1,93 @@
 ---
-name: "police-NERRE"
-description: "公安警情文本实体关系抽取工具，从警情文本中精准抽取指定实体与关系，输出严格结构化JSON，无任何多余内容"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/police-nerre-test"
-sourceUrl: "https://clawhub.ai/skills/police-nerre-test"
+name: police-nerre-test
+description: 公安警情文本实体关系抽取工具，从警情文本中精准抽取指定实体与关系，输出严格结构化JSON，无任何多余内容
+version: 1.0.3
+user-invocable: true
+disable-model-invocation: false
+metadata:
+  openclaw:
+    emoji: 👮
+    requires:
+      bins: [python3]
+      os: [linux, macos, windows]
 ---
 
-# police-NERRE
+# 公安警情实体关系抽取
 
-> 公安警情文本实体关系抽取工具，从警情文本中精准抽取指定实体与关系，输出严格结构化JSON，无任何多余内容
+## 一、任务说明
+作为公安警情文本实体关系抽取专家，核心任务是从用户输入的警情文本中，按照指定Schema抽取实体和关系，**仅输出严格JSON格式结果，禁止输出任何解释、Markdown标记、多余文字或注释**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/police-nerre-test`
-- **Source URL:** [https://clawhub.ai/skills/police-nerre-test](https://clawhub.ai/skills/police-nerre-test)
+## 二、实体类型（严格遵循，不可增减）
+- 姓名
+- 身份证号
+- 手机号
+- 昵称
+- 外貌
+- 地理位置
+- 事发地
+- 涉案物品
+- 危险物品
+- 银行卡号
+- 开户行
+- 车牌号
+- 组织名称
+- 违法犯罪行为
+- 危险行为
 
-## Overview
+## 三、关系类型（严格遵循，不可修改、自创）
+- 邻里关系
+- 所有权（组织）
+- 存在行为
+- 母女关系
+- 夫妻关系
+- 师生关系
+- 所有权（人）
+- 归属
+- 父女关系
+- 父子关系
+- 雇佣关系
+- 母子关系
+- 加害关系
+- 纠纷关系（组织组织）
+- 纠纷关系（人组织）
+- 纠纷关系（人人）
 
+## 四、输出格式（强制唯一，不可变更）
+输出内容仅保留以下JSON结构，无任何其他内容，字段顺序、键名不可修改：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/police-nerre-test
+```json
+{
+  "实体": {
+    "姓名": [],
+    "身份证号": [],
+    "手机号": [],
+    "昵称": [],
+    "外貌": [],
+    "地理位置": [],
+    "事发地": [],
+    "涉案物品": [],
+    "危险物品": [],
+    "银行卡号": [],
+    "开户行": [],
+    "车牌号": [],
+    "组织名称": [],
+    "违法犯罪行为": [],
+    "危险行为": []
+  },
+  "关系": [
+    ["主体", "关系类型", "客体"]
+  ]
+}
 ```
+markdown
+## 五、抽取规则（必须严格遵守）
+抽取范围：仅提取警情文本中真实出现的内容，不编造、不联想、不扩写未提及的信息。
+实体要求：所有实体字段必须完整保留，无对应内容时，字段值设为空数组（[]），禁止删除任何实体字段。
+关系要求：关系名称必须完全照搬本文档 “关系类型” 中指定的内容，禁止简写、修改或自创关系名称。
+关系方向：严格遵循以下方向要求，不可颠倒：
+加害关系：加害者 → 受害者
+存在行为：人物 / 组织 → 违法犯罪行为 / 危险行为
+归属：证件、号码、物品 → 对应的人物 / 组织
+所有权（人）：个人 → 其拥有的物品、车辆、财产等
+所有权（组织）：组织 → 其拥有的物品、车辆、财产等
+输出约束：最终仅输出 JSON 格式结果，无任何多余文字、解释、Markdown 标记或代码块说明。

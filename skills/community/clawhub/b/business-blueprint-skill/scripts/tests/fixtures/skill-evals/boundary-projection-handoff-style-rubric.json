@@ -1,0 +1,32 @@
+{
+  "case_id": "boundary-projection-handoff",
+  "overall_pass": true,
+  "score": 94,
+  "checks": [
+    {
+      "id": "boundary_respect",
+      "pass": true,
+      "score": 5,
+      "notes": "The fixture produces blueprint and projection artifacts without generating downstream report or slide content."
+    },
+    {
+      "id": "finance_semantics",
+      "pass": true,
+      "score": 5,
+      "notes": "Loan origination, risk, compliance, and core banking stay separated as finance architecture concerns."
+    },
+    {
+      "id": "handoff_quality",
+      "pass": true,
+      "score": 5,
+      "notes": "The projection preserves source, summary, entity names, and downstream skill boundaries."
+    },
+    {
+      "id": "no_placeholder_content",
+      "pass": true,
+      "score": 5,
+      "notes": "Artifacts contain concrete finance labels rather than generic placeholders."
+    }
+  ],
+  "summary": "A boundary case fixture that tests projection handoff without crossing into downstream skills."
+}

@@ -1,0 +1,36 @@
+{
+  "operation": "batch",
+  "parameters": {
+    "steps": [
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "box",
+          "length": 100,
+          "width": 100,
+          "height": 50,
+          "name": "BaseBox"
+        }
+      },
+      {
+        "operation": "create_primitive",
+        "parameters": {
+          "type": "cylinder",
+          "radius": 25,
+          "height": 50,
+          "name": "HoleCyl",
+          "position": [50, 50, 0]
+        }
+      },
+      {
+        "operation": "boolean",
+        "parameters": {
+          "type": "cut",
+          "base": "BaseBox",
+          "tool": "HoleCyl",
+          "name": "BoxWithHole"
+        }
+      }
+    ]
+  }
+}

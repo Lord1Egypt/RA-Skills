@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+
+# 示例数据（不包含在发布中）
+source*.json
+examples/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+
+# 临时文件
+tmp/
+temp/

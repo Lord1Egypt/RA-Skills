@@ -1,0 +1,224 @@
+#!/usr/bin/env python3
+"""
+Generate a Markdown homelab runbook from scan data.
+
+Usage:
+  # Run all scanners inline:
+  python3 generate_runbook.py [--output runbook.md]
+
+  # Pass pre-collected scan data:
+  python3 generate_runbook.py --docker docker.json --services services.json --ports ports.json [--output runbook.md]
+
+  # Pipe JSON (combined object):
+  echo '{"docker":{...},"services":{...},"ports":{...}}' | python3 generate_runbook.py
+"""
+
+import argparse
+import json
+import os
+import subprocess
+import sys
+from datetime import datetime, timezone
+
+
+SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SCRIPTS_DIR = os.path.join(SKILL_DIR, "scripts")
+
+
+def run_scanner(script_name):
+    """Run a scanner script and return its parsed JSON output."""
+    script = os.path.join(SCRIPTS_DIR, script_name)
+    try:
+        result = subprocess.run(
+            [sys.executable, script],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        if result.stdout.strip():
+            return json.loads(result.stdout)
+        return {"error": result.stderr.strip() or "No output", "data": []}
+    except subprocess.TimeoutExpired:
+        return {"error": f"{script_name} timed out"}
+    except json.JSONDecodeError as e:
+        return {"error": f"JSON parse error: {e}"}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def load_json_file(path):
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def fmt_ports(ports_list):
+    if not ports_list:
+        return "—"
+    return ", ".join(str(p) for p in ports_list)
+
+
+def fmt_mounts(mounts_list):
+    if not mounts_list:
+        return "—"
+    return "<br>".join(mounts_list)
+
+
+def section_docker(docker_data):
+    lines = ["## 🐳 Docker Services", ""]
+    if "error" in docker_data:
+        lines.append(f"> ⚠️ {docker_data['error']}")
+        lines.append("")
+        return lines
+
+    containers = docker_data.get("containers", [])
+    if not containers:
+        lines.append("_No running containers._")
+        lines.append("")
+        return lines
+
+    lines.append("| Name | Image | Status | Ports | Mounts |")
+    lines.append("|------|-------|--------|-------|--------|")
+    for c in containers:
+        name = c.get("name", "—")
+        image = c.get("image", "—")
+        status = c.get("status", "—")
+        ports = fmt_ports(c.get("ports", []))
+        mounts = fmt_mounts(c.get("mounts", []))
+        lines.append(f"| `{name}` | `{image}` | {status} | {ports} | {mounts} |")
+
+    lines.append("")
+    return lines
+
+
+def section_services(services_data):
+    lines = ["## ⚙️ System Services", ""]
+    if "error" in services_data:
+        lines.append(f"> ⚠️ {services_data['error']}")
+        lines.append("")
+        return lines
+
+    os_name = services_data.get("os", "Unknown")
+    services = services_data.get("services", [])
+    lines.append(f"_Detected OS: {os_name} — {len(services)} running service(s)_")
+    lines.append("")
+
+    if not services:
+        lines.append("_No running services found._")
+        lines.append("")
+        return lines
+
+    lines.append("| Service | Status | PID |")
+    lines.append("|---------|--------|-----|")
+    for svc in services:
+        name = svc.get("name", "—")
+        status = svc.get("status", "—")
+        pid = str(svc.get("pid", "—"))
+        lines.append(f"| `{name}` | {status} | {pid} |")
+
+    lines.append("")
+    return lines
+
+
+def section_ports(ports_data):
+    lines = ["## 🔌 Open Listening Ports", ""]
+    if "error" in ports_data:
+        lines.append(f"> ⚠️ {ports_data['error']}")
+        lines.append("")
+        return lines
+
+    ports = ports_data.get("ports", [])
+    if not ports:
+        lines.append("_No open listening ports found (or insufficient permissions)._")
+        lines.append("")
+        return lines
+
+    lines.append("| Port | Address | Process | PID |")
+    lines.append("|------|---------|---------|-----|")
+    for p in ports:
+        port = str(p.get("port", "—"))
+        addr = p.get("address", "—")
+        process = p.get("process", "—")
+        pid = str(p.get("pid", "—"))
+        lines.append(f"| **{port}** | `{addr}` | `{process}` | {pid} |")
+
+    lines.append("")
+    return lines
+
+
+def generate_runbook(docker_data, services_data, ports_data):
+    now = datetime.now().astimezone()
+    ts = now.strftime("%Y-%m-%d %H:%M:%S %Z")
+
+    lines = [
+        "# 🏠 Homelab Runbook",
+        "",
+        f"_Generated: {ts}_",
+        "",
+        "---",
+        "",
+    ]
+
+    lines += section_docker(docker_data)
+    lines += ["---", ""]
+    lines += section_services(services_data)
+    lines += ["---", ""]
+    lines += section_ports(ports_data)
+
+    lines += [
+        "---",
+        "",
+        "_Generated by homelab-runbook skill. Re-run to refresh._",
+    ]
+
+    return "\n".join(lines)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate homelab runbook Markdown.")
+    parser.add_argument("--docker", help="Path to docker scan JSON file")
+    parser.add_argument("--services", help="Path to services scan JSON file")
+    parser.add_argument("--ports", help="Path to ports scan JSON file")
+    parser.add_argument("--output", "-o", help="Output file path (default: stdout)")
+    args = parser.parse_args()
+
+    # Check if stdin has data (only when no args given and stdin has content)
+    stdin_data = None
+    if not sys.stdin.isatty():
+        raw = sys.stdin.read().strip()
+        if raw:
+            try:
+                stdin_data = json.loads(raw)
+            except json.JSONDecodeError as e:
+                print(f"Error parsing stdin JSON: {e}", file=sys.stderr)
+                sys.exit(1)
+
+    if stdin_data is not None:
+        docker_data = stdin_data.get("docker", {})
+        services_data = stdin_data.get("services", {})
+        ports_data = stdin_data.get("ports", {})
+    elif args.docker or args.services or args.ports:
+        docker_data = load_json_file(args.docker) if args.docker else run_scanner("scan_docker.py")
+        services_data = load_json_file(args.services) if args.services else run_scanner("scan_services.py")
+        ports_data = load_json_file(args.ports) if args.ports else run_scanner("scan_ports.py")
+    else:
+        # Run all scanners inline
+        print("Running scanners...", file=sys.stderr)
+        docker_data = run_scanner("scan_docker.py")
+        services_data = run_scanner("scan_services.py")
+        ports_data = run_scanner("scan_ports.py")
+
+    runbook = generate_runbook(docker_data, services_data, ports_data)
+
+    if args.output:
+        with open(args.output, "w") as f:
+            f.write(runbook)
+        print(f"Runbook written to: {args.output}", file=sys.stderr)
+    else:
+        print(runbook)
+
+
+if __name__ == "__main__":
+    main()

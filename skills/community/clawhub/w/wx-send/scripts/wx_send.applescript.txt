@@ -1,0 +1,56 @@
+on run argv
+    set contactName to item 1 of argv
+    set messageText to ""
+    
+    if (count of argv) > 1 then
+        set messageText to item 2 of argv
+    end if
+    
+    tell application "WeChat"
+        activate
+        delay 0.5
+    end tell
+    
+    set the clipboard to contactName
+    
+    tell application "System Events"
+        tell process "WeChat"
+            -- 打开搜索框 (Cmd+F)
+            keystroke "f" using command down
+            delay 1
+            -- 粘贴联系人名称
+            keystroke "v" using command down
+            delay 2
+            -- 回车
+            keystroke return
+            delay 1
+            -- 按一次下箭头
+            keystroke (ASCII character 31)
+            delay 0.5
+            -- 按一次上箭头
+            keystroke (ASCII character 30)
+            delay 0.5
+            -- 再次回车进入聊天
+            keystroke return
+            delay 2
+        end tell
+    end tell
+    
+    if messageText is not "" then
+        set the clipboard to messageText
+        
+        tell application "System Events"
+            tell process "WeChat"
+                delay 1
+                -- 粘贴消息
+                keystroke "v" using command down
+                delay 0.5
+                -- 发送
+                keystroke return
+            end tell
+        end tell
+        return "Sent: " & messageText
+    else
+        return "Ready"
+    end if
+end run

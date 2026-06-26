@@ -1,35 +1,32 @@
----
-name: "Wechat Article Gen Pro"
-description: "AI-powered tool generating optimized WeChat article titles and content with automatic formatting and SEO suggestions for various styles."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-article-gen-pro"
-sourceUrl: "https://clawhub.ai/skills/wechat-article-gen-pro"
----
+# 微信公众号文章生成器
 
-# Wechat Article Gen Pro
+🚀 **AI 驱动的公众号爆款文章生成工具**
 
-> AI-powered tool generating optimized WeChat article titles and content with automatic formatting and SEO suggestions for various styles.
+## 功能特点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-article-gen-pro`
-- **Source URL:** [https://clawhub.ai/skills/wechat-article-gen-pro](https://clawhub.ai/skills/wechat-article-gen-pro)
+- ✨ 智能标题优化 - 生成 10 万 + 爆款标题
+- 📝 正文自动生成 - 基于 AI 大模型
+- 🎨 自动排版美化 - 符合公众号规范
+- 📊 SEO 优化建议 - 提升搜索排名
+- 🔄 多风格支持 - 新闻/故事/教程/营销
 
-## Overview
+## 使用场景
 
+- 公众号运营者
+- 内容营销人员
+- 自媒体创作者
+- 企业品牌推广
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装
+
 ```bash
-hermes skills install clawhub/wechat-article-gen-pro
+clawhub install wechat-article-generator
 ```
+
+## 价格
+
+💰 **39 元/套** - 终身使用
+
+---
+
+*让 AI 帮你写文章，解放双手，专注创意！*

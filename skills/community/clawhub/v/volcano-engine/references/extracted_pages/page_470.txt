@@ -1,0 +1,87 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+been exceeded.
+Request ID:
+429TooManyReques
+tsModelAccountR
+pmRateLimitExc
+eededRPM (Requests
+Per Minute) limit
+of the model is
+exceeded.
+Request ID:请求已超过帐户
+模型 RPM
+(Requests Per
+Minute) 限制: 请
+您稍后重试, 或
+者联系平台技术
+同学进行解决
+429TooManyReques
+tsModelAccountTp
+mRateLimitExce
+ededTPM (Tokens Per
+Minute) limit of
+the model is
+exceeded.
+Request ID:请求已超过帐户
+模型 TPM
+(Tokens Per
+Minute) 限制: 请
+您稍后重试, 或
+者联系平台技术
+同学进行解决
+429TooManyReques
+tsAPIAccountRpm
+RateLimitExceed
+edThe RPM
+(Requests Per
+Minute) limit for
+the API on your
+account has
+been exceeded.
+Request ID:当前账号该接口
+的RPM
+(Requests Per
+Minute)限制已
+超出，请稍后重
+试。
+429TooManyReques
+tsModelAccountIp
+mRateLimitExce
+ededIPM (Images Per
+Minute) limit of
+the model is
+exceeded.请求已超过账户
+模型 IPM
+(Images Per
+Minute) 限制: 请
+您稍后重试, 或
+者联系平台技术
+同学进行解决
+429TooManyReques
+tsQuotaExceededYour account
+[%s] has
+exhausted its
+free trial quota
+for the [%s]
+model. Request
+ID:当前账号 %s 对
+%s 模型的免费
+试用额度已消耗
+完毕，如需继续
+调用，请前往火
+山方舟控制台开
+通管理页开通对
+应模型服务。
+429TooManyReques
+tsQuotaExceededThe request has
+exceeded the
+quota. Request
+ID:当前账号处于排
+队中状态的任务
+数已超过限制，
+请稍后重试。API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 465/485

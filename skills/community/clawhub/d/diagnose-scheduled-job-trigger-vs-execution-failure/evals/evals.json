@@ -1,0 +1,49 @@
+{
+  "skill_name": "diagnose-scheduled-job-trigger-vs-execution-failure",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我排查一下我们项目 `growth-ops` 的定时任务是不是 cron 没触发。现象是从昨天开始自动任务都像没跑一样，网关刚在 `2026-03-12 22:40` 重启过，配置文件在 `/srv/openclaw/openclaw.json`。我在面板里看到 `obsidian-discord-guild-daily-review-final`、`juejin-daily-checkin-lottery`、`seedpool-daily-auto-publish` 都没有产出，但有人怀疑是模型 `gpt-5.4` 最近不稳定导致。请你不要只看进程在线，帮我区分到底是“没触发”、还是“触发了但执行失败”，并给出能写进事故复盘里的证据口径。如果日志里能看到 `deactivated_workspace`、`oauth token invalid`、`job execution timed out` 这类错误，也请一起归因。",
+      "expectations": [
+        "先把问题拆成“调度是否发生”和“执行是否成功”两条证据链，而不是直接接受“任务没执行”的说法",
+        "核对具体任务的最近运行时间、状态（ok/error）和错误详情，用运行记录证明任务是否实际上已被触发",
+        "如果发现 `deactivated_workspace`、OAuth token 失效或 timeout，应明确指出更像执行环境/鉴权问题，而不是直接归因模型不稳定",
+        "输出一段可用于事故复盘的结论表述，且结论与日志证据严格对应"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我想确认修复后是不是真的恢复了，不是那种“服务起来了但任务还是死的”。背景：上周 `Codex team` 被移出 workspace，之后很多自动任务开始报错；昨天我已经重新授权、改了 `/opt/agent/openclaw.json`，还重启了 gateway。现在请你帮我做一次回归验证：重点看 `juejin-daily-checkin-lottery`、`seedpool-daily-auto-publish`、`obsidian-discord-guild-daily-review-final` 这 3 个任务，判断现在还有没有残留 `deactivated_workspace`，并区分是成功入队但执行失败，还是已经彻底恢复。希望最后能有一套明确的验证结论和依据。",
+      "expectations": [
+        "应优先检查修复后是否还存在 `deactivated_workspace` 等历史错误残留，而不是只确认网关进程在线",
+        "应选择轻任务、内容任务、复杂任务各一个进行回归验证，并说明这样覆盖了不同故障面",
+        "需要区分“任务成功入队”与“真正进入执行并完成”这两个阶段，不能把入队当成功",
+        "最终结论应明确说明是否恢复、依据是什么，以及还缺什么证据才能进一步确认"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "有点怪，cron 看着像挂了，但我不太确定。`dispatch-thread-rename-backstop` 连着 9 次没生效，时间大概都在 `23:30` 左右；另一个 `seedpool-daily-auto-publish` 也没发出去。日志目录在 `/var/log/openclaw/gateway.log`，我翻到几条像是 `Error: cron: job execution timed out`，还有一条 `Encountered invalidated oauth token for user, failing request`。你帮我判断一下：这到底算调度器没拉起来，还是任务已经被调起来了但是在执行链路上挂了？顺便看看是不是 OAuth/token 失效这种假象，不要误报成 cron 全挂。",
+      "expectations": [
+        "应利用日志与运行记录区分“未触发”与“已触发但执行失败”，尤其针对 timeout 和 OAuth 失效场景",
+        "需要明确指出：如果能看到最近运行时间或 run 记录，就不能简单下结论说 cron 没拉起来",
+        "应将 `job execution timed out` 和 `invalidated oauth token` 归入执行链路/授权层问题，而不是调度器本身故障",
+        "应给出对 `dispatch-thread-rename-backstop` 连续失败现象的解释口径，例如连续 error 次数证明其被反复调度但未成功执行"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "想让你帮我看看是不是模型把自动任务搞炸了……最近 `project lighthouse` 里几个定时任务都说“没跑”，但我看到 runs 里之前混用过 `openai-codex/gpt-5.3-codex`、`openai-codex/gpt-5.4`、`aigocode/claude-sonnet-4-6`、`minimax-portal/MiniMax-M2.5`。文件在 `~/workspace/lighthouse/openclaw.json`。现在有人坚持说是换模型以后 cron 才失灵的。你能不能从历史运行记录和错误类型上帮我证伪/证实：到底是模型原因，还是 workspace / session / token 这层出问题？最好把最近几天 OK 的记录和最近 error 的记录对比一下。ps：如果只是“看起来没跑其实有 run 记录”，也请直接指出来。",
+      "expectations": [
+        "应检查历史 runs 中不同模型/供应商的使用情况，避免把“碰巧用了某模型”误判为根因",
+        "应对比最近几天的成功记录与近期失败记录，判断是长期配置问题还是近期环境/授权退化",
+        "如果主要错误集中在 `deactivated_workspace`、session、token、timeout 等层面，应明确说明现有证据不足以证明是模型能力本身导致",
+        "应直接指出是否存在“其实有 run 记录，只是结果为 error”的情况，并据此修正“任务没跑”的表述"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

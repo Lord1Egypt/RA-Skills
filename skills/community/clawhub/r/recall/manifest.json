@@ -1,0 +1,8 @@
+{
+  "name": "recall",
+  "version": "1.0.0",
+  "description": "Teaches agents to check before they guess. Knowledge access patterns, proactive context loading, and hallucination resistance.",
+  "author": "crewhaus",
+  "tags": ["knowledge", "memory", "patterns", "foundations", "free"],
+  "license": "MIT"
+}

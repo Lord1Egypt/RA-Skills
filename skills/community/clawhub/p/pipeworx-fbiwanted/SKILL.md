@@ -1,35 +1,51 @@
 ---
-name: "Pipeworx fbiwanted"
-description: "Search the FBI's Most Wanted list — fugitives, missing persons, and wanted individuals with photos and case details"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-fbiwanted"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-fbiwanted"
+name: pipeworx-fbiwanted
+description: Search the FBI's Most Wanted list — fugitives, missing persons, and wanted individuals with photos and case details
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "🔎"
+    homepage: https://pipeworx.io/packs/fbiwanted
 ---
 
-# Pipeworx fbiwanted
+# FBI Wanted
 
-> Search the FBI's Most Wanted list — fugitives, missing persons, and wanted individuals with photos and case details
+Access the FBI's official Wanted persons database. Search by name, crime type, or browse the full list. Each record includes photos, physical descriptions, charges, reward information, and case details.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-fbiwanted`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-fbiwanted](https://clawhub.ai/skills/pipeworx-fbiwanted)
+## Tools
 
-## Overview
+- **`search_wanted`** — Search the FBI Wanted list by keyword (name, crime type, description). Omit the keyword to browse all entries with pagination.
+- **`get_wanted_person`** — Full details for a specific person by their unique identifier (UID).
 
+## When to use
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Answering questions about FBI wanted fugitives or missing persons
+- Building a crime awareness application with official data
+- Journalism research on specific cases or crime categories
+- Educational tools about law enforcement and criminal justice
+
+## Example
+
 ```bash
-hermes skills install clawhub/pipeworx-fbiwanted
+curl -s -X POST https://gateway.pipeworx.io/fbiwanted/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_wanted","arguments":{"query":"cyber","page":1}}}'
+```
+
+Returns matching entries with title, description, charges, reward, images, and status.
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-fbiwanted": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/fbiwanted/mcp"]
+    }
+  }
+}
 ```

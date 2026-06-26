@@ -1,0 +1,30 @@
+{
+  "db": {
+    "type": "dm",
+    "host": "1.94.218.125",
+    "port": 5237,
+    "database": "DM",
+    "user": "ACM_CLOUD_AVIC_100",
+    "password": "ACM_CLOUD_AVIC_100",
+    "connectTimeout": 10000
+  },
+  "oracle": {
+    "host": "192.168.3.11",
+    "port": 1521,
+    "serviceName": "ORCL",
+    "user": "acm_cloud_master4_100",
+    "password": "acm_cloud_master4_100"
+  },
+  "api": {
+    "base": "http://wsd.wisdomidata.com:19012",
+    "loginPasswordEncrypt": false
+  },
+  "security": {
+    "apiAuth": {
+      "username": "wangbei",
+      "password": "123456"
+    },
+    "verifyLimit": 3
+  },
+  "workspace": "../../"
+}

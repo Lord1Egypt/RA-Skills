@@ -1,0 +1,81 @@
+{
+  "template_id": "SOL-PWR-001",
+  "name": "单电机失效应对方案",
+  "crisis_type": "power_failure.single_motor_loss",
+  "applicable_levels": ["L3"],
+  "applicable_devices": ["multirotor"],
+  "version": "1.0.0",
+  "preconditions": {
+    "remaining_motors": ">=3",
+    "battery_level": ">20%",
+    "max_wind_speed": 15,
+    "min_altitude": 10,
+    "gps_available": true,
+    "comms_available": true
+  },
+  "actions": [
+    {
+      "step": 1,
+      "action": "switch_flight_mode",
+      "params": {"mode": "degraded_multirotor"},
+      "timeout_ms": 500,
+      "description": "切换至降级多旋翼飞行模式，飞控自动补偿推力不对称",
+      "failure_action": "goto_step_fallback"
+    },
+    {
+      "step": 2,
+      "action": "reduce_altitude",
+      "params": {"target_altitude_agl": 50, "descent_rate": 2.0},
+      "timeout_ms": 15000,
+      "description": "降低飞行高度至50m AGL，减少失控后的坠落势能"
+    },
+    {
+      "step": 3,
+      "action": "calculate_nearest_landing",
+      "params": {"search_radius_m": 2000, "min_clear_area_m2": 100},
+      "timeout_ms": 2000,
+      "description": "计算最近的安全降落区域"
+    },
+    {
+      "step": 4,
+      "action": "navigate_to_landing",
+      "params": {"max_speed": 8, "maintain_altitude": true},
+      "timeout_ms": null,
+      "description": "以降级模式低速飞往备降点"
+    },
+    {
+      "step": 5,
+      "action": "emergency_landing",
+      "params": {"descent_rate": 1.0, "landing_mode": "slow_vertical"},
+      "timeout_ms": 30000,
+      "description": "执行慢速垂直降落"
+    },
+    {
+      "step": 6,
+      "action": "post_landing_shutdown",
+      "params": {"disarm_motors": true, "send_location": true},
+      "timeout_ms": 5000,
+      "description": "降落后关闭电机，发送最终位置坐标"
+    }
+  ],
+  "expected_outcome": {
+    "device_status": "轻微损伤或无损",
+    "payload_status": "完好",
+    "human_risk": "none",
+    "mission_status": "中止，可重新派单"
+  },
+  "fallback": "total_power_loss",
+  "historical_success_rate": 0.92,
+  "risk_assessment": {
+    "residual_risks": [
+      "降级飞行中其他电机可能因过载失效",
+      "风速大于预设阈值时降级模式稳定性不足",
+      "备降点可能在飞行途中被占用"
+    ],
+    "mitigation": [
+      "持续监控其他电机电流和温度",
+      "如风速超标立即就近降落",
+      "备选多个备降点"
+    ]
+  }
+}

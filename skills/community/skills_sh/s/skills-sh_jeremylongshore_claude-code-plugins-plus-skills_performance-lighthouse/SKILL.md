@@ -1,35 +1,73 @@
 ---
 name: "performance-lighthouse-runner"
-description: "Indexed by skills.sh from jeremylongshore/claude-code-plugins-plus-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jeremylongshore"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jeremylongshore/claude-code-plugins-plus-skills/performance-lighthouse-runner"
-sourceUrl: "https://skills.sh/jeremylongshore/claude-code-plugins-plus-skills/performance-lighthouse-runner"
+description: |
+  Manage performance lighthouse runner operations. Auto-activating skill for Frontend Development.
+  Triggers on: performance lighthouse runner, performance lighthouse runner
+  Part of the Frontend Development skill category. Use when working with performance lighthouse runner functionality. Trigger with phrases like "performance lighthouse runner", "performance runner", "performance".
+allowed-tools: "Read, Write, Edit, Bash(cmd:*), Grep"
+version: 1.0.0
+license: MIT
+author: "Jeremy Longshore <jeremy@intentsolutions.io>"
+compatible-with: claude-code
 ---
 
-# performance-lighthouse-runner
-
-> Indexed by skills.sh from jeremylongshore/claude-code-plugins-plus-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jeremylongshore
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jeremylongshore/claude-code-plugins-plus-skills/performance-lighthouse-runner`
-- **Source URL:** [https://skills.sh/jeremylongshore/claude-code-plugins-plus-skills/performance-lighthouse-runner](https://skills.sh/jeremylongshore/claude-code-plugins-plus-skills/performance-lighthouse-runner)
+# Performance Lighthouse Runner
 
 ## Overview
 
+This skill provides automated assistance for performance lighthouse runner tasks within the Frontend Development domain.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jeremylongshore/claude-code-plugins-plus-skills/performance-lighthouse-runner
-```
+## When to Use
+
+This skill activates automatically when you:
+- Mention "performance lighthouse runner" in your request
+- Ask about performance lighthouse runner patterns or best practices
+- Need help with frontend skills covering react, vue, css, accessibility, performance optimization, and modern web development patterns.
+
+## Instructions
+
+1. Provides step-by-step guidance for performance lighthouse runner
+2. Follows industry best practices and patterns
+3. Generates production-ready code and configurations
+4. Validates outputs against common standards
+
+## Examples
+
+**Example: Basic Usage**
+Request: "Help me with performance lighthouse runner"
+Result: Provides step-by-step guidance and generates appropriate configurations
+
+
+## Prerequisites
+
+- Relevant development environment configured
+- Access to necessary tools and services
+- Basic understanding of frontend development concepts
+
+
+## Output
+
+- Generated configurations and code
+- Best practice recommendations
+- Validation results
+
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| Configuration invalid | Missing required fields | Check documentation for required parameters |
+| Tool not found | Dependency not installed | Install required tools per prerequisites |
+| Permission denied | Insufficient access | Verify credentials and permissions |
+
+
+## Resources
+
+- Official documentation for related tools
+- Best practices guides
+- Community examples and tutorials
+
+## Related Skills
+
+Part of the **Frontend Development** skill category.
+Tags: react, vue, css, accessibility, web

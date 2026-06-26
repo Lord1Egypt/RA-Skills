@@ -1,35 +1,104 @@
+> Related: [[AGENTS]], [[skills/pai-redteam/Workflows/AdversarialValidation|AdversarialValidation]], [[skills/pai-redteam/Integration|Integration]]
+
 ---
-name: "test"
-description: "Conducts military-grade adversarial analysis by decomposing claims and deploying 32 expert agents to produce steelman arguments and counterarguments."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tesy"
-sourceUrl: "https://clawhub.ai/skills/tesy"
+name: RedTeam
+description: Adversarial analysis with 32 agents. USE WHEN red team, attack idea, counterarguments, critique, stress test. SkillSearch('redteam') for docs.
 ---
 
-# test
+## Customization
 
-> Conducts military-grade adversarial analysis by decomposing claims and deploying 32 expert agents to produce steelman arguments and counterarguments.
+**Before executing, check for user customizations at:**
+`~/.claude/skills/CORE/USER/SKILLCUSTOMIZATIONS/RedTeam/`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tesy`
-- **Source URL:** [https://clawhub.ai/skills/tesy](https://clawhub.ai/skills/tesy)
+If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
 
-## Overview
+# RedTeam Skill
+
+Military-grade adversarial analysis using parallel agent deployment. Breaks arguments into atomic components, attacks from 32 expert perspectives (engineers, architects, pentesters, interns), synthesizes findings, and produces devastating counter-arguments with steelman representations.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tesy
+## Voice Notification
+
+**When executing a workflow, do BOTH:**
+
+1. **Send voice notification**:
+   ```bash
+   curl -s -X POST http://localhost:8888/notify \
+     -H "Content-Type: application/json" \
+     -d '{"message": "Running the WORKFLOWNAME workflow from the RedTeam skill"}' \
+     > /dev/null 2>&1 &
+   ```
+
+2. **Output text notification**:
+   ```
+   Running the **WorkflowName** workflow from the **RedTeam** skill...
+   ```
+
+**Full documentation:** `~/.claude/skills/CORE/SkillNotifications.md`
+
+## Workflow Routing
+
+Route to the appropriate workflow based on the request.
+
+**When executing a workflow, output this notification directly:**
+
 ```
+Running the **WorkflowName** workflow from the **RedTeam** skill...
+```
+
+| Trigger | Workflow |
+|---------|----------|
+| Red team analysis (stress-test existing content) | `Workflows/ParallelAnalysis.md` |
+| Adversarial validation (produce new content via competition) | `Workflows/AdversarialValidation.md` |
+
+---
+
+## Quick Reference
+
+| Workflow | Purpose | Output |
+|----------|---------|--------|
+| **ParallelAnalysis** | Stress-test existing content | Steelman + Counter-argument (8-points each) |
+| **AdversarialValidation** | Produce new content via competition | Synthesized solution from competing proposals |
+
+**The Five-Phase Protocol (ParallelAnalysis):**
+1. **Decomposition** - Break into 24 atomic claims
+2. **Parallel Analysis** - 32 agents examine strengths AND weaknesses
+3. **Synthesis** - Identify convergent insights
+4. **Steelman** - Strongest version of the argument
+5. **Counter-Argument** - Strongest rebuttal
+
+---
+
+## Context Files
+
+- `Philosophy.md` - Core philosophy, success criteria, agent types
+- `Integration.md` - Skill integration, FirstPrinciples usage, output format
+
+---
+
+## Examples
+
+**Attack an architecture proposal:**
+```
+User: "red team this microservices migration plan"
+--> Workflows/ParallelAnalysis.md
+--> Returns steelman + devastating counter-argument (8 points each)
+```
+
+**Devil's advocate on a business decision:**
+```
+User: "poke holes in my plan to raise prices 20%"
+--> Workflows/ParallelAnalysis.md
+--> Surfaces the ONE core issue that could collapse the plan
+```
+
+**Adversarial validation for content:**
+```
+User: "battle of bots - which approach is better for this feature?"
+--> Workflows/AdversarialValidation.md
+--> Synthesizes best solution from competing ideas
+```
+
+---
+
+**Last Updated:** 2025-12-20

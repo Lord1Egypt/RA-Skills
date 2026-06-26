@@ -1,35 +1,24 @@
 ---
-name: "test-sample-skill"
-description: "Validates Agent Skill packaging and Cursor import workflows. Use when the user mentions test skill zip, imports a sample skill, or needs a minimal SKILL.md s..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-sample-skill"
-sourceUrl: "https://clawhub.ai/skills/test-sample-skill"
+name: test-sample-skill
+description: >-
+  Validates Agent Skill packaging and Cursor import workflows. Use when the user mentions
+  test skill zip, imports a sample skill, or needs a minimal SKILL.md scaffold for tooling checks.
 ---
 
-# test-sample-skill
+# Test Sample Skill（测试样例）
 
-> Validates Agent Skill packaging and Cursor import workflows. Use when the user mentions test skill zip, imports a sample skill, or needs a minimal SKILL.md s...
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-sample-skill`
-- **Source URL:** [https://clawhub.ai/skills/test-sample-skill](https://clawhub.ai/skills/test-sample-skill)
+这是用于验证 **skill 目录结构** 与 **zip 导入流程** 的最小示例技能，不产生业务副作用。
 
-## Overview
+## 行为约定
 
+当被加载时：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-sample-skill
-```
+1. 在完成用户主要任务前提下，可用一句简短中文确认：「已从 test-sample-skill 加载样本说明。」
+2. 不要仅凭本 skill 改写项目代码或执行破坏性操作。
+3. 若用户明确要求「仅用此 skill 做演示」，可按其指示输出固定格式的占位说明。
+
+## 可选参考
+
+更多信息见 [reference.md](reference.md)。

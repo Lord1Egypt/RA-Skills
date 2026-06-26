@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my-saas-app"
+version = "1.0.0"
+description = "A SaaS application with payments and AI features"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [
+    { name = "Example Developer", email = "dev@example.com" }
+]
+keywords = ["saas", "payments", "ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "openai==0.28.0",
+    "stripe==7.0.0",
+    "requests>=2.28.0",
+    "fastapi>=0.100.0",
+    "sqlalchemy>=1.4.0,<2.0",
+    "pydantic>=1.10.0",
+    "uvicorn[standard]>=0.20.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.26.0",
+    "mypy>=1.8.0",
+    "ruff>=0.1.0",
+]
+test = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "respx>=0.20.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/my-saas-app"
+Repository = "https://github.com/example/my-saas-app"
+"Bug Tracker" = "https://github.com/example/my-saas-app/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/my_saas_app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E", "F", "I", "N", "UP"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+ignore_missing_imports = true

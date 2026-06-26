@@ -1,0 +1,112 @@
+# 钉钉文档操作技能 (dingtalk-docs)
+
+管理钉钉云文档中的文档、文件夹和内容。支持文档搜索、创建、内容读写和文件夹整理。
+
+## 功能特性
+
+- ✅ 文档搜索 — 搜索有权限访问的文档
+- ✅ 文档创建 — 在指定节点下创建新文档
+- ✅ 多类型节点创建 — 支持文档/表格/PPT/文件夹等 11 种类型
+- ✅ 内容写入 — 覆盖写入或续写模式（支持 Markdown）
+- ✅ 内容读取 — 通过 URL 获取文档 Markdown 内容
+- ✅ 根目录获取 — 获取"我的文档"根节点 ID
+
+## 快速开始
+
+### 1. 安装技能
+
+```bash
+clawhub install dingtalk-docs
+```
+
+### 2. 安装依赖
+
+```bash
+npm install -g mcporter
+```
+
+### 3. 配置凭证
+
+访问 [钉钉 MCP 广场](https://mcp.dingtalk.com) 找到 **钉钉文档** 服务，获取 Streamable HTTP URL：
+
+```bash
+mcporter config add dingtalk-docs --url "<你的_URL>"
+```
+
+### 4. 使用示例
+
+```bash
+# 获取根目录 ID
+mcporter call dingtalk-docs.get_my_docs_root_dentry_uuid
+
+# 创建文档
+mcporter call dingtalk-docs.create_doc_under_node --args '{"name": "我的文档", "parentDentryUuid": "ROOT_ID"}'
+
+# 搜索文档
+mcporter call dingtalk-docs.list_accessible_documents --args '{"keyword": "项目"}'
+
+# 写入内容到文档（覆盖模式）
+mcporter call dingtalk-docs.write_content_to_document --args '{"content": "# 标题\n\n内容", "updateType": 0, "targetDentryUuid": "doc_xxx"}'
+
+# 获取文档内容
+mcporter call dingtalk-docs.get_document_content_by_url --args '{"docUrl": "https://alidocs.dingtalk.com/i/nodes/doc_xxx"}'
+```
+
+## 方法列表
+
+| 方法 | 说明 | 必填参数 |
+|------|------|---------|
+| `get_my_docs_root_dentry_uuid` | 获取根目录 ID | 无 |
+| `list_accessible_documents` | 搜索文档 | 无（keyword 选填） |
+| `create_doc_under_node` | 创建文档 | name, parentDentryUuid |
+| `create_dentry_under_node` | 创建节点（多类型） | name, accessType, parentDentryUuid |
+| `write_content_to_document` | 写入内容 | content, updateType, targetDentryUuid |
+| `get_document_content_by_url` | 获取文档内容 | docUrl |
+
+完整参数说明请查看 [references/api-reference.md](references/api-reference.md)
+
+## 注意事项
+
+- **accessType 必须是字符串**（如 `"13"`），传数字会静默失败
+- **updateType 必须是数字**（如 `0`），传字符串会静默失败
+- **docUrl 必须是完整 URL**（`https://alidocs.dingtalk.com/i/nodes/{dentryUuid}`），不能只传 ID
+- 凭证 URL 包含访问令牌，请妥善保管
+- 仅能操作当前用户有权限访问的文档
+
+## 目录结构
+
+```
+dingtalk-docs/
+├── SKILL.md                 # AI 技能入口（≤150 行）
+├── package.json             # 元数据
+├── README.md                # 人类可读说明
+├── CHANGELOG.md             # 变更日志
+├── references/
+│   ├── api-reference.md     # 完整参数 Schema + 返回值
+│   └── error-codes.md       # 错误码说明 + 调试流程
+├── scripts/
+│   ├── create_doc.py        # 创建文档脚本
+│   ├── import_docs.py       # 导入文档脚本
+│   └── export_docs.py       # 导出文档脚本
+└── tests/
+    ├── test_security.py     # 安全功能测试
+    └── TEST_REPORT.md       # 测试报告
+```
+
+## 开发
+
+```bash
+# 克隆仓库
+git clone https://github.com/aliramw/dingtalk-docs.git
+
+# 运行测试
+python3 tests/test_security.py -v
+```
+
+## 许可证
+
+MIT License
+
+## 作者
+
+Marila@Dingtalk

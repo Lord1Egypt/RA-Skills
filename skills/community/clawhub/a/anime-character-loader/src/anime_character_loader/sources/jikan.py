@@ -1,0 +1,1 @@
+"""Jikan source adapter scaffold."""

@@ -1,35 +1,148 @@
 ---
-name: "Indie Maker News"
-description: "独行者 Daily - 变现雷达。读对一条新闻，少走一年弯路。每天5分钟，给创业者装上商业雷达。聚焦一人公司、副业、创业变现资讯，智能分类，行动导向。用户下载即能用，无需本地部署！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indie-maker-news"
-sourceUrl: "https://clawhub.ai/skills/indie-maker-news"
+name: indie-maker-news
+description: >-
+  独行者 Daily - 变现雷达。读对一条新闻，少走一年弯路。每天5分钟，给创业者装上商业雷达。聚焦一人公司、副业、创业变现资讯，智能分类，行动导向。用户下载即能用，无需本地部署！
+version: 1.1.0
 ---
 
-# Indie Maker News
+# 独行者 Daily - 变现雷达（独立版）
 
-> 独行者 Daily - 变现雷达。读对一条新闻，少走一年弯路。每天5分钟，给创业者装上商业雷达。聚焦一人公司、副业、创业变现资讯，智能分类，行动导向。用户下载即能用，无需本地部署！
+> **"读对一条新闻，少走一年弯路。"**
+> 
+> 每天5分钟，给创业者、独立开发者、副业人群装上商业雷达。
+> 
+> **用户下载即能用，无需任何本地部署！**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indie-maker-news`
-- **Source URL:** [https://clawhub.ai/skills/indie-maker-news](https://clawhub.ai/skills/indie-maker-news)
+---
 
-## Overview
+## ✨ 独立运行特性
 
+### 为什么选择独行者 Daily？
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 其他Skill | 独行者 Daily |
+|----------|-------------|
+| 需要本地部署 | **下载即能用** |
+| 技术门槛高 | **零配置运行** |
+| 环境依赖复杂 | **独立运行** |
+
+---
+
+## 核心价值
+
+**变现导向精选**：只推送与"变现"相关的资讯，每条都有行动价值
+
+**智能分类**：
+- 🏆 成功案例：独立开发者变现经验
+- 💡 创业模式：SaaS、数字产品、咨询服务
+- ⚠️ 失败反思：避坑指南
+- 🔧 工具推荐：效率/营销工具
+
+---
+
+## 🚀 一键使用
+
+直接运行聚合脚本：
 ```bash
-hermes skills install clawhub/indie-maker-news
+./scripts/aggregate.sh
 ```
+
+**无需任何配置**！脚本会自动：
+- 解析公开RSS源（36氪、知乎、V2EX、Hacker News）
+- 智能筛选变现相关内容
+- 输出结构化JSON数据
+
+---
+
+## 📡 数据源（10个可靠源）
+
+**创业投资类（4个）**：
+- 36氪（创业、融资、SaaS、变现）
+- 虎嗅（商业模式、商业洞察）
+- 创业邦（创业者、融资动态）
+- **华尔街见闻**（财经资讯、投资、融资）✨ 新增
+
+**开发者社区类（3个）**：
+- V2EX综合（独立开发、副业、赚钱）
+- V2EX程序员（程序员话题、开源）
+- Indie Hackers（独立开发、revenue、profit）
+
+**技术前沿类（3个）**：
+- Hacker News（startup、side project）
+- GitHub Trending（开源工具、效率）
+- 掘金前端（技术社区、副业）
+
+---
+
+**关于B站、抖音、头条、微博等平台**：
+- NewsNow已实现这些数据源获取
+- 技术复杂度较高（需API认证或特殊处理）
+- Skill保持"安全可靠、零配置"承诺
+- 后续版本将评估集成方案
+
+---
+
+**安全特性**：
+- ✅ 使用公开RSS/API源
+- ✅ 华尔街见闻API无需认证
+- ✅ 无需本地NewsNow部署
+- ✅ Python标准库实现，零外部依赖
+
+**智能筛选**：
+- 关键词匹配：变现、创业、副业、SaaS、独立开发、赚钱等
+- 相关性评分：标题匹配权重高（10分），内容匹配（5分）
+- 只推送真正有价值的变现机会
+
+---
+
+## 触发词
+
+- `/变现雷达` - 查看今日变现机会
+- `/创业案例` - 学习成功/失败经验
+- `/副业机会` - 发现副业变现路径
+
+---
+
+## 适用人群
+
+- 一人公司创作者
+- 副业开发者
+- 独立创业者
+- 想了解变现机会的人
+
+---
+
+## 脚本说明
+
+### 独立版脚本
+`scripts/fetch-news-standalone.py`：直接解析公开RSS源，无需任何本地部署
+
+### 完整版（可选）
+如果你已部署本地NewsNow容器，可使用`scripts/fetch-news.py`获取更多数据源
+
+---
+
+## 版本历史
+
+### v1.0.4（华尔街见闻版）
+- ✅ 新增华尔街见闻数据源（财经资讯）
+- ✅ 数据源扩充至10个
+- ✅ 集成NewsNow实现方案
+- ✅ 评估B站/抖音/头条/微博技术方案（待后续版本）
+
+### v1.0.3（完整数据源版）
+- 扩充至9个可靠数据源
+- 智能相关性评分系统
+�本地NewsNow容器，可使用`scripts/fetch-news.py`获取更多数据源
+
+---
+
+## 版本历史
+
+### v1.1.0（独立运行版）
+- ✅ 重构为独立运行，无需本地NewsNow
+- ✅ 使用公开RSS源（36氪、知乎、V2EX、HN）
+- ✅ 用户下载即能用，零配置
+- ✅ Python标准库实现，无外部依赖
+
+### v1.0.0
+- 初始概念版

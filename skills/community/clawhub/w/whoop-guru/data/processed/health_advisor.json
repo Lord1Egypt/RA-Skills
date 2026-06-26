@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-04-05T10:49:41.737892",
+  "overall_score": 75,
+  "state": {
+    "recovery": {
+      "avg": 64.0,
+      "current": 32.0,
+      "hrv": 43.47142857142857,
+      "rhr": 55.0,
+      "trend": "down"
+    },
+    "sleep": {
+      "avg_hours": 4.2857142857142865,
+      "avg_perf": 52.285714285714285,
+      "sleep_debt": 25.999999999999996
+    },
+    "training": {
+      "avg_strain": 9.4048641,
+      "workout_count": 0
+    }
+  },
+  "training_recommendation": {
+    "level": "low",
+    "message": "需要休息，建议轻度活动",
+    "activities": [
+      "散步",
+      "轻度拉伸"
+    ],
+    "emoji": "🔴"
+  },
+  "sleep_advice": [
+    "🔴 严重睡眠债务: 建议连续2-3天8小时睡眠",
+    "🟡 睡眠时长不足: 目标每晚7-8小时",
+    "🟡 睡眠质量欠佳: 睡前1小时远离电子设备"
+  ],
+  "insights": []
+}

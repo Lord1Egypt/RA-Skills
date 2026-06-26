@@ -1,0 +1,6 @@
+interface:
+  display_name: "Football Tracker"
+  short_description: "Football teams, World Cup 2026, and recent news"
+  default_prompt: "Use $football-tracker to track football teams and the FIFA World Cup 2026. Follow the skill's standard layout: team, last match, next match with kickoff embedded, venue when available, broadcasters, standings, World Cup group tables in the first phase, and recent high-signal news. Always keep the standings/table before news. Prefer verified football-specific headlines and support English and Portuguese output when requested."
+policy:
+  allow_implicit_invocation: true

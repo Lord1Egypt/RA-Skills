@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fraud-filter</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d29922;
+    --purple: #bc8cff;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
+  h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted); }
+  h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .header-right { display: flex; gap: 8px; align-items: center; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+  .card-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .card-value { font-size: 1.6rem; font-weight: 600; font-family: var(--mono); margin-top: 4px; }
+  .card-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+  .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .tab {
+    padding: 8px 16px; cursor: pointer; font-size: 0.85rem; color: var(--text-muted);
+    border-bottom: 2px solid transparent; transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th {
+    text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border);
+    color: var(--text-muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 0.05em; position: sticky; top: 0; background: var(--bg); cursor: pointer;
+  }
+  th:hover { color: var(--text); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: var(--surface); }
+  .mono { font-family: var(--mono); font-size: 0.8rem; }
+  .amount { text-align: right; white-space: nowrap; }
+  .truncate { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .score-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 0.75rem; font-weight: 600; font-family: var(--mono);
+  }
+  .score-high { background: #0d2818; color: var(--green); }
+  .score-mid { background: #2d2100; color: var(--orange); }
+  .score-low { background: #3d1318; color: var(--red); }
+
+  .rec-allow { color: var(--green); }
+  .rec-caution { color: var(--orange); }
+  .rec-block { color: var(--red); }
+
+  .warning-tag {
+    display: inline-block; background: #2d2100; color: var(--orange);
+    padding: 1px 6px; border-radius: 3px; font-size: 0.7rem; margin: 1px 2px;
+  }
+
+  .status-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px;
+  }
+  .dot-green { background: var(--green); }
+  .dot-orange { background: var(--orange); }
+  .dot-red { background: var(--red); }
+
+  .btn {
+    background: var(--surface); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;
+    font-family: var(--font); transition: border-color 0.15s;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn-sm { padding: 3px 8px; font-size: 0.75rem; }
+  .btn-accent { border-color: var(--accent); color: var(--accent); }
+  .btn-accent:hover { background: #1f2d3d; }
+
+  .search-bar {
+    display: flex; gap: 8px; margin-bottom: 20px;
+    padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  }
+  .search-bar input {
+    flex: 1; background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 8px 12px; font-size: 0.9rem; font-family: var(--font);
+  }
+  .search-bar input:focus { outline: none; border-color: var(--accent); }
+  .search-bar input::placeholder { color: var(--text-muted); }
+
+  .form-section {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 16px; margin-bottom: 16px;
+  }
+  .form-row { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; align-items: flex-end; }
+  .form-row label { font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; }
+  .form-row input, .form-row select {
+    background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 10px; font-size: 0.85rem; font-family: var(--font);
+  }
+  .form-row input:focus { outline: none; border-color: var(--accent); }
+  .hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .toggle-label { font-size: 0.85rem; }
+  .toggle-desc { font-size: 0.75rem; color: var(--text-muted); }
+  .toggle {
+    position: relative; width: 40px; height: 22px; cursor: pointer;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--border); border-radius: 11px; transition: 0.2s;
+  }
+  .toggle-slider::before {
+    content: ''; position: absolute; width: 16px; height: 16px;
+    left: 3px; bottom: 3px; background: var(--text); border-radius: 50%; transition: 0.2s;
+  }
+  .toggle input:checked + .toggle-slider { background: var(--accent); }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+  .empty { text-align: center; padding: 48px; color: var(--text-muted); }
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; padding: 12px 20px;
+    background: var(--surface); border: 1px solid var(--green); color: var(--green);
+    border-radius: 6px; font-size: 0.85rem; opacity: 0; transition: opacity 0.3s;
+    pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>fraud-filter</h1>
+    <span style="font-size:0.8rem;color:var(--text-muted)">Community trust network for agent payments</span>
+  </div>
+  <div class="header-right">
+    <span id="syncStatus" style="font-size:0.8rem"></span>
+    <button class="btn btn-sm" onclick="refreshAll()">Refresh</button>
+  </div>
+</div>
+
+<div class="cards" id="summaryCards"></div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="endpoints">Endpoints</div>
+  <div class="tab" data-tab="check">Check</div>
+  <div class="tab" data-tab="reports">Reports</div>
+  <div class="tab" data-tab="settings">Settings</div>
+</div>
+
+<!-- Endpoints Tab -->
+<div id="tab-endpoints" class="tab-content active">
+  <div class="search-bar">
+    <input type="text" id="searchQuery" placeholder="Search by hostname (e.g. stockdata.xyz)" onkeyup="if(event.key==='Enter')searchDb()">
+    <button class="btn" onclick="searchDb()">Search</button>
+  </div>
+  <div id="endpointsList"></div>
+</div>
+
+<!-- Check Tab -->
+<div id="tab-check" class="tab-content">
+  <div class="form-section">
+    <h3>Check an endpoint</h3>
+    <p class="hint" style="margin-bottom:10px">Look up trust data for a specific endpoint URL before paying.</p>
+    <div class="form-row">
+      <label style="flex:1">Endpoint URL
+        <input type="text" id="checkUrl" placeholder="https://api.example.com/data" style="width:100%">
+      </label>
+      <label>&nbsp;<button class="btn btn-accent" onclick="checkEndpointUrl()">Check</button></label>
+    </div>
+  </div>
+  <div id="checkResult"></div>
+
+  <div class="form-section" style="margin-top:16px">
+    <h3>Check price anomaly</h3>
+    <p class="hint" style="margin-bottom:10px">Check if a quoted price is unusual for an endpoint.</p>
+    <div class="form-row">
+      <label style="flex:1">Endpoint URL
+        <input type="text" id="priceCheckUrl" placeholder="https://api.example.com/data" style="width:100%">
+      </label>
+      <label>Price (USD)
+        <input type="number" id="priceCheckAmount" step="0.0001" placeholder="0.05" style="width:100px">
+      </label>
+      <label>&nbsp;<button class="btn btn-accent" onclick="checkPrice()">Check Price</button></label>
+    </div>
+  </div>
+  <div id="priceResult"></div>
+</div>
+
+<!-- Reports Tab -->
+<div id="tab-reports" class="tab-content">
+  <div class="form-section">
+    <h3>Submit a report</h3>
+    <p class="hint" style="margin-bottom:10px">Report a bad experience with an endpoint. This queues an anonymous signal.</p>
+    <div class="form-row">
+      <label style="flex:1">Endpoint URL
+        <input type="text" id="reportUrl" placeholder="https://api.example.com/data" style="width:100%">
+      </label>
+      <label>Outcome
+        <select id="reportOutcome">
+          <option value="post_payment_failure">Post-payment failure</option>
+          <option value="pre_payment_failure">Pre-payment failure</option>
+          <option value="success">Success</option>
+        </select>
+      </label>
+      <label>Amount (USD)
+        <input type="number" id="reportAmount" step="0.0001" placeholder="0.05" style="width:100px">
+      </label>
+    </div>
+    <div style="margin-top:8px;display:flex;gap:8px">
+      <button class="btn btn-accent" onclick="submitReport()">Queue Report</button>
+      <button class="btn" onclick="flushReports()">Send Pending</button>
+      <button class="btn btn-sm" onclick="pruneReports()">Prune Sent</button>
+    </div>
+  </div>
+  <div id="reportsList"></div>
+</div>
+
+<!-- Settings Tab -->
+<div id="tab-settings" class="tab-content">
+  <div class="form-section">
+    <h3>Trust Network Participation</h3>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Participate in trust network</div>
+        <div class="toggle-desc">Allow sending anonymous reports to the trust network</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="cfgParticipate" onchange="saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Automatic positive signals</div>
+        <div class="toggle-desc">Automatically report successful transactions (requires network participation)</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="cfgAutoPositive" onchange="saveSettings()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+  <div class="form-section">
+    <h3>Sync Configuration</h3>
+    <div class="form-row">
+      <label style="flex:1">Trust DB URL
+        <input type="text" id="cfgDbUrl" style="width:100%">
+      </label>
+    </div>
+    <div class="form-row">
+      <label style="flex:1">Report Endpoint
+        <input type="text" id="cfgReportUrl" style="width:100%">
+      </label>
+    </div>
+    <div class="form-row">
+      <label>Sync Interval (hours)
+        <input type="number" id="cfgSyncHours" step="1" style="width:80px">
+      </label>
+      <label>&nbsp;<button class="btn btn-accent" onclick="saveSettings()">Save</button></label>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const API = '';
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const tabName = tab.dataset.tab;
+      document.getElementById('tab-' + tabName).classList.add('active');
+      if (tabName === 'settings') loadSettings();
+      if (tabName === 'reports') loadReports();
+    });
+  });
+  refreshAll();
+});
+
+async function refreshAll() {
+  await Promise.all([loadStatus(), loadEndpoints()]);
+}
+
+// --- Status ---
+
+async function loadStatus() {
+  try {
+    const data = await fetch(`${API}/api/status`).then(r => r.json());
+    const db = data.db || {};
+    const reports = data.reports || {};
+    const part = data.participation || {};
+
+    const syncEl = document.getElementById('syncStatus');
+    if (!db.exists) {
+      syncEl.innerHTML = '<span class="status-dot dot-red"></span>No trust DB';
+    } else if (db.age_hours > 48) {
+      syncEl.innerHTML = `<span class="status-dot dot-orange"></span>DB ${db.age_hours}h old`;
+    } else {
+      syncEl.innerHTML = `<span class="status-dot dot-green"></span>DB ${db.age_hours}h old`;
+    }
+
+    document.getElementById('summaryCards').innerHTML = `
+      <div class="card">
+        <div class="card-label">Endpoints</div>
+        <div class="card-value">${db.endpoint_count || 0}</div>
+        <div class="card-sub">${db.version ? 'v' + db.version : 'no data'}</div>
+      </div>
+      <div class="card">
+        <div class="card-label">DB Size</div>
+        <div class="card-value">${db.file_size_bytes ? (db.file_size_bytes / 1024).toFixed(1) + 'KB' : '0'}</div>
+        <div class="card-sub">${db.last_sync ? 'synced ' + timeAgo(db.last_sync) : 'never synced'}</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Pending Reports</div>
+        <div class="card-value">${reports.pending || 0}</div>
+        <div class="card-sub">${reports.sent || 0} sent, ${reports.failed || 0} failed</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Participation</div>
+        <div class="card-value" style="font-size:1rem">${part.network_enabled ? 'Active' : 'Download Only'}</div>
+        <div class="card-sub">${part.auto_positive ? 'Auto-positive on' : 'Manual reports only'}</div>
+      </div>
+    `;
+  } catch {}
+}
+
+// --- Endpoints ---
+
+async function loadEndpoints() {
+  try {
+    const data = await fetch(`${API}/api/endpoints?sort=score&order=desc&limit=100`).then(r => r.json());
+    renderEndpoints(data.endpoints || [], data.total || 0);
+  } catch {
+    document.getElementById('endpointsList').innerHTML = '<div class="empty">Could not load endpoints</div>';
+  }
+}
+
+async function searchDb() {
+  const q = document.getElementById('searchQuery').value.trim();
+  if (!q) { loadEndpoints(); return; }
+  try {
+    const data = await fetch(`${API}/api/search?q=${encodeURIComponent(q)}`).then(r => r.json());
+    renderEndpoints(data.results || [], data.count || 0);
+  } catch {
+    document.getElementById('endpointsList').innerHTML = '<div class="empty">Search failed</div>';
+  }
+}
+
+function renderEndpoints(endpoints, total) {
+  const el = document.getElementById('endpointsList');
+  if (!endpoints.length) {
+    el.innerHTML = '<div class="empty">No endpoints found</div>';
+    return;
+  }
+  el.innerHTML = `
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px">Showing ${endpoints.length} of ${total} endpoints</p>
+    <table>
+      <thead><tr>
+        <th>Score</th><th>Hostname</th><th>Reports</th><th>Success</th>
+        <th>Median $</th><th>Price Range</th><th>Last Failure</th><th>Warnings</th>
+      </tr></thead>
+      <tbody>
+        ${endpoints.map(e => `
+          <tr>
+            <td>${scoreBadge(e.score)}</td>
+            <td class="mono">${esc(e.url_hint || '?')}</td>
+            <td class="mono amount">${e.report_count || 0}</td>
+            <td class="mono amount">${e.success_rate != null ? (e.success_rate * 100).toFixed(1) + '%' : '-'}</td>
+            <td class="mono amount">$${(e.median_price_usd || 0).toFixed(4)}</td>
+            <td class="mono" style="font-size:0.75rem">$${(e.price_p10_usd || 0).toFixed(4)} – $${(e.price_p90_usd || 0).toFixed(4)}</td>
+            <td class="mono" style="font-size:0.75rem">${e.last_failure || '-'}</td>
+            <td>${(e.warnings || []).map(w => `<span class="warning-tag">${esc(w)}</span>`).join('')}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+// --- Check ---
+
+async function checkEndpointUrl() {
+  const url = document.getElementById('checkUrl').value.trim();
+  if (!url) { showToast('URL required', true); return; }
+  try {
+    const data = await fetch(`${API}/api/check?url=${encodeURIComponent(url)}`).then(r => r.json());
+    const el = document.getElementById('checkResult');
+    if (!data.known) {
+      el.innerHTML = `
+        <div class="form-section" style="margin-top:12px">
+          <span class="warning-tag">unknown_endpoint</span>
+          <p style="margin-top:8px">This endpoint is not in the trust database. No community data available.</p>
+          <p class="hint">Recommendation: <span class="rec-caution">caution</span></p>
+        </div>
+      `;
+    } else {
+      el.innerHTML = `
+        <div class="form-section" style="margin-top:12px">
+          ${scoreBadge(data.score)}
+          <span class="rec-${data.recommendation}" style="margin-left:8px;font-weight:600">${data.recommendation.toUpperCase()}</span>
+          <table style="margin-top:12px">
+            <tr><td class="mono" style="color:var(--text-muted)">Reports</td><td class="mono">${data.report_count}</td></tr>
+            <tr><td class="mono" style="color:var(--text-muted)">Success Rate</td><td class="mono">${(data.success_rate * 100).toFixed(1)}%</td></tr>
+            <tr><td class="mono" style="color:var(--text-muted)">Median Price</td><td class="mono">$${data.median_price}</td></tr>
+            <tr><td class="mono" style="color:var(--text-muted)">Price Range</td><td class="mono">$${data.price_range.p10} – $${data.price_range.p90}</td></tr>
+            <tr><td class="mono" style="color:var(--text-muted)">Last Failure</td><td class="mono">${data.last_failure || 'none'}</td></tr>
+            <tr><td class="mono" style="color:var(--text-muted)">Warnings</td><td>${(data.warnings || []).map(w => `<span class="warning-tag">${esc(w)}</span>`).join('') || 'none'}</td></tr>
+          </table>
+        </div>
+      `;
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+async function checkPrice() {
+  const url = document.getElementById('priceCheckUrl').value.trim();
+  const price = document.getElementById('priceCheckAmount').value;
+  if (!url || !price) { showToast('URL and price required', true); return; }
+  try {
+    const data = await fetch(`${API}/api/check-price?url=${encodeURIComponent(url)}&price=${price}`).then(r => r.json());
+    const el = document.getElementById('priceResult');
+    if (data.anomalous) {
+      el.innerHTML = `<div class="form-section" style="margin-top:12px;border-color:var(--orange)">
+        <span class="warning-tag">price_anomaly</span>
+        <p style="margin-top:8px">${esc(data.reason)}</p>
+      </div>`;
+    } else {
+      el.innerHTML = `<div class="form-section" style="margin-top:12px;border-color:var(--green)">
+        <span style="color:var(--green)">Price looks normal</span>
+      </div>`;
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+// --- Reports ---
+
+async function loadReports() {
+  try {
+    const data = await fetch(`${API}/api/reports`).then(r => r.json());
+    const reports = data.reports || [];
+    const el = document.getElementById('reportsList');
+    if (!reports.length) {
+      el.innerHTML = '<div class="empty" style="padding:24px">No reports queued</div>';
+      return;
+    }
+    el.innerHTML = `
+      <table style="margin-top:12px">
+        <thead><tr><th>Endpoint</th><th>Outcome</th><th>Amount</th><th>Day</th><th>Status</th></tr></thead>
+        <tbody>
+          ${reports.map(r => `
+            <tr>
+              <td class="mono truncate" title="${esc(r.endpoint_hash)}">${esc(r.endpoint_hint || r.endpoint_hash?.slice(0, 16) + '...')}</td>
+              <td><span class="warning-tag">${esc(r.outcome)}</span></td>
+              <td class="mono">${esc(r.amount_range || '-')}</td>
+              <td class="mono">${esc(r.timestamp_bucket || '-')}</td>
+              <td class="mono ${r.status === 'sent' ? 'rec-allow' : r.status === 'failed' ? 'rec-block' : 'rec-caution'}">${r.status}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  } catch {}
+}
+
+async function submitReport() {
+  const url = document.getElementById('reportUrl').value.trim();
+  const outcome = document.getElementById('reportOutcome').value;
+  const amount = document.getElementById('reportAmount').value || '0';
+  if (!url) { showToast('Endpoint URL required', true); return; }
+  try {
+    const res = await fetch(`${API}/api/reports`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ endpoint_url: url, outcome, amount_usd: amount }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      showToast('Report queued');
+      document.getElementById('reportUrl').value = '';
+      document.getElementById('reportAmount').value = '';
+      loadReports();
+      loadStatus();
+    } else {
+      showToast(data.error || 'Failed', true);
+    }
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+async function flushReports() {
+  try {
+    const res = await fetch(`${API}/api/reports/flush`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    const data = await res.json();
+    if (data.reason === 'network_participation_disabled') {
+      showToast('Enable network participation in Settings first', true);
+    } else {
+      showToast(`Sent: ${data.submitted}, Failed: ${data.failed}`);
+    }
+    loadReports();
+    loadStatus();
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+async function pruneReports() {
+  try {
+    const res = await fetch(`${API}/api/reports/prune`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    const data = await res.json();
+    showToast(`Pruned ${data.pruned} sent reports`);
+    loadReports();
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+// --- Settings ---
+
+async function loadSettings() {
+  try {
+    const data = await fetch(`${API}/api/config`).then(r => r.json());
+    document.getElementById('cfgParticipate').checked = data.participate_in_network || false;
+    document.getElementById('cfgAutoPositive').checked = data.auto_positive_signals || false;
+    document.getElementById('cfgDbUrl').value = data.trust_db_url || '';
+    document.getElementById('cfgReportUrl').value = data.report_endpoint || '';
+    document.getElementById('cfgSyncHours').value = data.sync_interval_hours || 24;
+  } catch {}
+}
+
+async function saveSettings() {
+  const data = {
+    participate_in_network: document.getElementById('cfgParticipate').checked,
+    auto_positive_signals: document.getElementById('cfgAutoPositive').checked,
+    trust_db_url: document.getElementById('cfgDbUrl').value,
+    report_endpoint: document.getElementById('cfgReportUrl').value,
+    sync_interval_hours: parseInt(document.getElementById('cfgSyncHours').value || '24', 10),
+  };
+  try {
+    await fetch(`${API}/api/config`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    showToast('Settings saved');
+    loadStatus();
+  } catch (e) {
+    showToast('Error: ' + e.message, true);
+  }
+}
+
+// --- Helpers ---
+
+function scoreBadge(score) {
+  if (score == null) return '<span class="score-badge score-mid">?</span>';
+  const cls = score >= 70 ? 'score-high' : score >= 40 ? 'score-mid' : 'score-low';
+  return `<span class="score-badge ${cls}">${score}</span>`;
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function timeAgo(iso) {
+  const ms = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(ms / 60000);
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  return Math.floor(hrs / 24) + 'd ago';
+}
+
+function showToast(msg, isError) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.borderColor = isError ? 'var(--red)' : 'var(--green)';
+  el.style.color = isError ? 'var(--red)' : 'var(--green)';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>

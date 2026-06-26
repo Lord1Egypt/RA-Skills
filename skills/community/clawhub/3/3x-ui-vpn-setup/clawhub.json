@@ -1,0 +1,24 @@
+{
+    "name": "3x-ui VPN Server Setup",
+    "slug": "3x-ui-vpn-setup",
+    "version": "1.0.0",
+    "description": "Full automated VPN server deployment with 3x-ui panel. Sets up secure VLESS Reality/TLS proxy on Ubuntu/Debian. Includes server hardening, SSH key setup, firewall configuration, and client connection guidance.",
+    "author": "AndyShaman",
+    "homepage": "https://github.com/AndyShaman/3x-ui-skill",
+    "license": "MIT",
+    "tags": [
+        "vpn", 
+        "vless", 
+        "reality", 
+        "server-setup", 
+        "proxy", 
+        "security", 
+        "ubuntu", 
+        "debian"
+    ],
+    "requirements": {
+        "os": ["ubuntu", "debian"],
+        "arch": ["amd64", "arm64"],
+        "tools": ["curl", "ssh", "sudo"]
+    }
+}

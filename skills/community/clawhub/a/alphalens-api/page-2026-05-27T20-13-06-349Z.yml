@@ -1,0 +1,1146 @@
+- generic [ref=e2]:
+  - alert [ref=e3]: AlphaLens Intelligence
+  - generic [ref=e4]:
+    - navigation [ref=e5]:
+      - generic [ref=e6]:
+        - link "AlphaLens" [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img "AlphaLens" [ref=e9]
+        - generic [ref=e10]:
+          - button "Solutions" [ref=e12] [cursor=pointer]: Solutions
+          - link "Our Data" [ref=e14] [cursor=pointer]:
+            - /url: /#coverage
+          - link "Sourcing" [ref=e15] [cursor=pointer]:
+            - /url: /solutions/sourcing
+          - link "Enrichment" [ref=e16] [cursor=pointer]:
+            - /url: /solutions/screening
+          - link "Integrations" [ref=e17] [cursor=pointer]:
+            - /url: /#integrations
+          - button "API" [ref=e19] [cursor=pointer]: API
+          - link "Pricing" [ref=e21] [cursor=pointer]:
+            - /url: /#pricing
+        - generic [ref=e22]:
+          - link "Login" [ref=e23] [cursor=pointer]:
+            - /url: https://app.alphalens.ai
+          - button "Book Demo" [ref=e24] [cursor=pointer]: Book Demo
+    - generic [ref=e26]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: Enrichment V2.0
+        - heading "The Deal Origination Engine for I N V E S T M E N T B A N K I N G" [level=1] [ref=e1721]:
+          - text: The Deal Origination Engine for
+          - generic [ref=e34]:
+            - generic [ref=e35]: I
+            - generic [ref=e36]: "N"
+            - generic [ref=e37]: V
+            - generic [ref=e38]: E
+            - generic [ref=e39]: S
+            - generic [ref=e40]: T
+            - generic [ref=e41]: M
+            - generic [ref=e42]: E
+            - generic [ref=e43]: "N"
+            - generic [ref=e44]: T
+            - generic [ref=e46]: B
+            - generic [ref=e47]: A
+            - generic [ref=e48]: "N"
+            - generic [ref=e49]: K
+            - generic [ref=e50]: I
+            - generic [ref=e51]: "N"
+            - generic [ref=e52]: G
+        - paragraph [ref=e56]: Find hidden opportunities through semantic search, enrich them with the data you need, get AI-powered answers to your specific deal-breakers, and sync winners directly to your pipeline.
+        - generic [ref=e57]:
+          - button "Book Demo" [ref=e58] [cursor=pointer]: Book Demo
+          - link "View API docs" [ref=e60] [cursor=pointer]:
+            - /url: https://developer.alphalens.ai
+            - text: View API docs
+      - generic [ref=e62]:
+        - generic [ref=e64]:
+          - button "Full Workflow" [ref=e65] [cursor=pointer]:
+            - generic [ref=e66]: Full Workflow
+          - button "Inbound Automation" [ref=e69] [cursor=pointer]:
+            - generic [ref=e70]: Inbound Automation
+          - button "Sourcing" [ref=e71] [cursor=pointer]:
+            - generic [ref=e72]: Sourcing
+          - button "Monitoring" [ref=e73] [cursor=pointer]:
+            - generic [ref=e74]: Monitoring
+          - button "Enrichment" [ref=e75] [cursor=pointer]:
+            - generic [ref=e76]: Enrichment
+          - button "Integrations" [ref=e77] [cursor=pointer]:
+            - generic [ref=e78]: Integrations
+        - generic [ref=e81]:
+          - img
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - generic [ref=e88]: Discovery
+                - generic [ref=e91]: Vertical AI for Law|
+                - generic [ref=e1723]:
+                  - generic [ref=e1724]: Seed
+                  - generic [ref=e1725]: B2B
+              - generic [ref=e96]:
+                - generic [ref=e97]:
+                  - generic [ref=e101]: Saved Search
+                  - generic [ref=e102]: Sent to CRM
+                - generic [ref=e104]:
+                  - generic [ref=e105]:
+                    - generic [ref=e106]: "N"
+                    - generic [ref=e107]:
+                      - generic [ref=e108]: Nexus AI
+                      - generic [ref=e109]: Just added
+                  - generic [ref=e110]:
+                    - generic [ref=e111]: A
+                    - generic [ref=e112]: Alpha Co
+              - generic [ref=e113]:
+                - generic [ref=e117]:
+                  - generic [ref=e118]: Documents
+                  - generic [ref=e119]: Ingesting Stream
+                - generic [ref=e121]:
+                  - generic [ref=e133]:
+                    - generic [ref=e134]:
+                      - generic [ref=e135]: Seed Round.pptx
+                      - generic [ref=e136]: Upload
+                    - generic [ref=e137]: PowerPoint
+                  - generic [ref=e141]:
+                    - generic [ref=e142]:
+                      - generic [ref=e143]: docsend.com/v/y33...
+                      - generic [ref=e144]: WhatsApp
+                    - generic [ref=e145]: DocSend
+                  - generic [ref=e125]:
+                    - generic [ref=e126]:
+                      - generic [ref=e127]: Series A Deck.pdf
+                      - generic [ref=e128]: Email
+                    - generic [ref=e129]: PDF
+            - generic [ref=e147]:
+              - generic [ref=e152]: ENRICHMENT_ACTIVE
+              - generic [ref=e154]:
+                - generic [ref=e155]:
+                  - generic [ref=e156]: Company
+                  - generic [ref=e158]: Technical Founder?
+                  - generic [ref=e160]: Github Stars > 1k?
+                  - generic [ref=e161]: Status
+                - generic [ref=e162]:
+                  - generic [ref=e163]:
+                    - generic [ref=e164]:
+                      - generic [ref=e165]: "N"
+                      - generic [ref=e166]: Nexus Health
+                    - generic [ref=e1726]: Yes (PhD)
+                    - generic [ref=e171]: Pending
+                  - generic [ref=e172]:
+                    - generic [ref=e173]:
+                      - generic [ref=e174]: O
+                      - generic [ref=e175]: Orbit Logic
+                    - generic [ref=e1727]: Yes (Ex-Meta)
+                    - generic [ref=e180]: Pending
+                  - generic [ref=e181]:
+                    - generic [ref=e182]:
+                      - generic [ref=e183]: V
+                      - generic [ref=e184]: Velocore
+                    - generic [ref=e189]: Pending
+                  - generic [ref=e190]:
+                    - generic [ref=e191]:
+                      - generic [ref=e192]: I
+                      - generic [ref=e193]: Ion Systems
+                    - generic [ref=e198]: Pending
+                  - generic [ref=e199]:
+                    - generic [ref=e200]:
+                      - generic [ref=e201]: P
+                      - generic [ref=e202]: Pulse AI
+                    - generic [ref=e207]: Pending
+                  - generic [ref=e208]:
+                    - generic [ref=e209]:
+                      - generic [ref=e210]: A
+                      - generic [ref=e211]: Aether Ops
+                    - generic [ref=e216]: Pending
+            - generic [ref=e217]:
+              - generic [ref=e223]:
+                - generic [ref=e224]: CRM
+                - generic [ref=e225]: Auto-Synced
+              - generic [ref=e231]:
+                - generic [ref=e232]: Weekly.csv
+                - generic [ref=e233]: Export Ready
+    - generic [ref=e236]:
+      - generic [ref=e237]:
+        - generic [ref=e238]: Our Data
+        - heading "Unique Data and Coverage" [level=2] [ref=e239]
+        - paragraph [ref=e240]: We have the world's largest corpus of data on products, goods and services - which means you can search across our vast universe using natural language, and find similar products and companies in milliseconds.
+      - generic [ref=e241]:
+        - button "Global" [ref=e242] [cursor=pointer]
+        - button "US & Canada" [ref=e243] [cursor=pointer]
+        - button "Europe" [ref=e244] [cursor=pointer]
+        - button "Asia" [ref=e245] [cursor=pointer]
+        - button "Africa" [ref=e246] [cursor=pointer]
+        - button "Latam" [ref=e247] [cursor=pointer]
+      - generic [ref=e248]:
+        - img [ref=e251]:
+          - generic [ref=e252]:
+            - generic "Afghanistan" [ref=e253]
+            - generic "Angola" [ref=e254]
+            - generic "Albania" [ref=e255]
+            - generic "United Arab Emirates" [ref=e256]
+            - generic "Argentina" [ref=e257]
+            - generic "Armenia" [ref=e258]
+            - generic "French Southern and Antarctic Lands" [ref=e259]
+            - generic "Australia" [ref=e260]
+            - generic "Austria" [ref=e261]
+            - generic "Azerbaijan" [ref=e262]
+            - generic "Burundi" [ref=e263]
+            - generic "Belgium" [ref=e264]
+            - generic "Benin" [ref=e265]
+            - generic "Burkina Faso" [ref=e266]
+            - generic "Bangladesh" [ref=e267]
+            - generic "Bulgaria" [ref=e268]
+            - generic "The Bahamas" [ref=e269]
+            - generic "Bosnia and Herzegovina" [ref=e270]
+            - generic "Belarus" [ref=e271]
+            - generic "Belize" [ref=e272]
+            - generic "Bolivia" [ref=e273]
+            - generic "Brazil" [ref=e274]
+            - generic "Brunei" [ref=e275]
+            - generic "Bhutan" [ref=e276]
+            - generic "Botswana" [ref=e277]
+            - generic "Central African Republic" [ref=e278]
+            - generic "Canada" [ref=e279]
+            - generic "Switzerland" [ref=e280]
+            - generic "Chile" [ref=e281]
+            - generic "China" [ref=e282]
+            - generic "Ivory Coast" [ref=e283]
+            - generic "Cameroon" [ref=e284]
+            - generic "Democratic Republic of the Congo" [ref=e285]
+            - generic "Republic of the Congo" [ref=e286]
+            - generic "Colombia" [ref=e287]
+            - generic "Costa Rica" [ref=e288]
+            - generic "Cuba" [ref=e289]
+            - generic "Northern Cyprus" [ref=e290]
+            - generic "Cyprus" [ref=e291]
+            - generic "Czech Republic" [ref=e292]
+            - generic "Germany" [ref=e293]
+            - generic "Djibouti" [ref=e294]
+            - generic "Denmark" [ref=e295]
+            - generic "Dominican Republic" [ref=e296]
+            - generic "Algeria" [ref=e297]
+            - generic "Ecuador" [ref=e298]
+            - generic "Egypt" [ref=e299]
+            - generic "Eritrea" [ref=e300]
+            - generic "Spain" [ref=e301]
+            - generic "Estonia" [ref=e302]
+            - generic "Ethiopia" [ref=e303]
+            - generic "Finland" [ref=e304]
+            - generic "Fiji" [ref=e305]
+            - generic "Falkland Islands" [ref=e306]
+            - generic "France" [ref=e307]
+            - generic "Gabon" [ref=e308]
+            - generic "England" [ref=e309]
+            - generic "Georgia" [ref=e310]
+            - generic "Ghana" [ref=e311]
+            - generic "Guinea" [ref=e312]
+            - generic "Gambia" [ref=e313]
+            - generic "Guinea Bissau" [ref=e314]
+            - generic "Equatorial Guinea" [ref=e315]
+            - generic "Greece" [ref=e316]
+            - generic "Greenland" [ref=e317]
+            - generic "Guatemala" [ref=e318]
+            - generic "Guyana" [ref=e319]
+            - generic "Honduras" [ref=e320]
+            - generic "Croatia" [ref=e321]
+            - generic "Haiti" [ref=e322]
+            - generic "Hungary" [ref=e323]
+            - generic "Indonesia" [ref=e324]
+            - generic "India" [ref=e325]
+            - generic "Ireland" [ref=e326]
+            - generic "Iran" [ref=e327]
+            - generic "Iraq" [ref=e328]
+            - generic "Iceland" [ref=e329]
+            - generic "Israel" [ref=e330]
+            - generic "Italy" [ref=e331]
+            - generic "Jamaica" [ref=e332]
+            - generic "Jordan" [ref=e333]
+            - generic "Japan" [ref=e334]
+            - generic "Kazakhstan" [ref=e335]
+            - generic "Kenya" [ref=e336]
+            - generic "Kyrgyzstan" [ref=e337]
+            - generic "Cambodia" [ref=e338]
+            - generic "South Korea" [ref=e339]
+            - generic "Kosovo" [ref=e340]
+            - generic "Kuwait" [ref=e341]
+            - generic "Laos" [ref=e342]
+            - generic "Lebanon" [ref=e343]
+            - generic "Liberia" [ref=e344]
+            - generic "Libya" [ref=e345]
+            - generic "Sri Lanka" [ref=e346]
+            - generic "Lesotho" [ref=e347]
+            - generic "Lithuania" [ref=e348]
+            - generic "Luxembourg" [ref=e349]
+            - generic "Latvia" [ref=e350]
+            - generic "Morocco" [ref=e351]
+            - generic "Moldova" [ref=e352]
+            - generic "Madagascar" [ref=e353]
+            - generic "Mexico" [ref=e354]
+            - generic "Macedonia" [ref=e355]
+            - generic "Mali" [ref=e356]
+            - generic "Myanmar" [ref=e357]
+            - generic "Montenegro" [ref=e358]
+            - generic "Mongolia" [ref=e359]
+            - generic "Mozambique" [ref=e360]
+            - generic "Mauritania" [ref=e361]
+            - generic "Malawi" [ref=e362]
+            - generic "Malaysia" [ref=e363]
+            - generic "Namibia" [ref=e364]
+            - generic "New Caledonia" [ref=e365]
+            - generic "Niger" [ref=e366]
+            - generic "Nigeria" [ref=e367]
+            - generic "Nicaragua" [ref=e368]
+            - generic "Netherlands" [ref=e369]
+            - generic "Norway" [ref=e370]
+            - generic "Nepal" [ref=e371]
+            - generic "New Zealand" [ref=e372]
+            - generic "Oman" [ref=e373]
+            - generic "Pakistan" [ref=e374]
+            - generic "Panama" [ref=e375]
+            - generic "Peru" [ref=e376]
+            - generic "Philippines" [ref=e377]
+            - generic "Papua New Guinea" [ref=e378]
+            - generic "Poland" [ref=e379]
+            - generic "Puerto Rico" [ref=e380]
+            - generic "North Korea" [ref=e381]
+            - generic "Portugal" [ref=e382]
+            - generic "Paraguay" [ref=e383]
+            - generic "Qatar" [ref=e384]
+            - generic "Romania" [ref=e385]
+            - generic "Russia" [ref=e386]
+            - generic "Rwanda" [ref=e387]
+            - generic "Western Sahara" [ref=e388]
+            - generic "Saudi Arabia" [ref=e389]
+            - generic "Sudan" [ref=e390]
+            - generic "South Sudan" [ref=e391]
+            - generic "Senegal" [ref=e392]
+            - generic "Solomon Islands" [ref=e393]
+            - generic "Sierra Leone" [ref=e394]
+            - generic "El Salvador" [ref=e395]
+            - generic "Somaliland" [ref=e396]
+            - generic "Somalia" [ref=e397]
+            - generic "Republic of Serbia" [ref=e398]
+            - generic "Suriname" [ref=e399]
+            - generic "Slovakia" [ref=e400]
+            - generic "Slovenia" [ref=e401]
+            - generic "Sweden" [ref=e402]
+            - generic "Swaziland" [ref=e403]
+            - generic "Syria" [ref=e404]
+            - generic "Chad" [ref=e405]
+            - generic "Togo" [ref=e406]
+            - generic "Thailand" [ref=e407]
+            - generic "Tajikistan" [ref=e408]
+            - generic "Turkmenistan" [ref=e409]
+            - generic "East Timor" [ref=e410]
+            - generic "Trinidad and Tobago" [ref=e411]
+            - generic "Tunisia" [ref=e412]
+            - generic "Turkey" [ref=e413]
+            - generic "Taiwan" [ref=e414]
+            - generic "United Republic of Tanzania" [ref=e415]
+            - generic "Uganda" [ref=e416]
+            - generic "Ukraine" [ref=e417]
+            - generic "Uruguay" [ref=e418]
+            - generic "USA" [ref=e419]
+            - generic "Uzbekistan" [ref=e420]
+            - generic "Venezuela" [ref=e421]
+            - generic "Vietnam" [ref=e422]
+            - generic "Vanuatu" [ref=e423]
+            - generic "West Bank" [ref=e424]
+            - generic "Yemen" [ref=e425]
+            - generic "South Africa" [ref=e426]
+            - generic "Zambia" [ref=e427]
+            - generic "Zimbabwe" [ref=e428]
+        - generic [ref=e429]:
+          - generic [ref=e430]:
+            - generic [ref=e431]: Millions +
+            - generic [ref=e432]: Companies
+          - generic [ref=e433]:
+            - generic [ref=e434]: Millions +
+            - generic [ref=e435]: Products
+          - generic [ref=e436]:
+            - generic [ref=e437]: 20.4T
+            - generic [ref=e438]: Total Raised
+          - generic [ref=e439]:
+            - generic [ref=e440]: 652.4k
+            - generic [ref=e441]: Funding Rounds
+          - generic [ref=e442]:
+            - generic [ref=e443]: 248.9k
+            - generic [ref=e444]: Pre/Seed
+          - generic [ref=e445]:
+            - generic [ref=e446]: 66.0k
+            - generic [ref=e447]: Series A
+          - generic [ref=e448]:
+            - generic [ref=e449]: 31.1k
+            - generic [ref=e450]: Series B
+          - generic [ref=e451]:
+            - generic [ref=e452]: 23.1k
+            - generic [ref=e453]: Series C +
+          - generic [ref=e454]:
+            - generic [ref=e455]: 34.4k
+            - generic [ref=e456]: Est. 2023
+          - generic [ref=e457]:
+            - generic [ref=e458]: 22.9k
+            - generic [ref=e459]: Est. 2024
+          - generic [ref=e460]:
+            - generic [ref=e461]: 23.2k
+            - generic [ref=e462]: Est. 2025
+    - generic [ref=e464]:
+      - generic [ref=e465]:
+        - generic [ref=e466]: Sourcing
+        - heading "Find the Needle in the Haystack." [level=2] [ref=e467]
+        - paragraph [ref=e468]: Our sourcing engine combines deep semantic search with active monitoring to surface opportunities that match your exact thesis.
+        - link "Learn more about Sourcing" [ref=e470] [cursor=pointer]:
+          - /url: /solutions/sourcing
+          - text: Learn more about Sourcing
+      - generic [ref=e472]:
+        - generic [ref=e473]:
+          - generic [ref=e476]: Semantic Search
+          - heading "Search by Thesis, Not Keywords." [level=3] [ref=e477]:
+            - text: Search by Thesis,
+            - text: Not Keywords.
+          - paragraph [ref=e478]: Stop relying on generic industry tags. Our AI understands natural language, allowing you to search across product descriptions, company manifestos, and ICP definitions to find exactly what you're looking for.
+        - generic [ref=e485]:
+          - generic [ref=e490]: Describe your ideal target...
+          - generic [ref=e493]:
+            - generic [ref=e494]: ⌘
+            - text: K
+      - generic [ref=e499]:
+        - generic [ref=e500]:
+          - generic [ref=e503]: Monitor
+          - heading "Never Miss a Deal." [level=3] [ref=e504]
+          - paragraph [ref=e505]: Turn your search queries into active sentinels. Save your thesis parameters and get notified instantly when a new opportunity enters the market that matches your criteria.
+        - generic [ref=e508]:
+          - generic [ref=e509]:
+            - generic [ref=e513]:
+              - generic [ref=e514]: Climate Tech Thesis
+              - generic [ref=e515]: "Last sync: 2m ago"
+            - generic [ref=e517]: Alerts
+          - generic [ref=e525]:
+            - generic [ref=e531]:
+              - generic [ref=e532]:
+                - generic [ref=e533]: New Match
+                - generic [ref=e534]: Just now
+              - generic [ref=e535]: SolarX (Series A)
+              - generic [ref=e536]:
+                - text: "Matches criteria:"
+                - generic [ref=e537]: Climate Tech,
+                - generic [ref=e538]: Series A
+            - generic [ref=e543]:
+              - generic [ref=e544]:
+                - generic [ref=e545]: New Match
+                - generic [ref=e546]: 2m ago
+              - generic [ref=e547]: FinFlow (Seed)
+              - generic [ref=e548]:
+                - text: "Matches criteria:"
+                - generic [ref=e549]: FinTech,
+                - generic [ref=e550]: Seed
+            - generic [ref=e555]:
+              - generic [ref=e556]:
+                - generic [ref=e557]: New Match
+                - generic [ref=e558]: 15m ago
+              - generic [ref=e559]: MediCare AI
+              - generic [ref=e560]:
+                - text: "Matches criteria:"
+                - generic [ref=e561]: HealthTech,
+                - generic [ref=e562]: Series B
+    - generic [ref=e565]:
+      - generic [ref=e566]:
+        - generic [ref=e569]: Universal Ingestion
+        - generic [ref=e570]:
+          - heading "Turn any document into structured data." [level=2] [ref=e571]:
+            - text: Turn any document into
+            - text: structured data.
+          - paragraph [ref=e572]: Stop manually entering data from pitch decks. AlphaLens automatically ingests, analyzes, and extracts key metrics from any file format or link you throw at it.
+          - link "Learn more about parsing your Inbound deal flow" [ref=e574] [cursor=pointer]:
+            - /url: /solutions/inbound
+            - text: Learn more about parsing your Inbound deal flow
+        - generic [ref=e576]:
+          - generic [ref=e577]:
+            - heading "Any Format" [level=3] [ref=e578]: Any Format
+            - list [ref=e580]:
+              - listitem [ref=e581]: PDF, PPTX, Keynote
+              - listitem [ref=e583]: DocSend, Google Slides
+              - listitem [ref=e585]: Notion & Pitch.com Links
+          - generic [ref=e587]:
+            - heading "Auto-Triggers" [level=3] [ref=e588]: Auto-Triggers
+            - list [ref=e590]:
+              - listitem [ref=e591]: Forward Email to @inbox
+              - listitem [ref=e593]: Drag & Drop Upload
+              - listitem [ref=e595]: API Submission
+      - generic [ref=e597]:
+        - generic [ref=e602]: INGESTION_PIPELINE_V2
+        - generic [ref=e605]:
+          - generic [ref=e611]: Pitch Deck.pdf
+          - generic [ref=e615]:
+            - generic [ref=e617]: Analysis
+            - generic [ref=e618]:
+              - generic [ref=e621]: OCR Extraction
+              - generic [ref=e624]: Structure Analysis
+              - generic [ref=e627]: Answering Questions
+          - generic [ref=e630]:
+            - generic [ref=e631]:
+              - generic [ref=e632]: Extracted Data
+              - generic [ref=e1731]: JSON
+            - generic [ref=e633]:
+              - generic [ref=e634]:
+                - generic [ref=e635]: "sector:"
+                - generic [ref=e636]: "\"Fintech\""
+              - generic [ref=e637]:
+                - generic [ref=e638]: "raise_amount:"
+                - generic [ref=e639]: "\"$5,000,000\""
+              - generic [ref=e640]:
+                - generic [ref=e641]: "founder_technical:"
+                - generic [ref=e642]: "true"
+              - generic [ref=e643]:
+                - generic [ref=e644]: "competitors:"
+                - generic [ref=e645]: "[\"Stripe\", \"Adyen\"]"
+    - generic [ref=e647]:
+      - generic [ref=e648]:
+        - generic [ref=e649]: ENRICHMENT
+        - heading "Enrichment and Screening Pipeline on Autopilot." [level=2] [ref=e650]
+        - paragraph [ref=e651]: Automatically enrich every inbound deal and sourced lead. Leverage Web Agents, People Data, Contact Data, Growth Data, and more to get the full picture instantly.
+        - link "Learn more about Enrichment & Screening" [ref=e653] [cursor=pointer]:
+          - /url: /solutions/screening
+          - text: Learn more about Enrichment & Screening
+      - generic [ref=e657]:
+        - generic [ref=e658]:
+          - generic [ref=e659]:
+            - generic [ref=e661]: Enrichment Pipeline
+            - generic [ref=e663]:
+              - generic [ref=e664]: "6"
+              - generic [ref=e665]: Companies
+          - button "Re-run Enrichment" [ref=e667] [cursor=pointer]:
+            - generic [ref=e669]: Re-run Enrichment
+        - generic [ref=e671]:
+          - generic [ref=e672]:
+            - generic [ref=e673]: Company
+            - generic [ref=e674]:
+              - text: AlphaLens Data
+              - generic [ref=e676]: Source
+            - generic [ref=e677]:
+              - text: "Web Agent: Pricing"
+              - generic [ref=e680]: Agent
+            - generic [ref=e681]:
+              - text: "Web Agent: Compliance"
+              - generic [ref=e684]: Agent
+            - generic [ref=e685]:
+              - text: Formula Score
+              - generic [ref=e688]: Output
+          - generic [ref=e689]:
+            - generic [ref=e694]: Vercel
+            - generic [ref=e724]: Stripe
+            - generic [ref=e754]: Supabase
+            - generic [ref=e784]: OpenAI
+            - generic [ref=e814]: Linear
+            - generic [ref=e844]: Figma
+      - generic [ref=e870]:
+        - generic [ref=e871]:
+          - generic [ref=e874]: Rich Entity Data
+          - heading "Join Data from AlphaLens" [level=2] [ref=e875]
+          - paragraph [ref=e876]: Go beyond basic firmographics. Access a deep reservoir of private market data to enrich every company profile in your pipeline.
+        - generic [ref=e877]:
+          - generic [ref=e880]:
+            - heading "Firmographic Data" [level=3] [ref=e884]
+            - paragraph [ref=e885]: Essential company identifiers and structural information.
+            - generic [ref=e890]: A
+            - list [ref=e899]:
+              - listitem [ref=e900]:
+                - generic [ref=e902]: Legal Name
+              - listitem [ref=e903]:
+                - generic [ref=e905]: Year Founded
+              - listitem [ref=e906]:
+                - generic [ref=e908]: Domain
+              - listitem [ref=e909]:
+                - generic [ref=e911]: Company Description
+              - listitem [ref=e912]:
+                - generic [ref=e914]: Social Links
+          - generic [ref=e917]:
+            - heading "Address Data" [level=3] [ref=e921]
+            - paragraph [ref=e922]: Precise HQ locations and branch office mapping globally.
+            - generic [ref=e924]:
+              - img
+            - list [ref=e935]:
+              - listitem [ref=e936]:
+                - generic [ref=e938]: Headquarters
+              - listitem [ref=e939]:
+                - generic [ref=e941]: Branch Offices
+              - listitem [ref=e942]:
+                - generic [ref=e944]: Geospatial Mapping
+          - generic [ref=e947]:
+            - heading "Funding Data" [level=3] [ref=e951]
+            - paragraph [ref=e952]: Complete capital history from seed to IPO.
+            - generic [ref=e954]:
+              - generic [ref=e956]: Seed
+              - generic [ref=e958]: A
+              - generic [ref=e960]: $40M
+            - list [ref=e962]:
+              - listitem [ref=e963]:
+                - generic [ref=e965]: Funding Dates
+              - listitem [ref=e966]:
+                - generic [ref=e968]: Deal Stage
+              - listitem [ref=e969]:
+                - generic [ref=e971]: Round Amounts
+              - listitem [ref=e972]:
+                - generic [ref=e974]: Lead Investors
+          - generic [ref=e977]:
+            - heading "Growth Time Series" [level=3] [ref=e981]
+            - paragraph [ref=e982]: Real-time time series data tracking company momentum.
+            - generic [ref=e985]:
+              - img [ref=e986]
+              - generic [ref=e990]: +124%
+            - list [ref=e992]:
+              - listitem [ref=e993]:
+                - generic [ref=e995]: Headcount Growth
+              - listitem [ref=e996]:
+                - generic [ref=e998]: Website Traffic
+              - listitem [ref=e999]:
+                - generic [ref=e1001]: Job Postings
+              - listitem [ref=e1002]:
+                - generic [ref=e1004]: Social Following
+          - generic [ref=e1007]:
+            - heading "Product Data" [level=3] [ref=e1011]
+            - paragraph [ref=e1012]: Deep understanding of what they build and who buys it.
+            - generic [ref=e1015]:
+              - generic [ref=e1016]: SaaS
+              - generic [ref=e1017]: B2B
+              - generic [ref=e1018]: Enterprise
+              - generic [ref=e1019]: Cloud
+            - list [ref=e1021]:
+              - listitem [ref=e1022]:
+                - generic [ref=e1024]: Product Arrays
+              - listitem [ref=e1025]:
+                - generic [ref=e1027]: Target Audience
+              - listitem [ref=e1028]:
+                - generic [ref=e1030]: Tech Stack
+              - listitem [ref=e1031]:
+                - generic [ref=e1033]: Use Cases
+          - generic [ref=e1036]:
+            - heading "People Data" [level=3] [ref=e1040]
+            - paragraph [ref=e1041]: Decision makers and leadership team identification.
+            - generic [ref=e1043]:
+              - generic [ref=e1044]:
+                - generic [ref=e1045]: JD
+                - generic [ref=e1048]: VP
+              - generic [ref=e1049]: Key Decision Makers
+            - list [ref=e1051]:
+              - listitem [ref=e1052]:
+                - generic [ref=e1054]: CXO & Founder Class
+              - listitem [ref=e1055]:
+                - generic [ref=e1057]: Contact Details
+              - listitem [ref=e1058]:
+                - generic [ref=e1060]: Board Members
+              - listitem [ref=e1061]:
+                - generic [ref=e1063]: Experience
+    - generic [ref=e1065]:
+      - generic [ref=e1066]:
+        - generic [ref=e1067]: Integrations
+        - heading "Map Enriched Data to Your CRM." [level=2] [ref=e1068]
+        - paragraph [ref=e1069]: Map enriched data 1:1 to your custom fields in Affinity, Salesforce, and HubSpot. With built-in conditionality, you ensure only data you deem clean enough makes the cut.
+        - link "Learn more about Integrations" [ref=e1071] [cursor=pointer]:
+          - /url: /solutions/integrations
+          - text: Learn more about Integrations
+      - generic [ref=e1075]:
+        - img
+        - generic [ref=e1076]:
+          - generic [ref=e1077]:
+            - generic [ref=e1079]:
+              - generic [ref=e1080]: Source
+              - generic [ref=e1081]: AlphaLens Data Pipeline
+            - generic [ref=e1082]: Ready
+          - generic [ref=e1083]:
+            - generic [ref=e1088]:
+              - generic [ref=e1089]: Reasoning Summary
+              - generic [ref=e1090]: Strong alignment with API thesis
+            - generic [ref=e1096]:
+              - generic [ref=e1097]: Calculated Score
+              - generic [ref=e1098]: 92/100
+            - generic [ref=e1104]:
+              - generic [ref=e1105]: Strategic Tags
+              - generic [ref=e1106]: Infrastructure, API-First
+        - generic [ref=e1108]:
+          - generic [ref=e1109]:
+            - generic "Salesforce" [ref=e1110]:
+              - img "Salesforce" [ref=e1111]
+            - generic "HubSpot" [ref=e1112]:
+              - img "HubSpot" [ref=e1113]
+            - generic "Attio" [ref=e1114]:
+              - img "Attio" [ref=e1115]
+            - generic "Affinity" [ref=e1116]:
+              - img "Affinity" [ref=e1117]
+          - generic [ref=e1118]:
+            - generic [ref=e1119]: Destination
+            - generic [ref=e1120]: Deal Record
+          - generic [ref=e1121]:
+            - generic [ref=e1123]: Notes / Description
+            - generic [ref=e1126]: Propensity Score
+            - generic [ref=e1129]: Tags
+          - generic [ref=e1134]: Waiting for input...
+    - generic [ref=e1137]:
+      - generic [ref=e1138]:
+        - generic [ref=e1139]: Access
+        - heading "Access AlphaLens wherever you work" [level=2] [ref=e1140]
+        - paragraph [ref=e1141]: Bring AlphaLens with you, everywhere you browse. Unlock instant access to funding rounds, team profiles, product lines, and discover comparable companies—without ever leaving the page.
+      - generic [ref=e1142]:
+        - generic [ref=e1143]:
+          - generic [ref=e1144]:
+            - generic [ref=e1147]: Web Platform
+            - heading "The Command Center." [level=3] [ref=e1148]: The Command Center.
+            - paragraph [ref=e1149]: Manage your entire deal pipeline from one central hub. Deep dive into company profiles, manage your saved searches, and configure your enrichment workflows.
+            - button "Book Demo" [ref=e1151] [cursor=pointer]: Book Demo
+          - generic [ref=e1153]:
+            - generic [ref=e1156]: A
+            - generic [ref=e1164]:
+              - generic [ref=e1165]:
+                - generic [ref=e1167]:
+                  - generic [ref=e1168]:
+                    - generic [ref=e1169]: U
+                    - generic [ref=e1170]:
+                      - heading "Unaric" [level=3] [ref=e1171]
+                      - generic [ref=e1172]:
+                        - text: London, UK
+                        - generic [ref=e1174]: •
+                        - generic [ref=e1175]: Est. 2022
+                      - generic [ref=e1176]:
+                        - generic [ref=e1177]: Salesforce ISV
+                        - generic [ref=e1178]: B2B SaaS
+                  - button "Track" [ref=e1179] [cursor=pointer]
+                - generic [ref=e1180]:
+                  - generic [ref=e1181]:
+                    - generic [ref=e1182]:
+                      - generic [ref=e1183]: Headcount
+                      - generic [ref=e1184]: "64"
+                    - generic [ref=e1185]:
+                      - generic [ref=e1186]: Total Raised
+                      - generic [ref=e1187]: $35M
+                    - generic [ref=e1188]:
+                      - generic [ref=e1189]: Products
+                      - generic [ref=e1190]: "8"
+                    - generic [ref=e1191]:
+                      - generic [ref=e1192]: Last Round
+                      - generic [ref=e1193]: Debt
+                  - generic [ref=e1194]:
+                    - generic [ref=e1195]:
+                      - heading "Growth Signals" [level=4] [ref=e1196]
+                      - generic [ref=e1200]: Headcount
+                    - generic [ref=e1201]:
+                      - generic:
+                        - img
+                  - generic [ref=e1222]:
+                    - heading "Team" [level=4] [ref=e1223]
+                    - generic [ref=e1224]:
+                      - generic [ref=e1225]:
+                        - img [ref=e1227]
+                        - generic [ref=e1228]:
+                          - generic [ref=e1229]: James A. Gasteen
+                          - generic [ref=e1230]: Co-Founder & CEO
+                      - generic [ref=e1231]:
+                        - img [ref=e1233]
+                        - generic [ref=e1234]:
+                          - generic [ref=e1235]: Moritz Birke
+                          - generic [ref=e1236]: Co-Founder
+              - generic [ref=e1732]:
+                - generic [ref=e1733]:
+                  - textbox [ref=e1736]: show me who looks like Clarion KX Platform
+                  - generic [ref=e1737]:
+                    - generic [ref=e1738]: Quantum Computing
+                    - generic [ref=e1739]: Cybersecurity
+                    - generic [ref=e1740]: Europe
+                - generic [ref=e1742]:
+                  - generic [ref=e1743] [cursor=pointer]:
+                    - generic [ref=e1744]:
+                      - generic [ref=e1745]:
+                        - generic [ref=e1746]: IDQ
+                        - generic [ref=e1747]:
+                          - generic [ref=e1748]: ID Quantique
+                          - generic [ref=e1749]: Geneva, Switzerland
+                      - generic [ref=e1750]: 100%
+                    - paragraph [ref=e1752]: Quantum key exchange platform ensuring telecommunication networks are resistant to quantum computer attacks.
+                  - generic [ref=e1753] [cursor=pointer]:
+                    - generic [ref=e1754]:
+                      - generic [ref=e1755]:
+                        - generic [ref=e1756]: Q
+                        - generic [ref=e1757]:
+                          - generic [ref=e1758]: QbitFlow
+                          - generic [ref=e1759]: Global Remote
+                      - generic [ref=e1760]: 94%
+                    - paragraph [ref=e1761]: Comprehensive quantum communication systems including quantum key distribution and teleportation capabilities.
+                  - generic [ref=e1762] [cursor=pointer]:
+                    - generic [ref=e1763]:
+                      - generic [ref=e1764]:
+                        - generic [ref=e1765]: K
+                        - generic [ref=e1766]:
+                          - generic [ref=e1767]: KETS Quantum
+                          - generic [ref=e1768]: Bristol, UK
+                      - generic [ref=e1769]: 94%
+                    - paragraph [ref=e1770]: Chip-based quantum encryption hardware for secure communications.
+              - generic:
+                - button [ref=e1237] [cursor=pointer]
+                - button [ref=e1238] [cursor=pointer]
+                - button [ref=e1239] [cursor=pointer]
+        - generic [ref=e1240]:
+          - generic [ref=e1241]:
+            - generic [ref=e1242]:
+              - img "Chrome" [ref=e1243]
+              - generic [ref=e1244]: Browser Extension
+            - heading "Instant Market Context. Zero Context Switching." [level=3] [ref=e1245]:
+              - text: Instant Market Context.
+              - text: Zero Context Switching.
+            - paragraph [ref=e1246]: See behind the website. Map the competitive landscape directly from the source. Find similar products right inside the extension—no tab-switching, no context lost.
+            - link "Chrome Download Chrome Extension" [ref=e1248] [cursor=pointer]:
+              - /url: https://chromewebstore.google.com/detail/alphalens-company-insight/khnjfdfphhpjjmpglmchimaghnjboagl
+              - img "Chrome" [ref=e1249]
+              - text: Download Chrome Extension
+          - generic [ref=e1250]:
+            - generic [ref=e1251]:
+              - generic [ref=e1258]: xeneta.com
+              - img [ref=e1261] [cursor=pointer]
+            - generic [ref=e1265]:
+              - generic [ref=e1267]:
+                - img "Xeneta" [ref=e1268]
+                - text: Xeneta
+              - generic [ref=e1269]:
+                - heading "Real-time ocean and air freight market intelligence" [level=1] [ref=e1270]
+                - paragraph [ref=e1271]: Benchmarking and analytics across 200,000+ freight lanes. Data-driven procurement tools and market monitoring.
+            - generic [ref=e1272]:
+              - generic [ref=e1274]:
+                - img "AlphaLens" [ref=e1276]
+                - generic [ref=e1278]:
+                  - button [ref=e1279] [cursor=pointer]
+                  - textbox "Describe a company... (press Enter to search)" [ref=e1282]
+                  - button [ref=e1283] [cursor=pointer]
+                - button "Menu" [ref=e1286] [cursor=pointer]
+              - generic [ref=e1288]:
+                - generic [ref=e1289]:
+                  - generic [ref=e1291]:
+                    - generic [ref=e1294]:
+                      - heading "Xeneta" [level=1] [ref=e1295]
+                      - paragraph [ref=e1296]: Oslo, Norway
+                    - generic [ref=e1297]:
+                      - link "xeneta.com" [ref=e1298] [cursor=pointer]:
+                        - /url: "#"
+                      - link "LinkedIn" [ref=e1300] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1301]
+                      - link "Twitter" [ref=e1303] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Email" [ref=e1305] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Phone" [ref=e1307] [cursor=pointer]:
+                        - /url: "#"
+                    - button "add to pipeline" [ref=e1309]: add to pipeline
+                  - link "View full profile on AlphaLens" [ref=e1311] [cursor=pointer]:
+                    - /url: "#"
+                    - text: View full profile on AlphaLens
+                  - paragraph [ref=e1314]: The company offers real-time ocean and air freight market intelligence solutions with benchmarking and analytics capabilities. The company provides data-driven procurement tools and market monitoring services across 200,000+ freight lanes, enabling rate analysis and performance optimization.
+                - generic [ref=e1316]:
+                  - generic [ref=e1317]:
+                    - generic [ref=e1318]: Stage
+                    - generic [ref=e1319]: Private Equity
+                  - generic [ref=e1320]:
+                    - generic [ref=e1321]: Funding total
+                    - generic [ref=e1322]: $146.5M
+                  - generic [ref=e1323]:
+                    - generic [ref=e1324]: Founded
+                    - generic [ref=e1325]: "2012"
+                - generic [ref=e1326]:
+                  - heading "Products (3)" [level=3] [ref=e1328]
+                  - list [ref=e1329]:
+                    - listitem [ref=e1330]:
+                      - generic [ref=e1331] [cursor=pointer]:
+                        - generic [ref=e1334]:
+                          - generic [ref=e1335]: Ocean Intelligence
+                          - generic [ref=e1336]: Real-time ocean freight rate benchmarking and market analyti…
+                        - button "Find similar" [ref=e1337]
+                    - listitem [ref=e1338]:
+                      - generic [ref=e1339] [cursor=pointer]:
+                        - generic [ref=e1342]:
+                          - generic [ref=e1343]: Air Intelligence
+                          - generic [ref=e1344]: Real-time air freight rate benchmarking platform combining p…
+                        - button "Find similar" [ref=e1345]
+                    - listitem [ref=e1346]:
+                      - generic [ref=e1347] [cursor=pointer]:
+                        - generic [ref=e1350]:
+                          - generic [ref=e1351]: Carbon Emissions Index
+                          - generic [ref=e1352]: Data solution that tracks and analyzes carbon intensity of g…
+                        - button "Find similar" [ref=e1353]
+                - generic [ref=e1354]:
+                  - heading "Team (31)" [level=3] [ref=e1356]
+                  - list [ref=e1357]:
+                    - listitem [ref=e1358]:
+                      - link "Thomas Sorbo CBDO & Co-Founder" [ref=e1359] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e1362]:
+                          - generic [ref=e1363]: Thomas Sorbo
+                          - generic [ref=e1364]: CBDO & Co-Founder
+                    - listitem [ref=e1366]:
+                      - link "Patrik Berglund CEO & Co-Founder Xeneta" [ref=e1367] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e1370]:
+                          - generic [ref=e1371]: Patrik Berglund
+                          - generic [ref=e1372]: CEO & Co-Founder Xeneta
+                  - button "See more" [ref=e1375] [cursor=pointer]
+                - generic [ref=e1376]:
+                  - heading "Growth & signals" [level=3] [ref=e1377]
+                  - generic [ref=e1378]:
+                    - generic [ref=e1379]:
+                      - generic [ref=e1380]: Headcount
+                      - generic [ref=e1381]:
+                        - generic [ref=e1382]: "232"
+                        - generic [ref=e1383]: +0.4%
+                    - generic [ref=e1384]:
+                      - generic [ref=e1385]: Open jobs
+                      - generic [ref=e1386]:
+                        - generic [ref=e1387]: "13"
+                        - generic [ref=e1388]: "-0.1%"
+                    - generic [ref=e1389]:
+                      - generic [ref=e1390]: Web traffic
+                      - generic [ref=e1391]:
+                        - generic [ref=e1392]: 93.2K
+                        - generic [ref=e1393]: +8.4% qoq
+                    - generic [ref=e1394]:
+                      - generic [ref=e1395]: LinkedIn followers
+                      - generic [ref=e1396]:
+                        - generic [ref=e1397]: 26.3K
+                        - generic [ref=e1398]: +1.4%
+                - generic [ref=e1407]:
+                  - heading "Latest funding" [level=3] [ref=e1408]
+                  - list [ref=e1409]:
+                    - listitem [ref=e1410]:
+                      - generic [ref=e1411]:
+                        - generic [ref=e1412]: Private Equity
+                        - generic [ref=e1413]: $9.3M
+                      - generic [ref=e1414]: 2025-09-23
+                      - generic [ref=e1415]:
+                        - generic [ref=e1416]: "Investors:"
+                        - generic [ref=e1417]: Apax Partners
+                    - listitem [ref=e1418]:
+                      - generic [ref=e1419]:
+                        - generic [ref=e1420]: Series D
+                        - generic [ref=e1421]: $80.0M
+                      - generic [ref=e1422]: 2022-09-13
+                      - generic [ref=e1423]:
+                        - generic [ref=e1424]: "Investors:"
+                        - generic [ref=e1425]: Lugard Capital Limited, Apax Partners
+                  - button "View all 8 rounds" [ref=e1426] [cursor=pointer]:
+                    - generic [ref=e1427]: View all 8 rounds
+              - generic [ref=e1429]:
+                - generic [ref=e1430]:
+                  - button "Back" [ref=e1431] [cursor=pointer]: Back
+                  - generic [ref=e1434]: Similar to Ocean Intelligence by
+                - generic [ref=e1438]:
+                  - generic [ref=e1439] [cursor=pointer]:
+                    - generic [ref=e1440]:
+                      - generic [ref=e1444]:
+                        - generic [ref=e1445]: Flexport
+                        - generic [ref=e1446]: Freight forwarding & logistics
+                      - button "View Details" [ref=e1447]
+                    - paragraph [ref=e1448]: Digital freight forwarder and customs broker with real-time visibility and analytics for ocean and air freight.
+                    - generic [ref=e1449]:
+                      - generic [ref=e1450]: San Francisco, US
+                      - generic [ref=e1451]: "96"
+                  - generic [ref=e1452]:
+                    - generic [ref=e1453]:
+                      - generic [ref=e1457]:
+                        - generic [ref=e1458]: Project44
+                        - generic [ref=e1459]: Supply chain visibility
+                      - button "View Details" [ref=e1460] [cursor=pointer]
+                    - paragraph [ref=e1461]: Real-time visibility platform for ocean, air, truck, and rail freight with predictive analytics.
+                    - generic [ref=e1462]:
+                      - generic [ref=e1463]: Chicago, US
+                      - generic [ref=e1464]: "94"
+                  - generic [ref=e1465]:
+                    - generic [ref=e1466]:
+                      - generic [ref=e1470]:
+                        - generic [ref=e1471]: Freightos
+                        - generic [ref=e1472]: Digital freight marketplace
+                      - button "View Details" [ref=e1473] [cursor=pointer]
+                    - paragraph [ref=e1474]: Online freight marketplace and rate benchmarking for international shipping.
+                    - generic [ref=e1475]:
+                      - generic [ref=e1476]: Hong Kong
+                      - generic [ref=e1477]: "93"
+        - generic [ref=e1478]:
+          - generic [ref=e1479]:
+            - generic [ref=e1482]: REST API v1
+            - heading "Direct Access to the Global Data Layer." [level=3] [ref=e1483]:
+              - text: Direct Access to the
+              - text: Global Data Layer.
+            - paragraph [ref=e1484]: Programmatically search, filter, and ingest verified market data. Build your own internal tools or feed your data lake with the world's most accurate private market signals.
+            - generic [ref=e1485]:
+              - generic [ref=e1489]:
+                - heading "Granular Search Filters" [level=4] [ref=e1490]
+                - paragraph [ref=e1491]: Filter by employee count, founding year, funding stage, and deep semantic product categories.
+              - generic [ref=e1495]:
+                - heading "Enterprise Ingestion" [level=4] [ref=e1496]
+                - paragraph [ref=e1497]: High-throughput endpoints designed to sync millions of records to S3, Snowflake, or BigQuery.
+            - link "View API Reference" [ref=e1499] [cursor=pointer]:
+              - /url: https://developer.alphalens.ai/api-reference
+              - text: View API Reference
+          - generic [ref=e1503]:
+            - generic [ref=e1504]:
+              - generic [ref=e1509]: bash — 80x24
+              - generic [ref=e1511]: v1.0.4
+            - generic [ref=e1515]: JSON Response
+    - generic [ref=e1518]:
+      - generic [ref=e1519]:
+        - generic [ref=e1520]: Pricing
+        - heading "Flexible Plans Built for Your Needs" [level=2] [ref=e1521]
+        - paragraph [ref=e1522]: Pricing is tailored to your team size, access type, and usage requirements. We'll find the right plan that scales with you.
+        - generic [ref=e1523]:
+          - generic [ref=e1526]: Team size
+          - generic [ref=e1529]: Access type
+          - generic [ref=e1532]: Usage volume
+      - generic [ref=e1533]:
+        - generic [ref=e1534]:
+          - generic [ref=e1535]:
+            - heading "Web + API Access" [level=3] [ref=e1536]
+            - paragraph [ref=e1537]: Full platform + programmatic access
+            - generic [ref=e1538]: Custom Pricing
+            - paragraph [ref=e1539]: Based on team size & API volume
+          - list [ref=e1540]:
+            - listitem [ref=e1541]:
+              - generic [ref=e1543]: REST API v1 access
+            - listitem [ref=e1544]:
+              - generic [ref=e1546]: High-throughput endpoints
+            - listitem [ref=e1547]:
+              - generic [ref=e1549]: Granular search filters
+            - listitem [ref=e1550]:
+              - generic [ref=e1552]: API documentation & support
+            - listitem [ref=e1553]:
+              - generic [ref=e1555]: Custom rate limits
+            - listitem [ref=e1556]:
+              - generic [ref=e1558]: Dedicated onboarding
+          - button "Book Demo" [ref=e1559] [cursor=pointer]: Book Demo
+        - generic [ref=e1561]:
+          - generic [ref=e1562]:
+            - heading "Bulk Data" [level=3] [ref=e1563]
+            - paragraph [ref=e1564]: Complete datasets for data lakes
+            - generic [ref=e1565]: Custom Pricing
+            - paragraph [ref=e1566]: Based on data volume & delivery
+          - list [ref=e1567]:
+            - listitem [ref=e1568]:
+              - generic [ref=e1570]: Full exports
+            - listitem [ref=e1571]:
+              - generic [ref=e1573]: S3, Snowflake, BigQuery delivery
+            - listitem [ref=e1574]:
+              - generic [ref=e1576]: Scheduled syncs & updates
+            - listitem [ref=e1577]:
+              - generic [ref=e1579]: Custom data schemas
+            - listitem [ref=e1580]:
+              - generic [ref=e1582]: Historical data access
+            - listitem [ref=e1583]:
+              - generic [ref=e1585]: Dedicated account manager
+          - button "Book Demo" [ref=e1586] [cursor=pointer]: Book Demo
+      - generic [ref=e1588]:
+        - heading "Included in every plan" [level=3] [ref=e1589]
+        - generic [ref=e1590]:
+          - generic [ref=e1593]: Access to 28M+ companies & 100M+ products
+          - generic [ref=e1596]: Real-time funding alerts & monitoring
+          - generic [ref=e1599]: Company profiles & team insights
+          - generic [ref=e1602]: Chrome extension access
+          - generic [ref=e1605]: Saved searches & custom lists
+          - generic [ref=e1608]: CSV exports & CRM integrations
+    - generic [ref=e1610]:
+      - generic [ref=e1611]:
+        - heading "Frequently Asked Questions" [level=2] [ref=e1612]
+        - paragraph [ref=e1613]: Everything you need to know about AlphaLens and how we help you source smarter.
+      - generic [ref=e1614]:
+        - button "How does AlphaLens ensure the accuracy and integrity of its private-market data?" [ref=e1616] [cursor=pointer]:
+          - generic [ref=e1617]: How does AlphaLens ensure the accuracy and integrity of its private-market data?
+        - button "How does AlphaLens protect sensitive company or investor information?" [ref=e1620] [cursor=pointer]:
+          - generic [ref=e1621]: How does AlphaLens protect sensitive company or investor information?
+        - button "Does AlphaLens store or use the proprietary data I upload?" [ref=e1624] [cursor=pointer]:
+          - generic [ref=e1625]: Does AlphaLens store or use the proprietary data I upload?
+        - button "How is AlphaLens different from PitchBook, Crunchbase, or CB Insights?" [ref=e1628] [cursor=pointer]:
+          - generic [ref=e1629]: How is AlphaLens different from PitchBook, Crunchbase, or CB Insights?
+        - button "What makes AlphaLens unique?" [ref=e1632] [cursor=pointer]:
+          - generic [ref=e1633]: What makes AlphaLens unique?
+        - button "How is AlphaLens priced?" [ref=e1636] [cursor=pointer]:
+          - generic [ref=e1637]: How is AlphaLens priced?
+        - button "Do you provide transparency on data sources?" [ref=e1640] [cursor=pointer]:
+          - generic [ref=e1641]: Do you provide transparency on data sources?
+        - button "Does AlphaLens integrate with CRM or internal systems?" [ref=e1644] [cursor=pointer]:
+          - generic [ref=e1645]: Does AlphaLens integrate with CRM or internal systems?
+        - button "How often is the data updated, and what happens if something is incorrect?" [ref=e1648] [cursor=pointer]:
+          - generic [ref=e1649]: How often is the data updated, and what happens if something is incorrect?
+        - button "Does AlphaLens cover funding and investor data as deeply as traditional vendors?" [ref=e1652] [cursor=pointer]:
+          - generic [ref=e1653]: Does AlphaLens cover funding and investor data as deeply as traditional vendors?
+      - generic [ref=e1655]:
+        - heading "Still have questions?" [level=3] [ref=e1656]
+        - paragraph [ref=e1657]: Our team is here to help. Book a demo and we'll walk you through everything.
+        - button "Book Demo" [ref=e1658] [cursor=pointer]: Book Demo
+    - contentinfo [ref=e1660]:
+      - generic [ref=e1662]:
+        - generic [ref=e1663]:
+          - link "AlphaLens" [ref=e1664] [cursor=pointer]:
+            - /url: /
+            - img "AlphaLens" [ref=e1665]
+          - paragraph [ref=e1666]: The AI Native Intelligence Platform
+        - generic [ref=e1667]:
+          - heading "Solutions" [level=3] [ref=e1668]
+          - list [ref=e1669]:
+            - listitem [ref=e1670]:
+              - link "Inbound" [ref=e1671] [cursor=pointer]:
+                - /url: /solutions/inbound
+            - listitem [ref=e1672]:
+              - link "Sourcing" [ref=e1673] [cursor=pointer]:
+                - /url: /solutions/sourcing
+            - listitem [ref=e1674]:
+              - link "Enrichment" [ref=e1675] [cursor=pointer]:
+                - /url: /solutions/screening
+            - listitem [ref=e1676]:
+              - link "CRM Integrations" [ref=e1677] [cursor=pointer]:
+                - /url: /solutions/integrations
+        - generic [ref=e1678]:
+          - heading "Company" [level=3] [ref=e1679]
+          - list [ref=e1680]:
+            - listitem [ref=e1681]:
+              - link "About" [ref=e1682] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e1683]:
+              - link "Team" [ref=e1684] [cursor=pointer]:
+                - /url: /about#team
+            - listitem [ref=e1685]:
+              - link "Contact Sales" [ref=e1686] [cursor=pointer]:
+                - /url: /about#contact
+            - listitem [ref=e1687]:
+              - link "LinkedIn" [ref=e1688] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/alphalensai/
+                - text: LinkedIn
+                - img [ref=e1689]
+        - generic [ref=e1691]:
+          - heading "Compare" [level=3] [ref=e1692]
+          - list [ref=e1693]:
+            - listitem [ref=e1694]:
+              - link "vs PitchBook" [ref=e1695] [cursor=pointer]:
+                - /url: /compare/alphalensvspitchbook
+            - listitem [ref=e1696]:
+              - link "vs CB Insights" [ref=e1697] [cursor=pointer]:
+                - /url: /compare/alphalensvscbinsights
+            - listitem [ref=e1698]:
+              - link "vs Grata" [ref=e1699] [cursor=pointer]:
+                - /url: /compare/alphalensvsgrata
+            - listitem [ref=e1700]:
+              - link "vs Inven" [ref=e1701] [cursor=pointer]:
+                - /url: /compare/alphalensvsinven
+        - generic [ref=e1702]:
+          - heading "Resources" [level=3] [ref=e1703]
+          - list [ref=e1704]:
+            - listitem [ref=e1705]:
+              - link "API Docs" [ref=e1706] [cursor=pointer]:
+                - /url: https://developer.alphalens.ai
+                - text: API Docs
+            - listitem [ref=e1708]:
+              - link "Articles" [ref=e1709] [cursor=pointer]:
+                - /url: /articles
+            - listitem [ref=e1710]:
+              - link "Pricing" [ref=e1711] [cursor=pointer]:
+                - /url: /#pricing
+            - listitem [ref=e1712]:
+              - link "Chrome Extension" [ref=e1713] [cursor=pointer]:
+                - /url: https://chromewebstore.google.com/detail/alphalens-company-insight/khnjfdfphhpjjmpglmchimaghnjboagl
+                - text: Chrome Extension
+      - generic [ref=e1716]:
+        - generic [ref=e1717]: © 2026 AlphaLens Intelligence. All rights reserved.
+        - generic [ref=e1718]:
+          - link "Privacy Notice" [ref=e1719] [cursor=pointer]:
+            - /url: /privacy-notice
+          - link "Terms of Service" [ref=e1720] [cursor=pointer]:
+            - /url: /terms

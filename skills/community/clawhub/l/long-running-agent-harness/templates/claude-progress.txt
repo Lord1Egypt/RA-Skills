@@ -1,0 +1,22 @@
+# Agent Progress Log
+# ===================
+# Project: {{PROJECT_NAME}}
+# Created: {{TIMESTAMP}}
+#
+# Format: Each agent session appends an entry below.
+# Include: what you did, what works, what's broken, and what's next.
+# This file is the PRIMARY communication channel between agent sessions.
+# =======================================================================
+
+## Session 1 — Initializer Agent
+- **Date**: {{TIMESTAMP}}
+- **Agent**: initializer
+- **Status**: Project scaffolded
+- **Done**:
+  - Created project structure
+  - Set up feature_list.json
+  - Created init.sh development script
+  - Initial git commit
+- **Working**: Basic project skeleton
+- **Broken**: Nothing yet
+- **Next**: Start implementing features from feature_list.json in priority order

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentskills.local/a11y-audit/output-schema.json",
+  "title": "Accessibility Audit Output",
+  "type": "object",
+  "required": ["date", "tool", "pages", "summary", "violations", "matrix", "lighthouse"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "tool": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "runtime_url": {
+      "type": "string"
+    },
+    "expected_url": {
+      "type": "string"
+    },
+    "lighthouse": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        {
+          "type": "object",
+          "required": ["status", "reason"],
+          "properties": {
+            "status": { "const": "skipped" },
+            "reason": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "required": ["critical", "serious", "moderate", "minor"],
+      "properties": {
+        "critical": { "type": "integer", "minimum": 0 },
+        "serious": { "type": "integer", "minimum": 0 },
+        "moderate": { "type": "integer", "minimum": 0 },
+        "minor": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rule", "impact", "pages", "instances"],
+        "properties": {
+          "rule": { "type": "string" },
+          "impact": {
+            "type": "string",
+            "enum": ["critical", "serious", "moderate", "minor"]
+          },
+          "wcag": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "pages": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "instances": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "matrix": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["pass", "fail", "manual", "not-applicable"]
+      }
+    }
+  },
+  "additionalProperties": true
+}

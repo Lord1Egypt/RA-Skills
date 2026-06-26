@@ -1,0 +1,14 @@
+{
+  "description": "Example delivery router configuration for cron-automation-manager",
+  "default_delivery": "local_files",
+  "channels": {
+    "feishu": false,
+    "telegram": false,
+    "discord": false,
+    "web_console": false,
+    "email": false,
+    "local_files": true
+  },
+  "note": "Enable a channel by setting it to true after configuring its credentials (for example Feishu open_id or Telegram bot settings).",
+  "instructions": "Copy this file to workspace/config/delivery-config.json and modify channels as needed."
+}

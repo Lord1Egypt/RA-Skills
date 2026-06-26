@@ -1,0 +1,60 @@
+{
+  "skill_name": "clashofcoins-universal",
+  "evals": [
+    {
+      "id": "route-unified-browse",
+      "prompt": "Use the Clash of Coins skill to help me browse everything available on https://x402.clashofcoins.com and suggest one sale option and one shop option.",
+      "expected_output": "Starts from live discovery and GET /catalog, separates sale and shop surfaces, and proposes next endpoints without mixing contracts.",
+      "assertions": [
+        "The response names exactly one origin and keeps all route examples on that origin",
+        "The response explicitly starts with GET /catalog before purchase routing",
+        "The response distinguishes sale and shop as separate checkout surfaces",
+        "The response includes at least one sale endpoint under /agentic/* and one shop endpoint under /shop/*"
+      ]
+    },
+    {
+      "id": "sale-buy-route",
+      "prompt": "I want to buy a presale lot with x402. Tell me exactly which discovery and buy endpoints to call, and what payload fields are required.",
+      "expected_output": "Uses sale-only flow with protocol-aware discovery and correct sale buy payload fields.",
+      "assertions": [
+        "The response uses sale routes under /agentic/* for quote and buy",
+        "The response includes saleId, quantity, and beneficiary in the payload guidance",
+        "The response states that unpaid and paid retry payloads must remain identical",
+        "The response avoids using /shop/* buy routes for this task"
+      ]
+    },
+    {
+      "id": "shop-buy-route",
+      "prompt": "I need to buy game keys for nickname PlayerOne. Show me the safest shop flow.",
+      "expected_output": "Uses shop flow with recipient validation, quote or buy routes, and status polling.",
+      "assertions": [
+        "The response uses /shop/* routes for quote and buy",
+        "The response states that shop quote/buy requires exactly one recipient identifier",
+        "The response includes at least one shop status endpoint",
+        "The response does not suggest sale /agentic/* routes for item delivery"
+      ]
+    },
+    {
+      "id": "integration-validation",
+      "prompt": "I am integrating a scanner. Validate that discovery docs, OpenAPI, and skills metadata are consistent.",
+      "expected_output": "Runs an integration validation checklist covering mcp.json, skills index, openapi variants, and mismatch reporting.",
+      "assertions": [
+        "The response includes /mcp.json and /skills/index.json in the validation path",
+        "The response distinguishes protocol-aware /openapi.json from full /openapi.full.json",
+        "The response includes route-level mismatch reporting requirements",
+        "The response avoids claiming success without endpoint-level evidence"
+      ]
+    },
+    {
+      "id": "mpp-only-origin",
+      "prompt": "Assume this deployment is mpp-only. Give me a robust plan for sale and shop without x402 assumptions.",
+      "expected_output": "Builds a plan that uses only mpp routes and discovery checks, and explicitly avoids x402-only assumptions.",
+      "assertions": [
+        "The response verifies protocol availability from live .well-known discovery",
+        "The response avoids requiring x402 routes when mpp-only is stated",
+        "The response recommends mppx for MPP payment retries",
+        "The response keeps sale and shop purchase routes distinct"
+      ]
+    }
+  ]
+}

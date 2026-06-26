@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background: #0c0a20;
+  color: #e8e4ff;
+  font-family: var(--font-inter-tight), Inter, ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #6f4cff;
+  color: #fff;
+}
+
+/* Subtle starfield-ish radial gradient backdrop */
+body {
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(111, 76, 255, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(0, 255, 178, 0.08), transparent 60%),
+    #0c0a20;
+  background-attachment: fixed;
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Quick Review",
+  "description": "Review changed files in current session",
+  "command": "Review the changes I made in this session. Focus on code quality, potential bugs, and suggestions for improvement."
+}

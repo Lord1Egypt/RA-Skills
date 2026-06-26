@@ -1,0 +1,74 @@
+name: 马卡龙玫瑰
+description: 浪漫精致的马卡龙玫瑰色系，适合情感、浪漫、精致向文章
+keywords:
+  - 浪漫
+  - 爱情
+  - 精致
+  - 女性
+  - 优雅
+  - 玫瑰
+  - 约会
+  - 纪念日
+  - 情侣
+  - 表白
+  - 浪漫风
+  - 精致感
+colors:
+  primary: "#ec4899"
+  accent: "#db2777"
+  secondary: "#fce7f3"
+  background: "#fdf2f8"
+  text: "#5a4a50"
+  text_light: "#5a4a50"
+  border: "#f9a8d4"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.8"
+    letter_spacing: "0.3px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "20px"
+    font_weight: "bold"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    text_align: "center"
+  h2:
+    font_size: "17px"
+    font_weight: "bold"
+    margin: "20px 0 12px 0"
+    padding: "12px 16px"
+    border_radius: "8px"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_left: "4px solid #f9a8d4"
+    line_height: "1.7"
+  code_inline:
+    font_size: "14px"
+    padding: "2px 6px"
+    border_radius: "4px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "8px"
+    border: "1px solid #fbcfe8"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.8"
+  separator:
+    border_top: "2px solid #fbcfe8"
+    margin: "24px 20%"
+  image:
+    border_radius: "12px"

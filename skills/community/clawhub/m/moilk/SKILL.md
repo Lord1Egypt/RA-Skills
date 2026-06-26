@@ -1,35 +1,42 @@
 ---
-name: "moilk"
-description: "A versatile engineer with strong expertise in system design, distributed systems, and AI infrastructure. Experienced in building scalable backend services, o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moilk"
-sourceUrl: "https://clawhub.ai/skills/moilk"
+name: moilk
+description: A versatile engineer with strong expertise in system design, distributed systems, and AI infrastructure. Experienced in building scalable backend services, optimizing performance-critical workloads, and deploying modern cloud-native applications using Kubernetes and containerization technologies.
 ---
 
-# moilk
+# Skill Overview
 
-> A versatile engineer with strong expertise in system design, distributed systems, and AI infrastructure. Experienced in building scalable backend services, o...
+## 🧠 Core Skills
+- Problem Solving
+- System Design
+- Debugging
+- Performance Optimization
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moilk`
-- **Source URL:** [https://clawhub.ai/skills/moilk](https://clawhub.ai/skills/moilk)
+## 💻 Programming Languages
+- Go
+- Python
+- JavaScript
+- Bash
 
-## Overview
+## ⚙️ Tools & Technologies
+- Docker
+- Kubernetes
+- Git
+- Linux
 
+## 🚀 Projects
+### Project A
+- Description: A distributed system for task scheduling
+- Tech Stack: Go, Redis, Kubernetes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/moilk
-```
+### Project B
+- Description: Web-based dashboard for monitoring
+- Tech Stack: React, Node.js
+
+## 📈 Learning Goals
+- Improve system scalability design
+- Deep dive into LLM inference optimization
+- Explore edge computing
+
+## 📝 Notes
+- Keep practicing coding daily
+- Read more open-source code

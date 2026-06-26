@@ -1,0 +1,392 @@
+{
+  "RDM": {
+    "name": "需求开发与管理",
+    "doc_title": "需求调研记录",
+    "sections": [
+      {"title": "参与人员", "type": "table", "headers": ["角色", "姓名", "职责", "联系方式"]},
+      {"title": "需求概述", "type": "text"},
+      {"title": "功能性需求", "type": "table", "headers": ["需求ID", "需求描述", "优先级", "来源", "验收标准"]},
+      {"title": "非功能性需求", "type": "table", "headers": ["类别", "需求描述", "指标", "验收标准"]},
+      {"title": "需求优先级评估", "type": "table", "headers": ["需求ID", "业务价值", "技术复杂度", "风险", "综合得分", "优先级"]},
+      {"title": "需求追溯矩阵", "type": "table", "headers": ["需求ID", "设计条目", "开发任务", "测试用例", "验收结果"]},
+      {"title": "需求变更记录", "type": "table", "headers": ["变更ID", "变更描述", "原因", "影响分析", "审批人", "日期"]}
+    ]
+  },
+  "PLAN": {
+    "name": "项目计划",
+    "doc_title": "项目计划书",
+    "sections": [
+      {"title": "项目概述", "type": "text"},
+      {"title": "项目目标", "type": "bullets"},
+      {"title": "项目范围", "type": "text"},
+      {"title": "WBS分解", "type": "table", "headers": ["WBS ID", "任务名称", "负责人", "工期(天)", "前置任务", "资源需求"]},
+      {"title": "进度计划", "type": "table", "headers": ["里程碑", "交付物", "计划开始", "计划完成", "责任人"]},
+      {"title": "资源计划", "type": "table", "headers": ["资源类型", "资源名称", "数量", "成本", "获取方式"]},
+      {"title": "风险计划", "type": "table", "headers": ["风险ID", "风险描述", "概率", "影响", "应对措施", "责任人"]},
+      {"title": "沟通计划", "type": "table", "headers": ["干系人", "信息需求", "频率", "方式", "责任人"]},
+      {"title": "配置管理计划", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "CM": {
+    "name": "配置管理",
+    "doc_title": "配置管理计划",
+    "sections": [
+      {"title": "配置管理策略", "type": "text"},
+      {"title": "配置项识别", "type": "table", "headers": ["配置项ID", "配置项名称", "类型", "负责人", "存储位置"]},
+      {"title": "基线与发布管理", "type": "table", "headers": ["基线名称", "建立日期", "包含配置项", "审批人"]},
+      {"title": "变更控制流程", "type": "text"},
+      {"title": "配置审计检查单", "type": "table", "headers": ["审计项", "检查标准", "是否符合", "不符合说明"]},
+      {"title": "配置状态报告", "type": "table", "headers": ["配置项ID", "当前版本", "最后更新", "状态", "变更次数"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "VV": {
+    "name": "验证与确认",
+    "doc_title": "测试计划与报告",
+    "sections": [
+      {"title": "测试策略", "type": "text"},
+      {"title": "测试范围", "type": "text"},
+      {"title": "测试用例", "type": "table", "headers": ["用例ID", "测试目标", "前置条件", "测试步骤", "预期结果", "实际结果", "状态"]},
+      {"title": "缺陷报告", "type": "table", "headers": ["缺陷ID", "缺陷描述", "严重程度", "优先级", "发现日期", "修复日期", "状态"]},
+      {"title": "测试执行记录", "type": "table", "headers": ["执行轮次", "执行日期", "执行人", "通过率", "缺陷数"]},
+      {"title": "验证与确认证据", "type": "table", "headers": ["需求ID", "验证方法", "验证结果", "确认人", "日期"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "PR": {
+    "name": "同行评审",
+    "doc_title": "同行评审报告",
+    "sections": [
+      {"title": "评审概述", "type": "text"},
+      {"title": "评审对象", "type": "table", "headers": ["工件ID", "工件名称", "版本", "作者"]},
+      {"title": "评审团队", "type": "table", "headers": ["角色", "姓名", "职责"]},
+      {"title": "评审检查单", "type": "table", "headers": ["检查项", "检查标准", "是否符合", "不符合说明", "严重等级"]},
+      {"title": "评审发现的问题", "type": "table", "headers": ["问题ID", "问题描述", "严重等级", "提出人", "解决人", "解决日期", "解决措施"]},
+      {"title": "评审结论", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "RSK": {
+    "name": "风险管理",
+    "doc_title": "风险管理计划",
+    "sections": [
+      {"title": "风险管理策略", "type": "text"},
+      {"title": "风险识别", "type": "table", "headers": ["风险ID", "风险类别", "风险描述", "根本原因"]},
+      {"title": "风险评估", "type": "table", "headers": ["风险ID", "概率", "影响", "风险值", "风险等级"]},
+      {"title": "风险应对措施", "type": "table", "headers": ["风险ID", "应对措施", "责任人", "预算", "截止日期", "状态"]},
+      {"title": "风险监控记录", "type": "table", "headers": ["风险ID", "监控日期", "当前概率", "当前影响", "状态变化", "监控人"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "MPM": {
+    "name": "绩效与度量管理",
+    "doc_title": "项目度量计划与报告",
+    "sections": [
+      {"title": "度量目标与策略", "type": "text"},
+      {"title": "度量指标定义", "type": "table", "headers": ["指标ID", "指标名称", "定义", "测量方法", "目标值", "阈值"]},
+      {"title": "数据收集计划", "type": "table", "headers": ["指标ID", "数据来源", "收集频率", "收集人", "存储位置"]},
+      {"title": "度量分析报告", "type": "table", "headers": ["指标ID", "当前值", "目标值", "状态", "趋势", "分析"]},
+      {"title": "过程性能基线", "type": "table", "headers": ["过程ID", "过程名称", "平均性能", "标准差", "上下限", "基于数据集"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "PQA": {
+    "name": "过程质量保证",
+    "doc_title": "过程质量保证计划与报告",
+    "sections": [
+      {"title": "质量保证策略", "type": "text"},
+      {"title": "质量保证计划", "type": "table", "headers": ["活动ID", "活动名称", "频率", "负责人", "检查方法"]},
+      {"title": "过程检查清单", "type": "table", "headers": ["检查项", "检查标准", "是否符合", "不符合说明", "严重等级"]},
+      {"title": "质量保证报告", "type": "table", "headers": ["报告ID", "检查日期", "检查范围", "发现的问题数", "整改建议", "跟踪状态"]},
+      {"title": "不符合项跟踪", "type": "table", "headers": ["问题ID", "问题描述", "严重等级", "提出日期", "整改责任人", "整改截止日期", "整改状态"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "CAR": {
+    "name": "因果分析与解决",
+    "doc_title": "根本原因分析报告",
+    "sections": [
+      {"title": "问题描述", "type": "text"},
+      {"title": "因果分析", "type": "text"},
+      {"title": "根本原因", "type": "text"},
+      {"title": "纠正措施", "type": "table", "headers": ["措施ID", "措施描述", "负责人", "截止日期", "状态"]},
+      {"title": "验证结果", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "DAR": {
+    "name": "决策分析与决议",
+    "doc_title": "重大决策分析记录",
+    "sections": [
+      {"title": "决策背景", "type": "text"},
+      {"title": "备选方案", "type": "table", "headers": ["方案ID", "方案描述", "优点", "缺点", "成本估算"]},
+      {"title": "评价标准与评分", "type": "table", "headers": ["评价标准", "权重", "方案A得分", "方案B得分", "方案C得分"]},
+      {"title": "推荐方案与理由", "type": "text"},
+      {"title": "决策结果", "type": "table", "headers": ["决策人", "决策日期", "审批记录"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "DQ": {
+    "name": "数据质量",
+    "doc_title": "数据质量管理计划",
+    "sections": [
+      {"title": "数据质量策略", "type": "text"},
+      {"title": "数据质量维度定义", "type": "table", "headers": ["质量维度", "定义", "测量方法", "可接受标准", "测量频率"]},
+      {"title": "数据质量测量计划", "type": "text"},
+      {"title": "数据质量测量执行", "type": "table", "headers": ["数据ID", "质量维度", "测量值", "可接受标准", "测量结果", "测量日期", "测量人"]},
+      {"title": "数据质量改进", "type": "table", "headers": ["问题ID", "问题描述", "根本原因", "改进措施", "责任人", "预计完成日期", "状态"]},
+      {"title": "数据质量报告", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "EST": {
+    "name": "估算",
+    "doc_title": "项目估算记录",
+    "sections": [
+      {"title": "估算概述", "type": "text"},
+      {"title": "规模估算", "type": "table", "headers": ["模块", "描述", "规模单位", "规模值", "依据"]},
+      {"title": "工作量估算", "type": "table", "headers": ["角色", "可用人天", "估算人天", "利用率", "实际人天"]},
+      {"title": "成本估算", "type": "text"},
+      {"title": "进度估算", "type": "text"},
+      {"title": "估算偏差分析", "type": "table", "headers": ["阶段", "估算值", "实际值", "偏差%", "原因分析"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "GOV": {
+    "name": "治理",
+    "doc_title": "项目治理报告",
+    "sections": [
+      {"title": "治理机制", "type": "text"},
+      {"title": "项目健康度", "type": "table", "headers": ["指标", "目标值", "实际值", "状态", "趋势"]},
+      {"title": "升级问题清单", "type": "table", "headers": ["问题ID", "描述", "严重等级", "提出日期", "负责人", "解决日期", "状态"]},
+      {"title": "治理委员会会议纪要", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人"]}
+    ]
+  },
+  "IRP": {
+    "name": "事件解决与预防",
+    "doc_title": "事件管理计划",
+    "sections": [
+      {"title": "事件管理策略", "type": "text"},
+      {"title": "事件识别与记录", "type": "table", "headers": ["字段", "描述", "必填"]},
+      {"title": "事件分析与解决", "type": "text"},
+      {"title": "事件预防", "type": "table", "headers": ["措施ID", "措施描述", "责任人", "状态"]},
+      {"title": "事件管理绩效测量", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "MC": {
+    "name": "监控与控制",
+    "doc_title": "项目周报",
+    "sections": [
+      {"title": "本周进度摘要", "type": "text"},
+      {"title": "里程碑状态", "type": "table", "headers": ["里程碑", "计划日期", "实际日期", "状态", "偏差说明"]},
+      {"title": "关键指标", "type": "table", "headers": ["指标", "计划值", "实际值", "偏差", "趋势"]},
+      {"title": "风险与问题", "type": "table", "headers": ["编号", "描述", "等级", "应对措施", "负责人", "状态"]},
+      {"title": "下周计划", "type": "bullets"},
+      {"title": "需要升级的问题", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "MST": {
+    "name": "材料选择与跟踪",
+    "doc_title": "材料选择报告",
+    "sections": [
+      {"title": "材料需求", "type": "text"},
+      {"title": "候选材料评估", "type": "table", "headers": ["材料ID", "材料名称", "供应商", "成本", "性能评分", "可用性", "综合评分"]},
+      {"title": "材料选择决策", "type": "text"},
+      {"title": "材料规范", "type": "text"},
+      {"title": "材料跟踪计划", "type": "text"},
+      {"title": "材料变更管理", "type": "text"},
+      {"title": "材料性能监控", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "OT": {
+    "name": "组织级培训",
+    "doc_title": "组织级培训计划",
+    "sections": [
+      {"title": "培训战略", "type": "text"},
+      {"title": "培训需求分析", "type": "table", "headers": ["角色", "必备技能", "现有水平", "差距", "培训优先级"]},
+      {"title": "年度培训计划", "type": "table", "headers": ["培训ID", "培训主题", "目标人群", "计划月份", "讲师", "预算", "状态"]},
+      {"title": "培训课程库", "type": "table", "headers": ["课程ID", "课程名称", "时长", "适用角色", "课程目标", "教材/工具"]},
+      {"title": "培训实施记录", "type": "table", "headers": ["培训ID", "参训人员", "培训日期", "培训时长", "考核方式", "考核结果"]},
+      {"title": "培训效果评估", "type": "text"},
+      {"title": "培训档案管理", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "PAD": {
+    "name": "过程资产开发",
+    "doc_title": "组织标准过程体系",
+    "sections": [
+      {"title": "过程体系概述", "type": "text"},
+      {"title": "组织标准过程清单", "type": "table", "headers": ["过程ID", "过程名称", "过程类型", "负责人", "版本", "上次更新"]},
+      {"title": "生命周期模型", "type": "text"},
+      {"title": "裁剪指南", "type": "table", "headers": ["项目类型", "推荐生命周期", "必选过程", "可选过程", "裁剪理由"]},
+      {"title": "过程资产库", "type": "text"},
+      {"title": "过程改进机制", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "SAM": {
+    "name": "供应商协议管理",
+    "doc_title": "供应商协议管理计划",
+    "sections": [
+      {"title": "供应商需求", "type": "text"},
+      {"title": "供应商评估与选择", "type": "text"},
+      {"title": "供应商协议", "type": "text"},
+      {"title": "供应商履约监督", "type": "table", "headers": ["监督日期", "监督内容", "发现问题", "解决措施", "状态"]},
+      {"title": "供应商绩效管理", "type": "text"},
+      {"title": "供应商变更管理", "type": "text"},
+      {"title": "供应商关系改进", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "CONT": {
+    "name": "连续性管理",
+    "doc_title": "业务连续性管理计划",
+    "sections": [
+      {"title": "连续性管理策略", "type": "text"},
+      {"title": "业务影响分析", "type": "table", "headers": ["业务功能", "最大容忍中断时间", "恢复时间目标", "恢复点目标"]},
+      {"title": "风险评估", "type": "table", "headers": ["风险ID", "风险描述", "概率", "影响", "风险等级"]},
+      {"title": "应急响应计划", "type": "text"},
+      {"title": "恢复计划", "type": "text"},
+      {"title": "测试与演练记录", "type": "table", "headers": ["演练ID", "演练类型", "演练日期", "参与人员", "发现问题", "改进措施"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "DM": {
+    "name": "数据管理",
+    "doc_title": "数据管理计划",
+    "sections": [
+      {"title": "数据管理策略", "type": "text"},
+      {"title": "数据资产清单", "type": "table", "headers": ["数据ID", "数据名称", "数据类型", "敏感等级", "存储位置", "负责人"]},
+      {"title": "数据质量标准", "type": "table", "headers": ["质量维度", "标准描述", "测量方法", "可接受标准"]},
+      {"title": "数据安全管理", "type": "text"},
+      {"title": "数据生命周期管理", "type": "text"},
+      {"title": "数据治理组织", "type": "table", "headers": ["角色", "职责", "姓名"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "ESAC": {
+    "name": "外部服务访问管理",
+    "doc_title": "外部服务访问管理计划",
+    "sections": [
+      {"title": "外部服务访问策略", "type": "text"},
+      {"title": "外部服务提供商清单", "type": "table", "headers": ["提供商ID", "提供商名称", "服务类型", "服务等级协议", "合同期限"]},
+      {"title": "访问权限管理", "type": "table", "headers": ["服务ID", "访问人员", "权限级别", "授权日期", "有效期"]},
+      {"title": "安全控制要求", "type": "text"},
+      {"title": "服务绩效监控", "type": "table", "headers": ["服务提供商", "监控指标", "目标值", "实际值", "状态"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "ESEC": {
+    "name": "engineering Security",
+    "doc_title": "工程安全管理计划",
+    "sections": [
+      {"title": "工程安全策略", "type": "text"},
+      {"title": "安全需求分析", "type": "table", "headers": ["需求ID", "安全需求描述", "来源", "优先级", "验收标准"]},
+      {"title": "安全设计", "type": "text"},
+      {"title": "安全测试计划", "type": "table", "headers": ["测试用例ID", "测试目标", "测试方法", "预期结果"]},
+      {"title": "安全事件响应计划", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "EVW": {
+    "name": "电动汽车保修管理",
+    "doc_title": "电动汽车保修管理计划",
+    "sections": [
+      {"title": "保修策略", "type": "text"},
+      {"title": "保修条款", "type": "table", "headers": ["条款ID", "条款描述", "适用范围", "保修期限", "免责条件"]},
+      {"title": "保修 Claim 处理流程", "type": "text"},
+      {"title": "保修数据分析", "type": "table", "headers": ["车型", "故障类型", "故障数量", "维修成本", "趋势分析"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "II": {
+    "name": "接口管理",
+    "doc_title": "接口管理计划",
+    "sections": [
+      {"title": "接口管理策略", "type": "text"},
+      {"title": "接口清单", "type": "table", "headers": ["接口ID", "接口名称", "接口类型", "提供方", "使用方", "协议/标准"]},
+      {"title": "接口设计规范", "type": "text"},
+      {"title": "接口测试计划", "type": "table", "headers": ["测试项", "测试方法", "验收标准"]},
+      {"title": "接口变更管理", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "PCMD": {
+    "name": "过程能力管理",
+    "doc_title": "过程能力管理计划",
+    "sections": [
+      {"title": "过程能力管理策略", "type": "text"},
+      {"title": "过程能力指标定义", "type": "table", "headers": ["指标ID", "指标名称", "定义", "测量方法", "目标值"]},
+      {"title": "过程性能基线", "type": "table", "headers": ["过程ID", "过程名称", "平均性能", "标准差", "上下限"]},
+      {"title": "过程能力分析", "type": "text"},
+      {"title": "过程改进计划", "type": "table", "headers": ["改进项", "当前能力", "目标能力", "改进措施", "责任人", "时间表"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "PI": {
+    "name": "产品集成",
+    "doc_title": "产品集成计划",
+    "sections": [
+      {"title": "产品集成策略", "type": "text"},
+      {"title": "集成顺序规划", "type": "table", "headers": ["集成步骤", "单元名称", "前置条件", "预期输出"]},
+      {"title": "集成接口管理", "type": "text"},
+      {"title": "集成测试用例", "type": "table", "headers": ["用例ID", "测试目标", "测试步骤", "预期结果", "实际结果", "状态"]},
+      {"title": "缺陷管理", "type": "table", "headers": ["缺陷ID", "缺陷描述", "严重程度", "状态", "解决措施"]},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "SDM": {
+    "name": "服务交付管理",
+    "doc_title": "服务交付管理计划",
+    "sections": [
+      {"title": "服务交付策略", "type": "text"},
+      {"title": "服务目录", "type": "table", "headers": ["服务ID", "服务名称", "服务描述", "服务等级", "交付方式"]},
+      {"title": "服务级别协议(SLA)", "type": "text"},
+      {"title": "服务交付流程", "type": "text"},
+      {"title": "服务绩效监控", "type": "table", "headers": ["指标", "目标值", "实际值", "状态", "趋势"]},
+      {"title": "客户满意度管理", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "STSM": {
+    "name": "利益相关方管理",
+    "doc_title": "利益相关方管理计划",
+    "sections": [
+      {"title": "利益相关方识别", "type": "table", "headers": ["干系人ID", "姓名/组织", "角色", "影响力", "关注度"]},
+      {"title": "利益相关方分析", "type": "text"},
+      {"title": "沟通管理计划", "type": "table", "headers": ["干系人", "信息需求", "沟通频率", "沟通方式", "责任人"]},
+      {"title": "利益相关方参与计划", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "TS": {
+    "name": "技术解决方案",
+    "doc_title": "技术解决方案设计文档",
+    "sections": [
+      {"title": "技术方案概述", "type": "text"},
+      {"title": "技术选型", "type": "table", "headers": ["技术项", "候选方案", "选型理由", "优缺点分析"]},
+      {"title": "系统架构设计", "type": "text"},
+      {"title": "接口设计", "type": "text"},
+      {"title": "数据库设计", "type": "text"},
+      {"title": "安全设计", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  },
+  "WE": {
+    "name": "工作环境监测",
+    "doc_title": "工作环境监测计划",
+    "sections": [
+      {"title": "监测策略", "type": "text"},
+      {"title": "监测指标定义", "type": "table", "headers": ["指标ID", "指标名称", "监测方法", "频率", "可接受标准"]},
+      {"title": "监测数据分析", "type": "table", "headers": ["监测日期", "指标", "测量值", "状态", "趋势"]},
+      {"title": "异常情况处理流程", "type": "text"},
+      {"title": "版本记录", "type": "table", "headers": ["版本号", "修订日期", "修订内容", "修订人", "审批人"]}
+    ]
+  }
+}

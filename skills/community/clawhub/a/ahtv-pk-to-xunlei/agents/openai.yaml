@@ -1,0 +1,4 @@
+interface:
+  display_name: "AHTV PK to Xunlei"
+  short_description: "Find 快乐无敌大PK episodes by date expression and add them to 迅雷云盘."
+  default_prompt: "Use $ahtv-pk-to-xunlei to find 快乐无敌大PK episodes for a date expression and save them to 迅雷云盘."

@@ -1,0 +1,22 @@
+{
+  "name": "firefly-iii",
+  "version": "1.0.3",
+  "description": "API client for Firefly III personal finance management. View accounts and transactions.",
+  "main": "src/api.py",
+  "capabilities": [
+    "network.external"
+  ],
+  "env": {
+    "FIREFLY_URL": {
+      "description": "URL of your Firefly III instance"
+    },
+    "FIREFLY_TOKEN": {
+      "description": "Personal Access Token for Firefly III API"
+    }
+  },
+  "dependencies": {
+    "requests": "^2.31.0"
+  },
+  "keywords": ["api", "firefly-iii", "productivity"],
+  "author": "Kris (OpenClaw Assistant)"
+}

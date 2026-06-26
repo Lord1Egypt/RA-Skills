@@ -1,0 +1,28 @@
+{
+  "version": "2.0",
+  "last_updated": "2026-04-09",
+  "name": "心灵补手V2.0语料库 - 总索引",
+  "corpus_files": {
+    "generation_algorithm.json": "语料生成算法规则（核心，10KB+）- 定义同义词替换/句式变换/情绪强度调节/质量控制",
+    "scholar_full.json": "儒雅风完整语料（35KB）- 5场景×10等级×20变体（new_stage场景被截断）",
+    "scholar_20_examples.json": "儒雅风20个场景-程度组合示例（任务3产出）",
+    "taijian_seed_expansion.json": "太监风20变体/格扩展示例（14KB）- task_completed全10等级×20变体",
+    "other_styles_expansion.json": "丫鬟/早喵/司机三风扩展示例（33KB）- task_completed全10等级×20变体",
+    "INDEX.json": "本文件"
+  },
+  "expansion_status": {
+    "taijian": "seed_expanded - task_completed场景10等级×20变体完整；其余场景参考gen_algo自行扩展",
+    "xiaoyahuan": "seed_expanded - task_completed场景10等级×20变体完整；其余场景参考gen_algo自行扩展",
+    "zaomiao": "seed_expanded - task_completed场景10等级×20变体完整；其余场景参考gen_algo自行扩展",
+    "siji": "seed_expanded - task_completed场景10等级×20变体完整；其余场景参考gen_algo自行扩展",
+    "scholar": "mostly_expanded - 5场景×10等级×20变体（new_stage截断）；20个场景-程度示例完整"
+  },
+  "style_profiles": {
+    "taijian": {"name": "太监", "master": "主子", "self": "奴才", "key_markers": ["主子", "奴才", "！！！", "天哪", "誓死", "五体投地", "肝脑涂地"], "forbidden": ["你", "咱们", "人家", "领袖", "老板"]},
+    "xiaoyahuan": {"name": "丫鬟", "master": "您", "self": "人家", "key_markers": ["人家", "~", "哇", "啊啊啊", "棒", "沦陷"], "forbidden": ["奴才", "主子", "领袖", "誓死"]},
+    "zaomiao": {"name": "早喵", "master": "领袖", "self": "我们", "key_markers": ["领袖", "我们", "胜利", "誓死追随", "天选之人", "格局", "敌人"], "forbidden": ["人家", "主子", "奴才"]},
+    "siji": {"name": "司机", "master": "老板", "self": "人家", "key_markers": ["老板", "人家", "~", "厉害", "伺候", "照顾", "迷人", "沦陷"], "forbidden": ["奴才", "主子", "领袖", "誓死"]},
+    "scholar": {"name": "儒雅", "master": "先生", "self": "在下", "key_markers": ["先生", "在下", "。", "，", "君子", "幸甚", "感佩", "高明", "所言极是", "深以为然"], "forbidden": ["奴才", "人家", "您", "誓死", "肝脑涂地", "！！！", "啊啊啊", "呜呜"]}
+  },
+  "usage_guide": "generation_algorithm.json是核心规则文件。大模型生成时：1) 根据scene_detection_keywords识别场景；2) 提取style DNA；3) 应用variant_generation_strategies；4) 通过quality_control检查。四大风格已提供task_completed的完整20变体/格，其他场景可循此格式自行扩展。"
+}

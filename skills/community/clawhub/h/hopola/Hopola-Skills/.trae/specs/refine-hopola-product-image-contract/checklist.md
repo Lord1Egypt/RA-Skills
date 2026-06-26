@@ -1,0 +1,6 @@
+- [x] `task_type=product-image` 的描述明确为唯一进入商品图子技能链路
+- [x] 商品图调用前明确要求 `source_image_confirmed=true`
+- [x] 每次商品图工具调用明确要求 `image_list` 仅包含确认后的 `product_image_url`
+- [x] 未确认源图场景统一要求返回 `PRODUCT_IMAGE_UNCONFIRMED_SOURCE`
+- [x] 示例文档体现“用户提供/确认源图”与实际调用参数的绑定关系
+- [x] 文档门禁关键项校验可通过现有发布检查流程

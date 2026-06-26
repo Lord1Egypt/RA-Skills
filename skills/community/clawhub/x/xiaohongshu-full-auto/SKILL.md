@@ -1,35 +1,170 @@
 ---
-name: "xiaohongshu-full-auto"
-description: "🚀 小红书全链路自动化自媒体工作流，从热点抓取 → 选题分析 → 文案生成 → 封面图生成 → 自动发布，一条龙全自动搞定小红书内容创作。适合自媒体博主、副业玩家、内容工作室批量生产小红书内容。触发关键词："全自动小红书", "小红书创作", "小红书自动发布", "小红书热榜", "批量做小红书", "xia..."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, blogger, content-creation, full-auto, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-full-auto"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-full-auto"
+name: xiaohongshu-full-auto
+description: 🚀 小红书全链路自动化自媒体工作流，从热点抓取 → 选题分析 → 文案生成 → 封面图生成 → 自动发布，一条龙全自动搞定小红书内容创作。适合自媒体博主、副业玩家、内容工作室批量生产小红书内容。触发关键词："全自动小红书", "小红书创作", "小红书自动发布", "小红书热榜", "批量做小红书", "xiaohongshu auto"。
 ---
 
-# xiaohongshu-full-auto
+# xiaohongshu-full-auto — 小红书全链路自动化自媒体工作流
 
-> 🚀 小红书全链路自动化自媒体工作流，从热点抓取 → 选题分析 → 文案生成 → 封面图生成 → 自动发布，一条龙全自动搞定小红书内容创作。适合自媒体博主、副业玩家、内容工作室批量生产小红书内容。触发关键词："全自动小红书", "小红书创作", "小红书自动发布", "小红书热榜", "批量做小红书", "xia...
+> **核心价值**：让 AI 帮你完成从小红书热点发现到内容发布的全流程，你只需要说方向，剩下全自动搞定。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-full-auto`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-full-auto](https://clawhub.ai/skills/xiaohongshu-full-auto)
+## 适用场景
 
-## Overview
+- **个人博主副业**：每天自动产出 1-3 篇小红书笔记，不用自己动手
+- **内容工作室矩阵**：批量运营多个账号，提高产能降低成本
+-** 灵感枯竭 **：不知道写什么，让 AI 从热榜找选题给你灵感
+- **固定主题更新**：比如每天分享行业资讯，自动抓取热点生成内容发布
 
+## 全流程自动化
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-full-auto
 ```
+1. 热点抓取 → 爬取小红书热榜/热搜，得到热门话题
+2. 选题匹配 → 根据你的垂类，筛选匹配适合的选题
+3. 内容生成 → 按照小红书风格生成文案（标题+正文+标签）
+4. 封面生成 → 调用 AI 图像生成封面图
+5. 自动发布 → 调用飞书/小红书 API 发布笔记
+6. 数据记录 → 记录发布信息，便于后续数据分析
+```
+
+## 核心特性
+
+✨ **热点智能抓取** — 自动获取小红书官方热榜，实时更新热门话题  
+🎯 **垂类选题匹配** — 根据你的内容领域，智能推荐高相关性选题  
+✍️ **小红书风格文案** — 专门训练的小红书写作模式，emoji、短句、分段、话题标签都给你安排好  
+🖼️ **一键生成封面** — 集成 AI 图像生成，根据标题自动生成符合小红书比例的封面  
+🚀 **原生 API 发布** — 直接调用小红书官方 MCP 接口发布，稳定可靠  
+📊 **发布日志** — 自动记录发布时间、选题、链接，方便复盘
+
+## 环境配置
+
+### 必需环境变量
+
+```env
+# 小红书 API 凭证（已支持 xiaohongshu-mcp）
+XIAOHONGSHU_COOKIE=your_cookie_here
+XIAOHONGSHU_BUSINESS_ID=your_business_id
+
+# AI 图像生成（可选，用你已配置的）
+OPENAI_API_KEY=your_openai_key
+# 或 DALL-E / 文心一格 / 通义万相 根据你的喜好配置
+```
+
+### 依赖安装
+
+```bash
+pip install requests beautifulsoup4 markdownify
+```
+
+## 快速开始
+
+### 全自动一条龙（推荐）
+
+```python
+python scripts/full_auto.py --niches "职场副业" --count 3
+```
+
+这会自动完成：
+1. 获取小红书热榜
+2. 选出 3 个和"职场副业"相关的选题
+3. 生成文案
+4. 生成封面
+5. 发布到小红书
+6. 记录发布日志
+
+### 分步使用
+
+**只获取热点选题：**
+```python
+python/scripts/get_hot_topics.py --limit 20 --output hot_topics.json
+```
+
+**只生成文案：**
+```python
+python scripts/generate_content.py --topic "30岁职场人必看的三个副业建议"
+```
+
+**只发布已写好的内容：**
+```python
+python scripts/publish.py --title "标题" --content "正文.md" --cover cover.png --tags ["副业","职场","个人成长"]
+```
+
+## 输出示例
+
+### 生成结果
+
+```
+✅ 全流程自动化完成
+---
+热点选题: #副业挣钱 ｜ 上班族下班后能做什么副业增加收入？
+---
+标题: 💰 30岁才明白，下班后的时间才是你翻盘的关键
+---
+正文:
+打工太累，工资不够花😮‍💨
+
+其实下班后每天抽出 2 小时，做做副业增加收入，半年就能攒下第一桶金✨
+
+我自己亲测有效的三个方向：
+
+1️⃣ 自媒体内容创作
+   利用 AI 帮你写，不用全部自己来
+   积累粉丝就是积累被动收入
+
+2️⃣ 接技能外包
+   会设计/写文案/做PPT都能接
+   比打工时薪高很多
+
+3️⃣ 做信息整理
+   把你的经验整理成电子版
+   卖一次赚一次，不用重复劳动
+
+行动比想重要，从今天开始动起来💪
+
+#副业 #副业挣钱 #职场 #个人成长 #30岁
+---
+封面: ./output/cover_xxxx.png
+发布状态: ✅ 成功
+发布链接: https://www.xiaohongshu.com/item/xxxxxx
+```
+
+## 同步模式
+
+| 模式 | 说明 |
+|------|------|
+| **全自动** | 从热榜到发布全自理，不需要干预 |
+| **半自动** | AI 选好选题给你确认，你通过后再继续 |
+| **仅辅助** | 只给热点和选题建议，你自己写文案 |
+
+配置文件 `config.yaml` 可以切换模式。
+
+## 小红书写作规范内置
+
+技能已经内置了小红书写作最佳实践：
+
+- ✅ 标题带emoji，吸引眼球
+- ✅ 正文短句，多用换行，易于手机阅读
+- ✅ 开头3行抓住痛点
+- ✅ 分段清晰，每段不超过3行
+- ✅ 结尾引导互动（点赞收藏关注）
+- ✅ 5-8个精准标签，大标签+中标签+长尾标签组合
+
+## 企业级可靠性
+
+- **热点抓取失败重试** — 自动重试3次，换镜像源
+- **限流应对** — 发布间隔自动调整，避免触发限制
+- **错误日志** — 出错记录详细日志，方便排查
+- **备份输出** — 生成的内容都存在本地，不会丢失
+
+## 配置文件说明
+
+看 [config-example.yaml](./references/config-example.yaml) 参考配置
+
+## 参考链接
+
+- [小红书开放平台](https://www.xiaohongshu.com/developer)
+- [xiaohongshu-mcp](https://github.com/openclaw/skills/tree/main/skills/pxfeng/xiaohongshu-mcp)
+
+---
+
+## License
+
+MIT-0

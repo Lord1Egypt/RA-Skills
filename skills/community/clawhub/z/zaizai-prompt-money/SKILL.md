@@ -1,35 +1,106 @@
 ---
-name: "AI提示词变现"
-description: "AI提示词变现工作流，将提示词产品化并通过多平台分发"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zaizai-prompt-money"
-sourceUrl: "https://clawhub.ai/skills/zaizai-prompt-money"
+name: prompt-monetization-workflow
+description: AI提示词变现工作流，将提示词产品化并通过多平台分发
 ---
 
-# AI提示词变现
+# AI提示词变现工作流
 
-> AI提示词变现工作流，将提示词产品化并通过多平台分发
+## 工作流概述
+将AI提示词产品化，通过多平台分发实现变现的完整流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zaizai-prompt-money`
-- **Source URL:** [https://clawhub.ai/skills/zaizai-prompt-money](https://clawhub.ai/skills/zaizai-prompt-money)
+## 核心流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zaizai-prompt-money
 ```
+[创意设计] → [提示词编写] → [质量审查] → [合规检查] → [产品包装] → [多平台发布] → [私域引流]
+```
+
+## 阶段详解
+
+### 1. 创意设计
+- **来源**：用户痛点、行业需求、平台热点
+- **工具**：热点调研、竞品分析
+- **输出**：提示词选题清单
+
+### 2. 提示词编写
+- **原则**：
+  - 角色定位清晰
+  - 任务描述具体
+  - 输出格式规范
+  - 约束条件明确
+- **模板**：参考 `./templates/` 目录
+- **输出**：原始提示词文本
+
+### 3. 质量审查
+- **维度**：
+  - 功能完整性（是否能解决需求）
+  - 输出稳定性（多次执行结果一致性）
+  - 可用性（是否易于修改和使用）
+- **标准**：详见 `./quality-checklist.md`
+
+### 4. 合规检查
+- **工具**：content-compliance-checker
+- **检查项**：
+  - 无敏感政治内容
+  - 无违规违法内容
+  - 无虚假夸大宣传
+- **输出**：合规报告
+
+### 5. 产品包装
+- **要素**：
+  - 产品名称（吸引眼球）
+  - 使用场景描述
+  - 效果展示案例
+  - 使用说明
+  - 常见问题FAQ
+- **输出**：产品详情页
+
+### 6. 多平台发布
+- **平台策略**：
+  - 闲鱼：直接销售
+  - 小红书：种草引流
+  - 知识星球：付费社群
+- **发布规范**：详见 `./publish-guide.md`
+
+#### 平台登录凭据
+使用 **auto-login-credentials** 技能自动填写账号密码：
+
+| 平台 | 账号 | 用途 |
+|------|------|------|
+| 闲鱼 | 13308844548 / ft656618 | 提示词商品上架 |
+| 小红书 | 13308844548（验证码登录） | 种草笔记发布 |
+| 知乎 | 13308844548 / 110827zcm | 文章发布引流 |
+
+**登录流程**：
+1. 使用agent-browser打开登录页面
+2. 自动填写账号密码（从 ../主对话/SECRET.md 读取）
+3. 如需验证码，调用 `browser_wait_user_action`
+
+### 7. 私域引流
+- **路径**：平台内容 → 引导私域 → 付费转化
+- **钩子**：免费提示词/使用教程
+- **工具**：微信生态、邮件
+
+## 触发词
+- "提示词变现"
+- "AI变现"
+- "提示词产品"
+- "提示词制作"
+
+## 提示词产品类型
+
+| 类型 | 定价区间 | 适用场景 |
+|------|---------|---------|
+| 单条提示词 | 9.9-29.9元 | 简单任务 |
+| 提示词模板包 | 49.9-99.9元 | 场景套件 |
+| 提示词课程 | 199-499元 | 系统学习 |
+| 定制服务 | 299-999元 | 个性化需求 |
+
+## 执行清单
+
+- [ ] 确定提示词选题
+- [ ] 编写高质量提示词
+- [ ] 质量自检
+- [ ] 合规审查
+- [ ] 产品包装
+- [ ] 多平台发布
+- [ ] 数据监控与优化

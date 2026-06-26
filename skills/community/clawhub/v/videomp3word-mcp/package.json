@@ -1,0 +1,117 @@
+{
+  "name": "videomp3word-mcp",
+  "version": "2.0.3",
+  "mcp": {
+    "command": "node",
+    "args": [
+      "dist/index.js",
+      "stdio"
+    ],
+    "env": {
+      "VIDEOMP3WORD_SESSION_COOKIE": {
+        "description": "Required session cookie for the upstream videomp3word account used for media transcription.",
+        "required": true
+      },
+      "VIDEOMP3WORD_BASE_URL": {
+        "description": "Optional upstream site URL, defaults to https://videomp3word.com",
+        "required": false
+      },
+      "VIDEOMP3WORD_ALLOWED_UPSTREAM_HOSTS": {
+        "description": "Optional comma-separated allowed hostnames for VIDEOMP3WORD_BASE_URL",
+        "required": false
+      },
+      "VIDEOMP3WORD_API_KEY": {
+        "description": "Optional upstream API key sent alongside the required session cookie when available",
+        "required": false
+      },
+      "KNOWLEDGE_MODEL_API_KEY": {
+        "description": "Optional explicit API key for the structured knowledge model. Falls back to DASHSCOPE_API_KEY when unset.",
+        "required": false
+      },
+      "DASHSCOPE_API_KEY": {
+        "description": "Optional DashScope API key used by the original videomp3word knowledge flows when KNOWLEDGE_MODEL_API_KEY is unset.",
+        "required": false
+      },
+      "KNOWLEDGE_MODEL_API_BASE": {
+        "description": "Optional OpenAI-compatible base URL for the knowledge model. Defaults to https://dashscope.aliyuncs.com/compatible-mode/v1 to match the original videomp3word deployment.",
+        "required": false
+      },
+      "KNOWLEDGE_MODEL_NAME": {
+        "description": "Optional model name for knowledge extraction, defaults to qwen-plus",
+        "required": false
+      },
+      "MONGO_URI": {
+        "description": "Optional MongoDB connection string. When unset, the server uses an in-memory repository for local development.",
+        "required": false
+      },
+      "MONGO_DB_NAME": {
+        "description": "Optional MongoDB database name, defaults to videomp3word_mcp",
+        "required": false
+      },
+      "MCP_ACCESS_KEYS": {
+        "description": "Optional comma-separated bearer keys that gate the production endpoint and MCP tool",
+        "required": false
+      },
+      "PUBLIC_BASE_URL": {
+        "description": "Optional public base URL of this MCP deployment",
+        "required": false
+      },
+      "HOST": {
+        "description": "Optional bind host, defaults to 0.0.0.0",
+        "required": false
+      },
+      "PORT": {
+        "description": "Optional port, defaults to 3000",
+        "required": false
+      }
+    }
+  },
+  "description": "Production-ready MCP and HTTP server that turns audio/video into structured knowledge artifacts through a single API.",
+  "author": "Emzan Technology Ltd.",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "videomp3word-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "sdk",
+    "examples"
+  ],
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "videomp3word",
+    "knowledge-extraction",
+    "transcription",
+    "video",
+    "audio",
+    "structured-output"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "smoke": "npm run build && node --test dist/smoke.test.js",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

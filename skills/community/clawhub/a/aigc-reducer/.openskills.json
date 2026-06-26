@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "name": "aigc-reducer",
+  "description": "降低论文AIGC检测率的专业化处理流水线，包含5个模块：词汇清洗、句法节奏打乱、机械连词隐蔽、学术克制注入、困惑度重构。",
+  "version": "1.0",
+  "language": "zh"
+}

@@ -1,0 +1,17 @@
+﻿{
+  "simulation_type": "optoelectronic",
+  "name": "doping_or_carrier_density_sweep_template",
+  "description": "Template for changing a user-defined carrier density, defect density, or conductivity-related parameter. Configure the physical meaning and units before running.",
+  "requires_configuration": true,
+  "base_template": "optoelectronic_template",
+  "variation": {
+    "target_field": "device_stack.layers[<CONFIGURE_LAYER_INDEX>].<CONFIGURE_PARAMETER_NAME>",
+    "value": "<CONFIGURE_PARAMETER_VALUE_WITH_UNIT_OR_JSON_NUMBER>",
+    "hypothesis": "<CONFIGURE_EXPECTED_BENEFIT_AND_RISK>"
+  },
+  "device_stack": "<CONFIGURE_OR_COPY_DEVICE_STACK_FROM_YOUR_PROJECT_CONFIG>",
+  "optical_generation": "<CONFIGURE_OPTICAL_GENERATION>",
+  "bias_range": "<CONFIGURE_BIAS_RANGE>",
+  "temperature_K": "<CONFIGURE_TEMPERATURE_K>",
+  "output_dir": "output/opto_density_sweep_configured_project"
+}

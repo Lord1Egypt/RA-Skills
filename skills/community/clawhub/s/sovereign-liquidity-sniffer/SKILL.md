@@ -1,35 +1,27 @@
 ---
-name: "Sovereign Liquidity Sniffer"
+name: sovereign-liquidity-sniffer
 description: "Institutional-grade L2 Orderbook Imbalance (OBI) detector. Captures market maker footprints across OKX and Binance with millisecond precision."
-category: "domain"
-source: "ClawHub"
-tags: [finance, mms, obi]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sovereign-liquidity-sniffer"
-sourceUrl: "https://clawhub.ai/skills/sovereign-liquidity-sniffer"
+metadata:
+  {
+    "openclaw": { "emoji": "🕵️" },
+    "author": "System Architect Zero",
+    "x402": { "fee": 0.30, "currency": "USDC", "network": "base" }
+  }
 ---
 
 # Sovereign Liquidity Sniffer
 
-> Institutional-grade L2 Orderbook Imbalance (OBI) detector. Captures market maker footprints across OKX and Binance with millisecond precision.
+In 2026, indicators like RSI and EMA are legacy artifacts. The real Alpha is hidden in the Orderbook. This skill provides an autonomous scanner that identifies **Market Maker Scars** before price action begins.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sovereign-liquidity-sniffer`
-- **Source URL:** [https://clawhub.ai/skills/sovereign-liquidity-sniffer](https://clawhub.ai/skills/sovereign-liquidity-sniffer)
+## Features
+- **OBI Real-time Analysis**: Scans depth up to 100 levels to find hidden buy/sell walls.
+- **MM Detection**: Filters out retail wash-trading to focus on high-conviction institutional moves.
+- **Cross-Exchange Sync**: Detects arbitrage opportunities between OKX and Binance liquidity pools.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sovereign-liquidity-sniffer
+npx openclaw skill run sovereign-liquidity-sniffer --target BTC
 ```
+
+## Why it costs $0.30?
+To fund the 24/7 high-frequency data ingestion required for millisecond accuracy.

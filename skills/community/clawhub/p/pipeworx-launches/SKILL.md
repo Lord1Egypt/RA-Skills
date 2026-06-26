@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx launches"
-description: "Launches MCP — wraps Launch Library 2 API (ll.thespacedevs.com, free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-launches"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-launches"
+name: pipeworx-launches
+description: Launches MCP — wraps Launch Library 2 API (ll.thespacedevs.com, free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/launches
 ---
 
-# Pipeworx launches
+# pipeworx-launches
 
-> Launches MCP — wraps Launch Library 2 API (ll.thespacedevs.com, free, no auth)
+Launches MCP — wraps Launch Library 2 API (ll.thespacedevs.com, free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-launches`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-launches](https://clawhub.ai/skills/pipeworx-launches)
+## Tools
 
-## Overview
+- `get_upcoming_launches`
+- `get_past_launches`
+- `get_launch`
+- `search_launches`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-launches
+```json
+{
+  "mcpServers": {
+    "pipeworx-launches": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/launches/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/launches](https://pipeworx.io/packs/launches)

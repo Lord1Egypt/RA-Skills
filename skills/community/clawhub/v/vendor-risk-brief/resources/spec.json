@@ -1,0 +1,37 @@
+{
+  "slug": "vendor-risk-brief",
+  "title": "供应商风险简报官",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "structured_brief",
+  "summary": "对外部 SaaS/API 形成风险摘要，聚焦集成影响、权限、数据流向和替代方案。",
+  "inputHint": "供应商能力、权限需求、数据类型",
+  "sections": [
+    "供应商摘要",
+    "权限与数据流",
+    "主要风险",
+    "缓解措施",
+    "替代方案",
+    "建议结论"
+  ],
+  "useCases": [
+    "采购评审",
+    "集成评估",
+    "安全简报"
+  ],
+  "positiveExamples": [
+    "给这个 SaaS 做个供应商风险简报",
+    "聚焦实际集成影响"
+  ],
+  "negativeExamples": [
+    "不要冒充安全认证结论",
+    "不要替代正式法务/安全审批"
+  ],
+  "risk": "适合作为前置评估摘要。",
+  "tags": [
+    "vendor-risk",
+    "saas",
+    "security",
+    "governance"
+  ]
+}

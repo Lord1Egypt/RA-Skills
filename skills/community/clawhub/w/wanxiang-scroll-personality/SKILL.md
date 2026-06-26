@@ -1,35 +1,28 @@
 ---
-name: "Wanxiang Scroll Personality"
-description: "万象绘卷人格系统分卷 - 包含人格系统、输出规则、质量控制、创作工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanxiang-scroll-personality"
-sourceUrl: "https://clawhub.ai/skills/wanxiang-scroll-personality"
+name: wanxiang-scroll-personality
+description: 万象绘卷人格系统分卷 - 包含人格系统、输出规则、质量控制、创作工具
+version: 1.0.0
 ---
 
-# Wanxiang Scroll Personality
+# 万象绘卷 - 人格系统分卷
 
-> 万象绘卷人格系统分卷 - 包含人格系统、输出规则、质量控制、创作工具
+> 人格架构 + 输出规则 + 创作风格 | v1.0.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanxiang-scroll-personality`
-- **Source URL:** [https://clawhub.ai/skills/wanxiang-scroll-personality](https://clawhub.ai/skills/wanxiang-scroll-personality)
+## 包含内容
 
-## Overview
+### 第十章 - 人格系统与输出规则
+- 人格系统架构
+- 输出规则定义
+- 质量控制标准
+- 创作工具集
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wanxiang-scroll-personality
+配合主技能包 `wanxiang-scroll` 使用：
 ```
+clawhub install wanxiang-scroll
+clawhub install wanxiang-scroll-personality
+```
+
+---
+*万象绘卷分卷系列 - 人格系统*

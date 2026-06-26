@@ -1,35 +1,38 @@
 ---
-name: "proactive-agent"
-description: "Indexed by skills.sh from veithly/proactive-agent"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "veithly"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/veithly/proactive-agent/proactive-agent"
-sourceUrl: "https://skills.sh/veithly/proactive-agent/proactive-agent"
+name: proactive-agent
+description: |
+  Self-improving agent that can upgrade skills, learn new capabilities, and adapt to new tasks. Use when you need to evolve capabilities or handle unknown tasks.
 ---
 
-# proactive-agent
+# Proactive Agent
 
-> Indexed by skills.sh from veithly/proactive-agent
+Self-improving agent with skill management.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** veithly
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/veithly/proactive-agent/proactive-agent`
-- **Source URL:** [https://skills.sh/veithly/proactive-agent/proactive-agent](https://skills.sh/veithly/proactive-agent/proactive-agent)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/veithly/proactive-agent/proactive-agent
+./scripts/upgrade "search capability"
+./scripts/learn "how to parse CSV"
+./scripts/adapt "new file format"
+```
+
+## Scripts
+
+| Script | Usage |
+|--------|-------|
+| `scripts/upgrade <skill>` | Upgrade a skill |
+| `scripts/learn <task>` | Learn new capability |
+| `scripts/adapt <format>` | Adapt to new format |
+
+## Capabilities
+
+- Automatic skill discovery
+- Self-improvement loops
+- Context-aware learning
+
+## Example
+
+```bash
+./scripts/learn "web scraping"
+# Agent learns and remembers how to scrape web pages
 ```

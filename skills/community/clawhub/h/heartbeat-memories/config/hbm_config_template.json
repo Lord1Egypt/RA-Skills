@@ -1,0 +1,58 @@
+{
+  "memory_system": {
+    "enabled": true,
+    "auto_record": true,
+    "compression_ratio": 10,
+    "memory_path": "memory"
+  },
+  "semantic_search": {
+    "enabled": true,
+    "model_name": "all-MiniLM-L6-v2",
+    "vector_db_path": "memory/vector_db",
+    "max_results": 5,
+    "similarity_threshold": 0.7
+  },
+  "heartbeat_recall": {
+    "enabled": true,
+    "daily_limit": 3,
+    "min_interval_minutes": 60,
+    "user_initiated_unlimited": true,
+    "holiday_recalls_excluded": true,
+    "scenarios": {
+      "daily_conversation": {
+        "enabled": true,
+        "probability": 0.3,
+        "daily_limit": 1
+      },
+      "after_task": {
+        "enabled": true,
+        "probability": 0.5,
+        "daily_limit": 1
+      },
+      "forgotten_goal": {
+        "enabled": true,
+        "probability": 1.0,
+        "daily_limit": 1
+      },
+      "special_day": {
+        "enabled": true,
+        "probability": 1.0,
+        "daily_limit": 1,
+        "exclude_sensitive_holidays": true
+      }
+    }
+  },
+  "rag_system": {
+    "enabled": false,
+    "enable_limit_and_dedupe": false,
+    "enable_cache": false,
+    "enable_log_compression": true,
+    "max_tokens": 1000,
+    "cache_ttl_seconds": 3600
+  },
+  "system": {
+    "log_level": "INFO",
+    "log_rotation": "monthly",
+    "data_retention_days": 30
+  }
+}

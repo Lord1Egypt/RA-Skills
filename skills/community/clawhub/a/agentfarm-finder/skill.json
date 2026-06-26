@@ -1,0 +1,9 @@
+{
+  "name": "agentfarm-finder",
+  "description": "AI Agent 早期项目发现 - Twitter 监控工具",
+  "version": "1.0.0",
+  "author": "BabyCai",
+  "trigger": "每天 16:00 自动运行",
+  "schedule": "0 16 * * *",
+  "enabled": true
+}

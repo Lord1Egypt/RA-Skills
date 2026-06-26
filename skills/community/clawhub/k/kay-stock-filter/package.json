@@ -1,0 +1,20 @@
+{
+  "name": "stock-filter-skills",
+  "version": "1.3.0",
+  "description": "股票筛选、热门因子管理、Jiuyan 数据查询和抖音热点分析 OpenClaw Skill",
+  "type": "module",
+  "main": "src/main.js",
+  "bin": {
+    "stock-filter": "src/main.js"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node src/main.js --help"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

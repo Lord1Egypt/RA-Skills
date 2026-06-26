@@ -1,0 +1,173 @@
+{
+  "name": "BeerGaao_Quant",
+  "display_name": "BeerGaao 专业量化交易",
+  "version": "3.3.1",
+  "description": "胜率总是倍儿高，收益也嘛倍儿好 - A股量化分析 Agent 工具集",
+  "author": "GanJiaKouN16",
+  "type": "package",
+  "tags": [
+    "quant",
+    "量化交易",
+    "策略回测",
+    "交易信号",
+    "股票",
+    "agent"
+  ],
+  "entry": "stock_skill.__main__:main",
+  "install_spec": {
+    "type": "pip",
+    "command": "pip install -e .",
+    "requires": "Python >=3.10",
+    "description": "克隆仓库后使用 pip 安装：git clone https://github.com/GanJiaKouN16/BeerGaao.git && cd BeerGaao && pip install -e ."
+  },
+  "dependencies": [
+    "pandas==2.0.3",
+    "numpy==1.24.3",
+    "requests==2.31.0",
+    "tenacity==8.2.0",
+    "python-dotenv==1.0.0",
+    "scikit-learn==1.3.0",
+    "scipy==1.11.0"
+  ],
+  "required_env_vars": [],
+  "optional_env_vars": [
+    {
+      "name": "TUSHARE_TOKEN",
+      "description": "Tushare API token（可选），用于获取A股历史数据",
+      "url": "https://tushare.pro/register"
+    },
+    {
+      "name": "MAX_SINGLE_POSITION",
+      "description": "单个持仓最大比例",
+      "default": "0.30"
+    },
+    {
+      "name": "MAX_TOTAL_POSITION",
+      "description": "总持仓最大比例",
+      "default": "0.80"
+    },
+    {
+      "name": "MIN_MARKET_SCORE",
+      "description": "最低市场评分",
+      "default": "4.0"
+    },
+    {
+      "name": "VOL_MULTI",
+      "description": "成交量倍数",
+      "default": "1.8"
+    },
+    {
+      "name": "TARGET_RATE",
+      "description": "目标收益率",
+      "default": "0.06"
+    },
+    {
+      "name": "STOP_LOSS_RATE",
+      "description": "止损率",
+      "default": "-0.04"
+    },
+    {
+      "name": "HOLD_DAYS",
+      "description": "持仓天数",
+      "default": "5"
+    },
+    {
+      "name": "BACKTEST_DAYS",
+      "description": "回测天数",
+      "default": "250"
+    },
+    {
+      "name": "COMMISSION_RATE",
+      "description": "佣金率",
+      "default": "0.0003"
+    },
+    {
+      "name": "STAMP_TAX_RATE",
+      "description": "印花税率",
+      "default": "0.001"
+    },
+    {
+      "name": "SLIPPAGE_RATE",
+      "description": "滑点率",
+      "default": "0.001"
+    },
+    {
+      "name": "CIRCUIT_BREAKER_DROP",
+      "description": "熔断跌幅",
+      "default": "-0.05"
+    },
+    {
+      "name": "CORRELATION_THRESHOLD",
+      "description": "相关性阈值",
+      "default": "0.7"
+    },
+    {
+      "name": "POLL_INTERVAL",
+      "description": "轮询间隔秒数",
+      "default": "60"
+    },
+    {
+      "name": "HTTP_TIMEOUT",
+      "description": "HTTP超时秒数",
+      "default": "10"
+    },
+    {
+      "name": "MAX_RETRIES",
+      "description": "最大重试次数",
+      "default": "3"
+    },
+    {
+      "name": "DB_PATH",
+      "description": "数据库路径（默认存储在项目 .data/ 目录下，避免意外暴露）",
+      "default": ".data/stock_skill.db"
+    },
+    {
+      "name": "EASTMONEY_UT",
+      "description": "东方财富 API 用户标识（通常无需修改）",
+      "default": "fa5fd1943c7b386f172d6893dbbd1131"
+    },
+    {
+      "name": "LOG_LEVEL",
+      "description": "日志级别",
+      "default": "INFO"
+    }
+  ],
+  "external_services": [
+    {
+      "name": "Tushare API",
+      "url": "https://api.tushare.pro",
+      "purpose": "获取A股历史行情、实时数据、龙虎榜等"
+    },
+    {
+      "name": "东方财富 EastMoney API",
+      "url": "https://push2.eastmoney.com",
+      "purpose": "获取实时行情、资金流向、板块数据"
+    }
+  ],
+  "persistence": {
+    "database": {
+      "path_env": "DB_PATH",
+      "default": "stock_skill.db",
+      "description": "SQLite数据库，存储信号历史、持仓、绩效数据"
+    },
+    "models": {
+      "path": "models/",
+      "description": "机器学习模型文件（joblib格式），使用joblib安全序列化"
+    }
+  },
+  "security": {
+    "model_serialization": "使用 joblib（依赖 pickle）加载模型，所有模型加载均通过 load_model_safe() 安全函数，自动执行路径白名单校验和文件完整性检查；禁用从外部输入、网络下载或用户提供的任意模型文件；推荐使用 safetensors 或 JSON 格式替代 pickle 序列化",
+    "credential_storage": "所有凭证通过环境变量提供，providers.py 中所有 API 参数均通过 config 对象或环境变量读取，无硬编码 token；启动时自动验证必填凭证",
+    "sandbox_recommended": true,
+    "data_scope": "仅读取公开市场数据，不执行实际交易",
+    "longport_credentials": "建议使用只读 API Token，避免提供交易凭证",
+    "database_protection": "SQLite 数据库存储在项目 .data/ 目录下（可通过 DB_PATH 自定义），文件权限设置为 600（仅 owner 可读写），目录权限设置为 700；如需清除历史分析数据，删除 .data/ 目录或指定的 DB_PATH 文件即可",
+    "token_validation": "自动检测占位符 token，防止使用示例值"
+  },
+  "auto_test": true,
+  "report_enabled": true,
+  "support_platform": [
+    "linux",
+    "windows"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "macos-suite-readonly",
+  "version": "0.1.0",
+  "description": "macOS 只读查询：Mail 未读、Calendar 日程、Notes 搜索、Stocks 行情（输出 JSON）。",
+  "author": "OpenClaw Workspace",
+  "license": "MIT",
+  "keywords": ["macos", "mail", "calendar", "notes", "stocks", "readonly"],
+  "trigger": {
+    "patterns": ["未读邮件", "读取日程", "搜索备忘录", "股票报价", "行情"]
+  },
+  "tools": ["exec"],
+  "entry": "scripts/main.py",
+  "dependencies": {
+    "python": ">=3.9"
+  },
+  "platforms": ["darwin"]
+}
+

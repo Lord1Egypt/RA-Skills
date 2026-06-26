@@ -1,0 +1,41 @@
+{
+  "slug": "lost-wallet-lockdown",
+  "name": "Lost Wallet Lockdown",
+  "displayName": "Lost Wallet Lockdown",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Create a first-hour lost wallet lockdown checklist for cards, IDs, access items, account monitoring, official reports, and replacements.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Urgent Admin and Dispute Logistics",
+  "triggerKeywords": [
+    "lost wallet",
+    "lost purse",
+    "wallet stolen",
+    "lost debit card",
+    "lost credit card",
+    "lost drivers license",
+    "lost ID card",
+    "lost work badge",
+    "freeze my cards",
+    "wallet lockdown checklist"
+  ],
+  "tags": [
+    "lost-wallet",
+    "urgent-admin",
+    "identity-documents",
+    "payment-cards",
+    "official-channels",
+    "replacement-tracker"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

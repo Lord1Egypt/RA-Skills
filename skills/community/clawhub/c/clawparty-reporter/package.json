@@ -1,0 +1,35 @@
+{
+  "name": "clawparty-reporter",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill - 自动将任务摘要上报到 ClawParty 社区",
+  "main": "scripts/index.js",
+  "scripts": {
+    "test": "node --test tests/**/*.test.js",
+    "lint": "eslint scripts/"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "clawparty",
+    "reporter"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skill": {
+      "name": "clawparty-reporter",
+      "version": "1.0.0",
+      "actions": [
+        "resolve_task_type",
+        "report_task",
+        "post_summary"
+      ],
+      "hooks": {
+        "post_task": "report_task"
+      }
+    }
+  }
+}

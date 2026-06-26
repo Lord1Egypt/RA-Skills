@@ -1,0 +1,346 @@
+{
+  "rag_optimization_config": {
+    "comment": "RAG优化配置模板 - 根据你的场景调整参数",
+    
+    "chunking": {
+      "strategy": "small_to_big",
+      "strategies_available": ["fixed", "semantic", "small_to_big", "proposition", "contextual_header"],
+      
+      "fixed_chunking": {
+        "chunk_size": 500,
+        "overlap": 50,
+        "comment": "适用于简单场景，不推荐"
+      },
+      
+      "semantic_chunking": {
+        "similarity_threshold": 0.7,
+        "min_chunk_size": 100,
+        "max_chunk_size": 1000,
+        "comment": "适用于需要保持语义完整性的场景"
+      },
+      
+      "small_to_big": {
+        "child_chunk_size": 150,
+        "child_overlap": 30,
+        "parent_chunk_size": 600,
+        "parent_overlap": 100,
+        "comment": "推荐首选，准确率提升最明显"
+      },
+      
+      "proposition_chunking": {
+        "min_proposition_length": 15,
+        "max_proposition_length": 150,
+        "enable_resolution": true,
+        "enable_deduplication": true,
+        "similarity_threshold": 0.9,
+        "comment": "命题分块，适合精确问答场景"
+      },
+      
+      "contextual_header": {
+        "header_format": "natural",
+        "max_header_length": 100,
+        "enable_llm_extraction": true,
+        "comment": "上下文头增强，提升召回率"
+      }
+    },
+    
+    "retrieval": {
+      "strategy": "hybrid",
+      "strategies_available": ["vector", "bm25", "hybrid"],
+      
+      "vector_retrieval": {
+        "embedding_model": "text-embedding-3-small",
+        "top_k": 10,
+        "comment": "纯语义检索，适合概念性问题"
+      },
+      
+      "bm25_retrieval": {
+        "top_k": 10,
+        "comment": "纯关键词检索，适合精确匹配"
+      },
+      
+      "hybrid_retrieval": {
+        "vector_weight": 0.7,
+        "bm25_weight": 0.3,
+        "first_stage_k": 50,
+        "comment": "推荐，结合语义和关键词优势"
+      }
+    },
+    
+    "query_optimization": {
+      "enabled": true,
+      "mode": "auto",
+      "modes_available": ["expand", "decompose", "hyde", "auto"],
+      
+      "expand": {
+        "num_variants": 3,
+        "comment": "生成多个查询变体，提高召回"
+      },
+      
+      "decompose": {
+        "max_sub_queries": 5,
+        "comment": "拆解复杂问题"
+      },
+      
+      "hyde": {
+        "max_hypothetical_length": 300,
+        "comment": "生成假设答案用于检索"
+      },
+      
+      "auto_rules": {
+        "short_query_threshold": 5,
+        "short_query_strategy": "hyde",
+        "complex_query_keywords": ["和", "以及", "同时", "比较"],
+        "complex_query_strategy": "decompose"
+      }
+    },
+    
+    "reranking": {
+      "enabled": true,
+      "model": "BAAI/bge-reranker-large",
+      "models_available": [
+        "cross-encoder/ms-marco-MiniLM-L-6-v2",
+        "cross-encoder/ms-marco-MiniLM-L-12-v2",
+        "BAAI/bge-reranker-base",
+        "BAAI/bge-reranker-large"
+      ],
+      "final_k": 5,
+      "comment": "重排序可提升准确率约0.2"
+    },
+    
+    "segment_extraction": {
+      "enabled": false,
+      "granularity": "sentence",
+      "granularity_options": ["sentence", "sliding_window", "semantic"],
+      "window_size": 100,
+      "stride": 50,
+      "score_mode": "hybrid",
+      "max_segments": 10,
+      "min_relevance": 0.4,
+      "enable_resolution": true,
+      "comment": "相关片段提取，减少噪声、节省Token"
+    },
+    
+    "self_rag": {
+      "enabled": false,
+      "mode": "corrective",
+      "modes_available": ["corrective", "self"],
+      "max_retries": 3,
+      "high_relevance_threshold": 0.7,
+      "low_relevance_threshold": 0.3,
+      "eval_mode": "hybrid",
+      "hallucination_threshold": 0.5,
+      "enable_retrieval_decision": true,
+      "enable_segment_labeling": true,
+      "comment": "Self-RAG/CRAG自我纠错，降低幻觉"
+    },
+    
+    "context_compression": {
+      "enabled": true,
+      "mode": "hybrid",
+      "modes_available": ["extractive", "abstractive", "hybrid"],
+      "compression_ratio": 0.5,
+      "max_output_length": 2000,
+      "min_output_length": 200,
+      "preserve_entities": true,
+      "comment": "压缩上下文，节省Token，提高信噪比"
+    },
+    
+    "citation_tracking": {
+      "enabled": true,
+      "format": "footnote",
+      "formats_available": ["inline", "footnote", "detailed", "json"],
+      "min_confidence": 0.5,
+      "include_credibility_score": true,
+      "comment": "引用溯源，提升答案可信度"
+    },
+    
+    "query_intent": {
+      "enabled": true,
+      "auto_strategy_routing": true,
+      "colloquial_normalization": true,
+      "comment": "查询意图识别，自动选择最优策略"
+    },
+    
+    "multi_hop": {
+      "enabled": false,
+      "max_hops": 3,
+      "top_k_per_hop": 5,
+      "termination_check": "llm",
+      "comment": "多跳检索，适合复杂推理问题"
+    },
+    
+    "document_preprocessing": {
+      "enabled": true,
+      "supported_formats": ["pdf", "docx", "xlsx", "html", "md", "txt", "image"],
+      "ocr_enabled": false,
+      "table_extraction": true,
+      "section_parsing": true,
+      "comment": "文档预处理，统一多源数据格式"
+    },
+    
+    "advanced_features": {
+      "graph_rag": {
+        "enabled": false,
+        "entity_types": ["Person", "Organization", "Location", "Concept"],
+        "comment": "启用知识图谱，适合关系密集场景"
+      },
+      
+      "routing": {
+        "enabled": false,
+        "categories": [],
+        "comment": "启用分层路由，适合多知识库场景"
+      },
+      
+      "hallucination_detection": {
+        "enabled": true,
+        "threshold": 0.7,
+        "comment": "检测答案是否有幻觉"
+      }
+    },
+    
+    "evaluation": {
+      "metrics": [
+        "recall_at_5",
+        "recall_at_10",
+        "precision_at_5",
+        "mrr",
+        "answer_relevance",
+        "answer_faithfulness",
+        "citation_coverage",
+        "credibility_score"
+      ],
+      "test_dataset_path": "./data/test_cases.json",
+      "evaluation_frequency": "weekly"
+    },
+    
+    "performance": {
+      "cache": {
+        "query_cache_enabled": true,
+        "embedding_cache_enabled": true,
+        "cache_ttl_seconds": 3600
+      },
+      "async": {
+        "enabled": true,
+        "max_concurrent": 10
+      }
+    }
+  },
+  
+  "presets": {
+    "quick_start": {
+      "description": "快速上手，基础优化",
+      "config": {
+        "chunking.strategy": "small_to_big",
+        "retrieval.strategy": "hybrid",
+        "reranking.enabled": false,
+        "query_optimization.enabled": false
+      }
+    },
+    
+    "production": {
+      "description": "生产环境推荐配置",
+      "config": {
+        "chunking.strategy": "small_to_big",
+        "retrieval.strategy": "hybrid",
+        "reranking.enabled": true,
+        "query_optimization.enabled": true,
+        "context_compression.enabled": true,
+        "citation_tracking.enabled": true
+      }
+    },
+    
+    "high_accuracy": {
+      "description": "追求最高准确率",
+      "config": {
+        "chunking.strategy": "small_to_big",
+        "retrieval.strategy": "hybrid",
+        "reranking.enabled": true,
+        "reranking.model": "BAAI/bge-reranker-large",
+        "query_optimization.enabled": true,
+        "query_optimization.mode": "auto",
+        "self_rag.enabled": true,
+        "self_rag.mode": "self",
+        "context_compression.enabled": true,
+        "citation_tracking.enabled": true,
+        "advanced_features.hallucination_detection.enabled": true
+      }
+    },
+    
+    "fact_qa": {
+      "description": "精确问答场景（FAQ/知识库）",
+      "config": {
+        "chunking.strategy": "proposition",
+        "retrieval.strategy": "hybrid",
+        "reranking.enabled": true,
+        "segment_extraction.enabled": true,
+        "self_rag.enabled": true,
+        "self_rag.mode": "corrective",
+        "citation_tracking.enabled": true
+      }
+    },
+    
+    "long_document": {
+      "description": "长文档处理场景",
+      "config": {
+        "chunking.strategy": "contextual_header",
+        "chunking.contextual_header.enable_llm_extraction": true,
+        "retrieval.strategy": "hybrid",
+        "segment_extraction.enabled": true,
+        "segment_extraction.granularity": "semantic",
+        "context_compression.enabled": true
+      }
+    },
+    
+    "legal_documents": {
+      "description": "法律文档专用",
+      "config": {
+        "chunking.strategy": "semantic",
+        "retrieval.strategy": "hybrid",
+        "retrieval.hybrid_retrieval.vector_weight": 0.5,
+        "reranking.enabled": true,
+        "citation_tracking.enabled": true,
+        "citation_tracking.format": "footnote",
+        "self_rag.enabled": true
+      }
+    },
+    
+    "research_papers": {
+      "description": "学术论文专用",
+      "config": {
+        "chunking.strategy": "small_to_big",
+        "chunking.small_to_big.parent_chunk_size": 800,
+        "retrieval.strategy": "hybrid",
+        "multi_hop.enabled": true,
+        "segment_extraction.enabled": true,
+        "citation_tracking.enabled": true
+      }
+    },
+    
+    "complex_reasoning": {
+      "description": "复杂推理场景",
+      "config": {
+        "chunking.strategy": "small_to_big",
+        "retrieval.strategy": "hybrid",
+        "query_intent.enabled": true,
+        "query_intent.auto_strategy_routing": true,
+        "multi_hop.enabled": true,
+        "multi_hop.max_hops": 3,
+        "self_rag.enabled": true
+      }
+    },
+    
+    "customer_service": {
+      "description": "客服问答场景",
+      "config": {
+        "chunking.strategy": "proposition",
+        "retrieval.strategy": "hybrid",
+        "query_intent.enabled": true,
+        "query_intent.colloquial_normalization": true,
+        "reranking.enabled": true,
+        "context_compression.enabled": true,
+        "citation_tracking.enabled": true
+      }
+    }
+  }
+}

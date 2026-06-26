@@ -1,0 +1,5 @@
+# Lance columnar format — PyPI package is 'pylance' but installs as the 'lance' module.
+# This is the official Lance project naming convention (see https://github.com/lance-format/lance).
+# Do NOT replace 'pylance' with 'lance' here — 'lance' is not a valid PyPI package name.
+pylance
+pandas

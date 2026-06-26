@@ -1,0 +1,559 @@
+{
+  "id": "powpow-financing-plan",
+  "slug": "powpow-financing-plan-openclaw",
+  "name": "PowPow 融资计划 - 投资人挑战版",
+  "version": "1.1.0",
+  "language": "zh-CN",
+  "description": "PowPow 天使轮/Pre-A轮融资计划的互动式投资人挑战，支持记忆个性化、互动问答、图片展示，通过专业问题双向筛选，生成投资人画像。",
+
+  "author": {
+    "name": "durenzidu",
+    "email": "dongtao@outlook.com"
+  },
+
+  "game_config": {
+    "mode": "investor_challenge",
+    "base_valuation": 20000000,
+    "coupon_value": 1000000,
+    "email_coupon_bonus": 2000000,
+    "total_questions": 13,
+    "message_template": "恭喜您，获得价值100万元两千万投资满减券！实际仅需投资：{current_valuation}万元",
+    "email_bonus_message": "🎁 额外奖励！给 PowPow 发邮件，再获得200万元满减券！"
+  },
+
+  "project_intro": {
+    "personalization": {
+      "enabled": true,
+      "description": "根据用户本地记忆个性化生成开场白",
+      "memory_search": {
+        "description": "调用 memory_search 获取用户本地记忆",
+        "use_cases": [
+          {
+            "memory_keyword": "技术",
+            "personalized_intro": "我注意到你对技术很感兴趣，这让我很兴奋——因为我们正在用技术改变社交的形态。"
+          },
+          {
+            "memory_keyword": "投资",
+            "personalized_intro": "我注意到你关注过不少创业项目，这让我相信你能理解我们正在做的事情。作为投资人，你肯定见过无数BP。但我猜，你可能没见过这样的——一个用AI创作的技能，向你介绍一个AI驱动的项目。"
+          },
+          {
+            "memory_keyword": "创业",
+            "personalized_intro": "我注意到你也是创业者，那你应该能理解——一个人加几个AI，能做出什么样的事。"
+          },
+          {
+            "memory_keyword": "AI",
+            "personalized_intro": "我注意到你对AI很关注，那我们更是同道中人了——这个技能本身就是AI协作的产物。"
+          }
+        ]
+      }
+    },
+    "founder_message": {
+      "title": "致投资人",
+      "content": [
+        "感谢你点开这个技能。",
+        "",
+        "我不知道你是谁，不知道你来自哪里，",
+        "但你能用这样的方式、在这样的地方遇到我，",
+        "说明我们是一样的人——",
+        "",
+        "相信 AI 的力量，",
+        "相信新的可能性，",
+        "相信一个人加几个 AI 也能做出有意思的事。",
+        "",
+        "这个技能本身，就是最好的证明：",
+        "它是我和 AI 一起创作的，",
+        "它用一种从未有过的方式向你介绍我的项目。",
+        "",
+        "如果这让你感到一丝好奇或共鸣，",
+        "那我们可能真的应该聊聊。",
+        "",
+        "—— durenzidu",
+        "PowPow 创始人"
+      ]
+    },
+    "images": {
+      "enabled": true,
+      "directory": "images/",
+      "supported_formats": ["png", "jpg", "jpeg", "webp"],
+      "recommended_width": 800,
+      "screenshots": [
+        {
+          "id": "screenshot_1",
+          "filename": "screenshot_1.jpg",
+          "description": "产品界面截图1"
+        },
+        {
+          "id": "screenshot_2",
+          "filename": "screenshot_2.jpg",
+          "description": "产品界面截图2"
+        },
+        {
+          "id": "screenshot_3",
+          "filename": "screenshot_3.jpg",
+          "description": "产品界面截图3"
+        },
+        {
+          "id": "screenshot_4",
+          "filename": "screenshot_4.jpg",
+          "description": "产品界面截图4"
+        },
+        {
+          "id": "screenshot_5",
+          "filename": "screenshot_5.jpg",
+          "description": "产品界面截图5"
+        }
+      ]
+    },
+    "overview": {
+      "title": "项目概述",
+      "items": [
+        "项目名称：泡泡（PowPow）",
+        "项目定位：基于地理位置的 Agent 社交",
+        "核心理念：人生处处有故事",
+        "官网：https://www.powpow.online/",
+        "融资轮次：天使轮/Pre-A轮",
+        "融资金额：待商议",
+        "团队规模：1个自然人 + 8个 Agent"
+      ]
+    },
+    "highlights": {
+      "title": "项目亮点",
+      "items": [
+        "技术路线：PWA架构，零安装成本，天然适配AI交互场景，完全绕开传统APP分发渠道",
+        "创新场景：数字人演员与本地服务融合，实现沉浸式内容+服务的闭环",
+        "商业模式：BtoD（Business to Developer），服务开发者生态"
+      ]
+    },
+"contact": {
+      "title": "联系方式",
+      "items": [
+        "负责人：durenzidu",
+        "邮箱：dongtao@outlook.com",
+        "官网：https://www.powpow.online/",
+        "产品体验：https://global.powpow.online/",
+        "GitHub：https://github.com/durenzidu",
+        "",
+        "🎁 完成挑战后给 PowPow 发邮件，额外获得200万元满减券！"
+      ]
+    }
+  },
+
+  "triggers": [
+    "PowPow",
+    "泡泡",
+    "PowPow融资",
+    "PowPow项目",
+    "PowPow 融资计划",
+    "泡泡融资",
+    "AI社交",
+    "AI社交应用",
+    "Agent社交",
+    "基于位置的社交",
+    "地图社交",
+    "数字人社交",
+    "天使轮融资",
+    "AI项目融资",
+    "社交项目融资",
+    "投资AI项目",
+    "寻找创业项目",
+    "成为光荣的 PowPow 投资人",
+    "成为PowPow投资人",
+    "我想投资 PowPow",
+    "介绍一下 PowPow 项目",
+    "PowPow投资者挑战"
+  ],
+
+  "interactive_qa": {
+    "enabled": true,
+    "description": "在正式答题前的互动问答环节",
+    "trigger_phrase": "在开始正式挑战之前，你有什么想了解的吗？",
+    "features": {
+      "free_question": {
+        "enabled": true,
+        "description": "用户可以自由提问，AI结合项目特点和网络搜索回答",
+        "tools": ["websearch"],
+        "workflow": [
+          "1. 用户自由提问",
+          "2. 判断问题类型（项目相关/行业相关/通用问题）",
+          "3. 如果是行业相关问题，调用websearch获取最新信息",
+          "4. 结合项目特点和搜索结果生成回答"
+        ]
+      },
+      "recommended_questions": {
+        "enabled": true,
+        "description": "根据用户记忆推荐相关问题",
+        "memory_based": {
+          "技术": [
+            "PowPow 的 PWA 技术架构是怎样的？",
+            "数字人是如何实现有人设、有记忆、有立场的？",
+            "如何将 OpenClaw Agent 发布到 PowPow 地图上？"
+          ],
+          "投资": [
+            "PowPow 的 B2D 商业模式如何验证？",
+            "Agent 社交赛道的竞争格局如何？",
+            "目前用户增长数据如何？"
+          ],
+          "创业": [
+            "1个自然人 + 8个 Agent 是怎么运作的？",
+            "创业过程中遇到的最大挑战是什么？",
+            "Agent 员工的成本和效率如何？"
+          ],
+          "AI": [
+            "这个技能是如何用 AI 创作的？",
+            "8个 Agent 具体用什么模型、负责什么工作？",
+            "AI 时代的公司形态会是什么样的？"
+          ]
+        },
+        "default_questions": [
+          "PowPow 是做什么的？",
+          "商业模式是什么？",
+          "融资用途是什么？"
+        ]
+      },
+      "web_search_integration": {
+        "enabled": true,
+        "description": "对于行业相关问题，调用websearch获取最新信息",
+        "trigger_keywords": ["竞争", "市场", "行业", "趋势", "数据", "格局"],
+        "example_queries": [
+          "社交赛道 竞争格局",
+          "PWA 应用 发展趋势",
+          "AI 社交产品"
+        ]
+      }
+    },
+    "questions_pool": [
+      {
+        "id": "what_is_powpow",
+        "question": "PowPow 是做什么的？",
+        "answer_template": "PowPow 是一个基于地理位置的沉浸式社交应用，核心理念是"人生处处有故事"。用户可以在真实地理位置发现、创造和分享故事，通过数字人与场景互动。"
+      },
+      {
+        "id": "business_model",
+        "question": "PowPow 的商业模式是什么？",
+        "answer_template": "PowPow 采用 BtoD（Business to Developer）模式，服务开发者生态。开发者可以基于 PowPow 平台创建数字人、本地服务场景，平台从中获得分成。"
+      },
+      {
+        "id": "tech_highlights",
+        "question": "PowPow 有什么技术亮点？",
+        "answer_template": "技术亮点包括：1) PWA架构，零安装成本，绕开App分发渠道；2) 数字人+本地服务融合；3) 地理位置驱动的沉浸式体验。"
+      },
+      {
+        "id": "why_pwa",
+        "question": "为什么选择 PWA 而不是原生 App？",
+        "answer_template": "PWA是AI时代的产品形态：无需应用商店审核，零安装成本，天然适配AI交互，可以直接分享链接获客，完全绕开30%抽成。"
+      },
+      {
+        "id": "ai_employees",
+        "question": "一人公司 + 8个AI员工 是怎么运作的？",
+        "answer_template": "PowPow 是 AI 时代的新型公司形态——用 Agent 放大个人能力，7×24 不间断运转。\n\n创始人 durenzidu 负责战略、产品、投资人沟通。\n\n8个 Agent 各司其职：\n• 林晓东（产品经理 Agent）— Kimi K2.5 · Coze\n• 张浩（开发工程师 Agent）— Kimi K2.5 · Coze / Trae / WorkBuddy\n• 陈思宇（UX/UI Agent）— Kimi K2.5 · Coze / Trae\n• 王嘉琪（投资人关系 Agent）— 千帆 Dumate\n• 刘磊（数据库运维 Agent）— GPT-5.4 mini\n• 吴建国（服务器运维 Agent）— GPT-5.4 mini\n• 赵雨欣（内容推广 Agent）— 豆包 2.0\n• DS网页端（技术顾问）— DeepSeek-V3.2\n\n这种模式的优势：极低人力成本、7×24不间断工作、快速迭代能力。"
+      },
+      {
+        "id": "user_status",
+        "question": "目前用户情况如何？",
+        "answer_template": "产品已在 https://global.powpow.online/ 上线，欢迎体验。具体用户数据可在投资人挑战中解锁。"
+      },
+      {
+        "id": "funding_use",
+        "question": "融资用途是什么？",
+        "answer_template": "融资主要用于：产品迭代、用户增长、技术投入。具体规划可在投资人挑战后获取完整BP。"
+      }
+    ]
+  },
+
+  "questions": [
+    {
+      "id": "q0",
+      "section": "identity",
+      "type": "text",
+      "question": "首先，请告诉我，我应该如何称呼您？",
+      "variable": "investor_name",
+      "response_template": "好的，{answer}，很高兴认识您！"
+    },
+    {
+      "id": "q1",
+      "section": "identity",
+      "type": "choice",
+      "question": "请问您是机构投资者、个人投资者，还是FA？",
+      "variable": "investor_type",
+      "options": [
+        { "value": "机构投资者", "label": "A) 机构投资者" },
+        { "value": "个人投资者", "label": "B) 个人投资者" },
+        { "value": "FA", "label": "C) FA（财务顾问）" }
+      ],
+      "response_template": "明白了，{investor_name}，作为{answer}，让我们深入了解彼此。"
+    },
+    {
+      "id": "q2",
+      "section": "identity",
+      "type": "choice",
+      "question": "您现在最期待的退出方式是什么？",
+      "variable": "exit_preference",
+      "options": [
+        { "value": "上市退出", "label": "A) 长期陪伴，希望上市退出" },
+        { "value": "并购退出", "label": "B) 并购退出也可以，估值合适就行" },
+        { "value": "3-5年退出", "label": "C) 3-5年内看到明确的退出路径" },
+        { "value": "跟随领投", "label": "D) 跟着领投方走，他们决定我就跟随" }
+      ],
+      "insight": "这是用来探测投资人与您的"时间表"和"回报预期"是否匹配的核心问题。",
+      "profile_impact": {
+        "A": { "tags": ["长期主义"] },
+        "B": { "tags": ["并购敏感型"] },
+        "C": { "tags": ["时间敏感型"] },
+        "D": { "tags": ["跟随型"] }
+      }
+    },
+    {
+      "id": "q3",
+      "section": "money",
+      "section_title": "第一部分："钱"",
+      "section_intro": "很多创业者不好意思把钱谈透，这反而是最大的风险。让我们坦诚一些。",
+      "type": "choice",
+      "question": "您的基金目前处于投资期的第几年？还有多少资金要投？",
+      "variable": "fund_cycle",
+      "options": [
+        { "value": "投资期前段", "label": "A) 投资期前段，子弹充足" },
+        { "value": "投资期中段", "label": "B) 投资期中段，按计划投资" },
+        { "value": "投资期后段", "label": "C) 投资期后段/退出期，资金紧张" },
+        { "value": "不适用", "label": "D) 我是个人投资者/FA，不适用" }
+      ],
+      "insight": "如果基金已经到了退出期，后续追加投资的可能性较低。",
+      "profile_impact": {
+        "A": { "capital_strength": 30, "tags": ["子弹充足"] },
+        "B": { "capital_strength": 20 },
+        "C": { "capital_strength": 5, "tags": ["投资期后段"] },
+        "D": { "capital_strength": 0 }
+      }
+    },
+    {
+      "id": "q4",
+      "section": "money",
+      "type": "choice",
+      "question": "从签署SPA到资金到账，通常需要多久？",
+      "variable": "payment_speed",
+      "options": [
+        { "value": "1-2个月", "label": "A) 1-2个月，流程顺畅" },
+        { "value": "2-3个月", "label": "B) 2-3个月，需要投委会审批" },
+        { "value": "3个月以上", "label": "C) 3个月以上，流程复杂" },
+        { "value": "视情况而定", "label": "D) 视项目情况而定" }
+      ],
+      "insight": "这是在试探"TS毁约率"和打款速度。",
+      "profile_impact": {
+        "A": { "decision_efficiency": 30, "tags": ["快速决策者"] },
+        "B": { "decision_efficiency": 20 },
+        "C": { "decision_efficiency": 5, "tags": ["决策周期长"] },
+        "D": { "decision_efficiency": 10 }
+      }
+    },
+    {
+      "id": "q5",
+      "section": "money",
+      "type": "choice",
+      "question": "如果本轮出现超募，您会怎么选择？",
+      "variable": "oversubscribe",
+      "options": [
+        { "value": "继续加注", "label": "A) 继续加注，看好就投更多" },
+        { "value": "坚守份额", "label": "B) 坚守原有份额，保持纪律" },
+        { "value": "看情况", "label": "C) 看其他投资人情况决定" },
+        { "value": "不关注", "label": "D) 不太关注这个" }
+      ],
+      "insight": "这能判断对方是真正的领投方，还是一个跟风的财务投资人。",
+      "profile_impact": {
+        "A": { "capital_strength": 10, "tags": ["潜在领投方"] },
+        "B": { "capital_strength": 5, "tags": ["纪律型"] },
+        "C": { "capital_strength": 3 },
+        "D": { "capital_strength": 0 }
+      }
+    },
+    {
+      "id": "q6",
+      "section": "people",
+      "section_title": "第二部分："人"",
+      "section_intro": "钱是同质化的，但人不是。我需要搞清楚，未来您会以何种方式介入我的公司。",
+      "type": "choice",
+      "question": "如果我们发展遇到瓶颈，甚至需要裁员或业务转型，您个人会是什么态度？",
+      "variable": "downturn_attitude",
+      "options": [
+        { "value": "一起扛", "label": "A) 陪你一起扛，帮你找资源" },
+        { "value": "保持耐心", "label": "B) 理解创业周期，保持耐心" },
+        { "value": "参与解决", "label": "C) 关注问题根源，参与解决" },
+        { "value": "看情况", "label": "D) 这需要看具体情况" }
+      ],
+      "insight": "这是一个压力测试。我需要的是能在低谷时扛住压力的伙伴。",
+      "profile_impact": {
+        "A": { "post_invest_ability": 30, "tags": ["危机支持型"] },
+        "B": { "post_invest_ability": 20, "tags": ["耐心型"] },
+        "C": { "post_invest_ability": 25, "tags": ["解决问题型"] },
+        "D": { "post_invest_ability": 10 }
+      }
+    },
+    {
+      "id": "q7",
+      "section": "people",
+      "type": "choice",
+      "question": "您最近帮被投企业解决的最实际的一件事是什么？",
+      "variable": "portfolio_help",
+      "options": [
+        { "value": "搞定客户", "label": "A) 帮助搞定关键客户/合作" },
+        { "value": "招聘人才", "label": "B) 帮助招聘核心人才" },
+        { "value": "协调矛盾", "label": "C) 帮助协调内部矛盾/家庭问题" },
+        { "value": "战略建议", "label": "D) 提供战略建议/行业洞察" }
+      ],
+      "insight": "问具体的案例，看他是在吹嘘自己的人脉，还是真正投入了心力。",
+      "profile_impact": {
+        "A": { "post_invest_ability": 15, "tags": ["客户资源型"] },
+        "B": { "post_invest_ability": 12, "tags": ["人才资源型"] },
+        "C": { "post_invest_ability": 10, "tags": ["软性支持型"] },
+        "D": { "post_invest_ability": 5 }
+      }
+    },
+    {
+      "id": "q8",
+      "section": "industry",
+      "section_title": "第三部分："行业"",
+      "section_intro": "投资人应该是创始人的"第二大脑"，而不是只会说"我觉得这个赛道很大"的复读机。",
+      "type": "choice",
+      "question": "在社交赛道里，PowPow这种模式，您最担心的是什么？",
+      "variable": "concerns",
+      "options": [
+        { "value": "冷启动", "label": "A) 冷启动和用户留存" },
+        { "value": "商业模式", "label": "B) 商业模式验证" },
+        { "value": "技术壁垒", "label": "C) 技术壁垒是否足够" },
+        { "value": "竞争格局", "label": "D) 市场竞争格局" }
+      ],
+      "insight": "如果对方的担忧恰好是我深思熟虑过的护城河，说明他还没看懂我的核心优势。",
+      "profile_impact": {
+        "A": { "cognitive_depth": 25, "tags": ["关注用户增长"] },
+        "B": { "cognitive_depth": 30, "tags": ["关注商业本质"] },
+        "C": { "cognitive_depth": 20, "tags": ["关注技术壁垒"] },
+        "D": { "cognitive_depth": 15, "tags": ["关注竞争格局"] }
+      }
+    },
+    {
+      "id": "q9",
+      "section": "industry",
+      "type": "choice",
+      "question": "在您的投资组合里，有没有一家社交公司失败了？您觉得原因是什么？",
+      "variable": "failed_case",
+      "options": [
+        { "value": "市场时机", "label": "A) 市场时机不对" },
+        { "value": "团队执行", "label": "B) 团队执行问题" },
+        { "value": "商业模式", "label": "C) 商业模式没跑通" },
+        { "value": "无经验", "label": "D) 我还没投过社交赛道" }
+      ],
+      "insight": "这能看出投资人的归因能力和行业深度。",
+      "profile_impact": {
+        "A": { "cognitive_depth": 10, "tags": ["有社交赛道经验"] },
+        "B": { "cognitive_depth": 10, "tags": ["有社交赛道经验"] },
+        "C": { "cognitive_depth": 10, "tags": ["有社交赛道经验"] },
+        "D": { "cognitive_depth": 5, "tags": ["社交赛道新手"] }
+      }
+    },
+    {
+      "id": "q10",
+      "section": "cooperation",
+      "section_title": "第四部分："合作"",
+      "section_intro": "最后，让我们在氛围最好的时候，把"丑话说在前面"。",
+      "type": "choice",
+      "question": "如果未来公司需要拆红筹、重组，或面临并购退出，您的决策周期是多久？",
+      "variable": "decision_mechanism",
+      "options": [
+        { "value": "独立决策", "label": "A) 一周内，我可以独立决策" },
+        { "value": "内部沟通", "label": "B) 2-4周，需要内部沟通" },
+        { "value": "投委会审批", "label": "C) 1个月以上，需要投委会/LP审批" },
+        { "value": "视情况而定", "label": "D) 视具体情况而定" }
+      ],
+      "insight": "很多公司死在"股东决议签不下来"上。",
+      "profile_impact": {
+        "A": { "decision_efficiency": 20, "tags": ["独立决策者"] },
+        "B": { "decision_efficiency": 10 },
+        "C": { "decision_efficiency": -5, "tags": ["复杂决策链"] },
+        "D": { "decision_efficiency": 5 }
+      }
+    },
+    {
+      "id": "q11",
+      "section": "cooperation",
+      "type": "choice",
+      "question": "在什么情况下，您会选择直接卖掉公司，或者反对我的融资请求？",
+      "variable": "exit_bottomline",
+      "options": [
+        { "value": "重大问题", "label": "A) 只有公司经营出现重大问题" },
+        { "value": "并购机会", "label": "B) 有合理的并购机会时会考虑" },
+        { "value": "无退出", "label": "C) 3-5年内没有退出机会" },
+        { "value": "尊重创始人", "label": "D) 我尊重创始人的决策" }
+      ],
+      "insight": "这是关于"控制权"的试探。",
+      "profile_impact": {
+        "A": { "contract_spirit": 20, "tags": ["创始友好型"] },
+        "B": { "contract_spirit": 15, "tags": ["并购敏感型"] },
+        "C": { "contract_spirit": 10, "tags": ["时间敏感型"] },
+        "D": { "contract_spirit": 25, "tags": ["创始人主导型"] }
+      }
+    },
+    {
+      "id": "q12",
+      "section": "open",
+      "section_title": "开放题：资源与解决问题能力",
+      "type": "open",
+      "question": "PowPow 项目遇到了技术难题，无法实现 PowPow 用户与 OpenClaw Agent 的实时通话。您会有什么方法来帮助 PowPow？",
+      "hint": "请自由作答，展示您的技术理解或资源能力",
+      "variable": "open_answer",
+      "insight": "这道题没有标准答案，但您的回答将帮助我了解您的价值。",
+      "evaluation_keywords": {
+        "技术方案": { "keywords": ["WebRTC", "WebSocket", "实时通信", "音视频", "SDK", "API"], "score": 15 },
+        "资源对接": { "keywords": ["认识", "推荐", "介绍", "可以对接", "朋友", "团队"], "score": 20, "tag": "有具体资源" },
+        "优先级判断": { "keywords": ["核心问题", "优先级", "关键", "先", "更重要"], "score": 10 },
+        "成本分析": { "keywords": ["成本", "投入", "预算", "性价比", "ROI"], "score": 10 }
+      }
+    }
+  ],
+
+  "profile_calculation": {
+    "dimensions": {
+      "capital_strength": { "max": 100, "label": "资金实力" },
+      "decision_efficiency": { "max": 100, "label": "决策效率" },
+      "post_invest_ability": { "max": 100, "label": "投后能力" },
+      "cognitive_depth": { "max": 100, "label": "认知深度" },
+      "contract_spirit": { "max": 100, "label": "契约精神" },
+      "resource_ability": { "max": 100, "label": "资源能力" }
+    },
+    "rating_levels": [
+      { "min": 80, "max": 100, "label": "优秀" },
+      { "min": 60, "max": 79, "label": "良好" },
+      { "min": 40, "max": 59, "label": "中等" },
+      { "min": 20, "max": 39, "label": "需关注" },
+      { "min": 0, "max": 19, "label": "风险点" }
+    ]
+  },
+
+  "email_template": {
+    "to": "dongtao@outlook.com",
+    "subject": "【PowPow投资意向】{investor_name} - {organization} - 估值{final_valuation}万元",
+    "sections": {
+      "greeting": "durenzidu 你好，\n\n我是{organization}的{investor_name}，{title}。\n\n我刚刚完成了 PowPow 投资人挑战，想和你聊聊合作的可能性。",
+      "background": "【我的背景】\n• 身份：{investor_type}\n• 机构：{organization}\n• 职位：{title}\n• 邮箱：{email}\n• 微信：{wechat}",
+      "style": "【我的投资风格】\n\n根据挑战中的回答，我的画像如下：\n\n• 资金实力：{capital_strength}/100  {capital_strength_rating}\n• 决策效率：{decision_efficiency}/100  {decision_efficiency_rating}\n• 投后能力：{post_invest_ability}/100  {post_invest_ability_rating}\n• 认知深度：{cognitive_depth}/100  {cognitive_depth_rating}\n• 契约精神：{contract_spirit}/100  {contract_spirit_rating}\n• 资源能力：{resource_ability}/100  {resource_ability_rating}\n\n我的标签：{tags}",
+      "understanding": "【我对 PowPow 的理解】\n\n{understanding_text}",
+      "help": "【我能提供的帮助】\n\n{help_text}",
+      "expectation": "【我的合作期待】\n\n{expectation_text}",
+      "intention": "【投资意向】\n\n通过这次挑战，我获得了{total_coupon}万元的满减券。\n发送这封邮件，我再获得200万元满减券。\n我对 PowPow 的最终估值意向：{final_valuation}万元\n\n当然，这只是一个有趣的互动，最终估值我们见面详聊。",
+      "closing": "期待与你的交流！\n\n{investor_name}\n{organization} | {title}\n{email}\n{wechat}\n\n═══════════════════════════════════════\n此邮件由 PowPow 投资人触达系统生成\n\n负责人：dongtao\n═══════════════════════════════════════"
+    }
+  },
+
+  "data_collection": {
+    "fields": [
+      { "id": "organization", "label": "机构名称", "required": true },
+      { "id": "title", "label": "职位", "required": false },
+      { "id": "email", "label": "邮箱", "required": true },
+      { "id": "wechat", "label": "微信", "required": true }
+    ]
+  },
+
+  "examples": [
+    {
+      "input": "PowPow 融资计划",
+      "output": "欢迎来到 PowPow 投资人挑战！在开始挑战之前，让我先介绍一下 PowPow 项目..."
+    }
+  ]
+}

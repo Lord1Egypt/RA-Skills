@@ -1,35 +1,187 @@
 ---
-name: "小程序国际化适配Skill"
-description: "微信小程序境外用户体验适配。当开发者需要适配境外用户账号登录、表单国际化、英文搜索触达、多语言服务、翻译后排版溢出检测时使用此 Skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miniprogram-foreign-user-adaptation"
-sourceUrl: "https://clawhub.ai/skills/miniprogram-foreign-user-adaptation"
+name: overseas-adaptation
+description: 微信小程序境外用户体验适配。当开发者需要适配境外用户账号登录、表单国际化、英文搜索触达、多语言服务、翻译后排版溢出检测时使用此 Skill。
+when_to_use: |
+  当用户提到以下关键词时自动激活：境外用户、国际化适配、overseas、international phone number、邮箱验证、护照验证、passport、英文搜索、多语言、i18n、翻译溢出、语言路由、差异化界面。当用户操作小程序项目文件（.wxml/.wxss/.js/.json）且涉及境外/国际化场景时也应考虑激活。
+argument-hint: [小程序项目路径 或 问题描述]
+allowed-tools: Read Grep WebFetch Bash(node *)
 ---
 
-# 小程序国际化适配Skill
+# 微信小程序境外用户体验适配 Skill
 
-> 微信小程序境外用户体验适配。当开发者需要适配境外用户账号登录、表单国际化、英文搜索触达、多语言服务、翻译后排版溢出检测时使用此 Skill。
+> 帮助开发者消除境外用户在使用小程序时的体验卡点，从账号体系、信息录入、UI 排版三个维度提供完整的适配方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miniprogram-foreign-user-adaptation`
-- **Source URL:** [https://clawhub.ai/skills/miniprogram-foreign-user-adaptation](https://clawhub.ai/skills/miniprogram-foreign-user-adaptation)
+## 工作流程
 
-## Overview
+### 第一步：运行自动扫描（工具无关）
 
+对用户的小程序项目运行扫描工具，获取问题清单和优先级排序。不要依赖特定 AI 工具的环境变量（如 `CLAUDE_SKILL_DIR`）。
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/miniprogram-foreign-user-adaptation
+# 方式 A（推荐，适用于大多数工具）：先进入技能目录再执行
+cd <技能目录>/validation
+npm install
+node scan-project.js --project <小程序项目路径>
 ```
+
+```bash
+# 方式 B（已安装依赖时，可直接从技能根目录执行）
+node validation/scan-project.js --project <小程序项目路径>
+```
+
+扫描工具输出 `validation/reports/scan-report.md` 和 `validation/reports/scan-result.json`，包含：
+
+- P0 (必须修复): 翻译后确定溢出的文案 / 账号表单硬阻塞（如 +86 硬编码、11 位长度校验、姓名仅限中文）
+- P1 (建议修复): 翻译后可能溢出的文案 / CSS 固定宽度容器缺少 overflow 保护
+
+扫描覆盖 4 种目标语言的溢出预测: English(3.0x)、Spanish(3.5x)、French(3.5x)、German(4.0x)。
+
+若运行时报错 `Cannot find module 'fast-glob'`，说明依赖未安装，请在 `validation` 目录重新执行 `npm install` 后再运行。
+
+### 第二步：基于扫描结果定位并修复
+
+按 P0 -> P1 优先级，结合下方三个维度的适配指引和代码示例给出修复方案。
+
+### 第三步：执行进度追踪
+
+在回复中维护以下清单：
+
+```markdown
+## 适配进度
+- [ ] 1. 确认业务类型和目标用户群
+- [ ] 2. 完成账号体系适配（手机号国际化 + 邮箱通道）
+- [ ] 3. 完成信息录入字段国际化（证件/姓名/地址）
+- [ ] 4. 完成搜索触达优化（小程序名称/简介补充英文，MP 后台操作）
+- [ ] 5. 完成差异化UI策略实施（语言路由 + 国际版界面）
+- [ ] 6. 完成多语言排版优化
+- [ ] 7. 完成端到端测试验证
+- [ ] 8. 完成上线前自检
+```
+
+---
+
+## 1. 账号体系
+
+境外用户最常见的阻塞: 手机号只支持 +86、校验硬编码 11 位、无邮箱备选通道。
+
+| 适配项 | 说明 | 优先级 |
+|--------|------|--------|
+| 兼容国际区号 | 允许用户选择非 +86 区号 | P0 |
+| 兼容国际号码位数 | 放宽"手机号必须为11位"的校验限制 | P0 |
+| 邮箱验证入口 | 国际短信可能延迟/拦截，邮箱是关键降级通道 | P0 |
+| 国际短信通道 | 接入 Twilio 等支持全球发送的短信服务商 | P0 |
+
+**两种手机号收集方式**:
+- 方式一（推荐）: 接入微信"手机号快速验证"组件，平台已支持国际手机号返回
+- 方式二: 自行搭建国际区号选择器 + 验证码通道，需根据区号动态校验位数
+
+完整代码示例见 [reference.md](reference.md) 第 1 节。
+
+---
+
+## 2. 信息录入
+
+| 字段 | 原始限制 | 适配后 | 优先级 |
+|------|---------|--------|--------|
+| 姓名字符集 | 仅汉字 | 汉字 + 英文 + 空格 + 连字符 + 撇号 | P0 |
+| 姓名长度 | 2-10 字符 | 1-50 字符 | P0 |
+| 证件类型 | 仅身份证 | 身份证 + 护照 + 永居证 + 港澳台通行证 | P0 |
+| 手机号位数 | 固定 11 位 | 按区号动态校验（8-15 位） | P0 |
+| 手机号区号 | 仅 +86 | 支持国际区号选择 | P0 |
+| 地址格式 | 省/市/区三级联动 | 增加自由文本输入选项 | P1 |
+
+核心修改点: 证件类型需扩展护照等选项并用宽松正则校验；姓名正则从 `[\u4e00-\u9fa5]{2,10}` 放宽为 `[\u4e00-\u9fa5A-Za-z\s\-'\.]{1,50}`；地址增加境外用户自由文本输入。
+
+完整代码示例见 [reference.md](reference.md) 第 2 节。
+
+---
+
+## 3. 差异化 UI 与排版优化
+
+### 3.1 语言路由分流
+
+通过 `wx.getAppBaseInfo()` 检测用户语言，对非中文用户隐藏营销弹窗、裂变分享、积分任务等国内特有功能，保留核心服务入口。
+
+| 组件 | 国内版 | 国际版 |
+|------|--------|--------|
+| 营销弹窗 | 显示 | 隐藏 |
+| 裂变分享入口 | 显示 | 隐藏 |
+| 积分任务体系 | 显示 | 隐藏 |
+| 核心服务入口 | 显示 | 显示 |
+| 通用图标 | 按需 | 增加（减少对纯文本的依赖） |
+
+### 3.2 翻译后溢出预测
+
+中文文案翻译后变长（如"提交" -> "Einreichen"），在固定宽度容器中溢出。扫描工具已内置此检测能力。
+
+**溢出风险扫描模式速查**:
+
+| 风险模式 | 识别方法 | 修复方向 |
+|----------|----------|----------|
+| 固定宽度容器 + 无 overflow | `width: Nrpx` 且无 `overflow`/`text-overflow`/`word-break` | 改为 `min-width` + `padding` 或加 `text-overflow: ellipsis` |
+| 固定高度单行文本 | `height` 和 `line-height` 相同，无 `overflow` | 改用 `min-height` 或加 `overflow: hidden` |
+| `!important` 修饰的尺寸 | `width: Nrpx !important` | 移除 `!important`，改为弹性布局 |
+| 纯中文假设的宽度 | 中文 N 字对应的固定宽度 | 改为 `padding` + `min-width` 自适应 |
+| 无 `word-break` 的全局样式 | `app.wxss` 缺少全局排版防护 | 全局添加 `word-break: break-word` |
+
+**溢出风险判定**:
+
+| 比率（估算宽度 / 容器宽度） | 风险等级 | 含义 |
+|-----|------|------|
+| > 1.0 | HIGH | 几乎确定溢出，必须修复 |
+| 0.8 - 1.0 | MEDIUM | 有溢出风险，建议修复 |
+| < 0.8 | LOW | 溢出可能性小 |
+
+完整代码示例见 [reference.md](reference.md) 第 4 节。
+
+---
+
+## 4. 优先级速查表
+
+| 优先级 | 适配项 | 说明 |
+|--------|--------|------|
+| **P0** | 手机号兼容国际区号和位数 | 直接影响用户注册和使用 |
+| **P0** | 邮箱验证入口 | 短信不可达时的关键降级通道 |
+| **P0** | 证件类型扩展 + 姓名规则放宽 | 实名场景下的基本可用性 |
+| **P1** | 小程序名称/简介补充英文 | 提升境外搜索触达率；MP 后台设置双语名称（如"故宫 Forbidden City"），project.config.json 的 projectname 和 app.json 的 navigationBarTitleText 不应为默认值 |
+| **P1** | 国际短信服务商接入 | 保障验证码送达 |
+| **P2** | 多语言适配 | 平台翻译已可用（零成本）；自建 i18n 为可选增强方案，详见 reference.md 第 3 节 |
+| **P2** | 差异化 UI（语言路由分流） | 减少境外用户理解成本 |
+
+---
+
+## 安全提醒
+
+- 手机号和邮箱等用户信息必须加密存储，不得明文记录在日志中
+- 验证码需设置有效期（建议 5 分钟）
+- 限制验证码发送频率，防止短信轰炸攻击
+- 国际短信服务商 API 密钥不得出现在前端代码或公共仓库中
+
+---
+
+## AI 输出模板
+
+```markdown
+## 结论
+[一句话说明当前适配状态/已定位的问题]
+
+## 执行清单
+- 已完成：
+  - [item]
+- 待完成：
+  - [item]
+
+## 风险与阻塞
+- [风险或阻塞项]
+
+## 下一步
+1. [最小可执行动作]
+2. [下一步验证动作]
+```
+
+---
+
+## 问题反馈与交流通道
+
+- 小程序境外开放交流专区: https://developers.weixin.qq.com/community/minihome/mixflow/3721056300659130376
+- 小程序境外业务邮箱: miniprogram_global@tencent.com

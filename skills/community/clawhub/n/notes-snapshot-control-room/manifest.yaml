@@ -1,0 +1,36 @@
+schema_version: 1
+artifact: public-skill-listing-manifest
+
+skill:
+  name: notes-snapshot-control-room
+  display_name: Apple Notes Snapshot Control-Room
+  version: 1.0.2
+  entrypoint: SKILL.md
+  package_shape: skill-folder
+
+registry_targets:
+  clawhub:
+    status: ready-but-not-listed
+    package_shape: skill-folder
+    submit_via: clawhub publish <repo-root>/examples/public-skills/notes-snapshot-control-room --slug notes-snapshot-control-room --name "Apple Notes Snapshot Control-Room" --version 1.0.2 --tags apple-notes,local-first,backup,mcp
+  openhands-extensions:
+    status: folder-ready
+    package_shape: skill-folder
+    submit_via: import the skill folder into the current OpenHands skills or extensions flow
+
+boundaries:
+  product_identity: Apple Notes local-first backup control room for macOS
+  attach_proof_baseline: Tagged v0.1.12 named-host attach proof is the last repo-owned baseline; other machines still need local verification.
+  official_listing_state: not-yet-listed
+  not_claimed:
+    - No live ClawHub listing exists yet
+    - No live OpenHands skill listing exists yet
+    - No hosted runtime or Docker lane for the full product
+    - No universal attach proof on every machine
+
+pair_with:
+  - SKILL.md
+  - ../README.md
+  - references/install-and-attach.md
+  - references/usage-and-proof.md
+  - ../../integration-pack/builder-contract.manifest.json

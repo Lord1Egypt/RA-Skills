@@ -1,35 +1,133 @@
----
-name: "China Stock Sentiment"
-description: "实时监控A股舆情、百度热搜及新闻情感，追踪热点板块与个股，辅助投资决策与风险管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-stock-sentiment"
-sourceUrl: "https://clawhub.ai/skills/china-stock-sentiment"
----
-
 # China Stock Sentiment
 
-> 实时监控A股舆情、百度热搜及新闻情感，追踪热点板块与个股，辅助投资决策与风险管理。
+A 股舆情分析 + 百度热搜 + 新闻情感分析技能。帮助投资者实时监控市场情绪、热点板块、个股舆情，辅助投资决策。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-stock-sentiment`
-- **Source URL:** [https://clawhub.ai/skills/china-stock-sentiment](https://clawhub.ai/skills/china-stock-sentiment)
+## 触发词
 
-## Overview
+股票、A 股、舆情、 sentiment、股市、投资、百度热搜、市场分析、stock、sentiment
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/china-stock-sentiment
+### 1. 舆情监控
+
+- 实时监控百度热搜榜股票相关话题
+- 抓取财经新闻并分析情感倾向
+- 个股舆情热度追踪
+- 板块热点分析
+
+### 2. 情感分析
+
+- 新闻标题/内容情感评分 (正面/中性/负面)
+- 社交媒体情绪分析
+- 舆情趋势图表
+- 异常波动预警
+
+### 3. 热点追踪
+
+- 热门股票话题排行
+- 板块轮动监控
+- 政策影响分析
+- 突发事件提醒
+
+### 4. 投资决策辅助
+
+- 舆情与股价关联分析
+- 买入/卖出信号提示
+- 风险提示
+- 投资组合建议
+
+### 5. 报告生成
+
+- 每日舆情简报
+- 周度市场情绪报告
+- 个股深度分析
+- 自定义报告模板
+
+## 配置
+
+### API 配置
+
+本技能使用以下免费 API:
+
+- 百度热搜 (baidu-hot-cn 技能)
+- 股票数据 (stock-monitor 技能)
+- 新闻抓取 (web_fetch/web_search)
+- 情感分析 (内置模型)
+
+### 数据存储
+
+舆情数据存储在本地 Markdown 文件中:
+
+- `memory/stock-sentiment/` - 每日舆情记录
+- `memory/stock-sentiment/reports/` - 生成的报告
+
+## 使用示例
+
+### 查看今日舆情
+
 ```
+查看今天 A 股市场舆情
+今天股票热搜榜是什么
+```
+
+### 个股分析
+
+```
+分析贵州茅台的舆情
+查看宁德时代的新闻情感
+```
+
+### 板块监控
+
+```
+新能源板块舆情如何
+今天哪个板块最热门
+```
+
+### 生成报告
+
+```
+生成本周股市舆情报告
+创建今日市场情绪简报
+```
+
+### 设置提醒
+
+```
+当茅台舆情异常时提醒我
+监控宁德时代的热度变化
+```
+
+## 定价
+
+- **免费版**: $0 - 每日 3 次查询 + 基础舆情
+- **专业版**: $19.99/月 - 无限查询 + 实时预警 + 深度报告
+- **机构版**: $49.99/月 - API 访问 + 定制模型 + 多账号
+
+## 变现方式
+
+1. **SkillPay**: 通过 ClawHub 订阅收费
+2. **付费报告**: 深度个股分析报告 ($9.99/份)
+3. **定制服务**: 为投资机构定制舆情监控系统
+4. **培训服务**: 舆情分析培训课程
+
+## 开发状态
+
+- [x] 技能框架创建
+- [ ] 百度热搜集成
+- [ ] 新闻抓取功能
+- [ ] 情感分析模型
+- [ ] 数据存储功能
+- [ ] 报告生成
+- [ ] 预警系统
+- [ ] ClawHub 发布
+
+## 更新日志
+
+### v0.1.0 (2026-03-14)
+- 初始版本创建
+- 基础框架搭建
+
+---
+
+*本技能由周田田开发 💕*

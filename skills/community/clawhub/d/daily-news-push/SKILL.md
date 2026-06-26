@@ -1,35 +1,115 @@
 ---
-name: "daily-news-push"
-description: "通用每日早报自动生成和推送服务。支持任意领域，自动搜索过去24小时指定领域资讯，按固定格式整理推送到指定渠道。支持企业微信、飞书、Webhook多种渠道。触发词：每日早报，早报推送，自动日报，新闻推送。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-news-push"
-sourceUrl: "https://clawhub.ai/skills/daily-news-push"
+name: daily-news-push
+description: 通用每日早报自动生成和推送服务。支持任意领域，自动搜索过去24小时指定领域资讯，按固定格式整理推送到指定渠道。支持企业微信、飞书、Webhook多种渠道。触发词：每日早报，早报推送，自动日报，新闻推送。
 ---
 
-# daily-news-push
+# 通用每日早报推送技能
 
-> 通用每日早报自动生成和推送服务。支持任意领域，自动搜索过去24小时指定领域资讯，按固定格式整理推送到指定渠道。支持企业微信、飞书、Webhook多种渠道。触发词：每日早报，早报推送，自动日报，新闻推送。
+**支持任意领域**，自动搜索过去24小时指定领域资讯，按照固定格式整理生成早报，并推送到配置的渠道。支持企业微信、飞书、Webhook多种渠道，易于扩展，可在任意 OpenClaw 部署环境使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-news-push`
-- **Source URL:** [https://clawhub.ai/skills/daily-news-push](https://clawhub.ai/skills/daily-news-push)
+## 核心功能
 
-## Overview
+1. **任意领域支持**：用户只需要说关注什么领域，自动生成该领域每日早报（AI/区块链/生物医药/金融...都支持）
+2. **智能信息源推荐**：AI自动分析判断，针对不同领域自动推荐优质核心信息源，**用户无需手动配置**。也支持自定义覆盖
+3. **通用自动搜索**：使用 OpenClaw 标准 `web_search` 工具，兼容性更强，所有部署环境通用
+4. **内容筛选**：按照24小时/48小时时效规则筛选，超过24小时标注，超过48小时剔除
+5. **格式编排**：按照固定结构整理成清晰易读的Markdown格式
+6. **多渠道支持**：企业微信/飞书/Webhook开箱即用，灵活配置
+7. **灵活定时**：用户自定义推送时间，cron配置自由修改
 
+## 标准结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-news-push
+生成的早报遵循固定格式：
+
 ```
+📰 {领域}早报 | YYYY.MM.DD
+过去24小时{领域}最新动态
+
+🔝 头条
+[大标题] | 发布时间
+核心信息1
+核心信息2
+来源：[渠道] | [原文链接]
+
+🏢 国际动态
+- [内容] 来源：[渠道] | [原文链接]
+
+🇨🇳 国内动态
+- [内容] 来源：[渠道] | [原文链接]
+
+📄 深度/学术
+- [内容] 来源：[渠道] | [原文链接]
+
+📊 今日观察
+（一段简短的行业观察/趋势总结）
+```
+
+分类名称也可通过配置自定义。
+
+## 新安装向导
+
+首次安装后，运行初始化向导，交互式配置：
+
+```bash
+cd scripts
+python init_config.py
+```
+
+脚本会依次询问：
+1. **你关注的领域是什么？**（例如：AI人工智能、区块链、生物医药、互联网科技...）
+2 **选择推送渠道**：企业微信/飞书/Webhook
+3. **填写接收人ID**：根据渠道填入对应ID
+4. **设置推送时间**：cron表达式，默认每日8:30
+
+回答完问题自动生成 `config.py`，直接可用！
+
+## 手动配置
+
+如果你不想交互式配置，也可以手动配置，参考 `references/config.md`：
+
+- 修改关注领域
+- 修改推送渠道类型（wecom/feishu/webhook）
+- 设置接收人ID
+- 设置推送时间（cron表达式，默认每日8:30）
+
+## 生成并推送
+
+配置完成后直接运行：
+
+```bash
+cd scripts
+python generate_and_send.py
+```
+
+## 设置定时任务
+
+添加到 crontab 实现每日自动推送：
+
+```bash
+# 编辑 crontab
+crontab -e
+# 添加一行（修改路径和时间为你配置的）
+30 8 * * * cd /path/to/daily-news-push/scripts && python generate_and_send.py
+```
+
+## 渠道扩展
+
+要添加新的推送渠道，只需在 `scripts/channels/` 中新增一个渠道实现类，
+遵循 `BaseChannel` 接口，实现 `send` 方法即可。
+
+## 资源
+
+### scripts/
+- `generate_and_send.py` - 主入口：生成+推送完整流程
+- `init_config.py` - 初始化配置向导（交互式）
+- `news_generator.py` - 核心生成逻辑（搜索、筛选、排版）
+- `config.example.py` - 配置模板
+- `channels/` - 各渠道发送实现
+  - `base.py` - 基础接口定义
+  - `wecom.py` - 企业微信渠道
+  - `feishu.py` - 飞书渠道
+  - `webhook.py` - 通用Webhook渠道
+
+### references/
+- `config.md` - 详细配置说明
+- `format.md` - 格式规范参考

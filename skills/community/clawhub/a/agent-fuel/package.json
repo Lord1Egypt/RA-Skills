@@ -1,0 +1,29 @@
+{
+  "name": "agent-fuel",
+  "version": "1.0.0",
+  "description": "Autonomous agent wallet management with MoonPay auto top-up, x402 payments, and OpenWallet Standard",
+  "main": "dist/monitor.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/monitor.js",
+    "check": "node dist/monitor.js"
+  },
+  "keywords": [
+    "ai-agent",
+    "moonpay",
+    "x402",
+    "wallet",
+    "openclaw",
+    "auto-fuel",
+    "gas-management"
+  ],
+  "author": "Zedit42",
+  "license": "MIT",
+  "dependencies": {
+    "@moonpay/cli": "^1.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "腾讯微云",
+  "installedAt": 1780316975526,
+  "source": "marketplace",
+  "version": "1.0.10",
+  "skillId": "skill_2053083167882870784",
+  "examples_zh": [
+    "帮我查看微云网盘里有哪些文件",
+    "把这个文件上传到微云",
+    "下载微云里的项目文档"
+  ],
+  "examples_en": [
+    "List all files in my Weiyun cloud drive",
+    "Upload this file to Weiyun",
+    "Download the project doc from my cloud drive"
+  ],
+  "iconSource": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/weiyun.svg",
+  "iconLocalPath": "/Users/reky/.workbuddy/skills/skill_2053083167882870784/_icon.svg",
+  "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/weiyun.svg"
+}

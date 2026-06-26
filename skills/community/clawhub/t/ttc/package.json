@@ -1,0 +1,63 @@
+{
+  "name": "@lucasygu/ttc",
+  "version": "0.1.7",
+  "description": "CLI for Toronto Transit Commission — real-time bus & streetcar arrivals, vehicle tracking, and alerts from the terminal",
+  "type": "module",
+  "main": "./dist/lib/client.js",
+  "exports": {
+    ".": "./dist/lib/client.js",
+    "./gtfs": "./dist/lib/gtfs.js"
+  },
+  "bin": {
+    "ttc": "dist/cli.js"
+  },
+  "files": [
+    "dist/",
+    "data/",
+    "scripts/",
+    "helpers/",
+    "SKILL.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js",
+    "dev": "tsc --watch",
+    "update-gtfs": "npx tsx scripts/update-gtfs.ts",
+    "prepublishOnly": "npm run build",
+    "postinstall": "node scripts/postinstall.js",
+    "preuninstall": "node scripts/preuninstall.js",
+    "start": "node dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "ttc",
+    "toronto",
+    "transit",
+    "gtfs",
+    "gtfs-rt",
+    "bus",
+    "streetcar",
+    "realtime",
+    "cli",
+    "claude-code",
+    "claude-code-skill"
+  ],
+  "author": "lucasygu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasygu/ttc-cli.git"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "kleur": "^4.1.5",
+    "gtfs-realtime-bindings": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

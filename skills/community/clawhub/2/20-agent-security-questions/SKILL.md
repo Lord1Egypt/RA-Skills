@@ -1,35 +1,37 @@
 ---
-name: "20 Agent Security Questions"
-description: "Automation skill for 20 Agent Security Questions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/20-agent-security-questions"
-sourceUrl: "https://clawhub.ai/skills/20-agent-security-questions"
----
+name: agent-security-questions
+description: 工作问题收集与分析Skill - 收集AI Agent工作过程中的问题，分析风险，转化为研究课题
+metadata:
+  openclaw:
+    emoji: ❓
+    version: 1.0.0
 
-# 20 Agent Security Questions
+# ❓ agent-security-questions
 
-> Automation skill for 20 Agent Security Questions.
+> 工作问题收集与分析Skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/20-agent-security-questions`
-- **Source URL:** [https://clawhub.ai/skills/20-agent-security-questions](https://clawhub.ai/skills/20-agent-security-questions)
+## 功能
 
-## Overview
+1. **问题收集** - 收集工作过程中的问题
+2. **分类分析** - 分析问题类型和风险
+3. **研究转化** - 将问题转化为研究课题
+4. **知识沉淀** - 沉淀为知识库
 
+## 问题类型
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 类型 | 说明 |
+|------|------|
+| 工作问题 | Agent工作过程中的问题 |
+| 安全风险 | 安全相关风险 |
+| 机制问题 | 智能体机制问题 |
+| 产出问题 | 产出质量问题 |
+| 沟通问题 | 人机协作问题 |
+
+## 使用
+
 ```bash
-hermes skills install clawhub/20-agent-security-questions
+./src/questions.sh add "问题描述"
+./src/questions.sh list
+./src/questions.sh analyze
 ```
+

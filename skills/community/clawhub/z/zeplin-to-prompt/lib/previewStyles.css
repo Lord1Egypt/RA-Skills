@@ -1,0 +1,76 @@
+html, body { height: 100%; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f5f5; margin: 0; padding: 24px; box-sizing: border-box; }
+.layout-left { display: flex; flex-direction: column; gap: 24px; background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); padding: 16px; overflow: auto; max-height: calc(100vh - 48px); }
+.layout-right { position: fixed; right: 0; top: 0; height: 100vh; width: 560px; display: flex; flex-direction: column; background: #fff; box-shadow: -2px 0 20px rgba(0,0,0,0.18); z-index: 1000; transform: translateX(100%); transition: transform 0.25s ease; overflow: hidden; }
+.layout-right.open { transform: translateX(0); }
+.layout-right > * { padding: 16px; overflow-y: auto; overflow-x: hidden; flex: 1; }
+.layout-right h3 { margin-top: 0; }
+.sidebar-btns { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 1001; display: flex; flex-direction: column; gap: 4px; }
+.debug-toggle-btn { background: #1a73e8; color: #fff; border: none; border-radius: 6px 0 0 6px; padding: 14px 6px; cursor: pointer; writing-mode: vertical-rl; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; box-shadow: -2px 0 8px rgba(0,0,0,0.15); transition: background 0.15s ease; }
+.debug-toggle-btn:hover { background: #1557b0; }
+.debug-toggle-btn.active { background: #374151; }
+.multi-select-btn { background: #059669; color: #fff; border: none; border-radius: 6px 0 0 6px; padding: 14px 6px; cursor: pointer; writing-mode: vertical-rl; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; box-shadow: -2px 0 8px rgba(0,0,0,0.15); transition: background 0.15s ease; }
+.multi-select-btn:hover { background: #047857; }
+.multi-select-btn.active { background: #374151; }
+.layer.multi-selected { outline: 2px solid #059669 !important; box-shadow: 0 0 0 2px rgba(5,150,105,0.3) !important; }
+.layer.multi-selected::before { content: "✓"; position: absolute; left: 2px; top: 2px; min-width: 14px; height: 14px; padding: 0 3px; border-radius: 999px; background: #059669; color: #fff; font-size: 10px; line-height: 14px; font-weight: 700; text-align: center; pointer-events: none; z-index: 2; }
+.multi-select-toolbar { position: sticky; bottom: 0; left: 0; z-index: 1999; margin-top: 8px; padding: 8px 12px; background: #1e293b; border-radius: 8px; display: none; align-items: center; gap: 8px; flex-wrap: wrap; }
+.multi-select-toolbar.visible { display: flex; }
+.multi-select-count { color: #94a3b8; font-size: 12px; flex: 1; min-width: 60px; }
+.multi-select-toolbar button { border: none; border-radius: 5px; padding: 5px 10px; font-size: 12px; cursor: pointer; background: #2563eb; color: #fff; }
+.multi-select-toolbar .btn-clear { background: #475569; }
+.multi-select-toolbar button:hover { opacity: 0.85; }
+.page-header { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.back-link { font-size: 12px; color: #6b7280; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 2px; }
+.back-link:hover { color: #1a73e8; }
+h1 { margin: 0; font-size: 18px; }
+.zeplin-link { font-size: 12px; color: #1a73e8; text-decoration: none; word-break: break-all; }
+.zeplin-link:hover { text-decoration: underline; }
+.meta { color: #888; font-size: 12px; margin: 0; }
+h2 { margin-top: 0; margin-bottom: 0; font-size: 14px; color: #555; }
+ul.tree { list-style: none; padding-left: 0; margin-left: 0; }
+ul.tree > li { margin-bottom: 4px; }
+details > summary { cursor: pointer; padding: 4px 8px; background: #fff; border-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+details[open] > summary { background: #e8f0ff; }
+details > ul { margin-left: 20px; }
+summary::-webkit-details-marker { display: none; }
+.preview { background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: inline-block; }
+.canvas { position: relative; background: #fdfdfd; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); overflow: hidden; }
+.layer { position: absolute; box-sizing: border-box; }
+.screen-bg { position: absolute; left: 0; top: 0; display: block; pointer-events: none; z-index: 0; }
+.layer:hover { outline: 1px dashed rgba(0,0,0,0.2); }
+.layer.hover-target { outline: 2px solid #1a73e8 !important; box-shadow: 0 0 0 2px rgba(26,115,232,0.2); }
+.layer.hover-descendant { outline: 1px dashed rgba(26,115,232,0.6); }
+.layer.selected-target { outline: 2px solid #fbbc04 !important; box-shadow: 0 0 0 2px rgba(251,188,4,0.25); }
+.layer.selected-descendant { outline: 1px dashed rgba(251,188,4,0.55); }
+.layer.has-instruction { box-shadow: inset 0 0 0 2px rgba(37, 99, 235, 0.85); }
+.layer.has-instruction::after { content: "P"; position: absolute; right: 2px; top: 2px; min-width: 14px; height: 14px; padding: 0 3px; border-radius: 999px; background: #2563eb; color: #fff; font-size: 10px; line-height: 14px; font-weight: 700; text-align: center; pointer-events: none; z-index: 1; }
+.layer-desc { padding: 4px 0; border-radius: 6px; transition: background 0.2s ease, box-shadow 0.2s ease; }
+.layer-desc.hovered { background: rgba(26,115,232,0.08); box-shadow: inset 0 0 0 1px rgba(26,115,232,0.35); }
+.layer-desc.selected { background: rgba(251,188,4,0.16); box-shadow: inset 0 0 0 1px rgba(251,188,4,0.45); }
+.layer-desc > details > summary { outline: none; }
+.layer-desc.has-instruction > details > summary::after { content: "instruction"; display: inline-block; margin-left: 8px; padding: 1px 6px; border-radius: 999px; background: #dbeafe; color: #1d4ed8; font-size: 11px; font-weight: 600; vertical-align: middle; }
+.preview-section { position: relative; isolation: isolate; }
+.preview-instruction-editor { position: sticky; left: 0; bottom: 0; z-index: 2000; margin-top: 12px; padding: 12px; border-radius: 10px; background: #f8fafc; border: 1px solid #dbeafe; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12); display: none; pointer-events: auto; }
+.preview-instruction-editor.visible { display: block; }
+.preview-instruction-title { font-size: 13px; font-weight: 600; color: #0f172a; margin-bottom: 8px; }
+.preview-instruction-editor textarea { width: 100%; min-height: 88px; resize: vertical; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; font: inherit; line-height: 1.5; background: #fff; color: #0f172a; }
+.preview-instruction-toolbar { margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.preview-instruction-hint { color: #64748b; font-size: 12px; }
+.preview-instruction-actions { display: flex; gap: 8px; }
+.preview-instruction-actions button { border: none; border-radius: 6px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+.preview-instruction-actions .instruction-close { background: #e2e8f0; color: #0f172a; }
+.preview-instruction-actions .instruction-save { background: #2563eb; color: #fff; }
+.preview-instruction-editor,
+.preview-instruction-editor * { pointer-events: auto; }
+.description-panel { flex: 1 1 auto; }
+.tooltip-panel { flex: 0 0 auto; }
+.text-content { pointer-events: none; }
+.layer-image { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; }
+#layerHighlight { position: absolute; pointer-events: none; border: 1px solid #1a73e8; box-shadow: 0 0 0 1px rgba(26,115,232,0.3); background: rgba(26,115,232,0.08); display: none; }
+#layerTooltip { position: fixed; z-index: 9999; background: rgba(26,32,44,0.9); color: #fff; padding: 6px 10px; border-radius: 4px; font-size: 12px; pointer-events: none; max-width: 360px; max-height: 60vh; overflow: auto; line-height: 1.4; display: none; white-space: pre-line; }
+.copied-toast { position: fixed; right: 20px; bottom: 20px; background: rgba(0,0,0,0.8); color: #fff; padding: 8px 12px; border-radius: 4px; font-size: 12px; opacity: 0; transition: opacity 0.2s ease; }
+.copied-toast.visible { opacity: 1; }
+.context-copy-menu { position: fixed; z-index: 10000; background: #111827; color: #fff; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); padding: 8px; font-size: 12px; display: none; flex-direction: column; gap: 6px; }
+.context-copy-menu button { border: none; background: #2563eb; color: #fff; padding: 6px 10px; border-radius: 4px; cursor: pointer; }
+.context-copy-menu button:hover { background: #1d4ed8; }

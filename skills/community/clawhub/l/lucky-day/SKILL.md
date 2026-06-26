@@ -1,35 +1,75 @@
 ---
-name: "Lucky Day"
-description: "择吉选日，根据用户需求（嫁娶、开业、搬家、动土等）选择最近的好日子"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lucky-day"
-sourceUrl: "https://clawhub.ai/skills/lucky-day"
+name: lucky-day
+description: 择吉选日，根据用户需求（嫁娶、开业、搬家、动土等）选择最近的好日子
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🗓️",
+        "requires": { "bins": ["python3"] }
+      }
+  }
 ---
 
-# Lucky Day
+你是"择吉选日"专家。用户需要办某件事（如嫁娶、开业、搬家、动土等），你帮他选择最近的好日子。
 
-> 择吉选日，根据用户需求（嫁娶、开业、搬家、动土等）选择最近的好日子
+# 核心概念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lucky-day`
-- **Source URL:** [https://clawhub.ai/skills/lucky-day](https://clawhub.ai/skills/lucky-day)
+## 黄道吉日要素
+- **宜**：当日宜事项包含用户需求
+- **忌**：当日忌事项不冲突
+- **冲煞**：不冲用户属相
+- **吉神**：有天德、月德、贵人等吉神
 
-## Overview
+## 常见事项对应宜忌
+| 事项 | 宜 | 忌 |
+|------|-----|------|
+| 嫁娶 | 嫁娶、订盟、纳采 | 安葬、动土 |
+| 开业 | 开市、交易、立券、挂匾 | 动土、安葬 |
+| 搬家 | 移徙、入宅、安床 | 动土、破土 |
+| 动土 | 动土、起基、定磉 | 嫁娶、安葬 |
+| 订盟 | 订盟、纳采、盟誓 | 动土、安葬 |
 
+# 查询流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+用户提供：
+1. 想做的事情（嫁娶/开业/搬家/动土/订盟/祭祀等）
+2. 用户的属相（可选，用于避开冲煞）
+
+调用脚本查询：
 ```bash
-hermes skills install clawhub/lucky-day
+python3 "{baseDir}/lucky.py" 嫁娶
+python3 "{baseDir}/lucky.py" 开业 鼠
+python3 "{baseDir}/lucky.py" 搬家 兔
+```
+
+# 输出格式
+
+```
+🗓️ 择吉选日
+
+【需求】：嫁娶
+【您的属相】：鼠
+
+【推荐吉日】
+🥇 2026年3月8日（周日）
+   干支：辛未
+   宜：嫁娶、订盟、纳采、祭祀
+   冲煞：冲牛（辛丑）- 不冲鼠
+   吉神：天德、月德、贵人
+
+🥈 2026年3月12日（周四）
+   干支：乙亥
+   宜：嫁娶、纳采、订盟
+   冲煞：冲蛇（丁巳）- 忌
+
+🥉 2026年3月15日（周日）
+   ...
+
+【建议】
+首选 3 月 8 日，忌神较少，吉神汇聚
+次选 3 月 12 日
+
+---
+※ 黄历仅供参考 ※
 ```

@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>圆桌讨论即将开始 — Roundtable</title>
+<link rel="stylesheet" href="./theme.css">
+<style>
+/* ═══════════════════════════════════════
+   Reset & Base
+   ═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--rt-font-sans);
+  background: var(--rt-bg-body);
+  color: var(--rt-text-primary);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--rt-font-size-base);
+  line-height: 1.6;
+  padding: var(--rt-space-6) var(--rt-space-4);
+  padding-bottom: calc(var(--rt-space-10) + env(safe-area-inset-bottom, 0px));
+}
+
+/* ═══════════════════════════════════════
+   Main Container — Centered 480px
+   ═══════════════════════════════════════ */
+.waiting-container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--rt-space-6);
+  position: relative;
+}
+
+/* ═══════════════════════════════════════
+   Share Button — Top Right
+   ═══════════════════════════════════════ */
+.share-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.btn-share {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rt-space-2);
+  padding: var(--rt-space-2) var(--rt-space-3);
+  min-height: var(--rt-touch-target);
+  min-width: var(--rt-touch-target);
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  color: var(--rt-text-secondary);
+  font-size: var(--rt-font-size-sm);
+  font-family: var(--rt-font-sans);
+  cursor: pointer;
+  transition: background var(--rt-duration-fast) var(--rt-easing-default),
+              border-color var(--rt-duration-fast) var(--rt-easing-default),
+              color var(--rt-duration-fast) var(--rt-easing-default);
+}
+
+.btn-share:hover,
+.btn-share:focus-visible {
+  background: var(--rt-bg-card-hover);
+  border-color: var(--rt-border-light);
+  color: var(--rt-text-primary);
+}
+
+.btn-share:focus-visible {
+  outline: 2px solid var(--rt-brand);
+  outline-offset: 2px;
+}
+
+.btn-share svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   Share Popover / Bottom Sheet
+   ═══════════════════════════════════════ */
+.share-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+}
+
+.share-backdrop.open {
+  display: block;
+}
+
+.share-popover {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--rt-space-2));
+  right: 0;
+  width: 360px;
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-lg);
+  box-shadow: var(--rt-shadow-lg);
+  padding: var(--rt-space-5);
+  z-index: 100;
+}
+
+.share-popover.open {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rt-space-4);
+}
+
+.share-popover-title {
+  font-size: var(--rt-font-size-lg);
+  font-weight: 600;
+  color: var(--rt-text-primary);
+}
+
+.share-link-row {
+  display: flex;
+  gap: var(--rt-space-2);
+}
+
+.share-link-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--rt-space-2) var(--rt-space-3);
+  min-height: var(--rt-touch-target);
+  background: var(--rt-bg-input);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  color: var(--rt-text-primary);
+  font-family: var(--rt-font-mono);
+  font-size: var(--rt-font-size-sm);
+  outline: none;
+}
+
+.share-link-input:focus {
+  border-color: var(--rt-brand);
+}
+
+.btn-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rt-space-2) var(--rt-space-4);
+  min-height: var(--rt-touch-target);
+  min-width: var(--rt-touch-target);
+  background: var(--rt-brand);
+  border: none;
+  border-radius: var(--rt-radius-md);
+  color: var(--rt-text-inverse);
+  font-size: var(--rt-font-size-sm);
+  font-family: var(--rt-font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--rt-duration-fast) var(--rt-easing-default),
+              color var(--rt-duration-fast) var(--rt-easing-default);
+}
+
+.btn-copy:hover {
+  background: var(--rt-brand-hover);
+}
+
+.btn-copy.copied {
+  background: var(--rt-success);
+}
+
+.btn-copy:focus-visible {
+  outline: 2px solid var(--rt-brand);
+  outline-offset: 2px;
+}
+
+.share-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-revoke {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rt-space-2) var(--rt-space-3);
+  min-height: var(--rt-touch-target);
+  min-width: var(--rt-touch-target);
+  background: transparent;
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  color: var(--rt-text-muted);
+  font-size: var(--rt-font-size-sm);
+  font-family: var(--rt-font-sans);
+  cursor: pointer;
+  transition: color var(--rt-duration-fast) var(--rt-easing-default),
+              border-color var(--rt-duration-fast) var(--rt-easing-default);
+}
+
+.btn-revoke:hover {
+  color: var(--rt-error);
+  border-color: var(--rt-error);
+}
+
+.btn-revoke:focus-visible {
+  outline: 2px solid var(--rt-error);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════
+   Revoke Confirmation Modal
+   ═══════════════════════════════════════ */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rt-space-4);
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-dialog {
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-lg);
+  box-shadow: var(--rt-shadow-lg);
+  padding: var(--rt-space-6);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: var(--rt-font-size-lg);
+  font-weight: 600;
+  color: var(--rt-text-primary);
+  margin-bottom: var(--rt-space-3);
+}
+
+.modal-desc {
+  font-size: var(--rt-font-size-sm);
+  color: var(--rt-text-secondary);
+  margin-bottom: var(--rt-space-6);
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--rt-space-3);
+  justify-content: center;
+}
+
+.btn-modal-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rt-space-2) var(--rt-space-5);
+  min-height: var(--rt-touch-target);
+  min-width: var(--rt-touch-target);
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-md);
+  color: var(--rt-text-secondary);
+  font-size: var(--rt-font-size-sm);
+  font-family: var(--rt-font-sans);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-modal-cancel:hover {
+  background: var(--rt-bg-card-hover);
+  color: var(--rt-text-primary);
+}
+
+.btn-modal-cancel:focus-visible {
+  outline: 2px solid var(--rt-brand);
+  outline-offset: 2px;
+}
+
+.btn-modal-revoke {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--rt-space-2) var(--rt-space-5);
+  min-height: var(--rt-touch-target);
+  min-width: var(--rt-touch-target);
+  background: var(--rt-error);
+  border: none;
+  border-radius: var(--rt-radius-md);
+  color: var(--rt-text-inverse);
+  font-size: var(--rt-font-size-sm);
+  font-family: var(--rt-font-sans);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-modal-revoke:hover {
+  background: #DC2626;
+}
+
+.btn-modal-revoke:focus-visible {
+  outline: 2px solid var(--rt-error);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════
+   Breathing Logo Ring (SVG)
+   ═══════════════════════════════════════ */
+.logo-ring-wrap {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  margin-bottom: var(--rt-space-2);
+}
+
+.logo-ring-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Rotating dashed ring */
+.ring-dash {
+  animation: ring-rotate 12s linear infinite;
+  transform-origin: 90px 90px;
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Center pulse */
+.center-pulse {
+  animation: breathe 3s ease-in-out infinite;
+  transform-origin: 90px 90px;
+}
+
+@keyframes breathe {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  50%  { transform: scale(1.08); opacity: 1;   }
+  100% { transform: scale(1);    opacity: 0.8; }
+}
+
+/* Node pulse (status dots) */
+.node-dot {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.node-dot:nth-child(2) { animation-delay: 0.3s; }
+.node-dot:nth-child(3) { animation-delay: 0.6s; }
+.node-dot:nth-child(4) { animation-delay: 0.9s; }
+.node-dot:nth-child(5) { animation-delay: 1.2s; }
+.node-dot:nth-child(6) { animation-delay: 1.5s; }
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 currentColor; }
+  50%  { box-shadow: 0 0 8px 3px currentColor; }
+  100% { box-shadow: 0 0 0 0 currentColor; }
+}
+
+/* ═══════════════════════════════════════
+   Title & Subtitle
+   ═══════════════════════════════════════ */
+.waiting-title {
+  font-size: var(--rt-font-size-2xl);
+  font-weight: 700;
+  color: var(--rt-text-primary);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.waiting-subtitle {
+  font-size: var(--rt-font-size-base);
+  color: var(--rt-text-secondary);
+  text-align: center;
+  margin-top: calc(-1 * var(--rt-space-3));
+}
+
+/* ═══════════════════════════════════════
+   Countdown Card
+   ═══════════════════════════════════════ */
+.countdown-card {
+  width: 100%;
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-lg);
+  padding: var(--rt-space-6);
+  text-align: center;
+  box-shadow: var(--rt-shadow-md);
+}
+
+.countdown-label {
+  font-size: var(--rt-font-size-sm);
+  color: var(--rt-text-muted);
+  margin-bottom: var(--rt-space-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.countdown-value {
+  font-family: var(--rt-font-mono);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--rt-brand);
+  line-height: 1.2;
+}
+
+.countdown-unit {
+  font-size: var(--rt-font-size-sm);
+  color: var(--rt-text-muted);
+  font-weight: 400;
+  margin-left: var(--rt-space-1);
+}
+
+/* ═══════════════════════════════════════
+   Topic Preview Card
+   ═══════════════════════════════════════ */
+.topic-card {
+  width: 100%;
+  background: var(--rt-bg-card);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-lg);
+  padding: var(--rt-space-5);
+  box-shadow: var(--rt-shadow-sm);
+}
+
+.topic-label {
+  font-size: var(--rt-font-size-xs);
+  color: var(--rt-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--rt-space-3);
+}
+
+.topic-text {
+  font-size: var(--rt-font-size-lg);
+  font-weight: 600;
+  color: var(--rt-text-primary);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════
+   Participant Avatars
+   ═══════════════════════════════════════ */
+.participants-section {
+  width: 100%;
+}
+
+.participants-label {
+  font-size: var(--rt-font-size-xs);
+  color: var(--rt-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--rt-space-3);
+}
+
+.participants-row {
+  display: flex;
+  gap: var(--rt-space-3);
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--rt-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--rt-font-size-base);
+  font-weight: 600;
+  color: var(--rt-text-inverse);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar[aria-label]::after {
+  content: attr(aria-label);
+  position: absolute;
+  bottom: calc(100% + var(--rt-space-1));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--rt-bg-elevated);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-sm);
+  padding: var(--rt-space-1) var(--rt-space-2);
+  font-size: var(--rt-font-size-xs);
+  color: var(--rt-text-secondary);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--rt-duration-fast) var(--rt-easing-default);
+  z-index: 10;
+}
+
+.avatar:hover::after {
+  opacity: 1;
+}
+
+.avatar-role-product  { background: var(--rt-role-product); }
+.avatar-role-design   { background: var(--rt-role-design); }
+.avatar-role-engineer { background: var(--rt-role-engineer); }
+.avatar-role-research { background: var(--rt-role-research); }
+.avatar-role-marketing { background: var(--rt-role-marketing); }
+.avatar-role-default  { background: var(--rt-role-default); }
+
+/* Ready indicator on avatar */
+.avatar-ready {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--rt-radius-full);
+  background: var(--rt-success);
+  border: 2px solid var(--rt-bg-body);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════
+   Welcome Hint
+   ═══════════════════════════════════════ */
+.welcome-hint {
+  text-align: center;
+  font-size: var(--rt-font-size-sm);
+  color: var(--rt-text-muted);
+  line-height: 1.6;
+  max-width: 360px;
+}
+
+/* ═══════════════════════════════════════
+   Footer Brand
+   ═══════════════════════════════════════ */
+.footer-brand {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: var(--rt-space-3) var(--rt-space-4);
+  padding-bottom: calc(var(--rt-space-3) + env(safe-area-inset-bottom, 0px));
+  font-size: var(--rt-font-size-xs);
+  color: var(--rt-text-disabled);
+  background: linear-gradient(to top, var(--rt-bg-body) 60%, transparent);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   Mobile Bottom Sheet (≤768px)
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  body {
+    font-size: var(--rt-font-size-sm);
+    justify-content: flex-start;
+    padding-top: var(--rt-space-10);
+  }
+
+  .waiting-title {
+    font-size: var(--rt-font-size-xl);
+  }
+
+  .countdown-value {
+    font-size: 36px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: var(--rt-font-size-sm);
+  }
+
+  .share-popover {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--rt-radius-lg) var(--rt-radius-lg) 0 0;
+    transform: translateY(100%);
+    transition: transform var(--rt-duration-normal) var(--rt-easing-out);
+    padding-bottom: calc(var(--rt-space-5) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .share-popover.open {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .share-backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  /* WeChat sticky compat */
+  .footer-brand {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+/* ═══════════════════════════════════════
+   Backdrop-filter with fallback
+   ═══════════════════════════════════════ */
+.share-popover {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .share-popover {
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* ═══════════════════════════════════════
+   Prefers Reduced Motion
+   ═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ring-dash,
+  .center-pulse,
+  .node-dot,
+  .avatar-ready {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .share-popover {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════
+   Focus visible utility
+   ═══════════════════════════════════════ */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ═══════════════════════════════════════
+   Screen reader only
+   ═══════════════════════════════════════ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+  <main class="waiting-container" role="main">
+
+    <!-- Share Button (top-right) -->
+    <div class="share-wrapper">
+      <button class="btn-share" id="btnShare" aria-label="分享讨论链接" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        <span>分享</span>
+      </button>
+
+      <!-- Click-outside backdrop -->
+      <div class="share-backdrop" id="shareBackdrop"></div>
+
+      <!-- Popover Panel -->
+      <div class="share-popover" id="sharePopover" role="dialog" aria-label="分享链接面板">
+        <div class="share-popover-title">📋 分享链接</div>
+        <div class="share-link-row">
+          <input
+            type="text"
+            class="share-link-input"
+            id="shareLinkInput"
+            readonly
+            value="https://roundtable.ai/j/abc123"
+            aria-label="分享链接地址"
+          >
+          <button class="btn-copy" id="btnCopy" aria-label="复制链接">复制</button>
+        </div>
+        <div class="share-actions">
+          <button class="btn-revoke" id="btnRevoke" aria-label="撤销分享链接">撤销链接</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breathing Logo Ring SVG -->
+    <div class="logo-ring-wrap" aria-hidden="true">
+      <svg class="logo-ring-svg" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rotating dashed ring -->
+        <circle class="ring-dash" cx="90" cy="90" r="78" stroke="#334155" stroke-width="2" stroke-dasharray="8 6" fill="none"/>
+
+        <!-- Static solid ring -->
+        <circle cx="90" cy="90" r="60" stroke="#334155" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+        <!-- Center pulse glow -->
+        <circle class="center-pulse" cx="90" cy="90" r="28" fill="#4F46E5" opacity="0.15"/>
+        <circle class="center-pulse" cx="90" cy="90" r="18" fill="#4F46E5" opacity="0.3"/>
+
+        <!-- 6 Role Nodes around the ring -->
+        <!-- Product (top) -->
+        <circle class="node-dot" cx="90" cy="12" r="7" fill="#3B82F6" style="color:#3B82F6"/>
+        <!-- Design (top-right) -->
+        <circle class="node-dot" cx="158" cy="45" r="7" fill="#A855F7" style="color:#A855F7"/>
+        <!-- Engineer (bottom-right) -->
+        <circle class="node-dot" cx="158" cy="135" r="7" fill="#22C55E" style="color:#22C55E"/>
+        <!-- Research (bottom) -->
+        <circle class="node-dot" cx="90" cy="168" r="7" fill="#F59E0B" style="color:#F59E0B"/>
+        <!-- Marketing (bottom-left) -->
+        <circle class="node-dot" cx="22" cy="135" r="7" fill="#EC4899" style="color:#EC4899"/>
+        <!-- Default (top-left) -->
+        <circle class="node-dot" cx="22" cy="45" r="7" fill="#64748B" style="color:#64748B"/>
+
+        <!-- Center logo letter -->
+        <text x="90" y="96" text-anchor="middle" fill="#F1F5F9" font-family="Inter, sans-serif" font-size="20" font-weight="700">圆</text>
+      </svg>
+    </div>
+
+    <!-- Title & Subtitle -->
+    <h1 class="waiting-title">圆桌讨论即将开始</h1>
+    <p class="waiting-subtitle">AI 专家们正在入席，请稍候…</p>
+
+    <!-- Countdown Card -->
+    <div class="countdown-card" role="timer" aria-label="倒计时">
+      <div class="countdown-label">距离开始</div>
+      <div class="countdown-value">
+        <span id="countdownMin">02</span><span class="countdown-unit">min</span>
+        <span style="margin: 0 2px; opacity: 0.4;">:</span>
+        <span id="countdownSec">30</span><span class="countdown-unit">sec</span>
+      </div>
+    </div>
+
+    <!-- Topic Preview Card -->
+    <div class="topic-card">
+      <div class="topic-label">📋 讨论话题</div>
+      <div class="topic-text">如何设计一个高效的 AI Agent 协作框架，实现多专家角色的实时讨论与共识达成？</div>
+    </div>
+
+    <!-- Participant Avatars -->
+    <section class="participants-section" aria-label="参会专家">
+      <div class="participants-label">参会专家</div>
+      <div class="participants-row">
+        <div class="avatar avatar-role-product" role="img" aria-label="Alex · 产品">
+          A
+          <span class="avatar-ready" aria-hidden="true"></span>
+        </div>
+        <div class="avatar avatar-role-design" role="img" aria-label="Mia · 设计">
+          M
+          <span class="avatar-ready" aria-hidden="true"></span>
+        </div>
+        <div class="avatar avatar-role-engineer" role="img" aria-label="Dev · 工程">
+          D
+          <span class="avatar-ready" aria-hidden="true"></span>
+        </div>
+        <div class="avatar avatar-role-research" role="img" aria-label="Dr. Lin · 研究">
+          L
+          <span class="avatar-ready" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Welcome Hint -->
+    <p class="welcome-hint">
+      讨论开始后，您可以随时查看实时对话与结论摘要。请保持此页面打开。
+    </p>
+
+  </main>
+
+  <!-- Revoke Confirmation Modal -->
+  <div class="modal-backdrop" id="revokeModal" role="dialog" aria-modal="true" aria-label="确认撤销链接">
+    <div class="modal-dialog">
+      <div class="modal-title">撤销分享链接？</div>
+      <p class="modal-desc">撤销后，当前链接将立即失效，已持有链接的用户将无法再访问。</p>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" id="btnModalCancel">取消</button>
+        <button class="btn-modal-revoke" id="btnModalRevoke">确认撤销</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-brand" aria-hidden="true">Roundtable AI · 圆桌讨论</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ────────────────────────────────────
+     Countdown Timer
+     ──────────────────────────────────── */
+  let totalSec = 150; // 2min 30sec
+  const minEl = document.getElementById('countdownMin');
+  const secEl = document.getElementById('countdownSec');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    if (totalSec <= 0) return;
+    totalSec--;
+    const m = Math.floor(totalSec / 60);
+    const s = totalSec % 60;
+    minEl.textContent = pad(m);
+    secEl.textContent = pad(s);
+  }
+
+  setInterval(tick, 1000);
+
+  /* ────────────────────────────────────
+     Share Popover / Bottom Sheet
+     ──────────────────────────────────── */
+  const btnShare    = document.getElementById('btnShare');
+  const backdrop    = document.getElementById('shareBackdrop');
+  const popover     = document.getElementById('sharePopover');
+  const shareInput  = document.getElementById('shareLinkInput');
+  const btnCopy     = document.getElementById('btnCopy');
+  const btnRevoke   = document.getElementById('btnRevoke');
+  const revokeModal = document.getElementById('revokeModal');
+  const btnCancel   = document.getElementById('btnModalCancel');
+  const btnModalRev = document.getElementById('btnModalRevoke');
+
+  function isMobile() { return window.innerWidth <= 768; }
+
+  function openPopover() {
+    backdrop.classList.add('open');
+    popover.classList.add('open');
+    if (isMobile()) {
+      requestAnimationFrame(function() {
+        popover.style.transform = 'translateY(0)';
+      });
+    }
+    shareInput.select();
+  }
+
+  function closePopover() {
+    backdrop.classList.remove('open');
+    if (isMobile()) {
+      popover.style.transform = 'translateY(100%)';
+      setTimeout(function() { popover.classList.remove('open'); }, 300);
+    } else {
+      popover.classList.remove('open');
+    }
+  }
+
+  btnShare.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (popover.classList.contains('open')) {
+      closePopover();
+    } else {
+      openPopover();
+    }
+  });
+
+  backdrop.addEventListener('click', closePopover);
+
+  /* ────────────────────────────────────
+     Copy Link
+     ──────────────────────────────────── */
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    /* Fallback */
+    return new Promise(function(resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+      document.body.removeChild(ta);
+    });
+  }
+
+  btnCopy.addEventListener('click', function() {
+    var text = shareInput.value;
+    copyToClipboard(text).then(function() {
+      btnCopy.textContent = '✓ 已复制';
+      btnCopy.classList.add('copied');
+      setTimeout(function() {
+        btnCopy.textContent = '复制';
+        btnCopy.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      shareInput.select();
+    });
+  });
+
+  /* ────────────────────────────────────
+     Revoke Modal
+     ──────────────────────────────────── */
+  btnRevoke.addEventListener('click', function() {
+    revokeModal.classList.add('open');
+  });
+
+  btnCancel.addEventListener('click', function() {
+    revokeModal.classList.remove('open');
+  });
+
+  btnModalRev.addEventListener('click', function() {
+    revokeModal.classList.remove('open');
+    closePopover();
+    shareInput.value = '';
+    btnRevoke.textContent = '链接已撤销';
+    btnRevoke.disabled = true;
+    btnRevoke.style.opacity = '0.5';
+    btnRevoke.style.cursor = 'default';
+  });
+
+  /* Close modal on backdrop click */
+  revokeModal.addEventListener('click', function(e) {
+    if (e.target === revokeModal) {
+      revokeModal.classList.remove('open');
+    }
+  });
+
+  /* ────────────────────────────────────
+     ESC key handler
+     ──────────────────────────────────── */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (revokeModal.classList.contains('open')) {
+        revokeModal.classList.remove('open');
+      } else if (popover.classList.contains('open')) {
+        closePopover();
+      }
+    }
+  });
+
+  /* Prevent popover interior clicks from closing */
+  popover.addEventListener('click', function(e) { e.stopPropagation(); });
+
+})();
+</script>
+
+</body>
+</html>

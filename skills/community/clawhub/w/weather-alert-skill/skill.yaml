@@ -1,0 +1,16 @@
+id: weather-alert
+name: Weather Alert Skill
+version: 0.2.1
+description: Sends summarized weather alerts for a configured region.
+runtime: node18
+entrypoint: src/index.js
+inputs:
+  - name: region
+    type: string
+    required: true
+  - name: severity
+    type: string
+    required: false
+outputs:
+  - name: alert_count
+    type: number

@@ -1,0 +1,25 @@
+{
+  "name": "Pricing Strategy Framework",
+  "slug": "pricing-strategy-framework",
+  "version": "1.0.0",
+  "description": "Provides structured frameworks for pricing decisions based on cost, value, and competitive analysis.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "pricing"
+  ],
+  "trigger_keywords": [
+    "pricing strategy framework",
+    "pricing strategy framework",
+    "pricing",
+    "strategy",
+    "framework"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

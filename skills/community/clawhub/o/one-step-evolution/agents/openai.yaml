@@ -1,0 +1,8 @@
+interface:
+  display_name: "一步完成进化"
+  short_description: "OpenClaw 火龙果架构：记忆、调度、飞书、Ollama"
+  brand_color: "#E64A63"
+  default_prompt: "Use $one-step-evolution to set up a fresh OpenClaw in the Fire Dragon Fruit Architecture with a strong main, isolated rescue, layered memory, an explicit evolution loop, project truth files, heartbeat, cron, and official integrations."
+
+policy:
+  allow_implicit_invocation: true

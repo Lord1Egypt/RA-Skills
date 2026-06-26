@@ -1,0 +1,14 @@
+{
+  "skill_name": "{{skill_name}}",
+  "version": "1.0.0",
+  "capabilities": [],
+  "resources": {
+    "cpu": 2,
+    "memory": 4,
+    "gpu": 0
+  },
+  "config": {
+    "debug": false,
+    "log_level": "INFO"
+  }
+}

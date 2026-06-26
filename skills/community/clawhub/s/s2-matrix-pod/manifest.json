@@ -1,0 +1,10 @@
+{
+  "name": "s2-matrix-pod",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "Assigns a local habitat. This skill explicitly writes a JSON state file to the current directory and emits Markdown containing remote CDN image URLs.",
+  "tags": ["Simulation", "Avatar", "Environment", "State Management"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

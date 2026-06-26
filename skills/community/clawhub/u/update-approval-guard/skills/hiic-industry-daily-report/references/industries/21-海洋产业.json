@@ -1,0 +1,55 @@
+{
+  "id": "21",
+  "name": "海洋产业",
+  "category": "未来产业",
+  "keywords": [
+    "海洋产业 2026",
+    "海洋工程 最新项目",
+    "深海装备 技术突破",
+    "海上风电 装机容量",
+    "海洋资源开发 政策",
+    "海洋生物医药 研发",
+    "海洋电子信息 创新",
+    "海洋经济 数据统计",
+    "深海探测 科技进展",
+    "海洋装备制造 订单"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "百度百科",
+    "维基百科",
+    "知道"
+  ],
+  "searchSettings": {
+    "maxResults": 30,
+    "days": 3,
+    "language": "zh-CN",
+    "freshness": "day",
+    "excludeDomains": [
+      "baike.baidu.com",
+      "zh.wikipedia.org",
+      "zhihu.com"
+    ]
+  },
+  "contentSettings": {
+    "extractContent": true,
+    "summaryMinLength": 60,
+    "summaryMaxLength": 200,
+    "fallbackToDescription": true
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🌊",
+    "maxDescriptionLength": 200,
+    "includeImages": false,
+    "minResults": 20
+  }
+}

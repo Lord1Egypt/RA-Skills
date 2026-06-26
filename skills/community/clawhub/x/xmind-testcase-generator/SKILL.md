@@ -1,35 +1,83 @@
 ---
-name: "XMind Test Case Generator"
-description: "根据需求文档生成 XMind 格式测试用例。当用户要求"写测试用例"、"生成用例"、"写XMind用例"时使用。"
-category: "other"
-source: "ClawHub"
-tags: [qa, testcase, xmind]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xmind-testcase-generator"
-sourceUrl: "https://clawhub.ai/skills/xmind-testcase-generator"
+name: xmind-testcase-generator
+description: 根据需求文档生成 XMind 格式测试用例。当用户要求"写测试用例"、"生成用例"、"写XMind用例"时使用。
 ---
 
-# XMind Test Case Generator
+# XMind 测试用例生成规范
 
-> 根据需求文档生成 XMind 格式测试用例。当用户要求"写测试用例"、"生成用例"、"写XMind用例"时使用。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xmind-testcase-generator`
-- **Source URL:** [https://clawhub.ai/skills/xmind-testcase-generator](https://clawhub.ai/skills/xmind-testcase-generator)
+1. **获取需求文档**：飞书链接用 feishu_fetch-doc，本地文件直接读。**必须重新拉取全文**，不能依赖对话摘要
+2. **建立模块清单**：列出所有功能段落，确认无遗漏
+3. **代码深度分析**（复杂功能必做）：读核心代码文件，关注客户端常量/枚举/行为模式、服务端校验链/error code
+4. **编写用例数据**：修改 gen_xmind.py 的 build_cases() 函数
+5. **执行脚本**：`python3 gen_xmind.py`
+6. **验证统计**：smoke 占比 ~20%（15%-25% 可接受）
 
-## Overview
+## XMind 层级结构
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xmind-testcase-generator
 ```
+需求名 → 模块 → 子模块 → 测试点（P1/P3）→ 步骤（带编号）→ 预期结果
+```
+
+## 优先级
+
+| 标记 | 含义 | 占比 |
+|------|------|------|
+| P1 | smoke 冒烟用例 | ~20% |
+| P3 | normal 普通用例 | ~80% |
+
+- 只用 P1 和 P3，不用 P2
+- 每条用例必须标注优先级
+
+## 步骤编号格式
+
+```
+测试点（P1/P3）
+  ├── "1、操作步骤"
+  │     └── "1、预期结果"   ← 步骤的子节点
+  ├── "2、操作步骤"
+  │     └── "2、预期结果"
+```
+
+## 标签（F3）
+
+| 标签 | 平台 |
+|------|------|
+| 空 | iOS + Android + Server |
+| `ai` | iOS + Android |
+| `as` | Android + Server |
+| `f` | 前端 FE/H5 |
+
+## 备注（F4）— 前置条件
+
+写在测试点节点上，不混入步骤：`note="前置条件：XXX"`
+
+## 用例粒度原则
+
+- 验证点不丢，执行路径连贯的可整合
+- 同类枚举值合并成1条 case，步骤中逐个验证每个值
+- 前置条件不同、主客态差异必须拆成独立 case
+- `#` 开头的节点被忽略
+
+## 容易遗漏的场景 Checklist
+
+- 跨页面状态同步
+- 操作撤回后重新触发
+- 校验失败后流程不被绕过
+- 前置状态变体（播放/静止、登录态/游客）
+- 操作后关联功能状态联动
+- 弹窗/页面所有按钮行为穷举
+- 操作频率限制
+- 并发/竞态场景
+- 边界值（0/负数/小数）
+- 负面清单（满足条件X才触发 → 验证不满足X时不触发）
+- 活动时间边界（最后一刻的特殊逻辑）
+- 同一功能的多种行为模式（从代码中发现）
+- 服务端 error code 全覆盖
+- 状态变更后所有关联 UI 区域全面更新
+- 端到端请求链路追踪（客户端URL → 服务端handler）
+
+## gen_xmind.py API
+
+详见 reference.md

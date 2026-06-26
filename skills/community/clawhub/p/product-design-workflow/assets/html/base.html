@@ -1,0 +1,96 @@
+<!-- ====================== Demo基础页面模板 ======================
+ * 注意：Header和Footer为全局固定模板，已经通过JS引入，无需修改
+ * 所有开发工作仅需在【页面主体内容区域】内完成
+ * 公共样式：assets/css/common.css（全局统一规范，禁止私自修改）
+ * 公共脚本：assets/js/header.js（固定Header）、assets/js/footer.js（固定Footer）
+ * 路径规则：所有引用统一使用相对路径，禁止使用绝对路径/开头
+ * ============================================================= -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财经探子 - [页面标题]</title>
+    <!-- 全局公共样式（固定引用，禁止删除） -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <!-- FontAwesome 6 图标库（固定引用，可直接使用所有免费图标） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 页面独立样式（仅写当前页面独有样式） -->
+    <style>
+        /* 页面独立样式写在这里 */
+    </style>
+</head>
+<body>
+    <!-- 全局固定Header（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/header.js"></script>
+
+    <!-- ==============================================
+         页面主体内容区域（所有开发工作仅在此区域完成）
+         ============================================== -->
+    <main class="container" style="padding-top: 88px;">
+        <!-- 页面内容开始 -->
+        
+        <!-- 页面内容结束 -->
+    </main>
+    <!-- ==============================================
+         页面主体内容区域结束
+         ============================================== -->
+
+    <!-- Idea介绍浮层（领导查看用，固定在右下角） -->
+    <div class="idea-float-panel" id="ideaFloatPanel">
+        <div class="idea-float-header" onclick="toggleIdeaPanel()">
+            <div class="idea-float-header-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span id="ideaPanelTitle">Idea介绍</span>
+            </div>
+            <button class="idea-float-header-toggle" id="ideaPanelToggle">
+                <i class="fa-solid fa-minus" id="ideaPanelToggleIcon"></i>
+            </button>
+        </div>
+        <div class="idea-float-content" id="ideaPanelContent">
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-tag"></i> 点子信息</div>
+                <div class="idea-float-section-content">
+                    <span class="idea-float-tag" id="ideaTag1">基金</span>
+                    <span class="idea-float-tag" id="ideaTag2">小白向</span>
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-star"></i> 一句话卖点</div>
+                <div class="idea-float-section-content" id="ideaOneLine">
+                    一句话说明这个点子的核心价值
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-puzzle-piece"></i> 设计想法</div>
+                <div class="idea-float-section-content" id="ideaDesign">
+                    简单说明设计思路、用户痛点、差异化优势
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局固定Footer（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/footer.js"></script>
+
+    <!-- 全局公共脚本（固定引用，禁止删除） -->
+    <script src="assets/js/common.js"></script>
+    <!-- 页面独立脚本（仅写当前页面独有脚本） -->
+    <script>
+        // Idea浮层折叠/展开功能
+        function toggleIdeaPanel() {
+            const panel = document.getElementById('ideaFloatPanel');
+            const content = document.getElementById('ideaPanelContent');
+            const toggleIcon = document.getElementById('ideaPanelToggleIcon');
+            panel.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+            if (panel.classList.contains('collapsed')) {
+                toggleIcon.className = 'fa-solid fa-plus';
+            } else {
+                toggleIcon.className = 'fa-solid fa-minus';
+            }
+        }
+        // 页面独立脚本写在这里
+    </script>
+</body>
+</html>

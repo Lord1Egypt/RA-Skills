@@ -1,35 +1,14 @@
----
-name: "myfirstgit"
-description: "Interact with GitHub via CLI to list repositories, issues, pull requests, and create new issues in your repositories."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/myfirstgit"
-sourceUrl: "https://clawhub.ai/skills/myfirstgit"
----
+# GitHub
 
-# myfirstgit
+## Description
+Interact with GitHub via CLI. List repositories, issues, and pull requests.
 
-> Interact with GitHub via CLI to list repositories, issues, pull requests, and create new issues in your repositories.
+## Commands
+- `list-repos` → List all your repositories
+- `create-issue <repo> <title> <body>` → Create a new issue in a repository
+- `list-issues <repo>` → List issues in a repository
+- `list-prs <repo>` → List pull requests in a repository
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/myfirstgit`
-- **Source URL:** [https://clawhub.ai/skills/myfirstgit](https://clawhub.ai/skills/myfirstgit)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/myfirstgit
-```
+## Dependencies
+- GitHub CLI (`gh`) must be installed and authenticated
+- Node.js and Claw Hub must be installed

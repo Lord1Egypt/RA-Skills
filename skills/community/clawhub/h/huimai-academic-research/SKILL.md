@@ -1,35 +1,85 @@
 ---
-name: "🎓 学术研究指导"
-description: "研究方法论、数据分析策略、论文选题、学术规范——提升研究能力的专业助手。"
-category: "research"
-source: "ClawHub"
-tags: [academic, huimai, paid, research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-academic-research"
-sourceUrl: "https://clawhub.ai/skills/huimai-academic-research"
+name: 🎓 学术研究指导
+description: 研究方法论、数据分析策略、论文选题、学术规范——提升研究能力的专业助手。
+metadata: {"openclaw":{"emoji":"🎓","pricing":"paid"}}
 ---
 
 # 🎓 学术研究指导
 
-> 研究方法论、数据分析策略、论文选题、学术规范——提升研究能力的专业助手。
+> 从选题到成果发表，给你的研究装上方法论引擎。
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-academic-research`
-- **Source URL:** [https://clawhub.ai/skills/huimai-academic-research](https://clawhub.ai/skills/huimai-academic-research)
+## 📜 更新日志
 
-## Overview
+### v1.0.0 (2026-05-08)
+- 初版发布
 
+## 🆕 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1️⃣ 研究方法论
+| 研究类型 | 方法论支持 |
+|---------|-----------|
+| 量化研究 | 问卷设计、统计分析、假设检验 |
+| 质性研究 | 访谈法、观察法、案例研究 |
+| 混合方法 | 量化+质性结合的顶层设计 |
+| 实验研究 | 实验设计、变量控制、数据分析 |
+| 文献研究 | 系统综述、Meta分析、文献计量 |
+
+### 2️⃣ 数据分析策略
+- 描述性统计 vs 推断性统计的选择逻辑
+- 回归分析、方差分析、因子分析
+- 定性数据的编码和主题提炼
+- 数据可视化建议（图表选择原则）
+- 统计软件选择（SPSS/R/Python/Stata）
+
+### 3️⃣ 论文选题策略
+- 选题四象限法（重要×可行）
+- 研究问题与假设的规范表述
+- 创新点挖掘方法论
+- 选题可行性评估框架
+
+### 4️⃣ 学术规范
+- 学术诚信与引用道德
+- 避免学术不端（抄袭/数据造假/一稿多投）
+- IRB（伦理审查）流程指导
+- 期刊投稿策略
+- 同行评审应对技巧
+
+## 👤 为什么做这个
+
+很多研究生在方法论上有短板——会做研究但不一定会"设计"研究。这个Skill不是帮你写论文（那是论文写作指导Skill的事），而是教你**怎么设计好研究**。
+
+## 👔 适用人群
+- **研究生**：硕博论文的方法论指导
+- **青年教师**：科学研究方法系统提升
+- **科研入门者**：建立规范的研究思维
+
+## 💰 定价
+| 套餐 | 价格 | 说明 |
+|------|:----:|------|
+| 单次咨询 | ¥19.9 | 单次研究问题深度解答 |
+| 月度指导 | ¥99 | 一个月内不限次咨询 |
+| 全程陪跑 | ¥399 | 从选题到投稿全程指导 |
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v2.0。
+- **温情模式（默认）**：先了解你的研究阶段和学科再给建议
+- **专业模式（可选）**：直出方法论，无冗余信息
+
+## 💡 使用小贴士
+- 告诉你的学科领域，推荐更精准
+- 建议先完成论文写作指导Skill的免费指导
+- 付费前可免费进行一次研究方法评估
+
+## ⚠️ 免责与已知限制
+- 方法论建议仅供参考，最终应以导师意见为准
+- 数据分析建议不替代专业统计咨询
+- 期刊投稿策略基于公开信息，不保证录用
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+- **支付问题**: 通过小程序惠迈智能助手联系
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-academic-research
+clawhub install academic-research-guide
 ```

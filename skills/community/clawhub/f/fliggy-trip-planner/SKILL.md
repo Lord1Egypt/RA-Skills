@@ -1,35 +1,136 @@
 ---
-name: "fliggy-trip-planner"
-description: "智能行程规划师，整合航班、酒店、景点数据，一键生成完整旅行方案。当用户需要规划旅行行程、制定旅游计划、安排度假方案或询问"去哪里玩""怎么安排行程"时使用此 skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fliggy-trip-planner"
-sourceUrl: "https://clawhub.ai/skills/fliggy-trip-planner"
+name: fliggy-trip-planner
+description: 智能行程规划师，整合航班、酒店、景点数据，一键生成完整旅行方案。当用户需要规划旅行行程、制定旅游计划、安排度假方案或询问"去哪里玩""怎么安排行程"时使用此 skill。
+requires: flyai
 ---
 
-# fliggy-trip-planner
+# 智能行程规划师 (fliggy Trip Planner)
 
-> 智能行程规划师，整合航班、酒店、景点数据，一键生成完整旅行方案。当用户需要规划旅行行程、制定旅游计划、安排度假方案或询问"去哪里玩""怎么安排行程"时使用此 skill。
+一站式旅行规划解决方案，基于 flyai 实时数据，自动生成包含航班、酒店、景点的完整行程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fliggy-trip-planner`
-- **Source URL:** [https://clawhub.ai/skills/fliggy-trip-planner](https://clawhub.ai/skills/fliggy-trip-planner)
+## 触发场景
 
-## Overview
+- 用户说"帮我规划去XX的旅行"
+- 用户询问"XX天可以去哪里玩"
+- 用户需要安排度假/旅游行程
+- 用户询问旅行攻略或行程建议
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 执行前检查
+
+**重要**：在开始任何行程规划之前，必须先检查并安装 flyai 依赖：
+
 ```bash
-hermes skills install clawhub/fliggy-trip-planner
+# Step 0: 检查并安装 flyai
+which flyai >/dev/null 2>&1 || npm i -g @fly-ai/flyai-cli
 ```
+
+如果检测到 flyai 未安装，立即执行安装命令，等待安装完成后再继续后续操作。
+
+
+
+## 核心能力
+
+### 1. 智能参数提取
+从用户输入中提取：
+- **目的地**：城市名称（必需）
+- **出发地**：默认询问或推断
+- **天数**：行程天数（默认3天）
+- **预算**：经济型/舒适型/豪华型
+- **偏好**：美食/文化/自然/购物/亲子
+- **日期**：具体日期或"下周末"/"五一"等
+
+### 2. 数据获取流程
+
+```
+Step 1: 搜索航班
+  flyai search-flight --origin <出发地> --destination <目的地> --dep-date <日期> --back-date <返程日期> --sort-type 3
+
+Step 2: 搜索酒店
+  flyai search-hotel --dest-name <目的地> --poi-name <核心景点> --check-in-date <入住> --check-out-date <退房> --sort rate_desc --max-price <预算上限>
+
+Step 3: 搜索景点
+  flyai search-poi --city-name <目的地> --poi-level 5
+  flyai keyword-search --query "<目的地> 美食/特色体验"
+```
+
+### 3. 行程生成逻辑
+
+根据天数自动分配：
+- **Day 1**：抵达 → 酒店入住 → 市区核心景点 → 特色晚餐
+- **Day 2**：全天深度游（5A景区/主题路线）→ 夜景/演出
+- **Day 3**：周边景点/特色体验 → 返程
+
+根据偏好调整：
+- **美食偏好**：增加餐厅推荐，安排美食街
+- **文化偏好**：增加博物馆、古迹、文化演出
+- **自然偏好**：增加公园、山水景区、户外活动
+- **亲子偏好**：增加游乐园、科技馆、互动体验
+
+## 输出格式
+
+必须包含以下模块：
+
+### 1. 行程概览
+- 目的地、天数、总预算
+- 最佳出行日期
+- 行程亮点一句话总结
+
+### 2. 交通方案
+- 往返航班对比表格
+- 推荐航班及理由
+- 预订链接
+
+### 3. 住宿推荐
+- 2-3家酒店对比（位置、价格、特色）
+- 推荐酒店及理由
+- 酒店图片 + 预订链接
+
+### 4. 每日行程
+每天包含：
+- 时间线（上午/下午/晚上）
+- 景点/活动安排
+- 餐厅推荐
+- 交通提示
+- 景点图片 + 预订链接
+
+### 5. 实用贴士
+- 天气提醒
+- 穿衣建议
+- 必带物品
+- 注意事项
+
+### 6. 费用预算表
+| 项目 | 费用 | 备注 |
+|------|------|------|
+| 往返机票 | ¥XXX | 经济舱 |
+| 酒店 | ¥XXX | X晚 |
+| 景点门票 | ¥XXX | 主要景点 |
+| 餐饮交通 | ¥XXX | 预估 |
+| **总计** | **¥XXX** | 人均 |
+
+## 图片与链接规范
+
+- **酒店图片**：`![]({mainPic})`
+- **景点图片**：`![]({picUrl})`
+- **航班预订**：`[点击预订机票]({jumpUrl})`
+- **酒店预订**：`[点击预订酒店]({detailUrl})`
+- **景点预订**：`[点击预订门票]({jumpUrl})`
+
+## 示例对话
+
+**用户**：帮我规划一个去成都的四天三晚行程，从北京出发，喜欢吃美食。
+
+**执行流程**：
+1. 提取参数：出发地=北京，目的地=成都，天数=4，偏好=美食
+2. 调用 flyai 搜索航班、酒店、景点
+3. 生成包含火锅、串串、川菜餐厅的行程
+4. 安排宽窄巷子、锦里、大熊猫基地等景点
+
+## 注意事项
+
+1. 始终基于 flyai 实时数据，不要编造价格或航班信息
+2. 酒店推荐优先选择靠近核心景点或地铁便利的位置
+3. 行程节奏要合理，避免一天安排过多景点
+4. 预算估算要留有余地，标注"不含购物"
+5. 图片必须显示在预订链接之前

@@ -1,0 +1,97 @@
+# Sum2Slides Lite 配置
+# 版本: 1.0.1 (安全修复版)
+
+## 基本设置
+basic:
+  output_dir: "~/Desktop/Sum2Slides"
+  default_software: "powerpoint"  # powerpoint 或 wps
+  default_template: "business"    # business, technical, education
+  enable_auto_save: true
+  enable_backup: true
+  
+## 依赖声明 (精确化)
+dependencies:
+  # 必需依赖 (核心功能)
+  required:
+    - name: "python-pptx"
+      version: ">=0.6.21"
+      purpose: "PPT文件生成 (核心功能)"
+      required: true
+      
+  # 可选依赖 (增强功能)
+  optional:
+    - name: "requests"
+      version: ">=2.28.0"
+      purpose: "飞书API调用 (上传功能)"
+      required: false
+      
+  # 平台特有依赖
+  platform_specific:
+    macos:
+      - name: "applescript-support"
+        purpose: "macOS AppleScript自动化 (可选增强)"
+        required: false
+        note: "仅macOS系统支持，需要用户授权"
+  
+## 飞书配置 (可选)
+feishu:
+  enabled: false  # 默认禁用，需要用户显式启用
+  app_id: ""      # 通过环境变量 FEISHU_APP_ID 配置
+  app_secret: ""  # 通过环境变量 FEISHU_APP_SECRET 配置
+  note: "这是可选功能，如果不使用可以留空"
+  
+## 模板配置
+templates:
+  business:
+    enabled: true
+    colors:
+      primary: "#007AFF"
+      secondary: "#8E8E93"
+      accent: "#FF9500"
+  technical:
+    enabled: true  
+    colors:
+      primary: "#5856D6"
+      secondary: "#FF2D55"
+      accent: "#FFCC00"
+  education:
+    enabled: true
+    colors:
+      primary: "#34C759"
+      secondary: "#AF52DE"
+      accent: "#FF9500"
+      
+## 性能配置
+performance:
+  max_conversation_length: 10000
+  enable_caching: true
+  cache_size: 100
+  
+## 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "~/Desktop/Sum2Slides/logs/sum2slides.log"
+  max_size_mb: 10
+  backup_count: 5
+  enable_console: true
+  
+## 安全配置
+security:
+  enable_permission_check: true
+  require_confirmation: true  # 敏感操作需要用户确认
+  enable_auto_cleanup: false
+  safe_mode: true  # 安全模式，限制潜在危险操作
+  
+## 平台兼容性
+platform:
+  supported_os:
+    - "macOS (完整支持)"
+    - "Windows (基础支持)"
+    - "Linux (基础支持)"
+  macos_specific_features:
+    - "AppleScript自动化 (可选)"
+    - "系统集成 (可选)"
+  cross_platform_features:
+    - "PPT生成 (核心)"
+    - "文件保存 (核心)"
+    - "飞书上传 (可选)"

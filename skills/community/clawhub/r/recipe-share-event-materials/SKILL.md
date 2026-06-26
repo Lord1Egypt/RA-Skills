@@ -1,35 +1,28 @@
 ---
-name: "Recipe Share Event Materials"
+name: recipe-share-event-materials
 description: "Share Google Drive files with all attendees of a Google Calendar event."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-share-event-materials"
-sourceUrl: "https://clawhub.ai/skills/recipe-share-event-materials"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
+        - gws-drive
 ---
 
-# Recipe Share Event Materials
+# Share Files with Meeting Attendees
 
-> Share Google Drive files with all attendees of a Google Calendar event.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`, `gws-drive`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-share-event-materials`
-- **Source URL:** [https://clawhub.ai/skills/recipe-share-event-materials](https://clawhub.ai/skills/recipe-share-event-materials)
+Share Google Drive files with all attendees of a Google Calendar event.
 
-## Overview
+## Steps
 
+1. Get event attendees: `gws calendar events get --params '{"calendarId": "primary", "eventId": "EVENT_ID"}'`
+2. Share file with each attendee: `gws drive permissions create --params '{"fileId": "FILE_ID"}' --json '{"role": "reader", "type": "user", "emailAddress": "attendee@company.com"}'`
+3. Verify sharing: `gws drive permissions list --params '{"fileId": "FILE_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-share-event-materials
-```

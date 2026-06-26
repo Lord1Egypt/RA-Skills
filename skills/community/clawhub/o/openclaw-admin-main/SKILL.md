@@ -1,35 +1,38 @@
----
-name: "OpenClaw Admin Main"
-description: "Provides a web interface to monitor OpenClaw nodes, manage agent configurations, oversee resource usage, security policies, and review system logs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-admin-main"
-sourceUrl: "https://clawhub.ai/skills/openclaw-admin-main"
----
+# SKILL.md
 
-# OpenClaw Admin Main
+This skill provides a comprehensive administrative web interface for managing your OpenClaw deployment. It allows you to monitor nodes, manage agent configurations, and oversee the entire ecosystem through a centralized dashboard.
 
-> Provides a web interface to monitor OpenClaw nodes, manage agent configurations, oversee resource usage, security policies, and review system logs.
+## Key Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-admin-main`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-admin-main](https://clawhub.ai/skills/openclaw-admin-main)
+### Node Management
+- Monitor the health and connectivity status of all registered OpenClaw nodes (Android, iOS, macOS, and Linux).
+- Check real-time logs and performance metrics for your Gateway and companion apps.
+- Manage pairing tokens and troubleshoot connection issues.
 
-## Overview
+### Agent Configuration
+- Dynamically adjust agent settings and permissions without restarting services.
+- View active automation tasks and scheduled cron jobs.
+- Audit agent actions and system-wide changes.
 
+### System Oversight
+- Visualize system-wide resource usage.
+- Manage security policies and access control lists (ACLs).
+- Review historical activity and event logs.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Installation and Setup
+
+### Prerequisites
+- A running OpenClaw Gateway.
+- Node.js environment (for backend components).
+
+### Deployment
+You can deploy this admin interface using the `clawhub` CLI:
+
 ```bash
-hermes skills install clawhub/openclaw-admin-main
+clawhub publish D:\skill\OpenClaw-Admin-main\OpenClaw-Admin-main
 ```
+
+After publishing, ensure your gateway is configured to allow traffic from the admin dashboard's network location.
+
+## Troubleshooting
+If you encounter connection issues between the dashboard and the gateway, check your `gateway.remote.url` configuration and ensure all necessary ports are open in your firewall.

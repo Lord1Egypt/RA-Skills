@@ -1,35 +1,72 @@
 ---
-name: "hfnews"
-description: "Fetch and filter IT and Cybersecurity news from multiple sources, excluding politics, sports, and other unwanted topics based on a configurable blacklist."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hfnews"
-sourceUrl: "https://clawhub.ai/skills/hfnews"
+name: hfnews
+description: Fetch and filter news from multiple sources with stopwords/blacklist support. Customized for Hubert's interests (IT, Cybersecurity) with political/sports noise filtered out.
 ---
 
-# hfnews
+# News Fetcher
 
-> Fetch and filter IT and Cybersecurity news from multiple sources, excluding politics, sports, and other unwanted topics based on a configurable blacklist.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hfnews`
-- **Source URL:** [https://clawhub.ai/skills/hfnews](https://clawhub.ai/skills/hfnews)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hfnews
+# All categories
+news
+
+# Specific category
+news Allgemeines
+news IT
+news Cybersecurity
 ```
+
+## Output Format
+
+Simple list:
+```
+Allgemeines:
+- Titel URL
+- Titel URL
+- Titel URL
+- Titel URL
+- Titel URL
+
+IT:
+- Titel URL
+- Titel URL
+- Titel URL
+- Titel URL
+- Titel URL
+
+Cybersecurity:
+- Titel URL
+- Titel URL
+- Titel URL
+- Titel URL
+- Titel URL
+```
+
+## Blacklist
+
+Words to filter out:
+- Sport, Trump/USA, SPD, Iran, Bürgergeld, Mietreform, Mieterschutz
+- Regenpause, Ukraine, Putin, Epstein
+- Bilder des Tages, Karrierefrage
+- Stellenmarkt, Jobs
+
+## Categories
+
+### Allgemeines
+- Tagesschau: https://www.tagesschau.de/
+- FAZ: https://www.faz.net/aktuell/
+- WiWo: https://www.wiwo.de/
+- Süddeutsche: https://www.sueddeutsche.de/
+- Spiegel: https://www.spiegel.de/
+- Mittelbayerische: https://www.mittelbayerische.de/lokales/stadt-regensburg
+
+### IT
+- Heise: https://www.heise.de/
+- Golem: https://www.golem.de/
+- Slashdot: https://slashdot.org/
+
+### Cybersecurity
+- The Hacker News: https://thehackernews.com/
+- BleepingComputer: https://www.bleepingcomputer.com/
+- Logbuch Netzpolitik: https://logbuch-netzpolitik.de/

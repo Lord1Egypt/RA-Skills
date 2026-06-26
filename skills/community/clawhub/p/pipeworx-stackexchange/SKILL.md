@@ -1,35 +1,31 @@
----
-name: "Pipeworx stackexchange"
-description: "Search and retrieve questions and answers from any StackExchange site, including StackOverflow, ServerFault, SuperUser, and more."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-stackexchange"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-stackexchange"
----
+# StackExchange
 
-# Pipeworx stackexchange
+Search questions and retrieve answers from StackOverflow, ServerFault, SuperUser, Ask Ubuntu, Math, Physics, and any other StackExchange site.
 
-> Search and retrieve questions and answers from any StackExchange site, including StackOverflow, ServerFault, SuperUser, and more.
+## search_questions
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-stackexchange`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-stackexchange](https://clawhub.ai/skills/pipeworx-stackexchange)
+Search for questions on any StackExchange site. Returns the question title, body (HTML), score, answer count, tags, link, and view count. Default site is `stackoverflow` but you can pass any site slug.
 
-## Overview
+## get_answers
 
+Get all answers for a question by its numeric ID. Returns the answer body, score, whether it's the accepted answer, author name, and author reputation.
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-stackexchange
+curl -X POST https://gateway.pipeworx.io/stackexchange/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_questions","arguments":{"query":"async await best practices","site":"stackoverflow","limit":3}}}'
+```
+
+## Supported sites
+
+Pass any site slug: `stackoverflow`, `serverfault`, `superuser`, `askubuntu`, `math`, `physics`, `gaming`, `dba`, `security`, `unix`, and hundreds more.
+
+```json
+{
+  "mcpServers": {
+    "stackexchange": {
+      "url": "https://gateway.pipeworx.io/stackexchange/mcp"
+    }
+  }
+}
 ```

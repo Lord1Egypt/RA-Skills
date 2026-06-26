@@ -1,0 +1,9 @@
+{
+  "name": "baidu-ocr",
+  "version": "1.0.0",
+  "description": "百度 OCR 文字识别 - 准确率 95%+",
+  "author": "小飞象",
+  "created": "2026-03-07",
+  "dependencies": ["requests", "Pillow"],
+  "env_required": ["BAIDU_API_KEY", "BAIDU_SECRET_KEY"]
+}

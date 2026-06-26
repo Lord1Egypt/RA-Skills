@@ -1,35 +1,27 @@
----
-name: "Ditiansui Publish"
-description: "提供基于刘伯温注滴天髓的八字排盘、命理分析、命格解读及运势预测服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ditiansui"
-sourceUrl: "https://clawhub.ai/skills/ditiansui"
----
+# 滴天髓 - BaZi Destiny Analysis
 
-# Ditiansui Publish
+Ancient Chinese BaZi (八字) fate analysis powered by AI, based on Liu Bowei's classic 滴天髓.
 
-> 提供基于刘伯温注滴天髓的八字排盘、命理分析、命格解读及运势预测服务。
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ditiansui`
-- **Source URL:** [https://clawhub.ai/skills/ditiansui](https://clawhub.ai/skills/ditiansui)
+- **BaZi Chart**: Automatic Chinese birth chart calculation (年/月/日/时四柱八字)
+- **Fate Analysis**: Deep analysis based on Liu Bowei's 滴天髓 annotations
+- **Life Pattern**: Decode your destiny, Five Elements likes/dislikes
+- **Fortune Prediction**: Analyze current luck cycles and yearly trends
+- **Decision Making**: Get guidance for important life decisions
 
-## Overview
+## English Keywords
+BaZi, Chinese astrology, 八字, fortune telling, fate prediction, Chinese divination, Liu Bowei, 滴天髓, life analysis, Ming dynasty classic, Five Elements, 五行, destiny reading, Chinese zodiac, birth chart, horoscope, 易经, feng shui guidance
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ditiansui
-```
+1. Install the skill package
+2. Input your birth date and time (year/month/day/hour)
+3. Receive detailed BaZi analysis report
+4. Get personalized fortune guidance
+
+## Author
+@alisa-xh | ClawHub AI Skill Marketplace
+
+## License
+MIT-0 - Free to use, modify, and redistribute

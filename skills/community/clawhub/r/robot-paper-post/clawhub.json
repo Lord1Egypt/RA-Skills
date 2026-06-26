@@ -1,0 +1,21 @@
+{
+  "name": "robot-paper-post",
+  "version": "1.3.1",
+  "description": "深度拆解机器人/具身智能领域论文并生成技术推文，默认使用零额外安装的 arXiv 配图流程",
+  "author": "Jessy Huang",
+  "license": "MIT",
+  "homepage": "https://github.com/Jessy-Huang/robot-paper-post",
+  "clawhub": {
+    "url": "https://clawhub.ai/jessy-huang/robot-paper-post",
+    "category": "research"
+  },
+  "keywords": [
+    "robotics",
+    "paper",
+    "wechat",
+    "article",
+    "arxiv",
+    "figure",
+    "embodied-ai"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "brand": "split-screen",
+  "theme": "split-screen",
+  "layout": "two-column",
+  "title": "前后对比",
+  "leftTitle": "改造前",
+  "leftPoints": ["手动流程", "3 人协作", "1 周"],
+  "rightTitle": "改造后",
+  "rightPoints": ["自动流程", "1 人完成", "10 分钟"]
+}

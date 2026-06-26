@@ -1,0 +1,413 @@
+[
+  {
+    "term": "SAFE",
+    "full_name": "Simple Agreement for Future Equity",
+    "definition": "An investment contract where you receive money today and give shares later — when you raise a priced round. You are not selling shares now; you are making a promise to sell them later at a defined price or formula. Created by Y Combinator in 2013 to simplify early-stage fundraising and eliminate the complexity of convertible notes.",
+    "example": "An angel investor gives you $100K on a SAFE with a $5M valuation cap. You later raise a Series A at a $20M pre-money valuation. The investor converts at the lower $5M cap, getting 2% of the company instead of 0.5% — their reward for taking early risk.",
+    "related_terms": [
+      "Valuation Cap",
+      "Discount Rate",
+      "MFN",
+      "Priced Round",
+      "Post-Money SAFE"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Valuation Cap",
+    "full_name": "Valuation Cap",
+    "definition": "The maximum company valuation at which a SAFE or convertible note will convert into equity. It protects early investors from being diluted if the company raises at a much higher valuation. Think of it as the ceiling price for your early investors' shares.",
+    "example": "You raise a SAFE with a $5M cap. Your Series A is at $20M pre-money. The SAFE converts as if the valuation were $5M, giving the investor 4x more shares than new Series A investors paying the full $20M price.",
+    "related_terms": [
+      "SAFE",
+      "Discount Rate",
+      "Pre-Money Valuation",
+      "Post-Money Valuation"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Discount Rate",
+    "full_name": "Discount Rate",
+    "definition": "A percentage reduction on the price per share that SAFE or convertible note holders get when converting to equity. It compensates early investors for the risk they took by investing before the company had a set price. A 20% discount means they buy shares at 80 cents for every dollar new investors pay.",
+    "example": "Your Series A price is $1.00 per share. An investor holding a SAFE with a 20% discount converts at $0.80 per share, receiving 25% more shares than new investors for the same dollar amount invested.",
+    "related_terms": ["SAFE", "Valuation Cap", "Priced Round"],
+    "phase": "fundraising"
+  },
+  {
+    "term": "MFN",
+    "full_name": "Most Favored Nation",
+    "definition": "A contractual clause that automatically gives a SAFE holder the same terms as any better deal you give future investors. If you give the next investor a lower cap, the MFN investor automatically gets that lower cap too. Often used in SAFEs without a cap or discount — it is the investor's protection that they will not be treated worse than anyone who comes after them.",
+    "example": "You issue a SAFE to investor A with no cap (MFN only). Later you issue a SAFE to investor B with a $4M cap. Investor A's MFN clause activates and they automatically adopt the $4M cap.",
+    "related_terms": ["SAFE", "Valuation Cap", "Side Letter"],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Term Sheet",
+    "full_name": "Term Sheet",
+    "definition": "A non-binding document that outlines the key financial and governance terms of a proposed investment. It is the starting point for negotiation, not the final agreement. The binding legal documents (Stock Purchase Agreement, Investor Rights Agreement, etc.) come later. Reading a term sheet carefully is one of the most important skills a founder can develop.",
+    "example": "A VC sends you a term sheet offering to lead a $3M Series A at a $12M pre-money valuation with a 1x non-participating liquidation preference and two board seats. You negotiate the board composition and sign the term sheet, then your lawyers spend 2–4 weeks drafting the final documents.",
+    "related_terms": [
+      "Priced Round",
+      "Liquidation Preference",
+      "Pro-Rata Rights",
+      "Board of Directors"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Priced Round",
+    "full_name": "Priced Equity Round",
+    "definition": "A funding round where investors buy shares at a defined price per share, which sets an explicit valuation for the company. Unlike SAFEs or convertible notes, a priced round creates an official share class (usually Preferred Stock) with specific rights and terms. This is typically the first round with professional venture capital investors (Series A, B, C, etc.).",
+    "example": "You raise a $5M Series A at a $20M pre-money valuation. The price per share is calculated as $20M divided by the number of shares outstanding. Investors receive Series A Preferred Stock with rights like liquidation preference, anti-dilution protection, and board seats.",
+    "related_terms": [
+      "Term Sheet",
+      "SAFE",
+      "Preferred Stock",
+      "Pre-Money Valuation",
+      "Liquidation Preference"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Pre-Money Valuation",
+    "full_name": "Pre-Money Valuation",
+    "definition": "The value of your company before receiving new investment in the current round. It is the agreed-upon price tag on the company before the investor's money hits the bank account. Pre-money valuation determines how much of the company investors receive for their capital.",
+    "example": "A VC offers $2M at a $8M pre-money valuation. Post-money valuation is $10M ($8M + $2M). The VC owns 20% ($2M / $10M). You owned 100% before; now you own 80%. The pre-money valuation determines how much dilution you take.",
+    "related_terms": [
+      "Post-Money Valuation",
+      "Dilution",
+      "Cap Table",
+      "Priced Round"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Post-Money Valuation",
+    "full_name": "Post-Money Valuation",
+    "definition": "The value of your company after the new investment has been added. It equals pre-money valuation plus the investment amount. The YC post-money SAFE changed the standard in 2018 — with post-money SAFEs, founders can calculate exactly what percentage each SAFE holder will own at conversion, eliminating a major source of cap table confusion.",
+    "example": "$8M pre-money + $2M investment = $10M post-money valuation. Investors own 20%. If you later raise at $50M pre-money, the $2M investor's 20% stake is worth $10M — a 5x return on paper.",
+    "related_terms": ["Pre-Money Valuation", "SAFE", "Cap Table", "Dilution"],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Liquidation Preference",
+    "full_name": "Liquidation Preference",
+    "definition": "A right that gives preferred stock investors the right to get their money back before common stockholders in a sale or liquidation. '1x non-participating' is founder-friendly: investors get back 1x their investment OR convert to common and take their pro-rata share — whichever is greater. '2x participating' is the most aggressive: investors get 2x their money back PLUS their pro-rata share of what remains.",
+    "example": "Investor puts in $5M for 25% with 1x non-participating liquidation preference. Company sells for $15M. Scenario A: Investor takes $5M liquidation preference (33% of proceeds). Scenario B: Investor converts and takes 25% = $3.75M. Investor picks Scenario A. If the sale were $30M, Scenario B ($7.5M) would be better, so they convert.",
+    "related_terms": [
+      "Preferred Stock",
+      "Term Sheet",
+      "Priced Round",
+      "Waterfall"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Vesting",
+    "full_name": "Equity Vesting Schedule",
+    "definition": "A schedule that determines when founders, employees, or advisors earn their equity over time, rather than all at once. Vesting aligns incentives — you must stay with the company to earn your full allocation. Standard startup vesting is 4 years total. If you leave before fully vested, you forfeit the unvested shares.",
+    "example": "Founder gets 1,000,000 shares with a 4-year vesting schedule and 1-year cliff. After year 1: 250,000 shares vest (the cliff). Then 20,833 shares vest every month for the next 3 years. If the founder leaves after 18 months, they keep 375,000 shares (250,000 + 6 months x 20,833) and forfeit 625,000.",
+    "related_terms": ["Cliff", "Accelerated Vesting", "83(b) Election", "RSPA"],
+    "phase": "early-stage"
+  },
+  {
+    "term": "Cliff",
+    "full_name": "Vesting Cliff",
+    "definition": "A mandatory waiting period at the start of a vesting schedule during which no equity vests. The most common cliff is 1 year. This protects the company from someone joining, adding little value, and leaving after 3 months with 6.25% equity vested. Nothing vests during the cliff; then a large chunk vests all at once when the cliff date is reached.",
+    "example": "You grant an engineer 48,000 shares over 4 years with a 1-year cliff. For the first 11 months and 29 days, zero shares vest. On day 365, 12,000 shares vest instantly (the cliff payout). Then 1,000 shares vest monthly for 36 more months.",
+    "related_terms": ["Vesting", "Accelerated Vesting", "Restricted Stock"],
+    "phase": "early-stage"
+  },
+  {
+    "term": "83(b) Election",
+    "full_name": "IRS Section 83(b) Election",
+    "definition": "A tax election that tells the IRS you want to be taxed on restricted stock today — at its current low value — rather than when it vests at a potentially much higher value. Filing it means you pay tax now (often near zero for founders at incorporation) and any future gains are taxed at lower long-term capital gains rates instead of ordinary income rates.",
+    "example": "Founder receives 1,000,000 shares worth $0.001 each at incorporation ($1,000 total). Files 83(b): pays tax on $1,000 today. Company sells 4 years later at $10/share. Founder pays long-term capital gains tax on $9,999,000 gain. Without 83(b): founder would pay ordinary income tax on shares as they vested — taxed on potentially millions of dollars at ordinary income rates.",
+    "related_terms": [
+      "Vesting",
+      "Restricted Stock",
+      "Capital Gains Tax",
+      "RSPA"
+    ],
+    "phase": "pre-incorporation"
+  },
+  {
+    "term": "Accelerated Vesting",
+    "full_name": "Accelerated Vesting",
+    "definition": "A provision that speeds up an employee's or founder's vesting schedule when a specific event occurs — typically an acquisition. 'Single trigger' acceleration vests shares upon the acquisition alone. 'Double trigger' requires both an acquisition AND termination without cause within a defined period (usually 12–18 months). VCs prefer double trigger because single trigger means key people can leave right after an acquisition.",
+    "example": "A VP of Engineering has double trigger acceleration. The company is acquired and the VP is fired without cause 6 months later. Both triggers are met, and all remaining unvested shares vest immediately. If the VP had left voluntarily, the unvested shares would be forfeited.",
+    "related_terms": ["Vesting", "Cliff", "M&A", "Change of Control"],
+    "phase": "growth"
+  },
+  {
+    "term": "Cap Table",
+    "full_name": "Capitalization Table",
+    "definition": "A spreadsheet or database showing who owns what percentage of a company, including all equity instruments: common stock, preferred stock, options, warrants, SAFEs, and convertible notes. It is the source of truth for all ownership in the company. Investors scrutinize the cap table intensely during due diligence.",
+    "example": "Typical seed-stage cap table: Founder A 40%, Founder B 35%, Angel investors 10%, Employee option pool 12%, Advisor 1%, Early contractor 2%. Every time you raise money or issue options, these percentages change. After Series A, founders might each own 25–30% fully diluted.",
+    "related_terms": [
+      "Dilution",
+      "Pro-Rata Rights",
+      "Fully Diluted",
+      "Option Pool"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Dilution",
+    "full_name": "Equity Dilution",
+    "definition": "The reduction in existing shareholders' ownership percentage when new shares are issued. Dilution is not inherently bad — if you raise money at a high valuation, your percentage goes down but the value of each share you own goes up. Founders typically go from 100% at founding to 15–25% by IPO.",
+    "example": "You own 1,000,000 shares out of 1,000,000 total (100%). You raise a round and issue 250,000 new shares to investors. Now there are 1,250,000 shares. You still own 1,000,000, but your percentage dropped from 100% to 80%. You were diluted by 20%. Your absolute share count did not change — only your percentage.",
+    "related_terms": [
+      "Cap Table",
+      "Option Pool",
+      "Pro-Rata Rights",
+      "Anti-Dilution"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Pro-Rata Rights",
+    "full_name": "Pro-Rata Investment Rights",
+    "definition": "A right that allows investors to participate in future funding rounds to maintain their ownership percentage. Without pro-rata rights, early investors get diluted as the company raises more money. With pro-rata rights, they can buy enough new shares in each round to keep their percentage constant. This is a highly valuable right that sophisticated investors always negotiate for.",
+    "example": "An angel investor owns 5% of your company. You raise a Series A. With pro-rata rights, they have the right to invest in the Series A to maintain their 5% stake. If they choose not to exercise, they get diluted. The right to invest is theirs — they are not obligated to write the check.",
+    "related_terms": ["Dilution", "Cap Table", "Term Sheet", "Preferred Stock"],
+    "phase": "fundraising"
+  },
+  {
+    "term": "IP Assignment",
+    "full_name": "Intellectual Property Assignment",
+    "definition": "A legal transfer of ownership of intellectual property from an individual (founder, employee, or contractor) to the company. Without IP assignment, the individuals who created the product may personally own the patents, copyrights, and trade secrets — not the company. This is one of the first things investors check in due diligence.",
+    "example": "Two founders build a product before incorporating. At incorporation, they both sign an IP Assignment Agreement transferring all code, designs, business methods, and any related IP to the new company. Now the company legally owns what the founders built. If a co-founder later leaves and did not sign this, they may own half the product.",
+    "related_terms": ["CIIA", "Trade Secret", "Copyright", "Due Diligence"],
+    "phase": "pre-incorporation"
+  },
+  {
+    "term": "CIIA",
+    "full_name": "Confidential Information and Invention Assignment Agreement",
+    "definition": "A comprehensive agreement that employees and contractors sign covering four things: (1) they will keep company information confidential, (2) all work they create for the company belongs to the company, (3) they disclose any prior inventions they want to exclude from assignment, and (4) they will not recruit colleagues after leaving. It is more comprehensive and important than a standard NDA.",
+    "example": "A software engineer joins your startup. Before writing a single line of code, they sign a CIIA. Six months later, they leave and start a competitor. Because of the CIIA, the code they wrote at your company belongs to you, they cannot claim they independently developed the core algorithm, and they cannot recruit your team for 12 months.",
+    "related_terms": [
+      "IP Assignment",
+      "NDA",
+      "Non-Solicitation",
+      "Trade Secret"
+    ],
+    "phase": "early-stage"
+  },
+  {
+    "term": "Trade Secret",
+    "full_name": "Trade Secret",
+    "definition": "Valuable business information that derives its value from being kept secret, and where the company takes reasonable steps to maintain that secrecy. Unlike patents, trade secrets do not require registration and can last indefinitely. If exposed, protection is lost. Examples: source code, customer lists, pricing algorithms, manufacturing processes.",
+    "example": "Your recommendation algorithm is a trade secret. You have employees sign NDAs and CIIAs, you restrict access with role-based permissions, and you document your secrecy measures. If an employee steals the algorithm and gives it to a competitor, you can sue for trade secret misappropriation under the Defend Trade Secrets Act.",
+    "related_terms": [
+      "CIIA",
+      "NDA",
+      "IP Assignment",
+      "Defend Trade Secrets Act"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "NDA",
+    "full_name": "Non-Disclosure Agreement",
+    "definition": "A contract where one or both parties agree to keep shared information confidential. A mutual NDA protects both parties equally. A unilateral NDA protects only one party — typically used when a company shares confidential information with a vendor or potential partner. Important: NDAs do not assign intellectual property. For employees, use a CIIA instead.",
+    "example": "You are in early conversations with a potential partner. You both sign a mutual NDA before sharing business plans and technical architecture. If either party discloses what was shared, the other can sue for breach of contract and seek injunctive relief to stop further disclosure.",
+    "related_terms": ["CIIA", "Trade Secret", "Confidentiality"],
+    "phase": "early-stage"
+  },
+  {
+    "term": "C-Corp",
+    "full_name": "C Corporation",
+    "definition": "The standard corporate structure for venture-backed startups. It is a separate legal entity that can issue multiple classes of stock (common and preferred), is not subject to the 100-shareholder limit of S-Corps, and can be owned by non-US citizens and other corporations. The double-taxation issue (corporate tax + dividend tax) is largely irrelevant for startups that reinvest profits rather than paying dividends.",
+    "example": "You incorporate as a Delaware C-Corp. The company pays corporate income tax on its profits. If the company is acquired, shareholders pay capital gains tax on their proceeds. This is the structure that VCs, accelerators, and major acquirers expect. All YC companies are Delaware C-Corps.",
+    "related_terms": [
+      "Delaware Incorporation",
+      "S-Corp",
+      "LLC",
+      "Preferred Stock"
+    ],
+    "phase": "pre-incorporation"
+  },
+  {
+    "term": "Delaware Incorporation",
+    "full_name": "Delaware Incorporation",
+    "definition": "The act of forming a corporation under Delaware state law, even if the company operates elsewhere. Delaware is the preferred state for startup incorporation because of its well-developed corporate law, founder-friendly Court of Chancery, established case law that VCs and their lawyers trust, and flexibility in corporate governance documents.",
+    "example": "Your startup is based in San Francisco. You still incorporate in Delaware and then register as a 'foreign corporation doing business' in California. This is standard practice. Almost every VC-backed company and every company that has gone public in the US was incorporated in Delaware.",
+    "related_terms": [
+      "C-Corp",
+      "Board of Directors",
+      "Corporate Minutes",
+      "Piercing the Corporate Veil"
+    ],
+    "phase": "pre-incorporation"
+  },
+  {
+    "term": "Board of Directors",
+    "full_name": "Board of Directors",
+    "definition": "The governing body of a corporation, responsible for major decisions about the company's direction, hiring and firing the CEO, and approving significant transactions. Early-stage boards are typically 3–5 people. Founders negotiate hard to maintain board control in early rounds. A standard seed-stage board: 2 founders + 1 lead investor. Series A: 2 founders + 2 investors + 1 independent.",
+    "example": "Your Series A term sheet says the lead VC gets one board seat. Your board will be: you (CEO), co-founder (CTO), lead VC, and one independent director. The independent director is often a former operator you both trust. Board decisions require majority vote, so board composition directly determines who controls the company.",
+    "related_terms": [
+      "Board Consent",
+      "Corporate Minutes",
+      "Term Sheet",
+      "D&O Insurance"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Board Consent",
+    "full_name": "Written Board Consent",
+    "definition": "A document that allows the board to approve a decision without holding a formal in-person meeting, by having all directors sign a written consent form. Used for routine approvals between board meetings — option grants, hiring executives, approving contracts above a threshold. Every option grant, for example, should be approved by a board consent.",
+    "example": "You want to issue 50,000 options to a new VP of Sales. You do not need to call a board meeting. Your lawyer drafts a written board consent describing the grant. All board members sign it (via DocuSign). The grant is now officially approved and documented in your corporate records.",
+    "related_terms": [
+      "Board of Directors",
+      "Corporate Minutes",
+      "Option Grant",
+      "409A Valuation"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "409A Valuation",
+    "full_name": "Section 409A Valuation",
+    "definition": "An independent appraisal of a private company's common stock fair market value (FMV), required by the IRS before issuing stock options. It establishes the legal strike price for options. Without it, the IRS can treat all options as immediate taxable income with a 20% penalty tax — even before the options are exercised. A 409A is valid for 12 months or until a material event.",
+    "example": "Before issuing your first employee stock options, you hire a valuation firm to perform a 409A analysis. They determine that common stock is worth $0.20 per share (preferred stock sold at $1.00 per share has a 5:1 ratio to common, which is typical). You can now issue options with a strike price of $0.20. Employees exercise at $0.20; if the company later IPOs at $20, they made $19.80 per share.",
+    "related_terms": [
+      "Stock Options",
+      "ISO vs NSO",
+      "Fair Market Value",
+      "Board Consent"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "ISO vs NSO",
+    "full_name": "Incentive Stock Options vs Non-Qualified Stock Options",
+    "definition": "Two types of stock options with different tax treatment. ISOs are for employees only and have better tax treatment — no tax when you exercise, only capital gains tax when you sell. NSOs can be granted to anyone (employees, advisors, contractors) but have worse tax — you owe ordinary income tax at exercise, even before you sell the shares. Most employee grants are ISOs; advisor grants are NSOs.",
+    "example": "An employee exercises 10,000 ISOs at $0.50 strike when the FMV is $5.00. With ISO: no tax at exercise (though AMT may apply). She sells at $20 two years later: long-term capital gains tax on $19.50 per share. Same scenario with NSO: she owes ordinary income tax on $4.50 per share ($5 FMV - $0.50 strike) at exercise — a tax bill before she sees any cash.",
+    "related_terms": [
+      "409A Valuation",
+      "Option Grant",
+      "AMT",
+      "Capital Gains Tax"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "D&O Insurance",
+    "full_name": "Directors and Officers Liability Insurance",
+    "definition": "Insurance that protects company directors and officers from personal financial liability for decisions made in their official capacity. Covers legal defense costs, settlements, and judgments in lawsuits brought by shareholders, employees, regulators, or third parties. Most institutional investors require a company to carry D&O before they will join the board.",
+    "example": "A disgruntled investor sues the board claiming the CEO misrepresented the company's revenue in the fundraising process. Without D&O insurance, the CEO and all board members could face personal liability for defense costs and any judgment. With D&O, the insurance carrier pays for defense and, if covered, any settlement.",
+    "related_terms": [
+      "Board of Directors",
+      "Fiduciary Duty",
+      "Indemnification"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Due Diligence",
+    "full_name": "Legal and Business Due Diligence",
+    "definition": "A comprehensive investigation that investors or acquirers conduct before closing a transaction. Legal due diligence reviews corporate records, IP ownership, contracts, employment agreements, litigation history, regulatory compliance, and cap table. Financial due diligence reviews revenue, expenses, and accounting practices. The primary cause of deals falling apart is issues discovered during due diligence.",
+    "example": "A VC agrees to lead your Series A. Their lawyers send you a due diligence request list with 150 items. You must provide: certificate of incorporation, all shareholder agreements, all customer contracts over $10K, all employee agreements, IP assignments, cap table, option grants with board approvals, any litigation, IP filings, and 3 years of financial statements.",
+    "related_terms": [
+      "IP Assignment",
+      "Cap Table",
+      "Reps & Warranties",
+      "Data Room"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Reps and Warranties",
+    "full_name": "Representations and Warranties",
+    "definition": "Statements of fact made by the seller (company or founders) to the buyer (investor or acquirer) in a transaction agreement. 'Representations' are statements about the present. 'Warranties' are promises about the future. If a representation turns out to be false, the buyer can sue for indemnification. In M&A, reps and warranties can make founders personally liable for years after a sale.",
+    "example": "In your Series A Stock Purchase Agreement, the company represents that: it is validly incorporated, it owns all its IP, there is no pending litigation, the cap table is accurate, and all option grants have been properly approved. If any of these are untrue and the investor discovers it later, they can sue for damages.",
+    "related_terms": [
+      "Due Diligence",
+      "Indemnification",
+      "M&A",
+      "Stock Purchase Agreement"
+    ],
+    "phase": "fundraising"
+  },
+  {
+    "term": "Indemnification",
+    "full_name": "Indemnification",
+    "definition": "A contractual obligation where one party agrees to compensate another for losses, damages, or legal costs. In startup context: (1) Companies typically indemnify their directors and officers for actions taken in their official capacity. (2) In M&A, founders may indemnify the acquirer for breaches of reps and warranties. Indemnification can expose founders to personal liability long after a transaction closes.",
+    "example": "Your company is acquired for $10M. You represented that the company owned all its IP. Two years later, the acquirer discovers a contractor was never given a CIIA and owns some of the code. They sue you for indemnification for the $500K it cost them to resolve the IP dispute.",
+    "related_terms": ["Reps and Warranties", "D&O Insurance", "Escrow"],
+    "phase": "growth"
+  },
+  {
+    "term": "Escrow",
+    "full_name": "M&A Escrow",
+    "definition": "In an acquisition, a portion of the purchase price (typically 10–15%) held in a third-party account for 12–18 months after closing. It serves as a fund to compensate the buyer if representations and warranties turn out to be false. The escrow is released to the founders if no claims are made by the end of the escrow period.",
+    "example": "Your company is acquired for $10M. $1.5M goes into escrow. You receive $8.5M at closing. 18 months later, no claims have been made. The $1.5M escrow is released to you. But if the acquirer discovered an undisclosed customer contract dispute worth $500K during that period, they would claim against the escrow fund.",
+    "related_terms": [
+      "Reps and Warranties",
+      "Indemnification",
+      "M&A",
+      "Representations and Warranties Insurance"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "Non-Compete",
+    "full_name": "Non-Compete Agreement",
+    "definition": "A contract that restricts an employee or founder from working for a competitor or starting a competing business for a defined period after leaving. Critically: California, North Dakota, Minnesota, and Oklahoma ban non-competes entirely. The FTC issued a near-total ban in 2024 (though legally contested). In most other states, they must be reasonable in duration (6–12 months), geography, and scope to be enforceable.",
+    "example": "A VP of Sales in New York signs a 1-year non-compete covering the same vertical market within the US. This may be enforceable in New York. If the same VP were in California, the clause is void — California Labor Code Section 16600 bans non-competes with narrow exceptions.",
+    "related_terms": [
+      "Non-Solicitation",
+      "CIIA",
+      "Trade Secret",
+      "Governing Law"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "Governing Law",
+    "full_name": "Governing Law Clause",
+    "definition": "The clause in a contract specifying which state's laws govern disputes under that contract. Delaware is the default for corporate documents. Contracts with customers often specify the state where the company is headquartered. It matters because contract enforcement, damages available, and procedural rules differ significantly by state.",
+    "example": "Your standard customer agreement says 'governed by the laws of the State of Delaware.' A California customer disputes a charge. Even though the customer is in California, the dispute is analyzed under Delaware contract law. This is why large companies prefer Delaware governing law — the law is well-developed and predictable.",
+    "related_terms": ["Arbitration", "Jurisdiction", "Term Sheet"],
+    "phase": "growth"
+  },
+  {
+    "term": "Arbitration",
+    "full_name": "Arbitration Clause",
+    "definition": "A dispute resolution mechanism where parties agree to resolve disputes through a private arbitrator instead of court. Advantages: faster, private, often cheaper for simple disputes. Disadvantages: limited discovery, limited appeal rights, arbitrators sometimes split the difference rather than apply law strictly. JAMS and AAA are the two major arbitration providers for commercial disputes.",
+    "example": "Your ToS includes a binding arbitration clause for all disputes under $250,000. A customer claims you overcharged them $50,000. They cannot sue you in court — they must file an arbitration demand with AAA. The proceeding is private, the decision is binding, and typical timeline is 6–9 months versus 2–3 years in federal court.",
+    "related_terms": [
+      "Governing Law",
+      "Terms of Service",
+      "Class Action Waiver"
+    ],
+    "phase": "growth"
+  },
+  {
+    "term": "LOI",
+    "full_name": "Letter of Intent",
+    "definition": "A preliminary document outlining the basic terms of a proposed transaction — typically used in M&A (acquisition) rather than fundraising. Usually non-binding on the deal terms, but may have binding provisions on exclusivity (no-shop) and confidentiality. Signing an LOI starts the formal due diligence process.",
+    "example": "A strategic acquirer sends you an LOI to acquire your company for $15M. The LOI is non-binding on price (they can negotiate after due diligence), but the 30-day exclusivity clause is binding — you cannot talk to other acquirers for 30 days. This is why founders negotiate hard to keep the LOI period short.",
+    "related_terms": ["No-Shop Clause", "Due Diligence", "M&A", "Term Sheet"],
+    "phase": "growth"
+  },
+  {
+    "term": "No-Shop Clause",
+    "full_name": "No-Shop Clause",
+    "definition": "A binding provision in an LOI or term sheet that prevents the company from soliciting or entertaining acquisition offers from other parties for a defined period. It protects the buyer who is about to spend significant resources on due diligence. Typically 30–60 days in M&A; 30 days in venture term sheets. Founders should negotiate the shortest possible no-shop period.",
+    "example": "You sign an LOI with an acquirer that includes a 45-day no-shop clause. During those 45 days, you cannot respond to acquisition inquiries from other buyers, and you cannot proactively approach other buyers. If the acquirer walks away on day 44, you restart the process with no competing bids and 45 fewer days of runway.",
+    "related_terms": ["LOI", "Due Diligence", "Exclusivity", "M&A"],
+    "phase": "growth"
+  },
+  {
+    "term": "Earnout",
+    "full_name": "Earnout Provision",
+    "definition": "A contingent payment structure in an acquisition where the acquirer pays additional consideration if the acquired company hits defined milestones after closing. It bridges valuation gaps between buyer and seller. Earnouts can be based on revenue, EBITDA, product milestones, or customer metrics. They are notoriously contentious — acquirers have incentive not to hit the milestones and can control the inputs.",
+    "example": "Acquirer offers $5M upfront plus up to $3M in earnout if the product achieves $2M ARR within 18 months post-acquisition. After closing, the acquirer integrates the product, changes the roadmap, and reassigns the sales team. The product misses the ARR target. Founders do not receive the $3M earnout. Always negotiate earnout metrics you directly control.",
+    "related_terms": ["LOI", "M&A", "Reps and Warranties", "Escrow"],
+    "phase": "growth"
+  }
+]

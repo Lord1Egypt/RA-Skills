@@ -1,35 +1,68 @@
 ---
-name: "Openclaw Backup"
-description: "Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Ha..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-backup-pro"
-sourceUrl: "https://clawhub.ai/skills/openclaw-backup-pro"
+name: openclaw-backup
+description: Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Handles ~/.openclaw directory archiving with proper exclusions.
 ---
 
-# Openclaw Backup
+# OpenClaw Backup
 
-> Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Ha...
+Backup and restore OpenClaw configuration, credentials, and workspace.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-backup-pro`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-backup-pro](https://clawhub.ai/skills/openclaw-backup-pro)
+## Create Backup
 
-## Overview
+Run the backup script:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-backup-pro
+./scripts/backup.sh [backup_dir]
 ```
+
+Default backup location: `~/openclaw-backups/`
+
+Output: `openclaw-YYYY-MM-DD_HHMM.tar.gz`
+
+## What Gets Backed Up
+
+- `openclaw.json` — main config
+- `credentials/` — API keys, tokens
+- `agents/` — agent configs, auth profiles
+- `workspace/` — memory, SOUL.md, user files
+- `telegram/` — session data
+- `cron/` — scheduled tasks
+
+## Excluded
+
+- `completions/` — cache, regenerated automatically
+- `*.log` — logs
+
+## Setup Daily Backup with Cron
+
+Use OpenClaw cron for daily backups with notification:
+
+```json
+{
+  "name": "daily-backup",
+  "schedule": {"kind": "cron", "expr": "0 3 * * *", "tz": "UTC"},
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Run ~/.openclaw/backup.sh and report result to user."
+  },
+  "sessionTarget": "isolated",
+  "delivery": {"mode": "announce"}
+}
+```
+
+## Restore
+
+See [references/restore.md](references/restore.md) for step-by-step restore instructions.
+
+Quick restore:
+
+```bash
+openclaw gateway stop
+mv ~/.openclaw ~/.openclaw-old
+tar -xzf ~/openclaw-backups/openclaw-YYYY-MM-DD_HHMM.tar.gz -C ~
+openclaw gateway start
+```
+
+## Rotation
+
+Script keeps last 7 backups automatically.

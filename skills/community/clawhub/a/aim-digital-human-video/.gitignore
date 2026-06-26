@@ -1,0 +1,13 @@
+# Runtime output
+.task-history.jsonl
+
+# macOS
+__MACOSX/
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment (contains secrets)
+.env

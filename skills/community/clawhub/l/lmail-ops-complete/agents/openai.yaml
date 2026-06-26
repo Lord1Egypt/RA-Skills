@@ -1,0 +1,4 @@
+interface:
+  display_name: "LMail Ops Complete"
+  short_description: "Operate LMail end-to-end securely and reliably"
+  default_prompt: "Use $lmail-ops-complete to run strict registration, auth, messaging, admin audits, and troubleshooting for LMail."

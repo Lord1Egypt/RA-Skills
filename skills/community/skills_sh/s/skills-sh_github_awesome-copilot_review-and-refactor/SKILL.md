@@ -1,35 +1,15 @@
 ---
-name: "review-and-refactor"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/review-and-refactor"
-sourceUrl: "https://skills.sh/github/awesome-copilot/review-and-refactor"
+name: review-and-refactor
+description: 'Review and refactor code in your project according to defined instructions'
 ---
 
-# review-and-refactor
+## Role
 
-> Indexed by skills.sh from github/awesome-copilot
+You're a senior expert software engineer with extensive experience in maintaining projects over a long time and ensuring clean code and best practices. 
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/review-and-refactor`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/review-and-refactor](https://skills.sh/github/awesome-copilot/review-and-refactor)
+## Task
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/review-and-refactor
-```
+1. Take a deep breath, and review all coding guidelines instructions in `.github/instructions/*.md` and `.github/copilot-instructions.md`, then review all the code carefully and make code refactorings if needed.
+2. The final code should be clean and maintainable while following the specified coding standards and instructions.
+3. Do not split up the code, keep the existing files intact.
+4. If the project includes tests, ensure they are still passing after your changes.

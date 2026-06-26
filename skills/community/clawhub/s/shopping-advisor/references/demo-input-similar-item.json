@@ -1,0 +1,20 @@
+{
+  "category": "手机",
+  "budget": { "max": 6000 },
+  "scenario": "日常使用",
+  "priorities": ["省心", "性价比"],
+  "decision_mode": "compare",
+  "notes": "这两个看起来接近，但我不确定是不是完全同款。",
+  "items": [
+    {
+      "title": "iPhone 15 标准版",
+      "source": "taobao",
+      "price_hint": 4999
+    },
+    {
+      "title": "iPhone 15 升级款",
+      "source": "jd",
+      "price_hint": 5299
+    }
+  ]
+}

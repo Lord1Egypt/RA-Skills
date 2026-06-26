@@ -1,35 +1,32 @@
 ---
-name: "groove-utilities-task-archive"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-task-archive"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-utilities-task-archive"
+name: groove-utilities-task-archive
+description: "Archive a completed task in the configured backend."
+license: MIT
+allowed-tools: Read Write Edit Glob Grep Bash(git:*) Bash(beans:*) Bash(gh:*) Bash(linear:*) Bash(npx:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
 
 # groove-utilities-task-archive
 
-> Indexed by skills.sh from andreadellacorte/groove
+## Outcome
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-task-archive`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-utilities-task-archive](https://skills.sh/andreadellacorte/groove/groove-utilities-task-archive)
+All completed and scrapped tasks are archived in the configured backend. The count of archived tasks is reported to the user.
 
-## Overview
+## Acceptance Criteria
 
+- All completed/scrapped tasks are moved to archived state in backend
+- User is shown the scope of what will be archived and confirms before running
+- Count of archived tasks is reported after completion
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-task-archive
-```
+## Constraints
+
+- Read `tasks.backend` from `.groove/index.md` to determine backend
+- If `tasks.backend: none`, no-op with friendly message
+- Always show user what will be archived and ask for confirmation before proceeding
+- Never run automatically during daily end — only when user explicitly requests
+- Backend mappings:
+  - `beans`: `beans archive` (archives all completed/scrapped — no single-task option)
+  - `linear`: mark filtered issues as archived via linear CLI or MCP
+  - `github`: close resolved issues via `gh issue close`
+- Report count of archived tasks after completion

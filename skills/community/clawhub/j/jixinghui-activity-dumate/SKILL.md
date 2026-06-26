@@ -1,35 +1,165 @@
 ---
-name: "极星会活动自动化参与"
-description: "自动化参与极星会 DuMate 体验活动。当用户说"参加极星会活动"、"报名极星会"、"帮我参与 DuMate 活动"、"自动完成极星会活动"或类似表达时触发。自动完成报名、体验、截图、获取账号 ID 和提交信息的全流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jixinghui-activity-dumate"
-sourceUrl: "https://clawhub.ai/skills/jixinghui-activity-dumate"
+name: jixinghui-activity-dumate
+description: 自动化参与极星会 DuMate 体验活动。当用户说"参加极星会活动"、"报名极星会"、"帮我参与 DuMate 活动"、"自动完成极星会活动"或类似表达时触发。自动完成报名、体验、截图、获取账号 ID 和提交信息的全流程。
 ---
 
-# 极星会活动自动化参与
+# 极星会活动自动化参与 Skill
 
-> 自动化参与极星会 DuMate 体验活动。当用户说"参加极星会活动"、"报名极星会"、"帮我参与 DuMate 活动"、"自动完成极星会活动"或类似表达时触发。自动完成报名、体验、截图、获取账号 ID 和提交信息的全流程。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jixinghui-activity-dumate`
-- **Source URL:** [https://clawhub.ai/skills/jixinghui-activity-dumate](https://clawhub.ai/skills/jixinghui-activity-dumate)
+这个 Skill 帮助用户自动完成极星会 DuMate 体验活动的参与流程,包括:
 
-## Overview
+1. 打开活动页面并点击报名
+2. 下载安装 DuMate 客户端(如未安装)
+3. 登录 DuMate 并体验功能
+4. 自动截取 3 张全屏体验截图
+5. 从百度云控制台获取账号 ID
+6. 提交参与信息(账号 ID + 3 张截图)
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jixinghui-activity-dumate
-```
+用户只需说一句话,例如:
+- "参加极星会活动"
+- "帮我报名极星会"
+- "自动完成 DuMate 活动参与"
+
+Skill 会自动完成所有步骤。
+
+## 工作流程
+
+### 第一步: 报名活动
+
+1. 使用浏览器自动化技能打开活动页面: `https://wxaurl.cn/3kzrkXaZ4Dh`
+2. 定位并点击"报名"按钮
+3. 等待报名成功提示
+
+### 第二步: 下载安装 DuMate(如需要)
+
+1. 检查用户是否已安装 DuMate 客户端
+2. 如未安装,通过专属链接下载: `https://www.dumate.cn?track=sfhzjxh`
+3. 引导用户完成安装(Windows 10+ 或 macOS M 系列芯片)
+
+### 第三步: 登录并体验 DuMate
+
+1. 打开 DuMate 客户端
+2. 引导用户完成账号登录授权
+3. 体验系统推荐功能或发送测试指令
+
+### 第四步: 截取 3 张全屏截图
+
+在 DuMate 体验过程中,自动截取 3 张全屏截图,确保:
+- 截图为电脑全屏
+- 桌面背景清晰可见
+- 展示 DuMate 的不同功能界面
+
+### 第五步: 获取账号 ID
+
+1. 打开百度云控制台: `https://cloud.baidu.com/`
+2. 登录后定位账号 ID 显示位置
+3. 提取账号 ID(非手机号或昵称)
+
+### 第六步: 提交参与信息
+
+1. 返回活动页面: `https://wxaurl.cn/3kzrkXaZ4Dh`
+2. 填写表单:
+   - 输入账号 ID
+   - 上传 3 张全屏截图
+3. 提交参与信息
+
+## 重要提示
+
+- 账号 ID 不是手机号,也不是昵称,请勿填错
+- 提交的截图需为电脑全屏截图,且桌面背景清晰可见
+- 最终参与结果以系统后台数据判定为准
+- 如积分不足,可使用邀请码 `JIXING6` 领取 5000 积分
+
+## 执行步骤
+
+当用户请求参与极星会活动时,按以下步骤执行:
+
+### 1. 加载浏览器自动化技能
+
+首先加载 `dumate-browser-use` 技能,用于后续的网页操作。
+
+### 2. 报名活动
+
+使用浏览器自动化技能:
+- 打开活动页面: `https://wxaurl.cn/3kzrkXaZ4Dh`
+- 定位并点击"报名"按钮
+- 等待报名成功提示
+
+### 3. 下载安装 DuMate(如需要)
+
+检查用户是否已安装 DuMate:
+- 如未安装,打开下载页面: `https://www.dumate.cn?track=sfhzjxh`
+- 提示用户下载并安装(支持 Windows 10+ 和 macOS M 系列芯片)
+- 等待用户完成安装
+
+### 4. 登录并体验 DuMate
+
+- 打开 DuMate 客户端
+- 提示用户完成账号登录授权(这是需要用户手动操作的步骤)
+- 引导用户体验系统推荐功能或发送测试指令
+
+### 5. 截取 3 张全屏截图
+
+在用户使用 DuMate 过程中:
+- 使用系统截图功能或浏览器自动化截图
+- 截取 3 张不同的全屏界面截图
+- 确保桌面背景清晰可见
+- 保存截图到 `~/Desktop/jixinghui_screenshots/` 目录
+
+### 6. 获取账号 ID
+
+使用浏览器自动化技能:
+- 打开百度云控制台: `https://cloud.baidu.com/`
+- 如需登录,提示用户登录
+- 定位账号 ID 显示位置(通常在页面右上角或个人中心)
+- 提取账号 ID
+
+### 7. 提交参与信息
+
+返回活动页面 `https://wxaurl.cn/3kzrkXaZ4Dh`:
+- 定位参与信息提交表单
+- 填写账号 ID
+- 上传 3 张截图
+- 提交表单
+
+### 8. 完成报告
+
+向用户报告:
+- 报名状态: 成功/失败
+- 截图保存位置
+- 账号 ID
+- 提交状态
+- 邀请码提示: `JIXING6`(可领取 5000 积分)
+
+## 错误处理
+
+执行过程中可能遇到的问题及处理方式:
+
+- **活动页面无法访问**: 提示用户检查网络连接,或提供正确的活动链接
+- **报名按钮定位失败**: 提示用户手动点击报名,或检查页面是否已更新
+- **DuMate 下载失败**: 提供备用下载方式或手动下载指引
+- **登录授权需要用户操作**: 暂停自动化流程,等待用户完成登录后继续
+- **截图失败**: 提示用户手动截图,并告知截图保存位置
+- **账号 ID 获取失败**: 提示用户手动从百度云控制台获取账号 ID
+- **表单提交失败**: 保存已填写信息,提示用户稍后重试或手动提交
+
+## 注意事项
+
+1. **账号 ID 不是手机号或昵称**,必须从百度云控制台获取
+2. **截图必须是全屏截图**,且桌面背景清晰可见
+3. **需要用户手动操作的环节**: 登录授权、DuMate 客户端登录
+4. **最终参与结果以系统后台数据判定为准**
+5. **积分不足时可使用邀请码**: `JIXING6` 可领取 5000 积分
+
+## 使用示例
+
+用户可以说:
+- "参加极星会活动"
+- "帮我报名极星会"
+- "自动完成 DuMate 活动参与"
+- "参与极星会体验活动"
+
+Skill 会自动执行完整的参与流程,并在关键节点提示用户确认或手动操作。

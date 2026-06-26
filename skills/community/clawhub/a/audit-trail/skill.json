@@ -1,0 +1,25 @@
+{
+  "name": "audit-trail",
+  "version": "1.0.0",
+  "description": "Immutable, timestamped, hash-chained audit log of all agent actions. Forensic-ready for compliance, investigation, and accountability.",
+  "author": "arhadnane",
+  "license": "MIT",
+  "emoji": "📜",
+  "category": "governance",
+  "capabilities": [
+    "action-logging",
+    "hash-chain",
+    "integrity-verification",
+    "compliance-reporting",
+    "forensic-analysis"
+  ],
+  "logTypes": [
+    "tool_use",
+    "skill_invoke",
+    "channel_in",
+    "channel_out",
+    "memory_write",
+    "config_change",
+    "error"
+  ]
+}

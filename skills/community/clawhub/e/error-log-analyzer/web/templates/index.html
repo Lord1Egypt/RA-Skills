@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Log Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            opacity: 0.8;
+            font-size: 1.1em;
+        }
+        
+        .main-content {
+            padding: 40px;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .tab:hover {
+            transform: translateY(-2px);
+        }
+        
+        .input-area {
+            display: none;
+        }
+        
+        .input-area.active {
+            display: block;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .file-upload {
+            border: 3px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        button.analyze-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        
+        button.analyze-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        button.analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .results {
+            margin-top: 40px;
+            display: none;
+        }
+        
+        .results.active {
+            display: block;
+        }
+        
+        .summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .summary h2 {
+            margin-bottom: 15px;
+            color: #1a1a2e;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+        
+        .error-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 4px solid #ddd;
+        }
+        
+        .error-card.critical {
+            border-left-color: #f44336;
+        }
+        
+        .error-card.high {
+            border-left-color: #ff9800;
+        }
+        
+        .error-card.medium {
+            border-left-color: #ffc107;
+        }
+        
+        .error-card.low {
+            border-left-color: #4caf50;
+        }
+        
+        .error-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .error-type {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+        
+        .severity-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .severity-badge.critical {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .severity-badge.high {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .severity-badge.medium {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+        
+        .severity-badge.low {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .error-section {
+            margin: 15px 0;
+        }
+        
+        .error-section h3 {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .suggestion-list {
+            list-style: none;
+        }
+        
+        .suggestion-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .suggestion-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔓 Error Log Analyzer</h1>
+            <p class="subtitle">AI-powered error analysis with plain English explanations</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="input-section">
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab('paste')">Paste Logs</button>
+                    <button class="tab" onclick="showTab('upload')">Upload File</button>
+                </div>
+                
+                <div id="paste-tab" class="input-area active">
+                    <textarea id="log-input" placeholder="Paste your error logs here...
+
+Example:
+2026-03-06 14:23:11 ERROR: ECONNREFUSED
+    at Database.connect (/app/src/db.js:45:12)
+    at async initApp (/app/src/index.js:23:5)"></textarea>
+                </div>
+                
+                <div id="upload-tab" class="input-area">
+                    <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                        <div class="upload-icon">📁</div>
+                        <p><strong>Click to upload log file</strong></p>
+                        <p style="color: #999; margin-top: 10px;">Supports .log, .txt files</p>
+                        <input type="file" id="file-input" accept=".log,.txt" onchange="handleFileUpload(event)">
+                    </div>
+                </div>
+                
+                <button class="analyze-btn" onclick="analyzeLogs()" id="analyze-btn">
+                    🔍 Analyze Errors
+                </button>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing your logs with AI...</p>
+            </div>
+            
+            <div class="results" id="results">
+                <div class="summary" id="summary"></div>
+                <div id="error-cards"></div>
+            </div>
+        </div>
+        
+        <footer>
+            Made with ❤️ by Max_Gaan | Powered by AI
+        </footer>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.input-area').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('log-input').value = e.target.result;
+                    showTab('paste');
+                };
+                reader.readAsText(file);
+            }
+        }
+        
+        async function analyzeLogs() {
+            const logContent = document.getElementById('log-input').value.trim();
+            
+            if (!logContent) {
+                alert('Please paste or upload log content first');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('analyze-btn').disabled = true;
+            
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ logs: logContent })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayResults(data.results);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Failed to analyze logs: ' + error.message);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('analyze-btn').disabled = false;
+            }
+        }
+        
+        function displayResults(results) {
+            // Show results section
+            document.getElementById('results').classList.add('active');
+            
+            // Display summary
+            const summaryHtml = `
+                <h2>📊 Analysis Summary</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-label">Total Errors</div>
+                        <div class="stat-value">${results.total_errors}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Unique Errors</div>
+                        <div class="stat-value">${results.unique_errors}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Trend</div>
+                        <div class="stat-value">${results.trends.trend}</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; white-space: pre-line;">${results.summary}</p>
+            `;
+            document.getElementById('summary').innerHTML = summaryHtml;
+            
+            // Display error cards
+            const cardsHtml = results.analyses.map(error => `
+                <div class="error-card ${error.severity.toLowerCase()}">
+                    <div class="error-header">
+                        <div class="error-type">${error.error_type}</div>
+                        <span class="severity-badge ${error.severity.toLowerCase()}">${error.severity}</span>
+                    </div>
+                    
+                    <div class="error-section">
+                        <h3>What happened</h3>
+                        <p>${error.explanation}</p>
+                    </div>
+                    
+                    <div class="error-section">
+                        <h3>Occurrences</h3>
+                        <p>${error.occurrence_count} time(s)</p>
+                    </div>
+                    
+                    <div class="error-section">
+                        <h3>How to fix</h3>
+                        <ul class="suggestion-list">
+                            ${error.suggestions.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    ${error.code_examples && error.code_examples.length > 0 ? `
+                        <div class="error-section">
+                            <h3>Code Example</h3>
+                            <pre style="background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto;">${error.code_examples.join('\n')}</pre>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+            
+            document.getElementById('error-cards').innerHTML = cardsHtml;
+        }
+    </script>
+</body>
+</html>

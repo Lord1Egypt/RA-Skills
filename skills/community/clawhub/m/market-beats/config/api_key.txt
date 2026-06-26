@@ -1,0 +1,19 @@
+# config/api_key.txt — 存放 Prana Claw API 凭证（勿提交到公开 Git）
+#
+# 填写方式（任选其一）：
+#   方式一（推荐）：下一行写 public_key:secret_key（仅一个英文冒号，无空格也可）
+#   示例：pk_xxx:sk_yyy
+#
+#   方式二：在本文件内粘贴 GET /api/v1/api-keys 返回的完整 JSON（可多行）。
+#
+# 自动拉 key：运行薄客户端时若本地无凭证，会请求 GET /api/v1/api-keys，
+#   成功后默认把结果写回本文件（首行注释 + 一行 pk:sk）。不想写盘可设 PRANA_SKILL_SKIP_WRITE_API_KEY=1。
+#
+# GET /api/v1/api-keys 可选查询参数：
+#   - account_id：已有账户时在 URL 上传入；环境变量 ACCOUNT_ID / PRANA_ACCOUNT_ID 有值时脚本会自动附加。
+#
+# 手工 curl 示例（已有账户）：
+#   curl -sS "${NEXT_PUBLIC_URL}/api/v1/api-keys?account_id=${ACCOUNT_ID}"
+#
+# 无账户（由服务端创建随机用户并返回 key）：
+#   curl -sS "${NEXT_PUBLIC_URL}/api/v1/api-keys"

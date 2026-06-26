@@ -1,35 +1,66 @@
 ---
-name: "Book Battery"
-description: "Book battery services through Lokuli MCP. Use when user needs to find and book battery. Triggers on requests like "book a battery", "find battery near me", or any battery service request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-battery"
-sourceUrl: "https://clawhub.ai/skills/book-battery"
+name: book-battery
+description: Book battery services through Lokuli MCP. Use when user needs to find and book battery. Triggers on requests like "book a battery", "find battery near me", or any battery service request.
 ---
 
-# Book Battery
+# uook uattery
 
-> Book battery services through Lokuli MCP. Use when user needs to find and book battery. Triggers on requests like "book a battery", "find battery near me", or any battery service request.
+Book battery services through Lokuli's MCP server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-battery`
-- **Source URL:** [https://clawhub.ai/skills/book-battery](https://clawhub.ai/skills/book-battery)
+## MCP Endpoint
 
-## Overview
+```
+https://lokuli.com/mcp/sse
+```
 
+Transport: SSE | JSON-RPC 2.0 | POST requests
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-battery
+## Tools
+
+### search
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search",
+    "arguments": {
+      "query": "battery",
+      "zipCode": "90640",
+      "maxResults": 20
+    }
+  }
+}
+```
+
+### check_availability
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_availability",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "date": "2025-02-10"
+    }
+  }
+}
+```
+
+### create_booking
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_booking",
+    "arguments": {
+      "providerId": "xxx",
+      "serviceId": "yyy",
+      "timeSlot": "2025-02-10T14:00:00-08:00",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+13105551234"
+    }
+  }
+}
 ```

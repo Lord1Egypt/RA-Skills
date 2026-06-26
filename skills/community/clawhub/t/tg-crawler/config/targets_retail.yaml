@@ -1,0 +1,28 @@
+global_keywords:
+- 外挂
+keyword_rules:
+  mode: OR
+  case_sensitive: false
+description: '行业分类: retail — 5 个频道'
+target_count: 5
+targets:
+- id: wool_001
+  type: channel
+  identifier: jdbroo
+  note: 羊毛线报-Bug价/小程序活动/抽奖
+- id: wool_002
+  type: channel
+  identifier: xbcia
+  note: 羊毛线报-淘宝京东拼多多优惠
+- id: wool_003
+  type: channel
+  identifier: superbuffg
+  note: 羊毛线报-综合羊毛3.27K成员
+- id: wool_004
+  type: channel
+  identifier: supershop66
+  note: 羊毛线报-捡漏优惠中心
+- id: wool_005
+  type: channel
+  identifier: get_coupons
+  note: 羊毛线报-优惠券CPS推广

@@ -1,0 +1,22 @@
+{
+  "api": {
+    "base_url": "https://rrbd20.yzidea.net/api",
+    "tenant_id": "3"
+  },
+  "login": {
+    "default_username": "",
+    "default_password": ""
+  },
+  "endpoints": {
+    "login": "/user/login/pc",
+    "user_info": "/user/user/userInfo",
+    "virtual_man_list": "/digital/szrVirtualMan/page",
+    "voice_list": "/digital/szrVoice/page",
+    "template_list": "/digital/szrVideo/clipTemplate",
+    "video_create": "/digital/szrVideo/createVideo",
+    "video_detail": "/digital/szrVideo/detail",
+    "video_list": "/digital/szrVideo/page",
+    "virtualman_common": "/digital/szrVirtualMan/virtualmanCommon",
+    "voice_common": "/digital/szrVoice/voiceCommon"
+  }
+}

@@ -1,35 +1,49 @@
 ---
-name: "Line"
-description: "Provides organized summaries of LINE's public platform features, content formats, operational rules, and help resources without accessing private data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/line"
-sourceUrl: "https://clawhub.ai/skills/line"
+name: line
+description: 注册“LINE”技能；用于社交平台公开页面、功能说明、内容形态与运营规则整理。
+homepage: `https://line.me/`
+metadata: {"clawdbot":{"emoji":"💬"}}
 ---
 
-# Line
+# LINE
 
-> Provides organized summaries of LINE's public platform features, content formats, operational rules, and help resources without accessing private data.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/line`
-- **Source URL:** [https://clawhub.ai/skills/line](https://clawhub.ai/skills/line)
+- 面向公开官网、帮助中心、公开活动页与产品介绍页的信息整理
+- 不提供账号登录、私信代发、群组控制、权限绕过或风控规避能力
+- 仅处理公开可见的产品功能、内容样式、运营规则与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://line.me/
+- 帮助中心：官网导航中的帮助、支持、规则或安全中心入口
+- 功能与创作说明：公开产品介绍、创作者中心、广告与商业化入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/line
-```
+常见任务
+
+- 平台内容形态与推荐位说明摘要
+- 创作者功能、商业化入口、品牌合作能力整理
+- 社区规范、账号安全、内容发布限制汇总
+
+数据字段
+
+- 内容形态、推荐位、互动方式、创作工具、链接
+- 账号类型、认证说明、商业化入口、帮助页链接
+- 规则名称、违规类型、处罚说明、申诉入口
+
+自动化要点
+
+- 公开页面常有多地区差异，输出时要标明适用区域
+- 规则页与帮助页更新较快，引用时保留原始链接与日期
+- 不触碰私域数据、非公开帖子、后台权限或账号资产操作
+
+示例流程
+
+- 功能整理：访问 LINE 产品页与帮助中心 → 提取核心功能 → 输出要点清单
+- 规则汇总：进入规则或安全中心 → 提取发布限制与申诉入口 → 输出表格
+- 运营支持：访问商业化或创作者入口 → 汇总能力与适用条件 → 输出摘要
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

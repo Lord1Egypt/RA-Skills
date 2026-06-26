@@ -1,0 +1,45 @@
+[
+  {
+    "method": "ticket.refund.info",
+    "description": "获取门票订单退款信息",
+    "category": "ORDER",
+    "subCategory": "TICKET",
+    "action": "REFUND_INFO",
+    "parameters": {
+      "properties": {
+        "orderBaseId": { "description": "订单号" }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "ticket.refund",
+    "description": "申请门票退票",
+    "category": "ORDER",
+    "subCategory": "TICKET",
+    "action": "REFUND",
+    "parameters": {
+      "properties": {
+        "orderBaseId": { "description": "订单号" },
+        "orderType": { "description": "订单类型，3=门票" },
+        "applyType": { "description": "申请类型，默认1" },
+        "refundType": { "description": "退票类型: 1全额退票 2部分退票" },
+        "amount": { "description": "退款金额" },
+        "refundReason": { "description": "退票原因" },
+        "refundItemList": {
+          "description": "退票明细列表",
+          "items": {
+            "properties": {
+              "orderItemNo": { "description": "订单项编号" },
+              "passengerIdList": { "description": "退票乘客ID列表" },
+              "refundQuantity": { "description": "退票数量" },
+              "refundAmount": { "description": "退款金额" }
+            },
+            "required": ["orderItemNo", "refundQuantity", "refundAmount"]
+          }
+        }
+      },
+      "required": ["orderBaseId", "orderType", "applyType", "refundType", "amount", "refundItemList"]
+    }
+  }
+]

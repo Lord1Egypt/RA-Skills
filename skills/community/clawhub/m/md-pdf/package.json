@@ -1,0 +1,12 @@
+{
+  "name": "md2pdf-skill-browser-pipeline",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Browser-based Markdown to PDF pipeline for emoji-friendly output.",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^16.3.0",
+    "puppeteer-core": "^24.22.3",
+    "twemoji": "^14.0.2"
+  }
+}

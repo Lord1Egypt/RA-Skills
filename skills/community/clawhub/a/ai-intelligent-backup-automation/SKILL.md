@@ -1,35 +1,51 @@
 ---
-name: "Ai Intelligent Backup Automation"
-description: "备份自动化，自动备份 + 恢复测试。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-intelligent-backup-automation"
-sourceUrl: "https://clawhub.ai/skills/ai-intelligent-backup-automation"
+name: ai-intelligent-backup-automation
+version: 1.0.9
+description: 备份自动化，自动备份 + 恢复测试。
+metadata:
+  openclaw:
+    emoji: "⚡"
+    requires:
+      bins: []
 ---
 
-# Ai Intelligent Backup Automation
+# AI 智能备份自动化系统
 
-> 备份自动化，自动备份 + 恢复测试。
+## 描述
+备份自动化，自动备份 + 恢复测试。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-intelligent-backup-automation`
-- **Source URL:** [https://clawhub.ai/skills/ai-intelligent-backup-automation](https://clawhub.ai/skills/ai-intelligent-backup-automation)
+## 功能
+- 自动备份（定时备份）
+- 增量备份（增量备份）
+- 备份验证（完整性检查）
+- 恢复测试（恢复演练）
+- 备份报告（备份统计）
 
-## Overview
+## 定价
+- 基础版：¥99/月（1 TB）
+- 专业版：¥499/月（10 TB）
+- 企业版：¥1999/月（无限量）
 
+## 适用场景
+- 数据备份
+- 容灾备份
+- 云备份
+- 本地备份
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 技术栈
+- Python + FastAPI
+- 备份引擎
+- 增量备份
+- 恢复测试
+
+## 安装
 ```bash
-hermes skills install clawhub/ai-intelligent-backup-automation
+git clone https://github.com/openclaw-skills/ai-intelligent-backup-automation
+cd ai-intelligent-backup-automation
+pip install -r requirements.txt
+python app.py
 ```
+
+---
+创建：2026-03-13
+作者：OpenClaw Skills Team

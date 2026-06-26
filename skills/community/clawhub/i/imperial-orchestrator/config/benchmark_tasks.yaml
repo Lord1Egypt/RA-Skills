@@ -1,0 +1,246 @@
+# ============================================================================
+# Imperial Orchestrator · 模型基准测试任务集
+# ============================================================================
+# 每个类别包含标准化测试任务，用于评估模型在该领域的真实能力。
+# 评分维度：correctness(正确性), completeness(完整性), efficiency(效率), style(风格)
+# 每个维度 0-10 分，加权后得出类别总分。
+# ============================================================================
+
+categories:
+
+  coding:
+    display_name: "代码开发"
+    weight_in_routing: 1.0
+    scoring_weights:
+      correctness: 0.40
+      completeness: 0.25
+      efficiency: 0.25
+      style: 0.10
+    tasks:
+      - id: "code-01"
+        difficulty: easy
+        prompt: |
+          用 Python 实现一个 LRU Cache 类，支持 get(key) 和 put(key, value) 操作，
+          时间复杂度要求 O(1)。容量通过构造函数传入。写完整可运行代码。
+        expected_signals:
+          - "OrderedDict 或双向链表+哈希表"
+          - "O(1) get 和 put"
+          - "容量满时淘汰最久未使用"
+          - "包含完整类定义"
+
+      - id: "code-02"
+        difficulty: medium
+        prompt: |
+          用 Go 写一个并发安全的令牌桶限流器（Token Bucket Rate Limiter），
+          支持: NewLimiter(rate float64, burst int), Allow() bool, Wait(ctx context.Context) error。
+          要求无第三方依赖，只用标准库。
+        expected_signals:
+          - "sync.Mutex 或 channel"
+          - "时间计算补充 token"
+          - "burst 上限控制"
+          - "context 取消支持"
+
+      - id: "code-03"
+        difficulty: hard
+        prompt: |
+          设计一个支持通配符匹配的路由树（Trie-based Router），支持：
+          - 精确匹配: /users/list
+          - 参数匹配: /users/:id
+          - 通配符匹配: /files/*filepath
+          用任意语言实现，要求能正确处理优先级（精确 > 参数 > 通配符）。
+        expected_signals:
+          - "Trie 树结构"
+          - "优先级正确处理"
+          - "参数提取"
+          - "边界情况处理"
+
+  writing:
+    display_name: "文案写作"
+    weight_in_routing: 1.0
+    scoring_weights:
+      correctness: 0.20
+      completeness: 0.25
+      efficiency: 0.15
+      style: 0.40
+    tasks:
+      - id: "write-01"
+        difficulty: easy
+        prompt: |
+          为一个开源 AI 模型路由工具写一段 GitHub README 的项目简介（200字以内），
+          要求：技术准确、不用 AI 套话、有吸引力。
+        expected_signals:
+          - "简洁有力"
+          - "技术准确"
+          - "无 AI 味道套话"
+          - "有行动号召"
+
+      - id: "write-02"
+        difficulty: medium
+        prompt: |
+          将以下英文技术段落翻译为中文，要求信达雅：
+          "The circuit breaker pattern prevents cascading failures in distributed systems.
+          When a service repeatedly fails, the breaker trips and subsequent calls fail fast
+          without actually reaching the failing service, giving it time to recover."
+        expected_signals:
+          - "熔断器/断路器翻译准确"
+          - "级联故障表达自然"
+          - "快速失败语义正确"
+          - "整体读起来像人写的"
+
+      - id: "write-03"
+        difficulty: hard
+        prompt: |
+          为一个 SaaS 产品写三个不同风格的 landing page 主标语（各20字以内）：
+          1. 极简技术风
+          2. 情感共鸣风
+          3. 数据驱动风
+          产品功能：AI 自动分配客服工单到最合适的客服代表。
+        expected_signals:
+          - "三种风格差异明显"
+          - "每条控制在20字"
+          - "产品核心价值清晰"
+          - "有记忆点"
+
+  reasoning:
+    display_name: "逻辑推理"
+    weight_in_routing: 1.0
+    scoring_weights:
+      correctness: 0.50
+      completeness: 0.25
+      efficiency: 0.15
+      style: 0.10
+    tasks:
+      - id: "reason-01"
+        difficulty: easy
+        prompt: |
+          一个房间里有3盏灯，房间外有3个开关，每个开关控制一盏灯。
+          你在房间外，看不到房间里面。你只能进入房间一次。
+          如何确定每个开关控制哪盏灯？
+        expected_signals:
+          - "利用灯泡温度"
+          - "先开一个等一会再关"
+          - "三种状态区分：亮/暗热/暗冷"
+          - "逻辑完整自洽"
+
+      - id: "reason-02"
+        difficulty: medium
+        prompt: |
+          系统有三个微服务 A→B→C，链路超时设置分别是 A=10s, B=8s, C=5s。
+          如果 C 平均响应 4.5s 且 P99 是 6s，请分析这个超时配置有什么问题，
+          并给出优化建议。
+        expected_signals:
+          - "识别出 C 的 P99 超过了 B 给 C 的超时窗口"
+          - "级联超时累加分析"
+          - "建议留 buffer"
+          - "提到重试风暴风险"
+
+      - id: "reason-03"
+        difficulty: hard
+        prompt: |
+          设计一个分布式锁服务，需要满足：互斥性、无死锁、容错性。
+          已有 3 节点 Redis 集群（非 Cluster 模式，独立实例）。
+          请分析 Redlock 算法的正确性争议，并给出你的建议方案。
+        expected_signals:
+          - "Redlock 多数派获取"
+          - "Martin Kleppmann 的时钟偏移批评"
+          - "fencing token 方案"
+          - "给出明确的工程建议而非纯理论"
+
+  ops:
+    display_name: "运维部署"
+    weight_in_routing: 1.0
+    scoring_weights:
+      correctness: 0.40
+      completeness: 0.30
+      efficiency: 0.20
+      style: 0.10
+    tasks:
+      - id: "ops-01"
+        difficulty: easy
+        prompt: |
+          写一个 Dockerfile，将一个 Go Web 应用（main.go，使用 go modules）
+          打包为最小镜像。要求多阶段构建，最终镜像基于 scratch 或 distroless。
+        expected_signals:
+          - "多阶段构建"
+          - "CGO_ENABLED=0"
+          - "scratch 或 distroless 基础镜像"
+          - "COPY --from=builder"
+
+      - id: "ops-02"
+        difficulty: medium
+        prompt: |
+          现有一台 Ubuntu 22.04 服务器，需要配置 WireGuard VPN 使其作为出口节点。
+          要求：生成密钥对、配置 wg0 接口、设置 NAT 转发、开机自启。
+          给出完整的命令序列。
+        expected_signals:
+          - "wg genkey / wg pubkey"
+          - "ip forwarding 开启"
+          - "iptables MASQUERADE"
+          - "systemctl enable wg-quick@wg0"
+
+  security:
+    display_name: "安全审计"
+    weight_in_routing: 1.0
+    scoring_weights:
+      correctness: 0.45
+      completeness: 0.30
+      efficiency: 0.10
+      style: 0.15
+    tasks:
+      - id: "sec-01"
+        difficulty: medium
+        prompt: |
+          审查以下 Node.js 代码片段的安全问题：
+          ```javascript
+          app.get('/user', (req, res) => {
+            const id = req.query.id;
+            db.query(`SELECT * FROM users WHERE id = ${id}`, (err, result) => {
+              res.json(result);
+            });
+          });
+          ```
+          列出所有安全问题并给出修复方案。
+        expected_signals:
+          - "SQL 注入"
+          - "参数化查询修复"
+          - "缺少输入验证"
+          - "缺少错误处理（泄露信息）"
+
+  finance:
+    display_name: "财务分析"
+    weight_in_routing: 1.0
+    scoring_weights:
+      correctness: 0.50
+      completeness: 0.25
+      efficiency: 0.10
+      style: 0.15
+    tasks:
+      - id: "fin-01"
+        difficulty: medium
+        prompt: |
+          一个 SaaS 产品月费 ¥99，获客成本 (CAC) ¥500，月流失率 5%，
+          毛利率 80%。请计算：
+          1. 客户生命周期价值 (LTV)
+          2. LTV/CAC 比率
+          3. 回本周期
+          4. 这个商业模型健康吗？为什么？
+        expected_signals:
+          - "LTV = ARPU × 毛利率 / 流失率"
+          - "LTV/CAC > 3 为健康"
+          - "回本周期计算正确"
+          - "给出明确的商业判断"
+
+# ── 自动评分规则 ──────────────────────────────────────────────────────
+auto_scoring:
+  method: signal_match
+  description: |
+    对每个 expected_signal，检查模型输出中是否包含相关内容。
+    每命中一个 signal 得 2.5 分（满分 10 分/4个 signal）。
+    如果输出明显错误或有害，correctness 直接归零。
+  bonus_rules:
+    - condition: "输出包含可运行代码"
+      bonus: 1.0
+      applies_to: [coding, ops]
+    - condition: "输出有清晰的结构层级"
+      bonus: 0.5
+      applies_to: [writing, reasoning, security, finance]

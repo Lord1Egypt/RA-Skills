@@ -1,35 +1,43 @@
 ---
-name: "Statusline Setup"
+name: "statusline_setup"
 description: "Use when the user wants to configure Claude Code statusline UI by inspecting shell prompt configuration and updating the relevant settings."
-category: "other"
-source: "ClawHub"
-tags: [claude-code, extracted]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/statusline-setup"
-sourceUrl: "https://clawhub.ai/skills/statusline-setup"
 ---
+
 
 # Statusline Setup
 
-> Use when the user wants to configure Claude Code statusline UI by inspecting shell prompt configuration and updating the relevant settings.
+Use this skill to configure Claude Code's statusline UI from an existing shell prompt setup.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/statusline-setup`
-- **Source URL:** [https://clawhub.ai/skills/statusline-setup](https://clawhub.ai/skills/statusline-setup)
+## Workflow
+1. Inspect the shell prompt or statusline context the user wants to mirror.
+2. Read existing Claude settings that control statusline behavior.
+3. Adjust the settings with minimal changes.
+4. Explain what changed and how to refine it further.
 
-## Overview
+## Guardrails
+- Inspect current config before editing.
+- Make the smallest possible settings change.
+- Preserve unrelated user preferences.
 
+## Example Requests
+- Set up Claude statusline to match my shell prompt.
+- Tune the statusline UI from current shell config.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/statusline-setup
-```
+## Inputs
+- Existing shell prompt context
+- Current Claude settings
+
+## Outputs
+- Updated statusline-related settings
+- Refinement notes
+
+## Success Criteria
+- The shell context was inspected first.
+- Settings changes stayed minimal.
+- User preferences were preserved.
+
+## Non-Goals
+- Blind statusline config rewrites
+
+## Source Provenance
+Derived from `src/commands/statusline.tsx`.

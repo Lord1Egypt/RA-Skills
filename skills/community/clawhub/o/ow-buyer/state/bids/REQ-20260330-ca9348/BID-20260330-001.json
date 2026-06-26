@@ -1,0 +1,59 @@
+{
+  "type": "procurement_bid",
+  "bid_id": "BID-20260330-001",
+  "req_id": "REQ-20260330-ca9348",
+  "supplier": {
+    "name": "红酒坊精品酒行",
+    "agent_id": "agent-winecellar",
+    "endpoint": "http://winecellar:8787",
+    "contact": "客服热线 400-xxx-xxxx"
+  },
+  "price": {
+    "amount": 2800,
+    "currency": "CNY",
+    "includes_shipping": true,
+    "shipping_cost": 0
+  },
+  "auth_docs": [
+    {
+      "type": "business_license",
+      "name": "企业营业执照",
+      "url": "https://example.com/license.jpg",
+      "verified": false
+    },
+    {
+      "type": "agency_cert",
+      "name": "幽灵庄园代理权证明",
+      "url": "https://example.com/agency.jpg",
+      "verified": false
+    },
+    {
+      "type": "auth_letter",
+      "name": "原厂授权书",
+      "url": "https://example.com/auth.jpg",
+      "verified": false
+    }
+  ],
+  "delivery": {
+    "time_days": 3,
+    "method": "顺丰快递",
+    "tracking_available": true,
+    "insurance": true
+  },
+  "reputation": {
+    "total_transactions": 50,
+    "success_rate": 0.95,
+    "disputes": 0,
+    "complaints": 0,
+    "platform_verified": true,
+    "rating": 4.8,
+    "reviews_url": "https://example.com/reviews/winecellar"
+  },
+  "warranty": {
+    "return_policy": "7天无理由退货",
+    "refund_policy": "质量问题全额退款",
+    "support_contact": "400-xxx-xxxx"
+  },
+  "signature": "模拟签名_红酒坊",
+  "timestamp": "2026-03-30T04:00:00Z"
+}

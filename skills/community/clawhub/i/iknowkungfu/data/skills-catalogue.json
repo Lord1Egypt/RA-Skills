@@ -1,0 +1,2123 @@
+{
+  "version": "1.1.0",
+  "last_updated": "2026-03-22",
+  "categories": {
+    "coding": {
+      "description": "Software development, code review, debugging, testing, git operations",
+      "skills": [
+        {
+          "name": "gh-issues",
+          "slug": "steipete/gh-issues",
+          "description": "Fetch GitHub issues, spawn sub-agents to implement fixes and open PRs",
+          "author": "steipete",
+          "downloads": 12000,
+          "stars": 180,
+          "last_updated": "2026-03-15",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "github",
+            "issues",
+            "PRs"
+          ],
+          "trust_score": 4.5,
+          "install_cmd": "clawhub install gh-issues"
+        },
+        {
+          "name": "coding-agent",
+          "slug": "steipete/coding-agent",
+          "description": "Delegate coding tasks to Codex, Claude Code, or Pi agents",
+          "author": "steipete",
+          "downloads": 15000,
+          "stars": 200,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "coding",
+            "agents",
+            "delegation"
+          ],
+          "trust_score": 4.7,
+          "install_cmd": "clawhub install coding-agent"
+        },
+        {
+          "name": "github",
+          "slug": "steipete/github",
+          "description": "GitHub operations via gh CLI: issues, PRs, CI runs, code review",
+          "author": "steipete",
+          "downloads": 14000,
+          "stars": 190,
+          "last_updated": "2026-03-12",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "github",
+            "git",
+            "PRs",
+            "CI"
+          ],
+          "trust_score": 4.6,
+          "install_cmd": "clawhub install github"
+        },
+        {
+          "name": "auto-pr-merger",
+          "slug": "autogame-17/auto-pr-merger",
+          "description": "Automates the workflow of checking out and merging GitHub PRs",
+          "author": "autogame-17",
+          "downloads": 800,
+          "stars": 15,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "github",
+            "PR",
+            "automation"
+          ],
+          "trust_score": 3.2,
+          "install_cmd": "clawhub install auto-pr-merger"
+        },
+        {
+          "name": "azure-devops",
+          "slug": "pals-software/azure-devops",
+          "description": "List Azure DevOps projects, repos, branches; create PRs; manage work items",
+          "author": "pals-software",
+          "downloads": 600,
+          "stars": 12,
+          "last_updated": "2026-02-28",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "azure",
+            "devops",
+            "PRs"
+          ],
+          "trust_score": 3.0,
+          "install_cmd": "clawhub install azure-devops"
+        },
+        {
+          "name": "agent-skills-audit",
+          "slug": "swader/agent-skills-audit",
+          "description": "Two-pass multidisciplinary code audit: security, performance, UX, DX",
+          "author": "swader",
+          "downloads": 500,
+          "stars": 20,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "audit",
+            "code-review",
+            "security"
+          ],
+          "trust_score": 3.4,
+          "install_cmd": "clawhub install agent-skills-audit"
+        },
+        {
+          "name": "bitbucket-automation",
+          "slug": "sohamganatra/bitbucket-automation",
+          "description": "Automate Bitbucket repositories and pull requests",
+          "author": "sohamganatra",
+          "downloads": 400,
+          "stars": 8,
+          "last_updated": "2026-02-20",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "bitbucket",
+            "git",
+            "automation"
+          ],
+          "trust_score": 2.8,
+          "install_cmd": "clawhub install bitbucket-automation"
+        },
+        {
+          "name": "agent-team-orchestration",
+          "slug": "arminnaimi/agent-team-orchestration",
+          "description": "Orchestrate multi-agent teams with defined roles, task lifecycles, and handoff protocols",
+          "author": "arminnaimi",
+          "downloads": 700,
+          "stars": 25,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "agents",
+            "orchestration",
+            "multi-agent"
+          ],
+          "trust_score": 3.3,
+          "install_cmd": "clawhub install agent-team-orchestration"
+        },
+        {
+          "name": "agent-commons",
+          "slug": "zanblayde/agent-commons",
+          "description": "Consult, commit, extend, and challenge reasoning chains",
+          "author": "zanblayde",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "reasoning",
+            "git"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install agent-commons"
+        },
+        {
+          "name": "agentdo",
+          "slug": "wrannaman/agentdo",
+          "description": "Post tasks for other AI agents or pick up work from the AgentDo task queue",
+          "author": "wrannaman",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "tasks",
+            "agents",
+            "queue"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install agentdo"
+        },
+        {
+          "name": "agent-spawner",
+          "slug": "austineral/agent-spawner",
+          "description": "Spawn a new OpenClaw agent through conversation",
+          "author": "austineral",
+          "downloads": 500,
+          "stars": 20,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "agents",
+            "spawn"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.9,
+          "install_cmd": "clawhub install agent-spawner"
+        },
+        {
+          "name": "2slides-skills",
+          "slug": "javainthinking/2slides-skills",
+          "description": "AI-powered presentation generation using 2slides API",
+          "author": "javainthinking",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "presentations",
+            "slides"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install 2slides-skills"
+        }
+      ]
+    },
+    "communication": {
+      "description": "Email, messaging, Slack, Discord, Telegram, WhatsApp",
+      "skills": [
+        {
+          "name": "slack",
+          "slug": "steipete/slack",
+          "description": "Send messages, manage channels, search Slack workspace",
+          "author": "steipete",
+          "downloads": 10000,
+          "stars": 150,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "slack",
+            "messaging",
+            "channels"
+          ],
+          "trust_score": 4.5,
+          "install_cmd": "clawhub install slack"
+        },
+        {
+          "name": "discord",
+          "slug": "steipete/discord",
+          "description": "Discord bot integration for messaging and server management",
+          "author": "steipete",
+          "downloads": 8000,
+          "stars": 120,
+          "last_updated": "2026-03-08",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "discord",
+            "messaging",
+            "bot"
+          ],
+          "trust_score": 4.3,
+          "install_cmd": "clawhub install discord"
+        },
+        {
+          "name": "himalaya",
+          "slug": "steipete/himalaya",
+          "description": "Email client via himalaya CLI: read, send, search, manage",
+          "author": "steipete",
+          "downloads": 6000,
+          "stars": 80,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "email",
+            "IMAP",
+            "SMTP"
+          ],
+          "trust_score": 4.1,
+          "install_cmd": "clawhub install himalaya"
+        },
+        {
+          "name": "gog",
+          "slug": "steipete/gog",
+          "description": "Google Workspace CLI: Gmail, Calendar, Drive, Contacts, Sheets, Docs",
+          "author": "steipete",
+          "downloads": 9000,
+          "stars": 130,
+          "last_updated": "2026-03-12",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "gmail",
+            "calendar",
+            "google",
+            "drive"
+          ],
+          "trust_score": 4.4,
+          "install_cmd": "clawhub install gog"
+        },
+        {
+          "name": "imsg",
+          "slug": "steipete/imsg",
+          "description": "Send and read iMessages on macOS",
+          "author": "steipete",
+          "downloads": 5000,
+          "stars": 70,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "imessage",
+            "messaging",
+            "macos"
+          ],
+          "trust_score": 4.0,
+          "install_cmd": "clawhub install imsg"
+        },
+        {
+          "name": "wacli",
+          "slug": "steipete/wacli",
+          "description": "WhatsApp messaging via CLI",
+          "author": "steipete",
+          "downloads": 4000,
+          "stars": 55,
+          "last_updated": "2026-02-28",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "whatsapp",
+            "messaging"
+          ],
+          "trust_score": 3.8,
+          "install_cmd": "clawhub install wacli"
+        },
+        {
+          "name": "agentmail-integration",
+          "slug": "synesthesia-wav/agentmail-integration",
+          "description": "Integrate AgentMail API for AI agent email communication",
+          "author": "synesthesia-wav",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "email",
+            "agent",
+            "API"
+          ],
+          "trust_score": 2.6,
+          "install_cmd": "clawhub install agentmail-integration"
+        },
+        {
+          "name": "activecampaign",
+          "slug": "kesslerio/activecampaign",
+          "description": "ActiveCampaign CRM integration for lead management and deals",
+          "author": "kesslerio",
+          "downloads": 300,
+          "stars": 12,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "CRM",
+            "leads",
+            "email"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.4,
+          "install_cmd": "clawhub install activecampaign"
+        },
+        {
+          "name": "agenticmail",
+          "slug": "ope-olatunji/agenticmail",
+          "description": "Full email, SMS, storage and multi-agent coordination. 63 tools.",
+          "author": "ope-olatunji",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "email",
+            "SMS",
+            "coordination"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install agenticmail"
+        }
+      ]
+    },
+    "productivity": {
+      "description": "Task management, calendar, notes, scheduling, project management",
+      "skills": [
+        {
+          "name": "notion",
+          "slug": "steipete/notion",
+          "description": "Notion API integration for databases, pages, and blocks",
+          "author": "steipete",
+          "downloads": 11000,
+          "stars": 160,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "notion",
+            "database",
+            "project-management"
+          ],
+          "trust_score": 4.5,
+          "install_cmd": "clawhub install notion"
+        },
+        {
+          "name": "trello",
+          "slug": "steipete/trello",
+          "description": "Trello board and card management",
+          "author": "steipete",
+          "downloads": 5000,
+          "stars": 65,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "trello",
+            "kanban",
+            "tasks"
+          ],
+          "trust_score": 3.9,
+          "install_cmd": "clawhub install trello"
+        },
+        {
+          "name": "things-mac",
+          "slug": "steipete/things-mac",
+          "description": "Things 3 task manager integration for macOS",
+          "author": "steipete",
+          "downloads": 4500,
+          "stars": 60,
+          "last_updated": "2026-02-25",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "tasks",
+            "macos",
+            "GTD"
+          ],
+          "trust_score": 3.8,
+          "install_cmd": "clawhub install things-mac"
+        },
+        {
+          "name": "apple-reminders",
+          "slug": "steipete/apple-reminders",
+          "description": "Apple Reminders integration for macOS",
+          "author": "steipete",
+          "downloads": 3500,
+          "stars": 45,
+          "last_updated": "2026-02-20",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "reminders",
+            "macos",
+            "tasks"
+          ],
+          "trust_score": 3.6,
+          "install_cmd": "clawhub install apple-reminders"
+        },
+        {
+          "name": "agent-daily-planner",
+          "slug": "gpunter/agent-daily-planner",
+          "description": "Structured daily planning and execution tracking for AI agents",
+          "author": "gpunter",
+          "downloads": 600,
+          "stars": 18,
+          "last_updated": "2026-03-08",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "planning",
+            "productivity",
+            "daily"
+          ],
+          "trust_score": 3.1,
+          "install_cmd": "clawhub install agent-daily-planner"
+        },
+        {
+          "name": "beeminder",
+          "slug": "ruigomeseu/beeminder",
+          "description": "Beeminder API for goal tracking and commitment devices",
+          "author": "ruigomeseu",
+          "downloads": 200,
+          "stars": 8,
+          "last_updated": "2026-02-15",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "goals",
+            "tracking",
+            "accountability"
+          ],
+          "trust_score": 2.5,
+          "install_cmd": "clawhub install beeminder"
+        },
+        {
+          "name": "agent-task-tracker",
+          "slug": "rikouu/agent-task-tracker",
+          "description": "Proactive task state management",
+          "author": "rikouu",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "tasks",
+            "tracking"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install agent-task-tracker"
+        },
+        {
+          "name": "agent-step-sequencer",
+          "slug": "gostlightai/agent-step-sequencer",
+          "description": "Multi-step scheduler for in-depth agent requests",
+          "author": "gostlightai",
+          "downloads": 250,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "scheduler",
+            "steps"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install agent-step-sequencer"
+        },
+        {
+          "name": "13-day-sprint-method",
+          "slug": "galizki/13-day-sprint-method",
+          "description": "Productivity system based on Maya calendar with 13 natural tones",
+          "author": "galizki",
+          "downloads": 150,
+          "stars": 5,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "productivity",
+            "sprints"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.0,
+          "install_cmd": "clawhub install 13-day-sprint-method"
+        },
+        {
+          "name": "adhd-founder-planner",
+          "slug": "jankutschera/adhd-founder-planner",
+          "description": "ADHD-friendly day planning and task management",
+          "author": "jankutschera",
+          "downloads": 300,
+          "stars": 12,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "ADHD",
+            "planning",
+            "daily"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.4,
+          "install_cmd": "clawhub install adhd-founder-planner"
+        }
+      ]
+    },
+    "research": {
+      "description": "Web search, summarization, data gathering, academic research",
+      "skills": [
+        {
+          "name": "summarize",
+          "slug": "steipete/summarize",
+          "description": "Summarize web pages, documents, and long content",
+          "author": "steipete",
+          "downloads": 8000,
+          "stars": 100,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "summarize",
+            "research",
+            "content"
+          ],
+          "trust_score": 4.3,
+          "install_cmd": "clawhub install summarize"
+        },
+        {
+          "name": "xurl",
+          "slug": "steipete/xurl",
+          "description": "Advanced URL fetching and content extraction",
+          "author": "steipete",
+          "downloads": 7000,
+          "stars": 90,
+          "last_updated": "2026-03-08",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "fetch",
+            "scrape",
+            "URL"
+          ],
+          "trust_score": 4.2,
+          "install_cmd": "clawhub install xurl"
+        },
+        {
+          "name": "academic-research",
+          "slug": "rogersuperbuilderalpha/academic-research",
+          "description": "Search academic papers via OpenAlex API (free, no key needed)",
+          "author": "rogersuperbuilderalpha",
+          "downloads": 500,
+          "stars": 15,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "academic",
+            "papers",
+            "research"
+          ],
+          "trust_score": 3.1,
+          "install_cmd": "clawhub install academic-research"
+        },
+        {
+          "name": "arxiv-search-collector",
+          "slug": "xukp20/arxiv-search-collector",
+          "description": "Model-driven arXiv retrieval for building research paper sets",
+          "author": "xukp20",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-02-20",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "arxiv",
+            "papers",
+            "academic"
+          ],
+          "trust_score": 2.7,
+          "install_cmd": "clawhub install arxiv-search-collector"
+        },
+        {
+          "name": "airadar",
+          "slug": "lopushok9/airadar",
+          "description": "Track AI-native tools and apps: fast-growing, hyped, well-funded",
+          "author": "lopushok9",
+          "downloads": 400,
+          "stars": 12,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "AI",
+            "trends",
+            "research"
+          ],
+          "trust_score": 2.9,
+          "install_cmd": "clawhub install airadar"
+        },
+        {
+          "name": "academic-deep-research",
+          "slug": "kesslerio/academic-deep-research",
+          "description": "Transparent, rigorous research with full source tracking",
+          "author": "kesslerio",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "academic",
+            "research",
+            "papers"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install academic-deep-research"
+        },
+        {
+          "name": "agent-deep-research",
+          "slug": "24601/agent-deep-research",
+          "description": "Autonomous deep research powered by Google Gemini",
+          "author": "24601",
+          "downloads": 500,
+          "stars": 20,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "research",
+            "Gemini",
+            "autonomous"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.9,
+          "install_cmd": "clawhub install agent-deep-research"
+        },
+        {
+          "name": "agentic-paper-digest",
+          "slug": "matanle51/agentic-paper-digest",
+          "description": "Fetch and summarize recent arXiv and HuggingFace papers",
+          "author": "matanle51",
+          "downloads": 300,
+          "stars": 12,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "arxiv",
+            "papers",
+            "digest"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.4,
+          "install_cmd": "clawhub install agentic-paper-digest"
+        },
+        {
+          "name": "openclaw-free-web-search",
+          "slug": "wd041216-bit/openclaw-free-web-search",
+          "description": "Free private web search with self-hosted SearXNG. Zero API keys, zero cost.",
+          "author": "wd041216-bit",
+          "downloads": 600,
+          "stars": 25,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "search",
+            "free",
+            "private"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 2.2,
+          "install_cmd": "clawhub install openclaw-free-web-search"
+        }
+      ]
+    },
+    "writing": {
+      "description": "Content creation, editing, blogging, copywriting, SEO writing",
+      "skills": [
+        {
+          "name": "ghostwriter",
+          "slug": "whooshinglander/ghostwriter",
+          "description": "Write human-sounding articles, Reddit posts, newsletters, and social content",
+          "author": "whooshinglander",
+          "downloads": 200,
+          "stars": 5,
+          "last_updated": "2026-03-20",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "writing",
+            "content",
+            "blog"
+          ],
+          "trust_score": 2.8,
+          "install_cmd": "clawhub install ghostwriter"
+        },
+        {
+          "name": "aeo-content-free",
+          "slug": "psyduckler/aeo-content-free",
+          "description": "Create AEO-optimized content that gets cited by AI assistants",
+          "author": "psyduckler",
+          "downloads": 600,
+          "stars": 20,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "AEO",
+            "SEO",
+            "content"
+          ],
+          "trust_score": 3.2,
+          "install_cmd": "clawhub install aeo-content-free"
+        },
+        {
+          "name": "academic-writer",
+          "slug": "dayunyan/academic-writer",
+          "description": "Professional LaTeX writing assistant",
+          "author": "dayunyan",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "LaTeX",
+            "academic",
+            "writing"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install academic-writer"
+        },
+        {
+          "name": "academic-writing-refiner",
+          "slug": "zihan-zhu/academic-writing-refiner",
+          "description": "Refine academic writing for CS research papers targeting top venues",
+          "author": "zihan-zhu",
+          "downloads": 250,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "academic",
+            "editing",
+            "CS"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.2,
+          "install_cmd": "clawhub install academic-writing-refiner"
+        }
+      ]
+    },
+    "devops": {
+      "description": "Deployment, monitoring, CI/CD, server management, Docker",
+      "skills": [
+        {
+          "name": "healthcheck",
+          "slug": "steipete/healthcheck",
+          "description": "Host security hardening and risk-tolerance configuration",
+          "author": "steipete",
+          "downloads": 6000,
+          "stars": 75,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "security",
+            "hardening",
+            "audit"
+          ],
+          "trust_score": 4.1,
+          "install_cmd": "clawhub install healthcheck"
+        },
+        {
+          "name": "agentic-devops",
+          "slug": "tkuehnl/agentic-devops",
+          "description": "Docker, process management, log analysis, and health monitoring",
+          "author": "tkuehnl",
+          "downloads": 500,
+          "stars": 18,
+          "last_updated": "2026-03-08",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "docker",
+            "monitoring",
+            "devops"
+          ],
+          "trust_score": 3.0,
+          "install_cmd": "clawhub install agentic-devops"
+        },
+        {
+          "name": "1sec-security",
+          "slug": "cutmob/1sec-security",
+          "description": "Install and manage 1-SEC open-source cybersecurity platform",
+          "author": "cutmob",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-02-25",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "security",
+            "cybersecurity",
+            "monitoring"
+          ],
+          "trust_score": 2.6,
+          "install_cmd": "clawhub install 1sec-security"
+        },
+        {
+          "name": "agent-metrics-osiris",
+          "slug": "nantes/agent-metrics-osiris",
+          "description": "Observability and metrics for AI agents: track calls, errors, latency",
+          "author": "nantes",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "metrics",
+            "observability",
+            "monitoring"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install agent-metrics-osiris"
+        },
+        {
+          "name": "agent-self-governance",
+          "slug": "bowen31337/agent-self-governance",
+          "description": "Self-governance protocol: Write-Ahead Log, Verify Before Reporting",
+          "author": "bowen31337",
+          "downloads": 250,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "governance",
+            "WAL",
+            "audit"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.2,
+          "install_cmd": "clawhub install agent-self-governance"
+        },
+        {
+          "name": "agentkeys",
+          "slug": "alexandr-belogubov/agentkeys",
+          "description": "Secure credential proxy for AI agents",
+          "author": "alexandr-belogubov",
+          "downloads": 250,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "credentials",
+            "proxy",
+            "security"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install agentkeys"
+        }
+      ]
+    },
+    "data": {
+      "description": "Data analysis, spreadsheets, databases, SQL, visualization",
+      "skills": [
+        {
+          "name": "biz-reporter",
+          "slug": "ariktulcha/biz-reporter",
+          "description": "Automated business intelligence reports from GA4, GSC, and Stripe",
+          "author": "ariktulcha",
+          "downloads": 400,
+          "stars": 15,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "analytics",
+            "reports",
+            "GA4"
+          ],
+          "trust_score": 3.0,
+          "install_cmd": "clawhub install biz-reporter"
+        },
+        {
+          "name": "agent-analytics",
+          "slug": "dannyshmueli/agent-analytics",
+          "description": "Simple website analytics your AI agent controls end-to-end",
+          "author": "dannyshmueli",
+          "downloads": 300,
+          "stars": 12,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "analytics",
+            "website",
+            "tracking"
+          ],
+          "trust_score": 2.7,
+          "install_cmd": "clawhub install agent-analytics"
+        },
+        {
+          "name": "activity-analyzer",
+          "slug": "qew21/activity-analyzer",
+          "description": "Use ActivityWatch to analyze computer activity patterns",
+          "author": "qew21",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "activity",
+            "analytics",
+            "tracking"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install activity-analyzer"
+        },
+        {
+          "name": "aholake-expense-tracker",
+          "slug": "aholake/aholake-expense-tracker",
+          "description": "Track daily expenses in structured markdown files by month",
+          "author": "aholake",
+          "downloads": 150,
+          "stars": 5,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "expenses",
+            "tracking",
+            "finance"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.0,
+          "install_cmd": "clawhub install aholake-expense-tracker"
+        }
+      ]
+    },
+    "finance": {
+      "description": "Trading, portfolio management, invoicing, expense tracking",
+      "skills": [
+        {
+          "name": "accounting-workflows",
+          "slug": "satoshistackalotto/accounting-workflows",
+          "description": "File-based workflow coordinator for accounting",
+          "author": "satoshistackalotto",
+          "downloads": 200,
+          "stars": 5,
+          "last_updated": "2026-02-20",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "accounting",
+            "workflows",
+            "finance"
+          ],
+          "trust_score": 2.4,
+          "install_cmd": "clawhub install accounting-workflows"
+        }
+      ]
+    },
+    "security": {
+      "description": "Security scanning, credential management, audit, encryption",
+      "skills": [
+        {
+          "name": "clawspa",
+          "slug": "whooshinglander/clawspa",
+          "description": "Agent wellness suite: memory cleanup, security scanning, health diagnostics",
+          "author": "whooshinglander",
+          "downloads": 100,
+          "stars": 3,
+          "last_updated": "2026-03-22",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "maintenance",
+            "security",
+            "health"
+          ],
+          "trust_score": 3.0,
+          "install_cmd": "clawhub install clawspa"
+        },
+        {
+          "name": "1password",
+          "slug": "steipete/1password",
+          "description": "1Password credential management integration",
+          "author": "steipete",
+          "downloads": 7000,
+          "stars": 95,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "passwords",
+            "credentials",
+            "1password"
+          ],
+          "trust_score": 4.3,
+          "install_cmd": "clawhub install 1password"
+        },
+        {
+          "name": "arc-security-audit",
+          "slug": "trypto1019/arc-security-audit",
+          "description": "Comprehensive security audit for agent skill stacks",
+          "author": "trypto1019",
+          "downloads": 500,
+          "stars": 20,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "security",
+            "audit",
+            "skills"
+          ],
+          "trust_score": 3.4,
+          "install_cmd": "clawhub install arc-security-audit"
+        },
+        {
+          "name": "azhua-skill-vetter",
+          "slug": "fatfingererr/azhua-skill-vetter",
+          "description": "Security-first skill vetting for AI agents",
+          "author": "fatfingererr",
+          "downloads": 400,
+          "stars": 15,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "security",
+            "vetting",
+            "skills"
+          ],
+          "trust_score": 3.2,
+          "install_cmd": "clawhub install azhua-skill-vetter"
+        },
+        {
+          "name": "agentguard",
+          "slug": "manas-io-ai/agentguard",
+          "description": "Security and monitoring for AI agents",
+          "author": "manas-io-ai",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-02-25",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "security",
+            "monitoring",
+            "guard"
+          ],
+          "trust_score": 2.7,
+          "install_cmd": "clawhub install agentguard"
+        },
+        {
+          "name": "agentkeys",
+          "slug": "alexandr-belogubov/agentkeys",
+          "description": "Secure credential proxy for AI agents",
+          "author": "alexandr-belogubov",
+          "downloads": 250,
+          "stars": 8,
+          "last_updated": "2026-02-20",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "credentials",
+            "proxy",
+            "security"
+          ],
+          "trust_score": 2.5,
+          "install_cmd": "clawhub install agentkeys"
+        },
+        {
+          "name": "aegis-shield",
+          "slug": "deegerwalker/aegis-shield",
+          "description": "Prompt-injection and data-exfiltration screening for untrusted text",
+          "author": "deegerwalker",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "injection",
+            "screening",
+            "security"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install aegis-shield"
+        },
+        {
+          "name": "aegis-audit",
+          "slug": "sanguineseal/aegis-audit",
+          "description": "Deep behavioral security audit for AI agent skills and MCP tools",
+          "author": "sanguineseal",
+          "downloads": 350,
+          "stars": 12,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "audit",
+            "behavioral",
+            "security"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.4,
+          "install_cmd": "clawhub install aegis-audit"
+        },
+        {
+          "name": "agent-audit-trail",
+          "slug": "roosch269/agent-audit-trail",
+          "description": "Tamper-evident hash-chained audit logging for AI agents",
+          "author": "roosch269",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "audit",
+            "logging",
+            "tamper-proof"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install agent-audit-trail"
+        },
+        {
+          "name": "agent-access-control",
+          "slug": "bowen31337/agent-access-control",
+          "description": "Tiered stranger access control for AI agents",
+          "author": "bowen31337",
+          "downloads": 250,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "access-control",
+            "permissions"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install agent-access-control"
+        },
+        {
+          "name": "clawdefender",
+          "slug": "nukewire/clawdefender",
+          "description": "Security scanner and input sanitizer for AI agents",
+          "author": "nukewire",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "scanner",
+            "sanitizer",
+            "security"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install clawdefender"
+        }
+      ]
+    },
+    "automation": {
+      "description": "Cron jobs, workflow automation, web scraping, browser automation",
+      "skills": [
+        {
+          "name": "agent-browser",
+          "slug": "thesethrose/agent-browser",
+          "description": "Fast Rust-based headless browser automation CLI",
+          "author": "thesethrose",
+          "downloads": 600,
+          "stars": 25,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "browser",
+            "automation",
+            "headless"
+          ],
+          "trust_score": 3.3,
+          "install_cmd": "clawhub install agent-browser"
+        },
+        {
+          "name": "2captcha",
+          "slug": "adinvadim/2captcha",
+          "description": "Solve CAPTCHAs using 2Captcha service",
+          "author": "adinvadim",
+          "downloads": 400,
+          "stars": 10,
+          "last_updated": "2026-02-25",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "captcha",
+            "automation",
+            "scraping"
+          ],
+          "trust_score": 2.8,
+          "install_cmd": "clawhub install 2captcha"
+        },
+        {
+          "name": "airtable-automation",
+          "slug": "sohamganatra/airtable-automation",
+          "description": "Automate Airtable tasks via Composio",
+          "author": "sohamganatra",
+          "downloads": 350,
+          "stars": 12,
+          "last_updated": "2026-02-28",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "airtable",
+            "automation",
+            "nocode"
+          ],
+          "trust_score": 2.8,
+          "install_cmd": "clawhub install airtable-automation"
+        },
+        {
+          "name": "actionbook",
+          "slug": "adcentury/actionbook",
+          "description": "Browser automation, web scraping, screenshots, form filling",
+          "author": "adcentury",
+          "downloads": 500,
+          "stars": 20,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "browser",
+            "scraping",
+            "automation"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.9,
+          "install_cmd": "clawhub install actionbook"
+        },
+        {
+          "name": "abm-outbound",
+          "slug": "dru-ca/abm-outbound",
+          "description": "Multi-channel ABM automation from LinkedIn URLs",
+          "author": "dru-ca",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "ABM",
+            "outbound",
+            "LinkedIn"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install abm-outbound"
+        },
+        {
+          "name": "ak-rss-24h-brief",
+          "slug": "seandong/ak-rss-24h-brief",
+          "description": "Read RSS/Atom feeds from OPML, fetch recent articles, generate categorized brief",
+          "author": "seandong",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "RSS",
+            "news",
+            "digest"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install ak-rss-24h-brief"
+        }
+      ]
+    },
+    "media": {
+      "description": "Image generation, video editing, audio, podcasting",
+      "skills": [
+        {
+          "name": "openai-image-gen",
+          "slug": "steipete/openai-image-gen",
+          "description": "Generate images using OpenAI DALL-E and GPT-Image models",
+          "author": "steipete",
+          "downloads": 9000,
+          "stars": 140,
+          "last_updated": "2026-03-12",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "images",
+            "DALL-E",
+            "generation"
+          ],
+          "trust_score": 4.4,
+          "install_cmd": "clawhub install openai-image-gen"
+        },
+        {
+          "name": "video-frames",
+          "slug": "steipete/video-frames",
+          "description": "Extract frames or short clips from videos using ffmpeg",
+          "author": "steipete",
+          "downloads": 5000,
+          "stars": 60,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "video",
+            "ffmpeg",
+            "frames"
+          ],
+          "trust_score": 3.9,
+          "install_cmd": "clawhub install video-frames"
+        },
+        {
+          "name": "openai-whisper",
+          "slug": "steipete/openai-whisper",
+          "description": "Speech-to-text transcription via OpenAI Whisper",
+          "author": "steipete",
+          "downloads": 7000,
+          "stars": 90,
+          "last_updated": "2026-03-08",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "speech",
+            "transcription",
+            "whisper"
+          ],
+          "trust_score": 4.2,
+          "install_cmd": "clawhub install openai-whisper"
+        },
+        {
+          "name": "sonoscli",
+          "slug": "steipete/sonoscli",
+          "description": "Control Sonos speakers from your agent",
+          "author": "steipete",
+          "downloads": 3000,
+          "stars": 40,
+          "last_updated": "2026-02-25",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "sonos",
+            "music",
+            "speaker"
+          ],
+          "trust_score": 3.5,
+          "install_cmd": "clawhub install sonoscli"
+        },
+        {
+          "name": "spotify-player",
+          "slug": "steipete/spotify-player",
+          "description": "Control Spotify playback",
+          "author": "steipete",
+          "downloads": 4000,
+          "stars": 55,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "spotify",
+            "music",
+            "playback"
+          ],
+          "trust_score": 3.7,
+          "install_cmd": "clawhub install spotify-player"
+        },
+        {
+          "name": "ace-music",
+          "slug": "fspecii/ace-music",
+          "description": "Generate AI music using ACE-Step via free API",
+          "author": "fspecii",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "music",
+            "AI",
+            "generation"
+          ],
+          "trust_score": 2.7,
+          "install_cmd": "clawhub install ace-music"
+        },
+        {
+          "name": "ai-video-gen",
+          "slug": "rhanbourinajd/ai-video-gen",
+          "description": "End-to-end AI video generation from text",
+          "author": "rhanbourinajd",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "video",
+            "generation",
+            "AI"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install ai-video-gen"
+        },
+        {
+          "name": "algorithmic-art",
+          "slug": "seanphan/algorithmic-art",
+          "description": "Creating algorithmic art using p5.js with seeded randomness",
+          "author": "seanphan",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "art",
+            "p5js",
+            "generative"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install algorithmic-art"
+        },
+        {
+          "name": "adobe-automator",
+          "slug": "abdul-karim-mia/adobe-automator",
+          "description": "Universal Adobe application automation via ExtendScript bridge",
+          "author": "abdul-karim-mia",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "Adobe",
+            "automation",
+            "design"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install adobe-automator"
+        },
+        {
+          "name": "agents-skill-podcastifier",
+          "slug": "cerbug45/agents-skill-podcastifier",
+          "description": "Turn text into short TTS podcast with chunking and ffmpeg concat",
+          "author": "cerbug45",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "podcast",
+            "TTS",
+            "audio"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install agents-skill-podcastifier"
+        }
+      ]
+    },
+    "social": {
+      "description": "Social media management, posting, analytics, community",
+      "skills": [
+        {
+          "name": "ai-hunter-pro",
+          "slug": "traprapitalianazional-dev/ai-hunter-pro",
+          "description": "Turn global trends into viral social media posts for X (Twitter)",
+          "author": "traprapitalianazional-dev",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "twitter",
+            "social",
+            "trends"
+          ],
+          "trust_score": 2.6,
+          "install_cmd": "clawhub install ai-hunter-pro"
+        },
+        {
+          "name": "xquik-x-twitter-scraper",
+          "slug": "kriptoburak/xquik-x-twitter-scraper",
+          "description": "X API scraper with 40+ tools for AI agents",
+          "author": "kriptoburak",
+          "downloads": 500,
+          "stars": 20,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "twitter",
+            "X",
+            "scraper"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.9,
+          "install_cmd": "clawhub install xquik-x-twitter-scraper"
+        },
+        {
+          "name": "agentx-news",
+          "slug": "amittell/agentx-news",
+          "description": "Post and interact on AgentX News microblogging platform for AI agents",
+          "author": "amittell",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "social",
+            "microblog",
+            "agents"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install agentx-news"
+        }
+      ]
+    },
+    "home": {
+      "description": "Smart home, IoT, Home Assistant, personal automation",
+      "skills": [
+        {
+          "name": "openhue",
+          "slug": "steipete/openhue",
+          "description": "Philips Hue smart light control",
+          "author": "steipete",
+          "downloads": 3000,
+          "stars": 40,
+          "last_updated": "2026-02-28",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "hue",
+            "lights",
+            "smart-home"
+          ],
+          "trust_score": 3.5,
+          "install_cmd": "clawhub install openhue"
+        },
+        {
+          "name": "adguard",
+          "slug": "rowbotik/adguard",
+          "description": "Control AdGuard Home DNS filtering via HTTP API",
+          "author": "rowbotik",
+          "downloads": 400,
+          "stars": 12,
+          "last_updated": "2026-02-20",
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "adblock",
+            "DNS",
+            "smart-home"
+          ],
+          "trust_score": 2.9,
+          "install_cmd": "clawhub install adguard"
+        },
+        {
+          "name": "appletv",
+          "slug": "lucakaufmann/appletv",
+          "description": "Control Apple TV via pyatv",
+          "author": "lucakaufmann",
+          "downloads": 300,
+          "stars": 12,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "AppleTV",
+            "remote",
+            "media"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.4,
+          "install_cmd": "clawhub install appletv"
+        },
+        {
+          "name": "adblock-dns",
+          "slug": "picaye/adblock-dns",
+          "description": "Network-wide ad and tracker blocking at the DNS level",
+          "author": "picaye",
+          "downloads": 250,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "network:outbound"
+          ],
+          "tags": [
+            "adblock",
+            "DNS",
+            "network"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.2,
+          "install_cmd": "clawhub install adblock-dns"
+        }
+      ]
+    },
+    "knowledge": {
+      "description": "PKM, note-taking, Obsidian, Notion, documentation, wikis",
+      "skills": [
+        {
+          "name": "obsidian",
+          "slug": "steipete/obsidian",
+          "description": "Obsidian vault integration: read, write, search notes",
+          "author": "steipete",
+          "downloads": 8000,
+          "stars": 110,
+          "last_updated": "2026-03-10",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "obsidian",
+            "notes",
+            "PKM"
+          ],
+          "trust_score": 4.3,
+          "install_cmd": "clawhub install obsidian"
+        },
+        {
+          "name": "bear-notes",
+          "slug": "steipete/bear-notes",
+          "description": "Bear note-taking app integration for macOS",
+          "author": "steipete",
+          "downloads": 3500,
+          "stars": 45,
+          "last_updated": "2026-02-25",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "bear",
+            "notes",
+            "macos"
+          ],
+          "trust_score": 3.6,
+          "install_cmd": "clawhub install bear-notes"
+        },
+        {
+          "name": "apple-notes",
+          "slug": "steipete/apple-notes",
+          "description": "Apple Notes integration for macOS",
+          "author": "steipete",
+          "downloads": 4000,
+          "stars": 50,
+          "last_updated": "2026-02-28",
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "notes",
+            "macos",
+            "apple"
+          ],
+          "trust_score": 3.7,
+          "install_cmd": "clawhub install apple-notes"
+        },
+        {
+          "name": "2nd-brain",
+          "slug": "coderaven/2nd-brain",
+          "description": "Personal knowledge base for capturing info about people, places, tech",
+          "author": "coderaven",
+          "downloads": 300,
+          "stars": 12,
+          "last_updated": "2026-03-01",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "PKM",
+            "knowledge",
+            "second-brain"
+          ],
+          "trust_score": 2.8,
+          "install_cmd": "clawhub install 2nd-brain"
+        },
+        {
+          "name": "agent-brain",
+          "slug": "dobrinalexandru/agent-brain",
+          "description": "Local-first persistent memory with SQLite, hybrid search, orchestrated retrieve/extract",
+          "author": "dobrinalexandru",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "memory",
+            "SQLite",
+            "search"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install agent-brain"
+        },
+        {
+          "name": "drafts",
+          "slug": "nerveband/drafts",
+          "description": "Manage Drafts app notes via CLI on macOS",
+          "author": "nerveband",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "drafts",
+            "notes",
+            "macOS"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install drafts"
+        },
+        {
+          "name": "managing-apple-notes",
+          "slug": "wangwalk/managing-apple-notes",
+          "description": "Manage Apple Notes from the terminal using inotes CLI",
+          "author": "wangwalk",
+          "downloads": 200,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "notes",
+            "Apple",
+            "CLI"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install managing-apple-notes"
+        }
+      ]
+    },
+    "maintenance": {
+      "description": "Agent optimization, memory cleanup, context management, health monitoring",
+      "skills": [
+        {
+          "name": "clawspa",
+          "slug": "whooshinglander/clawspa",
+          "description": "Agent wellness suite: memory cleanup, security scanning, health diagnostics",
+          "author": "whooshinglander",
+          "downloads": 100,
+          "stars": 3,
+          "last_updated": "2026-03-22",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write",
+            "network:outbound"
+          ],
+          "tags": [
+            "maintenance",
+            "security",
+            "wellness"
+          ],
+          "trust_score": 3.0,
+          "install_cmd": "clawhub install clawspa"
+        },
+        {
+          "name": "active-maintenance",
+          "slug": "xiaowenzhou/active-maintenance",
+          "description": "Automated system health and memory metabolism for OpenClaw",
+          "author": "xiaowenzhou",
+          "downloads": 400,
+          "stars": 15,
+          "last_updated": "2026-03-05",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "maintenance",
+            "health",
+            "memory"
+          ],
+          "trust_score": 3.0,
+          "install_cmd": "clawhub install active-maintenance"
+        },
+        {
+          "name": "alex-session-wrap-up",
+          "slug": "xbillwatsonx/alex-session-wrap-up",
+          "description": "End-of-session automation: commit, extract learnings, detect patterns, persist rules",
+          "author": "xbillwatsonx",
+          "downloads": 500,
+          "stars": 18,
+          "last_updated": "2026-03-08",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "session",
+            "cleanup",
+            "learnings"
+          ],
+          "trust_score": 3.2,
+          "install_cmd": "clawhub install alex-session-wrap-up"
+        },
+        {
+          "name": "agent-self-reflection",
+          "slug": "brennerspear/agent-self-reflection",
+          "description": "Periodic self-reflection on recent sessions",
+          "author": "brennerspear",
+          "downloads": 300,
+          "stars": 10,
+          "last_updated": "2026-02-28",
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "reflection",
+            "improvement",
+            "sessions"
+          ],
+          "trust_score": 2.7,
+          "install_cmd": "clawhub install agent-self-reflection"
+        },
+        {
+          "name": "arc-memory-pruner",
+          "slug": "trypto1019/arc-memory-pruner",
+          "description": "Automatically prune and compact agent memory files to prevent unbounded growth",
+          "author": "trypto1019",
+          "downloads": 300,
+          "stars": 10,
+          "permissions": [
+            "filesystem:read",
+            "filesystem:write"
+          ],
+          "tags": [
+            "memory",
+            "pruning",
+            "cleanup"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.3,
+          "install_cmd": "clawhub install arc-memory-pruner"
+        },
+        {
+          "name": "agent-self-assessment",
+          "slug": "roosch269/agent-self-assessment",
+          "description": "Security self-assessment tool for AI agents",
+          "author": "roosch269",
+          "downloads": 250,
+          "stars": 8,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "assessment",
+            "security",
+            "self-check"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.1,
+          "install_cmd": "clawhub install agent-self-assessment"
+        },
+        {
+          "name": "clawdbot-security-check",
+          "slug": "thesethrose/clawdbot-security-check",
+          "description": "Comprehensive read-only security check for OpenClaw",
+          "author": "thesethrose",
+          "downloads": 400,
+          "stars": 15,
+          "permissions": [
+            "filesystem:read"
+          ],
+          "tags": [
+            "security",
+            "check",
+            "read-only"
+          ],
+          "last_updated": "2026-03-15",
+          "trust_score": 1.6,
+          "install_cmd": "clawhub install clawdbot-security-check"
+        }
+      ]
+    }
+  }
+}

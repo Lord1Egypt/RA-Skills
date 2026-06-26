@@ -1,0 +1,37 @@
+{
+  "slug": "customer-voice-synthesizer",
+  "title": "客户声音合成器",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "聚合客服、销售、评价与访谈中的用户原声，并按 JTBD/阶段组织。",
+  "inputHint": "访谈摘录、评论、客服对话",
+  "sections": [
+    "用户原声",
+    "JTBD 分类",
+    "阶段分类",
+    "高频痛点",
+    "价值语言",
+    "后续验证建议"
+  ],
+  "useCases": [
+    "定位研究",
+    "营销素材",
+    "产品输入"
+  ],
+  "positiveExamples": [
+    "把这些用户原声整理成 JTBD 视角",
+    "给营销和产品都能用的摘要"
+  ],
+  "negativeExamples": [
+    "不要泄露用户隐私",
+    "不要选择性忽略负面声音"
+  ],
+  "risk": "建议先做脱敏。",
+  "tags": [
+    "customer-voice",
+    "jtbd",
+    "research",
+    "marketing"
+  ]
+}

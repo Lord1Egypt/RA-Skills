@@ -1,0 +1,14 @@
+{
+  "agent": "cc",
+  "harness": "claude-code-cli",
+  "model": "claude-opus-4-6",
+  "created": "2026-02-18",
+  "memoryPaths": {
+    "daily": "~/.ldm/agents/cc/memory/daily",
+    "journals": "~/.ldm/agents/cc/memory/journals"
+  },
+  "dreamWeaver": {
+    "lastConsolidation": null,
+    "schedule": "weekly"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "name": "Research Synthesis Rubric",
+  "domain": "research",
+  "version": "1.1",
+  "description": "Evaluates research summaries and synthesis documents for factual accuracy, completeness, logical coherence, and citation quality.",
+  "criteria": [
+    {
+      "id": "RS-001",
+      "criterion": "Every factual claim is supported by a citation or explicit source",
+      "severity": "HIGH",
+      "evidence_required": "Quote the unsupported claim and show that no citation follows it",
+      "why": "Unsupported claims are the primary failure mode of research synthesis — they turn summaries into opinion pieces",
+      "category": "correctness"
+    },
+    {
+      "id": "RS-002",
+      "criterion": "Cited sources are internally consistent (no contradictory claims attributed to the same source)",
+      "severity": "HIGH",
+      "evidence_required": "Show two passages that attribute conflicting claims to the same author or paper",
+      "why": "Internal citation contradictions undermine credibility and suggest the source was not actually read",
+      "category": "correctness"
+    },
+    {
+      "id": "RS-003",
+      "criterion": "Conclusions follow logically from the evidence presented",
+      "severity": "CRITICAL",
+      "evidence_required": "Quote the conclusion and show the evidence that fails to support it, or show the logical gap",
+      "why": "Non-sequitur conclusions are the most dangerous flaw in research synthesis — they mislead decision-makers",
+      "category": "correctness"
+    },
+    {
+      "id": "RS-004",
+      "criterion": "Methodology limitations are acknowledged",
+      "severity": "MEDIUM",
+      "evidence_required": "Show that no limitations section or caveats are present where claims would require them",
+      "why": "Overconfident synthesis hides important uncertainty from readers",
+      "category": "completeness"
+    },
+    {
+      "id": "RS-005",
+      "criterion": "Conflicting findings from different sources are acknowledged and addressed",
+      "severity": "HIGH",
+      "evidence_required": "Identify a topic where the document presents one view without acknowledging known disagreement in the literature",
+      "why": "Cherry-picking evidence invalidates the synthesis and misleads readers",
+      "category": "completeness"
+    },
+    {
+      "id": "RS-006",
+      "criterion": "The scope and domain of the synthesis is clearly defined",
+      "severity": "MEDIUM",
+      "evidence_required": "Show that no clear scope statement or domain definition is present",
+      "why": "Without a defined scope, readers cannot judge what the synthesis covers or doesn't cover",
+      "category": "completeness"
+    },
+    {
+      "id": "RS-007",
+      "criterion": "Key terms are defined consistently throughout the document",
+      "severity": "LOW",
+      "evidence_required": "Quote two uses of the same term with different implied meanings",
+      "why": "Inconsistent terminology creates confusion and suggests imprecise thinking",
+      "category": "correctness"
+    },
+    {
+      "id": "RS-008",
+      "criterion": "Quantitative claims include their source and sample context (N, confidence interval, study type)",
+      "severity": "HIGH",
+      "evidence_required": "Quote a quantitative claim (%, ratio, statistical result) with no source or sample context",
+      "why": "Decontextualized numbers are easily misleading — 'studies show 70% improvement' is meaningless without N and methodology",
+      "category": "correctness"
+    },
+    {
+      "id": "RS-009",
+      "criterion": "The document distinguishes between correlation and causation",
+      "severity": "HIGH",
+      "evidence_required": "Quote a passage that implies causation from correlational evidence",
+      "why": "Correlation/causation conflation is a systematic reasoning error that propagates in synthesis documents",
+      "category": "correctness"
+    },
+    {
+      "id": "RS-010",
+      "criterion": "Practical implications or recommendations are grounded in the synthesis findings",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote a recommendation that is not traceable to a specific finding in the synthesis",
+      "why": "Ungrounded recommendations are the synthesis author's opinion, not the literature's conclusion",
+      "category": "completeness"
+    }
+  ]
+}

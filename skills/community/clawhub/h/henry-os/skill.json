@@ -1,0 +1,18 @@
+{
+  "name": "henry-os",
+  "version": "1.0.0",
+  "description": "AI Chief of Staff framework - one-line installer for a complete autonomous business partner",
+  "author": "Shannon Linnan",
+  "license": "MIT",
+  "repository": "https://github.com/shannonlinnan/henry-os",
+  "tags": ["business", "automation", "productivity", "ai-agent", "chief-of-staff"],
+  "requirements": {
+    "openclaw": ">=2026.1.0",
+    "node": ">=20.0.0"
+  },
+  "install": "curl -fsSL https://henryos.ai/install.sh | bash",
+  "entry": {
+    "type": "script",
+    "file": "install.sh"
+  }
+}

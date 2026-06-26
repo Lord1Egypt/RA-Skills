@@ -1,35 +1,58 @@
 ---
-name: "Competitive Analysis Zh"
-description: "竞品分析 / 竞争对手分析 / 市场竞争分析 / competitive analysis / 竞品调研。为产品经理、市场经理、战略规划师快速生成竞品对比矩阵、SWOT分析、功能差异表、定价策略对标等结构化分析报告。覆盖产品功能、商业模式、营销策略、用户定位等多维度竞争情报。广泛应用于竞品调研报告撰写、融资路演竞..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/competitive-analysis-zh"
-sourceUrl: "https://clawhub.ai/skills/competitive-analysis-zh"
+name: competitive-analysis-zh
+description: >
+  竞品分析 / 竞争对手分析 / 市场竞争分析 / competitive analysis / 竞品调研。为产品经理、市场经理、战略规划师快速生成竞品对比矩阵、SWOT分析、功能差异表、定价策略对标等结构化分析报告。覆盖产品功能、商业模式、营销策略、用户定位等多维度竞争情报。广泛应用于竞品调研报告撰写、融资路演竞争分析、产品立项评审、市场进入策略制定、投资决策支持等职场高频场景。
+tags: [竞品分析, competitive-analysis, 市场调研, 竞争对手分析, 产品对比, SWOT分析, 融资路演, 战略规划, market-research, strategy]
 ---
 
-# Competitive Analysis Zh
+# 竞品分析助手
 
-> 竞品分析 / 竞争对手分析 / 市场竞争分析 / competitive analysis / 竞品调研。为产品经理、市场经理、战略规划师快速生成竞品对比矩阵、SWOT分析、功能差异表、定价策略对标等结构化分析报告。覆盖产品功能、商业模式、营销策略、用户定位等多维度竞争情报。广泛应用于竞品调研报告撰写、融资路演竞...
+系统化分析竞争对手，覆盖产品功能、定价、市场定位、用户口碑与营销策略，输出结构化竞品报告，支撑产品决策与战略规划。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/competitive-analysis-zh`
-- **Source URL:** [https://clawhub.ai/skills/competitive-analysis-zh](https://clawhub.ai/skills/competitive-analysis-zh)
+## Tools Required
+- create_docx
+- create_xlsx
+- create_chart
 
-## Overview
+## Usage
+- "帮我分析一下我们产品和竞品的功能差异，整理成对比表格"
+- "做一份国内主流XX赛道竞品的市场定位分析报告"
+- "我们要做产品立项，帮我梳理三家主要竞品的定价策略和核心卖点"
 
+## Examples
+输入：我们是一款企业SaaS协作工具，主要竞品有飞书、钉钉、企业微信，请帮我做竞品分析，重点关注功能完整度、定价和目标客群。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/competitive-analysis-zh
-```
+输出：
+
+**竞品分析报告：企业协作SaaS赛道**
+
+**一、竞品概览**
+
+| 维度 | 飞书 | 钉钉 | 企业微信 |
+|------|------|------|----------|
+| 母公司 | 字节跳动 | 阿里巴巴 | 腾讯 |
+| 目标客群 | 中大型企业、科技公司 | 中小企业、制造业 | 微信生态企业 |
+| 核心定位 | 效率工具+管理平台 | 移动办公+审批流 | 客户连接+内部协作 |
+| 免费版 | 有（功能限制） | 有 | 有 |
+| 付费起点 | ≈30元/人/月 | ≈15元/人/月 | ≈18元/人/月 |
+
+**二、核心功能对比**
+
+| 功能模块 | 飞书 | 钉钉 | 企业微信 |
+|----------|------|------|----------|
+| 即时通讯 | ★★★★★ | ★★★★☆ | ★★★★★ |
+| 文档协作 | ★★★★★ | ★★★☆☆ | ★★★☆☆ |
+| 审批流程 | ★★★★☆ | ★★★★★ | ★★★★☆ |
+| 视频会议 | ★★★★☆ | ★★★★☆ | ★★★☆☆ |
+| 开放生态 | ★★★★☆ | ★★★★★ | ★★★★★ |
+
+**三、SWOT 分析摘要（以飞书为例）**
+- **优势**：产品体验一致性强，文档协作能力突出
+- **劣势**：中小企业渗透率低，价格偏高
+- **机会**：出海市场扩张，AI功能差异化
+- **威胁**：钉钉低价策略，微信生态黏性
+
+**四、战略建议**
+1. 差异化切入点：聚焦竞品薄弱的垂直行业（如教育/医疗）
+2. 定价策略：可参考钉钉梯度定价，降低中小企业门槛
+3. 功能优先级：优先补齐审批流与移动端体验

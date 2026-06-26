@@ -1,0 +1,7 @@
+interface:
+  display_name: "ShaderToy"
+  short_description: "Write, debug, and port ShaderToy fragment shaders."
+  default_prompt: "Use $shadertoy to work with ShaderToy-style fragment shaders, built-ins like iTime and iResolution, channels, buffers, and ShaderToy-to-WebGL or Three.js migration."
+
+policy:
+  allow_implicit_invocation: true

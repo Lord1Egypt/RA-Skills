@@ -1,0 +1,59 @@
+{
+  "ticker": "COST",
+  "company": "Costco Wholesale Corporation",
+  "analysis_year": 2000,
+  "data_source": "Costco FY2001 annual report / 10-K (using point-in-time 1999 financials disclosed therein), SEC EDGAR; Berkshire 1999-12-31 and 2000-03-31 13F-HR/A; 2000 AGM Q&A",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.131, "metric_used": "ROE", "years_averaged": "1997-1999", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.39, "fcf": 152.9, "net_income": 397.3, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.44, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue rose from $23.2B to $25.8B to $27.5B across 1997-1999. Unit growth, membership fees, and same-store traffic all pointed to expansion rather than structural decline.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Reported gross margin was intentionally thin but stable. Costco's merchandise margin hovered around the low-10% range while membership-fee economics supported overall profitability; there was no two-year structural deterioration.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.017, "net_income_m": 397.3, "ev_m": 23548, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "PASS", "moat_type": "cost_advantage", "description": "Costco had a real moat by 1999: a membership model that reinforced loyalty, extreme SKU discipline, rapid inventory turns, vendor purchasing power, low shrink, and a reputation for passing savings to customers instead of maximizing markups. Rivals could copy pieces of the model, but not the culture-and-scale system that made Costco trusted, efficient, and habit-forming.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "review_notes": {
+    "owner_earnings_note": {
+      "summary": "Raw free cash flow understated the economics because Costco was still opening clubs, funding logistics, and expanding internationally at a high rate.",
+      "maintenance_vs_growth_view": "A material share of 1999 capital spending was growth capex tied to new warehouses and infrastructure, not merely maintenance required to stand still.",
+      "decision_impact": "This archived PASS remains for comparability, but the note records that g2 was too blunt for an elite reinvestment machine like Costco."
+    },
+    "quality_multiple_note": {
+      "summary": "Costco screened expensive on a blunt earnings-yield basis even before the business reached its later cultural iconic status.",
+      "reason_for_low_yield": "The market was already paying for membership economics, cost leadership, and exceptional trust, but that premium turned out to be justified by the durability of the franchise.",
+      "decision_impact": "This is another case where a flat 6% earnings-yield hurdle missed a business whose long runway and moat quality were better than the raw multiple suggested."
+    },
+    "management_veto": {
+      "status": "clear",
+      "summary": "Management and culture were strengths, not red flags. The underwriting disagreement is about interpreting reinvestment and premium valuation, not stewardship quality."
+    }
+  },
+
+  "metrics_snapshot": {
+    "revenue_1999_usd_m": 27456.0,
+    "operating_income_1999_usd_m": 860.1,
+    "net_income_1999_usd_m": 397.3,
+    "operating_cash_flow_1999_usd_m": 940.9,
+    "capital_expenditures_1999_usd_m": 787.9,
+    "cash_1999_usd_m": 440.6,
+    "long_term_debt_1999_usd_m": 918.9,
+    "berkshire_shares_q1_2000_m": 0.71,
+    "berkshire_market_value_q1_2000_usd_m": 37.3
+  },
+
+  "control_groups": [
+    { "ticker": "KM", "company": "Kmart Corporation", "year": 2000, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — Kmart lacked Costco's discipline, customer trust, and purchasing-system moat, and its economics were already deteriorating." },
+    { "ticker": "BJ", "company": "BJ's Wholesale Club, Inc.", "year": 2000, "gates_failed": ["g6_earnings_yield", "g7_moat"], "conclusion": "PASS — the warehouse-club idea was real, but the scale, vendor leverage, and member mindshare were still much weaker than Costco's." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire first disclosed 355,000 Costco shares at year-end 1999 and 710,000 shares by March 31, 2000, with the Q1 position valued at about $37.3M.",
+  "actual_result": "Costco went on to become one of the clearest long-duration compounders in global retail, even though Berkshire's position remained small relative to the opportunity and was later exited decades after massive business progress.",
+  "verdict": "❌ framework_wrong",
+  "key_insight": "Costco is a clean example of why raw FCF and blunt earnings-yield gates can miss a rare reinvestment-heavy compounder with an unusually deep culture-and-scale moat."
+}

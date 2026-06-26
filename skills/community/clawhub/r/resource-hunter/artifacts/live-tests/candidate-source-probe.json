@@ -1,0 +1,256 @@
+{
+  "query": "The Merry Widow 1952",
+  "probed_at": "2026-03-23T13:42:39Z",
+  "results": [
+    {
+      "name": "animetosho.org",
+      "category": "anime",
+      "url": "https://animetosho.org/search?q=The%20Merry%20Widow%201952",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://animetosho.org/search?q=The%20Merry%20Widow%201952",
+      "content_type": "text/html",
+      "title": "Search Results: The Merry Widow 1952 | Anime Tosho",
+      "markers": [
+        "torrent",
+        "search",
+        "login",
+        "results"
+      ],
+      "body_preview": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xml:lang=\"en\" lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" dir=\"ltr\"><head><title>Search Results: The Merry Widow 1952 | Anime Tosho</title><!--<base href=\"https://animetosho.org/\" />--><meta name=\"description\" content=\"\" /><meta name=\"keywords\" content=\"\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><meta name=\"viewport\" content=\"width=600, initial-scale",
+      "elapsed_ms": 1189,
+      "content_length": 10562
+    },
+    {
+      "name": "bing",
+      "category": "index",
+      "url": "https://www.bing.com/search?q=The%20Merry%20Widow%201952%20magnet%20OR%20pan",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://www.bing.com/search?q=The%20Merry%20Widow%201952%20magnet%20OR%20pan",
+      "content_type": "text/html",
+      "title": "The Merry Widow 1952 magnet OR pan - 検索",
+      "markers": [
+        "search",
+        "login",
+        "cloudflare",
+        "results"
+      ],
+      "body_preview": "<!DOCTYPE html><html dir=\"ltr\" lang=\"ja\" xml:lang=\"ja\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:Web=\"http://schemas.live.com/Web/\"><script type=\"text/javascript\" nonce=\"Jfe+j2D9BkqjUd8PE9Ck7D1eckSDcKwI3SkFUMuslcg=\" >//<![CDATA[\r\nsi_ST=new Date\r\n//]]></script><head><!--pc--><title>The Merry Widow 1952 magnet OR pan - 検索</title><meta content=\"text/html; charset=utf-8\" http-equiv=\"content-type\" /><meta name=\"referrer\" content=\"origin-when-cross-origin\" /><meta property=\"og:description\" content=\"B",
+      "elapsed_ms": 752,
+      "content_length": 110697
+    },
+    {
+      "name": "brave",
+      "category": "index",
+      "url": "https://search.brave.com/search?q=The%20Merry%20Widow%201952%20magnet%20OR%20pan",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://search.brave.com/search?q=The%20Merry%20Widow%201952%20magnet%20OR%20pan",
+      "content_type": "text/html",
+      "title": "The Merry Widow 1952 magnet OR pan - Brave Search",
+      "markers": [
+        "torrent",
+        "search",
+        "login",
+        "results"
+      ],
+      "body_preview": "<!doctype html>\n<html class=\"\" lang=\"en-us\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <link href=\"https://cdn.search.brave.com\" rel=\"preconnect\" crossorigin=\"anonymous\" />\n<link href=\"https://imgs.search.brave.com\" rel=\"preconnect\" crossorigin=\"anonymous\" />\n<link href=\"https://tiles.search.brave.com\" rel=\"preconnect\" crossorigin=\"anonymous\" />\n<link href=\"https://cdn.search.brave.com/serp/v3/_app/immutable/assets/inter-latin-wght-normal.Dx4kXJAl.woff2\" crossorigin=\"anonymous\" rel=\"preload\" as=",
+      "elapsed_ms": 1524,
+      "content_length": 272235
+    },
+    {
+      "name": "btdig.com",
+      "category": "torrent",
+      "url": "https://btdig.com/search?query=The%20Merry%20Widow%201952",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://btdig.com/search?query=The%20Merry%20Widow%201952",
+      "content_type": "text/html",
+      "title": "Welcome to nginx",
+      "markers": [],
+      "body_preview": "<!DOCTYPE html>\n<html>\n<head>\n<title>Welcome to nginx </title>\n<style>\n    body {\n        width: 35em;\n        margin: 0 auto;\n        font-family: Tahoma, Verdana, Arial, sans-serif;\n    }\n</style>\n</head>\n<body>\n<h1>Welcome to nginx!</h1>\n<p>If you see this page, the nginx web server is successfully installed and\nworking. Further configuration is required.</p>\n\n<p>For online documentation and support please refer to\n<a href=\"http://nginx.org/\">nginx.org</a>.<br/>\nCommercial support is availabl",
+      "elapsed_ms": 2081,
+      "content_length": 612
+    },
+    {
+      "name": "btso.pw",
+      "category": "torrent",
+      "url": "https://btso.pw/search/The%20Merry%20Widow%201952",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://btso.pw/search/The%20Merry%20Widow%201952",
+      "content_type": "text/html",
+      "title": "Redirecting...",
+      "markers": [
+        "search"
+      ],
+      "body_preview": "<html lang=\"en\"><head><title>Redirecting...</title></head><body><script>(()=>{\"use strict\";const t=\"offset\",e=\"client\",o=function(){};let n=!1,r=!1;const i={loopDelay:50,maxLoop:5,complete:o},l=[];let u=null;const s={cssClass:\"ad-overlay google-ad-bottom-outer prebid-wrapper .dfp-ad-container\"},a={nullProps:[t+\"Parent\"],zeroProps:[]};a.zeroProps=[t+\"Height\",t+\"Left\",t+\"Top\",t+\"Width\",t+\"Height\",e+\"Height\",e+\"Width\"];const c={quick:null,remote:null};let d=null;const p={test:0,download:0};function",
+      "elapsed_ms": 3185,
+      "content_length": 4255
+    },
+    {
+      "name": "dmhy.org",
+      "category": "anime",
+      "url": "https://dmhy.org/topics/list?keyword=The%20Merry%20Widow%201952",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://dmhy.org/topics/list?keyword=The%20Merry%20Widow%201952",
+      "content_type": "text/html",
+      "title": "「The Merry Widow 1952」的搜索結果 - 動漫花園資源網 - 動漫愛好者的自由交流平台",
+      "markers": [
+        "search",
+        "login",
+        "results"
+      ],
+      "body_preview": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n<title>「The Merry Widow 1952」的搜索結果 - 動漫花園資源網 - 動漫愛好者的自由交流平台</title><meta name=\"keywords\" content=\"動畫 漫畫 动漫音乐 动漫下載 动漫社区 游戏 animation comic game\" />\n<meta name=\"description\" content=\"動漫花園資訊網是一個動漫愛好者交流的平台,提供最及時,最全面的動畫,漫畫,動漫音樂,動漫下載,BT,ED,動漫遊戲,資訊,分享,交流,讨论.\" />\n<meta http-equiv=\"Content-Language\" content=\"zh-TW\" />\n<meta http-equiv",
+      "elapsed_ms": 1663,
+      "content_length": 38145
+    },
+    {
+      "name": "ext.to",
+      "category": "torrent",
+      "url": "https://ext.to/search/?q=The%20Merry%20Widow%201952",
+      "ok": false,
+      "error": "HTTP Error 403: Forbidden",
+      "elapsed_ms": 1018
+    },
+    {
+      "name": "lanzoui.com",
+      "category": "pan",
+      "url": "https://www.lanzoui.com/",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://www.lanzoui.com/",
+      "content_type": "text/html",
+      "title": "蓝奏·云存储",
+      "markers": [
+        "pan"
+      ],
+      "body_preview": "<!DOCTYPE HTML>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><title>蓝奏·云存储</title><meta name=\"Copyright\" content=\"Woozooo\"><meta name=\"Keywords\" content=\"蓝奏, 上传, 网盘, 网络硬盘, 云盘, 云存储, 网众蓝奏\"><link rel=\"shortcut icon\" href=\"https://js.woozooo.com/assets/favicon.ico\"><link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"https://js.woozooo.com/assets/share/index.css?v2\">\n</head><body>\n<script type=\"text/javascript\" src=\"https://js.woozooo.com/assets/share/index.js\"></sc",
+      "elapsed_ms": 295,
+      "content_length": 521
+    },
+    {
+      "name": "lanzoux.com",
+      "category": "pan",
+      "url": "https://www.lanzoux.com/",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://www.lanzoux.com/",
+      "content_type": "text/html",
+      "title": "蓝奏·云存储",
+      "markers": [
+        "pan"
+      ],
+      "body_preview": "<!DOCTYPE HTML>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><title>蓝奏·云存储</title><meta name=\"Copyright\" content=\"Woozooo\"><meta name=\"Keywords\" content=\"蓝奏, 上传, 网盘, 网络硬盘, 云盘, 云存储, 网众蓝奏\"><link rel=\"shortcut icon\" href=\"https://js.woozooo.com/assets/favicon.ico\"><link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"https://js.woozooo.com/assets/share/index.css?v2\">\n</head><body>\n<script type=\"text/javascript\" src=\"https://js.woozooo.com/assets/share/index.js\"></sc",
+      "elapsed_ms": 267,
+      "content_length": 521
+    },
+    {
+      "name": "limetorrents.pro",
+      "category": "torrent",
+      "url": "https://www.limetorrents.pro/search/all/The%20Merry%20Widow%201952/",
+      "ok": false,
+      "error": "HTTP Error 502: Bad Gateway",
+      "elapsed_ms": 6383
+    },
+    {
+      "name": "quark.so",
+      "category": "pan",
+      "url": "https://quark.so/search?q=The%20Merry%20Widow%201952",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://www.quark.so/?q=The+Merry+Widow+1952",
+      "content_type": "text/html",
+      "title": "网站启动中",
+      "markers": [
+        "search",
+        "cloudflare"
+      ],
+      "body_preview": "<!DOCTYPE html><html class=\"theme-day\" lang=\"zh\"><head><meta charset=\"utf-8\"/>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0\"/>\n<title>网站启动中</title>\n<meta name=\"renderer\" content=\"webkit\"/>\n<meta name=\"version\" content=\"2025-06-26\"/>\n<link rel=\"icon\" type=\"image/x-icon\" href=\"https://img.fre123.com/i/2024/03/31/6608d940b4fc5.jpg\" data-hid=\"2d866c\"/>\n<link rel=\"canonical\" href=\"/\"/>\n<link rel=\"stylesheet\" href=\"/_nuxt/entry.BlHSQoZK.css\"/>\n<link rel=\"modu",
+      "elapsed_ms": 4013,
+      "content_length": 3542
+    },
+    {
+      "name": "searx.be",
+      "category": "index",
+      "url": "https://searx.be/search?q=The%20Merry%20Widow%201952%20magnet%20OR%20pan",
+      "ok": false,
+      "error": "HTTP Error 403: Forbidden",
+      "elapsed_ms": 1260
+    },
+    {
+      "name": "solidtorrents.to",
+      "category": "torrent",
+      "url": "https://solidtorrents.to/search?q=The%20Merry%20Widow%201952",
+      "ok": false,
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1028)>",
+      "elapsed_ms": 5040
+    },
+    {
+      "name": "torlock2.com",
+      "category": "torrent",
+      "url": "https://www.torlock2.com/all/torrents/The%20Merry%20Widow%201952.html",
+      "ok": false,
+      "error": "The read operation timed out",
+      "elapsed_ms": 28891
+    },
+    {
+      "name": "torrentdownloads.pro",
+      "category": "torrent",
+      "url": "https://www.torrentdownloads.pro/search/?search=The%20Merry%20Widow%201952",
+      "ok": false,
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1028)>",
+      "elapsed_ms": 5012
+    },
+    {
+      "name": "torrentgalaxy.to",
+      "category": "torrent",
+      "url": "https://torrentgalaxy.to/torrents.php?search=The%20Merry%20Widow%201952",
+      "ok": false,
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1028)>",
+      "elapsed_ms": 5095
+    },
+    {
+      "name": "yandex",
+      "category": "index",
+      "url": "https://yandex.com/search/?text=The%20Merry%20Widow%201952%20magnet%20OR%20pan",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://yandex.com/showcaptchafast?d=3B22AB6270BD7A8CE99428968F0EA784620ED21E5125BF574A74324BBED965AC84C9028668DA5D9CBBF88C161A6B3251ED6E5A1ACA&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaD90ZXh0PVRoZSUyME1lcnJ5JTIwV2lkb3clMjAxOTUyJTIwbWFnbmV0JTIwT1IlMjBwYW4%2C_74397f638bbec92ae2f656e86f5ea094&s=5811d35e2ca7e92b9f096275779f87ee",
+      "content_type": "text/html",
+      "title": "Verification",
+      "markers": [
+        "search",
+        "login",
+        "captcha"
+      ],
+      "body_preview": "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Verification</title><link rel=\"preload\" href=\"/tmgrdfrend.fp.js\" as=\"script\" crossorigin=\"anonymous\"><script>!function(e){if(e.Ya=e.Ya||{},Ya.Rum)throw new Error(\"Rum: interface is already defined\");var n=e.performance,t=n&&n.timing&&n.timing.navigationStart||Ya.startPageLoad||+new Date,i=e.requestAnimationFrame,r=function(){},o=Ya.Rum={_defTimes:[],_defRes:[],_cou",
+      "elapsed_ms": 3400,
+      "content_length": 39480
+    },
+    {
+      "name": "znds.com",
+      "category": "community",
+      "url": "https://www.znds.com/so/The%20Merry%20Widow%201952",
+      "ok": false,
+      "error": "HTTP Error 404: Not Found",
+      "elapsed_ms": 597
+    },
+    {
+      "name": "zooqle.com",
+      "category": "torrent",
+      "url": "https://zooqle.com/search?q=The%20Merry%20Widow%201952",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://zooqle.com/search?q=The%20Merry%20Widow%201952",
+      "content_type": "application/json",
+      "title": "",
+      "markers": [],
+      "body_preview": "{\"status\":\"error\",\"message\":\"Hatalı Deneme\"}",
+      "elapsed_ms": 1137,
+      "content_length": 44
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.ai/schemas/rep/memory_reconstruction_audit.json",
+  "title": "Memory Reconstruction Audit",
+  "description": "Verify claims backed by memory/context were reconstructed correctly",
+  "type": "object",
+  "required": ["artifact_type", "claim_ref", "source_items", "reconstruction_steps", "consistency_score", "audit_outcome", "auditor", "audited_at"],
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "memory_reconstruction_audit"
+    },
+    "claim_ref": {
+      "type": "string",
+      "description": "Reference to the claim being audited"
+    },
+    "source_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "hash"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "offset": {"type": "string"},
+          "hash": {"type": "string", "pattern": "^sha256:"}
+        }
+      }
+    },
+    "reconstruction_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "operation"],
+        "properties": {
+          "step": {"type": "integer", "minimum": 1},
+          "operation": {"type": "string", "enum": ["retrieve", "filter", "summarize", "compare"]},
+          "output_ref": {"type": "string"}
+        }
+      }
+    },
+    "consistency_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Score from 0.0 to 1.0"
+    },
+    "missing_context": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Items that could not be reconstructed"
+    },
+    "audit_outcome": {
+      "type": "string",
+      "enum": ["verified", "partially_verified", "failed"]
+    },
+    "auditor": {
+      "type": "string",
+      "description": "ID of auditor"
+    },
+    "audited_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC3339 UTC timestamp"
+    }
+  }
+}

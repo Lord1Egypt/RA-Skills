@@ -1,0 +1,8 @@
+{
+  "_meta": {
+    "description": "已分析博主数据库 — 每次 /xhsfx 分析后自动写入。本字段在分发版本中为空，供使用者自己积累。",
+    "total": 0,
+    "last_updated": null
+  },
+  "bloggers": []
+}

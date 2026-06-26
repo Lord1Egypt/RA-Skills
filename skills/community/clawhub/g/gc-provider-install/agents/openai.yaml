@@ -1,0 +1,7 @@
+interface:
+  display_name: "GC Provider Install"
+  short_description: "Install GrowthCircle provider"
+  brand_color: "#0F766E"
+  default_prompt: "Use $gc-provider-install to install gc-provider and verify GrowthCircle model access in OpenClaw or Hermes."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,17 @@
+{
+  "name": "word-comments-extractor",
+  "version": "1.0.0",
+  "description": "Extract comments from Word documents and format them into standardized review opinions for investment banking quality control. Auto-matches page numbers, AI-powered semantic polishing.",
+  "author": "OpenClaw User",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "keywords": [
+    "word",
+    "comments",
+    "批注提取",
+    "投行质控",
+    "审核意见",
+    "docx",
+    "批注润色",
+    "文档审核"
+  ]
+}

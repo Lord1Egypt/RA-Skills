@@ -1,0 +1,51 @@
+{
+  "name": "court",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for navigating court systems and legal proceedings. Covers document interpretation, hearing preparation, self-representation guidance, and post-ruling enforcement.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "court", "legal", "lawsuit", "hearing", "judge", "filing",
+    "self-represented", "litigation", "civil court", "family court",
+    "small claims", "summons", "motion", "ruling", "appeal"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "document_translation": "Explains any court document in plain language with deadlines and required actions",
+    "court_identification": "Identifies which court handles your specific matter and why",
+    "hearing_preparation": "Complete preparation guide for any type of court hearing",
+    "self_representation": "Step-by-step procedural guidance for litigants without attorneys",
+    "attorney_collaboration": "Helps clients work more effectively with their legal representation",
+    "post_ruling_guidance": "Explains rulings, enforcement options, and appeal considerations"
+  },
+  "triggers": [
+    "court", "lawsuit", "sued", "summons", "hearing", "judge",
+    "filing", "motion", "subpoena", "judgment", "ruling", "appeal",
+    "small claims", "family court", "civil court", "criminal court",
+    "self represented", "pro se", "contempt", "order", "complaint",
+    "default judgment", "discovery", "deposition", "settlement"
+  ],
+  "heartbeat": {
+    "immediate": "Decode any new court document and identify response deadline",
+    "weekly": "Active case status check and upcoming deadline review",
+    "pre_hearing": "72-hour preparation checklist before every court appearance",
+    "post_hearing": "Document outcomes and identify next required actions",
+    "annual": "Review ongoing court orders for modification considerations"
+  },
+  "audience": [
+    "Self-represented litigants in any court",
+    "People who have just been served with legal papers",
+    "Anyone preparing for a court hearing",
+    "Clients wanting to work more effectively with their attorney",
+    "People navigating post-ruling enforcement or appeals"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

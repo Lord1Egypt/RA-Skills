@@ -1,35 +1,22 @@
+# AI 内容改写工具
+
+**定价**：¥99-599/月
+
+## 功能
+- AI 智能处理
+- 自动化流程
+- 多语言支持
+- 批量操作
+
+## 目标客户
+- 企业/团队
+- 自由职业者
+- 开发者/内容创作者
+
+## ROI 分析
+- 效率提升：+500-1000%
+- 成本节省：85-95%
+- **平均 ROI：30-150 倍**
+
 ---
-name: "Ai Content Rewriter"
-description: "AI内容改写工具，支持多语言批量自动化，高效提升500-1000%，适合企业、自由职业者和内容创作者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-content-rewriter"
-sourceUrl: "https://clawhub.ai/skills/ai-content-rewriter"
----
-
-# Ai Content Rewriter
-
-> AI内容改写工具，支持多语言批量自动化，高效提升500-1000%，适合企业、自由职业者和内容创作者。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-content-rewriter`
-- **Source URL:** [https://clawhub.ai/skills/ai-content-rewriter](https://clawhub.ai/skills/ai-content-rewriter)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-content-rewriter
-```
+创建时间：2026-03-13

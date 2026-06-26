@@ -1,0 +1,146 @@
+{
+  "run_id": "forced_run_20260405_0315",
+  "collected_at_cst": "2026-04-05 03:15 CST",
+  "sources": {
+    "x_search_trump_iran_deal": [
+      {
+        "time_utc": "22:15",
+        "time_cst": "2026-04-04 06:15",
+        "source": "@ViseLatam",
+        "content": "Trump admin considering 'very dramatic' Iran deal — ending sanctions in exchange for nuclear concessions. Officials discussed offering major sanctions relief in exchange for Iran dismantling nuclear program and halting uranium enrichment.",
+        "engagement": "2.8K likes, 1.4M views"
+      },
+      {
+        "time_utc": "22:15",
+        "time_cst": "2026-04-04 06:15",
+        "source": "@MithiloEconomi",
+        "content": "US will demand Iran permanently renounce nuclear weapons development. Trump team divided on how far sanctions relief should go.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "22:00",
+        "time_cst": "2026-04-04 06:00",
+        "source": "@SPram",
+        "content": "Trump Iran ceasefire negotiations ongoing.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "21:50",
+        "time_cst": "2026-04-04 05:50",
+        "source": "@SPram",
+        "content": "Ceasefire deal in progress between US and Iran.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "21:30",
+        "time_cst": "2026-04-04 05:30",
+        "source": "@NasserPaydar",
+        "content": "BREAKING: Trump preparing 'take it or leave it' offer to Iran — crushing sanctions unless Iran permanently dismantles nuclear program within 6 months.",
+        "engagement": "likes hidden"
+      }
+    ],
+    "x_search_iran_ceasefire": [
+      {
+        "time_utc": "08:03",
+        "time_cst": "2026-04-04 16:03",
+        "source": "@KhalilHakim_O",
+        "content": "Iran and US reportedly close to ceasefire deal in Yemen — could de-escalate Middle East tensions.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "08:00",
+        "time_cst": "2026-04-04 16:00",
+        "source": "@AartiTeti",
+        "content": "US and Iran agreed to interim nuclear deal: Iran halts enrichment to 60%, US releases frozen oil revenues — per WSJ.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "07:55",
+        "time_cst": "2026-04-04 15:55",
+        "source": "@Saifullah_Khan",
+        "content": "BREAKING: Iran agreed to ceasefire with US — second major ceasefire Trump negotiated after Ukraine. Trump meeting Ukrainian officials at White House today.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "07:40",
+        "time_cst": "2026-04-04 15:40",
+        "source": "@Saifullah_Khan",
+        "content": "BREAKING: Trump will speak with Iranian officials tomorrow — direct nuclear talks begin. US to release $7 billion in frozen funds to Iran as part of negotiations.",
+        "engagement": "likes hidden"
+      }
+    ],
+    "x_kobeissi_letter": [
+      {
+        "time_utc": "09:07",
+        "time_cst": "2026-04-04 17:07",
+        "source": "@KobeissiLetter",
+        "content": "GLOBAL MARKETS: S&P 500 -0.8%, NASDAQ -1.2%, DOW -0.6%, BITCOIN -2.1%, GOLD +0.5%, WTI OIL -3.2%",
+        "engagement": "market data"
+      },
+      {
+        "time_utc": "08:38",
+        "time_cst": "2026-04-04 16:38",
+        "source": "@KobeissiLetter",
+        "content": "White House: Trump met Ukrainian President Zelenskyy at White House today. Follows Trump's Russia-Ukraine ceasefire deal met with significant skepticism from European allies.",
+        "engagement": "likes hidden"
+      }
+    ],
+    "x_watcher_guru": [
+      {
+        "time_utc": "08:55",
+        "time_cst": "2026-04-04 16:55",
+        "source": "@WatcherGuru",
+        "content": "BREAKING: Trump will speak with Iran tomorrow. US will release $7 billion in frozen funds to Iran as part of negotiations.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "08:47",
+        "time_cst": "2026-04-04 16:47",
+        "source": "@WatcherGuru",
+        "content": "BREAKING: European allies FURIOUS with Trump's Russia-Ukraine ceasefire deal. France, Germany, UK, Poland held emergency meeting.",
+        "engagement": "likes hidden"
+      },
+      {
+        "time_utc": "08:37",
+        "time_cst": "2026-04-04 16:37",
+        "source": "@WatcherGuru",
+        "content": "BREAKING: Putin and Zelenskyy agreed to immediate 30-day ceasefire in Ukraine following Trump's negotiations.",
+        "engagement": "likes hidden"
+      }
+    ],
+    "google_news": [
+      {
+        "source": "CBS News",
+        "content": "Trump says US will release $7B in frozen funds to Iran"
+      },
+      {
+        "source": "CBS News",
+        "content": "Trump says he'll speak with Iran 'tomorrow'"
+      },
+      {
+        "source": "Fox News",
+        "content": "Trump appears ready to make Iran nuclear deal, signals possible meeting with Tehran"
+      },
+      {
+        "source": "The Guardian",
+        "content": "US and Iran agree to interim nuclear deal, WSJ reports"
+      },
+      {
+        "source": "PBS NewsHour",
+        "content": "Trump says US will release $7B in frozen funds to Iran"
+      },
+      {
+        "source": "BBC News",
+        "content": "Trump signals US-Iran talks could happen soon"
+      }
+    ]
+  },
+  "market_data": {
+    "sp500": "4,950 (-0.8%)",
+    "nasdaq": "15,820 (-1.2%)",
+    "dow": "38,540 (-0.6%)",
+    "bitcoin": "$82,400 (-2.1%)",
+    "gold": "$3,010 (+0.5%)",
+    "wti_oil": "$68.20 (-3.2%)"
+  }
+}

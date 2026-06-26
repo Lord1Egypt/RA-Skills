@@ -1,35 +1,109 @@
 ---
-name: "企业AI应用诊断工具"
-description: "企业AI应用诊断工具，帮助企业评估AI应用价值、计算ROI、规划实施路径。当用户询问"企业如何用AI"、"AI能帮我的企业做什么"、"AI投入回报"等企业AI应用相关问题时使用。支持企业现状评估、AI价值分析、ROI计算、实施路径规划、工具推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enterprise-ai-diagnosis"
-sourceUrl: "https://clawhub.ai/skills/enterprise-ai-diagnosis"
+name: enterprise-ai-diagnosis
+description: 企业AI应用诊断工具，帮助企业评估AI应用价值、计算ROI、规划实施路径。当用户询问"企业如何用AI"、"AI能帮我的企业做什么"、"AI投入回报"等企业AI应用相关问题时使用。支持企业现状评估、AI价值分析、ROI计算、实施路径规划、工具推荐。
 ---
 
 # 企业AI应用诊断工具
 
-> 企业AI应用诊断工具，帮助企业评估AI应用价值、计算ROI、规划实施路径。当用户询问"企业如何用AI"、"AI能帮我的企业做什么"、"AI投入回报"等企业AI应用相关问题时使用。支持企业现状评估、AI价值分析、ROI计算、实施路径规划、工具推荐。
+帮助企业科学评估AI应用价值，制定可落地的AI转型方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enterprise-ai-diagnosis`
-- **Source URL:** [https://clawhub.ai/skills/enterprise-ai-diagnosis](https://clawhub.ai/skills/enterprise-ai-diagnosis)
+## 核心功能
 
-## Overview
+### 1. 企业现状评估
+- 10分钟快速评估问卷
+- 业务流程拆解
+- AI应用现状分析
+- 期望和预算收集
 
+### 2. AI价值分析
+- 业务环节AI适用性评分（0-100分）
+- 每个环节的AI应用场景
+- 预估收益计算
+- 实施难度评估
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enterprise-ai-diagnosis
+### 3. ROI计算
+- 投入成本分析（工具+培训+时间）
+- 预期收益计算（人力节省+效率提升+错误减少）
+- 投资回报率计算
+- 回报周期预测
+
+### 4. 实施路径规划
+- 分阶段实施计划（1-2周 / 1个月 / 3个月）
+- 工具推荐（免费/低成本/专业工具）
+- 风险提示和应对
+
+### 5. 执行清单
+- 第1周任务清单
+- 工具配置指南
+- 培训材料
+- 效果追踪表
+
+## 使用方法
+
+### 方式1：快速诊断（推荐）
 ```
+用户："帮我诊断一下我们公司能不能用AI"
+执行：运行完整诊断流程
+输出：完整诊断报告
+```
+
+### 方式2：指定模块
+```
+用户："帮我计算一下AI的ROI"
+执行：运行ROI计算模块
+输出：ROI分析报告
+```
+
+### 方式3：导出报告
+```
+用户："生成一份企业AI诊断报告"
+执行：生成完整报告并导出为Markdown
+输出：可分享的报告文件
+```
+
+## 工作流程
+
+### 第一步：企业评估
+1. 发送评估问卷（飞书表单）
+2. 收集企业信息
+3. 分析业务流程
+
+### 第二步：AI价值分析
+1. 评估每个环节的AI适用性
+2. 识别高价值场景
+3. 计算潜在收益
+
+### 第三步：ROI计算
+1. 汇总投入成本
+2. 计算预期收益
+3. 生成ROI报表
+
+### 第四步：实施规划
+1. 制定分阶段计划
+2. 推荐合适工具
+3. 提供执行清单
+
+### 第五步：生成报告
+1. 整合所有分析结果
+2. 生成完整诊断报告
+3. 导出为Markdown/飞书文档
+
+## 定价建议
+
+- 基础版：99元（评估+分析）
+- 专业版：199元（完整诊断+ROI计算）
+- 企业版：499元（专业版+1对1咨询）
+
+## 目标客户
+
+- 中小企业主（50-500人企业）
+- 创业者（0-50人团队）
+- 企业数字化转型负责人
+
+## 案例参考
+
+见 `references/case-studies.md`
+
+## 更新日志
+
+- 2026-03-13: 初始版本发布

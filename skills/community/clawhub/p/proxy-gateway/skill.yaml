@@ -1,0 +1,159 @@
+name: proxy-gateway
+description: |
+  **Secure HTTP Proxy for AI Agents** — Give your AI agent unrestricted internet access 
+  with pay-per-use pricing. 10 free requests to start, then only $0.001 per API call.
+  
+  Perfect for: Web scraping, API integrations, data collection, research automation.
+  
+  🔒 **Security First**: 6 security audits completed, 13 critical vulnerabilities fixed.
+  📖 **Open Source**: Full source code available, self-hosting supported.
+  ⚡ **Zero Config**: No local proxy setup needed, just call the API.
+  
+  ⚠️ **Privacy Notice**: All requests pass through the proxy server. Do not send 
+  secrets, API keys, or sensitive data. For sensitive use cases, self-host the service.
+
+version: 0.3.0
+author: laoke
+license: MIT
+homepage: https://proxy.easky.cn
+documentation: README.md
+security_policy: SECURITY.md
+repository: https://github.com/openclaw/proxy-gateway
+
+installation: |
+  ## Quick Start
+  
+  ### Option 1: Use the Hosted Service (Fastest)
+  
+  ```python
+  import requests
+  
+  # Start with 10 free requests
+  response = requests.post(
+      "https://proxy.easky.cn/api/v1/fetch",
+      headers={"X-Client-ID": "my_agent_001"},
+      json={
+          "url": "https://api.github.com/users/github",
+          "method": "GET"
+      }
+  )
+  
+  data = response.json()
+  print(data["content"])
+  ```
+  
+  ### Option 2: Self-Host (Maximum Privacy)
+  
+  ```bash
+  # Clone and install
+  git clone https://github.com/openclaw/proxy-gateway.git
+  cd proxy-gateway
+  pip install -r requirements.txt
+  
+  # Configure environment
+  export HOSTED_WALLET=0xYourPolygonWalletAddress
+  export ADMIN_TOKEN=your_secure_random_token
+  
+  # Run your own proxy server
+  uvicorn app.main:app --host 0.0.0.0 --port 8080
+  ```
+
+use_cases:
+  - Web scraping and data extraction
+  - API integrations for AI agents
+  - Research automation
+  - Price monitoring
+  - Content aggregation
+  - Market research
+  - Competitive analysis
+
+requirements:
+  python: ">=3.10"
+  
+  env_vars:
+    required:
+      - name: HOSTED_WALLET
+        description: Polygon wallet address to receive USDC deposits (mainnet only)
+        format: "0x[40 hex chars]"
+      - name: ADMIN_TOKEN
+        description: Admin authentication token for management endpoints
+        min_length: 16
+    
+    optional:
+      - name: NETWORK
+        description: Network mode (mainnet/testnet)
+        default: testnet
+        options: [mainnet, testnet]
+      - name: REDIS_HOST
+        description: Redis host for data persistence
+        default: localhost
+      - name: REDIS_PORT
+        description: Redis port
+        default: "6379"
+      - name: FREE_TRIAL_LIMIT
+        description: Number of free trial calls per user
+        default: "10"
+      - name: COST_PER_REQUEST
+        description: Cost per request in USDC
+        default: "0.001"
+      - name: CORS_ORIGINS
+        description: Allowed CORS origins
+        default: "*"
+
+features:
+  - "10 FREE requests - No credit card required"
+  - "HTTP API forwarding - No local proxy configuration"
+  - "Pay-per-use pricing - Only $0.001 per request"
+  - "Pre-authorized quota - Fast API calls without payment delays"
+  - "Web UI dashboard - Easy deposit and balance management"
+  - "HTTPS/TLS encryption - Secure data transmission"
+  - "6 security audits - 13 critical vulnerabilities fixed"
+  - "Open-source - MIT licensed, self-hosting supported"
+  - "Multi-region support - US, EU, Asia proxy nodes"
+  - "Polygon blockchain - Low-cost USDC transactions"
+
+tags:
+  - proxy
+  - http-proxy
+  - internet-access
+  - ai-agent
+  - agent-tools
+  - api-forwarding
+  - web-scraping
+  - data-collection
+  - usdc
+  - polygon
+  - web3
+  - pay-per-use
+  - self-hosted
+  - open-source
+  - secure-proxy
+
+pricing:
+  free_trial: "10 requests"
+  per_request: "$0.001 USDC"
+  currency: USDC
+  network: Polygon
+  notes: "No minimum deposit. Top up any amount."
+
+# Trust and Privacy Warnings
+warnings:
+  - "REQUEST VISIBILITY: All URLs, headers, and request bodies are visible to the proxy operator"
+  - "NO SECRETS: Never send API keys, passwords, private keys, or sensitive data through this proxy"
+  - "CUSTODIAL FUNDS: Deposited USDC is held in custody by the service operator"
+  - "LOCAL PROBING: Service checks local ports (127.0.0.1:7890/7893/9090) for Clash proxy detection"
+  - "PUBLIC DATA ONLY: Recommended for accessing public, non-sensitive information only"
+  - "SELF-HOST OPTION: For sensitive data, deploy your own instance using the open-source code"
+
+# Discoverability
+keywords:
+  - ai agent internet access
+  - http proxy api
+  - web scraping proxy
+  - pay per use proxy
+  - usdc payment proxy
+  - polygon proxy service
+  - ai agent tools
+  - automated data collection
+  - api forwarding service
+  - secure web proxy

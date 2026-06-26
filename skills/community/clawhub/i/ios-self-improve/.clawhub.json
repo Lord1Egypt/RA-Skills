@@ -1,0 +1,17 @@
+{
+  "name": "ios-self-improve",
+  "version": "1.0.0",
+  "description": "iOS 开发者自改进技能 - 依赖 developer-self-improve-core 安全闭环",
+  "author": "lijiujiu",
+  "license": "MIT",
+  "tags": ["ios", "swift", "objective-c", "developer", "self-improve"],
+  "emoji": "📱",
+  "requires": {
+    "bins": ["bash", "find", "grep"]
+  },
+  "dependencies": [
+    "developer-self-improve-core"
+  ],
+  "homepage": "https://github.com/lijiujiu/ios-self-improve",
+  "repository": "https://github.com/lijiujiu/ios-self-improve"
+}

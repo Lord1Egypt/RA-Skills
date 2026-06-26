@@ -1,0 +1,23 @@
+{
+  "name": "morning-brief",
+  "version": "1.0.0",
+  "description": "晨间简报 - 每天自动推送假期倒计时和时间进度",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "morning",
+    "holiday",
+    "calendar",
+    "china"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dayjs": "^1.11.0"
+  }
+}

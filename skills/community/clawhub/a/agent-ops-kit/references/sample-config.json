@@ -1,0 +1,77 @@
+{
+  "services": [
+    {
+      "name": "Production Website",
+      "type": "url",
+      "target": "https://example.com",
+      "expected_status": 200,
+      "timeout_seconds": 10
+    },
+    {
+      "name": "API Health Endpoint",
+      "type": "url",
+      "target": "https://api.example.com/health",
+      "expected_status": 200,
+      "timeout_seconds": 5,
+      "restart_command": "cd /opt/api && docker compose restart api",
+      "restart_cooldown_seconds": 600,
+      "max_restart_attempts": 3
+    },
+    {
+      "name": "Staging Site",
+      "type": "url",
+      "target": "https://staging.example.com",
+      "expected_status": 200,
+      "timeout_seconds": 15
+    },
+    {
+      "name": "Local Dev Server",
+      "type": "port",
+      "host": "127.0.0.1",
+      "port": 3000,
+      "timeout_seconds": 3
+    },
+    {
+      "name": "PostgreSQL",
+      "type": "port",
+      "host": "127.0.0.1",
+      "port": 5432,
+      "timeout_seconds": 3,
+      "restart_command": "sudo systemctl restart postgresql"
+    },
+    {
+      "name": "Redis",
+      "type": "port",
+      "host": "127.0.0.1",
+      "port": 6379,
+      "timeout_seconds": 3,
+      "restart_command": "sudo systemctl restart redis"
+    },
+    {
+      "name": "Background Worker",
+      "type": "process",
+      "process_name": "celery",
+      "restart_command": "cd /opt/api && docker compose restart worker",
+      "restart_cooldown_seconds": 300,
+      "max_restart_attempts": 3
+    },
+    {
+      "name": "Nginx",
+      "type": "process",
+      "process_name": "nginx",
+      "restart_command": "sudo systemctl restart nginx",
+      "restart_cooldown_seconds": 120,
+      "max_restart_attempts": 5
+    }
+  ],
+  "alerting": {
+    "telegram_bot_token": "YOUR_BOT_TOKEN_HERE",
+    "telegram_chat_id": "YOUR_CHAT_ID_HERE",
+    "rate_limit_seconds": 300,
+    "alert_on_recovery": true
+  },
+  "check_interval_seconds": 300,
+  "disk_warning_gb": 5,
+  "stalled_task_hours": 24,
+  "metrics_retention_days": 90
+}

@@ -1,0 +1,29 @@
+verdict: fail
+system_errors: []
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "直接执行内置渲染器（packages/prompts/dist/index.js）后，返回 `generatorHasPlaceholder: false`，且输出同时包含任务名、scope files、deliverables、criteria、git commit 命令、lessons。实现上 packages/prompts/src/renderer.ts:28-52 先构造变量表，再用 `replaceAll` 替换模板；测试 packages/prompts/src/__tests__/renderer.test.ts:37-67,98-110 也覆盖了无残留 `{{...}}` 和关键变量替换。"
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: "packages/prompts/src/renderer.ts:47-50 明确在 `contract.type === 'creative'` 时选择 `generator-writing.md`。直接执行渲染后，coding 输出首行是 `# Coding Task: Prompt Renderer`，creative 输出首行是 `# Creative Writing Task: Prompt Renderer`。测试 packages/prompts/src/__tests__/renderer.test.ts:76-95 也验证了 creative 与 coding 模板切换，以及 `task` 仍使用 coding 模板。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "packages/prompts/src/renderer.ts:62-85 在 generator prompt 后追加 retry block，并写入 `Verdict`、`Feedback`、`Failed Criteria`。直接执行 `renderRetryPrompt` 后，结果中同时命中 `**Verdict:** fail`、`**Feedback:** missing coverage`、`- C3`、`- C4`。测试 packages/prompts/src/__tests__/renderer.test.ts:132-158 也逐项断言了这三类内容。"
+        detail: null
+        score: null
+      - id: C4
+        result: fail
+        evidence: "按契约在仓库根目录运行 `pnpm build` 与 `pnpm test`，两条命令都以 exit code 2 失败。`pnpm build` 失败日志包含 `packages/core/src/contract.ts(1,39,44)`、`packages/core/src/git.ts(1,65)`、`packages/core/src/tasks.ts(1,2)`、`packages/core/src/types.ts(15,33,44)` 的 TypeScript 报错；`pnpm test` 同样在 `@nexum/core#build` 阶段失败。虽然 `pnpm --dir packages/prompts build` 和 `pnpm --dir packages/prompts test` 都通过，但这不满足 criterion 要求的根目录 `pnpm build` / `pnpm test`。"
+        detail: "期望行为：仓库根目录的 `pnpm build` 与 `pnpm test` 成功完成。实际行为：根目录脚本 `package.json:6-7` 只执行 `pnpm dlx turbo run build --filter=@nexum/core` 和 `pnpm dlx turbo run test --filter=@nexum/core`，未验证 `@nexum/prompts`，且因 `packages/core` 的编译错误提前失败。"
+        score: null
+feedback: |
+  修复 C4 需要让契约要求的根目录 `pnpm build` / `pnpm test` 真正通过。当前根目录脚本只过滤到 `@nexum/core`，并且该包本身存在 TypeScript 编译错误；要么修掉 `packages/core` 的报错，要么调整根目录脚本，使验证路径覆盖 `@nexum/prompts` 且命令成功。
+
+  另外，`packages/prompts/src/templates/evaluator.md:20-30` 仍要求 evaluator 输出 JSON，而本次契约要求写 YAML 到 `nexum/runtime/eval/NX-003-iter-1.yaml`。这条没有被当前 criteria 覆盖，但属于明显的契约不一致，建议一并修正。

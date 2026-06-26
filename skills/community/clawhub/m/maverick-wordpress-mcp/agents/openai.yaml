@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress"
+  short_description: "Work with WordPress posts, pages, media, and comments"
+  default_prompt: "Use the available WordPress runtime tools to help the user manage posts, pages, media, comments, and site content."

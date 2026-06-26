@@ -1,0 +1,32 @@
+store:
+  domain: "your-store.myshopify.com"
+  access_token: "shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Admin API access token
+  api_version: "2024-01"
+
+defaults:
+  location_id: null  # Will use primary location if not set
+  currency: "USD"
+  weight_unit: "lb"
+
+permissions:
+  allow_product_changes: true
+  allow_order_fulfillment: true
+  allow_content_updates: true
+  allow_theme_edits: false      # Requires --force flag for safety
+  allow_refunds: false          # Requires explicit confirmation
+  allow_bulk_operations: true   # But limited by max_products_per_bulk
+
+safety:
+  dry_run_by_default: true
+  require_confirmation_for:
+    - refunds
+    - inventory_reductions
+    - theme_changes
+    - bulk_operations
+    - product_deletions
+  max_products_per_bulk: 50
+  rate_limit_delay: 0.5  # Seconds between API calls
+
+logging:
+  audit_log_path: "memory/shopify-changes.jsonl"
+  verbose: false

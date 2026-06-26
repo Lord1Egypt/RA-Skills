@@ -1,0 +1,13 @@
+{
+  "name": "huois-autoresearch-loop",
+  "version": "1.0.0",
+  "description": "Karpathy 自主研究循环 - Modify → Verify → Keep/Discard → Repeat forever",
+  "max_iterations": 50,
+  "verify_command": "",
+  "scope_globs": ["**/*.py", "**/*.js", "**/*.ts"],
+  "convergence_threshold": 3,
+  "commit_each_success": true,
+  "revert_on_fail": true,
+  "state_file": "~/.openclaw/tmp/autoresearch-loop-state.json",
+  "log_file": "~/.openclaw/tmp/autoresearch-loop.log"
+}

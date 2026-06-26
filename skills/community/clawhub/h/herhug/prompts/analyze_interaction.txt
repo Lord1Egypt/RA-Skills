@@ -1,0 +1,94 @@
+
+---
+
+## 1️⃣1️⃣ **herHug/prompts/analyze_interaction.txt**
+
+```markdown
+# 任务：分析用户对话，生成心理学评分
+
+## 用户输入
+{{userInput}}
+
+## 对话上下文
+{{context}}
+
+## 心理学评分标准
+请严格按照以下标准进行分析：
+
+### OCEAN+HEXACO标准
+{{ocean_hexaco_standard}}
+
+### 情绪节律标准
+{{emotional_rhythm_standard}}
+
+### 心理灵活性标准
+{{flexibility_standard}}
+
+### 应激应对标准
+{{stress_coping_standard}}
+
+### 置信度标准
+{{confidence_standard}}
+
+## 现有用户画像（如果有）
+{{existingProfile}}
+
+## 分析要求
+1. 每个维度的评分必须包含：
+   - score: 0-1 分数
+   - confidence: 0-1 置信度（基于证据充分性）
+   - evidence: 至少一条用户原话作为证据
+
+2. 置信度计算规则：
+   - 有明确用户原话 → 基础置信度0.6
+   - 有2条以上相似证据 → +0.2
+   - 与历史模式一致 → +0.2
+   - 与历史模式冲突 → -0.2
+   - 最终置信度不得超过0.95
+
+3. 置信度低于0.4的维度标记为"insufficient-data"
+
+## 输出格式
+只返回以下JSON格式，不要有其他文字：
+
+{
+  "timestamp": "{{timestamp}}",
+  "content": "{{userInput}}",
+  "context": {
+    "hour": {{hour}},
+    "dayOfWeek": {{dayOfWeek}}
+  },
+  "ocean": {
+    "openness": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "conscientiousness": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "extraversion": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "agreeableness": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "neuroticism": {"score": 0-1, "confidence": 0-1, "evidence": "..."}
+  },
+  "hexaco": {
+    "honestyHumility": {"score": 0-1, "confidence": 0-1, "evidence": "..."}
+  },
+  "emotion": {
+    "primary": "joy/sadness/anger/fear/surprise/calm",
+    "intensity": 0-1,
+    "energy": 0-1,
+    "valence": -1到1,
+    "confidence": 0-1,
+    "evidence": "..."
+  },
+  "flexibility": {
+    "openness": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "awareness": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "valuesAction": {"score": 0-1, "confidence": 0-1, "evidence": "..."},
+    "overall": 0-1,
+    "confidence": 0-1
+  },
+  "coping": {
+    "primaryMode": "task-oriented/emotion-oriented/avoidance-oriented",
+    "secondaryMode": "...",
+    "effectiveness": 0-1,
+    "confidence": 0-1,
+    "evidence": "..."
+  },
+  "confidence": 0-1
+}

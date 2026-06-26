@@ -1,0 +1,31 @@
+{
+  "description": "可信财经媒体白名单，用于AI检索资讯时的信源筛选。注意：这些是信源网站，不是发给用户的指数地址。",
+  "last_updated": "2026-04-04",
+  "sources": [
+    {"category": "国内权威财经媒体", "name": "财新网", "url": "https://www.caixin.com/", "usage": "深度财经调查、宏观政策、金融市场新闻"},
+    {"category": "国内权威财经媒体", "name": "第一财经", "url": "https://www.yicai.com/", "usage": "宏观、股市、债市、行业原创深度报道"},
+    {"category": "国内权威财经媒体", "name": "证券时报网", "url": "https://www.stcn.com/", "usage": "证监会指定信息披露，资本市场、基金动态"},
+    {"category": "国内权威财经媒体", "name": "中国证券报·中证网", "url": "https://www.cs.com.cn/", "usage": "新华社旗下，证券市场权威资讯与政策解读"},
+    {"category": "国内权威财经媒体", "name": "上海证券报·中国证券网", "url": "https://www.cnstock.com/", "usage": "证监会指定信披，上证市场、基金债券资讯"},
+    {"category": "国内权威财经媒体", "name": "21世纪经济报道", "url": "https://m.21jingji.com/", "usage": "宏观经济、金融、产业深度报道"},
+    {"category": "国内权威财经媒体", "name": "经济观察网", "url": "https://www.eeo.com.cn/", "usage": "深度经济商业分析、政策解读"},
+    {"category": "国内权威财经媒体", "name": "每日经济新闻", "url": "https://www.nbd.com.cn/", "usage": "资本市场、上市公司、基金理财快讯"},
+    {"category": "国内权威财经媒体", "name": "界面新闻", "url": "https://www.jiemian.com/", "usage": "财经+商业综合新闻，深度报道与数据结合"},
+    {"category": "国内权威财经媒体", "name": "财联社", "url": "https://www.cls.cn/", "usage": "财经快讯、市场异动、政策公告极速推送"},
+    {"category": "国内综合财经门户", "name": "东方财富网", "url": "https://www.eastmoney.com/", "usage": "财经资讯+行情+数据+社区"},
+    {"category": "国内综合财经门户", "name": "新浪财经", "url": "https://finance.sina.com.cn/", "usage": "全面财经新闻、全球市场、名家专栏"},
+    {"category": "国内综合财经门户", "name": "金融界", "url": "https://www.jrj.com.cn/", "usage": "股票基金期货债券资讯、研报整合"},
+    {"category": "国内综合财经门户", "name": "和讯网", "url": "https://www.hexun.com/", "usage": "覆盖证券、期货、外汇、理财"},
+    {"category": "国内官方央媒财经", "name": "中国经济网", "url": "https://www.ce.cn/", "usage": "经济日报旗下，宏观经济、政策权威发布"},
+    {"category": "国内官方央媒财经", "name": "中新经纬", "url": "https://www.chinanews.com.cn/finance/", "usage": "中国新闻社旗下，财经政策与市场新闻"},
+    {"category": "国内官方央媒财经", "name": "中国金融信息网", "url": "https://www.cnfin.com/", "usage": "新华社主管，国家级金融信息与数据发布"},
+    {"category": "国际顶尖财经媒体", "name": "彭博社Bloomberg", "url": "https://www.bloomberg.com/", "usage": "全球金融新闻、机构级实时资讯与深度分析"},
+    {"category": "国际顶尖财经媒体", "name": "路透社Reuters", "url": "https://www.reuters.com/", "usage": "全球快速中立财经新闻、大宗商品与国际市场"},
+    {"category": "国际顶尖财经媒体", "name": "金融时报FT", "url": "https://www.ft.com/", "usage": "全球深度财经、欧洲视角、监管与地缘金融"},
+    {"category": "国际顶尖财经媒体", "name": "华尔街日报WSJ", "url": "https://www.wsj.com/", "usage": "美国及全球金融、商业、企业深度报道"},
+    {"category": "国际顶尖财经媒体", "name": "CNBC", "url": "https://www.cnbc.com/", "usage": "全球市场实时新闻、视频访谈、市场情绪监测"},
+    {"category": "国际顶尖财经媒体(中文)", "name": "FT中文网", "url": "https://www.ftchinese.com/", "usage": "金融时报中文版，全球财经+中国市场分析"},
+    {"category": "国际顶尖财经媒体(中文)", "name": "路透中文网", "url": "https://cn.reuters.com/", "usage": "路透社中文资讯，国际事件及市场影响"},
+    {"category": "特色全球财经平台", "name": "华尔街见闻", "url": "https://wallstreetcn.com/", "usage": "全球市场同步资讯、跨境资本、海外政策解读"}
+  ]
+}

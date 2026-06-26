@@ -1,0 +1,130 @@
+{
+  "skill": "project-manager-pro",
+  "version": "1.0.0",
+  "prefix": "pm_",
+  "widgets": [
+    {
+      "id": "pm_today",
+      "name": "Today's Tasks",
+      "type": "task-list",
+      "description": "Tasks due today and overdue, sorted by priority",
+      "default_size": "2x2",
+      "refresh_interval_min": 15,
+      "data_source": "tasks.json",
+      "filter": {
+        "status": ["todo", "in-progress", "blocked"],
+        "due_date": "today_or_overdue"
+      }
+    },
+    {
+      "id": "pm_overdue",
+      "name": "Overdue Alerts",
+      "type": "alert-list",
+      "description": "Overdue tasks with days-overdue count and priority badge",
+      "default_size": "1x1",
+      "refresh_interval_min": 30,
+      "data_source": "tasks.json",
+      "filter": {
+        "status": ["todo", "in-progress"],
+        "due_date": "past"
+      },
+      "display": {
+        "show_days_overdue": true,
+        "sort_by": "days_overdue_desc",
+        "alert_color": "#e53e3e"
+      }
+    },
+    {
+      "id": "pm_progress",
+      "name": "Weekly Progress",
+      "type": "progress-bar",
+      "description": "Tasks completed this week as percentage of total due",
+      "default_size": "2x1",
+      "refresh_interval_min": 30,
+      "data_source": "tasks.json",
+      "calculation": {
+        "numerator": "completed_this_week",
+        "denominator": "total_due_this_week",
+        "format": "percentage"
+      },
+      "display": {
+        "bar_color": "#38a169",
+        "show_fraction": true
+      }
+    },
+    {
+      "id": "pm_project_status",
+      "name": "Project Status",
+      "type": "multi-bar",
+      "description": "Per-project completion bars with task counts",
+      "default_size": "2x2",
+      "refresh_interval_min": 60,
+      "data_source": "projects.json",
+      "filter": {
+        "status": "active"
+      },
+      "display": {
+        "bar_color": "#4299e1",
+        "show_fraction": true,
+        "show_target_date": true,
+        "max_projects_shown": 6
+      }
+    },
+    {
+      "id": "pm_trends",
+      "name": "Completion Trends",
+      "type": "line-chart",
+      "description": "Tasks completed per day over the selected period",
+      "default_size": "2x2",
+      "refresh_interval_min": 60,
+      "data_source": "tasks.json",
+      "options": {
+        "periods": ["7d", "30d"],
+        "default_period": "7d",
+        "y_axis": "tasks_completed",
+        "x_axis": "date",
+        "line_color": "#805ad5",
+        "show_average_line": true
+      }
+    },
+    {
+      "id": "pm_priority_dist",
+      "name": "Priority Distribution",
+      "type": "donut-chart",
+      "description": "Active task count by priority level",
+      "default_size": "1x1",
+      "refresh_interval_min": 60,
+      "data_source": "tasks.json",
+      "filter": {
+        "status": ["todo", "in-progress", "blocked"]
+      },
+      "display": {
+        "segments": [
+          { "key": "P1", "label": "Critical", "color": "#e53e3e" },
+          { "key": "P2", "label": "High", "color": "#ecc94b" },
+          { "key": "P3", "label": "Medium", "color": "#ed8936" },
+          { "key": "P4", "label": "Low", "color": "#a0aec0" }
+        ],
+        "show_counts": true
+      }
+    },
+    {
+      "id": "pm_upcoming",
+      "name": "Upcoming Timeline",
+      "type": "timeline",
+      "description": "Next 7 days of tasks displayed as a horizontal timeline",
+      "default_size": "3x1",
+      "refresh_interval_min": 30,
+      "data_source": "tasks.json",
+      "filter": {
+        "status": ["todo", "in-progress"],
+        "due_date": "next_7_days"
+      },
+      "display": {
+        "group_by": "date",
+        "show_priority_badge": true,
+        "show_project_tag": true
+      }
+    }
+  ]
+}

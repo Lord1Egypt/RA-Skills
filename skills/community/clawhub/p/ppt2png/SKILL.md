@@ -1,35 +1,47 @@
----
-name: "一键生成PPT截图和缩略图工具，MAC版本"
-description: "自动将Mac版PPT转换为每页PNG截图及每6页缩略拼接图，支持自定义DPI和布局，自动分目录管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt2png"
-sourceUrl: "https://clawhub.ai/skills/ppt2png"
----
+ppt2png
 
-# 一键生成PPT截图和缩略图工具，MAC版本
+1、提示词输入：
 
-> 自动将Mac版PPT转换为每页PNG截图及每6页缩略拼接图，支持自定义DPI和布局，自动分目录管理。
+mac系统某路径下某名字的PPT自动按页生成每一张截图和缩略图
+例如：MAC系统，XXX路径下XXXPPT，帮我生成图片和3行3列的缩略图
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt2png`
-- **Source URL:** [https://clawhub.ai/skills/ppt2png](https://clawhub.ai/skills/ppt2png)
+2、config.json配置说明：
 
-## Overview
+路径赋值给config.json 下的 ppt_dir
+
+名字赋值给ppt_file
+
+需要用户说明自己的wechat_appid，wechat_appsecret
+
+微信公众号如需更改作者也可以更改：wechat_author
+
+3、skill实现说明：
+
+基于PPT → PDF（使用 LibreOffice）
+PDF → 每页 PNG（使用 Ghostscript）
+每 9张图片生成 1 张缩略拼接图（3列 × 3行），可通过调整thumbnail_cols列，thumbnail_rows行来实现
+兼容 Python 3.6
+
+4、需要提前安装：
+brew install ghostscript
+pip3 install pillow
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ppt2png
-```
+
+5、工作流程
+
+主程序：ppt2png.py
+
+配置文件：config.json
+
+自动读取配置
+
+支持修改 DPI、列数、行数、LibreOffice 路径、gs 路径
+
+针对config.json
+如果 which gs 输出是：
+/opt/homebrew/bin/gs
+
+就改成：
+
+"ghostscript_path": "/opt/homebrew/bin/gs"

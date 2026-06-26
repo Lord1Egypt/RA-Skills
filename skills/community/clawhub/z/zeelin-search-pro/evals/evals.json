@@ -1,0 +1,23 @@
+{
+  "skill_name": "zhiling-search",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "使用智灵搜索，帮我查询小米汽车最近一周头条舆情数据",
+      "expected_output": "首先使用nl2json将输入转换成JSON，然后调用智灵搜索",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "智灵搜索帮我查询吉利汽车正面舆情数据top10",
+      "expected_output": "使用nl2json转换参数，调用智灵搜索",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "调用智灵搜索，查询最近3天微博关于AI的热点",
+      "expected_output": "使用nl2json转换参数，调用智灵搜索",
+      "files": []
+    }
+  ]
+}

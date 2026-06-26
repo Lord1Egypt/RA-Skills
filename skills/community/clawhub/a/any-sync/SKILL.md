@@ -1,35 +1,16 @@
 ---
-name: "Openclaw Plugin"
-description: "Cross-device sync for OpenClaw workspace (skills, memory, settings) via GitHub"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/any-sync"
-sourceUrl: "https://clawhub.ai/skills/any-sync"
+name: any_sync
+description: Cross-device sync for OpenClaw workspace (skills, memory, settings) via GitHub
 ---
 
-# Openclaw Plugin
+# Any Sync
 
-> Cross-device sync for OpenClaw workspace (skills, memory, settings) via GitHub
+Bidirectional sync between your OpenClaw workspace and a GitHub repo.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/any-sync`
-- **Source URL:** [https://clawhub.ai/skills/any-sync](https://clawhub.ai/skills/any-sync)
+## Available Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/any-sync
-```
+- `/start` — Setup wizard: configure sync repo, create config, run first pull
+- `/pull` — Download remote changes from GitHub
+- `/push` — Upload local changes to GitHub
+- `/status` — Show sync status and pending changes
+- `/reset` — Remove config and lockfile to start fresh

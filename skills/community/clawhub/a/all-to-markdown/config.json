@@ -1,0 +1,66 @@
+{
+  "name": "all-to-markdown",
+  "version": "0.1.0",
+  "requiredEnvVars": [],
+  "requires": {
+    "runtime": {
+      "python": ">=3.10"
+    },
+    "binaries": ["markitdown"],
+    "packages": {
+      "pip": ["markitdown[all]"]
+    }
+  },
+  "skill": {
+    "name": "all-to-markdown",
+    "enabled": true,
+    "autoInvoke": false
+  },
+  "commands": {
+    "convert": {
+      "script": "./scripts/run.sh",
+      "args": [],
+      "description": "将文件或 URL 转换为 Markdown"
+    },
+    "help": {
+      "script": "./scripts/run.sh",
+      "args": ["--help"],
+      "description": "显示使用帮助"
+    }
+  },
+  "environment": {
+    "required": [],
+    "optional": [
+      {
+        "name": "OPENAI_API_KEY",
+        "description": "用于图片 AI 描述和 OCR 增强功能（可选）"
+      }
+    ]
+  },
+  "install": {
+    "type": "pip",
+    "autoInstall": false,
+    "riskLevel": "low",
+    "riskReason": "仅安装 markitdown Python 包，在本地执行文件转换，不发送数据到远程服务（除非启用 LLM 功能）。",
+    "requiresApproval": true,
+    "installCommand": "pip install 'markitdown[all]'"
+  },
+  "dependencies": {
+    "pip": ["markitdown[all]"],
+    "binaries": [],
+    "note": "Requires markitdown CLI. Install with: pip install 'markitdown[all]'"
+  },
+  "permissions": {
+    "filesystem": {
+      "read": ["<input file path provided by user>"],
+      "write": ["<output file path if -o flag is used>"]
+    },
+    "network": {
+      "domains": ["<URL provided by user (if converting a URL)>"],
+      "note": "Network access only when converting remote URLs or YouTube links"
+    }
+  },
+  "capabilities": {
+    "sensitive": []
+  }
+}

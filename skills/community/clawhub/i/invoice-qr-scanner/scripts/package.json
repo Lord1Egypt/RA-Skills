@@ -1,0 +1,9 @@
+{
+  "name": "invoice-qr-scanner-scripts",
+  "version": "1.0.0",
+  "description": "QR code scanner for invoice receipts",
+  "dependencies": {
+    "qrcode-reader": "^1.0.4",
+    "canvas": "^2.11.2"
+  }
+}

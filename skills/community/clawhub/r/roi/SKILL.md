@@ -1,35 +1,35 @@
 ---
-name: "Roi"
+name: "roi"
+version: "2.0.2"
 description: "roi reference tool"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/roi"
-sourceUrl: "https://clawhub.ai/skills/roi"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [roi, reference]
+category: "devtools"
 ---
 
 # Roi
 
-> roi reference tool
+roi reference tool. No API keys or credentials required — outputs reference documentation only.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/roi`
-- **Source URL:** [https://clawhub.ai/skills/roi](https://clawhub.ai/skills/roi)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `quickstart` | quickstart reference |
+| `patterns` | patterns reference |
+| `debugging` | debugging reference |
+| `performance` | performance reference |
+| `security` | security reference |
+| `migration` | migration reference |
+| `cheatsheet` | cheatsheet reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/roi
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

@@ -1,35 +1,225 @@
 ---
-name: "investoday-stock-technical-analysis"
-description: "面向A股个股技术面分析，聚焦趋势、均线、MACD、布林带、量能确认与支撑压力结构。基于今日投资金融数据接口，自动识别股票代码并输出结构化技术分析报告。触发词：技术分析、技术面、均线、MACD、布林带、趋势、支撑压力。"
-category: "other"
-source: "ClawHub"
-tags: [bollinger-bands, macd, moving-averages, support-resistance, technical-analysis, technical-indicators, trend-analysis, volume-analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/investoday-stock-technical-analysis"
-sourceUrl: "https://clawhub.ai/skills/investoday-stock-technical-analysis"
+name: investoday-stock-technical-analysis
+title: "股票技术分析"
+version: 1.3.0
+description: 面向A股个股技术面分析，聚焦趋势、均线、MACD、布林带、量能确认与支撑压力结构。基于今日投资金融数据接口，自动识别股票代码并输出结构化技术分析报告。触发词：技术分析、技术面、均线、MACD、布林带、趋势、支撑压力。
+tags:
+  - technical-analysis
+  - technical-indicators
+  - moving-averages
+  - macd
+  - bollinger-bands
+  - volume-analysis
+  - trend-analysis
+  - support-resistance
+metadata:
+  clawdbot:
+    emoji: "📈"
+    category: "finance"
+    requires:
+      skills: ["investoday-finance-data"]
 ---
 
-# investoday-stock-technical-analysis
+# 📈 股票技术分析
 
-> 面向A股个股技术面分析，聚焦趋势、均线、MACD、布林带、量能确认与支撑压力结构。基于今日投资金融数据接口，自动识别股票代码并输出结构化技术分析报告。触发词：技术分析、技术面、均线、MACD、布林带、趋势、支撑压力。
+面向 A 股个股技术面分析，聚焦趋势、均线、MACD、布林带、量能确认与支撑压力结构。基于今日投资金融数据接口，自动识别股票代码并输出结构化技术分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/investoday-stock-technical-analysis`
-- **Source URL:** [https://clawhub.ai/skills/investoday-stock-technical-analysis](https://clawhub.ai/skills/investoday-stock-technical-analysis)
+## 触发场景
 
-## Overview
+- 用户询问某只股票的技术面、趋势、支撑压力或量价状态
+- 用户希望判断均线排列、MACD 强弱、布林带位置、量能配合情况
+- 用户想知道“趋势强不强”“是不是在高位”“量能有没有跟上”
+- 关键词：技术分析、技术面、均线、MACD、布林带、趋势、支撑压力、量能、位置判断
 
+## 输入示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/investoday-stock-technical-analysis
+**示例 1：趋势判断**
 ```
+帮我看一下浪潮信息现在技术上强不强。
+```
+
+**示例 2：支撑压力**
+```
+宁德时代目前技术面上方压力和下方支撑大概在哪里？
+```
+
+**示例 3：量价验证**
+```
+中际旭创这波上涨量能有没有跟上？
+```
+
+> 💡 支持输入股票名称或 6 位股票代码。若用户只提供名称，先通过 `search` 识别标的，再进入技术分析流程。若用户更关心“贵不贵”，优先使用 `股票估值分析`；若更关心“报表质量”，优先使用 `股票财务分析`。
+
+## 前置依赖
+
+本 Skill 依赖 `investoday-finance-data`（今日投资金融数据）Skill 获取实时金融数据。
+
+基础 API 调用与底层执行方式统一以该 Skill 为准，业务 Skill 不重复展开底层接入细节。
+
+## 工具说明
+
+以下为本 Skill 通过 `investoday-finance-data` 使用的数据接口。在 System Prompt 中以 `工具ID` 标识调用。
+
+### 基础工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 综合标的搜索 | `search` | GET | 通过关键字搜索股票代码 |
+
+### 行情与技术工具
+
+| 工具名称 | 工具ID | 方法 | 说明 |
+|---------|--------|------|------|
+| 沪深京实时行情 | `stock-quote/realtime-merge` | GET | 获取最新价格、涨跌幅、成交额、行业概念表现 |
+| 股票强弱与趋向指标 | `stock/str-trend-ind` | GET | 获取均线、MACD、DMI、DMA、MTM、TRIX 等趋势指标 |
+| 股票量价与压力支撑指标 | `stock/price-vol-ind` | GET | 获取布林带、MIKE、MFI、OBV、PVT、WVAD 等量价指标 |
+
+## 数据获取流程
+
+用户提供股票名称或代码后，Agent 按以下流程获取数据：
+
+- **Step 0：标的识别（如用户输入名称而非代码）**：工具ID `search`，参数 `key=<股票名称> type=11`
+- **Step 1：实时行情**：工具ID `stock-quote/realtime-merge`，参数 `stockCode=<code>`
+- **Step 2：股票强弱与趋向指标（近7天）**：工具ID `stock/str-trend-ind`，参数 `stockCode=<code> beginDate=<7天前> endDate=<今天> pageNum=1 pageSize=10`
+- **Step 3：股票量价与压力支撑指标（近7天）**：工具ID `stock/price-vol-ind`，参数 `stockCode=<code> beginDate=<7天前> endDate=<今天> pageNum=1 pageSize=10`
+
+> **并行优化**：完成 Step 0 的代码识别后，Step 1-3 可并行调用；分析时优先使用最近一个交易日数据，并结合最近 5-7 个交易日变化判断趋势是否在增强或减弱。
+
+## 分析框架（5步）
+
+Agent 获取数据后，按以下 5 步框架进行结构化分析：
+
+### Step 1：概览当前价格状态
+
+**目标**：用最新行情建立技术分析的基础背景。
+
+**数据来源**：`stock-quote/realtime-merge`
+
+分析要点：
+- 当前价格、涨跌幅、日内高低点、成交额
+- 近一周表现与所属行业表现是否一致
+- 当前更接近强势上涨、弱势下跌还是震荡整理
+
+**输出**：行情概览与价格状态判断。
+
+### Step 2：判断趋势方向
+
+**目标**：通过均线与 MACD 判断当前趋势性质。
+
+**数据来源**：`stock/str-trend-ind`
+
+分析要点：
+- 5 日、10 日、20 日、60 日均线排列是否顺畅
+- DIF、DEA、MACD 柱体是否支持趋势延续或修复
+- 趋势必须明确归类为上升、下降、震荡、修复四选一
+
+**输出**：趋势方向、均线结构与趋势验证状态。
+
+### Step 3：判断当前位置高低
+
+**目标**：判断当前价格处于偏高位、偏低位还是中性位置。
+
+**数据来源**：`stock/price-vol-ind` + `stock/str-trend-ind`
+
+分析要点：
+- 当前价相对中期均线的位置
+- 当前价相对布林上轨、中轨、下轨的位置
+- 位置判断是否支持前面的趋势判断
+
+**输出**：位置高低判断与位置含义。
+
+### Step 4：判断空间结构与支撑压力
+
+**目标**：识别主要支撑区、压力区以及波动空间。
+
+**数据来源**：`stock/price-vol-ind`
+
+分析要点：
+- 布林带上下轨、中轨的约束关系
+- MIKE 指标对应的主要支撑与压力结构
+- 当前更接近上方压力还是下方缓冲
+
+**输出**：支撑压力结构与空间判断。
+
+### Step 5：判断量能是否验证
+
+**目标**：确认价格变化是否得到量能与资金指标支持。
+
+**数据来源**：`stock-quote/realtime-merge`（若有成交额） + `stock/price-vol-ind`
+
+分析要点：
+- MFI、OBV、PVT、WVAD 是否同步改善或走弱
+- 价格上涨/下跌是否有量能确认
+- 若出现量价背离，必须明确提示
+
+**输出**：量能确认结论与主要风险点。
+
+## 策略逻辑汇总
+
+| 信号组合 | 含义 | 判断 |
+|---------|------|------|
+| 5日 > 10日 > 20日 > 60日 | 多头排列，趋势偏强 | ✅ 积极 |
+| 5日 < 10日 < 20日 < 60日 | 空头排列，趋势偏弱 | ⚠️ 警惕 |
+| DIF 上穿 DEA 且 MACD 柱体扩大 | 趋势修复或增强 | ✅ 积极 |
+| DIF 下穿 DEA 且 MACD 柱体走弱 | 趋势承压 | ⚠️ 警惕 |
+| 当前价接近布林上轨且量能同步放大 | 强势运行但短期波动可能加大 | 🟡 关注 |
+| 当前价围绕布林中轨波动 | 中性震荡 | 📊 中性 |
+| 当前价接近布林下轨且弱于中期均线 | 偏弱位置 | ⚠️ 警惕 |
+| 价格上涨且 OBV/PVT 同步抬升 | 量价配合较好 | ✅ 积极 |
+| 价格上涨但 OBV/PVT 未跟随 | 上涨动能存疑 | 🟡 关注 |
+| 价格下跌且 MFI、WVAD 同步恶化 | 下跌压力释放明显 | 🔴 高风险 |
+
+## 输出格式
+
+```markdown
+# 📈 [股票名称] 技术分析报告
+
+> 分析日期：YYYY-MM-DD | 数据来源：今日投资
+
+## 一、技术面总结
+
+（先用 1 段话概括趋势、位置和量能状态）
+
+## 二、行情概览
+
+（当前价格、涨跌幅、日内波动、近一周状态）
+
+## 三、趋势判断
+
+（均线结构、MACD 状态、趋势方向）
+
+## 四、位置与空间判断
+
+（布林带位置、支撑压力、空间结构）
+
+## 五、量能确认
+
+（MFI、OBV、PVT、WVAD 与量价关系）
+
+## 综合结论
+
+- 3-5 条核心发现
+- 明确当前趋势状态、位置状态与量能验证情况
+- 给出后续需要观察的技术信号
+```
+
+## 证据约束（必须遵守）
+
+1. 每个技术结论至少引用 2 个指标或价格证据；没有数据则写“该维度数据不足，暂无法判断”
+2. 不允许只写“强/弱”，必须说明对应的均线、MACD、布林带或量能指标
+3. 时间口径必须明确，如“最近一个交易日”“近7个交易日”
+## 执行示例
+
+用户说：“帮我看一下中际旭创现在技术上强不强。”
+
+1. 通过 `search` 获取股票代码
+2. 并行调用 `stock-quote/realtime-merge`、`stock/str-trend-ind` 与 `stock/price-vol-ind`
+3. 先判断趋势，再判断位置、支撑压力与量能确认
+4. 输出 Markdown 格式技术分析报告
+5. 在结尾写出当前技术面结论与后续重点观察信号
+
+## 安全与隐私
+
+- 仅通过今日投资 API 查询公开市场数据
+- 不记录、不存储用户的查询记录
+- 分析结论仅供参考，不构成投资建议

@@ -1,0 +1,14 @@
+{
+  "pexels": {
+    "api_key": ""
+  },
+  "pixabay": {
+    "api_key": ""
+  },
+  "freesound": {
+    "api_token": ""
+  },
+  "jamendo": {
+    "client_id": ""
+  }
+}

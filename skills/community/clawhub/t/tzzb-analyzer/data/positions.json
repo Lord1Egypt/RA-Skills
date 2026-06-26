@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "data": {
+    "overview": {
+      "total_asset": 10007.98,
+      "total_value": 1052.0,
+      "money_remain": 8955.98,
+      "total_liability": 0.0,
+      "position_rate": 0.1051
+    },
+    "items": [
+      {
+        "stock_code": "300098",
+        "stock_name": "高新兴",
+        "market": "1",
+        "hold_count": 200,
+        "cost_price": 5.21,
+        "current_price": 5.26,
+        "market_value": 1052.0,
+        "hold_profit": 7.98,
+        "hold_rate": 0.0077,
+        "position_rate": 1.0,
+        "hold_days": 2
+      }
+    ]
+  }
+}

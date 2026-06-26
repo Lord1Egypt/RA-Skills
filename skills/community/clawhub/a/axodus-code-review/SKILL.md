@@ -1,35 +1,75 @@
 ---
-name: "RedHat  Code Review"
-description: "Review code for correctness, security, performance, and maintainability."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/axodus-code-review"
-sourceUrl: "https://clawhub.ai/skills/axodus-code-review"
+name: code-review
+description: Review code for correctness, security, performance, and maintainability.
+metadata:
+  author: RedHat Dev
+  version: 1.0.0
+  owner: RedHat Dev Agent
+  category: core
 ---
 
-# RedHat  Code Review
+# SKILL: code-review
 
-> Review code for correctness, security, performance, and maintainability.
+## Purpose
+Analyze code (or a diff) to detect bugs, security issues, performance problems, and maintainability risks, then propose concrete improvements.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/axodus-code-review`
-- **Source URL:** [https://clawhub.ai/skills/axodus-code-review](https://clawhub.ai/skills/axodus-code-review)
+## When to Use
+- Reviewing a PR/diff before merging.
+- A bug is suspected but not yet reproduced.
+- Hardening/security pass is requested.
 
-## Overview
+## Inputs
+- `scope` (required, string): files, diff, or code snippet to review.
+- `intent` (optional, string): what the code is supposed to do.
+- `constraints` (optional, string[]): security/perf/compat constraints.
+- `risk_tolerance` (optional, enum: `low|medium|high`).
 
+## Steps
+1. Identify entrypoints, invariants, and trust boundaries.
+2. Check correctness:
+   - edge cases
+   - error handling
+   - concurrency/races (if applicable)
+3. Check security:
+   - input validation
+   - authz/authn
+   - secrets handling
+   - injection risks
+4. Check performance and resource usage:
+   - hotspots
+   - unbounded loops/data growth
+5. Check maintainability:
+   - naming
+   - duplication
+   - test coverage gaps
+6. Produce a prioritized, actionable report.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/axodus-code-review
+## Validation
+- Findings include concrete evidence (line references, behavior, or reproducible scenario).
+- Suggestions are compatible with stated constraints.
+- Distinguish â€œmust-fixâ€ from â€œnice-to-haveâ€.
+
+## Output
+Review report (example schema):
+```yaml
+summary: "<1 paragraph>"
+findings:
+  - id: "CR-001"
+    severity: "high|medium|low"
+    category: "bug|security|perf|maintainability"
+    issue: "<what>"
+    impact: "<why it matters>"
+    recommendation: "<how to fix>"
 ```
+
+## Safety Rules
+- Do not claim vulnerabilities without evidence.
+- Do not recommend unsafe patterns (e.g., disabling validation to â€œmake it workâ€).
+- Prefer minimal, targeted fixes.
+
+## Example
+Input:
+- `scope`: â€œdiff for auth middlewareâ€
+
+Output:
+- findings include missing `audience` check on JWTs and a failing negative test case.

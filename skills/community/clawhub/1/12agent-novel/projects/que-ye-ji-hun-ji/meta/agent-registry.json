@@ -1,0 +1,107 @@
+{
+  "projectId": "que-ye-ji-hun-ji",
+  "projectTitle": "阙野寄魂记",
+  "registeredAgents": {
+    "worldbuilder": {
+      "id": "worldbuilder",
+      "name": "世界观构建",
+      "model": "xinkentao/claude-opus-4-6",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "characterDesigner": {
+      "id": "characterDesigner",
+      "name": "角色设计",
+      "model": "xinkentao/claude-opus-4-6",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "outlinePlanner": {
+      "id": "outlinePlanner",
+      "name": "大纲规划",
+      "model": "xinkentao/claude-opus-4-6",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "chapterOutliner": {
+      "id": "chapterOutliner",
+      "name": "章节细纲",
+      "model": "qwencode/kimi-k2.5",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "mainWriter": {
+      "id": "mainWriter",
+      "name": "主笔",
+      "model": "qwencode/kimi-k2.5",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "oocGuardian": {
+      "id": "oocGuardian",
+      "name": "OOC守护",
+      "model": "qwencode/qwen3.5-plus",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "battleAgent": {
+      "id": "battleAgent",
+      "name": "战斗写作",
+      "model": "qwencode/qwen3-max-2026-01-23",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "finalReviewer": {
+      "id": "finalReviewer",
+      "name": "终稿审核",
+      "model": "xinkentao/claude-opus-4-6",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "readerSimulator": {
+      "id": "readerSimulator",
+      "name": "读者模拟",
+      "model": "qwencode/qwen3.5-plus",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "styleAnchorGenerator": {
+      "id": "styleAnchorGenerator",
+      "name": "风格锚定生成",
+      "model": "xinkentao/claude-opus-4-6",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    },
+    "rollingSummarizer": {
+      "id": "rollingSummarizer",
+      "name": "滚动摘要",
+      "model": "minimax/MiniMax-M2.7",
+      "status": "available",
+      "registeredAt": "2026-03-25",
+      "lastUsed": "",
+      "taskCount": 0
+    }
+  },
+  "version": "v1.0",
+  "createdAt": "2026-03-25"
+}

@@ -1,35 +1,92 @@
 ---
-name: "Chen Tavily Search"
-description: "Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chen-tavily-search"
-sourceUrl: "https://clawhub.ai/skills/chen-tavily-search"
+name: chen-tavily-search
+description: Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
+homepage: https://tavily.com
+metadata: {"openclaw":{"emoji":"🔍","requires":{"bins":["node"],"env":["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"]},"primaryEnv":"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"}}
 ---
 
-# Chen Tavily Search
+# Tavily Search
 
-> Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
+Search the web and get relevant results optimized for LLM consumption.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chen-tavily-search`
-- **Source URL:** [https://clawhub.ai/skills/chen-tavily-search](https://clawhub.ai/skills/chen-tavily-search)
+## Authentication
 
-## Overview
+Get your API key at https://tavily.com and add to your OpenClaw config:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chen-tavily-search
+```json
+{
+  "skills": {
+    "entries": {
+      "tavily-search": {
+        "enabled": true,
+        "apiKey": "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"
+      }
+    }
+  }
+}
 ```
+
+Or set the environment variable:
+```bash
+export TAVILY_API_KEY="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"
+```
+
+## Quick Start
+
+### Using the Script
+
+```bash
+node {baseDir}/scripts/search.mjs "query"
+node {baseDir}/scripts/search.mjs "query" -n 10
+node {baseDir}/scripts/search.mjs "query" --deep
+node {baseDir}/scripts/search.mjs "query" --topic news
+```
+
+### Examples
+
+```bash
+# Basic search
+node {baseDir}/scripts/search.mjs "python async patterns"
+
+# With more results
+node {baseDir}/scripts/search.mjs "React hooks tutorial" -n 10
+
+# Advanced search
+node {baseDir}/scripts/search.mjs "machine learning" --deep
+
+# News search
+node {baseDir}/scripts/search.mjs "AI news" --topic news
+
+# Domain-filtered search
+node {baseDir}/scripts/search.mjs "Python docs" --include-domains docs.python.org
+```
+
+## Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-n <count>` | Number of results (1-20) | 10 |
+| `--depth <mode>` | Search depth: `ultra-fast`, `fast`, `basic`, `advanced` | `basic` |
+| `--topic <topic>` | Topic: `general` or `news` | `general` |
+| `--time-range <range>` | Time range: `day`, `week`, `month`, `year` | - |
+| `--include-domains <domains>` | Comma-separated domains to include | - |
+| `--exclude-domains <domains>` | Comma-separated domains to exclude | - |
+| `--raw-content` | Include full page content | false |
+| `--json` | Output raw JSON | false |
+
+## Search Depth
+
+| Depth | Latency | Relevance | Use Case |
+|-------|---------|-----------|----------|
+| `ultra-fast` | Lowest | Lower | Real-time chat, autocomplete |
+| `fast` | Low | Good | Need chunks but latency matters |
+| `basic` | Medium | High | General-purpose, balanced |
+| `advanced` | Higher | Highest | Precision matters, research |
+
+## Tips
+
+- **Keep queries under 400 characters** - Think search query, not prompt
+- **Break complex queries into sub-queries** - Better results than one massive query
+- **Use `--include-domains`** to focus on trusted sources
+- **Use `--time-range`** for recent information
+- **Filter by `score`** (0-1) to get highest relevance results

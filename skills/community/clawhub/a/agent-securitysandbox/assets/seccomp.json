@@ -1,0 +1,42 @@
+{
+    "defaultAction": "SCMP_ACT_ALLOW",
+    "archMap": [
+        {
+            "architecture": "SCMP_ARCH_X86_64",
+            "subArchitectures": [
+                "SCMP_ARCH_X86",
+                "SCMP_ARCH_X32"
+            ]
+        },
+        {
+            "architecture": "SCMP_ARCH_AARCH64"
+        }
+    ],
+    "syscalls": [
+        {
+            "names": [
+                "ptrace",
+                "process_vm_readv",
+                "process_vm_writev",
+                "kexec_load",
+                "reboot",
+                "swapon",
+                "swapoff",
+                "open_by_handle_at",
+                "mount",
+                "umount2",
+                "pivot_root",
+                "setns",
+                "unshare",
+                "add_key",
+                "request_key",
+                "keyctl",
+                "clone",
+                "clone3"
+            ],
+            "action": "SCMP_ACT_ERRNO",
+            "comment": "Block sensitive syscalls",
+            "args": []
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+  "brand": "minimal-white",
+  "theme": "minimal-white",
+  "title": "完整 Deck 演示",
+  "author": "产品团队",
+  "date": "2026-06-07",
+  "slides": [
+    { "layout": "cover", "title": "完整 Deck 演示", "subtitle": "7 种布局全覆盖" },
+    { "layout": "section", "title": "战略方向" },
+    { "layout": "content", "title": "核心目标", "points": ["用户增长 +30%", "上线 5 个新功能", "性能优化 <200ms"] },
+    { "layout": "two-column", "title": "竞品对比",
+      "leftTitle": "我们", "leftPoints": ["开源", "可定制", "低成本"],
+      "rightTitle": "竞品", "rightPoints": ["闭源", "标准化", "高成本"] },
+    { "layout": "data", "title": "关键指标",
+      "metrics": [
+        { "label": "MAU", "value": "120 万", "change": "+15%" },
+        { "label": "营收", "value": "¥580 万", "change": "+22%" },
+        { "label": "NPS", "value": "72", "change": "+8pts" }
+      ]
+    },
+    { "layout": "quote", "title": "客户评价",
+      "quote": "这个平台彻底改变了我们的工作方式",
+      "attribution": "张伟, CTO" },
+    { "layout": "summary", "title": "下一步",
+      "points": ["7 月: Alpha 内测", "8 月: 公测", "9 月: 上线"] }
+  ]
+}

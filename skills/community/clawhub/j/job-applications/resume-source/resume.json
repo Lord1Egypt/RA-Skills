@@ -1,0 +1,188 @@
+{
+  "selectedTemplate": 1,
+  "headings": {
+    "work": "Work Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "awards": "Honors and Awards",
+    "education": "Education"
+  },
+  "basics": {
+    "name": "Abed Mir",
+    "email": "abedmir31@gmail.com",
+    "location": {
+      "address": "Plano, TX"
+    },
+    "website": "abedmir.com",
+    "phone": "469-999-2480"
+  },
+  "education": [
+    {
+      "institution": "University of Texas at Dallas",
+      "location": "Richardson, TX",
+      "area": "Computer Science",
+      "studyType": "BS",
+      "startDate": "Aug 2017",
+      "endDate": "Dec 2020"
+    }
+  ],
+  "work": [
+    {
+      "highlights": [
+        "Engineered platform reliability improvements achieving 99% health score through systematic technical debt reduction and architecting automated task table archival system that optimized 2M records down to 500K, ensuring platform scalability and performance.",
+        "Drove Agile transformation and platform standardization implementing Agile 2.0 with automated sprint dashboards, staged approval processes, and CI/CD to ensure platform best practices.",
+        "Designed and implemented enterprise-grade SPM platform migration from legacy change management system, demonstrating deep platform configuration expertise and securing contract extension through successful technical architecture and deployment.",
+        "Led team of developers to build an AI-powered platform optimization application (AERO) leveraging Now Create methodology to scan instances, identify outdated artifacts, and suggest automated fixes for technical debt reduction, exemplifying platform engineering excellence.",
+        "Architected scalable ITSM implementation framework for B2B market expansion, developing comprehensive technical specifications and statements of work that translate complex technical capabilities into clear business value propositions."
+      ],
+      "company": "SYSUSA",
+      "position": "Senior ServiceNow Developer",
+      "location": "Plano, TX",
+      "startDate": "Oct 2024",
+      "endDate": "Present"
+    },
+    {
+      "highlights": [
+        "Designed and implemented a large-scale backend API to validate network security resources. Improved existing service by increasing supported resource types by 10x.",
+        "Continuously developed improvements to Typescript/React/NodeJS full-stack application that services entire network access organization and 1000s of network devices.",
+        "Acted as sole executor on native AWS application that automatically fetches, transforms, and visualizes internal ops data and metrics. Uses AWS Lambda, S3, Glue, Athena, and Quicksight.",
+        "Architected backend REST API for full-stack app that allows customers to track the deployment of their network changes across the entire global device network."
+      ],
+      "company": "Amazon",
+      "position": "Software Engineer II",
+      "location": "Seattle, WA",
+      "startDate": "Nov 2022",
+      "endDate": "Dec 2023"
+    },
+    {
+      "company": "Capital One",
+      "location": "Plano, TX",
+      "website": "",
+      "startDate": "May 2021",
+      "endDate": "May 2022",
+      "highlights": [
+        "Developed and pushed new features using Vue.js for the Empath Agent platform, reaching over 30 million customers.",
+        "Experienced with platforms such as AWS, Jenkins pipelines, Splunk, JIRA, New Relic, and Docker.",
+        "Full ownership of two microservice containers, including platform maintenance, functional/integration tests, production releases and incident support."
+      ],
+      "position": "Software Engineer"
+    },
+    {
+      "highlights": [
+        " "
+      ],
+      "company": "Jack Henry and Associates",
+      "position": "Software Engineer",
+      "location": "Allen, TX",
+      "startDate": "May 2020",
+      "endDate": "May 2021"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "level": "",
+      "keywords": [
+        "Java",
+        "Python",
+        "C++",
+        "JavaScript",
+        "CSS",
+        "HTML",
+        "TypeScript",
+        "ServiceNow"
+      ]
+    },
+    {
+      "keywords": [
+        "Vue.js",
+        "Node.js",
+        "Spark",
+        "React",
+        "NextJS"
+      ],
+      "name": "Frameworks"
+    },
+    {
+      "keywords": [
+        "AWS",
+        "Azure",
+        "Docker",
+        "JIRA",
+        "PostgresSQL",
+        "MongoDB",
+        "Splunk",
+        "Jenkins",
+        "Git",
+        "OpenAI"
+      ],
+      "name": "Tools and Platforms"
+    }
+  ],
+  "projects": [
+    {
+      "keywords": [
+        "React",
+        "NextJS",
+        "TailwindCSS"
+      ],
+      "name": "Libertum.io",
+      "description": "Built landing page for upcoming DeFi project using NextJS, NodeJS and TailwindCSS.",
+      "url": "libertum.io"
+    },
+    {
+      "keywords": [
+        "React",
+        "Node.js",
+        "JavaScript"
+      ],
+      "name": "LoL Colleagues",
+      "url": "lolcolleagues.com",
+      "description": "Built and deployed web application using React.js that searches and displays match data for two usernames using League of Legends API. "
+    },
+    {
+      "keywords": [
+        "Python",
+        "Spark",
+        "ElasticSearch",
+        "Kibana"
+      ],
+      "name": "Spark Tweet Analyzer",
+      "description": "Built a Spark-powered Python application that analyzes sentiments of live Twitter posts using machine learning. Data is indexed using ElasticSearch and visualized using Kibana."
+    },
+    {
+      "keywords": [
+        "AWS"
+      ],
+      "name": "Animal Cloud Device Connectivity",
+      "description": "Built a cloud-based architecture to connect and relay telehealth data from third party IoT devices, deployed using AWS IoT, DynamoDB, EC2 virtual instance, CloudWatch, and S3 buckets."
+    },
+    {
+      "keywords": [
+        ""
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "AWS Certified Solutions Architect – Associate",
+      "date": "Nov 2021",
+      "awarder": "Amazon Web Services"
+    },
+    {
+      "title": "ServiceNow CSA, CAD, CIS-ITSM Certifications",
+      "date": "Nov 2024",
+      "awarder": "ServiceNow",
+      "summary": "Certified Systems Administrator, Certified Applications Developer, Certified Implementation Specialist - ITSM"
+    }
+  ],
+  "sections": [
+    "templates",
+    "profile",
+    "education",
+    "work",
+    "skills",
+    "awards",
+    "projects"
+  ]
+}

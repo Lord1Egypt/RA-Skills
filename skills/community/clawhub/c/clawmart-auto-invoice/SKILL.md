@@ -1,35 +1,141 @@
----
-name: "ClawMart Auto Invoice"
-description: "自动生成专业PDF发票，支持模板选择、客户管理、收款状态跟踪及财务报表生成，提升财务效率。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawmart-auto-invoice"
-sourceUrl: "https://clawhub.ai/skills/clawmart-auto-invoice"
----
+# Auto-Invoice Skill
 
-# ClawMart Auto Invoice
+自动生成专业发票，节省财务时间。
 
-> 自动生成专业PDF发票，支持模板选择、客户管理、收款状态跟踪及财务报表生成，提升财务效率。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawmart-auto-invoice`
-- **Source URL:** [https://clawhub.ai/skills/clawmart-auto-invoice](https://clawhub.ai/skills/clawmart-auto-invoice)
+- 自动生成 PDF 发票
+- 支持多种发票模板
+- 发票编号自动管理
+- 客户信息管理
+- 收款状态追踪
+- 财务报表生成
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawmart-auto-invoice
 ```
+给张总生成一张发票，金额 ¥13,800
+```
+
+```
+查看本月未收款发票
+```
+
+```
+生成本月财务报表
+```
+
+## 配置
+
+### 公司信息
+```json
+{
+  "company": {
+    "name": "你的公司/个人名称",
+    "address": "地址",
+    "phone": "电话",
+    "email": "邮箱",
+    "tax_id": "税号（如有）",
+    "bank": {
+      "name": "开户行",
+      "account": "账号"
+    }
+  }
+}
+```
+
+### 发票模板
+```json
+{
+  "templates": {
+    "service": "服务费发票",
+    "product": "产品销售发票",
+    "consulting": "咨询服务发票"
+  }
+}
+```
+
+## 输出格式
+
+```
+📄 发票
+
+发票编号：INV-2026-001
+开票日期：2026-03-11
+
+## 收款方
+名称：[你的公司/个人名称]
+地址：[地址]
+电话：[电话]
+
+## 付款方
+名称：[客户公司]
+联系人：张总
+邮箱：client@example.com
+
+## 项目明细
+| 项目 | 数量 | 单价 | 金额 |
+|------|------|------|------|
+| 网站开发服务 | 1 | ¥13,800 | ¥13,800 |
+
+## 费用汇总
+- 小计：¥13,800
+- 税费：¥0（个人服务）
+- **总计：¥13,800**
+
+## 付款方式
+- 银行转账：
+  - 开户行：[银行]
+  - 账号：[账号]
+  - 户名：[名称]
+- 支付宝：[账号]
+- 微信：[账号]
+
+## 付款状态
+❌ 未付款
+
+## 备注
+- 请在 30 天内完成付款
+- 付款后请发送凭证到 [邮箱]
+```
+
+## 数据分析
+
+```
+📊 财务报表（2026年3月）
+
+## 收入统计
+- 开票总额：¥85,000
+- 已收款：¥65,000（76%）
+- 待收款：¥20,000（24%）
+
+## 客户分析
+| 客户 | 发票数 | 金额 | 状态 |
+|------|--------|------|------|
+| 张总 | 2 | ¥35,000 | ✅ 已付 |
+| 李经理 | 1 | ¥20,000 | ✅ 已付 |
+| 王先生 | 1 | ¥15,000 | ❌ 待付 |
+| 赵女士 | 1 | ¥15,000 | ❌ 待付 |
+
+## 月度趋势
+- 1月：¥45,000
+- 2月：¥62,000
+- 3月：¥85,000
+- 增长：+88%
+
+## 应收款预警
+- 王先生 - ¥15,000 - 超期 5 天
+- 赵女士 - ¥15,000 - 超期 3 天
+```
+
+## 技术栈
+
+- Node.js / Python
+- PDF 生成库
+- GLM-5（内容生成）
+- 本地存储
+
+---
+
+创建时间：2026-03-11
+作者：ClawMart

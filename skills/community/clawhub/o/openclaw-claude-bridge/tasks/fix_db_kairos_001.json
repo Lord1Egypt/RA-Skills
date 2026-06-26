@@ -1,0 +1,8 @@
+{
+  "id": "fix_db_kairos_001",
+  "prompt": "读取文件 /Users/mars/.openclaw/workspace/skills/kairos-mode/setup_trading_monitors.py，检查第20行附近的数据库连接代码。\n\n当前代码:\n    conn = sqlite3.connect(db_path)\n\n需要改为使用上下文管理器:\n    with sqlite3.connect(db_path) as conn:\n\n请执行修复并保存文件。",
+  "context": {},
+  "status": "pending",
+  "created_at": "2026-04-03T09:22:52.955926",
+  "result_file": "/Users/mars/.openclaw/workspace/skills/claude-bridge/results/fix_db_kairos_001.json"
+}

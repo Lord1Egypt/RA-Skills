@@ -1,35 +1,131 @@
 ---
-name: "Post Summarizer"
-description: "全网新闻/文章阅读总结助手。支持从主流新闻网站（钛媒体、36氪、虎嗅、华尔街见闻、腾讯新闻、新浪财经、Reuters、BBC、NYT 等）读取最新文章并深度总结。当用户说"帮我看XX新闻"、"总结这篇"、"最新XX资讯"、"搜索XX关键词新闻"、"对比这几篇文章"等类似需求时触发。"
-category: "media"
-source: "ClawHub"
-tags: [media, news, summarize, summarizer]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/post-summarizer"
-sourceUrl: "https://clawhub.ai/skills/post-summarizer"
+name: post-summarizer
+description: 全网新闻/文章阅读总结助手。支持从主流新闻网站（钛媒体、36氪、虎嗅、华尔街见闻、腾讯新闻、新浪财经、Reuters、BBC、NYT 等）读取最新文章并深度总结。当用户说"帮我看XX新闻"、"总结这篇"、"最新XX资讯"、"搜索XX关键词新闻"、"对比这几篇文章"等类似需求时触发。
 ---
 
-# Post Summarizer
+# 全网文章总结器 (Post Summarizer)
 
-> 全网新闻/文章阅读总结助手。支持从主流新闻网站（钛媒体、36氪、虎嗅、华尔街见闻、腾讯新闻、新浪财经、Reuters、BBC、NYT 等）读取最新文章并深度总结。当用户说"帮我看XX新闻"、"总结这篇"、"最新XX资讯"、"搜索XX关键词新闻"、"对比这几篇文章"等类似需求时触发。
+一站式新闻阅读总结工具，覆盖主流中文和英文新闻源。
 
-- **Category:** Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/post-summarizer`
-- **Source URL:** [https://clawhub.ai/skills/post-summarizer](https://clawhub.ai/skills/post-summarizer)
+## 支持的数据源
 
-## Overview
+| 源 | 首页 URL | 特征 |
+|---|---|---|
+| 钛媒体 | `https://www.tmtpost.com/` | 科技/财经深度 |
+| 36氪 | `https://36kr.com/` | 创投/科技快讯 |
+| 虎嗅 | `https://huxiu.com/` | 商业/科技分析 |
+| 华尔街见闻 | `https://wallstreetcn.com/` | 财经/全球市场 |
+| 腾讯新闻 | `https://news.qq.com/` | 综合新闻 |
+| 新浪财经 | `https://finance.sina.com.cn/` | 财经资讯 |
+| Reuters | `https://www.reuters.com/` | 全球新闻/财经 |
+| BBC News | `https://www.bbc.com/news` | 国际新闻 |
+| NYT | `https://www.nytimes.com/` | 深度国际报道 |
+| 通用 | 任意新闻 URL | 直接总结 |
 
+## 五种模式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/post-summarizer
+### 模式 A：指定源的最新文章总结
+
+当用户说"帮我看XX"、"XX最新文章"、"XX热点" 时触发。
+
+1. 识别用户指定的新闻源 → 查上方表格确定首页 URL
+2. `web_fetch url="<首页>" maxChars=8000`
+3. 从内容中找到最新/最热的文章链接
+4. `web_fetch url="<文章URL>" maxChars=20000`
+5. 输出总结
+
+未明确指定源时，默认优先抓取钛媒体 + 36氪 + 华尔街见闻中最新的一条。
+
+### 模式 B：关键词搜索新闻
+
+当用户说"搜索XX新闻"、"XX相关的文章"、"最近关于XX的报道" 时触发。
+
+1. 提取用户搜索关键词
+2. `web_search query="<关键词> 新闻" count=5`（中文场景）
+   或 `web_search query="<keyword> news" count=5`（英文场景）
+3. 从结果中选择最相关的 1-3 篇文章
+4. 逐一 `web_fetch` 获取正文
+5. 输出每条总结
+
+### 模式 C：指定 URL 直接总结
+
+用户粘贴了具体新闻文章链接时触发。
+
+1. `web_fetch url="<用户提供的URL>" maxChars=20000`
+2. 输出总结
+
+### 模式 D：多篇横向对比
+
+当用户说"对比这几篇"、"横向对比"、"第1篇和第2篇有什么不同" 时触发。
+
+1. 获取所有指定文章的正文
+2. 输出一份结构化对比报告
+
+### 模式 E：最新快讯速览
+
+当用户说"快报"、"最新十条"、"今天发生了什么" 时触发。
+
+1. 同时抓取 2-3 个新闻源首页（推荐钛媒体快报 + 华尔街见闻 + 36氪）
+2. 从每个源提取最新 5-8 条标题和链接
+3. 按时间/热度排序，合并去重
+4. 输出速览列表（每条含标题、来源、摘要）
+
+## 输出格式
+
+### 单篇文章总结
+
 ```
+📰 **文章标题**
+
+**来源**：XX新闻 | **时间**：XXXX
+
+**核心要点：**
+1. 要点一
+2. 要点二
+3. 要点三（含关键数据）
+
+💡 **一句话总结：** ...
+```
+
+### 多篇对比
+
+```
+## 对比分析
+
+### 文章 A：《标题》
+- 核心观点：
+- 关键论据：
+- 立场倾向：
+
+### 文章 B：《标题》
+- 核心观点：
+- 关键论据：
+- 立场倾向：
+
+### 🔍 差异对比
+| 维度 | 文章 A | 文章 B |
+|------|--------|--------|
+| 视角 | ... | ... |
+| 数据 | ... | ... |
+| 结论 | ... | ... |
+```
+
+### 快讯速览
+
+```
+## 快讯速览（2026-05-25）
+
+1. **标题** — 来源
+   摘要内容...
+
+2. **标题** — 来源
+   摘要内容...
+```
+
+## 通用规则
+
+- 所有输出用**简体中文**，保留英文专有名词（人名、产品名等）
+- 来源和时间是必填字段，不可省略
+- 只使用从 `web_fetch` / `web_search` 获取的真实数据，严禁捏造内容
+- 抓取失败时，换源重试或告知用户，不要硬凑内容
+- 关键词搜索无结果时，告知用户并用相近关键词重试一次

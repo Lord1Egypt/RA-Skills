@@ -1,35 +1,22 @@
 ---
-name: "OpenClaw Memory Orchestrator"
-description: "Production-grade memory optimization, compression, and adaptive retrieval routing for OpenClaw. Works in local-only mode; Ollama and remote vector DB are opt..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-memory-orchestrator"
-sourceUrl: "https://clawhub.ai/skills/openclaw-memory-orchestrator"
+name: openclaw-memory-orchestrator
+version: 1.0.0
+description: Production-grade memory optimization, compression, and adaptive retrieval routing for OpenClaw. Safe-mode ClawHub package. For the full feature set, install the full package from GitHub: https://github.com/che52078/openclaw-memory-orchestrator
 ---
 
-# OpenClaw Memory Orchestrator
+# OpenClaw Memory Orchestrator Lite
 
-> Production-grade memory optimization, compression, and adaptive retrieval routing for OpenClaw. Works in local-only mode; Ollama and remote vector DB are opt...
+Use when users need memory compression, deduplication, canonicalization, thin/packed/hot retrieval layers, or adaptive retrieval routing for OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-memory-orchestrator`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-memory-orchestrator](https://clawhub.ai/skills/openclaw-memory-orchestrator)
+## Install
+- Linux: `bash install.sh`
+- For the full feature set, install the full package from GitHub:
+  `https://github.com/che52078/openclaw-memory-orchestrator`
 
-## Overview
+## Requirements
+- Python 3.10+
+- chromadb
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-memory-orchestrator
-```
+Optional:
+- ollama
+- remote vector database

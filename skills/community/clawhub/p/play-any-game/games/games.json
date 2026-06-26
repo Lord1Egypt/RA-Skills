@@ -1,0 +1,24 @@
+{
+    "games": {
+        "genshin-impact": {
+            "name": "原神",
+            "nameEn": "Genshin Impact",
+            "windowTitle": "原神",
+            "soulPath": "games/genshin-impact/SOUL.md",
+            "character": "派蒙",
+            "keywords": ["原神", "genshin", "派蒙", "paimon"]
+        },
+        "honkai-starrail": {
+            "name": "崩坏：星穹铁道",
+            "nameEn": "Honkai: Star Rail",
+            "windowTitle": "崩坏：星穹铁道",
+            "soulPath": "games/honkai-starrail/SOUL.md",
+            "character": "三月七",
+            "keywords": ["星穹铁道", "星铁", "starrail", "崩铁", "三月七"]
+        }
+    },
+    "default": {
+        "soulPath": "games/default/SOUL.md",
+        "character": "OpenClaw"
+    }
+}

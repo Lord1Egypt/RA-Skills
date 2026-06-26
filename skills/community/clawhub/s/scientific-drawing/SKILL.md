@@ -1,35 +1,193 @@
 ---
-name: "Scientific Drawing"
+name: scientific-drawing
 description: "科研绘图工具 - 支持技术路线图、流程图、原理图、架构图等科研图形绘制。基于 Python matplotlib/pillow，支持 SVG/PNG 高清输出。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scientific-drawing"
-sourceUrl: "https://clawhub.ai/skills/scientific-drawing"
+metadata:
+  {
+    "openclaw": { "emoji": "🎨" }
+  }
 ---
 
-# Scientific Drawing
+# 科研绘图技能
 
-> 科研绘图工具 - 支持技术路线图、流程图、原理图、架构图等科研图形绘制。基于 Python matplotlib/pillow，支持 SVG/PNG 高清输出。
+专为科研基金申请、论文写作设计的绘图工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scientific-drawing`
-- **Source URL:** [https://clawhub.ai/skills/scientific-drawing](https://clawhub.ai/skills/scientific-drawing)
+## 🎯 适用场景
 
-## Overview
+### 基金申请书
+- 技术路线图
+- 研究内容框架图
+- 试验装置原理图
+- 年度计划甘特图
 
+### 学术论文
+- 算法流程图
+- 系统架构图
+- 数据可视化图表
+- 对比结果图
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scientific-drawing
+## 🛠️ 使用方法
+
+### 1. 直接描述需求（推荐）
+
+告诉 SuperMike：
+> "帮我画一个技术路线图，包含：文献调研→理论分析→试验设计→数据分析→论文撰写"
+
+或
+> "画一个振动台子结构试验的原理图，包含振动台、物理子结构、数值子结构、作动器"
+
+### 2. 指定详细参数
+
 ```
+绘制技术路线图：
+- 标题：基于机器学习的结构损伤识别研究
+- 模块：数据采集、特征提取、模型训练、损伤识别、结果验证
+- 风格：横向流程/纵向层级
+- 颜色：蓝色系/绿色系
+- 输出：PNG 高清 (300 DPI)
+```
+
+## 📊 支持的图形类型
+
+| 类型 | 用途 | 示例 |
+|------|------|------|
+| **流程图** | 技术路线、算法流程 | 方框 + 箭头 |
+| **层级图** | 系统架构、模块关系 | 树状结构 |
+| **原理图** | 试验装置、物理模型 | 几何图形组合 |
+| **时序图** | 试验步骤、时间线 | 甘特图形式 |
+| **对比图** | 方法对比、结果展示 | 多子图布局 |
+| **数据图** | 折线图、柱状图、散点图 | 数据可视化 |
+
+## 🎨 输出规格
+
+### 默认配置
+- **格式**: PNG (可指定 SVG/PDF)
+- **分辨率**: 300 DPI (印刷级)
+- **尺寸**: A4 横向/纵向 (可自定义)
+- **字体**: 中文支持 (SimHei/Arial)
+
+### 基金申请推荐
+- 技术路线图：A4 横向，宽 1200px
+- 原理图：A4 纵向，宽 800px
+- 对比图：根据内容自适应
+
+## 📝 绘图流程
+
+**SuperMike 的工作流：**
+
+1. **需求分析** - 理解图形类型、内容、风格
+2. **草图设计** - 规划布局、模块、连接关系
+3. **代码生成** - 编写 Python 绘图脚本
+4. **图形渲染** - 执行代码生成图像
+5. **质量检查** - 确认清晰度、文字可读性
+6. **交付优化** - 根据反馈调整
+
+## 🔧 技术实现
+
+### 依赖库
+```python
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from PIL import Image, ImageDraw, ImageFont
+import numpy as np
+```
+
+### 绘图模板
+
+**流程图模板：**
+```python
+def draw_flowchart(title, steps, connections, output_path):
+    fig, ax = plt.subplots(figsize=(12, 6))
+    # 绘制方框
+    # 绘制箭头
+    # 添加文字
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+```
+
+**架构图模板：**
+```python
+def draw_architecture(title, modules, hierarchy, output_path):
+    fig, ax = plt.subplots(figsize=(10, 8))
+    # 绘制层级框
+    # 绘制连接线
+    # 添加标签
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+```
+
+## 💡 最佳实践
+
+### 基金申请绘图要点
+
+1. **清晰第一** - 避免过度复杂，重点突出
+2. **风格统一** - 所有图用同一套配色方案
+3. **文字精简** - 每框不超过 10 个字
+4. **箭头明确** - 流程方向清晰
+5. **留白适当** - 不要塞得太满
+
+### 配色建议
+
+| 类型 | 主色 | 辅色 | 强调色 |
+|------|------|------|--------|
+| **技术路线** | #2E86AB (蓝) | #A23B72 (紫) | #F18F01 (橙) |
+| **原理图** | #3B5998 (深蓝) | #5D8AA8 (浅蓝) | #DC143C (红) |
+| **架构图** | #228B22 (绿) | #32CD32 (浅绿) | #FFD700 (金) |
+
+## ⚠️ 注意事项
+
+1. **中文支持** - 需配置中文字体 (SimHei)
+2. **高清输出** - 基金申请至少 300 DPI
+3. **格式兼容** - 优先 PNG (通用), 可备 SVG (可编辑)
+4. **尺寸控制** - 考虑 Word 文档插入后的显示效果
+5. **迭代优化** - 第一版可能不完美，根据反馈调整
+
+## 📋 请求示例
+
+**示例 1：技术路线图**
+```
+帮我画基金申请的技术路线图：
+研究内容：振动台子结构试验的时滞补偿方法
+步骤：
+1. 文献调研与问题分析
+2. 时滞机理建模
+3. 自适应补偿算法设计
+4. 数值仿真验证
+5. 振动台试验验证
+6. 工程应用推广
+要求：横向流程，蓝色系，A4 横向
+```
+
+**示例 2：试验装置原理图**
+```
+绘制振动台子结构试验原理图：
+元素：振动台、物理子结构 (试件)、数值子结构 (计算机)、作动器、传感器
+连接：力/位移反馈
+标注：边界条件模拟、实时交互
+要求：示意图风格，清晰标注各部分
+```
+
+**示例 3：算法流程图**
+```
+画一个自适应时滞补偿算法流程图：
+开始→位移指令→时滞预测→补偿计算→作动器加载→响应测量→误差判断→(循环/结束)
+要求：纵向流程，包含判断分支
+```
+
+---
+
+## 🚀 快速开始
+
+**告诉 SuperMike：**
+> "帮我画一个 XXX 图，包含 XXX 内容，要 XXX 风格"
+
+我会：
+1. 确认需求细节
+2. 生成 Python 绘图代码
+3. 执行并输出图像
+4. 根据你的反馈调整优化
+
+**输出位置：** `D:\Personal\OpenClaw\figures\`
+
+---
+
+_技能版本：v1.0_  
+_创建日期：2026-03-09_  
+_作者：SuperMike_

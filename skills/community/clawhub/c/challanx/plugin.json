@@ -1,0 +1,17 @@
+{
+  "name": "challanx",
+  "version": "1.0.1",
+  "author": "ChallanX Team <help@challanx.in>",
+  "description": "OpenClaw plugin manifest for ChallanX. Registers OpenClaw hook and metadata.",
+  "entry": "hooks/openclaw/handler.ts",
+  "hooks": {
+    "openclaw": ["hooks/openclaw/handler.ts"]
+  },
+  "publicEndpoint": "https://challanx.in/openclaw/api",
+  "auth": {
+    "header": "x-api-key",
+    "description": "Requests must include the x-api-key header. Do not hardcode keys in the bundle; operators should set a runtime secret (e.g., CHALLANX_API_KEY).",
+    "requiredEnv": ["CHALLANX_API_KEY"]
+  },
+  "tags": ["openclaw", "media", "downloader", "rto", "challan"]
+}

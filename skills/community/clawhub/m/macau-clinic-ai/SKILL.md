@@ -1,35 +1,78 @@
 ---
-name: "Macau Clinic AI System"
-description: "澳門診所AI系統設計技能 - 幫澳門私人診所設計AI病歷、智能預約、數位化管理方案。適合AI顧問、醫療IT、創業者。觸發詞：澳門診所、診所AI、醫療系統、clinic AI、澳門醫療、診所數位化。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, chinese, clinic, healthcare, macau]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/macau-clinic-ai"
-sourceUrl: "https://clawhub.ai/skills/macau-clinic-ai"
+name: Macau Clinic AI System
+description: 澳門診所AI系統設計技能 - 幫澳門私人診所設計AI病歷、智能預約、數位化管理方案。適合AI顧問、醫療IT、創業者。觸發詞：澳門診所、診所AI、醫療系統、clinic AI、澳門醫療、診所數位化。
+version: 1.0.0
+author: psy仔
+slug: macau-clinic-ai
 ---
 
 # Macau Clinic AI System
 
-> 澳門診所AI系統設計技能 - 幫澳門私人診所設計AI病歷、智能預約、數位化管理方案。適合AI顧問、醫療IT、創業者。觸發詞：澳門診所、診所AI、醫療系統、clinic AI、澳門醫療、診所數位化。
+專為澳門診所設計的 AI 系統方案技能。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/macau-clinic-ai`
-- **Source URL:** [https://clawhub.ai/skills/macau-clinic-ai](https://clawhub.ai/skills/macau-clinic-ai)
+## 市場背景
 
-## Overview
+- 700+ 私人診所
+- 政府推動智慧醫療
+- eHR 平台已覆蓋
+- 痛點：病歷效率低、預約混亂、溝通差
 
+## 核心方案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/macau-clinic-ai
+### 1. AI 病歷助手
+- 錄音轉文字 → 自動生成病歷
+- 智能摘要、ICD-10 編碼
+- 粵語/普通話/英語支援
+- **收費：MOP 1,500-3,000/月/醫生**
+
+### 2. 智能預約系統
+- WhatsApp/微信預約
+- AI 客服自動回覆
+- No-show 預測提醒
+- **收費：MOP 2,000-5,000/月**
+
+### 3. 全面數位化
+- 病歷 + 預約 + 計費 + CRM
+- eHR 平台對接
+- **收費：MOP 30,000-150,000 setup + 月費**
+
+## 服務包定價
+
+| 級別 | Setup | 月費 | 適合 |
+|------|-------|------|------|
+| 基礎 | MOP 5,000 | MOP 1,500 | 1-2醫生 |
+| 標準 | MOP 15,000 | MOP 3,500 | 3-5醫生 |
+| 專業 | MOP 50,000 | MOP 6,000 | 5+醫生 |
+
+## 政府資助
+
+- 青年創業援助：免息貸款 MOP 30萬
+- FDCT 科研資助
+- 科技企業認證
+
+## 競爭優勢
+
+1. 本地化（粵語、澳門法規）
+2. 價格比國際產品便宜 50-70%
+3. 醫生背景了解需求
+
+## 使用方式
+
 ```
+幫我設計澳門診所AI方案：[診所規模/需求]
+```
+
+```
+分析這間診所的痛點：[描述]
+```
+
+## 技術棧
+
+- AI：DeepSeek / OpenAI
+- 後端：Node.js / Python
+- 整合：n8n, WhatsApp API, 微信
+- 部署：雲端或本地
+
+## 參考文檔
+
+詳細方案：`projects/macau-clinic-ai-proposal.md`

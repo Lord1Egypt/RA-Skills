@@ -1,0 +1,21 @@
+{
+  "name": "ai-diabetes-coach",
+  "version": "1.0.5",
+  "description": "AI 糖尿病康复管理助手 — 基于 ADA 2025 指南的安全增强型康复管理工具",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py"
+  },
+  "dependencies": {
+    "flask": ">=2.0"
+  },
+  "keywords": [
+    "diabetes",
+    "health",
+    "medical",
+    "glucose",
+    "insulin",
+    "ADA"
+  ],
+  "license": "MIT-0"
+}

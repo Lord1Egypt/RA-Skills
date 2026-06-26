@@ -1,0 +1,9 @@
+# 印度占星引擎 Python 依赖
+# 安装：pip install -r requirements.txt
+
+# 核心：Swiss Ephemeris 天文计算库（必需）
+pyswisseph
+
+# 以下为标准库，无需安装（仅供参考）：
+# argparse, json, sys, os, csv, math, sqlite3
+# datetime, typing, hashlib, re, subprocess

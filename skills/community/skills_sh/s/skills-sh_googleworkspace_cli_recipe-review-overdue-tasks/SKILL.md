@@ -1,35 +1,27 @@
 ---
-name: "recipe-review-overdue-tasks"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-review-overdue-tasks"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-review-overdue-tasks"
+name: recipe-review-overdue-tasks
+description: "Find Google Tasks that are past due and need attention."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-tasks
 ---
 
-# recipe-review-overdue-tasks
+# Review Overdue Tasks
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-tasks`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-review-overdue-tasks`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-review-overdue-tasks](https://skills.sh/googleworkspace/cli/recipe-review-overdue-tasks)
+Find Google Tasks that are past due and need attention.
 
-## Overview
+## Steps
 
+1. List task lists: `gws tasks tasklists list --format table`
+2. List tasks with status: `gws tasks tasks list --params '{"tasklist": "TASKLIST_ID", "showCompleted": false}' --format table`
+3. Review due dates and prioritize overdue items
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-review-overdue-tasks
-```

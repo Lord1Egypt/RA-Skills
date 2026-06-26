@@ -1,35 +1,45 @@
 ---
-name: "明源云需求扩写"
-description: "依据需求概述，按明源定制开发设计要点输出可覆盖研发、测试的详细需求要点；"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/req-expander"
-sourceUrl: "https://clawhub.ai/skills/req-expander"
+name: req-expander
+description: 依据需求概述，按明源定制开发设计要点输出可覆盖研发、测试的详细需求要点；
 ---
 
-# 明源云需求扩写
+## 执行步骤
 
-> 依据需求概述，按明源定制开发设计要点输出可覆盖研发、测试的详细需求要点；
+1. 根据需求概述，判断需求类型（如：查询控件、普通列表、普通按钮等）
+2. 对于需求类型、界面元素位置等关键信息存在疑问的，利用 [AskUserQuestion] 要求用户澄清问题，**不超过5个问题**；
+3. 根据需求类型以及输出需求规格要点，严格按照以下格式：
+   - 需求类型
+   - 界面元素位置
+   - 需求规格要点
+     - 根据需求类型匹配[/reference/明源定制开发设计要点.md]输出详细要点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/req-expander`
-- **Source URL:** [https://clawhub.ai/skills/req-expander](https://clawhub.ai/skills/req-expander)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/req-expander
+## 输出示例
 ```
+需求1：
+需求类型：列表
+界面元素位置：合同登记>登记列表
+需求规格要点：
+  - 默认排序：按“合同编号”字段排序，以降序方式；
+  - 支持分页查询，默认每页显示20条数据；
+  - 其他要点
+
+
+需求2：
+需求类型：查询控件
+界面元素位置：合同登记>合同查询
+需求规格要点：
+  - 取数范围：公司-项目-分期；
+  - 其他要点  
+```
+
+
+## 输出要求
+- 如果支持企微文档创建，有限创建为企微文档，否则创建为Markdown文件；
+- Markdown文件为[需求XXX-时间.md]文件，文件名XXX为需求概述中的关键词
+
+
+## 风格要求
+
+- 使用简体中文
+- 业务术语前后一致
+- 句子短、结论先行

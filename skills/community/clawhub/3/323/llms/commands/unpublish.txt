@@ -1,0 +1,90 @@
+--------------------------------------------------------------------------------
+title: "unpublish"
+description: "Unpublish a skill or specific version from the Skill Hub registry."
+source: "/llms/commands/unpublish.txt"
+--------------------------------------------------------------------------------
+
+# unpublish — Unpublish Skills
+
+Remove a skill or specific version from the Skill Hub registry. Only works for internal (locally published) skills owned by the current user.
+
+## Syntax
+
+```bash
+ai-skills unpublish <skillId> [options]
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `<skillId>` | Skill ID (format: `username/repo/skill-name`) |
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `-v, --version <ver>` | Unpublish a specific version |
+| `--all` | Unpublish entire skill (all versions) |
+| `-f, --force` | Skip confirmation prompt |
+| `-y, --yes` | Alias for `--force` |
+| `--cli` | Interactive mode (default) |
+| `--pure` | Plain text output mode |
+
+## Behavior
+
+### Unpublish a Version
+
+Use `--version` to remove a specific version. The skill's `latestVersion` and `versionCount` are updated automatically.
+
+### Unpublish Entire Skill
+
+Use `--all` to delete the skill and all its versions and files. This action is irreversible.
+
+### Permission Checks
+
+- Skill source must be `internal` (locally published skills)
+- Current user must be the skill owner or a collaborator
+
+### Confirmation
+
+A confirmation prompt is shown by default. Use `--force` or `--yes` to skip.
+
+## Prerequisites
+
+- Must be authenticated (`ai-skills login`)
+- Skill must be a locally published skill (via `publish`)
+
+## Examples
+
+```bash
+# Unpublish a specific version
+ai-skills unpublish myuser/skills/my-skill --version 1.0.0
+
+# Unpublish entire skill (skip confirmation)
+ai-skills unpublish myuser/skills/my-skill --all --force
+
+# Pure mode
+ai-skills unpublish myuser/skills/my-skill --version 1.0.0 --pure --force
+```
+
+## Pure Mode Output
+
+**Success (version):**
+```
+Unpublishing…
+Version 1.0.0 removed
+Unpublished myuser/skills/my-skill@1.0.0
+```
+
+**Success (all):**
+```
+Unpublishing…
+All versions removed
+Unpublished all versions of myuser/skills/my-skill
+```
+
+**Not logged in:**
+```
+You must be logged in to unpublish. Run ai-skills login first.
+```

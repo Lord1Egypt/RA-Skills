@@ -1,35 +1,87 @@
----
-name: "招标项目分析技能"
-description: "分析招标Excel文件，存储信息到MySQL，支持查询管理、时间跟踪和报告生成的招标项目分析技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-first-skill"
-sourceUrl: "https://clawhub.ai/skills/my-first-skill"
----
-
 # 招标项目分析技能
 
-> 分析招标Excel文件，存储信息到MySQL，支持查询管理、时间跟踪和报告生成的招标项目分析技能。
+## 技能描述
+这是一个用于分析和管理招标项目的技能，支持从Excel文件提取招标信息、存储到MySQL数据库、并提供查询分析功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-first-skill`
-- **Source URL:** [https://clawhub.ai/skills/my-first-skill](https://clawhub.ai/skills/my-first-skill)
+## 适用场景
+当用户需要：
+- 分析招标公告文件
+- 管理招标项目信息
+- 查询招标数据库
+- 跟踪项目时间节点
+- 生成招标分析报告
 
-## Overview
+## 技能功能
+1. **Excel数据提取**：从招标公告Excel文件中提取关键信息
+2. **数据库管理**：将招标信息存储到MySQL数据库
+3. **智能查询**：提供多种查询方式分析招标数据
+4. **时间提醒**：自动跟踪项目时间节点和待办事项
+5. **报告生成**：生成招标分析报告和统计图表
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-first-skill
+### 基础使用
 ```
+分析这个招标文件
+```
+
+### 数据库操作
+```
+将Excel数据导入数据库
+查询招标项目
+查看待办事项
+```
+
+### 统计分析
+```
+生成招标统计报告
+按省份分析项目
+查看高价值项目
+```
+
+## 技术依赖
+- MySQL数据库
+- Python 3.x
+- pandas库
+- mysql-connector-python库
+
+## 配置文件
+技能需要以下配置：
+```json
+{
+  "mysql_host": "localhost",
+  "mysql_port": 3306,
+  "mysql_user": "root",
+  "mysql_password": "your_password",
+  "mysql_database": "bid_analysis_db"
+}
+```
+
+## 示例对话
+
+**用户**: 分析这个招标文件
+**技能**: 正在读取招标文件...已提取项目基本信息：项目名称、招标单位、预算金额等。是否需要导入数据库？
+
+**用户**: 查询辽宁省的招标项目
+**技能**: 正在查询数据库...找到3个辽宁省的招标项目，总金额850万元。是否需要详细列表？
+
+**用户**: 查看本周待办
+**技能**: 本周有2个待办事项：1. 获取招标文件截止（3月30日）2. 投标截止（4月10日）
+
+## 注意事项
+1. 确保MySQL服务正常运行
+2. Excel文件需要符合指定格式
+3. 首次使用需要配置数据库连接
+4. 定期备份数据库数据
+
+## 更新日志
+- v1.0.0 (2026-03-24): 初始版本发布
+- 功能：Excel解析、数据库存储、基础查询
+
+## 作者信息
+- 作者：迢迢
+- 邮箱：1975467035@qq.com
+- 仓库：https://clawhub.com/skills/my-first-skill
+
+## 许可证
+MIT License

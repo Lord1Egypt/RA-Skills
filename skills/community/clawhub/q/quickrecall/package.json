@@ -1,0 +1,19 @@
+{
+  "name": "memory-enhancement-engine",
+  "version": "4.1.0",
+  "description": "Persistent memory engine with semantic recall, hotness prioritization, importance weighting, time decay, and auto-compaction. Zero external dependencies. Pure Node.js.",
+  "main": "memory.js",
+  "dependencies": {},
+  "keywords": [
+    "memory",
+    "persistent",
+    "semantic-search",
+    "hotness",
+    "recall",
+    "ai-agent",
+    "memory-engine",
+    "zero-dependency"
+  ],
+  "author": "ZhouYi",
+  "license": "MIT"
+}

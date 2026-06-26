@@ -1,35 +1,49 @@
 ---
-name: "Anjuke"
-description: "Provides structured information from Anjuke's public pages including property listings, agent rules, services, and help documentation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anjuke"
-sourceUrl: "https://clawhub.ai/skills/anjuke"
+name: anjuke
+description: 注册“安居客”技能；用于房产平台公开页面、房源服务、经纪规则与帮助信息整理。
+homepage: `https://www.anjuke.com/`
+metadata: {"clawdbot":{"emoji":"🏘️"}}
 ---
 
-# Anjuke
+# 安居客
 
-> Provides structured information from Anjuke's public pages including property listings, agent rules, services, and help documentation.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anjuke`
-- **Source URL:** [https://clawhub.ai/skills/anjuke](https://clawhub.ai/skills/anjuke)
+- 面向公开官网、房源展示页、经纪服务页、帮助中心与规则页的信息整理
+- 不提供账号代发、虚假房源包装、私下交易指导或风控规避能力
+- 仅处理公开可见的房源服务、咨询流程、经纪规则与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.anjuke.com/
+- 房源与服务：房源入口、经纪服务、买房租房、装修或金融服务入口
+- 帮助与规则：帮助中心、经纪规范、平台规则、客服入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anjuke
-```
+常见任务
+
+- 房源分类、服务类型、咨询流程与帮助信息整理
+- 经纪服务、平台规则、线索流程与帮助中心汇总
+- 公开活动、专题页、城市站点与使用说明提取
+
+数据字段
+
+- 房源类型、服务入口、城市站点、链接
+- 经纪规则、帮助页、客服入口、协议链接
+- 流程说明、限制条件、活动入口、FAQ
+
+自动化要点
+
+- 房产信息高度依赖城市、时间和具体楼盘，整理时必须保留上下文
+- 不得输出虚假房源、规避审核或违规获客建议
+- 不处理用户隐私、经纪后台、业主数据或未公开房源信息
+
+示例流程
+
+- 服务整理：访问 Anjuke 房源与服务页 → 输出产品结构清单
+- 规则汇总：进入帮助中心与经纪规范 → 提取关键限制 → 输出摘要
+- 城市入口：访问城市站点与专题页 → 输出入口与说明
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

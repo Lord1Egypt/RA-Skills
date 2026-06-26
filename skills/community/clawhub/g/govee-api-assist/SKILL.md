@@ -1,35 +1,26 @@
 ---
-name: "GoveeClaw (Deprecated)"
-description: "DEPRECATED. This skill is retained only for migration. Use @Cole-Z/govee-control for current Govee OpenAPI setup and control guidance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/govee-api-assist"
-sourceUrl: "https://clawhub.ai/skills/govee-api-assist"
+name: govee-api-assist
+description: DEPRECATED. This skill is retained only for migration. Use @Cole-Z/govee-control for current Govee OpenAPI setup and control guidance.
+metadata:
+  clawdbot:
+    emoji: ⚠️
 ---
 
-# GoveeClaw (Deprecated)
+# DEPRECATED — Use `@Cole-Z/govee-control`
 
-> DEPRECATED. This skill is retained only for migration. Use @Cole-Z/govee-control for current Govee OpenAPI setup and control guidance.
+This skill is deprecated and should no longer be used for new installs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/govee-api-assist`
-- **Source URL:** [https://clawhub.ai/skills/govee-api-assist](https://clawhub.ai/skills/govee-api-assist)
+## Canonical Replacement
 
-## Overview
+- Install and use: `@Cole-Z/govee-control`
+- URL: `https://clawhub.ai/Cole-Z/govee-control`
 
+## Why Deprecated
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/govee-api-assist
-```
+- Consolidates maintenance into one canonical skill.
+- Avoids duplicate/competing Govee skills under the same owner.
+- Ensures users receive the latest metadata, guardrails, and instructions.
+
+## Migration
+
+If you were using this skill, switch your workflows to `@Cole-Z/govee-control`.

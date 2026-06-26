@@ -1,0 +1,12 @@
+{
+  "name": "State Architecture (状态管理架构)",
+  "tagline": "设计可扩展的前端状态架构：分类、切片、乐观更新、状态机",
+  "description": "为复杂前端应用设计状态管理方案。覆盖服务端状态 vs 全局 UI 状态 vs URL 状态的分类决策、Zustand store 切片设计、selector 细化避免无效重渲染、React Query 乐观更新标准模式、轻量状态机与 XState 选型、跨 Tab 状态同步等场景。",
+  "category": "development",
+  "tags": ["frontend", "state-management", "zustand", "redux", "react-query", "xstate", "状态管理", "乐观更新"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

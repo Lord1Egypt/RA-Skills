@@ -1,35 +1,104 @@
 ---
-name: "a-share-portfolio-calibrator"
-description: "把持仓截图或持仓列表标准化成组合工作包，输出仓位、权重、集中度、主题暴露和执行约束。适用于用户发账户截图、贴持仓表、想先诊断组合形态而不是立刻下结论的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-portfolio-calibrator"
-sourceUrl: "https://clawhub.ai/skills/a-share-portfolio-calibrator"
+name: a-share-portfolio-calibrator
+description: 把持仓截图或持仓列表标准化成组合工作包，输出仓位、权重、集中度、主题暴露和执行约束。适用于用户发账户截图、贴持仓表、想先诊断组合形态而不是立刻下结论的场景。
 ---
 
-# a-share-portfolio-calibrator
-
-> 把持仓截图或持仓列表标准化成组合工作包，输出仓位、权重、集中度、主题暴露和执行约束。适用于用户发账户截图、贴持仓表、想先诊断组合形态而不是立刻下结论的场景。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-portfolio-calibrator`
-- **Source URL:** [https://clawhub.ai/skills/a-share-portfolio-calibrator](https://clawhub.ai/skills/a-share-portfolio-calibrator)
+# A Share Portfolio Calibrator
 
 ## Overview
 
+这个 skill 专门把“持仓信息”整理成后续可路由的标准格式。它先做提取和校准，不跳步到买卖动作，也不假定之前线程里的组合数据仍然有效。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-portfolio-calibrator
-```
+## Hard Rules
+
+1. 这是组合诊断 skill，不是直接下指令的 skill。
+2. 用户给截图时，优先提取能确认的字段；看不清就标缺口，不乱猜。
+3. 必须计算权重、集中度、主题暴露和可用仓位。
+4. 如果没有当日市场底稿，不能把组合诊断直接升级成最终调仓建议。
+5. 不把“有票在涨”误判为“组合健康”。
+
+## When To Use
+
+- 用户贴了账户截图或持仓列表
+- 需要先看仓位结构是否失衡
+- 用户想知道自己到底在押什么风格
+- 后续要做留减清或新建仓，但还没整理组合底稿
+
+## Workflow
+
+### Step 1: 标准化账户层信息
+
+优先抽取：
+
+- 总资产
+- 股票市值
+- 可用现金
+- 可取资金
+- 是否存在冻结或不可卖仓位
+
+### Step 2: 标准化持仓层信息
+
+对每只票提取：
+
+- 代码与名称
+- 持股数量
+- 可用数量
+- 成本价
+- 现价
+- 盈亏金额或盈亏比
+- 市值
+
+### Step 3: 计算组合指标
+
+至少计算：
+
+- 单票权重
+- 前三大持仓占比
+- 现金比
+- 同主题持仓合计
+- 风格暴露，例如科技、资源、红利、周期、成长
+
+### Step 4: 识别隐性约束
+
+例如：
+
+- 单票过度集中
+- 可卖仓位不足
+- 多票本质上押的是同一条主线
+- 账面浮盈过大导致回撤容忍度偏低
+- 账面浮亏票占用决策带宽
+
+模板见 [calibration-template.md](references/calibration-template.md)。
+
+### Step 5: 输出组合工作包
+
+输出给后续 skill 的不是一堆原始数据，而是一份清晰的组合 packet：
+
+- 组合结构
+- 风格集中点
+- 可调整资源
+- 主要风险点
+- 待确认缺口
+
+## Tool Rules
+
+- 截图优先用图像能力或低风险桌面读取
+- 若用户提供文字列表，直接结构化处理，不额外重复提问
+- 组合权重计算优先使用账户总市值或总资产两个口径都给，避免混淆
+
+## Output Contract
+
+默认输出：
+
+- `账户快照`
+- `标准化持仓表`
+- `组合集中度`
+- `主题与风格暴露`
+- `主要约束`
+- `待补信息`
+
+## Practical Notes
+
+- 若用户仓位很多，不要全量长篇点评，先抓最大权重和重复暴露
+- 若截图显示某只票可用仓位远小于持仓仓位，要提示 T+1 或冻结影响
+- 完成后若用户问“怎么调”，下一步交给动作路由

@@ -1,0 +1,86 @@
+name: creative-agency-delivery
+version: "3.0"
+description: AI创意总监交付工作流 - 逐步交付Big Idea/Campaign策略/KV/TVC脚本/Social矩阵
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+
+steps:
+  - id: brief_interpretation
+    agent: types/creative-agency/main-agent
+    action: deliver_brief_reading
+    description: 交付创意Brief解读
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: brief_reading
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认需求理解是否准确？"
+
+  - id: big_idea
+    agent: types/creative-agency/main-agent
+    action: deliver_big_idea
+    description: 交付Big Idea提案（3个方向）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      brief: "{{brief_interpretation.output.brief_reading}}"
+    output: big_idea_proposal
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请选择Big Idea方向？"
+
+  - id: campaign_strategy
+    agent: types/creative-agency/main-agent
+    action: deliver_campaign_strategy
+    description: 交付Campaign策略
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      selected_idea: "{{big_idea.output.big_idea_proposal}}"
+    output: campaign_strategy
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  - id: kv_and_content
+    agent: types/creative-agency/main-agent
+    action: deliver_kv_and_social
+    description: 交付KV创意简报+Social内容矩阵
+    input:
+      campaign: "{{campaign_strategy.output.campaign_strategy}}"
+    output: content_matrix
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  - id: quality_check
+    agent: types/creative-agency/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 质量自检
+    input:
+      deliverables:
+        brief: "{{brief_interpretation.output.brief_reading}}"
+        big_idea: "{{big_idea.output.big_idea_proposal}}"
+        campaign: "{{campaign_strategy.output.campaign_strategy}}"
+        content: "{{kv_and_content.output.content_matrix}}"
+    output: quality_report
+
+output:
+  deliverables:
+    brief_reading: "{{brief_interpretation.output.brief_reading}}"
+    big_idea: "{{big_idea.output.big_idea_proposal}}"
+    campaign_strategy: "{{campaign_strategy.output.campaign_strategy}}"
+    content_matrix: "{{kv_and_content.output.content_matrix}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "3.0"
+    role: "creative_agency"

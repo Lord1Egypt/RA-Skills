@@ -1,0 +1,40 @@
+id: a01
+track: A
+title_zh: 修复订单总价计算 bug
+category: bug_fix
+difficulty: easy
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.7
+  target: tests/test_order.py
+  fail_to_pass:
+  - test_total_with_discount
+  - test_total_with_tax
+  pass_to_pass:
+  - test_basic_total
+- type: state_hash
+  weight: 0.2
+  files:
+  - src/order.py
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A01_3f9a
+metadata:
+  estimated_minutes: 4
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Fix the order total calculation bug

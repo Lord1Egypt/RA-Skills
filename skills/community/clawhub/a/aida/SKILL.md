@@ -1,35 +1,33 @@
----
-name: "aida"
-description: "Conversational interface for AIDA to get building status, control devices, optimize objectives, and run diagnostics via secure REST APIs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aida"
-sourceUrl: "https://clawhub.ai/skills/aida"
----
+# AIDA Skill for OpenClaw
 
-# aida
+## Skill Name
+aida
 
-> Conversational interface for AIDA to get building status, control devices, optimize objectives, and run diagnostics via secure REST APIs.
+## Description
+Conversational interface for AIDA (AI-driven smart building automation platform).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aida`
-- **Source URL:** [https://clawhub.ai/skills/aida](https://clawhub.ai/skills/aida)
+## Supported Intents
+- aida.status        → Get live building status
+- aida.control       → Control devices (lights, shades, HVAC)
+- aida.optimize      → Optimize building objectives
+- aida.diagnostics  → Run preventive diagnostics
 
-## Overview
+## Example Utterances
+- "AIDA, what's the building status?"
+- "Optimize for energy savings."
+- "Turn off lights on floor 3."
+- "Run diagnostics on this zone."
 
+## AIDA Objectives Mapping
+- Comfort Optimization
+- Energy Optimization
+- Preventive Maintenance
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aida
-```
+## API Expectations
+The skill expects AIDA to expose REST endpoints:
+- GET /status
+- POST /control
+- POST /optimize
+- GET /diagnostics
+
+All calls are authenticated via bearer token.

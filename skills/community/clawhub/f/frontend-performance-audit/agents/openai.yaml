@@ -1,0 +1,3 @@
+interface:
+  display_name: 前端性能分析
+  short_description: 分析前端页面性能并输出结构化优化报告

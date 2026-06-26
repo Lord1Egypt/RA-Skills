@@ -1,0 +1,487 @@
+{
+  "themes": [
+    {
+      "id": "w001",
+      "name": "玉兰",
+      "description": "经典主题",
+      "palette": {
+        "primary": "#2f5d8a",
+        "secondary": "#d9e7f5",
+        "text": "#1f2937",
+        "muted": "#6b7280",
+        "bg": "#ffffff",
+        "panel": "#f8fbff",
+        "border": "#d8e5f2",
+        "quoteBg": "#f5f9fd",
+        "quoteBorder": "#2f5d8a",
+        "codeBg": "#f3f4f6",
+        "link": "#2f5d8a"
+      },
+      "variants": {
+        "h1": "center-title",
+        "h2": "outline-band",
+        "blockquote": "line-left"
+      }
+    },
+    {
+      "id": "w002",
+      "name": "牡丹",
+      "description": "优雅主题",
+      "palette": {
+        "primary": "#a8445f",
+        "secondary": "#f8e8ee",
+        "text": "#3f2f35",
+        "muted": "#7a6570",
+        "bg": "#fffdfd",
+        "panel": "#fff6f8",
+        "border": "#f3d6df",
+        "quoteBg": "#fff3f6",
+        "quoteBorder": "#d06784",
+        "codeBg": "#faf5f7",
+        "link": "#a8445f"
+      },
+      "variants": {
+        "h1": "ribbon",
+        "h2": "pill",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w003",
+      "name": "雏菊",
+      "description": "简洁主题",
+      "palette": {
+        "primary": "#3c7a63",
+        "secondary": "#e7f5ee",
+        "text": "#1f2937",
+        "muted": "#6b7280",
+        "bg": "#ffffff",
+        "panel": "#f7fbf9",
+        "border": "#d8ece2",
+        "quoteBg": "#f5fbf7",
+        "quoteBorder": "#3c7a63",
+        "codeBg": "#f3f4f6",
+        "link": "#2f6c57"
+      },
+      "variants": {
+        "h1": "plain-large",
+        "h2": "underline",
+        "blockquote": "line-left"
+      }
+    },
+    {
+      "id": "w004",
+      "name": "向日葵",
+      "description": "童趣彩虹",
+      "palette": {
+        "primary": "#f59e0b",
+        "secondary": "#fff4d6",
+        "text": "#3f3a2e",
+        "muted": "#7c6f54",
+        "bg": "#fffef8",
+        "panel": "#fff8e7",
+        "border": "#fde0a5",
+        "quoteBg": "#fff7e8",
+        "quoteBorder": "#f59e0b",
+        "codeBg": "#fff8eb",
+        "link": "#c97509"
+      },
+      "variants": {
+        "h1": "ribbon",
+        "h2": "filled-label",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w005",
+      "name": "罂粟",
+      "description": "波普艺术",
+      "palette": {
+        "primary": "#e11d48",
+        "secondary": "#ffe4ec",
+        "text": "#3d1f28",
+        "muted": "#8a5d6c",
+        "bg": "#fffdfd",
+        "panel": "#fff3f7",
+        "border": "#fecdd8",
+        "quoteBg": "#fff1f5",
+        "quoteBorder": "#e11d48",
+        "codeBg": "#fff1f5",
+        "link": "#be123c"
+      },
+      "variants": {
+        "h1": "banner",
+        "h2": "pill",
+        "blockquote": "accent-panel"
+      }
+    },
+    {
+      "id": "w006",
+      "name": "白百合",
+      "description": "学术报告",
+      "palette": {
+        "primary": "#365b7d",
+        "secondary": "#e7eef5",
+        "text": "#1f2937",
+        "muted": "#667085",
+        "bg": "#ffffff",
+        "panel": "#f8fafc",
+        "border": "#d9e2ec",
+        "quoteBg": "#f8fafc",
+        "quoteBorder": "#365b7d",
+        "codeBg": "#f3f4f6",
+        "link": "#365b7d"
+      },
+      "variants": {
+        "h1": "plain-large",
+        "h2": "section-line",
+        "blockquote": "line-left"
+      }
+    },
+    {
+      "id": "w007",
+      "name": "蓝鸢尾",
+      "description": "数字浪潮",
+      "palette": {
+        "primary": "#2563eb",
+        "secondary": "#dbeafe",
+        "text": "#172554",
+        "muted": "#64748b",
+        "bg": "#f8fbff",
+        "panel": "#eff6ff",
+        "border": "#bfdbfe",
+        "quoteBg": "#eff6ff",
+        "quoteBorder": "#2563eb",
+        "codeBg": "#eff6ff",
+        "link": "#1d4ed8"
+      },
+      "variants": {
+        "h1": "banner",
+        "h2": "outline-band",
+        "blockquote": "accent-panel"
+      }
+    },
+    {
+      "id": "w009",
+      "name": "黑玫瑰",
+      "description": "gothic",
+      "palette": {
+        "primary": "#111827",
+        "secondary": "#e5e7eb",
+        "text": "#1f2937",
+        "muted": "#6b7280",
+        "bg": "#ffffff",
+        "panel": "#f5f5f5",
+        "border": "#d1d5db",
+        "quoteBg": "#f3f4f6",
+        "quoteBorder": "#111827",
+        "codeBg": "#f3f4f6",
+        "link": "#111827"
+      },
+      "variants": {
+        "h1": "dark-banner",
+        "h2": "left-bar",
+        "blockquote": "dark-panel"
+      }
+    },
+    {
+      "id": "w010",
+      "name": "铃兰",
+      "description": "轻氧职场",
+      "palette": {
+        "primary": "#0f766e",
+        "secondary": "#dff7f5",
+        "text": "#134e4a",
+        "muted": "#5f7c7a",
+        "bg": "#fbfffe",
+        "panel": "#f0fdfa",
+        "border": "#b9efe8",
+        "quoteBg": "#f0fdfa",
+        "quoteBorder": "#0f766e",
+        "codeBg": "#ecfeff",
+        "link": "#0f766e"
+      },
+      "variants": {
+        "h1": "center-title",
+        "h2": "section-line",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w011",
+      "name": "白茶",
+      "description": "极简双线",
+      "palette": {
+        "primary": "#6b7280",
+        "secondary": "#f3f4f6",
+        "text": "#374151",
+        "muted": "#6b7280",
+        "bg": "#ffffff",
+        "panel": "#fafafa",
+        "border": "#e5e7eb",
+        "quoteBg": "#fafafa",
+        "quoteBorder": "#9ca3af",
+        "codeBg": "#f9fafb",
+        "link": "#4b5563"
+      },
+      "variants": {
+        "h1": "plain-large",
+        "h2": "double-line",
+        "blockquote": "line-left"
+      }
+    },
+    {
+      "id": "w012",
+      "name": "绣球",
+      "description": "若隐若现",
+      "palette": {
+        "primary": "#7c3aed",
+        "secondary": "#ede9fe",
+        "text": "#312e81",
+        "muted": "#6d6a93",
+        "bg": "#fcfbff",
+        "panel": "#f5f3ff",
+        "border": "#ddd6fe",
+        "quoteBg": "#f5f3ff",
+        "quoteBorder": "#7c3aed",
+        "codeBg": "#f5f3ff",
+        "link": "#6d28d9"
+      },
+      "variants": {
+        "h1": "center-title",
+        "h2": "outline-band",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w013",
+      "name": "梅花",
+      "description": "诗意简约",
+      "palette": {
+        "primary": "#b45309",
+        "secondary": "#fef3c7",
+        "text": "#4b382a",
+        "muted": "#7c6750",
+        "bg": "#fffdfa",
+        "panel": "#fffbeb",
+        "border": "#fde68a",
+        "quoteBg": "#fff7d6",
+        "quoteBorder": "#b45309",
+        "codeBg": "#fff7e5",
+        "link": "#92400e"
+      },
+      "variants": {
+        "h1": "ribbon",
+        "h2": "underline",
+        "blockquote": "line-left"
+      }
+    },
+    {
+      "id": "w014",
+      "name": "勿忘我",
+      "description": "横线信纸",
+      "palette": {
+        "primary": "#4f46e5",
+        "secondary": "#e0e7ff",
+        "text": "#312e81",
+        "muted": "#6366a1",
+        "bg": "#fdfdff",
+        "panel": "#eef2ff",
+        "border": "#c7d2fe",
+        "quoteBg": "#eef2ff",
+        "quoteBorder": "#4f46e5",
+        "codeBg": "#eef2ff",
+        "link": "#4338ca"
+      },
+      "variants": {
+        "h1": "plain-large",
+        "h2": "double-line",
+        "blockquote": "line-left"
+      }
+    },
+    {
+      "id": "w016",
+      "name": "海棠",
+      "description": "柔和叙事",
+      "palette": {
+        "primary": "#ea580c",
+        "secondary": "#ffedd5",
+        "text": "#4a3427",
+        "muted": "#8b6b5a",
+        "bg": "#fffdfb",
+        "panel": "#fff7ed",
+        "border": "#fed7aa",
+        "quoteBg": "#fff7ed",
+        "quoteBorder": "#ea580c",
+        "codeBg": "#fff7ed",
+        "link": "#c2410c"
+      },
+      "variants": {
+        "h1": "center-title",
+        "h2": "pill",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w017",
+      "name": "黑郁金香",
+      "description": "极客黑",
+      "palette": {
+        "primary": "#0f172a",
+        "secondary": "#1e293b",
+        "text": "#e5e7eb",
+        "muted": "#94a3b8",
+        "bg": "#0f172a",
+        "panel": "#111827",
+        "border": "#334155",
+        "quoteBg": "#111827",
+        "quoteBorder": "#38bdf8",
+        "codeBg": "#020617",
+        "link": "#38bdf8"
+      },
+      "variants": {
+        "h1": "dark-banner",
+        "h2": "tech-chip",
+        "blockquote": "dark-panel"
+      }
+    },
+    {
+      "id": "w018",
+      "name": "金盏花",
+      "description": "图案背景",
+      "palette": {
+        "primary": "#ca8a04",
+        "secondary": "#fef9c3",
+        "text": "#4d3b19",
+        "muted": "#887451",
+        "bg": "#fffef6",
+        "panel": "#fefce8",
+        "border": "#fde047",
+        "quoteBg": "#fff9c8",
+        "quoteBorder": "#ca8a04",
+        "codeBg": "#fffbd1",
+        "link": "#a16207"
+      },
+      "variants": {
+        "h1": "banner",
+        "h2": "filled-label",
+        "blockquote": "accent-panel"
+      }
+    },
+    {
+      "id": "w019",
+      "name": "山茶",
+      "description": "天秀鹰文",
+      "palette": {
+        "primary": "#b91c1c",
+        "secondary": "#fee2e2",
+        "text": "#4c1d1d",
+        "muted": "#8b5e5e",
+        "bg": "#fffdfd",
+        "panel": "#fef2f2",
+        "border": "#fecaca",
+        "quoteBg": "#fef2f2",
+        "quoteBorder": "#b91c1c",
+        "codeBg": "#fff1f1",
+        "link": "#991b1b"
+      },
+      "variants": {
+        "h1": "ribbon",
+        "h2": "outline-band",
+        "blockquote": "accent-panel"
+      }
+    },
+    {
+      "id": "w020",
+      "name": "茉莉",
+      "description": "自定义主题",
+      "palette": {
+        "primary": "#0891b2",
+        "secondary": "#cffafe",
+        "text": "#164e63",
+        "muted": "#4b7b89",
+        "bg": "#fbfeff",
+        "panel": "#ecfeff",
+        "border": "#a5f3fc",
+        "quoteBg": "#ecfeff",
+        "quoteBorder": "#0891b2",
+        "codeBg": "#ecfeff",
+        "link": "#0e7490"
+      },
+      "variants": {
+        "h1": "center-title",
+        "h2": "section-line",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w021",
+      "name": "朱槿",
+      "description": "左侧胶囊二级标题",
+      "palette": {
+        "primary": "#dc2626",
+        "secondary": "#fee2e2",
+        "text": "#3f1d1d",
+        "muted": "#835b5b",
+        "bg": "#ffffff",
+        "panel": "#fef2f2",
+        "border": "#fecaca",
+        "quoteBg": "#fef2f2",
+        "quoteBorder": "#dc2626",
+        "codeBg": "#fff1f1",
+        "link": "#b91c1c"
+      },
+      "variants": {
+        "h1": "center-title",
+        "h2": "left-pill",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w022",
+      "name": "月见草",
+      "description": "柔和留白",
+      "palette": {
+        "primary": "#3d4f5c",
+        "secondary": "#eef2f4",
+        "text": "#334155",
+        "muted": "#64748b",
+        "bg": "#ffffff",
+        "panel": "#f8fafc",
+        "border": "#e2e8f0",
+        "quoteBg": "#fff7ed",
+        "quoteBorder": "#ef7060",
+        "codeBg": "#f1f5f9",
+        "link": "#c2410c"
+      },
+      "variants": {
+        "h1": "plain-large",
+        "h2": "numbered-section",
+        "blockquote": "soft-panel"
+      }
+    },
+    {
+      "id": "w023",
+      "name": "樱花",
+      "description": "轻盈明快",
+      "palette": {
+        "primary": "#db2777",
+        "secondary": "#fce7f3",
+        "text": "#4a2236",
+        "muted": "#8d6377",
+        "bg": "#fffdfd",
+        "panel": "#fdf2f8",
+        "border": "#fbcfe8",
+        "quoteBg": "#fdf2f8",
+        "quoteBorder": "#db2777",
+        "codeBg": "#fdf2f8",
+        "link": "#be185d"
+      },
+      "variants": {
+        "h1": "ribbon",
+        "h2": "pill",
+        "blockquote": "soft-panel"
+      }
+    }
+  ]
+}

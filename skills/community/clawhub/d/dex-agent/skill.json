@@ -1,0 +1,20 @@
+{
+  "name": "dex-agent",
+  "displayName": "DEX Agent",
+  "version": "1.1.0",
+  "summary": "Direct DeFi trading on Base chain via Uniswap V3. Zero middleman fees. Self-custodial. Stop-loss, take-profit, price feeds, swap quotes. Bankr alternative for OpenClaw agents.",
+  "description": "DEX Agent provides direct DEX swap execution on Base chain. Unlike custodial services like Bankr (0.65% fee), DEX Agent executes swaps directly through Uniswap V3 smart contracts with zero platform fees \u2014 just gas costs. Includes self-custodial wallet management, real-time price feeds, stop-loss and take-profit orders, multi-RPC failover, slippage protection, and configurable risk management (daily trade limits, position caps, drawdown protection).",
+  "author": "avmw2025",
+  "tags": [
+    "defi",
+    "trading",
+    "base",
+    "uniswap",
+    "crypto",
+    "swap",
+    "bot",
+    "automated",
+    "free"
+  ],
+  "license": "MIT"
+}

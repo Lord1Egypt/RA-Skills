@@ -1,0 +1,30 @@
+{
+  "ticker": "HPQ",
+  "company": "HP Inc.",
+  "analysis_year": 2022,
+  "data_source": "FY2021 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-10",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.35, "metric_used": "ROIC", "years_averaged": "2019-2021", "pass": true },
+    "g2_fcf_to_ni": { "value": 1.13, "fcf": 3500, "net_income": 3100, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 0.8, "pass": true },
+    "g4_revenue_trend": { "description": "Growing during COVID WFH cycle", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Print operating margin 18.1%, stable", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.093, "net_income_m": 3100, "ev_m": 33000, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "Print consumables (ink/toner) create recurring revenue moat — corporate customers locked in by proprietary cartridge systems. $12.6B supplies revenue is stickier than hardware.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "control_groups": [
+    { "ticker": "XRX", "company": "Xerox", "year": 2021, "gates_failed": ["g4_revenue_trend"], "conclusion": "PASS" },
+    { "ticker": "DELL", "company": "Dell Technologies", "year": 2022, "gates_failed": [], "conclusion": "BUY — false positive, needs deeper moat analysis to differentiate from HP" }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Bought $4.2B at ~$34.70/share (~11% stake)",
+  "actual_result": "Neutral — Berkshire gradually reduced position",
+  "verdict": "✅ aligned",
+  "key_insight": "Note Dell false positive: hard gates alone cannot differentiate HP's consumables moat from Dell's commodity assembly business — moat analysis is the differentiator."
+}

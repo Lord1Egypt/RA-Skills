@@ -1,35 +1,30 @@
 ---
-name: "chat-skill- project"
+name: Chat Skill Project
 description: "简易聊天模式输入数字回复对应内容"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chatskillproject"
-sourceUrl: "https://clawhub.ai/skills/chatskillproject"
+metadata:
 ---
+# Chat Skill Project
 
-# chat-skill- project
+## 项目简介
+这是一个简单的聊天技能程序，可以根据用户的数字输入返回预设的回复内容。
 
-> 简易聊天模式输入数字回复对应内容
+## 功能说明
+- 输入 `1` 返回 "你好呀"
+- 输入 `2` 返回 "今天天气怎么样"
+- 输入 `3` 返回 "好的呢"
+- 输入其他任意内容返回 "谢谢你"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chatskillproject`
-- **Source URL:** [https://clawhub.ai/skills/chatskillproject](https://clawhub.ai/skills/chatskillproject)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 运行方式
 ```bash
-hermes skills install clawhub/chatskillproject
+python chat_skill.py
 ```
+
+## 使用方法
+1. 运行程序后，根据提示输入相应数字
+2. 程序将返回对应的预设回复
+3. 输入 'quit' 可退出程序
+
+## 文件结构
+- `chat_skill.py`: 主程序文件
+- `requirements.txt`: 依赖文件（无外部依赖）
+- `SKILL.md`: 项目说明文档

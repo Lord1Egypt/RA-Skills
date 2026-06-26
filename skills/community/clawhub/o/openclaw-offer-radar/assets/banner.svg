@@ -1,0 +1,43 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenClaw Offer Radar">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1320"/>
+      <stop offset="100%" stop-color="#15314d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#64e4ff"/>
+      <stop offset="100%" stop-color="#87ef9f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" rx="32" fill="url(#bg)"/>
+  <circle cx="1020" cy="118" r="170" fill="#1b4668" opacity="0.20"/>
+  <circle cx="180" cy="540" r="210" fill="#1c5a67" opacity="0.16"/>
+
+  <g transform="translate(88 104)">
+    <rect x="0" y="0" width="218" height="42" rx="21" fill="#13283f" stroke="#64e4ff" stroke-width="1.5"/>
+    <text x="24" y="27" font-size="20" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" fill="#a9efff">OPENCLAW SKILL</text>
+
+    <text x="0" y="124" font-size="88" font-weight="700" font-family="'SF Pro Display', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif" fill="#f7fbff">Offer Radar</text>
+    <text x="2" y="182" font-size="28" font-family="'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" fill="#cfe4f7">把重要的招聘邮件，变成值得被提醒的事</text>
+
+    <g transform="translate(0 300)">
+      <rect x="0" y="0" width="140" height="52" rx="16" fill="#112338" stroke="#64e4ff" stroke-width="1.5"/>
+      <text x="34" y="33" font-size="23" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" fill="#eefcff">Gmail</text>
+
+      <rect x="162" y="0" width="176" height="52" rx="16" fill="#112338" stroke="#87ef9f" stroke-width="1.5"/>
+      <text x="192" y="33" font-size="23" font-family="'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" fill="#f5fff7">招聘事件</text>
+
+      <rect x="360" y="0" width="188" height="52" rx="16" fill="#112338" stroke="#64e4ff" stroke-width="1.5"/>
+      <text x="389" y="33" font-size="23" font-family="'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif" fill="#f7fbff">iPhone 提醒</text>
+    </g>
+  </g>
+
+  <g transform="translate(828 180)">
+    <rect x="0" y="0" width="308" height="188" rx="28" fill="#102338" stroke="#355e79" stroke-width="1.5"/>
+    <rect x="28" y="30" width="252" height="22" rx="11" fill="#173752"/>
+    <rect x="28" y="72" width="196" height="14" rx="7" fill="#2c5870"/>
+    <rect x="28" y="112" width="228" height="14" rx="7" fill="#244d68"/>
+    <rect x="28" y="150" width="160" height="14" rx="7" fill="url(#accent)"/>
+  </g>
+</svg>

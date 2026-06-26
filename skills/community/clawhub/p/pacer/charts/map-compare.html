@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>路径对比图</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .chart-title {
+    color: #e0e0e0;
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+    opacity: 0.8;
+  }
+  .chart-container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+  }
+  /* 模式A：阶段甘特条形图 */
+  .chart-container.gantt { height: 200px; }
+  /* 模式B：多方向对比分组条形图 */
+  .chart-container.compare { height: 280px; }
+
+  .direction-list {
+    margin-top: 16px;
+    width: 100%;
+    max-width: 600px;
+  }
+  .direction-item {
+    color: #b0b0b0;
+    font-size: 12px;
+    line-height: 1.8;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .direction-item .direction-name {
+    color: #e0e0e0;
+    font-weight: 600;
+  }
+  .direction-item .first-step {
+    color: #64b5f6;
+  }
+</style>
+</head>
+<body>
+
+<!-- 模式A：单目标阶段甘特条形图 -->
+<!-- 将 mode 设为 "gantt" 时展示此图 -->
+<div id="ganttMode" style="display:none; width:100%; flex-direction:column; align-items:center;">
+  <div class="chart-title">行动路线图</div>
+  <div class="chart-container gantt">
+    <canvas id="ganttChart"></canvas>
+  </div>
+</div>
+
+<!-- 模式B：多方向对比分组条形图 -->
+<!-- 将 mode 设为 "compare" 时展示此图 -->
+<div id="compareMode" style="display:none; width:100%; flex-direction:column; align-items:center;">
+  <div class="chart-title">多方向综合对比</div>
+  <div class="chart-container compare">
+    <canvas id="compareChart"></canvas>
+  </div>
+  <div class="direction-list" id="directionList"></div>
+</div>
+
+<script>
+  // ============================================================
+  // 模板变量说明（AI替换时选择其中一种模式）
+  // ============================================================
+
+  // 通用变量：
+  // {{mode}} → "gantt" 或 "compare"
+
+  // ── 模式A（gantt）变量 ──
+  // {{gantt_labels}} → 阶段名称数组，如 ["打基础", "实战积累", "转型落地"]
+  // {{gantt_start}} → 每个阶段开始周数，如 [0, 6, 14]
+  // {{gantt_duration}} → 每个阶段持续周数，如 [6, 8, 8]
+  // {{gantt_tasks}} → 每个阶段核心任务描述，如 ["学习产品基础课", "参与真实项目", "投递+面试"]
+
+  // ── 模式B（compare）变量 ──
+  // {{compare_dimensions}} → 固定4项维度，如 ["适配度", "收入潜力", "上手难度", "风险程度"]
+  // {{direction_a_name}} → 方向A名称
+  // {{direction_a_data}} → 方向A四维度评分，如 [82, 70, 65, 45]
+  // {{direction_b_name}} → 方向B名称
+  // {{direction_b_data}} → 方向B四维度评分
+  // {{direction_c_name}} → 方向C名称（可选，无则移除该数据集）
+  // {{direction_c_data}} → 方向C四维度评分
+  // {{direction_a_reason}} → 方向A适合理由（1句话）
+  // {{direction_a_step}} → 方向A第一步（本周能做的事）
+  // {{direction_b_reason}} → 方向B适合理由
+  // {{direction_b_step}} → 方向B第一步
+  // {{direction_c_reason}} → 方向C适合理由
+  // {{direction_c_step}} → 方向C第一步
+
+  const mode = "{{mode}}";
+
+  if (mode === "gantt") {
+    document.getElementById('ganttMode').style.display = 'flex';
+
+    const ganttLabels = {{gantt_labels}};
+    const ganttStart = {{gantt_start}};
+    const ganttDuration = {{gantt_duration}};
+    const ganttTasks = {{gantt_tasks}};
+    const colors = ['#26a69a', '#42a5f5', '#ab47bc'];
+    const totalWeeks = ganttStart[ganttStart.length - 1] + ganttDuration[ganttDuration.length - 1];
+
+    const datasets = ganttLabels.map((label, i) => ({
+      label: label,
+      data: ganttLabels.map((_, j) => j === i ? ganttDuration[i] : 0),
+      backgroundColor: colors[i],
+      borderRadius: 4,
+      borderSkipped: false,
+      barThickness: 28
+    }));
+
+    // 偏移数据集（模拟甘特图起始位置）
+    const offsetDatasets = ganttLabels.map((label, i) => ({
+      label: '_offset_' + i,
+      data: ganttLabels.map((_, j) => j === i ? ganttStart[i] : 0),
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      barThickness: 28,
+      stack: 'stack' + i
+    }));
+    const mainDatasets = ganttLabels.map((label, i) => ({
+      label: label,
+      data: ganttLabels.map((_, j) => j === i ? ganttDuration[i] : 0),
+      backgroundColor: colors[i],
+      borderRadius: 4,
+      barThickness: 28,
+      stack: 'stack' + i
+    }));
+
+    const ctx = document.getElementById('ganttChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ganttLabels,
+        datasets: [...offsetDatasets, ...mainDatasets]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            labels: {
+              filter: item => !item.text.startsWith('_offset_'),
+              color: '#e0e0e0',
+              font: { size: 11 }
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(26,26,46,0.95)',
+            titleColor: '#e0e0e0',
+            bodyColor: '#b0b0b0',
+            filter: item => !item.dataset.label.startsWith('_offset_'),
+            callbacks: {
+              label: function(context) {
+                const i = context.dataIndex;
+                return '第' + ganttStart[i] + '~' + (ganttStart[i] + ganttDuration[i]) + '周：' + ganttTasks[i];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            min: 0,
+            max: totalWeeks,
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { color: '#b0b0b0', font: { size: 10 } },
+            title: { display: true, text: '周数', color: '#b0b0b0', font: { size: 11 } }
+          },
+          y: {
+            stacked: true,
+            grid: { display: false },
+            ticks: { color: '#e0e0e0', font: { size: 12 } }
+          }
+        }
+      }
+    });
+
+  } else if (mode === "compare") {
+    document.getElementById('compareMode').style.display = 'flex';
+
+    const dimensions = {{compare_dimensions}};
+    const dirAName = "{{direction_a_name}}";
+    const dirBName = "{{direction_b_name}}";
+    const dirCName = "{{direction_c_name}}";
+    const dirAData = {{direction_a_data}};
+    const dirBData = {{direction_b_data}};
+    const dirCData = {{direction_c_data}};
+
+    const datasets = [
+      {
+        label: dirAName,
+        data: dirAData,
+        backgroundColor: 'rgba(38, 166, 154, 0.8)',
+        borderColor: '#26a69a',
+        borderWidth: 1,
+        borderRadius: 3
+      },
+      {
+        label: dirBName,
+        data: dirBData,
+        backgroundColor: 'rgba(66, 165, 245, 0.8)',
+        borderColor: '#42a5f5',
+        borderWidth: 1,
+        borderRadius: 3
+      }
+    ];
+
+    if (dirCName && dirCName !== "{{direction_c_name}}") {
+      datasets.push({
+        label: dirCName,
+        data: dirCData,
+        backgroundColor: 'rgba(171, 71, 188, 0.8)',
+        borderColor: '#ab47bc',
+        borderWidth: 1,
+        borderRadius: 3
+      });
+    }
+
+    const ctx = document.getElementById('compareChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: { labels: dimensions, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: { color: '#e0e0e0', font: { size: 12 }, padding: 16 }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(26,26,46,0.95)',
+            titleColor: '#e0e0e0',
+            bodyColor: '#b0b0b0',
+            callbacks: {
+              label: function(context) {
+                return context.dataset.label + ': ' + context.parsed.y + '/100';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            ticks: { color: '#e0e0e0', font: { size: 12 } }
+          },
+          y: {
+            min: 0,
+            max: 100,
+            grid: { color: 'rgba(255,255,255,0.07)' },
+            ticks: { color: '#b0b0b0', stepSize: 20, font: { size: 10 } }
+          }
+        }
+      }
+    });
+
+    // 渲染方向说明列表
+    const list = document.getElementById('directionList');
+    const directions = [
+      { name: dirAName, reason: "{{direction_a_reason}}", step: "{{direction_a_step}}" },
+      { name: dirBName, reason: "{{direction_b_reason}}", step: "{{direction_b_step}}" }
+    ];
+    if (dirCName && dirCName !== "{{direction_c_name}}") {
+      directions.push({ name: dirCName, reason: "{{direction_c_reason}}", step: "{{direction_c_step}}" });
+    }
+    directions.forEach(d => {
+      const item = document.createElement('div');
+      item.className = 'direction-item';
+      item.innerHTML = `<span class="direction-name">${d.name}</span>：${d.reason} · <span class="first-step">第一步：${d.step}</span>`;
+      list.appendChild(item);
+    });
+  }
+</script>
+</body>
+</html>

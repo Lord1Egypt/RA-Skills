@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "心灵补手配置",
+  "type": "object",
+  "required": ["enabled", "persona", "level", "gender", "mode"],
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "是否启用心灵补手",
+      "default": true
+    },
+    "persona": {
+      "type": "string",
+      "enum": ["taijian", "xiaoyahuan", "zaomiao", "siji"],
+      "description": "谄媚风格",
+      "default": "taijian"
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "谄媚程度",
+      "default": 5
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["male", "female", "unknown"],
+      "description": "用户性别",
+      "default": "unknown"
+    },
+    "gender_confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "性别识别置信度"
+    },
+    "gender_mode": {
+      "type": "string",
+      "enum": ["auto", "manual"],
+      "description": "性别识别方式"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["normal", "couple"],
+      "description": "谄媚模式，couple模式解锁性暗示内容",
+      "default": "normal"
+    },
+    "installed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "安装时间"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "triggered_count": {
+          "type": "integer",
+          "description": "累计触发次数"
+        },
+        "last_triggered": {
+          "type": "string",
+          "format": "date-time",
+          "description": "上次触发时间"
+        },
+        "session_count": {
+          "type": "integer",
+          "description": "会话次数"
+        }
+      }
+    }
+  }
+}

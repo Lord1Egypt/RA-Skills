@@ -1,35 +1,86 @@
 ---
-name: "award-winning-website"
-description: "Indexed by skills.sh from eng0ai/eng0-template-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "eng0ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/eng0ai/eng0-template-skills/award-winning-website"
-sourceUrl: "https://skills.sh/eng0ai/eng0-template-skills/award-winning-website"
+name: award-winning-website
+description: Gaming landing page with GSAP scroll animations, 3D effects, and video storytelling.
 ---
 
-# award-winning-website
+# Award-Winning Gaming Website
 
-> Indexed by skills.sh from eng0ai/eng0-template-skills
+A visually captivating website with scroll-triggered animations, geometric transitions, 3D hover effects, and video storytelling.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** eng0ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/eng0ai/eng0-template-skills/award-winning-website`
-- **Source URL:** [https://skills.sh/eng0ai/eng0-template-skills/award-winning-website](https://skills.sh/eng0ai/eng0-template-skills/award-winning-website)
+## Tech Stack
 
-## Overview
+- **Framework**: React 19
+- **Build Tool**: Vite
+- **Animation**: GSAP
+- **Styling**: Tailwind CSS
+- **Package Manager**: npm
+- **Output**: `dist` directory
+- **Dev Port**: 5173
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Clone the Template
+
 ```bash
-hermes skills install skills-sh/eng0ai/eng0-template-skills/award-winning-website
+git clone --depth 1 https://github.com/Eng0AI/award-winning-website-template.git .
 ```
+
+If the directory is not empty:
+
+```bash
+git clone --depth 1 https://github.com/Eng0AI/award-winning-website-template.git _temp_template
+mv _temp_template/* _temp_template/.* . 2>/dev/null || true
+rm -rf _temp_template
+```
+
+### 2. Remove Git History (Optional)
+
+```bash
+rm -rf .git
+git init
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+Creates a production build in the `dist/` directory.
+
+## Deploy
+
+> **CRITICAL**: For Vercel, you MUST use `vercel build --prod` then `vercel deploy --prebuilt --prod`. Never use `vercel --prod` directly.
+
+### Vercel (Recommended)
+
+```bash
+vercel pull --yes -t $VERCEL_TOKEN
+vercel build --prod -t $VERCEL_TOKEN
+vercel deploy --prebuilt --prod --yes -t $VERCEL_TOKEN
+```
+
+### Netlify
+
+```bash
+netlify deploy --prod --dir=dist
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+Opens at http://localhost:5173
+
+## Notes
+
+- Static React site with no backend - no environment variables needed
+- Never run `npm run dev` in VM environment

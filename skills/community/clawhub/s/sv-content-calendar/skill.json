@@ -1,0 +1,27 @@
+{
+  "slug": "sv-content-calendar",
+  "name": "Short Video Content Calendar Planner",
+  "description": "Helps creators plan and structure posting schedules, content themes, and production timelines for short video series.",
+  "type": "descriptive",
+  "requires_api": false,
+  "readiness": "stable",
+  "tags": [
+    "video",
+    "planning",
+    "calendar",
+    "scheduling",
+    "strategy",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "content calendar",
+    "posting schedule",
+    "video planning",
+    "content timeline",
+    "content mix",
+    "video cadence"
+  ],
+  "max_files": 4,
+  "language": "en",
+  "safety": "document-only informational guidance"
+}

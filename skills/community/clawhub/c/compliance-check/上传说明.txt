@@ -1,0 +1,10 @@
+ClawHub 上傳用 · 本夾僅含對外必要檔案
+
+表單填寫：
+- 技能名称（蛞蝓）：compliance-check
+- 显示名称：违规词·发帖前合规检查
+- 版本：1.3.0
+- 标签：latest
+- 更新日志：多词库合规检查，支持中英、广告法、平台违禁等；开箱即用。
+
+本夾已剔除內部文檔，僅含：SKILL.md、README.md、clawhub.json、scripts/、config/。

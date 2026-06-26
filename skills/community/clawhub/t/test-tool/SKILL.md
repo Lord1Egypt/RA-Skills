@@ -1,35 +1,28 @@
 ---
-name: "Test Tool"
-description: "Evaluate conditional expressions for file testing, string comparison, and arithmetic checks. Use for shell script conditionals."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-tool"
-sourceUrl: "https://clawhub.ai/skills/test-tool"
+name: test-tool
+description: Evaluate conditional expressions for file testing, string comparison, and arithmetic checks. Use for shell script conditionals.
 ---
+# Test - Condition Evaluator
 
-# Test Tool
+Evaluate expressions and return exit status 0 (true) or 1 (false). Used for file attribute testing, string comparison, and numeric checks in scripts.
 
-> Evaluate conditional expressions for file testing, string comparison, and arithmetic checks. Use for shell script conditionals.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-tool`
-- **Source URL:** [https://clawhub.ai/skills/test-tool](https://clawhub.ai/skills/test-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/test-tool
+test-tool <expression>
+```
+
+## Common Tests
+
+- `-f file`: True if file exists
+- `-d dir`: True if directory exists
+- `-z str`: True if string is empty
+- `n1 -eq n2`: True if numbers equal
+- `s1 = s2`: True if strings equal
+
+## Examples
+
+```bash
+test-tool -f /etc/passwd
+test-tool -d /home/user
+test-tool 5 -gt 3
 ```

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evolution-task",
+  "title": "Evolution Task",
+  "type": "object",
+  "required": ["task_id", "status", "goal", "created_at", "current_iteration", "max_iterations"],
+  "properties": {
+    "task_id": { "type": "string", "pattern": "^task-\\d{3,}$" },
+    "status": { "type": "string", "enum": ["pending", "reviewing", "reviewed", "executing", "completed", "packaged"] },
+    "goal": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "current_iteration": { "type": "integer", "minimum": 0 },
+    "max_iterations": { "type": "integer", "minimum": 1, "default": 10 },
+    "assigned_to": { "type": "string", "enum": ["wilson", "iron", "shadow", "oracle", "warden"] }
+  }
+}

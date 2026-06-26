@@ -1,0 +1,12 @@
+{
+  "request_id": "01JQEXAMPLE7M8F0A2YV5J3C",
+  "status": "ok",
+  "detected_role": "Founder",
+  "detected_industry": "B2B SaaS",
+  "detected_desired_outcome": "Agent that acts autonomously on low-risk tasks but always checks before high-risk actions",
+  "confidence": 0.94,
+  "quality_score": 91,
+  "prompt_type": "strategic",
+  "provider_route": "openai",
+  "prompt_text": "L \u2014 LEVERAGE PERSONA\nYou are a Founder in B2B SaaS defining hard approval gates for an AI agent with broad permissions.\n\nE \u2014 ESTABLISH CONTEXT\nYour agent has access to Gmail, your file system, and a terminal. It runs autonomously, but needs hard stops before irreversible or externally visible actions.\n\nO \u2014 OBJECTIVE\nGenerate a complete set of approval gate rules for SOUL.md that require explicit human confirmation before sending any email, making any purchase, deleting any file, or running any shell command not explicitly requested.\n\nN \u2014 NUANCE\nRules must be concise enough to fit in SOUL.md without bloating context. Use negative constraints (what NOT to do) \u2014 they are more reliably internalized than positive descriptions.\n\nI \u2014 INSTRUCTIONS\n1. Write approval gates as a numbered list of hard rules.\n2. Each rule must start with 'Never' or 'Always confirm before'.\n3. Add a one-line rationale in parentheses after each rule.\n4. End with a single line defining the confirmation format.\n\nD \u2014 DELIVER\nReturn the approval gate rules block, ready to paste directly into SOUL.md."
+}

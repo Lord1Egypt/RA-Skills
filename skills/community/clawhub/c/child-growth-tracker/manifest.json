@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "type": "skill",
+  "name": "child-growth-tracker",
+  "displayName": "儿童成长跟踪与评估",
+  "version": "2.1.0",
+  "author": "duzhilei951",
+  "description": "基于8维发展模型（D0关系、D1运动、D2学业、D3认知、D4社交、D5习惯、D6动机、D7兴趣）的儿童成长跟踪与评估技能V2心理学对齐版，核心关注内在动机和关系安全感，支持月度速记、季度评估、趋势分析",
+  "tags": ["child-growth", "tracking", "assessment", "喜悦", "心理学对齐", "内在动机", "8维模型"],
+  "category": "personal",
+  "installedFrom": "clawhub",
+  "hasPackage": true
+}

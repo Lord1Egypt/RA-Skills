@@ -1,0 +1,54 @@
+name: tokenguard-pro
+version: 1.0.0
+description: Token cost optimizer for OpenClaw agents - cut AI costs by 50-95%
+price: 49
+category: productivity
+author: App Incubator
+homepage: https://github.com/appincubator/tokenguard-pro
+
+emoji: 🛡️
+
+requires:
+  bins:
+    - bash
+    - jq
+    - bc
+  
+install:
+  - type: symlink
+    source: tokenguard-analyze
+    target: /usr/local/bin/tokenguard-analyze
+
+files:
+  - SKILL.md
+  - README.md
+  - tokenguard-analyze
+
+entrypoints:
+  - name: tokenguard-analyze
+    description: Analyze token usage and generate optimization report
+    examples:
+      - tokenguard-analyze
+      - tokenguard-analyze --days 7
+      - tokenguard-analyze --focus caching
+      - tokenguard-analyze --json --output report.json
+
+target_users:
+  - OpenClaw users spending $100-3600/month on AI APIs
+  - Teams running multiple agents in production
+  - Users noticing steadily increasing API bills
+
+features:
+  - Scan session logs for token consumption patterns
+  - Identify context bloat and oversized messages
+  - Detect model mismatch (expensive models for simple tasks)
+  - Find repeated queries without caching
+  - Analyze inefficient tool call chains
+  - Generate detailed cost-reduction reports
+  - Project monthly savings from optimizations
+
+limitations:
+  - Historical analysis only (not real-time monitoring)
+  - Cost estimates based on standard pricing tiers
+  - Cannot automatically apply fixes
+  - Requires readable OpenClaw session logs

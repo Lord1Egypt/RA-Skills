@@ -1,0 +1,47 @@
+{
+  "skill_name": "tipkit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "configuration-testing-review",
+      "prompt": "Review this TipKit setup for an iOS app: `Tips.configure()` is called in `ContentView.task`, UI tests call `Tips.resetDatastore()` after launch, the app ships `Tips.showAllTipsForTesting()` behind a custom runtime flag, and every tip uses `.displayFrequency(.immediate)` so onboarding is visible on first launch. Correct the plan with minimal Swift examples.",
+      "expected_output": "A correction-focused review that moves configuration to app initialization, resets before configure only in debug/test contexts, keeps testing overrides out of production, and recommends reasonable display frequency/rules instead of showing every tip immediately.",
+      "files": [],
+      "expectations": [
+        "States that `Tips.configure(_:)` should run once during app initialization before tips display, not from a view task or onAppear.",
+        "States that `Tips.resetDatastore()` must run before `Tips.configure(_:)` and only for debug, preview, or UI-test setup.",
+        "Keeps `showAllTipsForTesting()` and related overrides out of production builds.",
+        "Mentions built-in TipKit launch arguments or debug-gated custom launch arguments for UI tests.",
+        "Recommends rules and display frequency to avoid overwhelming first-launch users."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "tipgroup-cloudkit-availability",
+      "prompt": "We support iOS 17 and want a three-step TipKit coach-mark sequence that syncs dismissed tips across devices. The plan uses `TipGroup(.ordered)`, `.cloudKitContainer(.automatic)`, `MaxDisplayDuration(300)`, and says all of this is fine because TipKit is iOS 17+. Review the availability and setup risks.",
+      "expected_output": "A source-grounded review that separates iOS 17 core TipKit from iOS 18+ TipGroup, CloudKit sync, and MaxDisplayDuration, and gives appropriate fallback or gating guidance.",
+      "files": [],
+      "expectations": [
+        "Marks `TipGroup`, `.cloudKitContainer(...)`, and `MaxDisplayDuration` as iOS 18+ rather than iOS 17 core APIs.",
+        "Suggests iOS 17 fallback sequencing with parameters/events or availability gates.",
+        "Explains that `.ordered` waits for previous tips to be invalidated and that `TipGroup` defaults to `firstAvailable`.",
+        "Mentions CloudKit sync setup requirements: iCloud + CloudKit, Remote notifications, and an intentional container choice.",
+        "Recommends a dedicated `.tips` CloudKit container when syncing tip state."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "custom-style-reusable-id-review",
+      "prompt": "Review this TipKit custom UI plan: a reusable `NewItemTip` does not override `id`; a custom `TipViewStyle` reads properties from a concrete `NewItemTip` instance and renders `Button(action: action.handler) { action.label }`; event donations store a large model object; and the user action never invalidates the tip. What should change?",
+      "expected_output": "A review that corrects reusable tip identity, custom style configuration usage, action label invocation, event payload size, and invalidation behavior without drifting into unrelated SwiftUI layout guidance.",
+      "files": [],
+      "expectations": [
+        "Says reusable tips should override `id` with a stable content-derived identifier.",
+        "Uses `TipViewStyle.Configuration` values instead of reading directly from a concrete tip instance.",
+        "Calls `action.label()` and `action.handler` correctly inside custom style buttons.",
+        "Keeps `Event<DonationInfo>` payloads small and Codable/Sendable rather than storing large model objects.",
+        "Invalidates the tip when the user performs the discovered action."
+      ]
+    }
+  ]
+}

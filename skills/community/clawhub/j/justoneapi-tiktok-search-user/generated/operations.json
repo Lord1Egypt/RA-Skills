@@ -1,0 +1,70 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/tiktok/search-user/v1 for TikTok User Search through JustOneAPI with keyword.",
+  "displayName": "TikTok User Search",
+  "endpointPath": "search-user",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get TikTok user Search data, including basic profile information such as user ID, nickname, and unique handle, for discovering influencers in specific niches via keywords and identifying target audiences and conducting competitor research.",
+      "method": "GET",
+      "operationId": "searchUserV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Security token for API access.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keywords (e.g., 'deepseek').",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "0",
+          "description": "Pagination cursor. Start with '0'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "The 'logid' returned from the previous request for consistent search results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "searchId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/tiktok/search-user/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Search",
+      "tags": [
+        "TikTok"
+      ]
+    }
+  ],
+  "platformKey": "tiktok",
+  "primaryTag": "TikTok",
+  "skillName": "justoneapi_tiktok_search_user",
+  "skillType": "interface",
+  "slug": "justoneapi-tiktok-search-user",
+  "sourceTitle": "OpenAPI definition"
+}

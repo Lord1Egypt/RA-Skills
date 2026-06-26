@@ -1,0 +1,16 @@
+{
+  "name": "docx-tools",
+  "version": "1.0.0",
+  "description": "Python-based Word document (.docx) processing tools for OpenClaw",
+  "author": "SuperMike",
+  "license": "MIT",
+  "tools": [
+    "read_docx",
+    "write_docx", 
+    "docx_to_md",
+    "md_to_docx"
+  ],
+  "dependencies": {
+    "python": ["python-docx", "markdown"]
+  }
+}

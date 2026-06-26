@@ -1,0 +1,73 @@
+{
+  "remotive": {
+    "enabled": true,
+    "type": "api",
+    "base_url": "https://remotive.com/api/remote-jobs",
+    "category_map": {
+      "ai-ml": "ai-ml",
+      "qa-automation": "qa",
+      "software-dev": "software-development",
+      "devops": "devops"
+    }
+  },
+  "remoteok": {
+    "enabled": true,
+    "type": "api",
+    "base_url": "https://remoteok.com/api",
+    "filter_mode": "client-side-phrases"
+  },
+  "jobicy": {
+    "enabled": true,
+    "type": "api",
+    "base_url": "https://jobicy.com/api/v2/remote-jobs",
+    "tag_map": {
+      "ai-ml": [
+        "machine-learning",
+        "ai"
+      ],
+      "qa-automation": [
+        "qa",
+        "automation",
+        "testing"
+      ],
+      "software-dev": [
+        "javascript",
+        "python",
+        "backend"
+      ],
+      "devops": [
+        "devops",
+        "kubernetes",
+        "cloud"
+      ]
+    }
+  },
+  "weworkremotely": {
+    "enabled": true,
+    "type": "rss",
+    "feeds": {
+      "ai-ml": [
+        "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+        "https://weworkremotely.com/categories/remote-devops-sysadmin-jobs.rss"
+      ],
+      "qa-automation": [
+        "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+        "https://weworkremotely.com/remote-jobs.rss"
+      ],
+      "software-dev": [
+        "https://weworkremotely.com/categories/remote-programming-jobs.rss"
+      ],
+      "devops": [
+        "https://weworkremotely.com/categories/remote-devops-sysadmin-jobs.rss"
+      ]
+    },
+    "filter_mode": "client-side-phrases"
+  },
+  "himalayas": {
+    "enabled": true,
+    "type": "api",
+    "base_url": "https://himalayas.app/jobs/api",
+    "note": "API ignores q param \u2014 client-side title filtering only",
+    "filter_mode": "client-side-title"
+  }
+}

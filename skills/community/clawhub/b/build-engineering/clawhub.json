@@ -1,0 +1,12 @@
+{
+  "name": "Build Engineering (构建与工程化)",
+  "tagline": "优化构建速度、搭建 Monorepo、配置模块联邦、提速 CI/CD",
+  "description": "解决构建慢、包体积大、多包协作混乱、CI 不稳定等工程问题。覆盖 Vite/Webpack 性能优化、pnpm workspace + Turborepo Monorepo 搭建、模块联邦（Module Federation）配置、GitHub Actions CI 缓存与并行化、OpenAPI 代码生成、plop 脚手架等场景。",
+  "category": "development",
+  "tags": ["frontend", "build", "vite", "webpack", "monorepo", "turborepo", "ci-cd", "module-federation", "工程化"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

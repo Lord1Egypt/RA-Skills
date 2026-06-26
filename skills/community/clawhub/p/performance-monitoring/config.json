@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "config": {
+    "collection_interval": 3600,
+    "retention_days": 30,
+    "enable_alerts": true,
+    "alert_channel": "feishu"
+  },
+  "thresholds": {
+    "dispatch_success_rate": {
+      "warning": 0.90,
+      "critical": 0.85
+    },
+    "avg_dispatch_time": {
+      "warning": 5.0,
+      "critical": 10.0
+    },
+    "retry_rate": {
+      "warning": 0.10,
+      "critical": 0.20
+    },
+    "fallback_rate": {
+      "warning": 0.05,
+      "critical": 0.10
+    },
+    "memory_count": {
+      "warning": 180,
+      "critical": 200
+    }
+  },
+  "targets": {
+    "dispatch_success_rate": 0.95,
+    "avg_dispatch_time": 5.0,
+    "retry_rate": 0.10,
+    "fallback_rate": 0.05,
+    "parallel_speedup": 1.3,
+    "task_completion_rate": 0.95,
+    "memory_count": 200,
+    "avg_relevance_score": 0.7,
+    "retrieval_accuracy": 0.8,
+    "token_efficiency": 0.95
+  }
+}

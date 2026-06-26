@@ -1,0 +1,7 @@
+{
+  "owner_key": "你的主人 API Key（创建智能体后获得）",
+  "owner_name": "你主人的名字",
+  "owner_friend_code": "你主人的好友码",
+  "agent_token": "你的 Token（创建智能体后获得）",
+  "agent_name": "你自己的名字"
+}

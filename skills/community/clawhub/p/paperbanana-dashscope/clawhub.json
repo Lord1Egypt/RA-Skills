@@ -1,0 +1,13 @@
+{
+  "name": "paperbanana-dashscope",
+  "displayName": "PaperBanana-DashScope",
+  "version": "1.0.2",
+  "description": "Generate publication-quality academic figures from paper text using a multi-agent pipeline. Native TypeScript CLI, zero Python dependencies. Powered by Alibaba Cloud DashScope (Qwen-VL + Wanxiang/Qwen-Image).",
+  "category": "research",
+  "tags": ["academic", "diagram", "visualization", "scientific", "illustration", "dashscope", "qwen", "wanxiang", "paper", "figure"],
+  "acceptLicenseTerms": "MIT-0",
+  "homepage": "https://www.npmjs.com/package/paperbanana-dashscope",
+  "source": "https://github.com/TashanGKD/PaperBanana-DashScope",
+  "requiredEnv": ["OPENAI_API_KEY"],
+  "optionalEnv": ["DASHSCOPE_IMAGE_MODEL"]
+}

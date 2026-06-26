@@ -1,0 +1,10 @@
+{
+  "name": "网络热点汇总",
+  "tagline": "获取当前网络热点并总结 10 条摘要",
+  "description": "从微博、知乎、百度等平台获取实时热搜/热榜，筛选去重后输出 10 条热点，每条包含标题与一句话摘要。适用于需要今日热点简报、多平台热搜汇总的场景。",
+  "category": "productivity",
+  "tags": ["热点", "热搜", "热榜", "简报", "微博", "知乎", "百度"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/akang943578/my-skills"
+}

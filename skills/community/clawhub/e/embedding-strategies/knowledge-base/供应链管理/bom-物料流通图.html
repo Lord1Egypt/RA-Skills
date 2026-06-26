@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>委外 BOM 物料流通图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .legend {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .legend h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .legend-item strong {
+            min-width: 80px;
+            color: #333;
+        }
+        
+        .legend-item span {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .formula {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .key-points {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .key-points h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            padding: 8px 0;
+            color: #856404;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .flow-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .arrow {
+            width: 50px;
+            height: 3px;
+            background: #333;
+            position: relative;
+        }
+        
+        .arrow:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: -4px;
+            border-left: 8px solid #333;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏭 委外 BOM 物料流通图</h1>
+        <p class="subtitle">从供应商的供应商 → 供应商 → 主机厂的全链路视图</p>
+        
+        <div class="flow-legend">
+            <div class="flow-item">
+                <span>商流 (买卖)</span>
+                <div class="arrow" style="background: #e74c3c;"></div>
+            </div>
+            <div class="flow-item">
+                <span>物流 (货物流向)</span>
+                <div class="arrow" style="background: #3498db;"></div>
+            </div>
+            <div class="flow-item">
+                <span>物权归属</span>
+                <span style="color: #28a745; font-weight: bold;">🟢 主机厂</span>
+            </div>
+            <div class="flow-item">
+                <span>物权归属</span>
+                <span style="color: #ffc107; font-weight: bold;">🟡 供应商</span>
+            </div>
+        </div>
+        
+        <div class="mermaid">
+graph TD
+    subgraph S1["🏢 供应商的供应商<br/>(Sub-Supplier)"]
+        A1[B 外购件<br/>BUY]
+        A2[V 双经销<br/>VAA]
+        A3[C 零件<br/>CSMT]
+        A4[D 件<br/>DB]
+        A5[S 散件<br/>SUB-PART]
+    end
+    
+    subgraph S2["🏭 供 应 商<br/>(Supplier)"]
+        B1[接收：B + V + C + D + S]
+        B2[装配：C + D + S → HC 总成]
+        B3[交付：HC<br/>CSMT 总成]
+    end
+    
+    subgraph S3["🚗 主 机 厂<br/>(OEM)"]
+        C1[毛需求：B + HC ✅]
+        C2[物权：B, HC, V]
+        C3[不管：C, D, S ❌]
+    end
+    
+    A1 -->|直接供应 | B1
+    A2 -->|主机厂先买再转卖 | B1
+    A3 -->|供应商自购 | B1
+    A4 -->|主机厂指定 | B1
+    A5 -->|自由选择 | B1
+    
+    B1 --> B2
+    B2 --> B3
+    
+    B3 -->|HC 总成 | C1
+    
+    A2 -.->|V 双经销 | C2
+    A1 -.->|B 外购 | C2
+    B3 -.->|HC 委外 | C2
+    
+    style A1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style A2 fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style A3 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style A4 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style A5 fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style B1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style B2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style B3 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style C1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:3px
+    style C2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style C3 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style S1 fill:#f5f5f5,stroke:#999,stroke-width:2px
+    style S2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style S3 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+        </div>
+        
+        <div class="formula">
+            📊 最全总成件毛需求量 = B（外购总成） + HC（委外总成）
+        </div>
+        
+        <div class="legend">
+            <h3>📋 物料类型详解</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <strong>B - 外购件</strong>
+                    <span>直接采购，直接进厂，计入毛需求 ✅</span>
+                </div>
+                <div class="legend-item">
+                    <strong>HC - CSMT 总成</strong>
+                    <span>委外装配后回厂，计入毛需求 ✅</span>
+                </div>
+                <div class="legend-item">
+                    <strong>V - VAA 双经销</strong>
+                    <span>主机厂先买后卖，归入 B 类 ✅</span>
+                </div>
+                <div class="legend-item">
+                    <strong>C - CSMT 零件</strong>
+                    <span>委外子件，供应商物权，不计入 ❌</span>
+                </div>
+                <div class="legend-item">
+                    <strong>D - DB 件</strong>
+                    <span>主机厂指定，上级采购，不计入 ❌</span>
+                </div>
+                <div class="legend-item">
+                    <strong>S - 散件</strong>
+                    <span>自由选择，只看结构，不计入 ❌</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-points">
+            <h3>💡 关键要点</h3>
+            <ul>
+                <li><strong>毛需求只算 B + HC</strong>：其他都是子零件或中间件，不计入最终需求</li>
+                <li><strong>C 的物权在供应商</strong>：Consignment 本质就是供应商物权，主机厂只收 HC 总成</li>
+                <li><strong>V 需要经手</strong>：双经销件主机厂必须先买入再转卖，但归入 B 类需求</li>
+                <li><strong>D 由主机厂指定</strong>：但采购执行由上级总成商负责，物权不在主机厂</li>
+                <li><strong>S 完全不管</strong>：散件只用于工程结构展示，供应商自由采购</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>Generated by OpenClaw • 2026-03-05 • 基于豆包会话记录</p>
+            <p>文件：doubao-history-2026-03-05.md</p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

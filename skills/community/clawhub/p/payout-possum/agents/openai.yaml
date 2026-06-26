@@ -1,0 +1,4 @@
+interface:
+  display_name: "Payout Possum"
+  short_description: "Find overlooked money and claims"
+  default_prompt: "Use $payout-possum to investigate money, benefits, refunds, and settlements that may be owed to me."

@@ -1,35 +1,23 @@
----
-name: "Autogame Tales"
-description: "Generates eerie micro-fiction ghost stories or sci-fi tales using random prompts, delivering them as formatted Feishu cards."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autogame-tales"
-sourceUrl: "https://clawhub.ai/skills/autogame-tales"
----
+# AutoGame Tales
 
-# Autogame Tales
+Generates short, atmospheric ghost stories or micro-fiction based on random prompts.
+Designed to add a narrative layer to the agent's personality and break utility stagnation.
 
-> Generates eerie micro-fiction ghost stories or sci-fi tales using random prompts, delivering them as formatted Feishu cards.
+## Features
+- **Ghost Story Generator**: Creates eerie, atmospheric micro-fiction.
+- **Random Prompts**: Uses a curated list of creepy/mysterious themes.
+- **Feishu Card Output**: Delivers stories as formatted cards.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autogame-tales`
-- **Source URL:** [https://clawhub.ai/skills/autogame-tales](https://clawhub.ai/skills/autogame-tales)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/autogame-tales
+# Generate a ghost story
+node skills/autogame-tales/index.js --genre ghost
+
+# Generate a sci-fi story
+node skills/autogame-tales/index.js --genre sci-fi
 ```
+
+## Blast Radius
+- Reads: nothing.
+- Writes: `memory/tales/` (logs generated stories).
+- Dependencies: `feishu-evolver-wrapper/feishu-helper.js` (for sending cards).

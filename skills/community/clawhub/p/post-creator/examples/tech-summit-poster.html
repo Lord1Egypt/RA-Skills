@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI峰会</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: #222;
+      font-family: 'Noto Sans SC', sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px 100px;
+    }
+    
+    #poster {
+      width: 1080px;
+      height: 1620px;
+      background-color: #0a0a12;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 60px;
+      position: relative;
+    }
+    
+    .date-badge {
+      background: rgba(0,200,255,0.12);
+      border: 2px solid #00ccff;
+      color: #00ccff;
+      font-size: 26px;
+      font-weight: 700;
+      padding: 14px 44px;
+      border-radius: 50px;
+      letter-spacing: 4px;
+      margin-bottom: 60px;
+    }
+    
+    .main-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 180px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      text-align: center;
+      text-shadow: 0 0 100px rgba(0,150,255,0.4);
+      margin-bottom: 20px;
+    }
+    
+    .sub-title {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #00ccff, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 16px;
+      margin-bottom: 50px;
+    }
+    
+    .divider {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00ccff, transparent);
+      margin-bottom: 50px;
+    }
+    
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .info-icon { font-size: 44px; }
+    .info-text { font-size: 34px; color: #fff; font-weight: 700; }
+    
+    .stats {
+      display: flex;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    
+    .stat-item { text-align: center; }
+    
+    .stat-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      color: #00ccff;
+    }
+    
+    .stat-label {
+      font-size: 22px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    
+    .cta-btn {
+      background: linear-gradient(90deg, #0066ff, #00ccff);
+      color: #000;
+      font-size: 40px;
+      font-weight: 900;
+      padding: 32px 100px;
+      border-radius: 60px;
+      text-decoration: none;
+      letter-spacing: 8px;
+      box-shadow: 0 0 80px rgba(0,150,255,0.4);
+      margin-bottom: 40px;
+    }
+    
+    .footer {
+      margin-top: auto;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      color: rgba(0,200,255,0.6);
+      letter-spacing: 2px;
+    }
+    
+    .corner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+    }
+    .corner-tl { top: 40px; left: 40px; border-top: 3px solid rgba(0,200,255,0.3); border-left: 3px solid rgba(0,200,255,0.3); }
+    .corner-tr { top: 40px; right: 40px; border-top: 3px solid rgba(0,200,255,0.3); border-right: 3px solid rgba(0,200,255,0.3); }
+    .corner-bl { bottom: 40px; left: 40px; border-bottom: 3px solid rgba(0,200,255,0.3); border-left: 3px solid rgba(0,200,255,0.3); }
+    .corner-br { bottom: 40px; right: 40px; border-bottom: 3px solid rgba(0,200,255,0.3); border-right: 3px solid rgba(0,200,255,0.3); }
+    
+    /* Export Button */
+    .export-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+    
+    .export-btn {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Noto Sans SC', sans-serif;
+      box-shadow: 0 4px 20px rgba(16,185,129,0.4);
+      transition: all 0.2s;
+    }
+    
+    .export-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(16,185,129,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div id="poster">
+    <div class="date-badge">2026.06.15-16 · 北京</div>
+    
+    <h1 class="main-title">AI SUMMIT</h1>
+    <h2 class="sub-title">人工智能峰会</h2>
+    
+    <div class="divider"></div>
+    
+    <div class="info-section">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-text">北京国家会议中心</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🎤</span>
+        <span class="info-text">50+ 顶尖演讲嘉宾</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🎯</span>
+        <span class="info-text">大模型 · AI Agent · 多模态</span>
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-num">5K+</div>
+        <div class="stat-label">参会者</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">专题论坛</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2天</div>
+        <div class="stat-label">深度交流</div>
+      </div>
+    </div>
+    
+    <a href="#" class="cta-btn">立即报名</a>
+    
+    <div class="footer">aisummit2026.com</div>
+    
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+  </div>
+  
+  <!-- Export Bar -->
+  <div class="export-bar">
+    <button class="export-btn" onclick="exportImage()">📥 导出图片</button>
+  </div>
+  
+  <script>
+    function exportImage() {
+      const poster = document.getElementById('poster');
+      const exportBar = document.querySelector('.export-bar');
+      
+      exportBar.style.display = 'none';
+      
+      html2canvas(poster, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#0a0a12'
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'poster.jpg';
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
+        link.click();
+        exportBar.style.display = 'flex';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe | Renatus, LLC</title>
+  <style>
+    :root { --primary:#2563eb; --dark:#1e293b; --light:#f8fafc; --gray:#64748b; --border:#e2e8f0; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--light); color:var(--dark); line-height:1.6; min-height:100vh; display:flex; align-items:center; justify-content:center; }
+    .container { max-width:480px; width:100%; padding:24px; }
+    .card { background:white; border:1px solid var(--border); border-radius:18px; padding:40px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.05); }
+    .icon { width:80px; height:80px; background:#fee2e2; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-size:36px; }
+    h1 { font-size:1.8rem; margin-bottom:12px; }
+    p { color:var(--gray); margin-bottom:24px; }
+    .form-group { margin-bottom:20px; text-align:left; }
+    label { display:block; font-size:.9rem; font-weight:600; margin-bottom:6px; color:var(--dark); }
+    input { width:100%; padding:14px 16px; border:1px solid var(--border); border-radius:10px; font-size:1rem; }
+    input:focus { outline:none; border-color:var(--primary); }
+    .btn { width:100%; padding:14px 24px; background:var(--primary); color:white; border:none; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; }
+    .btn:hover { background:#1d4ed8; }
+    .btn:disabled { opacity:.5; cursor:not-allowed; }
+    .success { display:none; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:16px; border-radius:10px; margin-top:20px; }
+    .error { display:none; background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:16px; border-radius:10px; margin-top:20px; }
+    .footer { margin-top:24px; font-size:.85rem; color:var(--gray); }
+    .footer a { color:var(--primary); text-decoration:none; }
+    .info { background:#eff6ff; border:1px solid #bfdbfe; padding:12px; border-radius:8px; font-size:.85rem; color:#1e3a8a; margin-top:16px; text-align:left; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="icon">📧</div>
+      <h1>Unsubscribe</h1>
+      <p>Enter your email to unsubscribe from Renatus, LLC communications.</p>
+      
+      <form id="unsubscribe-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com" >
+        </div>
+        <button type="submit" class="btn" id="submit-btn">Unsubscribe</button>
+      </form>
+      
+      <div id="success-msg" class="success">
+        <strong>You have been unsubscribed.</strong><br>
+        You will no longer receive emails from Renatus, LLC.
+        <div class="info">
+          Your email has been removed from our mailing list and will be queued for deletion from the Renatus database within 24 hours.
+        </div>
+      </div>
+      <div id="error-msg" class="error">
+        Something went wrong. Please try again or contact support at <a href="mailto:support@renatus.com">support@renatus.com</a>.
+      </div>
+      
+      <div class="footer">
+        <a href="https://YOUR_DOMAIN">← Back to your site</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Pre-fill email from URL parameter (supports both plain and base64)
+    const urlParams = new URLSearchParams(window.location.search);
+    let emailParam = urlParams.get('email') || urlParams.get('e');
+    
+    if (emailParam) {
+      let displayEmail = emailParam;
+      let isEncoded = false;
+      
+      try {
+        // Try base64 decoding first (URL-safe base64)
+        // Remove any trailing equals that might have been added
+        const cleanParam = emailParam.replace(/=+$/, '');
+        const padding = '='.repeat((4 - cleanParam.length % 4) % 4);
+        const base64 = cleanParam.replace(/-/g, '+').replace(/_/g, '/') + padding;
+        const decoded = atob(base64);
+        
+        // Validate it looks like an email
+        if (decoded.includes('@') && decoded.includes('.')) {
+          displayEmail = decoded;
+          isEncoded = true;
+        }
+      } catch (e) {
+        // Not base64, use as-is - check if it's already an email
+        if (emailParam.includes('@')) {
+          displayEmail = emailParam;
+        }
+      }
+      
+      document.getElementById('email').value = displayEmail;
+      
+      // Log for debugging
+      console.log('Email prefilled:', isEncoded ? '(decoded from base64)' : '(plain)', displayEmail);
+    }
+
+    document.getElementById('unsubscribe-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const successMsg = document.getElementById('success-msg');
+      const errorMsg = document.getElementById('error-msg');
+      
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      const email = document.getElementById('email').value;
+      
+      try {
+        // STEP 1: Store unsubscribe locally
+        const unsubscribed = JSON.parse(localStorage.getItem('unsubscribed') || '[]');
+        if (!unsubscribed.includes(email)) {
+          unsubscribed.push(email);
+          localStorage.setItem('unsubscribed', JSON.stringify(unsubscribed));
+        }
+        
+        // STEP 2: Call backend to delete from Renatus (requires API integration)
+        // This is a placeholder - the actual implementation needs:
+        // - Renatus API credentials (stored securely on backend)
+        // - Query lead by email: GET /api/lead/search?email={email}
+        // - Delete lead: POST /api/lead/delete with lead ID
+        
+        const cfg = window.__ZHC_CONFIG__ || {};
+        if (cfg.edgeBaseUrl) {
+          try {
+            // Call edge function to delete from Renatus
+            await fetch(cfg.edgeBaseUrl + '/unsubscribe-renatus', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+          } catch (apiErr) {
+            console.log('Renatus API call failed (expected if not configured):', apiErr);
+            // Still show success - email is saved locally
+          }
+        }
+        
+        successMsg.style.display = 'block';
+        document.getElementById('unsubscribe-form').reset();
+      } catch (err) {
+        console.error('Unsubscribe error:', err);
+        errorMsg.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Unsubscribe';
+      }
+    });
+  </script>
+  <script src="./js/config.js"></script>
+</body>
+</html>

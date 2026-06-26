@@ -1,0 +1,111 @@
+{
+  "customer_name": "李主任",
+  "topic": "数字孪生驱动的智能产线预测性维护研究",
+  "language": "mixed",
+  "goal": "职称评审 + 项目结题",
+  "needs_official_route": true,
+  "oa_acceptance": "可接受但预算敏感",
+  "timeline": "希望 6-12 个月内完成录用或检索规划",
+  "ad_phone": "17605205782",
+  "candidate_journals": [
+    {
+      "title": "机械工程学报",
+      "region": "CN",
+      "types": [
+        "北大核心",
+        "科技核心"
+      ],
+      "fit_topics": [
+        "机械工程",
+        "智能制造",
+        "预测性维护"
+      ],
+      "why_recommended": "学科匹配度高，适合机械系统优化、智能制造和工程应用导向研究。",
+      "official_website": "待核验官网主页",
+      "submission_system": "待核验官方投稿系统",
+      "official_email": "待进一步人工核验",
+      "verification_sources": [
+        "国家新闻出版署",
+        "期刊官网/主办单位官网"
+      ],
+      "risk_notes": [
+        "需警惕名称相似的第三方代投页面"
+      ]
+    },
+    {
+      "title": "Chinese Journal of Mechanical Engineering",
+      "region": "INTL",
+      "types": [
+        "SCI",
+        "SCIE",
+        "DOAJ OA"
+      ],
+      "fit_topics": [
+        "mechanical engineering",
+        "digital twin",
+        "maintenance"
+      ],
+      "why_recommended": "适合中英文衔接转化，工程应用与方法改进并重。",
+      "official_website": "待核验 publisher 官方页",
+      "submission_system": "待核验 publisher submission system",
+      "official_email": "待进一步人工核验",
+      "verification_sources": [
+        "Publisher official page",
+        "Web of Science Master Journal List",
+        "Crossref/OpenAlex"
+      ],
+      "risk_notes": [
+        "需核对 APC、投稿系统域名以及当前索引状态"
+      ]
+    },
+    {
+      "title": "Engineering Applications of Artificial Intelligence",
+      "region": "INTL",
+      "types": [
+        "SCI",
+        "Scopus",
+        "EI"
+      ],
+      "fit_topics": [
+        "AI for engineering",
+        "predictive maintenance",
+        "digital twin"
+      ],
+      "why_recommended": "跨工程与 AI 应用，适合带有性能验证和真实场景价值的稿件。",
+      "official_website": "待核验 publisher 官方页",
+      "submission_system": "待核验 publisher submission system",
+      "official_email": "待进一步人工核验",
+      "verification_sources": [
+        "Publisher official page",
+        "Scopus official pages",
+        "Engineering Village / Compendex"
+      ],
+      "risk_notes": [
+        "需要较完整实验设计与英文表达，竞争强"
+      ]
+    },
+    {
+      "title": "某工程技术普刊（示例）",
+      "region": "CN",
+      "types": [
+        "普刊"
+      ],
+      "fit_topics": [
+        "智能制造",
+        "工程案例",
+        "产线优化"
+      ],
+      "why_recommended": "若客户强调时效和应用展示，可作为兜底层级。",
+      "official_website": "待核验官网主页",
+      "submission_system": "待核验官方投稿入口",
+      "official_email": "待进一步人工核验",
+      "verification_sources": [
+        "国家新闻出版署",
+        "期刊官网"
+      ],
+      "risk_notes": [
+        "必须先核验主管主办信息与域名真实性"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "relationships": {
+    "keywords": ["love", "romance", "partnership", "connection", "intimacy", "attraction", "harmony"],
+    "planets": ["venus", "mars"],
+    "houses": [5, 7],
+    "themes": {
+      "venus": "Love, beauty, harmony, affection, values",
+      "mars": "Passion, desire, assertiveness, chemistry"
+    }
+  },
+  "work": {
+    "keywords": ["career", "achievement", "responsibility", "ambition", "success", "goals", "productivity"],
+    "planets": ["sun", "saturn", "mars", "mercury"],
+    "houses": [6, 10],
+    "themes": {
+      "sun": "Purpose, identity, leadership, vitality",
+      "saturn": "Structure, discipline, mastery, foundation",
+      "mars": "Action, drive, initiative, energy",
+      "mercury": "Communication, ideas, strategy, learning"
+    }
+  },
+  "growth": {
+    "keywords": ["expansion", "learning", "spirituality", "wisdom", "transformation", "understanding", "evolution"],
+    "planets": ["jupiter", "uranus", "neptune", "pluto"],
+    "houses": [9, 12],
+    "themes": {
+      "jupiter": "Growth, abundance, optimism, opportunity",
+      "uranus": "Innovation, breakthrough, freedom, awakening",
+      "neptune": "Intuition, spirituality, creativity, transcendence",
+      "pluto": "Transformation, power, depth, rebirth"
+    }
+  },
+  "luck": {
+    "keywords": ["abundance", "opportunity", "blessing", "manifestation", "fortune", "gifts", "flow"],
+    "planets": ["jupiter", "venus", "north_node"],
+    "houses": [2, 5, 11],
+    "themes": {
+      "jupiter": "Expansion, opportunity, generosity, faith",
+      "venus": "Attraction, pleasure, beauty, grace",
+      "north_node": "Destiny, soul purpose, evolution"
+    }
+  }
+}

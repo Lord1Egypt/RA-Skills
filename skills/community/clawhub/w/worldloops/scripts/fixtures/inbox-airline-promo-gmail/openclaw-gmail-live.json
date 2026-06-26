@@ -1,0 +1,23 @@
+{
+  "messages": [
+    {
+      "id": "daily-brief-test-airline-promo-001",
+      "threadId": "daily-brief-test-thread-airline-promo-001",
+      "subject": "Earn double miles this weekend — Tap Air promotion",
+      "from": "promotions@tapair.example.com",
+      "snippet": "Earn double miles on all flights this weekend. Limited time offer. Book now. Manage preferences | Unsubscribe",
+      "date": "2026-05-21T07:00:00.000Z",
+      "labelIds": ["INBOX", "CATEGORY_PROMOTIONS"]
+    },
+    {
+      "id": "daily-brief-test-airline-promo-002",
+      "threadId": "daily-brief-test-thread-airline-promo-002",
+      "subject": "Your rewards balance: 12,450 miles",
+      "from": "noreply@rewards.example.com",
+      "snippet": "Your current miles balance is 12,450. Earn bonus miles when you book before May 31.",
+      "date": "2026-05-21T06:30:00.000Z",
+      "labelIds": ["INBOX", "CATEGORY_PROMOTIONS"]
+    }
+  ],
+  "count": 2
+}

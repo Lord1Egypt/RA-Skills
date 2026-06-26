@@ -1,0 +1,391 @@
+{
+  "version": "1.0.0",
+  "description": "购物指南库 - 买什么决策的数据源",
+  "categories": {
+    "gifts": {
+      "name": "礼物推荐",
+      "icon": "🎁",
+      "description": "各类送礼场景的推荐",
+      "recipients": {
+        "parents": {
+          "name": "父母",
+          "suggestions": [
+            {
+              "category": "健康护理",
+              "items": ["按摩仪", "足浴盆", "血压计", "保健品", "体检套餐"],
+              "price_range": "200-1000",
+              "occasions": ["生日", "节日", "父母节"],
+              "reasoning": "关心健康，实用贴心"
+            },
+            {
+              "category": "生活品质",
+              "items": ["真丝围巾", "保温杯", "茶叶礼盒", "护肤品套装", "舒适拖鞋"],
+              "price_range": "200-500",
+              "occasions": ["生日", "节日", "日常"],
+              "reasoning": "提升生活舒适度"
+            },
+            {
+              "category": "科技产品",
+              "items": ["智能手机", "平板电脑", "智能音箱", "电子阅读器", "智能手环"],
+              "price_range": "500-3000",
+              "occasions": ["大生日", "节日", "新年"],
+              "reasoning": "让长辈跟上时代"
+            },
+            {
+              "category": "体验类",
+              "items": ["旅游套餐", "温泉券", "餐厅券", "演出票", "摄影套餐"],
+              "price_range": "500-2000",
+              "occasions": ["纪念日", "退休", "节日"],
+              "reasoning": "创造美好回忆"
+            }
+          ]
+        },
+        "partner": {
+          "name": "伴侣",
+          "suggestions": [
+            {
+              "category": "浪漫惊喜",
+              "items": ["鲜花", "巧克力", "首饰", "香水", "定制礼物"],
+              "price_range": "200-2000",
+              "occasions": ["纪念日", "情人节", "生日"],
+              "reasoning": "表达爱意，制造浪漫"
+            },
+            {
+              "category": "实用贴心",
+              "items": ["护肤品", "包包", "钱包", "围巾", "手表"],
+              "price_range": "300-1500",
+              "occasions": ["生日", "节日", "日常惊喜"],
+              "reasoning": "日常可用，时刻想起你"
+            },
+            {
+              "category": "共同体验",
+              "items": ["情侣旅行", "烛光晚餐", "SPA 套餐", "摄影套餐", "课程体验"],
+              "price_range": "500-3000",
+              "occasions": ["纪念日", "大生日", "求婚"],
+              "reasoning": "创造共同回忆"
+            }
+          ]
+        },
+        "friends": {
+          "name": "朋友",
+          "suggestions": [
+            {
+              "category": "兴趣爱好",
+              "items": ["书籍", "游戏", "运动装备", "手办", "乐器配件"],
+              "price_range": "100-500",
+              "occasions": ["生日", "乔迁", "毕业"],
+              "reasoning": "投其所好，体现了解"
+            },
+            {
+              "category": "生活好物",
+              "items": ["香薰", "咖啡器具", "创意摆件", "品质文具", "收纳好物"],
+              "price_range": "100-400",
+              "occasions": ["生日", "日常", "感谢"],
+              "reasoning": "提升生活品质"
+            },
+            {
+              "category": "美食饮品",
+              "items": ["茶叶", "咖啡", "红酒", "零食礼盒", "餐厅券"],
+              "price_range": "100-500",
+              "occasions": ["节日", "生日", "聚会"],
+              "reasoning": "分享美味，轻松愉快"
+            }
+          ]
+        },
+        "colleagues": {
+          "name": "同事/商务",
+          "suggestions": [
+            {
+              "category": "办公用品",
+              "items": ["品质笔记本", "钢笔", "台历", "桌面收纳", "绿植"],
+              "price_range": "50-300",
+              "occasions": ["入职", "晋升", "感谢"],
+              "reasoning": "专业得体，实用大方"
+            },
+            {
+              "category": "商务礼品",
+              "items": ["茶叶礼盒", "咖啡礼盒", "商务配件", "书籍", "礼品卡"],
+              "price_range": "100-500",
+              "occasions": ["节日", "合作纪念", "感谢"],
+              "reasoning": "商务礼仪，不越界"
+            }
+          ]
+        },
+        "children": {
+          "name": "儿童",
+          "suggestions": [
+            {
+              "category": "益智玩具",
+              "items": ["积木", "拼图", "科学实验套装", "编程玩具", "桌游"],
+              "price_range": "100-500",
+              "occasions": ["生日", "节日", "奖励"],
+              "reasoning": "寓教于乐，开发智力"
+            },
+            {
+              "category": "图书绘本",
+              "items": ["绘本", "科普书", "故事书", "百科全书", "订阅杂志"],
+              "price_range": "50-300",
+              "occasions": ["生日", "入学", "日常"],
+              "reasoning": "培养阅读习惯"
+            },
+            {
+              "category": "运动户外",
+              "items": ["滑板", "自行车", "球类", "户外装备", "运动服"],
+              "price_range": "200-1000",
+              "occasions": ["生日", "节日", "奖励"],
+              "reasoning": "鼓励运动，健康成长"
+            }
+          ]
+        }
+      }
+    },
+    "daily_necessities": {
+      "name": "日用品",
+      "icon": "🧴",
+      "description": "日常生活用品选购指南",
+      "subcategories": [
+        {
+          "name": "个护清洁",
+          "items": [
+            {
+              "product": "洗发水",
+              "selection_criteria": ["发质类型", "头皮状况", "成分偏好", "香味"],
+              "price_range": "30-150",
+              "recommended_brands": ["海飞丝", "潘婷", "欧莱雅", "资生堂", "Aesop"],
+              "tips": "根据头皮而非发质选择"
+            },
+            {
+              "product": "沐浴露",
+              "selection_criteria": ["肤质", "香味", "成分", "滋润度"],
+              "price_range": "20-100",
+              "recommended_brands": ["多芬", "舒肤佳", "欧舒丹", "祖玛珑", "Aesop"],
+              "tips": "秋冬选滋润型，春夏选清爽型"
+            },
+            {
+              "product": "牙膏",
+              "selection_criteria": ["口腔问题", "美白需求", "敏感程度", "口味"],
+              "price_range": "15-50",
+              "recommended_brands": ["舒适达", "佳洁士", "云南白药", "Marvis", "Regenerate"],
+              "tips": "建议定期更换品牌"
+            },
+            {
+              "product": "洗面奶",
+              "selection_criteria": ["肤质", "清洁力", "成分", "泡沫类型"],
+              "price_range": "30-200",
+              "recommended_brands": ["Cetaphil", "CeraVe", "芙丽芳丝", "SK-II", "La Mer"],
+              "tips": "氨基酸洁面适合大多数人"
+            }
+          ]
+        },
+        {
+          "name": "家居用品",
+          "items": [
+            {
+              "product": "床上四件套",
+              "selection_criteria": ["材质", "支数", "尺寸", "风格"],
+              "price_range": "100-1000",
+              "recommended_brands": ["MUJI", "网易严选", "野兽派", "Frette", "Sferra"],
+              "tips": "纯棉60支以上体验较好"
+            },
+            {
+              "product": "毛巾",
+              "selection_criteria": ["材质", "克重", "吸水性", "尺寸"],
+              "price_range": "20-100",
+              "recommended_brands": ["洁丽雅", "三利", "内野", "Christy", "Abyss"],
+              "tips": "建议3个月更换一次"
+            },
+            {
+              "product": "保温杯",
+              "selection_criteria": ["容量", "保温时长", "材质", "便携性"],
+              "price_range": "50-500",
+              "recommended_brands": ["膳魔师", "象印", "虎牌", "Stanley", "Hydro Flask"],
+              "tips": "316不锈钢优于304"
+            },
+            {
+              "product": "收纳用品",
+              "selection_criteria": ["用途", "尺寸", "材质", "美观度"],
+              "price_range": "10-100",
+              "recommended_brands": ["宜家", "天马", "MUJI", "无印良品", "太力"],
+              "tips": "先量好空间再购买"
+            }
+          ]
+        },
+        {
+          "name": "清洁用品",
+          "items": [
+            {
+              "product": "洗衣液",
+              "selection_criteria": ["去污力", "香味", "成分", "适用面料"],
+              "price_range": "20-80",
+              "recommended_brands": ["蓝月亮", "奥妙", "当妮", "The Laundress", "Tide"],
+              "tips": "浓缩型更省空间"
+            },
+            {
+              "product": "纸巾",
+              "selection_criteria": ["层数", "柔软度", "韧性", "环保性"],
+              "price_range": "10-50",
+              "recommended_brands": ["维达", "清风", "心相印", "Tempo", "Kleenex"],
+              "tips": "大促时囤货最划算"
+            },
+            {
+              "product": "垃圾袋",
+              "selection_criteria": ["厚度", "尺寸", "承重", "环保性"],
+              "price_range": "10-30",
+              "recommended_brands": ["e洁", "美丽雅", "妙洁", "Glad"],
+              "tips": "厨房用加厚款"
+            }
+          ]
+        }
+      ]
+    },
+    "electronics": {
+      "name": "电子产品",
+      "icon": "📱",
+      "description": "数码电子产品选购指南",
+      "products": [
+        {
+          "category": "手机",
+          "selection_factors": [
+            {"factor": "预算", "description": "确定价格区间"},
+            {"factor": "系统偏好", "description": "iOS vs Android"},
+            {"factor": "拍照需求", "description": "前置/后置摄像头要求"},
+            {"factor": "续航", "description": "电池容量和快充"},
+            {"factor": "存储", "description": "128GB/256GB/512GB"},
+            {"factor": "品牌", "description": "苹果/三星/华为/小米等"}
+          ],
+          "price_ranges": {
+            "budget": "1000-2000",
+            "mid": "2000-4000",
+            "premium": "4000-8000",
+            "flagship": "8000+"
+          },
+          "recommended": {
+            "ios": ["iPhone 15", "iPhone 15 Pro", "iPhone 14"],
+            "android": ["Samsung Galaxy S24", "华为 Mate 60", "小米 14", "OPPO Find X7"]
+          }
+        },
+        {
+          "category": "耳机",
+          "types": [
+            {
+              "type": "真无线耳机",
+              "use_case": "日常通勤",
+              "price_range": "200-2000",
+              "recommended": ["AirPods Pro", "Sony WF-1000XM5", "三星 Galaxy Buds", "小米 Buds"]
+            },
+            {
+              "type": "头戴式耳机",
+              "use_case": "音质优先/降噪",
+              "price_range": "500-4000",
+              "recommended": ["Sony WH-1000XM5", "Bose QC45", "AirPods Max", "Sennheiser Momentum"]
+            },
+            {
+              "type": "运动耳机",
+              "use_case": "运动健身",
+              "price_range": "200-1500",
+              "recommended": ["Powerbeats Pro", "韶音骨传导", "JBL 运动系列"]
+            }
+          ],
+          "key_features": ["降噪", "续航", "舒适度", "音质", "延迟"]
+        },
+        {
+          "category": "笔记本电脑",
+          "use_cases": [
+            {
+              "type": "轻薄办公",
+              "features": ["便携", "续航", "屏幕素质"],
+              "price_range": "5000-12000",
+              "recommended": ["MacBook Air", "ThinkPad X1", "Dell XPS", "华为 MateBook"]
+            },
+            {
+              "type": "游戏本",
+              "features": ["显卡", "散热", "屏幕刷新率"],
+              "price_range": "6000-20000",
+              "recommended": ["ROG", "联想拯救者", "Alienware", "Razer Blade"]
+            },
+            {
+              "type": "创作本",
+              "features": ["屏幕色准", "性能", "接口丰富"],
+              "price_range": "8000-25000",
+              "recommended": ["MacBook Pro", "Dell Precision", "ThinkPad P系列"]
+            }
+          ]
+        },
+        {
+          "category": "智能手表",
+          "use_cases": ["运动追踪", "健康监测", "消息提醒", "时尚配饰"],
+          "ecosystem": {
+            "apple": ["Apple Watch Series 9", "Apple Watch Ultra 2"],
+            "android": ["Samsung Galaxy Watch", "华为 Watch", "小米 Watch", "Garmin"]
+          },
+          "price_range": "1000-6000",
+          "key_features": ["续航", "健康功能", "运动模式", "生态联动"]
+        },
+        {
+          "category": "平板电脑",
+          "use_cases": [
+            {
+              "type": "娱乐影音",
+              "focus": ["屏幕", "音响", "续航"],
+              "recommended": ["iPad", "小米平板", "华为 MatePad", "三星 Galaxy Tab"]
+            },
+            {
+              "type": "生产力",
+              "focus": ["性能", "配件生态", "软件"],
+              "recommended": ["iPad Pro", "Surface Pro", "三星 Galaxy Tab S"]
+            },
+            {
+              "type": "阅读",
+              "focus": ["护眼", "轻便", "续航"],
+              "recommended": ["Kindle", "掌阅", "文石", "iPad mini"]
+            }
+          ]
+        }
+      ],
+      "purchase_tips": [
+        "确定核心需求，避免过度配置",
+        "关注促销节点：618、双11、黑五",
+        "查看专业评测，了解真实体验",
+        "考虑生态联动，同品牌产品配合更好",
+        "注意保修政策和售后服务",
+        "新品发布后，上一代产品通常降价"
+      ]
+    }
+  },
+  "decision_framework": {
+    "steps": [
+      {
+        "step": 1,
+        "action": "明确需求",
+        "questions": ["买什么？", "给谁买？", "什么场景用？"]
+      },
+      {
+        "step": 2,
+        "action": "确定预算",
+        "questions": ["预算上限？", "性价比优先还是品质优先？"]
+      },
+      {
+        "step": 3,
+        "action": "筛选关键要素",
+        "questions": ["必须具备的功能？", "不能妥协的点？"]
+      },
+      {
+        "step": 4,
+        "action": "对比选项",
+        "questions": ["列出2-3个候选", "对比优缺点"]
+      },
+      {
+        "step": 5,
+        "action": "做出决策",
+        "questions": ["综合评分最高的是？", "直觉倾向哪个？"]
+      }
+    ],
+    "avoid_pitfalls": [
+      "避免冲动消费，设置冷静期",
+      "不要为了小优惠买不需要的东西",
+      "警惕参数焦虑，够用就好",
+      "注意隐藏成本（配件、服务费等）",
+      "考虑使用频率，低频使用不必买太贵的"
+    ]
+  }
+}

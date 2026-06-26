@@ -1,0 +1,16 @@
+[project]
+name = "gnano-ihogmn"
+version = "1.0.0"
+description = "GNano Ihogmn 图片生成技能 - 支持动态 API 配置"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.31.0",
+]
+
+[project.scripts]
+gnano-generate = "scripts.generate_image:main"
+gnano-config = "scripts.get_config:main"
+gnano-task = "scripts.task_manager:main"
+
+[tool.uv]
+dev-dependencies = []

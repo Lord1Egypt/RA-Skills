@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aicade App Builder"
+  short_description: "Build aicade app prompts and SDK integration workflows"
+  default_prompt: "Use $aicade-app-builder to turn my app idea into an aicade-ready prompt and implementation workflow."

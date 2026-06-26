@@ -1,0 +1,128 @@
+{
+  "taskId": "task-004",
+  "snapshotType": "blocked",
+  "timestamp": "2026-03-17T20:57:07.104Z",
+  "metadata": {
+    "blockerType": "api_timeout",
+    "reason": "外部 API 响应超时",
+    "level": "low"
+  },
+  "snapshot": {
+    "task_id": "task-004",
+    "task_title": "抓取响应慢的 API 数据源",
+    "task_type": "research",
+    "overall_status": "blocked",
+    "current_phase": "收集信息",
+    "progress_percent": 25,
+    "current_action": "正在进行：收集信息",
+    "why_not_done": "外部 API 响应超时（已持续0秒）",
+    "next_action": null,
+    "needs_user_input": false,
+    "user_question": null,
+    "user_options": [],
+    "started_at": "2026-03-17T20:57:07.103Z",
+    "updated_at": "2026-03-17T20:57:07.104Z",
+    "phases": [
+      {
+        "name": "理解任务",
+        "status": "completed",
+        "progress": 100,
+        "weight": 10,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "制定搜索计划",
+        "status": "completed",
+        "progress": 100,
+        "weight": 15,
+        "summary": null,
+        "completed": true
+      },
+      {
+        "name": "收集信息",
+        "status": "in_progress",
+        "progress": 0,
+        "weight": 30,
+        "summary": null,
+        "completed": false
+      },
+      {
+        "name": "分析与比较",
+        "status": "pending",
+        "progress": 0,
+        "weight": 30,
+        "summary": null,
+        "completed": false
+      },
+      {
+        "name": "形成输出",
+        "status": "pending",
+        "progress": 0,
+        "weight": 15,
+        "summary": null,
+        "completed": false
+      }
+    ],
+    "action_log": [
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "遇到阻塞：外部 API 响应超时",
+        "level": "warning"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "遇到阻塞：外部 API 响应超时",
+        "level": "warning"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "正在读取网页：slow-api.example.com/",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.104Z",
+        "message": "开始阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "进入下一阶段：收集信息",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "完成阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "开始阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "进入下一阶段：制定搜索计划",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "完成阶段：理解任务",
+        "level": "info"
+      },
+      {
+        "timestamp": "2026-03-17T20:57:07.103Z",
+        "message": "开始阶段：理解任务",
+        "level": "info"
+      }
+    ],
+    "blocker": {
+      "has_blocker": true,
+      "level": "low",
+      "reason": "外部 API 响应超时",
+      "duration": "0秒",
+      "recommendation": "可继续等待，系统会自动重试"
+    },
+    "retry_log": []
+  }
+}

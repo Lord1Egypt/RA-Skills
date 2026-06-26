@@ -1,35 +1,126 @@
 ---
-name: "Odds Movement Monitor 盘口监控"
-description: "盘口变化监控助手 - 实时监控足球、篮球等体育赛事的亚盘、欧赔、大小球盘口变化。检测异常波动、大额注单信号、机构态度转变。支持多平台对比、历史趋势分析、自动预警通知。当用户需要监控盘口变化、追踪赔率走势、发现投注机会时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shenmeng-odds-monitor-2025"
-sourceUrl: "https://clawhub.ai/skills/shenmeng-odds-monitor-2025"
+name: odds-movement-monitor
+description: 盘口变化监控助手 - 实时监控足球、篮球等体育赛事的亚盘、欧赔、大小球盘口变化。检测异常波动、大额注单信号、机构态度转变。支持多平台对比、历史趋势分析、自动预警通知。当用户需要监控盘口变化、追踪赔率走势、发现投注机会时使用。
+metadata:
+  openclaw:
+    emoji: 📊
 ---
 
-# Odds Movement Monitor 盘口监控
+# Odds Movement Monitor 盘口变化监控
 
-> 盘口变化监控助手 - 实时监控足球、篮球等体育赛事的亚盘、欧赔、大小球盘口变化。检测异常波动、大额注单信号、机构态度转变。支持多平台对比、历史趋势分析、自动预警通知。当用户需要监控盘口变化、追踪赔率走势、发现投注机会时使用。
+> 💰 **本 Skill 已接入 SkillPay 付费系统**
+> - 每次调用费用：**0.01 USDT**
+> - 支付方式：BNB Chain USDT
+> - 请先确保账户有足够余额
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shenmeng-odds-monitor-2025`
-- **Source URL:** [https://clawhub.ai/skills/shenmeng-odds-monitor-2025](https://clawhub.ai/skills/shenmeng-odds-monitor-2025)
+实时监控体育博彩盘口变化，捕捉机构态度转变和异常信号。
 
-## Overview
+## 核心能力
 
+1. **实时监控** — 多平台盘口数据采集与对比
+2. **变化检测** — 盘口升降、水位变动、异常波动识别
+3. **趋势分析** — 历史数据追踪、变化轨迹可视化
+4. **预警通知** — 关键变化自动提醒
+5. **信号识别** — 大额注单信号、诱盘陷阱检测
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shenmeng-odds-monitor-2025
+## 适用场景
+
+| 场景 | 示例 |
+|------|------|
+| **赛前监控** | "监控今晚比赛的盘口变化" |
+| **异常检测** | "检测突然降盘的场次" |
+| **对比分析** | "对比多个平台的盘口差异" |
+| **趋势追踪** | "查看盘口变化历史" |
+| **机会发现** | "发现盘口错位的比赛" |
+| **风险控制** | "监控已投注比赛的盘口异动" |
+
+## 监控维度
+
+### 1. 亚盘监控 (Asian Handicap)
+- 盘口变化（-0.5 → -0.75）
+- 水位波动（0.95 → 0.85）
+- 临场变盘（开场前1小时）
+- 走地盘口（滚球盘）
+
+### 2. 欧赔监控 (European Odds)
+- 胜平负赔率变化
+- 凯利指数变动
+- 返还率异常
+- 机构分歧度
+
+### 3. 大小球监控 (Over/Under)
+- 盘口升降（2.5 → 2.75）
+- 水位变化趋势
+- 临场升盘/降盘
+
+### 4. 异常信号
+- **大额注单信号**: 短时间内水位急剧下降
+- **诱盘信号**: 盘口与基本面背离
+- **诱上/诱下**: 盘口刻意引导投注方向
+- **交叉盘**: 同时间段相似盘口对比
+
+## 使用方法
+
+### 监控单场比赛
+```
+监控 [球队A] vs [球队B] 的盘口变化
+```
+
+### 批量监控
+```
+监控今晚所有英超比赛的盘口
+```
+
+### 异常检测
+```
+检测盘口异常变动的比赛
+```
+
+### 设置预警
+```
+当 [比赛] 盘口变化超过0.25时提醒我
+```
+
+## 数据源
+
+- **OddsAPI**: 全球赔率聚合
+- **Bet365**: 主流平台数据
+- **Pinnacle**: 专业玩家平台
+- **Smarkets**: 交易所数据
+
+## 输出格式
+
+监控报告包含：
+1. 初始盘口 vs 当前盘口
+2. 变化幅度和时间线
+3. 异常信号标记
+4. 机构态度解读
+5. 行动建议（观望/跟进/回避）
+
+## 技术栈
+
+- Python 3.8+
+- 数据采集: requests / aiohttp / websocket
+- 数据存储: SQLite / Redis
+- 实时监控: asyncio / schedule
+- 通知推送: webhook / Telegram Bot
+
+## 注意事项
+
+⚠️ **免责声明**: 
+- 本工具仅供数据监控参考
+- 盘口变化可能由多种因素引起
+- 请结合基本面分析做决策
+
+## 文件结构
+
+```
+odds-movement-monitor/
+├── SKILL.md                 # 本文件
+├── config.json             # 配置信息
+├── monitor.py              # 主监控脚本
+├── odds_fetcher.py         # 数据获取模块
+├── change_detector.py      # 变化检测算法
+├── alert_manager.py        # 预警管理
+└── data_storage.py         # 数据存储
 ```

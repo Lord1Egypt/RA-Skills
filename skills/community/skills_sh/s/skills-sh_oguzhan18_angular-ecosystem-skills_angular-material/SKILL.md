@@ -1,35 +1,64 @@
 ---
-name: "angular-material"
-description: "Indexed by skills.sh from oguzhan18/angular-ecosystem-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "oguzhan18"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/oguzhan18/angular-ecosystem-skills/angular-material"
-sourceUrl: "https://skills.sh/oguzhan18/angular-ecosystem-skills/angular-material"
+name: angular-material
+description: "ALWAYS use when working with Angular Material components, CDK, or Material Design in Angular applications."
+metadata:
+  version: 21.0.3
+  generated_by: oguzhancart
+  generated_at: 2026-02-19
 ---
 
-# angular-material
+# @angular/material & @angular/cdk
 
-> Indexed by skills.sh from oguzhan18/angular-ecosystem-skills
+**Version:** 21.0.3 (Feb 2026)
+**Tags:** Material Design, CDK, Components, UI Library
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** oguzhan18
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/oguzhan18/angular-ecosystem-skills/angular-material`
-- **Source URL:** [https://skills.sh/oguzhan18/angular-ecosystem-skills/angular-material](https://skills.sh/oguzhan18/angular-ecosystem-skills/angular-material)
+**References:** [Docs](https://material.angular.dev) — components, guides • [CDK Docs](https://material.angular.dev/cdk) • [GitHub Issues](https://github.com/angular/components/issues) • [Changelog](https://github.com/angular/components/blob/main/CHANGELOG.md)
 
-## Overview
+## API Changes
 
+This section documents recent version-specific API changes.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/oguzhan18/angular-ecosystem-skills/angular-material
+- NEW: Angular Aria — New low-level component library for accessible, headless components that can be styled custom [source](https://blog.angular.dev/announcing-angular-v21)
+
+- NEW: CDK overlays now use browser's built-in popovers for improved accessibility [source](https://blog.angular.dev/announcing-angular-v21)
+
+- NEW: Material Design system tokens — Use utility classes to apply Material tokens directly in templates [source](https://blog.angular.dev/announcing-angular-v21)
+
+- NEW: CDK Drag & Drop improvements — Allow copying items between lists [source](https://blog.angular.dev/announcing-angular-v21)
+
+- NEW: Angular v21 — Full support for new Angular features including zoneless change detection
+
+## Best Practices
+
+- Use standalone components — Import Material components directly without NgModule
+
+```ts
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+@Component({
+  standalone: true,
+  imports: [MatButtonModule, MatCardModule],
+  // ...
+})
+export class ExampleComponent {}
 ```
+
+- Use CDK for custom components — Use CDK (Component Dev Kit) for behavior primitives like drag-drop, overlays, menus without Material styling
+
+- Use CDK Virtual Scroll for large lists — Improve performance with `cdkVirtualScrollViewport` instead of rendering all items
+
+```html
+<cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+  <div *cdkVirtualFor="let item of items">{{item.name}}</div>
+</cdk-virtual-scroll-viewport>
+```
+
+- Use `trackBy` with `ngFor` — Prevent unnecessary DOM re-renders
+
+- Customize themes with SCSS — Use Material's theming system for custom colors and typography
+
+- Use `ChangeDetectionStrategy.OnPush` — Improve performance with default change detection strategy
+
+- Follow accessibility guidelines — Use ARIA labels, keyboard navigation, and focus management provided by CDK components

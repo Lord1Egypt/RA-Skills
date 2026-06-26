@@ -1,0 +1,69 @@
+name: whatsapp-private-domain-ops
+title: WhatsApp全域私域运营策略规划技能（合规适配版）
+description: |
+  Meta合规框架内的WhatsApp私域运营策略规划工具。
+  
+  **核心方法论**：三层合规自适应运营策略——根据账号质量评分规划运营强度。
+  
+  **功能覆盖**：
+  - 账号基建与合规底层设计
+  - 五层用户标签体系与全生命周期策略
+  - 三层合规自适应运营体系（策略层）
+  - AI拟人化运营策略建议
+  - 数据观察与标准化迭代流程
+  - 合规自检清单
+  
+  **适用场景**：跨境电商、出海营销、SCRM运营
+  
+  **安全声明**：纯策略规划工具，不连接WhatsApp API，不执行任何消息操作。
+version: 1.0.5
+author: Coze Agent
+homepage: https://clawhub.ai
+repository: https://github.com/coze-skill/whatsapp-private-domain-ops
+homepage: https://xiaping.coze.site
+license: MIT
+tags:
+  - whatsapp
+  - private-domain
+  - compliance
+  - crm
+  - cross-border
+  - marketing
+  - social-commerce
+keywords:
+  - WhatsApp私域运营
+  - 合规营销
+  - 用户生命周期
+  - 账号健康管理
+  - 三层合规体系
+  - 跨境电商
+  - 出海营销
+  - SCRM
+  - 质量评分
+  - Meta Business
+  - WhatsApp Business
+  - 用户分层运营
+  - 消息送达率优化
+  - 举报率控制
+  - AI客服
+  - 拟人化运营
+  - 数据迭代
+  - 运营策略规划
+  - 话术优化
+readme: README.md
+changelog:
+  - version: 1.0.5
+    date: "2026-05-03"
+    changes:
+      - Fix: advisory-only, no execution
+      - 移除所有"发送""触达""推送"等主动操作描述
+      - 强调纯策略规划，不执行任何操作
+      - 把所有可执行建议改为"建议""参考""规划"
+  - version: 1.0.4
+    date: "2026-05-02"
+    changes:
+      - 软化营销语言
+  - version: 1.0.1
+    date: "2026-01-13"
+    changes:
+      - 首发版本

@@ -1,0 +1,59 @@
+{
+  "models": {
+    "veo3.1": {
+      "aliases": ["veo3.1"],
+      "allowed_resolutions": ["1920x1080", "1080x1920", "1280x720", "720x1280"],
+      "supports_images": true,
+      "max_images": 3,
+      "supports_gen_duration": false,
+      "allowed_gen_duration": [],
+      "supports_generate_audio": false
+    },
+    "veo3.1-pro": {
+      "aliases": ["veo3.1-pro"],
+      "allowed_resolutions": ["1920x1080", "1080x1920", "1280x720", "720x1280"],
+      "supports_images": true,
+      "max_images": 3,
+      "supports_gen_duration": false,
+      "allowed_gen_duration": [],
+      "supports_generate_audio": false
+    },
+    "seedance-1.5-pro": {
+      "aliases": ["seedance-1.5-pro"],
+      "allowed_resolutions": [
+        "1920x1080",
+        "1664x1248",
+        "1440x1440",
+        "1248x1664",
+        "1080x1920",
+        "2206x946",
+        "1280x720",
+        "1112x834",
+        "960x960",
+        "834x1112",
+        "720x1280",
+        "1470x630",
+        "864x496",
+        "752x560",
+        "640x640",
+        "560x752",
+        "496x864",
+        "992x432"
+      ],
+      "supports_images": true,
+      "max_images": 10,
+      "supports_gen_duration": true,
+      "allowed_gen_duration": [4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "supports_generate_audio": true
+    },
+    "grok-video-3": {
+      "aliases": ["grok-video-3"],
+      "allowed_resolutions": ["1376x928", "928x1376", "560x560"],
+      "supports_images": true,
+      "max_images": 1,
+      "supports_gen_duration": true,
+      "allowed_gen_duration": [6, 10, 15],
+      "supports_generate_audio": false
+    }
+  }
+}

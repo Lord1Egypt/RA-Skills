@@ -1,0 +1,5 @@
+1. Write the agent claim in one sentence.
+2. List observable evidence only.
+3. Mark the missing proof explicitly.
+4. Pick the smallest corrective action that can close the gap.
+5. Re-verify before calling the work done.

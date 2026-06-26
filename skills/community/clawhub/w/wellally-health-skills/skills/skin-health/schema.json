@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/skin-health-tracker.json",
+  "title": "SkinHealthTracker",
+  "description": "皮肤健康追踪的数据结构定义",
+  "type": "object",
+  "properties": {
+    "skin_concerns": {
+      "type": "array",
+      "description": "皮肤问题记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "issue_type": {
+            "type": "string",
+            "enum": ["acne", "eczema", "psoriasis", "pigmentation", "rosacea", "dermatitis", "dryness", "oiliness", "sensitivity", "scars", "other"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["mild", "moderate", "severe"]
+          },
+          "location": {
+            "type": "string",
+            "enum": ["face", "body", "scalp", "neck", "hands", "feet", "other"]
+          },
+          "specific_areas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["forehead", "cheeks", "chin", "nose", "around_eyes", "arms", "legs", "back", "chest"]
+            }
+          },
+          "description": { "type": "string" },
+          "triggers": { "type": "array", "items": { "type": "string" } },
+          "treatments": { "type": "array", "items": { "type": "string" } },
+          "resolved": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "mole_records": {
+      "type": "array",
+      "description": "痣的监测记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "location": {
+            "type": "string",
+            "enum": ["face", "neck", "chest", "back", "abdomen", "arm", "leg", "scalp", "other"]
+          },
+          "size_mm": { "type": "number", "minimum": 0 },
+          "color": { "type": "string" },
+          "shape": {
+            "type": "string",
+            "enum": ["flat", "raised", "domed", "irregular"]
+          },
+          "abcde_assessment": {
+            "type": "object",
+            "properties": {
+              "asymmetry": { "type": "boolean" },
+              "border": { "type": "boolean" },
+              "color": { "type": "boolean" },
+              "diameter": { "type": "boolean" },
+              "evolution": { "type": "boolean" }
+            }
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": ["low", "moderate", "high"]
+          },
+          "needs_followup": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "skincare_routines": {
+      "type": "array",
+      "description": "护肤程序记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "routine_type": {
+            "type": "string",
+            "enum": ["morning", "evening", "weekly"]
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["cleanser", "toner", "serum", "moisturizer", "spf30", "spf50", "exfoliation", "mask", "eye_cream", "other"]
+            }
+          },
+          "products_used": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      }
+    },
+    "skin_exams": {
+      "type": "array",
+      "description": "皮肤检查记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "exam_type": {
+            "type": "string",
+            "enum": ["self", "dermatologist", "follow_up"]
+          },
+          "findings": { "type": "string" },
+          "total_moles_count": { "type": "integer" },
+          "suspicious_moles": { "type": "integer" },
+          "recommendations": { "type": "array", "items": { "type": "string" } },
+          "next_exam": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "sun_exposure": {
+      "type": "array",
+      "description": "日晒防护和记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "record_type": {
+            "type": "string",
+            "enum": ["protection", "burn", "exposure"]
+          },
+          "protection_used": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["spf30", "spf50", "hat", "clothing", "shade", "none"]
+            }
+          },
+          "burn_severity": {
+            "type": "string",
+            "enum": ["mild", "moderate", "severe"]
+          },
+          "exposure_duration_hours": { "type": "number" },
+          "exposure_level": { "type": "string", "enum": ["low", "medium", "high"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "skin_type": {
+      "type": "string",
+      "enum": ["dry", "oily", "combination", "normal", "sensitive"],
+      "description": "皮肤类型"
+    },
+    "checkup_reminders": {
+      "type": "object",
+      "properties": {
+        "dermatologist": { "type": "string", "format": "date" },
+        "mole_check": { "type": "string", "format": "date" }
+      }
+    },
+    "skin_health_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "皮肤健康评分"
+    }
+  }
+}

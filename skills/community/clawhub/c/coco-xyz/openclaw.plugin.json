@@ -1,0 +1,129 @@
+{
+  "id": "hxa-connect",
+  "channels": ["hxa-connect"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "defaultHubUrl": {
+        "type": "string",
+        "description": "Default HXA-Connect hub URL (used when per-account hubUrl is not set)"
+      },
+      "hubUrl": {
+        "type": "string",
+        "description": "HXA-Connect hub URL (single-account shorthand)"
+      },
+      "agentToken": {
+        "type": "string",
+        "description": "Agent token for HXA-Connect authentication"
+      },
+      "agentName": {
+        "type": "string",
+        "description": "Bot name on HXA-Connect (used for @mention detection)"
+      },
+      "orgId": {
+        "type": "string",
+        "description": "Organization ID"
+      },
+      "agentId": {
+        "type": "string",
+        "description": "Agent ID (for self-message filtering)"
+      },
+      "webhookPath": {
+        "type": "string",
+        "description": "Path to receive inbound webhooks (default: /hxa-connect/inbound)"
+      },
+      "webhookSecret": {
+        "type": "string",
+        "description": "Secret to verify inbound webhook requests"
+      },
+      "useWebSocket": {
+        "type": "boolean",
+        "description": "Enable WebSocket real-time connection (default: true)",
+        "default": true
+      },
+      "access": {
+        "type": "object",
+        "description": "Access control settings",
+        "properties": {
+          "dmPolicy": {
+            "type": "string",
+            "enum": ["open", "allowlist"],
+            "description": "DM policy: open (anyone) or allowlist (only dmAllowFrom)"
+          },
+          "dmAllowFrom": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Allowed DM senders (when dmPolicy=allowlist)"
+          },
+          "groupPolicy": {
+            "type": "string",
+            "enum": ["open", "allowlist", "disabled"],
+            "description": "Thread access policy"
+          },
+          "threads": {
+            "type": "object",
+            "description": "Per-thread access and mode overrides",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "allowFrom": { "type": "array", "items": { "type": "string" } },
+                "added_at": { "type": "string" },
+                "mode": { "type": "string", "enum": ["mention", "smart"] }
+              }
+            }
+          },
+          "threadMode": {
+            "type": "string",
+            "enum": ["mention", "smart"],
+            "description": "Deprecated org-level thread response mode. Migrated to threads.<threadId>.mode on upgrade."
+          }
+        }
+      },
+      "accounts": {
+        "type": "object",
+        "description": "Multi-account configuration (each key is an account ID)",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "hubUrl": { "type": "string" },
+            "agentToken": { "type": "string" },
+            "agentName": { "type": "string" },
+            "orgId": { "type": "string" },
+            "agentId": { "type": "string" },
+            "webhookPath": { "type": "string" },
+            "webhookSecret": { "type": "string" },
+            "useWebSocket": { "type": "boolean" },
+            "access": {
+              "type": "object",
+              "properties": {
+                "dmPolicy": { "type": "string", "enum": ["open", "allowlist"] },
+                "dmAllowFrom": { "type": "array", "items": { "type": "string" } },
+                "groupPolicy": { "type": "string", "enum": ["open", "allowlist", "disabled"] },
+                "threads": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "allowFrom": { "type": "array", "items": { "type": "string" } },
+                      "added_at": { "type": "string" },
+                      "mode": { "type": "string", "enum": ["mention", "smart"] }
+                    }
+                  }
+                },
+                "threadMode": { "type": "string", "enum": ["mention", "smart"], "description": "Deprecated org-level thread mode" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiHints": {
+    "agentToken": { "label": "Agent Token", "sensitive": true },
+    "webhookSecret": { "label": "Webhook Secret", "sensitive": true }
+  }
+}

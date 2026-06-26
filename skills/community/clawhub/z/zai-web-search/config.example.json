@@ -1,0 +1,39 @@
+{
+  // Z.AI (智谱) API Key - 获取地址: https://open.bigmodel.cn
+  "apiKey": "your-zhipu-api-key-here",
+
+  // 搜索引擎类型 (可选)
+  // - search_std: 智谱基础版 (默认，快速)
+  // - search_pro: 智谱高阶版 (质量最佳)
+  // - search_pro_sogou: 搜狗搜索
+  // - search_pro_quark: 夸克搜索
+  "engine": "search_std",
+
+  // 搜索意图识别 (可选)
+  // true: 启用智能意图识别，推荐用于模糊查询
+  // false: 使用原始查询词 (默认)
+  "intent": false,
+
+  // 搜索结果数量 (可选)
+  // 默认 10，最大 50
+  // 注意: search_pro_sogou 只支持 10/20/30/40/50
+  "count": 10,
+
+  // 时间范围过滤 (可选)
+  // - oneDay: 最近一天
+  // - oneWeek: 最近一周
+  // - oneMonth: 最近一个月
+  // - oneYear: 最近一年
+  // - noLimit: 不限制 (默认)
+  "recency": "noLimit",
+
+  // 内容摘要长度 (可选)
+  // - medium: 中等长度摘要 (默认)
+  // - high: 完整详细内容
+  "content": "medium",
+
+  // 域名过滤 (可选)
+  // 限制搜索结果的域名，如 "docs.openclaw.ai"
+  // 仅对 search_std/search_pro/search_pro_sogou 有效
+  "domain": ""
+}

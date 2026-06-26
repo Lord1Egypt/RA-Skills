@@ -1,0 +1,62 @@
+{
+  "id": "fec-code-review",
+  "name": "前端代码审查",
+  "category": "review-quality",
+  "tags": [
+    "code-review",
+    "architecture",
+    "quality",
+    "best-practices"
+  ],
+  "summary": "Frontend Craft skill for 前端代码审查.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "code-review",
+    "architecture",
+    "quality",
+    "best-practices"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when the user asks for general frontend code review, PR review, merge-readiness assessment, architecture maintainability, type-safety, rendering/state risks, style consistency, testability gaps, or a cross-cutting review summary. Delegate deep security, accessibility, E2E, or performance investigations to their specialized skills; Chinese triggers include 代码审查, 代码评审, review.",
+  "source": "skills/fec-code-review",
+  "references": [
+    "references/report-template.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-security-review",
+      "fec-accessibility-check",
+      "fec-e2e-testing",
+      "fec-validation-fix",
+      "fec-performance-optimization",
+      "fec-typescript-type-safety",
+      "fec-state-management",
+      "fec-source-driven-development",
+      "fec-dependency-upgrade",
+      "fec-responsive-layout"
+    ],
+    "boundaryWorkflows": [
+      "Use a security review workflow for XSS, CSRF, token, upload, third-party script, and CSP risks.",
+      "Use an accessibility workflow for WCAG, keyboard, focus, semantic, and ARIA risks.",
+      "Use an E2E workflow for critical paths, flaky tests, traces, and CI artifacts."
+    ],
+    "capabilityTags": [
+      "code-review",
+      "quality",
+      "frontend"
+    ]
+  }
+}

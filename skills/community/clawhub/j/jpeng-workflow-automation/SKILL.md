@@ -1,35 +1,42 @@
 ---
-name: "workflow-automation"
+name: jpeng-workflow-automation
 description: "Automate workflows"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-workflow-automation"
-sourceUrl: "https://clawhub.ai/skills/jpeng-workflow-automation"
+version: "1.0.0"
+author: "jpeng"
+tags: ["workflow", "automation", "automation"]
 ---
 
-# workflow-automation
+# Workflow Automation
 
-> Automate workflows
+Automate workflows
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-workflow-automation`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-workflow-automation](https://clawhub.ai/skills/jpeng-workflow-automation)
+## When to Use
 
-## Overview
+- User needs workflow related functionality
+- Automating automation tasks
+- Automation operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-workflow-automation
+python3 scripts/workflow_automation.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export AUTOMATION_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

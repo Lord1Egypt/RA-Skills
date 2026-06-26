@@ -1,0 +1,21 @@
+{
+  "allowlist": [
+    "openclaw fb-post-setup",
+    "openclaw fb-post-setup-help",
+    "openclaw fb-post-test",
+    "openclaw fb-post",
+    "openclaw fb-post-image",
+    "openclaw fb-post-schedule",
+    "openclaw fb-post-schedule-list",
+    "openclaw fb-post-schedule-delete",
+    "openclaw fb-post-drafts",
+    "openclaw fb-post-delete",
+    "facebook-advanced fb-post-list",
+    "facebook-advanced fb-post-schedule",
+    "facebook-advanced fb-post-schedule-list",
+    "facebook-advanced fb-post-schedule-delete",
+    "facebook-advanced fb-post-drafts",
+    "facebook-advanced fb-post-delete"
+  ],
+  "description": "Allowlist for facebook-posting skill commands"
+}

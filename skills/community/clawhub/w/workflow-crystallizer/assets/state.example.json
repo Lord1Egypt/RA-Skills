@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "last_analysis": null,
+  "last_analyzed_date": null,
+  "config": {
+    "min_confidence": 0.6,
+    "max_suggestions_per_run": 3,
+    "snooze_days": 30,
+    "min_days_of_data": 3,
+    "min_occurrences": 3,
+    "min_unique_days": 2
+  },
+  "event_cache": {},
+  "suggestions": [],
+  "analysis_log": []
+}

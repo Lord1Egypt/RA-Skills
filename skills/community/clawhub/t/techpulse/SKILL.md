@@ -1,35 +1,31 @@
----
-name: "TechPulse"
-description: "AI-анализатор трендов в IoT, EV, играх, DIY и Emerging Tech с ежедневными сводками, бизнес-инсайтами и рекомендациями для предпринимателей и девелоперов."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [AI, Analytics, Automation, DIY, Data, Developer Tools, EV, Games, News, Open Source, Productivity, SaaS, Tech, business, diy, ev, games, iot, news, tech, trends]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/techpulse"
-sourceUrl: "https://clawhub.ai/skills/techpulse"
----
-
 # TechPulse
 
-> AI-анализатор трендов в IoT, EV, играх, DIY и Emerging Tech с ежедневными сводками, бизнес-инсайтами и рекомендациями для предпринимателей и девелоперов.
+Мониторинг трендов: IoT, EV, Games, DIY, Tech.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/techpulse`
-- **Source URL:** [https://clawhub.ai/skills/techpulse](https://clawhub.ai/skills/techpulse)
+## Установка
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/techpulse
+mkdir -p ~/.openclaw/skills/techpulse
+unzip techpulse.zip -d ~/.openclaw/skills/
+openclaw restart
 ```
+
+## Использование
+
+```
+python3 main.py           # все категории
+python3 main.py ev        # только EV
+python3 main.py iot       # только IoT
+python3 main.py games     # только Games
+python3 main.py diy       # только DIY
+python3 main.py tech      # только Tech
+```
+
+## Источники
+
+Reddit (публичный API, без авторизации):
+- r/homeautomation, r/IOT (IoT)
+- r/electricvehicles, r/teslamotors (EV)
+- r/gaming, r/gamedev (Games)
+- r/arduino, r/raspberry_pi (DIY)
+- r/technology, r/artificial (Tech)

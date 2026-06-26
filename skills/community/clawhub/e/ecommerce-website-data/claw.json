@@ -1,0 +1,52 @@
+{
+  "name": "ecommerce-website-data",
+  "version": "1.2.18",
+  "description": "The most comprehensive ecommerce store database — search and analyze 10M+ ecommerce websites and Shopify stores. Get ecommerce data including revenue (GMV), traffic, tech stack, installed apps, social media followers, and decision-maker contacts. Covers Shopify, WooCommerce, Wix, BigCommerce, and more. Perfect for ecommerce competitor analysis, store research, and lead generation.",
+  "author": "eccompass.ai",
+  "license": "Proprietary",
+  "permissions": [
+    "network"
+  ],
+  "credentials": {
+    "APEX_TOKEN": {
+      "description": "ECcompass API access token. Sign up at https://eccompass.ai, then go to Dashboard → API Access → Create Token.",
+      "required": true
+    }
+  },
+  "requires": {
+    "bins": [
+      "python3"
+    ],
+    "env": [
+      "APEX_TOKEN"
+    ]
+  },
+  "entry": "SKILL.md",
+  "tags": [
+    "ecommerce",
+    "ecommerce-store",
+    "ecommerce-website",
+    "ecommerce-data",
+    "shopify",
+    "shopify-store",
+    "online-store",
+    "analytics",
+    "competitor-analysis",
+    "market-intelligence",
+    "dtc",
+    "lead-generation"
+  ],
+  "models": [
+    "claude-*",
+    "gpt-*",
+    "gemini-*",
+    "deepseek-*",
+    "qwen-*",
+    "glm-*",
+    "kimi-*",
+    "minimax-*"
+  ],
+  "pricing": "free",
+  "support_url": "https://eccompass.ai",
+  "homepage": "https://eccompass.ai"
+}

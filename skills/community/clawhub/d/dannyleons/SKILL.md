@@ -1,35 +1,97 @@
 ---
-name: "Danny_Skill"
-description: "分析 AI Agent 相关资讯数据，提取热点话题、趋势分析和内容创作灵感。 用于：(1) 分析采集到的资讯找出热点话题 (2) 评估话题热度判断是否值得创作 (3) 提取可作为视频内容的核心要点 (4) 生成内容创作建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dannyleons"
-sourceUrl: "https://clawhub.ai/skills/dannyleons"
+name: social-media-publisher
+description: |
+  将视频内容发布到微信、抖音、快手三大平台。
+  用于：(1) 标题和描述文案优化 (2) 适配各平台的内容格式 
+  (3) 提取视频关键帧/生成封面 (4) 提供发布流程指引
 ---
 
-# Danny_Skill
+# Social Media Publisher
 
-> 分析 AI Agent 相关资讯数据，提取热点话题、趋势分析和内容创作灵感。 用于：(1) 分析采集到的资讯找出热点话题 (2) 评估话题热度判断是否值得创作 (3) 提取可作为视频内容的核心要点 (4) 生成内容创作建议
+此 Skill 用于将创作好的短视频内容发布到微信、抖音、快手平台。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dannyleons`
-- **Source URL:** [https://clawhub.ai/skills/dannyleons](https://clawhub.ai/skills/dannyleons)
+## 平台特点
 
-## Overview
+### 抖音
+- 标题：10-30字，简洁有力，可带话题
+- 描述：可补充背景信息，带2-5个话题
+- 发布时间：中午12-13点、晚上18-21点
+- 特点：算法推荐，完播率重要
 
+### 快手
+- 标题：接地气，可带方言关键词
+- 描述：补充说明，可挂载小程序
+- 发布时间：早上7-9点、晚上19-23点
+- 特点：老铁文化，社区氛围重要
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dannyleons
+### 微信视频号
+- 标题：可稍长，说明内容价值
+- 描述：引导关注公众号/添加微信
+- 发布时间：早上8-9点、中午12-13点
+- 特点：社交推荐，朋友圈转发重要
+
+## 内容适配
+
+### 抖音
+- 标题模板：{话题}+{亮点}
+- 话题：#AI #智能体 #科技前沿
+- 描述：开头抛出悬念/痛点
+
+### 快手
+- 标题模板：{口语化}+{好奇表达}
+- 话题：#AI智能体 #科技圈大事
+- 描述：亲切称呼"老铁们"
+
+### 微信视频号
+- 标题模板：{价值点}+{人称}
+- 描述：最后引导关注公众号
+
+## 发布流程
+
+1. 使用 batch_image_to_video 将配图合成视频
+2. 提取视频关键帧作为封面
+3. 根据各平台特点调整标题/描述
+4. 提供各平台发布入口指引
+
+## 输出格式
+
+```json
+{
+  "douyin": {
+    "title": "抖音标题",
+    "description": "抖音描述",
+    "topics": ["#AI", "#智能体"],
+    "tips": "发布时间建议"
+  },
+  "kuaishou": {
+    "title": "快手标题", 
+    "description": "快手描述",
+    "topics": ["#AI智能体"],
+    "tips": "发布时间建议"
+  },
+  "weixin": {
+    "title": "视频号标题",
+    "description": "视频号描述",
+    "cover_prompt": "封面图提示词"
+  },
+  "video_generation": {
+    "images": ["图1路径", "图2路径", "图3路径"],
+    "output": "输出视频路径"
+  }
+}
 ```
+
+## 使用示例
+
+用户说"帮我发布到抖音和快手"时：
+1. 接收视频脚本和配图
+2. 合成视频
+3. 生成各平台适配的标题描述
+4. 给出发布时机建议
+
+## 注意事项
+
+- 不同平台标题风格差异大，要分别优化
+- 抖音强调完播率，前3秒要抓住眼球
+- 快手强调互动，结尾要引导评论
+- 视频号可引导添加微信/关注公众号

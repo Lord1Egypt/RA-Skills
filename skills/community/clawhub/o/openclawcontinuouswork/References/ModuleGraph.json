@@ -1,0 +1,30 @@
+{
+  "modules": [
+    "AcceptanceTemplate.md",
+    "ConflictReport.md",
+    "ContinuousExecutionDirective.md",
+    "GeneralRules.md",
+    "ModuleOrderReport.md",
+    "ModuleSystem.md",
+    "ModuleTemplate.md",
+    "OptimizationChecklist.md",
+    "OptimizationDirective.md",
+    "OptimizationRules.md",
+    "QualityRubric.md",
+    "ReportingTemplate.md"
+  ],
+  "edges": {
+    "AcceptanceTemplate.md": [],
+    "ConflictReport.md": [],
+    "ContinuousExecutionDirective.md": [],
+    "GeneralRules.md": [],
+    "ModuleOrderReport.md": [],
+    "ModuleSystem.md": [],
+    "ModuleTemplate.md": [],
+    "OptimizationChecklist.md": [],
+    "OptimizationDirective.md": [],
+    "OptimizationRules.md": [],
+    "QualityRubric.md": [],
+    "ReportingTemplate.md": []
+  }
+}

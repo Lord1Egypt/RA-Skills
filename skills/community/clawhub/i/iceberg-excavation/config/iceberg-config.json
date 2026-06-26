@@ -1,0 +1,67 @@
+{
+  "version": "2.0.0",
+  "description": "冰山挖掘技能配置文件模板",
+  
+  "analysis": {
+    "depth": 4,
+    "depth_description": "分析深度（1-4层）：1=情绪入口, 2=潜意识需求, 3=思维模式, 4=底层操作系统",
+    "custom_layers": [],
+    "custom_layers_description": "自定义层级名称（数组），如 ['情绪', '需求', '模式', '系统']"
+  },
+  
+  "output": {
+    "format": "markdown",
+    "format_options": ["markdown", "json", "text"],
+    "format_description": "输出格式：markdown（完整报告）, json（结构化数据）, text（简洁文本）",
+    "enable_scoring": true,
+    "enable_scoring_description": "是否启用情绪强度评分（1-10分）",
+    "enable_suggestions": true,
+    "enable_suggestions_description": "是否生成系统重构建议"
+  },
+  
+  "error_handling": {
+    "auto_downgrade": true,
+    "auto_downgrade_description": "模块缺失时自动降级深度",
+    "user_consent_required": false,
+    "user_consent_required_description": "深度分析前是否需要用户确认"
+  },
+  
+  "examples": {
+    "quick_mode": {
+      "description": "快速分析模式（前2层）",
+      "config": {
+        "depth": 2,
+        "format": "text",
+        "enable_scoring": false,
+        "enable_suggestions": false
+      }
+    },
+    
+    "full_mode": {
+      "description": "完整分析模式（4层 + JSON输出）",
+      "config": {
+        "depth": 4,
+        "format": "json",
+        "enable_scoring": true,
+        "enable_suggestions": true
+      }
+    },
+    
+    "deep_dive_mode": {
+      "description": "深度挖掘模式（4层 + Markdown报告 + 重构建议）",
+      "config": {
+        "depth": 4,
+        "format": "markdown",
+        "enable_scoring": true,
+        "enable_suggestions": true
+      }
+    }
+  },
+  
+  "metadata": {
+    "created": "2026-04-07",
+    "maintainer": "mindset agent",
+    "skill_level": "L2",
+    "documentation": "skills/iceberg-excavation/SKILL.md"
+  }
+}

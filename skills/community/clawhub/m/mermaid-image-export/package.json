@@ -1,0 +1,53 @@
+{
+  "name": "mermaid-image-export",
+  "version": "1.0.0",
+  "description": "Mermaid diagram image export using mermaid-cli for high-quality PNG, SVG, and PDF outputs",
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "keywords": [
+    "mermaid",
+    "diagram",
+    "export",
+    "png",
+    "svg",
+    "pdf",
+    "claude",
+    "skill",
+    "clawhub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smallnest/termaid-skill"
+  },
+  "homepage": "https://clawhub.com/skills/mermaid-image-export",
+  "bugs": {
+    "url": "https://github.com/smallnest/termaid-skill/issues"
+  },
+  "clawhub": {
+    "skill": true,
+    "category": "developer-tools",
+    "tags": ["diagrams", "documentation", "visualization", "export"],
+    "compatibility": {
+      "openclaw": ">=1.0.0",
+      "python": ">=3.6",
+      "node": ">=14.0.0"
+    },
+    "dependencies": {
+      "system": ["nodejs", "npm", "chrome/chromium"],
+      "packages": ["@mermaid-js/mermaid-cli"]
+    },
+    "installation": "npm install -g @mermaid-js/mermaid-cli",
+    "relatedSkills": ["termaid"]
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "references/",
+    "assets/",
+    "package.json"
+  ],
+  "scripts": {
+    "test": "python scripts/install_mermaid_cli.py --check",
+    "export-example": "python scripts/export_mermaid_image.py assets/examples/export_example.mmd -o example.png"
+  }
+}

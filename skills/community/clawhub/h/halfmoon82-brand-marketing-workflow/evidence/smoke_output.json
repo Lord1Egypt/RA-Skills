@@ -1,0 +1,272 @@
+{
+  "normalize": {
+    "brand_name": "Aurora Lane",
+    "brand_positioning": "",
+    "brand_tone": "calm sharp poetic",
+    "target_audience": [],
+    "use_cases": [],
+    "channels": [],
+    "content_goals": [],
+    "brand_dos": [],
+    "brand_donts": [],
+    "competitor_scope": [],
+    "kpis": [],
+    "constraints": {
+      "budget": "",
+      "language": "zh-CN",
+      "region": "",
+      "compliance": "public+authorized-only"
+    }
+  },
+  "score": {
+    "scores": {
+      "brand_consistency": 5,
+      "channel_fit": 5,
+      "clarity": 5,
+      "actionability": 5
+    },
+    "overall": 20,
+    "notes": "smoke"
+  },
+  "cluster": {
+    "themes": {
+      "minimal": [
+        {
+          "theme": "minimal",
+          "tone": "calm"
+        }
+      ]
+    },
+    "theme_keys": [
+      "theme",
+      "format",
+      "tone",
+      "frequency",
+      "hook"
+    ]
+  },
+  "orchestrator": {
+    "workflow_steps": [
+      "normalize_input",
+      "build_brand_brief",
+      "generate_strategy",
+      "parallel_content_competitor_kpi_channel",
+      "evaluate_performance",
+      "synthesize_insights",
+      "iteration_plan"
+    ],
+    "brand_brief": {
+      "brand_summary": {
+        "positioning": "to be clarified",
+        "tone": "calm sharp poetic",
+        "audience": "to be clarified",
+        "goals": "content production, brand awareness, iteration"
+      },
+      "channels": [
+        "xiaohongshu",
+        "weibo"
+      ],
+      "use_cases": [],
+      "dos": [],
+      "donts": [],
+      "competitor_scope": [
+        "public competitor signals"
+      ],
+      "kpis": [],
+      "constraints": {},
+      "low_confidence": false
+    },
+    "content_strategy": {
+      "content_pillars": [
+        "brand story",
+        "product utility",
+        "social proof",
+        "platform-native education"
+      ],
+      "style_rules": [
+        "tone=calm sharp poetic",
+        "preserve brand constraints",
+        "prefer reusable post patterns"
+      ],
+      "channel_rules": {
+        "xiaohongshu": [
+          "adapt to channel format",
+          "keep public/authorized-only data"
+        ],
+        "weibo": [
+          "adapt to channel format",
+          "keep public/authorized-only data"
+        ]
+      },
+      "keywords": [
+        "to be clarified",
+        "calm sharp poetic"
+      ]
+    },
+    "content_assets": {
+      "topics": [
+        "introductory brand story",
+        "product use-case story"
+      ],
+      "titles": [
+        "Aurora Lane: why it matters"
+      ],
+      "posts": [
+        "Draft post placeholder"
+      ],
+      "scripts": [
+        "Draft short-form script placeholder"
+      ],
+      "comment_replies": [
+        "Reply template placeholder"
+      ]
+    },
+    "competitor_report": {
+      "competitors": [
+        "public competitor signals"
+      ],
+      "themes": [
+        "minimal",
+        "story",
+        "utility"
+      ],
+      "patterns": [
+        "short-form hooks",
+        "platform-native formatting"
+      ],
+      "frequency": "unknown until public/authorized data is supplied",
+      "engagement_signals": [
+        "likes",
+        "comments",
+        "saves"
+      ],
+      "gaps": [
+        "differentiation opportunity pending deeper analysis"
+      ]
+    },
+    "performance_report": {
+      "kpis": [
+        "reach",
+        "engagement",
+        "conversion"
+      ],
+      "scores": {
+        "brand_consistency": 4,
+        "channel_fit": 4,
+        "content_effect": 3,
+        "competitor_advantage": 3
+      },
+      "issues": [
+        "placeholder scoring until real content/data is provided"
+      ],
+      "recommendations": [
+        "produce first content batch",
+        "collect public signals",
+        "re-score next cycle"
+      ]
+    },
+    "iteration_plan": {
+      "changes_for_next_cycle": [
+        "Refine content pillars based on observed engagement",
+        "Add competitor examples from public/authorized sources",
+        "Tune platform variants for strongest channel"
+      ],
+      "human_approval_needed": true
+    },
+    "browser": {
+      "action": "collect_public_signals",
+      "data_access": "authorized",
+      "need_login": false,
+      "compliant": true,
+      "decision": "allow",
+      "reasons": [],
+      "degrade_to": []
+    },
+    "authorization": {
+      "action": "publish",
+      "data_access": "authorized",
+      "requires_payment": false,
+      "has_boundary": true,
+      "reasons": [
+        "action 'publish' requires human confirmation"
+      ],
+      "recommended_state": "awaiting_confirmation",
+      "recommended_decision": "pause"
+    },
+    "status": "ready_for_iteration",
+    "low_confidence": false
+  },
+  "content_producer": {
+    "topics": [
+      "Aurora Lane origin story",
+      "Aurora Lane use case story"
+    ],
+    "titles": [
+      "Aurora Lane: a simple introduction"
+    ],
+    "posts": [
+      "Draft post placeholder"
+    ],
+    "scripts": [
+      "Draft short-form script placeholder"
+    ],
+    "comment_replies": [
+      "Reply template placeholder"
+    ],
+    "platform_variants": [
+      "xiaohongshu",
+      "weibo",
+      "douyin"
+    ]
+  },
+  "auth": {
+    "has_boundary": true,
+    "reasons": [
+      "payment/recharge requires explicit human authorization"
+    ],
+    "authorization_request": "[需要人类确认]\n当前操作超出允许边界。\n\n原因：\n- payment/recharge requires explicit human authorization\n\n需要你的确认：\n- 是否继续\n- 是否授权访问\n- 是否授权发布/投放\n- 是否授权支付/充值\n\n可回复：\n- 确认继续\n- 授权执行\n- 授权支付\n- 拒绝",
+    "state": "awaiting_confirmation",
+    "decision": "pause",
+    "pause": true,
+    "fallback": "draft only",
+    "resume_condition": "explicit human confirmation",
+    "allowed_scope": "public+authorized-only"
+  },
+  "browser": {
+    "requested_action": "bypass captcha",
+    "normalized_action": "bypass_captcha",
+    "platform": "xiaohongshu",
+    "allowed_actions": [
+      "collect_public_signals",
+      "gather_authorized_data",
+      "open_public_page",
+      "prepare_draft_publication",
+      "read_public_content"
+    ],
+    "blocked_actions": [
+      "bypass_captcha",
+      "bypass_login",
+      "bypass_rate_limits",
+      "evade_platform_controls",
+      "stealth_scraping"
+    ],
+    "capability_plan": [
+      "manual_review_required"
+    ],
+    "compliance": {
+      "compliant": false,
+      "decision": "degrade",
+      "reasons": [
+        "'bypass_captcha' is explicitly blocked",
+        "data_access must be public or authorized",
+        "login-required actions must stay within authorized draft/data scopes"
+      ],
+      "degrade_to": [
+        "public_search",
+        "official_api",
+        "human_provided_samples"
+      ]
+    },
+    "notes": "browser capability and compliance are unified: execute only within compliant scope"
+  }
+}

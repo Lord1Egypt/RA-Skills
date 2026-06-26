@@ -1,0 +1,20 @@
+{
+  "name": "liblibai",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for LiblibAI image generation",
+  "main": "lib/client.js",
+  "bin": {
+    "liblibai": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "skill", "liblibai", "image-generation"],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "commander": "^14.0.3",
+    "liblibai": "^0.0.11"
+  }
+}

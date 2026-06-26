@@ -1,0 +1,4 @@
+interface:
+  display_name: "MinerU OCR Local & API"
+  short_description: "Parse PDFs with hosted MinerU API or local open-source MinerU."
+  default_prompt: "Use $mineru-ocr-local-api to parse a PDF with MinerU and return the saved Markdown path."

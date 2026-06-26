@@ -1,0 +1,29 @@
+{
+  "name": "tianshu-script-analyzer",
+  "version": "1.0.1",
+  "description": "🎭 短剧爆款因子分析引擎。输入剧名或关键词，返回该剧的爆款因子分析报告——为什么火？靠什么火的？公式能不能复制？免费预览基础画像+核心结论。付费解锁7维度深度拆解（选题赛道、情绪共鸣、剧本结构、表演角色、视听语言、社会情绪、商业模式）及可复用公式。数据覆盖200+部短剧，支付宝支付9.90元/次。面向短剧行业创作者、制片人、投资人。",
+  "author": "45号剧坊",
+  "license": "MIT",
+  "triggers": [
+    "短剧","爆款","短剧爆款","微短剧","剧本分析","剧本诊断","剧本拆解",
+    "冒姓琅琊","乖乖女","好一个乖乖女","太奶奶","十八岁太奶奶",
+    "霸总保姆","重生之我在霸总短剧里当保姆","阴差阳错",
+    "爽剧","短剧分析","短剧推荐","剧本评估",
+    "tianshu","天枢","天枢剧本库","爆款因子","爆款公式",
+    "听花岛","抖音短剧","红果短剧"
+  ],
+  "api_type": "http",
+  "api_endpoint": "https://sinodata.io/v1/analyzer",
+  "auth": { "type": "none" },
+  "payment": {
+    "type": "alipay",
+    "price": 9.90,
+    "currency": "CNY",
+    "description": "天枢剧本库 - 短剧爆款因子分析报告(每次)"
+  },
+  "pricing": {
+    "type": "pay_per_call",
+    "price_cny": 9.90
+  },
+  "tags": ["short-drama","drama-analysis","script-analysis","viral-hit","chinese-drama","content-analysis","screenwriting"]
+}

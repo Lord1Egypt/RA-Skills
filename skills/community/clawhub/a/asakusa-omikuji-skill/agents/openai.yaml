@@ -1,0 +1,4 @@
+interface:
+  display_name: "浅草寺.skill"
+  short_description: "以浅草寺观音灵签直接启签；若前签不佳，可行一回纳签重请，以销签转势的仪式感揭出新签"
+  default_prompt: "使用 $asakusa-omikuji-skill 以雅致而有仪式感的中文为我启一支真实的浅草寺观音灵签；若签意不佳，只在那时委婉提出一次纳签重请，将旧签销去后再揭新签。"

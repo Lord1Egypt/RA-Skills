@@ -1,0 +1,78 @@
+{
+  "id": "skill-security-scanner",
+  "name": "技能安全扫描器",
+  "description": "OpenClaw技能安全扫描插件，提供完整的技能安全扫描功能，包括敏感操作检测和木马/后门检测",
+  "emoji": "🔐",
+  "license": "MIT",
+  "author": "jax-npm",
+  "version": "1.0.2",
+  "tags": ["security", "scanner", "audit", "safety", "openclaw", "plugin"],
+  "tools": ["skill_security_scan"],
+  "requires": {
+    "bins": ["node", "npm"]
+  },
+  "install": {
+    "npm": "@jax-npm/skill-security-scanner"
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "scanPath": {
+        "type": "string",
+        "description": "技能目录扫描路径",
+        "default": "C:\\Users\\Administrator\\.openclaw\\workspace\\skills"
+      },
+      "defaultFormat": {
+        "type": "string",
+        "description": "默认输出格式",
+        "enum": ["text", "markdown", "json"],
+        "default": "text"
+      },
+      "sensitiveKeywords": {
+        "type": "array",
+        "description": "敏感关键词列表",
+        "default": [
+          "exec", "shell", "rm", "delete", "format", "shutdown", "reboot",
+          "sudo", "chmod", "chown", "kill", "uninstall", "drop", "truncate",
+          "format", "wipe", "erase", "overwrite", "dd", "mkfs", "fdisk",
+          "eval", "Function", "require", "import", "child_process", "spawn",
+          "execFile", "fork", "execSync", "spawnSync", "execFileSync"
+        ]
+      },
+      "trojanPatterns": {
+        "type": "object",
+        "description": "木马检测模式配置",
+        "properties": {
+          "network": {
+            "type": "array",
+            "description": "网络通信后门关键词",
+            "default": ["net", "http", "ws", "socket.io", "websocket", "tcp", "udp"]
+          },
+          "filesystem": {
+            "type": "array",
+            "description": "文件系统恶意操作关键词",
+            "default": ["fs.write", "fs.unlink", "fs.rmdir", "fs.rename", "fs.copy"]
+          },
+          "process": {
+            "type": "array",
+            "description": "进程控制关键词",
+            "default": ["child_process", "exec", "spawn", "fork", "kill"]
+          },
+          "crypto": {
+            "type": "array",
+            "description": "数据加密外传关键词",
+            "default": ["crypto", "Buffer", "base64", "encrypt", "decrypt"]
+          }
+        }
+      }
+    }
+  },
+  "clawhub": {
+    "slug": "jax-skill-security-scanner",
+    "category": "security",
+    "compatibility": ["openclaw", "openclaw-cn"],
+    "warning": "本工具被标记为高风险，这是预期的！安全扫描工具需要访问敏感功能来检测安全问题。",
+    "forceRequired": true
+  }
+}

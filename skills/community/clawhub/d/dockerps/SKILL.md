@@ -1,35 +1,57 @@
 ---
-name: "Dockerps"
+name: "dockerps"
+version: "3.0.0"
 description: "View and manage Docker container processes and stats. Use when monitoring containers. Requires docker."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dockerps"
-sourceUrl: "https://clawhub.ai/skills/dockerps"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Dockerps
+# dockerps
 
-> View and manage Docker container processes and stats. Use when monitoring containers. Requires docker.
+View and manage Docker container processes and stats. Use when monitoring containers. Requires docker.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dockerps`
-- **Source URL:** [https://clawhub.ai/skills/dockerps](https://clawhub.ai/skills/dockerps)
+## Commands
 
-## Overview
+### `list`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dockerps
+scripts/script.sh list
 ```
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+### `top`
+
+```bash
+scripts/script.sh top <container>
+```
+
+### `logs`
+
+```bash
+scripts/script.sh logs <container lines>
+```
+
+### `inspect`
+
+```bash
+scripts/script.sh inspect <container>
+```
+
+### `cleanup`
+
+```bash
+scripts/script.sh cleanup
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/dockerps/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

@@ -1,0 +1,57 @@
+{
+  "name": "memory-core-plus",
+  "version": "1.0.2",
+  "description": "Enhanced workspace memory with auto-recall and auto-capture for OpenClaw",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "files": [
+    "index.ts",
+    "config.ts",
+    "recall.ts",
+    "capture.ts",
+    "safety.ts",
+    "openclaw.plugin.json",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=2026.3.2"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "memory",
+    "auto-recall",
+    "auto-capture",
+    "llm",
+    "ai-agent",
+    "rag",
+    "ai-gateway",
+    "typescript"
+  ],
+  "author": "aloong",
+  "license": "MIT",
+  "homepage": "https://github.com/aloong-planet/openclaw-memory-core-plus#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aloong-planet/openclaw-memory-core-plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aloong-planet/openclaw-memory-core-plus/issues"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.0"
+  }
+}

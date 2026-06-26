@@ -1,0 +1,1479 @@
+meta:
+  id: finance-bp-136-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-136
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:07:14.728690+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: '20 finance-universal not_applicable + 6 AIL warn/fail/n.a. + 5 DAT pass/warn/fail/n.a. = 31 items reviewed
+      across applicable scope
+
+      '
+    audit_pass_rate: 1/10 (10% applicable items pass; 9 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-136. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-136-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: Two-agent code-writer + code-executor pair (Chess game)
+    positive_terms:
+    - chess
+    - game
+    - two-agent
+    - rule-checker
+    - RoundRobin
+    data_domain: technical_demo
+    negative_terms:
+    - dynamic role-routing
+    - production untrusted-code paths without approval_func
+  - uc_id: UC-002
+    name: Tool-augmented assistant with MCP server
+    positive_terms:
+    - MCP
+    - tool-use
+    - web-browsing
+    - playwright
+    - workbench
+    data_domain: technical_demo
+    negative_terms:
+    - air-gapped
+    - workloads mixing tools=[] with workbench= (raises ValueError)
+  - uc_id: UC-003
+    name: Multi-agent travel planner with handoffs (Swarm)
+    positive_terms:
+    - swarm
+    - handoff
+    - multi-agent-routing
+    - travel-planner
+    data_domain: technical_demo
+    negative_terms:
+    - participants that don't emit HandoffMessage (constructor raises)
+    - workloads needing autonomous routing without explicit handoff
+  - uc_id: UC-004
+    name: Magentic-One ledger-orchestrated team
+    positive_terms:
+    - magentic-one
+    - ledger
+    - plan
+    - autonomous-orchestration
+    - stall-detection
+    data_domain: technical_demo
+    negative_terms:
+    - low-latency / simple flows
+    - tasks not benefiting from explicit planning
+  - uc_id: UC-005
+    name: GraphRAG-augmented assistant
+    positive_terms:
+    - GraphRAG
+    - RAG
+    - graph-search
+    - knowledge-graph
+    data_domain: technical_demo
+    negative_terms:
+    - users expecting a first-class RAGAgent class (does not exist in v0.4)
+  - uc_id: UC-006
+    name: FastAPI-hosted agent with HTTP UI
+    positive_terms:
+    - web-API
+    - FastAPI
+    - streaming
+    - UI
+    - EventSource
+    - WebSocket
+    data_domain: technical_demo
+    negative_terms:
+    - workloads sharing a single team across concurrent requests (run_stream re-entry guard raises)
+  - uc_id: UC-007
+    name: Distributed agents over gRPC
+    positive_terms:
+    - distributed
+    - gRPC
+    - worker
+    - multi-process
+    - WorkerAgentRuntime
+    data_domain: technical_demo
+    negative_terms:
+    - simple in-process flows
+    - environments without gRPC tooling
+  - uc_id: UC-008
+    name: Cross-language agents (Python ↔ .NET)
+    positive_terms:
+    - cross-language
+    - .NET
+    - polyglot
+    - protobuf
+    - gRPC
+    data_domain: technical_demo
+    negative_terms:
+    - Python-only or .NET-only stacks
+  - uc_id: UC-009
+    name: Code-executor agent with LLM-based approval gate
+    positive_terms:
+    - code-execution
+    - approval-gate
+    - LLM-as-judge
+    - safety
+    data_domain: technical_demo
+    negative_terms:
+    - workloads where an extra LLM call per code execution is too expensive / slow
+    - environments needing zero-LLM-overhead execution (use static allowlist instead)
+  - uc_id: UC-010
+    name: Selector-based routing for multi-skill team
+    positive_terms:
+    - selector
+    - role-routing
+    - multi-skill
+    - specialist-team
+    data_domain: technical_demo
+    negative_terms:
+    - high-stakes routing without explicit selector_func (silent fallback per BD-010 / pitfall-002)
+  - uc_id: UC-011
+    name: Custom selector function (state-machine routing)
+    positive_terms:
+    - state-machine
+    - deterministic-routing
+    - selector_func
+    - custom-routing
+    data_domain: technical_demo
+    negative_terms:
+    - dynamic LLM-driven routing
+  - uc_id: UC-012
+    name: Human-in-the-loop with UserProxyAgent + HandoffTermination
+    positive_terms:
+    - human-in-the-loop
+    - HITL
+    - user-proxy
+    - handoff-termination
+    - resume
+    data_domain: technical_demo
+    negative_terms:
+    - autonomous-only loops
+    - flows requiring real-time chat (HandoffTermination is a discrete pause)
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 30
+    fatal_constraints_count: 2
+    non_fatal_constraints_count: 49
+    use_cases_count: 12
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 7 source groups: agent_message_dispatch(6),
+        chatagent_init(10), code_execution(3), cross_cutting(5), groupchat_construct(2), speaker_selection(3), and 1 more.'
+      key_decisions: 30 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-001
+      type: B
+      summary: Async event-driven actor runtime as v0.4 foundation
+    - id: BD-004
+      type: B/BA
+      summary: max_tool_iterations default = 1
+    - id: BD-005
+      type: B/BA
+      summary: reflect_on_tool_use default = False; FORCED True when output_content_type is set
+    - id: BD-009
+      type: B
+      summary: Concurrent tool execution via asyncio.gather (unconditional)
+    - id: BD-011
+      type: B
+      summary: ignore_unhandled_exceptions default = True (runtime); BaseGroupChat overrides to False
+    - id: BD-015
+      type: B
+      summary: SelectSpeakerEvent / handoff dispatched via topic-based pub/sub, not direct send
+    - id: BD-002
+      type: B/BA
+      summary: Caller contract — pass NEW messages only, not full history
+    - id: BD-003
+      type: B
+      summary: One ChatCompletionClient instance = one model
+    - id: BD-016
+      type: B
+      summary: StructuredMessage[T] requires MessageFactory registration (auto-done by BaseGroupChat)
+    - id: BD-051
+      type: B
+      summary: pyautogen PyPI package is now a 4-file proxy (0-byte __init__.py) pulling autogen-agentchat>=0.6.4
+    - id: BD-052
+      type: B
+      summary: 'ConversableAgent / v0.2 GroupChat / register_reply: REMOVED from main, only on `git refs/heads/0.2`'
+    - id: BD-053
+      type: T
+      summary: '`ModelCapabilities` TypedDict marked @deprecated, replaced by `ModelInfo`'
+    - id: BD-054
+      type: T
+      summary: '`ChatCompletionClient.capabilities` property is @abstractmethod but emits warning'
+    - id: BD-057
+      type: B
+      summary: Teachable Agent — v0.2 feature, MISSING in v0.4
+    - id: BD-058
+      type: B
+      summary: RAG Agent — v0.2 feature, MISSING in v0.4
+    - id: BD-059
+      type: B
+      summary: 'Whole framework: MAINTENANCE MODE per README:14,21,23,200,216,218'
+    - id: BD-007
+      type: B
+      summary: '`LocalCommandLineCodeExecutor` is documented as the default for examples but emits UserWarning + advises Docker'
+    - id: BD-008
+      type: B/BA
+      summary: CodeExecutorAgent default approval_func=None — auto-approve all generated code with UserWarning
+    - id: BD-055
+      type: T
+      summary: '`work_dir="."` (current directory) emits DeprecationWarning on Local and Docker executors'
+    - id: BD-060
+      type: missing
+      summary: '`LocalCommandLineCodeExecutor` docstring claims regex sanitization that does not exist anywhere in the codebase'
+    - id: BD-061
+      type: missing
+      summary: No team-level cost aggregator — manual aggregation required across turns / agents
+    - id: BD-062
+      type: missing
+      summary: No first-class output-format anomaly handler — SelectorGroupChat silently falls back; no first-class veto agent
+    - id: BD-063
+      type: missing
+      summary: No standardized handoff multi-call handling — only the first HandoffMessage in a model response is executed
+        (per docstring)
+    - id: BD-064
+      type: missing
+      summary: No structured_output capability fallback — `max_retries_on_error > 0` opaquely fails on clients without it
+    - id: BD-012
+      type: T
+      summary: One embedded runtime per group-chat instance (default)
+    - id: BD-013
+      type: B
+      summary: team_id = uuid4() per construction (NOT keyed by team class)
+    - id: BD-006
+      type: B/BA
+      summary: allow_repeated_speaker default = False in SelectorGroupChat
+    - id: BD-010
+      type: B
+      summary: SelectorGroupChat — silent fallback to previous_speaker / first participant after max_selector_attempts
+    - id: BD-014
+      type: DK
+      summary: LLM call branched on ModelFamily.is_openai() — SystemMessage vs UserMessage for selector prompt
+    - id: BD-056
+      type: B
+      summary: Cost tracking — v0.2 feature, MISSING in v0.4
+resources:
+  packages:
+  - name: pyautogen (DEPRECATED PROXY)
+    version_pin: latest
+  - name: autogen-core / autogen-agentchat / autogen-ext
+    version_pin: latest
+  - name: opentelemetry-api / opentelemetry-sdk
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install pyautogen (DEPRECATED PROXY)
+    - python3 -m pip install autogen-core / autogen-agentchat / autogen-ext
+    - python3 -m pip install opentelemetry-api / opentelemetry-sdk
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: '?'
+    when: When evaluating LocalCommandLineCodeExecutor for any path that may receive LLM-generated code, especially when reading
+      the class docstring sanitization claim
+    action: Treat LocalCommandLineCodeExecutor as having ZERO input filtering. Never use it for untrusted/LLM-generated code
+      without (a) wrapping in DockerCommandLineCodeExecutor for container isolation, OR (b) wrapping CodeExecutorAgent with
+      an explicit approval_func (interactive prompt, hardcoded allowlist, or model_client_approval_func). Audit any existing
+      setup of `CodeExecutorAgent(code_executor=LocalCommandLineCodeExecutor())` — this is the documented canonical example
+      and is unsafe by default. Maintenance-mode SLA means this docstring will NOT be corrected upstream; document the gap
+      in your own skill/wrapper.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When choosing a CodeExecutor backend for any production deployment or any path receiving LLM-generated code
+    action: Instantiate `DockerCommandLineCodeExecutor(work_dir='coding', image='python:3-slim')` instead of `LocalCommandLineCodeExecutor()`.
+      Confirm Docker daemon is running before starting. Use `await code_executor.start()` / `await code_executor.stop()` (or
+      async context manager) to manage container lifecycle. Pin the image tag explicitly to avoid silent base-image upgrades;
+      do NOT rely on `:latest`.
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: null
+  regular:
+  - id: '?'
+    when: When porting v0.2 cookbook / blog / tutorial code that uses `pip install pyautogen` and `from autogen import ConversableAgent`
+    action: 'If you NEED the v0.2 API: `pip install "autogen-agentchat~=0.2"` (pin the v0.2 minor series). If you can migrate:
+      rewrite to v0.4 with `from autogen_agentchat.agents import AssistantAgent` + `BaseGroupChat` family. Given maintenance-mode
+      declaration (autogen-C-004), porting v0.2 cookbooks is unlikely upstream — assume the legacy code is on you to migrate.
+      New projects: skip both v0.2 and v0.4, start on Microsoft Agent Framework (MAF).'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When making a strategic technology choice for a new multi-agent project in 2025 H2 or later
+    action: 'For greenfield projects: choose Microsoft Agent Framework (MAF, github.com/microsoft/agent-framework) instead
+      of autogen v0.4. For existing autogen v0.4 projects: freeze the dependency at the working version and plan a migration
+      to MAF using the official guide (learn.microsoft.com/en-us/agent-framework/migration-guide/from-autogen/). Do NOT file
+      feature requests against autogen — they will be closed ''won''t fix — please use MAF''. Bugs may still get attention
+      but with no SLA; design your project to absorb that risk. Note CVE-level findings (autogen-C-001) will likely never
+      be fixed.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When constructing a CodeExecutorAgent for any production or untrusted-input pipeline
+    action: 'Always pass an explicit `approval_func`. Three documented patterns: (a) interactive prompt — print code + read
+      user yes/no; (b) hardcoded allowlist — match `request.code` against safe-operations list (per `_code_executor_agent.py:283-295`
+      example); (c) `model_client_approval_func` (LLM-as-judge, lines 347-396) — second LLM gates code from first LLM with
+      a SystemMessage instruction and json_output=ApprovalResponse. ApprovalRequest / ApprovalResponse Pydantic models defined
+      at lines 69-80. Any of these is better than None. Audit existing code for the pattern `CodeExecutorAgent(...)` without
+      approval_func.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When using SelectorGroupChat for any high-stakes routing where wrong-agent selection has consequences (compliance,
+      financial, safety)
+    action: (a) Pass an explicit `selector_func` callable to bypass LLM selection entirely for deterministic routing. (b)
+      If LLM selection is required, attach a handler to the `autogen_agentchat` trace_logger and ALERT on any line containing
+      'Model failed to select a speaker after'. (c) Raise `max_selector_attempts` for high-stakes flows but recognize it does
+      NOT eliminate fallback — eventually a bad output trips fallback. (d) Treat the absence of a stdlib warnings.warn / raise
+      as a known-gap and design your own monitoring.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When deploying LocalCommandLineCodeExecutor on a Windows host
+    action: 'At application startup, before any executor construction, call: `import sys, asyncio; if sys.platform == ''win32'':
+      asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())`. Per docstring at `local/__init__.py:64-74`.
+      Better cross-platform default: avoid LocalCommandLineCodeExecutor entirely (autogen-C-001 / autogen-C-002) and use DockerCommandLineCodeExecutor
+      — Docker abstracts away the host event-loop policy issue.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When constructing a Swarm group chat with `Swarm(participants=[...], ...)`
+    action: Place an AssistantAgent configured with `handoffs=[...]` (which makes it produce HandoffMessage) as the FIRST
+      item in the participants list. Verify with `HandoffMessage in agent.produced_message_types` before construction. UserProxyAgent
+      also produces HandoffMessage (per UC-012 HITL pattern). Other agents in the list don't need handoff capability if they're
+      terminal or only respond.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When writing a custom driver / wrapper / orchestrator that invokes ChatAgent.on_messages directly (instead of using
+      BaseGroupChat)
+    action: 'Track the last-yielded turn index in your driver and pass only messages produced AFTER that index to the next
+      on_messages call. If you must use a stateless driver (e.g., simple HTTP wrappers), construct a fresh agent per request
+      and pass full history once — but understand the agent''s model_context grows from empty so cost/correctness shift to
+      your driver. Inspect existing drivers for the anti-pattern: `await agent.on_messages(self.full_history, ...)` — fix
+      to `self.full_history[last_index:]`.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When constructing AssistantAgent and considering both `tools=` and `workbench=` parameters
+    action: 'Pick exactly one: (a) `tools=[FunctionTool(...), ...]` for a small fixed local tool set; (b) `workbench=McpWorkbench(StdioServerParams(...))`
+      for an MCP server or other dynamic catalog. Convert any FunctionTool you want to keep into a workbench tool (or vice-versa)
+      — do not mix them in one agent. If you need both static and dynamic tools, wrap multiple workbenches into a `Sequence[Workbench]`
+      and pass as `workbench=`.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When constructing AssistantAgent with both `tools=` (or workbench tools) and `handoffs=`
+    action: Before constructing, build a flat name set from your tools and verify no handoff name (or HandoffBase.target)
+      appears in it. Use distinct namespaces (e.g., prefix handoffs with 'handoff_to_' or use the AssistantAgent name as suffix)
+      to avoid accidental collision when adding new tools later. Document the rule in your team-construction wrapper.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When designing a FastAPI / web service that hosts an autogen team behind an HTTP / WebSocket route (per UC-006 pattern)
+    action: Either (a) construct a fresh team per request (acceptable when team_id stability isn't required — note autogen-C-013
+      boundary on team_id), OR (b) implement a per-team async lock and await stream completion before allowing the next request,
+      OR (c) use a team pool keyed by session_id and serialize per-key. Do not share a singleton team across concurrent requests.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When implementing checkpoint / resume / cross-deploy state portability for BaseGroupChat instances
+    action: Persist the team_id alongside the saved_state. On restore, reconstruct the team and explicitly inject the saved
+      team_id (or use the same construction path that produced the original) so topic types align. If portability across machines
+      / deployments is required, design a state-migration step that remaps topic types from the source uuid to the target
+      uuid before load. Document this in your wrapper.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When constructing your own SingleThreadedAgentRuntime instance instead of relying on the BaseGroupChat embedded
+      one
+    action: If you're building an AgentChat-style consumer that iterates over team output, pass `SingleThreadedAgentRuntime(ignore_unhandled_exceptions=False)`
+      so background exceptions don't get silently swallowed. If you're building a long-running core-API service that should
+      keep processing despite individual agent failures, keep the default True (or pass True explicitly to make intent clear).
+      Document the choice.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When sizing the runtime for production load — concurrent users, fan-out workflows, or bursty traffic
+    action: 'Benchmark before committing to SingleThreadedAgentRuntime. For low/medium throughput single-process apps it''s
+      the correct default. For high throughput: switch to WorkerAgentRuntime (gRPC) and per-agent processes per UC-007 pattern;
+      coordinate via host process. Acknowledge cross-process latency tax. Cross-language deployments (UC-008 Python ↔ .NET)
+      also require gRPC.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When porting v0.2 code or other multi-step-by-default patterns to v0.4 AssistantAgent
+    action: Pass `max_tool_iterations=N` explicitly when you want the agent to chain multiple tool calls in one turn. Pair
+      with `MaxMessageTermination(M)` or token-based termination to bound cost. Do NOT set N to a high value 'just in case'
+      — model agency under high N invites unexpected loops on misconfigured tools. Pick N based on the longest legitimate
+      chain in your workflow + a small safety margin.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When configuring AssistantAgent for structured output (output_content_type=) AND considering performance tuning
+      of reflect_on_tool_use
+    action: Default behavior is correct for most workloads — leave reflect_on_tool_use unset when using output_content_type.
+      If you explicitly need to skip reflection (e.g., to save the second LLM call), make tools that return content already
+      shaped to your Pydantic schema and accept that the agent may return non-conforming raw output otherwise. Document the
+      override and add a validation step.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When configuring AssistantAgent with `handoffs=[...]` for any team that may issue parallel-tool-call-capable model
+    action: 'On the model_client, pass `parallel_tool_calls=False` (e.g., `OpenAIChatCompletionClient(model=''gpt-4o'', parallel_tool_calls=False)`).
+      Add a code-review check / lint rule for the pattern `AssistantAgent(..., handoffs=[...])` to enforce. Document the requirement
+      in any handoff-using project''s setup guide. Note: Anthropic and other providers may have different config flag names
+      — check the provider client''s options.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing any of the 6 abstract base classes (BaseGroupChatManager, ChatAgent, BaseChatAgent, ChatCompletionClient,
+      CodeExecutor, Workbench) to add a new team type / agent / client / executor / workbench
+    action: For each base class, implement EVERY method marked `@abstractmethod`. Use mypy / static check with `--strict`
+      to catch missed abstracts at edit time rather than runtime. Per blueprint Stage 1-5 abstractmethods enumeration — refer
+      to BD blueprint sections for exact line numbers per class.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When constructing any BaseGroupChat subclass (RoundRobinGroupChat / SelectorGroupChat / Swarm / MagenticOneGroupChat)
+      with a custom participants list
+    action: 'Validate inputs before construction: assert max_turns is None or max_turns > 0; assert all participant names
+      are unique; verify the autogen-internal topic naming doesn''t collide (typically handled automatically when names are
+      unique). When using custom topic schemes, ensure the group''s topic prefix is distinct from any participant''s. The
+      4 errors are catch-able but each blocks construction independently.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When introducing a custom ChatCompletionClient subclass with a new ModelFamily not handled by `ModelFamily.is_openai`
+    action: When subclassing ChatCompletionClient, ensure your `model_info['family']` is one of the recognized values, OR
+      test selector behavior end-to-end with a SelectorGroupChat to confirm the wrap is appropriate for your model. If your
+      model performs better with SystemMessage even though it's non-OpenAI family, file an upstream PR (low SLA — see autogen-C-004)
+      or wrap the model behind an OpenAI-family alias for selection prompts.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When configuring SelectorGroupChat for flows where the same agent legitimately should speak multiple turns in a
+      row
+    action: Pass `allow_repeated_speaker=True` to SelectorGroupChat constructor. Verify by checking that previous_speaker
+      remains in the candidate list visible to the LLM. If you only sometimes want repeats, write a custom `selector_func`
+      that returns the agent name unconditionally and bypasses the LLM.
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When porting v0.2 client setup that used `config_list` for multi-model fallback
+    action: Construct one ChatCompletionClient per model. For routing logic (cheap-vs-expensive, fallback on rate-limit, A/B),
+      wrap a dispatcher class that picks the client based on task or signal and passes it to the agent. Track per-client cost
+      via `model_client.actual_usage()` / `total_usage()` (note autogen-C-024 — no team-level aggregator).
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When operating an autogen v0.4 team in production where cost monitoring matters (any LLM-billed deployment)
+    action: 'Implement custom cost aggregation: subscribe to runtime events / wrap each model_client with a cost-tracking
+      decorator that logs after each `create()` / `create_stream()`. Expose roll-up via your observability stack (Prometheus,
+      OTel, etc. — see autogen-C-026 for tracing). MagenticOneGroupChat is especially prone to surprise costs because it re-plans
+      on stalls; track per-stall cost separately.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When porting v0.2 code that used TeachableAgent / RetrieveAssistantAgent or starting a v0.4 project that needs persistent
+      memory or RAG
+    action: 'For long-term memory: wire mem0 (or another memory layer) as an external service, exposed to AssistantAgent via
+      Workbench tool or pre-prompt context. For RAG: build your own retrieval pipeline (vector DB + embedding + BM25 fusion)
+      and expose as a Workbench tool. Mem0 ships an explicit autogen integration (cookbooks/mem0-autogen.ipynb, helper/mem0_teachability.py)
+      per blueprint relations field. Do not wait for v0.4 first-class support — maintenance mode means it won''t come.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When deploying autogen to production where observability is required (debugging, cost attribution, performance monitoring)
+    action: (a) Attach a handler to the `autogen_core.events` logger to capture envelope creation / agent invocation events.
+      (b) Configure an OpenTelemetry exporter at app startup (auto-instrumentation libraries simplify this). (c) If you don't
+      want runtime internals, set `AUTOGEN_DISABLE_RUNTIME_TRACING=true` and rely solely on app-level OTel spans you create.
+      Combine with autogen-C-006's trace_logger handler to catch SelectorGroupChat fallbacks.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When writing install instructions, requirements.txt, pyproject.toml, or Dockerfiles for an autogen v0.4 project
+    action: 'Use exact package names: `autogen-agentchat`, `autogen-core`, `autogen-ext`. Pin minor version explicitly (e.g.,
+      `autogen-agentchat~=0.6.4`) to avoid surprise upgrades — maintenance-mode SLA means upstream bug-fix releases come on
+      irregular cadence. For extras, use bracket syntax: `autogen-agentchat[openai,docker,mcp]`. Do NOT use bare `autogen`
+      or `pyautogen` in requirements files.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When configuring AssistantAgent with tools that perform writes, mutations, or non-idempotent network calls
+    action: Pass `parallel_tool_calls=False` on the model_client when ANY tool is non-idempotent / order-sensitive. For mixed
+      tool sets (some safe to parallelize, some not), split into multiple agents — keep the parallel-safe tools on one agent
+      and the serial-required tools on another. Per audit DAT item 2, this is also why `unconditional gather` was flagged
+      'warn'.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When constructing LocalCommandLineCodeExecutor or DockerCommandLineCodeExecutor and tempted to use the current directory
+    action: 'Pass an explicit subdirectory: `work_dir=''coding''` or `work_dir=Path(''./workspace'')`. Create the directory
+      if missing. Add it to .gitignore if scratch outputs shouldn''t be tracked. Cross-cutting: pair with Docker (autogen-C-002)
+      to fully isolate the workspace from the host filesystem.'
+    severity: low
+    kind: domain_rule
+    modality: should_not
+    consequence: null
+  - id: '?'
+    when: When configuring CodeExecutorAgent with retry-on-error AND considering / migrating to non-OpenAI providers
+    action: Either (a) keep max_retries_on_error=0 (default) on providers without structured_output, OR (b) verify your model_client.model_info['structured_output']
+      == True before passing to CodeExecutorAgent. For OpenAI / Azure / Anthropic this is True; for arbitrary Ollama / vLLM
+      models, check the model_info dict — some custom-deployed models lie about structured_output capability and behave inconsistently.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When porting v0.2 cookbook code or following v0.2 tutorials on a v0.4 install
+    action: 'Map v0.2 → v0.4 surface: ConversableAgent → AssistantAgent (or BaseChatAgent subclass); GroupChatManager → BaseGroupChat
+      (RoundRobinGroupChat / SelectorGroupChat / Swarm / MagenticOneGroupChat); register_reply pattern → tools=[FunctionTool(...)]
+      / workbench=. The v0.2 register_reply mechanism has no v0.4 equivalent — the actor model is incompatible with v0.2''s
+      reply registration pattern. Refer to official migration-guide.md for full mapping.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When evaluating language coverage for an autogen-based project that needs a non-Python runtime
+    action: 'For polyglot Python ↔ .NET: use the in-tree gRPC stack — protobuf schemas in `protos/`, Python WorkerAgentRuntime,
+      .NET Microsoft.AutoGen / AutoGen.* packages (16 sub-packages). For thin TS clients: build them as web frontends talking
+      to a Python FastAPI / WebSocket backend (UC-006 pattern). Do not search for an autogen JS/TS SDK on npm — it doesn''t
+      exist as a runtime.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When choosing MagenticOneGroupChat for autonomous orchestration in production where cost control matters
+    action: (a) Set `max_stalls` conservatively (e.g., 3-5 per typical workflow length) and pair with `MaxMessageTermination`
+      as a hard upper bound. (b) Subscribe to runtime events (autogen-C-026 telemetry) to log every re-plan event. (c) Implement
+      an external cost monitor that polls `model_client.actual_usage()` per turn and raises an alert when run cost crosses
+      a budget threshold — autogen has no built-in budget guard.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When introducing a custom BaseChatMessage / BaseAgentEvent subclass OR when wiring agents directly through the runtime
+      instead of via BaseGroupChat
+    action: '(a) When using BaseGroupChat: include the custom type in your agent''s `produced_message_types` — auto-registration
+      handles the rest. (b) When using runtime directly: explicitly register via MessageFactory before any publish; otherwise
+      the receiving agent gets a deserialization error. (c) For StructuredMessage[T], the T type parameter must be a Pydantic
+      model with stable schema.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When implementing a new ChatCompletionClient subclass for a custom provider
+    action: Implement `model_info` (returning a ModelInfo TypedDict with all 5 required fields). Skip the deprecated `capabilities`
+      property unless backward-compat with very old consumer code is required. Run `validate_model_info` to confirm the dict
+      shape. Existing third-party clients implementing only capabilities will continue to work but emit DeprecationWarning
+      at runtime.
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When designing a multi-agent system whose correctness depends on routing fidelity (compliance, finance, safety-critical
+      workflows)
+    action: (a) Replace LLM selection with `selector_func` (a deterministic Python callable) for the routing tier — bypass
+      the silent-fallback risk entirely. (b) If LLM selection is required, build an external anomaly handler that subscribes
+      to `autogen_agentchat` trace_logger and pages on 'Model failed to select a speaker after' messages. (c) Add a 'veto
+      agent' as a participant whose role is to flag risky decisions; route its decisions through your own logic since the
+      framework has no built-in veto. (d) Combine with autogen-C-018 handoff protection.
+    severity: high
+    kind: domain_rule
+    modality: should_not
+    consequence: null
+  - id: '?'
+    when: When provisioning the runtime environment, container, or CI for an autogen v0.4 project
+    action: Pin Python ≥3.10 in your Dockerfile / venv / CI matrix. Pin .NET ≥8.0 if using the .NET stack. Update legacy environments
+      before installation; do not attempt to back-port. Confirm with `python --version` / `dotnet --version` at container
+      build time, not at runtime.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing ChatCompletionClient to add a new model provider
+    action: Implement all 9 abstract methods. For `capabilities`, return a stub matching legacy schema OR have it call into
+      your model_info conversion. Implement `model_info` properly (autogen-C-035) — downstream features key on it. Implement
+      actual_usage / total_usage to enable cost tracking (autogen-C-024). Implement count_tokens / remaining_tokens correctly
+      for context-window-aware features (TokenLimitedChatCompletionContext).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing CodeExecutor to add a new sandbox tier OR subclassing Workbench to add a new dynamic tool catalog
+    action: 'For CodeExecutor: implement execute_code_blocks (the main async method) plus lifecycle (start/stop/restart).
+      Use async context manager pattern: `async with MyExecutor() as ex: ...`. For Workbench: implement all 8 abstracts including
+      list_tools / call_tool / save_state / load_state for catalog discovery + invocation + persistence.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When iterating over `team.run_stream()` output in a custom application
+    action: 'Inspect each yielded message: if it''s a `GroupChatTermination` with a non-None error field, extract the SerializableException,
+      log it (with correlation ID), and decide to retry / fail-open / surface to user. Do NOT just `for msg in stream: ...`
+      and assume iteration completion = success — a termination with embedded exception looks like a normal termination unless
+      you check the field. Pair with autogen-C-026 telemetry for context.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When swapping ChatCompletionClient provider (vendor neutrality, cost optimization, air-gapped requirement)
+    action: '(a) Read `model_info` for the new client and confirm structured_output is True for the specific model id. (b)
+      Run a small test that exercises Phase 2-equivalent JSON extraction with response_format={''type'':''json_object''} and
+      verify output parses. (c) For Ollama / vLLM models, prefer ones with native JSON mode or grammar constraints. (d) For
+      air-gapped: accept that structured output may fall back to free-text and add validation in your wrapper.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When deploying autogen with multiple providers (e.g., OpenAI + Anthropic + Azure) in the same process
+    action: Pass API keys explicitly to each client constructor (e.g., `OpenAIChatCompletionClient(api_key=...)`) rather than
+      relying on env vars that all clients might read. Use a per-client config object with explicit key field. For Kubernetes
+      deployments, mount per-provider secrets and bind them to specific client constructors. Audit env var usage across clients
+      to ensure keys aren't accidentally shared.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When writing a custom `selector_func` that explicitly calls a model_client with a directive prompt
+    action: 'Inside your selector_func: branch on `model_client.model_info[''family'']` — for OpenAI family, wrap directive
+      in SystemMessage; for non-OpenAI, wrap in UserMessage. Mirror the autogen built-in pattern at `_selector_group_chat.py:241-245`.
+      If your custom selector ignores the family check, expect Anthropic / Gemini selector failures and resulting silent fallback
+      (autogen-C-006) cascade.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When writing the first import statement after installing autogen-agentchat
+    action: 'Use: `from autogen_agentchat.agents import AssistantAgent`; `from autogen_agentchat.teams import RoundRobinGroupChat`;
+      `from autogen_ext.models.openai import OpenAIChatCompletionClient`; `from autogen_core import ...`. Do NOT use `from
+      autogen import X` (ImportError) or `from pyautogen import X` (also fails per autogen-C-003).'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When using Anthropic, Gemini, or another non-OpenAI provider as the model_client for SelectorGroupChat
+    action: (a) Set `max_selector_attempts=5` (or higher) instead of the default 3 to absorb format drift. (b) Provide a `selector_func`
+      fallback that returns a sensible default agent on null/ambiguous LLM output. (c) Subscribe to autogen_agentchat trace_logger
+      and alert on 'Model failed to select a speaker after' events. (d) For high-stakes flows, prefer OpenAI for the selector
+      role even if other agents use Claude/Gemini for content.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When implementing a custom GroupChat / orchestrator that publishes its own termination events
+    action: Catch unhandled exceptions in your runtime, wrap as SerializableException, publish via `GroupChatTermination(SerializableException.from_exception(e))`
+      per `_base_group_chat.py:512-524` pattern. Do NOT raise to the consumer iterator directly; that breaks the iteration
+      contract. Document the channel in your GroupChat's docstring so downstream consumers know to inspect.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When wiring an MCP server (playwright / filesystem / custom MCP) into AssistantAgent via Workbench
+    action: (a) Verify the MCP server starts cleanly (`StdioServerParams` spawns a subprocess; HTTP variant requires a running
+      endpoint). (b) Add health check for HTTPServerParams; for StdioServerParams, monitor child process exit codes. (c) Implement
+      reconnect logic if the MCP server can crash mid-conversation — the agent will fail tool calls otherwise. (d) Pin the
+      MCP server version (e.g., `npm install -g playwright-mcp@x.y.z`) for reproducibility.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When subclassing AssistantAgent to override on_messages_stream behavior or building a similar concrete ChatAgent
+      subclass
+    action: 'Mirror the 5-step structure: keep step 1 (context update from new messages) before step 4 (LLM call); keep step
+      2 (memory injection) before step 4 OR carefully preserve the ''memory provides context'' contract some other way. Don''t
+      move step 5 (tool loop) to a background task — synchronous return is the contract. Add tests that exercise tool flow
+      + handoff + structured output to catch regressions.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When wiring up test fixtures vs production model_client and using ChatCompletionCache / ReplayChatCompletionClient
+    action: Keep test client construction in test/conftest files only. Never instantiate ChatCompletionCache / ReplayChatCompletionClient
+      in `app/main.py` or production paths. If you need a production cache layer, build your own caching wrapper around a
+      real client — the autogen built-in is for deterministic test replays, not production caching. Add a CI check that flags
+      ReplayChatCompletionClient in non-test paths.
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When integrating autogen into a data / ML pipeline where feature extraction or transformation is one of the agent's
+      tasks
+    action: 'Never let an autogen agent (especially CodeExecutorAgent) write to or read from the production data store directly.
+      Sandbox feature-extraction code execution behind Docker (autogen-C-002) AND approval_func (autogen-C-005). Treat agent
+      output as untrusted; validate before persistence. For audit/compliance, document the boundary explicitly: ''autogen-generated
+      code does NOT run with production data store credentials.'''
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When designing a polyglot Python ↔ .NET autogen system or porting Python concepts to .NET
+    action: Treat the two stacks as separate APIs sharing only the protobuf wire format. Use `Microsoft.AutoGen` for new .NET
+      work (aligned with the broader Microsoft Agent Framework). For per-provider .NET clients, use `AutoGen.{provider}`.
+      Read `dotnet/src/AutoGen.Core/Middleware/` to understand the .NET pipeline model — IMiddleware / FunctionCallMiddleware
+      / PrintMessageMiddleware structure behavior as request pipelines, not actor messages. The actor-pattern intuition from
+      Python won't transfer.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-136 / Two-agent code-writer + code-executor pair (Chess game)
+    version: v6.1
+    intent_keywords:
+    - chess
+    - game
+    - two-agent
+    - rule-checker
+    - RoundRobin
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (2 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 11
+        ucs:
+        - uc_id: UC-001
+          name: Two-agent code-writer + code-executor pair (Chess game)
+          short_description: Build a two-agent chess game with a code-writer agent (LLM) and a code-executor agent (Docker)
+            using RoundRobinGroupChat with TextMentionTermination("
+          sample_triggers:
+          - chess
+          - game
+          - two-agent
+        - uc_id: UC-002
+          name: Tool-augmented assistant with MCP server
+          short_description: Wire AssistantAgent with an MCP server (e.g., playwright) via Workbench abstraction; agent auto-discovers
+            tools and can drive a browser
+          sample_triggers:
+          - MCP
+          - tool-use
+          - web-browsing
+        - uc_id: UC-003
+          name: Multi-agent travel planner with handoffs (Swarm)
+          short_description: 'Multi-agent travel planning with explicit handoffs between specialist agents (Alice ↔ Bob) using
+            Swarm; first agent must produce HandoffMessage; team '
+          sample_triggers:
+          - swarm
+          - handoff
+          - multi-agent-routing
+        - uc_id: UC-004
+          name: Magentic-One ledger-orchestrated team
+          short_description: Complex autonomous orchestration with facts → plan → progress ledger pattern
+          sample_triggers:
+          - magentic-one
+          - ledger
+          - plan
+        - uc_id: UC-006
+          name: FastAPI-hosted agent with HTTP UI
+          short_description: Host a team behind a FastAPI route + JS client over EventSource / WebSocket
+          sample_triggers:
+          - web-API
+          - FastAPI
+          - streaming
+        - uc_id: UC-007
+          name: Distributed agents over gRPC
+          short_description: Per-agent process / multi-process distributed deployment using WorkerAgentRuntime and a host
+            process
+          sample_triggers:
+          - distributed
+          - gRPC
+          - worker
+        - uc_id: UC-008
+          name: Cross-language agents (Python ↔ .NET)
+          short_description: Python and .NET agents share protobuf message types from `protos/` and communicate over gRPC
+          sample_triggers:
+          - cross-language
+          - .NET
+          - polyglot
+        - uc_id: UC-009
+          name: Code-executor agent with LLM-based approval gate
+          short_description: One LLM gates code from another LLM (LLM-as-judge approval)
+          sample_triggers:
+          - code-execution
+          - approval-gate
+          - LLM-as-judge
+        - uc_id: UC-010
+          name: Selector-based routing for multi-skill team
+          short_description: LLM picks the right specialist per turn from descriptions of travel_advisor / hotel_agent / flight_agent
+          sample_triggers:
+          - selector
+          - role-routing
+          - multi-skill
+        - uc_id: UC-011
+          name: Custom selector function (state-machine routing)
+          short_description: Deterministic alternation between two agents using a Python callable as `selector_func` that
+            returns the next-speaker name based on last message conte
+          sample_triggers:
+          - state-machine
+          - deterministic-routing
+          - selector_func
+        - uc_id: UC-012
+          name: Human-in-the-loop with UserProxyAgent + HandoffTermination
+          short_description: Pause team execution when an agent hands off to "user"; caller resumes by appending a HandoffMessage
+            and continuing the stream
+          sample_triggers:
+          - human-in-the-loop
+          - HITL
+          - user-proxy
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-005
+          name: GraphRAG-augmented assistant
+          short_description: AssistantAgent with global_search + local_search tools over a GraphRAG-indexed dataset
+          sample_triggers:
+          - GraphRAG
+          - RAG
+          - graph-search
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try two-agent code-writer + code-executor pair (chess game)
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try tool-augmented assistant with mcp server
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try multi-agent travel planner with handoffs (swarm)
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 12 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Multi-agent travel planner with handoffs (Swarm)
+    - Tool-augmented assistant with MCP server
+    - Two-agent code-writer + code-executor pair (Chess game)
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

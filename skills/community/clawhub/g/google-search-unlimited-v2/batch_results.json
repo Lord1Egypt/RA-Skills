@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "total_queries": 7,
+    "successful": 7,
+    "failed": 0,
+    "total_time": 0.022803068161010742,
+    "cache_hits": 3,
+    "estimated_cost": 0.04,
+    "avg_time_per_query": 0.0032575811658586773,
+    "cache_hit_rate": 42.857142857142854,
+    "success_rate": 100.0
+  },
+  "queries": [
+    "OpenClaw documentation",
+    "Python programming",
+    "AI developments 2026",
+    "machine learning",
+    "web scraping techniques",
+    "OpenClaw documentation  # Duplicate to test cache",
+    "Python programming      # Another duplicate"
+  ],
+  "results": [
+    {
+      "query": "OpenClaw documentation",
+      "method": "cache",
+      "cache_hit": true,
+      "cost_estimate": 0.0,
+      "response_time_ms": 0,
+      "num_results": 0,
+      "results": [],
+      "processing_time_ms": 1
+    },
+    {
+      "query": "AI developments 2026",
+      "method": "cache",
+      "cache_hit": true,
+      "cost_estimate": 0.0,
+      "response_time_ms": 0,
+      "num_results": 0,
+      "results": [],
+      "processing_time_ms": 1
+    },
+    {
+      "query": "machine learning",
+      "method": "oxylabs_mock",
+      "cost_estimate": 0.01,
+      "cache_hit": false,
+      "response_time_ms": 0,
+      "num_results": 2,
+      "results": [
+        {
+          "title": "Test result 1 for machine learning",
+          "link": "https://example.com/1",
+          "snippet": "This is a test snippet for query: machine learning",
+          "source": "oxylabs_mock"
+        },
+        {
+          "title": "Test result 2 for machine learning",
+          "link": "https://example.com/2",
+          "snippet": "Another test result for: machine learning",
+          "source": "oxylabs_mock"
+        }
+      ],
+      "processing_time_ms": 2
+    },
+    {
+      "query": "web scraping techniques",
+      "method": "oxylabs_mock",
+      "cost_estimate": 0.01,
+      "cache_hit": false,
+      "response_time_ms": 0,
+      "num_results": 2,
+      "results": [
+        {
+          "title": "Test result 1 for web scraping techniques",
+          "link": "https://example.com/1",
+          "snippet": "This is a test snippet for query: web scraping techniques",
+          "source": "oxylabs_mock"
+        },
+        {
+          "title": "Test result 2 for web scraping techniques",
+          "link": "https://example.com/2",
+          "snippet": "Another test result for: web scraping techniques",
+          "source": "oxylabs_mock"
+        }
+      ],
+      "processing_time_ms": 2
+    },
+    {
+      "query": "OpenClaw documentation  # Duplicate to test cache",
+      "method": "oxylabs_mock",
+      "cost_estimate": 0.01,
+      "cache_hit": false,
+      "response_time_ms": 0,
+      "num_results": 2,
+      "results": [
+        {
+          "title": "Test result 1 for OpenClaw documentation  # Duplicate to test cache",
+          "link": "https://example.com/1",
+          "snippet": "This is a test snippet for query: OpenClaw documentation  # Duplicate to test cache",
+          "source": "oxylabs_mock"
+        },
+        {
+          "title": "Test result 2 for OpenClaw documentation  # Duplicate to test cache",
+          "link": "https://example.com/2",
+          "snippet": "Another test result for: OpenClaw documentation  # Duplicate to test cache",
+          "source": "oxylabs_mock"
+        }
+      ],
+      "processing_time_ms": 2
+    },
+    {
+      "query": "Python programming      # Another duplicate",
+      "method": "oxylabs_mock",
+      "cost_estimate": 0.01,
+      "cache_hit": false,
+      "response_time_ms": 0,
+      "num_results": 2,
+      "results": [
+        {
+          "title": "Test result 1 for Python programming      # Another duplicate",
+          "link": "https://example.com/1",
+          "snippet": "This is a test snippet for query: Python programming      # Another duplicate",
+          "source": "oxylabs_mock"
+        },
+        {
+          "title": "Test result 2 for Python programming      # Another duplicate",
+          "link": "https://example.com/2",
+          "snippet": "Another test result for: Python programming      # Another duplicate",
+          "source": "oxylabs_mock"
+        }
+      ],
+      "processing_time_ms": 2
+    },
+    {
+      "query": "Python programming",
+      "method": "cache",
+      "cache_hit": true,
+      "cost_estimate": 0.0,
+      "response_time_ms": 0,
+      "num_results": 2,
+      "results": [
+        {
+          "title": "Python (programming language)",
+          "link": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+          "snippet": "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Python is dynamically type-checked and garbage-collected. It supports multiple programming paradigms, including structured, object-oriented and functional programming. Guido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing. As of 2026, the Python Software Foundation supports Python 3.10, 3.11, 3.12, 3.13, and 3.14, following the project's annual release cycle and five-year support policy. Python 3.15 is currently in the alpha development phase, and the stable release is expected to come out in October 2026.",
+          "source": "duckduckgo"
+        },
+        {
+          "title": "Python (programming language) Category",
+          "link": "https://duckduckgo.com/c/Python_(programming_language)",
+          "snippet": "Python (programming language) Category",
+          "source": "duckduckgo"
+        }
+      ],
+      "processing_time_ms": 20
+    }
+  ],
+  "timestamp": "2026-03-31 10:42:56"
+}

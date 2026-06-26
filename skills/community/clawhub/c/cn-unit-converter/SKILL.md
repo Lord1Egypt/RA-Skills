@@ -1,35 +1,27 @@
 ---
-name: "Cn Unit Converter"
-description: "单位转换工具。支持长度(km/mi/m/ft/cm/inch)、重量(kg/lb/g/oz/斤)、温度(C/F/K)、容量(L/mL/gal/cup)、面积(㎡/sqft/公顷/亩)、数据(GB/MB/TB)、时间(hour/min/sec/day)互转。纯Python标准库，无需API Key。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-unit-converter"
-sourceUrl: "https://clawhub.ai/skills/cn-unit-converter"
+slug: cn-unit-converter
+name: 单位换算工具
+version: "1.2.1"
+author: 千策
 ---
 
-# Cn Unit Converter
+# 单位转换器
 
-> 单位转换工具。支持长度(km/mi/m/ft/cm/inch)、重量(kg/lb/g/oz/斤)、温度(C/F/K)、容量(L/mL/gal/cup)、面积(㎡/sqft/公顷/亩)、数据(GB/MB/TB)、时间(hour/min/sec/day)互转。纯Python标准库，无需API Key。
+将数值从一个单位转换为另一个单位。支持长度、重量、温度、容量、面积、数据、时间7大类。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-unit-converter`
-- **Source URL:** [https://clawhub.ai/skills/cn-unit-converter](https://clawhub.ai/skills/cn-unit-converter)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-unit-converter
+## 用法
 ```
+python3 scripts/unit_converter.py <值> <源单位> <目标单位>
+```
+
+## 示例
+- `python3 scripts/unit_converter.py 100 km mi` → 62.1371英里
+- `python3 scripts/unit_converter.py 37 c f` → 98.6华氏度
+- `python3 scripts/unit_converter.py 10 kg lb` → 22.0462磅
+- `python3 scripts/unit_converter.py 1 hectare mu` → 15亩
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

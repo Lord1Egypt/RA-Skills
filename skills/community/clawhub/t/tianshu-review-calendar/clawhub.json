@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Review Calendar",
+  "tagline": "距考试 N 天 · 科目复习排期表",
+  "description": "Spread course topics across days before an exam date for students. Local text output only.",
+  "category": "utility",
+  "tags": ["student", "考试", "复习计划", "期末", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

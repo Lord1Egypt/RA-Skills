@@ -1,0 +1,723 @@
+#!/usr/bin/env python3
+"""
+AlibabaCloud DevOps (云效/Codeup) CLI Tool
+
+Usage:
+    python codeup.py <command> [arguments]
+
+Commands:
+    # User & Organization
+    get_current_user           Get current user information
+    list_organizations         List organizations user belongs to
+    list_departments           List departments in organization
+    get_department             Get department details
+    list_members               List organization members
+    get_organization_member    Get organization member details
+    search_members             Search organization members
+    list_roles                 List organization roles
+
+    # Repository
+    get_repository             Get repository details
+    list_repositories          List repositories in organization
+
+    # Branch
+    get_branch                 Get branch details
+    create_branch              Create a new branch
+    delete_branch              Delete a branch
+    list_branches              List branches in repository
+
+    # File
+    get_file                   Get file content
+    create_file                Create a new file
+    update_file                Update an existing file
+    delete_file                Delete a file
+    list_files                 List files in repository
+    compare                    Compare code between branches
+
+    # Merge Request
+    get_change_request         Get merge request details
+    list_merge_requests        List merge requests
+    create_merge_request       Create a merge request
+    close_merge_request        Close a merge request
+    create_merge_request_comment   Add comment to MR
+    list_merge_request_comments    List MR comments
+    list_merge_request_patch_sets  List MR patch sets (commits)
+    merge_change_request           Merge a MR
+    reopen_change_request          Reopen a closed MR
+    review_change_request          Review (approve/reject) a MR
+    update_change_request          Update a MR
+    get_change_request_tree        Get changed files tree of MR
+    delete_change_request_comment  Delete a MR comment
+    update_change_request_comment  Update a MR comment
+"""
+
+import os
+import sys
+import json
+import argparse
+
+# Add current directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from codeup_client import CodeupClient, get_env_check_message
+
+
+def cmd_get_current_user(args):
+    """Get current user information"""
+    client = CodeupClient()
+    result = client.get_current_user()
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_organizations(args):
+    """List organizations user belongs to"""
+    client = CodeupClient()
+    result = client.list_organizations()
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_departments(args):
+    """List departments in organization"""
+    client = CodeupClient()
+    result = client.list_departments(args.org_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_department(args):
+    """Get department details"""
+    client = CodeupClient()
+    result = client.get_department(args.org_id, args.dept_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_members(args):
+    """List organization members"""
+    client = CodeupClient()
+    result = client.list_members(
+        args.org_id,
+        page=args.page,
+        per_page=args.per_page,
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_organization_member(args):
+    """Get organization member details"""
+    client = CodeupClient()
+    result = client.get_organization_member(args.org_id, args.member_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_search_members(args):
+    """Search organization members"""
+    client = CodeupClient()
+    result = client.search_members(args.org_id, args.query, page=args.page, per_page=args.per_page)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_roles(args):
+    """List organization roles"""
+    client = CodeupClient()
+    result = client.list_roles(args.org_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_repository(args):
+    """Get repository details"""
+    client = CodeupClient()
+    result = client.get_repository(args.org_id, args.repo_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_repositories(args):
+    """List repositories in organization"""
+    client = CodeupClient()
+    result = client.list_repositories(
+        args.org_id, page=args.page, per_page=args.per_page,
+        order_by=args.order_by, sort=args.sort,
+        search=args.search, archived=args.archived
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_branch(args):
+    """Get branch details"""
+    client = CodeupClient()
+    result = client.get_branch(args.org_id, args.repo_id, args.branch_name)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_create_branch(args):
+    """Create a new branch"""
+    client = CodeupClient()
+    result = client.create_branch(
+        args.org_id, args.repo_id, args.branch_name, args.source_branch
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_delete_branch(args):
+    """Delete a branch"""
+    client = CodeupClient()
+    result = client.delete_branch(args.org_id, args.repo_id, args.branch_name)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_branches(args):
+    """List branches in repository"""
+    client = CodeupClient()
+    result = client.list_branches(
+        args.org_id, args.repo_id, page=args.page, per_page=args.per_page
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_file(args):
+    """Get file content"""
+    client = CodeupClient()
+    result = client.get_file(args.org_id, args.repo_id, args.file_path, args.branch)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_create_file(args):
+    """Create a new file"""
+    client = CodeupClient()
+    # Read content from file if specified, otherwise use stdin
+    if args.content_file:
+        with open(args.content_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    elif args.content:
+        content = args.content
+    else:
+        content = sys.stdin.read()
+
+    result = client.create_file(
+        args.org_id, args.repo_id, args.file_path, content,
+        branch=args.branch, message=args.message, encoding=args.encoding
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_update_file(args):
+    """Update an existing file"""
+    client = CodeupClient()
+    # Read content from file if specified, otherwise use stdin
+    if args.content_file:
+        with open(args.content_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    elif args.content:
+        content = args.content
+    else:
+        content = sys.stdin.read()
+
+    result = client.update_file(
+        args.org_id, args.repo_id, args.file_path, content,
+        branch=args.branch, message=args.message
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_delete_file(args):
+    """Delete a file"""
+    client = CodeupClient()
+    result = client.delete_file(
+        args.org_id, args.repo_id, args.file_path,
+        branch=args.branch, message=args.message
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_files(args):
+    """List files in repository"""
+    client = CodeupClient()
+    result = client.list_files(
+        args.org_id, args.repo_id, path=args.path,
+        branch=args.branch, type=args.type
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_compare(args):
+    """Compare code between branches, tags, or commits"""
+    client = CodeupClient()
+    result = client.compare(
+        args.org_id, args.repo_id, args.from_ref, args.to_ref,
+        source_type=args.source_type, target_type=args.target_type,
+        straight=args.straight
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_change_request(args):
+    """Get merge request details"""
+    client = CodeupClient()
+    result = client.get_change_request(args.org_id, args.repo_id, args.local_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_merge_requests(args):
+    """List merge requests"""
+    client = CodeupClient()
+    result = client.list_merge_requests(
+        args.org_id, repo_id=args.repo_id, state=args.state,
+        page=args.page, per_page=args.per_page,
+        author_ids=args.author_ids, reviewer_ids=args.reviewer_ids,
+        search=args.search, order_by=args.order_by, sort=args.sort,
+        created_before=args.created_before, created_after=args.created_after
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_create_merge_request(args):
+    """Create a merge request"""
+    client = CodeupClient()
+    result = client.create_merge_request(
+        args.org_id, args.repo_id, args.title,
+        args.source_branch, args.target_branch,
+        description=args.description
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_close_merge_request(args):
+    """Close a merge request"""
+    client = CodeupClient()
+    result = client.close_merge_request(args.org_id, args.repo_id, args.local_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_create_merge_request_comment(args):
+    """Add a comment to merge request"""
+    client = CodeupClient()
+    # Read content from file if specified, otherwise use stdin
+    if args.content_file:
+        with open(args.content_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    elif args.content:
+        content = args.content
+    else:
+        content = sys.stdin.read()
+
+    result = client.create_merge_request_comment(
+        args.org_id, args.repo_id, args.local_id, content,
+        comment_type=args.comment_type, draft=args.draft,
+        patchset_biz_id=args.patchset_biz_id, file_path=args.file_path,
+        line_number=args.line_number, parent_comment_biz_id=args.parent_comment_biz_id,
+        from_patchset_biz_id=args.from_patchset_biz_id, to_patchset_biz_id=args.to_patchset_biz_id,
+        resolved=args.resolved
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_merge_request_comments(args):
+    """List comments on merge request"""
+    client = CodeupClient()
+    result = client.list_merge_request_comments(
+        args.org_id, args.repo_id, args.local_id,
+        page=args.page, per_page=args.per_page
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_list_merge_request_patch_sets(args):
+    """List patch sets (commits) of merge request"""
+    client = CodeupClient()
+    result = client.list_merge_request_patch_sets(
+        args.org_id, args.repo_id, args.local_id
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_merge_change_request(args):
+    """Merge a merge request"""
+    client = CodeupClient()
+    result = client.merge_change_request(
+        args.org_id, args.repo_id, args.local_id,
+        merge_message=args.merge_message, merge_type=args.merge_type,
+        remove_source_branch=args.remove_source_branch
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_reopen_change_request(args):
+    """Reopen a closed merge request"""
+    client = CodeupClient()
+    result = client.reopen_change_request(args.org_id, args.repo_id, args.local_id)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_review_change_request(args):
+    """Review (approve/reject) a merge request"""
+    client = CodeupClient()
+    result = client.review_change_request(
+        args.org_id, args.repo_id, args.local_id,
+        review_opinion=args.review_opinion, review_comment=args.review_comment,
+        submit_draft_comment_ids=args.submit_draft_comment_ids
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_update_change_request(args):
+    """Update a merge request"""
+    client = CodeupClient()
+    result = client.update_change_request(
+        args.org_id, args.repo_id, args.local_id,
+        title=args.title, description=args.description
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get_change_request_tree(args):
+    """Get changed files tree of a merge request"""
+    client = CodeupClient()
+    result = client.get_change_request_tree(
+        args.org_id, args.repo_id, args.local_id,
+        from_patch_set_id=args.from_patch_set_id, to_patch_set_id=args.to_patch_set_id
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_delete_change_request_comment(args):
+    """Delete a comment on merge request"""
+    client = CodeupClient()
+    result = client.delete_change_request_comment(
+        args.org_id, args.repo_id, args.local_id, args.comment_biz_id
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_update_change_request_comment(args):
+    """Update a comment on merge request"""
+    client = CodeupClient()
+    # Read content from file if specified, otherwise use stdin
+    if args.content_file:
+        with open(args.content_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    elif args.content:
+        content = args.content
+    else:
+        content = sys.stdin.read()
+
+    result = client.update_change_request_comment(
+        args.org_id, args.repo_id, args.local_id, args.comment_biz_id, content
+    )
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def build_parser():
+    """Build argument parser with subcommands"""
+    parser = argparse.ArgumentParser(
+        description="AlibabaCloud DevOps (云效/Codeup) CLI Tool",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    # ==================== User & Organization Commands ====================
+
+    p = subparsers.add_parser("get_current_user", help="Get current user information")
+    p.add_argument("--org_id", help="Organization ID (optional)")
+
+    p = subparsers.add_parser("list_organizations", help="List organizations user belongs to")
+
+    p = subparsers.add_parser("list_departments", help="List departments in organization")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+
+    p = subparsers.add_parser("get_department", help="Get department details")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--dept_id", required=True, help="Department ID")
+
+    p = subparsers.add_parser("list_members", help="List organization members")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--page", type=int, default=1, help="Current page (default: 1)")
+    p.add_argument("--per_page", type=int, default=100, help="Items per page 1-100 (default: 100)")
+
+    p = subparsers.add_parser("get_organization_member", help="Get organization member details")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--member_id", required=True, help="Member ID")
+
+    p = subparsers.add_parser("search_members", help="Search organization members")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--query", required=True, help="Search query")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument("--per_page", type=int, default=100, help="Items per page 1-100 (default: 100)")
+
+    p = subparsers.add_parser("list_roles", help="List organization roles")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+
+    # ==================== Repository Commands ====================
+
+    p = subparsers.add_parser("get_repository", help="Get repository details")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+
+    p = subparsers.add_parser("list_repositories", help="List repositories in organization")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument("--per_page", type=int, default=20, help="Items per page 1-100 (default: 20)")
+    p.add_argument("--order_by", choices=["created_at", "name", "path", "last_activity_at"],
+                    help="Sort field")
+    p.add_argument("--sort", choices=["asc", "desc"], help="Sort order")
+    p.add_argument("--search", help="Search keyword for repository path")
+    p.add_argument("--archived", type=lambda x: x.lower() == "true", help="Filter by archived status")
+
+    # ==================== Branch Commands ====================
+
+    p = subparsers.add_parser("get_branch", help="Get branch details")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--branch_name", required=True, help="Branch name")
+
+    p = subparsers.add_parser("create_branch", help="Create a new branch")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--branch_name", required=True, help="New branch name")
+    p.add_argument("--source_branch", required=True, help="Source branch name")
+
+    p = subparsers.add_parser("delete_branch", help="Delete a branch")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--branch_name", required=True, help="Branch name to delete")
+
+    p = subparsers.add_parser("list_branches", help="List branches in repository")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument("--per_page", type=int, default=20, help="Items per page (default: 20)")
+
+    # ==================== File Commands ====================
+
+    p = subparsers.add_parser("get_file", help="Get file content")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--file_path", required=True, help="File path in repository")
+    p.add_argument("--branch", default="master", help="Branch name (default: master)")
+
+    p = subparsers.add_parser("create_file", help="Create a new file")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--file_path", required=True, help="File path in repository")
+    p.add_argument("--branch", default="master", help="Branch name (default: master)")
+    p.add_argument("--message", help="Commit message")
+    p.add_argument("--encoding", default="text", choices=["text", "base64"],
+                    help="Content encoding (default: text)")
+    p.add_argument("--content", help="File content (or use --content-file or stdin)")
+    p.add_argument("--content-file", help="File path to read content from")
+
+    p = subparsers.add_parser("update_file", help="Update an existing file")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--file_path", required=True, help="File path in repository")
+    p.add_argument("--branch", default="master", help="Branch name (default: master)")
+    p.add_argument("--message", help="Commit message")
+    p.add_argument("--content", help="File content (or use --content-file or stdin)")
+    p.add_argument("--content-file", help="File path to read content from")
+
+    p = subparsers.add_parser("delete_file", help="Delete a file")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--file_path", required=True, help="File path in repository")
+    p.add_argument("--branch", default="master", help="Branch name (default: master)")
+    p.add_argument("--message", help="Commit message")
+
+    p = subparsers.add_parser("list_files", help="List files in repository")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--path", default="", help="Directory path (default: root)")
+    p.add_argument("--branch", default="master", help="Branch name (default: master)")
+    p.add_argument("--type", default="RECURSIVE", choices=["DIRECT", "RECURSIVE", "FLATTEN"],
+                    help="Tree type: DIRECT, RECURSIVE, or FLATTEN (default: RECURSIVE)")
+
+    p = subparsers.add_parser("compare", help="Compare code between branches, tags, or commits")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--from", required=True, dest="from_ref", help="Source branch/tag/commit")
+    p.add_argument("--to", required=True, dest="to_ref", help="Target branch/tag/commit")
+    p.add_argument("--source_type", choices=["branch", "tag"], help="Source type (branch/tag)")
+    p.add_argument("--target_type", choices=["branch", "tag"], help="Target type (branch/tag)")
+    p.add_argument("--straight", choices=["true", "false"], help="Use merge-base (false) or not (true)")
+
+    # ==================== Merge Request Commands ====================
+
+    p = subparsers.add_parser("get_change_request", help="Get merge request details")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID (sequence number)")
+
+    p = subparsers.add_parser("list_merge_requests", help="List merge requests")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", help="Repository ID (optional)")
+    p.add_argument("--state", choices=["opened", "merged", "closed"], help="MR state filter")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument("--per_page", type=int, default=20, help="Items per page (default: 20)")
+    p.add_argument("--author_ids", help="Author user IDs (comma-separated)")
+    p.add_argument("--reviewer_ids", help="Reviewer user IDs (comma-separated)")
+    p.add_argument("--search", help="Title keyword search")
+    p.add_argument("--order_by", choices=["created_at", "updated_at"], help="Sort field")
+    p.add_argument("--sort", choices=["asc", "desc"], help="Sort order")
+    p.add_argument("--created_before", help="Start creation time (ISO 8601)")
+    p.add_argument("--created_after", help="End creation time (ISO 8601)")
+
+    p = subparsers.add_parser("create_merge_request", help="Create a merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--title", required=True, help="MR title")
+    p.add_argument("--source_branch", required=True, help="Source branch")
+    p.add_argument("--target_branch", required=True, help="Target branch")
+    p.add_argument("--description", help="MR description")
+
+    p = subparsers.add_parser("close_merge_request", help="Close a merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+
+    p = subparsers.add_parser("create_merge_request_comment", help="Add comment to merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--content", help="Comment content (or use --content-file or stdin)")
+    p.add_argument("--content-file", help="File path to read content from")
+    p.add_argument("--comment_type", default="GLOBAL_COMMENT",
+                    choices=["GLOBAL_COMMENT", "INLINE_COMMENT"], help="Comment type")
+    p.add_argument("--draft", type=lambda x: x.lower() == "true", default=False, help="Is draft")
+    p.add_argument("--patchset_biz_id", help="Patch set biz ID (required for INLINE_COMMENT)")
+    p.add_argument("--file_path", help="File path for inline comment")
+    p.add_argument("--line_number", type=int, help="Line number for inline comment")
+    p.add_argument("--parent_comment_biz_id", help="Parent comment biz ID")
+    p.add_argument("--from_patchset_biz_id", help="From patch set biz ID")
+    p.add_argument("--to_patchset_biz_id", help="To patch set biz ID")
+    p.add_argument("--resolved", type=lambda x: x.lower() == "true", default=False, help="Is resolved")
+
+    p = subparsers.add_parser("list_merge_request_comments", help="List comments on merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--page", type=int, default=1, help="Page number (default: 1)")
+    p.add_argument("--per_page", type=int, default=20, help="Items per page (default: 20)")
+
+    p = subparsers.add_parser("list_merge_request_patch_sets", help="List MR patch sets (commits)")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+
+    p = subparsers.add_parser("merge_change_request", help="Merge a merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--merge_message", help="Merge commit message")
+    p.add_argument("--merge_type", choices=["ff-only", "no-fast-forward", "squash", "rebase"],
+                    help="Merge type")
+    p.add_argument("--remove_source_branch", action="store_true",
+                    help="Delete source branch after merge")
+
+    p = subparsers.add_parser("reopen_change_request", help="Reopen a closed merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+
+    p = subparsers.add_parser("review_change_request", help="Review (approve/reject) a merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--review_opinion", choices=["PASS", "NOT_PASS"], help="Review decision")
+    p.add_argument("--review_comment", help="Review comment")
+    p.add_argument("--submit_draft_comment_ids", nargs="+", help="Draft comment IDs to submit")
+
+    p = subparsers.add_parser("update_change_request", help="Update a merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--title", help="New title (optional)")
+    p.add_argument("--description", help="New description (optional)")
+
+    p = subparsers.add_parser("get_change_request_tree", help="Get changed files tree of merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--from_patch_set_id", required=True, help="Version ID of the merge target")
+    p.add_argument("--to_patch_set_id", required=True, help="Version ID of the merge source")
+
+    p = subparsers.add_parser("delete_change_request_comment", help="Delete a comment on merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--comment_biz_id", required=True, help="Comment biz ID")
+
+    p = subparsers.add_parser("update_change_request_comment", help="Update a comment on merge request")
+    p.add_argument("--org_id", required=True, help="Organization ID")
+    p.add_argument("--repo_id", required=True, help="Repository ID")
+    p.add_argument("--local_id", type=int, required=True, help="Local MR ID")
+    p.add_argument("--comment_biz_id", required=True, help="Comment biz ID")
+    p.add_argument("--content", help="Comment content (or use --content-file or stdin)")
+    p.add_argument("--content-file", help="File path to read content from")
+
+    return parser
+
+
+def main():
+    """Main entry point"""
+    # Check environment variables first
+    env_msg = get_env_check_message()
+    if env_msg:
+        print(env_msg, file=sys.stderr)
+        sys.exit(1)
+
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        sys.exit(1)
+
+    # Command dispatch
+    cmd_map = {
+        "get_current_user": cmd_get_current_user,
+        "list_organizations": cmd_list_organizations,
+        "list_departments": cmd_list_departments,
+        "get_department": cmd_get_department,
+        "list_members": cmd_list_members,
+        "get_organization_member": cmd_get_organization_member,
+        "search_members": cmd_search_members,
+        "list_roles": cmd_list_roles,
+        "get_repository": cmd_get_repository,
+        "list_repositories": cmd_list_repositories,
+        "get_branch": cmd_get_branch,
+        "create_branch": cmd_create_branch,
+        "delete_branch": cmd_delete_branch,
+        "list_branches": cmd_list_branches,
+        "get_file": cmd_get_file,
+        "create_file": cmd_create_file,
+        "update_file": cmd_update_file,
+        "delete_file": cmd_delete_file,
+        "list_files": cmd_list_files,
+        "compare": cmd_compare,
+        "get_change_request": cmd_get_change_request,
+        "list_merge_requests": cmd_list_merge_requests,
+        "create_merge_request": cmd_create_merge_request,
+        "close_merge_request": cmd_close_merge_request,
+        "create_merge_request_comment": cmd_create_merge_request_comment,
+        "list_merge_request_comments": cmd_list_merge_request_comments,
+        "list_merge_request_patch_sets": cmd_list_merge_request_patch_sets,
+        "merge_change_request": cmd_merge_change_request,
+        "reopen_change_request": cmd_reopen_change_request,
+        "review_change_request": cmd_review_change_request,
+        "update_change_request": cmd_update_change_request,
+        "get_change_request_tree": cmd_get_change_request_tree,
+        "delete_change_request_comment": cmd_delete_change_request_comment,
+        "update_change_request_comment": cmd_update_change_request_comment,
+    }
+
+    cmd_func = cmd_map.get(args.command)
+    if cmd_func:
+        try:
+            cmd_func(args)
+        except Exception as e:
+            print(f"Error: {e}", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(f"Unknown command: {args.command}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

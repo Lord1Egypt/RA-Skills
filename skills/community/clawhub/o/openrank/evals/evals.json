@@ -1,0 +1,29 @@
+{
+  "skill_name": "openrank-metrics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "查询一下 X-lab2017/open-digger 的最新 OpenRank 数据和近期趋势",
+      "expected_output": "A Chinese summary report containing the latest Global OpenRank, Activity, Stars, Attention, and a brief trend analysis for the past 3-6 months. Output must not be a table.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "What is the OpenRank and activity for torvalds/linux?",
+      "expected_output": "An English summary report containing the latest Global OpenRank, Activity, Stars, Attention, and a brief trend analysis. Output must not be a table.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "请用表格的形式展示 https://github.com/vuejs/core 在 2024 年度的全部指标数据全貌",
+      "expected_output": "A comprehensive Chinese Markdown table displaying all available metrics (Core, Developer, Issues, PRs) for the specific period '2024'. Unrecorded data should be marked as '-' or 'N/A'.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Show me all metrics for gitee/mindspore/mindspore in 2023-12 as a table.",
+      "expected_output": "A comprehensive English Markdown table displaying all available metrics (Core, Developer, Issues, PRs) for the specific period '2023-12'. Platform should be recognized as gitee.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "skill": {
+    "name": "global-video-content-generator",
+    "version": "2.0.0",
+    "description": "Complete Video Content Generator for YouTube and TikTok International",
+    "author": "BTC 5",
+    "license": "Commercial",
+    "category": "content-generation",
+    "tags": ["youtube", "tiktok", "video", "content", "generator", "title", "description", "tags", "seo", "viral", "international"]
+  },
+  "content_types": {
+    "complete": {
+      "includes": ["title", "description", "tags", "engagement_prompt", "chapters"],
+      "weight": 3,
+      "description": "Complete video content package"
+    },
+    "title_only": {
+      "includes": ["title"],
+      "weight": 1,
+      "description": "Title generation only"
+    },
+    "description_only": {
+      "includes": ["description"],
+      "weight": 2,
+      "description": "Description generation only"
+    }
+  },
+  "platforms": {
+    "youtube": {
+      "max_title_length": 100,
+      "min_title_length": 20,
+      "recommended_length": 50,
+      "description_length": {
+        "min": 200,
+        "recommended": 500,
+        "max": 5000
+      },
+      "chapters_supported": true,
+      "min_video_length_for_chapters": 180,
+      "seo_optimized": true,
+      "tags_supported": true,
+      "max_tags": 15
+    },
+    "tiktok": {
+      "max_title_length": 150,
+      "min_title_length": 10,
+      "recommended_length": 80,
+      "description_length": {
+        "min": 10,
+        "recommended": 100,
+        "max": 500
+      },
+      "chapters_supported": false,
+      "hashtag_optimized": true,
+      "viral_optimized": true,
+      "max_hashtags": 10
+    }
+  },
+  "languages": {
+    "supported": ["en", "es", "pt", "fr", "de", "ja", "ko", "ru", "ar", "hi"],
+    "default": "en",
+    "auto_translate": false,
+    "language_detection": false
+  },
+  "categories": {
+    "youtube": ["tech", "gaming", "education", "entertainment", "lifestyle"],
+    "tiktok": ["comedy", "educational", "fitness", "cooking", "dance"]
+  },
+  "monetization": {
+    "currency": "USD",
+    "free_tier": {
+      "daily_credits": 15,
+      "content_types": ["title_only", "description_only"],
+      "max_complete_per_day": 3,
+      "features": ["basic_generation", "single_platform", "no_batch"],
+      "require_registration": false
+    },
+    "pricing_tiers": [
+      {
+        "name": "Basic",
+        "price_usd": 14.99,
+        "billing_cycle": "monthly",
+        "monthly_credits": 1500,
+        "content_types": ["title_only", "description_only", "complete"],
+        "platforms": ["youtube", "tiktok"],
+        "features": ["seo_optimization", "tag_suggestions", "engagement_prompts"],
+        "max_batch_size": 5,
+        "support": "email",
+        "api_access": "no"
+      },
+      {
+        "name": "Pro",
+        "price_usd": 39.99,
+        "billing_cycle": "monthly",
+        "monthly_credits": 6000,
+        "content_types": ["title_only", "description_only", "complete"],
+        "platforms": ["youtube", "tiktok", "api"],
+        "features": ["advanced_seo", "viral_scoring", "batch_generation", "custom_templates"],
+        "max_batch_size": 20,
+        "support": "priority_email",
+        "api_access": "limited"
+      },
+      {
+        "name": "Enterprise",
+        "price_usd": 149.99,
+        "billing_cycle": "monthly",
+        "monthly_credits": "unlimited",
+        "content_types": ["title_only", "description_only", "complete", "custom"],
+        "platforms": ["youtube", "tiktok", "instagram", "twitter", "api"],
+        "features": ["custom_models", "analytics_dashboard", "white_label", "dedicated_support", "sla"],
+        "max_batch_size": 100,
+        "support": "24_7_chat_phone",
+        "api_access": "full"
+      }
+    ],
+    "credit_system": {
+      "title_only": 1,
+      "description_only": 2,
+      "complete": 3,
+      "batch_multiplier": 0.8
+    },
+    "payment_providers": ["stripe", "paypal"],
+    "refund_policy": {
+      "money_back_days": 14,
+      "prorated_refunds": true
+    }
+  },
+  "generation": {
+    "quality_levels": ["standard", "premium", "viral"],
+    "seo_optimization": {
+      "keyword_density": "2-3%",
+      "title_structure": ["keyword_first", "power_words", "numbers", "brackets"],
+      "avoid_words": ["clickbait", "misleading", "spammy"]
+    },
+    "engagement_factors": {
+      "questions": true,
+      "calls_to_action": true,
+      "emotional_triggers": true,
+      "social_proof": true
+    },
+    "scoring_system": {
+      "seo_weight": 40,
+      "engagement_weight": 40,
+      "tag_weight": 20,
+      "viral_bonus": 10
+    }
+  },
+  "api": {
+    "base_url": "https://api.videocontentgen.com/v1",
+    "rate_limits": {
+      "free": {"requests_per_day": 15, "requests_per_hour": 5},
+      "basic": {"requests_per_month": 1500, "requests_per_hour": 10},
+      "pro": {"requests_per_month": 6000, "requests_per_hour": 30},
+      "enterprise": {"requests_per_month": "unlimited", "requests_per_hour": 100}
+    },
+    "response_formats": ["json", "xml"],
+    "webhooks": {
+      "supported": true,
+      "events": ["generation_complete", "usage_alert", "payment_success"]
+    }
+  },
+  "analytics": {
+    "track_generation_quality": true,
+    "track_user_behavior": true,
+    "privacy_compliant": true,
+    "data_retention_days": 30
+  },
+  "roadmap": {
+    "q2_2026": ["instagram_support", "thumbnail_suggestions", "competitor_analysis"],
+    "q3_2026": ["multi_language", "voiceover_scripts", "editing_suggestions"],
+    "q4_2026": ["creator_marketplace", "growth_analytics", "team_collaboration"]
+  }
+}

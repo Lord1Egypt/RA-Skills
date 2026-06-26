@@ -1,0 +1,36 @@
+{
+  "name": "deals-hunter",
+  "version": "4.1.0",
+  "description": "每日羊毛推荐系统（增强版）- 什么值得买 RSS + 历史最低价查询 + 智能购买建议。每个商品都包含当前价格、历史最低价、购买建议和多平台购买链接。",
+  "main": "scripts/deals-hunter-v4.py",
+  "scripts": {
+    "start": "python3 scripts/deals-hunter-v4.py"
+  },
+  "keywords": [
+    "deals",
+    "discounts",
+    "price-monitoring",
+    "shopping",
+    "china",
+    "smzdm",
+    "manmanbuy",
+    "multi-platform",
+    "detailed-recommendations"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunnyhot/deals-hunter"
+  },
+  "bugs": {
+    "url": "https://github.com/sunnyhot/deals-hunter/issues"
+  },
+  "homepage": "https://clawhub.com/deals-hunter",
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "engines": {
+    "python": ">=3.7"
+  }
+}

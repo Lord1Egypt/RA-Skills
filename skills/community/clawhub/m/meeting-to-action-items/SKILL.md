@@ -1,35 +1,109 @@
 ---
-name: "Meeting to Action Items"
-description: "将非结构化的会议记录、聊天记录、语音转写文本转化为结构化的可执行项目状态 — 包含分类后的待办事项、负责人、截止时间、决策记录、风险标记和里程碑排期。用户说出"整理会议记录"、"生成会议待办"、"从聊天记录提取任务"等请求时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-to-action-items"
-sourceUrl: "https://clawhub.ai/skills/meeting-to-action-items"
+name: meeting-to-action-items
+description: 将非结构化的会议记录、聊天记录、语音转写文本转化为结构化的可执行项目状态 — 包含分类后的待办事项、负责人、截止时间、决策记录、风险标记和里程碑排期。用户说出"整理会议记录"、"生成会议待办"、"从聊天记录提取任务"等请求时激活。
 ---
 
 # Meeting to Action Items
 
-> 将非结构化的会议记录、聊天记录、语音转写文本转化为结构化的可执行项目状态 — 包含分类后的待办事项、负责人、截止时间、决策记录、风险标记和里程碑排期。用户说出"整理会议记录"、"生成会议待办"、"从聊天记录提取任务"等请求时激活。
+将非结构化对话转化为**项目状态**（Project State）——即 Linear、Notion、飞书等项目管理工具使用的结构化输出格式。采用四段式布局，便于快速扫读：会议摘要 → 待办事项 → 决策与风险 → 下期里程碑。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-to-action-items`
-- **Source URL:** [https://clawhub.ai/skills/meeting-to-action-items](https://clawhub.ai/skills/meeting-to-action-items)
+## 工作流程
 
-## Overview
+### 1. 接收输入
 
+支持来源：会议纪要、聊天记录（微信/Slack/飞书/Discord）、语音转写文本、要点笔记。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meeting-to-action-items
+触发短语：
+- "帮我整理会议记录" / "生成会议待办"
+- "从聊天记录提取任务" / "总结这个会议"
+- "meeting action items" / "extract tasks" / "convert to action items"
+
+### 2. 解析与分析
+
+可使用 `scripts/parse_meeting.py` 进行自动提取，或按以下规则手动分类每条句子：
+
+| 类型 | 标记词 |
+|------|--------|
+| **任务** | 负责/完成/做/搞定/跟进 + 人名；"will handle / needs to" |
+| **决策** | 决定/确定/确认/同意；"agreed / confirmed / approved" |
+| **风险** | 但/不过/担心/风险/还没；"blocker / stuck / pending" |
+| **讨论** | 考虑/建议/觉得/想；中性表述 |
+
+以会议日期为基准解析相对日期：
+- 明天 → 基准日 + 1天，下周一 → 下个周一，本周五 → 本周五
+- 下周三前 → 解析为下周三的截止时间
+
+### 3. 输出结构
+
 ```
+Meeting Summary
+{1-3 行，概括核心议题与关键约束。不使用 emoji。}
+
+Action Items
+Owner       Task                                          Deadline     Pri
+───         ────                                          ───────      ───
+{负责人}    {具体可交付物}                                 {日期}       {P0/P1/P2}
+{负责人}    {具体可交付物}                                 {日期}       {P0/P1/P2}
+
+Decisions
+- {决策事项 1}
+- {决策事项 2}
+
+Risks
+- {风险/阻塞 1}
+- {风险/阻塞 2}
+
+Next Milestones
+- {日期}: {里程碑}
+- {日期}: {里程碑}
+```
+
+### 4. 格式规则
+
+| 维度 | 规则 |
+|------|------|
+| 优先级 | P0 = 阻塞/关键，P1 = 高优（本迭代），P2 = 正常，P3 = 低优 |
+| 段落顺序 | 摘要 → 待办事项 → 决策 → 风险 → 下期里程碑 |
+| 负责人列 | 使用真实姓名（非"张三"→"张"，而是"张三"）；去掉称谓（张姐→张） |
+| 截止时间列 | 可解析时使用 YYYY-MM-DD；无法确定时标记为"待确认" |
+| 任务描述 | 以动词开头（封装、完成、确认、提交……） |
+| 决策表述 | 以主题开头，后接结论："门磁数据 → 变化触发上报" |
+| 风险表述 | 每行一条风险，包含影响说明（如"→ 全量延迟 3 天"） |
+| 摘要语气 | 客观、第三人称，不使用感叹号或 emoji |
+| 对齐方式 | 使用空格对齐列，不使用 markdown 表格（纯文本） |
+| 语言适配 | 输入为中文则输出全中文，但段落标题保持英文 |
+
+### 5. 优先级推断规则
+
+- **P0** — 依赖阻塞、链路断裂、关键数据缺失
+- **P1** — 马上/赶紧/立刻/urgent/重要/本迭代硬性截止
+- **P2** — 大部分迭代任务的默认优先级
+- **P3** — 有空/不着急/sometime/no rush
+
+### 6. 相对日期解析
+
+以会议日期为基准。示例（基准日 = 2026-05-21 周四）：
+
+| 表达式 | 解析结果 |
+|--------|---------|
+| 明天 | 2026-05-22 |
+| 下周一 | 2026-05-25 |
+| 下周三 | 2026-05-27 |
+| 本周五 | 2026-05-22 |
+| 周五前 | 2026-05-22 |
+| 下周五 | 2026-05-29 |
+| 周五 | 本周五（若会议日在周五前），否则下周五 |
+| 下下周二 | 2026-06-02 |
+| 端午节后 | 标记为"端午假期后"（准确日期依年份而定） |
+| today / tomorrow | 当天 / 基准日 + 1天 |
+| by Friday | 按最近一个周五解析 |
+
+规则：当星期几的引用不带"上/本/这/下"前缀，且会议日在当周该日之前时，优先按本周处理；若当周该日已过，则默认为下周。
+
+## 参考文档
+
+详细实体识别模式、边界情况和优先级分类见 `references/patterns.md`。
+
+## 脚本工具
+
+`scripts/parse_meeting.py` 支持批量提取，包含相对日期解析和优先级推断。使用 `--json` 参数输出结构化 JSON 供程序消费；直接运行则输出格式化文本。支持中英文混合输入和多人对话场景。

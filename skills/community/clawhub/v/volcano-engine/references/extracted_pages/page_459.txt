@@ -1,0 +1,68 @@
+13.2 错误码
+本文列举您调用火山方舟 API 可能会涉及的错误码信息，包含方舟错误码和公共错误码。
+推理错误码
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+400 BadRequestMissingParamet
+erThe request
+failed because it
+is missing one or
+multiple
+required
+parameters.
+Request ID:请求缺少必要参
+数，请查阅 API
+文档。
+400 BadRequestInvalidParamete
+rOne or more
+parameters
+specified in the
+request are not
+valid. Request
+ID:请求包含非法参
+数，请查阅 API
+文档。
+400 BadRequestInvalidParamete
+rThe parameter 
+instructions
+specified in the
+request are not
+valid: caching is
+not supported
+for instructions.
+Request id:Responses API
+中，当配置过 
+instructions  字段
+信息，后续轮次
+无法配置 
+Caching  字段。
+400 BadRequestInvalidEndpoint.
+ClosedEndpointThe request
+targeted an
+endpoint that is
+currently closed
+or temporarily
+unavailable.
+Request ID:推理接入点处于
+已被关闭或暂时
+不可用， 请稍后
+重试，或联系推
+理接入点管理
+员。
+400 BadRequestSensitiveContent
+DetectedThe request
+failed because
+the input text
+may contain
+sensitive
+information.输入文本可能包
+含敏感信息，请
+您使用其他
+prompt。
+400 BadRequestThe request
+failed because输入文本可能包
+含严重违规相关API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 454/485

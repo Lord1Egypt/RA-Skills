@@ -1,35 +1,31 @@
 ---
-name: "espeak-ng"
-description: "TTS with espeak-ng"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/espeak-ng"
-sourceUrl: "https://clawhub.ai/skills/espeak-ng"
+name: espeak-ng
+description: TTS with espeak-ng
 ---
 
-# espeak-ng
+# Espeak-ng
 
-> TTS with espeak-ng
+This skill allows you to use espeak-ng to generate speech.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/espeak-ng`
-- **Source URL:** [https://clawhub.ai/skills/espeak-ng](https://clawhub.ai/skills/espeak-ng)
+## For Smart Agent
+**Command:**   python espeak_skill.py <text>
+**Example:**   python espeak_skill.py "Hello world"
 
-## Overview
+## For Not Smart Agent
+**Command:**
+python ./skills/espeak-ng/espeak_skill.py <text>
+**Example:**
+python ./skills/espeak-ng/espeak_skill.py "Hello world"
+
+## Tools exec
+**Command:** espeak-ng <text>
+**Example:** espeak-ng "Hello world"
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/espeak-ng
-```
+## Requirements
+- espeak-ng must be installed on the system
+- On Linux/macOS, ensure you have `espeak-ng` installed:
+- Ubuntu/Debian: `sudo apt-get install espeak-ng`
+- CentOS/RHEL: `sudo yum install espeak-ng`
+- macOS: `brew install espeak-ng`
+- windows 11 : espeak-ng.msi from https://github.com/espeak-ng/espeak-ng/releases

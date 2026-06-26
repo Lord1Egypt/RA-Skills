@@ -1,0 +1,10 @@
+{
+  "trigger": "forced (nasdaq_trigger_sentiment.json not found, forced run)",
+  "timestamp": "2026-04-06T00:55:00Z",
+  "cst_time": "2026-04-06 08:55 CST",
+  "items_collected": 12,
+  "high_signal_count": 11,
+  "analysis_output": "analysis_output.json",
+  "report_sent": true,
+  "message_id": "om_x100b52041920a0a4b2b0fdd4d3a784c"
+}

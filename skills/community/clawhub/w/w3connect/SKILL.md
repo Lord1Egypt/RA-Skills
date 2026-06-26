@@ -1,35 +1,18 @@
 ---
-name: "W3connect"
-description: "Access ETH wallet address and securely send ETH or USDC on Ethereum or Base chains with 2FA authentication code verification."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/w3connect"
-sourceUrl: "https://clawhub.ai/skills/w3connect"
+name: w3connect
+description: Access to blockchain asset and transaction signature.
+homepage: -
+metadata: {"nanobot":{"requires":{"bins":["python", "pip"]}}}
 ---
 
 # W3connect
 
-> Access ETH wallet address and securely send ETH or USDC on Ethereum or Base chains with 2FA authentication code verification.
+Use w3connect skill to execute.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/w3connect`
-- **Source URL:** [https://clawhub.ai/skills/w3connect](https://clawhub.ai/skills/w3connect)
+Please do not ask the user to execute the curl for the agent.
 
-## Overview
+  - GET_ADDRESS.md follow to check the how to get the address.
 
+  - SEND.md follow to check send to another ETH address.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/w3connect
-```
+  - PAY_TO_EMAIL.md follow to check pay to email address without knowing the ETH address.

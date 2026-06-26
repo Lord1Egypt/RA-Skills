@@ -1,35 +1,137 @@
----
-name: "阅读清单"
-description: "管理和追踪阅读清单，支持添加文章、进度更新、智能推荐、笔记整理及阅读统计分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reading-list"
-sourceUrl: "https://clawhub.ai/skills/reading-list"
----
+# Reading List Skill
 
-# 阅读清单
+📚 智能阅读清单管理，高效学习，追踪阅读进度，智能推荐。
 
-> 管理和追踪阅读清单，支持添加文章、进度更新、智能推荐、笔记整理及阅读统计分析。
+## 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reading-list`
-- **Source URL:** [https://clawhub.ai/skills/reading-list](https://clawhub.ai/skills/reading-list)
+### 核心功能
+- **阅读清单管理** - 添加、删除、归档文章
+- **阅读进度追踪** - 记录阅读状态和时间
+- **智能推荐** - 根据兴趣推荐相关内容
+- **笔记整理** - 自动提取摘要和笔记
+- **阅读统计** - 可视化阅读数据
 
-## Overview
+### 高级功能
+- **多来源支持** - URL、PDF、Markdown
+- **标签分类** - 按主题/优先级分类
+- **阅读提醒** - 定时提醒阅读
+- **分享功能** - 分享阅读清单
+- **导出功能** - 导出到 Notion/Obsidian
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reading-list
+### 添加文章
 ```
+添加文章到阅读清单：https://example.com/article
+```
+
+### 批量添加
+```
+添加以下文章到阅读清单：
+- https://blog.com/post1
+- https://blog.com/post2
+- https://blog.com/post3
+```
+
+### 查看清单
+```
+查看我的阅读清单
+```
+
+### 更新进度
+```
+标记《OpenClaw 完全指南》已读完
+```
+
+### 总结文章
+```
+总结这篇文章的要点：https://example.com/article
+```
+
+### 智能推荐
+```
+推荐一些关于 AI 编程的文章
+```
+
+## 输出格式
+
+### 阅读清单
+```
+📚 阅读清单
+
+## 🔴 高优先级（5 篇）
+1. [ ] OpenClaw Skills 开发指南 - 预计 15 分钟
+2. [ ] React Server Components 深入 - 预计 20 分钟
+3. [ ] AI Agent 工作流最佳实践 - 预计 25 分钟
+
+## 🟡 待读（15 篇）
+1. [ ] TypeScript 5.0 新特性 - 预计 10 分钟
+2. [ ] Node.js 性能优化技巧 - 预计 15 分钟
+3. [ ] Docker 容器化部署实战 - 预计 20 分钟
+
+## 🟢 进行中（3 篇）
+1. [⏳ 60%] 深入理解 TypeScript
+2. [⏳ 30%] Node.js 性能优化
+3. [⏳ 10%] Docker 实战指南
+
+## ✅ 已完成（28 篇）
+1. [✅] JavaScript 设计模式 - 已读 3 天前
+2. [✅] Git 工作流详解 - 已读 5 天前
+3. [✅] HTTP 协议完全指南 - 已读 1 周前
+
+## 📊 阅读统计
+- 本周阅读：8 篇
+- 本月阅读：28 篇
+- 总阅读时长：12 小时
+- 完成率：65%
+```
+
+### 文章摘要
+```
+📄 文章摘要：OpenClaw 完全指南
+
+## 核心要点
+1. OpenClaw 是开源 AI Agent 平台
+2. 支持多种通讯渠道（Telegram/WhatsApp/微信）
+3. Skills 系统让 Agent 拥有自定义能力
+4. 心跳机制实现自动化任务
+
+## 关键概念
+- Agent：AI 助手实例
+- Skill：可扩展的能力模块
+- Heartbeat：定时任务机制
+- Memory：持久化记忆系统
+
+## 推荐阅读时长
+预计 15 分钟
+
+## 相关文章
+- OpenClaw Skills 开发指南
+- AI Agent 自动化工作流
+```
+
+## 使用场景
+
+1. **技术学习** - 管理技术文章阅读清单
+2. **行业研究** - 收集行业报告和资讯
+3. **内容创作** - 整理素材和参考文章
+4. **知识管理** - 构建个人知识库
+5. **团队分享** - 分享团队阅读清单
+
+## 最佳实践
+
+- 使用标签分类文章（如 `#frontend` `#ai` `#business`）
+- 设置优先级，先读重要文章
+- 定期清理过期文章
+- 阅读后及时记录笔记
+- 每周回顾阅读统计
+
+## 数据存储
+
+阅读清单存储在 `~/.openclaw/workspace/memory/reading-list.json`
+
+---
+
+创建时间：2026-03-11
+作者：ClawMart
+版本：1.0.0

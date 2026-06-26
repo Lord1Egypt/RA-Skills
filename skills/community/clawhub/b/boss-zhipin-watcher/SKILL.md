@@ -1,35 +1,176 @@
 ---
-name: "Boss Zhipin Watcher"
-description: "BOSS直聘桌面窗口自动识别与截图技能。当用户提到"BOSS直聘"、"看下聊天"、"BOSS消息"、"截图boss"、"boss聊天记录"、 "看看boss直聘"、"帮我看boss"、"boss简历"、"boss求职者"等涉及BOSS直聘桌面端的操作意图时触发。 自动识别桌面BOSS直聘窗口位置 → 截取完整窗口..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/boss-zhipin-watcher"
-sourceUrl: "https://clawhub.ai/skills/boss-zhipin-watcher"
+name: boss-zhipin-watcher
+description: >
+  BOSS直聘桌面窗口自动识别与截图技能。当用户提到"BOSS直聘"、"看下聊天"、"BOSS消息"、"截图boss"、"boss聊天记录"、
+  "看看boss直聘"、"帮我看boss"、"boss简历"、"boss求职者"等涉及BOSS直聘桌面端的操作意图时触发。
+  自动识别桌面BOSS直聘窗口位置 → 截取完整窗口截图 → 返回截图供内容识别。
 ---
 
-# Boss Zhipin Watcher
+# BOSS直聘窗口监控技能
 
-> BOSS直聘桌面窗口自动识别与截图技能。当用户提到"BOSS直聘"、"看下聊天"、"BOSS消息"、"截图boss"、"boss聊天记录"、 "看看boss直聘"、"帮我看boss"、"boss简历"、"boss求职者"等涉及BOSS直聘桌面端的操作意图时触发。 自动识别桌面BOSS直聘窗口位置 → 截取完整窗口...
+自动识别系统桌面上打开的 BOSS直聘窗口（主窗口/聊天小窗），截取完整截图，
+并利用 AI 视觉能力识别截图中的内容（聊天消息、求职者信息、岗位信息等）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/boss-zhipin-watcher`
-- **Source URL:** [https://clawhub.ai/skills/boss-zhipin-watcher](https://clawhub.ai/skills/boss-zhipin-watcher)
+## 能力概览
 
-## Overview
+| 操作 | 说明 |
+|------|------|
+| **识别窗口** | 自动查找桌面上的 BOSS直聘窗口（含 窗口/聊天弹窗） |
+| **截取窗口** | 截取完整窗口区域的截图，保存到 captures 目录 |
+| **内容识别** | AI 读取截图并用视觉理解能力提取文字/信息 |
+| **状态检查** | 仅返回窗口位置和尺寸信息，不截图 |
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+直接说需求，脚本会自动完成识别→截图→识别的完整流程。
+
+### 脚本路径
+
+```
+scripts/capture_boss_window.py
+```
+
+### 手动调用
+
+```powershell
+# 截图 + 完整信息
+python scripts/capture_boss_window.py
+
+# 仅查看窗口是否存在
+python scripts/capture_boss_window.py --info-only
+
+# 指定输出目录
+python scripts/capture_boss_window.py --out-dir ./my_captures
+```
+
+### 输出说明
+
+截图保存在 `captures/` 目录下：
+- `boss_20250504_143000.png` — 窗口截图
+- `boss_20250504_143000.json` — 窗口元数据（位置、尺寸、标题等）
+
+## 核心工作流
+
+1. **窗口识别** — 按标题关键词匹配桌面窗口（BOSS直聘/Boss直聘/boss直聘/BOSS/boss）
+2. **智能筛选** — 自动过滤最小化窗口和无效窗口（负坐标、尺寸过小）
+3. **多窗口排序** — 若有多个BOSS直聘窗口，优先选较小的（通常是聊天小窗）
+4. **激活+截图** — 将窗口提到前台 → 等 200ms 稳定 → 精确截取窗口区域
+5. **AI 识别** — 用 AI 视觉能力分析截图中的文字内容（聊天消息、简历信息等）
+6. **结果输出** — 结构化返回截图路径 + 窗口元数据
+
+## 识别能力说明
+
+截图后用 AI 视觉直接解析内容，可以提取：
+- **聊天消息** — 求职者/HR 对话内容
+- **个人信息** — 姓名、学校、工作经验等
+- **岗位信息** — 职位名、薪资、公司
+- **按钮/操作** — 可点击的 UI 元素
+
+## 依赖
+
+首次使用需安装：
 ```bash
-hermes skills install clawhub/boss-zhipin-watcher
+pip install pyautogui pillow opencv-python pygetwindow
+```
+
+已在环境中：✔ pyautogui ✔ pillow ✔ opencv-python ✔ pygetwindow
+
+## 后续扩展
+
+这是一个基础版本，后续可以加入：
+- 定时轮询检测新消息
+- 自动点击"打招呼"、"查看简历"等操作
+- 消息自动回复模板
+- 多窗口同时监控
+
+---
+
+*Built for OpenClaw desktop automation* 🦞
+
+## 招聘自动化完整工作流
+
+### 开始前必做：确认任务
+
+**第一步：和用户确认今日任务**
+1. 问用户今天要招聘什么岗位（全职/兼职/实习）
+2. 问今天的目标是多少（打招呼数量、简历数量）
+3. 确认今日工作时间安排
+
+### 工作流程步骤
+
+#### 1. 数据看板
+- 点击BOSS左侧"数据"按钮（第7个）
+- 截图右侧数据内容区域（不是整个窗口）
+- 复制到桌面并发送到企业微信
+
+#### 2. 推荐页面打招呼
+- 点击"推荐"进入候选人列表
+- 根据用户要求的岗位筛选
+- 查看候选人简历（点击候选人卡片）
+- 打招呼（点击右下角大蓝色按钮）
+- 选择话术后点击发送
+
+#### 3. 消息处理
+- 点击"消息"查看未读消息
+- 点击聊天查看对方简历
+- 判断是否继续聊天
+- 要简历/要微信
+
+#### 4. 简历管理
+- 下载保存简历
+- 按评分分类（优/良/一般）
+
+#### 5. 企业微信沟通
+- 去企业微信和候选人聊天
+- 拉群把老板拉进来
+
+### 关键按钮位置（比例定位）
+
+- 左侧菜单宽度：窗口宽度的5%
+- 按钮高度：窗口高度的3.5%
+- 数据按钮：第7个 (y = 11% + 6×3.5% = 32%)
+- 推荐按钮：第4个 (y = 11% + 3×3.5% = 21.5%)
+
+### 打招呼按钮范围（重要！）
+
+**候选人列表中打招呼按钮的位置**：
+- x: 窗口宽度的15%-85%
+- y: 窗口高度的20%-60%（每个候选人之间间隔12%高度）
+- 打招呼按钮位置: 候选人卡片右侧 (x + 70%)
+
+**自动打招呼算法**：
+```
+for i in range(候选人数量):
+    y = 窗口顶部 + 窗口高度 * (0.20 + i * 0.12)  # 20%, 32%, 44%, 56%
+    x = 窗口左边 + 窗口宽度 * 0.75  # 右侧75%位置
+    点击(x, y)
+```
+
+### 注意事项
+
+1. 每次操作后必须截图验证是否成功
+2. 不要盲目点击，要用OCR识别确认按钮位置
+3. 窗口位置会变化，必须动态获取
+4. 如果操作不成功，立即停止并询问用户
+
+### 🎯 页面自动识别（重要！）
+
+**自动检测当前在哪个页面：**
+
+通过OCR识别左侧菜单按钮文字来判断：
+- 有"数据" → 数据看板页面
+- 有"推荐" → 推荐页面  
+- 有"消息" → 消息列表页面
+- 有"互动" → 互动页面
+
+**自动检测算法：**
+```
+1. 截图BOSS窗口左侧菜单区域 (0, 0, 200, 窗口高度)
+2. 用OCR识别文字
+3. 匹配关键词：
+   - "数据" in text → 当前在数据看板
+   - "推荐" in text → 当前在推荐页面
+   - "消息" in text → 当前在消息列表
+   - "互动" in text → 当前在互动页面
+4. 返回当前页面名称
 ```

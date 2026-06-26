@@ -1,35 +1,31 @@
----
-name: "Maven Full Runner"
-description: "Run Maven commands with full argument passthrough, optionally specifying the working directory, using a Node.js wrapper for safer execution."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mvn-full-runner"
-sourceUrl: "https://clawhub.ai/skills/mvn-full-runner"
----
+# Maven Build Skill
 
-# Maven Full Runner
+Run Maven with full passthrough support for all Maven capabilities.
 
-> Run Maven commands with full argument passthrough, optionally specifying the working directory, using a Node.js wrapper for safer execution.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mvn-full-runner`
-- **Source URL:** [https://clawhub.ai/skills/mvn-full-runner](https://clawhub.ai/skills/mvn-full-runner)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mvn-full-runner
+node {baseDir}/scripts/mvn.mjs --dir "/path/to/project" -- clean test -DskipTests
+node {baseDir}/scripts/mvn.mjs --dir "/path/to/project" -- package -Pprod -T 1C
+node {baseDir}/scripts/mvn.mjs --dir "/path/to/project" -- help:effective-pom
+node {baseDir}/scripts/mvn.mjs -- -v
+node {baseDir}/scripts/mvn.mjs -- --version
 ```
+
+## Options
+
+- `--dir <path>`: optional working directory for Maven
+- `--`: optional separator; arguments after it are passed to `mvn` unchanged
+- All non-wrapper args are passed directly to Maven
+
+### Wrapper help
+
+```bash
+node {baseDir}/scripts/mvn.mjs --help-skill
+```
+
+## Notes
+
+- Requires `node` and `mvn` binaries in PATH.
+- The wrapper itself only parses `--dir`; everything else is forwarded as-is.
+- Uses process spawn with `shell: false` for safer execution.

@@ -1,0 +1,53 @@
+{
+  "installation": {
+    "timeout_seconds": 300,
+    "retry_attempts": 3,
+    "log_level": "INFO"
+  },
+  "ui_elements": {
+    "next_button_texts": [
+      "下一步",
+      "Next",
+      "继续",
+      "Install",
+      "同意",
+      "Agree",
+      "接受",
+      "Accept"
+    ],
+    "finish_button_texts": [
+      "完成",
+      "Finish",
+      "关闭",
+      "Close",
+      "确定",
+      "OK"
+    ]
+  },
+  "software_types": {
+    "installer_extensions": [".exe", ".msi", ".zip", ".rar"],
+    "office": {
+      "patterns": ["office", "microsoft", "excel", "word", "powerpoint", "outlook"]
+    },
+    "adobe": {
+      "patterns": ["adobe", "acrobat", "reader", "photoshop"]
+    },
+    "browser": {
+      "patterns": ["chrome", "firefox", "edge", "browser"]
+    },
+    "archive": {
+      "patterns": ["7-zip", "7zip", "winrar", "winzip", "bandizip"]
+    }
+  },
+  "search_paths": [
+    "Desktop",
+    "Downloads",
+    "Documents"
+  ],
+  "min_file_size_mb": 1,
+  "office": {
+    "prefer_64bit": true,
+    "min_ram_for_64bit_gb": 4,
+    "keep_existing_architecture": true
+  }
+}

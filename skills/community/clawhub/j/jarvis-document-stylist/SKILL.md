@@ -1,35 +1,106 @@
 ---
-name: "Jarvis Document Stylist"
-description: "Навык оформления аналитических документов (справок)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jarvis-document-stylist"
-sourceUrl: "https://clawhub.ai/skills/jarvis-document-stylist"
+name: document-stylist
+description: |
+  Навык оформления аналитических документов (справок).
 ---
 
-# Jarvis Document Stylist
+# Document Stylist — Навык оформления аналитических документов
 
-> Навык оформления аналитических документов (справок).
+## Формат документа
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jarvis-document-stylist`
-- **Source URL:** [https://clawhub.ai/skills/jarvis-document-stylist](https://clawhub.ai/skills/jarvis-document-stylist)
+- **Файл:** DOCX (через python-docx)
+- **Страница:** А4 (7560310 × 10692130 EMU)
+- **Поля:** левое 1080135 EMU (~1.5 см), правое 539750 EMU (~0.75 см), верхнее/нижнее 450215-720090 EMU (~0.6-1.0 см)
+- **Основной шрифт:** Calibri (во всех текстовых элементах)
 
-## Overview
+## Структура документа
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jarvis-document-stylist
+### Заголовок (Heading 2, CENTER):
 ```
+Аналитическая справка
+```
+
+### Подзаголовок (Normal, CENTER):
+_Название проекта/вопроса_ — **12pt, Bold**
+
+### Метаданные (Normal, JUSTIFY):
+```
+Дата: [дата]
+Подготовил: [ФИО, должность]
+```
+_9pt (114300 EMU) для даты/подготовил_
+
+### Вводный абзац (Normal, JUSTIFY):
+Текст, описывающий цель документа. _10pt (140000 EMUоколо)_
+
+### Вывод (Normal, JUSTIFY, Bold):
+Ключевой вывод — жирным шрифтом.
+
+### Разделы (Normal, JUSTIFY, Bold, 14pt (177800 EMU)):
+```
+Название раздела
+```
+_14pt Bold, с отступом после (152400 EMU), без отступа перед_
+
+### Подразделы (Normal, JUSTIFY, Bold, 12pt (152400 EMU)):
+_12pt Bold_
+
+### Основной текст (Normal, JUSTIFY, 12pt (152400 EMU)):
+- Выравнивание: JUSTIFY (3)
+- Размер: 152400 EMU (12pt)
+- Отступ: нет (unless specified)
+- Межстрочный: None или 1.3
+
+### Перечисления (List Paragraph, JUSTIFY):
+- Стиль: List Paragraph
+- Выравнивание: JUSTIFY
+- Размер: 152400 EMU (12pt) или наследуемый
+
+### Аналитический комментарий (Normal, JUSTIFY):
+```
+Аналитический комментарий: [текст курсивом]
+```
+- Слово «Аналитический комментарий:» 12pt Normal
+- Текст комментария: Italic, 114300 EMU (9pt)
+
+### Выводы/Рекомендации (Normal, JUSTIFY, Bold, 12pt):
+- Слово «Выводы:» / «Рекомендации:» 12pt Bold
+- Далее List Paragraph
+
+### Таблицы
+- Стиль: Light Grid Accent 1
+- Выравнивание: CENTER (по документа)
+- Первая строка — заголовки (Bold)
+- Размер: наследуемый
+
+### Приложение (Normal, JUSTIFY, Bold, 14pt):
+```
+ПРИЛОЖЕНИЕ: [название]
+```
+
+## Эмодзи и символы
+- Используются символы: ⚠, ✅, ❌, ✓, 🟢, 🟡, 🔴
+- Шрифт для символов: Segoe UI Symbol (как в образцах)
+
+## Поля (Margins) в EMU
+| Сторона | EMU | ~мм |
+|---------|-----|-----|
+| Левое | 1080135 | 28.6 |
+| Правое | 539750 | 14.3 |
+| Верхнее | 450215 | 11.9 |
+| Нижнее | 450215-720090 | 11.9-19.0 |
+
+## Размеры шрифта
+| pt | EMU | Где используется |
+|----|-----|------------------|
+| 9 | 114300 | Аналит. комментарии, метаданные |
+| 11 | 127000 | Заголовок подзаголовка (часть) |
+| 12 | 152400 | Основной текст, подзаголовки |
+| 14 | 177800 | Разделы (H2) |
+
+## Обязательные элементы перед отправкой (факт-чекинг)
+1. ✅ Проверить юридические ссылки (НПА, пункты)
+2. ✅ Проверить даты и цифры
+3. ✅ Проверить, что все источники существуют
+4. ✅ Проверить различие номеров ПП (785 / 1342)
+5. ✅ Не выдумывать несуществующие нормы

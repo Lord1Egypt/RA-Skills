@@ -1,0 +1,68 @@
+{
+  "created_at" : "2026-05-18T04:26:05Z",
+  "entries" : 
+  [
+    {
+      "hash" : "b64ba27f42a067c22cae64267ce65b518eef47c7b42626b9b3843198138960d4",
+      "path" : "references/402-payment.md",
+      "signed" : true,
+      "size" : 16391
+    },
+    {
+      "hash" : "65afffb5b96a7151e372dd679836b444a00f87e30204fe1d1cf5057154829158",
+      "path" : "references/cli-setup.md",
+      "signed" : true,
+      "size" : 1673
+    },
+    {
+      "hash" : "e9ee6ebf4900858f4de1a8b7ebade94e760dc20933d09e14364779626fcefe1b",
+      "path" : "references/cashier-payment.md",
+      "signed" : true,
+      "size" : 18885
+    },
+    {
+      "hash" : "991333e545e5c958bf3732573f5a341c2e529d121c8dbebef7b83c38c53da90c",
+      "path" : "references/image-output.md",
+      "signed" : true,
+      "size" : 3004
+    },
+    {
+      "hash" : "a0ffde61a005f7dbc489824abbcdbb5fc687a726aeda6b3f816cd561c1870516",
+      "path" : "references/output-rules.md",
+      "signed" : true,
+      "size" : 2075
+    },
+    {
+      "hash" : "8c2a96001a006f3e578d543612e8e213da96e323e07bbce73be0144e56361522",
+      "path" : "references/env-vars.md",
+      "signed" : true,
+      "size" : 1740
+    },
+    {
+      "hash" : "a1591424386c5e74bd6f5c6f9839f02651338eaa0c1dae00f52539cc72ff5345",
+      "path" : "references/feedback.md",
+      "signed" : true,
+      "size" : 1728
+    },
+    {
+      "hash" : "55d5931fa9e57a8a2ef7ed3acdfe43bb99533009c11d7030e8545d0380f71df4",
+      "path" : "references/security.md",
+      "signed" : true,
+      "size" : 2197
+    },
+    {
+      "hash" : "b95f68fd725c580b3d06b4e8befdf250f5530a989408c91d7e4fc778da88f710",
+      "path" : "SKILL.md",
+      "signed" : true,
+      "size" : 34342
+    }
+  ],
+  "manifest_hash" : "6903e43dcc6afd4aae18d2036d620a7e830e7af82254ee62ebd1407d11c0ee1b",
+  "skill_description" : ">-",
+  "skill_id" : "alipay-payment-skill",
+  "skill_name" : "alipay-payment-skill",
+  "skill_version" : "0.0.1",
+  "total_files" : 9,
+  "total_size" : 82035,
+  "version" : "1.0"
+}

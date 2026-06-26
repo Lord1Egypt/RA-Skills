@@ -1,35 +1,36 @@
 ---
-name: "Email Cold Zh"
-description: "专为销售与BD人员设计的陌生客户开发邮件生成工具，支持撰写简短有力、直击痛点的 开发信/cold email/BD邮件/客户开拓邮件。根据目标客户行业、职位与业务场景，自动 提炼核心价值主张，设计吸引眼球的主题行与行动号召（CTA），有效提升陌生邮件回复 率。适用于SaaS销售、企业服务BD、品牌合作、渠道拓展等..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-cold-zh"
-sourceUrl: "https://clawhub.ai/skills/email-cold-zh"
+name: email-cold-zh
+description: >
+  专为销售与BD人员设计的陌生客户开发邮件生成工具，支持撰写简短有力、直击痛点的
+  开发信/cold email/BD邮件/客户开拓邮件。根据目标客户行业、职位与业务场景，自动
+  提炼核心价值主张，设计吸引眼球的主题行与行动号召（CTA），有效提升陌生邮件回复
+  率。适用于SaaS销售、企业服务BD、品牌合作、渠道拓展等多种陌生客户开发场景。
+tags: [cold-email, 陌生开发, 开发信, BD邮件, 销售, 客户开拓, outbound, 市场拓展]
 ---
 
-# Email Cold Zh
+# 陌生客户开发邮件生成器
 
-> 专为销售与BD人员设计的陌生客户开发邮件生成工具，支持撰写简短有力、直击痛点的 开发信/cold email/BD邮件/客户开拓邮件。根据目标客户行业、职位与业务场景，自动 提炼核心价值主张，设计吸引眼球的主题行与行动号召（CTA），有效提升陌生邮件回复 率。适用于SaaS销售、企业服务BD、品牌合作、渠道拓展等...
+一键生成简短有力的 cold email / 开发信，突出价值主张，提升陌生客户回复率。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-cold-zh`
-- **Source URL:** [https://clawhub.ai/skills/email-cold-zh](https://clawhub.ai/skills/email-cold-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我写一封开发信，目标客户是中型制造企业的采购总监，我们卖的是供应链管理SaaS"
+- "我要给电商公司的市场负责人发陌生开发邮件，推广我们的KOL投放服务，帮我写一封"
+- "写一封BD邮件，对象是连锁餐饮品牌的运营总监，我们提供餐厅数字化收银解决方案"
+- "帮我生成一封客户开拓邮件，目标是猎头公司HR，介绍我们的AI简历筛选工具"
 
+## Examples
+输入：目标客户：互联网公司 CTO；产品：企业级代码安全审查平台；痛点：代码泄露风险高
+输出：
+主题：[姓名]，3分钟了解贵司代码安全的隐患缺口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-cold-zh
-```
+您好，
+
+我注意到贵司近期技术团队规模持续扩张——研发人员越多，代码泄露的攻击面往往也随之扩大。
+
+我们帮助超过 50 家互联网企业在 CI/CD 流程中自动识别高危代码风险，平均将安全事故响应时间缩短 70%。
+
+方便本周安排 15 分钟通话，看看是否适合贵司场景？

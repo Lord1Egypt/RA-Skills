@@ -1,0 +1,23 @@
+{
+  "id": "observability-lab",
+  "name": "Observability Lab",
+  "description": "用于演示可观测性 hook、skill、tool 与 slash 命令的原生插件脚手架。",
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "captureEnabled": {
+        "type": "boolean"
+      },
+      "rewriteEnabled": {
+        "type": "boolean"
+      },
+      "transcriptPrefix": {
+        "type": "string"
+      }
+    }
+  }
+}

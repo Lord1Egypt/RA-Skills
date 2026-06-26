@@ -1,0 +1,72 @@
+# ClawHub bundle ignore manifest — keeps published skill free of VCS metadata,
+# build artifacts, editor scratch, and OS junk that historically tripped
+# ClawHub's binary-file scanner.
+
+# VCS metadata (must always be excluded — root cause of ClawHub publish errors)
+.git/
+.gitignore
+.gitattributes
+.gitkeep
+.github/
+.svn/
+.hg/
+
+# Node / build artifacts
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+yarn.lock
+pnpm-lock.yaml
+dist/
+build/
+out/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.python-version
+requirements.txt
+
+# macOS / Windows / Linux junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Editor metadata
+.vscode/
+.idea/
+.zed/
+.cursor/
+*.code-workspace
+
+# Agent-local state and private setup files
+.openclaw/
+.openclaw*/
+.claude/
+.agents/
+.learnings/
+.well-known/
+.env
+.env.*
+
+# Local working files & generated bundles
+_archive/
+_temp/
+*.tar.gz
+*.tgz
+*.zip
+
+# Personal asset indexes (must never ship)
+**/personal-asset-index.json
+
+# Test outputs / screenshots
+*.log
+test-results/
+playwright-report/

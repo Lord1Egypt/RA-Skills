@@ -1,0 +1,473 @@
+[
+  {
+    "method": "hotel.search",
+    "description": "酒店搜索",
+    "category": "RESOURCE",
+    "subCategory": "HOTEL",
+    "action": "SEARCH",
+    "parameters": {
+      "type": "object",
+      "description": "酒店搜索请求参数",
+      "properties": {
+        "cityName": {
+          "type": "string",
+          "description": "城市名称（如：北京、上海、武汉）",
+          "example": "武汉"
+        },
+        "arrivalDate": {
+          "type": "string",
+          "description": "入住日期，格式：yyyy-MM-dd",
+          "example": "2026-03-15"
+        },
+        "departureDate": {
+          "type": "string",
+          "description": "离店日期，格式：yyyy-MM-dd",
+          "example": "2026-03-17"
+        },
+        "key": {
+          "type": "string",
+          "description": "搜索关键词（酒店名、地址等）",
+          "example": "如家"
+        },
+        "filterList": {
+          "type": "array",
+          "description": "筛选条件列表",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "integer",
+                "description": "筛选类型"
+              },
+              "value": {
+                "type": "string",
+                "description": "筛选值"
+              }
+            }
+          }
+        },
+        "rank": {
+          "type": "integer",
+          "description": "排序方式",
+          "enum": [0, 1, 2],
+          "default": 0
+        },
+        "page": {
+          "type": "integer",
+          "description": "页码，从1开始",
+          "default": 1
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "每页数量",
+          "default": 20
+        },
+        "referencePrice": {
+          "type": "integer",
+          "description": "参考价格"
+        },
+        "entranceSource": {
+          "type": "integer",
+          "description": "入口来源 0-新旅行 1-疗休养",
+          "enum": [0, 1],
+          "default": 0
+        }
+      },
+      "required": ["cityName", "arrivalDate", "departureDate", "rank", "filterList"]
+    }
+  },
+  {
+    "method": "hotel.detail",
+    "description": "酒店详情（房型列表）",
+    "category": "RESOURCE",
+    "subCategory": "HOTEL",
+    "action": "DETAIL",
+    "parameters": {
+      "type": "object",
+      "description": "酒店详情请求参数",
+      "properties": {
+        "hotelId": {
+          "type": "string",
+          "description": "酒店ID",
+          "example": "H123456"
+        },
+        "arrivalDate": {
+          "type": "string",
+          "description": "入住日期，格式：yyyy-MM-dd",
+          "example": "2026-03-15"
+        },
+        "departureDate": {
+          "type": "string",
+          "description": "离店日期，格式：yyyy-MM-dd",
+          "example": "2026-03-17"
+        },
+        "entranceSource": {
+          "type": "integer",
+          "description": "入口来源 0-新旅行 1-疗休养",
+          "enum": [0, 1],
+          "default": 0
+        }
+      },
+      "required": ["hotelId", "arrivalDate", "departureDate"]
+    }
+  },
+  {
+    "method": "hotel.validatePrice",
+    "description": "酒店验价",
+    "category": "ORDER",
+    "subCategory": "HOTEL",
+    "action": "VALIDATE",
+    "parameters": {
+      "type": "object",
+      "description": "酒店验价请求参数",
+      "properties": {
+        "resourceItemId": {
+          "type": "string",
+          "description": "资源项ID（房型ID）",
+          "example": "RES_123456789"
+        },
+        "checkInDate": {
+          "type": "string",
+          "description": "入住日期，格式：yyyy-MM-dd",
+          "example": "2026-03-15"
+        },
+        "checkOutDate": {
+          "type": "string",
+          "description": "离店日期，格式：yyyy-MM-dd",
+          "example": "2026-03-17"
+        },
+        "latestCheckInTime": {
+          "type": "string",
+          "description": "最晚到店时间，格式：yyyy-MM-dd HH:mm:ss",
+          "example": "2026-03-15 18:00:00"
+        },
+        "roomCount": {
+          "type": "integer",
+          "description": "房间数",
+          "minimum": 1,
+          "maximum": 10,
+          "example": 1
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "总金额",
+          "example": 796.00
+        },
+        "entranceSource": {
+          "type": "integer",
+          "description": "入口来源 0-新旅行 1-疗休养",
+          "enum": [0, 1],
+          "default": 0
+        }
+      },
+      "required": ["resourceItemId", "checkInDate", "checkOutDate", "roomCount"]
+    }
+  },
+  {
+    "method": "getPassengerList",
+    "description": "获取入住人信息列表",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "LIST",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型 默认值0(机票)，酒店传1"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "method": "savePassenger",
+    "description": "保存入住人信息",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "SAVE",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "passengerName": {
+          "type": "string",
+          "description": "入住人姓名（中文）"
+        },
+        "pinyinName": {
+          "type": "string",
+          "description": "姓名拼音，格式为 LI SI（姓与名大写、空格分隔）"
+        },
+        "passengerType": {
+          "type": "integer",
+          "description": "旅客类型，0-成人"
+        },
+        "gender": {
+          "type": "integer",
+          "description": "性别，1-男 2-女"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "出生日期，格式 YYYY-MM-DD"
+        },
+        "identityType": {
+          "type": "string",
+          "description": "证件类型，ID-身份证"
+        },
+        "identityNo": {
+          "type": "string",
+          "description": "证件号码"
+        },
+        "nationality": {
+          "type": "string",
+          "description": "国籍二字码，如 CN"
+        },
+        "phoneCountryCode": {
+          "type": "string",
+          "description": "手机区号，如 +86"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "手机号码"
+        },
+        "status": {
+          "type": "integer",
+          "description": "状态，0-已删除 1-有效"
+        }
+      },
+      "required": ["passengerName", "identityNo", "phoneNumber"]
+    }
+  },
+  {
+    "method": "hotel.createOrder",
+    "description": "创建酒店订单",
+    "category": "ORDER",
+    "subCategory": "HOTEL",
+    "action": "BOOK",
+    "parameters": {
+      "type": "object",
+      "description": "创建酒店订单请求参数",
+      "properties": {
+        "checkInDate": {
+          "type": "string",
+          "description": "入住日期，格式：yyyy-MM-dd",
+          "example": "2026-03-15"
+        },
+        "checkOutDate": {
+          "type": "string",
+          "description": "离店日期，格式：yyyy-MM-dd",
+          "example": "2026-03-17"
+        },
+        "roomNum": {
+          "type": "integer",
+          "description": "房间数",
+          "minimum": 1,
+          "maximum": 10,
+          "example": 1
+        },
+        "memberId": {
+          "type": "string",
+          "description": "会员编号"
+        },
+        "userName": {
+          "type": "string",
+          "description": "下单用户名称"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "下单用户手机号码"
+        },
+        "distributor": {
+          "type": "integer",
+          "description": "分销商(0-NBS)"
+        },
+        "orderSource": {
+          "type": "integer",
+          "description": "订单来源(0-APP，1-小程序，2-中移动)"
+        },
+        "email": {
+          "type": "string",
+          "description": "下单人邮箱"
+        },
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型"
+        },
+        "subOrderType": {
+          "type": "string",
+          "description": "子订单类型"
+        },
+        "resourceItemId": {
+          "type": "string",
+          "description": "资源项ID（房型ID）"
+        },
+        "lateArrivalTime": {
+          "type": "string",
+          "description": "预计到店时间，格式：yyyy-MM-dd HH:mm:ss",
+          "example": "2026-03-15 18:00:00"
+        },
+        "travelerList": {
+          "type": "array",
+          "description": "入住人列表",
+          "items": {
+            "$ref": "#/definitions/SingleHotelTravelerBo"
+          }
+        },
+        "price": {
+          "type": "number",
+          "description": "单价（单间每晚价格）"
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "总价"
+        },
+        "adultNum": {
+          "type": "integer",
+          "description": "成人数"
+        },
+        "childNum": {
+          "type": "number",
+          "description": "儿童数"
+        },
+        "childAges": {
+          "type": "array",
+          "description": "儿童年龄",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "destinationProvinceId": {
+          "type": "integer",
+          "description": "目的地省份ID"
+        },
+        "destinationCityId": {
+          "type": "integer",
+          "description": "目的地城市ID"
+        }
+      },
+      "required": ["checkInDate", "checkOutDate", "roomNum", "memberId", "phoneNumber", "orderSource", "resourceItemId", "travelerList", "price"]
+    },
+    "definitions": {
+      "SingleHotelTravelerBo": {
+        "type": "object",
+        "description": "入住人信息",
+        "properties": {
+          "passengerId": {
+            "type": "integer",
+            "description": "入住人ID（从入住人列表获取）"
+          },
+          "name": {
+            "type": "string",
+            "description": "入住人姓名"
+          },
+          "identityType": {
+            "type": "string",
+            "description": "证件类型，ID-身份证"
+          },
+          "identityNo": {
+            "type": "string",
+            "description": "证件号码"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "手机号码"
+          }
+        },
+        "required": ["passengerId", "name", "identityNo", "phoneNumber"]
+      }
+    }
+  },
+  {
+    "method": "getOrderStatus",
+    "description": "获取订单状态",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "STATUS",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "hotel.cancelOrder",
+    "description": "取消酒店订单",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "CANCEL",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单ID"
+        },
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型，酒店传1"
+        },
+        "subOrderType": {
+          "type": "integer",
+          "description": "子订单类型，酒店传1"
+        },
+        "cancelReason": {
+          "type": "string",
+          "description": "取消原因"
+        },
+        "terminalCode": {
+          "type": "string",
+          "description": "终端类型，如 APP"
+        }
+      },
+      "required": ["orderBaseId", "subOrderType"]
+    }
+  },
+  {
+    "method": "hotel.orderHistory",
+    "description": "获取酒店订单历史列表",
+    "category": "ORDER",
+    "subCategory": "HOTEL",
+    "action": "HISTORY",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string",
+          "description": "会员ID"
+        },
+        "pageNum": {
+          "type": "integer",
+          "description": "页码，从1开始",
+          "default": 1
+        },
+        "pageSize": {
+          "type": "integer",
+          "description": "每页数量",
+          "default": 10
+        }
+      },
+      "required": ["memberId"]
+    }
+  },
+  {
+    "method": "orderDetail",
+    "description": "获取订单详情",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "QUERY",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        }
+      },
+      "required": ["orderBaseId"]
+    }
+  }
+]

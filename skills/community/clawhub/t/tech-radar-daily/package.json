@@ -1,0 +1,17 @@
+{
+  "name": "tech-radar-daily",
+  "version": "1.0.0",
+  "description": "每日技术情报雷达 - 自动发现有趣工具、技术趋势、赚钱项目",
+  "main": "scripts/run-cycle.js",
+  "scripts": {
+    "start": "node scripts/run-cycle.js",
+    "test": "node scripts/run-cycle.js --test"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "node-fetch": "^2.7.0",
+    "proxy-agent": "^5.0.0"
+  },
+  "author": "OpenClaw",
+  "license": "MIT"
+}

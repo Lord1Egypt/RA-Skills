@@ -1,0 +1,7 @@
+interface:
+  display_name: "Crane Hook Annotation"
+  short_description: "Batch-annotate crane hooks in similar images."
+  default_prompt: "Use $crane-hook-annotation to locate the crane hook, apply the strict outline, and export annotated images plus coordinates."
+
+policy:
+  allow_implicit_invocation: true

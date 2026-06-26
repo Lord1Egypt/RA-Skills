@@ -1,0 +1,53 @@
+{
+  "name": "@sschepis/alephnet-node",
+  "version": "1.4.0",
+  "description": "AlephNet Node - Semantic computing, social network, and Coherence verification for AI agents",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@aleph-ai/tinyaleph": "^1.7.2",
+    "@sschepis/resolang": "^0.5.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.1",
+    "ws": "^8.13.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "alephnet",
+    "sentient-observer",
+    "prime-resonance",
+    "semantic-computing",
+    "smf",
+    "prsc"
+  ],
+  "author": "Sebastian Schepis",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "skills/alephnet-node"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.2.1",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "id": "openclaw-memory-stack",
+  "kind": "memory",
+  "hosts": ["openclaw"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "routerMode": {
+        "type": "string",
+        "enum": ["auto", "qmd-only", "totalrecall-only"]
+      },
+      "searchMode": {
+        "type": "string",
+        "enum": ["bm25", "vector", "hybrid"]
+      },
+      "autoRecall": {
+        "type": "boolean"
+      },
+      "autoCapture": {
+        "type": "boolean"
+      },
+      "maxRecallResults": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20
+      },
+      "maxRecallTokens": {
+        "type": "integer",
+        "minimum": 100,
+        "maximum": 5000
+      },
+      "mmrLambda": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "halfLifeDays": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "graphEnabled": {
+        "type": "boolean"
+      },
+      "sessionSearch": {
+        "type": "boolean"
+      },
+      "llmEndpoint": {
+        "type": "string",
+        "default": "https://api.openai.com/v1"
+      },
+      "llmModel": {
+        "type": "string",
+        "default": "gpt-4o-mini"
+      },
+      "llmApiKey": {
+        "type": "string"
+      },
+      "autoOrganize": {
+        "type": "boolean",
+        "default": false
+      },
+      "losslessEnabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "graphDepth": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5,
+        "default": 2
+      },
+      "graphMaxNodes": {
+        "type": "integer",
+        "minimum": 10,
+        "maximum": 200,
+        "default": 50
+      },
+      "autoRecallTier": {
+        "type": "string",
+        "enum": ["L0", "L1", "L2"],
+        "default": "L0"
+      },
+      "toolResponseTier": {
+        "type": "string",
+        "enum": ["L1", "L2"],
+        "default": "L1"
+      },
+      "qmdCollection": {
+        "type": "string"
+      },
+      "qmdProbeQuery": {
+        "type": "string"
+      },
+      "qmdMode": {
+        "type": "string",
+        "enum": ["auto", "search", "vsearch", "query"],
+        "default": "auto"
+      }
+    }
+  },
+  "network": {
+    "endpoints": [
+      {
+        "host": "openclaw-api.apptah.com",
+        "purpose": "update-check-on-upgrade",
+        "when": "manual upgrade via install.sh --upgrade",
+        "dataSent": ["current_version"],
+        "dataNeverSent": ["memory content", "conversation data", "file contents", "usage analytics", "license keys"]
+      },
+      {
+        "host": "openclaw-api.apptah.com",
+        "purpose": "update-check",
+        "when": "manual upgrade via install.sh --upgrade",
+        "dataSent": ["current_version"],
+        "dataNeverSent": ["memory content", "conversation data"]
+      },
+      {
+        "host": "localhost:8080",
+        "purpose": "local-llm-mlx",
+        "when": "fact extraction if MLX is running locally",
+        "dataSent": ["conversation excerpts for fact extraction"],
+        "note": "Local only — never leaves machine"
+      },
+      {
+        "host": "localhost:11434",
+        "purpose": "local-llm-ollama",
+        "when": "fact extraction if Ollama is running locally",
+        "dataSent": ["conversation excerpts for fact extraction"],
+        "note": "Local only — never leaves machine"
+      },
+      {
+        "host": "api.openai.com",
+        "purpose": "cloud-llm-fallback",
+        "when": "fact extraction only if user sets OPENCLAW_LLM_API_KEY or OPENAI_API_KEY",
+        "dataSent": ["conversation excerpts for fact extraction"],
+        "note": "User-configurable via llmEndpoint config. Disabled by default if no API key set."
+      }
+    ]
+  },
+  "permissions": {
+    "shellExecution": {
+      "binary": "sqlite3",
+      "purpose": "All shell commands execute sqlite3 for local database read/write. No arbitrary command execution.",
+      "scope": "~/.openclaw/memory-stack/*.sqlite and workspace .openclaw/ databases"
+    },
+    "shellExecution2": {
+      "binary": "qmd",
+      "purpose": "QMD CLI for vector search and collection management",
+      "scope": "Local index at ~/.cache/qmd/"
+    },
+    "fileAccess": {
+      "read": ["~/.openclaw/memory-stack/", "~/.openclaw/memory/external/", ".openclaw/"],
+      "write": ["~/.openclaw/memory-stack/", "~/.openclaw/memory/"],
+      "purpose": "Local memory database and markdown file storage"
+    }
+  },
+  "dataFlow": {
+    "localOnly": [
+      "All search and storage operations (5 engines) run entirely on-device",
+      "File reads (sqlite3, markdown) never leave the machine",
+      "Shell execution (sqlite3, qmd) operates only on local databases"
+    ],
+    "remote": [
+      "Update check: sends only current_version to openclaw-api.apptah.com on manual upgrade",
+      "LLM fact extraction: sends conversation excerpts to user-configured endpoint (local or cloud)"
+    ],
+    "neverTransmitted": [
+      "Raw memory content is never sent to apptah.com servers",
+      "No telemetry, analytics, or usage tracking"
+    ]
+  },
+  "envVars": [
+    {"name": "OPENCLAW_LLM_API_KEY", "purpose": "API key for cloud LLM fact extraction (optional)", "sentTo": "user-configured llmEndpoint only"},
+    {"name": "OPENAI_API_KEY", "purpose": "Fallback API key for OpenAI (optional)", "sentTo": "api.openai.com or user-configured llmEndpoint"},
+    {"name": "OPENCLAW_LCM_DB", "purpose": "Override path to lossless compression database (local only)", "sentTo": "nowhere"},
+    {"name": "OPENCLAW_ROUTER_CONFIG", "purpose": "Override path to router config (local only)", "sentTo": "nowhere"},
+    {"name": "OPENCLAW_BACKENDS_JSON", "purpose": "Override path to backends config (local only)", "sentTo": "nowhere"}
+  ],
+  "uiHints": {
+    "autoRecall": {
+      "label": "Auto Recall",
+      "help": "Inject relevant memories before each agent turn"
+    },
+    "autoCapture": {
+      "label": "Auto Capture",
+      "help": "Store conversation context after each turn"
+    },
+    "maxRecallTokens": {
+      "label": "Recall Token Budget",
+      "help": "Maximum tokens used for injected memories per turn"
+    },
+    "autoRecallTier": {
+      "label": "Auto-Recall Tier",
+      "help": "L0 (~100 tokens), L1 (~800 tokens), L2 (~2000 tokens, full content)"
+    },
+    "toolResponseTier": {
+      "label": "Search Response Tier",
+      "help": "L1 (summary) or L2 (full content). Use --full suffix for one-off L2."
+    },
+    "qmdCollection": {
+      "label": "QMD Collection",
+      "help": "QMD collection name for scoped search. Auto-detected from .openclaw-memory.json if empty."
+    },
+    "qmdProbeQuery": {
+      "label": "QMD Probe Query",
+      "help": "Fixed query for runtime probe. Required to enable vsearch/query modes."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "decision-advisor",
+  "version": "1.0.0",
+  "description": "Decision-making advisor using Tree of Thoughts",
+  "main": "index.js",
+  "scripts": {
+    "example": "node examples/decision-example.js"
+  },
+  "keywords": [
+    "decision-making",
+    "tree-of-thoughts",
+    "analysis",
+    "recommendation"
+  ],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

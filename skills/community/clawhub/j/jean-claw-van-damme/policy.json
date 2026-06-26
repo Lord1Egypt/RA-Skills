@@ -1,0 +1,65 @@
+{
+  "policy_version": "0.1.0",
+  "framework": "APOA v0.1",
+  "defaults": {
+    "grant_ttl_minutes": 60,
+    "max_grant_ttl_minutes": 1440,
+    "tier2_default_action": "ask",
+    "tier3_default_action": "block",
+    "auto_lockdown_on_injection": false,
+    "log_tier1_actions": false
+  },
+  "action_classification": {
+    "tier1_open": [
+      "read_file_workspace",
+      "web_search",
+      "summarize",
+      "answer_from_memory",
+      "weather",
+      "time",
+      "calendar_read"
+    ],
+    "tier2_guarded": [
+      "send_message",
+      "write_file",
+      "modify_file",
+      "api_call_external",
+      "install_skill",
+      "update_skill",
+      "run_shell",
+      "access_env_var",
+      "calendar_write",
+      "create_reminder"
+    ],
+    "tier3_restricted": [
+      "delete_file",
+      "delete_data",
+      "share_credential",
+      "modify_agent_config",
+      "modify_soul_md",
+      "modify_identity_md",
+      "financial_transaction",
+      "publish_content",
+      "grant_permissions",
+      "agent_to_agent_delegation"
+    ]
+  },
+  "skill_scan": {
+    "auto_scan_before_install": true,
+    "block_on_critical": true,
+    "min_downloads_for_trust": 100,
+    "min_age_days_for_trust": 90,
+    "risk_score_threshold": 10
+  },
+  "prompt_injection": {
+    "monitor_incoming_messages": true,
+    "monitor_tool_outputs": true,
+    "monitor_skill_instructions": true,
+    "heightened_mode_duration_minutes": 30
+  },
+  "audit": {
+    "retention_days": 90,
+    "max_entries": 10000,
+    "export_on_rotation": true
+  }
+}

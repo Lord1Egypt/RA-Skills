@@ -1,0 +1,9 @@
+{
+  "name": "image-gen-cheap",
+  "version": "1.0.0",
+  "description": "Generate and edit images via LaoZhang API. Supports text-to-image and image editing with multiple models. Cheapest option at $0.01/image.",
+  "author": "openclaw-community",
+  "license": "MIT",
+  "keywords": ["image", "generation", "ai", "text-to-image", "image-editing", "cheap"],
+  "repository": "https://clawhub.com/skills/image-gen-cheap"
+}

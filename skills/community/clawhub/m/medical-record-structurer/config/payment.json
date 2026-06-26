@@ -1,0 +1,29 @@
+{
+  "billing": {
+    "provider": "skillpay.me",
+    "api_url": "https://skillpay.me",
+    "api_key_env": "SKILLPAY_API_KEY",
+    "skill_id_env": "SKILLPAY_SKILL_ID",
+    "price_per_call": 0.001,
+    "currency": "USDT",
+    "chain": "BNB"
+  },
+  "service": {
+    "name": "Medical Record Structurer",
+    "version": "1.0.2",
+    "description": "Convert unstructured medical notes to standardized EMR"
+  },
+  "output_format": {
+    "emr_version": "1.0",
+    "supported_languages": ["zh-CN", "en"],
+    "fields": [
+      "patient_demographics",
+      "chief_complaint",
+      "history_of_present_illness",
+      "physical_examination",
+      "diagnosis",
+      "treatment_plan",
+      "medications"
+    ]
+  }
+}

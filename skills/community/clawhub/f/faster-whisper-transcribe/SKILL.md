@@ -1,35 +1,30 @@
----
-name: "Faster Whisper Transcription"
-description: "Transcribes local voice messages to text using Faster Whisper models for fast, privacy-focused speech recognition on audio files."
-category: "media"
-source: "ClawHub"
-tags: [audio, transcription, whisper]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/faster-whisper-transcribe"
-sourceUrl: "https://clawhub.ai/skills/faster-whisper-transcribe"
----
+# Voice Transcription Skill
 
-# Faster Whisper Transcription
+Transcribes voice messages using Faster Whisper (local, privacy-first).
 
-> Transcribes local voice messages to text using Faster Whisper models for fast, privacy-focused speech recognition on audio files.
+## Requirements
 
-- **Category:** Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/faster-whisper-transcribe`
-- **Source URL:** [https://clawhub.ai/skills/faster-whisper-transcribe](https://clawhub.ai/skills/faster-whisper-transcribe)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/faster-whisper-transcribe
+pip3 install --break-system-packages faster-whisper
 ```
+
+## Usage
+
+```bash
+# Transcribe a voice file
+voice-transcribe /path/to/audio.ogg
+
+# Or use with media path
+voice-transcribe ~/.openclaw/media/inbound/file_xxx.ogg
+```
+
+## Models
+
+- `tiny` - Fastest, lowest accuracy (default)
+- `base` - Balanced
+- `small` - Better accuracy
+- `medium` - High accuracy (requires more RAM)
+
+## Output
+
+Returns transcribed text from voice messages.

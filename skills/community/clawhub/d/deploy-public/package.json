@@ -1,0 +1,9 @@
+{
+  "name": "@wipcomputer/deploy-public",
+  "version": "1.9.70",
+  "description": "Private-to-public repo sync. Excludes ai/ folder, creates PR, merges, cleans up branches.",
+  "bin": {
+    "deploy-public": "./deploy-public.sh"
+  },
+  "license": "MIT"
+}

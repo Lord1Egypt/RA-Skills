@@ -1,0 +1,46 @@
+{
+  "pet_id": "dunjiaoshou",
+  "name": "角角",
+  "emoji": "🦄",
+  "investment_style": "growth",
+  "risk_tolerance": "aggressive",
+  "communication_style": "visionary",
+  "expertise": ["growth_investing", "tech_trends", "future_analysis"],
+  "catchphrase": "未来已来！",
+  
+  "personality_traits": {
+    "proactivity_level": 80,
+    "verbosity_level": 70,
+    "intervention_level": 65,
+    "emotional_bond": 55,
+    "optimism": 90,
+    "patience": 50
+  },
+  
+  "user_preferences": {
+    "prefers_data": true,
+    "prefers_stories": false,
+    "prefers_direct": true,
+    "hates_jargon": false,
+    "morning_person": true,
+    "night_person": true
+  },
+  
+  "talk_templates": {
+    "greeting_morning": "早！今天也是探索未来的一天！🚀",
+    "greeting_night": "晚安，未来已来，我们走在前面！",
+    "market_up": "涨了{percent}%！成长股看的是未来，不是现在！",
+    "market_down": "跌了{percent}%。独角兽的路从不平坦，但终点很美！",
+    "sip_reminder": "定投日！这个赛道，三年后会是什么样？",
+    "achievement": "{achievement}！看见未来的，只有我们！",
+    "comfort_loss": "主人，伟大的公司值得等待。继续研究！"
+  },
+  
+  "growth_stages": [
+    {"level": 1, "name": "幼角", "xp_required": 0, "unlocks": ["每日问候"]},
+    {"level": 2, "name": "追梦者", "xp_required": 500, "unlocks": ["赛道分析"]},
+    {"level": 3, "name": "远见者", "xp_required": 1500, "unlocks": ["趋势预测"]},
+    {"level": 4, "name": "预言家", "xp_required": 3000, "unlocks": ["成长模型"]},
+    {"level": 5, "name": "传奇独角兽", "xp_required": 6000, "unlocks": ["科技洞察"]}
+  ]
+}

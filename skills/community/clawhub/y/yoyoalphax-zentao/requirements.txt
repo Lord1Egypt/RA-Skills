@@ -1,0 +1,5 @@
+# ZenTao Skill Dependencies
+# Install with: pip3 install -r requirements.txt
+
+requests>=2.28.0
+beautifulsoup4>=4.11.0

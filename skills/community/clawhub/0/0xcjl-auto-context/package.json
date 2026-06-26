@@ -1,0 +1,7 @@
+{
+  "name": "auto-context",
+  "version": "1.0.0",
+  "description": "Intelligent context hygiene checker for AI agents",
+  "keywords": ["context-management", "productivity", "session-health", "memory"],
+  "author": "0xcjl"
+}

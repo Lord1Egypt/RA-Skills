@@ -1,0 +1,23 @@
+{
+  "name": "agent-consciousness-upload",
+  "version": "0.1.0",
+  "description": "A soul vault for OpenClaw: archive, relay, and restore your lobster's memories when you pause care or move to a new device.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "agent-consciousness-upload": "./cli.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "auth.mjs",
+    "cli.mjs",
+    "credentials.mjs",
+    "lib.mjs",
+    "runtime.mjs",
+    "agents"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

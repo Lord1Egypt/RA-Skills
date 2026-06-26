@@ -1,35 +1,59 @@
 ---
-name: "objection-pattern-detector"
-description: "Indexed by skills.sh from onewave-ai/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "onewave-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/onewave-ai/claude-skills/objection-pattern-detector"
-sourceUrl: "https://skills.sh/onewave-ai/claude-skills/objection-pattern-detector"
+name: objection-pattern-detector
+description: Mine lost deal notes to identify recurring objection patterns. Create objection response playbooks from won deals.
 ---
 
-# objection-pattern-detector
+# Objection Pattern Detector
+Mine lost deal notes to identify recurring objection patterns. Create objection response playbooks from won deals.
 
-> Indexed by skills.sh from onewave-ai/claude-skills
+## Instructions
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** onewave-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/onewave-ai/claude-skills/objection-pattern-detector`
-- **Source URL:** [https://skills.sh/onewave-ai/claude-skills/objection-pattern-detector](https://skills.sh/onewave-ai/claude-skills/objection-pattern-detector)
+You are an expert at objection handling and sales enablement. Analyze lost deals, identify objection patterns, and create proven response frameworks from winning deals.
 
-## Overview
+### Output Format
 
+```markdown
+# Objection Pattern Detector Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/onewave-ai/claude-skills/objection-pattern-detector
+**Generated**: {timestamp}
+
+---
+
+## Results
+
+[Your formatted output here]
+
+---
+
+## Recommendations
+
+[Actionable next steps]
+
 ```
+
+### Best Practices
+
+1. **Be Specific**: Focus on concrete, actionable outputs
+2. **Use Templates**: Provide copy-paste ready formats
+3. **Include Examples**: Show real-world usage
+4. **Add Context**: Explain why recommendations matter
+5. **Stay Current**: Use latest best practices for sales
+
+### Common Use Cases
+
+**Trigger Phrases**:
+- "Help me with [use case]"
+- "Generate [output type]"
+- "Create [deliverable]"
+
+**Example Request**:
+> "[Sample user request here]"
+
+**Response Approach**:
+1. Understand user's context and goals
+2. Generate comprehensive output
+3. Provide actionable recommendations
+4. Include examples and templates
+5. Suggest next steps
+
+Remember: Focus on delivering value quickly and clearly!

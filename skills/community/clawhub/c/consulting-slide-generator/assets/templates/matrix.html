@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200,height=675">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Noto Sans JP', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 w-[1200px] h-[675px] overflow-hidden">
+  
+  <div class="h-full px-16 py-10">
+    
+    <!-- Header -->
+    <div class="mb-6">
+      <div class="text-sm font-medium text-slate-400 tracking-wider uppercase mb-2">
+        {{EYEBROW}}
+      </div>
+      <h1 class="text-3xl font-black text-slate-900">
+        {{TITLE}}
+      </h1>
+    </div>
+    
+    <!-- Matrix with Axes -->
+    <div class="flex gap-8">
+      
+      <!-- Y-Axis Label -->
+      <div class="flex flex-col justify-center items-center w-8">
+        <div class="transform -rotate-90 whitespace-nowrap text-sm font-bold text-slate-500">
+          {{Y_AXIS_LABEL}} →
+        </div>
+      </div>
+      
+      <!-- Matrix Grid -->
+      <div class="flex-1">
+        
+        <!-- X-Axis Label -->
+        <div class="text-center text-sm font-bold text-slate-500 mb-4">
+          {{X_AXIS_LABEL}} →
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          
+          <!-- Cell 1 (Top-Left) -->
+          <div class="bg-white border-2 border-{{CELL1_COLOR}}-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-{{CELL1_COLOR}}-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{{CELL1_ICON}}</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-{{CELL1_COLOR}}-500 px-2 py-0.5 rounded">{{CELL1_BADGE}}</span>
+              <span class="text-xl font-black text-{{CELL1_COLOR}}-700">{{CELL1_TITLE}}</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">{{CELL1_SUBTITLE}}</div>
+            <div class="text-sm text-slate-500 mb-3">{{CELL1_DESCRIPTION}}</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-{{CELL1_COLOR}}-600">{{CELL1_ACTION}}</span>
+            </div>
+          </div>
+          
+          <!-- Cell 2 (Top-Right) -->
+          <div class="bg-white border-2 border-{{CELL2_COLOR}}-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-{{CELL2_COLOR}}-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{{CELL2_ICON}}</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-{{CELL2_COLOR}}-500 px-2 py-0.5 rounded">{{CELL2_BADGE}}</span>
+              <span class="text-xl font-black text-{{CELL2_COLOR}}-700">{{CELL2_TITLE}}</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">{{CELL2_SUBTITLE}}</div>
+            <div class="text-sm text-slate-500 mb-3">{{CELL2_DESCRIPTION}}</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-{{CELL2_COLOR}}-600">{{CELL2_ACTION}}</span>
+            </div>
+          </div>
+          
+          <!-- Cell 3 (Bottom-Left) -->
+          <div class="bg-white border-2 border-{{CELL3_COLOR}}-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-{{CELL3_COLOR}}-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{{CELL3_ICON}}</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-{{CELL3_COLOR}}-500 px-2 py-0.5 rounded">{{CELL3_BADGE}}</span>
+              <span class="text-xl font-black text-{{CELL3_COLOR}}-700">{{CELL3_TITLE}}</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">{{CELL3_SUBTITLE}}</div>
+            <div class="text-sm text-slate-500 mb-3">{{CELL3_DESCRIPTION}}</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-{{CELL3_COLOR}}-600">{{CELL3_ACTION}}</span>
+            </div>
+          </div>
+          
+          <!-- Cell 4 (Bottom-Right) -->
+          <div class="bg-white border-2 border-{{CELL4_COLOR}}-200 rounded-xl p-5 relative">
+            <div class="absolute -top-3 -left-3 w-6 h-6 bg-{{CELL4_COLOR}}-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{{CELL4_ICON}}</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-bold text-white bg-{{CELL4_COLOR}}-500 px-2 py-0.5 rounded">{{CELL4_BADGE}}</span>
+              <span class="text-xl font-black text-{{CELL4_COLOR}}-700">{{CELL4_TITLE}}</span>
+            </div>
+            <div class="text-slate-700 font-medium mb-2">{{CELL4_SUBTITLE}}</div>
+            <div class="text-sm text-slate-500 mb-3">{{CELL4_DESCRIPTION}}</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-400">対処:</span>
+              <span class="font-semibold text-{{CELL4_COLOR}}-600">{{CELL4_ACTION}}</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- X-Axis Endpoints -->
+        <div class="flex justify-between mt-4 text-xs text-slate-400">
+          <span>{{X_AXIS_LOW}}</span>
+          <span>{{X_AXIS_HIGH}}</span>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+</body>
+</html>

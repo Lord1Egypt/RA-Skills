@@ -1,0 +1,12 @@
+{
+  "name": "multi-agent-deploy",
+  "version": "1.0.0",
+  "description": "快速部署新的 assistant agent，编号递增，沿用现有 workspace 和 agentDir 结构",
+  "author": "Claw",
+  "license": "MIT",
+  "keywords": ["agent", "deploy", "multi-agent", "openclaw", "automation"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace"
+  }
+}

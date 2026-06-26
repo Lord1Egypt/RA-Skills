@@ -1,0 +1,10 @@
+{
+  "name": "Sora2 Video",
+  "tagline": "Sora2 文生视频",
+  "description": "Sora2 video generation.",
+  "category": "media",
+  "tags": ["sora", "video", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

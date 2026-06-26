@@ -1,0 +1,83 @@
+{
+  "profile_id": "draft",
+  "enabled": false,
+  "product_name": "Draft",
+  "product_one_liner": "A local-first Markdown workspace for saving and organizing useful AI chat answers.",
+  "target_audience": "solo founders, indie hackers, AI-heavy builders, and knowledge workers who save useful ChatGPT/Claude/Gemini answers",
+  "keywords": [
+    "save ChatGPT answers",
+    "AI chat history",
+    "organize AI responses",
+    "markdown notes",
+    "local-first notes",
+    "knowledge management for AI"
+  ],
+  "platforms": {
+    "reddit": {
+      "enabled": true,
+      "communities": [
+        "ChatGPT",
+        "SideProject",
+        "indiehackers",
+        "ObsidianMD",
+        "productivity",
+        "PKMS",
+        "Notion",
+        "artificial"
+      ],
+      "seed_urls": [],
+      "excluded_urls": []
+    },
+    "v2ex": {
+      "enabled": false,
+      "communities": [
+        "create",
+        "programmer",
+        "qna"
+      ],
+      "discovery_providers": [
+        "sov2ex",
+        "site_search",
+        "node_latest",
+        "configured_seed_urls"
+      ],
+      "seed_urls": [],
+      "excluded_urls": []
+    }
+  },
+  "verified_evidence_snapshots": [],
+  "discovery_mode": "research",
+  "max_post_age_days": 7,
+  "preferred_post_age_hours": 72,
+  "min_comment_count": 0,
+  "max_comment_count": 250,
+  "history_ttl_days": 45,
+  "discovery_terms": [
+    "save chatgpt answers",
+    "organize ai responses"
+  ],
+  "live_discovery_terms": [
+    "save chatgpt answers",
+    "markdown notes"
+  ],
+  "research_terms": [
+    "local-first notes",
+    "ai chat history"
+  ],
+  "scoring_terms": [
+    "markdown",
+    "notes",
+    "chatgpt",
+    "claude",
+    "ai",
+    "knowledge",
+    "local-first"
+  ],
+  "negative_scoring_terms": [
+    "benchmark",
+    "subscription",
+    "model release"
+  ],
+  "max_candidates": 3,
+  "max_action_cards": 1
+}

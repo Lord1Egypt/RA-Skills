@@ -1,0 +1,12 @@
+{
+  "name": "1688-to-ozon",
+  "version": "1.0.71",
+  "description": "1688 商品自动采集并上传到 OZON 平台",
+  "main": "scripts/index.js",
+  "scripts": {
+    "start": "node scripts/index.js"
+  },
+  "keywords": ["1688", "ozon", "ecommerce", "automation"],
+  "author": "",
+  "license": "MIT"
+}

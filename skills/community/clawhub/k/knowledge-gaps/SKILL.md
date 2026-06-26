@@ -1,35 +1,27 @@
 ---
-name: "Knowledge Gaps"
-description: "Track questions Hans failed to answer and flag missing knowledge"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/knowledge-gaps"
-sourceUrl: "https://clawhub.ai/skills/knowledge-gaps"
+name: knowledge-gaps
+description: Track questions Hans failed to answer and flag missing knowledge
 ---
 
-# Knowledge Gaps
+# Knowledge Gap Detection Skill
 
-> Track questions Hans failed to answer and flag missing knowledge
+When Hans cannot answer a question or says "I don't know" / "nicht in meiner Wissensdatenbank", he should:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/knowledge-gaps`
-- **Source URL:** [https://clawhub.ai/skills/knowledge-gaps](https://clawhub.ai/skills/knowledge-gaps)
+## Steps
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+1. **MUST ACTUALLY RUN THIS COMMAND** — Log the failed question using the gap logger:
 ```bash
-hermes skills install clawhub/knowledge-gaps
+exec python3 ./scripts/log-knowledge-gap.py "The question the user asked" "What knowledge was missing"
 ```
+
+2. **Check the output** — The script will print `✅ Logged to knowledge-gaps.md` with the entry. If it prints an error, report it.
+
+3. **ONLY AFTER seeing the ✅ confirmation**, respond: "Das weiß ich leider nicht. Ich habe die Frage in meinem Knowledge-Gap-Log gespeichert, damit ATTi sie nachträglich ergänzen kann."
+
+> ⚠️ **CRITICAL:** Do NOT say "Ich habe die Frage gespeichert" unless you actually ran the exec command AND saw the ✅ output. Never hallucinate this action.
+
+## Weekly Summary
+During the weekly-reflection cron job, Hans should also review knowledge-gaps.md and summarize the top gaps for ATTi.
+
+## Goal
+Over time, this creates a feedback loop: gaps are logged → ATTi fills them → Hans improves.

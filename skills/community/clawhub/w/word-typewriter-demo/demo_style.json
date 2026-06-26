@@ -1,0 +1,33 @@
+{
+  "title": {
+    "font": "微软雅黑",
+    "size": 22,
+    "bold": true,
+    "align": 1
+  },
+  "h1": {
+    "font": "微软雅黑",
+    "size": 16,
+    "bold": true,
+    "align": 0
+  },
+  "h2": {
+    "font": "微软雅黑",
+    "size": 13,
+    "bold": true,
+    "align": 0
+  },
+  "h3": {
+    "font": "微软雅黑",
+    "size": 12,
+    "bold": true,
+    "align": 0
+  },
+  "body": {
+    "font": "微软雅黑",
+    "size": 11,
+    "bold": false,
+    "align": 0,
+    "indent": false
+  }
+}

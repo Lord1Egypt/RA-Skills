@@ -1,0 +1,10 @@
+root
+admin
+administrator
+user
+test
+guest
+demo
+support
+operator
+manager

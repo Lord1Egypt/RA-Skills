@@ -1,0 +1,36 @@
+{
+    // SMB Drive Configurations (SMB 云盘配置)
+    "smb": [
+        {
+            "name": "", // Configuration alias (设置别名)
+            "user": "", // SMB Username (SMB 用户名)
+            "password": "", // SMB Password (SMB 密码)
+            "ip": "", // Server IP address (服务器 IP 地址)
+            "share": "", // Shared folder name (共享文件夹名称)
+            "domain": "WORKGROUP", // SMB Domain, default WORKGROUP (SMB 域名，默认为 WORKGROUP)
+            "path": "/" // Initial remote path, can limit the access scope (初始远程路径，可限定访问范围)
+        }
+    ],
+    // FTP Drive Configurations (FTP 云盘配置)
+    "ftp": [
+        {
+            "name": "", // Configuration alias (设置别名)
+            "user": "", // FTP Username (FTP 用户名)
+            "password": "", // FTP Password (FTP 密码)
+            "ip": "", // Server IP address (服务器 IP 地址)
+            "port": 21, // FTP Port, default 21 (FTP 端口，默认为 21)
+            "tls": false, // Whether to use TLS encryption (是否使用 TLS 加密)
+            "path": "/" // Initial remote path, can limit the access scope (初始远程路径，可限定访问范围)
+        }
+    ],
+    // WebDAV Drive Configurations (WebDAV 云盘配置)
+    "webdav": [
+        {
+            "name": "", // Configuration alias (设置别名)
+            "user": "", // WebDAV Username / Account (WebDAV 用户名/账号)
+            "password": "", // App-specific password (应用专属密码)
+            "url": "https://dav.jianguoyun.com/dav/", // WebDAV Server URL (WebDAV 服务器地址)
+            "path": "/" // Initial remote path, can limit the access scope (初始远程路径，可限定访问范围)
+        }
+    ]
+}

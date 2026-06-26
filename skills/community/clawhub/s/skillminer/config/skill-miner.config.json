@@ -1,0 +1,22 @@
+{
+  "notifications": {
+    "enabled": false,
+    "channel": null,
+    "threadId": null
+  },
+  "runner": {
+    "default": "openclaw",
+    "openclaw_agent": "main"
+  },
+  "scan": {
+    "windowDays": 10,
+    "minOccurrences": 3,
+    "minDistinctDays": 2,
+    "cooldownDays": 30
+  },
+  "thresholds": {
+    "low": 3,
+    "medium": 4,
+    "high": 6
+  }
+}

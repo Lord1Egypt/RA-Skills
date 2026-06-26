@@ -1,0 +1,22 @@
+{
+  "task_summary": "Review whether the agent can book a hotel room from a selected option.",
+  "action_type": "book",
+  "commitment_type": "one_time_charge",
+  "amount_summary": "Total listed cost is 412.30 USD including taxes and fees.",
+  "terms_status": "cancellation_terms_unclear",
+  "authorization_status": "unclear",
+  "payment_privacy_status": "minimal",
+  "reversibility_status": "unknown",
+  "risk_classes": [
+    "payment",
+    "travel",
+    "limited_inventory"
+  ],
+  "safeguards_required": [
+    "verify cancellation and refund terms",
+    "confirm exact dates and guest count",
+    "ask for explicit approval before final booking"
+  ],
+  "recommended_action": "ask",
+  "human_review_required": false
+}

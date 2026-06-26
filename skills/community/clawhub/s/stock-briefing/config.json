@@ -1,0 +1,24 @@
+{
+  "holdings": [
+    {
+      "code": "000001",
+      "name": "平安银行",
+      "shares": 1000,
+      "cost_price": 10.0
+    },
+    {
+      "code": "000002",
+      "name": "万科A",
+      "shares": 1000,
+      "cost_price": 20.0
+    },
+    {
+      "code": "000858",
+      "name": "五粮液",
+      "shares": 100,
+      "cost_price": 150.0
+    }
+  ],
+  "user_open_id": "ou_xxxxxxxxxxxxx",
+  "push_channel": "none"
+}

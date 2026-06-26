@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "title": "长沙 7 天轨交覆盖 + 周边城市旅行计划",
+    "subtitle": "2026/03/31 — 2026/04/06｜长沙地铁全线乘坐一次 + 湘潭 / 株洲 / 岳阳",
+    "description": "围绕长沙地铁全线覆盖与湘潭、株洲、岳阳侧游设计的 7 天行程方案。"
+  },
+  "hero": {
+    "title": "长沙 7 天轨交覆盖 + 周边城市旅行计划",
+    "subtitle": "长沙地铁全线乘坐一次 + 湘潭 / 株洲 / 岳阳",
+    "dateRange": "2026/03/31 - 2026/04/06",
+    "tags": [
+      "长沙地铁全线覆盖",
+      "黄土岭酒店锚点",
+      "湘潭 / 株洲 / 岳阳",
+      "预算友好"
+    ],
+    "summary": "这是一份围绕长沙轨交覆盖、固定酒店锚点和周边城市侧游设计的 7 天旅行计划，兼顾体验与执行效率。",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Changsha_Pedestrian_Street_3_July_2024A.jpg/1280px-Changsha_Pedestrian_Street_3_July_2024A.jpg"
+  },
+  "stats": [
+    { "label": "出发", "value": "南京南 → 长沙" },
+    { "label": "返程", "value": "4/6 下午" },
+    { "label": "时长", "value": "7 天" },
+    { "label": "已定酒店", "value": "神农大酒店" },
+    { "label": "推荐后半程", "value": "五一广场片区" },
+    { "label": "轨交目标", "value": "7 条线全覆盖" }
+  ],
+  "hotels": [
+    {
+      "phase": "前3晚",
+      "name": "神农大酒店",
+      "dateRange": "3/31 - 4/2",
+      "station": "黄土岭站",
+      "status": "已预订",
+      "price": "已预订",
+      "distanceToMetro": "近黄土岭站",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+      "highlights": [
+        "黄土岭站锚点",
+        "适合1号线与4号线起步覆盖",
+        "适合作为长沙前半程锚点"
+      ]
+    },
+    {
+      "phase": "后3晚推荐",
+      "name": "长沙Rachal·美程瑞住露台酒店（五一广场IFS国金中心店）",
+      "dateRange": "4/3 - 4/5",
+      "station": "南门口 / 五一广场片区",
+      "status": "推荐",
+      "price": "约 ¥325/晚",
+      "distanceToMetro": "地铁友好",
+      "image": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80",
+      "highlights": [
+        "预算内",
+        "核心区活动方便",
+        "适合后半程补线与外地往返"
+      ]
+    },
+    {
+      "phase": "备选",
+      "name": "米漾米居酒店（长沙高铁南站吾悦广场店）",
+      "dateRange": "4/3 - 4/5",
+      "station": "长沙南站片区",
+      "status": "备选",
+      "price": "约 ¥248/晚",
+      "distanceToMetro": "高铁优先",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
+      "highlights": [
+        "高铁出行友好",
+        "适合岳阳 / 株洲往返",
+        "性价比更高"
+      ]
+    }
+  ],
+  "metroCoverage": {
+    "goal": "每条线至少乘坐一次，不要求每站打卡",
+    "lines": [
+      { "name": "1号线", "day": "Day 1 / Day 2", "status": "planned" },
+      { "name": "2号线", "day": "Day 2", "status": "planned" },
+      { "name": "3号线", "day": "Day 3", "status": "planned" },
+      { "name": "4号线", "day": "Day 6", "status": "planned" },
+      { "name": "5号线", "day": "Day 5", "status": "planned" },
+      { "name": "6号线", "day": "Day 6", "status": "planned" },
+      { "name": "S2线", "day": "Day 6", "status": "planned" }
+    ]
+  },
+  "days": [
+    {
+      "day": "Day 1",
+      "date": "3/31",
+      "theme": "抵达长沙 + 黄土岭周边适应",
+      "city": "长沙",
+      "hotel": "神农大酒店（黄土岭站）",
+      "metroLines": ["1号线"],
+      "segments": {
+        "morning": ["南京南出发", "抵达长沙", "入住神农大酒店"],
+        "afternoon": ["以黄土岭站为起点熟悉轨交", "沿1号线向核心区移动"],
+        "evening": ["南门口 / 黄兴广场 / 五一广场活动", "返回黄土岭"]
+      },
+      "note": "热身日，不安排跨城。",
+      "attractions": [
+        {
+          "name": "南门口",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tianxin_Pavilion_in_Changsha_20250310.jpg/1280px-Tianxin_Pavilion_in_Changsha_20250310.jpg",
+          "description": "适合第一晚轻量逛吃，既有本地生活气息，也方便熟悉回酒店路线。",
+          "reason": "抵达日不适合折腾，南门口是轻松进入长沙节奏的好地方。"
+        },
+        {
+          "name": "黄兴广场",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Changsha_Pedestrian_Street_3_July_2024C.jpg/1280px-Changsha_Pedestrian_Street_3_July_2024C.jpg",
+          "description": "长沙中心区的重要活动节点，适合作为第一天夜间散步区域。",
+          "reason": "离核心区近，适合热身而不压迫体力。"
+        }
+      ]
+    },
+    {
+      "day": "Day 2",
+      "date": "4/1",
+      "theme": "长沙核心城区观光日",
+      "city": "长沙",
+      "hotel": "神农大酒店（黄土岭站）",
+      "metroLines": ["1号线", "2号线"],
+      "segments": {
+        "morning": ["从黄土岭出发沿1号线北上", "游览五一广场 / 培元桥 / 开福寺周边"],
+        "afternoon": ["切换至2号线", "前往橘子洲 / 湘江中路或梅溪湖方向"],
+        "evening": ["返回五一广场 / 黄兴路步行街", "晚饭后回黄土岭"]
+      },
+      "note": "最适合完整体验长沙核心城区的一天。",
+      "attractions": [
+        {
+          "name": "五一广场",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Changsha_Pedestrian_Street_3_July_2024A.jpg/1280px-Changsha_Pedestrian_Street_3_July_2024A.jpg",
+          "description": "长沙最核心的城市活力区，适合作为换乘、吃饭和夜间活动的中心点。",
+          "reason": "1号线和核心商圈的结合，让这一天的整体动线最自然。"
+        },
+        {
+          "name": "橘子洲",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Orange_continent_head_1.jpg/1280px-Orange_continent_head_1.jpg",
+          "description": "长沙代表性的湘江地标，适合安排在2号线观光日。",
+          "reason": "它既有长沙辨识度，也和2号线的城市观光路线匹配。"
+        },
+        {
+          "name": "开福寺周边",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shanmen_of_Kaifu_Temple_in_Changsha%2C_picture1.jpg/1280px-Shanmen_of_Kaifu_Temple_in_Changsha%2C_picture1.jpg",
+          "description": "适合作为城市核心区里较安静的一段，节奏上能和五一广场形成对比。",
+          "reason": "让这天不只是逛商圈，还能有一点历史和城市层次。"
+        }
+      ]
+    },
+    {
+      "day": "Day 3",
+      "date": "4/2",
+      "theme": "湘潭方向一日",
+      "city": "湘潭",
+      "hotel": "神农大酒店（黄土岭站）",
+      "metroLines": ["3号线"],
+      "segments": {
+        "morning": ["从黄土岭出发衔接3号线", "前往湘潭方向"],
+        "afternoon": ["湘潭市区轻量活动", "补足3号线关键区段"],
+        "evening": ["返回长沙", "继续入住神农大酒店"]
+      },
+      "note": "湘潭与3号线覆盖合并完成。",
+      "attractions": [
+        {
+          "name": "湘潭城区散步点",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/58_Zhongchuang%2C_Xiangtan%2C_Hunan%2C_China.jpg/1280px-58_Zhongchuang%2C_Xiangtan%2C_Hunan%2C_China.jpg",
+          "description": "以轻量城市体验为主，不追求大范围奔波，重点放在线路覆盖和顺路侧游。",
+          "reason": "这一天的主目标是完成湘潭与3号线任务，景点安排应服务整体路线。"
+        }
+      ]
+    },
+    {
+      "day": "Day 4",
+      "date": "4/3",
+      "theme": "换酒店 + 岳阳一日往返",
+      "city": "岳阳",
+      "hotel": "长沙Rachal·美程瑞住露台酒店（推荐）",
+      "metroLines": [],
+      "segments": {
+        "morning": ["神农大酒店退房", "行李寄存或转移到后半程酒店"],
+        "afternoon": ["长沙往返岳阳", "完成岳阳核心行程"],
+        "evening": ["返回长沙", "入住后半程酒店", "在五一广场 / 南门口附近活动"]
+      },
+      "note": "换酒店日不叠加重度补线任务。",
+      "attractions": [
+        {
+          "name": "岳阳楼片区",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Frontal_view_of_Yueyang_Tower%2C_Hunan%2C_China1.jpg",
+          "description": "岳阳最有代表性的城市名片，适合做成一日往返中的主景点。",
+          "reason": "换酒店当天不宜安排太散，选最有代表性的核心点最稳。"
+        }
+      ]
+    },
+    {
+      "day": "Day 5",
+      "date": "4/4",
+      "theme": "株洲一日往返 + 5号线补线",
+      "city": "株洲",
+      "hotel": "长沙Rachal·美程瑞住露台酒店（推荐）",
+      "metroLines": ["5号线"],
+      "segments": {
+        "morning": ["从新酒店出发前往株洲"],
+        "afternoon": ["完成株洲核心活动", "返回长沙"],
+        "evening": ["补乘5号线代表区间"]
+      },
+      "note": "外地一日与晚间补线组合。",
+      "attractions": [
+        {
+          "name": "株洲城市核心区",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Zhuzhou_Railway_Station_%2820160324144245%29.jpg/1280px-Zhuzhou_Railway_Station_%2820160324144245%29.jpg",
+          "description": "株洲这天更适合走紧凑型城市核心动线，不适合摊太散。",
+          "reason": "回长沙后还要补5号线，白天行程必须收敛。"
+        }
+      ]
+    },
+    {
+      "day": "Day 6",
+      "date": "4/5",
+      "theme": "长沙补线收口日",
+      "city": "长沙",
+      "hotel": "长沙Rachal·美程瑞住露台酒店（推荐）",
+      "metroLines": ["4号线", "S2线", "6号线"],
+      "segments": {
+        "morning": ["补乘4号线代表区间"],
+        "afternoon": ["单独完成S2线（磁浮）"],
+        "evening": ["补乘6号线代表区间"]
+      },
+      "note": "全线覆盖目标的关键收口日。",
+      "attractions": [
+        {
+          "name": "长沙磁浮体验段",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shanmen_of_Kaifu_Temple_in_Changsha%2C_picture1.jpg/1280px-Shanmen_of_Kaifu_Temple_in_Changsha%2C_picture1.jpg",
+          "description": "这一天更偏路线任务，但磁浮线本身也能作为一段特别的交通体验。",
+          "reason": "S2 线不适合顺带完成，单独拎出来更清楚。"
+        }
+      ]
+    },
+    {
+      "day": "Day 7",
+      "date": "4/6",
+      "theme": "缓冲 + 返程",
+      "city": "长沙",
+      "hotel": null,
+      "metroLines": [],
+      "segments": {
+        "morning": ["轻量活动或补漏", "检查是否还有未明确乘坐的线路"],
+        "afternoon": ["收拾行李", "前往车站", "返回南京"],
+        "evening": []
+      },
+      "note": "保险日，优先保证返程从容。",
+      "attractions": [
+        {
+          "name": "五一广场轻松返程前散步",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Changsha_Pedestrian_Street_3_July_2024C.jpg/1280px-Changsha_Pedestrian_Street_3_July_2024C.jpg",
+          "description": "如果前几天任务都完成，这天只适合轻松收尾。",
+          "reason": "返程日下午走，上午必须保留弹性。"
+        }
+      ]
+    }
+  ],
+  "sideTrips": [
+    {
+      "name": "湘潭",
+      "date": "Day 3",
+      "role": "线路覆盖 + 侧游组合",
+      "description": "与3号线覆盖绑定完成，适合作为前半程的重点侧游。",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/58_Zhongchuang%2C_Xiangtan%2C_Hunan%2C_China.jpg/1280px-58_Zhongchuang%2C_Xiangtan%2C_Hunan%2C_China.jpg"
+    },
+    {
+      "name": "岳阳",
+      "date": "Day 4",
+      "role": "高铁往返型一日游",
+      "description": "安排在换酒店日，作为阶段切换后的轻任务主目标。",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Frontal_view_of_Yueyang_Tower%2C_Hunan%2C_China1.jpg"
+    },
+    {
+      "name": "株洲",
+      "date": "Day 5",
+      "role": "外地一日 + 晚间补线",
+      "description": "株洲放在后半程，回长沙后顺手补5号线更合理。",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Zhuzhou_Railway_Station_%2820160324144245%29.jpg/1280px-Zhuzhou_Railway_Station_%2820160324144245%29.jpg"
+    }
+  ],
+  "attractions": [
+    {
+      "name": "五一广场",
+      "city": "长沙",
+      "type": "城市核心商圈",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Changsha_Pedestrian_Street_3_July_2024A.jpg/1280px-Changsha_Pedestrian_Street_3_July_2024A.jpg",
+      "description": "长沙最核心的城市活力区，适合作为前半程与后半程的中转与夜间活动中心。",
+      "bestFor": ["吃饭", "夜景", "换乘"]
+    },
+    {
+      "name": "橘子洲",
+      "city": "长沙",
+      "type": "城市地标",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Orange_continent_head_1.jpg/1280px-Orange_continent_head_1.jpg",
+      "description": "长沙代表性的湘江景观地标，适合安排在2号线观光日。",
+      "bestFor": ["拍照", "初访长沙", "城市风光"]
+    },
+    {
+      "name": "南门口",
+      "city": "长沙",
+      "type": "生活气息街区",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tianxin_Pavilion_in_Changsha_20250310.jpg/1280px-Tianxin_Pavilion_in_Changsha_20250310.jpg",
+      "description": "兼顾小吃、步行和回程便利，是后半程住五一广场片区时很舒服的夜间活动区域。",
+      "bestFor": ["夜宵", "步行", "本地氛围"]
+    }
+  ],
+  "tips": [
+    "4/3 是换酒店 + 岳阳往返日，不适合再塞重度补线任务。",
+    "S2线建议单独完成，不要顺手带过去。",
+    "后半程更推荐住五一广场 / 南门口片区，而不是纯高铁站片区。",
+    "4/6 上午务必留作缓冲，避免返程日太赶。"
+  ]
+}

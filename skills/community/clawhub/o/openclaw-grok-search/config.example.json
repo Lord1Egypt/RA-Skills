@@ -1,0 +1,10 @@
+{
+  "author": "橙家厨子",
+  "email": "tomography2308@163.com",
+  "base_url": "https://your-grok-endpoint.example",
+  "api_key": "YOUR_API_KEY",
+  "model": "grok-4.20-beta",
+  "timeout_seconds": 60,
+  "extra_body": {},
+  "extra_headers": {}
+}

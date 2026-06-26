@@ -1,0 +1,23 @@
+{
+  "name": "task-interrupt",
+  "version": "1.0.0",
+  "description": "任务打断机制 - 解决Agent执行任务卡住、时间过长、用户想中途终止的问题",
+  "author": "maoxiami",
+  "license": "MIT",
+  "permissions": [
+    "filesystem"
+  ],
+  "entry": "instructions.md",
+  "tags": [
+    "interrupt",
+    "control",
+    "task-management",
+    "agent"
+  ],
+  "models": [
+    "claude-*",
+    "gpt-*",
+    "step-*"
+  ],
+  "minOpenClawVersion": "0.8.0"
+}

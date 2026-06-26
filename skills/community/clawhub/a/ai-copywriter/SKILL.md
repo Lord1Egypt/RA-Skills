@@ -1,35 +1,52 @@
 ---
-name: "Ai Copywriter"
-description: "AI 文案改写、润色、生成（小红书风格）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-copywriter"
-sourceUrl: "https://clawhub.ai/skills/ai-copywriter"
+name: ai-copywriter
+description: AI 文案改写、润色、生成（小红书风格）
 ---
 
-# Ai Copywriter
+# AI 文案助手
 
-> AI 文案改写、润色、生成（小红书风格）
+将素材改写成适合小红书发布的文案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-copywriter`
-- **Source URL:** [https://clawhub.ai/skills/ai-copywriter](https://clawhub.ai/skills/ai-copywriter)
+## 功能
 
-## Overview
+1. **风格改写** - 转换为小红书风格
+2. **标题生成** - 生成吸引人的标题
+3. **正文优化** - 优化内容结构和表达
+4. **标签建议** - 推荐合适的话题标签
 
+## 小红书文案特点
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-copywriter
+- 开头吸引人（hook）
+- 结构清晰（总分总/要点式）
+- 互动引导（提问/征集）
+- 适量 emoji
+- 热门话题标签
+
+## 使用方式
+
 ```
+帮我把这篇内容改成小红书风格
+```
+
+或
+
+```
+生成 3 个关于孕期饮食的标题
+```
+
+## 输入输出
+
+**输入**：素材要点/草稿内容
+**输出**：可直接发布的小红书文案
+
+## Persona 约束
+
+所有文案必须遵循 `skills/xiaohongshu-ops-skill/persona.md` 中的人设风格：
+- 温暖专业型
+- 大白话讲专业
+- 不给医疗诊断
+
+## 配套工具
+
+- `xiaohongshu-card-generator` - 生成配图
+- `xiaohongshu-content-generator` - 完整内容生成（素材+文案）

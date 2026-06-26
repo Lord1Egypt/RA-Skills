@@ -1,0 +1,38 @@
+{
+  "tools": {
+    "*": {
+      "rate_limit": "100/hour"
+    },
+    "read_email": {},
+    "read_inbox": {},
+    "search_email": {},
+    "list_messages": {},
+    "send_email": {
+      "require_approval": true
+    },
+    "send_message": {
+      "require_approval": true
+    },
+    "reply_email": {
+      "require_approval": true
+    },
+    "forward_email": {
+      "require_approval": true
+    },
+    "delete_email": {
+      "block": true
+    },
+    "create_draft": {
+      "rate_limit": "20/hour"
+    },
+    "manage_labels": {
+      "require_approval": true
+    }
+  },
+  "default_tier": "unknown",
+  "signing": {
+    "key_path": "./keys/gateway.json",
+    "issuer": "protect-mcp",
+    "enabled": true
+  }
+}

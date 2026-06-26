@@ -1,0 +1,22 @@
+{
+  "name": "xiaolongxia-workflow",
+  "displayName": "小龙虾分层任务工作流",
+  "version": "0.5.0",
+  "description": "分层任务分解与执行工作流，将复杂任务分解为可执行的子步骤，提供完整的错误处理和进度跟踪。",
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "keywords": ["workflow", "task-management", "decomposition", "error-handling", "automation"],
+  "entryPoint": "SKILL.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "files": [
+    "SKILL.md",
+    "config/",
+    "scripts/",
+    "templates/",
+    "tests/",
+    "references/"
+  ]
+}

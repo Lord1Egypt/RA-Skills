@@ -1,0 +1,23 @@
+{
+  "name": "daily-mood",
+  "version": "1.0.0",
+  "description": "Daily Mood — 每日心情寄语，早晨+傍晚定时推送，心情感知个性化，中英双语，多用户注册推送。",
+  "keywords": [
+    "心情寄语", "每日寄语", "人生寄语", "早安寄语", "晚安寄语", "情绪陪伴",
+    "治愈", "鼓励", "多用户推送", "个性化寄语",
+    "daily mood", "mood message", "life message", "morning message", "evening message",
+    "emotional support", "personalized push", "mood-aware"
+  ],
+  "author": "jiajiaoy",
+  "license": "MIT",
+  "scripts": {
+    "morning": "node scripts/morning-push.js",
+    "evening": "node scripts/evening-push.js",
+    "mood": "node scripts/mood-response.js",
+    "register": "node scripts/register.js",
+    "users": "node scripts/register.js --list",
+    "push-on": "node scripts/push-toggle.js on",
+    "push-off": "node scripts/push-toggle.js off",
+    "push-status": "node scripts/push-toggle.js status"
+  }
+}

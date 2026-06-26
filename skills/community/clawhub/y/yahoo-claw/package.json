@@ -1,0 +1,39 @@
+{
+  "name": "yahooclaw",
+  "version": "0.0.3",
+  "description": "Yahoo Finance API integration for OpenClaw - Real-time stock quotes, financial data, and market analysis",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "dev": "node --watch src/yahoo-finance.js",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "yahoo-finance",
+    "openclaw",
+    "stock",
+    "finance",
+    "trading",
+    "market-data",
+    "skill"
+  ],
+  "author": "PocketAI for Leo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leohuang8688/yahooclaw.git"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "yahoo-finance2": "^2.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

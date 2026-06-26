@@ -1,0 +1,8 @@
+{
+  "name": "workspace-backup-manager",
+  "version": "1.0.0",
+  "description": "Manages workspace backups by creating snapshots and enabling restore points",
+  "main": "index.js",
+  "keywords": ["backup", "snapshot", "restore", "workspace", "recovery"],
+  "license": "MIT"
+}

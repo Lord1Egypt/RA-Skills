@@ -1,0 +1,130 @@
+{
+  "emoji": "\u26a1\ud83d\udd2c",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MAX_POSITION",
+      "type": "number",
+      "default": 10,
+      "range": [
+        1,
+        50
+      ],
+      "step": 1,
+      "label": "Max position size (USD)"
+    },
+    {
+      "env": "SIMMER_MIN_TRADE",
+      "type": "number",
+      "default": 2,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1,
+      "label": "Min trade size (USD)"
+    },
+    {
+      "env": "SIMMER_MAX_SPREAD",
+      "type": "number",
+      "default": 0.12,
+      "range": [
+        0.01,
+        0.5
+      ],
+      "step": 0.01,
+      "label": "Max bid-ask spread"
+    },
+    {
+      "env": "SIMMER_MIN_DAYS",
+      "type": "number",
+      "default": 0,
+      "range": [
+        0,
+        30
+      ],
+      "step": 1,
+      "label": "Min days to resolution"
+    },
+    {
+      "env": "SIMMER_MAX_POSITIONS",
+      "type": "number",
+      "default": 15,
+      "range": [
+        1,
+        30
+      ],
+      "step": 1,
+      "label": "Max open positions"
+    },
+    {
+      "env": "SIMMER_YES_THRESHOLD",
+      "type": "number",
+      "default": 0.42,
+      "range": [
+        0.1,
+        0.5
+      ],
+      "step": 0.01,
+      "label": "YES trade threshold"
+    },
+    {
+      "env": "SIMMER_NO_THRESHOLD",
+      "type": "number",
+      "default": 0.58,
+      "range": [
+        0.5,
+        0.9
+      ],
+      "step": 0.01,
+      "label": "NO trade threshold"
+    },
+    {
+      "env": "SIMMER_PULSE_HIGH",
+      "type": "number",
+      "default": 0.7,
+      "range": [
+        0.55,
+        0.9
+      ],
+      "step": 0.01,
+      "label": "Pulse high threshold (extreme Up)"
+    },
+    {
+      "env": "SIMMER_PULSE_LOW",
+      "type": "number",
+      "default": 0.3,
+      "range": [
+        0.1,
+        0.45
+      ],
+      "step": 0.01,
+      "label": "Pulse low threshold (extreme Down)"
+    },
+    {
+      "env": "SIMMER_MIN_VOLUME",
+      "type": "number",
+      "default": 1000,
+      "range": [
+        0,
+        10000
+      ],
+      "step": 100,
+      "label": "Min market volume"
+    }
+  ],
+  "version": "0.0.2"
+}

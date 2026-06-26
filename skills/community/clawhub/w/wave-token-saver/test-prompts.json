@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "prompt": "省点 token",
+    "expected": "触发 token-saver skill，输出包含 Phase 1-5 框架概述及 Quick Start 指引"
+  },
+  {
+    "id": 2,
+    "prompt": "帮我检查一下 cron 任务的 token 消耗",
+    "expected": "从 Phase 1A 开始枚举 cron 任务，输出任务清单和模型 tier map"
+  },
+  {
+    "id": 3,
+    "prompt": "有什么快速省 token 的方法？我只需要速效方案",
+    "expected": "触发 Quick Start 的 Quick Wins 路径，输出 A3/B1/G1/H1 等零风险高收益技术的直接推荐"
+  },
+  {
+    "id": 4,
+    "prompt": "我的 cron 任务模型路由有问题，简单任务也走 premium 模型",
+    "expected": "触发 Category J（Intelligent Model Routing），输出 J1-J5 具体推荐，尤其是 Dynamic inbound grading 和 Local routing decision"
+  },
+  {
+    "id": 5,
+    "prompt": "做一次完整的 token 审计报告",
+    "expected": "触发 Full Phase 1-5 审计流程：发现→优先级矩阵→优化→验证→报告生成"
+  }
+]

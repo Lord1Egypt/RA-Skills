@@ -1,0 +1,17 @@
+{
+  "name": "china-toolkit",
+  "version": "1.0.0",
+  "description": "中国效率工具集 - 快递查询、汇率换算、节假日、手机归属地、IP查询",
+  "main": "scripts/toolkit.js",
+  "bin": {
+    "china-toolkit": "./scripts/toolkit.js"
+  },
+  "keywords": ["openclaw", "skill", "china", "toolkit", "express", "currency", "holiday", "chinese"],
+  "author": "dxg <852621787@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dxg852621787/china-toolkit"
+  },
+  "homepage": "https://openclawx.asia"
+}

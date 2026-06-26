@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+{% set active = "speakers" %}
+{% block title %}{{ p.name }} — Communication DNA{% endblock %}
+{% block content %}
+<!-- Header -->
+<div class="mb-6">
+    <h2 class="text-2xl font-bold">{{ p.name }}</h2>
+    <div class="flex flex-wrap gap-1 mt-2">
+        {% for tag in p.style_tags %}
+        <span class="tag-pill {{ tag_colors.get(tag, 'bg-gray-600') }}">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    <div class="flex gap-6 mt-3 text-sm text-gray-400">
+        <span>{{ p.total_transcriptions }} transcription{{ 's' if p.total_transcriptions != 1 }}</span>
+        <span>{{ "{:,}".format(p.total_words) }} words</span>
+        <span>{{ p.total_segments }} segments</span>
+        {% if p.wpm %}<span>~{{ p.wpm }} WPM</span>{% endif %}
+        {% if p.first_seen %}<span>{{ p.first_seen }} — {{ p.last_seen }}</span>{% endif %}
+    </div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6">
+    <!-- Vocabulary -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">📖 Vocabulary</h3>
+        <div class="flex flex-wrap gap-1 mb-4">
+            {% for word, count in p.top_words %}
+            {% set size = [14 + count // 2, 32] | min %}
+            <span class="text-blue-300 hover:text-blue-100" style="font-size:{{ size }}px">{{ word }}</span>
+            {% endfor %}
+        </div>
+        <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+                <span class="text-gray-400">Richness (TTR)</span>
+                <span>{{ "%.2f"|format(p.richness) }}</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="metric-bar bg-cyan-500" style="width:{{ (p.richness * 100)|int }}%"></div>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="text-gray-400">Formality</span>
+                <span>{{ "%.2f"|format(p.formality) }}</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="metric-bar bg-blue-500" style="width:{{ (p.formality * 100)|int }}%"></div>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="text-gray-400">Avg Sentence Length</span>
+                <span>{{ p.avg_sentence_length }} words</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speech Patterns -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">🗣️ Speech Patterns</h3>
+        {% if p.top_phrases %}
+        <div class="mb-4">
+            <span class="text-sm text-gray-400">Favorite phrases:</span>
+            <div class="flex flex-wrap gap-2 mt-1">
+                {% for phrase, count in p.top_phrases %}
+                <span class="bg-gray-700 px-2 py-1 rounded text-sm">"{{ phrase }}" <span class="text-gray-500">×{{ count }}</span></span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="space-y-3 text-sm">
+            <div>
+                <div class="flex justify-between mb-1">
+                    <span class="text-gray-400">Question Rate</span>
+                    <span>{{ p.question_rate }}%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                    <div class="metric-bar bg-purple-500" style="width:{{ [p.question_rate, 100]|min }}%"></div>
+                </div>
+            </div>
+            {% set pa = p.patterns %}
+            {% if 'error' not in pa %}
+            <div>
+                <div class="flex justify-between mb-1 text-gray-400">
+                    <span>Hedging vs Assertiveness</span>
+                </div>
+                <div class="flex gap-1 h-3">
+                    {% set total_ha = pa.hedge_count + pa.assert_count %}
+                    {% if total_ha > 0 %}
+                    <div class="bg-yellow-500 rounded-l-full" style="width:{{ (pa.hedge_count / total_ha * 100)|int }}%" title="Hedging: {{ pa.hedge_count }}"></div>
+                    <div class="bg-red-500 rounded-r-full" style="width:{{ (pa.assert_count / total_ha * 100)|int }}%" title="Assertive: {{ pa.assert_count }}"></div>
+                    {% else %}
+                    <div class="bg-gray-600 rounded-full w-full"></div>
+                    {% endif %}
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>Hedging ({{ pa.hedge_count }})</span>
+                    <span>Assertive ({{ pa.assert_count }})</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Fillers -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">💬 Fillers</h3>
+        <div class="text-3xl font-bold mb-1 {% if p.filler_rate > 8 %}text-pink-400{% elif p.filler_rate < 2 %}text-green-400{% else %}text-gray-300{% endif %}">
+            {{ "%.1f"|format(p.filler_rate) }}<span class="text-sm text-gray-500">/100 words</span>
+        </div>
+        {% if p.top_fillers %}
+        <div class="mt-3 space-y-2">
+            {% for filler, count in p.top_fillers %}
+            {% if count > 0 %}
+            <div class="flex items-center gap-2 text-sm">
+                <span class="w-20 text-gray-400">"{{ filler }}"</span>
+                <div class="flex-1 bg-gray-700 rounded-full h-2">
+                    <div class="metric-bar bg-pink-500" style="width:{{ [count * 2, 100]|min }}%"></div>
+                </div>
+                <span class="text-gray-500 w-8 text-right">{{ count }}</span>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Sentiment -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">💭 Sentiment</h3>
+        <div class="flex items-center gap-3 mb-3">
+            <span class="text-4xl">{{ sentiment_emoji(p.sentiment_avg) }}</span>
+            <div>
+                <div class="text-2xl font-bold {% if p.sentiment_avg and p.sentiment_avg > 0 %}text-green-400{% elif p.sentiment_avg and p.sentiment_avg < 0 %}text-red-400{% else %}text-gray-400{% endif %}">
+                    {{ "%.3f"|format(p.sentiment_avg or 0) }}
+                </div>
+                <div class="text-sm text-gray-500">
+                    {% if p.sentiment_avg and p.sentiment_avg > 0.3 %}Optimistic{% elif p.sentiment_avg and p.sentiment_avg > 0.1 %}Positive{% elif p.sentiment_avg and p.sentiment_avg > -0.1 %}Neutral{% elif p.sentiment_avg and p.sentiment_avg > -0.3 %}Slightly Negative{% else %}Critical{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Topics -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">🏷️ Topics</h3>
+        {% set topics = p.topics %}
+        {% if 'error' not in topics and topics.top_topics %}
+        <div class="flex flex-wrap gap-2">
+            {% for word, score in topics.top_topics[:12] %}
+            <span class="bg-gray-700 border border-gray-600 px-3 py-1 rounded-full text-sm">{{ word }} <span class="text-gray-500">{{ "%.1f"|format(score) }}</span></span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-500 text-sm">No topics detected.</p>
+        {% endif %}
+    </div>
+
+    <!-- Commitments -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-3">✅ Recent Commitments</h3>
+        {% if p.commitments %}
+        <div class="space-y-2">
+            {% for c in p.commitments %}
+            <div class="text-sm border-l-2 border-green-500 pl-3 py-1">
+                <div>{{ c.text[:150] }}</div>
+                <a href="/transcription/{{ c.transcription_id }}" class="text-gray-500 hover:text-gray-300 text-xs">{{ c.transcription_title }}</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-500 text-sm">No commitments found.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- CRM Contact -->
+{% if crm_info %}
+<div class="card mt-6">
+    <h3 class="text-lg font-semibold mb-3">🏢 CRM Contact</h3>
+    <div class="space-y-3">
+        {% for c in crm_info %}
+        <div class="p-3 bg-gray-700 rounded-lg">
+            <div class="flex justify-between items-start">
+                <div>
+                    <div class="font-medium">{{ c.name }}</div>
+                    {% if c.email %}<div class="text-sm text-gray-400">{{ c.email }}</div>{% endif %}
+                    {% if c.company %}<div class="text-sm text-gray-400">{{ c.company }}{% if c.role %} · {{ c.role }}{% endif %}</div>{% endif %}
+                </div>
+                {% if c.health_score is not none %}
+                <div class="text-right">
+                    <div class="text-2xl font-bold {% if c.health_score > 70 %}text-green-400{% elif c.health_score > 40 %}text-yellow-400{% else %}text-red-400{% endif %}">{{ c.health_score }}</div>
+                    <div class="text-xs text-gray-500">Health</div>
+                </div>
+                {% endif %}
+            </div>
+            {% if c.last_interaction %}
+            <div class="mt-2 text-sm text-gray-400 border-t border-gray-600 pt-2">
+                Last: {{ c.last_interaction.type }} — {{ c.last_interaction.subject or 'No subject' }} ({{ c.last_interaction.date or 'unknown date' }})
+            </div>
+            {% endif %}
+            <div class="text-xs text-gray-500 mt-1">{{ c.interaction_count or 0 }} interactions · Last seen {{ c.last_seen or 'never' }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Knowledge Base Links -->
+{% if kb_links %}
+<div class="card mt-6">
+    <h3 class="text-lg font-semibold mb-3">📚 Knowledge Base</h3>
+    <div class="flex flex-wrap gap-2">
+        {% for e in kb_links %}
+        <span class="px-3 py-1 rounded-full text-sm {% if e.entity_type == 'person' %}bg-blue-900 text-blue-300{% elif e.entity_type == 'company' %}bg-green-900 text-green-300{% elif e.entity_type == 'technology' %}bg-purple-900 text-purple-300{% else %}bg-gray-700 text-gray-300{% endif %}">
+            {{ e.name }} <span class="text-xs opacity-60">({{ e.entity_type }})</span>
+        </span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Transcriptions -->
+<div class="card mt-6">
+    <h3 class="text-lg font-semibold mb-3">📝 Transcriptions</h3>
+    {% if p.transcriptions %}
+    <div class="space-y-2">
+        {% for t in p.transcriptions %}
+        <a href="/transcription/{{ t.id }}" class="block p-3 rounded hover:bg-gray-700">
+            <span class="font-medium">{{ t.title or 'Untitled' }}</span>
+            <span class="text-sm text-gray-400 ml-2">{{ t.date or '' }} · {{ t.context or '' }} · {{ "{:,}".format(t.word_count or 0) }} words</span>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

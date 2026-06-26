@@ -1,0 +1,80 @@
+{
+  "name": "tiered-recall",
+  "displayName": "🧠 Tiered Recall - 分层回忆系统",
+  "version": "1.2.2",
+  "description": "解决大模型上下文长度限制，保持项目延续性。默认自动加载最近7天记忆，支持手动全量回忆和自定义天数。当前稳定版采用 slim index，只保留文件名、行号和标题，不存摘要，避免 token 膨胀。",
+  "author": "davidme6",
+  "license": "MIT",
+  "homepage": "https://github.com/davidme6/tiered-recall",
+  "repository": "https://github.com/davidme6/tiered-recall",
+  "bugs": "https://github.com/davidme6/tiered-recall/issues",
+  "category": "memory",
+  "tags": [
+    "memory",
+    "recall",
+    "context",
+    "session",
+    "continuity",
+    "tiered"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "python": ">=3.8.0"
+  },
+  "permissions": {
+    "scope": "workspace",
+    "actions": [
+      "read:files",
+      "write:files",
+      "read:memory",
+      "write:memory"
+    ],
+    "external": {
+      "allowed": false,
+      "requireConfirmation": false
+    }
+  },
+  "activation": {
+    "auto": true,
+    "priority": "high",
+    "triggers": [
+      "session:start"
+    ]
+  },
+  "files": [
+    "SKILL.md"
+  ],
+  "changelog": {
+    "1.2.2": {
+      "date": "2026-04-25",
+      "changes": [
+        "同步到独立 GitHub 仓库 davidme6/tiered-recall",
+        "同步到 ClawHub 最新稳定版本",
+        "保留当前 slim index bugfix 实现"
+      ]
+    },
+    "1.2.0": {
+      "date": "2026-04-23",
+      "changes": [
+        "修复 L3 索引 token 膨胀问题",
+        "改成 slim index，只保留文件名、行号和标题",
+        "让默认加载重新回到可控预算"
+      ]
+    },
+    "1.1.0": {
+      "date": "2026-03-26",
+      "changes": [
+        "增加 10 字摘要"
+      ]
+    },
+    "1.0.0": {
+      "date": "2026-03-25",
+      "changes": [
+        "初始版本",
+        "支持分层自动加载",
+        "支持手动深度回忆",
+        "支持记忆索引生成"
+      ]
+    }
+  }
+}

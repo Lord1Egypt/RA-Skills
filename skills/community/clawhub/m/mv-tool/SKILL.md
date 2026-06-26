@@ -1,35 +1,22 @@
 ---
-name: "Mv Tool"
-description: "Move or rename files and directories. Use for file organization, relocation, and renaming operations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mv-tool"
-sourceUrl: "https://clawhub.ai/skills/mv-tool"
+name: mv-tool
+description: Move or rename files and directories. Use for file organization, relocation, and renaming operations.
 ---
+# Mv - File Move/Rename Utility
 
-# Mv Tool
+Move files and directories between locations or rename them. Supports batch operations and interactive mode.
 
-> Move or rename files and directories. Use for file organization, relocation, and renaming operations.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mv-tool`
-- **Source URL:** [https://clawhub.ai/skills/mv-tool](https://clawhub.ai/skills/mv-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/mv-tool
+mv-tool [options] <source> <destination>
+```
+## Options
+- `-i`: Prompt before overwrite
+- `-f`: Force overwrite without prompting
+- `-v`: Verbose output
+## Examples
+```bash
+mv-tool file.txt /target/dir/
+mv-tool oldname.txt newname.txt
+mv-tool -i *.log /backup/
 ```

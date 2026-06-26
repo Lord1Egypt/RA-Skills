@@ -1,0 +1,21 @@
+{
+  "account": "user@example.com",
+  "calendarId": "primary",
+  "events": [
+    {
+      "title": "LG pricing strategy review",
+      "description": "No agenda attached yet. Prepare pricing assumptions and promotion scenarios before the meeting.",
+      "start": "2026-05-18T17:00:00.000Z",
+      "end": "2026-05-18T18:00:00.000Z",
+      "location": "Zoom",
+      "url": "https://calendar.google.com/calendar/event?eid=example"
+    },
+    {
+      "title": "Follow-up after customer workshop",
+      "description": "Send recap and next-step proposal after the workshop.",
+      "start": "2026-05-19T19:00:00.000Z",
+      "end": "2026-05-19T20:00:00.000Z"
+    }
+  ],
+  "count": 2
+}

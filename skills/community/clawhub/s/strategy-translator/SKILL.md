@@ -1,35 +1,37 @@
 ---
-name: "Strategy Translator"
-description: "Translate trading strategies between different frameworks and languages. Use when converting Pine Script to Python, porting strategies to NautilusTrader, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/strategy-translator"
-sourceUrl: "https://clawhub.ai/skills/strategy-translator"
+name: strategy-translator
+description: >
+  Translate trading strategies between different frameworks and languages.
+  Use when converting Pine Script to Python, porting strategies to NautilusTrader, or cross-platform migration.
+version: "1.0.0"
+allowed-tools: Read, Write, Edit
 ---
 
 # Strategy Translator
 
-> Translate trading strategies between different frameworks and languages. Use when converting Pine Script to Python, porting strategies to NautilusTrader, or...
+Source: https://mcpmarket.com/tools/skills/strategy-translator
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/strategy-translator`
-- **Source URL:** [https://clawhub.ai/skills/strategy-translator](https://clawhub.ai/skills/strategy-translator)
+## Use When
 
-## Overview
+- You need to apply this capability as part of trading research workflows (data, features, backtests, ML, reporting).
+- You want a reproducible output that can be committed to this repo (code, configs, docs).
 
+## Inputs To Ask For
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/strategy-translator
-```
+- Objective: what success looks like (metric, constraints, time horizon).
+- Data: symbols, timeframe, sampling, data sources, and leakage risks.
+- Constraints: compute budget, latency, interpretability, and deployment requirements.
+
+## Outputs
+
+- A concrete plan (steps + checks).
+- A minimal implementation sketch (files to create/change) and verification steps.
+- If applicable: a risk checklist (leakage, overfitting, evaluation pitfalls).
+
+## Workflow
+
+1. Restate the task in measurable terms.
+2. Enumerate required artifacts (datasets, features, configs, scripts, reports).
+3. Propose a default approach and 1-2 alternatives.
+4. Add validation gates (walk-forward, Monte Carlo, sanity checks).
+5. Produce repo-ready deliverables (code + docs) and a run command.

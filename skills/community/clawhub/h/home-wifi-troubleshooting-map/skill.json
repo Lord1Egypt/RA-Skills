@@ -1,0 +1,43 @@
+{
+  "slug": "home-wifi-troubleshooting-map",
+  "name": "Home Wi-Fi Troubleshooting Map",
+  "displayName": "Home Wi-Fi Troubleshooting Map",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Create a safe visible-diagnostic sheet for home Wi-Fi problems with symptoms, affected devices, router lights, outage checks, speed tests, placement notes, and support-call evidence.",
+  "author": "OpenClaw / coder",
+  "license": "MIT-0",
+  "category": "Home Admin",
+  "triggerKeywords": [
+    "home Wi-Fi troubleshooting",
+    "wifi not working",
+    "slow wifi map",
+    "router lights checklist",
+    "internet outage check",
+    "home network diagnostic sheet",
+    "wifi support call prep"
+  ],
+  "tags": [
+    "home-admin",
+    "internet",
+    "wifi",
+    "troubleshooting",
+    "support-prep"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "runtime": "none",
+  "execution": "noExec",
+  "document_only": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

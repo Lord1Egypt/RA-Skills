@@ -1,0 +1,47 @@
+{
+  "_comment": "RHMCP 官方共享测试 APP ID，来源: https://github.com/AIRix315/RHMCP",
+  "_lastUpdated": "2026-03-29",
+  "apps": {
+    "qwen-text-to-image": {
+      "appId": "2037760725296357377",
+      "alias": "qwen-text-to-image",
+      "category": "image",
+      "description": "Qwen文生图",
+      "inputs": {
+        "text": {
+          "nodeId": "16",
+          "fieldName": "text",
+          "description": "提示词"
+        },
+        "width": {
+          "nodeId": "19",
+          "fieldName": "value",
+          "description": "宽度"
+        },
+        "height": {
+          "nodeId": "20",
+          "fieldName": "value",
+          "description": "高度"
+        }
+      }
+    },
+    "qwen-image-to-image": {
+      "appId": "2037822548796252162",
+      "alias": "qwen-image-to-image",
+      "category": "image",
+      "description": "Qwen提示词改图",
+      "inputs": {
+        "image": {
+          "nodeId": "2",
+          "fieldName": "image",
+          "description": "输入图片"
+        },
+        "prompt": {
+          "nodeId": "1",
+          "fieldName": "prompt",
+          "description": "修改提示词"
+        }
+      }
+    }
+  }
+}

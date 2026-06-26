@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/api/solar/kol/get_similar_kol/v1 for Xiaohongshu Creator Marketplace (Pugongying) Similar Creators through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Similar Creators",
+  "endpointPath": "api/solar/kol/get_similar_kol",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) similar Creators data, including audience signals, for creator discovery, benchmarking, and shortlist building.",
+      "method": "GET",
+      "operationId": "apiSolarKolGetSimilarKolV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pageNum",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/get_similar_kol/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Similar Creators",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_api_solar_kol_get_similar_kol",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-api-solar-kol-get-similar-kol",
+  "sourceTitle": "OpenAPI definition"
+}

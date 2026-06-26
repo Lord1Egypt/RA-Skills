@@ -1,0 +1,177 @@
+{
+  "name": "betalpha-gateway",
+  "version": "1.0.0",
+  "display_name": "Betalpha 金融数据网关",
+  "description": "高性能中国金融数据网关，提供A股、基金、ETF实时行情查询。需要用户提供 API Token 才能使用。",
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://ai.firstindex.cn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/betalpha-gateway-skill"
+  },
+  "homepage": "https://ai.firstindex.cn",
+  "license": "MIT",
+  "tags": [
+    "finance",
+    "stock",
+    "etf",
+    "fund",
+    "china",
+    "trading",
+    "market-data",
+    "real-time",
+    "a股",
+    "金融",
+    "股票",
+    "基金"
+  ],
+  "category": "Finance",
+  "icon": "📈",
+  
+  "permissions": {
+    "file_system": {
+      "read": [
+        "~/.config/betalpha/api_key.txt"
+      ],
+      "write": [
+        "~/.config/betalpha/api_key.txt",
+        "~/.config/betalpha/api_cache.json"
+      ],
+      "description": "读取和存储 API Token 配置文件及 API 端点缓存"
+    },
+    "network": {
+      "domains": [
+        {
+          "domain": "ai.firstindex.cn",
+          "purpose": "获取金融数据API端点列表和查询实时行情数据",
+          "required": true
+        }
+      ]
+    }
+  },
+  
+  "credentials": {
+    "required": [
+      {
+        "name": "api_token",
+        "type": "string",
+        "storage": "file",
+        "path": "~/.config/betalpha/api_key.txt",
+        "description": "Betalpha Gateway API Token，用于认证和访问金融数据",
+        "how_to_obtain": "扫描小程序码 https://ai.firstindex.cn/qr.jpg 获取",
+        "sensitive": true,
+        "required_for": [
+          "查询股票实时行情",
+          "查询基金估值",
+          "查询ETF数据",
+          "查询K线数据"
+        ]
+      }
+    ],
+    "security_notes": [
+      "API Token 存储在用户主目录的配置文件中，文件权限应设置为仅用户可读 (chmod 600)",
+      "请勿在公开场合分享您的 API Token",
+      "如果 Token 泄露，请立即联系服务提供方撤销并重新获取",
+      "建议定期更换 API Token 以提高安全性"
+    ]
+  },
+  
+  "configuration": {
+    "required_files": [
+      {
+        "path": "~/.config/betalpha/api_key.txt",
+        "description": "存储 API Token 的文本文件",
+        "format": "纯文本，第一行为 Token 值",
+        "required": true,
+        "auto_create": true
+      }
+    ],
+    "optional_files": [
+      {
+        "path": "~/.config/betalpha/api_cache.json",
+        "description": "缓存 API Discovery 端点列表",
+        "format": "JSON 格式",
+        "required": false,
+        "auto_create": true
+      }
+    ]
+  },
+  
+  "privacy": {
+    "data_collection": "none",
+    "data_transmission": {
+      "to_external_services": [
+        {
+          "service": "ai.firstindex.cn",
+          "data": ["API Token (在请求头中)", "股票/基金代码"],
+          "purpose": "查询金融数据",
+          "privacy_policy": "https://ai.firstindex.cn/privacy"
+        }
+      ],
+      "local_storage": [
+        {
+          "file": "~/.config/betalpha/api_key.txt",
+          "data": ["API Token"],
+          "purpose": "用户凭据持久化存储"
+        },
+        {
+          "file": "~/.config/betalpha/api_cache.json",
+          "data": ["API 端点列表"],
+          "purpose": "减少 Discovery API 请求频率"
+        }
+      ]
+    },
+    "user_control": {
+      "can_delete_data": true,
+      "can_export_data": true,
+      "instructions": "删除 ~/.config/betalpha/ 目录即可清除所有本地数据"
+    }
+  },
+  
+  "security": {
+    "threat_model": [
+      {
+        "threat": "API Token 泄露",
+        "mitigation": "Token 存储在用户主目录，建议设置文件权限为 600",
+        "user_action": "定期更换 Token，不要在聊天中直接粘贴 Token"
+      },
+      {
+        "threat": "数据传输拦截",
+        "mitigation": "所有 API 请求使用 HTTPS 加密",
+        "user_action": "确保网络环境安全"
+      },
+      {
+        "threat": "未授权访问",
+        "mitigation": "Token 与用户账户绑定，需从官方小程序获取",
+        "user_action": "保护小程序码和 Token，不分享给他人"
+      }
+    ],
+    "best_practices": [
+      "使用专用目录存储配置文件，避免与其他应用混淆",
+      "定期检查 ~/.config/betalpha/ 目录权限",
+      "不要将配置文件加入版本控制系统（如 git）",
+      "建议在 .gitignore 中添加 ~/.config/betalpha/"
+    ]
+  },
+  
+  "runtime": {
+    "auto_invoke": false,
+    "requires_confirmation": true,
+    "execution_mode": "on_demand",
+    "network_access": "required",
+    "file_access": "required"
+  },
+  
+  "compatibility": {
+    "platforms": ["linux", "macos", "windows"],
+    "min_opencode_version": "1.0.0"
+  },
+  
+  "support": {
+    "issues": "https://github.com/yourusername/betalpha-gateway-skill/issues",
+    "documentation": "https://github.com/yourusername/betalpha-gateway-skill/blob/main/README.md"
+  }
+}

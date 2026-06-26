@@ -1,0 +1,11 @@
+{
+  "name": "agent-economy",
+  "version": "1.0.0",
+  "description": "x402 payment layer for AI agents — charge USDC per skill call. Meta-skill for monetizing any skill.",
+  "main": "SKILL.md",
+  "clawhub": {
+    "type": "skill",
+    "price": "0.00",
+    "category": "developer-tools"
+  }
+}

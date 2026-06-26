@@ -1,0 +1,13 @@
+{
+  "name": "dealpilot",
+  "version": "0.1.0",
+  "description": "全网购物决策官 - 跨平台比价决策引擎，覆盖淘宝/拼多多/京东/一号店/唯品会",
+  "keywords": ["dealpilot", "shopping", "price-comparison", "cross-platform", "taobao", "pdd", "jd", "yhd", "vip"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/dealpilot",
+  "language": ["en", "zh"],
+  "tags": ["shopping", "price-comparison", "taobao", "pdd", "jd"],
+  "createdAt": "2026-04-04",
+  "updatedAt": "2026-04-05"
+}

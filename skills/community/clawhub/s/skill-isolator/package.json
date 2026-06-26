@@ -1,0 +1,36 @@
+{
+  "name": "skill-isolator",
+  "version": "1.0.0",
+  "description": "Project-based skill isolation and management. Enables different projects to use different skill sets with automatic loading based on current working directory. Supports multi-source installation and intelligent caching.",
+  "author": "Xiao Xia",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "isolation",
+    "project-management",
+    "configuration",
+    "multi-source"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "project-skills"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-project-skills.js",
+    "validate": "node scripts/validate-config.js",
+    "init": "node scripts/init-project-config.js",
+    "test": "node scripts/validate-config.js references/example-config.json"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "scripts/",
+    "references/"
+  ]
+}

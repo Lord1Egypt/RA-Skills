@@ -1,0 +1,50 @@
+{
+  "emoji": "🎯",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Your Simmer SDK API key — get from simmer.markets/dashboard"
+    },
+    {
+      "name": "THRESHOLD_PROBABILITY",
+      "required": false,
+      "description": "Your probability estimate (0.0-1.0). Default: 0.70. Remix with your model's predictions."
+    },
+    {
+      "name": "TRADE_SIDE",
+      "required": false,
+      "description": "Which side to trade: YES or NO. Default: YES"
+    },
+    {
+      "name": "SIMMER_VENUE",
+      "required": false,
+      "description": "Trading venue: 'sim' for paper trading, 'polymarket' for real money. Default: sim"
+    },
+    {
+      "name": "SIMMER_MIN_EV",
+      "required": false,
+      "description": "Minimum edge to trade (0.0-1.0). Default: 0.03 (3% edge)"
+    },
+    {
+      "name": "SIMMER_KELLY_MULTIPLIER",
+      "required": false,
+      "description": "Kelly fraction for position sizing (0.0-1.0). Default: 0.25 (quarter Kelly)"
+    },
+    {
+      "name": "MAX_POSITION_SIZE",
+      "required": false,
+      "description": "Maximum position size in USD. Default: 100.0"
+    }
+  ],
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "threshold_trader.py"
+  }
+}

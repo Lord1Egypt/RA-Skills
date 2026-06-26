@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Medical Knowledge-Guided Deep Curriculum Learning for Elbow Fracture Diagnosis from X-Ray Images",
+    "arxiv_id": "2110.10381v1",
+    "pdf_url": "https://arxiv.org/pdf/2110.10381v1.pdf"
+  },
+  {
+    "title": "TransMorph: Transformer for unsupervised medical image registration",
+    "arxiv_id": "2111.10480v6",
+    "pdf_url": "https://arxiv.org/pdf/2111.10480v6.pdf"
+  },
+  {
+    "title": "Is it Time to Replace CNNs with Transformers for Medical Images?",
+    "arxiv_id": "2108.09038v1",
+    "pdf_url": "https://arxiv.org/pdf/2108.09038v1.pdf"
+  },
+  {
+    "title": "A Neutrosophic Recommender System for Medical Diagnosis Based on Algebraic Neutrosophic Measures",
+    "arxiv_id": "1602.08447v1",
+    "pdf_url": "https://arxiv.org/pdf/1602.08447v1.pdf"
+  },
+  {
+    "title": "Transformer-based Personalized Attention Mechanism for Medical Images with Clinical Records",
+    "arxiv_id": "2206.03003v2",
+    "pdf_url": "https://arxiv.org/pdf/2206.03003v2.pdf"
+  }
+]

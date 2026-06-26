@@ -1,0 +1,8 @@
+{
+  "sync_human": true,
+  "sync_agent": false,
+  "sync_backup": true,
+  "output_folder": "AI_Workspace",
+  "backup_folder": "AI_Workspace_Backup",
+  "_comment": "Set sync_human/sync_agent to true to enable, false to skip. Requires gog CLI installed and authenticated."
+}

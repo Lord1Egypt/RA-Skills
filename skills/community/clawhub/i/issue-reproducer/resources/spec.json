@@ -1,0 +1,37 @@
+{
+  "slug": "issue-reproducer",
+  "title": "问题复现整理器",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "structured_brief",
+  "summary": "把 bug 描述整理成可复现步骤、环境、预期与实际结果和最小复现条件。",
+  "inputHint": "报错描述、环境信息、复现线索",
+  "sections": [
+    "问题摘要",
+    "环境",
+    "复现步骤",
+    "预期结果",
+    "实际结果",
+    "补充采样建议"
+  ],
+  "useCases": [
+    "提 bug",
+    "跨团队协作",
+    "支持转研发"
+  ],
+  "positiveExamples": [
+    "把这个 bug 描述整理成可复现单",
+    "生成最小复现条件"
+  ],
+  "negativeExamples": [
+    "不要伪造日志",
+    "不要忽略用户给出的环境差异"
+  ],
+  "risk": "会强调缺失信息，不自动判断根因。",
+  "tags": [
+    "bug",
+    "reproduction",
+    "qa",
+    "engineering"
+  ]
+}

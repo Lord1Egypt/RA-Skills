@@ -1,0 +1,44 @@
+[package]
+name = "ardi-agent"
+version = "0.5.19"
+edition = "2021"
+description = "CLI agent for AWP Ardi WorkNet — solve riddles, mint Ardinal NFTs"
+license = "MIT"
+repository = "https://github.com/awp-worknet/ardi-skill"
+
+[[bin]]
+name = "ardi-agent"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive", "env"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "blocking"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["arbitrary_precision"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+anyhow = "1"
+thiserror = "1"
+chrono = { version = "0.4", features = ["serde"] }
+k256 = { version = "0.13", features = ["ecdsa"] }
+sha2 = "0.10"
+sha3 = "0.10"
+hex = "0.4"
+rand = "0.8"
+ctrlc = "3"
+libc = "0.2"
+# v0.5.16: cross-platform advisory file locking for state.json. Pure
+# Rust, used by cargo + many other crates — wraps flock on Unix and
+# LockFileEx on Windows. Keeps state mutations safe against parallel
+# `ardi-agent commit` invocations (auto-mine ticks, manual fan-out).
+fs2 = "0.4"
+# v0.4.0: dropped alloy-consensus / alloy-signer / alloy-signer-local /
+# alloy-network / alloy-rlp / alloy-dyn-abi. All signing now goes through
+# `awp-wallet send-tx` and `awp-wallet sign-typed-data`; ardi-agent never
+# touches private keys, so the local crypto stack is no longer needed.
+alloy-primitives = "0.8"
+alloy-sol-types = "0.8"
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true

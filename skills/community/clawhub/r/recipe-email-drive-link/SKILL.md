@@ -1,35 +1,28 @@
 ---
-name: "Recipe Email Drive Link"
+name: recipe-email-drive-link
 description: "Share a Google Drive file and email the link with a message to recipients."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-email-drive-link"
-sourceUrl: "https://clawhub.ai/skills/recipe-email-drive-link"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-gmail
 ---
 
-# Recipe Email Drive Link
+# Email a Google Drive File Link
 
-> Share a Google Drive file and email the link with a message to recipients.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`, `gws-gmail`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-email-drive-link`
-- **Source URL:** [https://clawhub.ai/skills/recipe-email-drive-link](https://clawhub.ai/skills/recipe-email-drive-link)
+Share a Google Drive file and email the link with a message to recipients.
 
-## Overview
+## Steps
 
+1. Find the file: `gws drive files list --params '{"q": "name = '\''Quarterly Report'\''"}'`
+2. Share the file: `gws drive permissions create --params '{"fileId": "FILE_ID"}' --json '{"role": "reader", "type": "user", "emailAddress": "client@example.com"}'`
+3. Email the link: `gws gmail +send --to client@example.com --subject 'Quarterly Report' --body 'Hi, please find the report here: https://docs.google.com/document/d/FILE_ID'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-email-drive-link
-```

@@ -1,0 +1,28 @@
+{
+  "name": "md2doc",
+  "version": "1.0.0",
+  "description": "Markdown 转 Word/PDF/HTML 文档转换器，支持多种样式模板",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "main": "SKILL.md",
+  "scripts": {
+    "convert": "python scripts/convert.py",
+    "md2doc": "python scripts/md2doc.py"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "python-docx": ">=0.8.11",
+    "requests": ">=2.25.0",
+    "markdown": ">=3.3.0",
+    "beautifulsoup4": ">=4.9.0",
+    "Pillow": ">=8.0.0"
+  },
+  "keywords": [
+    "markdown",
+    "word",
+    "pdf",
+    "html",
+    "document",
+    "converter"
+  ]
+}

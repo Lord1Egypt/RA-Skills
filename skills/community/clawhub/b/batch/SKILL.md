@@ -1,35 +1,39 @@
 ---
-name: "Batch"
-description: "Process multiple items with progress tracking, checkpointing, and failure recovery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/batch"
-sourceUrl: "https://clawhub.ai/skills/batch"
+name: Batch
+description: Process multiple items with progress tracking, checkpointing, and failure recovery.
 ---
 
-# Batch
+## Before Starting
 
-> Process multiple items with progress tracking, checkpointing, and failure recovery.
+1. **Dry run:** Test with 2-3 items first
+2. **Count:** "Processing 47 items, ~2 min estimated"
+3. **Confirm destructive ops:** "This will delete 200 files. Proceed?"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/batch`
-- **Source URL:** [https://clawhub.ai/skills/batch](https://clawhub.ai/skills/batch)
+## During Processing
 
-## Overview
+- **Progress every 10 items:** "23/47 complete (49%)"
+- **Checkpoint every 10-50 items:** Save state to resume if interrupted
+- **On error:** Log it, continue with rest (don't abort entire batch)
 
+## After Completion
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/batch
+Always report:
 ```
+✅ 44 succeeded
+❌ 3 failed (saved to failed.json for retry)
+```
+
+## Error Handling
+
+| Error | Action |
+|-------|--------|
+| Timeout, rate limit | Retry 3x with backoff (1s, 2s, 4s) |
+| Bad format, missing data | Skip, log, continue |
+| Auth failed, disk full | Abort entire batch |
+
+Check `strategies.md` for parallel vs sequential decision matrix.
+Check `errors.md` for retry logic and rollback patterns.
+
+---
+
+**Related:** For delegating to sub-agents, see `delegate`.

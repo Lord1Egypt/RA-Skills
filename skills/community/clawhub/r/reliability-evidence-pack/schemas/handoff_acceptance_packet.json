@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.ai/schemas/rep/handoff_acceptance_packet.json",
+  "title": "Handoff Acceptance Packet",
+  "description": "Formal transfer of context between agents or shifts with embedded SLA",
+  "type": "object",
+  "required": ["artifact_type", "handoff_id", "from_actor", "to_actor", "sla", "context_summary", "acceptance_status"],
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "handoff_acceptance_packet"
+    },
+    "handoff_id": {
+      "type": "string",
+      "description": "Unique handoff identifier"
+    },
+    "from_actor": {
+      "type": "object",
+      "required": ["id", "role"],
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string", "enum": ["agent", "human", "system"] }
+      }
+    },
+    "to_actor": {
+      "type": "object",
+      "required": ["id", "role"],
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string", "enum": ["agent", "human", "system"] }
+      }
+    },
+    "sla": {
+      "type": "object",
+      "required": ["ack_by", "first_update_by", "deliver_by"],
+      "properties": {
+        "ack_by": { "type": "string", "format": "date-time" },
+        "first_update_by": { "type": "string", "format": "date-time" },
+        "deliver_by": { "type": "string", "format": "date-time" }
+      }
+    },
+    "context_summary": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "key_decisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "open_looms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "acceptance_status": {
+      "type": "string",
+      "enum": ["pending", "accepted", "declined"]
+    },
+    "declined_reason": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "accepted_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

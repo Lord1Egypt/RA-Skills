@@ -1,0 +1,106 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "CompType",
+        "columnChiName": "成分股类别",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "成分股类别（CompType）该字段固定以下常量：3-深股通，4-港股通（深）",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InnerCode",
+        "columnChiName": "证券内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "证券内部编码(InnerCode)：当CompType=3时，与“证券主表(SecuMain)”中的“证券内部编码(InnerCode)”关联，得到上市公司的证券代码、简称等；当CompType=4时，与“港股证券主表(HK_SecuMain)”中的“证券内部编码(InnerCode)”关联，得到上市公司的证券代码、简称等",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "SecuCode",
+        "columnChiName": "证券代码",
+        "columnType": "varchar(10)",
+        "isNullable": 1,
+        "remark": "证券代码（SecuCode）为公告原文中披露的证券代码",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "InDate",
+        "columnChiName": "入选日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "OutDate",
+        "columnChiName": "剔除日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "43.78"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Flag",
+        "columnChiName": "成份标志",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "成分标志（Flag），该字段固定以下常量：1-是成分股；2-不是成分股",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

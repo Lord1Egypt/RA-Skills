@@ -1,0 +1,80 @@
+# ASF V4.0 Skill Configuration
+# Version: v0.9.0
+
+# Skill settings
+skill:
+  name: asf-v4
+  version: 0.9.0
+  enabled: true
+
+# Veto enforcement settings
+veto:
+  mode: default  # default | strict | custom
+  rules:
+    - authority: architect
+      mode: hard
+      scopeSelector: 'contract:OpenAPI:*'
+      reason: 'API contract changes require architect approval'
+      requiredApprovalRole: architect
+    - authority: architect
+      mode: hard
+      scopeSelector: 'contract:DBSchema:*'
+      reason: 'Database schema changes require architect approval'
+      requiredApprovalRole: architect
+    - authority: security
+      mode: hard
+      scopeSelector: 'contract:*:auth*'
+      reason: 'Auth-related changes require security approval'
+      requiredApprovalRole: security-team
+    - authority: backend-lead
+      mode: soft
+      scopeSelector: 'graph:Entity:*'
+      reason: 'Entity changes should be reviewed by backend lead'
+
+# Economics scoring weights
+economics:
+  interfaceWeights:
+    depends_on: 1.0
+    calls: 1.2
+    updates: 1.4
+  scoreWeights:
+    interfaceCost: -0.30
+    bottleneck: -0.20
+    skillMatch: 0.20
+    parallelismGain: 0.15
+    reworkRisk: -0.15
+
+# Hot contract analysis
+hotContract:
+  threshold: 3  # Tasks touching same contract to be "hot"
+  maxRoles:
+    normal: 8
+    oneHot: 6
+    twoPlusHot: 5
+
+# Safe optimizer settings
+optimizer:
+  enabled: true
+  cooldownMs: 1800000  # 30 minutes
+  failureThreshold: 2
+  knobs:
+    roleCountDelta: true   # Allow role count adjustment
+    budgetMultiplier: true # Allow budget adjustment
+    assignmentSwap: true   # Allow task reassignment
+  forbidden:
+    - authorities
+    - ownershipRules
+    - vetoRules
+    - capabilities
+
+# Ownership proof settings
+ownership:
+  defaultRules: true
+  singleWriterCheck: true
+  resourceCanonicalization: true
+
+# Integration settings
+integration:
+  openclawMemory: true    # Write ChangeEvent to OpenClaw Memory
+  openclawStatus: true    # Extend Agent Status with KPI
+  openclawSecurity: true  # Integrate with Security Audit

@@ -1,0 +1,31 @@
+{
+  "name": "claw-config",
+  "version": "0.1.0",
+  "description": "Grounded self-diagnosis and safe self-modification for OpenClaw agents — no hallucinated field names, no wrong-agent writes, no stale docs.",
+  "main": "claw-config.py",
+  "bin": {
+    "claw-config": "./claw-config.py"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-agent",
+    "skill",
+    "agent-config",
+    "self-modification",
+    "self-maintenance",
+    "clawhub"
+  ],
+  "author": "Zhili1004",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zhili1004/claw-config.git"
+  },
+  "homepage": "https://github.com/Zhili1004/claw-config",
+  "bugs": {
+    "url": "https://github.com/Zhili1004/claw-config/issues"
+  },
+  "engines": {
+    "python": ">=3.9"
+  }
+}

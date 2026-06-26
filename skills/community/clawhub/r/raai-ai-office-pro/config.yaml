@@ -1,0 +1,19 @@
+# AI-офис PRO v3.4 — конфигурация
+#
+# ⚡ БЫСТРЫЙ СТАРТ за 5 минут:
+# Заполните только 5 полей помеченных как [OBLIGATORY].
+# Всё остальное с пометкой [OPTIONAL] можно оставить как есть и заполнить потом.
+#
+# Полный гид по глубокой настройке — в docs/onboarding.md. # ═══════════════════════════════════════════════════
+# [OBLIGATORY] БАЗА — 5 ПОЛЕЙ ДЛЯ ПЕРВОГО ЗАПУСКА
+# ═══════════════════════════════════════════════════ leader: name: "Имя Отчество" # [OBLIGATORY] Как к вам обращаться role: "CEO" # [OBLIGATORY] CEO / Собственник / Управляющий company: name: "Название" # [OBLIGATORY] Название компании goal_monthly_revenue: 1000000 # [OBLIGATORY] Цель выручки в месяц (₽) team: size: 10 # [OBLIGATORY] Размер команды (число) # ═══════════════════════════════════════════════════
+# [OPTIONAL] РАСШИРЕННЫЕ НАСТРОЙКИ
+# ═══════════════════════════════════════════════════ # ─── ПРОФИЛЬ РУКОВОДИТЕЛЯ ───
+leader_advanced: language_mode: "вы" # [OPTIONAL] "ты" или "вы" telegram_id: "" # [OPTIONAL] timezone: "Europe/Moscow" # [OPTIONAL] management_style: "прямой" # [OPTIONAL] прямой/партнёрский/жёсткий/аналитический/коучинговый decision_speed: "быстрая" # [OPTIONAL] медленная/средняя/быстрая planning_horizon: "quarter" # [OPTIONAL] week/month/quarter/year overload_zone: "операционка" # [OPTIONAL] операционка/продажи/команда/финансы/продукт hour_cost_rub: 0 # [OPTIONAL] Стоимость часа CEO для расчёта ROI hours_lost_per_week: 0 # [OPTIONAL] Часов в неделю теряется на хаос strengths: [] # [OPTIONAL] Сильные стороны ["переговоры", "продукт"] growth_areas: [] # [OPTIONAL] Зоны развития ["делегирование", "найм"] # ─── КОМПАНИЯ ───
+company_advanced: legal_form: "ООО" # [OPTIONAL] ООО/ИП/АО industry: "Услуги" # [OPTIONAL] IT/Розница/Услуги/Производство/HoReCa/EdTech business_model: "услуги" # [OPTIONAL] услуги/продукт/SaaS/marketplace/производство/розница geography: "Россия" # [OPTIONAL] stage: "growth" # [OPTIONAL] launch/early/growth/mature/transformation founded_year: "" # [OPTIONAL] # ─── КАНАЛЫ / ИСТОЧНИКИ ВЫРУЧКИ ───
+channels: primary: "" # [OBLIGATORY] Главный канал (пример: "офлайн-продажи", "instagram", "TG-канал") others: [] # [OPTIONAL] Остальные каналы # ─── ПРОДУКТОВЫЕ ЛИНЕЙКИ ───
+product_lines: # [OPTIONAL] Список продуктов/услуг - name: "" share_of_revenue: "" # Пример: "70%" # ─── КОМАНДА ДЕТАЛЬНО ───
+team_advanced: departments: [] # [OPTIONAL] ["продажи", "маркетинг", "операционка"] key_roles: [] # [OPTIONAL] Ключевые роли на месте open_vacancies: [] # [OPTIONAL] Открытые вакансии # ─── ИНТЕГРАЦИИ (требуют .env) ───
+integrations: google_sheets: enabled: false # [OPTIONAL] Подключение к Google Sheets для автометрик spreadsheet_id: "" # Заполняется только если enabled=true google_calendar: enabled: false # [OPTIONAL] Подключение к календарю calendar_id: "" telegram: enabled: false # [OPTIONAL] Отправка брифинга в личные сообщения chat_id: "" # ─── РЕЖИМЫ — НАСТРОЙКИ ПО УМОЛЧАНИЮ ───
+modes: morning_briefing: default_time: "09:00" # [OPTIONAL] Когда высылать утренний брифинг (если cron) include_weather: false # [OPTIONAL] include_calendar: true # [OPTIONAL] weekly_review: day_of_week: "friday" # [OPTIONAL] metrics_count: 10 # [OPTIONAL] 5-15 метрик в Scorecard decision_log: review_type1_days: 90 # [OPTIONAL] Через сколько дней ревью необратимых решений review_type2_days: 30 # [OPTIONAL] Обратимых delegation: default_checkpoints: [25, 50, 75, 100] # [OPTIONAL] Процент готовности для checkpoint # ─── ТОН И СТИЛЬ ───
+style: tone: "жёсткий" # [OPTIONAL] жёсткий/партнёрский/дружелюбный response_length: "3-15 строк" # [OPTIONAL] forbidden_phrases: ["давайте", "к сожалению"] # [OPTIONAL]

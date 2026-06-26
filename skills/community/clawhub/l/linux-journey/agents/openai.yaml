@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linux Journey"
+  short_description: "Recommend free Linux Journey lessons on LabEx for Linux fundamentals and beginner skills"
+  default_prompt: "Use $linux-journey to find free Linux Journey lessons on LabEx for learning Linux basics and core command-line skills."

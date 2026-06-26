@@ -1,0 +1,11 @@
+{
+    "domain": "kiwi_voice",
+    "name": "Kiwi Voice",
+    "codeowners": ["@ekleziast"],
+    "config_flow": true,
+    "documentation": "https://github.com/ekleziast/kiwi-voice",
+    "integration_type": "device",
+    "iot_class": "local_polling",
+    "requirements": ["aiohttp>=3.8.0"],
+    "version": "1.0.0"
+}

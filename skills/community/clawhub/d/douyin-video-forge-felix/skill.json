@@ -1,0 +1,9 @@
+{
+  "name": "Douyin Video Forge",
+  "slug": "douyin-video-forge-felix",
+  "version": "0.1.1",
+  "description": "抖音短视频全链路自动化制作。适用于生成视频脚本、分析趋势、制作爆款短视频。",
+  "author": "Felix",
+  "entry": "scripts/main.js",
+  "dependencies": {}
+}

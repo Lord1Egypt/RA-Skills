@@ -1,0 +1,83 @@
+name: springboot-unit-testing
+version: 1.0.0
+description: |
+  专业的Spring Boot + MyBatis + MySQL项目单元测试Skill
+  提供全面的测试覆盖策略，确保正常流程、异常场景、边界值的完整测试覆盖
+  
+  核心特点：
+  - 分层测试架构：Mapper层、Service层、Controller层、集成测试
+  - 全面测试覆盖：正常流程、异常测试、边界值测试
+  - 专业工具脚本：覆盖率检查、测试报告生成、测试数据生成
+  - 详细参考文档：测试策略、异常模式、边界测试方法
+
+tags:
+  - spring-boot
+  - mybatis
+  - unit-testing
+  - java
+  - junit
+  - mockito
+  - mysql
+  - testing
+
+author:
+  name: WorkBuddy User
+  email: user@example.com
+  url: https://github.com/your-profile
+
+license: MIT
+
+dependencies:
+  - name: java
+    version: ">= 11"
+  - name: maven
+    version: ">= 3.6"
+  - name: python
+    version: ">= 3.8"
+
+files:
+  - SKILL.md
+  - README.md
+  - scripts/
+  - references/
+  - assets/
+
+installation:
+  commands:
+    - git clone https://github.com/your-repo/springboot-unit-testing.git
+    - cd springboot-unit-testing
+    - # 或者通过ClawHub安装
+
+usage:
+  - 加载Skill后，会获得Spring Boot单元测试的专业指导
+  - 可以使用脚本生成测试数据、检查覆盖率、生成测试报告
+  - 参考文档提供完整的测试策略和最佳实践
+
+changelog:
+  - version: 1.0.0
+    date: 2026-03-20
+    changes:
+      - 初始版本发布
+      - 包含完整的测试策略文档
+      - 提供三个实用工具脚本
+      - 包含四个详细参考文档
+
+repository:
+  type: git
+  url: https://github.com/your-repo/springboot-unit-testing.git
+
+bugs:
+  url: https://github.com/your-repo/springboot-unit-testing/issues
+
+homepage: https://github.com/your-repo/springboot-unit-testing
+
+keywords:
+  - "spring boot"
+  - "unit test"
+  - "mybatis"
+  - "java testing"
+  - "junit 5"
+  - "mockito"
+  - "test coverage"
+  - "exception testing"
+  - "boundary testing"

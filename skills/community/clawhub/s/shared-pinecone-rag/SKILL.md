@@ -1,35 +1,40 @@
 ---
-name: "Shared Pinecone RAG"
-description: "Use the shared Pinecone RAG index for any agent in this workspace. Use when an agent needs to ingest markdown/text docs into pulse-rag or query semantic cont..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shared-pinecone-rag"
-sourceUrl: "https://clawhub.ai/skills/shared-pinecone-rag"
+name: shared-pinecone-rag
+description: Use the shared Pinecone RAG index for any agent in this workspace. Use when an agent needs to ingest markdown/text docs into pulse-rag or query semantic context from the shared index.
 ---
 
 # Shared Pinecone RAG
 
-> Use the shared Pinecone RAG index for any agent in this workspace. Use when an agent needs to ingest markdown/text docs into pulse-rag or query semantic cont...
+Use the central RAG project at:
+`/home/Mike/.openclaw/workspace/rag-pinecone-starter`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shared-pinecone-rag`
-- **Source URL:** [https://clawhub.ai/skills/shared-pinecone-rag](https://clawhub.ai/skills/shared-pinecone-rag)
+When combined with `hybrid-db-health`, position this as a **Persistent Memory skill stack**:
+- `shared-pinecone-rag` = retrieval + ingest layer
+- `hybrid-db-health` = reliability/health guardrail layer
 
-## Overview
+## Query (all agents)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/shared-pinecone-rag
+bash scripts/query-shared-rag.sh "your question"
 ```
+
+## Ingest docs (all agents)
+
+1. Put `.md`/`.txt` files in:
+`/home/Mike/.openclaw/workspace/rag-pinecone-starter/docs/`
+2. Run:
+
+```bash
+bash scripts/ingest-shared-rag.sh
+```
+
+## Requirements
+
+- `PINECONE_API_KEY` must be set in `rag-pinecone-starter/.env`
+- Python venv exists at `rag-pinecone-starter/.venv`
+
+## Notes
+
+- Index name defaults to `pulse-rag`.
+- Retrieval reads from namespace `default`.
+- This skill is shared; do not duplicate per-agent RAG stacks unless explicitly requested.

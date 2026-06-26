@@ -1,0 +1,46 @@
+{
+  "project": "{{项目名称}}",
+  "description": "{{项目描述，一句话概括目标和范围}}",
+  "features": [
+    {
+      "id": "feat-01",
+      "category": "foundation",
+      "priority": 1,
+      "description": "第一个功能的简要描述",
+      "file": "path/to/main/file.js",
+      "steps": [
+        "步骤 1：具体操作（包含文件路径和行号范围）",
+        "步骤 2：具体操作",
+        "步骤 3：具体操作"
+      ],
+      "passes": false,
+      "verification": "如何验证这个功能已完成（具体的、可执行的检查条件）"
+    },
+    {
+      "id": "feat-02",
+      "category": "foundation",
+      "priority": 2,
+      "description": "第二个功能的简要描述",
+      "file": "path/to/another/file.js",
+      "steps": [
+        "步骤 1：具体操作",
+        "步骤 2：具体操作"
+      ],
+      "passes": false,
+      "verification": "验证条件"
+    },
+    {
+      "id": "feat-03",
+      "category": "components",
+      "priority": 3,
+      "description": "第三个功能的简要描述",
+      "file": null,
+      "steps": [
+        "步骤 1：具体操作",
+        "步骤 2：具体操作"
+      ],
+      "passes": false,
+      "verification": "验证条件"
+    }
+  ]
+}

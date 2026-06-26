@@ -1,0 +1,8 @@
+# email-summarizer skill — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Required for .msg file parsing (parse_file.py --msg-dir)
+extract-msg>=0.52.0
+
+# Required for Excel report generation (build_report.py)
+openpyxl>=3.1.0

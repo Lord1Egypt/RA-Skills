@@ -1,0 +1,7 @@
+{
+  "name": "operator-dashboard",
+  "description": "Zero‑config OpenClaw gateway monitoring. Runs health checks, sends daily 5‑line summaries, alerts immediately on critical issues (gateway down, cron failures, disk >90%), and offers to fix problems with approval.",
+  "tags": ["monitoring", "dashboard", "health", "openclaw", "cron", "alerting"],
+  "version": "1.0.0",
+  "author": "Temmpp13"
+}

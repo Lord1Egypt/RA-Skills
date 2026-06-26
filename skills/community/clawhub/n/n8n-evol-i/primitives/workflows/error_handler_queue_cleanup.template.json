@@ -1,0 +1,293 @@
+{
+  "name": "{{@env:displayName}} Error Handler Queue Cleanup{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:eqc-trigger}}",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [-16, 0],
+      "parameters": {}
+    },
+    {
+      "id": "{{@uuid:eqc-prep}}",
+      "name": "Prepare Stream List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [208, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// Active cleanup: iterate every queue stream the env has registered, KEYS\n// the q:<stream>:permits:* glob, then GET each sidecar and DECR inflight +\n// DEL the permit only when sidecar.execution_id matches the failed run.\n// We deliberately do NOT XACK — the message stays in the PEL and is\n// redelivered by the next XAUTOCLAIM. The failed run's work was\n// incomplete; let the redelivery decide whether to retry or DLQ.\nlet QUEUE_SCOPES;\ntry {\n  QUEUE_SCOPES = {{@env:queueScopes}};\n} catch (e) {\n  QUEUE_SCOPES = [];\n}\nif (!Array.isArray(QUEUE_SCOPES)) QUEUE_SCOPES = [];\n\nconst errorData = $('Error Trigger').first().json || {};\nconst failed_execution_id = errorData.execution?.id || errorData.executionId || $execution.id || 'unknown';\nconst failed_workflow_id = errorData.workflow?.id || 'unknown';\nconst failed_workflow_name = errorData.workflow?.name || 'unknown';\nconst failed_error_message = errorData.execution?.error?.message || errorData.error?.message || 'unknown';\n\nif (QUEUE_SCOPES.length === 0) {\n  return [{\n    json: {\n      cleaned: false,\n      reason: 'no queueScopes registered in env yaml — add to queueScopes list to enable active cleanup',\n      failed_execution_id,\n      failed_workflow_id,\n      failed_workflow_name,\n      failed_error_message,\n      cleanup_terminal: true,\n    },\n  }];\n}\n\nreturn QUEUE_SCOPES.map(stream => ({\n  json: {\n    stream,\n    permits_glob: `q:${stream}:permits:*`,\n    inflight_key: `q:${stream}:inflight`,\n    failed_execution_id,\n    failed_workflow_id,\n    failed_workflow_name,\n    failed_error_message,\n    cleanup_terminal: false,\n  },\n}));\n"
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-if-empty}}",
+      "name": "Has Streams?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [432, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:eqc-cond-empty}}",
+              "leftValue": "={{ $json.cleanup_terminal !== true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-keys}}",
+      "name": "KEYS Permits",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [656, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['KEYS', $json.permits_glob]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-fan-out}}",
+      "name": "Fan Out Permit Keys",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [880, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// For each per-stream KEYS result, fan the returned permit keys back into\n// individual items, propagating per-stream context (inflight_key,\n// failed_execution_id, etc.) onto each.\nconst items = $input.all();\nconst streamCtx = $('Prepare Stream List').all();\nconst out = [];\nfor (let i = 0; i < items.length; i++) {\n  const keysResp = items[i].json;\n  const ctx = streamCtx[i] && streamCtx[i].json;\n  if (!ctx) continue;\n  const keysArr = Array.isArray(keysResp.result) ? keysResp.result : [];\n  for (const permit_key of keysArr) {\n    out.push({\n      json: {\n        permit_key,\n        stream: ctx.stream,\n        inflight_key: ctx.inflight_key,\n        failed_execution_id: ctx.failed_execution_id,\n        failed_workflow_id: ctx.failed_workflow_id,\n        failed_workflow_name: ctx.failed_workflow_name,\n        failed_error_message: ctx.failed_error_message,\n      },\n    });\n  }\n}\nif (out.length === 0) {\n  return [{ json: { cleaned: false, reason: 'no permits found for any registered stream', cleanup_terminal: true } }];\n}\nreturn out;\n"
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-if-keys}}",
+      "name": "Has Permit Keys?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [992, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:eqc-cond-keys}}",
+              "leftValue": "={{ $json.cleanup_terminal !== true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-get-permit}}",
+      "name": "GET Permit Body",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1104, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['GET', $json.permit_key]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-filter}}",
+      "name": "Filter Owned Permits",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1328, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\n// Parse each sidecar JSON; keep entries where parsed.execution_id matches\n// the failed run.\nconst items = $input.all();\nconst fanOut = $('Fan Out Permit Keys').all();\nconst owned = [];\nfor (let i = 0; i < items.length; i++) {\n  const resp = items[i].json;\n  const ctx = fanOut[i] && fanOut[i].json;\n  if (!ctx || !resp || !resp.result) continue;\n  let parsed;\n  try {\n    parsed = JSON.parse(resp.result);\n  } catch (e) {\n    continue;\n  }\n  if (parsed && parsed.execution_id === ctx.failed_execution_id) {\n    owned.push({\n      json: {\n        should_release: true,\n        permit_key: ctx.permit_key,\n        inflight_key: ctx.inflight_key,\n        stream: ctx.stream,\n        message_id: parsed.message_id,\n        failed_execution_id: ctx.failed_execution_id,\n        failed_workflow_id: ctx.failed_workflow_id,\n        failed_workflow_name: ctx.failed_workflow_name,\n        failed_error_message: ctx.failed_error_message,\n      },\n    });\n  }\n}\nif (owned.length === 0) {\n  return [{ json: { cleaned: false, reason: 'no permits owned by failed execution', cleanup_terminal: true } }];\n}\nreturn owned;\n"
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-if-owned}}",
+      "name": "Owned?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1552, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "{{@uuid:eqc-cond-owned}}",
+              "leftValue": "={{ $json.should_release === true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-decr}}",
+      "name": "DECR Inflight",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1776, -100],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['DECR', $json.inflight_key]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-del}}",
+      "name": "DEL Owned Permit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2000, -100],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.UPSTASH_REDIS_REST_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(['DEL', $('Filter Owned Permits').itemMatching($itemIndex).json.permit_key]) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "{{@env:credentials.redis_rest.id}}",
+          "name": "{{@env:credentials.redis_rest.name}}"
+        }
+      }
+    },
+    {
+      "id": "{{@uuid:eqc-log}}",
+      "name": "Log Cleanup",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2224, 0],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// @n8n-evol-I:primitive — exempt from pure-function discipline\nconst items = $input.all();\nconst cleaned = items.length > 0 && items.some(i => i.json.should_release === true || i.json.result !== undefined);\nconst streams = Array.from(new Set(items.map(i => i.json.stream).filter(Boolean)));\nreturn [{\n  json: {\n    cleaned,\n    cleaned_count: items.filter(i => i.json.should_release === true).length,\n    streams,\n  },\n}];\n"
+      }
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [[{ "node": "Prepare Stream List", "type": "main", "index": 0 }]]
+    },
+    "Prepare Stream List": {
+      "main": [[{ "node": "Has Streams?", "type": "main", "index": 0 }]]
+    },
+    "Has Streams?": {
+      "main": [
+        [{ "node": "KEYS Permits", "type": "main", "index": 0 }],
+        [{ "node": "Log Cleanup", "type": "main", "index": 0 }]
+      ]
+    },
+    "KEYS Permits": {
+      "main": [[{ "node": "Fan Out Permit Keys", "type": "main", "index": 0 }]]
+    },
+    "Fan Out Permit Keys": {
+      "main": [[{ "node": "Has Permit Keys?", "type": "main", "index": 0 }]]
+    },
+    "Has Permit Keys?": {
+      "main": [
+        [{ "node": "GET Permit Body", "type": "main", "index": 0 }],
+        [{ "node": "Log Cleanup", "type": "main", "index": 0 }]
+      ]
+    },
+    "GET Permit Body": {
+      "main": [[{ "node": "Filter Owned Permits", "type": "main", "index": 0 }]]
+    },
+    "Filter Owned Permits": {
+      "main": [[{ "node": "Owned?", "type": "main", "index": 0 }]]
+    },
+    "Owned?": {
+      "main": [
+        [{ "node": "DECR Inflight", "type": "main", "index": 0 }],
+        [{ "node": "Log Cleanup", "type": "main", "index": 0 }]
+      ]
+    },
+    "DECR Inflight": {
+      "main": [[{ "node": "DEL Owned Permit", "type": "main", "index": 0 }]]
+    },
+    "DEL Owned Permit": {
+      "main": [[{ "node": "Log Cleanup", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

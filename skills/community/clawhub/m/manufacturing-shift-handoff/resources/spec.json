@@ -1,0 +1,37 @@
+{
+  "slug": "manufacturing-shift-handoff",
+  "title": "生产班次交接摘要器",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "structured_brief",
+  "summary": "为生产班次交接整理设备状态、异常、待处理事项与安全提醒。",
+  "inputHint": "设备状态、异常事件、待办事项",
+  "sections": [
+    "班次摘要",
+    "设备状态",
+    "异常与处置",
+    "待处理事项",
+    "安全提醒",
+    "下班次重点"
+  ],
+  "useCases": [
+    "工厂交接",
+    "现场班次沟通",
+    "异常留痕"
+  ],
+  "positiveExamples": [
+    "把这班的情况整理成交接摘要",
+    "突出设备状态和异常"
+  ],
+  "negativeExamples": [
+    "不要省略安全问题",
+    "不要替代正式 EHS 记录"
+  ],
+  "risk": "输出为交接文本草案。",
+  "tags": [
+    "manufacturing",
+    "handoff",
+    "shift",
+    "operations"
+  ]
+}

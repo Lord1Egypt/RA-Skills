@@ -1,0 +1,34 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_i18n_set_module_name",
+    "description": "Set module display name using internationalization expression.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "displayNameList": {
+          "type": "array",
+          "description": "Module display name configuration list",
+          "items": {
+            "type": "object",
+            "properties": {
+              "moduleId": {
+                "type": "string",
+                "description": "Module ID"
+              },
+              "displayName": {
+                "type": "string",
+                "description": "Module display name expression (supports internationalization expressions). Must use internationalization expression format: ${T.t('path')}. Where path is the complete path of the translation item in the internationalization translation definition (translateList), for example: ${T.t('module.crm.name')}"
+              }
+            },
+            "required": ["moduleId", "displayName"],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "required": ["displayNameList"],
+      "additionalProperties": false
+    }
+  }
+}

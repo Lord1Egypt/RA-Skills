@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRrule AI 简单聊天示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #chatMessages {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .message.user {
+            background: #e3f2fd;
+            text-align: right;
+        }
+
+        .message.assistant {
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.connecting {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 HRrule AI 聊天示例</h1>
+        <p>这是一个简化的 WebSocket API 使用示例</p>
+
+        <div class="status" id="status"></div>
+
+        <div class="form-group">
+            <label>WebSocket 地址:</label>
+            <input type="text" id="wsUrl" value="ws://192.168.112.114:5000">
+        </div>
+
+        <div class="form-group">
+            <label>API Key:</label>
+            <input type="text" id="apiKey" placeholder="请输入您的 API Key">
+        </div>
+
+        <div class="form-group">
+            <label>Tag ID (内容类型):</label>
+            <select id="tagId">
+                <option value="2">2 - 制度类</option>
+                <option value="7">7 - 岗位类</option>
+                <option value="3">3 - 绩效类</option>
+                <option value="4">4 - 招聘类</option>
+                <option value="5">5 - 薪酬类</option>
+                <option value="8">8 - 培训类</option>
+                <option value="13">13 - 报告类</option>
+                <option value="14">14 - 风控类</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>RT (资源类型):</label>
+            <select id="rt">
+                <!-- 制度类 -->
+                <optgroup label="制度类 (Tag ID: 2)">
+                    <option value="员工手册">员工手册</option>
+                    <option value="招聘管理制度">招聘管理制度</option>
+                    <option value="薪酬管理制度">薪酬管理制度</option>
+                    <option value="考勤休假制度">考勤休假制度</option>
+                    <option value="绩效管理制度">绩效管理制度</option>
+                </optgroup>
+
+                <!-- 岗位类 -->
+                <optgroup label="岗位类 (Tag ID: 7)">
+                    <option value="岗位说明书">岗位说明书</option>
+                    <option value="工作饱和度评估表">工作饱和度评估表</option>
+                    <option value="任职资格标准">任职资格标准</option>
+                </optgroup>
+
+                <!-- 绩效类 -->
+                <optgroup label="绩效类 (Tag ID: 3)">
+                    <option value="KPI考核表">KPI考核表</option>
+                    <option value="绩效改进计划">绩效改进计划</option>
+                    <option value="绩效面谈表">绩效面谈表</option>
+                </optgroup>
+
+                <!-- 招聘类 -->
+                <optgroup label="招聘类 (Tag ID: 4)">
+                    <option value="招聘JD">招聘JD</option>
+                    <option value="面试评估表">面试评估表</option>
+                    <option value="录用通知书">录用通知书</option>
+                    <option value="劳动合同">劳动合同</option>
+                </optgroup>
+
+                <!-- 薪酬类 -->
+                <optgroup label="薪酬类 (Tag ID: 5)">
+                    <option value="薪酬等级表">薪酬等级表</option>
+                    <option value="薪酬面谈表">薪酬面谈表</option>
+                </optgroup>
+
+                <!-- 培训类 -->
+                <optgroup label="培训类 (Tag ID: 8)">
+                    <option value="新员工培训计划">新员工培训计划</option>
+                    <option value="年度培训计划">年度培训计划</option>
+                </optgroup>
+
+                <!-- 报告类 -->
+                <optgroup label="报告类 (Tag ID: 13)">
+                    <option value="年终总结">年终总结</option>
+                    <option value="月度报告">月度报告</option>
+                    <option value="周报">周报</option>
+                    <option value="日报">日报</option>
+                </optgroup>
+
+                <!-- 风控类 -->
+                <optgroup label="风控类 (Tag ID: 14)">
+                    <option value="风险自测">风险自测</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>您的问题或需求:</label>
+            <textarea id="userInput" rows="4" placeholder="请输入您的问题,例如: 帮我生成一份员工手册"></textarea>
+        </div>
+
+        <button id="sendBtn" onclick="sendMessage()">发送</button>
+
+        <div id="chatMessages">
+            <div class="message assistant">
+                👋 欢迎!请选择 Tag ID 和 RT,然后输入您的问题。
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+        let socket = null;
+        let currentMessageContent = '';
+
+        function updateStatus(type, message) {
+            const status = document.getElementById('status');
+            status.className = 'status ' + type;
+            status.textContent = message;
+            status.style.display = type === '' ? 'none' : 'block';
+        }
+
+        function appendMessage(content, type) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + type;
+            messageDiv.textContent = content;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function updateLastMessage(content) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messages = chatMessages.querySelectorAll('.message');
+            const lastMessage = messages[messages.length - 1];
+
+            if (lastMessage && lastMessage.classList.contains('assistant')) {
+                lastMessage.textContent += content;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const content = userInput.value.trim();
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const wsUrl = document.getElementById('wsUrl').value.trim();
+            const tagId = document.getElementById('tagId').value;
+            const rt = document.getElementById('rt').value;
+
+            if (!content) {
+                alert('请输入您的问题');
+                return;
+            }
+
+            if (!apiKey) {
+                alert('请输入 API Key');
+                return;
+            }
+
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = true;
+            sendBtn.textContent = '发送中...';
+
+            updateStatus('connecting', '正在连接...');
+
+            const socketOptions = {
+                transports: ['websocket', 'polling'],
+                reconnection: false,
+                query: { api_key: apiKey }
+            };
+
+            socket = io(wsUrl, socketOptions);
+
+            socket.on('connect', () => {
+                updateStatus('connected', '✓ 已连接');
+
+                const messageData = {
+                    content: content,
+                    page_session: 'session_' + Date.now(),
+                    model: 'deepseek-ai/DeepSeek-R1',
+                    tag_id: parseInt(tagId),
+                    rt: rt,
+                    ua: 'web',
+                    deep: 1,
+                    web: 1
+                };
+
+                console.log('发送消息:', messageData);
+                socket.emit('open_chat_completion', messageData);
+                appendMessage(content, 'user');
+                userInput.value = '';
+            });
+
+            socket.on('chunk', (data) => {
+                try {
+                    const chunkData = typeof data === 'string' ? JSON.parse(data) : data;
+                    const content = chunkData.choices?.[0]?.delta?.content || '';
+                    if (content) {
+                        currentMessageContent += content;
+                        updateLastMessage(content);
+                    }
+                } catch (e) {
+                    console.error('解析 chunk 失败:', e);
+                }
+            });
+
+            socket.on('complete', (data) => {
+                console.log('响应完成:', data);
+                updateStatus('disconnected', '✗ 已断开');
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送';
+
+                setTimeout(() => {
+                    if (socket) {
+                        socket.disconnect();
+                    }
+                }, 500);
+            });
+
+            socket.on('error', (data) => {
+                console.error('错误:', data.msg);
+                appendMessage('❌ 错误: ' + data.msg, 'assistant');
+                updateStatus('disconnected', '✗ 错误: ' + data.msg);
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送';
+            });
+
+            socket.on('connect_error', (error) => {
+                console.error('连接错误:', error);
+                const errorMsg = error.message || '未知错误';
+                updateStatus('disconnected', '✗ 连接失败: ' + errorMsg);
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送';
+            });
+
+            socket.on('disconnect', (reason) => {
+                console.log('连接断开:', reason);
+                updateStatus('disconnected', '✗ 已断开');
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送';
+            });
+        }
+    </script>
+</body>
+</html>

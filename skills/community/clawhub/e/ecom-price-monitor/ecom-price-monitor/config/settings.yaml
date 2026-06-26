@@ -1,0 +1,76 @@
+# 跨境电商价格监控配置
+
+# 基础设置
+bot_name: "跨境电商价格监控"
+version: "1.0.0"
+
+# 监控设置
+check_interval: 3600  # 检查间隔（秒）
+price_drop_threshold: 0.1  # 降价10%触发提醒
+arbitrage_min_margin: 0.2  # 套利最小利润率20%
+
+# 请求设置
+timeout: 30
+retry_count: 3
+proxy: null  # 代理设置，如: http://proxy:port
+
+# 平台配置
+platforms:
+  amazon:
+    enabled: true
+    affiliate_id: ""  # Amazon联盟ID（可选）
+    api_key: ""  # Amazon Product Advertising API Key
+  
+  taobao:
+    enabled: true
+    app_key: ""  # 淘宝开放平台AppKey
+    app_secret: ""  # 淘宝开放平台AppSecret
+  
+  jd:
+    enabled: true
+    app_key: ""  # 京东开放平台AppKey
+    app_secret: ""  # 京东开放平台AppSecret
+  
+  pdd:
+    enabled: true
+    client_id: ""  # 拼多多开放平台ClientID
+    client_secret: ""  # 拼多多开放平台ClientSecret
+  
+  1688:
+    enabled: true
+    # 1688需要登录cookie
+
+# 通知设置
+notifications:
+  console: true  # 控制台输出
+  email: false
+  email_config:
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: ""
+    password: ""
+    to_email: ""
+  
+  webhook: false
+  webhook_url: ""  # 钉钉/飞书机器人webhook
+
+# 套利设置
+arbitrage:
+  enabled: true
+  min_margin: 0.2  # 最小利润率
+  max_shipping_cost: 50  # 最大运费（人民币）
+  currency_pairs:
+    - from: CNY
+      to: USD
+      rate: 0.14  # 汇率，会自动更新
+
+# 输出设置
+output:
+  save_history: true
+  history_days: 90  # 保存90天历史
+  export_format: ["json", "excel"]
+
+# 日志设置
+logging:
+  level: "INFO"
+  file: "logs/price_monitor.log"

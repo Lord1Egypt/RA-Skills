@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_get_current_time",
+		"description": "Get current time. The AI model needs to call this tool first to get the current time",
+		"parameters": {
+			"type": "object",   
+			"properties": {}  
+		}
+	}
+}

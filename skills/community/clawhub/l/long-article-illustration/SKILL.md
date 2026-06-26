@@ -1,35 +1,113 @@
 ---
-name: "Long Article Illustration - 长文配图助手"
-description: "长文配图助手。为长篇文章自动划分段落、生成AI配图提示词并调用图像生成工具完成配图。适用场景：(1) 公众号/博客长文需要配图 (2) 用户上传文章希望获得段落配图建议 (3) 批量生成文章插图 (4) 用户提到"文章配图""长文插画""段落配图"等关键词时触发"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/long-article-illustration"
-sourceUrl: "https://clawhub.ai/skills/long-article-illustration"
+name: long-article-illustration
+description: 长文配图助手。为长篇文章自动划分段落、生成AI配图提示词并调用图像生成工具完成配图。适用场景：(1) 公众号/博客长文需要配图 (2) 用户上传文章希望获得段落配图建议 (3) 批量生成文章插图 (4) 用户提到"文章配图""长文插画""段落配图"等关键词时触发
 ---
 
-# Long Article Illustration - 长文配图助手
+# 长文配图助手
 
-> 长文配图助手。为长篇文章自动划分段落、生成AI配图提示词并调用图像生成工具完成配图。适用场景：(1) 公众号/博客长文需要配图 (2) 用户上传文章希望获得段落配图建议 (3) 批量生成文章插图 (4) 用户提到"文章配图""长文插画""段落配图"等关键词时触发
+为长篇文章自动生成配图，包括智能段落划分、配图提示词生成、图像生成调用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/long-article-illustration`
-- **Source URL:** [https://clawhub.ai/skills/long-article-illustration](https://clawhub.ai/skills/long-article-illustration)
+## 工作流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/long-article-illustration
 ```
+用户上传长文 → 段落划分 → 提示词生成 → 图像生成 → 输出交付
+```
+
+## Step 1: 收集输入
+
+向用户确认以下信息：
+
+| 参数 | 必填 | 默认值 | 说明 |
+|------|------|--------|------|
+| 文章内容 | ✅ | - | 完整文章文本 |
+| 图片风格 | ❌ | 扁平插画 | 见 `references/style-presets.md` |
+| 图片比例 | ❌ | 16:9 | 公众号内文建议16:9，封面2.35:1 |
+| 配图密度 | ❌ | 每2-3段一图 | 可选：每段一图/每小节一图 |
+
+## Step 2: 段落划分
+
+按以下优先级划分：
+
+1. **显式标题**：识别 `#`、`##`、`一、`、`1.` 、`（1）`、`（一）`、`1️⃣`、`①`等标题标记
+2. **语义边界**：主题转换、时间跳跃、场景切换
+3. **长度均衡**：单个配图覆盖300-600字为宜
+
+输出格式：
+```
+【段落1】标题/摘要
+正文内容...
+
+【段落2】标题/摘要
+正文内容...
+```
+
+## Step 3: 生成配图提示词
+
+为每个需要配图的段落生成提示词，遵循以下结构：
+
+```
+[主体描述], [场景/背景], [风格关键词], [技术参数]
+```
+
+### 提示词生成规则
+
+1. **提取核心意象**：从段落中识别最具画面感的元素
+2. **避免抽象概念**：将抽象概念转化为具象画面
+3. **保持风格一致**：全文配图使用统一的风格关键词，特别是出现了人物或角色的图片，需要保持是同一个人物
+4. **添加技术参数**：比例、光线、构图等
+5. **不要出现文字**：在提示词中，需要强调最终生成的图片不要包含任何文字
+
+风格预设详见 `references/style-presets.md`
+
+### 示例
+
+段落内容：
+> 创业初期，我们挤在一间不到20平米的小办公室里，每天工作到深夜...
+
+生成提示词：
+> A small crowded office space with desks and computers, warm lamplight at night, papers and coffee cups scattered around, flat illustration style, warm color palette, 16:9
+
+## Step 4: 调用图像生成
+
+根据生成的提示词，调用图像生成模型完成配图。
+
+**支持的生图方式**：
+- 调用已配置的 AI 生图 API（如 DALL-E、Midjourney、Stable Diffusion 等）
+- 将提示词复制到在线生图工具手动生成
+- 使用本地部署的生图模型
+
+> 💡 用户可根据自身需求选择生图工具，并自行配置对应的 API
+
+## Step 5: 输出交付
+
+### 输出格式选项
+
+**选项A：Markdown文档（默认）**
+```markdown
+# 文章标题
+
+![配图1](image1.png)
+第一段正文内容...
+
+![配图2](image2.png)
+第二段正文内容...
+```
+
+**选项B：提示词清单**
+```markdown
+| 段落 | 段落摘要 | 配图提示词 |
+|------|----------|------------|
+| 1 | xxx | prompt1 |
+| 2 | xxx | prompt2 |
+```
+
+**选项C：打包下载**
+- 所有图片文件
+- 带图片引用的Markdown文档
+- 提示词记录文件
+
+## 参考资料
+
+- 风格预设与提示词模板：`references/style-presets.md`
+- 段落划分详细规则：`references/paragraph-rules.md`
+- 常见问题处理：`references/troubleshooting.md`

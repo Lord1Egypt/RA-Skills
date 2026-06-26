@@ -1,35 +1,66 @@
 ---
-name: "Web Fetch Fake-IP Workaround"
-description: "Legacy workaround for web_fetch fake-ip failures on older npm-global OpenClaw installs. Use when web_fetch is blocked under Clash, Mihomo, or Surge fake-ip m..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-fetch-fakeip"
-sourceUrl: "https://clawhub.ai/skills/web-fetch-fakeip"
+name: web-fetch-fakeip
+description: Legacy workaround for web_fetch fake-ip failures on older npm-global OpenClaw installs. Use when web_fetch is blocked under Clash, Mihomo, or Surge fake-ip mode and the OpenClaw version does not yet support the openclaw.json ssrfPolicy fix. For OpenClaw v2026.4.10 and later, prefer configuration instead of patching.
 ---
 
-# Web Fetch Fake-IP Workaround
+# web_fetch Fake-IP Workaround
 
-> Legacy workaround for web_fetch fake-ip failures on older npm-global OpenClaw installs. Use when web_fetch is blocked under Clash, Mihomo, or Surge fake-ip m...
+Apply a small, reversible patch so `web_fetch` works under TUN + fake-ip environments that resolve through `198.18.0.0/15`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-fetch-fakeip`
-- **Source URL:** [https://clawhub.ai/skills/web-fetch-fakeip](https://clawhub.ai/skills/web-fetch-fakeip)
+## Best fit
 
-## Overview
+Use this skill when:
 
+- OpenClaw was installed with `npm install -g openclaw`
+- You use Clash, Mihomo, or Surge with fake-ip enabled
+- `web_fetch` fails with private/internal/special-use IP blocking
+- Your OpenClaw version is older than `v2026.4.10`
+- You need a legacy workaround because the config-based fix is unavailable
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-fetch-fakeip
+## Not for
+
+- OpenClaw `v2026.4.10` or later, use `openclaw.json` instead
+- Source-built OpenClaw
+- Certificate problems
+- Proxy rule or port mistakes
+- Missing proxy environment variables
+
+## What changes
+
+The script finds the bundled `web_fetch` call to `fetchWithWebToolsNetworkGuard({...})` and inserts:
+
+```js
+policy: { allowRfc2544BenchmarkRange: true }, // openclaw-fakeip-patch
 ```
+
+This only opens the RFC2544 benchmark range used by common fake-ip setups.
+
+## Workflow
+
+```bash
+bash patch-openclaw-global-fakeip.sh status
+bash patch-openclaw-global-fakeip.sh inspect
+bash patch-openclaw-global-fakeip.sh apply
+openclaw gateway restart
+```
+
+Then retry the failing `web_fetch` request.
+
+## Revert
+
+```bash
+bash patch-openclaw-global-fakeip.sh revert
+openclaw gateway restart
+```
+
+## Notes
+
+- Safe to run repeatedly
+- Creates backup files on apply/revert
+- After OpenClaw upgrades, rerun if needed
+- On `v2026.4.10+`, prefer the built-in config fix instead of this patch
+
+## Resources
+
+- `scripts/patch-openclaw-global-fakeip.sh`
+- `references/README.md`

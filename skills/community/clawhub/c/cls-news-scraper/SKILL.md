@@ -1,35 +1,23 @@
----
-name: "Cls News Scraper"
-description: "Extract real-time stock-positive market news from Cailian Press filtered by time, sector, and event type for catalyst identification."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cls-news-scraper"
-sourceUrl: "https://clawhub.ai/skills/cls-news-scraper"
----
+# cls-news-scraper
 
-# Cls News Scraper
+Use this skill to pull real-time market news from Cailian Press (CLS) and extract stock-positive catalysts.
 
-> Extract real-time stock-positive market news from Cailian Press filtered by time, sector, and event type for catalyst identification.
+## Inputs
+- Time window (default: last 1 hour)
+- Sector filter (default: 新能源, 消费)
+- Event filter (default: 业绩预增, 重大合同, 政策扶持)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cls-news-scraper`
-- **Source URL:** [https://clawhub.ai/skills/cls-news-scraper](https://clawhub.ai/skills/cls-news-scraper)
+## Procedure
+1. Collect latest CLS items from configured endpoint/source.
+2. Normalize fields: title, summary, ticker, company, published_at, source_url.
+3. Classify each item into event types.
+4. Keep only matched industries and event types.
+5. Output table rows for downstream scoring.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cls-news-scraper
-```
+## Output Schema
+- ticker
+- company
+- catalyst
+- source_url
+- timestamp
+- confidence

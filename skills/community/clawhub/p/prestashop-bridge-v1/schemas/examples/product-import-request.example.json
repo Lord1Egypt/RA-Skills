@@ -1,0 +1,22 @@
+{
+  "batch_id": "batch-2026-03-21-01",
+  "items": [
+    {
+      "reference": "NEW-001",
+      "name": {
+        "fr": "Nouveau",
+        "en": "New"
+      },
+      "price_ht": 10.0,
+      "stock_quantity": 100,
+      "images_to_download": [
+        "https://assets.example.com/img/new-001.jpg"
+      ]
+    }
+  ],
+  "options": {
+    "create_if_missing": true,
+    "update_if_exists": true,
+    "skip_images_errors": false
+  }
+}

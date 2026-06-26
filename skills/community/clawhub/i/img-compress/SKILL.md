@@ -1,35 +1,37 @@
 ---
-name: "Img Compress"
-description: "批量压缩图片文件大小，支持JPG/PNG，保持尺寸只压体积。当用户提到：压缩图片、减少图片大小、图片太大、图片优化、批量压缩图片时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/img-compress"
-sourceUrl: "https://clawhub.ai/skills/img-compress"
+name: img-compress
+description: Batch compress image file sizes (JPG/PNG), keep dimensions, reduce volume. Activate when user mentions: compress images, reduce image size, image optimization, batch compress images.
 ---
 
-# Img Compress
+# img-compress
 
-> 批量压缩图片文件大小，支持JPG/PNG，保持尺寸只压体积。当用户提到：压缩图片、减少图片大小、图片太大、图片优化、批量压缩图片时使用。
+Batch image compression tool based on Pillow(PIL).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/img-compress`
-- **Source URL:** [https://clawhub.ai/skills/img-compress](https://clawhub.ai/skills/img-compress)
+## Quick Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/img-compress
+# Compress images over 100KB to 80KB
+sudo python3 skills/img-compress/scripts/compress_img.py /path/to/images
+
+# Custom target size (KB)
+sudo python3 skills/img-compress/scripts/compress_img.py /path/to/images 150
+```
+
+## Compression Rules
+
+- JPG/JPEG: Gradually reduce quality (85→50) + optimize until under target size
+- PNG: Pillow PNG compression (limited), recommend pngquant for better results
+- Files under target size are skipped
+- Overwrites original files (in-place)
+
+## Dependencies
+
+- Python3
+- Pillow: `pip3 install Pillow`
+
+## Typical Scenarios
+
+```bash
+# Compress website static assets
+sudo python3 skills/img-compress/scripts/compress_img.py /var/www/static/img 100
 ```

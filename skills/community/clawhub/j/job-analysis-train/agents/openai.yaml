@@ -1,0 +1,4 @@
+interface:
+  display_name: "Job Analysis Train"
+  short_description: "学习工作分析第 8 章 staffing/training"
+  default_prompt: "Use $job-analysis-train to explain how job analysis supports staffing and training."

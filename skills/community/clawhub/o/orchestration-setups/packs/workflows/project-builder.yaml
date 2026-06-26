@@ -1,0 +1,52 @@
+workflow_id: project-builder
+goal: End-to-end project execution with reviewer-guided retries
+requirements:
+  git_worktree: true
+  github_remote: true
+  stable_shared_context:
+    - README.md
+    - CLAUDE.md
+  shared_temporary_context: runs/<run-id>/working-memory/
+  prep_helper: scripts/orchestration/prepare_project_builder.py
+  branch_pattern: orch/<run-id>/<slot>
+  worktree_root_pattern: <worktree-root>/<repo>/<run-id>/<slot>
+entry_conditions:
+  - project goal is defined
+  - deliverables are explicit enough to plan
+phases:
+  - id: spec
+    agent: planner
+    output: project_spec
+  - id: architecture
+    agent: architect
+    output: architecture_plan
+  - id: build_modules
+    agent: builder
+    parallelism: by_module
+    output: module_artifacts
+  - id: integrate
+    agent: integrator
+    output: integrated_artifact
+  - id: review
+    agent: reviewer
+    output: structured_review
+  - id: retry_router
+    orchestrator_decision: true
+  - id: integration_review
+    agent: reviewer
+    output: final_review
+retry_modes:
+  local-defect: fix-loop
+  cross-module: partial-rebuild
+  architecture-spec: replan
+retry_targets:
+  local-defect: build_modules
+  cross-module: build_modules
+  architecture-spec: architecture
+escalation_rules:
+  - if_same_failure_repeats_twice: escalate
+  - if_no_checkpoint_for: 45m
+  - if_scope_exceeds_expected_by: 2x
+completion_conditions:
+  - final_review_verdict == pass
+  - canonical_artifacts_complete

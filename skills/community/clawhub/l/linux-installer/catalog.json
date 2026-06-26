@@ -1,0 +1,2739 @@
+{
+  "aliases": {
+    "beeper": "beeper",
+    "bitwarden": "bitwarden",
+    "blender": "blender",
+    "brave": "brave",
+    "brave browser": "brave",
+    "code": "vscode",
+    "discord": "discord",
+    "discord app": "discord",
+    "element": "element",
+    "element desktop": "element",
+    "audacity": "audacity",
+    "authenticator": "authenticator",
+    "2fa authenticator": "authenticator",
+    "anydesk": "anydesk",
+    "bruno": "bruno",
+    "api bruno": "bruno",
+    "bottles": "bottles",
+    "dbeaver": "dbeaver",
+    "dbeaver community": "dbeaver",
+    "deja dup": "dejadup",
+    "deja dup backups": "dejadup",
+    "ferdium": "ferdium",
+    "flatseal": "flatseal",
+    "freefilesync": "freefilesync",
+    "gimp": "gimp",
+    "gnu image manipulation program": "gimp",
+    "ghostty": "ghostty",
+    "cryptomator": "cryptomator",
+    "helix": "helix",
+    "hx": "helix",
+    "joplin": "joplin",
+    "kitty": "kitty",
+    "keepassxc": "keepassxc",
+    "keepass xc": "keepassxc",
+    "logseq": "logseq",
+    "lm studio": "lmstudio",
+    "lmstudio": "lmstudio",
+    "insomnia": "insomnia",
+    "insomnia rest": "insomnia",
+    "localsend": "localsend",
+    "mission center": "missioncenter",
+    "missioncenter": "missioncenter",
+    "obs": "obsstudio",
+    "obs studio": "obsstudio",
+    "open broadcaster software": "obsstudio",
+    "pika backup": "pikabackup",
+    "pikabackup": "pikabackup",
+    "protonupqt": "protonupqt",
+    "protonup-qt": "protonupqt",
+    "protonup qt": "protonupqt",
+    "proton pass": "protonpass",
+    "protonpass": "protonpass",
+    "ollama": "ollama",
+    "inkscape": "inkscape",
+    "krita": "krita",
+    "beekeeper studio": "beekeeperstudio",
+    "beekeeperstudio": "beekeeperstudio",
+    "minecraft": "minecraft",
+    "minecraft launcher": "minecraft",
+    "mongodb compass": "mongodbcompass",
+    "mongo compass": "mongodbcompass",
+    "obsidian": "obsidian",
+    "1password": "onepassword",
+    "1 password": "onepassword",
+    "notepad++": "notepadplusplus",
+    "notepad plus plus": "notepadplusplus",
+    "notepad-plus-plus": "notepadplusplus",
+    "notepadplusplus": "notepadplusplus",
+    "npp": "notepadplusplus",
+    "postman": "postman",
+    "roblox": "roblox",
+    "signal": "signal",
+    "signal desktop": "signal",
+    "slack": "slack",
+    "spotify": "spotify",
+    "qbittorrent": "qbittorrent",
+    "filezilla": "filezilla",
+    "transmission": "transmission",
+    "syncthing tray": "syncthingtray",
+    "syncthingtray": "syncthingtray",
+    "virt manager": "virtmanager",
+    "virt-manager": "virtmanager",
+    "virtual machine manager": "virtmanager",
+    "alacritty": "alacritty",
+    "remmina": "remmina",
+    "remote desktop client": "remmina",
+    "rustdesk": "rustdesk",
+    "rclone ui": "rcloneui",
+    "rcloneui": "rcloneui",
+    "steam": "steam",
+    "steam client": "steam",
+    "podman desktop": "podmandesktop",
+    "podmandesktop": "podmandesktop",
+    "teams for linux": "teamsforlinux",
+    "teams-for-linux": "teamsforlinux",
+    "microsoft teams": "teamsforlinux",
+    "davinci resolve": "davinciresolve",
+    "davinciresolve": "davinciresolve",
+    "da vinci resolve": "davinciresolve",
+    "telegram": "telegram",
+    "telegram desktop": "telegram",
+    "jetbrains toolbox": "jetbrainstoolbox",
+    "jetbrains toolbox app": "jetbrainstoolbox",
+    "terminator": "terminator",
+    "tilix": "tilix",
+    "video lan client": "vlc",
+    "visual studio code": "vscode",
+    "vlc": "vlc",
+    "vs code": "vscode",
+    "vscode": "vscode",
+    "wezterm": "wezterm",
+    "wireshark": "wireshark",
+    "zed": "zed",
+    "zed editor": "zed",
+    "zen browser": "zenbrowser",
+    "zen-browser": "zenbrowser",
+    "zen-browser-bin": "zenbrowser",
+    "zenbrowser": "zenbrowser",
+    "zoom": "zoom",
+    "zoom client": "zoom"
+  },
+  "apps": {
+    "audacity": {
+      "display_name": "Audacity",
+      "search_terms": [
+        "audacity"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.audacityteam.Audacity",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.audacityteam.Audacity"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.audacityteam.Audacity"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        },
+        {
+          "source": "apt",
+          "package": "audacity",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "audacity"
+            ]
+          ],
+          "launch": [
+            "audacity"
+          ],
+          "reason": "Native Debian-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "dnf",
+          "package": "audacity",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "audacity"
+            ]
+          ],
+          "launch": [
+            "audacity"
+          ],
+          "reason": "Native Fedora-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "zypper",
+          "package": "audacity",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "audacity"
+            ]
+          ],
+          "launch": [
+            "audacity"
+          ],
+          "reason": "Native openSUSE package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "pacman",
+          "package": "audacity",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "audacity"
+            ]
+          ],
+          "launch": [
+            "audacity"
+          ],
+          "reason": "Native Arch-family package fallback when Flatpak is unavailable."
+        }
+      ]
+    },
+    "gimp": {
+      "display_name": "GIMP",
+      "search_terms": [
+        "gimp"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.gimp.GIMP",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.gimp.GIMP"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.gimp.GIMP"
+          ],
+          "reason": "Official Flatpak app ID with a stable launcher."
+        },
+        {
+          "source": "apt",
+          "package": "gimp",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "gimp"
+            ]
+          ],
+          "launch": [
+            "gimp"
+          ],
+          "reason": "Native Debian-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "dnf",
+          "package": "gimp",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "gimp"
+            ]
+          ],
+          "launch": [
+            "gimp"
+          ],
+          "reason": "Native Fedora-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "zypper",
+          "package": "gimp",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "gimp"
+            ]
+          ],
+          "launch": [
+            "gimp"
+          ],
+          "reason": "Native openSUSE package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "pacman",
+          "package": "gimp",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "gimp"
+            ]
+          ],
+          "launch": [
+            "gimp"
+          ],
+          "reason": "Native Arch-family package fallback when Flatpak is unavailable."
+        }
+      ]
+    },
+    "ghostty": {
+      "display_name": "Ghostty",
+      "search_terms": [
+        "ghostty"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "ghostty-linux",
+          "source_url": "https://ghostty.org/docs/install/binary",
+          "manual_steps": [
+            "Open the source URL and choose the Linux binary install instructions for your system.",
+            "Download or install Ghostty using the official instructions for your distribution.",
+            "Launch Ghostty from your desktop menu or with the ghostty command if it is added to PATH."
+          ],
+          "launch": [
+            "ghostty"
+          ],
+          "reason": "Curated official manual fallback using Ghostty's Linux install documentation.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "Ghostty's Linux install flow varies by distribution and may require following upstream repository or binary instructions."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "/opt/ghostty",
+            "binary_name": "ghostty"
+          }
+        }
+      ]
+    },
+    "alacritty": {
+      "display_name": "Alacritty",
+      "search_terms": [
+        "alacritty"
+      ],
+      "candidates": [
+        {
+          "source": "apt",
+          "package": "alacritty",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "alacritty"
+            ]
+          ],
+          "launch": [
+            "alacritty"
+          ],
+          "reason": "Native Debian-family package with a stable launcher."
+        },
+        {
+          "source": "dnf",
+          "package": "alacritty",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "alacritty"
+            ]
+          ],
+          "launch": [
+            "alacritty"
+          ],
+          "reason": "Native Fedora-family package with a stable launcher."
+        },
+        {
+          "source": "zypper",
+          "package": "alacritty",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "alacritty"
+            ]
+          ],
+          "launch": [
+            "alacritty"
+          ],
+          "reason": "Native openSUSE package with a stable launcher."
+        },
+        {
+          "source": "pacman",
+          "package": "alacritty",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "alacritty"
+            ]
+          ],
+          "launch": [
+            "alacritty"
+          ],
+          "reason": "Native Arch-family package with a stable launcher."
+        }
+      ]
+    },
+    "kitty": {
+      "display_name": "Kitty",
+      "search_terms": [
+        "kitty"
+      ],
+      "candidates": [
+        {
+          "source": "apt",
+          "package": "kitty",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "kitty"
+            ]
+          ],
+          "launch": [
+            "kitty"
+          ],
+          "reason": "Native Debian-family package with a stable launcher."
+        },
+        {
+          "source": "dnf",
+          "package": "kitty",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "kitty"
+            ]
+          ],
+          "launch": [
+            "kitty"
+          ],
+          "reason": "Native Fedora-family package with a stable launcher."
+        },
+        {
+          "source": "zypper",
+          "package": "kitty",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "kitty"
+            ]
+          ],
+          "launch": [
+            "kitty"
+          ],
+          "reason": "Native openSUSE package with a stable launcher."
+        },
+        {
+          "source": "pacman",
+          "package": "kitty",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "kitty"
+            ]
+          ],
+          "launch": [
+            "kitty"
+          ],
+          "reason": "Native Arch-family package with a stable launcher."
+        }
+      ]
+    },
+    "discord": {
+      "display_name": "Discord",
+      "search_terms": [
+        "discord"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "discord",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "discord"
+            ]
+          ],
+          "launch": [
+            "discord"
+          ],
+          "reason": "Curated Snap package with a stable launcher on Linux."
+        }
+      ]
+    },
+    "authenticator": {
+      "display_name": "Authenticator",
+      "search_terms": [
+        "authenticator",
+        "2fa authenticator"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.belmoussaoui.Authenticator",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.belmoussaoui.Authenticator"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.belmoussaoui.Authenticator"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "anydesk": {
+      "display_name": "AnyDesk",
+      "search_terms": [
+        "anydesk"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "anydesk-linux",
+          "source_url": "https://support.anydesk.com/docs/anydesk-for-linux-raspberry-pi",
+          "manual_steps": [
+            "Open the source URL and confirm that your Linux distribution is officially supported by AnyDesk.",
+            "Download and install the official package or repository configuration for your distribution from AnyDesk.",
+            "Launch AnyDesk from your desktop menu or with the anydesk command if it is added to PATH."
+          ],
+          "launch": [
+            "anydesk"
+          ],
+          "reason": "Curated official manual fallback using AnyDesk's Linux installation guidance.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "AnyDesk's official Linux support is limited to specific distributions and desktop configurations."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "/opt/AnyDesk",
+            "binary_name": "anydesk"
+          }
+        }
+      ]
+    },
+    "cryptomator": {
+      "display_name": "Cryptomator",
+      "search_terms": [
+        "cryptomator"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.cryptomator.Cryptomator",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.cryptomator.Cryptomator"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.cryptomator.Cryptomator"
+          ],
+          "reason": "Curated Cryptomator Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "bottles": {
+      "display_name": "Bottles",
+      "search_terms": [
+        "bottles"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.usebottles.bottles",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.usebottles.bottles"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.usebottles.bottles"
+          ],
+          "reason": "Curated Bottles Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "joplin": {
+      "display_name": "Joplin",
+      "search_terms": [
+        "joplin"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "net.cozic.joplin_desktop",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "net.cozic.joplin_desktop"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "net.cozic.joplin_desktop"
+          ],
+          "reason": "Curated Joplin Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "bruno": {
+      "display_name": "Bruno",
+      "search_terms": [
+        "bruno"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.usebruno.Bruno",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.usebruno.Bruno"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.usebruno.Bruno"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "logseq": {
+      "display_name": "Logseq",
+      "search_terms": [
+        "logseq"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.logseq.Logseq",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.logseq.Logseq"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.logseq.Logseq"
+          ],
+          "reason": "Curated Logseq Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "lmstudio": {
+      "display_name": "LM Studio",
+      "search_terms": [
+        "lm studio",
+        "lmstudio"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "lm-studio-linux",
+          "source_url": "https://lmstudio.ai/",
+          "manual_steps": [
+            "Open the source URL and download the Linux build or install script provided by LM Studio.",
+            "Follow the official Linux install flow from LM Studio for either the GUI app or the headless daemon tools.",
+            "Launch LM Studio from your desktop menu or with the lm-studio command if it is added to PATH."
+          ],
+          "launch": [
+            "lm-studio"
+          ],
+          "reason": "Curated official manual fallback using LM Studio's Linux distribution flow.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "LM Studio publishes multiple Linux install flows, and the exact launcher name or setup steps may vary by install method."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "${HOME}/.local/opt/lm-studio",
+            "binary_name": "lm-studio"
+          }
+        }
+      ]
+    },
+    "dejadup": {
+      "display_name": "Déjà Dup Backups",
+      "search_terms": [
+        "deja dup",
+        "deja dup backups"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.gnome.DejaDup",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.gnome.DejaDup"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.gnome.DejaDup"
+          ],
+          "reason": "Curated Deja Dup Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "flatseal": {
+      "display_name": "Flatseal",
+      "search_terms": [
+        "flatseal"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.github.tchx84.Flatseal",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.github.tchx84.Flatseal"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.github.tchx84.Flatseal"
+          ],
+          "reason": "Curated Flatseal Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "ollama": {
+      "display_name": "Ollama",
+      "search_terms": [
+        "ollama"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "ollama-linux",
+          "source_url": "https://ollama.com/download/linux",
+          "manual_steps": [
+            "Open the source URL and follow the official Linux installation instructions from Ollama.",
+            "Install the Ollama CLI and background service using the vendor's script or package instructions.",
+            "Launch or start Ollama with the ollama command, such as ollama serve or ollama run <model>."
+          ],
+          "launch": [
+            "ollama"
+          ],
+          "reason": "Curated official manual fallback using Ollama's Linux install flow.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "Ollama is primarily a CLI and background service rather than a conventional desktop app."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "/usr/local/bin",
+            "binary_name": "ollama"
+          }
+        }
+      ]
+    },
+    "keepassxc": {
+      "display_name": "KeePassXC",
+      "search_terms": [
+        "keepassxc",
+        "keepass xc"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.keepassxc.KeePassXC",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.keepassxc.KeePassXC"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.keepassxc.KeePassXC"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "freefilesync": {
+      "display_name": "FreeFileSync",
+      "search_terms": [
+        "freefilesync"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.freefilesync.FreeFileSync",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.freefilesync.FreeFileSync"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.freefilesync.FreeFileSync"
+          ],
+          "reason": "Curated FreeFileSync Flatpak package with a stable launcher.",
+          "warnings": [
+            "The Flatpak sandbox limits access to host applications and scripts unless extra permissions are granted."
+          ]
+        }
+      ]
+    },
+    "dbeaver": {
+      "display_name": "DBeaver Community",
+      "search_terms": [
+        "dbeaver",
+        "dbeaver community"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "io.dbeaver.DBeaverCommunity",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "io.dbeaver.DBeaverCommunity"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "io.dbeaver.DBeaverCommunity"
+          ],
+          "reason": "Curated DBeaver Flatpak package with a stable launcher.",
+          "warnings": [
+            "This Flatpak packaging is community-built and is not officially supported by DBeaver Corporation."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "DBeaver Community"
+        }
+      ]
+    },
+    "pikabackup": {
+      "display_name": "Pika Backup",
+      "search_terms": [
+        "pika backup",
+        "pikabackup"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.gnome.World.PikaBackup",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.gnome.World.PikaBackup"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.gnome.World.PikaBackup"
+          ],
+          "reason": "Curated Pika Backup Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "missioncenter": {
+      "display_name": "Mission Center",
+      "search_terms": [
+        "mission center",
+        "missioncenter"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "io.missioncenter.MissionCenter",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "io.missioncenter.MissionCenter"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "io.missioncenter.MissionCenter"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "protonpass": {
+      "display_name": "Proton Pass",
+      "search_terms": [
+        "proton pass",
+        "protonpass"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "me.proton.Pass",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "me.proton.Pass"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "me.proton.Pass"
+          ],
+          "reason": "Curated Proton Pass Flatpak package with a stable launcher.",
+          "warnings": [
+            "This Flatpak packaging is community-built and is not officially affiliated with Proton."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Proton Pass"
+        }
+      ]
+    },
+    "protonupqt": {
+      "display_name": "ProtonUp-Qt",
+      "search_terms": [
+        "protonupqt",
+        "protonup-qt",
+        "protonup qt"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "net.davidotek.pupgui2",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "net.davidotek.pupgui2"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "net.davidotek.pupgui2"
+          ],
+          "reason": "Curated ProtonUp-Qt Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "beekeeperstudio": {
+      "display_name": "Beekeeper Studio",
+      "search_terms": [
+        "beekeeper studio",
+        "beekeeperstudio"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "io.beekeeperstudio.Studio",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "io.beekeeperstudio.Studio"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "io.beekeeperstudio.Studio"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "jetbrainstoolbox": {
+      "display_name": "JetBrains Toolbox",
+      "search_terms": [
+        "jetbrains toolbox",
+        "jetbrains toolbox app"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "jetbrains-toolbox",
+          "source_url": "https://www.jetbrains.com/help/toolbox-app/installation.html",
+          "manual_steps": [
+            "Open the source URL and download the Linux Toolbox App tar.gz.",
+            "Extract the archive into a location you control, such as ${HOME}/.local/opt/jetbrains-toolbox/.",
+            "Run ./bin/jetbrains-toolbox from the extracted folder to initialize the app and create its desktop entry."
+          ],
+          "launch": [
+            "${HOME}/.local/opt/jetbrains-toolbox/bin/jetbrains-toolbox"
+          ],
+          "reason": "Curated official manual fallback using JetBrains Toolbox's Linux tarball install flow.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "JetBrains Toolbox on Linux is distributed as a tar.gz and the exact extracted versioned folder name may change."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "${HOME}/.local/opt/jetbrains-toolbox",
+            "binary_name": "jetbrains-toolbox"
+          }
+        }
+      ]
+    },
+    "element": {
+      "display_name": "Element",
+      "search_terms": [
+        "element",
+        "element desktop"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "im.riot.Riot",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "im.riot.Riot"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "im.riot.Riot"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "ferdium": {
+      "display_name": "Ferdium",
+      "search_terms": [
+        "ferdium"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.ferdium.Ferdium",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.ferdium.Ferdium"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.ferdium.Ferdium"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "mongodbcompass": {
+      "display_name": "MongoDB Compass",
+      "search_terms": [
+        "mongodb compass",
+        "mongo compass"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "mongodb-compass",
+          "source_url": "https://www.mongodb.com/try/download/compass",
+          "manual_steps": [
+            "Open the source URL and choose the Linux package that matches your distribution, such as Ubuntu 64-bit or Red Hat 64-bit.",
+            "Download and install the official package from MongoDB.",
+            "Launch Compass from your desktop menu or with the mongodb-compass command if it is added to PATH."
+          ],
+          "launch": [
+            "mongodb-compass"
+          ],
+          "reason": "Curated official manual fallback using MongoDB's Compass download page.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "MongoDB Compass publishes distro-specific Linux packages, so the exact install steps depend on the user's system."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "/opt/mongodb-compass",
+            "binary_name": "mongodb-compass"
+          }
+        }
+      ]
+    },
+    "bitwarden": {
+      "display_name": "Bitwarden",
+      "search_terms": [
+        "bitwarden"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.bitwarden.desktop",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.bitwarden.desktop"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.bitwarden.desktop"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "podmandesktop": {
+      "display_name": "Podman Desktop",
+      "search_terms": [
+        "podman desktop",
+        "podmandesktop"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "io.podman_desktop.PodmanDesktop",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "io.podman_desktop.PodmanDesktop"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "io.podman_desktop.PodmanDesktop"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "insomnia": {
+      "display_name": "Insomnia",
+      "search_terms": [
+        "insomnia",
+        "insomnia rest"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "rest.insomnia.Insomnia",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "rest.insomnia.Insomnia"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "rest.insomnia.Insomnia"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "davinciresolve": {
+      "display_name": "DaVinci Resolve",
+      "search_terms": [
+        "davinci resolve",
+        "davinciresolve",
+        "da vinci resolve"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "davinci-resolve-linux",
+          "source_url": "https://www.blackmagicdesign.com/products/davinciresolve",
+          "manual_steps": [
+            "Open the source URL and choose the free or Studio Linux download.",
+            "Download the official Linux archive or installer package from Blackmagic Design.",
+            "Follow the vendor installer flow, then launch DaVinci Resolve from your desktop menu or with the davinci-resolve command if it is added to PATH."
+          ],
+          "launch": [
+            "davinci-resolve"
+          ],
+          "reason": "Curated official manual fallback using Blackmagic Design's Linux download.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "DaVinci Resolve has strict GPU and system-library requirements, so users may need distro-specific follow-up steps."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "/opt/resolve",
+            "binary_name": "davinci-resolve"
+          }
+        }
+      ]
+    },
+    "brave": {
+      "display_name": "Brave",
+      "search_terms": [
+        "brave",
+        "brave browser"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "brave",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "brave"
+            ]
+          ],
+          "launch": [
+            "brave"
+          ],
+          "reason": "Official Snap package with the standard brave launcher."
+        }
+      ]
+    },
+    "notepadplusplus": {
+      "display_name": "Notepad++",
+      "search_terms": [
+        "notepad++",
+        "notepad plus plus",
+        "notepad-plus-plus"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "notepad-plus-plus",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "notepad-plus-plus"
+            ]
+          ],
+          "launch": [
+            "snap",
+            "run",
+            "notepad-plus-plus"
+          ],
+          "reason": "Maintained Snap wrapper is simpler and safer than a manual Wine setup."
+        },
+        {
+          "source": "wine",
+          "package": "notepadplusplus",
+          "install": [
+            [
+              "env",
+              "WINEPREFIX=${HOME}/.local/share/linux-installer/notepadplusplus",
+              "winetricks",
+              "-q",
+              "corefonts"
+            ]
+          ],
+          "launch": [
+            "env",
+            "WINEPREFIX=${HOME}/.local/share/linux-installer/notepadplusplus",
+            "wine",
+            "C:\\\\Program Files\\\\Notepad++\\\\notepad++.exe"
+          ],
+          "source_url": "https://notepad-plus-plus.org/downloads/",
+          "manual_steps": [
+            "Download the official Notepad++ installer from the source URL.",
+            "Run the installer inside the configured WINEPREFIX.",
+            "After installation, launch Notepad++ through the configured Wine command."
+          ],
+          "reason": "Curated Wine fallback for systems without a usable package wrapper.",
+          "warnings": [
+            "This fallback requires the user to download and run the official Notepad++ installer manually.",
+            "Wine-based installs are higher risk and may require manual follow-up."
+          ],
+          "recipe": {
+            "kind": "manual",
+            "installer_source": "Official Notepad++ installer from notepad-plus-plus.org",
+            "wineprefix": "${HOME}/.local/share/linux-installer/notepadplusplus"
+          }
+        }
+      ]
+    },
+    "localsend": {
+      "display_name": "LocalSend",
+      "search_terms": [
+        "localsend"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.localsend.localsend_app",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.localsend.localsend_app"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.localsend.localsend_app"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "qbittorrent": {
+      "display_name": "qBittorrent",
+      "search_terms": [
+        "qbittorrent",
+        "qbittorrent"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.qbittorrent.qBittorrent",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.qbittorrent.qBittorrent"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.qbittorrent.qBittorrent"
+          ],
+          "reason": "Curated qBittorrent Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "filezilla": {
+      "display_name": "FileZilla",
+      "search_terms": [
+        "filezilla"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.filezillaproject.Filezilla",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.filezillaproject.Filezilla"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.filezillaproject.Filezilla"
+          ],
+          "reason": "Curated FileZilla Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "transmission": {
+      "display_name": "Transmission",
+      "search_terms": [
+        "transmission"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.transmissionbt.Transmission",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.transmissionbt.Transmission"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.transmissionbt.Transmission"
+          ],
+          "reason": "Curated Transmission Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "syncthingtray": {
+      "display_name": "Syncthing Tray",
+      "search_terms": [
+        "syncthing tray",
+        "syncthingtray"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "io.github.martchus.syncthingtray",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "io.github.martchus.syncthingtray"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "io.github.martchus.syncthingtray"
+          ],
+          "reason": "Curated Syncthing Tray Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "virtmanager": {
+      "display_name": "Virtual Machine Manager",
+      "search_terms": [
+        "virt manager",
+        "virt-manager",
+        "virtual machine manager"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.virt_manager.virt-manager",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.virt_manager.virt-manager"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.virt_manager.virt-manager"
+          ],
+          "reason": "Curated Virtual Machine Manager Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "minecraft": {
+      "display_name": "Minecraft",
+      "search_terms": [
+        "minecraft",
+        "minecraft launcher"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.prismlauncher.PrismLauncher",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.prismlauncher.PrismLauncher"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.prismlauncher.PrismLauncher"
+          ],
+          "reason": "Curated community workaround: Prism Launcher is a widely used Linux launcher for Minecraft.",
+          "warnings": [
+            "This is not the official Minecraft Launcher from Mojang or Microsoft.",
+            "Prism Launcher is a community-maintained workaround and may require the user to sign in with a supported Microsoft account flow."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Prism Launcher"
+        }
+      ]
+    },
+    "obsstudio": {
+      "display_name": "OBS Studio",
+      "search_terms": [
+        "obs",
+        "obs studio",
+        "open broadcaster software"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.obsproject.Studio",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.obsproject.Studio"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.obsproject.Studio"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "onepassword": {
+      "display_name": "1Password",
+      "search_terms": [
+        "1password",
+        "1 password"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "1password-linux",
+          "source_url": "https://support.1password.com/install-linux/",
+          "manual_steps": [
+            "Open the source URL and choose the instructions for your Linux distribution or the tar.gz build.",
+            "If you use a supported distro, install the official package or repository setup provided by 1Password.",
+            "If you use the tar.gz build, extract it and run the vendor after-install script, then launch 1Password."
+          ],
+          "launch": [
+            "1password"
+          ],
+          "reason": "Curated official manual fallback using 1Password's Linux install guide.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "1Password publishes multiple Linux install methods, so the exact steps depend on the user's distribution."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "/opt/1Password",
+            "binary_name": "1password"
+          }
+        }
+      ]
+    },
+    "postman": {
+      "display_name": "Postman",
+      "search_terms": [
+        "postman"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "postman",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "postman"
+            ]
+          ],
+          "launch": [
+            "postman"
+          ],
+          "reason": "Curated Snap package with a stable launcher on Linux."
+        }
+      ]
+    },
+    "roblox": {
+      "display_name": "Roblox",
+      "search_terms": [
+        "roblox"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.vinegarhq.Sober",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.vinegarhq.Sober"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.vinegarhq.Sober"
+          ],
+          "reason": "Curated community workaround: Sober is a well-known Linux port distributed on Flathub.",
+          "warnings": [
+            "This is not official Roblox software.",
+            "Sober is a community-maintained workaround and may break or be discontinued."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Sober"
+        }
+      ]
+    },
+    "signal": {
+      "display_name": "Signal Desktop",
+      "search_terms": [
+        "signal",
+        "signal desktop"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "signal-desktop",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "signal-desktop"
+            ]
+          ],
+          "launch": [
+            "signal-desktop"
+          ],
+          "reason": "Curated Snap package with a stable launcher for Signal Desktop.",
+          "warnings": [
+            "This package is maintained by the Snapcrafters community and may not be officially maintained by Signal."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Signal Desktop"
+        }
+      ]
+    },
+    "terminator": {
+      "display_name": "Terminator",
+      "search_terms": [
+        "terminator"
+      ],
+      "candidates": [
+        {
+          "source": "apt",
+          "package": "terminator",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "terminator"
+            ]
+          ],
+          "launch": [
+            "terminator"
+          ],
+          "reason": "Native Debian-family package with a stable launcher."
+        },
+        {
+          "source": "dnf",
+          "package": "terminator",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "terminator"
+            ]
+          ],
+          "launch": [
+            "terminator"
+          ],
+          "reason": "Native Fedora-family package with a stable launcher."
+        },
+        {
+          "source": "zypper",
+          "package": "terminator",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "terminator"
+            ]
+          ],
+          "launch": [
+            "terminator"
+          ],
+          "reason": "Native openSUSE package with a stable launcher."
+        },
+        {
+          "source": "pacman",
+          "package": "terminator",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "terminator"
+            ]
+          ],
+          "launch": [
+            "terminator"
+          ],
+          "reason": "Native Arch-family package with a stable launcher."
+        }
+      ]
+    },
+    "tilix": {
+      "display_name": "Tilix",
+      "search_terms": [
+        "tilix"
+      ],
+      "candidates": [
+        {
+          "source": "apt",
+          "package": "tilix",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "tilix"
+            ]
+          ],
+          "launch": [
+            "tilix"
+          ],
+          "reason": "Native Debian-family package with a stable launcher."
+        },
+        {
+          "source": "dnf",
+          "package": "tilix",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "tilix"
+            ]
+          ],
+          "launch": [
+            "tilix"
+          ],
+          "reason": "Native Fedora-family package with a stable launcher."
+        },
+        {
+          "source": "zypper",
+          "package": "tilix",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "tilix"
+            ]
+          ],
+          "launch": [
+            "tilix"
+          ],
+          "reason": "Native openSUSE package with a stable launcher."
+        }
+      ]
+    },
+    "remmina": {
+      "display_name": "Remmina",
+      "search_terms": [
+        "remmina",
+        "remote desktop client"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.remmina.Remmina",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.remmina.Remmina"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.remmina.Remmina"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "rustdesk": {
+      "display_name": "RustDesk",
+      "search_terms": [
+        "rustdesk"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.rustdesk.RustDesk",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.rustdesk.RustDesk"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.rustdesk.RustDesk"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "rcloneui": {
+      "display_name": "Rclone UI",
+      "search_terms": [
+        "rclone ui",
+        "rcloneui"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.rcloneui.RcloneUI",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.rcloneui.RcloneUI"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.rcloneui.RcloneUI"
+          ],
+          "reason": "Curated Rclone UI Flatpak package with a stable launcher."
+        }
+      ]
+    },
+    "slack": {
+      "display_name": "Slack",
+      "search_terms": [
+        "slack"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "slack",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "slack"
+            ]
+          ],
+          "launch": [
+            "slack"
+          ],
+          "reason": "Curated Snap package with a stable launcher on Linux."
+        }
+      ]
+    },
+    "spotify": {
+      "display_name": "Spotify",
+      "search_terms": [
+        "spotify"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "spotify",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "spotify"
+            ]
+          ],
+          "launch": [
+            "spotify"
+          ],
+          "reason": "Curated Snap package with a stable launcher on Linux."
+        }
+      ]
+    },
+    "wezterm": {
+      "display_name": "WezTerm",
+      "search_terms": [
+        "wezterm"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.wezfurlong.wezterm",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.wezfurlong.wezterm"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.wezfurlong.wezterm"
+          ],
+          "reason": "Curated WezTerm Flatpak package with a stable launcher.",
+          "warnings": [
+            "This Flatpak packaging is community-built and may lag behind upstream WezTerm releases."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "WezTerm"
+        }
+      ]
+    },
+    "teamsforlinux": {
+      "display_name": "Teams for Linux",
+      "search_terms": [
+        "teams for linux",
+        "teams-for-linux",
+        "microsoft teams"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "teams-for-linux",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "teams-for-linux"
+            ]
+          ],
+          "launch": [
+            "teams-for-linux"
+          ],
+          "reason": "Curated unofficial Teams wrapper with a stable launcher on Linux.",
+          "warnings": [
+            "This is not official Microsoft Teams software.",
+            "Teams for Linux is a community-maintained Electron wrapper around the web app and may break when Microsoft changes the service."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Teams for Linux"
+        }
+      ]
+    },
+    "zed": {
+      "display_name": "Zed",
+      "search_terms": [
+        "zed",
+        "zed editor"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "dev.zed.Zed",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "dev.zed.Zed"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "dev.zed.Zed"
+          ],
+          "reason": "Curated Zed Flatpak package with a stable launcher.",
+          "warnings": [
+            "This Flatpak packaging is community-built and is not officially supported by Zed Industries, Inc."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Zed"
+        }
+      ]
+    },
+    "steam": {
+      "display_name": "Steam",
+      "search_terms": [
+        "steam",
+        "steam client"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "com.valvesoftware.Steam",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "com.valvesoftware.Steam"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "com.valvesoftware.Steam"
+          ],
+          "reason": "Curated community package for Steam on Flathub with a stable launcher.",
+          "warnings": [
+            "This is a community-maintained Steam package on Flathub and is not officially supported by Valve.",
+            "Users may need to grant additional filesystem access for external game libraries."
+          ],
+          "community": true,
+          "community_label": "Community workaround",
+          "upstream_name": "Steam"
+        }
+      ]
+    },
+    "telegram": {
+      "display_name": "Telegram",
+      "search_terms": [
+        "telegram",
+        "telegram desktop"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.telegram.desktop",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.telegram.desktop"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.telegram.desktop"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        }
+      ]
+    },
+    "beeper": {
+      "display_name": "Beeper",
+      "search_terms": [
+        "beeper"
+      ],
+      "candidates": [
+        {
+          "source": "manual",
+          "package": "beeper-linux",
+          "source_url": "https://www.beeper.com/download/linux",
+          "manual_steps": [
+            "Download the official Linux build from the source URL.",
+            "Extract or place the downloaded build into ${HOME}/.local/opt/beeper/.",
+            "Launch the Beeper binary from that folder. If the app crashes, test adding the --disable-gpu flag."
+          ],
+          "launch": [
+            "${HOME}/.local/opt/beeper/beeper-app"
+          ],
+          "reason": "Curated official manual fallback using Beeper's direct Linux download.",
+          "warnings": [
+            "This path is manual and should not be auto-installed by the helper.",
+            "The exact extracted folder layout should be verified during testing."
+          ],
+          "recipe": {
+            "kind": "official_archive",
+            "install_location": "${HOME}/.local/opt/beeper",
+            "binary_name": "beeper-app"
+          }
+        }
+      ]
+    },
+    "vscode": {
+      "display_name": "Visual Studio Code",
+      "search_terms": [
+        "visual studio code",
+        "vs code",
+        "vscode",
+        "code"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "code",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "code",
+              "--classic"
+            ]
+          ],
+          "launch": [
+            "code"
+          ],
+          "reason": "Curated Snap package with the standard code launcher."
+        }
+      ]
+    },
+    "vlc": {
+      "display_name": "VLC",
+      "search_terms": [
+        "vlc",
+        "video lan client"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.videolan.VLC",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.videolan.VLC"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.videolan.VLC"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        },
+        {
+          "source": "apt",
+          "package": "vlc",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "vlc"
+            ]
+          ],
+          "launch": [
+            "vlc"
+          ],
+          "reason": "Native Debian-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "dnf",
+          "package": "vlc",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "vlc"
+            ]
+          ],
+          "launch": [
+            "vlc"
+          ],
+          "reason": "Native Fedora-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "zypper",
+          "package": "vlc",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "vlc"
+            ]
+          ],
+          "launch": [
+            "vlc"
+          ],
+          "reason": "Native openSUSE package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "pacman",
+          "package": "vlc",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "vlc"
+            ]
+          ],
+          "launch": [
+            "vlc"
+          ],
+          "reason": "Native Arch-family package fallback when Flatpak is unavailable."
+        }
+      ]
+    },
+    "wireshark": {
+      "display_name": "Wireshark",
+      "search_terms": [
+        "wireshark"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.wireshark.Wireshark",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.wireshark.Wireshark"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.wireshark.Wireshark"
+          ],
+          "reason": "Curated Flatpak app ID for opening packet capture files on Linux.",
+          "warnings": [
+            "The Flathub Wireshark package does not support live packet capture and is best used for inspecting existing capture files."
+          ]
+        }
+      ]
+    },
+    "blender": {
+      "display_name": "Blender",
+      "search_terms": [
+        "blender"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.blender.Blender",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.blender.Blender"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.blender.Blender"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        },
+        {
+          "source": "apt",
+          "package": "blender",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "blender"
+            ]
+          ],
+          "launch": [
+            "blender"
+          ],
+          "reason": "Native Debian-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "dnf",
+          "package": "blender",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "blender"
+            ]
+          ],
+          "launch": [
+            "blender"
+          ],
+          "reason": "Native Fedora-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "zypper",
+          "package": "blender",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "blender"
+            ]
+          ],
+          "launch": [
+            "blender"
+          ],
+          "reason": "Native openSUSE package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "pacman",
+          "package": "blender",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "blender"
+            ]
+          ],
+          "launch": [
+            "blender"
+          ],
+          "reason": "Native Arch-family package fallback when Flatpak is unavailable."
+        }
+      ]
+    },
+    "inkscape": {
+      "display_name": "Inkscape",
+      "search_terms": [
+        "inkscape"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.inkscape.Inkscape",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.inkscape.Inkscape"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.inkscape.Inkscape"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        },
+        {
+          "source": "apt",
+          "package": "inkscape",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "inkscape"
+            ]
+          ],
+          "launch": [
+            "inkscape"
+          ],
+          "reason": "Native Debian-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "dnf",
+          "package": "inkscape",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "inkscape"
+            ]
+          ],
+          "launch": [
+            "inkscape"
+          ],
+          "reason": "Native Fedora-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "zypper",
+          "package": "inkscape",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "inkscape"
+            ]
+          ],
+          "launch": [
+            "inkscape"
+          ],
+          "reason": "Native openSUSE package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "pacman",
+          "package": "inkscape",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "inkscape"
+            ]
+          ],
+          "launch": [
+            "inkscape"
+          ],
+          "reason": "Native Arch-family package fallback when Flatpak is unavailable."
+        }
+      ]
+    },
+    "krita": {
+      "display_name": "Krita",
+      "search_terms": [
+        "krita"
+      ],
+      "candidates": [
+        {
+          "source": "flatpak",
+          "package": "org.kde.krita",
+          "install": [
+            [
+              "flatpak",
+              "install",
+              "-y",
+              "flathub",
+              "org.kde.krita"
+            ]
+          ],
+          "launch": [
+            "flatpak",
+            "run",
+            "org.kde.krita"
+          ],
+          "reason": "Curated Flatpak app ID with a stable launcher."
+        },
+        {
+          "source": "apt",
+          "package": "krita",
+          "install": [
+            [
+              "sudo",
+              "apt-get",
+              "install",
+              "-y",
+              "krita"
+            ]
+          ],
+          "launch": [
+            "krita"
+          ],
+          "reason": "Native Debian-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "dnf",
+          "package": "krita",
+          "install": [
+            [
+              "sudo",
+              "dnf",
+              "install",
+              "-y",
+              "krita"
+            ]
+          ],
+          "launch": [
+            "krita"
+          ],
+          "reason": "Native Fedora-family package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "zypper",
+          "package": "krita",
+          "install": [
+            [
+              "sudo",
+              "zypper",
+              "install",
+              "-y",
+              "krita"
+            ]
+          ],
+          "launch": [
+            "krita"
+          ],
+          "reason": "Native openSUSE package fallback when Flatpak is unavailable."
+        },
+        {
+          "source": "pacman",
+          "package": "krita",
+          "install": [
+            [
+              "sudo",
+              "pacman",
+              "-S",
+              "--noconfirm",
+              "krita"
+            ]
+          ],
+          "launch": [
+            "krita"
+          ],
+          "reason": "Native Arch-family package fallback when Flatpak is unavailable."
+        }
+      ]
+    },
+    "obsidian": {
+      "display_name": "Obsidian",
+      "search_terms": [
+        "obsidian"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "obsidian",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "obsidian"
+            ]
+          ],
+          "launch": [
+            "obsidian"
+          ],
+          "reason": "Curated Snap package with a stable launcher on Linux."
+        }
+      ]
+    },
+    "zoom": {
+      "display_name": "Zoom",
+      "search_terms": [
+        "zoom",
+        "zoom client"
+      ],
+      "candidates": [
+        {
+          "source": "snap",
+          "package": "zoom-client",
+          "install": [
+            [
+              "sudo",
+              "snap",
+              "install",
+              "zoom-client"
+            ]
+          ],
+          "launch": [
+            "zoom-client"
+          ],
+          "reason": "Curated Snap package with a stable launcher on Linux."
+        }
+      ]
+    },
+    "zenbrowser": {
+      "display_name": "Zen Browser",
+      "search_terms": [
+        "zen browser",
+        "zen-browser",
+        "zen-browser-bin"
+      ],
+      "candidates": [
+        {
+          "source": "aur",
+          "package": "zen-browser-bin",
+          "launch": [
+            "zen-browser"
+          ],
+          "reason": "AUR test fixture with a verified package-to-binary name mismatch. The helper chooses yay or paru at runtime."
+        }
+      ]
+    },
+    "helix": {
+      "display_name": "Helix",
+      "search_terms": [
+        "helix",
+        "hx"
+      ],
+      "candidates": [
+        {
+          "source": "nix",
+          "package": "helix",
+          "install": [
+            [
+              "nix",
+              "profile",
+              "install",
+              "nixpkgs#helix"
+            ]
+          ],
+          "launch": [
+            "hx"
+          ],
+          "reason": "Nix profile test fixture with a known stable executable name."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "skill_name": "lifelog2",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "单次碎片记录",
+      "prompt": "记日记 今天天气真好，心情不错",
+      "expected_output": "确认已记录，包含时间戳，不修改原文内容",
+      "assertions": [
+        {
+          "name": "包含确认标记",
+          "type": "contains",
+          "value": "✓"
+        },
+        {
+          "name": "包含时间戳",
+          "type": "regex",
+          "value": "\\[\\d{2}:\\d{2}\\]"
+        },
+        {
+          "name": "不修改原文",
+          "type": "contains",
+          "value": "今天天气真好，心情不错"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "多次碎片记录后汇总",
+      "prompt": "记日记 早上开会讨论了新项目\n记日记 中午吃了沙拉，味道一般\n记日记 下午完成了重要报告\n汇总日记",
+      "expected_output": "汇总所有三条记录，使用无序列表，标题格式为'YYYY 年 M 月 D 日#lifelog'，每条带时间戳",
+      "assertions": [
+        {
+          "name": "标题格式正确",
+          "type": "regex",
+          "value": "# \\d{4}年\\d{1,2}月\\d{1,2}日#lifelog"
+        },
+        {
+          "name": "使用无序列表",
+          "type": "contains",
+          "value": "- ["
+        },
+        {
+          "name": "包含所有三条记录",
+          "type": "count",
+          "min": 3
+        },
+        {
+          "name": "保留原文内容",
+          "type": "contains",
+          "value": "早上开会讨论了新项目"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "完整流程测试",
+      "prompt": "记日记 今天开始尝试用碎片化方式记录生活\n记日记 同事分享了好用的工具\n汇总日记\n日记存档",
+      "expected_output": "完成记录、汇总、存档全流程，存档时调用 flomo-notes 和 ima-skill 技能，最后清理暂存",
+      "assertions": [
+        {
+          "name": "调用 flomo-notes 技能",
+          "type": "contains",
+          "value": "flomo"
+        },
+        {
+          "name": "调用 ima-skill 技能",
+          "type": "contains",
+          "value": "ima"
+        },
+        {
+          "name": "确认存档完成",
+          "type": "contains",
+          "value": "已存档"
+        },
+        {
+          "name": "确认暂存清理",
+          "type": "contains",
+          "value": "已清理"
+        }
+      ]
+    }
+  ]
+}

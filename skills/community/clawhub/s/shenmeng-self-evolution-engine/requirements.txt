@@ -1,0 +1,14 @@
+# Self-Evolution Engine 依赖
+
+# 核心依赖
+python-dateutil>=2.8.0
+
+# 数据处理（可选，用于高级分析）
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 监控（可选）
+psutil>=5.9.0
+
+# 报告生成
+matplotlib>=3.7.0

@@ -1,35 +1,33 @@
 ---
-name: "Indigo Assets"
+name: indigo-assets
 description: "Query real-time prices and data for Indigo Protocol iAssets, ADA, and INDY tokens."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indigo-assets"
-sourceUrl: "https://clawhub.ai/skills/indigo-assets"
+allowed-tools: Read, Glob, Grep
+license: MIT
+metadata:
+  author: indigoprotocol
+  version: '0.1.0'
 ---
 
-# Indigo Assets
+# iAsset Prices & Data
 
-> Query real-time prices and data for Indigo Protocol iAssets, ADA, and INDY tokens.
+Query real-time prices and data for Indigo Protocol iAssets (iUSD, iBTC, iETH, iSOL), ADA, and INDY tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indigo-assets`
-- **Source URL:** [https://clawhub.ai/skills/indigo-assets](https://clawhub.ai/skills/indigo-assets)
+## MCP Tools
 
-## Overview
+| Tool | Description |
+|------|-------------|
+| `get_assets` | Get all Indigo iAssets with prices and interest data |
+| `get_asset` | Get details for a specific iAsset (iUSD, iBTC, iETH, iSOL) |
+| `get_asset_price` | Get the current price for a specific iAsset |
+| `get_ada_price` | Get the current ADA price in USD |
+| `get_indy_price` | Get the current INDY token price in ADA and USD |
 
+## Sub-Skills
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indigo-assets
-```
+- [Asset Prices](sub-skills/asset-prices.md) — Query iAsset prices and details
+- [Token Prices](sub-skills/token-prices.md) — Query ADA and INDY token prices
+
+## References
+
+- [MCP Tools Reference](references/mcp-tools.md) — Detailed tool parameters and return types
+- [Asset Concepts](references/concepts.md) — iAssets, oracles, INDY token, and interest rates

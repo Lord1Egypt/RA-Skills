@@ -1,35 +1,74 @@
 ---
-name: "@_FORAB Tweet Generator"
-description: "模仿 @_FORAB 风格自动生成 200-300 字专业、无表情符号的推文，涵盖加密货币、地缘政治、科技/AI 和金融股市主题。"
-category: "creative"
-source: "ClawHub"
-tags: [content-creation, social-media, twitter]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/forab-tweet-generator"
-sourceUrl: "https://clawhub.ai/skills/forab-tweet-generator"
+name: forab-tweet-generator
+slug: forab-tweet-generator
+displayName: @_FORAB Tweet Generator
+version: 1.0.0
+tags: twitter, social-media, crypto, politics, ai, content-creation
+description: 模仿 @_FORAB 风格生成 200-300 字的 Twitter/X 推文，无表情符号。支持 Crypto、地缘政治、科技/AI、金融/股市四大类别。
 ---
 
 # @_FORAB Tweet Generator
 
-> 模仿 @_FORAB 风格自动生成 200-300 字专业、无表情符号的推文，涵盖加密货币、地缘政治、科技/AI 和金融股市主题。
+模仿知名 Twitter 博主 @_FORAB 的风格生成高质量推文。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/forab-tweet-generator`
-- **Source URL:** [https://clawhub.ai/skills/forab-tweet-generator](https://clawhub.ai/skills/forab-tweet-generator)
+## 功能
 
-## Overview
+- 自动生成 200-300 字的专业推文
+- 支持 4 大内容类别：Crypto、地缘政治、科技/AI、金融/股市
+- 无表情符号，保持专业简洁
+- 可自定义开头钩子、结尾、消息来源、数值价值
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/forab-tweet-generator
+### 基础用法
+
+```
+请用 @_FORAB 风格生成一条关于"比特币突破10万美元"的推文
+```
+
+### 指定类别
+
+```
+请用 @_FORAB 风格生成一条关于"特朗普发表讲话"的推文，类别是地缘政治
+```
+
+### 提供详细信息
+
+```
+请用 @_FORAB 风格生成推文：
+- 事件：Tether 宣布投资比特币
+- 类别：Crypto
+- 来源：Polymarket
+- 价值：数十亿美元
+```
+
+## 支持的类别
+
+| 类别 | 适用场景 |
+|-----|---------|
+| Crypto | 加密货币、DeFi、交易所 |
+| 地缘政治 | 政策、选举、地缘冲突 |
+| 科技/AI | 新产品发布、技术突破 |
+| 金融/股市 | 股市、经济、金融新闻 |
+
+## 推文风格
+
+- **字数**：严格控制在 200-300 字
+- **结构**：钩子开头 + 事件描述 + 扩展分析 + 互动结尾
+- **钩子**："没想到""我的天""刚刚""一早起来""离谱"
+- **结尾**：提问激发互动（"你们怎么看？"）
+- **表情符号**：不使用
+
+## 示例
+
+```
+我的天，彭博社报道 Meta 计划裁员数千人。
+
+这消息一出，整个科技圈都炸了。毕竟 Meta 作为曾经的科技巨头，一举一动都会影响整个行业的风向。记得之前元宇宙热潮的时候，他们疯狂招人，烧钱如流水。现在看来，那个方向走错了，只能通过裁员来止血。那些刚入职不久的员工，估计还没适应就被通知走人了。
+
+对于科技行业来说，这波裁员潮远没有结束。从硅谷到中国，各大公司都在收缩战线，把资源集中在核心业务上。这可能是一个时代的结束——那个互联网高速增长、疯狂烧钱换规模的时代已经过去了。以后会更看重盈利能力和现金流，而不是用户增长和估值。
+
+你们觉得科技公司还会继续裁员吗？
+
+字数: 289
 ```

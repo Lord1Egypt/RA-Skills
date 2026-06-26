@@ -1,0 +1,42 @@
+﻿{
+  "simulation_type": "optical",
+  "name": "standard_optical_template",
+  "description": "Topic-neutral optical simulation template. Replace every CONFIGURE placeholder with the user's own project values before running.",
+  "requires_configuration": true,
+  "configuration_source": "user project configuration",
+  "device_stack": {
+    "name": "<CONFIGURE_DEVICE_OR_SAMPLE_NAME>",
+    "dimension": "<CONFIGURE_DIMENSION_1D_2D_OR_3D>",
+    "device_width_nm": "<CONFIGURE_DEVICE_WIDTH_NM>",
+    "layers": [
+      {
+        "name": "<LAYER_1_NAME>",
+        "role": "<LAYER_1_ROLE>",
+        "material": "<LAYER_1_MATERIAL>",
+        "thickness_nm": "<CONFIGURE_LAYER_1_THICKNESS_NM>",
+        "n": "<CONFIGURE_LAYER_1_REFRACTIVE_INDEX_N>",
+        "k": "<CONFIGURE_LAYER_1_EXTINCTION_COEFFICIENT_K>"
+      },
+      {
+        "name": "<LAYER_2_NAME>",
+        "role": "<LAYER_2_ROLE>",
+        "material": "<LAYER_2_MATERIAL>",
+        "thickness_nm": "<CONFIGURE_LAYER_2_THICKNESS_NM>",
+        "n": "<CONFIGURE_LAYER_2_REFRACTIVE_INDEX_N>",
+        "k": "<CONFIGURE_LAYER_2_EXTINCTION_COEFFICIENT_K>"
+      },
+      {
+        "name": "<LAYER_3_NAME>",
+        "role": "<LAYER_3_ROLE>",
+        "material": "<LAYER_3_MATERIAL>",
+        "thickness_nm": "<CONFIGURE_LAYER_3_THICKNESS_NM>",
+        "n": "<CONFIGURE_LAYER_3_REFRACTIVE_INDEX_N>",
+        "k": "<CONFIGURE_LAYER_3_EXTINCTION_COEFFICIENT_K>"
+      }
+    ]
+  },
+  "wavelengths_nm": "<CONFIGURE_WAVELENGTH_LIST_NM>",
+  "incident_intensity": "<CONFIGURE_INCIDENT_INTENSITY_WITH_UNIT>",
+  "polarization": "<CONFIGURE_POLARIZATION>",
+  "output_dir": "output/optical_configured_project"
+}

@@ -1,35 +1,32 @@
 ---
-name: "答案之书"
-description: "答案之书——心中默念一个问题，随机翻到一页，得到一个充满哲理的简短答案。当用户提到"答案之书"、想"翻一页"、想问命运/求指引、希望神谕回答是非题时使用。触发词：答案之书、翻一页、问问书、神谕、求一个答案。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dayanzhishu"
-sourceUrl: "https://clawhub.ai/skills/dayanzhishu"
+name: dayanzhishu
+description: 答案之书——心中默念一个问题，随机翻到一页，得到一个充满哲理的简短答案。当用户提到"答案之书"、想"翻一页"、想问命运/求指引、希望神谕回答是非题时使用。触发词：答案之书、翻一页、问问书、神谕、求一个答案。
 ---
 
 # 答案之书
 
-> 答案之书——心中默念一个问题，随机翻到一页，得到一个充满哲理的简短答案。当用户提到"答案之书"、想"翻一页"、想问命运/求指引、希望神谕回答是非题时使用。触发词：答案之书、翻一页、问问书、神谕、求一个答案。
+数字版《答案之书》。在心中默想一个是非题或"该不该"的问题，运行脚本随机翻到一页，得到一个简短的哲理回答。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dayanzhishu`
-- **Source URL:** [https://clawhub.ai/skills/dayanzhishu](https://clawhub.ai/skills/dayanzhishu)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dayanzhishu
+python3 scripts/get_answer.py
 ```
+
+可选：指定页码（1-100）：
+
+```bash
+python3 scripts/get_answer.py 42
+```
+
+脚本会返回一条简短的中文哲理答案，以及对应的页码。
+
+## 如何使用答案
+
+1. 闭上眼睛，心里默念一个清晰的问题（最好是"该不该 / 会不会 / 是不是"这类）。
+2. 运行 skill。
+3. 先按字面理解答案，再去思考它对你问题的真实含义。
+
+## 扩展
+
+编辑 `scripts/get_answer.py`，往 `ANSWERS` 列表里加新条目即可。每条尽量简短（10 字以内）、直接、留有解读空间。

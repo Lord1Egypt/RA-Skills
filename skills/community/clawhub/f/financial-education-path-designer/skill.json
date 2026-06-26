@@ -1,0 +1,25 @@
+{
+  "name": "Financial Education Path Designer",
+  "slug": "financial-education-path-designer",
+  "version": "1.0.0",
+  "description": "Creates role-based finance learning paths for founders, operators, and early-career analysts.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "learning-path",
+    "curriculum",
+    "upskilling",
+    "education"
+  ],
+  "trigger_keywords": [
+    "finance learning path",
+    "accounting study roadmap",
+    "founder finance curriculum",
+    "analyst upskilling plan",
+    "financial literacy plan"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

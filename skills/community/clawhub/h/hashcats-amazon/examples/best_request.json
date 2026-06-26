@@ -1,0 +1,9 @@
+{
+  "query": "noise cancelling headphones under 200",
+  "priorities": {
+    "max_price": 200,
+    "min_review_count": 100,
+    "min_rating": 4.0,
+    "ship_within_days": 5
+  }
+}

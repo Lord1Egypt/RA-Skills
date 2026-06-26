@@ -1,0 +1,61 @@
+function [KPLLp_pu, KPLLi_pu, KPLLp, KPLLi] = get_pll_pi_parameters(f_BW_target, Unom, f0, zeta)
+% get_pll_pi_parameters - 根据目标带宽计算锁相环 (PLL) 的 PI 控制参数
+%
+% 输入参数:
+%   f_BW_target : 目标闭环带宽 (Hz) [必填]
+%   Unom        : 电网线电压有效值 (V) [可选，默认 690V]
+%   f0          : 电网额定基波频率 (Hz) [可选，默认 50Hz]
+%   zeta        : 目标阻尼比 [可选，默认 0.707]
+%
+% 输出参数:
+%   KPLLp_pu : 比例控制系数 (标幺值 pu)
+%   KPLLi_pu : 积分控制系数 (标幺值 pu)
+%   KPLLp    : 比例控制系数 (物理实际值)
+%   KPLLi    : 积分控制系数 (物理实际值)
+%
+% 示例:
+%   [Kp_pu, Ki_pu, Kp, Ki] = get_pll_pi_parameters(20)
+%   [Kp_pu, Ki_pu, Kp, Ki] = get_pll_pi_parameters(30, 380, 50, 0.707)
+
+    % --- 1. 处理默认输入参数 ---
+    if nargin < 2 || isempty(Unom)
+        Unom = 690;
+    end
+    if nargin < 3 || isempty(f0)
+        f0 = 50;
+    end
+    if nargin < 4 || isempty(zeta)
+        zeta = 0.707;
+    end
+
+    % --- 2. 电压换算 ---
+    % 计算电网相电压峰值 (用于参数推导中的前馈解耦)
+    Uphnom_mag = Unom / sqrt(3) * sqrt(2);
+
+    % --- 3. 核心解析计算 ---
+    % 计算二阶系统带宽扩展系数 C
+    C = sqrt(1 + 2*zeta^2 + sqrt(2 + 4*zeta^2 + 4*zeta^4));
+
+    % 反推自然角频率 wn (rad/s)
+    wn = (2 * pi * f_BW_target) / C;
+
+    % --- 4. 计算 PI 参数 ---
+    % 物理参数 (包含电压解耦)
+    KPLLp = (2 * zeta * wn) / Uphnom_mag;
+    KPLLi = (wn^2) / Uphnom_mag;
+
+    % 标幺值参数 (pu)
+    % 基准值转换: 物理值 * (电压幅值 / 额定角频率)
+    KPLLp_pu = KPLLp * Uphnom_mag / (2 * pi * f0);
+    KPLLi_pu = KPLLi * Uphnom_mag / (2 * pi * f0);
+
+    % --- 5. 打印结果 ---
+    fprintf('=== PLL PI 参数计算结果 ===\n');
+    fprintf('输入: f_BW = %.1f Hz, Unom = %.0f V, f0 = %.0f Hz, zeta = %.4f\n', ...
+        f_BW_target, Unom, f0, zeta);
+    fprintf('中间量: U_mag = %.4f V, wn = %.4f rad/s, C = %.4f\n', ...
+        Uphnom_mag, wn, C);
+    fprintf('物理值: KPLLp = %.6f, KPLLi = %.6f\n', KPLLp, KPLLi);
+    fprintf('标幺值: KPLLp_pu = %.6f, KPLLi_pu = %.6f\n', KPLLp_pu, KPLLi_pu);
+
+end

@@ -1,0 +1,25 @@
+obsidian:
+  vault_path: 'C:\Users\shenz\Documents\ObsidianVault'
+  sources:
+    contacts:
+      path: 'references/contacts'
+      entity_type: 'Person'
+    clients:
+      path: 'references/clients'
+      entity_type: 'Organization'
+    team:
+      path: 'references/team'
+      entity_type: 'Person'
+    daily_status:
+      path: 'daily-status'
+      extract: ['response_times', 'behavioral_patterns']
+    projects:
+      path: 'projects'
+      entity_type: 'Project'
+    notes:
+      path: 'notes'
+      entity_type: 'Note'
+
+ontology:
+  storage_path: 'C:\Users\shenz\.openclaw\workspace\memory\ontology'
+  format: 'jsonl'

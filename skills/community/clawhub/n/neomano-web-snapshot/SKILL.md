@@ -1,35 +1,35 @@
 ---
-name: "Neomano Web Snapshot (Headless)"
-description: "Take a screenshot (PNG) of any website in a headless way (no GUI) to verify it's rendering/working. Use when the user asks for a website screenshot, uptime v..."
-category: "devops"
-source: "ClawHub"
-tags: [headless, monitoring, playwright, screenshot, web]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neomano-web-snapshot"
-sourceUrl: "https://clawhub.ai/skills/neomano-web-snapshot"
+name: neomano-web-snapshot
+description: Take a screenshot (PNG) of any website in a headless way (no GUI) to verify it's rendering/working. Use when the user asks for a website screenshot, uptime visual check, or to confirm a page loads correctly.
+metadata: {"clawdbot":{"emoji":"📸","requires":{"bins":["node","bun"],"npm":["playwright"]}}}
 ---
 
-# Neomano Web Snapshot (Headless)
+## Requirements
 
-> Take a screenshot (PNG) of any website in a headless way (no GUI) to verify it's rendering/working. Use when the user asks for a website screenshot, uptime v...
+- **Node.js** (required)
+- **bun** (required for the provided bootstrap/install flow)
+- **Playwright (Node package)** (required)
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neomano-web-snapshot`
-- **Source URL:** [https://clawhub.ai/skills/neomano-web-snapshot](https://clawhub.ai/skills/neomano-web-snapshot)
+This skill uses **Playwright + headless Chromium** (works without a GUI).
 
-## Overview
+## One-time setup (headless)
 
+This installs dependencies into **this skill folder** (`{baseDir}`):
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/neomano-web-snapshot
+bash {baseDir}/scripts/bootstrap.sh
 ```
+
+Note: `node_modules/` is intentionally *not* shipped in the skill package; dependencies are installed locally by the bootstrap script.
+
+If you installed Playwright elsewhere (global or in a different project folder), Node may not find it when running this skill.
+
+## Take a screenshot
+
+```bash
+bash {baseDir}/scripts/snapshot.sh "https://example.com" --out ./snapshots/example.png
+```
+
+Options:
+- `--full-page` to capture full scroll height.
+- `--wait-ms 2000` to wait after load (useful for SPAs).

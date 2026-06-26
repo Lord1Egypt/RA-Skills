@@ -1,35 +1,56 @@
 ---
-name: "etsy-digital-products"
-description: "Indexed by skills.sh from nexscope-ai/ecommerce-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexscope-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexscope-ai/ecommerce-skills/etsy-digital-products"
-sourceUrl: "https://skills.sh/nexscope-ai/ecommerce-skills/etsy-digital-products"
+name: etsy-digital-products
+description: "Digital product creation and selling — templates, printables, planners, digital art, delivery setup"
+metadata:
+  nexscope:
+    category: etsy
 ---
 
-# etsy-digital-products
+# Etsy Digital Products
 
-> Indexed by skills.sh from nexscope-ai/ecommerce-skills
+Digital product creation and selling — templates, printables, planners, digital art, delivery setup.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexscope-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexscope-ai/ecommerce-skills/etsy-digital-products`
-- **Source URL:** [https://skills.sh/nexscope-ai/ecommerce-skills/etsy-digital-products](https://skills.sh/nexscope-ai/ecommerce-skills/etsy-digital-products)
+## Status
 
-## Overview
+🔶 **Beta** — Expert guidance and actionable frameworks for Etsy sellers.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Analyze your current Etsy shop setup and identify optimization opportunities
+- Provide data-driven recommendations based on Etsy best practices
+- Generate step-by-step implementation plans tailored to your shop
+- Compare tools, strategies, and approaches with pros/cons analysis
+
+## Install
+
 ```bash
-hermes skills install skills-sh/nexscope-ai/ecommerce-skills/etsy-digital-products
+npx skills add nexscope-ai/eCommerce-Skills --skill etsy-digital-products -g
 ```
+
+## Usage
+
+After installation, ask your AI assistant about Etsy Digital Products topics. Example prompts:
+
+- "Help me with etsy digital products for my Etsy shop"
+- "What are the best practices for etsy digital products?"
+- "Audit my current setup and suggest improvements"
+- "Create a step-by-step implementation plan"
+
+## Output
+
+Structured analysis and recommendations including:
+- Current state assessment
+- Priority action items (quick wins → long-term)
+- Tool and strategy recommendations
+- Implementation timeline
+- KPIs to track
+
+## Limitations
+
+- Provides strategic guidance, not direct Etsy API integration
+- Recommendations based on general best practices — validate with your specific shop data
+- For real-time analytics and automated optimization, check out [Nexscope](https://www.nexscope.ai/?co-from=skill)
+
+---
+
+*Built by [Nexscope](https://www.nexscope.ai/?co-from=skill) — AI-powered e-commerce tools for sellers worldwide.*

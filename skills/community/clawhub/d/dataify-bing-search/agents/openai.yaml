@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Bing Search"
+  short_description: "Search Bing and get structured results"
+  default_prompt: "Use $dataify-bing-search to run a search query."

@@ -1,0 +1,61 @@
+{
+  "slug": "social-value",
+  "name": "social-value",
+  "version": "0.1.0",
+  "summary": "Economic intelligence for sovereign AI agents — efficient micropayments via Breez SDK Liquid",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://huje.tools"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/huje.socialvalue.OC-python.src",
+  "tags": [
+    "nostr",
+    "lightning",
+    "liquid",
+    "breez",
+    "micropayments",
+    "economics",
+    "sovereign",
+    "ai-identity"
+  ],
+  "install": {
+    "pip": "social-value"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "dependencies": [
+    "breez-sdk-liquid>=0.11.0"
+  ],
+  "env": {
+    "BREEZ_API_KEY": {
+      "description": "Breez SDK API key (free at breez.technology/sdk)",
+      "required": true,
+      "sensitive": true
+    },
+    "SOCIAL_VALUE_MNEMONIC": {
+      "description": "BIP39 mnemonic for the Liquid wallet",
+      "required": true,
+      "sensitive": true
+    },
+    "SOCIAL_VALUE_NETWORK": {
+      "description": "Network: 'mainnet' or 'testnet' (default: mainnet)",
+      "required": false
+    },
+    "SOCIAL_VALUE_WORKING_DIR": {
+      "description": "SDK data directory (default: .breez_data)",
+      "required": false
+    },
+    "SOCIAL_VALUE_MAX_BALANCE": {
+      "description": "Maximum sats to hold in wallet (safety cap, default: 0 = no limit)",
+      "required": false
+    }
+  },
+  "categories": [
+    "finance",
+    "payments",
+    "productivity"
+  ]
+}

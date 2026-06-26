@@ -1,0 +1,40 @@
+{
+  "id": "fec-route-protection",
+  "name": "路由保护",
+  "category": "implementation-capability",
+  "tags": [
+    "auth",
+    "rbac",
+    "route-guard",
+    "middleware",
+    "react-router",
+    "vue-router"
+  ],
+  "summary": "Frontend Craft skill for 路由保护.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "auth",
+    "rbac",
+    "route-guard",
+    "middleware",
+    "react-router",
+    "vue-router"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include 路由保护, 权限路由, 登录态.",
+  "source": "skills/fec-route-protection",
+  "references": []
+}

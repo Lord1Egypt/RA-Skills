@@ -1,0 +1,268 @@
+# ============= Spring Boot 测试环境配置示例 =============
+
+# 服务器配置
+server:
+  port: 8081  # 测试使用不同端口
+  
+# Spring Boot配置
+spring:
+  # 数据源配置 - H2内存数据库
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  
+  # H2控制台配置
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  
+  # JPA配置
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+  
+  # SQL初始化配置
+  sql:
+    init:
+      mode: always  # 总是初始化
+      data-locations: classpath:test-data.sql
+      schema-locations: classpath:schema.sql
+  
+  # MyBatis配置
+  mybatis:
+    configuration:
+      map-underscore-to-camel-case: true
+      default-fetch-size: 100
+      default-statement-timeout: 30
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.example.entity
+  
+  # 事务配置
+  transaction:
+    default-timeout: 30  # 默认事务超时时间
+  
+  # 测试配置
+  test:
+    database:
+      replace: none  # 不替换数据源
+    mockmvc:
+      print: default  # 测试时打印请求响应
+
+# 日志配置
+logging:
+  level:
+    com.example: DEBUG  # 项目包调试级别
+    org.springframework: INFO
+    org.mybatis: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/test-application.log
+    max-size: 10MB
+    max-history: 7
+
+# 测试相关配置
+test:
+  # 数据库测试配置
+  database:
+    # H2数据库内存模式配置
+    h2:
+      in-memory: true
+      sql-script-encoding: UTF-8
+  
+  # 测试数据配置
+  data:
+    # 自动生成的测试数据数量
+    user-count: 50
+    order-count: 100
+    product-count: 30
+    
+    # 测试数据文件位置
+    files:
+      users: classpath:test-data/users.json
+      orders: classpath:test-data/orders.json
+      products: classpath:test-data/products.json
+  
+  # Mock相关配置
+  mock:
+    # Mockito配置
+    mockito:
+      mock-maker-inline: true  # 启用inline mock maker以mock final类
+    
+    # 测试数据工厂配置
+    data-factory:
+      enabled: true
+      package: com.example.testdata
+  
+  # 覆盖率配置
+  coverage:
+    # JaCoCo配置
+    jacoco:
+      enabled: true
+      includes:
+        - "com/example/**"
+      excludes:
+        - "**/test/**"
+        - "**/*Test.class"
+        - "**/*IT.class"
+      
+      # 覆盖率阈值配置
+      thresholds:
+        line: 0.85      # 行覆盖率85%
+        branch: 0.80    # 分支覆盖率80%
+        method: 0.90    # 方法覆盖率90%
+        class: 0.95     # 类覆盖率95%
+        instruction: 0.80
+        complexity: 0.70
+  
+  # 性能测试配置
+  performance:
+    # 响应时间阈值（毫秒）
+    thresholds:
+      average: 100
+      p95: 200
+      p99: 500
+      max: 1000
+    
+    # 并发测试配置
+    concurrent:
+      threads: 10
+      iterations: 100
+      ramp-up: 5
+
+# 应用特定测试配置
+application:
+  test:
+    # 验证配置
+    validation:
+      enabled: true
+      message-source: classpath:messages/messages-test.properties
+    
+    # 缓存测试配置
+    cache:
+      enabled: true
+      type: simple  # 使用简单缓存
+    
+    # 安全测试配置
+    security:
+      enabled: false  # 测试时禁用安全
+      test-user:
+        username: testuser
+        password: testpass
+        roles: USER,ADMIN
+    
+    # 邮件测试配置
+    mail:
+      enabled: false
+      test-inbox: test@example.com
+    
+    # 外部API测试配置
+    external:
+      # Mock外部API端点
+      api:
+        base-url: http://localhost:${wiremock.server.port:8089}
+        timeout: 5000
+        retry:
+          max-attempts: 3
+          backoff: 1000
+
+# WireMock配置（用于模拟外部API）
+wiremock:
+  server:
+    port: 8089
+    stub-cors-enabled: true
+
+# 测试容器配置（用于集成测试）
+testcontainers:
+  enabled: true
+  reuse: true  # 重用容器
+  
+  # MySQL测试容器配置
+  mysql:
+    image: mysql:8.0
+    database-name: testdb
+    username: test
+    password: test
+    reuse: true
+    exposed-ports:
+      - "3306"
+    wait-strategy:
+      type: log
+      pattern: "ready for connections"
+  
+  # Redis测试容器配置
+  redis:
+    image: redis:7-alpine
+    reuse: true
+  
+  # 测试容器生命周期配置
+  lifecycle:
+    startup-timeout: 120  # 启动超时时间（秒）
+    shutdown-timeout: 30  # 关闭超时时间（秒）
+
+# 测试报告配置
+report:
+  test:
+    # 测试报告输出配置
+    output:
+      directory: target/test-reports
+      formats:
+        - xml   # JUnit XML格式
+        - html  # HTML报告
+        - json  # JSON报告
+    
+    # 测试历史记录
+    history:
+      enabled: true
+      max-reports: 10
+    
+    # 自定义报告配置
+    custom:
+      categories:
+        - name: "正常流程测试"
+          pattern: "**/*Test.java"
+          tags: "normal"
+        - name: "异常测试"
+          pattern: "**/*Test.java"
+          tags: "exception"
+        - name: "边界测试"
+          pattern: "**/*Test.java"
+          tags: "boundary"
+
+# 测试环境特定的配置覆盖
+# 这里可以覆盖生产环境的配置，以适应测试需求
+override:
+  # 关闭生产环境的特性
+  production-features:
+    enabled: false
+  
+  # 启用测试专用特性
+  test-features:
+    mock-external-services: true
+    skip-authentication: true
+    generate-test-data: true

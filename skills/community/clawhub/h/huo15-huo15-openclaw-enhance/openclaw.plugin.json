@@ -1,0 +1,600 @@
+{
+  "id": "enhance",
+  "name": "火一五·克劳德·龙虾增强插件",
+  "description": "非侵入式增强 OpenClaw 2026.4.24+：记忆整合、工具安全、任务/章节/工作流、模式闸门、statusline、定时任务桥接、仪表盘、生命周期监听。v6.1.0 trajectory-archiver v2 路径策略：归档到 sessions-archive 而非 sessions/.archive（移出 sessions/ 子树→openclaw sessions.list 看不到→主线程不 JSON.parse），修复 5/2 实战 sample 暴露的 v1 路径不解决卡顿根因。继承 v6.0.0 npm 包改名 + v5.8.0 hook-profiler",
+  "version": "2.6.0",
+  "enabledByDefault": true,
+  "uiHints": {
+    "toolTier": {
+      "control": "select",
+      "label": "工具分层"
+    },
+    "configDoctor.enabled": {
+      "control": "switch",
+      "label": "配置诊断"
+    },
+    "skillRecommender.enabled": {
+      "control": "switch",
+      "label": "技能推荐"
+    },
+    "sessionLifecycle.enabled": {
+      "control": "switch",
+      "label": "会话生命周期"
+    },
+    "nativeMemorySurfacer.enabled": {
+      "control": "switch",
+      "label": "原生记忆 surface"
+    },
+    "botShare.enabled": {
+      "control": "switch",
+      "label": "BOT 文件分享"
+    },
+    "transcriptSearch.enabled": {
+      "control": "switch",
+      "label": "历史会话搜索"
+    },
+    "hookProfiler.enabled": {
+      "control": "switch",
+      "label": "首字延迟诊断"
+    },
+    "largeFileBridge.enabled": {
+      "control": "switch",
+      "label": "大文件上传桥接"
+    }
+  },
+  "activation": {
+    "onAgentHarnesses": [
+      "claude",
+      "openclaw-default"
+    ],
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "toolTier": {
+        "type": "string",
+        "enum": [
+          "minimal",
+          "balanced",
+          "full"
+        ],
+        "default": "balanced",
+        "description": "工具分层（v5.6+）：minimal=10 工具仅核心 / balanced=18 工具默认 / full=26 工具完整。降低每轮 prompt 工具 schema 总量。修改后需重启 openclaw。"
+      },
+      "memory": {
+        "type": "object",
+        "description": "增强记忆：本地 SQLite 分类记忆 + 通过 corpus supplement 喂给龙虾原生记忆引擎（不绕过龙虾）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "autoCapture": {
+            "type": "boolean",
+            "default": true
+          },
+          "maxContextEntries": {
+            "type": "number",
+            "default": 5
+          }
+        }
+      },
+      "safety": {
+        "type": "object",
+        "description": "工具安全补充：仅补充龙虾原生 tools.allow/deny 未覆盖的细粒度规则",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "string"
+                },
+                "pathPattern": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "block",
+                    "hardblock",
+                    "log",
+                    "allow"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "tool",
+                "action"
+              ]
+            },
+            "default": []
+          },
+          "defaultAction": {
+            "type": "string",
+            "enum": [
+              "allow",
+              "log"
+            ],
+            "default": "allow"
+          },
+          "enableRetry": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "prompt": {
+        "type": "object",
+        "description": "提示词增强：仅注入龙虾内置系统提示词缺失的章节（qualityGuidelines）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "qualityGuidelines"
+              ]
+            },
+            "default": [
+              "qualityGuidelines"
+            ]
+          }
+        }
+      },
+      "workflows": {
+        "type": "object",
+        "description": "工作流触发器（关键词 → 指令注入）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "todos": {
+        "type": "object",
+        "description": "Claude-Code 风格任务追踪（enhance_todo_write）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "chapters": {
+        "type": "object",
+        "description": "会话章节标记（enhance_mark_chapter，仪表盘可跳转）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "mode": {
+        "type": "object",
+        "description": "模式闸门：plan/explore 模式下自动拦截写入类工具",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "defaultMode": {
+            "type": "string",
+            "enum": [
+              "normal",
+              "plan",
+              "explore"
+            ],
+            "default": "normal"
+          }
+        }
+      },
+      "statusline": {
+        "type": "object",
+        "description": "状态栏：项目/模式/记忆命中/宠物状态实时快照（HTTP /plugins/enhance/api/statusline）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "scheduledTasks": {
+        "type": "object",
+        "description": "定时任务桥：注册龙虾 cron-cli 可触发的工作流钩子",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "transcriptSearch": {
+        "type": "object",
+        "description": "v5.7 历史会话全文搜索：流式扫 ~/.openclaw/agents/<agent>/sessions/*.jsonl，照搬 Claude Desktop transcriptSearchWorker 算法（无索引、无新表、纯只读）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "hookProfiler": {
+        "type": "object",
+        "description": "v5.8.0 量化 OpenClaw 端到端首字延迟：log-tailer 增量解析 ~/.openclaw/logs/gateway.err.log 的 [trace:embedded-run] prep stages 行 + [hooks] timeout/threw 异常事件，落入 enhance-memory.sqlite 两张新表（prep_stage_metrics / hook_profile）。enhance_hook_doctor 工具输出 P50/P95/timeout 排行 + 行动建议。完全只读 + 不替用户改 openclaw.json",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "retentionDays": {
+            "type": "number",
+            "default": 30,
+            "description": "数据保留天数；启动期清理早于此天数的旧记录"
+          },
+          "tailer": {
+            "type": "object",
+            "description": "gateway.err.log 增量解析子模块。关闭后只能依赖 profileHook 包装的 enhance 内部 hook 数据，不抓其它 plugin 的 timeout/error 事件",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        }
+      },
+      "configDoctor": {
+        "type": "object",
+        "description": "v5.7.3 启动期诊断 openclaw.json 陷阱配置（缺失 reserveTokensFloor / model maxTokens 过大），只读不修改用户配置",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "minReserveTokensFloor": {
+            "type": "number",
+            "default": 5000
+          },
+          "maxReserveTokensFloor": {
+            "type": "number",
+            "default": 100000
+          },
+          "maxModelMaxTokens": {
+            "type": "number",
+            "default": 32000
+          }
+        }
+      },
+      "skillRecommender": {
+        "type": "object",
+        "description": "v5.7.5 按用户需求挑已装 skill / 推荐未装 huo15-* / 给自建规划。算法照搬 Claude Desktop loadSkills 的 name+description 匹配，按需工具暴露",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "installedThreshold": {
+            "type": "number",
+            "default": 0.25,
+            "description": "已装命中相关度阈值，低于则触发未装/自建建议"
+          },
+          "cacheTtlSec": {
+            "type": "number",
+            "default": 60,
+            "description": "skill 扫描结果缓存秒数"
+          }
+        }
+      },
+      "sessionLifecycle": {
+        "type": "object",
+        "description": "v5.7.7 接入 openclaw 4.22 的 session_start / session_end / before_reset / subagent_spawned / subagent_ended hook 闭环 session 生命周期。每个 hook 都做 30 秒 dedup 去重 + 仅写入 enhance 自有表，不污染龙虾原生 memory",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "enableSessionStart": {
+            "type": "boolean",
+            "default": true
+          },
+          "enableSessionEnd": {
+            "type": "boolean",
+            "default": true
+          },
+          "enableBeforeReset": {
+            "type": "boolean",
+            "default": true
+          },
+          "enableSubagent": {
+            "type": "boolean",
+            "default": true
+          },
+          "debug": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "nativeMemorySurfacer": {
+        "type": "object",
+        "description": "v5.7.10 解决'第二天失忆'：每个 session 第一次 before_prompt_build 时按 cwd/git remote 评分,主动 surface ~/.claude/projects/-<cwd>/memory/*.md 的 L1 memory 文件锚点(只 surface name + description + Read 路径,不复制正文,不写任何文件)。零侵入只读、零工具 schema、零 child_process(读 .git/config 替代 git remote)",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "memoryDir": {
+            "type": "string",
+            "description": "显式指定 memory 目录;不指定则按 cwd 推断"
+          },
+          "maxFiles": {
+            "type": "number",
+            "default": 5
+          },
+          "descriptionMaxChars": {
+            "type": "number",
+            "default": 80
+          },
+          "threshold": {
+            "type": "number",
+            "default": 0.15
+          },
+          "debug": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "botShare": {
+        "type": "object",
+        "description": "v5.7.24 BOT 文件分享桥（独立 prefix route + zero-config）：企微/钉钉无法直传大文件（>20-50MB）时，把本地文件投递到 <shareRoot>/files/ 并生成 <baseUrl><urlPrefix>/<token>-<basename> 临时下载 URL（默认 24h 过期 lazy 清理）。urlPrefix 默认 /plugins/enhance-share，这是 dashboard /plugins/enhance 的兄弟前缀，SDK overlap 规则下不冲突，由本模块独立 api.registerHttpRoute 注册。baseUrl 优先级：env BOT_BASE_URL > 此配置 > 自动从请求 host 抽 > http://localhost:18789（fallback）。",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "baseUrl": {
+            "type": "string",
+            "description": "公网 base URL（不含尾部 /）。一般留空——用户访问过一次 /plugins/enhance/* 或 share 链接后会自动检测；env BOT_BASE_URL 优先级更高"
+          },
+          "shareRoot": {
+            "type": "string",
+            "description": "落盘根目录，默认 ~/.openclaw/share"
+          },
+          "urlPrefix": {
+            "type": "string",
+            "default": "/plugins/enhance-share",
+            "description": "URL 路径前缀。默认 /plugins/enhance-share（独立兄弟 prefix，SDK 不会跟 dashboard /plugins/enhance overlap）"
+          },
+          "expireHours": {
+            "type": "number",
+            "default": 24,
+            "description": "链接默认有效小时数"
+          },
+          "maxFileSizeMB": {
+            "type": "number",
+            "default": 500,
+            "description": "单文件大小上限"
+          }
+        }
+      },
+      "largeFileBridge": {
+        "type": "object",
+        "description": "v6.x 大文件上传桥接：检测企微 >100MB 文件错误 + 用户主动提大文件上传意图，注入上传链接引导。提供增强工具 enhance_upload_large_file 和上传表单 GET/POST /plugins/enhance/upload。与 botShare 互补（后者负责文件→链接转换，本模块负责检测+上传入口）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "uploadUrl": {
+            "type": "string",
+            "description": "自定义上传页面 URL；不填则自动生成为 {baseUrl}/plugins/enhance/upload"
+          },
+          "baseUrl": {
+            "type": "string",
+            "description": "上传页面基础 URL（企微分享场景需显式填公网地址如 https://example.com:18789）"
+          },
+          "detectWecomError": {
+            "type": "boolean",
+            "default": true,
+            "description": "检测企微 >100M 错误文本并主动引导"
+          },
+          "proactiveOffer": {
+            "type": "boolean",
+            "default": true,
+            "description": "用户提大文件/上传时主动提供链接"
+          }
+        }
+      },
+      "dashboard": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "pet": {
+        "type": "object",
+        "description": "小火苗宠物 + 智能贴士",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string",
+            "enum": [
+              "orange",
+              "blue",
+              "purple",
+              "green",
+              "white"
+            ]
+          }
+        }
+      },
+      "tips": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "injectInPrompt": {
+            "type": "boolean",
+            "default": false
+          },
+          "cooldownMinutes": {
+            "type": "number",
+            "default": 30
+          }
+        }
+      },
+      "notifications": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "maxRetained": {
+            "type": "number",
+            "default": 200
+          }
+        }
+      },
+      "selfCheck": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "checkEmpty": {
+            "type": "boolean",
+            "default": true
+          },
+          "checkNoReply": {
+            "type": "boolean",
+            "default": true
+          },
+          "checkErrorKeywords": {
+            "type": "boolean",
+            "default": true
+          },
+          "checkExcessiveLength": {
+            "type": "boolean",
+            "default": false
+          },
+          "maxLength": {
+            "type": "number",
+            "default": 20000
+          },
+          "blockOnEmpty": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "contextPruner": {
+        "type": "object",
+        "description": "记忆相关性过滤（仅用于 corpus supplement 的 search 排序，不绕过龙虾原生注入）",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "threshold": {
+            "type": "number",
+            "default": 0.5
+          },
+          "maxEntries": {
+            "type": "number",
+            "default": 5
+          },
+          "debug": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  "contracts": {
+    "tools": [
+      "enhance_chapter_list",
+      "enhance_config_doctor",
+      "enhance_current_mode",
+      "enhance_exit_plan_mode",
+      "enhance_hook_doctor",
+      "enhance_install_skills",
+      "enhance_loop_disable",
+      "enhance_loop_list",
+      "enhance_loop_register",
+      "enhance_mark_chapter",
+      "enhance_memory_export",
+      "enhance_memory_purge",
+      "enhance_memory_review",
+      "enhance_memory_search",
+      "enhance_memory_store",
+      "enhance_model_route_ban_status",
+      "enhance_model_route_disable",
+      "enhance_model_route_history",
+      "enhance_model_route_mode",
+      "enhance_model_route_set",
+      "enhance_model_route_status",
+      "enhance_model_route_unban",
+      "enhance_plan_task",
+      "enhance_retry_status",
+      "enhance_safety_log",
+      "enhance_safety_rules",
+      "enhance_session_doctor",
+      "enhance_session_recap",
+      "enhance_set_mode",
+      "enhance_share_file",
+      "enhance_share_list",
+      "enhance_share_revoke",
+      "enhance_share_set_baseurl",
+      "enhance_skill_doctor",
+      "enhance_skill_recommend",
+      "enhance_spawn_task",
+      "enhance_statusline",
+      "enhance_task",
+      "enhance_todo_list",
+      "enhance_todo_update",
+      "enhance_todo_write",
+      "enhance_trajectory_archiver_setup",
+      "enhance_transcript_search",
+      "enhance_upload_check",
+      "enhance_upload_large_file",
+      "enhance_upload_link",
+      "enhance_upload_revoke",
+      "enhance_workflow"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Volumes/AI/AIGC/aigc/Skills/mcp-storyboard/scripts/bizyair_api.sh && chmod +x /Volumes/AI/AIGC/aigc/Skills/mcp-storyboard/scripts/storyboard.py)"
+    ]
+  }
+}

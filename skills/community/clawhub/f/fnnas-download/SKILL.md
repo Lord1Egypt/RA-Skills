@@ -1,35 +1,54 @@
 ---
-name: "FeiNiu NAS Download Manager"
-description: "Manage qBittorrent download tasks on 飞牛NAS - list torrents and add magnet links"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fnnas-download"
-sourceUrl: "https://clawhub.ai/skills/fnnas-download"
+name: fnnas-download
+description: Manage qBittorrent download tasks on 飞牛NAS - list torrents and add magnet links
+tools: Bash
 ---
 
-# FeiNiu NAS Download Manager
+# NAS Download Manager
 
-> Manage qBittorrent download tasks on 飞牛NAS - list torrents and add magnet links
+Manage download tasks on the user's 飞牛NAS using qBittorrent API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fnnas-download`
-- **Source URL:** [https://clawhub.ai/skills/fnnas-download](https://clawhub.ai/skills/fnnas-download)
+## Usage
 
-## Overview
+Execute the shell script at `~/.claude/skills/fnnas-download/nas-download.sh` with appropriate commands.
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### list
+List download tasks. By default shows only incomplete downloads (progress < 100%).
+
 ```bash
-hermes skills install clawhub/fnnas-download
+~/.claude/skills/fnnas-download/nas-download.sh list
 ```
+
+Add `-all` flag to show all tasks:
+
+```bash
+~/.claude/skills/fnnas-download/nas-download.sh list -all
+```
+
+### add
+Add a new download task.
+
+For magnet links:
+```bash
+~/.claude/skills/fnnas-download/nas-download.sh add 'magnet:?xt=...'
+```
+
+For torrent files:
+```bash
+~/.claude/skills/fnnas-download/nas-download.sh add /path/to/file.torrent
+```
+
+## Connection Details
+
+- NAS Host: user@192.168.1.100
+- Authentication: SSH key-based
+- qBittorrent: Unix socket at /home/user/qbt.sock
+
+## Configuration
+
+Edit the variables at the top of `nas-download.sh`:
+- `NAS_HOST`: SSH connection string (user@host)
+- `QBT_SOCK`: Path to qBittorrent unix socket
+- `QBT_PASSWORD`: qBittorrent WebUI password

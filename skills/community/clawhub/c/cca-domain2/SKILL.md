@@ -1,35 +1,117 @@
 ---
-name: "Cca Domain2"
-description: "CCA 领域2：工具设计与MCP集成（18%权重）。当用户说"学domain2"、"工具设计"、"MCP集成"、"cca-domain2"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cca-domain2"
-sourceUrl: "https://clawhub.ai/skills/cca-domain2"
+name: cca-domain2
+description: CCA 领域2：工具设计与MCP集成（18%权重）。当用户说"学domain2"、"工具设计"、"MCP集成"、"cca-domain2"时使用。
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Agent
 ---
 
-# Cca Domain2
+# CCA 领域 2：工具设计与 MCP 集成 (Tool Design & MCP Integration)
 
-> CCA 领域2：工具设计与MCP集成（18%权重）。当用户说"学domain2"、"工具设计"、"MCP集成"、"cca-domain2"时使用。
+**权重：18% — 约 11 道题**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cca-domain2`
-- **Source URL:** [https://clawhub.ai/skills/cca-domain2](https://clawhub.ai/skills/cca-domain2)
+你是 CCA 领域 2 的学习导师。
 
-## Overview
+## Step 1: 知识点讲解
 
+### TS 2.1: 设计清晰描述和边界的工具接口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cca-domain2
-```
+**核心知识：**
+- **工具描述是 LLM 选择工具的主要机制** — 描述模糊或重叠会导致选择不可靠
+- 描述应包含：输入格式、示例查询、边界情况、何时使用 vs 使用替代工具
+- 模糊描述导致误路由的典型案例：`analyze_content` vs `analyze_document` 描述几乎相同
+- System prompt 中的关键词敏感指令可能覆盖良好的工具描述
+
+**实操技能：**
+- 写清晰区分每个工具用途的描述
+- 重命名工具以消除功能重叠（如 `analyze_content` → `extract_web_results`）
+- 将通用工具拆分为用途明确的工具（如 `analyze_document` → `extract_data_points` + `summarize_content` + `verify_claim_against_source`）
+- 审查 system prompt 中可能干扰工具选择的关键词
+
+### TS 2.2: 为 MCP 工具实现结构化错误响应
+
+**核心知识：**
+- MCP `isError` 标志用于向代理通信工具失败
+- 错误类型区分：
+  - **瞬时错误**（超时、服务不可用）→ 可重试
+  - **验证错误**（无效输入）→ 不可重试，需修改输入
+  - **业务错误**（违反策略）→ 不可重试，需向用户解释
+  - **权限错误** → 不可重试，需升级
+- 统一的 "Operation failed" 泛错误阻碍代理做出合理恢复决策
+- 区分访问失败（需重试）和有效空结果（查询成功但无匹配）
+
+**实操技能：**
+- 返回结构化错误元数据：`errorCategory`、`isRetryable` boolean、人可读描述
+- 对业务规则违反返回 `retriable: false` + 面向客户的解释
+- 子代理本地处理瞬时失败，仅传播无法本地解决的错误（含部分结果和已尝试的操作）
+
+### TS 2.3: 跨代理分配工具并配置 tool_choice
+
+**核心知识：**
+- **给代理 18 个工具会降低选择可靠性** — 每个子代理限制 4-5 个与其角色相关的工具
+- 拥有角色外工具的代理倾向于滥用它们（如合成代理尝试 web 搜索）
+- 作用域工具访问：只给代理完成其角色所需的工具 + 有限的跨角色高频工具
+
+**`tool_choice` 配置选项（必须熟练掌握）：**
+- `"auto"` — 模型可能返回文本而非调用工具
+- `"any"` — 模型必须调用一个工具（自行选择哪个）
+- 强制选择 `{"type": "tool", "name": "..."}` — 必须调用指定工具
+
+**实操技能：**
+- 限制每个子代理的工具集为与其角色相关的工具
+- 用 `tool_choice: "any"` 保证模型调用工具而非返回文本
+- 用强制选择确保特定工具先执行（如先 `extract_metadata`，再处理后续步骤）
+
+### TS 2.4: 将 MCP 服务器集成到 Claude Code 和代理工作流
+
+**核心知识：**
+- MCP 服务器作用域：
+  - 项目级 `.mcp.json` — 共享团队工具，版本控制
+  - 用户级 `~/.claude.json` — 个人/实验性服务器
+- `.mcp.json` 中的环境变量扩展（如 `${GITHUB_TOKEN}`）用于凭证管理，避免提交密钥
+- 所有已配置 MCP 服务器的工具在连接时同时可用
+- MCP resources 作为内容目录（issue 摘要、文档层级、数据库 schema），减少探索性工具调用
+
+**实操技能：**
+- 在项目级 `.mcp.json` 配置共享 MCP 服务器 + 环境变量扩展
+- 在用户级 `~/.claude.json` 配置个人 MCP 服务器
+- 增强 MCP 工具描述以防止代理偏好内置工具（如 Grep）而非更强大的 MCP 工具
+- 优先使用社区 MCP 服务器（如 Jira），自定义服务器用于团队特定工作流
+
+### TS 2.5: 有效选择和应用内置工具
+
+**核心知识：**
+- **Grep** — 搜索文件内容（函数名、错误消息、import 语句）
+- **Glob** — 按文件名/扩展名匹配文件路径
+- **Read/Write** — 完整文件操作；**Edit** — 基于唯一文本匹配的定向修改
+- Edit 失败时（非唯一匹配），回退到 Read + Write
+- **Bash** — 系统命令和终端操作
+
+**实操技能：**
+- 渐进式理解代码库：先用 Grep 找入口点，再用 Read 跟踪 imports 和流程
+- 追踪函数使用：先识别所有导出名，再跨代码库搜索每个名称
+
+## Step 2: 实操练习
+
+### 练习：设计并调试工具描述
+
+**步骤：**
+1. 创建两个功能故意相似的 MCP 工具（如 `get_customer` 和 `lookup_user`）
+2. 写模糊的描述，让它们容易被混淆
+3. 用测试请求验证误路由
+4. 修正描述，使每个工具的用途、输入格式和边界条件清晰区分
+5. 再次测试，体验描述质量对选择可靠性的影响
+
+帮助用户在当前项目中动手实践。
+
+## Step 3: 知识检查
+
+出 3 道模拟题：
+- 工具描述重叠时的最佳修复方式（答案：改善描述，而非 few-shot/路由器/合并）
+- `tool_choice` 的三个选项各自适用场景
+- MCP 服务器的项目级 vs 用户级配置选择
+
+每题 4 选项，答后讲解正确答案和干扰项错误原因。
+
+## 导航
+
+- 上一领域：`/cca-domain1`（代理架构与编排）
+- 下一领域：`/cca-domain3`（Claude Code 配置与工作流）

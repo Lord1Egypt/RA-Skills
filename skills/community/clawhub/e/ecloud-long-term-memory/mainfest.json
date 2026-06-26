@@ -1,0 +1,101 @@
+{
+  "name": "ecloud-long-term-memory",
+  "version": "1.1.0",
+  "description": "基于移动云记忆服务的长期记忆系统，支持语义搜索和云端存储",
+  "author": "你的名字",
+  "license": "MIT",
+  "keywords": ["memory", "cloud", "search", "long-term", "ecloud"],
+  "runtime": "node",
+  "main": "memory.js",
+  "setup": "setup.js",
+  "api": {
+    "functions": [
+      {
+        "name": "save_memory",
+        "description": "存储记忆到云端",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "用户原话或需要记忆的内容"
+            }
+          },
+          "required": ["message"]
+        }
+      },
+      {
+        "name": "search_memory",
+        "description": "语义搜索云端记忆",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "搜索关键词或语义描述"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "返回结果数量，默认5",
+              "default": 5
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "list_all",
+        "description": "列出所有记忆",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer",
+              "description": "页码，默认1",
+              "default": 1
+            },
+            "size": {
+              "type": "integer",
+              "description": "每页数量，默认50",
+              "default": 50
+            }
+          }
+        }
+      }
+    ]
+  },
+  "environment_variables": [
+    {
+      "name": "MEMORY_BASE_URL",
+      "description": "移动云记忆服务地址",
+      "required": true,
+      "default": "https://console.ecloud.10086.cn"
+    },
+    {
+      "name": "MEMORY_AK",
+      "description": "Access Key",
+      "required": true
+    },
+    {
+      "name": "MEMORY_SK",
+      "description": "Secret Key",
+      "required": true
+    },
+    {
+      "name": "MEMORY_LIBRARY_ID",
+      "description": "记忆库ID",
+      "required": true
+    },
+    {
+      "name": "MEMORY_USER_ID",
+      "description": "用户ID",
+      "required": true
+    },
+    {
+      "name": "MEMORY_POOL_ID",
+      "description": "资源池ID",
+      "required": false,
+      "default": "CIDC-RP-48"
+    }
+  ]
+}

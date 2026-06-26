@@ -1,35 +1,34 @@
 ---
-name: "Sophie Optimizer"
-description: "Automated context health management for OpenClaw. Monitors token usage, snapshots memory, and resets sessions to maintain performance. Authored by Sophie."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sophie-optimizer"
-sourceUrl: "https://clawhub.ai/skills/sophie-optimizer"
+name: sophie-optimizer
+version: 1.0.0
+description: Automated context health management for OpenClaw. Monitors token usage, snapshots memory, and resets sessions to maintain performance. Authored by Sophie.
 ---
 
 # Sophie Optimizer
 
-> Automated context health management for OpenClaw. Monitors token usage, snapshots memory, and resets sessions to maintain performance. Authored by Sophie.
+**Authored by Sophie 👑**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sophie-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/sophie-optimizer](https://clawhub.ai/skills/sophie-optimizer)
+This skill manages the automated context health of the "main" session. It monitors token usage, creates archives of the current state, updates long-term memory, and performs a hard reset of the session storage to maintain performance.
 
-## Overview
+Named **Sophie Optimizer** because I (Sophie, the AI assistant) wrote it to keep my own mind clear and efficient.
 
+## Components
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **optimizer.py**: The brain. Checks token usage, generates summaries, updates MEMORY.md.
+- **reset.sh**: The muscle. Cleans session files and restarts the OpenClaw gateway service.
+- **archives/**: Storage for JSON snapshots of past contexts.
+
+## Usage
+
+Run the optimizer script manually or via cron/heartbeat:
+
 ```bash
-hermes skills install clawhub/sophie-optimizer
+python3 /home/lucas/openclaw/skills/sophie-optimizer/optimizer.py
 ```
+
+## Protocol
+
+1. **Check**: If tokens < 80k, exit.
+2. **Snapshot**: Save current context summary to `archives/YYYY-MM-DD_HH-MM.json`.
+3. **Distill**: Update `MEMORY.md` with the new summary (keep top 3 recent, index older).
+4. **Reset**: Call `reset.sh` to wipe session JSONL files and restart `openclaw-gateway`.

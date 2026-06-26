@@ -1,0 +1,204 @@
+# Agentic Liquid Wireless Manager — Plugin Manifest
+# This file defines the plugin type, format, targets, and metadata.
+
+plugin:
+  name: "agentic-liquid-wireless-manager"
+  version: "1.0.0"
+  type: "code"  # "code" = source files executed at runtime, NOT pre-bundled binary
+  description: >
+    AI-powered wireless network intelligence using SAC-LTC for agentic AI systems.
+    Autonomous Wi-Fi/hotspot management with RF explainability, presence detection,
+    and navigation guidance.
+
+# ---------------------------------------------------------------------------
+# Plugin Type Classification
+# ---------------------------------------------------------------------------
+# BUNDLE PLUGIN: Pre-packaged artifact (compiled binary, container image, WASM).
+#   - Distributed as a single opaque file.
+#   - Host loads and executes without inspecting internals.
+#   - Example: .vsix, .whl, Docker image, .zip with manifest.
+#
+# CODE PLUGIN: Source files interpreted/executed at runtime.
+#   - Distributed as readable source (Python, Markdown, YAML).
+#   - Host reads the skill file and executes commands directly.
+#   - Fully inspectable, modifiable, forkable.
+#   - Example: Claude Code SKILL.md, Manus tool YAML, OpenClaw skill.
+#
+# THIS PROJECT IS A CODE PLUGIN.
+#   - Entry point: SKILL.md (instructions for the agentic host)
+#   - Runtime: sac_ltc_agent.py (Python, executed via shell)
+#   - Training: train_sac_ltc.py (optional, generates weights)
+#   - No compilation, no containers, no binary artifacts.
+#   - The host (Claude/Manus/OpenClaw) reads SKILL.md and follows instructions.
+# ---------------------------------------------------------------------------
+
+classification:
+  type: "code"
+  format: "skill-md"           # Primary interface is a Markdown skill file
+  runtime: "python3"           # Agent logic runs as Python subprocess
+  packaging: "source"          # Distributed as raw source files
+  bundled: false               # Not pre-compiled or containerized
+
+# ---------------------------------------------------------------------------
+# Source Repository
+# ---------------------------------------------------------------------------
+source:
+  repo: "https://github.com/Danielfoojunwei/Agentic-Liquid-Wireless-Manager"
+  branch: "main"
+  commit: "a323de326099a8830240a8700027d9b05887f22d"
+  ref: "v1.0.0"
+  license: "MIT"
+  author: "Daniel Foo Jun Wei"
+
+# ---------------------------------------------------------------------------
+# Bundle Format (if this were bundled — currently N/A)
+# ---------------------------------------------------------------------------
+# This is a CODE plugin, not a BUNDLE plugin. If bundled in the future:
+bundle:
+  format: "none"               # No bundle format currently
+  potential_formats:
+    - name: "zip"
+      description: "ZIP archive with SKILL.md + sac_ltc_agent.py + weights.json"
+      use_case: "Manual distribution, offline install"
+    - name: "pip"
+      description: "Python package via PyPI (pip install agentic-lwm)"
+      use_case: "Python ecosystem distribution"
+    - name: "docker"
+      description: "Container with all deps pre-installed"
+      use_case: "Isolated deployment, CI/CD"
+    - name: "skill-bundle"
+      description: "Single SKILL.md with embedded Python (base64 or heredoc)"
+      use_case: "Single-file distribution for Claude Code"
+
+# ---------------------------------------------------------------------------
+# Host Targets
+# ---------------------------------------------------------------------------
+# Which agentic AI platforms can load and use this plugin.
+host_targets:
+  - name: "Claude Code"
+    type: "skill"
+    integration_method: "SKILL.md file in project or ~/.claude/skills/"
+    invocation: "/net-intel or natural language triggers"
+    requirements:
+      - "Claude Code CLI, desktop app, or web (claude.ai/code)"
+      - "Bash shell access"
+      - "Python 3.8+ with torch and numpy"
+    entry_point: "SKILL.md"
+    install: |
+      cp SKILL.md /path/to/project/SKILL.md
+      cp sac_ltc_agent.py /path/to/project/sac_ltc_agent.py
+      python3 sac_ltc_agent.py --init-weights
+
+  - name: "Manus"
+    type: "tool"
+    integration_method: "Tool definition in agent YAML config"
+    invocation: "Agent calls tool when network topics arise"
+    requirements:
+      - "Manus agent with shell tool execution"
+      - "Python 3.8+ with torch and numpy"
+    entry_point: "sac_ltc_agent.py (CLI)"
+    install: |
+      # Add to Manus agent tools config
+      # See README.md → Usage on Agentic AI Platforms → Manus
+
+  - name: "OpenClaw"
+    type: "skill"
+    integration_method: "Skill registration via YAML"
+    invocation: "Trigger phrases or direct skill call"
+    requirements:
+      - "OpenClaw workspace with skill support"
+      - "Python 3.8+ with torch and numpy"
+    entry_point: "sac_ltc_agent.py (CLI)"
+    install: |
+      # Register in openclaw_skills.yaml
+      # See README.md → Usage on Agentic AI Platforms → OpenClaw
+
+  - name: "Any LLM Agent"
+    type: "cli-tool"
+    integration_method: "Shell command execution"
+    invocation: "python3 sac_ltc_agent.py --explain/--sense/--decide"
+    requirements:
+      - "Agent can execute shell commands"
+      - "Python 3.8+ with torch and numpy"
+    entry_point: "sac_ltc_agent.py (CLI)"
+    install: |
+      pip install torch numpy
+      python3 sac_ltc_agent.py --init-weights
+
+# ---------------------------------------------------------------------------
+# Operating System Targets
+# ---------------------------------------------------------------------------
+os_targets:
+  - name: "macOS"
+    versions: "12+ (Monterey, Ventura, Sonoma, Sequoia)"
+    shell: "zsh/bash"
+    scan_command: "system_profiler SPAirPortDataType"
+    notes: "Location Services required for nearby network scanning"
+
+  - name: "Linux"
+    distros: "Ubuntu 20.04+, Debian 11+, Fedora 36+, Arch"
+    shell: "bash"
+    scan_command: "nmcli dev wifi list"
+    notes: "NetworkManager required. User must be in netdev group."
+
+  - name: "Windows"
+    versions: "10 (1903+), 11"
+    shell: "PowerShell 5.1+"
+    scan_command: "netsh wlan show interfaces"
+    notes: "curl.exe built-in on Windows 10+. UAC for admin commands."
+
+# ---------------------------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------------------------
+dependencies:
+  required:
+    - name: "Python"
+      version: ">=3.8"
+      purpose: "Runtime for SAC-LTC agent"
+
+  optional:
+    - name: "PyTorch"
+      version: ">=2.0.0"
+      pip: "torch"
+      purpose: "SAC-LTC neural network inference and training"
+      fallback: "Heuristic-only mode (no AI decisions)"
+
+    - name: "NumPy"
+      version: ">=1.24.0"
+      pip: "numpy"
+      purpose: "Numerical operations for training"
+      fallback: "Pure Python math (slower but functional)"
+
+# ---------------------------------------------------------------------------
+# File Manifest
+# ---------------------------------------------------------------------------
+files:
+  entry_points:
+    - path: "SKILL.md"
+      type: "skill-definition"
+      description: "Claude Code skill with all modes and instructions"
+    - path: "sac_ltc_agent.py"
+      type: "python-cli"
+      description: "Lightweight inference agent (LTC + KAN + sensing)"
+    - path: "train_sac_ltc.py"
+      type: "python-cli"
+      description: "Training pipeline with ITU-R/3GPP physics"
+
+  documentation:
+    - path: "docs/SAC_LTC_ARCHITECTURE.md"
+    - path: "docs/TRAINING_PIPELINE.md"
+    - path: "docs/PERMISSIONS_AND_CONTROLS.md"
+    - path: "docs/RF_ENVIRONMENT_INTELLIGENCE.md"
+    - path: "docs/CROSS_PLATFORM_COMMANDS.md"
+
+  data:
+    - path: "data/sample_environment.json"
+    - path: "data/sample_episode.json"
+    - path: "data/training_log.json"
+
+  metadata:
+    - path: "plugin.yaml"
+    - path: "package.json"
+    - path: "CHANGELOG.md"
+    - path: "LICENSE"
+    - path: "CONTRIBUTING.md"

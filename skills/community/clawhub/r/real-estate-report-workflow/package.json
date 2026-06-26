@@ -1,0 +1,15 @@
+{
+  "name": "real-estate-report-workflow",
+  "version": "1.5.6",
+  "description": "房地产市场调研报告撰写工作流 — 5 步流程 × 14+56 条原则，经 3 个完整项目实战验证"
+  "private": true,
+  "scripts": {
+    "export": "node scripts/generate_report_docx.js"
+  },
+  "dependencies": {
+    "docx": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

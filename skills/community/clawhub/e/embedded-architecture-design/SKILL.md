@@ -1,35 +1,113 @@
 ---
-name: "embedded-architecture-design"
-description: "在将代码从一个平台迁移到另一个平台时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/embedded-architecture-design"
-sourceUrl: "https://clawhub.ai/skills/embedded-architecture-design"
+name: embedded-code-migration-check
+description: 在将代码从一个平台迁移到另一个平台时使用
+workflow_phase: act
+domain: embedded
 ---
 
-# embedded-architecture-design
+# Code Migration Check - 代码迁移检查
 
-> 在将代码从一个平台迁移到另一个平台时使用
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/embedded-architecture-design`
-- **Source URL:** [https://clawhub.ai/skills/embedded-architecture-design](https://clawhub.ai/skills/embedded-architecture-design)
+系统性地检查代码从一个嵌入式平台迁移到另一个平台时的兼容性问题。
 
-## Overview
+## 迁移检查清单
 
+### 1. 编译器兼容性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/embedded-architecture-design
+| 检查项 | 说明 |
+|--------|------|
+| **数据类型** | int 大小、对齐方式 |
+| **字节序** | 大端/小端 |
+| **编译器扩展** | __attribute__, pragma |
+| **内联汇编** | 目标平台语法 |
+
+### 2. 硬件抽象层
+
+| 检查项 | 原平台 | 目标平台 | 状态 |
+|--------|--------|---------|------|
+| GPIO 接口 | HAL_GPIO_xxx | gpio_xxx | ⚠️ |
+| SPI 接口 | HAL_SPI_xxx | spi_xxx | ⚠️ |
+| 定时器 | HAL_TIM_xxx | timer_xxx | ⚠️ |
+| 中断 | NVIC | INTC | ⚠️ |
+
+### 3. 外设差异
+
+- 寄存器地址不同
+- 功能特性差异
+- 时序参数差异
+
+### 4. 系统特性
+
+- 启动流程
+- 内存映射
+- 低功耗模式
+- 看门狗
+
+## 迁移流程
+
 ```
+1. 分析原代码结构
+      ↓
+2. 识别平台相关代码
+      ↓
+3. 创建目标平台 HAL
+      ↓
+4. 逐模块迁移
+      ↓
+5. 编译验证
+      ↓
+6. 功能测试
+```
+
+## 风险评估
+
+| 风险级别 | 定义 | 处理 |
+|---------|------|------|
+| 🔴 高 | 需要重写 | 预留时间 |
+| 🟡 中 | 需要适配 | 正常处理 |
+| 🟢 低 | 可直接复用 | 简单验证 |
+
+## 输出格式
+
+```markdown
+# 代码迁移检查报告
+
+## 基本信息
+- 源平台: STM32F103 (HAL)
+- 目标平台: ESP32-S3 (ESP-IDF)
+- 代码规模: ~10K 行
+
+## 风险评估
+
+### 高风险项 🔴
+1. **SPI 驱动** - 需要重写
+   - 原因: API 完全不同
+   - 建议: 使用目标平台 SPI 驱动重新实现
+
+### 中风险项 🟡
+1. **定时器** - 需要适配
+   - 差异: 定时器结构不同
+   - 建议: 抽象定时器接口
+
+### 低风险项 🟢
+1. **业务逻辑** - 可直接复用
+2. **数据结构** - 可直接复用
+
+## 迁移建议
+1. 先搭建目标平台框架
+2. 实现 HAL 层适配
+3. 逐模块迁移验证
+
+## 工作量估算
+- HAL 层适配: 3 人天
+- 驱动迁移: 2 人天
+- 测试验证: 2 人天
+- 总计: 7 人天
+```
+
+## 与 Core Workflow 集成
+
+**在 Act 阶段调用:**
+- 迁移项目的第一步
+- 输出迁移计划用于 `writing-plans`

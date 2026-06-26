@@ -1,0 +1,6 @@
+cryptography==42.0.2
+Pillow==10.4.0
+qrcode==7.4.2
+PyYAML==6.0.2
+pytest==8.3.5
+pytest-json-report==1.5.0

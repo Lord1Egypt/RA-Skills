@@ -1,0 +1,17 @@
+{
+  "skill_name": "rfc-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "写一个 RFC：我们现在的发验证码接口太容易被刷了，我打算加一个 Redis 限流，同一个 IP 1分钟只能发1次",
+      "expected_output": "A Chinese RFC document using the structured template. It must expand the brief idea into Background (abuse of the SMS API), Problem Statement, Proposed Solution (Redis rate limiting, IP-based), Pros & Cons, and invent Alternatives (like CAPTCHAs or Device ID fingerprinting).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Draft a technical proposal to migrate our frontend from Webpack to Vite to speed up the dev server.",
+      "expected_output": "An English RFC document outlining the migration to Vite. It should include the Background (Webpack is slow for large apps), the Solution, Pros/Cons, and Alternatives (like Turbopack or esbuild).",
+      "files": []
+    }
+  ]
+}

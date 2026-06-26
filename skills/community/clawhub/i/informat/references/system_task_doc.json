@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_task_doc",
+    "description": "Query Informat task documentation",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

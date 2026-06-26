@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-04-07T17:15:27.310618",
+  "asins": {
+    "B0B1F5F3VR": {
+      "price": 6.79,
+      "rating": 4.7,
+      "ratingCount": 4747,
+      "bsr_pet": 1150,
+      "bsr_sub": 3,
+      "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "Amazon.com",
+      "title": "Best Pet Supplies Voyager Reflective Dog Leash or Collar with Neoprene Handle, for Small, Medium, and Large Breed Puppies, Cute and Heavy Duty for Walking, Running and Training - Fuchsia (Leash), S Leash (Fuchsia) Leash (5/8\" x 5ft)"
+    },
+    "B08PNWG993": {
+      "price": 9.99,
+      "rating": 4.6,
+      "ratingCount": 14598,
+      "bsr_pet": 1756,
+      "bsr_sub": 12,
+      "subcat": "Basic Dog Collars",
+      "buyboxSeller": "Ladoogo Direct",
+      "title": "Reflective Dog Collar Padded with Soft Neoprene Breathable Adjustable Nylon Dog Collars for Small Medium Large Dogs (Medium (Pack of 1), Blue Collar+Leash)"
+    },
+    "B08NDFWQB1": {
+      "price": 14.99,
+      "rating": 4.3,
+      "ratingCount": 6768,
+      "bsr_pet": 3572,
+      "bsr_sub": 44,
+      "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "PupTeck",
+      "title": "PUPTECK Adjustable Dog Harness Collar and Leash Set Step in No Pull Pet Harness for Small Medium Dogs Puppy and Cats Outdoor Walking Running, Soft Mesh Padded Reflective Vest Harnesses, Beige S Beige S (CHEST 14.5\"-16\")"
+    },
+    "B004XNLCPC": {
+      "price": 26.99,
+      "rating": 4.3,
+      "ratingCount": 41246,
+      "bsr_pet": 2673,
+      "bsr_sub": 2,
+      "subcat": "Headcollars",
+      "buyboxSeller": "Amazon.com",
+      "title": "Halti Headcollar - Stop Your Dog Pulling on the Leash. Adjustable, Reflective and Lightweight, with Padded Nose Band. Dog Training Anti-Pull Collar for Medium Dogs (Size 3, Black)"
+    },
+    "B081YHK13N": {
+      "price": 6.55,
+      "rating": 4.4,
+      "ratingCount": 7988,
+      "bsr_pet": 3304,
+      "bsr_sub": 15,
+      "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "AmaGoodSHIP",
+      "title": "AMAGOOD 6 FT Puppy/Leash, Strong Traditional Style with Easy to Use Collar Hook, Great for Small, Medium and Large Dogs (5/8in x 6 ft, Purple) 5/8 in x 6 ft Purple"
+    },
+    "B0CQ567YLN": {
+      "price": 24.49,
+      "rating": 4.3,
+      "ratingCount": 1757,
+      "bsr_pet": 3443,
+      "bsr_sub": 49,
+      "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "Lobeve-us",
+      "title": "No Pull Dog Harness, Collar & Leash Set | Includes Dog Seat Belt, Collapsible Bowls & Poop Bag Dispenser. Ideal for Training, Walking, Hiking. Fits Small to Large Dogs(Pink-L)"
+    },
+    "B07DZBN74T": {
+      "price": 123.99,
+      "rating": 4.2,
+      "ratingCount": 4753,
+      "bsr_pet": 5290,
+      "bsr_sub": 25,
+      "subcat": "Electronic Training Collars",
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425X - Remote Trainer Designed for Off-Leash Control & Training - 500-Yard Range - Waterproof - Quick Charge-Collar with 21 Levels of Static, Tone, & Vibration"
+    },
+    "B07DZ1752D": {
+      "price": 127.99,
+      "rating": 4.2,
+      "ratingCount": 2336,
+      "bsr_pet": 13868,
+      "bsr_sub": 94,
+      "subcat": "Electronic Training Collars",
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425XS - Remote Trainer Designed for Off-Leash Control & Training - for Stubborn Dogs - 500-Yard Range - Waterproof - Quick-Charge Collar - Static, Tone, & Vibration"
+    }
+  }
+}

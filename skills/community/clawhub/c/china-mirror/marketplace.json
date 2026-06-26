@@ -1,0 +1,22 @@
+{
+  "name": "china-mirror",
+  "version": "2.0.0",
+  "description": "国内镜像源自动添加。AI 生成包下载命令时自动添加大厂/高校背书的可信镜像参数。",
+  "author": "xiaomiba0904",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaomiba0904/china-mirror-skill"
+  },
+  "keywords": [
+    "mirror",
+    "china",
+    "npm",
+    "pip",
+    "uv",
+    "加速",
+    "镜像源"
+  ],
+  "category": "devtools",
+  "supportedPlatforms": ["macos", "linux"]
+}

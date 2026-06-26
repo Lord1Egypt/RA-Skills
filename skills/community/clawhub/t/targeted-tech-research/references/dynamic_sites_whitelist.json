@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "description": "Whitelist of high-value dynamic pages that should trigger Playwright Scraper",
+  "rules": [
+    {
+      "type": "domain_pattern",
+      "pattern": "patents.google.com",
+      "reason": "Patent detail pages; claims require clicking tabs to load",
+      "priority": "high"
+    },
+    {
+      "type": "domain_pattern",
+      "pattern": "worldwide.espacenet.com",
+      "reason": "European Patent Office; interactive patent viewer",
+      "priority": "high"
+    },
+    {
+      "type": "domain_pattern",
+      "pattern": "docs.*.com",
+      "reason": "Technical documentation sites with dynamic sidebars",
+      "priority": "medium"
+    },
+    {
+      "type": "domain_pattern",
+      "pattern": "developer.*.com",
+      "reason": "Developer docs; commonly SPA architecture",
+      "priority": "medium"
+    },
+    {
+      "type": "path_contains",
+      "pattern": "/app/",
+      "reason": "SPA application path signature",
+      "priority": "medium"
+    },
+    {
+      "type": "path_contains",
+      "pattern": "/spa/",
+      "reason": "Explicit single-page application path",
+      "priority": "medium"
+    },
+    {
+      "type": "path_contains",
+      "pattern": "/docs/next/",
+      "reason": "Next.js documentation sites",
+      "priority": "medium"
+    }
+  ]
+}

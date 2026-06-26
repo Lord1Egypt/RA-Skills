@@ -1,35 +1,59 @@
 ---
-name: "飞书知识管理"
-description: "飞书知识管理工具。当用户发送外部文章链接时，自动获取内容、存入飞书文档、并归纳知识要点到飞书知识库。包括：(1) 读取外部链接内容 (2) 存原文到飞书云文档 (3) 归纳知识要点到知识库对应分类 (4) 定期整理知识库结构、清理重复文档。触发场景：用户发链接、用户说"整理知识"、"存入知识库"、"归纳要点"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-knowledge-manager"
-sourceUrl: "https://clawhub.ai/skills/feishu-knowledge-manager"
+name: feishu-knowledge-manager
+description: 飞书知识管理工具。当用户发送外部文章链接时，自动获取内容、存入飞书文档、并归纳知识要点到飞书知识库。包括：(1) 读取外部链接内容 (2) 存原文到飞书云文档 (3) 归纳知识要点到知识库对应分类 (4) 定期整理知识库结构、清理重复文档。触发场景：用户发链接、用户说"整理知识"、"存入知识库"、"归纳要点"
 ---
 
-# 飞书知识管理
+# 文章知识管理工作流
 
-> 飞书知识管理工具。当用户发送外部文章链接时，自动获取内容、存入飞书文档、并归纳知识要点到飞书知识库。包括：(1) 读取外部链接内容 (2) 存原文到飞书云文档 (3) 归纳知识要点到知识库对应分类 (4) 定期整理知识库结构、清理重复文档。触发场景：用户发链接、用户说"整理知识"、"存入知识库"、"归纳要点
+## 核心流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-knowledge-manager`
-- **Source URL:** [https://clawhub.ai/skills/feishu-knowledge-manager](https://clawhub.ai/skills/feishu-knowledge-manager)
+```
+链接 → 获取内容 → 飞书存原文 → 知识库归纳要点
+```
 
-## Overview
+## 执行步骤
 
+### 1. 获取链接内容
 
-## Installation
-To install this skill, run the following command in your terminal:
+根据链接类型使用对应工具：
+- **微信公众号**：使用 wechat-article-reader 或 wechat-article-extractor
+- **小红书**：使用 xiaohongshu-mcp (mcporter call)
+- **YouTube**：使用 youtube-transcript skill
+- **通用网页**：使用 web_fetch 或 Agent Reach
+
+### 2. 存入飞书云文档
+
+使用 feishu_create_doc 创建文档：
+- 标题：文章标题
+- 内容：原文内容
+- 存到飞书云空间（可后续导入知识库）
+
+### 3. 归纳知识要点
+
+使用 feishu_update_doc 更新知识库对应分类：
+- 提取文章核心观点
+- 归纳关键知识点
+- 归类到知识库对应主题分类下
+
+### 4. 定期整理（定时任务）
+
+- 每天 9:00 自动执行知识库整理
+- 检查飞书云空间重复文档
+- 优化知识库结构
+- 汇报整理结果
+
+## 知识库分类参考
+
+根据主题自动分类：
+- 🛠️ 工具安装 - 工具类文章
+- 🚀 进阶技巧 - 方法论、工作流
+- 🛡️ 安全配置 - 安全相关
+- 📖 常见问题 - 故障排查
+- 💡 最佳实践 - 经验总结
+
+## 定时任务配置
+
+如需创建每日整理任务：
 ```bash
-hermes skills install clawhub/feishu-knowledge-manager
+openclaw cron add --name "每日知识库整理" --cron "0 9 * * *" --message "请执行知识库整理工作" --channel feishu
 ```

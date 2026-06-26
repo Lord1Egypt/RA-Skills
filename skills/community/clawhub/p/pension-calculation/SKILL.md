@@ -1,35 +1,450 @@
 ---
-name: "China National Pension Calculation"
+name: "pension-calculator"
 description: "养老金计算器 - 支持Web界面填写和LLM对话交互。计算基本养老金、企业年金、个人养老金和养老储蓄。适用于中国养老金体系计算。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pension-calculation"
-sourceUrl: "https://clawhub.ai/skills/pension-calculation"
+version: "1.1.0"
+author: "纲目财学"
+tags: ["finance", "pension", "calculator", "retirement", "社保", "mcp"]
+type: "mcp"
+entry: "mcp-server.js"
 ---
 
-# China National Pension Calculation
+# 养老金计算器
 
-> 养老金计算器 - 支持Web界面填写和LLM对话交互。计算基本养老金、企业年金、个人养老金和养老储蓄。适用于中国养老金体系计算。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pension-calculation`
-- **Source URL:** [https://clawhub.ai/skills/pension-calculation](https://clawhub.ai/skills/pension-calculation)
+专业的**中国养老金计算工具（全国通用版）**，支持两种使用方式：
 
-## Overview
+> **重要说明**：本计算器采用全国统一的养老金计算规则，适用于中国所有地区（包括城镇和乡村），不区分地域差异。计算结果基于国家统一的社保政策和计发标准。
 
+1. **Web界面** - 直观的可视化操作，适合首次使用
+2. **LLM对话** - 通过自然语言交互，适合快速计算和调整
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pension-calculation
+### 计算内容
+
+- **基本养老金** - 社保个人账户 + 统筹账户
+- **企业年金** - 补充养老保险
+- **个人养老金** - 第三支柱养老金
+- **养老储蓄** - 个人储蓄投资
+- **退休规划报告** - 综合分析和建议
+
+## 使用方法
+
+### 方式一：Web界面（推荐首次使用）
+
+**当用户说"帮我计算养老金"或类似需求时，LLM 应该：**
+
+1. **立即调用 `start_web_ui` 工具** 启动 Web 服务器
+2. 向用户展示访问链接和操作说明
+3. 等待用户在浏览器中完成填写并保存
+
+**标准交互流程：**
+
 ```
+用户：帮我计算养老金
+
+LLM：[立即调用 start_web_ui]
+
+🚀 养老金计算器已启动！
+
+请访问：http://localhost:8082
+
+请在浏览器中填写您的养老金信息：
+• 基本信息（年龄、退休年龄）
+• 社保信息（已缴月数、账户余额、缴费基数）
+• 企业年金（如有）
+• 个人养老金
+• 养老储蓄
+
+填写完成后，点击页面上的"💾 保存数据"按钮，
+然后告诉我"已完成"，我将为您生成详细的养老金分析报告。
+```
+
+**用户完成填写后：**
+
+```
+用户：已完成
+
+LLM：[调用 generate_report]
+
+📊 养老金分析报告
+═══════════════════════════════════
+💰 退休收入总览
+每月可领取：19,896 元
+...
+```
+
+### 故障排除
+
+#### 问题1：LLM 提示"未找到用户数据"
+
+**原因**：如果使用 `python3 -m http.server` 等静态服务器，POST 请求不被支持，数据无法自动保存到文件。
+
+**解决方案**：
+
+**方式A：使用 MCP Server 启动（推荐）**
+```bash
+# 使用 Node.js 启动 MCP Server（支持数据保存）
+cd pension-calculator
+npm install
+npm start
+```
+
+**方式B：用户直接提供数据给 LLM**
+当用户使用静态服务器时，点击"💾 保存数据"后会自动导出 JSON 文件，用户可以将数据直接告诉 LLM：
+```
+用户：我已填写完成，当前35岁，63岁退休，社保已缴301个月，余额38.4万，月缴费基数12000，个人养老金余额7.5万，养老储蓄27万
+
+LLM：[将数据传入 generate_report 工具]
+```
+
+**方式C：使用导出文件**
+用户点击"💾 保存数据"后，会下载 JSON 文件，可以将文件内容提供给 LLM。
+
+#### 问题2：数据保存成功但 LLM 读取不到
+
+1. **检查 MCP Server 和 Web Server 是否在同一目录**
+   - 确保两者访问的是同一个 `data/user-data.json` 文件
+
+2. **检查文件权限**
+   - 确保 MCP Server 有权限读取数据文件
+
+3. **尝试重新保存**
+   - 让用户回到网页点击"💾 保存数据"按钮再次保存
+
+### 方式二：对话直接输入
+
+```
+用户：帮我算一下养老金，今年35岁，63岁退休，社保缴了301个月，余额38.4万
+
+LLM：好的，正在计算...
+
+📊 养老金计算结果
+...
+```
+
+### 方式三：修改参数
+
+```
+用户：修改退休年龄为60岁
+
+LLM：好的，重新计算...
+
+[调用 update_parameter]
+
+✅ 已更新 profile.retirementAge 为 60
+
+📊 新的养老金分析报告
+...
+```
+
+## MCP 工具列表
+
+### start_web_ui
+
+启动养老金计算器 Web 界面。
+
+**参数**：无
+
+**返回**：Web 服务器 URL
+
+### generate_report
+
+读取用户填写的数据并生成养老金分析报告。
+
+**参数**：无
+
+**返回**：格式化的分析报告
+
+**前提**：用户需要在 Web 界面填写完成并点击"保存数据"
+
+### update_parameter
+
+修改特定参数并重新生成报告。
+
+**参数**：
+- `param` (string): 参数路径，如 "profile.retirementAge", "socialSecurity.currentBalance"
+- `value` (number): 新的数值
+
+**示例**：
+```json
+{
+  "param": "profile.retirementAge",
+  "value": 60
+}
+```
+
+### check_status
+
+检查用户是否已完成 Web 界面的数据填写。
+
+**参数**：无
+
+**返回**：状态信息
+
+## 数据模型
+
+### 输入参数
+
+```json
+{
+  "profile": {
+    "currentAge": 35,
+    "retirementAge": 63,
+    "gender": "male"
+    // 注：本计算器为全国通用版本，适用于中国所有地区
+  },
+  "socialSecurity": {
+    "paidMonths": 301,
+    "currentBalance": 384000,
+    "monthlyBase": 12000,
+    "avgWage": 10000
+  },
+  "enterpriseAnnuity": {
+    "balance": 0,
+    "returnRate": 5
+  },
+  "personalPension": {
+    "balance": 75000,
+    "annualDeposit": 12000,
+    "returnRate": 6
+  },
+  "savings": {
+    "amount": 270000,
+    "returnRate": 6
+  },
+  "futurePlan": {
+    "annualDeposit": 36000,
+    "returnRate": 6
+  },
+  "parameters": {
+    "inflationRate": 2.5,
+    "preRetirementIncome": 15000
+  }
+}
+```
+
+### 输出结果
+
+```json
+{
+  "summary": {
+    "totalMonthly": 19896,
+    "currentValue": 13737,
+    "replacementRate": 133,
+    "yearsToRetirement": 28
+  },
+  "details": {
+    "basicPension": {
+      "monthly": 6243,
+      "personalMonthly": 2234,
+      "poolMonthly": 4008
+    },
+    "enterprisePension": {
+      "monthly": 0,
+      "totalBalance": 0
+    },
+    "personalPension": {
+      "monthly": 3149,
+      "totalBalance": 459054
+    },
+    "savingsPension": {
+      "monthly": 4577,
+      "totalBalance": 647071
+    },
+    "futurePension": {
+      "monthly": 5927,
+      "totalBalance": 837935
+    }
+  }
+}
+```
+
+## 计算公式
+
+### 基本养老金
+
+```
+个人账户月领取 = 退休时个人账户总额 / 计发月数
+统筹账户月领取 = 社平工资 × (1+平均缴费指数) / 2 × 缴费年限 × 1%
+```
+
+计发月数参考：
+- 60岁退休：139个月
+- 63岁退休：117个月
+- 65岁退休：101个月
+
+### 企业年金
+
+```
+月领取 = 退休时账户总额 / 计发月数
+```
+
+### 个人养老金 & 储蓄
+
+```
+月领取 = 账户总额 × 月利率 / (1 - (1+月利率)^-240)
+```
+（假设领取20年=240个月）
+
+## 文件结构
+
+```
+pension-calculator/
+├── js/
+│   ├── pensionData.js          # 数据模型
+│   ├── pensionCalculator.js    # 计算引擎
+│   └── pensionStorage.js       # 存储管理
+├── data/                       # 用户数据目录
+│   ├── user-data.json          # 用户填写的数据
+│   └── status.json             # 状态信息
+├── index.html                  # Web界面
+├── mcp-server.js               # MCP Server
+└── SKILL.md                    # 本文件
+```
+
+## 交互流程
+
+```
+┌─────────────┐     start_web_ui      ┌─────────────┐
+│   用户请求   │ ─────────────────────→ │  启动Web服务  │
+└─────────────┘                        └─────────────┘
+                                              ↓
+┌─────────────┐     浏览器访问            ┌─────────────┐
+│  用户填写数据  │ ←─────────────────────── │  http://...  │
+└─────────────┘                        └─────────────┘
+       ↓
+┌─────────────┐     点击"保存数据"        ┌─────────────┐
+│  Web界面    │ ───────────────────────→ │ 保存到文件    │
+└─────────────┘                        └─────────────┘
+                                              ↓
+┌─────────────┐     用户说"已完成"        ┌─────────────┐
+│   对话窗口   │ ←─────────────────────── │  LLM等待    │
+└─────────────┘                        └─────────────┘
+       ↓
+┌─────────────┐     generate_report     ┌─────────────┐
+│  生成报告    │ ←─────────────────────── │ 读取数据计算  │
+└─────────────┘                        └─────────────┘
+       ↓
+┌─────────────┐     显示结果            ┌─────────────┐
+│  用户查看报告  │ ←────────────────────── │  返回报告    │
+└─────────────┘                        └─────────────┘
+       ↓
+┌─────────────┐     update_parameter    ┌─────────────┐
+│  对话修改参数  │ ─────────────────────→ │  重新计算    │
+└─────────────┘                        └─────────────┘
+```
+
+## 技术说明
+
+- **MCP协议** - 使用 Model Context Protocol 与 LLM 通信
+- **Web界面** - 纯前端实现，无需后端服务器
+- **数据存储** - 本地文件存储，支持数据持久化
+- **响应式设计** - 适配桌面和移动端
+- **实时计算** - 修改参数后立即重新计算
+
+## 安装要求
+
+```bash
+# 安装 MCP SDK
+npm install @modelcontextprotocol/sdk
+
+# 启动 MCP Server
+node mcp-server.js
+```
+
+## 使用示例
+
+### 示例1：完整流程
+
+```
+用户：帮我计算养老金
+
+LLM：好的！我来为您启动养老金计算器。
+
+[调用 start_web_ui]
+
+🚀 养老金计算器已启动！
+请访问：http://localhost:8082
+填写完成后请告诉我"已完成"。
+
+─────────────────────────────
+
+用户：已完成
+
+LLM：收到！正在生成报告...
+
+[调用 generate_report]
+
+📊 养老金分析报告
+═══════════════════════════════════
+💰 退休收入总览
+每月可领取：19,896 元
+相当于现在：13,737 元
+替代率：133%
+
+📈 详细构成
+1️⃣ 基本养老金：6,243 元/月
+2️⃣ 企业年金：0 元/月
+3️⃣ 个人养老金：3,149 元/月
+4️⃣ 养老储蓄：4,577 元/月
+5️⃣ 未来计划：5,927 元/月
+
+🎯 退休生活水平评估
+状态：✅ 开支宽裕
+
+💡 建议：
+• 退休收入充足，可以维持较好的生活品质
+• 可考虑适当提高当前生活品质
+
+═══════════════════════════════════
+
+需要调整哪些数据吗？
+```
+
+### 示例2：修改参数
+
+```
+用户：修改退休年龄为60岁
+
+LLM：好的，重新计算...
+
+[调用 update_parameter]
+
+✅ 已更新 profile.retirementAge 为 60
+
+📊 新的养老金分析报告
+...
+```
+
+## 免责声明
+
+1. 本计算器提供的养老金估算结果仅供参考，不构成任何投资或财务建议
+2. 计算结果基于用户输入的数据和预设的公式，实际养老金金额以当地社保经办机构核算为准
+3. 未来收益率、通胀率等参数为预测值，实际情况可能与预测存在差异
+4. 养老金政策可能随国家法规调整而变化，请以最新政策为准
+5. 建议在做重大财务决策前咨询专业的财务顾问或社保经办机构
+
+## 更新日志
+
+### v1.1.0 (2025-04-11)
+- ✅ 新增 MCP Server 支持 LLM 直接调用
+- ✅ 支持 Web 界面 + 对话混合交互模式
+- ✅ 新增 saveDataToServer 功能
+- ✅ 新增 generate_report 工具
+- ✅ 新增 update_parameter 工具
+- ✅ 新增 check_status 工具
+
+### v1.0.0 (2025-04-11)
+- ✅ 基本养老金计算（个人账户+统筹账户）
+- ✅ 企业年金计算
+- ✅ 个人养老金计算
+- ✅ 养老储蓄规划
+- ✅ 退休生活水平评估
+- ✅ 数据导出/导入功能
+- ✅ 响应式Web界面
+
+## 作者信息
+
+- **作者**：纲目财学
+- **版本**：v1.1.0
+- **标签**：#finance #pension #calculator #retirement #社保 #mcp

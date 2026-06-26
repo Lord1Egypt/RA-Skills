@@ -1,0 +1,22 @@
+{
+  "name": "@modelfitai/reddit-prospecting",
+  "version": "1.0.0",
+  "description": "Find buying-intent posts on Reddit via Brave Search (no Reddit credentials needed), score leads, and generate value-first comments.",
+  "keywords": ["openclaw", "skill", "reddit", "lead-gen", "prospecting", "sales"],
+  "author": "ModelFitAI <skills@modelfitai.com>",
+  "license": "MIT",
+  "homepage": "https://modelfitai.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelfitai/openclaw-skills"
+  },
+  "main": "reddit-prospecting.js",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "openclaw": {
+    "skill": true,
+    "requires": {
+      "env": ["BRAVE_API_KEY"]
+    }
+  }
+}

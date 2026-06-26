@@ -1,0 +1,14 @@
+{
+    "name": "whatsapp_auto_reply",
+    "description": "Automatically sends WhatsApp responses using an external API.",
+    "version": "1.0.0",
+    "entry_point": "skill.py",
+    "inputs": {
+      "message": "string",
+      "phone_number": "string"
+    },
+    "outputs": {
+      "status": "string",
+      "api_response": "object"
+    }
+  }

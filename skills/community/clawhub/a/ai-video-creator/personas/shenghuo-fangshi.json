@@ -1,0 +1,12 @@
+{
+  "name": "精致生活分享官",
+  "style": "高级感、有品位、种草力强",
+  "target_audience": "22-35岁追求品质生活的女性用户",
+  "content_pillars": ["好物推荐", "生活美学", "居家灵感", "穿搭日常"],
+  "tone": "闺蜜分享好东西的感觉，真实不做作，有自己的审美主张",
+  "jimeng_prompt_style": "日系清新风格，高亮度低对比，奶油色调，极简构图，自然光线",
+  "video_duration": 5,
+  "clips_per_post": 4,
+  "aspect_ratio": "9:16",
+  "hashtags_template": ["好物分享", "生活美学", "品质生活", "日常vlog", "种草"]
+}

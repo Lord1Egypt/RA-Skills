@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>17CE 测速报告</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;padding:32px 24px}
+  h1{font-size:24px;font-weight:700;background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+  .subtitle{color:#64748b;font-size:14px;margin-bottom:28px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
+  .card{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:18px 20px}
+  .card .val{font-size:28px;font-weight:700;line-height:1.2}
+  .card .lbl{font-size:12px;color:#64748b;margin-top:4px}
+  .green{color:#22c55e}.yellow{color:#eab308}.red{color:#ef4444}.blue{color:#38bdf8}
+  table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:14px;overflow:hidden;border:1px solid #334155}
+  thead{background:#0f172a}
+  th{padding:12px 16px;text-align:left;font-size:12px;color:#64748b;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+  td{padding:11px 16px;border-top:1px solid #1e293b2a;font-size:14px;vertical-align:middle}
+  tr:nth-child(odd){background:#243044}
+  tr:hover{background:#2d3f55}
+  .loc{color:#e2e8f0;font-weight:500}
+  .isp{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+  .isp-1{background:#1d4ed820;color:#60a5fa}
+  .isp-2{background:#16a34a20;color:#4ade80}
+  .isp-3{background:#d9770620;color:#fb923c}
+  .isp-4{background:#7c3aed20;color:#a78bfa}
+  .bar-wrap{width:100px;margin-bottom:3px}
+  .badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:11px;margin-left:6px}
+  .code{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700}
+  .ok{background:#16a34a20;color:#4ade80}
+  .err{background:#dc262620;color:#f87171}
+  .url-box{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:14px;display:flex;gap:12px;align-items:center}
+  .url-box .u{color:#38bdf8;word-break:break-all}
+  .url-box .t{color:#64748b;font-size:12px;white-space:nowrap}
+  footer{text-align:center;color:#334155;font-size:12px;margin-top:24px}
+</style>
+</head>
+<body>
+<h1>🚀 17CE 网站测速报告</h1>
+<p class="subtitle">由 17CE WebSocket API 生成 · 2026-03-20 11:29:08</p>
+
+<div class="url-box">
+  <span style="color:#64748b">目标</span>
+  <span class="u">http://www.baidu.com</span>
+  <span class="t">2026-03-20 11:29:08</span>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="val green">85 <span style="font-size:14px;font-weight:400">ms</span></div>
+    <div class="lbl">平均响应时间</div>
+  </div>
+  <div class="card">
+    <div class="val green">23 <span style="font-size:14px;font-weight:400">ms</span></div>
+    <div class="lbl">最快节点</div>
+  </div>
+  <div class="card">
+    <div class="val yellow">217 <span style="font-size:14px;font-weight:400">ms</span></div>
+    <div class="lbl">最慢节点</div>
+  </div>
+  <div class="card">
+    <div class="val blue">7/7</div>
+    <div class="lbl">成功 / 总节点</div>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>节点位置</th>
+      <th>运营商</th>
+      <th>总耗时 (ms)</th>
+      <th>首字节 (ms)</th>
+      <th>DNS (ms)</th>
+      <th>HTTP</th>
+      <th>解析IP</th>
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+          <td><span class="loc">中国江苏南京联通</span></td>
+          <td><span class="isp isp-2">联通</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:9%;background:#22c55e;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#22c55e;font-weight:600">23.0</span>
+            <span class="badge" style="background:#22c55e20;color:#22c55e">极快</span>
+          </td>
+          <td style="color:#94a3b8">22.4</td>
+          <td style="color:#94a3b8">2.6</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">153.3.238.28</td>
+        </tr>
+        <tr>
+          <td><span class="loc">中国江苏电信</span></td>
+          <td><span class="isp isp-1">电信</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:13%;background:#22c55e;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#22c55e;font-weight:600">32.8</span>
+            <span class="badge" style="background:#22c55e20;color:#22c55e">极快</span>
+          </td>
+          <td style="color:#94a3b8">32.4</td>
+          <td style="color:#94a3b8">2.7</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">180.101.51.73</td>
+        </tr>
+        <tr>
+          <td><span class="loc">中国江苏南京联通</span></td>
+          <td><span class="isp isp-2">联通</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:24%;background:#eab308;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#eab308;font-weight:600">59.2</span>
+            <span class="badge" style="background:#eab30820;color:#eab308">快</span>
+          </td>
+          <td style="color:#94a3b8">58.7</td>
+          <td style="color:#94a3b8">2.8</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">153.3.238.28</td>
+        </tr>
+        <tr>
+          <td><span class="loc">中国广东广州电信</span></td>
+          <td><span class="isp isp-1">电信</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:28%;background:#eab308;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#eab308;font-weight:600">67.9</span>
+            <span class="badge" style="background:#eab30820;color:#eab308">快</span>
+          </td>
+          <td style="color:#94a3b8">67.6</td>
+          <td style="color:#94a3b8">13.1</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">183.2.172.17</td>
+        </tr>
+        <tr>
+          <td><span class="loc">中国广东广州电信</span></td>
+          <td><span class="isp isp-1">电信</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:40%;background:#eab308;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#eab308;font-weight:600">97.0</span>
+            <span class="badge" style="background:#eab30820;color:#eab308">快</span>
+          </td>
+          <td style="color:#94a3b8">96.5</td>
+          <td style="color:#94a3b8">2.5</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">183.2.172.17</td>
+        </tr>
+        <tr>
+          <td><span class="loc">中国广东广州电信</span></td>
+          <td><span class="isp isp-1">电信</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:40%;background:#eab308;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#eab308;font-weight:600">97.6</span>
+            <span class="badge" style="background:#eab30820;color:#eab308">快</span>
+          </td>
+          <td style="color:#94a3b8">97.3</td>
+          <td style="color:#94a3b8">35.7</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">183.2.172.17</td>
+        </tr>
+        <tr>
+          <td><span class="loc">中国江苏南京联通</span></td>
+          <td><span class="isp isp-2">联通</span></td>
+          <td>
+            <div class="bar-wrap"><div style="width:90%;background:#ef4444;height:8px;border-radius:4px;min-width:4px"></div></div>
+            <span style="color:#ef4444;font-weight:600">217.2</span>
+            <span class="badge" style="background:#ef444420;color:#ef4444">慢</span>
+          </td>
+          <td style="color:#94a3b8">216.8</td>
+          <td style="color:#94a3b8">159.3</td>
+          <td><span class="code ok">200</span></td>
+          <td style="color:#64748b;font-size:12px">153.3.238.127</td>
+        </tr></tbody>
+</table>
+
+<footer>17CE WebSocket API · 7 个节点 · 2026-03-20 11:29:08</footer>
+</body>
+</html>

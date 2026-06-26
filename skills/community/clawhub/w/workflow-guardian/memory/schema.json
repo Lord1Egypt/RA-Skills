@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workflow Guardian Memory Index",
+  "type": "object",
+  "required": ["version", "updated", "workflows", "violations", "stats"],
+  "properties": {
+    "version": { "type": "string" },
+    "updated": { "type": "string", "format": "date" },
+    "workflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "task_type", "state", "created"],
+        "properties": {
+          "id":               { "type": "string" },
+          "task_type":        { "type": "string" },
+          "state":            { "enum": ["pending","active","paused","completed","aborted","post-fix"] },
+          "compliance_rate":  { "type": "number", "minimum": 0, "maximum": 100 },
+          "total_runs":       { "type": "integer", "minimum": 0 },
+          "total_violations": { "type": "integer", "minimum": 0 },
+          "last_run":         { "type": ["string","null"], "format": "date" },
+          "created":          { "type": "string", "format": "date" },
+          "archived":         { "type": "boolean" }
+        }
+      }
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "workflow_id", "rule_id", "severity", "status", "captured"],
+        "properties": {
+          "slug":        { "type": "string" },
+          "workflow_id": { "type": "string" },
+          "rule_id":     { "type": "string" },
+          "rule_type":   { "enum": ["hard-do","hard-dont","soft-do","soft-dont","gate","checkpoint"] },
+          "severity":    { "enum": ["hard","soft"] },
+          "status":      { "enum": ["raw","reviewed","post-fixed","escalated","resolved","waived"] },
+          "captured":    { "type": "string", "format": "date-time" },
+          "resolved":    { "type": ["string","null"] },
+          "summary":     { "type": "string" }
+        }
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pattern_id", "rule_id", "count", "first_seen", "last_seen"],
+        "properties": {
+          "pattern_id":  { "type": "string" },
+          "rule_id":     { "type": "string" },
+          "workflow_id": { "type": ["string","null"] },
+          "count":       { "type": "integer", "minimum": 3 },
+          "first_seen":  { "type": "string", "format": "date" },
+          "last_seen":   { "type": "string", "format": "date" },
+          "status":      { "enum": ["active","resolved","monitoring"] }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "required": ["total_runs","total_violations","overall_compliance_pct","trend"],
+      "properties": {
+        "total_runs":               { "type": "integer", "minimum": 0 },
+        "total_violations":         { "type": "integer", "minimum": 0 },
+        "hard_violations":          { "type": "integer", "minimum": 0 },
+        "soft_violations":          { "type": "integer", "minimum": 0 },
+        "overall_compliance_pct":   { "type": "number", "minimum": 0, "maximum": 100 },
+        "trend":                    { "enum": ["improving","stable","worsening","insufficient-data"] },
+        "by_workflow": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "runs":           { "type": "integer" },
+              "violations":     { "type": "integer" },
+              "compliance_pct": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

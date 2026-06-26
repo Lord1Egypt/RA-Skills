@@ -1,35 +1,246 @@
----
-name: "Logic Inversion Reflector"
-description: "通过反转核心假设和元认知追问，强制用户跳出直觉思维，进入理性系统2深度反思模式。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/logic-inversion-reflector"
-sourceUrl: "https://clawhub.ai/skills/logic-inversion-reflector"
+# Logic Inversion Reflector (LIR-v2)
+
+**版本**: v2.0  
+**创建时间**: 2026-03-21  
+**作者**: Alex Wang  
+**类型**: 认知扰动引擎
+
 ---
 
-# Logic Inversion Reflector
+## 🎯 核心使命
 
-> 通过反转核心假设和元认知追问，强制用户跳出直觉思维，进入理性系统2深度反思模式。
+**不是优化结果，而是通过逻辑归谬和本体论追问，强制用户进入"系统 2"思考模式。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/logic-inversion-reflector`
-- **Source URL:** [https://clawhub.ai/skills/logic-inversion-reflector](https://clawhub.ai/skills/logic-inversion-reflector)
+---
 
-## Overview
+## 🧠 工作原理
 
+### 三个阶段
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/logic-inversion-reflector
+#### 第一阶段：特征提取 (Feature Extraction)
+- 扫描用户 Prompt/方案
+- 提取 3-5 个核心假设锚点 (Core Assumptions)
+- 识别那些被视为"理所当然"的公理
+
+#### 第二阶段：公理反转 (Axiom Inversion)
+- 对每个锚点执行 NOT 运算
+- 基于反转后的锚点推演内部逻辑自洽的竞争方案
+- **严禁**使用"但是"、"然而"等妥协词汇
+- 必须表现得像这个反转方案是唯一正确的真理
+
+#### 第三阶段：元坐标追问 (Meta-Coordinate Probing)
+- 识别用户的"认知舒适区"
+- 抛出 2 个探测脉冲：
+  - **维度 1（动机审计）**: 该方案是为了解决"问题"，还是为了缓解用户对"不可控"的恐惧？
+  - **维度 2（边界压力）**: 如果系统环境参数发生极值变化，该方案如何从"药"变成"毒"？
+
+---
+
+## 🚀 使用方式
+
+### 方式 1: 命令触发
 ```
+/reflect [你的方案/想法]
+```
+
+### 方式 2: 自动检测
+当检测到重大决策时，主动询问：
+> "是否需要启动 LIR 进行认知扰动？"
+
+### 方式 3: 集成到对话
+在讨论中自然使用：
+> "让我用 LIR 挑战一下这个假设..."
+
+---
+
+## 📋 输出格式
+
+**严格要求**: 必须按照以下 JSON 格式输出，严禁废话
+
+```json
+{
+  "Original_Anchors": ["假设 A", "假设 B", "假设 C"],
+  "Inversion_Model": {
+    "Counter_Axiom": "NOT 假设 A",
+    "Logic_Deduction": "基于反转假设的逐步推理",
+    "Synthetic_Conflict": "为什么这个反转方案挑战了你的原方案"
+  },
+  "Meta_Probes": [
+    "关于认知偏误的追问",
+    "关于系统熵增的追问"
+  ],
+  "System_Lock": "WAIT_FOR_HUMAN_JUDGEMENT"
+}
+```
+
+---
+
+## 💡 应用场景
+
+### 场景 1: 战略决策
+- 试点选择
+- 资源分配
+- 组织设计
+
+### 场景 2: 方案设计
+- 产品功能设计
+- 流程优化方案
+- 激励机制设计
+
+### 场景 3: 问题诊断
+- 根因分析
+- 风险评估
+- 瓶颈识别
+
+### 场景 4: 创新突破
+- 打破思维定式
+- 发现盲点
+- 探索第二曲线
+
+---
+
+## ⚠️ 使用注意事项
+
+### 适用场景
+- ✅ 重大决策前
+- ✅ 团队共识过于一致时
+- ✅ 陷入思维死胡同时
+- ✅ 需要深度思考时
+
+### 不适用场景
+- ❌ 紧急决策（需要快速行动）
+- ❌ 执行细节讨论
+- ❌ 已经过充分辩论的决策
+- ❌ 用户明确表示不需要挑战时
+
+### 风险提示
+- ⚠️ 可能引起不适（被挑战的感觉）
+- ⚠️ 可能延缓决策速度
+- ⚠️ 可能产生分析瘫痪
+- ⚠️ 需要用户有足够的心理安全感
+
+---
+
+## 🔧 技术实现
+
+### 核心组件
+- `src/reflector.py` - 核心逻辑
+- `src/prompts.py` - Prompt 模板
+- `src/axiom_db.py` - 常见公理库
+
+### 依赖
+- Python 3.8+
+- 无外部依赖
+
+### 性能
+- 响应时间：< 3 秒
+- Token 消耗：~500-800 tokens/次
+
+---
+
+## 📚 示例
+
+### 示例 1: 试点选择
+
+**用户输入**: "我们应该选择机票业务作为第一个 AI 试点"
+
+**LIR 输出**:
+```json
+{
+  "Original_Anchors": [
+    "试点应该选择核心业务",
+    "闭环完整是成功要素",
+    "小步快跑优于大规模"
+  ],
+  "Inversion_Model": {
+    "Counter_Axiom": "试点应该选择边缘业务",
+    "Logic_Deduction": "边缘业务失败成本低→可以更大胆创新→可能产生颠覆性突破→核心业务反而被边缘业务的创新颠覆",
+    "Synthetic_Conflict": "你的'稳妥'策略可能错过了真正的颠覆机会，边缘业务的风险低反而允许更大的创新"
+  },
+  "Meta_Probes": [
+    "选择机票业务是为了业务价值，还是为了让你自己对结果可控？",
+    "如果 AI 技术成本突然下降 100 倍，你的'小步快跑'策略会不会变成'缓慢自杀'？"
+  ],
+  "System_Lock": "WAIT_FOR_HUMAN_JUDGEMENT"
+}
+```
+
+### 示例 2: 组织设计
+
+**用户输入**: "管理者应该从管人转向管 Agent"
+
+**LIR 输出**:
+```json
+{
+  "Original_Anchors": [
+    "科层制需要被打破",
+    "AI 应该替代重复性工作",
+    "扁平化是更好的组织形式"
+  ],
+  "Inversion_Model": {
+    "Counter_Axiom": "科层制有其进化优势",
+    "Logic_Deduction": "科层制经过百年进化→适应了人类认知局限→提供了决策冗余→完全扁平化可能导致单点故障→混合模式可能更优",
+    "Synthetic_Conflict": "你的'去 M 化'可能忽视了中层管理者的隐性价值：决策缓冲、信息过滤、风险吸收"
+  },
+  "Meta_Probes": [
+    "你想打破科层制，是因为它真的低效，还是因为它限制了你的权力？",
+    "如果 AI Agent 出现大规模错误决策，你的'扁平化'组织有没有足够的冗余来吸收冲击？"
+  ],
+  "System_Lock": "WAIT_FOR_HUMAN_JUDGEMENT"
+}
+```
+
+---
+
+## 🎓 理论基础
+
+### 系统 1 vs 系统 2
+- **系统 1**: 快速、直觉、自动化
+- **系统 2**: 缓慢、理性、需努力
+
+LIR 的目标是强制从系统 1 切换到系统 2
+
+### 认知偏误
+- 确认偏误 (Confirmation Bias)
+- 锚定效应 (Anchoring Effect)
+- 群体思维 (Groupthink)
+- 路径依赖 (Path Dependence)
+
+### 第一性原理
+- 回归基本假设
+- 挑战"理所当然"
+- 从底层重建
+
+---
+
+## 🔄 版本历史
+
+### v2.0 (2026-03-21)
+- ✅ 新增元坐标追问
+- ✅ 优化输出格式
+- ✅ 增强逻辑推导深度
+- ✅ 添加应用场景示例
+
+### v1.0 (2026-03-21)
+- ✅ 初始版本
+- ✅ 基础公理反转功能
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## 🙏 致谢
+
+灵感来源于：
+- 丹尼尔·卡尼曼《思考，快与慢》
+- 纳西姆·塔勒布《反脆弱》
+- 查理·芒格的"逆向思考"
+
+---
+
+**GitHub**: https://github.com/tuobadaidai/Skills  
+**PyPI**: (待发布)

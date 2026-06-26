@@ -1,35 +1,66 @@
----
-name: "Agent Decision Engine"
-description: "Autonomous AI decision engine with multi-objective optimization, risk assessment, decision trees, and reinforcement learning for robust decision-making."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yuyonghao-agent-decision-engine"
-sourceUrl: "https://clawhub.ai/skills/yuyonghao-agent-decision-engine"
----
-
 # Agent Decision Engine
 
-> Autonomous AI decision engine with multi-objective optimization, risk assessment, decision trees, and reinforcement learning for robust decision-making.
+Autonomous decision engine for AI agents with multi-objective optimization, risk assessment, decision trees, and reinforcement learning capabilities.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yuyonghao-agent-decision-engine`
-- **Source URL:** [https://clawhub.ai/skills/yuyonghao-agent-decision-engine](https://clawhub.ai/skills/yuyonghao-agent-decision-engine)
+## Features
 
-## Overview
+- **Multi-Objective Optimization**: Pareto optimization with configurable weights and constraints
+- **Risk Assessment**: Probability evaluation, impact analysis, and risk matrices
+- **Decision Trees**: Build, evaluate, prune, and visualize decision paths
+- **Reinforcement Learning**: Q-Learning with customizable reward functions
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yuyonghao-agent-decision-engine
+```javascript
+import { DecisionEngine } from './src/index.js';
+
+const engine = new DecisionEngine();
+
+// Multi-objective optimization
+const result = engine.optimize([
+  { name: 'cost', value: 100, weight: 0.4, minimize: true },
+  { name: 'quality', value: 85, weight: 0.6, minimize: false }
+]);
+
+// Risk assessment
+const risk = engine.assessRisk({
+  probability: 0.3,
+  impact: 0.8,
+  mitigation: ['backup plan', 'monitoring']
+});
+
+// Decision tree
+const tree = engine.buildDecisionTree({
+  options: ['A', 'B', 'C'],
+  outcomes: [0.7, 0.5, 0.9]
+});
+
+// Q-Learning
+const action = engine.qLearn({
+  state: [1, 0, 1],
+  actions: ['move', 'stay', 'attack'],
+  reward: 10
+});
 ```
+
+## API
+
+### DecisionEngine
+
+Main class combining all decision-making capabilities.
+
+#### optimize(objectives, constraints)
+Multi-objective optimization with Pareto front.
+
+#### assessRisk(riskConfig)
+Evaluate and score risks.
+
+#### buildDecisionTree(config)
+Build and evaluate decision trees.
+
+#### qLearn(config)
+Q-Learning for sequential decision making.
+
+## License
+
+MIT

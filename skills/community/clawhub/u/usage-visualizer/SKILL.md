@@ -1,35 +1,51 @@
 ---
-name: "Usage Visualizer"
-description: "Advanced usage statistics and high-fidelity visual reporting for OpenClaw. 100% local processing. Audit-verified privacy (No credentials stored)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/usage-visualizer"
-sourceUrl: "https://clawhub.ai/skills/usage-visualizer"
+name: usage-visualizer
+description: Advanced usage statistics and high-fidelity visual reporting for OpenClaw. 100% local processing. Audit-verified privacy (No credentials stored).
+metadata:
+  openclaw:
+    emoji: "📊"
+    os:
+      - darwin
+      - linux
+    requires:
+      bins:
+        - python3
+        - chromium
+      env:
+        - OPENCLAW_WORKSPACE
+    install:
+      - id: pip-deps
+        kind: exec
+        command: "pip3 install -r requirements.txt"
+        label: "Install Python dependencies"
 ---
 
 # Usage Visualizer
 
-> Advanced usage statistics and high-fidelity visual reporting for OpenClaw. 100% local processing. Audit-verified privacy (No credentials stored).
+**Usage Visualizer** is a high-fidelity analytics engine for OpenClaw that transforms raw session logs into professional, actionable visual reports.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/usage-visualizer`
-- **Source URL:** [https://clawhub.ai/skills/usage-visualizer](https://clawhub.ai/skills/usage-visualizer)
+## 🚀 Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/usage-visualizer
+# Generate today's visual report
+python3 scripts/run_usage_report.py --mode image --period today
 ```
+
+## 📈 Usage Guide
+
+### Visual Reports
+The visualizer syncs logs first, then generates the report image.
+- `python3 scripts/run_usage_report.py --mode image --period today`
+- `python3 scripts/run_usage_report.py --mode image --period week --json`
+
+### Text Summaries
+- `python3 scripts/run_usage_report.py --mode text --period today --json`
+
+## 🛡 Delivery Protocol (MANDATORY FOR AGENTS)
+
+1.  **Image Delivery**: Extract `image_path` from JSON and send as attachment using `message` tool's `filePath`. **NEVER** send the local path as a string.
+2.  **Verification**: Verify the file exists and is a valid PNG before sending.
+3.  **No Network**: This skill is 100% local. It has zero network dependencies.
+
+## 📄 License
+MIT

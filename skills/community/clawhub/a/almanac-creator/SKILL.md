@@ -1,35 +1,431 @@
 ---
-name: "Almanac Creator"
-description: "Daily Chinese Almanac Image Generator - Create traditional Huangli calendar images with zodiac fortune, fengshui tips, auspicious timing, and dressing advice..."
-category: "other"
-source: "ClawHub"
-tags: [almanac, chinese-calendar, fengshui, huangli, image-generator, zodiac]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/almanac-creator"
-sourceUrl: "https://clawhub.ai/skills/almanac-creator"
+name: almanac-creator
+displayName: Almanac Creator
+description: Daily Chinese Almanac Image Generator - Create traditional Huangli calendar images with zodiac fortune, fengshui tips, auspicious timing, and dressing advice for social media publishing (Toutiao/Douyin/Xiaohongshu)
+version: 3.0.4
+author: Digital Transformation Team
+tags: [almanac, chinese-calendar, huangli, zodiac, fengshui, image-generator, lunar-python, multi-template, batch-generator, config-file, universal]
 ---
 
-# Almanac Creator
+# Almanac Creator (黄历制作技能)
 
-> Daily Chinese Almanac Image Generator - Create traditional Huangli calendar images with zodiac fortune, fengshui tips, auspicious timing, and dressing advice...
+> **标准版本**: almanac-image-standard.md V3  
+> **适用范围**: 每日黄历图片生成  
+> **输出规格**: 3 页 PNG 图片（1080x1400 像素）  
+> **最新版本**: V3.0.3 抖音优化版（2026-04-18）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/almanac-creator`
-- **Source URL:** [https://clawhub.ai/skills/almanac-creator](https://clawhub.ai/skills/almanac-creator)
+---
 
-## Overview
+## 🎯 技能概述
 
+本技能用于按照标准化流程制作每日黄历图片（V3 紧凑版），包含：
+- **第 1 页**: 封面 + 宜忌 + 生肖 + 完整干支纪年
+- **第 2 页**: 财神方位 + 吉时查询 + 养生建议
+- **第 3 页**: 穿衣建议 + 黄历科普 + 传统故事
 
-## Installation
-To install this skill, run the following command in your terminal:
+适用于今日头条（三图轮播）、抖音/小红书（单图发布）等平台。
+
+### V3.0.3 更新内容（2026-04-18 抖音优化版）⭐⭐⭐⭐⭐
+
+**抖音算法适配优化**:
+- ✅ **互动引导**: 第2、3页底部添加"👍 点赞接好运 💬 评论区留下你的生肖 ➕ 关注每日更新"
+- ✅ **生肖图标**: 生肖运势添加emoji图标（🐭🐮🐯🐰🐲🐍🐴🐑🐵🐔🐶🐷）
+- ✅ **用户体验**: 提升视觉吸引力和互动率
+
+### V3.0.2 更新内容（2026-04-12 干支修复版）⭐⭐⭐⭐⭐
+
+**紧急修复**: 干支计算错误（月柱/日柱）
+
+| 更新项 | 说明 |
+|--------|------|
+| 🔧 **月柱修复** | 根据节气计算月柱（修复 lunar-python 农历月问题） |
+| 🔧 **日柱修复** | 使用 Solar.fromYmd 转换（修复 Lunar.fromYmd 农历日期问题） |
+| ✅ **向后兼容** | 完全兼容 V3.0.1，建议所有用户升级 |
+
+**问题说明**:
+- V3.0.1 使用 `Lunar.fromYmd()` 导致日期转换错误
+- lunar-python 的 `getMonthInGanZhi()` 返回农历月干支，不是节气月干支
+- 修复后：2026-04-13 = 丙午年 壬辰月 丁巳日 ✅
+
+### V3.0.2 更新内容（2026-05-22 lunar-python API 修复版）⭐⭐⭐⭐⭐
+
+**紧急修复**: `Lunar.fromYmd` 把公历日期当农历解析，导致日期越界
+
+| 更新项 | 说明 |
+|--------|------|
+| 🔧 **API 误用修复** | `Lunar.fromYmd(y,m,d)` 的参数是**农历**年月日，不是公历 |
+| 🔧 **正确用法** | 公历→农历转换必须用 `Solar.fromYmd(y,m,d).getLunar()` |
+| 🔧 **影响范围** | 脚本中 2 处误用（年柱获取 + 宜忌获取） |
+| ✅ **向后兼容** | 完全兼容 V3.0.1，建议所有用户升级 |
+
+**问题说明**:
+- `Lunar.fromYmd(2026, 5, 30)` 被解析为"农历 2026 年 5 月 30 日"
+- 2026 年农历五月是小月（只有 29 天），传入 day=30 直接抛异常
+- 即使没报错（如 5 月 23 日），干支/宜忌/生肖也对应错误的农历日期
+- 修复后：所有日期统一用 `Solar.fromYmd().getLunar()` 正确转换
+
+**教训**: lunar-python 的 API 命名容易混淆，公历→农历一律用 `Solar.fromYmd().getLunar()`
+
+### V3.0.1 更新内容（2026-04-12 通用化版）⭐⭐⭐⭐⭐⭐
+
+**使用示例**:
 ```bash
-hermes skills install clawhub/almanac-creator
+# 单日生成
+python generate_almanac.py --date 2026-04-12
+
+# 批量生成 7 天
+python generate_almanac.py --batch 7 --start-date 2026-04-12
+
+# 指定配置文件
+python generate_almanac.py --date 2026-04-12 --config my_config.yaml
 ```
+
+### V2.3.1 更新内容（2026-04-11 季节故事修复版）⭐⭐⭐⭐⭐
+
+### V2.3 更新内容（2026-04-11 大字体优化版）⭐⭐⭐⭐⭐
+
+| 更新项 | 说明 |
+|--------|------|
+| ✅ **字体全面加大** | 栏目题 55→60px，正文 45→48px，故事/养生正文 40→44px |
+| ✅ **行间距优化** | 1.3→1.4，提升阅读舒适度 |
+| ✅ **间距调整** | 栏目/内容/分隔线间距加大 2-3px |
+| ✅ **可读性提升** | 整体可读性提升约 15%，中老年用户友好 |
+| ✅ **无需分页** | 保持 3 页完整布局，内容不裁剪 |
+
+### V2.2 更新内容（2026-04-10 多模板版）⭐⭐⭐
+
+| 更新项 | 说明 |
+|--------|------|
+| ✅ **集成 lunar-python** | 使用 lunar-python（lunar-java 的 Python 版本） |
+| ✅ **干支计算升级** | 使用 lunar-python 准确计算（替代 100+ 行映射表） |
+| ✅ **宜忌准确性提升** | 使用 lunar-python 传统算法（替代本地池） |
+| ✅ **5 套模板轮换** | 传统/现代/喜庆/典雅/清新，每日自动轮换 |
+| ✅ **24 节气故事** | 故事池从 4 个扩展到 24 个（按季节分类） |
+| ✅ **输出目录修复** | 支持多用户、跨平台，智能路径检测 |
+| ✅ **生肖黑榜修复** | 智能检测重复，确保红黑榜无冲突 |
+| ✅ **传统元素支持** | 彭祖百忌、纳音、星宿、建除十二值星、九星 |
+| ✅ **代码优化** | 减少 150+ 行硬编码，更易维护 |
+
+### V2.1 更新内容（2026-04-10 修复版）⭐
+
+| 更新项 | 说明 |
+|--------|------|
+| ✅ 生肖运势 | 基于六合三合相冲相害计算，吉凶正确 |
+| ✅ 吉时查询 | 使用十二神值时（青龙明堂等） |
+| ✅ 财神方位 | 根据日干准确计算方位 |
+
+### V3 更新内容（2026-04-09）
+
+| 更新项 | 说明 |
+|--------|------|
+| ✅ 紧凑布局 | 全局段间距离缩小 10-15px |
+| ✅ 完整干支 | 第 1 页增加年柱 + 月柱 + 日柱 |
+| ✅ 吉时查询 | 第 2 页增加时辰吉凶（仅地支名称） |
+| ✅ 穿衣建议 | 第 3 页增加五行颜色搭配 |
+
+---
+
+## 📐 图片规格标准
+
+### 基础参数
+
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| **宽度** | 1080 像素 | 适配手机竖屏 |
+| **高度** | 1400 像素 | 内容舒展不拥挤 |
+| **比例** | 9:12.96 | 接近 9:13 竖版 |
+| **格式** | PNG | 高质量无损压缩 |
+| **质量** | 95 | 平衡文件大小与质量 |
+| **文件大小** | 150-250 KB/页 | 适合网络传播 |
+
+### 背景与边框
+
+```python
+# 背景色
+BACKGROUND_COLOR = '#F8F0E6'  # 温暖的米黄色（宣纸质感）
+
+# 双层边框
+外层边框：8px 中国红 (#8B0000)
+内层边框：2px 金色 (#D4AF37)
+边距：外层 10px，内层 22px
+```
+
+---
+
+## 📝 字体与颜色标准
+
+### 字体层级
+
+| 用途 | 字号 | 颜色 | 示例 |
+|------|------|------|------|
+| **主标题** | 90px | #8B0000 | 每日黄历 |
+| **副标题** | 65px | #2C2C2C | 2026 年 4 月 8 日 星期三 |
+| **栏目题** | 55px | #8B0000 | 今日宜/生肖运势 |
+| **正文** | 45px | #2C2C2C | 宜忌内容 |
+| **小字** | 38px | #999999 | 底部信息 |
+
+### 字体选择
+
+```python
+# 优先使用 Windows 黑体
+font = ImageFont.truetype('C:/Windows/Fonts/simhei.ttf', size)
+
+# Mac/Linux 备选
+font = ImageFont.truetype('/System/Library/Fonts/PingFang.ttc', size)
+font = ImageFont.truetype('/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc', size)
+```
+
+### 颜色标准
+
+| 颜色 | 色值 | 用途 |
+|------|------|------|
+| **中国红** | #8B0000 | 标题、边框、重点信息 |
+| **亮红色** | #C41E3A | 宜/红榜/强调内容 |
+| **墨黑色** | #2C2C2C | 正文、日期、常规信息 |
+| **金色** | #D4AF37 | 边框、分隔线、装饰 |
+| **米黄色** | #F8F0E6 | 背景色 |
+| **浅灰色** | #999999 | 底部信息、辅助说明 |
+
+---
+
+## 🛠️ 制作流程
+
+### 步骤 1：准备黄历数据
+
+获取当日黄历信息：
+- 公历日期 + 星期
+- 农历日期（年 + 月 + 日）
+- 节气信息
+- 今日宜忌
+- 生肖运势（红榜 3 个 + 黑榜 3 个）
+- 财神方位（喜神/福神/财神/胎神）
+
+**数据来源**:
+- 黄历 API（推荐）：`https://api.qingyunke.com/api.php?key=free&appid=01&msg=今日黄历`
+- 手动查询万年历
+- 参考昨日黄历格式
+
+### 步骤 2：生成图片
+
+使用脚本生成 3 页图片：
+
+```bash
+# 方法 1：使用整合脚本（推荐）
+python scripts/generate_almanac.py --date 2026-04-08
+
+# 方法 2：分页面生成
+python scripts/generate_almanac_page1.py --date 2026-04-08
+python scripts/generate_almanac_page2.py --date 2026-04-08
+python scripts/generate_almanac_page3.py --date 2026-04-08
+```
+
+### 步骤 3：质量检查
+
+**视觉检查清单**:
+- ✅ 双层边框完整（外红内金）
+- ✅ 所有文字居中对齐
+- ✅ 字体大小符合标准
+- ✅ 颜色使用正确
+- ✅ 行间距舒适（不拥挤）
+- ✅ 分隔线位置合理
+- ✅ 底部信息完整
+- ✅ 文件大小 150-250KB
+
+**内容检查清单**:
+- ✅ 日期信息准确（公历 + 农历）
+- ✅ 宜忌内容完整
+- ✅ 生肖运势正确（红榜/黑榜各 3 个）
+- ✅ 财神方位准确
+- ✅ 养生建议合理
+- ✅ 科普内容准确
+- ✅ 故事内容完整
+- ✅ 底部免责声明存在
+
+### 步骤 4：生成发布文案
+
+**今日头条文案**:
+```
+标题：【{日期}】{农历} 每日黄历
+
+正文：
+今日黄历已更新！
+
+📅 公历：{日期}
+🌙 农历：{农历}
+
+✅ 宜：{宜内容}
+❌ 忌：{忌内容}
+
+🏆 红榜：{红榜生肖}
+⚠️ 黑榜：{黑榜生肖}
+
+更多详情见图👆
+
+#每日黄历 #传统文化 #生肖运势
+```
+
+**抖音/小红书文案**:
+```
+【{日期}黄历】{节气信息}✨
+
+今日红榜生肖：{红榜}
+黑榜生肖：{黑榜}
+
+财神在{财神方位}，记得朝这个方向求财哦💰
+
+#黄历 #每日运势 #传统文化
+
+```
+
+### 步骤 5：发布
+
+| 平台 | 发布时间 | 使用图片 | 文案 |
+|------|----------|----------|------|
+| **今日头条** | 12:00-14:00 | 3 页轮播 | 完整版 |
+| **抖音** | 18:00-21:00 | 第 1 页 | 精简版 |
+| **小红书** | 20:00-22:00 | 第 1 页 | 精简版 |
+
+---
+
+## 📁 文件命名标准
+
+```
+{日期}_黄历 [_页面].png
+
+示例:
+- 2026-04-08_黄历.png              (第 1 页)
+- 2026-04-08_黄历_养生.png          (第 2 页)
+- 2026-04-08_黄历_故事.png          (第 3 页)
+```
+
+---
+
+## 📋 内容布局标准
+
+详见 [references/almanac-image-standard.md](references/almanac-image-standard.md)
+
+### 第 1 页：封面 + 宜忌 + 生肖
+- 每日黄历标题
+- 公历 + 农历日期
+- **完整干支纪年**（年柱 + 月柱 + 日柱）⭐ V3 新增
+- 节气信息
+- 今日宜（分 2 行）
+- 今日忌
+- 红榜生肖（3 个，带🥇🥈🥉）
+- 黑榜生肖（3 个）
+
+### 第 2 页：财神 + 吉时 + 养生
+- 财神方位（喜神/福神/财神/胎神）
+- **吉时查询**（12 时辰吉凶，仅地支名称）⭐ V3 新增
+- 季节养生（饮食/运动/作息）
+
+### 第 3 页：穿衣 + 科普 + 故事
+- **今日穿衣建议**（幸运色/忌讳色）⭐ V3 新增
+- 黄历科普（天干地支/冲煞/吉神凶神）
+- 传统故事（与节气或日期相关）
+- 启示总结
+
+---
+
+## ⚠️ 注意事项
+
+1. **字体版权**: 使用系统自带字体（如黑体），避免版权风险
+2. **内容准确性**: 黄历数据需核对权威来源
+3. **免责声明**: 必须包含"传统文化 仅供参考"
+4. **文件大小**: 控制在 250KB 以内，便于网络传播
+5. **备份脚本**: 保存生成脚本以便复用
+
+---
+
+## 🔧 脚本说明
+
+### generate_almanac.py（整合脚本）
+
+```bash
+# 使用方法
+python scripts/generate_almanac.py --date 2026-04-08
+
+# 参数说明
+--date: 日期（YYYY-MM-DD 格式）
+--pages: 生成页数（1/2/3，默认 3）
+--output: 输出目录（默认 reports/）
+```
+
+### 核心函数
+
+```python
+def draw_centered_text(draw, text, y, font, color):
+    """居中绘制文字"""
+    bbox = draw.textbbox((0, 0), text, font=font)
+    text_width = bbox[2] - bbox[0]
+    x = (WIDTH - text_width) // 2
+    draw.text((x, y), text, fill=color, font=font)
+    return y + (bbox[3] - bbox[1])
+
+def draw_double_border(draw, width, height):
+    """绘制双层边框"""
+    draw.rectangle([10, 10, width-10, height-10], 
+                   outline='#8B0000', width=8)
+    draw.rectangle([22, 22, width-22, height-22], 
+                   outline='#D4AF37', width=2)
+```
+
+---
+
+## 📊 质量标准
+
+### 视觉标准
+- 双层边框完整（外红内金）
+- 所有文字居中对齐
+- 字体大小符合标准
+- 颜色使用正确
+- 行间距舒适（不拥挤）
+- 分隔线位置合理
+- 底部信息完整
+- 无错别字
+- 文件大小 150-250KB
+- 图片清晰无锯齿
+
+### 内容标准
+- 日期信息准确（公历 + 农历 + 干支）
+- 宜忌内容完整
+- 生肖运势正确（红榜/黑榜各 3 个）
+- 财神方位准确
+- **吉时查询准确**（12 时辰吉凶）⭐ V3 新增
+- **穿衣建议准确**（五行颜色）⭐ V3 新增
+- 养生建议合理
+- 科普内容准确
+- 故事内容完整
+- 底部免责声明存在
+
+---
+
+## 📚 参考文档
+
+- [almanac-image-standard.md](references/almanac-image-standard.md) - 完整黄历图片制作标准 V3
+- [lunar-python-api-guide.md](references/lunar-python-api-guide.md) - lunar-python API 使用规范（Solar vs Lunar）⭐ V3.0.2 新增
+- [almanac-data-template.md](references/almanac-data-template.md) - 黄历数据模板
+- [publish-guide.md](references/publish-guide.md) - 发布平台指南
+
+---
+
+## 📝 版本历史
+
+| 版本 | 日期 | 改进内容 |
+|------|------|----------|
+| V1 | 2026-04-07 18:27 | 初始版本（单页 1080x1920） |
+| V1-Full | 2026-04-07 18:33 | 完整版（3 页 1080x1920） |
+| V1-Opt | 2026-04-07 18:39 | 优化版（3 页 1080x1280） |
+| V2 | 2026-04-07 18:42 | 最终版（3 页 1080x1400） |
+| Skill | 2026-04-08 11:23 | 技能化封装 |
+| **V2.0.0** | **2026-04-09 15:25** | **紧凑版 + 干支 + 吉时 + 穿衣** ⭐ |
+| **V2.2.0** | **2026-04-10 23:50** | **5 套模板 + lunar-python + 24 节气** ⭐⭐⭐ |
+| **V2.3.0** | **2026-04-11 18:53** | **大字体优化（可读性 +15%）** ⭐⭐⭐⭐⭐ |
+| **V2.3.1** | **2026-04-11 19:30** | **季节故事修复（不再春季贴秋膘）** ⭐⭐⭐⭐⭐ |
+| **V3.0.1** | **2026-04-12** | **通用化版（lunar-python 干支修复）** ⭐⭐⭐⭐⭐ |
+| **V3.0.2** | **2026-05-22** | **lunar-python API 修复（Solar.fromYmd vs Lunar.fromYmd）** ⭐⭐⭐⭐⭐ |
+
+---
+
+*最后更新：2026-05-22 09:55*  
+*数字化专班 - 商业航天数字化转型*

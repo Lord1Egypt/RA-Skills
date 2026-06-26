@@ -1,35 +1,27 @@
 ---
-name: "Recipe Bulk Download Folder"
+name: recipe-bulk-download-folder
 description: "List and download all files from a Google Drive folder."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-bulk-download-folder"
-sourceUrl: "https://clawhub.ai/skills/recipe-bulk-download-folder"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
 ---
 
-# Recipe Bulk Download Folder
+# Bulk Download Drive Folder
 
-> List and download all files from a Google Drive folder.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-bulk-download-folder`
-- **Source URL:** [https://clawhub.ai/skills/recipe-bulk-download-folder](https://clawhub.ai/skills/recipe-bulk-download-folder)
+List and download all files from a Google Drive folder.
 
-## Overview
+## Steps
 
+1. List files in folder: `gws drive files list --params '{"q": "'\''FOLDER_ID'\'' in parents"}' --format json`
+2. Download each file: `gws drive files get --params '{"fileId": "FILE_ID", "alt": "media"}' -o filename.ext`
+3. Export Google Docs as PDF: `gws drive files export --params '{"fileId": "FILE_ID", "mimeType": "application/pdf"}' -o document.pdf`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-bulk-download-folder
-```

@@ -1,0 +1,172 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "useDefineForClassFields": true,
+
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+
+    /* Path Aliases - Sync with vite.config.ts */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/types/*": ["src/types/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/features/*": ["src/features/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/store/*": ["src/store/*"],
+      "@/services/*": ["src/services/*"]
+    },
+
+    /* Emit */
+    "noEmit": true,
+    "sourceMap": true,
+    "declaration": false,
+    "declarationMap": false,
+    "removeComments": true,
+
+    /* Interop Constraints */
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": false,
+
+    /* Advanced */
+    "skipLibCheck": true,
+    "types": ["vite/client", "node"],
+
+    /* Experimental */
+    "experimentalDecorators": false,
+    "emitDecoratorMetadata": false
+  },
+
+  "include": ["src/**/*", "src/**/*.tsx", "src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "build", "coverage"],
+
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+
+/*
+Additional tsconfig files structure:
+
+1. tsconfig.node.json - For build tools (vite.config.ts, etc.)
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+
+2. tsconfig.test.json - For test files
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx", "test/**/*"]
+}
+
+Key TypeScript Best Practices:
+
+1. Enable strict mode
+   - Catches more errors at compile time
+   - Better IDE autocomplete
+
+2. Use path aliases
+   - Cleaner imports
+   - Easy refactoring
+   - Better organization
+
+3. noUnusedLocals & noUnusedParameters
+   - Prevents dead code
+   - Cleaner codebase
+
+4. noImplicitReturns
+   - Ensures all code paths return a value
+   - Prevents undefined bugs
+
+5. noUncheckedIndexedAccess
+   - Array/object access returns T | undefined
+   - Prevents runtime errors
+
+6. skipLibCheck
+   - Faster compilation
+   - Ignore type errors in node_modules
+
+7. isolatedModules
+   - Required for Vite
+   - Each file can be transpiled independently
+
+Common Type Definitions:
+
+// vite-env.d.ts
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string;
+  readonly VITE_APP_TITLE: string;
+  // Add more env variables here
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
+// For CSS Modules
+declare module '*.module.css' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+
+declare module '*.module.scss' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+
+// For images
+declare module '*.svg' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.png' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.jpg' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.webp' {
+  const content: string;
+  export default content;
+}
+*/

@@ -1,35 +1,37 @@
 ---
-name: "Docker Ctl"
+name: docker-ctl
 description: "Inspect containers, logs, and images via podman"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/docker-ctl"
-sourceUrl: "https://clawhub.ai/skills/docker-ctl"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🐳",
+        "requires": { "bins": ["podman"] },
+        "install": [],
+      },
+  }
 ---
 
 # Docker Ctl
 
-> Inspect containers, logs, and images via podman
+Inspect containers, logs, and images via podman. On Bazzite/Fedora, podman is the default container runtime and is always available.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/docker-ctl`
-- **Source URL:** [https://clawhub.ai/skills/docker-ctl](https://clawhub.ai/skills/docker-ctl)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/docker-ctl
+# List running containers
+docker-ctl ps
+
+# View container logs
+docker-ctl logs <container>
+
+# List local images
+docker-ctl images
+
+# Inspect a container
+docker-ctl inspect <container>
 ```
+
+## Install
+
+No installation needed. Bazzite uses `podman` as its container runtime and it is pre-installed.

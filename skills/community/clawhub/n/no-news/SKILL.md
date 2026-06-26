@@ -1,35 +1,42 @@
 ---
-name: "Tech news from RSS(rich terminal support)"
-description: "Fetch and display international tech news from 8 curated RSS feeds with summaries, titles, links, and timestamps in a markdown table format."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/no-news"
-sourceUrl: "https://clawhub.ai/skills/no-news"
+name: no-news
+description: Fetch and display international tech news from curated RSS feeds (TechCrunch, The Verge, Wired, Ars Technica, Engadget, Hacker News, MIT Technology Review, Gizmodo). Use when the user asks for tech news, latest technology headlines, international tech digest, or says "no-news", "tech news", "科技新闻". NOT for: AI-specific news aggregation (use ai-news or big-ai-news), Chinese tech news (use caixin), Hacker News only (use hn-news).
 ---
 
-# Tech news from RSS(rich terminal support)
+# No-News — 国际科技新闻
 
-> Fetch and display international tech news from 8 curated RSS feeds with summaries, titles, links, and timestamps in a markdown table format.
+Fetch tech news from 8 curated RSS sources and display as a markdown table.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/no-news`
-- **Source URL:** [https://clawhub.ai/skills/no-news](https://clawhub.ai/skills/no-news)
+## Quick Start
 
-## Overview
+Run the bundled script:
 
+```
+python scripts/tech_news.py --summary
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/no-news
+This fetches all sources (with 30-min cache) and outputs a markdown table with title, source link, publish time, and summary.
+
+## Options (resolve from user request when specified)
+
+| Flag | Purpose |
+|---|---|
+| `--summary` | Include 摘要 column (recommended default) |
+| `-s <source>` | Single source (techcrunch, theverge, wired, arstechnica, engadget, hackernews, mittech, gizmodo) |
+| `-l <N>` | Items per source (default 10) |
+| `--no-cache` | Skip cache, force fresh fetch |
+| `--sources` | List available sources |
+
+## Workflow
+
+1. Run `scripts/tech_news.py --summary` (add `-s` or `-l` if user specified).
+2. Present the markdown output directly to the user.
+3. If user wants details on a specific article, provide the link from the table.
+
+## Dependencies
+
+Requires `feedparser`, `requests`, `rich` — install if missing:
+
+```
+pip install feedparser requests rich
 ```

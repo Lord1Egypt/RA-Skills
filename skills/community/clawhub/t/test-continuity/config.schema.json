@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "personal-hooks settings",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "updated_at": { "type": "string" },
+    "followup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "parked_auto_close_hours": { "type": "number", "minimum": 0, "description": "Auto-close parked hooks after this many hours. 0 = disabled (parked hooks stay until user re-engages or GC)." }
+      }
+    },
+    "re_engagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Controls what happens after a dispatch receives no user reply.",
+      "properties": {
+        "mode": { "type": "string", "enum": ["wait_for_reply", "timed_retry"], "description": "wait_for_reply: park after max_unanswered dispatches. timed_retry: retry after retry_after_hours even without reply." },
+        "retry_after_hours": { "type": "number", "minimum": 0, "description": "Hours to wait before retrying a parked hook. Only used when mode=timed_retry." },
+        "max_unanswered_before_park": { "type": "integer", "minimum": 1, "description": "Number of dispatches without user reply before parking the hook." }
+      }
+    },
+    "candidate_ttl_hours": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "How long candidate buffer records live before expiring, by signal type.",
+      "properties": {
+        "emotion": { "type": "integer", "minimum": 1 },
+        "support": { "type": "integer", "minimum": 1 },
+        "task": { "type": "integer", "minimum": 1 },
+        "preference": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "temporal_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Thresholds for temporal dispatch guards.",
+      "properties": {
+        "newer_interaction_minutes": { "type": "number", "minimum": 0, "description": "If user interacted this many minutes after proactive anchor, block dispatch as newer-user-interaction." }
+      }
+    },
+    "sleep_rest_suppress": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "duration_hours": { "type": "integer", "minimum": 0 },
+        "auto_clear_hours": { "type": "number", "minimum": 0, "description": "Auto-clear rest-suppress after this many hours even without explicit resume. 0 = only clear on resume pattern." }
+      }
+    },
+    "causal_memory": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Controls how structured causal memory is summarized for internal continuity context. These settings shape internal continuity state, not frontstage reply wording.",
+      "properties": {
+        "summary_max_facts": { "type": "integer", "minimum": 1, "maximum": 6, "description": "Maximum number of factual clauses to preserve in the internal causal summary." },
+        "include_time_anchor": { "type": "boolean", "description": "Include extracted time anchors (today, tonight, 21:00, Monday, etc.) in the internal causal summary." },
+        "include_state_marker": { "type": "boolean", "description": "Include a neutral state marker (for example tired, sick, busy) in the internal causal summary." }
+      }
+    },
+    "carryover": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "max_turns": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "top_summary_only": { "type": "boolean" }
+      }
+    },
+    "new_session_continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Selects which continuity anchor leads when /new starts. Routine/time context remains support-only.",
+      "properties": {
+        "mode": {
+          "type": ["string", "null"],
+          "enum": ["recent_4_turns_first", "last_user_intent_first", "followup_focus_first", "assistant_commitment_first", "balanced", null]
+        }
+      }
+    },
+    "modality_continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Host-neutral preference for preserving voice/image discussion style when the host already supports it.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "mode": {
+          "type": ["string", "null"],
+          "enum": ["preserve_when_supported", "text_only", "ask_each_time", null]
+        },
+        "voice_reply_on_voice_thread": { "type": "boolean" },
+        "image_context_carryover": { "type": "boolean" }
+      }
+    },
+    "dispatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cooldown_minutes": { "type": "integer", "minimum": 0 },
+        "cap": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "closure": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auto_close_on_user_reply": { "type": "boolean" }
+      }
+    },
+    "proactive_chat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "interval_hours": { "type": "number", "minimum": 0, "description": "Minimum re-evaluation interval in hours. Not a guaranteed send frequency — actual dispatch depends on guard conditions." },
+        "quiet_hours": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "start": { "type": "integer", "minimum": 0, "maximum": 23 },
+            "end": { "type": "integer", "minimum": 0, "maximum": 23 }
+          }
+        },
+        "use_recent_window_only": { "type": "boolean" },
+        "recent_window_turns": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "cooldown_minutes": { "type": "number", "minimum": 0 },
+        "max_proactive_per_day": { "type": "integer", "minimum": 0 },
+        "allow_when_no_trackable_thread": { "type": "boolean" }
+      }
+    },
+    "routine_schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "timezone": { "type": ["string", "null"] },
+        "sleep_time": { "type": ["string", "null"], "pattern": "^\\d{1,2}:\\d{2}$" },
+        "wake_time": { "type": ["string", "null"], "pattern": "^\\d{1,2}:\\d{2}$" },
+        "wake_window_minutes": { "type": "integer", "minimum": 1 },
+        "phases": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "sleep": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "proactive_enabled": { "type": "boolean" },
+                "wake_seed_enabled": { "type": "boolean" }
+              }
+            },
+            "wake_window": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "proactive_enabled": { "type": "boolean" },
+                "wake_seed_enabled": { "type": "boolean" },
+                "interval_hours": { "type": "number", "minimum": 0 }
+              }
+            },
+            "active_day": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "proactive_enabled": { "type": "boolean" },
+                "wake_seed_enabled": { "type": "boolean" },
+                "interval_hours": { "type": "number", "minimum": 0 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "experimental": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rhythm_nudge": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

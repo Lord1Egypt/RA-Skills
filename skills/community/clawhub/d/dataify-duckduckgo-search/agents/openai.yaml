@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify DuckDuckGo Search"
+  short_description: "Search DuckDuckGo"
+  default_prompt: "Use $dataify-duckduckgo-search to run a search query."

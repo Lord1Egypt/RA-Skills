@@ -1,0 +1,15 @@
+[package]
+name = "mutinynet-cli"
+version = "0.1.1"
+edition = "2021"
+description = "CLI tool for the Mutinynet faucet"
+authors = ["Ben Carman <benthecarman@live.com>"]
+license = "MIT"
+repository = "https://github.com/benthecarman/mutinynet-cli"
+
+[dependencies]
+anyhow = "1"
+bitreq = { version = "0.3", features = ["https"] }
+clap = { version = "4", features = ["derive", "env"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

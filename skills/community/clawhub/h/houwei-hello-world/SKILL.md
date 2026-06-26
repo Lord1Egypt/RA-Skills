@@ -1,35 +1,27 @@
----
-name: "Houwei Hello World"
-description: "验证ClawHub跨设备同步功能并提供自定义技能开发入门模板的个人专属测试技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/houwei-hello-world"
-sourceUrl: "https://clawhub.ai/skills/houwei-hello-world"
----
-
-# Houwei Hello World
-
-> 验证ClawHub跨设备同步功能并提供自定义技能开发入门模板的个人专属测试技能。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/houwei-hello-world`
-- **Source URL:** [https://clawhub.ai/skills/houwei-hello-world](https://clawhub.ai/skills/houwei-hello-world)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/houwei-hello-world
-```
+# houwei-hello-world 技能
+## 描述
+个人专属测试技能，用于验证ClawHub跨设备同步功能是否正常工作，同时作为自定义技能开发的入门模板。
+## 作者
+@houwei302-code
+## 版本
+1.0.0
+## 适用场景
+1. 首次配置ClawHub同步后，验证技能上传/拉取流程是否正常
+2. 多设备切换时，快速确认同步是否生效
+3. 学习自定义Skill开发结构的参考模板
+## 触发关键词
+- "测试同步"
+- "hello测试"
+- "我的技能"
+## 功能实现
+当用户触发关键词时，自动回复：
+> 🎉 恭喜！你的自定义技能已经同步成功啦！
+> 当前运行设备：{{host.name}}
+> 技能版本：v1.0.0
+## 配置要求
+无额外依赖，开箱即用，不需要配置API密钥或其他参数。
+## 后续扩展建议
+可以在这个基础上添加更多功能：
+- 自定义问候语
+- 查看当前设备状态
+- 快速执行常用命令

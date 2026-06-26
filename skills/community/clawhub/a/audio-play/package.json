@@ -1,0 +1,14 @@
+{
+  "name": "audio-play",
+  "version": "1.0.0",
+  "description": "Play audio files using Windows media player. Non-blocking execution.",
+  "main": "index.js",
+  "openclaw": {
+    "plugin": "openclaw.plugin.json"
+  },
+  "keywords": [
+    "openclaw",
+    "skill"
+  ],
+  "license": "MIT"
+}

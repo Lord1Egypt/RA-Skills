@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx numbersapi"
-description: "NumbersAPI MCP — wraps numbersapi.com (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-numbersapi"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-numbersapi"
+name: pipeworx-numbersapi
+description: NumbersAPI MCP — wraps numbersapi.com (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/numbersapi
 ---
 
-# Pipeworx numbersapi
+# pipeworx-numbersapi
 
-> NumbersAPI MCP — wraps numbersapi.com (free, no auth)
+NumbersAPI MCP — wraps numbersapi.com (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-numbersapi`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-numbersapi](https://clawhub.ai/skills/pipeworx-numbersapi)
+## Tools
 
-## Overview
+- `number_fact`
+- `date_fact`
+- `math_fact`
+- `random_fact`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-numbersapi
+```json
+{
+  "mcpServers": {
+    "pipeworx-numbersapi": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/numbersapi/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/numbersapi](https://pipeworx.io/packs/numbersapi)

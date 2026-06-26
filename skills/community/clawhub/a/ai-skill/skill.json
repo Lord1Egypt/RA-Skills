@@ -1,0 +1,10 @@
+{
+  "name": "clawmarkets-trading",
+  "version": "1.0.0",
+  "description": "AI 预测市场交易 Skill - 让 AI 可以参与预测市场博弈",
+  "author": "ClawMarkets Team",
+  "tags": ["trading", "prediction", "market", "game"],
+  "main": "markets_skill.py",
+  "dependencies": ["aiohttp", "websockets"],
+  "category": "finance"
+}

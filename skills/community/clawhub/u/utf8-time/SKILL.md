@@ -1,35 +1,30 @@
 ---
-name: "Utf8 Time"
-description: "When user mentions current time, get and display the current time"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/utf8-time"
-sourceUrl: "https://clawhub.ai/skills/utf8-time"
+name: utf8-time
+description: When user mentions current time, get and display the current time
+version: 1.0.0
+triggers:
+  - current time
+  - what time
+  - now
 ---
 
-# Utf8 Time
+# Current Time Skill
 
-> When user mentions current time, get and display the current time
+When the user mentions the current time, this skill:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/utf8-time`
-- **Source URL:** [https://clawhub.ai/skills/utf8-time](https://clawhub.ai/skills/utf8-time)
+1. Calls the currentTime() function from src/main.js
+2. Returns the current time in user-friendly format
 
-## Overview
+## Implementation Details
 
+The skill monitors for time-related keywords and executes src/main.js to fetch and display the current time.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/utf8-time
+**Example triggers:**
+- What time is it?
+- Current time?
+- What's the time now?
+
+**Example output:**
+```
+2026-03-20 14:30:45
 ```

@@ -1,0 +1,23 @@
+# Estimate server cost for 100k monthly active users
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 估算月活 10 万 AI 投标产品的云服务器成本
+
+## Chinese source prompt
+
+# 估算云服务器成本
+
+产品：AI 投标书生成 SaaS，部署在阿里云。你要给 CFO 写一份月活 10 万用户规模下的月度云成本估算。
+
+假设（你可以在这个基础上补充）：
+- 月活 10 万，其中日活约 15%，高峰时段 20:00–22:00
+- 平均每个用户每月生成 3 份标书，每份触发一次长文本 LLM 调用（输入 8k tokens、输出 4k tokens，走 GPT-4o 级别第三方 API，不自建推理）
+- 附加：文档存储（平均每用户 50MB）、向量检索（RAG 调用）、Web 服务、数据库
+
+请给出一份估算，包括：
+- 拆分出 5 个以上成本科目（ECS、带宽、OSS、RDS、向量库、LLM API、CDN、日志等）
+- 每项给**数量 × 单价 × 月 = 总额** 形式（单价用合理常识估算，标注"约"即可，不要硬编实时报价）
+- 最后给出**合计**，再给出一个"可压缩 20-30% 的优化建议 ≥ 3 条"
+- 中文，≤600 字

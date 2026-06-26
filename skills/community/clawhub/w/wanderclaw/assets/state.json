@@ -1,0 +1,27 @@
+{
+  "postcard_count": 0,
+  "last_exploration": null,
+  "last_postcard": null,
+  "last_user_interaction": null,
+  "exploration_phase": "cold_start",
+  "cold_start_progress": 0,
+  "daily_message_count": 0,
+  "daily_message_reset": null,
+  "source_quality_log": {},
+  "exploration_history": [],
+  "user_name": "",
+  "search_tool": null,
+  "search_fallback_history": [],
+  "feedback_stats": { "likes": 0, "dislikes": 0 },
+  "direction_blacklist": [],
+  "favorites": [],
+  "exploration_stats": {
+    "total_explorations": 0,
+    "total_postcards_pushed": 0,
+    "total_postcards_archived": 0,
+    "average_score": 0,
+    "current_days": 0,
+    "longest_days": 0,
+    "direction_categories": {}
+  }
+}

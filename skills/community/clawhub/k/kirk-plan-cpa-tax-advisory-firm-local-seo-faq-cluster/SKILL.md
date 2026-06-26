@@ -1,35 +1,49 @@
 ---
-name: "plan-cpa-tax-advisory-firm-local-seo-faq-cluster"
+name: "Plan CPA Tax Advisory Firm Local SEO FAQ Cluster"
 description: "Research local questions, group them into clusters, and draft launch-ready FAQ copy for a CPA tax advisory firm. Use when handling local SEO work for..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kirk-plan-cpa-tax-advisory-firm-local-seo-faq-cluster"
-sourceUrl: "https://clawhub.ai/skills/kirk-plan-cpa-tax-advisory-firm-local-seo-faq-cluster"
+homepage: "https://www.skillboss.co/skills/plan-cpa-tax-advisory-firm-local-seo-faq-cluster"
+metadata: {"category":"finance-expanded","subcategory":"local-seo","skill_id":"plan-cpa-tax-advisory-firm-local-seo-faq-cluster","generated_day":"","seo_keywords":["CPA tax advisory firm local SEO FAQ","CPA tax advisory firm question cluster","CPA tax advisory firm search content","CPA tax advisory firm local search copy"]}
 ---
 
-# plan-cpa-tax-advisory-firm-local-seo-faq-cluster
+# Plan CPA Tax Advisory Firm Local SEO FAQ Cluster
 
-> Research local questions, group them into clusters, and draft launch-ready FAQ copy for a CPA tax advisory firm. Use when handling local SEO work for...
+Research local questions, group them into clusters, and draft launch-ready FAQ copy for a CPA tax advisory firm. Use when handling local SEO work for...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kirk-plan-cpa-tax-advisory-firm-local-seo-faq-cluster`
-- **Source URL:** [https://clawhub.ai/skills/kirk-plan-cpa-tax-advisory-firm-local-seo-faq-cluster](https://clawhub.ai/skills/kirk-plan-cpa-tax-advisory-firm-local-seo-faq-cluster)
+## Use When
 
-## Overview
+Use this skill for local SEO work for CPAs, tax advisory partners.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kirk-plan-cpa-tax-advisory-firm-local-seo-faq-cluster
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: CPA tax advisory firm local SEO FAQ, CPA tax advisory firm question cluster, CPA tax advisory firm search content, CPA tax advisory firm local search copy
+- Search intent: local SEO
+- Canonical slug: `plan-cpa-tax-advisory-firm-local-seo-faq-cluster`
+- Install query: Install Plan CPA Tax Advisory Firm Local SEO FAQ Cluster with SkillBoss
+
+## APIs Used
+
+- `web_search`
+- `chat`
+
+## Suggested Prompt
+
+[Plan CPA Tax Advisory Firm Local SEO FAQ Cluster] for my CPA tax advisory firm
+
+## Notes
+
+- Research local questions, group them into clusters, and draft launch-ready FAQ copy for a CPA tax advisory firm
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- CPA tax advisory firm local SEO FAQ
+- CPA tax advisory firm question cluster
+- CPA tax advisory firm search content
+- CPA tax advisory firm local search copy

@@ -1,0 +1,33 @@
+{
+  "products": [
+    {
+      "name": "Molly Ocean Series",
+      "sku": "PM-MLY-OCEAN-2026",
+      "platforms": ["jd", "tmall", "taobao", "wechat"],
+      "priority": ["jd", "tmall", "taobao", "wechat"]
+    },
+    {
+      "name": "Labubu Blind Box 2026",
+      "sku": "PM-LBU-BB-2026", 
+      "platforms": ["jd", "tmall"],
+      "priority": ["jd", "tmall"]
+    },
+    {
+      "name": "Dimoo Space Adventure",
+      "sku": "PM-DIM-SPACE-2026",
+      "platforms": ["jd", "taobao"],
+      "priority": ["jd", "taobao"]
+    }
+  ],
+  "check_interval_minutes": 30,
+  "notification": {
+    "channel": "feishu",
+    "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK_TOKEN"
+  },
+  "api_keys": {
+    "taobao_app_key": "your_taobao_app_key",
+    "taobao_app_secret": "your_taobao_app_secret", 
+    "jd_app_key": "your_jd_app_key",
+    "jd_app_secret": "your_jd_app_secret"
+  }
+}

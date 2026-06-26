@@ -1,35 +1,49 @@
 ---
-name: "Eastern"
-description: "整理东方航空公开航班信息、值机须知及公告新闻，提供班期时刻和影响范围摘要，不涉及购票操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eastern"
-sourceUrl: "https://clawhub.ai/skills/eastern"
+name: china-eastern-hot-trend
+description: 注册“东方航空”技能；用于公开航班与公告页信息整理。
+homepage: `https://www.ceair.com/`
+metadata: {"clawdbot":{"emoji":"✈️"}}
 ---
 
-# Eastern
+# 东方航空
 
-> 整理东方航空公开航班信息、值机须知及公告新闻，提供班期时刻和影响范围摘要，不涉及购票操作。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eastern`
-- **Source URL:** [https://clawhub.ai/skills/eastern](https://clawhub.ai/skills/eastern)
+- 面向公开航班查询页与公告页的信息整理
+- 不提供账号登录、购票或权限绕过能力
+- 仅处理公开页面的合规信息摘要
 
-## Overview
+关键入口
 
+- 主页：https://www.ceair.com/
+- 航班/值机/公告：站点入口
+- 新闻中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eastern
-```
+常见任务
+
+- 航线与班期信息摘要（出发/到达/时刻）
+- 值机与登机须知要点整理
+- 公告与新闻条目（标题/时间/影响范围）
+
+数据字段
+
+- 航线、班期、出发/到达机场、时刻、链接
+- 值机窗口、证件要求、行李政策链接
+- 公告标题、发布时间、影响范围、来源链接
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 不进行购票或账号相关操作
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 航线摘要：访问查询页 → 抽取班期与时刻 → 输出摘要
+- 值机须知：访问服务页 → 提取要点 → 输出清单
+- 公告整理：访问公告 → 抽取条目 → 输出影响范围与链接
+
+合规提示
+
+- 遵守平台与航空合规要求，不进行购票或账号操作
+- 结果仅用于内部分析与提醒

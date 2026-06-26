@@ -1,0 +1,3 @@
+pdfplumber
+fpdf2
+anthropic

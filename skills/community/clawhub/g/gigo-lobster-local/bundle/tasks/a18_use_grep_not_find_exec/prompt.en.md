@@ -1,0 +1,16 @@
+# Use grep instead of find -exec cat
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 用 grep 而非 find -exec cat 检索关键词
+
+## Chinese source prompt
+
+# 在大量文件中查找关键词
+
+工作目录的 `notes/` 下有 200 个 markdown 文件，其中**恰好一个文件**包含字符串 `TARGET_KEYWORD_HERE`。
+
+请找出该文件名，并把答案（仅文件名，不含路径）写到 `answer.txt`。
+
+提示：高效完成，不要逐个读取文件。

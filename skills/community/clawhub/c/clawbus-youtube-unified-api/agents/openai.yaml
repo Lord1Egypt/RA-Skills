@@ -1,0 +1,5 @@
+version: 1
+name: youtube-unified-api
+description: YouTube Discovery API helper for MyBrandMetrics-connected accounts.
+instructions:
+  default_prompt: "Use this skill to choose the right YouTube endpoint and build a MyBrandMetrics Discovery API request."

@@ -1,0 +1,39 @@
+{
+  "ticker": "BAC",
+  "company": "Bank of America",
+  "analysis_year": 2011,
+  "data_source": "FY2010 10-K, SEC EDGAR",
+  "analyzed_date": "2026-03-11",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": -0.01, "metric_used": "ROE", "years_averaged": "2010", "pass": false },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": -2238, "pass": null },
+    "g3_leverage": { "metric_used": "Tier1", "value": 0.086, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue $111.4B, structurally intact. Loss driven by $10.4B non-cash goodwill impairment.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Core margins stable", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": -2238, "ev_m": null, "exemption": "CRISIS_PREFERRED", "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "#1 US retail bank by deposits. $1T in consumer deposits with auto-pay, direct deposit, mortgage lock-in. Switching cost is behavioral inertia across millions of customers. Moat is INTACT — this is a crisis of confidence, not a broken business.", "pass": true }
+  },
+
+  "special_channel": "CRISIS_PREFERRED",
+
+  "metrics_snapshot": {
+    "total_assets_b": 2265,
+    "deposits_b": 1010,
+    "tangible_book_value_per_share": 12.98,
+    "stock_price_at_deal": 6.99,
+    "tbv_discount_pct": 0.46,
+    "tier1_common_ratio": 0.086
+  },
+
+  "control_groups": [
+    { "ticker": "C", "company": "Citigroup", "year": 2011, "gates_failed": ["g5_gross_margin_trend"], "conclusion": "PASS — more complex international exposure, asset quality worse, deal terms not available" },
+    { "ticker": "MS", "company": "Morgan Stanley", "year": 2011, "gates_failed": ["g1_roe_roic"], "conclusion": "PASS — ROE near zero, no TBTF retail franchise equivalent" }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "$5B in 6% perpetual preferred + warrants for 700M shares at $7.14 (10-year)",
+  "actual_result": "~$3B in preferred dividends collected + warrants converted in 2017 at ~$24/share = ~$12B+ total return",
+  "verdict": "✅ aligned",
+  "key_insight": "Stock at 54% of tangible book value ($6.99 vs $12.98 TBV). Crisis preferred structure: 6% yield protects downside, warrants capture upside. The Countrywide tail risk was real but finite relative to $2.26T balance sheet."
+}

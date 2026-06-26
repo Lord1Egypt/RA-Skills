@@ -1,0 +1,36 @@
+{
+  "name": "@keepclaw/keep-query",
+  "version": "1.0.5",
+  "description": "Keep 数据查询 Skill - 查询运动、身体、健康数据的最近数据与统计",
+  "keywords": [
+    "keep",
+    "health",
+    "query",
+    "exercise",
+    "mcp",
+    "skill",
+    "statistics"
+  ],
+  "license": "MIT",
+  "author": "Keep",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "bin": {
+    "keep-query-unlink": "./bin/keep-query-unlink.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@keepclaw/skill-sdk": "*"
+  },
+  "files": [
+    "SKILL.md",
+    "references/",
+    "scripts/",
+    "bin/",
+    "_meta.json"
+  ]
+}

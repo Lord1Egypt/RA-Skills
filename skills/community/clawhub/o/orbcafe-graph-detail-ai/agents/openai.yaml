@@ -1,0 +1,4 @@
+interface:
+  display_name: "ORBCAFE Graph + Detail + Agent"
+  short_description: "Implement graph dialogs, detail pages, and AI settings"
+  default_prompt: "Use $orbcafe-graph-detail-ai to implement this chart/detail/AI-settings flow with ORBCAFE public APIs."

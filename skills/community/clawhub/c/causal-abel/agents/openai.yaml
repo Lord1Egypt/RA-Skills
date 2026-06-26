@@ -1,0 +1,4 @@
+interface:
+  display_name: "Causal Abel"
+  short_description: "Abel causal reads for graph and proxy decisions."
+  default_prompt: "Use $causal-abel for an Abel causal read on this market, business, crypto, macro, technology, lifestyle, investing, or other dollar-value decision question."

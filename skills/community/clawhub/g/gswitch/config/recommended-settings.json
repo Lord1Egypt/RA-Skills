@@ -1,0 +1,37 @@
+{
+  "comment": "GSwitch Recommended OpenClaw Configuration",
+  "agents": {
+    "defaults": {
+      "subagents": {
+        "maxSpawnDepth": 5,
+        "maxChildrenPerAgent": 10,
+        "maxConcurrent": 16,
+        "runTimeoutSeconds": 0
+      }
+    }
+  },
+  "gswitch": {
+    "sharedMemoryPath": "/path/to/GSwitch/shared-memory/{username}/",
+    "roles": [
+      "{username}-em",
+      "{username}-designer",
+      "{username}-reviewer",
+      "{username}-qa",
+      "{username}-security",
+      "{username}-release"
+    ],
+    "workflow": [
+      "office-hours",
+      "plan-ceo-review",
+      "plan-eng-review",
+      "plan-design-review",
+      "review",
+      "qa",
+      "ship",
+      "retro"
+    ]
+  },
+  "installation": {
+    "note": "Replace {username} with your own username when installing"
+  }
+}

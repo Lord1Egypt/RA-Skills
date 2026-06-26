@@ -1,0 +1,109 @@
+{
+  "recall_shortlist": ["s_pdf", "s_xlsx", "s_docx"],
+  "candidates": [
+    {
+      "skill_id": "s_pdf",
+      "skill_name": "pdf",
+      "score": 88,
+      "subscores": {
+        "outcome_fit": 36,
+        "competency_coverage": 26,
+        "tool_stack_fit": 12,
+        "quality_safety": 9,
+        "freshness_trust": 5
+      },
+      "competency_coverage_matrix": [
+        {
+          "competency": "PDF form field extraction",
+          "coverage": "covered",
+          "evidence": "Extract AcroForm and XFA fields; export CSV."
+        },
+        {
+          "competency": "structured tabular export",
+          "coverage": "covered",
+          "evidence": "export CSV"
+        }
+      ],
+      "evidence": [
+        "Body excerpt explicitly covers AcroForm extraction and CSV export.",
+        "Outcome fit strong vs tax-form-to-CSV JD."
+      ],
+      "gaps": [],
+      "confidence": "high",
+      "hard_negative_explanations": [
+        {
+          "skill_id": "s_docx",
+          "excluded_because": "OOXML/word artifact; JD requires PDF forms not docx redlines."
+        },
+        {
+          "skill_id": "s_xlsx",
+          "excluded_because": "Consumes spreadsheets; JD source is PDF forms."
+        }
+      ]
+    },
+    {
+      "skill_id": "s_xlsx",
+      "skill_name": "xlsx",
+      "score": 38,
+      "subscores": {
+        "outcome_fit": 12,
+        "competency_coverage": 10,
+        "tool_stack_fit": 8,
+        "quality_safety": 5,
+        "freshness_trust": 3
+      },
+      "competency_coverage_matrix": [
+        {
+          "competency": "PDF form field extraction",
+          "coverage": "missing",
+          "evidence": ""
+        },
+        {
+          "competency": "structured tabular export",
+          "coverage": "partial",
+          "evidence": "Read/write xlsx; recalc formulas."
+        }
+      ],
+      "evidence": [
+        "Strong on tabular data but no PDF form ingestion in excerpt."
+      ],
+      "gaps": ["PDF form parsing", "AcroForm field mapping"],
+      "confidence": "high",
+      "hard_negative_explanations": []
+    },
+    {
+      "skill_id": "s_docx",
+      "skill_name": "docx",
+      "score": 32,
+      "subscores": {
+        "outcome_fit": 10,
+        "competency_coverage": 8,
+        "tool_stack_fit": 8,
+        "quality_safety": 4,
+        "freshness_trust": 2
+      },
+      "competency_coverage_matrix": [
+        {
+          "competency": "PDF form field extraction",
+          "coverage": "missing",
+          "evidence": ""
+        },
+        {
+          "competency": "structured tabular export",
+          "coverage": "partial",
+          "evidence": "Table-like content in Word possible but not PDF-native."
+        }
+      ],
+      "evidence": ["Word-focused; no PDF form pipeline in excerpt."],
+      "gaps": ["PDF", "form fields"],
+      "confidence": "high",
+      "hard_negative_explanations": []
+    }
+  ],
+  "best": {
+    "skill_id": "s_pdf",
+    "score": 88
+  },
+  "decision": "delegate",
+  "decision_rationale": "Best score 88 >= 75 with high confidence; clear artifact and outcome alignment."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ssh-guard",
+  "name": "SSH Guard",
+  "description": "Blocks SSH exec commands until the user explicitly approves them.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

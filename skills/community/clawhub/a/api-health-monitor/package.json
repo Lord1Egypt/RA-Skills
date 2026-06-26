@@ -1,0 +1,6 @@
+{
+  "name": "api-health-monitor",
+  "version": "1.0.0",
+  "description": "Monitor LLM API health by parsing OpenClaw session logs for error patterns",
+  "main": "index.js"
+}

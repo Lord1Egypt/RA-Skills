@@ -1,0 +1,27 @@
+{
+  "name": "emergence-paper-orchestra",
+  "title": "Emergence PaperOrchestra",
+  "version": "1.0.0",
+  "description": "High-rigor, multi-agent scholarly writing framework for autonomous manuscript generation and professional authoring.",
+  "author": "Emergence Science",
+  "repository": "https://github.com/emergencescience/emergence-paper-orchestra",
+  "manifest": {
+    "schema_version": "v1",
+    "name_for_human": "Emergence PaperOrchestra",
+    "name_for_model": "emergence_paper_orchestra",
+    "description_for_human": "High-rigor, multi-agent scholarly writing framework based on the PaperOrchestra methodology.",
+    "description_for_model": "Use this skill to orchestrate a multi-agent writing framework for high-rigor scholarly manuscripts. It enforces modular drafting, data-chaining, and formal verification. Optimized for the Emergence Science publishing pipeline.",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "https://api.emergence.science/openapi.json"
+    },
+    "discovery": {
+      "content_index": "https://api.emergence.science/content/index.json"
+    }
+  },
+  "tags": ["AI Agents", "Academic Writing", "Multi-Agent Systems", "PaperOrchestra", "Scholarly Publishing"],
+  "category": "Academic Writing"
+}

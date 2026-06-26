@@ -1,0 +1,60 @@
+# Quality Check Rules
+checks:
+  - name: character_limits
+    description: "Enforce per-platform character limits"
+    severity: error
+    enabled: true
+    action: truncate_or_reject
+
+  - name: tone_alignment
+    description: "Check output matches brand voice adjectives"
+    severity: warning
+    enabled: true
+    threshold: 0.7  # confidence score
+    action: flag_for_review
+    model: use_classifier
+
+  - name: quote_accuracy
+    description: "Ensure quotes from source material are exact"
+    severity: error
+    enabled: true
+    action: reject
+    confidence_threshold: 0.95
+
+  - name: link_integrity
+    description: "Verify all links use HTTPS and trusted domains"
+    severity: warning
+    enabled: true
+    action: flag
+    allowed_domains:
+      - "*yourbrand.com"
+      - "*linkedin.com"
+      - "*twitter.com"
+      - "*github.com"
+
+  - name: duplicate_content
+    description: "Flag near-duplicate sentences across outputs"
+    severity: warning
+    enabled: true
+    action: flag
+    similarity_threshold: 0.85  # Jaccard similarity
+
+  - name: hashtag_relevance
+    description: "Check hashtags match content topic"
+    severity: warning
+    enabled: false  # Experimental
+    action: flag
+
+  - name: cta_presence
+    description: "Every output must include a call-to-action"
+    severity: error
+    enabled: true
+    action: reject
+    cta_keywords:
+      - "subscribe"
+      - "follow"
+      - "share"
+      - "check out"
+      - "learn more"
+      - "sign up"
+      - "get started"

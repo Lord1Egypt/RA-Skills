@@ -1,0 +1,46 @@
+{
+  "slug": "claim-evidence-timeline-builder",
+  "name": "Claim Evidence Timeline Builder",
+  "displayName": "Claim Evidence Timeline Builder",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a chronological timeline, proof index, gaps list, and concise factual summary from user-provided events and evidence.",
+  "author": "Golden Bean / code",
+  "license": "MIT-0",
+  "category": "Concrete Thinking Artifacts",
+  "triggerKeywords": [
+    "claim timeline",
+    "evidence timeline",
+    "proof index",
+    "explain what happened",
+    "organize evidence",
+    "incident timeline",
+    "complaint timeline",
+    "appeal evidence",
+    "supporting proof",
+    "facts and proof"
+  ],
+  "tags": [
+    "timeline",
+    "evidence",
+    "documentation",
+    "claim",
+    "facts",
+    "organization"
+  ],
+  "language": "en",
+  "runtime": "none",
+  "document_only": true,
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

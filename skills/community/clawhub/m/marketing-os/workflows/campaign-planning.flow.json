@@ -1,0 +1,132 @@
+{
+    "workflow_id": "campaign-planning",
+    "name": "Campaign Planning",
+    "description": "Transforms CMO strategy into an executable campaign plan with tasks, resources, and timelines",
+    "version": "1.0.0",
+    "trigger": {
+        "type": "event | manual",
+        "event": "cmo_mission_dispatched",
+        "requires": "schemas/cmo_to_operator.schema.json"
+    },
+    "steps": [
+        {
+            "step_id": "step_01",
+            "name": "validate_mission",
+            "description": "Validate incoming mission brief against schema, check all required fields",
+            "handler": "marketing-operator",
+            "action": "validate_input",
+            "inputs": {
+                "mission_brief": "trigger.payload",
+                "schema": "schemas/cmo_to_operator.schema.json"
+            },
+            "outputs": {
+                "validated_mission": "object",
+                "validation_errors": "string[]"
+            },
+            "on_error": {
+                "strategy": "halt",
+                "message": "Mission brief validation failed — request CMO resubmission"
+            }
+        },
+        {
+            "step_id": "step_02",
+            "name": "decompose_tasks",
+            "description": "Break mission actions into atomic, executable tasks",
+            "handler": "marketing-operator",
+            "prompt": "prompts/operator-planning.txt",
+            "inputs": {
+                "mission": "step_01.outputs.validated_mission",
+                "campaign_history": "memory/campaigns.json",
+                "resources": "configs/system.config.json#resources"
+            },
+            "outputs": {
+                "tasks": "schemas/operator_task.schema.json[]"
+            },
+            "depends_on": [
+                "step_01"
+            ]
+        },
+        {
+            "step_id": "step_03",
+            "name": "allocate_resources",
+            "description": "Map tasks to resources, identify conflicts, allocate budget",
+            "handler": "marketing-operator",
+            "inputs": {
+                "tasks": "step_02.outputs.tasks",
+                "available_budget": "configs/system.config.json#budget",
+                "channel_access": "configs/system.config.json#channels"
+            },
+            "outputs": {
+                "allocated_tasks": "object[]",
+                "resource_conflicts": "object[]"
+            },
+            "depends_on": [
+                "step_02"
+            ]
+        },
+        {
+            "step_id": "step_04",
+            "name": "assemble_campaign",
+            "description": "Group tasks into campaign record with metadata, timelines, and KPIs",
+            "handler": "marketing-operator",
+            "inputs": {
+                "mission": "step_01.outputs.validated_mission",
+                "tasks": "step_03.outputs.allocated_tasks"
+            },
+            "outputs": {
+                "campaign": "schemas/campaign.schema.json"
+            },
+            "depends_on": [
+                "step_03"
+            ]
+        },
+        {
+            "step_id": "step_05",
+            "name": "persist_campaign",
+            "description": "Save campaign plan to memory",
+            "handler": "system",
+            "action": "write_memory",
+            "inputs": {
+                "campaign": "step_04.outputs.campaign"
+            },
+            "targets": [
+                "memory/campaigns.json"
+            ],
+            "depends_on": [
+                "step_04"
+            ]
+        },
+        {
+            "step_id": "step_06",
+            "name": "human_review_gate",
+            "description": "Present campaign plan for human approval before execution",
+            "handler": "system",
+            "action": "request_approval",
+            "inputs": {
+                "campaign": "step_04.outputs.campaign",
+                "resource_conflicts": "step_03.outputs.resource_conflicts"
+            },
+            "outputs": {
+                "approved": "boolean",
+                "modifications": "object"
+            },
+            "depends_on": [
+                "step_05"
+            ],
+            "skip_if": "configs/system.config.json#auto_mode == true AND mission.priority != 'critical'"
+        }
+    ],
+    "on_error": {
+        "strategy": "halt_and_notify",
+        "notify": "human",
+        "log_to": "logs/execution.log.json"
+    },
+    "on_complete": {
+        "actions": [
+            "log_execution"
+        ],
+        "next_workflow": "execution-sprint.flow.json",
+        "auto_trigger_next": false,
+        "condition": "step_06.outputs.approved == true"
+    }
+}

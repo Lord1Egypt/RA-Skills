@@ -1,0 +1,48 @@
+# ============================================================
+# 定时调度配置
+# ============================================================
+
+scheduler:
+  enabled: true
+  timezone: "Asia/Shanghai"
+
+  # 全局约束
+  constraints:
+    max_sessions_per_day: 3
+    min_session_gap_minutes: 120
+    start_jitter_minutes: 10
+    weekend_mode: "reduced"
+    weekend_multiplier: 0.6
+
+  # 定时任务列表
+  plans:
+    - id: "morning"
+      name: "上午互动"
+      cron: "30 9 * * *"
+      account: "default"
+      mode: "discover_feed"
+      duration_minutes: 30
+      enabled: true
+
+    - id: "afternoon"
+      name: "下午精准互动"
+      cron: "0 14 * * 1-5"
+      account: "default"
+      mode: "search"
+      duration_minutes: 25
+      enabled: true
+
+    - id: "evening"
+      name: "晚间引流"
+      cron: "30 20 * * *"
+      account: "default"
+      mode: "user_profile"
+      duration_minutes: 40
+      enabled: true
+
+  # 特殊日期规则
+  special_dates: []
+  # 示例：
+  # - date: "2026-06-18"
+  #   action: "skip"
+  #   reason: "618活动期间暂停"

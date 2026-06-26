@@ -1,0 +1,77 @@
+name: film-location-scout
+version: 1.0.0
+description:
+  en: Discover nearby film and TV show shooting locations with cinematic scene recreation images
+  zh: 发现附近的电影和电视剧取景地，生成电影场景重现图片
+author: Qoder
+license: MIT
+tags:
+  - film
+  - location
+  - photography
+  - travel
+  - cinema
+  - movie
+  - scene
+  - tourism
+
+examples:
+  - id: nearby-locations
+    title:
+      en: Find nearby film locations
+      zh: 查找附近的电影取景地
+    description:
+      en: Auto-detect location and find 5 nearby film shooting spots
+      zh: 自动检测位置并查找5个附近的电影拍摄地点
+    prompt:
+      en: /film-location-scout
+      zh: /film-location-scout
+
+  - id: shanghai-film-spots
+    title:
+      en: Shanghai film locations
+      zh: 上海电影取景地
+    description:
+      en: Discover movie shooting locations in Shanghai
+      zh: 发现上海的影视拍摄地点
+    prompt:
+      en: /film-location-scout Find film locations in Shanghai
+      zh: /film-location-scout 帮我找上海的电影取景地
+
+  - id: photo-recreation
+    title:
+      en: Photo recreation guide
+      zh: 照片重现指南
+    description:
+      en: Find locations for recreating iconic movie scenes
+      zh: 寻找可以重现经典电影场景的拍摄地点
+    prompt:
+      en: /film-location-scout I want to recreate movie scenes, find me good spots
+      zh: /film-location-scout 我想重现电影场景，推荐一些好地方
+
+  - id: tokyo-cinematic
+    title:
+      en: Tokyo cinematic locations
+      zh: 东京电影取景地
+    description:
+      en: Discover famous film locations in Tokyo for photography
+      zh: 发现东京著名的电影拍摄地点用于摄影
+    prompt:
+      en: /film-location-scout Find cinematic spots in Tokyo for photography
+      zh: /film-location-scout 推荐东京适合拍照的电影取景地
+
+capabilities:
+  - location_detection
+  - web_search
+  - image_generation
+  - weather_query
+
+required_tools:
+  - WebFetch
+  - WebSearch
+  - ImageGen
+  - AskUserQuestion
+
+references:
+  - scene-prompts.md
+  - photo-params-reference.md

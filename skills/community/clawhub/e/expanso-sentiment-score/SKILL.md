@@ -1,35 +1,35 @@
----
-name: "Expanso sentiment-score"
-description: "Analyze text and return a sentiment score from -1 (negative) to +1 (positive) using Expanso Edge."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-sentiment-score"
-sourceUrl: "https://clawhub.ai/skills/expanso-sentiment-score"
----
+# sentiment-score
 
-# Expanso sentiment-score
+"Score text sentiment from -1 (negative) to +1 (positive)"
 
-> Analyze text and return a sentiment score from -1 (negative) to +1 (positive) using Expanso Edge.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-sentiment-score`
-- **Source URL:** [https://clawhub.ai/skills/expanso-sentiment-score](https://clawhub.ai/skills/expanso-sentiment-score)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-sentiment-score
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/sentiment-score/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

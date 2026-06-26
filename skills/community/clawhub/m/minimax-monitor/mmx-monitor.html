@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>MiniMax 套餐监控中心</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#bbbbbb;--card-bg:#ffffff;--card-border:rgba(0,0,0,0.08);--cyan:#0097a7;--green:#2e7d32;--yellow:#f57f17;--red:#c62828;--orange:#e65100;--text:#1a1a1a;--text-dim:#888888;--text-dark:#aaaaaa;--radius:10px}
+body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang SC',sans-serif;min-height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 28px 9px;background:#bbbbbb;border-bottom:1px solid rgba(0,0,0,0.1);position:relative}
+.topbar::after{content:'';position:absolute;bottom:0;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,rgba(0,151,167,0.3),transparent)}
+.topbar-center{text-align:center;flex:1}
+.topbar-title{font-size:20px;font-weight:800;background:linear-gradient(90deg,#00e5ff,#0097a7,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px}
+.topbar-sub{font-size:12px;color:#888;margin-top:2px}
+.topbar-updated{font-size:12px;color:var(--green);margin-top:3px;font-weight:600}
+.status-strip{display:flex;align-items:center;justify-content:center;padding:9px 28px;background:#bbbbbb;border-bottom:1px solid rgba(0,0,0,0.06);font-size:12px}
+.status-item{display:flex;align-items:center;gap:7px;padding:0 20px}
+.status-item+.status-item{border-left:1px solid rgba(0,0,0,0.08)}
+.status-item .lbl{color:rgba(0,0,0,0.4)}
+.status-item .val{font-family:"Roboto Mono",monospace;font-weight:600;color:var(--text)}
+.status-item .val.cyan{color:var(--cyan)}
+.status-item.hl .val{color:var(--cyan);font-weight:700}
+.apikey-bar{display:flex;align-items:center;gap:10px;margin:8px 28px;padding:7px 14px;background:rgba(48,48,56,0.82);border:1px solid rgba(255,255,255,0.12);border-radius:8px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.apikey-bar label{font-size:12px;color:rgba(255,255,255,0.6);white-space:nowrap}
+.key-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);flex-shrink:0}
+.key-placeholder{font-size:12px;color:rgba(255,255,255,0.8);font-style:italic}
+#apiKeyInput::-webkit-input-placeholder{color:rgba(255,255,255,0.9)}
+#apiKeyInput::placeholder{color:rgba(255,255,255,0.9)}
+
+
+/* apiKeyInput uses inline style */
+.btn-save{background:var(--cyan);color:#fff;border:none;border-radius:6px;padding:6px 16px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-save:hover{background:#0097a7;box-shadow:0 0 12px rgba(0,151,167,0.3)}
+:root{--top:0px}
+.main-grid{display:flex;gap:6px;padding:0 28px 12px;align-items:stretch;height:var(--main-h,560px);max-height:calc(100vh - 150px);overflow:hidden}
+.left-panel,.middle-panel,.right-panel{flex:0 0 auto;display:flex;flex-direction:column;height:560px;min-height:0;overflow:hidden}
+.left-panel{flex:0 0 200px}
+.middle-panel{flex:1 1 0;min-width:0}
+.right-panel{flex:0 0 240px}
+.glass-card{background:rgba(48,48,56,0.82);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:14px;position:relative;overflow:hidden;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,0.15);display:flex;flex-direction:column;height:100%}
+.left-gauge-card{justify-content:flex-start;gap:8px;padding-bottom:18px}
+.left-gauge-card .gauge-svg{flex-shrink:0}
+.left-gauge-card .stat-block{flex:1;display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(0,0,0,0.12);border-radius:6px;min-height:0}
+#rateCard{justify-content:space-evenly;gap:8px}
+#rateCard .panel-header{flex-shrink:0}
+#rateCard .rate-group{flex-shrink:0}
+.gauge-svg{width:100%;height:170px;overflow:visible;display:block}
+.gauge-track{fill:none;stroke:rgba(255,255,255,0.12);stroke-width:20;stroke-linecap:round}
+.gauge-fill{fill:none;stroke-width:20;stroke-linecap:round;filter:drop-shadow(0 0 6px currentColor)}
+.gauge-pct-num{font-family:"Roboto Mono",monospace;font-size:36px;font-weight:700;fill:var(--yellow);filter:drop-shadow(0 0 8px rgba(245,127,23,0.4));text-anchor:middle}
+.gauge-pct-label{font-size:12px;fill:rgba(255,255,255,0.7);text-anchor:middle}
+.stat-block{display:flex;justify-content:space-between;align-items:center;padding:7px 11px;background:rgba(0,0,0,0.12);border-radius:6px}
+.stat-block:last-child{margin-bottom:0}
+.stat-lbl{font-size:12px;color:rgba(255,255,255,0.8)}
+.stat-num{font-family:"Roboto Mono",monospace;font-size:15px;font-weight:700}
+.stat-num.green{color:var(--green)}.stat-num.red{color:var(--red)}.stat-num.cyan{color:var(--cyan)}.stat-num.yellow{color:var(--yellow)}
+.stat-block.hl{background:rgba(0,151,167,0.15);border:1px solid rgba(0,151,167,0.3)}
+.stat-block.hl .stat-lbl{color:var(--cyan)}.stat-block.hl .stat-num{color:var(--cyan)}
+.middle-card{display:flex;flex-direction:column;height:100%;min-height:0}
+.model-grid{display:grid;grid-template-columns:1fr;grid-auto-rows:minmax(0,1fr);gap:10px;overflow:hidden;flex:1;padding-right:4px;align-content:stretch;min-height:0}
+.model-grid > .model-card{min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.model-grid > .model-card .model-card-body{flex:1;min-height:0;display:flex;flex-direction:column}
+.model-grid::-webkit-scrollbar{width:3px}.model-grid::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.12);border-radius:2px}
+.section-header{display:flex;align-items:center;gap:7px;padding-bottom:9px;border-bottom:1px solid rgba(0,0,0,0.06);font-size:11px;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.model-card{background:rgba(48,48,56,0.75);border:1px solid rgba(255,255,255,0.1);border-radius:8px;overflow:hidden;transition:border-color .3s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.model-card:hover{border-color:rgba(0,151,167,0.3)}
+.model-card-wide{grid-column:1 / -1;border-color:rgba(255,82,82,0.3);background:rgba(40,28,28,0.7);display:flex;flex-direction:column;margin-top:6px}
+.model-card-wide .model-card-body{padding:10px 14px 12px}
+.model-card-wide .model-card-top{margin-bottom:8px}
+.model-card-row{display:flex;flex-direction:column;height:100%}
+.model-card-split{display:flex;gap:14px;flex:1;min-height:0}
+.model-card-split-left{flex:0 0 55%;display:flex;flex-direction:column;gap:6px;min-width:0}
+.model-card-split-right{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0;padding-left:14px;border-left:1px solid rgba(255,255,255,0.08)}
+.big-num-row{display:flex;align-items:baseline;gap:8px}
+.big-num{font-size:34px;font-weight:700;color:#fff;line-height:1;font-family:'Roboto Mono',monospace}
+.big-num-suffix{font-size:13px;color:rgba(255,255,255,0.5);font-weight:500}
+.split-label{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.5px;text-transform:uppercase}
+.split-bar{height:6px;background:rgba(0,0,0,0.25);border-radius:3px;overflow:hidden;margin-top:4px}
+.split-bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.split-meta{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px}
+.model-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.model-tag-chip{font-size:10px;padding:2px 7px;border-radius:10px;background:rgba(0,151,167,0.15);color:#4dd0e1;border:1px solid rgba(0,151,167,0.25)}
+.model-tag-chip.muted{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.4);border-color:rgba(255,255,255,0.08)}
+.week-stat{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);padding:4px 0}
+.week-stat-dot{width:6px;height:6px;border-radius:50%;background:#00e676}
+.week-stat-dot.unlimited{background:#b388ff}
+.upgrade-panel{display:flex;align-items:stretch;gap:0;margin-top:8px;background:rgba(0,0,0,0.2);border-radius:6px;overflow:hidden}
+.upgrade-panel-left{flex:0 0 auto;padding:8px 12px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,0.08)}
+.upgrade-panel-left-title{font-size:10px;color:rgba(255,255,255,0.55);margin-bottom:4px;letter-spacing:0.5px}
+.upgrade-panel-left-link{font-size:11px;color:#ff8a80;text-decoration:none;padding:3px 0}
+.upgrade-panel-left-link:hover{color:#ff5252;text-decoration:underline}
+.upgrade-panel-table{flex:1;display:flex}
+.upgrade-tier{flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:3px;border-right:1px solid rgba(255,255,255,0.05)}
+.upgrade-tier:last-child{border-right:none}
+.upgrade-tier-name{font-size:11px;font-weight:600}
+.upgrade-tier-plus .upgrade-tier-name{color:#b0bec5}
+.upgrade-tier-max .upgrade-tier-name{color:#ff8a80}
+.upgrade-tier-ultra .upgrade-tier-name{color:#ce93d8}
+.upgrade-tier-max{position:relative}
+.upgrade-tier-price{font-size:9px;color:rgba(255,255,255,0.55)}
+.upgrade-tier-video{font-size:10px;margin-top:2px}
+.upgrade-video-yes{color:#00e676}
+.upgrade-video-no{color:rgba(255,255,255,0.4)}
+.model-card-bar{height:3px}
+.model-card-body{padding:3px 4px 4px}
+.model-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.model-name{font-size:12px;font-weight:700;color:rgba(255,255,255,0.9)}
+.model-tag{font-size:9px;padding:2px 6px;border-radius:10px;background:rgba(0,151,167,0.1);color:var(--cyan);font-weight:600}
+.model-time-range{font-size:9px;color:rgba(255,255,255,0.7);margin-bottom:2px}
+.model-reset{font-size:9px;color:rgba(255,255,255,0.8);margin-bottom:6px}
+.model-usage{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.model-used{font-family:"Roboto Mono",monospace;font-size:12px;font-weight:700}
+#rateCard{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:6px;padding-bottom:14px}
+#rateCard .panel-header{flex-shrink:0}
+#rateCard .rate-group{flex-shrink:0}
+.right-panel::-webkit-scrollbar{width:3px}.right-panel::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.12);border-radius:2px}
+.panel-header{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;padding-left:4px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+.rate-group{margin-bottom:10px}.rate-group:last-child{margin-bottom:0}
+.rate-group-title{font-size:11px;color:rgba(255,255,255,0.9);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.rate-row{display:flex;justify-content:space-between;align-items:center;padding:6px 11px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:5px}
+.rate-row:last-child{margin-bottom:0}
+.rate-lbl{font-size:12px;color:rgba(255,255,255,0.85)}
+.rate-val{font-family:"Roboto Mono",monospace;font-size:14px;font-weight:700}
+.rate-val.green{color:var(--green)}.rate-val.cyan{color:var(--cyan)}.rate-val.yellow{color:var(--yellow)}.rate-val.orange{color:var(--orange)}
+.rate-lat{font-size:9px;color:rgba(255,255,255,0.7);margin-left:3px}
+.latency-item{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.latency-item:last-child{margin-bottom:0}
+.lat-lbl{font-size:12px;color:rgba(255,255,255,0.8);width:44px;flex-shrink:0}
+.lat-bar-wrap{flex:1;height:4px;background:rgba(0,0,0,0.15);border-radius:2px;overflow:hidden}
+.lat-bar-fill{height:100%;border-radius:2px}
+.lat-val{font-family:"Roboto Mono",monospace;font-size:13px;color:rgba(255,255,255,0.8);width:46px;text-align:right;flex-shrink:0}
+
+.main-grid{display:grid;grid-template-columns:200px 1fr 240px;gap:6px;padding:0 28px 12px;align-items:start}
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  
+  <div class="topbar-center">
+    <div class="topbar-title">MiniMax 套餐监控中心</div>
+    <div class="topbar-sub">实时监控 API 使用情况与配额状态</div>
+    <div class="topbar-updated">最后更新: <span id="lastUpdate">--:--:--</span></div>
+  </div>
+  
+</div>
+<div class="status-strip">
+  <div class="status-item"><span class="lbl">配额数据刷新</span><span class="val cyan" id="stripRefresh">--:--</span></div>
+  <div class="status-item"><span class="lbl">速率测试</span><span class="val cyan" id="stripSpeed">--:--</span></div>
+  <div class="status-item hl"><span class="lbl">5小时重置时间</span><span class="val" id="stripReset">剩余 --:--</span></div>
+</div>
+<div class="apikey-bar">
+  <label>API Key</label>
+  <input type="password" id="apiKeyInput" placeholder="留空则自动读取本地 ~/.mmx/config.json" style="flex:1;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#e0e0e0;font-family:"Roboto Mono",monospace;font-size:18px;min-width:0;padding:10px 14px;outline:none;transition:border-color .2s;" />
+  <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.55);white-space:nowrap;cursor:pointer"><input type="checkbox" id="rememberKey" />记住 24 小时</label>
+  <button class="btn-save" id="btnSave">查询</button>
+</div>
+<div id="errorBanner" style="display:none;margin:8px 28px 0;padding:10px 16px;background:rgba(198,40,40,0.9);border:1px solid rgba(255,80,80,0.4);border-radius:8px;color:#fff;font-size:13px;text-align:center;backdrop-filter:blur(10px);">
+  ⚠️ <span id="errorMsg">后端服务未启动，请先运行：node mmx-monitor-server.js</span>
+</div>
+<div class="main-grid">
+  <div class="left-panel">
+    <div class="glass-card left-gauge-card" style="box-sizing:border-box">
+      <svg class="gauge-svg" viewBox="-5 -5 200 145">
+        <path id="gTrack" class="gauge-track" d="M 22 105 A 82 82 0 1 1 178 105" pathLength="100"/>
+        <path id="gFill" class="gauge-fill" d="M 22 105 A 82 82 0 1 1 178 105" pathLength="100" stroke="#00e676" stroke-dasharray="0 100"/>
+        <text class="gauge-pct-num" id="gPct" x="100" y="93" text-anchor="middle">0%</text>
+        <text class="gauge-pct-label" x="100" y="108" text-anchor="middle">5小时总使用率</text>
+      </svg>
+      <div class="stat-block"><span class="stat-lbl">每5小时已用配额</span><span class="stat-num green" id="statUsed">--</span></div>
+      <div class="stat-block"><span class="stat-lbl">每5小时剩余配额</span><span class="stat-num red" id="statRemain">--</span></div>
+      <div class="stat-block"><span class="stat-lbl">每5小时总配额</span><span class="stat-num green" id="statTotal">--</span></div>
+      <div class="stat-block hl"><span class="stat-lbl">重置时间</span><span class="stat-num" id="statResetTime">--:--</span></div>
+      <div class="stat-block"><span class="stat-lbl">本周已用</span><span class="stat-num yellow" id="statWeeklyUsed">--</span></div>
+      <div class="stat-block"><span class="stat-lbl">本周总额</span><span class="stat-num" style="color:#FFD700" id="statWeeklyTotal">--</span></div>
+    </div>
+  </div>
+  <div class="middle-panel">
+    <div class="glass-card middle-card" style="box-sizing:border-box">
+      <div class="section-header">M 模型配额详情</div>
+      <div class="model-grid" id="modelGrid"></div>
+    </div>
+  </div>
+  <div class="right-panel">
+    <div class="glass-card" id="rateCard" style="box-sizing:border-box">
+      <div class="panel-header"><div class="live-dot"></div> 速率监控</div>
+      <div class="rate-group"><div class="rate-group-title">SEQ-10 顺序测试</div>
+        <div class="rate-row"><span class="rate-lbl">成功/总计</span><span class="rate-val green" id="seqOk">--/--</span></div>
+        <div class="rate-row"><span class="rate-lbl">平均延迟</span><span class="rate-val cyan" id="seqLat">--<span class="rate-lat">s</span></span></div>
+        <div class="rate-row"><span class="rate-lbl">最小/最大</span><span class="rate-val" id="seqRange">-- / --</span></div>
+      </div>
+      <div class="rate-group"><div class="rate-group-title">BURST-3 并发测试</div>
+        <div class="rate-row"><span class="rate-lbl">成功/总计</span><span class="rate-val cyan" id="burstOk">--/--</span></div>
+        <div class="rate-row"><span class="rate-lbl">延迟</span><span class="rate-val yellow" id="burstLat">--<span class="rate-lat">s</span></span></div>
+      </div>
+      <div class="rate-group"><div class="rate-group-title">API 性能</div>
+        <div class="rate-row"><span class="rate-lbl">LLM</span><span class="rate-val green" id="llmOk">--/--</span></div>
+        <div class="rate-row"><span class="rate-lbl">普通</span><span class="rate-val orange" id="ordOk">--/--</span></div>
+      </div>
+      <div style="height:3px"></div>
+      <div class="panel-header"><div class="live-dot"></div> API 性能详情</div>
+      <div class="latency-item"><div class="lat-lbl">TTFT</div><div class="lat-bar-wrap"><div class="lat-bar-fill" id="ttftBar" style="width:30%;background:var(--cyan)"></div></div><div class="lat-val" id="ttftVal">--ms</div></div>
+      <div class="latency-item"><div class="lat-lbl">延迟</div><div class="lat-bar-wrap"><div class="lat-bar-fill" id="p50Bar" style="width:40%;background:var(--green)"></div></div><div class="lat-val" id="p50Val">--ms</div></div>
+      <div class="latency-item"><div class="lat-lbl">Tokens/s</div><div class="lat-bar-wrap"><div class="lat-bar-fill" id="tokBar" style="width:50%;background:var(--orange)"></div></div><div class="lat-val" id="tokVal">--</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var API_BASE='http://localhost:9877';
+  var REFRESH_INT=60,SPEED_INT=60;
+  var CARD_COLORS=['#00e676','#ffd600','#ff5252','#00e5ff','#b388ff','#ff9800','#76ff03','#ff4081','#18ffff','#ff6e40','#eeff41'];
+  // v1.4.0: F13 - 默认不自动加载 localStorage 里的 key。每次启动需要重新输入，
+  // 或勾选 "记住 24 小时" 才临时写入 localStorage。期限到自动清除。
+  var apiKey='';
+  var timers={refresh:REFRESH_INT,speed:SPEED_INT,reset:0};
+  var tickId=null;
+  function fmt(s){if(s<=0)return'即将重置';var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;if(h>=24){var d=Math.floor(h/24);h=h%24;return d+'天'+h+'小时'+(m>0?m+'分':'');}if(h>0)return h+'小时'+m+'分';if(m>0)return m+'分'+sec+'秒';return sec+'秒';}
+  function fmtDate(d){var y=d.getFullYear(),mo=String(d.getMonth()+1).padStart(2,'0'),da=String(d.getDate()).padStart(2,'0'),h=String(d.getHours()).padStart(2,'0'),mi=String(d.getMinutes()).padStart(2,'0');return y+'/'+mo+'/'+da+' '+h+':'+mi;}
+  function gaugeColor(p){if(p<60)return'#00e676';if(p<80)return'#b388ff';if(p<95)return'#ffd600';return'#ff5252';}
+  function startMon(){if(tickId)clearInterval(tickId);tickId=setInterval(tick,1000);fetchQuota();doSpeedTest();}
+  function showError(msg){var el=document.getElementById('errorBanner');document.getElementById('errorMsg').textContent=msg;el.style.display='block';}
+  function tick(){for(var k in timers)if(k!=='reset')timers[k]=Math.max(0,timers[k]-1);document.getElementById('stripRefresh').textContent=fmt(timers.refresh);document.getElementById('stripSpeed').textContent=fmt(timers.speed);document.getElementById('stripReset').textContent=timers.reset>0?'剩余 '+fmt(timers.reset):'已重置';if(timers.refresh<=0){timers.refresh=REFRESH_INT;fetchQuota();}if(timers.speed<=0){timers.speed=SPEED_INT;doSpeedTest();}}
+  function fetchQuota(){var h={};if(apiKey)h['X-MMX-API-Key']=apiKey;document.getElementById('errorBanner').style.display='none';fetch(API_BASE+'/api/token_plan',{headers:h}).then(function(r){if(!r.ok)throw new Error('HTTP'+r.status);return r.json();}).then(function(result){if(result.ok&&result.data){renderQuota(result.data);}else{console.warn('token_plan failed:',result.error||result.message);showError('配额接口异常：'+(result.error||result.message||'未知错误'));}}).catch(function(e){console.warn('quota failed:',e.message);showError('后端服务未启动，请先运行：node mmx-monitor-server.js');});}
+  function doSpeedTest(){
+    var h={};
+    if(apiKey)h['X-MMX-API-Key']=apiKey;
+    fetch(API_BASE+'/api/probe',{headers:h})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d||!d.ok)return;
+        var r=d;
+        document.getElementById('seqOk').textContent=(r.seq_ok!=null?r.seq_ok:'--')+'/'+(r.seq10_total||'--');
+        document.getElementById('seqLat').innerHTML=Math.round(Number(r.seq10_latency||0))+'<span class="rate-lat">ms</span>';
+        document.getElementById('seqRange').textContent=(r.seq_min!=null?r.seq_min:'--')+' / '+(r.seq_max!=null?r.seq_max:'--');
+        document.getElementById('burstOk').textContent=(r.burst_ok!=null?r.burst_ok:'--')+'/'+(r.burst_total||'--');
+        document.getElementById('burstLat').innerHTML=Math.round(Number(r.burst_latency||0))+'<span class="rate-lat">ms</span>';
+        document.getElementById('llmOk').textContent=(r.llm_ok!=null?r.llm_ok:'--')+'/'+(r.llm_total||'--');
+        document.getElementById('ordOk').textContent=(r.ordinary_ok!=null?r.ordinary_ok:'--')+'/'+(r.ordinary_total||'--');
+        document.getElementById('ttftVal').textContent=(r.ttft||0)+'ms';
+        document.getElementById('ttftBar').style.width=Math.min(100,(r.ttft||0)/5000*100)+'%';
+        document.getElementById('p50Bar').style.width=Math.min(100,(r.latency||0)/5000*100)+'%';
+        document.getElementById('p50Val').textContent=(r.latency||0)+'ms';
+        document.getElementById('tokBar').style.width=Math.min(100,(r.speed||0)/30*100)+'%';
+        document.getElementById('tokVal').textContent=Number(r.speed||0).toFixed(1);
+        document.getElementById('stripSpeed').textContent='OK';
+      }).catch(function(){});
+  }
+  function renderQuota(data){if(!data)return;document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('zh-CN');var fourH=(data.models||[]).filter(function(m){return m.window==='4小时'&&!m.interval_unlimited;});var used=data.totalUsed||fourH.reduce(function(s,m){return s+(m.used||0);},0);var total=data.totalLimit||fourH.reduce(function(s,m){return s+(m.total||0);},0);var pct=total>0?Math.round(used/total*100):0;var color=gaugeColor(pct),fill=document.getElementById('gFill');fill.setAttribute('stroke',color);fill.setAttribute('stroke-dasharray',pct+' 100');document.getElementById('gPct').textContent=pct+'%';document.getElementById('statUsed').textContent=used+'%';document.getElementById('statRemain').textContent=Math.max(0,total-used)+'%';document.getElementById('statTotal').textContent=total+'%';var resetSec=data.resetSeconds||0;timers.reset=resetSec;document.getElementById('statResetTime').textContent=new Date(Date.now()+resetSec*1000).toLocaleTimeString('zh-CN');var weeklyModels=(data.models||[]).filter(function(m){return !m.weekly_unlimited;});var allUnlimited=weeklyModels.length===0&&(data.models||[]).length>0;var weeklyUsed=0;if(weeklyModels.length){weeklyUsed=Math.round(weeklyModels.reduce(function(s,m){return s+(m.weekly_used||0);},0)/weeklyModels.length);}document.getElementById('statWeeklyUsed').textContent=weeklyModels.length?weeklyUsed+'%':(allUnlimited?'--':'--');document.getElementById('statWeeklyTotal').textContent=allUnlimited?'无周限':'100%';renderModels(data.models||[]);}
+  var GENERAL_POOL_MODELS=[{n:'M3 对话',t:'llm'},{n:'M2.7 对话',t:'llm'},{n:'语音合成',t:'tts'},{n:'音乐生成',t:'music'},{n:'图像生成',t:'img'},{n:'歌词生成',t:'lyrics'},{n:'代码 VLM',t:'llm'},{n:'代码搜索',t:'llm'},{n:'Embeddings',t:'embed'}];
+  function renderModels(models){var grid=document.getElementById('modelGrid');if(!models.length){grid.innerHTML='<div style="color:rgba(255,255,255,0.6);font-size:12px;text-align:center;padding:30px">暂无数据</div>';return;}var html='';for(var i=0;i<models.length;i++){var m=models[i],used=m.used||0,total=m.total||0;var pct=total>0?Math.round(used/total*100):0;var barColor=pct>=95?'#ff5252':pct>=75?'#ffd600':pct>=40?'#b388ff':'#00e676';var resetSec=m.remains_time_ms?Math.ceil(m.remains_time_ms/1000):0;var resetStr=resetSec>0?fmt(resetSec):'--:--';var now=new Date();var endTime=new Date(now.getTime()+resetSec*1000);var windowDurSec=m.window==='4小时'?5*3600:m.window==='24小时'?24*3600:4*3600;var startTime=new Date(endTime.getTime()-windowDurSec*1000);var barAccent=CARD_COLORS[i%CARD_COLORS.length];var intervalDisabled=m.interval_unlimited===true;if(intervalDisabled){barColor='rgba(255,255,255,0.25)';barAccent='#ff5252';}var cardClass=intervalDisabled?'model-card model-card-wide':'model-card model-card-wide';html+='<div class="'+cardClass+'"><div class="model-card-bar" style="background:'+barAccent+'"></div><div class="model-card-body model-card-row">';html+='<div class="model-card-top"><span class="model-name">'+(intervalDisabled?m.name:'通用额度池 (对话/语音/音乐/图像)')+'</span><span class="model-tag">'+(m.window==='4小时'?'5小时':m.window)+'</span></div>';if(intervalDisabled){html+='<div class="model-time-range">'+fmtDate(startTime)+' - '+fmtDate(endTime)+'</div>';html+='<div class="model-reset" style="color:#ff5252">套餐未启用 · 不可调用</div>';html+='<div class="model-usage"><span class="model-used" style="color:rgba(255,255,255,0.5)">状态: 套餐未启用 · 元数据 status=3</span></div>';html+='<div class="upgrade-panel" style="flex:1;margin-top:8px">';html+='<div class="upgrade-panel-left"><div class="upgrade-panel-left-title">升级可获得</div><a class="upgrade-panel-left-link" href="https://platform.minimaxi.com/subscribe/token-plan" target="_blank" rel="noopener">查看官方套餐 →</a></div>';html+='<div class="upgrade-panel-table">';html+='<div class="upgrade-tier upgrade-tier-plus"><div class="upgrade-tier-name">Plus</div><div class="upgrade-tier-price">¥49 / 月</div><div class="upgrade-tier-video upgrade-video-no">❌ 不支持视频</div></div>';html+='<div class="upgrade-tier upgrade-tier-max"><div class="upgrade-tier-name">Max</div><div class="upgrade-tier-price">¥119 / 月</div><div class="upgrade-tier-video upgrade-video-yes">✅ 3 条 / 日</div></div>';html+='<div class="upgrade-tier upgrade-tier-ultra"><div class="upgrade-tier-name">Ultra</div><div class="upgrade-tier-price">¥469 / 月</div><div class="upgrade-tier-video upgrade-video-yes">✅ 5 条 / 日</div></div>';html+='</div></div>';}else{html+='<div class="model-card-split" style="margin-top:8px">';html+='<div class="model-card-split-left">';html+='<div class="split-label">剩余配额</div>';html+='<div class="big-num-row"><span class="big-num" style="color:'+barColor+'">'+(100-pct)+'</span><span class="big-num-suffix">% 可用</span></div>';html+='<div class="split-bar"><div class="split-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div>';html+='<div class="split-meta"><span>已用 '+pct+'%</span><span>重置 '+resetStr+' 后</span></div>';html+='<div class="week-stat"><span class="week-stat-dot'+(m.weekly_unlimited?' unlimited':'')+'"></span>本周: '+(m.weekly_unlimited?'无周限 · 全量可用':'已用 '+(m.weekly_used||0)+'% · 剩 '+(100-(m.weekly_used||0))+'%')+'</div>';html+='<div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:auto;padding-top:8px">窗口: '+fmtDate(startTime)+' → '+fmtDate(endTime)+'</div>';html+='</div>';html+='<div class="model-card-split-right">';html+='<div class="split-label">本池可用模型</div>';html+='<div class="model-tags">';for(var k=0;k<GENERAL_POOL_MODELS.length;k++){html+='<span class="model-tag-chip">'+GENERAL_POOL_MODELS[k].n+'</span>';}html+='<span class="model-tag-chip muted">+ 视频 (需升级)</span>';html+='</div>';html+='<div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:8px">总 token: 详见套餐页 →</div>';html+='</div>';html+='</div>';}html+='</div></div>';}grid.innerHTML=html;}
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+      fetchQuota();
+      doSpeedTest();
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function(){
+    // v1.5.0: 响应式主面板高度。min(560, vh-150) 让小屏笔记本不滚动。
+    function fitMainH(){
+      var vh=window.innerHeight;
+      var cap=Math.max(360, vh-150);
+      var want=Math.min(560, cap);
+      document.documentElement.style.setProperty('--main-h', want+'px');
+    }
+    fitMainH();
+    window.addEventListener('resize', fitMainH);
+    document.getElementById('btnSave').onclick=function(){
+      var raw=document.getElementById('apiKeyInput').value.trim();
+      var remember=document.getElementById('rememberKey').checked;
+      // 清除旧值
+      localStorage.removeItem('mmx_api_key');
+      localStorage.removeItem('mmx_api_key_expires');
+      if(raw && remember){
+        apiKey=raw;
+        var expires=Date.now()+24*3600*1000;
+        localStorage.setItem('mmx_api_key',apiKey);
+        localStorage.setItem('mmx_api_key_expires',String(expires));
+      }else if(raw){
+        apiKey=raw;
+      }
+      startMon();
+    };
+    // 启动时如果勾选过记住且未过期才加载
+    var stored=localStorage.getItem('mmx_api_key');
+    var exp=Number(localStorage.getItem('mmx_api_key_expires')||0);
+    if(stored && exp>Date.now()){
+      apiKey=stored;
+      document.getElementById('apiKeyInput').value=stored;
+      document.getElementById('rememberKey').checked=true;
+    }else if(stored){
+      // 过期清理
+      localStorage.removeItem('mmx_api_key');
+      localStorage.removeItem('mmx_api_key_expires');
+    }
+    startMon();
+  });
+})();
+</script></body></html>

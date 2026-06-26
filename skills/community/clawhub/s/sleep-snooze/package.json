@@ -1,0 +1,11 @@
+{
+  "name": "sleep-snooze",
+  "version": "1.0.2",
+  "description": "Snooze notifications during sleep hours and deliver a morning digest",
+  "openclaw": {
+    "hooks": [
+      "./hooks/sleep-guard",
+      "./hooks/dm-guard"
+    ]
+  }
+}

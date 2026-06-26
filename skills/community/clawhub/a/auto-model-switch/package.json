@@ -1,0 +1,22 @@
+{
+  "name": "auto-model-switch",
+  "version": "1.0.0",
+  "description": "自动切换模型 - 避免token限制和限流中断",
+  "main": "auto_model_switch.js",
+  "scripts": {
+    "test": "node auto_model_switch.js status",
+    "switch": "node auto_model_switch.js switch"
+  },
+  "keywords": [
+    "openclaw",
+    "model",
+    "switch",
+    "token",
+    "rate-limit"
+  ],
+  "author": "龙虾小队",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

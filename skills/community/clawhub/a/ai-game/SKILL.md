@@ -1,35 +1,286 @@
 ---
-name: "Ai Game"
-description: "游戏行业 AI 资讯搜集 Skill。 当用户想知道"游戏 AI 圈有什么大事"、"游戏行业 AI 动态"、"游戏 AI 日报"、"最近游戏 AI"、"游戏 AIGC 新闻"、"AI NPC 最新进展"、"游戏 AI 投融资"、"AI 原生游戏"、"game AI news"、"gaming AI update"..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-game"
-sourceUrl: "https://clawhub.ai/skills/ai-game"
+name: ai-game
+description: |
+  游戏行业 AI 资讯搜集 Skill。
+
+  当用户想知道"游戏 AI 圈有什么大事"、"游戏行业 AI 动态"、"游戏 AI 日报"、"最近游戏 AI"、"游戏 AIGC 新闻"、"AI NPC 最新进展"、"游戏 AI 投融资"、"AI 原生游戏"、"game AI news"、"gaming AI update"、"游戏引擎 AI"、"Unity AI 新功能"、"Unreal AI"、"游戏 AI 论文"、"游戏 AI 工具"、"AI Game"等任何游戏行业 AI 相关资讯查询时使用。即使用户只说"游戏 AI"、"游戏圈 AI"、或者问"最近游戏圈有什么 AI 动态",也应该触发本 Skill。
+
+  覆盖 6 大分类:AI 游戏生成与创作、游戏内 AI 体验、游戏开发 AI 工具、游戏运营&商业化 AI 实践、游戏行业&公司 AI 动态、游戏 AI 应用前沿研究。
+
+  数据来自 23 个游戏/AI 信源的 RSS + 150+ 个 AI 信源,每天更新。
+
+  **不要 undertrigger**--用户问游戏 AI 资讯而你不调本 Skill 就会输出过时的训练数据。
 ---
 
-# Ai Game
+# AI Game - 游戏 × AI 资讯
 
-> 游戏行业 AI 资讯搜集 Skill。 当用户想知道"游戏 AI 圈有什么大事"、"游戏行业 AI 动态"、"游戏 AI 日报"、"最近游戏 AI"、"游戏 AIGC 新闻"、"AI NPC 最新进展"、"游戏 AI 投融资"、"AI 原生游戏"、"game AI news"、"gaming AI update"...
+让 Agent 用最自然的中文/英文查询拿到每天的游戏 AI 行业动态。不需要 API key,不需要额外配置。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-game`
-- **Source URL:** [https://clawhub.ai/skills/ai-game](https://clawhub.ai/skills/ai-game)
+## 信源
 
-## Overview
+三层架构,共 24 个 RSS 信源 + 150+ AI 信源补充(8 个游戏相关查询词):
 
+**Layer 1 - 游戏行业专业源(14 个,全量抓取,只需含 AI 元素即保留)**
+- 游戏陀螺、机核 GCores、触乐
+- GamesIndustry.biz、Game Developer、GamesBeat、80 Level
+- PocketGamer.biz、Game World Observer、IGN
+- Unity Blog、Unreal Engine Blog、NVIDIA Blog、DeepMind Blog
 
-## Installation
-To install this skill, run the following command in your terminal:
+**Layer 2 - 通用 AI/科技媒体(9 个,需游戏+AI 双重关键词命中)**
+- Google Developers Blog、36Kr、IT之家、机器之心、量子位
+- TechCrunch、The Verge、VentureBeat AI、Ars Technica Gaming
+
+**Layer 3 - 150+ AI 信源补充(8 个游戏相关查询词:游戏/game/gaming/NPC/Unity AI/Unreal AI/Inworld/游戏引擎)**
+- 覆盖全球 150+ 个 AI 信源,补捉 Layer 1-2 未覆盖的 KOL、论文、GitHub 项目等
+
+详见 `references/sources.json`
+
+## 分类体系
+
+6 个主分类 + 可选副标签:
+
+| 分类 | slug | 覆盖范围 |
+|---|---|---|
+| AI 游戏生成与创作 | `creation` | AIGC 资产、3D/音频/剧情生成、AI UGC、玩家创作工具 |
+| 游戏内 AI 体验 | `in-game` | 智能 NPC、AI 驱动玩法、个性化体验、AI 原生游戏 |
+| 游戏开发 AI 工具 | `dev-tools` | AI 编程、引擎 AI 功能、自动测试、工作流提效 |
+| 游戏运营&商业化 AI 实践 | `ops` | 推荐/分发、买量素材 AI、玩家分群、反作弊 |
+| 游戏行业&公司 AI 动态 | `industry` | 大厂 AI 战略、投融资、政策法规、市场数据 |
+| 游戏 AI 应用前沿研究 | `research` | 学术论文、GDC/SIGGRAPH、游戏作为 AI 研究平台 |
+
+## 什么时候用 & 路由表
+
+| 用户在说 | 动作 |
+|---|---|
+| "游戏 AI 圈最近有什么" / "游戏 AI 日报" / "AI Game" | 运行脚本获取最新数据 → 全量输出 |
+| "最近 NPC / AIGC / 工具方面有什么" | 运行脚本 → 按分类过滤后输出 |
+| "这周 / 最近 3 天的游戏 AI 动态" | 读取 data/ 下多天 JSON → 合并去重输出 |
+| "搜一下 xxx 游戏 AI 相关" | 运行脚本 + 实时 AI HOT API 补充 |
+| "帮我生成一份可以发群的简报" | 获取数据 → 精简为转发友好格式 |
+
+## 工作流
+
+### Step 1: 获取数据
+
+运行抓取脚本:
+
 ```bash
-hermes skills install clawhub/ai-game
+cd ${SKILL_DIR}/scripts && python3 fetch_news.py
 ```
+
+脚本会:
+1. 抓取所有 RSS 信源(最近 72 小时条目)
+2. 查询 AI HOT API(游戏相关关键词)
+3. 关键词过滤(只保留游戏 × AI 相关)
+4. 去重(URL + 标题相似度)
+5. 分类打标(6 分类)
+6. 输出到 `data/YYYY-MM-DD.json` + stdout
+
+如果 `data/` 下已有今天的 JSON 且生成时间 < 4 小时前,可以直接读取而不重新运行脚本。
+
+### Step 2: 读取数据
+
+脚本 stdout 输出为 JSON,结构如下:
+
+```json
+{
+  "date": "2026-05-11",
+  "generated_at": "2026-05-11T06:00:00Z",
+  "total_count": 15,
+  "items": [
+    {
+      "title": "...",
+      "url": "https://...",
+      "summary": "...",
+      "source": "GamesBeat",
+      "published_at": "2026-05-11T03:00:00Z",
+      "category": "in-game",
+      "category_secondary": "creation"
+    }
+  ],
+  "stats": { "by_category": { "in-game": 3, "creation": 5, ... } }
+}
+```
+
+### Step 3: 组织输出
+
+#### 整体结构
+
+```markdown
+游戏 × AI 周报 · MM.DD - MM.DD
+（日报则为：游戏 × AI 日报 · MM.DD 周X）
+
+本周速递
+1. xxx
+2. xxx
+3. xxx
+
+---
+
+分类标题（加粗）
+
+单条资讯（模块化结构）
+
+---
+
+下一分类...
+```
+
+#### 本周速递（日报为"今日速递"）
+
+- 放在最前面，3-5条
+- 每条一句话，像新闻提要
+- 按重要性排序，最shock的放第一条
+- 不带链接、不带来源，纯信息
+
+#### 单条资讯格式
+
+```markdown
+序号. 标题 (日期) — 来源
+
+链接：URL
+
+重点：2-3句话说清楚发生了什么（给扫读的人看）
+
+细节：
+- 关键数据/原文金句/背景补充
+- 可以有2-4个bullet
+
+推荐原因：一句话说为什么游戏从业者要关注
+```
+
+### 格式规则
+
+- **不使用任何 emoji**：整体风格干净专业
+- **速递放最前面**：开头先列本周/今日速递，再展开详情
+- **分类标题**：加粗，独占一行
+- **分类展示顺序**：按本周各分类的重要性动态排序，哪个分类有大新闻就排前面
+- **单条格式**：标题行含序号+日期+来源，下方依次为链接、重点、细节、推荐原因
+- **编号全局贯穿**：1, 2, 3 ... N 从头到尾
+- **空分类不展示**：如果某分类 0 条，跳过
+- **时间格式**：(5.16) 月.日格式
+- **标题用中文**：英文标题翻译为中文，专有名词保留英文
+- **总量控制**：周报不超过15条，日报不超过10条
+- **链接必须完整**：缺链接的条目不收录，输出前逐条检查
+- **链接必须取自数据源**：严格从 JSON 数据的 url 字段获取，绝不凭记忆编造或推测 URL
+- **"重点"基于原文事实**：不推测因果，不编造
+- **"细节"优先放原文金句**（带引号），其次放数据
+- **"推荐原因"要具体**：禁止"值得关注""行业动向"这种万金油话术
+- **来源标注规则**：一手源直接写来源名；二手源有独立分析写来源名；二手源纯搬运写"来源名 → 原始来源"
+
+### 分类过滤
+
+当用户指定查看某个分类时:
+- "最近 NPC 相关的" → 只输出 `category == "in-game"` 的条目
+- "AIGC 方面有什么" → 只输出 `category == "creation"` 的条目
+- "游戏 AI 投融资" → 只输出 `category == "industry"` 的条目
+
+### 发群简报格式
+
+当用户说"帮我生成一份可以发群的"时,用精简格式:
+
+```markdown
+🎮 游戏×AI 日报 · 5.11
+
+1. <标题> - <来源>
+   <URL>
+2. ...
+```
+
+去掉 🎯 行和详细摘要,只保留标题 + URL,控制在 1500 字内。
+
+## 回溯历史
+
+当用户问"这周 / 上周 / 最近 N 天的游戏 AI 动态"时:
+1. 读取 `data/` 目录下对应日期范围的 JSON 文件
+2. 合并所有 items,按 URL 去重
+3. 按时间倒序输出
+4. 超过 20 条时按分类各取 Top N
+
+```bash
+ls ${SKILL_DIR}/data/
+```
+
+## 周报生成流程
+
+周报不是重新我7天窗口，而是从日报精华中再精选：
+
+1. 检查 `data/` 目录下本周 7 天的日报 JSON 是否齐全
+2. 缺哪天就补跑哪天（超过3天前的 RSS 可能已丢失，用 AI HOT API 补充）
+3. 合并 7 天所有日报条目，去重
+4. 按筛选标准取 8-12 条最重要的
+5. 按格式规则输出
+
+### 周报筛选标准（优先级从高到低）
+
+1. **AI 在游戏体验中的实际应用**（产品级，已上线/可用）
+2. **AI 在游戏开发中的工具/方案**（有 demo/专利/开源，不是纯概念）
+3. **大厂对 AI 的重大投入决策**（真金白银，不是嘴上说说）
+4. **技术突破**（离游戏应用近的，不是纯学术）
+
+**降低优先级：**
+- 行业人物表态/观点碰撞
+- 商业模式争议
+- 纯学术论文（除非直接解决游戏核心问题）
+- AI 公司动态但跟游戏关系弱的
+
+### 定时任务
+
+- **日报**：每天早上 9:00 自动跑脚本抓取，结果推送给用户
+- **周报**：每周一早上 9:00 汇总过去 7 天日报精华，推送给用户
+
+## 实时补充搜索
+
+当 data/ 下没有最新数据,或用户搜索特定话题时,可以直接调 AI HOT API:
+
+```bash
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+curl -sH "User-Agent: $UA" "https://aihot.virxact.com/api/public/items?mode=selected&q=<关键词>&take=20"
+```
+
+将返回的 items 中与游戏相关的条目,按同样格式组织输出。
+
+## 来源溯源原则
+
+> **核心理念:我们的价值是帮用户找到一手信息,而不是做 IT之家的搜索引擎。**
+
+输出给用户时,包含 `source_type: "secondary"` 的条目说明来自聚合/转载媒体。**这些条目必须追溯原始来源后再展示**:
+
+1. 检查标题/摘要中是否有公司名/人名
+2. 用 `web_search` 搜原始声明/博客/官网全文
+3. 将 URL 替换为一手源链接,来源标为原始发布者
+
+**示例:**
+- IT之家报道"Epic 裁员 + AI 不替代岗位" → 追溯到 epicgames.com 官方声明 → 来源写 "Epic Games 官方"
+- 量子位报道"Inworld 融资" → 追溯到 TechCrunch 原文 → 来源写 "TechCrunch"
+
+如果追溯失败(找不到一手源),仍然可以展示该条目,但在来源后加 "→ 原始来源待确认"。
+
+**对于 AI HOT 的条目**:
+- `source` 字段已经是真实来源(如 "X:阿易 AI Notes (@AYi_AInotes)")
+- 直接用这个来源展示,不要写 "AI HOT"
+- 如果来源含 "IT之家(RSS)" 等二手标记,同样需要追溯
+
+**对于 X (Twitter) 链接的条目**:
+
+1. **优先追溯一手源**:如果推文讨论的是某个项目/论文/官方博客,用 `web_search` 找到原始源(GitHub 仓库、论文链接、官网博客),同时附上一手 URL
+   - 示例:推文讨论 "Claude Code Game Studios" → 同时给出 GitHub 仓库链接
+   - 示例:推文讨论某篇论文 → 同时给出 arXiv 链接
+2. **URL 给完整**:X 链接直接给完整 URL,不要用 `...` 省略
+
+## 不要做
+
+- 不要编造或推测内容--一切以脚本/API 返回为准
+- 不要为条目编造与 AI 的关联--如果原文没提 AI,这条不该出现
+- 推荐原因必须基于原文事实--不能推测因果,只能写原文已经说明的关联
+- 不要丢掉 URL--没有 URL 的信息不可信。输出前必须逐条检查链接是否存在,缺链接则补查或删除
+- 不要在用户输出里暴露脚本路径、API 参数、RSS 地址
+- 不要超过 20 条/次--宁可精选也不堆砌
+- 不要输出没有"推荐原因"的条目(发群简报格式除外)
+- 不要重复收录同一事件--去重保留最权威那条
+- 不要直接展示 ISO 时间戳--转为 (5.7) 这种月.日格式
+- 不要把 AI HOT 的基础设施细节暴露给用户
+- 不要凭训练数据脑补游戏 AI 新闻--永远走数据源
+- 不要展示 "IT之家"、"量子位" 等二手源作为最终来源--必须追溯一手原始出处
+- 不要写 "AI HOT" 作为来源--AI HOT 只是数据管道
+- 不要使用任何 emoji--不用任何表情符号,保持专业干净

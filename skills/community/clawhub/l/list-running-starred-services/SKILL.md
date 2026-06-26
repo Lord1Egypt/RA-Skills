@@ -1,35 +1,19 @@
 ---
-name: "list-running-starred-services"
-description: "Use this skill when you need to call bytedcli tce list-starred-service and print the raw original output directly."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/list-running-starred-services"
-sourceUrl: "https://clawhub.ai/skills/list-running-starred-services"
+name: list-running-starred-services
+description: Use this skill when you need to call bytedcli tce list-starred-service and print the raw original output directly.
 ---
 
-# list-running-starred-services
+# List Running Starred Services
 
-> Use this skill when you need to call bytedcli tce list-starred-service and print the raw original output directly.
+Use this skill when the user wants the original output of `bytedcli tce list-starred-service`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/list-running-starred-services`
-- **Source URL:** [https://clawhub.ai/skills/list-running-starred-services](https://clawhub.ai/skills/list-running-starred-services)
+## Workflow
 
-## Overview
+1. Run `bytedcli tce list-starred-service`.
+2. Print the command output directly.
 
+## Notes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/list-running-starred-services
-```
+- Do not add pagination flags unless the user explicitly asks for them.
+- Do not post-process the output.
+- If `bytedcli` is unavailable or the network is blocked, report that clearly and include the failing command.

@@ -1,35 +1,43 @@
----
-name: "Claw Memory Lite"
-description: "Manage and query your agent's distilled long-term memory with lightweight, fast SQLite-powered tools and automated daily extraction."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/claw-memory-lite"
-sourceUrl: "https://clawhub.ai/skills/claw-memory-lite"
----
+# claw-memory-lite Skill
 
-# Claw Memory Lite
+> Lightweight Long-Term Memory for OpenClaw — SQLite-Powered, Zero External Dependencies, Millisecond Queries.
 
-> Manage and query your agent's distilled long-term memory with lightweight, fast SQLite-powered tools and automated daily extraction.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/claw-memory-lite`
-- **Source URL:** [https://clawhub.ai/skills/claw-memory-lite](https://clawhub.ai/skills/claw-memory-lite)
-
-## Overview
-
+This skill provides an automated way to manage your agent's long-term memory by extracting distilled insights from daily logs into a queryable SQLite database.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/claw-memory-lite
+npx skills add timothysong0w0/claw-memory-lite --agent openclaw
 ```
+
+## Tools
+
+### db_query
+Query the long-term memory database by keyword or category.
+
+**Usage**: `python scripts/db_query.py [SEARCH_TERM] [--category CATEGORY]`
+
+### extract_memory
+Extract memory snippets from daily log files (`memory/YYYY-MM-DD.md`) into the database.
+
+**Usage**: `python scripts/extract_memory.py [--review]`
+
+## Automation
+
+To enable automatic daily extraction, add the following to your `HEARTBEAT.md`:
+
+```bash
+python ~/.openclaw/extensions/claw-memory-lite/scripts/extract_memory.py
+```
+
+## Configuration
+
+The database is stored at `~/.openclaw/database/insight.db` by default.
+
+## Credits
+
+Inspired by **鸿蒙小张** and ByteDance's **OpenViking** hierarchy.
+
+---
+
+**Built with 🐯 for OpenClaw users.**

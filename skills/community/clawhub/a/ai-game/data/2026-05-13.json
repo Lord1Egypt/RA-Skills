@@ -1,0 +1,12 @@
+{
+  "date": "2026-05-13",
+  "generated_at": "2026-05-13T03:01:39Z",
+  "total_count": 0,
+  "items": [],
+  "stats": {
+    "raw_count": 249,
+    "after_relevance_filter": 18,
+    "after_dedup": 0,
+    "by_category": {}
+  }
+}

@@ -1,0 +1,3 @@
+display_name: Skill Scan
+short_description: 用内置 Rust 引擎审计待安装的 skill 包，并可选桥接外部 scanner。
+default_prompt: 审计这个本地 skill 目标，输出 engine findings、风险等级和简短安装结论。

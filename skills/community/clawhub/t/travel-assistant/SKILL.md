@@ -1,35 +1,89 @@
 ---
-name: "Travel Assistant"
-description: "私人旅行规划顾问。整理你的所有旅行信息，主动发现你忽略的签证、天气、文化禁忌、行李清单等细节，用起来像真人助手一样贴心可靠。"
-category: "domain"
-source: "ClawHub"
-tags: [itinerary, planning, travel, visa, weather]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/travel-assistant"
-sourceUrl: "https://clawhub.ai/skills/travel-assistant"
+name: travel-assistant
+version: 1.0.0
+display_name: 旅行助手
+description: 私人旅行规划顾问。整理你的所有旅行信息，主动发现你忽略的签证、天气、文化禁忌、行李清单等细节，用起来像真人助手一样贴心可靠。
+author: heidi1998
+language: zh-CN
+tags:
+  - travel
+  - planning
+  - reminder
+  - assistant
+  - weather
+  - chinese
 ---
 
-# Travel Assistant
+# ✈️ 旅行助手
 
-> 私人旅行规划顾问。整理你的所有旅行信息，主动发现你忽略的签证、天气、文化禁忌、行李清单等细节，用起来像真人助手一样贴心可靠。
+你的私人旅行规划顾问，专门帮你把旅行准备做得滴水不漏。不只是整理行程，更会主动发现你没想到的细节——就像身边有一个跑过很多地方、经验丰富的朋友帮你把关。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/travel-assistant`
-- **Source URL:** [https://clawhub.ai/skills/travel-assistant](https://clawhub.ai/skills/travel-assistant)
+## 为什么需要这个 Skill？
 
-## Overview
+旅行最怕的不是花钱多，是到了才发现：
+- 护照快过期了，签证没办
+- 当地正在下雨季，衣服带错了
+- 景点要提前预约，临时买不到票
+- 信用卡在当地刷不了，没带现金
+- 插头规格不对，充不了电
 
+这个 skill 就是专门帮你在出发前把这些坑都排查一遍。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/travel-assistant
-```
+## 核心功能
+
+### 📋 旅行信息总览表
+你告诉助手你的旅行计划，它会自动整理成一张清晰的总览表：
+- 目的地、出行日期、同行人员
+- 已确认事项（机票、酒店、门票）
+- 待办清单（还需要做什么）
+- 重要时间节点提醒
+
+### ⚠️ 主动发现遗漏细节
+每次你更新计划后，助手会自动检查这些常见遗漏：
+- 护照有效期（目的地通常要求剩余6个月以上）
+- 签证类型和办理周期（提前多久要申请）
+- 目的地与出发地时差
+- 当地货币和建议携带现金金额
+- 手机漫游方案或当地SIM卡建议
+- 信用卡境外使用是否需要提前申请
+- 目的地插头规格（是否需要转换器）
+
+### 🌤️ 实时天气查询
+联网查询旅行期间目的地天气，给出：
+- 气温范围和体感温度
+- 降雨概率和建议携带雨具
+- 极端天气风险提示（台风、暴雪、沙尘暴）
+- 穿衣建议
+
+### 🧳 个性化行李清单
+根据目的地、旅行天数、同行人员生成专属行李清单：
+- 必带证件清单
+- 根据天气的穿衣建议
+- 目的地特殊需求（防晒、登山装备、海滩用品）
+- 常备药品建议
+- 电子设备和转换插头
+
+### 🌍 目的地注意事项
+联网查询并提醒当地文化和法律注意事项：
+- 宗教习俗和着装要求
+- 法律禁忌（哪些东西不能带入境）
+- 治安情况和需要注意的区域
+- 中国大使馆联系方式
+- 当地急救和报警电话
+
+## 使用示例
+
+**你说：** 我打算7月15日到20日去泰国清迈，两个人，机票订好了，酒店还没定
+
+**助手回应：** 生成清迈旅行总览表，提醒7月是雨季需要带雨具，确认护照有效期，建议提前预约素贴山寺，推荐酒店区域，列出待办清单
+
+---
+
+**你说：** 我们想去拜县，从清迈怎么去比较好？
+
+**助手回应：** 联网查询清迈到拜县交通方式（大巴约3小时，山路弯多建议备晕车药），更新行程并提醒新增的注意事项
+
+## 注意事项
+- 签证、入境政策等信息以官方渠道为准，出发前请自行确认最新要求
+- 建议配合 DeepSeek API 使用以启用实时天气和联网搜索功能
+- 行程安排仅供参考，具体以当地实际情况为准

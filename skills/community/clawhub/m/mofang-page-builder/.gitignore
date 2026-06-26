@@ -1,0 +1,11 @@
+# skill 根目录下拉取的 fielddef 工作副本，勿提交；不影响 assets/mock-data 模板
+/mock-data/
+
+# 打包和跨平台噪音
+.DS_Store
+__MACOSX/
+*.zip
+publish/
+
+# 另存 TRAE 文档产生的静态资源体积大，可不纳入版本库
+references/*_files/

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "tools": [
+    {
+      "url": "https://spoki.com/en",
+      "title": "Spoki",
+      "description": "Italy's first WhatsApp conversational marketing platform. Automates marketing, sales, and customer support on WhatsApp using AI. Integrates with 4,000+ apps including e-commerce, CRM, and marketing software. Features AI chatbots with ChatGPT integration, bulk messaging, automation, scheduling, and WhatsApp CRM.",
+      "category": "Communication",
+      "tags": ["whatsapp", "marketing", "automation", "ai", "chatbot", "crm", "italy", "meta-partner", "e-commerce", "bulk-messaging"],
+      "use_case": "WhatsApp marketing and customer support automation",
+      "notes": "Meta Tech Partner. No subscription - pay per use. 30-day money-back guarantee. Supports 50+ countries.",
+      "saved_date": "2026-04-04",
+      "price": "No subscription (pay per use)",
+      "social_media": {
+        "linkedin": "https://www.linkedin.com/company/spokiapp",
+        "facebook": "https://www.facebook.com/spokiapp",
+        "instagram": "https://www.instagram.com/spokiapp/"
+      },
+      "contact": {
+        "email": "info@spoki.it",
+        "location": "San Vito dei Normanni, Puglia, Italy"
+      }
+    }
+  ]
+}

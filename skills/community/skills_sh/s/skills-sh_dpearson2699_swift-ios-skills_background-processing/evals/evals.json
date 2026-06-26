@@ -1,0 +1,44 @@
+{
+  "skill_name": "background-processing",
+  "evals": [
+    {
+      "id": 1,
+      "name": "bg-task-registration-review",
+      "prompt": "Review this iOS background task setup for a SwiftUI app. It registers a BGAppRefreshTask from a view's .task modifier, submits a BGProcessingTask without adding BGTaskSchedulerPermittedIdentifiers, and does not set an expirationHandler. Give a concise fix plan and corrected Swift/Info.plist snippets.",
+      "expected_output": "Identifies launch-time registration, Info.plist permitted identifiers, required UIBackgroundModes, expiration handling, setTaskCompleted on all paths, and rescheduling patterns.",
+      "files": [],
+      "assertions": [
+        "Says BGTaskScheduler handlers must be registered before app launch completes, not from a view task.",
+        "Names BGTaskSchedulerPermittedIdentifiers and the fetch/processing UIBackgroundModes requirements.",
+        "Requires expirationHandler cancellation and setTaskCompleted(success:) on every path.",
+        "Shows or describes scheduling the next request from inside the task handler."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "continued-processing-ios26",
+      "prompt": "I need an iOS 26 photo export that starts from a user tap and keeps running if the user backgrounds the app. It may use GPU acceleration. What BackgroundTasks API should I use, and what are the identifier, progress, cancellation, and entitlement gotchas?",
+      "expected_output": "Recommends BGContinuedProcessingTaskRequest/BGContinuedProcessingTask and covers foreground user action, wildcard permitted identifier base with unique job identifiers, ProgressReporting, updateTitle/subtitle, expiration cancellation, supportedResources, and the Background GPU Access entitlement.",
+      "files": [],
+      "assertions": [
+        "Recommends BGContinuedProcessingTaskRequest and BGContinuedProcessingTask for iOS 26 foreground-started work.",
+        "Explains that submitted identifiers should be unique per job under a bundle-prefixed wildcard permitted identifier.",
+        "Mentions ProgressReporting or task.progress and cancellation/expiration handling.",
+        "Mentions checking BGTaskScheduler.supportedResources before requesting GPU and requiring the Background GPU Access entitlement."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "background-push-boundary",
+      "prompt": "Our server wants to wake the app with silent pushes every few minutes to keep chat data fresh, and one engineer suggested using apns-priority 10 so they arrive instantly. Review the plan and say what should change. Do not redesign our notification UI.",
+      "expected_output": "Keeps scope to background push refresh behavior, rejects frequent silent pushes and priority 10, requires content-available, remote-notification mode, apns-push-type background, apns-priority 5, and prompt fetch completion.",
+      "files": [],
+      "assertions": [
+        "Requires content-available: 1 and the Remote notifications background mode.",
+        "Requires APNs headers apns-push-type: background and apns-priority: 5.",
+        "Warns that background pushes are low priority, throttled, not guaranteed, and should not be sent every few minutes.",
+        "Stays focused on background refresh behavior rather than redesigning visible notification UI."
+      ]
+    }
+  ]
+}

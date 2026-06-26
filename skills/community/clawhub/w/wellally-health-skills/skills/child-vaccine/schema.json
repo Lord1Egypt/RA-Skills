@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-vaccine-tracker.json",
+  "title": "Child Vaccine Tracker",
+  "description": "Data structure for child vaccination tracking",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "scheduled_vaccines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vaccine_id": {"type": "string"},
+          "vaccine_name": {"type": "string"},
+          "category": {
+            "type": "string",
+            "enum": ["class_1", "class_2"]
+          },
+          "dose": {"type": "string"},
+          "scheduled_date": {"type": "string", "format": "date"},
+          "status": {
+            "type": "string",
+            "enum": ["pending", "scheduled", "completed", "missed"]
+          },
+          "actual_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "batch_number": {"type": "string"},
+          "manufacturer": {"type": "string"},
+          "clinic": {"type": "string"},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "upcoming": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vaccine_id": {"type": "string"},
+          "vaccine_name": {"type": "string"},
+          "dose": {"type": "string"},
+          "scheduled_date": {"type": "string", "format": "date"},
+          "days_until": {"type": "integer"}
+        }
+      }
+    },
+    "overdue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vaccine_id": {"type": "string"},
+          "vaccine_name": {"type": "string"},
+          "dose": {"type": "string"},
+          "scheduled_date": {"type": "string", "format": "date"},
+          "days_overdue": {"type": "integer"}
+        }
+      }
+    },
+    "completed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vaccine_id": {"type": "string"},
+          "vaccine_name": {"type": "string"},
+          "dose": {"type": "string"},
+          "actual_date": {"type": "string", "format": "date"}
+        }
+      }
+    },
+    "reactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "vaccine_name": {"type": "string"},
+          "symptoms": {"type": "string"},
+          "severity": {
+            "type": "string",
+            "enum": ["mild", "moderate", "severe"]
+          },
+          "treatment": {"type": "string"},
+          "resolved": {"type": "boolean"}
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_vaccines": {"type": "integer"},
+        "class_1_completed": {"type": "integer"},
+        "class_2_completed": {"type": "integer"},
+        "overdue_count": {"type": "integer"},
+        "next_vaccine_date": {"type": "string", "format": "date"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"]
+}

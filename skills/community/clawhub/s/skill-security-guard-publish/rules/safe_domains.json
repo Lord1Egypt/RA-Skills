@@ -1,0 +1,12 @@
+{
+  "safe_domains": [
+    "github.com",
+    "api.github.com",
+    "pypi.org",
+    "clawhub.com",
+    "openclaw.ai",
+    "huggingface.co",
+    "hf-mirror.com"
+  ],
+  "description": "安全域名白名单，这些域名的请求被认为是安全的"
+}

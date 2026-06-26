@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P6 Output Schema",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "string" },
+    "prompt_version": { "type": "string" },
+    "requirement_id": { "type": "string" },
+    "testcases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "source_test_point": { "type": "string" },
+          "fields": {
+            "type": "object",
+            "properties": {
+              "project": { "type": "string" },
+              "case_type": { "type": "string", "enum": ["测试用例"] },
+              "case_id": { "type": "string" },
+              "requirement": { "type": "string" },
+              "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+              "title": { "type": "string", "minLength": 1 },
+              "menu_path": { "type": "string" },
+              "preconditions": { "type": "string", "minLength": 10 },
+              "steps": { "type": "string", "minLength": 1 },
+              "expected_results": { "type": "string", "minLength": 1 },
+              "is_smoke": { "type": "string", "enum": ["是", "否"] },
+              "creator": { "type": "string" },
+              "assignee": { "type": "string" },
+              "test_case_type": { "type": "string", "enum": ["正向验证", "分支验证", "异常处理", "边界验证", "逻辑组合", "集成异常", "歧义验证", "权限验证", "状态迁移", "兼容回归", "性能验证", "安全验证", "接口验证", "条件验证"] },
+              "test_category": { "type": "string", "enum": ["功能", "性能", "安全", "兼容性"] },
+              "status": { "type": "string" },
+              "screenshot": { "type": "string" },
+              "test_suite": { "type": "string" },
+              "remarks": { "type": "string" },
+              "related_requirement": { "type": "string" },
+              "related_defect": { "type": "string" }
+            },
+            "required": ["project", "case_type", "case_id", "requirement", "priority", "title", "menu_path", "preconditions", "steps", "expected_results", "is_smoke", "creator", "assignee", "test_case_type", "test_category", "status", "screenshot", "test_suite", "remarks"]
+          }
+        },
+        "required": ["id", "source_test_point", "fields"]
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer", "minimum": 1 },
+        "smoke_count": { "type": "integer", "minimum": 0 },
+        "smoke_ratio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "by_priority": {
+          "type": "object",
+          "properties": {
+            "P0": { "type": "integer" },
+            "P1": { "type": "integer" },
+            "P2": { "type": "integer" },
+            "P3": { "type": "integer" }
+          }
+        },
+        "by_category": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" }
+        }
+      },
+      "required": ["total", "smoke_count", "smoke_ratio", "by_priority"]
+    }
+  },
+  "required": ["schema_version", "prompt_version", "requirement_id", "testcases", "statistics"],
+  "additionalProperties": true
+}

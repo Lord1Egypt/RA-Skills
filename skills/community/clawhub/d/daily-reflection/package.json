@@ -1,0 +1,20 @@
+{
+  "name": "daily-reflection",
+  "version": "1.0.2",
+  "description": "Nightly OpenClaw reflection routine with explicit privacy guardrails and approval-first automation guidance.",
+  "keywords": [
+    "openclaw",
+    "reflection",
+    "memory",
+    "learning",
+    "patterns",
+    "morning-briefing",
+    "self-improvement",
+    "cron",
+    "solution-memory",
+    "privacy-guardrails",
+    "safe-automation"
+  ],
+  "author": "brasco05",
+  "license": "MIT"
+}

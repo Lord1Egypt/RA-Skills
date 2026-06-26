@@ -1,0 +1,60 @@
+{
+  "codex": [
+    {
+      "text": "call me ishmael",
+      "source": "Moby Dick \u2014 Herman Melville",
+      "hexagon": 936177732035491926,
+      "wall": 3,
+      "shelf": 4,
+      "volume": 21
+    },
+    {
+      "text": "it was a bright cold day in april and the clocks were striking thirteen",
+      "source": "1984 \u2014 George Orwell",
+      "hexagon": 31662794948728276249954845492816932259875889748492351425234219631164126346393014895980001979821045001,
+      "wall": 2,
+      "shelf": 2,
+      "volume": 17
+    },
+    {
+      "text": "the library of babel",
+      "source": "The Library of Babel \u2014 Jorge Luis Borges",
+      "hexagon": 183548120301333954574370134,
+      "wall": 4,
+      "shelf": 3,
+      "volume": 3
+    },
+    {
+      "text": "in the beginning god created the heavens and the earth",
+      "source": "Genesis 1:1",
+      "hexagon": 4259011121080048128656715159215960230281089477278448399777985199519526857256,
+      "wall": 1,
+      "shelf": 1,
+      "volume": 28
+    },
+    {
+      "text": "to be or not to be that is the question",
+      "source": "Hamlet \u2014 Shakespeare",
+      "hexagon": 1135753445572608400771816638649177294230633003448160523,
+      "wall": 2,
+      "shelf": 3,
+      "volume": 1
+    },
+    {
+      "text": "it was the best of times it was the worst of times",
+      "source": "A Tale of Two Cities \u2014 Dickens",
+      "hexagon": 6168666517074140469003877568798468406568842205043805336659756619403001,
+      "wall": 3,
+      "shelf": 1,
+      "volume": 21
+    },
+    {
+      "text": "attention is a currency",
+      "source": "High Noon Office \u2014 Joseph Voelbel",
+      "hexagon": 157678433450845610557825814866,
+      "wall": 2,
+      "shelf": 1,
+      "volume": 13
+    }
+  ]
+}

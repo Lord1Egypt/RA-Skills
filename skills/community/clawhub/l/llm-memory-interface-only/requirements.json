@@ -1,0 +1,10 @@
+{
+  "binaries": [],
+  "pips": [],
+  "envVars": {
+    "required": [],
+    "optional": []
+  },
+  "network": false,
+  "description": "纯接口包，无运行时依赖"
+}

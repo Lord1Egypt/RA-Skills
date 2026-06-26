@@ -1,0 +1,67 @@
+[
+  {
+    "id": "corr_1775357157045_36ut",
+    "timestamp": "2026-04-05T02:45:57.045Z",
+    "type": "format",
+    "originalText": "报告太长了，简洁一点",
+    "correction": "输出控制在200字以内",
+    "reason": "",
+    "context": "汇报工作时",
+    "source": "boss_dm",
+    "patternCount": 1,
+    "resolved": true,
+    "ruleId": "rule_test_1775357225418"
+  },
+  {
+    "id": "corr_1775357157051_szga",
+    "timestamp": "2026-04-05T02:45:57.051Z",
+    "type": "format",
+    "originalText": "能不能简短些？我没时间看长文",
+    "correction": "保持简洁，重点突出",
+    "reason": "",
+    "context": "发送消息时",
+    "source": "boss_dm",
+    "patternCount": 1,
+    "resolved": true,
+    "ruleId": "rule_test_1775357225418"
+  },
+  {
+    "id": "corr_1775357157053_5pfw",
+    "timestamp": "2026-04-05T02:45:57.053Z",
+    "type": "format",
+    "originalText": "太啰嗦了，说重点",
+    "correction": "结论先行，不超过3点",
+    "reason": "",
+    "context": "任何汇报场景",
+    "source": "boss_dm",
+    "patternCount": 1,
+    "resolved": true,
+    "ruleId": "rule_test_1775357225418"
+  },
+  {
+    "id": "corr_1775357157055_d0os",
+    "timestamp": "2026-04-05T02:45:57.055Z",
+    "type": "tone",
+    "originalText": "说话别那么死板，轻松点",
+    "correction": "语气更自然，像和人聊天",
+    "reason": "",
+    "context": "日常对话",
+    "source": "boss_dm",
+    "patternCount": 1,
+    "resolved": false,
+    "ruleId": null
+  },
+  {
+    "id": "corr_1775357157057_gu1m",
+    "timestamp": "2026-04-05T02:45:57.057Z",
+    "type": "priority",
+    "originalText": "健康检查不用每小时做，2小时一次就够了",
+    "correction": "降低检查频率",
+    "reason": "",
+    "context": "定时任务设置",
+    "source": "boss_dm",
+    "patternCount": 1,
+    "resolved": false,
+    "ruleId": null
+  }
+]

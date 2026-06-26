@@ -1,35 +1,57 @@
+﻿---
+name: CI Integration
+description: CI/CD accessibility pipeline patterns, axe-core CLI configuration, SARIF output, PR annotations, baseline management, and multi-platform CI templates. Reference data for CI accessibility setup.
 ---
-name: "ci-integration"
-description: "Indexed by skills.sh from community-access/accessibility-agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "community-access"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/community-access/accessibility-agents/ci-integration"
-sourceUrl: "https://skills.sh/community-access/accessibility-agents/ci-integration"
----
+<!-- CANONICAL SOURCE: .github/skills/ci-integration/SKILL.md -- Edit the canonical source; sync to Gemini via scripts/check-gemini-sync.ps1 -->
 
-# ci-integration
+# Skill: CI Integration
 
-> Indexed by skills.sh from community-access/accessibility-agents
+Patterns, templates, and reference data for integrating automated accessibility scanning into CI/CD pipelines.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** community-access
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/community-access/accessibility-agents/ci-integration`
-- **Source URL:** [https://skills.sh/community-access/accessibility-agents/ci-integration](https://skills.sh/community-access/accessibility-agents/ci-integration)
+## axe-core CLI Reference
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/community-access/accessibility-agents/ci-integration
+npm install --save-dev @axe-core/cli
+npx axe <url> --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa
 ```
+
+### Output Formats
+- `--reporter json` — JSON to stdout
+- `--reporter sarif` — SARIF for code scanning
+- `--reporter html` — Human-readable HTML
+- `--save <file>` — Save to file
+
+### Exit Codes
+- 0: No violations
+- 1: Violations found
+- 2: Error
+
+## Baseline Pattern
+
+`axe-baseline.json` tracks known violations so CI only fails on regressions:
+
+```
+current = scan()
+baseline = load("axe-baseline.json")
+new = current - baseline
+if new.count > 0: FAIL
+else: PASS
+```
+
+## Gating Strategies
+
+| Strategy | Rule | Best For |
+|----------|------|----------|
+| Strict | Fail on any violation | Greenfield |
+| Standard | Fail on critical/serious | Most projects |
+| Baseline | Fail on regression only | Brownfield |
+| Advisory | Warn only, never fail | Education phase |
+
+## Severity Mapping
+
+| axe-core Impact | CI Gate Level |
+|----------------|---------------|
+| critical | Always blocks |
+| serious | Blocks in standard/strict |
+| moderate | Blocks in strict only |
+| minor | Never blocks (warn) |

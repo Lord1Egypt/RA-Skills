@@ -1,0 +1,15 @@
+- Elon Musk
+- Steve Jobs
+- Naval Ravikant
+- Charlie Munger
+- Paul Graham
+- Benjamin Franklin
+- Marcus Aurelius
+- Seneca
+- Jiddu Krishnamurti
+- Alan Watts
+- 孙子
+- 曾国藩
+- 毛泽东
+- 南怀瑾
+- 倪海厦

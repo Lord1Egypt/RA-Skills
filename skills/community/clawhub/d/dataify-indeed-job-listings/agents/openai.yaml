@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Indeed Job Listings"
+  short_description: "Collect Indeed job listings through Dataify."
+  default_prompt: "Use $dataify-indeed-job-listings to collect an Indeed job listing by job URL."

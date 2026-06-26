@@ -1,0 +1,17 @@
+[package]
+name = "orange-skill"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "orange"
+path = "src/main.rs"
+
+[dependencies]
+orange-sdk = { git = "https://github.com/lightningdevkit/orange-sdk", rev = "c7bfdad45199bcd959dcac39db8066f377984df8" }
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+clap = { version = "4.5", features = ["derive"] }
+toml = "0.8"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }

@@ -1,0 +1,30 @@
+{
+  "name": "dingtalk-cli-auto",
+  "version": "1.0.0",
+  "description": "钉钉 CLI 自动化技能 - 基于 dws 实现企业自动化",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/run-all.js",
+    "test:message": "node test/message.js",
+    "test:calendar": "node test/calendar.js",
+    "test:todo": "node test/todo.js",
+    "test:contact": "node test/contact.js"
+  },
+  "keywords": [
+    "dingtalk",
+    "钉钉",
+    "automation",
+    "cli",
+    "dws"
+  ],
+  "author": "onlyloveher",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

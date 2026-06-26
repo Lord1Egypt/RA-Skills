@@ -1,35 +1,31 @@
 ---
-name: "OC Evolver Restart Loop Fix"
-description: "Repair Evolver restart storms caused by singleton lock/PID false positives and service restart policy mismatch."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oc-evolver-restart-loop-fix"
-sourceUrl: "https://clawhub.ai/skills/oc-evolver-restart-loop-fix"
+name: oc-evolver-restart-loop-fix
+description: Repair Evolver restart storms caused by singleton lock/PID false positives and service restart policy mismatch.
 ---
 
 # OC Evolver Restart Loop Fix
 
-> Repair Evolver restart storms caused by singleton lock/PID false positives and service restart policy mismatch.
+## Symptoms
+- service stuck in `activating`/`auto-restart`
+- logs show `Singleton ... already running` repeatedly
+- restart count increases continuously
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oc-evolver-restart-loop-fix`
-- **Source URL:** [https://clawhub.ai/skills/oc-evolver-restart-loop-fix](https://clawhub.ai/skills/oc-evolver-restart-loop-fix)
+## Root cause pattern
+- stale lock or PID reuse causes false "already running" detection
+- service policy restarts even on benign exits
 
-## Overview
+## Procedure
+1. Inspect service state and restart counters.
+2. Inspect lock file and verify process identity.
+3. Patch lock guard to verify real Evolver process identity.
+4. clear stale lock and restart service.
+5. Re-check status + restart counter stability.
 
+## Output
+- Root cause analysis
+- Patch summary
+- Stability proof after fix
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oc-evolver-restart-loop-fix
-```
+## Safety
+- Keep changes minimal and reversible.
+- Redact infra and identity details in external artifacts.

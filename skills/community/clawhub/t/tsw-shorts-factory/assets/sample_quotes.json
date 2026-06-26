@@ -1,0 +1,23 @@
+{
+  "motivational": [
+    {"quote": "The secret of getting ahead is getting started.", "author": "Mark Twain"},
+    {"quote": "It always seems impossible until it's done.", "author": "Nelson Mandela"},
+    {"quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.", "author": "Winston Churchill"},
+    {"quote": "The only way to do great work is to love what you do.", "author": "Steve Jobs"},
+    {"quote": "In the middle of every difficulty lies opportunity.", "author": "Albert Einstein"}
+  ],
+  "sports_quotes": [
+    {"quote": "Champions keep playing until they get it right.", "author": "Billie Jean King"},
+    {"quote": "I am the greatest. I said that before I even knew I was.", "author": "Muhammad Ali"},
+    {"quote": "You miss 100% of the shots you don't take.", "author": "Wayne Gretzky"},
+    {"quote": "Hard work beats talent when talent doesn't work hard.", "author": "Tim Notke"},
+    {"quote": "The more I practice, the luckier I get.", "author": "Gary Player"}
+  ],
+  "business_quotes": [
+    {"quote": "Your most unhappy customers are your greatest source of learning.", "author": "Bill Gates"},
+    {"quote": "The best investment you can make is in yourself.", "author": "Warren Buffett"},
+    {"quote": "Move fast and break things.", "author": "Mark Zuckerberg"},
+    {"quote": "Chase the vision, not the money; the money will end up following you.", "author": "Tony Hsieh"},
+    {"quote": "The only limit to our realization of tomorrow will be our doubts of today.", "author": "Franklin D. Roosevelt"}
+  ]
+}

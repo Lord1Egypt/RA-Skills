@@ -1,35 +1,38 @@
 ---
-name: "build-graph"
-description: "Indexed by skills.sh from tirth8205/code-review-graph"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tirth8205"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tirth8205/code-review-graph/build-graph"
-sourceUrl: "https://skills.sh/tirth8205/code-review-graph/build-graph"
+name: build-graph
+description: Build or update the code review knowledge graph. Run this first to initialize, or let hooks keep it updated automatically.
+argument-hint: "[full]"
 ---
 
-# build-graph
+# Build Graph
 
-> Indexed by skills.sh from tirth8205/code-review-graph
+Build or incrementally update the persistent code knowledge graph for this repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tirth8205
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tirth8205/code-review-graph/build-graph`
-- **Source URL:** [https://skills.sh/tirth8205/code-review-graph/build-graph](https://skills.sh/tirth8205/code-review-graph/build-graph)
+## Steps
 
-## Overview
+1. **Check graph status** by calling the `list_graph_stats_tool` MCP tool.
+   - If the graph has never been built (last_updated is null), proceed with a full build.
+   - If the graph exists, proceed with an incremental update.
 
+2. **Build the graph** by calling the `build_or_update_graph_tool` MCP tool:
+   - For first-time setup: `build_or_update_graph_tool(full_rebuild=True)`
+   - For updates: `build_or_update_graph_tool()` (incremental by default)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tirth8205/code-review-graph/build-graph
-```
+3. **Verify** by calling `list_graph_stats_tool` again and report the results:
+   - Number of files parsed
+   - Number of nodes and edges created
+   - Languages detected
+   - Any errors encountered
+
+## When to Use
+
+- First time setting up the graph for a repository
+- After major refactoring or branch switches
+- If the graph seems stale or out of sync
+- The graph auto-updates via hooks on edit/commit, so manual builds are rarely needed
+
+## Notes
+
+- The graph is stored as a SQLite database (`.code-review-graph/graph.db`) in the repo root
+- Binary files, generated files, and patterns in `.code-review-graphignore` are skipped
+- Supported languages: Python, TypeScript/JavaScript, Vue, Go, Rust, Java, Scala, C#, Ruby, Kotlin, Swift, PHP, Solidity, C/C++

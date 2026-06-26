@@ -1,0 +1,38 @@
+{
+  "name": "openclaw-skill-meross",
+  "version": "1.0.27",
+  "private": true,
+  "description": "OpenClaw Meross smart device controller via meross-cloud",
+  "license": "MIT-0",
+  "type": "commonjs",
+  "files": [
+    "dist/",
+    "README.md",
+    "SKILL.md",
+    "devices.json",
+    "package-lock.json",
+    "npm-shrinkwrap.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node -e \"require('node:fs').accessSync('dist/cli.js')\"",
+    "clean": "rm -rf dist",
+    "prepack": "npm run build",
+    "smoke:cli": "node dist/cli.js list-devices '{}'",
+    "release:check": "npm run build && npm run smoke:cli && npm pack --dry-run"
+  },
+  "dependencies": {
+    "meross-cloud": "3.1.2"
+  },
+  "overrides": {
+    "form-data": "2.5.5",
+    "qs": "6.15.1",
+    "tough-cookie": "4.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.14.0",
+    "typescript": "5.8.2"
+  }
+}

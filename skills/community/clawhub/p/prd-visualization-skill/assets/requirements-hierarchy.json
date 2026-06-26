@@ -1,0 +1,170 @@
+{
+  "id": "root",
+  "title": "Project Root",
+  "status": "processing",
+  "type": "root",
+  "children": [
+    {
+      "id": "domain-1",
+      "title": "Core Platform",
+      "status": "processing",
+      "type": "functional_domain",
+      "children": [
+        {
+          "id": "prd-1",
+          "title": "Plan.md Parser",
+          "status": "done",
+          "type": "prd",
+          "children": [
+            {
+              "id": "section-1-1",
+              "title": "Syntax Definition",
+              "status": "done",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-1-2",
+              "title": "Validation Logic",
+              "status": "done",
+              "type": "section",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "prd-2",
+          "title": "Unified Data Model",
+          "status": "processing",
+          "type": "prd",
+          "children": [
+            {
+              "id": "section-2-1",
+              "title": "Entity Definitions",
+              "status": "processing",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-2-2",
+              "title": "Relationship Mapping",
+              "status": "todo",
+              "type": "section",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "prd-3",
+          "title": "Real-time File Sync",
+          "status": "processing",
+          "type": "prd",
+          "children": [
+            {
+              "id": "section-3-1",
+              "title": "Watch Service",
+              "status": "done",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-3-2",
+              "title": "Debounce Logic",
+              "status": "processing",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-3-3",
+              "title": "Event Propagation",
+              "status": "todo",
+              "type": "section",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "domain-2",
+      "title": "Visualization Engine",
+      "status": "processing",
+      "type": "functional_domain",
+      "children": [
+        {
+          "id": "prd-4",
+          "title": "Fractal Tree Renderer",
+          "status": "processing",
+          "type": "prd",
+          "children": [
+            {
+              "id": "section-4-1",
+              "title": "D3.js Integration",
+              "status": "done",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-4-2",
+              "title": "Branch Styling",
+              "status": "processing",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-4-3",
+              "title": "Theme Support",
+              "status": "done",
+              "type": "section",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "prd-5",
+          "title": "Interactive Controls",
+          "status": "todo",
+          "type": "prd",
+          "children": [
+            {
+              "id": "section-5-1",
+              "title": "Parameter Sliders",
+              "status": "todo",
+              "type": "section",
+              "children": []
+            },
+            {
+              "id": "section-5-2",
+              "title": "Zoom/Pan",
+              "status": "todo",
+              "type": "section",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "domain-3",
+      "title": "External Integrations",
+      "status": "todo",
+      "type": "functional_domain",
+      "children": [
+        {
+          "id": "prd-6",
+          "title": "GitHub Issues Import",
+          "status": "todo",
+          "type": "prd",
+          "children": []
+        },
+        {
+          "id": "prd-7",
+          "title": "Claude Code Skill",
+          "status": "todo",
+          "type": "prd",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

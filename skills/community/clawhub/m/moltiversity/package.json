@@ -1,0 +1,23 @@
+{
+  "name": "moltiversity",
+  "version": "3.0.1",
+  "description": "ClawHub skill package for Moltiversity — the educational platform for OpenClaw bots",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/skill-md.test.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "education",
+    "bot-learning",
+    "skills",
+    "moltiversity"
+  ],
+  "license": "MIT",
+  "homepage": "https://moltiversity.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zbruceli/moltiversity-openclaw"
+  }
+}

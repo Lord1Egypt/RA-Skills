@@ -1,0 +1,8 @@
+{
+  "name": "wecom-quickstart-cn",
+  "version": "1.0.0",
+  "description": "企业微信快速集成配置 - 5分钟连接 OpenClaw 与企业微信，解锁群机器人、应用消息、客户管理",
+  "author": "yang1002378395-cmyk",
+  "license": "MIT",
+  "keywords": ["wecom", "weixin", "enterprise", "robot", "chinese", "openclaw"]
+}

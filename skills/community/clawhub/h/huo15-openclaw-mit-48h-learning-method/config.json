@@ -1,0 +1,106 @@
+{
+  "name": "huo15-openclaw-mit-48h-learning-method",
+  "version": "3.0.0",
+  "description": "火一五 MIT 48 小时学习法 - 基于 NotebookLM 的 Ihtesham Ali 三问框架 + 反馈循环 + 完整 48h 时间线",
+  "nlm_path": "~/.venv/notebooklm/bin/nlm",
+  "auth_required": true,
+  "auth_note": "首次使用需运行：nlm login（浏览器交互式登录）",
+  "profiles": {
+    "list": "nlm login profile list",
+    "add": "nlm login",
+    "default": "default"
+  },
+  "science_principles": [
+    "active_recall",
+    "desirable_difficulty",
+    "conceptual_frameworks_first"
+  ],
+  "three_questions": {
+    "mental_models": {
+      "id": "q1",
+      "count": 5,
+      "ihtesham_original": "What are the 5 core mental models that every expert in this field shares?",
+      "description": "领域内专家共享的 5 个核心心智模型"
+    },
+    "disagreements": {
+      "id": "q2",
+      "count": 3,
+      "ihtesham_original": "Show me the 3 places where experts in this field fundamentally disagree, and what each side's strongest argument is.",
+      "description": "专家根本不同意的 3 个核心问题（含 steelman）"
+    },
+    "probing_questions": {
+      "id": "q3",
+      "count": 10,
+      "ihtesham_original": "Generate 10 questions that would expose whether someone deeply understands this subject versus someone who just memorized facts.",
+      "description": "区分真懂和假背的 10 个暴露性问题"
+    },
+    "followup": {
+      "id": "q+",
+      "ihtesham_original": "Explain why this is wrong and what I'm missing.",
+      "description": "反馈循环：错答时诊断盲点 + 生成追击问题"
+    }
+  },
+  "marathon_phases": {
+    "phase_1": {
+      "hours": "0-1",
+      "name": "Context Stacking + 智识地图",
+      "actions": ["init", "add", "ask all"]
+    },
+    "phase_2": {
+      "hours": "1-7",
+      "name": "主动回忆 + 反馈循环",
+      "actions": ["回答 10 个 probing questions", "ask followup"]
+    },
+    "phase_3": {
+      "hours": "7-48",
+      "name": "综合 + 模拟考 + 多模态巩固",
+      "actions": ["synthesize", "weakness", "exam", "audio", "mindmap", "flashcards", "export"]
+    }
+  },
+  "advanced_commands": [
+    "synthesize",
+    "contradictions",
+    "gaps",
+    "feynman",
+    "weakness",
+    "exam"
+  ],
+  "notebooklm_native_commands": [
+    "flashcards",
+    "quiz",
+    "mindmap",
+    "chat-config",
+    "download"
+  ],
+  "supported_source_types": [
+    "url",
+    "file",
+    "youtube",
+    "google_drive"
+  ],
+  "audio_formats": [
+    "deep_dive",
+    "brief",
+    "critique",
+    "debate"
+  ],
+  "video_styles": [
+    "auto_select",
+    "classic",
+    "whiteboard",
+    "kawaii",
+    "anime",
+    "watercolor",
+    "retro_print",
+    "heritage",
+    "paper_craft"
+  ],
+  "video_formats": [
+    "explainer",
+    "brief",
+    "cinematic"
+  ],
+  "kb_export_dir": "~/knowledge/huo15/learning",
+  "author": "青岛火一五信息科技有限公司",
+  "tags": ["learning", "mit", "notebooklm", "knowledge-management", "ai", "ihtesham-ali", "48h", "active-recall"]
+}

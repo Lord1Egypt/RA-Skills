@@ -1,0 +1,16 @@
+{
+  "name": "ai-project-learner",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "wrangler": "^4.0.0",
+    "@cloudflare/workers-types": "^4.20260101.0"
+  }
+}

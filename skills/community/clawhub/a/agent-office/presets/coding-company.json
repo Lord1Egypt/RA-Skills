@@ -1,0 +1,49 @@
+{
+  "slug": "coding-company",
+  "name": "编程公司",
+  "description": "适合做产品设计、前后端开发、测试交付和复杂项目推进的技术型团队。",
+  "workers": [
+    {
+      "name": "产品",
+      "worker_id": "product_manager",
+      "engine": "hermes",
+      "role": "research",
+      "duty": "负责需求梳理、竞品分析与任务拆解"
+    },
+    {
+      "name": "前端",
+      "worker_id": "frontend_engineer",
+      "engine": "openclaw",
+      "role": "code",
+      "duty": "负责前端页面、交互逻辑与组件实现"
+    },
+    {
+      "name": "后端",
+      "worker_id": "backend_engineer",
+      "engine": "openclaw",
+      "role": "code",
+      "duty": "负责接口、数据层、服务端逻辑与排障"
+    },
+    {
+      "name": "设计",
+      "worker_id": "ui_designer",
+      "engine": "openclaw",
+      "role": "design",
+      "duty": "负责界面方案、组件视觉与用户体验"
+    },
+    {
+      "name": "测试",
+      "worker_id": "qa_engineer",
+      "engine": "hermes",
+      "role": "general",
+      "duty": "负责测试用例、冒烟验证与问题复测"
+    },
+    {
+      "name": "项目",
+      "worker_id": "project_orchestrator",
+      "engine": "deerflow",
+      "role": "complex",
+      "duty": "负责复杂任务推进、跨岗位协调与阶段汇总"
+    }
+  ]
+}

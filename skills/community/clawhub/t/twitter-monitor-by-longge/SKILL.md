@@ -1,35 +1,23 @@
 ---
-name: "Twitter Monitor By Longge"
-description: "Monitor X/Twitter accounts for new tweets and send notifications to Telegram."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/twitter-monitor-by-longge"
-sourceUrl: "https://clawhub.ai/skills/twitter-monitor-by-longge"
+name: twitter-monitor-by-longge
+description: Monitor X/Twitter accounts for new tweets and send notifications to Telegram.
 ---
 
-# Twitter Monitor By Longge
+# Twitter Monitor (by 龙哥)
 
-> Monitor X/Twitter accounts for new tweets and send notifications to Telegram.
+Monitor X/Twitter accounts and get Telegram notifications for new tweets.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/twitter-monitor-by-longge`
-- **Source URL:** [https://clawhub.ai/skills/twitter-monitor-by-longge](https://clawhub.ai/skills/twitter-monitor-by-longge)
+## Setup
 
-## Overview
+需要配置:
+- TWITTER_USER: 要监控的用户名
+- AUTH_TOKEN: Twitter cookie
+- CT0: Twitter cookie  
+- TELEGRAM_BOT_TOKEN: Telegram机器人token
+- TELEGRAM_CHAT_ID: 你的Telegram ID
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/twitter-monitor-by-longge
+python3 twitter_monitor.py
 ```

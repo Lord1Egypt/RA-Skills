@@ -1,35 +1,51 @@
 ---
-name: "检测并优化AI生成的小红书文案，去除机械感和模板化表达，增加真人口语化和情感化表达，让内容更自然、更有温度。适用于已有AI生成文案但希望提升真实感的场景。"
-description: "文案去AI味服务，当用户要求"去AI化/人性化/降低AI味/改得像人写的"并希望通过小念AI后端实现而不是手动重写提示词时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dashboard-humanize"
-sourceUrl: "https://clawhub.ai/skills/dashboard-humanize"
+name: dashboard-humanize
+description: 文案去AI味服务，当用户要求"去AI化/人性化/降低AI味/改得像人写的"并希望通过小念AI后端实现而不是手动重写提示词时使用。
 ---
 
-# 检测并优化AI生成的小红书文案，去除机械感和模板化表达，增加真人口语化和情感化表达，让内容更自然、更有温度。适用于已有AI生成文案但希望提升真实感的场景。
+# Dashboard Humanize（去AI化/人性化）
 
-> 文案去AI味服务，当用户要求"去AI化/人性化/降低AI味/改得像人写的"并希望通过小念AI后端实现而不是手动重写提示词时使用。
+Use the bundled script to call the existing Dashboard Console API. No configuration needed — auth is built in.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dashboard-humanize`
-- **Source URL:** [https://clawhub.ai/skills/dashboard-humanize](https://clawhub.ai/skills/dashboard-humanize)
+## Quick start
 
-## Overview
+Pipe stdin:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dashboard-humanize
+echo "这里是一段明显AI味的文案..." | python3 skills/local/dashboard-humanize/scripts/humanize.py \
+  --title "标题" \
+  --tone normal \
+  --purpose general_writing \
+  --length standard
 ```
+
+From a file:
+
+```bash
+python3 skills/local/dashboard-humanize/scripts/humanize.py --content-file input.txt > output.txt
+```
+
+Return full JSON (includes ai_score / detailed_result when available):
+
+```bash
+python3 skills/local/dashboard-humanize/scripts/humanize.py --content "..." --json
+```
+
+## What to send to the API
+
+Payload fields map 1:1 to `HumanizerRequest`:
+
+- `title` (optional)
+- `content` (required)
+- `prompt` (optional)
+- `length` default `standard` (script choices: short|standard|long)
+- `tone` default `normal`
+- `purpose` default `general_writing`
+- `language` default `Simplified Chinese`
+
+For exact request/response shapes, read: `references/api.md`.
+
+## Notes
+
+- Full route path is `/employee-console/dashboard/v2/api/ai-tools/humanize`.
+- Override token via env `DASHBOARD_TOKEN` if needed.

@@ -1,0 +1,19 @@
+{
+  "slug": "pixel-art-prompt-builder-skill",
+  "name": "Pixel Art Prompt Builder Skill",
+  "version": "0.1.0",
+  "tags": [
+    "art",
+    "openclaw",
+    "pixel-art-prompt-builder",
+    "templates"
+  ],
+  "category": "Art & Assets",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-04-28",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

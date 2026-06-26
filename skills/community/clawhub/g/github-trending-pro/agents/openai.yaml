@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Trending"
+  short_description: "Fetch and analyze GitHub Trending repos."
+  default_prompt: "Use $github-trending to show today's GitHub Trending repositories with an overview and trend analysis."

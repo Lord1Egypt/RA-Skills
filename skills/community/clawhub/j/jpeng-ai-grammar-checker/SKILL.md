@@ -1,35 +1,42 @@
 ---
-name: "ai-grammar-checker"
+name: jpeng-ai-grammar-checker
 description: "Check and correct grammar errors in text"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-ai-grammar-checker"
-sourceUrl: "https://clawhub.ai/skills/jpeng-ai-grammar-checker"
+version: "1.0.0"
+author: "jpeng"
+tags: ["nlp", "grammar", "ai"]
 ---
 
-# ai-grammar-checker
+# AI Grammar Checker
 
-> Check and correct grammar errors in text
+Check and correct grammar errors in text
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-ai-grammar-checker`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-ai-grammar-checker](https://clawhub.ai/skills/jpeng-ai-grammar-checker)
+## When to Use
 
-## Overview
+- User needs nlp related functionality
+- Automating grammar tasks
+- Ai operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-ai-grammar-checker
+python3 scripts/ai_grammar_checker.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export GRAMMAR_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

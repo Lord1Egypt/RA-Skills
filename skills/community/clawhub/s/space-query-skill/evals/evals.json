@@ -1,0 +1,35 @@
+{
+  "skill_name": "fofa-query-builder",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "查找中国境内的 Nginx 服务器，要求状态码为 200",
+      "expected_output": "应该生成包含 product=\"Nginx\"、country=\"CN\" 和 status_code=\"200\" 的查询语句",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我想找找有哪些 Redis 数据库暴露在公网上，端口是 6379",
+      "expected_output": "应该生成包含 port=\"6379\" 和 product=\"Redis\" 的查询语句",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "搜集目标 example.com 下的所有子域名网站资产",
+      "expected_output": "应该生成包含 domain=\"example.com\" 和 type=\"subdomain\" 的查询语句",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "排查一下我们公司的 SSL 证书有没有过期的，使用的是 Apache 服务器",
+      "expected_output": "应该生成包含 server=\"Apache\"、cert.is_expired=true 的查询语句",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "查找标题包含「登录」或「后台」的 phpmyadmin 页面，限制在最近半年有更新的",
+      "expected_output": "应该生成包含 body=\"phpmyadmin\"、title 相关条件、以及 after 时间限制的查询语句",
+      "files": []
+    }
+  ]
+}

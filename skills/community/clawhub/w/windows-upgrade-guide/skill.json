@@ -1,0 +1,8 @@
+{
+  "name": "windows-upgrade-guide",
+  "version": "1.0.0",
+  "description": "Windows 环境下 OpenClaw 安装与升级排障指南",
+  "author": "郑宇航",
+  "license": "MIT-0",
+  "keywords": ["windows", "upgrade", "troubleshoot", "wsl"]
+}

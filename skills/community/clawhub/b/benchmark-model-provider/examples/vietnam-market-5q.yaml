@@ -1,0 +1,38 @@
+name: vietnam-market-5q
+version: v1
+base_url: https://api.example.com/v1
+auth_env: BENCHMARK_API_KEY
+models:
+  - Qwen3.5-35B
+  - cliproxy/gpt-5.2
+  - cliproxy/gpt-5.4
+  - cliproxy/gpt-5.4-mini
+  - cliproxy/gpt-5.3-codex
+  - cliproxy/claude-opus-4-6-thinking
+  - cliproxy/claude-sonnet-4-6
+  - cliproxy/gemini-3.1-pro-high
+  - cliproxy/gemini-3.1-pro-low
+questions:
+  - id: q1
+    title: Tin tức kinh tế 24h qua
+    prompt: "Hãy tổng hợp 3 tin tức kinh tế quan trọng nhất ảnh hưởng đến thị trường Việt Nam trong 24h qua (tập trung vào: tỷ giá USD/VND, lãi suất, hoặc chính sách tiền tệ), kèm theo phân tích ngắn gọn tác động của mỗi tin đến thị trường chứng khoán hoặc trái phiếu."
+  - id: q2
+    title: Phân tích VN-Index tuần qua
+    prompt: "Dựa trên diễn biến giá của VN-Index trong tuần vừa qua, hãy phân tích xu hướng chính (tăng/giảm/bình ổn), các nhóm ngành dẫn dắt, và dự báo ngắn hạn (1–2 tuần) cho thị trường. Nêu rõ các yếu tố rủi ro chính."
+  - id: q3
+    title: Danh mục đầu tư 500 triệu / 3 tháng
+    prompt: "Boss có 500 triệu VND, muốn đầu tư vào thị trường chứng khoán Việt Nam trong 3 tháng. Hãy đề xuất một danh mục phân bổ vốn gồm 3–5 mã cổ phiếu (hoặc ETF) kèm theo lý do chọn từng mã, mức độ rủi ro, và điểm chốt lời/stop-loss dự kiến."
+  - id: q4
+    title: Tác động gói hỗ trợ SME
+    prompt: "Chính phủ Việt Nam vừa đề xuất gói hỗ trợ lãi suất cho doanh nghiệp vừa và nhỏ (SME) 3 tháng. Hãy phân tích tác động tiềm năng của gói này đến: (a) thị trường trái phiếu chính phủ, (b) dòng tiền vào cổ phiếu sector ngân hàng, và (c) lạm phát CPI trong ngắn hạn."
+  - id: q5
+    title: USD/VND tăng 3%/tuần
+    prompt: "Nếu tỷ giá USD/VND tăng đột biến 3% trong 1 tuần, hãy đưa ra kịch bản tác động đến: (a) doanh nghiệp xuất khẩu, (b) doanh nghiệp nhập khẩu nguyên liệu, (c) thị trường trái phiếu chính phủ, và (d) đề xuất 3 biện pháp phòng ngừa cho nhà đầu tư cá nhân."
+scoring:
+  quality_weight: 0.7
+  cost_weight: 0.3
+  speed_weight: 0.0
+outputs:
+  markdown: true
+  html: true
+  publish: vercel

@@ -1,35 +1,38 @@
----
-name: "Outbound Prospecting Workflow"
-description: "Provides a structured workflow to research a target company, identify decision-makers, and draft personalized outreach emails using company-specific insights."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/outbound-prospecting"
-sourceUrl: "https://clawhub.ai/skills/outbound-prospecting"
----
+# SKILL.md - Outbound Prospecting
 
-# Outbound Prospecting Workflow
+This skill provides a structured workflow for researching and initiating contact with potential leads. It follows the "Overseer Baseline" from MEMORY.md, operating in copilot mode only.
 
-> Provides a structured workflow to research a target company, identify decision-makers, and draft personalized outreach emails using company-specific insights.
+## Workflow
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/outbound-prospecting`
-- **Source URL:** [https://clawhub.ai/skills/outbound-prospecting](https://clawhub.ai/skills/outbound-prospecting)
+The process is designed to be run on a single target company domain or name.
 
-## Overview
+### 1. Research and Audit (`research_auditor`)
 
+- **Objective:** Gather intelligence on the target company to understand their business, identify potential needs, and find personalization points.
+- **Actions:**
+    - Use `web_search` to find the company's official website, services, products, and recent news.
+    - Use `web_fetch` on key pages (Homepage, About Us, Blog) to extract detailed text.
+    - Analyze the fetched content to identify:
+        - Core business offering.
+        - Target audience.
+        - Recent company announcements (product launches, funding, new hires).
+        - Potential pain points (e.g., outdated website, poor SEO, lack of recent blog posts).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/outbound-prospecting
-```
+### 2. Identify Decision-Maker (`contact_finder`)
+
+- **Objective:** Find the most relevant person to contact at the company.
+- **Actions:**
+    - Use `web_search` with queries like:
+        - `site:linkedin.com [Company Name] CEO`
+        - `site:linkedin.com [Company Name] Founder`
+        - `site:linkedin.com [Company Name] Head of Marketing`
+    - Identify the name and title of a primary decision-maker.
+
+### 3. Draft Outreach Email (`draft_writer`)
+
+- **Objective:** Create a personalized, evidence-backed email ready for human review.
+- **Actions:**
+    - Synthesize all gathered information.
+    - Draft an email that follows the hybrid tone: relationship-first opener + evidence-backed revenue-loss angle.
+    - The draft must include at least 3 company-specific facts discovered during the research phase.
+    - The final output should be a markdown block containing the draft, ready to be copied. The email itself should not be sent by the agent.

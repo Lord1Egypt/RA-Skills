@@ -1,0 +1,32 @@
+{
+  "wake_threshold": 0.8,
+  "queue_threshold": 0.5,
+  "enabled_sensors": [
+    {
+      "manifest_path": "sensors/clock_sensor/manifest.json",
+      "config": {
+        "emit_every_poll": true
+      }
+    },
+    {
+      "manifest_path": "sensors/filesystem_sensor/manifest.json",
+      "config": {
+        "paths": [
+          "./watched"
+        ],
+        "recursive": true,
+        "include_patterns": ["*"],
+        "exclude_patterns": [
+          "*.tmp",
+          "*.swp",
+          "~*",
+          "__pycache__",
+          "*.pyc",
+          "*.log",
+          ".DS_Store"
+        ],
+        "max_events_per_poll": 50
+      }
+    }
+  ]
+}

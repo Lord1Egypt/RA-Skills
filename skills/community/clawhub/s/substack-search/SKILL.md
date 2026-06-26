@@ -1,35 +1,49 @@
 ---
-name: "substack AI news SEARCH"
-description: "Scrape AI-related articles from Substack search using browser automation. Uses agent-browser to render Substack's JS-dependent search page, extract titles, a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/substack-search"
-sourceUrl: "https://clawhub.ai/skills/substack-search"
+name: substack-news
+description: >
+  Scrape AI-related articles from Substack search using browser automation.
+  Uses agent-browser to render Substack's JS-dependent search page,
+  extract titles, authors, and summaries, and format them as a numbered digest.
+  Use when: (1) user asks to search Substack for articles or news,
+  (2) user wants recent Substack posts on any topic,
+  (3) user mentions "Substack" + a search term + "articles/posts/news".
+  NOT for: general web search, fetching a single Substack post by URL.
 ---
 
-# substack AI news SEARCH
+# Substack News
 
-> Scrape AI-related articles from Substack search using browser automation. Uses agent-browser to render Substack's JS-dependent search page, extract titles, a...
+Collect and summarize Substack search results via browser automation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/substack-search`
-- **Source URL:** [https://clawhub.ai/skills/substack-search](https://clawhub.ai/skills/substack-search)
+## Workflow
 
-## Overview
+### 1. Open Substack Search
 
+Run the browser automation script:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/substack-search
+python "${SKILL_DIR}/scripts/scrape_substack.py" "SEARCH QUERY" [--range day|week|month]
 ```
+
+For environments without Python, fall back to the manual `agent-browser` commands documented in [references/browser-flow.md](references/browser-flow.md).
+
+### 2. Output Format
+
+Return results as a numbered list:
+
+```
+N. **Title**
+   — Author · Publication · X min read — *one-line summary if available*
+```
+
+If fewer than 20 results exist on the page, report exactly what is found. No padding.
+
+### 3. Scroll for More
+
+The script auto-scrolls up to 3 times to capture additional results.
+Substack typically returns 10-20 posts per 24-hour window.
+
+## Notes
+
+- Substack search is behind JS rendering; `web_fetch` cannot extract it — browser automation is required.
+- Time range filter: `day` (default), `week`, `month`.
+- Close the browser session after extraction: `agent-browser close`.

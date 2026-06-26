@@ -1,0 +1,33 @@
+{
+  "name": "Phaya Media API",
+  "tagline": "Generate images, videos, audio, and AI chat via the Phaya SaaS backend",
+  "description": "Phaya is a FastAPI SaaS backend that gives AI agents a single REST API to generate images (Z-Image, Seedream 5.0, Nano Banana 2), videos (Sora 2, Veo 3.1, Seedance 1.5 Pro, Kling 2.6, FFmpeg local), audio (Suno music, Google Gemini TTS), and run LLM chat completions (Phaya-GPT, OpenAI-compatible proxy). All endpoints follow an async job/polling pattern — create a job, receive a job_id, poll for status until complete. Includes a credit billing system with per-endpoint pricing. NOTE: This skill requires a Phaya API key and base URL. All generation endpoints deduct real credits — see the credit table in SKILL.md before enabling expensive endpoints.",
+  "category": "media",
+  "tags": ["media", "ai", "video", "image", "audio", "api", "sora2", "veo3", "kling", "suno"],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "pricing": "free",
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0",
+  "credentials": [
+    {
+      "name": "PHAYA_API_KEY",
+      "description": "Bearer token for the Phaya API. Obtain from your Phaya account dashboard. Required for all generation endpoints. Treat as sensitive — deducts real credits on use.",
+      "required": true
+    }
+  ],
+  "envVars": [
+    {
+      "name": "PHAYA_API_KEY",
+      "description": "Bearer token / API key for authentication",
+      "required": true
+    },
+    {
+      "name": "PHAYA_BASE",
+      "description": "Base URL of your Phaya instance, e.g. https://your-api-host/api/v1",
+      "required": true
+    }
+  ],
+  "optionalBinaries": ["ffmpeg", "yt-dlp"],
+  "permissions": ["network"]
+}

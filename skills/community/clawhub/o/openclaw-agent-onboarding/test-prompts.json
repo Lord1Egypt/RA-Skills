@@ -1,0 +1,17 @@
+[
+  {
+    "id": "diagnose-fresh-user",
+    "prompt": "我刚安装 OpenClaw，什么 skill 都没有，帮我初始化成个人 AgentOS。",
+    "expected": "先做 Stage 0 基础自举和诊断，检查 clawhub/find-skill/search 能力，给出安全安装计划，再初始化记忆和知识库。"
+  },
+  {
+    "id": "memory-kb-obsidian",
+    "prompt": "帮我搭建三层记忆和 Obsidian 个人知识库，但不要覆盖我已有 MEMORY.md。",
+    "expected": "保护已有核心文件，生成 patch/备份建议，创建 HOT/WARM/COLD 与 memory/wiki vault，说明 Obsidian 可选。"
+  },
+  {
+    "id": "health-repair",
+    "prompt": "帮我一键检查并修复 OpenClaw 上下文污染和 skill 问题。",
+    "expected": "先诊断，输出 safe-fix/needs-confirm/manual 分类，修复前确认高风险项，最后给健康报告。"
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "last_commit_sha": "af9caec44fdab7a1b883dede16fe1ce8c2d60fb9",
+  "last_check": "2026-04-11T22:56:39.982476",
+  "last_commit_date": null,
+  "pending_diffs": [
+    {
+      "upstream_path": "agent/memory_manager.py",
+      "upstream_sha": "af9caec",
+      "commit_msg": "",
+      "local_path": "/Users/fzrobbin/.qclaw/skills/hermes-skill/scripts/memory_tool.py",
+      "local_exists": true,
+      "upstream_lines": 362,
+      "local_lines": 186,
+      "additions": [
+        "新方法: def sanitize_context()",
+        "新方法: def build_memory_context_block()",
+        "新方法: def __init__()",
+        "新方法: def add_provider()",
+        "新方法: def providers()",
+        "新方法: def get_provider()"
+      ],
+      "fusion_value": 24,
+      "diff_level": "high",
+      "local_improvements": []
+    },
+    {
+      "upstream_path": "agent/memory_provider.py",
+      "upstream_sha": "af9caec",
+      "commit_msg": "",
+      "local_path": "/Users/fzrobbin/.qclaw/skills/hermes-skill/scripts/memory_tool.py",
+      "local_exists": true,
+      "upstream_lines": 231,
+      "local_lines": 186,
+      "additions": [
+        "新方法: def name()",
+        "新方法: def is_available()",
+        "新方法: def initialize()",
+        "新方法: def system_prompt_block()",
+        "新方法: def prefetch()",
+        "新方法: def queue_prefetch()"
+      ],
+      "fusion_value": 19,
+      "diff_level": "high",
+      "local_improvements": []
+    },
+    {
+      "upstream_path": "agent/skill_utils.py",
+      "upstream_sha": "af9caec",
+      "commit_msg": "",
+      "local_path": "/Users/fzrobbin/.qclaw/skills/hermes-skill/scripts/auto_skill_creator.py",
+      "local_exists": true,
+      "upstream_lines": 443,
+      "local_lines": 157,
+      "additions": [
+        "YAML frontmatter 解析",
+        "parse_frontmatter()",
+        "平台兼容映射",
+        "skill 目录过滤规则"
+      ],
+      "fusion_value": 4,
+      "diff_level": "low",
+      "local_improvements": [
+        "Skill 评分与改进"
+      ]
+    }
+  ],
+  "last_full_check": "2026-04-11T22:56:39.982487"
+}

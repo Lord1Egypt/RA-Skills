@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/get-kol-data-summary/v2 for Xiaohongshu Creator Marketplace (Pugongying) Data Summary through JustOneAPI with business and kolId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Data Summary",
+  "endpointPath": "get-kol-data-summary",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) summary data, including activity, engagement, and audience growth, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "getKolDataSummaryV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Business type.\n\nAvailable Values:\n- `_0`: Normal notes\n- `_1`: Cooperation notes",
+          "enumValues": [
+            "_0",
+            "_1"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-data-summary/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Data Summary",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_get_kol_data_summary",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-get-kol-data-summary",
+  "sourceTitle": "OpenAPI definition"
+}

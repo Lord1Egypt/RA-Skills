@@ -1,35 +1,29 @@
----
-name: "天气查询测试技能"
-description: "提供北京、上海等国内主要城市的实时天气查询，支持自然语言输入并返回简洁口语化天气信息。"
-category: "other"
-source: "ClawHub"
-tags: [pqtest, pq test weather]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-test-00232417"
-sourceUrl: "https://clawhub.ai/skills/weather-test-00232417"
----
+# 天气查询测试技能 (OpenClaw)
 
-# 天气查询测试技能
+## 技能简介
+这是一个运行在 OpenClaw 平台的天气查询测试技能，支持用户通过自然语言查询国内主要城市的实时天气信息，包括天气状况、温度、风力等核心数据。
 
-> 提供北京、上海等国内主要城市的实时天气查询，支持自然语言输入并返回简洁口语化天气信息。
+## 核心功能
+- 支持查询北京、上海、广州、深圳、杭州、成都、重庆等城市的实时天气
+- 自动识别用户输入中的城市名称，无需额外格式
+- 提供简洁明了的口语化回复，便于直接朗读
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-test-00232417`
-- **Source URL:** [https://clawhub.ai/skills/weather-test-00232417](https://clawhub.ai/skills/weather-test-00232417)
+## 触发词
+- "pqtest查天气"
+- "pqtest天气怎么样"
 
-## Overview
+## 使用示例
+**用户**：pqtest查天气
+**技能**：你可以告诉我具体城市，比如「北京」「上海」，我来帮你查询～
 
+**用户**：pqtest北京天气怎么样
+**技能**：北京今日天气：Sunny，温度15℃，风力10km/h
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-test-00232417
-```
+## 技术依赖
+- Python 版本：>= 3.7
+- 第三方库：requests >= 2.26.0（用于调用天气接口）
+
+## 注意事项
+- 本技能为测试版本，仅支持国内部分城市查询
+- 天气数据来源于公开测试接口，数据更新可能存在延迟
+- 若查询失败，请尝试更换城市或稍后重试

@@ -1,0 +1,54 @@
+version = "0.1"
+profile = "generic"
+
+[integration]
+host_entry_paths = ["HOST.md"]
+writer_contract_paths = ["skills/example-writer/SKILL.md"]
+
+[authorization]
+allowed_capabilities = ["writer"]
+
+[targets.long_term_memory]
+mode = "single"
+paths = ["memory/long-term.md"]
+structured = false
+
+[targets.daily_memory]
+mode = "pattern"
+paths = ["notes/daily/YYYY-MM-DD.md"]
+structured = false
+
+[targets.learning_candidates]
+mode = "single"
+paths = ["memory/learning-candidates.md"]
+structured = true
+
+[targets.reusable_lessons]
+mode = "single"
+paths = ["memory/reusable-lessons.md"]
+structured = true
+
+[targets.proactive_state]
+mode = "single"
+paths = ["memory/proactive-state.md"]
+structured = true
+
+[targets.working_buffer]
+mode = "single"
+paths = ["memory/working-buffer.md"]
+structured = true
+
+[targets.project_facts]
+mode = "directory"
+paths = ["docs/projects"]
+structured = false
+
+[targets.system_rules]
+mode = "single"
+paths = ["HOST.md"]
+structured = false
+
+[targets.tool_rules]
+mode = "single"
+paths = ["docs/tool-rules.md"]
+structured = false

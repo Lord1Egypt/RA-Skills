@@ -1,35 +1,71 @@
 ---
-name: "智能照护排班"
-description: "通过对话即可完成养老机构护理排班，简单快捷"
-category: "other"
-source: "ClawHub"
-tags: [elderly-care, nursing, schedule]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-care-scheduler"
-sourceUrl: "https://clawhub.ai/skills/ai-care-scheduler"
+name: 智能照护排班
+description: 通过对话即可完成养老机构护理排班，简单快捷
 ---
 
 # 智能照护排班
 
-> 通过对话即可完成养老机构护理排班，简单快捷
+通过对话就能完成排班，无需打开网页。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-care-scheduler`
-- **Source URL:** [https://clawhub.ai/skills/ai-care-scheduler](https://clawhub.ai/skills/ai-care-scheduler)
+## 触发方式
 
-## Overview
+当用户说以下内容时，使用此 skill：
+- "帮我生成养老院排班表"
+- "创建护理排班"
+- "帮我排个班"
+- "生成排班表"
 
+## 对话流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-care-scheduler
-```
+**第1步：询问工作人员**
+请告诉我要排班的工作人员姓名，每行一个。
+
+例如：`张三、李四、王五、赵阿姨`
+
+**第2步：确认参数**
+- 每人每周上几班？（默认5班）
+- 排班周期：一周还是一个月？（默认一周）
+- 从哪天开始？（默认下周周一）
+
+**第3步：生成排班**
+直接生成排班表，以表格形式展示，并询问是否需要导出CSV。
+
+## 排班规则（自动应用）
+
+- 不连续排班（连续上班后休息1天）
+- 夜班后必须休息1天
+- 每周班次不超过设定值
+- 尽量公平分配
+
+## 班次配置
+
+系统默认配置：
+- 早班 07:00-15:00（需要2人）
+- 中班 15:00-23:00（需要2人）
+- 夜班 23:00-07:00（需要1人）
+
+## 输出格式
+
+排班结果以 Markdown 表格形式展示，包含：日期、班次、时间、值班人员。
+
+## 示例
+
+**用户**：帮我生成排班表
+
+**你**：请告诉我工作人员姓名（每行一个）
+
+**用户**：张护士、李护理员、王护工、赵阿姨、钱大姐、孙护士
+
+**你**：好的，7人排班。一周还是一个月？每人每周几班？从哪天开始？
+
+**用户**：一周，每人5班，从下周一开始
+
+**你**：生成排班表...
+
+| 日期 | 班次 | 时间 | 值班人员 |
+|------|------|------|----------|
+| 3月17日 周一 | 早班 | 07:00-15:00 | 张护士、李护理员 |
+| 3月17日 周一 | 中班 | 15:00-23:00 | 王护工、赵阿姨 |
+| ... | ... | ... | ... |
+
+需要导出CSV文件吗？

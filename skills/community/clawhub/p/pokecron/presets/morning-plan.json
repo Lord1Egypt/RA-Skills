@@ -1,0 +1,12 @@
+{
+  "id": "morning-plan",
+  "schedule": {
+    "on_calendar": "Mon..Fri *-*-* 08:00:00",
+    "persistent": true
+  },
+  "escalation": null,
+  "tone": "warm",
+  "description": "Morning task synthesis from notes in the user-defined `morning-plan` path set. Reviews only files the user has explicitly added to that path set — does not scan the workspace broadly.",
+  "task": "Review the user's notes from the saved `morning-plan` path set. Synthesize a short list of likely priorities for today. Prioritize repeated themes, deadlines, and work that looks time-sensitive. Keep it to 3-5 items max.\n\nFiles:\n{{paths:morning-plan}}\n\nFormat: a quick warm rundown, concise, with bullets only if they make the result clearer.",
+  "remind": null
+}

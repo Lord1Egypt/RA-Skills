@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>报纸新闻风 · Agent认知：OS与Application</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .coord { display: none; }
+
+  :root {
+    --paper: #FBF7F0;
+    --ink: #111111;
+    --gray: #444444;
+    --rule: #111111;
+    --rule-light: #999999;
+    --red: #CC0000;
+    --serif-display: 'Playfair Display', 'Noto Serif SC', serif;
+    --serif-cn: 'Noto Serif SC', serif;
+    --sans: 'Source Sans 3', 'Noto Serif SC', sans-serif;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #D4CFC8;
+    font-family: var(--sans);
+    color: var(--ink);
+  }
+
+  .container {
+    width: 1080px;
+    min-height: 1440px;
+    background: var(--paper);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== MASTHEAD (报头) ===== */
+  .masthead {
+    padding: 28px 52px 0;
+    text-align: center;
+    position: relative;
+  }
+  .masthead-rule-top {
+    height: 6px;
+    background: var(--ink);
+    margin-bottom: 3px;
+  }
+  .masthead-rule-thin {
+    height: 1.5px;
+    background: var(--ink);
+    margin-bottom: 14px;
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 24px;
+    color: var(--gray);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .masthead-title {
+    font-family: var(--serif-cn);
+    font-size: 84px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+  .masthead-subtitle {
+    font-family: var(--serif-cn);
+    font-size: 32px;
+    font-style: italic;
+    color: var(--gray);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .masthead-rule-bottom-double {
+    height: 1.5px;
+    background: var(--ink);
+    margin-bottom: 4px;
+  }
+  .masthead-rule-bottom-double2 {
+    height: 5px;
+    background: var(--ink);
+    margin-bottom: 0;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content-area {
+    flex: 1;
+    padding: 20px 52px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ===== SECTION DIVIDERS ===== */
+  .rule-single {
+    height: 1px;
+    background: var(--rule-light);
+    margin: 18px 0;
+  }
+  .rule-double {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    height: 0;
+    padding-top: 4px;
+    margin: 20px 0;
+  }
+
+  /* ===== SECTION LABEL ===== */
+  .section-label {
+    font-family: var(--sans);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+
+  /* ===== MOD-1: 头条（单栏） ===== */
+  .headline-block {
+    margin-bottom: 0;
+  }
+  .headline-block h2 {
+    font-family: var(--serif-cn);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .headline-block .lead {
+    font-family: var(--serif-cn);
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .headline-block .body-text {
+    font-family: var(--sans);
+    font-size: 30px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ===== MOD-2: 两个物理约束（双栏对比） ===== */
+  .constraints-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+  }
+  .constraints-col {
+    padding: 0 24px;
+  }
+  .constraints-col:first-child { padding-left: 0; }
+  .constraints-col:last-child { padding-right: 0; }
+  .constraints-col-rule {
+    background: var(--rule-light);
+  }
+  .constraint-number {
+    font-family: var(--serif-display);
+    font-size: 68px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .constraint-name {
+    font-family: var(--serif-cn);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .constraint-desc {
+    font-family: var(--sans);
+    font-size: 30px;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  /* ===== MOD-3: 三层光谱（单栏堆叠） ===== */
+  .spectrum-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+  .spectrum-item:last-child {
+    margin-bottom: 0;
+  }
+  .spectrum-tag-col {
+    flex-shrink: 0;
+    width: 160px;
+    text-align: center;
+    padding-top: 4px;
+  }
+  .spectrum-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    margin-bottom: 6px;
+  }
+  .tag-low {
+    background: #E8E4DA;
+    color: var(--gray);
+  }
+  .tag-mid {
+    background: #DDD8CC;
+    color: var(--ink);
+  }
+  .tag-high {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .spectrum-content {
+    flex: 1;
+  }
+  .spectrum-content h4 {
+    font-family: var(--serif-cn);
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .spectrum-content p {
+    font-family: var(--sans);
+    font-size: 30px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ===== MOD-4: 对比表格（三线表） ===== */
+  .news-table-wrap {
+    width: 100%;
+  }
+  .news-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .news-table thead th {
+    font-family: var(--sans);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: left;
+    padding: 12px 16px;
+    border-top: 4px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    background: transparent;
+  }
+  .news-table tbody td {
+    font-family: var(--sans);
+    font-size: 30px;
+    padding: 12px 16px;
+    color: var(--gray);
+    border-bottom: 1px solid #D8D2C4;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .news-table tbody td.strong {
+    font-family: var(--serif-cn);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .news-table tbody tr:last-child td {
+    border-bottom: 3px solid var(--ink);
+  }
+  .news-table .highlight-cell {
+    background: #F4F0E8;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .news-table .tag-red {
+    color: var(--red);
+    font-weight: 700;
+  }
+  .news-table .tag-green {
+    color: #2E7D32;
+    font-weight: 700;
+  }
+
+  /* ===== MOD-5: 编者按 ===== */
+  .editorial-box {
+    border: 2.5px solid var(--ink);
+    padding: 24px 28px;
+    position: relative;
+  }
+  .editorial-box::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: -5px;
+    bottom: -5px;
+    border: 1px solid var(--rule-light);
+    z-index: -1;
+  }
+  .editorial-label {
+    font-family: var(--sans);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FBF7F0;
+    background: var(--red);
+    display: inline-block;
+    padding: 5px 18px;
+    margin-bottom: 14px;
+  }
+  .editorial-box blockquote {
+    font-family: var(--serif-cn);
+    font-size: 32px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .editorial-box blockquote .em-red {
+    color: var(--red);
+    font-weight: 700;
+    font-style: normal;
+  }
+  .editorial-box .editorial-source {
+    font-family: var(--sans);
+    font-size: 26px;
+    color: var(--gray);
+    text-align: right;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer-bar {
+    padding: 14px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 24px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    border-top: 1.5px solid var(--rule-light);
+  }
+  .footer-bar .footer-left,
+  .footer-bar .footer-right {
+    text-transform: uppercase;
+  }
+  .footer-bar .footer-center {
+    font-family: var(--serif-display);
+    font-size: 24px;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- MASTHEAD 报头 -->
+  <div class="masthead">
+    <span class="coord">SEC-00</span>
+    <div class="masthead-rule-top"></div>
+    <div class="masthead-rule-thin"></div>
+    <div class="masthead-meta">
+      <span>特刊</span>
+      <span>深度洞察 · 战略分析</span>
+      <span>2026 年 3 月 19 日</span>
+    </div>
+    <div class="masthead-title">Agent认知：OS与Application</div>
+    <div class="masthead-subtitle">"垂类不应做Agent，应做Agent上面的应用"</div>
+    <div class="masthead-rule-bottom-double"></div>
+    <div class="masthead-rule-bottom-double2"></div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- MOD-1: 头条 — 核心论点（单栏） -->
+    <div class="headline-block">
+      <span class="coord">A-01</span>
+      <div class="section-label">头条 · LEAD STORY</div>
+      <h2>垂类做OS是找死，战场完全不同</h2>
+      <div class="lead">Agent是一种交互范式，就像手机是一种交互范式。你不会为了购物专门买一部手机。垂类不应该尝试做Agent，应该做Agent上面的应用。</div>
+      <div class="body-text">Agent的战场是推理能力、编排效率、交互体验。垂类的优势是领域深度、业务理解、行业数据——这些优势在OS战场上一点用都没有。你拿领域知识去跟OpenAI、Anthropic比推理能力，是拿刀去打坦克。而且OS层的市场结构天然收敛：PC时代活下来Windows和Mac，移动时代活下来iOS和Android。Agent OS也不会有几十个赢家。</div>
+    </div>
+
+    <div class="rule-double"></div>
+
+    <!-- MOD-2: 两个物理约束（双栏并列对比） -->
+    <div>
+      <span class="coord">B-01</span>
+      <div class="section-label">物理约束 · CONSTRAINTS</div>
+      <div class="constraints-grid">
+        <div class="constraints-col">
+          <div class="constraint-number">01</div>
+          <div class="constraint-name">上下文容量</div>
+          <div class="constraint-desc">Context是有限的容器，塞得越多性能越差。那些塞不进context的领域知识和用户历史，需要Application在外面管着。</div>
+        </div>
+        <div class="constraints-col-rule"></div>
+        <div class="constraints-col">
+          <div class="constraint-number">02</div>
+          <div class="constraint-name">注意力带宽</div>
+          <div class="constraint-desc">左手画圆、右手画方，合在一起两个都变形。Agent同时做法律推理、追踪意图、规划行动——每件事的质量都下降。注意力是零和的。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-double"></div>
+
+    <!-- MOD-3: 三层光谱（单栏堆叠） -->
+    <div>
+      <span class="coord">C-01</span>
+      <div class="section-label">三层光谱 · SPECTRUM</div>
+
+      <div class="spectrum-item">
+        <div class="spectrum-tag-col">
+          <span class="spectrum-tag tag-low">壁垒：零</span>
+        </div>
+        <div class="spectrum-content">
+          <h4>指令 Prompt</h4>
+          <p>给Agent一个点拨方向，但推理工作仍然是Agent自己干的，带宽不减。而且prompt是文本，文本可以被复制。</p>
+        </div>
+      </div>
+
+      <div class="spectrum-item">
+        <div class="spectrum-tag-col">
+          <span class="spectrum-tag tag-mid">壁垒：低</span>
+        </div>
+        <div class="spectrum-content">
+          <h4>工具 Script</h4>
+          <p>封装好的外部逻辑，从"指路"变成了"代劳"，带宽降低。但没有外部状态，别人看懂思路就能重写一个。</p>
+        </div>
+      </div>
+
+      <div class="spectrum-item">
+        <div class="spectrum-tag-col">
+          <span class="spectrum-tag tag-high">壁垒：高</span>
+        </div>
+        <div class="spectrum-content">
+          <h4>服务 Application</h4>
+          <p>外部代劳 + 持久状态 + 基础设施。Skill背后有领域状态、基础设施成本、规模经济，就不再是Skill，是Agent-native Application。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-single"></div>
+
+    <!-- MOD-4: 壁垒对比表（三线表） -->
+    <div class="news-table-wrap">
+      <span class="coord">D-01</span>
+      <div class="section-label">壁垒对比 · BARRIER MATRIX</div>
+      <table class="news-table">
+        <thead>
+          <tr>
+            <th style="width:22%">维度</th>
+            <th style="width:24%">Prompt</th>
+            <th style="width:24%">Script</th>
+            <th style="width:30%">Application</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strong">执行方式</td>
+            <td>Agent自己推理</td>
+            <td>外部代劳</td>
+            <td class="highlight-cell">外部代劳+持久状态</td>
+          </tr>
+          <tr>
+            <td class="strong">带宽消耗</td>
+            <td class="tag-red">不减</td>
+            <td>降低</td>
+            <td class="tag-green">大幅降低</td>
+          </tr>
+          <tr>
+            <td class="strong">可复制性</td>
+            <td class="tag-red">文本即复制</td>
+            <td class="tag-red">逻辑可复现</td>
+            <td class="tag-green">不可复制</td>
+          </tr>
+          <tr>
+            <td class="strong">商业天花板</td>
+            <td>卖copy</td>
+            <td>卖copy</td>
+            <td class="highlight-cell">认知共生飞轮</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-single"></div>
+
+    <!-- MOD-5: 编者按 / 核心洞察 -->
+    <div class="editorial-box">
+      <span class="coord">E-01</span>
+      <span class="editorial-label">核心洞察</span>
+      <blockquote>
+        好的Application让Agent OS更聪明，更聪明的OS更精准地调用Application——<span class="em-red">飞轮转起来了</span>。这是认知共生：一个通用智能和一个专精智能通过接口耦合，比各自单独运行都更强。<span class="em-red">The best context is no context.</span> Agent越轻量，表现越好。
+      </blockquote>
+      <div class="editorial-source">—— Agent认知笔记</div>
+    </div>
+
+    <div style="flex:1; min-height: 20px;"></div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    <span class="footer-left">Agent Insight</span>
+    <span class="footer-center">"The best context is no context"</span>
+    <span class="footer-right">2026</span>
+  </div>
+
+</div>
+</body>
+</html>

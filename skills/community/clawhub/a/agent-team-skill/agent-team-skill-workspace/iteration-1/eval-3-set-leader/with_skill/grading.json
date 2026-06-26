@@ -1,0 +1,7 @@
+{
+  "expectations": [
+    {"text": "执行了 team.py update 命令", "passed": true, "evidence": "命令 'python3 /home/yhb/work/agent-team-skill/scripts/team.py update --agent-id alice ...'"},
+    {"text": "Alice 被设为 Leader", "passed": true, "evidence": "输出显示 'Added member: Alice (alice) (Leader)' 和 '**Alice** ⭐ Team Leader'"},
+    {"text": "之前的 Leader 状态被自动移除", "passed": true, "evidence": "输出显示 'Note: Removed leader status from 小Q'"}
+  ]
+}

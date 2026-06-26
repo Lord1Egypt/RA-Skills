@@ -1,0 +1,38 @@
+{
+  "x": {
+    "style": ["concise", "opinionated", "fast-moving"],
+    "hook_patterns": ["claim", "contrast", "surprising observation"],
+    "cta_types": ["reply", "quote", "dm"],
+    "pitfalls": ["weak first line", "too much setup", "generic thread"]
+  },
+  "linkedin": {
+    "style": ["professional", "clear", "argument-led"],
+    "hook_patterns": ["operator lesson", "tension", "counterintuitive point"],
+    "cta_types": ["comment", "dm", "click"],
+    "pitfalls": ["empty thought leadership", "too much jargon", "sales-heavy ending"]
+  },
+  "instagram": {
+    "style": ["visual", "saveable", "emotionally clear"],
+    "hook_patterns": ["list promise", "pain point", "identity cue"],
+    "cta_types": ["save", "share", "comment"],
+    "pitfalls": ["dense copy", "weak slide logic", "too abstract"]
+  },
+  "tiktok": {
+    "style": ["spoken", "paced", "scene-based"],
+    "hook_patterns": ["pattern break", "confession", "immediate payoff"],
+    "cta_types": ["comment", "follow", "link"],
+    "pitfalls": ["slow opening", "reading voice", "no visual progression"]
+  },
+  "xiaohongshu": {
+    "style": ["relatable", "specific", "practical"],
+    "hook_patterns": ["real-life scenario", "before-after", "routine insight"],
+    "cta_types": ["save", "comment", "dm"],
+    "pitfalls": ["corporate tone", "generic advice", "no concrete details"]
+  },
+  "wechat_official_accounts": {
+    "style": ["trust-building", "readable", "deeper"],
+    "hook_patterns": ["problem framing", "trend insight", "founder letter"],
+    "cta_types": ["read more", "contact", "follow account"],
+    "pitfalls": ["thin analysis", "novelty without substance", "messy structure"]
+  }
+}

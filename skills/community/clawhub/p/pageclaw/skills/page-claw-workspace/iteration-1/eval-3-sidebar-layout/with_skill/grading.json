@@ -1,0 +1,26 @@
+{
+  "eval_id": 3,
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": true,
+      "evidence": "design.md shows 'Brutalist Academic' chosen with CSS signature '· layout: asymmetric two-column grid, sticky sidebar left, content bleed right'"
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": true,
+      "evidence": "design.md contains 'Layout structure' field in Aesthetic Implementation section"
+    },
+    {
+      "text": "index.html is structurally distinct from plain single-column (asymmetric grid, full-bleed, etc.)",
+      "passed": true,
+      "evidence": "index.html: 'grid-template-columns: 240px 1fr' implements asymmetric two-column grid; position:sticky sidebar present"
+    },
+    {
+      "text": "The HTML structure clearly reflects the bold Q2 layout descriptor rather than defaulting to generic layout",
+      "passed": true,
+      "evidence": "Brutalist Academic layout descriptor 'asymmetric two-column grid' directly maps to CSS Grid 240px 1fr implementation"
+    }
+  ]
+}

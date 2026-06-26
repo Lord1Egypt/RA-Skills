@@ -1,0 +1,7 @@
+# LLM Tools Dependencies
+
+# JSON Schema validation
+jsonschema>=4.0.0
+
+# Optional: YAML support
+# PyYAML>=6.0

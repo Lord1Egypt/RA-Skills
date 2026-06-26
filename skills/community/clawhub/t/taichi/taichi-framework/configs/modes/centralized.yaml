@@ -1,0 +1,9 @@
+mode: centralized
+agents:
+  planner: { enabled: true, class: "PlannerAgent" }
+  drafter: { enabled: true, class: "DrafterAgent" }
+  validator: { enabled: true, class: "ValidatorAgent" }
+  dispatcher: { enabled: true, class: "DispatcherAgent" }
+worker_pool:
+  initial_size: 3
+  auto_scale: true

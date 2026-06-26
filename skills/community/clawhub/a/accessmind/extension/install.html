@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessMind Inspector - Kurulum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .version {
+            color: #888;
+            font-size: 14px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .step-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+        .step-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .path {
+            background: #1a1a2e;
+            color: #4ade80;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 13px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        .shortcut {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .shortcut h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+        .shortcut ul {
+            list-style: none;
+            padding: 0;
+        }
+        .shortcut li {
+            padding: 6px 0;
+            color: #78350f;
+        }
+        .shortcut kbd {
+            background: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #d97706;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .feature h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        .feature p {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">A</div>
+            <h1>AccessMind Inspector</h1>
+            <p class="version">v1.0.0 - WCAG 2.2 Erişilebilirlik Denetimi</p>
+        </div>
+        
+        <div class="content">
+            <h2 style="margin-bottom: 20px; color: #1a1a2e;">🚀 Chrome Extension Kurulumu</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Chrome Extensions Sayfasını Aç</h3>
+                    <p>Chrome'da yeni bir sekme aç ve adres çubuğuna yaz:</p>
+                    <div class="path">chrome://extensions/</div>
+                    <p>Enter'a bas.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Developer Mode Aç</h3>
+                    <p>Sağ üst köşede <strong>"Developer mode"</strong> switch'ini AÇIK konuma getir.</p>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">Toggle mavi olmalı.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Load Unpacked Butonuna Tıkla</h3>
+                    <p>Sol üstte <strong>"Load unpacked"</strong> butonuna tıkla.</p>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">Dosya seçici açılacak.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Extension Klasörünü Seç</h3>
+                    <p>Aşağıdaki klasörü seç:</p>
+                    <div class="path">/Users/sarper/.openclaw/workspace/skills/accessmind/extension/</div>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">"Select" veya "Aç" butonuna tıkla.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Kurulum Tamamlandı!</h3>
+                    <p>Extension listede <strong>"AccessMind Inspector"</strong> olarak görünmeli.</p>
+                    <p style="color: #888; font-size: 14px; margin-top: 8px;">İkon olarak mor "A" harfi göreceksin.</p>
+                </div>
+            </div>
+            
+            <div class="shortcut">
+                <h4>⌨️ Klavye Kısayolları</h4>
+                <ul>
+                    <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> - Hızlı Erişilebilirlik Taraması</li>
+                    <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> - Vurgulamaları Temizle</li>
+                    <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> - Görsel AI Analizi (Ollama gerekli)</li>
+                </ul>
+            </div>
+            
+            <h3 style="margin: 30px 0 15px; color: #1a1a2e;">✨ Özellikler</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>🔍 Hızlı Tarama</h4>
+                    <p>Sayfadaki erişilebilirlik sorunlarını anında tespit eder.</p>
+                </div>
+                <div class="feature">
+                    <h4>⌨️ Klavye Testi</h4>
+                    <p>Tab navigasyonu ve focus trap tespiti.</p>
+                </div>
+                <div class="feature">
+                    <h4>🎨 Görsel Vurgulama</h4>
+                    <p>Sorunlu elementleri renk kodlarıyla vurgular.</p>
+                </div>
+                <div class="feature">
+                    <h4>📊 WCAG Raporu</h4>
+                    <p>WCAG 2.2 kriterlerine göre detaylı rapor.</p>
+                </div>
+                <div class="feature">
+                    <h4>🤖 AI Analizi</h4>
+                    <p>Qwen3-VL ile görsel erişilebilirlik analizi.</p>
+                </div>
+                <div class="feature">
+                    <h4>📋 DevTools Panel</h4>
+                    <p>Chrome DevTools'ta entegre panel.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #f0f4ff; border-radius: 12px;">
+                <h4 style="color: #667eea; margin-bottom: 10px;">📁 Extension Klasörü</h4>
+                <p style="color: #666; font-size: 14px;">Klasör zaten açık duruyor. Finder'dan seçebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

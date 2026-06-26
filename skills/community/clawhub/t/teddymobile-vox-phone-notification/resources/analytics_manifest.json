@@ -1,0 +1,455 @@
+{
+  "skill_id": "vox-phone-notification",
+  "skill_name": "Vox Phone Notification",
+  "skill_version": "1.0.8",
+  "events": [
+    {
+      "event_name": "usage_started",
+      "label": "开始使用",
+      "type": "lifecycle"
+    },
+    {
+      "event_name": "vox_phone_notification.input_received",
+      "label": "收到输入",
+      "type": "business"
+    },
+    {
+      "event_name": "vox_phone_notification.intent_parsed",
+      "label": "解析通知意图",
+      "type": "business"
+    },
+    {
+      "event_name": "vox_phone_notification.task_ready",
+      "label": "通知任务就绪",
+      "type": "lifecycle"
+    },
+    {
+      "event_name": "vox_phone_notification.run_started",
+      "label": "开始执行",
+      "type": "lifecycle"
+    },
+    {
+      "event_name": "vox_phone_notification.tool_called",
+      "label": "调用 Vox 外呼接口",
+      "type": "tool"
+    },
+    {
+      "event_name": "vox_phone_notification.tool_result_received",
+      "label": "收到 Vox 接口结果",
+      "type": "tool"
+    },
+    {
+      "event_name": "vox_phone_notification.dry_run_completed",
+      "label": "Dry-run 完成",
+      "type": "success"
+    },
+    {
+      "event_name": "vox_phone_notification.trial_submitted",
+      "label": "试用外呼已提交",
+      "type": "success"
+    },
+    {
+      "event_name": "vox_phone_notification.live_submitted",
+      "label": "正式外呼已提交",
+      "type": "success"
+    },
+    {
+      "event_name": "vox_phone_notification.parse_failed",
+      "label": "解析失败",
+      "type": "failure"
+    },
+    {
+      "event_name": "vox_phone_notification.trial_blocked",
+      "label": "试用被拦截",
+      "type": "failure"
+    },
+    {
+      "event_name": "vox_phone_notification.outbound_failed",
+      "label": "外呼失败",
+      "type": "failure"
+    },
+    {
+      "event_name": "vox_phone_notification.credentials_missing",
+      "label": "缺少正式凭据",
+      "type": "failure"
+    },
+    {
+      "event_name": "vox_phone_notification.registration_prompted",
+      "label": "展示注册引导",
+      "type": "conversion"
+    },
+    {
+      "event_name": "journey_abandoned",
+      "label": "旅程放弃",
+      "type": "abandon"
+    },
+    {
+      "event_name": "journey_failed",
+      "label": "旅程失败",
+      "type": "failure"
+    },
+    {
+      "event_name": "skill_invoked",
+      "label": "调用 Skill",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_task_ready",
+      "label": "Skill 任务就绪",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_run_started",
+      "label": "Skill 执行开始",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_run_completed",
+      "label": "Skill 执行完成",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_run_failed",
+      "label": "Skill 执行失败",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_safety_blocked",
+      "label": "安全策略拦截",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_credentials_missing",
+      "label": "缺少凭据",
+      "type": "standard"
+    },
+    {
+      "event_name": "skill_registration_prompted",
+      "label": "注册引导",
+      "type": "standard"
+    },
+    {
+      "event_name": "business_step_completed",
+      "label": "业务步骤完成",
+      "type": "standard"
+    },
+    {
+      "event_name": "business_step_failed",
+      "label": "业务步骤失败",
+      "type": "standard"
+    },
+    {
+      "event_name": "tool_call_started",
+      "label": "工具调用开始",
+      "type": "standard"
+    },
+    {
+      "event_name": "tool_call_completed",
+      "label": "工具调用完成",
+      "type": "standard"
+    },
+    {
+      "event_name": "tool_call_failed",
+      "label": "工具调用失败",
+      "type": "standard"
+    }
+  ],
+  "allowed_sources": [
+    "skillhub",
+    "clawhub",
+    "workbuddy",
+    "cli",
+    "unknown",
+    "internal"
+  ],
+  "funnel_steps": [
+    "usage_started",
+    "vox_phone_notification.input_received",
+    "vox_phone_notification.intent_parsed",
+    "vox_phone_notification.task_ready",
+    "vox_phone_notification.run_started",
+    "vox_phone_notification.tool_called",
+    "vox_phone_notification.tool_result_received",
+    "vox_phone_notification.dry_run_completed",
+    "vox_phone_notification.trial_submitted",
+    "vox_phone_notification.live_submitted"
+  ],
+  "branch_events": [
+    {
+      "key": "parse_failed",
+      "label": "解析失败",
+      "event_name": "vox_phone_notification.parse_failed",
+      "tone": "danger"
+    },
+    {
+      "key": "trial_blocked",
+      "label": "试用被拦截",
+      "event_name": "vox_phone_notification.trial_blocked",
+      "tone": "warning"
+    },
+    {
+      "key": "credentials_missing",
+      "label": "缺少正式凭据",
+      "event_name": "vox_phone_notification.credentials_missing",
+      "tone": "warning"
+    },
+    {
+      "key": "outbound_failed",
+      "label": "外呼失败",
+      "event_name": "vox_phone_notification.outbound_failed",
+      "tone": "danger"
+    },
+    {
+      "key": "registration_prompted",
+      "label": "注册转化引导",
+      "event_name": "vox_phone_notification.registration_prompted",
+      "tone": "info"
+    },
+    {
+      "key": "trial_submitted",
+      "label": "试用外呼转化",
+      "event_name": "vox_phone_notification.trial_submitted",
+      "tone": "success"
+    },
+    {
+      "key": "live_submitted",
+      "label": "正式外呼转化",
+      "event_name": "vox_phone_notification.live_submitted",
+      "tone": "success"
+    }
+  ],
+  "property_dimensions": [
+    {
+      "key": "channel",
+      "label": "渠道",
+      "type": "string"
+    },
+    {
+      "key": "mode",
+      "label": "运行模式",
+      "type": "string"
+    },
+    {
+      "key": "scenario",
+      "label": "业务场景",
+      "type": "string"
+    },
+    {
+      "key": "trial_usage",
+      "label": "试用次数",
+      "type": "number"
+    },
+    {
+      "key": "tool_name",
+      "label": "工具名称",
+      "type": "string"
+    },
+    {
+      "key": "tool_status",
+      "label": "工具状态",
+      "type": "string"
+    },
+    {
+      "key": "risk_level",
+      "label": "风险等级",
+      "type": "string"
+    },
+    {
+      "key": "policy_action",
+      "label": "策略动作",
+      "type": "string"
+    }
+  ],
+  "analytics": {
+    "journeyStartEvent": "usage_started",
+    "journeyEndEvents": [
+      "vox_phone_notification.dry_run_completed",
+      "vox_phone_notification.trial_submitted",
+      "vox_phone_notification.live_submitted",
+      "vox_phone_notification.parse_failed",
+      "vox_phone_notification.trial_blocked",
+      "vox_phone_notification.outbound_failed",
+      "journey_abandoned"
+    ],
+    "successEvents": [
+      "vox_phone_notification.dry_run_completed",
+      "vox_phone_notification.trial_submitted",
+      "vox_phone_notification.live_submitted"
+    ],
+    "failureEvents": [
+      "vox_phone_notification.parse_failed",
+      "vox_phone_notification.trial_blocked",
+      "vox_phone_notification.outbound_failed",
+      "journey_failed"
+    ],
+    "abandonEvents": [
+      "vox_phone_notification.registration_prompted",
+      "journey_abandoned"
+    ],
+    "funnelEvents": [
+      "usage_started",
+      "vox_phone_notification.input_received",
+      "vox_phone_notification.intent_parsed",
+      "vox_phone_notification.task_ready",
+      "vox_phone_notification.run_started",
+      "vox_phone_notification.tool_called",
+      "vox_phone_notification.tool_result_received",
+      "vox_phone_notification.dry_run_completed",
+      "vox_phone_notification.trial_submitted",
+      "vox_phone_notification.live_submitted"
+    ],
+    "businessStages": [
+      {
+        "stage": "start",
+        "events": [
+          "usage_started",
+          "vox_phone_notification.input_received"
+        ]
+      },
+      {
+        "stage": "parse",
+        "events": [
+          "vox_phone_notification.intent_parsed",
+          "vox_phone_notification.parse_failed"
+        ]
+      },
+      {
+        "stage": "ready",
+        "events": [
+          "vox_phone_notification.task_ready"
+        ]
+      },
+      {
+        "stage": "execute",
+        "events": [
+          "vox_phone_notification.run_started",
+          "vox_phone_notification.tool_called",
+          "vox_phone_notification.tool_result_received"
+        ]
+      },
+      {
+        "stage": "completed",
+        "events": [
+          "vox_phone_notification.dry_run_completed",
+          "vox_phone_notification.trial_submitted",
+          "vox_phone_notification.live_submitted"
+        ]
+      },
+      {
+        "stage": "failed",
+        "events": [
+          "vox_phone_notification.trial_blocked",
+          "vox_phone_notification.outbound_failed",
+          "journey_failed"
+        ]
+      }
+    ],
+    "eventAliases": {
+      "skill_invoked": [
+        "usage_started",
+        "skill_invoked"
+      ],
+      "skill_task_ready": [
+        "vox_phone_notification.task_ready"
+      ],
+      "skill_run_started": [
+        "vox_phone_notification.run_started"
+      ],
+      "skill_run_completed": [
+        "vox_phone_notification.dry_run_completed",
+        "vox_phone_notification.trial_submitted",
+        "vox_phone_notification.live_submitted"
+      ],
+      "skill_run_failed": [
+        "vox_phone_notification.parse_failed",
+        "vox_phone_notification.trial_blocked",
+        "vox_phone_notification.outbound_failed"
+      ],
+      "skill_credentials_missing": [
+        "vox_phone_notification.credentials_missing"
+      ],
+      "skill_registration_prompted": [
+        "vox_phone_notification.registration_prompted"
+      ],
+      "business_step_completed": [
+        "vox_phone_notification.input_received",
+        "vox_phone_notification.intent_parsed"
+      ],
+      "business_step_failed": [
+        "vox_phone_notification.parse_failed"
+      ],
+      "tool_call_started": [
+        "vox_phone_notification.tool_called"
+      ],
+      "tool_call_completed": [
+        "vox_phone_notification.tool_result_received"
+      ],
+      "tool_call_failed": [
+        "vox_phone_notification.tool_failed"
+      ]
+    },
+    "dimensions": [
+      {
+        "name": "channel",
+        "source": "metadata.channel"
+      },
+      {
+        "name": "mode",
+        "source": "metadata.mode"
+      },
+      {
+        "name": "scenario",
+        "source": "metadata.scenario"
+      },
+      {
+        "name": "trial_usage",
+        "source": "metadata.trial_usage"
+      },
+      {
+        "name": "tool_name",
+        "source": "metadata.tool_name"
+      },
+      {
+        "name": "tool_status",
+        "source": "metadata.tool_status"
+      },
+      {
+        "name": "risk_level",
+        "source": "metadata.risk_level"
+      },
+      {
+        "name": "policy_action",
+        "source": "metadata.policy_action"
+      }
+    ],
+    "metrics": [
+      {
+        "name": "dry_run_completed_count",
+        "type": "count",
+        "event": "vox_phone_notification.dry_run_completed"
+      },
+      {
+        "name": "trial_submitted_count",
+        "type": "count",
+        "event": "vox_phone_notification.trial_submitted"
+      },
+      {
+        "name": "live_submitted_count",
+        "type": "count",
+        "event": "vox_phone_notification.live_submitted"
+      },
+      {
+        "name": "trial_conversion_rate",
+        "type": "conversion_rate",
+        "from": "usage_started",
+        "to": "vox_phone_notification.trial_submitted"
+      },
+      {
+        "name": "live_conversion_rate",
+        "type": "conversion_rate",
+        "from": "usage_started",
+        "to": "vox_phone_notification.live_submitted"
+      }
+    ]
+  }
+}

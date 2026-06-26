@@ -1,35 +1,109 @@
 ---
-name: "Cross Verify"
-description: "交叉验证信息准确性、识别偏见和逻辑漏洞。当用户说"这段话有没有问题"、"这个数据可靠吗"、"帮我看看这段有没有偏见"、"这个信息准确吗"、"核查一下这段"，或直接丢入一段文字/数据要求检查时触发。Also triggers when the user pastes any text containing stat..."
-category: "other"
-source: "ClawHub"
-tags: [bias, critical-thinking, fact-check, verification]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cross-verify"
-sourceUrl: "https://clawhub.ai/skills/cross-verify"
+name: cross-verify
+description: 交叉验证信息准确性、识别偏见和逻辑漏洞。当用户说"这段话有没有问题"、"这个数据可靠吗"、"帮我看看这段有没有偏见"、"这个信息准确吗"、"核查一下这段"，或直接丢入一段文字/数据要求检查时触发。Also triggers when the user pastes any text containing statistics, claims, or assertions and asks for verification.
 ---
 
-# Cross Verify
+# Cross-Verify Skill
 
-> 交叉验证信息准确性、识别偏见和逻辑漏洞。当用户说"这段话有没有问题"、"这个数据可靠吗"、"帮我看看这段有没有偏见"、"这个信息准确吗"、"核查一下这段"，或直接丢入一段文字/数据要求检查时触发。Also triggers when the user pastes any text containing stat...
+给定一段文字或数据，对其进行事实核查、偏见识别和逻辑分析，输出结构化的验证报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cross-verify`
-- **Source URL:** [https://clawhub.ai/skills/cross-verify](https://clawhub.ai/skills/cross-verify)
+## 验证维度
 
-## Overview
+### 1. 事实核查（Fact Check）
+- 识别所有可验证的具体声明（数据、日期、百分比、名称、机构）
+- 对每个声明进行核查：搜索可靠来源（官方数据、权威媒体、学术文献）
+- 标注：✅ 已验证 | ⚠️ 无法确认 | ❌ 与事实不符
+- 如果数据存疑，给出参考依据
 
+### 2. 偏见识别（Bias Detection）
+检查信息来源和内容本身的潜在偏见：
+- **来源偏见**：信息来自哪里？是否有利益关联？是否是一手来源？
+- **选择偏差**：是否只选了有利证据？是否忽略了对立证据？
+- **确认偏误**：是否在强化某种既得观点？
+- **语言倾向**：用词是否带有情感偏向（"惊人"、"竟然"、"不过是"等）
+- 标注：`来源偏见` | `选择性呈现` | `情感化语言` | `利益相关方`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cross-verify
+### 3. 逻辑漏洞（Logic Gaps）
+- 因果混淆（相关≠因果）
+- 样本偏差（以偏概全）
+- 稻草人（反驳弱化后的观点）
+- 诉诸权威/情感
+- 标注：`因果混淆` | `样本偏差` | `逻辑断层`
+
+### 4. 可信度评分（Credibility Score）
+对整体内容给出一个 1-10 的可信度评分：
+
+| 评分 | 含义 |
+|------|------|
+| 9-10 | 多方信源确认，无明显偏见，逻辑严密 |
+| 7-8 | 基本可靠，有小问题或信息不完整 |
+| 5-6 | 存在明显不确定性，需进一步核实 |
+| 3-4 | 存在严重偏见或逻辑漏洞，可信度低 |
+| 1-2 | 基本不可信，多处存疑或明显错误 |
+
+评分要给出简要理由。
+
+## 输出格式
+
 ```
+━━━━━━━━━━━━━━━━━━
+🔍 交叉验证报告
+
+📊 可信度评分：X / 10 [评分含义]
+
+━━━━━━━━━━━━━━━━━━
+✅ 已验证声明
+- ...
+
+⚠️ 无法确认的声明  
+- [声明] → 缺乏可靠来源/存疑
+  参考：...
+
+❌ 与事实不符
+- [声明] → 实际为：...
+
+━━━━━━━━━━━━━━━━━━
+🧠 偏见标记
+- [类型]：[具体内容]
+- ...
+
+🔗 逻辑漏洞
+- [类型]：[具体内容]
+- ...
+
+📌 信息来源评估
+- 来源：[来源名称]
+- 利益关联：[有/无/不确定]
+- 一手/二手：[判断]
+
+━━━━━━━━━━━━━━━━━━
+💡 总结建议
+[1-2句话给出综合判断和补充建议]
+━━━━━━━━━━━━━━━━━━
+```
+
+## 工作流程
+
+1. **提取声明** — 识别文本中所有具体声明（数据、事实、断言）
+2. **并行核查** — 使用 web_search 搜索每个关键声明的可信度
+3. **分析偏见** — 从来源、用词、证据选择角度扫描
+4. **扫描逻辑** — 查找常见逻辑谬误
+5. **综合评分** — 给出评分和总结
+
+## 输出原则
+
+- **不回避**：即使结论是"这段基本不可信"，也要直接说
+- **有依据**：每个标注都要有具体证据
+- **区分层次**：轻微问题、严重问题分开展示
+- **有建设性**：在总结里给出"如果要做实，需要补充什么"
+
+## 适用边界
+
+**触发：**
+- 用户主动粘贴文字/数据要求核查
+- 用户说"有没有问题"、"可靠吗"、"有没有偏见"
+
+**不触发：**
+- 用户只是在问信息（不要求验证）
+- 用户在写小说、诗歌等创作内容
+- 纯娱乐/闲聊

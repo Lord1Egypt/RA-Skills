@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f5f1e8"/>
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .12"/></feComponentTransfer></filter>
+  <rect width="1600" height="900" filter="url(#n)"/>
+  <circle cx="1180" cy="180" r="360" fill="#111" opacity=".05"/>
+  <path d="M0 680 C320 620 520 780 820 720 S1280 620 1600 700" fill="none" stroke="#111" stroke-width="2" opacity=".08"/>
+</svg>

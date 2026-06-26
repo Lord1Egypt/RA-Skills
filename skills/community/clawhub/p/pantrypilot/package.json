@@ -1,0 +1,23 @@
+{
+  "name": "pantrypilot",
+  "version": "1.0.0",
+  "description": "PantryPilot - a household replenishment operating skill that turns one-off ordering into a home supply system",
+  "main": "SKILL.md",
+  "keywords": [
+    "pantrypilot",
+    "household-replenishment",
+    "restock",
+    "pantry",
+    "repeat-purchase",
+    "meal-planning",
+    "grocery",
+    "shopping",
+    "meituan",
+    "pdd",
+    "taobao",
+    "household-supply",
+    "openclaw-skill"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

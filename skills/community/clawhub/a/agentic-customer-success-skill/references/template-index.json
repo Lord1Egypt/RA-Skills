@@ -1,0 +1,24 @@
+{
+  "templates": [
+    {"id": "client-account-profile", "stage": "onboarding", "type": "profile"},
+    {"id": "customer-contact-map", "stage": "routing", "type": "map"},
+    {"id": "approved-contact-routing-guide", "stage": "routing", "type": "guide"},
+    {"id": "meeting-notes", "stage": "relationship", "type": "notes"},
+    {"id": "follow-up-tracker", "stage": "relationship", "type": "tracker"},
+    {"id": "client-health-scorecard", "stage": "relationship", "type": "scorecard"},
+    {"id": "relationship-risk-log", "stage": "risk", "type": "log"},
+    {"id": "renewal-readiness-review", "stage": "renewal", "type": "review"},
+    {"id": "expansion-opportunity-brief", "stage": "expansion", "type": "brief"},
+    {"id": "quarterly-business-review", "stage": "executive", "type": "review"},
+    {"id": "support-escalation-summary", "stage": "support", "type": "summary"},
+    {"id": "client-satisfaction-survey", "stage": "feedback", "type": "survey"},
+    {"id": "testimonial-referral-request-plan", "stage": "advocacy", "type": "plan"},
+    {"id": "executive-check-in-brief", "stage": "executive", "type": "brief"},
+    {"id": "at-risk-customer-recovery-plan", "stage": "risk", "type": "plan"},
+    {"id": "offboarding-transition-checklist", "stage": "offboarding", "type": "checklist"},
+    {"id": "stakeholder-change-note", "stage": "routing", "type": "note"},
+    {"id": "communication-cadence-plan", "stage": "relationship", "type": "plan"},
+    {"id": "success-criteria-review", "stage": "outcomes", "type": "review"},
+    {"id": "post-launch-adoption-check-in", "stage": "adoption", "type": "check-in"}
+  ]
+}

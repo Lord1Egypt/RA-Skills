@@ -1,0 +1,55 @@
+{
+  "name": "{{@env:displayName}} __NAME__{{@env:workflowNamePostfix}}",
+  "nodes": [
+    {
+      "id": "{{@uuid:webhook}}",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "__PATH__",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "webhookId": "{{@uuid:webhook-public}}"
+    },
+    {
+      "id": "{{@uuid:set}}",
+      "name": "Hello",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 300],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "{{@uuid:assign}}",
+              "name": "message",
+              "value": "Hello from n8n-evol-I",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Hello",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

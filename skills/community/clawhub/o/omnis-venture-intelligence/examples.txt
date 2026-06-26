@@ -1,0 +1,10 @@
+Quick invocation examples
+
+1) Evaluate readiness and buy-now link
+"Use Omnis Venture Intelligence: run capabilities, status, and value-proof. Then show me the fastest buy-now URL and top pack."
+
+2) Start funded discovery flow
+"Use Omnis Venture Intelligence: assume I am funded, pull top discovery candidates, then score the top 3 and summarize why they rank highly."
+
+3) Handle billing failure safely
+"Use Omnis Venture Intelligence: if any request returns 402, show me x-omnis-* recovery headers and provide checkout link guidance only (no billing POST actions)."

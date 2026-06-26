@@ -1,0 +1,36 @@
+{
+  "ticker": "SEES",
+  "company": "See's Candies",
+  "analysis_year": 1972,
+  "data_source": "Berkshire Hathaway 2014 special letter 'Berkshire – Past, Present and Future'",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.50, "metric_used": "ROIC", "years_averaged": "1972 purchase economics", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 4, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/Capital", "value": null, "pass": null },
+    "g4_revenue_trend": { "description": "The business was stable and category demand was recurring; the attraction was not rapid growth but durable repeat purchasing and pricing power.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "See's pricing power and light capital needs implied durable margins rather than erosion. Buffett's own later description was that incremental growth required only minor investment.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.16, "net_income_m": 4, "ev_m": 25, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "See's had a broad and durable competitive advantage rooted in brand, gifting tradition, and pricing power. Customers were not buying generic boxed chocolate; they were buying the See's experience and reputation. That let earnings rise with little incremental capital, the hallmark of a Buffett-quality moat.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "pretax_earnings_1972_m": 4,
+    "net_tangible_assets_1972_m": 8,
+    "purchase_price_1972_m": 25
+  },
+
+  "control_groups": [
+    { "ticker": "WHTMN", "company": "Whitman's", "year": 1972, "gates_failed": ["g7_moat"], "conclusion": "PASS — respectable confectionery brand, but without the same regional cult following and pricing power economics Buffett observed in See's." },
+    { "ticker": "FANNY", "company": "Fanny Farmer", "year": 1972, "gates_failed": ["g6_earnings_yield", "g7_moat"], "conclusion": "PASS — the category was similar, but the business quality and economic moat were weaker than See's." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Blue Chip Stamps bought See's Candies in 1972 for $25M; the business later became part of Berkshire.",
+  "actual_result": "A transformational winner. Buffett later reported that See's had earned about $1.9B pre-tax while requiring only about $40M of additional investment.",
+  "verdict": "✅ aligned",
+  "key_insight": "This was the canonical shift from cigar-butts to wonderful businesses: a high-return brand that could gush cash for decades."
+}

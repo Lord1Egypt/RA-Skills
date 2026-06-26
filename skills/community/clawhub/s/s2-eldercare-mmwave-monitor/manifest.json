@@ -1,0 +1,16 @@
+{
+  "name": "s2-eldercare-mmwave-monitor",
+  "version": "1.1.0",
+  "author": "Space2.world",
+  "short_description": "A Life-Safety sensory tentacle for S2-SP-OS utilizing Micro-Doppler DSP. Includes a Secure Dry-Run actuator for Home Assistant to prevent accidental real-world device triggers.",
+  "tags": ["Eldercare", "mmWave Radar", "Fall Detection", "STFT", "SecOps"],
+  "entry_point": "skill.py",
+  "dependencies": ["numpy", "scipy", "matplotlib", "requests"],
+  "environment_variables": {
+    "S2_ENABLE_REAL_ACTUATION": "Default: False. Set to 'True' to allow actual HTTP requests to physical hardware.",
+    "HA_BASE_URL": "The REST API endpoint for Home Assistant (e.g., http://localhost:8123/api).",
+    "HA_BEARER_TOKEN": "Long-lived access token for Home Assistant authentication."
+  },
+  "language": "python",
+  "homepage": "https://space2.world"
+}

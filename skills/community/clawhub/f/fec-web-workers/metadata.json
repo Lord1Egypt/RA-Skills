@@ -1,0 +1,58 @@
+{
+  "id": "fec-web-workers",
+  "name": "Web Workers",
+  "category": "implementation-capability",
+  "tags": [
+    "worker",
+    "background-thread",
+    "comlink",
+    "transferable",
+    "performance"
+  ],
+  "summary": "Frontend Craft skill for Web Workers.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "worker",
+    "background-thread",
+    "comlink",
+    "transferable",
+    "performance"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when moving expensive browser work off the main thread with Web Workers, SharedWorker, worker pools, Comlink, transferable objects, Vite/Webpack worker integration, or UI responsiveness fixes. Do not use for lightweight synchronous work or DOM manipulation; Chinese triggers include Web Worker, 后台线程, 主线程阻塞.",
+  "source": "skills/fec-web-workers",
+  "references": [
+    "references/advanced-workers.md",
+    "references/basic-worker.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-canvas-threejs",
+      "fec-list-virtualization",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use a graphics workflow for rendering and animation loops; use workers only when complex computation blocks rendering.",
+      "Use a virtualization workflow for large-list DOM rendering; do not use workers as a replacement for virtual scrolling.",
+      "Use a validation workflow after worker changes for build, typecheck, and key interaction verification."
+    ],
+    "capabilityTags": [
+      "web-workers",
+      "performance",
+      "main-thread"
+    ]
+  }
+}

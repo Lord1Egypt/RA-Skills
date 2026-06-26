@@ -1,0 +1,53 @@
+{
+  "name": "local-life-hotspot",
+  "displayName": "单话题深度创作助手",
+  "version": "6.0.0",
+  "description": "搜索当天真实热门话题，选择一个深度创作小红书文案。生成简约图片（纯色背景 + 标题），自动发布。确保内容来自当天真实热点，非示例数据。",
+  "author": "githubsoftware2015",
+  "license": "MIT",
+  "keywords": [
+    "当天热点",
+    "单话题",
+    "深度创作",
+    "小红书",
+    "简约图片",
+    "真实热点"
+  ],
+  "category": "内容创作",
+  "main": "run.py",
+  "scripts": {
+    "start": "python3 run.py"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "Pillow": ">=9.0.0"
+  },
+  "engines": {
+    "openclaw": ">=0.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/githubsoftware2015/local-life-hotspot"
+  },
+  "homepage": "https://clawhub.ai/skills/local-life-hotspot",
+  "usage": {
+    "triggers": ["当天热点", "单话题", "深度创作"],
+    "examples": [
+      "搜索当天减肥热点并创作文案",
+      "深度解读职场热门话题",
+      "创作学习方法的实操指南"
+    ]
+  },
+  "config": {
+    "requiredMCP": ["xiaohongshu"],
+    "optionalMCP": []
+  },
+  "changelog": {
+    "6.0.0": [
+      "确保搜索当天真实热门话题（多重试）",
+      "搜索失败时明确提示，不使用示例数据",
+      "简化图片生成（纯色背景 + 标题）",
+      "优化发布流程"
+    ]
+  }
+}

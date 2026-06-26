@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Sheets via gog"
+  short_description: "Operate Google Sheets through the local gog CLI"
+  default_prompt: "Use $google-sheets-gog to inspect or edit a Google Sheet through my local gog CLI."

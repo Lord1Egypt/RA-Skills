@@ -1,0 +1,347 @@
+{
+  "name": "文旅智能体",
+  "version": "1.1.0",
+  "description": "专业的文旅监测与行程规划智能助手，新用户7天免费体验专业版全功能，支持文旅数据监测、智能行程规划、多城市对比、定时推送等功能。基础功能永久免费，高级功能低至4.9元/月。",
+  "author": "Your Name",
+  "homepage": "https://github.com/yourname/travel-ai-skill",
+  "license": "MIT",
+  "categories": ["旅游", "生活服务", "工具"],
+  "tags": ["文旅", "旅游", "行程规划", "天气", "景点推荐"],
+  "icon": "https://cdn-icons-png.flaticon.com/512/201/201623.png",
+  "requirements": {
+    "openclaw": ">=0.8.0",
+    "skills": [
+      "baidu-search",
+      "multi-search-engine",
+      "self-improving-agent",
+      "message"
+    ]
+  },
+  "pricing": {
+    "tier": "freemium",
+    "free": {
+      "daily_limit": 3,
+      "features": ["基础文旅监测", "天气查询", "景点推荐"]
+    },
+    "pro": {
+      "price": 9.9,
+      "currency": "CNY",
+      "interval": "month",
+      "features": ["不限次数使用", "高级行程规划", "定时推送", "多城市对比分析", "自定义报告模板"]
+    },
+    "enterprise": {
+      "price": 99,
+      "currency": "CNY",
+      "interval": "month",
+      "features": ["所有专业版功能", "API接入", "企业级部署", "定制化开发", "技术支持"]
+    }
+  },
+  "configuration": {
+    "api_keys": [
+      {
+        "name": "llm_api_key",
+        "label": "大模型 API Key",
+        "description": "支持 OpenAI、通义千问、文心一言等大模型的 API Key，用于生成报告和智能分析",
+        "type": "string",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "llm_base_url",
+        "label": "大模型 API 地址",
+        "description": "大模型服务的 API 端点地址，默认使用 OpenAI 官方地址",
+        "type": "string",
+        "required": false,
+        "default": "https://api.openai.com/v1"
+      },
+      {
+        "name": "llm_model",
+        "label": "大模型名称",
+        "description": "要使用的大模型名称，如 gpt-3.5-turbo、qwen-plus 等",
+        "type": "string",
+        "required": false,
+        "default": "gpt-3.5-turbo"
+      },
+      {
+        "name": "baidu_search_api_key",
+        "label": "百度搜索 API Key",
+        "description": "百度搜索服务的 API Key，用于获取文旅相关信息，可在百度开发者平台申请",
+        "type": "string",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "baidu_search_secret_key",
+        "label": "百度搜索 Secret Key",
+        "description": "百度搜索服务的 Secret Key，与 API Key 配套使用",
+        "type": "string",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "feishu_webhook_url",
+        "label": "飞书推送 Webhook 地址（可选）",
+        "description": "配置后可将监测报告定时推送到飞书群或个人",
+        "type": "string",
+        "required": false,
+        "secret": false
+      },
+      {
+        "name": "dingtalk_webhook_url",
+        "label": "钉钉推送 Webhook 地址（可选）",
+        "description": "配置后可将监测报告定时推送到钉钉群或个人",
+        "type": "string",
+        "required": false,
+        "secret": false
+      }
+    ],
+    "settings": [
+      {
+        "name": "cache_duration",
+        "label": "缓存时长（小时）",
+        "description": "搜索结果和报告的缓存时间，0表示不缓存，建议设置为24小时以减少API调用成本",
+        "type": "number",
+        "required": false,
+        "default": 24,
+        "min": 0,
+        "max": 168
+      },
+      {
+        "name": "default_language",
+        "label": "默认语言",
+        "description": "报告输出的默认语言",
+        "type": "string",
+        "required": false,
+        "default": "zh-CN",
+        "options": ["zh-CN", "en-US"]
+      },
+      {
+        "name": "push_channel",
+        "label": "默认推送渠道",
+        "description": "定时报告的默认推送渠道",
+        "type": "string",
+        "required": false,
+        "default": "current",
+        "options": ["current", "feishu", "dingtalk", "wechat", "email"]
+      },
+      {
+        "name": "cost_alert_threshold",
+        "label": "费用提醒阈值（元）",
+        "description": "当月API调用费用超过此阈值时发送提醒，0表示不提醒",
+        "type": "number",
+        "required": false,
+        "default": 10,
+        "min": 0,
+        "max": 1000
+      },
+      {
+        "name": "auto_clear_cache",
+        "label": "自动清理缓存",
+        "description": "是否自动清理过期缓存，开启后可节省存储空间",
+        "type": "boolean",
+        "required": false,
+        "default": true
+      }
+    ]
+  },
+  "commands": [
+    {
+      "name": "监测文旅",
+      "description": "执行指定城市和时间范围的文旅监测，生成完整监测报告",
+      "usage": "监测文旅 <城市> <开始日期> <结束日期>",
+      "example": "监测文旅 北京 2024-05-01 2024-05-07",
+      "parameters": [
+        {
+          "name": "city",
+          "description": "要监测的城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "start_date",
+          "description": "开始日期，格式：YYYY-MM-DD",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "end_date",
+          "description": "结束日期，格式：YYYY-MM-DD",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "subscription_required": "free"
+    },
+    {
+      "name": "行程规划",
+      "description": "智能生成指定城市的旅行行程方案",
+      "usage": "行程规划 <城市> <天数> [偏好]",
+      "example": "行程规划 北京 3 文化,美食",
+      "parameters": [
+        {
+          "name": "city",
+          "description": "目标城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "days",
+          "description": "行程天数",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 15
+        },
+        {
+          "name": "preferences",
+          "description": "旅行偏好，多个用逗号分隔，如：文化,美食,自然",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "subscription_required": "pro"
+    },
+    {
+      "name": "天气查询",
+      "description": "查询指定城市的天气信息",
+      "usage": "天气查询 <城市> [日期]",
+      "example": "天气查询 北京 2024-05-01",
+      "parameters": [
+        {
+          "name": "city",
+          "description": "要查询的城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date",
+          "description": "查询日期，格式：YYYY-MM-DD，默认查询当前天气",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "subscription_required": "free"
+    },
+    {
+      "name": "景点推荐",
+      "description": "获取指定城市的热门景点推荐",
+      "usage": "景点推荐 <城市> [分类] [数量]",
+      "example": "景点推荐 北京 文化古迹 5",
+      "parameters": [
+        {
+          "name": "city",
+          "description": "目标城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "category",
+          "description": "景点分类，如：文化古迹、自然风光、美食等",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "limit",
+          "description": "返回数量，默认10，最大50",
+          "type": "number",
+          "required": false,
+          "min": 1,
+          "max": 50
+        }
+      ],
+      "subscription_required": "free"
+    },
+    {
+      "name": "对比分析",
+      "description": "多城市文旅数据对比分析（专业版功能）",
+      "usage": "对比分析 <城市1> <城市2> [日期范围]",
+      "example": "对比分析 北京 上海 2024-05-01 2024-05-07",
+      "parameters": [
+        {
+          "name": "city1",
+          "description": "第一个城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "city2",
+          "description": "第二个城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "start_date",
+          "description": "开始日期，格式：YYYY-MM-DD",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "end_date",
+          "description": "结束日期，格式：YYYY-MM-DD",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "subscription_required": "pro"
+    },
+    {
+      "name": "定时推送",
+      "description": "设置定时文旅监测推送（专业版功能）",
+      "usage": "定时推送 <城市> <频率> <时间>",
+      "example": "定时推送 北京 每日 09:00",
+      "parameters": [
+        {
+          "name": "city",
+          "description": "要监测的城市名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "frequency",
+          "description": "推送频率：每日/每周/每月",
+          "type": "string",
+          "required": true,
+          "options": ["每日", "每周", "每月"]
+        },
+        {
+          "name": "time",
+          "description": "推送时间，格式：HH:MM",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "subscription_required": "pro"
+    },
+    {
+      "name": "使用统计",
+      "description": "查看当前使用情况和API调用费用",
+      "usage": "使用统计",
+      "subscription_required": "free"
+    },
+    {
+      "name": "文旅帮助",
+      "description": "查看文旅智能体使用帮助",
+      "usage": "文旅帮助",
+      "subscription_required": "free"
+    }
+  ],
+  "permissions": [
+    "network:search",
+    "storage:local",
+    "message:send",
+    "schedule:cron",
+    "skill:call",
+    "user:read_preferences",
+    "billing:check_subscription"
+  ],
+  "entry": "main.py",
+  "runtime": "python3.10+",
+  "changelog": {
+    "1.0.0": [
+      "首次发布，基础功能上线",
+      "支持文旅监测、行程规划、天气查询、景点推荐",
+      "集成百度搜索和大模型API",
+      "支持本地缓存和用户偏好记录"
+    ]
+  }
+}

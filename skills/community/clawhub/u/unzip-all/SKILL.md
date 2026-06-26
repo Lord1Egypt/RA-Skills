@@ -1,35 +1,38 @@
 ---
-name: "unzip-all"
-description: "递归解压所有嵌套的压缩包(zip/7z/rar)，支持中文文件名。用于解压包含多层嵌套压缩包的文件夹。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/unzip-all"
-sourceUrl: "https://clawhub.ai/skills/unzip-all"
+name: unzip-all
+description: 递归解压所有嵌套的压缩包(zip/7z/rar)，支持中文文件名。用于解压包含多层嵌套压缩包的文件夹。
 ---
 
 # unzip-all
 
-> 递归解压所有嵌套的压缩包(zip/7z/rar)，支持中文文件名。用于解压包含多层嵌套压缩包的文件夹。
+递归解压文件夹中的所有压缩包，包括嵌套的 .zip、.7z、.rar 文件，自动处理中文文件名编码。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/unzip-all`
-- **Source URL:** [https://clawhub.ai/skills/unzip-all](https://clawhub.ai/skills/unzip-all)
+## 使用方法
 
-## Overview
+当用户说类似"解压这个文件"、"解压这个文件夹"、"把里面的压缩包都解开"时使用。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/unzip-all
+**解压单个压缩包（自动处理嵌套）**：
 ```
+把 C:\Users\tangd\documents\project.zip 解压
+```
+→ 会解压 zip，然后检查解压后的文件夹，如果有嵌套的压缩包也会自动解压
+
+**解压文件夹内所有压缩包**：
+```
+把 C:\Users\tangd\documents\project\ 文件夹里的压缩包都解压
+```
+
+## 注意事项
+
+- 需要安装 7-Zip（用于解压 .7z 和 .rar 文件）
+- 自动使用 GBK 编码处理中文文件名
+- 解压后自动删除原压缩包
+- 递归处理直到没有嵌套压缩包
+
+## 错误处理
+
+如果遇到无法解压的情况：
+- 会显示具体错误原因
+- 保留原压缩包（不会删除）
+- 跳过失败的压缩包，继续处理其他的
+- 最后汇总报告所有失败的文件

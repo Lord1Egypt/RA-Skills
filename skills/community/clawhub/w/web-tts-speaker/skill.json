@@ -1,0 +1,39 @@
+{
+  "name": "web-tts-speaker",
+  "version": "3.2.1",
+  "description": "网页一键朗读：URL/文本 → TTS语音 → 多渠道自动匹配（飞书语音条 / 微信/TG/Discord MP3）",
+  "author": "tech",
+  "tags": ["tts", "voice", "speaker", "朗读", "飞书语音条", "Edge TTS"],
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "edge-tts",
+      "beautifulsoup4",
+      "requests"
+    ]
+  },
+  "commands": {
+    "auto": "python cli.py --url <url>",
+    "feishu": "python cli.py -c feishu --url <url>",
+    "wechat": "python cli.py -c wechat --text <text>",
+    "voice": "python cli.py -c feishu --text <text> --voice zh-CN-YunxiNeural"
+  },
+  "examples": [
+    {
+      "description": "朗读网页（自动匹配渠道）",
+      "command": "python cli.py --url \"https://example.com/article\""
+    },
+    {
+      "description": "飞书语音条",
+      "command": "python cli.py -c feishu --text \"会议提醒：3点评审\""
+    },
+    {
+      "description": "微信语音",
+      "command": "python cli.py -c wechat --url \"https://example.com/article\""
+    },
+    {
+      "description": "指定男声",
+      "command": "python cli.py --text \"你好\" --voice zh-CN-YunxiNeural"
+    }
+  ]
+}

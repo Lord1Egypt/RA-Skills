@@ -1,0 +1,69 @@
+{
+  "name": "byteplan-chart",
+  "version": "1.0.0",
+  "description": "BytePlan AI 图表生成技能 - 通过 BytePlan AI 接口自动生成数据可视化图表，支持 12 种图表类型",
+  "author": "wangshuaiitr-ai",
+  "license": "MIT",
+  "keywords": [
+    "byteplan",
+    "chart",
+    "visualization",
+    "data-analysis",
+    "matplotlib",
+    "ai-charts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangshuaiitr/byteplan-chart.git"
+  },
+  "homepage": "https://clawhub.com/skills/byteplan-chart",
+  "bugs": {
+    "url": "https://github.com/wangshuaiitr/byteplan-chart/issues"
+  },
+  "engines": {
+    "python": ">=3.8.0",
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "test": "uv run python test_render.py",
+    "chart": "uv run python main.py"
+  },
+  "clawhub": {
+    "acceptLicenseTerms": true,
+    "type": "skill",
+    "category": "data-visualization",
+    "tags": [
+      "byteplan",
+      "chart",
+      "visualization",
+      "data-analysis",
+      "matplotlib"
+    ],
+    "requirements": {
+      "bins": ["uv", "python"],
+      "python_packages": [
+        "requests",
+        "python-dotenv",
+        "pycryptodome",
+        "matplotlib",
+        "numpy"
+      ]
+    },
+    "entry": {
+      "command": "uv run python main.py",
+      "args": ["<query>"]
+    },
+    "platforms": [
+      "win32",
+      "darwin",
+      "linux"
+    ],
+    "features": [
+      "12 种图表类型支持",
+      "自动中文字体检测",
+      "跨平台兼容",
+      "BytePlan AI 集成",
+      "RSA 加密认证"
+    ]
+  }
+}

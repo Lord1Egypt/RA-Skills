@@ -1,0 +1,25 @@
+{
+  "name": "@caixu/data-mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run tests --exclude '**/dist/**'"
+  },
+  "dependencies": {
+    "@caixu/contracts": "workspace:*",
+    "@caixu/executor-profiles": "workspace:*",
+    "@caixu/rules": "workspace:*",
+    "@caixu/storage": "workspace:*",
+    "@huggingface/transformers": "4.0.0",
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}

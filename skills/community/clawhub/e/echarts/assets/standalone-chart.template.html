@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ECharts Artifact</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-strong: rgba(255, 255, 255, 0.96);
+      --text: #101828;
+      --muted: #536176;
+      --border: rgba(16, 24, 40, 0.1);
+      --accent: #0f6cbd;
+      --accent-soft: rgba(15, 108, 189, 0.12);
+      --shadow: 0 30px 80px rgba(15, 23, 42, 0.1);
+      --chart-height: 720px;
+    }
+
+    body.theme-dark {
+      --bg: #10141d;
+      --surface: rgba(17, 24, 39, 0.82);
+      --surface-strong: rgba(17, 24, 39, 0.94);
+      --text: #edf2ff;
+      --muted: #99a7c0;
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #78c4ff;
+      --accent-soft: rgba(120, 196, 255, 0.16);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    body.theme-paper {
+      --bg: #f5f0e6;
+      --surface: rgba(255, 250, 242, 0.84);
+      --surface-strong: rgba(255, 250, 242, 0.96);
+      --text: #231f1a;
+      --muted: #5c554d;
+      --border: rgba(35, 31, 26, 0.12);
+      --accent: #3f6c51;
+      --accent-soft: rgba(63, 108, 81, 0.14);
+      --shadow: 0 28px 72px rgba(80, 61, 37, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.24), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(15, 108, 189, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    body.theme-dark {
+      background:
+        radial-gradient(circle at top left, rgba(120, 196, 255, 0.08), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.04), transparent 28%),
+        var(--bg);
+    }
+
+    .shell {
+      width: min(1440px, calc(100vw - 32px));
+      margin: 24px auto;
+      padding: 28px;
+      border-radius: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      max-width: 70ch;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 280px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface-strong);
+      color: var(--text);
+      padding: 10px 14px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .stage,
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface-strong);
+    }
+
+    .stage {
+      padding: 18px 18px 12px;
+    }
+
+    .stage-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status.error {
+      color: #d14343;
+    }
+
+    #chart {
+      width: 100%;
+      height: var(--chart-height);
+      min-height: 320px;
+    }
+
+    .panel {
+      padding: 18px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel section {
+      display: grid;
+      gap: 10px;
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    .meta-list li {
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    body.embed-mode .hero,
+    body.embed-mode .panel {
+      display: none;
+    }
+
+    body.embed-mode .content {
+      display: block;
+    }
+
+    body.embed-mode .stage {
+      padding: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        width: calc(100vw - 20px);
+        padding: 16px;
+        margin: 10px auto;
+      }
+
+      .hero {
+        flex-direction: column;
+      }
+
+      .toolbar {
+        justify-content: flex-start;
+        min-width: 0;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Apache ECharts Artifact</p>
+        <h1 id="title">Chart</h1>
+        <p class="subtitle" id="subtitle"></p>
+      </div>
+      <div class="toolbar">
+        <button type="button" id="download-png">Download PNG</button>
+        <button type="button" id="download-svg">Download SVG</button>
+        <button type="button" id="download-json">Download JSON</button>
+        <button type="button" id="copy-json">Copy JSON</button>
+        <button type="button" id="open-json">Open JSON</button>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="stage">
+        <div class="stage-head">
+          <div class="chips" id="chips"></div>
+          <p class="status" id="status">Loading chart runtime...</p>
+        </div>
+        <div id="chart"></div>
+      </div>
+
+      <aside class="panel" id="panel">
+        <section>
+          <h2>Notes</h2>
+          <ul class="meta-list" id="notes"></ul>
+        </section>
+        <section>
+          <h2>Artifacts</h2>
+          <ul class="meta-list" id="artifacts"></ul>
+        </section>
+        <section>
+          <h2>Export Tips</h2>
+          <p class="hint">
+            Use SVG renderer when the final deliverable needs vector quality. Use PNG when the target expects a fixed pixel asset.
+          </p>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script id="bootstrap" type="application/json">__BOOTSTRAP_JSON__</script>
+  <script>
+    (() => {
+      const bootstrap = JSON.parse(document.getElementById("bootstrap").textContent);
+      const statusElement = document.getElementById("status");
+      const titleElement = document.getElementById("title");
+      const subtitleElement = document.getElementById("subtitle");
+      const chartElement = document.getElementById("chart");
+      const notesElement = document.getElementById("notes");
+      const artifactsElement = document.getElementById("artifacts");
+      const chipsElement = document.getElementById("chips");
+      const panelElement = document.getElementById("panel");
+
+      document.body.classList.add(`theme-${bootstrap.theme}`);
+      if (bootstrap.pageMode === "embed") {
+        document.body.classList.add("embed-mode");
+      }
+
+      document.documentElement.style.setProperty("--chart-height", `${bootstrap.height}px`);
+      document.title = bootstrap.title || "ECharts Artifact";
+      titleElement.textContent = bootstrap.title || "ECharts Artifact";
+      subtitleElement.textContent = bootstrap.subtitle || "";
+      subtitleElement.style.display = bootstrap.subtitle ? "block" : "none";
+
+      const chipValues = [
+        bootstrap.chart,
+        bootstrap.renderer,
+        bootstrap.theme,
+        bootstrap.pageMode,
+      ].filter(Boolean);
+
+      chipValues.forEach((value) => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = value;
+        chipsElement.appendChild(chip);
+      });
+
+      if (!bootstrap.notes || bootstrap.notes.length === 0) {
+        const item = document.createElement("li");
+        item.textContent = "No extra notes were supplied.";
+        notesElement.appendChild(item);
+      } else {
+        bootstrap.notes.forEach((note) => {
+          const item = document.createElement("li");
+          item.textContent = note;
+          notesElement.appendChild(item);
+        });
+      }
+
+      Object.entries(bootstrap.manifest.files).forEach(([label, fileName]) => {
+        if (!fileName) {
+          return;
+        }
+        const item = document.createElement("li");
+        item.textContent = `${label}: ${fileName}`;
+        artifactsElement.appendChild(item);
+      });
+
+      if (bootstrap.pageMode === "embed") {
+        panelElement.style.display = "none";
+      }
+
+      function setStatus(message, isError = false) {
+        statusElement.textContent = message;
+        statusElement.classList.toggle("error", isError);
+      }
+
+      function triggerDownload(fileName, payload, mimeType) {
+        const blob = new Blob([payload], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 0);
+      }
+
+      function downloadDataUrl(fileName, dataUrl) {
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+
+      function getCdnCandidates() {
+        const fallbackUrls = [
+          "https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js",
+          "https://unpkg.com/echarts@5/dist/echarts.min.js",
+          "https://cdn.bootcdn.net/ajax/libs/echarts/5.6.0/echarts.min.js",
+        ];
+        const configured = Array.isArray(bootstrap.cdnUrl)
+          ? bootstrap.cdnUrl
+          : String(bootstrap.cdnUrl || "")
+              .split(",")
+              .map((entry) => entry.trim())
+              .filter(Boolean);
+        return Array.from(new Set([...configured, ...fallbackUrls]));
+      }
+
+      function loadScript(src) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = src;
+          script.async = true;
+          script.onload = () => resolve(window.echarts);
+          script.onerror = () => {
+            script.remove();
+            reject(new Error(`Could not load ${src}`));
+          };
+          document.head.appendChild(script);
+        });
+      }
+
+      async function loadECharts() {
+        const failures = [];
+        for (const src of getCdnCandidates()) {
+          try {
+            const echarts = await loadScript(src);
+            if (echarts) {
+              return echarts;
+            }
+            failures.push(`${src}: script loaded but window.echarts was unavailable`);
+          } catch (error) {
+            failures.push(`${src}: ${error.message}`);
+          }
+        }
+
+        throw new Error(
+          `Could not load ECharts. Tried ${failures.length} source(s): ${failures.join(" | ")}. Provide a reachable --cdn value or use a local mirror.`,
+        );
+      }
+
+      async function copyJson() {
+        const payload = JSON.stringify(bootstrap.option, null, 2);
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(payload);
+          setStatus("Copied chart.option.json content to the clipboard.");
+          return;
+        }
+        triggerDownload(`${bootstrap.fileBase}.json`, payload, "application/json");
+        setStatus("Clipboard was unavailable, so the JSON was downloaded instead.");
+      }
+
+      function openJson() {
+        const payload = JSON.stringify(bootstrap.option, null, 2);
+        const blob = new Blob([payload], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank", "noopener,noreferrer");
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      async function init() {
+        const echarts = await loadECharts();
+        const chart = echarts.init(chartElement, null, {
+          renderer: bootstrap.renderer,
+        });
+        chart.setOption(bootstrap.option);
+        window.__ECHARTS_ARTIFACT__ = { chart, bootstrap };
+        window.addEventListener("resize", () => chart.resize());
+
+        document.getElementById("download-png").addEventListener("click", () => {
+          downloadDataUrl(
+            `${bootstrap.fileBase}.png`,
+            chart.getDataURL({
+              type: "png",
+              pixelRatio: 2,
+              backgroundColor: bootstrap.theme === "dark" ? "#10141d" : bootstrap.theme === "paper" ? "#f5f0e6" : "#ffffff",
+            }),
+          );
+        });
+
+        document.getElementById("download-svg").addEventListener("click", () => {
+          const svg = chartElement.querySelector("svg");
+          if (!svg) {
+            setStatus("SVG export needs the page to be generated with --renderer svg.", true);
+            return;
+          }
+          triggerDownload(`${bootstrap.fileBase}.svg`, svg.outerHTML, "image/svg+xml");
+          setStatus("Downloaded SVG export.");
+        });
+
+        document.getElementById("download-json").addEventListener("click", () => {
+          triggerDownload(
+            `${bootstrap.fileBase}.json`,
+            JSON.stringify(bootstrap.option, null, 2),
+            "application/json",
+          );
+          setStatus("Downloaded option JSON.");
+        });
+
+        document.getElementById("copy-json").addEventListener("click", () => {
+          copyJson().catch((error) => {
+            setStatus(error.message, true);
+          });
+        });
+
+        document.getElementById("open-json").addEventListener("click", openJson);
+        setStatus(`Ready. Generated ${bootstrap.generatedAt}.`);
+      }
+
+      init().catch((error) => {
+        setStatus(error.message, true);
+      });
+    })();
+  </script>
+</body>
+</html>

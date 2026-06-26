@@ -1,0 +1,14 @@
+id: event_scout
+display_name: Event Scout
+display_name_zh: 事件侦察
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-CN
+narrative_tone: alert
+terminology_profile: mixed
+ensemble_weight: 0.92
+overlay:
+  conviction_scale: 1.0
+  conviction_bias: 1
+  news_sentiment_weight: 1.2
+  risk_flag_penalty_per: 1

@@ -1,0 +1,16 @@
+{
+  "name": "argument-audit",
+  "description": "论点审计 - An analytical tool that evaluates the logical structure, evidence quality, and persuasiveness of arguments. Use when user asks about 论点分析、论证评估、逻辑审查、观点评估, or wants to analyze the strength and validity of an argument.",
+  "version": "1.0.0",
+  "author": "Harry",
+  "tags": ["logic", "critical-thinking", "debate", "analysis", "argumentation"],
+  "safety": {
+    "no_diagnosis": true,
+    "no_treatment": true,
+    "disclaimer_required": false
+  },
+  "modules": {
+    "handler": "handler.py"
+  },
+  "entry": "handler.py"
+}

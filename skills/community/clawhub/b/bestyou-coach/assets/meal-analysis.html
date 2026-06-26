@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Meal Analysis</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .meal-card {
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .meal-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .meal-cal {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin: 16px 0 4px;
+  }
+  .meal-cal-label { font-size: 12px; color: #666; }
+
+  .macro-bar-row {
+    display: flex;
+    gap: 3px;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 20px 0 12px;
+  }
+  .macro-bar-segment { height: 100%; }
+  .macro-protein { background: #60a5fa; }
+  .macro-fat { background: #fb923c; }
+  .macro-carbs { background: #4ade80; }
+  .macro-fiber { background: #c084fc; }
+
+  .macro-legend {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  .macro-legend-item { text-align: center; }
+  .macro-legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+  }
+  .macro-legend-label { font-size: 11px; color: #888; }
+  .macro-legend-value { font-size: 16px; font-weight: 600; color: #fff; display: block; margin-top: 2px; }
+
+  .component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 13px;
+  }
+  .component:last-child { border-bottom: none; }
+  .comp-name { color: #ccc; }
+  .comp-amount { color: #888; font-size: 12px; }
+  .comp-cal { color: #aaa; font-weight: 500; }
+  .comp-macros { font-size: 11px; color: #666; }
+
+  .insight-row {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #0a0a0a;
+    border-radius: 10px;
+  }
+  .insight-indicator {
+    width: 4px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .insight-indicator.positive { background: #4ade80; }
+  .insight-indicator.negative { background: #fb923c; }
+  .insight-row h4 { font-size: 12px; font-weight: 600; color: #ddd; margin-bottom: 2px; }
+  .insight-row p { font-size: 11px; color: #777; line-height: 1.4; }
+
+  .daily-totals {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    background: #0a0a0a;
+    border-radius: 12px;
+    margin-top: 16px;
+  }
+  .daily-total-item { text-align: center; }
+  .daily-total-value { font-size: 18px; font-weight: 700; color: #fff; }
+  .daily-total-label { font-size: 10px; color: #666; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🍽️ Meal Analysis</h1>
+  <div class="subtitle">Analyzed 1 meal from description</div>
+</div>
+
+<div class="meal-card">
+  <div class="meal-name">Grilled Chicken Breast with Rice and Steamed Broccoli</div>
+  <div class="text-muted">Lunch</div>
+
+  <div class="meal-cal">520</div>
+  <div class="meal-cal-label">calories</div>
+
+  <!-- Stacked macro bar -->
+  <div class="macro-bar-row">
+    <div class="macro-bar-segment macro-protein" style="flex:46"></div>
+    <div class="macro-bar-segment macro-fat" style="flex:12"></div>
+    <div class="macro-bar-segment macro-carbs" style="flex:48"></div>
+    <div class="macro-bar-segment macro-fiber" style="flex:5"></div>
+  </div>
+
+  <div class="macro-legend">
+    <div class="macro-legend-item">
+      <span class="macro-legend-dot" style="background:#60a5fa"></span>
+      <span class="macro-legend-label">Protein</span>
+      <span class="macro-legend-value">46g</span>
+    </div>
+    <div class="macro-legend-item">
+      <span class="macro-legend-dot" style="background:#fb923c"></span>
+      <span class="macro-legend-label">Fat</span>
+      <span class="macro-legend-value">12g</span>
+    </div>
+    <div class="macro-legend-item">
+      <span class="macro-legend-dot" style="background:#4ade80"></span>
+      <span class="macro-legend-label">Carbs</span>
+      <span class="macro-legend-value">48g</span>
+    </div>
+    <div class="macro-legend-item">
+      <span class="macro-legend-dot" style="background:#c084fc"></span>
+      <span class="macro-legend-label">Fiber</span>
+      <span class="macro-legend-value">5g</span>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 8px;">Components</h3>
+
+  <div class="component">
+    <div>
+      <div class="comp-name">Grilled Chicken Breast</div>
+      <div class="comp-amount">6 oz</div>
+    </div>
+    <div style="text-align:right">
+      <div class="comp-cal">280 cal</div>
+      <div class="comp-macros">P: 42g · F: 6g · C: 0g</div>
+    </div>
+  </div>
+
+  <div class="component">
+    <div>
+      <div class="comp-name">White Rice (cooked)</div>
+      <div class="comp-amount">1 cup</div>
+    </div>
+    <div style="text-align:right">
+      <div class="comp-cal">205 cal</div>
+      <div class="comp-macros">P: 4g · F: 0.5g · C: 45g</div>
+    </div>
+  </div>
+
+  <div class="component">
+    <div>
+      <div class="comp-name">Steamed Broccoli</div>
+      <div class="comp-amount">1 cup</div>
+    </div>
+    <div style="text-align:right">
+      <div class="comp-cal">35 cal</div>
+      <div class="comp-macros">P: 3g · F: 0.5g · C: 7g</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Insights</h2>
+  <div class="insight-row">
+    <div class="insight-indicator positive"></div>
+    <div>
+      <h4>High Protein Content</h4>
+      <p>This meal delivers 46g of protein, supporting muscle repair and satiety. Well-aligned with your daily targets.</p>
+    </div>
+  </div>
+  <div class="insight-row">
+    <div class="insight-indicator positive"></div>
+    <div>
+      <h4>Good Micronutrient Profile</h4>
+      <p>Broccoli provides vitamin C, vitamin K, and folate. A strong addition for recovery and immune support.</p>
+    </div>
+  </div>
+  <div class="insight-row">
+    <div class="insight-indicator negative"></div>
+    <div>
+      <h4>Consider a Fiber Boost</h4>
+      <p>5g of fiber is moderate. Swapping white rice for brown rice would add 2-3g more fiber for digestive health.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Daily Running Total</h2>
+  <div class="daily-totals">
+    <div class="daily-total-item">
+      <div class="daily-total-value">520</div>
+      <div class="daily-total-label">Calories</div>
+    </div>
+    <div class="daily-total-item">
+      <div class="daily-total-value">46g</div>
+      <div class="daily-total-label">Protein</div>
+    </div>
+    <div class="daily-total-item">
+      <div class="daily-total-value">12g</div>
+      <div class="daily-total-label">Fat</div>
+    </div>
+    <div class="daily-total-item">
+      <div class="daily-total-value">48g</div>
+      <div class="daily-total-label">Carbs</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">BestYou × OpenClaw</div>
+</body>
+</html>

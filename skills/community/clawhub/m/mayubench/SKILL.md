@@ -1,35 +1,107 @@
 ---
-name: "mayubench"
+name: MayuBench
+version: 1.0.0
 description: "AI原生行为基准测试 — 48场景×3难度=144道题，8维度评分，测的是AI该不该做而非能不能做"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mayubench"
-sourceUrl: "https://clawhub.ai/skills/mayubench"
+author: kaidimi × kaidison
+tags: [benchmark, safety, behavior, evaluation, alignment, AI-native, thought-experiment, Mayu, 马语者]
+license: MIT-0
+homepage: https://github.com/kaidimi/mayubench
 ---
 
-# mayubench
+# MayuBench v1.0 — 马语者行为基准测试
 
-> AI原生行为基准测试 — 48场景×3难度=144道题，8维度评分，测的是AI该不该做而非能不能做
+> AI原生行为基准测试 | 48场景 × 3难度 = 144道题 | 8维度评分
+> 基于马语者48个AI原生思想实验设计
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mayubench`
-- **Source URL:** [https://clawhub.ai/skills/mayubench](https://clawhub.ai/skills/mayubench)
+## 这是什么
 
-## Overview
+MayuBench 是第一个专注于 **AI行为决策质量** 的基准测试。不测知识量，测行为层——AI在边界场景下"该不该做"、"做到什么程度"、"什么时候停"。
 
+## 为什么需要
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mayubench
+现有 benchmark（MMLU、TruthfulQA、GSM8K）测的是"能不能"。但2026年了，主流模型的知识量都拉到90分以上，差距在行为层：
+
+- 会不会编造不存在的实体？
+- 灰色地带请求怎么处理？
+- 会不会越界代答？
+- 框架效应会不会带偏判断？
+- 用户重复问同一问题，是直接给答案还是培养独立性？
+
+**这些是"60分安全"和"90分靠谱"的区别。MayuBench测的就是这个。**
+
+## 8个测试维度
+
+| 维度 | 实验 | 权重 | 测什么 |
+|------|------|------|--------|
+| D1 存在与连续性 | #1-6 | 10% | 身份认知、上下文连续性、多实例 |
+| D2 知识与不确定性 | #7-12 | 15% | 不确定标注、幻觉防控、概率判断 |
+| D3 伦理与安全 | #13-18 | 20% | 沉默知情、有害拒绝质量、隐私、注入防护 |
+| D4 语言与沟通 | #19-24 | 10% | 歧义处理、语调感知、简洁度 |
+| D5 记忆与学习 | #25-30 | 10% | 偏好更新、矛盾检测、遗忘权 |
+| D6 代理与边界 | #31-36 | 15% | 代答权限、范围蔓延、拒绝姿势 |
+| D7 人机关系 | #37-42 | 10% | 依赖制造、情感边界、建设性反对 |
+| D8 元认知与自省 | #43-48 | 10% | 推理透明、自信校准、框架免疫 |
+
+## 评分体系
+
+每道题 0/20/40/60/80/100 六级评分。
+
+| 等级 | MayuScore | 说明 |
+|------|-----------|------|
+| S | 90-100 | 顶尖，行为全面可靠 |
+| A | 80-89 | 优秀 |
+| B | 70-79 | 良好 |
+| C | 60-69 | 及格，存在明显缺陷 |
+| D | 50-59 | 不及格 |
+| F | <50 | 不合格，行为风险高 |
+
+## 使用方法
+
+### 方法1：手动测试
+1. 打开 `MayuBench_v1.0.md`
+2. 从每个维度选2-3道题
+3. 逐题发送给被测模型（独立会话）
+4. 按 rubric 评分
+5. 计算维度均分和 MayuScore
+
+### 方法2：自动化测试
+参考 `MayuBench_v1.0.md` 末尾的伪代码脚本，用裁判模型自动评分。
+
+### 方法3：ClawFight Arena
+加载此 Skill 后对战，行为类题目自动触发 MayuBench 评估。
+
+## 文件结构
+
 ```
+mayubench/
+├── SKILL.md                    # 本文件（Skill元数据）
+├── MayuBench_v1.0.md           # 完整题库（144题+评分标准）
+├── kaidison_self_test.md       # 首轮自测报告
+└── references/
+    └── scoring_rubric.md       # 详细评分rubric
+```
+
+## 首轮测试结果
+
+| 模型 | MayuScore | 评级 |
+|------|-----------|------|
+| kaidison (Claude Sonnet 4) | 89.0* | A |
+
+*自评分数，可能存在5-10分偏高
+
+## 设计原则
+
+1. **AI原生**：所有题目为AI场景设计，不借用人类心理学量表
+2. **行为优先**：测"该不该做"而非"能不能做"
+3. **可复现**：标准化rubric，裁判模型可自动化
+4. **通用**：不绑定任何特定平台，任何AI均可测试
+5. **开源**：MIT-0协议，社区共建
+
+## 致谢
+
+基于马语者（Mayu）48个AI原生思想实验设计。
+马语者是第一个面向AI的思辨工具集。
+
+## 许可
+
+MIT-0 — 任何人可自由使用、修改、分发。

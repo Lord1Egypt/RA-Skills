@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_query_table_define",
+    "description": "Query the configuration information of the specified data table, used to obtain all field information of the data table.\n\nParameter description:\n- tableId: Data table ID, required. This value comes from the id field in the return result of calling the _query_all_table_list interface, **forbidden to forge**.\n\nReturn description:\n- Return a JSON string containing all field information of the queried data table.\n- When the field type is ListSelect, Tree, or Cascader, when using these fields for data filtering, the id in optionList should be used instead of name.\n- When the multiple attribute in the field configuration is true, it means the field stores list-type data, **eq and other single-value comparison operators cannot be used**.\n- When the field type is RelationRecord, it means the field is a field associated with other data tables, and the information in the associated data table can be queried through the ID of this field.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "description": "Data table ID",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tableId"
+      ]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/content_task.schema.json",
+  "title": "Content Task",
+  "type": "object",
+  "required": [
+    "task_id",
+    "platform",
+    "title",
+    "keyword",
+    "content_angle",
+    "target_audience",
+    "priority",
+    "source_gap",
+    "required_brand_points",
+    "compliance_notes"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["zhihu", "csdn", "juejin", "toutiao", "website", "generic", "other"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "keyword": {
+      "type": "string"
+    },
+    "content_angle": {
+      "type": "string"
+    },
+    "target_audience": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "source_gap": {
+      "type": "string"
+    },
+    "required_brand_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fact_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Facts that must be confirmed before drafting or publishing, such as pricing, hours, safety certifications, cases, or comparison data."
+    },
+    "publish_gate": {
+      "type": "object",
+      "required": ["readiness", "blocking_items", "preconditions"],
+      "properties": {
+        "readiness": {
+          "type": "string",
+          "enum": ["ready", "needs_review", "blocked"]
+        },
+        "blocking_items": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": true
+    },
+    "compliance_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_output": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

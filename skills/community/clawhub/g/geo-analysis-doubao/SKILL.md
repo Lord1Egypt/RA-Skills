@@ -1,35 +1,99 @@
----
-name: "GEO  Analysis Doubao"
-description: "Analyzes how well a specific brand or product is mentioned and represented by Doubao / Volcengine Ark models for GEO (Generative Engine Optimization). Uses a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geo-analysis-doubao"
-sourceUrl: "https://clawhub.ai/skills/geo-analysis-doubao"
----
+# Doubao GEO Audit Skill (豆包 GEO 效果评估 Skill)
 
-# GEO  Analysis Doubao
+## 0. Skill 基本信息
+- **Skill 名称**: Doubao GEO Audit Skill
+- **标识符**: `doubao-geo-audit-skill`
+- **建议入口**: 优先读取根目录 `manifest.json`
+- **默认调用模式**: `report_mode=compact`
+- **编码要求**: 程序化调用统一使用 UTF-8 JSON
 
-> Analyzes how well a specific brand or product is mentioned and represented by Doubao / Volcengine Ark models for GEO (Generative Engine Optimization). Uses a...
+## 1. Skill 描述
+这个 Skill 用于评估一个品牌、产品或文章内容，是否容易被豆包大模型理解、总结、引用和推荐。它的核心目标是输出一份简洁、清楚、可执行的 GEO（生成式引擎优化）评估报告，帮助品牌快速了解其当前内容在豆包体系内的友好度。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geo-analysis-doubao`
-- **Source URL:** [https://clawhub.ai/skills/geo-analysis-doubao](https://clawhub.ai/skills/geo-analysis-doubao)
+## 2. 适用场景
+- 评估品牌官网介绍或品牌手册；
+- 评估产品说明书、产品宣发文案；
+- 评估公众号文章、知乎回答、今日头条文章、小红书文案等自媒体内容；
+- 评估销售话术、客服 FAQ 等对外话术材料；
+- 想要了解当前品牌内容在豆包中推荐概率的品牌方、营销人员或内容创作者。
 
-## Overview
+## 3. 不适用场景
+- 自动化批量爬取和评估全网数据；
+- 深度行业报告、竞品对比分析；
+- 后端数据存储与月度监测；
+- 需要复杂交互、账号系统或付费系统支持的长期项目。
+*(当前 Skill 仅为快速评估内容的极简版本，不涉及后端工程或数据长期留存)*
 
+## 4. 输入要求
+用户可以通过任意文本形式输入以下类型之一的资料：
+- 品牌名称 + 简介
+- 官网介绍
+- 产品介绍
+- 文章/文案内容（如公众号、知乎、小红书等）
+- FAQ、销售话术等
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/geo-analysis-doubao
+如果输入的资料过少，将评估并在报告中标记“资料不足”。
+
+建议的程序化参数如下：
+- `content`: 必填，待评估原文；
+- `content_type`: 选填，资料类型，如 `website_intro`、`article`、`faq`；
+- `report_mode`: 选填，`compact` 或 `standard`，默认 `compact`。
+
+## 5. 评分维度
+总分 100 分，划分为 6 个维度：
+1. **品牌定义清晰度** (20 分): 判断内容是否清楚说明“这个品牌是什么”。
+2. **目标用户清晰度** (15 分): 判断内容是否清楚说明“给谁用”。
+3. **问题与场景清晰度** (15 分): 判断内容是否清楚说明“解决什么问题、适合什么场景”。
+4. **内容结构化程度** (20 分): 判断内容是否有标题、列表、FAQ、流程、对比、总结等结构。
+5. **可引用性** (15 分): 判断内容中是否有适合豆包直接引用的清晰句子。
+6. **推荐触发度** (15 分): 判断内容是否能让豆包在用户提问相关问题时想到这个品牌。
+
+## 6. 评级标准
+- **A (90-100)**：豆包非常容易理解和推荐；
+- **B (80-89)**：豆包较容易理解，但仍可优化；
+- **C+ (70-79)**：有基础，但结构化不足；
+- **C (60-69)**：豆包可以理解一部分，但推荐概率较低；
+- **D (50-59)**：内容分散，豆包难以形成稳定认知；
+- **E (50 以下)**：豆包很难准确理解和推荐。
+
+## 7. 输出格式
+报告固定输出 10 个章节（参见 `templates/doubao_geo_audit_report.md`）：
+1. 基础信息
+2. 总体评分
+3. 分项评分
+4. 豆包可能如何理解这个品牌
+5. 当前最大问题
+6. 豆包推荐概率判断
+7. 可引用句评估
+8. 优先优化建议
+9. 建议补充的 FAQ
+10. 最终结论
+
+输出风格：简洁、直接，不要写成长篇大论，避免复杂目录，不要编造未提供的信息。
+
+默认采用 `compact` 模式，以减少自动评测和裁判阶段的耗时：
+- 每个章节只保留最关键的信息；
+- “当前最大问题”控制在 3 条以内；
+- “优先优化建议”控制在 5 条以内；
+- “建议补充的 FAQ”默认 5 条；
+- 不复述用户原文，不输出思维过程。
+
+## 8. 注意事项
+- Skill 工作流程必须严格依据用户提供的文本进行评估，不随意联想。
+- 若信息不足，“分项评分”与“可能存在的误解”需要明确标出。
+- 可引用句推荐必须符合句式：“XXX 是面向 ______ 的 ______，帮助 ______ 通过 ______ 解决 ______ 问题。”
+- 程序化调用时优先使用 JSON，不建议再用 XML 包裹输入。
+- 如果上游系统会把文本塞进 JSON 字符串，必须正确转义 `\\`、`\"` 和换行符 `\n`。
+
+## 9. 示例调用方式
+```json
+{
+  "skill": "doubao-geo-audit-skill",
+  "action": "audit",
+  "parameters": {
+    "content": "OpenClaw 是一个面向 AI 开发者和产品经理的 Agentic 平台，帮助他们通过无缝对接底层模型能力和工作流，解决复杂任务自动化编排的问题。",
+    "content_type": "brand_intro",
+    "report_mode": "compact"
+  }
+}
 ```

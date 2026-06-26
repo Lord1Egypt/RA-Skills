@@ -1,0 +1,6 @@
+{
+  "limit": 900,
+  "warningThreshold": 800,
+  "searchDepth": "basic",
+  "defaultMaxResults": 5
+}

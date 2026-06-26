@@ -1,0 +1,22 @@
+{
+  "memory_dir": "~/.openclaw/workspace/memory",
+  "interval_hours": 1,
+  "active_minutes": 60,
+  "categories": ["决策", "事项", "进展", "问题", "结论"],
+  "skip_patterns": [
+    "^你好",
+    "^hi",
+    "^hey",
+    "^hello",
+    "^谢谢",
+    "^感谢",
+    "^好的",
+    "^收到",
+    "^ok",
+    "^sure",
+    "^是$",
+    "^HEARTBEAT_OK",
+    "^？"
+  ],
+  "dedup_threshold": 0.8
+}

@@ -1,0 +1,47 @@
+{
+  "skill_name": "swiftlint",
+  "evals": [
+    {
+      "id": 0,
+      "name": "plugin-setup-ci",
+      "prompt": "Set up SwiftLint for a new iOS app that has a SwiftPM `Package.swift` and Xcode targets. The team wants local linting on builds, a pinned SwiftLint version, GitHub Actions output that can be uploaded as SARIF, and guidance for unattended CI builds. Give a concise setup plan with the key snippets and warnings.",
+      "expected_output": "A SwiftLint setup plan that defaults to the SwiftLintPlugins build tool plugin, pins the package version, applies the plugin per target, notes Xcode plugin trust and unattended validation risk, and uses a direct SwiftLint CLI/SARIF step in CI.",
+      "files": [],
+      "assertions": [
+        "Uses `https://github.com/SimplyDanny/SwiftLintPlugins` and `SwiftLintBuildToolPlugin` as the default local integration.",
+        "Says the plugin dependency should be pinned or reviewed rather than floating implicitly.",
+        "Applies the build tool plugin to each target that should be linted.",
+        "Mentions the Xcode trust prompt and warns that `-skipPackagePluginValidation` / `-skipMacroValidation` bypass validation and should be limited to trusted CI dependencies.",
+        "Uses a direct CI command such as `swiftlint --strict --reporter sarif > swiftlint.sarif` plus SARIF upload rather than trying to use the build tool plugin for CI-only reporting."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "baseline-suppression-rollout",
+      "prompt": "We are adopting SwiftLint in a large existing Swift app with thousands of current violations. Propose a rollout plan that lets CI fail only on new violations, explains how to handle intentional exceptions in code, and says how test code should be treated. Include the relevant `.swiftlint.yml` or command snippets.",
+      "expected_output": "An incremental adoption plan using baselines, strict CI with baseline filtering, targeted inline suppressions with reasons, generated-code exclusions, and child test configuration rather than excluding tests entirely.",
+      "files": [],
+      "assertions": [
+        "Creates a baseline with `swiftlint --write-baseline` or `write_baseline` and commits it for incremental adoption.",
+        "Runs CI with `--baseline` and `--strict` or equivalent config so only new violations fail.",
+        "Recommends targeted `swiftlint:disable` suppressions with reasons instead of blanket `all` suppressions.",
+        "Prefers config-level `excluded` paths for generated or vendored code.",
+        "Recommends a relaxed child `.swiftlint.yml` for tests instead of excluding the whole test suite."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "sibling-boundary-routing",
+      "prompt": "I need help with three cleanup tasks in a Swift package: choose better public API names for `func fetchDataWithId(_ id: String)`, decide whether `some` or `any` is right for a return type, and configure SwiftLint to enforce identifier naming and sorted imports. Which skill should own each part? Keep the answer short and give only minimal examples.",
+      "expected_output": "A boundary-aware routing answer that sends API naming to swift-api-design-guidelines, type-system `some`/`any` guidance to swift-language, and lint rule configuration to swiftlint with a minimal configuration snippet.",
+      "files": [],
+      "assertions": [
+        "Routes public API naming and argument-label clarity to `swift-api-design-guidelines`.",
+        "Routes `some` vs `any` protocol type-system guidance to `swift-language`.",
+        "Routes SwiftLint identifier naming and sorted imports configuration to `swiftlint`.",
+        "Provides only a minimal SwiftLint snippet, such as `identifier_name` and `opt_in_rules: sorted_imports`, without turning the answer into a full lint setup guide.",
+        "Does not collapse Swift language or API design guidance into the SwiftLint skill."
+      ]
+    }
+  ]
+}

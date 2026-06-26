@@ -1,0 +1,91 @@
+# 简体中文 (zh-CN)
+
+meta:
+  title: "系统健康检查"
+  duration: "耗时：{seconds}"
+  timestamp: "时间：{time}"
+  hostname: "主机：{host}"
+
+checks:
+  disk: "磁盘使用率"
+  memory: "内存使用"
+  cron: "Cron 服务"
+  gateway: "OpenClaw Gateway"
+  logs: "日志文件"
+  python: "Python 环境"
+  scripts: "关键脚本"
+
+status:
+  ok: "[正常]"
+  warning: "[警告]"
+  error: "[错误]"
+  critical: "[严重]"
+  healthy: "健康"
+  has_issues: "存在问题"
+  running: "运行中"
+  not_running: "未运行"
+
+messages:
+  # Disk
+  disk_ok: "{usage}% (阈值：{threshold}%)"
+  disk_warning: "{usage}% (超过 {threshold}%)"
+  disk_critical: "{usage}% (严重阈值：{threshold}%)"
+  
+  # Memory
+  memory_ok: "{used:.1f}GB / {total:.1f}GB"
+  memory_warning: "{used:.1f}GB / {total:.1f}GB (偏低：{available}MB)"
+  
+  # Cron
+  cron_ok: "运行中"
+  cron_failed: "未运行"
+  
+  # Gateway
+  gateway_ok: "正常"
+  gateway_failed: "无响应"
+  
+  # Logs
+  logs_ok: "{size}MB"
+  logs_warning: "{size}MB (偏大)"
+  
+  # Python
+  python_ok: "Python {version} 可用"
+  python_failed: "未找到 Python"
+  
+  # Scripts
+  scripts_ok: "所有关键脚本存在"
+  scripts_missing: "缺失：{scripts}"
+
+# L1 快速检查
+l1:
+  title: "L1 快速检查"
+  ok: "✅ 所有定义文件正常"
+  error: "❌ 缺失文件：{files}"
+
+# L2 小时级检查
+l2:
+  title: "L2 小时级检查"
+  interval: "每 {minutes} 分钟"
+  
+# L3 日级审计
+l3:
+  title: "L3 日级审计"
+  schedule: "每日 {time}"
+  updates: "系统更新"
+  swap: "Swap 使用"
+  processes: "进程数量"
+  old_logs: "旧日志文件"
+  disk_cleanup: "磁盘清理"
+
+# 心跳检查
+heartbeat:
+  title: "心跳检查"
+  work_hours: "工作时间：{start}:00 - {end}:00"
+  suppressed: "已抑制（全部正常）"
+  active: "激活"
+
+# 总结
+summary:
+  all_ok: "✅ 所有检查通过"
+  has_warnings: "⚠️ {count} 个警告"
+  has_errors: "❌ {count} 个错误"
+  total_checks: "总计：{total} 项检查"

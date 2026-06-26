@@ -1,0 +1,37 @@
+{
+  "name": "pet-leash-hook-map",
+  "displayName": "Pet Leash Hook Map",
+  "version": "1.0.1",
+  "description": "Create a door-side pet leash hook map and walk-ready checklist for leashes, bags, lights, towels, backup clips, secure hooks, chew hazards, and harness checks.",
+  "triggerKeywords": [
+    "pet leash hook map",
+    "dog leash station",
+    "pet entryway organizer",
+    "walk kit checklist",
+    "leash and poop bag station",
+    "dog walking setup",
+    "pet gear hooks",
+    "harness check routine"
+  ],
+  "tags": [
+    "pets",
+    "home",
+    "organization",
+    "checklist",
+    "entryway"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Household pet walk organization only; flags secure hooks, chew hazards, and harness checks with no veterinary advice or escape-proof claims.",
+  "slug": "pet-leash-hook-map",
+  "document_only": true,
+  "runtime": "none"
+}

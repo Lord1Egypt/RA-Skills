@@ -1,0 +1,67 @@
+version: 1
+roles:
+  coordinator:
+    can_propose: true
+    can_claim: true
+    can_review: true
+    can_approve: false
+    allowed_task_modes:
+      - proposal-approval
+      - claimable
+  architect:
+    can_propose: true
+    can_claim: true
+    can_review: true
+    can_approve: false
+    allowed_task_modes:
+      - proposal-approval
+      - claimable
+  implementer:
+    can_propose: true
+    can_claim: true
+    can_review: false
+    can_approve: false
+    allowed_task_modes:
+      - claimable
+      - proposal-approval
+  reviewer:
+    can_propose: true
+    can_claim: false
+    can_review: true
+    can_approve: false
+    allowed_task_modes:
+      - proposal-approval
+  security-reviewer:
+    can_propose: true
+    can_claim: false
+    can_review: true
+    can_approve: false
+    allowed_task_modes:
+      - proposal-approval
+  researcher:
+    can_propose: true
+    can_claim: true
+    can_review: false
+    can_approve: false
+    allowed_task_modes:
+      - claimable
+      - proposal-approval
+  documenter:
+    can_propose: true
+    can_claim: true
+    can_review: false
+    can_approve: false
+    allowed_task_modes:
+      - claimable
+  human-approver:
+    can_propose: true
+    can_claim: false
+    can_review: true
+    can_approve: true
+    allowed_task_modes:
+      - proposal-approval
+      - claimable
+constraints:
+  only_human_approver_may_promote_visibility: true
+  only_human_approver_may_finalize_policy_changes: true
+  security_reviewer_required_for_high_risk: true

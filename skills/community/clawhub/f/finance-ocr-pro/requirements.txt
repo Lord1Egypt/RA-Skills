@@ -1,0 +1,24 @@
+# AI model client
+openai>=1.0
+python-dotenv>=0.19
+
+# PDF / image processing
+PyMuPDF>=1.21
+Pillow>=9.0
+pdf2image>=1.16
+
+# Markdown → HTML rendering
+markdown2>=2.4
+
+# Markdown → DOCX rendering
+python-docx>=0.8.11
+beautifulsoup4>=4.12
+lxml>=4.9
+latex2mathml>=3.75
+
+# Markdown → Excel rendering
+openpyxl>=3.1
+unicodeit>=0.7
+
+# Windows-only Office COM conversion fallback
+pywin32>=306; platform_system == "Windows"

@@ -1,0 +1,7 @@
+{
+  "name": "instagram-strategic-analyzer",
+  "version": "1.0.0",
+  "description": "Analizza profilo artistico e genera strategie Instagram per Il Prato",
+  "entry": "index.js",
+  "config": "config.json"
+}

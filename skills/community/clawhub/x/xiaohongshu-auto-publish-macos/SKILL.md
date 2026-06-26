@@ -1,35 +1,57 @@
 ---
-name: "小红书自动发布(macOS)"
+name: xiaohongshu-auto-publish
 description: "小红书自动发布技能 - 支持图片搜索下载、自动上传发布一键完成"
-category: "other"
-source: "ClawHub"
-tags: [auto-publish, macOS, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-auto-publish-macos"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-auto-publish-macos"
 ---
 
-# 小红书自动发布(macOS)
+# 小红书自动发布技能
 
-> 小红书自动发布技能 - 支持图片搜索下载、自动上传发布一键完成
+## 技能简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-auto-publish-macos`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-auto-publish-macos](https://clawhub.ai/skills/xiaohongshu-auto-publish-macos)
+自动完成小红书笔记发布全流程：
+1. 根据关键词搜索下载图片
+2. 自动打开小红书创作平台
+3. 上传图片并填写标题、正文
+4. 自动发布笔记
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-auto-publish-macos
+### 发布笔记
 ```
+帮我发布小红书笔记，主题是[主题关键词]
+```
+
+或指定内容：
+```
+发布小红书笔记，标题：[标题]，正文：[正文内容]，话题：[#话题]
+```
+
+### 示例
+```
+帮我发布一篇关于AI职业教育的笔记
+```
+
+## 技术细节
+
+### 发布流程
+1. 使用 OpenClaw 内置浏览器 (profile="openclaw")
+2. 通过 browser.upload 上传图片到发布页
+3. 使用 act+type 填写标题和正文
+4. 点击发布按钮完成发布
+
+### 关键选择器
+- 发布页URL: `https://creator.xiaohongshu.com/publish/publish?from=homepage&target=image`
+- 上传按钮: `button` (点击触发文件选择)
+- 标题输入框: `textbox[placeholder*="标题"]`
+- 正文输入框: `textbox` (正文区域)
+- 发布按钮: `button:has-text("发布")`
+
+### 图片准备
+- 自动从网络下载相关图片
+- 或使用桌面已有图片
+
+## 注意事项
+
+1. 首次使用需要扫码登录小红书
+2. 保持浏览器标签页不要关闭
+3. 发布间隔建议30秒以上
+4. 遵守小红书社区规范

@@ -1,0 +1,350 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.8",
+    "lastTouchedAt": "2026-03-14T05:07:42.701Z"
+  },
+  "env": {
+    "vars": {
+      "NEXT_PUBLIC_SUPABASE_URL": "https://lryjqxoudbqpwugfseyg.supabase.co",
+      "SUPABASE_URL": "https://lryjqxoudbqpwugfseyg.supabase.co",
+      "SUPABASE_SERVICE_ROLE_KEY": "[REDACTED]"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-11T15:46:51.001Z",
+    "lastRunVersion": "2026.3.8",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      }
+    },
+    "order": {
+      "openai-codex": [
+        "openai-codex:default"
+      ]
+    }
+  },
+  "acp": {
+    "enabled": true,
+    "dispatch": {
+      "enabled": true
+    },
+    "defaultAgent": "claude",
+    "allowedAgents": [
+      "claude",
+      "codex"
+    ]
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ezrouter": {
+        "baseUrl": "https://openrouter.ezsite.ai/api/claude",
+        "apiKey": "[REDACTED]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "claude-sonnet-4-6",
+            "name": "Claude Sonnet 4.6",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 64000
+          }
+        ]
+      },
+      "minimax": {
+        "baseUrl": "https://api.minimax.io/anthropic",
+        "apiKey": "[REDACTED]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax M2.5 (Fallback)",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "custom-v2-as-pincc-ai-4-5": {
+        "baseUrl": "https://v2-as.pincc.ai/v1",
+        "api": "anthropic-messages",
+        "headers": {
+          "x-api-key": "[REDACTED]"
+        },
+        "models": [
+          {
+            "id": "claude-opus-4-5",
+            "name": "Claude Opus 4.5 (PinCC)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "dashscope": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "[REDACTED]",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3",
+            "name": "Qwen3",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "custom-openrouter-ezsite-ai": {
+        "baseUrl": "https://openrouter.ezsite.ai/api/claude",
+        "apiKey": "[REDACTED]",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "claude-sonnet-4-6",
+            "name": "claude-sonnet-4-6 (Custom Provider)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 16000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "ezrouter/claude-sonnet-4-6",
+          "minimax/MiniMax-M2.5",
+          "custom-v2-as-pincc-ai-4-5/claude-opus-4-5",
+          "dashscope/qwen3"
+        ]
+      },
+      "models": {
+        "openai-codex/gpt-5.4": {
+          "alias": "openai-codex"
+        }
+      },
+      "workspace": "/Users/m1/.openclaw/workspace",
+      "memorySearch": {
+        "provider": "gemini",
+        "remote": {
+          "apiKey": "[REDACTED]"
+        },
+        "fallback": "none"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "hunter"
+      },
+      {
+        "id": "elon"
+      },
+      {
+        "id": "tony",
+        "workspace": "/Users/m1/.openclaw/workspace-tony"
+      },
+      {
+        "id": "peter",
+        "workspace": "/Users/m1/.openclaw/workspace-peter"
+      },
+      {
+        "id": "jenny",
+        "workspace": "/Users/m1/.openclaw/workspace-jenny"
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full",
+    "sessions": {
+      "visibility": "all"
+    },
+    "agentToAgent": {
+      "enabled": true
+    },
+    "exec": {
+      "security": "full",
+      "ask": "off"
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "open",
+      "botToken": "[REDACTED]",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "allowFrom": [
+        "*"
+      ],
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "network": {
+        "autoSelectFamily": false,
+        "dnsResultOrder": "ipv4first"
+      },
+      "proxy": "http://127.0.0.1:7897",
+      "accounts": {
+        "default": {
+          "dmPolicy": "pairing",
+          "botToken": "[REDACTED]",
+          "allowFrom": [
+            "*"
+          ],
+          "groupPolicy": "allowlist",
+          "streaming": "partial",
+          "proxy": "http://127.0.0.1:7897"
+        },
+        "elon": {
+          "dmPolicy": "pairing",
+          "botToken": "[REDACTED]",
+          "allowFrom": [
+            "*"
+          ],
+          "groupPolicy": "allowlist",
+          "streaming": "partial",
+          "proxy": "http://127.0.0.1:7897"
+        },
+        "hunter": {
+          "dmPolicy": "pairing",
+          "botToken": "[REDACTED]",
+          "allowFrom": [
+            "*"
+          ],
+          "groupPolicy": "allowlist",
+          "streaming": "partial",
+          "proxy": "http://127.0.0.1:7897"
+        },
+        "tony": {
+          "enabled": true,
+          "dmPolicy": "pairing",
+          "botToken": "[REDACTED]",
+          "allowFrom": [
+            "*"
+          ],
+          "groupPolicy": "allowlist",
+          "streaming": "partial",
+          "proxy": "http://127.0.0.1:7897"
+        }
+      }
+    },
+    "discord": {
+      "enabled": true,
+      "commands": {
+        "native": false,
+        "nativeSkills": false
+      },
+      "token": "[REDACTED]",
+      "proxy": "http://127.0.0.1:7897",
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "guilds": {
+        "1474074250766843938": {
+          "channels": {
+            "1479000942937374760": {
+              "allow": true,
+              "requireMention": false
+            }
+          }
+        }
+      },
+      "threadBindings": {
+        "spawnAcpSessions": true
+      },
+      "accounts": {
+        "default": {
+          "proxy": "http://127.0.0.1:7897",
+          "groupPolicy": "allowlist",
+          "streaming": "off"
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "custom",
+    "customBindHost": "127.0.0.1",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "[REDACTED]"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "plugins": {
+    "entries": {
+      "acpx": {
+        "enabled": true
+      }
+    }
+  }
+}

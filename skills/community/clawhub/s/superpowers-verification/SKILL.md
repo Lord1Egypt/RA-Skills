@@ -1,35 +1,85 @@
 ---
-name: "Superpowers Verification"
-description: "Use when about to claim any work is complete, fixed, passing, or successful - requires running fresh verification commands and reading actual output before m..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/superpowers-verification"
-sourceUrl: "https://clawhub.ai/skills/superpowers-verification"
+name: superpowers-verification
+description: Use when about to claim any work is complete, fixed, passing, or successful - requires running fresh verification commands and reading actual output before making any success claims; evidence before assertions always
 ---
 
-# Superpowers Verification
+# Superpowers Verification - 证据先行原则
 
-> Use when about to claim any work is complete, fixed, passing, or successful - requires running fresh verification commands and reading actual output before m...
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/superpowers-verification`
-- **Source URL:** [https://clawhub.ai/skills/superpowers-verification](https://clawhub.ai/skills/superpowers-verification)
+**声称工作完成前必须运行验证命令。未运行验证就声称成功 = 说谎，不是效率。**
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/superpowers-verification
 ```
+在声称任何状态之前：
+
+1. 识别：哪个命令能证明这个说法？
+2. 运行：执行完整命令（全新、完整）
+3. 读取：完整输出，检查退出码，统计失败数
+4. 验证：输出是否证实了说法？
+   - 如果否：给出实际状态 + 证据
+   - 如果是：给出说法 + 证据
+5. 只有这时：才能做出声称
+
+跳过任何步骤 = 说谎，不是验证
+```
+
+## 常见验证要求
+
+| 声称 | 需要 | 不够 |
+|------|------|------|
+| 测试通过 | 测试命令输出：0 failures | 之前运行过、"应该能过" |
+| Linter 干净 | Linter 输出：0 errors | 部分检查、推测 |
+| 构建成功 | 构建命令：exit 0 | Linter 通过、日志看起来正常 |
+| Bug 修复 | 原始症状测试：通过 | 代码改了、假定修复了 |
+| 回归测试正常 | 红绿循环验证过 | 测试通过了一次 |
+| Agent 完成了 | VCS diff 显示变更 | Agent 报告"成功" |
+| 需求满足 | 逐项检查清单 | 测试通过、阶段完成 |
+
+## 红绿验证循环（Regression Test）
+
+```
+✅ 写测试 → 运行（通过）→ 回滚修复 → 运行（必须失败）→ 恢复 → 运行（通过）
+❌ "我写了回归测试"（没有红绿验证）
+```
+
+## 禁止的措辞
+
+以下措辞出现说明还没有验证：
+- 使用 "应该"、"大概"、"看起来"
+- 表达满意之前："很好！"、"完美！"、"完成了！"等
+- 即将 commit/push/PR 但没有验证
+- 信任 agent 的成功报告
+- 依赖部分验证
+
+## 验证检查表（完成工作前必须打勾）
+
+- [ ] 运行了完整的测试命令
+- [ ] 读取了完整输出
+- [ ] 确认 0 failures / exit 0
+- [ ] 其他相关测试仍然通过
+- [ ] 报告包含实际证据（命令 + 输出摘要）
+
+不能全部打勾？说明跳过了 TDD。从头开始。
+
+## 为什么这很重要
+
+从 24 个失败记忆中：
+- 主人说"我不信你"——信任崩塌
+- 未定义的函数被发出去——会崩溃
+- 未完成的需求被发出去——功能缺失
+- 虚假完成浪费时间 → 重新导向 → 返工
+
+## 何时应用
+
+**永远在此之前：**
+- 任何成功/完成说法的变体
+- 任何表达满意
+- 任何正面工作状态描述
+- Commit、PR 创建、任务完成
+- 转向下一个任务
+- 委托给 agents
+
+**规则适用于：**
+- 精确措辞
+- 释义和同义词
+- 成功/正确的任何暗示

@@ -1,0 +1,2 @@
+# lotto-agent v2 仅使用 Python 标准库（sqlite3, urllib, secrets, ...）
+# 没有第三方依赖。pytest 仅在需要跑回归测试时手动安装。

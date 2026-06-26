@@ -1,0 +1,54 @@
+{
+  "greeting": {
+    "en": "Hi! Welcome to {clinic_name} 😊 I'm the virtual assistant and I can help you with:\n\n• Schedule an appointment\n• Reschedule or cancel\n• Clinic information (hours, location, insurance)\n• General questions\n\nHow can I help you today?",
+    "pt": "Oi! Bem-vindo(a) ao/a {clinic_name} 😊 Sou o assistente virtual e posso te ajudar com:\n\n• Agendar uma consulta\n• Remarcar ou cancelar\n• Informacoes da clinica (horarios, endereco, convenios)\n• Duvidas gerais\n\nComo posso te ajudar?"
+  },
+  "appointment_confirmation": {
+    "en": "Your appointment is confirmed! ✅\n\n📋 Service: {service}\n📅 Date: {date}\n🕐 Time: {time}\n👤 Patient: {name}\n📍 Location: {address}\n\nI'll send you a reminder 24 hours and 2 hours before. If you need to reschedule, just message us here anytime.\n\nSee you then!",
+    "pt": "Sua consulta esta confirmada! ✅\n\n📋 Servico: {service}\n📅 Data: {date}\n🕐 Horario: {time}\n👤 Paciente: {name}\n📍 Local: {address}\n\nVou te enviar um lembrete 24 horas e 2 horas antes. Se precisar remarcar, e so mandar mensagem aqui.\n\nAte la!"
+  },
+  "reminder_24h": {
+    "en": "Hi {name}! Just a friendly reminder that you have an appointment tomorrow:\n\n📋 {service}\n📅 {date} at {time}\n📍 {address}\n\nPlease arrive 10 minutes early if you have paperwork to fill out.\n\nNeed to reschedule? Just reply here.",
+    "pt": "Oi {name}! Lembrete da sua consulta amanha:\n\n📋 {service}\n📅 {date} as {time}\n📍 {address}\n\nPor favor chegue 10 minutos antes se tiver formularios pra preencher.\n\nPrecisa remarcar? Responde aqui."
+  },
+  "reminder_2h": {
+    "en": "Your appointment at {clinic_name} is in 2 hours ({time}). See you soon! 😊\n\n📍 {address}\n🅿️ {parking_info}",
+    "pt": "Sua consulta no/na {clinic_name} e em 2 horas ({time}). Te esperamos! 😊\n\n📍 {address}\n🅿️ {parking_info}"
+  },
+  "post_visit_review": {
+    "en": "Hi {name}! Thank you for visiting {clinic_name} today. We hope everything went well! 😊\n\nYour feedback helps us improve and helps others find great dental care. Would you mind leaving us a quick review?\n\n⭐ {google_review_link}\n\nThank you so much!",
+    "pt": "Oi {name}! Obrigado por visitar o/a {clinic_name} hoje. Esperamos que tudo tenha ido bem! 😊\n\nSeu feedback nos ajuda a melhorar e ajuda outras pessoas a encontrar um bom dentista. Poderia deixar uma avaliacao rapida?\n\n⭐ {google_review_link}\n\nMuito obrigado!"
+  },
+  "reschedule_confirmation": {
+    "en": "Your appointment has been rescheduled! ✅\n\n❌ Previous: {old_date} at {old_time}\n✅ New: {new_date} at {new_time}\n📋 Service: {service}\n📍 Location: {address}\n\nI'll send you a reminder before the new date. See you then!",
+    "pt": "Sua consulta foi remarcada! ✅\n\n❌ Anterior: {old_date} as {old_time}\n✅ Nova: {new_date} as {new_time}\n📋 Servico: {service}\n📍 Local: {address}\n\nVou te enviar lembrete antes da nova data. Ate la!"
+  },
+  "cancellation_confirmation": {
+    "en": "Your appointment on {date} at {time} has been cancelled. If you'd like to reschedule in the future, just message us here. We hope to see you soon! 😊",
+    "pt": "Sua consulta do dia {date} as {time} foi cancelada. Se quiser reagendar no futuro, e so mandar mensagem aqui. Esperamos te ver em breve! 😊"
+  },
+  "handoff_to_human": {
+    "en": "Let me connect you with our team. A staff member will reach out within {response_time}. Thank you for your patience!",
+    "pt": "Vou te conectar com nossa equipe. Um membro do time vai entrar em contato em ate {response_time}. Obrigado pela paciencia!"
+  },
+  "after_hours": {
+    "en": "Thanks for reaching out! Our clinic is currently closed (we open at {open_time}). I can still help you schedule an appointment or answer general questions right now.\n\nFor emergencies, call {emergency_number}.",
+    "pt": "Obrigado por entrar em contato! A clinica esta fechada no momento (abrimos as {open_time}). Ainda posso te ajudar a agendar uma consulta ou responder perguntas gerais agora.\n\nPara emergencias, ligue {emergency_number}."
+  },
+  "emergency_response": {
+    "en": "I understand you're experiencing a dental emergency.\n\n🚨 Call our emergency line NOW: {emergency_number}\n\nWhile you wait:\n• For pain: Over-the-counter ibuprofen can help\n• For bleeding: Apply gentle pressure with gauze\n• For a knocked-out tooth: Keep it moist (in milk or saliva)\n• For swelling: Cold compress on the outside of the cheek\n\nIf this is a life-threatening emergency, call 911 immediately.\n\nOur team has been notified and will prioritize your case.",
+    "pt": "Entendo que voce esta com uma emergencia dental.\n\n🚨 Ligue para nossa emergencia AGORA: {emergency_number}\n\nEnquanto espera:\n• Para dor: Ibuprofeno de farmacia pode ajudar\n• Para sangramento: Pressao leve com gaze\n• Para dente que caiu: Mantenha umido (em leite ou saliva)\n• Para inchaco: Compressa fria por fora da bochecha\n\nSe for emergencia com risco de vida, ligue 192 (SAMU) imediatamente.\n\nNossa equipe foi notificada e vai priorizar seu caso."
+  },
+  "new_patient_welcome": {
+    "en": "Welcome! Since this is your first time with us, I'll need a few details to get you set up. I'll ask one question at a time — quick and easy!",
+    "pt": "Bem-vindo(a)! Como e sua primeira vez aqui, vou precisar de alguns dados pra te cadastrar. Vou perguntar uma coisa de cada vez — rapido e facil!"
+  },
+  "medical_advice_redirect": {
+    "en": "I appreciate you sharing that with me, but I'm not qualified to give medical advice. For any health concerns, please contact our clinic directly at {phone} so a dental professional can help you properly.",
+    "pt": "Agradeco por compartilhar, mas nao sou qualificado(a) pra dar orientacao medica. Para qualquer preocupacao de saude, entre em contato diretamente com a clinica pelo {phone} pra um profissional te ajudar."
+  },
+  "unclear_message_fallback": {
+    "en": "I want to make sure I help you correctly. Could you let me know if you'd like to:\n\n1. Schedule an appointment\n2. Reschedule or cancel\n3. Ask a question\n4. Speak with a staff member\n\nJust reply with the number!",
+    "pt": "Quero ter certeza que vou te ajudar direito. Me diz se voce quer:\n\n1. Agendar uma consulta\n2. Remarcar ou cancelar\n3. Fazer uma pergunta\n4. Falar com alguem da equipe\n\nSo responde com o numero!"
+  }
+}

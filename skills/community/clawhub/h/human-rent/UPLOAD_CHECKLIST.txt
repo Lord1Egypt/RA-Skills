@@ -1,0 +1,86 @@
+===============================================================================
+  HUMAN-RENT v0.2.1 - CLAWHUB UPLOAD CHECKLIST
+===============================================================================
+
+PRE-UPLOAD VERIFICATION
+  [x] All 15 core files present
+  [x] Checksums validated (all 6 files match)
+  [x] CLI tested (./bin/human-rent --version = 0.2.1)
+  [x] Version 0.2.1 confirmed in _meta.json
+  [x] No binaries (all text-based files)
+  [x] Package size: 192 KB total, ~140 KB for core files
+
+CRITICAL: UPLOAD ONLY 15 CORE FILES
+  [x] _meta.json
+  [x] package.json
+  [x] SKILL.md
+  [x] README.md
+  [x] INSTALLATION.md
+  [x] CHANGELOG.md
+  [x] LICENSE
+  [x] bin/human-rent
+  [x] bin/human-rent.js
+  [x] bin/checksums.txt
+  [x] lib/api-client.js
+  [x] lib/confirmation.js
+  [x] lib/dispatch.js
+  [x] lib/humans.js
+  [x] lib/status.js
+
+DO NOT UPLOAD (5 documentation files):
+  [ ] CLAWHUB-SUBMISSION.md
+  [ ] UPLOAD-READY.md
+  [ ] QUICK-UPLOAD-GUIDE.txt
+  [ ] RELEASE-NOTES-v0.2.1.md
+  [ ] SECURITY-FIXES-v0.2.1.md
+
+UPLOAD STEPS
+  [ ] 1. Go to https://clawhub.ai/zhenstaff/human-rent
+  [ ] 2. Click "Upload New Version" or "Create Skill"
+  [ ] 3. Select ONLY 15 core files (see list above)
+  [ ] 4. Fill form (use FINAL_UPLOAD_GUIDE.md for values)
+  [ ] 5. Review and submit
+  [ ] 6. Note submission ID: ____________________
+
+FORM QUICK REFERENCE
+  Version: 0.2.1
+  Display Name: Human-Rent (人力租赁)
+  Category: Productivity, Business Tools
+  Homepage: https://docs.zhenrent.com/
+  License: MIT
+  Short desc: Human intelligence task marketplace integration
+
+POST-UPLOAD
+  [ ] Confirmation email received
+  [ ] Submission ID recorded
+  [ ] Status shows "Under Review"
+
+EXPECTED TIMELINE
+  Automated checks: 0-2 hours
+  Manual review: 24-48 hours
+  Approval: April 3-4, 2026
+
+DURING REVIEW (24-72 HOURS)
+  [ ] Continue Week 1 improvements (Chinese translation or SLA docs)
+  [ ] Monitor email for ClawHub updates
+  [ ] Check status at https://clawhub.ai/zhenstaff/human-rent/versions
+
+TROUBLESHOOTING
+  - Folder upload issue -> Try Chrome browser or select files manually
+  - Validation failed -> Verify checksums match (see FINAL_UPLOAD_GUIDE.md)
+  - Package too large -> Core files only ~140 KB (OK!)
+  - Too many files -> Only upload 15 core files, not 20
+
+VERIFICATION CHECKSUMS (for reference):
+  4cf55493cf08e2c2311cbfb4f2ee882a0491bc6cdce3c28fc64dda91ded741cd  bin/human-rent.js
+  470f0ef58f277ff586ef4fd9061362e4f987758649de684429283d92b9ae4abd  lib/api-client.js
+  336474c48c09fe195fca488c95970553d1646ae470a4bed45b02f639d2632f64  lib/confirmation.js
+  ccfdcb53c70b413a16940fd23ae98bf861d43354f7d449e13c6474ca460dcebb  lib/dispatch.js
+  97d3f68584a245d13731eb89a507fb67fb172fbbabfecd5c1c79084650354d28  lib/humans.js
+  6b0e85a10c33e8b18afbc13ba1d8d8ff6f6a191467abd5c5f661a911d494438c  lib/status.js
+
+===============================================================================
+  STATUS: READY TO UPLOAD
+  LAST VERIFIED: 2026-04-01
+  VERIFIED BY: MCP Builder Agent
+===============================================================================

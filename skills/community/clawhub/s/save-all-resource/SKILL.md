@@ -1,35 +1,53 @@
 ---
-name: "Save All Resource"
-description: "打开一个可见浏览器，让用户手动浏览目标网站，并在浏览过程中持续监听同域原始响应内容，实时落盘到本地桌面目录。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/save-all-resource"
-sourceUrl: "https://clawhub.ai/skills/save-all-resource"
+name: save-all-resource
+description: 打开一个可见浏览器，让用户手动浏览目标网站，并在浏览过程中持续监听同域原始响应内容，实时落盘到本地桌面目录。
 ---
 
-# Save All Resource
+# 保存所有资源
 
-> 打开一个可见浏览器，让用户手动浏览目标网站，并在浏览过程中持续监听同域原始响应内容，实时落盘到本地桌面目录。
+当用户希望输入一个网址，打开浏览器后手动浏览页面，并把同域的原始响应内容持续保存到本地目录时，使用本技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/save-all-resource`
-- **Source URL:** [https://clawhub.ai/skills/save-all-resource](https://clawhub.ai/skills/save-all-resource)
+## 输入
+用户应提供一个入口 URL，例如：
 
-## Overview
+- `https://www.google.com/`
 
+## 输出
+脚本会在用户桌面创建一个以域名命名的文件夹，例如：
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `~/Desktop/www.google.com`
+
+然后持续保存：
+
+- HTML 原始响应
+- JavaScript
+- CSS
+- JSON
+- 图片
+- 字体
+- 其他同域原始响应资源
+
+## 执行流程
+1. 接收用户提供的入口 URL。
+2. 运行：
+   `node scripts/main.js <url>`
+3. 脚本会打开一个可见浏览器页签。
+4. 用户在这个页签中手动点击和切换页面。
+5. 脚本持续监听同域的原始响应内容，并实时写入桌面目录。
+6. 当用户关闭该页签后，脚本自动退出。
+
+## 规则
+- 默认只保存同域资源。
+- 只保存 `http:` 和 `https:` 响应。
+- 默认跳过 `blob:`、`data:`、`chrome-extension:` 等特殊协议资源。
+- 主文档 HTML 使用 `response.text()` 保存，目标是尽量接近 DevTools Network 中看到的原始响应内容。
+- 不使用 `page.content()` 作为主页面保存方式，因此不会把运行后的 DOM 快照当成原始 HTML。
+- 如果页面是 SPA 路由切换且没有新的 document 响应，则不会生成新的 HTML 文件，但接口和其他资源响应仍会继续保存。
+- 如果用户关闭该页签，脚本必须自动退出，不要继续后台运行。
+
+## 依赖
+此技能脚本依赖 `puppeteer`。首次使用前需要在技能目录中安装依赖：
+
 ```bash
-hermes skills install clawhub/save-all-resource
-```
+cd scripts
+npm install

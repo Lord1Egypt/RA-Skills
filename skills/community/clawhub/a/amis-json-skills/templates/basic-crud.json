@@ -1,0 +1,107 @@
+/**
+ * 基础增删改查模板
+ * 适用场景：数据列表管理、新增/编辑/删除/查看
+ * 核心组件：CRUD + Dialog
+ */
+{
+  "type": "page",
+  "title": "数据管理",
+  "body": {
+    "type": "crud",
+    "name": "dataTable",
+    "api": "/api/data",
+    "columns": [
+      {
+        "name": "id",
+        "label": "ID",
+        "width": 60
+      },
+      {
+        "name": "name",
+        "label": "名称",
+        "sortable": true
+      },
+      {
+        "name": "status",
+        "label": "状态",
+        "type": "mapping",
+        "map": {
+          "1": "<span class=\"label label-success\">启用</span>",
+          "0": "<span class=\"label label-default\">禁用</span>"
+        }
+      },
+      {
+        "name": "created_at",
+        "label": "创建时间",
+        "type": "date",
+        "format": "YYYY-MM-DD HH:mm"
+      },
+      {
+        "type": "operation",
+        "label": "操作",
+        "buttons": [
+          {
+            "label": "编辑",
+            "type": "button",
+            "actionType": "dialog",
+            "dialog": {
+              "title": "编辑数据",
+              "body": {
+                "type": "form",
+                "api": "put:/api/data/${id}",
+                "controls": [
+                  {
+                    "type": "text",
+                    "name": "name",
+                    "label": "名称",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "label": "删除",
+            "type": "button",
+            "actionType": "ajax",
+            "confirmText": "确认删除该数据？",
+            "api": "delete:/api/data/${id}"
+          }
+        ]
+      }
+    ],
+    "headerToolbar": [
+      {
+        "type": "button",
+        "label": "新增",
+        "actionType": "dialog",
+        "level": "primary",
+        "dialog": {
+          "title": "新增数据",
+          "body": {
+            "type": "form",
+            "api": "post:/api/data",
+            "controls": [
+              {
+                "type": "text",
+                "name": "name",
+                "label": "名称",
+                "required": true
+              }
+            ]
+          }
+        }
+      },
+      "bulkActions",
+      {
+        "type": "columns-toggler",
+        "align": "right"
+      }
+    ],
+    "footerToolbar": [
+      "statistics",
+      "switch-per-page",
+      "pagination"
+    ]
+  }
+}

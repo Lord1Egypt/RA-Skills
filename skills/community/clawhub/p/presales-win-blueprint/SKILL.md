@@ -1,35 +1,78 @@
 ---
-name: "Presales Win Blueprint"
-description: "售前方案通关秘籍，按客户行业、售前阶段、竞品形态和风险信号生成行业化赢单打法。"
-category: "domain"
-source: "ClawHub"
-tags: [b2b, presales, solution-selling]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/presales-win-blueprint"
-sourceUrl: "https://clawhub.ai/skills/presales-win-blueprint"
+name: presales-win-blueprint
+version: 2.0.0
+description: 售前方案通关秘籍，按客户行业、售前阶段、竞品形态和风险信号生成行业化赢单打法。
+priority: high
+source: industry-experience-methodology
+workers: Sales, PM, Tech
+created: 2026-05-23
+tags: [presales, b2b, solution-selling, industry-playbook, win-strategy]
 ---
 
-# Presales Win Blueprint
+# presales-win-blueprint — 售前方案通关秘籍
 
-> 售前方案通关秘籍，按客户行业、售前阶段、竞品形态和风险信号生成行业化赢单打法。
+用于企业级售前场景：输入客户行业、当前阶段、竞品形态、预算和风险信号，输出一份可直接用于方案准备、客户沟通和内部通关的赢单打法。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/presales-win-blueprint`
-- **Source URL:** [https://clawhub.ai/skills/presales-win-blueprint](https://clawhub.ai/skills/presales-win-blueprint)
+这个 Skill 的定位是“行业洞察 + 经验打法”：
 
-## Overview
+- 不是纯通用销售方法论：会区分政府、零售、制造、金融等行业的不同关注点。
+- 不是个人经历复述：所有规则均去公司化、去项目化、去个人化。
+- 不输出真实客户、真实厂商、真实项目数据或可追溯信息。
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 售前首次诊断前，快速判断客户是否值得投入。
+- 需求期把功能诉求重构成业务问题。
+- POC前定义评估标准，避免无边界试用。
+- 招投标前把行业理解转成评分响应。
+- 商务谈判时控制降价、范围和交付承诺。
+
+## CLI
+
+交互模式：
+
 ```bash
-hermes skills install clawhub/presales-win-blueprint
+presales-win-blueprint
 ```
+
+快速模式：
+
+```bash
+presales-win-blueprint --quick \
+  --client "某连锁企业" \
+  --industry "零售/消费品" \
+  --stage "需求期" \
+  --competitors "平台型厂商,低价竞争者" \
+  --budget "已立项"
+```
+
+保留参数：
+
+| 参数 | 说明 |
+| --- | --- |
+| `--client` | 客户或项目代称 |
+| `--industry` | 行业，如政府、零售、制造、金融 |
+| `--stage` | 线索期、需求期、POC阶段、招投标、商务谈判 |
+| `--competitors` | 竞品形态，逗号分隔 |
+| `--budget` | 预算状态或预算口径 |
+| `--decision-role` | 当前主要决策角色 |
+| `--signals` | 风险信号，逗号分隔 |
+
+## 输出内容
+
+- 阶段打法：当前阶段应该推进什么、避免什么。
+- 行业打法：行业关注点、关键追问、建议证明材料。
+- 竞品攻防：按平台型、传统套件、低价、垂直小厂、同类竞品生成策略。
+- 风险预警：按预算、决策链、POC、需求边界等信号评分。
+- 方案自检：行业洞察、客户理解、业务价值、竞争策略、交付边界等检查项。
+- 下一步动作：把方案推进到可验证、可签收、可成交的动作。
+
+## 经验边界
+
+经验来源统一标注为：
+
+- 行业普遍教训
+- 实战经验总结
+- 通用项目复盘
+
+禁止在规则、示例、测试和文档中出现真实个人、真实客户、真实厂商、真实项目名称或具体项目数据。

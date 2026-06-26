@@ -1,35 +1,43 @@
 ---
-name: "Auto Monitor"
-description: "主动监控系统状态。定期检查服务器健康，主动汇报，无需等待指令。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-monitor-zhouli"
-sourceUrl: "https://clawhub.ai/skills/auto-monitor-zhouli"
+name: auto-monitor
+description: 主动监控系统状态。定期检查服务器健康，主动汇报，无需等待指令。
 ---
 
 # Auto Monitor
 
-> 主动监控系统状态。定期检查服务器健康，主动汇报，无需等待指令。
+主动监控系统，主动发现问题。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-monitor-zhouli`
-- **Source URL:** [https://clawhub.ai/skills/auto-monitor-zhouli](https://clawhub.ai/skills/auto-monitor-zhouli)
+## 能力轮廓
 
-## Overview
+- **输入**：系统状态
+- **输出**：健康报告 + 异常告警
+- **核心**：主动检查 → 及时汇报
 
+## 工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-monitor-zhouli
 ```
+1. 定期检查（每 N 分钟）
+2. 检查项：
+   - 磁盘使用率
+   - 内存使用率
+   - CPU 负载
+   - 网络状态
+   - 进程状态
+3. 异常判断
+   - 超过阈值？→ 主动告警
+4. 汇报
+   - 正常：简洁汇报
+   - 异常：详细说明 + 建议
+```
+
+## 告警阈值
+
+- 磁盘 > 80%
+- 内存 > 85%
+- CPU Load > 核数 × 0.8
+
+## 主动性
+
+- 不等用户问"服务器怎么样"
+- 发现问题主动说
+- 可以自动修复的立刻处理

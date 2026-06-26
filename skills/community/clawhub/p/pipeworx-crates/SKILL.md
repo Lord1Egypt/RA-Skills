@@ -1,35 +1,25 @@
----
-name: "Pipeworx crates"
-description: "Search and retrieve Rust crate metadata, versions, and download stats from the crates.io REST API without authentication."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-crates"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-crates"
----
+# Crates
 
-# Pipeworx crates
+Crates.io MCP — wraps the crates.io REST API v1 (free, no auth)
 
-> Search and retrieve Rust crate metadata, versions, and download stats from the crates.io REST API without authentication.
+## search_crates
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-crates`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-crates](https://clawhub.ai/skills/pipeworx-crates)
+Search crates.io for Rust packages by keyword. Returns crate name, description, downloads, latest ve
 
-## Overview
+## get_crate
 
+Get full metadata for a specific crate (e.g., 'serde'). Returns description, downloads, latest versi
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-crates
+## get_versions
+
+List all published versions for a crate in reverse chronological order. Returns version number, down
+
+```json
+{
+  "mcpServers": {
+    "crates": {
+      "url": "https://gateway.pipeworx.io/crates/mcp"
+    }
+  }
+}
 ```

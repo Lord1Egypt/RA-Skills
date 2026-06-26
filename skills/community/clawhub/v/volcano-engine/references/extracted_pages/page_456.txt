@@ -1,0 +1,34 @@
+设置额外字段
+传入OpenAI SDK中不支持的字段，可以通过 extra_body  字典传入，如开关模型是否深度思考的 thinking
+字段。
+设置自定义header
+可以用于传递额外信息，如配置 ID来串联日志，使能数据加密能力。# Replace with Model ID
+    model= "doubao-seed-1-6-251015" , 
+    messages = [
+        { "role" : "user" , "content" : "Hello" },
+    ],
+)
+print (completion.choices[ 0].message.content)Python
+from  openai import  OpenAI
+import  os
+client = OpenAI(   
+# The base URL for model invocation 
+    base_url= "https://ark.cn-beijing.volces.com/api/v3" ,  
+# Replace with your API Key 
+    api_key=os.environ.get( "ARK_API_KEY" ), 
+)
+completion = client.chat.completions.create(
+# Replace with Model ID
+    model= "doubao-seed-1-6-251015" , 
+    messages = [
+        { "role" : "user" , "content" : "Hello" },
+    ],
+    extra_body={
+"thinking" : {
+"type" : "disabled" , # 不使用深度思考能力
+# "type": "enabled", # 使用深度思考能力
+         }
+     }
+)
+print (completion.choices[ 0].message.content)PythonAPI参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 451/485

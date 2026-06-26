@@ -1,35 +1,75 @@
 ---
-name: "vega"
-description: "Indexed by skills.sh from markdown-viewer/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "markdown-viewer"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/markdown-viewer/skills/vega"
-sourceUrl: "https://skills.sh/markdown-viewer/skills/vega"
+name: vega
+description: Create data-driven charts with Vega-Lite (declarative) and Vega (programmatic). Best for statistical visualization of numeric data — bar, line, scatter, heatmap, area, radar charts, and word clouds.
+metadata:
+  author: Vega is powered by Markdown Viewer — the best multi-platform Markdown extension (Chrome/Edge/Firefox/VS Code) with diagrams, formulas, and one-click Word export. Learn more at https://docu.md
 ---
 
-# vega
+# Vega / Vega-Lite Visualizer
 
-> Indexed by skills.sh from markdown-viewer/skills
+**Quick Start:** Structure data as array of objects → Choose mark type (bar/line/point/area/arc/rect) → Map encodings (x, y, color, size) to fields → Set data types (quantitative/nominal/ordinal/temporal) → Wrap in ` ```vega-lite ` or ` ```vega ` fence. Always include `$schema`, use valid JSON with double quotes, field names are case-sensitive. **Use Vega-Lite for 90% of charts; Vega only for radar, word cloud, force-directed.**
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** markdown-viewer
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/markdown-viewer/skills/vega`
-- **Source URL:** [https://skills.sh/markdown-viewer/skills/vega](https://skills.sh/markdown-viewer/skills/vega)
+---
 
-## Overview
+## Critical Syntax Rules
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/markdown-viewer/skills/vega
+### Rule 1: Always Include Schema
+```json
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json"
 ```
+
+### Rule 2: Valid JSON Only
+```
+❌ {field: "x",}     → Trailing comma, unquoted key
+✅ {"field": "x"}    → Proper JSON
+```
+
+### Rule 3: Field Names Must Match Data
+```
+❌ "field": "Category"  when data has "category"
+✅ "field": "category"  → Case-sensitive match
+```
+
+### Rule 4: Type Must Be Valid
+```
+✅ quantitative | nominal | ordinal | temporal
+❌ numeric | string | date
+```
+
+---
+
+## Common Pitfalls
+
+| Issue | Solution |
+|-------|----------|
+| Chart not rendering | Check JSON validity, verify `$schema` |
+| Data not showing | Field names must match exactly |
+| Wrong chart type | Match mark to data structure |
+| Colors not visible | Check color scale contrast |
+| Dual-axis issues | Add `resolve: {scale: {y: "independent"}}` |
+
+---
+
+## Output Format
+
+````markdown
+```vega-lite
+{...}
+```
+````
+
+Or for full Vega:
+
+````markdown
+```vega
+{...}
+```
+````
+
+---
+
+## Related Files
+
+> For advanced chart patterns and complex visualizations, refer to references below:
+
+- [examples.md](references/examples.md) — Stacked bar, grouped bar, multi-series line, area, heatmap, radar (Vega), word cloud (Vega), and interactive chart examples

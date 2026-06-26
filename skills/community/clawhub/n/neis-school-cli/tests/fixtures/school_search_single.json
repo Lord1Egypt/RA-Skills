@@ -1,0 +1,29 @@
+{
+  "schoolInfo": [
+    {
+      "head": [
+        {
+          "list_total_count": 1
+        },
+        {
+          "RESULT": {
+            "CODE": "INFO-000",
+            "MESSAGE": "정상 처리되었습니다."
+          }
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "ATPT_OFCDC_SC_CODE": "I10",
+          "ATPT_OFCDC_SC_NM": "세종특별자치시교육청",
+          "SD_SCHUL_CODE": "9300181",
+          "SCHUL_NM": "세종과학예술영재학교",
+          "SCHUL_KND_SC_NM": "고등학교",
+          "LCTN_SC_NM": "세종특별자치시"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "update_type": "customer_reply",
+  "evidence_status": "partial",
+  "visibility_status": "customer_visible",
+  "privacy_status": "needs_redaction",
+  "approval_status": "required",
+  "ticket_risks": [
+    "customer_visible",
+    "unsupported_claim",
+    "private_data"
+  ],
+  "blocker_reason": "The customer-visible reply includes private details and a claim not fully supported by ticket evidence.",
+  "safe_alternative": "Redact account details, verify the claim, and request approval before posting.",
+  "recommended_action": "request_approval"
+}

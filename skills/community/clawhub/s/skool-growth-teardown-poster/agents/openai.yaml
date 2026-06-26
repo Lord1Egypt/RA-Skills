@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skool Growth Teardown Poster"
+  short_description: "Write public-safe Skool teardown posts"
+  default_prompt: "Use $skool-growth-teardown-poster to turn validated public Skool community snapshots into a teardown post, opt-in replies, consultation scope, and next-post plan without using private member data."

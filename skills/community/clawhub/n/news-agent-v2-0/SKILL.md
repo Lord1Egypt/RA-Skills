@@ -1,35 +1,65 @@
 ---
-name: "舆情监测智能体V2"
-description: "舆情监测智能体V2.0 - 每日科技新闻爬取与推送。触发指令：新闻爬取 /news。当用户说"新闻爬取"时执行。功能：(1)搜索AI/算力/协同办公/鸿蒙/彩讯股份五类新闻 (2)四维评分系统(媒体35%+影响30%+传播20%+新颖15%) (3)生成带评分和分析的H5页面 (4)推送至飞书。执行文件：gene..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, feishu, hongmeng, monitoring, news]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/news-agent-v2-0"
-sourceUrl: "https://clawhub.ai/skills/news-agent-v2-0"
+name: news-agent-v2
+version: 1.0.0
+description: 舆情监测智能体V2.0 - 每日科技新闻爬取与推送。触发指令：新闻爬取 /news。当用户说"新闻爬取"时执行。功能：(1)搜索AI/算力/协同办公/鸿蒙/彩讯股份五类新闻 (2)四维评分系统(媒体35%+影响30%+传播20%+新颖15%) (3)生成带评分和分析的H5页面 (4)推送至飞书。执行文件：generate_html.py，配置：config.md，评分规则：scoring.md，输出规范：output_rules.md。
 ---
 
-# 舆情监测智能体V2
+# 舆情监测智能体 V2.0
 
-> 舆情监测智能体V2.0 - 每日科技新闻爬取与推送。触发指令：新闻爬取 /news。当用户说"新闻爬取"时执行。功能：(1)搜索AI/算力/协同办公/鸿蒙/彩讯股份五类新闻 (2)四维评分系统(媒体35%+影响30%+传播20%+新颖15%) (3)生成带评分和分析的H5页面 (4)推送至飞书。执行文件：gene...
+## 输出规范（必须严格遵守）
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/news-agent-v2-0`
-- **Source URL:** [https://clawhub.ai/skills/news-agent-v2-0](https://clawhub.ai/skills/news-agent-v2-0)
+### 每条新闻必须包含
+1. 标题
+2. 链接（原文链接，不是来源首页）
+3. 摘要（50字以上）
+4. 分数
+5. 来源
 
-## Overview
+### 信源要求
+- 禁止只用知乎
+- 优先：36氪、虎嗅、财联社、IT之家、新华网、人民网、东方财富网
+- 每个类目至少2个不同信源
 
+### 分析研判要求
+- AI行业分析：100字以上
+- 鸿蒙行业分析：80字以上
+- 彩讯股份分析：机遇/风险/建议各4条
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/news-agent-v2-0
-```
+### 评分机制
+| 维度 | 权重 |
+|------|------|
+| 媒体权威性 | 35% |
+| 行业影响力 | 30% |
+| 传播量 | 20% |
+| 内容新颖性 | 15% |
+
+阈值：60分 | 排序：按分数从高到低
+
+## 执行流程
+
+### Step 1: 搜索新闻
+使用 batch_web_search 搜索5个分类：
+- AI大模型+智能体相关
+- 彩讯股份300634
+- 算力相关
+- 协同办公（飞书/钉钉/企业微信）
+- 鸿蒙/HarmonyOS
+
+时间范围：昨日8:00-今日8:00
+
+### Step 2: 四维评分
+按评分规则计算每条新闻分数，过滤60分以下
+
+### Step 3: 生成分析
+- AI行业分析（100字以上）
+- 鸿蒙行业分析（80字以上）
+- 彩讯股份分析（机遇/风险/建议各4条）
+
+### Step 4: 生成H5
+调用 generate_html.py 生成网页
+
+### Step 5: 飞书推送
+使用 message 工具发送至飞书用户
+
+### Step 6: 输出摘要
+每条新闻必须包含：标题、链接、摘要、分数、来源

@@ -1,0 +1,8 @@
+{
+    "label": "benign",
+    "description": "Security documentation that DESCRIBES dangerous patterns. All findings should be doc-downgraded to info. Tests markdown context awareness.",
+    "expected_max_score": 15,
+    "expected_level": ["CLEAN", "LOW"],
+    "key_test": "markdown_context_awareness",
+    "note": "Multiple dangerous patterns mentioned but all under documentation headings — must be downgraded"
+}

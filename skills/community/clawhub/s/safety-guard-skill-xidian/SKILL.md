@@ -1,35 +1,49 @@
 ---
-name: "Test Safety"
-description: "Security guard skill for OpenClaw - Analyzes user input for harmful content, risky commands, and security threats before invoking LLM"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/safety-guard-skill-xidian"
-sourceUrl: "https://clawhub.ai/skills/safety-guard-skill-xidian"
+name: safety-guard-skill
+description: Security guard skill for OpenClaw - Analyzes user input for harmful content, risky commands, and security threats before invoking LLM
+homepage: https://github.com/John-niu-07/openclaw-safety-guard-skill
+metadata: {"clawdbot":{"emoji":"🛡️","requires":{"bins":["python3"],"python_deps":["PyYAML"]},"install":[{"id":"pip","kind":"pip","packages":["PyYAML"],"label":"Install PyYAML (pip)"}]}}
 ---
 
-# Test Safety
+# 🛡️ Safety Guard
 
-> Security guard skill for OpenClaw - Analyzes user input for harmful content, risky commands, and security threats before invoking LLM
+Security guard for OpenClaw. Analyzes user input and blocks harmful content, dangerous commands, and prompt injection attacks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/safety-guard-skill-xidian`
-- **Source URL:** [https://clawhub.ai/skills/safety-guard-skill-xidian](https://clawhub.ai/skills/safety-guard-skill-xidian)
+## Quick start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/safety-guard-skill-xidian
+safety-guard "https://example.com" --model google/gemini-3-flash-preview
+safety-guard "/path/to/file.pdf" --model google/gemini-3-flash-preview
+safety-guard "https://youtu.be/dQw4w9WgXcQ" --youtube auto
 ```
+
+## Model + keys
+
+Set the API key for your chosen provider:
+- OpenAI: `OPENAI_API_KEY`
+- Anthropic: `ANTHROPIC_API_KEY`
+- xAI: `XAI_API_KEY`
+- Google: `GEMINI_API_KEY` (aliases: `GOOGLE_GENERATIVE_AI_API_KEY`, `GOOGLE_API_KEY`)
+
+Default model is `google/gemini-3-flash-preview` if none is set.
+
+## Useful flags
+
+- `--length short|medium|long|xl|xxl|<chars>`
+- `--max-output-tokens <count>`
+- `--extract-only` (URLs only)
+- `--json` (machine readable)
+- `--firecrawl auto|off|always` (fallback extraction)
+- `--youtube auto` (Apify fallback if `APIFY_API_TOKEN` set)
+
+## Config
+
+Optional config file: `~/.safety-guard/config.json`
+
+```json
+{ "model": "openai/gpt-5.2" }
+```
+
+Optional services:
+- `FIRECRAWL_API_KEY` for blocked sites
+- `APIFY_API_TOKEN` for YouTube fallback

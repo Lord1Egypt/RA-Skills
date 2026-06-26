@@ -1,0 +1,411 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-16",
+    "source": "Ministry of Industry and Information Technology, National Energy Administration, China Renewable Energy Engineering Institute, National Bureau of Statistics",
+    "industry_scale_2026_target": "¥1.8 trillion revenue",
+    "growth_rate_target": "10.2% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Renewable Energy Industry Overview (2026)",
+    "summary": "China is the world's largest investor and producer in renewable energy, leading global capacity in solar PV, wind power, hydroelectricity, and energy storage. In 2026, the industry is projected to exceed ¥1.8 trillion in revenue, driven by the national 'carbon peak, carbon neutrality' strategy, energy security concerns, and technological advancements. The industry encompasses solar manufacturing (polysilicon, wafers, cells, modules), wind power (turbines, towers, blades), energy storage systems (lithium-ion, flow batteries), hydrogen production (electrolyzers, fuel cells), and smart grid technologies.",
+    "key_policy_initiatives": [
+      {
+        "name": "14th Five-Year Plan for Renewable Energy Development (2021-2026)",
+        "issuing_authorities": ["NDRC", "NEA"],
+        "key_measures": [
+          "Achieve 1,200 GW of wind and solar capacity by 2026",
+          "Promote large-scale renewable bases in deserts and arid regions",
+          "Support distributed PV and rooftop solar programs",
+          "Accelerate development of new energy storage and hydrogen technologies"
+        ]
+      },
+      {
+        "name": "Industrial Green Microgrid Construction Guidelines (2026-2030)",
+        "issuing_authorities": ["MIIT", "NDRC", "NEA"],
+        "key_measures": [
+          "Promote integrated application of PV, wind, energy storage, and hydrogen in industrial parks",
+          "Achieve minimum 60% local consumption of renewable generation",
+          "Support development of digital energy management systems",
+          "Encourage participation in power market transactions"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥1.63 trillion",
+      "installed_capacity": {
+        "solar": "890 GW",
+        "wind": "520 GW",
+        "hydro": "420 GW"
+      },
+      "key_drivers": ["utility-scale solar PV", "offshore wind", "lithium-ion battery storage", "green hydrogen projects", "BIPV"],
+      "export_value": "$85 billion",
+      "employment": "5.2 million jobs"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Renewable Energy Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and R&D",
+      "categories": [
+        {
+          "name": "Solar PV Materials",
+          "items": ["polysilicon", "silicon wafers", "silver paste", "EVA/POE films", "backsheets", "glass", "aluminum frames", "junction boxes"],
+          "key_suppliers": ["Tongwei", "GCL-Poly", "Xinte Energy", "Daqo New Energy", "LONGi", "TCL Zhonghuan"]
+        },
+        {
+          "name": "Wind Power Components",
+          "items": ["blades (fiberglass, carbon fiber)", "towers (steel, concrete)", "gearboxes", "generators", "bearings", "converters", "transformers"],
+          "key_suppliers": ["CRRC", "Zhongfu Lianzhong", "TMT (Tiansheng)", "Nantong Rainbow", "CSSC Haizhuang"]
+        },
+        {
+          "name": "Energy Storage Materials",
+          "items": ["lithium carbonate", "lithium hydroxide", "cathode materials (LFP, NCM)", "anode materials (graphite, silicon)", "electrolytes", "separators", "copper foil"],
+          "key_suppliers": ["Ganfeng Lithium", "Tianqi Lithium", "CATL", "BYD", "Sunwoda", "Gotion High-Tech"]
+        },
+        {
+          "name": "Hydrogen Equipment",
+          "items": ["electrolyzers (alkaline, PEM)", "fuel cells", "hydrogen storage tanks", "compressors", "valves and fittings"],
+          "key_suppliers": ["Peric Hydrogen", "CIMC Enric", "SinoHytec", "Refire", "Weichai Power"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Equipment manufacturing and system integration",
+      "subsectors": [
+        "solar PV modules (monocrystalline, polycrystalline, thin-film, bifacial, BIPV)",
+        "wind turbines (onshore, offshore, direct-drive, geared)",
+        "energy storage systems (battery packs, containers, BMS, EMS)",
+        "hydrogen production systems (electrolyzers, reformers)",
+        "inverters and power conversion systems",
+        "mounting structures and tracking systems",
+        "cables and switchgears"
+      ],
+      "key_companies_by_subsector": {
+        "solar_modules": ["LONGi", "JinkoSolar", "Trina Solar", "JA Solar", "Canadian Solar", "Risen Energy"],
+        "wind_turbines": ["Goldwind", "Envision", "MingYang", "Shanghai Electric", "CSSC Haizhuang", "Sany Renewable"],
+        "energy_storage": ["CATL", "BYD", "Sungrow", "Hyperstrong", "Kstar", "Gotion High-Tech"],
+        "inverters": ["Sungrow", "Huawei Digital Power", "Growatt", "GoodWe", "SMA China"],
+        "hydrogen": ["Peric Hydrogen", "CIMC Enric", "SinoHytec", "Weichai Power", "Refire"]
+      }
+    },
+    "downstream": {
+      "description": "Project development, EPC, and operations",
+      "applications": [
+        "utility-scale solar and wind farms",
+        "distributed PV (commercial, industrial, residential)",
+        "offshore wind projects",
+        "energy storage power stations (grid-side, user-side)",
+        "hydrogen production and refueling stations",
+        "microgrids and green industrial parks",
+        "export to global markets"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Jiangsu", "Zhejiang", "Shanghai", "Anhui"],
+      "share_of_industry": "35% of national output",
+      "specializations": [
+        "solar PV manufacturing (modules, inverters)",
+        "offshore wind",
+        "energy storage systems",
+        "smart grid technologies"
+      ],
+      "key_hubs": [
+        {
+          "city": "Jiangsu Province",
+          "specialization": "Solar module manufacturing, offshore wind base",
+          "supplier_example": "Trina Solar (Changzhou), JinkoSolar (Jiangxi but operations in Jiangsu); also CRRC wind power equipment"
+        },
+        {
+          "city": "Shanghai",
+          "specialization": "R&D, offshore wind, corporate HQs",
+          "supplier_example": "Shanghai Electric – wind turbines and energy storage; also Envision Energy HQ"
+        },
+        {
+          "city": "Nantong (Jiangsu)",
+          "specialization": "Offshore wind manufacturing, blades, towers",
+          "supplier_example": "Nantong Rainbow – wind tower manufacturer; also CSSC Haizhuang offshore wind base"
+        },
+        {
+          "city": "Hefei (Anhui)",
+          "specialization": "Solar PV, energy storage",
+          "supplier_example": "Sungrow Power – world's leading inverter manufacturer; Gotion High-Tech – battery manufacturing"
+        }
+      ],
+      "strengths": [
+        "Complete supply chain integration",
+        "Strong R&D and engineering talent",
+        "Proximity to coastal offshore wind resources",
+        "Access to Shanghai port for exports"
+      ]
+    },
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Shenzhen", "Huizhou", "Zhuhai"],
+      "share_of_industry": "20% of national output",
+      "specializations": [
+        "energy storage batteries",
+        "solar inverters",
+        "digital energy solutions",
+        "hydrogen fuel cells"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shenzhen",
+          "specialization": "Digital energy, inverters, battery management systems",
+          "supplier_example": "Huawei Digital Power – leading inverter and smart PV solutions; BYD – batteries and energy storage"
+        },
+        {
+          "city": "Huizhou",
+          "specialization": "Lithium battery manufacturing",
+          "supplier_example": "Sunwoda, EVE Energy – battery cell production"
+        },
+        {
+          "city": "Zhuhai",
+          "specialization": "Offshore wind, energy storage",
+          "supplier_example": "Gree (Zhuhai) – expanding into energy storage; also offshore wind projects"
+        }
+      ],
+      "strengths": [
+        "Strong electronics and battery ecosystem",
+        "Digital technology expertise",
+        "Proximity to Hong Kong financial markets"
+      ]
+    },
+    {
+      "region": "North China (Beijing-Tianjin-Hebei, Inner Mongolia)",
+      "provinces_cities": ["Beijing", "Tianjin", "Hebei", "Inner Mongolia"],
+      "share_of_industry": "15% of national output",
+      "specializations": [
+        "wind power equipment",
+        "solar manufacturing (relocated from coastal areas)",
+        "hydrogen production"
+      ],
+      "key_hubs": [
+        {
+          "city": "Beijing",
+          "specialization": "R&D, policy, corporate HQs",
+          "supplier_example": "Goldwind (Beijing HQ) – leading wind turbine manufacturer"
+        },
+        {
+          "city": "Baoding (Hebei)",
+          "specialization": "Solar PV manufacturing",
+          "supplier_example": "Yingli Solar (historically major, now recovering); also CRRC wind power"
+        },
+        {
+          "city": "Tongliao (Inner Mongolia)",
+          "specialization": "Wind power equipment, green hydrogen",
+          "supplier_example": "MingYang, Envision have manufacturing bases here; also wind-solar-hydrogen integration projects"
+        }
+      ],
+      "strengths": [
+        "Proximity to renewable resource bases",
+        "Lower land and energy costs",
+        "Strong policy support"
+      ]
+    },
+    {
+      "region": "Southwest China (Sichuan, Yunnan, Guizhou)",
+      "provinces_cities": ["Chengdu", "Kunming", "Guiyang"],
+      "share_of_industry": "10% of national output",
+      "specializations": [
+        "hydropower equipment",
+        "polysilicon manufacturing (hydropower-driven)",
+        "lithium resources"
+      ],
+      "key_hubs": [
+        {
+          "city": "Chengdu",
+          "specialization": "Solar manufacturing, hydropower equipment",
+          "supplier_example": "Tongwei – polysilicon and module manufacturing; Dongfang Electric – hydropower turbines"
+        },
+        {
+          "city": "Leshan (Sichuan)",
+          "specialization": "Polysilicon capital",
+          "supplier_example": "Tongwei, GCL-Poly have major polysilicon plants using hydropower"
+        }
+      ],
+      "strengths": [
+        "Abundant hydropower (green electricity for manufacturing)",
+        "Lithium resource reserves",
+        "Lower labor costs"
+      ]
+    },
+    {
+      "region": "Northeast China (Liaoning, Jilin, Heilongjiang)",
+      "provinces_cities": ["Dalian", "Shenyang", "Harbin"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "wind power equipment",
+        "energy storage",
+        "biomass energy"
+      ],
+      "key_hubs": [
+        {
+          "city": "Dalian",
+          "specialization": "Energy storage, wind power",
+          "supplier_example": "Dalian Rongke – flow battery technology leader"
+        },
+        {
+          "city": "Shenyang",
+          "specialization": "Wind power components",
+          "supplier_example": "CSIC (Harbin) wind power equipment"
+        }
+      ],
+      "strengths": [
+        "Heavy industrial base",
+        "Wind resource potential"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "solar_pv": {
+      "description": "China dominates global solar PV manufacturing, controlling over 80% of polysilicon, wafer, cell, and module production. Includes monocrystalline, polycrystalline, thin-film, and BIPV products.",
+      "key_clusters": ["Yangtze River Delta", "Southwest (polysilicon)", "North China"],
+      "growth_drivers": [
+        "Utility-scale solar bases",
+        "Distributed PV (rooftop) programs",
+        "BIPV (Building Integrated PV) adoption",
+        "Export demand"
+      ],
+      "market_trends": "N-type (TOPCon, HJT) technology gaining share; bifacial modules standard; 700W+ modules; perovskite tandem cells in R&D stage.",
+      "key_players": ["LONGi", "JinkoSolar", "Trina Solar", "JA Solar", "Tongwei", "Canadian Solar"]
+    },
+    "wind_power": {
+      "description": "China is the world's largest wind power market, with strong domestic turbine manufacturing capabilities covering onshore, offshore, and direct-drive technologies.",
+      "key_clusters": ["Yangtze River Delta (offshore)", "North China (onshore)", "Beijing-Tianjin-Hebei"],
+      "growth_drivers": [
+        "Large-scale onshore wind bases (Gobi Desert)",
+        "Offshore wind acceleration (20 GW+ per year)",
+        "Turbine upscaling (15-20 MW offshore)",
+        "Repowering of older wind farms"
+      ],
+      "market_trends": "Larger rotors (250m+ diameter); floating offshore wind pilots; hybrid wind-solar-storage projects.",
+      "key_players": ["Goldwind", "Envision", "MingYang", "Shanghai Electric", "CSSC Haizhuang", "Sany Renewable"]
+    },
+    "energy_storage": {
+      "description": "Energy storage is critical for renewable integration, with lithium-ion batteries dominant. China leads in LFP (lithium iron phosphate) battery production and grid-scale storage deployments.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta", "Fujian"],
+      "growth_drivers": [
+        "Grid-scale storage mandates for renewable projects",
+        "Peak shaving and frequency regulation",
+        "Industrial and commercial storage",
+        "EV battery second-life applications"
+      ],
+      "market_trends": "300Ah+ cells; liquid-cooled containers; sodium-ion batteries emerging; flow batteries for long-duration storage.",
+      "key_players": ["CATL", "BYD", "Sungrow", "Hyperstrong", "Gotion High-Tech", "EVE Energy"]
+    },
+    "hydrogen": {
+      "description": "Green hydrogen production using renewable electricity is a strategic focus. China leads in electrolyzer manufacturing capacity, with rapid scale-up expected.",
+      "key_clusters": ["North China (Inner Mongolia)", "Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Hard-to-abate industry decarbonization (steel, chemicals)",
+        "Hydrogen refueling station infrastructure",
+        "Fuel cell vehicle adoption (trucks, buses)",
+        "Export of electrolyzers"
+      ],
+      "market_trends": "Alkaline electrolyzers dominate (low cost); PEM gaining share; 1000+ Nm³/h units standard; integrated wind-solar-hydrogen projects.",
+      "key_players": ["Peric Hydrogen", "CIMC Enric", "SinoHytec", "Refire", "Weichai Power", "Bloom Energy China"]
+    },
+    "smart_grid_integration": {
+      "description": "Includes inverters, power conversion systems, energy management systems (EMS), and microgrid controllers for renewable integration.",
+      "key_clusters": ["Yangtze River Delta", "Pearl River Delta"],
+      "growth_drivers": [
+        "Distributed generation growth",
+        "Virtual power plants (VPP)",
+        "Digitalization and AI for grid management"
+      ],
+      "market_trends": "PV-plus-storage inverters; grid-forming inverters; cloud-based EMS platforms.",
+      "key_players": ["Sungrow", "Huawei Digital Power", "Growatt", "GoodWe", "Kehua Data"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001, ISO 45001; product certifications (IEC 61215, IEC 61730 for PV; IEC 61400 for wind; UL 1973, IEC 62619 for batteries)"
+      },
+      {
+        "metric": "Technical capability",
+        "target": "In-house R&D, patents, efficiency ratings (module efficiency, turbine capacity factor, battery cycle life)"
+      },
+      {
+        "metric": "Production capacity",
+        "target": "Annual output (GW for solar/wind, GWh for batteries), capacity expansion plans"
+      },
+      {
+        "metric": "Financial health",
+        "target": "Listed company (preferred), stable revenue, positive cash flow"
+      },
+      {
+        "metric": "Supply chain transparency",
+        "target": "Traceability of raw materials, conflict-free sourcing, sustainability reports"
+      },
+      {
+        "metric": "Export experience",
+        "target": "Track record in target markets, familiarity with international standards and certification requirements"
+      }
+    ],
+    "verification_methods": [
+      "Request ISO certificates and product test reports (TÜV, SGS, UL, CGC)",
+      "Conduct factory audit (production lines, QC, R&D labs)",
+      "Request samples for performance testing (IV curve, thermal imaging, cycle life)",
+      "Check references from major project developers (state-owned utilities, IPPs)",
+      "Use third-party inspection for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed technical specifications: capacity, efficiency, dimensions, operating conditions, certifications required",
+      "Discuss warranty terms (product warranty, performance warranty)",
+      "Clarify delivery terms (FOB, CIF, DAP) and lead times",
+      "Establish quality agreement (AQL levels, acceptance criteria)",
+      "Request technical datasheets, CAD drawings, and installation manuals"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% against BL copy or L/C at sight. For large projects, milestone payments (10-20-30-40) common.",
+    "lead_times": {
+      "solar_modules": "30-45 days (standard), 20-30 days (stock items)",
+      "wind_turbines": "6-12 months (depending on size and customization)",
+      "battery_storage": "45-90 days (containers), 30-60 days (rack systems)",
+      "inverters": "30-60 days (depending on order size)"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for solar modules from China?",
+      "answer": "For standard modules, MOQ is typically 1-2 containers (approx. 500-1000 modules depending on wattage). Some manufacturers offer sample orders (10-50 pieces) at higher prices. For project-specific orders, MOQ can be negotiated based on total project size."
+    },
+    {
+      "question": "Do Chinese suppliers provide warranties for renewable energy products?",
+      "answer": "Yes, reputable suppliers offer product warranties (typically 10-12 years for modules, 5-10 years for inverters, 5-8 years for batteries) and performance warranties (linear power output guarantee, typically 25 years for modules). Always request warranty certificates and terms."
+    },
+    {
+      "question": "How can I ensure solar modules meet international quality standards?",
+      "answer": "Request IEC 61215 (design qualification) and IEC 61730 (safety) test reports from accredited labs (TÜV, CSA, SGS). Check for inclusion in PV Evolution Labs (PVEL) Top Performers list. Consider factory audits and third-party inspection."
+    },
+    {
+      "question": "What certifications are required for battery storage systems in different markets?",
+      "answer": "For EU: CE, RoHS, IEC 62619 (safety), IEC 63056 (for stationary). For US: UL 1973, UL 9540, UL 9540A (thermal runaway). For Australia: CEC approval. Ensure supplier provides relevant certifications for your target market."
+    },
+    {
+      "question": "Can I source complete renewable energy systems (solar+storage) from a single supplier?",
+      "answer": "Yes, many large manufacturers (e.g., Sungrow, BYD, Huawei, Trina) offer integrated solutions including PV modules, inverters, and battery storage. This simplifies procurement and ensures system compatibility."
+    }
+  ],
+  "glossary": {
+    "BIPV": "Building Integrated Photovoltaics – solar modules integrated into building materials.",
+    "BMS": "Battery Management System – monitors and controls battery operation.",
+    "BOS": "Balance of System – components other than modules (racking, wiring, inverters).",
+    "C&I": "Commercial and Industrial – segment for distributed generation.",
+    "EMS": "Energy Management System – software for optimizing energy use.",
+    "EPC": "Engineering, Procurement, Construction – turnkey project contractor.",
+    "HJT": "Heterojunction Technology – high-efficiency solar cell type.",
+    "IPP": "Independent Power Producer – owns and operates power plants.",
+    "LCOE": "Levelized Cost of Energy – metric for comparing generation costs.",
+    "LFP": "Lithium Iron Phosphate – battery chemistry (safe, long life).",
+    "N-type": "Solar cell type (higher efficiency, no LID).",
+    "PEM": "Proton Exchange Membrane – electrolyzer/fuel cell type.",
+    "TOPCon": "Tunnel Oxide Passivated Contact – high-efficiency solar cell.",
+    "VPP": "Virtual Power Plant – aggregated distributed energy resources."
+  }
+}

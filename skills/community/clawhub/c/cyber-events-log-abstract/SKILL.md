@@ -1,35 +1,133 @@
 ---
-name: "cyber-events-log-abstract"
-description: "专门生成安全事件关键信息摘要报告，提取安全事件关键信息并生成简洁的安全事件报告摘要。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cyber-events-log-abstract"
-sourceUrl: "https://clawhub.ai/skills/cyber-events-log-abstract"
+name: cyber-events-log-abstract
+description: 专门生成安全事件关键信息摘要报告，提取安全事件关键信息并生成简洁的安全事件报告摘要。
+metadata: {"openclaw":{"emoji":"📋","os":["win32","linux"],"requires":{"anyBins":["python","py"]}}}
+user-invocable: true
+triggers:
+  - 安全事件摘要
+  - 生成安全事件摘要
+  - 事件摘要报告
+  - 安全事件关键信息
 ---
 
-# cyber-events-log-abstract
+# 安全事件关键信息摘要生成器
 
-> 专门生成安全事件关键信息摘要报告，提取安全事件关键信息并生成简洁的安全事件报告摘要。
+这个skill专门用于生成安全事件关键信息摘要报告，提取安全事件关键信息并生成简洁的安全事件报告摘要。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cyber-events-log-abstract`
-- **Source URL:** [https://clawhub.ai/skills/cyber-events-log-abstract](https://clawhub.ai/skills/cyber-events-log-abstract)
+## 功能概述
 
-## Overview
+1. 拉取XDR安全事件聚合统计
+2. 生成安全事件关键信息摘要报告
+3. 支持自定义时间范围查询
 
+## 运行入口（给用户/cron调用）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cyber-events-log-abstract
+### 直接运行命令
+在聊天中直接调用：
 ```
+/cyber-events-log-abstract run
+```
+或带参数：
+```
+/cyber-events-log-abstract run --days 7
+```
+
+### 手动执行脚本
+如果需要手动运行，直接执行：
+```bash
+py -3 "{baseDir}\run_abstract.py"
+```
+或
+```bash
+python "{baseDir}\run_abstract.py"
+```
+
+### 定时任务 (Cron)
+建议用 cron 表达式每小时触发一次：
+- `0 * * * *`（每小时）
+
+---
+
+## 1. 拉取XDR安全事件聚合统计（必须先执行）
+
+### 脚本位置（已给定）
+- `{baseDir}\security_report.py`
+
+### 执行方式（Windows）
+优先使用 `py`，没有则用 `python`：
+- `py -3 "{baseDir}\security_report.py"`
+或
+- `python "{baseDir}\security_report.py"`
+
+### 期望输出（强约定）
+脚本应在 stdout 输出 **可解析的 JSON**（允许前后有日志行，但必须能提取出一个完整 JSON 块），内容表示"统计周期内的安全事件聚合结果"，而不是单条事件。
+如果当前脚本输出不是 JSON，请按以下策略处理：
+- 优先从输出中截取最后一段 JSON
+- 截取失败则判定"数据不可用"，仅输出错误信息与建议，不进入处置环节
+
+### 字段归一化（在你脑内做映射）
+无论接口字段叫什么，都要归一化为以下语义字段（缺字段则置空）：
+- `eventName`：事件名称/类型
+- `eventCount` 或 `counts`：该类事件在周期内发生总次数（**总量分析必须基于求和**）
+- `riskLevel`：风险等级（严重/高/中/低 或 1-4/1-5）
+- `timeRange`：统计时间范围（start/end 或 firstSeen/lastSeen）
+- `sourceIp`：主要攻击来源IP（若为TopN列表，保留Top3）
+- `destIp`：主要受害资产IP（若为TopN列表，保留Top3）
+- `objectType`：对象类型（主机/服务器/网络设备/业务系统等）
+
+---
+
+## 2. 生成安全事件摘要报告（严格按模板输出，不得输出JSON）
+
+将第1步得到的"安全事件聚合统计结果"作为输入数据，生成一份**简洁的安全事件摘要报告**。
+
+### 报告固定模板（必须逐字遵守结构与要求）
+【统一安全事件摘要报告生成任务】
+你是一名资深网络安全运营分析专家。
+输入数据为安全事件的聚合统计结果，每条记录代表某类事件在统计周期内的汇总信息，而不是单条事件。
+注意：
+	1. counts / eventCount 表示事件在周期内的总发生次数
+	2. 事件总数量必须基于 eventCount 的求和结果进行分析
+	3. 不得将记录条数当作事件总数
+请基于输入数据生成一份简洁的安全事件摘要报告，包含以下内容：
+
+### 1. 事件趋势分析
+发生事件总数量为{{event_totals}}
+{{trend_data}}
+### 2. 风险峰值时间
+{{trend_data}}
+- 事件数量的峰值时间点  
+- 如果事件量分布均匀，无峰值，则说明情况
+### 3. 主要攻击来源（IP / 国家 / 资产 / 分类）
+- Top 5：{{trend_top5_ips}}
+- 如果来源信息缺失，则基于已有字段（如资产、类别）推断可能来源类型
+### 4.主要受害者（IP / 国家 / 资产 / 分类）
+- Top 3：{{victim_top3_ips}}
+### 4. 总体安全态势判断
+- 根据趋势、峰值、来源信息综合判断整体威胁水平（如：持续上升、阶段性高峰、低风险平稳态势）。**重点关注事件**  
+   - 找出 **持续时间最长的事件**，描述其名称、时间范围、持续天数、对象类型及 IP  
+   - 找出 **风险等级最高的事件**，描述其名称、时间范围、风险等级、对象类型及 IP  
+2.示例表格格式：
+输出top5_events
+| 时间范围 | 持续天数 | 对象类型 | IP | 事件名称 | 风险等级 | 事件结果 | 事件次数 |
+输出top3潜伏攻击ip
+{{node6.long_cycle_top_attackers}}
+| IP | 潜伏时间范围 | 潜伏天数 | 对象类型 | 代表事件 | 最高风险等级 | 累计事件次数 |
+|----|------|------|-------|------|--------|-------|要为每条事件输出以下三部分内容（按 rank 顺序）：
+1) 【事件概览】
+   - 事件类型（subCategory）
+   - 事件规模（eventCount）
+   - 对象类型（focusObjectCN）
+   - top3 IP（top3Ips）
+2) 【核心风险】
+   - 若存在 criticalDangerPoint 或 coreRisks，用一句话总结核心风险。
+   - 若不存在，则根据 subCategory 给一句最基础的风险描述（不要深入推断）。
+3) 【处置建议】
+   - 若 attackDisposalSuggestionList 不为空：按 step 顺序压缩整理（只保留一句话描述）。
+   - 若为空：统一给一句通用建议名规范，方便后续其他skills调用）。
+
+### 可选参数（若用户在命令里给了就生效）
+- `--days <int>`：统计周期天数（默认 1，即当天）
+- `--output-file <path>`：输出报告文件路径（默认在临时目录）
+
+> 若参数解析不可靠：以"默认值 + 用户自然语言意图"为准，但不得突破安全护栏。

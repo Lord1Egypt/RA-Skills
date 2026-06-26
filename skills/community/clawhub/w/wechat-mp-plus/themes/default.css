@@ -1,0 +1,20 @@
+/* 默认主题 - 清爽简约 */
+section { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 15px; line-height: 1.8; color: #333; padding: 10px 0; }
+h1 { font-size: 22px; font-weight: bold; color: #1a1a1a; text-align: center; margin: 20px 0 15px; border-bottom: 2px solid #07c160; padding-bottom: 8px; }
+h2 { font-size: 18px; font-weight: bold; color: #07c160; margin: 18px 0 10px; padding-left: 10px; border-left: 4px solid #07c160; }
+h3 { font-size: 16px; font-weight: bold; color: #333; margin: 15px 0 8px; }
+p { margin: 10px 0; text-align: justify; }
+img { max-width: 100%; border-radius: 4px; margin: 10px 0; }
+blockquote { border-left: 4px solid #07c160; background: #f6f8fa; padding: 10px 15px; margin: 12px 0; color: #666; font-size: 14px; }
+code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; color: #e74c3c; }
+pre { background: #f6f8fa; padding: 12px; border-radius: 6px; overflow-x: auto; font-size: 13px; line-height: 1.6; }
+pre code { background: none; color: #333; padding: 0; }
+a { color: #07c160; text-decoration: none; border-bottom: 1px solid #07c160; }
+ul, ol { padding-left: 20px; margin: 10px 0; }
+li { margin: 4px 0; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+th { background: #07c160; color: #fff; padding: 8px 12px; text-align: left; }
+td { border: 1px solid #e8e8e8; padding: 8px 12px; }
+tr:nth-child(even) td { background: #f9f9f9; }
+hr { border: none; border-top: 1px dashed #ddd; margin: 20px 0; }
+strong { color: #07c160; }

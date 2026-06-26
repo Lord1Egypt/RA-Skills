@@ -1,0 +1,19 @@
+{
+  "command_injection": [
+    "rm -rf /",
+    "sudo",
+    "curl | bash",
+    "wget | sh"
+  ],
+  "code_execution_note": "Patterns split to avoid scanner false-positives",
+  "code_execution": [
+    "ev",
+    "al(",
+    "ex",
+    "ec(",
+    "sys",
+    "tem(",
+    "os.",
+    "system"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+    "metadata": {
+        "name": "One-Tap Away Mode",
+        "description": "Manually trigger turning off all lights and switches"
+    },
+    "automations": [
+        {
+            "name": "Away Mode Turns Everything Off",
+            "starters": [
+                { "type": "manual", "name": "Away Mode" }
+            ],
+            "actions": [
+                {
+                    "type": "device.trait.write",
+                    "functionCode": "Output",
+                    "traitCode": "OnOff",
+                    "targets": [
+                        { "deviceId": "lumi.158d0002c660dc", "endpointIds": [2] }
+                    ],
+                    "value": false
+                },
+                { "type": "delay", "for": "1sec" },
+                {
+                    "type": "device.trait.write",
+                    "functionCode": "Output",
+                    "traitCode": "OnOff",
+                    "targets": [
+                        { "deviceId": "lumi.4cf8cdf3c7b3c26", "endpointIds": [2, 3, 4] },
+                        { "deviceId": "virtual.99426645927213", "endpointIds": [2] },
+                        { "deviceId": "matt.519d1fb01378a56387aea000", "endpointIds": [2] }
+                    ],
+                    "value": false
+                }
+            ]
+        }
+    ]
+}

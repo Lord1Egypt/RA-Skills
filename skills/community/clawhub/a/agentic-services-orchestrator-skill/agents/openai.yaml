@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Services Orchestrator Skill"
+  short_description: "Route CompleteTech agentic service workflows"
+  default_prompt: "Use $agentic-services-orchestrator-skill to choose and sequence the right CompleteTech agentic specialist skills for a multi-stage services workflow."
+
+policy:
+  allow_implicit_invocation: false

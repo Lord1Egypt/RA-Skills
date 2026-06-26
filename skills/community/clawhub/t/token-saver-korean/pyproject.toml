@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "token-saver"
+version = "1.0.0"
+description = "한국어 Context DB for AI Agents. 토큰 절감 91% 달성."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "ClawHub", email = "support@clawhub.com"}
+]
+keywords = ["ai", "context", "korean", "token-saver", "openclaw", "token-optimization"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "konlpy>=0.6.0; platform_system == 'Linux' or platform_system == 'Darwin'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+]
+
+[project.scripts]
+ovk = "token_saver.client:main"
+
+[project.urls]
+Homepage = "https://clawhub.com/skills/token-saver"
+Documentation = "https://docs.token-saver.ai"
+Repository = "https://github.com/clawhub/token-saver"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["token_saver*"]
+
+[tool.setuptools.package-data]
+token_saver = ["templates/*.py"]

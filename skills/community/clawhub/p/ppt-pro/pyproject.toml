@@ -1,0 +1,14 @@
+[project]
+name = "ppt-pro"
+version = "9.6.0"
+description = "专业 PPT 演示文稿全流程 AI 生成 Skill"
+requires-python = ">=3.8"
+dependencies = [
+    "python-pptx>=0.6.21",
+    "Pillow>=9.0",
+    "lxml>=4.0",
+    "fonttools>=4.0",
+]
+
+[project.optional-dependencies]
+playwright = ["playwright>=1.30"]

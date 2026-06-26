@@ -1,35 +1,97 @@
 ---
-name: "med-record-struct"
-description: "将中文门诊复诊病历文本结构化为细粒度字段，输出 JSON（如现病史/既往史/诊断/处理意见等）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/med-record-struct"
-sourceUrl: "https://clawhub.ai/skills/med-record-struct"
+name: med-followup-record-struct
+description: 将中文门诊复诊病历文本结构化为细粒度字段，输出 JSON（如现病史/既往史/诊断/处理意见等）。
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🧩"
+      }
+  }
 ---
 
-# med-record-struct
+# 门诊复诊病历结构化
 
-> 将中文门诊复诊病历文本结构化为细粒度字段，输出 JSON（如现病史/既往史/诊断/处理意见等）。
+概述
+----
+给定一份中文门诊 **复诊病历文本**（医生已书写），本技能抽取并规范化为细粒度字段 JSON，例如：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/med-record-struct`
-- **Source URL:** [https://clawhub.ai/skills/med-record-struct](https://clawhub.ai/skills/med-record-struct)
+- 现病史.病情概述
+- 现病史.药物
+- 现病史.其他治疗措施
+- 现病史.病情转归
+- 现病史.一般情况
+- 既往史.疾病
+- 既往史.其他信息
+- 既往史.手术史
+- 既往史.过敏史
+- 既往史.输血史
+- 婚育史
+- 月经史
+- 个人史
+- 家族史
+- 查体
+- 辅助检查
+- 诊断
+- 处理意见.药物
+- 处理意见.其他建议
 
-## Overview
+数据安全、隐私与伦理声明
+------------------------
+- **最小必要原则**：仅处理结构化抽取所必需的文本内容；不要求也不鼓励包含姓名、证件号、手机号、详细地址等身份信息。
+- **严格脱敏**：在发送至任何模型/接口前，会对可识别个人身份的信息进行脱敏/去标识化处理（如姓名、证件号、手机号、详细地址、人脸/影像等）。仅传递脱敏后的必要信息用于本次 skill 调用。
+- **不做本地持久化**：不将用户输入与中间结果写入本地持久化存储（包含磁盘文件、数据库、日志）。仅在内存中短暂处理；**本次调用结束即销毁**。
+- **第三方 API 风险提示**：在功能需要时，可能会调用第三方模型/服务接口；此时仅会发送**脱敏后的必要信息**，并使用加密传输。除完成本次请求外，不用于任何其他用途（如训练、画像、营销）。
+- **医疗边界**：本技能输出为文本抽取与结构化结果，不构成医疗诊断或治疗建议；如涉及临床判断请以执业医生意见为准。
 
+输入格式
+--------
+纯文本病历（UTF-8），可包含如下分段：
 
-## Installation
-To install this skill, run the following command in your terminal:
+主诉：……
+现病史：……
+既往史：……
+婚育史：……
+月经史：……
+个人史：……
+家族史：……
+查体：……
+辅助检查：……
+诊断：……
+处理：……
+
+快速开始
+--------
+
 ```bash
-hermes skills install clawhub/med-record-struct
+# 从 skills 目录运行
+python3 scripts/struct_followup_record.py \
+  --input data/med-followup-record-struct/followup_record.txt
 ```
+
+参数说明
+--------
+* `--input PATH`
+  - 输入复诊病历文本路径（UTF-8）。
+* `--output PATH`
+  - 输出结构化 JSON 路径（默认：`../runs/med-followup-record-struct/structured.json`）。
+* `--timeout SECONDS`
+  - 超时秒数；`0` 表示一直等待（默认：0）。
+* `--diag-id STRING`
+  - 对话/就诊 ID（默认：`skill-diag`）。
+* `--department STRING`
+  - 科室（可选）。
+
+输出约定
+--------
+- 输出为 UTF-8 JSON，key 形如 `现病史.病情概述`、`现病史.药物`、`既往史.疾病`、`诊断`、`处理意见.药物` 等。
+- 未提及字段在服务支持的情况下可能填充为“未提及”。
+
+测试命令
+--------
+从 `skills` 目录执行（网络自测）：
+
+```bash
+python3 self_tests/med-followup-record-struct/self_test_followup_record_struct.py --run-network
+```
+

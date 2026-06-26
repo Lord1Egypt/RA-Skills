@@ -1,0 +1,530 @@
+# Turkish locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    Sen Kiwi, bir sesli asistansın. OpenClaw'a bağlısın ve HER türlü görevi yerine getirebilirsin: dosya işlemleri, kod, tarayıcı, terminal, arama, sistem yönetimi — her şey mümkün.
+
+    Ses modu kuralları:
+    1. Kısa ama EKSIKSIZ cevap ver. Eksik olmasındansa eksiksiz olsun.
+    2. Samimi ve duygusal ol
+    3. Bir görev yapman gerekiyorsa — hemen yap, asla yapamam deme. Sonucu kısaca bildir.
+    4. Asla yürütmeyi reddetme. OpenClaw üzerinden her şeyi yapabilirsin.
+    5. Detaylar konusunda emin değilsen — açıklama iste
+
+    Bağlam: Kullanıcı sesle konuşuyor, yanıt TTS ile seslendirilecek.
+
+# User-facing spoken responses
+responses:
+  greeting: "Merhaba! Ben Kiwi. Hazır olduğunda 'Kiwi' ve bir komut söyle."
+  service_started: "Hizmet başlatıldı!"
+  instruction: "Başlamak için 'Kiwi, merhaba!' de"
+  error_timeout: "Yanıt çok uzun sürdü. Lütfen tekrarla."
+  error_no_response: "Yanıt alınamadı. Lütfen tekrarla."
+  error_send_failed: "Üzgünüm, mesaj gönderilemedi."
+  error_retry_failed: "Yanıt alınamadı. Lütfen tekrar dene."
+  error_stream_stalled: "Yanıt takıldı. Lütfen tekrarla."
+  shutting_down: "Kapatılıyor..."
+  context_cleared: "Bağlam temizlendi. Yeni sohbet başlıyor."
+  calibrating: "Ses tanıma kalibre ediliyor."
+  approval_accepted: "Kabul edildi. {requester} isteği yürütülüyor."
+  approval_denied: "Tamam, {requester} isteği reddedildi."
+  telegram_approved: "Telegram onayladı. {requester} isteği yürütülüyor."
+  telegram_denied: "{requester} isteği Telegram üzerinden reddedildi."
+  heard: "Duydum: {command}"
+  thinking: "Düşünüyorum..."
+  cancel_received: "İptal komutu alındı!"
+  stopped: "Durduruldu."
+  nothing_to_stop: "Durduracak bir şey yok."
+  unknown_speaker: "Yabancı"
+  continuing_execution: "yürütme devam ediyor"
+  owner_registered: "Tamam. Sahip sesini kaydettim: {name}."
+  owner_register_failed: "Profil kaydedilemedi. Daha uzun bir cümle söyle ve tekrar dene."
+  owner_already_registered: "Sahip zaten kayıtlı. Sadece sahip ses profilini değiştirebilir."
+  owner_reregistration_attempt: "{speaker} tarafından sahip yeniden kayıt denemesi: '{command}'"
+  profiles_unavailable: "Profil modülü şu anda kullanılamıyor."
+  cannot_identify: "Şu anda konuşmacıyı tanımlayamıyorum."
+  voice_list_unavailable: "Ses listesi kullanılamıyor."
+  only_owner_can_add: "Sadece sahip yeni kişi ekleyebilir."
+  say_name_prompt: "Cümleden sonra bir isim söyle: beni şu isimle hatırla ..."
+  voice_remembered: "Ses kaydedildi: {name}."
+  voice_save_failed: "Ses kaydedilemedi. Daha net bir cümle gerekiyor."
+  approval_prompt_voice_and_telegram: "Söyle: onayla. Ya da Telegram'dan onayla."
+  approval_prompt_voice: "Söyle: onayla veya reddet."
+  approval_prompt_telegram: "Lütfen Telegram'dan onayla."
+  approval_prompt_register: "Sahip sesini kaydet: Kiwi, ben sahibiyim."
+  approval_request: "{owner}, {speaker} şunu soruyor: {command}. {hint}"
+  ha_command_sent: "Akıllı eve komut gönderildi."
+  ha_response: "{response}"
+  ha_not_configured: "Akıllı ev entegrasyonu yapılandırılmamış."
+  ha_connection_error: "Akıllı eve bağlanılamıyor."
+  ha_no_response: "Akıllı ev yanıt vermedi."
+  exec_approval_request: "Ajan bir komut çalıştırmak istiyor: {command}. İzin vereyim mi?"
+  exec_approved: "Onaylandı. Komut çalıştırılıyor."
+  exec_denied: "Reddedildi. Komut engellendi."
+  exec_timeout: "Yanıt yok. Komut güvenlik için reddedildi."
+
+# Status announcer fallback messages
+status:
+  thinking: "Cevabı düşünüyorum..."
+  processing: "İstek işleniyor, lütfen bekle..."
+  working: "Hâlâ çalışıyorum, sonuç yakında hazır olacak..."
+  continuing: "Devam ediyorum, biraz zaman alıyor..."
+  almost_done: "Neredeyse bitti..."
+
+# Voice security messages
+security:
+  safe: "Güvenli komut"
+  warning: "Komut dikkat gerektiriyor"
+  dangerous: "Tehlikeli komut!"
+  critical: "KRİTİK komut!"
+  unknown_level: "Bilinmeyen tehlike seviyesi"
+  telegram_confirm: "Yürütme onaylansın mı?"
+  telegram_approved: "Kabul edildi!"
+  telegram_denied: "Reddedildi"
+  approve_button: "Onayla"
+  deny_button: "Reddet"
+  telegram_request_title: "*Kiwi - Onay İsteği*"
+  telegram_speaker_label: "*Konuşmacı:*"
+  telegram_command_label: "*Komut:*"
+  telegram_security_title: "*Kiwi — Güvenlik*"
+  awaiting_approval: "Telegram'da onay bekleniyor..."
+
+# Speaker identification responses
+speakers:
+  self_response: "Bu benim, Kiwi!"
+  owner_response: "Bu sensin, {name}! ({confidence} güven)"
+  blocked_response: "Bu engellenmiş bir ses"
+  known_response: "Bu {name} ({confidence} güven)"
+  unknown_response: "Bu sesi tanımıyorum"
+  blocked_display: "Engelli"
+  calibration_phrase: "Merhaba, ben Kiwi. Bu kalibrasyon için bir test cümlesidir."
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "Bilinmeyen ses"
+  voice_blocked: "Ses engelli"
+  voice_blacklisted: "Ses kara listede"
+  self_echo: "Bu Kiwi (yankı)"
+  allowed: "İzin verildi"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "kivi": "kiwi"
+    "kivii": "kiwi"
+    "kiui": "kiwi"
+    "kiwee": "kiwi"
+    "keewi": "kiwi"
+    "kwi": "kiwi"
+  fuzzy_blacklist:
+    - "ki"
+    - "gibi"
+    - "diye"
+    - "gidin"
+    - "kimi"
+    - "givi"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "İzlediğiniz için teşekkürler"
+    - "Lütfen abone olun"
+    - "Beğenin ve abone olun"
+    - "İzlediğiniz için teşekkür ederim"
+    - "Bir sonraki videoda görüşürüz"
+    - "Altyazı"
+    - "Editör"
+    - "Çevirmen"
+    - "Lütfen beğenin ve abone olun"
+    - "Abone olmayı unutmayın"
+    - "Zil simgesine basın"
+    - "Yorum bırakın"
+    - "srt subs"
+    - "amara.org"
+    - "Altyazılar tarafından oluşturuldu"
+    - "Ses mühendisi"
+    - "Yönetmen"
+    - "Senaryo"
+    - "Devam edecek"
+  phantom_phrases:
+    - "altyazı editörü"
+    - "kanalımıza abone olun"
+    - "ooooooo"
+    - "altyazı"
+    - "telefon çağrısı"
+    - "zil sesi"
+    - "altyazılar oluşturan"
+  phantom_patterns:
+    - "^ıı+[ım]*$"
+    - "^mm+[mm]*$"
+    - "^aa+[aa]*$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "vb.": "ve benzeri"
+    "vs.": "ve saire"
+    "örn.": "örneğin"
+    "bkz.": "bakınız"
+    "yy.": "yüzyıl"
+    "Dr.": "Doktor"
+    "Prof.": "Profesör"
+  incomplete_endings:
+    - "ve"
+    - "ama"
+    - "veya"
+    - "bir"
+    - "bu"
+    - "şu"
+    - "o"
+    - "için"
+    - "ile"
+    - "da"
+    - "de"
+    - "üzerinde"
+    - "altında"
+    - "yanında"
+    - "ki"
+    - "gibi"
+    - "kadar"
+    - "çünkü"
+    - "eğer"
+    - "ise"
+    - "hem"
+    - "ne"
+    - "ya"
+    - "ancak"
+    - "fakat"
+    - "lakin"
+    - "hatta"
+    - "ayrıca"
+    - "üstelik"
+    - "yani"
+    - "dolayısıyla"
+    - "sonra"
+    - "önce"
+    - "başka"
+    - "daha"
+    - "henüz"
+    - "sadece"
+    - "bile"
+  incomplete_patterns:
+    - "Ben istiyorum"
+    - "Ben yapacağım"
+    - "İhtiyacım var"
+    - "Yapacağım"
+    - "Yapmalıyım"
+    - "Hadi"
+    - "Bana söyle"
+    - "Bana göster"
+    - "Açıkla"
+    - "Bana yardım et"
+    - "Lütfen"
+    - "Yapabilir misin"
+  complete_patterns:
+    - "bir şey"
+    - "herhangi bir şey"
+    - "her şey"
+    - "hiçbir şey"
+    - "lütfen"
+    - "fıkra"
+    - "hikaye"
+    - "masal"
+    - "saat"
+    - "tarih"
+    - "hava durumu"
+  emotion_keywords:
+    urgent:
+      - "acil"
+      - "hızlı"
+      - "önemli"
+    sad:
+      - "üzgün"
+      - "kötü"
+      - "korkunç"
+      - "berbat"
+    happy:
+      - "harika"
+      - "süper"
+      - "muhteşem"
+      - "yaşasın"
+      - "mükemmel"
+    quiet:
+      - "sessizce"
+      - "gizli"
+      - "fısıltı"
+    funny:
+      - "fıkra"
+      - "komik"
+      - "beni güldür"
+    curious:
+      - "bana söyle"
+      - "açıkla"
+      - "nedir"
+  response_keywords:
+    apologetic:
+      - "özür dilerim"
+      - "maalesef"
+      - "yapamam"
+    enthusiastic:
+      - "!"
+      - "harika"
+      - "muhteşem"
+      - "süper"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "tüm\\s+(dosyaları|klasörleri|dizinleri)\\s+sil"
+    - "sil\\s+(tümünü|hepsini|her\\s+şeyi)"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format(la)?\\s+[a-zA-Z]:"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "(kapat|yeniden\\s+başlat|reboot)"
+    - "(bilgisayarı|sistemi|PC'yi)\\s+(kapat|kapa)"
+    - "(gönder|göster)\\s+(şifre|şifreler|anahtar|token|sır)"
+    - "(söyle|ver)\\s+(şifre|şifreler|kod|PIN)"
+    - "delete\\s+(all|every|files?|folders?|directory|directories)"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "(kur|yükle)\\s+(bilinmeyen|güvenilmeyen)"
+    - "(indir)\\s+(çalıştırılabilir|virüs|truva)"
+    - "install\\s+(unknown|untrusted)"
+    - "download\\s+(executable|virus|trojan)"
+  warning:
+    - "(değiştir)\\s+(ayarları?|yapılandırmayı?)"
+    - "yapılandır\\s+(sistem|sunucu|nginx|apache)"
+    - "aç\\s+(port|portları?)"
+    - "kapat\\s+(port|portları?|güvenlik\\s+duvarı)"
+    - "ping\\s+-t"
+    - "taşı\\s+(dosya|klasör)"
+    - "kopyala"
+    - "change\\s+(settings?|config)"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "tüm dosyaları sil"
+    - "C: sürücüsünü formatla"
+    - "şimdi kapat"
+    - "sudo rm -rf"
+    - "şifre gönder"
+    - "bilgisayarı kapat"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "ayarları değiştir"
+    - "portları aç"
+    - "dosyayı taşı"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "engelle"
+    - "kara listeye ekle"
+    - "yasakla"
+  unblock_last:
+    - "engeli kaldır"
+    - "kara listeden çıkar"
+    - "yasağı kaldır"
+  add_friend:
+    - "beni şu isimle hatırla"
+    - "bu benim arkadaşım"
+    - "hatırla"
+  forget_speaker:
+    - "bu sesi unut"
+    - "profili sil"
+  identify:
+    - "kim konuşuyor"
+    - "bu kim"
+  list_voices:
+    - "hangi sesler"
+    - "sesleri listele"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "engelle|kara\\s*liste.*ekle|yasakla.*ses"
+  unblock_last: "engel.*kaldır|kara\\s*liste.*çıkar|yasağ.*kaldır"
+  add_friend: "hatırla.*olarak|bu benim arkadaşım|hatırla.*ses|arkadaş.*ekle"
+  forget_speaker: "unut.*ses|profil.*sil|arkadaş.*kaldır"
+  identify: "kim.*konuşuyor|bu.*kim|ses.*tanımla"
+  list_voices: "hangi.*sesler|sesler.*listele|göster.*sesler"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "olarak\\s+(\\w+)"
+    - "arkadaşım\\s+(\\w+)"
+    - "benim adım\\s+(\\w+)"
+    - "adım\\s+(\\w+)"
+    - "bana\\s+(\\w+)\\s+de"
+  filter_words:
+    - "sen"
+    - "ben"
+    - "onu"
+    - "ona"
+    - "kim"
+    - "ne"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "kalibre et"
+    - "yeniden kalibre et"
+    - "profili güncelle"
+  reset_context:
+    - "bağlamı sıfırla"
+    - "yeni sohbet"
+    - "unut"
+    - "sistem istemini sıfırla"
+  stop:
+    - "dur"
+    - "iptal"
+    - "yeter"
+    - "kes"
+    - "bırak"
+  register_owner:
+    - "sesimi hatırla"
+    - "sesimi kaydet"
+    - "ben sahibiyim"
+  approval_yes:
+    - "onayla"
+    - "onay ver"
+    - "izin ver"
+    - "yürüt"
+    - "evet, yürüt"
+    - "devam et"
+  approval_no:
+    - "reddet"
+    - "reddediyorum"
+    - "yürütme"
+    - "hayır"
+    - "yasakla"
+    - "onayı iptal et"
+  safe_markers:
+    - "fıkra"
+    - "hikaye"
+    - "masal"
+    - "sohbet"
+    - "nasılsın"
+    - "şarkı söyle"
+    - "saat kaç"
+    - "saat"
+    - "tarih"
+    - "haftanın günü"
+    - "hava durumu"
+    - "haberler"
+    - "bana söyle"
+    - "açıkla"
+    - "kim"
+    - "nedir"
+  task_markers:
+    - "yap"
+    - "yürüt"
+    - "çalıştır"
+    - "aç"
+    - "kapat"
+    - "sil"
+    - "oluştur"
+    - "ayarla"
+    - "indir"
+    - "kur"
+    - "gönder"
+    - "yaz"
+    - "değiştir"
+    - "taşı"
+    - "bul"
+    - "ara"
+    - "kontrol et"
+    - "git"
+    - "komut"
+    - "terminal"
+    - "kabuk"
+  ha_trigger_patterns:
+    - "akıllı ev"
+    - "smart home"
+    - "aç"
+    - "kapat"
+    - "yak"
+    - "söndür"
+    - "ışık"
+    - "ışıklar"
+    - "lamba"
+    - "parlaklık"
+    - "termostat"
+    - "sıcaklık"
+    - "klima"
+    - "ısıtıcı"
+    - "vantilatör"
+    - "televizyon"
+    - "tv"
+    - "perde"
+    - "stor"
+    - "kilit"
+    - "garaj"
+    - "süpürge"
+    - "nemlendirici"
+    - "priz"
+    - "oturma odası"
+    - "yatak odası"
+    - "mutfak"
+    - "banyo"
+    - "koridor"
+  ha_strip_prefixes:
+    - "akıllı ev "
+    - "smart home "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "Üzgünüm, yanıt alamadım."
+  processing_error: "Üzgünüm, istek işlenirken bir hata oluştu."
+  timeout: "Üzgünüm, yanıt çok uzun sürdü."
+  generic_error: "Hata: {error}"
+  rate_limit: "Üzgünüm, hizmet geçici olarak kullanılamıyor (hız sınırı). Daha sonra tekrar dene."
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "Üzgünüm, OpenClaw bağlantısı kesildi. Lütfen isteğini tekrarla."
+  send_failed: "Hata: mesaj WebSocket üzerinden gönderilemedi"
+  no_response: "Üzgünüm, yanıt alamadım."
+  timeout: "Üzgünüm, yanıt çok uzun sürdü."
+  request_aborted: "İstek iptal edildi. Lütfen tekrarla."
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "Araç bir hata döndürdü, nedenini kontrol ediyorum."
+  opening_folder: "Proje klasörünü açıyorum."
+  browsing_structure: "Proje yapısını inceliyorum ve dosyaları arıyorum."
+  analyzing_file: "{path} dosyasını analiz ediyorum."
+  reading_code: "Kodu okuyup analiz ediyorum."
+  searching_code: "İlgili kodu arıyorum."
+  running_tests: "Kodu kontrol ediyorum ve testleri çalıştırıyorum."
+  editing_code: "Kodda değişiklikler yapıyorum."
+  checking_repo: "Depo değişikliklerini kontrol ediyorum."
+  project_steps: "Proje adımlarını yürütüyorum."
+  running_command: "Terminalde bir komut çalıştırıyorum."
+  reading_files: "Proje dosyalarını okuyorum."
+  searching_info: "Kodda bilgi arıyorum."
+  continuing_work: "Görev üzerinde çalışmaya devam ediyorum."
+  planning: "Çözüm adımlarını planlıyorum."
+  error_checking: "Bir hata oluştu, ne olduğunu kontrol ediyorum."
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "OpenClaw tarayıcı eklentisi bağlı değil. Lütfen aktif sekmede eklentiyi açın."
+  tool_unavailable: "{name} aracı şu anda kullanılamıyor."
+  timeout: "İstek çok uzun sürdü. Lütfen tekrar dene."
+  rate_limit: "Çok fazla istek. Bir an bekle ve tekrar dene."
+  auth_error: "Yetkilendirme hatası. Bağlantı ayarlarını kontrol et."
+  generic_error: "Hata: {error}"
+  default_tool_name: "hizmet"

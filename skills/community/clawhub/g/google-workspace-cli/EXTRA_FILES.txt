@@ -1,0 +1,10 @@
+setup.md
+memory-template.md
+repo-analysis.md
+command-patterns.md
+auth-playbook.md
+mcp-integration.md
+safety-checklist.md
+troubleshooting.md
+change-control.md
+command-index.md

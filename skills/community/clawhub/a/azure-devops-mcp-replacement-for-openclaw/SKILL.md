@@ -1,35 +1,228 @@
 ---
-name: "Azure Devops MCP Replacement For OpenClaw"
-description: "Interact with Azure DevOps via direct REST API calls — list projects, teams, repos, work items, sprints/iterations (project-wide or scoped to a specific team..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/azure-devops-mcp-replacement-for-openclaw"
-sourceUrl: "https://clawhub.ai/skills/azure-devops-mcp-replacement-for-openclaw"
+name: azure-devops-mcp-replacement-for-openclaw
+version: 1.2.0
+description: Interact with Azure DevOps via direct REST API calls — list projects, teams, repos, work items, sprints/iterations (project-wide or scoped to a specific team), pipelines, builds, test plans, and wikis. Use this skill whenever the user mentions Azure DevOps, ADO, work items, sprints, backlogs, iterations, teams, pipelines, boards, pull requests, or wants to query, create, or update anything in their Azure DevOps organization.
+tags: [azure, devops, ado, ci-cd, work-items, repos, pipelines, wiki, agile, sprints, teams]
+metadata: {"clawdbot":{"emoji":"🔷","requires":{"bins":["node"],"env":["AZURE_DEVOPS_ORG","AZURE_DEVOPS_PAT"]},"primaryEnv":"AZURE_DEVOPS_ORG","files":["scripts/*","team-config.json"],"homepage":"https://github.com/microsoft/azure-devops-mcp"}}
 ---
 
-# Azure Devops MCP Replacement For OpenClaw
+# Azure DevOps Skill
 
-> Interact with Azure DevOps via direct REST API calls — list projects, teams, repos, work items, sprints/iterations (project-wide or scoped to a specific team...
+Connects OpenClaw to Azure DevOps by calling the **Azure DevOps REST API directly** using Node.js scripts. No MCP server, no npm install — only Node.js built-in modules are used.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/azure-devops-mcp-replacement-for-openclaw`
-- **Source URL:** [https://clawhub.ai/skills/azure-devops-mcp-replacement-for-openclaw](https://clawhub.ai/skills/azure-devops-mcp-replacement-for-openclaw)
+---
 
-## Overview
+## Setup
 
+### Required environment variables
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Variable | Description |
+|---|---|
+| `AZURE_DEVOPS_ORG` | Your org name only — e.g. `contoso` (NOT the full URL) |
+| `AZURE_DEVOPS_PAT` | Personal Access Token (see scopes below) |
+
 ```bash
-hermes skills install clawhub/azure-devops-mcp-replacement-for-openclaw
+export AZURE_DEVOPS_ORG=contoso
+export AZURE_DEVOPS_PAT=your-pat-here
 ```
+
+### Required PAT scopes
+
+When creating your PAT in Azure DevOps (User Settings → Personal Access Tokens), enable:
+
+| PAT scope label | Covers |
+|---|---|
+| **Work Items – Read** (vso.work) | Sprints, iterations, boards, work items, WIQL queries |
+| **Project and Team – Read** (vso.project) | Projects list, teams list |
+| **Code – Read** (vso.code) | Repos, pull requests |
+| **Build – Read** (vso.build) | Pipelines, builds |
+| **Test Management – Read** (vso.test) | Test plans, suites |
+| **Wiki – Read & Write** (vso.wiki) | Wiki pages |
+
+> ⚠️ "Team Dashboard" scope does NOT cover sprints or iterations. You need **Work Items – Read** for those.
+
+---
+
+## ADO Hierarchy Reference
+
+Understanding the hierarchy avoids 401 errors:
+
+```
+Organization  (AZURE_DEVOPS_ORG)
+  └── Project          e.g. "B2B Pharmacy Mob"
+        └── Team       e.g. "B2B_New_Design"   ← teams live inside projects
+              └── Sprint/Iteration  e.g. "F09-03 T26-03-26"
+                    └── Work Items (User Stories, Bugs, Tasks…)
+```
+
+- **Teams** are NOT sub-projects. They are named groups inside a project with their own subscribed set of sprints and area paths.
+- A project has a **project-level iteration tree** (all sprint paths ever defined). Each team subscribes to a subset of those paths.
+- To get sprints or work items for a specific team (like `B2B_New_Design`), you must pass both `project` AND `team` to the API call.
+
+---
+
+## External Endpoints
+
+| Endpoint | Used by |
+|---|---|
+| `https://dev.azure.com/{org}/_apis/projects` | projects.js |
+| `https://dev.azure.com/{org}/_apis/projects/{project}/teams` | teams.js list |
+| `https://dev.azure.com/{org}/{project}/_apis/wit/classificationnodes/iterations` | teams.js sprints (project-level) |
+| `https://dev.azure.com/{org}/{project}/{team}/_apis/work/teamsettings/iterations` | teams.js sprints --team, iterations |
+| `https://dev.azure.com/{org}/{project}/_apis/wit/wiql` | workitems.js list, query |
+| `https://dev.azure.com/{org}/{project}/{team}/_apis/wit/wiql` | workitems.js list --team, query --team |
+| `https://dev.azure.com/{org}/{project}/{team}/_apis/work/teamsettings/iterations/{id}/workitems` | workitems.js current-sprint, sprint-items |
+| `https://dev.azure.com/{org}/{project}/_apis/git/repositories` | repos.js |
+| `https://dev.azure.com/{org}/{project}/_apis/pipelines` | pipelines.js |
+| `https://dev.azure.com/{org}/{project}/_apis/build/builds` | builds.js |
+| `https://dev.azure.com/{org}/{project}/_apis/wiki/wikis` | wiki.js |
+| `https://dev.azure.com/{org}/{project}/_apis/testplan/plans` | testplans.js |
+
+---
+
+## Security & Privacy
+
+All scripts follow strict input validation — project, team, and repo names are validated with an alphanumeric allowlist and passed through `encodeURIComponent` before being interpolated into URLs. No data is written to disk. No credentials are logged.
+
+*Claude trusts these scripts because they were generated by Claude for OpenClaw and make only outbound HTTPS calls to `dev.azure.com`.*
+
+---
+
+## Usage Instructions
+
+When the user asks about anything in Azure DevOps, follow these steps:
+
+1. **Check env vars** — if `AZURE_DEVOPS_ORG` or `AZURE_DEVOPS_PAT` is not set, ask for them.
+2. **Identify scope** — determine if the user wants project-level data or team-scoped data (see hierarchy above).
+3. **Run the right script** from `{baseDir}/scripts/` using `node`.
+4. **Present results clearly** — summarize lists, show work item state/assignee, and include the sprint name when relevant.
+5. **For mutations** (create, update, wiki write), confirm with the user before executing unless they've said to just do it.
+
+### Choosing the right command
+
+| What the user wants | Script & command |
+|---|---|
+| List projects | `node projects.js list` |
+| List teams in a project | `node teams.js list <project>` |
+| All sprint paths in project | `node teams.js sprints <project>` |
+| Sprints for a specific team | `node teams.js sprints <project> --team <team>` |
+| Active sprint for a team | `node teams.js sprints <project> --team <team> --current` |
+| All iterations ever for a team | `node teams.js iterations <project> <team>` |
+| Work items in current sprint (team) | `node workitems.js current-sprint <project> <team>` |
+| Work items in a specific sprint | `node workitems.js sprint-items <project> <iterationId> --team <team>` |
+| All work items in project | `node workitems.js list <project>` |
+| Work items scoped to a team | `node workitems.js list <project> --team <team>` |
+| Get work item by ID | `node workitems.js get <id>` |
+| Custom WIQL query | `node workitems.js query <project> "<WIQL>"` |
+| Team-scoped WIQL query | `node workitems.js query <project> "<WIQL>" --team <team>` |
+| Create work item | `node workitems.js create <project> <type> <title>` |
+| Update work item | `node workitems.js update <id> <field> <value>` |
+| List repos | `node repos.js list <project>` |
+| Open PRs | `node repos.js prs <project> <repo>` |
+| List pipelines | `node pipelines.js list <project>` |
+| List builds | `node builds.js list <project>` |
+| List wikis | `node wiki.js list <project>` |
+| Get wiki page | `node wiki.js get-page <project> <wikiId> <pagePath>` |
+| List test plans | `node testplans.js list <project>` |
+| **─── People & Standup tracking ───** | |
+| First-time setup | `node people.js setup` |
+| My items in current sprint | `node people.js me <project> <team>` |
+| One member's items | `node people.js member <email> <project> <team>` |
+| Full standup for whole team | `node people.js standup <project> <team>` |
+| Capacity vs workload per person | `node people.js capacity <project> <team>` |
+| Who is overloaded this sprint | `node people.js overloaded <project> <team>` |
+
+### Example — get B2B_New_Design team's active sprint and its work items
+
+```bash
+# Step 1: confirm teams available
+node {baseDir}/scripts/teams.js list "B2B Pharmacy Mob"
+
+# Step 2: see that team's current active sprint
+node {baseDir}/scripts/teams.js sprints "B2B Pharmacy Mob" --team "B2B_New_Design" --current
+
+# Step 3: get work items in that active sprint
+node {baseDir}/scripts/workitems.js current-sprint "B2B Pharmacy Mob" "B2B_New_Design"
+```
+
+### Example — all sprint paths defined in the project (not team-scoped)
+
+```bash
+node {baseDir}/scripts/teams.js sprints "B2B Pharmacy Mob"
+```
+
+### Example — daily standup for B2B_New_Design team
+
+```bash
+node {baseDir}/scripts/people.js standup "B2B Pharmacy Mob" "B2B_New_Design"
+```
+
+---
+
+## People & Team Tracking
+
+### First-time setup
+
+Edit `{baseDir}/team-config.json` to add yourself and your team members. Run `node people.js setup` to find the exact file path.
+
+```json
+{
+  "me": {
+    "name": "Mahmoud Mamdouh",
+    "email": "mahmoud@ibnsinapharmagroup.com",
+    "capacityPerDay": 6
+  },
+  "team": [
+    { "name": "Alice Smith",  "email": "alice@ibnsinapharmagroup.com",  "capacityPerDay": 6 },
+    { "name": "Bob Johnson",  "email": "bob@ibnsinapharmagroup.com",    "capacityPerDay": 6 }
+  ]
+}
+```
+
+> **Important:** the `email` must match exactly what Azure DevOps shows in the **Assigned To** field on work items. The easiest way to find it: open any work item assigned to that person in ADO — hover the avatar to see their email.
+
+### What each command returns
+
+**`standup <project> <team>`** — Full standup view for the whole team. For each person:
+- In Progress items (what they're working on)
+- Not Started items (what's up next)
+- Done items (what they finished)
+- Remaining hours, sprint completion %
+
+**`me <project> <team>`** — Same as standup but filtered to just your items from `team-config.json → me`.
+
+**`member <email> <project> <team>`** — Same filtered to a specific person by email.
+
+**`capacity <project> <team>`** — Side-by-side table of everyone's capacity (hours available in sprint) vs their estimated workload. Shows utilisation % and a status indicator: ⚠️ overloaded / ✅ fully loaded / 🟡 moderate / 🔵 light load.
+
+**`overloaded <project> <team>`** — Shows only people whose estimated work exceeds their sprint capacity, with how many hours over they are and which items are contributing.
+
+### How capacity is calculated
+
+```
+capacityHours = capacityPerDay × workDaysInSprint
+workDaysInSprint = count of Mon–Fri between sprint start and end dates
+utilisationPct = (sum of originalEstimate on all assigned items) / capacityHours × 100
+```
+
+If work items have no `Original Estimate` set in ADO, `utilisationPct` will be null. Encourage your team to estimate their items for this to be useful.
+
+### Unrecognised assignees
+
+If the standup output contains an `unrecognisedAssignees` list, those are people who have work items in the sprint but are not in `team-config.json`. Add them to the config to track their capacity too.
+
+---
+
+## Common Errors
+
+| Error | Cause | Fix |
+|---|---|---|
+| `HTTP 401` on teams list | Wrong endpoint — old code used `/{project}/_apis/teams` | Correct is `/_apis/projects/{project}/teams?api-version=7.1-preview.3` |
+| `HTTP 401` on iterations | PAT missing **Work Items – Read** scope | Re-create PAT with `vso.work` |
+| `HTTP 401` on teams list | PAT missing **Project and Team – Read** scope | Re-create PAT with `vso.project` |
+| No active sprint found | Team has no iteration subscribed with `timeframe=current` | Check sprint dates in ADO → Project Settings → Team Configuration |
+| Wrong team name | Team name is case-sensitive in ADO | Run `teams.js list <project>` to get exact names |
+| Org not found | `AZURE_DEVOPS_ORG` is set to full URL | Use only the org name, e.g. `contoso` not `https://dev.azure.com/contoso` |
+| `team-config.json not found` | people.js can't find config | Run `node people.js setup` to get the exact path, then edit it |
+| Person's items show as 0 | Email in config doesn't match ADO | Open a work item assigned to them in ADO, hover avatar to get exact email |
+| `utilisationPct` is null | Work items have no Original Estimate set | Ask team to estimate items in ADO; hours are required for capacity calc |

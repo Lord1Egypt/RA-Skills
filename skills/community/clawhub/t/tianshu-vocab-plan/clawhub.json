@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Vocab Plan",
+  "tagline": "词表 → 间隔复习日程表",
+  "description": "Generate a simple spaced-repetition style study schedule from a word list (one word per line).",
+  "category": "utility",
+  "tags": ["student", "单词", "四六级", "考研", "艾宾浩斯", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

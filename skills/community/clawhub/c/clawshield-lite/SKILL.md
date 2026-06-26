@@ -1,35 +1,26 @@
 ---
-name: "ClawShield Lite – AI Skill Security Scanner"
-description: "Scans AI skills for potential security risks and unsafe commands"
-category: "other"
-source: "ClawHub"
-tags: [#security #ai #scanner #safety #analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawshield-lite"
-sourceUrl: "https://clawhub.ai/skills/clawshield-lite"
+name: ClawShield Lite
+description: Scans AI skills for potential security risks and unsafe commands
+version: "0.1"
+input: code (string)
+output: report (JSON string)
+run: python main.py
 ---
 
-# ClawShield Lite – AI Skill Security Scanner
+# ClawShield Lite
 
-> Scans AI skills for potential security risks and unsafe commands
+A lightweight security analysis skill that scans AI skill code for risky patterns and outputs a structured risk report.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawshield-lite`
-- **Source URL:** [https://clawhub.ai/skills/clawshield-lite](https://clawhub.ai/skills/clawshield-lite)
+## How It Works
 
-## Overview
+1. Accepts code input via `stdin` (string or file content)
+2. Loads pattern definitions from `rules.json`
+3. Scans the input for **dangerous** and **suspicious** patterns
+4. Assigns a risk level: `SAFE`, `MEDIUM RISK`, or `HIGH RISK`
+5. Outputs a JSON report with all findings
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawshield-lite
+echo "import os; os.system('rm -rf /')" | python main.py
 ```

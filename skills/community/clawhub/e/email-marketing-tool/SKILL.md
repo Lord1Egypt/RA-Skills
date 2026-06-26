@@ -1,35 +1,68 @@
----
-name: "Email Marketing Tool"
-description: "自动化管理模板和联系人，支持批量发送、效果追踪及A/B测试，实现精细化邮件营销和数据分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-marketing-tool"
-sourceUrl: "https://clawhub.ai/skills/email-marketing-tool"
----
+# Email Marketing Tool - 邮件营销自动化
 
-# Email Marketing Tool
+## 功能描述
+邮件营销自动化工具，支持批量发送、模板管理、效果追踪。
 
-> 自动化管理模板和联系人，支持批量发送、效果追踪及A/B测试，实现精细化邮件营销和数据分析。
+## 使用场景
+- 营销邮件批量发送
+- 客户关怀邮件
+- 产品推广邮件
+- 活动邀请邮件
+- 订阅通讯发送
+- 邮件 A/B 测试
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-marketing-tool`
-- **Source URL:** [https://clawhub.ai/skills/email-marketing-tool](https://clawhub.ai/skills/email-marketing-tool)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-marketing-tool
+### 批量发送
 ```
+发送邮件 列表=customers.csv 模板=promo.html 主题=限时优惠
+```
+
+### 模板管理
+```
+创建邮件模板 名称=欢迎邮件 内容=template.html 变量=name,product
+```
+
+### 效果追踪
+```
+获取邮件统计 活动 ID=campaign001 指标=打开率，点击率，退订率
+```
+
+### A/B 测试
+```
+A/B 测试邮件 版本 A=template_a.html 版本 B=template_b.html 样本=10%
+```
+
+### 列表管理
+```
+管理邮件列表 文件=customers.csv 操作=去重，验证，分段
+```
+
+## 功能模块
+- 邮件模板
+- 联系人管理
+- 批量发送
+- 效果分析
+- A/B 测试
+- 自动跟进
+- 退订管理
+
+## 支持服务
+- SMTP 服务
+- SendGrid
+- Mailgun
+- 阿里云邮件
+- 腾讯邮件
+
+## 输出报告
+- 发送统计
+- 打开率分析
+- 点击率分析
+- 转化追踪
+
+## 特性
+- 批量发送
+- 个性化内容
+- 定时发送
+- 效果追踪
+- 自动优化

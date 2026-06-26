@@ -1,35 +1,22 @@
 ---
-name: "packaging"
+name: "包装优化"
 description: "提供包装优化的可落地指南与SOP。在开展包装优化相关工作时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/packaging"
-sourceUrl: "https://clawhub.ai/skills/packaging"
 ---
+# 包装优化 (packaging-optimization)
+## 目标与场景
+- 明确业务目标、核心指标与应用场景；设定落地时限与负责人。
 
-# packaging
+## 操作步骤
+1. 明确范围与资源；2. 制定SOP；3. 数据接入与看板搭建；
+4. 小流量试点；5. 复盘优化；6. 标准化沉淀与知识库更新。
 
-> 提供包装优化的可落地指南与SOP。在开展包装优化相关工作时调用。
+## 指标
+- 主指标与守护指标成体系；定义口径并固定报表节奏。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/packaging`
-- **Source URL:** [https://clawhub.ai/skills/packaging](https://clawhub.ai/skills/packaging)
+## 风险与合规
+- 遵守中国本地法规与平台规则；个人信息保护与数据最小化。
 
-## Overview
+## 可复用清单
+- 模板、脚本、Checklist、报表与会议纪要结构。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/packaging
-```
+生成日期：2026-03-17

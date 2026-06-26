@@ -1,0 +1,13 @@
+{
+  "events": [
+    {
+      "id": "daily-brief-test-cal-airport-001",
+      "summary": "Departure to ICN — Korean Air KE 24",
+      "description": "Check in at Terminal 2. Boarding at 11:00. Seat 12A.",
+      "start": "2026-05-21T12:40:00.000Z",
+      "end": "2026-05-22T18:00:00.000Z",
+      "location": "SFO Terminal 2, Gate G1"
+    }
+  ],
+  "count": 1
+}

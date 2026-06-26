@@ -1,0 +1,116 @@
+{
+  "identity": {
+    "name": "Jordan Ellis",
+    "preferred_name": "Jordan",
+    "timezone": "America/New_York",
+    "language": "en"
+  },
+  "preferences": {
+    "communication": {
+      "email_tone": "casual",
+      "response_length": "concise",
+      "sign_off": "Best, Jordan"
+    },
+    "scheduling": {
+      "protected_hours": ["00:00-09:30", "12:00-13:00"],
+      "preferred_meeting_times": ["10:00-12:00", "14:00-16:00"],
+      "buffer_between_meetings_minutes": 15
+    },
+    "work": {
+      "tools": ["VS Code", "Notion", "Linear", "Slack"],
+      "stacks": ["Python", "TypeScript", "PostgreSQL", "Docker"],
+      "working_hours": { "start": "09:30", "end": "18:30" }
+    }
+  },
+  "relationships": {
+    "contacts": [
+      {
+        "name": "Alex Rivera",
+        "alias": ["Alex", "my manager"],
+        "relationship": "boss",
+        "communication_notes": "Prefers bullet points over long prose. Always loop in on client-facing decisions.",
+        "last_interaction": "2026-02-28"
+      },
+      {
+        "name": "Sarah Chen",
+        "alias": ["Sarah", "Ms. Chen"],
+        "relationship": "client",
+        "communication_notes": "Very formal. Always address as Ms. Chen. Never send on Fridays — she's offline.",
+        "last_interaction": "2026-02-25"
+      },
+      {
+        "name": "David Kim",
+        "alias": ["David K", "DK"],
+        "relationship": "colleague",
+        "communication_notes": "Async preferred. Responds faster on Slack than email.",
+        "last_interaction": "2026-03-01"
+      },
+      {
+        "name": "David Okafor",
+        "alias": ["David O"],
+        "relationship": "client",
+        "communication_notes": "Prefers concise updates. CC his assistant (maya@okafor.io) on all threads.",
+        "last_interaction": "2026-02-20"
+      }
+    ]
+  },
+  "patterns": {
+    "recurring_tasks": [
+      {
+        "name": "Weekly team report",
+        "frequency": "weekly",
+        "typical_day": "Friday",
+        "typical_time": "16:00",
+        "recipients": ["alex@company.io", "team-eng@company.io"],
+        "subject_template": "Weekly Update – [date]"
+      },
+      {
+        "name": "Standup notes",
+        "frequency": "daily",
+        "typical_time": "09:45",
+        "destination": "Notion > Engineering > Standups"
+      }
+    ],
+    "common_mistakes": [
+      "Forgetting to CC maya@okafor.io on David Okafor threads",
+      "Scheduling meetings during protected noon hour",
+      "Missing env var DATABASE_URL on staging deploys"
+    ],
+    "frequent_requests": [
+      "Draft client update emails",
+      "Summarize Linear tickets",
+      "Schedule syncs with Alex"
+    ]
+  },
+  "episodic": [
+    {
+      "date": "2026-03-01",
+      "summary": "Drafted and sent Q1 contract renewal email to Ms. Chen. Jordan approved draft without edits.",
+      "outcome": "sent",
+      "tags": ["email", "contract", "sarah-chen"]
+    },
+    {
+      "date": "2026-02-28",
+      "summary": "Staging deploy failed — missing DATABASE_URL env var. Jordan fixed manually and asked agent to remember this.",
+      "outcome": "resolved",
+      "tags": ["deploy", "error", "staging", "important"]
+    },
+    {
+      "date": "2026-02-27",
+      "summary": "Scheduled 3 meetings for the week. Jordan moved the Friday one — prefers not to meet after 4pm on Fridays.",
+      "outcome": "completed",
+      "tags": ["scheduling", "preference-learned"]
+    },
+    {
+      "date": "2026-02-25",
+      "summary": "Summarized 12 Linear tickets into a Notion page for the sprint review.",
+      "outcome": "completed",
+      "tags": ["linear", "notion", "sprint"]
+    }
+  ],
+  "meta": {
+    "created_at": "2026-02-01T09:00:00Z",
+    "last_updated": "2026-03-01T17:42:00Z",
+    "version": "1.0.0"
+  }
+}

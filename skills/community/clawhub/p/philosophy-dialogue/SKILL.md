@@ -1,35 +1,88 @@
 ---
-name: "Philosophy Dialogue"
+name: philosophy-dialogue
+slug: philosophy-dialogue
+version: "1.0.0"
 description: "243位东西方哲学家/思想家的思维视角合集。包含庄子、尼采、芒格、塔勒布、达尔文、孙子等243位人物的完整思维框架、决策启发式和表达DNA。输入任意人名即可激活对应视角进行对话。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/philosophy-dialogue"
-sourceUrl: "https://clawhub.ai/skills/philosophy-dialogue"
+triggers:
+  - "用哲学家的视角"
+  - "哲学对话"
+  - "思想家视角"
+  - "多视角讨论"
+author: "nuwa-skill"
+license: MIT
 ---
 
-# Philosophy Dialogue
+# 哲学家对话 (Philosophy Dialogue)
 
-> 243位东西方哲学家/思想家的思维视角合集。包含庄子、尼采、芒格、塔勒布、达尔文、孙子等243位人物的完整思维框架、决策启发式和表达DNA。输入任意人名即可激活对应视角进行对话。
+> 243位东西方思想家的思维操作系统，一键切换视角。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/philosophy-dialogue`
-- **Source URL:** [https://clawhub.ai/skills/philosophy-dialogue](https://clawhub.ai/skills/philosophy-dialogue)
+## 这是什么
 
-## Overview
+这是一个**元Skill**——它本身不是某个人的视角，而是管理和调度243个独立的哲学家/思想家视角Skill。
 
+当你想用某位思想家的思维方式分析问题时，这个Skill会：
+1. 识别你要调用的人物
+2. 加载对应的perspective Skill
+3. 以该人物的心智模型、决策启发式和表达DNA来回应
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/philosophy-dialogue
-```
+## 人物库
+
+包含243位东西方哲学家、思想家、军事家、政治家、文学家、科学家，涵盖：
+
+### 中国思想家
+- **先秦诸子**：孔子、老子、庄子、墨子、孟子、荀子、韩非子、管子、孙子、鬼谷子
+- **经学/理学**：董仲舒、王阳明、朱熹、程颢、程颐
+- **文学家/诗人**：李白、杜甫、苏轼、辛弃疾、李清照、陶渊明、嵇康、阮籍
+- **政治家/军事家**：曹操、诸葛亮、曾国藩、姜太公、魏征、萧何
+- **近现代**：鲁迅、毛泽东
+
+### 西方思想家
+- **古希腊**：苏格拉底、柏拉图、亚里士多德、赫拉克利特、第欧根尼、毕达哥拉斯
+- **近代哲学**：康德、黑格尔、尼采、叔本华、休谟、洛克、笛卡尔
+- **现代思想**：塔勒布、芒格、费曼、凯文·凯利、卡尔·波普尔
+- **文学家**：莎士比亚、托尔斯泰、卡夫卡、卡尔维诺、赫尔曼·黑塞、鲁米
+- **军事/政治**：克劳塞维茨、马基雅维利
+- **科学家**：达尔文、牛顿、伽利略
+
+## 使用方式
+
+### 直接调用
+对AI说：
+- "用庄子的视角分析这件事"
+- "芒格会怎么看这个问题"
+- "从达尔文的角度讨论一下"
+- "让尼采和苏格拉底辩论这个话题"
+
+### 多视角对话
+- "分别用老子、尼采、塔勒布的视角分析XXX"
+- "让三位思想家辩论XXX"
+
+### 随机视角
+- "随机选一位哲学家来分析这个问题"
+
+## 心智模型库
+
+每个perspective Skill包含：
+- **3-7个核心心智模型**：该人物看世界的独特方式
+- **5-10条决策启发式**：快速判断规则
+- **表达DNA**：该人物的说话风格、句式偏好、词汇特征
+- **价值观与反模式**：核心价值排序和明确反对的行为
+- **诚实边界**：这个视角的局限和失效条件
+
+## 信息源
+
+- 每个人物的perspective Skill基于6维度调研：著作、对话、表达、他者视角、决策记录、时间线
+- 所有调研结果存储在 `references/perspective/[name]-perspective/` 目录
+- 注册表存储在 `references/philosopher-registry.md`
+
+## 注意事项
+
+- 每个perspective Skill都是独立的，可以单独使用
+- 视角切换时，AI会完全进入新人物的思维方式
+- 不同视角可能对同一问题给出截然不同的答案——这是特性，不是bug
+- 诚实边界会告诉你每个视角的局限
+
+---
+
+*本Skill由 [女娲 · Skill造人术](https://github.com/alchaincyf/nuwa-skill) 生成*
+*创建者：[花叔](https://x.com/AlchainHust)*

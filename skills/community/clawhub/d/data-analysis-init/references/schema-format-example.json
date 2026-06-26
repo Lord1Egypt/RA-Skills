@@ -1,0 +1,85 @@
+{
+  "data_source": "sample_data.csv",
+  "file_type": ".csv",
+  "total_columns": 8,
+  "schema": {
+    "columns": [
+      {
+        "name": "日期",
+        "type": "date",
+        "category": "dimension",
+        "description": "数据日期",
+        "unique_count": 3,
+        "sample_values": ["2024-01-01", "2024-01-02", "2024-01-03"]
+      },
+      {
+        "name": "地区",
+        "type": "string",
+        "category": "dimension",
+        "description": "销售区域",
+        "unique_count": 4,
+        "sample_values": ["北京", "上海", "广州"]
+      },
+      {
+        "name": "产品ID",
+        "type": "string",
+        "category": "dimension",
+        "description": "产品标识",
+        "unique_count": 1,
+        "sample_values": ["P001"]
+      },
+      {
+        "name": "销售额",
+        "type": "numeric",
+        "category": "measure",
+        "description": "销售金额（元）",
+        "unique_count": 10,
+        "sample_values": ["10000", "12000", "9500"]
+      },
+      {
+        "name": "订单数",
+        "type": "numeric",
+        "category": "measure",
+        "description": "订单数量",
+        "unique_count": 10,
+        "sample_values": ["50", "60", "48"]
+      },
+      {
+        "name": "用户数",
+        "type": "numeric",
+        "category": "measure",
+        "description": "访问用户数",
+        "unique_count": 10,
+        "sample_values": ["2000", "2200", "1900"]
+      },
+      {
+        "name": "转化率",
+        "type": "numeric",
+        "category": "measure",
+        "description": "订单转化率",
+        "unique_count": 6,
+        "sample_values": ["0.025", "0.027", "0.025"]
+      },
+      {
+        "name": "是否促销",
+        "type": "boolean",
+        "category": "dimension",
+        "description": "是否有促销活动",
+        "unique_count": 2,
+        "sample_values": ["Yes", "No"]
+      }
+    ]
+  },
+  "sample_data": [
+    {
+      "日期": "2024-01-01",
+      "地区": "北京",
+      "产品ID": "P001",
+      "销售额": 10000,
+      "订单数": 50,
+      "用户数": 2000,
+      "转化率": 0.025,
+      "是否促销": "Yes"
+    }
+  ]
+}

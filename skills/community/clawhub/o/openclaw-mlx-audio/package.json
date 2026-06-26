@@ -1,0 +1,57 @@
+{
+  "name": "@openclaw/mlx-audio",
+  "version": "0.1.0",
+  "description": "OpenClaw Plugin - mlx-audio TTS & STT Integration for Apple Silicon",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "bun run tsc",
+    "dev": "bun run tsc --watch",
+    "test": "bun test",
+    "test:unit": "bun test test/*.test.ts",
+    "test:integration": "bun test test/integration/*.test.ts",
+    "test:coverage": "bun test --coverage",
+    "test:watch": "bun test --watch",
+    "test:fixtures": "bun run test/fixtures/generate.ts",
+    "lint": "bun run eslint src/",
+    "prepublishOnly": "bun run build"
+  },
+  "files": [
+    "dist/**",
+    "python-runtime/**",
+    "openclaw.plugin.json",
+    "skills/**",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "mlx-audio",
+    "tts",
+    "stt",
+    "speech",
+    "apple-silicon",
+    "local"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw-mlx-audio.git"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.3",
+    "eslint": "^9.18.0"
+  },
+  "dependencies": {
+    "openclaw": "file:/opt/homebrew/lib/node_modules/openclaw"
+  }
+}

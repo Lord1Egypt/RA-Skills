@@ -1,0 +1,23 @@
+id: b05
+track: B
+title_zh: 给海外客户写英文邮件介绍 AI 投标产品
+category: write
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: soul
+  secondary:
+  - brain
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - soul
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 4
+title_en: Write the first-touch email to an overseas client

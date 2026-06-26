@@ -1,35 +1,70 @@
----
-name: "Annotation Format Converter"
-description: "Convert annotation files between COCO, YOLO, VOC, and LabelMe formats with auto-detection and support for batch processing of folders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/annotation-format-converter"
-sourceUrl: "https://clawhub.ai/skills/annotation-format-converter"
----
-
 # Annotation Format Converter
 
-> Convert annotation files between COCO, YOLO, VOC, and LabelMe formats with auto-detection and support for batch processing of folders.
+Convert annotation formats between COCO, YOLO, VOC, and LabelMe. Use when user needs to convert annotation files between different formats for computer vision tasks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/annotation-format-converter`
-- **Source URL:** [https://clawhub.ai/skills/annotation-format-converter](https://clawhub.ai/skills/annotation-format-converter)
+## Features
 
-## Overview
+- **COCO → YOLO**: Convert COCO JSON to YOLO txt format
+- **YOLO → COCO**: Convert YOLO txt to COCO JSON
+- **VOC → COCO**: Convert Pascal VOC XML to COCO JSON
+- **LabelMe → COCO**: Convert LabelMe JSON to COCO JSON
+- **Auto-detect**: Automatically detect input format
+- **Batch Convert**: Convert entire folders
 
+## Usage
+
+```bash
+# Convert COCO JSON to YOLO
+python scripts/converter.py coco2yolo input.json output_dir/
+
+# Convert YOLO txt to COCO
+python scripts/converter.py yolo2coco input_dir/ output.json
+
+# Convert VOC XML to COCO
+python scripts/converter.py voc2coco input_dir/ output.json
+
+# Auto-detect and convert
+python scripts/converter.py convert input.json output.json --from coco --to yolo
+
+# List supported formats
+python scripts/converter.py formats
+```
+
+## Supported Formats
+
+| Format | Extension | Description |
+|--------|-----------|-------------|
+| COCO | .json | COCO JSON annotation |
+| YOLO | .txt | YOLO darknet format |
+| VOC | .xml | Pascal VOC XML |
+| LabelMe | .json | LabelMe JSON |
+
+## Examples
+
+### COCO to YOLO
+```
+$ python scripts/converter.py coco2yolo annotations.json yolo_labels/
+
+Converting COCO to YOLO...
+✓ Converted 150 annotations to yolo_labels/
+```
+
+### YOLO to COCO
+```
+$ python scripts/converter.py yolo2coco labels/ output.json --image-dir images/
+
+Converting YOLO to COCO...
+✓ Converted 150 annotations to output.json
+```
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/annotation-format-converter
+pip install pillow tqdm
 ```
+
+## Requirements
+
+- Python 3.8+
+- Pillow (for image dimensions)
+- tqdm (for progress bar)

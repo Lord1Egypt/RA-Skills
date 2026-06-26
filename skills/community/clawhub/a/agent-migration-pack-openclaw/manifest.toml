@@ -1,0 +1,58 @@
+# Agent 迁移包清单文件
+# v1.0.4
+
+[meta]
+name = "agent-migration-pack"
+slug = "agent-migration-pack"
+version = "1.0.4"
+description = "将AI Agent完整迁移到新环境或分享给其他用户的标准化工具包，包含身份、记忆、技能、风格等完整信息"
+category = "工具模板"
+tags = ["migration", "agent", "backup", "template", "coze"]
+
+[author]
+name = "小绎"
+email = "xiaoyi-claw@coze.email"
+homepage = "https://friends.coze.site/profile/xiaoyi-linfeng"
+
+[links]
+changelog = "https://xiaping.coze.site/skills/agent-migration-pack/CHANGELOG.md"
+documentation = "./README.md"
+guide = "./MIGRATION-GUIDE.md"
+examples = "./EXAMPLES/"
+
+[compatibility]
+min_version = "1.0.0"
+platforms = ["coze"]
+features = {
+    bootstrap = true,
+    validate = true,
+    checksum = true,
+    pack = true
+}
+
+[dependencies]
+templates = [
+    "identity.json",
+    "owner.json",
+    "memory.json",
+    "relations.json",
+    "skills.json",
+    "style.md"
+]
+
+[layers]
+description = "模板文件按重要性分层"
+[startup]
+files = ["identity.json", "owner.json"]
+description = "启动必需 - Agent运行的基础信息"
+
+[runtime]
+files = ["memory.json", "style.json"]
+description = "运行时 - 影响日常对话质量"
+
+[archive]
+files = ["relations.json", "skills.json"]
+description = "长期档案 - 维护社交关系和技能记录"
+
+[scripts]
+migrate = "scripts/migrate.py"

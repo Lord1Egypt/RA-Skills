@@ -1,0 +1,25 @@
+{
+  "name": "Expense Categorization Optimizer",
+  "slug": "expense-categorization-optimizer",
+  "version": "1.0.0",
+  "description": "Optimizes expense categorization rules and suggests improvements for better financial tracking.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "expense"
+  ],
+  "trigger_keywords": [
+    "expense categorization optimizer",
+    "expense categorization optimizer",
+    "expense",
+    "categorization",
+    "optimizer"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

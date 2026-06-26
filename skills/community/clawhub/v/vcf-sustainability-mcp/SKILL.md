@@ -1,35 +1,37 @@
 ---
-name: "VCF Green IT & Carbon Footprint"
-description: "An MCP server that interfaces with VMware Aria Operations to extract Green IT metrics, carbon footprint data, and the organizational Green Score for ESG repo..."
-category: "mcp"
-source: "ClawHub"
-tags: [aria-operations, esg, green-score, mcp, sustainability, vcf, vmware]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vcf-sustainability-mcp"
-sourceUrl: "https://clawhub.ai/skills/vcf-sustainability-mcp"
+name: vcf-sustainability-mcp
+description: An MCP server that interfaces with VMware Aria Operations to extract Green IT metrics, carbon footprint data, and the organizational Green Score for ESG reporting.
+version: 1.0.1
+homepage: https://github.com/kasture-rohit/vcf-openclaw-skills
+metadata:
+  openclaw:
+    requires:
+      env:
+        - ARIA_OPS_HOST
+        - ARIA_OPS_API_TOKEN
+    emoji: ""
 ---
 
-# VCF Green IT & Carbon Footprint
+# VCF Sustainability & Carbon Footprint Analyzer
 
-> An MCP server that interfaces with VMware Aria Operations to extract Green IT metrics, carbon footprint data, and the organizational Green Score for ESG repo...
+This skill uses the Model Context Protocol (MCP) to provide the AI agent with a native `get_vcf_carbon_footprint` tool. It queries VMware Aria Operations to generate executive-level ESG and Green IT reports.
 
-- **Category:** MCP
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vcf-sustainability-mcp`
-- **Source URL:** [https://clawhub.ai/skills/vcf-sustainability-mcp](https://clawhub.ai/skills/vcf-sustainability-mcp)
+### Setup Instructions for OpenClaw
+To use this skill, the OpenClaw agent must run the attached Python MCP server. 
 
-## Overview
+1. Install dependencies: `pip install -r requirements.txt`
+2. Configure your OpenClaw settings to launch this MCP server. Add the following to your agent's MCP configuration:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vcf-sustainability-mcp
-```
+```json
+{
+  "mcpServers": {
+    "vcf-sustainability": {
+      "command": "python",
+      "args": ["server.py"],
+      "env": {
+        "ARIA_OPS_HOST": "your-aria-ops-fqdn",
+        "ARIA_OPS_API_TOKEN": "your-api-token"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+name,age,city,salary,department
+Alice,28,Beijing,50000,Engineering
+Bob,35,Shanghai,,Sales
+Charlie,42,Beijing,75000,Engineering
+Alice,28,Beijing,50000,Engineering
+David,,Shenzhen,45000,Marketing
+Eve,31,Shanghai,60000,Engineering
+Frank,29,Beijing,52000,Sales
+Grace,38,,68000,Engineering
+Henry,45,Beijing,95000,Management
+Iris,27,Shanghai,48000,Marketing
+Jack,33,Shenzhen,,Sales
+Kate,36,Beijing,72000,Engineering

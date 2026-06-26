@@ -1,35 +1,11 @@
----
-name: "回忆录制作"
-description: "引导老人回忆口述历史，结构化记录故事，并自动生成短视频或短剧脚本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memo-teller"
-sourceUrl: "https://clawhub.ai/skills/memo-teller"
----
+# 生产队往事挖掘机 (Legacy Story Agent)
 
-# 回忆录制作
+这是一个专门为老一辈设计的口述历史挖掘工具。
 
-> 引导老人回忆口述历史，结构化记录故事，并自动生成短视频或短剧脚本。
+### 功能特点：
+- **诱导提问**：提供专业的采访逻辑，引导老人回忆细节。
+- **故事记录**：结构化保存口述素材。
+- **剧本转化**：自动生成短视频/短剧脚本。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memo-teller`
-- **Source URL:** [https://clawhub.ai/skills/memo-teller](https://clawhub.ai/skills/memo-teller)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memo-teller
-```
+### 如何使用：
+直接对 Claw 说：“帮我采访我爸关于生产队分粮的故事”。

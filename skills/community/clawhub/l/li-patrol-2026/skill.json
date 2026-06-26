@@ -1,0 +1,187 @@
+{
+  "name": "li_patrol_2026",
+  "version": "1.0.0",
+  "description": "全面的运维智能巡检系统，支持10层巡检：基础资源、中间件、K8S、日志、业务、安全、配置管理、性能、容量规划、灾备",
+  "author": "@43622283",
+  "tags": [
+    "ops",
+    "inspection",
+    "monitoring",
+    "devops",
+    "kubernetes",
+    "middleware",
+    "redis",
+    "mysql",
+    "kafka",
+    "elasticsearch",
+    "patrol",
+    "health-check"
+  ],
+  "category": "devops",
+  "requirements": {
+    "python": ">=3.7",
+    "dependencies": [
+      "psutil"
+    ],
+    "optional_dependencies": [
+      "requests"
+    ]
+  },
+  "license": "MIT",
+  "repository": "",
+  "homepage": "",
+  "keywords": [
+    "运维巡检",
+    "智能巡检",
+    "系统监控",
+    "中间件监控",
+    "Kubernetes巡检",
+    "日志分析",
+    "业务监控",
+    "自动化运维"
+  ],
+  "files": [
+    "README.md",
+    "intelligent_inspection.py",
+    "README_INSPECTION.md"
+  ],
+  "entrypoint": "intelligent_inspection.py",
+  "cli": {
+    "command": "python3 intelligent_inspection.py",
+    "arguments": [
+      {
+        "name": "--export",
+        "short": "-e",
+        "description": "导出报告为JSON文件",
+        "type": "boolean"
+      },
+      {
+        "name": "--format",
+        "short": "-f",
+        "description": "报告格式",
+        "type": "string",
+        "default": "json",
+        "choices": ["json"]
+      },
+      {
+        "name": "--layers",
+        "short": "-l",
+        "description": "指定巡检层",
+        "type": "array",
+        "choices": ["resource", "middleware", "k8s", "log", "business", "all"],
+        "default": ["all"]
+      }
+    ]
+  },
+  "capabilities": [
+    "CPU监控",
+    "内存监控",
+    "磁盘监控",
+    "网络监控",
+    "Redis巡检",
+    "MySQL巡检",
+    "Kafka巡检",
+    "MongoDB巡检",
+    "PostgreSQL巡检",
+    "Elasticsearch巡检",
+    "RabbitMQ巡检",
+    "Nginx巡检",
+    "Tomcat巡检",
+    "Kubernetes巡检",
+    "日志分析",
+    "业务指标监控",
+    "健康评分",
+    "报告导出"
+  ],
+  "inspection_layers": [
+    {
+      "layer": 1,
+      "name": "基础资源巡检",
+      "type": "real",
+      "items": ["CPU", "内存", "磁盘", "网络", "Inode", "系统负载"]
+    },
+    {
+      "layer": 2,
+      "name": "中间件巡检",
+      "type": "real",
+      "items": ["Redis", "MySQL", "Kafka", "MongoDB", "PostgreSQL", "Elasticsearch", "RabbitMQ", "Nginx", "Tomcat"]
+    },
+    {
+      "layer": 3,
+      "name": "K8S巡检",
+      "type": "hybrid",
+      "items": ["Node", "Pod", "Deployment", "DaemonSet", "Ingress", "Event"]
+    },
+    {
+      "layer": 4,
+      "name": "日志巡检",
+      "type": "hybrid",
+      "items": ["ERROR", "WARN", "FATAL", "异常分析"]
+    },
+    {
+      "layer": 5,
+      "name": "业务巡检",
+      "type": "simulation",
+      "items": ["订单成功率", "支付成功率", "接口成功率", "响应时间"]
+    },
+    {
+      "layer": 6,
+      "name": "安全巡检",
+      "type": "planned",
+      "items": ["SSH配置", "防火墙", "漏洞扫描", "SSL证书"]
+    },
+    {
+      "layer": 7,
+      "name": "配置管理巡检",
+      "type": "planned",
+      "items": ["配置文件", "服务配置", "版本控制"]
+    },
+    {
+      "layer": 8,
+      "name": "性能巡检",
+      "type": "planned",
+      "items": ["应用性能", "系统性能", "IOPS"]
+    },
+    {
+      "layer": 9,
+      "name": "容量规划巡检",
+      "type": "planned",
+      "items": ["资源容量", "业务容量", "趋势分析"]
+    },
+    {
+      "layer": 10,
+      "name": "灾备巡检",
+      "type": "planned",
+      "items": ["备份检查", "恢复能力", "RTO/RPO"]
+    }
+  ],
+  "risk_levels": {
+    "P1": {
+      "name": "严重",
+      "description": "核心功能不可用，需要立即处理",
+      "score_impact": -20
+    },
+    "P2": {
+      "name": "警告",
+      "description": "功能受损或存在风险，需要尽快处理",
+      "score_impact": -10
+    },
+    "P3": {
+      "name": "提示",
+      "description": "存在潜在问题，建议处理",
+      "score_impact": -5
+    }
+  },
+  "output_formats": ["json", "text"],
+  "permissions": [
+    "system:read",
+    "network:read",
+    "process:list"
+  ],
+  "notes": [
+    "部分巡检需要root权限或sudo权限",
+    "自动检测已安装的软件和服务",
+    "支持定时巡检和告警集成",
+    "报告可能包含敏感信息，注意数据脱敏"
+  ]
+}

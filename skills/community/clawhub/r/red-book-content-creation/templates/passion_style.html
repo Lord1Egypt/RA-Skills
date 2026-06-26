@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小红书内容 - 热情风</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #FFF5F5; }
+.page { width: 680px; min-height: 960px; margin: 0 auto; padding: 40px 32px; }
+
+/* 热情风封面 */
+.cover { background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%); border-radius: 24px; padding: 60px 40px; text-align: center; color: #fff; }
+.cover-emoji { font-size: 64px; margin-bottom: 20px; }
+.cover-title { font-size: 42px; font-weight: 800; line-height: 1.3; margin-bottom: 16px; }
+.cover-subtitle { font-size: 20px; opacity: 0.9; line-height: 1.6; }
+.cover-tags { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.tag { background: rgba(255,255,255,0.25); padding: 8px 20px; border-radius: 20px; font-size: 14px; }
+
+/* 通用卡片 */
+.card { background: #fff; border-radius: 20px; padding: 32px; margin: 24px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.card-header { display: flex; align-items: center; margin-bottom: 24px; }
+.card-icon { width: 56px; height: 56px; background: linear-gradient(135deg, #FF6B6B, #FF8E53); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-right: 16px; }
+.card-title { font-size: 26px; font-weight: 700; color: #333; }
+.card-subtitle { font-size: 14px; color: #999; margin-top: 4px; }
+
+/* 类比框 */
+.analogy { background: #FFF9F0; border-left: 4px solid #FF8E53; border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+.analogy-label { font-size: 12px; color: #FF8E53; font-weight: 600; margin-bottom: 8px; }
+.analogy-text { font-size: 16px; color: #666; line-height: 1.7; }
+
+/* 要点 */
+.point { display: flex; align-items: flex-start; margin: 16px 0; }
+.point-bullet { width: 28px; height: 28px; background: linear-gradient(135deg, #FF6B6B, #FF8E53); border-radius: 8px; color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
+.point-text { font-size: 15px; color: #444; line-height: 1.6; }
+.point-highlight { color: #FF6B6B; font-weight: 600; }
+
+/* 对比表 */
+.compare-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+.compare-table th { background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: #fff; padding: 14px 16px; font-size: 14px; text-align: left; }
+.compare-table th:first-child { border-radius: 12px 0 0 0; }
+.compare-table th:last-child { border-radius: 0 12px 0 0; }
+.compare-table td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #444; }
+.compare-table tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+.compare-table tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+.compare-table td:first-child { font-weight: 600; color: #333; }
+
+/* 流程图 */
+.flow { display: flex; align-items: center; justify-content: center; margin: 24px 0; }
+.flow-step { background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: #fff; padding: 12px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; }
+.flow-arrow { font-size: 24px; color: #FF6B6B; margin: 0 12px; }
+
+/* 标签徽章 */
+.badge { display: inline-block; background: #FFF0F0; color: #FF6B6B; font-size: 12px; padding: 4px 12px; border-radius: 12px; margin: 4px; font-weight: 600; }
+.badge-green { background: #F0FFF0; color: #52C41A; }
+.badge-blue { background: #F0F8FF; color: #4A90E2; }
+.badge-purple { background: #F8F0FF; color: #7B68EE; }
+
+/* 总结页 */
+.summary { background: linear-gradient(135deg, #FFF5F5, #FFF9F0); border-radius: 20px; padding: 40px 32px; margin-top: 24px; }
+.summary-title { font-size: 28px; font-weight: 700; color: #333; text-align: center; margin-bottom: 32px; }
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.summary-item { background: #fff; border-radius: 16px; padding: 20px; }
+.summary-item-title { font-size: 14px; color: #FF6B6B; font-weight: 600; margin-bottom: 8px; }
+.summary-item-text { font-size: 14px; color: #444; line-height: 1.5; }
+
+/* 公式框 */
+.formula-box { background: #FFF0F0; border-radius: 12px; padding: 24px 20px; margin: 16px 0; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 60px; }
+
+/* 底部 */
+.footer { text-align: center; padding: 40px 0; color: #aaa; font-size: 12px; }
+
+/* 分隔线 */
+.section-divider { border-top: 2px dashed #E8E8E8; margin: 32px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="cover-emoji">{{EMOJI}}</div>
+  <div class="cover-title">{{TITLE}}</div>
+  <div class="cover-subtitle">{{SUBTITLE}}</div>
+  <div class="cover-tags">
+    {{TAGS}}
+  </div>
+</div>
+
+<!-- 内容卡片循环 -->
+{{CONTENT_CARDS}}
+
+<!-- 总结 -->
+<div class="summary">
+  <div class="summary-title">📝 一句话总结</div>
+  <div class="summary-grid">
+    {{SUMMARY_ITEMS}}
+  </div>
+</div>
+
+<div class="footer">
+  收藏慢慢看 💪 | 更多技术干货请关注<br>
+  {{FOOTER_TAGS}}
+</div>
+
+</div>
+<script>
+window.onload = function() {
+  {{KATEX_SCRIPTS}}
+};
+</script>
+</body>
+</html>

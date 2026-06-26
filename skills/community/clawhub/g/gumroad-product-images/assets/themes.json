@@ -1,0 +1,62 @@
+{
+  "purple-dark": {
+    "bg": ["#0a0a0a", "#1a1a2e", "#16213e"],
+    "html_bg": "#0a0a0a",
+    "accent": "#667eea",
+    "accent2": "#764ba2",
+    "dot": "#667eea",
+    "highlight": "#a78bfa",
+    "badge_bg": ["#f7971e", "#ffd200"],
+    "badge_text": "#000"
+  },
+  "blue-deep": {
+    "bg": ["#0f0c29", "#302b63", "#24243e"],
+    "html_bg": "#0f0c29",
+    "accent": "#00d2ff",
+    "accent2": "#3a7bd5",
+    "dot": "#00d2ff",
+    "highlight": "#7dd3fc",
+    "badge_bg": ["#00d2ff", "#3a7bd5"],
+    "badge_text": "#fff"
+  },
+  "pink-gradient": {
+    "bg": ["#1a1a1a", "#2d1b4e", "#1a1a2e"],
+    "html_bg": "#1a1a1a",
+    "accent": "#f093fb",
+    "accent2": "#f5576c",
+    "dot": "#f093fb",
+    "highlight": "#e9d5ff",
+    "badge_bg": ["#f093fb", "#f5576c"],
+    "badge_text": "#fff"
+  },
+  "teal-ocean": {
+    "bg": ["#0f172a", "#0c4a6e", "#164e63"],
+    "html_bg": "#0f172a",
+    "accent": "#06b6d4",
+    "accent2": "#0891b2",
+    "dot": "#06b6d4",
+    "highlight": "#a5f3fc",
+    "badge_bg": ["#06b6d4", "#0891b2"],
+    "badge_text": "#fff"
+  },
+  "green-dev": {
+    "bg": ["#0a0a0a", "#1e3a2f", "#0d2818"],
+    "html_bg": "#0a0a0a",
+    "accent": "#10b981",
+    "accent2": "#34d399",
+    "dot": "#10b981",
+    "highlight": "#6ee7b7",
+    "badge_bg": ["#10b981", "#34d399"],
+    "badge_text": "#000"
+  },
+  "violet-notion": {
+    "bg": ["#1a1a2e", "#2d1f4e", "#0f172a"],
+    "html_bg": "#1a1a2e",
+    "accent": "#8b5cf6",
+    "accent2": "#a78bfa",
+    "dot": "#8b5cf6",
+    "highlight": "#c4b5fd",
+    "badge_bg": ["#8b5cf6", "#a78bfa"],
+    "badge_text": "#fff"
+  }
+}

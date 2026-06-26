@@ -1,0 +1,4 @@
+interface:
+  display_name: "理工科论文写作"
+  short_description: "面向理工论文全流程的研究设计、假设推导与结果分析提示词封装工具"
+  default_prompt: "Use $ligong-paper to produce a complete Chinese STEM paper workflow, including hypotheses, design, and results analysis."

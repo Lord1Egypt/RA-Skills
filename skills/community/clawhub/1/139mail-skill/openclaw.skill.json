@@ -1,0 +1,17 @@
+{
+  "id": "139mail",
+  "name": "139mail",
+  "description": "139邮箱邮件收发 Skill - 支持 IMAP/SMTP 协议，兼容主流邮箱",
+  "version": "1.0.0",
+  "author": "OpenClaw User",
+  "main": "scripts/email.js",
+  "capabilities": {
+    "send": true,
+    "receive": true,
+    "list": true,
+    "read": true
+  },
+  "config": {
+    "file": "config/email.json"
+  }
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Prasówka — codzienny przegląd najważniejszych wiadomości z AI, technologii, nauki i świata">
+  <meta name="theme-color" content="#dc2626">
+  <meta name="color-scheme" content="light dark">
+  
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prasówka — {{DATE}}">
+  <meta property="og:description" content="Codzienny przegląd wiadomości AI, tech, nauka">
+  <meta property="og:type" content="website">
+  
+  <title>Prasówka — {{DATE}}</title>
+  
+  <link rel="stylesheet" href="{{CSS_PATH}}">
+  
+  <!-- Preconnect to common domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://news.ycombinator.com">
+  <link rel="dns-prefetch" href="https://github.com">
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" role="progressbar" aria-label="Scroll progress"></div>
+  
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="site-brand">
+        <a href="#" class="site-logo">
+          <span class="site-logo-icon">🗞️</span>
+          <span class="site-logo-text">PRASÓWKA</span>
+        </a>
+      </div>
+      
+      <div class="site-date">
+        {{FULL_DATE}} · {{ARTICLE_COUNT}} artykułów
+      </div>
+      
+      <div class="header-controls">
+        <button class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme (T)">
+          <span class="theme-toggle-slider">☀️</span>
+        </button>
+        
+        <button class="refresh-btn" aria-label="Refresh news" title="Refresh (R)">
+          🔄
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Navigation -->
+  <nav class="site-nav" aria-label="Category navigation">
+    <div class="nav-container">
+      <a href="#ai" class="nav-item active"><span>🤖 AI</span></a>
+      <a href="#models" class="nav-item"><span>🧠 Modele</span></a>
+      <a href="#tools" class="nav-item"><span>🛠️ Narzędzia</span></a>
+      <a href="#video" class="nav-item"><span>🎬 Wideo</span></a>
+      <a href="#agents" class="nav-item"><span>🤝 Agenty</span></a>
+      <a href="#coding" class="nav-item"><span>💻 Coding</span></a>
+      <a href="#tech" class="nav-item"><span>🔬 Tech</span></a>
+      <a href="#space" class="nav-item"><span>🚀 Kosmos</span></a>
+      <a href="#med" class="nav-item"><span>💊 Medycyna</span></a>
+      <a href="#market" class="nav-item"><span>📈 Rynek</span></a>
+      <a href="#world" class="nav-item"><span>🌍 Świat</span></a>
+      <a href="#poland" class="nav-item"><span>🇵🇱 Polska</span></a>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Stats Bar -->
+    <section class="stats-bar" aria-label="Statistics">
+      <div class="stat-item">
+        <div class="stat-value">{{ARTICLE_COUNT}}</div>
+        <div class="stat-label">Artykułów</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{{SOURCE_COUNT}}</div>
+        <div class="stat-label">Źródeł</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{{CATEGORIES_COUNT}}</div>
+        <div class="stat-label">Kategorii</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{{UPDATE_TIME}}</div>
+        <div class="stat-label">Ostatnia aktualizacja</div>
+      </div>
+    </section>
+    
+    <!-- AI Models Section -->
+    <section class="section" id="models" aria-labelledby="models-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="models-heading">
+          <span class="section-icon">🧠</span>
+          Nowe modele AI
+        </h2>
+        <span class="section-count">{{AI_MODELS_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{AI_MODELS_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- AI Tools Section -->
+    <section class="section" id="tools" aria-labelledby="tools-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="tools-heading">
+          <span class="section-icon">🛠️</span>
+          Nowe narzędzia AI
+        </h2>
+        <span class="section-count">{{AI_TOOLS_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{AI_TOOLS_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- AI Video Section -->
+    <section class="section" id="video" aria-labelledby="video-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="video-heading">
+          <span class="section-icon">🎬</span>
+          AI Wideo i Film
+        </h2>
+        <span class="section-count">{{AI_VIDEO_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{AI_VIDEO_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- AI Agents Section -->
+    <section class="section" id="agents" aria-labelledby="agents-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="agents-heading">
+          <span class="section-icon">🤝</span>
+          Agenty i Automatyzacja
+        </h2>
+        <span class="section-count">{{AI_AGENTS_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{AI_AGENTS_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- Vibe Coding Section -->
+    <section class="section" id="coding" aria-labelledby="coding-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="coding-heading">
+          <span class="section-icon">💻</span>
+          Vibe Coding i Programowanie
+        </h2>
+        <span class="section-count">{{VIBE_CODING_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{VIBE_CODING_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- Tech Section -->
+    <section class="section" id="tech" aria-labelledby="tech-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="tech-heading">
+          <span class="section-icon">🔬</span>
+          Technika i Wynalazki
+        </h2>
+        <span class="section-count">{{TECH_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{TECH_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- Space Section -->
+    <section class="section" id="space" aria-labelledby="space-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="space-heading">
+          <span class="section-icon">🚀</span>
+          Kosmos i Astronomia
+        </h2>
+        <span class="section-count">{{SPACE_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{SPACE_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- Medicine Section -->
+    <section class="section" id="med" aria-labelledby="med-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="med-heading">
+          <span class="section-icon">💊</span>
+          Medycyna — Przełomy
+        </h2>
+        <span class="section-count">{{MEDICINE_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{MEDICINE_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- Market Section -->
+    <section class="section" id="market" aria-labelledby="market-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="market-heading">
+          <span class="section-icon">📈</span>
+          Rynek i Finanse
+        </h2>
+        <span class="section-count">{{MARKET_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{MARKET_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- World Section -->
+    <section class="section" id="world" aria-labelledby="world-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="world-heading">
+          <span class="section-icon">🌍</span>
+          Świat
+        </h2>
+        <span class="section-count">{{WORLD_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{WORLD_ARTICLES}}
+      </div>
+    </section>
+    
+    <!-- Poland Section -->
+    <section class="section" id="poland" aria-labelledby="poland-heading">
+      <header class="section-header">
+        <h2 class="section-title" id="poland-heading">
+          <span class="section-icon">🇵🇱</span>
+          Polska
+        </h2>
+        <span class="section-count">{{POLAND_COUNT}} artykułów</span>
+        <a href="#" class="section-action">Zobacz wszystkie →</a>
+      </header>
+      
+      <div class="bento-grid" role="feed" aria-busy="false">
+        {{POLAND_ARTICLES}}
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span>🗞️</span>
+        <span>Prasówka — generowane przez OpenClaw</span>
+      </div>
+      
+      <div class="footer-meta">
+        {{TIMESTAMP}} · {{ARTICLE_COUNT}} artykułów z {{SOURCE_COUNT}} źródeł
+      </div>
+      
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#" class="footer-link">O projekcie</a>
+        <a href="#" class="footer-link">Źródła</a>
+        <a href="#" class="footer-link">RSS</a>
+      </nav>
+    </div>
+  </footer>
+  
+  <script src="{{JS_PATH}}" defer></script>
+</body>
+</html>

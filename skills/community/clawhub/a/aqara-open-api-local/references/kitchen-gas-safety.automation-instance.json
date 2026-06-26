@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "name": "kitchen-gas-safety-automation-pack",
+    "description": "Kitchen: if gas concentration exceeds 0.1%LEL, immediately trigger a sound and light alarm, open the window, and close the valve; emergency phone push notifications are handled by the cloud.",
+    "scope": [
+      {
+        "name": "kitchenGasDensity",
+        "type": "device.property",
+        "deviceId": "dev.kitchen.gas_alarm",
+        "endpointId": 1,
+        "functionCode": "Gas",
+        "traitCode": "GasDensity"
+      }
+    ]
+  },
+  "capability_gaps": [
+    {
+      "id": "app_emergency_push_family",
+      "user_summary": "Send an emergency gas alert to family members' phones",
+      "reason": "App or SMS-level notifications are typically sent by the cloud or a messaging service and should not be faked inside a single automation device action.",
+      "device_side_signal": "A gas alarm event can be linked so that a cloud-side policy triggers the push notification."
+    }
+  ],
+  "automations": [
+    {
+      "name": "Kitchen Gas Emergency Response",
+      "starters": [
+        {
+          "type": "property.event",
+          "source": {
+            "type": "data.ref",
+            "from": "/metadata/scope",
+            "select": {
+              "by": "name",
+              "value": "kitchenGasDensity"
+            }
+          },
+          "greaterThan": 0.1,
+          "for": "1sec",
+          "suppressFor": "5min"
+        }
+      ],
+      "actions": [
+        {
+          "type": "device.trait.write",
+          "functionCode": "Output",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "dev.kitchen.siren_light",
+              "endpointIds": [1]
+            }
+          ],
+          "value": true
+        },
+        {
+          "type": "device.trait.write",
+          "functionCode": "WindowCovering",
+          "traitCode": "TargetPositionPercentage",
+          "targets": [
+            {
+              "deviceId": "dev.kitchen.window",
+              "endpointIds": [1]
+            }
+          ],
+          "value": 100
+        },
+        {
+          "type": "device.trait.write",
+          "functionCode": "Output",
+          "traitCode": "OnOff",
+          "targets": [
+            {
+              "deviceId": "dev.kitchen.gas_valve",
+              "endpointIds": [1]
+            }
+          ],
+          "value": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "06",
+  "name": "智能传感器",
+  "category": "战略性新兴产业",
+  "keywords": [
+    "传感器",
+    "智能传感",
+    "MEMS",
+    "激光雷达",
+    "毫米波雷达",
+    "传感器芯片"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🔬",
+    "maxDescriptionLength": 200
+  }
+}

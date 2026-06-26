@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工资审核清单看板 - 2026-06-05 16:13</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f8fafc; color: #1e293b; padding: 24px; }
+  .header { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 32px; border-radius: 16px; margin-bottom: 24px; }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .meta { font-size: 14px; opacity: 0.85; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+  .card .number { font-size: 36px; font-weight: 700; margin-bottom: 4px; }
+  .card .label { font-size: 13px; color: #64748b; }
+  .card.pass .number { color: #22c55e; }
+  .card.warning .number { color: #f59e0b; }
+  .card.block .number { color: #ef4444; }
+  .card.note .number { color: #6366f1; }
+  .card.total .number { color: #1e40af; }
+  .card.rate .number { color: #059669; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 24px; }
+  th { background: #f1f5f9; padding: 12px 16px; text-align: left; font-size: 13px; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+  td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; color: white; }
+  .status-pass { background: #22c55e; }
+  .status-warning { background: #f59e0b; }
+  .status-block { background: #ef4444; }
+  .status-note { background: #6366f1; }
+  .category-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; color: white; }
+  .rule-id { font-family: monospace; font-size: 12px; color: #94a3b8; }
+  .evidence { color: #475569; max-width: 300px; word-break: break-word; }
+  .action { color: #dc2626; font-weight: 500; max-width: 250px; word-break: break-word; }
+  .action-normal { color: #22c55e; }
+  .rate-bar { display: inline-block; width: 60px; height: 6px; background: #e2e8f0; border-radius: 3px; vertical-align: middle; margin-left: 6px; }
+  .rate-bar-fill { height: 100%; border-radius: 3px; }
+  .footer { text-align: center; padding: 16px; color: #94a3b8; font-size: 12px; }
+  @media (max-width: 768px) { table { font-size: 11px; } td, th { padding: 8px 10px; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📋 工资审核清单看板</h1>
+  <div class="meta">
+    审核时间: 2026-06-05T16:13:26.249840 |
+    检查记录: 947 条 |
+    版本: 7.0.0
+  </div>
+</div>
+
+<div class="summary-cards">
+  <div class="card total"><div class="number">32</div><div class="label">审核条目总数</div></div>
+  <div class="card pass"><div class="number">20</div><div class="label">✅ 通过</div></div>
+  <div class="card warning"><div class="number">8</div><div class="label">🟠 异常</div></div>
+  <div class="card block"><div class="number">1</div><div class="label">🔴 阻断</div></div>
+  <div class="card note"><div class="number">3</div><div class="label">🔵 提示</div></div>
+  <div class="card rate"><div class="number">87.7%</div><div class="label">综合通过率</div></div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:40px">#</th>
+      <th style="width:80px">类别</th>
+      <th style="width:60px">规则ID</th>
+      <th style="width:160px">审核条目</th>
+      <th style="width:80px">审核结果</th>
+      <th style="width:50px">检查数</th>
+      <th style="width:50px">通过</th>
+      <th style="width:50px">异常</th>
+      <th style="width:90px">通过率</th>
+      <th style="width:250px">数据依据</th>
+      <th style="width:200px">处理建议</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><span class="category-tag" style="background:#3b82f6">字段完整性</span></td>
+      <td><span class="rule-id">FC-001</span></td>
+      <td><strong>必填字段检查</strong><br><span style="color:#94a3b8;font-size:11px">检查 65 个必填字段的完整性和格式</span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">检查 65 个字段，全部完整且格式正确</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><span class="category-tag" style="background:#8b5cf6">公式校验</span></td>
+      <td><span class="rule-id">FR-001</span></td>
+      <td><strong>应发合计校验</strong><br><span style="color:#94a3b8;font-size:11px">应发合计校验</span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过，容差0.01元</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><span class="category-tag" style="background:#8b5cf6">公式校验</span></td>
+      <td><span class="rule-id">FR-002</span></td>
+      <td><strong>实发合计校验</strong><br><span style="color:#94a3b8;font-size:11px">实发合计校验</span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过，容差0.01元</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><span class="category-tag" style="background:#8b5cf6">公式校验</span></td>
+      <td><span class="rule-id">FR-003</span></td>
+      <td><strong>出勤工资校验</strong><br><span style="color:#94a3b8;font-size:11px">出勤工资校验</span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过，容差0.01元</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><span class="category-tag" style="background:#8b5cf6">公式校验</span></td>
+      <td><span class="rule-id">FR-004</span></td>
+      <td><strong>计薪天数校验</strong><br><span style="color:#94a3b8;font-size:11px">计薪天数校验</span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过，容差0.01元</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><span class="category-tag" style="background:#06b6d4">业务规则</span></td>
+      <td><span class="rule-id">BR-001</span></td>
+      <td><strong>出勤工资不超过标准工资</strong><br><span style="color:#94a3b8;font-size:11px">出勤工资不超过标准工资</span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">32</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">915</td>
+      <td>
+        3.4%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:3.4%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中915条触发业务规则异常</td>
+      <td class="action ">核实: 425269Wa0Wr3(1); 100776Wz9Jx4(3); 313161Hq4Dj6(4); 128671De2Ml4(5); 334147Fa4Zk5(6) 等20人</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><span class="category-tag" style="background:#06b6d4">业务规则</span></td>
+      <td><span class="rule-id">BR-002</span></td>
+      <td><strong>出勤天数不超过应出勤天数</strong><br><span style="color:#94a3b8;font-size:11px">出勤天数不超过应出勤天数</span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">0</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">947</td>
+      <td>
+        0.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:0.0%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中947条触发业务规则异常</td>
+      <td class="action ">核实: 425269Wa0Wr3(1); 100776Wz9Jx4(3); 313161Hq4Dj6(4); 128671De2Ml4(5); 334147Fa4Zk5(6) 等20人</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><span class="category-tag" style="background:#06b6d4">业务规则</span></td>
+      <td><span class="rule-id">BR-003</span></td>
+      <td><strong>绩效系数在合理范围</strong><br><span style="color:#94a3b8;font-size:11px">绩效系数在合理范围</span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">0</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">947</td>
+      <td>
+        0.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:0.0%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中947条触发业务规则异常</td>
+      <td class="action ">核实: 425269Wa0Wr3(1); 100776Wz9Jx4(3); 313161Hq4Dj6(4); 128671De2Ml4(5); 334147Fa4Zk5(6) 等20人</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><span class="category-tag" style="background:#06b6d4">业务规则</span></td>
+      <td><span class="rule-id">BR-004</span></td>
+      <td><strong>班天数不超过计薪天数</strong><br><span style="color:#94a3b8;font-size:11px">班天数不超过计薪天数</span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部符合业务规则</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><span class="category-tag" style="background:#06b6d4">业务规则</span></td>
+      <td><span class="rule-id">BR-005</span></td>
+      <td><strong>轮班天数不超过计薪天数</strong><br><span style="color:#94a3b8;font-size:11px">轮班天数不超过计薪天数</span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">945</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">2</td>
+      <td>
+        99.8%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:99.8%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中2条触发业务规则异常</td>
+      <td class="action ">核实: 847238Vf1Cg1(570); 388095Mf1Ay6(913)</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-001</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过红线校验</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-002</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过红线校验</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-003</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过红线校验</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-004</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过红线校验</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-005</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过红线校验</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-006</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部通过红线校验</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td><span class="category-tag" style="background:#ef4444">红线</span></td>
+      <td><span class="rule-id">RL-007</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-block">🔴 阻断</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">806</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">141</td>
+      <td>
+        85.1%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:85.1%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中141条触发红线（严重违规）</td>
+      <td class="action ">立即核实并修正: 128671De2Ml4(5)=43888.47; 895922Sx4St1(7)=39543.02; 150669Lv7Rk2(16)=41493.02; 964730Rn2Ru5(19)=24161.72; 620006La1Tm2(28)=24793.02 等20人</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td><span class="category-tag" style="background:#f59e0b">黄线</span></td>
+      <td><span class="rule-id">YL-001</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">943</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">4</td>
+      <td>
+        99.6%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:99.6%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中4条需核实</td>
+      <td class="action ">核实以下人员: 核实: 812248Fd9Er4(541); 919637Sc8Xg2(607); 512791Mh2Rt5(115); 336523Vz6Gb9(674)</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td><span class="category-tag" style="background:#f59e0b">黄线</span></td>
+      <td><span class="rule-id">YL-002</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">943</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">4</td>
+      <td>
+        99.6%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:99.6%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中4条需核实</td>
+      <td class="action ">核实以下人员: 核实: 130032Bp7Vd3(338); 603178Ww0Be7(706); 539775Ic0Kw3(1105); 481204Bp0Qc5(467)</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td><span class="category-tag" style="background:#f59e0b">黄线</span></td>
+      <td><span class="rule-id">YL-003</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">944</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">3</td>
+      <td>
+        99.7%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:99.7%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中3条需核实</td>
+      <td class="action ">核实以下人员: 核实: 491087Ak6Wa8(65); 481204Bp0Qc5(467); 790066Ae7Cx7(1592)</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td><span class="category-tag" style="background:#f59e0b">黄线</span></td>
+      <td><span class="rule-id">YL-004</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部正常</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td><span class="category-tag" style="background:#f59e0b">黄线</span></td>
+      <td><span class="rule-id">YL-005</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部正常</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td><span class="category-tag" style="background:#f59e0b">黄线</span></td>
+      <td><span class="rule-id">YL-006</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-warning">🟠 异常</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">804</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">143</td>
+      <td>
+        84.9%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:84.9%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中143条需核实</td>
+      <td class="action ">核实以下人员: 核实: 425269Wa0Wr3(1); 100776Wz9Jx4(3); 128671De2Ml4(5); 895922Sx4St1(7); 150669Lv7Rk2(16) 等20人</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td><span class="category-tag" style="background:#6366f1">蓝线</span></td>
+      <td><span class="rule-id">BL-001</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-note">🔵 提示</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">816</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">131</td>
+      <td>
+        86.2%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:86.2%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中131条有波动趋势（正常范围）</td>
+      <td class="action ">关注趋势变化</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td><span class="category-tag" style="background:#6366f1">蓝线</span></td>
+      <td><span class="rule-id">BL-002</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-note">🔵 提示</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">778</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">169</td>
+      <td>
+        82.2%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:82.2%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中169条有波动趋势（正常范围）</td>
+      <td class="action ">关注趋势变化</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td><span class="category-tag" style="background:#6366f1">蓝线</span></td>
+      <td><span class="rule-id">BL-003</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中无异常波动</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td><span class="category-tag" style="background:#6366f1">蓝线</span></td>
+      <td><span class="rule-id">BL-004</span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-note">🔵 提示</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">621</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">326</td>
+      <td>
+        65.6%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:65.6%;background:#ef4444"></span></span>
+      </td>
+      <td class="evidence">947条记录中326条有波动趋势（正常范围）</td>
+      <td class="action ">关注趋势变化</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td><span class="category-tag" style="background:#10b981">政策校验</span></td>
+      <td><span class="rule-id"></span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部符合政策规定</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td><span class="category-tag" style="background:#10b981">政策校验</span></td>
+      <td><span class="rule-id"></span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部符合政策规定</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td><span class="category-tag" style="background:#10b981">政策校验</span></td>
+      <td><span class="rule-id"></span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部符合政策规定</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td><span class="category-tag" style="background:#10b981">政策校验</span></td>
+      <td><span class="rule-id"></span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部符合政策规定</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td><span class="category-tag" style="background:#10b981">政策校验</span></td>
+      <td><span class="rule-id"></span></td>
+      <td><strong></strong><br><span style="color:#94a3b8;font-size:11px"></span></td>
+      <td><span class="status-badge status-pass">✅ 通过</span></td>
+      <td style="text-align:center">947</td>
+      <td style="text-align:center;color:#22c55e">947</td>
+      <td style="text-align:center;color:#ef4444;font-weight:600">0</td>
+      <td>
+        100.0%
+        <span class="rate-bar"><span class="rate-bar-fill" style="width:100.0%;background:#22c55e"></span></span>
+      </td>
+      <td class="evidence">947条记录中全部符合政策规定</td>
+      <td class="action action-normal">无需操作</td>
+    </tr>
+  </tbody>
+</table>
+<div class="footer">
+  工资审核清单看板 v5.3 | 基于确定性规则引擎生成 | 每个审核结论均有数据依据
+</div>
+</body>
+</html>

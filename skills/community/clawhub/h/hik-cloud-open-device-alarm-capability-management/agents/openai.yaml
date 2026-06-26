@@ -1,0 +1,4 @@
+interface:
+  display_name: "海康云眸设备报警能力管理"
+  short_description: "查询和修改设备报警能力状态，以及控制智能检测开关。"
+  default_prompt: "Use $hik-cloud-device-alarm-capability-management to list alarm capabilities, update alarm status, or control intelligence detection switch on Hik-Cloud devices."

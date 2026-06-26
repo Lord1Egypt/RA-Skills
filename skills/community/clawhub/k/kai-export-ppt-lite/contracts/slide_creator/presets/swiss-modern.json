@@ -1,0 +1,420 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/swiss-modern",
+  "preset": "Swiss Modern",
+  "family": "editorial-swiss",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.18.0 <3.0.0",
+  "producer_version_tested": "2.18.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/swiss-modern.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/swiss-modern-zh.html",
+    "demos/swiss-modern-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/swiss-modern.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/swiss-modern-zh.html",
+    "source_snapshot/demos/swiss-modern-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [
+    {
+      "selector": "body::before",
+      "kind": "swiss-grid",
+      "export_strategy": "background-layer"
+    }
+  ],
+  "component_selectors": {
+    "editorial_grid": [
+      ".grid",
+      ".editorial-grid"
+    ],
+    "section_label": [
+      ".swiss-label",
+      ".label",
+      ".eyebrow"
+    ],
+    "card": [
+      ".swiss-card",
+      ".feat-card",
+      ".pain-item"
+    ],
+    "rule": [
+      ".swiss-rule",
+      ".swiss-rule-thin"
+    ],
+    "terminal_line": [
+      ".terminal-line"
+    ],
+    "body_columns": [
+      ".right-col",
+      ".swiss-body-columns"
+    ]
+  },
+  "component_slot_models": {
+    "card": {
+      "layout": "editorial_card",
+      "slots": [
+        "label",
+        "title",
+        "body",
+        "rule_or_stat"
+      ]
+    },
+    "terminal_line": {
+      "layout": "inline_command_row",
+      "slots": [
+        "command",
+        "label",
+        "link"
+      ]
+    },
+    "body_columns": {
+      "layout": "typographic_columns",
+      "slots": [
+        "body_flow"
+      ],
+      "column_count": 2,
+      "column_gap_px": 32,
+      "compatibility_tier": "compatible"
+    }
+  },
+  "layout_variations": [
+    "title_grid",
+    "column_content",
+    "stat_block",
+    "pull_quote",
+    "geometric_diagram",
+    "contents_index",
+    "data_table"
+  ],
+  "text_expectations": {
+    "tabular_numbers": true,
+    "single_red_accent_per_slide": true
+  },
+  "typography": {
+    "display_font_stack": [
+      "Archivo Black",
+      "Arial Black",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
+    "body_font_stack": [
+      "Nunito",
+      "Helvetica Neue",
+      "Arial",
+      "sans-serif"
+    ],
+    "label_font_stack": [
+      "Archivo",
+      "Helvetica Neue",
+      "Arial",
+      "sans-serif"
+    ],
+    "role_selectors": {
+      "title": [
+        ".swiss-title",
+        ".quote-text",
+        ".hero-title",
+        ".index-title"
+      ],
+      "body": [
+        ".swiss-body",
+        ".pain-desc",
+        ".quote-attribution",
+        ".disc-step-desc",
+        ".index-desc"
+      ],
+      "label": [
+        ".swiss-label",
+        ".label",
+        ".eyebrow",
+        ".slide-num-label",
+        ".pain-title"
+      ],
+      "metric": [
+        ".swiss-stat",
+        ".hero-stat-num",
+        ".pain-num",
+        ".index-num"
+      ]
+    },
+    "title": {
+      "family_mode": "display_sans",
+      "weight": 900,
+      "line_height": 1.0,
+      "letter_spacing": "-0.02em"
+    },
+    "body": {
+      "family_mode": "body_sans",
+      "weight": 400,
+      "line_height": 1.55
+    },
+    "label": {
+      "family_mode": "label_sans",
+      "weight": 700,
+      "line_height": 1.2,
+      "letter_spacing": "0.08em"
+    },
+    "metric": {
+      "family_mode": "display_sans",
+      "weight": 900,
+      "line_height": 1.0
+    }
+  },
+  "line_break_contract": {
+    "break_policy": {
+      ".swiss-title": "prefer_preserve",
+      ".quote-text": "prefer_preserve",
+      ".swiss-body": "preserve",
+      ".pain-desc": "preserve",
+      ".quote-attribution": "preserve"
+    },
+    "shrink_forbidden_for": [
+      ".swiss-title",
+      ".quote-text",
+      ".swiss-stat",
+      ".pain-desc",
+      ".quote-attribution"
+    ],
+    "overflow_strategy": "expand_container_first"
+  },
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Swiss Modern",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "bg-num",
+    "cta-block",
+    "cta-echo",
+    "cta-echo-label",
+    "cta-echo-num",
+    "cta-inner",
+    "cta-sub",
+    "cta-title",
+    "disc-body",
+    "disc-header",
+    "disc-step-title",
+    "feat-card",
+    "feat-grid",
+    "hero-stat-label",
+    "hero-stat-num",
+    "hero-title",
+    "index-title",
+    "inst-label",
+    "left-panel",
+    "pain-title",
+    "pill",
+    "right-panel",
+    "slide-num-label",
+    "stat",
+    "stat-label",
+    "stat-value",
+    "swiss-label",
+    "terminal-line"
+  ],
+  "signature_elements": {
+    "page_grid": {
+      "selectors": [
+        "body::before"
+      ],
+      "export_strategy": "background-layer"
+    },
+    "bg_num": {
+      "selectors": [
+        ".bg-num"
+      ],
+      "export_strategy": "anchored-text"
+    },
+    "slide_num_label": {
+      "selectors": [
+        ".slide-num-label"
+      ],
+      "export_strategy": "anchored-text"
+    },
+    "hard_rule": {
+      "selectors": [
+        ".swiss-rule",
+        ".swiss-rule.red",
+        ".swiss-rule-thin"
+      ],
+      "export_strategy": "shape-divider"
+    }
+  },
+  "support_tiers": {
+    "canonical": {
+      "description": "Official Swiss demo family or guarded generated Swiss HTML."
+    },
+    "compatible": {
+      "description": "Swiss decks with a single content wrapper and approved structural aliases.",
+      "wrapper_selectors": [
+        ".slide-content",
+        ".content"
+      ]
+    },
+    "fallback": {
+      "description": "Producer detection only. No Swiss-specific layout guarantees."
+    }
+  },
+  "layout_contracts": {
+    "title_grid": {
+      "canonical": {
+        "direct_children_all": [
+          ".bg-num",
+          ".slide-num-label"
+        ],
+        "direct_children_any": [
+          ".hero-inner",
+          ".cta-inner"
+        ]
+      },
+      "compatible": {
+        "wrapper_selectors": [
+          ".slide-content",
+          ".content"
+        ],
+        "wrapper_children_all": [
+          ".swiss-title"
+        ],
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "unwrap_wrapper": true
+      }
+    },
+    "column_content": {
+      "canonical": {
+        "direct_children_all": [
+          ".left-panel",
+          ".right-panel",
+          ".slide-num-label"
+        ]
+      },
+      "compatible": {
+        "wrapper_selectors": [
+          ".slide-content",
+          ".content"
+        ],
+        "wrapper_children_all": [
+          ".left-col",
+          ".right-col"
+        ],
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "unwrap_wrapper": true
+      }
+    },
+    "stat_block": {
+      "canonical": {
+        "direct_children_all": [
+          ".stat-row",
+          ".slide-num-label"
+        ]
+      },
+      "compatible": {
+        "wrapper_selectors": [
+          ".slide-content",
+          ".content"
+        ],
+        "wrapper_children_all": [
+          ".stat-block",
+          ".content-block"
+        ],
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "unwrap_wrapper": true
+      }
+    },
+    "pull_quote": {
+      "canonical": {
+        "direct_children_all": [
+          ".pull-quote",
+          ".slide-num-label"
+        ]
+      },
+      "compatible": {
+        "wrapper_selectors": [
+          ".slide-content",
+          ".content"
+        ],
+        "wrapper_children_all": [
+          ".quote-block"
+        ],
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "unwrap_wrapper": true
+      }
+    },
+    "inner_panel": {
+      "canonical": {
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "direct_children_any": [
+          ".flow-inner",
+          ".feat-inner"
+        ]
+      }
+    },
+    "index_list": {
+      "canonical": {
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "direct_children_any": [
+          ".sol-inner"
+        ]
+      }
+    },
+    "inst_blocks": {
+      "canonical": {
+        "direct_children_all": [
+          ".slide-num-label"
+        ],
+        "direct_children_any": [
+          ".inst-inner"
+        ]
+      }
+    },
+    "disc_layout": {
+      "canonical": {
+        "direct_children_all": [
+          ".disc-header",
+          ".disc-body",
+          ".slide-num-label"
+        ]
+      }
+    }
+  },
+  "style_constraints": {
+    "max_red_accent_per_slide": 1,
+    "allow_gradients": false,
+    "allow_shadows": false,
+    "allow_rounded_corners": false,
+    "require_asymmetric_title_anchor": true
+  }
+}

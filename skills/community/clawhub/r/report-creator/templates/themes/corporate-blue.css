@@ -1,0 +1,20 @@
+/* Theme: corporate-blue — Professional · Business (warm premium palette) */
+:root {
+  --primary: #1F6F50; --primary-light: #E7EFE9; --accent: #C79A2B;
+  --bg: #F8F5EF; --surface: #FFFDF9; --text: #2B2623; --text-muted: #766B63;
+  --border: #E7DDD2; --success: #2F6B50; --warning: #A8741A; --danger: #A34A3F;
+  --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace; --radius: 8px;
+  --report-bg: #F8F5EF; --report-surface: #FFFDF9; --report-text: #2B2623;
+  --report-text-muted: #766B63; --report-border: #E7DDD2; --report-structure: #1F6F50;
+  --report-chip-bg: #F4EAD5; --report-chip-text: #7A6858; --report-chip-border: #E0D4C6;
+  --report-delta-up-bg: #E7F1EA; --report-delta-up-text: #2F6B50;
+  --report-delta-down-bg: #F6E8E6; --report-delta-down-text: #A34A3F;
+  --report-delta-flat-bg: #EEE7DE; --report-delta-flat-text: #766B63;
+}
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.58; }
+h1 { font-size: 2.25rem; font-weight: 700; color: var(--text); border-bottom: 2px solid var(--report-structure); padding-bottom: .5rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.5rem; font-weight: 600; color: var(--text); border-left: 3px solid var(--report-structure); padding-left: .75rem; margin-top: 1.75rem; }
+h3 { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-top: 1.1rem; }
+p { margin: .5rem 0; } a { color: var(--report-structure); }
+strong { font-weight: 700; } blockquote { border-left: 3px solid var(--border); margin: .75rem 0; padding: .5rem 1rem; color: var(--text-muted); }

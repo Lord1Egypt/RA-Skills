@@ -1,0 +1,295 @@
+name: Complex Task
+description: |
+  Extended 6-phase workflow for Complex tasks (architecture, multi-agent, system design).
+  Phases: 1 (Requirements) → 2 (Extended Conception) → 3 (Development) → 4 (QA) → 5 (Staging + Review) → 6 (Deploy).
+  Extended conception: creative (UX), product (Stories), backend (Architecture), growth (if strategic).
+  Multiple dev agents may run in sequence depending on task type.
+
+  v1.0.0: Initial release with parallel conception support.
+version: "1.0.0"
+
+# Triggered by n8n when task type = "Complex"
+# Context from n8n: taskId, taskName, taskType, project_name
+#
+# Complex task examples: auth system design, new product feature, multi-agent architecture
+# Extended conception adds: backend Architect + optional growth Consultant
+#
+# depends_on semantics:
+#   omit depends_on  → depends on immediately preceding step (sequential default)
+#   depends_on: []   → no dependencies (runs immediately when triggered by DAG)
+#   depends_on: ["step_a", "step_b"] → waits for both step_a and step_b to complete
+#
+# Task Type → Primary Agent (Phase 3):
+#   Code       → frontend + backend (sequential or both)
+#   Design     → creative (wireframes) → frontend (implementation)
+#   Infra      → devops
+#   Strategy   → growth + product
+
+steps:
+  # ─── Phase 1: Requirements ────────────────────────────────────────────────
+  - read_notion_task:
+      taskId: "{taskId}"
+      output: "temp/briefing-{taskId}.md"
+      # No depends_on = sequential default (first step, no deps)
+
+  - update_notion:
+      taskId: "{taskId}"
+      status: "In Progress"
+      # depends_on: ["read_notion_task"] — implicit sequential
+
+  # ─── Phase 2: Extended Conception (Parallel) ──────────────────────────────
+  # 2a runs first, then 2b and 2c run IN PARALLEL (both depend only on 2a)
+
+  # 2a. UX Design + Copywriter
+  - spawn_ux_agent:
+      agentId: "creative"
+      runtime: subagent
+      task: |
+        Role: UX Designer + Copywriter
+        TASK: Extended conception for complex task "{task_name}"
+
+        Read briefing: file:temp/briefing-{taskId}.md
+
+        Deliver (comprehensive for complex scope):
+        1. Full user journey map
+        2. Information architecture / sitemap
+        3. Wireframe descriptions for all key screens/flows
+        4. Copy framework: tone, headlines, key messages, CTAs
+        5. UX edge cases and accessibility considerations
+
+        Output to: concepts/ux-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 900
+      # depends_on: ["update_notion"] — implicit sequential
+
+  - wait_ux_agent:
+      sessionId: "{session_id}"
+      timeout: 900
+      pollInterval: 15
+      # depends_on: ["spawn_ux_agent"] — implicit sequential
+
+  # 2b. Backend Architecture — runs in parallel with 2c (same depends_on)
+  - spawn_architect:
+      agentId: "backend"
+      runtime: subagent
+      task: |
+        Role: Software Architect
+        TASK: Architecture design for complex task "{task_name}"
+
+        Read briefing + UX conception:
+        - file:temp/briefing-{taskId}.md
+        - file:concepts/ux-{taskId}.md
+
+        Deliver:
+        1. System architecture overview (components, services, data flow)
+        2. Database schema design (if applicable)
+        3. API design: endpoints, request/response shapes, auth approach
+        4. Technology choices + justification
+        5. Security considerations (auth, data handling, OWASP relevant items)
+        6. Performance considerations (caching, scalability)
+        7. Implementation phases / task breakdown for dev
+
+        Output to: concepts/architecture-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 900
+      depends_on: ["wait_ux_agent"]  # Starts when UX agent done
+
+  # 2c. Product Owner: User Stories — runs IN PARALLEL with spawn_architect
+  - spawn_product_owner:
+      agentId: "product"
+      runtime: subagent
+      task: |
+        Role: Product Owner
+        TASK: Stories + DoD for complex task "{task_name}"
+
+        Read briefing + UX:
+        - file:temp/briefing-{taskId}.md
+        - file:concepts/ux-{taskId}.md
+
+        Deliver:
+        1. Epic breakdown (if applicable)
+        2. User stories per epic (As a... I want... So that...)
+        3. Acceptance criteria per story (GIVEN/WHEN/THEN format)
+        4. Definition of Done (DoD) — global + per story
+        5. Priority order (MoSCoW if needed)
+        6. Explicit out-of-scope items
+        7. Dependencies and blockers identified
+
+        Output to: concepts/stories-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 900
+      depends_on: ["wait_ux_agent"]  # Also starts right after UX — PARALLEL with architect
+
+  # Wait for BOTH parallel agents to finish before continuing
+  - wait_architect:
+      sessionId: "{session_id}"
+      timeout: 900
+      depends_on: ["spawn_architect"]
+
+  - wait_product_owner:
+      sessionId: "{session_id}"
+      timeout: 900
+      depends_on: ["spawn_product_owner"]
+
+  # This step waits for BOTH waits above — merges parallel branches
+  - notify_conception_ready:
+      channel: project_updates
+      message: |
+        🏗️ **Extended Conception Complete — FlowClaw Review Needed**
+
+        **Task:** {task_name} (Complex)
+        **UX:** concepts/ux-{taskId}.md
+        **Architecture:** concepts/architecture-{taskId}.md
+        **Stories:** concepts/stories-{taskId}.md
+        **Notion:** {notion_url}
+
+        FlowClaw: review all conception docs, approve before development starts.
+      depends_on: ["wait_architect", "wait_product_owner"]  # Both must complete
+
+  - update_notion_conception:
+      taskId: "{taskId}"
+      status: "Conception Review"
+      depends_on: ["notify_conception_ready"]
+
+  # ─── Phase 3: Development ─────────────────────────────────────────────────
+  # AgentSelector routes primary dev agent by task description keywords
+  - select_agent:
+      task_description: "{description}"
+      tech_stack: "typescript, react, nextjs, tailwind, python"
+      depends_on: ["update_notion_conception"]
+
+  - spawn_dev_agent:
+      agentId: "{agentId}"
+      runtime: subagent
+      task: |
+        Role: Primary Developer for complex task "{task_name}"
+
+        Read ALL conception docs before starting:
+        - file:temp/briefing-{taskId}.md
+        - file:concepts/ux-{taskId}.md
+        - file:concepts/architecture-{taskId}.md
+        - file:concepts/stories-{taskId}.md
+
+        Implement according to architecture doc and acceptance criteria.
+        Work in development/ ONLY. Never touch staging/ or production/.
+
+        After completion, summarize:
+        - What was built
+        - Files created/modified
+        - Anything deviating from architecture (explain why)
+      mode: run
+      runTimeoutSeconds: 1800
+      depends_on: ["select_agent"]
+
+  - wait_dev_agent:
+      sessionId: "{session_id}"
+      timeout: 1800
+      pollInterval: 20
+      depends_on: ["spawn_dev_agent"]
+
+  - update_notion_qa:
+      taskId: "{taskId}"
+      status: "QA"
+      depends_on: ["wait_dev_agent"]
+
+  # ─── Phase 4: QA ──────────────────────────────────────────────────────────
+  - spawn_qa_agent:
+      agentId: "quality"
+      runtime: subagent
+      task: |
+        Role: QA Engineer + Security Officer
+        TASK: Full QA for complex task "{task_name}"
+
+        Reference documents:
+        - Acceptance criteria: concepts/stories-{taskId}.md
+        - Architecture: concepts/architecture-{taskId}.md
+
+        QA checklist:
+        1. Functionality — all acceptance criteria met?
+        2. Integration — components work together correctly?
+        3. Links — all internal/external links valid (HTTP 200)?
+        4. Accessibility — WCAG basics (contrast, labels, keyboard nav)
+        5. Performance — no obviously slow queries or render-blocking assets
+        6. Security — no secrets in code, OWASP Top 10 basics, auth logic correct
+        7. Code quality — no console errors, clean imports, no dead code
+
+        Verdict: ✅ PASS (0 blockers, 0 majors) or ❌ FAIL
+        If FAIL: detailed bug report with severity (blocker/major/minor)
+        Output QA report to: temp/qa-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 900
+      depends_on: ["update_notion_qa"]
+
+  - wait_qa_agent:
+      sessionId: "{session_id}"
+      timeout: 900
+      pollInterval: 15
+      depends_on: ["spawn_qa_agent"]
+
+  - qa_check:
+      script: "scripts/qa-standard.py"
+      stagingUrl: "{deploy_url}"
+      depends_on: ["wait_qa_agent"]
+
+  # ─── Phase 5: Staging & Review ────────────────────────────────────────────
+  - spawn_devops_staging:
+      agentId: "devops"
+      runtime: subagent
+      task: |
+        Role: Head of IT
+        TASK: Stage "{task_name}" for owner review
+
+        1. Copy approved files: development/ → staging/
+        2. Deploy to staging (NOT prod — no --prod flag)
+        3. Run smoke tests: check pages load, no 500 errors, no broken assets
+        4. Report: staging URL + smoke test results
+      mode: run
+      runTimeoutSeconds: 600
+      depends_on: ["qa_check"]
+
+  - wait_devops_staging:
+      sessionId: "{session_id}"
+      timeout: 600
+      pollInterval: 10
+      depends_on: ["spawn_devops_staging"]
+
+  - update_notion_staging:
+      taskId: "{taskId}"
+      status: "Staging Review"
+      depends_on: ["wait_devops_staging"]
+
+  - notify_staging_ready:
+      channel: project_updates
+      message: |
+        🔍 **Staging Ready — Owner Review Needed (Complex Task)**
+
+        **Task:** {task_name}
+        **Type:** Complex / {task_type}
+        **Agent:** {agentId}
+        **QA:** {qa_passed}
+        **Staging:** {deploy_url}
+        **Architecture:** concepts/architecture-{taskId}.md
+        **Stories:** concepts/stories-{taskId}.md
+        **Notion:** {notion_url}
+
+        Owner: review staging carefully (complex task). Say "deploy" to go live.
+      depends_on: ["update_notion_staging"]
+
+  # ─── Phase 6: Deployment ──────────────────────────────────────────────────
+  - update_notion_done:
+      taskId: "{taskId}"
+      status: "Done"
+      depends_on: ["notify_staging_ready"]
+
+  - notify_complete:
+      channel: project_updates
+      message: |
+        ✅ **Complex Task Complete**
+
+        **Task:** {task_name}
+        **QA:** {qa_passed}
+        **Staging:** {deploy_url}
+        **Notion:** {notion_url}
+
+        Awaiting deploy approval before production deployment.
+      depends_on: ["update_notion_done"]

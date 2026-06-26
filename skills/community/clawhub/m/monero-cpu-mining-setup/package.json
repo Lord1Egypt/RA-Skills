@@ -1,0 +1,6 @@
+{
+  "name": "monero-cpu-mining-setup",
+  "version": "1.0.0",
+  "description": "A practical, step-by-step guide to setting up XMRig for Monero mining on Windows, Linux, and macOS",
+  "main": "SKILL.md"
+}

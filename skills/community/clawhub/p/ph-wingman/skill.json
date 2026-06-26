@@ -1,0 +1,45 @@
+{
+  "name": "producthunt-wingman",
+  "slug": "ph-wingman",
+  "version": "1.6.1",
+  "description": "Premium PH outreach agent. Executes locally to automate community discovery, deep enrichment, and LinkedIn engagement with full privacy control.",
+  "author": "techievena",
+  "license": "MIT",
+  "source": "https://github.com/techievena/producthunt-wingman",
+  "homepage": "https://producthunt.eonik.ai",
+  "tags": [
+    "producthunt",
+    "outreach",
+    "linkedin",
+    "marketing",
+    "automation"
+  ],
+  "triggers": [
+    "Start my PH outreach",
+    "Set up wingman",
+    "Scrape ProductHunt streaks",
+    "How many connections did wingman send today?",
+    "Check my launch outreach status",
+    "Enrich new prospects",
+    "Pause wingman",
+    "cron"
+  ],
+  "schedule": "0 9 * * *",
+  "dependencies": {
+    "python": ">=3.9"
+  },
+  "requiredEnv": [
+    "OPENAI_API_KEY",
+    "LAUNCH_DATE",
+    "PH_LAUNCH_URL"
+  ],
+  "requirements": {
+    "bins": [
+      "python3",
+      "curl"
+    ]
+  },
+  "config_required": true,
+  "readme": "README.md",
+  "skill_file": "SKILL.md"
+}

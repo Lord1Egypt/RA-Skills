@@ -1,0 +1,23 @@
+{
+  "messages": [
+    {
+      "id": "gmail-msg-001",
+      "threadId": "thread-001",
+      "subject": "Follow-up on the LG proposal",
+      "from": "Sarah Chen <sarah@example.com>",
+      "snippet": "Just checking if you had a chance to review the proposal and send next steps.",
+      "date": "2026-05-16T10:30:00.000Z",
+      "labelIds": ["INBOX", "IMPORTANT"]
+    },
+    {
+      "id": "gmail-msg-002",
+      "threadId": "thread-002",
+      "subject": "Deck prep before tomorrow",
+      "from": "David Kim <david@example.com>",
+      "snippet": "Can you prepare the pricing deck before tomorrow's meeting?",
+      "date": "2026-05-16T11:30:00.000Z",
+      "labelIds": ["INBOX"]
+    }
+  ],
+  "count": 2
+}

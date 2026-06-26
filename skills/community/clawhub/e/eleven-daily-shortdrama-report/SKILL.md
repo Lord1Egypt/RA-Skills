@@ -1,35 +1,72 @@
 ---
-name: "Daily Shortdrama Report"
-description: "每日短剧工作总结技能。用于生成精简的短剧/AI漫剧团队每日工作报告，包含工作量统计、对话次数/Token使用量、内容生产进度。触发词：日报、工作日报、每日总结、每日报告。"
-category: "other"
-source: "ClawHub"
-tags: [daily, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eleven-daily-shortdrama-report"
-sourceUrl: "https://clawhub.ai/skills/eleven-daily-shortdrama-report"
+name: daily-shortdrama-report
+description: 每日短剧工作总结技能。用于生成精简的短剧/AI漫剧团队每日工作报告，包含工作量统计、对话次数/Token使用量、内容生产进度。触发词：日报、工作日报、每日总结、每日报告。
 ---
 
-# Daily Shortdrama Report
+# 每日短剧工作日报
 
-> 每日短剧工作总结技能。用于生成精简的短剧/AI漫剧团队每日工作报告，包含工作量统计、对话次数/Token使用量、内容生产进度。触发词：日报、工作日报、每日总结、每日报告。
+## 数据获取（每次生成前必读）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eleven-daily-shortdrama-report`
-- **Source URL:** [https://clawhub.ai/skills/eleven-daily-shortdrama-report](https://clawhub.ai/skills/eleven-daily-shortdrama-report)
+### Step 1：获取Token使用量
+使用 `session_status` 工具读取当前会话的 Token 消耗量。
 
-## Overview
+### Step 2：读取今日内容产出记录
+从 `memory/YYYY-MM-DD.md`（今日和昨日）读取当日内容产出数据：
+- 剧本完成数、分镜完成数、视频生成数
+- 平台发布动态
+- 小组协作事件
 
+### Step 3：读取目标对比
+读取 `memory/targets.md`（若存在）获取本周/本月目标，对比实际完成情况。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eleven-daily-shortdrama-report
+---
+
+## 报告模板（精简版）
+
 ```
+# 每日短剧日报
+📅 {日期}  |  {小组名称}
+
+━━━━━━━━━━━━━━━━━
+📊 核心数据
+━━━━━━━━━━━━━━━━━
+  对话次数：{N} 次
+  Token消耗：{输入Token} + {输出Token} = {总计}
+  剧本产出：{完成数} 集
+  分镜产出：{完成数} 个
+  视频素材：{生成数} 条
+━━━━━━━━━━━━━━━━━
+🎬 内容进度
+━━━━━━━━━━━━━━━━━
+  剧集A：第{N}集 分镜完成 → 素材生成中
+  剧集B：第{N}集 审核通过 → 待发布
+  剧集C：剧本撰写 {X/Y} 集
+━━━━━━━━━━━━━━━━━
+🔥 今日完成
+━━━━━━━━━━━━━━━━━
+  ✅ {具体完成事项}
+━━━━━━━━━━━━━━━━━
+⚠️ 明日待办 / 风险
+━━━━━━━━━━━━━━━━━
+  • {待办1}
+  • {风险提示（如有）}
+━━━━━━━━━━━━━━━━━
+💡 AI助手今日表现
+━━━━━━━━━━━━━━━━━
+  • 协助完成：{描述}
+  • 使用技能：{调用的技能列表}
+```
+
+---
+
+## 注意事项
+
+- Token统计以 session_status 返回的数值为准，标注输入/输出分开
+- 若某项数据无法获取，标注"—"而非留空
+- 进度用百分比或 X/Y 表示，直观展示阶段
+- Token消耗异常高时，在"风险"部分提示
+- 内容涉及三个小组时，分别用 A/B/C 标注对应小组
+
+## 触发词
+
+"日报"、"今日总结"、"每日报告"、"工作日报"

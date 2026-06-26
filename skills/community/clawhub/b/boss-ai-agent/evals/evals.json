@@ -1,0 +1,23 @@
+{
+  "skill_name": "boss-ai-agent",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "timi has missed 7 consecutive daily check-ins and I'm worried. Can you give me a morning briefing and help me figure out what to do? I use the Inamori management philosophy.",
+      "expected_output": "Morning briefing with timi flagged as critical risk, Inamori-flavored advice focusing on people wellbeing, specific action items for reaching out to timi",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to prepare for a 1:1 with timi. He's been missing check-ins for a week. I want to understand what's going on without making him feel like he's in trouble. My team is based in the Philippines.",
+      "expected_output": "1:1 prep doc with Filipino culture-aware opening, warm-up questions, recognition of past work, gentle approach to missed check-ins, culture-appropriate directness level, action items template",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We're considering whether to expand our AI consulting service to the Japanese market. Can you run a C-Suite board meeting simulation? I want each executive to weigh in from their perspective.",
+      "expected_output": "6 executive perspectives (CEO strategy, CFO financials, CMO market entry, CTO tech requirements, CHRO talent, COO operations) on Japan expansion, with synthesis based on active mentor philosophy",
+      "files": []
+    }
+  ]
+}

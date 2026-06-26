@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "retrieval-bundle.schema.json",
+  "title": "Retrieval Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["retrieval_version", "user_message", "always_on", "query_plan", "snippets", "dropped"],
+  "properties": {
+    "retrieval_version": { "type": "string", "const": "1.0" },
+    "user_message": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "timestamp_utc": { "type": "string" }
+      }
+    },
+    "always_on": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "content"],
+      "properties": {
+        "path": { "type": "string" },
+        "content": { "type": "string" },
+        "content_hash": { "type": "string" }
+      }
+    },
+    "query_plan": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "snippets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/snippet" }
+    },
+    "dropped": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "reason"],
+        "properties": {
+          "path": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "snippet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snippet_id", "path", "start_line", "end_line", "citation", "text"],
+      "properties": {
+        "snippet_id": { "type": "string", "pattern": "^S[0-9]+$" },
+        "stable_id": { "type": "string" },
+        "path": { "type": "string" },
+        "start_line": { "type": "integer", "minimum": 1 },
+        "end_line": { "type": "integer", "minimum": 1 },
+        "citation": { "type": "string" },
+        "text": { "type": "string" },
+        "score": { "type": "number" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "source_group": { "type": "string" }
+      }
+    }
+  }
+}

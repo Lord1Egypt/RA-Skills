@@ -1,0 +1,63 @@
+{
+  "categories": {
+    "keyframe_to_video": {
+      "name": "视频首尾帧",
+      "name_en": "Keyframe-to-Video",
+      "status": "active",
+      "default_port": "v3L",
+      "description": "根据首尾帧生成过渡视频",
+      "ports": {
+        "v3L": {
+          "name": "V3 Lite Keyframe",
+          "display_name": "Vivago.ai 2.0 360p",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_keyframes/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3L",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "fast",
+          "quality": "good",
+          "notes": "快速版本，360p分辨率"
+        },
+        "v3Pro": {
+          "name": "V3 Pro Keyframe",
+          "display_name": "Vivago.ai 2.0",
+          "status": "tested",
+          "endpoint": "/v3/video/video_diffusion_keyframes/async",
+          "result_endpoint": "/v3/video/video_diffusion/async/results",
+          "version": "v3Pro",
+          "supported_ratios": [
+            "keep",
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "supported_durations": [
+            5,
+            10
+          ],
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "高质量版本，慢但效果更好"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理员登录 - Free Model Router</title>
+  <link rel="stylesheet" href="/admin/css/style.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-header">
+        <h1>Free Model Router</h1>
+        <p>Admin Panel</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input type="text" id="username" name="username" placeholder="请输入用户名" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input type="password" id="password" name="password" placeholder="请输入密码" required autocomplete="current-password">
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <span class="btn-text">登录</span>
+          <span class="btn-loading" style="display: none;">登录中...</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 检查认证状态
+    async function checkAuthStatus() {
+      try {
+        const res = await fetch('/api/auth/status');
+        const data = await res.json();
+        if (data.success) {
+          // 本地访问一律免密，直接跳转到管理页面
+          if (data.data.isLocalAccess) {
+            window.location.href = '/admin';
+            return;
+          }
+          // 远程访问未设置管理员，跳转到设置页面
+          if (!data.data.hasAdmin) {
+            window.location.href = '/admin/setup.html';
+            return;
+          }
+        }
+      } catch (e) {
+        // 忽略错误，继续显示登录页面
+      }
+
+      // 检查本地存储的 Token
+      const token = localStorage.getItem('adminToken');
+      if (token) {
+        fetch('/api/auth/verify', { headers: { 'Authorization': 'Bearer ' + token } })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              // Token 有效，确保 Cookie 同步后跳转
+              document.cookie = 'admin_token=' + token + ';path=/;max-age=604800;SameSite=Strict';
+              window.location.href = '/admin';
+            } else {
+              localStorage.removeItem('adminToken');
+              document.cookie = 'admin_token=;path=/;max-age=0';
+            }
+          })
+          .catch(() => {
+            localStorage.removeItem('adminToken');
+            document.cookie = 'admin_token=;path=/;max-age=0';
+          });
+      }
+    }
+
+    checkAuthStatus();
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('errorMessage');
+      const btn = e.target.querySelector('button[type="submit"]');
+      const btnText = btn.querySelector('.btn-text');
+      const btnLoading = btn.querySelector('.btn-loading');
+
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      errorMessage.textContent = '';
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (data.success) {
+          localStorage.setItem('adminToken', data.token);
+          // 同步写入 Cookie，确保页面导航时服务端 checkAuth 可通过 Cookie 识别身份
+          document.cookie = 'admin_token=' + data.token + ';path=/;max-age=604800;SameSite=Strict';
+          window.location.href = '/admin';
+        } else {
+          errorMessage.textContent = data.error || '登录失败';
+        }
+      } catch (error) {
+        errorMessage.textContent = '网络错误，请稍后重试';
+      } finally {
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

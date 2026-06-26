@@ -1,35 +1,13 @@
 ---
-name: "explain-code"
-description: "用可视化图表和类比解释代码。在解释代码如何工作、教授代码库或用户询问如何工作时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/explain-code"
-sourceUrl: "https://clawhub.ai/skills/explain-code"
+name: explain-code
+description: 用可视化图表和类比解释代码。在解释代码如何工作、教授代码库或用户询问如何工作时使用
 ---
 
-# explain-code
+在解释代码时，总是包含:
 
-> 用可视化图表和类比解释代码。在解释代码如何工作、教授代码库或用户询问如何工作时使用
+1. **先打比方做类比**: 将代码与日常生活中的事物进行比较
+2. **画图表**: 使用ASCII art来展示流程、结构或关系
+3. **遍历代码**: 一步一步地解释发生了什么
+4. **Highlight突出问题**: 常见的错误或误解是什么？
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/explain-code`
-- **Source URL:** [https://clawhub.ai/skills/explain-code](https://clawhub.ai/skills/explain-code)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/explain-code
-```
+保持解释自然。对于复杂的概念，可以用多个类比。

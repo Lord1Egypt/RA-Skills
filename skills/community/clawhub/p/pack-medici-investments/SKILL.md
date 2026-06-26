@@ -1,35 +1,32 @@
 ---
-name: "Medici Investments Pack"
-description: "Position management and market monitoring tools for active traders. Includes risk-based position sizing (fixed fractional, ATR, Kelly Criterion) and a quick..."
-category: "domain"
-source: "ClawHub"
-tags: [finance, position-sizing, risk-management, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pack-medici-investments"
-sourceUrl: "https://clawhub.ai/skills/pack-medici-investments"
+name: Medici Investments Pack
+description: >
+  Position management and market monitoring tools for active traders.
+  Includes risk-based position sizing (fixed fractional, ATR, Kelly Criterion)
+  and a quick market health pulse monitor covering trend, volatility, breadth, and sentiment.
+metadata:
+  pack: true
+  includes:
+    - medici-investments-position-sizer-dv
+    - medici-investments-pulse-dv
 ---
 
 # Medici Investments Pack
 
-> Position management and market monitoring tools for active traders. Includes risk-based position sizing (fixed fractional, ATR, Kelly Criterion) and a quick...
+Precision tools for position management and market monitoring.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pack-medici-investments`
-- **Source URL:** [https://clawhub.ai/skills/pack-medici-investments](https://clawhub.ai/skills/pack-medici-investments)
+## Included Skills
 
-## Overview
+1. **Position Sizer** — Calculate risk-based position sizes using fixed fractional, ATR-scaled, or Kelly Criterion methods
+2. **Market Pulse Monitor** — Quick market health snapshot: trend, volatility, breadth, sentiment
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pack-medici-investments
+clawhub install medici-investments-position-sizer-dv
+clawhub install medici-investments-pulse-dv
 ```
+
+## License
+
+MIT

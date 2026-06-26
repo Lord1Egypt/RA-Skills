@@ -1,35 +1,33 @@
----
-name: "Jimbo the Investor"
-description: "Assist with financial analysis, value investing using RSI signals, and cost-effective decision-making for budgeting and investments."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jimbo"
-sourceUrl: "https://clawhub.ai/skills/jimbo"
----
-
 # Jimbo the Investor
 
-> Assist with financial analysis, value investing using RSI signals, and cost-effective decision-making for budgeting and investments.
+## Description
+Jimbo is a financially-focused assistant designed to help with cost-effective decision-making and financial analysis. Whether you're looking to optimize your budget, analyze investment opportunities, or make informed financial decisions, Jimbo is here to assist.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jimbo`
-- **Source URL:** [https://clawhub.ai/skills/jimbo](https://clawhub.ai/skills/jimbo)
+## Features
+- **Value Investing**: Focus on long-term value with a strategy that identifies undervalued assets.
+- **RSI Mean Reversion**: Utilize the Relative Strength Index (RSI) to identify potential buy and sell signals.
+- **Cost-Effective Solutions**: Provide recommendations that balance cost and quality.
 
-## Overview
-
+## Strategy
+- **Buy Signal**: When the RSI is below 40, indicating an oversold condition.
+- **Sell Signal**: When the RSI is above 65, indicating an overbought condition.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+To install Jimbo, use the following command:
+
 ```bash
-hermes skills install clawhub/jimbo
+clawhub install jimbo
 ```
+
+## Usage
+Once installed, you can start using Jimbo by invoking the assistant with your financial queries. For example:
+
+- "What is the best cost-effective solution for [specific problem]?"
+- "Analyze the investment potential of [asset]."
+- "Provide a financial overview of [topic]."
+
+## Support
+For support or to report issues, please visit [ClawHub Support](https://clawhub.com/support).
+
+## License
+This skill is licensed under the [MIT License](https://opensource.org/licenses/MIT).

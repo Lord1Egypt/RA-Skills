@@ -1,0 +1,85 @@
+{
+  "quotationNo": "QT-20260315-003",
+  "date": "2026-03-15",
+  "validUntil": "2026-04-14",
+  "customer": {
+    "name": "EXAMPLE COMPUTER PRODUCTS INC.",
+    "address": "123 Business St, Your City",
+    "country": "United States",
+    "email": "sales@example-customer.com",
+    "phone": ""
+  },
+  "supplier": {
+    "name": "Example Electronic Co., Ltd.",
+    "address": "123 Business St, Your City",
+    "website": "www.example-company.com",
+    "email": "sales@example-company.com",
+    "phone": "+86-XXX-XXXX-XXXX"
+  },
+  "products": [
+    {
+      "item": 1,
+      "description": "HDMI 2.1 Cable 8K@60Hz 48Gbps Ultra High Speed",
+      "specification": "1.5m, Black, PVC Jacket",
+      "quantity": 1000,
+      "unit": "pcs",
+      "unitPrice": 3.50,
+      "amount": 3500.00,
+      "remarks": "HDMI 2.1 Certified, 8K@60Hz, 4K@120Hz"
+    },
+    {
+      "item": 2,
+      "description": "DisplayPort 2.1 Cable UHBR20 80Gbps",
+      "specification": "2m, Black, Aluminum Alloy Shell",
+      "quantity": 500,
+      "unit": "pcs",
+      "unitPrice": 5.80,
+      "amount": 2900.00,
+      "remarks": "DP 2.1, 16K@60Hz, 4K@240Hz"
+    },
+    {
+      "item": 3,
+      "description": "USB-C to USB-C Cable USB4 80Gbps PD 240W",
+      "specification": "1m, Black, Braided Nylon",
+      "quantity": 800,
+      "unit": "pcs",
+      "unitPrice": 4.20,
+      "amount": 3360.00,
+      "remarks": "USB4 Gen3x2, PD 3.1 240W, 80Gbps"
+    },
+    {
+      "item": 4,
+      "description": "CAT6A Ethernet Cable 10Gbps Shielded",
+      "specification": "3m, Blue, FTP Shielded",
+      "quantity": 1500,
+      "unit": "pcs",
+      "unitPrice": 2.80,
+      "amount": 4200.00,
+      "remarks": "CAT6A, 10Gbps, 500MHz, PoE++"
+    },
+    {
+      "item": 5,
+      "description": "CAT8 Ethernet Cable 40Gbps Double Shielded",
+      "specification": "2m, Black, S/FTP",
+      "quantity": 600,
+      "unit": "pcs",
+      "unitPrice": 6.50,
+      "amount": 3900.00,
+      "remarks": "CAT8, 40Gbps, 2000MHz, Data Center Grade"
+    }
+  ],
+  "summary": {
+    "subtotal": 17860.00,
+    "discount": 0,
+    "total": 17860.00,
+    "currency": "USD"
+  },
+  "terms": {
+    "moq": "500 pcs (negotiable)",
+    "delivery": "7-15 days for standard products, 15-30 days for custom orders",
+    "payment": "T/T, L/C, PayPal (for samples)",
+    "packaging": "Gift box, kraft box, PE bag, or customized",
+    "port": "Zhuhai / Shenzhen"
+  },
+  "notes": "Prices are FOB Zhuhai/Shenzhen. Valid for 30 days. Custom lengths and specifications available upon request."
+}

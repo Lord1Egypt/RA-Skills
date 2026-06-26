@@ -1,0 +1,3 @@
+display_name: Taku Debug
+short_description: Investigate failed checks and broken behavior from root cause.
+default_prompt: Use Taku Debug to reproduce the problem, gather evidence, identify root cause, and verify the fix.

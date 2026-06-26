@@ -1,0 +1,12 @@
+{
+  "name": "ohmytoken-tracker",
+  "tagline": "Watch your tokens burn, one bead at a time",
+  "description": "ohmytoken-tracker automatically reports every LLM token consumed through your OpenClaw gateway to ohmytoken.dev, where your usage is visualized as a colorful pixel bead board in real-time. See which models you use most, track daily/total spending, unlock achievements, and share your unique bead art with the community.",
+  "category": "developer-tools",
+  "tags": ["observability", "tokens", "cost-tracking", "monitoring", "visualization"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://ohmytoken.dev/settings",
+  "homepage_url": "https://ohmytoken.dev"
+}

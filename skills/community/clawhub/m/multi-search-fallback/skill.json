@@ -1,0 +1,18 @@
+{
+  "name": "multi-search-fallback",
+  "version": "1.0.0",
+  "description": "多源搜索聚合技能，支持 fallback 机制和多源交叉验证",
+  "author": "general-expert",
+  "created": "2026-03-31",
+  "skills": [
+    "web_search",
+    "ddg-web-search",
+    "tavily-search",
+    "multi-search-engine",
+    "deep-research-pro",
+    "academic-deep-research",
+    "openclaw-skill-search-web",
+    "mx_search"
+  ],
+  "tags": ["search", "multi-source", "fallback", "verification"]
+}

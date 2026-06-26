@@ -1,0 +1,7 @@
+interface:
+  display_name: "Find Community Help"
+  short_description: "Hermes outside-help plan for blocked work"
+  default_prompt: "Use $find-community-help only when a Hermes workflow is blocked, stalled, looping, version-sensitive, likely covered by an existing solution, or the user asks for community or official help. Build a small redacted query plan first and store only advisory-only hints for the next relevant turn."
+
+policy:
+  allow_implicit_invocation: false

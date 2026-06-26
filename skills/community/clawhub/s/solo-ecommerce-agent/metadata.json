@@ -1,0 +1,21 @@
+{
+  "name": "solo-ecommerce-agent",
+  "version": "1.0.0",
+  "description": "全平台全自动电商运营智能体，支持选品、上架、客服、订单全路线自动化",
+  "author": "HNC87",
+  "created": "2026-04-26",
+  "tags": ["ecommerce", "automation", "dropshipping", "customer-service", "order-management"],
+  "scripts": [
+    "product_scanner.py - 选品扫描",
+    "product_publisher.py - 商品上架",
+    "customer_service.py - 客服自动回复",
+    "order_processor.py - 订单处理",
+    "daily_report.py - 每日运营报告",
+    "init_agent.py - 初始化配置"
+  ],
+  "data_dir": "solo-ecommerce-data",
+  "dependencies": {
+    "browser_automation": "xbrowser skill（浏览器自动化，必装）",
+    "python": ">=3.8"
+  }
+}

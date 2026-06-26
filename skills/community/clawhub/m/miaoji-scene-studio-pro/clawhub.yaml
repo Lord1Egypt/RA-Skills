@@ -1,0 +1,49 @@
+# ClawHub Configuration for miaoji-scene-studio-pro
+
+metadata:
+  name: miaoji-scene-studio-pro
+  version: 1.0.2
+  display_name: 秒技·场景工作室Pro版
+  description: |
+    亚马逊场景工作室升级版，A/B测试方案+平台适配规格+季节性场景库+同类产品视觉差距分析。
+    从单次场景建议升级为完整视觉策略。
+    基础功能可使用 miaoji-scene-studio 免费版。
+  author: 秒技工作室
+  homepage: https://xiaping.coze.site
+  repository: https://xiaping.coze.site/skills/miaoji-scene-studio-pro
+
+category: business
+
+tags:
+  - 场景拍摄
+  - 视觉策略
+  - A/B测试
+  - 亚马逊图片
+  - 跨境电商
+  - 场景规划
+  - 视觉营销
+
+bins: []
+
+screenshots:
+  - description: 视觉策略报告示例
+    url: ""
+
+keywords:
+  - amazon
+  - 场景拍摄
+  - 视觉营销
+  - 图片优化
+  - 跨境电商
+  - A/B测试
+  - 亚马逊主图
+
+license: MIT
+
+documentation:
+  - title: 使用指南
+    url: ./README.md
+  - title: 季节性场景参考
+    url: ./references/seasonal-scenes.md
+  - title: 平台规格参考
+    url: ./references/platform-specs.md

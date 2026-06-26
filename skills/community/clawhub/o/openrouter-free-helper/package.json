@@ -1,0 +1,50 @@
+{
+  "name": "openrouter-free-helper",
+  "version": "1.0.10",
+  "description": "监控 OpenRouter 免费模型的到期通知和新模型发现，自动每日检查并推送飞书通知",
+  "author": "Silvermoon",
+  "license": "MIT",
+  "keywords": [
+    "openrouter",
+    "free-models",
+    "monitor",
+    "notification",
+    "feishu",
+    "llm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Suidge/openrouter-free-helper.git"
+  },
+  "homepage": "https://clawhub.ai/skills/openrouter-free-helper",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bb-browser": ">=0.11.0"
+  },
+  "pythonDependencies": {
+    "requests": ">=2.31.0"
+  },
+  "scripts": {
+    "check": "python3 scripts/check-models.py --verbose",
+    "dry-run": "python3 scripts/check-models.py --verbose --dry-run"
+  },
+  "clawhub": {
+    "category": "automation",
+    "tags": ["monitoring", "notification", "llm", "openrouter"],
+    "features": [
+      "自动监控 OpenRouter 免费模型到期通知",
+      "新模型发现与推送",
+      "分级提醒机制（紧急/警告/预告）",
+      "智能去重，避免重复通知",
+      "自动 Chrome 调试模式管理（可选增强）",
+      "requests + urllib 抓取兜底",
+      "bb-browser 优先，OpenRouter API 回退"
+    ],
+    "requirements": {
+      "bins": ["python3", "bb-browser (optional)"],
+      "browser": "Chrome (debug mode, port 9222, optional for enhanced discovery)"
+    }
+  }
+}

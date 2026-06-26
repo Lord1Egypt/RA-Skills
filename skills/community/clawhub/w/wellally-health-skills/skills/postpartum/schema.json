@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/postpartum-tracker.json",
+  "title": "PostpartumTracker",
+  "description": "产后护理管理数据结构",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "current_postpartum": {
+      "type": ["object", "null"],
+      "description": "当前产后记录"
+    },
+    "postpartum_history": {
+      "type": "array",
+      "items": {"type": "object"},
+      "description": "产后历史记录"
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_postpartum_periods": {"type": "integer"},
+        "current_days_postpartum": {"type": ["integer", "null"]},
+        "total_babies_tracked": {"type": "integer"}
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "tracking_period_default": {
+          "type": "string",
+          "enum": ["6weeks", "6months", "1year"],
+          "default": "6months"
+        },
+        "epds_reminder_enabled": {"type": "boolean"},
+        "red_flag_monitoring": {"type": "boolean"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated"]
+}

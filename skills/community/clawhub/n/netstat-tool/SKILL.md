@@ -1,35 +1,24 @@
 ---
-name: "Netstat Tool"
-description: "Display network connections, routing tables, and interface statistics. Use for network diagnostics and monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/netstat-tool"
-sourceUrl: "https://clawhub.ai/skills/netstat-tool"
+name: netstat-tool
+description: Display network connections, routing tables, and interface statistics. Use for network diagnostics and monitoring.
 ---
+# Netstat - Network Statistics Viewer
 
-# Netstat Tool
+Show active network connections, listening ports, routing tables, and network interface statistics. Essential for network troubleshooting.
 
-> Display network connections, routing tables, and interface statistics. Use for network diagnostics and monitoring.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/netstat-tool`
-- **Source URL:** [https://clawhub.ai/skills/netstat-tool](https://clawhub.ai/skills/netstat-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/netstat-tool
+netstat-tool [options]
+```
+## Options
+- `-t`: TCP connections only
+- `-u`: UDP connections only
+- `-l`: Show listening sockets only
+- `-n`: Show numeric addresses
+- `-p`: Show process using connection
+## Examples
+```bash
+netstat-tool -tlnp
+netstat-tool -rn
+netstat-tool -i
 ```

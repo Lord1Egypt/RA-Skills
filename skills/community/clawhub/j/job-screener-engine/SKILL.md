@@ -1,35 +1,169 @@
 ---
-name: "Job Screener Engine"
-description: "对用户提供的岗位机会进行结构化评估，输出多维量化评分和行动建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/job-screener-engine"
-sourceUrl: "https://clawhub.ai/skills/job-screener-engine"
+name: job-screener-engine
+version: 1.0.1
+description: >
+  对用户提供的岗位机会进行结构化评估，输出多维量化评分和行动建议。
+  当用户提供公司名+岗位名、JD链接或截图、招聘平台（Boss直聘等）
+  岗位信息时使用。触发词：'帮我看看这个岗位'、'值得投吗'、
+  '评估一下'、'岗位分析'、'值不值得去'。
+license: MIT
+author: community
+compatibility: requires WebSearch tool for company research
+allowed-tools: Read, WebSearch
 ---
 
-# Job Screener Engine
+# Job Screener Engine — 岗位筛选通用引擎
 
-> 对用户提供的岗位机会进行结构化评估，输出多维量化评分和行动建议。
+对用户提供的岗位机会进行结构化评估，输出量化评分和行动建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/job-screener-engine`
-- **Source URL:** [https://clawhub.ai/skills/job-screener-engine](https://clawhub.ai/skills/job-screener-engine)
+---
 
-## Overview
+## 首次使用（必须执行）
 
+在第一次运行之前，请引导用户完成配置：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/job-screener-engine
+1. 检查 `references/user_profile.TEMPLATE.md` 是否存在
+2. 告诉用户需要填写以下信息：
+   - Base 薪资底线、期望薪资
+   - 核心技术方向（如 Agent/LLM / 前端 / 后端 / 嵌入式等）
+   - 偏好的公司类型（如大厂 / 外企 / 国企 / 创业公司等）
+   - 工作节奏要求
+   - 目标城市
+3. 询问用户："要不要我帮你用问答的方式生成 user_profile.md？"
+   - 如果用户同意，根据 `references/setup_wizard.md` 逐一提问
+   - 如果用户拒绝，告诉用户参考 TEMPLATE 自行填写
+4. 用户有 `user_profile.md` 后才执行正式评估
+
+---
+
+## 工作流程
+
+### Step 1：解析用户输入
+
+从用户消息中提取：
+- 公司名称
+- 岗位名称
+- JD 内容（如有）
+- 薪资区间（如有）
+- 其他用户已知信息
+
+### Step 2：信息收集
+
+使用 WebSearch 补充以下信息：
+
+1. **公司基本面**（必须搜索）
+   - 搜索：`[公司名] 融资` 或 `[公司名] 上市`
+   - 目标：融资轮次、员工规模、成立时间
+
+2. **工作文化与口碑**（必须搜索）
+   - 搜索：`[公司名] 工作体验 加班` 或 `[公司名] 评价`
+   - 目标：加班情况、双休、管理评价
+
+3. **行业信号**（如有时间则搜索）
+   - 搜索：`[公司名] 最新消息` 或 `[公司名] 新闻`
+   - 目标：近期重大新闻、行业趋势
+
+**信息收集规则：**
+- 搜索结果中的关键信息（融资轮次、员工规模、口碑评价），必须引用原文片段后再做判断
+- 无法确认的信息标注「未经证实」，不编造不猜测
+- 若搜索结果不足，向用户提问（最多3个具体问题），而非自行推断
+
+### Step 3：一票否决预检
+
+读取 `references/user_profile.md` 获取用户的一票否决条件，检查是否触发。
+若触发则直接判定 ❌，跳到 Step 6 输出报告（总分栏写「一票否决」）。
+
+**默认一票否决条件**（用户可在 `user_profile.md` 中覆盖）：
+- Base 低于用户底线且无谈判空间
+- 明确 996 或严重内卷文化
+- 公司有严重负面新闻
+- 岗位与用户技术方向完全无关
+
+### Step 4：评分
+
+读取 `references/scoring_framework.md` 获取评分框架和标准。
+同时读取 `references/user_profile.md` 获取用户的自定义权重和阈值。
+
+按六个维度打分（满分100），各维度权重、分值和详细评分标准见 `references/scoring_framework.md`。
+
+**评分规则：**
+- 有明确信息的维度：按 `scoring_framework.md` 中的标准打分
+- 信息不足的维度：按中间值处理，并在输出中标注「信息不足」
+- 应用 `user_profile.md` 中的 trade-off 规则（如稳定性与薪资的权衡）
+
+### Step 5：信息不足处理
+
+如果关键维度（薪资、公司规模、工作节奏）信息不足：
+- 列出需要用户补充的具体问题（最多3个）
+- 使用简洁格式提问
+- 用户无法补充则按中间值处理
+
+### Step 6：输出评估报告
+
+使用以下格式输出：
+
+```markdown
+## 📋 岗位评估 | [公司名] - [岗位名]
+
+### 基本信息
+- **薪资：** [区间/面议]
+- **公司规模：** [轮次/人数/上市情况]
+- **地点：** [城市]
+- **信息来源：** [用户提供的 + 搜索补充的]
+
+### 评分明细
+
+| 维度 | 分值 | 说明 |
+|------|------|------|
+| 薪资匹配度 | X/18 | [一句话理由] |
+| 公司规模 | X/20 | [一句话理由] |
+| 技术成长 | X/15 | [一句话理由] |
+| 工作节奏 | X/15 | [一句话理由] |
+| 稳定性 | X/20 | [一句话理由] |
+| 区域可行性 | X/12 | [一句话理由] |
+| **总分** | **X/100** | |
+
+### 判定：[⭐强烈推荐 / ✅推荐投递 / ⚠️可以考虑 / 🔶勉强可投 / ❌不建议]
+
+### 重要程度：[S / A / B / C]
+
+### 行动建议
+[1-3条具体建议]
+
+### 面试练手建议
+[高价值 / 中等价值 / 低价值]
+
+**高价值：** 岗位与用户技术方向相关，公司愿意给面试，即使不会接受 offer 也值得练手。
+**中等价值：** 岗位部分相关，或薪资/稳定性有明显短板，但面试经验仍可积累。
+**低价值：** 岗位完全不相关，或公司有严重问题（996/诈骗/传销），不值得花时间。
+
+> **注意：** "❌不建议入职" ≠ "不值得面试"。本字段独立评估面试练手价值。
+
+### ⚠️ 风险提示（如有）
+[列出需要面试时重点验证的问题]
 ```
+
+### Step 7：同分排序（多个岗位对比时）
+
+当两个岗位总分接近（差值≤5分）时，参照 `references/user_profile.md` 中的"同分排序规则"进行优先级排序。
+
+---
+
+## 注意事项
+
+- **不替用户做最终决定**，只提供量化依据和建议
+- **薪资以 Base 为准**，年终奖/期权不作为达标条件
+- **信息不足时诚实标注**，不猜测不编造
+- **多个岗位同时评估时**，输出对比表格便于用户排序
+- **保持客观**，不因用户对某公司有好感而抬高分数
+- **用户未配置 user_profile.md 时**：先执行配置向导，不评估
+
+---
+
+## 参考资料
+
+- `references/scoring_framework.md` — 评分框架与维度标准
+- `references/setup_wizard.md` — 首次配置引导
+- `references/info_checklist.md` — 信息收集清单
+- `references/user_profile.md` — 用户画像（需用户自行填写）
+- `references/user_profile.TEMPLATE.md` — 用户画像模板

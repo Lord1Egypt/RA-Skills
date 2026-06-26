@@ -1,0 +1,36 @@
+# HeteroMind - Python Dependencies
+
+# Core
+pyyaml>=6.0
+pydantic>=2.0
+
+# Async support
+aiohttp>=3.9.0
+
+# LLM Integration (optional - choose your provider)
+openai>=1.0.0
+# anthropic>=0.18.0  # For Claude
+# azure-ai-openai>=1.0.0  # For Azure OpenAI
+
+# SQL Engines
+sqlparse>=0.4.0
+sqlalchemy>=2.0.0
+# git+https://github.com/HKUSTDial/DeepEye-SQL.git  # DeepEye-SQL (when available)
+
+# SPARQL Engines
+rdflib>=6.0.0
+sparqlwrapper>=2.0.0
+
+# Table QA
+pandas>=2.0.0
+pandasai>=2.0.0
+duckdb>=0.9.0
+openpyxl>=3.1.0  # For Excel support
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Utilities
+python-dotenv>=1.0.0  # For environment variables
+logging>=0.5.1

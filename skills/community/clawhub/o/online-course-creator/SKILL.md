@@ -1,35 +1,51 @@
----
-name: "Online Course Creator"
-description: "AI驱动的一键生成完整在线课程大纲、视频脚本、测验及营销材料，支持快速高效课程创作与推广。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/online-course-creator"
-sourceUrl: "https://clawhub.ai/skills/online-course-creator"
----
+# Online-Course-Creator
 
-# Online Course Creator
+AI 驱动的课程创作技能 - 一键生成完整在线课程材料
 
-> AI驱动的一键生成完整在线课程大纲、视频脚本、测验及营销材料，支持快速高效课程创作与推广。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/online-course-creator`
-- **Source URL:** [https://clawhub.ai/skills/online-course-creator](https://clawhub.ai/skills/online-course-creator)
+- 📚 **课程大纲生成** - 根据主题自动生成结构化课程大纲
+- 🎬 **视频脚本写作** - 为每个课程单元撰写详细的视频脚本
+- 📝 **测验和作业生成** - 创建配套的测验题目和实践活动
+- 📢 **营销材料创建** - 生成课程描述、宣传文案、邮件模板
 
-## Overview
+## 使用场景
 
+当用户需要：
+- 创建在线课程但不知道如何组织内容
+- 快速生成课程教学材料
+- 为已有内容设计课程结构
+- 制作课程营销和推广材料
 
-## Installation
-To install this skill, run the following command in your terminal:
+**触发词**：`创建课程`、`课程大纲`、`视频脚本`、`课程设计`、`online course`、`course creator`、`teaching materials`
+
+## 定价
+
+**$119/月** - 专业课程创作工具
+
+## 预期收益
+
+- 目标用户：在线教育从业者、知识博主、企业培训师
+- 市场规模：全球在线教育市场 $3500 亿+
+- 预期收益：$6,000-15,000/月
+
+## 命令
+
 ```bash
-hermes skills install clawhub/online-course-creator
+# 安装
+clawhub install online-course-creator
+
+# 使用示例
+创建一门关于"Python 数据分析"的课程，包含 8 个模块
+为"机器学习入门"课程生成视频脚本
+为我的课程创建测验题目
+生成课程营销邮件模板
 ```
+
+## 作者
+
+OpenClaw Team
+
+## 版本
+
+1.0.0

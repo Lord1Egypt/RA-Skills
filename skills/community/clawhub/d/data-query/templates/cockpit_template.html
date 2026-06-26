@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PAGE_TITLE}}</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #1A1D2D;
+            --bg-secondary: #242837;
+            --bg-card: #2A2D3E;
+            --accent-blue: #4A90D9;
+            --accent-green: #4CAF50;
+            --accent-yellow: #FFC107;
+            --accent-red: #F44336;
+            --accent-orange: #FF9800;
+            --accent-purple: #9C27B0;
+            --text-primary: #E8EAF6;
+            --text-secondary: #9FA8C7;
+            --border-color: rgba(255,255,255,0.08);
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* ── 顶部导航栏 ── */
+        .top-nav {
+            background: rgba(22,25,38,0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo { font-size: 15px; font-weight: 700; color: var(--accent-blue); white-space: nowrap; letter-spacing: 0.5px; }
+        .nav-filters { display: flex; gap: 10px; flex: 1; }
+        .nav-select {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+            min-width: 140px;
+        }
+        .nav-select:focus { border-color: var(--accent-blue); }
+        .view-switcher { display: flex; gap: 3px; background: var(--bg-secondary); padding: 3px; border-radius: 8px; }
+        .view-btn {
+            padding: 5px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .view-btn.active { background: var(--accent-blue); color: #fff; }
+        .view-btn:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-primary); }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-icon-btn { width: 34px; height: 34px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; transition: background 0.2s; }
+        .nav-icon-btn:hover { background: rgba(255,255,255,0.08); }
+        .nav-icon-btn .badge { position: absolute; top: -4px; right: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-red); border: 2px solid var(--bg-primary); }
+        .nav-user { display: flex; align-items: center; gap: 8px; }
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; }
+
+        /* ── 主布局 ── */
+        .main-layout { display: flex; flex: 1; overflow: hidden; height: calc(100vh - 56px); }
+
+        /* ── 左侧项目列表 ── */
+        .sidebar-left { width: 240px; background: var(--bg-secondary); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; flex-shrink: 0; }
+        .sidebar-left-header { padding: 14px 16px 10px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; }
+        .sidebar-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-secondary); }
+        .sidebar-left-body { flex: 1; overflow-y: auto; padding: 10px 10px; }
+        .sidebar-left-footer { padding: 10px; border-top: 1px solid var(--border-color); }
+        .quick-link { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 6px; cursor: pointer; font-size: 12px; color: var(--text-secondary); transition: all 0.15s; }
+        .quick-link:hover { background: rgba(255,255,255,0.06); color: var(--text-primary); }
+        .quick-link .icon { font-size: 14px; }
+        .project-item { padding: 10px 10px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; transition: all 0.15s; border: 1px solid transparent; }
+        .project-item:hover { background: rgba(255,255,255,0.04); }
+        .project-item.active { background: rgba(74,144,217,0.12); border-color: rgba(74,144,217,0.35); }
+        .project-header { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 7px; }
+        .project-status-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+        .dot-green { background: var(--accent-green); box-shadow: 0 0 6px rgba(76,175,80,0.6); }
+        .dot-yellow { background: var(--accent-yellow); box-shadow: 0 0 6px rgba(255,193,7,0.5); }
+        .dot-red { background: var(--accent-red); box-shadow: 0 0 6px rgba(244,67,54,0.6); }
+        .project-name { font-size: 13px; font-weight: 500; line-height: 1.3; flex: 1; }
+        .project-meta { font-size: 11px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; }
+        .progress-bar-wrap { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+        .progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+        .progress-green { background: linear-gradient(90deg, #4CAF50, #66BB6A); }
+        .progress-yellow { background: linear-gradient(90deg, #FF9800, #FFB74D); }
+        .progress-red { background: linear-gradient(90deg, #F44336, #EF5350); }
+        .project-footer { display: flex; justify-content: space-between; align-items: center; }
+        .sub-phases { display: flex; gap: 3px; flex-wrap: wrap; }
+        .phase-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+        .phase-dot.done { background: var(--accent-green); }
+        .phase-dot.in-progress { background: var(--accent-blue); }
+
+        /* ── 主内容区 ── */
+        .content-area { flex: 1; overflow-y: auto; padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; }
+        .content-area.kanban-view, .content-area.gantt-view { display: none; }
+
+        /* ── KPI 卡片区 ── */
+        .kpi-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .kpi-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .kpi-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+        .kpi-gauge { position: relative; width: 80px; height: 50px; }
+        .kpi-gauge canvas { position: absolute; top: 0; left: 0; }
+        .kpi-body { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 4px; }
+        .kpi-value { font-size: 26px; font-weight: 800; line-height: 1; }
+        .kpi-unit { font-size: 13px; color: var(--text-secondary); margin-bottom: 3px; }
+        .kpi-trend { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .trend-up { background: rgba(76,175,80,0.15); color: var(--accent-green); }
+        .trend-down { background: rgba(244,67,54,0.15); color: var(--accent-red); }
+        .kpi-sub { font-size: 11px; color: var(--text-secondary); }
+        .kpi-card.health { border-top: 2px solid transparent; border-image: linear-gradient(90deg, var(--accent-green), var(--accent-blue)) 1; }
+        .kpi-card.health .kpi-value { color: var(--accent-green); }
+        .kpi-card.progress .kpi-value { color: var(--accent-blue); }
+        .kpi-card.risk .kpi-value { color: var(--accent-red); }
+        .kpi-card.resource .kpi-value { color: var(--accent-purple); }
+        .kpi-card-breakdown { display: flex; gap: 8px; margin-top: 4px; font-size: 10px; color: var(--text-secondary); }
+        .breakdown-item { display: flex; align-items: center; gap: 3px; }
+        .breakdown-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+        /* ── 图表网格 ── */
+        .charts-row { display: grid; gap: 14px; }
+        .charts-row-2col { grid-template-columns: 1fr 1fr; }
+        .charts-row-full { grid-template-columns: 1fr; }
+        .chart-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 14px 16px;
+        }
+        .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .chart-title { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .chart-title::before { content: ''; width: 3px; height: 13px; background: var(--accent-blue); border-radius: 2px; }
+        .chart-badge { font-size: 10px; padding: 2px 7px; border-radius: 10px; background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+        .chart-container { height: 260px; position: relative; }
+        .chart-container.tall { height: 320px; }
+
+        /* ── 里程碑时间线 ── */
+        .milestone-list { display: flex; flex-direction: column; gap: 0; }
+        .milestone-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .milestone-item:last-child { border-bottom: none; }
+        .milestone-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid; margin-top: 4px; flex-shrink: 0; }
+        .milestone-dot.done { border-color: var(--accent-green); background: var(--accent-green); }
+        .milestone-dot.in-progress { border-color: var(--accent-blue); background: transparent; box-shadow: 0 0 8px rgba(74,144,217,0.5); }
+        .milestone-dot.pending { border-color: var(--text-secondary); background: transparent; }
+        .milestone-content { flex: 1; }
+        .milestone-name { font-size: 12px; font-weight: 500; margin-bottom: 3px; }
+        .milestone-date { font-size: 11px; color: var(--text-secondary); }
+        .milestone-tag { font-size: 10px; padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+        .tag-delay { background: rgba(244,67,54,0.15); color: var(--accent-red); }
+        .tag-ontime { background: rgba(76,175,80,0.15); color: var(--accent-green); }
+
+        /* ── 右侧边栏 ── */
+        .sidebar-right { width: 272px; background: var(--bg-secondary); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; flex-shrink: 0; overflow-y: auto; }
+        .sidebar-right-section { padding: 14px 14px; border-bottom: 1px solid var(--border-color); }
+        .sidebar-right-section:last-child { border-bottom: none; flex: 1; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .section-title { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .section-icon { width: 18px; height: 18px; border-radius: 4px; background: rgba(74,144,217,0.2); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+
+        /* 风险预警 */
+        .risk-alert { background: rgba(244,67,54,0.08); border: 1px solid rgba(244,67,54,0.25); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+        .risk-alert:last-child { margin-bottom: 0; }
+        .risk-alert-title { font-size: 12px; font-weight: 600; color: var(--accent-red); margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+        .risk-alert-title::before { content: '⚠'; font-size: 11px; }
+        .risk-alert-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 6px; }
+        .risk-alert-actions { display: flex; gap: 6px; }
+        .alert-btn { padding: 3px 10px; border-radius: 4px; font-size: 10px; cursor: pointer; border: none; transition: opacity 0.15s; }
+        .alert-btn:hover { opacity: 0.8; }
+        .alert-btn-primary { background: var(--accent-red); color: white; }
+        .alert-btn-secondary { background: rgba(255,255,255,0.08); color: var(--text-secondary); }
+
+        /* 即将到期 */
+        .deadline-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .deadline-item:last-child { border-bottom: none; }
+        .deadline-name { font-size: 11px; flex: 1; }
+        .deadline-days { font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+        .days-urgent { background: rgba(244,67,54,0.15); color: var(--accent-red); }
+        .days-soon { background: rgba(255,193,7,0.15); color: var(--accent-yellow); }
+        .days-normal { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+
+        /* 团队动态 */
+        .activity-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-avatar { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; flex-shrink: 0; }
+        .avatar-tech { background: rgba(74,144,217,0.3); color: var(--accent-blue); }
+        .avatar-pm { background: rgba(156,39,176,0.3); color: var(--accent-purple); }
+        .avatar-test { background: rgba(76,175,80,0.3); color: var(--accent-green); }
+        .activity-content { flex: 1; }
+        .activity-text { font-size: 11px; line-height: 1.4; color: var(--text-secondary); }
+        .activity-text strong { color: var(--text-primary); font-weight: 500; }
+        .activity-time { font-size: 10px; color: rgba(159,168,199,0.6); margin-top: 2px; }
+
+        /* ── 快捷操作 ── */
+        .quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .quick-btn { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; transition: all 0.2s; }
+        .quick-btn:hover { background: rgba(74,144,217,0.1); border-color: rgba(74,144,217,0.35); }
+        .quick-btn .icon { font-size: 18px; }
+        .quick-btn .label { font-size: 11px; color: var(--text-secondary); }
+
+        /* ── 看板视图 ── */
+        .kanban-board { display: none; flex-direction: column; gap: 14px; height: 100%; }
+        .kanban-board.active { display: flex; }
+        .kanban-columns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; overflow-y: auto; }
+        .kanban-col { background: var(--bg-secondary); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; min-height: 200px; }
+        .kanban-col-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 2px solid; }
+        .kanban-col.todo .kanban-col-header { border-color: var(--accent-yellow); }
+        .kanban-col.todo .col-name { color: var(--accent-yellow); }
+        .kanban-col.doing .kanban-col-header { border-color: var(--accent-blue); }
+        .kanban-col.doing .col-name { color: var(--accent-blue); }
+        .kanban-col.review .kanban-col-header { border-color: var(--accent-orange); }
+        .kanban-col.review .col-name { color: var(--accent-orange); }
+        .kanban-col.done .kanban-col-header { border-color: var(--accent-green); }
+        .kanban-col.done .col-name { color: var(--accent-green); }
+        .kanban-col-header .col-name { font-size: 12px; font-weight: 600; }
+        .kanban-col-header .col-count { background: var(--bg-card); padding: 1px 7px; border-radius: 10px; font-size: 11px; color: var(--text-secondary); }
+        .kanban-col-body { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+        .kanban-card { background: var(--bg-card); border-radius: 8px; padding: 10px; border: 1px solid var(--border-color); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+        .kanban-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .kanban-card.overdue { border-left: 3px solid var(--accent-red); }
+        .kanban-card-name { font-size: 12px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+        .kanban-card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: var(--text-secondary); }
+        .kanban-card-progress { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 7px; overflow: hidden; }
+        .kanban-card-progress-fill { height: 100%; background: var(--accent-blue); border-radius: 2px; }
+        .kanban-card.overdue .kanban-card-progress-fill { background: var(--accent-red); }
+
+        /* ── 甘特图 ── */
+        .gantt-wrapper { display: none; height: 100%; }
+        .gantt-wrapper.active { display: block; }
+
+        /* ── 滚动条 ── */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        .no-data { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); font-size: 12px; flex-direction: column; gap: 6px; }
+        .no-data .icon { font-size: 28px; opacity: 0.4; }
+
+        /* ── 登录弹窗 ── */
+        #loginModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #loginModal.visible { display: flex; }
+        .login-box {
+            background: #2A2D3E;
+            border-radius: 12px;
+            padding: 32px;
+            width: 360px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .login-box h2 {
+            margin: 0 0 24px;
+            font-size: 18px;
+            color: #E8EAF6;
+            text-align: center;
+        }
+        .login-box .form-group { margin-bottom: 16px; }
+        .login-box label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #9FA8C7;
+        }
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: rgba(255,255,255,0.05);
+            color: #E8EAF6;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .login-box input[type="text"]:focus,
+        .login-box input[type="password"]:focus { border-color: var(--accent-blue); }
+        .login-box .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .login-box .login-btn:hover { background: #3A7BC8; }
+        .login-box .login-btn:disabled { background: #555; cursor: not-allowed; }
+        .login-box .login-error {
+            color: #F44336;
+            margin-top: 12px;
+            font-size: 13px;
+            text-align: center;
+            display: none;
+        }
+        .login-box .login-tip {
+            color: #666;
+            font-size: 11px;
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════ 登录弹窗（独立加载时显示）═══════════════════ -->
+<div id="loginModal">
+    <div class="login-box">
+        <h2>登录 ACM 系统</h2>
+        <div class="form-group">
+            <label for="loginUsername">用户名</label>
+            <input type="text" id="loginUsername" value="admin@wisdomidata" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">密码</label>
+            <input type="password" id="loginPassword" placeholder="请输入密码">
+        </div>
+        <button id="loginSubmitBtn" class="login-btn">登录</button>
+        <div id="loginError" class="login-error"></div>
+        <div class="login-tip">独立加载HTML页面时需登录<br>若在ACM前端上下文中，将自动使用已有Token</div>
+    </div>
+</div>
+
+<!-- ═══════════════════ 顶部导航栏 ═══════════════════ -->
+<nav class="top-nav">
+    <div class="nav-logo">{{PAGE_TITLE}}</div>
+    <div class="nav-filters">
+        <select class="nav-select" id="projectSelector"><option value="">所有项目</option></select>
+        <select class="nav-select" id="yearSelector"><option value="">年度</option></select>
+    </div>
+    <div class="view-switcher">
+        <button class="view-btn active" data-view="dashboard">仪表盘</button>
+        <button class="view-btn" data-view="kanban">看板</button>
+        <button class="view-btn" data-view="gantt">甘特图</button>
+    </div>
+    <div class="nav-right">
+        <div class="nav-icon-btn" title="通知">
+            🔔
+            <span class="badge" id="notifBadge" style="display:none"></span>
+        </div>
+        <div class="nav-user">
+            <div class="avatar">PM</div>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════ 主布局 ═══════════════════ -->
+<div class="main-layout">
+
+    <!-- ── 左侧项目列表 ── -->
+    <aside class="sidebar-left">
+        <div class="sidebar-left-header">
+            <span class="sidebar-title">项目列表</span>
+        </div>
+        <div class="sidebar-left-body" id="projectListContainer"></div>
+        <div class="sidebar-left-footer">
+            <div class="quick-link"><span class="icon">➕</span>新建任务</div>
+            <div class="quick-link"><span class="icon">📊</span>导出报告</div>
+            <div class="quick-link"><span class="icon">👥</span>团队管理</div>
+        </div>
+    </aside>
+
+    <!-- ── 主内容区（仪表盘视图）─ -->
+    <main class="content-area dashboard-view" id="contentArea">
+
+        <!-- KPI 指标卡片 -->
+        <div class="kpi-cards" id="kpiCardsContainer">
+            <!-- 由 JS 根据 CHART_CONFIG 动态生成 -->
+        </div>
+
+        <!-- 图表行1：进度趋势 + 风险热力图 -->
+        <div class="charts-row charts-row-2col">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">项目进度趋势</div>
+                    <span class="chart-badge">近6个月</span>
+                </div>
+                <div class="chart-container" id="chart-progressTrend-canvas"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">风险分布矩阵</div>
+                    <span class="chart-badge">热力图</span>
+                </div>
+                <div class="chart-container" id="chart-riskHeatmap-canvas"></div>
+            </div>
+        </div>
+
+        <!-- 图表行2：里程碑 + 资源负载 -->
+        <div class="charts-row charts-row-2col">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">关键里程碑</div>
+                    <span class="chart-badge" id="milestoneProjectLabel">AWRS-X</span>
+                </div>
+                <div class="chart-container" id="chart-milestone-canvas"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">资源负载分布</div>
+                    <span class="chart-badge">部门维度</span>
+                </div>
+                <div class="chart-container" id="chart-resourceLoad-canvas"></div>
+            </div>
+        </div>
+
+        <!-- 看板视图 -->
+        <div class="kanban-board" id="kanbanBoard">
+            <div class="kanban-columns">
+                <div class="kanban-col todo">
+                    <div class="kanban-col-header"><span class="col-name">待开始</span><span class="col-count" id="kanban-todo-count">0</span></div>
+                    <div class="kanban-col-body" id="kanban-todo"></div>
+                </div>
+                <div class="kanban-col doing">
+                    <div class="kanban-col-header"><span class="col-name">进行中</span><span class="col-count" id="kanban-doing-count">0</span></div>
+                    <div class="kanban-col-body" id="kanban-doing"></div>
+                </div>
+                <div class="kanban-col review">
+                    <div class="kanban-col-header"><span class="col-name">审批中</span><span class="col-count" id="kanban-review-count">0</span></div>
+                    <div class="kanban-col-body" id="kanban-review"></div>
+                </div>
+                <div class="kanban-col done">
+                    <div class="kanban-col-header"><span class="col-name">已完成</span><span class="col-count" id="kanban-done-count">0</span></div>
+                    <div class="kanban-col-body" id="kanban-done"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 甘特图视图 -->
+        <div class="gantt-wrapper" id="ganttWrapper">
+            <div class="chart-card" style="height:100%">
+                <div class="chart-header">
+                    <div class="chart-title">甘特图</div>
+                </div>
+                <div class="chart-container tall" id="chart-gantt-canvas"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ── 右侧边栏 ── -->
+    <aside class="sidebar-right">
+
+        <!-- 风险预警 -->
+        <div class="sidebar-right-section">
+            <div class="section-header">
+                <div class="section-title"><span class="section-icon">⚠</span>高优先级风险</div>
+            </div>
+            <div id="riskAlertContainer">
+                <div class="risk-alert">
+                    <div class="risk-alert-title">AWRS-X 飞行计划可能延期</div>
+                    <div class="risk-alert-desc">因航空协调问题，飞行试验计划可能推迟2周</div>
+                    <div class="risk-alert-actions">
+                        <button class="alert-btn alert-btn-primary">查看详情</button>
+                        <button class="alert-btn alert-btn-secondary">标记已读</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 即将到期 -->
+        <div class="sidebar-right-section">
+            <div class="section-header">
+                <div class="section-title"><span class="section-icon">⏰</span>即将到期</div>
+            </div>
+            <div id="deadlineContainer">
+                <div class="deadline-item">
+                    <span class="deadline-name">适航取证材料</span>
+                    <span class="deadline-days days-urgent">3天</span>
+                </div>
+                <div class="deadline-item">
+                    <span class="deadline-name">T/R组件测试</span>
+                    <span class="deadline-days days-soon">5天</span>
+                </div>
+                <div class="deadline-item">
+                    <span class="deadline-name">季度评审</span>
+                    <span class="deadline-days days-normal">7天</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 团队动态 -->
+        <div class="sidebar-right-section">
+            <div class="section-header">
+                <div class="section-title"><span class="section-icon">💬</span>团队动态</div>
+            </div>
+            <div id="activityContainer">
+                <div class="activity-item">
+                    <div class="activity-avatar avatar-tech">技</div>
+                    <div class="activity-content">
+                        <div class="activity-text"><strong>纪龙</strong> 完成结构设计</div>
+                        <div class="activity-time">1小时前</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-avatar avatar-test">测</div>
+                    <div class="activity-content">
+                        <div class="activity-text"><strong>测试组</strong> 提交EMC报告</div>
+                        <div class="activity-time">3小时前</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快捷操作 -->
+        <div class="sidebar-right-section">
+            <div class="quick-actions">
+                <div class="quick-btn"><span class="icon">➕</span><span class="label">新建任务</span></div>
+                <div class="quick-btn"><span class="icon">📅</span><span class="label">安排会议</span></div>
+                <div class="quick-btn"><span class="icon">📊</span><span class="label">导出报告</span></div>
+                <div class="quick-btn"><span class="icon">🔔</span><span class="label">设置提醒</span></div>
+            </div>
+        </div>
+
+    </aside>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════
+// 全局配置
+// ════════════════════════════════════════════════════
+const API_BASE = '{{API_BASE}}';
+const API_AUTH_BASE = '{{API_AUTH_BASE}}';
+const ENCRYPTED_SQL = {{ENCRYPTED_SQL}};
+
+// 明文 SQL（用于 buildParams 运行时校验 ? 占位符数量，不加密）
+// 与 ENCRYPTED_SQL 保持严格一一对应，key 完全一致
+const SQL_PLAIN = {{SQL_PLAIN}};
+const CHART_CONFIG = {{CHART_CONFIG}};
+const DEFAULT_PROJECT_ID = '{{DEFAULT_PROJECT_ID}}';
+
+let currentProjectId = DEFAULT_PROJECT_ID ? Number(DEFAULT_PROJECT_ID) : null;
+let currentView = 'dashboard';
+const charts = {};
+let currentToken = null;
+let tokenPromise = null;  // 防止并发重复请求
+
+// ════════════════════════════════════════════════════
+// Token 管理：复用 ACM 前端 sessionStorage，兜底弹窗登录
+// ════════════════════════════════════════════════════
+
+/**
+ * ACM 前端 AES-128-CBC 加密（与后端登录接口兼容）
+ */
+function aesEncrypt(password) {
+    const key = CryptoJS.enc.Utf8.parse("ABCDEFGHIJKL_KEY");
+    const iv = CryptoJS.enc.Utf8.parse("ABCDEFGHUJKLM_IV");
+    const encrypted = CryptoJS.AES.encrypt(
+        CryptoJS.enc.Utf8.parse(password),
+        key,
+        { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 }
+    );
+    return String(encrypted).trim();
+}
+
+/**
+ * 统一获取 Token
+ * 优先级：
+ *   1. 已有缓存 currentToken → 直接返回
+ *   2. sessionStorage 有 ACM token → 复用
+ *   3. 均无 → 显示登录弹窗
+ */
+async function getToken() {
+    // 1. 已有缓存 token → 直接返回
+    if (currentToken) return currentToken;
+
+    // 2. 并发保护
+    if (tokenPromise) return tokenPromise;
+
+    // 3. 尝试 ACM 前端 sessionStorage
+    const acmToken = sessionStorage.getItem('token');
+    if (acmToken) {
+        console.log('[Token] 使用 ACM 前端 sessionStorage token');
+        currentToken = acmToken;
+        return currentToken;
+    }
+
+    // 4. 无缓存 → 弹登录窗
+    console.log('[Token] 独立页面模式，显示登录弹窗');
+    return await showLoginAndGetToken();
+}
+
+/**
+ * 显示登录弹窗并等待用户登录
+ */
+async function showLoginAndGetToken() {
+    const modal = document.getElementById('loginModal');
+    if (modal) modal.classList.add('visible');
+
+    return new Promise((resolve, reject) => {
+        window._loginResolve = resolve;
+        window._loginReject = reject;
+    });
+}
+
+/**
+ * 执行登录
+ */
+async function doLogin(username, password) {
+    // LOGIN_PASSWORD_ENCRYPT: true=加密（ACM老系统），false=明文（ACM-OC新系统）
+    const encryptPassword = {{LOGIN_PASSWORD_ENCRYPT}};
+    const passwordToSend = encryptPassword ? aesEncrypt(password) : password;
+    const response = await fetch(`${API_AUTH_BASE}/jwt/token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            userName: username,
+            password: passwordToSend,
+            lastTenantId: null
+        })
+    });
+    const result = await response.json();
+    if (!result.data) {
+        throw new Error(result.message || '登录失败');
+    }
+    // 同时写入 sessionStorage，与 ACM 前端 token 机制保持一致
+    sessionStorage.setItem('token', result.data);
+    return result.data;
+}
+
+/**
+ * 登录表单事件绑定
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const submitBtn = document.getElementById('loginSubmitBtn');
+    const errorDiv = document.getElementById('loginError');
+    const passwordInput = document.getElementById('loginPassword');
+
+    if (!submitBtn) return;
+
+    // 回车触发表单提交
+    passwordInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') submitBtn.click();
+    });
+
+    submitBtn.addEventListener('click', async () => {
+        const username = document.getElementById('loginUsername').value.trim();
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+            errorDiv.textContent = '请输入用户名和密码';
+            errorDiv.style.display = 'block';
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = '登录中...';
+        errorDiv.style.display = 'none';
+
+        try {
+            const token = await doLogin(username, password);
+            const modal = document.getElementById('loginModal');
+            if (modal) modal.classList.remove('visible');
+            currentToken = token;
+            if (window._loginResolve) window._loginResolve(token);
+            // 登录成功后刷新当前视图
+            loadAllData();
+        } catch (err) {
+            errorDiv.textContent = err.message || '登录失败，请检查账号密码';
+            errorDiv.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = '登录';
+            if (window._loginReject) window._loginReject(err);
+        }
+    });
+});
+
+// ════════════════════════════════════════════════════
+// API 请求
+// ════════════════════════════════════════════════════
+
+async function executeQuery(key, params = []) {
+    const token = await getToken();
+    const entry = ENCRYPTED_SQL[key];
+    if (!entry) throw new Error(`SQL key "${key}" not found in ENCRYPTED_SQL`);
+    const body = JSON.stringify({ encryptedSql: entry.ciphertext, iv: entry.iv, params, description: key });
+    const res = await fetch(`${API_BASE}/api/dashboard/nl2sql/execute`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': token },
+        body
+    });
+    const json = await res.json();
+    if (json.data?.error) throw new Error(json.data.error);
+    return json.data?.data || [];
+}
+
+/**
+ * 构建查询参数数组
+ *
+ * 增强（v2）：主动校验 SQL 中 ? 占位符数量与实际 params 长度的匹配关系。
+ * 不匹配时按严重程度分级处理：
+ * - ERROR: SQL 有 ? 但 params=[]（必定导致后端执行失败）
+ * - WARN:   params 数量 > SQL 中 ? 数量（多余参数被忽略）
+ * - WARN:   scope=project 但 currentProjectId=null（数据加载会失败）
+ *
+ * 根本解决方案在技能层：sqlMap 条目应显式声明 paramsCount，
+ * buildParams 据此做严格校验，而非靠 scope 隐式推断。
+ *
+ * @param {Object} cfg - CHART_CONFIG 中的图表配置
+ * @param {string} cfg.id       - 图表ID，对应 SQL_PLAIN / ENCRYPTED_SQL 的 key
+ * @param {string} cfg.scope    - 'project' | 'global'
+ * @param {Array}  cfg.params   - 额外业务参数（来自 sqlMap entry.params）
+ * @returns {number[]} params 数组
+ */
+function buildParams(cfg) {
+    const p = [];
+    const id = cfg.id;
+
+    // 业务参数（cfg.params 显式指定的额外参数，追加到末尾）
+    if (cfg.params) p.push(...cfg.params);
+
+    // scope=project → projectId 永远在最前面（对应 SQL 中第一个 ?）
+    if (cfg.scope === 'project') {
+        if (currentProjectId) {
+            p.unshift(currentProjectId);
+        } else {
+            console.error(`[buildParams] ERROR: ${id} 需要 projectId，但 currentProjectId=null，当前图表数据无法加载`);
+        }
+    }
+
+    // ── P0 Fix: 校验 ? 占位符与 params 数量是否匹配 ─────────────
+    // 根本解：sqlMap 条目应声明 paramsCount，从源头消除歧义
+    const plainSql = SQL_PLAIN ? SQL_PLAIN[id] : null;
+    if (plainSql) {
+        const placeholderCount = (plainSql.match(/\?/g) || []).length;
+        if (placeholderCount > 0 && p.length === 0) {
+            // ERROR: SQL 有 ? 但没有任何参数（scope=global 且无额外 params）
+            console.error(`[buildParams] ERROR: ${id} — SQL有${placeholderCount}个?，但params=[]，后端将报 "parameter not found" 错误！`);
+            console.error(`  SQL: ${plainSql.substring(0, 120)}${plainSql.length > 120 ? '...' : ''}`);
+            console.error(`  建议：在 sqlMap 中为该图表声明 scope='project'，或在 spec.params 中补齐参数`);
+        } else if (p.length > placeholderCount) {
+            // WARN: params 数量多于 SQL 中 ? 数量
+            console.warn(`[buildParams] WARN: ${id} — params(${p.length}) > SQL中?( ${placeholderCount})，多余参数将被忽略`);
+        }
+    }
+
+    return p;
+}
+
+// ════════════════════════════════════════════════════
+// 视图切换
+// ════════════════════════════════════════════════════
+document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const view = btn.dataset.view;
+        currentView = view;
+        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('contentArea').className = `content-area ${view}-view`;
+        document.getElementById('kanbanBoard').classList.toggle('active', view === 'kanban');
+        document.getElementById('ganttWrapper').classList.toggle('active', view === 'gantt');
+        Object.values(charts).forEach(c => c && c.resize && c.resize());
+        if (view !== 'dashboard') loadAllData();
+    });
+});
+
+// ════════════════════════════════════════════════════
+// KPI 卡片生成
+// ════════════════════════════════════════════════════
+function buildKpiCards() {
+    const container = document.getElementById('kpiCardsContainer');
+    container.innerHTML = '';
+    const kpiCfgs = CHART_CONFIG.filter(c => c.type === 'kpi');
+    kpiCfgs.forEach(cfg => {
+        const card = document.createElement('div');
+        card.className = `kpi-card ${cfg.kpiType || 'default'}`;
+        card.id = `kpi-${cfg.id}`;
+        card.innerHTML = `
+            <div class="kpi-card-top">
+                <div class="kpi-label">${cfg.title || cfg.id}</div>
+                <div class="kpi-gauge"><canvas id="gauge-${cfg.id}" width="80" height="50"></canvas></div>
+            </div>
+            <div class="kpi-body">
+                <div class="kpi-value" id="kpi-val-${cfg.id}">—</div>
+                <div class="kpi-unit">${cfg.unit || ''}</div>
+            </div>
+            <div class="kpi-trend trend-up" id="kpi-trend-${cfg.id}" style="display:none"></div>
+            <div class="kpi-sub" id="kpi-sub-${cfg.id}">加载中...</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function renderKpiGauge(cfg, value) {
+    const canvas = document.getElementById(`gauge-${cfg.id}`);
+    if (!canvas) return;
+    const max = cfg.thresholds?.green || 100;
+    const pct = Math.min(Math.max(value / max, 0), 1);
+    const ctx = canvas.getContext('2d');
+    const w = 80, h = 50;
+    ctx.clearRect(0, 0, w, h);
+    const colors = { health: '#4CAF50', progress: '#4A90D9', risk: '#F44336', resource: '#9C27B0', default: '#4A90D9' };
+    const color = colors[cfg.kpiType] || colors.default;
+    // Background arc
+    ctx.beginPath();
+    ctx.arc(w/2, h, h - 2, Math.PI, 2 * Math.PI);
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.lineWidth = 6;
+    ctx.stroke();
+    // Value arc
+    ctx.beginPath();
+    ctx.arc(w/2, h, h - 2, Math.PI, Math.PI + pct * Math.PI);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+}
+
+function loadKpiData(cfg, data) {
+    const valEl = document.getElementById(`kpi-val-${cfg.id}`);
+    const subEl = document.getElementById(`kpi-sub-${cfg.id}`);
+    const trendEl = document.getElementById(`kpi-trend-${cfg.id}`);
+    if (!data || data.length === 0) { subEl.textContent = '暂无数据'; return; }
+    const row = data[0];
+    const field = cfg.valueField || Object.keys(row).find(k => k !== 'TOTAL');
+    let val = row[field];
+    if (val === null || val === undefined) { subEl.textContent = '暂无数据'; return; }
+    val = Number(val);
+    const displayVal = cfg.kpiType === 'health_score' ? Math.round(val) : (val % 1 !== 0 ? val.toFixed(1) : val);
+    if (valEl) valEl.textContent = displayVal;
+    renderKpiGauge(cfg, val);
+    const subParts = Object.entries(row).filter(([k]) => k !== field && k !== 'TOTAL').slice(0, 2);
+    if (subEl) subEl.textContent = subParts.map(([k, v]) => `${k}: ${v}`).join(' · ') || '—';
+    if (trendEl && row.trend) {
+        trendEl.textContent = row.trend;
+        trendEl.style.display = 'inline-block';
+    }
+}
+
+// ════════════════════════════════════════════════════
+// 图表渲染
+// ════════════════════════════════════════════════════
+function buildCharts() {
+    CHART_CONFIG.filter(c => c.type !== 'kpi' && c.type !== 'sidebar').forEach(cfg => {
+        const el = document.getElementById(`chart-${cfg.id}-canvas`);
+        if (!el) return;
+        if (charts[cfg.id]) { charts[cfg.id].dispose(); }
+        charts[cfg.id] = echarts.init(el);
+    });
+}
+
+function renderChart(cfg, data, chartType) {
+    const chart = charts[cfg.id];
+    if (!chart) return;
+    if (!data || data.length === 0) {
+        chart.setOption({ backgroundColor: 'transparent', title: { text: '暂无数据', left: 'center', top: 'center', textStyle: { color: '#9FA8C7', fontSize: 13 } }, series: [] });
+        return;
+    }
+    const baseOption = { backgroundColor: 'transparent', tooltip: { trigger: 'axis', backgroundColor: '#2A2D3E', borderColor: '#444', textStyle: { color: '#E8EAF6', fontSize: 11 } } };
+    if (chartType === 'line') {
+        chart.setOption({
+            ...baseOption,
+            legend: { top: 5, textStyle: { color: '#9FA8C7', fontSize: 11 } },
+            grid: { left: 45, right: 15, top: 35, bottom: 25 },
+            xAxis: { type: 'category', axisLabel: { color: '#9FA8C7', fontSize: 10 }, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }, splitLine: { show: false } },
+            yAxis: { type: 'value', axisLabel: { color: '#9FA8C7', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
+            series: buildSeriesFromData(data, 'line')
+        });
+    } else if (chartType === 'bar') {
+        chart.setOption({
+            ...baseOption,
+            grid: { left: 80, right: 20, top: 10, bottom: 25 },
+            xAxis: { type: 'value', axisLabel: { color: '#9FA8C7', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
+            yAxis: { type: 'category', data: data.map(r => r[cfg.yAxis || 'org_name'] || r[Object.keys(r)[0]]), axisLabel: { color: '#9FA8C7', fontSize: 10 }, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } } },
+            series: [{ type: 'bar', data: data.map(r => r[cfg.valueField || Object.keys(r).find(k => !isNaN(Number(r[k])))]), itemStyle: { color: '#4A90D9', borderRadius: [0, 3, 3, 0] }, barMaxWidth: 20 }]
+        });
+    } else if (chartType === 'scatter') {
+        // 风险热力图
+        chart.setOption({
+            ...baseOption,
+            grid: { left: 50, right: 20, top: 10, bottom: 40 },
+            xAxis: { type: 'category', data: ['低', '中', '高', '极高'], axisLabel: { color: '#9FA8C7', fontSize: 10 }, name: '影响程度', nameTextStyle: { color: '#9FA8C7', fontSize: 10 } },
+            yAxis: { type: 'category', data: ['低', '中', '高', '极高'], axisLabel: { color: '#9FA8C7', fontSize: 10 }, name: '发生概率', nameTextStyle: { color: '#9FA8C7', fontSize: 10 } },
+            visualMap: { min: 0, max: 10, calculable: false, orient: 'horizontal', left: 'center', bottom: 5, textStyle: { color: '#9FA8C7', fontSize: 10 }, inRange: { color: ['#4CAF50', '#FFEB3B', '#FF9800', '#F44336'] } },
+            series: [{
+                type: 'scatter',
+                symbolSize: v => Math.max(Math.sqrt(v) * 8, 12),
+                data: data.map(r => [r[cfg.xAxis || 'aftermath_level'], r[cfg.yAxis || 'probability_level'], r[cfg.valueField || 'count']]),
+                itemStyle: { opacity: 0.85 }
+            }]
+        });
+    }
+}
+
+function buildSeriesFromData(data, type) {
+    if (!data.length) return [];
+    const keys = Object.keys(data[0]).filter(k => k !== 'TOTAL');
+    return keys.map((k, i) => {
+        const colors = ['#4CAF50', '#4A90D9', '#F44336', '#FF9800', '#9C27B0'];
+        return { name: k, type, data: data.map(r => r[k]), smooth: true, itemStyle: { color: colors[i % colors.length] }, lineStyle: { width: 2 }, areaStyle: { opacity: 0.1 } };
+    });
+}
+
+// ════════════════════════════════════════════════════
+// 看板渲染
+// ════════════════════════════════════════════════════
+function renderKanban(data) {
+    const cols = { todo: [], doing: [], review: [], done: [] };
+    (data || []).forEach(task => {
+        const status = task.FEEDBACK_STATUS || task.feedback_status || task.STATUS || '';
+        const isOverdue = status != '2' && new Date(task.PLAN_END_TIME || task.plan_end_time) < new Date();
+        const name = task.TASK_NAME || task.task_name || '';
+        const assignee = task.USER_NAME || task.user_name || '—';
+        const endDate = (task.PLAN_END_TIME || task.plan_end_time || '').substring(5, 10);
+        const pct = Number(task.COMPLETE_PCT || task.complete_pct || 0);
+        const card = `<div class="kanban-card${isOverdue ? ' overdue' : ''}"><div class="kanban-card-name">${name}</div><div class="kanban-card-meta"><span>${assignee}</span><span>${endDate}</span></div><div class="kanban-card-progress"><div class="kanban-card-progress-fill" style="width:${pct}%"></div></div></div>`;
+        if (status == '0') cols.todo.push(card);
+        else if (status == '1') cols.doing.push(card);
+        else if (task.STATUS == 'APPROVED' || task.status == 'APPROVED') cols.review.push(card);
+        else cols.done.push(card);
+    });
+    Object.entries({ todo: 'todo', doing: 'doing', review: 'review', done: 'done' }).forEach(([col, id]) => {
+        const bodyEl = document.getElementById(`kanban-${id}`);
+        const cntEl = document.getElementById(`kanban-${id}-count`);
+        if (bodyEl) bodyEl.innerHTML = cols[col].join('') || '<div class="no-data"><span>无</span></div>';
+        if (cntEl) cntEl.textContent = cols[col].length;
+    });
+}
+
+// ════════════════════════════════════════════════════
+// 里程碑渲染（时间线）
+// ════════════════════════════════════════════════════
+function renderMilestone(data) {
+    const el = document.getElementById('chart-milestone-canvas');
+    if (!el) return;
+    el.innerHTML = '';
+    const list = document.createElement('div');
+    list.className = 'milestone-list';
+    (data || []).slice(0, 8).forEach(row => {
+        const name = row.timeline_name || row.milestone_name || row.TASK_NAME || row.task_name || '';
+        const date = row.plan_end_time || row.end_date || row.PLAN_END_TIME || '';
+        const dateDisplay = date ? `${date.substring(0, 4)}/${date.substring(5, 7)}` : '—';
+        const isDone = row.feedback_status == '2' || row.status == 'RELEASE';
+        const isInProgress = row.feedback_status == '1';
+        const isDelayed = row.is_delay || row.delay_days > 0;
+        const dotClass = isDone ? 'done' : isInProgress ? 'in-progress' : 'pending';
+        const tagHtml = isDelayed ? '<span class="milestone-tag tag-delay">预计延期</span>' : (isDone ? '<span class="milestone-tag tag-ontime">已完成</span>' : '');
+        list.innerHTML += `<div class="milestone-item"><div class="milestone-dot ${dotClass}"></div><div class="milestone-content"><div class="milestone-name">${name} ${tagHtml}</div><div class="milestone-date">${dateDisplay}</div></div></div>`;
+    });
+    el.appendChild(list);
+}
+
+// ════════════════════════════════════════════════════
+// 甘特图渲染
+// ════════════════════════════════════════════════════
+function renderGantt(data) {
+    const el = document.getElementById('chart-gantt-canvas');
+    if (!charts.gantt) return;
+    const tasks = (data || []).filter(r => r.PLAN_START_TIME || r.plan_start_time).slice(0, 30);
+    if (!tasks.length) return;
+    const categories = tasks.map(t => t.TASK_NAME || t.task_name || `任务${t.ID || t.id}`);
+    charts.gantt.setOption({
+        backgroundColor: 'transparent',
+        tooltip: { backgroundColor: '#2A2D3E', borderColor: '#444', textStyle: { color: '#E8EAF6', fontSize: 11 }, formatter: p => `${categories[p.dataIndex]}<br/>开始: ${tasks[p.dataIndex].PLAN_START_TIME || tasks[p.dataIndex].plan_start_time}<br/>结束: ${tasks[p.dataIndex].PLAN_END_TIME || tasks[p.dataIndex].plan_end_time}` },
+        grid: { left: 150, right: 30, top: 10, bottom: 30 },
+        xAxis: {
+            type: 'time',
+            axisLabel: { color: '#9FA8C7', fontSize: 10, formatter: v => new Date(v).toISOString().substring(5, 10) },
+            axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } },
+            splitLine: { show: false }
+        },
+        yAxis: { type: 'category', data: categories, axisLabel: { color: '#9FA8C7', fontSize: 10 }, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } } },
+        series: [{
+            type: 'custom',
+            renderItem: (params, api) => {
+                const task = tasks[params.dataIndex];
+                const start = new Date(task.PLAN_START_TIME || task.plan_start_time).getTime();
+                const endRaw = task.PLAN_END_TIME || task.plan_end_time;
+                const end = endRaw ? new Date(endRaw).getTime() : start + 86400000;
+                const [x1] = api.coord([start, 0]);
+                const [x2] = api.coord([end, 0]);
+                const y = api.size([0, 1])[1];
+                const pct = Number(task.COMPLETE_PCT || task.complete_pct || 0);
+                const completeW = Math.max((x2 - x1) * pct / 100, 4);
+                const color = (task.CRITICAL || task.critical) == 1 ? '#F44336' : '#4A90D9';
+                return { type: 'group', children: [
+                    { type: 'rect', shape: { x: x1, y: y * 0.25, width: Math.max(x2 - x1, 4), height: y * 0.5, r: 3 }, style: { fill: 'rgba(255,255,255,0.06)' } },
+                    { type: 'rect', shape: { x: x1, y: y * 0.25, width: completeW, height: y * 0.5, r: 3 }, style: { fill: color, opacity: 0.85 } }
+                ]};
+            },
+            data: tasks.map((_, i) => i),
+            encode: { x: [0, 1], y: 0 }
+        }]
+    });
+}
+
+// ════════════════════════════════════════════════════
+// 加载所有图表数据
+// ════════════════════════════════════════════════════
+async function loadAllData() {
+    const promises = CHART_CONFIG
+        .filter(c => c.id !== 'projectList' && c.type !== 'sidebar')
+        .map(cfg => {
+            const params = buildParams(cfg);
+            return executeQuery(cfg.id, params)
+                .then(data => {
+                    if (cfg.type === 'kpi') loadKpiData(cfg, data);
+                    else if (cfg.chartType === 'kanban') renderKanban(data);
+                    else if (cfg.chartType === 'timeline' || cfg.id.includes('milestone')) renderMilestone(data);
+                    else if (cfg.chartType === 'gantt') { initGanttChart(); renderGantt(data); }
+                    else renderChart(cfg, data, cfg.chartType);
+                })
+                .catch(e => console.error(`${cfg.id} 加载失败:`, e.message));
+        });
+    await Promise.allSettled(promises);
+}
+
+function initGanttChart() {
+    const el = document.getElementById('chart-gantt-canvas');
+    if (!el || charts.gantt) return;
+    charts.gantt = echarts.init(el);
+}
+
+// ════════════════════════════════════════════════════
+// 项目列表
+// ════════════════════════════════════════════════════
+async function loadProjectList() {
+    try {
+        const data = await executeQuery('projectList', []);
+        const container = document.getElementById('projectListContainer');
+        const selector = document.getElementById('projectSelector');
+        if (!data || !data.length) return;
+        // 无论 DEFAULT_PROJECT_ID 是什么，加载后都用数据库第一个项目覆盖
+        // 避免硬编码的 fallback 与数据库实际项目 ID 不匹配
+        const first = data[0];
+        if (first) {
+            currentProjectId = first.ID || first.id;
+        }
+        data.forEach(p => {
+            const id = p.ID || p.id;
+            const pct = Number(p.COMPLETE_PCT || p.complete_pct || 0).toFixed(0);
+            const name = p.NAME || p.name || '项目';
+            const taskCount = p.TASK_COUNT || p.task_count || 0;
+            const isActive = String(id) === String(currentProjectId);
+            const statusClass = pct >= 70 ? 'dot-green' : pct >= 40 ? 'dot-yellow' : 'dot-red';
+            const barClass = pct >= 70 ? 'progress-green' : pct >= 40 ? 'progress-yellow' : 'progress-red';
+            const item = document.createElement('div');
+            item.className = `project-item${isActive ? ' active' : ''}`;
+            item.dataset.projectId = id;
+            item.innerHTML = `<div class="project-header"><div class="project-status-dot ${statusClass}"></div><div class="project-name">${name}</div></div><div class="progress-bar-wrap"><div class="progress-fill ${barClass}" style="width:${pct}%"></div></div><div class="project-footer"><span class="project-meta">${pct}%</span><span class="project-meta">${taskCount}任务</span></div>`;
+            item.addEventListener('click', () => selectProject(id));
+            container.appendChild(item);
+            const opt = document.createElement('option');
+            opt.value = id;
+            opt.textContent = name;
+            if (isActive) opt.selected = true;
+            selector.appendChild(opt);
+        });
+        selector.addEventListener('change', e => selectProject(Number(e.target.value)));
+    } catch (e) { console.error('projectList 加载失败:', e); }
+}
+
+async function selectProject(id) {
+    currentProjectId = id;
+    document.querySelectorAll('.project-item').forEach(el => el.classList.toggle('active', String(el.dataset.projectId) === String(id)));
+    await loadAllData();
+}
+
+// ════════════════════════════════════════════════════
+// 启动
+// ════════════════════════════════════════════════════
+window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+
+(async () => {
+    buildKpiCards();
+    buildCharts();
+    await loadProjectList();
+    await loadAllData();
+})();
+</script>
+</body>
+</html>

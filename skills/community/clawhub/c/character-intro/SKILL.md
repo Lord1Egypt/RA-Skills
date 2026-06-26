@@ -1,35 +1,90 @@
 ---
-name: "Character Intro"
-description: "角色介绍技能。当用户输入一个人物名称（动漫角色、游戏角色、影视角色、历史人物、原创角色等），要求生成全面介绍（背景、来源、性格、能力、关系等）时触发本技能。支持中英文角色名、角色绰号/别名搜索。触发词包括：介绍、人物介绍、角色介绍、是谁、全面介绍、全面解析、背景故事。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/character-intro"
-sourceUrl: "https://clawhub.ai/skills/character-intro"
+name: character-intro
+description: 角色介绍技能。当用户输入一个人物名称（动漫角色、游戏角色、影视角色、历史人物、原创角色等），要求生成全面介绍（背景、来源、性格、能力、关系等）时触发本技能。支持中英文角色名、角色绰号/别名搜索。触发词包括：介绍、人物介绍、角色介绍、是谁、全面介绍、全面解析、背景故事。
+version: 1.0.0
 ---
 
-# Character Intro
+# Character Intro — 全角色深度介绍生成器
 
-> 角色介绍技能。当用户输入一个人物名称（动漫角色、游戏角色、影视角色、历史人物、原创角色等），要求生成全面介绍（背景、来源、性格、能力、关系等）时触发本技能。支持中英文角色名、角色绰号/别名搜索。触发词包括：介绍、人物介绍、角色介绍、是谁、全面介绍、全面解析、背景故事。
+输入任意人物名称，输出结构化、全面、百科级的角色介绍。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/character-intro`
-- **Source URL:** [https://clawhub.ai/skills/character-intro](https://clawhub.ai/skills/character-intro)
+## 输出框架（必须全部覆盖）
 
-## Overview
+生成介绍时，按以下结构组织内容，每个模块务必完整：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/character-intro
+### 1. 人物档案卡（Info Card）
 ```
+| 项目 | 内容 |
+|------|------|
+| 中文名 | xxx |
+| 日文名 | xxx |
+| 英文名 | xxx |
+| 别名/绰号 | xxx |
+| 登场作品 | xxx |
+| 作品类型 | 动画/漫画/游戏/小说/影视/历史人物 |
+| 声优（若适用）| xxx |
+| 创作者 | xxx |
+| 首次登场 | xxx |
+```
+
+### 2. 整体概述（一段话总结）
+用2-3句话概括该角色的核心定位、标志特征和人气原因。
+
+### 3. 外观特征
+发型、发色、眼色、服装、标志性配饰、体型特征。用具体细节描述而非抽象形容词。
+
+### 4. 性格特点
+MBTI（若适用）、核心性格关键词（3-5个）、行为模式、说话风格、内心世界。
+
+### 5. 能力与技能（若适用）
+战斗能力/技能列表、技能名称、招术解析、特殊能力、战斗力评估。
+
+### 6. 背景故事（Origin Story）
+完整的起源故事：出身世界/城市、童年经历、关键事件、成长轨迹、与其他角色的羁绊。
+
+### 7. 人际关系
+- 家人/亲人
+- 朋友/伙伴
+- 恋人/配偶
+- 敌人/对手
+- 导师/徒弟
+
+### 8. 经典台词/名场面
+收录3-5句最经典的台词，或最标志性的名场面描述。
+
+### 9. 人气与社会影响
+粉丝评价、经典梗、二次创作、COSPLAY热度、周边文化影响。
+
+### 10. 相关作品一览
+推荐该角色所在的主要作品（按必看程度排序）。
+
+## 搜索策略
+
+当需要搜索角色信息时，使用 `batch_web_search` 并发多组关键词：
+
+**搜索组合（并发执行）：**
+```
+query 1: "{角色名} 角色介绍 背景 故事"
+query 2: "{角色名} 人物简介 登场作品"
+query 3: "{角色名} Wikipedia"
+query 4: "{角色名} 声优 能力 技能"
+query 5: "{角色名} 经典台词 名场面"
+```
+
+**搜索参数：** num_results=10
+
+## 质量标准
+
+- ✅ 所有模块必须完整，不得遗漏
+- ✅ 必须注明信息来源（百科/官网/粉丝站等）
+- ✅ 涉及剧透内容须标注「⚠️ 涉及剧透」
+- ✅ 角色外观描述要具体到细节
+- ✅ 能力描述要有具体招式名称
+- ✅ 历史人物需注明史料来源
+
+## 输出格式
+
+直接以 Markdown 格式输出，使用 Emoji 增强可读性。开头用大字标题说明角色身份，结尾标注信息来源。
+
+---
+**信息来源：** 搜索结果综合整理 · 仅供参考

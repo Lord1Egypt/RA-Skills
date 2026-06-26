@@ -1,0 +1,232 @@
+/* @theme am_blue_course */
+
+@import 'am_template';
+
+:root {
+  --color-code-bg: #e8f4f6;
+  --color-coverbg: #206bc0;
+  --color-few: #91a814;
+  --color-footer: #8c8c8c;
+  --color-main: #041d22;
+  --color-much: #206bc0;
+  --color-navbar-bg: #d0e9ee;
+  --color-navbar-font: rgb(108, 95, 91);
+  --color-quote: rgba(254, 176, 98, 0.1);
+  --color-title: rgb(255, 255, 255);
+  --color-trans: #206bc0;
+  --filter-b: brightness(30%) contrast(70%) grayscale(100%);
+  --filter-c: brightness(0%) contrast(60%) grayscale(80%);
+  --filter-e: brightness(0%) contrast(70%) grayscale(100%);
+}
+
+/* ====== 正文页：隐藏 header，footer 左下角显示敬业乐群 ====== */
+section:not(.cover_c):not(.toc_a):not(.lastpage) header {
+  display: none;
+}
+
+/* 所有页面 footer 默认左下角显示敬业乐群 */
+section footer {
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--color-footer);
+}
+
+/* ====== 扁图+文字同页：图片在上，文字在下 ====== */
+section.fig-top {
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+section.fig-top h2,
+section.fig-top h3 {
+  font-size: var(--font-size-2-3);
+  margin-bottom: 0.3rem;
+}
+section.fig-top .fig-container {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.2rem 0;
+}
+section.fig-top .fig-container img {
+  max-width: 90%;
+  max-height: 45vh;
+  width: auto;
+}
+section.fig-top .text-container {
+  flex: 1 1 auto;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+section.fig-top .text-container ul,
+section.fig-top .text-container ol {
+  margin: 0.3rem 0;
+  padding-left: 25px;
+}
+section.fig-top .text-container blockquote {
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  margin: 0.3rem 0;
+}
+section.fig-top .text-container strong {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--color-much);
+}
+
+section.fig-top .text-container-small {
+  flex: 1 1 auto;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+section.fig-top .text-container-small ul,
+section.fig-top .text-container-small ol {
+  margin: 0.3rem 0;
+  padding-left: 20px;
+}
+section.fig-top .text-container-small blockquote {
+  font-size: 0.80rem;
+  padding: 6px 14px;
+  margin: 0.3rem 0;
+}
+section.fig-top .text-container-small strong {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--color-much);
+}
+
+/* ====== 图+文左右分栏（仅适用于接近方形的图）====== */
+section.fig-left {
+  overflow: visible;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 10% 90%;
+  grid-template-areas:
+    "slideheading slideheading"
+    "figpanel    textpanel";
+}
+section.fig-left h2,
+section.fig-left h3 {
+  grid-area: slideheading;
+  font-size: var(--font-size-2-3);
+}
+section.fig-left .limg {
+  grid-area: figpanel;
+  margin-top: -2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section.fig-left .rdiv {
+  grid-area: textpanel;
+  margin-top: -2%;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+section.fig-left .rdiv strong {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--color-much);
+}
+section.fig-left .limg img {
+  max-height: 60vh;
+  width: auto;
+  max-width: 100%;
+}
+
+section.fig-right {
+  overflow: visible;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 10% 90%;
+  grid-template-areas:
+    "slideheading slideheading"
+    "textpanel    figpanel";
+}
+section.fig-right h2,
+section.fig-right h3 {
+  grid-area: slideheading;
+  font-size: var(--font-size-2-3);
+}
+section.fig-right .ldiv {
+  grid-area: textpanel;
+  margin-top: -2%;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+section.fig-right .ldiv strong {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--color-much);
+}
+section.fig-right .rimg {
+  grid-area: figpanel;
+  margin-top: -2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+section.fig-right .rimg img {
+  max-height: 60vh;
+  width: auto;
+  max-width: 100%;
+}
+
+/* ====== 表格+文字同页 ====== */
+section.table-right {
+  overflow: visible;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 55% 45%;
+  grid-template-rows: 10% 90%;
+  grid-template-areas:
+    "slideheading slideheading"
+    "textpanel    tablepanel";
+}
+section.table-right h2,
+section.table-right h3 {
+  grid-area: slideheading;
+  font-size: var(--font-size-2-3);
+}
+section.table-right .ldiv-small {
+  grid-area: textpanel;
+  margin-top: -2%;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+section.table-right .ldiv-small strong {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: var(--color-much);
+}
+section.table-right .ldiv {
+  grid-area: textpanel;
+  margin-top: -2%;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+section.table-right .ldiv strong {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: var(--color-much);
+}
+section.table-right .rdiv {
+  grid-area: tablepanel;
+  margin-top: -2%;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+section.table-right table {
+  font-size: 0.75rem;
+  width: 100%;
+}
+
+/* ====== 封面页 logo ====== */
+section.cover_c header::before {
+  content: "";
+}

@@ -1,35 +1,35 @@
 ---
-name: "create-github-issues-for-unmet-specification-requirements"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/create-github-issues-for-unmet-specification-requirements"
-sourceUrl: "https://skills.sh/github/awesome-copilot/create-github-issues-for-unmet-specification-requirements"
+name: create-github-issues-for-unmet-specification-requirements
+description: 'Create GitHub Issues for unimplemented requirements from specification files using feature_request.yml template.'
 ---
 
-# create-github-issues-for-unmet-specification-requirements
+# Create GitHub Issues for Unmet Specification Requirements
 
-> Indexed by skills.sh from github/awesome-copilot
+Create GitHub Issues for unimplemented requirements in the specification at `${file}`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/create-github-issues-for-unmet-specification-requirements`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/create-github-issues-for-unmet-specification-requirements](https://skills.sh/github/awesome-copilot/create-github-issues-for-unmet-specification-requirements)
+## Process
 
-## Overview
+1. Analyze specification file to extract all requirements
+2. Check codebase implementation status for each requirement
+3. Search existing issues using `search_issues` to avoid duplicates
+4. Create new issue per unimplemented requirement using `create_issue`
+5. Use `feature_request.yml` template (fallback to default)
 
+## Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/create-github-issues-for-unmet-specification-requirements
-```
+- One issue per unimplemented requirement from specification
+- Clear requirement ID and description mapping
+- Include implementation guidance and acceptance criteria
+- Verify against existing issues before creation
+
+## Issue Content
+
+- Title: Requirement ID and brief description
+- Description: Detailed requirement, implementation method, and context
+- Labels: feature, enhancement (as appropriate)
+
+## Implementation Check
+
+- Search codebase for related code patterns
+- Check related specification files in `/spec/` directory
+- Verify requirement isn't partially implemented

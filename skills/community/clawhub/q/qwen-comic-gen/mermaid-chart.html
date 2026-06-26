@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body { font-family: 'Microsoft YaHei'; margin: 20px; background: white; }
+        .mermaid { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="mermaid">
+graph TD
+    A[感知与行动中心] --> B[产能监控系统]
+    A --> C[风险预警机制]
+    A --> D[工单闭环流程]
+    
+    B --> B1[SDC 签约产能]
+    B --> B2[GP9 实测产能]
+    B --> B3[产能达标率 68%→85%]
+    
+    C --> C1[🔴红色<60%]
+    C --> C2[🟡黄色 60-80%]
+    C --> C3[🟢绿色≥80%]
+    
+    D --> D1[创建 - 系统自动]
+    D --> D2[派发 - 项目经理]
+    D --> D3[执行 - 责任人]
+    D --> D4[验收 - 管理员]
+    D --> D5[关闭 - 系统自动]
+    
+    A --> E[数据治理]
+    E --> E1[23 字段元数据表]
+    E --> E2[英文小写 + 下划线]
+    E --> E3[115 家供应商分级]
+    
+    style A fill:#FE2C55,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#F8F9FA,stroke:#333,stroke-width:1px
+    style C fill:#F8F9FA,stroke:#333,stroke-width:1px
+    style D fill:#F8F9FA,stroke:#333,stroke-width:1px
+    style E fill:#F8F9FA,stroke:#333,stroke-width:1px
+    </div>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

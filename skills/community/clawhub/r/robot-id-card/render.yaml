@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ric-registry
+    runtime: docker
+    dockerfilePath: ./packages/registry/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RIC_ADMIN_KEY
+        generateValue: true   # Render auto-generates a secret — copy from dashboard
+    disk:
+      name: ric-data
+      mountPath: /data
+      sizeGB: 1

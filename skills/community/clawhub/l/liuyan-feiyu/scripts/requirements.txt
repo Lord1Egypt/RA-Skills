@@ -1,0 +1,10 @@
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# 虚拟环境建议（Windows）：
+# python -m venv .venv
+# .venv\Scripts\pip install -r requirements.txt
+#
+# 同步版启动：python main.py
+# 异步版启动：python -X utf8 main_async.py
+# 运行测试：  python -X utf8 test_async.py

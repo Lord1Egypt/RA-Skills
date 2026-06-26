@@ -1,0 +1,15 @@
+{
+  "notify": {
+    "type": "terminal",
+    "webhook_url": ""
+  },
+  "fetch_interval_days": 7,
+  "stocks": [],
+  "llm": {
+    "enabled": true,
+    "base_url": "https://opencode.ai/zen/go/v1",
+    "model": "deepseek-v4-flash",
+    "timeout": 60,
+    "retries": 2
+  }
+}

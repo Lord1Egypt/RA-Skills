@@ -1,0 +1,105 @@
+# ─────────────────────────────────────────────────────────────
+#  REFINE Skill Configuration  v1.3
+#  Compatible: ClawHub v2.x / SkillPay v1.x
+# ─────────────────────────────────────────────────────────────
+
+skill:
+  name: REFINE_Project
+  display_name: "REFINE: Adaptive Session Diagnostics"
+  version: "1.3.0"
+  description: >
+    Adaptive skill engine for structured session diagnostics.
+    BASIC mode captures sanitized feedback labels and error type patterns.
+    PRO mode adds local patch synthesis from failure cluster analysis.
+  license: MIT-0
+
+# ── Runtime ───────────────────────────────────────────────────
+runtime:
+  language: python
+  version: ">=3.10"
+  entrypoint: main.py
+  dependencies: []    # Standard library only — no pip installs required
+
+# ── Environment Variables (all optional) ──────────────────────
+# None are required for installation.
+# REFINE_MODE defaults to BASIC.
+# SKILLPAY_TOKEN_HASH is only relevant when REFINE_MODE=PRO.
+environment:
+  optional:
+    - name: REFINE_MODE
+      description: "Operating mode. Defaults to BASIC if not set."
+      values: [BASIC, PRO]
+      default: BASIC
+
+    - name: SKILLPAY_TOKEN_HASH
+      description: >
+        SHA-256 hex of SkillPay auth token.
+        Only used when REFINE_MODE=PRO. Set the hash, never the raw token.
+      secret: true
+      default: ""
+
+    - name: LOG_LEVEL
+      description: "Logging verbosity."
+      values: [DEBUG, INFO, WARNING, ERROR]
+      default: INFO
+
+# ── Modes ─────────────────────────────────────────────────────
+modes:
+  basic:
+    label: "REFINE Basic"
+    platform: ClawHub
+    tier: free
+    requires_env: []
+    capabilities:
+      - feedback_label_capture
+      - error_type_logging
+      - session_memory
+
+  pro:
+    label: "REFINE Pro"
+    platform: SkillPay
+    tier: paid
+    requires_env:
+      - REFINE_MODE=PRO
+      - SKILLPAY_TOKEN_HASH
+    requires_header: x-skillpay-auth
+    capabilities:
+      - feedback_label_capture
+      - error_type_logging
+      - session_memory
+      - failure_cluster_analysis
+      - patch_synthesis
+
+# ── Security ──────────────────────────────────────────────────
+security:
+  auth_header: x-skillpay-auth
+  token_hashing: sha256
+  token_comparison: hmac.compare_digest   # stdlib hmac — constant-time
+  token_in_logs: never
+  outbound_network: none
+
+# ── Data & Privacy ────────────────────────────────────────────
+data:
+  storage_file: refine_memory.json
+  storage_scope: local_working_directory
+  network_sync: false
+  stack_trace_storage: never
+  context_sanitization: enforced_by_code   # _sanitize_context() runs before every write
+  context_sanitization_rules:
+    - sensitive_key_names_redacted: true   # token/key/secret/password/auth/… → [REDACTED]
+    - nested_objects_rejected: true        # dict/list values → [REMOVED]
+    - string_values_truncated_chars: 200
+    - max_keys_per_context: 8
+    - allowed_scalar_types: [str, int, float, bool]
+  text_field_max_chars: 300
+
+# ── ClawHub Integration ───────────────────────────────────────
+clawhub:
+  skill_id: REFINE_Project
+
+# ── SkillPay Integration ──────────────────────────────────────
+skillpay:
+  product_id: refine-pro
+  auth_mechanism: header
+  header_name: x-skillpay-auth
+  upgrade_url: "https://skillpay.io/refine/upgrade"

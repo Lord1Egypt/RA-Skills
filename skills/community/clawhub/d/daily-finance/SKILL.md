@@ -1,35 +1,124 @@
 ---
-name: "Daily Finance"
-description: "获取每日财经热榜与投资资讯。当用户提到今日财经、每日金融、股市热榜、投资资讯、金融日报、每日行情、财经热榜、or daily finance/market news时触发。专门抓取华尔街见闻、雪球、第一财经、百度财经、新浪财经等平台的财经热搜，帮助用户快速了解今日投资焦点。不包含实时行情数据（K线等），那是aks..."
-category: "domain"
-source: "ClawHub"
-tags: [china, daily, finance, market, news]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-finance"
-sourceUrl: "https://clawhub.ai/skills/daily-finance"
+name: daily-finance
+description: 获取每日财经热榜与投资资讯。当用户提到今日财经、每日金融、股市热榜、投资资讯、金融日报、每日行情、财经热榜、or daily finance/market news时触发。专门抓取华尔街见闻、雪球、第一财经、百度财经、新浪财经等平台的财经热搜，帮助用户快速了解今日投资焦点。不包含实时行情数据（K线等），那是akshare-stock的范围。
 ---
 
-# Daily Finance
+# daily-finance
 
-> 获取每日财经热榜与投资资讯。当用户提到今日财经、每日金融、股市热榜、投资资讯、金融日报、每日行情、财经热榜、or daily finance/market news时触发。专门抓取华尔街见闻、雪球、第一财经、百度财经、新浪财经等平台的财经热搜，帮助用户快速了解今日投资焦点。不包含实时行情数据（K线等），那是aks...
+每日财经热榜推送，从多个权威平台抓取当日最热财经资讯，筛选真正有投资参考价值的内容。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-finance`
-- **Source URL:** [https://clawhub.ai/skills/daily-finance](https://clawhub.ai/skills/daily-finance)
+## 数据来源
 
-## Overview
+### 核心平台（必抓）
 
+| 平台 | 路径 | 说明 |
+|---|---|---|
+| 华尔街见闻·日排行 | `/n/G2me3ndwjq` | 国际宏观、美股、原油、黄金 |
+| 雪球·今日话题 | `/n/X12owXzvNV` | 散户热议、个股分析、基金观点 |
+| 新浪财经·7x24小时实时 | `/n/WmoO9qYd4E` | 全球实时财经新闻直播，市场快讯 |
+| 新浪财经·点击量排行 | `/n/rx9ozj7oXb` | 市场关注度最高新闻 |
+| 百度·财经榜 | `/n/ARe1p17d7n` | 综合财经新闻热度 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-finance
+### 补充平台
+
+| 平台 | 路径 | 说明 |
+|---|---|---|
+| 第一财经·新闻排行 | `/n/0MdKam4ow1` | A股政策、上市公司动态 |
+| 36氪·24小时热榜 | `/n/Q1Vd5Ko85R` | 科技与商业交叉 |
+| 美股·市值TOP100 | `/n/aqeEaZVe9R` | 美股重要公司市值榜 |
+| 澎湃·热榜 | `/n/wWmoO5Rd4E` | 时政与财经结合 |
+
+### 进阶平台（需安装akshare）
+
+| 平台 | 获取方式 | 说明 |
+|---|---|---|
+| 东方财富 | akshare | A股实时数据、资金流、板块 |
+| 同花顺 | akshare | 涨停板、轮动、选股 |
+| 财新 | 独立订阅 | 高质量深度财经报道（英文：Caixin Global） |
+
+## 获取方式
+
+```javascript
+// 华尔街见闻
+web_fetch("https://tophub.today/n/G2me3ndwjq", { maxChars: 3000 })
+
+// 雪球
+web_fetch("https://tophub.today/n/X12owXzvNV", { maxChars: 3000 })
+
+// 新浪财经7x24小时实时
+web_fetch("https://tophub.today/n/WmoO9qYd4E", { maxChars: 3000 })
+
+// 新浪财经点击量排行
+web_fetch("https://tophub.today/n/rx9ozj7oXb", { maxChars: 3000 })
+
+// 百度财经
+web_fetch("https://tophub.today/n/ARe1p17d7n", { maxChars: 3000 })
 ```
+
+## 筛选标准
+
+### 保留内容
+- 国际重大经济事件（美伊局势、联储政策、全球贸易）
+- A股政策面重大变化
+- 大宗商品（黄金、原油）异动
+- 重要公司财报或经营变故
+- 实时市场快讯（7x24h平台）
+- 反映市场情绪的重大事件（恐慌抄底、泡沫信号）
+- 美股重要市值变动
+
+### 排除内容
+- 单纯娱乐化内容
+- 广告或软文
+- 情绪化标题（如"天塌了"、"最惨"）
+- 与投资无关的民生话题
+- 地方性、无宏观影响的民生新闻
+
+### 输出格式要求
+- 每条新闻完整、有头有尾
+- 不标注来源（用户知道来源）
+- 只讲事实，不加主观评论
+- 分割线用"======"代替"---"
+- 最多输出5条精选
+- 新浪7x24h为实时流，优先取前3条有投资价值的快讯
+
+## 输出结构
+
+```
+💹 财经日报（X月X日）
+
+【精选5条】
+1. [事件完整描述]
+2. [事件完整描述]
+...
+
+【各平台热榜】
+🏛 华尔街见闻：
+1. [标题]（热度）
+...
+
+🏛 雪球热议：
+1. [标题]
+...
+
+🏛 新浪实时快讯：
+1. [快讯标题]
+...
+
+🏛 新浪点击排行：
+1. [标题]
+...
+
+🏛 百度财经：
+1. [标题]（热度）
+...
+```
+
+## akshare扩展（可选）
+
+如果用户需要实时行情数据（大盘指数、板块资金流、涨跌停统计），提示用户安装akshare：
+
+```
+pip install akshare
+```
+
+并推荐使用 `akshare-stock` skill 获取完整A股分析能力。

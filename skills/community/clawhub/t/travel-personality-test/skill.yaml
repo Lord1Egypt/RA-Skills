@@ -1,0 +1,146 @@
+# Travel Persona - 旅行人格测试
+# ClawHub.ai Skill 配置文件
+
+name: travel-personality-test
+display_name: 旅行人格测试
+version: 1.1.0
+description: 通过10道轻量题目发现你的旅行人格，获取实时目的地推荐，让每次出行都更懂自己
+author: junfan716-dot
+license: MIT
+
+# 触发词 - 用户说这些时会激活 skill
+triggers:
+  - 旅行人格测试
+  - 测测我是什么旅行者
+  - 推荐旅行目的地
+  - 适合去哪玩
+  - 最近想出去玩
+  - 我想做旅行人格测试
+  - 测试我的旅行人格
+
+# 标签
+tags:
+  - travel
+  - personality
+  - quiz
+  - lifestyle
+  - destination
+  - recommendation
+
+# 分类
+category: lifestyle
+subcategory: travel
+
+# 依赖的 skills（必需）
+dependencies:
+  - name: flyai
+    required: true
+    description: 用于获取实时热门目的地、搜索趋势、机票和酒店价格数据
+    install_guide: https://github.com/alibaba-flyai/flyai-skill
+
+# 文件列表
+files:
+  - name: SKILL.md
+    description: 主技能文件，包含测试流程、计分规则、flyai调用逻辑
+    required: true
+  - name: cities.md
+    description: 城市参考池，供flyai参考及兜底使用
+    required: true
+  - name: templates.md
+    description: 6种人格的完整输出模板
+    required: true
+
+# 示例对话
+examples:
+  - input: 我想做旅行人格测试
+    output: |
+      来做个小测试？10道题，每题可以选1-2个，把更戳你的那个放前面～
+
+      Q1：现在给你一张机票，目的地随机，你的第一反应是？
+      - A. 🤩 冲！走就走
+      - B. 🤔 先看看是哪里
+      - C. 😴 能不能换成酒店券
+      - D. ✈️ 只要不用上班去哪都行
+
+  - input: 选 D 和 A
+    output: |
+      只要不用上班，去哪儿都好～继续 👇
+
+      Q2：旅行第一天，你最想出现在哪个画面里？
+      ...
+
+  - input: 想查机票/酒店
+    output: |
+      刚帮你瞄了一眼：
+
+      ✈️ 上海 → 泉州：
+         近期 ¥280-450（周二周四最便宜）
+         高铁 4.5h ¥250，也很方便
+
+      🏨 西街附近：
+         设计师民宿 ¥200-350，步行到开元寺
+
+# 人格类型说明
+personality_types:
+  - id: sea
+    name: 海系旅人
+    emoji: 🌊
+    keywords: [治愈, 慢节奏, 刚刚好]
+    description: 不是非要看海，只是需要一种什么都可以不想的感觉
+
+  - id: mountain
+    name: 山系旅人
+    emoji: 🏔️
+    keywords: [清净, 独处, 深呼吸]
+    description: 人群让你消耗，自然让你充电
+
+  - id: city
+    name: 城市猎人
+    emoji: 🌆
+    keywords: [烟火气, 探索, 真实感]
+    description: 菜市场、老巷子、路边摊才是你的旅行地图
+
+  - id: night
+    name: 夜行者
+    emoji: 🌙
+    keywords: [反差, 神秘, 不走寻常路]
+    description: 别人睡了你才出发，别人打卡的地方你不去
+
+  - id: food
+    name: 觅食人
+    emoji: 🍜
+    keywords: [吃货, 烟火, 值得专程去]
+    description: 你用味觉丈量每座城市，一碗面可以让你爱上一个地方
+
+  - id: cloud
+    name: 云旅人
+    emoji: ☁️
+    keywords: [诗意, 想象力, 总有一天]
+    description: 你去过很多地方，只是还没用脚
+
+# 测试配置
+quiz:
+  question_count: 10
+  max_options_per_question: 2
+  scoring:
+    primary: 3  # 主选得分
+    secondary: 2  # 次选得分
+
+# 特殊说明
+notes: |
+  ## 核心特点
+
+  1. **轻量测试**：10题以内，2分钟完成
+  2. **多选支持**：可选1-2个选项，更符合真实状态
+  3. **实时推荐**：结合 flyai 获取热门目的地
+  4. **自然交互**：氛围感话术，答题过程中绝不透露人格
+
+  ## 使用说明
+
+  - 触发词："旅行人格测试"、"测测我是什么旅行者"、"推荐旅行目的地"
+  - flyai 调用时机：全部10题答完后才调用，答题过程中绝不调用
+  - flyai 为必需依赖：用于获取实时搜索热度、机票酒店价格等动态数据
+
+  ## GitHub
+
+  源码地址：https://github.com/junfan716-dot/travel-personality-test

@@ -1,35 +1,28 @@
 ---
-name: "recipe-create-feedback-form"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-feedback-form"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-feedback-form"
+name: recipe-create-feedback-form
+description: "Create a Google Form for feedback and share it via Gmail."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-forms
+        - gws-gmail
 ---
 
-# recipe-create-feedback-form
+# Create and Share a Google Form
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-forms`, `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-feedback-form`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-feedback-form](https://skills.sh/googleworkspace/cli/recipe-create-feedback-form)
+Create a Google Form for feedback and share it via Gmail.
 
-## Overview
+## Steps
 
+1. Create form: `gws forms forms create --json '{"info": {"title": "Event Feedback", "documentTitle": "Event Feedback Form"}}'`
+2. Get the form URL from the response (responderUri field)
+3. Email the form: `gws gmail +send --to attendees@company.com --subject 'Please share your feedback' --body 'Fill out the form: FORM_URL'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-feedback-form
-```

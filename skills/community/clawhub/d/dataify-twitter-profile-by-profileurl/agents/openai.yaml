@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Dataify X Builder"
+  short_description: "Prepare Dataify builder calls for x.com"
+  default_prompt: "Use $dataify-twitter-profile-by-profileurl to prepare a Dataify builder curl request."

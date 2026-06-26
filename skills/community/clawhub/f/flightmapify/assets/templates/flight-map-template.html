@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flight Map - Interactive Flight Route</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow: hidden;
+        }
+        #container { 
+            width: 100%; 
+            height: 100vh;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* Control panel */
+        .control-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            border: 1px solid rgba(233, 236, 239, 0.8);
+        }
+        
+        .panel-section {
+            margin-bottom: 20px;
+        }
+        
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4a9eff;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        /* Flight Search Section */
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .search-box input {
+            flex: 0 1 80px;
+            padding: 10px 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: border-color 0.2s ease;
+            min-width: 70px;
+            max-width: 100px;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #4a9eff;
+            box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+        }
+        .search-box button {
+            padding: 10px 16px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            min-width: 70px;
+        }
+        .search-box button:hover {
+            background: #4f46e5;
+            transform: translateY(-1px);
+        }
+        
+        /* Results section */
+        .results {
+            max-height: 180px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            margin-top: 4px;
+            display: none;
+            background: white;
+            position: absolute;
+            z-index: 1001;
+            width: 200px;
+            min-width: 150px;
+            max-width: 250px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .result-item {
+            padding: 8px 10px;
+            border-bottom: 1px solid #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-item:hover {
+            background: #f0f8ff;
+            border-left: 2px solid #6366f1;
+            padding-left: 8px;
+        }
+        .result-item h4 {
+            margin: 0 0 2px 0;
+            color: #212529;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .result-item p {
+            margin: 0;
+            font-size: 10px;
+            color: #6c757d;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Input container with suggestions */
+        .input-with-suggestions {
+            position: relative;
+            flex: 1;
+        }
+        
+        /* Flight Results Section */
+        .flight-results-section {
+            display: none;
+        }
+        .flight-item {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+            font-size: 12px;
+            padding: 8px;
+            cursor: pointer;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .flight-item:hover {
+            background: #f8f9fa;
+            border-color: #6366f1;
+        }
+        .flight-icon {
+            width: 24px;
+            height: 24px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .flight-info {
+            color: #212529;
+            flex: 1;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .flight-type {
+            font-size: 10px;
+            color: #6366f1;
+            font-weight: bold;
+            margin-left: 4px;
+        }
+        
+        /* Transfer filter styles */
+        .transfer-filter-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .transfer-filter-item:hover {
+            background: #e9ecef;
+            border-color: #6366f1;
+        }
+        .transfer-filter-item.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        .transfer-filter-item .city-name {
+            font-weight: 600;
+        }
+        .transfer-filter-item .lowest-price {
+            margin-left: 6px;
+            padding: 2px 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        .transfer-filter-item:not(.active) .lowest-price {
+            background: #e9ecef;
+            color: #6366f1;
+        }
+        
+        /* Notification Area */
+        .notification-area {
+            margin-bottom: 8px;
+            min-height: 20px;
+            font-size: 12px;
+            color: #e74c3c;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Scrollbar styling */
+        .control-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        .control-panel::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+        .control-panel::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 3px;
+        }
+        .control-panel::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+        
+        @media (max-width: 768px) {
+            .control-panel {
+                width: 280px;
+                top: 10px;
+                left: 10px;
+                max-height: calc(100vh - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Map container takes full screen -->
+    <div id="container"></div>
+    
+    <!-- Control panel with flight search -->
+    <div class="control-panel">
+        <!-- Flight Search Section -->
+        <div class="panel-section">
+            <div class="panel-title">✈️ 航班查询</div>
+            <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                <div class="input-with-suggestions">
+                    <input type="text" id="flightOrigin" placeholder="出发地" value="ORIGIN_PLACEHOLDER" style="padding: 6px 8px; border: 2px solid #dee2e6; border-radius: 4px; font-size: 11px;">
+                    <div id="originSuggestions" class="results"></div>
+                </div>
+                <div class="input-with-suggestions">
+                    <input type="text" id="flightDestination" placeholder="目的地" value="DESTINATION_PLACEHOLDER" style="padding: 6px 8px; border: 2px solid #dee2e6; border-radius: 4px; font-size: 11px;">
+                    <div id="destinationSuggestions" class="results"></div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                <input type="date" id="flightDepartureDate" value="DATE_PLACEHOLDER" style="width: 100%; padding: 6px 8px; border: 2px solid #dee2e6; border-radius: 4px; font-size: 11px;">
+            </div>
+            <button id="flightSearchBtn" onclick="searchFlights()" style="width: 100%; padding: 8px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-top: 4px;">搜航班</button>
+            <div style="font-size: 10px; color: #6c757d; margin-top: 6px;">
+                💡 输入城市名或机场代码查询单程航班
+            </div>
+        </div>
+        
+        <!-- Notification Area -->
+        <div id="notificationArea" class="notification-area"></div>
+        
+        <!-- Flight Results Section -->
+        <div class="panel-section flight-results-section" id="flightResultsSection">
+            <div class="panel-title">✈️ 航班结果</div>
+            <div id="transferFilterSection" style="display: none; margin-bottom: 12px;">
+                <div style="font-size: 11px; color: #6c757d; margin-bottom: 6px; font-weight: 600;">中转点筛选：</div>
+                <div id="transferFilterList" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <!-- Transfer filter options will be displayed here -->
+                </div>
+            </div>
+            <div id="flightResultsList" style="max-height: 300px; overflow-y: auto;">
+                <!-- Flight results will be displayed here -->
+            </div>
+            <div style="font-size: 10px; color: #6c757d; margin-top: 8px;">
+                💡 点击航班查看详情和预订
+            </div>
+        </div>
+    </div>
+
+    <script src="https://webapi.amap.com/maps?v=2.0&key=AMAP_API_KEY_PLACEHOLDER"></script>
+    <script>
+        // Initialize map
+        var map = new AMap.Map('container', {
+            zoom: 4,
+            center: [105.0, 35.0], // Center of China
+            viewMode: '2D',
+            pitch: 0,
+            rotation: 0,
+            layers: [
+                new AMap.TileLayer({
+                    detectRetina: true
+                })
+            ],
+            mapStyle: 'normal',
+            features: ['bg', 'road', 'point'],
+            resizeEnable: true,
+            lang: 'zh_cn',
+            showLabel: true
+        });
+        
+        // Add zoom control
+        AMap.plugin(['AMap.Scale'], function() {
+            var scale = new AMap.Scale();
+            map.addControl(scale);
+        });
+        
+        AMap.plugin(['AMap.ToolBar'], function() {
+            var toolBar = new AMap.ToolBar({
+                position: {
+                    top: '110px',
+                    right: '40px'
+                }
+            });
+            map.addControl(toolBar);
+        });
+        
+        // Color palette for different flights
+        var flightColors = [
+            '#6366f1', // Indigo
+            '#8b5cf6', // Violet
+            '#a855f7', // Purple
+            '#d946ef', // Fuchsia
+            '#ec4899', // Pink
+            '#f43f5e', // Rose
+            '#f97316', // Orange
+            '#f59e0b', // Amber
+            '#eab308', // Yellow
+            '#84cc16', // Lime
+            '#22c55e', // Green
+            '#10b981', // Emerald
+            '#14b8a6', // Teal
+            '#06b6d4', // Cyan
+            '#0ea5e9', // Sky
+            '#3b82f6', // Blue
+        ];
+        
+        // Function to get color for a flight based on index
+        function getFlightColor(index) {
+            return flightColors[index % flightColors.length];
+        }
+        
+        // Major Chinese cities with airports for suggestions (each airport as separate entry)
+        var citiesWithAirports = [
+            { name: '北京', code: 'PEK', airport: '北京首都国际机场' },
+            { name: '北京', code: 'PKX', airport: '北京大兴国际机场' },
+            { name: '上海', code: 'PVG', airport: '上海浦东国际机场' },
+            { name: '上海', code: 'SHA', airport: '上海虹桥国际机场' },
+            { name: '广州', code: 'CAN', airport: '广州白云国际机场' },
+            { name: '深圳', code: 'SZX', airport: '深圳宝安国际机场' },
+            { name: '成都', code: 'CTU', airport: '成都双流国际机场' },
+            { name: '成都', code: 'TFU', airport: '成都天府国际机场' },
+            { name: '昆明', code: 'KMG', airport: '昆明长水国际机场' },
+            { name: '西安', code: 'XIY', airport: '西安咸阳国际机场' },
+            { name: '重庆', code: 'CKG', airport: '重庆江北国际机场' },
+            { name: '杭州', code: 'HGH', airport: '杭州萧山国际机场' },
+            { name: '南京', code: 'NKG', airport: '南京禄口国际机场' },
+            { name: '武汉', code: 'WUH', airport: '武汉天河国际机场' },
+            { name: '长沙', code: 'CSX', airport: '长沙黄花国际机场' },
+            { name: '郑州', code: 'CGO', airport: '郑州新郑国际机场' },
+            { name: '天津', code: 'TSN', airport: '天津滨海国际机场' },
+            { name: '青岛', code: 'TAO', airport: '青岛胶东国际机场' },
+            { name: '厦门', code: 'XMN', airport: '厦门高崎国际机场' },
+            { name: '大连', code: 'DLC', airport: '大连周水子国际机场' },
+            { name: '哈尔滨', code: 'HRB', airport: '哈尔滨太平国际机场' },
+            { name: '沈阳', code: 'SHE', airport: '沈阳桃仙国际机场' },
+            { name: '乌鲁木齐', code: 'URC', airport: '乌鲁木齐地窝堡国际机场' },
+            { name: '三亚', code: 'SYX', airport: '三亚凤凰国际机场' },
+            { name: '海口', code: 'HAK', airport: '海口美兰国际机场' },
+            { name: '南宁', code: 'NNG', airport: '南宁吴圩国际机场' },
+            { name: '贵阳', code: 'KWE', airport: '贵阳龙洞堡国际机场' },
+            { name: '福州', code: 'FOC', airport: '福州长乐国际机场' },
+            { name: '济南', code: 'TNA', airport: '济南遥墙国际机场' },
+            { name: '太原', code: 'TYN', airport: '太原武宿国际机场' },
+            { name: '长春', code: 'CGQ', airport: '长春龙嘉国际机场' },
+            { name: '南昌', code: 'KHN', airport: '南昌昌北国际机场' },
+            { name: '石家庄', code: 'SJW', airport: '石家庄正定国际机场' },
+            { name: '呼和浩特', code: 'HET', airport: '呼和浩特白塔国际机场' },
+            { name: '银川', code: 'INC', airport: '银川河东国际机场' },
+            { name: '西宁', code: 'XNN', airport: '西宁曹家堡机场' },
+            { name: '兰州', code: 'LHW', airport: '兰州中川机场' },
+            { name: '拉萨', code: 'LXA', airport: '拉萨贡嘎机场' },
+            { name: '桂林', code: 'KWL', airport: '桂林两江国际机场' },
+            { name: '温州', code: 'WNZ', airport: '温州龙湾国际机场' },
+            { name: '宁波', code: 'NGB', airport: '宁波栎社国际机场' },
+            { name: '合肥', code: 'HFE', airport: '合肥新桥国际机场' },
+            { name: '烟台', code: 'YNT', airport: '烟台蓬莱国际机场' },
+            { name: '珠海', code: 'ZUH', airport: '珠海金湾机场' },
+            { name: '张家界', code: 'DYG', airport: '张家界荷花国际机场' },
+            { name: '丽江', code: 'LJG', airport: '丽江三义机场' },
+            { name: '西双版纳', code: 'JHG', airport: '西双版纳嘎洒国际机场' },
+            { name: '九寨沟', code: 'JZH', airport: '九寨黄龙机场' },
+            { name: '敦煌', code: 'DNH', airport: '敦煌机场' },
+            { name: '喀什', code: 'KHG', airport: '喀什机场' },
+            { name: '香港', code: 'HKG', airport: '香港国际机场' },
+            { name: '澳门', code: 'MFM', airport: '澳门国际机场' },
+            { name: '台北', code: 'TPE', airport: '桃园国际机场' },
+            { name: '台北', code: 'TSA', airport: '台北松山机场' },
+            { name: '高雄', code: 'KHH', airport: '高雄国际机场' },
+            { name: '无锡', code: 'WUX', airport: '苏南硕放国际机场' },
+            { name: '常州', code: 'CZX', airport: '常州奔牛机场' },
+            { name: '徐州', code: 'XUZ', airport: '徐州观音机场' },
+            { name: '南通', code: 'NTG', airport: '南通兴东机场' },
+            { name: '盐城', code: 'YNZ', airport: '盐城南洋机场' },
+            { name: '扬州', code: 'YTY', airport: '扬州泰州机场' },
+            { name: '淮安', code: 'HIA', airport: '淮安涟水机场' },
+            { name: '连云港', code: 'LYG', airport: '连云港白塔埠机场' },
+            { name: '金华', code: 'YIW', airport: '义乌机场' },
+            { name: '台州', code: 'HYN', airport: '台州路桥机场' },
+            { name: '舟山', code: 'HSN', airport: '舟山普陀山机场' },
+            { name: '衢州', code: 'JUZ', airport: '衢州机场' },
+            { name: '安庆', code: 'AQG', airport: '安庆天柱山机场' },
+            { name: '黄山', code: 'TXN', airport: '黄山屯溪机场' },
+            { name: '阜阳', code: 'FUG', airport: '阜阳西关机场' },
+            { name: '池州', code: 'JUH', airport: '池州九华山机场' },
+            { name: '泉州', code: 'JJN', airport: '泉州晋江机场' },
+            { name: '武夷山', code: 'WUS', airport: '武夷山机场' },
+            { name: '龙岩', code: 'LCX', airport: '连城冠豸山机场' },
+            { name: '三明', code: 'SQJ', airport: '三明沙县机场' },
+            { name: '赣州', code: 'KOW', airport: '赣州黄金机场' },
+            { name: '景德镇', code: 'JDZ', airport: '景德镇罗家机场' },
+            { name: '九江', code: 'JIU', airport: '九江庐山机场' },
+            { name: '井冈山', code: 'JGS', airport: '井冈山机场' },
+            { name: '宜春', code: 'YIC', airport: '宜春明月山机场' },
+            { name: '济宁', code: 'JNG', airport: '济宁曲阜机场' },
+            { name: '潍坊', code: 'WEF', airport: '潍坊机场' },
+            { name: '临沂', code: 'LYI', airport: '临沂沭埠岭机场' },
+            { name: '东营', code: 'DOY', airport: '东营胜利机场' },
+            { name: '威海', code: 'WEH', airport: '威海国际机场' },
+            { name: '洛阳', code: 'LYA', airport: '洛阳北郊机场' },
+            { name: '南阳', code: 'NNY', airport: '南阳姜营机场' },
+            { name: '宜昌', code: 'YIH', airport: '宜昌三峡机场' },
+            { name: '恩施', code: 'ENH', airport: '恩施许家坪机场' },
+            { name: '襄阳', code: 'XFN', airport: '襄阳刘集机场' },
+            { name: '常德', code: 'CGD', airport: '常德桃花源机场' },
+            { name: '怀化', code: 'HJJ', airport: '怀化芷江机场' },
+            { name: '永州', code: 'LLF', airport: '永州零陵机场' },
+            { name: '惠州', code: 'HUZ', airport: '惠州机场' },
+            { name: '梅州', code: 'MXZ', airport: '梅县长岗岌机场' },
+            { name: '揭阳', code: 'SWA', airport: '揭阳潮汕机场' },
+            { name: '湛江', code: 'ZHA', airport: '湛江机场' },
+            { name: '佛山', code: 'FUO', airport: '佛山机场' },
+            { name: '韶关', code: 'HSC', airport: '韶关桂头机场' },
+            { name: '柳州', code: 'LZH', airport: '柳州白莲机场' },
+            { name: '百色', code: 'AEB', airport: '百色巴马机场' },
+            { name: '北海', code: 'BHY', airport: '北海福成机场' },
+            { name: '梧州', code: 'WUZ', airport: '梧州长洲岛机场' },
+            { name: '万州', code: 'WXN', airport: '万州五桥机场' },
+            { name: '黔江', code: 'JIQ', airport: '黔江武陵山机场' },
+            { name: '达州', code: 'DAX', airport: '达州河市机场' },
+            { name: '稻城', code: 'DCY', airport: '稻城亚丁机场' },
+            { name: '南充', code: 'NAO', airport: '南充高坪机场' },
+            { name: '攀枝花', code: 'PZI', airport: '攀枝花保安营机场' },
+            { name: '遂宁', code: 'SUN', airport: '遂宁机场' },
+            { name: '广元', code: 'GYS', airport: '广元盘龙机场' },
+            { name: '康定', code: 'KGT', airport: '甘孜康定机场' },
+            { name: '绵阳', code: 'MIG', airport: '绵阳南郊机场' },
+            { name: '泸州', code: 'LZO', airport: '泸州蓝田机场' },
+            { name: '西昌', code: 'XIC', airport: '西昌青山机场' },
+            { name: '宜宾', code: 'YBP', airport: '宜宾菜坝机场' },
+            { name: '安顺', code: 'AVA', airport: '安顺黄果树机场' },
+            { name: '毕节', code: 'BFJ', airport: '毕节飞雄机场' },
+            { name: '兴义', code: 'ACX', airport: '兴义机场' },
+            { name: '黎平', code: 'HZH', airport: '黎平机场' },
+            { name: '凯里', code: 'KJH', airport: '凯里黄平机场' },
+            { name: '荔波', code: 'LLB', airport: '荔波机场' },
+            { name: '铜仁', code: 'TEN', airport: '铜仁凤凰机场' },
+            { name: '遵义', code: 'ZYI', airport: '遵义新舟机场' },
+            { name: '普洱', code: 'SYM', airport: '普洱思茅机场' },
+            { name: '腾冲', code: 'TCZ', airport: '腾冲驼峰机场' },
+            { name: '临沧', code: 'LNJ', airport: '临沧机场' },
+            { name: '昭通', code: 'ZAT', airport: '昭通机场' },
+            { name: '保山', code: 'BSD', airport: '保山云瑞机场' },
+            { name: '大理', code: 'DLU', airport: '大理机场' },
+            { name: '德宏', code: 'LUM', airport: '德宏芒市机场' },
+            { name: '迪庆', code: 'DIG', airport: '迪庆香格里拉机场' },
+            { name: '文山', code: 'WNH', airport: '文山普者黑机场' },
+            { name: '阿里', code: 'NGQ', airport: '阿里昆莎机场' },
+            { name: '昌都', code: 'BPX', airport: '昌都邦达机场' },
+            { name: '日喀则', code: 'RKZ', airport: '日喀则和平机场' },
+            { name: '林芝', code: 'LZY', airport: '林芝米林机场' },
+            { name: '榆林', code: 'UYN', airport: '榆林榆阳机场' },
+            { name: '汉中', code: 'HZG', airport: '汉中西关机场' },
+            { name: '安康', code: 'AKA', airport: '安康五里铺机场' },
+            { name: '延安', code: 'ENY', airport: '延安二十里堡机场' },
+            { name: '甘南', code: 'GXH', airport: '甘南夏河机场' },
+            { name: '金昌', code: 'JIC', airport: '金昌金川机场' },
+            { name: '张掖', code: 'YZY', airport: '张掖甘州机场' },
+            { name: '嘉峪关', code: 'JGN', airport: '嘉峪关机场' },
+            { name: '庆阳', code: 'IQN', airport: '庆阳机场' },
+            { name: '天水', code: 'THQ', airport: '天水麦积山机场' },
+            { name: '格尔木', code: 'GOQ', airport: '格尔木机场' },
+            { name: '玉树', code: 'YUS', airport: '玉树巴塘机场' },
+            { name: '固原', code: 'GYU', airport: '固原六盘山机场' },
+            { name: '中卫', code: 'ZHY', airport: '中卫沙坡头机场' },
+            { name: '阿克苏', code: 'AKU', airport: '阿克苏机场' },
+            { name: '阿勒泰', code: 'AAT', airport: '阿勒泰机场' },
+            { name: '富蕴', code: 'FYN', airport: '富蕴机场' },
+            { name: '哈密', code: 'HMI', airport: '哈密机场' },
+            { name: '和田', code: 'HTN', airport: '和田机场' },
+            { name: '库尔勒', code: 'KRL', airport: '库尔勒机场' },
+            { name: '且末', code: 'IQM', airport: '且末机场' },
+            { name: '吐鲁番', code: 'TLQ', airport: '吐鲁番交河机场' },
+            { name: '博尔塔拉', code: 'BPL', airport: '博乐阿拉山口机场' },
+            { name: '布尔津', code: 'KJI', airport: '布尔津喀纳斯机场' },
+            { name: '克拉玛依', code: 'KRY', airport: '克拉玛依机场' },
+            { name: '库车', code: 'KCA', airport: '库车龟兹机场' },
+            { name: '塔城', code: 'TCG', airport: '塔城机场' },
+            { name: '伊宁', code: 'YIN', airport: '伊宁机场' },
+            { name: '新源', code: 'NLT', airport: '新源那拉提机场' },
+            { name: '张家口', code: 'ZQZ', airport: '张家口宁远机场' },
+            { name: '邯郸', code: 'HDG', airport: '邯郸机场' },
+            { name: '秦皇岛', code: 'SHP', airport: '秦皇岛山海关机场' },
+            { name: '唐山', code: 'TVS', airport: '唐山三女河机场' },
+            { name: '邢台', code: 'XNT', airport: '邢台褡裢机场' },
+            { name: '吕梁', code: 'LLV', airport: '吕梁机场' },
+            { name: '长治', code: 'CIH', airport: '长治王村机场' },
+            { name: '大同', code: 'DAT', airport: '大同云冈机场' },
+            { name: '运城', code: 'YCU', airport: '运城机场' },
+            { name: '阿拉善左旗', code: 'AXF', airport: '阿拉善左旗巴彦浩特机场' },
+            { name: '阿拉善右旗', code: 'RHT', airport: '阿拉善右旗巴丹吉林机场' },
+            { name: '包头', code: 'BAV', airport: '包头二里半机场' },
+            { name: '赤峰', code: 'CIF', airport: '赤峰玉龙机场' },
+            { name: '鄂尔多斯', code: 'DSN', airport: '鄂尔多斯伊金霍洛机场' },
+            { name: '额济纳旗', code: 'EJN', airport: '额济纳旗桃来机场' },
+            { name: '二连浩特', code: 'ERL', airport: '二连浩特赛乌苏机场' },
+            { name: '满洲里', code: 'NZH', airport: '满洲里西郊机场' },
+            { name: '乌海', code: 'WUA', airport: '乌海机场' },
+            { name: '阿尔山', code: 'YIE', airport: '阿尔山伊尔施机场' },
+            { name: '巴彦淖尔', code: 'RLK', airport: '巴彦淖尔天吉泰机场' },
+            { name: '呼伦贝尔', code: 'HLD', airport: '呼伦贝尔海拉尔机场' },
+            { name: '通辽', code: 'TGO', airport: '通辽机场' },
+            { name: '乌兰浩特', code: 'HLH', airport: '乌兰浩特机场' },
+            { name: '锡林浩特', code: 'XIL', airport: '锡林浩特机场' },
+            { name: '鞍山', code: 'AOG', airport: '鞍山腾鳌机场' },
+            { name: '长海', code: 'CNI', airport: '长海大长山岛机场' },
+            { name: '朝阳', code: 'CHG', airport: '朝阳机场' },
+            { name: '丹东', code: 'DDG', airport: '丹东浪头机场' },
+            { name: '锦州', code: 'JNZ', airport: '锦州小岭子机场' },
+            { name: '通化', code: 'TNH', airport: '通化三源浦机场' },
+            { name: '白山', code: 'NBS', airport: '长白山机场' },
+            { name: '延边', code: 'YNJ', airport: '延吉朝阳川机场' },
+            { name: '鸡西', code: 'JXA', airport: '鸡西兴凯湖机场' },
+            { name: '佳木斯', code: 'JMU', airport: '佳木斯东郊机场' },
+            { name: '牡丹江', code: 'MDG', airport: '牡丹江海浪机场' },
+            { name: '伊春', code: 'LDS', airport: '伊春林都机场' },
+            { name: '黑河', code: 'HEK', airport: '黑河机场' },
+            { name: '大庆', code: 'DQA', airport: '大庆萨尔图机场' },
+            { name: '大兴安岭', code: 'JGD', airport: '加格达奇机场' },
+            { name: '漠河', code: 'OHE', airport: '漠河古莲机场' },
+            { name: '齐齐哈尔', code: 'NDG', airport: '齐齐哈尔三家子机场' },
+            { name: '东莞', code: 'DGM', airport: '东莞机场' }
+        ];
+        
+        // Function to show city suggestions
+        function showSuggestions(inputElement, suggestionsElement, showAll = false) {
+            var value = inputElement.value.trim();
+            
+            // If input is empty and showAll is true, show all cities
+            if (value.length === 0 && !showAll) {
+                suggestionsElement.style.display = 'none';
+                return;
+            }
+            
+            var filtered = citiesWithAirports.filter(function(city) {
+                if (value.length === 0) {
+                    return true; // Show all cities when input is empty and showAll is true
+                }
+                return city.name.includes(value) || city.code.toLowerCase().includes(value.toLowerCase());
+            });
+            
+            if (filtered.length === 0) {
+                suggestionsElement.style.display = 'none';
+                return;
+            }
+            
+            var html = '';
+            filtered.slice(0, 8).forEach(function(city) {
+                html += '<div class="result-item" onclick="selectCity(\'' + city.name + '\', \'' + inputElement.id + '\', \'' + suggestionsElement.id + '\')">';
+                html += '<h4>' + city.name + ' (' + city.code + ')</h4>';
+                html += '<p>' + city.airport + '</p>';
+                html += '</div>';
+            });
+            
+            suggestionsElement.innerHTML = html;
+            suggestionsElement.style.display = 'block';
+        }
+        
+        // Function to select a city from suggestions
+        function selectCity(cityName, inputId, suggestionsId) {
+            document.getElementById(inputId).value = cityName;
+            document.getElementById(suggestionsId).style.display = 'none';
+        }
+        
+        // Function to set default date to today
+        function setDefaultDate() {
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = String(today.getMonth() + 1).padStart(2, '0');
+            var day = String(today.getDate()).padStart(2, '0');
+            var todayStr = year + '-' + month + '-' + day;
+            
+            var dateInput = document.getElementById('flightDepartureDate');
+            if (dateInput && !dateInput.value || dateInput.value === 'DATE_PLACEHOLDER') {
+                dateInput.value = todayStr;
+            }
+        }
+        
+        // Store flight markers and polylines
+        var flightMarkers = [];
+        var flightPolylines = [];
+        
+        // Function to clear existing flight markers and polylines
+        function clearFlightMarkers() {
+            flightMarkers.forEach(function(markerObj) {
+                map.remove(markerObj.marker);
+            });
+            flightMarkers = [];
+            
+            flightPolylines.forEach(function(polyline) {
+                map.remove(polyline);
+            });
+            flightPolylines = [];
+        }
+        
+        // Function to add flight marker and route line
+        function addFlightMarkerAndRoute(flight, index) {
+            // Get unique color for this flight
+            var strokeColor = getFlightColor(index);
+            
+            // Add departure marker
+            var depMarker = new AMap.Marker({
+                position: [parseFloat(flight.departureLng), parseFloat(flight.departureLat)],
+                content: `<div style="width:24px;height:24px;background:${strokeColor};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;text-shadow:0 1px 1px rgba(0,0,0,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.4);">🛫</div>`,
+                offset: new AMap.Pixel(-12, -12),
+                zIndex: 85
+            });
+            
+            // Add arrival marker  
+            var arrMarker = new AMap.Marker({
+                position: [parseFloat(flight.arrivalLng), parseFloat(flight.arrivalLat)],
+                content: `<div style="width:24px;height:24px;background:${strokeColor};color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;text-shadow:0 1px 1px rgba(0,0,0,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.4);">🛬</div>`,
+                offset: new AMap.Pixel(-12, -12),
+                zIndex: 85
+            });
+            
+            // Create flight route polyline - use routePath if available (for connecting flights)
+            var routePath = flight.routePath || [
+                [parseFloat(flight.departureLng), parseFloat(flight.departureLat)],
+                [parseFloat(flight.arrivalLng), parseFloat(flight.arrivalLat)]
+            ];
+            
+            var polyline = new AMap.Polyline({
+                path: routePath,
+                strokeColor: strokeColor,
+                strokeWeight: 3,
+                strokeOpacity: 0.8,
+                zIndex: 80,
+                lineJoin: 'round',
+                lineCap: 'round'
+            });
+            
+            // Add price marker in the middle of direct flights
+            if (flight.routePath && flight.routePath.length === 2) {
+                var midLng = (parseFloat(flight.departureLng) + parseFloat(flight.arrivalLng)) / 2;
+                var midLat = (parseFloat(flight.departureLat) + parseFloat(flight.arrivalLat)) / 2;
+                var priceValue = flight.priceValue || 0;
+                var duration = flight.duration || '';
+                
+                var priceMarker = new AMap.Marker({
+                    position: [midLng, midLat],
+                    content: `<div style="display:flex;flex-direction:column;align-items:center;">
+                        <div style="background:rgba(255,255,255,0.95);color:${strokeColor};padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;border:2px solid ${strokeColor};">
+                            ¥${priceValue}
+                        </div>
+                        ${duration ? `<div style="background:rgba(255,255,255,0.95);color:#6c757d;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:600;margin-top:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;">
+                            ${duration}
+                        </div>` : ''}
+                    </div>`,
+                    offset: new AMap.Pixel(-30, -20),
+                    zIndex: 87
+                });
+                map.add(priceMarker);
+                flightMarkers.push({ marker: priceMarker, type: 'price' });
+            }
+            
+            // Add transfer markers for connecting flights
+            if (flight.routePath && flight.routePath.length > 2 && flight.routeCities) {
+                var duration = flight.duration || '';
+                for (var i = 1; i < flight.routePath.length - 1; i++) {
+                    var transferCity = flight.routeCities[i];
+                    var transferPrice = flight.priceValue || 0;
+                    
+                    var transferMarker = new AMap.Marker({
+                        position: [parseFloat(flight.routePath[i][0]), parseFloat(flight.routePath[i][1])],
+                        content: `<div style="display:flex;flex-direction:column;align-items:center;">
+                            <div style="background:${strokeColor};color:white;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600;text-shadow:0 1px 1px rgba(0,0,0,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.4);white-space:nowrap;">
+                                ${transferCity}
+                            </div>
+                            <div style="background:rgba(255,255,255,0.95);color:${strokeColor};padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;margin-top:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;">
+                                ¥${transferPrice}
+                            </div>
+                            ${duration ? `<div style="background:rgba(255,255,255,0.95);color:#6c757d;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:600;margin-top:2px;box-shadow:0 2px 6px rgba(0,0,0,0.2);white-space:nowrap;">
+                                ${duration}
+                            </div>` : ''}
+                        </div>`,
+                        offset: new AMap.Pixel(-20, -30),
+                        zIndex: 86
+                    });
+                    map.add(transferMarker);
+                    flightMarkers.push({ marker: transferMarker, type: 'transfer' });
+                }
+            }
+            
+            // Add to map
+            map.add(depMarker);
+            map.add(arrMarker);
+            map.add(polyline);
+            
+            flightMarkers.push({ marker: depMarker, type: 'departure' });
+            flightMarkers.push({ marker: arrMarker, type: 'arrival' });
+            flightPolylines.push(polyline);
+        }
+        
+        // Function to show notification
+        function showNotification(message, isError = true) {
+            const notificationArea = document.getElementById('notificationArea');
+            notificationArea.textContent = message;
+            notificationArea.style.color = isError ? '#e74c3c' : '#27ae60';
+            notificationArea.style.display = 'block';
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                notificationArea.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Function to search flights
+        function searchFlights() {
+            const origin = document.getElementById('flightOrigin').value.trim();
+            const destination = document.getElementById('flightDestination').value.trim();
+            const departureDate = document.getElementById('flightDepartureDate').value;
+            
+            if (!origin || !destination || !departureDate) {
+                showNotification('请填写完整的航班信息');
+                return;
+            }
+            
+            const flightSearchBtn = document.getElementById('flightSearchBtn');
+            
+            // Check if button is already disabled (search in progress)
+            if (flightSearchBtn.disabled) {
+                return;
+            }
+            
+            // Update button state
+            flightSearchBtn.textContent = '搜索中...';
+            flightSearchBtn.disabled = true;
+            flightSearchBtn.style.opacity = '0.6';
+            flightSearchBtn.style.cursor = 'not-allowed';
+            
+            // Use flight server port from placeholder
+            const flightPort = FLIGHT_SEARCH_PORT_PLACEHOLDER;
+            const url = `http://localhost:${flightPort}/api/flight-search?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&departure-date=${departureDate}`;
+            
+            // Set up timeout to re-enable button after 5 seconds
+            const timeoutId = setTimeout(() => {
+                flightSearchBtn.textContent = '搜航班';
+                flightSearchBtn.disabled = false;
+                flightSearchBtn.style.opacity = '1';
+                flightSearchBtn.style.cursor = 'pointer';
+            }, 5000);
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear timeout since we got a response
+                    clearTimeout(timeoutId);
+                    
+                    // Restore button state
+                    flightSearchBtn.textContent = '搜航班';
+                    flightSearchBtn.disabled = false;
+                    flightSearchBtn.style.opacity = '1';
+                    flightSearchBtn.style.cursor = 'pointer';
+                    
+                    if (data.error) {
+                        console.log('Flight search error:', data.error);
+                        showNotification(`航班搜索失败: ${data.error}`);
+                    } else if (data.flights && data.flights.length > 0) {
+                        displayFlights(data.flights);
+                    } else {
+                        showNotification('未找到相关航班');
+                    }
+                })
+                .catch(error => {
+                    // Clear timeout since we got an error
+                    clearTimeout(timeoutId);
+                    
+                    // Restore button state
+                    flightSearchBtn.textContent = '搜航班';
+                    flightSearchBtn.disabled = false;
+                    flightSearchBtn.style.opacity = '1';
+                    flightSearchBtn.style.cursor = 'pointer';
+                    
+                    console.error('Flight search error:', error);
+                    showNotification('航班搜索失败，请重试');
+                });
+        }
+        
+        // Store original flights data
+        var originalFlights = [];
+        var selectedTransferCity = null;
+        
+        // Function to display flights
+        function displayFlights(flights) {
+            // Store original flights data
+            originalFlights = flights;
+            
+            // Clear existing flight markers and polylines
+            clearFlightMarkers();
+            
+            const flightResultsSection = document.getElementById('flightResultsSection');
+            const flightResultsList = document.getElementById('flightResultsList');
+            const transferFilterSection = document.getElementById('transferFilterSection');
+            const transferFilterList = document.getElementById('transferFilterList');
+            
+            // Clear existing results
+            flightResultsList.innerHTML = '';
+            transferFilterList.innerHTML = '';
+            
+            // Build transfer city filter
+            var transferCities = {};
+            flights.forEach(function(flight) {
+                if (flight.transferCities && flight.transferCities.length > 0) {
+                    flight.transferCities.forEach(function(city) {
+                        if (!transferCities[city]) {
+                            transferCities[city] = [];
+                        }
+                        transferCities[city].push(flight.priceValue);
+                    });
+                }
+            });
+            
+            // Show transfer filter section if there are connecting flights
+            if (Object.keys(transferCities).length > 0) {
+                transferFilterSection.style.display = 'block';
+                
+                // Add "All" option
+                var allOption = document.createElement('div');
+                allOption.className = 'transfer-filter-item active';
+                allOption.innerHTML = '<span class="city-name">全部</span>';
+                allOption.onclick = function() {
+                    filterFlightsByTransferCity(null);
+                };
+                transferFilterList.appendChild(allOption);
+                
+                // Add transfer city options
+                Object.keys(transferCities).forEach(function(city) {
+                    var prices = transferCities[city];
+                    var lowestPrice = Math.min(...prices);
+                    
+                    var cityOption = document.createElement('div');
+                    cityOption.className = 'transfer-filter-item';
+                    cityOption.innerHTML = '<span class="city-name">' + city + '</span><span class="lowest-price">¥' + lowestPrice + '</span>';
+                    cityOption.onclick = function() {
+                        filterFlightsByTransferCity(city);
+                    };
+                    transferFilterList.appendChild(cityOption);
+                });
+            } else {
+                transferFilterSection.style.display = 'none';
+            }
+            
+            // Add flight items and markers
+            flights.forEach(function(flight, index) {
+                // Add flight marker and route to map
+                addFlightMarkerAndRoute(flight, index);
+                
+                // Get color for this flight
+                var strokeColor = getFlightColor(index);
+                
+                // Build route display with transfer points
+                var routeDisplay = '';
+                if (flight.routeCities && flight.routeCities.length > 2) {
+                    // Connecting flight - show A->B->C format
+                    var routeStr = flight.routeCities.join(' → ');
+                    routeDisplay = `<span style="font-size:9px; color:#64748b;">${routeStr}</span>`;
+                } else {
+                    routeDisplay = `<span style="font-size:10px; color:#64748b;">${flight.origin} → ${flight.destination}</span>`;
+                }
+                
+                const flightItem = document.createElement('div');
+                flightItem.className = 'flight-item';
+                flightItem.style.cursor = 'pointer';
+                flightItem.style.backgroundColor = '#f0f9ff';
+                flightItem.style.borderLeft = '3px solid ' + strokeColor;
+                
+                flightItem.innerHTML = `
+                    <div class="flight-icon" style="background:${strokeColor};">✈️</div>
+                    <div class="flight-info">
+                        <strong style="color:${strokeColor};">${flight.flightNumber}</strong><br>
+                        ${routeDisplay}<br>
+                        <span style="font-size:10px; color:#64748b;">${flight.departureTime} - ${flight.arrivalTime} · ${flight.price}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:${strokeColor};color:white;border-radius:50%;margin-left:8px;flex-shrink:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);">
+                        <span style="font-size:14px;font-weight:bold;transform:rotate(45deg);display:inline-block;">↗</span>
+                    </div>
+                `;
+                
+                // Add click event to open booking URL
+                flightItem.onclick = function() {
+                    if (flight.bookingUrl) {
+                        window.open(flight.bookingUrl, '_blank');
+                    }
+                };
+                
+                flightResultsList.appendChild(flightItem);
+            });
+            
+            // Show flight results section
+            flightResultsSection.style.display = 'block';
+            
+            // Center map on the route
+            if (flights.length > 0) {
+                // Collect all route points from all flights
+                var allPoints = [];
+                flights.forEach(function(flight) {
+                    if (flight.routePath && flight.routePath.length > 0) {
+                        flight.routePath.forEach(function(point) {
+                            allPoints.push([parseFloat(point[0]), parseFloat(point[1])]);
+                        });
+                    }
+                });
+                
+                if (allPoints.length > 0) {
+                    // Find the bounds that include all points
+                    var minLng = Math.min(...allPoints.map(p => p[0]));
+                    var maxLng = Math.max(...allPoints.map(p => p[0]));
+                    var minLat = Math.min(...allPoints.map(p => p[1]));
+                    var maxLat = Math.max(...allPoints.map(p => p[1]));
+                    
+                    const bounds = new AMap.Bounds(
+                        [minLng, minLat],
+                        [maxLng, maxLat]
+                    );
+                    map.setBounds(bounds, {padding: [50, 50, 50, 50]});
+                }
+            }
+            
+            // Show success message
+            showNotification(`已找到 ${flights.length} 个航班！`, false);
+        }
+        
+        // Function to filter flights by transfer city
+        function filterFlightsByTransferCity(city) {
+            // Update active state
+            var filterItems = document.querySelectorAll('.transfer-filter-item');
+            filterItems.forEach(function(item) {
+                item.classList.remove('active');
+            });
+            
+            if (city === null) {
+                // Show all flights
+                filterItems[0].classList.add('active');
+                displayFilteredFlights(originalFlights);
+            } else {
+                // Filter flights by transfer city
+                var filteredFlights = originalFlights.filter(function(flight) {
+                    return flight.transferCities && flight.transferCities.includes(city);
+                });
+                
+                // Find and activate the clicked filter item
+                filterItems.forEach(function(item) {
+                    if (item.querySelector('.city-name').textContent === city) {
+                        item.classList.add('active');
+                    }
+                });
+                
+                displayFilteredFlights(filteredFlights);
+            }
+        }
+        
+        // Function to display filtered flights
+        function displayFilteredFlights(flights) {
+            // Clear existing flight markers and polylines
+            clearFlightMarkers();
+            
+            const flightResultsList = document.getElementById('flightResultsList');
+            
+            // Clear existing results
+            flightResultsList.innerHTML = '';
+            
+            // Add flight items and markers
+            flights.forEach(function(flight, index) {
+                // Add flight marker and route to map
+                addFlightMarkerAndRoute(flight, index);
+                
+                // Get color for this flight
+                var strokeColor = getFlightColor(index);
+                
+                // Build route display with transfer points
+                var routeDisplay = '';
+                if (flight.routeCities && flight.routeCities.length > 2) {
+                    // Connecting flight - show A->B->C format
+                    var routeStr = flight.routeCities.join(' → ');
+                    routeDisplay = `<span style="font-size:9px; color:#64748b;">${routeStr}</span>`;
+                } else {
+                    routeDisplay = `<span style="font-size:10px; color:#64748b;">${flight.origin} → ${flight.destination}</span>`;
+                }
+                
+                const flightItem = document.createElement('div');
+                flightItem.className = 'flight-item';
+                flightItem.style.cursor = 'pointer';
+                flightItem.style.backgroundColor = '#f0f9ff';
+                flightItem.style.borderLeft = '3px solid ' + strokeColor;
+                
+                flightItem.innerHTML = `
+                    <div class="flight-icon" style="background:${strokeColor};">✈️</div>
+                    <div class="flight-info">
+                        <strong style="color:${strokeColor};">${flight.flightNumber}</strong><br>
+                        ${routeDisplay}<br>
+                        <span style="font-size:10px; color:#64748b;">${flight.departureTime} - ${flight.arrivalTime} · ${flight.price}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:${strokeColor};color:white;border-radius:50%;margin-left:8px;flex-shrink:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);">
+                        <span style="font-size:14px;font-weight:bold;transform:rotate(45deg);display:inline-block;">↗</span>
+                    </div>
+                `;
+                
+                // Add click event to open booking URL
+                flightItem.onclick = function() {
+                    if (flight.bookingUrl) {
+                        window.open(flight.bookingUrl, '_blank');
+                    }
+                };
+                
+                flightResultsList.appendChild(flightItem);
+            });
+            
+            // Center map on the route
+            if (flights.length > 0) {
+                // Collect all route points from all flights
+                var allPoints = [];
+                flights.forEach(function(flight) {
+                    if (flight.routePath && flight.routePath.length > 0) {
+                        flight.routePath.forEach(function(point) {
+                            allPoints.push([parseFloat(point[0]), parseFloat(point[1])]);
+                        });
+                    }
+                });
+                
+                if (allPoints.length > 0) {
+                    // Find the bounds that include all points
+                    var minLng = Math.min(...allPoints.map(p => p[0]));
+                    var maxLng = Math.max(...allPoints.map(p => p[0]));
+                    var minLat = Math.min(...allPoints.map(p => p[1]));
+                    var maxLat = Math.max(...allPoints.map(p => p[1]));
+                    
+                    const bounds = new AMap.Bounds(
+                        [minLng, minLat],
+                        [maxLng, maxLat]
+                    );
+                    map.setBounds(bounds, {padding: [50, 50, 50, 50]});
+                }
+            }
+            
+            // Show success message
+            showNotification(`已找到 ${flights.length} 个航班！`, false);
+        }
+        
+        // Allow Enter key to trigger search
+        document.getElementById('flightOrigin').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFlights();
+            }
+        });
+        document.getElementById('flightDestination').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFlights();
+            }
+        });
+        
+        // Add input event listeners for city suggestions
+        var originInput = document.getElementById('flightOrigin');
+        var destinationInput = document.getElementById('flightDestination');
+        var originSuggestions = document.getElementById('originSuggestions');
+        var destinationSuggestions = document.getElementById('destinationSuggestions');
+        
+        // Show all cities when input is focused
+        originInput.addEventListener('focus', function() {
+            showSuggestions(originInput, originSuggestions, true);
+        });
+        
+        destinationInput.addEventListener('focus', function() {
+            showSuggestions(destinationInput, destinationSuggestions, true);
+        });
+        
+        originInput.addEventListener('input', function() {
+            showSuggestions(originInput, originSuggestions, true);
+        });
+        
+        destinationInput.addEventListener('input', function() {
+            showSuggestions(destinationInput, destinationSuggestions, true);
+        });
+        
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!originInput.contains(e.target) && !originSuggestions.contains(e.target)) {
+                originSuggestions.style.display = 'none';
+            }
+            if (!destinationInput.contains(e.target) && !destinationSuggestions.contains(e.target)) {
+                destinationSuggestions.style.display = 'none';
+            }
+        });
+        
+        // Set default date to today on page load
+        setDefaultDate();
+        
+        // Ensure map resizes properly
+        window.addEventListener('resize', function() {
+            map.resize();
+        });
+    </script>
+</body>
+</html>

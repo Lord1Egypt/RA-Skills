@@ -1,0 +1,18 @@
+#!/usr/bin/env pwsh
+<#
+Task recovery check - PowerShell wrapper for Python version
+#>
+
+param([string]$Mode = "check")
+
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$pythonScript = Join-Path $scriptDir "task-recovery-check.py"
+
+if (-not (Test-Path $pythonScript)) {
+    Write-Host "ERROR: Python check script not found"
+    exit 1
+}
+
+# Delegate to Python version
+& py $pythonScript $Mode
+exit $LASTEXITCODE

@@ -1,0 +1,106 @@
+{
+  "elements": {
+    "木": {
+      "color": "青/绿",
+      "direction": "东",
+      "season": "春",
+      "organ": "肝",
+      "emotion": "怒",
+      "taste": "酸",
+      "heavenly_stems": [
+        "甲",
+        "乙"
+      ],
+      "zodiac_animals": [
+        "虎",
+        "兔"
+      ],
+      "generates": "火",
+      "overcomes": "土",
+      "generated_by": "水",
+      "overcome_by": "金"
+    },
+    "火": {
+      "color": "赤/红",
+      "direction": "南",
+      "season": "夏",
+      "organ": "心",
+      "emotion": "喜",
+      "taste": "苦",
+      "heavenly_stems": [
+        "丙",
+        "丁"
+      ],
+      "zodiac_animals": [
+        "蛇",
+        "马"
+      ],
+      "generates": "土",
+      "overcomes": "金",
+      "generated_by": "木",
+      "overcome_by": "水"
+    },
+    "土": {
+      "color": "黄/棕",
+      "direction": "中",
+      "season": "长夏",
+      "organ": "脾",
+      "emotion": "思",
+      "taste": "甘",
+      "heavenly_stems": [
+        "戊",
+        "己"
+      ],
+      "zodiac_animals": [
+        "牛",
+        "龙",
+        "羊",
+        "狗"
+      ],
+      "generates": "金",
+      "overcomes": "水",
+      "generated_by": "火",
+      "overcome_by": "木"
+    },
+    "金": {
+      "color": "白/银",
+      "direction": "西",
+      "season": "秋",
+      "organ": "肺",
+      "emotion": "悲",
+      "taste": "辛",
+      "heavenly_stems": [
+        "庚",
+        "辛"
+      ],
+      "zodiac_animals": [
+        "猴",
+        "鸡"
+      ],
+      "generates": "水",
+      "overcomes": "木",
+      "generated_by": "土",
+      "overcome_by": "火"
+    },
+    "水": {
+      "color": "黑/蓝",
+      "direction": "北",
+      "season": "冬",
+      "organ": "肾",
+      "emotion": "恐",
+      "taste": "咸",
+      "heavenly_stems": [
+        "壬",
+        "癸"
+      ],
+      "zodiac_animals": [
+        "鼠",
+        "猪"
+      ],
+      "generates": "木",
+      "overcomes": "火",
+      "generated_by": "金",
+      "overcome_by": "土"
+    }
+  }
+}

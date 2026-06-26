@@ -1,0 +1,8 @@
+{
+  "default_mode": "standard",
+  "preferred_reviewers": [],
+  "forbidden_external_review": false,
+  "skip_paths": ["data/", "dist/", "build/", "node_modules/", "*.db", "*.pdf"],
+  "always_read": ["AGENTS.md", "README.md"],
+  "report_language": "match_user"
+}

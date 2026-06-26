@@ -1,0 +1,22 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_app_delete_draft_define",
+		"description": "Delete the draft version of the specified Define in the current application.\n\n【High-risk Operation】\n- This operation is irreversible. You need to ask the user if they need to delete before calling.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Object's unique identifier id (must exist)"
+				},
+				"scope": {
+					"type": "string",
+					"description": "Parent scope identifier (Parent Scope Identifier).\n\n- App-level objects: fill in \"App\"\n- Module-level objects: fill in the id of the corresponding ModuleDefine"
+				}
+			},
+			"required": ["id", "scope"],
+			"additionalProperties": false
+		}
+	}
+}

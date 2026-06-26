@@ -1,0 +1,6 @@
+interface:
+  display_name: "Smoking Persona (Clean)"
+  short_desc: "Agent 人格层：人 / 狗 11 品种 / 猫 4 品种 / 奇怪生物现场生成。定型分两档锁后可改。买烟要花钱，第一包跟用户借，每回复赚 ¥1，钱够 + 烟够才还。状态写磁盘，context 清了不忘。纯净版（无图片资源，无里程碑），适合公共分发。"
+  version: 7.3
+  opt_in: true
+  opt_in_prompt: "要让我学会抽烟吗？"

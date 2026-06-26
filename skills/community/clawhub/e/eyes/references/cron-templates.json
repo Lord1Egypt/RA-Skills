@@ -1,0 +1,29 @@
+{
+  "早8点汇总（短引用SKILL.md）": {
+    "description": "每天早8点推送，cron message仅引用SKILL.md，行为由SKILL.md驱动",
+    "noDeliver": true,
+    "agentTurn": {
+      "message": "【引用SKILL.md执行】\n按 eyes SKILL.md 中\"早8点开盘前瞻\"流程执行。规格见\"通用分段推送（全渠道）\"和\"推送格式\"章节。\n\n要点：生成完整内容不限字数→合并3-5段→每段加粗排版→openclaw message send逐段发，段间sleep 1.5→最后输出一句话确认。严禁输出思考过程和调试信息。",
+      "timeoutSeconds": 600,
+      "lightContext": true
+    }
+  },
+  "整点扫描（短引用SKILL.md）": {
+    "description": "9:00~19:00整点扫描",
+    "noDeliver": true,
+    "agentTurn": {
+      "message": "【引用SKILL.md执行】\n按 eyes SKILL.md 中\"整点扫描\"流程执行。无新事件不推送。推送规则见\"通用分段推送\"章节。\n\n要点：搜索1h事件→合并分段→加粗排版→openclaw message send发送，段间sleep 1.5。",
+      "timeoutSeconds": 600,
+      "lightContext": true
+    }
+  },
+  "晚8点汇总（短引用SKILL.md）": {
+    "description": "每天晚8点推送",
+    "noDeliver": true,
+    "agentTurn": {
+      "message": "【引用SKILL.md执行】\n按 eyes SKILL.md 中\"晚8点收盘复盘\"流程执行。规格见\"通用分段推送\"和\"推送格式\"章节。\n\n要点：搜索12h事件+A股分析+明日关注→合并3-5段→加粗排版→openclaw message send逐段发，段间sleep 1.5→末段加互动语。严禁输出长内容。",
+      "timeoutSeconds": 600,
+      "lightContext": true
+    }
+  }
+}

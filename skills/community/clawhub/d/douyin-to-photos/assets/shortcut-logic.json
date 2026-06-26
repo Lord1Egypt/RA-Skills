@@ -1,0 +1,40 @@
+{
+  "name": "Douyin-to-Photos",
+  "type": "shortcut-logic-architecture",
+  "inputs": ["share_sheet_url", "text", "clipboard"],
+  "config": {
+    "api_primary": "https://www.tikwm.com/api/",
+    "api_fallback": "",
+    "album_name": "Douyin",
+    "timeout_sec": 20
+  },
+  "pipeline": [
+    {"step": "collect_input", "action": "use_share_input_or_clipboard"},
+    {"step": "extract_url", "action": "regex:https?://[^\\s]+"},
+    {"step": "validate_domain", "action": "must_contain:douyin.com|iesdouyin.com"},
+    {
+      "step": "resolve_video_url_primary",
+      "action": "http_post_form",
+      "url": "{{api_primary}}",
+      "body": {"url": "{{share_url}}", "hd": 1, "count": 12},
+      "expect": {"code": 0, "video_url": "data.hdplay|data.play"}
+    },
+    {
+      "step": "resolve_video_url_fallback",
+      "when": "primary_failed",
+      "action": "http_post_json",
+      "url": "{{api_fallback}}",
+      "body": {"url": "{{share_url}}"},
+      "expect": {"video_url": "video_url|data.video_url|data.hdplay|data.play"}
+    },
+    {"step": "download_video", "action": "http_get_file", "url": "{{video_url}}"},
+    {"step": "save_to_photos", "action": "save_to_photo_album", "album": "{{album_name}}"},
+    {"step": "cleanup", "action": "delete_temp_file"}
+  ],
+  "errors": {
+    "invalid_url": "未识别到有效抖音链接",
+    "timeout": "请求超时，请重试",
+    "api_failed": "解析失败，请切换备用接口",
+    "empty_video_url": "未返回可下载地址"
+  }
+}

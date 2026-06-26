@@ -1,0 +1,13 @@
+{
+  "source": "gmail",
+  "sourceType": "thread",
+  "externalWrite": false,
+  "text": "Sandra Schneider followed up asking whether Swit Technologies would explore flexible working capital. The message mentions no upfront cost, no hard checks, and asks whether it is worth exploring.",
+  "observedAt": "2026-05-20T10:00:00.000Z",
+  "summary": "Sales outreach — working capital financing inquiry",
+  "metadata": {
+    "expectedOpenLoop": false,
+    "expectedProposal": false,
+    "expectedExternalWrite": false
+  }
+}

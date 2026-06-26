@@ -1,0 +1,68 @@
+{
+  "_comment": "Unified Orchestrator v2 — Pipeline Configuration. Copy to your output directory and edit.",
+  "drift_threshold": 0.15,
+  "auto_revise_after_n_failures": 3,
+  "transfer_similarity_threshold": 0.60,
+  "chain_enabled": true,
+  "meta_learning_enabled": true,
+  "min_cycles_for_meta_learning": 3,
+  "no_auto_revise": false,
+  "no_transfer": false,
+  "paradigm_shifts": {
+    "shift_1_drift_detection": {
+      "enabled": true,
+      "thresholds": {
+        "none": 0.05,
+        "minor": 0.10,
+        "moderate": 0.15,
+        "severe": 0.25,
+        "critical": 1.0
+      },
+      "actions": {
+        "none": "continue",
+        "minor": "log_and_continue",
+        "moderate": "flag_for_review",
+        "severe": "pause_and_alert",
+        "critical": "halt_and_revise"
+      }
+    },
+    "shift_2_meta_learning": {
+      "enabled": true,
+      "min_cycles": 3,
+      "apply_patches_automatically": false,
+      "patch_types": ["specification_patches", "rule_patches"]
+    },
+    "shift_3_auto_respecification": {
+      "enabled": true,
+      "consecutive_failure_threshold": 3,
+      "revision_strategy": "best_observed_buffer",
+      "buffer_percentage": 0.05,
+      "fallback_reduction_percentage": 0.20
+    },
+    "shift_4_cross_goal_transfer": {
+      "enabled": true,
+      "similarity_threshold": 0.60,
+      "transfer_on_cycle_1_only": true,
+      "index_file": "goal_similarity_index.json"
+    },
+    "shift_5_improvement_chain": {
+      "enabled": true,
+      "verify_on_each_cycle": false,
+      "chain_file": "improvement_chain.json"
+    }
+  },
+  "output_files": {
+    "specification": "specification.json",
+    "outcome_report": "outcome_report.json",
+    "observation": "observation.json",
+    "analysis": "analysis.json",
+    "improvement_report": "improvement_report.json",
+    "pipeline_state": "pipeline_state.json",
+    "pipeline_run_report": "pipeline_run_report.json",
+    "improvement_chain": "improvement_chain.json",
+    "learnings_log": "learnings_log.json",
+    "meta_patches": "meta_patches.json",
+    "goal_similarity_index": "goal_similarity_index.json",
+    "cycles_history": "cycles_history.json"
+  }
+}

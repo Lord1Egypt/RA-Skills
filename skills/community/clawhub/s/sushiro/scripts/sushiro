@@ -1,0 +1,220 @@
+#!/usr/bin/env bash
+# sushiro — query Sushiro China queue/wait status via wechat-mini-program backend.
+#
+# All endpoints discovered:
+#   GET /wechat/api/2.0/stores?latitude=&longitude=&numresults=     — list stores (sorted by distance)
+#   GET /wechat/api/2.0/getStoreById?storeId=                       — single store detail
+#   GET /wechat/api/2.0/areas                                       — flat list of all areas (区)
+#
+# Requires: curl, jq
+# Auth: hardcoded Bearer token (wechat mini-program shared, not user-bound).
+# Note: Python/requests gets blocked by upstream CDN; curl works.
+
+set -euo pipefail
+
+BASE="https://crm-cn-prd.sushiro.com.cn/wechat/api/2.0"
+TOKEN="${SUSHIRO_TOKEN:-4OI44O844Kv44Oz5qSc6Ki855So77yad2VjaGF05YWx6YCa4}"
+REFERER="https://servicewechat.com/wx7ac31ef6c073a7ed/159/page-frame.html"
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+
+_get() {
+  curl -sS -m 15 --fail-with-body \
+    -H "Authorization: Bearer ${TOKEN}" \
+    -H "Referer: ${REFERER}" \
+    -H "User-Agent: ${UA}" \
+    -H "Accept: */*" \
+    "${BASE}/$1"
+}
+
+_die() { echo "Error: $*" >&2; exit 1; }
+
+# stores raw JSON is sometimes an array, sometimes {key: [...]}; flatten.
+_stores_array() {
+  local lat="${1:-1}" lng="${2:-1}" n="${3:-10000}"
+  _get "stores?latitude=${lat}&longitude=${lng}&numresults=${n}" | jq '
+    if type == "array" then .
+    else [.[] | select(type=="array")] | add // []
+    end'
+}
+
+cmd_stores() {
+  local format=table area="" city="" near="" limit=0
+  local only_open=0 only_waiting=0
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --json) format=json ;;
+      --table) format=table ;;
+      --area=*) area="${1#*=}" ;;
+      --city=*) city="${1#*=}" ;;
+      --near=*) near="${1#*=}" ;;
+      --limit=*) limit="${1#*=}" ;;
+      --open) only_open=1 ;;
+      --waiting) only_waiting=1 ;;
+      -h|--help) cat <<'EOF'
+sushiro stores [filters] [format]
+  --city=<kana>     filter by nameKana (e.g. 深圳/上海/广州/成都)
+  --area=<area>     filter by area substring (e.g. 南山区)
+  --near=LAT,LNG    sort by distance from coordinate
+  --open            only OPEN stores
+  --waiting         only stores with wait>0
+  --limit=N         keep first N rows
+  --json | --table  output format (default: table)
+EOF
+        return 0 ;;
+      *) _die "unknown option: $1" ;;
+    esac
+    shift
+  done
+
+  local lat=1 lng=1
+  if [[ -n "$near" ]]; then
+    lat="${near%,*}"; lng="${near#*,}"
+  fi
+
+  local data; data=$(_stores_array "$lat" "$lng" 10000)
+
+  local filter='.'
+  [[ -n "$city"    ]] && filter+=" | map(select(.nameKana == \"$city\"))"
+  [[ -n "$area"    ]] && filter+=" | map(select(.area // \"\" | contains(\"$area\")))"
+  [[ $only_open    -eq 1 ]] && filter+=' | map(select(.storeStatus == "OPEN"))'
+  [[ $only_waiting -eq 1 ]] && filter+=' | map(select((.wait // 0) > 0))'
+  filter+=' | sort_by(-(.wait // 0))'
+  [[ $limit -gt 0 ]] && filter+=" | .[0:$limit]"
+
+  if [[ "$format" == json ]]; then
+    echo "$data" | jq "$filter"
+    return
+  fi
+
+  echo "$data" | jq -r "$filter | (
+    [\"WAIT\",\"STATUS\",\"ID\",\"CITY\",\"AREA\",\"NAME\"],
+    (.[] | [
+      (.wait // 0 | tostring),
+      (.storeStatus // \"?\"),
+      (.id | tostring),
+      (.nameKana // \"?\"),
+      (.area // \"?\"),
+      (.name // \"?\")
+    ])
+  ) | @tsv" | column -t -s $'\t'
+}
+
+cmd_store() {
+  local id="${1:-}"; local format="${2:-pretty}"
+  [[ -z "$id" ]] && _die "usage: sushiro store <id> [--json]"
+  local raw; raw=$(_get "getStoreById?storeId=${id}")
+  if [[ "$format" == "--json" || "$format" == "json" ]]; then
+    echo "$raw" | jq .
+    return
+  fi
+  echo "$raw" | jq -r '
+    "id          \(.id)",
+    "name        \(.name)",
+    "city        \(.nameKana)",
+    "area        \(.area)",
+    "address     \(.address)",
+    "status      \(.storeStatus)",
+    "ticket      \(.netTicketStatus)",
+    "wait        \(.wait // 0) groups (cap \(.waitTimeCap // "?") min)",
+    "tables      \(.tablesCapacity // "?")",
+    "counters    \(.countersCapacity // "?")",
+    "coord       \(.latitude), \(.longitude)"'
+}
+
+cmd_wait() {
+  local id="${1:-}"
+  [[ -z "$id" ]] && _die "usage: sushiro wait <id>"
+  _get "getStoreById?storeId=${id}" | jq -r '"\(.name): wait=\(.wait // 0) status=\(.storeStatus)"'
+}
+
+cmd_areas() {
+  local format="${1:-list}"
+  if [[ "$format" == "--json" || "$format" == "json" ]]; then
+    _get "areas" | jq .
+  else
+    _get "areas" | jq -r '.[]'
+  fi
+}
+
+cmd_search() {
+  local kw="${1:-}"
+  [[ -z "$kw" ]] && _die "usage: sushiro search <keyword>"
+  _stores_array | jq -r --arg k "$kw" '
+    map(select(
+      (.name // "" | contains($k)) or
+      (.area // "" | contains($k)) or
+      (.nameKana // "" | contains($k)) or
+      (.address // "" | contains($k))
+    ))
+    | (
+      ["WAIT","STATUS","ID","CITY","AREA","NAME"],
+      (.[] | [(.wait // 0 | tostring), .storeStatus, (.id|tostring), .nameKana, .area, .name])
+    ) | @tsv' | column -t -s $'\t'
+}
+
+cmd_summary() {
+  local data; data=$(_stores_array)
+  echo "$data" | jq -r '
+    {
+      total: length,
+      open: map(select(.storeStatus == "OPEN")) | length,
+      waiting_stores: map(select((.wait // 0) > 0)) | length,
+      total_wait_groups: map(.wait // 0) | add,
+      by_city: group_by(.nameKana) | map({
+        city: .[0].nameKana,
+        stores: length,
+        open: map(select(.storeStatus=="OPEN")) | length,
+        waiting: map(.wait // 0) | add
+      }) | sort_by(-.waiting)
+    }'
+}
+
+cmd_raw() {
+  local path="${1:-}"
+  [[ -z "$path" ]] && _die "usage: sushiro raw <api-path>  (e.g. 'stores?latitude=1&longitude=1&numresults=5')"
+  _get "$path"
+}
+
+cmd_help() {
+  cat <<'EOF'
+sushiro — Sushiro China queue/wait status
+
+Commands:
+  stores [filters]         List all stores (default: table; --json for raw)
+  store <id> [--json]      Single store detail
+  wait <id>                One-line wait count for a store
+  search <keyword>         Search by name / area / city / address
+  areas [--json]           List all area names (区)
+  summary                  Aggregate stats by city
+  raw <path>               Raw GET against /wechat/api/2.0/<path>
+
+Examples:
+  sushiro stores --city=深圳 --waiting
+  sushiro stores --near=22.5,113.9 --limit=10
+  sushiro store 1012
+  sushiro wait 1012
+  sushiro search 来福士
+  sushiro summary
+  sushiro raw 'stores?latitude=22.5&longitude=113.9&numresults=3'
+
+Env:
+  SUSHIRO_TOKEN   override the default Bearer token
+EOF
+}
+
+main() {
+  local sub="${1:-help}"; shift || true
+  case "$sub" in
+    stores)  cmd_stores  "$@" ;;
+    store)   cmd_store   "$@" ;;
+    wait)    cmd_wait    "$@" ;;
+    search)  cmd_search  "$@" ;;
+    areas)   cmd_areas   "$@" ;;
+    summary) cmd_summary "$@" ;;
+    raw)     cmd_raw     "$@" ;;
+    -h|--help|help) cmd_help ;;
+    *) _die "unknown command: $sub (try: sushiro help)" ;;
+  esac
+}
+
+main "$@"

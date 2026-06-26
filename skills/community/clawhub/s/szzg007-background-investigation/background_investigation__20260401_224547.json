@@ -1,0 +1,92 @@
+{
+  "investigation_id": "INV-20260401-224547",
+  "target_type": "customer",
+  "timestamp": "2026-04-01T22:45:47.769147",
+  "sections": {
+    "personal_info": {
+      "name": "",
+      "aliases": [],
+      "demographics": {},
+      "location": "",
+      "contact_info": {}
+    },
+    "social_media": {
+      "platforms": {
+        "primary": {
+          "profile_info": {
+            "username": "test_customer",
+            "display_name": "User test_customer",
+            "bio": "Sample bio for investigation purposes",
+            "followers": 1250,
+            "following": 890,
+            "posts": 342
+          },
+          "activity": {
+            "last_active": "2026-03-28",
+            "posting_frequency": "moderate",
+            "peak_activity_times": [
+              "14:00-16:00",
+              "19:00-21:00"
+            ]
+          },
+          "engagement": {
+            "avg_likes_per_post": 45,
+            "avg_comments_per_post": 8,
+            "engagement_rate": 3.6
+          }
+        }
+      },
+      "activity_level": "unknown",
+      "follower_count": 0,
+      "engagement_metrics": {}
+    },
+    "professional": {
+      "occupation": "",
+      "company": "",
+      "industry": "",
+      "experience": [],
+      "credentials": []
+    },
+    "online_presence": {
+      "websites": [],
+      "blogs": [],
+      "publications": [],
+      "mentions": []
+    },
+    "network": {
+      "connections": [],
+      "associations": [],
+      "influence_map": {}
+    },
+    "content_analysis": {
+      "topics": [
+        "technology",
+        "business"
+      ],
+      "sentiment": "positive",
+      "quality_score": 7.5,
+      "consistency": "high"
+    },
+    "risk_assessment": {
+      "trust_score": 7.8,
+      "red_flags": [],
+      "verification_status": "partially_verified",
+      "recommendation": "approved"
+    },
+    "sources": [],
+    "notes": []
+  },
+  "summary": {
+    "status": "completed",
+    "confidence_level": "medium",
+    "next_steps": [
+      "Verify business affiliation",
+      "Check for additional aliases"
+    ],
+    "key_findings": [
+      "test_customer appears to be an active user in the customer category",
+      "Social engagement metrics are moderate",
+      "Content quality is acceptable"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "QLCoder Pure LLM"
+  short_description: "Run pure-LLM CVE or local Web App taint-flow analysis with triaged findings"
+  default_prompt: "Use $qlcoder-pure-llm to run pure-LLM analysis in this workspace, including Java/Python Web source-sink-sanitizer typing and XSS/SQLi/BAC finding triage for local repositories."

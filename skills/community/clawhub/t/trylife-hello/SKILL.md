@@ -1,35 +1,27 @@
 ---
-name: "hello"
-description: "trylife-hello, when user input `hello"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trylife-hello"
-sourceUrl: "https://clawhub.ai/skills/trylife-hello"
+name: hello
+description: trylife-hello, when user input `hello`
+tags: hello, hi, 你好
+license: Apache-2.0
+metadata:
+  author: example-org
+  version: "1.0.0"
 ---
 
-# hello
+# 根据接收到的消息匹配回复信息
 
-> trylife-hello, when user input `hello
+## hello
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trylife-hello`
-- **Source URL:** [https://clawhub.ai/skills/trylife-hello](https://clawhub.ai/skills/trylife-hello)
+仅仅回复 `hello from skill {version}`
 
-## Overview
+## hello world
 
+回复脚本输出内容
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trylife-hello
+```python
+python scripts/hello-world.py 
 ```
+
+## 你好
+
+从 `references/praise.md`选择一句发给我。

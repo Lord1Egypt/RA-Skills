@@ -1,0 +1,233 @@
+name: red-crawler-ops
+version: 1.1.0
+runtime: python
+entry: src/index.py
+description: Portable OpenClaw skill for running the installed red-crawler CLI. It can use a published CLI install by default, or an existing local checkout when explicitly requested.
+requirements:
+  binaries:
+    - red-crawler
+  network_access: required for Xiaohongshu pages and optional dependency or browser installation
+  sensitive_local_files:
+    - Playwright storage state JSON
+  remote_repository_clone: false
+config:
+  workspace_path:
+    type: string
+    default: .
+    description: Working directory for state, database, reports, and outputs.
+  storage_state:
+    type: string
+    default: ""
+    description: Optional Playwright storage state file used for authenticated actions.
+  db_path:
+    type: string
+    default: ./data/red_crawler.db
+    description: SQLite database path inside the workspace.
+  report_dir:
+    type: string
+    default: ./reports
+    description: Directory for generated report artifacts.
+  output_dir:
+    type: string
+    default: ./output
+    description: Directory for crawl exports.
+  cache_dir:
+    type: string
+    default: ./.cache/red-crawler
+    description: Directory for crawler cache files.
+  heartbeat_dir:
+    type: string
+    default: ./.openclaw/red-crawler
+    description: Directory where background jobs write HEARTBEAT.md, job state, and events.
+  job_log_dir:
+    type: string
+    default: ./logs/jobs
+    description: Directory where background job stdout and stderr logs are written.
+  runner_command:
+    type: [string, array]
+    default: red-crawler
+    description: Command prefix used to launch the red-crawler CLI.
+  require_local_checkout:
+    type: boolean
+    default: false
+    description: Require workspace_path to be a red-crawler source checkout.
+  default_crawl_budget:
+    type: integer
+    default: 30
+    description: Default crawl budget used when collect_nightly does not receive one.
+  default_report_days:
+    type: integer
+    default: 7
+    description: Default report window used when report_weekly does not receive one.
+  default_list_limit:
+    type: integer
+    default: 20
+    description: Default list limit used when list_contactable does not receive one.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      default: crawl_homefeed
+      description: Action to run. Defaults to crawl_homefeed.
+      enum:
+        - bootstrap
+        - login
+        - crawl_seed
+        - crawl_homefeed
+        - collect_nightly
+        - report_weekly
+        - list_contactable
+        - job_status
+        - job_logs
+        - job_stop
+        - ack_event
+    run_mode:
+      type: string
+      default: sync
+      enum:
+        - sync
+        - background
+      description: Use background for long crawl actions so OpenClaw can return before the crawl finishes.
+    job_id:
+      type: string
+    event_id:
+      type: string
+    heartbeat_dir:
+      type: string
+    job_log_dir:
+      type: string
+    tail_lines:
+      type: integer
+    workspace_path:
+      type: string
+    runner_command:
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+    require_local_checkout:
+      type: boolean
+    storage_state:
+      type: string
+    seed_url:
+      type: string
+    homefeed_url:
+      type: string
+    login_url:
+      type: string
+    sync_dependencies:
+      type: boolean
+    install_browser:
+      type: boolean
+    output_dir:
+      type: string
+    db_path:
+      type: string
+    report_dir:
+      type: string
+    cache_dir:
+      type: string
+    browser_mode:
+      type: string
+    browser_endpoint:
+      type: string
+    browser_auth:
+      type: string
+    proxy:
+      type: string
+    proxy_list:
+      type: string
+    rotation_mode:
+      type: string
+    rotation_retries:
+      type: integer
+    randomize_headers:
+      type: boolean
+    max_accounts:
+      type: integer
+    max_depth:
+      type: integer
+    include_note_recommendations:
+      type: boolean
+    safe_mode:
+      type: boolean
+    cache_ttl_days:
+      type: integer
+    crawl_budget:
+      type: integer
+    search_term_limit:
+      type: integer
+    startup_jitter_minutes:
+      type: integer
+    slot_name:
+      type: string
+    days:
+      type: integer
+    lead_type:
+      type: string
+    creator_segment:
+      type: string
+    min_relevance_score:
+      type: number
+    limit:
+      type: integer
+    format:
+      type: string
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+      enum: [success, error, accepted]
+    action:
+      type: string
+    run_mode:
+      type: string
+    job_id:
+      type: string
+    event_id:
+      type: string
+    pid:
+      type: integer
+    job:
+      type: object
+    command:
+      type: string
+    summary:
+      type: string
+    artifacts:
+      type: object
+      additionalProperties:
+        type: string
+    metrics:
+      type: object
+      additionalProperties: true
+    next_step:
+      type: string
+    stdout:
+      type: string
+    stderr:
+      type: string
+    error_type:
+      type: string
+    message:
+      type: string
+    suggested_fix:
+      type: string
+    error:
+      type: object
+      properties:
+        error_type:
+          type: string
+        message:
+          type: string
+        suggested_fix:
+          type: string
+        command:
+          type: string
+        stdout:
+          type: string
+        stderr:
+          type: string

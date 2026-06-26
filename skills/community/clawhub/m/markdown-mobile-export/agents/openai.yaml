@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown Mobile Export"
+  short_description: "Faithful Markdown to PNG/JPG mobile long-image export"
+  default_prompt: "Use $markdown-mobile-export to convert a local Markdown file path or pasted Markdown text into a faithful mobile-friendly PNG/JPG long image."

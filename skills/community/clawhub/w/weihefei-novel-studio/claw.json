@@ -1,0 +1,12 @@
+{
+  "name": "novel-studio",
+  "version": "1.0.0",
+  "description": "A complete Chinese novel writing studio with 15 specialized AI agents covering the full creative workflow — from market analysis and worldbuilding to drafting, editing, and platform compliance.",
+  "author": "gaoda",
+  "license": "MIT",
+  "permissions": ["file.read", "file.write", "file.search"],
+  "entry": "SKILL.md",
+  "tags": ["writing", "novel", "chinese", "creative", "storytelling", "agents", "workflow"],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0"
+}

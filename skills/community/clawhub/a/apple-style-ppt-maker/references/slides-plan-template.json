@@ -1,0 +1,112 @@
+{
+  "project": {
+    "title": "AI Product Strategy 2026",
+    "subtitle": "Execution Priorities",
+    "language": "en",
+    "audience": "Product and executive stakeholders",
+    "objective": "Align teams on priorities and timeline"
+  },
+  "global_style_tokens": {
+    "aesthetic": "Apple-style minimal, calm, premium",
+    "palette": {
+      "background": "#F7F7F5",
+      "surface": "#FFFFFF",
+      "text_primary": "#111111",
+      "text_secondary": "#555555",
+      "accent": "#0A84FF"
+    },
+    "type_scale": {
+      "h1": "56/64 semibold",
+      "h2": "36/44 semibold",
+      "body": "24/34 regular",
+      "caption": "18/24 regular"
+    },
+    "spacing_scale": "8-16-24-40",
+    "layout_system": "12-column grid with wide outer margins",
+    "motion_rule": "still frame; transition-safe composition",
+    "icon_style": "simple line icons",
+    "image_style": "subtle abstract gradient background"
+  },
+  "slides": [
+    {
+      "slide_number": 1,
+      "slide_type": "cover",
+      "objective": "Introduce the deck topic and context",
+      "on_slide_text": {
+        "title": "AI Product Strategy 2026",
+        "subtitle": "Execution Priorities",
+        "footer": "Internal planning meeting"
+      },
+      "visual_blueprint": {
+        "composition": "Large title block on left, restrained visual anchor on right",
+        "key_elements": [
+          "single abstract accent shape",
+          "left-aligned title stack",
+          "high whitespace around text"
+        ],
+        "imagery_hint": "subtle soft gradient background",
+        "avoid": [
+          "dense textures",
+          "neon glow",
+          "3D decorative objects"
+        ]
+      },
+      "consistency_checks": {
+        "must_keep": [
+          "same typography hierarchy",
+          "same accent color usage policy"
+        ],
+        "must_avoid": [
+          "visual clutter",
+          "low-contrast text"
+        ]
+      }
+    },
+    {
+      "slide_number": 2,
+      "slide_type": "content",
+      "objective": "Explain three strategic priorities",
+      "on_slide_text": {
+        "title": "Three Strategic Priorities",
+        "bullets": [
+          "Improve onboarding conversion",
+          "Shorten time-to-value",
+          "Expand enterprise readiness"
+        ],
+        "callout": "Focus on measurable outcomes"
+      },
+      "visual_blueprint": {
+        "composition": "Two-column layout: bullets on left, sparse icons on right",
+        "key_elements": [
+          "left content block with generous line spacing",
+          "minimal icon stack on right",
+          "subtle divider alignment"
+        ],
+        "imagery_hint": "flat, low-contrast abstract shapes",
+        "chart_hint": "none",
+        "avoid": [
+          "overlapping cards",
+          "thick shadows",
+          "multi-color gradients"
+        ]
+      },
+      "consistency_checks": {
+        "must_keep": [
+          "same grid",
+          "same spacing scale",
+          "same text color roles"
+        ],
+        "must_avoid": [
+          "new decorative motif",
+          "inconsistent alignment"
+        ]
+      }
+    }
+  ],
+  "output": {
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "format": "webp",
+    "output_dir": "outputs/ai_strategy_2026"
+  }
+}

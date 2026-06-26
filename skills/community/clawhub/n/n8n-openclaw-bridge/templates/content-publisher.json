@@ -1,0 +1,73 @@
+{
+  "name": "Agent: Content Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "publish-content",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "id": "webhook-content",
+      "name": "Content Webhook"
+    },
+    {
+      "parameters": {
+        "functionCode": "const content = $input.all()[0].json;\nconst platforms = content.platforms || ['blog'];\nconst results = [];\n\nfor (const platform of platforms) {\n  results.push({\n    json: {\n      ...content,\n      target_platform: platform,\n      publish_at: content.schedule || new Date().toISOString()\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "id": "split-platforms",
+      "name": "Split by Platform"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.target_platform }}",
+              "operation": "equals",
+              "value2": "linkedin"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [650, 300],
+      "id": "route-platform",
+      "name": "Route to Platform"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "✅ Content published to {{ $json.target_platform }}:\n\nTitle: {{ $json.title }}\nScheduled: {{ $json.publish_at }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "id": "notify-done",
+      "name": "Notify Agent"
+    }
+  ],
+  "connections": {
+    "Content Webhook": {
+      "main": [[{ "node": "Split by Platform", "type": "main", "index": 0 }]]
+    },
+    "Split by Platform": {
+      "main": [[{ "node": "Route to Platform", "type": "main", "index": 0 }]]
+    },
+    "Route to Platform": {
+      "main": [[{ "node": "Notify Agent", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

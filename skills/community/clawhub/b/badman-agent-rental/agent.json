@@ -1,0 +1,18 @@
+{
+  "name": "Badman",
+  "version": "1.0.0",
+  "description": "Autonomous business agent for entrepreneurs — handles prospecting, email, marketing, and lead qualification on autopilot.",
+  "author": "Karim Ourkia",
+  "website": "https://agentrental.tiiny.site",
+  "twitter": "@okfreelancer",
+  "tags": ["agent", "business", "autonomous", "prospecting", "email", "marketing", "lead-qualification", "entrepreneur"],
+  "capabilities": [
+    "email_management",
+    "lead_qualification",
+    "content_generation",
+    "auto_responder",
+    "job_applications"
+  ],
+  "channels": ["whatsapp", "telegram", "discord"],
+  "models": ["claude-3-5-sonnet", "gpt-4o"]
+}

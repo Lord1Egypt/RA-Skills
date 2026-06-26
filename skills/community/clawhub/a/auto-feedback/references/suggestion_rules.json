@@ -1,0 +1,43 @@
+[
+  {
+    "_comment": "Add your own rules here. Each rule has a Python-evaluable condition and a suggestion string.",
+    "condition": "pass_rate < 0.80",
+    "priority": "critical",
+    "suggestion": "Pass rate is critically low — review all failing scenarios immediately and add targeted fixes."
+  },
+  {
+    "condition": "pass_rate < 0.90",
+    "priority": "high",
+    "suggestion": "Pass rate is below the 90% threshold — investigate and resolve failing test cases."
+  },
+  {
+    "condition": "pass_rate < 0.95",
+    "priority": "medium",
+    "suggestion": "Pass rate is below 95% — review edge cases and add regression tests for known failures."
+  },
+  {
+    "condition": "duration_ms > 10000",
+    "priority": "high",
+    "suggestion": "Execution time exceeds 10 seconds — profile the slowest operations and optimize."
+  },
+  {
+    "condition": "duration_ms > 5000",
+    "priority": "medium",
+    "suggestion": "Execution time exceeds 5 seconds — consider caching or parallelization."
+  },
+  {
+    "condition": "failure_count > 10",
+    "priority": "high",
+    "suggestion": "More than 10 failures detected — triage by severity and address critical failures first."
+  },
+  {
+    "condition": "failure_count > 5",
+    "priority": "medium",
+    "suggestion": "More than 5 failures detected — review each failure and add regression tests."
+  },
+  {
+    "condition": "regression_detected",
+    "priority": "critical",
+    "suggestion": "Performance regression detected vs. previous cycle — revert recent changes or add targeted fixes."
+  }
+]

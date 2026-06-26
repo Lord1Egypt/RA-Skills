@@ -1,0 +1,73 @@
+
+[
+  {
+    "name": "api_key",
+    "pattern": "(sk|pk|tk|token|key|access)[_-]?[0-9a-zA-Z]{20,}",
+    "sensitivity": "high",
+    "description": "API Key or Access Token",
+    "priority": 10
+  },
+  {
+    "name": "openai_key",
+    "pattern": "sk-[0-9a-zA-Z]{48}",
+    "sensitivity": "high",
+    "description": "OpenAI API Key",
+    "priority": 15
+  },
+  {
+    "name": "aws_access_key",
+    "pattern": "AKIA[0-9A-Z]{16}",
+    "sensitivity": "high",
+    "description": "AWS Access Key ID",
+    "priority": 15
+  },
+  {
+    "name": "credit_card",
+    "pattern": "\\b(?:\\d{4}[- ]?){3}\\d{4}\\b",
+    "sensitivity": "high",
+    "description": "Credit Card Number",
+    "priority": 10
+  },
+  {
+    "name": "id_card",
+    "pattern": "[1-9]\\d{5}(?:18|19|20)\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\\d|3[01])\\d{3}[\\dXx]",
+    "sensitivity": "high",
+    "description": "Chinese ID Card Number",
+    "priority": 10
+  },
+  {
+    "name": "phone",
+    "pattern": "1[3-9]\\d{9}",
+    "sensitivity": "medium",
+    "description": "Chinese Mobile Phone Number",
+    "priority": 5
+  },
+  {
+    "name": "email",
+    "pattern": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+    "sensitivity": "medium",
+    "description": "Email Address",
+    "priority": 5
+  },
+  {
+    "name": "bank_card",
+    "pattern": "\\b\\d{4}[ -]?\\d{4}[ -]?\\d{4}[ -]?\\d{4}\\b",
+    "sensitivity": "high",
+    "description": "Bank Card Number",
+    "priority": 10
+  },
+  {
+    "name": "password",
+    "pattern": "(password|passwd|pwd|secret)[ :=]+['\"]?[\\w]{6,}['\"]?",
+    "sensitivity": "high",
+    "description": "Password in text/code",
+    "priority": 10
+  },
+  {
+    "name": "github_token",
+    "pattern": "gh[ps]_[A-Za-z0-9]{36,}",
+    "sensitivity": "high",
+    "description": "GitHub Personal Access Token",
+    "priority": 15
+  }
+]

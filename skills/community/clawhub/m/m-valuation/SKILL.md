@@ -1,35 +1,52 @@
----
-name: "M估值法"
-description: "基于ROIC和CAPM的5步股票估值方法，提供资格筛选、内在价值计算及风险与情景分析。"
-category: "other"
-source: "ClawHub"
-tags: [investment, stock, valuation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/m-valuation"
-sourceUrl: "https://clawhub.ai/skills/m-valuation"
----
-
 # M估值法
 
-> 基于ROIC和CAPM的5步股票估值方法，提供资格筛选、内在价值计算及风险与情景分析。
+基于ROIC和CAPM的股票估值方法，由蟹老板创建。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/m-valuation`
-- **Source URL:** [https://clawhub.ai/skills/m-valuation](https://clawhub.ai/skills/m-valuation)
+## 概述
 
-## Overview
+完整的5步股票估值分析框架：
+1. 资格筛选（ROIC > w）
+2. 核心参数计算
+3. 内在价值计算
+4. 估值决策与风险分析
+5. 情景分析
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+当用户说"用M估值法分析[股票]"时，使用此skill：
+
 ```bash
-hermes skills install clawhub/m-valuation
+python3 ~/.openclaw/workspace/skills/m-valuation/valuation.py <股票代码> [名称]
+
+# 示例
+python3 ~/.openclaw/workspace/skills/m-valuation/valuation.py 000333 美的集团
+python3 ~/.openclaw/workspace/skills/m-valuation/valuation.py 600036 招商银行
 ```
+
+## 触发词
+
+- "M估值法"
+- "用M估值法分析"
+- "M估值"
+
+## 数据来源
+
+1. **Tushare API** - A股财务数据
+2. **Tavily搜索** - 获取β系数、非A股数据
+
+## 核心公式
+
+- w = Rf + β × (Rm - Rf)
+- d = 分红率 = D₀/E
+- g = (1-d) × ROIC
+- PE = d × (1+g) / (w - g)
+- 预期收益率 = 股息率 + g
+
+## 输出内容
+
+- 资格筛选结果
+- 核心参数（股息率、预期收益率）
+- 内在价值
+- 风险分析（股息风险、成长风险）
+- 情景分析（零增长/3%增长PE）
+- 投资建议

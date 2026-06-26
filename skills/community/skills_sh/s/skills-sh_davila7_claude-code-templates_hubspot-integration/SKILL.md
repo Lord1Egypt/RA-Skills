@@ -1,35 +1,42 @@
 ---
-name: "hubspot-integration"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/hubspot-integration"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/hubspot-integration"
+name: hubspot-integration
+description: "Expert patterns for HubSpot CRM integration including OAuth authentication, CRM objects, associations, batch operations, webhooks, and custom objects. Covers Node.js and Python SDKs. Use when: hubspot, hubspot api, hubspot crm, hubspot integration, contacts api."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# hubspot-integration
+# HubSpot Integration
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Patterns
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/hubspot-integration`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/hubspot-integration](https://skills.sh/davila7/claude-code-templates/hubspot-integration)
+### OAuth 2.0 Authentication
 
-## Overview
+Secure authentication for public apps
 
+### Private App Token
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/hubspot-integration
-```
+Authentication for single-account integrations
+
+### CRM Object CRUD Operations
+
+Create, read, update, delete CRM records
+
+## Anti-Patterns
+
+### ❌ Using Deprecated API Keys
+
+### ❌ Individual Requests Instead of Batch
+
+### ❌ Polling Instead of Webhooks
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Issue | high | See docs |
+| Issue | high | See docs |
+| Issue | critical | See docs |
+| Issue | high | See docs |
+| Issue | critical | See docs |
+| Issue | medium | See docs |
+| Issue | high | See docs |
+| Issue | medium | See docs |

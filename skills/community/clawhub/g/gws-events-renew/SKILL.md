@@ -1,35 +1,49 @@
 ---
-name: "Gws Events Renew"
+name: gws-events-renew
 description: "Google Workspace Events: Renew/reactivate Workspace Events subscriptions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gws-events-renew"
-sourceUrl: "https://clawhub.ai/skills/gws-events-renew"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws events +renew --help"
 ---
 
-# Gws Events Renew
+# events +renew
 
-> Google Workspace Events: Renew/reactivate Workspace Events subscriptions.
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gws-events-renew`
-- **Source URL:** [https://clawhub.ai/skills/gws-events-renew](https://clawhub.ai/skills/gws-events-renew)
+Renew/reactivate Workspace Events subscriptions
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gws-events-renew
+gws events +renew
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--name` | — | — | Subscription name to reactivate (e.g., subscriptions/SUB_ID) |
+| `--all` | — | — | Renew all subscriptions expiring within --within window |
+| `--within` | — | 1h | Time window for --all (e.g., 1h, 30m, 2d) |
+
+## Examples
+
+```bash
+gws events +renew --name subscriptions/SUB_ID
+gws events +renew --all --within 2d
+```
+
+## Tips
+
+- Subscriptions expire if not renewed periodically.
+- Use --all with a cron job to keep subscriptions alive.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-events](../gws-events/SKILL.md) — All subscribe to google workspace events commands

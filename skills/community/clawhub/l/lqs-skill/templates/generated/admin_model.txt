@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Auto-generated template from LQS project patterns.
+ */
+class {{Entity}}Model extends \Illuminate\Database\Eloquent\Model
+{
+    protected $table = '{{table}}';
+    protected $primaryKey = '{{pk}}';
+    public $timestamps = {{timestamps}};
+
+    protected $fillable = [
+{{fillable_lines}}
+    ];
+
+    protected $casts = [
+{{casts_lines}}
+    ];
+
+{{relations_block}}
+}

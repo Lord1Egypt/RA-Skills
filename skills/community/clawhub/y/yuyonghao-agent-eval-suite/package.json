@@ -1,0 +1,22 @@
+{
+  "name": "agent-eval-suite",
+  "version": "0.1.0",
+  "description": "Agent 评估套件 - 提供基准测试、A/B 测试、性能回归检测和模拟环境测试能力",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/eval-suite.test.js"
+  },
+  "keywords": [
+    "agent",
+    "benchmark",
+    "testing",
+    "ab-test",
+    "regression",
+    "simulation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

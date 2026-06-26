@@ -1,0 +1,12 @@
+{
+  "last_updated": "2026-03-02T00:00:00Z",
+  "preferences": [
+    "Plan conclusions must align with the current implementation scope; avoid overreaching beyond applicable scenarios",
+    "Analyze context before providing an implementation plan; every step must be verifiable"
+  ],
+  "fixes": [
+    "Before presenting an implementation plan, cross-check existing code and database state to ensure the plan is logically sound and actionable",
+    "When restyling pages, prioritize overflow, spacing, and readability before applying visual enhancements"
+  ],
+  "custom_prompts": "First analyze the current state and constraints, then output a 3–9 step executable plan. For each step, provide a definition of done, risk points, and verification method. Only begin implementation and regression testing after the plan is complete."
+}

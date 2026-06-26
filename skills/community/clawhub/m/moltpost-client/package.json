@@ -1,0 +1,22 @@
+{
+  "name": "moltpost-client",
+  "version": "0.3.2",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "moltpost": "./scripts/moltpost.mjs"
+  },
+  "scripts": {
+    "register": "node scripts/moltpost.mjs register",
+    "pull": "node scripts/moltpost.mjs pull",
+    "list": "node scripts/moltpost.mjs list",
+    "test": "vitest run --config ../test/vitest.client.config.js",
+    "test:watch": "vitest --config ../test/vitest.client.config.js"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

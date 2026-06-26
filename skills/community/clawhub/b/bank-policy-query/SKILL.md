@@ -1,35 +1,68 @@
 ---
-name: "Bank Policy Query"
-description: "银行合作活动政策检索。当用户问某个城市/省份/地区的银行补贴政策时使用。 触发关键词包括：政策、活动、银行补贴、费率、新客、存客、存款考核、免考核期等， 结合城市/区域名称时必用此 skill。 数据源为人工维护的飞书电子表格「全国活动汇总评级仅供参考」（已无评级列，以特殊备注列替代）。"
-category: "other"
-source: "ClawHub"
-tags: [bank, policy, query]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bank-policy-query"
-sourceUrl: "https://clawhub.ai/skills/bank-policy-query"
+name: bank-policy-query
+description: |
+  银行合作活动政策检索。当用户问某个城市/省份/地区的银行补贴政策时使用。
+  触发关键词包括：政策、活动、银行补贴、费率、新客、存客、存款考核、免考核期等，
+  结合城市/区域名称时必用此 skill。
+  数据源为人工维护的飞书电子表格「全国活动汇总评级仅供参考」（已无评级列，以特殊备注列替代）。
 ---
 
-# Bank Policy Query
+# 银行合作活动政策检索 Skill
 
-> 银行合作活动政策检索。当用户问某个城市/省份/地区的银行补贴政策时使用。 触发关键词包括：政策、活动、银行补贴、费率、新客、存客、存款考核、免考核期等， 结合城市/区域名称时必用此 skill。 数据源为人工维护的飞书电子表格「全国活动汇总评级仅供参考」（已无评级列，以特殊备注列替代）。
+## 数据源
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bank-policy-query`
-- **Source URL:** [https://clawhub.ai/skills/bank-policy-query](https://clawhub.ai/skills/bank-policy-query)
+全国银行合作活动政策表（人工维护），存于以下飞书电子表格的「全国政策」工作表：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bank-policy-query
 ```
+https://sqb.feishu.cn/sheets/ZIfoscVEJhvsHttAwYocTCd2n1b?sheet=0siobJ
+```
+
+**spreadsheet_token**: `ZIfoscVEJhvsHttAwYocTCd2n1b`
+**sheet_id**: `0siobJ`（全国政策）
+
+### 列结构
+
+| 列 | 内容 |
+|----|------|
+| A - 大区 | 华北/华东/华南/华西/华中/全国 |
+| B - 省份 | 省份名称 |
+| C - 活动城市 | 城市/地区列表 |
+| D - 银行 | 银行名称 |
+| E - 活动类型 | 通道/绑卡 |
+| F - 活动时间 | 活动有效期 |
+| G - 活动简称 | 活动名称 |
+| H - 绑卡活动对应生效人 | 绑卡生效对接人 |
+| I - 活动月 | 自然月 / 活动周期 |
+| J - 补贴费率 | 费率值 |
+| K - 政策类型 | 对私/对公/个体法人/连锁/不限 |
+| L - 免考核期封顶值 | 免考核期补贴封顶 |
+| M - 免考核期几个月 | 免考核月数 |
+| N - 免考核期是否≥2个月 | 是/否 |
+| O - 新客额度 | 新客补贴额度 |
+| P - 新客条款 | 新客期详细条款 |
+| Q - 存客考核期条款 | 存客期详细条款 |
+| R - 存量户起步存款额 | 存客考核起步存款 |
+| S - 特殊备注 | 暂停/限制等重要标注 |
+| T - 模式 | 立减/银行D+1日后返商户 |
+| U - key2 | 内部备注 |
+
+## 检索流程
+
+1. 读取「全国政策」工作表的全部数据
+2. 按用户查询的城市/省份过滤
+3. 按活动类型排序（通道→绑卡），同类型内按政策类型排序（对私→对公）
+4. 格式化输出
+
+## 输出格式
+
+每条活动按以下结构展示：
+- **银行** | **活动类型** | **活动时间** | **补贴费率**
+- **新客条款**：主要补贴条款摘要
+- **存客考核期条款**：考核存款门槛及补贴封顶
+- ⚠️ **特殊备注**：如有暂停/限制等条件，重点提示
+
+## 核心规则
+
+关键规则定义在 reference 文件中，需要时读取：
+- **输出排序规则**：见 `references/retrieval-guide.md`
+- **政策变化分析规则**：见 `references/policy-analysis-rules.md`

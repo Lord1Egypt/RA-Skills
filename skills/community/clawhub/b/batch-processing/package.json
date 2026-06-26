@@ -1,0 +1,24 @@
+{
+  "name": "batch-processing",
+  "version": "1.0.0",
+  "description": "DataLoader pattern for batch processing to solve N+1 query problems",
+  "main": "dataloader.js",
+  "scripts": {
+    "test": "node examples.js",
+    "benchmark": "node benchmark.js"
+  },
+  "keywords": [
+    "dataloader",
+    "batch",
+    "optimization",
+    "n+1",
+    "database",
+    "performance"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/batch-processing"
+  }
+}

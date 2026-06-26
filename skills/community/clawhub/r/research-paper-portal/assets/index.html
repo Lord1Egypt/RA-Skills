@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{SITE_NAME}}</title>
+    <meta name="description" content="{{SITE_DESCRIPTION}}">
+    <link rel="icon" href="/favicon.ico">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        
+        :root{
+            --accent: #8b7cf7;
+            --t1: #f5f5fa;
+        }
+        
+        html,body{
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            background: #05050a;
+            color: var(--t1);
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* === 背景图层 (渐进式加载) === */
+        #bgContainer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: #05050a;
+        }
+
+        .bg-layer{
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            filter: brightness(0.45) saturate(1.1);
+        }
+        .bg-layer.active{ opacity: 1; }
+        
+        .bg-layer.hd{ z-index: 2; }
+        .bg-layer.preview{
+            z-index: 1;
+            filter: brightness(0.45) saturate(1.1) blur(2px);
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .bg-overlay{
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+        }
+
+        /* === 顶栏 === */
+        header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .logo{
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--t1);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.5;
+            pointer-events: auto;
+        }
+        
+        .logo span{ color: var(--accent); }
+
+        /* === 搜索框 === */
+        .main-container {
+            position: relative;
+            z-index: 50;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 28vh;
+        }
+
+        .search-section {
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            height: 52px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 26px;
+            backdrop-filter: blur(30px);
+            display: flex;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .search-box:focus-within {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .engine-selector {
+            position: absolute;
+            left: 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 20px;
+            opacity: 0.5;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.03);
+        }
+        .engine-selector:hover { 
+            opacity: 1; 
+            background: rgba(255,255,255,0.1);
+        }
+
+        .engine-icon { font-size: 16px; width: 22px; text-align: center; }
+
+        .engine-dropdown {
+            position: absolute;
+            top: 120%;
+            left: 0;
+            background: rgba(15,15,15,0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            backdrop-filter: blur(20px);
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+            padding: 8px;
+            min-width: 240px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            z-index: 100;
+        }
+        .engine-dropdown.active { display: grid; }
+
+        .engine-item {
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .engine-item:hover { 
+            background: rgba(255,255,255,0.08); 
+            color: #fff; 
+        }
+        .engine-item.active {
+            color: var(--accent);
+            background: rgba(139,124,247,0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            width: 100%;
+            padding-left: 65px;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.15); }
+
+        /* === 论文展示 === */
+        .paper-section {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 60px 50px 50px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        .paper-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 80%;
+        }
+
+        /* 论文标题 */
+        .paper-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.4;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+        }
+        .paper-title a { 
+            color: inherit; 
+            text-decoration: none; 
+            transition: opacity 0.2s; 
+        }
+        .paper-title a:hover { opacity: 0.8; }
+
+        /* 论文概述 */
+        .paper-overview {
+            font-size: 15px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        /* 期刊名称 */
+        .paper-source {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* 计数器 */
+        .paper-counter {
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 8px;
+        }
+
+        /* === 导航按钮 === */
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 5px;
+        }
+
+        .nav-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            font-size: 18px;
+        }
+        .nav-btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media(max-width: 768px){
+            .paper-section { padding: 40px 25px 30px; flex-direction: column; align-items: flex-start; gap: 20px; }
+            .paper-content { max-width: 100%; }
+            .paper-title { font-size: 18px; }
+            .paper-overview { font-size: 14px; }
+            .nav-actions { width: 100%; justify-content: flex-end; }
+        }
+    </style>
+</head>
+<body>
+    <div id="bgContainer">
+        <div class="bg-layer preview active" id="bgPreview1"></div>
+        <div class="bg-layer preview" id="bgPreview2"></div>
+        <div class="bg-layer hd active" id="bgHd1"></div>
+        <div class="bg-layer hd" id="bgHd2"></div>
+    </div>
+    <div class="bg-overlay"></div>
+
+    <header>
+        <div class="logo">{{SITE_LOGO}}</div>
+    </header>
+
+    <main class="main-container">
+        <section class="search-section">
+            <div class="search-box">
+                <div class="engine-selector" id="engineSelector">
+                    <span class="engine-icon" id="currentEngineIcon">🔍</span>
+                    <div class="engine-dropdown" id="engineDropdown">
+                        <div class="engine-item" data-engine="google"><span>🔍</span> Google</div>
+                        <div class="engine-item" data-engine="scholar"><span>🎓</span> Scholar</div>
+                        <div class="engine-item" data-engine="bing"><span>🅱️</span> Bing</div>
+                        <div class="engine-item" data-engine="baidu"><span>🐾</span> 百度</div>
+                    </div>
+                </div>
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索学术资源..." autocomplete="off">
+            </div>
+        </section>
+
+        <section class="paper-section">
+            <div class="paper-content" id="paperContent">
+                <!-- 内容由 JS 动态生成 -->
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn" id="btnPrev" title="上一篇">‹</button>
+                <button class="nav-btn" id="btnNext" title="下一篇">›</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    (() => {
+        const DATA_FILE = '/paper-index.json';
+        const IMG_BASE = '/assets/images';
+        
+        const SEARCH_ENGINES = {
+            google: { url: 'https://www.google.com/search?q=', icon: '🔍' },
+            scholar: { url: 'https://scholar.google.com/scholar?q=', icon: '🎓' },
+            bing: { url: 'https://www.bing.com/search?q=', icon: '🅱️' },
+            baidu: { url: 'https://www.baidu.com/s?wd=', icon: '🐾' }
+        };
+        
+        let currentEngine = localStorage.getItem('searchEngine') || 'google';
+        let papers = [];
+        let cur = 0;
+        let transitioning = false;
+        let activeLayer = 1;
+        
+        const imageCache = new Map();
+        const hdLoading = new Set();
+
+        const $content = document.getElementById('paperContent');
+        const $bgPreview1 = document.getElementById('bgPreview1');
+        const $bgPreview2 = document.getElementById('bgPreview2');
+        const $bgHd1 = document.getElementById('bgHd1');
+        const $bgHd2 = document.getElementById('bgHd2');
+        const $searchInput = document.getElementById('searchInput');
+        const $engineSelector = document.getElementById('engineSelector');
+        const $engineDropdown = document.getElementById('engineDropdown');
+        const $currentEngineIcon = document.getElementById('currentEngineIcon');
+
+        function initSearch() {
+            $currentEngineIcon.textContent = SEARCH_ENGINES[currentEngine].icon;
+            $engineSelector.onclick = e => { e.stopPropagation(); $engineDropdown.classList.toggle('active'); };
+            document.querySelectorAll('.engine-item').forEach(item => {
+                item.onclick = e => {
+                    e.stopPropagation();
+                    currentEngine = item.dataset.engine;
+                    $currentEngineIcon.textContent = SEARCH_ENGINES[currentEngine].icon;
+                    $engineDropdown.classList.remove('active');
+                    localStorage.setItem('searchEngine', currentEngine);
+                };
+            });
+            document.onclick = () => $engineDropdown.classList.remove('active');
+            $searchInput.onkeydown = e => {
+                if (e.key === 'Enter') {
+                    const q = $searchInput.value.trim();
+                    if (q) window.open(SEARCH_ENGINES[currentEngine].url + encodeURIComponent(q), '_blank');
+                }
+            };
+        }
+        initSearch();
+
+        function getImageUrls(bgImage) {
+            let base = bgImage || 'default';
+            return {
+                preview: `${IMG_BASE}/preview-${base}.webp`,
+                hd: `${IMG_BASE}/full-${base}.webp`
+            };
+        }
+
+        function preloadImage(urls) {
+            if (imageCache.has(urls.preview)) return;
+            const img = new Image();
+            img.onload = () => imageCache.set(urls.preview, true);
+            img.src = urls.preview;
+        }
+
+        function setBackground(paper, layerIndex) {
+            const urls = getImageUrls(paper.bgImage);
+            const $preview = layerIndex === 1 ? $bgPreview1 : $bgPreview2;
+            const $hd = layerIndex === 1 ? $bgHd1 : $bgHd2;
+            
+            $preview.style.backgroundImage = `url(${urls.preview})`;
+            $hd.style.backgroundImage = 'none';
+            $hd.classList.remove('active');
+            
+            const hdImg = new Image();
+            hdImg.onload = () => {
+                $hd.style.backgroundImage = `url(${urls.hd})`;
+                $hd.classList.add('active');
+            };
+            hdImg.src = urls.hd;
+        }
+
+        async function render() {
+            if (!papers.length) return;
+            const p = papers[cur];
+            
+            const nextLayer = activeLayer === 1 ? 2 : 1;
+            setBackground(p, nextLayer);
+            
+            document.querySelectorAll('.bg-layer').forEach(el => el.classList.remove('active'));
+            (nextLayer === 1 ? $bgPreview1 : $bgPreview2).classList.add('active');
+            (nextLayer === 1 ? $bgHd1 : $bgHd2).classList.add('active');
+            activeLayer = nextLayer;
+
+            const nextP = papers[(cur + 1) % papers.length];
+            preloadImage(getImageUrls(nextP.bgImage));
+
+            $content.innerHTML = `
+                <div class="paper-title">
+                    <a href="${p.url || '#'}" target="_blank" rel="noopener">${esc(p.chineseTitle || p.title)}</a>
+                </div>
+                <div class="paper-overview">${esc(p.overview || p.excerpt || '')}</div>
+                <div class="paper-source">${p.source || '学术期刊'}</div>
+                <div class="paper-counter">${cur + 1} / ${papers.length}</div>
+            `;
+        }
+
+        async function load() {
+            try {
+                const res = await fetch(DATA_FILE + '?t=' + Date.now());
+                const data = await res.json();
+                papers = data.papers || [];
+                if (papers.length) render();
+            } catch (e) { 
+                $content.innerHTML = '<div style="opacity:0.5">数据加载失败</div>'; 
+            }
+        }
+
+        function go(dir) {
+            if (transitioning || !papers.length) return;
+            transitioning = true;
+            cur = (cur + dir + papers.length) % papers.length;
+            render();
+            setTimeout(() => { transitioning = false; }, 600);
+        }
+
+        function esc(s) { 
+            return typeof s !== 'string' ? '' : s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); 
+        }
+
+        document.getElementById('btnPrev').onclick = () => go(-1);
+        document.getElementById('btnNext').onclick = () => go(1);
+        document.onkeydown = e => {
+            if (e.target.tagName === 'INPUT') return;
+            if (e.key === 'ArrowLeft') go(-1);
+            if (e.key === 'ArrowRight') go(1);
+        };
+
+        load();
+    })();
+    </script>
+</body>
+</html>

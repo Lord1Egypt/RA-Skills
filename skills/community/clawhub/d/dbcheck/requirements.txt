@@ -1,0 +1,37 @@
+# DBCheck - Database Inspection Tool
+# Install: pip install -r requirements.txt
+
+# ── Core ──────────────────────────────────────────────────────────────────────
+python-docx>=0.8.10
+docxtpl>=0.16.0
+psutil>=5.9.0
+PyYAML>=6.0.0            # Rule engine YAML parsing (required by pro/rule_engine.py)
+cryptography>=41.0.0     # Password encryption for data source manager
+
+# ── Web UI ───────────────────────────────────────────────────────────────────
+flask>=2.0.0
+flask-socketio>=5.0.0
+
+# ── Database Drivers ──────────────────────────────────────────────────────────
+pymysql>=1.0.0          # MySQL / TiDB
+psycopg2-binary>=2.9.0   # PostgreSQL / IvorySQL
+oracledb>=1.4.0         # Oracle (recommended, pure Python, no Instant Client)
+# cx_Oracle>=8.0.0      # Oracle (legacy, requires Oracle Instant Client)
+dmpython>=1.0.0         # Dameng DM8
+yasdb@ file:./drivers/yashandb/yasdb-1.2.0-py3-none-any.whl   # YashanDB (崖山数据库) — 需先从 GitHub Releases 下载 drivers.zip 并解压到 drivers/yashandb/ 目录
+pyodbc>=4.0.0           # SQL Server (also requires ODBC Driver 17)
+
+# ── SSH & Remote Collection ───────────────────────────────────────────────────
+paramiko>=2.10.0
+
+# ── Batch Inspection & Data Processing ───────────────────────────────────────
+openpyxl>=3.0.0
+pandas>=1.3.0
+
+# ── PDF Export ───────────────────────────────────────────────────────────────
+reportlab>=4.0.0          # PDF report generation (for config baseline & index health PDF export)
+# docx2pdf>=0.1.0        # Windows PDF conversion (optional, alternative to LibreOffice)
+
+# ── Automation & Notifications ────────────────────────────────────────────────
+apscheduler>=3.10.0      # Cron-style job scheduling for scheduled inspections
+PyPDF2>=3.0.1           # PDF manipulation for report generation

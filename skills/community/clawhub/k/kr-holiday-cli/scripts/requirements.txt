@@ -1,0 +1,2 @@
+holidays>=0.52
+korean-lunar-calendar>=0.3.1

@@ -1,0 +1,31 @@
+{
+  "name": "task-detection-thinking",
+  "version": "1.0.0",
+  "description": "Incomplete task detection + proactive thinking for OpenClaw agents",
+  "keywords": ["openclaw", "skill", "task-management", "proactive-thinking"],
+  "author": "OpenDolph",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenDolph/skills.git",
+    "directory": "task-detection-thinking"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": ["SKILL.md", "README.md", "scripts/", "locales/"],
+  "clawSkill": {
+    "name": "task-detection-thinking",
+    "displayName": {
+      "en": "Task Detection + Proactive Thinking",
+      "zh": "任务检测 + 主动思考"
+    },
+    "description": {
+      "en": "Automatically scans task status, identifies anomalies, generates solutions, and attempts auto-fixes",
+      "zh": "自动扫描任务状态，识别异常，生成解决方案，尝试自动修复"
+    },
+    "emoji": "🎯",
+    "category": "productivity",
+    "languages": ["en", "zh"]
+  }
+}

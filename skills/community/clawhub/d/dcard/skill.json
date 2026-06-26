@@ -1,0 +1,7 @@
+{
+  "name": "dcard",
+  "version": "0.1.0",
+  "description": "Fetch and extract full content from Dcard articles (Taiwan's largest anonymous forum). Handles Cloudflare protection using Camoufox stealth browser.",
+  "tags": ["dcard", "taiwan", "forum", "scraping", "social"],
+  "author": "ichendong"
+}

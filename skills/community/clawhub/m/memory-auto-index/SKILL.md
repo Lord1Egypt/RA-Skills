@@ -1,35 +1,245 @@
 ---
-name: "Memory Auto Index"
-description: "自动为 MEMORY.md 和 memory/ 目录下的记忆文件添加索引条目，支持标签分类和关键决策追踪"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-auto-index"
-sourceUrl: "https://clawhub.ai/skills/memory-auto-index"
+name: memory-auto-index
+description: 自动为 MEMORY.md 和 memory/ 目录下的记忆文件添加索引条目，支持标签分类和关键决策追踪
+metadata:
+  version: 1.0
+  author: 大聪明 🦞
 ---
 
-# Memory Auto Index
+# Memory Auto-Index Skill
 
-> 自动为 MEMORY.md 和 memory/ 目录下的记忆文件添加索引条目，支持标签分类和关键决策追踪
+自动为记忆系统添加索引条目，实现 `MEMORY.md` 索引与 `memory/` 目录内容的同步。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-auto-index`
-- **Source URL:** [https://clawhub.ai/skills/memory-auto-index](https://clawhub.ai/skills/memory-auto-index)
+---
 
-## Overview
+## 核心功能
 
+| 功能 | 描述 |
+|------|------|
+| **自动标签提取** | 从记忆内容中识别主题标签 |
+| **索引条目生成** | 在 MEMORY.md 索引区添加引用 |
+| **关键决策追踪** | 重大决策同步到决策表 |
+| **去重检测** | 避免重复索引条目 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 使用方式
+
+### 方式一：脚本调用
+
 ```bash
-hermes skills install clawhub/memory-auto-index
+./scripts/auto-index-memory.sh <文件路径> <主题> <标签列表>
 ```
+
+**示例：**
+```bash
+./scripts/auto-index-memory.sh memory/2026-04-12.md '天气预报格式优化' '天气，定时任务，偏好'
+```
+
+### 方式二：自动触发（推荐）
+
+在写入记忆文件后自动调用：
+
+```typescript
+// 伪代码示例
+async function writeMemory(entry: MemoryEntry) {
+  // 1. 写入记忆文件
+  await writeFile(`memory/${entry.date}.md`, entry.content);
+  
+  // 2. 自动添加索引
+  const tags = extractTags(entry.content);
+  const subject = extractSubject(entry.content);
+  await exec(`./scripts/auto-index-memory.sh memory/${entry.date}.md '${subject}' '${tags}'`);
+}
+```
+
+---
+
+## 标签体系
+
+### 预定义标签
+
+| 标签 | 用途 | 示例 |
+|------|------|------|
+| `#天气` | 天气相关配置/偏好 | 预报格式、推送时间 |
+| `#定时任务` | cron/定时任务配置 | 天气预报、提醒 |
+| `#指令响应` | 用户指令处理流程 | 响应话术、执行流程 |
+| `#上下文管理` | 上下文压缩/清理 | 压缩阈值、清理策略 |
+| `#网关运维` | OpenClaw 网关相关 | 重启、状态检查 |
+| `#子代理` | 子代理/会话管理 | 创建、清理、委派 |
+| `#偏好` | 用户偏好设置 | 输出格式、语言 |
+| `#决策` | 重要决策记录 | 架构选择、流程变更 |
+| `#故障` | 故障处理/修复 | 错误日志、解决方案 |
+| `#学习` | 经验总结 | 最佳实践、教训 |
+
+### 标签提取规则
+
+从记忆内容中自动识别：
+
+1. **标题关键词** → 映射到预定义标签
+2. **用户明确标注** → 使用 `## 标签：天气，定时任务` 格式
+3. **文件名** → `2026-04-12-weather.md` → `#天气`
+
+---
+
+## 索引格式
+
+### MEMORY.md 索引区结构
+
+```markdown
+## 📑 索引
+
+### 按主题
+- **#天气** 预报格式标准化 → `memory/2026-04-06.md#L15`
+- **#定时任务** 每日天气预报配置 → `memory/2026-04-06.md#L28`
+
+### 按项目
+- **OpenClaw 配置** → `memory/2026-04-03.md`, `memory/2026-04-06.md`
+- **天气预报服务** → `memory/preferences.md`, `memory/2026-04-06.md`
+
+### 关键决策
+| 日期 | 决策 | 位置 |
+|------|------|------|
+| 2026-04-06 | 天气预报格式标准化 | `memory/2026-04-06.md#L15` |
+```
+
+### 条目格式
+
+```
+- **#主标签** 主题描述 → `文件路径#L 行号`
+```
+
+---
+
+## 自动化流程
+
+### 记忆写入流程
+
+```
+用户指令/事件
+    ↓
+写入 memory/YYYY-MM-DD.md
+    ↓
+提取标签和主题
+    ↓
+调用 auto-index-memory.sh
+    ↓
+更新 MEMORY.md 索引
+    ↓
+（可选）更新分类文件
+```
+
+### 触发条件
+
+| 事件 | 是否索引 | 说明 |
+|------|----------|------|
+| 用户偏好变更 | ✅ | 添加到 `#偏好` 索引 |
+| 重要决策 | ✅ | 添加到决策表 + 相关标签 |
+| 故障修复 | ✅ | 添加到 `#故障` 索引 |
+| 日常日志 | ⚠️ | 仅当包含关键信息时 |
+| 问候/闲聊 | ❌ | 不索引 |
+
+---
+
+## 脚本说明
+
+### auto-index-memory.sh
+
+**位置：** `scripts/auto-index-memory.sh`
+
+**功能：**
+1. 解析参数（文件路径、主题、标签）
+2. 计算行号
+3. 检查重复
+4. 插入索引条目
+5. （可选）更新决策表
+
+**输出：**
+```
+✅ 索引已更新
+   主题：天气预报格式优化
+   标签：#天气
+   位置：memory/2026-04-06.md#L15
+```
+
+---
+
+## 维护指南
+
+### 定期清理
+
+每周检查一次索引：
+
+```bash
+# 检查无效引用（文件不存在）
+grep -oP '`memory/[^`]+`' MEMORY.md | while read ref; do
+  file=$(echo $ref | tr -d '`' | cut -d'#' -f1)
+  [ ! -f "$file" ] && echo "❌ 无效引用：$ref"
+done
+```
+
+### 行号更新
+
+文件内容变更后，行号可能失效。建议：
+
+1. 使用 **章节标题** 代替行号：`memory/2026-04-06.md#定时任务配置`
+2. 或定期运行脚本重新计算行号
+
+---
+
+## 扩展建议
+
+### 1. 语义搜索增强
+
+```bash
+# 添加全文索引
+./scripts/build-memory-index.sh
+# 生成 memory-index.json 供语义搜索使用
+```
+
+### 2. 标签云可视化
+
+```bash
+# 统计标签频率
+grep -oP '#\w+' MEMORY.md | sort | uniq -c | sort -rn
+```
+
+### 3. 自动分类文件同步
+
+当索引条目达到一定数量时，自动创建/更新分类文件：
+
+```
+memory/
+├── topics/
+│   ├── weather.md      # 所有#天气相关
+│   ├── tasks.md        # 所有#定时任务相关
+│   └── preferences.md  # 所有#偏好相关
+```
+
+---
+
+## 故障排除
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| 索引重复 | 主题识别不准确 | 手动指定唯一主题名 |
+| 行号错误 | 文件内容变更 | 使用章节标题引用 |
+| 标签混乱 | 缺少标签规范 | 使用预定义标签体系 |
+| 脚本失败 | 权限问题 | `chmod +x scripts/auto-index-memory.sh` |
+
+---
+
+## 相关文件
+
+- `MEMORY.md` - 主索引文件
+- `memory/` - 每日记忆目录
+- `scripts/auto-index-memory.sh` - 自动索引脚本
+- `AGENTS.md` - 记忆写入流程说明
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 变更 |
+|------|------|------|
+| 1.0 | 2026-04-12 | 初始版本，基础索引功能 |

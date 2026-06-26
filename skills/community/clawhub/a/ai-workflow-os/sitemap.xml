@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>skill://ai-workflow-os</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <title>AI Workflow Operating System / AI 工作流操作系统</title>
+    <slug>ai-workflow-os</slug>
+    <version>1.0.0</version>
+    <description>A bilingual AI workflow operating system that combines project lifecycle planning, project memory, task handoff, web and file intake, source filtering, knowledge-base governance, cross-source synthesis, and audit tracking into one unified skill.</description>
+    <description_zh>一个中英双语 AI 工作流操作系统，把项目生命周期规划、项目记忆、任务交接、网页与文件资料接入、来源筛选、知识库入库治理、多来源综合分析和审计追踪整合到一个统一 Skill 中。</description_zh>
+    <upgrade_note>This skill is the unified upgrade of the previous Project Lifecycle Navigator, Daily Workflow, and Web Search Rules skills. The Web Search Rules workflow is upgraded into Knowledge Intake Governance, supporting web pages, files, and multi-source research materials. Going forward, these workflows can be maintained together in this single bilingual package.</upgrade_note>
+    <upgrade_note_zh>这是此前 Project Lifecycle Navigator、Daily Workflow 和 Web Search Rules 三个 Skill 的统一升级版；其中 Web Search Rules 已升级为支持网页、文件和多来源资料的 Knowledge Intake Governance。以后这些工作流会合并在这个双语包里统一维护。</upgrade_note_zh>
+    <features>
+      <feature>Project lifecycle planning and MVP scope control</feature>
+      <feature>Project memory, checkpoints, wrap-up, and handoff</feature>
+      <feature>Web page and file intake governance</feature>
+      <feature>Source trust levels, staging, review, archive policy, and audit logs</feature>
+      <feature>Cross-source synthesis across web pages, PDFs, documents, spreadsheets, slides, images, datasets, and manual notes</feature>
+    </features>
+    <features_zh>
+      <feature>项目生命周期规划和 MVP 范围控制</feature>
+      <feature>项目记忆、检查点、收工和交接</feature>
+      <feature>网页和文件资料接入治理</feature>
+      <feature>来源可信度、暂存、审核、归档策略和审计日志</feature>
+      <feature>支持网页、PDF、文档、表格、幻灯片、图片、数据集和人工笔记的多来源综合分析</feature>
+    </features_zh>
+    <tags>ai-workflow, project-management, project-memory, knowledge-base, research-governance, source-filtering, file-intake, web-search, audit-log, handoff, bilingual, zh-cn, en</tags>
+    <files>
+      <file>SKILL.md</file>
+      <file>SECURITY.md</file>
+      <file>modules/project-lifecycle.md</file>
+      <file>modules/project-memory.md</file>
+      <file>modules/knowledge-intake-governance.md</file>
+      <file>modules/cross-source-synthesis.md</file>
+      <file>templates/knowledge-record-schema.md</file>
+      <file>references/migration-guide.md</file>
+      <file>references/usage-examples.md</file>
+    </files>
+  </url>
+</urlset>

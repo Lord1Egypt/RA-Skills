@@ -1,0 +1,26 @@
+profiles:
+  - name: manufacturer_grade
+    label: Primary supplier/manufacturer-grade SDS
+    authority: 3
+    match_any:
+      - manufacturer
+      - manufactured by
+      - producer
+      - sigma
+      - aldrich
+  - name: distributor_grade
+    label: Distributor/vendor-grade SDS
+    authority: 2
+    match_any:
+      - distributor
+      - vendor
+      - supplied by
+      - supplier
+  - name: aggregator_grade
+    label: Aggregator/reference-grade SDS
+    authority: 1
+    match_any:
+      - chemicalbook
+      - lookchem
+      - pubchem
+      - reference only

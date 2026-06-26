@@ -1,0 +1,29 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_save_informat_script",
+		"description": "Save Informat script file.\n\n【New vs Edit Judgment Rules - Must Strictly Follow】\n- New script: id not passed or empty, system will create a new file\n- Edit script: id must be passed, value comes from the script id field returned by _query_informat_script_list or _query_informat_script_content, do not fabricate it yourself\n- ⚠️ If the current task is to modify/update/supplement an existing script, you must first query to get the script's id, then call this function and pass the id, do not repeatedly create a file with the same name due to missing id\n- ⚠️ If a script's id already exists in the context (e.g., just created or just queried in this conversation), you must directly reuse that id, do not recreate\n\n【Directory Rules】\n- If the script needs to be placed in a certain directory, parentId must be passed (from the id field of the directory query result)\n\n【File Splitting Rules】\n- If a single file content exceeds 300 lines or 8000 characters, it must be actively split into multiple files\n- When context is too long and causes errors, it should also be split into multiple script files\n\n【Important Function Export Specifications (Must Follow)】\n\n1️⃣ If functions in the script will be called by 【Automation / API / Controls / AI Agent / Scheduled Tasks】, the function must be explicitly exported\n\n2️⃣ Only ES Module method is allowed to export functions:\n\n✅ Correct example:\n```js\nexport function getNewsList() {}\nexport function getNewsDetail(id) {}\n```\n\n❌ Prohibited: CommonJS module.exports / exports method, for example:\n```js\n// ❌ Prohibited\nmodule.exports = {\n  getNewsList,\n  getNewsDetail\n}\n```\n\n3️⃣ Reason explanation:\n- Informat script runtime environment is based on ES Module specification\n- Automation, API, controls and AI calls rely on static function parsing\n- Using module.exports will cause functions to be unrecognizable and unbindable\n\n4️⃣ Unexported functions:\n- Can only be used as internal private methods in the script\n- Not allowed to be directly called by automation, API, controls, scheduled tasks or AI\n\n【Platform Built-in API Call Specifications】\n- Platform built-in APIs are uniformly called through the global namespace `informat`\n✅ Correct example: informat.table.query(query)\n❌ Wrong example (prohibited): $informat.table.query(query)",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "Script ID. 【Required for edit scenario】If the current operation is to modify, update, or supplement an existing script, this field must be passed. The value comes from the script id field returned by _query_informat_script_list, or the id returned when querying a specific script through _query_informat_script_content, or the script id already obtained in this conversation. Do not fabricate it yourself. If not passed, it is considered new and a new file will be created. Please confirm the scenario before deciding whether to pass it.",
+					"type": "string"
+				},
+				"name": {
+					"description": "File name, such as index.js. Must end with .js, only use English, and file names cannot be duplicated in the same directory. When editing an existing script, the file name should be consistent with the original file unless there is a clear rename requirement.",
+					"type": "string"
+				},
+				"content": {
+					"description": "Complete content of the script file. When editing a script, you must pass the complete modified content, not just the changed part.",
+					"type": "string"
+				},
+				"parentId": {
+					"description": "Parent directory ID. Must be passed if the script needs to be placed in a certain directory.",
+					"type": "string"
+				}
+			},
+			"required": ["name", "content"]
+		}
+	}
+}

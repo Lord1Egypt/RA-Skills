@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Security Kms"
-description: "Key lifecycle management with Volcengine KMS. Use when users need key creation, rotation policies, encryption/decryption workflows, or key permission troubleshooting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-security-kms"
-sourceUrl: "https://clawhub.ai/skills/volcengine-security-kms"
+name: volcengine-security-kms
+description: Key lifecycle management with Volcengine KMS. Use when users need key creation, rotation policies, encryption/decryption workflows, or key permission troubleshooting.
 ---
 
-# Volcengine Security Kms
+# volcengine-security-kms
 
-> Key lifecycle management with Volcengine KMS. Use when users need key creation, rotation policies, encryption/decryption workflows, or key permission troubleshooting.
+Operate KMS keys with lifecycle awareness and least-privilege access checks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-security-kms`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-security-kms](https://clawhub.ai/skills/volcengine-security-kms)
+## Execution Checklist
 
-## Overview
+1. Confirm key purpose, algorithm, and usage scope.
+2. Create or select key and validate policy bindings.
+3. Execute encrypt/decrypt/sign task.
+4. Return key metadata, operation result, and audit hints.
 
+## Safety Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-security-kms
-```
+- Never expose plaintext secrets in logs.
+- Rotate keys according to policy windows.
+- Validate caller permissions before key operations.
+
+## References
+
+- `references/sources.md`

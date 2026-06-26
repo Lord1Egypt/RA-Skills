@@ -1,0 +1,4 @@
+zxingcpp
+Pillow
+openpyxl
+qrcode

@@ -1,0 +1,49 @@
+{
+  "keywords": [
+    "AI Agent framework",
+    "LangChain new release",
+    "AutoGen update",
+    "CrewAI",
+    "LlamaIndex",
+    "Multi-agent system research",
+    "Agentic AI",
+    "AI Agent tutorial"
+  ],
+  "rss_sources": [
+    {
+      "name": "Hacker News AI",
+      "url": "https://hnrss.org/newest?q=ai+agent"
+    },
+    {
+      "name": "Anthropic Blog",
+      "url": "https://www.anthropic.com/news/rss.xml"
+    },
+    {
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog/rss/"
+    },
+    {
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml"
+    },
+    {
+      "name": "LangChain Blog",
+      "url": "https://blog.langchain.dev/rss/"
+    }
+  ],
+  "feishu": {
+    "channel_id": "oc_6936052e1c870df24dc1fd757dec77fd"
+  },
+  "filters": {
+    "min_relevance": 0.7,
+    "max_items_per_category": 5,
+    "time_range": "24h"
+  },
+  "categories": {
+    "headline": ["发布", "重磅", "major", "launch"],
+    "framework": ["LangChain", "AutoGen", "CrewAI", "LlamaIndex", "framework"],
+    "research": ["paper", "arXiv", "论文", "research"],
+    "company": ["Anthropic", "OpenAI", "Google", "Microsoft", "公司"],
+    "application": ["应用", "case study", "implementation", "落地"]
+  }
+}

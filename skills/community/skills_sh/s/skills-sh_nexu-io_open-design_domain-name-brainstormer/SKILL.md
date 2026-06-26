@@ -1,35 +1,43 @@
 ---
-name: "domain-name-brainstormer"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/domain-name-brainstormer"
-sourceUrl: "https://skills.sh/nexu-io/open-design/domain-name-brainstormer"
+name: domain-name-brainstormer
+description: |
+  Generate creative domain name ideas and check availability across multiple TLDs including .com, .io, .dev, and .ai.
+triggers:
+  - "domain name"
+  - "brainstorm domain"
+  - "tld check"
+  - "startup name"
+  - "product name"
+od:
+  mode: design-system
+  category: marketing-creative
+  upstream: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/domain-name-brainstormer"
 ---
 
 # domain-name-brainstormer
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from ComposioHQ awesome-claude-skills.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/domain-name-brainstormer`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/domain-name-brainstormer](https://skills.sh/nexu-io/open-design/domain-name-brainstormer)
+## What it does
 
-## Overview
+Generate creative domain name ideas and check availability across multiple TLDs including .com, .io, .dev, and .ai.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/ComposioHQ/awesome-claude-skills/tree/master/domain-name-brainstormer
+- Category: `marketing-creative`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/domain-name-brainstormer
+# Inspect the upstream README for exact paths
+open https://github.com/ComposioHQ/awesome-claude-skills/tree/master/domain-name-brainstormer
 ```
+
+Then ask the agent to invoke this skill by name (`domain-name-brainstormer`) or with
+one of the trigger phrases listed in this skill's frontmatter.

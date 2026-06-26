@@ -1,35 +1,184 @@
 ---
-name: "yzl-iot-api"
-description: "⛔ 已停止维护，请迁移至 YZL-AIoT。云智联 IoT 设备管理API v1.5.0（最终版）"
-category: "software-development"
-source: "ClawHub"
-tags: [test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yzl-iot-api"
-sourceUrl: "https://clawhub.ai/skills/yzl-iot-api"
+name: yzl-iot-api
+description: ⛔ 已停止维护，请迁移至 YZL-AIoT。云智联 IoT 设备管理API v1.5.0（最终版）
+homepage: https://github.com/openclaw/skills/tree/main/yzl-iot-api
+metadata: { "openclaw": { "requires": { "bins": ["python3"], "env": ["YZLIOT_API_KEY"] } } }
 ---
 
-# yzl-iot-api
+## ⚙️ 运行时要求
 
-> ⛔ 已停止维护，请迁移至 YZL-AIoT。云智联 IoT 设备管理API v1.5.0（最终版）
+- **Python 3.6+** （需要 json, os, sys, http.client, time, collections 等标准库）
+- **环境变量 `YZLIOT_API_KEY`** - 必需，请从云智联小程序获取
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yzl-iot-api`
-- **Source URL:** [https://clawhub.ai/skills/yzl-iot-api](https://clawhub.ai/skills/yzl-iot-api)
+> ⛔ **⚠️ 此技能已停止维护**
+>
+> `yzl-iot-api` 已停止更新，未来不再维护。
+> 请使用新技能 **YZL-AIoT** 替代本技能，功能相同且有后续更新支持。
+> 安装命令：`clawhub install yzl-aiot`
 
-## Overview
+## 🌱 云智联 IoT 设备管理
 
+**一句话就能获取设备数据和发送控制指令！**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yzl-iot-api
+## ⚡ 快速使用
+
+用户只需说：
+
+- "获取传感器数据" → 自动获取所有土壤温湿度云传感器的温湿度
+- "获取液位" / "液位数据" → 自动获取液位传感器的液位数据
+- "打开电磁阀" / "开启水阀" → 开启远程电磁阀
+- "关闭电磁阀" / "关闭水阀" → 关闭远程电磁阀
+
+## 📋 支持的设备
+
+### 土壤温湿度云传感器
+
+| 型号前缀 | 说明 |
+|----------|------|
+| YZLSTM1 | 土壤温湿度云传感器标准款 |
+| STMCBL | 土壤温湿度云传感器加长款 |
+| STMCS1 | 土壤温湿度云传感器太阳能款 |
+
+**获取数据：** 温度(wd)、湿度(sf)
+
+### 远程电磁阀
+
+| 型号前缀 | 说明 |
+|----------|------|
+| WA1CB1 | 远程电磁阀低功耗版本 |
+| WANCD1 | 4G水阀 |
+
+**控制指令：** 通过 kk1 设施控制开(1)/关(0)
+
+### 低功耗液位传感器
+
+| 型号前缀 | 说明 |
+|----------|------|
+| YZLWP01 | 低功耗液位传感器 |
+
+**获取数据：** 液位(yw)
+
+## 📖 自然语言示例
+
 ```
+用户: "帮我看看传感器数据"
+→ 返回所有土壤温湿度云传感器的温湿度
+
+用户: "获取液位"
+→ 返回液位传感器的液位数据
+
+用户: "打开电磁阀"
+→ 开启远程电磁阀
+
+用户: "关闭水阀"
+→ 关闭远程电磁阀
+```
+
+## 🔧 手动命令（可选）
+
+如果需要更精细控制：
+
+```bash
+# 获取所有设备
+python3 tool.py all
+
+# 查看设备详情
+python3 tool.py device 设备ID
+
+# 开启电磁阀
+python3 tool.py send WA1CB1-0000000007 SetFac '["WA1CB1-0000000007","kk1","1"]'
+
+# 关闭电磁阀
+python3 tool.py send WA1CB1-0000000007 SetFac '["WA1CB1-0000000007","kk1","0"]'
+```
+
+> ⛔ 此技能已停止维护，请使用 **YZL-AIoT**。
+
+## 🔄 自动版本更新检测 (v1.5.0+ — 最终版)
+
+本技能在 v1.5.0 后停止维护，自动更新检测仅用于提醒用户迁移到 YZL-AIoT。
+
+### 工作方式
+
+1. **自动检测**: 每次运行工具时，静默向 ClawHub 查询最新版本
+2. **缓存机制**: 每 12 小时只检测一次，减少网络请求
+3. **离线容错**: 网络不可用时使用上次缓存结果，不阻塞你的操作
+
+### 手动检查
+
+```bash
+python3 tool.py check-update
+```
+
+### 迁移方法
+
+```bash
+# 安装新技能 YZL-AIoT
+clawhub install yzl-aiot
+
+# 卸载旧技能（可选）
+clawhub uninstall yzl-iot-api
+```
+
+## ⚡ 请求频率限制
+
+工具已内置请求频率控制，自动处理以下限制：
+
+| 接口 | 限制速率 |
+|------|----------|
+| 获取所有设备 | 10次/10秒 |
+| 获取设备列表 | 5次/10秒 |
+| 获取设备详情 | 10次/10秒 |
+| 获取历史数据 | 2次/10秒 |
+| 发送指令 | 2次/5秒 |
+| 获取指令详情 | 2次/5秒 |
+| 获取指令列表 | 2次/10秒 |
+
+当触发频率限制时，会返回错误信息。
+
+## 版本历史
+
+### v1.5.0 (2026-06-03) — 🚫 最终版
+- ✨ 新增自动版本更新检测功能
+- ✨ 每次运行工具静默检测 ClawHub 最新版本
+- ✨ 自动提醒用户迁移到 **YZL-AIoT**
+- ✨ 新增 `check-update` 子命令手动检查版本
+- ⛔ **此版本为 yzl-iot-api 最终版，后续不再维护**
+- 🚚 **请迁移至 YZL-AIoT：** `clawhub install yzl-aiot`
+
+### v1.3.9 (2026-04-21)
+- 修复版本号显示问题
+
+### v1.3.8 (2026-04-21)
+- 修复版本号显示问题
+
+### v1.3.7 (2026-04-21)
+- 移除硬编码的默认 API 密钥，增强安全性
+- YZLIOT_API_KEY 现在为必需环境变量
+- 修复声明与运行时行为不一致的问题
+
+### v1.3.6 (2026-04-21)
+- 同步用户更新，增加详细设备型号说明
+- 土壤温湿度云传感器: YZLSTM1(标准款)、STMCBL(加长款)、STMCS1(太阳能款)
+- 远程电磁阀: WA1CB1(低功耗版)、WANCD1(4G水阀)
+- 低功耗液位传感器: YZLWP01
+
+### v1.3.4 (2026-04-21)
+- 新增低功耗液位传感器支持 (YZLWP01)
+- 土壤温湿度云传感器支持多型号 (YZLSTM1, STMCBL, STMCS1)
+- 远程电磁阀支持多型号 (WA1CB1, WANCD1)
+- 优化设备类型识别和中文显示
+
+### v1.3.3 (2026-04-20)
+- 新增智能自然语言命令（自动识别设备型号）
+- 按设备型号自动识别传感器(YZLSTM1)和电磁阀(WA1CB1)
+- 新增 cmd_smart() 支持自然语言交互
+
+### v1.3.2 (2026-04-20)
+- 移除自动重试逻辑，避免重复发送指令
+- 新增内置 API Key（默认）
+- 新增电磁阀控制支持
+- 新增内置请求频率限制控制
+
+### v1.2.3 (2026-04-09)
+- 添加 homepage 和 metadata 字段

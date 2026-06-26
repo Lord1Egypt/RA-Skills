@@ -1,0 +1,243 @@
+# Default workflow adapter for CompleteTech LLC agentic services engagements.
+# This preserves the existing skill library lifecycle while making it a
+# configurable adapter of the universal orchestration core.
+
+workflow_type: completetech_services
+label: CompleteTech Agentic Services Workflow
+default: true
+schema_version: 1.0.0
+
+stages:
+  - id: discovery
+    label: Discovery
+    purpose: Convert opportunity into verified workflow facts and proposal handoff.
+  - id: proposal
+    label: Proposal
+    purpose: Produce buyer-facing scope, pilot/SOW, roadmap, or change order.
+  - id: contract
+    label: Contract
+    purpose: Generate agreement package from approved commercial/legal facts.
+  - id: delivery
+    label: Delivery
+    purpose: Execute approved scope, project controls, evaluation, launch readiness, runbook, and closeout.
+  - id: customer_success
+    label: Customer Success
+    purpose: Maintain account health, renewal/expansion, escalations, advocacy, and support state.
+
+support_outputs:
+  - invoice
+  - certificate
+  - case_study
+  - email
+  - envelope
+
+allowed_transitions:
+  - from: discovery
+    to: discovery
+    when: new opportunity, unclear facts, or re-discovery is required
+  - from: discovery
+    to: proposal
+    when: proposal-required facts are sufficient or marked TBD for draft-only work
+  - from: proposal
+    to: contract
+    when: commercial approval is approved or conditional within listed limits
+  - from: contract
+    to: delivery
+    when: legal/signature and kickoff authority are clear
+  - from: delivery
+    to: customer_success
+    when: handoff, support, closeout, renewal, expansion, or advocacy is needed
+  - from: delivery
+    to: proposal
+    when: new scope, failed assumption, or change order appears
+  - from: proposal
+    to: discovery
+    when: buyer facts, success criteria, systems, or authority become unclear and rediscovery is required
+  - from: contract
+    to: discovery
+    when: client identity, authority, or required source facts become unclear and rediscovery is required
+  - from: delivery
+    to: discovery
+    when: delivery evidence invalidates the original workflow facts and rediscovery is required
+  - from: customer_success
+    to: discovery
+    when: renewal, expansion, or account-change facts require rediscovery before commercial action
+  - from: contract
+    to: proposal
+    when: commercial approval is reopened, scope changes, or proposal terms are superseded
+  - from: delivery
+    to: contract
+    when: signature authority, legal terms, or kickoff authorization is reopened or superseded
+  - from: customer_success
+    to: delivery
+    when: post-launch remediation, handoff correction, or support evidence requires delivery-owner action
+  - from: customer_success
+    to: proposal
+    when: renewal, expansion, or change-order scope needs commercial approval
+
+artifacts:
+  - artifact_type: discovery_brief
+    owner: agentic-discovery-skill
+    version_policy: revise existing brief unless scope materially changes
+  - artifact_type: proposal_or_sow
+    owner: agentic-proposal-skill
+    version_policy: revise, supersede, or fork for distinct scope/audience
+  - artifact_type: contract_package
+    owner: agentic-contract-skill
+    version_policy: never invent legal or signature facts; supersede on approved term changes
+  - artifact_type: delivery_record
+    owner: agentic-delivery-skill
+    version_policy: keep inside approved scope; open change track for new work
+  - artifact_type: customer_success_record
+    owner: agentic-customer-success-skill
+    version_policy: append account health and commitments with decision evidence
+  - artifact_type: invoice
+    owner: agentic-invoice-skill
+    version_policy: draft until billing approval is current
+  - artifact_type: certificate
+    owner: agentic-certificate-skill
+    version_policy: generate only from verified recipient and training facts
+  - artifact_type: case_study
+    owner: agentic-case-study-skill
+    version_policy: draft until public-proof approval and confidentiality review are current
+  - artifact_type: email
+    owner: agentic-email-skill
+    version_policy: draft copy only; external send approval is separate
+  - artifact_type: envelope
+    owner: agentic-envelope-skill
+    version_policy: package artifacts only; do not author business content
+  - artifact_type: security_review
+    owner: agentic-security-review-skill
+    version_policy: use only for security-sensitive risk, permissions, credentials, launch, incidents, or confidentiality
+
+specialist_owners:
+  discovery: agentic-discovery-skill
+  proposal: agentic-proposal-skill
+  contract: agentic-contract-skill
+  delivery: agentic-delivery-skill
+  customer_success: agentic-customer-success-skill
+  invoice: agentic-invoice-skill
+  certificate: agentic-certificate-skill
+  case_study: agentic-case-study-skill
+  email: agentic-email-skill
+  envelope: agentic-envelope-skill
+  security_review: agentic-security-review-skill
+
+gates:
+  - gate_id: commercial
+    owner: client commercial approver
+    category: non_security
+    applies_when: pricing, scope, assumptions, exclusions, acceptance criteria, or change order authorize work
+  - gate_id: legal_or_contract
+    owner: legal/signatory authority
+    category: non_security
+    applies_when: contract send, signature, legal commitment, or delivery start depends on legal authority
+  - gate_id: billing
+    owner: billing/accounting approver
+    category: non_security
+    applies_when: invoice issuance, payment request, credits, receipts, taxes, purchase orders, or payment instructions are involved
+  - gate_id: recipient_or_external_send
+    owner: sender/client contact authority
+    category: non_security
+    applies_when: email, envelope, attachment package, or external send is requested
+  - gate_id: public_proof
+    owner: client proof approver
+    category: non_security
+    applies_when: case study, named quote, testimonial, public reference, or proof reuse is requested
+  - gate_id: client_authority
+    owner: account sponsor or delegated owner
+    category: non_security
+    applies_when: stakeholder authority, owner, or decision source is unclear
+  - gate_id: security
+    owner: security reviewer
+    category: security_sensitive
+    applies_when: sensitive data, credentials, permissions, new tools, production impact, incidents, or confidentiality risk appear
+
+approval_states:
+  - unknown
+  - draft
+  - requested
+  - partial
+  - approved
+  - rejected
+  - expired
+  - superseded
+  - blocked
+  - conditional
+
+routing_rules:
+  - id: use_adapter_first
+    when: workflow_type is completetech_services or unspecified
+    action: load this adapter as default
+  - id: earliest_missing_artifact
+    when: no explicit target is supplied
+    action: route to earliest missing stage allowed by current dependencies
+  - id: explicit_safe_target
+    when: user requests a specific artifact and required inputs are present
+    action: route to owning specialist
+  - id: security_sensitive_triage
+    when: sensitive data, credentials, new permissions, production impact, incidents, or confidentiality risk appear
+    action: route to agentic-security-review-skill
+  - id: non_security_gate
+    when: commercial, legal, billing, send, public proof, or client authority is needed
+    action: route to applicable owner or specialist, not security by default
+  - id: scope_change
+    when: delivery uncovers new scope or user requests out-of-scope work
+    action: keep current delivery bounded and open proposal/change-order track
+  - id: duplicate_artifact
+    when: existing artifact serves the same purpose
+    action: revise, supersede, fork, archive, or reference with rationale
+
+recovery_actions:
+  - id: targeted_questions
+    applies_when: missing facts block safe action
+    output: shortest question set needed to unblock the track
+  - id: draft_only_output
+    applies_when: downstream artifact is useful but not approved
+    output: clearly marked draft with blockers and approvals required
+  - id: fallback_owner
+    applies_when: stakeholder unavailable
+    output: suggested owner or `TBD` owner plus waiting decision
+  - id: safe_partial_output
+    applies_when: partial approval permits limited work
+    output: artifact or handoff constrained to approved scope
+  - id: rollback_or_hold
+    applies_when: launch/external action is unsafe
+    output: stop action, preserve state, name evidence required
+
+required_fields:
+  - client.legal_name
+  - client.primary_contact_name
+  - client.primary_contact_email
+  - opportunity.repeated_workflow
+  - opportunity.current_pain
+  - opportunity.desired_outcome
+  - discovery.workflow_inputs
+  - discovery.workflow_outputs
+  - discovery.approval_points
+  - proposal.scope_summary
+  - proposal.deliverables
+  - proposal.total_fee
+  - proposal.payment_terms
+  - delivery.access_requirements
+
+terminal_states:
+  - id: closed
+    allows_open_blockers: false
+  - id: superseded
+    allows_open_blockers: true
+    requires_rationale: true
+  - id: abandoned
+    allows_open_blockers: true
+    requires_rationale: true
+
+validation_rules:
+  - invalid_transition
+  - missing_owner
+  - orphaned_blocker
+  - stale_approval
+  - artifact_without_source_or_version
+  - gate_bypassed_without_rationale
+  - unresolved_conflict
+  - terminal_state_with_open_blockers
+  - external_action_without_approval_evidence

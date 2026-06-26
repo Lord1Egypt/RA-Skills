@@ -1,35 +1,34 @@
 ---
-name: "ZAI Coding Plan Usage"
-description: "Query Z.ai (智谱) Coding Plan usage and quota limits. Track token consumption, MCP usage, and subscription status. Use when user asks about "智谱用量"、"ZAI usage"、..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zai-coding-plan-usage"
-sourceUrl: "https://clawhub.ai/skills/zai-coding-plan-usage"
+name: zai-coding-plan-usage
+description: Query Z.ai (智谱) Coding Plan usage and quota limits. Track token consumption, MCP usage, and subscription status. Use when user asks about "智谱用量"、"ZAI usage"、"coding plan usage"、"quota"、"智谱配额"。
 ---
 
-# ZAI Coding Plan Usage
+# Z.ai Coding Plan Usage Query
 
-> Query Z.ai (智谱) Coding Plan usage and quota limits. Track token consumption, MCP usage, and subscription status. Use when user asks about "智谱用量"、"ZAI usage"、...
+Query Z.ai (智谱 AI) Coding Plan usage and quota limits.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zai-coding-plan-usage`
-- **Source URL:** [https://clawhub.ai/skills/zai-coding-plan-usage](https://clawhub.ai/skills/zai-coding-plan-usage)
+## Usage
 
-## Overview
+Just say:
+- "智谱用量查询"
+- "Check ZAI usage"
+- "coding plan usage"
 
+## Script
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/zai-coding-plan-usage
+node ~/.openclaw/workspace/skills/zai-coding-plan-usage/scripts/query-usage.mjs
 ```
+
+## API Endpoints
+
+| API | Endpoint | Description |
+|-----|----------|-------------|
+| Model usage | `/api/monitor/usage/model-usage` | Model call statistics |
+| Tool usage | `/api/monitor/usage/tool-usage` | Tool call statistics |
+| Quota limit | `/api/monitor/usage/quota/limit` | Quota limits |
+
+## Notes
+
+- API Key is automatically read from OpenClaw config or environment variables
+- Works only in environments with Z.ai API configured

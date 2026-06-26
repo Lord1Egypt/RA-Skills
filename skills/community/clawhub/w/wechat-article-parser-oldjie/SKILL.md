@@ -1,35 +1,87 @@
 ---
-name: "微信公众号文章解析器"
-description: "解析微信公众号文章，提取核心要点和干货。当用户发送公众号文章链接时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-article-parser-oldjie"
-sourceUrl: "https://clawhub.ai/skills/wechat-article-parser-oldjie"
+name: wechat-article-parser
+description: 解析微信公众号文章，提取核心要点和干货。当用户发送公众号文章链接时使用。
 ---
 
 # 微信公众号文章解析器
 
-> 解析微信公众号文章，提取核心要点和干货。当用户发送公众号文章链接时使用。
+## 执行命令
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-article-parser-oldjie`
-- **Source URL:** [https://clawhub.ai/skills/wechat-article-parser-oldjie](https://clawhub.ai/skills/wechat-article-parser-oldjie)
+提取文章内容：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/wechat-article-parser-oldjie
+cd ./.claude/skills/wechat-article-parser/scripts && node fetch-wechat.js <URL>
 ```
+
+## 输出原则
+
+**核心目标：让用户省时间的同时不漏重点。**
+
+### 输出要求
+
+1. **只输出文章实际有的内容** - 不脑补、不杜撰、不推理未提及的信息
+2. **根据文章类型调整输出方式**：
+   - 干货/资讯类：简洁聚焦，提取核心要点
+   - 推介/评测类：保留趣味，不过度精简，展现文章想表达的感觉
+   - **变化/事件类（最重要）**：这是最容易省掉"原本怎样→后来怎样"的文章类型，务必理清：
+     - **事件背景/过去是怎样的**：文章开头描述的原本状态
+     - **发生了什么变化**：具体发生了什么改动、政策、技术更新等
+     - **变化的原因/出发点**：为什么突然要变
+     - **具体影响是什么**：对谁有影响、哪些渠道被保留/限制
+     - **争议/隐忧**：文章结尾的观点和担忧
+     - **谁受影响、谁不受影响**
+   - 发布会/产品发布类：这是最容易变成"名词罗列"的类别，务必理清：
+     - 每个产品/技术的**背景**（为什么出现/为什么重要）
+     - 每个产品**解决什么问题**
+     - 产品之间的**逻辑关系和演进顺序**
+     - 必要时说明**谁、在哪里、说了什么**
+   - 逻辑论证类：理清"观点→质疑点→证据"链条
+   - **科普/历史/故事类长文**：这是最容易丢失细节的类别，务必保留：
+     - 关键人物名字、具体案例、具体场景
+     - 具体的数据、年份、时间线
+     - 具体的例子（如"糖丸"这种标志性事物）
+     - 事件的来龙去脉和因果关系
+     - 如果文章本身很有价值、很有深度，建议用户去读原文，而不是强行总结失去味道
+3. **保留具体案例和细节** - 这是最容易遗漏的部分：
+   - 能体现"好/坏/重要"在哪里的例子要保留（如文中人物说的话、具体场景）
+   - 关键人物的名字、头衔、贡献
+   - 具体的数据（百分比、人数、金额、时间）
+   - 具体的年份和时间线
+   - 标志性的事物或比喻（如"糖丸"）
+   - 事件的具体经过和因果关系
+4. **附上链接和价格**
+   - 文中提供的链接：务必标注
+   - 产品/服务类文章：附上官方服务/产品链接（标注"注"），而不是官网首页
+   - 价格信息：如文中提到价格，务必附上
+5. **关注文末隐忧/反问** - 作者真正想表达的观点常在文末的开放式问题或反问句中
+6. **避免单纯罗列** - 不要用"- ..."的碎片化形式堆砌名词和数据，而是用连贯的叙述说明逻辑关系
+
+### 输出格式
+
+```
+## 核心要点
+- [最关键的点]
+
+### [根据文章内容决定小标题]
+- ...
+
+### 参考来源
+- [文中提供的链接]
+```
+
+### 注意事项
+
+- 如果文章没有链接，不要自己加
+- 如果没有具体案例，不要编
+- 如果是软文/推广，如实标注
+- 质疑/反驳类内容也不要遗漏
+
+## 脚本位置
+
+`./scripts/fetch-wechat.js`
+
+## 依赖
+
+- Node.js
+- playwright
+- cheerio

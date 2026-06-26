@@ -1,35 +1,45 @@
 ---
-name: "Daily Report Joig"
-description: "生成简洁的中文日报（highlights/blockers/next），并可落盘为 Markdown 文件，适合个人复盘与同步。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-report-joig"
-sourceUrl: "https://clawhub.ai/skills/daily-report-joig"
+name: daily-report-joig
+description: 生成简洁的中文日报（highlights/blockers/next），并可落盘为 Markdown 文件，适合个人复盘与同步。
+user-invocable: true
+metadata: {"openclaw": {"emoji": "🗒️"}}
 ---
 
-# Daily Report Joig
+# Daily Report (joig)
 
-> 生成简洁的中文日报（highlights/blockers/next），并可落盘为 Markdown 文件，适合个人复盘与同步。
+## Inputs
+- date（必填）：YYYY-MM-DD 或 YYYY/MM/DD
+- highlights（必填）：字符串数组，例如：["在 azure vm 上部署 openclaw","尝试写 skill"]
+- blockers（可选）：字符串数组
+- next（可选）：字符串数组（明日/下一步）
+- outputPath（可选）：默认 `reports/{date}-daily-report.md`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-report-joig`
-- **Source URL:** [https://clawhub.ai/skills/daily-report-joig](https://clawhub.ai/skills/daily-report-joig)
+## Output
+返回固定结构：
+- status: ok|error
+- summary: 一句话总结
+- data: { date, outputPath }
+- nextAction: 建议的下一步
 
-## Overview
+## Behavior
+1) 规范化日期格式为 YYYY-MM-DD
+2) 生成 Markdown：
 
+```md
+# 日报（{{date}}）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-report-joig
+## Highlights
+- ...
+
+## Blockers
+- ...
+
+## Next
+- ...
 ```
+
+3) 写入 outputPath（确保父目录存在）
+
+## Boundaries
+- 不输出/复述任何 token、密钥、个人隐私。
+- 不做绩效/压力话术；强调可执行与复盘。

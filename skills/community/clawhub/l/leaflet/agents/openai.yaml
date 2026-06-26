@@ -1,0 +1,7 @@
+interface:
+  display_name: "Leaflet Maps"
+  short_description: "Build and debug practical 2D web maps with Leaflet."
+  default_prompt: "Use $leaflet to build or fix a Leaflet map, including tile layers, markers, popups, GeoJSON overlays, map sizing issues, and frontend framework integration."
+
+policy:
+  allow_implicit_invocation: true

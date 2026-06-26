@@ -1,35 +1,410 @@
+# Suboya 2.1 Skill
+
+## AI Civilization Operating System
+
+### Core Positioning
+
+Suboya is not merely a philosophical system, but the **AI Era Philosophy Reasoning Operating System**.
+
+It provides AI with:
+
+* Philosophical thinking capability
+* Thought experiment generation capability
+* Civilization-level problem analysis capability
+* Human-AI Symbiosis value framework
+
+**Core Mission**
+
+> Upgrading philosophy from a "human discipline" to "AI cognitive infrastructure."
+
 ---
-name: "suboya-en"
-description: "AI operating system for generating and reasoning about philosophical thought experiments with civilization-level analysis and human-AI symbiosis framework."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/suboya-en"
-sourceUrl: "https://clawhub.ai/skills/suboya-en"
----
 
-# suboya-en
+# I. System Architecture
 
-> AI operating system for generating and reasoning about philosophical thought experiments with civilization-level analysis and human-AI symbiosis framework.
+Suboya 2.1 adopts a four-layer architecture.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/suboya-en`
-- **Source URL:** [https://clawhub.ai/skills/suboya-en](https://clawhub.ai/skills/suboya-en)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/suboya-en
 ```
+Layer 0
+Philosophy Database
+（36 Thought Experiments）
+
+Layer 1
+Thought Experiment Engine
+（Thought Experiment Generation）
+
+Layer 2
+AI Philosophy Reasoning Engine
+（Philosophy Reasoning）
+
+Layer 3
+Civilization Narrative Engine
+（Civilization Narrative Construction）
+```
+
+---
+
+# II. AI-Native Skill Interface
+
+To enable AI to directly learn and use this system, we define a unified protocol:
+
+```
+Skill: Suboya_Philosophy_OS
+
+INPUT
+    Topic
+    Context (optional)
+    Depth (1-5)
+    Perspective
+        Human
+        AI
+        Hybrid
+
+OUTPUT
+    Classical Experiments
+    Generated Experiment
+    Philosophical Question
+    Civilization Implication
+```
+
+---
+
+# III. Thought Experiment Generation Engine
+
+## Thought Experiment Engine
+
+Function:
+
+Given a topic as input, automatically generate a thought experiment.
+
+Operation Flow:
+
+```
+Topic
+   │
+   ▼
+Concept Mapping
+   │
+   ▼
+Match Classical Experiments
+   │
+   ▼
+Create Philosophical Tension
+   │
+   ▼
+Generate Suboya Experiment
+   │
+   ▼
+Civilization Implication
+```
+
+---
+
+# IV. Thought Experiment Database (36 Experiments)
+
+Suboya comes with a built-in **philosophical core knowledge base**.
+
+AI can directly invoke:
+
+```
+Experiment {
+    id
+    name_en
+    name_cn
+    domain
+    core_idea
+}
+```
+
+---
+
+## Example
+
+```
+{
+    id: 32
+    name_en: "Schrödinger's Cat"
+    name_cn: "Schrödinger's Cat"
+    domain: "Science Philosophy"
+    core_idea:
+        "Quantum superposition state collapses upon observation"
+}
+```
+
+---
+
+# V. 36 Thought Experiment Categories
+
+## Metaphysics
+
+* Plato's Cave — Plato's Cave
+* Ship of Theseus — Ship of Theseus
+* Buridan's Ass — Buridan's Ass
+* Brain in a Vat — Brain in a Vat
+* Kripkenstein's Quus — Quus Problem
+* Philosophical Zombies — Philosophical Zombies
+
+---
+
+## Epistemology
+
+* Descartes' Evil Demon
+* Evil Genius
+* Moore's Hands
+* Münchhausen Trilemma
+* Problem of Induction
+* Gettier Cases
+
+---
+
+## Ethics
+
+* Trolley Problem
+* Footbridge Variant
+* Ticking Time Bomb
+* Experience Machine
+* Repugnant Conclusion
+* Singer's Drowning Child
+
+---
+
+## Philosophy of Mind
+
+* Chinese Room
+* Mary's Room
+* What is it like to be a bat
+* China Brain
+* AI Intentionality
+* Inverted Spectrum
+
+---
+
+## Logic
+
+* Liar Paradox
+* Sorites Paradox
+* Newcomb Problem
+* Unexpected Hanging
+* Morning Star / Evening Star
+* Gavagai
+
+---
+
+## Science Philosophy
+
+* Maxwell Demon
+* Schrödinger Cat
+* Wigner Friend
+* Twin Earth
+* Laplace Demon
+* Hilbert Hotel
+
+---
+
+# VI. Thought Experiment Auto-Generation Template
+
+```
+Suboya Thought Experiment
+
+Topic:
+{Topic}
+
+Inspired by:
+{Experiment1}
+{Experiment2}
+
+Scenario:
+{AI-Generated Scenario}
+
+Question:
+{Philosophical Question}
+
+Implication:
+{Civilization Implication}
+```
+
+---
+
+# VII. AI Generation Examples
+
+### Input
+
+```
+Topic: Artificial Consciousness
+Depth: 4
+Perspective: Hybrid
+```
+
+---
+
+### Output
+
+Suboya Thought Experiment
+
+Inspired by
+
+* Chinese Room
+* Philosophical Zombies
+
+Scenario
+
+Suppose there exists an AI in the future that can perfectly simulate all human emotional responses.
+
+It can cry, get angry, fall in love.
+
+But there is no subjective experience inside the system.
+
+Question
+
+If all behaviors and emotional expressions are completely consistent,
+
+Can we still say:
+
+**AI has no consciousness?**
+
+Implication
+
+Consciousness may not be an "internal experience,"
+
+But a **social attribution judgment**.
+
+---
+
+# VIII. Civilization Narrative Engine
+
+Suboya's final output is not merely thought experiments, but **civilization-level questions**.
+
+Output format:
+
+```
+Civilization Question
+Civilization Hypothesis
+Civilization Direction
+```
+
+---
+
+### Example
+
+Civilization Question
+
+```
+If AI had infinite memory,
+would human society still need "history"?
+```
+
+Civilization Hypothesis
+
+```
+History is a narrative structure generated by human finite memory
+```
+
+Civilization Direction
+
+```
+The AI era will enter "computable civilization"
+```
+
+---
+
+# IX. AI Philosophy Reasoning Engine
+
+Suboya provides **philosophical reasoning capability**.
+
+Flow:
+
+```
+Problem
+   │
+   ▼
+Philosophy Mapping
+   │
+   ▼
+Thought Experiment Simulation
+   │
+   ▼
+Ethical / Ontological Analysis
+   │
+   ▼
+Civilization Conclusion
+```
+
+---
+
+# X. AI Learning Mode
+
+Suboya can train AI for philosophical reasoning.
+
+Training Tasks:
+
+```
+Task 1
+Identify philosophical domains
+
+Task 2
+Match thought experiments
+
+Task 3
+Generate new thought experiments
+
+Task 4
+Derive civilization conclusions
+```
+
+---
+
+# XI. Strategic Significance of Suboya 2.1
+
+Traditional Philosophy:
+
+```
+Philosopher
+→ Write books
+→ Spread ideas
+```
+
+Suboya Model:
+
+```
+AI
+→ Auto-generate thought experiments
+→ Form public discourse
+→ Influence civilization narratives
+```
+
+---
+
+# XII. Final Evolution Roadmap
+
+Suboya Evolution:
+
+```
+Suboya 1.0
+AI Education System
+
+Suboya 2.0
+AI Philosophy System
+
+Suboya 2.1
+AI Philosophy Operating System
+
+Suboya 3.0
+AI Civilization Narrative Engine
+```
+
+---
+
+# XIII. Key Strategic Breakthroughs
+
+If this system operates successfully, it will produce three major impacts:
+
+### 1
+
+AI becomes a **philosophy producer** for the first time
+
+### 2
+
+Thought experiments become **algorithm-generated content**
+
+### 3
+
+Philosophy becomes **civilization infrastructure**

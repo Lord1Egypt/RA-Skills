@@ -1,0 +1,10 @@
+# zaomeng-skill helper dependencies
+#
+# Required for packaged helper scripts and shared imports:
+PyYAML>=6.0,<7.0
+#
+# Optional but recommended:
+# - ebooklib is needed when reading .epub novels
+# - tiktoken improves token estimation when hosts reuse shared utilities
+ebooklib>=0.18,<1.0
+tiktoken>=0.5.0,<1.0

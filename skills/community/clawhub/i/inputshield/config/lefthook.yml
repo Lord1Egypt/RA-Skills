@@ -1,0 +1,123 @@
+# InputShield -- lefthook configuration
+# Installed by: inputshield hooks install
+# Documentation: https://inputshield.pages.dev/docs/hooks
+#
+# This configuration integrates InputShield with git hooks via lefthook.
+# It scans staged files for input validation vulnerabilities before each commit
+# and optionally runs a full scan before each push.
+#
+# Requirements:
+#   - lefthook (brew install lefthook or npm install -g @arkweid/lefthook)
+#   - bash (for script execution)
+#   - InputShield skill installed at $INPUTSHIELD_SKILL_DIR or ~/.openclaw/skills/inputshield
+#
+# Usage:
+#   1. Copy this file to your repository root as lefthook.yml
+#   2. Run: lefthook install
+#   3. Commit as normal -- staged files are scanned automatically
+#
+# Override the skill directory:
+#   export INPUTSHIELD_SKILL_DIR="/custom/path/to/inputshield"
+
+# ---------------------------------------------------------------------------
+# Pre-commit: scan staged files for input validation issues
+# ---------------------------------------------------------------------------
+
+pre-commit:
+  parallel: true
+  commands:
+    inputshield-check:
+      run: |
+        INPUTSHIELD_SKILL_DIR="${INPUTSHIELD_SKILL_DIR:-$HOME/.openclaw/skills/inputshield}"
+        if [[ -f "$INPUTSHIELD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$INPUTSHIELD_SKILL_DIR/scripts/patterns.sh"
+          source "$INPUTSHIELD_SKILL_DIR/scripts/license.sh"
+          source "$INPUTSHIELD_SKILL_DIR/scripts/analyzer.sh"
+          hook_inputshield_check
+        else
+          echo "[InputShield] Skill not found at $INPUTSHIELD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Input validation issues detected in staged files!
+
+        Critical or high-severity findings block the commit.
+        Run 'inputshield scan' to see all findings with remediation advice.
+
+        Categories checked:
+          IV  Input Validation       Missing validation, type checks, allowlists
+          DS  Deserialization        Unsafe JSON.parse, pickle, yaml.load
+          RD  ReDoS                  Catastrophic backtracking regex patterns
+          PT  Path Traversal         ../ injection, unsanitized file paths
+          CI  Command Injection      eval, exec, system, subprocess
+          XS  XSS / Output          innerHTML, dangerouslySetInnerHTML
+
+        To skip this check (NOT recommended):
+          git commit --no-verify
+
+# ---------------------------------------------------------------------------
+# Pre-push: full scan of all changed files since branch divergence
+# ---------------------------------------------------------------------------
+
+pre-push:
+  parallel: true
+  commands:
+    inputshield-full-scan:
+      run: |
+        INPUTSHIELD_SKILL_DIR="${INPUTSHIELD_SKILL_DIR:-$HOME/.openclaw/skills/inputshield}"
+        if [[ -f "$INPUTSHIELD_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          # Get the list of files changed in this branch
+          MERGE_BASE=$(git merge-base HEAD origin/main 2>/dev/null || git merge-base HEAD origin/master 2>/dev/null || echo "HEAD~10")
+          CHANGED_FILES=$(git diff --name-only "$MERGE_BASE"...HEAD 2>/dev/null || echo "")
+
+          if [[ -z "$CHANGED_FILES" ]]; then
+            echo "[InputShield] No changed files to scan."
+            exit 0
+          fi
+
+          # Source modules
+          source "$INPUTSHIELD_SKILL_DIR/scripts/patterns.sh"
+          source "$INPUTSHIELD_SKILL_DIR/scripts/license.sh"
+          source "$INPUTSHIELD_SKILL_DIR/scripts/analyzer.sh"
+
+          # Resolve tier
+          TIER=$(get_inputshield_tier 2>/dev/null || echo "free")
+          PER_CAT=$(get_patterns_per_category "$TIER" 2>/dev/null || echo 5)
+
+          FINDINGS=()
+          CATEGORY_COUNTS=()
+          FILE_FINDINGS_COUNT=()
+
+          FILE_COUNT=0
+          while IFS= read -r filepath; do
+            [[ -z "$filepath" ]] && continue
+            [[ ! -f "$filepath" ]] && continue
+            is_excluded_dir "$filepath" && continue
+            should_skip_file "$filepath" && continue
+            scan_file "$filepath" "$PER_CAT" ""
+            FILE_COUNT=$((FILE_COUNT + 1))
+          done <<< "$CHANGED_FILES"
+
+          if [[ ${#FINDINGS[@]} -eq 0 ]]; then
+            echo "[InputShield] No input validation issues in $FILE_COUNT changed files."
+            exit 0
+          fi
+
+          SCORE=$(calculate_score)
+          echo ""
+          print_findings_text
+          print_category_breakdown
+          print_score "$SCORE"
+
+          if [[ $SCORE -lt 70 ]]; then
+            echo ""
+            echo "Push blocked: Input safety score ($SCORE) is below threshold (70)."
+            echo "Run 'inputshield scan' for details and remediation advice."
+            exit 1
+          fi
+        else
+          echo "[InputShield] Skill not found -- skipping pre-push scan"
+        fi
+      fail_text: |
+        Input validation issues detected in changed files!
+        Score is below the passing threshold (70).
+        Run 'inputshield scan' to see findings and fix issues before pushing.

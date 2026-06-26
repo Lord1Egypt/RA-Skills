@@ -1,35 +1,41 @@
 ---
-name: "opentelemetry"
-description: "Indexed by skills.sh from bobmatnyc/claude-mpm-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "bobmatnyc"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/opentelemetry"
-sourceUrl: "https://skills.sh/bobmatnyc/claude-mpm-skills/opentelemetry"
+name: opentelemetry
+description: "OpenTelemetry observability patterns: traces, metrics, logs, context propagation, OTLP export, Collector pipelines, and troubleshooting"
+user-invocable: false
+disable-model-invocation: true
+version: 1.0.0
+category: universal
+author: Claude MPM Team
+license: MIT
+progressive_disclosure:
+  entry_point:
+    summary: "Instrument services with OpenTelemetry and export OTLP traces/metrics/logs through a Collector for correlation and troubleshooting"
+    when_to_use: "When building production observability, adding tracing to distributed systems, or standardizing telemetry across languages"
+    quick_start: "1. Set service.name 2. Add auto-instrumentation 3. Export OTLP 4. Deploy Collector 5. Correlate logs with trace IDs"
+  token_estimate:
+    entry: 150
+    full: 9000
+context_limit: 900
+tags:
+  - observability
+  - opentelemetry
+  - tracing
+  - metrics
+  - logs
+  - otlp
+requires_tools: []
 ---
 
-# opentelemetry
+# OpenTelemetry
 
-> Indexed by skills.sh from bobmatnyc/claude-mpm-skills
+## Quick Start (signal design)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** bobmatnyc
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/opentelemetry`
-- **Source URL:** [https://skills.sh/bobmatnyc/claude-mpm-skills/opentelemetry](https://skills.sh/bobmatnyc/claude-mpm-skills/opentelemetry)
+- Export OTLP via an OpenTelemetry Collector (vendor-neutral endpoint).
+- Standardize resource attributes: `service.name`, `service.version`, `deployment.environment`.
+- Start with auto-instrumentation, then add manual spans and log correlation.
 
-## Overview
+## Load Next (References)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/opentelemetry
-```
+- `references/concepts.md` — traces/metrics/logs, context propagation, sampling, semantic conventions
+- `references/collector-and-otlp.md` — Collector pipelines, processors, deployment patterns, tail sampling
+- `references/instrumentation-and-troubleshooting.md` — manual spans, propagation pitfalls, cardinality, debugging

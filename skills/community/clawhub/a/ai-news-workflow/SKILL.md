@@ -1,35 +1,26 @@
----
-name: "AI领域重点企业资讯抓取与简报生成"
-description: "Collect, filter, classify AI industry news, generate Chinese titles and summaries, and export Excel and Word briefs based on company lists and sources."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, briefing, crawler, excel, news, rss, word]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-news-workflow"
-sourceUrl: "https://clawhub.ai/skills/ai-news-workflow"
----
+# AI News Workflow
 
-# AI领域重点企业资讯抓取与简报生成
+This skill collects AI industry news (RSS + web pages), filters/deduplicates/classifies them, optionally generates Chinese titles & ~80-char summaries(recommended 60-100,hard cap ~110) via Doubao (Volcengine Ark), and exports Excel tables + a Word briefing.
 
-> Collect, filter, classify AI industry news, generate Chinese titles and summaries, and export Excel and Word briefs based on company lists and sources.
+## How to run
+- Entry: `skill_entry.py`
+- Init (optional): `python skill_entry.py --init`
+- Run: `python skill_entry.py`
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-news-workflow`
-- **Source URL:** [https://clawhub.ai/skills/ai-news-workflow](https://clawhub.ai/skills/ai-news-workflow)
+## Inputs
+Put these files under `./input/`:
+- 企业名单.xlsx
+- source_config.xlsx
+- web_source_config.xlsx (optional)
 
-## Overview
+## Outputs
+Generated under `./output/`:
+- Excel: `./output/excel/`
+- Word: `./output/word/`
 
+## Optional: Ark API
+Provide API key via environment variable:
+- `ARK_API_KEY`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-news-workflow
-```
+Model can be selected at runtime:
+- `python skill_entry.py --model <MODEL_NAME>`

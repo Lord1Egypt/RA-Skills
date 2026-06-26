@@ -1,35 +1,282 @@
 ---
-name: "Tech Report PPT Generator"
+name: ppt_insight_generator
 description: "AI 驱动的技术洞察 PPT 生成器"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-insight-ppt"
-sourceUrl: "https://clawhub.ai/skills/generate-insight-ppt"
 ---
 
-# Tech Report PPT Generator
+# PPT Insight Generator - Agent 工作指南
 
-> AI 驱动的技术洞察 PPT 生成器
+> 这是 Agent 的内部执行指南。README.md 是用户面向的使用说明。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-insight-ppt`
-- **Source URL:** [https://clawhub.ai/skills/generate-insight-ppt](https://clawhub.ai/skills/generate-insight-ppt)
+## 一、文件结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-insight-ppt
 ```
+skill/
+├── SKILL.md                    ← Agent 工作指南（本文档）
+├── README.md                    ← 用户使用说明
+├── lib/
+│   ├── config.js               # 配置（配色、路径、目录结构）
+│   ├── logger.js               # 日志记录工具
+│   └── file_utils.js           # 文件操作工具
+└── scripts/
+    ├── 01_search_and_collect.js # Step 1: 搜索 + 内容抽取
+    ├── 02_extract_insights.js   # Step 2: 洞察提炼
+    ├── 03_generate_content.js   # Step 3: 目录 + 内容生成
+    ├── 04_optimize_content.js   # Step 4: 反思优化
+    ├── 05_generate_ppt.js       # Step 5: PPT 生成
+    └── run_all.js              # 一键执行
+```
+
+## 二、会话目录
+
+```
+D:\techinsight\reports\insight_{session-id}\n├── collected/           # Step 1 输出
+│   ├── search_results.json
+│   ├── web_pages/       # 抽取的网页内容 (.md)
+│   └── papers/          # 下载的 PDF
+├── insights/            # Step 2 输出
+│   ├── insights.json    # 洞察清单
+│   ├── key_stats.json   # 关键指标
+│   └── evidence.json    # 证据清单
+├── content/             # Step 3-4 输出
+│   ├── outline.json     # 目录结构
+│   ├── slides/          # 原始页面内容
+│   ├── optimized_slides/ # 优化后内容
+│   └── tech_points.json # 技术点清单
+└── output/              # Step 5 输出
+    └── *.pptx
+```
+
+## 三、五步执行流程
+
+```
+① 搜索收集  →  ② 洞察提炼  →  ③ 目录内容  →  ④ 反思优化  →  ⑤ 生成PPT
+```
+
+---
+
+## Step 1: 搜索 + 内容抽取
+
+### 1.1 搜索渠道
+
+| 渠道 | 用途 | 搜索语法 |
+|------|------|----------|
+| GitHub | 项目数据、技术栈 | `"[主题]" site:github.com` |
+| Hacker News | 技术趋势 | `"[主题]" site:news.ycombinator.com` |
+| Stack Overflow | 实战问题 | `"[主题]" site:stackoverflow.com` |
+| 知乎 | 中文分析 | `"[主题]" site:zhihu.com` |
+| ArXiv | 学术论文 | `"[主题]" site:arxiv.org` |
+| 新闻 | 最新动态 | 直接搜索 |
+
+### 1.2 执行搜索
+
+使用 browser_use、news、research 等 skill 执行搜索。
+
+### 1.3 抽取并保存内容
+
+对每个搜索结果：
+1. 抽取网页正文内容
+2. 保存为 `collected/web_pages/{序号}_{来源}_{标题}.md`
+3. 论文下载到 `collected/papers/`
+
+---
+
+## Step 2: 洞察提炼
+
+### 2.1 洞察类型
+
+| 类型 | 提炼要点 |
+|------|----------|
+| fact | 客观数据、统计数字 |
+| trend | 发展轨迹、增长曲线 |
+| technical | 关键技术创新、效果 |
+| comparison | 竞品差异、方案优劣 |
+| causal | 原因分析、影响评估 |
+| recommendation | 行动方案、最佳实践 |
+
+### 2.2 输出格式
+
+```json
+{
+  "insights": [
+    {
+      "type": "trend",
+      "title": "洞察标题",
+      "statement": "核心观点陈述",
+      "evidence": ["证据1", "证据2"],
+      "data": { "source": "来源", "value": "数值" },
+      "confidence": "high"
+    }
+  ],
+  "keyStats": [
+    { "label": "指标名", "value": "数值", "trend": "up", "source": "来源" }
+  ]
+}
+```
+
+---
+
+## Step 3: 目录 + 内容生成
+
+### 3.1 推荐目录结构
+
+```
+├── 封面页
+├── 目录页
+├── 执行摘要        ← 关键指标 + 核心发现
+├── 技术架构图      ← 全局视角
+├── 核心技术点 A    ← 每个技术点一页（至少3个）
+├── 核心技术点 B
+├── 核心技术点 C
+├── 对比分析
+└── 总结页
+```
+
+### 3.2 识别关键技术点
+
+| 类型 | 展开方向 |
+|------|----------|
+| 架构/设计 | 分层图、组件关系 |
+| 算法/机制 | 原理、效果对比 |
+| 接口/API | 调用方式、示例 |
+| 实现细节 | 代码片段、执行流程 |
+
+### 3.3 技术点页面结构
+
+```
+【背景】为什么重要？（50-100字）
+【原理】技术机制说明（150-300字）
+【细节】实现细节（200-400字）
+【效果】量化收益（100-200字）
+```
+
+---
+
+## Step 4: 反思优化
+
+### 4.1 检查清单
+
+| 检查项 | 问题 | 优化方向 |
+|--------|------|----------|
+| 标题有观点 | "技术概述" | ✅ "XXX 的 3 个核心优势" |
+| 内容不空洞 | "技术很重要" | ✅ "效率提升 40%" |
+| 逻辑清晰 | 堆砌要点 | ✅ 问题→分析→结论 |
+| 内容丰富 | 文字太少 | ✅ 每个技术点 500+ 字 |
+| 技术点≥3 | 没有展开 | ✅ 架构中的多个技术点每个一页展开 |
+| 有数据支撑 | 泛泛而谈 | ✅ 有数字、有案例 |
+| 来源可查 | 无出处 | ✅ 标注来源 |
+
+### 4.2 优化操作
+
+1. **改标题**：空泛 → 有观点
+   - ❌ "Claude Code 技术原理"
+   - ✅ "Agent Loop 如何实现自主编程"
+
+2. **补内容**：模糊 → 具体
+   - ❌ "支持多种工具"
+   - ✅ "支持 8+ 工具：文件操作、代码搜索、Bash..."
+
+3. **加量化**：形容词 → 数字
+   - ❌ "性能大幅提升"
+   - ✅ "性能提升 40%，延迟降低 50ms"
+
+4. **扩内容**：简单 → 丰富
+   - ❌ "Agent Loop 执行流程"
+   - ✅ "Agent Loop 通过 Think-Act-Observe 四步循环实现..."
+
+---
+
+## Step 5: PPT 生成
+
+### 5.1 执行命令
+
+```bash
+node scripts/05_generate_ppt.js --session-id "xxx" --output "report.pptx"
+```
+
+### 5.2 验证检查
+
+- [ ] 文件是否成功生成
+- [ ] 文件大小是否正常（>10KB）
+- [ ] 能否用 PowerPoint 打开
+- [ ] 幻灯片数量是否正确
+
+---
+
+## 四、配色方案
+
+> ⚠️ **必须遵循**：所有 PPT 使用统一配色方案
+
+| 用途 | Hex | 说明 |
+|------|-----|------|
+| 标题色 | `#C00000` | 深红色，用于所有页面标题 |
+| 正文色 | `#000000` | 黑色，用于正文文字 |
+| 强调色 | `#C00000` | 深红色，用于重点强调 |
+| 辅助色 | `#666666` | 灰色，用于次要文字 |
+| 页面背景 | `#FFFFFF` | 白色，**所有页面背景统一为白色** |
+| 内容块背景 | `#F5F5F5` | 淡灰色，用于卡片背景 |
+| 原理图背景 | `#F8F8F8` | 极淡灰，用于原理图容器 |
+| 效果块背景 | `#96DCDF` | 淡蓝色，用于效果说明 |
+
+---
+
+## 五、标题样式规范
+
+> ⚠️ **必须遵循**：页面标题统一使用以下样式
+
+| 属性 | 值 |
+|------|-----|
+| 字体 | Microsoft YaHei (微软雅黑) |
+| 字号 | 28pt |
+| 颜色 | 深红色 `#C00000` |
+| 粗细 | 加粗 (bold) |
+| 对齐 | 居左 (left) |
+| 背景 | 无背景框 (白色背景) |
+
+### 标题示例
+
+```javascript
+// ✅ 正确：标题居左、无背景、深红色
+slide.addText(title, {
+  x: 0.5, y: 0.3, w: 9, h: 0.6,
+  fontSize: 28,
+  fontFace: 'Microsoft YaHei',
+  color: 'C00000',  // 深红色
+  bold: true,
+  align: 'left',     // 居左
+  margin:  0          // 无内边距 });  // 错误：居中、有背景框 slide.addText(title, { align: 'center', ... }); // 不允许 ```  ---  ## 六、技术点页面详细规范  > ⚠️ **每个技术点必须单独成页，遵循以下布局**  ### 6.1 页面整体布局  ``` ┌─────────────────────────────────────────────────────────────────┐ │  【标题】技术点名称                                    (深红色) │ ├─────────────────────────────────────────────────────────────────┤ │ 【背景】为什么重要？（30-50字，淡黄色背景）                        │ ├─────────────────────────────┬───────────────────────────────────┤ │                             │                                   │ │     【原理图区域】           │     【技术细节说明区域】            │ │     左侧 40% 宽度            │     右侧 60% 宽度                  │ │                             │                                   │ │     • 流程图                 │     细节1：（50-150字）           │ │     • 架构图                 │     详细内容说明...                │ │     • 算法图                 │                                   │ │     • 时序图                 │     细节2：（50-150字）           │ │     • 示意图                 │     详细内容说明...                │ │                             │                                   │ │     背景色：#F8F8F8         │     细节3：（50-150字）           │ │                             │     详细内容说明...                │ │                             │                                   │ ├─────────────────────────────┴───────────────────────────────────┤ │ 【效果】量化收益或应用场景（淡蓝色背景，100-150字）                  │ └─────────────────────────────────────────────────────────────────┘ ```  ### 6.2 原理图类型  | 类型 | 适用场景 | 图形元素 | |------|----------|----------| | 流程图 | 执行步骤、循环过程 | 矩形框、箭头、菱形决策 | | 架构图 | 系统分层、组件关系 | 分层矩形、连接线、标签 | | 算法图 | 核心算法流程 | 步骤框、条件分支、循环标识 | | 时序图 | 交互过程、时间顺序 | 生命线、消息箭头、激活条 | | 示意图 | 抽象概念、数据流 | 形状、图标、标注 |  ### 6.3 原理图绘制规范  ```javascript // 原理图容器（左侧 40%） slide.addShape('rect', {   x: 0.5, y: 1.4, w: 3.6, h: 3.5,   fill: { color: 'F8F8F8' },  // 极淡灰背景   line: { color: 'E0E0E0', width: 1 }  // 浅灰边框 });  // 流程图示例：绘制步骤框 slide.addShape('rect', {   x: 1.5, y: 1.6, w: 1.2, h: 0.5,   fill: { color: 'C00000' },  // 深红色   text: 'Think', color: 'FFFFFF' });  // 箭头连接 slide.addShape('rect', {   x: 2.05, y: 2.2, w: 0.1, h: 0.3,   fill: { color: '666666' } });  // 决策菱形 slide.addShape('rect', {   x: 1.5, y: 2.6, w: 1.2, h: 0.8,   fill: { color: 'FFCC00' },   rotate: 45 }); ```  ### 6.4 技术细节说明规范  > ⚠️ **每条细节说明必须是 50-150 字，描述具体实现**  ```javascript // 细节容器（右侧 60%） // 位置：x = 4.3, 宽度 = 5.2  // 细节1：标题 + 详细说明 slide.addText('细节1：XXX机制', {   x: 4.3, y: 1.5, w: 5.2, h: 0.35,   fontSize: 14, color: 'C00000', bold: true,   fontFace: 'Microsoft YaHei' });  slide.addText('这里需要详细说明该机制的具体实现方式、关键参数、        │ 执行流程等，字数控制在50-150字之间，确保内容充实且有深度。        │ 要包含具体的数值、比例、阈值等可量化的信息。', {   x: 4.3, y: 1.85, w: 5.2, h: 0.8,   fontSize: 12, color: '000000',   fontFace: 'Microsoft YaHei', align: 'left', valign: 'top' });  // 细节2 slide.addText('细节2：YYY特性', { ... }); slide.addText('详细说明...', { ... });  // 细节3 slide.addText('细节3：ZZZ优化', { ... }); slide.addText('详细说明...', { ... }); ```  ### 6.5 内容丰富度标准  | 页面类型 | 最少字数 | 最少要点 | |---------|---------|---------| | 执行摘要 | 300 字 | 4 个要点 | | 技术点 | 600 字 | 3 个细节（每条 50-150 字）+ 原理图 | | 对比分析 | 400 字 | 3 个维度 | | 总结 | 200 字 | 5 个要点 |  ---  ## 七、所有页面通用规范  ### 7.1 页面背景  > ⚠️ **所有页面背景色统一为白色 #FFFFFF**  ```javascript // 每个幻灯片都要设置白色背景 const slide = pres.addSlide(); slide.background = { color: 'FFFFFF' };  // 白色背景 ```  ### 7.2 字体规范  | 用途 | 字体 | 字号 | |------|------|------| | 页面标题 | Microsoft YaHei | 28pt, 深红色, 加粗 | | 章节标题 | Microsoft YaHei | 18pt, 深红色, 加粗 | | 正文文字 | Microsoft YaHei | 12-14pt, 黑色 | | 辅助文字 | Microsoft YaHei | 11-12pt, 灰色 | | 统计数据 | Microsoft YaHei | 28-36pt, 深红色, 加粗 |  ### 7.3 加粗规则
+
+> ⚠️ **必须遵循**：小标题、条目开头使用加粗样式
+
+```javascript
+// ✅ JavaScript: 使用富文本数组
+slide.addText([
+  { text: '小标题：', options: { bold: true, fontFace: 'Microsoft YaHei', color: '000000' } },
+  { text: '普通描述文字', options: { bold: false, fontFace: 'Microsoft YaHei', color: '000000' } }
+], { x: 0.5, y: 1.5, w: 9, h: 0.4, fontSize: 12 });
+
+// ✅ Python: 分段设置加粗
+p = tf.paragraphs[0]
+run = p.add_run()
+run.text = '加粗标题'
+run.font.bold = True
+run.font.name = 'Microsoft YaHei'
+```
+
+**加粗场景：**
+- 小标题、标签（如 "Account"、"Organization"）
+- 条目开头（如 "34.4k GitHub Stars："）
+- 关键词汇（如 "双向 TLS"、"GitOps"）
+
+### 7.4 页面类型版式  #### 封面页 - 背景：深红色 #C00000 - 顶部金色条：#D4AF37, 高 0.12 - 标题：白色 48pt, 居中 - 副标题：金色 24pt  #### 目录页 - 背景：白色 - 标题：深红色 28pt, 居左 - 编号块：深红底白字 - 章节标题：黑色加粗  #### 执行摘要页 - 背景：白色 - 标题：深红色 28pt, 居左 - 统计卡片：淡灰背景 - 核心发现：深红强调线  #### 技术点页（重点） - 背景：白色 - 标题：深红色 28pt, 居左 - 左侧：原理图（流程图/架构图） - 右侧：技术细节（3条，每条 50-150 字） - 底部：效果说明（淡蓝背景）  #### 对比分析页 - 背景：白色 - 标题：深红色 28pt, 居左 - 左右分栏对比  #### 总结页 - 背景：深红色 #C00000 - 标题：白色 32pt, 居左 - 要点：白色 18pt  ---  ## 八、最佳实践  1. **标题即观点** - 让人一眼知道核心结论 2. **数据说话** - 用具体数字替代模糊描述 3. **技术点深挖** - 每个核心点至少一页展开 4. **来源可查** - 所有数据标注来源 5. **每步留痕** - 便于追溯和复盘 6. **配色统一** - 严格使用配色方案定义的颜色 7. **标题居左** - 统一使用居左、无背景框、深红色标题样式 8. **技术点≥3** - 关键技术点必须至少 3 个以上详细展开 9. **内容丰富** - 每个技术点 600+ 字，避免空洞 10. **白色背景** - 所有页面背景统一为白色 11. **原理图+细节** - 技术点页面必须包含原理图和技术细节说明 12. **细节 50-150 字** - 每条技术细节说明控制在 50-150 字   
+13. **字体统一** - 所有内容使用 Microsoft YaHei (微软雅黑)  
+14. **小标题加粗** - 条目开头、小标签使用加粗样式 
+  
+  
+## 封面页/感谢页样式（2026-04-05 更新）  
+  
+**背景**: 白色 #FFFFFF  
+**装饰**: 左侧深红色竖条（宽 0.15） + 上下深红色细线  
+**主标题**: 深红色 #C00000，44pt，居中，加粗  
+**副标题**: 黑色 #000000，22pt，居中  
+**标签**: 黑色 #000000，14pt，居中  
+**日期**: 灰色 #666666，12pt，居中 

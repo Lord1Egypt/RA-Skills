@@ -1,0 +1,57 @@
+{
+  "name": "obsidian-master-skill",
+  "version": "1.0.0",
+  "description": "Obsidian 大师级配置助手 - 基于三大 YouTube 频道教程的完整配置方案",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/",
+    "build": "echo \"No build step required\""
+  },
+  "keywords": [
+    "obsidian",
+    "knowledge-management",
+    "note-taking",
+    "ai-integration",
+    "openclaw",
+    "claude",
+    "gemini",
+    "productivity",
+    "clawhub",
+    "skill"
+  ],
+  "author": "Don brand",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/obsidian-master-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/obsidian-master-skill/issues"
+  },
+  "homepage": "https://clawhub.com/skills/obsidian-master",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.3.2"
+  },
+  "clawhub": {
+    "skillId": "obsidian-master",
+    "category": "productivity",
+    "tags": [
+      "obsidian",
+      "knowledge-management",
+      "note-taking",
+      "ai-integration",
+      "productivity"
+    ],
+    "icon": "assets/logo.png",
+    "screenshots": [
+      "assets/screenshot-1.png",
+      "assets/screenshot-2.png"
+    ]
+  }
+}

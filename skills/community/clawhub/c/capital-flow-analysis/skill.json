@@ -1,0 +1,9 @@
+{
+  "name": "capital-flow-analysis",
+  "version": "1.0.0",
+  "description": "资金流向分析 - 主力/北向/龙虎榜",
+  "main": "capital_flow.py",
+  "exports": ["analyze_main_force", "analyze_northbound", "dragon_tiger_list"],
+  "dependencies": ["akshare", "pandas"],
+  "targetAgents": ["aicapitalflow", "aitechnicals"]
+}

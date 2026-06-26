@@ -1,35 +1,13 @@
 ---
-name: "integrate-atlas-chat"
-description: "Indexed by skills.sh from cognitedata/builder-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cognitedata"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cognitedata/builder-skills/integrate-atlas-chat"
-sourceUrl: "https://skills.sh/cognitedata/builder-skills/integrate-atlas-chat"
+name: integrate-atlas-chat
+description: "MUST be used whenever building a chat UI with Atlas agents in a Flows app. Do NOT manually write useAtlasChat integration code — this skill handles installation, component structure, and hook wiring. Triggers: useAtlasChat, atlas chat, streaming chat, agent chat, chat interface, chat component, chat UI. For a full chat app, run skills in order: (1) integrate-atlas-chat, (2) create-client-tool (per tool), (3) setup-python-tools (if Python tools needed)."
+allowed-tools: Read, Glob, Grep, Edit, Write, Bash
+metadata:
+  argument-hint: "[agent-external-id]"
 ---
 
-# integrate-atlas-chat
+# Integrate Atlas Agent Chat
 
-> Indexed by skills.sh from cognitedata/builder-skills
+Follow the guide at https://docs.cognite.com/cdf/flows/guides/ai_agent_integration to add a streaming Atlas Agent chat UI to this Flows app.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cognitedata
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cognitedata/builder-skills/integrate-atlas-chat`
-- **Source URL:** [https://skills.sh/cognitedata/builder-skills/integrate-atlas-chat](https://skills.sh/cognitedata/builder-skills/integrate-atlas-chat)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cognitedata/builder-skills/integrate-atlas-chat
-```
+Agent external ID: **$ARGUMENTS**

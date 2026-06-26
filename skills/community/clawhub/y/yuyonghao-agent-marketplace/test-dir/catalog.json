@@ -1,0 +1,58 @@
+{
+  "categories": [
+    {
+      "id": "data-processing",
+      "name": "Data Processing",
+      "description": "Tools for data transformation and analysis"
+    },
+    {
+      "id": "web-scraping",
+      "name": "Web Scraping",
+      "description": "Extract data from websites"
+    },
+    {
+      "id": "ai-ml",
+      "name": "AI & ML",
+      "description": "Artificial Intelligence and Machine Learning tools"
+    },
+    {
+      "id": "automation",
+      "name": "Automation",
+      "description": "Workflow and task automation"
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "description": "Messaging and communication tools"
+    },
+    {
+      "id": "storage",
+      "name": "Storage",
+      "description": "File and data storage solutions"
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "description": "Security and authentication tools"
+    },
+    {
+      "id": "integration",
+      "name": "Integration",
+      "description": "Third-party service integrations"
+    },
+    {
+      "id": "developer-tools",
+      "name": "Developer Tools",
+      "description": "Tools for developers"
+    },
+    {
+      "id": "productivity",
+      "name": "Productivity",
+      "description": "Productivity and utility tools"
+    }
+  ],
+  "tags": [],
+  "featured": [],
+  "newArrivals": [],
+  "lastUpdated": 1774925109486
+}

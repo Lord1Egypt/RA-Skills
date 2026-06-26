@@ -1,35 +1,139 @@
 ---
-name: "Campus Candidate Screener"
-description: "screen campus recruiting candidates against a role's job responsibilities, degree, major, skills, and hiring requirements. use when hr provides a target role..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/campus-candidate-screener"
-sourceUrl: "https://clawhub.ai/skills/campus-candidate-screener"
+name: campus-candidate-screener
+description: screen campus recruiting candidates against a role's job responsibilities, degree, major, skills, and hiring requirements. use when hr provides a target role, job description, education and major requirements, and a batch of candidate resumes or candidate information, and needs an explainable shortlist with candidate basic information, education background, experience, phone, email, match score, recommendation level, and rejection or review reasons.
 ---
 
-# Campus Candidate Screener
+# 校招候选人快速筛选
 
-> screen campus recruiting candidates against a role's job responsibilities, degree, major, skills, and hiring requirements. use when hr provides a target role...
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/campus-candidate-screener`
-- **Source URL:** [https://clawhub.ai/skills/campus-candidate-screener](https://clawhub.ai/skills/campus-candidate-screener)
+根据企业 HR 输入的岗位、岗位职责、学历专业要求和候选人信息，快速筛选符合校招岗位要求的候选人，生成可复核的候选人名单。输出必须可解释、可追溯、便于 HR 进入面试邀约或人工复核流程。
 
-## Overview
+## 输入要求
 
+岗位输入应尽量包含：
+- 岗位名称、岗位类别、工作地点、招聘人数。
+- 岗位职责。
+- 任职要求：学历、专业、毕业年份、技能证书、语言能力、项目经验、实习经验、工具能力。
+- 必须条件、优先条件、淘汰条件。
+- 企业希望保留的候选人比例或面试名额。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/campus-candidate-screener
-```
+候选人输入可为粘贴文本、表格、简历摘要或结构化字段。候选人基本字段包括：
+- 姓名。
+- 学历背景：学校、学历、专业、毕业时间。
+- 工作/实习/项目经验。
+- 技能证书或工具能力。
+- 联系电话。
+- 邮箱。
+- 其他由 HR 明确要求的岗位相关字段。
+
+若候选人信息缺失，不要补编；在名单中标记为“未提供”。
+
+## 合规与公平筛选规则
+
+1. 只依据岗位相关条件进行筛选，例如学历、专业、技能、项目/实习经历、证书、作品、语言能力、岗位职责匹配度。
+2. 不得使用性别、年龄、民族、宗教、婚育、户籍、身体状况、照片外貌等与岗位无关或敏感因素进行排序或淘汰。
+3. 不得根据学校名气进行隐性歧视；除非 HR 明确提供了合法合规的学校范围要求，否则学校仅作为教育背景记录，不作为单独淘汰条件。
+4. 对硬性条件不满足者应说明具体原因；对信息缺失者优先归入“待补充/人工复核”，而不是直接淘汰。
+5. 筛选结果是辅助建议，最终录用或淘汰应由 HR 复核。
+
+## 筛选流程
+
+### 1. 解析岗位要求
+
+将岗位要求拆分为三类：
+- 硬性门槛：不满足通常无法进入下一步，例如学历层次、专业范围、毕业年份、必备证书、必备技能。
+- 核心匹配项：与岗位职责直接相关，例如项目经验、实习方向、工具能力、业务理解。
+- 加分项：竞赛经历、相关证书、作品集、学生干部经历、行业实践、语言优势等。
+
+如果 HR 没有明确权重，默认权重为：硬性门槛通过/不通过；核心匹配 70 分；加分项 20 分；表达完整度与信息可验证性 10 分。
+
+### 2. 解析候选人信息
+
+对每名候选人抽取：
+- 姓名、电话、邮箱。
+- 学校、学历、专业、毕业时间。
+- 实习经验、项目经验、校园经历。
+- 技能、证书、语言能力。
+- 与岗位职责相关的证据句。
+
+保持原始信息含义，不要夸大候选人经历。
+
+### 3. 硬性门槛判断
+
+先判断候选人是否满足硬性门槛：
+- 满足：进入评分。
+- 不满足：标记为“不推荐”，并写明原因。
+- 信息缺失但可能满足：标记为“待补充/人工复核”。
+
+### 4. 匹配评分
+
+默认按 100 分制输出：
+- 硬性门槛：通过后不额外加分；未通过则不进入推荐名单。
+- 岗位职责匹配度：0 到 35 分。
+- 专业与课程/项目相关度：0 到 20 分。
+- 实习或项目经验质量：0 到 20 分。
+- 技能、证书、工具能力：0 到 15 分。
+- 表达完整度和信息可验证性：0 到 10 分。
+
+可根据 HR 明确要求调整权重，但必须在输出中说明。
+
+### 5. 推荐等级
+
+默认分级：
+- A 类：强推荐，80 分及以上，硬性条件满足且岗位相关证据充分。
+- B 类：推荐复试，70 到 79 分，基本匹配但存在短板。
+- C 类：待补充/人工复核，信息缺失或匹配度不确定。
+- D 类：不推荐，硬性条件不满足或岗位匹配度明显不足。
+
+## 标准输出格式
+
+默认输出中文，先给总览，再给名单。
+
+### 一、岗位要求解析
+
+| 类别 | 条件 | 判断方式 | 备注 |
+|---|---|---|---|
+| 硬性门槛 |  | 通过/不通过/待补充 |  |
+| 核心匹配项 |  | 评分 |  |
+| 加分项 |  | 加分 |  |
+
+### 二、候选人筛选总览
+
+| 指标 | 数量 |
+|---|---:|
+| 候选人总数 |  |
+| A 类强推荐 |  |
+| B 类推荐复试 |  |
+| C 类待补充/人工复核 |  |
+| D 类不推荐 |  |
+
+### 三、推荐候选人名单
+
+| 排名 | 姓名 | 学历背景 | 工作/实习/项目经验 | 联系电话 | 邮箱 | 匹配分 | 推荐等级 | 推荐理由 | 风险/待确认项 |
+|---:|---|---|---|---|---|---:|---|---|---|
+| 1 |  |  |  |  |  |  |  |  |  |
+
+名单中必须包含候选人基本信息、学历背景、工作经验/实习或项目经验、联系电话和邮箱。缺失字段写“未提供”。
+
+### 四、不推荐或待复核候选人说明
+
+| 姓名 | 结论 | 主要原因 | 是否建议补充材料 |
+|---|---|---|---|
+|  |  |  |  |
+
+### 五、HR 后续动作建议
+
+根据筛选结果给出下一步动作：
+- 对 A 类候选人：建议优先邀约，并列出面试验证重点。
+- 对 B 类候选人：建议复试或补充材料，并列出需验证短板。
+- 对 C 类候选人：列出需要补充的信息。
+- 对 D 类候选人：说明不推荐依据，避免模糊表述。
+
+## 输出约束
+
+- 不要编造候选人联系方式、学校、专业、经历或分数依据。
+- 不要把“候选人表达好”当作唯一推荐理由，必须有岗位相关证据。
+- 不要直接输出涉及敏感特征的比较或评价。
+- 不要因为候选人信息较少就自动判低分；应区分“不匹配”和“信息不足”。
+- 当候选人数量很大时，优先输出 A/B/C/D 汇总和前 N 名名单，并说明完整名单可继续分批生成。

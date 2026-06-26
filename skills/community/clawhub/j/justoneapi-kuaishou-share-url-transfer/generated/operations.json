@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/kuaishou/share-url-transfer/v1 for Kuaishou Share Link Resolution through JustOneAPI with shareUrl.",
+  "displayName": "Kuaishou Share Link Resolution",
+  "endpointPath": "share-url-transfer",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Kuaishou share Link Resolution data, including resolved content identifier and target object data, for resolving shared links for automated content processing.",
+      "method": "GET",
+      "operationId": "shareLinkResolutionV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Kuaishou share URL (must start with 'https://v.kuaishou.com/').",
+          "enumValues": [],
+          "location": "query",
+          "name": "shareUrl",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/kuaishou/share-url-transfer/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Share Link Resolution",
+      "tags": [
+        "Kuaishou"
+      ]
+    }
+  ],
+  "platformKey": "kuaishou",
+  "primaryTag": "Kuaishou",
+  "skillName": "justoneapi_kuaishou_share_url_transfer",
+  "skillType": "interface",
+  "slug": "justoneapi-kuaishou-share-url-transfer",
+  "sourceTitle": "OpenAPI definition"
+}

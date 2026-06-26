@@ -1,35 +1,26 @@
 ---
-name: "recipe-schedule-recurring-event"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-schedule-recurring-event"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-schedule-recurring-event"
+name: recipe-schedule-recurring-event
+description: "Create a recurring Google Calendar event with attendees."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# recipe-schedule-recurring-event
+# Schedule a Recurring Meeting
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-schedule-recurring-event`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-schedule-recurring-event](https://skills.sh/googleworkspace/cli/recipe-schedule-recurring-event)
+Create a recurring Google Calendar event with attendees.
 
-## Overview
+## Steps
 
+1. Create recurring event: `gws calendar events insert --params '{"calendarId": "primary"}' --json '{"summary": "Weekly Standup", "start": {"dateTime": "2024-03-18T09:00:00", "timeZone": "America/New_York"}, "end": {"dateTime": "2024-03-18T09:30:00", "timeZone": "America/New_York"}, "recurrence": ["RRULE:FREQ=WEEKLY;BYDAY=MO"], "attendees": [{"email": "team@company.com"}]}'`
+2. Verify it was created: `gws calendar +agenda --days 14 --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-schedule-recurring-event
-```

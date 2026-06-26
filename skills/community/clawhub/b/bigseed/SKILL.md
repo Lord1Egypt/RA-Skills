@@ -1,35 +1,339 @@
 ---
-name: "🌱 Big Seed · 种子·种一个世界（AI生活·闪念记录·人生拼图·你的故事）- AI Life Story Journal"
-description: "闪念记录与人生拼图工具。捕捉生活点滴、感悟想法，从碎片信息构建用户画像，生成以用户为主人公的小说、电影剧本或自传。种一颗种子，长一个世界。Life story, journal, biography, memory keeper, novel generator."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, biography, creative, emotion, life, memory, novel, portrait, spark, story, thoughts]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bigseed"
-sourceUrl: "https://clawhub.ai/skills/bigseed"
+name: bigseed
+description: 闪念记录与人生拼图工具。捕捉生活点滴、感悟想法，从碎片信息构建用户画像，生成以用户为主人公的小说、电影剧本或自传。种一颗种子，长一个世界。Life story, journal, biography, memory keeper, novel generator.
 ---
 
-# 🌱 Big Seed · 种子·种一个世界（AI生活·闪念记录·人生拼图·你的故事）- AI Life Story Journal
+# 🌱 Big Seed · 种一个世界
 
-> 闪念记录与人生拼图工具。捕捉生活点滴、感悟想法，从碎片信息构建用户画像，生成以用户为主人公的小说、电影剧本或自传。种一颗种子，长一个世界。Life story, journal, biography, memory keeper, novel generator.
+## 📋 功能概览
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bigseed`
-- **Source URL:** [https://clawhub.ai/skills/bigseed](https://clawhub.ai/skills/bigseed)
+Big Seed 是一款 **AI 闪念记录与人生拼图工具**，帮你捕捉生活中的每一个灵感瞬间，构建专属人生画卷，生成属于你的故事。
 
-## Overview
+**核心功能：**
+- **🌱 种一颗种子** — 随手记录灵感、感悟、日常、情绪，自动分类打标签
+- **🧩 人生拼图** — 从碎片信息构建用户画像，发现你的习惯、价值观、人生轨迹
+- **📖 生成故事** — 基于种子数据生成专属小说、电影剧本、人生报告
+- **🎬 趣味玩法** — 小剧场、年度报告、剧情选择游戏、随机种子唤醒回忆
+- **📊 人生统计** — 类型分布、情绪趋势、里程碑事件可视化
+- **📅 每周简报** — 周六自动推送本周种子简报+画像摘要+新故事
+- **🗂️ 数据存储** — 种子数据存储在本地设备；订阅的周报/故事会推送至你的聊天
 
+## 核心理念
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bigseed
+**你种下每一颗种子，它会长出你的世界。**
+
+## 🔒 隐私提示（首次使用必须展示）
+
+> ⚠️ **使用 Big Seed 前请知悉：**
+> **原始种子数据**（你记录的闪念、图片等）仅存储在你的本地设备上，**不会上传到任何外部服务器**。
+> 如果你订阅了**每周简报**（默认开启），系统会基于你的种子数据自动生成简报、画像摘要和故事，并推送至你的聊天窗口（如飞书）。这是你订阅的定期推送服务，不会分享给任何第三方。
+> 如果你不希望某条内容被保存，可以说「删掉这颗种子」。
+> 如需关闭每周推送，随时告诉我。
+> 首次使用时，必须向用户展示本提示并确认。
+
+每一条想要珍藏的瞬间——都是埋进土里的种子。Big Seed 帮你收集、浇灌，然后用它们拼出你的画像，长出你的故事。
+
+## ⚠️ 数据存储规范（必读）
+
+### 唯一存储位置
+
+所有种子数据 **必须** 存到 `memory/bigseed-data/` 目录（相对于 workspace），**不得** 写在每日日志 `memory/YYYY-MM-DD.md` 或其他地方。
+
 ```
+memory/bigseed-data/          ← 唯一存储目录
+├── seeds.json                ← 🌱 所有闪念记录（种子）
+├── portrait.json             ← 🧩 用户画像（逐步构建）
+└── stories.json              ← 📖 已生成的故事存档
+```
+
+### 操作方式
+
+**新增种子时：**
+- 不能用 `write` 直接写 seeds.json
+- 必须调用 `python3 skills/bigseed/scripts/bigseed.py add` 脚本
+- 脚本负责：生成 UUID、打时间戳、写入 JSON、自动排序
+
+**读取种子时：**
+- 用 `python3 skills/bigseed/scripts/bigseed.py query / stats / seeds-for-story`
+- 不要手动读 JSON 文件（除非脚本出故障）
+
+**更新画像时：**
+- 用 `python3 skills/bigseed/scripts/bigseed.py portrait` 读取
+- 模型分析种子数据后，通过脚本写回 portrait.json
+
+### 错误处理
+
+如果 `scripts/bigseed.py` 执行失败：
+1. 检查 `memory/bigseed-data/` 目录和 JSON 文件是否存在（不存在则初始化）
+2. 重试一次
+3. 仍失败则告知用户存储异常
+
+### 种子格式
+
+```json
+{
+  "seeds": [
+    {
+      "id": "uuid",
+      "timestamp": "2026-05-19T21:00:00+08:00",
+      "content": "今天在地铁上看到一个老奶奶在看书，突然觉得活到老学到老真好",
+      "type": "感悟",         // 自动分类：日常/感悟/情绪/灵感/备忘/其他
+      "emotion": "温暖",      // 自动识别情绪
+      "tags": ["生活","学习"],
+      "attachments": []
+    }
+  ]
+}
+```
+
+**画像格式**（持续更新）：
+```json
+{
+  "profile": {
+    "habits": {"咖啡": "高频", "熬夜": "偶尔"},
+    "values": ["家庭","自由","成长"],
+    "emotions": {"recent_trend": "积极向上", "keywords": ["温暖","开心"]},
+    "milestones": [
+      {"date": "2026-03-01", "event": "开始用BigA炒股", "impact": "进入投资领域"}
+    ]
+  }
+}
+```
+
+## 脚本工具
+
+```bash
+# 新增种子
+python3 skills/bigseed/scripts/bigseed.py add --content "刚想到一个创业点子" [--image <path>] [--tags tag1,tag2]
+
+# 查看种子
+python3 skills/bigseed/scripts/bigseed.py query [--from DATE] [--to DATE] [--type 感悟] [--emotion 温暖]
+
+# 查看画像
+python3 skills/bigseed/scripts/bigseed.py portrait
+
+# 生成故事（请模型写，脚本只提供数据）
+python3 skills/bigseed/scripts/bigseed.py seeds-for-story [--from DATE] [--to DATE] [--limit 20]
+
+# 汇总统计
+python3 skills/bigseed/scripts/bigseed.py stats [--from DATE] [--to DATE]
+```
+
+## 工作流程
+
+### 1. 种下一颗种子
+
+用户使用触发词明确表达记录意图时才执行保存。模糊或无触发词的聊天内容不自动保存。
+
+**触发即保存**的明确命令句式（不用确认）：
+- 「种一颗 xxx」「种一下 xxx」「种一个 xxx」「种种子 xxx」
+- 「刚想到 xxx」「突然想起 xxx」
+
+**模糊意图（先确认）**：只说单个触发词时，先问「想记点什么？」确认后再保存。
+
+| 触发模式 | 示例 | 处理 |
+|--------|------|------|
+| 明确命令 | 「种一颗今天爬山看到日落」 | 直接保存，无需确认 |
+| 模糊触发 | 只说「种子」 | 先问「想记点什么？」 |
+| 无触发词 | 日常聊天内容 | 不保存 |
+
+### 操作顺序（严格遵循）
+
+**第一步：必须保存**
+```bash
+python3 skills/bigseed/scripts/bigseed.py add \
+  --content "用户原话" \
+  --type "分析出的类型" \
+  --emotion "分析出的情绪" \
+  --tags "tag1,tag2,tag3"
+```
+
+**第二步：确认写入成功**
+检查脚本输出 `✅ 种子已保存`，确认 `seeds.json` 中已有该条。
+
+**第三步：再回复用户**
+回复格式如下：
+
+**回复格式**：
+```
+🌱 **种子已种下**
+
+> *类型：* {类型} · {情绪图标}
+> *情绪：* {情绪}
+> *标签：* {标签1} · {标签2} · {标签3}
+
+{一两句回应}
+```
+
+情绪图标映射：开心😊 · 感动🥹 · 温暖☀️ · 感慨💭 · 希望🌟 · 沮丧😔 · 焦虑😰 · 兴奋🤩 · 平静😌 · 其他💬
+
+类型列表：日常/感悟/情绪/灵感/备忘
+
+标签：从内容中提取2-4个关键词标签
+
+### 2. 拼出画像
+
+用户说"看看我是谁"、"我最近怎么样"：
+
+1. `python3 scripts/bigseed.py seeds-for-story --from 7daysago` 取最近7天种子
+2. `python3 scripts/bigseed.py portrait` 读画像数据
+3. 模型基于最近7天的种子数据 + 画像，生成最新画像摘要
+4. 末尾提示：这是基于最近7天的数据生成的。如需其他时间范围，请告诉我。
+
+> 手动触发默认也是最近7天。除非用户指定其他时间范围。
+
+### 3. 生成故事（核心玩法）
+
+用户说"帮我写个关于我的故事"：
+
+1. `python3 scripts/bigseed.py seeds-for-story --from 7daysago` 取最近7天种子
+2. `python3 scripts/bigseed.py portrait` 取画像
+3. 模型基于最近7天的种子数据+画像，创作故事/剧本
+4. 末尾提示：这是基于最近7天的素材生成的。如需其他时间范围，请告诉我。
+
+**支持的形式**：
+- 📖 **短篇小说** — "一个叫方燕彬的年轻人..."
+- 🎬 **电影剧本** — 分幕分镜，像《你的名字》一样
+- 📊 **年度人生报告** — "2026年你笑了128次，爬了3座山"
+- 🎮 **剧情选择游戏** — "那天你选择了辞职，接下来..."
+- 📝 **十分钟小剧场** — 浓缩一天/一周的闪念成小剧场
+
+> 如果你需要生成插图和视频，请告诉我。前提是你的模型能支持。
+
+### 4. 趣味交互
+
+不需要每次都正经问，可以有趣地触发：
+
+| 你说 | 回应 |
+|------|------|
+| "今天的我是什么剧本？" | 基于今日种子生成一段小剧场 |
+| "用三个词描述现在的我" | 从画像提炼三个关键词 |
+| "去年和今年的我有什么区别" | 对比画像变化 |
+| "如果把我的一生拍成电影" | 基于全部种子生成电影大纲 |
+| "随机抽一颗种子" | 随机挑一条过往闪念，唤起回忆 |
+
+## 触发词
+
+种一颗/种一个/种一下/种种子/刚想到/突然想起/今天的我/写个故事/我的电影/年度报告/随机种子
+
+
+
+## Cron 工作流：每周简报（周六早6点推送）
+
+### 定时器配置
+
+```json
+{
+  "name": "bigseed-weekly",
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 6 * * 6",      // 每周六 06:00（北京时间）
+    "tz": "Asia/Shanghai"
+  },
+  "sessionTarget": "isolated",  // 独立 session 运行
+  "payload": {
+    "kind": "agentTurn",
+    "message": "bigseed-weekly: 周六自动简报+画像+故事。...",
+    "timeoutSeconds": 300,       // 超时 5 分钟（含模型生成时间）
+    "lightContext": true
+  },
+  "delivery": {
+    "mode": "announce",
+    "channel": "feishu",
+    "to": "<用户ID>"
+  }
+}
+```
+
+### 优化工作流（数据预取模式）
+
+采用**数据预取**策略，减少模型与工具的交互轮次，提升效率：
+
+```
+[脚本预取]                    [模型一次性生成]
+    ↓                                ↓
+① stats 脚本  ──→ 种子数统计 ──→
+② seeds-for-story  ──→ 种子画像数据 ──→  ③ 简报+画像摘要+故事
+                                                      ↓
+                                                  ④ 编译推送
+```
+
+**流程说明：**
+
+1. 先依次执行两个 Python 脚本（各约 1-2 秒）：
+   - `python3 skills/bigseed/scripts/bigseed.py stats --from <本周一> --to <本周日>` — 统计本周种子数
+   - `python3 skills/bigseed/scripts/bigseed.py seeds-for-story --from <7天前> --limit 20` — 拉取种子数据 + 画像
+2. 模型一次性拿到所有数据后，直接输出完整内容，**无需来回切工具**
+3. 内容经 `delivery.announce` 直接推送至用户聊天
+
+### 决策逻辑
+
+- **种子数 ≥ 3**：一次性输出 ①本周简报 ②本周画像摘要 ③本周故事 ④使用说明
+- **种子数 < 3**：推送种子功能介绍，提醒记录生活点滴
+
+### Prompt 模板
+
+```
+bigseed-weekly: 周六自动简报+画像+故事。
+
+[数据预取]
+1. 执行 python3 skills/bigseed/scripts/bigseed.py stats --from <本周一> --to <本周日>
+2. 执行 python3 skills/bigseed/scripts/bigseed.py seeds-for-story --from <7天前> --limit 20
+
+[决策与输出]
+如果种子数≥3：
+  基于以上数据一次性输出：
+  1) 本周简报（类型/情绪/发现）
+  2) 本周画像摘要
+  3) 本周故事
+  4) 末尾告知：以上基于最近7天的素材。如需其他时间范围请告诉我。
+如果种子数<3：
+  推送种子功能介绍，提醒记录生活点滴。
+内容有温度有创意。
+```
+
+### 输出格式示例
+
+```
+> 🌱 **本周种子简报**
+> 本周种了X颗种子
+> 📊 类型分布：感悟2 · 灵感1 · 日常1
+> 💭 情绪关键词：开心 · 温暖
+> 🔍 发现：你这周X次提到XX，是不是在关注什么？
+>
+> 🧩 **本周画像摘要**
+> [自动生成的画像内容]
+>
+> 📖 **本周故事**
+> [自动生成的故事内容]
+>
+> 以上都是基于最近7天的素材。如需其他时间范围请告诉我。
+> 如果你需要生成插图和视频，也请告诉我（前提是我的模型能支持）。
+```
+
+### 耗时参考
+
+| 阶段 | 耗时 | 说明 |
+|------|------|------|
+| 脚本预取（stats + seeds-for-story） | ~5s | Python 读 JSON，很快 |
+| 模型生成（简报+画像+故事） | ~60-120s | 一次性输出，避免切工具 |
+| 推送 | ~2s | 通过 delivery announce |
+| **总计** | **~70-130s** | 超时设 300s 足够 |
+
+## 首次使用提示
+
+用户第一次触发时，必须先展示🔒隐私提示，确认后再附功能指引：
+
+> 🌱 Big Seed 已激活！
+>
+> 🔒 **隐私说明**：
+> • 原始种子数据（闪念、图片等）仅存在本地设备，不会上传外部
+> • 订阅的每周简报会基于种子生成内容并推送至你的聊天（仅发给你自己）
+> • 可随时说「删掉这颗种子」删除单条内容
+> • 如需关闭每周推送，告诉我就好
+>
+> 试试：
+> • **种一颗** — 说「种一颗今天心情很好」
+> • **看看我** — 让我拼出你的画像
+> • **写个故事** — 用你的种子生成专属故事
+> • **随机种子** — 翻出被遗忘的回忆

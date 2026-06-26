@@ -1,0 +1,25 @@
+{
+  "user_id": "0xtestuser123_workflow",
+  "created_at": "2026-03-27T17:02:55.129310",
+  "free_quota": {
+    "total": 10,
+    "used": 5
+  },
+  "subscription": {
+    "active": true,
+    "started_at": "2026-03-27T17:02:55.129521",
+    "expires_at": "2026-04-26T17:02:55.129521",
+    "tx_hash": "0x00064dfdc44427ad"
+  },
+  "usage_history": [
+    {
+      "time": "2026-03-27T17:02:55.129400",
+      "action": "crawl",
+      "resource": "\u673a\u5668\u4e4b\u5fc3",
+      "count": 5,
+      "cost": 0,
+      "paid_by": "free",
+      "tx_hash": null
+    }
+  ]
+}

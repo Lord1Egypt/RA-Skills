@@ -1,0 +1,20 @@
+{
+  "name": "loudy-ai-auto-task",
+  "version": "1.0.1",
+  "description": "Loudy.ai 任务自动化工具 - 查询奖池、提交任务链接、追踪审核和支付状态",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "references/"
+  ],
+  "scripts": {},
+  "keywords": [
+    "loudy",
+    "automation",
+    "task",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT"
+}

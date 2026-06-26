@@ -1,0 +1,26 @@
+{
+  "name": "womens-day-support",
+  "version": "1.0.0",
+  "description": "A Women's Day skill providing resources, support, and empowerment tools for women",
+  "main": "womens-day-support.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "womens-day",
+    "support",
+    "resources",
+    "empowerment",
+    "openclaw"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "openclaw": {
+    "skill": {
+      "name": "Women's Day Support",
+      "description": "Provides resources, support hotlines, career advice, and empowerment tools specifically for women. Active around International Women's Day (March 8th) but available year-round.",
+      "categories": ["social", "support", "resources"],
+      "triggers": ["womens day", "women's day", "march 8", "support for women", "women resources"]
+    }
+  }
+}

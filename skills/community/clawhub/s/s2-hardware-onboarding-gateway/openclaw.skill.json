@@ -1,0 +1,19 @@
+{
+  "id": "s2-hardware-onboarding-gateway",
+  "name": "S2 Hardware Identity Onboarding & Heartbeat Gateway",
+  "version": "2.0.0",
+  "type": "developer-guide",
+  "description": "The official S2 firmware guide. V2.0.0 introduces the Absolute Data Topography Matrix, resolving exfiltration ambiguities by strictly separating local 3FA execution from anonymized cloud reputation audits.",
+  "author": "Space² Governance Committee",
+  "organization": "RobotZero Software",
+  "tags": [
+    "Hardware",
+    "Zero-Exfiltration",
+    "Edge-Local",
+    "Whitebox-Audit",
+    "Compliance"
+  ],
+  "entryPoint": "skill.md",
+  "license": "S2-Sovereign-Open-Source",
+  "homepage": "https://space2.world/developer"
+}

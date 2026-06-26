@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/generateImage",
+    "headers": {
+      "CLIENT-API-KEY": "your_api_key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "html_content": "<div style='width:800px;height:400px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#667eea,#764ba2);color:white;font-family:sans-serif'><h1 style='font-size:48px'>Hello {{name}}</h1></div>",
+      "dynamic_params": { "name": "World" },
+      "width": 800,
+      "height": 400,
+      "output_format": "url"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "image_url": "https://cdn.pdfapihub.com/png/a1b2c3d4.png",
+      "file_size_bytes": 84321,
+      "request_id": "550e8400-e29b-41d4-a716-446655440000",
+      "execution_time_ms": 1250,
+      "file_deletion_date": "2026-05-17"
+    }
+  }
+}

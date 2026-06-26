@@ -1,0 +1,5 @@
+# Skill Combo Recommender 依赖
+# 本技能使用 Python 标准库，无需额外依赖
+
+# Python 版本要求
+python>=3.8

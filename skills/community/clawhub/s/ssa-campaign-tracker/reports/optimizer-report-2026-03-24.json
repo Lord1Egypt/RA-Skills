@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-03-24T07:37:45.487Z",
+  "total_templates": 2,
+  "thresholds": {
+    "top30": 0.5,
+    "bottom30": 0
+  },
+  "high_performers": {
+    "count": 1,
+    "avg_reply_rate": 0.5,
+    "common_characteristics": {
+      "low_personalization": {
+        "count": 1,
+        "percentage": "100.0%"
+      }
+    },
+    "recommendations": [
+      "100% 的高效模板使用low personalization，建议加强个性化元素"
+    ]
+  },
+  "low_performers": {
+    "count": 1,
+    "templates": [
+      {
+        "template_id": "template-intro-v2",
+        "sent_count": 1,
+        "replied_count": 0,
+        "reply_rate": 0,
+        "qualified_count": 0,
+        "qualified_rate": "0.000",
+        "converted_count": 0,
+        "conversion_rate": "0.000",
+        "characteristics": [
+          "low_personalization"
+        ]
+      }
+    ]
+  },
+  "improvement_suggestions": [
+    {
+      "template_id": "template-intro-v2",
+      "current_reply_rate": 0,
+      "issues": [
+        "缺少主题行数据",
+        "回复率极低（<5%）",
+        "样本量不足，数据可能不具代表性"
+      ],
+      "improvements": [
+        "添加明确的主题行，包含客户痛点或价值主张",
+        "重新设计开场白，增加个性化元素",
+        "优化 CTA，使其更明确、更易执行",
+        "考虑调整发送时间或目标受众",
+        "增加发送量至至少 50 封以获得可靠数据"
+      ]
+    }
+  ],
+  "ab_tests": [
+    {
+      "test_name": "高效模板特征验证：template-intro-v1",
+      "hypothesis": "template-intro-v1 的高回复率源于其low_personalization特征",
+      "variant_a": {
+        "description": "对照组：当前低效模板",
+        "template_id": "template-intro-v2"
+      },
+      "variant_b": {
+        "description": "实验组：高效模板特征",
+        "template_id": "template-intro-v1"
+      },
+      "success_metric": "reply_rate",
+      "min_sample_size": 100,
+      "priority": "high"
+    }
+  ]
+}

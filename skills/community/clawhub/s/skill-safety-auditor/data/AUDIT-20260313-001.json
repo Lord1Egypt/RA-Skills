@@ -1,0 +1,19 @@
+{
+  "audit_id": "AUDIT-20260313-001",
+  "skill": "skill-safety-auditor",
+  "timestamp": "2026-03-13T02:37:43Z",
+  "summary": {
+    "critical": 2,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 0
+  },
+  "findings": [{"id":"SEC-001","severity":"critical","type":"secrets","file":"/Users/jianghaidong/.openclaw/workspace/skills/skill-safety-auditor/scripts/quick-scan.sh","line":36,"description":"Potential hardcoded secret detected","recommendation":"Move secrets to environment variables or secure vault"},{"id":"SEC-002","severity":"critical","type":"secrets","file":"/Users/jianghaidong/.openclaw/workspace/skills/skill-safety-auditor/scripts/audit-skill.sh","line":137,"description":"Potential hardcoded secret detected","recommendation":"Move secrets to environment variables or secure vault"}],
+  "passed": false,
+  "recommendations": [
+    "Review all findings above medium severity",
+    "Fix critical and high severity issues before release",
+    "Consider addressing medium severity issues"
+  ]
+}

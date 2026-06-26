@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "headless": false,
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "locale": "zh-CN",
+  "timezoneId": "Asia/Shanghai",
+  "browserArgs": [
+    "--disable-blink-features=AutomationControlled",
+    "--disable-infobars",
+    "--no-sandbox",
+    "--disable-setuid-sandbox"
+  ],
+  "restart": {
+    "maxCrashCount": 3,
+    "crashWindowMs": 300000,
+    "cooldownMs": 10000
+  },
+  "sessionPersistence": {
+    "enabled": true,
+    "autoSave": true,
+    "saveIntervalMs": 300000
+  },
+  "healthCheck": {
+    "enabled": true,
+    "intervalMs": 60000
+  }
+}

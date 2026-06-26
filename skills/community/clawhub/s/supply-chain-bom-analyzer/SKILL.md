@@ -1,35 +1,58 @@
 ---
-name: "供应链 BOM 数据分析"
-description: "供应链 BOM 数据分析 - 从多份工程报价单和 Excel/CSV 表格中提取、清洗、对齐硬件设备 BOM 数据，生成按时间轴维度的物料需求预测汇总表。使用场景：(1) 分析多家供应商报价单；(2) 提取传感与采集设备、传输与组网类别的物料清单；(3) 跨表格物料标准化合并；(4) 按项目交付时间生成需求预测表。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/supply-chain-bom-analyzer"
-sourceUrl: "https://clawhub.ai/skills/supply-chain-bom-analyzer"
+name: supply-chain-bom-analyzer
+description: 供应链 BOM 数据分析 - 从多份工程报价单和 Excel/CSV 表格中提取、清洗、对齐硬件设备 BOM 数据，生成按时间轴维度的物料需求预测汇总表。使用场景：(1) 分析多家供应商报价单；(2) 提取传感与采集设备、传输与组网类别的物料清单；(3) 跨表格物料标准化合并；(4) 按项目交付时间生成需求预测表。
 ---
 
 # 供应链 BOM 数据分析
 
-> 供应链 BOM 数据分析 - 从多份工程报价单和 Excel/CSV 表格中提取、清洗、对齐硬件设备 BOM 数据，生成按时间轴维度的物料需求预测汇总表。使用场景：(1) 分析多家供应商报价单；(2) 提取传感与采集设备、传输与组网类别的物料清单；(3) 跨表格物料标准化合并；(4) 按项目交付时间生成需求预测表。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/supply-chain-bom-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/supply-chain-bom-analyzer](https://clawhub.ai/skills/supply-chain-bom-analyzer)
+### 1. 数据定位与过滤
 
-## Overview
+**提取范围**：
+- ✅ 传感与采集设备
+- ✅ 传输与组网
+- ✅ 供电系统（可选）
 
+**排除项**：项目施工、交付服务、运维服务、软件平台、差旅费、人工费、税金、运输费等非实体物料
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/supply-chain-bom-analyzer
-```
+### 2. 字段提取与标准化
+
+**核心字段**：产品名称、型号/描述、数量
+
+**智能对齐合并**：识别跨表格中描述不同但实质相同的物料
+- "振弦式表面应变计"、"结构应变传感器" → "振弦式应变计"
+- "全景监控"、"400W 球机"、"智能球型摄像机" → "视频监控设备"
+- "4G 网关"、"无线智能网关"、"SGLZ-01" → "智能网关"
+
+**详细映射表**：见 [references/material-mapping.md](references/material-mapping.md)
+
+### 3. 时间维度映射
+
+接收用户提供的项目名称与需求时间对应关系，将物料数量映射到时间节点。
+
+### 4. 输出规范
+
+**格式要求**：
+- 清晰的 Markdown 表格
+- 按时间线拆分或动态列
+- 表头：`产品类别` | `产品名称` | `核心型号与技术描述` | `[时间节点] 需求数量`
+- 数量精确求和
+
+**输出示例**：
+
+### 2026 年 4 月交付需求表
+
+| 产品类别 | 产品名称 | 核心型号与技术描述 | 项目 A 数量 |
+|----------|----------|-------------------|------------|
+| 传感与采集设备 | 振弦式应变计 | 量程 0-2000με，精度 0.1%FS | 150 |
+| 传输与组网 | 智能网关 | 4G 无线，支持 MQTT/Modbus | 25 |
+
+## 详细规则
+
+完整的数据提取规则、质量控制和异常处理见 [references/extraction-rules.md](references/extraction-rules.md)
+
+## 相关技能
+
+- `procurement-price-analyzer` - 采购比价分析
+- `excel-xlsx` - Excel 文件处理

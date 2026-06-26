@@ -1,35 +1,14 @@
----
-name: "Nano Gpt Plugin"
-description: "Access dynamic NanoGPT models with API key authentication, usage tracking, and support for multiple model families in the OpenClaw platform."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nano-gpt-plugin"
-sourceUrl: "https://clawhub.ai/skills/nano-gpt-plugin"
----
+# NanoGPT Plugin
 
-# Nano Gpt Plugin
+NanoGPT provider plugin for OpenClaw with dynamic model catalog, auth, and usage tracking.
 
-> Access dynamic NanoGPT models with API key authentication, usage tracking, and support for multiple model families in the OpenClaw platform.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nano-gpt-plugin`
-- **Source URL:** [https://clawhub.ai/skills/nano-gpt-plugin](https://clawhub.ai/skills/nano-gpt-plugin)
+- Dynamic model catalog from NanoGPT API
+- API key authentication via onboarding flow
+- Usage and balance tracking
+- Support for multiple model families (OpenAI, Anthropic, Google, xAI, DeepSeek, etc.)
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nano-gpt-plugin
-```
+See README.md for full documentation.

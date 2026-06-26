@@ -1,0 +1,408 @@
+/*
+ * ============================================================
+ *  CLUSTER CONTENT STYLESHEET — pinata.vn
+ *  Dùng chung cho: cluster-pinata-sinh-nhat.html
+ *                  cluster-to-chuc-tiec-sinh-nhat.html
+ *                  cluster-pinata-la-gi.html (schema)
+ *                  và các cluster bài viết tiếp theo
+ *
+ *  Copy toàn bộ file này vào thẻ <style> trong <head>
+ *  hoặc lưu thành cluster-style.css và dùng <link>
+ * ============================================================
+ */
+
+/* ── DESIGN TOKENS ─────────────────────────────────────── */
+:root {
+  --ink:    #0F0A00;   /* màu chữ chính */
+  --bg:     #FFFCF5;   /* nền trang */
+  --card:   #ffffff;
+  --border: #EAE5DC;   /* đường kẻ, viền */
+
+  --accent:  #C0392B;  /* đỏ chính */
+  --accent2: #E67E22;  /* cam nhấn */
+  --green:   #16A34A;  /* xanh lá thành công */
+  --blue:    #1D4ED8;  /* xanh dương link */
+
+  --mute:   #7C746A;   /* text phụ, mô tả */
+  --code:   #0F172A;   /* nền code block */
+  --codet:  #E2E8F0;   /* chữ code block */
+}
+
+/* ── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── BASE ───────────────────────────────────────────────── */
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LAYOUT ─────────────────────────────────────────────── */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 100px;
+}
+
+/* ── PAGE HEADER ────────────────────────────────────────── */
+.pg-hd {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 40px;
+}
+.pg-hd h1 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.pg-hd p {
+  color: var(--mute);
+  font-size: .92rem;
+}
+
+/* Stats row */
+.stat-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.stat {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: .82rem;
+}
+.stat strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ── AUDIT / WARNING BOX ────────────────────────────────── */
+.audit {
+  background: #FFF8F0;
+  border: 1px solid #FBBF24;
+  border-left: 4px solid #F59E0B;
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 40px;
+}
+.audit h3 {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400E;
+  margin-bottom: 10px;
+}
+.audit ul { padding-left: 18px; }
+.audit li {
+  font-size: .86rem;
+  color: #78350F;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.audit li strong { color: #92400E; }
+
+/* ── TABLE OF CONTENTS ──────────────────────────────────── */
+.toc {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+}
+.toc h3 {
+  font-size: .88rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+.toc ol { padding-left: 20px; }
+.toc li { margin-bottom: 6px; }
+.toc a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: .88rem;
+  font-weight: 600;
+}
+.toc a:hover { text-decoration: underline; }
+
+/* ── ARTICLE BLOCK ──────────────────────────────────────── */
+.art {
+  margin-bottom: 72px;
+  scroll-margin-top: 20px;
+}
+.art-hd {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.art-num {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: .95rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.art-meta h2 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.art-meta .url-tag {
+  font-size: .77rem;
+  color: #2563EB;
+  font-family: monospace;
+  margin-top: 3px;
+}
+.art-meta .kw-tag {
+  font-size: .76rem;
+  color: var(--mute);
+  margin-top: 2px;
+}
+
+/* Priority badges */
+.priority {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-top: 4px;
+}
+.p1    { background: #FEE2E2; color: #991B1B; }   /* đỏ — ưu tiên cao */
+.p2    { background: #FEF3C7; color: #92400E; }   /* vàng — ưu tiên vừa */
+.p3    { background: #DCFCE7; color: #166534; }   /* xanh — ưu tiên thấp */
+.merge { background: #EDE9FE; color: #5B21B6; }   /* tím — cần merge */
+
+/* ── META BOX (SEO tags + Schema) ───────────────────────── */
+.meta-box {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.meta-box-hd {
+  background: #F8F5F0;
+  padding: 10px 16px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.meta-box pre {
+  background: var(--code);
+  color: var(--codet);
+  font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  font-size: .77rem;
+  line-height: 1.65;
+  padding: 16px 18px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── COPY BUTTON ────────────────────────────────────────── */
+.copy-btn {
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 3px;
+  transition: background .15s;
+}
+.copy-btn:hover { background: var(--accent); }
+.copy-btn.ok    { background: var(--green); }
+
+/* ── CONTENT BOX (bài viết thực tế) ────────────────────── */
+.content-box {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.content-box-hd {
+  background: #F0F9F0;
+  padding: 10px 16px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: #166534;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── CONTENT AREA (HTML bài viết) ───────────────────────── */
+.content-area {
+  padding: 24px 26px;
+  font-size: .9rem;
+  line-height: 1.8;
+  color: #1C1C1C;
+}
+.content-area h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 24px 0 10px;
+  padding-top: 4px;
+}
+.content-area h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 18px 0 8px;
+}
+.content-area h4 {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 14px 0 6px;
+}
+.content-area p  { margin-bottom: 12px; }
+.content-area ul,
+.content-area ol { padding-left: 20px; margin-bottom: 12px; }
+.content-area li { margin-bottom: 5px; }
+.content-area strong { color: var(--ink); }
+.content-area em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Blockquote */
+.content-area blockquote {
+  background: #FFF8F0;
+  border-left: 3px solid var(--accent2);
+  padding: 12px 16px;
+  border-radius: 0 6px 6px 0;
+  margin: 14px 0;
+  font-size: .88rem;
+  color: #5C4A2A;
+}
+
+/* Table */
+.content-area table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: .85rem;
+}
+.content-area th {
+  background: #F8F5F0;
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+  font-weight: 700;
+}
+.content-area td {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+}
+.content-area tr:nth-child(even) td { background: #FAFAF7; }
+
+/* CTA Box (trong nội dung bài) */
+.content-area .cta-box {
+  background: linear-gradient(135deg, #C0392B, #96281B);
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin: 20px 0;
+  text-align: center;
+}
+.content-area .cta-box p {
+  color: rgba(255,255,255,.88);
+  margin-bottom: 8px;
+}
+.content-area .cta-box strong {
+  color: #FFD580;
+  font-size: 1.05rem;
+}
+
+/* ── INTERNAL LINK MAP ───────────────────────────────────── */
+.il-map {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: .82rem;
+  color: #1E40AF;
+  margin-top: 8px;
+  line-height: 1.8;
+}
+.il-map strong { color: #1D4ED8; }
+
+/* ── DIVIDER ─────────────────────────────────────────────── */
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 56px 0;
+}
+
+/* ── SUMMARY / HOW-TO BOX ────────────────────────────────── */
+.summary-box,
+.howto-box {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-top: 48px;
+}
+.summary-box h3,
+.howto-box h3 {
+  font-size: .9rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.summary-box ol,
+.howto-box ol { padding-left: 18px; }
+.summary-box li,
+.howto-box li {
+  font-size: .84rem;
+  color: var(--mute);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.summary-box li strong,
+.howto-box li strong { color: var(--ink); }
+.summary-box code,
+.howto-box code {
+  background: #F1F5F9;
+  color: var(--accent);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: .8rem;
+}

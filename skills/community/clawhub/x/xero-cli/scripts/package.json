@@ -1,0 +1,11 @@
+{
+  "name": "xero-skill-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "express": "^4.21.0",
+    "open": "^10.1.0",
+    "xero-node": "^9.3.0"
+  }
+}

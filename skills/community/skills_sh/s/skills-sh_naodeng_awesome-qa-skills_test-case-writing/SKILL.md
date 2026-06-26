@@ -1,35 +1,42 @@
 ---
-name: "test-case-writing"
-description: "Indexed by skills.sh from naodeng/awesome-qa-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "naodeng"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/naodeng/awesome-qa-skills/test-case-writing"
-sourceUrl: "https://skills.sh/naodeng/awesome-qa-skills/test-case-writing"
+name: test-case-writing
+description: Use this skill when you need to create high-quality test cases with normal, exception, and boundary scenarios; triggers include test case writing and test design.
 ---
 
-# test-case-writing
+# Test Case Writing (English)
 
-> Indexed by skills.sh from naodeng/awesome-qa-skills
+**中文版：** 见对应中文技能。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** naodeng
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/naodeng/awesome-qa-skills/test-case-writing`
-- **Source URL:** [https://skills.sh/naodeng/awesome-qa-skills/test-case-writing](https://skills.sh/naodeng/awesome-qa-skills/test-case-writing)
+## When to Use
 
-## Overview
+- Need help with test case writing in a real project context.
+- Need an output that can be used directly for execution, review, or follow-up.
 
+## Output Format Options
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/naodeng/awesome-qa-skills/test-case-writing
-```
+Markdown by default. If you need Excel, CSV, JSON, Word, or other supported formats, append the format request at the end and check [output-formats.md](output-formats.md).
+
+## How to Use
+
+1. Open `prompts/test-case-writing.md` and use it as the main prompt.
+2. Add the real project context: scope, environment, constraints, risks, dependencies, and expected deliverable.
+3. If the input is incomplete, return a usable first version and mark missing information and assumptions.
+
+## Reference Files
+
+- `prompts/test-case-writing.md`: main prompt for this skill.
+- `output-formats.md`: optional output format instructions.
+- `references/`: supporting notes loaded only when needed.
+- `scripts/`: helper scripts or converters for this skill.
+
+## Common Pitfalls
+
+- Do not use it with vague scope and no context.
+- Do not treat every area as equally important.
+- Do not skip assumptions and missing information.
+
+## Best Practices
+
+- Start from the prompt file, then add only the context that matters.
+- Keep the output risk-driven and executable.
+- If the request is incomplete, return a usable first version and mark gaps.

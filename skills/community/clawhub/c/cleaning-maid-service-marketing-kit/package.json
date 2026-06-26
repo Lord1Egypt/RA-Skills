@@ -1,0 +1,14 @@
+{
+  "name": "cleaning-maid-service-marketing-kit",
+  "version": "1.0.0",
+  "description": "Generate compliance-verified marketing content for residential cleaning, commercial janitorial, move-out, and Airbnb/VRBO turnover cleaning businesses. FTC Green Guides, OSHA HazCom, and review compliance enforced.",
+  "main": "SKILL.md",
+  "keywords": ["cleaning", "maid service", "house cleaning", "Airbnb cleaning", "move-out cleaning", "local business marketing", "FTC compliant"],
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "clawhub": {
+    "category": "local-business-marketing",
+    "price": 29,
+    "free_prompt": "prompts/01_seasonal_campaign.md"
+  }
+}

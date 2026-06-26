@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Invoice Skill"
+  short_description: "Create agentic development invoices"
+  default_prompt: "Use $agentic-invoice-skill to choose and draft the right invoice for an agentic development engagement."
+
+policy:
+  allow_implicit_invocation: false

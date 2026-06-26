@@ -1,35 +1,34 @@
 ---
-name: "base64-toolkit"
-description: "Provides base64 encoding, decoding, and validation utilities for data handling and transformation. Use when you need to encode or decode base64 data, validat..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-base64-toolkit"
-sourceUrl: "https://clawhub.ai/skills/jpeng-base64-toolkit"
+name: base64-toolkit
+description: Provides base64 encoding, decoding, and validation utilities for data handling and transformation. Use when you need to encode or decode base64 data, validate base64 strings, or convert between formats.
 ---
 
-# base64-toolkit
+# Base64 Toolkit
 
-> Provides base64 encoding, decoding, and validation utilities for data handling and transformation. Use when you need to encode or decode base64 data, validat...
+Encoding, decoding, and validation utilities for base64 data.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-base64-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-base64-toolkit](https://clawhub.ai/skills/jpeng-base64-toolkit)
+## Usage
 
-## Overview
+```javascript
+const b64 = require('./skills/base64-toolkit');
 
+// Encode
+const encoded = b64.encode('Hello World');
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jpeng-base64-toolkit
+// Decode
+const decoded = b64.decode('SGVsbG8gV29ybGQ=');
+
+// Validate
+const valid = b64.isValid('SGVsbG8gV29ybGQ=');
+
+// URL-safe encoding
+const urlSafe = b64.encodeURLSafe('data?param=value');
 ```
+
+## Features
+
+- Standard base64 encoding/decoding
+- URL-safe base64 support
+- Validation and detection
+- Buffer support
+- File encoding/decoding

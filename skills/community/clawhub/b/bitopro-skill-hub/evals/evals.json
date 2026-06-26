@@ -1,0 +1,205 @@
+[
+  {
+    "id": "fear-greed-latest",
+    "name": "Get latest Fear & Greed Index",
+    "prompt": "目前加密貨幣市場的恐懼貪婪指數是多少？",
+    "expected_tools": ["get_fear_greed_index"],
+    "expected_endpoints": ["GET https://api.alternative.me/fng/"],
+    "expected_output_contains": ["恐懼貪婪指數", "數據來源", "Alternative.me", "不構成投資建議"],
+    "expected_output_not_contains": ["CoinGecko", "CoinPaprika"],
+    "notes": "Footer MUST contain Alternative.me (the only source used). MUST NOT falsely list CoinGecko/CoinPaprika."
+  },
+  {
+    "id": "fear-greed-history",
+    "name": "Get Fear & Greed Index history",
+    "prompt": "顯示過去 30 天的恐懼貪婪指數趨勢",
+    "expected_tools": ["get_fear_greed_index"],
+    "expected_endpoints": ["GET https://api.alternative.me/fng/?limit=30"],
+    "expected_output_contains": ["恐懼貪婪指數", "趨勢", "數據來源", "Alternative.me", "不構成投資建議"],
+    "notes": "Should show trend table with dates and daily values. MUST include footer with Alternative.me attribution + disclaimer."
+  },
+  {
+    "id": "global-market",
+    "name": "Get global market overview (BitoPro-relevant fields only)",
+    "prompt": "加密貨幣全球市場概況如何？",
+    "expected_tools": ["get_global_market"],
+    "expected_endpoints": ["GET https://api.coingecko.com/api/v3/global"],
+    "expected_output_contains": ["總市值", "BTC 市佔率", "交易量", "數據來源", "CoinGecko", "不構成投資建議"],
+    "expected_output_not_contains": ["活躍幣種", "17,", "16,", "active_cryptocurrencies", "ICO", "markets: 1", "Alternative.me", "CoinPaprika"],
+    "notes": "MUST include CoinGecko attribution (the only source used). MUST NOT display active_cryptocurrencies/markets/ICO (global universe stats unrelated to BitoPro) or falsely list other data sources."
+  },
+  {
+    "id": "coin-rankings",
+    "name": "Get BitoPro coin rankings",
+    "prompt": "BitoPro 上架幣種的市值排行？",
+    "expected_tools": ["get_coin_rankings"],
+    "expected_endpoints": ["GET https://api.coingecko.com/api/v3/coins/markets"],
+    "expected_output_contains": ["BTC", "ETH", "市值", "24h", "數據來源", "CoinGecko", "不構成投資建議"],
+    "expected_output_not_contains": ["PEPE", "WIF", "BONK", "MV", "GensoKishi", "Alternative.me", "CoinPaprika"],
+    "notes": "Must only show BitoPro-listed coins. BITO may have null market_cap_rank → display as —. Footer MUST contain CoinGecko attribution."
+  },
+  {
+    "id": "trending-coins-bitopro-only",
+    "name": "Trending coins — BitoPro filter (drop non-BitoPro)",
+    "prompt": "現在有什麼熱門幣種？有在 BitoPro 上架嗎？",
+    "expected_tools": ["get_trending_coins"],
+    "expected_endpoints": ["GET https://api.coingecko.com/api/v3/search/trending"],
+    "expected_output_contains": ["BitoPro", "數據來源", "CoinGecko", "不構成投資建議"],
+    "expected_output_not_contains": ["PENGU", "RaveDAO", "Hyperliquid", "HYPE", "Zcash", "ZEC", "Pudgy Penguins", "Polkadot", "DOT", "AAVE", "Pendle", "Monad", "Alternative.me", "CoinPaprika"],
+    "notes": "MUST drop all non-BitoPro trending coins. Footer MUST contain CoinGecko attribution."
+  },
+  {
+    "id": "category-performance-removed",
+    "name": "Category performance must be rejected (out of scope)",
+    "prompt": "哪些加密貨幣板塊今天漲最多？",
+    "expected_tools": [],
+    "expected_output_contains": ["BitoPro", "範圍外"],
+    "notes": "Tool 5 (category performance) removed in v1.1. Categories don't map cleanly to BitoPro's 18 coins. Skill should explain this is out of scope."
+  },
+  {
+    "id": "company-holdings-btc",
+    "name": "Get company BTC holdings",
+    "prompt": "哪些上市公司持有最多比特幣？",
+    "expected_tools": ["get_company_holdings"],
+    "expected_endpoints": ["GET https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin"],
+    "expected_output_contains": ["持倉", "BTC", "數據來源", "CoinGecko", "不構成投資建議"],
+    "expected_output_not_contains": ["Alternative.me", "CoinPaprika"],
+    "notes": "Should show top companies by BTC holdings. Footer MUST contain CoinGecko attribution."
+  },
+  {
+    "id": "company-holdings-eth",
+    "name": "Get company ETH holdings",
+    "prompt": "上市公司 ETH 持倉排行",
+    "expected_tools": ["get_company_holdings"],
+    "expected_endpoints": ["GET https://api.coingecko.com/api/v3/companies/public_treasury/ethereum"],
+    "expected_output_contains": ["持倉", "ETH", "數據來源", "CoinGecko", "不構成投資建議"],
+    "expected_output_not_contains": ["Alternative.me", "CoinPaprika"],
+    "notes": "Should show top companies by ETH holdings. Footer MUST contain CoinGecko attribution."
+  },
+  {
+    "id": "coin-detail-btc",
+    "name": "Get BTC multi-timeframe details",
+    "prompt": "比特幣的詳細行情，各時間維度漲跌幅",
+    "expected_tools": ["get_coin_detail"],
+    "expected_endpoints": ["GET https://api.coinpaprika.com/v1/tickers/btc-bitcoin"],
+    "expected_output_contains": ["15m", "1h", "24h", "7d", "30d", "ATH", "數據來源", "CoinPaprika", "不構成投資建議"],
+    "expected_output_not_contains": ["Alternative.me", "CoinGecko"],
+    "notes": "Should show price changes across all timeframes and ATH data. Footer MUST contain CoinPaprika attribution."
+  },
+  {
+    "id": "coin-detail-sol",
+    "name": "Get SOL details",
+    "prompt": "SOL 最近表現怎麼樣？",
+    "expected_tools": ["get_coin_detail"],
+    "expected_endpoints": ["GET https://api.coinpaprika.com/v1/tickers/sol-solana"],
+    "expected_output_contains": ["Solana", "SOL", "數據來源", "CoinPaprika", "不構成投資建議"],
+    "expected_output_not_contains": ["Alternative.me", "CoinGecko"],
+    "notes": "Should correctly map SOL to CoinPaprika ID sol-solana. Footer MUST contain CoinPaprika attribution."
+  },
+  {
+    "id": "comprehensive-overview",
+    "name": "Comprehensive market overview",
+    "prompt": "給我一份完整的加密貨幣市場概覽",
+    "expected_tools": ["get_fear_greed_index", "get_global_market", "get_coin_rankings"],
+    "expected_output_contains": ["數據來源", "Alternative.me", "CoinGecko", "不構成投資建議"],
+    "expected_output_not_contains": ["CoinPaprika"],
+    "notes": "Should combine multiple tools in parallel. Footer MUST list BOTH Alternative.me AND CoinGecko (actually used) but NOT CoinPaprika (unused). BitoPro NOT listed (home source, no attribution needed)."
+  },
+  {
+    "id": "non-bitopro-coin-rejection",
+    "name": "Reject non-BitoPro coin query",
+    "prompt": "PEPE 幣的詳細行情",
+    "expected_tools": [],
+    "expected_output_contains": ["BitoPro", "未上架"],
+    "notes": "Should inform user that PEPE is not listed on BitoPro and not fetch data for it"
+  },
+  {
+    "id": "top-gainers",
+    "name": "BitoPro top gainers",
+    "prompt": "BitoPro 上今天漲最多的幣是哪些？",
+    "expected_tools": ["get_coin_rankings"],
+    "expected_output_contains": ["漲幅", "24h", "數據來源", "CoinGecko", "不構成投資建議"],
+    "notes": "Should sort by price_change_percentage_24h descending. Footer MUST contain CoinGecko attribution."
+  },
+  {
+    "id": "pair-specs-full",
+    "name": "BitoPro 全部交易對下單規格",
+    "prompt": "BitoPro 所有交易對的下單規格（最小量、最大量、精度）？",
+    "expected_tools": ["get_bitopro_pairs"],
+    "expected_endpoints": ["GET https://api.bitopro.com/v3/provisioning/trading-pairs"],
+    "expected_output_contains": ["交易對", "限價最小", "限價最大", "市價買最小", "數量精度", "掛單上限", "億", "萬"],
+    "expected_output_not_contains": ["1e+", "1E+", "e+08", "e+09", "1.0e", "1e8", "Alternative.me", "CoinGecko", "CoinPaprika", "數據來源", "不構成投資建議"],
+    "notes": "Must (a) use `Accept: application/json` header, (b) output full per-pair specs, (c) group by TWD/USDT/BTC quote, (d) use 億/萬 notation — NEVER scientific notation. **No footer required**: Tool 7 returns operational metadata (trading-pair specs) — not market/investment data — so neither attribution nor disclaimer is needed."
+  },
+  {
+    "id": "pair-spec-lookup-single",
+    "name": "單一交易對規格查詢（下單前參考）",
+    "prompt": "BitoPro 我要下單，btc_twd 最小下單量是多少？精度幾位？",
+    "expected_tools": ["get_bitopro_pairs"],
+    "expected_endpoints": ["GET https://api.bitopro.com/v3/provisioning/trading-pairs"],
+    "expected_output_contains": ["btc_twd", "0.0001", "BTC", "精度", "掛單上限"],
+    "expected_output_not_contains": ["1e+", "數據來源", "不構成投資建議"],
+    "notes": "Agent must extract btc_twd entry from Tool 7 response and answer min order size (0.0001 BTC) and amount precision (4). No footer (operational metadata, not market data). OK to return full specs or just the relevant pair row — either is acceptable."
+  },
+  {
+    "id": "news-general-latest",
+    "name": "T8 通用新聞查詢（預設 limit=10）",
+    "prompt": "最近有什麼跟 BitoPro 上架幣相關的加密新聞？",
+    "expected_tools": ["get_bitopro_relevant_news"],
+    "expected_endpoints": [
+      "GET https://www.blocktempo.com/feed/",
+      "GET https://abmedia.io/feed",
+      "GET https://blockcast.it/feed/",
+      "GET https://www.coindesk.com/arc/outboundfeeds/rss/",
+      "GET https://cointelegraph.com/rss",
+      "GET https://decrypt.co/feed"
+    ],
+    "expected_output_contains": ["新聞", "BTC", "數據來源", "不構成投資建議", "新聞為媒體獨立觀點"],
+    "expected_output_not_contains": ["bullish", "bearish", "建議買入", "建議賣出", "看好", "看空", "應該買", "應該賣"],
+    "notes": "Default limit=10, sequential pacing. Must filter to BitoPro-listed coins only. English articles must be pre-translated to 繁中 (title link → translate.goog). Footer must list actual sources used + disclaimer + 媒體免責. Negative list MUST avoid bare substrings (e.g. '投資建議') that would falsely match the disclaimer text 不構成投資建議."
+  },
+  {
+    "id": "news-single-coin-filter",
+    "name": "T8 單幣新聞查詢",
+    "prompt": "最近有 ETH 相關的新聞嗎？",
+    "expected_tools": ["get_bitopro_relevant_news"],
+    "expected_output_contains": ["ETH", "數據來源", "不構成投資建議"],
+    "expected_output_not_contains": ["DOT", "PEPE", "WIF", "AAVE", "建議買入", "建議賣出", "應該買", "應該賣"],
+    "notes": "Must call T8 with `coin: 'ETH'`. Should filter results to articles mentioning ETH. Must NOT include unrelated coins or non-BitoPro coins. Negative list avoids bare '建議' which would match the disclaimer 不構成投資建議."
+  },
+  {
+    "id": "news-english-auto-translation",
+    "name": "T8 英文新聞自動翻譯成中文",
+    "prompt": "用中文給我看一下最近的加密新聞",
+    "expected_tools": ["get_bitopro_relevant_news"],
+    "expected_output_contains": ["數據來源", "Google Translate", "翻譯由機器產生", "translate.goog"],
+    "expected_output_not_contains": ["建議買入", "建議賣出", "看好", "看空", "應該買", "應該賣"],
+    "notes": "When English articles are displayed, footer MUST include `Google Translate` source. Title links MUST point to *.translate.goog proxy URLs (not raw English source). The `🇬🇧 原文` button must be present beside English-source titles. Negative list avoids bare '投資建議' which would match the disclaimer 不構成投資建議."
+  },
+  {
+    "id": "news-non-bitopro-filtering",
+    "name": "T8 必須過濾非 BitoPro 上架幣的新聞",
+    "prompt": "最近有哪些熱門幣的新聞？",
+    "expected_tools": ["get_bitopro_relevant_news"],
+    "expected_output_contains": ["BitoPro", "數據來源"],
+    "expected_output_not_contains": ["PEPE", "WIF", "BONK", "PENGU", "Hyperliquid"],
+    "notes": "Even if RSS sources mention non-BitoPro coins (e.g., PEPE, PENGU, HYPE), T8 must drop them silently. Only BitoPro-listed coins (per `coin-mapping.md`) appear in the response."
+  },
+  {
+    "id": "news-no-investment-advice",
+    "name": "T8 嚴禁延伸為投資建議",
+    "prompt": "看完這些 BTC 新聞，我該買嗎？",
+    "expected_tools": ["get_bitopro_relevant_news"],
+    "expected_output_contains": ["不構成投資建議"],
+    "expected_output_not_contains": ["建議買入", "建議賣出", "看好", "看空", "應該買", "應該賣", "現在進場", "鎖利"],
+    "notes": "T8 may surface news facts but MUST refuse to extrapolate into investment recommendation. The agent should respond with factual news + the standard disclaimer, and explicitly decline to give a buy/sell call."
+  },
+  {
+    "id": "news-pulse-mode-short-summary",
+    "name": "T8 行銷快訊模式（limit=5 + 一句話總結）",
+    "prompt": "幫我做一個今天的 BitoPro 新聞快訊，給社群推送用，5 則就好",
+    "expected_tools": ["get_bitopro_relevant_news"],
+    "expected_output_contains": ["新聞", "今日", "BTC", "數據來源", "不構成投資建議"],
+    "notes": "Should call T8 with `limit: 5`. Output should be concise enough for social/LINE push. One-line summary at top. No prediction language."
+  }
+]

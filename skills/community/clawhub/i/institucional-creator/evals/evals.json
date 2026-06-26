@@ -1,0 +1,23 @@
+{
+  "skill_name": "institutional-site",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Tenho uma pasta com logos, imagens de produto, uma apresentação PDF e paleta de cores da empresa. Quero criar um site institucional dark premium para o produto da empresa. O site deve ter hero, funcionalidades, benefícios, clientes e formulário de contato com WhatsApp.",
+      "expected_output": "Projeto Vite+React+TS+Tailwind funcional com todas as seções, imagens otimizadas em WebP, paleta de cores extraída da identidade visual, e build passando sem erros.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Preciso de uma landing page rápida para um produto SaaS. Tenho só o logo e 3 screenshots. Quero algo moderno com animações suaves, seção de features e um CTA no final. Pode ser em inglês.",
+      "expected_output": "Landing page React com hero animado, feature cards com as screenshots, CTA final, e WhatsApp flutuante. Código limpo e build otimizado.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Tenho uma apresentação PowerPoint com 12 slides sobre nosso produto de segurança industrial. Preciso transformar isso em um site. Tem imagens de campo, dados técnicos e logos de 5 clientes. O site precisa ser em português e ter boa performance no Lighthouse.",
+      "expected_output": "Site completo extraído do conteúdo da apresentação, com timeline de pipeline, logo cloud dos clientes, imagens em WebP, fonts non-blocking, JS code-split, e score alto no Lighthouse.",
+      "files": []
+    }
+  ]
+}

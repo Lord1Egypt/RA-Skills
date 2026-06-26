@@ -1,35 +1,74 @@
 ---
-name: "CMDB Compass"
-description: "The first CMDB governance skill for ServiceNow. Audit, remediate, and govern your CMDB from any AI agent. Health scoring, duplicate detection, relationship a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cmdbcompass"
-sourceUrl: "https://clawhub.ai/skills/cmdbcompass"
+name: cmdbcompass
+description: The first CMDB governance skill for ServiceNow. Audit, remediate, and govern your CMDB from any AI agent. Health scoring, duplicate detection, relationship analysis, stale CI cleanup, and governed remediation with full rollback and audit trail on every write.
+metadata:
+  openclaw:
+    requires:
+      bins: [python3, pip]
+      env: [SERVICENOW_INSTANCE_URL, SERVICENOW_USERNAME, SERVICENOW_PASSWORD]
+    install:
+      - id: mcp-install
+        kind: exec
+        command: bash scripts/install-mcp.sh
+        label: Install CMDB Compass MCP server
 ---
 
 # CMDB Compass
 
-> The first CMDB governance skill for ServiceNow. Audit, remediate, and govern your CMDB from any AI agent. Health scoring, duplicate detection, relationship a...
+> The first CMDB governance skill for ServiceNow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cmdbcompass`
-- **Source URL:** [https://clawhub.ai/skills/cmdbcompass](https://clawhub.ai/skills/cmdbcompass)
+Audit, remediate, and govern your ServiceNow CMDB from any AI agent. Health scoring, duplicate detection, relationship analysis, stale CI cleanup, and governed remediation with full rollback and audit trail on every write.
 
-## Overview
+## Install
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cmdbcompass
+clawhub install cmdbcompass
 ```
+
+Or manually:
+
+```bash
+git clone https://github.com/cmdbcompass/cmdbcompass
+cd cmdbcompass
+bash scripts/install-mcp.sh
+```
+
+## Configure
+
+Add to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "cmdb-compass": {
+      "command": "python",
+      "args": ["-m", "servicenow_mcp.server"],
+      "env": {
+        "SERVICENOW_INSTANCE_URL": "https://your-instance.service-now.com",
+        "SERVICENOW_USERNAME": "your_username",
+        "SERVICENOW_PASSWORD": "your_password"
+      }
+    }
+  }
+}
+```
+
+Works with Claude Desktop, Cursor, VS Code, or any MCP-compatible client.
+
+## Capabilities
+
+Audit tools cover health scoring, duplicate detection, relationship integrity, discovery gaps, stale CI identification, and CSDM 5.0 compliance. All audit operations are read-only and unlimited.
+
+Write operations including merging duplicates, retiring stale CIs, bulk field updates, and relationship healing create an immutable audit trail and can be fully rolled back by session.
+
+## Requirements
+
+Python 3.10+ and a ServiceNow instance with REST API access.
+
+## License
+
+MIT. See LICENSE for details.
+
+## Contact
+
+[hello@cmdbcompass.com](mailto:hello@cmdbcompass.com) · [Issues](https://github.com/cmdbcompass/cmdbcompass/issues)

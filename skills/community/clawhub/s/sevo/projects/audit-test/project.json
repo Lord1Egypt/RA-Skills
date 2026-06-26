@@ -1,0 +1,18 @@
+{
+  "slug": "audit-test",
+  "description": "审计测试值-2026-05-24",
+  "parentProject": "unnamed",
+  "createdAt": "2026-05-24T02:13:21.305Z",
+  "stages": [
+    "spec",
+    "spec-review-gate",
+    "implement",
+    "review",
+    "smoke-test",
+    "ux-acceptance",
+    "pm-commercial-review",
+    "publish-generalization-gate",
+    "deploy",
+    "ledger"
+  ]
+}

@@ -1,35 +1,34 @@
 ---
-name: "System Resource Report"
-description: "Check current Linux system resource usage and report load, memory, swap, disk, and top CPU/memory processes. Use when the user asks about system resources, r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/system-resource-report"
-sourceUrl: "https://clawhub.ai/skills/system-resource-report"
+name: system-resource-report
+description: Check current Linux system resource usage and report load, memory, swap, disk, and top CPU/memory processes. Use when the user asks about system resources, resource usage, CPU/memory/disk occupancy, or wants periodic machine health/resource summaries.
 ---
 
 # System Resource Report
 
-> Check current Linux system resource usage and report load, memory, swap, disk, and top CPU/memory processes. Use when the user asks about system resources, r...
+Use this skill when the user wants current machine resource usage or recurring resource summaries.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/system-resource-report`
-- **Source URL:** [https://clawhub.ai/skills/system-resource-report](https://clawhub.ai/skills/system-resource-report)
+## What to collect
+Run the bundled script:
 
-## Overview
+`./scripts/report.sh`
 
+It reports:
+- load average / uptime
+- memory and swap usage
+- root disk usage
+- top CPU processes
+- top memory processes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/system-resource-report
-```
+## Response style
+Summarize briefly first, then list:
+- load
+- memory/swap
+- disk
+- top CPU consumers
+- top memory consumers
+
+Call out clearly if:
+- free memory is low
+- swap is in active use
+- load is abnormally high
+- one process family dominates resource usage

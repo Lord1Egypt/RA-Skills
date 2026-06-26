@@ -1,0 +1,8 @@
+name: rmb-upper-skill
+version: 1.0.0
+
+tools:
+  - name: rmb_upper_tool
+    description: 人民币大写转换工具
+    entrypoint: rmb_upper_tool.py:rmb_upper_tool
+    schema: schema.json

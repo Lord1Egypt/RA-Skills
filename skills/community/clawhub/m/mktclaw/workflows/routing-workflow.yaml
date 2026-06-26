@@ -1,0 +1,231 @@
+name: agency-hub-routing
+version: "5.0"
+description: MktClaw v5.0 主工作流 - 三层冷热分层架构，AI直接扮演代理商角色交付专业工作成果
+
+input:
+  type: object
+  required:
+    - user_input
+  properties:
+    user_input:
+      type: string
+      description: 用户原始需求描述
+    context_hint:
+      type: string
+      description: 可选的上下文线索
+
+steps:
+  # ════════════════════════════════════════════
+  # PHASE 1: 需求澄清 (Intake)
+  # ════════════════════════════════════════════
+  - id: intake
+    agent: agents/intake-agent
+    description: 多轮需求澄清，生成结构化需求摘要
+    input:
+      user_input: "{{input.user_input}}"
+    output: requirement_summary
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认以上需求摘要是否准确？"
+    on_error:
+      code: "AH-INTK-001"
+      action: retry_with_guidance
+      max_retries: 2
+
+  # ════════════════════════════════════════════
+  # PHASE 2: 角色路由 + 交付计划 (Router)
+  # ════════════════════════════════════════════
+  - id: routing
+    agent: agents/router-agent
+    description: 确定AI应扮演的代理角色，规划交付计划
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+    output: delivery_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认AI扮演的角色和交付计划是否合适？"
+    logging:
+      event: role_routing
+      measure_duration: true
+
+  # ════════════════════════════════════════════
+  # PHASE 3: 专业交付 (Type-Specific)
+  # AI以对应代理角色身份直接交付工作成果
+  # ════════════════════════════════════════════
+
+  # --- 战略咨询顾问 ---
+  - id: strategy_delivery
+    workflow: agents/types/strategy-consulting/workflow.yaml
+    description: AI扮演战略咨询顾问，交付品牌定位/增长策略等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'strategy'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: strategy_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认战略咨询交付物是否满足需求？"
+
+  # --- 品牌设计顾问 ---
+  - id: brand_delivery
+    workflow: agents/types/brand-design/workflow.yaml
+    description: AI扮演品牌设计顾问，交付VI方案/Logo提案等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'brand'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: brand_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认品牌设计交付物是否满足需求？"
+
+  # --- 创意总监 ---
+  - id: creative_delivery
+    workflow: agents/types/creative-agency/workflow.yaml
+    description: AI扮演创意总监，交付Big Idea/Campaign策略等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'creative'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: creative_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认创意方案是否满足需求？"
+
+  # --- 内容制作总监 ---
+  - id: content_delivery
+    workflow: agents/types/content-production/workflow.yaml
+    description: AI扮演内容制作总监，交付拍摄脚本/分镜等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'content'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: content_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  # --- 媒介策划总监 ---
+  - id: media_delivery
+    workflow: agents/types/media-agency/workflow.yaml
+    description: AI扮演媒介策划总监，交付媒介计划/预算方案等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'media'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: media_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  # --- KOL营销顾问 ---
+  - id: kol_delivery
+    workflow: agents/types/kol-agency/workflow.yaml
+    description: AI扮演KOL营销顾问，交付达人矩阵/种草策略等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'kol'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: kol_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  # --- MCN运营顾问 ---
+  - id: mcn_delivery
+    workflow: agents/types/mcn/workflow.yaml
+    description: AI扮演MCN运营顾问，交付账号矩阵/内容策略等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'mcn'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: mcn_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  # --- 直播运营总监 ---
+  - id: livestream_delivery
+    workflow: agents/types/live-streaming/workflow.yaml
+    description: AI扮演直播运营总监，交付直播脚本/选品方案等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'livestream'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: livestream_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  # --- 数据分析顾问 ---
+  - id: data_delivery
+    workflow: agents/types/data-analytics/workflow.yaml
+    description: AI扮演数据分析顾问，交付分析报告/归因框架等成果
+    when:
+      - "{{routing.output.delivery_plan.role == 'data'}}"
+    input:
+      requirement_summary: "{{intake.output.requirement_summary}}"
+      delivery_plan: "{{routing.output.delivery_plan}}"
+    output: data_deliverables
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  # ════════════════════════════════════════════
+  # PHASE 4: 跨阶段串联 (Transition)
+  # 全案场景下串联多阶段交付物
+  # ════════════════════════════════════════════
+  - id: transition
+    agent: agents/transition-agent
+    description: 全案场景下确保多阶段交付物的逻辑一致性
+    input:
+      deliverables: "@type_deliverables"
+      requirement_summary: "{{intake.output.requirement_summary}}"
+    output: integrated_plan
+    when:
+      - "{{routing.output.delivery_plan.is_full_case == true}}"
+
+output:
+  requirement_summary: "{{intake.output.requirement_summary}}"
+  delivery_plan: "{{routing.output.delivery_plan}}"
+  deliverables: "@type_deliverables"
+  integrated_plan: "{{transition.output.integrated_plan}}"
+
+persistence:
+  enabled: true
+  storage: session_state
+  strategy: per_step
+  resume_support: true
+
+error_handling:
+  strategy: "circuit_breaker_with_fallback"
+  global_fallback: "agents/router-agent"
+  error_codes_schema: "shared/error-codes.schema.json"
+
+logging:
+  protocol: "shared/logging-protocol.md"
+  level: info
+  structured_output: true
+
+performance:
+  targets:
+    total_pipeline_ms: 30000
+    routing_decision_ms: 2000
+
+caching:
+  enabled: true
+  strategy: lru
+  route_cache_ttl: 3600

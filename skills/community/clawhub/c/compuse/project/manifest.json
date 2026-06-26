@@ -1,0 +1,24 @@
+{
+  "name": "compuse",
+  "version": "0.1.1",
+  "platforms": {
+    "macos": {
+      "repo": "https://github.com/wimi321/macos-computer-use-skill",
+      "version": "0.2.2",
+      "clawhub": "https://clawhub.ai/wimi321/computer-use-macos",
+      "validation": "real-device-validated"
+    },
+    "windows": {
+      "repo": "https://github.com/wimi321/windows-computer-use-skill",
+      "version": "0.1.1",
+      "clawhub": "https://clawhub.ai/wimi321/computer-use-windows",
+      "validation": "static-build-validated"
+    },
+    "linux": {
+      "repo": "https://github.com/wimi321/linux-computer-use-skill",
+      "version": "0.1.1",
+      "clawhub": "https://clawhub.ai/wimi321/computer-use-linux",
+      "validation": "static-build-validated"
+    }
+  }
+}

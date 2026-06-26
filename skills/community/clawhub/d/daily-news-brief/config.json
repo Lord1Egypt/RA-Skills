@@ -1,0 +1,59 @@
+{
+  "newsSources": {
+    "international": [
+      "https://news.cctv.com/world",
+      "https://news.sina.com.cn/world",
+      "https://www.reuters.com/world",
+      "https://www.bbc.com/news/world"
+    ],
+    "economic": [
+      "https://finance.sina.com.cn",
+      "https://www.bloomberg.com/markets",
+      "https://www.ft.com/markets",
+      "https://www.wsj.com/news/business"
+    ],
+    "technology": [
+      "https://tech.sina.com.cn",
+      "https://techcrunch.com",
+      "https://www.theverge.com/tech",
+      "https://www.wired.com"
+    ]
+  },
+  "schedule": "0 8 * * *",
+  "timezone": "Asia/Shanghai",
+  "outputChannels": ["feishu", "console"],
+  "recipients": ["ou_63fe82c05165ad03801998f88ef81025"],
+  "historicalPatterns": {
+    "trumpVisit": true,
+    "usChinaRelations": true,
+    "middleEastTensions": true,
+    "aiDevelopment": true,
+    "economicPolicies": true,
+    "semiconductor": true,
+    "newEnergy": true,
+    "globalTrade": true
+  },
+  "prioritySettings": {
+    "maxItemsPerCategory": 5,
+    "minTitleLength": 10,
+    "duplicateThreshold": 0.8,
+    "timeRange": "24h"
+  },
+  "logging": {
+    "level": "info",
+    "file": "logs/news-brief.log",
+    "maxSize": "10MB",
+    "maxFiles": 7
+  },
+  "retrySettings": {
+    "maxRetries": 3,
+    "retryDelay": 5000,
+    "timeout": 30000
+  },
+  "notificationSettings": {
+    "enableEmail": false,
+    "enableSMS": false,
+    "enablePush": true,
+    "summaryLength": 500
+  }
+}

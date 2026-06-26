@@ -1,0 +1,41 @@
+{
+  "name": "ai-image-video-llm-api",
+  "version": "1.0.0",
+  "description": "AI image generation, video generation, and LLM chat API via Atlas Cloud. One API key for Nano Banana 2, Seedream, Kling, Seedance, Qwen, DeepSeek and more.",
+  "author": {
+    "name": "Atlas Cloud",
+    "email": "support@atlascloud.ai"
+  },
+  "homepage": "https://github.com/AtlasCloudAI/nano-banana-2-skill",
+  "repository": "https://github.com/AtlasCloudAI/nano-banana-2-skill",
+  "license": "MIT",
+  "keywords": [
+    "AI image generation",
+    "AI video generation",
+    "LLM API",
+    "text-to-image",
+    "text-to-video",
+    "image-to-video",
+    "OpenAI compatible",
+    "Atlas Cloud",
+    "Nano Banana",
+    "Seedream",
+    "Kling",
+    "Seedance",
+    "Qwen",
+    "DeepSeek"
+  ],
+  "skills": [
+    "./SKILL.md"
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "ATLASCLOUD_API_KEY": {
+        "type": "string",
+        "description": "Atlas Cloud API key for AI image/video generation and LLM access. Get one at https://www.atlascloud.ai/console/api-keys"
+      }
+    },
+    "required": ["ATLASCLOUD_API_KEY"]
+  }
+}

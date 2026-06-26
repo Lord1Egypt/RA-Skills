@@ -1,0 +1,273 @@
+{
+  "name": "Inbound Lead Router — Agency Growth Pack #03",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "inbound-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook — Inbound Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "inbound-lead-router"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Lead Score + Route\n// Adjust thresholds to match your qualification criteria\n\nconst lead = $input.first().json.body;\n\n// Normalize field names (handles common form field variations)\nconst email = lead.email || lead.Email || lead['email address'] || '';\nconst name = lead.name || lead.Name || lead.full_name || `${lead.first_name || ''} ${lead.last_name || ''}`.trim() || 'Unknown';\nconst company = lead.company || lead.Company || lead.organisation || '';\nconst message = lead.message || lead.Message || lead.notes || '';\nconst source = lead.source || lead.utm_source || lead.Source || 'direct';\nconst phone = lead.phone || lead.Phone || lead.telephone || '';\n\n// Score the lead (0-10)\nlet score = 0;\n\n// +3 if email is present and looks real\nif (email && email.includes('@') && !email.includes('test') && !email.includes('example')) score += 3;\n\n// +2 if company name provided\nif (company && company.length > 1) score += 2;\n\n// +2 if phone number provided\nif (phone && phone.length > 6) score += 2;\n\n// +1 if message is substantive (>20 chars)\nif (message && message.length > 20) score += 1;\n\n// +1 for high-intent sources\nconst highIntentSources = ['google', 'referral', 'partner', 'linkedin'];\nif (highIntentSources.some(s => source.toLowerCase().includes(s))) score += 1;\n\n// +1 if message contains buying signals\nconst buyingSignals = ['budget', 'ready', 'asap', 'urgent', 'hire', 'quote', 'pricing', 'start'];\nif (buyingSignals.some(w => message.toLowerCase().includes(w))) score += 1;\n\n// Determine bucket\nlet bucket;\nif (score >= 7) bucket = 'hot';\nelse if (score >= 4) bucket = 'warm';\nelse if (score >= 1) bucket = 'cold';\nelse bucket = 'discard';\n\n// Spam/incomplete check\nif (!email || !email.includes('@')) bucket = 'discard';\n\nconst timestamp = new Date().toISOString();\n\nreturn [{\n  json: {\n    // Normalized lead data\n    email,\n    name,\n    company,\n    message,\n    source,\n    phone,\n    // Routing metadata\n    score,\n    bucket,\n    timestamp,\n    raw: lead\n  }\n}];"
+      },
+      "id": "lead-score-route",
+      "name": "Lead Score + Route",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.bucket }}",
+              "operation": "equals",
+              "value2": "discard"
+            }
+          ]
+        }
+      },
+      "id": "discard-check",
+      "name": "Discard?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.email }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "dedup-check",
+      "name": "Dedup Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [900, 200],
+      "notes": "Connect to your CRM lookup here. For now, passes all non-empty emails through. Replace with a HubSpot/Airtable search node to catch duplicates."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.bucket }}",
+              "operation": "equals",
+              "value2": "hot"
+            }
+          ]
+        }
+      },
+      "id": "hot-check",
+      "name": "Hot Lead?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1120, 200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $json.timestamp }}",
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Company": "={{ $json.company }}",
+            "Phone": "={{ $json.phone }}",
+            "Message": "={{ $json.message }}",
+            "Source": "={{ $json.source }}",
+            "Score": "={{ $json.score }}",
+            "Bucket": "={{ $json.bucket }}"
+          }
+        }
+      },
+      "id": "log-to-sheet",
+      "name": "Log to Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1340, 100],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "Google Sheets — replace with yours"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "channel": "YOUR_SLACK_CHANNEL_ID",
+        "text": "=🔥 *Hot Lead Alert*\n\n*Name:* {{ $json.name }}\n*Email:* {{ $json.email }}\n*Company:* {{ $json.company }}\n*Score:* {{ $json.score }}/10\n*Source:* {{ $json.source }}\n\n*Message:*\n{{ $json.message }}\n\n_Routed at {{ $json.timestamp }}_",
+        "otherOptions": {}
+      },
+      "id": "slack-hot-alert",
+      "name": "Slack — Hot Lead Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [1340, 300],
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack — replace with yours"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'received', message: 'Thanks — we\\'ll be in touch soon.' }) }}"
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1560, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'received', message: 'Thanks — we\\'ll be in touch soon.' }) }}"
+      },
+      "id": "webhook-response-discard",
+      "name": "Webhook Response (Discard)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 440]
+    }
+  ],
+  "connections": {
+    "Webhook — Inbound Lead": {
+      "main": [
+        [
+          {
+            "node": "Lead Score + Route",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lead Score + Route": {
+      "main": [
+        [
+          {
+            "node": "Discard?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discard?": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response (Discard)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Dedup Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dedup Check": {
+      "main": [
+        [
+          {
+            "node": "Hot Lead?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hot Lead?": {
+      "main": [
+        [
+          {
+            "node": "Log to Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Slack — Hot Lead Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log to Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Sheet": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1.0.0",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "agency-growth-pack"
+  },
+  "tags": [
+    {
+      "name": "agency",
+      "createdAt": "2026-04-02"
+    },
+    {
+      "name": "lead-routing",
+      "createdAt": "2026-04-02"
+    },
+    {
+      "name": "client-ready",
+      "createdAt": "2026-04-02"
+    }
+  ]
+}

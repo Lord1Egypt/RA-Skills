@@ -1,0 +1,32 @@
+generation:
+  mode: draft
+  slug_max_length: 48
+  allow_estimated_physchem: false
+  enable_ocr: false
+display:
+  no_data: No data available
+parsing:
+  min_source_inputs: 1
+  max_source_inputs: 3
+  template_extensions:
+    - .docx
+  prompt_extensions:
+    - .txt
+    - .md
+  source_extensions:
+    - .pdf
+    - .docx
+    - .txt
+  repeated_noise_min_page_ratio: 0.5
+  header_region_ratio: 0.10
+  footer_region_ratio: 0.10
+  scanned_text_min_length: 80
+  scanned_words_min_count: 15
+  image_page_coverage_threshold: 0.7
+  ocr_cache_dir: .cache/ocr
+  ocr_render_scale: 2.0
+  ocr_low_confidence_threshold: 70.0
+render:
+  product_header_fallback: No data available
+outputs:
+  root: outputs/runs

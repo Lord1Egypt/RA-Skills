@@ -1,0 +1,10 @@
+{
+  "user": "default",
+  "emergency_phone": "",
+  "feishu_chat_id": "",
+  "reminder_time": "18:15",
+  "last_checkin": "2026-03-13",
+  "missed_days": 0,
+  "configured": true,
+  "configured_at": "2026-03-13 18:04"
+}

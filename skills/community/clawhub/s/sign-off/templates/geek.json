@@ -1,0 +1,13 @@
+{
+  "name": "geek",
+  "displayName": "🤖 极客风",
+  "description": "程序员风格，简洁精确",
+  "template": "// signed: {name} @ {location} | {time}",
+  "emoji": "",
+  "seal": "",
+  "contextMode": {
+    "work": "// end: {name}",
+    "casual": "// signed: {name} @ {location} | {time}"
+  },
+  "preview": "// signed: xiaoju @ hangzhou | 午后"
+}

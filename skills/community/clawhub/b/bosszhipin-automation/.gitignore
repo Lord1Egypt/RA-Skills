@@ -1,0 +1,39 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# User-specific
+.env
+.pytest_cache/
+.hypothesis/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Screenshots
+screenshots/*.png
+screenshots/*.jpg
+*.png
+*.jpg
+*.jpeg
+
+# OCR output
+ocr_output/
+*.txt
+*.json
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,11 @@
+{
+  "databaseId": 7103,
+  "workflowName": "Nightly Security",
+  "event": "schedule",
+  "conclusion": "success",
+  "headBranch": "main",
+  "createdAt": "2026-03-06T00:00:00Z",
+  "updatedAt": "2026-03-06T00:22:00Z",
+  "url": "https://example.com/runs/7103",
+  "repository": {"nameWithOwner": "acme/web"}
+}

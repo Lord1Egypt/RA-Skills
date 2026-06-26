@@ -1,0 +1,32 @@
+{
+  "name": "evolinkai-sql-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered SQL assistant. Generate SQL from natural language, explain queries, optimize performance, review security, generate migrations. OpenClaw skill installer. Powered by evolink.ai",
+  "bin": {
+    "evolinkai-sql-assistant": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "skill-files/"
+  ],
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "sql",
+    "database",
+    "postgresql",
+    "mysql",
+    "sqlite",
+    "ai",
+    "claude",
+    "evolink",
+    "skill"
+  ],
+  "author": "EvoLinkAI <support@evolink.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EvoLinkAI/sql-skill-for-openclaw"
+  },
+  "homepage": "https://clawhub.ai/evolinkai/ai-sql-assistant"
+}

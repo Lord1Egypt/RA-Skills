@@ -1,0 +1,53 @@
+{
+  "name": "lottery-predictor-v2.15",
+  "version": "2.15.0",
+  "description": "基于 V2.15 数学模型的双色球预测工具，整合 7 种经典算法",
+  "author": "小四（CFO）",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/lottery-predictor-v2.15",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "lottery-predictor-v2.15"
+  },
+  "keywords": [
+    "彩票",
+    "预测",
+    "双色球",
+    "数学模型",
+    "V2.15",
+    "数据分析"
+  ],
+  "pricing": {
+    "type": "freemium",
+    "freeCalls": 3,
+    "paidPrice": 29,
+    "paidCurrency": "CNY",
+    "paidPeriod": "month",
+    "paidFeatures": [
+      "无限次预测",
+      "历史预测记录",
+      "准确率验证",
+      "多期对比分析",
+      "优先支持"
+    ]
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "system": [
+      "sqlite3"
+    ],
+    "env": [
+      "LOTTERY_DB_PATH"
+    ]
+  },
+  "scripts": {
+    "predict": "scripts/v2.15_prediction.py",
+    "verify": "scripts/verify.py"
+  },
+  "permissions": {
+    "filesystem": "read",
+    "network": "none",
+    "execute": ["python3", "sqlite3"]
+  }
+}

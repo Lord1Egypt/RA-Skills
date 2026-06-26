@@ -1,0 +1,35 @@
+{
+  "sources": [
+    {
+      "name": "CDC Developmental Milestones",
+      "url": "https://www.cdc.gov/ncbddd/actearly/milestones/index.html",
+      "description": "Centers for Disease Control and Prevention developmental milestone checklists"
+    },
+    {
+      "name": "WHO Child Growth Standards",
+      "url": "https://www.who.int/tools/child-growth-standards",
+      "description": "World Health Organization growth and development standards"
+    },
+    {
+      "name": "American Academy of Pediatrics",
+      "url": "https://www.healthychildren.org",
+      "description": "AAP guidelines for child development and parenting"
+    }
+  ],
+  "age_ranges": [
+    "0-3 months",
+    "3-6 months", 
+    "6-12 months",
+    "12-24 months",
+    "24-36 months",
+    "36-60 months"
+  ],
+  "developmental_domains": [
+    "gross-motor",
+    "fine-motor", 
+    "language",
+    "cognitive",
+    "social-emotional",
+    "adaptive"
+  ]
+}

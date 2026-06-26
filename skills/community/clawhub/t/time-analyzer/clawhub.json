@@ -1,0 +1,26 @@
+{
+  "name": "time-analyzer",
+  "displayName": "Time Analyzer",
+  "version": "1.0.1",
+  "description": "Time tracking and analysis skill for automatic activity monitoring and productivity insights",
+  "author": "姜海东",
+  "license": "MIT-0",
+  "keywords": ["time", "tracking", "analyzer", "productivity", "activity"],
+  "homepage": "https://github.com/harrylabsj/time-analyzer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/time-analyzer.git"
+  },
+  "categories": ["productivity", "utilities"],
+  "compatibility": {
+    "openclaw": ">=2026.3.8"
+  },
+  "triggers": [
+    "时间追踪",
+    "time tracking",
+    "活动分析",
+    "activity analysis",
+    "时间管理",
+    "time management"
+  ]
+}

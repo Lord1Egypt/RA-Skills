@@ -1,0 +1,4 @@
+interface:
+  display_name: "活百岁"
+  short_description: "录入身体指标和生活习惯，制定长寿计划并生成定时提醒"
+  default_prompt: "Use $live-to-100 to collect my health baseline, create a 12-week longevity plan, and set hydration, standing, sleep, workout, and supplement reminders."

@@ -1,0 +1,85 @@
+# OpenClaw 配置文件模板
+# 路径: ~/.openclaw/config.yaml
+
+version: "1.0"
+
+# ==================== 频道配置 ====================
+channels:
+  # Telegram 配置
+  telegram:
+    enabled: true
+    botToken: "${TELEGRAM_BOT_TOKEN}"
+    adminIds:
+      - "${ADMIN_CHAT_ID}"
+    # 群组策略
+    groupAllowFrom: []
+    groupPolicy: "allowlist"  # allowlist | open | deny
+    
+  # Webhook 配置 (可选)
+  # webhook:
+  #   enabled: false
+  #   path: "/webhook"
+
+# ==================== 技能配置 ====================
+skills:
+  autoUpdate: true
+  installPath: "${HOME}/.openclaw/skills"
+  
+  # 技能市场
+  market:
+    clawhub:
+      enabled: true
+      url: "https://clawhub.ai"
+    
+    skillhub:
+      enabled: true  
+      url: "https://skillhub.tencent.com"
+
+# ==================== 日志配置 ====================
+logging:
+  level: "info"  # debug | info | warn | error
+  file: "${HOME}/.openclaw/logs/jarvis.log"
+  maxSize: "10m"
+  maxFiles: 5
+
+# ==================== 服务器配置 ====================
+server:
+  port: 18789
+  host: "0.0.0.0"
+  selfUrl: "http://localhost:18789"
+
+# ==================== 数据存储 ====================
+data:
+  path: "${HOME}/.openclaw/data"
+
+# ==================== 安全设置 ====================
+security:
+  # 允许执行的命令
+  allowedCommands:
+    - "ls"
+    - "cat"
+    - "grep"
+    - "curl"
+  
+  # 禁止执行的命令  
+  blockedCommands:
+    - "rm -rf /"
+    - "dd"
+    - ":(){:|:&};:"
+
+# ==================== 定时任务 ====================
+scheduler:
+  enabled: true
+  timezone: "Asia/Shanghai"
+  
+  # 预定义任务
+  jobs:
+    # 健康检查
+    - name: "health-check"
+      schedule: "*/30 * * * *"
+      command: "echo 'OK'"
+    
+    # 每日报告
+    - name: "daily-report"
+      schedule: "0 21 * * *"
+      command: "python3 ${HOME}/.openclaw/scripts/daily_report.py"

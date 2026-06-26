@@ -1,0 +1,7 @@
+interface:
+  display_name: "微信读书伴侣"
+  short_description: "微信读书每日简报、推荐、书评分析、笔记导出"
+  brand_color: "#1E8F5A"
+  default_prompt: "Use $weread-plus to build a daily WeRead book briefing from my provided title."
+policy:
+  allow_implicit_invocation: true

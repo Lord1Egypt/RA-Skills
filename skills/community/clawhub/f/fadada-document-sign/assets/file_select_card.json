@@ -1,0 +1,18 @@
+{
+  "type": "select",
+  "title": "选择合同文件",
+  "description": "请选择要发起签署的合同文件",
+  "options": [],
+  "actions": [
+    {
+      "label": "确认选择",
+      "type": "submit",
+      "primary": true
+    },
+    {
+      "label": "上传新文件",
+      "type": "action",
+      "action": "upload"
+    }
+  ]
+}

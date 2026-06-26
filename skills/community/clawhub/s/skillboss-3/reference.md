@@ -1,0 +1,681 @@
+# SkillBoss Reference
+
+Complete model list and detailed parameter documentation.
+
+## All Supported Models
+
+> **Tip:** Use `pilot --discover` to browse models interactively, or `pilot --type TYPE --prefer price` to get ranked recommendations.
+
+### Chat Completions
+
+**Bedrock (AWS Claude):**
+
+- `bedrock/claude-4-6-opus` - Claude 4.6 Opus (most powerful, 1M context, recommended for complex tasks)
+- `bedrock/claude-4-5-opus` - Claude 4.5 Opus (powerful reasoning model)
+- `bedrock/claude-4-5-sonnet` - Claude 4.5 Sonnet (balanced performance and cost)
+- `bedrock/claude-4-5-haiku` - Claude 4.5 Haiku (fastest, for simple tasks)
+- `bedrock/claude-4-sonnet` - Claude 4 Sonnet
+- `bedrock/claude-3-7-sonnet` - Claude 3.7 Sonnet
+- `bedrock/claude-3-5-sonnet` - Claude 3.5 Sonnet (v2)
+
+**OpenAI:**
+
+- `openai/gpt-5` - GPT-5 latest
+- `openai/gpt-5-mini` - GPT-5 Mini
+- `openai/gpt-4.1` - GPT-4.1
+- `openai/gpt-4.1-mini` - GPT-4.1 Mini
+- `openai/gpt-4o` - GPT-4o multimodal
+- `openai/gpt-4o-mini` - GPT-4o Mini (fast and economical)
+- `openai/o4-mini` - O4 Mini reasoning model
+- `openai/o3-mini` - O3 Mini reasoning model
+- `openai/o1` - O1 advanced reasoning
+
+**OpenRouter:**
+
+- `openrouter/deepseek/deepseek-r1` - DeepSeek R1
+- `openrouter/deepseek/deepseek-r1:online` - DeepSeek R1 Online
+- `openrouter/anthropic/claude-sonnet-4:nitro` - Claude Sonnet 4 Nitro
+- `openrouter/anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet
+- `openrouter/google/gemini-2.5-pro-preview` - Gemini 2.5 Pro
+- `openrouter/qwen/qwen3-coder-plus` - Qwen 3 Coder Plus
+- `openrouter/moonshotai/kimi-k2-thinking` - Kimi K2 Thinking
+
+**Vertex (Google Cloud):**
+
+- `vertex/gemini-2.5-pro` - Gemini 2.5 Pro
+- `vertex/gemini-2.5-flash` - Gemini 2.5 Flash (快速)
+- `vertex/gemini-2.5-flash-lite-preview-06-17` - Gemini 2.5 Flash Lite
+- `vertex/gemini-3-pro-preview` - Gemini 3 Pro Preview
+- `vertex/gemini-3-flash-preview` - Gemini 3 Flash Preview
+- `vertex/codestral-2501` - Mistral Codestral
+
+**Anthropic (Direct):**
+
+- `anthropic/claude-3-5-sonnet-20241022` - Claude 3.5 Sonnet
+
+**Minimax:**
+
+- `minimax/abab6.5s-chat` - Chinese optimized (fast)
+- `minimax/abab6.5g-chat` - Chinese optimized (general)
+
+**Perplexity:**
+
+- `perplexity/sonar-pro` - AI search (with citations)
+- `perplexity/sonar` - AI search
+
+### Text-to-Speech
+
+**ElevenLabs:**
+
+- `elevenlabs/eleven_multilingual_v2` - 29 languages, highest quality
+- `elevenlabs/sound_generation` - Sound effects generation
+
+**Minimax:**
+
+- `minimax/speech-01-turbo` - Chinese TTS optimized
+
+**OpenAI:**
+
+- `openai/tts-1` - Standard quality
+- `openai/tts-1-hd` - HD quality
+
+**Replicate:**
+
+- `replicate/lucataco/xtts-v2` - XTTS v2
+
+### Image Generation
+
+**Vertex (Recommended):**
+
+- `vertex/gemini-2.5-flash-image-preview` - Gemini 2.5 Flash Image (preferred)
+- `vertex/gemini-3-pro-image-preview` - Gemini 3 Pro Image
+
+**Replicate:**
+
+- `replicate/black-forest-labs/flux-schnell` - Fast generation
+- `replicate/black-forest-labs/flux-dev` - High quality
+- `replicate/lucataco/remove-bg` - Background removal
+- `replicate/851-labs/background-remover` - Background removal v2
+
+### Image Upscale & Transformation (FAL)
+
+- `fal/upscale` - Creative upscaler (2x or 4x)
+- `fal/img2img` - Image-to-image transformation (FLUX dev)
+
+### Video Generation
+
+- `vertex/veo-3.1-fast-generate-preview` - Google Veo 3.1
+
+### Music Generation
+
+- `replicate/elevenlabs/music` - ElevenLabs Music, high-quality with natural vocals
+- `replicate/google/lyria-2` - Google Lyria 2, DeepMind's advanced music AI
+- `replicate/meta/musicgen` - Meta MusicGen, open-source, diverse styles (recommended)
+- `replicate/stability-ai/stable-audio-2.5` - Stable Audio 2.5, up to 3 minutes
+
+### Web Search
+
+- `perplexity/sonar-pro` - AI search with citations
+- `perplexity/sonar` - AI search
+- `scrapingdog/google_search` - Google search results
+- `linkup/search` - Structured web search (standard depth)
+- `linkup/search-deep` - Structured web search (deep depth)
+- `linkup/fetch` - URL-to-markdown fetcher
+
+### SMS/Verify (Prelude)
+
+- `prelude/verify-send` - Send OTP verification code
+- `prelude/verify-check` - Check OTP verification code
+- `prelude/notify-send` - Send SMS notification via template
+- `prelude/notify-batch` - Send batch SMS notifications
+
+### Web Scraping
+
+**Firecrawl:**
+
+- `firecrawl/scrape` - Single page scraping
+- `firecrawl/extract` - AI structured extraction
+- `firecrawl/map` - Website sitemap
+
+**ScrapingDog:**
+
+- `scrapingdog/screenshot` - Web page screenshot
+- `scrapingdog/google_search` - Google search
+- `scrapingdog/google_images` - Google images
+- `scrapingdog/google_news` - Google news
+- `scrapingdog/amazon_product` - Amazon product
+- `scrapingdog/amazon_search` - Amazon search
+- `scrapingdog/linkedin_person` - LinkedIn profile
+- `scrapingdog/linkedin_company` - LinkedIn company
+- `scrapingdog/youtube_search` - YouTube search
+
+### CEO Interviews
+
+- `ceointerviews/get_feed` - Search verified CEO/executive conversation transcripts
+- `ceointerviews/get_quotes` - Get notable quotes from CEOs, executives, and politicians
+
+### Presentations
+
+- `gamma/generation` - AI presentation generation
+
+### Embeddings
+
+- `openai/text-embedding-3-small` - Small embeddings
+- `openai/text-embedding-3-large` - Large embeddings
+
+### Speech-to-Text
+
+- `openai/whisper-1` - Audio to text
+
+---
+
+## Detailed Command Parameters
+
+### pilot
+
+Smart model selector — auto-picks the best model for your task. **Use this first for any AI task.**
+
+```bash
+node ./scripts/api-hub.js pilot [options]
+```
+
+| Option          | Required | Description                                                        |
+| --------------- | -------- | ------------------------------------------------------------------ |
+| `--discover`    | No       | Browse available model types and search models                     |
+| `--keyword`     | No       | Search models by keyword (use with `--discover`)                   |
+| `--type`        | No       | Model type: chat, image, video, tts, stt, music, etc.             |
+| `--capability`  | No       | Semantic capability matching (e.g., "style transfer")              |
+| `--prefer`      | No       | Optimization: "price" / "quality" / "balanced" (default)           |
+| `--limit`       | No       | Max models to return (default: 3)                                  |
+| `--prompt`      | No       | Text prompt — triggers auto-execute with best model                |
+| `--text`        | No       | Text input for TTS — triggers auto-execute                         |
+| `--file`        | No       | Audio file path for STT — triggers auto-execute                    |
+| `--output`      | No       | Save result to file (image, video, music, tts)                     |
+| `--duration`    | No       | Duration in seconds (music, video)                                 |
+| `--voice-id`    | No       | Voice ID for TTS                                                   |
+| `--image`       | No       | Image URL for video/image tasks                                    |
+| `--size`        | No       | Image size                                                         |
+| `--system`      | No       | System prompt for chat                                             |
+| `--language`    | No       | Language code for STT                                              |
+| `--chain`       | No       | JSON array for multi-step workflow                                 |
+| `--include-docs`| No       | Include curl/request/response docs in recommendations              |
+
+**Modes:**
+- **Guide** (no args): Returns overview of all capabilities
+- **Discover** (`--discover`): Browse types or search by keyword
+- **Recommend** (`--type` only): Returns ranked models with documentation
+- **Execute** (`--type` + `--prompt`/`--text`/`--file`): Auto-selects best model and runs it
+- **Chain** (`--chain`): Plans multi-step workflow with model recommendations
+
+### chat
+
+Chat completions with any supported model.
+
+```bash
+node ./scripts/api-hub.js chat [options]
+```
+
+| Option          | Required | Description                                                |
+| --------------- | -------- | ---------------------------------------------------------- |
+| `--model`       | Yes      | Model identifier (e.g., `bedrock/claude-4-5-sonnet`)       |
+| `--prompt`      | Yes\*    | Single message prompt                                      |
+| `--messages`    | Yes\*    | JSON array of messages `[{"role":"user","content":"..."}]` |
+| `--system`      | No       | System prompt                                              |
+| `--stream`      | No       | Enable streaming output                                    |
+| `--max-tokens`  | No       | Maximum tokens in response                                 |
+| `--temperature` | No       | Sampling temperature (0-2)                                 |
+
+\*Either `--prompt` or `--messages` required.
+
+### tts
+
+Text-to-speech audio generation.
+
+```bash
+node ./scripts/api-hub.js tts [options]
+```
+
+| Option       | Required | Description                                |
+| ------------ | -------- | ------------------------------------------ |
+| `--model`    | Yes      | Model identifier                           |
+| `--text`     | Yes      | Text to convert to speech                  |
+| `--output`   | No       | Output file path (default: auto-generated) |
+| `--voice-id` | No       | Voice ID (ElevenLabs specific)             |
+
+### stt
+
+Speech-to-text transcription from audio files.
+
+```bash
+node ./scripts/api-hub.js stt [options]
+```
+
+| Option       | Required | Description                                          |
+| ------------ | -------- | ---------------------------------------------------- |
+| `--file`     | Yes      | Local audio file path (mp3, wav, m4a, etc.)          |
+| `--model`    | No       | Model identifier (default: `openai/whisper-1`)       |
+| `--prompt`   | No       | Prompt to guide transcription style                  |
+| `--language` | No       | Language code (e.g., `en`, `es`, `zh`)               |
+| `--output`   | No       | Output file path to save transcript                  |
+
+### image
+
+Image generation from text prompts.
+
+```bash
+node ./scripts/api-hub.js image [options]
+```
+
+| Option      | Required | Description                      |
+| ----------- | -------- | -------------------------------- |
+| `--model`   | Yes      | Model identifier                 |
+| `--prompt`  | Yes      | Image description                |
+| `--output`  | No       | Output file path                 |
+| `--size`    | No       | Image size (e.g., `1024x1024`)   |
+| `--quality` | No       | Quality setting (model-specific) |
+
+### video
+
+Video generation from text prompts.
+
+```bash
+node ./scripts/api-hub.js video [options]
+```
+
+| Option     | Required | Description       |
+| ---------- | -------- | ----------------- |
+| `--model`  | Yes      | Model identifier  |
+| `--prompt` | Yes      | Video description |
+| `--output` | No       | Output file path  |
+
+### upscale
+
+Image upscaling via FAL creative-upscaler.
+
+```bash
+node ./scripts/api-hub.js upscale [options]
+```
+
+| Option            | Required | Description                              |
+| ----------------- | -------- | ---------------------------------------- |
+| `--image-url`     | Yes      | URL of image to upscale                  |
+| `--scale`         | No       | Upscale factor: 2 or 4 (default: 2)     |
+| `--output-format` | No       | "png" or "jpeg" (default: "png")         |
+| `--output`        | No       | Output file path                         |
+
+### img2img
+
+Image-to-image transformation via FAL FLUX dev.
+
+```bash
+node ./scripts/api-hub.js img2img [options]
+```
+
+| Option            | Required | Description                                      |
+| ----------------- | -------- | ------------------------------------------------ |
+| `--image-url`     | Yes      | URL of source image                              |
+| `--prompt`        | Yes      | Transformation description                       |
+| `--strength`      | No       | Transform strength 0.0-1.0 (default: 0.75)      |
+| `--image-size`    | No       | Size preset: square_hd, portrait_4_3, etc.       |
+| `--output-format` | No       | "jpeg" or "png" (default: "jpeg")                |
+| `--num-images`    | No       | Number of images 1-4 (default: 1)                |
+| `--output`        | No       | Output file path                                 |
+
+### music
+
+Music generation from text prompts.
+
+```bash
+node ./scripts/api-hub.js music [options]
+```
+
+| Option       | Required | Description                                              |
+| ------------ | -------- | -------------------------------------------------------- |
+| `--model`    | No       | Model identifier (default: `replicate/elevenlabs/music`) |
+| `--prompt`   | Yes      | Music description                                        |
+| `--duration` | No       | Duration in seconds                                      |
+| `--output`   | No       | Output file path                                         |
+
+### search
+
+Web search queries.
+
+```bash
+node ./scripts/api-hub.js search [options]
+```
+
+| Option    | Required | Description           |
+| --------- | -------- | --------------------- |
+| `--model` | Yes      | Search provider model |
+| `--query` | Yes      | Search query string   |
+
+### scrape
+
+Web page scraping.
+
+```bash
+node ./scripts/api-hub.js scrape [options]
+```
+
+| Option    | Required | Description             |
+| --------- | -------- | ----------------------- |
+| `--model` | Yes      | Scraping provider model |
+| `--url`   | Yes\*    | Single URL to scrape    |
+| `--urls`  | Yes\*    | JSON array of URLs      |
+
+\*Either `--url` or `--urls` required.
+
+### linkup-search
+
+Structured web search via Linkup.
+
+```bash
+node ./scripts/api-hub.js linkup-search [options]
+```
+
+| Option              | Required | Description                                              |
+| ------------------- | -------- | -------------------------------------------------------- |
+| `--query`           | Yes      | Search query                                             |
+| `--output-type`     | No       | "searchResults", "sourcedAnswer", or "structured"        |
+| `--depth`           | No       | "standard" or "deep" (default: "standard")               |
+| `--schema`          | No       | JSON schema string (for structured output type)          |
+| `--include-domains` | No       | JSON array of domains to include                         |
+| `--exclude-domains` | No       | JSON array of domains to exclude                         |
+| `--from-date`       | No       | Start date filter (YYYY-MM-DD)                           |
+| `--to-date`         | No       | End date filter (YYYY-MM-DD)                             |
+| `--max-results`     | No       | Max results to return                                    |
+
+### linkup-fetch
+
+Fetch a URL and convert to markdown via Linkup.
+
+```bash
+node ./scripts/api-hub.js linkup-fetch [options]
+```
+
+| Option             | Required | Description                                   |
+| ------------------ | -------- | --------------------------------------------- |
+| `--url`            | Yes      | URL to fetch and convert to markdown          |
+| `--render-js`      | No       | Render JavaScript before extracting           |
+| `--include-images` | No       | Include images in output                      |
+
+### sms-verify
+
+Send OTP verification code via Prelude.
+
+```bash
+node ./scripts/api-hub.js sms-verify [options]
+```
+
+| Option        | Required | Description                    |
+| ------------- | -------- | ------------------------------ |
+| `--phone`     | Yes      | Phone number (E.164 format)    |
+| `--ip`        | No       | Client IP for fraud signals    |
+| `--device-id` | No       | Device ID for fraud signals    |
+
+### sms-check
+
+Check OTP verification code via Prelude.
+
+```bash
+node ./scripts/api-hub.js sms-check [options]
+```
+
+| Option    | Required | Description                 |
+| --------- | -------- | --------------------------- |
+| `--phone` | Yes      | Phone number (E.164 format) |
+| `--code`  | Yes      | OTP code to verify          |
+
+### sms-send
+
+Send SMS notification via Prelude template.
+
+```bash
+node ./scripts/api-hub.js sms-send [options]
+```
+
+| Option          | Required | Description                              |
+| --------------- | -------- | ---------------------------------------- |
+| `--phone`       | Yes      | Phone number (E.164 format)              |
+| `--template-id` | Yes      | Prelude template ID                      |
+| `--variables`   | No       | JSON object of template variables        |
+| `--from`        | No       | Sender number                            |
+
+### send-email
+
+Send a single email.
+
+```bash
+node ./scripts/api-hub.js send-email [options]
+```
+
+| Option       | Required | Description                         |
+| ------------ | -------- | ----------------------------------- |
+| `--to`       | Yes      | Recipient emails, comma-separated   |
+| `--subject`  | Yes      | Email subject                       |
+| `--body`     | Yes      | HTML email body                     |
+| `--reply-to` | No       | Reply-to addresses, comma-separated |
+
+### send-batch
+
+Send templated batch emails.
+
+```bash
+node ./scripts/api-hub.js send-batch [options]
+```
+
+| Option        | Required | Description                                       |
+| ------------- | -------- | ------------------------------------------------- |
+| `--subject`   | Yes      | Subject with `{{var}}` placeholders               |
+| `--body`      | Yes      | HTML body with `{{var}}` placeholders             |
+| `--receivers` | Yes      | JSON array: `[{"email":"...","variables":{...}}]` |
+| `--reply-to`  | No       | Reply-to addresses                                |
+
+### publish-static
+
+Upload static files to R2 storage and deploy.
+
+```bash
+node ./scripts/serve-build.js publish-static <folder> [options]
+```
+
+| Option         | Required | Description                                    |
+| -------------- | -------- | ---------------------------------------------- |
+| `<folder>`     | Yes      | Path to folder with static files               |
+| `--project-id` | No       | Project identifier (auto-generated if omitted) |
+| `--version`    | No       | Version number for deployments                 |
+| `--api-url`    | No       | Override build API URL                         |
+
+### publish-worker
+
+Upload and deploy a Cloudflare Worker with bindings.
+
+```bash
+node ./scripts/serve-build.js publish-worker <folder> [options]
+```
+
+| Option         | Required | Description                                                        |
+| -------------- | -------- | ------------------------------------------------------------------ |
+| `<folder>`     | Yes      | Path to Worker source folder                                       |
+| `--main`       | No       | Entry point file (auto-detected: `src/index.ts`, `index.js`, etc.) |
+| `--name`       | No       | Worker name (default: folder name)                                 |
+| `--project-id` | No       | Project identifier (auto-generated if omitted)                     |
+| `--version`    | No       | Version number for deployments                                     |
+| `--api-url`    | No       | Override build API URL                                             |
+
+**Automatic Configuration:**
+If `wrangler.toml` exists in the folder, the following are auto-detected:
+
+- Entry point (`main`)
+- Worker name (`name`)
+- D1 databases (`[[d1_databases]]`)
+- KV namespaces (`[[kv_namespaces]]`)
+- R2 buckets (`[[r2_buckets]]`)
+- Environment variables (`[vars]`)
+
+**Example wrangler.toml:**
+
+```toml
+name = "my-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "my-database"
+
+[[kv_namespaces]]
+binding = "CACHE"
+
+[vars]
+API_VERSION = "1.0"
+```
+
+**SQL Migrations:**
+
+Place SQL files in a `migrations/` folder or a single `schema.sql` in the root:
+
+```
+my-worker/
+├── src/
+│   └── index.ts
+├── migrations/
+│   ├── 001_init.sql       # Creates tables
+│   └── 002_add_index.sql  # Additional migrations
+├── wrangler.toml
+└── package.json
+```
+
+Or use a single schema file:
+
+```
+my-worker/
+├── src/
+│   └── index.ts
+├── schema.sql             # All table definitions
+├── wrangler.toml
+└── package.json
+```
+
+Migration files are executed in alphabetical order after D1 databases are provisioned. Example `schema.sql`:
+
+```sql
+CREATE TABLE IF NOT EXISTS users (
+  id TEXT PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS purchases (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  product_id TEXT NOT NULL,
+  created_at TEXT DEFAULT (datetime('now')),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+```
+
+### stripe-connect
+
+Connect a Stripe Express account for accepting payments.
+
+```bash
+node ./scripts/stripe-connect.js [options]
+```
+
+| Option         | Required | Description                                 |
+| -------------- | -------- | ------------------------------------------- |
+| `--status`     | No       | Only check current account status           |
+| `--no-browser` | No       | Don't auto-open browser (print URL instead) |
+
+**Flow:**
+
+1. Checks if Stripe account is already connected
+2. If not, creates a Stripe Express account
+3. Opens browser for Stripe's onboarding (KYC, bank verification)
+4. Polls until onboarding is complete
+5. Your `stripe_account_id` is stored for use with e-commerce Workers
+
+### ceointerviews/get_feed
+
+Search verified CEO/executive conversation transcripts. Access the world's largest database of executive interviews.
+
+```bash
+node ./scripts/api-hub.js run --model "ceointerviews/get_feed" --inputs '{...}'
+```
+
+| Input               | Required | Description                                                          |
+| ------------------- | -------- | -------------------------------------------------------------------- |
+| `entity_name`       | No       | Person name (e.g. "Tim Cook", "jerome powell")                       |
+| `company_name`      | No       | Company name or ticker (e.g. "tesla", "TSLA")                        |
+| `keyword`           | No       | Keyword search within transcripts (combine with entity/company name) |
+| `entity_id`         | No       | Filter by entity ID                                                  |
+| `company_id`        | No       | Filter by company ID                                                 |
+| `filter_before_dt`  | No       | Only return conversations on or before this date (ISO 8601)          |
+| `page_size`         | No       | Number of results per page                                           |
+
+**Response:** `{ count, results: [{ item_title, publish_date, source_url, transcript, entity_name, entity_title, entity_id, institution, company_id, is_company_leader, entity_img }] }`
+
+### ceointerviews/get_quotes
+
+Get notable quotes from CEOs, executives, and politicians.
+
+```bash
+node ./scripts/api-hub.js run --model "ceointerviews/get_quotes" --inputs '{...}'
+```
+
+| Input                 | Required | Description                                    |
+| --------------------- | -------- | ---------------------------------------------- |
+| `entity_name`         | No       | Person name                                    |
+| `company_name`        | No       | Company name or ticker                         |
+| `keyword`             | No       | Semantic search within quote text              |
+| `entity_id`           | No       | Filter by entity ID                            |
+| `company_id`          | No       | Filter by company ID                           |
+| `feed_item_id`        | No       | Filter by associated conversation              |
+| `filter_before_dt`    | No       | Date filter (ISO 8601)                         |
+| `is_notable`          | No       | Filter for notable quotes (boolean)            |
+| `is_controversial`    | No       | Filter for controversial quotes (boolean)      |
+| `is_financial_policy` | No       | Filter for financial policy quotes (boolean)   |
+| `before_quote_id`     | No       | Cursor pagination                              |
+| `page_size`           | No       | Number of results per page                     |
+
+**Response:** `{ count, results: [{ id, quote, source_url, is_notable, is_controversial, is_financial_policy, topics_mentioned, entities_mentioned, companies_mentioned, created_at, entity, feed_item }] }`
+
+### run
+
+Generic endpoint access for any API Hub endpoint.
+
+```bash
+node ./scripts/api-hub.js run [options]
+```
+
+| Option     | Required | Description                               |
+| ---------- | -------- | ----------------------------------------- |
+| `--model`  | Yes      | Full endpoint model path                  |
+| `--inputs` | Yes      | JSON object with endpoint-specific inputs |
+| `--stream` | No       | Enable streaming                          |
+| `--output` | No       | Output file path                          |
+
+---
+
+## Configuration File
+
+`./config.json`:
+
+```json
+{
+  "apiKey": "your-api-hub-key",
+  "sender": "auto-determined",
+  "baseUrl": "https://api.heybossai.com/v1",
+  "buildApiUrl": "https://build.skillbossai.com",
+  "stripeConnectUrl": "https://heyboss.ai"
+}
+```
+
+| Field              | Description                                                          |
+| ------------------ | -------------------------------------------------------------------- |
+| `apiKey`           | Your SkillBoss API Hub key (injected automatically)                  |
+| `sender`           | Email sender (auto-determined from user: `name@name.skillboss.live`) |
+| `baseUrl`          | API Hub endpoint                                                     |
+| `buildApiUrl`      | Build service for static/Worker uploads                              |
+| `stripeConnectUrl` | Stripe Connect API endpoint (for payment setup)                      |

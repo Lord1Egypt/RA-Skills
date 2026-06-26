@@ -1,0 +1,7 @@
+{
+  "output_parent": "/Users/jammy/Desktop/龙虾架构/内容生产龙虾/公众号作者文章抓取",
+  "output_folder_name": "输出文章",
+  "article_limit": 20,
+  "concurrency": 6,
+  "display_mode": "silent"
+}

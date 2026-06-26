@@ -1,0 +1,150 @@
+curl --request GET \
+	--url https://tradingview-data1.p.rapidapi.com/api/metadata/exchanges \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+
+  {
+  "success": true,
+  "data": {
+    "totalExchanges": 353,
+    "exchanges": [
+      {
+        "name": "LBank",
+        "value": "LBANK",
+        "desc": "LBank",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "lbank"
+      },
+      {
+        "name": "LFJ V2.2 (Avalanche)",
+        "value": "LFJ2DOT2",
+        "desc": "LFJ V2.2 (Avalanche)",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "lfj2dot2"
+      },
+      {
+        "name": "BCHAIN (Nasdaq Data Link)",
+        "value": "BCHAIN",
+        "desc": "BCHAIN (Nasdaq Data Link)",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "quandl_bchain"
+      },
+      {
+        "name": "Biswap v2 (BNB chain)",
+        "value": "BISWAP",
+        "desc": "Biswap v2 (BNB chain)",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "biswap"
+      },
+      {
+        "name": "Bitazza",
+        "value": "BITAZZA",
+        "desc": "Bitazza",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "bitazza"
+      },
+      {
+        "name": "Bithumb",
+        "value": "BITHUMB",
+        "desc": "Bithumb",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "bithumb"
+      },
+      {
+        "name": "Bitkub",
+        "value": "BITKUB",
+        "desc": "Bitkub",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "bitkub"
+      },
+      {
+        "name": "Bitrue",
+        "value": "BITRUE",
+        "desc": "Bitrue",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "bitrue"
+      },
+      {
+        "name": "BitMart",
+        "value": "BITMART",
+        "desc": "BitMart",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "bitmart"
+      },
+      {
+        "name": "Bitso",
+        "value": "BITSO",
+        "desc": "Bitso",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "bitso"
+      },
+      {
+        "name": "Coin Metrics",
+        "value": "COINMETRICS",
+        "desc": "Coin Metrics",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "coinmetrics"
+      },
+      {
+        "name": "MEXC",
+        "value": "MEXC",
+        "desc": "MEXC",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "mexc"
+      },
+      {
+        "name": "Gate",
+        "value": "GATE",
+        "desc": "Gate",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "gate"
+      },
+      {
+        "name": "HTX",
+        "value": "HTX",
+        "desc": "HTX",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "provider_id": "htx"
+      },
+      {
+        "name": "796",
+        "value": "796",
+        "desc": "796",
+        "flag": "bitcoin",
+        "group": "Cryptocurrency",
+        "country": "",
+        "hidden": true,
+        "provider_id": ""
+      },
+      {
+        "name": "DeDust.io (TON)",
+        "value": "DEDUST",
+        "desc": "DeDust.io (TON)",

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史记录 - do-it</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="max-w-2xl mx-auto p-4">
+        <!-- Header -->
+        <header class="text-center py-8">
+            <h1 class="text-4xl font-bold text-indigo-600 mb-2">📋 历史记录</h1>
+            <p class="text-gray-600">你的所有判断记录</p>
+        </header>
+
+        <!-- Content -->
+        <main class="bg-white rounded-xl shadow-lg p-6">
+            <button onclick="window.location.href='index.html'" class="text-indigo-600 hover:text-indigo-800 mb-4 flex items-center">
+                ← 返回首页
+            </button>
+
+            <div id="history-list" class="space-y-4">
+                <!-- 历史记录由 JS 动态加载 -->
+            </div>
+
+            <div id="empty-state" class="hidden text-center py-12">
+                <div class="text-6xl mb-4">📝</div>
+                <p class="text-gray-600">还没有历史记录</p>
+                <button onclick="window.location.href='index.html'" class="mt-4 text-indigo-600 hover:text-indigo-800">
+                    开始第一个判断 →
+                </button>
+            </div>
+
+            <div class="mt-6 pt-6 border-t">
+                <button onclick="clearHistory()" class="text-red-600 hover:text-red-800 text-sm">
+                    🗑️ 清空所有记录
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-gray-600 text-sm">
+            <p>Powered by 滚滚 & AI</p>
+        </footer>
+    </div>
+
+    <script>
+        // 加载历史记录
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('doit_history') || '[]');
+            const container = document.getElementById('history-list');
+            const emptyState = document.getElementById('empty-state');
+
+            if (history.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            container.innerHTML = history.map((item, index) => `
+                <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-gray-800 text-lg">${escapeHtml(item.problem.title)}</h3>
+                        <span class="text-xs text-gray-500">${formatDate(item.date)}</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <span class="inline-block bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded">
+                            ${item.problem.type}
+                        </span>
+                    </div>
+
+                    <div class="bg-green-50 border-l-4 border-green-500 p-3 mb-3">
+                        <p class="text-sm text-gray-700">
+                            <strong>推荐：</strong>${escapeHtml(item.result.recommendation)}
+                        </p>
+                    </div>
+
+                    <div class="text-sm text-gray-600 mb-3">
+                        <p><strong>理由：</strong></p>
+                        <ul class="list-disc list-inside ml-2 mt-1 space-y-1">
+                            ${item.result.reasoning.slice(0, 3).map(r => `<li>${escapeHtml(r)}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button onclick="viewDetail(${index})" class="text-indigo-600 hover:text-indigo-800 text-sm">
+                            查看详情 →
+                        </button>
+                        <button onclick="deleteItem(${index})" class="text-red-600 hover:text-red-800 text-sm">
+                            删除
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 格式化日期
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            const now = new Date();
+            const diff = now - date;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            if (days === 0) return '今天';
+            if (days === 1) return '昨天';
+            if (days < 7) return `${days}天前`;
+            return date.toLocaleDateString('zh-CN');
+        }
+
+        // HTML 转义
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 查看详情
+        function viewDetail(index) {
+            alert('详情功能开发中...');
+        }
+
+        // 删除单项
+        function deleteItem(index) {
+            if (!confirm('确定删除这条记录？')) return;
+
+            const history = JSON.parse(localStorage.getItem('doit_history') || '[]');
+            history.splice(index, 1);
+            localStorage.setItem('doit_history', JSON.stringify(history));
+            loadHistory();
+        }
+
+        // 清空所有
+        function clearHistory() {
+            if (!confirm('确定清空所有历史记录？此操作不可恢复！')) return;
+            localStorage.removeItem('doit_history');
+            loadHistory();
+        }
+
+        // 初始化
+        loadHistory();
+    </script>
+</body>
+</html>

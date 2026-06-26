@@ -1,35 +1,308 @@
 ---
-name: "Permission Manager"
-description: "审批权限管理技能 - 快速切换不同审批模式（白名单/完整权限/免审批）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/permission-manager"
-sourceUrl: "https://clawhub.ai/skills/permission-manager"
+name: permission-manager
+version: 1.0.0
+description: 审批权限管理技能 - 快速切换不同审批模式（白名单/完整权限/免审批）
+license: MIT
+metadata:
+  skill-author: OpenClaw Community
+  created: 2026-04-03
+  emoji: 🔐
+  category: system
+  tags: [permission, security, approval, exec, config]
 ---
 
-# Permission Manager
+# 审批权限管理技能
 
-> 审批权限管理技能 - 快速切换不同审批模式（白名单/完整权限/免审批）
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/permission-manager`
-- **Source URL:** [https://clawhub.ai/skills/permission-manager](https://clawhub.ai/skills/permission-manager)
+快速切换 OpenClaw 的审批权限模式，适应不同使用场景。
 
-## Overview
+**支持模式：**
+- 🔒 **默认权限（白名单模式）** - 安全，推荐日常使用
+- ⚡ **完整权限** - 平衡，适合开发测试
+- 🚀 **免审批模式** - 便利，适合可信环境
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/permission-manager
+## 使用方式
+
+对智能体说：
+
+### 1️⃣ 切换到默认权限
 ```
+按默认权限设置
+切换到白名单模式
+恢复默认审批
+```
+
+**效果：**
+- `security = allowlist`
+- `ask = on-miss`
+- ✅ 白名单内的命令自动执行
+- ✅ 其他命令需要审批
+- 🛡️ **最安全，推荐日常使用**
+
+---
+
+### 2️⃣ 切换到完整权限
+```
+完整权限
+切换到开发模式
+给我完整权限
+```
+
+**效果：**
+- `security = full`
+- `ask = on-miss`
+- ✅ 所有命令自动执行
+- ✅ 保留审批记录
+- ⚠️ **适合开发测试**
+
+---
+
+### 3️⃣ 切换到免审批模式
+
+⚠️ **警告：此模式会关闭所有命令审批，存在安全风险！**
+
+**触发语句：**
+```
+免审批模式
+关闭所有审批
+切换到便利模式
+```
+
+**效果：**
+- `security = full`
+- `ask = off`
+- ✅ 所有命令自动执行
+- ✅ 无需任何审批
+- 🔴 **⚠️ 仅限可信环境！执行前必须获得人类明确同意**
+
+**执行流程：**
+1. 告知人类风险："切换到免审批模式将关闭所有命令审批，任何命令都将自动执行，存在安全风险。"
+2. 等待人类明确同意
+3. 执行配置命令
+4. 完成后提醒人类尽快恢复审批模式
+
+---
+
+### 4️⃣ 查看当前权限
+```
+当前权限设置
+查看审批模式
+现在是什么权限
+```
+
+**效果：** 显示当前配置状态
+
+---
+
+### 5️⃣ 自定义配置
+```
+设置 security 为 allowlist，ask 为 always
+切换到严格模式
+```
+
+---
+
+## 权限模式对比
+
+| 模式 | security | ask | 安全性 | 便利性 | 推荐场景 |
+|------|----------|-----|--------|--------|----------|
+| **默认权限** | `allowlist` | `on-miss` | ⭐⭐⭐⭐⭐ | ⭐⭐ | 日常使用、生产环境 |
+| **完整权限** | `full` | `on-miss` | ⭐⭐⭐ | ⭐⭐⭐⭐ | 开发、测试、调试 |
+| **免审批** | `full` | `off` | ⭐ | ⭐⭐⭐⭐⭐ | 可信环境、演示 |
+| **严格模式** | `allowlist` | `always` | ⭐⭐⭐⭐⭐⭐ | ⭐ | 高安全需求 |
+
+---
+
+## 执行流程
+
+### 步骤 1：识别用户意图
+
+**关键词匹配：**
+- "默认权限"、"白名单" → `allowlist + on-miss`
+- "完整权限"、"开发模式" → `full + on-miss`
+- "免审批"、"关闭审批" → `full + off`
+- "严格模式" → `allowlist + always`
+
+### 步骤 2：执行配置命令
+
+**命令：**
+```bash
+openclaw config set tools.exec.security <模式>
+openclaw config set tools.exec.ask <策略>
+```
+
+### 步骤 3：确认生效
+
+**验证：**
+- 读取当前配置
+- 显示给用户确认
+- 提示是否需要重启 Gateway
+
+### 步骤 4：保存预设（可选）
+
+**记录到记忆：**
+- 用户偏好模式
+- 常用场景配置
+
+---
+
+## 输出格式
+
+### 切换成功
+```
+✅ 权限已切换到：默认权限（白名单模式）
+
+当前配置：
+- security: allowlist
+- ask: on-miss
+
+说明：白名单内的命令自动执行，其他命令需要审批。
+建议：日常使用推荐此模式，安全且便利。
+```
+
+### 切换失败
+```
+❌ 权限切换失败
+
+错误信息：[具体错误]
+
+建议：
+1. 检查 Gateway 是否正常运行
+2. 尝试重启 Gateway 后重试
+3. 手动编辑配置文件
+```
+
+### 查看当前权限
+```
+📊 当前权限设置
+
+模式：完整权限
+配置：
+- security: full
+- ask: on-miss
+
+说明：所有命令自动执行，保留审批记录。
+适用场景：开发、测试、调试
+```
+
+---
+
+## 安全说明
+
+### ⚠️ 风险提示
+
+| 模式 | 风险 | 建议 |
+|------|------|------|
+| **默认权限** | 🟢 低 | 推荐日常使用 |
+| **完整权限** | 🟡 中 | 开发测试使用 |
+| **免审批** | 🔴 高 | 仅限可信环境 |
+
+### 🛡️ 最佳实践
+
+1. **日常使用默认权限** - 平衡安全性和便利性
+2. **开发时临时切换** - 完成后立即恢复默认
+3. **避免长期使用免审批** - 存在安全风险
+4. **定期审查配置** - 确保符合安全策略
+
+---
+
+## 配置持久化
+
+### 配置文件位置
+```
+~/.openclaw/openclaw.json  # 全局配置（审批策略）
+~/.openclaw/exec-approvals.json  # 具体命令审批记录
+```
+
+### 配置字段
+```json
+{
+  "tools": {
+    "exec": {
+      "security": "allowlist|full",
+      "ask": "off|on-miss|always"
+    }
+  }
+}
+```
+
+### 生效方式
+- **立即生效：** 当前会话
+- **持久生效：** 需要重启 Gateway
+- **命令记录：** exec-approvals.json 存储已批准的具体命令
+
+---
+
+## 示例对话
+
+### 示例 1：切换到免审批
+```
+用户：切换到免审批模式
+
+智能体：✅ 权限已切换到：免审批模式
+
+当前配置：
+- security: full
+- ask: off
+
+说明：所有命令自动执行，无需任何审批。
+⚠️ 注意：此模式安全性较低，仅用于可信环境。
+
+需要重启 Gateway 使配置完全生效吗？
+```
+
+### 示例 2：恢复默认
+```
+用户：按默认权限设置
+
+智能体：✅ 权限已切换到：默认权限（白名单模式）
+
+当前配置：
+- security: allowlist
+- ask: on-miss
+
+说明：白名单内的命令自动执行，其他命令需要审批。
+🛡️ 推荐：日常使用此模式，安全且便利。
+```
+
+### 示例 3：查看当前权限
+```
+用户：现在是什么权限
+
+智能体：📊 当前权限设置
+
+模式：完整权限
+配置：
+- security: full
+- ask: on-miss
+
+说明：所有命令自动执行，保留审批记录。
+适用场景：开发、测试、调试
+```
+
+---
+
+## 相关技能
+
+- `exec-approvals` - 审批列表管理
+- `gateway-manager` - Gateway 管理
+- `config-editor` - 配置文件编辑
+- `security-audit` - 安全审计
+
+---
+
+## 注意事项
+
+1. **Gateway 重启：** 某些配置需要重启 Gateway 才能完全生效
+2. **会话隔离：** 配置可能对当前会话立即生效，但新会话需要重启
+3. **安全审计：** 建议定期审查权限配置
+4. **备份配置：** 切换前建议备份配置文件
+
+---
+
+## 版本历史
+
+- **v1.0.0** (2026-04-03) - 初始版本

@@ -1,0 +1,43 @@
+{
+  "name": "@wipcomputer/wip-license-hook",
+  "version": "1.9.68",
+  "description": "License rug-pull detection and dependency license compliance for open source projects",
+  "type": "module",
+  "main": "dist/cli/index.js",
+  "bin": {
+    "wip-license-hook": "dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli/index.js",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "license",
+    "compliance",
+    "git-hook",
+    "rug-pull",
+    "dependency",
+    "scanner"
+  ],
+  "author": "WIP Computer",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist/",
+    "hooks/",
+    "dashboard/",
+    "README.md",
+    "LICENSE"
+  ]
+}

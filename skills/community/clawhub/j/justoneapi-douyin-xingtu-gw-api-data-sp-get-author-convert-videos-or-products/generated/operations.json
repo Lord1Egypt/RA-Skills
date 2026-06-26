@@ -1,0 +1,143 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_convert_videos_or_products/v1 for Douyin Creator Marketplace (Xingtu) Conversion Resources through JustOneAPI with oAuthorId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Conversion Resources",
+  "endpointPath": "gw/api/data_sp/get_author_convert_videos_or_products",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) conversion Resources data, including products tied to a Douyin Xingtu creator's conversion activity, for commerce analysis and campaign optimization.",
+      "method": "GET",
+      "operationId": "gwApiDataSpGetAuthorConvertVideosOrProductsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Author's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oAuthorId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "SHORT_VIDEO",
+          "description": "Platform type.\n\nAvailable Values:\n- `SHORT_VIDEO`: Short video\n- `LIVE_STREAMING`: Live streaming\n- `PICTURE_TEXT`: Picture and text\n- `SHORT_DRAMA`: Short drama",
+          "enumValues": [
+            "SHORT_VIDEO",
+            "LIVE_STREAMING",
+            "PICTURE_TEXT",
+            "SHORT_DRAMA"
+          ],
+          "location": "query",
+          "name": "platform",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Industry category.\n\nAvailable Values:\n- `ALL`: All\n- `ELECTRONICS_AND_APPLIANCES`: Electronics and Appliances\n- `FOOD_AND_BEVERAGE`: Food and Beverage\n- `CLOTHING_AND_ACCESSORIES`: Clothing and Accessories\n- `HEALTHCARE_AND_MEDICAL`: Healthcare and Medical\n- `BUSINESS_SERVICES`: Business Services\n- `LOCAL_SERVICES`: Local Services\n- `REAL_ESTATE`: Real Estate\n- `HOME_AND_BUILDING_MATERIALS`: Home and Building Materials\n- `EDUCATION_AND_TRAINING`: Education and Training\n- `TRAVEL_AND_TOURISM`: Travel and Tourism\n- `PUBLIC_SERVICES`: Public Services\n- `GAMES`: Games\n- `RETAIL`: Retail\n- `TRANSPORTATION_EQUIPMENT`: Transportation Equipment\n- `AUTOMOTIVE`: Automotive\n- `AGRICULTURE_FORESTRY_FISHERY`: Agriculture Forestry Fishery\n- `CHEMICAL_AND_ENERGY`: Chemical and Energy\n- `ELECTRONICS_AND_ELECTRICAL`: Electronics and Electrical\n- `MACHINERY_EQUIPMENT`: Machinery Equipment\n- `CULTURE_SPORTS_ENTERTAINMENT`: Culture Sports Entertainment\n- `MEDIA_AND_INFORMATION`: Media and Information\n- `LOGISTICS`: Logistics\n- `TELECOMMUNICATIONS`: Telecommunications\n- `FINANCIAL_SERVICES`: Financial Services\n- `CATERING_SERVICES`: Catering Services\n- `SOFTWARE_TOOLS`: Software Tools\n- `FRANCHISING_AND_INVESTMENT`: Franchising and Investment\n- `BEAUTY_AND_COSMETICS`: Beauty and Cosmetics\n- `MOTHER_BABY_AND_PET`: Mother Baby and Pet\n- `DAILY_CHEMICALS`: Daily Chemicals\n- `PHYSICAL_BOOKS`: Physical Books\n- `SOCIAL_AND_COMMUNICATION`: Social and Communication\n- `MEDICAL_INSTITUTIONS`: Medical Institutions",
+          "enumValues": [
+            "ALL",
+            "ELECTRONICS_AND_APPLIANCES",
+            "FOOD_AND_BEVERAGE",
+            "CLOTHING_AND_ACCESSORIES",
+            "HEALTHCARE_AND_MEDICAL",
+            "BUSINESS_SERVICES",
+            "LOCAL_SERVICES",
+            "REAL_ESTATE",
+            "HOME_AND_BUILDING_MATERIALS",
+            "EDUCATION_AND_TRAINING",
+            "TRAVEL_AND_TOURISM",
+            "PUBLIC_SERVICES",
+            "GAMES",
+            "RETAIL",
+            "TRANSPORTATION_EQUIPMENT",
+            "AUTOMOTIVE",
+            "AGRICULTURE_FORESTRY_FISHERY",
+            "CHEMICAL_AND_ENERGY",
+            "ELECTRONICS_AND_ELECTRICAL",
+            "MACHINERY_EQUIPMENT",
+            "CULTURE_SPORTS_ENTERTAINMENT",
+            "MEDIA_AND_INFORMATION",
+            "LOGISTICS",
+            "TELECOMMUNICATIONS",
+            "FINANCIAL_SERVICES",
+            "CATERING_SERVICES",
+            "SOFTWARE_TOOLS",
+            "FRANCHISING_AND_INVESTMENT",
+            "BEAUTY_AND_COSMETICS",
+            "MOTHER_BABY_AND_PET",
+            "DAILY_CHEMICALS",
+            "PHYSICAL_BOOKS",
+            "SOCIAL_AND_COMMUNICATION",
+            "MEDICAL_INSTITUTIONS"
+          ],
+          "location": "query",
+          "name": "industryId",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAY_30",
+          "description": "Time range.\n\nAvailable Values:\n- `DAY_30`: Last 30 days\n- `DAY_90`: Last 90 days",
+          "enumValues": [
+            "DAY_30",
+            "DAY_90"
+          ],
+          "location": "query",
+          "name": "range",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "VIDEO",
+          "description": "Resource type.\n\nAvailable Values:\n- `VIDEO`: Video\n- `PRODUCT`: Product",
+          "enumValues": [
+            "VIDEO",
+            "PRODUCT"
+          ],
+          "location": "query",
+          "name": "detailType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/data_sp/get_author_convert_videos_or_products/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Conversion Resources",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_data_sp_get_author_convert_videos_or_products",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-data-sp-get-author-convert-videos-or-products",
+  "sourceTitle": "OpenAPI definition"
+}

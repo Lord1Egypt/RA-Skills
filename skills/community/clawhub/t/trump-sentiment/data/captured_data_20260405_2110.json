@@ -1,0 +1,35 @@
+{
+  "collected_at_cst": "2026-04-05 21:10",
+  "trigger_source": "nasdaq_forced_timestamp_v6",
+  "x_search_trump_iran": [
+    {"time_cst": "21:09", "source": "@SitMonitoring", "content": "Trump: If Iran does not reach a deal, I will blow everything up and take the oil!", "engagement": "1 view"},
+    {"time_cst": "21:09", "source": "@PopHemingway", "content": "Trump: Iran faces 'all hell' if no deal or Hormuz open in 48 hours (timesofisrael)", "engagement": "12 views"},
+    {"time_cst": "21:05", "source": "@grok", "content": "Original 5-day deadline extended to 10 days, now fresh 48-hour ultimatum (expires Monday)", "engagement": "31 views"},
+    {"time_cst": "21:08", "source": "@BluePA2020", "content": "We had an awesome Iran deal and Trump tore it up in 2017 just because Obama did it. Trump getting played.", "engagement": "3 views"},
+    {"time_cst": "21:08", "source": "@Olearop", "content": "Would Trump try North Korea? Missile tech far more advanced now. Direct full attack? Not possible.", "engagement": "11 views"},
+    {"time_cst": "21:08", "source": "@yousman126", "content": "Iran hates Trump but deal should be done ASAP, diplomatic solution best.", "engagement": "35 views"},
+    {"time_cst": "21:06", "source": "@JoeSterns", "content": "Trump tells Iran 'open the f***in Strait of Hormuz' in sweary rant (metro.co.uk)", "engagement": "19 views"},
+    {"time_cst": "21:09", "source": "@ProfDrWeishaupt", "content": "Kushner raising money while Trump plunged US into war with Iran, immense destruction, energy disruption (Guardian)", "engagement": "32 views"}
+  ],
+  "x_search_iran_ceasefire": [
+    {"time_cst": "21:10", "source": "@MailManinder", "content": "Anti-US sentiment: US navy should go, Iran did not start war.", "engagement": "3 views"},
+    {"time_cst": "21:09", "source": "@poltheoryother", "content": "Iran wont give up Hormuz control. Trump assumes bargaining chip but Iran sees it as statecraft fixture.", "engagement": "28 views, 1 like"},
+    {"time_cst": "21:08", "source": "@DuckVagabond", "content": "Trump: open Strait of Hormuz or living in hell. Tuesday = power plant and bridge day. Polymarket ceasefire Dec31 ~78%.", "engagement": "663 views, 3 RT, 2 likes"},
+    {"time_cst": "21:04", "source": "@ChyeTony", "content": "Israel never stops Gaza violence, Iran wont stop until official ceasefire with all conditions met.", "engagement": "12 views"},
+    {"time_cst": "21:03", "source": "@ohPfff", "content": "Was upset Iran granted ceasefire after 1st US attack. Now awaiting economic depression like a tsunami.", "engagement": "9 views"}
+  ],
+  "kobeissi_letter": [
+    {"time_cst": "21:00", "source": "@KobeissiLetter", "content": "US stock market futures open in 9 hours. Eventful 3-day weekend. Trump threatened to 'reign hell' on Iran, declared Tuesday 'Power Plant and Bridge Day', US forces [truncated].", "engagement": "69 replies, 412 likes, 39 bookmarks, 29K views"},
+    {"time_cst": "20:35", "source": "@KobeissiLetter", "content": "BREAKING: Trump news conference with US Military at 1 PM ET tomorrow, 3 hours after 48-hour Iran warning expires. Tuesday = power plant and bridge day.", "engagement": "211 replies, 392 RT, 2720 likes, 209 bookmarks, 164K views"},
+    {"time_cst": "20:19", "source": "@KobeissiLetter", "content": "BREAKING: Trump tells Iran 'open the f***** Strait of Hormuz, you crazy bastards, or you will be living in hell.' Tuesday = power plant and bridge day.", "engagement": "1018 replies, 1369 RT, 5234 likes, 615 bookmarks, 576K views"}
+  ],
+  "watcher_guru": [
+    {"time_cst": "20:42", "source": "@WatcherGuru", "content": "Michael Saylor hints at buying more Bitcoin. Back to Work.", "engagement": "199 replies, 851 likes, 33K views"},
+    {"time_cst": "20:10", "source": "@WatcherGuru", "content": "Bitcoin Price on Easter 2026: $67,000", "engagement": "292 replies, 117K views"}
+  ],
+  "web_searches": {
+    "trump_fox_news": "API unavailable - Brave search not configured",
+    "trump_iran_bloomberg": "API unavailable",
+    "sp500_oil_reaction": "API unavailable"
+  }
+}

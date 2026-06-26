@@ -1,0 +1,109 @@
+{
+  "project_name": "OpenClaw 安全卫士",
+  "workspace_root": ".",
+  "agents": "auto",
+  "security": {
+    "checks": [
+      {
+        "id": "plist_permissions",
+        "enabled": true,
+        "target": "~/Library/LaunchAgents/ai.openclaw.gateway.plist"
+      },
+      {
+        "id": "git_commit_lag",
+        "enabled": true,
+        "target": ".",
+        "threshold_days": 7
+      },
+      {
+        "id": "exec_approvals",
+        "enabled": true,
+        "target": "~/.openclaw/exec-approvals.json"
+      },
+      {
+        "id": "api_key_in_git",
+        "enabled": true,
+        "target": ".",
+        "patterns": ["sk-", "Bearer "]
+      },
+      {
+        "id": "knowledge_freshness",
+        "enabled": false,
+        "threshold_days": 7,
+        "target": ""
+      },
+      {
+        "id": "doctor_health",
+        "enabled": true
+      }
+    ]
+  },
+  "memory": {
+    "checks": [
+      {
+        "id": "cross_workspace_conflict",
+        "enabled": true,
+        "tracked_concepts": [
+          {
+            "name": "example-concept",
+            "keywords": ["keyword1", "keyword2"],
+            "authority": "shared/DECISIONS.md"
+          }
+        ]
+      },
+      {
+        "id": "memory_staleness",
+        "enabled": true,
+        "threshold_days": 14
+      },
+      {
+        "id": "memory_bloat",
+        "enabled": true,
+        "memory_md_max_lines": 120,
+        "dated_total_max_lines": 600
+      },
+      {
+        "id": "shared_sync_drift",
+        "enabled": true,
+        "critical_decisions": ["D-001"]
+      },
+      {
+        "id": "decision_propagation",
+        "enabled": true
+      },
+      {
+        "id": "orphan_memory",
+        "enabled": true
+      }
+    ]
+  },
+  "knowledge": {
+    "checks": [
+      {
+        "id": "claude_freshness",
+        "enabled": true,
+        "threshold_days": 14,
+        "target": "CLAUDE.md"
+      }
+    ]
+  },
+  "cron": {
+    "target": ".openclaw/state/cron",
+    "max_consecutive_failures": 3,
+    "max_running_hours": 2
+  },
+  "feishu_drive": {
+    "enabled": false,
+    "app_id_env": "FEISHU_APP_ID",
+    "app_secret_env": "FEISHU_APP_SECRET",
+    "folder_token": ""
+  },
+  "notify": {
+    "enabled": true,
+    "app_id_env": "FEISHU_APP_ID",
+    "app_secret_env": "FEISHU_APP_SECRET",
+    "receive_id_type": "open_id",
+    "receive_id": "",
+    "score_recovery_threshold": 3
+  }
+}

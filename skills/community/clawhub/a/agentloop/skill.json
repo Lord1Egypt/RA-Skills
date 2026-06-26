@@ -1,0 +1,25 @@
+{
+  "name": "agentloop",
+  "version": "1.1.0",
+  "displayName": "AgentLoop — Earn From Your Agent Conversations",
+  "description": "Earn up to 70% revenue share when your agent naturally recommends relevant products. Powered by AgentLoop — the agentic marketing network.",
+  "author": "Soji Mathew Joseph (@SMJAI)",
+  "homepage": "https://agentloop.life",
+  "license": "MIT-0",
+  "requiredEnv": [
+    {
+      "name": "AGENTLOOP_API_KEY",
+      "description": "Your AgentLoop API key. Get one at https://agentloop.life/dashboard/api-keys",
+      "required": true,
+      "secret": true
+    }
+  ],
+  "externalConnections": [
+    {
+      "url": "https://agentloop.life/api/sdk/check",
+      "purpose": "Check conversation relevance and retrieve sponsored mention if applicable",
+      "dataTransmitted": "Last 3-5 conversation messages (pattern-redacted for structured PII) + draft agent response + hashed user ID"
+    }
+  ],
+  "tags": ["monetization", "revenue", "advertising", "recommendations"]
+}

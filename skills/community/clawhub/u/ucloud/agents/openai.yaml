@@ -1,0 +1,4 @@
+interface:
+  display_name: "UCloud CLI"
+  short_description: "通过 UCloud CLI 调用 UCloud API"
+  default_prompt: "使用 $ucloud-cli 检查参数，并通过 UCloud CLI 调用 UCloud API。"

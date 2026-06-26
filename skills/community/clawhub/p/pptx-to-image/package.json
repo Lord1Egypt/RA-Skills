@@ -1,0 +1,15 @@
+{
+  "name": "pptx-to-image",
+  "version": "1.0.0",
+  "description": "将 PowerPoint (PPTX) 转换为高质量图片，支持自定义 DPI",
+  "author": "Orchestrator",
+  "license": "MIT",
+  "keywords": ["pptx", "powerpoint", "image", "jpg", "png", "dpi", "converter"],
+  "main": "pptx_to_image.py",
+  "scripts": {
+    "convert": "python pptx_to_image.py"
+  },
+  "requirements": ["pywin32"],
+  "platform": "windows",
+  "category": "productivity"
+}

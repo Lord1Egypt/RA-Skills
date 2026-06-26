@@ -1,0 +1,50 @@
+{
+  "cinematic": {
+    "name": "电影感",
+    "suffix": ", cinematic lighting, film grain, shallow depth of field, anamorphic lens flare, color grading, dramatic shadows, 8k, masterpiece",
+    "negative_extra": "overexposed, underexposed, flat lighting",
+    "recommended_checkpoint": "dreamshaper_xl.safetensors"
+  },
+  "anime": {
+    "name": "动漫",
+    "suffix": ", anime style, cel shading, vibrant colors, detailed eyes, clean lines, studio ghibli influence, makoto shinkai lighting",
+    "negative_extra": "realistic, photographic, 3d render, western cartoon",
+    "recommended_checkpoint": "animagine_xl_v3.1.safetensors"
+  },
+  "photorealistic": {
+    "name": "照片写实",
+    "suffix": ", photorealistic, RAW photo, 8k uhd, DSLR, high quality, film grain, Fujifilm XT3, sharp focus, natural lighting",
+    "negative_extra": "painting, drawing, illustration, cartoon, anime, cgi",
+    "recommended_checkpoint": "juggernaut_xl_v9.safetensors"
+  },
+  "concept_art": {
+    "name": "概念艺术",
+    "suffix": ", concept art, digital painting, trending on artstation, highly detailed, illustration, matte painting",
+    "negative_extra": "photographic, realistic, blurry, amateur",
+    "recommended_checkpoint": "dreamshaper_xl.safetensors"
+  },
+  "watercolor": {
+    "name": "水彩",
+    "suffix": ", watercolor painting, soft edges, paper texture, artistic, flowing colors, traditional media, delicate brushstrokes",
+    "negative_extra": "photographic, digital, sharp edges, 3d, oversaturated",
+    "recommended_checkpoint": "dreamshaper_xl.safetensors"
+  },
+  "oil_painting": {
+    "name": "油画",
+    "suffix": ", oil painting, thick brushstrokes, canvas texture, rich colors, classical art, impasto technique, museum quality",
+    "negative_extra": "photographic, digital art, smooth, flat colors",
+    "recommended_checkpoint": "dreamshaper_xl.safetensors"
+  },
+  "cyberpunk": {
+    "name": "赛博朋克",
+    "suffix": ", cyberpunk, neon lights, dark atmosphere, rain, reflections, holographic, futuristic city, blade runner style, high contrast",
+    "negative_extra": "bright, cheerful, pastoral, natural, daylight",
+    "recommended_checkpoint": "dreamshaper_xl.safetensors"
+  },
+  "fantasy": {
+    "name": "奇幻",
+    "suffix": ", fantasy art, magical atmosphere, ethereal lighting, enchanted, mystical, epic composition, detailed environment",
+    "negative_extra": "modern, urban, photographic, mundane",
+    "recommended_checkpoint": "dreamshaper_xl.safetensors"
+  }
+}

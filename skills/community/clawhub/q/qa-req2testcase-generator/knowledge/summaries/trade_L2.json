@@ -1,0 +1,122 @@
+{
+  "domain": "交易域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "trade.md",
+  "key_terms": [
+    {"term": "限价委托", "definition": "指定价格的买卖委托，在指定价格或更优价格成交"},
+    {"term": "市价委托", "definition": "不指定价格，以当前市场最优价格即时成交的委托"},
+    {"term": "涨跌停", "definition": "A股每日价格波动限制，普通股票±10%，ST股票±5%，科创板/创业板±20%"},
+    {"term": "集合竞价", "definition": "开盘前(9:15-9:25)和收盘前(14:57-15:00)的价格撮合方式"},
+    {"term": "连续竞价", "definition": "交易时段(9:30-11:30, 13:00-14:57)内按价格优先、时间优先撮合"},
+    {"term": "融资融券", "definition": "投资者向券商借入资金买入(融资)或借入证券卖出(融券)的信用交易"},
+    {"term": "维持担保比例", "definition": "信用账户总资产/总负债，低于警戒线需追加担保物"},
+    {"term": "强制平仓", "definition": "维持担保比例低于平仓线时券商强制卖出客户持仓"},
+    {"term": "股票质押", "definition": "以股票为质押物向券商融入资金的交易"},
+    {"term": "大宗交易", "definition": "达到交易所规定最低限额(30万股或200万元)的单笔交易"},
+    {"term": "clientOrderId", "definition": "客户端生成的委托唯一标识，用于幂等去重"},
+    {"term": "风控前置", "definition": "委托提交前的风控校验，包括资金、持仓、涨跌停等检查"},
+    {"term": "极速交易", "definition": "面向量化机构的低延迟交易通道，端到端延迟<1ms"}
+  ],
+  "core_entities": [
+    {"name": "委托单(Order)", "description": "客户提交的买卖指令，核心交易对象"},
+    {"name": "成交记录(Trade)", "description": "委托撮合成功后的成交明细"},
+    {"name": "撤单请求(CancelRequest)", "description": "对未成交委托的撤销请求"},
+    {"name": "条件单(ConditionalOrder)", "description": "满足特定条件后自动触发的委托"},
+    {"name": "信用账户(CreditAccount)", "description": "融资融券业务的专用账户"},
+    {"name": "质押合约(PledgeContract)", "description": "股票质押式回购的合约记录"},
+    {"name": "授信额度(CreditLine)", "description": "券商对客户信用业务的额度管理"},
+    {"name": "交易通道(TradingChannel)", "description": "委托报送至交易所的通信链路"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "涨跌停限制", "description": "委托价格不得超出当日涨跌停价格范围"},
+    {"rule": "集合竞价不可撤单时段", "description": "9:20-9:25期间不允许撤单"},
+    {"rule": "市价单仅限连续竞价", "description": "集合竞价时段不接受市价委托"},
+    {"rule": "融资保证金比例≥100%", "description": "监管最低要求"},
+    {"rule": "融券保证金比例≥50%", "description": "监管最低要求"},
+    {"rule": "融资融券最长期限6个月", "description": "可展期但总期限有合同约定上限"},
+    {"rule": "质押率不超过60%", "description": "单只股票初始交易质押率上限"},
+    {"rule": "大宗交易价格范围", "description": "成交价格在当日收盘价的90%-110%"},
+    {"rule": "大宗交易时间窗口", "description": "15:00-15:30(盘后固定价格交易15:05-15:30)"},
+    {"rule": "场外衍生品仅限专业投资者", "description": "个人投资者不得参与场外期权等业务"}
+  ],
+  "common_missing_items": [
+    {"item": "撤单与成交竞态处理", "description": "撤单请求与成交回报同时到达时的状态一致性保证"},
+    {"item": "委托超时无回报处理", "description": "委托发送后长时间无交易所回报的超时重发和状态同步"},
+    {"item": "资金冻结与委托不一致", "description": "冻结成功但委托发送失败时的孤立冻结自动解冻"},
+    {"item": "夜市委托次日标的停牌", "description": "夜间提交委托后次日开盘前标的停牌的废单处理"},
+    {"item": "批量委托部分失败", "description": "批量接口中部分通过风控部分被拒的结果处理"},
+    {"item": "融资融券强平无法执行", "description": "跌停/停牌导致无法平仓时的风险敞口处理"},
+    {"item": "条件单触发时资金不足", "description": "条件满足但账户资金已被占用的失败处理和通知"},
+    {"item": "极速通道故障切换", "description": "极速通道不可用时自动切换至普通通道的机制"},
+    {"item": "市价单滑点保护", "description": "市场剧烈波动时市价单的最优五档保护机制"},
+    {"item": "大宗交易对手方违约", "description": "确认后对手方资金/证券不足的处理流程"}
+  ],
+  "entity_states": {
+    "限价委托单": ["待报(PendingSubmit)", "已报(Submitted)", "部分成交(PartiallyFilled)", "全部成交(FullyFilled)", "已撤(Cancelled)", "废单(Rejected)", "撤单中(PendingCancel)"],
+    "市价委托单": ["待报(PendingSubmit)", "已报(Submitted)", "全部成交(FullyFilled)", "部分成交转撤(PartialFilledCancelled)", "废单(Rejected)"],
+    "条件单": ["待激活(Pending)", "监控中(Monitoring)", "已触发(Triggered)", "已转委托(Converted)", "已过期(Expired)", "已取消(Cancelled)", "触发失败(TriggerFailed)"],
+    "夜市委托": ["已暂存(Stored)", "待报(PendingSubmit)", "已报(Submitted)", "全部成交(FullyFilled)", "部分成交(PartiallyFilled)", "已撤(Cancelled)", "废单(Rejected)"],
+    "信用账户": ["待开通(PendingOpen)", "正常(Normal)", "关注(Attention)", "追保(MarginCall)", "平仓警告(ForceCloseWarning)", "强制平仓中(ForceLiquidating)", "冻结(Frozen)", "已了结(Settled)"],
+    "质押合约": ["待审批(PendingApproval)", "已审批(Approved)", "初始交易中(InitTrading)", "存续中(Active)", "预警(Warning)", "违约(Default)", "购回中(Repurchasing)", "已了结(Completed)", "违约处置中(Disposing)", "已处置(Disposed)"],
+    "授信申请": ["待评估(PendingAssess)", "评估中(Assessing)", "待审批(PendingApproval)", "已审批(Approved)", "已拒绝(Rejected)", "额度冻结(CreditFrozen)", "已到期(Expired)"]
+  },
+  "state_transitions": [
+    {"entity": "限价委托单", "from": "待报", "trigger": "柜台发送至交易所", "to": "已报"},
+    {"entity": "限价委托单", "from": "待报", "trigger": "风控校验不通过", "to": "废单"},
+    {"entity": "限价委托单", "from": "已报", "trigger": "交易所撮合部分成交", "to": "部分成交"},
+    {"entity": "限价委托单", "from": "已报", "trigger": "交易所撮合全部成交", "to": "全部成交"},
+    {"entity": "限价委托单", "from": "已报", "trigger": "用户发起撤单", "to": "撤单中"},
+    {"entity": "限价委托单", "from": "撤单中", "trigger": "交易所确认撤单", "to": "已撤"},
+    {"entity": "限价委托单", "from": "撤单中", "trigger": "撤单前剩余全部成交", "to": "全部成交"},
+    {"entity": "信用账户", "from": "正常", "trigger": "维持担保比例<150%", "to": "关注"},
+    {"entity": "信用账户", "from": "关注", "trigger": "维持担保比例<130%", "to": "追保"},
+    {"entity": "信用账户", "from": "追保", "trigger": "T+2日到期未补足", "to": "平仓警告"},
+    {"entity": "信用账户", "from": "平仓警告", "trigger": "系统发起强制平仓", "to": "强制平仓中"},
+    {"entity": "质押合约", "from": "存续中", "trigger": "履约保障比例<预警线", "to": "预警"},
+    {"entity": "质押合约", "from": "预警", "trigger": "履约保障比例<违约线或到期未购回", "to": "违约"}
+  ],
+  "allowed_operations": {
+    "委托-待报": ["取消(本地删除，尚未发送)"],
+    "委托-已报": ["撤单(非9:20-9:25时段)"],
+    "委托-部分成交": ["撤单(非9:20-9:25时段)"],
+    "委托-撤单中": ["无(等待中，前端按钮置灰)"],
+    "委托-终态(全部成交/已撤/废单)": ["仅查询"],
+    "信用账户-正常": ["融资买入", "融券卖出", "担保品划转"],
+    "信用账户-追保": ["追加担保物", "偿还负债"],
+    "质押合约-存续中": ["补充质押", "部分还款", "到期购回"]
+  },
+  "forbidden_operations": {
+    "委托-全部成交": ["撤单(终态不可逆，返回E_ORDER_FINAL_STATE)"],
+    "委托-非交易时段": ["提交非预埋单(返回E_MARKET_CLOSED)"],
+    "委托-价格超限": ["提交(风控前置拦截，返回E_PRICE_LIMIT)"],
+    "委托-9:20-9:25": ["撤单(返回E_CANCEL_NOT_ALLOWED)"],
+    "市价单-集合竞价": ["提交(返回E_MARKET_ORDER_NOT_ALLOWED)"],
+    "信用账户-追保": ["直接跳过平仓警告强平"],
+    "质押-限售股": ["质押申请(限售股不可质押)"]
+  },
+  "role_permission_matrix": [
+    {"role": "普通客户", "permissions": ["提交委托", "撤单", "查询委托/成交", "条件单管理"]},
+    {"role": "信用客户", "permissions": ["融资买入", "融券卖出", "担保品管理", "负债偿还"]},
+    {"role": "交易员(自营)", "permissions": ["按授权范围执行交易", "算法单管理"]},
+    {"role": "风控人员", "permissions": ["风控参数配置", "强制平仓", "额度冻结"]},
+    {"role": "清算人员", "permissions": ["交收确认", "资金冻结/解冻"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "交易所(上交所/深交所)", "interaction": "委托报送、成交回报、撤单确认"},
+    {"system": "柜台系统", "interaction": "委托受理、风控校验、资金冻结"},
+    {"system": "行情系统", "interaction": "实时行情推送、涨跌停价格、条件单触发"},
+    {"system": "中国结算(中登)", "interaction": "证券交收、质押登记/解除"},
+    {"system": "银行系统", "interaction": "资金划转、三方存管"},
+    {"system": "风控系统", "interaction": "事前风控校验、维持担保比例监控、授信额度管理"}
+  ],
+  "core_calculation_rules": [
+    {"name": "维持担保比例", "formula": "维持担保比例 = 信用账户总资产 / (融资负债+融券负债)"},
+    {"name": "可融资额度", "formula": "min(授信额度-已用额度, 可用保证金/融资保证金比例)"},
+    {"name": "质押融资金额", "formula": "质押股票市值 × 质押率(≤60%)"},
+    {"name": "履约保障比例", "formula": "质押股票市值 / (融资本金+应计利息)"},
+    {"name": "资金冻结金额", "formula": "委托数量 × 委托价格 × (1+预估费率)"},
+    {"name": "强制平仓目标", "formula": "平仓至维持担保比例≥150%"},
+    {"name": "授信可用额度", "formula": "授信额度 - 已用额度 - 冻结额度"}
+  ]
+}

@@ -1,0 +1,3 @@
+display_name: FlashRev AI Enrich
+short_description: Enrich FlashRev CSV lead lists with dry-run estimates and sample previews.
+default_prompt: Run FlashRev AI Enrich on a CSV using a dry-run first, then enrich after approval.

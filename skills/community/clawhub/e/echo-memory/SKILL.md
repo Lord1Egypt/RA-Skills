@@ -1,35 +1,16 @@
----
-name: "Echo"
-description: "Sync, encode, embed, and upsert OpenClaw markdown memory files to Supabase, with commands to restore and check sync status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/echo-memory"
-sourceUrl: "https://clawhub.ai/skills/echo-memory"
----
+# Echo Memory
 
-# Echo
+Sync OpenClaw markdown memory files to Supabase with Luhmann encoding. Parse, encode, embed, and upsert agent memories from local workspace to cloud storage.
 
-> Sync, encode, embed, and upsert OpenClaw markdown memory files to Supabase, with commands to restore and check sync status.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/echo-memory`
-- **Source URL:** [https://clawhub.ai/skills/echo-memory](https://clawhub.ai/skills/echo-memory)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/echo-memory
+echo-memory sync          # Parse + encode + embed + upsert to Supabase
+echo-memory restore       # Restore markdown files from Supabase
+echo-memory status        # Show sync status and diff
 ```
+
+## Options
+
+- `--dry-run` — Preview changes without writing
+- `--incremental` — Only sync changed files (via git diff)

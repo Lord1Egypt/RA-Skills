@@ -1,0 +1,291 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/data-story",
+  "preset": "Data Story",
+  "family": "data-visual-narrative",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.14.0 <3.0.0",
+  "producer_version_tested": "2.14.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/data-story.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/data-story-zh.html",
+    "demos/data-story-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/data-story.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/data-story-zh.html",
+    "source_snapshot/demos/data-story-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [
+    {
+      "selector": ".slide::before",
+      "kind": "data-grid",
+      "export_strategy": "background-layer"
+    },
+    {
+      "selector": "body::before",
+      "kind": "data-grid",
+      "export_strategy": "background-layer"
+    }
+  ],
+  "component_selectors": {
+    "split_layout": [
+      ".ds-split-layout"
+    ],
+    "left_panel": [
+      ".left-panel"
+    ],
+    "metric_grid": [
+      ".ds-kpi-grid"
+    ],
+    "metric_card": [
+      ".ds-kpi-card"
+    ],
+    "hero_metric": [
+      ".ds-kpi"
+    ],
+    "metric_label": [
+      ".ds-kpi-label"
+    ],
+    "trend": [
+      ".ds-trend"
+    ],
+    "insight": [
+      ".ds-insight"
+    ],
+    "style_card": [
+      ".style-card"
+    ],
+    "solution_card": [
+      ".sol-card"
+    ],
+    "solution_icon": [
+      ".sol-icon"
+    ],
+    "chart_svg": [
+      ".ds-chart-svg"
+    ],
+    "chart_line": [
+      ".ds-line"
+    ],
+    "chart_axis": [
+      ".chart-axis",
+      ".ds-axis"
+    ],
+    "chart_grid": [
+      ".chart-grid",
+      ".ds-grid"
+    ],
+    "matrix": [
+      ".ds-matrix"
+    ],
+    "matrix_cell": [
+      ".ds-matrix-cell"
+    ],
+    "feature_grid": [
+      ".feat-grid"
+    ],
+    "feature_card": [
+      ".feat-card"
+    ],
+    "feature_stat": [
+      ".feat-stat"
+    ],
+    "steps": [
+      ".steps"
+    ],
+    "step_item": [
+      ".step-item"
+    ],
+    "step_num": [
+      ".step-num"
+    ],
+    "install_row": [
+      ".install-row"
+    ],
+    "install_label": [
+      ".install-label"
+    ],
+    "install_cmd": [
+      ".install-cmd"
+    ]
+  },
+  "component_slot_models": {
+    "split_layout": {
+      "layout": "grid_two_column",
+      "slots": [
+        "metric_stack",
+        "chart"
+      ],
+      "track_template": "1fr 1.5fr"
+    },
+    "metric_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "trend"
+      ],
+      "minimum_height_in": 1.1,
+      "gaps": {
+        "after_metric": 0.05,
+        "after_label": 0.05
+      },
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": true,
+      "metric_vertical_align": "center_remaining",
+      "metric_max_height_ratio": 0.8
+    },
+    "style_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "preview",
+        "title",
+        "body",
+        "trend"
+      ],
+      "minimum_height_in": 1.28,
+      "gaps": {
+        "after_metric": 0.1,
+        "after_label": 0.06
+      },
+      "stretch_first_slot": true,
+      "bottom_anchor_last_slot": false
+    },
+    "solution_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "icon",
+        "title",
+        "body"
+      ],
+      "minimum_height_in": 1.02,
+      "gaps": {
+        "after_metric": 0.08,
+        "after_label": 0.06
+      },
+      "bottom_anchor_last_slot": false
+    },
+    "feature_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "title",
+        "body"
+      ],
+      "minimum_height_in": 1.06,
+      "gaps": {
+        "after_metric": 0.1,
+        "after_label": 0.06
+      },
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false,
+      "metric_vertical_align": "center_remaining",
+      "metric_max_height_ratio": 0.58
+    },
+    "install_row": {
+      "layout": "split_rail",
+      "slots": [
+        "label",
+        "command"
+      ],
+      "keep_command_single_line": true,
+      "minimum_height_in": 0.44,
+      "label_min_width_px": 120,
+      "gap_px": 16
+    },
+    "chart_svg": {
+      "layout": "svg_chart",
+      "slots": [
+        "axes",
+        "grid",
+        "series",
+        "labels"
+      ]
+    },
+    "matrix_cell": {
+      "layout": "vertical_card",
+      "slots": [
+        "label",
+        "metric",
+        "body"
+      ]
+    }
+  },
+  "layout_variations": [
+    "hero-number",
+    "kpi-row-chart",
+    "chart-layout",
+    "comparison-matrix",
+    "feature-grid",
+    "install-rows",
+    "closing-kpi"
+  ],
+  "text_expectations": {
+    "tabular_numbers": true
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Data Story",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "badge",
+    "chart-axis",
+    "chart-grid",
+    "chart-label",
+    "chart-val",
+    "cta-group",
+    "cta-pill",
+    "ds-chart-svg",
+    "ds-dot",
+    "ds-insight",
+    "ds-kpi",
+    "ds-kpi-card",
+    "ds-kpi-grid",
+    "ds-kpi-label",
+    "ds-line",
+    "ds-split-layout",
+    "ds-trend",
+    "feat-card",
+    "feat-grid",
+    "feat-stat",
+    "grid-2",
+    "grid-3",
+    "hero-kpi-group",
+    "install-cmd",
+    "install-label",
+    "install-row",
+    "left-panel",
+    "pill",
+    "slide-num-label",
+    "sol-card",
+    "stat",
+    "stat-label",
+    "stat-value",
+    "style-card"
+  ]
+}

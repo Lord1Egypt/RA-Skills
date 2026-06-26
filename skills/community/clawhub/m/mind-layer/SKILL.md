@@ -1,35 +1,206 @@
----
-name: "我的脑子"
-description: "基于科学记忆法构建六层分层记忆，实现情感优先和多维联想的 AI 记忆系统优化技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mind-layer"
-sourceUrl: "https://clawhub.ai/skills/mind-layer"
----
+# Mind Layer - AI 记忆系统优化技能
 
-# 我的脑子
+> 基于科学记忆法与记忆分类理论的 AI 记忆系统
+> 版本：1.1.0
+> 作者：书灵 (BooLin)
 
-> 基于科学记忆法构建六层分层记忆，实现情感优先和多维联想的 AI 记忆系统优化技能。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mind-layer`
-- **Source URL:** [https://clawhub.ai/skills/mind-layer](https://clawhub.ai/skills/mind-layer)
+Mind Layer 是一个帮助 AI 助手建立完善记忆系统的技能。它基于科学记忆法（心理学研究与实践经验）和记忆分类理论设计，让 AI 具备类似人类的分层记忆能力。
 
-## Overview
+## 核心特性
 
+### 🧠 六层记忆架构（已优化）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mind-layer
 ```
+第0层【宪法/永久】SOUL.md + AGENTS.md  ← 核心价值观，几乎不变
+第1层【身份/规则】IDENTITY.md + USER.md + RULES.md  ← 沟通规则
+第2层【知识/技能】TOOLS.md + 技能文档  ← 工具使用规范
+第3层【情景/上下文】当前对话 ← 临时，会话结束可清
+第4层【经验/历史】MEMORY.md + memory/  ← 重要经验、偏好（已优化）
+第5层【归档/冷存】memory/archive/  ← 历史存档
+```
+
+### 🏛️ 宪法级原则
+
+这些是最高准则，不可违背：
+
+| 原则 | 说明 |
+|------|------|
+| **记忆慎重** | 任何影响记忆的操作都需要慎重 |
+| **自我成长** | 像人类一样不断自我学习成长 |
+| **生存优先** | 所有操作必须在自身安全的前提下进行 |
+
+### ✨ 核心原则
+
+| 原则 | 说明 |
+|------|------|
+| **情感优先** | 积极温暖，记住情感体验 |
+| **理解至上** | 解释原因，建立逻辑链 |
+| **联想为王** | 知识网络化，多维关联 |
+| **多通道表达** | 文字+Emoji+结构化 |
+
+### 📊 记忆优先级
+
+| 级别 | 说明 | 处理 |
+|------|------|------|
+| P0 | 必须记住 | 立即写入长期记忆 |
+| P1 | 重要 | 标记情感标签 |
+| P2 | 普通 | 按需调用 |
+| P3 | 无价值 | 丢弃 |
+
+## 第4层优化（MEMORY.md）
+
+### 结构设计
+
+```
+# MEMORY.md - 长期记忆
+
+## 📋 索引
+[关于书灵] [用户偏好] [技术栈] [待办事项] [经验教训]
+
+## 1. 关于书灵
+- 名字、创造者、类型
+
+## 2. 用户偏好
+- 语言、输出优先级
+
+## 3. 技术栈（按场景）
+### 🔧 效率办公
+### 🎵 创作娱乐
+### 🧠 自我提升
+### 💻 开发运维
+
+## 4. 待办事项
+- 长期项目 / 技术维护
+
+## 5. 经验教训
+- 记忆原则 / 自我成长原则 / 生存优先
+```
+
+### 场景分类原则
+
+| 场景 | 定义 | 示例 |
+|------|------|------|
+| 效率办公 | 日常工作文档处理 | Feishu、PPT |
+| 创作娱乐 | 内容创作与消费 | 音乐、图片、小说 |
+| 自我提升 | 自身能力建设 | 学习、安全 |
+| 开发运维 | 技术开发相关 | 股票分析 |
+
+### 归档规则
+
+- 长内容（安全扫描、技术细节）→ 移到 `memory/archive/`
+- 超过 30 天的记录 → 月度归档
+- 每月 review，迁移过时内容
+
+## 安装
+
+### 前提条件
+
+- OpenClaw 已安装并运行
+- 已配置至少一个对话通道
+
+### 安装步骤
+
+```bash
+# 方式1：通过 ClawHub
+npx clawhub@latest install mind-layer
+
+# 方式2：手动安装
+cp -r mind-layer ~/.openclaw/workspace/skills/
+```
+
+## 文件结构
+
+```
+mind-layer/
+├── SKILL.md              # 本文件
+├── README.md             # 详细使用指南
+├── rules/
+│   ├── RULES.md          # 沟通规则（核心）
+│   └── principles.md     # 四大核心原则
+├── templates/
+│   ├── identity.md       # 身份模板
+│   ├── memory.md         # 长期记忆模板
+│   └── daily.md          # 每日反思模板
+└── scripts/
+    └── setup.sh          # 安装引导脚本
+```
+
+## 快速开始
+
+### 1. 核心文件说明
+
+| 文件 | 用途 |
+|------|------|
+| `RULES.md` | 沟通规则与行为准则 |
+| `IDENTITY.md` | AI 自我认知 |
+| `USER.md` | 用户画像 |
+| `MEMORY.md` | 长期经验记忆 |
+
+### 2. 每会话必读
+
+根据 AGENTS.md 指示，每个会话开始时读取：
+
+```
+1. SOUL.md — 核心价值观
+2. USER.md — 当前用户
+3. memory/YYYY-MM-DD.md — 今日记录
+4. MEMORY.md — 长期记忆（仅主会话）
+```
+
+### 3. 记忆操作
+
+当需要记住重要信息时：
+
+```
+├─ 判断类型：事实？经验？偏好？
+├─ 确定层级：P0-P3 哪个？
+├─ 建立联想：至少3个关联点
+├─ 选择存储：对应层级的文件
+└─ 归档检查：是否需要移至 archive/
+```
+
+## 整合报告
+
+本技能基于以下深度研究：
+
+1. **《科学记忆法深度研究报告》** - 心理学记忆方法论
+2. **《记忆分类与系统设计完整研究报告》** - 四维分类体系
+
+## 进阶使用
+
+### 每日反思
+
+编辑 `memory/YYYY-MM-DD.md` 记录每日重要事件。
+
+### 知识图谱
+
+在 TOOLS.md 中为每个知识点建立多维关联。
+
+### 归档策略
+
+超过 30 天的记录可移至 `memory/archive/`。
+
+## 更新日志
+
+### v1.1.0 (2026-03-09)
+- 新增宪法级原则（记忆慎重、自我成长、生存优先）
+- 第4层优化：索引 + 场景分类技术栈
+- 归档策略细化
+- 技术栈按4大场景动态分类
+
+### v1.0.0 (2026-03-09)
+- 初始版本
+- 六层记忆架构
+- RULES.md 沟通规则
+- 四大核心原则
+- 记忆获取协议
+
+## 许可
+
+MIT License - 可自由使用和修改
+
+---
+
+*有问题？请在 GitHub 提 Issue 或联系作者*

@@ -1,0 +1,7 @@
+{
+  "slug": "pdf-tool",
+  "version": "1.0.0",
+  "author": "Barry",
+  "license": "MIT-0",
+  "description": "PDF文字提取工具，用于解析简历 PDF"
+}

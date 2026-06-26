@@ -1,0 +1,37 @@
+{
+  "slug": "research-claim-checker",
+  "title": "研究论断校验器",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "检查一篇研究或分析里的结论是否被证据支撑，指出证据链断点。",
+  "inputHint": "分析稿、结论、证据摘要",
+  "sections": [
+    "结论列表",
+    "对应证据",
+    "断点与不足",
+    "需补证据",
+    "改写建议",
+    "可信度判断"
+  ],
+  "useCases": [
+    "研究复核",
+    "分析质控",
+    "报告审稿"
+  ],
+  "positiveExamples": [
+    "检查这篇报告的结论是否站得住",
+    "指出证据链断点"
+  ],
+  "negativeExamples": [
+    "不要伪造出处",
+    "不要替代同行评议"
+  ],
+  "risk": "适合研究质控，不等于真实性最终裁定。",
+  "tags": [
+    "research",
+    "claims",
+    "evidence",
+    "audit"
+  ]
+}

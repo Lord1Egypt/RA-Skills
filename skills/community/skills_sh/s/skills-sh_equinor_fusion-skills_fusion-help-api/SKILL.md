@@ -1,35 +1,119 @@
 ---
-name: "fusion-help-api"
-description: "Indexed by skills.sh from equinor/fusion-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "equinor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/equinor/fusion-skills/fusion-help-api"
-sourceUrl: "https://skills.sh/equinor/fusion-skills/fusion-help-api"
+name: fusion-help-api
+description: 'Guides developers and admins through direct interaction with the Fusion Help REST API — reading articles, FAQs, release notes, searching content, and managing help documentation programmatically. USE FOR: fetch help articles from API, integrate help content in app, search help content, manage help documentation via API, automate help content, build help tooling. DO NOT USE FOR: using the fhelp CLI tool (use fusion-help-docs skill), modifying Fusion.Services.Help backend code, or non-help-API tasks.'
+license: MIT
+compatibility: Requires authenticated HTTP client with Fusion bearer token. Works with any language or framework that can make REST calls.
+metadata:
+  version: "0.0.3"
+  status: active
+  owner: "@equinor/fusion-core"
+  tags:
+    - help-api
+    - fusion-help
+    - articles
+    - release-notes
+    - faq
+    - search
+    - integration
 ---
 
-# fusion-help-api
+# Fusion Help API
 
-> Indexed by skills.sh from equinor/fusion-skills
+Use when a developer or admin needs to interact directly with the Fusion Help REST API — reading help content, building custom tooling, or automating content management.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** equinor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/equinor/fusion-skills/fusion-help-api`
-- **Source URL:** [https://skills.sh/equinor/fusion-skills/fusion-help-api](https://skills.sh/equinor/fusion-skills/fusion-help-api)
+## When to use
 
-## Overview
+- Display help articles, FAQs, or release notes inside a Fusion app
+- Build custom CLI or automation to manage help content
+- Programmatically create, update, or delete help documentation
+- Search or suggest help content from an application
+- Understand Help API endpoints, authentication, or data models
+- Read help content for another system
 
+## When not to use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/equinor/fusion-skills/fusion-help-api
+- Using `fhelp` CLI to sync markdown docs → use `fusion-help-docs`
+- Modifying Fusion.Services.Help backend service code
+- General REST API questions unrelated to Help
+
+## Required inputs
+
+| Input | Required | Description |
+|-------|----------|-------------|
+| **Use case** | Yes | Reading content, managing content, or searching |
+| **App key** | For scoped queries | The Fusion app key to read/manage help for |
+| **Target environment** | Yes | `ci`, `fqa`, `tr`, or `fprd` |
+| **Auth context** | Yes | User token (interactive) or service principal (automation) |
+
+## Instructions
+
+### 1. Discover the Help API base URL
+
+Resolve URL dynamically or use known patterns:
+
+| Environment | Base URL |
+|-------------|----------|
+| `ci` | `https://help.ci.api.fusion-dev.net` |
+| `fqa` | `https://help.fqa.api.fusion-dev.net` |
+| `fprd` | `https://help.api.fusion.equinor.com` |
+
+**Dynamic discovery** (recommended for production tooling):
+
 ```
+GET https://discovery.fusion.equinor.com/service-registry/environments/{env}/services
+```
+
+Look for the service with `key: "help"` in the response. Use the `uri` field as the base URL.
+
+### 2. Authentication
+
+All endpoints require a valid Azure AD bearer token. Token audiences and code samples for frontend, backend, and CLI are in [references/authentication.md](references/authentication.md).
+
+Quick reference — token audiences:
+
+| Environment | Resource ID (audience) |
+|-------------|----------------------|
+| `ci`, `fqa`, `tr` | `5a842df8-3238-415d-b168-9f16a6a6031b/.default` |
+| `fprd` | `97978493-9777-4d48-b38a-67b0b9cd88d2/.default` |
+
+### 3. Authorization levels
+
+| Action | Who can do it |
+|--------|---------------|
+| **Read** articles, FAQs, release notes, search | Any authenticated Fusion user |
+| **Create / Update / Delete** articles, FAQs, release notes | App admin, trusted app, or `Fusion.Help.FullControl` |
+| **Upload assets** (images) | App admin, trusted app, or `Fusion.Help.FullControl` |
+| **View changelog** (global) | `Fusion.Help.FullControl` only |
+| **View changelog** (per app) | App admin or `Fusion.Help.FullControl` |
+
+### 4. Call the API
+
+Endpoints are versioned — include `?api-version=1.0`. Resources: **Articles**, **FAQs**, **Release Notes**, **Assets**, **Search/Suggest**, **Changelog**.
+
+For full CRUD details, request/response bodies, OData filters, and validation rules see [references/api-endpoints.md](references/api-endpoints.md).
+
+For compact endpoint matrix and OData cheat sheet see [references/api-quick-reference.md](references/api-quick-reference.md).
+
+For response model schemas see [references/response-models.md](references/response-models.md).
+
+### 5. Integration patterns
+
+Ready-to-use code samples (React component, release notes banner, FAQ search, C# backend automation, Python scripting) are in [references/integration-patterns.md](references/integration-patterns.md).
+
+## Expected output
+
+- Working code to authenticate and call the Help API
+- Correct endpoint URLs and query parameters for the use case
+- Understanding of response models and OData query options
+- For admin use cases: correct request bodies for create/update/delete
+- For integration patterns: sample code in the relevant language/framework
+
+## Safety & constraints
+
+- Read-only endpoints are safe for any authenticated user — no admin permissions needed
+- Write operations require app admin, trusted application, or `Fusion.Help.FullControl`
+- Deleted articles/FAQs/release notes are **soft-deleted** — slugs cannot be reused
+- `sourceSystem` tracks which tool created a record — mixing source systems for the same slug causes `fhelp` CLI to refuse updates (unless `--no-validation` is used)
+- Always test against `ci` before targeting `fprd`
+- Never hardcode bearer tokens — use `DefaultAzureCredential` or equivalent
+- Image uploads must be PNG; API processes them into WebP for serving

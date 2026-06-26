@@ -1,0 +1,35 @@
+{
+  "name": "zhipu-image",
+  "version": "2.0.0",
+  "description": "智谱 GLM-Image 网页登录态图片生成与下载工具",
+  "main": "./zhipu_api.js",
+  "bin": {
+    "zhipu-image": "./zhipu_api.js"
+  },
+  "scripts": {
+    "ready": "node zhipu_api.js ready",
+    "check-session": "node zhipu_api.js check-session",
+    "login": "node zhipu_api.js login",
+    "login-if-needed": "node zhipu_api.js login-if-needed",
+    "generate": "node zhipu_api.js generate \"a cute tiger mascot\""
+  },
+  "keywords": [
+    "image",
+    "generation",
+    "ai",
+    "zhipu",
+    "glm",
+    "openclaw",
+    "skill",
+    "glm-image",
+    "image.z.ai"
+  ],
+  "author": "小虎",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-remote-interface": "^0.33.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

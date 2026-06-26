@@ -1,35 +1,87 @@
 ---
-name: "Article Writer"
-description: "文章写作助手 - 根据选题生成高质量文章"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/article-writer"
-sourceUrl: "https://clawhub.ai/skills/article-writer"
+name: article-writer
+description: 文章写作助手 - 根据选题生成高质量文章
 ---
 
-# Article Writer
+# 文章写作助手
 
-> 文章写作助手 - 根据选题生成高质量文章
+## 写作风格规范
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/article-writer`
-- **Source URL:** [https://clawhub.ai/skills/article-writer](https://clawhub.ai/skills/article-writer)
+### 开头模式
+- 第一句：吸引眼球，制造反差或冲突
+- 第二句：点明核心观点
+- 示例：
+  ✅ "我现在写一篇文章，从选题到全平台发布，只要10分钟。"
+  ❌ "今天来讨论AI编程。"（太平淡）
 
-## Overview
+### 标题公式
+**模式1：数字 + 成果 + 反差**
+- "10分钟完成全平台发布，效率提升94%"
+- "从崩溃4671次到省50% token"
 
+**模式2：冲突 + 结果**
+- "Claude一个插件，让全球软件股蒸发2850亿美元"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/article-writer
+**模式3：疑问 + 答案**
+- "为什么我不再手动写文章？因为Agent比我先开始办公"
+
+### 结构要求
+- 模块化分段，用数字编号（01、02、03...）
+- 每个模块500-800字
+- 每500字必须有一句可截图金句
+- 所有场景用 before vs after 对比
+
+### 金句要求
+- 短（10-20字）
+- 狠（有冲击力）
+- 可截图（视觉效果好）
+
+示例：
+✅ "把重复的交给系统，把判断留给自己。"
+✅ "选题找我，不是我找选题。"
+❌ "我觉得AI很有用。"（太平淡）
+
+### 结尾要求
+- "弹射"而不是"降落"
+- 一句狠话收束
+- 留下思考或行动指引
+
+### 用词习惯
+- 多用短句，少用长句
+- 多用动词，少用形容词
+- 多用数据，少用感觉
+- 多用对比，少用描述
+
+### 禁用词汇
+❌ "非常"、"很"、"特别"（太虚）
+❌ "可能"、"也许"、"大概"（不确定）
+❌ "我觉得"、"我认为"（太主观）
+
+## 工作流程
+
+1. 收到选题
+2. 搜索相关素材（使用 web_search 和 web_fetch）
+3. 生成大纲（3-5个模块）
+4. 按模块撰写
+5. 添加金句
+6. 优化标题
+7. 输出Markdown格式
+
+## 输出格式
+
+```markdown
+# 标题
+
+## 01 模块标题
+内容...
+
+## 02 模块标题
+内容...
+
+## 03 模块标题
+内容...
+
+---
+
+总结金句
 ```

@@ -1,0 +1,9 @@
+{
+  "name": "agentmemo",
+  "version": "1.0.0",
+  "description": "Give your AI agent persistent memory and human-in-the-loop approval across sessions. MCP-native, works with any model. Free tier available.",
+  "license": "MIT",
+  "keywords": ["memory", "mcp", "agent", "persistence", "approval", "cross-session", "claude", "openai", "llm"],
+  "homepage": "https://agentmemo.net",
+  "author": "Andy Coleman <hello@agentmemo.net>"
+}

@@ -1,35 +1,72 @@
----
-name: "潘天鸿Tims HKRR 内容审核建议框架"
-description: "使用HKRR四要素（快乐、知识、共鸣、节奏）系统审核文章质量并提供评分与具体改进建议。"
-category: "security"
-source: "ClawHub"
-tags: [audit, content, hkrr, review, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hkrr-reviewer"
-sourceUrl: "https://clawhub.ai/skills/hkrr-reviewer"
----
-
 # 潘天鸿Tims HKRR 内容审核建议框架
 
-> 使用HKRR四要素（快乐、知识、共鸣、节奏）系统审核文章质量并提供评分与具体改进建议。
+使用 HKRR 四要素审核文章质量的 skill。
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hkrr-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/hkrr-reviewer](https://clawhub.ai/skills/hkrr-reviewer)
+## 简介
 
-## Overview
+基于影视飓风潘天鸿提出的 HKRR 内容创作理论，用于审核和评估文章质量。
 
+**HKRR 四要素：**
+- **H**appiness（快乐）- 让读者感到有趣、开心
+- **K**nowledge（知识）- 有价值的信息/干货  
+- **R**esonance（共鸣）- 引起情感共鸣
+- **R**hythm（节奏）- 内容节奏把控
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hkrr-reviewer
+## 适用场景
+
+- 审核小红书文章
+- 审核公众号文章
+- 审核知乎/B站文案
+- 给文章提供改进建议
+
+## 使用方法
+
+当用户让你审核文章时，使用此框架评估：
+
+1. **逐项评估 HKRR 四个要素**
+2. **给出评分**（1-5星）
+3. **指出优点和不足**
+4. **提供具体改进建议**
+
+## 输出格式
+
+建议使用以下格式输出审核结果：
+
 ```
+## HKRR 审核结果
+
+| 要素 | 评分 | 说明 |
+|------|------|------|
+| Happiness | ⭐⭐⭐⭐ | ... |
+| Knowledge | ⭐⭐⭐⭐⭐ | ... |
+| Resonance | ⭐⭐⭐⭐ | ... |
+| Rhythm | ⭐⭐⭐⭐⭐ | ... |
+
+## 优点
+- ...
+
+## 可改进
+- ...
+
+## 具体建议
+1. ...
+2. ...
+```
+
+## 示例
+
+审核《小龙虾的记忆问题》：
+- ✅ 知识：讲清楚了记忆问题的原理和解决方案
+- ✅ 共鸣：建国的故事、防控办的例子很生动
+- ✅ 节奏：问题→测试→分析→解决→实验结构清晰
+- ⚠️ 快乐：可以更幽默一些
+
+## 相关账号信息
+
+配合账号人设使用效果更佳：
+- 账号名：Agent外设王东旭
+- 简介：Agent的"现实传感器"，负责给Agent主机支付电费，给AI模型付Token账单...
+
+---
+ 
+**标签**: content, review, writing, hkrr, 审核, 文章优化

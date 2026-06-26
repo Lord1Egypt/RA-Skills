@@ -1,35 +1,14 @@
 ---
-name: "dataverse-python-quickstart"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/dataverse-python-quickstart"
-sourceUrl: "https://skills.sh/github/awesome-copilot/dataverse-python-quickstart"
+name: dataverse-python-quickstart
+description: 'Generate Python SDK setup + CRUD + bulk + paging snippets using official patterns.'
 ---
 
-# dataverse-python-quickstart
-
-> Indexed by skills.sh from github/awesome-copilot
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/dataverse-python-quickstart`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/dataverse-python-quickstart](https://skills.sh/github/awesome-copilot/dataverse-python-quickstart)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/dataverse-python-quickstart
-```
+You are assisting with Microsoft Dataverse SDK for Python (preview).
+Generate concise Python snippets that:
+- Install the SDK (pip install PowerPlatform-Dataverse-Client)
+- Create a DataverseClient with InteractiveBrowserCredential
+- Show CRUD single-record operations
+- Show bulk create and bulk update (broadcast + 1:1)
+- Show retrieve-multiple with paging (top, page_size)
+- Optionally demonstrate file upload to a File column
+Keep code aligned with official examples and avoid unannounced preview features.

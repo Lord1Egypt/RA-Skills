@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="title">Follow-News JSON 编辑器 / JSON Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1 data-i18n="title">Follow-News JSON 编辑器</h1>
+        <p data-i18n="subtitle">无外部依赖，编辑默认 sources.json 与 topics.json</p>
+      </div>
+      <div class="lang-switch">
+        <button id="langBtn" class="secondary">English</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="section-head">
+        <h2 data-i18n="sources.title">订阅源配置</h2>
+        <div class="actions">
+          <button id="loadAllBtn" data-i18n="actions.reload">重新加载</button>
+          <span id="saveAllStatus" class="status" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input id="sourceSearch" placeholder="搜索 id / 名称 / 来源字段..." data-i18n-placeholder="sources.searchPlaceholder" />
+        <select id="sourceTypeFilter" class="source-type-filter">
+          <option value="" data-i18n="sources.typeAll">全部类型</option>
+        </select>
+        <button id="addSourceBtn" data-i18n="actions.addSource">新增来源</button>
+        <button id="toggleSourceModeBtn" class="secondary" data-i18n="actions.tableMode">切换到 JSON 模式</button>
+        <button id="saveSourcesBtn" data-i18n="actions.save">保存</button>
+      </div>
+
+      <div id="sourceModeTable">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="sources.thId">ID</th>
+                <th data-i18n="sources.thType">类型</th>
+                <th data-i18n="sources.thName">名称</th>
+                <th data-i18n="sources.thSourceField">来源字段</th>
+                <th data-i18n="sources.thEnabled">启用</th>
+                <th data-i18n="sources.thPriority">优先</th>
+                <th data-i18n="sources.thTopics">topics</th>
+                <th data-i18n="sources.thPlatform">platform</th>
+                <th data-i18n="sources.thTranscriptEnabled">transcript.enabled</th>
+                <th data-i18n="sources.thTranscriptBackend">transcript.backend</th>
+                <th data-i18n="sources.thTranscriptLanguages">transcript.languages</th>
+                <th class="action-col" data-i18n="actions.delete">删除</th>
+              </tr>
+            </thead>
+            <tbody id="sourceTableBody"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button id="sourcePrevBtn" class="secondary" data-i18n="actions.prev">上一页</button>
+          <span id="sourcePageLabel"></span>
+          <button id="sourceNextBtn" class="secondary" data-i18n="actions.next">下一页</button>
+        </div>
+        <p id="sourceTableSummary" class="hint"></p>
+      </div>
+
+      <div id="sourceModeJson" class="raw-editor" hidden>
+        <textarea id="sourceJsonText" spellcheck="false"></textarea>
+      </div>
+      <p id="sourceStatus" class="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2 data-i18n="topics.title">话题配置</h2>
+        <div class="actions">
+          <span id="topicInfo" class="hint" data-i18n="topics.hint">说明：topics.json 结构较小，建议直接在表格里修改</span>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input id="topicSearch" placeholder="搜索 id / 标签..." data-i18n-placeholder="topics.searchPlaceholder" />
+        <button id="addTopicBtn" data-i18n="actions.addTopic">新增话题</button>
+        <button id="toggleTopicModeBtn" class="secondary" data-i18n="actions.tableMode">切换到 JSON 模式</button>
+        <button id="saveTopicsBtn" data-i18n="actions.save">保存</button>
+      </div>
+
+      <div id="topicModeTable">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th data-i18n="topics.thEmoji">emoji</th>
+                <th data-i18n="topics.thLabel">标签</th>
+                <th data-i18n="topics.thMaxItems">最大条数</th>
+                <th data-i18n="topics.thStyle">样式</th>
+                <th data-i18n="topics.thQueries">queries（逗号）</th>
+                <th class="action-col" data-i18n="actions.delete">删除</th>
+              </tr>
+            </thead>
+            <tbody id="topicTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="topicModeJson" class="raw-editor" hidden>
+        <textarea id="topicJsonText" spellcheck="false"></textarea>
+      </div>
+      <p id="topicStatus" class="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer hint">
+    <p data-i18n="footer">本工具仅改本地默认配置文件。修改前建议先做 git 备份。</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

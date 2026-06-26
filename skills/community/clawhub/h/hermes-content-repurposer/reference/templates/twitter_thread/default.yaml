@@ -1,0 +1,51 @@
+# Twitter Thread Template — Default
+name: "default_twitter_thread"
+description: "Standard Twitter thread format: hook → numbered tweets → CTA"
+
+structure:
+  hook:
+    type: "question_or_controversial_opener"
+    length: "1 tweet"
+    rules:
+      - "Start with a bold claim, surprising statistic, or provocative question"
+      - "Hook must fit in 280 characters"
+      - "Do NOT use clickbait — deliver on the promise"
+      - "Format: [Bold claim or stat] + [Why it matters]"
+
+  body:
+    type: "numbered_tweets"
+    count: "{{max_tweets - 2}}"  # minus hook and CTA
+    min_count: 4
+    max_count: 15
+    rules:
+      - "Each tweet = exactly ONE idea. No exceptions."
+      - "Use line breaks within tweets for readability (2-3 lines max)"
+      - "Number tweets with format: 1/13, 2/13, etc."
+      - "Include exact quotes from source material with attribution"
+      - "Add screenshots of key data where available"
+      - "Mix text-only and media tweets for visual rhythm"
+      - "Every 3rd tweet should be a punchy, quotable line"
+
+  cta:
+    type: "final_tweet"
+    rules:
+      - "Summarise the thread's main takeaway in 1 sentence"
+      - "Add personal opinion or call to action"
+      - "Include 2-3 relevant hashtags"
+      - "Tag relevant accounts if applicable (max 2)"
+      - "Format: [Summary] + [CTA] + [Hashtags]"
+
+  spacing:
+    type: "smart_delay"
+    config:
+      initial_delay_minutes: 0
+      tweet_interval_minutes: 3
+      thread_label: true
+      auto_schedule: true
+
+quality_rules:
+  - "No tweet exceeds {{max_chars_per_tweet}} characters"
+  - "Hook and CTA tweets must be self-contained (they appear alone in timeline)"
+  - "Every tweet must make sense when read alone"
+  - "Maintain consistent tone: {{brand.voice}}"
+  - "Max 2 external links per thread (use the CTA tweet)"

@@ -1,0 +1,4 @@
+name: luci-memory
+version: 1.0.7
+entrypoint: scripts/run.py
+description: Search personal video memory — media content, people, events, traits, relationships, and speeches

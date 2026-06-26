@@ -1,0 +1,121 @@
+# 内容适配配置
+
+content_adaptation:
+  # 小红书 - 源平台
+  xiaohongshu:
+    # 标题长度限制
+    max_title_length: 20
+    # 描述长度限制
+    max_desc_length: 1000
+    # 标签数量限制
+    max_tags: 10
+    # 标签前缀
+    tag_prefix: "#"
+    # 标签格式: 带空格 | 不带空格
+    tag_with_space: true
+    # 表情符号支持
+    emoji_support: true
+    # 话题格式
+    topic_format: "#{topic}"
+    
+  # 抖音
+  douyin:
+    max_title_length: 55
+    max_desc_length: 500
+    max_tags: 5
+    tag_prefix: "#"
+    tag_with_space: false
+    emoji_support: true
+    topic_format: "#{topic}"
+    # 自动添加的热门标签
+    auto_tags:
+      - "热门"
+      - "推荐"
+      - "精选"
+    # 标签映射（将小红书标签转换为抖音标签）
+    tag_mapping:
+      "穿搭": ["穿搭", "ootd"]
+      "美食": ["美食", "吃货"]
+      "旅行": ["旅行", "旅游"]
+      "护肤": ["护肤", "美妆"]
+      "健身": ["健身", "运动"]
+    # 是否添加位置信息
+    add_location: false
+    # 是否允许下载
+    allow_download: true
+    
+  # 视频号
+  shipinhao:
+    max_title_length: 30
+    max_desc_length: 300
+    max_tags: 3
+    tag_prefix: "#"
+    tag_with_space: false
+    emoji_support: true
+    topic_format: "#{topic}"
+    auto_tags:
+      - "视频号"
+    tag_mapping:
+      "穿搭": ["穿搭"]
+      "美食": ["美食"]
+      "旅行": ["旅行"]
+    # 视频号特殊设置
+    # 是否允许转发
+    allow_share: true
+    # 是否允许评论
+    allow_comment: true
+    
+  # 快手
+  kuaishou:
+    max_title_length: 40
+    max_desc_length: 400
+    max_tags: 5
+    tag_prefix: "#"
+    tag_with_space: false
+    emoji_support: true
+    topic_format: "#{topic}"
+    auto_tags:
+      - "快手"
+      - "热门"
+    tag_mapping:
+      "穿搭": ["穿搭", "时尚穿搭"]
+      "美食": ["美食", "探店"]
+      "旅行": ["旅行", "风景"]
+    # 快手特殊设置
+    # 是否仅粉丝可见
+    fans_only: false
+    # 是否允许合拍
+    allow_duet: true
+
+# 内容过滤
+content_filter:
+  # 敏感词过滤
+  sensitive_words:
+    - "违禁词1"
+    - "违禁词2"
+  
+  # 自动替换词
+  word_replacement:
+    "微信": "VX"
+    "支付宝": "ZFB"
+    "二维码": "二维🐴"
+  
+  # 链接处理
+  link_handling:
+    # 是否移除链接
+    remove_links: false
+    # 链接替换文本
+    link_placeholder: "【链接】"
+    # 短链接转换
+    shorten_links: false
+
+# 智能标题生成
+smart_title:
+  enabled: false
+  # 标题模板
+  templates:
+    - "{original_title} | 分享"
+    - "{original_title} #{main_tag}"
+    - "{main_tag} | {original_title}"
+  # 最大长度
+  max_length: 50

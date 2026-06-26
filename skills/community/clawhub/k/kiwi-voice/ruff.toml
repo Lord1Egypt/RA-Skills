@@ -1,0 +1,17 @@
+line-length = 120
+
+[lint]
+select = ["E", "F", "W"]
+ignore = [
+    "E501",   # line too long
+    "E402",   # module level import not at top (conditional imports pattern)
+    "W291",   # trailing whitespace
+    "W293",   # whitespace before indent
+    "F401",   # unused import (many are re-exports or conditional)
+    "F541",   # f-string without placeholder
+    "F841",   # local variable assigned but never used
+    "E722",   # bare except
+]
+
+[lint.per-file-ignores]
+"tests/*" = ["E402"]

@@ -1,0 +1,93 @@
+{
+  "name": "clouddream-a-data-skill",
+  "version": "1.0.0",
+  "description": "云梦A股数据获取Skill",
+  "author": "云梦",
+  "main": "index.py",
+  "dependencies": {
+    "python": ">=3.6",
+    "pandas": "^2.0.0",
+    "requests": "^2.31.0",
+    "beautifulsoup4": "^4.12.0"
+  },
+  "commands": [
+    {
+      "name": "get_stock_fund_flow",
+      "description": "获取个股资金流向",
+      "parameters": [
+        {
+          "name": "symbol",
+          "type": "string",
+          "required": true,
+          "description": "股票代码，如000001"
+        }
+      ]
+    },
+    {
+      "name": "get_stock_news",
+      "description": "查询个股新闻",
+      "parameters": [
+        {
+          "name": "symbol",
+          "type": "string",
+          "required": true,
+          "description": "股票代码，如000001"
+        }
+      ]
+    },
+    {
+      "name": "get_stock_chip_distribution",
+      "description": "获取个股筹码分布",
+      "parameters": [
+        {
+          "name": "symbol",
+          "type": "string",
+          "required": true,
+          "description": "股票代码，如000001"
+        }
+      ]
+    },
+    {
+      "name": "get_dragon_tiger_list",
+      "description": "获取当天龙虎榜",
+      "parameters": []
+    },
+    {
+      "name": "get_limit_up_stocks",
+      "description": "获取当日涨停板行情",
+      "parameters": []
+    },
+    {
+      "name": "get_yesterday_limit_up_stocks",
+      "description": "获取昨日涨停板股池",
+      "parameters": []
+    },
+    {
+      "name": "get_market_anomalies",
+      "description": "获取盘口异动",
+      "parameters": []
+    },
+    {
+      "name": "get_sector_anomalies",
+      "description": "获取板块异动",
+      "parameters": []
+    },
+    {
+      "name": "get_stock_details",
+      "description": "获取单只股票详细信息",
+      "parameters": [
+        {
+          "name": "symbol",
+          "type": "string",
+          "required": true,
+          "description": "股票代码，如000001"
+        }
+      ]
+    },
+    {
+      "name": "run_all",
+      "description": "运行所有数据获取方法",
+      "parameters": []
+    }
+  ]
+}

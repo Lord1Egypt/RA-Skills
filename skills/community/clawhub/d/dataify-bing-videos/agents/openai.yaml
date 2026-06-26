@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Bing Videos"
+  short_description: "Search Bing Videos"
+  default_prompt: "Use $dataify-bing-videos to run a search query."

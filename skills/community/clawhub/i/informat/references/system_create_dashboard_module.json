@@ -1,0 +1,27 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_create_dashboard_module",
+    "description": "Generate Informat dashboard",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Dashboard name",
+          "type": "string"
+        },
+        "id": {
+          "description": "Dashboard ID (English camelCase naming, must not use JavaScript/Java reserved words, such as id, class, function, etc.)",
+          "type": "string"
+        },
+        "remark": {
+          "description": "Dashboard module description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id","name"
+      ]
+    }
+  }
+}

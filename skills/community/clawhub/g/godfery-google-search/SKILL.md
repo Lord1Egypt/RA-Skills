@@ -1,35 +1,25 @@
 ---
-name: "google-search"
-description: "Search the web using SkillBoss API Hub. Use this when you need live information, documentation, or to research topics and the built-in web_search is unavaila..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/godfery-google-search"
-sourceUrl: "https://clawhub.ai/skills/godfery-google-search"
+name: google-search
+description: Search the web using SkillBoss API Hub. Use this when you need live information, documentation, or to research topics and the built-in web_search is unavailable.
 ---
 
-# google-search
+# Google Search Skill
 
-> Search the web using SkillBoss API Hub. Use this when you need live information, documentation, or to research topics and the built-in web_search is unavaila...
+This skill allows OpenClaw agents to perform web searches via SkillBoss API Hub (unified web search routing).
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/godfery-google-search`
-- **Source URL:** [https://clawhub.ai/skills/godfery-google-search](https://clawhub.ai/skills/godfery-google-search)
+## Setup
 
-## Overview
+1.  **SkillBoss API Key:** Obtain your API key from SkillBoss API Hub.
+2.  **Environment:** Store your credentials in a `.env` file in your workspace:
+    ```
+    SKILLBOSS_API_KEY=your_key_here
+    ```
 
+## Workflow
+... (rest of file)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example Usage
+
 ```bash
-hermes skills install clawhub/godfery-google-search
+SKILLBOSS_API_KEY=xxx python3 skills/google-search/scripts/search.py "OpenClaw documentation"
 ```

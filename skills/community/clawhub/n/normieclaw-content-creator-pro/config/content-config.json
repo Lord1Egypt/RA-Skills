@@ -1,0 +1,81 @@
+{
+  "_comment": "Content Creator Pro — Platform Settings & Defaults. Edit to match your posting schedule and preferences.",
+
+  "default_platforms": ["x", "linkedin", "instagram"],
+
+  "platform_settings": {
+    "x": {
+      "enabled": true,
+      "max_chars": 280,
+      "max_thread_tweets": 7,
+      "max_hashtags": 2,
+      "default_post_times": ["09:00", "12:30", "17:00"],
+      "posting_days": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+      "thread_numbering": true
+    },
+    "linkedin": {
+      "enabled": true,
+      "target_length_chars": 1500,
+      "max_hashtags": 5,
+      "default_post_times": ["08:00", "12:00"],
+      "posting_days": ["monday", "wednesday", "friday"]
+    },
+    "instagram": {
+      "enabled": true,
+      "caption_max_words": 300,
+      "hashtag_count": 20,
+      "hashtag_mix": {
+        "broad": 5,
+        "medium": 5,
+        "niche": 10
+      },
+      "default_post_times": ["11:00", "19:00"],
+      "posting_days": ["tuesday", "thursday", "saturday"]
+    },
+    "tiktok": {
+      "enabled": false,
+      "default_duration_seconds": 30,
+      "script_format": "hook_body_cta",
+      "default_post_times": ["18:00"],
+      "posting_days": []
+    },
+    "facebook": {
+      "enabled": false,
+      "target_length_words": 200,
+      "max_hashtags": 3,
+      "link_in_comments": true,
+      "default_post_times": ["10:00"],
+      "posting_days": []
+    }
+  },
+
+  "calendar_defaults": {
+    "week_start_day": "monday",
+    "posts_per_day_max": 3,
+    "min_posts_per_week": 5,
+    "max_posts_per_week": 15,
+    "include_weekends": false
+  },
+
+  "content_rules": {
+    "anti_repetition_window_days": 14,
+    "max_consecutive_same_pillar": 2,
+    "min_days_between_same_topic": 14,
+    "voice_learning_threshold": 3
+  },
+
+  "engagement_tracking": {
+    "enabled": true,
+    "performance_analysis_threshold": 10,
+    "outperformance_multiplier": 2.0
+  },
+
+  "seasonal_awareness": {
+    "enabled": true,
+    "check_holidays": true,
+    "check_awareness_months": true,
+    "niche_seasonal_peaks": []
+  },
+
+  "export_format": "markdown"
+}

@@ -1,35 +1,30 @@
----
-name: "my-first-skill-0311"
-description: "我的第一个 OpenClaw 技能，say hello to the world"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-first-skill-0311"
-sourceUrl: "https://clawhub.ai/skills/my-first-skill-0311"
+﻿---
+name: hello-world
+version: 1.0.0
+description: 我的第一个 OpenClaw 技能，say hello to the world
+author: AIStudio
+homepage: https://example.com/hello-world-skill
 ---
 
-# my-first-skill-0311
+# Hello World Skill
 
-> 我的第一个 OpenClaw 技能，say hello to the world
+一个简单的示例技能，展示 OpenClaw Skill 的基础结构。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-first-skill-0311`
-- **Source URL:** [https://clawhub.ai/skills/my-first-skill-0311](https://clawhub.ai/skills/my-first-skill-0311)
+## 功能
 
-## Overview
+- 根据当前时间返回中文问候语
+- 支持命令行传参
+- 输出标准 JSON，方便 Agent 调用
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
+```powershell
+python scripts/hello.py
+python scripts/hello.py Codex
+```
+
+## 安装
+
 ```bash
-hermes skills install clawhub/my-first-skill-0311
+clawhub install your-name/hello-world
 ```

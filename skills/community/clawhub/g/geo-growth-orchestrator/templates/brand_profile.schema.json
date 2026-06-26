@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/brand_profile.schema.json",
+  "title": "Brand Profile",
+  "type": "object",
+  "required": [
+    "brand_name",
+    "business_summary",
+    "products_services",
+    "target_customers",
+    "value_propositions",
+    "use_cases",
+    "proof_points",
+    "faq",
+    "contact",
+    "tone",
+    "forbidden_claims"
+  ],
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brand_aliases": {
+      "type": "array",
+      "description": "Aliases and public-name variants used for model mention/citation matching.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "business_summary": {
+      "type": "string",
+      "description": "A concise explanation of what the brand is, who it serves, and what problem it solves."
+    },
+    "products_services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "delivery_model": {"type": "string"},
+          "pricing_note": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "target_customers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["segment", "needs"],
+        "properties": {
+          "segment": {"type": "string"},
+          "decision_makers": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "users": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "needs": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "not_suitable_for": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "value_propositions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "explanation"],
+        "properties": {
+          "claim": {"type": "string"},
+          "explanation": {"type": "string"},
+          "evidence": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scenario", "description"],
+        "properties": {
+          "scenario": {"type": "string"},
+          "description": {"type": "string"},
+          "target_customer": {"type": "string"},
+          "expected_outcome": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "proof_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["point", "status"],
+        "properties": {
+          "point": {"type": "string"},
+          "source": {"type": "string"},
+          "status": {
+            "type": "string",
+            "enum": ["verified", "unverified", "pending"]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "answer"],
+        "properties": {
+          "question": {"type": "string"},
+          "answer": {"type": "string"},
+          "category": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "website": {"type": "string"},
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        "wechat": {"type": "string"},
+        "address": {"type": "string"},
+        "other": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "tone": {
+      "type": ["string", "array"],
+      "items": {"type": "string"}
+    },
+    "forbidden_claims": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}

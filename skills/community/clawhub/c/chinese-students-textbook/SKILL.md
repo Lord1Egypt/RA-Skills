@@ -1,35 +1,80 @@
 ---
-name: "中国学生教科书目录"
-description: "教科书目录读取。用户问「这学期要学哪些古诗词」「《朝花夕拾》在哪个单元」时，直接读取对应 JSON 文件回答。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chinese-students-textbook"
-sourceUrl: "https://clawhub.ai/skills/chinese-students-textbook"
+name: textbook
+description: 教科书目录读取。用户问「这学期要学哪些古诗词」「《朝花夕拾》在哪个单元」时，直接读取对应 JSON 文件回答。
 ---
 
-# 中国学生教科书目录
+# 教科书目录 (Textbook Reader)
 
-> 教科书目录读取。用户问「这学期要学哪些古诗词」「《朝花夕拾》在哪个单元」时，直接读取对应 JSON 文件回答。
+## 文件位置
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chinese-students-textbook`
-- **Source URL:** [https://clawhub.ai/skills/chinese-students-textbook](https://clawhub.ai/skills/chinese-students-textbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chinese-students-textbook
 ```
+actives_skills/textbook-reader/textbooks/
+├── 七年级语文上册.json
+├── 七年级语文下册.json
+├── 高一数学必修一.json
+└── ...
+```
+
+每本书一个 JSON，文件名即书名。
+
+## JSON 格式
+
+```json
+{
+  "name": "七年级语文上册",
+  "units": [
+    {
+      "name": "第一单元",
+      "阅读": [
+        { "Title": "春", "Author": "朱自清", "Type": "精读", "Sub": [] },
+        {
+          "Title": "古代诗歌四首",
+          "Author": "",
+          "Type": "精读",
+          "Sub": [
+            { "Title": "观沧海", "Author": "曹操" },
+            { "Title": "次北固山下", "Author": "王湾" }
+          ]
+        }
+      ],
+      "写作": ["热爱写作，学会观察"],
+      "综合性学习": [],
+      "整本书阅读": ["《朝花夕拾》"],
+      "课外古诗词": [{ "Title": "峨眉山月歌", "Author": "李白" }]
+    }
+  ]
+}
+```
+
+## 使用方式
+
+当用户问及以下类型问题时，直接读取对应 JSON 文件并回答：
+
+| 用户问                         | 回答内容                                            |
+| ------------------------------ | --------------------------------------------------- |
+| 「七年级语文上册有哪些古诗词」 | 遍历所有单元的 `课外古诗词` + 阅读中的 `Sub` 子条目 |
+| 「《朝花夕拾》在哪个单元」     | 在各单元 `整本书阅读` 中搜索                        |
+| 「第一单元有哪些课文」         | 读取对应册的 JSON，列出该单元 `阅读` 列表           |
+| 「这学期要学哪些必读篇目」     | 列出所有 `Type: "精读"` 的篇目                      |
+| 「某首诗的作者是谁」           | 在 `阅读.Sub` 和 `课外古诗词` 中搜索                |
+| 「某册有哪些单元」             | 直接列 `units` 中的 `name`                          |
+
+## 执行方式
+
+直接用 `read` 工具读取文件：
+
+```
+read: actives_skills/textbook-reader/textbooks/七年级语文上册.json
+```
+
+读取后根据用户问题解析 JSON 内容并回答。
+
+## 添加新书
+
+用户发送新课本目录时：
+
+1. 接收文本（文字或图片）
+2. 手动整理成 JSON 格式
+3. 写入 `textbooks/书名.json`
+
+回复：「✅ 已收录《书名》，共 X 个单元、Y 篇精读篇目、Z 首古诗词」

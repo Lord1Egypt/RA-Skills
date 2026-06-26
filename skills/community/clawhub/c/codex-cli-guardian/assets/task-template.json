@@ -1,0 +1,9 @@
+{
+  "task_id": "YYYYMMDD-NNN",
+  "description": "任务描述",
+  "status": "done",
+  "summary": "Codex 最后的完成语摘要",
+  "started_at": "2026-04-04T20:00:00+08:00",
+  "finished_at": "2026-04-04T20:05:00+08:00",
+  "codex_session_id": "019d5840-17fc-7020-946d-cbb507a8614c"
+}

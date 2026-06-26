@@ -1,35 +1,312 @@
 ---
-name: "Official doc generator"
-description: "专门用于自动生成体制内讨论材料并按照公文格式自动排版的技能。支持会议纪要、发言稿、讨论提纲、工作汇报等多种文档类型，遵循GB/T 9704-2012标准、党政机关公文格式和企业公文规范。使用场景：当用户需要生成体制内正式文档、会议材料、工作报告、发言稿等公文时；当需要按照标准公文格式自动排版时；当需要确保文档符合..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/official-doc-generator"
-sourceUrl: "https://clawhub.ai/skills/official-doc-generator"
+name: official-document-generator
+description: 专门用于自动生成体制内讨论材料并按照公文格式自动排版的技能。支持会议纪要、发言稿、讨论提纲、工作汇报等多种文档类型，遵循GB/T 9704-2012标准、党政机关公文格式和企业公文规范。使用场景：当用户需要生成体制内正式文档、会议材料、工作报告、发言稿等公文时；当需要按照标准公文格式自动排版时；当需要确保文档符合体制内语言风格和组织文化时；当需要进行敏感词和合规性检查时。
 ---
 
-# Official doc generator
+# Official Document Generator (体制内公文生成器)
 
-> 专门用于自动生成体制内讨论材料并按照公文格式自动排版的技能。支持会议纪要、发言稿、讨论提纲、工作汇报等多种文档类型，遵循GB/T 9704-2012标准、党政机关公文格式和企业公文规范。使用场景：当用户需要生成体制内正式文档、会议材料、工作报告、发言稿等公文时；当需要按照标准公文格式自动排版时；当需要确保文档符合...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/official-doc-generator`
-- **Source URL:** [https://clawhub.ai/skills/official-doc-generator](https://clawhub.ai/skills/official-doc-generator)
+本技能提供自动生成体制内讨论材料并按照公文格式自动排版的完整能力。通过集成智能内容生成引擎、标准公文格式模板系统、多级标题自动编号、敏感词检查和合规性验证等功能，帮助用户快速生成符合体制内要求的正式文档。
 
-## Overview
+## 核心能力
 
+### 1. 文档类型支持
+- **会议纪要**：标准会议记录格式，包含议题、讨论要点、决议事项、责任分工等
+- **发言稿**：领导讲话、工作汇报、专题发言等正式场合演讲稿
+- **讨论提纲**：专题讨论、工作研讨、政策研究等讨论框架
+- **工作汇报**：阶段性工作报告、专项工作汇报、工作总结等
+- **通知公告**：内部通知、工作安排、人事任免等公告类文档
+- **请示报告**：工作请示、项目申请、经费申请等请示类文档
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/official-doc-generator
+### 2. 格式规范遵循
+- **GB/T 9704-2012**：国家标准《党政机关公文格式》
+- **党政机关公文格式**：标题、发文字号、密级、紧急程度、发文机关标识等
+- **企业公文规范**：企业正式文件格式要求
+- **自定义格式模板**：支持用户自定义模板系统
+
+### 3. 智能内容生成
+- **体制内语言风格**：正式、规范、严谨的语言表达
+- **组织结构适配**：根据不同层级和组织架构调整内容风格
+- **内容模板库**：丰富的标准段落和表达方式库
+- **智能填充**：根据用户输入自动生成完整内容框架
+
+### 4. 格式自动化
+- **多级标题自动编号**：一、二、三...；(一)、(二)、(三)...；1. 2. 3. ...
+- **段落格式标准化**：首行缩进、行间距、字间距、对齐方式
+- **页眉页脚设置**：自动添加文档属性、页码、密级标识
+- **字体字号规范**：仿宋GB2312、黑体、楷体等标准字体使用
+
+## 快速开始
+
+### 基本使用流程
+1. **确定文档类型**：选择要生成的文档类型（会议纪要、发言稿等）
+2. **提供基本信息**：输入文档标题、时间、地点、参与人员等
+3. **补充内容要点**：提供讨论要点、工作内容、主要观点等
+4. **选择格式模板**：指定使用的公文格式标准
+5. **生成并预览**：自动生成完整文档并提供预览
+6. **调整和导出**：根据需要进行微调并导出为Word文档
+
+### 字体规范（GB/T 9704-2012）
+- **大标题**：2号（22pt）方正小标宋简体，居中，直接顶格无额外间距
+- **正文**：3号（16pt）仿宋_GB2312，两端对齐，首行缩进2字符
+- **一级标题**：3号（16pt）黑体，首行缩进2字符，两端对齐
+- **二级标题**：3号（16pt）楷体_GB2312，首行缩进2字符，两端对齐
+- **署名**：标题下方，3号（16pt）楷体_GB2312，居中，格式如"XXXX单位 张三"
+- **英文内容**：统一使用 Times New Roman
+- **页码**：4号（14pt）半角宋体阿拉伯数字，编排在版心下边缘之下（7mm），数字左右各放一条一字线；单页码居右空一字，双页码居左空一字
+- **所有缩进以字符计算**（如首行缩进2字符 = 32pt）
+
+### 署名要求
+- 讨论材料必须在标题下方署名
+- 格式：单位/部门 + 姓名（如"政治工作处 张三"）
+- 字体：3号楷体_GB2312，居中，行距与正文一致
+- 署名与正文之间无空行
+
+### 用户交互流程
+生成文档前，必须向用户确认以下信息：
+1. **文档标题**：问清楚标题是什么？（必问）
+2. **作者署名**：作者是谁？署名格式是什么？（必问，格式如"XXXX单位 张三"）
+3. **输出目录**：保存到哪个目录？（必问，不擅自输出到桌面）
+4. **其他要素**：字数要求、内容要点、格式特殊要求等（根据需要追问）
+
+### 输出目录
+- **默认行为**：生成文档时必须询问用户指定的输出目录，不要自行决定输出到桌面或其他位置
+- **指定方式**：用户可以直接说输出路径（如"保存到 D:\工作文档\"），或使用相对路径
+- **目录自动创建**：如果指定目录不存在，自动创建
+- **修订历史**：修订历史文件与输出文档同目录
+- **重要**：除非用户明确要求，否则不要将文件输出到桌面
+
+### 示例请求
 ```
+请生成一份关于"推进数字化转型工作"的会议纪要
+- 会议时间：2026年3月28日 14:00-16:00
+- 会议地点：第一会议室
+- 参会人员：张三（主持）、李四、王五、赵六
+- 主要议题：数字化转型工作方案讨论
+- 需要包含：会议基本情况、讨论要点、决议事项、下一步工作安排
+- 格式要求：GB/T 9704-2012标准
+```
+
+## 增强功能介绍
+
+### 1. 英文字体统一处理
+- **统一英文字体**：所有英文内容统一使用 Times New Roman 字体
+- **中英文混合处理**：自动识别中英文内容，分别应用相应字体设置
+- **字号自动调整**：英文字号比中文字号小2磅，确保视觉效果协调
+- **WPS兼容性**：优化字体设置，确保在WPS Office中正常显示
+
+### 2. 敏感词检查增强
+- **联网更新机制**：支持定期联网检查更新敏感词库（默认每月检查一次）
+- **文档类型自适应**：根据文档类型自动调整检查级别（会议纪要：严格，发言稿：正常等）
+- **离线/在线混合模式**：优先使用本地词库，支持联网更新
+- **多级别检查**：严格(strict)、正常(normal)、宽松(lenient)三种检查级别
+- **分类敏感词库**：政治、经济、社会、内部、军事、网络安全等分类
+
+### 3. 修订历史管理
+- **独立历史文件**：生成独立的JSON/TXT格式修订历史文件
+- **多格式支持**：支持JSON、TXT、Markdown、CSV四种输出格式
+- **内容哈希跟踪**：使用SHA-256哈希跟踪文档内容变化
+- **变更详细记录**：记录每次修改的具体变更内容
+- **文档版本对比**：支持两个版本之间的内容对比
+
+### 4. WPS兼容性优化
+- **标准字体优先**：优先使用仿宋_GB2312、楷体_GB2312、黑体、小标宋等标准字体
+- **页面格式优化**：确保页边距、纸张大小等设置符合WPS显示要求
+- **格式兼容性测试**：提供专门的WPS兼容性测试功能
+- **备用字体方案**：为每种字体提供多个备选方案，确保兼容性
+
+## 详细功能说明
+
+### 1. 会议纪要生成
+会议纪要应包含以下标准部分：
+- 会议基本情况（时间、地点、主持人、记录人、出席人员、列席人员、缺席人员）
+- 会议议题（按顺序列出）
+- 讨论与决议（每个议题的讨论要点和决议内容）
+- 工作安排（明确责任人和完成时限）
+- 其他事项
+- 主持人签字栏
+
+**参考文件**：详细格式要求见 [references/meeting_minutes_format.md](references/meeting_minutes_format.md)
+
+### 2. 发言稿生成
+发言稿应遵循以下结构：
+- 标题（关于...的讲话/发言）
+- 称呼（尊敬的各位领导、同志们）
+- 开场白（简要说明讲话背景和目的）
+- 正文（分点阐述，通常为3-5个部分）
+- 结束语（总结和展望）
+ - 落款（单位、职务、姓名、日期）
+
+**语言风格要求**：正式、庄重、简洁、有力，避免口语化表达
+
+### 3. 讨论提纲生成
+讨论提纲应包括：
+- 讨论主题
+- 背景说明
+- 讨论要点（分层次列出）
+- 预期目标
+- 参考材料
+- 时间安排
+
+### 4. 工作汇报生成
+工作汇报应包含：
+- 工作进展情况
+- 主要成绩和亮点
+- 存在的问题和困难
+- 下一步工作计划
+- 需要支持的事项
+
+## 技术实现要点
+
+### 1. 模板系统
+本技能使用基于Jinja2的模板引擎，模板文件位于 `assets/templates/` 目录：
+- `meeting_minutes_template.docx` - 会议纪要模板
+- `speech_template.docx` - 发言稿模板  
+- `discussion_outline_template.docx` - 讨论提纲模板
+- `work_report_template.docx` - 工作汇报模板
+
+### 2. 格式引擎
+使用 `python-docx` 库进行Word文档的精确格式控制：
+- 自动设置页面边距（上3.7cm，下3.5cm，左2.8cm，右2.6cm）
+- 标准字体设置（标题：二号小标宋，正文：三号仿宋_GB2312）
+- 段落格式（行距28.95磅固定值，首行缩进2字=1.12cm）
+- 标题自动编号系统
+
+### 3. 内容生成
+集成智能内容生成算法：
+- 基于体制内语料库的内容建议
+- 标准表达方式库
+- 敏感词过滤和合规性检查
+- 上下文相关的语言风格调整
+
+### 4. 合规性检查
+内置合规性检查模块：
+- 敏感词库（政治敏感词、保密相关词等）
+- 格式规范性验证
+- 内容完整性检查
+- 语言风格评估
+
+## 脚本工具
+
+### 主要脚本
+- `scripts/generate_document.py` - 主生成脚本，支持所有文档类型
+- `scripts/format_validator.py` - 格式验证脚本
+- `scripts/sensitive_words_check.py` - 敏感词检查脚本
+- `scripts/template_manager.py` - 模板管理脚本
+
+### 增强版脚本
+- `scripts/generate_document_enhanced.py` - 增强版生成脚本（支持英文字体处理、修订历史）
+- `scripts/sensitive_words_check_enhanced.py` - 增强版敏感词检查（支持联网更新、文档类型自适应）
+- `scripts/revision_history.py` - 修订历史管理器
+- `scripts/test_enhanced_features.py` - 增强功能集成测试
+
+### 基本使用示例
+```bash
+# 生成会议纪要（基本版）
+python scripts/generate_document.py --type meeting_minutes --config config.json --output meeting_minutes.docx
+
+# 验证文档格式
+python scripts/format_validator.py --file document.docx --standard gb_t_9704_2012
+
+# 检查敏感词
+python scripts/sensitive_words_check.py --text "需要检查的文本内容"
+```
+
+### 增强功能使用示例
+```bash
+# 生成文档（增强版，支持英文字体处理）
+python scripts/generate_document_enhanced.py --type meeting_minutes --config config.json --output enhanced.docx --author "张三"
+
+# 使用增强版敏感词检查
+python scripts/sensitive_words_check_enhanced.py --text "测试文本" --document-type meeting_minutes --detailed
+
+# 强制更新敏感词库
+python scripts/sensitive_words_check_enhanced.py --force-update
+
+# 管理修订历史
+python scripts/revision_history.py --document test.docx --document-type meeting_minutes --author "李四" --action create
+
+# 运行集成测试
+python scripts/test_enhanced_features.py
+```
+
+### 配置文件示例
+```json
+{
+  "title": "数字化转型工作",
+  "meeting_info": {
+    "time": "2026年3月28日 14:00-16:00",
+    "location": "第一会议室",
+    "host": "张三",
+    "recorder": "李四",
+    "attendees": ["王五", "赵六", "孙七"],
+    "absentees": ["周八"]
+  },
+  "topics": [
+    "数字化转型工作方案讨论",
+    "技术平台选型 (Technology Platform Selection)",
+    "实施计划安排"
+  ],
+  "contents": [
+    {
+      "topic": "数字化转型工作方案讨论",
+      "points": [
+        "分析了当前数字化发展形势",
+        "讨论了数字化转型的必要性 (The necessity of digital transformation)",
+        "明确了数字化转型的目标"
+      ]
+    }
+  ]
+}
+```
+
+## 参考文档
+
+### 重要参考文件
+- [references/gb_t_9704_2012_standard.md](references/gb_t_9704_2012_standard.md) - GB/T 9704-2012标准详细说明
+- [references/official_language_style.md](references/official_language_style.md) - 体制内语言风格指南
+- [references/document_types_specification.md](references/document_types_specification.md) - 各类文档详细规范
+- [references/sensitive_words_list.md](references/sensitive_words_list.md) - 敏感词库和检查规则
+
+### 模板文件
+- [assets/templates/](assets/templates/) - 所有文档模板文件
+- [assets/fonts/](assets/fonts/) - 标准字体文件（如需）
+- [assets/examples/](assets/examples/) - 示例文档
+
+## 测试用例
+
+### 测试场景
+1. **基本功能测试**：生成各种类型文档的完整流程
+2. **格式规范测试**：验证生成的文档是否符合GB/T 9704-2012标准
+3. **内容质量测试**：检查生成内容的语言风格和表达规范性
+4. **边界条件测试**：测试极端输入情况下的处理能力
+5. **性能测试**：测试大量文档生成的性能表现
+
+### 测试脚本
+使用 `scripts/test_generator.py` 运行完整测试套件：
+```bash
+python scripts/test_generator.py --test all
+```
+
+## 常见问题
+
+### Q1: 如何自定义模板？
+A: 在 `assets/templates/` 目录下创建或修改模板文件，模板使用Jinja2语法，支持变量替换和条件判断。
+
+### Q2: 如何添加新的文档类型？
+A: 在 `scripts/generate_document.py` 中添加新的文档类型处理器，并创建相应的模板文件。
+
+### Q3: 格式验证失败怎么办？
+A: 使用 `scripts/format_validator.py` 检查具体失败原因，根据提示修改文档或调整生成参数。
+
+### Q4: 如何扩展敏感词库？
+A: 编辑 `references/sensitive_words_list.md` 文件，添加新的敏感词和检查规则。
+
+## 更新记录
+
+### v1.0.0 (2026-03-28)
+- 初始版本发布
+- 支持会议纪要、发言稿、讨论提纲、工作汇报四种文档类型
+- 集成GB/T 9704-2012标准格式
+- 提供基本的敏感词检查和合规性验证

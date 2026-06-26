@@ -1,0 +1,45 @@
+{
+  "name": "@playasia/mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Play-Asia.com — agentic shopping for digital codes, game vouchers, and more. Supports Lightning (L402) payments and account-based access.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "playasia-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js --banner:js=\"#!/usr/bin/env node\" --target=node18",
+    "dev": "npx tsx src/index.ts",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "playasia",
+    "shopping",
+    "digital-codes",
+    "lightning",
+    "l402",
+    "bitcoin",
+    "gaming",
+    "agentic",
+    "openclaw"
+  ],
+  "author": "Play-Asia.com",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "SKILL.md"
+  ]
+}

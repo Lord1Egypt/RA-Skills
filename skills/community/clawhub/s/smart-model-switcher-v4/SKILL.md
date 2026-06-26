@@ -1,35 +1,339 @@
 ---
-name: "Smart Model Switcher"
-description: "智能模型自动切换 V4 - 多模态感知，自动识别图片/代码/文本任务，切换到最适合的模型。支持图片理解(qwen3-vl-plus)、代码(glm-5/qwen-coder)、长文本、推理等场景。零感知切换，无需手动操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-model-switcher-v4"
-sourceUrl: "https://clawhub.ai/skills/smart-model-switcher-v4"
+name: smart-model-switcher-v4
+description: 智能模型自动切换 V4 - 多模态感知，自动识别图片/代码/文本任务，切换到最适合的模型。支持图片理解(qwen3-vl-plus)、代码(glm-5/qwen-coder)、长文本、推理等场景。零感知切换，无需手动操作。
+version: 4.0.0
+author: davidme6
 ---
 
-# Smart Model Switcher
+# 🧠 Smart Model Switcher V4 (多模态感知版)
 
-> 智能模型自动切换 V4 - 多模态感知，自动识别图片/代码/文本任务，切换到最适合的模型。支持图片理解(qwen3-vl-plus)、代码(glm-5/qwen-coder)、长文本、推理等场景。零感知切换，无需手动操作。
+**自动识别任务类型 • 智能切换最优模型 • 零感知 • 无需手动**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-model-switcher-v4`
-- **Source URL:** [https://clawhub.ai/skills/smart-model-switcher-v4](https://clawhub.ai/skills/smart-model-switcher-v4)
+## 🎯 V4 核心升级
 
-## Overview
+| 特性 | V3 | V4 |
+|------|----|----|
+| **多模态感知** | ❌ 无 | ✅ 自动识别图片 |
+| **图片理解** | ❌ 不支持 | ✅ 自动切换视觉模型 |
+| **任务感知** | 关键词匹配 | 智能上下文分析 |
+| **动态切换** | 需要配置 | 自动无感切换 |
 
+## 🖼️ 多模态模型列表
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-model-switcher-v4
+### 视觉模型（支持图片理解）
+| 模型 ID | Provider | 视觉能力 | 推荐场景 |
+|---------|----------|----------|----------|
+| `qwen3-vl-plus` | Bailian | ⭐⭐⭐⭐⭐ | 图片理解、OCR、图表分析 |
+| `qwen3.5-plus` | Bailian | ⭐⭐⭐⭐ | 图片+文本混合任务 |
+| `qvq-max` | Bailian | ⭐⭐⭐⭐⭐ | 复杂视觉推理 |
+| `glm-4v` | GLM | ⭐⭐⭐⭐ | 图片理解 |
+
+### 代码模型（编程专用）
+| 模型 ID | Provider | 代码能力 | 推荐场景 |
+|---------|----------|----------|----------|
+| `glm-5` | Bailian/GLM | ⭐⭐⭐⭐⭐ | 代码生成、Debug、重构 |
+| `qwen3-coder-plus` | Bailian | ⭐⭐⭐⭐⭐ | 代码补全、项目开发 |
+| `qwen-coder-turbo` | Bailian | ⭐⭐⭐⭐ | 快速代码任务 |
+
+### 推理模型（复杂思维）
+| 模型 ID | Provider | 推理能力 | 推荐场景 |
+|---------|----------|----------|----------|
+| `qwq-plus` | Bailian | ⭐⭐⭐⭐⭐ | 复杂推理、数学证明 |
+| `qwen3-max` | Bailian | ⭐⭐⭐⭐⭐ | 深度思考、分析 |
+| `glm-5` | Bailian/GLM | ⭐⭐⭐⭐ | 逻辑推理 |
+
+### 通用模型
+| 模型 ID | Provider | 综合能力 | 推荐场景 |
+|---------|----------|----------|----------|
+| `qwen3.5-plus` | Bailian | ⭐⭐⭐⭐ | 日常对话、写作、翻译 |
+| `qwen-plus` | Bailian | ⭐⭐⭐ | 快速任务 |
+| `qwen-turbo` | Bailian | ⭐⭐ | 简单任务、低成本 |
+
+## 🔄 自动切换规则
+
+### 规则 1: 图片检测优先
 ```
+IF 消息包含图片/截图/照片 → 切换到视觉模型
+  ├── 需要代码相关 → qwen3.5-plus (视觉+代码)
+  ├── 纯图片理解 → qwen3-vl-plus (最强视觉)
+  └── 复杂视觉推理 → qvq-max
+```
+
+### 规则 2: 代码任务
+```
+IF 消息包含代码关键词 → 切换到代码模型
+  ├── 复杂代码任务 → glm-5 (最强代码)
+  ├── 快速代码补全 → qwen-coder-turbo
+  └── 项目级开发 → qwen3-coder-plus
+```
+
+### 规则 3: 推理任务
+```
+IF 消息包含推理关键词 → 切换到推理模型
+  ├── 复杂推理 → qwq-plus (最强推理)
+  ├── 数学/证明 → qwen3-max
+  └── 一般分析 → glm-5
+```
+
+### 规则 4: 文本任务
+```
+IF 纯文本任务 → 使用通用模型
+  ├── 长文档 → qwen3.5-plus (1M context)
+  ├── 写作/翻译 → qwen3.5-plus
+  └── 简单对话 → qwen-plus / qwen-turbo
+```
+
+## 📋 切换决策树
+
+```
+收到消息
+    │
+    ├── 🖼️ 包含图片？
+    │       ├── YES → 是代码相关？
+    │       │         ├── YES → qwen3.5-plus (视觉+代码)
+    │       │         └── NO → qwen3-vl-plus (最强视觉)
+    │       │
+    │       └── NO ↓
+    │
+    ├── 💻 代码关键词？
+    │       ├── YES → glm-5 (最强代码)
+    │       │
+    │       └── NO ↓
+    │
+    ├── 🧠 推理关键词？
+    │       ├── YES → qwq-plus / qwen3-max
+    │       │
+    │       └── NO ↓
+    │
+    └── 📝 文本任务
+            ├── 长文档 → qwen3.5-plus
+            ├── 写作 → qwen3.5-plus
+            └── 快速 → qwen-plus / qwen-turbo
+```
+
+## 🎯 关键词识别
+
+### 图片检测
+- 消息中有 `image` 类型内容
+- 用户说："看这个图"、"图片里是什么"、"截图"
+- 文件扩展名：.png, .jpg, .jpeg, .gif, .webp
+
+### 代码关键词
+- 编程相关：代码、编程、python、js、javascript、函数、debug、bug、报错、错误、修复
+- 文件类型：.py, .js, .ts, .html, .css, .json, .yaml, .sh
+- 操作词：写一个、帮我写、优化、重构、解释这段代码
+
+### 推理关键词
+- 推理、逻辑、证明、数学、计算、分析、思考
+- 为什么、怎么推导、能不能推出、关系
+
+### 写作关键词
+- 写、作文、文章、小说、故事、文案、邮件、报告
+
+## 🔧 配置示例
+
+### 用户配置的最强模型
+```json
+{
+  "modelPreferences": {
+    "vision": "qwen3-vl-plus",      // 视觉最强
+    "coding": "glm-5",               // 代码最强
+    "reasoning": "qwq-plus",         // 推理最强
+    "general": "qwen3.5-plus",       // 通用最强
+    "fast": "qwen-turbo"             // 快速任务
+  }
+}
+```
+
+## 📊 使用示例
+
+### 示例 1: 发送图片 + 代码问题
+```
+用户: [发送一张报错截图] "帮我看看这个错误"
+检测: 图片 + 代码关键词
+切换: qwen3.5-plus (视觉+代码能力)
+执行: 分析截图中的错误，给出解决方案
+```
+
+### 示例 2: 纯代码任务
+```
+用户: "帮我写一个 Python 爬虫"
+检测: 代码关键词
+切换: glm-5 (最强代码模型)
+执行: 生成爬虫代码
+```
+
+### 示例 3: 纯图片理解
+```
+用户: [发送照片] "这张照片里有什么"
+检测: 图片
+切换: qwen3-vl-plus (最强视觉)
+执行: 描述图片内容
+```
+
+### 示例 4: 推理任务
+```
+用户: "证明根号2是无理数"
+检测: 推理关键词
+切换: qwq-plus (最强推理)
+执行: 给出证明过程
+```
+
+### 示例 5: 长文档
+```
+用户: "分析这篇10万字的论文"
+检测: 长文档
+切换: qwen3.5-plus (1M context)
+执行: 分析论文
+```
+
+## 🚀 实现逻辑
+
+### Step 1: 消息分析
+```
+分析用户消息:
+1. 是否包含图片/附件
+2. 提取关键词
+3. 识别任务类型
+4. 确定上下文需求
+```
+
+### Step 2: 模型选择
+```
+选择最优模型:
+1. 根据任务类型查找最佳模型
+2. 检查模型可用性 (API Key + 套餐)
+3. 应用 fallback 逻辑
+4. 记录选择原因
+```
+
+### Step 3: 执行切换
+```
+切换模型:
+1. 调用 session_status(model: "xxx")
+2. 发送提示信息给用户
+3. 执行任务
+4. 记录性能数据
+```
+
+## ⚠️ 注意事项
+
+1. **图片检测优先** - 只要有图片，优先切换视觉模型
+2. **代码优先级** - 代码任务优先用 glm-5
+3. **自动切换** - 用户无需手动操作，系统自动识别
+4. **fallback** - 如果首选模型不可用，自动降级到备选
+
+## 📝 更新日志
+
+### V4.0.0 (2026-03-23)
+- ✅ 新增多模态感知，自动识别图片
+- ✅ 新增视觉模型支持 (qwen3-vl-plus, qwen3.5-plus)
+- ✅ 优化切换决策树，图片检测优先
+- ✅ 更新关键词识别规则
+
+### V3.0.0
+- ✅ 全平台支持
+- ✅ API Key 验证
+- ✅ 套餐检测
+
+---
+
+---
+
+## 🤖 AI Agent 自动行为指南
+
+**重要：AI Agent 在每次响应前，必须执行以下检测流程！**
+
+### ⚠️ 会话级别切换（重要！）
+
+**模型切换是会话级别的，不影响其他通道！**
+
+- WebChat 发图片 → 只在 WebChat 切换视觉模型
+- 飞书写代码 → 只在飞书会话切换代码模型
+- Telegram 聊天 → 只在 Telegram 会话切换模型
+
+**不同通道独立，互不影响！**
+
+### 切换方法（会话级别）
+
+使用 `session_status` 工具，带上当前会话的 sessionKey：
+
+```
+// 当前会话切换（不影响其他通道）
+session_status(model: "bailian/glm-5")
+
+// 切换其他会话的模型（需要指定 sessionKey）
+session_status(sessionKey: "feishu/xxx", model: "bailian/qwen3.5-plus")
+```
+
+**默认行为：不带 sessionKey 时，只切换当前会话的模型。**
+
+### 检测流程（每次响应前）
+
+```
+Step 1: 检测消息内容
+├── 是否包含图片/附件？
+│   └── YES → 切换到视觉模型 (qwen3.5-plus 或 qwen3-vl-plus)
+│
+├── 是否包含代码关键词？
+│   └── YES → 切换到代码模型 (glm-5)
+│
+├── 是否包含推理关键词？
+│   └── YES → 切换到推理模型 (qwq-plus)
+│
+└── 否则保持当前模型
+```
+
+### 切换方法
+
+使用 `session_status` 工具切换模型：
+```
+session_status(model: "bailian/glm-5")
+session_status(model: "bailian/qwen3.5-plus")
+session_status(model: "bailian/qwq-plus")
+```
+
+### 切换提示
+
+切换成功后，给用户一个简短提示：
+- "🧠 已切换到 glm-5（代码任务）"
+- "🧠 已切换到 qwen3.5-plus（图片理解）"
+- "🧠 已切换到 qwq-plus（推理任务）"
+
+### 示例行为
+
+```
+用户: [发送一张报错截图] "帮我看看这个错"
+
+AI 行为:
+1. 检测到图片 → 需要视觉模型
+2. 检测到"错" → 代码相关
+3. 决策: 使用 qwen3.5-plus（视觉+代码）
+4. 调用: session_status(model: "bailian/qwen3.5-plus")
+5. 提示: "🧠 已切换到 qwen3.5-plus（图片理解）"
+6. 分析图片中的报错信息
+7. 给出解决方案
+```
+
+### 注意事项
+
+1. **不要重复切换** - 如果当前模型已经是最优选择，不要切换
+2. **切换要快** - 使用简短提示，不要长篇大论
+3. **记录切换** - 如果模型切换成功，记住当前使用的模型
+4. **优先级** - 图片检测 > 代码检测 > 推理检测 > 通用
+
+---
+
+## 📋 快速参考
+
+| 场景 | 最优模型 | 切换命令 |
+|------|----------|----------|
+| 🖼️ 发送图片 | qwen3.5-plus | `session_status(model: "bailian/qwen3.5-plus")` |
+| 💻 写代码 | glm-5 | `session_status(model: "bailian/glm-5")` |
+| 🧠 推理/证明 | qwq-plus | `session_status(model: "bailian/qwq-plus")` |
+| 📝 写作/翻译 | qwen3.5-plus | `session_status(model: "bailian/qwen3.5-plus")` |
+| ⚡ 快速任务 | qwen-turbo | `session_status(model: "bailian/qwen-turbo")` |
+
+---
+
+**V4 核心亮点：发图片自动切换视觉模型，写代码自动切换代码模型，完全无感！** 🚀

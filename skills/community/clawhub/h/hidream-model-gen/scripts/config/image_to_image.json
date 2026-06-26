@@ -1,0 +1,56 @@
+{
+  "categories": {
+    "image_to_image": {
+      "name": "图生图",
+      "name_en": "Image to Image",
+      "status": "active",
+      "default_port": "kling-image",
+      "description": "图像风格转换、编辑、AI肖像、虚拟试衣等功能",
+      "notes": "支持多图输入融合，可用于风格迁移、图像编辑、AI换脸、虚拟试衣等场景",
+      "ports": {
+        "kling-image": {
+          "name": "Kling Image Img2Img",
+          "display_name": "Kling O1",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_kling/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "kling-image-o1",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 4,
+          "max_images": 5,
+          "tested": true,
+          "speed": "fast",
+          "quality": "excellent",
+          "notes": "Kling O1 图生图，速度快，支持多图输入，enhance=2k，推荐使用"
+        },
+        "nano-banana": {
+          "name": "Nano Banana Img2Img",
+          "display_name": "Nano Banana 2",
+          "status": "tested",
+          "endpoint": "/v3/image/image_gen_std/async",
+          "result_endpoint": "/v3/image/txt2img/async/results",
+          "version": "nano-banana-2",
+          "supported_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16"
+          ],
+          "max_batch_size": 1,
+          "max_images": 5,
+          "tested": true,
+          "speed": "slow",
+          "quality": "excellent",
+          "notes": "Nano Banana 2 图生图，质量优秀但较慢，支持多图输入"
+        }
+      }
+    }
+  }
+}

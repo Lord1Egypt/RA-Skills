@@ -1,0 +1,17 @@
+{
+  "repo": "https://example.com/user/openclaw-backup",
+  "cron": "0 */5 * * *",
+  "lfs_threshold_mb": 10,
+  "lfs_extensions": [
+    ".bin",
+    ".gguf",
+    ".safetensors",
+    ".pt",
+    ".pth",
+    ".onnx",
+    ".msgpack",
+    ".model"
+  ],
+  "push_retries": 3,
+  "push_retry_interval_ms": 60000
+}

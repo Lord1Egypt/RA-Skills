@@ -1,35 +1,47 @@
----
-name: "美国市场政策查询Skill"
-description: "提供基于惠迈智能体架构的美国市场政策、法规及投资环境的多语言智能查询与分析服务。"
-category: "software-development"
-source: "ClawHub"
-tags: [huimai, policy, usa, test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-usa-policy"
-sourceUrl: "https://clawhub.ai/skills/huimai-usa-policy"
----
-
 # 美国市场政策查询Skill
 
-> 提供基于惠迈智能体架构的美国市场政策、法规及投资环境的多语言智能查询与分析服务。
+## 🚀 概述
+**基于惠迈智能体三层架构的政策查询框架**，提供美国市场政策、法规、投资环境的智能查询和分析。
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-usa-policy`
-- **Source URL:** [https://clawhub.ai/skills/huimai-usa-policy](https://clawhub.ai/skills/huimai-usa-policy)
+## 🌟 核心亮点
+- **惠迈智能体协作**：基于惠迈三层智能体架构，支持多源数据整合
+- **惠迈智能体协作**：基于惠迈三层智能体架构，确保数据准确性和实时性
+- **多语言支持**：支持中文、英文等多种语言
+- **数据源可配置**：灵活配置不同数据源，适应各种业务需求
 
-## Overview
+## 🔧 技术特性
+### 多语言支持
+- 中文（简体）
+- 英文（美国）
+- 自动语言检测和切换
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huimai-usa-policy
+### 数据源配置
+```javascript
+{
+  dataSources: {
+    investment: '[请替换为您的美国投资政策数据源]',
+    trade: '[请替换为您的美国贸易法规数据源]',
+    // ... 其他数据源
+  }
+}
 ```
+
+## 📦 安装
+```bash
+# 通过ClawHub安装
+clawhub install usa-policy-query
+
+# 或手动安装
+npm install usa-policy-query
+```
+
+## 🔒 安全使用指南
+1. **数据源配置**：使用环境变量管理敏感数据源信息
+2. **API密钥**：不要将真实API密钥写入代码
+3. **权限控制**：为数据源配置最小必要权限
+
+## 支持
+如有问题，请提交Issue或联系维护团队。
+
+---
+**惠迈智能体：让全球业务变得简单**

@@ -1,35 +1,113 @@
 ---
-name: "Datayes Stock Analysis"
-description: "个股全面分析 Skill。当用户请求分析某只股票、了解股票基本面/行情/经营情况、或询问某股票是否值得关注时触发。覆盖五大维度：基本信息、行情走势、经营分析（主营/财务/重大事项）、行情分析（估值/资金/技术）、综合结论，调用 datayesMCP 系列工具（5个MCP服务/10个工具）获取数据，进行分析，输出报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/datayes-stock-analysis"
-sourceUrl: "https://clawhub.ai/skills/datayes-stock-analysis"
+name: stock-analysis
+description: 个股全面分析 Skill。当用户请求分析某只股票、了解股票基本面/行情/经营情况、或询问某股票是否值得关注时触发。覆盖五大维度：基本信息、行情走势、经营分析（主营/财务/重大事项）、行情分析（估值/资金/技术）、综合结论，调用 datayesMCP 系列工具（5个MCP服务/10个工具）获取数据，进行分析，输出报告。
 ---
 
-# Datayes Stock Analysis
+# 个股分析 (Datayes Stock Analysis)
 
-> 个股全面分析 Skill。当用户请求分析某只股票、了解股票基本面/行情/经营情况、或询问某股票是否值得关注时触发。覆盖五大维度：基本信息、行情走势、经营分析（主营/财务/重大事项）、行情分析（估值/资金/技术）、综合结论，调用 datayesMCP 系列工具（5个MCP服务/10个工具）获取数据，进行分析，输出报告。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/datayes-stock-analysis`
-- **Source URL:** [https://clawhub.ai/skills/datayes-stock-analysis](https://clawhub.ai/skills/datayes-stock-analysis)
+基于通联股票 MCP提供的数据，从基本信息、行情走势、经营分析、行情分析四个方面进行个股分析研究，输出个股研究报告。
 
-## Overview
+| 模块     | 功能描述                               |
+| :------- | -------------------------------------- |
+| 基本信息 | 公司概况、行业分类、市值、上市信息     |
+| 行情走势 | 价格走势、多周期涨跌幅、成交量         |
+| 经营分析 | 主营分析、财务分析、公司重大事项       |
+| 行情分析 | 估值分析、资金流向分析、技术分析       |
+| 综合结论 | 优势说明、风险提示、关注要点、综合观点 |
+
+重要声明：本skill 仅提供客观数据分析，不构成任何投资建议。
+
+------
+
+## 执行SKILL前必读
+
+| 文件                                           | 内容             |
+| ---------------------------------------------- | ---------------- |
+| `references/stock-analysis-report-template.md` | 个股分析报告模板 |
+| `references/stock-analysis-framework.md`       | 个股分析要点     |
+| `references/mcp-tools.md`                      | MCP 工具清单     |
+| `references/stock-analysis-data-validation.md` | 数据核验清单     |
+
+---
+
+## 触发条件
+
+以下请求应立即加载本 Skill：
+
+- "帮我分析一下 XX 股票"
+- "XX（股票代码/名称）的基本面怎么样？"
+- "这只股票值不值得买？"
+- "给我一份 XX 的研究报告"
+- "XX 最近经营情况如何？"
+
+---
+
+## 标准分析工作流
+
+### 第一步：识别股票标的
+
+- 用户提供名称或代码，若无法验证，询问用户
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/datayes-stock-analysis
-```
+### 第二步：并行执行四大模块分析
+
+各模块互不依赖，同步调用。每个接口严格遵循 **get_info → get_data** 两步式调用。
+
+MCP 工具清单详见`references/mcp-tools.md` 。
+
+> 若不确定接口名，先调用 `*_get_info()` 不传 api_name 参数，获取可用接口列表。
+
+### 第三步：数据核验（强制执行）
+
+核验清单详见`references/stock-analysis-data-validation.md` 。
+
+### 第四步：填充报告框架
+
+严格按 `references/stock-analysis-report-template.md` 章节顺序逐模块填充内容。各模块分析要点参考 `references/stock-analysis-framework.md` 对应章节。
+
+格式要求：
+
+1. 百分比变动标注 %
+2. 涨跌描述：A 股涨用"上涨/红色"，跌用"下跌/绿色"
+
+### 第五步：输出前检查
+
+1. 标题格式：`# XX（股票代码）个股分析报告 — YYYY-MM-DD`
+3. 所有表格无错行错列
+5. 合计/总计项计算正确
+6. 占比之和为100%
+11. 数据截止日期注明
+12. 末尾加免责声明
+
+任何一项未通过，必须修改完成后再进行检查，直到检查通过！
+
+---
+
+## 注意事项
+
+- **两步式调用**：必须先 `get_info` 再 `get_data`，禁止跳过直接猜测参数
+- **行业分类：**使用申万行业分类
+- **数据时效：**行情T+1，财务为最新报告期
+- **行情数据：**非交易时段为最近收盘价
+- **多期财务数据**：建议至少拉取 4 期（近 4 个报告期），用于同比分析
+- **杜邦分析**：当 ROE 不直接提供时，通过 净利率 × 资产周转率 × 权益乘数 三因子计算
+- **估值选择：**高PE行业用PE，低PB行业用PB
+- **技术指标**：仅适用于 A 股；港股/美股跳过
+- **报告原则**：数据说话，结论有据；不构成投资建议
+- **输出检查：**发布报告前必须完整执行第六步输出前检查
+- **强制阅读：**每次执行skill前必须完成阅读并理解SKILL.md文件和所有references文件夹中的文件
+
+------
+
+## 异常处理
+
+| 异常情况                | 处理方式                                                     |
+| ----------------------- | ------------------------------------------------------------ |
+| get_data 返回空数据     | 检查参数格式（ticker 是否含 sh/sz 前缀），确认 reportDate 格式为 YYYY-MM-DD |
+| 港股/美股技术指标不可用 | 说明"该市场暂不支持技术指标查询"，跳过该子模块               |
+| 财务数据只有 1-2 期     | 说明"该股上市时间较短，仅有 N 期财务数据"，同比分析标注"N/A" |
+| 重大事项无数据          | 注明"近半年内暂未检索到相关公告"                             |
+| 调用MCP失败             | 结束任务，询问用户是否开启MCP或正确配置MCP                   |
+

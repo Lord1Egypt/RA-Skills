@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Web Presence</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #00d4ff;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border: 1px solid #00d4ff33;
+      border-radius: 16px;
+      padding: 2rem 3rem;
+      max-width: 500px;
+    }
+    .status-label {
+      font-size: 0.9rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .status-value {
+      font-size: 1.5rem;
+      color: #00d4ff;
+      font-weight: bold;
+    }
+    .timestamp {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .logo {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">🧙‍♂️</div>
+  <h1>PROJECT_NAME</h1>
+  <p class="subtitle">🚀 Axioma Stellaris — Agent Web Presence</p>
+  <div class="card">
+    <div class="status-label">Deployment Status</div>
+    <div class="status-value">✅ Active</div>
+    <div class="timestamp" id="timestamp">Loading...</div>
+  </div>
+  <script>
+    document.getElementById('timestamp').textContent =
+      'Deployed: ' + new Date().toISOString().replace('T', ' ').split('.')[0] + ' UTC';
+  </script>
+</body>
+</html>

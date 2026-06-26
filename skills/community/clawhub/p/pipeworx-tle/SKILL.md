@@ -1,35 +1,38 @@
----
-name: "Pipeworx tle"
-description: "Fetch and search Two-Line Element sets for satellites by NORAD ID or name, providing orbit data for tracking and analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-tle"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-tle"
----
+# TLE (Satellite Tracking)
 
-# Pipeworx tle
+Fetch Two-Line Element sets for satellites. TLEs are the standard format for describing satellite orbits -- used by tracking software, ground stations, and orbital mechanics calculations.
 
-> Fetch and search Two-Line Element sets for satellites by NORAD ID or name, providing orbit data for tracking and analysis.
+## Available tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-tle`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-tle](https://clawhub.ai/skills/pipeworx-tle)
+**get_tle** -- Fetch TLE data for a specific satellite by its NORAD catalog ID. Returns the satellite name, epoch date, and both TLE lines.
 
-## Overview
+**search_satellites** -- Search by name or keyword. "ISS", "Starlink", "GPS", "Hubble" all work. Returns matching satellites with NORAD IDs and TLE data.
 
+**list_recent** -- The most recently launched or updated satellites, sorted by epoch date.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: get the ISS TLE
+
+The ISS has NORAD catalog number 25544:
+
 ```bash
-hermes skills install clawhub/pipeworx-tle
+curl -X POST https://gateway.pipeworx.io/tle/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_tle","arguments":{"norad_id":25544}}}'
+```
+
+## Common NORAD IDs
+
+- ISS: 25544
+- Hubble Space Telescope: 20580
+- NOAA-19: 33591
+- Terra (EOS): 25994
+
+```json
+{
+  "mcpServers": {
+    "tle": {
+      "url": "https://gateway.pipeworx.io/tle/mcp"
+    }
+  }
+}
 ```

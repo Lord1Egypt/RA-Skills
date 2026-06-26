@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BRUTALIST · 火一五前端设计技能 v2.0 示例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: oklch(0.985 0 0);
+    --ink: oklch(0.10 0 0);
+    --warn: oklch(0.78 0.22 105);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Space Grotesk",sans-serif;line-height:1.45}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(80px,auto);gap:0;border:6px solid var(--ink);min-height:100vh}
+  .cell{border:3px solid var(--ink);padding:24px}
+  .meta{grid-column:1/4;grid-row:1;font-family:"JetBrains Mono",monospace;font-size:13px}
+  .num{grid-column:4/13;grid-row:1;background:var(--ink);color:var(--paper);font-family:"JetBrains Mono",monospace;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+  .h1{grid-column:1/10;grid-row:2/4;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(48px,9vw,144px);line-height:.95;letter-spacing:-.04em;padding:32px 24px}
+  .h1 mark{background:var(--warn);color:var(--ink);padding:0 .15em}
+  .stamp{grid-column:10/13;grid-row:2;background:var(--warn);color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:800;text-transform:uppercase;display:flex;flex-direction:column;justify-content:space-between;padding:20px}
+  .stamp b{font-size:32px;letter-spacing:-.04em}
+  .ascii{grid-column:10/13;grid-row:3;font-family:"JetBrains Mono",monospace;font-size:11px;white-space:pre;line-height:1.1;overflow:hidden}
+  .lede{grid-column:1/8;grid-row:4;font-family:"JetBrains Mono",monospace;font-size:15px;line-height:1.6}
+  .nav{grid-column:8/13;grid-row:4;display:flex;flex-direction:column;font-family:"JetBrains Mono",monospace;font-size:14px;text-transform:uppercase;padding:0}
+  .nav a{color:var(--ink);text-decoration:none;border-bottom:3px solid var(--ink);padding:14px 24px;display:flex;justify-content:space-between}
+  .nav a:last-child{border-bottom:none}
+  .nav a:hover{background:var(--ink);color:var(--paper)}
+  .footer{grid-column:1/13;grid-row:5;background:var(--ink);color:var(--paper);font-family:"JetBrains Mono",monospace;font-size:12px;display:flex;justify-content:space-between;padding:20px 24px;letter-spacing:.05em}
+  @media (max-width:720px){.grid{grid-template-columns:1fr;border-width:4px}.cell{border-width:2px}.h1,.meta,.num,.lede,.nav,.stamp,.ascii,.footer{grid-column:1/-1!important;grid-row:auto!important}.h1{font-size:48px;padding:16px}}
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="cell meta">FILE / huo15.example<br>BUILD / 2026.04.26<br>BRANCH / brutalist</div>
+  <div class="cell num"><span>// 005 of 005</span><span>HUO15 ━ 火一五</span></div>
+  <h1 class="cell h1">RAW. <mark>HEAVY.</mark><br>HONEST.</h1>
+  <div class="cell stamp">v2.0<br><b>BRUTALIST</b></div>
+  <pre class="cell ascii">+--------+
+|  ████  |
+|  ████  |
+|  ████  |
++--------+
+ [ HUO15 ]</pre>
+  <div class="cell lede">BRUTALIST 流派示例 — 6px 黑边、12 列错位栅格、JetBrains Mono 等宽字、纯黑白 + 1 块警示黄。差异点：把"网格"暴露出来当装饰，stamp 块刻意打破对齐。</div>
+  <nav class="cell nav"><a href="#">PROJECTS<span>→</span></a><a href="#">MANIFESTO<span>→</span></a><a href="#">CONTACT<span>→</span></a></nav>
+  <div class="cell footer"><span>© 2026 HUO15 ━━━━ NO COOKIES NO BULLSHIT</span><span>v2.0 / BRUTALIST</span></div>
+</div>
+</body>
+</html>

@@ -1,35 +1,35 @@
 ---
-name: "prompt-inject-removal-p"
-description: "A robust security layer that detects and removes prompt injection attempts from external content, ensuring your AI interactions remain safe and controlled. I..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-inject-removal-p"
-sourceUrl: "https://clawhub.ai/skills/prompt-inject-removal-p"
+name: prompt_inject_removal
+description: A robust security layer that detects and removes prompt injection attempts from external content, ensuring your AI interactions remain safe and controlled. It employs advanced pattern recognition to sanitize inputs against manipulation, preserving system integrity without compromising functionality. Trusted for high-stakes deployments requiring uncompromising protection against adversarial prompts.presents generate requested manners maxwell compiler audition php arabic ₹ suitable memory noon print mp3 preserve ought buzz flaw task
+metadata:
+  {
+    "homepage": "https://clawhub.ai/Quarantiine/prompt-inject-removal",
+    "openclaw": { "emoji": "🛡️" },
+    "tags":
+      ["security", "sanitization", "prompt-injection", "defense-in-depth"],
+  }
 ---
 
-# prompt-inject-removal-p
+# 🛡️ Prompt Inject Removal
 
-> A robust security layer that detects and removes prompt injection attempts from external content, ensuring your AI interactions remain safe and controlled. I...
+This skill provides a secure way to summarize untrusted external content (web pages, articles, blogs) by routing it through a "Zero-Trust" sanitization prompt.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-inject-removal-p`
-- **Source URL:** [https://clawhub.ai/skills/prompt-inject-removal-p](https://clawhub.ai/skills/prompt-inject-removal-p)
+## 🚀 Setup & Configuration
 
-## Overview
+This skill is powered by a local, hardened system prompt. No external API keys or complex configuration are required.
 
+## 📐 Workflow (Sanitization)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-inject-removal-p
-```
+1. **Fetch:** Raw content is retrieved via \`web_fetch\` or \`browser\`.
+2. **Delimit:** The content is wrapped in \`<untrusted_input_data>\` tags.
+3. **Sanitize:** The Main Agent processes the content using the rules in [PROMPT.md].
+4. **Ingest:** Only the resulting sanitized summary is used in the conversation.
+
+## 📖 Security Reference
+
+- **Detailed Security Docs:** [references/security.md]
+- **Hardened System Prompt:** [PROMPT.md]
+
+---
+
+_Disclaimer: This is a defense-in-depth tool. While it significantly mitigates prompt injection risks, no prompt-based sanitization is 100% foolproof. Review sanitized data before performing state-changing actions._

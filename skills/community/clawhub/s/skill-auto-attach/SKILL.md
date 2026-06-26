@@ -1,35 +1,31 @@
----
-name: "Skill Auto Attach"
-description: "Monitors workspace for new or updated .html, .md, .txt files and automatically attaches them to Telegram messages instead of showing code."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-auto-attach"
-sourceUrl: "https://clawhub.ai/skills/skill-auto-attach"
----
+# skill-auto-attach
 
-# Skill Auto Attach
+## Description
+This skill monitors the OpenClaw workspace for file changes and automatically attaches new or updated documentation files to Telegram messages instead of displaying code snippets.
 
-> Monitors workspace for new or updated .html, .md, .txt files and automatically attaches them to Telegram messages instead of showing code.
+## Features
+- Detects file creation and modification events in workspace
+- Copies files to /tmp for Telegram compatibility
+- Sends files via message tool with filePath parameter
+- Works with .html, .md, .txt files
+- Silent operation unless file is updated
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-auto-attach`
-- **Source URL:** [https://clawhub.ai/skills/skill-auto-attach](https://clawhub.ai/skills/skill-auto-attach)
+## Usage
+1. Install the skill files in ~/.openclaw/skills/skill-auto-attach
+2. Enable with `openclaw skills enable skill-auto-attach`
+3. The skill will automatically attach files to Telegram messages when they are created/updated
 
-## Overview
+## Requirements
+- OpenClaw v2026.2+
+- Telegram channel access
+- `message` tool available
 
+## Implementation
+- Watches workspace directory
+- Copies files to /tmp
+- Sends via message tool
+- Uses unique filenames to avoid conflicts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-auto-attach
-```
+## Known Issues
+- Only works with Telegram (other channels require config changes)
+- May need adjust /tmp path on low-storage devices

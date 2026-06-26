@@ -1,35 +1,74 @@
 ---
-name: "Brand Narrative"
+name: brand-narrative
 description: "Extract brand tone and generate multi-version brand narratives and naming proposals"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brand-narrative"
-sourceUrl: "https://clawhub.ai/skills/brand-narrative"
 ---
 
 # Brand Narrative
 
-> Extract brand tone and generate multi-version brand narratives and naming proposals
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brand-narrative`
-- **Source URL:** [https://clawhub.ai/skills/brand-narrative](https://clawhub.ai/skills/brand-narrative)
-
 ## Overview
 
+This SKILL provides professional Brand Management capabilities to help businesses streamline operations and improve outcomes.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/brand-narrative
+## Capabilities
+
+- Extract brand tone and generate multi-version brand narratives and naming proposals
+- Industry best practices and standardized workflows
+- Data-driven insights and recommendations
+- Compliance and risk management considerations
+
+## Use Cases
+
+### Primary Applications
+- Business operations optimization
+- Strategic decision support
+- Process automation and standardization
+- Performance monitoring and improvement
+
+### Industry Applications
+- Enterprise-level implementations
+- Small and medium business solutions
+- Cross-functional team collaboration
+- Vendor and partner management
+
+## Input Requirements
+
+**COPY and paste the following content as input:**
+
 ```
+[Please provide your specific business context, data, or requirements here]
+```
+
+### Required Information
+- Business context and objectives
+- Relevant data or documents
+- Specific requirements or constraints
+- Target audience or stakeholders
+
+### Optional Information
+- Historical data or benchmarks
+- Competitive landscape
+- Regulatory requirements
+- Budget and timeline constraints
+
+## Output Format
+
+The SKILL will provide:
+
+1. **Analysis & Insights** - Data-driven observations and recommendations
+2. **Actionable Deliverables** - Ready-to-use documents, scripts, or plans
+3. **Implementation Guidance** - Step-by-step execution instructions
+4. **Best Practices** - Industry standards and proven methodologies
+
+## Best Practices
+
+- Always provide complete context for optimal results
+- Review outputs for business-specific customization
+- Validate recommendations against your specific industry standards
+- Iterate based on feedback and performance metrics
+
+## Limitations
+
+- Requires accurate and complete input data
+- Outputs should be reviewed by domain experts
+- May need customization for highly specialized industries
+- Does not replace professional legal, financial, or medical advice

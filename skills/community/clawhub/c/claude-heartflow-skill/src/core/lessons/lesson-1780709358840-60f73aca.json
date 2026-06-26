@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1780709358840-60f73aca",
+  "type": "correction",
+  "content": "dreamNow() 总是返回 {} — 发现 engine.dream() 的签名是 dream(taskId, fragments, options)，但 dreamNow() 调用时没有传任何参数",
+  "context": "self_detected",
+  "trigger": "heartflow",
+  "importance": 5,
+  "frequency": 1,
+  "createdAt": "2026-06-06T01:29:18.840Z",
+  "lastSeen": "2026-06-06T01:29:18.840Z",
+  "sessionId": null,
+  "retentionScore": 5.5
+}

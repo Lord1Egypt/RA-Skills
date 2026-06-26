@@ -1,35 +1,117 @@
 ---
-name: "daily-decision-making"
-description: "一个结构化的个人决策数据库系统，帮助用户系统性地处理生活与职业中的复杂抉择。 当用户面临以下情况时使用此技能： (1) 遇到"我该怎么办""帮我做个决定""我在 X 和 Y 之间纠结"等表述； (2) 涉及职业（跳槽/转行）、生活方式（搬家）、重大消费（买房/买车）或人际关系的决策； (3) 需要系统性地权衡利弊..."
-category: "productivity"
-source: "ClawHub"
-tags: [career-planning, decision-making, decision-matrix, knowledge-management, life-choices, personal-growth, pro-con-analysis, productivity, reflection, thinking-tools]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-decision-making"
-sourceUrl: "https://clawhub.ai/skills/daily-decision-making"
+name: daily-decision-making
+description: >
+  一个结构化的个人决策数据库系统，帮助用户系统性地处理生活与职业中的复杂抉择。
+  当用户面临以下情况时使用此技能：
+  (1) 遇到"我该怎么办""帮我做个决定""我在 X 和 Y 之间纠结"等表述；
+  (2) 涉及职业（跳槽/转行）、生活方式（搬家）、重大消费（买房/买车）或人际关系的决策；
+  (3) 需要系统性地权衡利弊；
+  (4) 想把决策过程记录下来以供日后回顾和复盘。
+triggers:
+  - 帮我做决定
+  - 我该怎么办
+  - 我在纠结
+  - 帮我分析一下
+  - 我想跳槽
+  - 我要不要换工作
+  - 职业规划
+  - 重大决定
+  - 两难选择
+  - 决策记录
+  - 复盘决策
+  - 我该选哪个
+  - 利弊分析
+  - help me decide
+  - I'm torn between
+  - career decision
+  - life choice
+  - decision matrix
+  - pros and cons
+  - should I
 ---
 
-# daily-decision-making
+# 日常决策助手
 
-> 一个结构化的个人决策数据库系统，帮助用户系统性地处理生活与职业中的复杂抉择。 当用户面临以下情况时使用此技能： (1) 遇到"我该怎么办""帮我做个决定""我在 X 和 Y 之间纠结"等表述； (2) 涉及职业（跳槽/转行）、生活方式（搬家）、重大消费（买房/买车）或人际关系的决策； (3) 需要系统性地权衡利弊...
+## 概述
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-decision-making`
-- **Source URL:** [https://clawhub.ai/skills/daily-decision-making](https://clawhub.ai/skills/daily-decision-making)
+本技能实现一套**个人决策数据库**系统，帮助你以结构化的方式处理复杂的生活抉择。通过有记录、有分析、有回顾的方式，把决策从焦虑的来源变成可以持续积累智慧的可重复过程。
 
-## Overview
+## 适用场景
 
+- 当你说"我该怎么办""帮我决定"或"我在 X 和 Y 之间纠结"时。
+- 当你面临职业（跳槽/转行）、生活方式（搬家/移居）、重大消费（买房/买车）或人际关系方面的决策时。
+- 当你需要系统性地权衡多个选项的利弊时。
+- 当你想记录一个决策，以便日后回顾和复盘时。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-decision-making
+---
+
+## 决策流程
+
+### 第一阶段：搭建基础（系统准备）
+
+如果是第一次使用，先建立决策体系的基础：
+
+1. **价值观梳理**：你的核心价值观和长期目标是什么？（决策的"指南针"）
+2. **资源盘点**：你目前拥有哪些能力与资源？（决策的"弹药库"）
+3. **顾问团**：你信任的参考对象有哪些人？（决策的"智囊团"）
+
+### 第二阶段：决策推进（工作台）
+
+每遇到一个新决策，按以下步骤建立结构化记录：
+
+1. **定义**：为本次决策创建一个文件夹，命名格式为 `YYYY-MM-DD-决策主题`。
+2. **初始化**：复制并填写 `@templates/decision-template.md`。
+3. **填充内容**：
+   - **背景与目标**：为什么现在要做这个决策？成功是什么样子？
+   - **信息收集**：咨询他人、网络调研、自我审视。
+   - **方案对比**：列出每个方案的优劣势，使用**决策矩阵**进行加权打分。
+4. **做出决策**：确定选择，说明理由，制定执行计划（含备选方案和退出机制）。
+
+### 第三阶段：结果复盘（沉淀智慧）
+
+执行完成后：
+
+1. **复盘**：用 STAR 法则（情境→任务→行动→结果）回顾执行过程。
+2. **提炼**：总结"关键教训"和"下次要避免的坑"。
+3. **归档**：将记录移入"已完成决策库"。
+
+---
+
+## 目录结构
+
+在你的笔记工具或项目目录中维护以下结构：
+
 ```
+decision-database/
+├── 00-system/               # 价值观、资源清单、顾问团
+├── 01-active-decisions/     # 进行中的决策
+├── 02-research/             # 原始调研资料
+├── 03-completed-decisions/  # 已完成归档
+├── 04-knowledge-base/       # 规律总结与教训提炼
+└── 05-quick-reference/      # 快速参考清单
+```
+
+---
+
+## 工具与技巧
+
+### 决策矩阵（加权评分法）
+适用于各方案差距不明显时。对评估维度分配权重（如风险 30%、成本 20%），再对每个方案逐维度打分，加权求和后比较总分。
+
+### 事前验尸法（风险预判）
+假设现在是 6 个月后，这个决策已经彻底失败了——原因是什么？通过"假设失败"来提前暴露盲点和风险。
+
+### 10-10-10 法则
+- 10 分钟后，我对这个决定的感受是什么？
+- 10 个月后呢？
+- 10 年后呢？
+
+用三个时间维度检验决策是否经得起时间考验。
+
+---
+
+## 模板使用说明
+
+本技能包含一份完整的决策记录模板，位于 `@templates/decision-template.md`。
+
+**执行规则**：当用户开始一个新决策时，主动询问是否需要创建决策记录文件，并按模板格式生成内容填充。

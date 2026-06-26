@@ -1,0 +1,9 @@
+{
+  "name": "compress-image-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Utilities for compress-image",
+  "scripts": {
+    "test": "npx -y bun test"
+  }
+}

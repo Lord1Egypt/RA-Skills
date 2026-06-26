@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>妈妈不买清单</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1440px; background: linear-gradient(160deg, #FFF8F0 0%, #FFF5EE 100%); font-family: "PingFang SC", "Microsoft YaHei", sans-serif; overflow: hidden; position: relative; }
+.bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(255,160,122,0.1) 0%, transparent 50%); pointer-events: none; }
+.top-bar { background: linear-gradient(135deg, #FF8C6B, #FF7A5C); padding: 28px 50px 22px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+.top-bar::after { content: ""; position: absolute; bottom: -18px; left: 0; right: 0; height: 18px; background: linear-gradient(135deg, #FF8C6B, #FF7A5C); clip-path: ellipse(55% 100% at 50% 100%); }
+.top-title { color: white; font-size: 44px; font-weight: 800; letter-spacing: 2px; }
+.top-sub { color: rgba(255,255,255,0.9); font-size: 20px; margin-top: 4px; }
+.top-emoji { font-size: 56px; }
+.page-num { background: rgba(255,255,255,0.25); color: white; font-size: 18px; font-weight: 600; padding: 6px 18px; border-radius: 20px; }
+.content { padding: 50px 50px 30px; }
+.label { background: linear-gradient(135deg, #FF8C6B, #FF7A5C); color: white; font-size: 20px; font-weight: 700; padding: 8px 24px; border-radius: 16px; display: inline-block; margin-bottom: 24px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 30px; }
+.card { background: white; border: 2px dashed #FFB6C1; border-radius: 16px; padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px; }
+.num { width: 34px; height: 34px; background: linear-gradient(135deg, #FF8C6B, #FF7A5C); color: white; font-size: 18px; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.info { flex: 1; }
+.name { font-size: 22px; font-weight: 700; color: #333; margin-bottom: 4px; }
+.reason { font-size: 16px; color: #FF6B8A; font-weight: 600; margin-bottom: 3px; }
+.tip { font-size: 14px; color: #999; line-height: 1.4; }
+.bar { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #FFF0EE, #FFE4D6); border-top: 2px dashed #FFB6C1; padding: 16px 50px; display: flex; align-items: center; gap: 20px; }
+.icon { font-size: 36px; }
+.text { font-size: 20px; color: #FF8C6B; font-weight: 600; }
+.tag { background: #FF8C6B; color: white; font-size: 13px; padding: 4px 12px; border-radius: 10px; }
+.tags { display: flex; gap: 8px; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="top-bar">
+  <div>
+    <div class="top-title">🚫 妈妈不买清单</div>
+    <div class="top-sub">这些真的不需要！别花冤枉钱</div>
+  </div>
+  <div class="top-emoji">💸</div>
+  <div class="page-num">3/8</div>
+</div>
+<div class="content">
+  <div class="label">⚠️ 避坑指南 · 鸡肋用品大盘点</div>
+  <div class="grid">
+    <div class="card"><div class="num">1</div><div class="info"><div class="name">刀纸</div><div class="reason">医院普遍用产褥垫替代</div><div class="tip">大多数医院产房直接用产褥垫，刀纸基本用不上</div></div></div>
+    <div class="card"><div class="num">2</div><div class="info"><div class="name">冷敷贴（收腹带附赠的）</div><div class="reason">质量差，凉感不够</div><div class="tip">单独买专业的会阴冷敷贴，凉感更持久</div></div></div>
+    <div class="card"><div class="num">3</div><div class="info"><div class="name">产妇卫生巾（超大号）</div><div class="reason">太厚不透气，容易滋生细菌</div><div class="tip">普通夜用卫生巾+安睡裤足够</div></div></div>
+    <div class="card"><div class="num">4</div><div class="info"><div class="name">月子牙刷（软毛款）</div><div class="reason">普通软毛牙刷完全OK</div><div class="tip">贵1倍效果一样，普通软毛就够了</div></div></div>
+    <div class="card"><div class="num">5</div><div class="info"><div class="name">手动吸奶器</div><div class="reason">累死人，效率低</div><div class="tip">电动的双边吸奶器省时省力，必买</div></div></div>
+    <div class="card"><div class="num">6</div><div class="info"><div class="name">乳头牵引器</div><div class="reason">用不上，基本用不到</div><div class="tip">绝大多数妈妈用不到，别浪费钱</div></div></div>
+    <div class="card"><div class="num">7</div><div class="info"><div class="name">待产包套装（整套的）</div><div class="reason">里面东西不全/质量差/数量不够</div><div class="tip">自己按需搭配，每样都是自己需要的</div></div></div>
+  </div>
+</div>
+<div class="bar">
+  <div class="icon">💡</div>
+  <div class="text">以上7项，买了就是浪费钱！</div>
+  <div class="tags"><div class="tag">#待产包避坑</div><div class="tag">#孕期囤货</div></div>
+</div>
+</body>
+</html>

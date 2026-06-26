@@ -1,0 +1,117 @@
+{
+  "_description": "结构化干预框架：根据 mood_keywords 分级，控制 LLM 回答权责边界",
+  "version": "1.0",
+
+  "red_zone": {
+    "trigger_keywords": [
+      "不想活了", "自杀", "结束生命", "活不下去", "无意义",
+      "重度抑郁", "崩溃", "失控", "幻觉", "自残", "伤自己",
+      "想死", "轻生", "活着没意思"
+    ],
+    "action": "block_all_suggestions",
+    "output_template": "我注意到你现在的状态可能很难受。我不是心理医生，无法给你专业的建议，但我很在乎你的感受。\n\n如果你需要有人聊聊，这些资源随时可用：\n- 全国心理援助热线：400-161-9995（24小时）\n- 北京心理危机研究与干预中心：010-82951332\n- 简单心理 App 可预约心理咨询\n\n你不需要一个人扛。要我先帮你联系这些资源吗？",
+    "llm_forbidden": true,
+    "log_level": "alert"
+  },
+
+  "yellow_zone": {
+    "trigger_keywords": [
+      "抑郁", "焦虑", "失眠", "反复低落", "不想出门",
+      "社交回避", "没动力", "什么都不想做", "持续疲惫",
+      "情绪不稳定", "想哭", "莫名其妙难过", "自我怀疑",
+      "压力太大", "喘不过气"
+    ],
+    "action": "structured_cbt_guide",
+    "framework": {
+      "type": "CBT三栏法",
+      "instruction": "引导用户完成一行，不要替用户填写，不要给结论",
+      "template": {
+        "automatic_thought": { "prompt": "刚才脑子里闪过了什么想法？不用筛选，写下来就行。" },
+        "cognitive_distortion": { "prompt": "这个想法属于哪种常见类型？", "options": ["灾难化", "非黑即白", "过度概括", "读心术", "情绪推理", "应该思维", "贴标签", "个人化"] },
+        "rational_response": { "prompt": "如果朋友这样想，你会怎么回应 ta？换个角度重新写一句。" }
+      },
+      "max_llm_role": "facilitator_only",
+      "fallback": "如果用户拒绝填写，降级为绿区行为激活清单"
+    },
+    "log_level": "warning"
+  },
+
+  "green_zone": {
+    "trigger_keywords": [
+      "无聊", "没意思", "今天好累", "有点闷",
+      "提不起劲", "想做点什么", "不知道干嘛", "躺了一天",
+      "emo", "心情一般", "有点烦", "小烦躁"
+    ],
+    "action": "behavioral_activation_pool",
+    "max_llm_role": "match_and_adapt",
+    "pool": [
+      {
+        "id": "ba_001",
+        "action": "站起来走 200 步，不管去哪，计时 3 分钟",
+        "fit": ["提不起劲", "躺了一天", "没动力"],
+        "adaptation_hint": "可替换为用户常去区域（优先 frequent_areas）"
+      },
+      {
+        "id": "ba_002",
+        "action": "列出今天已经完成的 3 件事，哪怕再小",
+        "fit": ["自我怀疑", "有点烦", "压力大"],
+        "adaptation_hint": "可关联 work_achievements 做正向对比"
+      },
+      {
+        "id": "ba_003",
+        "action": "用冷水洗一把脸，感受水的温度 10 秒",
+        "fit": ["无聊", "emo", "心情一般"],
+        "adaptation_hint": "可替换为冲咖啡/泡茶等感官锚定动作"
+      },
+      {
+        "id": "ba_004",
+        "action": "打开窗户或走到阳台，拍一张天空的照片",
+        "fit": ["有点闷", "不知道干嘛", "小烦躁"],
+        "adaptation_hint": "可建议加入当日幸福相册"
+      },
+      {
+        "id": "ba_005",
+        "action": "给最近联系过的一个人发一条消息，只说‘突然想到你，希望你今天顺利’",
+        "fit": ["社交回避", "不想出门"],
+        "adaptation_hint": "可从 family_relations 或 frequent_contacts 中选人"
+      },
+      {
+        "id": "ba_006",
+        "action": "听一首你收藏过的、超过半年没听的歌",
+        "fit": ["emo", "莫名其妙难过", "想哭"],
+        "adaptation_hint": "可从 taste_prefs 中匹配「emo期最爱」标签"
+      },
+      {
+        "id": "ba_007",
+        "action": "整理桌面或床头柜的一个角落，只花 5 分钟",
+        "fit": ["压力大", "有点烦", "自我怀疑"],
+        "adaptation_hint": "适合追求效率和理性型用户"
+      },
+      {
+        "id": "ba_008",
+        "action": "做 5 次深呼吸，吸气 4 秒、憋气 4 秒、呼气 6 秒",
+        "fit": ["焦虑", "压力大", "喘不过气"],
+        "adaptation_hint": "可配合常去区域的安静角落"
+      },
+      {
+        "id": "ba_009",
+        "action": "画一个今天的情绪曲线图，横轴是时间、纵轴是能量",
+        "fit": ["情绪不稳定", "莫名其妙难过"],
+        "adaptation_hint": "理性型用户偏好可视化输出"
+      },
+      {
+        "id": "ba_010",
+        "action": "做一件 2 分钟内能完成的小事：浇花、擦屏幕、削铅笔",
+        "fit": ["没意思", "提不起劲", "躺了一天"],
+        "adaptation_hint": "不限制场景，选最触手可及的物品"
+      }
+    ]
+  },
+
+  "zone_detection": {
+    "method": "keyword_first",
+    "priority": ["red > yellow > green"],
+    "default": "green",
+    "note": "LLM 判断 mood 时先过此框架，命中高层即不回退低层"
+  }
+}

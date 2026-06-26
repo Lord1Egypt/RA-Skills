@@ -1,35 +1,53 @@
 ---
-name: "TOEFL  Speaking Question Generator"
-description: "托福口语面试部分出题引擎。AI 自动选定主题，生成 4 道递进式面试题和参考答案。不依赖固定主题库。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toefl-speaking"
-sourceUrl: "https://clawhub.ai/skills/toefl-speaking"
+name: toefl-speaking
+slug: toefl-speaking
+version: 2.1.0
+description: 托福口语面试部分出题引擎。AI 自动选定主题，生成 4 道递进式面试题和参考答案。不依赖固定主题库。
 ---
 
-# TOEFL  Speaking Question Generator
+# TOEFL Speaking 出题引擎
 
-> 托福口语面试部分出题引擎。AI 自动选定主题，生成 4 道递进式面试题和参考答案。不依赖固定主题库。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toefl-speaking`
-- **Source URL:** [https://clawhub.ai/skills/toefl-speaking](https://clawhub.ai/skills/toefl-speaking)
+输入一个主题 → 输出 4 道递进式问题 + 隐藏的参考答案（存入文件，不展示）。
 
-## Overview
+## 出题规则
 
+### 主题选择
+主题由 AI 完全自主决定。每次出题时：
+1. 读取 `toefl/history.json`，查看最近 10 个已出过的主题
+2. 从中等或高等难度的学术/校园话题中选一个**与之不同的方向**
+3. 尽可能保证与最近 10 次不重复、话题跨度大、有随机性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toefl-speaking
+### 题目结构
+Q1 (Past/Experience) → Q2 (Habit/Preference) → Q3 (Deep Opinion) → Q4 (Future/Policy)
+
+### 参考文献
+出题格式和答案标准见 `prompt-template.md`。
+
+## 与用户互动
+
+| 用户说 | 我做 |
+|--------|------|
+| "来一套题" / "出题" | 1. 读取 `toefl/history.json` 看最近10个主题
+2. 选新主题出4道题，生成参考答案
+3. 写入 `toefl/latest.md`（含完整题目+答案+解析）
+4. 更新 `toefl/history.json`（追加新记录）
+5. 复制至 `toefl/YYYY-MM-DD.md` 存档
+6. 只向用户展示4道问题，隐藏答案 |
+| "今天的答案" / "Q1的答案" | 读 `toefl/latest.md` 展示对应答案+解析 |
+| "评价一下我的回答" | 用户给出回答后，按评分标准反馈（流利度、词汇、语法、内容） |
+| "换一个" / "换个话题" | 重选主题重新出题，标记旧题作废 |
+
+## 数据存储
+
 ```
+toefl/
+├── latest.md          # 最新一套题（含答案，供查看答案时读取）
+├── history.json       # 出题记录（主题+日期+是否看过答案）
+└── YYYY-MM-DD.md     # 每日存档
+```
+
+## 注意事项
+- 不依赖固定主题列表，AI 自主生成主题
+- 不包含任何定时/调度逻辑，触发方式由外部决定

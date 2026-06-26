@@ -1,0 +1,20 @@
+{
+  "name": "imea-skill",
+  "version": "1.0.0",
+  "description": "Integrated Memory Evolution Action - 三層記憶系統 + 自進化引擎 + 行動模式",
+  "author": "Vicompany AI Team",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "evolution",
+    "action",
+    "proactive-agent",
+    "self-improvement",
+    "ontology"
+  ],
+  "homepage": "https://clawhub.ai/skills/imea-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vicompany/imea-skill"
+  }
+}

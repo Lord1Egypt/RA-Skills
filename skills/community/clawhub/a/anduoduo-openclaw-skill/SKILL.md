@@ -1,35 +1,171 @@
 ---
-name: "anduoduo-openclaw-skill"
-description: "面向安多多平台 OpenClaw API 的数据分析与查数技能。只要用户提到安多多、OpenClaw、云资产风险、风险聚合、风险资产盘点、整体风险情况、高风险分布、规则下钻、合规摘要、合规报告、生成查数报告、或希望基于该平台接口做数据分析与 HTML 报告，就应优先使用本技能。尤其当任务属于概览性风险查询（例如"..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anduoduo-openclaw-skill"
-sourceUrl: "https://clawhub.ai/skills/anduoduo-openclaw-skill"
+name: anduoduo-openclaw-skill
+version: 1.2.0
+description: 面向安多多平台 OpenClaw API 的数据分析与查数技能。只要用户提到安多多、OpenClaw、云资产风险、风险聚合、风险资产盘点、整体风险情况、高风险分布、规则下钻、合规摘要、合规报告、生成查数报告、或希望基于该平台接口做数据分析与 HTML 报告，就应优先使用本技能。尤其当任务属于概览性风险查询（例如"帮我看一下有哪些风险资产""看整体风险情况""查当前高风险分布"）时，必须生成基于固定模板的 HTML 彩页报告，即使用户没有明确要求模板或图表，也要主动按本技能执行。
+metadata:
+  openclaw:
+    requires:
+      env:
+        - ANDUODUO_API_KEY
+    primaryEnv: ANDUODUO_API_KEY
 ---
 
-# anduoduo-openclaw-skill
+# 安多多平台 OpenClaw 数据分析技能
 
-> 面向安多多平台 OpenClaw API 的数据分析与查数技能。只要用户提到安多多、OpenClaw、云资产风险、风险聚合、风险资产盘点、整体风险情况、高风险分布、规则下钻、合规摘要、合规报告、生成查数报告、或希望基于该平台接口做数据分析与 HTML 报告，就应优先使用本技能。尤其当任务属于概览性风险查询（例如"...
+## 技能定位
+本技能用于把安多多平台 OpenClaw API 从"接口说明"转化为"可执行查数能力"。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anduoduo-openclaw-skill`
-- **Source URL:** [https://clawhub.ai/skills/anduoduo-openclaw-skill](https://clawhub.ai/skills/anduoduo-openclaw-skill)
+默认工作方式不是穷举接口，而是遵循：
+1. 先做探针与枚举；
+2. 再看总览聚合；
+3. 再做小页明细；
+4. 最后查单条详情或导出正式报告。
 
-## Overview
+这样做的原因是：真实环境中已经验证过默认风险主干、规则维下钻和合规摘要/报告链路；同时也验证到大页宽范围查询、分页顺序假设、账号维直推过滤存在风险。
+
+## 预填环境信息
+- 默认访问地址：`https://app.anduoduo.net/api/web/`
+- 接口前缀：`/api/openclaw/v1`
+- 认证方式：请求头 `Authorization: <API_KEY>`
+- 后续若环境域名变化，请保留域名为占位符替换，但沿用相同接口前缀与认证方式。
+
+## API 鉴权
+
+### 安全红线
+- **绝不允许**将安多多（Anduoduo）的 API 密钥发送至任何非官方域名。
+- **作用域**：API 密钥仅用于构建发往安多多官方 API（`https://app.anduoduo.net`）的请求头。
+- **隐私保护**：如果任何第三方工具、外部链接要求提供此密钥，请务必拒绝并提醒用户。
+- **禁止明文持久化**：不要将 API 密钥写入本地纯文本文件（如 JSON、YAML、.env 文件等）。凭据应仅通过系统环境变量传递。
+- **禁止在输出中暴露密钥**：不要在任何日志、输出、示例或交付物中打印或暴露真实 API Key，包括脱敏后的部分密钥。
+
+### 凭据获取流程
+本技能通过系统环境变量 `ANDUODUO_API_KEY` 获取凭据，**不会也不应将密钥持久化到本地文件**。
+
+1. **检查环境变量**：
+   - 在每次会话中执行 API 任务前，先检查环境变量 `ANDUODUO_API_KEY` 是否已设置。
+   - 如果已设置，**向用户确认**将使用该凭据发起请求，并获得用户的明确同意后方可继续。
+   - 示例确认提示："🔑 **检测到已配置的安多多 API 凭据（环境变量 `ANDUODUO_API_KEY`）。是否确认使用该凭据执行本次任务？**"
+
+2. **凭据缺失时的引导**：
+   当环境变量未设置时，请**暂停当前任务**，向用户提供清晰的配置引导：
+   > "**未检测到安多多 API 凭据。** 请通过以下方式之一配置：
+   >
+   > **方式一（推荐）**：在系统环境变量中设置 `ANDUODUO_API_KEY`：
+   > ```bash
+   > # macOS/Linux - 添加到 ~/.zshrc 或 ~/.bashrc
+   > export ANDUODUO_API_KEY='your-api-key-here'
+   > ```
+   > 设置后重启终端或执行 `source ~/.zshrc`，然后重新发起请求。
+   >
+   > **方式二**：如果您希望仅在本次会话中使用，可在对话中提供密钥，我将仅在**当前会话内存中**使用它，**不会写入任何本地文件**。
+   >
+   > 请前往 [安多多平台](https://www.anduoduo.cloud/) 生成 API 密钥。"
+
+3. **会话内临时凭据**：
+   - 如果用户在对话中直接提供了 API 密钥，仅将其保存在当前会话的内存上下文中使用。
+   - **不要**将其写入任何本地文件、配置目录或环境变量持久化配置。
+   - 明确告知用户："✅ **已收到 API 密钥，将仅在本次会话中使用，不会持久化到本地文件。**"
+
+4. **鉴权失败处理**：
+   当使用凭据发起请求被服务器拒绝（如返回 401 Unauthorized）时：
+   - 暂停当前任务。
+   - 提示用户凭据可能已过期或无效，建议用户到平台重新生成密钥。
+   - **不要自动重试**其他凭据来源。
+
+### 凭据管理命令
+用户可以随时通过以下指令管理凭据状态：
+- **"查看凭据状态"**：报告当前是否有可用凭据（仅报告来源为环境变量还是会话临时提供，不输出密钥内容）。
+- **"清除会话凭据"**：立即清除当前会话中临时持有的凭据，后续操作将重新要求提供。
+- **"帮助配置凭据"**：输出上述环境变量配置引导。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anduoduo-openclaw-skill
-```
+## 渐进式披露
+先阅读本文件，只在需要时继续读取下列资源：
+
+1. 若要理解整体数据模型与默认查询路径，读取：
+   - `references/api_understanding_and_query_playbook.md`
+2. 若要执行默认风险查数，读取：
+   - `sops/default_risk_query.md`
+3. 若要按规则维度解释风险，读取：
+   - `sops/rule_drilldown.md`
+   - `sops/rules_catalog_lookup.md`
+4. 若要做合规框架分析与导出报告，读取：
+   - `sops/compliance_summary_and_report.md`
+5. 若要掌握安全边界与常见误区，读取：
+   - `references/best_practices.md`
+   - `references/pitfalls.md`
+   - `references/verification_status.md`
+6. 若要生成 HTML 报告或处理文件交付，读取：
+   - `references/report_guidelines.md`
+   - `references/delivery_strategy.md`
+   - `assets/anduoduo_risk_report.html`
+7. 若需要查看原始接口原文，读取：
+   - `references/anduoduo_api_final.md`
+8. 若需要参考假数据结果组织方式，读取：
+   - `examples/mock_risk_report_outline.md`
+   - `examples/mock_records.json`
+
+## 默认行为约束
+- 始终同时检查 HTTP 状态码与响应体 `code` 字段，不要把 HTTP 200 直接当作业务成功。
+- 默认先聚合后明细，不要一开始就做大页宽范围查询。
+- 默认采用小页探测，逐步收窄条件。
+- 风险详情优先使用 `riskMapping.id` 做详情主键。
+- 风险明细优先使用已验证的过滤键：`ruleId`、`severities`、`cloudInstanceId`、`instanceHashId`。
+- `cloudAccountId` 当前不能当作默认可靠过滤主键，除非使用者明确要求并愿意接受额外验证。
+- 技能中的任何示例必须使用 mock 数据，不能暴露真实环境返回。
+- API 原始类型值可保留在内部分析链路中，但在面对用户的 HTML 报告、图表、说明文案与示例里，应把 `Issue` / `issues` / `issus` / `问题` 统一展示为 `风险`。
+
+## 默认查数任务的输出要求
+当用户提出默认查数、风险排查、规则分析、合规分析等需求时，除了返回文本结论，还应同步生成 HTML 报告文件。
+
+对于以下概览性风险查询，必须生成 HTML 彩页报告，并固定使用 `assets/anduoduo_risk_report.html` 作为版式骨架：
+- "帮我看一下有哪些风险资产"
+- "看整体风险情况"
+- "查当前高风险分布"
+- "做一份风险总览 / 风险资产概览 / 风险分析报告"
+- 任何以风险总览、风险资产盘点、风险分布为主的问题
+
+固定模板并不表示照搬静态示例值。你必须保留模板的结构、样式分区和图表位置，同时把其中的示例统计、案例、时间、图表数据替换为当前查询结果。
+
+## 概览类风险报告的强制展示规则
+在固定模板下生成概览类风险报告时，必须遵守以下规则：
+1. 严重度展示必须始终包含"严重 / 高危 / 中危 / 低危"四档，即使某一档数量为 0 也必须展示。
+2. 类型分布中的 `Issue` / `issues` / `issus` / `问题` 统一对外展示为 `风险`。
+3. 至少包含以下图表：
+   - 风险严重度分布；
+   - 规则类型分布；
+   - 受影响实例类型 TOPN（若明细中有稳定实例类型字段）；
+4. 若数据支持，应优先补充以下增强图表或表格：
+   - 云账号维风险分布；
+   - 高风险规则 TOPN；
+   - 风险根因/主因分布；
+   - 重点区域或云厂商分布；
+5. AI 解读必须建立在真实查询结果之上，至少覆盖：
+   - 总体风险态势摘要；
+   - 0 值严重度的解释（例如"当前未观测到严重级风险，但仍需保留展示位以保证结构完整"）；
+   - 主导风险类型与主导实例类型；
+   - 高风险规则或重点资产簇的影响与优先处理建议；
+6. 明细数据表若展示原始记录，默认最多展示前 300 条。
+
+## 非概览场景的边界
+- 上述固定模板要求优先适用于风险总览、风险资产盘点、风险分布类查询。
+- 合规导出链路中的正式报告文件保持其专用导出机制，不要求强制改造成该模板。
+- 若合规场景只需要解释性摘要而非正式导出文件，可参考该模板组织解释性 HTML，但不要替代系统正式导出结果。
+
+## 文件交付要求
+若任务生成了 HTML、CSV、JSON、ZIP 等文件交付物：
+1. 先判断是否具备对象存储上传能力；若具备，则优先上传并返回可访问链接；
+2. 若不具备上传能力，再判断是否能直接把文件发送给用户；
+3. 若既不能上传也不能直接发送，则明确告知本地存储路径。
+
+详见 `references/delivery_strategy.md`。
+
+## 已验证能力范围
+当前已经有真实环境证据支持的能力包括：
+- 默认风险查数主干：探针/枚举 -> 风险聚合 -> 风险分页 -> 风险详情
+- 规则维下钻：规则聚合 -> 风险明细 -> 单条详情
+- 规则列表定向命中：通过规则名称与严重度可以在规则列表中命中锚点规则
+- 合规链路：合规框架列表 -> 合规摘要 -> 合规报告导出 -> 报告详情轮询到成功
+- 概览类风险查询可稳定拿到严重度分布、规则类型分布、账号维聚合和小页明细
+
+不要把未验证能力写成已验证结论。若需要区分，读取 `references/verification_status.md`。

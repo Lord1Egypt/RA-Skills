@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "agentmemo"
+version = "3.0.0"
+description = "Semantic Memory Mesh for AI Agents (formerly AgentVault)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12"
+keywords = ["agents", "memory", "semantic-search", "embeddings", "rag"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+    "sentence-transformers>=2.5.0",
+    "numpy>=1.26.0",
+    "jinja2>=3.1.0",
+    "pydantic>=2.5.0",
+    "sse-starlette>=1.8.0",
+    "aiosqlite>=0.20.0",
+    "hnswlib>=0.8.0",
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "httpx>=0.27"]
+
+[project.scripts]
+agentvault = "server:main"
+
+[project.urls]
+Repository = "https://github.com/yxjsxy/agentvault"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agentvault*"]
+
+[tool.setuptools.package-data]
+"*" = ["templates/**/*"]
+kage-data]
+"*" = ["templates/**/*"]

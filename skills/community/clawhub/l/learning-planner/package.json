@@ -1,0 +1,23 @@
+{
+  "name": "learning-planner",
+  "version": "1.0.2",
+  "description": "Personal learning management system with goal setting, spaced repetition scheduling, and progress tracking. Use when: (1) setting learning goals and s",
+  "main": "src/learning_cli.py",
+  "bin": {
+    "learning": "./src/learning_cli.py"
+  },
+  "scripts": {
+    "test": "python3 src/learning_cli.py --help",
+    "install": "pip install -e ."
+  },
+  "keywords": ["openclaw", "skill", "productivity"],
+  "author": "harrylabs0913",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/learning-planner.git"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

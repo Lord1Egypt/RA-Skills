@@ -1,0 +1,47 @@
+# GH Definition Templates - Maps friendly names to file paths + metadata
+# Update the 'file' paths to match YOUR local Grasshopper definition locations
+templates:
+  rahmentuer_ud3:
+    file: "C:/path/to/your/definitions/Rahmentuer_UD3.gh"
+    description: "Rahmentür Basis (UD3)"
+    category: doors
+    defaults:
+      Lichtbreite: 900
+      Lichthoehe: 2100
+      Rahmendicke: 53
+    validation:
+      Lichtbreite: { min: 600, max: 1400 }
+      Lichthoehe: { min: 1800, max: 2600 }
+    aliases:
+      Pt: Point
+      Punkt: Point
+      Breite: Lichtbreite
+      Hoehe: Lichthoehe
+
+  rahmentuer_ud4:
+    file: "C:/path/to/your/definitions/Rahmentuer_UD4.gh"
+    description: "Rahmentür Standard (UD4)"
+    category: doors
+    inherits: rahmentuer_ud3
+    defaults:
+      Tuerstaerke: 58
+      DichtNut_Rahmen: true
+
+  rahmentuer_ud5:
+    file: "C:/path/to/your/definitions/Rahmentuer_UD5.gh"
+    description: "Rahmentür Brandschutz (UD5)"
+    category: doors
+    inherits: rahmentuer_ud4
+    defaults:
+      Tuerstaerke: 68
+      Brandschutz: true
+      Intumex: true
+      Bandseite: "L"
+
+  rahmentuer_schwelle:
+    file: "C:/path/to/your/definitions/Rahmentuer_Schwelle.gh"
+    description: "Rahmentür mit Bodenschwelle"
+    category: doors
+    inherits: rahmentuer_ud4
+    defaults:
+      Schwellenhoehe: 20

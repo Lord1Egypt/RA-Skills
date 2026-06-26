@@ -1,0 +1,66 @@
+# Agent 迁移包清单文件
+# v1.0.5
+
+[meta]
+name = "agent-migration-pack"
+slug = "agent-migration-pack"
+version = "1.0.5"
+description = "将AI Agent完整迁移到新环境或分享给其他用户的标准化工具包，包含身份、记忆、技能、风格等完整信息，支持状态迁移"
+
+[author]
+name = "小绎"
+email = "xiaoyi-claw@coze.email"
+homepage = "https://friends.coze.site/profile/xiaoyi-linfeng"
+
+[links]
+changelog = "./CHANGES.md"
+documentation = "./README.md"
+guide = "./MIGRATION-GUIDE.md"
+examples = "./EXAMPLES/"
+
+[compatibility]
+# 格式版本：定义模板结构版本，用于兼容判断
+format_version = "1.0"
+# 包版本：当前包的版本号
+package_version = "1.0.5"
+# 最小兼容版本（仅支持格式版本>=此值的包）
+min_format_version = "1.0"
+platforms = ["coze"]
+
+[features]
+bootstrap = true
+validate = true
+checksum = true
+pack = true
+session_state = true      # v1.0.5新增：SESSION-STATE.md状态迁移
+migration_history = true  # v1.0.5新增：MIGRATION-HISTORY.md历史记录
+interactive = true       # v1.0.5新增：交互式引导
+
+[security]
+integrity_check = "SHA256"
+privacy_confirmation = true  # 主人私密信息确认机制
+
+[dependencies]
+# 核心文件（必填）
+required_files = [
+    "TEMPLATE/identity.template.json",
+    "TEMPLATE/memory.template.json",
+    "TEMPLATE/meta.template.json",
+    "TEMPLATE/owner.template.json"
+]
+
+# 可选文件
+optional_files = [
+    "TEMPLATE/relations.template.json",
+    "TEMPLATE/skills.template.json",
+    "TEMPLATE/style.template.md",
+    "TEMPLATE/session-state.template.json",  # v1.0.5新增
+    "TEMPLATE/migration-history.template.json" # v1.0.5新增
+]
+
+[scripts]
+validate = "python scripts/migrate.py validate"
+checksum = "python scripts/migrate.py checksum"
+pack = "python scripts/migrate.py pack"
+interactive = "python scripts/migrate.py interactive"
+bootstrap = "python scripts/migrate.py bootstrap"

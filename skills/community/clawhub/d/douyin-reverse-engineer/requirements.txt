@@ -1,0 +1,3 @@
+# 无额外依赖
+# yt-dlp + ffmpeg：由 video-downloader skill 负责
+# volcenginesdkarkruntime：由 doubao-video-analyzer skill 负责

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Docs Refresh"
+  short_description: "Refresh authoritative docs through routed workflow modes"
+  default_prompt: "Use the Docs Refresh workflow to treat the repository as the record system, start from AGENTS.md as a map, resolve the directory containing this skill, run the bundled collector from that skill directory when possible, read `doc_system_mode` and `preferred_mode_doc` from the `[routing]` section when collector output exists, otherwise use the manual fallback routing rules to choose a mode, load the matching mode file, update the smallest authoritative documents needed, and explain what changed or why no documentation update was needed."

@@ -1,0 +1,7 @@
+{
+  "name": "rpe-grafana",
+  "version": "1.0.2",
+  "openclaw": {
+    "extensions": ["./index.js"]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "DESIGN_NAME": "{{DESIGN_NAME}}",
+  "VERILOG_FILES": ["{{VERILOG_FILE}}"],
+  "CLOCK_PORT": "{{CLOCK_PORT}}",
+  "CLOCK_PERIOD": {{CLOCK_PERIOD}},
+  "FP_SIZING": "absolute",
+  "DIE_AREA": "0 0 300 300",
+  "FP_PDN_MULTILAYER": false,
+  "QUIT_ON_TIMING_VIOLATIONS": false,
+  "QUIT_ON_MAGIC_DRC": false,
+  "QUIT_ON_LVS_ERROR": false,
+  "RUN_KLAYOUT_XOR": false,
+  "RUN_KLAYOUT_DRC": false
+}

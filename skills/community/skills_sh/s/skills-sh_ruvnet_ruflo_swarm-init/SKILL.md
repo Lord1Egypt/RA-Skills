@@ -1,35 +1,21 @@
 ---
-name: "swarm-init"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/swarm-init"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/swarm-init"
+name: swarm-init
+description: Initialize a multi-agent swarm with anti-drift configuration
+argument-hint: "[--topology hierarchical|mesh|ring]"
+allowed-tools: Bash(npx *) mcp__claude-flow__swarm_init mcp__claude-flow__swarm_status Agent
 ---
+Initialize a hierarchical swarm for coordinated multi-agent work.
 
-# swarm-init
+Via MCP: `mcp__claude-flow__swarm_init({ topology: "hierarchical", maxAgents: 8, strategy: "specialized" })`
 
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/swarm-init`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/swarm-init](https://skills.sh/ruvnet/ruflo/swarm-init)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Or via CLI:
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/swarm-init
+npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+```
+
+Then create a Claude Code team via `TeamCreate` and spawn agents using the `Agent` tool with `isolation: "worktree"` for git-safe parallel work. Use `SendMessage` for inter-agent coordination.
+
+For larger teams (10+), use hierarchical-mesh topology:
+```bash
+npx @claude-flow/cli@latest swarm init --topology hierarchical-mesh --max-agents 15 --strategy specialized
 ```

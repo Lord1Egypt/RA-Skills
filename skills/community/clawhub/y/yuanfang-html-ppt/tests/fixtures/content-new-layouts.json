@@ -1,0 +1,102 @@
+{
+  "brand": "产品团队",
+  "theme": "pitch-deck-vc",
+  "title": "新布局演示",
+  "author": "测试",
+  "date": "2026-06-07",
+  "slides": [
+    {
+      "layout": "cover",
+      "kicker": "KEYNOTE · 2026",
+      "title": "12 种<span class=\"gradient-text\">新布局</span>",
+      "subtitle": "从 7 种扩展到 12 种",
+      "tags": ["TOC", "Process", "Timeline", "Big Quote"],
+      "author": "测试"
+    },
+    {
+      "layout": "toc",
+      "kicker": "目录",
+      "title": "今天讲的四件事",
+      "items": [
+        { "title": "目录页", "desc": "网格化展示议程" },
+        { "title": "三栏特性", "desc": "icon + 标题 + 描述" },
+        { "title": "流程步骤", "desc": "带圆圈数字 1-4" },
+        { "title": "横向时间线", "desc": "year + dot + 内容" },
+        { "title": "大字号引言", "desc": "serif 大字引用" }
+      ],
+      "notes": "目录页测试"
+    },
+    {
+      "layout": "three-column",
+      "kicker": "三大支柱",
+      "title": "yuanfang 的核心",
+      "lede": "决定性、视觉、多格式。",
+      "items": [
+        { "icon": "🎨", "title": "18 主题", "desc": "Light / dark / editorial / mono 全部覆盖" },
+        { "icon": "🧱", "title": "12 布局", "desc": "Cover / content / KPI / timeline / quote..." },
+        { "icon": "✨", "title": "3 格式", "desc": "PPTX / PDF / PNG 全部原生导出" }
+      ],
+      "notes": "三栏测试"
+    },
+    {
+      "layout": "process",
+      "kicker": "How-to",
+      "title": "用 yuanfang 做 PPT 只要三步",
+      "lede": "从 JSON 到 PPTX，最快 30 秒。",
+      "steps": [
+        { "title": "写 content.json", "desc": "结构化输入，可用 YAML", "tag": "~5 min" },
+        { "title": "选主题 + 布局", "desc": "18 主题 × 12 布局", "tag": "~1 min" },
+        { "title": "渲染", "desc": "一条命令出 PPTX / PDF / PNG", "tag": "~30 s" }
+      ],
+      "notes": "流程步骤测试"
+    },
+    {
+      "layout": "timeline",
+      "kicker": "Roadmap",
+      "title": "yuanfang 的进化",
+      "items": [
+        { "year": "2025 Q3", "title": "起源", "desc": "PptxGenJS 直接渲染" },
+        { "year": "2025 Q4", "title": "Tokens 化", "desc": "12 主题统一 token" },
+        { "year": "2026 Q1", "title": "吸收 html-ppt-skill", "desc": "+5 布局 + decor tokens" },
+        { "year": "2026 Q2", "title": "多格式导出", "desc": "PPTX + PDF + PNG" },
+        { "year": "2026 Q3", "title": "VLM 视觉 QA", "desc": "AI 自动审查设计" }
+      ],
+      "notes": "时间线测试"
+    },
+    {
+      "layout": "big-quote",
+      "quote": "好的设计不是把东西加得更多，而是把一切不需要的东西拿掉。",
+      "attribution": "Dieter Rams",
+      "role": "工业设计大师",
+      "notes": "大字号引言测试"
+    },
+    {
+      "layout": "thanks",
+      "subtitle": "感谢观看",
+      "points": ["test@yuanfang.dev", "2026 · MIT"]
+    },
+    {
+      "layout": "stat",
+      "kicker": "Traction · 战绩",
+      "stats": [
+        { "value": "$1.2M", "label": "ARR", "context": "首次商业化即盈利" },
+        { "value": "82K", "label": "日活 Agent", "context": "月环比 +12%" },
+        { "value": "74%", "label": "留存率", "context": "行业平均 41%" }
+      ],
+      "caption": "从 0 到 1 的轨迹，2 年完成"
+    },
+    {
+      "layout": "comparison",
+      "kicker": "Before vs After",
+      "title": "用 yuanfang 之后，世界变了吗？",
+      "leftLabel": "用 PowerPoint 之前",
+      "rightLabel": "用 yuanfang 之后",
+      "items": [
+        { "left": "手动对齐每个像素", "right": "Token 自动适配" },
+        { "left": "换主题要改每一页", "right": "一键切换 18 主题" },
+        { "left": "导出 PDF 模糊", "right": "PPTX + PDF + PNG 原生" },
+        { "left": "AI 写内容要复制粘贴", "right": "MCP 直连" }
+      ]
+    }
+  ]
+}

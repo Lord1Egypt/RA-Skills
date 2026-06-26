@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "registry": "https://clawhub.ai",
+  "slug": "dobrinalexandru/wiki-system",
+  "author": "dobrinalexandru",
+  "installedVersion": "1.0.6",
+  "description": "LLM-maintained knowledge wiki with automated ingestion, cross-references, and periodic lint. Based on Karpathy's compilation-over-retrieval pattern.",
+  "tags": ["wiki", "knowledge-base", "memory", "karpathy", "compilation"],
+  "license": "MIT"
+}

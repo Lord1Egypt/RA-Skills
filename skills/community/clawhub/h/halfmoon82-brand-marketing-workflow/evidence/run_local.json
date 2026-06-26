@@ -1,0 +1,221 @@
+{
+  "brand_name": "River Tea",
+  "normalized_input": {
+    "brand_name": "River Tea",
+    "brand_positioning": "local tea brand with modern lifestyle appeal",
+    "brand_tone": "warm grounded friendly",
+    "target_audience": [
+      "nearby residents",
+      "young shoppers 20-35"
+    ],
+    "use_cases": [],
+    "channels": [
+      "xiaohongshu",
+      "wechat",
+      "local_community"
+    ],
+    "content_goals": [
+      "foot traffic",
+      "social sharing",
+      "brand affinity"
+    ],
+    "brand_dos": [
+      "authentic local story",
+      "seasonal content"
+    ],
+    "brand_donts": [
+      "cold corporate tone"
+    ],
+    "competitor_scope": [
+      "local cafe public signals",
+      "HeyTea public signals"
+    ],
+    "kpis": [
+      "store_visits",
+      "shares",
+      "follower_growth"
+    ],
+    "constraints": {
+      "budget": "low",
+      "language": "zh-CN",
+      "region": "CN-local",
+      "compliance": "public+authorized-only"
+    }
+  },
+  "brand_brief": {
+    "brand_summary": {
+      "positioning": "local tea brand with modern lifestyle appeal",
+      "tone": "warm grounded friendly",
+      "audience": "nearby residents, young shoppers 20-35",
+      "goals": "foot traffic, social sharing, brand affinity"
+    },
+    "channels": [
+      "xiaohongshu",
+      "wechat",
+      "local_community"
+    ],
+    "use_cases": [],
+    "dos": [
+      "authentic local story",
+      "seasonal content"
+    ],
+    "donts": [
+      "cold corporate tone"
+    ],
+    "competitor_scope": [
+      "local cafe public signals",
+      "HeyTea public signals"
+    ],
+    "kpis": [
+      "store_visits",
+      "shares",
+      "follower_growth"
+    ],
+    "constraints": {
+      "budget": "low",
+      "region": "CN-local",
+      "compliance": "public+authorized-only"
+    },
+    "low_confidence": false
+  },
+  "content_strategy": {
+    "content_pillars": [
+      "brand story",
+      "product utility",
+      "social proof",
+      "platform-native education"
+    ],
+    "style_rules": [
+      "tone=warm grounded friendly",
+      "preserve brand constraints",
+      "prefer reusable post patterns"
+    ],
+    "channel_rules": {
+      "xiaohongshu": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ],
+      "wechat": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ],
+      "local_community": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ]
+    },
+    "keywords": [
+      "local tea brand with modern lifestyle appeal",
+      "warm grounded friendly"
+    ]
+  },
+  "content_assets": {
+    "topics": [
+      "River Tea origin story",
+      "River Tea use case story"
+    ],
+    "titles": [
+      "River Tea: a simple introduction"
+    ],
+    "posts": [
+      "Draft post placeholder"
+    ],
+    "scripts": [
+      "Draft short-form script placeholder"
+    ],
+    "comment_replies": [
+      "Reply template placeholder"
+    ],
+    "platform_variants": [
+      "xiaohongshu",
+      "weibo",
+      "douyin"
+    ]
+  },
+  "competitor_clusters": {
+    "themes": {
+      "local": [
+        {
+          "theme": "local",
+          "tone": "unknown"
+        }
+      ],
+      "heytea": [
+        {
+          "theme": "heytea",
+          "tone": "unknown"
+        }
+      ]
+    },
+    "theme_keys": [
+      "theme",
+      "format",
+      "tone",
+      "frequency",
+      "hook"
+    ]
+  },
+  "performance_score": {
+    "scores": {
+      "brand_consistency": 5,
+      "channel_fit": 5,
+      "clarity": 5,
+      "actionability": 5
+    },
+    "overall": 20,
+    "notes": "initial run for River Tea"
+  },
+  "authorization": {
+    "has_boundary": false,
+    "reasons": [],
+    "authorization_request": "",
+    "human_assist": {},
+    "state": "running",
+    "decision": "allow",
+    "pause": false,
+    "fallback": "",
+    "resume_condition": "",
+    "allowed_scope": "public+authorized-only"
+  },
+  "browser": {
+    "requested_action": "collect_public_signals",
+    "normalized_action": "collect_public_signals",
+    "platform": "xiaohongshu",
+    "allowed_actions": [
+      "collect_public_signals",
+      "gather_authorized_data",
+      "open_public_page",
+      "prepare_draft_publication",
+      "read_public_content"
+    ],
+    "blocked_actions": [
+      "bypass_captcha",
+      "bypass_login",
+      "bypass_rate_limits",
+      "evade_platform_controls",
+      "stealth_scraping"
+    ],
+    "capability_plan": [
+      "navigate",
+      "state",
+      "extract likes/comments/saves/public metadata"
+    ],
+    "compliance": {
+      "compliant": true,
+      "decision": "allow",
+      "reasons": [],
+      "degrade_to": []
+    },
+    "notes": "browser capability and compliance are unified: execute only within compliant scope"
+  },
+  "iteration_plan": {
+    "changes_for_next_cycle": [
+      "Refine content pillars based on observed engagement",
+      "Add competitor examples from public/authorized sources",
+      "Tune platform variants for strongest channel"
+    ],
+    "human_approval_needed": false
+  },
+  "status": "ready_for_iteration",
+  "low_confidence": false
+}

@@ -1,0 +1,24 @@
+{
+  "name": "reach",
+  "version": "0.1.0",
+  "description": "Agent web interface — 9 primitives, 4 site skills, 1 intelligent router, MCP server",
+  "main": "src/index.js",
+  "bin": {
+    "reach": "src/cli.js",
+    "reach-mcp": "src/mcp.js"
+  },
+  "scripts": {
+    "test": "node test/test.js",
+    "cli": "node src/cli.js"
+  },
+  "keywords": ["agent", "web", "browser", "automation", "ai"],
+  "author": "potdealer",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "ethers": "^6.16.0",
+    "node-fetch": "^3.3.2",
+    "playwright": "^1.58.2"
+  }
+}

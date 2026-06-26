@@ -1,0 +1,3 @@
+display_name: Tushare A股研究
+short_description: 面向中国 A 股个股研究的 Tushare 技能，覆盖数据查询、分析与交易观察。
+default_prompt: 查询中国 A 股个股的 Tushare 数据，分析估值、财务质量、成长与风险，或查看资金流、龙虎榜和技术指标信号。

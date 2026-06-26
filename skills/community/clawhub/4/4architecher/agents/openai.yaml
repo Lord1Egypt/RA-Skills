@@ -1,0 +1,4 @@
+interface:
+  display_name: "产品4A架构图"
+  short_description: "生成完整分层的 draw.io XML 产品4A架构图而非简单流程图"
+  default_prompt: "Use $product-4a-architecture to 先生成一张完整的 4A 分层主图，再通过苏格拉底追问逐步产出四张 draw.io XML 格式的分层架构图和相关文档。"

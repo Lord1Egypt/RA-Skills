@@ -1,0 +1,14 @@
+{
+  "name": "Polymarket BTC 5m Arbitrage",
+  "description": "Polymarket BTC 5分钟高频套利机器人",
+  "version": "1.0.0",
+  "author": "XiaoWu",
+  "config": {
+    "POLYMARKET_PRIVATE_KEY": "your_private_key_here",
+    "POLYMARKET_API_KEY": "your_api_key_here",
+    "MIN_LIQUIDITY": 1000,
+    "MIN_ORDER_SIZE": 5,
+    "MAX_SPREAD": 0.05,
+    "TRADE_AMOUNT": 10
+  }
+}

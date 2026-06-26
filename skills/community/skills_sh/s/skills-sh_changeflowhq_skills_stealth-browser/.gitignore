@@ -1,0 +1,29 @@
+# ── Whitelist approach ──
+# Chrome generates 100+ runtime files/dirs. Ignore everything in profile/,
+# then un-ignore only the specific files we ship (extensions + clean config).
+
+# Ignore everything in profile
+profile/*
+profile/Default/*
+
+# Un-ignore extensions and their rules
+!profile/First Run
+!profile/Local State
+!profile/Default/
+!profile/Default/Preferences
+!profile/Default/Secure Preferences
+!profile/Default/Extensions/
+!profile/Default/Extensions/**
+!profile/Default/DNR Extension Rules/
+!profile/Default/DNR Extension Rules/**
+!profile/Default/Local Extension Settings/
+!profile/Default/Local Extension Settings/**
+
+# Master backup (user-specific)
+profile-master-backup/
+
+# Learned blocklist (user-specific)
+data/blocked-domains.txt
+
+# macOS
+.DS_Store

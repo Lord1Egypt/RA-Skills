@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git as Memory"
+  short_description: "Store agent memory in Git refs"
+  default_prompt: "Use $git-as-memory to remember this project decision in the current repo."

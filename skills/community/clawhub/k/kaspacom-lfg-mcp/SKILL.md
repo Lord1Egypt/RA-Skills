@@ -1,35 +1,31 @@
 ---
-name: "KaspaCom LFG MCP"
-description: "Use KaspaCom LFG Launchpad through the KaspaCom DeFi MCP/CLI for launch discovery and launch-token trading on IGRA and Kasplex. Trigger on active launch look..."
-category: "mcp"
-source: "ClawHub"
-tags: [kaspa, launchpad, lfg, mcp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kaspacom-lfg-mcp"
-sourceUrl: "https://clawhub.ai/skills/kaspacom-lfg-mcp"
+name: kaspacom-lfg-mcp
+description: Use KaspaCom LFG Launchpad through the KaspaCom DeFi MCP/CLI for launch discovery and launch-token trading on IGRA and Kasplex. Trigger on active launch lookups, launch token buys/sells, bonding curve launchpad activity, or AI-agent access to KaspaCom LFG via MCP.
 ---
 
 # KaspaCom LFG MCP
 
-> Use KaspaCom LFG Launchpad through the KaspaCom DeFi MCP/CLI for launch discovery and launch-token trading on IGRA and Kasplex. Trigger on active launch look...
+Focused skill for KaspaCom LFG Launchpad via MCP/CLI.
 
-- **Category:** MCP
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kaspacom-lfg-mcp`
-- **Source URL:** [https://clawhub.ai/skills/kaspacom-lfg-mcp](https://clawhub.ai/skills/kaspacom-lfg-mcp)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Install
 ```bash
-hermes skills install clawhub/kaspacom-lfg-mcp
+npm i -g @kaspacom/defi-mcp
 ```
+
+## Read-only examples
+```bash
+kaspacom-defi getActiveLaunches --network kasplex
+kaspacom-defi getProtocolInfo --network kasplex
+```
+
+## Transaction examples
+```bash
+kaspacom-defi buyLaunchToken --token 0xTOKEN --amountIn 100 --network kasplex
+kaspacom-defi sellLaunchToken --token 0xTOKEN --amountIn 1000000 --network kasplex
+```
+
+## Best for
+- Active launch discovery
+- Bonding curve token access
+- Launchpad buy/sell flows
+- AI-agent launchpad integrations

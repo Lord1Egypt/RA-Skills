@@ -1,35 +1,29 @@
 ---
-name: "Prompt Engineering"
-description: "Advanced expert in prompt engineering, custom instructions design, and prompt optimization for AI agents"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-engineet"
-sourceUrl: "https://clawhub.ai/skills/prompt-engineet"
+name: prompt-engineering-expert
+description: Advanced expert in prompt engineering, custom instructions design, and prompt optimization for AI agents
 ---
 
-# Prompt Engineering
+# Prompt Engineering Expert Skill
 
-> Advanced expert in prompt engineering, custom instructions design, and prompt optimization for AI agents
+This skill equips Claude with deep expertise in prompt engineering, custom instructions design, and prompt optimization. It provides comprehensive guidance on crafting effective AI prompts, designing agent instructions, and iteratively improving prompt performance.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-engineet`
-- **Source URL:** [https://clawhub.ai/skills/prompt-engineet](https://clawhub.ai/skills/prompt-engineet)
+## Capabilities
 
-## Overview
+- **Prompt Writing Best Practices**: Expert guidance on clear, direct prompts with proper structure and formatting
+- **Custom Instructions Design**: Creating effective system prompts and custom instructions for AI agents
+- **Prompt Optimization**: Analyzing, refining, and improving existing prompts for better performance
+- **Advanced Techniques**: Chain-of-thought prompting, few-shot examples, XML tags, role-based prompting
+- **Evaluation & Testing**: Developing test cases and success criteria for prompt evaluation
+- **Anti-patterns Recognition**: Identifying and correcting common prompt engineering mistakes
+- **Context Management**: Optimizing token usage and context window management
+- **Multimodal Prompting**: Guidance on vision, embeddings, and file-based prompts
 
+## Use Cases
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-engineet
-```
+- Refining vague or ineffective prompts
+- Creating specialized system prompts for specific domains
+- Designing custom instructions for AI agents and skills
+- Optimizing prompts for consistency and reliability
+- Teaching prompt engineering best practices
+- Debugging prompt performance issues
+- Creating prompt templates for reusable workflows

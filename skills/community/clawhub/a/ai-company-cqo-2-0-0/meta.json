@@ -1,0 +1,13 @@
+﻿{
+    "version":  "1.1.0",
+    "skill":  "ai-company-cqo",
+    "tags":  [
+                 "ai-company",
+                 "c-suite",
+                 "cqo"
+             ],
+    "description":  "AI Company CQO skill",
+    "created":  "2026-04-12",
+    "name":  "AI Company CQO",
+    "author":  "johnsmithfan"
+}

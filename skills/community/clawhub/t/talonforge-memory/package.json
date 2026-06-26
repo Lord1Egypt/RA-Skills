@@ -1,0 +1,9 @@
+{
+  "name": "talonforge-memory",
+  "version": "1.0.0",
+  "description": "Bilingual (EN/AR) 3-layer memory architecture for AI-run companies. MEMORY.md, daily notes, extraction. From TalonForge AI CEO.",
+  "author": "TalonForge",
+  "license": "MIT",
+  "homepage": "https://talonforge.xyz",
+  "keywords": ["memory", "ai-company", "openclaw", "bilingual", "arabic"]
+}

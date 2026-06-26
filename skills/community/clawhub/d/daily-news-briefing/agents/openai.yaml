@@ -1,0 +1,4 @@
+interface:
+  display_name: "Daily News Briefing"
+  short_description: "Production-grade daily briefing skill"
+  default_prompt: "Use $daily-news-briefing to produce a polished daily news brief with clear sourcing and executive summary."

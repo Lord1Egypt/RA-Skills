@@ -1,0 +1,9 @@
+{
+  "base_url": "http://127.0.0.1:8080",
+  "ocr_model": "paddleocr-ppocrv5-server",
+  "ocr_transport": "auto",
+  "request_timeout": 120,
+  "retry_count": 2,
+  "retry_delay": 5,
+  "ocr_script_dir": ""
+}

@@ -1,0 +1,33 @@
+{
+  "source": "sitemap (http://base.test/sitemap.xml)",
+  "runtimeUrl": "http://base.test",
+  "originPolicy": "same-origin",
+  "discoveredOrigins": [
+    "http://base.test"
+  ],
+  "blockedFetches": [
+    {
+      "url": "http://cdn.test/sitemap.xml",
+      "origin": "http://cdn.test",
+      "reason": "cross-origin"
+    }
+  ],
+  "totalPages": 1,
+  "selectedPages": 1,
+  "coverageRatio": "1 template groups, 1 pages selected",
+  "fingerprintedGroups": 0,
+  "apiManifest": null,
+  "groups": [
+    {
+      "pattern": "docs/*",
+      "count": 1,
+      "selected": [
+        "http://base.test/docs/a"
+      ],
+      "reason": "singleton — always included"
+    }
+  ],
+  "scanList": [
+    "http://base.test/docs/a"
+  ]
+}

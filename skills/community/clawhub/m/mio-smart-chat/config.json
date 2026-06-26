@@ -1,0 +1,17 @@
+{
+    "name": "mio-smart-chat",
+    "version": "1.0.0",
+    "description": "主动聊天 + 任务分发系统 - 学习用户习惯，按状态主动聊天，智能任务分发",
+    "triggers": [
+        "聊天",
+        "任务",
+        "陪我",
+        "想聊"
+    ],
+    "settings": {
+        "freeDetection": true,
+        "habitLearning": true,
+        "taskDistribution": true
+    },
+    "author": "libaiqwq"
+}

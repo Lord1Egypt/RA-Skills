@@ -1,0 +1,20 @@
+[
+  {
+    "bucket": "pass",
+    "name": "unit tests",
+    "state": "SUCCESS",
+    "workflow": "ci"
+  },
+  {
+    "bucket": "fail",
+    "name": "ui regression",
+    "state": "FAILURE",
+    "workflow": "ci"
+  },
+  {
+    "bucket": "pending",
+    "name": "security scan",
+    "state": "PENDING",
+    "workflow": "security"
+  }
+]

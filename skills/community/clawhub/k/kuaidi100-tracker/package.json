@@ -1,0 +1,16 @@
+{
+  "name": "openclaw-package-tracker",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Track Chinese domestic packages via Kuaidi100 push API with automatic Google Calendar delivery reminders.",
+  "openclaw": {
+    "extensions": ["./dist/index.js"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    }
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.49"
+  }
+}

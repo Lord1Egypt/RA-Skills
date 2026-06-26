@@ -1,0 +1,139 @@
+{
+  "analysis_timestamp": "2026-04-05T18:10:00+08:00",
+  "analysis_timestamp_cst": "2026-04-05 18:10 CST",
+  "iran_war_day": 32,
+  "ceasefire_deadline_passed": "2026-04-05T03:40:00Z (11:40 CST) — 已超时6.5小时",
+  "nasdaq_status": "周日休市",
+  "x_access_method": "Browser直接访问X.com",
+  "data_sources": ["X.com实时搜索", "KobeissiLetter主页", "WatcherGuru主页"],
+
+  "timeline": [
+    {
+      "time_cst": "18:09",
+      "source": "X/anas1035940",
+      "content": "【BREAKING】Trump向伊朗发出最后通牒：给予48小时达成协议，重新开放霍尔木兹海峡。违规则面临严重军事后果。",
+      "engagement": "11 views, 0 互动",
+      "signal": "HIGH",
+      "notes": "超实时新帖（1分钟前）"
+    },
+    {
+      "time_cst": "18:08",
+      "source": "X/Scott2058095301",
+      "content": "伊朗人不会害怕。Trump杀死了领导人全家。他不会与Trump达成协议。他要复仇，不论代价。",
+      "engagement": "13 views, 0 互动",
+      "signal": "MEDIUM",
+      "notes": "伊朗民族情绪分析"
+    },
+    {
+      "time_cst": "18:06",
+      "source": "X/cptgreybush79",
+      "content": "Trump乞求协议，伊朗说F*** OFF。伊朗制作嘲讽Trump的视频。仍控制霍尔木兹。击落4架飞机。",
+      "engagement": "17 views, 0 互动",
+      "signal": "MEDIUM",
+      "notes": "公众舆论极化"
+    },
+    {
+      "time_cst": "18:06",
+      "source": "X/workoffyy",
+      "content": "Trump发出最后通牒：立即达成协议或开放霍尔木兹。"地狱之门"言论将地缘政治紧张推向临界点。",
+      "engagement": "24 views, 1 like",
+      "signal": "HIGH",
+      "notes": "提炼核心叙事"
+    },
+    {
+      "time_cst": "18:03",
+      "source": "X/nicolange_ (认证账户，前德国政府顾问)",
+      "content": "Trump希望通过强力斩首打击后，伊朗第二梯队会与他达成协议。Trump认为每个人总是只关心交易和个人利益，不理解对方的意识形态动机。",
+      "engagement": "389 views, 22 likes, 2 replies",
+      "signal": "HIGH",
+      "notes": "高质量地缘政治分析，388次观看"
+    },
+    {
+      "time_cst": "18:09",
+      "source": "X/CryptoUnicornia",
+      "content": "支持巴勒斯坦人民和加沙反对以色列的种族灭绝行动。伊朗有权自卫。立即停火，战犯问责。",
+      "engagement": "3 views",
+      "signal": "LOW",
+      "notes": "亲伊朗/巴勒斯坦立场，普通账户"
+    },
+    {
+      "time_cst": "18:09",
+      "source": "X/Projectile2025",
+      "content": "如果伊朗认为自己正在战略上获胜，且物质上已无更多损失，单边停火如何可能？被执行的威胁不再是威胁——这就是伊朗重新开放霍尔木兹的动机。",
+      "engagement": "3 views",
+      "signal": "HIGH",
+      "notes": "高质量战略分析，假设伊朗胜局论"
+    },
+    {
+      "time_cst": "18:06",
+      "source": "X/MindDrift Daily (认证账户)",
+      "content": "停火谈判：停滞。巴基斯坦调解被描述为"间接交流"而非真正谈判。伊朗拒绝Trump的15点和平计划。Trump重新发出48小时最后通牒。伊朗称之为"永久战争"。外交处于危急状态。",
+      "engagement": "25 views",
+      "signal": "HIGH",
+      "notes": "综合局势梳理"
+    },
+    {
+      "time_cst": "18:05",
+      "source": "X/WoSSCrypto (认证账户)",
+      "content": "周四实况：伊朗击落美国F-15、调解停滞、停火条款被拒、攻击持续。市场定价解决方案，但现实未兑现。",
+      "engagement": "11 views, 1 reply",
+      "signal": "HIGH",
+      "notes": "市场与现实脱节分析"
+    },
+    {
+      "time_cst": "18:05",
+      "source": "X/jtdessie",
+      "content": "伊朗正在获胜，以色列遭受重型导弹攻击——Trump停火提议被拒。伊朗拒绝Trump启动停火谈判的尝试，对以色列实施改变游戏规则的导弹战略。",
+      "engagement": "25 views",
+      "signal": "MEDIUM",
+      "notes": "伊朗军事优势叙事"
+    },
+    {
+      "time_cst": "18:04",
+      "source": "X/bvnbhargava (认证账户)",
+      "content": "巴基斯坦总理邀请伊朗与美国停火，想在伊斯兰堡主办。伊朗说：'乞丐，滚开，想趁机从两边要钱。'",
+      "engagement": "11 views",
+      "signal": "LOW",
+      "notes": "巴基斯坦调解失败，民间嘲讽"
+    },
+    {
+      "time_cst": "13:10",
+      "source": "KobeissiLetter (165.3万粉丝，认证)",
+      "content": "【BREAKING】Trump宣布：周五被击落的第二名F-15E飞行员已从伊朗获救。",
+      "engagement": "207 replies, 332 retweets, 2937 likes, 27.4万 views",
+      "signal": "HIGH",
+      "notes": "重大军事/外交进展，高互动"
+    },
+    {
+      "time_cst": "12:10",
+      "source": "KobeissiLetter (165.3万粉丝，认证)",
+      "content": "【BREAKING】第二名F-15E被击落机组人员在"激烈战斗"后获救。官员称已确认获救但尚未安全，仍需成功撤离伊朗。",
+      "engagement": "126 replies, 218 retweets, 2609 likes, 25.6万 views",
+      "signal": "HIGH",
+      "notes": "营救行动细节，高互动"
+    }
+  ],
+
+  "market_impact": {
+    "nasdaq": "周日休市（无变化）",
+    "context": "周四F-15被击落→停火条款被拒→外交僵局，市场定价失败",
+    "oil_note": "S&P期货/油价反应未获取（周日休市+外网受限）"
+  },
+
+  "key_narratives": [
+    "Trump发出新的48小时最后通牒（今日最新核心事件）",
+    "伊朗拒绝Trump的15点和平计划",
+    "F-15E飞行员营救行动成功（12-13 CST）",
+    "巴基斯坦调解努力被伊朗嘲讽并拒绝",
+    "伊朗"永久战争"定性，外交渠道近乎关闭",
+    "市场定价停火但现实未兑现"
+  ],
+
+  "sentiment_summary": {
+    "trump_posture": "施压升级+最后通牒模式",
+    "iran_posture": "拒绝谈判+军事反击+嘲讽策略",
+    "mediator_status": "巴基斯坦调解失败（被伊朗嘲讽）",
+    "market_reaction": "市场定价错误（基于周四数据）",
+    "escalation_risk": "极高——48小时倒计时开始"
+  }
+}

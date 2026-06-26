@@ -1,0 +1,23 @@
+{
+  "project": "ring-sizer",
+  "window": "last_30d",
+  "issues": [
+    {
+      "id": "sentry_2145",
+      "title": "TypeError in purchase callback when closing paywall quickly",
+      "priority": "high",
+      "impact": "Crash blocks purchase completion",
+      "events": 286,
+      "users": 103,
+      "stack_keywords": ["paywall", "purchase", "callback", "close"],
+      "evidence": [
+        "Crash appears mostly in first session",
+        "Happens within 2-4 seconds after paywall is shown"
+      ],
+      "suggested_actions": [
+        "Guard callback state transitions on unmounted paywall components",
+        "Add deterministic test for rapid close + purchase tap race condition"
+      ]
+    }
+  ]
+}

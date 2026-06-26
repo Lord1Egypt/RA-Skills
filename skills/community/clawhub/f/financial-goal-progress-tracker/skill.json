@@ -1,0 +1,25 @@
+{
+  "name": "Financial Goal Progress Tracker",
+  "slug": "financial-goal-progress-tracker",
+  "version": "1.0.0",
+  "description": "Structures savings milestones, goal pacing, and review cadences for debt payoff, emergency funds, and investment targets.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "goal-tracking",
+    "savings-plan",
+    "milestones",
+    "personal-finance"
+  ],
+  "trigger_keywords": [
+    "financial goal tracking",
+    "savings milestone plan",
+    "debt payoff tracking",
+    "emergency fund progress",
+    "investment target pacing"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

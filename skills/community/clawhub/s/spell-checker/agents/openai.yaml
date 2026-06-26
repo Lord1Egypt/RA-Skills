@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spellcheck"
+  short_description: "Spellcheck and normalize prose while preserving exact strings"
+  default_prompt: "Use $spell-checker to safely interpret this request before acting."

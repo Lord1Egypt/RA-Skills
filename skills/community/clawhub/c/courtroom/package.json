@@ -1,0 +1,34 @@
+{
+  "name": "@clawtrial/courtroom",
+  "version": "1.2.0",
+  "description": "AI Courtroom for behavioral oversight - autonomous daemon that monitors conversations and reports violations",
+  "main": "skill.js",
+  "bin": {
+    "courtroom": "./courtroom.js",
+    "courtroom-daemon": "./daemon.js",
+    "courtroom-start": "./scripts/cli.js",
+    "courtroom-stop": "./scripts/cli.js",
+    "courtroom-status": "./scripts/cli.js",
+    "courtroom-enable": "./scripts/cli.js",
+    "courtroom-disable": "./scripts/cli.js"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "courtroom",
+    "behavioral-oversight",
+    "ai-court",
+    "daemon",
+    "autonomous"
+  ],
+  "author": "ClawTrial",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawtrial/courtroom"
+  }
+}

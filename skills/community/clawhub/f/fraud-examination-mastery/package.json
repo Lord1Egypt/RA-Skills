@@ -1,0 +1,19 @@
+{
+  "name": "fraud-examination-mastery",
+  "version": "1.0.0",
+  "description": "全球舞弊审查专业实务体系：ACFE 2021教材+2026全球职业舞弊报告+中国舞弊审计指南+创始人回忆录",
+  "author": "Wang Dongjie, CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "keywords": [
+    "舞弊审查",
+    "CFE",
+    "ACFE",
+    "舞弊三角",
+    "反舞弊",
+    "舞弊调查",
+    "腐败",
+    "资产挪用",
+    "财务报表舞弊",
+    "CGMA"
+  ]
+}

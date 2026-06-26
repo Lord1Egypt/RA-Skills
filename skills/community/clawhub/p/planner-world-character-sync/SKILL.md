@@ -1,35 +1,161 @@
 ---
-name: "世界角色有机验证"
+name: planner-world-character-sync
 description: "世界-角色有机验证：确认每个核心角色被世界所塑造，每个世界规则驱动某个角色的困境。触发词：世界角色同步、world character sync、角色从世界长出、有机验证。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/planner-world-character-sync"
-sourceUrl: "https://clawhub.ai/skills/planner-world-character-sync"
+metadata:
+  tier1_summary: "World Design与Character Arc并行完成后强制执行：验证角色被世界塑造+世界规则驱动角色困境，未通过不得进入Pilot Forge"
 ---
 
-# 世界角色有机验证
+# Planner World-Character Sync（世界-角色有机验证）
 
-> 世界-角色有机验证：确认每个核心角色被世界所塑造，每个世界规则驱动某个角色的困境。触发词：世界角色同步、world character sync、角色从世界长出、有机验证。
+**触发条件**：World Design 和 Character Arc **并行完成后**，Pilot Forge 之前。是 Pilot Forge 的强制前置门控。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/planner-world-character-sync`
-- **Source URL:** [https://clawhub.ai/skills/planner-world-character-sync](https://clawhub.ai/skills/planner-world-character-sync)
+**核心使命**：验证世界和角色是**有机共生**的，而不是"角色被塞进一个背景板"。
 
-## Overview
+---
 
+## 为什么需要 Sync？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/planner-world-character-sync
+**串行开发的问题**：先定世界再设计角色 → 角色是被"放进"世界的，换个世界故事照样成立 → 世界只是背景板，不是故事引擎。
+
+**并行开发的原则**：世界和角色同时生长 → 角色从世界的规则中长出来，世界的规则为角色制造困境 → 拿掉世界，角色就不是这个人；拿掉角色，世界就没有这个故事。
+
+**但并行≠自动一致**：并行开发后必须验证两者是否真正有机联系。Sync 就是这个验证。
+
+---
+
+## 执行步骤
+
+### Step 1: 读取世界和角色产出
+
+1. 读取 `CLAW_WORKSPACE/03-世界/` 的世界观文档
+2. 读取 `CLAW_WORKSPACE/02-角色/` 的角色小传
+3. 读取 Theme Lock 的 `theme-lock.md`
+
+### Step 2: 角色被世界塑造验证
+
+对每个核心角色，回答：
+
+**"如果这个角色出生在另一个世界，他还会是同一个人吗？"**
+
+| 验证维度 | 说明 | 判定 |
+|---------|------|------|
+| **Wound 来源** | 角色的创伤是否由世界的某个规则/事件造成？ | Wound 与世界无关 → ❌ |
+| **Want 来源** | 角色的欲望是否由世界的结构/不公/可能性催生？ | 换个世界 Want 不变 → ❌ |
+| **Need 来源** | 角色的成长需求是否需要理解/接受/改变世界的某个方面？ | Need 不涉及世界 → ❌ |
+| **身份来源** | 角色在世界中的位置/角色是否定义了他的处境？ | 身份与世界无关 → ❌ |
+
+**输出格式**：
+
+```markdown
+### {角色名} — 世界塑造验证
+
+| 维度 | 来源描述 | 是否与世界有机联系 |
+|------|---------|------------------|
+| Wound | {描述} | ✅/❌ |
+| Want | {描述} | ✅/❌ |
+| Need | {描述} | ✅/❌ |
+| 身份 | {描述} | ✅/❌ |
+
+结论：{被世界塑造 / 部分塑造 / 未被塑造}
 ```
+
+### Step 3: 世界规则驱动角色困境验证
+
+对世界的每条核心规则，回答：
+
+**"这条规则在给谁制造困境？"**
+
+| 验证维度 | 说明 | 判定 |
+|---------|------|------|
+| **困境归属** | 这条规则至少让一个核心角色陷入两难吗？ | 没有角色受困 → ❌ |
+| **困境深度** | 困境是否触及角色的 Wound？ | 困境太浅 → ⚠️ |
+| **困境多样性** | 不同角色面对同一条规则是否产生不同的困境？ | 所有人困境相同 → ⚠️ |
+| **困境可续性** | 这条规则能持续产生新的困境吗？ | 只能产生一次困境 → ❌ |
+
+**输出格式**：
+
+```markdown
+### {世界规则} — 困境驱动验证
+
+| 维度 | 描述 | 判定 |
+|------|------|------|
+| 困境归属 | {哪个角色} | ✅/❌ |
+| 困境深度 | {是否触及Wound} | ✅/⚠️/❌ |
+| 困境多样性 | {不同角色的不同困境} | ✅/⚠️/❌ |
+| 困境可续性 | {可持续产生新困境吗} | ✅/❌ |
+
+结论：{驱动困境 / 部分驱动 / 未驱动困境}
+```
+
+### Step 4: 主题回响验证
+
+**"世界规则 + 角色困境 是否在共同探讨 Theme Statement？"**
+
+1. 列出所有角色困境
+2. 列出 Theme Statement
+3. 检查：每个核心困境是否是 Theme Statement 的一个"侧面"？
+4. 检查：是否有至少一个困境**直接挑战** Theme Statement（反证法）？
+
+**示例**：
+- Theme: "被需要是比被制造更重要的存在理由"
+- 正面困境：角色选择被需要而非被制造 → 验证主题
+- 反面困境：角色发现被需要也是一种操控 → 挑战主题
+- 有正有反 → ✅ 主题有深度
+
+### Step 5: 判定
+
+| 条件 | 判定 | 处理 |
+|------|------|------|
+| 所有核心角色被世界塑造 + 所有核心规则驱动困境 + 主题回响 | **PASS** | 进入 Pilot Forge |
+| 部分 ❌ 但可修复 | **CONDITIONAL** | 附修复清单，修改后重新 Sync |
+| 大量 ❌ | **FAIL** | 回到 World Design + Character Arc 并行重新开发 |
+
+### Step 6: 输出 Sync Report
+
+通过后，输出 `world-character-sync.md`：
+
+```markdown
+# World-Character Sync Report
+
+## 项目：{项目名}
+
+## 角色被世界塑造
+{Step 2 的完整验证结果}
+
+## 世界规则驱动困境
+{Step 3 的完整验证结果}
+
+## 主题回响
+{Step 4 的验证结果}
+
+## 同步状态：PASS / CONDITIONAL / FAIL
+
+## 核心发现
+- {世界如何塑造角色的 1-3 句总结}
+- {世界规则如何驱动困境的 1-3 句总结}
+- {主题如何在正反两面被探讨的 1-3 句总结}
+```
+
+写入 `CLAW_WORKSPACE/03-世界/world-character-sync.md`
+
+---
+
+## 与上下游的关系
+
+| 上下游 | 关系 |
+|-------|------|
+| World Design + Character Arc（上游） | Sync 的输入；FAIL 时回到上游重新并行开发 |
+| Pilot Forge（下游） | Sync PASS 是 Pilot Forge 的前置门控 |
+| Theme Lock | Step 4 主题回响验证以 Theme Statement 为依据 |
+| Pitch Stress Test | 引擎攻击维度（"拿掉主角世界还生戏吗"）依赖 Sync 的验证结果 |
+
+---
+
+## 硬规则
+
+1. **Sync 是 Pilot Forge 的强制前置门控**——未验证有机联系，不得开发 pilot
+2. **每个核心角色都必须通过世界塑造验证**——未通过的角色是"悬浮角色"
+3. **每条核心世界规则都必须驱动困境**——不驱动困境的规则是"装饰性设定"
+4. **主题回响必须包含正反两面**——只有正面 = 说教，只有反面 = 虚无
+5. **FAIL 后回到并行重新开发，不修补**——有机联系是结构问题，不是局部修修补补能解决的
+6. **CONDITIONAL 修复后必须重新执行完整 Sync**——不能只修复部分就跳过

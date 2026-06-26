@@ -1,0 +1,20 @@
+{
+  "name": "openclaw-task-executor",
+  "version": "1.0.0",
+  "description": "The Executor Protocol - Universal task execution and reporting workflow for OpenClaw agents. Based on the Six-Character Mantra: Plan first, then execute; report as you go. Includes subagent parallel management, task classification, and real-time reporting standards.",
+  "author": "TOM",
+  "tags": [
+    "openclaw",
+    "task-execution",
+    "workflow",
+    "subagent",
+    "parallel-execution",
+    "task-management",
+    "agent-workflow",
+    "task-classification",
+    "real-time-reporting",
+    "openclaw-agent",
+    "executor-protocol",
+    "task-protocol"
+  ]
+}

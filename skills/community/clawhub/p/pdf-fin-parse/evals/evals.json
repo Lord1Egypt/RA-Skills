@@ -1,0 +1,45 @@
+{
+  "skill_name": "pdf-finance-parser",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "解析这份PDF：samples/documents/sample_001.pdf，输出到 samples/outputs/sample_001",
+      "expected_output": "完成端到端解析并落盘 output.md + output.json",
+      "expected_exit_code": 0,
+      "expected_stdout_contains": ["task_id", "COMPLETED", "page_count"],
+      "files": ["samples/documents/sample_001.pdf"]
+    },
+    {
+      "id": 2,
+      "prompt": "用 detail 模式精细解析 samples/documents/complex_table.pdf",
+      "expected_output": "parse_mode=detail，cells 数值规整字段填充率应高于 normal 模式",
+      "expected_exit_code": 0,
+      "expected_cmd_contains": ["--parse-mode", "detail"],
+      "files": ["samples/documents/complex_table.pdf"]
+    },
+    {
+      "id": 3,
+      "prompt": "只解析这份长报告的前10页：samples/documents/long_report.pdf",
+      "expected_output": "page_count=10，total_pages>10，wall_time 与页数成正比",
+      "expected_exit_code": 0,
+      "expected_cmd_contains": ["--pages", "1-10"],
+      "files": ["samples/documents/long_report.pdf"]
+    },
+    {
+      "id": 4,
+      "prompt": "异步提交解析任务：samples/documents/sample_002.pdf",
+      "expected_output": "submit 返回 task_id 与 eta；check-and-notify 完成实际解析",
+      "expected_exit_code": 0,
+      "expected_cmd_contains": ["submit", "check-and-notify"],
+      "files": ["samples/documents/sample_002.pdf"]
+    },
+    {
+      "id": 5,
+      "prompt": "解析这张扫描件图片：samples/documents/scanned_invoice.png",
+      "expected_output": "自动识别为图片输入，单页 VLM 调用完成解析",
+      "expected_exit_code": 0,
+      "expected_stdout_contains": ["page_count"],
+      "files": ["samples/documents/scanned_invoice.png"]
+    }
+  ]
+}

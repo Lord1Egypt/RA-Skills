@@ -1,35 +1,59 @@
----
-name: "Juejin Geo Draft Generator"
-description: "Assist in generating and filling Juejin-style technical article drafts from AI-GEO content for manual review and publication in the Juejin creator center."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juejin-geo-draft-generator"
-sourceUrl: "https://clawhub.ai/skills/juejin-geo-draft-generator"
----
+# juejin-geo-draft-publisher (掘金 AI-GEO 草稿发布助手)
 
-# Juejin Geo Draft Generator
+## 1. Skill 名称
+juejin-geo-draft-publisher (掘金 AI-GEO 草稿发布助手)
 
-> Assist in generating and filling Juejin-style technical article drafts from AI-GEO content for manual review and publication in the Juejin creator center.
+## 2. Skill 定位
+本 Skill 是**本地可见浏览器中的草稿填写助手**。
+将 AI-GEO 基础内容资产转化为适合掘金开发者社区的技术文章，并辅助填写至掘金创作者中心的编辑器中，供用户**人工审核后发布**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juejin-geo-draft-generator`
-- **Source URL:** [https://clawhub.ai/skills/juejin-geo-draft-generator](https://clawhub.ai/skills/juejin-geo-draft-generator)
+## 3. 与 ai-geo-content-generator 的关系
+本 Skill 是内容流转链路的“第二步”。
+它不修改原有素材库，仅仅读取第一步生成的资产，进行内容适配和草稿填写。
 
-## Overview
+## 4. 输入文件说明
+默认严格限制仅读取 `/input/` 目录下的资产文件，包括但不限于：
+- `brand_profile.md`
+- `website_faq.md`
+- `llms.txt`
 
+## 5. 输出文件说明
+仅输出到本项目的 `/output/juejin/` 目录：
+1. `juejin_article.md`：完整正文
+2. `juejin_markdown_ready.md`：Markdown 适配版
+3. `juejin_titles.md`：标题候选
+4. `juejin_summary.md`：文章摘要
+5. `juejin_tags.md`：推荐标签
+6. `juejin_publish_checklist.md`：发布前人工审核清单
+7. `juejin_draft_status.md`：草稿状态报告
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/juejin-geo-draft-generator
-```
+## 6. 掘金内容适配规则
+- **开发者视角**：工程化表达。
+- **背景与思路**：清晰交代痛点。
+- **实操落地**：包含代码或 Prompt。
+- **复盘总结**：诚实分享踩坑经历。
+- **预期管理**：提升内容结构化程度，更适合 AI 问答系统读取，但**不承诺收录、排名或模型引用结果**。
+
+## 7. 允许行为 (Human-in-the-loop)
+- 读取本地 `/input/` 目录文件。
+- 生成掘金风格文章和各项元数据。
+- 打开用户本地可见浏览器。
+- 在用户已登录状态下打开创作页面。
+- 辅助填写标题、正文、摘要。
+- 生成发布前人工审核清单。
+
+## 8. 禁止行为 (安全红线)
+1. **不读取、导出、打印或保存 cookie、localStorage 或 sessionStorage**。
+2. **不上传任何登录态或用户数据到远程服务器**。
+3. **不保存账号、密码或 Token**。
+4. **不使用 eval、exec 或动态执行外部代码**。
+5. **不读取本项目目录之外的任何文件**，不允许传入任意绝对路径。
+6. **不自动最终发布**。
+7. **不点赞、不评论、不关注、不批量发文、不批量注册账号**。
+8. **不绕过验证码，不处理风控提示**（遇到阻碍立刻停止）。
+9. **不承诺排名、收录或被 DeepSeek/豆包等 AI 引用**。
+
+## 9. 质量与合规检查标准
+- 内容必须包含发布前准备清单。
+- 自动化流中必须默认为人工保存草稿。
+- 所有功能设计均需遵守平台规则。

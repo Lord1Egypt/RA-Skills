@@ -1,0 +1,10 @@
+{
+  "subtitle_pref": null,
+  "resolution_order": ["1080p", "720p", "2160p", "480p", "360p"],
+  "file_size_cap_gb": null,
+  "downloader": "transmission",
+  "default_action": "search",
+  "auto_download_high_confidence": true,
+  "preferred_release_groups": [],
+  "blocked_release_groups": []
+}

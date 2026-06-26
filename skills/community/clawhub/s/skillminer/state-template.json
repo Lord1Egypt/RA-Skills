@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.5",
+  "last_scan": null,
+  "last_write": null,
+  "last_update": null,
+  "candidates": [],
+  "observations": [],
+  "rejected": [],
+  "deferred": [],
+  "silenced": [],
+  "notes": "Ledger for skillminer. Every nightly scan mutates `candidates[]`, replaces `observations[]`, sets `last_scan`. `rejected[]` and `deferred[]` block re-proposal for 30 days via semantic (not just slug) match — entries REQUIRE `intentSummary` and `triggerPhrases`. `silenced[]` blocks re-proposal permanently (no expiry). `observations[]` is scan-scoped — fully replaced each scan with the current scan's sub-threshold patterns; a human can run `manage-ledger.sh promote <id>` to pull one into `candidates[]` as pending. Preferred mutation path: `scripts/manage-ledger.sh accept|reject|defer|promote|silence|unsilence <id> [reason]` — deterministic, atomic, copies required fields. Hand-editing state.json also works: set `status` on the candidate to accepted/rejected/deferred and the scan prompt (Step 3) + morning-write sweep both respect the new state.",
+  "_schema": {
+    "candidate": {
+      "id": "kebab-case-slug",
+      "type": "skill_candidate",
+      "intentSummary": "one-sentence description of the underlying task (used for semantic cooldown matching)",
+      "firstSeen": "YYYY-MM-DD",
+      "lastSeen": "YYYY-MM-DD",
+      "daysSeen": ["YYYY-MM-DD"],
+      "occurrences": "integer — COUNT IN THE MOST RECENT SCAN WINDOW (not cumulative lifetime)",
+      "confidence": "high|medium|low — set at initial proposal, never mutated by later scans",
+      "status": "pending|accepted|written|rejected|deferred",
+      "written": false,
+      "triggerPhrases": ["verbatim quotes from memory"],
+      "proposedSteps": ["..."],
+      "coverageRisk": "true when a capability-overlapping skill exists but no trigger-level duplicate",
+      "coverageOverlaps": ["skill-names-if-coverageRisk"],
+      "sourceCitations": ["memory/YYYY-MM-DD.md"],
+      "rejectedReason": "null | string — populated when human hand-edits status=rejected instead of using manage-ledger.sh reject",
+      "rejectedAt": "null | YYYY-MM-DD — populated when human hand-edits status=rejected",
+      "deferredReason": "null | string — populated when human hand-edits status=deferred",
+      "deferredAt": "null | YYYY-MM-DD — populated when human hand-edits status=deferred",
+      "resurfacedFrom": "null | 'rejected' | 'deferred' | 'observation' — populated when a cooldown-expired entry re-qualifies OR promote lifted it from observations[]",
+      "resurfacedFromDate": "null | YYYY-MM-DD — original decision date when resurfaced, or promotion date for observation promotes",
+      "promotedFromObservation": "bool — true when created via `manage-ledger.sh promote`; proposedSteps may be empty",
+      "createdAt": "ISO-8601 UTC",
+      "updatedAt": "ISO-8601 UTC"
+    },
+    "observation": {
+      "id": "kebab-case-slug",
+      "intentSummary": "one-sentence description",
+      "occurrences": "integer — count in current scan window",
+      "previousOccurrences": "null | integer — prior scan's observation count for the same semantic pattern; null means new or legacy data without trend history",
+      "daysSeen": ["YYYY-MM-DD"],
+      "previousDays": "null | integer — prior scan's distinct-day count for the same semantic pattern; null means new or legacy data without trend history",
+      "lastSeen": "YYYY-MM-DD",
+      "triggerPhrases": ["verbatim quotes from memory"],
+      "proposedSteps": "optional — may be empty; scan is not required to infer steps for sub-threshold patterns",
+      "sourceCitations": ["memory/YYYY-MM-DD.md"],
+      "reason": "why this did not qualify (e.g. 'only 2 occurrences, watch another week')",
+      "_note": "observations[] is fully REPLACED each scan. Do not hand-edit for persistence — run `manage-ledger.sh promote <id>` or `silence <id>` instead. Existing 0.3 observations may lack previousOccurrences/previousDays; the scan should treat missing values as null, not as zero."
+    },
+    "rejected": {
+      "id": "kebab-case-slug",
+      "rejectedAt": "YYYY-MM-DD",
+      "reason": "why-human-said-no",
+      "intentSummary": "one-sentence description — REQUIRED for semantic cooldown matching",
+      "triggerPhrases": ["REQUIRED — copied from the original candidate so future scans can detect semantically-equivalent resurfaces"]
+    },
+    "deferred": {
+      "id": "kebab-case-slug",
+      "deferredAt": "YYYY-MM-DD",
+      "reason": "why-human-said-not-yet",
+      "intentSummary": "one-sentence description — REQUIRED for semantic cooldown matching",
+      "triggerPhrases": ["REQUIRED"]
+    },
+    "silenced": {
+      "id": "kebab-case-slug",
+      "silencedAt": "YYYY-MM-DD",
+      "reason": "why-this-pattern-is-permanently-off",
+      "intentSummary": "one-sentence description — REQUIRED for semantic silence matching",
+      "triggerPhrases": ["REQUIRED — copied from the source so future scans detect semantic resurfaces and continue to skip them"],
+      "_note": "No expiry. A silenced id is never proposed again as candidate OR observation until `unsilence` is run."
+    }
+  }
+}

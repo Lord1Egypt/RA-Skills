@@ -1,0 +1,10 @@
+# No required dependencies - the script uses Python stdlib only
+# Web scraping for flight prices (Ctrip/Qunar) and 12306 train API
+# work out of the box without any additional packages.
+
+# Optional: Firecrawl (JS rendering for Ctrip flight pages)
+# Set FIRECRAWL_API_KEY env var to enable. Register at https://firecrawl.dev
+# No pip install needed - uses REST API via urllib
+
+# Optional: Amadeus Python SDK (only for existing Amadeus API key holders)
+# amadeus>=12.0.0

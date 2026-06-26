@@ -1,0 +1,14 @@
+{
+  "name": "skill-pilot",
+  "version": "0.4.6",
+  "description": "Adaptive skill scheduling engine with environment-aware routing, user preferences, and self-learning optimization.",
+  "keywords": [
+    "openclaw",
+    "skill-scheduler",
+    "adaptive-routing",
+    "optimization",
+    "agent"
+  ],
+  "author": "JARVIS",
+  "license": "MIT"
+}

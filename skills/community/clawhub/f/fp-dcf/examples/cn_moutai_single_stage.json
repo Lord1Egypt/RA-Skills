@@ -1,0 +1,26 @@
+{
+  "ticker": "600519.SH",
+  "market": "CN",
+  "provider": "akshare_baostock",
+  "statement_frequency": "A",
+  "valuation_model": "steady_state_single_stage",
+  "normalization": {
+    "provider": "akshare_baostock",
+    "use_cache": true,
+    "refresh": false
+  },
+  "sensitivity": {
+    "enabled": true
+  },
+  "assumptions": {
+    "effective_tax_rate": 0.25,
+    "marginal_tax_rate": 0.25,
+    "risk_free_rate": 0.025,
+    "equity_risk_premium": 0.06,
+    "beta": 0.85,
+    "pre_tax_cost_of_debt": 0.035,
+    "equity_weight": 0.95,
+    "debt_weight": 0.05,
+    "terminal_growth_rate": 0.025
+  }
+}

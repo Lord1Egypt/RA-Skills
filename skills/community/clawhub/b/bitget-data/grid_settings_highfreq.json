@@ -1,0 +1,62 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "enabled": true,
+    "gridNum": 48,
+    "priceMin": 65000,
+    "priceMax": 76000,
+    "amount": 20,
+    "maxPosition": 600,
+    "sellOrders": 24,
+    "buyOrders": 24,
+    "targetTradesPerDay": 15,
+    "notes": "BTC 已启用 - 2026-03-18 07:02 重新开启网格策略"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "enabled": true,
+    "gridNum": 6,
+    "priceMin": 55,
+    "priceMax": 135,
+    "amount": 120,
+    "minOrderValue": 10,
+    "maxPosition": 400,
+    "sellOrders": 5,
+    "buyOrders": 5,
+    "targetTradesPerDay": 3,
+    "notes": "SOL 优化 - 2026-03-18 19:40 提高金额 (50→120 USDT) + 降低密度 (8 格→6 格) 目标 3 笔/天"
+  },
+  "eth": {
+    "symbol": "ETHUSDT",
+    "enabled": true,
+    "gridNum": 8,
+    "priceMin": 1900,
+    "priceMax": 2800,
+    "amount": 50,
+    "minOrderValue": 10,
+    "maxPosition": 300,
+    "sellOrders": 7,
+    "buyOrders": 7,
+    "targetTradesPerDay": 4,
+    "notes": "ETH 优化 - 2026-03-18 19:40 提高金额 (15→50 USDT) + 降低密度 (12 格→8 格) 目标 4 笔/天"
+  },
+  "optimization": {
+    "date": "2026-03-18-1940",
+    "goal": "提高单笔金额 + 降低密度 - 提升净利润率",
+    "totalTargetTrades": 7,
+    "strategy": "低频高收益网格 - 大金额 + 宽区间",
+    "changes": [
+      "SOL: 8 格→6 格 (-25%)，区间 60-135→55-135 (+15%)，金额 50→120 USDT (+140%)",
+      "ETH: 12 格→8 格 (-33%)，区间 2000-2700→1900-2800 (+21%)，金额 15→50 USDT (+233%)",
+      "目标成交频率：3-4 笔/天 (原 8.5 笔/小时)",
+      "预期每日成交：7-10 笔，单笔利润提升 2-3 倍"
+    ],
+    "expectedDailyProfit": "1.5-3.0% (低频高收益)",
+    "riskControl": [
+      "严格 maxPosition 限制",
+      "每 30 分钟监控成交",
+      "目标频率 3-4 笔/天",
+      "单笔最小金额 10 USDT"
+    ]
+  }
+}

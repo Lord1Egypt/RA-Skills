@@ -1,0 +1,24 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: "seedance-video-gen-1-2.0"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the seedance-video-gen-1-2.0 skill to make a vertical clip; default Seedance 2.0."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "Generate a Seedance 1.5 Pro text-to-video in 3:4 at 1080p from my one-line idea."
+  - id: version-switch
+    should_trigger: true
+    prompt: "Animate three HTTPS frames with Seedance 1.0 Lite in order, 10s, 9:16."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Refactor my Rust crate and add property-based tests only."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"

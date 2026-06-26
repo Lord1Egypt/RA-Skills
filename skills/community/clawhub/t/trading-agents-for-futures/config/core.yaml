@@ -1,0 +1,61 @@
+# ============================================================
+# Trading_Agents_for_Futures - 默认配置文件
+# 此文件包含系统所有默认配置项
+# 用户可通过 config/user.yaml 覆盖任意配置
+# ============================================================
+
+# ── 项目基础设置 ──────────────────────────────────────────
+project:
+  name: "Trading_Agents_for_Futures"
+  timezone: "Asia/Shanghai"
+  output_dir: "output"
+  cache_dir: "cache"
+
+# ── 数据源配置 ────────────────────────────────────────────
+data:
+  default_lookback_days: 365
+  rate_limit_per_sec: 4
+  retries: 3
+  timeout_sec: 30
+  use_cache: true
+  providers:
+    primary: "akshare"
+    fallback: "tushare"
+
+# ── 默认品种列表 ──────────────────────────────────────────
+symbols:
+  default:
+    - RB
+    - CU
+    - LH
+    - I
+    - MA
+    - M
+
+# ── 风控参数 ──────────────────────────────────────────────
+risk:
+  max_margin_ratio: 0.30
+  max_position_per_symbol: 0.20
+  allow_overnight: true
+  atr_stop_multiplier: 2.5
+  max_drawdown_tolerance: 0.15
+  risk_levels:
+    low:
+      max_position_pct: 0.20
+      stop_loss_pct: 0.02
+    medium:
+      max_position_pct: 0.12
+      stop_loss_pct: 0.03
+    high:
+      max_position_pct: 0.05
+      stop_loss_pct: 0.05
+
+# ── 分析方法配置 ──────────────────────────────────────────
+analysis:
+  engine: "rule_based"
+  dynamic_weights: true
+
+# ── 日志配置 ──────────────────────────────────────────────
+logging:
+  level: "INFO"
+  file: "output/run.log"

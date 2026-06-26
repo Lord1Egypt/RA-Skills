@@ -1,0 +1,28 @@
+{
+  "name": "tiktok-auto-reply",
+  "version": "1.0.0",
+  "description": "TikTok 热门视频自动回复技能",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js check",
+    "watch": "node index.js watch"
+  },
+  "keywords": ["tiktok", "auto-reply", "openclaw", "skill"],
+  "author": "dagugu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagugu/tiktok-auto-reply"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  },
+  "clawhub": {
+    "slug": "tiktok-auto-reply",
+    "displayName": "TikTok 自动回复",
+    "category": "social-media"
+  }
+}

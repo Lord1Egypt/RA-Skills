@@ -1,0 +1,80 @@
+{
+  "id": "787cc847-8070-49a0-a9e6-c1c85133e30e",
+  "name": "chanlun-technical-analysis",
+  "version": "2.0.0",
+  "description": "ChanLun technical analysis skill for A-shares. Automatically identifies fractals, strokes, segments, pivots, and divergences based on ChanZhongShuoChan theory. Generates analysis reports and visualization charts.",
+  "author": "laigen",
+  "created": "2026-03-20",
+  "updated": "2026-03-27",
+  "tags": ["technical-analysis", "chanlun", "stock-analysis", "fractal", "divergence", "pivot"],
+  "entry": "scripts/chanlun_analysis.py",
+  "triggers": [
+    "缠论分析",
+    "技术分析",
+    "股票形态分析",
+    "顶底分型",
+    "笔线段中枢",
+    "背驰检测",
+    "MACD背驰",
+    "趋势判断",
+    "买卖点识别"
+  ],
+  "env": {
+    "required": ["TUSHARE_TOKEN"],
+    "optional": []
+  },
+  "dependencies": {
+    "pip": [
+      "pandas>=1.5.0",
+      "numpy>=1.20.0",
+      "matplotlib>=3.5.0",
+      "tushare>=1.2.0"
+    ]
+  },
+  "sideEffects": {
+    "readsFiles": true,
+    "writesFiles": true,
+    "networkAccess": true,
+    "externalServices": ["Tushare API"]
+  },
+  "security": {
+    "requiresApproval": false,
+    "sensitiveData": false,
+    "riskLevel": "low"
+  },
+  "output": {
+    "formats": ["markdown", "png", "json"],
+    "location": "./outputs/",
+    "description": "Always generates PNG chart and Markdown report. JSON optional with --json flag."
+  },
+  "usage": {
+    "example": "python3 scripts/chanlun_analysis.py 601688",
+    "parameters": {
+      "stock_code": {
+        "type": "string",
+        "required": true,
+        "description": "Stock code (e.g., 601688, 300750)"
+      },
+      "period": {
+        "type": "string",
+        "default": "daily",
+        "description": "Time period (daily, 60, 30)"
+      },
+      "output": {
+        "type": "string",
+        "default": "./outputs",
+        "description": "Output directory"
+      },
+      "json": {
+        "type": "boolean",
+        "default": false,
+        "description": "Additional JSON format output"
+      },
+      "verbose": {
+        "type": "boolean",
+        "default": false,
+        "description": "Verbose output"
+      }
+    }
+  }
+}

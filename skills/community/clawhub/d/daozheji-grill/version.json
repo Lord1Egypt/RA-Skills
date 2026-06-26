@@ -1,0 +1,12 @@
+{
+  "skill": "daozheji-grill",
+  "version": "1.0.0",
+  "data_version": "2026-05-25",
+  "description": "稻哲纪烤羊排 AI 智能客服 Skill",
+  "compatibility": "Requires OpenClaw or compatible skill loader. Reference files in references/ must be readable at query time.",
+  "auto_update": {
+    "method": "git pull",
+    "check_url": "https://github.com/Liubuq-sys/daozheji-grill-skill/releases/latest",
+    "frequency": "daily"
+  }
+}

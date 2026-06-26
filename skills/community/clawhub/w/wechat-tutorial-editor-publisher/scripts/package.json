@@ -1,0 +1,22 @@
+{
+  "name": "step-collector",
+  "version": "1.0.0",
+  "description": "操作步骤收集器",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "pm2": "pm2 start server.js --name step-collector",
+    "pm2-stop": "pm2 stop step-collector",
+    "pm2-logs": "pm2 logs step-collector"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

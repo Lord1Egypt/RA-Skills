@@ -1,35 +1,45 @@
 ---
-name: "procurement-assistant"
-description: "Indexed by skills.sh from jmsktm/claude-settings"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jmsktm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/procurement-assistant"
-sourceUrl: "https://skills.sh/jmsktm/claude-settings/procurement-assistant"
+name: Procurement Assistant
+slug: procurement-assistant
+description: Manage procurement processes from vendor selection to purchase order management
+category: business
+complexity: intermediate
+version: "1.0.0"
+author: "ID8Labs"
+triggers:
+  - "procurement"
+  - "vendor selection"
+  - "purchase order"
+tags:
+  - procurement
+  - purchasing
+  - vendor-management
 ---
 
-# procurement-assistant
+# Procurement Assistant
 
-> Indexed by skills.sh from jmsktm/claude-settings
+Streamline procurement processes from vendor selection through purchase order management. Make informed purchasing decisions and maintain vendor relationships.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jmsktm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/procurement-assistant`
-- **Source URL:** [https://skills.sh/jmsktm/claude-settings/procurement-assistant](https://skills.sh/jmsktm/claude-settings/procurement-assistant)
+## Core Workflows
 
-## Overview
+### Workflow 1: Vendor Selection
+1. **Requirements** - Define what you need
+2. **RFP/RFQ** - Create and distribute requests
+3. **Evaluation** - Score vendor responses
+4. **Due Diligence** - Verify vendor capabilities
+5. **Selection** - Choose and negotiate
 
+### Workflow 2: Purchase Order Management
+1. **Requisition** - Capture purchase needs
+2. **Approval** - Route for authorization
+3. **PO Creation** - Generate purchase order
+4. **Tracking** - Monitor fulfillment
+5. **Receipt** - Confirm delivery and quality
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jmsktm/claude-settings/procurement-assistant
-```
+## Quick Reference
+
+| Action | Command |
+|--------|---------|
+| Create RFP | "Create RFP for [need]" |
+| Evaluate vendors | "Compare vendor proposals" |
+| Create PO | "Generate purchase order for [item]" |

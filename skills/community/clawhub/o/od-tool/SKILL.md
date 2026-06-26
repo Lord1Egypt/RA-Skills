@@ -1,35 +1,33 @@
 ---
-name: "Od Tool"
-description: "Dump file contents in octal, decimal, hexadecimal, and ASCII formats. Use for binary data inspection and low-level file analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/od-tool"
-sourceUrl: "https://clawhub.ai/skills/od-tool"
+name: od-tool
+description: Dump file contents in octal, decimal, hexadecimal, and ASCII formats. Use for binary data inspection and low-level file analysis.
 ---
+# OD - Octal Dump Utility
 
-# Od Tool
+Display file contents in multiple formats including octal, hexadecimal, decimal, and ASCII. Essential for binary analysis, debugging, and examining raw file data at byte level.
 
-> Dump file contents in octal, decimal, hexadecimal, and ASCII formats. Use for binary data inspection and low-level file analysis.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/od-tool`
-- **Source URL:** [https://clawhub.ai/skills/od-tool](https://clawhub.ai/skills/od-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/od-tool
+od-tool [options] <file>
+```
+
+## Format Options
+
+- Default: Octal bytes
+- `-x`: Hexadecimal output
+- `-d`: Decimal output
+- `-c`: ASCII character display
+- `-A`: Select address base (d=decimal, x=hex, o=octal, n=none)
+
+## Examples
+
+```bash
+# Hex dump
+od-tool -x file.bin
+
+# Show ASCII representation
+od-tool -c data.txt
+
+# Hex with decimal addresses
+od-tool -A d -x binary.dat
 ```

@@ -1,0 +1,15 @@
+{
+  "name": "rts-dashboard",
+  "version": "1.0.0",
+  "description": "RTS-style tactical command center for OpenClaw monitoring",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["openclaw", "dashboard", "rts", "monitoring"],
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}

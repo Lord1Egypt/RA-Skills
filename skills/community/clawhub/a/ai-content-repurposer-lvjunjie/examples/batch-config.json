@@ -1,0 +1,33 @@
+{
+  "jobs": [
+    {
+      "name": "youtube-video-1-tiktok",
+      "type": "youtube-to-shorts",
+      "content": "Paste your YouTube transcript here...",
+      "platform": "tiktok"
+    },
+    {
+      "name": "youtube-video-1-shorts",
+      "type": "youtube-to-shorts",
+      "content": "Paste your YouTube transcript here...",
+      "platform": "shorts"
+    },
+    {
+      "name": "blog-post-1-twitter",
+      "type": "blog-to-twitter",
+      "content": "Paste your blog post content here...",
+      "tweetCount": 8
+    },
+    {
+      "name": "blog-post-1-linkedin",
+      "type": "blog-to-linkedin",
+      "content": "Paste your blog post content here...",
+      "tone": "thought-leadership"
+    },
+    {
+      "name": "podcast-episode-1-summary",
+      "type": "podcast-to-summary",
+      "content": "Path to transcript file or paste content here..."
+    }
+  ]
+}

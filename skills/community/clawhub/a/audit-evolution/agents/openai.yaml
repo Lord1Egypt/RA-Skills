@@ -1,0 +1,8 @@
+interface:
+  display_name: "Audit Evolution"
+  short_description: "自动审计运行记录，沉淀记忆并生成下一轮进化建议"
+  brand_color: "#EF4444"
+  default_prompt: "Use $audit-evolution：请审计我的 Agent 最近一次运行，生成 Evidence Pack、Memory Ledger 和下一轮进化建议。"
+
+policy:
+  allow_implicit_invocation: true

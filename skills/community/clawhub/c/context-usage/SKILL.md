@@ -1,35 +1,37 @@
 ---
-name: "openclaw context usage"
-description: "Check current session's context window usage. Shows model name, estimated token usage, and context window utilization percentage. Use when user asks about co..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-usage"
-sourceUrl: "https://clawhub.ai/skills/context-usage"
+name: ctx-usage
+description: Check current session's context window usage. Shows model name, estimated token usage, and context window utilization percentage. Use when user asks about context window, token usage, context usage rate, context remaining, "how full is the context", or any question about how much of the model's context is being used.
 ---
 
-# openclaw context usage
+# Context Window Usage
 
-> Check current session's context window usage. Shows model name, estimated token usage, and context window utilization percentage. Use when user asks about co...
+## How to Check
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-usage`
-- **Source URL:** [https://clawhub.ai/skills/context-usage](https://clawhub.ai/skills/context-usage)
+1. Call `session_status` to get current session info
+2. Extract the `📚 Context:` line for usage data
+3. Present a clean summary to the user
 
-## Overview
+## Output Format
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/context-usage
 ```
+📊 Context Window
+Model: <model_name>
+Used: <used> / <total> (<percent>%)
+Cache: <cache_hit>% hit · <cached_tokens> cached
+Status: 🟢 Comfortable | 🟡 Getting Full | 🔴 Near Limit
+```
+
+## Thresholds
+
+| Usage | Status | Action |
+|---|---|---|
+| <50% | 🟢 Comfortable | No action needed |
+| 50-70% | 🟡 Getting Full | Monitor |
+| 70-85% | 🟠 Consider compact | Suggest `/compact` |
+| >85% | 🔴 Near limit | Recommend `/compact` |
+
+## Notes
+
+- `session_status` provides exact context data via the `📚 Context:` field
+- Token counts and cache hit rates are also available
+- If usage is high, suggest running `op-helper` skill for `/compact`

@@ -1,0 +1,82 @@
+{
+  "template_name": "frontend-framework",
+  "description": "前端框架技术选型评估模板",
+  "evaluation_dimensions": {
+    "performance": {
+      "weight": 0.25,
+      "metrics": {
+        "bundle_size_kb": {"type": "quantitative", "unit": "KB", "target": "<100"},
+        "ttf_content_ms": {"type": "quantitative", "unit": "ms", "target": "<1000"},
+        "fps_rendering": {"type": "quantitative", "unit": "FPS", "target": ">50"}
+      }
+    },
+    "developer_experience": {
+      "weight": 0.20,
+      "metrics": {
+        "learning_curve_days": {"type": "quantitative", "unit": "days", "target": "<7"},
+        "tooling_maturity": {"type": "qualitative", "scale": "1-5", "confidence_interval": "±0.5"},
+        "documentation_quality": {"type": "qualitative", "scale": "1-5", "confidence_interval": "±0.3"}
+      }
+    },
+    "ecosystem": {
+      "weight": 0.15,
+      "metrics": {
+        "npm_downloads_weekly": {"type": "quantitative", "unit": "downloads", "source": "npmjs.com"},
+        "github_stars": {"type": "quantitative", "unit": "stars", "source": "GitHub"},
+        "community_size": {"type": "quantitative", "unit": "members", "source": "Stack Overflow, Discord"}
+      }
+    },
+    "maintainability": {
+      "weight": 0.20,
+      "metrics": {
+        "code_reusability_score": {"type": "quantitative", "scale": "1-10", "confidence_interval": "±1.0"},
+        "testing_support": {"type": "qualitative", "scale": "1-5", "confidence_interval": "±0.4"},
+        "debugging_tools": {"type": "qualitative", "scale": "1-5", "confidence_interval": "±0.3"}
+      }
+    },
+    "scalability": {
+      "weight": 0.10,
+      "metrics": {
+        "component_architecture": {"type": "qualitative", "scale": "1-5", "confidence_interval": "±0.4"},
+        "state_management": {"type": "qualitative", "scale": "1-5", "confidence_interval": "±0.3"},
+        "ssr_support": {"type": "binary", "values": ["supported", "not_supported"]}
+      }
+    },
+    "security": {
+      "weight": 0.10,
+      "metrics": {
+        "cve_count_yearly": {"type": "quantitative", "unit": "CVEs", "target": "<5"},
+        "security_audits": {"type": "quantitative", "unit": "audits", "source": "official documentation"},
+        "xss_protection": {"type": "binary", "values": ["built_in", "manual_implementation"]}
+      }
+    }
+  },
+  "data_sources": {
+    "primary": [
+      "npmjs.com",
+      "bundlephobia.com",
+      "web.dev",
+      "GitHub",
+      "Stack Overflow"
+    ],
+    "secondary": [
+      "State of JS survey",
+      "Tech radar reports",
+      "Official documentation",
+      "Community blogs"
+    ]
+  },
+  "maturity_indicators": {
+    "github_activity": {"metric": "commits_per_month", "threshold": ">50"},
+    "release_frequency": {"metric": "releases_per_quarter", "threshold": ">2"},
+    "issue_response_time": {"metric": "hours", "threshold": "<72"},
+    "backwards_compatibility": {"metric": "breaking_changes_per_year", "threshold": "<2"}
+  },
+  "poc_validation_scenarios": [
+    "Component rendering performance test",
+    "State management complexity assessment",
+    "Build toolchain integration test",
+    "Testing framework compatibility",
+    "SSR/SSG implementation feasibility"
+  ]
+}

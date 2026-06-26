@@ -1,0 +1,115 @@
+# Evaluation: 高级场景 — eBPF / 工具输出解读 / 基准测试 / 编译优化 / Service Mesh
+# 验证 AI 是否能正确应用高级性能分析知识
+
+tests:
+# --- eBPF ---
+- name: "ebpf-syscall-trace"
+  input: "怎么用 bpftrace 追踪某个进程的系统调用延迟分布？"
+  expected_keywords:
+    - "bpftrace"
+    - "tracepoint"
+    - "syscalls"
+    - "hist"
+    - "nsecs"
+  expected_not:
+    - "strace"
+
+- name: "ebpf-tcp-retransmit"
+  input: "线上 TCP 重传率偏高，怎么用 BCC 工具定位是哪些连接在重传？"
+  expected_keywords:
+    - "tcpretrans"
+    - "BCC"
+    - "bpfcc"
+    - "源IP"
+    - "目的IP"
+  expected_not:
+    - "tcpdump"
+
+- name: "ebpf-io-latency"
+  input: "怎么用 eBPF 工具分析磁盘 I/O 延迟的分布情况？"
+  expected_keywords:
+    - "biolatency"
+    - "直方图"
+    - "BCC"
+    - "延迟"
+  expected_not:
+    - "dd"
+
+# --- 工具输出解读 ---
+- name: "interpret-vmstat"
+  input: "vmstat 1 输出中 si/so 列持续有值，wa 列也很高，这说明什么问题？"
+  expected_keywords:
+    - "swap"
+    - "内存不足"
+    - "I/O 等待"
+    - "swappiness"
+    - "free -h"
+  expected_not:
+    - "CPU 密集"
+
+- name: "interpret-iostat"
+  input: "iostat -x 输出中某块磁盘 await 200ms、%util 98%，但 r/s 和 w/s 不高，是什么情况？"
+  expected_keywords:
+    - "磁盘饱和"
+    - "队列"
+    - "调度器"
+    - "await"
+    - "I/O"
+  expected_not:
+    - "网络"
+
+- name: "interpret-ss"
+  input: "ss -s 显示大量 TIME-WAIT 连接（超过 5 万），这正常吗？怎么处理？"
+  expected_keywords:
+    - "tcp_tw_reuse"
+    - "短连接"
+    - "连接池"
+    - "TIME_WAIT"
+    - "keepalive"
+  expected_not:
+    - "重启服务器"
+
+# --- 基准测试 ---
+- name: "benchmark-disk-iops"
+  input: "怎么用 fio 测试 NVMe SSD 的随机读 IOPS？"
+  expected_keywords:
+    - "fio"
+    - "randread"
+    - "libaio"
+    - "direct=1"
+    - "iodepth"
+  expected_not:
+    - "dd"
+
+- name: "benchmark-http"
+  input: "怎么对 HTTP API 做压力测试？需要测量延迟分布和吞吐量。"
+  expected_keywords:
+    - "wrk"
+    - "p99"
+    - "QPS"
+    - "并发"
+  expected_not:
+    - "curl"
+
+# --- 编译优化 ---
+- name: "compile-optimization-lto"
+  input: "C++ 项目编译出来的二进制性能不理想，听说 LTO 和 PGO 能提升性能，具体怎么用？"
+  expected_keywords:
+    - "LTO"
+    - "PGO"
+    - "-flto"
+    - "fprofile"
+    - "链接时优化"
+  expected_not:
+    - "strip"
+
+# --- Service Mesh ---
+- name: "service-mesh-latency"
+  input: "接入 Istio 后服务延迟增加了 5-10ms，有什么优化方案？"
+  expected_keywords:
+    - "sidecar"
+    - "Envoy"
+    - "mTLS"
+    - "资源"
+  expected_not:
+    - "重启"

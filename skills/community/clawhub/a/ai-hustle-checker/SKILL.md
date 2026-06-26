@@ -1,35 +1,93 @@
 ---
-name: "AI副业真假鉴别器"
-description: "AI副业真伪鉴别工具。帮你识别AI副业项目/课程/机会到底是真是假。 当用户说"AI副业靠谱吗"、"这个课值不值"、"AI赚钱是不是骗人的"、"帮我看看这个副业"时触发。 Keywords: AI副业, 副业, 赚钱, 割韭菜, 骗局, 识别骗术, 副业真伪, 副业避坑."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, checker, chinese, fraud, side-hustle]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-hustle-checker"
-sourceUrl: "https://clawhub.ai/skills/ai-hustle-checker"
+name: ai-side-hustle-checker
+description: |
+  AI副业真伪鉴别工具。帮你识别AI副业项目/课程/机会到底是真是假。
+  当用户说"AI副业靠谱吗"、"这个课值不值"、"AI赚钱是不是骗人的"、"帮我看看这个副业"时触发。
+  Keywords: AI副业, 副业, 赚钱, 割韭菜, 骗局, 识别骗术, 副业真伪, 副业避坑.
+metadata: {"openclaw": {"emoji": "🔎"}}
 ---
 
-# AI副业真假鉴别器
+# AI副业真伪鉴别器
 
-> AI副业真伪鉴别工具。帮你识别AI副业项目/课程/机会到底是真是假。 当用户说"AI副业靠谱吗"、"这个课值不值"、"AI赚钱是不是骗人的"、"帮我看看这个副业"时触发。 Keywords: AI副业, 副业, 赚钱, 割韭菜, 骗局, 识别骗术, 副业真伪, 副业避坑.
+帮你识别AI副业项目/课程/机会的真实性，避免被割韭菜。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-hustle-checker`
-- **Source URL:** [https://clawhub.ai/skills/ai-hustle-checker](https://clawhub.ai/skills/ai-hustle-checker)
+## 核心功能
 
-## Overview
+### 1. 副业机会鉴别
+分析副业项目的真实可行性，给出可信度评分
 
+### 2. 常见骗局识别
+检测割韭菜特征：夸大收益、贩卖焦虑、课程套路
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 机会评估
+分析具体项目的能力要求、资源投入、预期收益
+
+### 4. 避坑指南
+识别高风险信号，给出替代建议
+
+## 使用方式
+
 ```bash
-hermes skills install clawhub/ai-hustle-checker
+# 交互式鉴别
+python3 scripts/hustle_checker.py
+
+# 快速评估
+python3 scripts/hustle_checker.py --project "用AI写小红书月入过万"
+
+# 课程鉴别
+python3 scripts/hustle_checker.py --course "某AI副业训练营"
+
+# 批量检测关键词
+python3 scripts/hustle_checker.py --scan "月入十万 AI副业"
+```
+
+## 鉴别逻辑
+
+### 可信度评分（0-100）
+
+| 分值 | 评级 | 说明 |
+|------|------|------|
+| 80-100 | 🟢 真实机会 | 有真实案例，需付出努力 |
+| 60-79 | 🟡 需谨慎 | 有可行空间，但存在夸大 |
+| 40-59 | 🟠 高风险 | 多数是坑，少数有真实价值 |
+| 0-39 | 🔴 基本骗局 | 典型的割韭菜项目 |
+
+### 典型骗术特征
+
+🔴 **割韭菜红灯**
+- "零基础、月入过万" 同时出现
+- "普通人也能做" + 高收益承诺
+- 只展示成功案例，无失败率
+- 需要先买课/买工具/发展下线
+- 强调"限量"、"即将涨价"
+
+🟢 **真实机会特征**
+- 有明确的能力要求说明
+- 客观描述收益周期（通常3-6个月起）
+- 有具体执行步骤和工具清单
+- 愿意公开真实数据和案例
+- 有退款/保障机制
+
+## 输出示例
+
+```
+🔎 AI副业真伪鉴别报告
+━━━━━━━━━━━━━━━━━━━━
+项目：用AI写小红书月入过万
+
+📊 可信度评分：52/100（🟠 高风险）
+
+⚠️ 风险点：
+  🔴 收益承诺过高（"过万"无依据）
+  🔴 强调"普通人"但无门槛要求
+  🟡 变现路径不清晰
+  🟡 竞争激烈程度未提及
+
+✅ 真实成分：
+  🟢 AI辅助内容生产逻辑可行
+  🟢 小红书平台真实有流量
+
+💡 修正后评估：
+  新手用AI辅助做小红书，月入1000-3000元
+  是可能的，但需要3-6个月积累期
 ```

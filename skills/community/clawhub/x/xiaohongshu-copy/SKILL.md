@@ -1,35 +1,56 @@
 ---
-name: "Xiaohongshu Copy"
-description: "自动生成小红书（XHS）平台文案，精准结合当周热点话题与营销节点。 触发条件：用户说"写小红书"、"生成小红书文案"、"帮我发小红书"、"出一篇小红书"、 或任何提到"小红书文案"、"小红书笔记"的需求。 生成结果包含：标题、正文（emoji密集）、话题标签、发布建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-copy"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-copy"
+name: xiaohongshu-copy
+description: |
+  自动生成小红书（XHS）平台文案，精准结合当周热点话题与营销节点。
+  触发条件：用户说"写小红书"、"生成小红书文案"、"帮我发小红书"、"出一篇小红书"、
+  或任何提到"小红书文案"、"小红书笔记"的需求。
+  生成结果包含：标题、正文（emoji密集）、话题标签、发布建议。
 ---
 
-# Xiaohongshu Copy
+# 小红书文案生成
 
-> 自动生成小红书（XHS）平台文案，精准结合当周热点话题与营销节点。 触发条件：用户说"写小红书"、"生成小红书文案"、"帮我发小红书"、"出一篇小红书"、 或任何提到"小红书文案"、"小红书笔记"的需求。 生成结果包含：标题、正文（emoji密集）、话题标签、发布建议。
+## 工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-copy`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-copy](https://clawhub.ai/skills/xiaohongshu-copy)
+1. **搜索当周热点**：用 `batch_web_search` 搜索小红书/微博本周热搜话题，结合营销节点
+2. **匹配景区/品牌**：将热点与江山五大景区（江郎山/廿八都/清漾村/浮盖山/仙霞关）或用户指定内容关联
+3. **生成文案**：按下方格式生成
 
-## Overview
+## 小红书文案格式规范
 
+**标题**（25字内，含emoji，制造悬念/情绪/数字）
+**正文**（300-800字，emoji密集，第一人称，口语化，分段清晰）
+**话题标签**（5-10个，含平台热门标签+垂直标签）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-copy
-```
+## 参考：话题标签选择策略
+
+详见 `references/hashtags.md`——包含：
+- 平台热门标签（#小红书种草 #旅行推荐 #周末去哪玩）
+- 垂直旅行标签（#江浙沪周边游 #浙江旅游 #小众景点）
+- 当周热点标签（从热搜中提炼）
+
+## 输出格式模板
+
+---
+**【标题】**
+
+📍 地点 / ⏰ 时间 / 👥 适合人群
+
+[正文第一段：hook，制造共鸣或悬念]
+[正文第二段：主体内容，干货/体验/故事]
+[正文第三段：结尾引导互动]
+
+🔥 话题标签：
+#xxx #xxx #xxx #xxx #xxx
+
+---
+**发布建议**：
+- 最佳发布时间：...
+- 配图方向：...
+- 互动钩子：...
+---
+
+## 注意事项
+
+- 搜索热点时用 `data_range: "w"` 限制一周内
+- 同一热点多平台印证（微博热搜+小红书站内热榜）
+- 景区文案避免直接广告腔，要有人物故事或情感共鸣

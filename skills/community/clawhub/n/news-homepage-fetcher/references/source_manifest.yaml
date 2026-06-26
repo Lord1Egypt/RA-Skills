@@ -1,0 +1,414 @@
+version: 1
+updated_at: 2026-04-16
+selection_policy:
+  default_mode: homepage_first
+  article_types:
+    - breaking
+    - top_story
+    - latest
+    - analysis
+    - world
+    - asia
+    - china
+    - singapore
+  exclude_by_default:
+    - live_blog
+    - video_only
+    - newsletter_landing
+    - opinion_only
+    - podcasts_only
+    - photo_gallery_only
+sources:
+  - id: bbc-news
+    name: BBC News
+    region: International
+    language: en
+    homepage: https://www.bbc.com/news
+    sections:
+      - https://www.bbc.com/news
+      - https://www.bbc.com/news/world
+      - https://www.bbc.com/news/business
+    priority: tier_1
+    notes: Focus on homepage hero cards and latest/world cards.
+
+  - id: reuters-world
+    name: Reuters
+    region: International
+    language: en
+    homepage: https://www.reuters.com/world/
+    sections:
+      - https://www.reuters.com/world/
+      - https://www.reuters.com/world/asia-pacific/
+      - https://www.reuters.com/world/china/
+    priority: tier_1
+    notes: Prefer straight news and exclusive reports; metadata is usually clean.
+
+  - id: ap-news
+    name: AP News
+    region: International
+    language: en
+    homepage: https://apnews.com/
+    sections:
+      - https://apnews.com/
+      - https://apnews.com/world-news
+      - https://apnews.com/asia-pacific
+    priority: tier_1
+    notes: Prefer homepage clusters and world tabs.
+
+  - id: cnn-world
+    name: CNN International
+    region: International
+    language: en
+    homepage: https://edition.cnn.com/
+    sections:
+      - https://edition.cnn.com/
+      - https://edition.cnn.com/world
+    priority: tier_2
+    notes: Avoid autoplay video pages unless article text is present.
+
+  - id: aljazeera
+    name: Al Jazeera
+    region: International
+    language: en
+    homepage: https://www.aljazeera.com/
+    sections:
+      - https://www.aljazeera.com/
+      - https://www.aljazeera.com/news/
+    priority: tier_1
+    notes: Strong for Middle East and Global South coverage.
+
+  - id: guardian-world
+    name: The Guardian
+    region: International
+    language: en
+    homepage: https://www.theguardian.com/international
+    sections:
+      - https://www.theguardian.com/world
+      - https://www.theguardian.com/international
+    priority: tier_2
+    notes: Distinguish news reports from comment/opinion pages.
+
+  - id: france24
+    name: France 24
+    region: International
+    language: en
+    homepage: https://www.france24.com/en/
+    sections:
+      - https://www.france24.com/en/
+      - https://www.france24.com/en/asia-pacific/
+    priority: tier_2
+    notes: Good supplement for Europe, Africa and Middle East.
+
+  - id: dw
+    name: DW
+    region: International
+    language: en
+    homepage: https://www.dw.com/en/top-stories/s-9097
+    sections:
+      - https://www.dw.com/en/top-stories/s-9097
+      - https://www.dw.com/en/asia/s-12749074
+    priority: tier_2
+    notes: Useful for Europe and Germany-related stories.
+
+  - id: bloomberg
+    name: Bloomberg
+    region: International
+    language: en
+    homepage: https://www.bloomberg.com/
+    sections:
+      - https://www.bloomberg.com/
+      - https://www.bloomberg.com/asia
+    priority: tier_2
+    notes: Expect partial paywall on some articles; use accessible pages only.
+
+  - id: cnbc-world
+    name: CNBC World
+    region: International
+    language: en
+    homepage: https://www.cnbc.com/world/?region=world
+    sections:
+      - https://www.cnbc.com/world/?region=world
+    priority: tier_2
+    notes: Strong for markets, business and macro headlines.
+
+  - id: financial-times
+    name: Financial Times
+    region: International
+    language: en
+    homepage: https://www.ft.com/world
+    sections:
+      - https://www.ft.com/world
+      - https://www.ft.com/asia
+    priority: tier_3
+    notes: Partial paywall; capture only accessible pages and always mark paywalled skips.
+
+  - id: nyt-world
+    name: The New York Times
+    region: International
+    language: en
+    homepage: https://www.nytimes.com/section/world
+    sections:
+      - https://www.nytimes.com/section/world
+    priority: tier_3
+    notes: Strong editorial reputation but frequent paywall.
+
+  - id: wsj-world
+    name: The Wall Street Journal
+    region: International
+    language: en
+    homepage: https://www.wsj.com/world
+    sections:
+      - https://www.wsj.com/world
+      - https://www.wsj.com/news/world/asia
+    priority: tier_3
+    notes: Usually paywalled; treat as optional unless access exists.
+
+  - id: nikkei-asia
+    name: Nikkei Asia
+    region: International
+    language: en
+    homepage: https://asia.nikkei.com/
+    sections:
+      - https://asia.nikkei.com/
+    priority: tier_2
+    notes: High value for Asia business and geopolitics; partial paywall possible.
+
+  - id: nhk-world
+    name: NHK World
+    region: International
+    language: en
+    homepage: https://www3.nhk.or.jp/nhkworld/
+    sections:
+      - https://www3.nhk.or.jp/nhkworld/
+      - https://www3.nhk.or.jp/nhkworld/en/news/
+    priority: tier_2
+    notes: Useful for Japan and Asia-Pacific developments.
+
+  - id: afp-news
+    name: AFP
+    region: International
+    language: en
+    homepage: https://www.afp.com/en/news
+    sections:
+      - https://www.afp.com/en/news
+    priority: tier_2
+    notes: Wire coverage; homepage structure may emphasize summaries.
+
+  - id: cna
+    name: CNA
+    region: Singapore
+    language: en
+    homepage: https://www.channelnewsasia.com/
+    sections:
+      - https://www.channelnewsasia.com/
+      - https://www.channelnewsasia.com/singapore
+      - https://www.channelnewsasia.com/asia
+      - https://www.channelnewsasia.com/world
+    priority: tier_1
+    notes: Primary Singapore source; prioritize Singapore and Asia sections.
+
+  - id: straits-times
+    name: The Straits Times
+    region: Singapore
+    language: en
+    homepage: https://www.straitstimes.com/
+    sections:
+      - https://www.straitstimes.com/
+      - https://www.straitstimes.com/singapore
+      - https://www.straitstimes.com/asia
+      - https://www.straitstimes.com/world
+    priority: tier_1
+    notes: High-value Singapore mainstream outlet; some pages may be subscriber-gated.
+
+  - id: todayonline
+    name: TODAY
+    region: Singapore
+    language: en
+    homepage: https://www.todayonline.com/
+    sections:
+      - https://www.todayonline.com/
+      - https://www.todayonline.com/singapore
+      - https://www.todayonline.com/world
+    priority: tier_2
+    notes: Good complementary Singapore daily coverage.
+
+  - id: zaobao
+    name: 联合早报
+    region: Singapore
+    language: zh
+    homepage: https://www.zaobao.com/
+    sections:
+      - https://www.zaobao.com/
+      - https://www.zaobao.com/realtime/singapore
+      - https://www.zaobao.com/realtime/china
+      - https://www.zaobao.com/realtime/world
+    priority: tier_1
+    notes: Strong Chinese-language Singapore and regional source.
+
+  - id: business-times-sg
+    name: The Business Times
+    region: Singapore
+    language: en
+    homepage: https://www.businesstimes.com.sg/
+    sections:
+      - https://www.businesstimes.com.sg/
+    priority: tier_2
+    notes: Focus on Singapore finance and corporate stories.
+
+  - id: mothership
+    name: Mothership
+    region: Singapore
+    language: en
+    homepage: https://mothership.sg/
+    sections:
+      - https://mothership.sg/
+    priority: tier_3
+    notes: Digital-native source; use selectively for Singapore public-interest stories.
+
+  - id: asiaone
+    name: AsiaOne
+    region: Singapore
+    language: en
+    homepage: https://www.asiaone.com/
+    sections:
+      - https://www.asiaone.com/
+      - https://www.asiaone.com/singapore
+      - https://www.asiaone.com/world
+    priority: tier_3
+    notes: Useful as a backup source rather than a lead source.
+
+  - id: xinhuanet
+    name: 新华网
+    region: China Mainland
+    language: zh
+    homepage: http://www.news.cn/
+    sections:
+      - http://www.news.cn/
+      - http://www.news.cn/world/
+      - http://www.news.cn/politics/
+    priority: tier_1
+    notes: Core official source for major domestic and global developments.
+
+  - id: people-cn
+    name: 人民网
+    region: China Mainland
+    language: zh
+    homepage: https://www.people.com.cn/
+    sections:
+      - https://www.people.com.cn/
+      - http://world.people.com.cn/
+      - http://politics.people.com.cn/
+    priority: tier_1
+    notes: Strong for politics and public-policy coverage.
+
+  - id: cctv-news
+    name: 央视网新闻
+    region: China Mainland
+    language: zh
+    homepage: https://news.cctv.com/
+    sections:
+      - https://news.cctv.com/
+      - https://news.cctv.com/china/
+      - https://news.cctv.com/world/
+    priority: tier_1
+    notes: Strong for broadcast-backed breaking coverage.
+
+  - id: chinanews
+    name: 中国新闻网
+    region: China Mainland
+    language: zh
+    homepage: https://www.chinanews.com.cn/
+    sections:
+      - https://www.chinanews.com.cn/
+      - https://www.chinanews.com.cn/world/
+      - https://www.chinanews.com.cn/gn/
+    priority: tier_1
+    notes: Useful for fast-moving domestic and international aggregation.
+
+  - id: chinadaily
+    name: China Daily
+    region: China Mainland
+    language: en
+    homepage: https://www.chinadaily.com.cn/
+    sections:
+      - https://www.chinadaily.com.cn/
+      - https://www.chinadaily.com.cn/world/
+      - https://www.chinadaily.com.cn/china/
+    priority: tier_2
+    notes: Useful English-language China coverage for cross-language alignment.
+
+  - id: huanqiu
+    name: 环球网
+    region: China Mainland
+    language: zh
+    homepage: https://www.huanqiu.com/
+    sections:
+      - https://www.huanqiu.com/
+      - https://world.huanqiu.com/
+      - https://china.huanqiu.com/
+    priority: tier_2
+    notes: Strong for international and geopolitical headlines; verify with other outlets.
+
+  - id: thepaper
+    name: 澎湃新闻
+    region: China Mainland
+    language: zh
+    homepage: https://www.thepaper.cn/
+    sections:
+      - https://www.thepaper.cn/
+      - https://www.thepaper.cn/channel_25950
+      - https://www.thepaper.cn/channel_25951
+    priority: tier_2
+    notes: Strong for explanatory and in-depth pieces.
+
+  - id: caixin
+    name: 财新网
+    region: China Mainland
+    language: zh
+    homepage: https://www.caixin.com/
+    sections:
+      - https://www.caixin.com/
+    priority: tier_2
+    notes: Strong for business and investigative reporting; partial paywall common.
+
+  - id: jiemian
+    name: 界面新闻
+    region: China Mainland
+    language: zh
+    homepage: https://www.jiemian.com/
+    sections:
+      - https://www.jiemian.com/
+    priority: tier_3
+    notes: Useful supplement for business and tech coverage.
+
+  - id: eeo
+    name: 经济观察网
+    region: China Mainland
+    language: zh
+    homepage: https://www.eeo.com.cn/
+    sections:
+      - https://www.eeo.com.cn/
+    priority: tier_3
+    notes: Supplementary source for economy and policy interpretation.
+
+  - id: scmp
+    name: South China Morning Post
+    region: Greater China
+    language: en
+    homepage: https://www.scmp.com/
+    sections:
+      - https://www.scmp.com/
+      - https://www.scmp.com/news/china
+      - https://www.scmp.com/news/asia
+    priority: tier_2
+    notes: Optional bridge source for China and Asia coverage; some pages may be gated.
+
+  - id: rthk-news
+    name: 香港电台新闻
+    region: Greater China
+    language: zh
+    homepage: https://news.rthk.hk/rthk/ch/
+    sections:
+      - https://news.rthk.hk/rthk/ch/
+    priority: tier_3
+    notes: Optional official Hong Kong public broadcaster source.

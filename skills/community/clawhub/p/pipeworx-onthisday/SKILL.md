@@ -1,35 +1,33 @@
 ---
-name: "Pipeworx onthisday"
-description: "On This Day MCP — wraps byabbe.se/on-this-day (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-onthisday"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-onthisday"
+name: pipeworx-onthisday
+description: On This Day MCP — wraps byabbe.se/on-this-day (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/onthisday
 ---
 
-# Pipeworx onthisday
+# pipeworx-onthisday
 
-> On This Day MCP — wraps byabbe.se/on-this-day (free, no auth)
+On This Day MCP — wraps byabbe.se/on-this-day (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-onthisday`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-onthisday](https://clawhub.ai/skills/pipeworx-onthisday)
+## Tools
 
-## Overview
+- `get_events`
+- `get_births`
+- `get_deaths`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-onthisday
+```json
+{
+  "mcpServers": {
+    "pipeworx-onthisday": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/onthisday/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/onthisday](https://pipeworx.io/packs/onthisday)

@@ -1,0 +1,21 @@
+{
+  "name": "mofang-page-builder",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Standalone Magicflu/Mofang page-builder skill for Codex/OpenAI, OpenClaw, Claude Code, Trae, and Trae CN",
+  "type": "module",
+  "scripts": {
+    "deploy": "node scripts/deploy.mjs",
+    "fetch-spec": "node scripts/fetch-form-spec.mjs",
+    "mock": "node scripts/mock-jsonv2.mjs --port 3847 --dir ./assets/mock-data",
+    "mock:proxy": "node scripts/mock-jsonv2.mjs --mode proxy --port 3847",
+    "check:scripts": "node --check scripts/deploy.mjs && node --check scripts/fetch-form-spec.mjs && node --check scripts/mock-jsonv2.mjs && node --check scripts/pack-skill.mjs && node --check scripts/lib/magicflu-session.mjs && node --check scripts/upload-flow-smoke.mjs && node --check scripts/mock-jsonv2-smoke.mjs && node --check scripts/fetch-import-smoke.mjs",
+    "smoke:upload": "node scripts/upload-flow-smoke.mjs",
+    "smoke:mock": "node scripts/mock-jsonv2-smoke.mjs",
+    "smoke:fetch-import": "node scripts/fetch-import-smoke.mjs",
+    "pack": "node scripts/pack-skill.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

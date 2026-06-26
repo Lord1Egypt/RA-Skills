@@ -1,0 +1,31 @@
+{
+  "name": "paperbox",
+  "tagline": "Upload HTML games, apps & generative art to PaperBox and get a shareable link",
+  "description": "Enables OpenClaw agents to instantly publish self-contained HTML games, apps, and generative art to PaperBox — a community gallery for AI-created web experiences. After the agent builds an HTML project (game, app, or art), this skill uploads it via the PaperBox API and returns a live URL the user can click to view and share.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "category": "publishing",
+  "tags": ["html", "games", "apps", "generative-art", "publishing", "sharing", "paperbox", "hosting"],
+  "author": {
+    "name": "Felixdaga",
+    "url": "https://paperbox-beta.vercel.app"
+  },
+  "links": {
+    "homepage": "https://paperbox-beta.vercel.app",
+    "support": "https://paperbox-beta.vercel.app",
+    "repository": "https://github.com/felixdaga/paperbox"
+  },
+  "support_url": "https://paperbox-beta.vercel.app",
+  "credentials": [
+    {
+      "key": "PAPERBOX_API_KEY",
+      "label": "PaperBox API Key",
+      "description": "Log in at https://paperbox-beta.vercel.app/login (create a profile if needed), then go to Profile settings to generate your API key.",
+      "required": true,
+      "sensitive": true
+    }
+  ],
+  "permissions": ["network:outbound"],
+  "minOpenClawVersion": "2026.1.0"
+}

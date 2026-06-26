@@ -1,35 +1,20 @@
----
-name: "Feishu Image"
-description: "Upload and send images to Feishu chats or users by file path or URL, with image caching to avoid duplicate uploads."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-image"
-sourceUrl: "https://clawhub.ai/skills/feishu-image"
----
+# Feishu Image Skill
 
-# Feishu Image
+上传并发送图片到飞书聊天或用户。支持缓存 `image_key`，避免重复上传同一文件。
 
-> Upload and send images to Feishu chats or users by file path or URL, with image caching to avoid duplicate uploads.
+## 使用方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-image`
-- **Source URL:** [https://clawhub.ai/skills/feishu-image](https://clawhub.ai/skills/feishu-image)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-image
+node skills/feishu-image/send.js --target <chat_id_or_user_id> --file <path_to_image>
+# 或者直接发送网络图片（自动下载）
+node skills/feishu-image/send.js --target <chat_id_or_user_id> --url <image_url>
 ```
+
+## 参数
+- `--target`: 用户 OpenID（`ou_...`）或群 ChatID（`oc_...`）
+- `--file`: 本地图片路径
+- `--url`: 网络图片 URL（可选，自动下载并发送）
+
+## 配置
+- `FEISHU_APP_ID`
+- `FEISHU_APP_SECRET`

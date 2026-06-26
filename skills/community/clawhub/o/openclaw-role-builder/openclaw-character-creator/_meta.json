@@ -1,0 +1,19 @@
+{
+  "ownerId": "zhouyi531",
+  "slug": "openclaw-character-creator",
+  "version": "1.0.2",
+  "publishedAt": "2026-03-28T00:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [
+    "~/.openclaw/ROLES.json",
+    "~/.openclaw/workspace"
+  ],
+  "credentialSetup": {
+    "type": "none",
+    "description": "No credentials required. Character data stored as names and workspace paths only — no secrets."
+  },
+  "requires": {
+    "anyBinaries": ["python3"],
+    "os": ["linux", "macos", "windows"]
+  }
+}

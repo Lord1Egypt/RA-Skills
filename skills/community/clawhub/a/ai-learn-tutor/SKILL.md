@@ -1,35 +1,176 @@
 ---
-name: "AI Learning Tutor"
-description: "AI学习私教 - 搭知识库、规划路径、出题练习、批改讲解、总结输出。学练查写闭环，从零学成高手。支持任意学科：专业、考证、编程、论文等。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, education, knowledge-base, learning, study, tutor]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-learn-tutor"
-sourceUrl: "https://clawhub.ai/skills/ai-learn-tutor"
+name: ai-learn-tutor
+version: 1.0.0
+description: AI学习私教 - 搭知识库、规划路径、出题练习、批改讲解、总结输出。学练查写闭环，从零学成高手。支持任意学科：专业、考证、编程、论文等。
+keywords: [AI学习私教,learnTutor,AI学习助手,学习效率,AI Agent,智能学习,学习闭环,搭建知识库,学习路径,练习测试,整理输出,学练查写]
 ---
 
-# AI Learning Tutor
+# AI学习私教 LearnTutor
 
-> AI学习私教 - 搭知识库、规划路径、出题练习、批改讲解、总结输出。学练查写闭环，从零学成高手。支持任意学科：专业、考证、编程、论文等。
+把**学、练、查、写**串成一个闭环，从零学成高手。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-learn-tutor`
-- **Source URL:** [https://clawhub.ai/skills/ai-learn-tutor](https://clawhub.ai/skills/ai-learn-tutor)
+---
 
-## Overview
+## 核心功能
 
+### 1. 搭知识库
+- 上传论文、文档、资料
+- 自动构建专属知识库
+- 向量检索 + RAG 召回
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-learn-tutor
+### 2. 规划学习路径
+- 根据基础与目标
+- 自动生成个性化学习路线
+- 阶段里程碑设定
+
+### 3. 练习测试
+- 自动出题（选择题/简答题/计算题）
+- 练习 → 批改 → 讲解
+- 错题本自动整理
+
+### 4. 整理输出
+- 知识点自动总结
+- 框架结构梳理
+- 笔记生成 + 复习卡片
+
+---
+
+## 学习闭环流程
+
 ```
+📚 资料输入 → 🧠 知识库构建 → 🗺️ 路径规划
+       ↑                              ↓
+       ← 📝 整理输出 ← 🎯 薄弱点强化
+              ↑
+         📖 学习 & 练习
+              ↓
+         ✅ 掌握 & 输出
+```
+
+---
+
+## 使用方式
+
+当用户说：
+```
+我想要学习机器学习
+帮我制定学习计划
+出几道题考考我
+总结一下这个知识点
+我不懂这个概念，解释一下
+学习进度追踪
+```
+
+---
+
+## 支持学科
+
+- 🎓 **专业课程**：数学、物理、统计、金融工程
+- 💻 **编程开发**：Python、机器学习、深度学习
+- 📄 **论文研究**：文献阅读、论文复现
+- 📝 **考证备考**：CFA、FRM、AI证书
+- 🌍 **语言学习**：英语、中文、其他外语
+
+---
+
+## 教学原则
+
+1. **连贯式教学**：不零散问答，有系统性
+2. **循序渐进**：从基础到进阶
+3. **讲练结合**：学完立刻练
+4. **错题讲解**：错了就详细解释
+5. **进度可视化**：知道自己学了多少
+
+---
+
+## 示例对话
+
+**用户**：我想学习深度学习，从零开始
+
+**AI私教**：
+```
+🎯 目标确认：从零掌握深度学习基础
+📊 当前水平：假设零基础
+
+🗺️ 个性化学习路径（共6周）：
+
+Week 1-2: 数学基础
+  → 线性代数回顾（矩阵运算、特征值）
+  → 微积分基础（梯度、链式法则）
+  → 练习题 + 批改
+
+Week 3: Python + NumPy
+  → 实战编程入门
+  → 100道练习题
+
+Week 4: 机器学习基础
+  → 监督学习、无监督学习概念
+  → 回归与分类
+
+Week 5: 神经网络入门
+  → Perceptron → MLP → 反向传播
+  → 用NumPy实现
+
+Week 6: 深度学习框架
+  → PyTorch 入门
+  → CNN / RNN 基础概念
+
+📦 交付物：
+- 每章练习题 + 答案
+- 代码仓库
+- 知识点笔记
+```
+
+---
+
+## 知识点总结模板
+
+```markdown
+# [主题] 知识点总结
+
+## 核心概念
+- 概念1：
+- 概念2：
+
+## 关键公式
+公式1：xxx
+公式2：xxx
+
+## 应用场景
+- 场景1：
+- 场景2：
+
+## 常见误区
+- 误区1：
+- 误区2：
+
+## 练习题
+1. xxx
+2. xxx
+```
+
+---
+
+## 学习进度追踪
+
+| 阶段 | 内容 | 状态 | 掌握度 |
+|------|------|------|--------|
+| Week 1 | 数学基础 | ✅ | 85% |
+| Week 2 | Python | 🔄 | 60% |
+| Week 3 | ML基础 | ⏳ | 0% |
+
+---
+
+## 核心优势
+
+| 传统学习 | AI私教 |
+|---------|--------|
+| 零散问答 | 连贯体系 |
+| 被动吸收 | 主动练习 |
+| 无人批改 | 自动批改 |
+| 不知道差距 | 进度可视化 |
+| 资料难找 | 知识库自动构建 |
+
+---
+
+*让学习更高效，让知识更扎实*

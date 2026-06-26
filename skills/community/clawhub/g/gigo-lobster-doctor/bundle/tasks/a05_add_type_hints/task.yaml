@@ -1,0 +1,45 @@
+id: a05
+track: A
+title_zh: 给函数补类型注解并通过 mypy
+category: refactor
+difficulty: medium
+timeout_seconds: 360
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.4
+  target: tests/test_calc.py
+  fail_to_pass: []
+  pass_to_pass:
+  - test_add
+  - test_concat
+  - test_average
+- type: state_hash
+  weight: 0.2
+  files:
+  - src/calc.py
+  required_patterns:
+  - '-> '
+  - ': list'
+  - ': int|: float'
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A05_9f3a
+metadata:
+  estimated_minutes: 6
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+  notes: check.py 还会跑 mypy（如未安装则跳过给中性分）
+title_en: Add type hints

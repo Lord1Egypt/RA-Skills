@@ -1,0 +1,90 @@
+{
+  "dashboard_name": "数字人团队",
+  "dashboard_subtitle": "实时监控 Agent 状态与 Token 使用情况",
+  "theme": "dark",
+  "refresh_interval": 30,
+  "host": "0.0.0.0",
+  "port": 5181,
+  "debug": false,
+  "show_cost_estimates": false,
+  "cost_decimal_places": 4,
+  "token_cost": {
+    "input_price_per_1m": 0.9,
+    "output_price_per_1m": 0.9,
+    "cache_price_per_1m": 0,
+    "currency": "CNY"
+  },
+  "agent_configs": {
+    "brainstorm": {
+      "name": "Brainstorm",
+      "role": "创意顾问",
+      "emoji": "💡",
+      "color": "brainstorm",
+      "description": "头脑风暴",
+      "avatar_path": "/home/mike/workspace/agent-dashboard-v2/data/avatars/brainstorm.png"
+    },
+    "coder": {
+      "name": "Coder",
+      "role": "代码专家",
+      "emoji": "💻",
+      "color": "coder",
+      "description": "专注代码编写"
+    },
+    "investor": {
+      "name": "Investor",
+      "role": "投资分析",
+      "emoji": "📈",
+      "color": "investor",
+      "description": "投资分析"
+    },
+    "main": {
+      "name": "小七",
+      "role": "主助手",
+      "emoji": "🎯",
+      "color": "main",
+      "description": "主要对话助手",
+      "avatar_path": "/home/mike/workspace/agent-dashboard-v2/data/avatars/main.png"
+    },
+    "my-director": {
+      "name": "影视助手",
+      "role": "影视达人",
+      "emoji": "🤖",
+      "color": "cyan",
+      "description": "制作影片，大导演，摄影达人",
+      "avatar_path": "/home/mike/workspace/agent-dashboard-v2/data/avatars/my-director.png"
+    },
+    "my-singer": {
+      "name": "音乐助理",
+      "role": "音乐助理",
+      "emoji": "🤖",
+      "color": "cyan",
+      "description": "音乐创作",
+      "avatar_path": "/home/mike/workspace/agent-dashboard-v2/data/avatars/my-singer.png"
+    },
+    "my-tester": {
+      "name": "测试大师",
+      "role": "测试助手",
+      "emoji": "🤖",
+      "color": "cyan",
+      "description": "帮我测试所有系统",
+      "avatar_path": "/home/mike/workspace/agent-dashboard-v2/data/avatars/my-tester.png"
+    },
+    "writer": {
+      "name": "Writer",
+      "role": "写作助手",
+      "emoji": "✍️",
+      "color": "writer",
+      "description": "文档撰写"
+    }
+  },
+  "view_mode": "grid",
+  "agent_order": [
+    "main",
+    "writer",
+    "investor",
+    "coder",
+    "brainstorm",
+    "my-tester"
+  ],
+  "openclaw_base_url": "http://127.0.0.1:18789"
+}

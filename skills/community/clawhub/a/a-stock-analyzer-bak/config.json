@@ -1,0 +1,18 @@
+{
+  "push": {
+    "enabled": true,
+    "times": ["08:00", "14:00"],
+    "channels": ["feishu"],
+    "feishu_webhook": ""
+  },
+  "stock": {
+    "max_holdings": 3,
+    "recommend_count": 3,
+    "position_ratio": [0.6, 0.2, 0.2]
+  },
+  "risk": {
+    "stop_loss_pct": 5,
+    "stop_profit_pct": 15,
+    "max_position_pct": 60
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "ghostclaw",
+  "command": "ghostclaw-mcp",
+  "args": [],
+  "env": {
+    "GHOSTCLAW_REPO_PATH": "${workspaceFolder}",
+    "GHOSTCLAW_USE_QMD": "false"
+  }
+}

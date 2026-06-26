@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Cybersecurity"
+  short_description: "LabEx Cybersecurity courses and hands-on labs (MCP catalog)"
+  default_prompt: "Use $learn-cybersecurity to find LabEx Cybersecurity courses and hands-on labs."

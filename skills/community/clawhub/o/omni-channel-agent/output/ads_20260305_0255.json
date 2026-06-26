@@ -1,0 +1,1821 @@
+{
+  "active_ads": {
+    "scenario": "competitor_active_ads",
+    "query": "ai photo generator",
+    "ads": [],
+    "raw_count": 30
+  },
+  "video_creatives": {
+    "scenario": "video_creatives",
+    "query": "ai photo generator",
+    "ads": [
+      {
+        "pageName": "MITU AI Photo Video Generator",
+        "pageID": "746938695180573",
+        "adArchiveID": "25722895934042553",
+        "startDate": "2026-01-30",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "My heart melts every time I use this app 🥰",
+        "ctaText": "Download",
+        "linkUrl": "https://play.google.com/store/apps/details?id=babypics.baby.photoeditor.babymoths",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=25722895934042553"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1995530841229989",
+        "startDate": "2025-10-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1995530841229989"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "pageID": "935780472950226",
+        "adArchiveID": "1370405584885186",
+        "startDate": "2026-01-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "💫💑 Make Your Couple Photo Now",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiimage.photo.generator.aianime",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1370405584885186"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1425363595925009",
+        "startDate": "2025-10-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1425363595925009"
+      },
+      {
+        "pageName": "Pose - AI Photo&Video Generator",
+        "pageID": "656268574243687",
+        "adArchiveID": "849153587666007",
+        "startDate": "2025-12-04",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "{{product.brand}}",
+        "ctaText": "Learn more",
+        "linkUrl": "https://cdn.m2ras.com/product/public/app-store-links.json?app_platform=IOS&app_id=6036771916&utm_media_source=facebookweb&utm_campaign_name=US_Pose_IOS_Facebook_Web_App_AEO_StartTrial_BustDown&utm_adset=BustDown14_CPP&utm_ad=TCO4963-BustDownFilter-Viral-UI-16x9-by_en.mp4_CPP00d&store_cpp=69692d91-0433-4496-9a88-3212d213b00d",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=849153587666007"
+      },
+      {
+        "pageName": "Vidix-AI Photo Video Generator",
+        "pageID": "920355561168312",
+        "adArchiveID": "1553508232538976",
+        "startDate": "2026-01-07",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "Let's create videos like this:",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.vidix.aivideogenerator.aiphotogenerator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1553508232538976"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "2197220490686803",
+        "startDate": "2025-10-24",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2197220490686803"
+      },
+      {
+        "pageName": "Alura: AI Chat & Photo Generator",
+        "pageID": "773401495867298",
+        "adArchiveID": "689090090939593",
+        "startDate": "2025-11-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Alura: AI Chat Photo Generator",
+        "body": "AI Image Generator – Turn your ideas into stunning AI-generated images.",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.lightsail.alurachat",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=689090090939593"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1522187532256073",
+        "startDate": "2025-10-23",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1522187532256073"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1868662200433860",
+        "startDate": "2026-02-03",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1868662200433860"
+      },
+      {
+        "pageName": "Vidix AI Photo Video Generator",
+        "pageID": "581360825054310",
+        "adArchiveID": "1403044291181806",
+        "startDate": "2025-12-24",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "This App Can Create This Video:",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.vidix.aivideogenerator.aiphotogenerator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1403044291181806"
+      },
+      {
+        "pageName": "Photo Video Maker with Music",
+        "pageID": "582314198301267",
+        "adArchiveID": "791534460238435",
+        "startDate": "2025-10-03",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Photo Video Maker with Music",
+        "body": "✨ Why Choose Photo Video Maker – AI Music?\n✔ AI effects: Transform photos into realistic videos\n✔ Stunning AI video generator with smart effects\n✔ Ready-to-use templates for birthdays, weddings & dail",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.photoslideshow.videoeditorandvideomaker",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=791534460238435"
+      },
+      {
+        "pageName": "AI Animation Generator & Photo Editor",
+        "pageID": "748395395019624",
+        "adArchiveID": "1303283461825563",
+        "startDate": "2026-01-29",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.adoreapps.photo.editor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1303283461825563"
+      },
+      {
+        "pageName": "AI Animation Generator & Photo Editor",
+        "pageID": "748395395019624",
+        "adArchiveID": "1414267896835206",
+        "startDate": "2026-01-29",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.adoreapps.photo.editor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1414267896835206"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1377851603872679",
+        "startDate": "2025-11-28",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1377851603872679"
+      },
+      {
+        "pageName": "Pose - AI Photo&Video Generator",
+        "pageID": "656268574243687",
+        "adArchiveID": "4316583598626462",
+        "startDate": "2025-10-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "One click, endless transformations!",
+        "ctaText": "Learn more",
+        "linkUrl": "https://cdn.m2ras.com/product/public/app-store-links.json?app_platform=IOS&app_id=6036771916&utm_media_source=facebookweb&utm_campaign_name=US_Pose_IOS_Facebook_Web_App_AEO_StartTrial_ViralVideo&utm_adset=US_Viral_GasStation10&utm_ad=TCO3671-Viral-UI-GasStation-v4-16x9-ye_en.mp4",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=4316583598626462"
+      },
+      {
+        "pageName": "Vidix AI Photo Video Generator",
+        "pageID": "581360825054310",
+        "adArchiveID": "876852742006091",
+        "startDate": "2025-12-04",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "Create Vlog Like This Easily:",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.vidix.aivideogenerator.aiphotogenerator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=876852742006091"
+      },
+      {
+        "pageName": "TeraBot: AI Chatbot Assistant",
+        "pageID": "682270711629449",
+        "adArchiveID": "1221730973311145",
+        "startDate": "2025-09-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Terabot Photo Generator",
+        "body": "Crie O Que Você Quiser Com Este Gerador de Fotos Terabot!",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aichat.chatbot.aiassistant",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1221730973311145"
+      },
+      {
+        "pageName": "AI Animation Generator & Photo Editor",
+        "pageID": "748395395019624",
+        "adArchiveID": "1586110115921950",
+        "startDate": "2026-01-31",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.adoreapps.photo.editor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1586110115921950"
+      },
+      {
+        "pageName": "VideoExpress.ai",
+        "pageID": "235484839655853",
+        "adArchiveID": "2249898088815044",
+        "startDate": "2025-08-28",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "All-in-One AI Videos, Reels & Shorts",
+        "body": "📚 Create AI videos, music videos, short films, educational clips, and animated content that looks studio-made.\n\nPerfect for YouTube, TikTok, Instagram Reels, presentations, and more. Just enter a prom",
+        "ctaText": "Learn more",
+        "linkUrl": "https://videoexpress.ai/fbdeal/",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2249898088815044"
+      },
+      {
+        "pageName": "PixArt: AI Photo Generator",
+        "pageID": "962928040229815",
+        "adArchiveID": "649596988175464",
+        "startDate": "2026-01-02",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Baixe agora!",
+        "body": "Pixart - O melhor aplicativo gerador de fotos com IA para você",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=tera.aiartgenerator.aiphoto.aiphotoenhancer",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=649596988175464"
+      },
+      {
+        "pageName": "MITU AI Photo Video Generator",
+        "pageID": "746938695180573",
+        "adArchiveID": "1278106234135635",
+        "startDate": "2026-02-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "My heart melts every time I use this app 🥰",
+        "ctaText": "Download",
+        "linkUrl": "https://play.google.com/store/apps/details?id=babypics.baby.photoeditor.babymoths",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1278106234135635"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "pageID": "935780472950226",
+        "adArchiveID": "1646066333216905",
+        "startDate": "2026-02-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "🔥 Create urban graffiti sports car photos with AI — free",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiimage.photo.generator.aianime",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1646066333216905"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1575555417191916",
+        "startDate": "2025-11-20",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1575555417191916"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "834141205778422",
+        "startDate": "2025-10-23",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=834141205778422"
+      },
+      {
+        "pageName": "Gyra AI Art Generator",
+        "pageID": "873545495851336",
+        "adArchiveID": "1993627774867277",
+        "startDate": "2026-02-14",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "AI Art Generator App",
+        "body": "Turn your photo into stunning AI art 🎨\nCreate instantly with AI Art Generator",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.gyra.ai.photo.generator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 11,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1993627774867277"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "2344806245942279",
+        "startDate": "2025-11-06",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2344806245942279"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "pageID": "935780472950226",
+        "adArchiveID": "1437596268042498",
+        "startDate": "2026-02-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "🔥 Create urban graffiti sports car photos with AI — free",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiimage.photo.generator.aianime",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1437596268042498"
+      },
+      {
+        "pageName": "Photo Video Maker with Music",
+        "pageID": "582314198301267",
+        "adArchiveID": "3115331105308496",
+        "startDate": "2025-10-03",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Photo Video Maker with Music",
+        "body": "✨ Why Choose Photo Video Maker – AI Music?\n✔ AI effects: Transform photos into realistic videos\n✔ Stunning AI video generator with smart effects\n✔ Ready-to-use templates for birthdays, weddings & dail",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.photoslideshow.videoeditorandvideomaker",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=3115331105308496"
+      },
+      {
+        "pageName": "Photo Editor Video Maker Music5",
+        "pageID": "728029180396717",
+        "adArchiveID": "4361446777477658",
+        "startDate": "2026-01-26",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Try now",
+        "body": "Top1 app AI Photo Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.photovideomaker.videomakerwithmusic",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=4361446777477658"
+      }
+    ],
+    "raw_count": 30
+  },
+  "image_creatives": {
+    "scenario": "image_creatives",
+    "query": "ai photo generator",
+    "ads": [
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1368118274873557",
+        "startDate": "2025-10-23",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1368118274873557"
+      },
+      {
+        "pageName": "AI Photo Generator",
+        "pageID": "530939956770821",
+        "adArchiveID": "868867365912461",
+        "startDate": "2026-01-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "Create amazing AI photos in seconds — 100% FREE! ✨",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiartgenerator.photoeditor.photography",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=868867365912461"
+      },
+      {
+        "pageName": "AI Photo Generator",
+        "pageID": "530939956770821",
+        "adArchiveID": "1207976044816705",
+        "startDate": "2026-01-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "Create amazing AI photos in seconds — 100% FREE! ✨",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiartgenerator.photoeditor.photography",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1207976044816705"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "900787332883442",
+        "startDate": "2026-02-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥Real Estate Pro, Create AI Avatar CLONES on PhotoAIVideo — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Au",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 7,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=900787332883442"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "931520732627522",
+        "startDate": "2026-02-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥NEWS FLASH: Create AI Avatar CLONES on PhotoAIVideo — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Automat",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 7,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=931520732627522"
+      },
+      {
+        "pageName": "AI Photo Generator",
+        "pageID": "530939956770821",
+        "adArchiveID": "1208815778048534",
+        "startDate": "2026-01-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "Create amazing AI photos in seconds — 100% FREE! ✨",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiartgenerator.photoeditor.photography",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1208815778048534"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1411316510160507",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1411316510160507"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "2377075499394588",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2377075499394588"
+      },
+      {
+        "pageName": "AI Photo Generator",
+        "pageID": "530939956770821",
+        "adArchiveID": "668431099615260",
+        "startDate": "2026-01-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "Create amazing AI photos in seconds — 100% FREE! ✨",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiartgenerator.photoeditor.photography",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=668431099615260"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1044928978684269",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Tu estética, Reinventada con IA ✨",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1044928978684269"
+      },
+      {
+        "pageName": "AI Photo Enhancer",
+        "pageID": "942339242294145",
+        "adArchiveID": "1659867421842478",
+        "startDate": "2026-02-02",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "AI Photo Enhancer & Generator",
+        "body": "🧠📸 AI Photo Templates: Edit, Erase & Enhance",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.photo.enhancer.image",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1659867421842478"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "3013934855469093",
+        "startDate": "2026-02-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥Create AI Avatar CLONES on PhotoAIVideo! — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Automatic AI voice",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 7,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=3013934855469093"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "1696219718032774",
+        "startDate": "2026-02-20",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥Create AI Avatar CLONES on PhotoAIVideo! — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Automatic AI voice",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1696219718032774"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1239906831542657",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1239906831542657"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1240745614875813",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1240745614875813"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1415316099606437",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1415316099606437"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "2083190855778552",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2083190855778552"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "706963225833425",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Tu estética, Reinventada con IA ✨",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=706963225833425"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "926550200311389",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=926550200311389"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1433756831521518",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Tu estética, Reinventada con IA ✨",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1433756831521518"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "948513537842332",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=948513537842332"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "4347383505540018",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Tu estética, Reinventada con IA ✨",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=4347383505540018"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1511977967112723",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Tu estética, Reinventada con IA ✨",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1511977967112723"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1477751770692535",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1477751770692535"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "26122400647394701",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=26122400647394701"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "34130435783269991",
+        "startDate": "2026-02-20",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥Real Estate Pro, Create AI Avatar CLONES on PhotoAIVideo — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Au",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 7,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=34130435783269991"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "909750961766003",
+        "startDate": "2026-02-21",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥Real Estate Pro, Create AI Avatar CLONES on PhotoAIVideo — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Au",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=909750961766003"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "2475387249558379",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "MIU AI - AI Photo Generator",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2475387249558379"
+      },
+      {
+        "pageName": "Miu Ai: Photo&Video Generator",
+        "pageID": "903670482838693",
+        "adArchiveID": "1402414711151041",
+        "startDate": "2026-02-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Tu estética, Reinventada con IA ✨",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://itunes.apple.com/app/id6756606000",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": false,
+        "hasImage": true,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1402414711151041"
+      },
+      {
+        "pageName": "CloudPano.com",
+        "pageID": "1794165787366692",
+        "adArchiveID": "1256631846411815",
+        "startDate": "2026-02-20",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "🔥NEWS FLASH: Create AI Avatar CLONES on PhotoAIVideo — With ZERO Extra Time on location!\nTurn your photos into viral AI-powered videos that agents beg to pay for.\n\n✅ Use your existing photos\n✅ Automat",
+        "ctaText": "Learn more",
+        "linkUrl": "https://www.photoaivideo.com/ai-avatar-clones-real-estate",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": true,
+        "collationCount": 7,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1256631846411815"
+      }
+    ],
+    "raw_count": 30
+  },
+  "copy_analysis": {
+    "scenario": "copy_analysis",
+    "query": "ai photo generator",
+    "ads": [
+      {
+        "pageName": "MITU AI Photo Video Generator",
+        "pageID": "746938695180573",
+        "adArchiveID": "25722895934042553",
+        "startDate": "2026-01-30",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "My heart melts every time I use this app 🥰",
+        "ctaText": "Download",
+        "linkUrl": "https://play.google.com/store/apps/details?id=babypics.baby.photoeditor.babymoths",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=25722895934042553"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1995530841229989",
+        "startDate": "2025-10-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1995530841229989"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "pageID": "935780472950226",
+        "adArchiveID": "1370405584885186",
+        "startDate": "2026-01-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "💫💑 Make Your Couple Photo Now",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiimage.photo.generator.aianime",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1370405584885186"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1425363595925009",
+        "startDate": "2025-10-22",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1425363595925009"
+      },
+      {
+        "pageName": "Pose - AI Photo&Video Generator",
+        "pageID": "656268574243687",
+        "adArchiveID": "849153587666007",
+        "startDate": "2025-12-04",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "{{product.brand}}",
+        "ctaText": "Learn more",
+        "linkUrl": "https://cdn.m2ras.com/product/public/app-store-links.json?app_platform=IOS&app_id=6036771916&utm_media_source=facebookweb&utm_campaign_name=US_Pose_IOS_Facebook_Web_App_AEO_StartTrial_BustDown&utm_adset=BustDown14_CPP&utm_ad=TCO4963-BustDownFilter-Viral-UI-16x9-by_en.mp4_CPP00d&store_cpp=69692d91-0433-4496-9a88-3212d213b00d",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=849153587666007"
+      },
+      {
+        "pageName": "Vidix-AI Photo Video Generator",
+        "pageID": "920355561168312",
+        "adArchiveID": "1553508232538976",
+        "startDate": "2026-01-07",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "Let's create videos like this:",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.vidix.aivideogenerator.aiphotogenerator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1553508232538976"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "2197220490686803",
+        "startDate": "2025-10-24",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2197220490686803"
+      },
+      {
+        "pageName": "Alura: AI Chat & Photo Generator",
+        "pageID": "773401495867298",
+        "adArchiveID": "689090090939593",
+        "startDate": "2025-11-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Alura: AI Chat Photo Generator",
+        "body": "AI Image Generator – Turn your ideas into stunning AI-generated images.",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.lightsail.alurachat",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=689090090939593"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1522187532256073",
+        "startDate": "2025-10-23",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1522187532256073"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1868662200433860",
+        "startDate": "2026-02-03",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1868662200433860"
+      },
+      {
+        "pageName": "Vidix AI Photo Video Generator",
+        "pageID": "581360825054310",
+        "adArchiveID": "1403044291181806",
+        "startDate": "2025-12-24",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "This App Can Create This Video:",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.vidix.aivideogenerator.aiphotogenerator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1403044291181806"
+      },
+      {
+        "pageName": "Photo Video Maker with Music",
+        "pageID": "582314198301267",
+        "adArchiveID": "791534460238435",
+        "startDate": "2025-10-03",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Photo Video Maker with Music",
+        "body": "✨ Why Choose Photo Video Maker – AI Music?\n✔ AI effects: Transform photos into realistic videos\n✔ Stunning AI video generator with smart effects\n✔ Ready-to-use templates for birthdays, weddings & dail",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.photoslideshow.videoeditorandvideomaker",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=791534460238435"
+      },
+      {
+        "pageName": "AI Animation Generator & Photo Editor",
+        "pageID": "748395395019624",
+        "adArchiveID": "1303283461825563",
+        "startDate": "2026-01-29",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.adoreapps.photo.editor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 2,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1303283461825563"
+      },
+      {
+        "pageName": "AI Animation Generator & Photo Editor",
+        "pageID": "748395395019624",
+        "adArchiveID": "1414267896835206",
+        "startDate": "2026-01-29",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.adoreapps.photo.editor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": null,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1414267896835206"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1377851603872679",
+        "startDate": "2025-11-28",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1377851603872679"
+      },
+      {
+        "pageName": "Pose - AI Photo&Video Generator",
+        "pageID": "656268574243687",
+        "adArchiveID": "4316583598626462",
+        "startDate": "2025-10-19",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "One click, endless transformations!",
+        "ctaText": "Learn more",
+        "linkUrl": "https://cdn.m2ras.com/product/public/app-store-links.json?app_platform=IOS&app_id=6036771916&utm_media_source=facebookweb&utm_campaign_name=US_Pose_IOS_Facebook_Web_App_AEO_StartTrial_ViralVideo&utm_adset=US_Viral_GasStation10&utm_ad=TCO3671-Viral-UI-GasStation-v4-16x9-ye_en.mp4",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=4316583598626462"
+      },
+      {
+        "pageName": "Vidix AI Photo Video Generator",
+        "pageID": "581360825054310",
+        "adArchiveID": "876852742006091",
+        "startDate": "2025-12-04",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "Create Vlog Like This Easily:",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.vidix.aivideogenerator.aiphotogenerator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=876852742006091"
+      },
+      {
+        "pageName": "TeraBot: AI Chatbot Assistant",
+        "pageID": "682270711629449",
+        "adArchiveID": "1221730973311145",
+        "startDate": "2025-09-27",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Terabot Photo Generator",
+        "body": "Crie O Que Você Quiser Com Este Gerador de Fotos Terabot!",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aichat.chatbot.aiassistant",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1221730973311145"
+      },
+      {
+        "pageName": "AI Animation Generator & Photo Editor",
+        "pageID": "748395395019624",
+        "adArchiveID": "1586110115921950",
+        "startDate": "2026-01-31",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.adoreapps.photo.editor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1586110115921950"
+      },
+      {
+        "pageName": "VideoExpress.ai",
+        "pageID": "235484839655853",
+        "adArchiveID": "2249898088815044",
+        "startDate": "2025-08-28",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "All-in-One AI Videos, Reels & Shorts",
+        "body": "📚 Create AI videos, music videos, short films, educational clips, and animated content that looks studio-made.\n\nPerfect for YouTube, TikTok, Instagram Reels, presentations, and more. Just enter a prom",
+        "ctaText": "Learn more",
+        "linkUrl": "https://videoexpress.ai/fbdeal/",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2249898088815044"
+      },
+      {
+        "pageName": "PixArt: AI Photo Generator",
+        "pageID": "962928040229815",
+        "adArchiveID": "649596988175464",
+        "startDate": "2026-01-02",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Baixe agora!",
+        "body": "Pixart - O melhor aplicativo gerador de fotos com IA para você",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=tera.aiartgenerator.aiphoto.aiphotoenhancer",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=649596988175464"
+      },
+      {
+        "pageName": "MITU AI Photo Video Generator",
+        "pageID": "746938695180573",
+        "adArchiveID": "1278106234135635",
+        "startDate": "2026-02-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "{{product.name}}",
+        "body": "My heart melts every time I use this app 🥰",
+        "ctaText": "Download",
+        "linkUrl": "https://play.google.com/store/apps/details?id=babypics.baby.photoeditor.babymoths",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1278106234135635"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "pageID": "935780472950226",
+        "adArchiveID": "1646066333216905",
+        "startDate": "2026-02-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "🔥 Create urban graffiti sports car photos with AI — free",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiimage.photo.generator.aianime",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1646066333216905"
+      },
+      {
+        "pageName": "Metart: AI Photo Generator ",
+        "pageID": "605203109349865",
+        "adArchiveID": "919336434099903",
+        "startDate": "2026-01-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Click to try now",
+        "body": "New year. New glow. ✨With AI",
+        "ctaText": "Install now",
+        "linkUrl": "https://play.google.com/store/apps/details?id=com.snaptune.ai.photoeditor.collagemaker",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=919336434099903"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "1575555417191916",
+        "startDate": "2025-11-20",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1575555417191916"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "834141205778422",
+        "startDate": "2025-10-23",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=834141205778422"
+      },
+      {
+        "pageName": "Gyra AI Art Generator",
+        "pageID": "873545495851336",
+        "adArchiveID": "1993627774867277",
+        "startDate": "2026-02-14",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "AI Art Generator App",
+        "body": "Turn your photo into stunning AI art 🎨\nCreate instantly with AI Art Generator",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.gyra.ai.photo.generator",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 11,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1993627774867277"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "pageID": "578737665316952",
+        "adArchiveID": "2344806245942279",
+        "startDate": "2025-11-06",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Use it for free 👉",
+        "body": "Top1 app AI Generator for you",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=videomaker.photoeditor.slideshowmaker.videoeditor",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=2344806245942279"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "pageID": "935780472950226",
+        "adArchiveID": "1437596268042498",
+        "startDate": "2026-02-05",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "",
+        "body": "🔥 Create urban graffiti sports car photos with AI — free",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.aiimage.photo.generator.aianime",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=1437596268042498"
+      },
+      {
+        "pageName": "Photo Video Maker with Music",
+        "pageID": "582314198301267",
+        "adArchiveID": "3115331105308496",
+        "startDate": "2025-10-03",
+        "endDate": "2026-03-04",
+        "isActive": false,
+        "title": "Photo Video Maker with Music",
+        "body": "✨ Why Choose Photo Video Maker – AI Music?\n✔ AI effects: Transform photos into realistic videos\n✔ Stunning AI video generator with smart effects\n✔ Ready-to-use templates for birthdays, weddings & dail",
+        "ctaText": "Install now",
+        "linkUrl": "http://play.google.com/store/apps/details?id=com.photoslideshow.videoeditorandvideomaker",
+        "platforms": [
+          "fb"
+        ],
+        "hasVideo": true,
+        "hasImage": false,
+        "collationCount": 1,
+        "snapshotUrl": "https://www.facebook.com/ads/library/?id=3115331105308496"
+      }
+    ],
+    "cta_distribution": {
+      "Download": 2,
+      "Install now": 25,
+      "Learn more": 3
+    },
+    "body_samples": [
+      {
+        "pageName": "MITU AI Photo Video Generator",
+        "body": "My heart melts every time I use this app 🥰",
+        "title": "{{product.name}}"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "body": "Top1 app AI Generator for you",
+        "title": "Use it for free 👉"
+      },
+      {
+        "pageName": "AI Photo Generator - Art Lab",
+        "body": "💫💑 Make Your Couple Photo Now",
+        "title": ""
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "body": "Top1 app AI Generator for you",
+        "title": "Use it for free 👉"
+      },
+      {
+        "pageName": "Pose - AI Photo&Video Generator",
+        "body": "{{product.brand}}",
+        "title": "{{product.name}}"
+      },
+      {
+        "pageName": "Vidix-AI Photo Video Generator",
+        "body": "Let's create videos like this:",
+        "title": ""
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "body": "Top1 app AI Generator for you",
+        "title": "Use it for free 👉"
+      },
+      {
+        "pageName": "Alura: AI Chat & Photo Generator",
+        "body": "AI Image Generator – Turn your ideas into stunning AI-generated images.",
+        "title": "Alura: AI Chat Photo Generator"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "body": "Top1 app AI Generator for you",
+        "title": "Use it for free 👉"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "body": "Top1 app AI Generator for you",
+        "title": "Use it for free 👉"
+      },
+      {
+        "pageName": "Vidix AI Photo Video Generator",
+        "body": "This App Can Create This Video:",
+        "title": ""
+      },
+      {
+        "pageName": "Photo Video Maker with Music",
+        "body": "✨ Why Choose Photo Video Maker – AI Music?\n✔ AI effects: Transform photos into realistic videos\n✔ St",
+        "title": "Photo Video Maker with Music"
+      },
+      {
+        "pageName": "Photo Video Maker Photo Editor",
+        "body": "Top1 app AI Generator for you",
+        "title": "Use it for free 👉"
+      },
+      {
+        "pageName": "Pose - AI Photo&Video Generator",
+        "body": "One click, endless transformations!",
+        "title": "{{product.name}}"
+      },
+      {
+        "pageName": "Vidix AI Photo Video Generator",
+        "body": "Create Vlog Like This Easily:",
+        "title": ""
+      }
+    ],
+    "raw_count": 30
+  }
+}

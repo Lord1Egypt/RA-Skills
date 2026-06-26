@@ -1,35 +1,22 @@
 ---
-name: "Divination Oracle"
+name: divination-oracle
 description: "易经八卦起卦与解读技能。基于梅花易数算法进行起卦，结合AI大模型解读卦象辞与变爻含义。"
-category: "other"
-source: "ClawHub"
-tags: [divination, oracle, yijing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/divination-oracle"
-sourceUrl: "https://clawhub.ai/skills/divination-oracle"
+location: ~/clawd/skills/divination-oracle/SKILL.md
 ---
 
 # Divination Oracle
 
-> 易经八卦起卦与解读技能。基于梅花易数算法进行起卦，结合AI大模型解读卦象辞与变爻含义。
+易经起卦与解读助手。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/divination-oracle`
-- **Source URL:** [https://clawhub.ai/skills/divination-oracle](https://clawhub.ai/skills/divination-oracle)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 起卦
 ```bash
-hermes skills install clawhub/divination-oracle
+# 基于当前时间起卦
+divination-oracle divine "我今天的工作运势如何？"
 ```
+
+## 模块
+- `engine/`: 梅花易数计算逻辑
+- `data/`: 64卦数据库
+- `docs/`: 占卜心法说明

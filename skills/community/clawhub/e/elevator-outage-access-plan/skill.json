@@ -1,0 +1,45 @@
+{
+  "slug": "elevator-outage-access-plan",
+  "name": "Elevator Outage Access Plan",
+  "displayName": "Elevator Outage Access Plan",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a temporary access coordination plan for an elevator outage with affected-person roster, alternative routes, contact assignments, delivery guidance, and resident update card.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Urgent Admin & Logistics",
+  "triggerKeywords": [
+    "elevator outage access plan",
+    "elevator down resident notice",
+    "accessible building outage checklist",
+    "temporary access during elevator outage",
+    "elevator service down plan",
+    "resident elevator outage communication",
+    "delivery plan elevator down",
+    "mobility access elevator outage",
+    "building access coordination",
+    "elevator outage update card"
+  ],
+  "tags": [
+    "accessibility",
+    "building",
+    "logistics",
+    "elevator-outage",
+    "resident-communication",
+    "urgent-admin"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

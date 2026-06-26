@@ -1,0 +1,28 @@
+{
+  "default_dotnet_version": "8.0",
+  "default_project_type": "wpf",
+  "code_style": {
+    "nullable_reference_types": true,
+    "target_framework": "net8.0-windows",
+    "lang_version": "latest"
+  },
+  "templates": {
+    "enable_xml_comments": true,
+    "enable_unit_tests": true,
+    "enable_dependency_injection": true
+  },
+  "review": {
+    "strict_mode": false,
+    "check_performance": true,
+    "check_security": true,
+    "check_memory": true
+  },
+  "vibration_control": {
+    "enable_serial_port": true,
+    "enable_tcp_communication": true,
+    "enable_data_visualization": true,
+    "enable_control_algorithms": true,
+    "default_sampling_rate_hz": 1000,
+    "max_buffer_size": 10000
+  }
+}

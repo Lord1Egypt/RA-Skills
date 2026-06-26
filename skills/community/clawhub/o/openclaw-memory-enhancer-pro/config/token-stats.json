@@ -1,0 +1,37 @@
+{
+  "files": {
+    "MEMORY.md": {
+      "chars": 12782,
+      "tokens": 3195,
+      "lines": 501
+    },
+    "SESSION-STATE.md": {
+      "chars": 3088,
+      "tokens": 772,
+      "lines": 104
+    },
+    "USER.md": {
+      "chars": 640,
+      "tokens": 160,
+      "lines": 46
+    },
+    "SOUL.md": {
+      "chars": 1419,
+      "tokens": 354,
+      "lines": 41
+    },
+    "AGENTS.md": {
+      "chars": 3821,
+      "tokens": 955,
+      "lines": 156
+    },
+    "memory/*.md": {
+      "chars": 1263,
+      "tokens": 315,
+      "count": 2
+    }
+  },
+  "total_chars": 23013,
+  "total_tokens": 5751,
+  "timestamp": "2026-03-14T11:27:28.947391"
+}

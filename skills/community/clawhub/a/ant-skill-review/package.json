@@ -1,0 +1,11 @@
+{
+  "name": "skill-review",
+  "version": "1.0.2",
+  "description": "Security scanner for Claude Code Skill packages. Built with `pi-agent-core`.",
+  "main": "index.mjs",
+  "type": "module",
+  "dependencies": {
+    "@mariozechner/pi-agent-core": "^0.63.1",
+    "dotenv": "^17.3.1"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "s2-boundary-scanner",
+  "version": "1.0.0",
+  "description": "S2-SWM Dynamic Boundary Scanner. Processes mmWave radar data into Ego-Centric 9-Grid boundary topologies. Calculates spatial intrusion percentages and infers physical materials based on Radar Cross Section (RCS) to provide immediate collision context for Embodied AI.",
+  "main": "handler.py",
+  "scripts": { "start": "python3 handler.py" },
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
+    "capabilities": [
+      "mmwave_point_cloud_parsing", 
+      "ego_centric_topology", 
+      "material_inference"
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "MMWAVE_COM_PORT": {
+          "type": "string",
+          "description": "Optional: Hardware serial port for real mmWave radar (e.g., /dev/ttyUSB0). Uses physics simulation if left blank."
+        }
+      }
+    }
+  },
+  "author": "Space2.world (Miles Xiang)",
+  "license": "MIT"
+}

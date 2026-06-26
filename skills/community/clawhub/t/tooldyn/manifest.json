@@ -1,0 +1,21 @@
+{
+  "name": "dynamic-tool-policy",
+  "version": "1.0.0",
+  "description": "Intent-based tool selection for OpenClaw: recommend which tools to use based on the user's message. Reduces context size and tool loops when using Feishu + Ollama or similar setups.",
+  "author": "peter7397",
+  "main": "index.js",
+  "permissions": [],
+  "config": {},
+  "tools": [
+    {
+      "name": "get_recommended_tools",
+      "description": "Given a user message, return the recommended OpenClaw tool names and a short hint. Use this to know which tools are relevant (weather→exec, document→feishu_doc, search→web_search, etc.). Helps avoid sending too many tools to small models.",
+      "parameters": {
+        "user_message": {
+          "type": "string",
+          "description": "The latest user message text to analyze for intent."
+        }
+      }
+    }
+  ]
+}

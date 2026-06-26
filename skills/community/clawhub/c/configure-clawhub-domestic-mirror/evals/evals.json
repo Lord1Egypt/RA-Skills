@@ -1,0 +1,49 @@
+{
+  "skill_name": "configure-clawhub-domestic-mirror",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "ClawHub install 一直超时，报错 connection timed out。我想把 registry 换成国内源加速，用的是 mac zsh，应该怎么写配置？",
+      "expectations": [
+        "提供写入 `~/.zshrc` 的具体命令片段，而非仅临时 export",
+        "同时设置 `CLAWHUB_REGISTRY` 和 `CLAWHUB_SITE` 两个环境变量为 `https://cn.clawhub-mirror.com`",
+        "包含 `source ~/.zshrc` 步骤以使当前会话生效",
+        "提供 `clawhub search` 命令用于验证配置是否连接到国内节点"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我在 ~/projects/ai-agent 目录下跑 clawhub install git-tools，进度条卡住半天不动了。是不是网络问题？有没有办法让它走国内节点快一点？",
+      "expectations": [
+        "诊断为网络连接海外服务器导致的延迟或超时",
+        "建议配置 ClawHub 国内镜像地址 `https://cn.clawhub-mirror.com`",
+        "说明如何将配置写入 `~/.bashrc` 或 `~/.zshrc` 实现永久生效",
+        "指导用户执行验证命令确认下载源已切换"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "之前执行过 export CLAWHUB_REGISTRY=... 但关掉终端又失效了。怎么永久生效？另外配完后怎么验证是不是真的连到国内节点了？",
+      "expectations": [
+        "解释仅使用 export 命令是临时生效，关闭终端会丢失",
+        "提供将环境变量写入 `~/.bashrc` 或 `~/.zshrc` 的具体步骤",
+        "强调需要同时配置 Registry 和 Site 变量以避免部分功能仍访问海外",
+        "提供 `clawhub search \"git\"` 作为验证连通性的具体命令"
+      ],
+      "trigger_confidence": "medium"
+    },
+    {
+      "id": 4,
+      "prompt": "clawhub 下载太卡了，经常 504 gateway timeout。帮搞下国内镜像配置，要永久生效的那种，别每次都要输命令。",
+      "expectations": [
+        "识别用户痛点为网络超时且需要持久化配置",
+        "提供修改 Shell 配置文件（`.bashrc` 或 `.zshrc`）的方案",
+        "明确给出官方认可的国内镜像地址 `https://cn.clawhub-mirror.com`",
+        "包含配置后的验证步骤以确保 CLI 稳定连接国内节点"
+      ],
+      "trigger_confidence": "high"
+    }
+  ]
+}

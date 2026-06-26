@@ -1,0 +1,50 @@
+{
+  "name": "lead",
+  "version": "2.1.0",
+  "description": "Qualify, prioritize, and advance sales prospects into the next best action. Best used after engagement begins.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "lead qualification",
+    "sales",
+    "prospect evaluation",
+    "pipeline",
+    "SDR",
+    "lead scoring",
+    "B2B sales"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "lead_qualification": "Assess lead quality based on fit, intent, urgency, and authority",
+    "gap_identification": "Identify missing information needed for sound judgment",
+    "action_recommendation": "Recommend pursue, qualify further, nurture, or deprioritize with reasoning",
+    "follow_up_drafting": "Generate contextual follow-up messages with a genuine reason to exist"
+  },
+  "triggers": [
+    "qualify lead",
+    "evaluate lead",
+    "lead assessment",
+    "should I pursue this lead",
+    "lead went cold",
+    "lead qualification",
+    "prospect evaluation",
+    "线索评估",
+    "评估线索",
+    "客户线索判断"
+  ],
+  "audience": [
+    "Founders doing their own sales",
+    "Sales reps and SDRs qualifying inbound or outbound leads",
+    "Operators supporting pipeline decisions",
+    "Revenue teams improving lead judgment and follow-up discipline"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

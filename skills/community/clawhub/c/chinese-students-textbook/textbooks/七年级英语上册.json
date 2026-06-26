@@ -1,0 +1,81 @@
+{
+  "name": "七年级英语上册",
+  "units": [
+    {
+      "name": "Starter Unit 1",
+      "sections": [
+        {"title": "Hello! How do you greet people?", "type": "听说", "extra": ["Pronunciation: 26 letters", "p.1"]},
+        {"title": "Keep Tidy! What do you have?", "type": "听说", "extra": ["Pronunciation: a, e, i, o, u (1)", "p.7"]},
+        {"title": "Welcome! What is fun in a yard?", "type": "听说", "extra": ["Pronunciation: a, e, i, o, u (2)", "p.13"]}
+      ]
+    },
+    {
+      "name": "Starter Unit 2",
+      "sections": [
+        {"title": "You and Me: How do we get to know each other?", "type": "听说", "extra": ["Pronunciation: /i:/, /i/; /e/, /æ/", "Contractions", "p.19"]},
+        {"title": "We're Family: What is your family like?", "type": "听说", "extra": ["Pronunciation: /ɜ:/, /e/; /ʌ/, /ɑː/", "Word stress (1)", "p.27"]}
+      ]
+    },
+    {
+      "name": "Starter Unit 3",
+      "sections": [
+        {"title": "My School: What is your school like?", "type": "听说", "extra": ["Pronunciation: /θ:/, /ð/; /u:/, /u/", "Word stress (2)", "p.35"]},
+        {"title": "My Favourite Subject: Why do you like this subject?", "type": "听说", "extra": ["Pronunciation: /eɪ/, /aɪ/, /ɔɪ/; /əʊ/, /aʊ/; /ɪə/, /eə/, /ʊə/", "Linking", "p.43"]},
+        {"title": "Fun Clubs: How do you choose a school club?", "type": "听说", "extra": ["Pronunciation: /p/, /b/; /t/, /d/; /k/, /g/; /f/, /v/", "Incomplete plosion", "p.51"]},
+        {"title": "A Day in the Life: How do you spend your school day?", "type": "听说", "extra": ["Pronunciation: /s/, /z/; /ʃ/, /ʒ/; /tʃ/, /dʒ/; /θ/, /ð/", "Sentence stress", "p.59"]},
+        {"title": "Happy Birthday: How do we celebrate birthdays?", "type": "听说", "extra": ["Pronunciation: /h/, /r/, /l/, /m/, /n/, /ŋ/, /w/, /j/", "Intonation", "p.67"]}
+      ]
+    },
+    {
+      "name": "Unit 1 Section A",
+      "sections": [
+        {"title": "How do we make new friends?", "type": "听说读", "extra": ["Listening: Conversations with new people at school", "Speaking: Introduce oneself and others", "p.19"]}
+      ]
+    },
+    {
+      "name": "Unit 1 Section B",
+      "sections": [
+        {"title": "How do you start a conversation?", "type": "读写", "extra": ["Reading and Writing: Start a conversation"]},
+        {"title": "Where do you put your things?", "type": "读写", "extra": ["Reading and Writing: Describe things around you"]},
+        {"title": "What is fun on a farm?", "type": "读写", "extra": ["Reading and Writing: Describe a farm"]},
+        {"title": "What do we need to know about a new friend?", "type": "项目", "extra": ["Make your own personal profile", "p.27"]}
+      ]
+    },
+    {
+      "name": "Unit 2 Section A",
+      "sections": [
+        {"title": "What do you like about your school?", "type": "听说", "extra": ["Listening: Conversations about places in the new school", "Speaking: Talk about the classroom"]}
+      ]
+    },
+    {
+      "name": "Unit 2 Section B",
+      "sections": [
+        {"title": "What fun things do you do at school?", "type": "读写", "extra": ["Reading: An email to a friend about the new school", "Writing: Email a friend to describe your school", "Grammar: There be structure"]},
+        {"title": "What can you learn from different subjects?", "type": "读写", "extra": ["Reading: Two posts about school subjects", "Writing: Write a post about your subjects", "Grammar: Conjunctions"]},
+        {"title": "What can you learn in a school club?", "type": "读写", "extra": ["Reading: School club ads", "Writing: Email a club leader to join the club", "Grammar: Modal verb can"]},
+        {"title": "How different are people's daily routines?", "type": "项目", "extra": ["Interview people about their daily routines", "Grammar: Time expressions, Wh-questions"]}
+      ]
+    },
+    {
+      "name": "Unit 3 Section A",
+      "sections": [
+        {"title": "Why do we learn different subjects?", "type": "听说", "extra": ["Listening: Conversations about today's subjects", "Speaking: Talk about the subjects you like and why", "p.43"]}
+      ]
+    },
+    {
+      "name": "Unit 3 Section B",
+      "sections": [
+        {"title": "How do you make your birthday meaningful?", "type": "项目", "extra": ["Celebrate your birthdays together", "Grammar: Ordinal numbers, Wh-questions review", "p.67"]}
+      ]
+    },
+    {
+      "name": "Appendices",
+      "sections": [
+        {"title": "Reading Plus", "extra": ["p.75"]},
+        {"title": "Pronunciation", "extra": ["p.92"]},
+        {"title": "Listening Scripts", "extra": ["p.82"]},
+        {"title": "Grammar", "extra": ["p.95"]}
+      ]
+    }
+  ]
+}

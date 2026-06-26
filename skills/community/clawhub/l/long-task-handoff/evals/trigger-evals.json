@@ -1,0 +1,31 @@
+{
+  "skill_name": "long-task-handoff",
+  "purpose": "Regression checks for trigger-scope precision. These are description-level expectations, not handoff output evals.",
+  "queries": [
+    {
+      "query": "Continue yesterday's AgentHub task.",
+      "should_trigger": false,
+      "reason": "Ordinary continuation text is too broad without an active handoff signal."
+    },
+    {
+      "query": "This repo has many changed files and tests are failing. Continue debugging.",
+      "should_trigger": false,
+      "reason": "Substantial workspace state alone should not trigger handoff."
+    },
+    {
+      "query": "Runtime reports context was compacted for the second time; update the active handoff.",
+      "should_trigger": true,
+      "reason": "Explicit context compaction signal."
+    },
+    {
+      "query": "Before recommending a session restart, write the handoff and update ACTIVE.md.",
+      "should_trigger": true,
+      "reason": "Explicit restart handoff request."
+    },
+    {
+      "query": "New session has handoffs/ACTIVE.md; recover the prior task state before asking me for context.",
+      "should_trigger": true,
+      "reason": "Explicit active-handoff signal."
+    }
+  ]
+}

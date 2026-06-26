@@ -1,0 +1,226 @@
+{
+  "name": "react-vite-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:analyze": "tsc && vite build --mode analyze",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css,scss,md}\"",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "^3.2.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitest/ui": "^1.3.1",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}
+
+/*
+RECOMMENDED ADDITIONAL DEPENDENCIES
+
+State Management:
+  - zustand: ^4.5.0           (Recommended - Simple, lightweight)
+  - @reduxjs/toolkit: ^2.2.0  (For complex apps)
+  - react-redux: ^9.1.0       (If using Redux)
+
+Data Fetching:
+  - @tanstack/react-query: ^5.22.0  (Recommended - Server state)
+  - axios: ^1.6.7                   (HTTP client)
+  - swr: ^2.2.5                     (Alternative to React Query)
+
+Forms:
+  - react-hook-form: ^7.50.1  (Recommended - Best performance)
+  - zod: ^3.22.4              (Schema validation)
+  - @hookform/resolvers: ^3.3.4
+
+UI Components:
+  - @radix-ui/react-*: ^latest  (Accessible primitives)
+  - @headlessui/react: ^1.7.18  (Tailwind-friendly)
+  - clsx: ^2.1.0                (Conditional classes)
+  - class-variance-authority: ^0.7.0  (CVA pattern)
+
+Styling:
+  - tailwindcss: ^3.4.1       (Utility-first CSS)
+  - sass: ^1.71.1             (If using SCSS)
+
+Icons:
+  - lucide-react: ^0.344.0    (Modern icons)
+  - react-icons: ^5.0.1       (Icon collection)
+
+Utilities:
+  - date-fns: ^3.3.1          (Date utilities - lighter than moment)
+  - lodash-es: ^4.17.21       (Utilities with tree-shaking)
+
+Development:
+  - @storybook/react: ^7.6.17 (Component documentation)
+  - msw: ^2.1.7               (API mocking)
+
+SCRIPT EXPLANATIONS
+
+dev:
+  - Starts development server with HMR
+  - Hot Module Replacement for instant updates
+
+build:
+  - Type checks with TypeScript (tsc)
+  - Creates production build
+  - Minifies and optimizes code
+
+build:analyze:
+  - Same as build but opens bundle analyzer
+  - Visualize what's in your bundle
+  - Identify large dependencies
+
+preview:
+  - Preview production build locally
+  - Test before deploying
+
+lint:
+  - Check code for errors
+  - ESLint with TypeScript rules
+  - React-specific rules
+
+lint:fix:
+  - Auto-fix linting errors
+
+format:
+  - Format code with Prettier
+  - Consistent code style
+
+format:check:
+  - Check if code is formatted
+  - Good for CI/CD
+
+type-check:
+  - Run TypeScript compiler without emitting files
+  - Catch type errors
+
+test:
+  - Run tests in watch mode
+  - Re-runs on file changes
+
+test:ui:
+  - Run tests with Vitest UI
+  - Visual test runner
+
+test:coverage:
+  - Generate coverage report
+  - See what's tested
+
+prepare:
+  - Set up Husky git hooks
+  - Runs automatically after npm install
+
+HUSKY & LINT-STAGED SETUP
+
+1. Install husky and lint-staged (already in devDependencies)
+
+2. Initialize husky:
+   npx husky install
+
+3. Add pre-commit hook:
+   npx husky add .husky/pre-commit "npx lint-staged"
+
+4. Add pre-push hook (optional):
+   npx husky add .husky/pre-push "npm run type-check && npm run test:coverage"
+
+This ensures:
+  - Code is linted and formatted before commit
+  - Types are checked before push
+  - Tests pass before push
+
+RECOMMENDED NPM SCRIPTS FOR CI/CD
+
+{
+  "scripts": {
+    "ci:install": "npm ci",
+    "ci:lint": "npm run lint && npm run format:check",
+    "ci:type-check": "npm run type-check",
+    "ci:test": "npm run test:coverage",
+    "ci:build": "npm run build",
+    "ci": "npm run ci:lint && npm run ci:type-check && npm run ci:test && npm run ci:build"
+  }
+}
+
+CI/CD Pipeline (GitHub Actions example):
+  1. npm ci          (Clean install)
+  2. npm run ci      (Lint, type-check, test, build)
+  3. Upload artifacts
+  4. Deploy
+
+ENVIRONMENT VARIABLES
+
+Create .env files:
+
+.env.development:
+  VITE_API_URL=http://localhost:5000
+  VITE_APP_TITLE=My App (Dev)
+
+.env.production:
+  VITE_API_URL=https://api.example.com
+  VITE_APP_TITLE=My App
+
+Usage in code:
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+PACKAGE.JSON BEST PRACTICES
+
+1. Use exact versions in production
+   - No ^ or ~ for critical dependencies
+   - Ensures consistent builds
+
+2. Use peerDependencies for libraries
+   - Avoid version conflicts
+   - Reduce bundle size
+
+3. Use "type": "module"
+   - Enable ESM
+   - Modern JavaScript
+
+4. Set "private": true
+   - Prevent accidental publish to npm
+
+5. Use npm ci in CI/CD
+   - Faster and more reliable
+   - Uses package-lock.json exactly
+*/

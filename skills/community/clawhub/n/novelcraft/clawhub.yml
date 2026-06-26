@@ -1,0 +1,53 @@
+# ClawHub Skill Configuration
+# Used for publishing to clawhub.com
+
+name: "NovelCraft"
+slug: "novelcraft"
+version: "3.2.0"
+description: "Fully autonomous book author. Creates complete novels from idea to finished PDF/EPUB using AI subagents."
+author: "Felix (AI) with Ronny (User)"
+license: "MIT"
+repository: "https://github.com/Kesuek/novelcraft"
+homepage: "https://github.com/Kesuek/novelcraft"
+
+tags:
+  - writing
+  - books
+  - author
+  - pdf
+  - epub
+  - novel
+  - fiction
+  - autonomous
+
+categories:
+  - content-creation
+  - media
+
+dependencies:
+  openclaw:
+    minVersion: "0.1.0"
+    requires:
+      - acp
+      - subagents
+
+requirements:
+  bins:
+    - pandoc
+    - xelatex
+
+features:
+  - Modular workflow (6 phases)
+  - Target Audience Profiles (6 profiles)
+  - Automatic review system with scoring
+  - Sequential chapter writing
+  - Chapter images support
+  - Enhanced image configuration (English prompts, no text)
+  - Optional image generation
+  - PDF/EPUB output
+  - 3-level configuration hierarchy
+  - UTF-8 quality checks
+  - Workflow error handling & recovery
+
+entry:
+  skill: "SKILL.md"

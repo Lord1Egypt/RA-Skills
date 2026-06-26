@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wechat-article-to-markdown"
+version = "0.1.0"
+description = "Fetch WeChat Official Account articles and convert them to Markdown"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+  { name = "jackwener" }
+]
+dependencies = [
+  "camoufox[geoip]",
+  "markdownify",
+  "beautifulsoup4",
+  "httpx",
+]
+keywords = ["wechat", "markdown", "crawler", "camoufox"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/jackwener/wechat-article-to-markdown"
+Issues = "https://github.com/jackwener/wechat-article-to-markdown/issues"
+
+[project.scripts]
+wechat-article-to-markdown = "wechat_article_to_markdown:main"
+
+[tool.setuptools]
+py-modules = ["wechat_article_to_markdown", "main"]
+
+[tool.pytest.ini_options]
+markers = [
+  "e2e: live end-to-end tests that require network and browser runtime",
+]

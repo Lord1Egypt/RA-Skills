@@ -1,35 +1,54 @@
 ---
-name: "Toon"
-description: "Compress JSON data to TOON format for ~40% context savings. Use when fetching APIs, reading JSON files, or any task outputting structured data. Pipe any output through `toon` - JSON gets compressed, non-JSON passes through unchanged."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toon"
-sourceUrl: "https://clawhub.ai/skills/toon"
+name: toon
+description: Compress JSON data to TOON format for ~40% context savings. Use when fetching APIs, reading JSON files, or any task outputting structured data. Pipe any output through `toon` - JSON gets compressed, non-JSON passes through unchanged.
 ---
 
-# Toon
+# TOON Context Compression
 
-> Compress JSON data to TOON format for ~40% context savings. Use when fetching APIs, reading JSON files, or any task outputting structured data. Pipe any output through `toon` - JSON gets compressed, non-JSON passes through unchanged.
+Pipe any command output through `toon` to compress JSON and save ~40% tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toon`
-- **Source URL:** [https://clawhub.ai/skills/toon](https://clawhub.ai/skills/toon)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/toon
+# API responses
+curl -s "https://api.example.com/data" | toon
+
+# JSON files  
+cat data.json | toon
+
+# Any command - safe on non-JSON (passes through unchanged)
+some_command | toon
 ```
+
+## Install
+
+```bash
+# Copy script to PATH
+cp scripts/toon ~/.local/bin/
+chmod +x ~/.local/bin/toon
+```
+
+Requires: `npx` (Node.js)
+
+## Example
+
+```json
+[{"id":1,"name":"Alice"},{"id":2,"name":"Bob"}]
+```
+→
+```toon
+[2]{id,name}:
+  1,Alice
+  2,Bob
+```
+
+## When to Use
+
+- **Always** when fetching JSON APIs
+- **Always** when reading JSON files into context
+- Safe to use on any output — non-JSON passes through
+
+## Reference
+
+- Format spec: https://toonformat.dev
+- CLI: `@toon-format/cli`

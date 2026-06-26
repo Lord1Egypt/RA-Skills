@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "linux-command-guard-elite"
+version = "1.0.0"
+description = "Allowlist-first Linux command safety checker for AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "OpenAI Assistant"}]
+license = {text = "MIT"}
+keywords = ["linux", "security", "shell", "llm", "agents"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.scripts]
+safe-run-check = "linux_command_guard.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,2 @@
+[console_scripts]
+task-cost = task_cost_estimator.cli:main

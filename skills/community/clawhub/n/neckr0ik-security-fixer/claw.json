@@ -1,0 +1,15 @@
+{
+  "name": "neckr0ik-security-fixer",
+  "version": "1.0.0",
+  "description": "Auto-fix security vulnerabilities in OpenClaw skills. Works with neckr0ik-security-scanner to automatically remediate hardcoded secrets, shell injection risks, prompt injection, and path traversal issues.",
+  "author": "Neckr0ik",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "fix",
+    "remediation",
+    "vulnerability",
+    "auto-fix",
+    "clawhub"
+  ]
+}

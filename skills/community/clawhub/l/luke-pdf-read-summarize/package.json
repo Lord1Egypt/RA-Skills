@@ -1,0 +1,29 @@
+{
+  "name": "@luke/luke-pdf-read-summarize",
+  "version": "1.1.0",
+  "description": "PDF 阅读与摘要工具 - 安全版本，使用子进程执行，无 shell 注入风险",
+  "keywords": ["pdf", "read", "summarize", "extract", "中文"],
+  "author": "Luke",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub/skills/tree/main/luke-pdf-read-summarize"
+  },
+  "security": {
+    "notes": "Uses subprocess.spawnSync for safe file execution. No shell injection vulnerabilities."
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "main": "pdf-read-summarize.tool.js",
+  "files": [
+    "SKILL.md",
+    "pdf-read-summarize.tool.js"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

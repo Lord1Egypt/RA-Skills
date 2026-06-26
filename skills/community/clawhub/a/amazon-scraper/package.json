@@ -1,0 +1,32 @@
+{
+  "name": "amazon-scraper",
+  "version": "3.4.1",
+  "description": "High-performance containerized Amazon scraper with stealth mode. Bypasses headless detection. Supports BSR, search, product detail, and generic pages. Built on Docker + playwright-extra + Stealth.",
+  "main": "assets/amazon_handler.js",
+  "scripts": {
+    "test": "node assets/main_handler.js https://www.amazon.com/gp/bestsellers/electronics",
+    "setup": "bash scripts/setup.sh"
+  },
+  "keywords": [
+    "amazon",
+    "scraper",
+    "asin",
+    "bsr",
+    "playwright",
+    "openclaw",
+    "docker"
+  ],
+  "author": "Joseph",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  },
+  "openclaw": {
+    "requires": {
+      "docker": true
+    },
+    "requiredBinaries": ["docker"]
+  }
+}

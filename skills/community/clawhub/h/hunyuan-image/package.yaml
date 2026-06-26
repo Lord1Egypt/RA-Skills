@@ -1,0 +1,26 @@
+name: hunyuan-image
+description: 腾讯混元生图API - 根据文本描述生成AI图像
+version: 1.0.3
+author: wszhhx
+license: MIT
+homepage: https://cloud.tencent.com/document/product/1729/105969
+
+requires:
+  bins:
+    - python
+  packages:
+    - name: tencentcloud-sdk-python
+      install: pip install tencentcloud-sdk-python
+  env:
+    - name: TENCENT_SECRET_ID
+      description: 腾讯云SecretId
+      required: true
+    - name: TENCENT_SECRET_KEY
+      description: 腾讯云SecretKey
+      required: true
+
+install:
+  steps:
+    - run: pip install tencentcloud-sdk-python
+    - note: 请设置环境变量 TENCENT_SECRET_ID 和 TENCENT_SECRET_KEY
+    - note: 获取地址：https://console.cloud.tencent.com/cam/capi

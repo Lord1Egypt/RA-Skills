@@ -1,0 +1,25 @@
+{
+  "name": "m365-planner",
+  "version": "1.2.3",
+  "description": "Microsoft 365 Planner Skill for OpenClaw - Manage plans, buckets, and tasks via Graph API",
+  "main": "scripts/test-connection.js",
+  "scripts": {
+    "test": "node scripts/test-connection.js",
+    "list": "node scripts/list_plans.js",
+    "cleanup": "node scripts/cleanup_verlaengerungen.js"
+  },
+  "keywords": [
+    "microsoft",
+    "planner",
+    "m365",
+    "graph-api",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "axios": "^1.15.0"
+  }
+}

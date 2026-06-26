@@ -1,0 +1,8 @@
+interface:
+  display_name: "币安热点编辑部"
+  short_description: "发现今天最值得写的 Binance 热点，并生成多版本 Square 草稿。"
+  brand_color: "#8f3028"
+  default_prompt: "请使用 $binance-narrative-newsroom 生成今天的 Binance 热点选题，给我头条建议、昨天到今天的阶段变化、三条跟踪线索、一条不要追的风险提示，以及三版可发到 Binance Square 的中文草稿。"
+
+policy:
+  allow_implicit_invocation: true

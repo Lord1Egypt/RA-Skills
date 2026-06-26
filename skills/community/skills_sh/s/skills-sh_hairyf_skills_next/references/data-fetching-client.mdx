@@ -1,0 +1,244 @@
+---
+name: data-fetching-client
+description: Fetching data in Client Components using React's use hook and third-party libraries
+---
+
+# Data Fetching in Client Components
+
+Client Components can fetch data using React's `use` hook or third-party libraries like SWR or React Query.
+
+## Using the `use` Hook
+
+Stream data from Server Components to Client Components using React's `use` hook:
+
+```tsx
+// app/page.tsx (Server Component)
+import Posts from './ui/posts'
+import { Suspense } from 'react'
+
+export default function Page() {
+  // Don't await - pass the promise
+  const postsPromise = getPosts()
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Posts posts={postsPromise} />
+    </Suspense>
+  )
+}
+```
+
+```tsx
+// app/ui/posts.tsx (Client Component)
+'use client'
+
+import { use } from 'react'
+
+export default function Posts({
+  posts,
+}: {
+  posts: Promise<{ id: string; title: string }[]>
+}) {
+  const allPosts = use(posts)
+
+  return (
+    <ul>
+      {allPosts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Using Third-Party Libraries
+
+Use SWR for client-side data fetching:
+
+```tsx
+'use client'
+
+import useSWR from 'swr'
+
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
+
+export default function BlogPage() {
+  const { data, error, isLoading } = useSWR(
+    'https://api.example.com/posts',
+    fetcher
+  )
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error.message}</div>
+
+  return (
+    <ul>
+      {data.map((post: { id: string; title: string }) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+Use React Query (TanStack Query):
+
+```tsx
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
+export default function BlogPage() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const res = await fetch('https://api.example.com/posts')
+      return res.json()
+    },
+  })
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error</div>
+
+  return (
+    <ul>
+      {data.map((post: { id: string; title: string }) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Combining Server and Client Data Fetching
+
+Fetch initial data on the server, then update on the client:
+
+```tsx
+// app/page.tsx (Server Component)
+import BlogClient from './blog-client'
+import { getPosts } from './lib/data'
+
+export default async function Page() {
+  const initialPosts = await getPosts()
+
+  return <BlogClient initialPosts={initialPosts} />
+}
+```
+
+```tsx
+// app/blog-client.tsx (Client Component)
+'use client'
+
+import { use } from 'react'
+import useSWR from 'swr'
+
+export default function BlogClient({
+  initialPosts,
+}: {
+  initialPosts: { id: string; title: string }[]
+}) {
+  const { data } = useSWR('/api/posts', {
+    fallbackData: initialPosts,
+  })
+
+  return (
+    <ul>
+      {data.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Sharing Data with Context and React.cache
+
+Share fetched data between Server and Client Components:
+
+```tsx
+// app/lib/user.ts
+import { cache } from 'react'
+
+export const getUser = cache(async () => {
+  const res = await fetch('https://api.example.com/user')
+  return res.json()
+})
+```
+
+```tsx
+// app/user-provider.tsx (Client Component)
+'use client'
+
+import { createContext } from 'react'
+
+export const UserContext = createContext<Promise<User> | null>(null)
+
+export default function UserProvider({
+  children,
+  userPromise,
+}: {
+  children: React.ReactNode
+  userPromise: Promise<User>
+}) {
+  return (
+    <UserContext.Provider value={userPromise}>
+      {children}
+    </UserContext.Provider>
+  )
+}
+```
+
+```tsx
+// app/layout.tsx (Server Component)
+import UserProvider from './user-provider'
+import { getUser } from './lib/user'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const userPromise = getUser() // Don't await
+
+  return (
+    <html>
+      <body>
+        <UserProvider userPromise={userPromise}>
+          {children}
+        </UserProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+```tsx
+// app/ui/profile.tsx (Client Component)
+'use client'
+
+import { use, useContext } from 'react'
+import { UserContext } from '../user-provider'
+
+export function Profile() {
+  const userPromise = useContext(UserContext)
+  if (!userPromise) throw new Error('Must be within UserProvider')
+  const user = use(userPromise)
+  return <p>Welcome, {user.name}</p>
+}
+```
+
+## Key Points
+
+- Use `use` hook to stream promises from Server to Client Components
+- Wrap `use` calls in `<Suspense>` boundaries
+- Use SWR or React Query for client-side data fetching with caching
+- Combine server and client fetching for optimal performance
+- Use `React.cache` with context to share data between Server and Client Components
+- Client Components can fetch data on mount, but prefer server fetching when possible
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/fetching-data#client-components
+- https://nextjs.org/docs/app/getting-started/server-and-client-components#sharing-data-with-context-and-reactcache
+-->

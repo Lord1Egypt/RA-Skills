@@ -1,0 +1,144 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "2025苏州生物医药创新发展论坛",
+  "description": "汇聚全球生物医药领域顶尖专家、企业领袖及投资机构，共同探讨创新药物研发、临床转化、产业生态建设等前沿话题，推动长三角生物医药产业高质量发展。",
+  "image": "https://www.szbiomed.cn/images/events/2025-forum-cover.jpg",
+  
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  
+  "startDate": "2025-03-15T09:00:00+08:00",
+  "endDate": "2025-03-16T18:00:00+08:00",
+  
+  "eventSchedule": {
+    "@type": "Schedule",
+    "startDate": "2025-03-15",
+    "endDate": "2025-03-16",
+    "scheduleTimezone": "Asia/Shanghai",
+    "byDay": ["Saturday", "Sunday"],
+    "startTime": "09:00",
+    "endTime": "18:00"
+  },
+  
+  "location": {
+    "@type": "Place",
+    "name": "苏州生物医药创新园会议中心",
+    "description": "园区内专业会议中心，配备同声传译、全息投影等先进设备",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "星湖街328号A1栋",
+      "addressLocality": "苏州工业园区",
+      "addressRegion": "江苏省",
+      "postalCode": "215000",
+      "addressCountry": "CN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 31.2989,
+      "longitude": 120.6853
+    },
+    "url": "https://www.szbiomed.cn/venue"
+  },
+  
+  "organizer": {
+    "@type": "Organization",
+    "name": "苏州市生物医药产业发展促进中心",
+    "url": "https://www.suzhoubiomed.cn",
+    "logo": "https://www.suzhoubiomed.cn/images/logo.png"
+  },
+  
+  "coOrganizer": {
+    "@type": "Organization",
+    "name": "苏州生物医药创新园管理有限公司",
+    "url": "https://www.szbiomed.cn"
+  },
+  
+  "performer": [
+    {
+      "@type": "Organization",
+      "name": "中国科学院上海药物研究所",
+      "jobTitle": "特邀演讲嘉宾"
+    },
+    {
+      "@type": "Person",
+      "name": "张华教授",
+      "jobTitle": "院士"
+    },
+    {
+      "@type": "Person",
+      "name": "李明博士",
+      "jobTitle": "跨国药企研发总裁"
+    }
+  ],
+  
+  "sponsor": [
+    {
+      "@type": "Organization",
+      "name": "苏州工业园区管委会",
+      "type": "政府机构"
+    },
+    {
+      "@type": "Organization",
+      "name": "高瓴资本",
+      "type": "投资机构"
+    }
+  ],
+  
+  "offers": {
+    "@type": "Offer",
+    "name": "免费参会票",
+    "description": "包含两天论坛全部场次、会议资料、午餐及茶歇",
+    "url": "https://www.szbiomed.cn/events/2025-forum/register",
+    "price": "0",
+    "priceCurrency": "CNY",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2025-01-01T00:00:00+08:00",
+    "validThrough": "2025-03-10T23:59:59+08:00",
+    "inventoryLevel": {
+      "@type": "QuantitativeValue",
+      "value": "200",
+      "maxValue": "500"
+    },
+    "offeredBy": {
+      "@type": "Organization",
+      "name": "苏州生物医药创新园"
+    }
+  },
+  
+  "keywords": [
+    "生物医药",
+    "创新药物",
+    "产业论坛",
+    "苏州",
+    "招商引资"
+  ],
+  
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "生物医药企业高管、研发负责人、投资人、政府官员"
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "86"
+  },
+  
+  "typicalAgeRange": "25-65",
+  
+  "doorTime": "2025-03-15T08:00:00+08:00",
+  
+  "inLanguage": ["zh-CN", "en"],
+  
+  "workFeatured": [
+    {
+      "@type": "CreativeWork",
+      "name": "创新药物临床转化白皮书"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "长三角生物医药产业地图"
+    }
+  ]
+}

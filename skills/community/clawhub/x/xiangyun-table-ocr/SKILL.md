@@ -1,35 +1,245 @@
 ---
-name: "文档识别-表格识别-Pro（翔云开放平台）"
-description: "翔云通用文档/表格识别 Agent。当用户请求以下操作时触发： - 通用文档识别、文档 OCR、OCR 文档、识别图片文字 - 表格识别、表格 OCR、识别表格 - 提取表格内容、读取表格数据 - 识别图片/扫描件/PDF 中的文字和表格 - 表格转 Excel、表格转 Word、表格转 Markdown - 导..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiangyun-table-ocr"
-sourceUrl: "https://clawhub.ai/skills/xiangyun-table-ocr"
+name: xiangyun-table-ocr
+description: |
+  翔云通用文档/表格识别 Agent。当用户请求以下操作时触发：
+  - 通用文档识别、文档 OCR、OCR 文档、识别图片文字
+  - 表格识别、表格 OCR、识别表格
+  - 提取表格内容、读取表格数据
+  - 识别图片/扫描件/PDF 中的文字和表格
+  - 表格转 Excel、表格转 Word、表格转 Markdown
+  - 导出文档、导出表格、下载识别结果
+  - 批量文档识别、批量表格识别
+  - 英文文档识别、日文文档识别、多语言 OCR
+  - 识别发票/合同/证件/报表/对账单
+  - 翔云文档识别、netocr 文档、netocr 表格
+  - 识别歪斜/倾斜文档、自动校正图片
+
+  凭据自动从 `./config.json`（Skill 目录下）加载，首次使用再向用户索要。
 ---
 
-# 文档识别-表格识别-Pro（翔云开放平台）
+# 翔云通用文档/表格识别
 
-> 翔云通用文档/表格识别 Agent。当用户请求以下操作时触发： - 通用文档识别、文档 OCR、OCR 文档、识别图片文字 - 表格识别、表格 OCR、识别表格 - 提取表格内容、读取表格数据 - 识别图片/扫描件/PDF 中的文字和表格 - 表格转 Excel、表格转 Word、表格转 Markdown - 导...
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiangyun-table-ocr`
-- **Source URL:** [https://clawhub.ai/skills/xiangyun-table-ocr](https://clawhub.ai/skills/xiangyun-table-ocr)
+调用翔云 OCR 平台的**通用文档识别 API**（typeId: 3050），对图片、PDF、扫描件中的**文字、表格、版面结构**进行一体化识别，并支持导出为 Excel、Word、Markdown、PDF、TXT、OFD 等多种格式。
 
-## Overview
+**适用场景**：
+| 类别 | 示例 |
+|:---|:---|
+| 纯表格 | 财务报表、数据表格、对账单、工程量表 |
+| 含表格文档 | 合同、报告、说明书、论文、试卷 |
+| 纯文字文档 | 证件、发票、手写稿、扫描件 |
+| 多语言文档 | 英文合同、日文资料、繁体文档、多语言混排 |
 
+> 💡 **表格识别建议**：`layout: 1`（开启版面分析）对表格结构识别更友好。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiangyun-table-ocr
+---
+
+## ⚠️ 安全说明
+
+**数据发送范围**：
+- 识别阶段：用户图片和 API 凭据会被发送至 [netocr.com](https://netocr.com) 进行云端 OCR 处理，图片不会在服务端持久化存储
+- 下载阶段：OSS 导出会话凭证来自 API 返回的预签名 URL，文件直接下载到本地
+
+**SSL 处理策略**：
+- **主 API**（`netocr.com`）：完整 SSL 证书验证（requests 默认行为）
+- **OSS 下载**（`product.netocr.com`）：翔云返回 `http://product.netocr.com/...` 预签名 URL，该域名是阿里云 OSS cn-beijing 的 CNAME。脚本将请求目标替换为阿里云 OSS 官方域名（`oss-cn-beijing.aliyuncs.com`），并通过 `Host` 头携带原始域名以使预签名校验通过，全程使用标准 HTTPS，无任何 SSL 配置修改
+
+---
+
+## ⚠️ 凭据配置
+
+### 配置文件
+
+将凭据保存到 Skill 目录下的 `config.json`：
+
+```json
+// config.json（Skill 同目录下）
+{
+  "key": "你的OCRKey",
+  "secret": "你的OCRSecret"
+}
 ```
+
+> 💡 **首次使用**：创建 `config.json`，填入凭据即可。配置一次，永久使用。
+
+### 凭据加载优先级
+
+| 优先级 | 来源 | 说明 |
+|:---:|:---|:---|
+| 1 | `./config.json` | Skill 自目录配置文件 |
+| 2 | 环境变量 | `NETOCR_KEY` / `NETOCR_SECRET` |
+| 3 | 用户输入 | 前两者都没有时，向用户索要 |
+
+### 首次配置流程
+
+1. 检查 `./config.json` 是否存在且含 `key` 和 `secret`
+2. 若不存在或不完整，向用户提示：
+
+```
+首次使用翔云文档识别，请配置 API 凭据：
+
+1. 前往 https://netocr.com 注册并登录
+2. 进入【个人中心】获取 API Key 和 Secret
+3. 请提供：
+   - key：______
+   - secret：______
+```
+
+3. 收到后写入 `./config.json`，并提示用户"凭据已保存，后续无需重复输入"
+
+---
+
+## 触发词参考
+
+| 触发表达 | 对应意图 |
+|:---|:---|
+| "识别这个文档"、"OCR 这张图片"、"读取图片文字" | 通用文档识别 |
+| "识别这张表格"、"提取表格数据" | 表格识别（自动 layout=1） |
+| "英文合同 OCR"、"识别日文资料" | 多语言识别 |
+| "帮我识别 PDF"、"扫描件文字提取" | PDF/扫描件识别 |
+| "这张发票识别一下" | 证件/票据识别 |
+| "表格转 Excel"、"导出为 Markdown" | 识别 + 导出 |
+| "歪斜文档识别"、"图片有点歪" | 带校正的识别 |
+| "批量识别文件夹里所有图片" | 批量识别 |
+
+---
+
+## 执行流程
+
+### 阶段一：识别文档
+
+#### Step 1：加载凭据
+
+按【凭据配置】章节顺序加载 `key` / `secret`：
+- config.json → 环境变量 → 用户输入
+
+#### Step 2：获取图片输入
+
+支持以下方式：
+- **本地文件路径**：用户提供绝对路径，脚本读取后转 Base64
+- **用户拖入文件**：直接获取文件路径
+- **批量目录**：用户提供文件夹路径，遍历所有图片
+
+#### Step 3：配置识别参数
+
+**固定参数**：
+```json
+{ "typeId": 3050, "format": "json" }
+```
+
+**语言参数 `nLanguage`**（默认 0=简体中文）：
+| 值 | 语言 | 值 | 语言 |
+|:---:|:---|:---:|:---|
+| 0 | 简体中文（印刷）| 9 | 法文 |
+| 1 | 繁体中文（印刷）| 10 | 西班牙文 |
+| 2 | 英文 | 11 | 日文 |
+| 3 | 简体中文（印刷+手写）| 12 | 韩文 |
+| 4 | 繁体中文（印刷+手写）| 13 | 葡萄牙文 |
+| 5 | 阿拉伯文 | 14 | 越南文 |
+| 6 | 乌尔都文 | 15 | 孟加拉文 |
+| 8 | 西里尔文（俄文等）| | |
+
+> 💡 语言推断：提到"英文"→ 2；"日文"→ 11；"繁体"→ 1；未指定→ 0
+
+**版面参数 `layout`**：
+| 值 | 含义 | 适用 |
+|:---:|:---|:---|
+| 0 | 关闭版面分析 | 纯文字、证件 |
+| **1** | 开启版面分析 | **表格首选**、多栏文档 |
+
+**图像校正参数**：
+| 参数 | 值 | 触发条件 |
+|:---|:---:|:---|
+| `autoRotation` | 1 | 图片自动判断是否旋转 |
+| `inclineCorrect` | 0/1/2 | 不矫正/透视畸变/弯曲畸变校正 |
+
+**预处理参数**：
+| 参数 | 值 | 触发条件 |
+|:---|:---:|:---|
+| `removeWaterMark` | 1 | 去除水印 |
+| `filterColor` | 1~4 | 滤红/滤蓝（背景干扰时）|
+
+#### Step 4：调用识别 API
+
+执行脚本 `scripts/recognize_table.py`：
+```bash
+python scripts/recognize_table.py --image <路径> --export xls
+```
+
+API 接口：
+- **Base64**：`POST https://netocr.com/api/recog_table_base64`
+- **File 上传**：`POST https://netocr.com/api/recog_table_file`
+
+响应格式：`{"message": {"status": 0, "value": {...}}}`
+- `status == 0` 表示成功
+- `consumeId` 在 `message.value.consumeId`
+
+#### Step 5：展示结果
+
+- 以 Markdown 表格预览识别内容
+- 告知 `consumeId`，提示可随时导出
+
+---
+
+### 阶段二：导出文件（按需触发）
+
+> 仅当用户明确提出"导出/下载/转换/保存为"时才执行。
+
+**导出格式**：
+| 格式 | 说明 | 推荐场景 |
+|:---|:---|:---|
+| `xls` | Excel | 数据处理 |
+| `flowWord` | Word 文字流 | 正文编辑 |
+| `boxWord` | Word 文本框 | 保留排版 |
+| `md` | Markdown | 文档转换 |
+| `pdf` | 双层 PDF | 存档打印 |
+| `txt` | 纯文本 | 简单提取 |
+| `ofd` | OFD | 国产格式归档 |
+
+**下载接口**：`POST https://netocr.com/api/download_file`
+- **不需要 key/secret**
+- 返回 OSS 预签名 URL → 再发 GET 请求下载实际文件
+
+---
+
+## 批量识别
+
+1. 遍历目录下所有 `jpg/png/jpeg/webp/tif/pdf` 文件
+2. 逐一调用识别 API（间隔 0.5 秒）
+3. 汇总展示成功/失败统计
+4. 按需批量导出
+
+---
+
+## 图片/文件要求
+
+| 类型 | 要求 |
+|:---|:---|
+| 支持格式 | PNG、JPG、JPEG、WEBP、TIF、OFD、PDF |
+| 普通图像 | 约 200KB，位深度 24 以上 |
+| 扫描件 | 分辨率 300DPI，小于 3M |
+
+---
+
+## 错误处理
+
+| 错误码 | 含义 | 处理 |
+|:---:|:---|:---|
+| 20001 | Key/Secret 错误 | 检查配置文件凭据 |
+| 10001 | 缺少必要参数 | 检查 typeId/format |
+| 10002 | 识别失败 | 改善图片质量，开 autoRotation |
+| 10003 | 额度不足 | 充值或更换账号 |
+| 10004 | 图片格式不支持 | 转为 JPG/PNG 后重试 |
+| 下载失败 | consumeId 过期 | 重新识别后再下载 |
+
+---
+
+## 获取 key 和 secret
+
+1. 登录[翔云](https://netocr.com)
+2. 在个人中心获得
+
+## 参考文档
+
+详细 API 字段、参数枚举及返回结构，参考：[翔云 OCR API 参考](references/api_docs.md)

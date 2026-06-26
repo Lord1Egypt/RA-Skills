@@ -1,0 +1,12 @@
+{
+  "version": "3.0",
+  "updated_at": "",
+  "nodes": [],
+  "settings": {
+    "default_window_min": 30,
+    "max_window_min": 60,
+    "monthly_token_budget": 1000000,
+    "require_approval": true,
+    "auto_close_expired": true
+  }
+}

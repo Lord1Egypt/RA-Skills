@@ -1,0 +1,30 @@
+{
+  "name": "new-youth-skill",
+  "version": "1.0.0",
+  "description": "New Youth Thinking Skill. 基于《新青年》杂志的 AI 时代思想技能。以“人的觉醒”为核心，帮助用户在信息洪流中保持独立思考、批判性判断和自主决策能力。",
+  "type": "module",
+  "main": "SKILL.md",
+  "scripts": {
+    "validate": "bash tests/validate.sh",
+    "validate:win": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File tests/validate.ps1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moroiser/new-youth-skill"
+  },
+  "keywords": [
+    "skill",
+    "agent",
+    "new-youth",
+    "new-youth-skill",
+    "critical-thinking",
+    "independent-thinking",
+    "self-improvement",
+    "claude-code",
+    "openclaw",
+    "启蒙",
+    "批判性思维"
+  ],
+  "author": "MiniMax AI",
+  "license": "MIT"
+}

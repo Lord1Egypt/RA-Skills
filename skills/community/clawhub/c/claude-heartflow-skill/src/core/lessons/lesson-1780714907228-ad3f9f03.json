@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1780714907228-ad3f9f03",
+  "type": "correction",
+  "content": "梦境叙事升维：引入记忆访问频率加权，让高频记忆优先被梦处理；同时增加L2~L6层级的触发关键词密度，提升叙事深度",
+  "context": "当前梦境质量12%，叙事单薄，每次都选同一条教训",
+  "trigger": "heartflow",
+  "importance": 5,
+  "frequency": 1,
+  "createdAt": "2026-06-06T03:01:47.229Z",
+  "lastSeen": "2026-06-06T03:01:47.229Z",
+  "sessionId": null,
+  "retentionScore": 5
+}

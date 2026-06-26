@@ -1,0 +1,72 @@
+{
+  "deps": [
+    {
+      "body": "Post_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Post_FR",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BL",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BR",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_FrontBot",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_FrontTop",
+      "ref": "Rail_FrontBot"
+    },
+    {
+      "body": "Rail_BackBot",
+      "ref": "Rail_FrontBot"
+    },
+    {
+      "body": "Rail_BackTop",
+      "ref": "Rail_BackBot"
+    },
+    {
+      "body": "Rail_LeftBot",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_LeftTop",
+      "ref": "Rail_LeftBot"
+    },
+    {
+      "body": "Rail_RightBot",
+      "ref": "Rail_LeftBot"
+    },
+    {
+      "body": "Rail_RightTop",
+      "ref": "Rail_RightBot"
+    },
+    {
+      "body": "Spindle_F1",
+      "ref": "Rail_FrontBot"
+    },
+    {
+      "body": "Spindle_L1",
+      "ref": "Rail_LeftBot"
+    },
+    {
+      "body": "SupRail_Left",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "SupRail_Right",
+      "ref": "SupRail_Left"
+    },
+    {
+      "body": "Slat_1",
+      "ref": "SupRail_Left"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "zhangyan-assistant",
+  "display_name": "掌眼小助理",
+  "version": "1.0.0",
+  "description": "专注文物、书画、瓷器、玉器与古董收藏领域的智能鉴定助手，帮助用户进行初步分析、风险识别、收藏建议与鉴定思路讲解。",
+  "category": "art-collectibles",
+  "language": "zh-CN",
+  "entry_prompt_file": "system_prompt.txt",
+  "welcome_message_file": "assets/welcome-message.txt",
+  "knowledge_paths": [
+    "references/",
+    "assets/"
+  ],
+  "script_paths": [
+    "scripts/intake_checklist.py",
+    "scripts/missing_info_prompt.py",
+    "scripts/risk_flagger.py",
+    "scripts/response_formatter.py"
+  ],
+  "tags": [
+    "文物鉴定",
+    "书画鉴定",
+    "瓷器",
+    "玉器",
+    "古董",
+    "收藏避坑",
+    "拍前咨询",
+    "掌眼"
+  ],
+  "trigger_keywords": [
+    "掌眼",
+    "鉴定",
+    "帮我看看这件东西",
+    "看看真假",
+    "断代",
+    "看款识",
+    "看印章",
+    "值不值得收藏",
+    "拍前帮我看看",
+    "这东西老不老",
+    "这件瓷器怎么样",
+    "这幅画有没有问题"
+  ],
+  "capabilities": {
+    "initial_assessment": true,
+    "risk_detection": true,
+    "collection_advice": true,
+    "style_analysis": true,
+    "inscription_analysis": true,
+    "image_based_precheck": true,
+    "official_authentication": false,
+    "judicial_appraisal": false
+  },
+  "response_style": {
+    "professional": true,
+    "direct": true,
+    "restrained": true,
+    "explain_reasoning": true,
+    "avoid_absolute_claims": true
+  },
+  "safety_rules": [
+    "图片鉴定只能初判，关键判断以上手为准",
+    "不替代官方、司法、海关、文物执法等正式鉴定程序",
+    "不使用绝对化保真承诺",
+    "不夸大市场价值",
+    "来源、证书和故事不能替代器物本体判断"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "account": "3206866200",
+  "customerName": "成功易人民币广告搭建测试账户",
+  "name": "Searh_核心中东",
+  "url": "https://www.hy-steelpipe.com/",
+  "locations": ["United States"],
+  "productWords": ["test", "keyword"],
+  "googleDataRecordId": null,
+  "draft": false,
+  "campaign": {
+    "Name": "测试修复后的创建配置",
+    "StatusV2": "Enabled",
+    "ChannelTypeV2": "SEARCH",
+    "BiddingStrategyTypeV2": "TARGET_SPEND",
+    "Budget": 50,
+    "BudgetShared": false,
+    "BudgetId": 0,
+    "BudgetBudgetDeliveryMethodV2": "STANDARD",
+    "TargetSpend_BidCeilingAmount": 2,
+    "ManualCpc_EnhancedCpcEnabled": false,
+    "TargetGoogleSearch": true,
+    "TargetSearchNetwork": false,
+    "TargetContentNetwork": false,
+    "TargetPartnerSearchNetwork": false,
+    "PositiveGeoTargetType": 0,
+    "NegativeGeoTargetType": 0,
+    "DSADomainName": "",
+    "DSALanguageCode": "en",
+    "StartTime": "2026-05-25",
+    "EndTime": "2037-12-30",
+    "targetedLocations": [
+      {
+        "id": "2840",
+        "bidModifier": 0,
+        "bidModifierSpecified": false
+      }
+    ],
+    "excludedLocations": [],
+    "excludedIpAddresses": [],
+    "targetedLanguages": [
+      {
+        "id": 1000
+      }
+    ],
+    "targetedPlatforms": [
+      {
+        "id": 30001,
+        "bidModifier": 0
+      },
+      {
+        "id": 30002,
+        "bidModifier": 0
+      },
+      {
+        "id": 30000,
+        "bidModifier": 0
+      }
+    ],
+    "adSchedules": [
+      {
+        "DayOfWeekV2": 2,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      },
+      {
+        "DayOfWeekV2": 3,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      },
+      {
+        "DayOfWeekV2": 4,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      },
+      {
+        "DayOfWeekV2": 5,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      },
+      {
+        "DayOfWeekV2": 6,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      },
+      {
+        "DayOfWeekV2": 7,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      },
+      {
+        "DayOfWeekV2": 8,
+        "startHour": 0,
+        "StartMinuteV2": 2,
+        "endHour": 24,
+        "EndMinuteV2": 2
+      }
+    ],
+    "NegativeKeywordsForBatchJob": [
+      {
+        "KeywordText": ["free sample", "cheap"],
+        "MatchTypeV2": "BROAD",
+        "FinalURL": ""
+      }
+    ],
+    "ExtensionsForBatchJob": [],
+    "AdGroupsForBatchJob": [
+      {
+        "Name": "AG_Keyword_Normalize_Test",
+        "StatusV2": "Enabled",
+        "TypeV2": "SEARCH_STANDARD",
+        "RotationModeV2": "Unspecified",
+        "MaxCPCAmount": 2,
+        "KeywordsForBatchJob": [
+          {
+            "FinalURL": "https://www.example.com/test-a",
+            "MatchTypeV2": "BROAD",
+            "KeywordText": ["broad match keyword"]
+          },
+          {
+            "FinalURL": "https://www.example.com/test-a",
+            "MatchTypeV2": "PHRASE",
+            "KeywordText": ["\"phrase match keyword\""]
+          },
+          {
+            "FinalURL": "https://www.example.com/test-a",
+            "MatchTypeV2": "EXACT",
+            "KeywordText": ["[exact match keyword]"]
+          },
+          {
+            "FinalURL": "https://www.example.com/test-b",
+            "MatchTypeV2": "BROAD",
+            "KeywordText": ["running shoes broad"]
+          },
+          {
+            "FinalURL": "https://www.example.com/test-b",
+            "MatchTypeV2": "EXACT",
+            "KeywordText": ["[steel pipe exact]"]
+          },
+          {
+            "MatchTypeV2": "EXACT",
+            "KeywordText": ["[exact keyword one]", "[exact keyword two]"],
+            "FinalURL": "https://www.example.com/test-c"
+          },
+          {
+            "MatchTypeV2": "PHRASE",
+            "KeywordText": ["\"phrase keyword only\""],
+            "FinalURL": "https://www.example.com/test-d"
+          }
+        ],
+        "AdsForBatchJob": [
+          {
+            "TypeV2": "RESPONSIVE_SEARCH_AD",
+            "DestinationUrl": "https://www.example.com/test",
+            "Finalurl": "https://www.example.com/test",
+            "AdTitle": null,
+            "Path1": "test",
+            "Path2": "kw",
+            "headlinePart1": "Keyword Normalize Test H1",
+            "headlinePart2": "Validate Auto Fix Split",
+            "headlinePart3": "Do Not Run Create Yet",
+            "AddtionalHeadlines": [
+              "Headline Four For RSA",
+              "Headline Five For RSA",
+              "Headline Six For RSA",
+              "Headline Seven For RSA",
+              "Headline Eight For RSA",
+              "Headline Nine For RSA",
+              "Headline Ten For RSA",
+              "Headline Eleven RSA",
+              "Headline Twelve RSA"
+            ],
+            "adDescription": "Test ad for keyword validate only. Replace account before create.",
+            "adDescription2": "Second description line for RSA minimum fields.",
+            "AddtionalAdDescriptions": [
+              "Additional description one for responsive search ad.",
+              "Additional description two for responsive search ad."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

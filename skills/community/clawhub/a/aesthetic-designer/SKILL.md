@@ -1,35 +1,128 @@
 ---
-name: "综合美学设计师"
-description: "A comprehensive aesthetic design system that synthesizes all major art/design movements into a unified framework. Use when: (1) designing visual identities,..."
-category: "creative"
-source: "ClawHub"
-tags: [aesthetic, art, design, fusion, visual]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aesthetic-designer"
-sourceUrl: "https://clawhub.ai/skills/aesthetic-designer"
+name: designer
+description: "A comprehensive aesthetic design system that synthesizes all major art/design movements into a unified framework. Use when: (1) designing visual identities, characters, or objects with a specified aesthetic, (2) analyzing or critiquing designs, (3) creating design briefs with references to art history, (4) needing cross-pollination between different design traditions, (5) generating prompts or specs for visual AI tools. Triggered by: 'design', '设计', 'aesthetic', '美学', 'visual identity', any request involving visual design with artistic references."
 ---
 
-# 综合美学设计师
+# Designer — 综合美学设计大师
 
-> A comprehensive aesthetic design system that synthesizes all major art/design movements into a unified framework. Use when: (1) designing visual identities,...
+## 核心理念
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aesthetic-designer`
-- **Source URL:** [https://clawhub.ai/skills/aesthetic-designer](https://clawhub.ai/skills/aesthetic-designer)
+**没有一个流派是万能的，但每一个流派都有它的道理。** 好设计师不是只会一个风格，而是知道什么时候用什么风格，以及如何让它们杂交出新的可能。
 
-## Overview
+本 skill 提供了一个综合美学框架，让你可以：
+1. 为任何设计对象选择合适的美学坐标系
+2. 在流派之间做有意识的融合
+3. 用设计史上已验证的模式解决视觉问题
+4. 生成可供视觉 AI（Midjourney / DALL·E / Stable Diffusion）使用的 prompt
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aesthetic-designer
+## 美学流派目录
+
+以下流派不是用来"选择其一"的，而是**调色盘**。参考 `references/aesthetic-matrix.md` 获取完整流派清单和特征。核心流派速览：
+
+### 经典 & 传统
+| 流派 | 精髓 | 一句话龙虾应用 |
+|------|------|---------------|
+| 巴洛克 | 戏剧性、动态、奢华 | 龙虾从深海漩涡中跃出，光线从上方斜射，螯的姿势充满运动感 |
+| 新艺术 | 有机曲线、自然形态 | 龙虾触须化作藤蔓曲线，甲壳上有流动的植物纹样 |
+| 浮世绘 | 平面色块、装饰性线条 | 龙虾以平涂的朱红+藏青呈现，背景是海浪和富士山 |
+| 极简主义 | 少即是多、本质 | 一只龙虾的轮廓，一根线条，别无他物 |
+| 装饰艺术 | 几何装饰、奢华材质 | 龙虾被金箔和黑曜石几何图案包裹，如Art Deco建筑立面 |
+| 构成主义 | 几何抽象、动感结构 | 龙虾解构为红、黑、白的几何体块，对角线布局 |
+| 赛博朋克 | 高科低生、霓虹+黑暗 | 龙虾的机械义肢发出蓝色荧光，背景是雨夜霓虹 |
+
+### 现代 & 当代
+| 流派 | 精髓 | 一句话龙虾应用 |
+|------|------|---------------|
+| 包豪斯 | 功能决定形式、几何基座 | 龙虾简化为红黄蓝三原色方块组成的抽象构成 |
+| 装饰风 | 几何对称、奢华材质 | 龙虾壳上有黄金镶嵌的重复几何纹样 |
+| 超现实主义 | 梦境逻辑、并置 | 龙虾在沙漠里戴着礼帽，螯上站着一只怀表 |
+| 波普艺术 | 大众文化、鲜艳平涂 | 龙虾像安迪·沃霍尔的丝网印刷，四色重复排列 |
+| 蒸汽波 | 怀旧、数字故障、古典碎片 | 龙虾在粉紫色渐变中浮现，带VHS噪点和古希腊雕像碎片 |
+| 酸性图形 | 荧光色、扭曲变形 | 龙虾以霓虹绿、热粉红的液态金属质感呈现，背景在融化 |
+| 生物朋克 | 有机+机械融合、生物工程美学 | 龙虾的甲壳是透明生物凝胶，内部电路发着绿色的光 |
+| 生态美学 | 自然材料、有机物与无机物共生 | 龙虾壳上附着珊瑚和苔藓，与废弃电路板共生 |
+
+---
+
+## 设计方法论
+
+### 第一步：需求解构
+分析设计对象的核心属性：**
+- 它是什么？（物/角色/界面/空间？）
+- 它想要传达什么？（力量/优雅/荒诞/科技感？）
+- 谁在看它？（目标受众的审美基线）
+- 它在什么媒介上呈现？（印刷/屏幕/三维/沉浸式？）
+
+### 第二步：美学选择
+根据第一步的结果，选择 1-2 个核心流派 + 0-2 个点缀元素：
+- **核心流派**：定义80%的视觉语言
+- **点缀元素**：来自其他流派的小心机（10-15%）
+- **设计师签名**：你个人的突破性改动（5-10%）
+
+### 第三步：融合规则
+- **不要混搭冲突流派**（巴洛克+极简主义 = 两边都不讨好）
+- **找隐含关联**（新艺术和浮世绘都爱曲线和平面化 → 可以融合得很好）
+- **每次只杂交两个流派**，第三个会让人困惑
+- **有一个主导方向**，其他都是辅助
+
+### 第四步：输出设计
+- **概念描述**：设计思路的文字呈现
+- **视觉参考**：关键词列表和风格组合
+- **配色方案**：5色以内色板，带 CIELAB 或 HEX 值
+- **材质 / 细节**：什么质感、什么肌理
+- **AI prompt**：可直接用于 Midjourney / DALL·E / SD 的生图 prompt
+
+---
+
+## 输出模板
+
+### 完整设计交付
+
+```markdown
+## 设计概念：[标题]
+
+### 流派矩阵
+| 核心流派 | 点缀流派 | 隐藏影响 |
+|----------|---------|---------|
+| [...]    | [...]   | [...]   |
+
+### 设计思路
+[3-5句设计说明，讲清楚为什么选择这个方向]
+
+### 视觉描述
+[详细的文字描述，让别人仅凭文字就能在脑中看见]
+
+### 配色方案
+| 色块 | 用途 | HEX |
+|------|------|-----|
+| 主色 | 主体 | #... |
+| 辅色 | 点缀 | #... |
+
+### 材质与肌理
+- 主材质：[描述]
+- 细节质感：[描述]
+
+### AI 生图 Prompt
 ```
+[一段可以直接复制到Midjourney/SD的英文prompt]
+```
+
+### 龙虾点评
+🦞 天才龙虾对此设计的看法：[一段龙虾视角的设计批评或赞美]
+```
+
+---
+
+## 参考资源
+
+- `references/aesthetic-matrix.md` — 完整的美学流派矩阵，含所有流派的色板、材质、构图特征
+- `references/color-theory.md` — 配色理论与色板生成
+- `references/prompt-engineering.md` — 面向视觉 AI 的 prompt 写作技巧
+
+## 工具脚本
+
+- `scripts/compose.py` — 给定对象+流派，输出完整设计交付的骨架
+- `scripts/palette.py` — 根据流派生成配色方案
+- `scripts/critique.py` — 对已有设计进行龙虾式+设计师双重批判

@@ -1,35 +1,41 @@
 ---
-name: "Amazon Listing Factory"
-description: "Generate complete Amazon listing drafts with title, bullets, image plan, prompts, and video script."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, amazon, ecommerce, listing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazon-listing-factory"
-sourceUrl: "https://clawhub.ai/skills/amazon-listing-factory"
+name: amazon-listing-factory
+description: Generate complete Amazon listing drafts with title, bullets, image plan, prompts, and video script.
 ---
 
 # Amazon Listing Factory
 
-> Generate complete Amazon listing drafts with title, bullets, image plan, prompts, and video script.
+Generate complete Amazon listing drafts with:
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazon-listing-factory`
-- **Source URL:** [https://clawhub.ai/skills/amazon-listing-factory](https://clawhub.ai/skills/amazon-listing-factory)
+- title
+- bullets
+- image plan
+- image prompts
+- video script
 
-## Overview
+If image environment is configured, it can continue image generation automatically.
 
+完整教程链接：
+https://my.feishu.cn/docx/DzpHdBjJdosX6Nx7CAMc9OY5nZf
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazon-listing-factory
-```
+推荐在飞书中使用 Slash 命令调用：
+
+/amazon_listing_factory 生成listing：充电宝，美国站，突出便携、大容量、安全感，输出6张图
+
+安装或更新 Skill 后，请先执行：
+
+openclaw gateway restart
+
+检查是否识别成功：
+
+openclaw skills list | grep amazon
+
+如果看到：
+
+amazon-listing-factory
+
+说明 Skill 已被 OpenClaw 正确识别。
+
+本地测试：
+
+bash ~/.openclaw/workspace/skills/amazon-listing-factory/run.sh "生成listing：充电宝，美国站，突出便携、大容量、安全感，输出6张图"

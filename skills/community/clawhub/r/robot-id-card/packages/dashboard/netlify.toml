@@ -1,0 +1,12 @@
+[build]
+  base    = "packages/dashboard"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_REGISTRY_URL = "https://ric-registry.onrender.com"
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200

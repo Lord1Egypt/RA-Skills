@@ -1,0 +1,18 @@
+# OpenAI Codex sidecar configuration for paper-fetch
+name: paper-fetch
+version: 0.13.0
+description: Download paper PDFs by DOI (Unpaywall, Semantic Scholar, arXiv, PMC, bioRxiv/medRxiv, Sci-Hub mirrors).
+entry: SKILL.md
+
+ui:
+  icon: 📄
+  category: research
+
+requires:
+  bins: [python3]
+  # UNPAYWALL_EMAIL is optional — if not set, Unpaywall is skipped
+  # and the remaining sources still work.
+
+policy:
+  network: true
+  filesystem: write

@@ -1,0 +1,313 @@
+{
+  "name": "Dental AI — 06 After-Hours Call Capture",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dental-ai/after-hours",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "After-Hours Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "dental-after-hours",
+      "id": "n6-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst now = new Date();\n\n// Calculate next business day\nlet nextBizDay = new Date(now);\nnextBizDay.setDate(nextBizDay.getDate() + 1);\nwhile (nextBizDay.getDay() === 0 || nextBizDay.getDay() === 6) {\n  nextBizDay.setDate(nextBizDay.getDate() + 1);\n}\nnextBizDay.setHours(8, 0, 0, 0);\n\nconst callData = {\n  call_id: body.call_id || '',\n  caller_phone: body.caller_phone || body.from || '',\n  caller_name: body.caller_name || body.patient_name || 'Unknown Caller',\n  intent: body.intent || 'unknown',\n  transcript: body.transcript || body.summary || '',\n  summary: body.summary || '',\n  urgency: body.urgency || 'normal',\n  call_time: now.toISOString(),\n  next_business_day: nextBizDay.toISOString(),\n  callback_by: nextBizDay.toISOString().split('T')[0] + 'T10:00:00',\n  platform: body.platform || '',\n  recording_url: body.recording_url || '',\n  service_requested: body.appointment_type || body.service_type || '',\n  preferred_date: body.appointment_date || '',\n  preferred_time: body.appointment_time || '',\n  patient_email: body.patient_email || '',\n  status: 'pending_callback',\n  sms_message: `Hi ${body.caller_name || body.patient_name || 'there'}! Thank you for calling ${$env.DENTAL_CLINIC_NAME || 'our dental clinic'}. We're currently closed but received your call. Our team will call you back on ${nextBizDay.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} morning. If this is an emergency, please call ${$env.DENTAL_EMERGENCY_PHONE || '911'}.`\n};\n\n// Detect urgent keywords\nconst urgentKeywords = ['emergency', 'pain', 'bleeding', 'swollen', 'broken', 'knocked out', 'abscess', 'fever', 'infection'];\nconst transcriptLower = (callData.transcript + ' ' + callData.summary).toLowerCase();\nif (urgentKeywords.some(k => transcriptLower.includes(k))) {\n  callData.urgency = 'urgent';\n  callData.sms_message += ' Given the nature of your concern, we have flagged this as urgent and will prioritize your callback.';\n}\n\nreturn [{ json: callData }];"
+      },
+      "name": "Process After-Hours Call",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n6-process"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "After-Hours Queue",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "call_id": "={{ $json.call_id }}",
+            "caller_name": "={{ $json.caller_name }}",
+            "caller_phone": "={{ $json.caller_phone }}",
+            "patient_email": "={{ $json.patient_email }}",
+            "intent": "={{ $json.intent }}",
+            "service_requested": "={{ $json.service_requested }}",
+            "preferred_date": "={{ $json.preferred_date }}",
+            "preferred_time": "={{ $json.preferred_time }}",
+            "urgency": "={{ $json.urgency }}",
+            "summary": "={{ $json.summary }}",
+            "call_time": "={{ $json.call_time }}",
+            "callback_by": "={{ $json.callback_by }}",
+            "recording_url": "={{ $json.recording_url }}",
+            "status": "={{ $json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log to After-Hours Queue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        400
+      ],
+      "id": "n6-log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.caller_phone }}",
+        "body": "={{ $json.sms_message }}"
+      },
+      "name": "Send Acknowledgment SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        960,
+        300
+      ],
+      "id": "n6-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "is-urgent",
+              "leftValue": "={{ $json.urgency }}",
+              "rightValue": "urgent",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Is Urgent?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        500
+      ],
+      "id": "n6-if-urgent"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_STAFF_EMAIL}}",
+        "subject": "=URGENT After-Hours Call: {{ $json.caller_name }} — {{ $json.urgency }}",
+        "html": "=<h2 style='color:red;'>Urgent After-Hours Call</h2><p>A patient called after hours with what appears to be an <strong>urgent matter</strong>.</p><table style='border-collapse:collapse;'><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Caller</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.caller_name }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Phone</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.caller_phone }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Time</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.call_time }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Summary</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.summary || $json.transcript }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Recording</td><td style='padding:8px;border:1px solid #ddd;'><a href='{{ $json.recording_url }}'>Listen</a></td></tr></table><p><strong>Please follow up as soon as possible.</strong></p>",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Urgent Alert to Staff",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1220,
+        420
+      ],
+      "id": "n6-urgent-email",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{$env.DENTAL_DENTIST_PHONE}}",
+        "body": "=URGENT: After-hours patient call from {{ $json.caller_name }} ({{ $json.caller_phone }}). Summary: {{ $json.summary || 'Call recording available' }}. Please review ASAP."
+      },
+      "name": "SMS Alert to Dentist",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        580
+      ],
+      "id": "n6-urgent-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'captured', call_id: $json.call_id, urgency: $json.urgency, callback_by: $json.callback_by }) }}",
+        "options": {}
+      },
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1480,
+        400
+      ],
+      "id": "n6-respond"
+    },
+    {
+      "parameters": {},
+      "name": "Standard Queue",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        720
+      ],
+      "id": "n6-noop"
+    }
+  ],
+  "connections": {
+    "After-Hours Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process After-Hours Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process After-Hours Call": {
+      "main": [
+        [
+          {
+            "node": "Log to After-Hours Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to After-Hours Queue": {
+      "main": [
+        [
+          {
+            "node": "Send Acknowledgment SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Is Urgent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Urgent?": {
+      "main": [
+        [
+          {
+            "node": "Urgent Alert to Staff",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SMS Alert to Dentist",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Standard Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Acknowledgment SMS": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Urgent Alert to Staff": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Standard Queue": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

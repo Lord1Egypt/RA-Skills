@@ -1,35 +1,26 @@
 ---
-name: "测试技能"
-description: "这是一个测试技能，用于研究ClawHub发布流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-skill-by-waleychenyue"
-sourceUrl: "https://clawhub.ai/skills/test-skill-by-waleychenyue"
+name: test-skill
+description: 这是一个测试技能，用于研究ClawHub发布流程。
 ---
 
 # 测试技能
 
-> 这是一个测试技能，用于研究ClawHub发布流程。
+这是一个用于测试ClawHub发布流程的技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-skill-by-waleychenyue`
-- **Source URL:** [https://clawhub.ai/skills/test-skill-by-waleychenyue](https://clawhub.ai/skills/test-skill-by-waleychenyue)
+## 功能
+- 测试技能发布流程
+- 验证技能结构要求
+- 研究元数据配置
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-skill-by-waleychenyue
+## 使用方法
 ```
+- 测试技能功能
+- 验证发布流程
+- 检查技能质量
+```
+
+## 元数据
+- 版本: 1.0.0
+- 作者: @waleychenyue
+- 创建时间: 2026-04-06
+- 技能类型: 测试

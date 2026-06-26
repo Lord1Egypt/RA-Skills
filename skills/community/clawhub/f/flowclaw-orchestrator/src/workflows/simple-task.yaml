@@ -1,0 +1,207 @@
+name: Standard Task
+description: |
+  Full 6-phase workflow for Standard tasks (features, new pages, components).
+  Phases: 1 (Requirements) → 2 (Conception) → 3 (Development) → 4 (QA) → 5 (Staging + Review) → 6 (Deploy).
+  Includes conception phase: creative (UX/Copy), product (Stories), optional growth (if strategic).
+  Staging deploy first — waits for the owner's "deploy" signal before going live.
+version: "1.0.0"
+
+# Triggered by n8n when task type = "Standard"
+# Context from n8n: taskId, taskName, taskType, project_name, task_size
+#
+# Task Type → Primary Agent:
+#   Code       → frontend or backend  (+ creative if UX needed)
+#   Content    → creative             (+ frontend if implementation needed)
+#   Design     → creative + frontend
+#   Strategy   → growth or product
+#   Infra      → devops
+#   Legal      → legal or finance
+
+steps:
+  # --- Phase 1: Requirements ---
+  - read_notion_task:
+      taskId: "{taskId}"
+      output: "temp/briefing-{taskId}.md"
+
+  # --- Phase 2: Conception ---
+  # creative: UX flows, wireframes, copy strategy
+  - spawn_agent:
+      agentId: "creative"
+      runtime: subagent
+      task: |
+        Role: UX Designer + Copywriter
+        TASK: Conception for "{task_name}"
+
+        Read the briefing: file:temp/briefing-{taskId}.md
+
+        Deliver:
+        1. User flow / information architecture (if UX relevant)
+        2. Wireframe description or sketch notes (if UI relevant)
+        3. Copy strategy: headlines, CTAs, key messages
+        4. Content structure recommendations
+
+        Output to: concepts/conception-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 600
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 600
+      pollInterval: 15
+
+  # product: User stories + acceptance criteria
+  - spawn_agent:
+      agentId: "product"
+      runtime: subagent
+      task: |
+        Role: Product Owner
+        TASK: Stories for "{task_name}"
+
+        Read the briefing and conception:
+        - file:temp/briefing-{taskId}.md
+        - file:concepts/conception-{taskId}.md
+
+        Deliver:
+        1. User stories (As a... I want... So that...)
+        2. Acceptance criteria per story
+        3. Definition of Done (DoD)
+        4. Out-of-scope items (explicit)
+
+        Output to: concepts/stories-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 600
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 600
+      pollInterval: 15
+
+  # FlowClaw reviews conception output before development starts
+  - update_notion:
+      taskId: "{taskId}"
+      status: "Conception Review"
+
+  - notify_discord:
+      channel: project_updates
+      message: |
+        🧠 **Conception Complete — Review Needed**
+
+        **Task:** {task_name}
+        **Conception:** concepts/conception-{taskId}.md
+        **Stories:** concepts/stories-{taskId}.md
+        **Notion:** {notion_url}
+
+        FlowClaw: review conception output, then trigger development.
+
+  # --- Phase 3: Development ---
+  # AgentSelector routes by task description keywords (Code/Content/Design/Infra)
+  - select_agent:
+      task_description: "{description}"
+      tech_stack: "typescript, react, nextjs, tailwind"
+
+  - spawn_agent:
+      agentId: "{agentId}"
+      runtime: subagent
+      task: |
+        Role determined by task type.
+        Read briefing + conception:
+        - file:temp/briefing-{taskId}.md
+        - file:concepts/conception-{taskId}.md
+        - file:concepts/stories-{taskId}.md
+
+        Deliver working implementation in development/.
+        NEVER work directly in production/ or staging/.
+      mode: run
+      runTimeoutSeconds: 900
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 900
+      pollInterval: 15
+
+  # --- Phase 4: QA ---
+  - spawn_agent:
+      agentId: "quality"
+      runtime: subagent
+      task: |
+        Role: QA Engineer + Security Officer
+        TASK: QA check for "{task_name}"
+
+        Check:
+        1. Functionality — does it match acceptance criteria in concepts/stories-{taskId}.md?
+        2. Links — all internal/external links valid?
+        3. Accessibility — basic a11y checks
+        4. Code quality — no console errors, no broken imports
+        5. Security (if applicable) — no secrets exposed, OWASP basics
+
+        Verdict: ✅ PASS (0 blockers, 0 majors) or ❌ FAIL
+        Output QA report to: temp/qa-{taskId}.md
+      mode: run
+      runTimeoutSeconds: 600
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 600
+      pollInterval: 15
+
+  - qa_check:
+      script: "scripts/qa-standard.py"
+      stagingUrl: "{deploy_url}"
+
+  # --- Phase 5: Staging & Review ---
+  - spawn_agent:
+      agentId: "devops"
+      runtime: subagent
+      task: |
+        Role: Head of IT
+        TASK: Stage "{task_name}" for owner review
+
+        Copy approved files: development/ → staging/
+        Then deploy to staging (NOT production). Use your staging deploy command.
+        Report staging URL back.
+      mode: run
+      runTimeoutSeconds: 300
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 300
+      pollInterval: 10
+
+  - update_notion:
+      taskId: "{taskId}"
+      status: "Staging Review"
+
+  - notify_discord:
+      channel: project_updates
+      message: |
+        🔍 **Staging Ready — Owner Review Needed**
+
+        **Task:** {task_name}
+        **Type:** {task_type}
+        **Agent:** {agentId}
+        **QA:** {qa_passed}
+        **Staging:** {deploy_url}
+        **Notion:** {notion_url}
+
+        Owner: review staging, then say "deploy" to go live.
+
+  # --- Phase 6: Deployment ---
+  # ONLY after the owner explicitly says "deploy" — n8n waits for approval signal
+  # This step is triggered by n8n after the owner's approval
+  - update_notion:
+      taskId: "{taskId}"
+      status: "Done"
+
+  - notify_discord:
+      channel: project_updates
+      message: |
+        ✅ **Task Complete**
+
+        **Task:** {task_name}
+        **Type:** {task_type}
+        **Agent:** {agentId}
+        **QA:** {qa_passed}
+        **Staging:** {deploy_url}
+        **Notion:** {notion_url}
+
+        Awaiting deploy approval before going live.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Daily JSON"
+  short_description: "用 Node.js 按股票名或代码抓取 A 股日线并保存为 JSON"
+  default_prompt: "Use $fetch-stock-daily-json to resolve a stock name or code in Node.js, fetch daily history, and save the result as a local JSON file."

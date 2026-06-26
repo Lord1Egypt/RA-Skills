@@ -1,0 +1,10 @@
+{
+  "id": "youtube-audio-download",
+  "name": "Youtube Audio Download",
+  "version": "1.0.0",
+  "description": "Download YouTube video audio and convert to MP3. Supports age-restricted videos with cookies.",
+  "tools": [
+    "download_audio"
+  ],
+  "entry": "/mnt/h/AI/openclaw_workspace/video_translate/skills/download_audio.py"
+}

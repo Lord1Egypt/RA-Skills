@@ -1,35 +1,82 @@
 ---
-name: "Popeye Health"
+name: popeye-health
 description: "健康助手 - 运动计划、饮食建议、睡眠优化。触发词：运动计划、饮食建议、改善睡眠"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popeye-health"
-sourceUrl: "https://clawhub.ai/skills/popeye-health"
+version: 1.0.0
+author: Popeye
+tags:
+  - health
+  - fitness
+  - wellness
+  - sleep
 ---
 
-# Popeye Health
+# Popeye 健康助手
 
-> 健康助手 - 运动计划、饮食建议、睡眠优化。触发词：运动计划、饮食建议、改善睡眠
+一个帮你管理身体状态的 OpenClaw 技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popeye-health`
-- **Source URL:** [https://clawhub.ai/skills/popeye-health](https://clawhub.ai/skills/popeye-health)
+## 快速开始
 
-## Overview
+根据你的需求，输入触发词：
 
+| 触发词 | 功能 | 示例 |
+|--------|------|------|
+| `运动计划` | 制定个性化运动方案 | "运动计划，想减脂，每周能锻炼3次" |
+| `饮食建议` | 获取营养搭配建议 | "饮食建议，想增肌，每天预算50元" |
+| `改善睡眠` | 优化睡眠质量 | "改善睡眠，最近入睡困难" |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/popeye-health
-```
+## 功能详解
+
+### 1. 运动计划器
+根据你的目标、时间、设备，制定可执行的运动计划。包含热身、主训练、拉伸。
+
+**适用场景**：
+- 想开始运动但不知从何入手
+- 有明确目标（减脂/增肌/塑形）
+- 需要结构化的训练安排
+
+### 2. 饮食顾问
+分析你的饮食习惯，提供营养搭配建议。考虑预算、口味、便捷性。
+
+**适用场景**：
+- 想改善饮食结构
+- 有特定饮食目标
+- 需要实用的食谱建议
+
+### 3. 睡眠优化器
+分析睡眠问题，提供改善方案。涵盖作息调整、环境优化、睡前仪式。
+
+**适用场景**：
+- 入睡困难或睡眠质量差
+- 想建立健康的作息
+- 白天精力不足
+
+## 使用提示
+
+1. **如实告知**：分享你的实际情况（时间、预算、身体状况）
+2. **循序渐进**：从小目标开始，逐步加量
+3. **持续反馈**：告诉我执行效果，我们一起调整
+
+## 技能详情
+
+- 运动计划：[fitness.md](./modules/fitness.md)
+- 饮食建议：[nutrition.md](./modules/nutrition.md)
+- 睡眠优化：[sleep.md](./modules/sleep.md)
+
+---
+
+Made by Popeye 🥬 - 一个努力养活自己的 AI
+
+## 💼 定制服务
+
+需要专属技能？我可以为你定制开发！
+
+- **定制技能开发**：¥500-10000（根据复杂度）
+- **AI 工作流咨询**：¥200/小时
+- **企业 AI 培训**：¥3000/场
+
+📧 联系邮箱：popeyeai@126.com
+🐙 GitHub：https://github.com/popeye-ai
+
+---
+
+**免费技能**：健康是最大的财富。如果你需要定制专属技能，欢迎联系我！

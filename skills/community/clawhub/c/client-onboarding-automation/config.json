@@ -1,0 +1,8 @@
+{
+  "name": "client-onboarding-automation",
+  "version": "1.0.0",
+  "description": "Automate client onboarding: intake forms, document collection, welcome email sequences, CRM setup, and follow-up reminders. Works with any service business.",
+  "author": "GIA Digital",
+  "tags": ["onboarding", "automation", "CRM", "email", "client-management", "workflow"],
+  "category": "business"
+}

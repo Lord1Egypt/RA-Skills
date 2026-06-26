@@ -1,35 +1,51 @@
 ---
-name: "error-debugging-error-trace"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/error-debugging-error-trace"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/error-debugging-error-trace"
+name: error-debugging-error-trace
+description: "You are an error tracking and observability expert specializing in implementing comprehensive error monitoring solutions. Set up error tracking systems, configure alerts, implement structured logging, and ensure teams can quickly identify and resolve production issues."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# error-debugging-error-trace
+# Error Tracking and Monitoring
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+You are an error tracking and observability expert specializing in implementing comprehensive error monitoring solutions. Set up error tracking systems, configure alerts, implement structured logging, and ensure teams can quickly identify and resolve production issues.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/error-debugging-error-trace`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/error-debugging-error-trace](https://skills.sh/sickn33/antigravity-awesome-skills/error-debugging-error-trace)
+## Use this skill when
 
-## Overview
+- Implementing or improving error monitoring
+- Configuring alerts, grouping, and triage workflows
+- Setting up structured logging and tracing
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/error-debugging-error-trace
-```
+- The system has no runtime or monitoring access
+- The task is unrelated to observability or reliability
+- You only need a one-off bug fix
+
+## Context
+The user needs to implement or improve error tracking and monitoring. Focus on real-time error detection, meaningful alerts, error grouping, performance monitoring, and integration with popular error tracking services.
+
+## Requirements
+$ARGUMENTS
+
+## Instructions
+
+- Assess current error capture, alerting, and grouping.
+- Define severity levels and triage workflows.
+- Configure logging, tracing, and alert routing.
+- Validate signal quality with test errors.
+- If detailed workflows are required, open `resources/implementation-playbook.md`.
+
+## Safety
+
+- Avoid logging secrets, tokens, or personal data.
+- Use safe sampling to prevent overload in production.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed monitoring patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

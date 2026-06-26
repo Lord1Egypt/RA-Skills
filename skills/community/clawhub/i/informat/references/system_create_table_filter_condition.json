@@ -1,0 +1,103 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_create_table_filter_condition",
+		"description": "Generate filter for data table records. Field ID refers to the id property of each field in the fieldList of the data table structure. All places involving fieldId below are field IDs. The key of the returned data table records is also the field ID",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"filter": {
+					"type": "object",
+					"description": "Tree-shaped filter condition structure",
+					"properties": {
+						"opt": {
+							"type": "string",
+							"default": "and",
+							"description": "Logical operator. Only one of the following values can be filled: and (AND), or (OR). Default is and."
+						},
+						"conditionList": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"fieldId": {
+										"type": "string",
+										"description": "Field ID"
+									},
+									"opt": {
+										"type": "string",
+										"description": "Comparison operator. Only one of the following values can be filled: \neq (equal), ne (not equal), gt (greater than), ge (greater than or equal), lt (less than), le (less than or equal), \ncontains (contains), notcontains (does not contain), startswith (starts with), endswith (ends with), \nisnull (is null), isnotnull (is not null), in (in list), notin (not in list), \nbetween (within range), notbetween (outside range), \nparentrooteq (root parent equals), parenteq (parent equals), parentcontains (parent contains), intree (in tree)"
+									},
+									"value": {
+										"anyOf": [
+											{
+												"type": "string"
+											},
+											{
+												"type": "number"
+											},
+											{
+												"type": "boolean"
+											},
+											{
+												"type": "array",
+												"items": {
+													"type": [
+														"string",
+														"number",
+														"boolean"
+													]
+												}
+											},
+											{
+												"type": "null"
+											}
+										],
+										"description": "Dynamically changing value based on operator type"
+									},
+									"func": {
+										"type": "string",
+										"description": "Special field processing function. Only one of the following values can be filled: month (by month), week (by week), nlevel (by level)."
+									}
+								},
+								"required": [
+									"fieldId",
+									"opt"
+								]
+							}
+						},
+						"children": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/filterCondition"
+							},
+							"description": "Nested sub-conditions"
+						}
+					},
+					"required": [
+						"opt"
+					],
+					"definitions": {
+						"filterCondition": {
+							"type": "object",
+							"properties": {
+								"opt": {
+									"$ref": "#/properties/filter/properties/opt"
+								},
+								"conditions": {
+									"$ref": "#/properties/filter/properties/conditions"
+								},
+								"children": {
+									"$ref": "#/properties/filter/properties/children"
+								}
+							}
+						}
+					}
+				}
+			},
+			"required": [
+				"filter"
+			]
+		}
+	}
+}

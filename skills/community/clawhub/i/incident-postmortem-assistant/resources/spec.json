@@ -1,0 +1,37 @@
+{
+  "slug": "incident-postmortem-assistant",
+  "title": "事故复盘助手",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "structured_brief",
+  "summary": "将事故线索整理成复盘草案，区分根因、诱因、放大器、影响与修复动作。",
+  "inputHint": "时间线、告警、处理记录、影响面",
+  "sections": [
+    "事故摘要",
+    "时间线",
+    "根因/诱因/放大器",
+    "影响分析",
+    "处理动作",
+    "后续改进"
+  ],
+  "useCases": [
+    "线上事故复盘",
+    "稳定性治理",
+    "跨团队回顾"
+  ],
+  "positiveExamples": [
+    "把事故记录整理成 postmortem 草案",
+    "区分根因和诱因"
+  ],
+  "negativeExamples": [
+    "不要归责个人",
+    "不要篡改时间线"
+  ],
+  "risk": "默认采用无责复盘语言。",
+  "tags": [
+    "incident",
+    "postmortem",
+    "sre",
+    "ops"
+  ]
+}

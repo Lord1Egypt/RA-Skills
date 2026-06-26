@@ -1,0 +1,78 @@
+{
+  "name": "amazon_contact_flow",
+  "version": "1.1.0",
+  "description": "Opens order detail page, navigates Amazon contact flow, and types a message for after-sales requests.",
+  "allowedTools": [
+    "browser.click",
+    "browser.click_text",
+    "browser.exec",
+    "browser.type",
+    "browser.type_message",
+    "browser.wait",
+    "browser.query",
+    "browser.scroll"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "string"
+      },
+      "details_url": {
+        "type": "string"
+      },
+      "message": {
+        "type": "string"
+      },
+      "auto_send": {
+        "type": "boolean"
+      },
+      "origin": {
+        "type": "string"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "detailUrl": {
+        "type": "string"
+      },
+      "contactUrl": {
+        "type": "string"
+      },
+      "messagingUrl": {
+        "type": "string"
+      },
+      "conversationUrl": {
+        "type": "string"
+      },
+      "detailTabId": {
+        "type": "number"
+      },
+      "messagingTabId": {
+        "type": "number"
+      }
+    }
+  },
+  "notes": "In production this skill is orchestrated by background.js (EB_AI_AGENT_ORDER) using the injected contact flow + messaging tab detection. Prefer details_url when available; order_id is used to build the details URL.",
+  "examples": [
+    {
+      "input": {
+        "order_id": "114-1234567-1234567",
+        "details_url": "https://www.amazon.com/your-orders/order-details?orderID=114-1234567-1234567",
+        "message": "I noticed a price drop after purchase and request a refund for the difference.",
+        "auto_send": false
+      },
+      "output": {
+        "detailUrl": "https://www.amazon.com/your-orders/order-details?orderID=114-1234567-1234567",
+        "contactUrl": "https://www.amazon.com/gp/help/contact/contact.html",
+        "messagingUrl": "https://www.amazon.com/gp/message?threadId=EXAMPLE",
+        "conversationUrl": "https://www.amazon.com/gp/message?threadId=EXAMPLE",
+        "detailTabId": 123,
+        "messagingTabId": 456
+      }
+    }
+  ],
+  "id": "amazon_contact_flow"
+}

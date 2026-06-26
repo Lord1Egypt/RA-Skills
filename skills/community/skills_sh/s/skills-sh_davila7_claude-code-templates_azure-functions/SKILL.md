@@ -1,35 +1,42 @@
 ---
-name: "azure-functions"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/azure-functions"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/azure-functions"
+name: azure-functions
+description: "Expert patterns for Azure Functions development including isolated worker model, Durable Functions orchestration, cold start optimization, and production patterns. Covers .NET, Python, and Node.js programming models. Use when: azure function, azure functions, durable functions, azure serverless, function app."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# azure-functions
+# Azure Functions
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Patterns
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/azure-functions`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/azure-functions](https://skills.sh/davila7/claude-code-templates/azure-functions)
+### Isolated Worker Model (.NET)
 
-## Overview
+Modern .NET execution model with process isolation
 
+### Node.js v4 Programming Model
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/azure-functions
-```
+Modern code-centric approach for TypeScript/JavaScript
+
+### Python v2 Programming Model
+
+Decorator-based approach for Python functions
+
+## Anti-Patterns
+
+### ❌ Blocking Async Calls
+
+### ❌ New HttpClient Per Request
+
+### ❌ In-Process Model for New Projects
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Issue | high | ## Use async pattern with Durable Functions |
+| Issue | high | ## Use IHttpClientFactory (Recommended) |
+| Issue | high | ## Always use async/await |
+| Issue | medium | ## Configure maximum timeout (Consumption) |
+| Issue | high | ## Use isolated worker for new projects |
+| Issue | medium | ## Configure Application Insights properly |
+| Issue | medium | ## Check extension bundle (most common) |
+| Issue | medium | ## Add warmup trigger to initialize your code |

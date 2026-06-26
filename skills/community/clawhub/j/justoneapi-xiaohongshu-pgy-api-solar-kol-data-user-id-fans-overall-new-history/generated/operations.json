@@ -1,0 +1,76 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/api/solar/kol/data/userId/fans_overall_new_history/v1 for Xiaohongshu Creator Marketplace (Pugongying) Follower Growth History through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Follower Growth History",
+  "endpointPath": "api/solar/kol/data/userId/fans_overall_new_history",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower Growth History data, including historical points, trend signals, and growth metrics, for trend tracking, audience analysis, and creator performance monitoring.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataUserIdFansOverallNewHistoryV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAY_30",
+          "description": "Time range for data.\n\nAvailable Values:\n- `DAY_30`: Last 30 days\n- `DAY_90`: Last 90 days",
+          "enumValues": [
+            "DAY_30",
+            "DAY_90"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "FANS_TOTAL",
+          "description": "Type of growth data.\n\nAvailable Values:\n- `FANS_TOTAL`: Total fans\n- `FANS_INCREASE`: New fans increase",
+          "enumValues": [
+            "FANS_TOTAL",
+            "FANS_INCREASE"
+          ],
+          "location": "query",
+          "name": "increaseType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/data/userId/fans_overall_new_history/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Growth History",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_api_solar_kol_data_user_id_fans_overall_new_history",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-api-solar-kol-data-user-id-fans-overall-new-history",
+  "sourceTitle": "OpenAPI definition"
+}

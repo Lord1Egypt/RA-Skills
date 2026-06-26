@@ -1,0 +1,37 @@
+{
+  "slug": "screenshot-to-task",
+  "title": "截图转任务整理器",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "structured_brief",
+  "summary": "把截图里的待办或灵感整理成任务、备注和优先级。",
+  "inputHint": "截图内容摘要、上下文、截止时间",
+  "sections": [
+    "任务列表",
+    "备注",
+    "优先级",
+    "需要补充的信息",
+    "归档建议",
+    "后续动作"
+  ],
+  "useCases": [
+    "灵感收集",
+    "待办整理",
+    "会议截图整理"
+  ],
+  "positiveExamples": [
+    "把这些截图内容整理成任务",
+    "帮我标优先级"
+  ],
+  "negativeExamples": [
+    "不要伪造截图内容",
+    "不要替代 OCR 系统"
+  ],
+  "risk": "适合作为截图后整理流程。",
+  "tags": [
+    "screenshots",
+    "tasks",
+    "capture",
+    "productivity"
+  ]
+}

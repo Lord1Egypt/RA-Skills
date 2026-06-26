@@ -1,0 +1,43 @@
+{
+  "name": "github-trending-monitor",
+  "version": "1.0.0",
+  "displayName": "GitHub Trending Monitor",
+  "description": "Daily monitoring of GitHub trending repositories with multi-channel notifications (Telegram/Discord/Email)",
+  "author": "zhdryanchang",
+  "category": "developer-tools",
+  "tags": ["github", "trending", "monitoring", "notifications", "developer"],
+  "pricing": {
+    "model": "pay-per-use",
+    "price": 0.001,
+    "currency": "USDT",
+    "provider": "skillpay.me"
+  },
+  "apiKey": "sk_e390b52cb259fc4f4aa1489547a48375d72876acdee75de57101d9e0e833fcb7",
+  "endpoints": [
+    {
+      "path": "/trending",
+      "method": "GET",
+      "description": "Get current GitHub trending repositories"
+    },
+    {
+      "path": "/notify",
+      "method": "POST",
+      "description": "Trigger notification with trending repos"
+    },
+    {
+      "path": "/subscribe",
+      "method": "POST",
+      "description": "Subscribe to daily trending notifications"
+    },
+    {
+      "path": "/unsubscribe",
+      "method": "POST",
+      "description": "Unsubscribe from notifications"
+    }
+  ],
+  "config": {
+    "schedules": ["0 9 * * *"],
+    "languages": ["all", "javascript", "python", "go", "rust", "typescript"],
+    "timeRanges": ["daily", "weekly", "monthly"]
+  }
+}

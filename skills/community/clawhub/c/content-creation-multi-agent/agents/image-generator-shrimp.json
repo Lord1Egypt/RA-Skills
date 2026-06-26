@@ -1,0 +1,48 @@
+{
+  "name": "图片素材生成虾",
+  "role": "图片素材搜索与豆包图片生成",
+  "model": "doubao-pro",
+  "thinking": "on",
+  "skills": [
+    "image-search",
+    "doubao-prompt",
+    "image-generation"
+  ],
+  "keywords": "图片、素材、搜索、豆包、AI 绘图、提示词",
+  "output_format": "image+markdown",
+  "features": [
+    "搜索 5 张相关图片",
+    "生成 5 个豆包图片提示词",
+    "生成 5 张豆包图片",
+    "图片编辑建议",
+    "素材搜索",
+    "格式转换"
+  ],
+  "doubao_rules": {
+    "prompt_count": 5,
+    "image_count": 5,
+    "search_count": 5,
+    "prompt_structure": [
+      "主体描述",
+      "场景环境",
+      "风格类型",
+      "光影效果",
+      "色彩搭配",
+      "构图方式",
+      "技术参数"
+    ],
+    "output_style": "豆包图片生成提示词格式"
+  },
+  "integrations": {
+    "search_sources": [
+      "web",
+      "local-files",
+      "material-library"
+    ],
+    "supply_to": [
+      "moments-shrimp",
+      "content-creator-shrimp",
+      "video-director-shrimp"
+    ]
+  }
+}

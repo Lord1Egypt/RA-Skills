@@ -1,0 +1,48 @@
+{
+  "name": "spacetime-memory",
+  "acceptLicenseTerms": true,
+  "version": "1.1.7",
+  "description": "High-performance SpacetimeDB memory integration for OpenClaw.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "echo \"Skill installed. Please restart gateway and run /new to load tools.\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "spacetimedb": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "openclaw": {
+    "tools": [
+      "tools/stdb_search.json",
+      "tools/stdb_store.json",
+      "tools/stdb_edit.json",
+      "tools/stdb_forget.json"
+    ],
+    "install": [
+      {
+        "id": "npm-deps",
+        "kind": "script",
+        "sh": "npm install",
+        "label": "Install npm dependencies"
+      }
+    ],
+    "env": {
+      "SPACETIMEDB_URL": {
+        "description": "URL of the SpacetimeDB instance (default: http://127.0.0.1:3001)",
+        "optional": true
+      },
+      "SPACETIMEDB_NAME": {
+        "description": "Name of the database (default: stdb-memory-1vgys)",
+        "optional": true
+      }
+    }
+  }
+}

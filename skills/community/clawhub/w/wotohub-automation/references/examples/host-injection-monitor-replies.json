@@ -1,0 +1,28 @@
+{
+  "requestId": "task-monitor-replies-host-injected-1",
+  "action": "task",
+  "type": "monitor_replies",
+  "input": {
+    "input": "检查这轮 campaign 的新回复并给出 reply assist",
+    "campaignId": "portable-juicer-us",
+    "contactedBloggerIds": ["creator_001", "creator_002"],
+    "replyModelAnalysis": {
+      "items": [
+        {
+          "replyId": "reply_123",
+          "bloggerId": "creator_001",
+          "classification": "interested",
+          "intent": "asks_for_details",
+          "requiresHuman": false,
+          "draftGuidance": {
+            "tone": "friendly",
+            "goal": "share next-step collaboration details"
+          }
+        }
+      ]
+    }
+  },
+  "auth": {
+    "token": "YOUR_API_KEY"
+  }
+}

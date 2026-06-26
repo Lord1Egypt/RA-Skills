@@ -1,0 +1,39 @@
+{
+  "name": "douyin-scraper",
+  "version": "1.0.0",
+  "description": "抖音内容爬虫，支持自然语言直接搜索视频内容。示例：搜索一下海鲜视频",
+  "author": "OpenClaw",
+  "emoji": "🎬",
+  "keywords": ["抖音", "douyin", "scraper", "爬虫", "视频", "搜索", "browser"],
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "license": "MIT",
+  "main": "scripts/search.js",
+  "scripts": {
+    "search": "node scripts/search.js"
+  },
+  "dependencies": {},
+  "skill": {
+    "entrypoint": "SKILL.md",
+    "activation": [
+      "douyin",
+      "抖音",
+      "搜索.*视频",
+      "搜一下",
+      "找一下.*视频"
+    ],
+    "examples": [
+      "搜索一下海鲜视频",
+      "帮我找美食探店",
+      "搜索搞笑段子"
+    ],
+    "capabilities": [
+      "自然语言搜索",
+      "视频内容抓取",
+      "浏览器自动化"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specs": {
+    "total_ram_gb": 23.07689666748047,
+    "available_ram_gb": 18.644187927246094,
+    "gpu_vram_gb": null,
+    "gpu_name": "GPU[0]\t\t: Card Vendor: \t\tAdvanced Micro Devices, Inc. [AMD/ATI]",
+    "cpu_cores": 24,
+    "is_gpu_available": false
+  },
+  "compatible_models": [
+    "llama3.2:1b",
+    "llama3.2:3b",
+    "llama3.2",
+    "llama3.2:8b",
+    "llama3.1:8b",
+    "qwen2.5:7b",
+    "qwen2.5:14b",
+    "mistral:7b",
+    "codellama:7b",
+    "codellama:13b",
+    "phi4",
+    "gemma2:9b",
+    "deepseek-r1:7b"
+  ],
+  "recommended_local": "llama3.2"
+}

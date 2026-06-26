@@ -1,0 +1,437 @@
+{% raw %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Echo Seed 回声种子 - AI 增强版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .capsule-card { transition: all 0.2s; }
+        .capsule-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .type-filter.active { transform: scale(1.05); }
+        .ai-badge { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 顶部导航 -->
+    <nav class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">📦</span>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">Echo Seed 回声种子</h1>
+                        <span class="text-xs ai-badge text-white px-2 py-0.5 rounded-full">AI 增强版</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <!-- AI 分析面板开关 -->
+                    <button onclick="toggleAI()" class="ai-badge text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center space-x-1">
+                        <span>🤖</span>
+                        <span>AI 面板</span>
+                    </button>
+                    <!-- 新建按钮 -->
+                    <button onclick="showCreateModal()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center space-x-1">
+                        <span>✨</span>
+                        <span>新建</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 筛选栏 -->
+            <div class="mt-4 flex items-center space-x-3">
+                <div class="flex-1 relative">
+                    <input type="text" id="search-input" placeholder="搜索种子..." 
+                           oninput="searchSeeds()" 
+                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                
+                <!-- 类型筛选 -->
+                <div class="flex space-x-2" id="type-filters">
+                    <button onclick="filterByType('all')" class="type-filter active px-3 py-2 rounded-lg text-sm font-medium bg-gray-800 text-white transition">全部</button>
+                    <button onclick="filterByType('note')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition">📝</button>
+                    <button onclick="filterByType('idea')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-orange-100 text-orange-700 hover:bg-orange-200 transition">💡</button>
+                    <button onclick="filterByType('link')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-blue-100 text-blue-700 hover:bg-blue-200 transition">🔗</button>
+                    <button onclick="filterByType('diary')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-green-100 text-green-700 hover:bg-green-200 transition">📔</button>
+                    <button onclick="filterByType('thought')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-purple-100 text-purple-700 hover:bg-purple-200 transition">💭</button>
+                    <button onclick="filterByType('collection')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-pink-100 text-pink-700 hover:bg-pink-200 transition">⭐</button>
+                    <button onclick="filterByType('todo')" class="type-filter px-3 py-2 rounded-lg text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 transition">✅</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <div class="grid grid-cols-12 gap-6">
+            <!-- 左侧：种子列表（占 8 列） -->
+            <div class="col-span-12 lg:col-span-8">
+                <!-- 统计面板 -->
+                <div id="stats-panel" class="mb-6 grid grid-cols-4 gap-4">
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <div class="text-sm text-gray-500">总数</div>
+                        <div class="text-2xl font-bold" id="stat-total">0</div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <div class="text-sm text-gray-500">待办</div>
+                        <div class="text-2xl font-bold" id="stat-todos">0</div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <div class="text-sm text-gray-500">已完成</div>
+                        <div class="text-2xl font-bold" id="stat-completed">0</div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <div class="text-sm text-gray-500">本周</div>
+                        <div class="text-2xl font-bold" id="stat-week">0</div>
+                    </div>
+                </div>
+
+                <!-- 种子列表 -->
+                <div id="capsules-container" class="space-y-4">
+                    <!-- 种子卡片将通过 JavaScript 动态加载 -->
+                </div>
+
+                <!-- 空状态 -->
+                <div id="empty-state" class="hidden text-center py-12">
+                    <div class="text-6xl mb-4">🌱</div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">暂无种子</h3>
+                    <p class="text-gray-500 mb-4">点击"新建"按钮创建你的第一个想法</p>
+                    <button onclick="showCreateModal()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition">
+                        ✨ 新建种子
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 右侧：AI 分析面板（占 4 列，可隐藏） -->
+            <div id="ai-panel" class="col-span-12 lg:col-span-4 hidden">
+                <div class="bg-white rounded-lg shadow-sm p-4 sticky top-40">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="text-xl mr-2">🤖</span>
+                        AI 分析
+                    </h2>
+                    
+                    <div v-if="!selectedSeed" class="text-center py-8 text-gray-500">
+                        <div class="text-4xl mb-2">👈</div>
+                        <div>点击左侧种子进行分析</div>
+                    </div>
+                    
+                    <div v-else>
+                        <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="text-xs text-gray-500">当前分析</div>
+                            <div class="font-medium text-sm">{{ selectedSeed.title || selectedSeed.content?.slice(0, 30) }}</div>
+                        </div>
+                        
+                        <div class="space-y-2 mb-4">
+                            <button @click="analyzeExpansion" :disabled="analyzing" class="w-full bg-purple-500 hover:bg-purple-600 disabled:bg-gray-300 text-white px-3 py-2 rounded-lg text-sm transition">
+                                💡 点子扩张
+                            </button>
+                            <button @click="analyzeLink" :disabled="analyzing || !selectedSeed.url" class="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white px-3 py-2 rounded-lg text-sm transition">
+                                🔗 链接分析
+                            </button>
+                            <button @click="findRelations" :disabled="analyzing" class="w-full bg-green-500 hover:bg-green-600 disabled:bg-gray-300 text-white px-3 py-2 rounded-lg text-sm transition">
+                                🔍 智能关联
+                            </button>
+                        </div>
+                        
+                        <!-- 分析结果 -->
+                        <div v-if="analysisResult" class="border-t pt-4">
+                            <div v-if="analysisResult.type === 'expansion'" class="space-y-3">
+                                <h3 class="font-bold text-sm">📋 扩展方案</h3>
+                                <div v-for="(item, key) in analysisResult.data.expanded" :key="key" class="text-xs">
+                                    <span class="font-medium text-gray-700">{{ key }}:</span>
+                                    <span class="text-gray-600 ml-1">{{ Array.isArray(item) ? item.slice(0,3).join(', ') : item }}</span>
+                                </div>
+                            </div>
+                            
+                            <div v-else-if="analysisResult.type === 'link'" class="space-y-3">
+                                <h3 class="font-bold text-sm">📄 网页摘要</h3>
+                                <p class="text-xs text-gray-600">{{ analysisResult.data.analysis?.summary?.slice(0, 150) }}</p>
+                            </div>
+                            
+                            <div v-else-if="analysisResult.type === 'relations'" class="space-y-2">
+                                <h3 class="font-bold text-sm">🔗 相关种子 ({{ analysisResult.data.relations?.length || 0 }})</h3>
+                                <div v-for="rel in analysisResult.data.relations?.slice(0,5)" :key="rel.id" class="text-xs p-2 bg-gray-50 rounded">
+                                    {{ rel.title }} <span class="text-green-600">{{ (rel.similarity * 100).toFixed(0) }}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div v-if="analyzing" class="text-center py-4 text-purple-600">
+                            🤖 AI 分析中...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 新建种子模态框 -->
+    <div id="create-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-4">
+            <div class="p-6 border-b">
+                <h2 class="text-xl font-bold">新建种子</h2>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">类型</label>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button onclick="selectType('note')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-type="note">📝 笔记</button>
+                        <button onclick="selectType('idea')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-orange-100 text-orange-700 hover:bg-orange-200 transition" data-type="idea">💡 灵感</button>
+                        <button onclick="selectType('link')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-blue-100 text-blue-700 hover:bg-blue-200 transition" data-type="link">🔗 链接</button>
+                        <button onclick="selectType('diary')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-green-100 text-green-700 hover:bg-green-200 transition" data-type="diary">📔 日记</button>
+                        <button onclick="selectType('thought')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-purple-100 text-purple-700 hover:bg-purple-200 transition" data-type="thought">💭 思考</button>
+                        <button onclick="selectType('collection')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-pink-100 text-pink-700 hover:bg-pink-200 transition" data-type="collection">⭐ 收藏</button>
+                        <button onclick="selectType('todo')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 transition" data-type="todo">✅ 待办</button>
+                        <button onclick="selectType('voice')" class="type-btn px-3 py-2 rounded-lg text-sm font-medium bg-cyan-100 text-cyan-700 hover:bg-cyan-200 transition" data-type="voice">🎤 语音</button>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">标题</label>
+                    <input type="text" id="create-title" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">内容</label>
+                    <textarea id="create-content" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="记录你的想法..."></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">标签</label>
+                    <input type="text" id="create-tags" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="用逗号分隔">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">URL（可选）</label>
+                    <input type="url" id="create-url" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="https://...">
+                </div>
+            </div>
+            <div class="p-6 border-t bg-gray-50 rounded-b-lg flex justify-end space-x-3">
+                <button onclick="hideCreateModal()" class="px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">取消</button>
+                <button onclick="createSeed()" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue3 for AI Panel -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        // AI Panel Vue App
+        const aiApp = Vue.createApp({
+            setup() {
+                const selectedSeed = Vue.ref(null);
+                const analysisResult = Vue.ref(null);
+                const analyzing = Vue.ref(false);
+
+                const analyzeExpansion = async () => {
+                    if (!selectedSeed.value) return;
+                    analyzing.value = true;
+                    try {
+                        const res = await fetch(`/api/capsule/${selectedSeed.value.id}/analyze/expand`, { method: 'POST' });
+                        const json = await res.json();
+                        if (json.code === 200 || json.success) {
+                            analysisResult.value = { type: 'expansion', data: json.data || json.result };
+                        }
+                    } catch (e) { console.error(e); }
+                    analyzing.value = false;
+                };
+
+                const analyzeLink = async () => {
+                    if (!selectedSeed.value?.url) return;
+                    analyzing.value = true;
+                    try {
+                        const res = await fetch(`/api/capsule/${selectedSeed.value.id}/analyze/link`, { method: 'POST' });
+                        const json = await res.json();
+                        if (json.code === 200 || json.success) {
+                            analysisResult.value = { type: 'link', data: json.data || json.result };
+                        }
+                    } catch (e) { console.error(e); }
+                    analyzing.value = false;
+                };
+
+                const findRelations = async () => {
+                    if (!selectedSeed.value) return;
+                    analyzing.value = true;
+                    try {
+                        const res = await fetch(`/api/capsule/${selectedSeed.value.id}/relations`);
+                        const json = await res.json();
+                        if (json.code === 200 || json.success) {
+                            analysisResult.value = { type: 'relations', data: json.data || json.result };
+                        }
+                    } catch (e) { console.error(e); }
+                    analyzing.value = false;
+                };
+
+                return { selectedSeed, analysisResult, analyzing, analyzeExpansion, analyzeLink, findRelations };
+            }
+        }).mount('#ai-panel');
+
+        // 全局函数
+        function toggleAI() {
+            const panel = document.getElementById('ai-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        function setAISeed(capsule) {
+            aiApp._instance.provides.selectedSeed.value = capsule;
+        }
+
+        // 种子列表功能
+        let capsules = [];
+        let currentFilter = { type: 'all', search: '' };
+        let selectedType = 'note';
+
+        async function loadSeeds() {
+            const res = await fetch('/api/capsules?limit=100');
+            const json = await res.json();
+            // 兼容两种返回格式
+            const data = json.data || json.capsules || [];
+            if (json.code === 200 || json.success === true) {
+                capsules = data;
+                renderSeeds();
+                updateStats();
+            }
+        }
+
+        function renderSeeds() {
+            const container = document.getElementById('capsules-container');
+            const filtered = capsules.filter(c => {
+                const typeMatch = currentFilter.type === 'all' || c.type === currentFilter.type;
+                const searchMatch = !currentFilter.search || 
+                    (c.title && c.title.toLowerCase().includes(currentFilter.search.toLowerCase())) ||
+                    (c.content && c.content.toLowerCase().includes(currentFilter.search.toLowerCase()));
+                return typeMatch && searchMatch;
+            });
+
+            if (filtered.length === 0) {
+                document.getElementById('empty-state').classList.remove('hidden');
+                container.innerHTML = '';
+                return;
+            }
+
+            document.getElementById('empty-state').classList.add('hidden');
+            container.innerHTML = filtered.map(c => {
+                const typeConfig = {
+                    note: { emoji: '📝', color: 'bg-gray-100', border: 'border-gray-300' },
+                    idea: { emoji: '💡', color: 'bg-orange-50', border: 'border-orange-300' },
+                    link: { emoji: '🔗', color: 'bg-blue-50', border: 'border-blue-300' },
+                    diary: { emoji: '📔', color: 'bg-green-50', border: 'border-green-300' },
+                    thought: { emoji: '💭', color: 'bg-purple-50', border: 'border-purple-300' },
+                    collection: { emoji: '⭐', color: 'bg-pink-50', border: 'border-pink-300' },
+                    todo: { emoji: '✅', color: 'bg-red-50', border: 'border-red-300' },
+                    voice: { emoji: '🎤', color: 'bg-cyan-50', border: 'border-cyan-300' }
+                }[c.type] || { emoji: '📝', color: 'bg-gray-100', border: 'border-gray-300' };
+
+                return `
+                    <div class="capsule-card bg-white rounded-lg shadow-sm p-4 cursor-pointer border-l-4 ${typeConfig.color} ${typeConfig.border}" onclick="selectSeed('${c.id}')">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="text-lg">${typeConfig.emoji}</span>
+                                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">${c.type}</span>
+                                    ${c.tags ? `<span class="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full">${c.tags.split(',')[0]}</span>` : ''}
+                                </div>
+                                <h3 class="font-bold text-gray-800 mb-1">${c.title || c.content?.slice(0, 30) || '无标题'}</h3>
+                                <p class="text-sm text-gray-600">${c.content?.slice(0, 100) || ''}${c.content?.length > 100 ? '...' : ''}</p>
+                                <div class="mt-2 text-xs text-gray-400">${new Date(c.created_at).toLocaleString('zh-CN')}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectSeed(id) {
+            const capsule = capsules.find(c => c.id === id);
+            if (capsule) {
+                aiApp._instance.provides.selectedSeed.value = capsule;
+                // 打开 AI 面板
+                document.getElementById('ai-panel').classList.remove('hidden');
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = capsules.length;
+            document.getElementById('stat-todos').textContent = capsules.filter(c => c.type === 'todo').length;
+            document.getElementById('stat-completed').textContent = capsules.filter(c => c.status === 'completed').length;
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            document.getElementById('stat-week').textContent = capsules.filter(c => new Date(c.created_at) > weekAgo).length;
+        }
+
+        function filterByType(type) {
+            currentFilter.type = type;
+            document.querySelectorAll('.type-filter').forEach(btn => {
+                btn.classList.remove('active', 'bg-gray-800', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            event.target.classList.add('active', 'bg-gray-800', 'text-white');
+            renderSeeds();
+        }
+
+        function searchSeeds() {
+            currentFilter.search = document.getElementById('search-input').value;
+            renderSeeds();
+        }
+
+        function showCreateModal() {
+            document.getElementById('create-modal').classList.remove('hidden');
+        }
+
+        function hideCreateModal() {
+            document.getElementById('create-modal').classList.add('hidden');
+        }
+
+        function selectType(type) {
+            selectedType = type;
+            document.querySelectorAll('.type-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-blue-500');
+            });
+            event.target.classList.add('ring-2', 'ring-blue-500');
+        }
+
+        async function createSeed() {
+            const title = document.getElementById('create-title').value;
+            const content = document.getElementById('create-content').value;
+            const tags = document.getElementById('create-tags').value;
+            const url = document.getElementById('create-url').value;
+
+            if (!content.trim()) {
+                alert('内容不能为空');
+                return;
+            }
+
+            const res = await fetch('/api/capsules', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: Date.now().toString(),
+                    type: selectedType,
+                    title,
+                    content,
+                    tags,
+                    url
+                })
+            });
+            const json = await res.json();
+            if (json.success || json.code === 200) {
+                alert('✅ 种子已创建！AI 分析中...');
+                hideCreateModal();
+                loadSeeds();
+                // 清空表单
+                document.getElementById('create-title').value = '';
+                document.getElementById('create-content').value = '';
+                document.getElementById('create-tags').value = '';
+                document.getElementById('create-url').value = '';
+            } else {
+                alert('创建失败：' + (json.error || json.message));
+            }
+        }
+
+        // 初始化
+        loadSeeds();
+    </script>
+</body>
+</html>
+{% endraw %}

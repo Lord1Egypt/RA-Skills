@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maicai"
+  short_description: "跨平台找便宜菜，比较整篮到手价和买菜门槛"
+  default_prompt: "Use $maicai to compare cheap vegetables and grocery baskets across Duoduo Maicai, Meituan Maicai, 7FRESH, Hema Fresh, Dingdong Maicai, and similar mainland China grocery platforms, normalize the real basket cost, and tell me where to buy the cheapest useful basket right now."

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "schedule": "weekly",
+  "default_signal_keywords": [
+    "I wish",
+    "someone should build",
+    "looking for",
+    "alternative to",
+    "frustrated",
+    "anyone solved",
+    "workaround",
+    "why is there no",
+    "I'd pay for",
+    "shut up and take my money",
+    "hate that",
+    "need a tool",
+    "has anyone found",
+    "does anyone know of"
+  ],
+  "niches": [
+    {
+      "name": "AI tools for small business",
+      "keywords": [
+        "AI small business",
+        "AI automation business",
+        "AI tool SMB",
+        "ChatGPT business workflow"
+      ],
+      "sources": [
+        "reddit:r/smallbusiness",
+        "reddit:r/SaaS",
+        "reddit:r/AiForSmallBusiness",
+        "hackernews"
+      ],
+      "extra_signal_keywords": [
+        "too expensive",
+        "simpler alternative",
+        "overkill for my needs"
+      ]
+    },
+    {
+      "name": "OpenClaw skills gaps",
+      "keywords": [
+        "OpenClaw skill",
+        "AI agent skill",
+        "Codex agent plugin",
+        "agent automation"
+      ],
+      "sources": [
+        "reddit:r/openclaw",
+        "reddit:r/AI_Agents",
+        "hackernews",
+        "github:openclawai/OpenClaw"
+      ],
+      "extra_signal_keywords": [
+        "missing skill",
+        "wish there was a skill",
+        "no plugin for"
+      ]
+    },
+    {
+      "name": "Local AI tools",
+      "keywords": [
+        "local LLM tool",
+        "self-hosted AI",
+        "local AI workflow",
+        "run locally AI"
+      ],
+      "sources": [
+        "reddit:r/LocalLLaMA",
+        "reddit:r/selfhosted",
+        "hackernews"
+      ],
+      "extra_signal_keywords": [
+        "privacy concerns",
+        "offline AI",
+        "no cloud dependency",
+        "self-hosted alternative"
+      ]
+    }
+  ],
+  "scoring_weights": {
+    "signal_strength": 0.30,
+    "engagement": 0.20,
+    "freshness": 0.20,
+    "competition": 0.15,
+    "recurrence": 0.15
+  },
+  "max_queries_per_scan": 30,
+  "max_results_per_query": 10
+}

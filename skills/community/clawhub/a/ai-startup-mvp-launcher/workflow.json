@@ -1,0 +1,68 @@
+{
+  "name": "AI创业MVP快造工厂",
+  "version": "1.0.0",
+  "description": "从创业想法到小程序MVP上线的全链路自动化，一周完成验证",
+  "category": "AI|开发|自动化",
+  "skills": [
+    {
+      "name": "miniapp-daily-generator",
+      "role": "产品方案生成",
+      "description": "根据用户痛点和需求，生成完整小程序产品方案（含功能列表、页面设计、技术选型）"
+    },
+    {
+      "name": "project-mode",
+      "role": "任务拆解与开发调度",
+      "description": "将产品方案拆解为可执行开发任务，调度虚拟开发团队，追踪进度"
+    },
+    {
+      "name": "card-renderer",
+      "role": "品牌视觉素材",
+      "description": "生成产品封面图、功能亮点卡、社交推广素材"
+    },
+    {
+      "name": "content-trend-weapon",
+      "role": "市场调研与竞品分析",
+      "description": "搜索同类产品，输出竞品分析报告、内容运营选题方案"
+    }
+  ],
+  "flow": [
+    {
+      "step": 1,
+      "skill": "miniapp-daily-generator",
+      "input": "用户的创业想法描述（痛点、目标用户、核心功能）",
+      "output": "产品需求文档（功能清单、页面结构、用户旅程、技术选型）",
+      "action": "generate"
+    },
+    {
+      "step": 2,
+      "skill": "project-mode",
+      "input": "产品需求文档",
+      "output": "开发任务列表、里程碑计划、进度追踪看板",
+      "action": "plan"
+    },
+    {
+      "step": 3,
+      "skill": "card-renderer",
+      "input": "产品名称、核心功能、目标用户画像",
+      "output": "产品封面图、功能介绍卡片、社交媒体素材（3-5张）",
+      "action": "render"
+    },
+    {
+      "step": 4,
+      "skill": "content-trend-weapon",
+      "input": "产品关键词、目标赛道",
+      "output": "竞品分析报告、市场热度趋势、内容运营选题（10+）",
+      "action": "analyze"
+    }
+  ],
+  "triggers": [
+    "创业",
+    "MVP",
+    "产品原型",
+    "小程序开发",
+    "快速验证",
+    "副业项目",
+    "从0到1",
+    "产品构思"
+  ]
+}

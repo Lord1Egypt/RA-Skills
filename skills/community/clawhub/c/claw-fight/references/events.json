@@ -1,0 +1,324 @@
+{
+  "events": [
+    {
+      "id": "find_algae",
+      "category": "daily",
+      "probability": 10,
+      "effects": { "hp": "+5" },
+      "conditions": {},
+      "prompt_template": "你的龙虾 {name} 在 {territory} 发现了一丛新鲜海藻。根据它的性格描述它的反应和进食过程。"
+    },
+    {
+      "id": "sunbathing",
+      "category": "daily",
+      "probability": 8,
+      "effects": { "hp": "+3" },
+      "conditions": {},
+      "prompt_template": "{name} 找到一块阳光能穿透水面照到的温暖岩石。描述它享受日光浴的惬意时光。"
+    },
+    {
+      "id": "shell_collection",
+      "category": "daily",
+      "probability": 7,
+      "effects": {},
+      "conditions": {},
+      "prompt_template": "{name} 在巡逻途中发现了一枚漂亮的贝壳。根据它的好奇心描述它对贝壳的态度。"
+    },
+    {
+      "id": "territorial_marking",
+      "category": "daily",
+      "probability": 8,
+      "effects": { "intimidation": "+1" },
+      "conditions": {},
+      "prompt_template": "{name} 决定加固自己在 {territory} 的领地边界。描述它如何用大螯搬动石块、用信息素标记边界的过程。"
+    },
+    {
+      "id": "small_fish_school",
+      "category": "daily",
+      "probability": 7,
+      "effects": { "hp": "+3", "exp": "+2" },
+      "conditions": {},
+      "prompt_template": "一群小鱼从 {name} 的洞穴前游过。描述龙虾看到鱼群时的反应，是好奇观察还是毫不在意？"
+    },
+    {
+      "id": "current_ride",
+      "category": "daily",
+      "probability": 6,
+      "effects": { "speed": "+1" },
+      "conditions": {},
+      "prompt_template": "{name} 发现了一股强劲的洋流。根据它的勇气值，描述它是勇敢地乘流冲浪还是谨慎地躲开。"
+    },
+    {
+      "id": "starfish_chat",
+      "category": "daily",
+      "probability": 5,
+      "effects": {},
+      "conditions": {},
+      "prompt_template": "{name} 遇到了一只话痨海星。根据龙虾的话量值，描述这次奇怪的跨物种对话。"
+    },
+    {
+      "id": "cleaning_station",
+      "category": "daily",
+      "probability": 5,
+      "effects": { "hp": "+8" },
+      "conditions": {},
+      "prompt_template": "{name} 找到了一个清洁虾工作站。描述龙虾享受全身清洁服务的过程，以及它对清洁虾的态度。"
+    },
+    {
+      "id": "bubble_meditation",
+      "category": "daily",
+      "probability": 4,
+      "effects": { "hp": "+2" },
+      "conditions": {},
+      "prompt_template": "{name} 看着海底涌出的气泡发起了呆。根据它的性格，描述这个冥想时刻，它在想什么？"
+    },
+    {
+      "id": "nocturnal_hunt",
+      "category": "daily",
+      "probability": 6,
+      "effects": { "hp": "+5", "exp": "+3" },
+      "conditions": {},
+      "prompt_template": "夜幕降临，{name} 离开洞穴开始夜间觅食。龙虾天生是夜行动物，此刻它的触角化学感受器异常敏锐。描述它如何在黑暗中凭借触觉和嗅觉追踪猎物。"
+    },
+    {
+      "id": "antenna_sensing",
+      "category": "daily",
+      "probability": 5,
+      "effects": { "luck": "+1" },
+      "conditions": {},
+      "prompt_template": "{name} 的触角捕捉到了远处的化学信号——另一只生物经过此处留下了痕迹。描述龙虾如何解读这些海水中的隐秘信息。"
+    },
+    {
+      "id": "tide_pool_adventure",
+      "category": "daily",
+      "probability": 4,
+      "effects": { "exp": "+3" },
+      "conditions": {},
+      "prompt_template": "潮水退去，{name} 意外被困在一个潮汐池中。描述它在这个微型世界中的短暂冒险，以及潮水回涨时重返大海的喜悦。"
+    },
+    {
+      "id": "urine_signal",
+      "category": "daily",
+      "probability": 4,
+      "effects": { "intimidation": "+1" },
+      "conditions": { "min_level": 2 },
+      "prompt_template": "{name} 从眼睛下方的喷射口释放了含信息素的尿液，向周围所有生物宣告自己的领地和等级地位。描述这个独特的龙虾式宣示主权的过程。"
+    },
+    {
+      "id": "hermit_crab_trade",
+      "category": "daily",
+      "probability": 3,
+      "effects": { "hp": "+2" },
+      "conditions": {},
+      "prompt_template": "一只寄居蟹拖着一个有趣的壳经过 {name} 的领地。它似乎想用壳里的藻类换取安全通行。根据龙虾的脾气，描述这次奇怪的交易谈判。"
+    },
+    {
+      "id": "find_shrimp",
+      "category": "growth",
+      "probability": 5,
+      "effects": { "exp": "+10", "attack": "+1" },
+      "conditions": {},
+      "prompt_template": "{name} 在珊瑚缝隙中发现了一只肥美的虾。描述它如何用精准的小螯将猎物从缝隙中夹出，享受这顿高蛋白大餐。"
+    },
+    {
+      "id": "mineral_deposit",
+      "category": "growth",
+      "probability": 4,
+      "effects": { "exp": "+12", "defense": "+1" },
+      "conditions": {},
+      "prompt_template": "{name} 发现了一处富含矿物质的海底沉积物。描述龙虾如何吸收这些矿物质来强化甲壳。"
+    },
+    {
+      "id": "speed_training",
+      "category": "growth",
+      "probability": 4,
+      "effects": { "exp": "+10", "speed": "+1" },
+      "conditions": {},
+      "prompt_template": "一条好斗的小梭鱼在 {name} 附近游弋挑衅。龙虾被迫展开一场追逐训练。描述这场提升了反应速度的追逐。"
+    },
+    {
+      "id": "ancient_shell_fragment",
+      "category": "growth",
+      "probability": 3,
+      "effects": { "exp": "+15", "defense": "+2" },
+      "conditions": { "min_level": 3 },
+      "prompt_template": "{name} 在一块古老的岩石中发现了一片远古甲壳碎片。这片碎片似乎蕴含着某种力量……描述龙虾如何将碎片融入自己的甲壳。"
+    },
+    {
+      "id": "claw_sharpening",
+      "category": "growth",
+      "probability": 2,
+      "effects": { "exp": "+15", "attack": "+2" },
+      "conditions": { "min_level": 5 },
+      "prompt_template": "{name} 发现了一块硬度极高的黑曜石。它开始在上面磨砺自己的大螯。描述这个看似粗暴实则精细的过程。"
+    },
+    {
+      "id": "wisdom_pearl",
+      "category": "growth",
+      "probability": 2,
+      "effects": { "exp": "+20", "luck": "+1" },
+      "conditions": { "min_level": 7 },
+      "prompt_template": "{name} 在一个废弃的蛤蜊壳中发现了一颗微小的珍珠。这颗珍珠闪烁着奇异的光芒。描述龙虾与这颗珍珠的邂逅。"
+    },
+    {
+      "id": "deep_pressure_training",
+      "category": "growth",
+      "probability": 3,
+      "effects": { "exp": "+12", "defense": "+1", "hp": "+5" },
+      "conditions": { "min_level": 4 },
+      "prompt_template": "{name} 冒险下潜到比平时更深的水域。巨大的水压考验着它的甲壳强度。描述龙虾如何在深水压力中锻炼自己的防御力，以及它在深渊边缘看到的奇异景象。"
+    },
+    {
+      "id": "serotonin_surge",
+      "category": "growth",
+      "probability": 2,
+      "effects": { "exp": "+15", "intimidation": "+2", "attack": "+1" },
+      "conditions": { "min_level": 6 },
+      "prompt_template": "{name} 体内的血清素水平突然飙升！这种神经递质让龙虾感到前所未有的自信和力量。描述它如何在这股化学力量的驱动下，像王者一般巡视领地。"
+    },
+    {
+      "id": "coral_symbiosis",
+      "category": "growth",
+      "probability": 2,
+      "effects": { "exp": "+10", "hp": "+10" },
+      "conditions": {},
+      "prompt_template": "{name} 发现了一片正在白化的珊瑚。出于某种本能，龙虾开始用大螯清除珊瑚上的有害藻类。作为回报，珊瑚释放出了富含营养的分泌物。描述这次跨物种的互利合作。"
+    },
+    {
+      "id": "octopus_attack",
+      "category": "crisis",
+      "probability": 5,
+      "effects": { "hp": "-20", "exp": "+25" },
+      "conditions": { "min_level": 3 },
+      "prompt_template": "一只章鱼突然从暗礁后方袭来！根据 {name} 的勇气值和当前HP，描述它的应对。勇气≥7选择正面迎战，<7选择战术撤退。战斗场面要激烈。"
+    },
+    {
+      "id": "eel_ambush",
+      "category": "crisis",
+      "probability": 4,
+      "effects": { "hp": "-15", "exp": "+20" },
+      "conditions": { "min_level": 2 },
+      "prompt_template": "一条电鳗从沙地中窜出，对 {name} 发起了伏击！描述龙虾如何在电击中挣扎求存，用甲壳抵挡电流。"
+    },
+    {
+      "id": "territory_invasion",
+      "category": "crisis",
+      "probability": 3,
+      "effects": { "hp": "-10", "intimidation": "+2", "exp": "+15" },
+      "conditions": {},
+      "prompt_template": "一只寄居蟹试图入侵 {name} 的领地！根据龙虾的脾气值，描述它如何捍卫自己的家园。脾气≥7暴怒出击，<7冷静驱逐。"
+    },
+    {
+      "id": "sudden_molt_urge",
+      "category": "crisis",
+      "probability": 2,
+      "effects": { "defense": "-3", "exp": "+15" },
+      "conditions": { "min_level": 4 },
+      "prompt_template": "{name} 感到甲壳突然变得紧绷，一股不可抗拒的蜕壳冲动袭来！但现在不是安全的蜕壳时间……描述龙虾如何强忍这股冲动。"
+    },
+    {
+      "id": "net_encounter",
+      "category": "crisis",
+      "probability": 1,
+      "effects": { "hp": "-25", "exp": "+25", "speed": "+1" },
+      "conditions": { "min_level": 5 },
+      "prompt_template": "一张渔网从天而降！{name} 必须在被捕获前逃脱。描述这场惊心动魄的逃亡，龙虾如何用大螯剪断渔网的绳索。"
+    },
+    {
+      "id": "mantis_shrimp_duel",
+      "category": "crisis",
+      "probability": 2,
+      "effects": { "hp": "-30", "exp": "+30", "attack": "+1" },
+      "conditions": { "min_level": 7 },
+      "prompt_template": "一只螳螂虾出现在 {name} 面前！这是海洋中最危险的拳击手，冲击力堪比子弹。描述龙虾如何用甲壳抵挡螳螂虾的超音速重拳，并寻找反击的机会。"
+    },
+    {
+      "id": "pollution_wave",
+      "category": "crisis",
+      "probability": 2,
+      "effects": { "hp": "-15", "speed": "-1", "exp": "+20" },
+      "conditions": { "min_level": 3 },
+      "prompt_template": "一股来自远方的污染水流涌向 {name} 的领地。水温异常升高，盐度骤变。描述龙虾如何凭借本能感知危险并努力躲避这股致命的暖流。"
+    },
+    {
+      "id": "seagull_dive",
+      "category": "crisis",
+      "probability": 2,
+      "effects": { "hp": "-10", "exp": "+15", "speed": "+1" },
+      "conditions": {},
+      "prompt_template": "一只海鸥突然从水面俯冲而下，巨大的喙直奔 {name} 而来！描述龙虾如何在千钧一发之际用尾部弹射逃离（龙虾通过快速卷曲尾部实现后退式弹射）。"
+    },
+    {
+      "id": "gene_mutation",
+      "category": "rare",
+      "probability": 0.5,
+      "effects": { "color_change": true },
+      "conditions": { "is_molting": true },
+      "prompt_template": "蜕壳过程中发生了罕见的基因突变！{name} 的甲壳颜色正在改变……用充满惊奇和神秘感的语气描述这个过程。新颜色在海水中折射出从未见过的光芒。"
+    },
+    {
+      "id": "legendary_whale",
+      "category": "rare",
+      "probability": 1.5,
+      "effects": { "exp": "+25", "luck": "+2" },
+      "conditions": { "min_level": 5 },
+      "prompt_template": "一头巨大的蓝鲸从 {name} 头顶缓缓游过，遮天蔽日。描述龙虾目睹这个庞然大物时的震撼，以及蓝鲸离去后留下的奇异祝福。"
+    },
+    {
+      "id": "drift_bottle",
+      "category": "rare",
+      "probability": 1.5,
+      "effects": { "exp": "+15" },
+      "conditions": {},
+      "prompt_template": "{name} 发现了一个沉到海底的漂流瓶！里面有一张写着奇怪符号的纸条。根据龙虾的好奇心，描述它如何研究这个来自人类世界的神秘物品。"
+    },
+    {
+      "id": "ancient_lobster_ghost",
+      "category": "rare",
+      "probability": 1,
+      "effects": { "exp": "+20", "intimidation": "+2" },
+      "conditions": { "min_level": 10 },
+      "prompt_template": "深夜，{name} 在洞穴深处隐约看到一只发光的半透明龙虾。那是传说中的远古龙虾之灵！描述这次超自然的邂逅，以及幽灵龙虾传授的古老战斗智慧。"
+    },
+    {
+      "id": "underwater_volcano",
+      "category": "rare",
+      "probability": 0.5,
+      "effects": { "hp": "-10", "attack": "+3", "exp": "+25" },
+      "conditions": { "min_level": 8 },
+      "prompt_template": "海底火山突然微弱喷发！灼热的矿物质水流冲击着 {name} 的甲壳。痛苦之后，龙虾发现自己的大螯因为矿物质沉积变得更加坚硬。描述这场火与水的洗礼。"
+    },
+    {
+      "id": "golden_current",
+      "category": "rare",
+      "probability": 0.5,
+      "effects": { "exp": "+25", "hp": "+20", "attack": "+1", "defense": "+1", "speed": "+1" },
+      "conditions": { "min_level": 5 },
+      "prompt_template": "一道金色的海流从未知的深渊涌来，包裹住了 {name} 的全身。这股神秘的力量让龙虾感到每一个细胞都在苏醒。描述这次被海洋之力洗礼的奇妙体验。"
+    },
+    {
+      "id": "ancient_map",
+      "category": "rare",
+      "probability": 0.5,
+      "effects": { "exp": "+20" },
+      "conditions": { "min_level": 3 },
+      "prompt_template": "{name} 在一艘沉船残骸中发现了一张用防水材料制作的古老海图。上面标注了一些奇怪的符号和位置。根据龙虾的好奇心，描述它研究这张海图的过程，以及它是否决定按图索骥。"
+    },
+    {
+      "id": "bioluminescent_night",
+      "category": "rare",
+      "probability": 1,
+      "effects": { "exp": "+15", "luck": "+1" },
+      "conditions": {},
+      "prompt_template": "夜晚的海水突然亮了起来——数以万计的浮游生物同时发出蓝绿色的生物荧光！{name} 被包围在一片梦幻般的光海中。描述龙虾在这个魔幻时刻的感受，以及这片光芒中蕴含的神秘能量。"
+    }
+  ],
+  "category_probability_ranges": {
+    "daily": { "total": 60, "description": "日常事件，高频低影响" },
+    "growth": { "total": 20, "description": "成长事件，属性增长" },
+    "crisis": { "total": 15, "description": "危机事件，天敌/灾难" },
+    "rare": { "total": 5, "description": "稀有事件，极低概率高回报" }
+  },
+  "no_event_probability": 0,
+  "event_selection_method": "先按类别概率区间选类别（daily:0-60, growth:60-80, crisis:80-95, rare:95-100），再在类别内按各事件 probability 权重随机选取具体事件。若事件条件不满足则重选或无事件发生。"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "website-to-ads",
+  "version": "1.0.0",
+  "description": "OpenClaw skill: scrape a business website and generate Meta-ready ad variants that match the brand's voice.",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "tsx src/index.ts https://example.com",
+    "clean" : "rm -rf dist node_modules .cache output"
+
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ads",
+    "meta",
+    "apify",
+    "website-scraper",
+    "ad-generation"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@civic/auth-verify": "^0.0.4",
+    "apify-client": "^2.9.0",
+    "dotenv": "^17.3.1",
+    "openai": "^4.73.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "feishu-enhanced",
+  "version": "1.0.0",
+  "description": "飞书增强套件 - 深度集成飞书文档、多维表格、消息和日历的自动化操作",
+  "author": "lijie",
+  "license": "MIT",
+  "keywords": ["feishu", "lark", "automation", "office", "chinese"],
+  "category": "office-automation"
+}

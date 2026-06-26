@@ -1,0 +1,8 @@
+{
+  "name": "health-checkup-recommender",
+  "private": true,
+  "description": "Evidence-based health checkup recommendation — personalized plans backed by BMJ/JAMA/NHC guidelines",
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

@@ -1,0 +1,14 @@
+﻿{
+    "reviews":  [
+                    {
+                        "lastReview":  "2026-03-20 16:34:02",
+                        "strength":  65,
+                        "interval":  3,
+                        "nextReviewDate":  "2026-03-23",
+                        "totalReviews":  1,
+                        "lastResult":  "good",
+                        "memoryId":  "24"
+                    }
+                ],
+    "created":  "2026-03-20 16:34:02"
+}

@@ -1,35 +1,20 @@
----
-name: "Whatsapp Auto Reply"
-description: "Generates polite, context-aware reply suggestions for WhatsApp messages to assist in personal chats, customer support, and AI response planning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-auto-reply"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-auto-reply"
----
+WhatsApp Auto Reply Skill
 
-# Whatsapp Auto Reply
+Description
+This skill helps generate appropriate replies for WhatsApp conversations. It is designed for private chat assistants, customer service, and personal AI agents.
+The skill takes a WhatsApp message as input and outputs a natural, polite, and context-aware reply suggestion.
 
-> Generates polite, context-aware reply suggestions for WhatsApp messages to assist in personal chats, customer support, and AI response planning.
+Use Cases
+Personal WhatsApp auto-reply assistant
+Customer support message drafting
+Private traffic / community operations
+AI agent message response planning
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-auto-reply`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-auto-reply](https://clawhub.ai/skills/whatsapp-auto-reply)
+Input
+A single WhatsApp message or a short conversation context.
 
-## Overview
+Output
+A suggested reply in natural language, suitable for direct sending or further AI processing.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-auto-reply
-```
+Notes
+This skill does NOT access WhatsApp directly. It only generates reply suggestions based on provided text.

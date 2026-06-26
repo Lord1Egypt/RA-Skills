@@ -1,35 +1,58 @@
 ---
-name: "Nimble"
-description: "Nimble 电动滑板车集成技能 - 用于与 Nimble 设备交互、诊断、配置和故障排除"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nimble"
-sourceUrl: "https://clawhub.ai/skills/nimble"
+name: Nimble
+description: Nimble 电动滑板车集成技能 - 用于与 Nimble 设备交互、诊断、配置和故障排除
 ---
 
-# Nimble
+# Nimble Skill
 
-> Nimble 电动滑板车集成技能 - 用于与 Nimble 设备交互、诊断、配置和故障排除
+Nimble 设备集成技能，提供与 Nimble 电动滑板车交互的统一接口。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nimble`
-- **Source URL:** [https://clawhub.ai/skills/nimble](https://clawhub.ai/skills/nimble)
+## 适用场景
 
-## Overview
+- 连接 Nimble 设备进行诊断
+- 读取设备状态、电池信息、行驶数据
+- 配置车辆参数（速度限制、尾灯等）
+- 排查常见故障
+- 导出骑行统计数据
 
+## 功能概览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nimble
+| 功能 | 描述 |
+|------|------|
+| 设备连接 | 通过蓝牙连接 Nimble 设备 |
+| 状态查询 | 获取电池、里程、固件版本等信息 |
+| 参数配置 | 修改速度限制、灯效等设置 |
+| 故障诊断 | 分析错误码并提供解决方案 |
+
+## 使用方法
+
+### 连接设备
+
 ```
+Nimble 连接 [设备名称]
+```
+
+### 查询状态
+
+```
+Nimble 状态
+Nimble 电池
+Nimble 里程
+```
+
+### 常用命令
+
+- `Nimble 诊断` - 运行完整诊断
+- `Nimble 固件` - 查看固件版本
+- `Nimble 重置` - 恢复出厂设置
+
+## 示例对话
+
+> 用户: 我的 Nimble 连不上手机了
+> 技能: 先尝试重启设备蓝牙，如果仍无法连接，运行 `Nimble 诊断` 检查设备状态
+
+## 注意事项
+
+1. 确保设备电量 > 20%
+2. 某些参数修改需要停车状态
+3. 固件升级前备份当前配置

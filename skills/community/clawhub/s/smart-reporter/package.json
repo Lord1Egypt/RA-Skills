@@ -1,0 +1,9 @@
+{
+  "name": "smart-reporter",
+  "version": "1.0.0",
+  "description": "智能报告生成器 - 自动分析数据并生成专业报告",
+  "author": "lijie",
+  "license": "MIT",
+  "keywords": ["report", "analytics", "automation", "data"],
+  "category": "data-analysis"
+}

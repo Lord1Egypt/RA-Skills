@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clash of Coins Universal"
+  short_description: "Route sale/shop checkout from live discovery."
+  default_prompt: "Use $clashofcoins-universal to discover the live Clash of Coins instance, select the correct sale or shop checkout route, and return the exact next endpoint and payload constraints."

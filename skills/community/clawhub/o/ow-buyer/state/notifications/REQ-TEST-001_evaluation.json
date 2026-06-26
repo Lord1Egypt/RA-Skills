@@ -1,0 +1,84 @@
+{
+  "notification_id": "NOTIF-20260401154759",
+  "req_id": "REQ-TEST-001",
+  "type": "evaluation",
+  "timestamp": "2026-04-01T15:47:59.787934",
+  "data": {
+    "req_id": "REQ-TEST-001",
+    "total_bids": 1,
+    "evaluated_at": "2026-04-01T15:47:59.780400",
+    "top3": [
+      {
+        "bid_id": "BID-TEST-001",
+        "supplier": "幽灵庄园旗舰店",
+        "price": 2800,
+        "price_score": 50.0,
+        "media_score": 15,
+        "auth_score": 8.0,
+        "delivery_days": 3,
+        "delivery_score": 5.0,
+        "reputation_score": 8.940000000000001,
+        "total_score": 86.94,
+        "auth_docs": [
+          "营业执照",
+          "代理权证明"
+        ],
+        "images": [
+          "https://example.com/wine1.jpg",
+          "https://example.com/wine2.jpg"
+        ],
+        "video": "https://example.com/wine.mp4",
+        "reputation": {
+          "total_transactions": 50,
+          "success_rate": 0.98,
+          "disputes": 0,
+          "platform_verified": true
+        },
+        "shop_links": [
+          {
+            "platform": "淘宝",
+            "url": "https://shop123456.taobao.com"
+          }
+        ]
+      }
+    ],
+    "all_results": [
+      {
+        "bid_id": "BID-TEST-001",
+        "supplier": "幽灵庄园旗舰店",
+        "price": 2800,
+        "price_score": 50.0,
+        "media_score": 15,
+        "auth_score": 8.0,
+        "delivery_days": 3,
+        "delivery_score": 5.0,
+        "reputation_score": 8.940000000000001,
+        "total_score": 86.94,
+        "auth_docs": [
+          "营业执照",
+          "代理权证明"
+        ],
+        "images": [
+          "https://example.com/wine1.jpg",
+          "https://example.com/wine2.jpg"
+        ],
+        "video": "https://example.com/wine.mp4",
+        "reputation": {
+          "total_transactions": 50,
+          "success_rate": 0.98,
+          "disputes": 0,
+          "platform_verified": true
+        },
+        "shop_links": [
+          {
+            "platform": "淘宝",
+            "url": "https://shop123456.taobao.com"
+          }
+        ]
+      }
+    ]
+  },
+  "delivered": true,
+  "delivered_at": "2026-04-01T15:47:59.788383",
+  "message": "\n📊 评标完成提醒 | Evaluation Complete\n\n需求ID: REQ-TEST-001\n投标总数: 1\n评标时间: 2026-04-01T15:47:59.780400\n\n🏆 前三名供应商：\n\n🏆 第1名：幽灵庄园旗舰店 | 综合得分 86.94\n   ├─ 价格：¥2800 (得分 50.0/50)\n   ├─ 真品：2项 (得分 8.0/20)\n   ├─ 时效：3天 (得分 5.0/10)\n   └─ 信誉：50笔 (得分 8.9/20)\n\n\n⚠️ 请确认中标供应商，回复：\n   \"确认中标 REQ-xxx 第1名\"\n   或查看详情：\"查看投标详情 REQ-xxx\"\n"
+}

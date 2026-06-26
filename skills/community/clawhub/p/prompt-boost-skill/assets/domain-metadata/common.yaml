@@ -1,0 +1,26 @@
+domain_name: common
+task_types:
+  - writing
+  - analysis
+  - planning
+  - summarization
+required_slots:
+  - target
+  - context
+  - audience
+  - output_format
+optional_slots:
+  - constraints
+  - tone
+  - length
+default_slots: {}
+clarify_templates:
+  - "这份内容最后是给谁看的？领导汇报、客户展示，还是内部团队？"
+  - "你更想突出成果、问题分析，还是下一步行动计划？"
+  - "希望简洁提纲还是完整文档？"
+review_checklist:
+  - 任务目标是否明确
+  - 受众是否明确
+  - 输出形式是否明确
+  - 关键约束是否说明
+risk_level: low

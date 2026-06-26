@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMaster V7 统一版 - FlyAI真实票价+腾讯POI+高德导航</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, "PingFang SC", sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        /* 毛玻璃卡片 */
+        .glass {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin: 15px 0;
+        }
+        
+        /* 头部 */
+        .header { text-align: center; }
+        .header h1 { color: #b92b2b; font-size: 26px; margin-bottom: 8px; }
+        .header p { color: #666; font-size: 14px; }
+        
+        .badge-row { display: flex; gap: 6px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
+        .badge { background: #10b981; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; }
+        
+        /* 进度条 */
+        .progress-container { background: #f0f4f8; border-radius: 10px; padding: 15px; }
+        .progress-bar { height: 10px; background: linear-gradient(90deg, #10b981 0%, #667eea 100%); border-radius: 5px; transition: width 0.5s; }
+        .progress-text { margin-top: 8px; color: #718096; font-size: 13px; }
+        
+        /* 聊天框 */
+        .chatbox { padding: 15px; min-height: 200px; max-height: 350px; overflow-y: auto; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 8px; }
+        .bot { background: #e8f5e9; color: #2d3748; }
+        .user { background: #667eea; color: white; text-align: right; }
+        
+        /* 真实票价卡片 - 统一格式 */
+        .price-section { margin-top: 20px; }
+        .price-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        .price-table th, .price-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        .price-table th { background: #f5f5f5; font-weight: bold; }
+        .price-highlight { color: #e63946; font-weight: bold; font-size: 16px; }
+        .booking-link { color: #2b6cb9; text-decoration: none; }
+        .booking-link:hover { text-decoration: underline; }
+        
+        /* 真实POI卡片 */
+        .poi-card {
+            background: #f0f9ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border-left: 3px solid #0ea5e9;
+        }
+        .poi-title { color: #0369a1; font-weight: bold; margin-bottom: 5px; }
+        .poi-address { color: #666; font-size: 13px; }
+        .poi-source { color: #999; font-size: 11px; margin-top: 5px; }
+        
+        /* 输入区 */
+        .input-area { display: flex; gap: 8px; margin-top: 15px; }
+        .input-area input { flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; }
+        .input-area button { padding: 12px 20px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; }
+        .reset-btn { background: #ef4444; }
+        
+        /* 数据来源 */
+        .source-info {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        .source-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin: 2px;
+            font-size: 11px;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .header h1 { font-size: 20px; }
+            .badge { font-size: 11px; padding: 4px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="glass header">
+            <h1>🧳 TravelMaster V7 统一版</h1>
+            <p>FlyAI真实票价｜腾讯POI｜高德导航｜真实API调用</p>
+            <div class="badge-row">
+                <span class="badge">✅ FlyAI MCP</span>
+                <span class="badge">✅ 腾讯地图API</span>
+                <span class="badge">✅ 高德导航</span>
+                <span class="badge">✅ 真实预订链接</span>
+            </div>
+        </div>
+        
+        <!-- 进度条 -->
+        <div class="glass progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+            <div class="progress-text" id="progressText">等待输入...</div>
+        </div>
+        
+        <!-- 聊天框 -->
+        <div class="glass">
+            <div class="chatbox" id="chatbox">
+                <div class="message bot">
+                    您好！我是 TravelMaster V7 统一版。<br>
+                    <b>真实数据来源：</b><br>
+                    - FlyAI MCP：航班票价 + 火车票价 + 预订链接<br>
+                    - 腾讯地图API：真实景点POI<br>
+                    - 高德导航API：真实导航链接<br><br>
+                    输入您的旅行需求，我将查询真实票价并生成带预订链接的攻略！
+                </div>
+            </div>
+            
+            <!-- 真实票价展示区 -->
+            <div id="priceArea" style="display: none;">
+                <div class="price-section">
+                    <h3 style="color: #1976d2; margin-bottom: 10px;">✈️ 真实航班票价（FlyAI MCP）</h3>
+                    <table class="price-table" id="flightTable"></table>
+                    <div class="source-info">
+                        <span class="source-badge">FlyAI MCP</span>
+                        <span class="source-badge">飞猪实时票价</span>
+                        <span class="source-badge">预订链接真实可点击</span>
+                    </div>
+                </div>
+                
+                <div class="price-section">
+                    <h3 style="color: #f57c00; margin-bottom: 10px;">🚄 真实火车票价（FlyAI MCP）</h3>
+                    <table class="price-table" id="trainTable"></table>
+                    <div class="source-info">
+                        <span class="source-badge">FlyAI MCP</span>
+                        <span class="source-badge">飞猪实时票价</span>
+                    </div>
+                </div>
+                
+                <div class="price-section">
+                    <h3 style="color: #0ea5e9; margin-bottom: 10px;">📍 真实景点POI（腾讯地图API）</h3>
+                    <div id="poiList"></div>
+                    <div class="source-info">
+                        <span class="source-badge">腾讯地图API</span>
+                        <span class="source-badge">真实地址</span>
+                        <span class="source-badge">真实坐标</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 思考链 -->
+        <div class="glass" id="thoughtChain" style="display: none; background: #fff5cc;"></div>
+        
+        <!-- 方案选择 -->
+        <div id="planArea" style="display: none;">
+            <div class="glass">
+                <h3 style="color: #2d3748; margin-bottom: 12px;">🎯 请选择方案</h3>
+                <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; margin: 8px 0; cursor: pointer;" onclick="selectPlan('A')">
+                    <b>方案A：经济实惠</b><br><span style="color: #666">选择最低票价，预算最优</span>
+                </div>
+                <div style="background: #fef3c7; padding: 12px; border-radius: 8px; margin: 8px 0; cursor: pointer;" onclick="selectPlan('B')">
+                    <b>方案B：舒适便捷</b><br><span style="color: #666">直飞/高铁，时间最优</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 输入区 -->
+        <div class="glass input-area">
+            <input type="text" id="input" placeholder="输入：五一去大理，北京出发，5月1日..." />
+            <button onclick="sendMessage()">发送</button>
+            <button onclick="resetSession()" class="reset-btn">重置</button>
+        </div>
+        
+        <!-- 数据来源说明 -->
+        <div class="glass">
+            <h4 style="color: #2d3748; margin-bottom: 10px;">📊 真实数据来源</h4>
+            <div class="source-info">
+                <b>FlyAI MCP：</b> 航班票价、火车票价、预订链接（飞猪）<br>
+                <b>腾讯地图API：</b> 景点POI、真实地址、坐标（Key: L4DBZ-CC6KQ-W3M5K-2AYKP-GFHSZ-S2FUZ）<br>
+                <b>高德导航API：</b> 真实导航链接（Key: a8b1798825bfafb84c26bb5d76279cdc）<br>
+                <b>验证：</b> 所有数据真实API调用，禁止模拟
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function resetSession() {
+            await fetch('/api/reset', {method: 'POST'});
+            document.getElementById('chatbox').innerHTML = '<div class="message bot">已重置！重新开始规划。</div>';
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('progressText').textContent = '等待输入...';
+            document.getElementById('priceArea').style.display = 'none';
+            document.getElementById('planArea').style.display = 'none';
+            document.getElementById('thoughtChain').style.display = 'none';
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            document.getElementById('chatbox').innerHTML += `<div class="message user">${msg}</div>`;
+            input.value = '';
+            
+            try {
+                const resp = await fetch('/api/travel', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: msg})
+                });
+                
+                const data = await resp.json();
+                
+                document.getElementById('chatbox').innerHTML += `<div class="message bot">${data.reply || '处理中...'}</div>`;
+                document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;
+                
+                if (data.progress) {
+                    document.getElementById('progressBar').style.width = `${data.progress}%`;
+                    document.getElementById('progressText').textContent = `进度: ${data.progress}%`;
+                }
+                
+                if (data.thoughts) {
+                    document.getElementById('thoughtChain').style.display = 'block';
+                    document.getElementById('thoughtChain').textContent = data.thoughts;
+                }
+                
+                if (data.flights || data.trains) {
+                    showPrices(data.flights || [], data.trains || []);
+                }
+                
+                if (data.phase === 'spvc_recommendation') {
+                    document.getElementById('planArea').style.display = 'block';
+                }
+                
+            } catch(e) {
+                document.getElementById('chatbox').innerHTML += `<div class="message bot" style="color: #e63946;">网络错误</div>`;
+            }
+        }
+        
+        function showPrices(flights, trains) {
+            document.getElementById('priceArea').style.display = 'block';
+            
+            // 航班表格
+            if (flights.length > 0) {
+                let html = '<tr><th>航班</th><th>航空公司</th><th>时间</th><th>票价</th><th>预订</th></tr>';
+                flights.slice(0, 5).forEach(f => {
+                    html += `<tr>
+                        <td>${f.flight_no}</td>
+                        <td>${f.airline}</td>
+                        <td>${f.from_time}→${f.to_time}</td>
+                        <td class="price-highlight">¥${f.price}</td>
+                        <td><a href="${f.jump_url}" target="_blank" class="booking-link">预订</a></td>
+                    </tr>`;
+                });
+                document.getElementById('flightTable').innerHTML = html;
+            }
+            
+            // 火车表格
+            if (trains.length > 0) {
+                let html = '<tr><th>车次</th><th>类型</th><th>座位</th><th>票价</th><th>预订</th></tr>';
+                trains.slice(0, 5).forEach(t => {
+                    html += `<tr>
+                        <td>${t.train_no}</td>
+                        <td>${t.type}</td>
+                        <td>${t.seat}</td>
+                        <td class="price-highlight">¥${t.price}</td>
+                        <td><a href="${t.jump_url}" target="_blank" class="booking-link">预订</a></td>
+                    </tr>`;
+                });
+                document.getElementById('trainTable').innerHTML = html;
+            }
+        }
+        
+        async function selectPlan(plan) {
+            document.getElementById('planArea').style.display = 'none';
+            
+            try {
+                const resp = await fetch('/api/select_plan', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({plan: plan})
+                });
+                
+                const data = await resp.json();
+                
+                document.getElementById('chatbox').innerHTML += `<div class="message bot">已选择方案${plan}，正在生成HTML...</div>`;
+                
+                if (data.html_report) {
+                    document.getElementById('progressBar').style.width = '100%';
+                    document.getElementById('progressText').textContent = '完成！';
+                    
+                    const blob = new Blob([data.html_report], {type: 'text/html'});
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'travel_v7_unified.html';
+                    a.click();
+                    
+                    document.getElementById('chatbox').innerHTML += `<div class="message bot" style="background: #d1fae5;">
+                        ✅ HTML已生成并下载！<br>
+                        航班: ${data.travel_data?.航班数 || 0}条<br>
+                        火车: ${data.travel_data?.火车数 || 0}条<br>
+                        预订链接: ✅ 飞猪真实链接
+                    </div>`;
+                }
+                
+            } catch(e) {
+                console.error('选择方案失败', e);
+            }
+        }
+    </script>
+</body>
+</html>

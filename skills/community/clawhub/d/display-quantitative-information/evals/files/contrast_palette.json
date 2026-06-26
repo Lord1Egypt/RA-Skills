@@ -1,0 +1,14 @@
+{
+  "pairs": [
+    {
+      "label": "axis text",
+      "foreground": "#333333",
+      "background": "#ffffff"
+    },
+    {
+      "label": "low contrast annotation",
+      "foreground": "#bbbbbb",
+      "background": "#ffffff"
+    }
+  ]
+}

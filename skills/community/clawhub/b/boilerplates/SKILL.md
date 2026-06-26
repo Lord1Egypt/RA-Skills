@@ -1,35 +1,48 @@
 ---
-name: "Boilerplates"
+version: "2.0.0"
+name: Boilerplates
 description: "This is my personal template collection. Here you'll find templates, and configurations for various boilerplates, python, ansible, docker, docker-compose."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/boilerplates"
-sourceUrl: "https://clawhub.ai/skills/boilerplates"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
 # Boilerplates
 
-> This is my personal template collection. Here you'll find templates, and configurations for various boilerplates, python, ansible, docker, docker-compose.
+This is my personal template collection. Here you'll find templates, and configurations for various tools, and technologies. ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/boilerplates`
-- **Source URL:** [https://clawhub.ai/skills/boilerplates](https://clawhub.ai/skills/boilerplates)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from ChristianLempa/boilerplates
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `boilerplates <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/boilerplates
+# Show help
+boilerplates help
+
+# Run
+boilerplates run
 ```
+
+- Run `boilerplates help` for all commands
+
+## Output
+
+Results go to stdout. Save with `boilerplates run > output.txt`.
+
+## Output
+
+Results go to stdout. Save with `boilerplates run > output.txt`.

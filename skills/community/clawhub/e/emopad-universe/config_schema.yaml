@@ -1,0 +1,44 @@
+serial_port:
+  type: string
+  default: /dev/ttyACM0
+  description: 串口设备路径
+
+baudrate:
+  type: integer
+  default: 115200
+  description: 串口波特率
+
+eeg_window_sec:
+  type: integer
+  default: 2
+  description: EEG数据窗口（秒）
+
+ppg_gsr_window_sec:
+  type: integer
+  default: 60
+  description: PPG/GSR数据窗口（秒）
+
+hop_sec:
+  type: integer
+  default: 2
+  description: 计算间隔（秒）
+
+history_length:
+  type: integer
+  default: 120
+  description: 历史数据点数量
+
+nebula_interval:
+  type: integer
+  default: 300
+  description: 发送间隔（秒）
+
+service_host:
+  type: string
+  default: 127.0.0.1
+  description: 服务监听地址
+
+service_port:
+  type: integer
+  default: 8766
+  description: 服务监听端口

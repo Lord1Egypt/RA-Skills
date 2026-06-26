@@ -1,0 +1,75 @@
+CINEMATOGRAPHY GLOSSARY
+========================
+
+SHOT TYPES (by distance):
+- Extreme Wide Shot (EWS): Vast landscape, subject barely visible
+- Wide Shot (WS): Full figure in frame, head to toe
+- Full Shot (FS): Entire figure with buffer space
+- Medium Shot (MS): Waist to knee up
+- Medium Close-Up (MCU): Chest/shoulders up
+- Close-Up (CU): Face fills frame
+- Extreme Close-Up (ECU): Single feature detail
+
+CAMERA MOVEMENTS:
+- Pan: Horizontal rotation on fixed axis
+- Tilt: Vertical rotation on fixed axis
+- Zoom: Lens focal length change (not physical movement)
+- Dolly: Camera moves toward/away from subject
+- Tracking/Track: Camera follows alongside subject
+- Crane: Camera moves up/down via mechanical arm
+- Handheld: Operated without stabilization
+- Steadicam: Stabilized camera system for smooth movement
+- Whip Pan: Very fast pan (blur effect)
+- Pedestal: Camera moves up/down on pedestal (not tilt)
+
+CAMERA ANGLES:
+- Eye Level: Neutral perspective
+- Low Angle: Camera looks up (powerful subject)
+- High Angle: Camera looks down (vulnerable subject)
+- Bird's Eye: Directly overhead
+- Dutch Angle/Oblique: Tilted horizon
+
+EDITING TERMS:
+- Jump Cut: Abrupt cut within same shot
+- Match Cut: Cut based on compositional similarity
+- Cross-Cut: Alternating between concurrent storylines
+- L-Cut: Audio continues after video cut
+- J-Cut: Audio starts before corresponding video
+- Cut on Action: Cut during movement to hide edit
+- Parallel Editing: Cross-cutting for suspense
+- Montage: Series of shots conveying information
+- Smash Cut: Abrupt transition (often contrast)
+- Dissolve: One shot fades into next
+- Fade: Image fades to black or from black
+
+LIGHTING TERMS:
+- Key Light: Main light source
+- Fill Light: Reduces shadows from key
+- Back Light: Separates subject from background
+- Three-Point Lighting: Key + fill + back
+- High Key: Bright, minimal shadows (comedy)
+- Low Key: Dark, high contrast (noir, thriller)
+- Chiaroscuro: Strong light/dark contrast
+- Motivated Lighting: Light sources within story
+- Practical: Light sources visible in frame
+- Diffusion: Softening light source
+- Gel: Colored filter on light
+
+COMPOSITION TERMS:
+- Rule of Thirds: Divide frame into 3x3 grid
+- Headroom: Space above character's head
+- Look Room/Space: Space in direction character looks
+- Lead Room: Space in direction of movement
+- Foreground/Background: Depth layers
+- Deep Focus: Everything in focus (foreground to background)
+- Shallow Depth of Field: Blurred background
+- Bokeh: Out-of-focus highlights
+- Aspect Ratio: Frame width to height proportion
+
+GENRE-SPECIFIC CONVENTIONS:
+- Film Noir: Low key, shadows, venetian blind shadows
+- Western: Vast landscapes, low angles against sky
+- Horror: Point-of-view monster, darkness, dutch angles
+- Musical: Wide shots for choreography, integration of music
+- War: Handheld, desaturated, extreme wide establishing
+- Sci-Fi: Clean minimalist, blue/teal grading, HUD elements

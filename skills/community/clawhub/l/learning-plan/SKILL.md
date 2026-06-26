@@ -1,35 +1,72 @@
----
-name: "Learning Plan"
-description: "智能根据目标和时间规划分阶段学习计划，生成每日任务并提供资源，适用多种技能与考试备考场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learning-plan"
-sourceUrl: "https://clawhub.ai/skills/learning-plan"
----
+# 学习计划制定 (Learning Plan Generator)
 
-# Learning Plan
+## 技能描述
+根据学习目标和个人情况，智能生成科学、系统的学习计划。支持长期规划，自动分解里程碑，适配多种学习场景。
 
-> 智能根据目标和时间规划分阶段学习计划，生成每日任务并提供资源，适用多种技能与考试备考场景。
+## 核心功能
+- 智能评估学习目标难度
+- 自动分解学习阶段
+- 生成每日/每周学习任务
+- 提供学习资源和路径
+- 跟踪学习进度
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learning-plan`
-- **Source URL:** [https://clawhub.ai/skills/learning-plan](https://clawhub.ai/skills/learning-plan)
+## 适用场景
+- 编程语言学习（Python/Java/前端等）
+- 考证备考（CPA/PMP/Python证书等）
+- 技能提升（数据分析/产品设计等）
+- 考试复习（考研/托福/雅思等）
+- 新领域探索
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learning-plan
+## 技能结构
 ```
+learning-plan/
+├── SKILL.md              # 主文件
+├── references/
+│   └── plan_templates.md # 计划模板
+└── scripts/
+    └── generate_plan.py  # 生成脚本
+```
+
+## 学习计划结构
+```markdown
+# [主题]学习计划
+
+## 学习目标
+## 学习周期
+## 阶段划分
+## 每日任务
+## 学习资源
+## 评估方式
+```
+
+## 使用方法
+1. 描述学习目标（如：3个月学会Python）
+2. 提供当前基础水平（可选）
+3. 指定每天可用学习时间
+4. 选择学习方式（自学/课程/实战）
+5. 系统生成完整学习计划
+
+## 触发关键词
+- "制定学习计划"
+- "学习计划"
+- "怎么学习"
+- "备考计划"
+- "学习路径"
+- "零基础学习"
+
+## 学习阶段划分
+| 阶段 | 名称 | 周期 | 目标 |
+|------|------|------|------|
+| 第一阶段 | 入门 | 第1-2周 | 基础概念 |
+| 第二阶段 | 基础 | 第3-6周 | 核心知识 |
+| 第三阶段 | 进阶 | 第7-10周 | 高级特性 |
+| 第四阶段 | 实战 | 第11-12周 | 项目实践 |
+
+## 依赖要求
+- Python 3.8+
+- 无需外部API
+
+## 版本信息
+- 版本：1.0.0
+- 更新日期：2024年
+- 作者：ClawHub Skills

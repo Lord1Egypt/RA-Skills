@@ -1,35 +1,14 @@
----
-name: "Daily Decision Helper"
-description: "Analyze daily decisions with pros and cons, alternatives, and provide structured tools and processes for clearer choices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-decision-helper"
-sourceUrl: "https://clawhub.ai/skills/daily-decision-helper"
----
-
-# Daily Decision Helper
-
-> Analyze daily decisions with pros and cons, alternatives, and provide structured tools and processes for clearer choices.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-decision-helper`
-- **Source URL:** [https://clawhub.ai/skills/daily-decision-helper](https://clawhub.ai/skills/daily-decision-helper)
+# Daily Decision Helper（日常决策助手）
 
 ## Overview
+帮助用户结构化分析日常决策，提供利弊框架和决策工具。
 
+## Trigger
+- 要不要...
+- 纠结
+- 怎么选
+- 买还是不买
+- 决策
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-decision-helper
-```
+## Output
+JSON: {decisionType, prosConsFramework{pros[], cons[], alternatives[], weighted_factors[]}, decisionTools{}, recommendedProcess[]}

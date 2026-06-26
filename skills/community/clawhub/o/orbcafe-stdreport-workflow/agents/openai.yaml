@@ -1,0 +1,4 @@
+interface:
+  display_name: "ORBCAFE StdReport Workflow"
+  short_description: "Build ORBCAFE report/list pages correctly"
+  default_prompt: "Use $orbcafe-stdreport-workflow to implement this report/list page with CStandardPage/CTable and correct persistence + pagination behavior."

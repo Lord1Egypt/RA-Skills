@@ -1,0 +1,212 @@
+{
+  "examples": [
+    {
+      "name": "Simple Bar Chart",
+      "description": "Basic bar chart with single dataset",
+      "config": {
+        "type": "bar",
+        "data": {
+          "labels": ["Q1", "Q2", "Q3", "Q4"],
+          "datasets": [
+            {
+              "label": "Revenue ($K)",
+              "data": [50, 75, 60, 90],
+              "backgroundColor": "#8b5cf6"
+            }
+          ]
+        },
+        "options": {
+          "width": 800,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "Quarterly Revenue" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Line Chart with Trend",
+      "description": "Line chart showing a time series",
+      "config": {
+        "type": "line",
+        "data": {
+          "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          "datasets": [
+            {
+              "label": "Users",
+              "data": [120, 190, 300, 500, 780, 1200],
+              "borderColor": "#3b82f6",
+              "fill": false
+            }
+          ]
+        },
+        "options": {
+          "width": 800,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "User Growth" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Multi-Dataset Bar Chart",
+      "description": "Grouped bar chart comparing two years",
+      "config": {
+        "type": "bar",
+        "data": {
+          "labels": ["Q1", "Q2", "Q3", "Q4"],
+          "datasets": [
+            {
+              "label": "2024",
+              "data": [50, 75, 60, 90],
+              "backgroundColor": "#8b5cf6"
+            },
+            {
+              "label": "2025",
+              "data": [65, 80, 70, 95],
+              "backgroundColor": "#3b82f6"
+            }
+          ]
+        },
+        "options": {
+          "width": 800,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "Year-over-Year Revenue" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Pie Chart",
+      "description": "Pie chart showing market share",
+      "config": {
+        "type": "pie",
+        "data": {
+          "labels": ["Chrome", "Safari", "Firefox", "Edge", "Other"],
+          "datasets": [
+            {
+              "data": [65, 18, 7, 5, 5],
+              "backgroundColor": ["#8b5cf6", "#3b82f6", "#ef4444", "#10b981", "#f59e0b"]
+            }
+          ]
+        },
+        "options": {
+          "width": 600,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "Browser Market Share" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Doughnut Chart",
+      "description": "Doughnut chart showing budget allocation",
+      "config": {
+        "type": "doughnut",
+        "data": {
+          "labels": ["Engineering", "Marketing", "Sales", "Operations"],
+          "datasets": [
+            {
+              "data": [40, 25, 20, 15],
+              "backgroundColor": ["#6366f1", "#ec4899", "#f59e0b", "#10b981"]
+            }
+          ]
+        },
+        "options": {
+          "width": 600,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "Budget Allocation" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Radar Chart",
+      "description": "Radar chart comparing skill profiles",
+      "config": {
+        "type": "radar",
+        "data": {
+          "labels": ["Frontend", "Backend", "DevOps", "Design", "Testing"],
+          "datasets": [
+            {
+              "label": "Alice",
+              "data": [90, 70, 60, 80, 75],
+              "borderColor": "#8b5cf6",
+              "backgroundColor": "rgba(139, 92, 246, 0.2)"
+            },
+            {
+              "label": "Bob",
+              "data": [60, 95, 80, 40, 85],
+              "borderColor": "#3b82f6",
+              "backgroundColor": "rgba(59, 130, 246, 0.2)"
+            }
+          ]
+        },
+        "options": {
+          "width": 600,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "Developer Skill Comparison" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Polar Area Chart",
+      "description": "Polar area chart showing category scores",
+      "config": {
+        "type": "polarArea",
+        "data": {
+          "labels": ["Speed", "Reliability", "Comfort", "Safety", "Efficiency"],
+          "datasets": [
+            {
+              "data": [85, 90, 70, 95, 80],
+              "backgroundColor": [
+                "rgba(139, 92, 246, 0.7)",
+                "rgba(59, 130, 246, 0.7)",
+                "rgba(16, 185, 129, 0.7)",
+                "rgba(239, 68, 68, 0.7)",
+                "rgba(245, 158, 11, 0.7)"
+              ]
+            }
+          ]
+        },
+        "options": {
+          "width": 600,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "Vehicle Ratings" }
+          }
+        }
+      }
+    },
+    {
+      "name": "Candlestick Chart",
+      "description": "OHLC candlestick chart for financial/crypto data",
+      "config": {
+        "type": "candlestick",
+        "data": {
+          "datasets": [{
+            "label": "VVV Price",
+            "data": [
+              { "x": 1740441600000, "o": 4.23, "h": 4.80, "l": 4.10, "c": 4.45 },
+              { "x": 1740528000000, "o": 4.45, "h": 5.50, "l": 4.30, "c": 5.34 },
+              { "x": 1740614400000, "o": 5.34, "h": 6.20, "l": 5.10, "c": 5.97 }
+            ]
+          }]
+        },
+        "options": {
+          "width": 800,
+          "height": 600,
+          "plugins": {
+            "title": { "display": true, "text": "VVV Price History" }
+          }
+        }
+      }
+    }
+  ]
+}

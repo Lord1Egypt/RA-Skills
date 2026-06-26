@@ -1,0 +1,151 @@
+﻿{
+    "timestamp":  "2026-04-06T19:11:00+08:00",
+    "trigger_source":  "nasdaq_cron",
+    "trigger_file_missing":  true,
+    "x_search_trump_iran":  [
+                                {
+                                    "time_cst":  "2026-04-06 19:05",
+                                    "author":  "@ConciousLabRat",
+                                    "content":  "Markets open → Trump floods feed with \u0027potential deal\u0027 headlines. Markets close → threats of bombing Iran \u0027back to the stone age\u0027 or hitting power plants if Strait of Hormuz stays shut. This seesaw has dragged on for over a month.",
+                                    "type":  "analysis",
+                                    "likes":  null,
+                                    "retweets":  null
+                                },
+                                {
+                                    "time_cst":  "2026-04-06 19:05",
+                                    "author":  "@madlife1000",
+                                    "content":  "Trump is the one begging for a deal. Iran said no deal.",
+                                    "type":  "direct",
+                                    "likes":  null,
+                                    "retweets":  null
+                                },
+                                {
+                                    "time_cst":  "2026-04-06 19:04",
+                                    "author":  "@astronglady",
+                                    "content":  "I can\u0027t see why Iran would negotiate when Trump shows them no respect. What would make them think a compulsive lying narcissist would respect any deal?",
+                                    "type":  "opinion",
+                                    "likes":  null,
+                                    "retweets":  null
+                                },
+                                {
+                                    "time_cst":  "2026-04-06 19:04",
+                                    "author":  "@EzemFrancis",
+                                    "content":  "Iran says intelligence chief killed by US-Israeli strike, as Trump threatens \u0027hell\u0027 if deal not made",
+                                    "type":  "breaking",
+                                    "likes":  null,
+                                    "retweets":  null
+                                },
+                                {
+                                    "time_cst":  "2026-04-06 19:04",
+                                    "author":  "@KurdishDoctrine",
+                                    "content":  "Trump is playing a high-stakes game of coercive diplomacy. By floating the idea of arming ethnic minorities, he\u0027s trying to scare Iran into a compromise.",
+                                    "type":  "analysis",
+                                    "likes":  null,
+                                    "retweets":  null
+                                }
+                            ],
+    "x_search_iran_ceasefire":  [
+                                    {
+                                        "time_cst":  "2026-04-06 19:05",
+                                        "author":  "@shedblood178",
+                                        "content":  "Iran mediators reject temporary ceasefire after receiving new plan to end war (from independent.co.uk)",
+                                        "type":  "breaking",
+                                        "likes":  null,
+                                        "retweets":  null
+                                    },
+                                    {
+                                        "time_cst":  "2026-04-06 19:05",
+                                        "author":  "@A_K_Mandhan",
+                                        "content":  "While Pakistan was presenting its ceasefire proposal to Tehran, Israel was carrying out targeted strikes on key Iranian figures. Both happened overnight, between April 5 and April 6.",
+                                        "type":  "breaking",
+                                        "likes":  null,
+                                        "retweets":  null
+                                    },
+                                    {
+                                        "time_cst":  "2026-04-06 19:05",
+                                        "author":  "@Owaye_T",
+                                        "content":  "Iran should ask for a ceasefire, how did this war start, which American soldier or citizen was hurt for America to attack Iran?",
+                                        "type":  "question",
+                                        "likes":  null,
+                                        "retweets":  null
+                                    },
+                                    {
+                                        "time_cst":  "2026-04-06 19:05",
+                                        "author":  "@mvwillo1610",
+                                        "content":  "Iran will not agree to a temporary ceasefire, they need a permanent solution to US imperialism and destabilisation in their region.",
+                                        "type":  "position",
+                                        "likes":  null,
+                                        "retweets":  null
+                                    },
+                                    {
+                                        "time_cst":  "2026-04-06 19:05",
+                                        "author":  "@Happyfeet23443",
+                                        "content":  "Bomb Iran Saturday always turns into Ceasefire Monday. Every weekend is the same thing.",
+                                        "type":  "satire",
+                                        "likes":  1,
+                                        "retweets":  null
+                                    },
+                                    {
+                                        "time_cst":  "2026-04-06 19:05",
+                                        "author":  "@RuDauntless",
+                                        "content":  "Iranian officials made clear to mediators they don\u0027t want to be caught in a Gaza or Lebanon situation where there is a ceasefire on paper, but the US and Israel can attack again whenever they want to.",
+                                        "type":  "analysis",
+                                        "likes":  null,
+                                        "retweets":  null
+                                    }
+                                ],
+    "kobeissi_letter":  [
+                            {
+                                "time_cst":  "2026-04-06 07:06",
+                                "author":  "@KobeissiLetter",
+                                "content":  "Oil prices are now crossing above 115 per barrel in the US. Our models indicate that if current levels are sustained another 7 weeks, US CPI inflation will rise to 3.7%. This would put US inflation at its highest level since September 2023.",
+                                "type":  "market_alert",
+                                "likes":  3305,
+                                "retweets":  526,
+                                "replies":  175
+                            }
+                        ],
+    "watcher_guru":  [
+                         {
+                             "note":  "No recent Iran/Oil tweets found - only pinned tweet visible"
+                         }
+                     ],
+    "news":  [
+                 {
+                     "time":  "Mon 06 Apr 2026 10:08 GMT",
+                     "source":  "Washington Post",
+                     "headline":  "Iran and US receive proposal for 45-day ceasefire and reopening of Strait of Hormuz",
+                     "url":  "https://www.washingtonpost.com"
+                 },
+                 {
+                     "time":  "Mon 06 Apr 2026 06:55 GMT",
+                     "source":  "Reuters",
+                     "headline":  "Iran, US receive plan to end hostilities, immediate ceasefire, source says",
+                     "url":  "https://www.reuters.com"
+                 },
+                 {
+                     "time":  "Mon 06 Apr 2026 05:26 GMT",
+                     "source":  "CNBC",
+                     "headline":  "Trump\u0027s Iran ultimatum and signals of a possible deal keep investors on tenterhooks",
+                     "url":  "https://www.cnbc.com"
+                 },
+                 {
+                     "time":  "Sun 05 Apr 2026 21:20 GMT",
+                     "source":  "WSJ",
+                     "headline":  "Trump Warns Iran He Could Strike Every Power Plant, in WSJ Interview",
+                     "url":  "https://www.wsj.com"
+                 }
+             ],
+    "market_data":  {
+                        "oil_price":  "$115+ per barrel",
+                        "cpi_impact":  "模型预测：若油价持续7周，US CPI将升至3.7%",
+                        "oil_exports":  "中东石油产品出口3月同比-63%，史上最大跌幅",
+                        "hedge_funds":  "对冲基金以10年来最快速度抛售全球股票，短/多比7.6:1",
+                        "cds_volume":  "Q1 2026 CDS交易量+69%至4.5万亿美元，历史最高"
+                    },
+    "notes":  [
+                  "Trigger file nasdaq_trigger_sentiment.json not found - proceeding with available data",
+                  "Web search API returned 422 - used Google News RSS instead",
+                  "X live search from earlier 19:06 run reused; fresh X data unavailable due to browser block"
+              ]
+}

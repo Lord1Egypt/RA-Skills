@@ -1,0 +1,12 @@
+{
+  "text": "repeat repeat repeat",
+  "highlight_texts": [
+    { "match": "repeat", "color": "#1677ff", "occurrence": "first" },
+    { "match": "repeat", "color": "#fa541c", "occurrence": "last" }
+  ],
+  "width": 800,
+  "height": 220,
+  "format": "png",
+  "background": "#ffffff",
+  "padding": 24
+}

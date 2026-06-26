@@ -1,0 +1,3 @@
+display_name: OpenClaw Success Skill Publisher
+short_description: Turn successful OpenClaw interactions into reusable skills and publish/share automatically.
+default_prompt: Convert this successful OpenClaw interaction into a polished skill, publish to ClawHub, and distribute bilingual posts to configured channels.

@@ -1,0 +1,317 @@
+{
+  "$schema": "https://openclaw.ai/schemas/merge-manifest.json",
+  "version": "1.2.0",
+  "description": "Protected files and patterns for safe upstream merge",
+  "model": "anthropic/claude-opus-4-6",
+  "upstream": {
+    "remote": "upstream",
+    "branch": "main",
+    "repo": "openclaw/openclaw"
+  },
+  "fork": {
+    "remote": "origin",
+    "branch": "local-desktop-main",
+    "repo": "maverick-software/openclaw-fork"
+  },
+  "protectedFiles": {
+    "ui/src/ui/navigation.ts": {
+      "intent": "Added jarvis, mode, usage tabs; restructured tab groups into chat/control/agent/integrations/settings; migrated titles/subtitles to i18n t() calls",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "jarvis",
+        "mode",
+        "usage",
+        "agents",
+        "integrations",
+        "t(`tabs.",
+        "t(`subtitles.",
+        "t(`nav.",
+        "getDynamicTabGroups",
+        "uiPluginRegistry",
+        "isPluginTab",
+        "getPluginViewInfo"
+      ]
+    },
+    "ui/src/ui/app-render.ts": {
+      "intent": "Added renders for jarvis, mode, memory, usage, session-history tabs; restructured imports to .ts extensions; added compaction status, background job toasts, chat stream timing, update button in topbar",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "jarvis",
+        "renderMemory",
+        "renderMode",
+        "renderUsage",
+        "backgroundJobToast",
+        "compactionStatus",
+        "update-btn",
+        "renderSessionsHistoryModal",
+        "loadArchivedSessions",
+        "renderBgSessionsPanel",
+        "openBgSessionsPanel",
+        "bgSessionsPanelOpen"
+      ]
+    },
+    "ui/src/ui/app-view-state.ts": {
+      "intent": "Added BackgroundJobToast type, compactionStatus, chatStreamStartedAt, chatManualRefreshInFlight, backgroundJobToasts array, session history state, usage state types",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "BackgroundJobToast",
+        "backgroundJobToasts",
+        "compactionStatus",
+        "chatStreamStartedAt",
+        "chatManualRefreshInFlight",
+        "SessionLogEntry",
+        "SessionsUsageResult",
+        "CostUsageSummary",
+        "bgSessionsPanelOpen",
+        "bgSessionsList",
+        "bgSessionsSelectedKey"
+      ]
+    },
+    "ui/src/ui/app.ts": {
+      "intent": "Extended main app class with new state properties for jarvis, mode, memory, usage, session history, compaction, background toasts; added corresponding event handlers and lifecycle hooks",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "jarvis",
+        "backgroundJobToasts",
+        "compactionStatus",
+        "chatStreamStartedAt",
+        "bgSessionsPanelOpen",
+        "bgSessionsList",
+        "bgSessionsSelectedKey",
+        "bgSessionsHistory",
+        "bgSessionsInput"
+      ]
+    },
+    "ui/src/ui/app-settings.ts": {
+      "intent": "Added new controller imports for agent-files, agent-identity, agent-skills, mode, archived sessions, discord status; added tab loading for mode, jarvis, usage",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "loadModeStatus",
+        "loadArchivedSessions",
+        "loadAgentIdentities",
+        "loadAgentSkills",
+        "loadDiscordStatus"
+      ]
+    },
+    "ui/src/ui/app-chat.ts": {
+      "intent": "Extended chat handling with session history integration and manual refresh support",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "chatManualRefreshInFlight"
+      ]
+    },
+    "ui/src/ui/app-render.helpers.ts": {
+      "intent": "Extended render helpers with compaction button, context gauge, update button, session history dropdown integration",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "compaction",
+        "contextGauge"
+      ]
+    },
+    "ui/src/ui/plugins/registry.ts": {
+      "intent": "Dynamic UI plugin registration system \u2014 entirely custom, not in upstream",
+      "strategy": "keep-ours",
+      "mustPreserve": [
+        "UIPluginRegistry",
+        "uiPluginRegistry",
+        "isPluginTab",
+        "getPluginViewInfo",
+        "loadFromGateway"
+      ]
+    },
+    "src/gateway/server-methods/sessions.ts": {
+      "intent": "Added session history RPC endpoints for archive, list-archived, restore, delete-archived, rename",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "session.archive",
+        "session.listArchived",
+        "sessions.archived"
+      ]
+    },
+    "src/gateway/server-methods/update.ts": {
+      "intent": "Added update.checkUpstream RPC with git-based upstream divergence detection and 5-min cache",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "update.checkUpstream",
+        "checkGitUpstreamDivergence",
+        "UPSTREAM_CACHE_TTL_MS"
+      ]
+    },
+    "src/gateway/server-methods/pipedream.ts": {
+      "intent": "Added ensureMcporterServer helper, pipedream.activate RPC, agent-specific externalUserId, mcporter PATH/CWD fixes",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "ensureMcporterServer",
+        "pipedream.activate",
+        "resolveAgentExternalUserId",
+        "brewBinDir"
+      ]
+    },
+    "src/gateway/method-scopes.ts": {
+      "intent": "Added pipedream.* and update.* methods to READ_SCOPE and WRITE_SCOPE groups",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "pipedream.test",
+        "pipedream.activate",
+        "update.checkUpstream"
+      ]
+    },
+    "src/cli/gateway-cli/run-loop.ts": {
+      "intent": "Added SIGTERM graceful drain with DRAIN_TIMEOUT_MS, isGracefulStop flag",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "isGracefulStop",
+        "DRAIN_TIMEOUT_MS",
+        "SHUTDOWN_TIMEOUT_MS"
+      ]
+    },
+    "src/agents/pi-embedded-runner/run.ts": {
+      "intent": "Added OAuth priority enforcement via sortedProfileOrder sort, authProfileId tracking",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "sortedProfileOrder",
+        "authProfileId",
+        "updateAgentRunContext"
+      ]
+    },
+    "src/gateway/control-ui-csp.ts": {
+      "intent": "Extended connect-src with localhost (Jarvis voice) and api.openai.com (Realtime API)",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "http://localhost:*",
+        "https://api.openai.com"
+      ]
+    },
+    "src/gateway/server-methods/bg-sessions.ts": {
+      "intent": "New RPC handlers: bgSessions.list (lists isolated/cron sessions), bgSessions.history (reads .jsonl transcript). Added 2026-03-01.",
+      "strategy": "keep-ours"
+    },
+    "ui/src/ui/controllers/bg-sessions.ts": {
+      "intent": "Controller for background sessions panel \u2014 loadBgSessions, loadBgSessionHistory, sendBgMessage, selectBgSession, open/close panel, 3s polling. Added 2026-03-01.",
+      "strategy": "keep-ours"
+    },
+    "ui/src/ui/views/bg-sessions.ts": {
+      "intent": "Right-side drawer panel: session dropdown, live transcript, send input, auto-refresh. Rendered as overlay in app-render.ts. Added 2026-03-01.",
+      "strategy": "keep-ours"
+    },
+    "src/gateway/server-methods.ts": {
+      "intent": "Registers all gateway RPC handlers. Custom handlers added: pipedreamHandlers, pipedreamAgentHandlers, zapierHandlers, zapierAgentHandlers, hostingerHandlers, bgSessionsHandlers, discordConnectHandlers.",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "bgSessionsHandlers",
+        "pipedreamHandlers",
+        "zapierHandlers",
+        "hostingerHandlers",
+        "discordConnectHandlers"
+      ]
+    },
+    "src/gateway/server-methods/hostinger.ts": {
+      "intent": "Hostinger VPS management RPC handlers \u2014 installed from skills/hostinger-vps-deploy reference. Not in upstream.",
+      "strategy": "keep-ours"
+    },
+    "src/gateway/server-methods/plugins-ui.ts": {
+      "intent": "Plugin UI registry with builtin views: jarvis, apikeys (Vault), compaction, discord. getDynamicTabGroups merges static TAB_GROUPS with plugin-registered views.",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "apikeys",
+        "discord",
+        "compaction",
+        "BUILTIN_UI_VIEWS",
+        "getDynamicTabGroups"
+      ]
+    },
+    "ui/src/ui/views/memory.ts": {
+      "intent": "Memory tab view with first-load spinner \u2014 shows spinner until health+stats data arrives instead of rendering empty content.",
+      "strategy": "ai-merge",
+      "mustPreserve": [
+        "isFirstLoad",
+        "memSpinner",
+        "Loading memory status"
+      ]
+    }
+  },
+  "newFiles": {
+    "description": "Files we created that don't exist in upstream \u2014 auto-keep on merge",
+    "patterns": [
+      "ui/src/ui/views/jarvis-view.ts",
+      "ui/src/ui/views/memory.ts",
+      "ui/src/ui/views/mode.ts",
+      "ui/src/ui/views/sessions-history-modal.ts",
+      "ui/src/ui/views/usage.ts",
+      "ui/src/ui/views/usage-*.ts",
+      "ui/src/ui/views/agents-panels-*.ts",
+      "ui/src/ui/views/agents-utils.ts",
+      "ui/src/ui/controllers/agent-files.ts",
+      "ui/src/ui/controllers/agent-identity.ts",
+      "ui/src/ui/controllers/agent-skills.ts",
+      "ui/src/ui/controllers/mode.ts",
+      "ui/src/ui/controllers/sessions.ts",
+      "ui/src/ui/app-tool-stream.ts",
+      "ui/src/ui/app-render-usage-tab.ts",
+      "ui/src/ui/views/update-modal.ts",
+      "ui/src/ui/views/agents-panel-pipedream.ts",
+      "ui/src/ui/controllers/agent-pipedream.ts",
+      "ui/src/ui/chat/grouped-render.ts",
+      "src/gateway/server-methods/update.ts",
+      "src/gateway/session-archive.ts",
+      "scripts/safe-merge-update.sh"
+    ]
+  },
+  "protectedPatterns": {
+    "description": "String patterns that must exist somewhere in the codebase after merge",
+    "global": [
+      "uiPluginRegistry",
+      "BackgroundJobToast",
+      "backgroundJobToasts",
+      "compactionStatus",
+      "jarvis-view",
+      "renderMemory",
+      "renderMode",
+      "sessions-history-modal",
+      "update-modal",
+      "pipedream.activate",
+      "update.checkUpstream"
+    ]
+  },
+  "autoAcceptPaths": {
+    "description": "Paths where upstream changes are always safe to accept (no custom code)",
+    "patterns": [
+      "extensions/**",
+      "docs/**",
+      ".github/**",
+      "scripts/**",
+      "src/channels/**",
+      "src/agents/auth-profiles*",
+      "src/acp/**",
+      "vitest.*"
+    ]
+  },
+  "refactorChecklist": {
+    "description": "Extra checks required when upstream moves functions out of a file into sub-modules (module-extraction refactors). These are the highest-risk merge patterns.",
+    "triggers": [
+      "File shrinks by >100 lines",
+      "New sub-module files appear (e.g. *-shared.ts, *-collectors.ts, *-helpers.ts)",
+      "New import lines are added to a file that also has local functions with the same names"
+    ],
+    "checks": [
+      {
+        "id": "zombie-functions",
+        "description": "Check for zombie local functions that share a name with newly-imported symbols",
+        "howTo": "After merge: grep for 'function <name>' in the file for every name listed in the new import statements. If a local copy exists AND the import was added, the local copy must be deleted.",
+        "wouldHaveCaught": "2026-03-02 runtime.ts crash — collectConfigAssignments et al. were imported but also still defined locally"
+      },
+      {
+        "id": "import-completeness",
+        "description": "Verify all symbols called within local functions are actually imported",
+        "howTo": "Run: grep -n 'coerceSecretRef\\|isNonEmptyString\\|isRecord\\|SecretDefaults\\|ProviderLike' <file> and confirm each is in an import statement. Any hit in a function body with no matching import = runtime crash.",
+        "wouldHaveCaught": "2026-03-02 runtime.ts crash — coerceSecretRef referenced but never imported"
+      },
+      {
+        "id": "schema-field-types",
+        "description": "When upstream adds SecretInputSchema support to new fields, check our schema for z.string() fields that should accept SecretRef objects",
+        "howTo": "Search for z.string() on apiKey, token, secret fields: grep -n 'apiKey.*z\\.string\\|token.*z\\.string\\|secret.*z\\.string' src/config/",
+        "wouldHaveCaught": "2026-03-02 memorySearch.remote.apiKey, talk.apiKey, tts.elevenlabs.apiKey rejecting vault refs"
+      }
+    ]
+  }
+}

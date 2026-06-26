@@ -1,0 +1,5 @@
+Raw file	Experiment	Enzyme	Variable modifications	Fixed modifications
+BoxCar_01	BoxCar	Trypsin	Oxidation (M)	Carbamidomethyl (C)
+BoxCar_02	BoxCar	Trypsin	Oxidation (M)	Carbamidomethyl (C)
+Standard_1	Standard	Trypsin	Oxidation (M)	Carbamidomethyl (C)
+Standard_2	Standard	Trypsin	Oxidation (M)	Carbamidomethyl (C)

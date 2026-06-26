@@ -1,0 +1,34 @@
+{
+  "podcast_name": "OpenClaw Podcast",
+  "host_name": "繁哥",
+  "discord_channel": "1482261056167608544",
+  "storage_path": "~/podcast",
+  "platforms": {
+    "international": ["spotify", "apple", "youtube"],
+    "china": ["xiaoyuzhou", "ximalaya", "bilibili", "netease"]
+  },
+  "social_media": {
+    "international": ["twitter", "linkedin", "instagram"],
+    "china": ["xiaohongshu", "weixin", "weibo", "douyin"]
+  },
+  "workflow": {
+    "pre_recording": {
+      "research_guest": true,
+      "research_topic": true,
+      "generate_outline": true,
+      "generate_intro_script": true,
+      "generate_questions": true
+    },
+    "post_recording": {
+      "generate_show_notes": true,
+      "generate_description": true,
+      "generate_social_posts": true,
+      "extract_highlights": true
+    }
+  },
+  "apis": {
+    "tavily": "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",
+    "gemini": "AIzaSyDXGTeSidT8Yrb3X5F0c6--X9EOPKWCwhs",
+    "elevenlabs": "sk_ac618baf9c1499e63353e0e2e71a812ad61eaa81820c9a42"
+  }
+}

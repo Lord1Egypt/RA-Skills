@@ -1,0 +1,25 @@
+{
+  "name": "skillguard",
+  "version": "1.0.0",
+  "description": "Security audit tool for OpenClaw skills. Scans for vulnerabilities including hardcoded secrets, shell injection, code execution risks, prompt injection, and path traversal.",
+  "author": "Jarvis",
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "skillguard",
+      "description": "Security audit tool for OpenClaw skills. Scans skill directories for common vulnerabilities including hardcoded secrets, unsafe shell commands, prompt injection risks, unauthorized network access, and code execution dangers. Use when auditing skills before installation, reviewing skill code for security issues, or validating skills for ClawHub publication."
+    }
+  ],
+  "scripts": {
+    "audit": "python scripts/audit.py"
+  },
+  "keywords": [
+    "security",
+    "audit",
+    "vulnerability",
+    "secrets",
+    "injection",
+    "clawhub",
+    "skill-security"
+  ]
+}

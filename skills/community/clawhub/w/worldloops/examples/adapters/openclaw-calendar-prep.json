@@ -1,0 +1,13 @@
+{
+  "source": "calendar",
+  "sourceType": "event",
+  "externalWrite": false,
+  "text": "Quarterly planning meeting on 2026-05-22 at 10:00 AM — confirm agenda and circulate prep notes template at least 24 hours beforehand.",
+  "observedAt": "2026-05-19T09:00:00.000Z",
+  "summary": "Quarterly planning prep items pending — notes template not yet circulated",
+  "metadata": {
+    "expectedSeverity": "medium",
+    "expectedState": "preparing",
+    "expectedExternalWrite": false
+  }
+}

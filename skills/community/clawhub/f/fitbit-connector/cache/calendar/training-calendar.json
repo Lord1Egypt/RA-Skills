@@ -1,0 +1,1060 @@
+{
+  "events": [
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:36.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n29-10-25\nDeadlifts: 60kg 5,5 90kg 5 115kg 3 140kg 2 160kg 3 140kg 5,5\nBench press: 20kg 5,5, 40kg 5, 60kg 5, 70kg 5, 80kg 5,5,5\nLast rep of the last set of bench press was a limit rep.",
+      "end": {
+        "date": "2025-10-30"
+      },
+      "etag": "\"3547709406569918\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MGtpdnFvMGc1NXAwbnI2N3FhaDBhYmlpbXMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "0kivqo0g55p0nr67qah0abiims@google.com",
+      "id": "0kivqo0g55p0nr67qah0abiims",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-10-29"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench",
+      "updated": "2026-03-18T17:25:03.284Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:37.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n5-11-25\nDeadlifts:\n60kg 5,5 90kg 5 120kg 3, 140kg 2, 165kg 5, 145kg 5,5\nCable-chins: 60kg 5,5 70kg 5 80kg 5 90kg 5max,5,5fail",
+      "end": {
+        "date": "2025-11-06"
+      },
+      "etag": "\"3547712109219390\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cnY5MHQycGV2MW0wbzRydTRkbGo0YjZnYmMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "rv90t2pev1m0o4ru4dlj4b6gbc@google.com",
+      "id": "rv90t2pev1m0o4ru4dlj4b6gbc",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-11-05"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Cable-Chins",
+      "updated": "2026-03-18T17:47:34.609Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:38.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n6-11-25\nBench:\n20kg 5,5 40kg 5 60kg 5 70kg 5 75kg 5 80kg 5,5,5max",
+      "end": {
+        "date": "2025-11-07"
+      },
+      "etag": "\"3547709145388798\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cjMxN2Y2dTZndmR1aDRpbW5iazF1a3FjcjAgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "r317f6u6gvduh4imnbk1ukqcr0@google.com",
+      "id": "r317f6u6gvduh4imnbk1ukqcr0",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-11-06"
+      },
+      "status": "confirmed",
+      "summary": "Training — Bench",
+      "updated": "2026-03-18T17:22:52.694Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:38.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n12-11-25\nLat pulldown machine (technogym)\n40kg 10 60kg 12 80kg 10 100kg 8,8,8\nSets at 100kg were done until form breakdown was inevitable\n— this machine looks like a seesaw design. The weights above are the weights I put on the machine, but it feels super light, not sure if I’m pulling on that actual weight or not…\nNow I’m going for treadmill…",
+      "end": {
+        "date": "2025-11-13"
+      },
+      "etag": "\"3547711388528126\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NWtqNXI4Y2I1aHFtbmU1NTJnbXZjb2dvMWMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "5kj5r8cb5hqmne552gmvcogo1c@google.com",
+      "id": "5kj5r8cb5hqmne552gmvcogo1c",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-11-12"
+      },
+      "status": "confirmed",
+      "summary": "Training — Lat Pulldown + Treadmill",
+      "updated": "2026-03-18T17:41:34.264Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:39.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n15-12-2025\nSquat: 20kg 5,5 50kg 5 100kg 5\nChin-ups: 60kg 10, 70kg 8, 80kg 4,5,5",
+      "end": {
+        "date": "2025-12-16"
+      },
+      "etag": "\"3547712110648478\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dXRmbGlwYTQxN2c3cHZ2Zm81YXJ2cmM5bjAgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "utflipa417g7pvvfo5arvrc9n0@google.com",
+      "id": "utflipa417g7pvvfo5arvrc9n0",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-12-15"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Cable-Chins",
+      "updated": "2026-03-18T17:47:35.324Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:40.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n30-12-25\nDeadlifts: 60kg 5,5 80kg 5 100kg 5 120kg 5,5,5\nOverhead press:\n20kg 5,5 25kg 5 30kg 5 35kg 5,5,7 (last 3 reps with hips ie. Press 2.0)\nChins: 55kg 10 60kg 10 65kg 10 70kg 10 75kg 8",
+      "end": {
+        "date": "2025-12-31"
+      },
+      "etag": "\"3547709411380318\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=aHVjcW5ob2o1ODBzMDhyOW4wNXB0OGcybW8gMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "hucqnhoj580s08r9n05pt8g2mo@google.com",
+      "id": "hucqnhoj580s08r9n05pt8g2mo",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-12-30"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Press + Chins",
+      "updated": "2026-03-18T17:25:05.690Z"
+    },
+    {
+      "created": "2026-03-18T17:41:45.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n2-1-2025\n\nSquats:\n\n20kg 5,5 40kg 5, 60kg 5, 80kg 5, 100kg 5,5,5\n\nBench:\n\n20kg 10,5 30kg 5 40kg 5 60kg 5 70kg 5\n72.5kg 5 75kg 5,5\n\nCable-chins:\n\n55kg 5, 65kg 5 75kg 5 85kg 5 90kg 5,5 85kg \n\nNOTE: Apple Note title says 2-1-2025, but note creation date is 2026-01-02; imported here under 2026-01-02 as likely intended training date.",
+      "end": {
+        "date": "2026-01-03"
+      },
+      "etag": "\"3547712112724542\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cnJjMm5zMmo2Mm1mZmswZzI1ZDdnOW92djQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "rrc2ns2j62mffk0g25d7g9ovv4@google.com",
+      "id": "rrc2ns2j62mffk0g25d7g9ovv4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-02"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Bench + Cable-Chins",
+      "updated": "2026-03-18T17:47:36.362Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:40.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n4-1-2026\nSquats:\n20kg 5,5 50kg 5 80kg 3 100kg 2 110kg 5,5,5\nPress:\n20kg 5,5 25kg 5 30kg 5 35kg 3 37.5kg 5,5,5\nDeadlift:\n60kg 5,5 80kg 5 100kg 3 120kg 2 130kg 5",
+      "end": {
+        "date": "2026-01-05"
+      },
+      "etag": "\"3547711635409694\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cmFzNW5vNHNubTZxNzVyZmQ0bDdwbWF2NDggMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "ras5no4snm6q75rfd4l7pmav48@google.com",
+      "id": "ras5no4snm6q75rfd4l7pmav48",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-04"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press + Deadlift",
+      "updated": "2026-03-18T17:43:37.704Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:41.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n7-1-2026\nCable row: 45kg 10 55kg 10 60kg 5 70kg 7,\nSquats:\n20kg 5,5 40kg 5 60kg 5 80kg 5 100kg 3 107.5 5,5,5\nBench:\n20kg 5,5 30kg 5 40kg 5 50kg 5 65kg 3 75kg 5 77.5kg 5,4 75kg 5",
+      "end": {
+        "date": "2026-01-08"
+      },
+      "etag": "\"3547712114207742\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MGZvZmgwNTI0YTRodHIxdmMwZ3NsaDJicTggMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "0fofh0524a4htr1vc0gslh2bq8@google.com",
+      "id": "0fofh0524a4htr1vc0gslh2bq8",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-07"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Row + Squat + Bench",
+      "updated": "2026-03-18T17:47:37.103Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:42.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n14-1-2026\nCable-chins: 50kg 5, 60kg 5, 70kg 5 75kg 8,8,10",
+      "end": {
+        "date": "2026-01-15"
+      },
+      "etag": "\"3547712115990878\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dWhxaWIwdWtzdGs3Z3IzMDMxYjA5bWVnYTQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "uhqib0ukstk7gr3031b09mega4@google.com",
+      "id": "uhqib0ukstk7gr3031b09mega4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-14"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Chins",
+      "updated": "2026-03-18T17:47:37.995Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:42.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n19-1-2026\nCable-chins: 60kg 8 70kg 10,10,10,10\n+ 60minute zone 2 treadmill session",
+      "end": {
+        "date": "2026-01-20"
+      },
+      "etag": "\"3547712117519582\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cDhuYXJlYzZwZGxqaGkwbmVrMGJqMHI4cGsgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "p8narec6pdljhi0nek0bj0r8pk@google.com",
+      "id": "p8narec6pdljhi0nek0bj0r8pk",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-19"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Chins",
+      "updated": "2026-03-18T17:47:38.759Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:43.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n21-1-2026\nSquat:\n20kg 5 20kg 5 45kg 5 65kg 3 90kg 2 110kg 5,5,5\nIncline bench: 20kg 10 30kg 10 40kg 10 50kg 10 60kg 5,5,",
+      "end": {
+        "date": "2026-01-22"
+      },
+      "etag": "\"3547711638629374\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=czh1dXE4YTB2bjM0b2dpdG8yb2tpNWllamsgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "s8uuq8a0vn34ogito2oki5iejk@google.com",
+      "id": "s8uuq8a0vn34ogito2oki5iejk",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-21"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Incline",
+      "updated": "2026-03-18T17:43:39.314Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:44.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n22-1-2026\nCable chins: 60kg 8 65kg 8 70kg 5 75kg 3 80kg 8,8,8",
+      "end": {
+        "date": "2026-01-23"
+      },
+      "etag": "\"3547712119092190\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dmdqdmduNzU5MjM5djg2bmhzbGw2YmkxaGcgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "vgjvgn759239v86nhsll6bi1hg@google.com",
+      "id": "vgjvgn759239v86nhsll6bi1hg",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-22"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Chins",
+      "updated": "2026-03-18T17:47:39.546Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:44.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n25-1-26\nCable chins:\n60kg 5,5 70kg 6 80kg 8,8,7,7\n+\nTreadmill Zone 2",
+      "end": {
+        "date": "2026-01-26"
+      },
+      "etag": "\"3547712120508446\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=bzNjYjAxbzFhcDQzam81ZmhkajRzMTdhZzAgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "o3cb01o1ap43jo5fhdj4s17ag0@google.com",
+      "id": "o3cb01o1ap43jo5fhdj4s17ag0",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-25"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Chins",
+      "updated": "2026-03-18T17:47:40.254Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:45.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n26-1-2026\nSquat:\n20kg 5,5 45kg 5, 70kg 3, 90kg 2, 112.5kg 5,5,5\nOverhead press:\n20kg 5,5 25kg 5, 30kg 5 35kg 3 37.5kg 6,5,5\nCable-row:\n40kg 10, 50kg 8 60kg 5 70kg 8",
+      "end": {
+        "date": "2026-01-27"
+      },
+      "etag": "\"3547712122039870\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cDdnbHZoNm9iNWxjM2JzYWFuOWJzNmJ2OTggMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "p7glvh6ob5lc3bsaan9bs6bv98@google.com",
+      "id": "p7glvh6ob5lc3bsaan9bs6bv98",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-26"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press + Cable-Row",
+      "updated": "2026-03-18T17:47:41.019Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:46.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n31-1-2026\nIncline: 20kg 5,5 30kg 5, 40kg 5 50kg 3 60kg 7,7,5,,5\nThe last rep of every set got progressively more difficult. Sets 2-4 were max,\nNow I’m going for a 45-60 minute treadmill zone 2",
+      "end": {
+        "date": "2026-02-01"
+      },
+      "etag": "\"3547709229075070\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cmsybzVnYmtkN3FqaHRzdmZqNjlkc2w4b3MgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "rk2o5gbkd7qjhtsvfj69dsl8os@google.com",
+      "id": "rk2o5gbkd7qjhtsvfj69dsl8os",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-31"
+      },
+      "status": "confirmed",
+      "summary": "Training — Incline",
+      "updated": "2026-03-18T17:23:34.537Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:46.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n2-2-26\nSquat:\n20kg 5,5 45kg 5, 70kg 3 100kg 2 115kg 5,5,5\nCable-row:\n60kg 5,6 65kg 10,10,10\nThis workout felt really tough.\nI’d rate all work sets as rpe 9\nI’m tired from a hard working weekend less sleep, not home for two days, drinking too.",
+      "end": {
+        "date": "2026-02-03"
+      },
+      "etag": "\"3547712123702686\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NzI5ZTdwOTFpdDBpMWowaW1rZHNuc205ZmMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "729e7p91it0i1j0imkdsnsm9fc@google.com",
+      "id": "729e7p91it0i1j0imkdsnsm9fc",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-02"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Cable-Row",
+      "updated": "2026-03-18T17:47:41.851Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:47.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n3-2-26\nIncline-bench:\n20kg 5,5, 30kg 5, 40kg 5, 50kg 5, 60kg 5,5,5,5\nBench press wasn’t available so I did incline instead.\nLast rep of each set slowed down considerably",
+      "end": {
+        "date": "2026-02-04"
+      },
+      "etag": "\"3547711646357086\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cGRhZjdpZHJhdjdpN3JodXFzN3JkZ3BzZjQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "pdaf7idrav7i7rhuqs7rdgpsf4@google.com",
+      "id": "pdaf7idrav7i7rhuqs7rdgpsf4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-03"
+      },
+      "status": "confirmed",
+      "summary": "Training — Incline",
+      "updated": "2026-03-18T17:43:43.178Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:48.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n4-2-2026\nCable rows:\n50kg 10, 55kg 8, 60kg 10, 65kg 8,8,8,8\nZone 2 stationary bike",
+      "end": {
+        "date": "2026-02-05"
+      },
+      "etag": "\"3547711647863710\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dHY0NjlsZ2VnNXJrOGFkMmQ4bnU2bHVvcG8gMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "tv469lgeg5rk8ad2d8nu6luopo@google.com",
+      "id": "tv469lgeg5rk8ad2d8nu6luopo",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-04"
+      },
+      "status": "confirmed",
+      "summary": "Training — Row",
+      "updated": "2026-03-18T17:43:43.931Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:48.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n6-2-26\nSquat: 20kg 5,5, 45kg 5, 75kg 3, 100kg 2, 117:5kg 5,5,5\nOverhead press:\n20kg 5,5 25kg 5, 30kg 3, 35kg 2 37.5kg 5,5,5\nCable-chins:\n60kg 10 65kg 10 70kg 10, 75kg 5 80kg 8,8,8",
+      "end": {
+        "date": "2026-02-07"
+      },
+      "etag": "\"3547712125149630\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=N20wb2dsMXY5bmZkb2o3ZHZ0YmExYmkwYmsgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "7m0ogl1v9nfdoj7dvtba1bi0bk@google.com",
+      "id": "7m0ogl1v9nfdoj7dvtba1bi0bk",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-06"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press + Cable-Chins",
+      "updated": "2026-03-18T17:47:42.574Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:49.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n9-2-2026\nDeadlift:\n60kg 5,5 80kg 5, 100kg 3 120kg 2, 140kg 5,\nBench:\n20kg 5,5, 35kg 5, 50kg 3, 65kg 2, 77.5kg 6,6,5,\nCable-Row:\n60kg 8, 70kg 8,8,10",
+      "end": {
+        "date": "2026-02-10"
+      },
+      "etag": "\"3547712126501566\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NnFzbXBhcW1jcHYwcXY3dHNxZ2hzM2JucjQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "6qsmpaqmcpv0qv7tsqghs3bnr4@google.com",
+      "id": "6qsmpaqmcpv0qv7tsqghs3bnr4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-09"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench + Cable-Row",
+      "updated": "2026-03-18T17:47:43.250Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:50.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n11-2-26\nCable chins: 60kg 12, 65kg 12, 70kg 12, 75kg 10, 80kg 7\nZone 2 treadmill 60 minutesg",
+      "end": {
+        "date": "2026-02-12"
+      },
+      "etag": "\"3547712128168990\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MmEwNG04MGs2bjVqNzN2cGkybzU2NzhwNmsgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "2a04m80k6n5j73vpi2o5678p6k@google.com",
+      "id": "2a04m80k6n5j73vpi2o5678p6k",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-11"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Chins",
+      "updated": "2026-03-18T17:47:44.084Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:50.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n14-2-26\nOHP:\n20kg 8,5 25kg 5 30kg 5 35kg 6,8,8,7\nLast 2 sets I couldn’t have completed another rep\nCable row:\n60kg 10 65kg 10 70kg 10 75kg 10,7,\n**last 3 sets of cable row were limit sets",
+      "end": {
+        "date": "2026-02-15"
+      },
+      "etag": "\"3547712129780094\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=bHVuMHVrZmdsYmNtOXE5aGJtbXY0bjQ1ZmsgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "lun0ukfglbcm9q9hbmmv4n45fk@google.com",
+      "id": "lun0ukfglbcm9q9hbmmv4n45fk",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-14"
+      },
+      "status": "confirmed",
+      "summary": "Training — Press + Cable-Row",
+      "updated": "2026-03-18T17:47:44.890Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:51.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n16-2-2026\nSquat:\n20kg 5,5 45kg 5, 70kg 3, 95kg 2, 120kg 2 (hit the safeties and couldn’t recover), 5,5,\nIncline:\n20kg 5,5 30kg 5 40kg 3 60kg 2 65kg 5,5 (Grindy) 62.5kg 5,6 (last rep grind)\nChins:\n60kg 10, 70kg 8 75kg 8,10",
+      "end": {
+        "date": "2026-02-17"
+      },
+      "etag": "\"3547711655647070\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cmUwY2FjYmFlMzlicmJvbWk2ZzVmYTY4N2sgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "re0cacbae39brbomi6g5fa687k@google.com",
+      "id": "re0cacbae39brbomi6g5fa687k",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-16"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Incline + Chins",
+      "updated": "2026-03-18T17:43:47.823Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:52.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n18-2-2026\nIncline (no free space to OHP at the gym):\n20kg 5,5 30kg 5 40kg 5 50kg 4 60kg 3 65kg 5,5,5 62.5kg 6,4",
+      "end": {
+        "date": "2026-02-19"
+      },
+      "etag": "\"3547711657223006\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dDNwYWw4MzVpN2g4NTdvbm5wczdnc3FqN2cgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "t3pal835i7h857onnps7gsqj7g@google.com",
+      "id": "t3pal835i7h857onnps7gsqj7g",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-18"
+      },
+      "status": "confirmed",
+      "summary": "Training — Incline",
+      "updated": "2026-03-18T17:43:48.611Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:52.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n20-2-2026\nIt’s Friday night, felt tired all day, a little insecure etc.\nEventually mustered up the courage to go gym anyway\nSquat:\n20kg 5,5, 45kg 5 70kg 3 100kg 2, 120kg 5,5\nOHP:\n20kg 5,5 30kg 5, 35kg 3, 37.5kg 2, 40kg 5,5,6\nCable-Row:\n60kg 8, 70kg 6 80kg 5,5,5",
+      "end": {
+        "date": "2026-02-21"
+      },
+      "etag": "\"3547712131794270\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=aTJmc2RsYTg4Z2ViZGlwczJqY2Vyc3Bsbm8gMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "i2fsdla88gebdips2jcersplno@google.com",
+      "id": "i2fsdla88gebdips2jcersplno",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-20"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press + Cable-Row",
+      "updated": "2026-03-18T17:47:45.897Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:53.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n23-2-2026\nSquat rack wasn’t free so I opted for deadlifts instead\nDeadlifts:\n60kg 5,5, 85kg 5, 105kg 3, 125kg 2 145kg 5,5\nBench:\n20kg 5,5 35kg 5, 50kg 3, 65kg 2, 80kg 5,5,5*\n*Last rep was an absolute grinder, but I don’t feel tired, it just moved super slow, was a 5-6 second rep for sure.\nDecided to leave it there for today. Is that ok?",
+      "end": {
+        "date": "2026-02-24"
+      },
+      "etag": "\"3547711660461470\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=bjJibXVuMjc2OTBpb2M4aXZkaW0zMjg1OWcgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "n2bmun27690ioc8ivdim32859g@google.com",
+      "id": "n2bmun27690ioc8ivdim32859g",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-02-23"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench",
+      "updated": "2026-03-18T17:43:50.230Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:54.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n2-3-2026\nSquat: 20kg 5,5 45kg 5, 70kg 3, 100kg 2, 120kg 5,5,5 (very difficult 2nd set, had to get totally amped up for the 3rd set)\nOHP:\n20kg, 5,5, 30kg 5, 35kg 3, 37.5kg 2, 40kg 6,5,5,6 (last rep last set max effort)",
+      "end": {
+        "date": "2026-03-03"
+      },
+      "etag": "\"3547711661993086\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=ZmhzbmpjcHVsczQyMGY2aWE3a2c5aXBsamMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "fhsnjcpuls420f6ia7kg9ipljc@google.com",
+      "id": "fhsnjcpuls420f6ia7kg9ipljc",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-03-02"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press",
+      "updated": "2026-03-18T17:43:50.996Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:54.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n4-3-2026\nDeadlift:\n60kg 5,5, 85kg 5, 105kg 3, 130kg 2, 147.5kg 5,5\nBench:\n20kg 5,5, 40kg 5, 55kg 3, 70kg 2, 82.5kg 5 (last rep slowed down significantly) 80kg 5,5 (last rep was a grinder)\nCable chins:\n60kg 12, 70kg 12, 75kg 10",
+      "end": {
+        "date": "2026-03-05"
+      },
+      "etag": "\"3547712133308638\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NnBncTRncmRkYjJuaDkycXJjZ2JldjFkaTQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "6pgq4grddb2nh92qrcgbev1di4@google.com",
+      "id": "6pgq4grddb2nh92qrcgbev1di4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-03-04"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench + Cable-Chins",
+      "updated": "2026-03-18T17:47:46.654Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:55.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n6-3-2026\nHack-Squats:\n40kg 8 60kg 8, 70kg 7 (slowed considerably, was rpe 9 I’d guess)\nCable-Row:\n60kg 12 70kg 8,8,8 (last set max effort)\nIncline bench: 20kg 10, 40kg 8, 50kg 8, (lower back completely fried, perhaps I’m arching too much or recovery deficit deadlifts)\n60kg 6,5 (last rep slow as fuck +4 seconds. Decided to call it a day)",
+      "end": {
+        "date": "2026-03-07"
+      },
+      "etag": "\"3547712134978750\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=c3JrM3IyOXJ2N3Q4ZW5zZGI2dWxkMnE5ZmcgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "srk3r29rv7t8ensdb6uld2q9fg@google.com",
+      "id": "srk3r29rv7t8ensdb6uld2q9fg",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-03-06"
+      },
+      "status": "confirmed",
+      "summary": "Training — Hack + Cable-Row + Incline",
+      "updated": "2026-03-18T17:47:47.489Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:56.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n11-3-2026\nThe squat rack wasn’t free so I switched that lift to the deadlift\nDeadlift:\n60kg 5,5, 85kg 5, 105kg 3, 130kg 2, 150kg 5,5,\nBench:\n20kg 5,5, 35kg 5, 50kg 30, 65kg 2, 80kg 5,5,5,5\nChins:\n65kg 8, 75kg 8, 80kg 7,7 last rep grinder..",
+      "end": {
+        "date": "2026-03-12"
+      },
+      "etag": "\"3547709254091550\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cmFwNTZvbjVsZmRnZGhvanVsN3ZoOTEwZnMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "rap56on5lfdgdhojul7vh910fs@google.com",
+      "id": "rap56on5lfdgdhojul7vh910fs",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-03-11"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench + Chins",
+      "updated": "2026-03-18T17:23:47.045Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:56.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n14-3-2026\nSquat:\n20kg 5,5, 50kg 5, 75kg 3, 100kg 2, 122.5kg 5,5,5\nPress:\n20kg 5,5, 30kg 5 35kg 3, 40kg 2, 41kg 5,5,5,5,5\nCable-rows:\n65kg 12, 70kg 12(max) 75kg 8(max)",
+      "end": {
+        "date": "2026-03-15"
+      },
+      "etag": "\"3547712136927070\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=a2tnNnNpNWY2bXZocTFwaGNsdTN0aThlbjAgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "kkg6si5f6mvhq1phclu3ti8en0@google.com",
+      "id": "kkg6si5f6mvhq1phclu3ti8en0",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-03-14"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press + Cable-Row",
+      "updated": "2026-03-18T17:47:48.463Z"
+    },
+    {
+      "created": "2026-03-14T16:36:08.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "Practical Programming (compressed week) — stress day.\n\nDeadlift (primary stress)\n- Warm-up to top set\n- 152.5 kg x5 (top set)\n- 137.5 kg x5 (backoff ~90%)\n\nBench Press (volume)\n- 81 kg, 5x5\n\nCable Chins\n- 4x8-10 (add load only when all sets hit 10 clean reps)\n\nOptional Cable Row\n- 2x12 moderate\n\nProgression rules (PP)\n- Deadlift: add +2.5 kg next week only if top set is technically solid (no lumbar flexion drift).\n- Bench: add +1 kg next bench exposure only if 5x5 completed with stable bar speed.\n- If deadlift or bench misses target reps, repeat same load next exposure.\n\nLOG\n16-3-26\nDeadlift:\n60kg 5,5, 85kg 5, 110kg 3, 130kg 2, 152.5kg 5, 137.5kg 5,\nBench:\n20kg 5,5, 40kg 5, 55kg 3, 70kg 2, 81kg 5,5,5,5,5\nChins:\n70kg 10, 75kg 10,10,8 (last set, couldn’t do another rep)",
+      "end": {
+        "dateTime": "2026-03-16T14:40:00+01:00",
+        "timeZone": "Etc/GMT-1"
+      },
+      "etag": "\"3547708795347390\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=Xzg0b2pjZ3BpNnNxNDJiOW04Y29qY2I5azY5MjMwYjlwNmdvM2ViOWo3MTI0YWUyMTc0czQ2Z2hnNmMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "A16C274A-6C16-42D0-9407-38DE8A98CB03",
+      "id": "_84ojcgpi6sq42b9m8cojcb9k69230b9p6go3eb9j7124ae2174s46ghg6c",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {
+        "useDefault": true
+      },
+      "sequence": 1,
+      "start": {
+        "dateTime": "2026-03-16T13:00:00+01:00",
+        "timeZone": "Etc/GMT-1"
+      },
+      "status": "confirmed",
+      "summary": "Training — Monday (PP Stress Day: Deadlift + Bench Volume)",
+      "updated": "2026-03-18T17:19:57.673Z"
+    },
+    {
+      "colorId": "5",
+      "created": "2026-03-14T16:36:10.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "PLAN\nSquat: 117.5 x 5,5,5 (if warm-ups feel clearly off: 115 x 5,5,5)\nPress: 42 x 5,5,5 (if bar speed is abnormally poor: 41 x 5,5,5)\nRow: 3 x 10 moderate\nChins: 2 x 8-10 easy-moderate\n\nLOG\nSquat: \nPress: \nRow: \nChins: \n\nSTATE\nDone: yes / partial / no\nEnergy: 1-5\nSick: yes / no\nPain: none / note\nNotes: \n\nRULES\n- No grinders\n- Stop accessory work if systemic fatigue is obvious\n- This session exists to restore squat/press exposure and set up Friday",
+      "end": {
+        "dateTime": "2026-03-19T14:20:00+01:00",
+        "timeZone": "Etc/GMT-1"
+      },
+      "etag": "\"3547708170443294\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=Xzc0cjMwZTlvOGgxM2FiOWw2dDE0NGI5azZsMGo4YjlvNjBxNDZiYTQ2Z3AzMmhpNjZoMGphZzlrNmMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "96098DB5-57BB-45A4-804C-D421FF4A5A43",
+      "id": "_74r30e9o8h13ab9l6t144b9k6l0j8b9o60q46ba46gp32hi66h0jag9k6c",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {
+        "useDefault": true
+      },
+      "sequence": 2,
+      "start": {
+        "dateTime": "2026-03-19T13:00:00+01:00",
+        "timeZone": "Etc/GMT-1"
+      },
+      "status": "confirmed",
+      "summary": "Training — Thursday (PP Salvage Volume Re-entry: Squat + Press)",
+      "updated": "2026-03-18T17:14:45.221Z"
+    },
+    {
+      "colorId": "11",
+      "created": "2026-03-14T16:36:10.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "PLAN\nSquat: 125 x 5 (if Thursday or warm-ups are off: 122.5 x 5)\nSquat backoff: 115 x 5 only if top set is controlled\nBench: 82 x 5,5,5,5 (5th set optional if bar speed stays normal)\nPress: 41 x 5,5 only if fatigue is low\nChins: 2-3 x 8 moderate\n\nLOG\nSquat: \nSquat backoff: \nBench: \nPress: \nChins: \n\nSTATE\nDone: yes / partial / no\nEnergy: 1-5\nSick: yes / no\nPain: none / note\nNotes: \n\nRULES\n- Squat is the KPI for the week\n- No grinders, no missed reps\n- If you wake up feeling worse, downgrade instead of forcing intensity",
+      "end": {
+        "dateTime": "2026-03-20T14:30:00+01:00",
+        "timeZone": "Etc/GMT-1"
+      },
+      "etag": "\"3547708188996510\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhsMzM0aDlqOG9yajhiOW42MHJqZ2I5azg1Mms0YjlvNjBzajRiOXA2MHEzMmQyNjg1MzQ0ZDltODggMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "EF2E3F74-7078-4AEB-8092-90414FAFB56B",
+      "id": "_8l334h9j8orj8b9n60rjgb9k852k4b9o60sj4b9p60q32d2685344d9m88",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {
+        "useDefault": true
+      },
+      "sequence": 1,
+      "start": {
+        "dateTime": "2026-03-20T13:00:00+01:00",
+        "timeZone": "Etc/GMT-1"
+      },
+      "status": "confirmed",
+      "summary": "Training — Friday (PP Salvage Intensity Anchor: Squat + Bench)",
+      "updated": "2026-03-18T17:14:54.498Z"
+    },
+    {
+      "created": "2026-03-27T16:54:00.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Discord / #training\n\n27-3-2026\nSquat rack unavailable; session switched to deadlift + bench.\n\nDeadlift:\n60kg 5,5; 85kg 5; 110kg 3; 135kg 2; 157.5kg 5\n\nBench:\n20kg 5,5; 40kg 5; 55kg 3; 70kg 2; 82.5kg 5,5,5\n\nChins:\nbw 5; +15kg 10,10,10\n\nNotes:\n- Entered chins tired but completed all sets with high effort.\n- Last bench work set slowed considerably; all prescribed reps completed.",
+      "end": {
+        "date": "2026-03-28"
+      },
+      "eventType": "default",
+      "id": "local-2026-03-27-deadlift-bench-chins",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {
+        "useDefault": true
+      },
+      "start": {
+        "date": "2026-03-27"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench + Chins",
+      "updated": "2026-03-27T16:54:00.000Z"
+    }
+  ],
+  "nextPageToken": ""
+}

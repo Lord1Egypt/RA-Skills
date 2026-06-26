@@ -1,0 +1,10 @@
+{
+  "name": "workspace-browser",
+  "version": "1.0.0",
+  "description": "Workspace文件浏览器",
+  "author": "coopeter",
+  "license": "MIT",
+  "entrypoint": "app.py",
+  "requirements": ["flask"],
+  "port": 5001
+}

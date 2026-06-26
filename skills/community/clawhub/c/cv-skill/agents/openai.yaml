@@ -1,0 +1,4 @@
+version: 1
+display_name: Harvard Resume and Cover Letter Builder
+short_description: Generate polished, role-targeted Harvard-style resumes and matching cover letters from candidate descriptions, structured input, or existing documents in any language.
+default_prompt: Create a professional Harvard-style resume or application package from the candidate information provided by the user, whether that comes from notes, structured data, or an existing resume. Generate one or more role-targeted DOCX outputs with stronger summaries, tighter bullets, clean black-and-white layout, optional matching cover letters, and no invented facts.

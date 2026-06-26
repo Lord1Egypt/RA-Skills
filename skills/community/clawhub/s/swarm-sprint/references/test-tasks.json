@@ -1,0 +1,12 @@
+[
+  {
+    "id": "test-a",
+    "description": "Add a comment to README.md — test task only",
+    "role": "coder"
+  },
+  {
+    "id": "test-b", 
+    "description": "Add a comment to TOOLS.md — test task only",
+    "role": "coder"
+  }
+]

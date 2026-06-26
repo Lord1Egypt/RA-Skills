@@ -1,35 +1,30 @@
----
-name: "Jetson CUDA"
-description: "Provides NVIDIA Jetson CUDA tools to query CUDA version, GPU device info, and CUDA library paths on Jetson devices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jetson-cuda"
-sourceUrl: "https://clawhub.ai/skills/jetson-cuda"
----
+# jetson-cuda
 
-# Jetson CUDA
+NVIDIA Jetson CUDA 工具集。提供 CUDA 版本查询、GPU 设备信息等功能。
 
-> Provides NVIDIA Jetson CUDA tools to query CUDA version, GPU device info, and CUDA library paths on Jetson devices.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jetson-cuda`
-- **Source URL:** [https://clawhub.ai/skills/jetson-cuda](https://clawhub.ai/skills/jetson-cuda)
+- CUDA 版本查询 (nvcc --version)
+- GPU 设备信息 (nvidia-smi)
+- CUDA 库路径
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jetson-cuda
+# 查看 CUDA 信息
+jetson-cuda info
+
+# 检查 nvcc
+which nvcc
+nvcc --version
 ```
+
+## 依赖
+
+- CUDA Toolkit
+- nvidia-smi
+
+## 环境要求
+
+- NVIDIA Jetson (AGX Orin, Xavier, Nano, etc.)
+- CUDA 11.x or 12.x

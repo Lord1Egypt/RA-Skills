@@ -1,0 +1,205 @@
+<!doctype html>
+<!--
+  IFQ Design Skills · Template T-portfolio
+  Essay-style personal portfolio with 5 switchable direction variants.
+  Fork-and-fill: replace { NAME / TAGLINE / CURRENTLY / WRITING / BUILDING } placeholders.
+  Variants: Editorial Serif (default) · Terminal Hacker · Magazine Grid · Paper Journal · Minimalist Card
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{ NAME } · portfolio</title>
+<!-- Optional Google Fonts (non-blocking; falls back to system stack if blocked / offline). See references/font-loading.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --ifq-accent:#D4532B; --ifq-accent-deep:#A83518; --ifq-accent-soft:#FFB27A;
+    --ifq-ink:#111; --ifq-ink-soft:#3A3532; --ifq-paper:#FAF7F2; --ifq-cream:#F1EBE0;
+    --ifq-display:'Newsreader','Noto Serif SC',Georgia,serif;
+    --ifq-body:'Noto Serif SC','Songti SC',Georgia,serif;
+    --ifq-mono:'JetBrains Mono',ui-monospace,monospace;
+    --ifq-col-width:680px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ifq-paper); }
+  body { color: var(--ifq-ink); font-family: var(--ifq-body); font-size: 17px; line-height: 1.7; text-wrap: pretty; }
+
+  /* Rust ledger left rail */
+  .page { position: relative; max-width: var(--ifq-col-width); margin: 0 auto; padding: 80px 0 120px; }
+  .page::before { content: ''; position: fixed; top: 0; bottom: 0; left: calc(50% - 400px); width: 2px; background: var(--ifq-accent); opacity: .35; }
+
+  /* Header */
+  .header { margin-bottom: 80px; }
+  .header__meta { font-family: var(--ifq-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ifq-ink-soft); opacity: .65; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  .header__meta svg { width: 12px; height: 12px; color: var(--ifq-accent); }
+  .header__name { font-family: var(--ifq-display); font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -2px; margin-bottom: 16px; }
+  .header__tagline { font-family: var(--ifq-body); font-size: 20px; color: var(--ifq-ink-soft); line-height: 1.5; max-width: 480px; }
+  .header__tagline em { font-style: italic; color: var(--ifq-accent-deep); }
+
+  /* Section divider */
+  .divider { display: flex; align-items: center; gap: 12px; margin: 56px 0 32px; }
+  .divider__line { flex: 1; height: 1px; background: rgba(17,17,17,0.1); }
+  .divider__label { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); }
+
+  /* Currently / Writing / Building */
+  .living { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin: 40px 0; }
+  .living__col h3 { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ifq-accent); margin-bottom: 12px; }
+  .living__col p { font-size: 15px; color: var(--ifq-ink-soft); line-height: 1.6; }
+  .living__col p strong { color: var(--ifq-ink); font-weight: 600; }
+
+  /* Works */
+  .works { margin: 40px 0; }
+  .work { padding: 28px 0; border-bottom: 1px solid rgba(17,17,17,0.08); }
+  .work:last-child { border-bottom: none; }
+  .work__num { font-family: var(--ifq-mono); font-size: 11px; color: var(--ifq-accent); letter-spacing: 0.1em; margin-bottom: 8px; }
+  .work__title { font-family: var(--ifq-display); font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .work__desc { font-size: 15px; color: var(--ifq-ink-soft); line-height: 1.6; max-width: 520px; }
+  .work__tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .work__tag { font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid rgba(17,17,17,0.12); color: var(--ifq-ink-soft); }
+
+  /* Contact */
+  .contact { margin-top: 64px; padding-top: 32px; border-top: 1px solid rgba(17,17,17,0.1); }
+  .contact__links { display: flex; gap: 24px; font-family: var(--ifq-mono); font-size: 12px; letter-spacing: 0.08em; }
+  .contact__links a { color: var(--ifq-ink-soft); text-decoration: none; border-bottom: 1px solid rgba(17,17,17,0.15); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+  .contact__links a:hover { color: var(--ifq-accent); border-color: var(--ifq-accent); }
+
+  /* Colophon */
+  .colophon { margin-top: 80px; display: flex; align-items: center; gap: 8px; opacity: 0.5; font-family: var(--ifq-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ifq-ink-soft); }
+  .colophon svg { width: 12px; height: 12px; }
+  .colophon b { color: var(--ifq-accent); }
+
+  /* Spark animation */
+  @keyframes ifqPulse { 0%,100% { opacity: 1; } 50% { opacity: .6; } }
+  .spark-anim { animation: ifqPulse 3s ease-in-out infinite; }
+
+  /* === Variant: Terminal Hacker === */
+  [data-variant="terminal"] { --ifq-paper:#0F0F0F; --ifq-ink:#E8E4DA; --ifq-ink-soft:#9B9689; --ifq-cream:#1A1916; }
+  [data-variant="terminal"] body { font-family: var(--ifq-mono); font-size: 14px; }
+  [data-variant="terminal"] .header__name { font-family: var(--ifq-mono); font-weight: 600; font-size: 48px; letter-spacing: -1px; }
+  [data-variant="terminal"] .header__meta::after { content: '_'; animation: blink 1s step-end infinite; }
+  [data-variant="terminal"] .work__title { font-family: var(--ifq-mono); }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* === Variant: Magazine Grid === */
+  [data-variant="magazine"] .page { max-width: 960px; }
+  [data-variant="magazine"] .living { grid-template-columns: 1fr; gap: 48px; }
+  [data-variant="magazine"] .works { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  [data-variant="magazine"] .work { border-bottom: none; border-top: 3px solid var(--ifq-ink); padding: 20px 0 0; }
+  [data-variant="magazine"] .header__name { font-size: 80px; letter-spacing: -3px; }
+
+  /* === Variant: Paper Journal === */
+  [data-variant="journal"] { --ifq-paper:#F5F0E8; }
+  [data-variant="journal"] .page::before { display: none; }
+  [data-variant="journal"] .work { position: relative; padding-left: 24px; }
+  [data-variant="journal"] .work::before { content: ''; position: absolute; left: 0; top: 28px; bottom: 28px; width: 2px; background: var(--ifq-accent); opacity: .4; }
+  [data-variant="journal"] .header__tagline { font-style: italic; font-size: 22px; }
+
+  /* === Variant: Minimalist Card === */
+  [data-variant="card"] .page { max-width: 480px; padding-top: 120px; text-align: center; }
+  [data-variant="card"] .page::before { display: none; }
+  [data-variant="card"] .header__meta { justify-content: center; }
+  [data-variant="card"] .header__name { font-size: 48px; }
+  [data-variant="card"] .header__tagline { max-width: 100%; margin: 0 auto; }
+  [data-variant="card"] .living { grid-template-columns: 1fr; text-align: left; }
+  [data-variant="card"] .contact__links { justify-content: center; }
+
+  /* Variant selector (remove in production) */
+  .variant-bar { position: fixed; top: 16px; right: 16px; display: flex; gap: 6px; z-index: 100; font-family: var(--ifq-mono); font-size: 10px; }
+  .variant-bar button { padding: 6px 12px; border: 1px solid rgba(17,17,17,0.15); background: var(--ifq-paper); color: var(--ifq-ink-soft); cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: all .2s; }
+  .variant-bar button.active { background: var(--ifq-ink); color: var(--ifq-paper); border-color: var(--ifq-ink); }
+</style>
+</head>
+<body>
+
+<!-- Variant selector (fork-and-fill: remove or keep as tweak panel) -->
+<div class="variant-bar">
+  <button class="active" data-set-variant="serif">Serif</button>
+  <button data-set-variant="terminal">Terminal</button>
+  <button data-set-variant="magazine">Magazine</button>
+  <button data-set-variant="journal">Journal</button>
+  <button data-set-variant="card">Card</button>
+</div>
+
+<div class="page">
+  <header class="header">
+    <div class="header__meta">
+      <svg viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+      <span data-ifq-authored-year>__IFQ_YEAR__</span> / portfolio
+    </div>
+    <h1 class="header__name">{ NAME }</h1>
+    <p class="header__tagline">{ TAGLINE — one sentence that is not a job title. e.g. <em>"I make complex systems feel simple."</em> }</p>
+  </header>
+
+  <div class="divider"><div class="divider__line"></div><span class="divider__label">currently</span><div class="divider__line"></div></div>
+  <section class="living">
+    <div class="living__col">
+      <h3>Currently</h3>
+      <p>{ What you are working on right now. e.g. <strong>Building a design tool</strong> for solo creators. }</p>
+    </div>
+    <div class="living__col">
+      <h3>Writing</h3>
+      <p>{ What you are writing or thinking about. e.g. <strong>Essays on craft</strong> and the attention economy. }</p>
+    </div>
+    <div class="living__col">
+      <h3>Building</h3>
+      <p>{ What you are making. e.g. <strong>An open-source toolkit</strong> for editorial layouts. }</p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider__line"></div><span class="divider__label">selected works</span><div class="divider__line"></div></div>
+  <section class="works">
+    <article class="work">
+      <div class="work__num">01</div>
+      <h2 class="work__title">{ Project Name }</h2>
+      <p class="work__desc">{ One sentence description of what it is and why it matters. }</p>
+      <div class="work__tags"><span class="work__tag">design</span><span class="work__tag">html</span><span class="work__tag"><span data-ifq-authored-year>__IFQ_YEAR__</span></span></div>
+    </article>
+    <article class="work">
+      <div class="work__num">02</div>
+      <h2 class="work__title">{ Project Name }</h2>
+      <p class="work__desc">{ One sentence description. }</p>
+      <div class="work__tags"><span class="work__tag">brand</span><span class="work__tag">strategy</span></div>
+    </article>
+    <article class="work">
+      <div class="work__num">03</div>
+      <h2 class="work__title">{ Project Name }</h2>
+      <p class="work__desc">{ One sentence description. }</p>
+      <div class="work__tags"><span class="work__tag">prototype</span><span class="work__tag">motion</span></div>
+    </article>
+  </section>
+
+  <section class="contact">
+    <div class="contact__links">
+      <a href="#">{ email }</a>
+      <a href="#">{ github }</a>
+      <a href="#">{ x / twitter }</a>
+      <a href="#">{ linkedin }</a>
+    </div>
+  </section>
+
+  <div class="colophon">
+    <svg class="spark-anim" viewBox="-12 -12 24 24"><path d="M0 -10 L2.2 -2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2 -2.2 Z" fill="currentColor"/></svg>
+    <span>compiled by <b>ifq.ai</b></span>
+  </div>
+</div>
+
+<script src="../ifq-brand/ifq_authored_year.js"></script>
+<script>
+  window.IfqAuthoredYear && window.IfqAuthoredYear.apply(document);
+  // Variant switcher (remove in production)
+  document.querySelectorAll('[data-set-variant]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.variant-bar button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var v = btn.getAttribute('data-set-variant');
+      if (v === 'serif') { document.documentElement.removeAttribute('data-variant'); }
+      else { document.documentElement.setAttribute('data-variant', v); }
+    });
+  });
+</script>
+</body>
+</html>

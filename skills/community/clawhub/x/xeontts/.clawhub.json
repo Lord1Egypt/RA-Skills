@@ -1,0 +1,27 @@
+{
+  "name": "xeon-tts",
+  "version": "1.0.0",
+  "description": "基于 OpenVINO Qwen3-TTS Base/Custom 模型的本地语音合成技能。一键安装脚本自动创建 Python 环境、安装 xdp-tts-service、生成配置，并为 OpenClaw 的 QQBOT 写入独立 TTS 工作流配置。",
+  "author": "aurora2035",
+  "license": "MIT",
+  "tags": ["xeon", "tts", "voice-clone", "qqbot", "openvino", "qwen3", "openclaw", "local", "audio"],
+  "main": "server.js",
+  "repository": "",
+  "homepage": "",
+  "config": {
+    "port": 9002,
+    "flaskTtsUrl": "http://127.0.0.1:5002/api/tts/synthesize",
+    "cloneModel": "qwen3_tts_0.6b_base_openvino",
+    "customModel": "qwen3_tts_0.6b_custom_openvino"
+  },
+  "scripts": {
+    "install:all": "bash ./install.sh",
+    "init": "xdp-tts-init-config --output ./tts_config.json",
+    "start": "node server.js",
+    "start:tts": "xdp-tts-service --host 127.0.0.1 --port 5002 --config ./tts_config.json"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": "3.10"
+  }
+}

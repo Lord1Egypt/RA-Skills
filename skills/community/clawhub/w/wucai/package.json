@@ -1,0 +1,39 @@
+{
+  "name": "wucai-openclaw",
+  "version": "26.3.37",
+  "description": "五彩 AI 助手：集成网页划线批注、全文剪藏阅读与个人日记管理，打造你的 AI 知识大脑。",
+  "license": "MIT-0",
+  "author": "makediff@gmail.com",
+  "homepage": "https://doc.wucai.site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makediff/wucai-openclaw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makediff/wucai-openclaw/issues"
+  },
+  "keywords": [
+    "wucai",
+    "五彩",
+    "highlight",
+    "notes",
+    "clipping",
+    "diary",
+    "笔记",
+    "知识库",
+    "剪藏",
+    "ai",
+    "openclaw",
+    "skill"
+  ],
+  "clawhub": {
+    "acceptLicenseTerms": true
+  },
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "primaryEnv": "WUCAI_API_TOKEN",
+    "homepage_en": "https://wucainote.com",
+    "requires": {},
+    "optionalEnv": []
+  }
+}

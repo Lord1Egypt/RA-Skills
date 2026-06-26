@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 1080px;
+      height: auto;
+      margin: 0;
+      overflow: hidden;
+      font-family: -apple-system, "PingFang SC", "Noto Sans SC", sans-serif;
+      background: #f5f7fa;
+    }
+    .image-container {
+      width: 1080px;
+      padding: 40px;
+      background: #f5f7fa;
+      box-sizing: border-box;
+    }
+    .content-card {
+      background: white;
+      padding: 40px 36px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    .title {
+      font-size: 36px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+    .content {
+      font-size: 26px;
+      color: #666;
+      line-height: 1.7;
+    }
+    .content p {
+      margin-bottom: 16px;
+    }
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+    .footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+      font-size: 18px;
+      color: #999;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <div class="content-card">
+      <h2 class="title">{{title}}</h2>
+      <div class="content">
+        {{content}}
+      </div>
+      <div class="footer">
+        {{公众号名称}}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+name: hotspot-aggregator
+version: 1.0.0
+description: 热点聚合监控 - 一站式聚合微博/百度/知乎/抖音热搜榜，自动生成每日热点报告，支持关键词订阅推送。适用于自媒体运营、内容创作、市场分析。
+author: clawd
+homepage: https://clawhub.com/skills/hotspot-aggregator
+
+triggers:
+  - 热点
+  - 热搜
+  - 今日热点
+  - 热点报告
+  - 热点监控
+  - 热榜
+  - 微博热搜
+  - 百度热搜
+  - 知乎热榜
+  - 抖音热搜
+  - 舆情监控
+  - hotspot
+
+features:
+  - 多平台热搜聚合(微博/百度/知乎/抖音)
+  - 每日自动生成热点报告
+  - 关键词订阅推送
+  - 热点趋势分析
+  - 分类统计
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

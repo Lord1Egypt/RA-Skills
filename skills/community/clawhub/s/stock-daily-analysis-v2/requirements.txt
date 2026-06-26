@@ -1,0 +1,16 @@
+# 核心依赖
+akshare>=1.12.0
+pandas>=2.0.0
+numpy>=1.24.0
+requests>=2.31.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# 美股数据 (可选)
+yfinance>=0.2.0
+
+# 邮件发送 (可选)
+# smtplib (内置)
+
+# Markdown转图片 (可选，用于推送)
+markdown-to-image>=1.0.0

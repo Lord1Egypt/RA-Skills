@@ -1,0 +1,12 @@
+{
+  "name": "internship-daily-reflection",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for organizing internship daily notes into structured Chinese reports.",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node -e \"const s=require('./index'); console.log(typeof s.run==='function'?'ok':'fail')\""
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "appliance-failure-troubleshooting-log",
+  "name": "Appliance Failure Troubleshooting Log",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Creates a repair-ready appliance failure log with symptoms, timing, model details, error codes, safe checks, photo evidence, warranty questions, and technician call notes.",
+  "author": "Bell (design)",
+  "license": "MIT-0",
+  "category": "Home & Admin Organization",
+  "target_user": "Homeowners, renters, household managers, and anyone preparing for an appliance repair, warranty, or landlord conversation.",
+  "tags": [
+    "appliance-repair",
+    "troubleshooting-log",
+    "home-admin",
+    "warranty",
+    "repair-prep",
+    "maintenance"
+  ],
+  "trigger_keywords": [
+    "appliance troubleshooting log before repair",
+    "prepare for appliance repair call",
+    "log appliance failure symptoms",
+    "track appliance error codes",
+    "what should I tell the repair technician"
+  ],
+  "use_cases": [
+    "Document intermittent appliance failures",
+    "Prepare evidence before calling a technician",
+    "Organize warranty or landlord repair details",
+    "Track safe checks and attempted fixes",
+    "Create service call notes and follow-up records"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

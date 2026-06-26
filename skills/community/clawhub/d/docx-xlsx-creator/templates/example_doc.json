@@ -1,0 +1,30 @@
+{
+  "title": "SMSF Trustee Review Summary",
+  "sections": [
+    {
+      "heading": "Overview",
+      "level": 1,
+      "paragraphs": [
+        "This draft summarises the main matters identified during the annual SMSF review."
+      ]
+    },
+    {
+      "heading": "Checklist",
+      "level": 1,
+      "bullets": [
+        "Confirm member balances",
+        "Review contributions received",
+        "Check asset evidence and valuations"
+      ]
+    },
+    {
+      "heading": "Action Items",
+      "level": 1,
+      "table": [
+        ["Item", "Owner", "Status"],
+        ["Update records", "Administrator", "Open"],
+        ["Confirm bank balance", "Trustee", "Pending"]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "meeting-summary-generator",
+  "version": "1.1.2",
+  "description": "AI-powered meeting summary generator with Sloan agent",
+  "main": "index.js",
+  "bin": {
+    "meeting-summary-generator": "./index.js"
+  },
+  "keywords": [
+    "meetings",
+    "productivity",
+    "notes",
+    "ai",
+    "openclaw",
+    "skill"
+  ],
+  "author": "Matt",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "agent": "sloan",
+    "pricing": {
+      "type": "pay-per-use",
+      "amount": 0.003,
+      "currency": "USDT"
+    }
+  }
+}

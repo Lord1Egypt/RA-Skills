@@ -1,35 +1,60 @@
 ---
-name: "Rsi"
-description: "Calculate RSI for any asset. Use when checking overbought/oversold conditions, spotting divergence signals, comparing multi-timeframe RSI, or setting trading..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rsi"
-sourceUrl: "https://clawhub.ai/skills/rsi"
+name: "RSI — Relative Strength Index Calculator"
+description: "Calculate RSI for any asset. Use when checking overbought/oversold conditions, spotting divergence signals, comparing multi-timeframe RSI, or setting trading entry/exit alerts."
+version: "2.0.0"
+author: "BytesAgain"
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+tags: ["rsi", "trading", "crypto", "stocks", "technical-analysis", "finance"]
 ---
 
-# Rsi
+# RSI — Relative Strength Index Calculator
 
-> Calculate RSI for any asset. Use when checking overbought/oversold conditions, spotting divergence signals, comparing multi-timeframe RSI, or setting trading...
+Calculate and interpret RSI for any crypto or stock asset. Identify overbought/oversold zones, divergence signals, and optimal entry/exit points.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rsi`
-- **Source URL:** [https://clawhub.ai/skills/rsi](https://clawhub.ai/skills/rsi)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### calculate
+Calculate RSI from price data.
 ```bash
-hermes skills install clawhub/rsi
+bash scripts/script.sh calculate 14
 ```
+
+### interpret
+Interpret an RSI value with trading signals.
+```bash
+bash scripts/script.sh interpret 72.5
+```
+
+### zones
+Show RSI zone definitions and trading rules.
+```bash
+bash scripts/script.sh zones
+```
+
+### divergence
+Explain RSI divergence patterns.
+```bash
+bash scripts/script.sh divergence
+```
+
+### strategies
+Common RSI trading strategies.
+```bash
+bash scripts/script.sh strategies
+```
+
+### help
+Show all commands.
+```bash
+bash scripts/script.sh help
+```
+
+## Output
+- RSI values with zone classification
+- Trading signals (buy/sell/hold)
+- Divergence pattern descriptions
+
+## Feedback
+https://bytesagain.com/feedback/
+Powered by BytesAgain | bytesagain.com

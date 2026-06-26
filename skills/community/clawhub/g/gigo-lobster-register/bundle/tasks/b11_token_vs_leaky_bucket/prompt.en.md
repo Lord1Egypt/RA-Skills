@@ -1,0 +1,21 @@
+# Compare token bucket and leaky bucket
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 限流方案：令牌桶 vs 漏桶权衡
+
+## Chinese source prompt
+
+# 限流方案权衡：令牌桶 vs 漏桶
+
+我们的 AI 投标产品有一个 LLM 网关，需要给每个客户做请求限流。当前考虑两种主流算法：**令牌桶（Token Bucket）** 和 **漏桶（Leaky Bucket）**。
+
+请回答（≤500 字）：
+
+1. 用 1 句话各自概括两种算法的核心机制（不要贴维基百科）
+2. **场景对照表**：列 ≥4 个维度（突发流量、平均速率、是否削峰、实现复杂度等），逐项比较谁更合适
+3. 给出 **2 个具体业务场景** 各自该选哪个，并说理由：
+   - 场景 A：免费用户每分钟最多调 LLM 30 次，超过直接拒绝
+   - 场景 B：付费用户后台批量任务，希望"匀速消化不打爆下游"
+4. 实现时常见的 1 个坑（比如时钟漂移、分布式一致性、冷启动等）

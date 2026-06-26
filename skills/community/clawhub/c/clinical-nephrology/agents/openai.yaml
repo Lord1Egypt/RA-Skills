@@ -1,0 +1,7 @@
+interface:
+  display_name: "Clinical Nephrology"
+  short_description: "Clinical nephrology reasoning and literature support"
+  default_prompt: "Use $clinical-nephrology to structure a nephrology differential, identify red flags, and suggest evidence sources."
+
+policy:
+  allow_implicit_invocation: true

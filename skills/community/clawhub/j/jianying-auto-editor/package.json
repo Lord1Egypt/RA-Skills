@@ -1,0 +1,25 @@
+{
+  "name": "jianying-auto-editor",
+  "version": "0.1.1",
+  "description": "Cloud-driven Jianying draft automation skill.",
+  "bin": {
+    "jianying-auto-editor": "scripts/index.js"
+  },
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "manifest.json",
+    "agents",
+    "assets",
+    "examples",
+    "scripts"
+  ],
+  "scripts": {
+    "start": "node scripts/index.js --config ./examples/config.example.json"
+  },
+  "license": "MIT"
+}

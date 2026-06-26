@@ -1,0 +1,106 @@
+{
+  "$schema": "https://github.com/intelligent-driving-dss/schemas/vehicle",
+  "version": "1.0.0",
+  "description": "新能源车型数据库标准数据模型与接口定义",
+  
+  "models": {
+    "VehicleNEV": {
+      "name": "新能源车",
+      "properties": {
+        "vin": {"type": "string", "description": "车架号"},
+        "brand": {"type": "string", "enum": ["BYD","NIO","XPeng","Xiaomi","LiAuto","CATL","GAC","FAW"]},
+        "model": {"type": "string", "description": "车型名称"},
+        "type": {"type": "string", "enum": ["BEV","PHEV","FCEV","HEV"]},
+        "year": {"type": "integer"},
+        "battery": {
+          "capacity_kwh": {"type": "number", "description": "电池容量（kWh）"},
+          "soc_current": {"type": "number", "min": 0, "max": 100},
+          "soh_percent": {"type": "number", "min": 0, "max": 100}
+        },
+        "range": {
+          "nedc": {"type": "number"},
+          "cltc": {"type": "number"},
+          "wltp": {"type": "number"}
+        },
+        "charging_power_kw": {"type": "number", "description": "最高充电功率（kW）"},
+        "motor_power_kw": {"type": "number"},
+        "acceleration_0_100": {"type": "number"},
+        "price_market": {
+          "manufacturer_price": {"type": "number"},
+          "market_average": {"type": "number"},
+          "market_positioning": {"type": "string", "enum": ["高端","中端","经济"]}
+        }
+      }
+    },
+    
+    "BatteryStatus": {
+      "name": "电池状态",
+      "properties": {
+        "cell_voltage_min": {"type": "number"},
+        "cell_voltage_max": {"type": "number"},
+        "temperature_cell": {"type": "number"},
+        "temperature_pack": {"type": "number"},
+        "remaining_capacity_percent": {"type": "number"}
+      }
+    },
+    
+    "ChargingStation": {
+      "name": "充电桩",
+      "properties": {
+        "location": {"type": "string"},
+        "power_kw": {"type": "number", "enum": [7, 22, 60, 120, 350]},
+        "status": {"type": "string", "enum": ["available","occupied","faulty","maintenance"]},
+        "price_per_kwh": {"type": "number"},
+        "distance_km": {"type": "number"}
+      }
+    },
+    
+    "MarketComparison": {
+      "name": "市场对比",
+      "properties": {
+        "model_name": {"type": "string"},
+        "competitors": [
+          {
+            "brand": {"type": "string"},
+            "model": {"type": "string"},
+            "price": {"type": "number"},
+            "range_cltc": {"type": "number"},
+            "acceleration_0_100": {"type": "number"}
+          }
+        ],
+        "advantages": ["description"],
+        "disadvantages": ["description"]
+      }
+    }
+  },
+  
+  "apis": {
+    "getVehicleNEV": {
+      "endpoint": "/api/v1/nev/vehicle/{vin}",
+      "method": "GET",
+      "response": "VehicleNEV",
+      "description": "获取新能源车型详细信息"
+    },
+    
+    "findNearestChargingStation": {
+      "endpoint": "/api/v1/nev/charging-station/nearest",
+      "method": "POST",
+      "body": {
+        "current_location": {"type": "string"},
+        "required_power_kw": {"type": "number"}
+      },
+      "response": "ChargingStation"
+    },
+    
+    "compareMarketModels": {
+      "endpoint": "/api/v1/nev/market/comparison",
+      "method": "POST",
+      "body": {
+        "target_model": {"type": "string"},
+        "price_range_min": {"type": "number"},
+        "price_range_max": {"type": "number"}
+      },
+      "response": "MarketComparison"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "zouroboros-swarm-gate",
+  "version": "1.0.1",
+  "description": "Mechanical task-routing gate for AI workflows that scores whether a task should stay direct or escalate to multi-agent orchestration",
+  "license": "MIT",
+  "author": "AlaricHQ <https://github.com/AlaricHQ>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlaricHQ/zouroboros-openclaw",
+    "directory": "packages/swarm-gate"
+  },
+  "homepage": "https://github.com/AlaricHQ/zouroboros-openclaw/tree/main/packages/swarm-gate",
+  "keywords": [
+    "ai",
+    "agent",
+    "swarm",
+    "orchestration",
+    "multi-agent",
+    "task-routing",
+    "openclaw",
+    "zouroboros"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "swarm-gate": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "node --test src/*.test.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

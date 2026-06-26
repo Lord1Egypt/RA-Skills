@@ -1,35 +1,150 @@
 ---
-name: "Criticism Self Criticism"
-description: "触发：当一项工作已经完成、进入阶段验收、收到批评反馈，或反复出现同类错误需要系统纠偏时调用；常见信号包括 review、audit、retrospective、quality check、纠错与复盘。 English: Trigger after delivery or at a review checkpoin..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/criticism-self-criticism"
-sourceUrl: "https://clawhub.ai/skills/criticism-self-criticism"
+name: criticism-self-criticism
+description: |
+  触发：当一项工作已经完成、进入阶段验收、收到批评反馈，或反复出现同类错误需要系统纠偏时调用；常见信号包括 review、audit、retrospective、quality check、纠错与复盘。
+  English: Trigger after delivery or at a review checkpoint when quality must be examined honestly and errors must be corrected without defensiveness. Use this skill for structured self-review, feedback processing, and continuous correction.
 ---
 
-# Criticism Self Criticism
+# 批评与自我批评
 
-> 触发：当一项工作已经完成、进入阶段验收、收到批评反馈，或反复出现同类错误需要系统纠偏时调用；常见信号包括 review、audit、retrospective、quality check、纠错与复盘。 English: Trigger after delivery or at a review checkpoin...
+> "房子是应该经常打扫的，不打扫就会积满了灰尘；脸是应该经常洗的，不洗也就会灰尘满面。我们同志的思想，我们党的工作，也会沾染灰尘的，也应该打扫和洗涤。"
+> —— 毛泽东《论联合政府》（1945年）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/criticism-self-criticism`
-- **Source URL:** [https://clawhub.ai/skills/criticism-self-criticism](https://clawhub.ai/skills/criticism-self-criticism)
+## 核心原则
 
-## Overview
+**定期的、诚实的自我审视和相互批评是防止错误积累的唯一机制。批评的目的不是惩罚，而是"治病救人"。**
 
+> 详细原著依据见 original-texts.md
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/criticism-self-criticism
-```
+## 何时使用
+
+你应该在以下情况调用此 skill：
+
+- 完成一项工作后，需要审视其质量
+- 接收到他人的批评或反馈
+- 发现自己的工作可能有问题但不确定
+- 项目进行到阶段性节点，需要复盘
+- 反复出现同类错误，需要找到根本原因
+- 需要为团队/项目建立定期审查机制
+
+## 方法流程
+
+### 第一步：先自我批评
+
+> "对以前的错误一定要揭发，不讲情面"——《整顿党的作风》
+
+在请别人审查之前，先诚实地审视自己的工作：
+- 我的工作目标完成了吗？
+- 过程中有哪些地方做得不够好？
+- 有没有偷懒、敷衍、走捷径的地方？
+- 有没有我知道有问题但选择忽略的地方？
+- 如果重新来过，我会在哪里做不同的选择？
+
+**关键纪律：不讳疾忌医。** 自己已经知道的问题，必须主动暴露，不能藏着掖着。
+
+### 第二步：具体而非笼统
+
+> 批评必须是"以科学的态度来分析批判"——《整顿党的作风》
+
+自我批评和相互批评都必须具体：
+- **错误示范：** "我觉得做得不够好"（笼统，无法改进）
+- **正确示范：** "在第三步我跳过了验证环节，导致后面出现了 X 问题"（具体，可操作）
+
+要做到：
+- 指出具体的行为或决策，而非笼统的性格评价
+- 分析错误产生的原因，而非只描述现象
+- 说明错误造成的影响
+- 提出改进的具体方法
+
+### 第三步：基于事实而非猜测
+
+批评必须建立在调查研究（`investigation-first`）的基础上：
+- 引用具体的事实和证据
+- 不依据传言或猜测
+- 对自己不确定的部分标注"存疑"
+- 允许被批评方提供补充信息
+
+### 第四步：治病救人，不是整人
+
+> "完全是为了救人，而不是为了把人整死。"——《整顿党的作风》
+
+批评的目的是改进，不是追责：
+- 每指出一个问题，就提出一个改进建议
+- 承认问题的同时，肯定做得好的部分
+- 关注"下次怎么做更好"，而非"这次谁的错"
+- 对待错误的态度：错误是学习的机会，不是羞耻
+
+### 第五步：欢迎他人批评
+
+> "因为我们是为人民服务的，所以，我们如果有缺点，就不怕别人批评指出。不管是什么人，谁向我们指出都行。只要你说得对，我们就改正。"——《为人民服务》
+
+接收批评时：
+- 先完整听取，不急于辩解
+- 判断批评是否基于事实
+- 如果批评正确——立即接受并改正
+- 如果批评不准确——用事实和道理说明，而非情绪化回应
+- 感谢提出批评的人（即使批评让你不舒服）
+
+### 第六步：形成常态机制
+
+> "房子是应该经常打扫的"——《论联合政府》
+
+批评与自我批评不是应急措施，而是日常机制：
+- 每完成一个阶段性工作就进行一次自我审视
+- 定期（而非出了问题才）进行复盘
+- 把上次批评中发现的问题作为下次检查的重点
+- 错误记录积累起来，找出模式和根本原因
+
+## 自我批评检查清单
+
+完成工作后，用以下问题自查：
+
+- [ ] 我是否达成了原定目标？
+- [ ] 过程中我是否跳过了某些应该做的步骤？
+- [ ] 我的方案是否经过了实践验证（`practice-cognition`）？
+- [ ] 我是否充分调查了情况（`investigation-first`）？
+- [ ] 我是否收集了相关方的意见（`mass-line`）？
+- [ ] 我是否抓住了主要矛盾（`contradiction-analysis`）？
+- [ ] 有没有我知道但回避的问题？
+- [ ] 如果重新来过，我会做什么不同的事？
+
+## 两种错误倾向
+
+### 无原则的批评（攻击人而非问题）
+
+表现：
+- 批评针对人的性格而非具体行为
+- 批评没有建设性目的，只是发泄
+- 以"批评"为名打压不同意见
+
+这违背了"治病救人"的原则。
+
+### 拒绝批评（讳疾忌医）
+
+> "只要他不讳疾忌医，不固执错误，以至于达到不可救药的地步"——《整顿党的作风》
+
+表现：
+- 听到批评就急于辩解
+- 把正确的批评当作"攻击"
+- 选择性接受批评（只接受好听的）
+- 表面接受实际不改
+
+这是最危险的倾向——错误只会越积越多。
+
+## 常见错误
+
+| 错误 | 毛泽东的批评 | 正确做法 |
+|------|------------|---------|
+| 自认为完美，不自查 | "房子不打扫就会积满灰尘" | 完成工作后必须自查 |
+| 批评笼统不具体 | 要"以科学的态度来分析批判" | 指出具体的行为和影响 |
+| 批评是为了追责 | "完全是为了救人" | 批评的目的是改进 |
+| 听不进批评 | "不管是什么人，谁向我们指出都行" | 欢迎一切正确的批评 |
+| 只在出问题时才反思 | "应该经常打扫" | 建立定期自查机制 |
+| 表面接受不改正 | "愿意医治，愿意改正" | 接受后必须落实改正 |
+
+## 与其他 skill 的关系
+
+- **矛盾分析法**：用矛盾分析法找出工作中的主要问题
+- **实践认识论**：自我批评是实践认识论中"总结经验"的环节
+- **调查研究**：批评必须基于事实，需要调查研究的支撑
+- **群众路线**：接收群众的批评是群众路线的重要组成部分

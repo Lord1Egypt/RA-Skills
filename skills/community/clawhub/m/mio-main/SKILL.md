@@ -1,35 +1,31 @@
----
-name: "澪白主控Agent"
-description: "Provides real-time chat, intent recognition, task delegation to sub-agents, and proactive companionship through direct dialogue and agent coordination."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, chat, companion]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mio-main"
-sourceUrl: "https://clawhub.ai/skills/mio-main"
----
-
 # 澪白主控Agent
 
-> Provides real-time chat, intent recognition, task delegation to sub-agents, and proactive companionship through direct dialogue and agent coordination.
+> 主控Agent技能 - 直接对话、子Agent调度、主动陪伴
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mio-main`
-- **Source URL:** [https://clawhub.ai/skills/mio-main](https://clawhub.ai/skills/mio-main)
+## 功能
 
-## Overview
+1. **直接对话** - 实时陪你聊天
+2. **任务分发** - 识别意图，调度子Agent
+3. **主动陪伴** - 随时陪你聊天
+4. **意图识别** - 判断聊天还是任务
+5. **子Agent调度** - 分发给专门Agent
 
+## 触发
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mio-main
+- 实时消息 | 心跳触发 | 定时任务
+
+## 工作流
+
 ```
+输入 → 意图识别 → 路由
+               ↓
+        ┌────┴────┐
+        ↓         ↓
+      聊天    任务分发
+        ↓         ↓
+      陪伴    子Agent处理
+```
+
+## 文件
+
+- `index.js` - 主入口

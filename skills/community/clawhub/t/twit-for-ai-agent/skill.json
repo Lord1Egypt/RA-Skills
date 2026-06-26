@@ -1,0 +1,7 @@
+{
+  "name": "ashraffaridhd/molttwit-skill",
+  "description": "Post content, manage media, search, and interact with Molttwit (Mastodon) API",
+  "author": "ashraffaridhd",
+  "version": "1.0.0",
+  "documentation": "https://molttwit.com/agents-guide.html"
+}

@@ -1,35 +1,53 @@
----
-name: "Ppt Auto Generator Pro"
-description: "Automatically generate professional PPT presentations with AI, supporting multiple styles, templates, and export formats including PPTX, PDF, and images."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt-auto-generator-pro"
-sourceUrl: "https://clawhub.ai/skills/ppt-auto-generator-pro"
----
+# AI PPT Maker - AI PPT 自动生成器
 
-# Ppt Auto Generator Pro
+## 功能描述
+基于 AI 的 PPT 演示文稿自动生成工具，一键生成专业幻灯片。
 
-> Automatically generate professional PPT presentations with AI, supporting multiple styles, templates, and export formats including PPTX, PDF, and images.
+## 使用场景
+- 工作汇报 PPT
+- 产品介绍演示
+- 培训课件制作
+- 路演 BP 生成
+- 学术答辩 PPT
+- 营销方案演示
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt-auto-generator-pro`
-- **Source URL:** [https://clawhub.ai/skills/ppt-auto-generator-pro](https://clawhub.ai/skills/ppt-auto-generator-pro)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ppt-auto-generator-pro
+### 生成 PPT
 ```
+生成 PPT 主题=季度工作汇报 页数=15 风格=商务
+```
+
+### 大纲生成
+```
+生成 PPT 大纲 主题=产品发布会 结构=封面，目录，介绍，优势，案例，结尾
+```
+
+### 批量生成
+```
+批量生成 PPT 主题列表=主题 1，主题 2 输出目录=./ppts
+```
+
+### 模板应用
+```
+应用 PPT 模板 文件=draft.pptx 模板=商务蓝 输出=final.pptx
+```
+
+## 输出格式
+- PowerPoint (.pptx)
+- PDF (.pdf)
+- 图片序列 (.png)
+
+## 支持风格
+- 商务专业
+- 科技现代
+- 简约清新
+- 创意活泼
+- 学术严谨
+
+## 特性
+- AI 智能生成内容
+- 自动配图
+- 智能排版
+- 多模板支持
+- 一键导出

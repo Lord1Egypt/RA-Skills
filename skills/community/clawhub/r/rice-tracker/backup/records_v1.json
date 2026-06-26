@@ -1,0 +1,90 @@
+[
+  {
+    "owner": "紫言",
+    "phone": "",
+    "purchase_date": "2026-03-27",
+    "quantity": 20,
+    "people": 3,
+    "daily_rate": 0.4,
+    "frequency": "weekly_3days",
+    "note": "2大1小，每周吃三天",
+    "created": "2026-03-27"
+  },
+  {
+    "owner": "张三",
+    "phone": "13800138001",
+    "purchase_date": "2026-03-20",
+    "quantity": 40,
+    "people": 3,
+    "daily_rate": 0.4,
+    "frequency": "workdays",
+    "note": "家里有老人，消耗稳定",
+    "created": "2026-03-20"
+  },
+  {
+    "owner": "李四",
+    "phone": "13900139002",
+    "purchase_date": "2026-03-10",
+    "quantity": 60,
+    "people": 5,
+    "daily_rate": 0.5,
+    "frequency": "daily",
+    "note": "五口之家，消耗较快",
+    "created": "2026-03-10"
+  },
+  {
+    "owner": "王五",
+    "phone": "13700137003",
+    "purchase_date": "2026-03-25",
+    "quantity": 20,
+    "people": 2,
+    "daily_rate": 0.3,
+    "frequency": "weekends",
+    "note": "年轻人，只有周末在家做饭",
+    "created": "2026-03-25"
+  },
+  {
+    "owner": "赵六",
+    "phone": "13600136004",
+    "purchase_date": "2026-02-01",
+    "quantity": 50,
+    "people": 4,
+    "daily_rate": 0.45,
+    "frequency": "daily",
+    "note": "家里两个小孩，饭量大",
+    "created": "2026-02-01"
+  },
+  {
+    "owner": "钱七",
+    "phone": "13500135005",
+    "purchase_date": "2026-03-27",
+    "quantity": 30,
+    "people": 2,
+    "daily_rate": 0.35,
+    "frequency": "daily",
+    "note": "新婚夫妇，消耗一般",
+    "created": "2026-03-27"
+  },
+  {
+    "owner": "陈旋",
+    "phone": "",
+    "purchase_date": "2026-03-27",
+    "quantity": 40,
+    "people": 3,
+    "daily_rate": 0.4,
+    "frequency": "workdays",
+    "note": "",
+    "created": "2026-03-27"
+  },
+  {
+    "owner": "陈大爷",
+    "phone": "",
+    "purchase_date": "2026-02-27",
+    "quantity": 100,
+    "people": 5,
+    "daily_rate": 0.3,
+    "frequency": "daily",
+    "note": "",
+    "created": "2026-02-27"
+  }
+]

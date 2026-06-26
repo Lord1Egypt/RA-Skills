@@ -1,0 +1,111 @@
+# ios-self-improve 配置文件
+# 
+# 重要：platform 字段必须与 developer-self-improve-core 的配置一致！
+#
+# 使用说明：
+#   根据下方注释和示例修改配置值
+
+# ============ 基础配置 ============
+
+# 依赖技能（不要修改）
+dependencies:
+  - developer-self-improve-core
+
+# 启用状态（true/false）
+# 示例：
+#   enabled: true   # 启用 iOS 技能
+#   enabled: false  # 禁用 iOS 技能
+enabled: true
+
+# 平台类型（必须与 developer-self-improve-core 一致）
+# 可选值：ios | multi-platform
+# 示例：
+#   platform: ios           # 开发 iOS 项目
+#   platform: multi-platform  # 同时开发多个平台（包含 iOS）
+platform: ios
+
+# ============ iOS 领域配置 ============
+
+# 内置规则数量（只读，不要修改）
+# 当前值：15 条
+builtin_rules_count: 15
+
+# 自检规则数量（只读，不要修改）
+# 当前值：11 条
+self_check_rules_count: 11
+
+# ============ 自检配置 ============
+
+# 是否启用崩溃风险检查（true/false）
+# 示例：
+#   enable_crash_check: true   # 启用崩溃检查
+#   enable_crash_check: false  # 禁用崩溃检查
+enable_crash_check: true
+
+# 是否启用导航栏检查（true/false）
+# 示例：
+#   enable_navigation_bar_check: true   # 启用导航栏检查
+#   enable_navigation_bar_check: false  # 禁用导航栏检查
+enable_navigation_bar_check: true
+
+# 是否启用 Info.plist 检查（true/false）
+# 示例：
+#   enable_info_plist_check: true   # 启用 Info.plist 检查
+#   enable_info_plist_check: false  # 禁用 Info.plist 检查
+enable_info_plist_check: true
+
+# 是否启用 AutoLayout 检查（true/false）
+# 示例：
+#   enable_autolayout_check: true   # 启用 AutoLayout 检查
+#   enable_autolayout_check: false  # 禁用 AutoLayout 检查
+enable_autolayout_check: true
+
+# 是否启用 SwiftUI 检查（true/false）
+# 示例：
+#   enable_swiftui_check: true   # 启用 SwiftUI 检查
+#   enable_swiftui_check: false  # 禁用 SwiftUI 检查
+enable_swiftui_check: true
+
+# 是否启用异步代码检查（true/false）
+# 示例：
+#   enable_concurrency_check: true   # 启用异步代码检查
+#   enable_concurrency_check: false  # 禁用异步代码检查
+enable_concurrency_check: true
+
+# 是否启用沙盒检查（true/false）
+# 示例：
+#   enable_sandbox_check: true   # 启用沙盒检查
+#   enable_sandbox_check: false  # 禁用沙盒检查
+enable_sandbox_check: true
+
+# 是否启用代码风格检查（true/false）
+# 示例：
+#   enable_style_check: true   # 启用代码风格检查
+#   enable_style_check: false  # 禁用代码风格检查
+enable_style_check: true
+
+# 是否启用暗黑模式检查（true/false）
+# 示例：
+#   enable_darkmode_check: true   # 启用暗黑模式检查
+#   enable_darkmode_check: false  # 禁用暗黑模式检查
+enable_darkmode_check: true
+
+# 是否启用生命周期检查（true/false）
+# 示例：
+#   enable_lifecycle_check: true   # 启用生命周期检查
+#   enable_lifecycle_check: false  # 禁用生命周期检查
+enable_lifecycle_check: true
+
+# ============ Token 优化 ============
+
+# 是否启用场景匹配（true/false）
+# 示例：
+#   enable_scene_matching: true   # 仅加载匹配规则
+#   enable_scene_matching: false  # 加载全部规则
+enable_scene_matching: true
+
+# 是否启用规则缓存（true/false）
+# 示例：
+#   enable_rule_cache: true   # 启用规则缓存
+#   enable_rule_cache: false  # 禁用规则缓存
+enable_rule_cache: true

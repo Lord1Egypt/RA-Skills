@@ -1,0 +1,176 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-10",
+  
+  "industries": [
+    {
+      "id": "ocean_economy",
+      "name": "海洋经济",
+      "enabled": true,
+      "keywords": {
+        "primary": [
+          "海洋经济",
+          "海洋产业",
+          "海上风电",
+          "海洋能源",
+          "深海科技",
+          "海洋牧场",
+          "海水淡化"
+        ],
+        "secondary": [
+          "港口航运",
+          "海洋工程",
+          "海工装备",
+          "海洋生物医药",
+          "海洋生态"
+        ],
+        "international": [
+          "ocean economy",
+          "offshore wind",
+          "maritime industry",
+          "deep sea mining",
+          "blue economy",
+          "marine energy"
+        ]
+      },
+      "sources": {
+        "whitelist": [
+          "gov.cn",
+          "ndrc.gov.cn",
+          "soa.gov.cn",
+          "mnr.gov.cn",
+          "cnea.org.cn",
+          "china-cer.com.cn",
+          "cmema.org.cn",
+          "reuters.com",
+          "bloomberg.com",
+          "ft.com",
+          "wsj.com",
+          "offshorewind.biz",
+          "maritime-executive.com"
+        ],
+        "blacklist": [
+          "sponsored",
+          "advertisement",
+          "promo"
+        ]
+      },
+      "categories": [
+        "政策动向",
+        "海洋能源",
+        "航运物流",
+        "深海科技",
+        "生态环境",
+        "国际合作",
+        "产业投资"
+      ]
+    }
+  ],
+  
+  "search": {
+    "providers": {
+      "primary": "tavily",
+      "fallback": "brave"
+    },
+    "settings": {
+      "daysRange": 1,
+      "maxResultsPerQuery": 20,
+      "timeout": 30000,
+      "retries": 3
+    },
+    "timeFilter": {
+      "enabled": true,
+      "hours": 24
+    }
+  },
+  
+  "contentProcessing": {
+    "summary": {
+      "maxLength": 300,
+      "style": "简洁专业"
+    },
+    "tags": {
+      "maxCount": 5,
+      "minRelevance": 0.6
+    },
+    "scoring": {
+      "relevanceWeights": {
+        "keywordMatch": 0.3,
+        "sourceQuality": 0.3,
+        "recency": 0.2,
+        "contentLength": 0.2
+      },
+      "importanceWeights": {
+        "hasNumbers": 0.2,
+        "hasQuotes": 0.15,
+        "sourceAuthority": 0.35,
+        "socialSignals": 0.3
+      }
+    }
+  },
+  
+  "deduplication": {
+    "url": {
+      "enabled": true,
+      "normalize": true
+    },
+    "title": {
+      "enabled": true,
+      "similarityThreshold": 0.85
+    },
+    "content": {
+      "enabled": true,
+      "similarityThreshold": 0.75,
+      "method": "simhash"
+    },
+    "eventClustering": {
+      "enabled": true,
+      "minClusterSize": 2,
+      "keepRepresentative": true
+    }
+  },
+  
+  "expansion": {
+    "enabled": true,
+    "minRequiredArticles": 20,
+    "maxIterations": 3,
+    "strategies": [
+      "addSynonyms",
+      "addRelatedTerms",
+      "broadenTimeRange",
+      "addUpstreamDownstream"
+    ]
+  },
+  
+  "feishu": {
+    "bitable": {
+      "app_token": "JFWebb76KaFd7as501ac3UIDnxb",
+      "tables": {
+        "newsDetail": "tbl9pUAUene8mcAI",
+        "dailyReport": "tblDailyReport"
+      }
+    },
+    "message": {
+      "targetUser": "ou_59348e484376ec5bcf387cb22888dfac",
+      "cardTemplate": "industry_daily_report",
+      "fallbackToText": true
+    }
+  },
+  
+  "scheduling": {
+    "cron": "0 9 * * *",
+    "timezone": "Asia/Shanghai",
+    "retryOnFailure": {
+      "enabled": true,
+      "maxRetries": 2,
+      "delayMinutes": 30
+    }
+  },
+  
+  "logging": {
+    "level": "info",
+    "directory": "/root/.openclaw/workspace/logs/industry_news",
+    "retentionDays": 30,
+    "includeMetrics": true
+  }
+}

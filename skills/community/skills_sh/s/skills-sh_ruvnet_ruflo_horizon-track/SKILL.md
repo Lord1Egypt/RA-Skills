@@ -1,35 +1,61 @@
 ---
-name: "horizon-track"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/horizon-track"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/horizon-track"
+name: horizon-track
+description: Track long-horizon objectives across multiple sessions with milestone checkpoints, progress persistence, and drift detection
+argument-hint: "<objective-name>"
+allowed-tools: mcp__claude-flow__memory_store mcp__claude-flow__memory_search mcp__claude-flow__memory_list mcp__claude-flow__memory_retrieve mcp__claude-flow__task_list mcp__claude-flow__task_summary mcp__claude-flow__progress_check mcp__claude-flow__progress_summary mcp__claude-flow__agentdb_hierarchical-store mcp__claude-flow__agentdb_hierarchical-recall mcp__claude-flow__hooks_intelligence_pattern-store mcp__claude-flow__session_save mcp__claude-flow__session_restore Bash Read Write
 ---
 
-# horizon-track
+# Horizon Track
 
-> Indexed by skills.sh from ruvnet/ruflo
+Track long-running objectives that span multiple sessions, days, or weeks.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/horizon-track`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/horizon-track](https://skills.sh/ruvnet/ruflo/horizon-track)
+## When to use
 
-## Overview
+When an objective is too large for a single session — multi-week features, research programs, migration projects, or any work that requires persistent progress tracking across conversations.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/horizon-track
-```
+1. **Initialize horizon** — define the objective, target date, and 3-7 milestones
+2. **Store horizon** — call `mcp__claude-flow__memory_store` with namespace `horizons` and key `horizon-[name]`:
+   ```json
+   {
+     "objective": "...",
+     "created": "2026-04-28",
+     "targetDate": "2026-05-15",
+     "milestones": [
+       {"id": "m1", "name": "...", "criteria": "...", "status": "pending"},
+       {"id": "m2", "name": "...", "criteria": "...", "status": "pending"}
+     ],
+     "currentMilestone": "m1",
+     "sessions": []
+   }
+   ```
+3. **Session check-in** — at the start of each session:
+   - Recall horizon: `mcp__claude-flow__memory_retrieve` key `horizon-[name]` namespace `horizons`
+   - Review milestone status
+   - Assess drift (are we still on track?)
+   - Plan this session's contribution
+4. **Work and record** — as work progresses:
+   - Update milestone status
+   - Record session summary
+   - Store intermediate findings
+5. **Session check-out** — at the end of each session:
+   - Update horizon state in memory
+   - Record what was accomplished
+   - Note blockers or scope changes
+   - Estimate remaining effort
+6. **Milestone completion** — when a milestone is done:
+   - Verify completion criteria met
+   - Store learned patterns via `mcp__claude-flow__hooks_intelligence_pattern-store`
+   - Advance to next milestone
+7. **Drift detection** — flag when:
+   - Progress rate suggests target date will be missed
+   - Scope has grown beyond original definition
+   - Dependencies have changed
+   - Approach needs fundamental rethinking
+
+## Memory namespaces
+
+- `horizons` — active horizon definitions and state
+- `horizon-sessions` — per-session summaries keyed by `[horizon]-[date]`
+- `horizon-learnings` — patterns and insights discovered during the horizon

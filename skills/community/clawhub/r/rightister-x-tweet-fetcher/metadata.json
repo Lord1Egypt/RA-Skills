@@ -1,0 +1,39 @@
+{
+  "skill_name": "x-tweet-fetcher",
+  "version": "1.4.0",
+  "description": "Fetching tweets, replies, timelines, Chinese platforms, and Google search (zero API keys).",
+  "features": [
+    "Single tweet (zero dependencies)",
+    "Reply threads (Camofox required)",
+    "User timeline (Camofox required)",
+    "Chinese platforms (WeChat/Weibo/Bilibili/CSDN)",
+    "Google search (Camofox, zero Brave API key)",
+    "X-Tracker: tweet growth monitoring with burst detection"
+  ],
+  "dependencies": {
+    "required": ["python3.7+"],
+    "optional": ["camofox-browser", "minimax-api-key (for profile analyzer)"]
+  },
+  "commands": [
+    "python3 scripts/fetch_tweet.py --url <tweet_url>",
+    "python3 scripts/fetch_tweet.py --user <username> --limit 300",
+    "python3 scripts/fetch_china.py --url <url>",
+    "python3 scripts/tweet_growth_cli.py --add/--run/--report",
+    "python3 scripts/camofox_client.py \"<query>\""
+  ],
+  "file_structure": {
+    "scripts/fetch_tweet.py": "Main fetcher (tweet + replies + timeline)",
+    "scripts/fetch_china.py": "Chinese platform fetcher",
+    "scripts/camofox_client.py": "Camofox REST API client + camofox_search()",
+    "scripts/tweet_growth_cli.py": "X-Tracker growth monitoring",
+    "scripts/x-profile-analyzer.py": "User profile analysis (AI-powered)"
+  },
+  "embedding_sources": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "scripts/fetch_tweet.py",
+    "scripts/fetch_china.py"
+  ],
+  "last_indexed_at": "2026-03-16T16:57:00Z"
+}

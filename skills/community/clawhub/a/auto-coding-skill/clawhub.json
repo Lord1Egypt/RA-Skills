@@ -1,0 +1,25 @@
+{
+  "slug": "auto-coding-skill",
+  "name": "Auto-Coding",
+  "version": "3.7.17",
+  "description": "智能自主编码系统 v3.7.17 合规版 — 默认前台进度汇报，通知/调度显式开启，收窄自动批准，透明披露 .auto-coding 状态日志。触发词: auto-coding, Auto coding, 启动自动编码",
+  "author": "Krislu1221",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krislu1221/auto-coding-skill"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    ".gitignore",
+    "approval_rules.py",
+    "scorecard_engine.py",
+    "workflow_enhanced.py",
+    "auto_coding_workflow.py",
+    "workers/base_worker.py",
+    "state_manager.py",
+    "workflow_config.py",
+    "HEARTBEAT_TEMPLATE.md"
+  ]
+}

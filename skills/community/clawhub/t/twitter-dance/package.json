@@ -1,0 +1,37 @@
+{
+  "name": "twitter-dance",
+  "version": "1.0.0",
+  "description": "Twitter Dance - 自动发推文 Skill，基于 apidance.pro API + Kimi AI 生成",
+  "main": "src/twitter-api-client.js",
+  "scripts": {
+    "tweet": "node scripts/auto-tweet.js",
+    "draft": "node scripts/auto-tweet.js --draft-only",
+    "batch": "node scripts/auto-tweet.js --count=5",
+    "test": "echo 'Tests would go here'"
+  },
+  "keywords": [
+    "twitter",
+    "automation",
+    "apidance",
+    "ai-generated",
+    "kimi-api",
+    "social-media"
+  ],
+  "author": "屌毛 Agent",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://github.com/openclaw/skills/tree/main/twitter-dance"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Relationship Science Coach Session Brief",
+  "type": "object",
+  "required": ["goal"],
+  "properties": {
+    "goal": {"type": "string", "minLength": 1},
+    "pathway": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "conflict_deescalation",
+        "repair",
+        "perpetual_problem",
+        "attachment_cycle",
+        "connection_before_analysis",
+        "friendship_intimacy",
+        "weekly_checkin",
+        "trust_repair",
+        "desire_discrepancy",
+        "erotic_reset",
+        "pleasure_equity",
+        "kink_consent",
+        "flirting_dating",
+        "love_languages",
+        "decision_reflection",
+        "individual_coaching",
+        "ethics_redirect",
+        "safety_referral"
+      ]
+    },
+    "partners_present": {"type": ["boolean", "null"]},
+    "relationship_structure": {"type": "string"},
+    "duration_minutes": {"type": "integer", "minimum": 5, "maximum": 120},
+    "risk_flags": {"type": "array", "items": {"type": "string"}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "tone": {"type": "string"}
+  },
+  "additionalProperties": true
+}

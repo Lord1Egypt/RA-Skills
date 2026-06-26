@@ -1,0 +1,40 @@
+{
+  "id": "agent-system",
+  "name": "agent-system",
+  "version": "1.0.0",
+  "description": "OpenClaw 核心 Agent 调度系统 - 智能任务规划、执行、审查与自愈",
+
+  "skills": [
+    "./skills"
+  ],
+
+  "contracts": {
+    "tools": [
+      "agent_dispatch",
+      "agent_plan",
+      "agent_review"
+    ]
+  },
+
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否启用 agent-system 插件"
+      },
+      "maxTasks": {
+        "type": "number",
+        "default": 10,
+        "description": "最大任务拆解数量"
+      },
+      "retryLimit": {
+        "type": "number",
+        "default": 2,
+        "description": "任务失败最大重试次数"
+      }
+    },
+    "additionalProperties": true
+  }
+}

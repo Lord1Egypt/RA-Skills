@@ -1,35 +1,338 @@
 ---
-name: "color-filer"
-description: "智能文件夹颜色标注与命名规范技能。通过 emoji 色块对文件/文件夹进行颜色分类，配合序号补零排序规则，实现直观的视觉化文件管理。适用于个人知识库、项目分类、资源归档等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/color-filer"
-sourceUrl: "https://clawhub.ai/skills/color-filer"
+name: color-filer
+description: 智能文件夹颜色标注与命名规范技能。通过 emoji 色块对文件/文件夹进行颜色分类，配合序号补零排序规则，实现直观的视觉化文件管理。适用于个人知识库、项目分类、资源归档等场景。
 ---
 
-# color-filer
+# Color-Filer: 智能文件夹整理与命名规范（增强版）
 
-> 智能文件夹颜色标注与命名规范技能。通过 emoji 色块对文件/文件夹进行颜色分类，配合序号补零排序规则，实现直观的视觉化文件管理。适用于个人知识库、项目分类、资源归档等场景。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/color-filer`
-- **Source URL:** [https://clawhub.ai/skills/color-filer](https://clawhub.ai/skills/color-filer)
+Color-Filer 提供智能文件夹整理和命名规范化能力，基于表情符号分类体系和序号补零排序规则，支持文件批量重命名、目录结构优化、类型分类归档等任务。
 
-## Overview
+**🚀 v2.0 新增功能**：
+- ✅ 完整的 Dry-Run 预演模式
+- ✅ 路径安全验证（拒绝系统目录）
+- ✅ 自动备份功能（已修复）
+- ✅ 用户确认机制
+- ✅ 配置文件支持（--config 参数）
+- ✅ 自动确认支持（--yes 参数）
+- ✅ 目录重命名支持
+- ✅ 文件归档支持
+- ✅ 创建目录支持
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **批量重命名**：对多个文件/文件夹按统一规则重命名
+- **目录优化**：重组文件夹结构，提升可检索性
+- **类型分类**：按技术类型、用途、优先级分组
+- **序号标准化**：确保文件按字典序正确排序（01, 02... 10, 11）
+- **工作区整理**：完整的目录结构整理（重命名、归档、创建）
+
+---
+
+## ⚠️ 安全警告
+
+### 重要安全注意事项
+
+本技能包含批量文件操作脚本，**必须遵循以下安全规范**：
+
+1. **强制 Dry-Run 模式**
+   - 所有脚本默认为预演模式（`dry_run=True`）
+   - 仅在明确确认后才执行实际操作
+   - 预演模式会显示所有将要执行的操作，不会修改任何文件
+
+2. **目标目录验证**
+   - 脚本会检查目标路径，拒绝处理系统关键目录
+   - 禁止路径：`C:\Windows\*`, `C:\Program Files\*`, `C:\ProgramData\*`, `/root/`, `/bin/`, `/usr/`
+   - 建议仅处理用户数据目录（如 `F:\笔记`, `F:\projects`）
+
+3. **备份要求**
+   - 执行批量重命名前，强烈建议备份整个目录
+   - 脚本提供自动备份功能（默认启用）
+
+4. **用户确认**
+   - 执行实际操作前，脚本会显示完整操作预览
+   - 需要用户输入 `y` 确认后才执行
+
+5. **小规模测试**
+   - 先在子目录测试命名规则，确认无误后再全局执行
+   - 检查输出日志中的重命名映射，确保符合预期
+
+---
+
+## 工作流程
+
+### 方案 1：完整工作区整理（推荐）
+
+使用 `scripts/organize_workspace.py` 执行完整的工作区整理：
+
+#### 步骤 1：预览整理（Dry-Run 模式）
+
 ```bash
-hermes skills install clawhub/color-filer
+python scripts/organize_workspace.py "F:\笔记" --dry-run
 ```
+
+**输出内容**：
+- 📊 目录统计（文件总数、目录总数）
+- ⚠️ 未使用表情符号的文件数量
+- 📋 操作预览（将执行的所有操作）
+- 💡 安全检查结果
+
+#### 步骤 2：确认并执行
+
+```bash
+python scripts/organize_workspace.py "F:\笔记" --rename
+```
+
+**执行流程**：
+1. ✅ 安全检查（拒绝危险路径）
+2. 💾 创建备份（默认启用）
+3. 📋 显示操作预览
+4. ⚠️ 用户确认（输入 y 确认）
+5. 🚀 执行整理操作
+
+**操作类型**：
+- 📁 重命名目录（如需要）
+- 📁 创建缺失目录（如需要）
+- 📄 移动根目录散文件（如需要）
+- 📄 递归重命名文件（添加表情符号前缀）
+
+---
+
+### 方案 2：仅文件重命名
+
+使用 `scripts/rename_files.py` 仅重命名文件：
+
+#### 步骤 1：预览重命名
+
+```bash
+python scripts/rename_files.py "F:\笔记" --dry-run
+```
+
+#### 步骤 2：执行重命名
+
+```bash
+python scripts/rename_files.py "F:\笔记" --rename
+```
+
+---
+
+### 方案 3：仅分析目录
+
+使用 `scripts/analyze_folder.py` 分析目录结构（只读操作）：
+
+```bash
+python scripts/analyze_folder.py "F:\笔记"
+```
+
+**输出内容**：
+- 📊 统计摘要
+- 📋 文件类型分布（Top 10）
+- 📂 根目录列表
+- ⚠️ 问题检测
+- 💡 整理建议
+- 🎯 命名规范速查表
+
+---
+
+## 命名规范
+
+### 表情符号分类对照表
+
+| 色系 | 表情 | 含义 | 适用场景 |
+|------|------|------|----------|
+| 🔴 红色 | 🔴🚨🔥❤️🧯 | 核心/警告/紧急 | 主入口、高危操作、高频脚本 |
+| 🟠 橙色 | 🟠⚙️🛠️🧰🪛 | 工具/配置/实用 | 通用工具、环境配置、批量处理 |
+| 🟡 黄色 | 🟡✏️📝💡📒 | 学习/记录/入门 | 教学示例、草稿、学习笔记 |
+| 🟢 绿色 | 🟢✅🟩🌱🧩 | 稳定/完成/可用 | 已验证版本、正式上线、模块组件 |
+| 🔵 蓝色 | 🔵💻📚🔍🧠 | 开发/技术/调试 | 编程脚本、技术文档、算法研究 |
+| 🟣 紫色 | 🟣✨🧪🚀🧬 | 高级/实验/创新 | 内部测试、优化技巧、创新探索 |
+| ⚫⚪ 黑白 | ⚫⚪📦🗄️🧾 | 历史/归档/通用 | 旧版归档、通用模板、存档文件 |
+
+### 文件类型图标
+
+| 扩展名 | 图标 | 类型 |
+|--------|------|------|
+| .md | 📝 | Markdown 文档 |
+| .xlsx/.csv | 📊 | 电子表格 |
+| .pdf | 📄 | PDF 文档 |
+| .sh/.bat/.py | 🖥️ | 脚本文件 |
+| .conf/.ini | ⚙️ | 配置文件 |
+| .gz/.zip/.rpm | 📦 | 压缩包 |
+| .png/.jpg | 🖼️ | 图片文件 |
+| .pem/.key | 🔐 | 证书文件 |
+
+### 序号补零规则
+
+- **≤ 99 个文件**：2 位（01, 02 ... 10, 11）
+- **≤ 999 个文件**：3 位（001, 002 ... 010, 011）
+- **超过 999**：4 位（0001, 0002 ... 1000）
+
+**命名格式**：`[表情][序号]_标题.扩展名`
+
+示例：
+- `🚨_01_数据删除脚本.bat`
+- `💻_02_系统监控工具.py`
+- `📚_03_学习笔记.md`
+
+---
+
+## 资源文件
+
+### scripts/ - 可执行脚本
+
+| 脚本 | 用途 | 安全特性 |
+|------|------|----------|
+| `organize_workspace.py` | 完整工作区整理（v2.0 新增，v2.1 修复备份） | ✅ Dry-Run、✅ 路径验证、✅ 备份（v2.1）、✅ 用户确认、✅ 配置支持、✅ 自动确认 |
+| `analyze_folder.py` | 分析目录结构 | ✅ 只读操作 |
+| `rename_files.py` | 批量文件重命名 | ✅ Dry-Run、✅ 路径验证、✅ 备份 |
+| `test_security_functions.py` | 安全验证测试 | ✅ 测试工具 |
+
+### references/ - 参考文档
+
+| 文件 | 说明 |
+|--------|--------|
+| `naming_rules.md` | 完整命名规则说明 |
+| `api_reference.md` | 脚本 API 参考 |
+
+### assets/ - 模板文件
+
+| 文件 | 用途 |
+|--------|------|
+| `index_template.md` | 目录索引 Markdown 模板 |
+| `example_asset.txt` | 示例文件 |
+
+---
+
+## 使用示例
+
+### 示例 1：完整整理工作区（推荐）
+
+```bash
+# 预览整理（Dry-Run 模式）
+python scripts/organize_workspace.py "F:\笔记" --dry-run
+
+# 执行实际整理（自动备份）
+python scripts/organize_workspace.py "F:\笔记" --rename
+
+# 执行实际整理（不备份）
+python scripts/organize_workspace.py "F:\笔记" --rename --no-backup
+```
+
+### 示例 2：仅重命名文件
+
+```bash
+# 预览重命名
+python scripts/rename_files.py "F:\笔记" --dry-run
+
+# 执行实际重命名
+python scripts/rename_files.py "F:\笔记" --rename
+```
+
+### 示例 3：分析目录
+
+```bash
+# 分析目录结构（只读）
+python scripts/analyze_folder.py "F:\笔记"
+```
+
+### 示例 4：测试安全验证
+
+```bash
+# 测试路径安全验证功能
+python scripts/test_security_functions.py
+```
+
+---
+
+## 最佳实践
+
+1. **始终备份**：执行批量重命名前，先备份整个目录
+2. **Dry-Run 测试**：始终先运行 dry_run 模式，检查输出
+3. **小规模测试**：先在子目录测试命名规则
+4. **处理冲突**：当目标文件名已存在时，自动追加序号
+5. **保持语义**：命名应保留原文件核心关键词
+6. **索引同步**：重命名后同步更新索引文件
+
+---
+
+## 故障排除
+
+### 常见问题
+
+**Q: 脚本拒绝执行操作？**
+A: 检查是否触发了安全保护机制（如目标路径是系统目录）
+
+**Q: Dry-Run 输出不符合预期？**
+A: 检查 `EXT_ICONS` 和 `FILE_CATEGORY_RULES` 配置，确认表情符号映射
+
+**Q: 中文字符显示乱码？**
+A: 脚本已内置 `sys.stdout.reconfigure(encoding='utf-8')`，确保使用 Python 3+
+
+**Q: 如何自定义目录重命名和文件归档规则？**
+A: 创建配置文件（如 `docmd_config.py`），使用 `--config` 参数加载，或直接编辑 `organize_workspace.py` 中的变量
+
+---
+
+## 安全特性验证
+
+### 路径安全测试
+
+```bash
+python scripts/test_security_functions.py
+```
+
+**预期输出**：
+```
+❌ C:\Windows                   | 禁止处理系统目录
+❌ C:\Program Files             | 禁止处理系统目录
+✅ F:\笔记                      | 路径安全
+✅ C:\Users\cyrilcao\Documents  | 路径安全
+```
+
+---
+
+## 版本历史
+
+### v2.1 (2026-03-21)
+
+**Bug 修复**：
+- ✅ 修复备份功能未调用的问题
+- ✅ 添加 no_backup 属性检查
+- ✅ 在主函数中实现备份逻辑
+
+**改进**：
+- 添加 `--config` 参数支持配置文件
+- 添加 `--yes` 参数支持自动确认
+- 增强备份状态显示
+
+### v2.0 (2026-03-20)
+
+**新增功能**：
+- ✅ 完整的 Dry-Run 预演模式
+- ✅ 路径安全验证（拒绝系统目录）
+- ✅ 自动备份功能（v2.1 修复）
+- ✅ 用户确认机制
+- ✅ 目录重命名支持
+- ✅ 文件归档支持
+- ✅ 创建目录支持
+
+**新增脚本**：
+- `scripts/organize_workspace.py` - 完整工作区整理脚本
+- `scripts/test_security_functions.py` - 安全验证测试脚本
+
+**改进**：
+- 统一命名规范为 `color-filer`
+- 补充缺失的参考文档
+- 增强安全性
+
+### v1.0
+
+**初始版本**：
+- 文件重命名功能
+- 目录分析功能
+- 基本命名规则
+
+---
+
+*Color-Filer v2.0 - 基于表情符号分类体系与序号补零规则的智能文件夹整理工具*

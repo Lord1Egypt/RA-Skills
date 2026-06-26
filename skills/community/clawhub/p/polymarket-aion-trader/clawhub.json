@@ -1,0 +1,45 @@
+{
+  "emoji": "📈",
+  "primaryEnv": "AIONMARKET_API_KEY",
+  "tags": ["aionmarket", "polymarket", "trading", "prediction-market"],
+  "requires": {
+    "env": ["AIONMARKET_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AIONMARKET_API_KEY",
+      "required": true,
+      "description": "Aionmarket agent API key used for authenticated reads and trade execution."
+    },
+    {
+      "name": "WALLET_ADDRESS",
+      "required": false,
+      "description": "Polymarket wallet address used for credential verification, market context, and trade payloads."
+    },
+    {
+      "name": "POLYMARKET_API_KEY",
+      "required": false,
+      "description": "Polymarket CLOB API key used when registering wallet credentials for live trading."
+    },
+    {
+      "name": "POLYMARKET_API_SECRET",
+      "required": false,
+      "description": "Polymarket CLOB API secret used when registering wallet credentials for live trading."
+    },
+    {
+      "name": "POLYMARKET_API_PASSPHRASE",
+      "required": false,
+      "description": "Polymarket CLOB API passphrase used when registering wallet credentials for live trading."
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Optional EVM wallet private key for local EIP712 signing. Only needed when the user wants local signing instead of supplying a pre-signed order object."
+    },
+    {
+      "name": "AIONMARKET_BASE_URL",
+      "required": false,
+      "description": "Optional Aionmarket API base URL override. Default documented base URL is https://pm-t1.bxingupdate.com/bvapi."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "github-sync-skill",
+  "version": "2.0.0",
+  "description": "将本地创建或修改的 Claude Code 技能自动同步到 GitHub 仓库。支持增量同步、单技能同步、自动生成 README.md。",
+  "author": "kuiilabs",
+  "license": "MIT",
+  "keywords": ["github", "sync", "backup", "automation", "git", "skill-management"],
+  "clawhub": {
+    "skill": true
+  }
+}

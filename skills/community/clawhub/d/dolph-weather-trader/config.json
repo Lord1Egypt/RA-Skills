@@ -1,0 +1,13 @@
+{
+  "max_position_usd": 0.16,
+  "max_position": "0.16",
+  "kelly_fraction": "0.1",
+  "max_usd_per_trade": "0.16",
+  "stop_loss_pct": "0.20",
+  "take_profit_pct": "0.25",
+  "max_trades_per_run": 3,
+  "max_usd": "0.16",
+  "max_per_market": "0.16",
+  "max_position_pct": "0.05",
+  "max_bet": "0.16"
+}

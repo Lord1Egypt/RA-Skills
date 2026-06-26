@@ -1,35 +1,199 @@
 ---
-name: "Augent"
-description: "The audio & video layer for agents. 22 local MCP tools. No cloud, no API keys."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agents, audio, local, mcp, media, transcription, video, whisper]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/augent"
-sourceUrl: "https://clawhub.ai/skills/augent"
+name: augent
+description: The audio & video layer for agents. 22 local MCP tools. No cloud, no API keys.
+homepage: https://github.com/AugentDevs/Augent
+env:
+  AUGENT_AUTH_TOKEN:
+    description: Optional. Path to Twitter/X auth token file for Spaces recording. Default ~/.augent/auth.json. Only needed for X/Twitter Spaces.
+    required: false
+  AUGENT_DOWNLOAD_DIR:
+    description: Directory for downloaded audio files. Default ~/Downloads/
+    required: false
+  AUGENT_NOTES_DIR:
+    description: Directory for notes, clips, and TTS output. Default ~/Desktop/
+    required: false
+  AUGENT_MEMORY_DIR:
+    description: Directory for persistent transcription memory. Default ~/.augent/memory/
+    required: false
+metadata: {"openclaw":{"emoji":"🎙","os":["darwin","linux","win32"],"requires":{"bins":["augent-mcp","ffmpeg","yt-dlp","aria2c"]},"install":[{"id":"uv","kind":"uv","package":"augent","bins":["augent-mcp","augent","augent-web"],"label":"Install augent (uv)"},{"id":"pip","kind":"pip","package":"augent[all]","bins":["augent-mcp","augent","augent-web"],"label":"Install augent (pip)"}]}}
 ---
 
-# Augent
+# Augent — Audio & Video Intelligence for AI Agents
 
-> The audio & video layer for agents. 22 local MCP tools. No cloud, no API keys.
+Augent is an MCP server that gives your agent 22 tools for audio and video intelligence. Download from 1000+ sites via yt-dlp and aria2c, transcribe in 99 languages via faster-whisper, search by keyword or meaning via sentence-transformers, take notes, identify speakers via pyannote-audio, detect chapters, separate audio via Demucs v4, export clips, extract visual frames, record X/Twitter Spaces (requires user-configured auth token in `~/.augent/auth.json`), and generate speech via Kokoro TTS. All processing runs locally. Downloads are saved to `~/Downloads/`, notes and clips to `~/Desktop/`, transcription memory to `~/.augent/memory/`.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/augent`
-- **Source URL:** [https://clawhub.ai/skills/augent](https://clawhub.ai/skills/augent)
+## Config
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/augent
+```json
+{
+  "mcpServers": {
+    "augent": {
+      "command": "augent-mcp"
+    }
+  }
+}
 ```
+
+If `augent-mcp` is not in PATH, use `python3 -m augent.mcp` as the command instead.
+
+## Install
+
+Install via the ClawHub install button above, or use `uv tool install augent` for the base package or `uv tool install "augent[all]"` for all features. FFmpeg is required for audio processing.
+
+## Tools
+
+Augent exposes 22 MCP tools:
+
+### Core
+
+| Tool | Description |
+|------|-------------|
+| `download_audio` | Download audio from video URLs at maximum speed. Supports YouTube, Vimeo, TikTok, Twitter/X, SoundCloud, and 1000+ sites. Uses aria2c multi-connection + concurrent fragments. |
+| `transcribe_audio` | Full transcription of any audio file with per-segment timestamps. Returns text, language, duration, and segments. Cached by file hash. |
+| `search_audio` | Search audio for keywords. Returns timestamped matches with context snippets. Supports clip export. |
+| `deep_search` | Semantic search — find moments by meaning, not just keywords. Uses sentence-transformers embeddings. |
+| `search_memory` | Search across ALL stored transcriptions in one query. Keyword or semantic mode. |
+| `take_notes` | All-in-one: download audio from URL, transcribe, and save formatted notes. Supports 5 styles: tldr, notes, highlight, eye-candy, quiz. |
+| `clip_export` | Export a video clip from any URL for a specific time range. Downloads only the requested segment. |
+
+### Analysis
+
+| Tool | Description |
+|------|-------------|
+| `chapters` | Auto-detect topic chapters with timestamps using embedding similarity. |
+| `search_proximity` | Find where two keywords appear near each other (e.g., "startup" within 30 words of "funding"). |
+| `identify_speakers` | Speaker diarization — identify who speaks when. No API keys required. |
+| `separate_audio` | Isolate vocals from music/noise using Meta's Demucs v4. Feed clean vocals into transcription. |
+| `batch_search` | Search multiple audio files in parallel. Ideal for podcast libraries or interview collections. |
+
+### Utilities
+
+| Tool | Description |
+|------|-------------|
+| `text_to_speech` | Convert text to natural speech using Kokoro TTS. 54 voices, 9 languages. Runs in background. |
+| `list_files` | List media files in a directory with size info. |
+| `list_memories` | Browse all stored transcriptions by title, duration, and date. |
+| `memory_stats` | View memory statistics (file count, total duration). |
+| `clear_memory` | Clear the transcription memory to free disk space. |
+| `tag` | Add, remove, or list tags on transcriptions. Broad topic categories for organizing memories. |
+| `highlights` | Export the best moments from a transcription. Auto mode picks top moments; focused mode finds moments matching a topic. |
+| `visual` | Extract visual context from video at moments that matter. Query, auto, manual, and assist modes. Frames saved to Obsidian vault. |
+| `rebuild_graph` | Rebuild Obsidian graph view data for all transcriptions. Migrates files, computes wikilinks, generates MOC hubs. |
+| `spaces` | Download or live-record X/Twitter Spaces. Start, check status, or stop recordings. |
+
+## Usage Examples
+
+### Take notes from a video
+
+> "Take notes from https://youtube.com/watch?v=xxx"
+
+The agent calls `take_notes` which downloads, transcribes, and returns formatted notes. One tool call does everything.
+
+### Search a podcast for topics
+
+> "Search this podcast for every mention of AI regulation" — provide the file path or URL.
+
+The agent uses `search_audio` for exact keyword matches, or `deep_search` for semantic matches (finds relevant discussion even without exact words).
+
+### Transcribe and identify speakers
+
+> "Transcribe this meeting recording and tell me who said what"
+
+The agent calls `transcribe_audio` then `identify_speakers` to label each segment by speaker.
+
+### Search across all transcriptions
+
+> "Search everything I've ever transcribed for mentions of funding"
+
+The agent uses `search_memory` to search across all stored transcriptions without needing a file path.
+
+### Export a clip
+
+> "Clip the part where they talk about pricing"
+
+The agent uses `search_audio` or `deep_search` to find the moment, then `clip_export` to extract just that segment.
+
+### Separate vocals from noisy audio
+
+> "This recording has music in the background, clean it up and transcribe"
+
+The agent calls `separate_audio` to isolate vocals, then `transcribe_audio` on the clean vocals track.
+
+### Generate speech from text
+
+> "Read these notes aloud"
+
+The agent calls `text_to_speech` to generate an MP3 with natural speech. Supports multiple voices and languages.
+
+## Note Styles
+
+When using `take_notes`, the `style` parameter controls formatting:
+
+| Style | Description |
+|-------|-------------|
+| `tldr` | Shortest possible summary. One screen. Bold key terms. |
+| `notes` | Clean sections with nested bullets (default). |
+| `highlight` | Notes with callout blocks for key insights and blockquotes with timestamps. |
+| `eye-candy` | Maximum visual formatting — callouts, tables, checklists, blockquotes. |
+| `quiz` | Multiple-choice questions with answer key. |
+
+## Model Sizes
+
+`tiny` is the default and handles nearly everything. Only use larger models for heavy accents, poor audio quality, or maximum accuracy needs.
+
+| Model | Speed | Accuracy |
+|-------|-------|----------|
+| **tiny** | Fastest | Excellent (default) |
+| base | Fast | Excellent |
+| small | Medium | Superior |
+| medium | Slow | Outstanding |
+| large | Slowest | Maximum |
+
+## File Paths
+
+Augent reads and writes to these locations on your machine:
+
+| Path | Purpose |
+|------|---------|
+| `~/Downloads/` | Default directory for downloaded audio files |
+| `~/Desktop/` | Default directory for notes, clips, and TTS output |
+| `~/.augent/memory/transcriptions.db` | SQLite database for persistent transcription memory |
+| `~/.augent/memory/transcriptions/` | Markdown files for each stored transcription |
+| `~/.augent/config.yaml` | User configuration (optional) |
+| `~/.augent/auth.json` | Twitter/X authentication cookies for Spaces recording (optional, user-created) |
+
+If Obsidian is installed, visual frames are saved to the Obsidian vault's `External Files/visual/` directory. The vault path is auto-detected from Obsidian's config.
+
+## Network Access
+
+Network access is used for two purposes only:
+
+1. Downloading media from user-provided URLs via yt-dlp and aria2c
+2. Downloading ML models on first use (Whisper, sentence-transformers, pyannote, Demucs, Kokoro) from Hugging Face
+
+No telemetry. No background network activity. No data is uploaded.
+
+## ML Dependencies
+
+The `augent[all]` install includes these local ML components:
+
+| Component | Purpose | Size |
+|-----------|---------|------|
+| faster-whisper | Speech-to-text transcription | ~75MB (tiny model) |
+| sentence-transformers | Semantic search, auto-tagging, chapter detection | ~90MB |
+| pyannote-audio | Speaker diarization | ~29MB |
+| Demucs v4 | Audio source separation (vocals from noise) | ~80MB |
+| Kokoro | Text-to-speech (54 voices, 9 languages) | ~200MB |
+
+All models run locally. None require API keys or cloud services.
+
+## Requirements
+
+- Python 3.10+
+- FFmpeg (audio processing)
+- yt-dlp + aria2c (for audio downloads)
+
+## Links
+
+- [GitHub](https://github.com/AugentDevs/Augent)
+- [Documentation](https://docs.augent.app)

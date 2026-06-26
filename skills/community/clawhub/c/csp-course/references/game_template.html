@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ 变量 · 魔法宝箱闯关冒险</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;900&family=Fira+Code:wght@400;600&display=swap');
+
+  :root {
+    --bg: #FFFBF0; --deep: #1A1A2E; --purple: #7C3AED; --blue: #2563EB;
+    --teal: #0891B2; --green: #059669; --orange: #EA580C; --pink: #DB2777;
+    --yellow: #D97706; --red: #DC2626; --white: #FFFFFF; --gray: #64748B;
+    --dark: #1E293B; --code-bg: #0D1117; --card-shadow: 0 4px 24px rgba(0,0,0,.08);
+    --sidebar-w: 300px;
+  }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════ 双栏整体布局 ═══════════ */
+  .app-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* 左侧主内容区 */
+  .main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: all .3s;
+  }
+
+  /* 右侧成绩面板 */
+  .score-panel {
+    width: var(--sidebar-w);
+    background: var(--deep);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  /* ═══════════ 顶部页签导航（任务单） ═══════════ */
+  .tab-nav {
+    background: white;
+    border-bottom: 2px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+
+  .tab-nav .tab-brand {
+    padding: 14px 20px 14px 0;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--orange);
+    white-space: nowrap;
+    border-right: 1px solid #E2E8F0;
+    margin-right: 16px;
+  }
+
+  .tab-btn {
+    padding: 12px 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tab-btn:hover { color: var(--dark); background: #F8FAFC; }
+  .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+  /* 进度条 */
+  .progress-bar {
+    width: 100%; height: 8px; background: #E2E8F0;
+    border-radius: 4px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 4px;
+    transition: width .6s cubic-bezier(.4,0,.2,1);
+    background: linear-gradient(90deg, var(--orange), var(--yellow));
+  }
+
+  /* ═══════════ 页面容器 ═══════════ */
+  .page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px 20px 40px;
+    animation: fadeIn .5s ease;
+    flex: 1;
+  }
+  .page.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(20px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  @keyframes pop {
+    0% { transform:scale(.8); opacity:0; }
+    60% { transform:scale(1.1); }
+    100% { transform:scale(1); opacity:1; }
+  }
+  @keyframes shake {
+    0%,100% { transform:translateX(0); }
+    20%,60% { transform:translateX(-8px); }
+    40%,80% { transform:translateX(8px); }
+  }
+  @keyframes confetti {
+    0% { transform:translateY(0) rotate(0deg); opacity:1; }
+    100% { transform:translateY(100vh) rotate(720deg); opacity:0; }
+  }
+
+  /* ═══════════ 封面页 ═══════════ */
+  .cover-bg {
+    background: var(--deep);
+    position: relative; overflow: hidden;
+    justify-content: center;
+  }
+  .cover-bg::before {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,58,237,.15), transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-content { text-align: center; z-index: 1; max-width: 700px; }
+  .cover-badge {
+    display: inline-block; background: var(--orange); color: white;
+    padding: 8px 24px; border-radius: 20px; font-size: 14px;
+    font-weight: 700; margin-bottom: 20px; letter-spacing: 2px;
+  }
+  .cover-title {
+    font-size: 56px; font-weight: 900; color: white;
+    line-height: 1.1; margin-bottom: 12px;
+    text-shadow: 0 4px 20px rgba(0,0,0,.3);
+  }
+  .cover-sub { font-size: 18px; color: #94A3B8; margin-bottom: 40px; }
+  .cover-sub b { color: var(--yellow); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 48px; border-radius: 16px; border: none;
+    font-size: 20px; font-weight: 700; cursor: pointer;
+    font-family: inherit; transition: all .25s;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,.15); }
+  .btn:active { transform: translateY(0); }
+  .btn-primary { background: var(--orange); color: white; }
+  .btn-success { background: var(--green); color: white; }
+  .btn-start-challenge {
+    background: linear-gradient(135deg, var(--orange), var(--red));
+    color: white;
+    font-size: 22px;
+    padding: 18px 56px;
+    border-radius: 20px;
+    animation: glow 2s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(234,88,12,.4);
+  }
+  .btn-next { background: var(--blue); color: white; font-size: 18px; padding: 14px 40px; }
+  .btn-goback {
+    background: var(--dark); color: white; font-size: 16px; padding: 10px 28px;
+    border-radius: 12px;
+  }
+
+  .cover-box { margin-top: 30px; font-size: 60px; animation: pop 3s ease-in-out infinite; }
+  .cover-info { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: #94A3B8; font-size: 12px; }
+
+  /* ═══════════ 关卡头部 ═══════════ */
+  .level-header {
+    border-radius: 16px; padding: 16px 24px; color: white;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.1);
+    width: 100%; max-width: 720px;
+  }
+  .level-header .icon { font-size: 28px; }
+  .level-header .title { font-size: 20px; font-weight: 700; }
+  .level-header .subtitle { font-size: 13px; opacity: .85; }
+
+  /* ═══════════ 学习区 ═══════════ */
+  .study-section {
+    width: 100%; max-width: 720px;
+    animation: fadeIn .4s ease;
+  }
+
+  .level-info {
+    background: white; border-radius: 16px; padding: 24px;
+    box-shadow: var(--card-shadow); margin-bottom: 20px;
+    border-left: 4px solid var(--blue);
+  }
+  .level-info h3 { font-size: 16px; color: var(--blue); margin-bottom: 12px; }
+  .level-info p { font-size: 15px; color: var(--dark); line-height: 1.7; }
+
+  /* 代码块 */
+  .code-block {
+    background: var(--code-bg); border-radius: 12px; padding: 16px 20px;
+    font-family: 'Fira Code', 'Consolas', monospace; font-size: 14px;
+    color: #E6EDF3; line-height: 1.8; overflow-x: auto;
+    margin: 12px 0; position: relative;
+  }
+  .code-block::before {
+    content: ''; position: absolute; top: 12px; left: 14px;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--red);
+    box-shadow: 16px 0 0 var(--yellow), 32px 0 0 var(--green);
+  }
+  .code-block pre { padding-top: 8px; }
+  .code-block .kw { color: #FF7B72; font-weight: 600; }
+  .code-block .type { color: #FFA657; font-weight: 600; }
+  .code-block .str { color: #A5D6FF; }
+  .code-block .num { color: #79C0FF; font-weight: 600; }
+  .code-block .cmt { color: #8B949E; font-style: italic; }
+  .code-block .fn { color: #D2A8FF; font-weight: 600; }
+
+  /* 概念卡片 */
+  .concept-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px; margin: 16px 0;
+  }
+  .concept-card {
+    border-radius: 14px; padding: 18px 16px; text-align: center;
+    border: 2px solid; transition: transform .2s;
+  }
+  .concept-card:hover { transform: translateY(-4px); }
+  .concept-card .emoji { font-size: 32px; margin-bottom: 10px; }
+  .concept-card .label { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .concept-card .desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+  /* 宝箱演示 */
+  .box-demo { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 16px 0; }
+  .magic-box {
+    width: 150px; border-radius: 14px; padding: 14px;
+    text-align: center; border: 2px solid;
+    background: white; position: relative;
+  }
+  .magic-box .box-label {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    padding: 4px 16px; border-radius: 10px; font-size: 13px;
+    font-weight: 700; color: white;
+  }
+  .magic-box .box-name { font-family: 'Fira Code', monospace; font-size: 18px; font-weight: 700; margin: 8px 0; }
+  .magic-box .box-value { font-family: 'Fira Code', monospace; font-size: 16px; background: #F8FAFF; padding: 6px 12px; border-radius: 8px; border: 1px solid; display: inline-block; }
+  .magic-box .box-hint { font-size: 11px; color: var(--gray); margin-top: 6px; }
+
+  .tip-bar { background: #FFFBEB; border: 1.5px solid var(--yellow); border-radius: 12px; padding: 12px 18px; margin: 12px 0; font-size: 13px; color: var(--dark); }
+  .tip-bar b { color: var(--yellow); }
+  .tip-bar.warn { background: #FFF5F5; border-color: var(--red); }
+  .tip-bar.warn b { color: var(--red); }
+
+  .direction-demo { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+  .direction-demo .arrow { font-size: 24px; color: var(--green); font-weight: 900; }
+
+  /* 开始闯关按钮区 */
+  .challenge-start {
+    width: 100%; max-width: 720px;
+    background: linear-gradient(135deg, #FFF7ED, #FFEDD5);
+    border: 2px solid var(--orange);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .challenge-start h3 { color: var(--orange); font-size: 18px; margin-bottom: 8px; }
+  .challenge-start p { color: var(--gray); font-size: 14px; margin-bottom: 20px; }
+  .challenge-start .question-preview {
+    background: white; border-radius: 12px; padding: 14px 20px;
+    margin-bottom: 20px; display: flex; justify-content: center; gap: 24px;
+    font-size: 14px; color: var(--dark);
+  }
+  .challenge-start .question-preview span { display: flex; align-items: center; gap: 6px; }
+
+  /* ═══════════ 闯关题目区（隐藏学习内容） ═══════════ */
+  .quiz-section {
+    width: 100%; max-width: 720px;
+    background: white; border-radius: 16px; padding: 24px;
+    box-shadow: var(--card-shadow); margin-top: 0;
+    display: none;
+    animation: fadeIn .4s ease;
+  }
+  .quiz-section.active { display: block; }
+
+  .study-section.hidden { display: none; }
+
+  .quiz-section h3 {
+    font-size: 18px; font-weight: 700; color: var(--dark);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+  }
+  .quiz-section .challenge-badge {
+    background: var(--orange); color: white; padding: 4px 12px;
+    border-radius: 8px; font-size: 12px; font-weight: 700;
+  }
+
+  .quiz-question {
+    background: #F8FAFC; border-radius: 12px; padding: 16px;
+    margin-bottom: 16px; border: 1px solid #E2E8F0;
+  }
+  .quiz-question .q-text { font-size: 15px; color: var(--dark); margin-bottom: 14px; line-height: 1.6; }
+  .quiz-question .q-text code {
+    background: var(--code-bg); color: #79C0FF; padding: 2px 8px;
+    border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 14px;
+  }
+
+  /* 选项 */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    padding: 12px 18px; border-radius: 10px;
+    border: 2px solid #E2E8F0; background: white;
+    cursor: pointer; font-size: 14px; color: var(--dark);
+    font-family: inherit; text-align: left;
+    transition: all .2s; display: flex; align-items: center; gap: 10px;
+  }
+  .option-btn:hover { border-color: var(--blue); background: #EFF6FF; }
+  .option-btn .opt-label {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #F1F5F9; display: flex; align-items: center;
+    justify-content: center; font-weight: 700; font-size: 13px;
+    color: var(--gray); flex-shrink: 0;
+  }
+  .option-btn.correct { border-color: var(--green); background: #F0FDF4; }
+  .option-btn.correct .opt-label { background: var(--green); color: white; }
+  .option-btn.wrong { border-color: var(--red); background: #FFF5F5; }
+  .option-btn.wrong .opt-label { background: var(--red); color: white; }
+  .option-btn:disabled { cursor: default; opacity: .85; }
+
+  /* 判断题 */
+  .tf-buttons { display: flex; gap: 16px; justify-content: center; margin: 12px 0; }
+  .tf-btn {
+    padding: 12px 40px; border-radius: 12px; border: 2px solid;
+    font-size: 18px; font-weight: 700; cursor: pointer;
+    font-family: inherit; transition: all .2s;
+  }
+  .tf-btn.true-btn { border-color: #10B981; color: #10B981; background: white; }
+  .tf-btn.true-btn:hover { background: #F0FDF4; }
+  .tf-btn.false-btn { border-color: #EF4444; color: #EF4444; background: white; }
+  .tf-btn.false-btn:hover { background: #FFF5F5; }
+  .tf-btn.correct { color: white !important; }
+  .tf-btn.true-btn.correct { background: var(--green); }
+  .tf-btn.false-btn.correct { background: var(--red); }
+  .tf-btn.wrong { opacity: .5; }
+  .tf-btn:disabled { cursor: default; }
+
+  /* 答题结果 */
+  .quiz-result { padding: 10px 16px; border-radius: 10px; margin-top: 8px; font-size: 14px; display: none; }
+  .quiz-result.show { display: block; }
+  .quiz-result.success { background: #F0FDF4; color: var(--green); border: 1px solid #BBF7D0; }
+  .quiz-result.fail { background: #FFF5F5; color: var(--red); border: 1px solid #FECACA; }
+
+  /* ═══════════ 关卡通过页 ═══════════ */
+  .level-complete { text-align: center; padding: 40px 20px; width: 100%; max-width: 600px; }
+  .level-complete .trophy { font-size: 80px; animation: pop .6s ease; }
+  .level-complete h2 { font-size: 28px; color: var(--dark); margin: 16px 0 8px; }
+  .level-complete p { color: var(--gray); font-size: 16px; margin-bottom: 20px; }
+
+  .stars-display { display: flex; gap: 8px; justify-content: center; margin: 16px 0; }
+  .stars-display .star { font-size: 40px; color: #E2E8F0; transition: all .3s; }
+  .stars-display .star.earned { color: var(--yellow); animation: pop .4s ease; }
+
+  /* ═══════════ 结局页 ═══════════ */
+  .ending-bg {
+    background: var(--deep); color: white;
+    position: relative; overflow: hidden;
+    justify-content: center;
+  }
+  .ending-content { text-align: center; z-index: 1; max-width: 700px; padding: 20px; }
+  .ending-content h1 {
+    font-size: 48px; font-weight: 900;
+    background: linear-gradient(135deg, var(--yellow), var(--orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+  .badges-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 24px 0; }
+  .badge { padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px; }
+  .badge .star-icon { color: white; }
+
+  /* 彩纸 */
+  .confetti-piece {
+    position: fixed; width: 10px; height: 10px;
+    border-radius: 2px; top: -10px; z-index: 100;
+    animation: confetti 3s ease-in forwards;
+  }
+
+  /* ═══════════ 成绩面板样式 ═══════════ */
+  .panel-section {
+    background: #0F172A; border-radius: 14px; padding: 16px;
+    border: 1px solid #1E293B;
+  }
+  .panel-section h4 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: #94A3B8; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+  }
+
+  /* 总览 */
+  .overall-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;
+  }
+  .stat-card {
+    background: #1E293B; border-radius: 10px; padding: 12px;
+    text-align: center;
+  }
+  .stat-card .stat-num { font-size: 24px; font-weight: 900; color: var(--yellow); }
+  .stat-card .stat-label { font-size: 11px; color: #94A3B8; margin-top: 2px; }
+  .stat-card.accent .stat-num { color: var(--green); }
+
+  /* 关卡列表 */
+  .level-list { display: flex; flex-direction: column; gap: 8px; }
+  .level-item {
+    background: #1E293B; border-radius: 10px; padding: 10px 12px;
+    display: flex; align-items: center; gap: 10px;
+    transition: all .2s;
+  }
+  .level-item.locked { opacity: .4; }
+  .level-item.completed { border-left: 3px solid var(--green); }
+  .level-item.current { border-left: 3px solid var(--orange); background: #2D1B0E; }
+
+  .level-item .level-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #334155; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; font-weight: 700;
+    color: #94A3B8; flex-shrink: 0;
+  }
+  .level-item.completed .level-num { background: var(--green); color: white; }
+  .level-item.current .level-num { background: var(--orange); color: white; }
+
+  .level-item .level-info { flex: 1; min-width: 0; }
+  .level-item .level-name { font-size: 12px; font-weight: 600; color: #CBD5E1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .level-item .level-meta { font-size: 11px; color: #64748B; margin-top: 2px; }
+
+  .level-item .level-stars { font-size: 12px; }
+  .level-item .level-time { font-size: 11px; color: #64748B; }
+
+  /* 追踪表格 */
+  .trace-table { width: 100%; border-collapse: separate; border-spacing: 4px; margin: 8px 0; font-family: 'Fira Code', monospace; }
+  .trace-table th { background: var(--yellow); color: var(--deep); padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; }
+  .trace-table td { background: #1E293B; padding: 6px 10px; border-radius: 6px; text-align: center; font-size: 11px; color: #CBD5E1; border: 1px solid #334155; }
+  .trace-table td.hl { color: var(--green); font-weight: 700; }
+
+  /* 响应式 */
+  @media (max-width: 900px) {
+    .score-panel { display: none; }
+    .cover-title { font-size: 40px; }
+    .concept-cards { grid-template-columns: repeat(2, 1fr); }
+    .box-demo { flex-direction: column; align-items: center; }
+  }
+
+  /* 总复习页样式 */
+  .review-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px; margin: 12px 0;
+  }
+  .review-card {
+    background: white; border-radius: 12px; padding: 14px;
+    border: 1.5px solid #E2E8F0; display: flex; align-items: center; gap: 12px;
+  }
+  .review-card .rc-icon { font-size: 28px; flex-shrink: 0; }
+  .review-card .rc-info h4 { font-size: 13px; color: var(--dark); margin-bottom: 2px; }
+  .review-card .rc-info p { font-size: 11px; color: var(--gray); }
+  .review-card .rc-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green); margin-left: auto; flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 任务单页签导航 -->
+<!-- ════════════════════════════════════════════ -->
+<nav class="tab-nav" id="tabNav" style="display:none">
+  <div class="tab-brand">📚 任务单</div>
+  <button class="tab-btn active" onclick="switchTab('learn', this)">📖 学习资料</button>
+  <button class="tab-btn" onclick="switchTab('game', this)">🎮 闯关游戏</button>
+</nav>
+
+<div class="app-layout" id="appLayout">
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 主内容区 -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="main-area">
+
+    <!-- ═══════════ 封面页 ═══════════ -->
+    <div id="page-cover" class="page cover-bg active">
+      <div class="cover-content">
+        <div class="cover-badge">C++ 编程冒险</div>
+        <div class="cover-title">变量的<br>魔法宝箱</div>
+        <div class="cover-sub"><b>变量初探</b> · 打开宝箱，发现存数据的魔法！</div>
+        <button class="btn btn-primary" onclick="startAdventure()">🎮 开始冒险</button>
+        <div class="cover-box">📦</div>
+      </div>
+      <div class="cover-info">信息学启蒙 · C++ 基础 · 变量专题 · 小学高年级</div>
+    </div>
+
+    <!-- ═══════════ 热身关（关卡0） ═══════════ -->
+    <div id="page-0" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-0" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--blue)">
+        <span class="icon">🌟</span>
+        <div>
+          <div class="title">热身关 · 什么是变量？</div>
+          <div class="subtitle">变量，就像一个「魔法宝箱」！</div>
+        </div>
+      </div>
+
+      <!-- 学习区 -->
+      <div class="study-section" id="study-0">
+        <div class="level-info" style="border-color:var(--blue)">
+          <h3>📦 变量 = 魔法宝箱</h3>
+          <p>每个宝箱都有一个 <b style="color:var(--orange)">名字（标签）</b>，里面可以放一个 <b style="color:var(--green)">东西（数据）</b>，而且随时可以换！</p>
+          <div class="box-demo">
+            <div class="magic-box" style="border-color:var(--orange)">
+              <div class="box-label" style="background:var(--orange)">🎂 年龄</div>
+              <div class="box-name" style="color:var(--orange)">age</div>
+              <div class="box-value" style="border-color:var(--orange)">= 10</div>
+              <div class="box-hint">↑ 里面存的是 10</div>
+            </div>
+            <div class="magic-box" style="border-color:var(--green)">
+              <div class="box-label" style="background:var(--green)">🏆 分数</div>
+              <div class="box-name" style="color:var(--green)">score</div>
+              <div class="box-value" style="border-color:var(--green)">= 95</div>
+              <div class="box-hint">↑ 里面存的是 95</div>
+            </div>
+            <div class="magic-box" style="border-color:var(--purple)">
+              <div class="box-label" style="background:var(--purple)">📝 名字</div>
+              <div class="box-name" style="color:var(--purple)">name</div>
+              <div class="box-value" style="border-color:var(--purple)">= "小明"</div>
+              <div class="box-hint">↑ 里面存的是 小明</div>
+            </div>
+          </div>
+          <div class="tip-bar"><b>💡 变量三要素：</b>① 名字（给宝箱贴标签） ② 类型（宝箱能放什么） ③ 值（宝箱里放了什么）</div>
+          <div class="code-block">
+<pre><span class="type">int</span> age = <span class="num">10</span>;    <span class="cmt">// 名字叫 age，类型是 int，里面放了 10</span></pre>
+          </div>
+        </div>
+
+        <!-- 开始闯关按钮 -->
+        <div class="challenge-start" id="challenge-start-0">
+          <h3>🔥 热身关 · 闯关挑战</h3>
+          <p>先学习上面的知识，再来挑战！本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(0)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <!-- 闯关题目区 -->
+      <div class="quiz-section" id="quiz-0">
+        <h3>⚔️ 热身关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q0-1">
+          <div class="q-text">1. 变量最像下面哪个东西？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q0-1',false)"><span class="opt-label">A</span>一块石头</button>
+            <button class="option-btn" onclick="checkChoice(this,'q0-1',true)"><span class="opt-label">B</span>一个可以换东西的宝箱</button>
+            <button class="option-btn" onclick="checkChoice(this,'q0-1',false)"><span class="opt-label">C</span>一张纸</button>
+          </div>
+          <div class="quiz-result" id="result-q0-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q0-2">
+          <div class="q-text">2. 判断对错：变量的值可以改变</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q0-2',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q0-2',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q0-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第1关：创建变量 ═══════════ -->
+    <div id="page-1" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-1" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--teal)">
+        <span class="icon">🔑</span>
+        <div>
+          <div class="title">第1关 · 创建变量</div>
+          <div class="subtitle">声明 = 贴标签 | 赋值 = 放东西</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-1">
+        <div class="level-info" style="border-color:var(--teal)">
+          <h3>📝 创建变量的写法</h3>
+          <div class="code-block">
+<pre><span class="type">类型</span>  名字 = <span class="num">值</span>;
+
+<span class="cmt">// 例子：</span>
+<span class="type">int</span>    age    = <span class="num">10</span>;      <span class="cmt">// 整数宝箱，装了 10</span>
+<span class="type">double</span> height = <span class="num">1.45</span>;    <span class="cmt">// 小数宝箱，装了 1.45</span>
+<span class="type">char</span>   grade  = <span class="str">'A'</span>;     <span class="cmt">// 字符宝箱，装了 A</span>
+<span class="type">bool</span>   happy  = <span class="num">true</span>;    <span class="cmt">// 真假宝箱，装了「是」</span></pre>
+          </div>
+          <div class="tip-bar"><b>💡 记住：</b>类型 → 名字 → 等号 → 值 → 分号，每一步都不能少！</div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第1关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(1)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-1">
+        <h3>⚔️ 第1关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q1-1">
+          <div class="q-text">1. 创建一个整数变量 <code>score</code> 并赋值为 100，正确的写法是？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q1-1',false)"><span class="opt-label">A</span><code>score = 100;</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q1-1',true)"><span class="opt-label">B</span><code>int score = 100;</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q1-1',false)"><span class="opt-label">C</span><code>score int = 100;</code></button>
+          </div>
+          <div class="quiz-result" id="result-q1-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q1-2">
+          <div class="q-text">2. 判断对错：<code>int age = 10;</code> 创建后，age 的值可以再次改变</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q1-2',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q1-2',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q1-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第2关：数据类型 ═══════════ -->
+    <div id="page-2" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-2" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--purple)">
+        <span class="icon">📦</span>
+        <div>
+          <div class="title">第2关 · 数据类型</div>
+          <div class="subtitle">不同类型的宝箱只能放对应的东西</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-2">
+        <div class="level-info" style="border-color:var(--purple)">
+          <h3>📦 四种常见数据类型</h3>
+          <div class="concept-cards">
+            <div class="concept-card" style="border-color:var(--blue);background:#EFF6FF">
+              <div class="emoji">🔢</div><div class="label" style="color:var(--blue)">int 整数</div>
+              <div class="desc">没有小数点<br><code>10, -3, 0, 1000</code></div>
+            </div>
+            <div class="concept-card" style="border-color:var(--teal);background:#F0FDFA">
+              <div class="emoji">📏</div><div class="label" style="color:var(--teal)">double 小数</div>
+              <div class="desc">带小数点<br><code>3.14, -0.5, 1.45</code></div>
+            </div>
+            <div class="concept-card" style="border-color:var(--orange);background:#FFF7ED">
+              <div class="emoji">🔤</div><div class="label" style="color:var(--orange)">char 字符</div>
+              <div class="desc">单个字符，用单引号<br><code>'A', '中', '#'</code></div>
+            </div>
+            <div class="concept-card" style="border-color:var(--green);background:#F0FDF4">
+              <div class="emoji">✅</div><div class="label" style="color:var(--green)">bool 真假</div>
+              <div class="desc">只有两个值<br><code>true, false</code></div>
+            </div>
+          </div>
+          <div class="tip-bar"><b>💡 类型很重要：</b>不同类型的宝箱只能放对应的东西！不能把小数放进 int 宝箱哦～</div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第2关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(2)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-2">
+        <h3>⚔️ 第2关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q2-1">
+          <div class="q-text">1. 要存储一个学生的身高 1.55 米，应该用什么类型？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q2-1',false)"><span class="opt-label">A</span>int</button>
+            <button class="option-btn" onclick="checkChoice(this,'q2-1',true)"><span class="opt-label">B</span>double</button>
+            <button class="option-btn" onclick="checkChoice(this,'q2-2',false)"><span class="opt-label">C</span>char</button>
+            <button class="option-btn" onclick="checkChoice(this,'q2-1',false)"><span class="opt-label">D</span>bool</button>
+          </div>
+          <div class="quiz-result" id="result-q2-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q2-2">
+          <div class="q-text">2. 判断对错：<code>int</code> 类型可以存储小数 <code>3.14</code></div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q2-2',false)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q2-2',true)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q2-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第3关：赋值魔法 ═══════════ -->
+    <div id="page-3" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-3" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--green)">
+        <span class="icon">✏️</span>
+        <div>
+          <div class="title">第3关 · 赋值魔法</div>
+          <div class="subtitle">方向很重要：从右到左！</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-3">
+        <div class="level-info" style="border-color:var(--green)">
+          <h3>📝 赋值语句</h3>
+          <div class="direction-demo">
+            <div style="background:var(--code-bg);padding:12px 20px;border-radius:10px">
+              <code style="font-size:18px;font-family:'Fira Code',monospace">
+                <span style="color:var(--teal);font-weight:700">age</span>
+                <span style="color:white"> = </span>
+                <span style="color:var(--green);font-weight:700">10</span>
+                <span style="color:white">;</span>
+              </code>
+            </div>
+            <div class="arrow">←</div>
+            <div style="color:var(--dark);font-size:15px">把右边的东西，放进左边的宝箱</div>
+          </div>
+          <div class="tip-bar warn"><b>⚠️ 注意方向：</b>是 <code>=</code> 不是 <code>==</code>！赋值是从右到左！</div>
+          <div class="code-block">
+<pre><span class="type">int</span> age = <span class="num">10</span>;
+age = age + <span class="num">1</span>;    <span class="cmt">// age 变成 11（先读旧值10，加1，放回11）</span>
+
+<span class="type">int</span> score = <span class="num">80</span>;
+score = <span class="num">100</span>;       <span class="cmt">// 重新赋值，旧值80被覆盖</span>
+
+<span class="type">int</span> a = <span class="num">5</span>, b = <span class="num">3</span>;
+a = b;             <span class="cmt">// 把 b 的值复制给 a，a 变成 3</span></pre>
+          </div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第3关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(3)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-3">
+        <h3>⚔️ 第3关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q3-1">
+          <div class="q-text">1. 执行 <code>int age = 10; age = age + 1;</code> 后，age 的值是多少？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q3-1',false)"><span class="opt-label">A</span>10</button>
+            <button class="option-btn" onclick="checkChoice(this,'q3-1',true)"><span class="opt-label">B</span>11</button>
+            <button class="option-btn" onclick="checkChoice(this,'q3-1',false)"><span class="opt-label">C</span>1</button>
+            <button class="option-btn" onclick="checkChoice(this,'q3-1',false)"><span class="opt-label">D</span>21</button>
+          </div>
+          <div class="quiz-result" id="result-q3-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q3-2">
+          <div class="q-text">2. 判断对错：<code>int a = 5; a = a + 3;</code> 执行后 a 等于 8</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q3-2',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q3-2',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q3-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第4关：命名规则 ═══════════ -->
+    <div id="page-4" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-4" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--orange)">
+        <span class="icon">🏷️</span>
+        <div>
+          <div class="title">第4关 · 命名规则</div>
+          <div class="subtitle">好名字 = 好代码</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-4">
+        <div class="level-info" style="border-color:var(--orange)">
+          <h3>📝 变量命名规则</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin:12px 0">
+            <div style="display:flex;align-items:center;gap:10px;background:#F0FDF4;padding:10px 16px;border-radius:10px">
+              <span>✅</span><div>可以用 <b>字母、数字、下划线 _</b> — 如 <code>age</code>, <code>score</code>, <code>my_name</code></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#F0FDF4;padding:10px 16px;border-radius:10px">
+              <span>✅</span><div>必须以 <b>字母或下划线</b> 开头 — 如 <code>name</code>, <code>_count</code>, <code>num1</code></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#FFF5F5;padding:10px 16px;border-radius:10px">
+              <span>❌</span><div>不能用空格和特殊符号 — <code style="color:var(--red)">my name</code> <code style="color:var(--red)">my-age</code></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#FFF5F5;padding:10px 16px;border-radius:10px">
+              <span>❌</span><div>不能用 C++ <b>关键字</b> — <code style="color:var(--red)">int</code>, <code style="color:var(--red)">if</code>, <code style="color:var(--red)">for</code></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;padding:10px 16px;border-radius:10px">
+              <span>💡</span><div><b>起有意义的名字！</b> <code>age</code> 比 <code>a</code>、<code>x</code> 好得多！</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第4关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(4)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-4">
+        <h3>⚔️ 第4关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q4-1">
+          <div class="q-text">1. 下面哪个变量名是合法的？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q4-1',false)"><span class="opt-label">A</span><code>2name</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q4-1',true)"><span class="opt-label">B</span><code>my_name</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q4-1',false)"><span class="opt-label">C</span><code>for</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q4-1',false)"><span class="opt-label">D</span><code>hello world</code></button>
+          </div>
+          <div class="quiz-result" id="result-q4-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q4-2">
+          <div class="q-text">2. 判断对错：变量名可以用中文</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q4-2',false)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q4-2',true)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q4-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第5关：cin / cout ═══════════ -->
+    <div id="page-5" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-5" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--pink)">
+        <span class="icon">🚀</span>
+        <div>
+          <div class="title">第5关 · 输入与输出</div>
+          <div class="subtitle">cin 输入 | cout 输出</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-5">
+        <div class="level-info" style="border-color:var(--pink)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="background:#EFF6FF;border-radius:12px;padding:16px;border:1.5px solid var(--blue)">
+              <h3 style="color:var(--blue);margin-bottom:8px">📥 cin — 输入</h3>
+              <div class="code-block">
+<pre><span class="type">int</span> age;
+<span class="fn">cin</span> >> age;
+<span class="cmt">// 从键盘读取，存入 age</span></pre>
+              </div>
+              <p style="font-size:13px;color:var(--dark)">箭头 <code>>></code> 指向变量 = 数据流<b>进</b>宝箱</p>
+            </div>
+            <div style="background:#F0FDF4;border-radius:12px;padding:16px;border:1.5px solid var(--green)">
+              <h3 style="color:var(--green);margin-bottom:8px">📤 cout — 输出</h3>
+              <div class="code-block">
+<pre><span class="fn">cout</span> << age;
+<span class="cmt">// 把 age 显示到屏幕</span>
+
+<span class="fn">cout</span> << <span class="str">"你好"</span>;</pre>
+              </div>
+              <p style="font-size:13px;color:var(--dark)">箭头 <code><<</code> 远离变量 = 数据流<b>出</b>宝箱</p>
+            </div>
+          </div>
+          <h3 style="margin-top:16px">📋 完整程序</h3>
+          <div class="code-block">
+<pre><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using namespace</span> <span class="fn">std</span>;
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> age;
+    <span class="fn">cout</span> << <span class="str">"请输入你的年龄："</span>;
+    <span class="fn">cin</span> >> age;
+    <span class="fn">cout</span> << age;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre>
+          </div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第5关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(5)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-5">
+        <h3>⚔️ 第5关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q5-1">
+          <div class="q-text">1. 要从键盘读取一个数存入变量 <code>score</code>，正确的写法是？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q5-1',false)"><span class="opt-label">A</span><code>cin << score;</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q5-1',true)"><span class="opt-label">B</span><code>cin >> score;</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q5-1',false)"><span class="opt-label">C</span><code>score >> cin;</code></button>
+          </div>
+          <div class="quiz-result" id="result-q5-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q5-2">
+          <div class="q-text">2. 判断对错：<code>cin >> age;</code> 中的 <code>>></code> 方向表示数据从键盘流向变量</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q5-2',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q5-2',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q5-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第6关：算术运算 ═══════════ -->
+    <div id="page-6" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-6" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--blue)">
+        <span class="icon">🔢</span>
+        <div>
+          <div class="title">第6关 · 算术运算</div>
+          <div class="subtitle">用变量做加减乘除</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-6">
+        <div class="level-info" style="border-color:var(--blue)">
+          <h3>🔢 变量算术运算</h3>
+          <div class="code-block">
+<pre><span class="type">int</span> a = <span class="num">10</span>, b = <span class="num">3</span>;
+
+cout << a + b;     <span class="cmt">// 输出 13（加法）</span>
+cout << a - b;     <span class="cmt">// 输出 7（减法）</span>
+cout << a * b;     <span class="cmt">// 输出 30（乘法）</span>
+cout << a / b;     <span class="cmt">// 输出 3（整数除法）</span>
+cout << a % b;     <span class="cmt">// 输出 1（取余数）</span>
+
+<span class="cmt">// 复合赋值：</span>
+a += <span class="num">5</span>;           <span class="cmt">// a = a + 5 → a 变成 15</span>
+b *= <span class="num">2</span>;           <span class="cmt">// b = b * 2 → b 变成 6</span></pre>
+          </div>
+          <div class="tip-bar warn"><b>⚠️ 注意：</b>int 除法会舍去小数部分！<code>10 / 3 = 3</code>（不是 3.33）</div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第6关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(6)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-6">
+        <h3>⚔️ 第6关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q6-1">
+          <div class="q-text">1. 执行 <code>int a = 10, b = 3; cout << a / b;</code>，屏幕输出什么？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q6-1',false)"><span class="opt-label">A</span>3.33</button>
+            <button class="option-btn" onclick="checkChoice(this,'q6-1',true)"><span class="opt-label">B</span>3</button>
+            <button class="option-btn" onclick="checkChoice(this,'q6-1',false)"><span class="opt-label">C</span>4</button>
+            <button class="option-btn" onclick="checkChoice(this,'q6-1',false)"><span class="opt-label">D</span>1</button>
+          </div>
+          <div class="quiz-result" id="result-q6-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q6-2">
+          <div class="q-text">2. 判断对错：<code>a % b</code> 的结果是 a 除以 b 的余数</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q6-2',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q6-2',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q6-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第7关：变量追踪 ═══════════ -->
+    <div id="page-7" class="page" style="background:transparent">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-7" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--yellow)">
+        <span class="icon">🎯</span>
+        <div>
+          <div class="title">第7关 · 变量追踪</div>
+          <div class="subtitle">一步一步看变量如何变化</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-7">
+        <div class="level-info" style="border-color:var(--yellow)">
+          <h3>📊 变量追踪：一步一步执行</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div>
+              <div class="code-block" style="color:white">
+<pre><span class="type">int</span> a = <span class="num">5</span>;
+<span class="type">int</span> b = <span class="num">3</span>;
+<span class="type">int</span> c = a + b;
+a = a + <span class="num">1</span>;
+b = c - <span class="num">2</span>;
+<span class="type">int</span> d = a * b;
+cout << d;</pre>
+              </div>
+            </div>
+            <div style="background:#0F172A;border-radius:12px;padding:16px;border:1.5px solid var(--yellow)">
+              <h4 style="color:var(--yellow);margin-bottom:8px;font-size:13px">📊 变量追踪表</h4>
+              <table class="trace-table">
+                <thead><tr><th>语句</th><th>a</th><th>b</th><th>c</th><th>d</th></tr></thead>
+                <tbody>
+                  <tr><td>a=5</td><td class="hl">5</td><td>?</td><td>?</td><td>?</td></tr>
+                  <tr><td>b=3</td><td>5</td><td class="hl">3</td><td>?</td><td>?</td></tr>
+                  <tr><td>c=a+b</td><td>5</td><td>3</td><td class="hl">8</td><td>?</td></tr>
+                  <tr><td>a=a+1</td><td class="hl">6</td><td>3</td><td>8</td><td>?</td></tr>
+                  <tr><td>b=c-2</td><td>6</td><td class="hl">6</td><td>8</td><td>?</td></tr>
+                  <tr><td>d=a*b</td><td>6</td><td>6</td><td>8</td><td class="hl">36</td></tr>
+                </tbody>
+              </table>
+              <p style="color:var(--yellow);font-size:13px;text-align:center;margin-top:8px">输出结果：36</p>
+            </div>
+          </div>
+          <div class="tip-bar"><b>💡 追踪技巧：</b>按顺序一行一行执行，遇到变量赋值就更新，每一步都看清楚变量的值！</div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第7关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(7)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-7">
+        <h3>⚔️ 第7关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q7-1">
+          <div class="q-text">1. 根据上面的代码，执行 <code>int c = a + b;</code> 后，c 的值是？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q7-1',false)"><span class="opt-label">A</span>5</button>
+            <button class="option-btn" onclick="checkChoice(this,'q7-1',false)"><span class="opt-label">B</span>3</button>
+            <button class="option-btn" onclick="checkChoice(this,'q7-1',true)"><span class="opt-label">C</span>8</button>
+            <button class="option-btn" onclick="checkChoice(this,'q7-1',false)"><span class="opt-label">D</span>15</button>
+          </div>
+          <div class="quiz-result" id="result-q7-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q7-2">
+          <div class="q-text">2. 判断对错：执行完所有代码后，<code>cout << d;</code> 输出 36</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q7-2',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q7-2',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q7-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第8关：找 Bug ═══════════ -->
+    <div id="page-8" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-8" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--red)">
+        <span class="icon">🐛</span>
+        <div>
+          <div class="title">第8关 · 找 Bug</div>
+          <div class="subtitle">你是 Bug 猎人！</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-8">
+        <div class="level-info" style="border-color:var(--red)">
+          <h3>🐛 常见 Bug 类型</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;margin:12px 0">
+            <div style="background:#FFF5F5;border-radius:12px;padding:14px;border:1.5px solid var(--red)">
+              <div style="font-weight:700;color:var(--red);margin-bottom:6px">❌ Bug 1 — 变量名错误</div>
+              <div class="code-block"><pre><span class="type">int</span> 2name = <span class="num">10</span>;   <span class="cmt">// ❌ 变量名不能以数字开头！</span></pre></div>
+            </div>
+            <div style="background:#FFF5F5;border-radius:12px;padding:14px;border:1.5px solid var(--orange)">
+              <div style="font-weight:700;color:var(--orange);margin-bottom:6px">❌ Bug 2 — 赋值方向错误</div>
+              <div class="code-block"><pre>score = score * <span class="num">2</span>;  <span class="cmt">// ❌ 本意是 score * 2，但写成赋值替换了！</span></pre></div>
+            </div>
+            <div style="background:#FFF5F5;border-radius:12px;padding:14px;border:1.5px solid var(--blue)">
+              <div style="font-weight:700;color:var(--blue);margin-bottom:6px">❌ Bug 3 — 类型不匹配</div>
+              <div class="code-block"><pre><span class="type">int</span> age = <span class="str">"10"</span>;  <span class="cmt">// ❌ int 不能存字符串！</span></pre></div>
+            </div>
+          </div>
+          <div class="tip-bar"><b>💡 找 Bug 技巧：</b>① 变量名对不对 ② 赋值等号写对没 ③ 类型匹配吗</div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第8关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(8)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-8">
+        <h3>⚔️ 第8关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q8-1">
+          <div class="q-text">1. 下面哪个变量名有 Bug？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q8-1',false)"><span class="opt-label">A</span><code>my_score</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q8-1',true)"><span class="opt-label">B</span><code>int</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q8-1',false)"><span class="opt-label">C</span><code>userName</code></button>
+          </div>
+          <div class="quiz-result" id="result-q8-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q8-2">
+          <div class="q-text">2. 判断对错：<code>int n = 3.14;</code> 是合法的</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q8-2',false)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q8-2',true)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q8-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第9关：if 条件 ═══════════ -->
+    <div id="page-9" class="page">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-9" style="width:0%"></div></div>
+      <div class="level-header" style="background:var(--teal)">
+        <span class="icon">⚡</span>
+        <div>
+          <div class="title">第9关 · if 条件判断</div>
+          <div class="subtitle">用变量做判断：满足条件才执行</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-9">
+        <div class="level-info" style="border-color:var(--teal)">
+          <h3>⚡ if 条件判断</h3>
+          <div class="code-block">
+<pre><span class="type">int</span> score = <span class="num">85</span>;
+
+<span class="kw">if</span> (score >= <span class="num">60</span>) {
+    <span class="fn">cout</span> << <span class="str">"及格！"</span>;   <span class="cmt">// 条件成立，执行这里</span>
+} <span class="kw">else</span> {
+    <span class="fn">cout</span> << <span class="str">"不及格"</span>;    <span class="cmt">// 条件不成立，执行这里</span>
+}
+
+<span class="cmt">// 关系运算符：</span>
+<span class="cmt">// >  大于   <  小于   >= 大于等于   <= 小于等于</span>
+<span class="cmt">// == 等于   != 不等于</span></pre>
+          </div>
+          <div class="tip-bar"><b>💡 注意：</b>判断相等用 <code>==</code>，赋值用 <code>=</code>！别搞混了！</div>
+        </div>
+
+        <div class="challenge-start">
+          <h3>🔥 第9关 · 闯关挑战</h3>
+          <p>本关共 2 道题</p>
+          <div class="question-preview">
+            <span>📝 选择题 1 道</span>
+            <span>✅ 判断题 1 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(9)">⚔️ 开始闯关</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-9">
+        <h3>⚔️ 第9关闯关中 <span class="challenge-badge">2题</span></h3>
+
+        <div class="quiz-question" id="q9-1">
+          <div class="q-text">1. <code>int age = 15;</code>，下面哪个条件成立？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q9-1',false)"><span class="opt-label">A</span><code>age < 10</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q9-1',true)"><span class="opt-label">B</span><code>age >= 10</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q9-1',false)"><span class="opt-label">C</span><code>age == 5</code></button>
+            <button class="option-btn" onclick="checkChoice(this,'q9-1',false)"><span class="opt-label">D</span><code>age != 15</code></button>
+          </div>
+          <div class="quiz-result" id="result-q9-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q9-2">
+          <div class="q-text">2. 判断对错：<code>if (score = 100)</code> 中的 <code>=</code> 是判断 score 是否等于 100</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q9-2',false)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q9-2',true)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q9-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 第10关：总复习 ═══════════ -->
+    <div id="page-10" class="page" style="background:linear-gradient(135deg,#FFF7ED,#FFEDD5)">
+      <div class="progress-bar" style="max-width:720px;width:100%;margin-bottom:16px"><div class="progress-fill" id="prog-10" style="width:0%;background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div>
+      <div class="level-header" style="background:linear-gradient(135deg,var(--purple),var(--pink))">
+        <span class="icon">🏆</span>
+        <div>
+          <div class="title">第10关 · 总复习</div>
+          <div class="subtitle">回顾所有知识点！你掌握了多少？</div>
+        </div>
+      </div>
+
+      <div class="study-section" id="study-10">
+        <div class="level-info" style="border-color:var(--purple)">
+          <h3>📚 知识点回顾</h3>
+          <div class="review-grid">
+            <div class="review-card">
+              <div class="rc-icon">📦</div>
+              <div class="rc-info"><h4>变量 = 魔法宝箱</h4><p>有名字、类型、值</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">🔢</div>
+              <div class="rc-info"><h4>四种数据类型</h4><p>int / double / char / bool</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">✏️</div>
+              <div class="rc-info"><h4>赋值语句</h4><p>从右到左，覆盖旧值</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">🏷️</div>
+              <div class="rc-info"><h4>命名规则</h4><p>字母/下划线开头</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">📥📤</div>
+              <div class="rc-info"><h4>cin / cout</h4><p>输入 >> 输出 <<</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">🔢</div>
+              <div class="rc-info"><h4>算术运算</h4><p>+ - * / %</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">🎯</div>
+              <div class="rc-info"><h4>变量追踪</h4><p>一步步执行</p></div>
+              <div class="rc-dot"></div>
+            </div>
+            <div class="review-card">
+              <div class="rc-icon">⚡</div>
+              <div class="rc-info"><h4>if 条件</h4><p>> < >= <= == !=</p></div>
+              <div class="rc-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-start" style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border-color:var(--purple)">
+          <h3 style="color:var(--purple)">🏆 第10关 · 总复习闯关</h3>
+          <p>综合所有知识点，共 5 道题</p>
+          <div class="question-preview" style="background:white">
+            <span>📝 选择题 3 道</span>
+            <span>✅ 判断题 2 道</span>
+          </div>
+          <button class="btn btn-start-challenge" onclick="startChallenge(10)" style="background:linear-gradient(135deg,var(--purple),var(--pink))">⚔️ 开始总复习</button>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quiz-10">
+        <h3>🏆 第10关总复习 <span class="challenge-badge" style="background:var(--purple)">5题</span></h3>
+
+        <div class="quiz-question" id="q10-1">
+          <div class="q-text">1. 创建变量存姓名，应该用什么类型？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q10-1',false)"><span class="opt-label">A</span>int</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-1',false)"><span class="opt-label">B</span>double</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-1',false)"><span class="opt-label">C</span>char（单个字符）</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-1',true)"><span class="opt-label">D</span>char 或 string（字符串，存多个字符）</button>
+          </div>
+          <div class="quiz-result" id="result-q10-1"></div>
+        </div>
+
+        <div class="quiz-question" id="q10-2">
+          <div class="q-text">2. <code>int a = 5, b = 2;</code>，执行 <code>a = a * b;</code> 后 a 等于多少？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q10-2',false)"><span class="opt-label">A</span>5</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-2',false)"><span class="opt-label">B</span>2</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-2',true)"><span class="opt-label">C</span>10</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-2',false)"><span class="opt-label">D</span>7</button>
+          </div>
+          <div class="quiz-result" id="result-q10-2"></div>
+        </div>
+
+        <div class="quiz-question" id="q10-3">
+          <div class="q-text">3. 判断对错：<code>cin >> x;</code> 从屏幕读取数据存入变量 x</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q10-3',true)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q10-3',false)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q10-3"></div>
+        </div>
+
+        <div class="quiz-question" id="q10-4">
+          <div class="q-text">4. 下面哪个变量名合法？</div>
+          <div class="options">
+            <button class="option-btn" onclick="checkChoice(this,'q10-4',false)"><span class="opt-label">A</span>my-age</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-4',false)"><span class="opt-label">B</span>if</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-4',true)"><span class="opt-label">C</span>score_1</button>
+            <button class="option-btn" onclick="checkChoice(this,'q10-4',false)"><span class="opt-label">D</span>1st_score</button>
+          </div>
+          <div class="quiz-result" id="result-q10-4"></div>
+        </div>
+
+        <div class="quiz-question" id="q10-5">
+          <div class="q-text">5. 判断对错：<code>int</code> 和 <code>double</code> 变量可以互换使用</div>
+          <div class="tf-buttons">
+            <button class="tf-btn true-btn" onclick="checkTF(this,'q10-5',false)">✅ 对</button>
+            <button class="tf-btn false-btn" onclick="checkTF(this,'q10-5',true)">❌ 错</button>
+          </div>
+          <div class="quiz-result" id="result-q10-5"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ 关卡通过页 ═══════════ -->
+    <div id="page-complete" class="page">
+      <div class="level-complete">
+        <div class="trophy">🏆</div>
+        <h2 id="complete-title">恭喜通关！</h2>
+        <p id="complete-desc">你已经完成了这一关！</p>
+        <div class="stars-display">
+          <span class="star" id="star-1">★</span>
+          <span class="star" id="star-2">★</span>
+          <span class="star" id="star-3">★</span>
+        </div>
+        <button class="btn btn-next" id="btn-next-level" onclick="nextLevel()">下一关 →</button>
+        <br>
+        <button class="btn btn-goback" onclick="showPage(currentLevel)" style="margin-top:10px">🔙 回顾知识</button>
+      </div>
+    </div>
+
+    <!-- ═══════════ 结局页 ═══════════ -->
+    <div id="page-ending" class="page ending-bg">
+      <div class="ending-content">
+        <div style="font-size:60px;margin-bottom:16px">🎉</div>
+        <h1>冒险成功！</h1>
+        <p style="font-size:18px;color:#CBD5E1;margin-bottom:8px">你已掌握了「变量魔法宝箱」的全部技能！</p>
+        <div class="badges-row">
+          <div class="badge" style="background:var(--orange)"><span class="star-icon">★</span> 变量概念</div>
+          <div class="badge" style="background:var(--blue)"><span class="star-icon">★</span> 数据类型</div>
+          <div class="badge" style="background:var(--green)"><span class="star-icon">★</span> 赋值语句</div>
+          <div class="badge" style="background:var(--purple)"><span class="star-icon">★</span> cin 输入</div>
+          <div class="badge" style="background:var(--pink)"><span class="star-icon">★</span> cout 输出</div>
+          <div class="badge" style="background:var(--teal)"><span class="star-icon">★</span> 算术运算</div>
+          <div class="badge" style="background:var(--yellow)"><span class="star-icon">★</span> if 条件</div>
+        </div>
+
+        <div id="ending-stats" style="background:#0F172A;border:1.5px solid var(--yellow);border-radius:16px;padding:20px;max-width:500px;margin:20px auto;text-align:left">
+          <h4 style="color:var(--yellow);margin-bottom:12px">📊 最终成绩单</h4>
+          <div id="final-stats-content"></div>
+        </div>
+
+        <button class="btn btn-primary" onclick="restart()" style="margin-top:16px">🔄 重新挑战</button>
+      </div>
+    </div>
+
+  </div><!-- end main-area -->
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 右侧成绩面板 -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="score-panel" id="scorePanel" style="display:none">
+
+    <div style="text-align:center;padding-bottom:12px;border-bottom:1px solid #1E293B">
+      <div style="font-size:14px;font-weight:700;color:var(--yellow)">🏆 闯关成绩单</div>
+    </div>
+
+    <!-- 总体统计 -->
+    <div class="panel-section">
+      <h4>📊 总体概览</h4>
+      <div class="overall-stats">
+        <div class="stat-card">
+          <div class="stat-num" id="stat-total-correct">0</div>
+          <div class="stat-label">答对题数</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-num" id="stat-total-questions">0</div>
+          <div class="stat-label">总题数</div>
+        </div>
+      </div>
+      <div style="background:#1E293B;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;color:#94A3B8">总体正确率</span>
+        <span style="font-size:16px;font-weight:700;color:var(--yellow)" id="stat-accuracy">--</span>
+      </div>
+      <div style="background:#1E293B;border-radius:10px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:11px;color:#94A3B8">📖 学习时长</span>
+        <span style="font-size:14px;font-weight:700;color:var(--blue)" id="stat-study-time">0:00</span>
+      </div>
+      <div style="background:#1E293B;border-radius:10px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+        <span style="font-size:11px;color:#94A3B8">⚔️ 答题时长</span>
+        <span style="font-size:14px;font-weight:700;color:var(--teal)" id="stat-quiz-time">0:00</span>
+      </div>
+      <button onclick="toggleReview()" style="margin-top:10px;width:100%;padding:8px;background:#334155;border:none;border-radius:8px;color:#CBD5E1;font-size:12px;cursor:pointer;font-family:inherit">
+        📋 查看答题详情
+      </button>
+      <!-- 答题详情展开区 -->
+      <div id="reviewPanel" style="display:none;margin-top:10px;background:#1E293B;border-radius:10px;padding:10px;max-height:300px;overflow-y:auto">
+      </div>
+    </div>
+
+    <!-- 各关进度 -->
+    <div class="panel-section" style="flex:1">
+      <h4>⚔️ 各关进度</h4>
+      <div class="level-list" id="levelList">
+        <!-- JS 动态渲染 -->
+      </div>
+    </div>
+
+  </div>
+</div><!-- end app-layout -->
+
+<script>
+// ══════════════════════════════════════════
+// 游戏状态
+// ══════════════════════════════════════════
+const TOTAL_LEVELS = 11; // 0热身 + 1~9内容关 + 10总复习
+let currentLevel = -1;
+let inChallengeMode = false;
+let levelScores = {};
+let levelStartTime = {};
+let totalCorrect = 0;
+let totalQuestions = 0;
+let studyTime = 0; // 总学习时长（秒）
+let quizTime = 0;  // 总答题时长（秒）
+let studyStartTime = null; // 当前学习阶段开始时间
+let quizStartTime = null;  // 当前答题阶段开始时间
+let answeredQuestions = {};
+let timerInterval = null; // 计时器
+let currentTab = 'learn';  // 当前页签
+
+const levelNames = [
+  '热身关 · 变量初识',
+  '第1关 · 创建变量',
+  '第2关 · 数据类型',
+  '第3关 · 赋值魔法',
+  '第4关 · 命名规则',
+  '第5关 · cin / cout',
+  '第6关 · 算术运算',
+  '第7关 · 变量追踪',
+  '第8关 · 找 Bug',
+  '第9关 · if 条件',
+  '第10关 · 总复习',
+];
+
+const levelColors = [
+  'var(--blue)','var(--teal)','var(--purple)','var(--green)',
+  'var(--orange)','var(--pink)','var(--blue)','var(--yellow)',
+  'var(--red)','var(--teal)','var(--purple)',
+];
+
+const levelEmojis = ['🌟','🔑','📦','✏️','🏷️','🚀','🔢','🎯','🐛','⚡','🏆'];
+
+// 总复习题数特殊：5题
+const questionsPerLevel = [2,2,2,2,2,2,2,2,2,2,5];
+
+// ══════════════════════════════════════════
+// 页面切换
+// ══════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function startAdventure() {
+  currentLevel = 0;
+  inChallengeMode = false;
+  initLevel(0);
+  showPage(0);
+  // 显示导航和成绩面板
+  document.getElementById('tabNav').style.display = 'flex';
+  document.getElementById('scorePanel').style.display = 'flex';
+  renderScorePanel();
+  updateProgressBar();
+  // 启动计时器
+  startTimer();
+}
+
+function initLevel(level) {
+  answeredQuestions = {};
+  levelScores[level] = { correct: 0, total: questionsPerLevel[level] };
+  levelStartTime[level] = Date.now();
+  // 开始学习时长计时
+  if (!studyStartTime) studyStartTime = Date.now();
+}
+
+function restart() {
+  currentLevel = -1;
+  inChallengeMode = false;
+  levelScores = {};
+  levelStartTime = {};
+  totalCorrect = 0;
+  totalQuestions = 0;
+  studyTime = 0;
+  quizTime = 0;
+  studyStartTime = null;
+  quizStartTime = null;
+  answeredQuestions = {};
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  startTimer(); // 重启计时器
+  // 重置 UI
+  document.querySelectorAll('.study-section').forEach(s => s.classList.remove('hidden'));
+  document.querySelectorAll('.quiz-section').forEach(q => q.classList.remove('active'));
+  document.querySelectorAll('.option-btn').forEach(b => {
+    b.disabled = false; b.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.tf-btn').forEach(b => {
+    b.disabled = false; b.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.quiz-result').forEach(r => {
+    r.classList.remove('show'); r.textContent = '';
+  });
+  document.getElementById('tabNav').style.display = 'none';
+  document.getElementById('scorePanel').style.display = 'none';
+  showPage('cover');
+}
+
+// ══════════════════════════════════════════
+// 闯关开始：隐藏学习内容，显示题目
+// ══════════════════════════════════════════
+function startChallenge(level) {
+  currentLevel = level;
+  inChallengeMode = true;
+  // 重置答题状态
+  answeredQuestions = {};
+  levelScores[level] = { correct: 0, total: questionsPerLevel[level] };
+  // 切换学习时长 -> 答题时长
+  if (studyStartTime) {
+    studyTime += Math.round((Date.now() - studyStartTime) / 1000);
+    studyStartTime = null;
+  }
+  quizStartTime = Date.now();
+  // 隐藏学习区，显示闯关区
+  document.getElementById('study-' + level).classList.add('hidden');
+  document.getElementById('quiz-' + level).classList.add('active');
+  // 更新右侧面板：当前关标记
+  renderScorePanel();
+}
+
+// ══════════════════════════════════════════
+// 答题检查
+// ══════════════════════════════════════════
+function checkChoice(btn, qId, isCorrect) {
+  const question = document.getElementById(qId);
+  const buttons = question.querySelectorAll('.option-btn');
+  buttons.forEach(b => b.disabled = true);
+  if (isCorrect) {
+    btn.classList.add('correct');
+    showResult(qId, true, '✅ 正确！');
+  } else {
+    btn.classList.add('wrong');
+    showResult(qId, false, '❌ 答错了！');
+  }
+  recordAnswer(qId, isCorrect);
+}
+
+function checkTF(btn, qId, isCorrect) {
+  const question = document.getElementById(qId);
+  const buttons = question.querySelectorAll('.tf-btn');
+  buttons.forEach(b => b.disabled = true);
+  if (isCorrect) {
+    btn.classList.add('correct');
+    showResult(qId, true, '✅ 正确！');
+  } else {
+    btn.classList.add('wrong');
+    showResult(qId, false, '❌ 答错了！');
+  }
+  recordAnswer(qId, isCorrect);
+}
+
+function showResult(qId, success, msg) {
+  const el = document.getElementById('result-' + qId);
+  if (!el) return;
+  el.className = 'quiz-result show ' + (success ? 'success' : 'fail');
+  el.textContent = msg;
+}
+
+function recordAnswer(qId, correct) {
+  if (answeredQuestions[qId]) return;
+  answeredQuestions[qId] = true;
+  totalQuestions++;
+  if (levelScores[currentLevel]) {
+    levelScores[currentLevel].total++;
+  }
+  if (correct) {
+    totalCorrect++;
+    if (levelScores[currentLevel]) {
+      levelScores[currentLevel].correct++;
+    }
+  }
+  renderScorePanel();
+  checkLevelComplete();
+}
+
+function checkLevelComplete() {
+  const expectedTotal = questionsPerLevel[currentLevel];
+  const answered = Object.keys(answeredQuestions).length;
+  if (answered >= expectedTotal) {
+    // 记录本关答题时长
+    if (quizStartTime) {
+      quizTime += Math.round((Date.now() - quizStartTime) / 1000);
+      quizStartTime = null;
+    }
+    setTimeout(() => showLevelComplete(), 800);
+  }
+}
+
+// ══════════════════════════════════════════
+// 关卡通过
+// ══════════════════════════════════════════
+function showLevelComplete() {
+  const score = levelScores[currentLevel] || { correct:0, total:1 };
+  const ratio = score.correct / score.total;
+  // 普通关2题：全对2星，部分1星；第10关5题：全对3星，部分2星
+  let starCount;
+  if (currentLevel === 10) {
+    // 第10关总复习
+    starCount = ratio >= 1 ? 3 : ratio >= 0.5 ? 2 : 1;
+  } else {
+    // 普通关2题
+    starCount = score.correct; // 0/1/2题 -> 0/1/2星
+  }
+
+  document.getElementById('complete-title').textContent =
+    starCount >= 2 ? '太厉害了！全部正确！🌟' :
+    starCount >= 1 ? '做得不错！👏' : '继续加油！💪';
+
+  document.getElementById('complete-desc').textContent =
+    `${levelEmojis[currentLevel]} ${levelNames[currentLevel]} — 答对 ${score.correct}/${score.total} 题`;
+
+  // 最多显示2颗星
+  const maxStars = currentLevel === 10 ? 3 : 2;
+  for (let i = 1; i <= maxStars; i++) {
+    const star = document.getElementById('star-' + i);
+    star.classList.remove('earned');
+    star.style.display = i <= maxStars ? '' : 'none';
+    if (i <= starCount) {
+      setTimeout(() => star.classList.add('earned'), i * 200);
+    }
+  }
+
+  const btn = document.getElementById('btn-next-level');
+  if (currentLevel >= TOTAL_LEVELS - 1) {
+    btn.textContent = '🎉 查看最终成绩';
+    btn.className = 'btn btn-primary';
+    btn.style.animation = 'glow 2s ease-in-out infinite';
+  } else {
+    btn.textContent = `${levelEmojis[currentLevel + 1]} 进入${levelNames[currentLevel + 1]} →`;
+    btn.className = 'btn btn-next';
+    btn.style.animation = '';
+  }
+
+  showPage('complete');
+  renderScorePanel();
+}
+
+function nextLevel() {
+  currentLevel++;
+  inChallengeMode = false;
+  if (currentLevel >= TOTAL_LEVELS) {
+    showEnding();
+    return;
+  }
+  // 重置本关的学习/闯关状态
+  const studyEl = document.getElementById('study-' + currentLevel);
+  const quizEl = document.getElementById('quiz-' + currentLevel);
+  if (studyEl) studyEl.classList.remove('hidden');
+  if (quizEl) quizEl.classList.remove('active');
+  // 重置答题状态
+  const page = document.getElementById('page-' + currentLevel);
+  if (page) {
+    page.querySelectorAll('.option-btn').forEach(b => {
+      b.disabled = false; b.classList.remove('correct','wrong');
+    });
+    page.querySelectorAll('.tf-btn').forEach(b => {
+      b.disabled = false; b.classList.remove('correct','wrong');
+    });
+    page.querySelectorAll('.quiz-result').forEach(r => {
+      r.classList.remove('show'); r.textContent = '';
+    });
+  }
+  initLevel(currentLevel);
+  showPage(currentLevel);
+  updateProgressBar();
+  renderScorePanel();
+}
+
+function showEnding() {
+  showPage('ending');
+  launchConfetti();
+  // 渲染最终成绩单
+  document.getElementById('final-stats-content').innerHTML = generateFinalStats();
+}
+
+function generateFinalStats() {
+  let html = '';
+  for (let i = 0; i < TOTAL_LEVELS; i++) {
+    const s = levelScores[i] || { correct: 0, total: questionsPerLevel[i] };
+    const ratio = s.total > 0 ? Math.round(s.correct / s.total * 100) : 0;
+    const stars = ratio >= 100 ? '★★★' : ratio >= 50 ? '★★' : '★';
+    const t = levelStartTime[i] ? Math.round((Date.now() - levelStartTime[i]) / 1000) : 0;
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #1E293B;font-size:12px">
+      <span style="color:#CBD5E1">${levelEmojis[i]} ${levelNames[i]}</span>
+      <span style="color:${ratio>=50?'var(--green)':'var(--red)'}">${s.correct}/${s.total} (${ratio}%) ${stars}</span>
+    </div>`;
+  }
+  const acc = totalQuestions > 0 ? Math.round(totalCorrect / totalQuestions * 100) : 0;
+  html += `<div style="margin-top:8px;padding-top:8px;border-top:1.5px solid var(--yellow);display:flex;justify-content:space-between;font-size:14px">
+    <span style="color:var(--yellow);font-weight:700">总计</span>
+    <span style="color:var(--yellow);font-weight:700">${totalCorrect}/${totalQuestions} (${acc}%)</span>
+  </div>`;
+  return html;
+}
+
+function launchConfetti() {
+  const colors = ['#EA580C','#2563EB','#7C3AED','#059669','#DB2777','#D97706'];
+  for (let i = 0; i < 50; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.animationDuration = (2 + Math.random() * 3) + 's';
+    el.style.animationDelay = Math.random() * 2 + 's';
+    el.style.width = (6 + Math.random() * 8) + 'px';
+    el.style.height = (6 + Math.random() * 8) + 'px';
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+}
+
+// ══════════════════════════════════════════
+// 右侧成绩面板渲染
+// ══════════════════════════════════════════
+function renderScorePanel() {
+  // 总体统计
+  document.getElementById('stat-total-correct').textContent = totalCorrect;
+  document.getElementById('stat-total-questions').textContent = totalQuestions;
+  const acc = totalQuestions > 0 ? Math.round(totalCorrect / totalQuestions * 100) : 0;
+  document.getElementById('stat-accuracy').textContent = totalQuestions > 0 ? acc + '%' : '--';
+  // 总时长（秒 -> 分:秒）
+  const mins = Math.floor(totalTime / 60);
+  const secs = totalTime % 60;
+  document.getElementById('stat-total-time').textContent = mins + ':' + String(secs).padStart(2,'0');
+
+  // 各关列表
+  const listEl = document.getElementById('levelList');
+  let html = '';
+  for (let i = 0; i < TOTAL_LEVELS; i++) {
+    const s = levelScores[i];
+    const isCompleted = s && Object.keys(answeredQuestions).length >= 0 && (s.correct > 0 || (i === currentLevel && inChallengeMode));
+    const isCurrent = i === currentLevel;
+    const isLocked = i > currentLevel && !(s && s.correct > 0);
+
+    // 计算本关答题数（跨关卡追踪）
+    const pageQCount = questionsPerLevel[i];
+    const answeredInLevel = s ? s.total : 0;
+    const ratio = s && s.total > 0 ? s.correct / s.total : 0;
+    // 普通关2题：全对★★，部分★
+    // 第10关5题：全对★★★，部分★★★
+    let stars;
+    if (s && s.correct > 0) {
+      if (i === 10) {
+        stars = ratio >= 1 ? '★★★' : ratio >= 0.5 ? '★★' : '★';
+      } else {
+        stars = s.correct >= 2 ? '★★' : '★';
+      }
+    } else {
+      stars = '';
+    }
+    const timeStr = s && levelStartTime[i] ? Math.round((Date.now() - levelStartTime[i]) / 1000) + '秒' : '--';
+
+    html += `<div class="level-item ${isCompleted ? 'completed' : ''} ${isCurrent && !isCompleted ? 'current' : ''} ${isLocked ? 'locked' : ''}">
+      <div class="level-num">${isCompleted ? '✓' : (i + 1)}</div>
+      <div class="level-info">
+        <div class="level-name">${levelEmojis[i]} ${levelNames[i]}</div>
+        <div class="level-meta">${s && s.correct > 0 ? `答对 ${s.correct}/${s.total} · ${timeStr}` : (isCurrent ? '进行中...' : '未开始')}</div>
+      </div>
+      <div class="level-stars" style="color:${stars?'var(--yellow)':'#475569'}">${stars}</div>
+    </div>`;
+  }
+  listEl.innerHTML = html;
+}
+
+function updateProgressBar() {
+  const prog = currentLevel >= 0 ? Math.round((currentLevel / TOTAL_LEVELS) * 100) : 0;
+  const el = document.getElementById('prog-' + currentLevel);
+  if (el) el.style.width = prog + '%';
+}
+
+// ══════════════════════════════════════════
+// 计时器（每秒更新）
+// ══════════════════════════════════════════
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    // 累加当前阶段时长
+    let curStudyTime = studyTime;
+    let curQuizTime = quizTime;
+    if (studyStartTime) {
+      curStudyTime += Math.round((Date.now() - studyStartTime) / 1000);
+    }
+    if (quizStartTime) {
+      curQuizTime += Math.round((Date.now() - quizStartTime) / 1000);
+    }
+    // 更新显示
+    document.getElementById('stat-study-time').textContent = formatTime(curStudyTime);
+    document.getElementById('stat-quiz-time').textContent = formatTime(curQuizTime);
+  }, 1000);
+}
+
+function formatTime(secs) {
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+// ══════════════════════════════════════════
+// 回看答题详情
+// ══════════════════════════════════════════
+let reviewExpanded = false;
+
+function toggleReview() {
+  reviewExpanded = !reviewExpanded;
+  const panel = document.getElementById('reviewPanel');
+  panel.style.display = reviewExpanded ? 'block' : 'none';
+  if (reviewExpanded) {
+    renderReviewPanel();
+  }
+}
+
+function renderReviewPanel() {
+  const panel = document.getElementById('reviewPanel');
+  let html = '';
+  for (let i = 0; i < TOTAL_LEVELS; i++) {
+    const s = levelScores[i];
+    if (!s || s.correct === 0) continue;
+    const ratio = s.total > 0 ? Math.round(s.correct / s.total * 100) : 0;
+    // 计算星数
+    let stars;
+    if (i === 10) {
+      stars = ratio >= 100 ? '★★★' : ratio >= 50 ? '★★' : '★';
+    } else {
+      stars = s.correct >= 2 ? '★★' : s.correct >= 1 ? '★' : '';
+    }
+    const t = levelStartTime[i] ? Math.round((Date.now() - levelStartTime[i]) / 1000) : 0;
+    html += `<div style="padding:8px 0;border-bottom:1px solid #334155">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;color:#CBD5E1">${levelEmojis[i]} ${levelNames[i]}</span>
+        <span style="font-size:11px;color:var(--yellow)">${stars}</span>
+      </div>
+      <div style="font-size:11px;color:#64748B;margin-top:4px">
+        答对 ${s.correct}/${s.total} 题 · ${formatTime(t)}
+      </div>
+    </div>`;
+  }
+  if (!html) html = '<div style="font-size:12px;color:#64748B;text-align:center;padding:10px">暂无答题记录</div>';
+  panel.innerHTML = html;
+}
+
+// ══════════════════════════════════════════
+// 页签切换（任务单）- 切换时不打断答题
+// ══════════════════════════════════════════
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentTab = tab;
+  // 切换时不重置答题状态，仅更新页面视图
+  if (tab === 'learn') {
+    // 显示学习区，隐藏闯关区
+    document.querySelectorAll('.study-section').forEach(s => s.classList.remove('hidden'));
+    document.querySelectorAll('.quiz-section').forEach(q => {
+      if (!q.closest('.page').classList.contains('active')) return;
+    });
+  } else {
+    // 显示闯关区（如果正在进行闯关）
+    if (inChallengeMode && currentLevel >= 0) {
+      document.getElementById('study-' + currentLevel).classList.add('hidden');
+    }
+  }
+}
+
+// ══════════════════════════════════════════
+// 初始化
+// ══════════════════════════════════════════
+// 默认显示封面
+showPage('cover');
+</script>
+</body>
+</html>

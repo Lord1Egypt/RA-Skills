@@ -1,0 +1,39 @@
+# Feishu PDF Uploader Skill
+name: feishu-pdf-uploader
+alias: [飞书PDF上传, PDF上传]
+description: |
+  自动上传PDF文件到飞书云盘指定文件夹。
+  支持批量上传、自动分类、权限设置。
+triggers:
+  - "上传PDF到飞书"
+  - "飞书云盘上传"
+  - "保存PDF到云盘"
+  - "上传报告"
+actions:
+  - name: upload_pdf
+    description: 上传PDF到飞书云盘
+    parameters:
+      - name: file_path
+        type: string
+        required: true
+        description: PDF文件路径
+      - name: folder_token
+        type: string
+        required: true
+        description: 目标文件夹token
+      - name: file_name
+        type: string
+        required: false
+        description: 自定义文件名
+    steps:
+      - 获取飞书访问令牌
+      - 调用upload_prepare获取上传凭证
+      - 分片上传文件内容
+      - 调用upload_finish完成上传
+      - 返回上传结果和文件链接
+examples:
+  - user: "上传PDF到飞书云盘"
+    assistant: "正在上传PDF文件到飞书云盘..."
+  - user: "保存报告到云上"
+    assistant: "正在将报告保存到飞书云盘..."
+version: 1.0.0

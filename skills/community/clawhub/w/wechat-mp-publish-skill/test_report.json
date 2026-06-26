@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-03-11T11:10:00+08:00",
+  "tester": "豌豆侠",
+  "total": 16,
+  "passed": 16,
+  "failed": 0,
+  "pass_rate": 100.0,
+  "results": [
+    {
+      "test": "原始文章包含开篇引子",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "摘要包含开篇引子内容",
+      "passed": true,
+      "message": "摘要长度：103字"
+    },
+    {
+      "test": "正文包含开篇引子",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "摘要长度不超过 120 字",
+      "passed": true,
+      "message": "实际长度：103字"
+    },
+    {
+      "test": "超长标题自动截断",
+      "passed": true,
+      "message": "截断后：63字节"
+    },
+    {
+      "test": "generate_volcengine 支持 target_size 参数",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "包含最小尺寸验证逻辑",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "simple_minimal 模板可用",
+      "passed": true,
+      "message": "可用模板：['simple_minimal']"
+    },
+    {
+      "test": "模板目录存在文件",
+      "passed": true,
+      "message": "文件数：2"
+    },
+    {
+      "test": "配置中包含 volcengine",
+      "passed": true,
+      "message": "优先级：['volcengine', 'bailian', 'unsplash']..."
+    },
+    {
+      "test": "配置中包含 bailian",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "配置中包含降级方案",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "自动切换功能启用",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "配置了最大重试次数",
+      "passed": true,
+      "message": "重试次数：3"
+    },
+    {
+      "test": "HTML 内容包含中文字符",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "test": "HTML 标签完整",
+      "passed": true,
+      "message": ""
+    }
+  ]
+}

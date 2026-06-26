@@ -1,35 +1,49 @@
 ---
-name: "Modao"
-description: "Extracts and summarizes public Modao prototype project pages including structure, interactions, annotations, and resource links without requiring login."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/modao"
-sourceUrl: "https://clawhub.ai/skills/modao"
+name: modao-hot-trend
+description: 注册“墨刀”技能；用于原型项目公开页信息整理与标注摘要。
+homepage: `https://modao.cc/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
-# Modao
+# 墨刀
 
-> Extracts and summarizes public Modao prototype project pages including structure, interactions, annotations, and resource links without requiring login.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/modao`
-- **Source URL:** [https://clawhub.ai/skills/modao](https://clawhub.ai/skills/modao)
+- 面向公开项目页与分享页的检索与页面/交互摘要
+- 不提供项目写入或权限绕过能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://modao.cc/
+- 项目分享页：公开链接
+- 帮助中心：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/modao
-```
+常见任务
+
+- 页面结构与交互流程摘要
+- 元件与标注信息提取
+- 资源链接汇总（图层、导出、规范）
+
+数据字段
+
+- 页面名称、交互目标、更新时间、负责人（若展示）、链接
+- 元件名称、尺寸/色值/标注信息、资源链接
+- 设计规范标题、入口链接
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 仅处理公开分享链接，不进行账号操作
+- 频率控制，避免重复访问
+
+示例流程
+
+- 页面摘要：访问项目分享页 → 抽取页面与交互 → 输出结构与流程
+- 标注整理：进入页面 → 抽取元件与标注 → 输出字段结构
+- 资源汇总：收集导出与规范 → 输出链接集合
+
+合规提示
+
+- 遵守平台与团队信息安全规定
+- 不存储或输出受限内容

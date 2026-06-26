@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>voiceclaw</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d0d0d;
+      color: #e0e0e0;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 14px 20px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header h1 { font-size: 18px; font-weight: 600; color: #fff; }
+    #phase-badge {
+      margin-left: auto;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #2a2a2a;
+      color: #888;
+    }
+    #phase-badge.watching  { background: #1a3a1a; color: #4caf50; }
+    #phase-badge.triggered { background: #3a2a00; color: #ff9800; }
+    #phase-badge.busy      { background: #0a1a3a; color: #64b5f6; }
+    #phase-badge.playing   { background: #2a1a3a; color: #ba68c8; }
+
+    #history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+    .msg.user {
+      align-self: flex-end;
+      background: #1e3a5f;
+      color: #cce4ff;
+      border-bottom-right-radius: 4px;
+    }
+    .msg.assistant {
+      align-self: flex-start;
+      background: #1e1e1e;
+      color: #e0e0e0;
+      border: 1px solid #2a2a2a;
+      border-bottom-left-radius: 4px;
+    }
+
+    footer {
+      padding: 14px 20px;
+      background: #111;
+      border-top: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #status-line {
+      font-size: 12px;
+      color: #666;
+      font-family: ui-monospace, monospace;
+      min-height: 16px;
+    }
+    #controls { display: flex; gap: 10px; }
+    
+    .ctrl-btn {
+      flex: 1;
+      font-size: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    
+    #btn-start {
+      background: #1a3a1a;
+      color: #4caf50;
+    }
+    #btn-start:hover { background: #2a4a2a; }
+    
+    #btn-stop {
+      background: #3a1a1a;
+      color: #f44336;
+    }
+    #btn-stop:hover { background: #4a2a2a; }
+    
+    #btn-action {
+      background: #1a3a1a;
+      color: #4caf50;
+    }
+    #btn-action:hover { background: #2a4a2a; }
+    #btn-action.active {
+      background: #3a2a00;
+      color: #ff9800;
+    }
+    #btn-action.active:hover { background: #4a3a10; }
+    #btn-action.skip {
+      background: #1a2a3a;
+      color: #64b5f6;
+    }
+    #btn-action.skip:hover { background: #2a3a4a; }
+    
+    .hidden { display: none !important; }
+    
+    #clear-btn {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid #2a2a2a;
+      background: transparent;
+      color: #555;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    #clear-btn:hover { color: #888; border-color: #444; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🦞 voiceclaw</h1>
+    <span id="phase-badge">停止中</span>
+  </header>
+
+  <div id="history"></div>
+
+  <footer>
+    <div id="status-line">「開始」を押してウェイクワードで呼びかけてください</div>
+    <div id="controls">
+      <button id="btn-start" class="ctrl-btn">開始</button>
+      <button id="btn-stop" class="ctrl-btn hidden">停止</button>
+      <button id="btn-action" class="ctrl-btn hidden">認識</button>
+      <button id="clear-btn" title="履歴をクリア">🗑</button>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  const historyEl  = document.getElementById('history');
+  const statusLine = document.getElementById('status-line');
+  const badge      = document.getElementById('phase-badge');
+  const btnStart   = document.getElementById('btn-start');
+  const btnStop    = document.getElementById('btn-stop');
+  const btnAction  = document.getElementById('btn-action');
+  const clearBtn   = document.getElementById('clear-btn');
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    statusLine.textContent = 'SpeechRecognitionが使えません。Chromeで開いてください。';
+    btnStart.disabled = true;
+    return;
+  }
+
+  // ---- Web Audio ----
+  let audioCtx = null;
+  let currentSource = null; // Track current audio source for skip
+  let skipRequested = false;
+  
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  // ---- config (loaded from server) ----
+  let WAKE_WORDS = ['アリス']; // fallback
+  let STT_LANG = 'ja-JP';
+
+  async function loadConfig() {
+    try {
+      const res = await fetch('/api/config');
+      const cfg = await res.json();
+      if (cfg.wakeWords?.length) {
+        // Sort longest first for greedy matching
+        WAKE_WORDS = cfg.wakeWords.slice().sort((a, b) => b.length - a.length);
+      }
+      if (cfg.sttLang) STT_LANG = cfg.sttLang;
+    } catch {}
+  }
+
+  function wakeWordLabel() {
+    return '「' + WAKE_WORDS[WAKE_WORDS.length - 1] + '」'; // shortest/simplest
+  }
+
+  function findWakeWord(text) {
+    for (const w of WAKE_WORDS) {
+      const idx = text.indexOf(w);
+      if (idx !== -1) return { idx, len: w.length };
+    }
+    return null;
+  }
+
+  // ---- conversation history ----
+  let messages = []; // { role, content }[]
+
+  function addMessage(role, content) {
+    messages.push({ role, content });
+    const div = document.createElement('div');
+    div.className = 'msg ' + role;
+    div.textContent = content;
+    historyEl.appendChild(div);
+    historyEl.scrollTop = historyEl.scrollHeight;
+  }
+
+  function clearHistory() {
+    messages = [];
+    historyEl.innerHTML = '';
+  }
+
+  // ---- TTS ----
+  function cleanForTTS(text) {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/`[^`]+`/g, '')
+      .replace(/#+\s/g, '')
+      .trim();
+  }
+
+  async function fetchAudioBuffer(text) {
+    const clean = cleanForTTS(text);
+    if (!clean) return null;
+    const res = await fetch('/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: clean }),
+    });
+    if (!res.ok) return null;
+    const arrayBuf = await res.arrayBuffer();
+    const ctx = getAudioCtx();
+    return ctx.decodeAudioData(arrayBuf);
+  }
+
+  function playAudioBuffer(audioBuf) {
+    return new Promise((resolve) => {
+      if (!audioBuf || skipRequested) return resolve();
+      const ctx = getAudioCtx();
+      const source = ctx.createBufferSource();
+      source.buffer = audioBuf;
+      source.connect(ctx.destination);
+      source.onended = () => {
+        currentSource = null;
+        resolve();
+      };
+      currentSource = source;
+      source.start(0);
+    });
+  }
+  
+  function skipPlayback() {
+    skipRequested = true;
+    if (currentSource) {
+      try { currentSource.stop(); } catch {}
+      currentSource = null;
+    }
+  }
+
+  // ---- phase ----
+  let phase = 'idle';
+  let recognition = null;
+  let awaitingCommand = false;
+  let directMode = false; // true = always listen (no wake word needed)
+
+  function setPhase(p) {
+    phase = p;
+    const labels = { 
+      idle: '停止中', 
+      watching: directMode ? '🟠 認識中' : '🟢 待受中', 
+      triggered: '🟠 入力中', 
+      busy: '🔵 処理中',
+      playing: '🟣 再生中'
+    };
+    badge.textContent = labels[p] || p;
+    badge.className = p === 'watching' && directMode ? 'triggered' : p;
+    
+    // Update button visibility and labels
+    if (p === 'idle') {
+      btnStart.classList.remove('hidden');
+      btnStop.classList.add('hidden');
+      btnAction.classList.add('hidden');
+    } else {
+      btnStart.classList.add('hidden');
+      btnStop.classList.remove('hidden');
+      btnAction.classList.remove('hidden');
+      
+      if (p === 'playing') {
+        btnAction.textContent = 'スキップ';
+        btnAction.className = 'ctrl-btn skip';
+      } else {
+        btnAction.textContent = directMode ? '🟠 認識' : '🟢 待受';
+        btnAction.className = directMode ? 'ctrl-btn active' : 'ctrl-btn';
+      }
+    }
+  }
+
+  function setStatus(s) { statusLine.textContent = s; }
+
+  // ---- streaming command handler (sentence-level pipeline TTS) ----
+  async function handleCommand(commandText) {
+    setPhase('busy');
+    setStatus('送信中...');
+    messages.push({ role: 'user', content: commandText });
+    addMessage('user', commandText);
+
+    // We'll build the assistant bubble incrementally
+    const assistantDiv = document.createElement('div');
+    assistantDiv.className = 'msg assistant';
+    historyEl.appendChild(assistantDiv);
+
+    // TTS pipeline: queue of { audioBufPromise }
+    const ttsQueue = [];
+    let fullText = '';
+    let sentenceCount = 0;
+    skipRequested = false;
+
+    function enqueueTTS(sentence) {
+      sentenceCount++;
+      const idx = sentenceCount;
+      setStatus(`TTS生成中... (文${idx})`);
+      const bufPromise = fetchAudioBuffer(sentence);
+      ttsQueue.push(bufPromise);
+    }
+
+    // Playback loop runs concurrently — plays buffers in order as they resolve
+    async function playbackLoop() {
+      let i = 0;
+      while (!skipRequested) {
+        if (i < ttsQueue.length) {
+          setPhase('playing');
+          const buf = await ttsQueue[i];
+          if (skipRequested) break;
+          setStatus(`読み上げ中... (文${i + 1}/${ttsQueue.length})`);
+          await playAudioBuffer(buf);
+          i++;
+        } else if (streamDone) {
+          break;
+        } else {
+          // Wait a bit for more sentences
+          await new Promise(r => setTimeout(r, 50));
+        }
+      }
+    }
+
+    let streamDone = false;
+
+    try {
+      const res = await fetch('/api/chat-stream', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages }),
+      });
+
+      if (!res.ok) throw new Error(`chat-stream failed: ${res.status}`);
+
+      // Start playback loop in parallel
+      const playbackPromise = playbackLoop();
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let lineBuf = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        lineBuf += decoder.decode(value, { stream: true });
+        const lines = lineBuf.split('\n');
+        lineBuf = lines.pop() ?? '';
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const raw = line.slice(6).trim();
+          if (!raw) continue;
+          try {
+            const evt = JSON.parse(raw);
+            if (evt.error) throw new Error(evt.error);
+            if (evt.sentence) {
+              fullText += (fullText ? '' : '') + evt.sentence;
+              assistantDiv.textContent = fullText;
+              historyEl.scrollTop = historyEl.scrollHeight;
+              enqueueTTS(evt.sentence);
+            }
+            if (evt.done) {
+              if (evt.fullText) {
+                fullText = evt.fullText;
+                assistantDiv.textContent = fullText;
+              }
+            }
+          } catch (e) {
+            if (e.message?.startsWith('chat-stream') || e.message?.startsWith('OpenClaw')) throw e;
+          }
+        }
+      }
+
+      streamDone = true;
+      messages.push({ role: 'assistant', content: fullText });
+
+      // Wait for all TTS playback to finish
+      await playbackPromise;
+
+    } catch (err) {
+      streamDone = true;
+      setStatus('エラー: ' + (err?.message || String(err)));
+    } finally {
+      awaitingCommand = false;
+      skipRequested = false;
+      if (phase !== 'idle') {
+        setPhase('watching');
+        setStatus(directMode ? '話しかけてください...' : wakeWordLabel() + 'と呼びかけてください');
+      }
+    }
+  }
+
+  // ---- recognition ----
+  function onResult(event) {
+    if (phase === 'busy' || phase === 'playing') return;
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      const result  = event.results[i];
+      const text    = result[0].transcript.trim();
+      const isFinal = result.isFinal;
+      const wakeMatch = findWakeWord(text);
+      const hasWake = !!wakeMatch;
+
+      // Direct mode: every final utterance is a command
+      if (directMode && phase === 'watching') {
+        if (isFinal && text) {
+          handleCommand(text); return;
+        } else {
+          setStatus('👂 ' + text);
+        }
+        continue;
+      }
+
+      if (awaitingCommand) {
+        if (hasWake) {
+          const afterWake = text.slice(wakeMatch.idx + wakeMatch.len).replace(/^[、。,.\s]+/, '').trim();
+          if (afterWake && isFinal) { handleCommand(afterWake); return; }
+          setStatus('コマンドを話してください... 👂 ' + text);
+        } else if (isFinal && text) {
+          handleCommand(text); return;
+        } else {
+          setStatus('コマンドを話してください... 👂 ' + text);
+        }
+      } else if (phase === 'watching') {
+        if (hasWake) {
+          const afterWake = text.slice(wakeMatch.idx + wakeMatch.len).replace(/^[、。,.\s]+/, '').trim();
+          if (afterWake && isFinal) {
+            setPhase('triggered');
+            handleCommand(afterWake); return;
+          } else {
+            awaitingCommand = true;
+            setPhase('triggered');
+            setStatus('コマンドを話してください...');
+          }
+        } else {
+          setStatus('👂 ' + text + (isFinal ? '' : ''));
+        }
+      }
+    }
+  }
+
+  function startWatching() {
+    if (recognition) return;
+    recognition = new SpeechRecognition();
+    recognition.lang = STT_LANG;
+    recognition.interimResults = true;
+    recognition.continuous = true;
+    recognition.onresult = onResult;
+    recognition.onerror = (e) => { if (e.error !== 'no-speech') setStatus('認識エラー: ' + e.error); };
+    recognition.onend = () => {
+      if (phase !== 'idle' && phase !== 'busy' && phase !== 'playing') {
+        try { recognition.start(); } catch {}
+      }
+    };
+    try {
+      recognition.start();
+      setPhase('watching');
+      awaitingCommand = false;
+      setStatus(directMode ? '話しかけてください...' : wakeWordLabel() + 'と呼びかけてください');
+    } catch (e) {
+      setStatus('開始失敗: ' + e);
+      recognition = null;
+    }
+  }
+
+  function stopWatching() {
+    skipPlayback();
+    setPhase('idle');
+    awaitingCommand = false;
+    if (recognition) { try { recognition.stop(); } catch {} recognition = null; }
+    setStatus('停止しました');
+  }
+  
+  function toggleMode() {
+    directMode = !directMode;
+    if (phase === 'watching' || phase === 'triggered') {
+      awaitingCommand = false;
+      setPhase('watching');
+      setStatus(directMode ? '話しかけてください...' : wakeWordLabel() + 'と呼びかけてください');
+    }
+  }
+
+  // ---- Event handlers ----
+  btnStart.addEventListener('click', async () => {
+    getAudioCtx();
+    await loadConfig();
+    startWatching();
+  });
+  
+  btnStop.addEventListener('click', () => {
+    stopWatching();
+  });
+  
+  btnAction.addEventListener('click', () => {
+    if (phase === 'playing') {
+      skipPlayback();
+    } else {
+      toggleMode();
+    }
+  });
+
+  clearBtn.addEventListener('click', () => { clearHistory(); setStatus('履歴をクリアしました'); });
+})();
+</script>
+</body>
+</html>

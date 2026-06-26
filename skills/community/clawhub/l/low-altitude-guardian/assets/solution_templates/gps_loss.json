@@ -1,0 +1,73 @@
+{
+  "template_id": "SOL-NAV-001",
+  "name": "GPS信号丢失应对方案",
+  "crisis_type": "navigation_failure.gps_loss",
+  "applicable_levels": ["L2", "L3"],
+  "applicable_devices": ["multirotor", "fixed_wing", "evtol", "delivery_vehicle"],
+  "version": "1.0.0",
+  "preconditions": {
+    "gps_satellites": "<4",
+    "imu_available": true,
+    "visual_positioning_available": "optional",
+    "last_known_position_age_s": "<30"
+  },
+  "actions": [
+    {
+      "step": 1,
+      "action": "switch_navigation_mode",
+      "params": {"mode": "non_gps", "use_visual": true, "use_imu_dead_reckoning": true},
+      "timeout_ms": 1000,
+      "description": "切换至非GPS导航模式，启用视觉定位和IMU航位推算"
+    },
+    {
+      "step": 2,
+      "action": "hold_position",
+      "params": {"mode": "optical_flow_hold", "duration_s": 10},
+      "timeout_ms": 12000,
+      "description": "悬停稳定，评估非GPS导航精度"
+    },
+    {
+      "step": 3,
+      "action": "evaluate_navigation_quality",
+      "params": {"min_acceptable_drift": 2.0},
+      "timeout_ms": 3000,
+      "description": "评估备用导航质量，如果漂移可接受则继续，否则立即降落"
+    },
+    {
+      "step": 4,
+      "action": "return_to_last_known_good_gps",
+      "params": {"max_speed": 5, "altitude_hold": true},
+      "timeout_ms": null,
+      "condition": "nav_quality >= acceptable",
+      "description": "低速返回最后有GPS信号的位置"
+    },
+    {
+      "step": 5,
+      "action": "emergency_landing",
+      "params": {"descent_rate": 1.0, "use_lidar_altimeter": true},
+      "timeout_ms": 30000,
+      "condition": "nav_quality < acceptable OR battery_critical",
+      "description": "导航质量不可接受时就地安全降落"
+    }
+  ],
+  "expected_outcome": {
+    "device_status": "正常",
+    "payload_status": "完好",
+    "human_risk": "none",
+    "mission_status": "延迟或中止"
+  },
+  "fallback": "multi_sensor_failure",
+  "historical_success_rate": 0.88,
+  "risk_assessment": {
+    "residual_risks": [
+      "IMU航位推算随时间累积误差",
+      "视觉定位在低纹理区域可能失效",
+      "可能偏入禁飞区而不自知"
+    ],
+    "mitigation": [
+      "严格限制无GPS飞行时长",
+      "持续尝试重新捕获GPS信号",
+      "使用高度计和气压计维持安全高度"
+    ]
+  }
+}

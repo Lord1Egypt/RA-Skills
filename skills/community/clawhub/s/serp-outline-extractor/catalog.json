@@ -1,0 +1,13 @@
+{
+  "skill_id": "skill_serp_outline_extractor",
+  "slug": "serp-outline-extractor",
+  "title": "SERP Outline Extractor",
+  "summary": "Generate a search-informed outline from a keyword or query with explicit intent classification, likely section patterns, FAQs, and comparison angles.",
+  "category": "content",
+  "archetype": "outline_generator",
+  "variant": "serp_first",
+  "version": "0.2.0",
+  "tags": ["seo", "serp", "outline", "content", "brief"],
+  "status": "draft",
+  "visibility": "internal"
+}

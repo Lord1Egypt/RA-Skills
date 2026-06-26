@@ -1,0 +1,21 @@
+{
+  "name": "sanxin_form_filler",
+  "version": "1.0.0",
+  "description": "智能申报表填写工具",
+  "author": "小龙虾",
+  "license": "MIT",
+  "keywords": ["申报表", "填写", "Word", "表格"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "engines": {
+    "openclaw": ">=2026.1.0"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/form_filler.py",
+    "scripts/example_usage.py",
+    "README.md"
+  ]
+}

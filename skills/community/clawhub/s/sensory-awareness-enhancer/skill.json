@@ -1,0 +1,24 @@
+{
+  "name": "Sensory Awareness Enhancer",
+  "slug": "sensory-awareness-enhancer",
+  "version": "1.0.0",
+  "description": "Develops heightened sensory awareness to deepen present-moment experience and somatic intelligence.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "sensory",
+    "mindfulness",
+    "body-awareness",
+    "presence"
+  ],
+  "trigger_keywords": [
+    "sensory awareness practice",
+    "body scan exercises",
+    "present moment",
+    "somatic awareness",
+    "mindful sensing"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

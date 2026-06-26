@@ -1,0 +1,16 @@
+{
+  "session_id": "sess_demo_001",
+  "task_id": "task_openclaw_skill",
+  "goal": "Build and test an OpenClaw skill for long-term agent memory routing",
+  "step_role": "planner",
+  "user_constraints": [
+    "Use English only.",
+    "Keep the explanation implementation-focused.",
+    "Do not turn this into plain document RAG."
+  ],
+  "recent_failures": ["FTS query broke due to punctuation"],
+  "unresolved_questions": [
+    "how to structure skill files",
+    "how to refresh stale memories"
+  ]
+}

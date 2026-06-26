@@ -1,0 +1,146 @@
+{
+   "extensionDescription": {
+      "description": "Description of the extension.",
+      "message": "'Çerezleri hala umursamıyorum' uzantısının topluluk sürümü (Avast yok)"
+   },
+   "extensionName": {
+      "description": "Name of the extension.",
+      "message": "Çerezleri hala umursamıyorum"
+   },
+   "generalIssueOption": {
+      "description": "The option text for a general issue",
+      "message": "Genel sorun (notlar gerekir)"
+   },
+   "genericErrorBack": {
+      "description": "Back button after error",
+      "message": "Geri"
+   },
+   "genericErrorTitle": {
+      "description": "Genereric error title",
+      "message": "Bir sorun oluştu"
+   },
+   "genericErrorTryAgain": {
+      "description": "Try again later message",
+      "message": "Daha sonra tekrar deneyin.."
+   },
+   "menuDisable": {
+      "description": "Menu option.",
+      "message": "$HOSTNAME$ üzerinde uzantıyı devre dışı bırak",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "menuEnable": {
+      "description": "Menu option.",
+      "message": "$HOSTNAME$ üzerinde uzantıyı etkinleştir",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "menuIdle": {
+      "description": "Menu option visible when enabling/disabling doesn't work.",
+      "message": "Uzantı bu sitede çalışmıyor"
+   },
+   "menuLoadingText": {
+      "description": "Loading messsage",
+      "message": "Yükleniyor..."
+   },
+   "menuReport": {
+      "description": "Menu option.",
+      "message": "Çerez uyarısını bildir"
+   },
+   "menuSupport": {
+      "description": "Menu option.",
+      "message": "Bu projeye destek ol"
+   },
+   "modalIssueDescription": {
+      "description": "Explanation of what a modal issue is",
+      "message": "Bu sayfada bir kip ile ilgili bir sorunu belirtmek için bu seçeneği belirleyin - örneğin \"etkileşimi engelleyen bir açılır kutu var\"."
+   },
+   "modalIssueOption": {
+      "description": "The option text for a modal issue",
+      "message": "Kip ile ilgili"
+   },
+   "optionStatusIndicators": {
+      "description": "Option text for enabling the status indicator",
+      "message": "durum göstergesi"
+   },
+   "optionsButton": {
+      "description": "Options text for SAVE button.",
+      "message": "Ayarları kaydet"
+   },
+   "optionsTitle": {
+      "description": "Title for the options page.",
+      "message": "Ayarlar"
+   },
+   "optionsWhitelist": {
+      "description": "Options text for whitelist box.",
+      "message": "Beyaz listede olan tüm siteler, her satır için bir site:"
+   },
+   "reportAnon": {
+      "description": "Menu item to report anonymously",
+      "message": "İsimsiz olarak bildir"
+   },
+   "reportAnonCancel": {
+      "description": "Button to cCancel the report",
+      "message": "İptal Et"
+   },
+   "reportAnonNotes": {
+      "description": "Notes for the report",
+      "message": "Notlar: "
+   },
+   "reportAnonSend": {
+      "description": "Button to send the report",
+      "message": "Rapor gönder"
+   },
+   "reportAnonTitle": {
+      "description": "Translation of 'report' it will be shown like 'Report example.com'",
+      "message": "Bildir"
+   },
+   "reportConfirm": {
+      "description": "Ask for confirmation before reporting a website. Don't use quotes here.",
+      "message": "$HOSTNAME$ ile ilgili bir çerez uyarısı bildirmek ister misiniz?",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "reportGithub": {
+      "description": "Menu item to report using Github",
+      "message": "Github kullanarak bildir"
+   },
+   "reportNotesPlaceholder": {
+      "description": "Placeholder for the notes (\n) is a new line & keep it 4 lines",
+      "message": "Bunun gibi şeyler:\nVideo oynatma çalışmıyor\nBozuk kaydırma çubuğu\nGri ekran"
+   },
+   "reportSkippedMessage": {
+      "description": "Tells the user it cannot report a whitelisted domain.",
+      "message": "Bu sitede uzantıyı devre dışı bıraktınız. Lütfen etkinleştirin ve raporlamadan önce çerez uyarısını görüp görmediğinizi kontrol edin."
+   },
+   "reportSkippedTitle": {
+      "description": "Tells the user it cannot report a whitelisted domain.",
+      "message": "Uzantı $HOSTNAME$ için devre dışı bırakıldı.",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "scrollbarIssueDescription": {
+      "description": "Explanation of what a scrollbar issue is",
+      "message": "Bu sayfada kaydırmayla ilgili bir sorunu belirtmek için bu seçeneği seçin örneğin 'site kaydırma çubuğunu göstermiyor'."
+   },
+   "scrollbarIssueOption": {
+      "description": "The option text for a scrollbar issue",
+      "message": "Kaydırma çubuğu ile ilgili"
+   }
+}

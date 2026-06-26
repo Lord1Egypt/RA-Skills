@@ -1,0 +1,142 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "EventDate",
+        "columnChiName": "事件日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "信息来源(InfoSource)与(NI_NewsConst)表中的DM字段关联，令LB = 4，得到信息来源的具体描述：",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.05",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EventContent",
+        "columnChiName": "事件内容",
+        "columnType": "varchar(200)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "PlateDescription",
+        "columnChiName": "相关板块描述",
+        "columnType": "varchar(255)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "42.81"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "EventType",
+        "columnChiName": "事件类型",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "事件类型(EventType)与(CT_SystemConst)表中的DM字段关联，令LB = 1994，得到事件类型的具体描述：1-行业大会，2-重要经济数据。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "InfoLevel",
+        "columnChiName": "信息级别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "信息级别(InfoLevel)与(CT_SystemConst)表中的DM字段关联，令LB = 103 AND DM< = 5，得到信息级别的具体描述：",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.97",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "InvolvedBlock",
+        "columnChiName": "相关板块",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 1,
+        "fieldExplain": "与“LC_ConceptList”的“ConceptCode”关联，可得到板块的具体详情；与“LC_COConcept”的“ConceptCode”关联，可得到该板块的成分股。",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "InvolvedSecurity",
+        "columnChiName": "相关证券",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 2,
+        "fieldExplain": "与“SecuMain”的“InnerCode”关联。　 　 　 　 　  ",
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

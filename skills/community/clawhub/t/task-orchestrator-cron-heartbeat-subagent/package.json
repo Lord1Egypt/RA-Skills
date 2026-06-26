@@ -1,0 +1,57 @@
+{
+  "name": "task-orchestrator",
+  "version": "2.0.0",
+  "description": "Unified Task Orchestration Hub - Integrates Heartbeat, Cron, Subagent and Task Management for OpenClaw agents",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "task-management",
+    "heartbeat",
+    "cron",
+    "subagent",
+    "orchestration",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/task-orchestrator"
+  },
+  "homepage": "https://clawhub.ai/skills/task-orchestrator",
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "QUICKSTART.md",
+    "config/",
+    "scripts/",
+    "templates/"
+  ],
+  "scripts": {
+    "test": "python3 scripts/utils.py identify \"test task\"",
+    "config": "python3 scripts/utils.py config"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "pyyaml": ">=5.4"
+  },
+  "meta": {
+    "emoji": "🎯",
+    "category": "Productivity",
+    "difficulty": "Intermediate",
+    "setupTime": "5 minutes",
+    "features": [
+      "Task Type Identification",
+      "Standardized Setup Process",
+      "Execution Tracking",
+      "Dynamic Configuration",
+      "Deadlock Prevention",
+      "Intelligent Aggregation",
+      "4-Level Risk Classification"
+    ]
+  }
+}

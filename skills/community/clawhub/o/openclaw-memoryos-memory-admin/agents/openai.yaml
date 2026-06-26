@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenClaw Memory Admin"
+  short_description: "Manage OpenClaw long-term memory in MemoryOS."
+  default_prompt: "Use $openclaw-memoryos-memory-admin to inspect, back up, search, or update OpenClaw long-term memory stored in MemoryOS."
+
+policy:
+  allow_implicit_invocation: true

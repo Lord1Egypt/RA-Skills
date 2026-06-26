@@ -1,0 +1,7 @@
+interface:
+  display_name: "Gmail Attachment Downloader"
+  short_description: "Download Gmail attachments into a local folder."
+  default_prompt: "Use $gmail-attachment-downloader to download Gmail attachments by sender, subject, date, or file type into a local folder."
+
+policy:
+  allow_implicit_invocation: true

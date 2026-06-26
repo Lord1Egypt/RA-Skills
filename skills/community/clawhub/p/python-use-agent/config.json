@@ -1,0 +1,42 @@
+{
+  "execution": {
+    "timeout_seconds": 300,
+    "max_memory_mb": 512,
+    "sandbox_enabled": true,
+    "allow_network": true,
+    "allow_file_system": true
+  },
+  "llm": {
+    "provider": "auto",
+    "coding_model": "qwen-coder",
+    "fallback_models": ["gpt-4o", "claude-sonnet"]
+  },
+  "security": {
+    "block_dangerous_functions": true,
+    "allowed_imports": [
+      "requests",
+      "pandas",
+      "numpy",
+      "matplotlib",
+      "openpyxl",
+      "json",
+      "csv",
+      "datetime",
+      "re",
+      "os",
+      "pathlib"
+    ],
+    "blocked_imports": [
+      "os.system",
+      "subprocess.call",
+      "eval",
+      "exec",
+      "__import__"
+    ]
+  },
+  "output": {
+    "save_logs": true,
+    "save_results": true,
+    "output_dir": "./python-use-results"
+  }
+}

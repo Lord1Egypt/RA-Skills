@@ -1,0 +1,5 @@
+{
+  "name": "codex-export",
+  "version": "0.1.0",
+  "description": "Export Codex CLI or Codex Desktop sessions to Markdown"
+}

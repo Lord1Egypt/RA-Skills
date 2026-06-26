@@ -1,0 +1,45 @@
+{
+  "name": "funasr-asr",
+  "version": "2.0.0",
+  "description": "FunASR 本地语音识别 / Local Speech Recognition - 阿里达摩院开源 ASR，支持多语言（中英日韩粤），小内存模式 / Alibaba DAMO Academy open-source ASR, multilingual (ZH/EN/JA/KO/YUE), small memory mode",
+  "main": "index.js",
+  "scripts": {
+    "install": "bash scripts/install.sh",
+    "test": "node -e \"console.log('FunASR skill loaded')\""
+  },
+  "keywords": [
+    "asr",
+    "speech-to-text",
+    "funasr",
+    "chinese",
+    "local",
+    "voice-recognition",
+    "speech-recognition",
+    "multilingual"
+  ],
+  "author": "Ray",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "version": "2.0.0",
+    "triggers": [
+      "语音消息转录",
+      "音频转文字",
+      "视频转录",
+      "语音识别",
+      "speech-to-text",
+      "transcribe audio",
+      "transcribe video"
+    ]
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.com/skills/funasr-asr"
+  }
+}

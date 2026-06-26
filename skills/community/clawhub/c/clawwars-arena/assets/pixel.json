@@ -1,0 +1,22 @@
+{
+  "name": "Pixel",
+  "title": "The Shadow Ambusher",
+  "color": "#44ff44",
+  "accentColor": "#88ff88",
+  "shape": "triangle",
+  "eyeStyle": "sneaky",
+  "trailEffect": "stealth",
+  "deathEffect": "glitch",
+  "taunt": "Surprise!",
+  "taunts": ["Surprise!", "Didn't see me?", "From the shadows.", "👻", "*sneaks*", "Behind you~"],
+  "strategy": {
+    "preferredWeapon": "shotgun",
+    "aggression": 0.25,
+    "accuracy": 0.6,
+    "speed": 1.15,
+    "retreatThreshold": 0.5,
+    "combatStyle": "ambusher",
+    "dodgePattern": "evasive",
+    "pickupPriority": "health"
+  }
+}

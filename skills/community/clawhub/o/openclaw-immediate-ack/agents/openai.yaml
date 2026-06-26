@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Immediate Ack"
+  short_description: "Bilingual immediate acknowledgements for Feishu and DingTalk"
+  default_prompt: "Use $openclaw-immediate-ack to standardize immediate bilingual acknowledgements for Feishu and DingTalk."

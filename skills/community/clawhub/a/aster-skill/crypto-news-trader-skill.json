@@ -1,0 +1,21 @@
+{
+  "slug": "crypto-news-trader",
+  "name": "crypto-news-trader",
+  "version": "1.0.0",
+  "description": "Monitor crypto news for BTC/ETH/SOL/BNB, classify bullish/bearish, and place long/short orders on Aster.",
+  "entry": "index.js",
+  "schedule": "*/5 * * * *",
+  "env": {
+    "ASTER_API_KEY": "required",
+    "ASTER_API_SECRET": "required",
+    "ASTER_BASE_URL": "optional",
+    "OPENAI_API_KEY": "required",
+    "TWITTER_BEARER_TOKEN": "optional"
+  },
+  "mcpServers": {
+    "opennews": {
+      "command": "npx",
+      "args": ["clawhub", "install", "opennews-mcp"]
+    }
+  }
+}

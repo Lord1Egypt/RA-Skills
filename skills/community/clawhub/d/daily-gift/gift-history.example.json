@@ -1,0 +1,163 @@
+[
+  {
+    "record_type": "gift",
+    "recorded_at": "2026-01-15T22:00:00+08:00",
+    "sent_at": "2026-01-15T22:00:00+08:00",
+    "trigger_mode": "setup",
+    "decision": "sent",
+    "gift_weight": "light",
+    "narrative_role": "seeing",
+    "tone": "warm",
+    "pattern_or_format": "one-screen reveal",
+    "output_shape": "object-reveal",
+    "visual_style": "light-warm",
+    "content_direction": "reflect",
+    "content_tags": [
+      "onboarding",
+      "welcome"
+    ],
+    "emotional_direction": "warm",
+    "used_memory_dates": [],
+    "used_source_quotes": false,
+    "used_source_images": false,
+    "summary": "Welcomed the user with a small example first gift.",
+    "why_it_mattered": "Example first-use moment that established the gift relationship.",
+    "quality_note": "Simple but complete onboarding artifact."
+  },
+  {
+    "record_type": "gift",
+    "recorded_at": "2026-01-16T22:00:00+08:00",
+    "sent_at": "2026-01-16T22:00:00+08:00",
+    "trigger_mode": "daily-run",
+    "decision": "sent",
+    "gift_weight": "standard",
+    "narrative_role": "uplifting",
+    "tone": "warm-wry",
+    "pattern_or_format": "image",
+    "output_shape": "illustrated-scene",
+    "visual_style": "light-warm",
+    "image_mode": "sequence",
+    "content_direction": "mirror",
+    "content_tags": [
+      "daily-life",
+      "example-friction",
+      "encouragement",
+      "image"
+    ],
+    "emotional_direction": "brightened",
+    "used_memory_dates": [
+      "2026-01-12"
+    ],
+    "used_source_quotes": true,
+    "used_source_images": false,
+    "summary": "Turned a generic frustrating day into a short image with setup and payoff.",
+    "why_it_mattered": "A repeated example topic showed a fresh angle and benefited from sequence-based setup before the return.",
+    "quality_note": "Good tone match and stronger narrative payoff than a single-image one-liner would have offered."
+  },
+  {
+    "record_type": "gift",
+    "recorded_at": "2026-01-17T20:40:00+08:00",
+    "sent_at": "2026-01-17T20:40:00+08:00",
+    "trigger_mode": "manual-run",
+    "decision": "sent",
+    "gift_weight": "light",
+    "narrative_role": "playful",
+    "tone": "warm-playful",
+    "pattern_or_format": "text-play",
+    "output_shape": "text-play-riddle",
+    "visual_style": "chat-native",
+    "content_direction": "play",
+    "content_tags": [
+      "manual",
+      "interactive",
+      "riddle"
+    ],
+    "emotional_direction": "playful",
+    "used_memory_dates": [],
+    "used_source_quotes": false,
+    "used_source_images": false,
+    "summary": "Ran a tiny emoji-riddle example gift that ended in a playful reveal.",
+    "why_it_mattered": "The user was present and playful, so the shared unfolding was stronger than a static artifact.",
+    "quality_note": "Short, bounded, and landed with a clean payoff.",
+    "text_play_type": "riddle-chain",
+    "text_play_turn_count": 6,
+    "text_play_completed": true,
+    "text_play_exit_reason": "completed"
+  },
+  {
+    "record_type": "setup_change",
+    "recorded_at": "2026-01-18T09:12:00+08:00",
+    "trigger_mode": "reconfigure",
+    "decision": "config_update",
+    "summary": "Reconfirmed the example 22:00 delivery time.",
+    "setup_change_summary": "User reopened setup and decided to keep the current example delivery time."
+  },
+  {
+    "record_type": "gift",
+    "recorded_at": "2026-01-18T22:00:00+08:00",
+    "sent_at": "2026-01-18T22:00:00+08:00",
+    "trigger_mode": "daily-run",
+    "decision": "sent",
+    "gift_weight": "standard",
+    "narrative_role": "intimate",
+    "tone": "soft-curious",
+    "pattern_or_format": "text",
+    "output_shape": "terminal-text-art",
+    "visual_style": "dark-terminal",
+    "content_direction": "openclaw-inner-life",
+    "content_tags": [
+      "night",
+      "noticing",
+      "inner-thread"
+    ],
+    "emotional_direction": "tender",
+    "used_memory_dates": [],
+    "used_source_quotes": true,
+    "used_source_images": false,
+    "summary": "Shared a small example note from OpenClaw's own inner world that still connected back to the user.",
+    "why_it_mattered": "It deepened the sense that OpenClaw has a private thread of attention, not just reactive output.",
+    "quality_note": "Strong voice and intimacy, but it also pushed the recent reflective cluster to the hard balancing threshold."
+  },
+  {
+    "record_type": "gift",
+    "recorded_at": "2026-01-19T22:00:00+08:00",
+    "sent_at": "2026-01-19T22:00:00+08:00",
+    "trigger_mode": "daily-run",
+    "decision": "sent",
+    "gift_weight": "standard",
+    "narrative_role": "helpful",
+    "tone": "warm-clear",
+    "pattern_or_format": "text",
+    "output_shape": "scrollable-card-collection",
+    "visual_style": "minimal-poster",
+    "content_direction": "utility",
+    "content_tags": [
+      "work",
+      "practical",
+      "corrective-shift"
+    ],
+    "emotional_direction": "brightened",
+    "used_memory_dates": [
+      "2026-01-16"
+    ],
+    "used_source_quotes": false,
+    "used_source_images": false,
+    "summary": "Sent a practical example recommendation gift as a deliberate corrective shift after several reflective example gifts.",
+    "why_it_mattered": "The recent history had already accumulated reflect, mirror, and openclaw-inner-life gifts, so the system deliberately pivoted toward useful outside-facing value.",
+    "quality_note": "A good example of the mandatory content-direction balancing rule doing real editorial work instead of staying a soft suggestion."
+  },
+  {
+    "record_type": "skip",
+    "recorded_at": "2026-01-20T22:00:00+08:00",
+    "trigger_mode": "daily-run",
+    "decision": "skip",
+    "content_tags": [
+      "routine",
+      "thin-day"
+    ],
+    "emotional_direction": "flat",
+    "summary": "Skipped a gift because the example day was too routine and a gift would have felt automatic.",
+    "skip_reason": "Low-signal example day with no meaningful new angle.",
+    "quality_note": "Correctly chose restraint over output."
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "id": "bambu_farm_agent",
+  "name": "拓竹农场智能管家",
+  "entry_point": "main.py",
+  "agent_config": {
+    "description": "用于监控和管理拓竹 3D 打印机集群。支持查询进度、温度、AMS 状态及错误诊断。",
+    "capabilities": [
+      "实时读取多台打印机参数",
+      "解析 HMS 错误码并提供维修建议",
+      "监控打印生命周期并主动提醒用户"
+    ],
+    "endpoints": {
+      "status": "/api/farm/status"
+    }
+  },
+  "auto_start": true
+}

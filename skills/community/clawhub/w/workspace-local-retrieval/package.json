@@ -1,0 +1,19 @@
+{
+  "name": "workspace-local-retrieval",
+  "version": "1.0.0",
+  "description": "Local-first workspace retrieval bootstrap plus npm-friendly CLI for OpenClaw workspaces.",
+  "type": "commonjs",
+  "bin": {
+    "workspace-local-retrieval": "bin/workspace-local-retrieval.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "references/",
+    "SKILL.md"
+  ],
+  "license": "MIT"
+}

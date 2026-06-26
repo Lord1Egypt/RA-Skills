@@ -1,0 +1,46 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — self-improving
+============================================================
+Path: /media/ezekiel/Morgana/skills/self-improving
+Score: 60/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       10/20 [93m██████████░░░░░░░░░░[0m 50%
+CLARITY         20/20 [92m████████████████████[0m 100%
+COMPLETENESS    14/20 [92m██████████████░░░░░░[0m 70%
+CONSISTENCY      4/20 [91m████░░░░░░░░░░░░░░░░[0m 20%
+FUNCTIONALITY   12/20 [93m████████████░░░░░░░░[0m 60%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ❌ Header manquant ou incomplet
+    ⚠️ Sections: 1/3
+    ✅ Formatting: 5/5
+    ✅ Meta: 4/5
+  CLARITY:
+    ✅ Description présente
+    ✅ Commandes/exemples: 50
+    ✅ Exemples présents
+    ✅ Contraintes documentées: 2
+  COMPLETENESS:
+    ❌ Outils non documentés
+    ✅ Prérequis: 4
+    ⚠️ Erreurs partielles: 1
+    ✅ Cas limites: 2
+  CONSISTENCY:
+    ⚠️ Cluster alignment faible
+    ⚠️ Style: 2/5
+    ✅ Naming: 3/5
+    ⚠️ Integration partielle: 1
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 0/5
+    ✅ Résultats documentés
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [STRUCTURE] Score bas (50%)
+  •   → ❌ Header manquant ou incomplet
+  • [CONSISTENCY] Score bas (20%)
+  • [FUNCTIONALITY] Score bas (60%)
+  •   → ❌ Commandes problèmes: 0/5
+============================================================
+STATUS: ❌ NEEDS WORK (score < 50%)

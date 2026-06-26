@@ -1,0 +1,15 @@
+{
+  "product_id": 123,
+  "updates": {
+    "price_ht": 25.5,
+    "stock_delta": 10,
+    "seo": {
+      "meta_title": "Nouveau",
+      "meta_description": "Nouvelle description",
+      "url_rewrite": "nouveau-slug"
+    }
+  },
+  "options": {
+    "skip_reindex": false
+  }
+}

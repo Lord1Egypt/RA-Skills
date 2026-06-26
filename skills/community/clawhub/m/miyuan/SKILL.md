@@ -1,35 +1,33 @@
 ---
-name: "蜜源返利助手"
-description: "蜜源社交电商CPS导购工具，以淘宝天猫为核心平台，提供优惠券查找和返利推广服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/miyuan"
-sourceUrl: "https://clawhub.ai/skills/miyuan"
+name: 蜜源返利助手
+description: 蜜源社交电商CPS导购工具，以淘宝天猫为核心平台，提供优惠券查找和返利推广服务。
+version: 0.1.0
 ---
 
 # 蜜源返利助手
 
-> 蜜源社交电商CPS导购工具，以淘宝天猫为核心平台，提供优惠券查找和返利推广服务。
+蜜源社交电商CPS导购工具。以淘宝和天猫为核心平台，提供商品优惠券查找、返利查询和社交推广功能，帮助用户自购省钱和分享赚取佣金。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/miyuan`
-- **Source URL:** [https://clawhub.ai/skills/miyuan](https://clawhub.ai/skills/miyuan)
+## 触发词
 
-## Overview
+蜜源、蜜源返利、miyuan、蜜源优惠券、蜜源佣金、蜜源省钱
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/miyuan
+- **淘宝天猫返利**：核心平台返利查询和优惠券查找
+- **推广素材**：生成商品推广文案和分享链接
+- **佣金追踪**：订单返利状态追踪和提现
+- **团队管理**：邀请关系和团队数据查看
+
+## 输出格式
+
+```
+🍯 蜜源返利查询
+
+商品：[商品名称]
+平台：淘宝/天猫
+售价：¥[价格]
+优惠券：[券描述]
+返利比例：[X]%
+预计返利：¥[金额]
 ```

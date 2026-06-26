@@ -1,35 +1,18 @@
----
-name: "Memory Graph"
-description: "Visualize and explore Luhmann-encoded memory clusters as interactive graphs with narrative overlays, cluster highlighting, and export options."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-graph"
-sourceUrl: "https://clawhub.ai/skills/memory-graph"
----
-
 # Memory Graph
 
-> Visualize and explore Luhmann-encoded memory clusters as interactive graphs with narrative overlays, cluster highlighting, and export options.
+Visualize and navigate memory clusters as interactive knowledge graphs. Renders Luhmann-encoded memories into explorable node-link diagrams with cluster highlighting, narrative overlays, and real-time updates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-graph`
-- **Source URL:** [https://clawhub.ai/skills/memory-graph](https://clawhub.ai/skills/memory-graph)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/memory-graph
+memory-graph render <graph-id>     # Generate graph visualization
+memory-graph explore <graph-id>    # Interactive exploration mode
+memory-graph export <graph-id>     # Export as SVG/PNG/JSON
 ```
+
+## Features
+
+- Cluster-aware layout with automatic grouping
+- Narrative generation per cluster
+- Cross-user connection discovery
+- WebView-ready output for embedding in apps

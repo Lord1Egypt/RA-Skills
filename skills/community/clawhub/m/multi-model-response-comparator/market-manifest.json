@@ -1,0 +1,19 @@
+{
+  "skill_id": "skill_multi_model_response_comparator",
+  "publication_status": "queued",
+  "site_visibility": "hidden",
+  "distribution_tier": "pilot",
+  "promotion_flags": ["new", "pilot_candidate"],
+  "trust_flags": [],
+  "score": {
+    "final": 23,
+    "confidence": "medium",
+    "hard_gates_passed": true,
+    "release_decision": "public_pilot_candidate"
+  },
+  "review_status": "reviewed",
+  "risk": "low",
+  "routing": {
+    "site_directory": "eligible"
+  }
+}

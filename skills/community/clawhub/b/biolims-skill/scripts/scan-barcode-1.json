@@ -1,0 +1,19 @@
+{
+  "sampleReceive": {
+    "acceptDate": "2026-03-03 16:55",
+    "id": "",
+    "state": "3",
+    "stateName": "NEW",
+    "receiveType": "",
+    "ysfs": "",
+    "expressCompanyId": "",
+    "expressCompanyName": "",
+    "transportTypeId": "",
+    "transportTypeName": "",
+    "confirmerUsername": "",
+    "confirmerNickename": "",
+    "confirmTime": "",
+    "isBoard": "0"
+  },
+  "barCode": "A03030001"
+}

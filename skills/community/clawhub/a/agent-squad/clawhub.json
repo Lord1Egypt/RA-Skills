@@ -1,0 +1,10 @@
+{
+  "name": "agent-squad",
+  "version": "0.9.4",
+  "tagline": "Your AI coding squad works 24/7 — non-stop, crash-proof, ready for review anytime",
+  "description": "Run persistent AI coding agents in tmux sessions. Assign tasks, they code around the clock. If they crash, a watchdog auto-restarts them. Check progress anytime through natural language. Supports 8 AI engines: Claude Code, Codex, Gemini CLI, OpenCode, Kimi, Trae, Aider, and Goose.",
+  "category": "development",
+  "tags": ["ai-agents", "tmux", "coding", "automation", "background-tasks", "multi-agent"],
+  "homepage": "https://github.com/0xTimi/agent-squad",
+  "support_url": "https://github.com/0xTimi/agent-squad/issues"
+}

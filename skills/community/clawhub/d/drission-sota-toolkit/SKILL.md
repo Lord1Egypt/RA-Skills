@@ -1,35 +1,29 @@
 ---
-name: "Drission Sota Toolkit"
+name: drission-sota-toolkit
 description: "Professional Web Intelligence & Automation Toolkit. Features Protocol Phantom (TLS/JA4), Local Socket Relaying, and Hardened physical gating."
-category: "research"
-source: "ClawHub"
-tags: [SOTA, hardened, stable, aligned, anti-bot, audited, bugfix, certified, clean, complete, cryptographic, enterprise, experimental, final, final-honesty, fortress, gated, gold-standard, governance, honest, honest-release, lab, manual-upload, manual-vetted, minimal, modular, research, safe, sentinel, sovereign, supreme, supreme-integrity, toolkit, transparency, unstable, verified, zenith]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/drission-sota-toolkit"
-sourceUrl: "https://clawhub.ai/skills/drission-sota-toolkit"
+metadata:
+  openclaw:
+    emoji: 🛠️
+    disable-model-invocation: true
+    requires:
+      bins: ["google-chrome-stable", "xvfb-run", "dbus-launch"]
+      python: ["curl_cffi", "lxml", "websocket-client", "DrissionPage", "requests"]
 ---
 
-# Drission Sota Toolkit
+# Drission SOTA Toolkit (v7.1.0)
 
-> Professional Web Intelligence & Automation Toolkit. Features Protocol Phantom (TLS/JA4), Local Socket Relaying, and Hardened physical gating.
+## Security Architecture
+This toolkit implements a physical lockfile system to prevent unauthorized autonomous execution.
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/drission-sota-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/drission-sota-toolkit](https://clawhub.ai/skills/drission-sota-toolkit)
+1. **Mandatory Gating**: High-risk scripts require a fresh lockfile in `~/.openclaw/tmp/`.
+2. **Interactive Auth**: Access is only granted via `secure_wrapper.py` after a human challenge.
+3. **No-Bypass**: Environment variables are not used for authentication.
 
-## Overview
+## Asset Inventory
+- `main_engine.py`: Search utility.
+- `secure_wrapper.py`: Security entry point.
+- `python_relay.py`: Gated TCP relay.
+- `force_takeover.py`: Gated CDP control.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/drission-sota-toolkit
-```
+---
+Version: 7.1.0 | Author: Biogod2020 | Status: Production Stable

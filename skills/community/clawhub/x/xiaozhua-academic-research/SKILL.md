@@ -1,35 +1,31 @@
 ---
-name: "Academic Research"
+name: academic-research
 description: "学术文献检索与整理。从 PubMed、Springer、PLOS 等数据库检索流行病学/医学/市场研究文献，整理各国数据、大样本队列、患病率/发病率，生成带完整引用（PubMed 链接）的结构化报告和 PPT。使用场景：疾病流行病学综述、市场规模调研、竞品学术对比。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaozhua-academic-research"
-sourceUrl: "https://clawhub.ai/skills/xiaozhua-academic-research"
 ---
 
-# Academic Research
+# 学术文献检索
 
-> 学术文献检索与整理。从 PubMed、Springer、PLOS 等数据库检索流行病学/医学/市场研究文献，整理各国数据、大样本队列、患病率/发病率，生成带完整引用（PubMed 链接）的结构化报告和 PPT。使用场景：疾病流行病学综述、市场规模调研、竞品学术对比。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaozhua-academic-research`
-- **Source URL:** [https://clawhub.ai/skills/xiaozhua-academic-research](https://clawhub.ai/skills/xiaozhua-academic-research)
+1. **关键词搜索** — web_search 搜 PubMed/学术数据库
+2. **文献筛选** — 优先 Meta 分析 > 系统综述 > 大样本队列 > 单中心
+3. **数据提取** — 患病率/发病率/样本量/年份/国家
+4. **引用标注** — 每条数据标注来源 [编号]
+5. **PubMed 链接** — 格式 https://pubmed.ncbi.nlm.nih.gov/PMID/
 
-## Overview
+## 输出格式
 
+### 文档
+- 按地区分组（北美/欧洲/亚洲/其他）
+- 每条含：国家、患病率、研究名称、样本量、年份、引用编号
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaozhua-academic-research
-```
+### PPT
+- 每页右上角标注 Ref: [x][y]
+- 表格每行末尾 Ref 列
+- 正文数据后行内标注 [x]
+- 附录参考文献含完整引用 + PubMed 链接
+
+## 注意事项
+- 近五年文献优先
+- 注明定义标准差异（ICS 2002 vs OABSS vs 自报）
+- 不同年龄范围的数据不能直接比较，需标注

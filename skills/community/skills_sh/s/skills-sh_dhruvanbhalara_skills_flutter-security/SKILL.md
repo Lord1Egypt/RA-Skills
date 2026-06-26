@@ -1,35 +1,24 @@
 ---
-name: "flutter-security"
-description: "Indexed by skills.sh from dhruvanbhalara/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dhruvanbhalara"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dhruvanbhalara/skills/flutter-security"
-sourceUrl: "https://skills.sh/dhruvanbhalara/skills/flutter-security"
+name: flutter-security
+description: Enforce architect-level security standards including AES-256-GCM encryption, secure storage, biometric gates, and memory safety. Use when handling sensitive data, credentials, clipboard content, or API communication security.
+metadata:
+    platforms: "flutter, mobile"
+    languages: "dart"
+    category: "security"
 ---
 
-# flutter-security
+# Security & Data Integrity (Architect Level)
 
-> Indexed by skills.sh from dhruvanbhalara/skills
+-   **AES-256-GCM**: Use Authenticated Encryption for all sensitive storage.
+-   **Secret Storage**: Mandatory use of `flutter_secure_storage` for encryption keys and master-derived keys.
+-   **Key Derivation**: Mandate NIST-approved hashing (**Argon2id**) for master password derivation before local storage encryption and export.
+-   **Memory Safety**: Strictly clear sensitive variables (passwords, keys) from memory when the operation finishes or the app enters the background.
+-   **Clipboard Safety**: Mandate programmatic clearing of sensitive data (OTPs, Passwords) after a short duration (30-60s).
+-   **Biometric Gate**: Mandatory local authentication for any view, export, or destructive action.
+-   **Audit Log**: All security-sensitive actions should be logged via `AppLogger` (excluding raw secrets).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dhruvanbhalara
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dhruvanbhalara/skills/flutter-security`
-- **Source URL:** [https://skills.sh/dhruvanbhalara/skills/flutter-security](https://skills.sh/dhruvanbhalara/skills/flutter-security)
+# Input & API Security
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/dhruvanbhalara/skills/flutter-security
-```
+-   **Input Validation**: Validate and sanitize all user-facing input fields before processing or storage.
+-   **HTTPS Only**: All API communication MUST use HTTPS. Consider certificate pinning for sensitive applications.
+-   **Token Storage**: STRICTLY prohibit storing tokens, API keys, or credentials in source code or public repositories. Use `flutter_secure_storage` or environment-based injection.

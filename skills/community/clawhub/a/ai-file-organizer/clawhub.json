@@ -1,0 +1,33 @@
+{
+  "name": "ai-file-organizer",
+  "version": "2.0.0",
+  "description": "AI 智能文件整理 - 批量重命名、自动分类、智能归档",
+  "author": "于金泽",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": ["file-management", "automation", "ai", "organization"],
+  "repository": "https://github.com/openclaw/skills",
+  "main": "scripts/organizer.py",
+  "scripts": {
+    "start": "python3 scripts/organizer.py",
+    "test": "python3 -m pytest tests/test_organizer.py -v",
+    "demo": "python3 scripts/organizer.py --demo"
+  },
+  "dependencies": {
+    "tqdm": ">=4.65.0"
+  },
+  "devDependencies": {
+    "pytest": ">=7.0.0",
+    "pytest-cov": ">=4.0.0"
+  },
+  "engines": {
+    "python": ">=3.6"
+  },
+  "files": [
+    "scripts/",
+    "tests/",
+    "README.md",
+    "SKILL.md",
+    "CHANGELOG.md"
+  ]
+}

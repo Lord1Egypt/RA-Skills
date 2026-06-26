@@ -1,35 +1,329 @@
 ---
-name: "Skill Evolution"
-description: "元技能（Meta-Skill）。为其他 skill 提供交互式定向进化与吞噬融合能力，配备三层回滚防护。 触发场景：(1) 用户说"进化/迭代/改进 [skill名]"；(2) 用户说"吞噬/吸收 [skill名] 的能力"； (3) 用户说"skill进化/吞噬"等。两条平行路径：A.定向进化（按工具类型选方向..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-evolution"
-sourceUrl: "https://clawhub.ai/skills/skill-evolution"
+name: skill-evolution
+description: >
+  元技能（Meta-Skill）。为其他 skill 提供交互式定向进化与吞噬融合能力，配备三层回滚防护。
+  触发场景：(1) 用户说"进化/迭代/改进 [skill名]"；(2) 用户说"吞噬/吸收 [skill名] 的能力"；
+  (3) 用户说"skill进化/吞噬"等。两条平行路径：A.定向进化（按工具类型选方向精准改进）；
+  B.吞噬融合（从其他skill/外部文档/会话经验吸收能力）。所有改动前必备份，备份失败绝不改动。
 ---
 
-# Skill Evolution
+# skill-evolution
 
-> 元技能（Meta-Skill）。为其他 skill 提供交互式定向进化与吞噬融合能力，配备三层回滚防护。 触发场景：(1) 用户说"进化/迭代/改进 [skill名]"；(2) 用户说"吞噬/吸收 [skill名] 的能力"； (3) 用户说"skill进化/吞噬"等。两条平行路径：A.定向进化（按工具类型选方向...
+> **变异 -> 选择 -> 保留。你没有方向，但用户帮你选方向。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-evolution`
-- **Source URL:** [https://clawhub.ai/skills/skill-evolution](https://clawhub.ai/skills/skill-evolution)
+元技能。为其他 skill 提供两条迭代路径：
+- **路径A: 定向进化** — 按技能类型选进化方向，精准手术
+- **路径B: 吞噬融合** — 从外部吸收逻辑/工具/知识/经验
 
-## Overview
+与 darwin-skill 互补：darwin 做全量评分+自动爬山，evolution 做交互式定向手术+外部吸收。
 
+## 核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-evolution
+| # | 原则 | 含义 |
+|---|------|------|
+| 01 | 用户选方向 | 进化方向、吞噬源由用户选择，不自动决定 |
+| 02 | 必先备份 | 任何改动前创建备份，备份失败硬中止 |
+| 03 | 测试决定保留 | 改动后用户实测，满意保留，不满意回滚 |
+| 04 | 原子回滚 | 回滚到改动前精确状态，三层防护 |
+| 05 | 路径平等 | 进化和吞噬是平行路径，自由选择 |
+
+---
+
+## Phase 0: 入口
+
+### Step 0.1: 确定目标 skill
+
+若用户已在触发语指明目标（如"进化 tianchuan-audit-perspective"），执行文件存在性校验：
+- 在 skills 安装目录下搜索 `**/{name}/SKILL.md`（不假定固定根路径，适配 WorkBuddy/Codex/Clawdbot 等环境）
+- 若找到：确认绝对路径，继续
+- 若未找到：提示"未找到 skill：[name]"，列出名称相似的已安装 skill 作为候选
+
+若未指明目标：列出已安装 skill，让用户选择目标。
+列出方式：Glob 搜索 skills 安装目录下的 `**/SKILL.md`，提取每个文件所在目录名（即 skill name）和 frontmatter 中的 description。
+
+### Step 0.2: 选择迭代路径
+
 ```
+┌────────────────────────────────────────────┐
+│ 你想如何迭代 [目标skill]？                  │
+│                                             │
+│ A. 定向进化 — 按技能类型选方向精准改进      │
+│ B. 吞噬融合 — 从外部吸收能力与知识          │
+│                                             │
+│ (c = 放弃，退出 skill-evolution)             │
+└────────────────────────────────────────────┘
+```
+
+> 所有选择点均提供 `c = 放弃/退出` 选项，回到 Phase 0.2 或直接退出 skill-evolution。
+
+---
+
+# 路径A: 定向进化
+
+## Phase A1: 选择技能类型
+
+展示 10 类技能类型。详细定义见 `references/evolution-directions.md`：
+
+| # | 类型 | 特征 |
+|---|------|------|
+| 1 | 工具封装 | 封装 CLI/API/系统工具，提供可调用接口 |
+| 2 | 领域知识 | 专业知识判断、准则引用、异常识别 |
+| 3 | 流程编排 | 多步骤工作流串联、阶段化任务分解 |
+| 4 | 分析评估 | 评分、审计、合规检查、质量评估 |
+| 5 | 创意生成 | 内容生成、占卜测算、文本创作 |
+| 6 | 数据采集 | 爬取、抓取、数据采集与清洗 |
+| 7 | 格式转换 | 文件格式互转 (Markdown/Word/PDF/Excel) |
+| 8 | 安全合规 | 风险扫描、合规检查、漏洞审计 |
+| 9 | 交互教学 | 引导式学习、问答训练、渐进教学 |
+| 10 | 集成桥接 | 多平台数据流转、服务编排、MCP封装 |
+
+> 若用户不确定类型：描述目标 skill 功能，由 AI 推荐并请用户确认。
+
+## Phase A2: 按类型生成进化方向
+
+读取 `references/evolution-directions.md` 中该类型对应的进化方向，
+每条附带**典型症状描述**帮用户判断。让用户选择一个方向。
+
+## Phase A3: 执行进化
+
+### A3.1 备份
+
+执行 `references/resources.md` 中的回滚备份流程。
+**备份失败则中止，绝不继续。**
+
+### A3.2 分析 & 生成改动
+
+```
+1. 读取目标 SKILL.md 全文
+2. 针对选择的进化方向，分析弱点
+3. 生成 1 个改进方案，展示：
+   - 改什么（具体章节/段落）
+   - 怎么改（修改前后对比）
+   - 为什么（为什么提升该方向）
+   - 风险提示（可能副作用）
+4. 展示 diff（删除行、新增行）
+5. 等待用户确认："应用此改动？(y/n/修改)"
+   用户选"修改" -> 根据用户意见调整 -> 重新展示
+```
+
+### A3.3 应用 & 测试
+
+```
+改动应用后：
+1. 提示用户用真实场景测试
+2. 建议 2-3 个测试用例
+3. 等待用户反馈测试结果
+```
+
+### A3.4 保留 / 回滚 / 重试
+
+```
+用户满意：
+  -> 保留改动
+  -> git add + commit（若在仓库内）
+  -> 记录进化日志到 .skill-backups/{skill-name}/evolution.log
+  -> 询问："继续进化其他方向？(y/n/c 放弃)"
+     y -> 回到 Phase A2
+     n -> 回到 Phase 0.2
+     c -> 退出 skill-evolution
+
+用户不满意：
+  -> 执行回滚（见 references/resources.md 回滚流程）
+  -> 询问："重新进化此方向？(y/n/c 放弃)"
+     y -> 回到 A3.2
+     n -> 询问："换方向？(y/n/c 放弃)"
+        y -> 回到 Phase A2
+        n -> 回到 Phase 0.2
+        c -> 退出 skill-evolution
+     c -> 退出 skill-evolution
+```
+
+---
+
+# 路径B: 吞噬融合
+
+## Phase B1: 选择吞噬源类型
+
+```
+┌───────────────────────────────────────────┐
+│ 从哪吞噬能力？                             │
+│                                            │
+│ 1. 其他 skill — 逻辑/规则/工具/命令       │
+│ 2. 外部文档 — Word/Markdown/PDF/TXT       │
+│ 3. 会话经验 — 从本次对话提炼模式           │
+│                                            │
+│ 选择 1 / 2 / 3                            │
+└───────────────────────────────────────────┘
+```
+
+## Phase B2: 分析源并提取吞噬候选
+
+### B2.1: 吞噬自其他 skill
+
+```
+1. 列出已安装 skill，用户选择源
+2. 读取源 SKILL.md
+3. 提取可独立复用单元：
+   - 工具/命令定义块
+   - 逻辑步骤/判断流程
+   - 参考资源块
+   - 模板/格式定义
+4. 排除项：
+   - Frontmatter（名称、版本、触发词）
+   - 与目标已有逻辑明确冲突的内容（标注原因）
+5. 生成候选列表，每项含：
+   - 来源段落摘要
+   - 融入目标后位置建议
+   - 冲突风险提示
+```
+
+### B2.2: 吞噬自外部文档
+
+```
+1. 用户提供文档绝对路径
+2. 按格式解析：.md(直接), .docx(python-docx), .pdf(pdfplumber/PyMuPDF), .txt(直接)
+3. 提取：
+   - 按段落/章节拆分
+   - 识别表格/清单/准则条款
+   - 评估每块对目标 skill 的价值
+4. 生成候选列表，每项含：
+   - 知识块文本摘要
+   - 来源（文件名+位置）
+   - 融入后可能增强的维度
+```
+
+### B2.3: 吞噬自会话经验
+
+```
+1. 分析本次对话中用户对 skill 输出的纠正
+2. 提取用户偏好的输出格式
+3. 提取用户补充的专业知识
+4. 提炼为可复用模式
+5. 生成候选列表
+```
+
+## Phase B3: 用户勾选吞噬项
+
+以结构化表格展示：
+
+```
+| # | 来源 | 内容摘要 | 融入章节 | 冲突风险 | 勾选 |
+|---|------|---------|---------|---------|:---:|
+| 1 | 源A | ...     | Phase 2 | 无      | [ ] |
+```
+
+确认吞噬项数量后："{n}个吞噬项，确认融合？(y/n/cancel)"
+
+## Phase B4: 执行吞噬
+
+### B4.1 备份
+
+同 A3.1。备份失败硬中止。
+
+### B4.2 融合
+
+```
+对每个选中项：
+1. 知识块适配目标 skill 风格
+2. 标注来源：<!-- 吞噬自: [源] 日期: {today} -->
+3. 按建议位置插入
+4. 冲突处理：
+   - 与已有逻辑矛盾 -> 暂停，展示冲突，用户裁决
+   - 重叠内容 -> 自动去重，取更完整版本
+5. 生成融合后完整 diff
+6. 展示 diff，等确认："应用吞噬？(y/n)"
+```
+
+### B4.3 测试 & B4.4 保留/回滚
+
+与 A3.3、A3.4 流程一致。
+用户不满意时追问具体原因，据此调整对应吞噬项，重新展示候选列表。
+
+---
+
+## 回滚机制
+
+三层防护流程详见 `references/resources.md`。
+
+```
+Layer 1: 文件级备份
+  .skill-backups/{skill}/SKILL.md.{timestamp}
+  改动前复制原文件，byte-level 比对验证
+
+Layer 2: Git（若仓库内）
+  git stash save "[skill-evolution] backup"
+  保留: git add + commit
+  回滚: git checkout -- SKILL.md 或 git stash pop
+
+Layer 3: 回滚验证
+  回滚后 byte-level 比对原备份 vs 回滚后文件
+  不匹配 -> 告警 + 尝试 Layer 1 恢复
+  仍不匹配 -> 中止，保留所有备份，请求人工介入
+```
+
+**绝对禁止继续的条件：**
+- 备份文件创建失败
+- 备份文件大小 = 0
+- Layer 1 + Layer 2 均失败
+- 任一触发 -> 硬中止
+
+---
+
+## 安全边界
+
+1. 绝不修改用户未指定的 skill
+2. Frontmatter 不吞噬、不覆盖、不删除
+3. 冲突先裁决，绝不自动选择
+4. 备份失败 = 硬中止
+5. 回滚失败 = 保留所有备份 + 人工介入
+6. 改动超原文件 200% 体积 -> 警告 + 二次确认
+7. 单次吞噬最多 {MAX=10} 项
+
+---
+
+## 日志产物
+
+```
+.skill-backups/{skill-name}/
+  ├── evolution.log     ← 每次进化的方向/改动/结果
+  ├── phagocytosis.log  ← 每次吞噬的来源/项/结果
+  ├── SKILL.md.{ts}     ← 原始备份
+  └── SKILL.md.{ts}.post ← 改动后副本（保留前）
+```
+
+## 使用示例
+
+```
+用户: "进化 tianchuan-audit-perspective"
+AI: 入口 -> 选 A 进化 或 B 吞噬
+用户: A
+AI: 展示 10 类 -> 让用户选
+用户: 2 (领域知识)
+AI: 展示 5 个进化方向（深度/精准/边界/可解释/时效性）-> 让用户选
+用户: 精准
+AI: 备份 -> 分析 -> 生成 diff -> 等确认
+...
+
+用户: "吞噬 cli-anything-wps"
+AI: 入口 -> 选吞噬源类型
+用户: 2 (外部文档)
+AI: 请提供文档路径
+用户: E:\docs\增值税法2026.pdf
+AI: 解析 PDF -> 提取知识块 -> 候选列表 -> 等勾选
+...
+```
+
+## 与 darwin-skill 协作
+
+```
+推荐流程:
+darwin-skill 全量评分 -> 找出薄弱维度
+skill-evolution 定向进化 -> 精准修复
+skill-evolution 吞噬 -> 补充外部知识
+darwin-skill 再评分 -> 验证
+```
+
+## 参考文件
+
+- `references/evolution-directions.md` — 10 类技能类型及进化方向详情
+- `references/resources.md` — 回滚机制详情、外部文档解析工具、吞噬详细流程

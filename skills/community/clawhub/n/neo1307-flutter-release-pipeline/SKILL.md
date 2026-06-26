@@ -1,35 +1,35 @@
 ---
-name: "Flutter Release Pipeline"
-description: "Build and package Flutter Android release artifacts (APK/AAB), collect outputs into a single folder, and produce a short release checklist. Use when the user..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/neo1307-flutter-release-pipeline"
-sourceUrl: "https://clawhub.ai/skills/neo1307-flutter-release-pipeline"
+name: flutter-release-pipeline
+description: Build and package Flutter Android release artifacts (APK/AAB), collect outputs into a single folder, and produce a short release checklist. Use when the user asks to build APK/AAB, prepare a Play Store release, bump version, gather mapping/symbols, or generate a deterministic release folder for sharing.
 ---
 
-# Flutter Release Pipeline
+# Flutter Android Release Pipeline
 
-> Build and package Flutter Android release artifacts (APK/AAB), collect outputs into a single folder, and produce a short release checklist. Use when the user...
+## Workflow
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/neo1307-flutter-release-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/neo1307-flutter-release-pipeline](https://clawhub.ai/skills/neo1307-flutter-release-pipeline)
+1) **Preflight**
+- Confirm `flutter --version` works.
+- Confirm project path contains `pubspec.yaml`.
 
-## Overview
+2) **Build** (choose one)
+- AAB: `flutter build appbundle --release`
+- APK: `flutter build apk --release` (optionally `--split-per-abi`)
 
+3) **Collect artifacts**
+Create `out/flutter_release_<timestamp>/` and copy:
+- `build/app/outputs/flutter-apk/*.apk` (if APK build)
+- `build/app/outputs/bundle/release/*.aab` (if AAB build)
+- `build/app/outputs/mapping/release/mapping.txt` (if present)
+- `pubspec.yaml` (snapshot)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/neo1307-flutter-release-pipeline
-```
+4) **Report**
+- Print paths + sizes + SHA256 for each artifact.
+- Print a short checklist (versionCode/versionName sanity, signing, Play Console notes).
+
+## Script
+Run (PowerShell):
+- `powershell -ExecutionPolicy Bypass -File scripts/flutter_release.ps1 -Project "<path>" -Mode aab|apk -SplitPerAbi:$false`
+
+## Notes
+- Avoid changing app code unless explicitly requested.
+- If build fails, return the exact error + suggested fix.

@@ -1,0 +1,37 @@
+{
+  "ticker": "MTB",
+  "company": "M&T Bank Corporation",
+  "analysis_year": 2000,
+  "data_source": "M&T Bank FY2000 10-K, SEC EDGAR; Berkshire 2000 annual report; 2000 Berkshire AGM Q&A",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.151, "metric_used": "ROE", "years_averaged": "1998-2000 normalized", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 286, "pass": null },
+    "g3_leverage": { "metric_used": "Tier1 (lead bank)", "value": 0.1071, "pass": true },
+    "g4_revenue_trend": { "description": "Loans, deposits, and earnings all expanded into 2000. Pressure in mortgage banking was cyclical, not a structural break in the franchise.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "For a bank, the economic analogue is spread discipline and credit cost control. Net interest margin remained near 4% and there was no two-year structural profitability collapse.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.091, "net_income_m": 286, "ev_m": 3140, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "switching_cost", "description": "M&T's moat was not scale for scale's sake. It was a disciplined low-ego banking culture under Bob Wilmers, sticky local deposits, conservative underwriting, and customer relationships that made the franchise much harder to imitate than a generic regional bank. Buffett's own test was simple: it was a bank that let him sleep well.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "net_income_2000_usd_m": 286,
+    "capital_expenditures_2000_usd_m": 23,
+    "tier1_ratio_lead_bank": 0.1071,
+    "berkshire_lookthrough_earnings_share_2000_usd_m": 23
+  },
+
+  "control_groups": [
+    { "ticker": "FLT", "company": "FleetBoston Financial", "year": 2000, "gates_failed": ["g7_moat", "g3_leverage"], "conclusion": "PASS — larger franchise, but weaker cultural edge and less conservative underwriting reputation than M&T." },
+    { "ticker": "FTU", "company": "First Union", "year": 2000, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — merger friction and integration strain were visible, and the franchise quality was not as clean." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire disclosed M&T as a major investee in 2000, and Buffett said at the 2000 AGM that Berkshire would likely still own it in ten years.",
+  "actual_result": "M&T became a long-duration Berkshire bank holding and a strong compounder before Berkshire later exited as part of broader bank retrenchment.",
+  "verdict": "✅ aligned",
+  "key_insight": "In banking, owner-operator culture and underwriting discipline can be a moat if they survive scale."
+}

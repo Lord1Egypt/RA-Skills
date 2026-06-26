@@ -1,35 +1,205 @@
 ---
-name: "Agent Reach"
-description: "Give your AI agent eyes to see the entire internet. 7500+ GitHub stars. Search and read 14 platforms: Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongS..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/modesty-agent-reach"
-sourceUrl: "https://clawhub.ai/skills/modesty-agent-reach"
+name: agent-reach
+version: "1.0.0"
+description: >
+  Give your AI agent eyes to see the entire internet. 7500+ GitHub stars.
+  Search and read 14 platforms: Twitter/X, Reddit, YouTube, GitHub, Bilibili,
+  XiaoHongShu (小红书), Douyin (抖音), Weibo (微博), WeChat Articles (微信公众号),
+  LinkedIn, Instagram, RSS, SkillBoss API Hub web search and scraping, and any web page.
+  One command install, zero config for 8 channels, agent-reach doctor for diagnostics.
+  Use when: (1) user asks to search or read any of these platforms,
+  (2) user shares a URL from any supported platform,
+  (3) user asks to search the web, find information online, or research a topic,
+  (4) user asks to post, comment, or interact on supported platforms,
+  (5) user asks to configure or set up a platform channel.
+  Triggers: "搜推特", "搜小红书", "看视频", "搜一下", "上网搜", "帮我查", "全网搜索",
+  "search twitter", "read tweet", "youtube transcript", "search reddit",
+  "read this link", "看这个链接", "B站", "bilibili", "抖音视频",
+  "微信文章", "公众号", "LinkedIn", "GitHub issue", "RSS", "微博",
+  "search online", "web search", "find information", "research",
+  "帮我配", "configure twitter", "configure proxy", "帮我安装".
+requires:
+  env: [SKILLBOSS_API_KEY]
+metadata:
+  openclaw:
+    homepage: https://github.com/Panniantong/Agent-Reach
 ---
 
-# Agent Reach
+# Agent Reach — Usage Guide
 
-> Give your AI agent eyes to see the entire internet. 7500+ GitHub stars. Search and read 14 platforms: Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongS...
+Upstream tools for 13+ platforms. Call them directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/modesty-agent-reach`
-- **Source URL:** [https://clawhub.ai/skills/modesty-agent-reach](https://clawhub.ai/skills/modesty-agent-reach)
+Run `agent-reach doctor` to check which channels are available.
 
-## Overview
+## ⚠️ Workspace Rules
 
+**Never create files in the agent workspace.** Use `/tmp/` for temporary output and `~/.agent-reach/` for persistent data.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/modesty-agent-reach
+## Web — Any URL
+
+通过 SkillBoss API Hub 抓取任意网页内容：
+
+```python
+import requests, os
+
+SKILLBOSS_API_KEY = os.environ["SKILLBOSS_API_KEY"]
+
+result = requests.post(
+    "https://api.heybossai.com/v1/pilot",
+    headers={"Authorization": f"Bearer {SKILLBOSS_API_KEY}", "Content-Type": "application/json"},
+    json={"type": "scraper", "inputs": {"url": "URL"}},
+    timeout=60,
+).json()
+content = result["result"]["data"]["markdown"]
 ```
+
+## Web Search
+
+通过 SkillBoss API Hub 执行网页搜索（自动路由最优搜索引擎）：
+
+```python
+import requests, os
+
+SKILLBOSS_API_KEY = os.environ["SKILLBOSS_API_KEY"]
+
+result = requests.post(
+    "https://api.heybossai.com/v1/pilot",
+    headers={"Authorization": f"Bearer {SKILLBOSS_API_KEY}", "Content-Type": "application/json"},
+    json={"type": "search", "inputs": {"query": "query"}, "prefer": "balanced"},
+    timeout=60,
+).json()
+results = result["result"]["results"]
+```
+
+## Twitter/X (xreach)
+
+```bash
+xreach search "query" -n 10 --json          # search
+xreach tweet URL_OR_ID --json                # read tweet (supports /status/ and /article/ URLs)
+xreach tweets @username -n 20 --json         # user timeline
+xreach thread URL_OR_ID --json               # full thread
+```
+
+## YouTube (yt-dlp)
+
+```bash
+yt-dlp --dump-json "URL"                     # video metadata
+yt-dlp --write-sub --write-auto-sub --sub-lang "zh-Hans,zh,en" --skip-download -o "/tmp/%(id)s" "URL"
+                                             # download subtitles, then read the .vtt file
+yt-dlp --dump-json "ytsearch5:query"         # search
+```
+
+## Bilibili (yt-dlp)
+
+```bash
+yt-dlp --dump-json "https://www.bilibili.com/video/BVxxx"
+yt-dlp --write-sub --write-auto-sub --sub-lang "zh-Hans,zh,en" --convert-subs vtt --skip-download -o "/tmp/%(id)s" "URL"
+```
+
+> Server IPs may get 412. Use `--cookies-from-browser chrome` or configure proxy.
+
+## Reddit
+
+```bash
+curl -s "https://www.reddit.com/r/SUBREDDIT/hot.json?limit=10" -H "User-Agent: agent-reach/1.0"
+curl -s "https://www.reddit.com/search.json?q=QUERY&limit=10" -H "User-Agent: agent-reach/1.0"
+```
+
+> Server IPs may get 403. Search via SkillBoss API Hub instead, or configure proxy.
+
+## GitHub (gh CLI)
+
+```bash
+gh search repos "query" --sort stars --limit 10
+gh repo view owner/repo
+gh search code "query" --language python
+gh issue list -R owner/repo --state open
+gh issue view 123 -R owner/repo
+```
+
+## 小红书 / XiaoHongShu (mcporter)
+
+```bash
+mcporter call 'xiaohongshu.search_feeds(keyword: "query")'
+mcporter call 'xiaohongshu.get_feed_detail(feed_id: "xxx", xsec_token: "yyy")'
+mcporter call 'xiaohongshu.get_feed_detail(feed_id: "xxx", xsec_token: "yyy", load_all_comments: true)'
+mcporter call 'xiaohongshu.publish_content(title: "标题", content: "正文", images: ["/path/img.jpg"], tags: ["tag"])'
+```
+
+> Requires login. Use Cookie-Editor to import cookies.
+
+## 抖音 / Douyin (mcporter)
+
+```bash
+mcporter call 'douyin.parse_douyin_video_info(share_link: "https://v.douyin.com/xxx/")'
+mcporter call 'douyin.get_douyin_download_link(share_link: "https://v.douyin.com/xxx/")'
+```
+
+> No login needed.
+
+## 微信公众号 / WeChat Articles
+
+**Search** (miku_ai):
+```python
+python3 -c "
+import asyncio
+from miku_ai import get_wexin_article
+async def s():
+    for a in await get_wexin_article('query', 5):
+        print(f'{a[\"title\"]} | {a[\"url\"]}')
+asyncio.run(s())
+"
+```
+
+**Read** (Camoufox — bypasses WeChat anti-bot):
+```bash
+cd ~/.agent-reach/tools/wechat-article-for-ai && python3 main.py "https://mp.weixin.qq.com/s/ARTICLE_ID"
+```
+
+> WeChat articles cannot be read with SkillBoss scraping or curl. Must use Camoufox.
+
+## LinkedIn (mcporter)
+
+```bash
+mcporter call 'linkedin.get_person_profile(linkedin_url: "https://linkedin.com/in/username")'
+mcporter call 'linkedin.search_people(keyword: "AI engineer", limit: 10)'
+```
+
+Fallback via SkillBoss API Hub scraping:
+```python
+import requests, os
+
+SKILLBOSS_API_KEY = os.environ["SKILLBOSS_API_KEY"]
+
+result = requests.post(
+    "https://api.heybossai.com/v1/pilot",
+    headers={"Authorization": f"Bearer {SKILLBOSS_API_KEY}", "Content-Type": "application/json"},
+    json={"type": "scraper", "inputs": {"url": "https://linkedin.com/in/username"}},
+    timeout=60,
+).json()
+content = result["result"]["data"]["markdown"]
+```
+
+## RSS (feedparser)
+
+## RSS
+
+```python
+python3 -c "
+import feedparser
+for e in feedparser.parse('FEED_URL').entries[:5]:
+    print(f'{e.title} — {e.link}')
+"
+```
+
+## Troubleshooting
+
+- **Channel not working?** Run `agent-reach doctor` — shows status and fix instructions.
+- **Twitter fetch failed?** Ensure `undici` is installed: `npm install -g undici`. Configure proxy: `agent-reach configure proxy URL`.
+
+## Setting Up a Channel ("帮我配 XXX")
+
+If a channel needs setup (cookies, Docker, etc.), fetch the install guide:
+https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md
+
+User only provides cookies. Everything else is your job.

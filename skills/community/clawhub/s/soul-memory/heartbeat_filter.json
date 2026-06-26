@@ -1,0 +1,25 @@
+{
+  "version": "3.3.2",
+  "description": "Heartbeat 自我報告過濾配置",
+  "enabled": true,
+  "filter_keywords": [
+    "Heartbeat 自動提取",
+    "Heartbeat 報告",
+    "蒙恬將軍邊防巡查",
+    "記憶斥候回報",
+    "烽火台檢查",
+    "記憶邊防穩固",
+    "Soul Memory Heartbeat 已成功發動",
+    "Heartbeat 已成功啟動",
+    "心跳自動提取",
+    "檢視記憶檔案"
+  ],
+  "filter_patterns": [
+    "🔥 \\[.*\\].*Heartbeat.*自動提取",
+    "\\*\\*Heartbeat 摘要\\*\\*",
+    "## \\[.*\\] .*Heartbeat.*自動提取",
+    "Soul Memory System.*運作分析報告"
+  ],
+  "action": "exclude",
+  "note": "v3.3.2 - 每12小時清理 + 排除自我報告"
+}

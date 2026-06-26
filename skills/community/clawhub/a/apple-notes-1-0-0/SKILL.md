@@ -1,35 +1,50 @@
 ---
-name: "Apple Notes 1.0.0"
-description: "Manage Apple Notes via the `memo` CLI on macOS (create, view, edit, delete, search, move, and export notes). Use when a user asks Clawdbot to add a note, lis..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apple-notes-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/apple-notes-1-0-0"
+name: apple-notes
+description: Manage Apple Notes via the `memo` CLI on macOS (create, view, edit, delete, search, move, and export notes). Use when a user asks Clawdbot to add a note, list notes, search notes, or manage note folders.
+homepage: https://github.com/antoniorodr/memo
+metadata: {"clawdbot":{"emoji":"📝","os":["darwin"],"requires":{"bins":["memo"]},"install":[{"id":"brew","kind":"brew","formula":"antoniorodr/memo/memo","bins":["memo"],"label":"Install memo via Homebrew"}]}}
 ---
 
-# Apple Notes 1.0.0
+# Apple Notes CLI
 
-> Manage Apple Notes via the `memo` CLI on macOS (create, view, edit, delete, search, move, and export notes). Use when a user asks Clawdbot to add a note, lis...
+Use `memo notes` to manage Apple Notes directly from the terminal. Create, view, edit, delete, search, move notes between folders, and export to HTML/Markdown.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apple-notes-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/apple-notes-1-0-0](https://clawhub.ai/skills/apple-notes-1-0-0)
+Setup
+- Install (Homebrew): `brew tap antoniorodr/memo && brew install antoniorodr/memo/memo`
+- Manual (pip): `pip install .` (after cloning the repo)
+- macOS-only; if prompted, grant Automation access to Notes.app.
 
-## Overview
+View Notes
+- List all notes: `memo notes`
+- Filter by folder: `memo notes -f "Folder Name"`
+- Search notes (fuzzy): `memo notes -s "query"`
 
+Create Notes
+- Add a new note: `memo notes -a`
+  - Opens an interactive editor to compose the note.
+- Quick add with title: `memo notes -a "Note Title"`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apple-notes-1-0-0
-```
+Edit Notes
+- Edit existing note: `memo notes -e`
+  - Interactive selection of note to edit.
+
+Delete Notes
+- Delete a note: `memo notes -d`
+  - Interactive selection of note to delete.
+
+Move Notes
+- Move note to folder: `memo notes -m`
+  - Interactive selection of note and destination folder.
+
+Export Notes
+- Export to HTML/Markdown: `memo notes -ex`
+  - Exports selected note; uses Mistune for markdown processing.
+
+Limitations
+- Cannot edit notes containing images or attachments.
+- Interactive prompts may require terminal access.
+
+Notes
+- macOS-only.
+- Requires Apple Notes.app to be accessible.
+- For automation, grant permissions in System Settings > Privacy & Security > Automation.

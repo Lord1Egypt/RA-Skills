@@ -1,0 +1,8 @@
+{
+  "name": "token-saver",
+  "version": "1.0.0",
+  "description": "AI 토큰 96% 절약. 한국어 Context DB.",
+  "entry": "scripts/token_saver.py",
+  "triggers": ["토큰 절약", "토큰세이버", "컨텍스트 저장", "메모리 검색", "프롬프트 최적화"],
+  "endpoints": "data/endpoints.json"
+}

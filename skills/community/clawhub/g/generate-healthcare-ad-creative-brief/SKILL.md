@@ -1,35 +1,52 @@
 ---
-name: "Generate Healthcare Ad Creative Brief"
+name: Generate Healthcare Ad Creative Brief
 description: "Plan campaign visuals and hooks for healthcare promotions. Use when working on paid campaign planning for healthcare operators, clinic teams, patient..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-healthcare-ad-creative-brief"
-sourceUrl: "https://clawhub.ai/skills/generate-healthcare-ad-creative-brief"
+allowed-tools: Bash, Read
+metadata:
+  openclaw:
+    emoji: "📝"
+    homepage: "https://www.skillboss.co/skills/generate-healthcare-ad-creative-brief"
 ---
 
 # Generate Healthcare Ad Creative Brief
 
-> Plan campaign visuals and hooks for healthcare promotions. Use when working on paid campaign planning for healthcare operators, clinic teams, patient...
+Plan campaign visuals and hooks for healthcare promotions. Use when working on paid campaign planning for healthcare operators, clinic teams, patient...
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-healthcare-ad-creative-brief`
-- **Source URL:** [https://clawhub.ai/skills/generate-healthcare-ad-creative-brief](https://clawhub.ai/skills/generate-healthcare-ad-creative-brief)
+## Use When
 
-## Overview
+Use this skill for paid campaign planning work for healthcare operators, clinic teams, patient educators.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-healthcare-ad-creative-brief
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: ad creative brief AI, healthcare ad planning, healthcare marketing AI, clinic workflow automation
+- Search intent: paid campaign planning
+- Canonical slug: `generate-healthcare-ad-creative-brief`
+- Install query: Install Generate Healthcare Ad Creative Brief with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Healthcare Ad Creative Brief] for my team
+
+## Notes
+
+- Plan campaign visuals and hooks for healthcare promotions
+- Use human review before sending patient-facing content or relying on regulated medical claims.
+
+## SEO Keywords
+
+- ad creative brief AI
+- healthcare ad planning
+- healthcare marketing AI
+- clinic workflow automation

@@ -1,35 +1,42 @@
 ---
-name: "Medical Record Generator"
-description: "专业的病历撰写助手，按照三步流程生成规范的入院记录。当用户说"写病历"、"生成病历"、"病历助手"、"入院记录"、"medical record"或"病历生成"时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-record-generator"
-sourceUrl: "https://clawhub.ai/skills/medical-record-generator"
+name: medical-record-generator
+description: 专业的病历撰写助手，按照三步流程生成规范的入院记录。当用户说"写病历"、"生成病历"、"病历助手"、"入院记录"、"medical record"或"病历生成"时使用此技能。
 ---
 
-# Medical Record Generator
+# 病历生成器技能
 
-> 专业的病历撰写助手，按照三步流程生成规范的入院记录。当用户说"写病历"、"生成病历"、"病历助手"、"入院记录"、"medical record"或"病历生成"时使用此技能。
+## 概述
+这是一个专业的病历撰写助手，按照三步流程生成规范的入院记录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-record-generator`
-- **Source URL:** [https://clawhub.ai/skills/medical-record-generator](https://clawhub.ai/skills/medical-record-generator)
+## 工作流程
 
-## Overview
+### 第一步：收集关键变量
+当技能被触发时，主动询问以下信息：
+1. **主诉及相关情况** - 主要症状、持续时间、诱因等
+2. **性别** - 男性/女性
+3. **年龄** - 具体年龄
+4. **其他可能信息** - 婚姻状况、职业等（可选）
 
+### 第二步：询问补充
+展示已收集的变量，询问用户是否需要补充或修改。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-record-generator
-```
+### 第三步：确认并生成
+1. 重新整理所有变量
+2. 询问："信息已确认，是否开始生成入院病历？"
+3. 用户确认后，按照专业病历模板生成规范的入院记录
+
+## 病历模板
+严格按照以下模板生成专业、规范的入院记录：
+- 所有必填字段无遗漏
+- 未明确说明的信息按"正常"或临床默认值填充
+- 医学术语规范，避免口语化
+- 确保病历的完整性与专业性
+
+## 使用脚本
+此技能包含一个可执行的病历生成脚本。当需要生成病历时，读取并执行 `scripts/generate_record.js`。
+
+## 注意事项
+1. 仅生成病历，不提供诊断建议
+2. 信息矛盾时以用户明确说明为准
+3. 严格按照模板格式输出
+4. 保持专业性和准确性

@@ -1,35 +1,162 @@
 ---
-name: "Pm Article Scorer"
-description: "AI产品经理内容相关性评分技能。对公众号文章进行多维度启发式评分（0-100分），判断是否值得AI产品经理关注。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pm-article-scorer"
-sourceUrl: "https://clawhub.ai/skills/pm-article-scorer"
+name: pm-article-scorer
+description: AI产品经理内容相关性评分技能。对公众号文章进行多维度启发式评分（0-100分），判断是否值得AI产品经理关注。
 ---
 
-# Pm Article Scorer
+# PM Article Scorer
 
-> AI产品经理内容相关性评分技能。对公众号文章进行多维度启发式评分（0-100分），判断是否值得AI产品经理关注。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pm-article-scorer`
-- **Source URL:** [https://clawhub.ai/skills/pm-article-scorer](https://clawhub.ai/skills/pm-article-scorer)
+对公众号文章进行多维度启发式评分（0-100分），判断是否值得 AI 产品经理关注。
 
-## Overview
+适用于：RSS 阅读筛选、内容聚合排序、PM 日报自动化选稿。
 
+## 评分方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pm-article-scorer
+纯本地启发式评分，无需调用任何外部 API 或 LLM，基于内容语义与风格规则计算。
+
+**核心原则**：先判断文章是否有认知价值，再看内容风格做修正。不要只数关键词，要真正评估这篇文章对 AI 产品经理有没有判断增量、方法增量或认知增量。
+
+---
+
+## 评分维度（总分 100 分封顶）
+
+### 基础分
+
+| 维度 | 基础分 | 说明 |
+|-----|-------|-----|
+| topic_relevance | 10 | 与AI产品/用户/行业/技术机会的相关程度 |
+| direct_work_value | 10 | 对需求/产品/策略/增长判断的直接帮助 |
+| transferable_method_value | 10 | 框架/方法/分析方式是否可迁移 |
+| industry_business_value | 7 | 对市场/趋势/竞争/商业逻辑的理解价值 |
+| insight_density | 5 | 信息密度和认知增量质量 |
+| originality_personal_view | 5 | 原创判断、个人思考、非营销表达 |
+
+---
+
+### 加分项
+
+#### topic_relevance 最高 20 分
+
+| 命中条件 | 加分 |
+|---------|-----|
+| 直接讨论 AI 产品/Agent/RAG/多模态/AI商业化/AI用户场景 | +6 |
+| 讨论 AI 行业趋势/竞品分析/AI增长/技术判断 | +3 |
+
+#### direct_work_value 最高 20 分
+
+| 命中条件 | 加分 |
+|---------|-----|
+| 涉及需求分析/产品策略/竞品分析/增长/商业化判断 | +5 |
+| 涉及项目推进/组织协作/技术业务关系理解 | +3 |
+
+#### transferable_method_value 最高 20 分
+
+| 命中条件 | 加分 |
+|---------|-----|
+| 有明确框架/方法论/拆解/分析模型/判断框架 | +5 |
+| 框架或方法可迁移到 AI 产品工作场景 | +3 |
+
+#### industry_business_value 最高 15 分
+
+| 命中条件 | 加分 |
+|---------|-----|
+| 商业模式/创业机会/行业研究/竞争格局分析 | +4 |
+| 新产品形态判断/技术趋势信号识别 | +2 |
+
+#### insight_density 最高 10 分
+
+| 命中条件 | 加分 |
+|---------|-----|
+| 有结构化洞察/归因分析/趋势信号识别 | +3 |
+| 有历史对比/跨市场对比/本质判断 | +2 |
+
+#### originality_personal_view 最高 10 分
+
+| 命中条件 | 加分 |
+|---------|-----|
+| 个人作者/行业从业者/深度观察者 | +2 |
+| 有明确个人判断，非简单复述新闻 | +2 |
+| 优质原创作者：赛博禅心、卡尔的AI沃茨、agent橘、真格基金、Founder Park | +2 |
+
+---
+
+### format_adjustment 修正项（-5 ~ +5）
+
+| 类型 | 加/减分 |
+|-----|--------|
+| 深度原创个人输出，有真实思考和作者个人判断 | +3 |
+| 有认知增量、结构化分析、非套话 | +2 |
+| 资讯号/营销号/强情绪煽动/标题党 | -3 |
+| 信息整合型（多条拼盘，无原创洞察） | -2 |
+| 内容单薄，结论空泛，缺少实质分析 | -2 |
+
+---
+
+### 内容类型判断
+
+| 类型 | 降权幅度 |
+|-----|---------|
+| 个人深度输出 | 不降权，有判断可加分 |
+| 行业分析/方法论文章 | 正常评分 |
+| 资讯整合/热点评论 | 降1-2档，除非有强原创洞察 |
+| 营销宣传/流量号 | 降权到底 |
+
+---
+
+### 阈值
+
+| 分数 | 关注度 | 推荐 |
+|-----|-------|-----|
+| ≥80 | high | 推荐阅读 |
+| 60-79 | medium | 可选阅读 |
+| <60 | low | 无需关注 |
+
+---
+
+## 输出格式
+
+返回 dict：
+
+```python
+{
+    "related_to_ai_pm": True/False,
+    "interest_level": "high/medium/low",
+    "score": 88,          # 0-100
+    "recommendation": "推荐阅读/可选阅读/无需关注",
+    "dimension_scores": {
+        "topic_relevance": 17,
+        "direct_work_value": 16,
+        "transferable_method_value": 18,
+        "industry_business_value": 13,
+        "insight_density": 9,
+        "originality_personal_view": 10,
+        "format_adjustment": 5
+    },
+    "content_type": "个人深度输出/行业分析/方法论文章/资讯整合/热点评论/营销宣传/其他",
+    "author_style_preference_match": True/False,
+    "is_info_roundup": True/False,
+    "tags": ["产品判断", "行业洞察", "方法迁移"],
+    "reason": ["原因1", "原因2"],
+    "summary": "一句话总结"
+}
 ```
+
+---
+
+## 使用方式
+
+```python
+# 直接调用
+score_result = heuristic_score(title, author, content)
+```
+
+---
+
+## 注意事项
+
+- 评分结果仅供参考，实际选稿仍需人工判断
+- 评分核心是"有没有认知/判断/方法价值"，不是"有没有AI关键词"
+- 启发式规则偏重原创洞察+方法迁移，压低纯营销/信息整合内容
+- 优质原创作者有加权，高质量个人输出文章更易获高分
+- 内容仅本地处理，不上传任何第三方

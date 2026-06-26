@@ -1,0 +1,7 @@
+Protein IDs	Gene names	Protein names	Potential contaminant	Reverse	Only identified by site	Intensity BoxCar_01	Intensity BoxCar_02	Intensity Standard_1	Intensity Standard_2
+P001	GENEA	Protein A				120000	118000	65000	63000
+P002	GENEB	Protein B				54000	56000	30000	29000
+P003	GENEC	Protein C				9000	11000	18000	17000
+CON__P004	CON	Contaminant	+			70000	71000	72000	73000
+REV__P005	REV	Reverse		+		10000	12000	9000	9500
+P006	GENEF	Protein F				0	22000	25000	26000

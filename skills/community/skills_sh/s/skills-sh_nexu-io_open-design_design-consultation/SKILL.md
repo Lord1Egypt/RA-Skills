@@ -1,35 +1,42 @@
 ---
-name: "design-consultation"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/design-consultation"
-sourceUrl: "https://skills.sh/nexu-io/open-design/design-consultation"
+name: design-consultation
+description: |
+  Build a complete design system from scratch with creative risks and realistic product mockups. Useful for kickoff workshops and brand-from-zero work.
+triggers:
+  - "design consultation"
+  - "design from scratch"
+  - "design system kickoff"
+  - "brand workshop"
+od:
+  mode: design-system
+  category: creative-direction
+  upstream: "https://github.com/garrytan/gstack"
 ---
 
 # design-consultation
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from Garry Tan (gstack).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/design-consultation`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/design-consultation](https://skills.sh/nexu-io/open-design/design-consultation)
+## What it does
 
-## Overview
+Build a complete design system from scratch with creative risks and realistic product mockups. Useful for kickoff workshops and brand-from-zero work.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/garrytan/gstack
+- Category: `creative-direction`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/design-consultation
+# Inspect the upstream README for exact paths
+open https://github.com/garrytan/gstack
 ```
+
+Then ask the agent to invoke this skill by name (`design-consultation`) or with
+one of the trigger phrases listed in this skill's frontmatter.

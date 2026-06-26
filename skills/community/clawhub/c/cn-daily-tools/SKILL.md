@@ -1,35 +1,79 @@
 ---
-name: "CN Daily Tools 中文日常工具"
-description: "中文日常工具集：天气预报、汇率查询、新闻摘要、快递追踪。适合中文用户日常使用，无需API密钥，开箱即用。Use when Chinese users need weather forecasts, currency exchange rates, news summaries, or package tracki..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-daily-tools"
-sourceUrl: "https://clawhub.ai/skills/cn-daily-tools"
+name: cn-daily-tools
+description: 中文日常工具集：天气预报、汇率查询、新闻摘要、快递追踪。适合中文用户日常使用，无需API密钥，开箱即用。Use when Chinese users need weather forecasts, currency exchange rates, news summaries, or package tracking in Chinese.
 ---
 
-# CN Daily Tools 中文日常工具
+# 中文日常工具集 CN Daily Tools
 
-> 中文日常工具集：天气预报、汇率查询、新闻摘要、快递追踪。适合中文用户日常使用，无需API密钥，开箱即用。Use when Chinese users need weather forecasts, currency exchange rates, news summaries, or package tracki...
+开箱即用的中文实用工具，无需任何API密钥。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-daily-tools`
-- **Source URL:** [https://clawhub.ai/skills/cn-daily-tools](https://clawhub.ai/skills/cn-daily-tools)
+## 包含工具
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-daily-tools
+### 🌤 天气查询
 ```
+查天气：北京明天
+查天气：上海本周
+查天气：[任意城市] [时间范围]
+```
+- 支持全国所有城市
+- 实时温度、湿度、风速
+- 3天/7天预报
+- 体感温度和穿衣建议
+
+### 💱 汇率换算
+```
+汇率：100美元换人民币
+汇率：1000元换日元
+汇率：[金额][货币]换[目标货币]
+```
+- 实时汇率（误差<1%）
+- 支持USD/EUR/JPY/KRW/HKD/GBP等主流货币
+- 历史趋势简析
+
+### 📰 新闻摘要
+```
+今日新闻：科技
+今日新闻：财经
+今日新闻：[领域]
+```
+- 抓取最新中文新闻
+- AI提炼3句话摘要
+- 附原文链接
+
+### 📦 快递追踪
+```
+查快递：顺丰 123456789
+查快递：[快递公司] [单号]
+```
+- 支持顺丰、圆通、中通、韵达、京东等主流快递
+- 实时物流状态
+- 预计到达时间
+
+## 使用示例
+
+**用户：** 北京明天天气怎么样？要带伞吗？
+
+**助手：**
+> 🌤 北京明天（周二）：晴转多云
+> 最高气温 12°C，最低 3°C
+> 💨 北风3级，湿度45%
+> ☂️ 降雨概率：8%，**不需要带伞**
+> 👔 穿衣建议：厚外套+毛衣
+
+---
+
+**用户：** 500美元现在能换多少人民币？
+
+**助手：**
+> 💱 实时汇率（2024-03-09 23:00）
+> 1 USD = 7.2156 CNY
+> **500 USD = 3,607.80 CNY**
+> 📈 近7日：人民币小幅升值0.3%
+
+## 特点
+
+- ✅ 纯中文交互
+- ✅ 零配置，开箱即用
+- ✅ 无需任何API密钥
+- ✅ 回答简洁，直接给结论
+- ✅ 适合移动端使用

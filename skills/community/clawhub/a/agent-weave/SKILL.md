@@ -1,35 +1,88 @@
 ---
-name: "Agent Weave"
-description: "Master-Worker Agent Cluster for parallel task execution. Use when building distributed agent systems with parallel processing needs, task orchestration, or M..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-weave"
-sourceUrl: "https://clawhub.ai/skills/agent-weave"
+name: agent-weave
+description: Master-Worker Agent Cluster for parallel task execution. Use when building distributed agent systems with parallel processing needs, task orchestration, or MapReduce-style workflows.
 ---
 
-# Agent Weave
+# Agent-Weave
 
-> Master-Worker Agent Cluster for parallel task execution. Use when building distributed agent systems with parallel processing needs, task orchestration, or M...
+Master-Worker Agent Cluster with parallel task execution and secure parent-child communication.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-weave`
-- **Source URL:** [https://clawhub.ai/skills/agent-weave](https://clawhub.ai/skills/agent-weave)
+## When to Use This Skill
 
-## Overview
+Use agent-weave when you need to:
+- Build distributed agent systems with parallel processing
+- Orchestrate multiple agents working together
+- Implement MapReduce-style workflows
+- Scale task execution across worker agents
+- Build master-worker architectures
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Installation
+
 ```bash
-hermes skills install clawhub/agent-weave
+npm install agent-weave
 ```
+
+### Basic Usage
+
+```javascript
+const { Loom } = require('agent-weave');
+
+// Create cluster
+const loom = new Loom();
+const master = loom.createMaster('my-cluster');
+
+// Create workers
+const workers = loom.spawnWorkers(master.id, 5, async (data) => {
+  // Process data
+  return { result: data * 2 };
+});
+
+// Execute tasks
+const results = await master.dispatch([1, 2, 3, 4, 5]);
+console.log(results);
+```
+
+## CLI Commands
+
+```bash
+# Create master
+weave loom create-master --name my-cluster
+
+# Spawn workers
+weave loom spawn --parent <master-id> --count 5
+
+# List agents
+weave loom list --tree
+```
+
+## Features
+
+- **Master-Worker Architecture**: Orchestrate multiple worker agents
+- **Parallel Execution**: Distribute tasks across workers
+- **Secure Communication**: Parent-child relationship enforcement
+- **MapReduce Support**: Built-in map-reduce workflows
+- **Auto-scaling**: Dynamic worker management
+- **Event-driven**: EventEmitter-based communication
+
+## API Reference
+
+### Loom
+Factory for creating and managing agents.
+
+### Master
+Manages a cluster of worker agents.
+
+### Worker
+Executes tasks assigned by the master.
+
+### Thread
+Secure communication layer between agents.
+
+### Tapestry
+Task orchestration engine for MapReduce workflows.
+
+## License
+
+MIT

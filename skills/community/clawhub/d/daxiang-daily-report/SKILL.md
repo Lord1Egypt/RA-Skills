@@ -1,35 +1,98 @@
 ---
-name: "大象沟通日报"
+name: daxiang-daily-report
 description: "生成大象（即时通讯工具）每日沟通分析报告。自动汇总个人对话、群聊消息，按时间段分析沟通频率，识别活跃联系人，生成结构化的沟通摘要。使用场景：用户提及'大象日报'、'沟通日报'、'每日沟通'、'daxiang report'、'沟通汇总'时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daxiang-daily-report"
-sourceUrl: "https://clawhub.ai/skills/daxiang-daily-report"
 ---
 
 # 大象沟通日报
 
-> 生成大象（即时通讯工具）每日沟通分析报告。自动汇总个人对话、群聊消息，按时间段分析沟通频率，识别活跃联系人，生成结构化的沟通摘要。使用场景：用户提及'大象日报'、'沟通日报'、'每日沟通'、'daxiang report'、'沟通汇总'时触发。
+自动分析大象（即时通讯工具）的聊天记录，生成每日沟通分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daxiang-daily-report`
-- **Source URL:** [https://clawhub.ai/skills/daxiang-daily-report](https://clawhub.ai/skills/daxiang-daily-report)
+## 功能特性
 
-## Overview
+- 📊 **数据概览**: 统计每日个人对话人数、群聊数量、消息总数
+- ⏰ **时间分析**: 按上午/下午/晚间/凌晨时段分析沟通分布
+- 🗣️ **联系人分析**: 识别活跃联系人，提取关键沟通内容
+- 🏠 **群聊分析**: 汇总群聊消息，识别活跃群组
+- 📝 **总结建议**: 基于沟通模式提供分析洞察
 
+## 命令
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daxiang-daily-report
+### `/daxiang-report [日期]`
+
+生成指定日期的大象沟通日报。
+
+**参数**:
+- `日期` (可选): 格式 YYYY-MM-DD，默认为昨天
+
+**使用方式**: 
+- 输入 `/daxiang-report` 生成昨日报告
+- 输入 `/daxiang-report 2026-03-12` 生成指定日期报告
+
+---
+
+## 数据来源
+
+数据文件位于工作区 `data/` 目录：
+- `daxiang_messages_{date}_full.json` - 原始消息数据
+- `daxiang_{date}_v1.md` - 历史报告
+
+---
+
+## 输出格式
+
+生成的报告包含以下6大板块：
+
 ```
+# 📊 {日期}日大象沟通汇总分析
+
+## 📈 一、今日数据概览
+| 指标 | 数值 |
+|:-----|-----:|
+| 个人对话 | X 人 |
+| 活跃群聊 | X |
+| 系统通知 | X |
+| 消息总数 | X 条 |
+
+## ⏰ 二、时间精力分布
+按上午/下午/晚间/凌晨时段分析，每个时段包含：
+- 沟通对象表格（沟通对象、类型、消息数、主要沟通方向和内容）
+- 时段总结
+
+## 🗣️ 三、单人沟通分析
+每个联系人包含：
+- 星级评分（⭐⭐⭐⭐⭐）
+- 主题分类
+- 对话背景
+- 沟通要点
+- 角色洞察
+- **完整沟通内容表格**：| 时间 | 说话人 | 具体内容 | - 展示该联系人的所有消息记录，不缩减
+
+## 💬 四、群聊汇总
+每个群包含：
+- 消息数
+- @我次数
+- 主题分类
+- 群聊摘要
+- @我的主要内容
+
+## 💡 五、整体洞察
+- 沟通重心
+- 协同场域
+- 时间投入
+- 待办压力
+
+## ✅ 六、todo清单
+自动识别待办事项，包含：
+- 待办事项
+- 来源
+- 时间
+- 备注
+```
+
+---
+
+## 注意事项
+
+- 需要大象消息数据文件支持
+- 自动过滤系统通知类消息
+- 按消息数排序识别活跃联系人和群组

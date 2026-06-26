@@ -1,0 +1,32 @@
+# Audio STT Skill - Python Dependencies
+# Install: pip install -r requirements.txt
+
+# ── Core STT Engines ────────────────────────────────────────────────────────
+# Option 1: faster-whisper (recommended - GPU/CPU efficient)
+faster-whisper>=1.0.0
+
+# Option 2: openai-whisper (full model, slower but accurate)
+# Note: Install ONLY one of faster-whisper or whisper, not both
+# whisper>=20231117
+
+# ── Audio Recording ─────────────────────────────────────────────────────────
+# Option 1: PyAudio (cross-platform)
+pyaudio>=0.2.14
+
+# Option 2: SoundDevice + SoundFile (alternative)
+# sounddevice>=0.4.5
+# soundfile>=0.12.1
+
+# ── API Support ────────────────────────────────────────────────────────────
+# For OpenAI-compatible API transcription
+openai>=1.0.0
+
+# ── Core ───────────────────────────────────────────────────────────────────
+numpy>=1.24.0
+torch>=2.0.0
+
+# ── Platform-specific ──────────────────────────────────────────────────────
+# Linux: for ALSA audio recording
+# alsaaudio (optional, for arecord fallback)
+
+# macOS: for AVFoundation (included in system)

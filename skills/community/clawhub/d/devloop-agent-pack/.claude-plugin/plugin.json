@@ -1,0 +1,11 @@
+{
+  "name": "devloop",
+  "version": "2.0.0",
+  "description": "产品驱动开发闭环 — 6 个专业 Agent 协作系统（Product, Core Dev, Dev, Test, Marketing, Research），覆盖产品发现、架构设计、并行开发、测试、商业化全流程。",
+  "author": {
+    "name": "DevLoop Team"
+  },
+  "homepage": "https://github.com/devloop-team/devloop-agent-pack",
+  "license": "MIT",
+  "category": "agent-orchestration"
+}

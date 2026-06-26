@@ -1,0 +1,7 @@
+interface:
+  display_name: "IDworld 社媒规划助手"
+  short_description: "规划IDworld商品的日文X/Twitter内容矩阵和文案"
+  default_prompt: "Use $idworld-social-content-planner to turn this IDworld product into a Japanese X/Twitter content plan."
+
+policy:
+  allow_implicit_invocation: true

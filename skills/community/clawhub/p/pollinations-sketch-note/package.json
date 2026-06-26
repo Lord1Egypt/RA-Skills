@@ -1,0 +1,100 @@
+{
+  "name": "pollinations-sketch-note",
+  "version": "0.0.1",
+  "description": "🎨 AI-powered sketch note generator that creates hand-drawn style knowledge cards with auto-search and summary. Supports 3 artistic styles.",
+  "description.zh-CN": "🎨 AI 手绘知识卡片生成器，自动搜索主题并总结，生成手绘风格知识卡片。支持 3 种艺术风格随机轮换。",
+  "author": "锦鲤",
+  "license": "MIT",
+  "keywords": [
+    "image-generation",
+    "ai-art",
+    "pollinations",
+    "sketch-note",
+    "knowledge-card",
+    "chinese",
+    "手绘卡片",
+    "AI 绘画",
+    "知识卡片",
+    "图片生成",
+    "中文 AI"
+  ],
+  "homepage": "https://github.com/openclaw/skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "pollinations-sketch-note"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "category": "multimedia",
+  "tags": [
+    "图片生成",
+    "AI 绘画",
+    "知识卡片",
+    "手绘风格",
+    "中文"
+  ],
+  "platforms": [
+    "macos",
+    "linux",
+    "windows"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "systemDependencies": [
+      "python3",
+      "curl"
+    ],
+    "pythonPackages": [
+      "requests",
+      "pillow>=10.0.0"
+    ],
+    "environmentVariables": [
+      "POLLINATIONS_API_KEY",
+      "TAVILY_API_KEY"
+    ]
+  },
+  "features": [
+    "自动搜索主题信息",
+    "智能总结到 180-200 字",
+    "3 种风格随机轮换",
+    "固定尺寸 804×440",
+    "自动署名和时间"
+  ],
+  "usage": {
+    "cli": "python3 {baseDir}/scripts/generate.py --theme \"主题名\"",
+    "triggers": [
+      "生成关于 XXX 的图片",
+      "画一个 XXX 的知识卡片",
+      "用文生图生成 XXX"
+    ]
+  },
+  "screenshots": [
+    {
+      "path": "screenshots/example1.png",
+      "description": "极简风格示例"
+    },
+    {
+      "path": "screenshots/example2.png",
+      "description": "可爱插画风格示例"
+    },
+    {
+      "path": "screenshots/example3.png",
+      "description": "赛博朋克风格示例"
+    }
+  ],
+  "changelog": {
+    "0.0.1": [
+      "初始发布版本",
+      "支持 3 种风格随机轮换",
+      "自动搜索和总结功能",
+      "环境变量配置支持多系统",
+      "完整双语文档（中文 + 英文）"
+    ]
+  },
+  "relatedSkills": [
+    "openai-image-gen",
+    "nano-banana-pro"
+  ]
+}

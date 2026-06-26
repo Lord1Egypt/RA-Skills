@@ -1,0 +1,42 @@
+[
+  {
+    "traceId": "df882bb407a9403500b305607c619d29",
+    "sessionId": "agent:darkhunt-support:slack:channel:c0a1897aj79:thread:1773749698.818579",
+    "userId": "Sergey Volkodav",
+    "userEmail": "Sergey Volkodav",
+    "serviceVersion": "0.3.4",
+    "organizationId": "efipttt6p3r8",
+    "workspaceId": "a0000000-0000-0000-0000-000000000001",
+    "applicationId": "33f69603-b74b-4b88-8ba8-4957b5f3f155",
+    "spanId": "f5be1993738f9802",
+    "name": "agent darkhunt-support",
+    "type": "agent",
+    "level": "ERROR",
+    "statusMessage": "span timed out without end event",
+    "timing": {
+      "start": "2026-03-17T12:15:39.467Z",
+      "end": "2026-03-17T12:21:39.047Z",
+      "durationMs": 359580
+    },
+    "error": {
+      "message": "span timed out without end event"
+    },
+    "traceEnvironment": {
+      "serviceName": "openclaw",
+      "serviceVersion": "0.3.4",
+      "deployment": "production",
+      "osType": "Linux",
+      "arch": "x64",
+      "terminal": "node"
+    },
+    "metadata": {
+      "channel_provider": "slack",
+      "agent_id": "darkhunt-support",
+      "user_slack_id": "U0A18940NPR",
+      "user_display_name": "Sergey Volkodav",
+      "channel_id": "C0A1897AJ79",
+      "user_slack_username": "Sergey Volkodav"
+    },
+    "_seq": 50
+  }
+]

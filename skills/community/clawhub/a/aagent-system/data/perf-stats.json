@@ -1,0 +1,20 @@
+{
+  "markets": {
+    "cnpm": {
+      "requests": 1528,
+      "success": 1524,
+      "failed": 4,
+      "timeouts": 0,
+      "totalTime": 189690,
+      "avgTime": 124.14267015706807
+    },
+    "npm": {
+      "requests": 374,
+      "success": 369,
+      "failed": 5,
+      "timeouts": 5,
+      "totalTime": 381449,
+      "avgTime": 1019.9171122994652
+    }
+  }
+}

@@ -1,35 +1,139 @@
 ---
-name: "nl2sqlSkill"
-description: "将自然语言转换为 SQL 查询并生成数据分析报告的完整 Agent 工作流。使用多 Agent 协作模式：并行子 Agent 投票做意图识别、生成-判断模式做 Schema Linking、ReAct 自修复 SQL、最终生成 Markdown 报告。 触发场景： - 用户用自然语言描述想查的数据 - 用户想把问..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nl2sql-skill"
-sourceUrl: "https://clawhub.ai/skills/nl2sql-skill"
+name: nl2sql-report
+description: |
+  将自然语言转换为 SQL 查询并生成数据分析报告的完整 Agent 工作流。使用多 Agent 协作模式：并行子 Agent 投票做意图识别、生成-判断模式做 Schema Linking、ReAct 自修复 SQL、最终生成 Markdown 报告。
+
+  触发场景：
+  - 用户用自然语言描述想查的数据
+  - 用户想把问题转成 SQL 查询
+  - 用户想基于查询结果生成分析报告
+  - 用户提到 NL2SQL、Text2SQL、数据分析报告
 ---
 
-# nl2sqlSkill
+# NL2SQL + 数据报告生成 Agent 工作流
 
-> 将自然语言转换为 SQL 查询并生成数据分析报告的完整 Agent 工作流。使用多 Agent 协作模式：并行子 Agent 投票做意图识别、生成-判断模式做 Schema Linking、ReAct 自修复 SQL、最终生成 Markdown 报告。 触发场景： - 用户用自然语言描述想查的数据 - 用户想把问...
+## 总览
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nl2sql-skill`
-- **Source URL:** [https://clawhub.ai/skills/nl2sql-skill](https://clawhub.ai/skills/nl2sql-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nl2sql-skill
 ```
+用户问题
+  → [1] 意图识别（3个并行子Agent投票）
+  → [2] Schema Linking（多候选生成 + 判断选优）
+  → [3] SQL生成 + 执行 + 自修复（ReAct，最多3次）
+  → [4] 自然语言答案生成
+  → [5] Markdown 报告生成
+```
+
+---
+
+## 阶段一：意图识别
+
+**为什么用3个子Agent？** 意图识别是后续所有步骤的基础，单个模型容易偏向字面理解而忽略业务含义。用3个不同"视角"的Agent并行分析，再投票选最优，可以显著提升意图理解的准确率。
+
+**做法：**
+
+同时启动 3 个子 Agent，给同一个用户问题，但用不同的温度/角度提示：
+- Agent A（保守）：聚焦字面含义，识别最直接的查询意图
+- Agent B（发散）：考虑业务背景，识别可能的隐含需求
+- Agent C（综合）：平衡字面与业务，给出最可能的意图
+
+三个 Agent 各自输出一段意图描述，然后由一个 **IntentPicker** 综合三份结果，选出最准确的那一个（或融合多个）作为最终意图。
+
+**输出：** 一段清晰的意图描述，例如：
+> "用户想统计最近7天各省份的活跃用户数，按省份排名，关注TOP5"
+
+---
+
+## 阶段二：Schema Linking
+
+**为什么用生成-判断模式？** 一个模型直接做 schema 匹配容易漏掉相关字段或选错表。让多个候选方案竞争，再由判断模型选优，准确率更高。
+
+**做法：**
+
+1. **多候选生成**：启动多个子 Agent，每个都基于意图和完整 schema 独立生成一份"相关字段列表"
+2. **判断选优**：由一个 Judge Agent 对比所有候选，选出覆盖最完整、冗余最少的那份
+
+**输出格式：**
+```json
+["database.table.column", "database.table.column", ...]
+```
+
+例如：
+```json
+["stats.province_summary.province", "stats.province_summary.active_users", "stats.province_summary.dt"]
+```
+
+---
+
+## 阶段三：SQL 生成 + 自修复
+
+**核心思路：** 先生成，执行后看结果，出错了不要直接重试，而是先用 ReAct 模式探索数据库找到根因，再带着诊断信息重新生成。
+
+**流程：**
+
+```
+生成 SQL
+  → 执行
+  → 成功：进入阶段四
+  → 失败：
+      ReAct 探索（查表结构、跑简单验证SQL、收集错误上下文）
+      → 带着探索结果重新生成 SQL
+      → 最多重试 3 次，仍失败则报告原因
+```
+
+**ReAct 探索阶段可用的动作：**
+- `execute_sql(sql)` — 执行一条验证 SQL
+- `get_table_schema(table_name)` — 查看表结构和样本数据
+- 分析错误信息，判断是语法错误、字段不存在、类型不匹配还是数据问题
+
+**SQL 生成要求：**
+- 只生成 SELECT / WITH 查询，不执行任何写操作
+- 用 CTE 拆分复杂逻辑，保持可读性
+- 处理 NULL 值（COALESCE）
+- 注意时间字段的格式兼容性
+
+---
+
+## 阶段四：自然语言答案
+
+将 SQL 执行结果转成一段自然语言回答，直接回应用户的原始问题。
+
+- 结果太多（>50行）时，提取关键统计量而不是逐行列举
+- 发现异常值时主动标注
+- 结果为空时解释可能原因
+
+---
+
+## 阶段五：报告生成
+
+基于前面所有阶段的结果，生成结构化 Markdown 报告。
+
+**报告结构：**
+
+```markdown
+# [报告标题]
+
+## 摘要
+[核心发现，2-3句话]
+
+## 数据分析
+[分维度解读，数字要有对比上下文]
+
+## 结论与建议
+[基于数据的洞察，可操作]
+
+---
+## 附录：SQL
+\`\`\`sql
+[完整 SQL]
+\`\`\`
+```
+
+**如果需要补充数据**，报告生成前可以额外发起 1-2 次补充查询（比如同比数据、基准值），再写入报告。
+
+---
+
+## 关键设计原则
+
+- **并行优于串行**：意图识别的多个子 Agent 同时跑，不要等一个跑完再跑下一个
+- **探索优于盲重试**：SQL 出错先诊断再修，带着上下文重试比盲目重试成功率高得多
+- **投票优于单点**：关键决策（意图、schema）用多候选竞争，减少单模型偏差

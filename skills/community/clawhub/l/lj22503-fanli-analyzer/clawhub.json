@@ -1,0 +1,13 @@
+{
+  "name": "fanli-analyzer",
+  "version": "2.0.0",
+  "description": "范蠡商情研判系统 - 从采集到操盘的四步心法（v2.0.0 完整版：采集/选择/判定/分析）",
+  "author": "燃冰 + ant（基于范蠡商情研判系统）",
+  "license": "MIT",
+  "keywords": ["范蠡", "事件研判", "信号挖掘", "闸门", "管道", "背离", "投资决策", "商情研判"],
+  "category": "finance",
+  "tags": ["fanli", "event-analysis", "signal-mining", "investment-decision", "business-intelligence"],
+  "main": "SKILL.md",
+  "files": ["SKILL.md", "README.md", "examples"],
+  "repository": {"type": "git", "url": "https://github.com/lj22503/women-awakening-museum.git"}
+}

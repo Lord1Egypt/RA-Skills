@@ -1,35 +1,35 @@
----
-name: "小红书自动发布"
-description: "自动读取指定文件夹当日视频和标题，连接Chrome通过脚本将内容发布到小红书账号。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-publish-auto"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-publish-auto"
----
-
 # 小红书自动发布
 
-> 自动读取指定文件夹当日视频和标题，连接Chrome通过脚本将内容发布到小红书账号。
+## 功能
+读取 `~/Movies/小红书英语` 的当天视频和标题文件，自动发布到小红书。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-publish-auto`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-publish-auto](https://clawhub.ai/skills/xiaohongshu-publish-auto)
+## 使用方式
+1. 下载 YouTube 视频 → 存 `~/Movies/小红书英语/视频月日带声.mp4`
+2. 标题文件 → `~/Movies/小红书英语/标题月日.txt`
+3. 说"发小红书"自动运行
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-publish-auto
+## 标题文件格式
 ```
+正文内容...
+
+#话题1 #话题2 #话题3 #话题4
+```
+
+## 配置
+- 视频路径：`~/Movies/小红书英语`
+- 固定标题：一起学英语
+- 自动话题：从标题文件#开头的行读取
+
+## 注意事项
+- **使用前先清空话题区**（如果有残留话题）
+- Chrome 需要开启调试：`--remote-debugging-port=9222`
+
+## 技术
+- Node.js + Puppeteer
+- 通过 CDP 连接 Chrome
+- 话题添加方式：ArrowDown + Enter
+
+## 触发词
+- 发小红书
+- 发布小红书
+- 小红书自动发布

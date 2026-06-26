@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_read_office_file",
+		"description": "Read the text content of Office documents based on the file path in the attachment field. Supports parsing PDF, Word (.docx), and Excel (.xlsx) files, only returns readable text information in the file.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"filePath": {
+					"description": "File path, corresponding to the path field in the attachment field, such as: cfjo72nfvk5cf/fw5cpegf53nvc/ddyixt34smvwhavweozko.pdf",
+					"type": "string"
+				}
+			},
+			"required": [
+				"filePath"
+			]
+		}
+	}
+}

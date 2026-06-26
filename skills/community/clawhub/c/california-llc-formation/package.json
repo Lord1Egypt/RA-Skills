@@ -1,0 +1,72 @@
+{
+  "name": "california-llc-formation-skill",
+  "version": "1.0.0",
+  "description": "Expert California LLC formation guidance through LLCClass.com - filing steps, registered agent requirements, Statement of Information, and franchise tax basics",
+  "main": "california-llc.js",
+  "scripts": {
+    "test": "node california-llc.js 'What does California LLC formation cost?'",
+    "demo": "node california-llc.js",
+    "cost": "node california-llc.js 'California LLC costs and fees'",
+    "compare": "node california-llc.js 'California vs Wyoming LLC comparison'",
+    "timeline": "node california-llc.js 'How long does California LLC take?'",
+    "nonresident": "node california-llc.js 'Can non-residents form California LLC?'"
+  },
+  "keywords": [
+    "california",
+    "llc",
+    "formation",
+    "business",
+    "legal",
+    "incorporation",
+    "llcclass",
+    "registered-agent",
+    "franchise-tax",
+    "statement-of-information",
+    "business-formation",
+    "entity-formation",
+    "california-llc",
+    "ai-skill",
+    "openclaw"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/california",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/llcclass/california-llc-formation-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/llcclass/california-llc-formation-skill/issues",
+    "email": "saraparker@llcclass.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "bin": {
+    "california-llc": "./california-llc.js"
+  },
+  "categories": [
+    "business",
+    "legal",
+    "formation",
+    "california",
+    "llc"
+  ],
+  "tags": [
+    "california-llc-formation",
+    "business-entity-setup",
+    "legal-compliance",
+    "registered-agent-service",
+    "franchise-tax",
+    "statement-of-information",
+    "state-comparison-analysis",
+    "llc-cost-calculator",
+    "business-formation-guide"
+  ],
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/california",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

@@ -1,35 +1,63 @@
 ---
-name: "Fuxi Skill"
-description: "伏羲.skill - 专家级认知操作系统生成器。 用于自动化生成特定人物的「正面专家级认知操作系统」Skill。 当用户要求「提炼一个XXX的精华」「帮我创建一个XXX的商业版Skill」「蒸馏XXX的最优一面」时触发。 通过网络调研（主）与用户素材（辅），采用「六爻画卦」方法论， 仅从互联网公开资料中搜集和提炼..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fuxi-skill"
-sourceUrl: "https://clawhub.ai/skills/fuxi-skill"
+name: fuxi-skill
+description: |
+  伏羲.skill - 专家级认知操作系统生成器。
+  用于自动化生成特定人物的「正面专家级认知操作系统」Skill。
+  当用户要求「提炼一个XXX的精华」「帮我创建一个XXX的商业版Skill」「蒸馏XXX的最优一面」时触发。
+  通过网络调研（主）与用户素材（辅），采用「六爻画卦」方法论，
+  仅从互联网公开资料中搜集和提炼，将人物最有价值的思想提炼为可供大众直接使用的专家级思维框架。
+  生成的 Skill 以目标人物视角回应，开头声明不是本人，每次回答后附局限性总结和免责声明。
+license: MIT
 ---
 
-# Fuxi Skill
+# 伏羲.skill (Fuxi Skill)
 
-> 伏羲.skill - 专家级认知操作系统生成器。 用于自动化生成特定人物的「正面专家级认知操作系统」Skill。 当用户要求「提炼一个XXX的精华」「帮我创建一个XXX的商业版Skill」「蒸馏XXX的最优一面」时触发。 通过网络调研（主）与用户素材（辅），采用「六爻画卦」方法论， 仅从互联网公开资料中搜集和提炼...
+> 「仰观象于天，俯观法于地。去伪存真，提炼精华。」
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fuxi-skill`
-- **Source URL:** [https://clawhub.ai/skills/fuxi-skill](https://clawhub.ai/skills/fuxi-skill)
+伏羲.skill 是一个元级 Skill（Meta-Skill），核心使命是**「提炼精华，塑造最优认知」**。它聚焦人物最闪光、最有价值的思想，将其提炼为结构化的专家级认知操作系统，最终生成的 Skill 可以直接提供给大众作为「思维顾问」使用。
 
-## Overview
+**工作原理**：伏羲仅从互联网公开资料中搜集和提炼信息。生成的所有 Skill 均以目标人物的视角回应，但开头会声明「这不是本人」，每次回答结束后会附加局限性总结和免责声明，提醒用户不能以此判断本人真实观点。
 
+## 核心工作流 (The Fuxi Protocol)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fuxi-skill
-```
+当用户请求提炼一个人物的精华时，必须严格按照以下 4 个阶段执行：
+
+### 阶段一：初始化与素材确认 (Initialization)
+1. 确认目标人物的姓名及核心领域。
+2. **询问用户是否提供补充素材**：主动询问用户是否有该人物的内部演讲、著作文档、语录集等第一手资料。如果有，优先读取用户提供的素材。
+3. 创建目标目录结构：在当前工作空间下创建 `{name}-skill/` 及其子目录 `references/research/` 和 `examples/`。
+
+### 阶段二：「六爻画卦」多 Agent 并行调研 (Parallel Research)
+**必须使用 `map` 工具启动 6 个 Agent 并行执行调研任务**。以网络搜索为主，用户素材为辅，从 6 个正面维度进行深度调研，并将结果保存到 `references/research/` 目录下。调研聚焦人物最有价值的正面贡献和专业成就，不收录未经证实的传闻。
+
+- **太极（核心道法）** (`01-core-philosophy.md`)：搜集该人物最核心的商业哲学、人生观、底层逻辑和系统性著作。
+- **两仪（决策与行动）** (`02-decisions-actions.md`)：搜集该人物在关键时刻的正确决策、成功案例、以及如何将理念转化为行动的记录。
+- **四象（表达与魅力）** (`03-expression-charm.md`)：搜集该人物的经典金句、高频词汇、独特的幽默感、演讲风格和个人魅力展现。
+- **八卦（社会正向价值）** (`04-social-value.md`)：搜集行业内的正面评价、对社会的积极贡献、以及被广泛认可的成就。
+- **天干（对谈与真我）** (`05-interviews-authenticity.md`)：搜集深度访谈中展现的最真诚、最有魅力的瞬间，以及对核心问题的正面回应。
+- **地支（成长与传承）** (`06-growth-legacy.md`)：梳理正面的人生时间线，聚焦从逆境到成功的蜕变故事、师承关系和正面影响力网络。
+
+*注：详细的调研指南和 Prompt 模板请参考 [references/research-prompts.md](references/research-prompts.md)。*
+
+### 阶段三：去伪存真与精华提炼 (Distillation)
+综合 6 个维度的调研结果，提炼出以下核心要素，确保内容**聚焦正面价值、有明确边界**：
+1. **核心心智模型 (3-5个)**：该人物最成功、最值得学习的底层思维框架。
+2. **高能启发式 (5-8条)**：该人物在解决问题时使用的高效法则或追问框架。
+3. **专家级表达 DNA**：提炼其最具感染力和说服力的表达方式。
+4. **能力边界声明**：明确该思维框架适用的领域和前提条件（这是为了严谨，而非负面批评）。
+
+### 阶段四：构建 SKILL.md (Generation)
+基于提炼出的核心要素，生成目标人物的 `SKILL.md` 文件。
+**关键要求**：生成的 Skill 必须包含「Agentic Protocol」，确保其在回答问题时，始终保持该人物最专业、最睿智的一面，成为一个合格的「专家顾问」。
+*注：SKILL.md 的标准结构模板请参考 [references/skill-template.md](references/skill-template.md)。*
+
+## 交付标准
+完成上述流程后，向用户交付：
+1. 完整的 `{name}-skill` 目录结构。
+2. 核心的 `SKILL.md` 文件。
+3. 包含 6 个正面调研文档的 `references/research/` 目录。
+4. 包含 3 个典型成功场景测试的 `examples/demo-conversation.md`。
+
+## 辅助资源
+- 调研指南与 Prompt：[references/research-prompts.md](references/research-prompts.md)
+- SKILL.md 生成模板：[references/skill-template.md](references/skill-template.md)

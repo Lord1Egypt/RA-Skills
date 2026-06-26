@@ -1,0 +1,192 @@
+<!--
+  Component: gsap-recipes
+  GSAP 高级动画配方 — Agent 在需要复杂动画时参考
+  前提：在 HTML 底部取消注释 GSAP CDN：
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+-->
+
+<!-- ============================================================
+     配方 1：数字滚动（Counter Animation）
+     适用于 big-number 布局的核心数字
+     ============================================================ -->
+<script>
+// Agent 在 Slide 切换到包含数字的页面时触发
+// targetEl: 数字元素, endValue: 目标数字, suffix: 后缀（如 '%', '+', '万'）
+function animateCounter(targetEl, endValue, suffix = '') {
+  const obj = { val: 0 };
+  gsap.to(obj, {
+    val: endValue,
+    duration: 1.5,
+    ease: 'power2.out',
+    onUpdate: () => {
+      targetEl.textContent = Math.round(obj.val).toLocaleString() + suffix;
+    }
+  });
+}
+
+// 使用示例：
+// 监听 Slide 切换，当目标 Slide 变为 active 时调用
+// animateCounter(document.querySelector('#stat1'), 98, '%');
+</script>
+
+
+<!-- ============================================================
+     配方 2：序列入场动画（Stagger Timeline）
+     适用于列表/卡片/时间线节点的依次入场
+     ============================================================ -->
+<script>
+function staggerEnter(containerSelector, childSelector) {
+  const children = document.querySelectorAll(containerSelector + ' ' + childSelector);
+  gsap.from(children, {
+    opacity: 0,
+    y: 30,
+    duration: 0.5,
+    stagger: 0.12,
+    ease: 'power2.out'
+  });
+}
+
+// 使用示例：
+// staggerEnter('.slide--cards .cards-grid', '.card');
+// staggerEnter('.slide--timeline .timeline-track', '.timeline-item');
+</script>
+
+
+<!-- ============================================================
+     配方 3：打字机效果（Typewriter）
+     适用于标题页或引用页的文字逐字显示
+     ============================================================ -->
+<script>
+function typewriter(targetEl, speed = 50) {
+  const text = targetEl.textContent;
+  targetEl.textContent = '';
+  targetEl.style.visibility = 'visible';
+  let i = 0;
+  const timer = setInterval(() => {
+    targetEl.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
+}
+
+// 使用示例：
+// typewriter(document.querySelector('.title-main'), 60);
+</script>
+
+
+<!-- ============================================================
+     配方 4：进度条/数据条动画
+     适用于图表页中的水平进度条
+     ============================================================ -->
+<script>
+function animateBars(containerSelector) {
+  const bars = document.querySelectorAll(containerSelector + ' rect[data-target-width]');
+  bars.forEach(bar => {
+    const targetWidth = parseFloat(bar.getAttribute('data-target-width'));
+    gsap.from(bar, {
+      attr: { width: 0 },
+      duration: 1,
+      ease: 'power2.out',
+      delay: 0.2
+    });
+  });
+}
+</script>
+
+
+<!-- ============================================================
+     配方 5：Slide 切换集成（通用触发器）
+     Agent 将此脚本放在最终 HTML 底部，
+     自动在 Slide 切换时触发已注册的动画
+     ============================================================ -->
+<script>
+// 动画注册表：Agent 在此注册每页的动画
+// 支持三种注册方式：
+//   - GSAP 动画函数
+//   - Chart.js 延迟初始化（通过 createChartLazy）
+//   - 混合（同一页既有 GSAP 动画又有图表）
+const slideAnimations = {
+  // 页码 → 动画函数（可以是单个函数或函数数组）
+  // 1: () => typewriter(document.querySelector('[data-slide="1"] .title-main')),
+  // 3: () => animateCounter(document.querySelector('#revenue'), 1200, '万'),
+  // 5: () => staggerEnter('[data-slide="5"] .cards-grid', '.card'),
+};
+
+// base.html 的 goTo() 函数已内置 slideAnimations 调用钩子：
+//   currentIndex = index;
+//   if (typeof slideAnimations !== 'undefined' && slideAnimations[currentIndex]) {
+//     slideAnimations[currentIndex]();
+//   }
+//   updateIndicator();
+//
+// Agent 无需手动修改 goTo()，只需填充 slideAnimations 即可。
+</script>
+
+
+<!-- ============================================================
+     配方 6：Chart.js 延迟初始化集成
+     将 Chart.js 图表与 slideAnimations 注册表无缝结合
+     前提：同时取消注释 Chart.js CDN
+     ============================================================ -->
+<script>
+/**
+ * 延迟创建 Chart.js 实例 — Slide 激活时才 new Chart()，动画当场播放
+ * 详见 chart-js.html 中的完整函数定义和示例
+ *
+ * 与 GSAP 配方混合使用示例：
+ *   同一页既有数字滚动动画，又有 Chart.js 图表
+ */
+
+// ---- 混合注册示例 ----
+// 假设第 4 页：左侧大数字 + 右侧柱状图
+//
+// const slideAnimations = {
+//   4: () => {
+//     // GSAP：数字滚动
+//     animateCounter(document.querySelector('[data-slide="4"] .big-number'), 1200, '万');
+//     // Chart.js：延迟创建柱状图（createChartLazy 返回的是函数，需要调用它）
+//     createChartLazy('revenueChart', {
+//       type: 'bar',
+//       data: {
+//         labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+//         datasets: [{
+//           label: '营收',
+//           data: [120, 190, 300, 250],
+//           backgroundColor: '#818cf8',
+//           borderRadius: 6
+//         }]
+//       },
+//       options: {
+//         responsive: true,
+//         maintainAspectRatio: false,
+//         animation: { duration: 1000, easing: 'easeOutQuart' },
+//         plugins: { legend: { display: false } },
+//         scales: {
+//           y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.08)' }, ticks: { color: '#8b95ad' } },
+//           x: { grid: { display: false }, ticks: { color: '#8b95ad' } }
+//         }
+//       }
+//     })();  // ← 注意末尾 ()，createChartLazy 返回函数，这里立即调用
+//   },
+// };
+
+// ---- 纯 Chart.js 注册示例（无 GSAP）----
+// 不需要 GSAP 时，只用 Chart.js CDN + createChartLazy 即可
+//
+// const slideAnimations = {
+//   3: createChartLazy('lineChart', { type: 'line', data: {...}, options: {...} }),
+//   5: createChartLazy('doughnutChart', { type: 'doughnut', data: {...}, options: {...} }),
+// };
+</script>
+
+
+<!--
+  使用说明：
+  1. Agent 仅在需要高级动画时才引入 GSAP CDN 和这些配方
+  2. 简单的入场动画优先使用 CSS（见 animations.css），无需 GSAP
+  3. SVG 图表动画使用纯 CSS（见 chart-svg.html），无需 JS
+  4. Chart.js 图表必须通过 createChartLazy + slideAnimations 延迟初始化
+  5. GSAP 配方和 Chart.js 可混合注册在同一页的 slideAnimations 中
+  6. GSAP 和 Chart.js 的颜色值都使用实际色值（非 CSS 变量）
+  7. 每个配方都是独立函数，Agent 按需选择复制到最终 HTML 中
+-->

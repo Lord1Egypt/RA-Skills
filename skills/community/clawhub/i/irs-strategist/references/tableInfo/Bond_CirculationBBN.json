@@ -1,0 +1,113 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "BondTypeCode",
+        "columnChiName": "债券类别代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "债券类别代码(BondTypeCode)与(CT_SystemConst)表中的DM字段关联，令LB = 1434，得到债券类别代码的具体描述：1100-政府债券，1110-普通国债，1111-记账式国债，1112-国债，1131-储蓄国债(凭证式)，1133-储蓄国债(电子式)，1150-地方政府债，1500-中央银行债，1700-政府支持机构债券，1800-政府支持债券，1900-政策性金融债，2100-金融债券，2110-政策性银行债，2111-国家开发银行，2112-中国进出口银行，2113-中国农业发展银行，2120-商业银行债券，2121-普通债，2122-次级债，2123-混合资本债，2127-二级资本债券，2128-其他一级资本工具，2130-特种金融债券，2140-非银行金融机构债券，2141-普通债(非银行金融机构)，2142-二级资本工具(非银行金融机构)，2150-证券公司债，2151-证券公司次级债券，2152-证券公司短期债券，2160-证券公司短期融资券，2170-资产管理公司金融债，2200-资本工具，2300-同业存单，3100-企业债券，3110-中央企业债券，3120-地方企业债券，3130-集合企业债，3140-普通企业债，3200-公开发行公司债，3210-非公开发行公司债，3230-可转换公司债，3240-可交换公司债，3250-分离交易的可转换公司债，3260-非公开发行可交换公司债券，3300-质押式回购，3310-报价回购，3320-协议回购，3330-三方回购，4100-短期融资券，4110-短期融资券-清算所，4120-超短期融资券，4130-金融企业短期融资券，4300-资产支持证券，4301-企业资产支持证券，4310-非金融企业资产支持票据，4320-信贷资产支持证券，4330-不动产资产支持证券，4500-票据，4510-中期票据，4520-集合票据，4530-区域集优中小企业集合票据，4531-中小企业集合票据，4532-中小企业私募债，4540-项目收益债，4550-标准化票据，4700-外国债券，4710-国际机构债券，4720-外币债券(折人民币)，4800-非公开定向债务融资工具，4900-绿色债务融资工具，5000-公司信用类债券，5010-其他公司信用类债券，5100-熊猫债券，5101-玉兰债券，5102-互联互通券种，5103-其他金融债，5200-创新创业可转换债券，5300-不动产投资信托，5400-债券借贷，9100-其他债券，9900-合计。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "BondTypeName",
+        "columnChiName": "债券类别",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "IssueFrequencyM",
+        "columnChiName": "本月发行只数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.4"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "IssueVolumeM",
+        "columnChiName": "本月发行量(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "IssueFrequencyY",
+        "columnChiName": "本年发行只数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.4"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "IssueVolumeY",
+        "columnChiName": "本年发行量(亿元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

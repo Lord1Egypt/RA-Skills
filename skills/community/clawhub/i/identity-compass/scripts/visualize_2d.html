@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identity Compass</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0f; overflow: hidden; color: #e0e0e0; }
+canvas { display: block; }
+#tooltip {
+  position: fixed; background: rgba(16,16,24,0.95); border-radius: 12px; padding: 16px 20px;
+  pointer-events: none; display: none; max-width: 320px; z-index: 100;
+  box-shadow: 0 0 30px rgba(0,200,255,0.08), 0 4px 20px rgba(0,0,0,0.6);
+  border: 1px solid rgba(0,200,255,0.15);
+  backdrop-filter: blur(12px);
+}
+#tooltip .tt-what { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 4px; letter-spacing: -0.3px; }
+#tooltip .tt-essence { color: rgba(255,255,255,0.45); font-size: 12px; margin-bottom: 12px; line-height: 1.5; }
+#tooltip .tt-bar { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.06); margin-bottom: 10px; overflow: hidden; }
+#tooltip .tt-bar-fill { height: 100%; border-radius: 2px; }
+#tooltip .tt-stats { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.35); display: flex; justify-content: space-between; gap: 16px; }
+#tooltip .tt-stats span { color: rgba(255,255,255,0.7); font-weight: 600; }
+#tooltip .tt-action { margin-top: 10px; font-size: 11px; color: #00c8ff; font-weight: 600; letter-spacing: 0.5px; }
+#detail-panel {
+  position: fixed; right: -400px; top: 0; width: 380px; height: 100vh;
+  background: rgba(12,12,20,0.97); border-left: 1px solid rgba(0,200,255,0.1);
+  backdrop-filter: blur(20px); z-index: 200; transition: right 0.4s cubic-bezier(0.16,1,0.3,1);
+  overflow-y: auto; padding: 32px 28px;
+}
+#detail-panel.open { right: 0; }
+#detail-panel .dp-close { position: absolute; top: 16px; right: 16px; cursor: pointer; color: rgba(255,255,255,0.3); font-size: 20px; }
+#detail-panel .dp-close:hover { color: #fff; }
+#detail-panel .dp-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px; }
+#detail-panel .dp-sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 24px; line-height: 1.6; }
+#detail-panel .dp-section { margin-bottom: 20px; }
+#detail-panel .dp-label { font-family: 'JetBrains Mono'; font-size: 10px; color: rgba(0,200,255,0.6); letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase; }
+#detail-panel .dp-value { font-size: 14px; color: #fff; font-weight: 600; }
+#detail-panel .dp-bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+#detail-panel .dp-bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+#detail-panel .dp-vec { font-family: 'JetBrains Mono'; font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="tooltip">
+  <div class="tt-what"></div>
+  <div class="tt-essence"></div>
+  <div class="tt-bar"><div class="tt-bar-fill"></div></div>
+  <div class="tt-stats"></div>
+  <div class="tt-action"></div>
+</div>
+<div id="detail-panel">
+  <div class="dp-close" onclick="closePanel()">✕</div>
+  <div class="dp-title" id="dp-title"></div>
+  <div class="dp-sub" id="dp-sub"></div>
+  <div class="dp-section">
+    <div class="dp-label">ALIGNMENT</div>
+    <div class="dp-value" id="dp-align"></div>
+    <div class="dp-bar-track"><div class="dp-bar-fill" id="dp-align-bar"></div></div>
+  </div>
+  <div class="dp-section">
+    <div class="dp-label">VECTOR</div>
+    <div class="dp-vec" id="dp-vec"></div>
+  </div>
+  <div class="dp-section">
+    <div class="dp-label">WEIGHT</div>
+    <div class="dp-value" id="dp-weight"></div>
+  </div>
+  <div class="dp-section">
+    <div class="dp-label">CLUSTER</div>
+    <div class="dp-value" id="dp-cluster"></div>
+  </div>
+  <div class="dp-section" id="dp-match-section" style="display:none">
+    <div class="dp-label">COMPASS MATCH</div>
+    <div class="dp-value" id="dp-match"></div>
+    <div class="dp-bar-track"><div class="dp-bar-fill" id="dp-match-bar"></div></div>
+  </div>
+  <div class="dp-section">
+    <div class="dp-label">STATUS</div>
+    <div class="dp-value" id="dp-status"></div>
+  </div>
+</div>
+<script>
+// === Data loaded from external JSON ===
+// Place your data in compass_data.json (same directory) or sample_data.json for demo
+let allBeads = [];
+let H = {dir:[0.6, 0.6, 0.6], mag: 0.5};
+let oneLiner = "Loading...";
+let clusterStats = [];
+
+async function loadData() {
+  // Try compass_data.json first, fall back to sample_data.json
+  let data;
+  for (const file of ['compass_data.json', 'sample_data.json']) {
+    try {
+      const resp = await fetch(file);
+      if (resp.ok) { data = await resp.json(); break; }
+    } catch(e) {}
+  }
+  if (!data) {
+    console.error('No data file found. Create compass_data.json or sample_data.json');
+    oneLiner = "⚠️ No data file found — create compass_data.json";
+    return;
+  }
+  const identity = (data.identity || []).map(b => ({...b, cl: b.cl || 'identity'}));
+  const opportunities = (data.opportunities || []).map(b => ({...b}));
+  allBeads = [...identity, ...opportunities];
+  H = data.H || H;
+  oneLiner = data.oneLiner || oneLiner;
+  clusterStats = data.clusters || [];
+}
+
+function project(d) {
+  const len = Math.sqrt(d[0]*d[0]+d[1]*d[1]+d[2]*d[2]) || 1;
+  return { x: d[0]/len, y: d[2]/len };
+}
+function dot3(a,b) { return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]; }
+function len3(a) { return Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]); }
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+const dpr = window.devicePixelRatio || 1;
+
+let W, HT, cx, cy, scale;
+function resize() {
+  W = window.innerWidth; HT = window.innerHeight;
+  canvas.width = W * dpr; canvas.height = HT * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = HT + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cx = W * 0.46; cy = HT * 0.46;
+  scale = Math.min(W, HT) * 0.32;
+}
+window.addEventListener('resize', () => { resize(); });
+resize();
+
+const palette = {
+  identity: {fill:'#00c8ff', stroke:'#00e5ff', glow:'rgba(0,200,255,0.25)', text:'#00c8ff'},
+  hot:      {fill:'#ff3366', stroke:'#ff4477', glow:'rgba(255,51,102,0.3)', text:'#ff3366'},
+  active:   {fill:'#00ff88', stroke:'#00ff99', glow:'rgba(0,255,136,0.25)', text:'#00ff88'},
+  warm:     {fill:'#a855f7', stroke:'#b866ff', glow:'rgba(168,85,247,0.25)', text:'#a855f7'},
+  tension:  {fill:'#ffaa00', stroke:'#ffbb22', glow:'rgba(255,170,0,0.3)', text:'#ffaa00'},
+  cool:     {fill:'#555566', stroke:'#666677', glow:'rgba(85,85,102,0.15)', text:'#555566'},
+  avoid:    {fill:'#333344', stroke:'#444455', glow:'rgba(50,50,68,0.1)', text:'#444455'},
+};
+
+// Force-directed spread to avoid overlap
+let beads = [];
+let hoveredBead = null;
+let time = 0;
+
+function computeBeads() {
+const rawBeads = allBeads.map((v,i) => {
+  const p = project(v.dir);
+  const alignment = dot3(v.dir, H.dir) / (len3(v.dir) * len3(H.dir));
+  const angle = Math.acos(Math.min(1, Math.max(-1, alignment))) * 180 / Math.PI;
+  return { ...v, px: p.x, py: p.y, alignment, angle, r: 5 + v.w * 1.8 };
+});
+// Force-directed spread
+for (let iter = 0; iter < 120; iter++) {
+  for (let i = 0; i < rawBeads.length; i++) {
+    for (let j = i+1; j < rawBeads.length; j++) {
+      const a = rawBeads[i], b = rawBeads[j];
+      let dx = a.px - b.px, dy = a.py - b.py;
+      const dist = Math.sqrt(dx*dx + dy*dy) || 0.001;
+      const minDist = (a.r + b.r + 8) / (scale || 200) * 1.3;
+      if (dist < minDist) {
+        const push = (minDist - dist) * 0.4;
+        const nx = dx/dist, ny = dy/dist;
+        a.px += nx * push; a.py += ny * push;
+        b.px -= nx * push; b.py -= ny * push;
+      }
+    }
+    const orig = project(rawBeads[i].dir);
+    rawBeads[i].px += (orig.x - rawBeads[i].px) * 0.03;
+    rawBeads[i].py += (orig.y - rawBeads[i].py) * 0.03;
+  }
+}
+beads = rawBeads;
+} // end computeBeads
+
+function draw() {
+  time += 0.016;
+  ctx.clearRect(0, 0, W, HT);
+  const hProj = project(H.dir);
+
+  // === BACKGROUND ===
+  ctx.fillStyle = '#0a0a0f';
+  ctx.fillRect(0, 0, W, HT);
+
+  // Subtle radial gradient at center
+  const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, scale * 1.8);
+  bgGrad.addColorStop(0, 'rgba(0,200,255,0.03)');
+  bgGrad.addColorStop(0.5, 'rgba(0,100,200,0.01)');
+  bgGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, HT);
+
+  // === GRID ===
+  ctx.strokeStyle = 'rgba(255,255,255,0.03)'; ctx.lineWidth = 1;
+  const gridStep = scale * 0.2;
+  for (let gx = cx % gridStep; gx < W; gx += gridStep) {
+    ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, HT); ctx.stroke();
+  }
+  for (let gy = cy % gridStep; gy < HT; gy += gridStep) {
+    ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+  }
+
+  // === CONCENTRIC RINGS ===
+  for (let i = 1; i <= 4; i++) {
+    ctx.beginPath(); ctx.arc(cx, cy, scale * i * 0.32, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(0,200,255,${0.04})`; ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  // === AXES ===
+  ctx.strokeStyle = 'rgba(0,200,255,0.08)'; ctx.lineWidth = 1;
+  ctx.setLineDash([4, 6]);
+  ctx.beginPath(); ctx.moveTo(cx - scale*1.4, cy); ctx.lineTo(cx + scale*1.4, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, cy - scale*1.4); ctx.lineTo(cx, cy + scale*1.4); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Axis labels
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.font = '600 12px Inter'; 
+  ctx.fillStyle = 'rgba(0,200,255,0.35)';
+  ctx.fillText('나만의 길을 만든다 →', cx + scale*1.05, cy + 18);
+  ctx.fillText('← 정해진 길을 따른다', cx - scale*1.05, cy + 18);
+  ctx.save();
+  ctx.translate(cx - 20, cy - scale*1.05);
+  ctx.fillText('↑ 새로운 걸 만든다', 0, 0);
+  ctx.restore();
+  ctx.save();
+  ctx.translate(cx - 20, cy + scale*1.1);
+  ctx.fillText('↓ 검증된 걸 지킨다', 0, 0);
+  ctx.restore();
+
+  // === H FIELD LINES (subtle magnetic field visualization) ===
+  ctx.globalAlpha = 0.6;
+  for (let offset = -5; offset <= 5; offset++) {
+    if (!offset) continue;
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(0,255,136,${0.02 + Math.abs(offset)*0.003})`;
+    ctx.lineWidth = 0.8;
+    for (let t = -1.5; t <= 1.5; t += 0.03) {
+      const px = -hProj.y, py = hProj.x;
+      const wave = Math.sin(t * 3 + time * 0.5) * 0.01;
+      const s = offset * 0.08 * Math.exp(-t*t*1.2) + wave;
+      const fx = cx + (hProj.x*t + px*s) * scale;
+      const fy = cy - (hProj.y*t + py*s) * scale;
+      t === -1.5 ? ctx.moveTo(fx,fy) : ctx.lineTo(fx,fy);
+    }
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+
+  // === H ARROW ===
+  const hx = cx + hProj.x * scale * 1.15;
+  const hy = cy - hProj.y * scale * 1.15;
+  const hAngle = Math.atan2(-hProj.y, hProj.x);
+  
+  // Arrow glow
+  ctx.shadowColor = 'rgba(0,255,136,0.4)'; ctx.shadowBlur = 12;
+  ctx.strokeStyle = 'rgba(0,255,136,0.6)'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(hx,hy); ctx.stroke();
+  ctx.fillStyle = 'rgba(0,255,136,0.6)';
+  ctx.beginPath();
+  ctx.moveTo(hx,hy);
+  ctx.lineTo(hx-14*Math.cos(hAngle-0.3), hy+14*Math.sin(hAngle-0.3));
+  ctx.lineTo(hx-14*Math.cos(hAngle+0.3), hy+14*Math.sin(hAngle+0.3));
+  ctx.closePath(); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = '700 11px JetBrains Mono';
+  ctx.fillStyle = 'rgba(0,255,136,0.7)';
+  ctx.textAlign = 'left';
+  ctx.fillText('H FIELD', hx+14, hy-6);
+
+  // === DRAW BEADS ===
+  const sorted = [...beads].sort((a,b) => b.r - a.r);
+  for (const b of sorted) {
+    const bx = cx + b.px * scale * 0.85;
+    const by = cy - b.py * scale * 0.85;
+    b._sx = bx; b._sy = by;
+    const p = palette[b.cl] || palette.cool;
+    const isHovered = b === hoveredBead;
+    const pulse = isHovered ? 1.15 + Math.sin(time * 4) * 0.05 : 1;
+    const r = b.r * pulse;
+
+    // Outer glow
+    ctx.shadowColor = p.glow; ctx.shadowBlur = isHovered ? 30 : 15;
+
+    // Core circle
+    const grad = ctx.createRadialGradient(bx - r*0.2, by - r*0.2, r*0.1, bx, by, r);
+    grad.addColorStop(0, 'rgba(255,255,255,0.15)');
+    grad.addColorStop(0.4, p.fill);
+    grad.addColorStop(1, p.stroke);
+    ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI*2);
+    ctx.fillStyle = grad; ctx.globalAlpha = isHovered ? 1 : 0.75; ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Border ring
+    ctx.strokeStyle = p.stroke; ctx.lineWidth = isHovered ? 2 : 1;
+    ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI*2); ctx.stroke();
+
+    // Pulsing outer ring for hot items
+    if (b.cl === 'hot' || b.cl === 'identity') {
+      const pulseR = r + 4 + Math.sin(time * 2 + beads.indexOf(b)) * 2;
+      ctx.strokeStyle = p.stroke; ctx.globalAlpha = 0.2 + Math.sin(time * 2) * 0.1;
+      ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(bx, by, pulseR, 0, Math.PI*2); ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+
+    ctx.shadowBlur = 0;
+
+    // Direction arrow inside each bead
+    const bDir = project(b.dir);
+    const arrLen = r * 0.7;
+    const aDirLen = Math.sqrt(bDir.x*bDir.x + bDir.y*bDir.y) || 1;
+    const ax = bDir.x/aDirLen * arrLen, ay = -bDir.y/aDirLen * arrLen;
+    const arrAngle = Math.atan2(ay, ax);
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(bx - ax*0.4, by - ay*0.4); ctx.lineTo(bx + ax*0.6, by + ay*0.6); ctx.stroke();
+    // Arrowhead
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.beginPath();
+    const tipX = bx + ax*0.6, tipY = by + ay*0.6;
+    ctx.moveTo(tipX, tipY);
+    ctx.lineTo(tipX - 5*Math.cos(arrAngle-0.5), tipY - 5*Math.sin(arrAngle-0.5));
+    ctx.lineTo(tipX - 5*Math.cos(arrAngle+0.5), tipY - 5*Math.sin(arrAngle+0.5));
+    ctx.closePath(); ctx.fill();
+
+    // Label on hover only
+    if (b === hoveredBead) {
+      ctx.font = '600 10px Inter';
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.textAlign = 'center';
+      const label = b.what.length > 22 ? b.what.slice(0,20)+'…' : b.what;
+      ctx.fillText(label, bx, by + r + 14);
+    }
+  }
+
+  // === TOP LEFT: TITLE BLOCK ===
+  ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  
+  // Title
+  ctx.font = '900 26px Inter'; ctx.fillStyle = '#fff'; ctx.letterSpacing = '-1px';
+  ctx.fillText('IDENTITY', 32, 28);
+  ctx.fillStyle = 'rgba(0,200,255,0.8)';
+  ctx.fillText('COMPASS', 32 + ctx.measureText('IDENTITY ').width + 8, 28);
+  
+  // Subtitle
+  ctx.font = '400 11px JetBrains Mono'; ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('magnetization-based decision tracking system', 32, 60);
+
+  // === LEGEND ===
+  const legs = [
+    {c: palette.identity.fill, l:'IDENTITY'},
+    {c: palette.hot.fill, l:'HIGH MATCH'},
+    {c: palette.active.fill, l:'SUBMITTED'},
+    {c: palette.warm.fill, l:'REVIEW'},
+    {c: palette.tension.fill, l:'TENSION'},
+    {c: palette.cool.fill, l:'LOW'},
+  ];
+  let lx = 32;
+  ctx.font = '600 9px JetBrains Mono';
+  for (const l of legs) {
+    ctx.shadowColor = l.c; ctx.shadowBlur = 6;
+    ctx.fillStyle = l.c; ctx.beginPath(); ctx.arc(lx+5, 88, 4, 0, Math.PI*2); ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = 'rgba(255,255,255,0.35)'; ctx.fillText(l.l, lx+14, 92);
+    lx += ctx.measureText(l.l).width + 30;
+  }
+
+  // === BOTTOM HUD BAR ===
+  const barH = 64, barY = HT - barH - 24, barW = Math.min(W - 48, 900);
+  const barX = 24;
+  
+  // Bar background
+  ctx.fillStyle = 'rgba(16,16,24,0.85)';
+  roundRect(ctx, barX, barY, barW, barH, 12); ctx.fill();
+  ctx.strokeStyle = 'rgba(0,200,255,0.1)'; ctx.lineWidth = 1;
+  roundRect(ctx, barX, barY, barW, barH, 12); ctx.stroke();
+
+  // Left accent
+  ctx.fillStyle = 'rgba(0,255,136,0.8)';
+  roundRect(ctx, barX, barY, 3, barH, 1.5); ctx.fill();
+
+  // H badge
+  ctx.shadowColor = 'rgba(0,255,136,0.4)'; ctx.shadowBlur = 10;
+  ctx.fillStyle = 'rgba(0,255,136,0.15)';
+  roundRect(ctx, barX + 16, barY + 14, 32, 32, 8); ctx.fill();
+  ctx.strokeStyle = 'rgba(0,255,136,0.3)'; ctx.lineWidth = 1;
+  roundRect(ctx, barX + 16, barY + 14, 32, 32, 8); ctx.stroke();
+  ctx.shadowBlur = 0;
+  ctx.font = '800 16px JetBrains Mono'; ctx.fillStyle = '#00ff88';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('H', barX + 32, barY + 30);
+
+  // One-liner
+  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.font = '500 14px Inter'; ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fillText(oneLiner, barX + 60, barY + 24);
+  
+  // Meta info
+  ctx.font = '400 10px JetBrains Mono'; ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillText('confidence: 0.65  ·  vectors: ' + allBeads.length + '  ·  updated: 2026-03-23', barX + 60, barY + 46);
+
+  // Magnetization display (right side)
+  ctx.textAlign = 'right';
+  ctx.font = '500 9px JetBrains Mono'; ctx.fillStyle = 'rgba(0,200,255,0.4)';
+  ctx.fillText('MAGNETIZATION', barX + barW - 16, barY + 18);
+  
+  // M value with glow
+  ctx.shadowColor = 'rgba(0,200,255,0.5)'; ctx.shadowBlur = 15;
+  ctx.font = '800 32px JetBrains Mono'; ctx.fillStyle = '#00c8ff';
+  ctx.fillText(H.mag.toFixed(3), barX + barW - 16, barY + 44);
+  ctx.shadowBlur = 0;
+
+  // === TOP RIGHT: CLUSTER STATS ===
+  const clusters = clusterStats.length ? clusterStats : [
+    {name: 'AUTONOMY', m: 0.75, color: '#00c8ff'},
+    {name: 'DEPTH', m: 0.70, color: '#a855f7'},
+    {name: 'INNOVATION', m: 0.80, color: '#00ff88'},
+  ];
+  let cy2 = 30;
+  ctx.textAlign = 'right';
+  for (const cl of clusters) {
+    ctx.font = '600 9px JetBrains Mono'; ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.fillText(cl.name, W - 32, cy2);
+    ctx.font = '700 14px JetBrains Mono'; ctx.fillStyle = cl.color;
+    ctx.fillText(cl.m.toFixed(3), W - 32, cy2 + 16);
+    // Mini bar
+    const barLen = 60;
+    ctx.fillStyle = 'rgba(255,255,255,0.05)';
+    ctx.fillRect(W - 32 - barLen, cy2 + 24, barLen, 3);
+    ctx.fillStyle = cl.color; ctx.globalAlpha = 0.6;
+    ctx.fillRect(W - 32 - barLen, cy2 + 24, barLen * cl.m, 3);
+    ctx.globalAlpha = 1;
+    cy2 += 48;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+function roundRect(ctx,x,y,w,h,r) {
+  ctx.beginPath(); ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
+}
+
+// === INTERACTION ===
+canvas.addEventListener('mousemove', (e) => {
+  const mx = e.clientX, my = e.clientY;
+  hoveredBead = null;
+  for (const b of beads) {
+    if (!b._sx) continue;
+    const dx = mx-b._sx, dy = my-b._sy;
+    if (dx*dx+dy*dy < (b.r+6)*(b.r+6)) { hoveredBead = b; break; }
+  }
+  if (hoveredBead) {
+    const b = hoveredBead;
+    canvas.style.cursor = 'pointer';
+    tooltip.style.display = 'block';
+    tooltip.style.left = Math.min(mx+16, W-340)+'px';
+    tooltip.style.top = Math.min(my+16, HT-160)+'px';
+    tooltip.querySelector('.tt-what').textContent = b.what;
+    tooltip.querySelector('.tt-essence').textContent = b.why;
+    const pct = ((b.alignment+1)/2*100);
+    const bar = tooltip.querySelector('.tt-bar-fill');
+    bar.style.width = pct+'%';
+    bar.style.background = b.alignment>0.7?'#00ff88':b.alignment>0.3?'#00c8ff':b.alignment>0?'#ffaa00':'#ff3366';
+    tooltip.querySelector('.tt-stats').innerHTML =
+      `<span>ALIGN ${(b.alignment*100).toFixed(0)}%</span>` +
+      (b.match ? `<span>MATCH ${(b.match*100).toFixed(0)}%</span>` : `<span>W ${b.w}/10</span>`) +
+      `<span>θ ${b.angle.toFixed(0)}°</span>`;
+    tooltip.querySelector('.tt-action').textContent = b.status || '';
+  } else {
+    canvas.style.cursor = 'default';
+    tooltip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('click', (e) => {
+  if (hoveredBead) openPanel(hoveredBead);
+});
+
+function openPanel(b) {
+  const panel = document.getElementById('detail-panel');
+  document.getElementById('dp-title').textContent = b.what;
+  document.getElementById('dp-title').style.color = palette[b.cl]?.fill || '#fff';
+  document.getElementById('dp-sub').textContent = b.why;
+  document.getElementById('dp-align').textContent = `${(b.alignment*100).toFixed(1)}%  (θ = ${b.angle.toFixed(1)}°)`;
+  const alignBar = document.getElementById('dp-align-bar');
+  alignBar.style.width = ((b.alignment+1)/2*100)+'%';
+  alignBar.style.background = b.alignment>0.7?'#00ff88':b.alignment>0.3?'#00c8ff':'#ffaa00';
+  document.getElementById('dp-vec').textContent = `[${b.dir.map(d=>d.toFixed(2)).join(', ')}]`;
+  document.getElementById('dp-weight').textContent = `${b.w} / 10`;
+  document.getElementById('dp-cluster').textContent = b.cl.toUpperCase();
+  document.getElementById('dp-cluster').style.color = palette[b.cl]?.fill || '#fff';
+  if (b.match) {
+    document.getElementById('dp-match-section').style.display = 'block';
+    document.getElementById('dp-match').textContent = `${(b.match*100).toFixed(0)}%`;
+    const matchBar = document.getElementById('dp-match-bar');
+    matchBar.style.width = (b.match*100)+'%';
+    matchBar.style.background = b.match>0.8?'#00ff88':b.match>0.6?'#00c8ff':'#ffaa00';
+  } else {
+    document.getElementById('dp-match-section').style.display = 'none';
+  }
+  document.getElementById('dp-status').textContent = b.status || '—';
+  document.getElementById('dp-status').style.color = b.status?.includes('✅')?'#00ff88':'rgba(255,255,255,0.6)';
+  panel.classList.add('open');
+}
+
+function closePanel() {
+  document.getElementById('detail-panel').classList.remove('open');
+}
+
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+
+// Initialize: load data, compute beads, start render loop
+loadData().then(() => { computeBeads(); draw(); });
+</script>
+</body>
+</html>

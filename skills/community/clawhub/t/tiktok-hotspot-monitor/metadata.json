@@ -1,0 +1,48 @@
+{
+  "name": "tiktok-hotspot-monitor",
+  "version": "2.0.0",
+  "description": "TikTok US women's fashion hotspot monitor — crawl, analyze, and generate HTML trend reports with cost-aware multi-window strategy",
+  "repository": "https://github.com/TanDongTaotao/tiktok-hotspot-monitor",
+  "author": "Claude",
+  "tags": ["tiktok", "crawler", "scraper", "trend", "fashion", "analysis", "apify", "hotspot"],
+  "languages": ["python"],
+  "entry": "scripts/crawl_tiktok_hotspots.py",
+  "config": "config/tiktok_hotspot_sources.json",
+  "requirements": {
+    "apify_mode": ["apify-client"],
+    "local_mode": ["playwright"]
+  },
+  "env_vars": {
+    "required": ["APIFY_TOKEN"],
+    "optional": ["TIKTOK_PROXY"]
+  },
+  "providers": {
+    "primary": "apify",
+    "backup": "tiktok_mcp"
+  },
+  "capabilities": [
+    "crawl_tiktok_video_metadata",
+    "multi_window_most_liked_first",
+    "hotspot_analysis",
+    "html_report_generation",
+    "cost_aware_crawl_strategy",
+    "coverage_scoring",
+    "cross_bucket_novelty_detection",
+    "staged_validation_workflow"
+  ],
+  "pipeline": [
+    {"step": "crawl", "script": "scripts/crawl_tiktok_hotspots.py", "output": "snapshot.jsonl"},
+    {"step": "analyze", "script": "scripts/analyze_tiktok_hotspots.py", "output": "analysis.json"},
+    {"step": "render", "script": "scripts/render_tiktok_hotspot_report.py", "output": "report.html"}
+  ],
+  "states": ["IDLE", "CONFIG_LOAD", "CRAWL_PLAN", "CRAWL_EXECUTE", "SNAPSHOT_WRITTEN", "ANALYZE", "REPORT_GENERATE", "COMPLETE", "ERROR"],
+  "guardrails": {
+    "max_sources": 50,
+    "max_limit_per_source": 500,
+    "max_requested_total": 5000,
+    "max_planned_runs": 250,
+    "crawl_timeout_minutes": 60,
+    "retry_network": 2,
+    "min_unique_videos": 10
+  }
+}

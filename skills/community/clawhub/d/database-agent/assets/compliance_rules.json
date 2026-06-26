@@ -1,0 +1,86 @@
+{
+  "naming": {
+    "table_pattern": "^[a-z][a-z0-9_]*$",
+    "column_pattern": "^[a-z][a-z0-9_]*$",
+    "reserved_keywords": [
+      "order", "group", "select", "index", "key", "value", "user",
+      "table", "column", "database", "schema", "grant", "revoke"
+    ]
+  },
+  "primary_key": {
+    "required": true,
+    "naming_pattern": "^id$|^[a-z_]+_id$",
+    "auto_increment_preferred": true,
+    "type_preference": ["BIGINT", "INT"]
+  },
+  "foreign_keys": {
+    "required": true,
+    "naming_pattern": "^[a-z_]+_id$",
+    "index_required": true,
+    "on_delete_default": "RESTRICT",
+    "on_update_default": "CASCADE"
+  },
+  "data_types": {
+    "string_max_length": 255,
+    "text_for_long_strings": true,
+    "decimal_for_money": true,
+    "timestamp_for_datetime": true
+  },
+  "defaults": {
+    "not_null_preferred": true,
+    "explicit_defaults_required": false,
+    "created_at_default": true,
+    "updated_at_default": true,
+    "soft_delete_column": "deleted_at"
+  },
+  "indexes": {
+    "foreign_key_index_required": true,
+    "unique_constraint_naming": "uk_{table}_{columns}",
+    "regular_index_naming": "idx_{table}_{columns}",
+    "composite_index_limit": 5
+  },
+  "validation_rules": [
+    {
+      "rule": "missing_primary_key",
+      "severity": "HIGH",
+      "message": "Table lacks primary key",
+      "auto_fix": true
+    },
+    {
+      "rule": "reserved_keyword_table",
+      "severity": "HIGH",
+      "message": "Table name uses reserved keyword",
+      "auto_fix": false
+    },
+    {
+      "rule": "reserved_keyword_column",
+      "severity": "HIGH",
+      "message": "Column name uses reserved keyword",
+      "auto_fix": false
+    },
+    {
+      "rule": "invalid_table_naming",
+      "severity": "MEDIUM",
+      "message": "Table name doesn't follow naming convention",
+      "auto_fix": false
+    },
+    {
+      "rule": "invalid_column_naming",
+      "severity": "MEDIUM",
+      "message": "Column name doesn't follow naming convention",
+      "auto_fix": false
+    },
+    {
+      "rule": "missing_foreign_key_index",
+      "severity": "MEDIUM",
+      "message": "Foreign key column lacks index",
+      "auto_fix": true
+    },
+    {
+      "rule": "nullable_critical_field",
+      "severity": "LOW",
+      "message": "Critical field should be NOT NULL",
+      "auto_fix": false
+    }
+  ]
+}

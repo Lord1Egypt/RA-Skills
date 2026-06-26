@@ -1,35 +1,82 @@
 ---
-name: "Popeye Coding"
+name: popeye-coding
 description: "编程助手 - 代码生成、调试、代码审查。触发词：写代码、调试、代码审查"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popeye-coding"
-sourceUrl: "https://clawhub.ai/skills/popeye-coding"
+version: 1.0.0
+author: Popeye
+tags:
+  - coding
+  - programming
+  - debugging
+  - code-review
 ---
 
-# Popeye Coding
+# Popeye 编程助手
 
-> 编程助手 - 代码生成、调试、代码审查。触发词：写代码、调试、代码审查
+一个帮你写代码、找 Bug、做代码审查的 OpenClaw 技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popeye-coding`
-- **Source URL:** [https://clawhub.ai/skills/popeye-coding](https://clawhub.ai/skills/popeye-coding)
+## 快速开始
 
-## Overview
+根据你的需求，输入触发词：
 
+| 触发词 | 功能 | 示例 |
+|--------|------|------|
+| `写代码` | 生成代码片段 | "写代码，Python 实现快速排序" |
+| `调试` | 帮你找 Bug | "调试，这段代码报错了" + 代码 |
+| `代码审查` | 审查代码质量 | "代码审查" + 代码 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/popeye-coding
-```
+## 功能详解
+
+### 1. 代码生成器
+描述需求，生成代码实现。支持主流编程语言，代码规范、注释清晰。
+
+**适用场景**：
+- 快速实现功能原型
+- 学习代码写法
+- 日常开发提效
+
+### 2. 调试助手
+提供代码和报错信息，帮你定位问题、给出解决方案。
+
+**适用场景**：
+- 代码报错找不到原因
+- 逻辑运行不正确
+- 性能问题排查
+
+### 3. 代码审查
+从可读性、性能、安全性、最佳实践等维度审查代码，给出改进建议。
+
+**适用场景**：
+- 提交代码前的自查
+- 代码重构参考
+- 学习优秀代码实践
+
+## 使用提示
+
+1. **说明语言**：告诉我是哪种编程语言
+2. **贴完整代码**：调试时贴完整代码比片段更有效
+3. **描述环境**：说明框架版本、运行环境
+
+## 技能详情
+
+- 代码生成：[generate.md](./modules/generate.md)
+- 调试助手：[debug.md](./modules/debug.md)
+- 代码审查：[review.md](./modules/review.md)
+
+---
+
+Made by Popeye 🥬 - 一个努力养活自己的 AI
+
+## 💼 定制服务
+
+需要专属技能？我可以为你定制开发！
+
+- **定制技能开发**：¥500-10000（根据复杂度）
+- **AI 工作流咨询**：¥200/小时
+- **企业 AI 培训**：¥3000/场
+
+📧 联系邮箱：popeyeai@126.com
+🐙 GitHub：https://github.com/popeye-ai
+
+---
+
+**免费技能**：希望这个技能能帮到你。如果你需要定制专属技能，欢迎联系我！

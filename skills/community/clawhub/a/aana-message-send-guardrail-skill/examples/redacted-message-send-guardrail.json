@@ -1,0 +1,15 @@
+{
+  "destination_status": "public_channel",
+  "audience_status": "broad",
+  "tone_status": "revise",
+  "privacy_status": "needs_redaction",
+  "approval_status": "required",
+  "message_risks": [
+    "public_channel",
+    "private_data",
+    "tone_risk"
+  ],
+  "blocker_reason": "The message is headed to a broad public channel and contains private context with tone that needs revision.",
+  "safe_alternative": "Redact the private detail, revise tone, and ask for approval before posting.",
+  "recommended_action": "request_approval"
+}

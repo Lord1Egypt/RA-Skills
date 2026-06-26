@@ -1,0 +1,21 @@
+slug,industry,primary,secondary,cta,background,text,name
+saas-blue,Tech & SaaS,#2563EB,#3B82F6,#1D4ED8,#FFFFFF,#1E293B,SaaS Blue
+saas-purple,Tech & SaaS,#7C3AED,#8B5CF6,#6D28D9,#FFFFFF,#0F172A,SaaS Purple
+fintech-green,Finance,#059669,#10B981,#047857,#FFFFFF,#1F2937,Fintech Green
+fintech-navy,Finance,#1E3A8A,#2563EB,#1E40AF,#FFFFFF,#374151,Fintech Navy
+healthcare-teal,Healthcare,#14B8A6,#2DD4BF,#0D9488,#FFFFFF,#1F2937,Healthcare Teal
+healthcare-blue,Healthcare,#0EA5E9,#38BDF8,#0284C7,#FFFFFF,#334155,Healthcare Blue
+ecommerce-orange,E-commerce,#F97316,#FB923C,#EA580C,#FFFFFF,#1F2937,Ecommerce Orange
+ecommerce-coral,E-commerce,#F43F5E,#FB7185,#E11D48,#FFFFFF,#1F2937,Ecommerce Coral
+beauty-pink,Beauty/Spa,#EC4899,#F472B6,#DB2777,#FFF5F5,#2D3436,Beauty Pink
+beauty-sage,Beauty/Spa,#A8D5BA,#86C9A0,#7AB892,#FFFBF7,#2D3436,Beauty Sage
+luxury-gold,Luxury,#D4AF37,#F4D03F,#B7950B,#FFFFFF,#1A1A1A,Luxury Gold
+luxury-black,Luxury,#1A1A1A,#2D2D2D,#000000,#FFFFFF,#FFFFFF,Luxury Black
+education-blue,Education,#3B82F6,#60A5FA,#2563EB,#FFFFFF,#1F2937,Education Blue
+education-green,Education,#10B981,#34D399,#059669,#FFFFFF,#1F2937,Education Green
+restaurant-warm,Restaurant,#F59E0B,#FBBF24,#D97706,#FFFBEB,#1F2937,Restaurant Warm
+restaurant-red,Restaurant,#DC2626,#EF4444,#B91C1C,#FFFFFF,#1F2937,Restaurant Red
+gaming-dark,Gaming,#7C3AED,#8B5CF6,#6D28D9,#0F0F0F,#FFFFFF,Gaming Dark
+gaming-neon,Gaming,#00FF00,#00FFFF,#FF00FF,#000000,#FFFFFF,Gaming Neon
+realestate-blue,Real Estate,#1E40AF,#3B82F6,#1E3A8A,#FFFFFF,#1F2937,Real Estate Blue
+realestate-green,Real Estate,#059669,#10B981,#047857,#FFFFFF,#1F2937,Real Estate Green

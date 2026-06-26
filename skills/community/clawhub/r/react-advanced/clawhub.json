@@ -1,0 +1,12 @@
+{
+  "name": "React Advanced (React 进阶)",
+  "tagline": "掌握 RSC、Suspense、并发特性、渲染优化与 Next.js App Router",
+  "description": "深入 React 现代特性与 Next.js App Router 架构。覆盖 Server Components vs Client Components 边界决策、Suspense 数据加载与代码分割、useTransition/useDeferredValue 并发特性、memo/useMemo/useCallback 渲染优化、自定义 Hook 设计原则、Server Actions 表单提交等场景。",
+  "category": "development",
+  "tags": ["react", "nextjs", "rsc", "suspense", "concurrent", "hooks", "app-router", "渲染优化"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

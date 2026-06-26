@@ -1,35 +1,27 @@
 ---
-name: "Omz"
-description: "Oh My Zsh management. plugin - Add/install plugins to .zshrc plugins=() array [plugin.md], custom - Write $ZSH_CUSTOM/*.zsh based on requirements [custom.md]..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/omz"
-sourceUrl: "https://clawhub.ai/skills/omz"
+name: omz
+metadata:
+  author: es6kr
+  version: "0.1.0"
+description: |
+  Oh My Zsh management. plugin - Add/install plugins to .zshrc plugins=() array [plugin.md], custom - Write $ZSH_CUSTOM/*.zsh based on requirements [custom.md].
+  Use when "omz", "oh-my-zsh", "zsh plugin", "add plugin", "custom zsh", "zshrc", ".zshrc", "zsh config", "zsh function", "zsh alias" is mentioned.
 ---
 
-# Omz
+# Oh My Zsh
 
-> Oh My Zsh management. plugin - Add/install plugins to .zshrc plugins=() array [plugin.md], custom - Write $ZSH_CUSTOM/*.zsh based on requirements [custom.md]...
+Oh My Zsh plugin management and custom configuration authoring.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/omz`
-- **Source URL:** [https://clawhub.ai/skills/omz](https://clawhub.ai/skills/omz)
+## Topics
 
-## Overview
+| Topic | Description | Guide |
+|-------|-------------|-------|
+| plugin | Add/install plugins to .zshrc plugins=() array | [plugin.md](./plugin.md) |
+| custom | Write $ZSH_CUSTOM/*.zsh based on requirements | [custom.md](./custom.md) |
 
+## Self-Improvement
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/omz
-```
+After this skill invocation completes, **self-improve based on the conversation**:
+
+1. Detect limitations, failures, or workaround patterns for this skill in the conversation
+2. If improvement candidates are found, run `/skill-manager upgrade omz`

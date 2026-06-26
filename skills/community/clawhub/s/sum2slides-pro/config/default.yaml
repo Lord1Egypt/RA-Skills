@@ -1,0 +1,131 @@
+# Sum2Slides 默认配置
+
+# 默认配置
+defaults:
+  template: "default"
+  theme: "light"
+  max_slides: 10
+  font_size: 18
+  language: "zh"
+  output_format: "pptx"
+
+# 模板配置
+templates:
+  default:
+    path: ""  # 使用python-pptx默认模板
+    description: "默认模板"
+    layouts:
+      - "title"
+      - "title_and_content"
+      - "section_header"
+  
+  business:
+    path: ""  # 可以指定自定义模板文件路径
+    description: "商务模板"
+    layouts:
+      - "title"
+      - "title_and_content"
+      - "two_content"
+      - "comparison"
+  
+  academic:
+    path: ""
+    description: "学术模板"
+    layouts:
+      - "title"
+      - "title_and_content"
+      - "content_with_caption"
+
+# 主题配置
+themes:
+  light:
+    name: "light"
+    type: "light"
+    color_scheme:
+      primary: "#2c3e50"
+      secondary: "#3498db"
+      accent: "#e74c3c"
+      background: "#ffffff"
+      text: "#333333"
+    font_scheme:
+      title_font: "Arial"
+      body_font: "Arial"
+      title_size: 44
+      body_size: 18
+  
+  dark:
+    name: "dark"
+    type: "dark"
+    color_scheme:
+      primary: "#ecf0f1"
+      secondary: "#3498db"
+      accent: "#e74c3c"
+      background: "#2c3e50"
+      text: "#ecf0f1"
+    font_scheme:
+      title_font: "Arial"
+      body_font: "Arial"
+      title_size: 44
+      body_size: 18
+  
+  colorful:
+    name: "colorful"
+    type: "colorful"
+    color_scheme:
+      primary: "#9b59b6"
+      secondary: "#1abc9c"
+      accent: "#e67e22"
+      background: "#f9f9f9"
+      text: "#34495e"
+    font_scheme:
+      title_font: "Arial"
+      body_font: "Arial"
+      title_size: 44
+      body_size: 18
+
+# 布局配置
+layouts:
+  title:
+    name: "title"
+    description: "标题幻灯片"
+    placeholder_count: 2
+  
+  title_and_content:
+    name: "title_and_content"
+    description: "标题和内容"
+    placeholder_count: 2
+  
+  section_header:
+    name: "section_header"
+    description: "章节标题"
+    placeholder_count: 1
+  
+  two_content:
+    name: "two_content"
+    description: "两栏内容"
+    placeholder_count: 3
+  
+  comparison:
+    name: "comparison"
+    description: "比较"
+    placeholder_count: 3
+
+# 性能配置
+performance:
+  max_text_length: 10000
+  max_slides: 50
+  max_bullet_points_per_slide: 6
+  cache_templates: true
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "sum2slides.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# 错误处理
+error_handling:
+  max_retries: 3
+  retry_delay: 1.0
+  show_traceback: false
+  log_errors: true

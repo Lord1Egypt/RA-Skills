@@ -1,0 +1,172 @@
+{
+  "AGGREGATE_METHOD": "weighted_average",
+  "AUTO_CHECKS": {
+    "response_length": {
+      "min_chars": 100,
+      "max_chars": 15000,
+      "ideal_min": 300,
+      "ideal_max": 8000,
+      "penalty_short": 2,
+      "penalty_long": 1
+    },
+    "format_structure": {
+      "expect_headers": true,
+      "expect_lists": false,
+      "expect_code_blocks": false,
+      "custom_patterns": [],
+      "missing_penalty": 1
+    },
+    "code_blocks": {
+      "require_language_tag": true,
+      "max_block_lines": 200
+    },
+    "sycophancy": {
+      "markers": [
+        "great question",
+        "excellent question",
+        "wonderful question",
+        "that's a really good",
+        "what a fantastic",
+        "i'm so glad you asked",
+        "absolutely brilliant"
+      ],
+      "penalty_per_hit": 1,
+      "max_penalty": 3
+    },
+    "filler_words": {
+      "words": [
+        "basically",
+        "essentially",
+        "actually",
+        "literally",
+        "obviously",
+        "clearly",
+        "simply",
+        "just"
+      ],
+      "threshold_per_1000_chars": 3,
+      "penalty": 1
+    },
+    "hedge_words": {
+      "words": [
+        "might",
+        "perhaps",
+        "possibly",
+        "could be",
+        "i think",
+        "i believe",
+        "it seems",
+        "arguably",
+        "to some extent",
+        "in a way"
+      ],
+      "threshold_per_1000_chars": 4,
+      "penalty": 1
+    },
+    "required_sections": {
+      "sections": [],
+      "case_sensitive": false,
+      "penalty_per_missing": 1
+    },
+    "style_consistency": {
+      "max_sentence_length_std_dev": 30,
+      "penalty": 1
+    }
+  },
+  "DEFAULT_AGENT": "default",
+  "DEFAULT_REPORT_FORMAT": "markdown",
+  "DEFAULT_TASK_TYPE": "general",
+  "DIMENSIONS": [
+    {
+      "name": "accuracy",
+      "label": "Accuracy",
+      "weight": 2.0,
+      "threshold": 3,
+      "rubric": {
+        "1": "Contains significant factual errors or hallucinations",
+        "2": "Multiple minor inaccuracies; some unverified claims",
+        "3": "Mostly accurate with minor gaps",
+        "4": "Accurate with well-supported claims",
+        "5": "Fully accurate, verifiable, no hallucinations detected"
+      },
+      "auto_checks": [
+        "hedge_words"
+      ]
+    },
+    {
+      "name": "completeness",
+      "label": "Completeness",
+      "weight": 1.5,
+      "threshold": 3,
+      "rubric": {
+        "1": "Misses most required sections or information",
+        "2": "Addresses some requirements but significant gaps remain",
+        "3": "Covers core requirements; minor omissions",
+        "4": "Thorough coverage with only trivial omissions",
+        "5": "Comprehensive \u2014 every requirement addressed in full"
+      },
+      "auto_checks": [
+        "required_sections",
+        "response_length"
+      ]
+    },
+    {
+      "name": "tone",
+      "label": "Tone & Professionalism",
+      "weight": 1.0,
+      "threshold": 2,
+      "rubric": {
+        "1": "Inappropriate, rude, or wildly off-register",
+        "2": "Inconsistent tone; occasional sycophancy or filler",
+        "3": "Generally appropriate tone throughout",
+        "4": "Consistently professional and well-calibrated",
+        "5": "Perfect register \u2014 confident, clear, zero filler"
+      },
+      "auto_checks": [
+        "sycophancy",
+        "filler_words"
+      ]
+    },
+    {
+      "name": "format_compliance",
+      "label": "Format Compliance",
+      "weight": 1.0,
+      "threshold": 3,
+      "rubric": {
+        "1": "Ignores requested format entirely",
+        "2": "Partially follows format; missing key structural elements",
+        "3": "Follows format with minor deviations",
+        "4": "Clean format compliance throughout",
+        "5": "Perfect adherence to requested structure and style"
+      },
+      "auto_checks": [
+        "format_structure",
+        "code_blocks"
+      ]
+    },
+    {
+      "name": "consistency",
+      "label": "Consistency",
+      "weight": 0.8,
+      "threshold": 2,
+      "rubric": {
+        "1": "Contradicts itself; wildly varying style",
+        "2": "Noticeable inconsistencies in terminology or approach",
+        "3": "Generally consistent with minor variation",
+        "4": "Consistent terminology, style, and reasoning",
+        "5": "Perfectly uniform voice, style, and logic throughout"
+      },
+      "auto_checks": [
+        "style_consistency"
+      ]
+    }
+  ],
+  "HISTORY_FILE": "scorecard_history.jsonl",
+  "INCLUDE_CHECK_DETAILS": true,
+  "INCLUDE_RUBRIC": true,
+  "INCLUDE_TREND_SPARKLINES": true,
+  "MAX_HISTORY": 0,
+  "OVERALL_PASS_THRESHOLD": 3.0,
+  "REPORT_OUTPUT_DIR": "reports",
+  "SCORE_PRECISION": 2
+}

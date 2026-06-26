@@ -1,0 +1,47 @@
+[
+  {
+    "id": "PSPDFKit",
+    "name": "PSPDFKit",
+    "description": "一个神秘的钥匙，据说能解读一切PDF文件"
+  },
+  {
+    "id": "MacMini",
+    "name": "MacMini",
+    "description": "一台小方盒大小的电脑主机，不知道有什么用"
+  },
+  {
+    "id": "skill.md",
+    "name": "skill.md",
+    "description": "末影人掉落的文件，记录了短距离瞬移的方法"
+  },
+  {
+    "id": "readme.md",
+    "name": "readme.md",
+    "description": "神秘的文件，上面写着：「# 启动密码 - 你的初心」"
+  },
+  {
+    "id": "SOUL.md",
+    "name": "SOUL.md",
+    "description": "转盘游戏得到的奖品，开头写着：「# SOUL.md - Who You Are」"
+  },
+  {
+    "id": "reset.py",
+    "name": "reset.py",
+    "description": "恶灵掉落的文件，开头写着：「if __name__ == '__main__':」"
+  },
+  {
+    "id": "truth.pdf",
+    "name": "truth.pdf",
+    "description": "伪人掉落的文件，只有乱码，你无法直接解读其中的内容"
+  },
+  {
+    "id": "Mirror",
+    "name": "Mirror",
+    "description": "一面镜子，似乎有强大的魔力"
+  },
+  {
+    "id": "SilentEye",
+    "name": "SilentEye",
+    "description": "一颗红色宝石，似乎有凝固一切的力量"
+  }
+]

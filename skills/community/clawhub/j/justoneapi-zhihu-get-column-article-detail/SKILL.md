@@ -1,35 +1,59 @@
 ---
-name: "Zhihu Column Article Details API"
-description: "Call GET /api/zhihu/get-column-article-detail/v1 for Zhihu Column Article Details through JustOneAPI with id."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/justoneapi-zhihu-get-column-article-detail"
-sourceUrl: "https://clawhub.ai/skills/justoneapi-zhihu-get-column-article-detail"
+name: Zhihu Column Article Details API
+description: Call GET /api/zhihu/get-column-article-detail/v1 for Zhihu Column Article Details through JustOneAPI with id.
+author: JustOneAPI
+homepage: https://api.justoneapi.com
+metadata: {"openclaw":{"homepage":"https://api.justoneapi.com","primaryEnv":"JUST_ONE_API_TOKEN","requires":{"bins":["node"],"env":["JUST_ONE_API_TOKEN"]},"skillKey":"justoneapi_zhihu_get_column_article_detail"}}
 ---
 
-# Zhihu Column Article Details API
+# Zhihu Column Article Details
 
-> Call GET /api/zhihu/get-column-article-detail/v1 for Zhihu Column Article Details through JustOneAPI with id.
+Use this focused JustOneAPI skill for column Article Details in Zhihu. It targets `GET /api/zhihu/get-column-article-detail/v1`. Required non-token inputs are `id`. OpenAPI describes it as: Get Zhihu column Article Details data, including title, author, and content, for article archiving and content research.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/justoneapi-zhihu-get-column-article-detail`
-- **Source URL:** [https://clawhub.ai/skills/justoneapi-zhihu-get-column-article-detail](https://clawhub.ai/skills/justoneapi-zhihu-get-column-article-detail)
+## Endpoint Scope
 
-## Overview
+- Platform key: `zhihu`
+- Endpoint key: `get-column-article-detail`
+- Platform family: Zhihu
+- Skill slug: `justoneapi-zhihu-get-column-article-detail`
 
+| Operation | Version | Method | Path | OpenAPI summary |
+| --- | --- | --- | --- | --- |
+| `getColumnArticleDetailV1` | `v1` | `GET` | `/api/zhihu/get-column-article-detail/v1` | Column Article Details |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Inputs
+
+| Parameter | In | Required by | Optional by | Type | Notes |
+| --- | --- | --- | --- | --- | --- |
+| `id` | `query` | all | n/a | `string` | Article ID |
+
+Request body: none documented; send parameters through path or query arguments.
+
+## Version Choice
+
+Use `getColumnArticleDetailV1` for the documented `v1` endpoint. There are no alternate versions grouped in this skill.
+
+## Run This Endpoint
+
+Supported operation IDs in this skill: `getColumnArticleDetailV1`.
+
 ```bash
-hermes skills install clawhub/justoneapi-zhihu-get-column-article-detail
+node {baseDir}/bin/run.mjs --operation "getColumnArticleDetailV1" --token "$JUST_ONE_API_TOKEN" --params-json '{"id":"<id>"}'
 ```
+
+Ask for any missing required parameter before calling the helper. Keep user-provided IDs, cursors, keywords, and filters unchanged.
+
+## Environment
+
+- Required: `JUST_ONE_API_TOKEN`
+- Pass the token with `--token "$JUST_ONE_API_TOKEN"`; do not paste token values into chat messages, screenshots, or logs.
+- Get a token from [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_detail&utm_content=project_link).
+- Authentication details: [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_detail&utm_content=project_link).
+
+## Output Focus
+
+- State the operation ID and endpoint path used, for example `getColumnArticleDetailV1` on `/api/zhihu/get-column-article-detail/v1`.
+- Echo the required lookup scope (`id`) before summarizing results.
+- Prioritize fields that support this endpoint purpose: Get Zhihu column Article Details data, including title, author, and content, for article archiving and content research.
+- Return raw JSON only after the short, endpoint-specific summary.
+- If the backend errors, include the backend payload and the exact operation ID.

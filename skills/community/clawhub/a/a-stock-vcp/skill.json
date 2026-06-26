@@ -1,0 +1,17 @@
+{
+  "name": "a-stock-vcp-api",
+  "version": "1.0.0",
+  "description": "A股VCP放量突破信号 API - x402付费版本",
+  "main": "api.py",
+  "url": "https://a-stock-signals.vercel.app",
+  "scripts": {
+    "start": "python api.py"
+  },
+  "dependencies": ["fastapi", "uvicorn"],
+  "price": "0.01 USDC",
+  "payment": {
+    "currency": "USDC",
+    "chain": "Base",
+    "recipient": "0x1a9275EE18488A20C7898C666484081F74Ee10CA"
+  }
+}

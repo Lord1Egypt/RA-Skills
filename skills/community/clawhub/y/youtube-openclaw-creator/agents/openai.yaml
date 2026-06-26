@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube Publish Reviewer"
+  short_description: "Review YouTube metadata before upload"
+  default_prompt: "Use $youtube-openclaw-creator to review YouTube title, description, thumbnail notes, tags, playlist choices, and final human-upload readiness."

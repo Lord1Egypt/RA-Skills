@@ -1,35 +1,37 @@
 ---
-name: "Publish Vetter"
-description: "Pre-trade safety checks: position size limits, leverage validation, consecutive loss locks, volatility gates, exchange balance verification. Drop-in risk gua..."
-category: "blockchain"
-source: "ClawHub"
-tags: [position-sizing, risk-management, safety, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trade-safety-vetter"
-sourceUrl: "https://clawhub.ai/skills/trade-safety-vetter"
+name: Trade Safety Vetter
+description: "Pre-trade safety checks: position size limits, leverage validation, consecutive loss locks, volatility gates, exchange balance verification. Drop-in risk guard for any trading skill."
+emoji: 🛡️
+color: red
 ---
 
-# Publish Vetter
+# Trade Safety Vetter
 
-> Pre-trade safety checks: position size limits, leverage validation, consecutive loss locks, volatility gates, exchange balance verification. Drop-in risk gua...
+A pre-trade risk validation gate. Before any trade executes, this skill verifies:
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trade-safety-vetter`
-- **Source URL:** [https://clawhub.ai/skills/trade-safety-vetter](https://clawhub.ai/skills/trade-safety-vetter)
+## Safety Rules
 
-## Overview
+| Rule | Threshold | Action |
+|------|-----------|--------|
+| Single trade risk | ≤5% of total capital | Block if exceeded |
+| Consecutive losses | 3 in same direction | Pause 24h |
+| Leverage × Volatility | >15 | Reject entry |
+| Extreme volatility | >80% VIX-like | Auto-reduce leverage |
+| Exchange balance | Sufficient margin | Block if insufficient |
 
+## Integration
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/trade-safety-vetter
-```
+This skill works as a middleware. Place it before any trade execution.
+
+**Usage in your agent:**
+> "Before executing this trade, run Trade Safety Vetter to validate"
+
+## Premium Version (Coming Soon)
+- Customizable risk thresholds
+- Multi-exchange support
+- Performance tracking dashboard
+
+---
+
+*Risk management is the foundation of profitable trading.*
+\n\n---\n### 💎 Pro Version \nFull trading execution + custom risk + priority support.\nSend USDT (TRC20) to: TUq4wEenH8qyBX5RtUQuyyYDH9FjiEXNND\nContact @sgreadybot on Telegram to activate.\n

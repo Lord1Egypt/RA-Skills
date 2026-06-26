@@ -1,0 +1,12 @@
+{
+  "name": "Accessibility (无障碍 / a11y)",
+  "tagline": "语义化、ARIA、键盘与焦点、读屏支持，输出无障碍检查与改进方案",
+  "description": "前端无障碍技能：语义 HTML、键盘导航与焦点管理、ARIA 与名称、对比度与状态；按 WCAG 理念逐项检查并给出修改建议与优先级。适用于无障碍、可访问性、a11y、键盘导航、屏幕阅读器、WCAG 等场景。",
+  "category": "development",
+  "tags": ["accessibility", "a11y", "wcag", "keyboard", "screen-reader", "aria", "无障碍"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

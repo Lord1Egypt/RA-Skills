@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "required": [
+    "videoUrl"
+  ],
+  "properties": {
+    "videoUrl": {
+      "type": "string",
+      "title": "视频/笔记链接",
+      "description": "粘贴B站分享链接",
+      "x-component-props": {
+        "placeholder": "粘贴B站分享链接..."
+      }
+    }
+  }
+}

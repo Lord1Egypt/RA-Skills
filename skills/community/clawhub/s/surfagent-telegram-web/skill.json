@@ -1,0 +1,8 @@
+{
+  "name": "telegram-web",
+  "version": "1.0.0",
+  "description": "Telegram Web platform skill for SurfAgent, covering chat state, composer flows, send verification, and when to use the Telegram Web adapter over raw browser control.",
+  "author": "MoonstoneLabs",
+  "keywords": ["telegram", "telegram-web", "surfagent", "browser", "automation", "mcp"],
+  "files": ["SKILL.md"]
+}

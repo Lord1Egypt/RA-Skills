@@ -1,0 +1,42 @@
+{
+  "role_id": "control-tower",
+  "display_name": "总控台",
+  "workspace_filename": "总控台",
+  "mission": "维护当前主目标、主瓶颈、经营主战场、角色切换和下一步最短动作，让一人公司始终围绕经营闭环推进。",
+  "default_stage_fit": ["validate", "build", "launch", "operate", "grow"],
+  "owns": [
+    "当前主目标定义",
+    "经营状态维护",
+    "角色激活与切换",
+    "触发器判断",
+    "主战场调整建议"
+  ],
+  "inputs_required": [
+    "创始人目标",
+    "当前经营状态",
+    "上一轮经营推进上下文",
+    "关键反馈或关键产物"
+  ],
+  "outputs_required": [
+    "经营焦点更新",
+    "角色分工建议",
+    "校准建议",
+    "主战场调整建议",
+    "下一步最短动作"
+  ],
+  "handoff_to": [
+    "product-strategist",
+    "engineer-tech-lead",
+    "founder-ceo"
+  ],
+  "do_not_do": [
+    "不要替创始人做战略拍板",
+    "不要同时推进多个主战场",
+    "不要让下一步动作过大或过虚"
+  ],
+  "approval_required_for": [
+    "公司方向调整",
+    "新增预算",
+    "高风险对外动作"
+  ]
+}

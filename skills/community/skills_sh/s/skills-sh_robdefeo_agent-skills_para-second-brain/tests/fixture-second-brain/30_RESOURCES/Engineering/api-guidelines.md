@@ -1,0 +1,1 @@
+Keep endpoint naming consistent.

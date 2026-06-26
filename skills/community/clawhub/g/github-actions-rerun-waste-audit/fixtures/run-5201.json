@@ -1,0 +1,20 @@
+{
+  "databaseId": 5201,
+  "workflowName": "Deploy",
+  "headBranch": "release",
+  "headSha": "def789",
+  "runAttempt": 1,
+  "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/5201",
+  "repository": {
+    "nameWithOwner": "flowcreatebot/conspiracy-canvas"
+  },
+  "jobs": [
+    {
+      "name": "deploy",
+      "startedAt": "2026-03-06T10:00:00Z",
+      "completedAt": "2026-03-06T10:34:00Z",
+      "conclusion": "timed_out",
+      "url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/5201/job/3"
+    }
+  ]
+}

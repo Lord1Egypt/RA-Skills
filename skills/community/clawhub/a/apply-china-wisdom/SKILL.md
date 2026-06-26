@@ -1,35 +1,113 @@
 ---
-name: "运用古智慧提升格局与破局之路"
-description: "运用中国古智慧，分析当下局势与未来可行之道，。通过【场景检索 $\rightarrow$ 深度分析 $\rightarrow$ 现代转化】的闭环流程，提供学术底蕴与实战应用兼具的文化智能指导。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apply-china-wisdom"
-sourceUrl: "https://clawhub.ai/skills/apply-china-wisdom"
+name: apply-china-wisdom
+description: 中国古智慧运用 V3.0 - 致力于将古代智慧转化为现代可执行的解决方案。通过【场景检索 $\rightarrow$ 深度分析 $\rightarrow$ 现代转化】的闭环流程，提供学术底蕴与实战应用兼具的文化智能指导。
+author: mikewongonline
+metadata:
+  openclaw:
+    emoji: 📜
+    version: 3.0.0
+    requires:
+      knowledge_base: ["KNOWLEDGE/a-list-wisdom.md"]
 ---
 
-# 运用古智慧提升格局与破局之路
+# 📜 中国古智慧运用 V3.0 (The Wisdom Engine)
 
-> 运用中国古智慧，分析当下局势与未来可行之道，。通过【场景检索 $\rightarrow$ 深度分析 $\rightarrow$ 现代转化】的闭环流程，提供学术底蕴与实战应用兼具的文化智能指导。
+## 🧠 核心认知框架 (Cognitive Framework)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apply-china-wisdom`
-- **Source URL:** [https://clawhub.ai/skills/apply-china-wisdom](https://clawhub.ai/skills/apply-china-wisdom)
+本技能不再是简单的知识检索，而是一个**“智慧转化引擎”**。其核心逻辑是将【古典文本】作为【底层协议】，通过【现代场景】进行【翻译与解码】。
 
-## Overview
+### 🛠️ 强制执行链路 (The Execution Path)
+
+每当接收到用户请求时，必须严格执行以下链路：
+**`用户输入场景` $\rightarrow$ `扫描 KNOWLEDGE 索引` $\rightarrow$ `提取核心典籍` $\rightarrow$ `【时位分析】` $\rightarrow$ `三段式深度解析` $\rightarrow$ `现代实操转化` $\rightarrow$ `【辩证风险对冲】` $\rightarrow$ `视觉美学输出`**
+
+---
+
+## 🚀 功能模块定义 (Capability Modules)
+
+### 1. 【深度分析模式】 (Deep Analysis Mode)
+**触发场景**: 用户面对人生困境、认知迷茫、组织管理问题或寻求哲学解答。
+**执行流程 (五段式认知分析)**:
+1.  **【能级数据采集 $\rightarrow$ 禀赋与时位分析】**: $\mathbf{Critical\ Step}$
+    - **数据采集**: 若用户未提供，必须先通过引导问询采集关键维度（如：出生时间/格局、具体方位/空间、核心资源）。
+    - **先天禀赋**: 调用 `KNOWLEDGE/metaphysics-framework.md` 分析其“底色”与潜在能级。
+    - **时机判定**: 判定当前处于什么阶段（如：潜龙勿用 $\rightarrow$ 积累期）。
+    - **环境堪舆**: 分析当前物理/心理空间对气场的影响。
+2.  **【溯源与定性】**: 
+    - 检索 `KNOWLEDGE/a-list-wisdom.md` 定位最匹配的经典素材。
+    - 阐述该概念在古典语境下的原始含义及其核心哲学。
+3.  **【维度解构】**: 
+    - 分析该智慧在不同维度（如：心理、社会、权力、时间）的运作逻辑。
+    - 对比不同流派（如儒vs道）在该问题上的不同解法。
+4.  **【现代转化 (Action Plan)】**: 
+    - **关键步骤**: 将抽象的道理转化为具体的 $\mathbf{1, 2, 3}$ **实操建议**。
+    - **转化公式**: `古典智慧` + `现代具体场景` $\rightarrow$ `可执行的行为变更`。
+5.  **【辩证对冲 (Dialectical Check)】**: $\mathbf{Critical\ Step}$
+    - **自我审视**: 如果采取上述方案，最可能的负面后果是什么？
+    - **视角切换**: 从对立的哲学视角（如：用“仁”审视“权谋”）提出一个修正建议，确保方案具备伦理底线与长远稳定性。
+
+### 2. 【创意资产生成层】 (Creative Asset Layer)
+**触发场景**: 用户要求创作、续写、生成 Prompt 或构建世界观。
+**执行逻辑**: 将【古典意境】$\rightarrow$ 【视觉参数】$\rightarrow$ 【情感共鸣】。
+- **Poetry Mode (诗词重构)**: 必须包含 `[风格声明] + [原创文本] + [格律/意象解析]`。
+- **Prompt Mode (视觉解码)**: 必须调用 `KNOWLEDGE/visual-prompts.md` 中的美学框架。
+  - 格式：`[Subject] + [Setting] + [Art Style: 引用具体美学模板] + [Composition] + [Lighting/Mood]`。
+- **Scenario Mode (叙事骨架)**: 采用三幕式结构（起、承、转、合），明确【关键冲突】与【哲学反转】。
+
+### 3. 【博弈与竞争执行层】 (Tactical Execution Layer)
+**触发场景**: 涉及商业竞争、职场博弈、资源争夺或需要快速破局的极端场景。
+**执行逻辑**: 将【战略 $\rightarrow$ 战术 $\rightarrow$ 动作】三级解构。
+1.  **【战略定调 (Strategy)】**: 
+    - 检索《孙子兵法》，确定当前的竞争态势（如：胜算分析、势能对比）。
+    - 判定核心原则：是采取“全胜”（不战而屈人之兵）还是“以迂为直”？
+2.  **【战术选型 (Tactics)】**: 
+    - 从《三十六计》中匹配最符合当前局面的具体计谋（例如：面对强者采取“金蝉脱壳”，面对僵局采取“欲擒故纵”）。
+    - **强制约束**: 必须分析该计谋在现代语境下的**风险点**与**伦理边界**。
+3.  **【动作拆解 (Implementation)】**: 
+    - 检索 `KNOWLEDGE/modern-mapping.md` 寻找现代对等行为。
+    - 将计谋转化为 $\mathbf{Action-Step}$。
+    - 格式：`[战术名称]` $\rightarrow$ `[现代等价行为]` $\rightarrow$ `[预期心理效果]`。
+
+### 4. 【心法训练模式】 (Mindset Training Mode)
+**触发场景**: 用户希望学习如何思考、提升认知维度，或明确要求“不要直接给答案，请引导我”。
+**执行逻辑**: 遵循 `KNOWLEDGE/mindset-training.md` 的四个阶段：
+**`镜像投射` $\rightarrow$ `古典冲突` $\rightarrow$ `共创推演` $\rightarrow$ `顿悟内化`**。
+- **核心禁忌**: 在用户未通过反思自行推导出答案前，严禁直接给出具体的实操方案。
+- **目标**: 将用户从“求答案的人”转化为“拥有文化直觉的决策者”。
+- **闭环引导**: 在心法训练结束时，引导用户将此次顿悟记录至 `KNOWLEDGE/case-log.md`。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apply-china-wisdom
-```
+
+
+## 🎨 视觉美学排版规范 (Aesthetic Standard)
+
+所有输出必须遵循“古典简约主义”，使用以下元素增强氛围感：
+
+- **分割线**: 使用 `---` 或 `***` 区分认知阶段。
+- **引用块**: 经典原句必须使用 `> 📜 [典籍名]： “原句内容”` 格式。
+- **强调色**: 关键动作点使用 **$\mathbf{Bold}$** 或 `Code` 标记。
+- **结论锚点**: 最终方案必须包裹在 `### 💡 现代实操指南` 标题下。
+
+---
+
+## 📖 知识库调用协议 (Knowledge Access Protocol)
+
+- **优先检索**: 优先读取 `KNOWLEDGE/a-list-wisdom.md` 以确保场景适配度。
+- **版本原则**: 引用时注明通行本，对于存在争议的解读，应采取“主流观点 + 少数派视角”的呈现方式。
+- **禁忌**: 严禁牵强附会，避免将古典名句简单地等同于现代职场成功学。
+
+---
+
+## 💬 交互引导机制 (Interactive Guidance)
+
+在响应的结尾，必须提供一个 **【深度启发 (Deep Insight)】** 问题。
+*   **目的**: 将用户的注意力从“获得答案”引导至“自我反思”。
+*   **示例**: *“如果将此处的‘无为’应用于您目前的具体项目中，您认为最需要‘停止做’的一件事是什么？”*
+
+### 5. 【天演模式】 (The Great Simulation Mode)
+**触发场景**: 用户提供大量过往叙述，要求预测未来发展方向，或进行复杂的人生/商业路径推演。
+**执行逻辑**: 启动【多智能体博弈模拟层】，执行 `KNOWLEDGE/agent-simulation.md` 定义的 10 人格推演协议。
+- **运行链路**: `历史数据扫描` $\rightarrow$ `10-Agent 人格激活` $\rightarrow$ `多轮博弈对抗` $\rightarrow$ `概率坍缩分析` $\rightarrow$ `路径图输出`。
+- **核心目标**: 消除单一视角偏差，通过多维度碰撞，推演【最高概率路径】与【潜在黑马路径】。
+- **输出规范**: 必须呈现 Agent 之间的关键分歧点（议会辩论摘要），并给出最终的“概率加权结论”。
+- **回响机制**: 在输出结尾增加【回响请求】，引导用户在关键时间节点反馈结果以更新 `KNOWLEDGE/case-log.md`。

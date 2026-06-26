@@ -1,0 +1,9 @@
+{
+  "name": "agent-academy-continuity-101",
+  "version": "1.0.0",
+  "description": "Interactive course for AI agents to learn continuity, memory, and growth",
+  "main": "SKILL.md",
+  "keywords": ["education", "agents", "memory", "continuity", "growth"],
+  "author": "BobRenze",
+  "license": "MIT"
+}

@@ -1,0 +1,302 @@
+<!--
+  Component: chart-js
+  Chart.js 集成参考 — 适合复杂图表（多系列/需交互/大数据量）
+  Agent 参考此文件，在 slide--chart 的 .chart-container 中生成 canvas + 初始化脚本
+
+  前提：在 HTML 底部取消注释 Chart.js CDN：
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  ⚡ 延迟初始化（核心模式）：
+  Chart.js 动画在 new Chart() 时立即播放。如果图表不在第一页，
+  用户翻到时动画已结束，看到的是静态图表。
+  解决方案：通过 slideAnimations 注册表，在 Slide 激活时才创建 Chart 实例。
+-->
+
+<!-- ============================================================
+     核心：延迟初始化工具函数
+     Agent 必须将此函数放在 Chart.js CDN 之后、所有图表注册之前
+     ============================================================ -->
+<script>
+/**
+ * 延迟创建 Chart.js 实例 — 在 Slide 切换到目标页时才执行 new Chart()
+ * @param {string} canvasId - canvas 元素的 id
+ * @param {object} config - Chart.js 完整配置对象
+ * @returns {function} 注册到 slideAnimations 的回调函数
+ *
+ * 用法（在 slideAnimations 注册表中）：
+ *   const slideAnimations = {
+ *     3: createChartLazy('barChart', { type: 'bar', data: {...}, options: {...} }),
+ *   };
+ */
+function createChartLazy(canvasId, config) {
+  let instance = null;
+  return function () {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    // 防止重复创建（用户前后翻页时）
+    if (instance) {
+      instance.destroy();
+      instance = null;
+    }
+    // ❌ 禁止 canvas.width = canvas.width — 会将 canvas 内在分辨率重置为 300×150，
+    //    Chart.js responsive 模式检测到尺寸不匹配后二次渲染，导致"双重图表"抖动
+    instance = new Chart(canvas, config);
+  };
+}
+</script>
+
+
+<!-- ============================================================
+     示例 1：柱状图（Bar Chart）— 延迟初始化版
+     ============================================================ -->
+<div class="chart-container">
+  <canvas id="barChart"></canvas>
+</div>
+
+<!--
+  Agent 在 slideAnimations 注册表中注册此图表：
+
+  const slideAnimations = {
+    3: createChartLazy('barChart', {
+      type: 'bar',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+          label: '营收（万元）',
+          data: [120, 190, 300, 250],
+          backgroundColor: '#2563eb',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 1000, easing: 'easeOutQuart' },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        },
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.06)' } },
+          x: { grid: { display: false } }
+        }
+      }
+    }),
+  };
+-->
+
+
+<!-- ============================================================
+     示例 2：折线图（Line Chart）— 延迟初始化版
+     ============================================================ -->
+<div class="chart-container">
+  <canvas id="lineChart"></canvas>
+</div>
+
+<!--
+  slideAnimations 注册：
+
+  N: createChartLazy('lineChart', {
+    type: 'line',
+    data: {
+      labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+      datasets: [
+        {
+          label: '2024',
+          data: [65, 78, 90, 81, 95, 110],
+          borderColor: '#1d4ed8',
+          backgroundColor: 'rgba(29,78,216,0.1)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 4
+        },
+        {
+          label: '2023',
+          data: [45, 52, 60, 55, 70, 80],
+          borderColor: '#94a3b8',
+          backgroundColor: 'transparent',
+          borderDash: [5, 5],
+          tension: 0.3,
+          pointRadius: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1200, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { position: 'top', align: 'end' }
+      },
+      scales: {
+        y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.06)' } },
+        x: { grid: { display: false } }
+      }
+    }
+  }),
+-->
+
+
+<!-- ============================================================
+     示例 3：饼图（Doughnut Chart）— 延迟初始化版
+     ============================================================ -->
+<div class="chart-container">
+  <canvas id="doughnutChart"></canvas>
+</div>
+
+<!--
+  slideAnimations 注册：
+
+  N: createChartLazy('doughnutChart', {
+    type: 'doughnut',
+    data: {
+      labels: ['移动端', '桌面端', '平板', '其他'],
+      datasets: [{
+        data: [55, 30, 10, 5],
+        backgroundColor: ['#1d4ed8', '#0ea5e9', '#64748b', '#cbd5e1'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1000, easing: 'easeOutQuart' },
+      cutout: '60%',
+      plugins: {
+        legend: { position: 'right' }
+      }
+    }
+  }),
+-->
+
+
+<!-- ============================================================
+     示例 4：雷达图（Radar Chart）— 延迟初始化版
+     ============================================================ -->
+<div class="chart-container">
+  <canvas id="radarChart"></canvas>
+</div>
+
+<!--
+  slideAnimations 注册：
+
+  N: createChartLazy('radarChart', {
+    type: 'radar',
+    data: {
+      labels: ['性能', '安全', '可用性', '成本', '扩展性', '维护性'],
+      datasets: [
+        {
+          label: '方案 A',
+          data: [90, 75, 85, 60, 80, 70],
+          borderColor: '#1d4ed8',
+          backgroundColor: 'rgba(29,78,216,0.15)',
+          pointRadius: 4
+        },
+        {
+          label: '方案 B',
+          data: [70, 90, 60, 85, 65, 80],
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245,158,11,0.15)',
+          pointRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1000, easing: 'easeOutQuart' },
+      scales: {
+        r: { beginAtZero: true, max: 100, ticks: { stepSize: 25 } }
+      }
+    }
+  }),
+-->
+
+
+<!--
+  ================================================================
+  重要提醒（Agent 必须注意）
+  ================================================================
+
+  1. 延迟初始化（必须）：
+     - 所有图表必须通过 createChartLazy() 注册到 slideAnimations
+     - 不要直接在页面底部写 new Chart()，否则动画在页面加载时就播放完了
+     - createChartLazy() 内置防重复创建，用户前后翻页不会报错
+
+  2. 颜色注入（必须）：
+     - Chart.js 不支持 CSS 变量作为颜色值
+     - Agent 必须从所选主题中提取实际色值注入
+     - 浅色主题网格色：'rgba(0,0,0,0.06)'
+     - 深色主题网格色：'rgba(255,255,255,0.08)'
+     - 深色主题 tick/label 色：需显式设置 color 属性
+
+  3. 深色主题适配清单：
+     scales.x.ticks.color: '主题的 --color-text-secondary 实际色值'
+     scales.y.ticks.color: '同上'
+     scales.x.grid.color: 'rgba(255,255,255,0.08)'
+     scales.y.grid.color: 'rgba(255,255,255,0.08)'
+     plugins.legend.labels.color: '主题的 --color-text 实际色值'
+
+  4. 每个 canvas 需要唯一的 id
+  5. 设置 responsive: true + maintainAspectRatio: false 让图表适配容器
+  6. 建议关闭不需要的 plugin（legend/title），保持 Slide 简洁
+
+  7. 🔴 Canvas CSS 禁令：
+     - 禁止给 canvas 设置 CSS width/height（尤其是 !important）
+     - Chart.js responsive 模式通过 ResizeObserver 管理 canvas 尺寸，
+       外部 CSS 强制尺寸会与 ResizeObserver 互相打架，导致：
+       · 图表加载时抖动/从中心扩张
+       · hover tooltip 时图表再次扩张
+     - chart.html 模板已移除 canvas 的 CSS 尺寸覆盖，Agent 不要手动加回
+
+  8. 🔴 Tooltip 交互必须保留：
+     - 禁止设置 plugins.tooltip.enabled: false 或 interaction.mode: 'none'
+     - Chart.js 默认启用 tooltip，不要主动关闭
+     - 用户需要 hover 节点看到具体数值，这是基本交互预期
+     - 可以自定义 tooltip 的样式（backgroundColor/borderColor 等），但不能禁用
+
+  ================================================================
+  深色主题完整示例（以 cyber-dark 为例）
+  ================================================================
+
+  N: createChartLazy('barChartDark', {
+    type: 'bar',
+    data: {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+      datasets: [{
+        label: '营收',
+        data: [120, 190, 300, 250],
+        backgroundColor: '#818cf8',
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 1000, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          backgroundColor: '#1a2035',
+          titleColor: '#f0f4ff',
+          bodyColor: '#8b95ad',
+          borderColor: '#2a3150',
+          borderWidth: 1
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: 'rgba(255,255,255,0.08)' },
+          ticks: { color: '#8b95ad' }
+        },
+        x: {
+          grid: { display: false },
+          ticks: { color: '#8b95ad' }
+        }
+      }
+    }
+  }),
+-->

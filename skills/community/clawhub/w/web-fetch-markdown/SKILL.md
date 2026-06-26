@@ -1,35 +1,43 @@
 ---
-name: "Web fetch markdown of page"
-description: "Fetch web pages as reduced markdown via jina.ai. Use when user wants to fetch a URL and get condensed markdown content to save tokens. Triggered by phrases l..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-fetch-markdown"
-sourceUrl: "https://clawhub.ai/skills/web-fetch-markdown"
+name: web-fetch-markdown
+alias:
+  - web-fetch-and-markdown-it
+  - markdown-web
+  - markdown-web-fetch
+description: Fetch web pages as reduced markdown via jina.ai. Use when user wants to fetch a URL and get condensed markdown content to save tokens. Triggered by phrases like "fetch as markdown", "reduce tokens", "jina.ai fetch", or when fetching web content that should be condensed.
 ---
 
-# Web fetch markdown of page
+# web-fetch-markdown
 
-> Fetch web pages as reduced markdown via jina.ai. Use when user wants to fetch a URL and get condensed markdown content to save tokens. Triggered by phrases l...
+Fetch web pages as reduced markdown using jina.ai summarization service.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-fetch-markdown`
-- **Source URL:** [https://clawhub.ai/skills/web-fetch-markdown](https://clawhub.ai/skills/web-fetch-markdown)
+## When to Use
 
-## Overview
+- User asks to fetch a URL with reduced/condensed output
+- Token conservation is important for the task
+- User mentions "jina.ai" or "markdown it"
+- Fetching long articles, documentation, or content-heavy pages
 
+## How to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-fetch-markdown
+1. Take the original URL user wants to fetch
+2. Construct the jina.ai proxy URL: `https://r.jina.ai/<original-url>`
+3. Use `web_fetch` tool with the constructed URL
+4. Return the markdown content to user
+
+## Example
+
+User wants to fetch `https://github.com/openclaw/openclaw`
+
+Construct: `https://r.jina.ai/https://github.com/openclaw/openclaw`
+
+Then call:
 ```
+web_fetch url="https://r.jina.ai/https://github.com/openclaw/openclaw"
+```
+
+## Notes
+
+- jina.ai automatically extracts and reduces markdown content
+- Works with most public web pages
+- Great for GitHub READMEs, articles, documentation

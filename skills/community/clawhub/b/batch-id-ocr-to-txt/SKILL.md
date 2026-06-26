@@ -1,35 +1,47 @@
----
-name: "batch-id"
-description: "批量识别最多50张身份证图片，提取姓名性别身份证号，生成格式规范的文本文件供下载查看。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/batch-id-ocr-to-txt"
-sourceUrl: "https://clawhub.ai/skills/batch-id-ocr-to-txt"
----
+# batch-id-ocr-to-txt
 
-# batch-id
+这是一个基于腾讯云 OCR 技术的 OpenClaw Skill。它能够自动识别图片中的身份证信息，并生成一份整齐的 `.txt` 文件发送给用户，非常适合需要批量处理证件信息的场景。
 
-> 批量识别最多50张身份证图片，提取姓名性别身份证号，生成格式规范的文本文件供下载查看。
+## 🌟 功能特点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/batch-id-ocr-to-txt`
-- **Source URL:** [https://clawhub.ai/skills/batch-id-ocr-to-txt](https://clawhub.ai/skills/batch-id-ocr-to-txt)
+- **批量处理**：单次最高支持 **50 张** 身份证图片识别。
+- **格式规范**：自动提取 `姓名`、`性别`、`身份证号`。
+- **排版整洁**：每张证件信息占用三行，证件之间自动空行分隔，方便直接复制或打印。
+- **文件输出**：直接生成 `.txt` 附件，避免对话框长文本刷屏。
+- **隐私安全**：采用 OpenClaw 环境变量配置，**不硬编码 API 密钥**，确保您的腾讯云账号安全。
 
-## Overview
+## 🛠️ 安装预要求
 
+在发布或使用此 Skill 之前，您需要：
+1. 拥有一个**腾讯云账号**。
+2. 在 [腾讯云访问管理 (CAM)](https://console.cloud.tencent.com/cam/capi) 获取您的 `SecretId` 和 `SecretKey`。
+   > **建议**：为安全起见，请创建一个仅拥有 `QcloudOCRFullAccess` 权限的子账号。
+3. 确保您的 OpenClaw 部署环境可以访问 `ocr.tencentcloudapi.com`。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/batch-id-ocr-to-txt
-```
+## 🚀 配置说明 (关键)
+
+安装此 Skill 后，请在 OpenClaw 的 **Skill 配置面板** 中填入以下信息：
+
+| 配置项 | 说明 | 示例值 |
+| :--- | :--- | :--- |
+| **TENCENT_SECRET_ID** | 腾讯云 API 密钥 ID | `AKIDxxxxxxxxxxxxxx` |
+| **TENCENT_SECRET_KEY** | 腾讯云 API 密钥 Key | `xxxxxxxxxxxxxxxxxxxx` |
+| **REGION** | 识别接口地域 | `ap-guangzhou` (默认) |
+
+## 📖 使用方法
+
+1. 在对话框中发送一张或多张（最多50张）身份证正面照片。
+2. 触发本 Skill。
+3. 稍等片刻（程序内设有 0.5s/张 的频率保护），机器人将发送识别完成的消息。
+4. **下载并查看**机器人发送的 `身份证提取结果.txt` 文件。
+
+## 📝 输出格式示例
+
+```text
+姓名：张三
+性别：男
+身份证号：44010619900101xxxx
+
+姓名：李四
+性别：女
+身份证号：44010619950520xxxx

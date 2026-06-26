@@ -1,0 +1,15 @@
+global_keywords:
+- 交友
+- 社交
+- 诈骗
+keyword_rules:
+  mode: OR
+  case_sensitive: false
+description: '行业分类: social — 0 个频道'
+target_count: 0
+targets:
+- id: auto_001
+  type: group
+  identifier: MIHGSB4M666
+  note: '自动发现: tg_search | 迷你枪战精英减J科技聊天'
+  enabled: true

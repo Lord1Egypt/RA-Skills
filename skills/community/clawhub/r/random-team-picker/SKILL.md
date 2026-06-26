@@ -1,35 +1,34 @@
----
-name: "Random Team Picker"
-description: "Randomly select or split team members with options for weighted choice, exclusions, and fair distribution over multiple rounds."
-category: "other"
-source: "ClawHub"
-tags: [division, lottery, picker, random, team, utility, teamwork]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/random-team-picker"
-sourceUrl: "https://clawhub.ai/skills/random-team-picker"
----
+# random-team-picker
 
-# Random Team Picker
+Randomly select team members for meetings, code reviews, or activities. Supports weighted selection, exclusion lists, and team splitting.
 
-> Randomly select or split team members with options for weighted choice, exclusions, and fair distribution over multiple rounds.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/random-team-picker`
-- **Source URL:** [https://clawhub.ai/skills/random-team-picker](https://clawhub.ai/skills/random-team-picker)
+- Pick N random members from a list
+- Split a group into N teams
+- Weighted random selection (higher weight = more likely to be picked)
+- Exclude certain members (e.g., on vacation)
+- Ensure fair distribution over multiple rounds
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/random-team-picker
 ```
+pick --from "Alice,Bob,Charlie,Dave,Eve" --count 2
+pick --teams "Alice,Bob,Charlie,Dave" --num-teams 2
+pick --from "Alice,Bob,Charlie" --weighted "Alice:3,Bob:2,Charlie:1"
+pick --from "Alice,Bob,Charlie" --exclude "Alice" --count 1
+```
+
+## Parameters
+
+- `from`: Comma-separated list of member names
+- `count`: Number of members to pick (default: 1)
+- `num_teams`: Number of teams to split into
+- `weighted`: Weighted selection in format "name:weight" pairs
+- `exclude`: Members to exclude from selection
+
+## ⚠️ Disclaimer
+
+This tool is provided "as is" for informational purposes only. Data accuracy is not guaranteed. Not financial, legal, or professional advice. Always verify critical information from official sources.
+
+本工具仅供信息参考，不保证数据完全准确，不构成任何金融/法律/专业建议。请以官方来源为准。

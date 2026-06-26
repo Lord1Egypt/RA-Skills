@@ -1,0 +1,7 @@
+interface:
+  display_name: "MySearch"
+  short_description: "Default OpenClaw search skill for web, docs, news, extract, and X/social"
+  default_prompt: "Use $mysearch as the default OpenClaw search skill for web, docs, news, extract, GitHub, pricing, changelog, and X/social lookup. Prefer MySearch over raw web_search when it is healthy, and do not invent unsupported modes like hybrid."
+
+policy:
+  allow_implicit_invocation: true

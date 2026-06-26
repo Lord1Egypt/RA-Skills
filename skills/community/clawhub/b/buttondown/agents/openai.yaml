@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buttondown"
+  short_description: "Create and manage Buttondown email drafts"
+  default_prompt: "Use $buttondown to post this newsletter issue as a Buttondown draft."

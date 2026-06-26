@@ -1,35 +1,101 @@
----
-name: "Reading Assistant"
-description: "提供手动调用接口，用于查询、生成报告和辅助阅读，配合对应系统的自动运行任务使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloud-shrimp-reading-assistant"
-sourceUrl: "https://clawhub.ai/skills/cloud-shrimp-reading-assistant"
+# reading-assistant【自研系统技能】
+
+**版本**：v0.1.0  
+**定位**：[定位描述]
+
 ---
 
-# Reading Assistant
+## 📖 技能说明
 
-> 提供手动调用接口，用于查询、生成报告和辅助阅读，配合对应系统的自动运行任务使用。
+这是「[对应系统名称]」的手动调用接口。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloud-shrimp-reading-assistant`
-- **Source URL:** [https://clawhub.ai/skills/cloud-shrimp-reading-assistant](https://clawhub.ai/skills/cloud-shrimp-reading-assistant)
+**对应的系统**：[系统名称]（Cron 任务/框架自动运行）
 
-## Overview
+---
 
+## 🎯 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cloud-shrimp-reading-assistant
+| 场景 | 示例 |
+|------|------|
+| [场景 1] | [示例] |
+| [场景 2] | [示例] |
+| [场景 3] | [示例] |
+
+---
+
+## 🚀 使用方法
+
+### 1. [功能 1]
+
 ```
+[使用示例]
+```
+
+### 2. [功能 2]
+
+```
+[使用示例]
+```
+
+---
+
+## 📋 核心功能
+
+1. **功能 1**
+   - 描述
+
+2. **功能 2**
+   - 描述
+
+---
+
+## 🔗 与系统的关系
+
+**系统**（自动运行）：
+- [系统功能]
+
+**本技能**（手动调用）：
+- 手动触发
+- 查询结果
+- 生成报告
+
+---
+
+**创建时间**：2026-03-27 22:03  
+**维护者**：王的奴隶 · 严谨专业版  
+**标签**：#自研系统
+
+---
+
+## 💰 购买与授权
+
+**本技能版本**：v0.1.0
+
+**授权类型**：
+- **个人版**：$29.9（永久使用，个人非商业用途）
+- **商业版**：$99.9（永久使用，商业用途）
+
+**购买后获得**：
+- ✅ 技能完整源码
+- ✅ 使用文档
+- ✅ 1 年免费更新
+- ✅ 邮件支持
+
+**购买方式**：
+1. 访问 ClawHub 技能页面
+2. 选择授权类型
+3. 支付（支付宝/微信/PayPal）
+4. 自动获得授权码
+
+**联系方式**：
+- 📧 邮箱：support@cloud-shrimp.com
+- 💬 微信：CloudShrimpSupport（备注：技能名称）
+
+**企业定制**：
+- 请联系：business@cloud-shrimp.com
+
+---
+
+**技能版本**：v0.1.0  
+**创建时间**：2026-03-27  
+**维护者**：王的奴隶 · 严谨专业版

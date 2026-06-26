@@ -1,0 +1,62 @@
+{
+  "name": "@openclaw/king-wen-hexagrams",
+  "version": "1.1.0",
+  "description": "A workflow-oriented OpenClaw skill for King Wen hexagram lookup, profile-aware divination, daily fortune scheduling, and structured interpretation.",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "iching",
+    "king-wen",
+    "hexagram",
+    "divination",
+    "workflow",
+    "lookup"
+  ],
+  "scripts": {
+    "postinstall": "python scripts/postinstall_hint.py",
+    "init-profile": "python scripts/init_profile.py",
+    "show-onboarding": "python scripts/postinstall_hint.py"
+  },
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "triggers": [
+      "起卦",
+      "解卦",
+      "文王卦",
+      "六十四卦",
+      "这个卦怎么解",
+      "帮我占一下"
+    ],
+    "capabilities": [
+      "divination-workflow",
+      "hexagram-lookup",
+      "reading-interpretation",
+      "follow-up-guidance"
+    ],
+    "requirements": {
+      "bins": [
+        "python"
+      ],
+      "env": {}
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "guide.md",
+    "onboarding.md",
+    "daily-fortune.md",
+    "notes.md",
+    "workflow.md",
+    "glossary.md",
+    "templates/first-run-message.md",
+    "hexagrams/",
+    "templates/",
+    "data/",
+    "scripts/",
+    "skill.json",
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,13 @@
+# openclaw-eval-skill dependencies
+# All are Python standard library except where noted.
+#
+# Standard library (no install needed):
+#   argparse, json, statistics, time, re, pathlib,
+#   dataclasses, datetime, concurrent.futures
+
+# Required third-party
+requests>=2.28.0,<3.0.0
+
+# Optional — only needed if running oc_tools scripts locally.
+# oc_tools is provided by the OpenClaw runtime; not pip-installable.
+# The analyze_*.py scripts have NO external dependencies.

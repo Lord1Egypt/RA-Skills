@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Monitor — TOP1000 基准评测</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg-primary: #0f1117;
+  --bg-card: #1a1d2e;
+  --bg-card-hover: #222640;
+  --border: #2a2e42;
+  --text-primary: #e4e6f0;
+  --text-secondary: #8b8fa3;
+  --text-muted: #5a5e72;
+  --accent-blue: #667eea;
+  --accent-purple: #764ba2;
+  --accent-green: #4ade80;
+  --accent-yellow: #fbbf24;
+  --accent-red: #f87171;
+  --accent-orange: #fb923c;
+  --accent-cyan: #22d3ee;
+  --accent-pink: #f472b6;
+  --gradient-main: linear-gradient(135deg, #667eea, #764ba2);
+  --gradient-green: linear-gradient(135deg, #4ade80, #22d3ee);
+  --gradient-orange: linear-gradient(135deg, #fb923c, #f87171);
+  --gradient-pink: linear-gradient(135deg, #f472b6, #764ba2);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary); color: var(--text-primary);
+  min-height: 100vh; line-height: 1.6;
+}
+.dashboard { max-width: 1440px; margin: 0 auto; padding: 24px; }
+
+/* Header */
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+.header-left { display: flex; align-items: center; gap: 16px; }
+.header-logo { width: 52px; height: 52px; background: linear-gradient(135deg, #667eea, #f472b6); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 16px rgba(102,126,234,0.3); }
+.header h1 { font-size: 22px; font-weight: 700; }
+.header .subtitle { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+.header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); font-size: 13px; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.btn:hover { background: var(--bg-card-hover); border-color: var(--accent-blue); }
+.btn-primary { background: var(--gradient-main); border: none; color: #fff; }
+.mode-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.mode-mock { background: rgba(251,191,36,0.12); color: var(--accent-yellow); }
+.mode-live { background: rgba(74,222,128,0.12); color: var(--accent-green); }
+
+/* Grid */
+.grid { display: grid; gap: 20px; }
+.grid-6 { grid-template-columns: repeat(6, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-2-1 { grid-template-columns: 2fr 1fr; }
+.grid-1-2 { grid-template-columns: 1fr 2fr; }
+@media (max-width: 1200px) { .grid-6 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .dashboard { padding: 16px; } .grid-6, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* Card */
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-card); transition: border-color 0.3s; }
+.card:hover { border-color: rgba(102,126,234,0.3); }
+.card-title { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.card-title .icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+/* KPI */
+.kpi-card { position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.kpi-card:nth-child(1)::before { background: var(--gradient-main); }
+.kpi-card:nth-child(2)::before { background: var(--gradient-green); }
+.kpi-card:nth-child(3)::before { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); }
+.kpi-card:nth-child(4)::before { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); }
+.kpi-value { font-size: 36px; font-weight: 800; line-height: 1.1; margin: 8px 0 4px; }
+.kpi-value.g1 { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.g2 { background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.g3 { background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-value.g4 { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-label { font-size: 13px; color: var(--text-secondary); }
+.kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+
+/* Tab */
+.tab-nav { display: flex; gap: 4px; margin-bottom: 16px; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 4px; flex-wrap: wrap; }
+.tab-btn { padding: 8px 16px; border: none; background: none; color: var(--text-muted); font-size: 13px; font-weight: 500; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.tab-btn.active { background: var(--bg-card-hover); color: var(--text-primary); }
+.tab-btn:hover:not(.active) { color: var(--text-secondary); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Medal Card */
+.medal-card { position: relative; overflow: hidden; text-align: center; padding: 28px 16px; }
+.medal-card .medal { font-size: 42px; margin-bottom: 8px; }
+.medal-card .model-name { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+.medal-card .model-score { font-size: 32px; font-weight: 800; }
+.medal-card .model-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(42,46,66,0.5); }
+.medal-card .stat-val { font-size: 14px; font-weight: 700; }
+.medal-card .stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
+.medal-gold { border-color: rgba(251,191,36,0.4); }
+.medal-gold .model-score { color: var(--accent-yellow); }
+.medal-silver { border-color: rgba(139,143,163,0.3); }
+.medal-silver .model-score { color: var(--text-secondary); }
+.medal-bronze { border-color: rgba(251,146,60,0.3); }
+.medal-bronze .model-score { color: var(--accent-orange); }
+
+/* Ranking Table */
+.rank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.rank-table th { text-align: left; padding: 12px 14px; color: var(--text-secondary); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.rank-table td { padding: 12px 14px; border-bottom: 1px solid rgba(42,46,66,0.3); }
+.rank-table tr:hover td { background: rgba(102,126,234,0.03); }
+
+/* Quality Badge */
+.q-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+.q-green { background: rgba(74,222,128,0.15); color: var(--accent-green); }
+.q-blue { background: rgba(102,126,234,0.15); color: var(--accent-blue); }
+.q-yellow { background: rgba(251,191,36,0.15); color: var(--accent-yellow); }
+.q-red { background: rgba(248,113,113,0.15); color: var(--accent-red); }
+
+/* Category leaders */
+.cat-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,0.02); margin-bottom: 6px; transition: background 0.2s; }
+.cat-item:hover { background: rgba(102,126,234,0.05); }
+.cat-name { font-weight: 600; font-size: 13px; }
+.cat-model { font-size: 12px; color: var(--accent-cyan); font-weight: 600; }
+.cat-count { font-size: 11px; color: var(--text-muted); }
+
+/* Matrix */
+.matrix-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.matrix-toolbar input, .matrix-toolbar select {
+  padding: 8px 12px; background: rgba(0,0,0,0.25); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text-primary); font-size: 13px; outline: none;
+}
+.matrix-toolbar input:focus, .matrix-toolbar select:focus { border-color: var(--accent-blue); }
+.matrix-toolbar input { flex: 1; min-width: 200px; max-width: 320px; }
+.matrix-table-wrap { overflow-x: auto; max-height: 600px; overflow-y: auto; }
+.matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.matrix-table th { position: sticky; top: 0; z-index: 2; background: var(--bg-card); padding: 10px 8px; font-size: 11px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer; user-select: none; }
+.matrix-table th:hover { color: var(--text-primary); }
+.matrix-table td { padding: 8px; border-bottom: 1px solid rgba(42,46,66,0.2); text-align: center; white-space: nowrap; }
+.matrix-table td:first-child, .matrix-table td:nth-child(2), .matrix-table td:nth-child(3) { text-align: left; }
+.matrix-table tr:hover td { background: rgba(102,126,234,0.03); }
+.matrix-cell { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; font-size: 13px; }
+
+/* Chart */
+.chart-container { position: relative; width: 100%; }
+.chart-container canvas { max-height: 100%; }
+
+/* Pagination */
+.pagination { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(42,46,66,0.5); }
+.page-btn { padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--text-secondary); font-size: 12px; cursor: pointer; transition: all 0.2s; }
+.page-btn:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+.page-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+.page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.page-info { font-size: 12px; color: var(--text-muted); padding: 0 8px; }
+
+/* Section */
+.section { margin-bottom: 20px; }
+.footer { text-align: center; padding: 32px 0 16px; color: var(--text-muted); font-size: 12px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3e52; border-radius: 3px; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.3s ease forwards; }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- ════════ Header ════════ -->
+  <header class="header">
+    <div class="header-left">
+      <div class="header-logo">🧪</div>
+      <div>
+        <h1>TOP1000 基准评测</h1>
+        <p class="subtitle">{{ data.skills_count }} Skills × {{ data.models|length }} Models · {{ data.generated_at[:10] if data.generated_at != '未知' else '未知' }}</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="mode-badge {{ 'mode-mock' if data.mode == 'mock' else 'mode-live' }}">
+        {{ '🎭 Mock 模式' if data.mode == 'mock' else '🔴 Live 模式' }}
+      </span>
+      <a class="btn" href="/overview">🌐 全局总览</a>
+      <a class="btn btn-primary" href="/api/benchmark/summary" target="_blank">📥 API 数据</a>
+    </div>
+  </header>
+
+  {% if not data.model_ranking %}
+  <div class="card">
+    <div style="text-align:center;padding:48px;color:var(--text-muted)">
+      <div style="font-size:48px;margin-bottom:16px">🧪</div>
+      <h3 style="font-size:18px;color:var(--text-secondary);margin-bottom:8px">暂无评测数据</h3>
+      <p style="font-size:13px">请先运行 BatchBenchmark 生成评测矩阵。</p>
+    </div>
+  </div>
+  {% else %}
+
+  <!-- ════════ KPI 概览 ════════ -->
+  <div class="section grid grid-4">
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(102,126,234,0.15)">📦</span> 评测规模</div>
+      <div class="kpi-value g1">{{ data.skills_count }}</div>
+      <div class="kpi-label">Skills × {{ data.models|length }} 模型</div>
+      <div class="kpi-sub">共 {{ data.skills_count * (data.models|length) }} 评测单元</div>
+    </div>
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(74,222,128,0.15)">🏆</span> 最强模型</div>
+      <div class="kpi-value g2">{{ data.model_ranking[0].avg_quality_score }}</div>
+      <div class="kpi-label">{{ data.model_ranking[0].model_name }}</div>
+      <div class="kpi-sub">成功率 {{ data.model_ranking[0].avg_success_rate }}%</div>
+    </div>
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(251,191,36,0.15)">⚡</span> 最快模型</div>
+      {% set fastest = data.model_ranking|sort(attribute='avg_latency_ms')|first %}
+      <div class="kpi-value g3">{{ fastest.avg_latency_ms|round(0)|int }}ms</div>
+      <div class="kpi-label">{{ fastest.model_name }}</div>
+      <div class="kpi-sub">质量 {{ fastest.avg_quality_score }}</div>
+    </div>
+    <div class="card kpi-card">
+      <div class="card-title"><span class="icon" style="background:rgba(34,211,238,0.15)">💰</span> 性价比之王</div>
+      {% set cheapest = data.model_ranking|sort(attribute='total_cost_usd')|first %}
+      <div class="kpi-value g4">${{ cheapest.total_cost_usd }}</div>
+      <div class="kpi-label">{{ cheapest.model_name }}</div>
+      <div class="kpi-sub">质量 {{ cheapest.avg_quality_score }}</div>
+    </div>
+  </div>
+
+  <!-- ════════ 模型排行 Top 3 ════════ -->
+  <div class="section grid grid-3">
+    {% for m in data.model_ranking[:3] %}
+    {% set medals = ['🥇', '🥈', '🥉'] %}
+    {% set medal_classes = ['medal-gold', 'medal-silver', 'medal-bronze'] %}
+    <div class="card medal-card {{ medal_classes[loop.index0] }}">
+      <div class="medal">{{ medals[loop.index0] }}</div>
+      <div class="model-name">{{ m.model_name }}</div>
+      <div class="model-score">{{ m.avg_quality_score }}</div>
+      <div style="font-size:11px;color:var(--text-muted)">综合质量评分</div>
+      <div class="model-stats">
+        <div><div class="stat-val">{{ m.avg_success_rate }}%</div><div class="stat-label">成功率</div></div>
+        <div><div class="stat-val">{{ m.avg_latency_ms|round(0)|int }}ms</div><div class="stat-label">延迟</div></div>
+        <div><div class="stat-val">${{ m.total_cost_usd }}</div><div class="stat-label">总费用</div></div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- ════════ Tabs: 详细排行 / 分类分析 / 雷达对比 ════════ -->
+  <div class="section">
+    <div class="card">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('ranking')">📊 模型详细排行</button>
+        <button class="tab-btn" onclick="switchTab('category')">📂 分类最佳模型</button>
+        <button class="tab-btn" onclick="switchTab('radar')">🕸️ 雷达对比</button>
+        <button class="tab-btn" onclick="switchTab('cost')">💰 成本分析</button>
+      </div>
+
+      <!-- Tab 1: 模型排行 -->
+      <div id="tab-ranking" class="tab-content active">
+        <table class="rank-table">
+          <thead>
+            <tr>
+              <th>排名</th><th>模型</th><th>综合质量</th><th>成功率</th><th>平均延迟</th><th>总费用</th><th>评测数</th><th>最强分类</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in data.model_ranking %}
+            <tr>
+              <td style="font-size:18px">{{ ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣'][loop.index0] if loop.index0 < 6 else loop.index }}</td>
+              <td style="font-weight:700">{{ m.model_name }}</td>
+              <td>
+                <span class="q-badge {{ 'q-green' if m.avg_quality_score >= 83 else 'q-blue' if m.avg_quality_score >= 80 else 'q-yellow' }}">
+                  {{ m.avg_quality_score }}
+                </span>
+              </td>
+              <td>{{ m.avg_success_rate }}%</td>
+              <td>{{ m.avg_latency_ms|round(0)|int }}ms</td>
+              <td>${{ m.total_cost_usd }}</td>
+              <td>{{ m.skills_evaluated }}</td>
+              <td style="font-size:12px;color:var(--text-muted)">{{ m.best_categories[:2]|join(', ') }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab 2: 分类最佳模型 -->
+      <div id="tab-category" class="tab-content">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px">
+          {% for cat, model in data.category_leaders.items() %}
+          <div class="cat-item">
+            <div>
+              <div class="cat-name">{{ cat }}</div>
+              <div class="cat-count">
+                {% if data.category_summaries and cat in data.category_summaries %}
+                {{ data.category_summaries[cat].get('total_skills', 0) }} Skills
+                {% endif %}
+              </div>
+            </div>
+            <div class="cat-model">🏆 {{ model }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Tab 3: 雷达对比 -->
+      <div id="tab-radar" class="tab-content">
+        <div class="chart-container" style="height:400px">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Tab 4: 成本分析 -->
+      <div id="tab-cost" class="tab-content">
+        <div class="chart-container" style="height:350px">
+          <canvas id="costChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ 质量分布 + 延迟分布 ════════ -->
+  <div class="section grid grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(74,222,128,0.15)">📊</span> 模型质量分布</div>
+      <div class="chart-container" style="height:280px">
+        <canvas id="qualityBarChart"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(34,211,238,0.15)">⏱️</span> 模型延迟分布</div>
+      <div class="chart-container" style="height:280px">
+        <canvas id="latencyBarChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ 完整矩阵 ════════ -->
+  <div class="section">
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:rgba(244,114,182,0.15)">🧬</span> 完整评测矩阵</div>
+      <div class="matrix-toolbar">
+        <input type="text" id="matrixSearch" placeholder="🔍 搜索 Skill 名称..." oninput="filterMatrix()">
+        <select id="matrixCatFilter" onchange="filterMatrix()">
+          <option value="">全部分类</option>
+        </select>
+        <select id="matrixSort" onchange="sortMatrix()">
+          <option value="rank">按排名</option>
+          <option value="name">按名称</option>
+          <option value="best_q">按最高质量 ↓</option>
+        </select>
+        <span id="matrixInfo" style="font-size:12px;color:var(--text-muted);margin-left:auto"></span>
+      </div>
+      <div class="matrix-table-wrap" id="matrixWrap">
+        <table class="matrix-table" id="matrixTable">
+          <thead id="matrixHead"></thead>
+          <tbody id="matrixBody"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="matrixPagination"></div>
+    </div>
+  </div>
+
+  {% endif %}
+
+  <footer class="footer">
+    <p>Skills Monitor Benchmark v0.6.1 · TOP1000 × 6 Models · Powered by CodeBuddy · {{ data.generated_at[:19] if data.generated_at != '未知' else '' }}</p>
+    <p style="margin-top:4px"><a href="/overview" style="color:var(--accent-blue);text-decoration:none">← 返回全局总览</a></p>
+  </footer>
+</div>
+
+<!-- ════════ JavaScript ════════ -->
+<script>
+const DATA = {{ data|tojson }};
+const MODELS = DATA.models || [];
+const RANKING = DATA.model_ranking || [];
+const MATRIX = DATA.matrix || {};  // {slug: {model_key: {q,sr,ms,cost}}}
+const CATEGORIES = DATA.category_leaders || {};
+const MODEL_COLORS = {
+  'claude-opus-4.6': '#667eea',
+  'gpt-5.4': '#4ade80',
+  'deepseek-3.2': '#22d3ee',
+  'minimax-2.5': '#f472b6',
+  'glm-5': '#fbbf24',
+  'gemini-3.0-pro': '#fb923c',
+};
+
+Chart.defaults.color = '#5a5e72';
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif";
+
+// ═══ Tab 切换 ═══
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    const tabs = ['ranking', 'category', 'radar', 'cost'];
+    b.classList.toggle('active', tabs[i] === name);
+  });
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  const el = document.getElementById('tab-' + name);
+  if (el) el.classList.add('active');
+  if (name === 'radar' && !window._radarInited) { initRadarChart(); window._radarInited = true; }
+  if (name === 'cost' && !window._costInited) { initCostChart(); window._costInited = true; }
+}
+
+// ═══ 雷达图 ═══
+function initRadarChart() {
+  const canvas = document.getElementById('radarChart');
+  if (!canvas || RANKING.length === 0) return;
+
+  const labels = ['综合质量', '成功率', '速度(反)', '性价比(反)', '评测覆盖'];
+  const maxLatency = Math.max(...RANKING.map(m => m.avg_latency_ms)) * 1.1;
+  const maxCost = Math.max(...RANKING.map(m => m.total_cost_usd)) * 1.1;
+
+  const datasets = RANKING.map(m => ({
+    label: m.model_name,
+    data: [
+      m.avg_quality_score,
+      m.avg_success_rate,
+      Math.max(0, 100 - (m.avg_latency_ms / maxLatency * 100)),
+      Math.max(0, 100 - (m.total_cost_usd / maxCost * 100)),
+      (m.skills_evaluated / (DATA.skills_count || 1000)) * 100,
+    ],
+    borderColor: MODEL_COLORS[m.model_key] || '#667eea',
+    backgroundColor: (MODEL_COLORS[m.model_key] || '#667eea') + '20',
+    borderWidth: 2, pointRadius: 3,
+  }));
+
+  new Chart(canvas.getContext('2d'), {
+    type: 'radar',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { r: { min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.06)' }, angleLines: { color: 'rgba(255,255,255,0.06)' }, pointLabels: { font: { size: 12 } } } },
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, font: { size: 11 } } } },
+    },
+  });
+}
+
+// ═══ 成本分析图 ═══
+function initCostChart() {
+  const canvas = document.getElementById('costChart');
+  if (!canvas || RANKING.length === 0) return;
+
+  const labels = RANKING.map(m => m.model_name);
+  new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: '总费用 ($)', data: RANKING.map(m => m.total_cost_usd), backgroundColor: RANKING.map(m => (MODEL_COLORS[m.model_key] || '#667eea') + 'bb'), borderRadius: 6, barPercentage: 0.6 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `$${ctx.raw.toFixed(4)}`, afterLabel: ctx => { const m = RANKING[ctx.dataIndex]; return `质量: ${m.avg_quality_score} · 性价比: ${(m.avg_quality_score / Math.max(m.total_cost_usd, 0.001)).toFixed(0)}`; } } },
+      },
+      scales: { x: { grid: { color: 'rgba(255,255,255,0.04)' } }, y: { grid: { display: false } } },
+    },
+  });
+}
+
+// ═══ 质量 & 延迟柱状图 ═══
+function initBarCharts() {
+  const labels = RANKING.map(m => m.model_name);
+  const colors = RANKING.map(m => MODEL_COLORS[m.model_key] || '#667eea');
+
+  // 质量分布
+  const qCanvas = document.getElementById('qualityBarChart');
+  if (qCanvas) {
+    new Chart(qCanvas.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          { label: '综合质量', data: RANKING.map(m => m.avg_quality_score), backgroundColor: colors.map(c => c + 'bb'), borderRadius: 8, barPercentage: 0.55 },
+          { label: '成功率', data: RANKING.map(m => m.avg_success_rate), backgroundColor: colors.map(c => c + '44'), borderRadius: 8, barPercentage: 0.55 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', labels: { font: { size: 11 }, usePointStyle: true, padding: 16 } } },
+        scales: { y: { min: 70, max: 100, grid: { color: 'rgba(255,255,255,0.04)' } }, x: { grid: { display: false } } },
+      },
+    });
+  }
+
+  // 延迟分布
+  const lCanvas = document.getElementById('latencyBarChart');
+  if (lCanvas) {
+    new Chart(lCanvas.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: '平均延迟 (ms)',
+          data: RANKING.map(m => m.avg_latency_ms),
+          backgroundColor: RANKING.map(m => {
+            if (m.avg_latency_ms < 2000) return 'rgba(74,222,128,0.7)';
+            if (m.avg_latency_ms < 3000) return 'rgba(102,126,234,0.7)';
+            return 'rgba(251,191,36,0.7)';
+          }),
+          borderRadius: 8, barPercentage: 0.55,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.raw.toFixed(0)}ms` } } },
+        scales: { y: { grid: { color: 'rgba(255,255,255,0.04)' } }, x: { grid: { display: false } } },
+      },
+    });
+  }
+}
+
+// ═══ 评测矩阵 ═══
+const MATRIX_PAGE_SIZE = 50;
+let matrixPage = 1;
+let matrixData = []; // [{rank, slug, name, category, models:{key:{q,sr,ms,cost}}}]
+let filteredMatrix = [];
+
+function initMatrixData() {
+  // 从 dataset_sample 和 matrix 合并
+  const dataset = DATA.dataset_sample || [];
+  const allSlugs = Object.keys(MATRIX);
+  const catSet = new Set();
+
+  // 用 matrix 数据构建完整列表
+  matrixData = allSlugs.map((slug, i) => {
+    const info = dataset.find(d => d.slug === slug) || {};
+    const cat = info.category || 'other';
+    catSet.add(cat);
+    const models = MATRIX[slug] || {};
+    const bestQ = Math.max(0, ...Object.values(models).map(m => m.q || 0));
+    return { rank: info.rank || (i + 1), slug, name: info.name || slug, category: cat, models, bestQ };
+  });
+  matrixData.sort((a, b) => a.rank - b.rank);
+  filteredMatrix = [...matrixData];
+
+  // 填充分类下拉
+  const select = document.getElementById('matrixCatFilter');
+  [...catSet].sort().forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat; opt.textContent = cat;
+    select.appendChild(opt);
+  });
+
+  renderMatrix();
+}
+
+function filterMatrix() {
+  const q = (document.getElementById('matrixSearch').value || '').toLowerCase();
+  const cat = document.getElementById('matrixCatFilter').value;
+  filteredMatrix = matrixData.filter(d => {
+    if (cat && d.category !== cat) return false;
+    if (q && !d.name.toLowerCase().includes(q) && !d.slug.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  matrixPage = 1;
+  sortMatrix(false);
+  renderMatrix();
+}
+
+function sortMatrix(doRender = true) {
+  const sortKey = document.getElementById('matrixSort').value;
+  filteredMatrix.sort((a, b) => {
+    if (sortKey === 'name') return a.name.localeCompare(b.name);
+    if (sortKey === 'best_q') return b.bestQ - a.bestQ;
+    return a.rank - b.rank;
+  });
+  if (doRender) renderMatrix();
+}
+
+function renderMatrix() {
+  const totalPages = Math.ceil(filteredMatrix.length / MATRIX_PAGE_SIZE) || 1;
+  if (matrixPage > totalPages) matrixPage = totalPages;
+  const start = (matrixPage - 1) * MATRIX_PAGE_SIZE;
+  const pageData = filteredMatrix.slice(start, start + MATRIX_PAGE_SIZE);
+
+  // Info
+  document.getElementById('matrixInfo').textContent =
+    `${filteredMatrix.length} Skills` + (totalPages > 1 ? ` · 第 ${matrixPage}/${totalPages} 页` : '');
+
+  // Header
+  const thead = document.getElementById('matrixHead');
+  thead.innerHTML = `<tr><th>#</th><th>Skill</th><th>分类</th>${MODELS.map(m => `<th>${m.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).split(' ').slice(0, 2).join(' ')}</th>`).join('')}</tr>`;
+
+  // Body
+  const tbody = document.getElementById('matrixBody');
+  tbody.innerHTML = pageData.map(d => {
+    let row = `<td>${d.rank}</td><td style="font-weight:600;max-width:200px;overflow:hidden;text-overflow:ellipsis">${escHtml(d.name)}</td><td style="font-size:11px;color:var(--text-muted)">${d.category}</td>`;
+    MODELS.forEach(mk => {
+      const cell = d.models[mk];
+      if (cell) {
+        const q = cell.q || 0;
+        let icon = '🔴', cls = 'q-red';
+        if (q >= 80) { icon = '🟢'; cls = 'q-green'; }
+        else if (q >= 60) { icon = '🟡'; cls = 'q-yellow'; }
+        else if (q >= 40) { icon = '🟠'; cls = 'q-yellow'; }
+        row += `<td><span class="q-badge ${cls}" title="成功率:${cell.sr}% 延迟:${cell.ms}ms 费用:$${cell.cost}">${icon} ${q.toFixed(0)}</span></td>`;
+      } else {
+        row += `<td style="color:var(--text-muted)">—</td>`;
+      }
+    });
+    return `<tr class="fade-in">${row}</tr>`;
+  }).join('');
+
+  // Pagination
+  renderMatrixPagination(totalPages);
+}
+
+function renderMatrixPagination(totalPages) {
+  const pag = document.getElementById('matrixPagination');
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="matrixGoPage(${matrixPage - 1})" ${matrixPage === 1 ? 'disabled' : ''}>‹</button>`;
+  const pages = [];
+  if (totalPages <= 7) { for (let i = 1; i <= totalPages; i++) pages.push(i); }
+  else {
+    pages.push(1);
+    let s = Math.max(2, matrixPage - 2), e = Math.min(totalPages - 1, matrixPage + 2);
+    if (s > 2) pages.push(-1);
+    for (let i = s; i <= e; i++) pages.push(i);
+    if (e < totalPages - 1) pages.push(-1);
+    pages.push(totalPages);
+  }
+  pages.forEach(p => {
+    if (p === -1) html += '<span class="page-info">…</span>';
+    else html += `<button class="page-btn ${p === matrixPage ? 'active' : ''}" onclick="matrixGoPage(${p})">${p}</button>`;
+  });
+  html += `<button class="page-btn" onclick="matrixGoPage(${matrixPage + 1})" ${matrixPage === totalPages ? 'disabled' : ''}>›</button>`;
+  pag.innerHTML = html;
+}
+
+function matrixGoPage(p) {
+  const totalPages = Math.ceil(filteredMatrix.length / MATRIX_PAGE_SIZE) || 1;
+  if (p < 1 || p > totalPages) return;
+  matrixPage = p;
+  renderMatrix();
+  document.getElementById('matrixWrap').scrollTop = 0;
+}
+
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+// ═══ 初始化 ═══
+document.addEventListener('DOMContentLoaded', () => {
+  if (RANKING.length > 0) {
+    initBarCharts();
+    initMatrixData();
+  }
+});
+</script>
+
+</body>
+</html>

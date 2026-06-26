@@ -1,0 +1,53 @@
+{
+  "wechat": {
+    "defaultAccount": "default",
+    "apiBaseUrl": "https://api.weixin.qq.com",
+    "tokenCacheDir": "./.tokens",
+    "accounts": {
+      "default": {
+        "name": "我的公众号",
+        "positioning": "AI 工具与效率提升",
+        "topics": ["AI", "工具", "效率"],
+        "excludeTopics": ["娱乐八卦"],
+        "appId": "your_app_id_here",
+        "appSecret": "your_app_secret_here",
+        "type": "subscription",
+        "enabled": true,
+        "author": "OpenClaw",
+        "digestSuffix": "关注账号获取更多实战内容",
+        "publishing": {
+          "defaultTheme": "fresh-green",
+          "introTemplate": "./assets/templates/intro.html",
+          "outroTemplate": "./assets/templates/outro.html",
+          "customCssFile": "./assets/custom-overrides.css",
+          "templateVariablesFile": "./assets/template-variables.example.json",
+          "showCoverPic": true,
+          "needOpenComment": 1,
+          "onlyFansCanComment": 0
+        }
+      },
+      "brand-b": {
+        "name": "品牌 B 公众号",
+        "positioning": "品牌案例与增长",
+        "topics": ["品牌", "增长"],
+        "excludeTopics": [],
+        "appId": "your_second_app_id_here",
+        "appSecret": "your_second_app_secret_here",
+        "type": "service",
+        "enabled": true,
+        "author": "品牌 B 编辑部",
+        "digestSuffix": "欢迎转发给团队成员"
+      }
+    }
+  },
+  "publishing": {
+    "defaultTheme": "modern-minimal",
+    "introTemplate": "./assets/templates/intro.html",
+    "outroTemplate": "./assets/templates/outro.html",
+    "customCssFile": "./assets/custom-overrides.css",
+    "templateVariablesFile": "./assets/template-variables.example.json",
+    "showCoverPic": true,
+    "needOpenComment": 1,
+    "onlyFansCanComment": 0
+  }
+}

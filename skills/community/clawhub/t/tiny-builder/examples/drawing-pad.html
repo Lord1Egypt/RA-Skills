@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Drawing Pad!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        #title {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #canvas-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #canvas {
+            border: 4px solid #333;
+            border-radius: 10px;
+            cursor: crosshair;
+            touch-action: none;
+            display: block;
+        }
+        
+        #controls {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+        }
+        
+        #color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 10px;
+        }
+        
+        .color-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 4px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .color-btn.selected {
+            border-color: #333;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05);
+        }
+        
+        #size-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #size-label {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            min-width: 180px;
+        }
+        
+        #size-slider {
+            flex: 1;
+            height: 50px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(to right, #ddd, #333);
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        #size-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 60px;
+            height: 60px;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        #size-slider::-moz-range-thumb {
+            width: 60px;
+            height: 60px;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        #button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            padding: 20px;
+            font-size: 28px;
+            font-family: inherit;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        #clear-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        #save-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .action-btn:active {
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            #title {
+                font-size: 36px;
+            }
+            
+            .color-btn {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">🎨 Drawing Pad!</h1>
+    
+    <div id="canvas-container">
+        <canvas id="canvas" width="800" height="600"></canvas>
+    </div>
+    
+    <div id="controls">
+        <div id="color-palette">
+            <button class="color-btn selected" style="background: #FF6B6B;" data-color="#FF6B6B" title="Red">❤️</button>
+            <button class="color-btn" style="background: #FFA500;" data-color="#FFA500" title="Orange">🧡</button>
+            <button class="color-btn" style="background: #FFD93D;" data-color="#FFD93D" title="Yellow">💛</button>
+            <button class="color-btn" style="background: #6BCF7F;" data-color="#6BCF7F" title="Green">💚</button>
+            <button class="color-btn" style="background: #4D96FF;" data-color="#4D96FF" title="Blue">💙</button>
+            <button class="color-btn" style="background: #9D4EDD;" data-color="#9D4EDD" title="Purple">💜</button>
+            <button class="color-btn" style="background: #FF87CA;" data-color="#FF87CA" title="Pink">🩷</button>
+            <button class="color-btn" style="background: #8B4513;" data-color="#8B4513" title="Brown">🤎</button>
+            <button class="color-btn" style="background: #000000;" data-color="#000000" title="Black">🖤</button>
+            <button class="color-btn" style="background: #FFFFFF; border: 4px solid #ddd;" data-color="#FFFFFF" title="White">🤍</button>
+        </div>
+        
+        <div id="size-control">
+            <label id="size-label">Brush Size: <span id="size-value">10</span>px</label>
+            <input type="range" id="size-slider" min="2" max="50" value="10">
+        </div>
+        
+        <div id="button-row">
+            <button id="clear-btn" class="action-btn">🗑️ Clear</button>
+            <button id="save-btn" class="action-btn">💾 Save</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Scale canvas for retina displays
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        
+        // Drawing state
+        let isDrawing = false;
+        let currentColor = '#FF6B6B';
+        let brushSize = 10;
+        let lastX = 0;
+        let lastY = 0;
+        
+        // Set initial canvas background
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Color selection
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                currentColor = btn.dataset.color;
+            });
+        });
+        
+        // Brush size
+        const sizeSlider = document.getElementById('size-slider');
+        const sizeValue = document.getElementById('size-value');
+        
+        sizeSlider.addEventListener('input', (e) => {
+            brushSize = parseInt(e.target.value);
+            sizeValue.textContent = brushSize;
+        });
+        
+        // Get mouse/touch position relative to canvas
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches?.[0];
+            const x = (touch ? touch.clientX : e.clientX) - rect.left;
+            const y = (touch ? touch.clientY : e.clientY) - rect.top;
+            return { x, y };
+        }
+        
+        // Start drawing
+        function startDrawing(e) {
+            e.preventDefault();
+            isDrawing = true;
+            const pos = getPosition(e);
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+        
+        // Draw
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            
+            const pos = getPosition(e);
+            
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = brushSize;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+        
+        // Stop drawing
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        // Mouse events
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch events
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchend', stopDrawing);
+        
+        // Clear button
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+        
+        // Save button
+        document.getElementById('save-btn').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'my-drawing.png';
+            link.href = canvas.toDataURL();
+            link.click();
+            
+            // Visual feedback
+            const btn = document.getElementById('save-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Saved!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

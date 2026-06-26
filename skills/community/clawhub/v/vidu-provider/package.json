@@ -1,0 +1,21 @@
+{
+  "name": "openclaw-plugin-vidu",
+  "version": "1.0.0",
+  "description": "OpenClaw Vidu video generation provider plugin",
+  "type": "module",
+  "license": "MIT-0",
+  "devDependencies": {
+    "openclaw": "^2026.4.15",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  }
+}

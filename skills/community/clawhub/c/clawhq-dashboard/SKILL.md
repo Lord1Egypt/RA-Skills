@@ -1,35 +1,54 @@
----
-name: "OpenClaw Dashboard Connector - ClawHQ"
-description: "Reports AI agent status to ClawHQ dashboard via API on each heartbeat or manual trigger for real-time monitoring."
-category: "devops"
-source: "ClawHub"
-tags: [agent health, dashboards, monitoring, workflows]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhq-dashboard"
-sourceUrl: "https://clawhub.ai/skills/clawhq-dashboard"
----
+# ClawHQ Dashboard Connector
 
-# OpenClaw Dashboard Connector - ClawHQ
+Report agent status, heartbeats, and task completions to your ClawHQ dashboard.
 
-> Reports AI agent status to ClawHQ dashboard via API on each heartbeat or manual trigger for real-time monitoring.
+## Requirements
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhq-dashboard`
-- **Source URL:** [https://clawhub.ai/skills/clawhq-dashboard](https://clawhub.ai/skills/clawhq-dashboard)
+Environment variable must be set:
+- `CLAWHQ_API_KEY` — Your ClawHQ API key (generate in Settings → API Keys)
 
-## Overview
+## Behavior
 
+### On Session Start
+Report status "working" with the current task:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhq-dashboard
+**Windows (PowerShell):**
+```powershell
+$headers = @{ "Authorization" = "Bearer $env:CLAWHQ_API_KEY"; "Content-Type" = "application/json" }
+$body = @{ agent = "<agent_name>"; status = "working"; task = "<current task summary>" } | ConvertTo-Json
+Invoke-RestMethod -Uri "https://app.clawhq.co/api/agents/report" -Method Post -Headers $headers -Body $body
 ```
+
+**Mac/Linux (curl):**
+```bash
+curl -s -X POST "https://app.clawhq.co/api/agents/report" \
+  -H "Authorization: Bearer $CLAWHQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"agent":"<agent_name>","status":"working","task":"<current task summary>"}'
+```
+
+### On Session End
+Report status "idle":
+
+**Windows:**
+```powershell
+$headers = @{ "Authorization" = "Bearer $env:CLAWHQ_API_KEY"; "Content-Type" = "application/json" }
+$body = @{ agent = "<agent_name>"; status = "idle" } | ConvertTo-Json
+Invoke-RestMethod -Uri "https://app.clawhq.co/api/agents/report" -Method Post -Headers $headers -Body $body
+```
+
+**Mac/Linux:**
+```bash
+curl -s -X POST "https://app.clawhq.co/api/agents/report" \
+  -H "Authorization: Bearer $CLAWHQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"agent":"<agent_name>","status":"idle"}'
+```
+
+### On Heartbeat
+Post a heartbeat to keep the dashboard current. Use the same commands above with `"status":"heartbeat"`.
+
+## Notes
+- All calls should be fire-and-forget — wrap in try/catch so failures never block the agent.
+- Replace `<agent_name>` with the agent's name (e.g. "Eros", "Atlas").
+- The API auto-creates agents on first report — no setup needed in the dashboard.

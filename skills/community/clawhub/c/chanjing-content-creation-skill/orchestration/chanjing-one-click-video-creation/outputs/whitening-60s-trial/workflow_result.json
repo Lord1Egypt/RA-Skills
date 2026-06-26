@@ -1,0 +1,44 @@
+{
+  "status": "success",
+  "align_quality": "low_prop",
+  "render_result": {
+    "video_file": "/Users/zouhui/code/gitlab/content-creation-skills/skills/chanjing-content-creation-skill/orchestration/chanjing-one-click-video-creation/outputs/whitening-60s-trial/final_one_click.mp4",
+    "scene_video_urls": {
+      "dh_1": "https://res.chanjing.cc/chanjing/prod/dhaio/output/2026-04-02/2039701604915372032-1775137747-output.mp4",
+      "dh_3": "https://res.chanjing.cc/chanjing/prod/dhaio/output/2026-04-02/2039701746926403584-1775137786-output.mp4",
+      "dh_5": "https://res.chanjing.cc/chanjing/prod/dhaio/output/2026-04-02/2039701801452146688-1775137796-output.mp4",
+      "dh_7": "https://res.chanjing.cc/chanjing/prod/dhaio/output/2026-04-02/2039701854728736768-1775137811-output.mp4",
+      "ai_2_0": "https://res.chanjing.cc/chanjing/ai_creation/open/video/178/2026-04-02/d9bc4a815fee373d44fd316e730df9a6.mp4",
+      "ai_4_0": "https://res.chanjing.cc/chanjing/ai_creation/open/video/178/2026-04-02/bd3b37e3e0ad52366855aab04b1fd466.mp4",
+      "ai_6_0": "https://res.chanjing.cc/chanjing/ai_creation/open/video/178/2026-04-02/c885d5bbc2cb47ac10cf5f9cf7b1fe21.mp4"
+    }
+  },
+  "debug": {
+    "tts_task_ids": [
+      "19e0a0cc3f584701a3e28a0113207129"
+    ],
+    "dh_video_ids": {
+      "1": "2039701604915372032",
+      "3": "2039701746926403584",
+      "5": "2039701801452146688",
+      "7": "2039701854728736768"
+    },
+    "ai_unique_ids": {
+      "2_0": "56302c8c-de30-4f72-ada6-5b8f46463c5d",
+      "4_0": "535a7e5d-9015-4c26-b6ba-e7a588c91cb7",
+      "6_0": "04c01e8a-b433-4fb3-b1c4-9037caf35f22"
+    },
+    "intermediate_paths": {
+      "tts_merged_mp3": "/Users/zouhui/code/gitlab/content-creation-skills/skills/chanjing-content-creation-skill/orchestration/chanjing-one-click-video-creation/outputs/whitening-60s-trial/work/tts_merged.mp3",
+      "tts_state_json": "/Users/zouhui/code/gitlab/content-creation-skills/skills/chanjing-content-creation-skill/orchestration/chanjing-one-click-video-creation/outputs/whitening-60s-trial/work/tts_state.json",
+      "scene_times_json": "/Users/zouhui/code/gitlab/content-creation-skills/skills/chanjing-content-creation-skill/orchestration/chanjing-one-click-video-creation/outputs/whitening-60s-trial/work/scene_times.json",
+      "final_concat_list": "/Users/zouhui/code/gitlab/content-creation-skills/skills/chanjing-content-creation-skill/orchestration/chanjing-one-click-video-creation/outputs/whitening-60s-trial/work/final_concat.txt"
+    },
+    "ai_video_submit_params": {
+      "aspect_ratio": "9:16",
+      "clarity": 1080,
+      "ref_width": 1080,
+      "ref_height": 1920
+    }
+  }
+}

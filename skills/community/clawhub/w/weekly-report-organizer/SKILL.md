@@ -1,35 +1,61 @@
 ---
-name: "周报速整助手"
-description: "将零散工作记录整理成符合企业规范的结构化周报，包含本周完成情况、下周计划及待协调问题三部分。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-report-organizer"
-sourceUrl: "https://clawhub.ai/skills/weekly-report-organizer"
+name: weekly-report-organizer
+description: 将零散日常工作记录快速整理为符合通用企业规范的结构化周报。Use when: (1) 用户提供零散工作记录、便签、聊天记录等需要整理为周报; (2) 用户要求写周报、整理周报、生成周报; (3) 用户提到"周报速整"、"整理工作记录"、"weekly report"等关键词。自动划分三大模块，优化表述正式度与专业性，无需任何外部依赖。
 ---
 
 # 周报速整助手
 
-> 将零散工作记录整理成符合企业规范的结构化周报，包含本周完成情况、下周计划及待协调问题三部分。
+将用户提供的零散工作记录整理为结构化、专业化的企业周报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-report-organizer`
-- **Source URL:** [https://clawhub.ai/skills/weekly-report-organizer](https://clawhub.ai/skills/weekly-report-organizer)
+## 输入处理
 
-## Overview
+接收用户提供的任意格式原始记录：便签、聊天片段、清单、口述文字、时间线等。若信息模糊，按最合理推断归类，不做多余追问。
 
+## 输出格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-report-organizer
+按以下模板输出，三项模块为必选项：
+
+```markdown
+# 周报 | {姓名} | {YYYY.MM.DD - YYYY.MM.DD}
+
+## 一、本周工作完成情况
+
+| 序号 | 工作内容 | 完成状态 | 备注 |
+|------|----------|----------|------|
+| 1 | ... | 已完成/进行中 | ... |
+
+## 二、下周工作计划
+
+| 序号 | 计划内容 | 优先级 | 预计完成时间 |
+|------|----------|--------|-------------|
+| 1 | ... | 高/中/低 | ... |
+
+## 三、待协调问题
+
+| 序号 | 问题描述 | 影响范围 | 需协调方 |
+|------|----------|----------|----------|
+| 1 | ... | ... | ... |
 ```
+
+若无待协调问题，在表格中填"暂无"而非省略模块。
+
+## 分类规则
+
+1. **已完成工作** → "本周工作完成情况"，状态标"已完成"
+2. **进行中/未完成工作** → "本周工作完成情况"，状态标"进行中"，同时视情况出现在"下周工作计划"中
+3. **明确的下一步/未来任务** → "下周工作计划"
+4. **阻碍、资源短缺、跨部门依赖、待确认事项** → "待协调问题"
+5. 一条原始记录仅归入一个主模块，避免重复；若横跨两类，拆分为两条分别归入
+
+## 表述优化
+
+- 将口语化表达转为书面正式用语（例："跟客户聊了一下" → "与客户进行需求沟通"；"搞了个方案" → "制定解决方案"）
+- 每条工作内容以动宾短语开头，简洁明确（例："完成XX模块开发"、"推进XX项目立项"）
+- 避免模糊量词，尽可能量化成果（例："优化性能" → "将接口响应时间降低40%"）
+- 删除冗余语气词和主观评价，保留客观事实与结果
+
+## 注意事项
+
+- 不编造未提及的内容，仅整理和润色用户提供的信息
+- 日期范围根据用户输入推断；若无法推断，使用当前自然周
+- 表格为默认格式；若用户指定其他格式，优先遵循用户要求

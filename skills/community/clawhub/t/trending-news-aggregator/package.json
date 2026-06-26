@@ -1,0 +1,49 @@
+{
+  "name": "trending-news-aggregator",
+  "version": "1.0.0",
+  "description": "智能热点新闻聚合器 - 自动抓取多平台热点，AI分析趋势，支持定时推送",
+  "license": "MIT",
+  "author": "OpenClaw Community",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.22"
+  },
+  "openclaw": {
+    "extensions": [
+      "./SKILL.md"
+    ],
+    "skill": {
+      "id": "trending-news-aggregator",
+      "label": "Trending News Aggregator",
+      "description": "智能热点新闻聚合与趋势分析",
+      "category": "productivity",
+      "tags": ["news", "aggregator", "monitoring", "trending", "automation"]
+    },
+    "install": {
+      "npmSpec": "trending-news-aggregator",
+      "defaultChoice": "npm",
+      "minHostVersion": ">=2026.3.22"
+    }
+  },
+  "keywords": [
+    "news",
+    "aggregator",
+    "hot-topics",
+    "trending",
+    "weibo",
+    "zhihu",
+    "monitoring",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/trending-news-aggregator"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/trending-news-aggregator/issues"
+  },
+  "homepage": "https://github.com/yourusername/trending-news-aggregator#readme"
+}

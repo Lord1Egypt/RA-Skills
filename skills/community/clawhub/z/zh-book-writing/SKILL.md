@@ -1,35 +1,89 @@
 ---
-name: "中文小说写作"
-description: "中文长篇小说创作工作流。用于创建或延续单本书项目、提炼原作/样本文风、规划章节、起草或修订正文、执行章节 preflight、编号检查、质量门、Markdown 交付、更新本书记忆与连续性。"
-category: "creative"
-source: "ClawHub"
-tags: [chinese, fiction, novel, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zh-book-writing"
-sourceUrl: "https://clawhub.ai/skills/zh-book-writing"
+name: book-writing
+description: 中文长篇小说创作工作流。用于创建或延续单本书项目、提炼原作/样本文风、规划章节、起草或修订正文、执行章节 preflight、编号检查、质量门、Markdown 交付、更新本书记忆与连续性。
 ---
 
 # 中文小说写作
 
-> 中文长篇小说创作工作流。用于创建或延续单本书项目、提炼原作/样本文风、规划章节、起草或修订正文、执行章节 preflight、编号检查、质量门、Markdown 交付、更新本书记忆与连续性。
+## 核心规则
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zh-book-writing`
-- **Source URL:** [https://clawhub.ai/skills/zh-book-writing](https://clawhub.ai/skills/zh-book-writing)
+`book-writing` 是中文小说创作的权威写作引擎。处理剧情或正文前，先识别当前活跃书籍，并只在这本书的独立目录内工作：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zh-book-writing
+```text
+<novelist-workspace>/书库/<作品名>/
 ```
+
+- 书籍已存在：读取该书目录和 `本书记忆/`。
+- 书籍不存在：从 `assets/book-scaffold/` 复制脚手架。
+- 书名未定：使用 `未命名-YYYYMMDD`，并在 `00_入口.md` 标明临时书名。
+- 默认不跨书继承剧情、设定、偏好、文风或用户反馈，除非用户明确说多本书共享主线事实。
+- 写作原则、质量门和连续性规则只用于未来草稿、修订和自检；已接受正文不改，除非用户明确要求修改旧章节。
+
+## 工作模式
+
+- **源书/参考资料模式**：用户提供原书、片段、大纲、样本文风、笔记或链接时，先更新 `本书记忆/原作提炼.md`，再讨论续写、番外、改写、分岔或灵感借用。
+- **灵感孵化模式**：用户提供松散想法、梗、人物、场景或氛围时，给 2-4 个有差异的方向，并把选择与排除项记入 `本书记忆/灵感选项.md`。
+- **章节推进模式**：已有活跃书籍，用户要下一章、章节思路、正文或修订时，必须走下面的章节生命周期。
+
+## 章节生命周期
+
+每一章或一次实质修订都按此顺序执行：
+
+1. **书籍确认**：确认活跃目录 `书库/<作品名>/`。
+2. **Preflight**：读取 `00_入口.md`、`本书记忆/`、相关大纲/设定/人物/样本文风、上一章、活跃 `正文/` 目录。
+3. **编号检查**：扫描正式正文，忽略 `旧稿/`，确认并说清 `下一章编号确认：第X章《标题》`。
+4. **章节规划**：先给可执行的简洁决策说明；只点名本章最相关的 2-3 个写作原则。
+5. **起草**：章节规划已可执行，或用户明确说继续后再写。
+6. **质量门**：交付前检查编号、连续性、P0/P1/P2、五层次写作原则和本书偏好。
+7. **交付**：默认保存并发送 `.md` 章节文件。
+8. **记忆更新**：用户反馈或草稿通过后，只更新当前书籍的 `本书记忆/`。
+
+动笔前输出：
+
+```markdown
+## 章节 Preflight
+- 活跃书籍：
+- 当前正式上一章：
+- 下一章编号确认：
+- 忽略旧稿：
+- 本章阻塞问题：
+```
+
+用户只要“思路”时输出：
+
+```markdown
+## 第X章《标题》思路
+- 一句话核心：
+- 场景顺序：3-5 个场景/动作节点
+- 关系推进：
+- 章末钩子：
+- 本章写作原则：声音 / 层次 / 细节
+- 需要确认：
+```
+
+交付前输出或内部完成：
+
+```markdown
+## 交付前自检
+- 编号/连续性：
+- P0：
+- P1：
+- 风格命中：五层次命中点 + 本书偏好命中点
+- 交付文件：
+```
+
+## 参考资料
+
+按任务需要读取，不要一次性加载所有内容：
+
+- `references/workflow.md`：完整章节流程、preflight、编号、冲突处理、记忆更新和交付规则。
+- `references/writing-principles.md`：中文写作原则，含声音、层次、细节、呼吸、活性，以及场景、对白、人物选择、物象、章末钩子和类型适配。
+- `references/quality-gates.md`：P0/P1/P2 质量门与五角色评审。
+- `assets/book-scaffold/`：新书脚手架模板。
+- `examples/古风权谋样例/`：短篇虚构示例，展示模板如何填写。
+
+## 风格与安全边界
+
+- 分析原作和样本时，只提炼结构、世界事实、人物动力、关系机制、节奏、句式、叙事距离、对白密度、古风词感、情绪铺垫、冲突设计和章末钩子。
+- 不复制大段原文，不保存可识别表达，不近似模仿受保护文本。
+- 优先记录可执行的剧情状态：谁知道什么、谁想要什么、谁受伤、谁持有什么物件、承诺是否有效、秘密边界在哪里、伏笔是否回收。

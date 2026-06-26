@@ -1,0 +1,26 @@
+{
+  "_meta": {
+    "schema": "pmax-whatsapp/v1",
+    "doc": "pmax-whatsapp-template.md",
+    "note": "以 _ 开头的键仅作说明，CLI 提交前会剥离",
+    "agentPitfalls": [
+      "BUSINESS_MESSAGE 仅支持 Campaign / Account 级；PMax 用 Campaign + campaignId",
+      "每 Campaign 仅 1 个 ENABLED WhatsApp；重复 POST 会 400，须 DELETE 或 PUT 更新",
+      "PUT 成功后 asset id 会变化，后续删除/更新须用响应中的新 id",
+      "账户须已开通 Google Business Message API 白名单，否则 CUSTOMER_NOT_ON_ALLOWLIST_FOR_MESSAGE_ASSETS",
+      "勿与 pmax-create 同时挂 businessMessage 若活动上已有 WhatsApp"
+    ]
+  },
+  "account": "REPLACE_mediaCustomerId",
+  "campaignId": "REPLACE_pmaxCampaignId",
+  "businessMessage": {
+    "messageProvider": "WHATSAPP",
+    "starterMessage": "Hi! How can we help you today?",
+    "callToActionSelection": "CONTACT_US",
+    "callToActionDescription": "Message us on WhatsApp",
+    "whatsapp": {
+      "countryCode": "US",
+      "phoneNumber": "2125550100"
+    }
+  }
+}

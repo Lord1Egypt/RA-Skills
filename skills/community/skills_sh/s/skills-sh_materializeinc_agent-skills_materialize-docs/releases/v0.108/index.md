@@ -1,0 +1,30 @@
+# Materialize v0.108
+## v0.108
+
+#### Sources and sinks
+
+* Allow specifying the message key format and the message value format
+  separately in [Kafka sinks](/sql/create-sink/kafka/), using the new `KEY
+  FORMAT ... VALUE FORMAT ...` option.
+
+* Support including a header row in `CSV` files exported using [S3 bulk exports](/sql/copy-to/#copy-to-s3).
+
+  ```mzsql
+  COPY some_view TO 's3://mz-to-snow/csv/'
+  WITH (
+      AWS CONNECTION = aws_role_assumption,
+      FORMAT = 'csv',
+      HEADER = true
+    );
+  ```
+
+#### SQL
+
+* Add `hydration_time` to the [`mz_internal.mz_compute_hydration_statuses`](/reference/system-catalog/mz_internal/#mz_compute_hydration_statuses)
+  system catalog view. This column shows the amount of time it took for a
+  dataflow-powered object to hydrate (i.e., be backfilled with any pre-existing
+  data).
+
+#### Bug fixes and other improvements
+
+* Disallow creating sinks that directly depend on system catalog objects ([#28122](https://github.com/MaterializeInc/materialize/issues/28122)).

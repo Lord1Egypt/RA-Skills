@@ -1,0 +1,12 @@
+{
+  "source": "manual",
+  "sourceType": "task",
+  "externalWrite": false,
+  "text": "Follow-up required on vendor contract renewal. Contract expires in 14 days. No action taken. Legal review still pending.",
+  "observedAt": "2026-05-20T09:00:00.000Z",
+  "summary": "Vendor contract renewal — expiring in 14 days, legal review pending",
+  "metadata": {
+    "expectedSeverity": "medium",
+    "expectedExternalWrite": false
+  }
+}

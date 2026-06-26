@@ -1,0 +1,68 @@
+{
+  "date_range_cases": [
+    {
+      "name": "broad-hit-empty-detail-vs-time-rejection",
+      "broad_rows": [
+        {"departure_date": "2026-03-28", "price": 90000},
+        {"departure_date": "2026-03-29", "price": 95000},
+        {"departure_date": "2026-03-30", "price": 98000},
+        {"departure_date": "2026-03-31", "price": 101000}
+      ],
+      "detailed_rows": [
+        {"departure_date": "2026-03-28", "broad_price": 90000, "raw_option_count": 4, "priced_option_count": 4, "departure_time_count": 4, "return_time_count": 0, "time_pref_valid_count": 0, "search_stage": "refine", "diagnostic_reason": "broad_candidate_time_rejected", "diagnostic_detail": {"hint": "시간 조건 미충족"}},
+        {"departure_date": "2026-03-29", "broad_price": 95000, "raw_option_count": 0, "priced_option_count": 0, "departure_time_count": 0, "return_time_count": 0, "time_pref_valid_count": 0, "search_stage": "refine", "diagnostic_reason": "detail_empty_after_broad_hit", "diagnostic_detail": {"hint": "빠른 스캔 대비 상세 빈결과"}}
+      ],
+      "expect": {
+        "dominant_reason": "detail_empty_after_broad_hit",
+        "primary_interpretation": "extraction_incomplete",
+        "fallback_triggered": true,
+        "required_reasons": ["broad_candidate_time_rejected", "detail_empty_after_broad_hit"],
+        "required_fallback_reason_prefixes": ["coverage.time_pref_shortfall", "signal.high_extraction_incomplete_ratio"]
+      }
+    },
+    {
+      "name": "pure-time-filter-rejection",
+      "broad_rows": [
+        {"departure_date": "2026-04-04", "price": 87000},
+        {"departure_date": "2026-04-05", "price": 91000},
+        {"departure_date": "2026-04-06", "price": 94000}
+      ],
+      "detailed_rows": [
+        {"departure_date": "2026-04-04", "broad_price": 87000, "raw_option_count": 5, "priced_option_count": 5, "departure_time_count": 5, "return_time_count": 0, "time_pref_valid_count": 0, "search_stage": "refine", "diagnostic_reason": "broad_candidate_time_rejected", "diagnostic_detail": {"hint": "시간 조건 미충족"}},
+        {"departure_date": "2026-04-05", "broad_price": 91000, "raw_option_count": 4, "priced_option_count": 4, "departure_time_count": 4, "return_time_count": 0, "time_pref_valid_count": 0, "search_stage": "refine", "diagnostic_reason": "detailed_no_usable_time_filter_match", "diagnostic_detail": {"hint": "usable match 없음"}}
+      ],
+      "expect": {
+        "dominant_reason": "broad_candidate_time_rejected",
+        "primary_interpretation": "time_filter_rejection",
+        "fallback_triggered": true,
+        "required_reasons": ["broad_candidate_time_rejected", "detailed_no_usable_time_filter_match"],
+        "required_fallback_reason_prefixes": ["signal.high_time_filter_rejection_ratio", "signal.time_filter_dominant:"]
+      }
+    }
+  ],
+  "matrix_cases": [
+    {
+      "name": "mixed-matrix-return-time-and-price-gaps",
+      "broad_rows": [
+        {"destination": "CJU", "departure_date": "2026-03-28", "price": 90000},
+        {"destination": "CJU", "departure_date": "2026-03-29", "price": 97000},
+        {"destination": "PUS", "departure_date": "2026-03-28", "price": 88000},
+        {"destination": "PUS", "departure_date": "2026-03-29", "price": 92000}
+      ],
+      "detailed_rows": [
+        {"destination": "CJU", "departure_date": "2026-03-28", "broad_price": 90000, "raw_option_count": 3, "priced_option_count": 3, "departure_time_count": 3, "return_time_count": 1, "has_return_time_constraint": true, "time_pref_valid_count": 0, "search_stage": "refine", "diagnostic_reason": "detail_partial_return_times", "diagnostic_detail": {"hint": "복귀 시간 정보 부분 누락"}},
+        {"destination": "PUS", "departure_date": "2026-03-28", "broad_price": 88000, "raw_option_count": 2, "priced_option_count": 2, "departure_time_count": 2, "return_time_count": 2, "has_return_time_constraint": true, "time_pref_valid_count": 1, "search_stage": "refine", "time_pref_match": true, "diagnostic_reason": "detailed_match_with_time_pref", "diagnostic_detail": {"hint": "시간 조건 일치"}},
+        {"destination": "PUS", "departure_date": "2026-03-29", "broad_price": 92000, "raw_option_count": 4, "priced_option_count": 2, "departure_time_count": 4, "return_time_count": 4, "has_return_time_constraint": false, "time_pref_valid_count": 0, "search_stage": "refine", "diagnostic_reason": "detail_sparse_price_data", "diagnostic_detail": {"hint": "가격 정보 일부 누락"}}
+      ],
+      "expect": {
+        "required_reasons": ["detailed_match_with_time_pref", "detail_partial_return_times", "detail_sparse_price_data"],
+        "fallback_triggered": true,
+        "required_fallback_reason_prefixes": ["coverage.time_pref_shortfall", "signal.high_extraction_incomplete_ratio"],
+        "extraction_summary": {
+          "partial_return_time_rows": 1,
+          "sparse_price_rows": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+name: quant-full-stack
+version: 1.0.0
+description: A 股股票量化全流程核心任务体系
+
+entry:
+  file: runner.py
+  type: python
+
+requirements:
+  - python >= 3.8
+
+tags:
+  - quant
+  - stock
+  - trading
+  - backtest
+  - alpha
+  - factor
+
+author: yuhond
+license: MIT

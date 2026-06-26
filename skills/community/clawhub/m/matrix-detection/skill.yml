@@ -1,0 +1,16 @@
+---
+name: matrix-detection
+description: Identify illusions, hype, false narratives, and systemic manipulation; classify signal vs noise with evidence and risk tags.
+version: 2.0.0
+display_name: "Matrix Detection"
+triggers:
+  - matrix detection
+  - detect matrix
+  - is this hype
+  - is this manipulation
+  - false narrative
+  - narrative analysis
+  - analyze opportunity
+  - community movement
+  - market narrative
+---

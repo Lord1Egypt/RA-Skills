@@ -1,0 +1,7 @@
+interface:
+  display_name: "OmniFocus for OpenClaw"
+  short_description: "Review, capture, and organize OmniFocus work."
+  default_prompt: "Use $omnifocus-mcp to review what is due, triage my inbox, or create and reorganize OmniFocus tasks and projects."
+
+policy:
+  allow_implicit_invocation: true

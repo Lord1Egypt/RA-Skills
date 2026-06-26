@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; }
+  .pfp {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(ellipse at 45% 45%, #1e1040 0%, #140a2e 40%, #0c0620 70%, #08041a 100%);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  /* Subtle grid */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(120, 62, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120, 62, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Purple glow behind icon */
+  .glow-purple {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(ellipse, rgba(120, 62, 255, 0.3) 0%, rgba(90, 40, 200, 0.1) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Green glow - bottom right */
+  .glow-green {
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(ellipse, rgba(0, 217, 165, 0.3) 0%, rgba(0, 217, 165, 0.1) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Green accent arc - outer ring hint */
+  .green-arc {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-bottom-color: rgba(0, 217, 165, 0.5);
+    border-right-color: rgba(0, 217, 165, 0.4);
+    transform: rotate(-15deg);
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(0, 217, 165, 0.15);
+  }
+
+  /* Icon container */
+  .icon-wrap {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    filter: drop-shadow(0 0 30px rgba(120, 62, 255, 0.4)) drop-shadow(0 0 60px rgba(120, 62, 255, 0.2));
+  }
+
+  .icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    -webkit-mask-image: radial-gradient(ellipse 55% 55% at 50% 48%, black 50%, transparent 72%);
+    mask-image: radial-gradient(ellipse 55% 55% at 50% 48%, black 50%, transparent 72%);
+  }
+
+  /* Status dot - bot indicator */
+  .status-dot {
+    position: absolute;
+    right: 85px;
+    bottom: 75px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00D9A5;
+    box-shadow: 0 0 10px rgba(0, 217, 165, 0.9), 0 0 20px rgba(0, 217, 165, 0.5), 0 0 30px rgba(0, 217, 165, 0.3);
+    pointer-events: none;
+  }
+
+  /* Floating dots */
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .dot-1 { left: 60px; top: 50px; width: 3px; height: 3px; background: #00D9A5; opacity: 0.4; box-shadow: 0 0 6px #00D9A5; }
+  .dot-2 { right: 70px; top: 80px; width: 3px; height: 3px; background: #783EFF; opacity: 0.35; box-shadow: 0 0 6px #783EFF; }
+  .dot-3 { left: 80px; bottom: 90px; width: 2px; height: 2px; background: #783EFF; opacity: 0.3; box-shadow: 0 0 4px #783EFF; }
+  .dot-4 { right: 50px; bottom: 140px; width: 3px; height: 3px; background: #00D9A5; opacity: 0.4; box-shadow: 0 0 8px #00D9A5; }
+  .dot-5 { left: 130px; top: 70px; width: 2px; height: 2px; background: #fff; opacity: 0.15; }
+</style>
+</head>
+<body>
+<div class="pfp">
+  <div class="grid"></div>
+  <div class="glow-purple"></div>
+  <div class="glow-green"></div>
+  <div class="green-arc"></div>
+
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+  <div class="dot dot-4"></div>
+  <div class="dot dot-5"></div>
+
+  <div class="icon-wrap">
+    <img src="vybes-fun-logo.png" alt="Vybes" />
+  </div>
+
+  <div class="status-dot"></div>
+</div>
+</body>
+</html>

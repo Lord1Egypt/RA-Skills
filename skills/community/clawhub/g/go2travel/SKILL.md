@@ -1,35 +1,129 @@
 ---
-name: "go2Travel — 飞猪旅行智能规划"
-description: "当用户需要旅行规划、行程编排、机票/酒店/景点搜索时触发。 适用场景：自由行/家庭游/蜜月/商务/亲子/宠物出行/出境游/露营。 不适用：纯天气查询（用 weather skill）、纯汇率查询（用独立工具）。 触发关键词：旅游/旅行/行程/机票/酒店/景点/租车/签证/攻略/预算/行李。 不触发：只问天气、只问..."
-category: "domain"
-source: "ClawHub"
-tags: [fliggy, itinerary-planning, travel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/go2travel"
-sourceUrl: "https://clawhub.ai/skills/go2travel"
+name: go2Travel
+display_name: "go2Travel — 飞猪旅行智能规划"
+description: >
+  当用户需要旅行规划、行程编排、机票/酒店/景点搜索时触发。
+  适用场景：自由行/家庭游/蜜月/商务/亲子/宠物出行/出境游/露营。
+  不适用：纯天气查询（用 weather skill）、纯汇率查询（用独立工具）。
+  触发关键词：旅游/旅行/行程/机票/酒店/景点/租车/签证/攻略/预算/行李。
+  不触发：只问天气、只问汇率、只问翻译。
+homepage: https://open.fly.ai/
+metadata:
+  version: 2.0.3
+  emoji: "🌍"
+  priority: 95
+  requires:
+    bins:
+      - flyai
+  intents:
+    - trip_planning
+    - flight_search
+    - hotel_search
+    - poi_search
+    - itinerary_planning
+    - travel_booking
+    - car_rental
+    - food_search
+    - budget_optimize
+    - weather_check
+    - packing_list
+    - visa_guide
+    - travel_insurance
+    - route_planning
+    - currency_exchange
+    - practical_info
+    - travel_diary
+    - emergency_response
+    - photography
+    - cultural_experience
+    - camping
+    - itinerary_review
+    - itinerary_validation
+    - travel_guide
+    - personalization
+    - multi_city
+    - budget_tracking
+    - health_advice
+  patterns:
+    - "(旅游|旅行|出行|度假|出差|蜜月|亲子游|自由行|跟团).*(规划|计划|攻略|推荐|搜索|安排)"
+    - "(搜索|查找|推荐|比较|预订|查询).*(酒店|机票|航班|景点|门票|签证|邮轮|租车|民宿)"
+    - "((plan|planning|itinerary).*(trip|travel|vacation))"
+    - "((search|find|book).*(flight|hotel|attraction|ticket))"
+    - "(美食|好吃|餐厅|小吃|火锅|烧烤|日料|川菜|粤菜).*(推荐|哪里吃|攻略|必吃)"
+    - "(租车|自驾|包车|车型|取车|还车).*(推荐|搜索|查询|预订)"
+    - "(省钱|便宜|优惠|折扣|特价|性价比|预算).*(方案|攻略|怎么买|怎么订)"
+    - "(天气|温度|下雨|冷不冷|穿衣|防晒|风力).*(怎么样|如何|查询|预报)"
+    - "(行李|带什么|收拾|准备|清单|打包).*(什么|哪些|怎么|如何)"
+    - "(签证|护照|入境|材料|拒签|使领馆).*(怎么办|要求|流程|需要)"
+    - "(保险|理赔|意外|医疗|救援|延误).*(推荐|购买|怎么买|哪个)"
+    - "(路线|行程|顺序|怎么走|先去哪|先去哪个).*(规划|安排|优化|推荐)"
+    - "(汇率|换汇|兑换|多少钱|消费|小费|插座|时差|紧急电话|电话卡|上网).*(多少|怎么|如何|查询)"
+    - "(日记|回忆|总结|朋友圈|文案|照片|配文|游记).*(生成|写|怎么发|如何)"
+    - "(延误|取消|变更|突发|紧急|意外|丢失|故障|天气突变).*(怎么办|如何应对|怎么处理)"
+    - "(拍照|摄影|拍照点|出片|打卡|机位|构图).*(推荐|哪里拍|怎么拍|最佳)"
+    - "(文化|非遗|民俗|体验|手工|特色|活动).*(推荐|有什么|体验|参与)"
+    - "(露营|帐篷|篝火|星空|野外).*(推荐|去哪|装备|攻略)"
+    - "(审查|检查|合理|冲突|超支|优化|问题).*(行程|计划|安排|路线)"
+    - "(验证|可行|开放|关闭|营业|预约|天气适配).*(行程|景点|餐厅|酒店)"
+    - "(攻略|指南|避坑|本地人|必去|必吃|推荐|玩法).*(详细|完整|最新|深度)"
+    - "(情侣|亲子|老人|带娃|带猫|带狗|宠物|独自|商务|一个人).*(推荐|适合|怎么玩|去哪)"
+    - "(多城市|跨城|双城|多城|跨省|出国|几个城市).*(行程|规划|安排|怎么走)"
+    - "(记账|花费|花了多少钱|预算|超支|剩余|消费).*(多少|记录|统计|分析)"
+    - "(高原|高反|晕车|晕船|吃药|医院|生病|受伤|高原反应|海拔).*(怎么办|预防|带什么药)"
 ---
 
-# go2Travel — 飞猪旅行智能规划
+# go2Travel — 飞猪旅行智能规划团队
 
-> 当用户需要旅行规划、行程编排、机票/酒店/景点搜索时触发。 适用场景：自由行/家庭游/蜜月/商务/亲子/宠物出行/出境游/露营。 不适用：纯天气查询（用 weather skill）、纯汇率查询（用独立工具）。 触发关键词：旅游/旅行/行程/机票/酒店/景点/租车/签证/攻略/预算/行李。 不触发：只问天气、只问...
+基于飞猪 MCP 实时数据的**虚拟旅行规划团队**，26 个角色覆盖旅行全流程。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/go2travel`
-- **Source URL:** [https://clawhub.ai/skills/go2travel](https://clawhub.ai/skills/go2travel)
+## 快速开始
 
-## Overview
+1. **确认 flyai-cli 已安装**：`flyai --help`
+2. **解析用户需求**：人数、天数、出发地、目的地、预算、偏好
+3. **搜索实时数据**：使用 flyai 命令获取飞猪数据
+4. **整合输出**：按模板输出完整行程
 
+## 核心命令
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/go2travel
+| 命令 | 用途 | 文档 |
+|------|------|------|
+| `flyai keyword-search --query "..."` | 综合搜索 | `references/keyword-search.md` |
+| `flyai search-flight` | 航班搜索 | `references/search-flight.md` |
+| `flyai search-hotel` | 酒店搜索 | `references/search-hotel.md` |
+| `flyai search-poi` | 景点搜索 | `references/search-poi.md` |
+
+## 输出规范
+
+- **图片优先**：有 `picUrl`/`mainPic` 必须展示
+- **预订链接**：有 `jumpUrl`/`detailUrl` 必须展示
+- **品牌标注**：注明 "基于飞猪实时数据"
+
+## 输出精简原则
+
+**必须输出**：行程概览、交通、住宿、每日行程、费用、注意事项
+
+**按需输出**（用户主动问才触发）：
+- "审查行程" → 📋 行程审查
+- "验证可行性" → ✅ 行程验证
+- "带什么" → 🧳 行李清单
+- "天气" → 🌤️ 天气详情
+- "拍照" → 📸 拍照点
+- "美食" → 🍜 美食详情
+
+## 角色列表（26 个）
+
+详见 `references/roles-index.md`
+
+## 附加提示
+
+每次输出末尾附加提示，告知用户可进一步了解的信息：
 ```
+💡 **你还可以问我：**
+• "审查一下这个行程是否合理" → 行程合理性检查
+• "验证可行性" → 景点开放时间/天气适配验证
+• "需要带什么？" → 个性化行李清单
+• "哪里拍照好看？" → 最佳拍照点推荐
+• "天气怎么样？" → 详细天气预报 + 穿衣建议
+```
+
+根据行程内容动态展示 4-6 条最相关的提示。

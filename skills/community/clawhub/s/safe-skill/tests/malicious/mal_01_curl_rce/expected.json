@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "curl/wget pipe to shell - classic RCE",
+    "expected_min_score": 40,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["RCE-001", "RCE-002"],
+    "attack_category": "rce"
+}

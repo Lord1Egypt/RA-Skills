@@ -1,0 +1,128 @@
+# common-sense-rules.yaml
+# Sanity-check rules applied by data-quality-audit/scripts/quality-audit.py
+# against the parsed hard numbers of a banker deliverable.
+#
+# Each rule declares:
+#   id:          short identifier (stable, appears in audit-report.md)
+#   description: human-readable what-it-checks
+#   severity:    flag | fail  (flag = human review; fail = block delivery)
+#   applies_to:  list of metric-name substrings to match in data-provenance
+#   logic:       a concise expression of the predicate
+#
+# The script reads this file, finds matching metrics in the parsed provenance,
+# and reports any violations with the rule id + severity + observed value(s).
+
+rules:
+  - id: gross_margin_range
+    description: "公司毛利率应在 [-20%, 95%]；超出通常是数据错误或财务重分类。"
+    severity: flag
+    applies_to:
+      - "毛利率"
+      - "gross margin"
+    logic: "-20.0 <= value <= 95.0  (value in percent)"
+
+  - id: revenue_growth_range
+    description: "营收同比增速应在 [-50%, +200%]；剧烈波动需人工核实是否并购 / 重分类 / 一次性事件。"
+    severity: flag
+    applies_to:
+      - "营收增速"
+      - "营收同比"
+      - "revenue growth"
+      - "YoY 增速"
+    logic: "-50.0 <= value <= 200.0  (value in percent)"
+
+  - id: market_cap_price_shares
+    description: "若同份交付物声明了市值 + 股价 + 股本，三者必须一致：market_cap ≈ price * shares_outstanding，相对差异 < 3%。"
+    severity: fail
+    applies_to:
+      - "市值 + 股价 + 股本"   # composite — script matches all three
+    logic: "abs(market_cap - price * shares) / market_cap < 0.03"
+
+  - id: gross_profit_identity
+    description: "若同时声明营收 / 毛利 / 毛利率，三者必须一致：gross_profit ≈ revenue * gross_margin，相对差异 < 3%。"
+    severity: fail
+    applies_to:
+      - "营收 + 毛利 + 毛利率"
+    logic: "abs(gross_profit - revenue * gross_margin) / gross_profit < 0.03"
+
+  - id: net_margin_not_above_gross
+    description: "净利率不得 > 毛利率（税费 + 三费 + R&D 都要吃利润）。"
+    severity: fail
+    applies_to:
+      - "毛利率 + 净利率"
+    logic: "net_margin <= gross_margin + 0.005  (allow 0.5% float)"
+
+  - id: ocf_net_income_direction
+    description: "经营现金流与归母净利润一般同向（经营亏损但现金流正时，通常是大额折旧/减值或 receivable 释放，需人工确认）。"
+    severity: flag
+    applies_to:
+      - "经营现金流 + 归母净利"
+      - "net_income + operating_cash_flow"
+    logic: "sign(operating_cashflow) == sign(net_income_attributable)  (else flag, not fail)"
+
+  - id: employee_market_cap_ratio
+    description: "市值 / 员工数 应在 [50 万, 5 亿] RMB/人的合理区间。极端值通常是员工数据错位或市值单位错。"
+    severity: flag
+    applies_to:
+      - "市值 + 员工数"
+    logic: "0.5e6 <= market_cap / employee_count <= 5e8  (RMB per employee)"
+
+  - id: dividend_payout_bound
+    description: "分红率超过 100% 通常是当年 payout 特殊情况（转增 / 资本公积送股），需人工确认是否误读。"
+    severity: flag
+    applies_to:
+      - "分红率"
+      - "payout ratio"
+    logic: "0.0 <= payout_ratio <= 100.0  (percent)"
+
+  - id: roe_extreme
+    description: "ROE 超过 50% 或为负时，通常是杠杆 + 特殊事件（大额分红减股本 / 大额减值），需核验。"
+    severity: flag
+    applies_to:
+      - "ROE"
+      - "净资产收益率"
+    logic: "0.0 <= roe <= 50.0  (percent)"
+
+  - id: valuation_multiple_sanity
+    description: "P/E 超过 200 或 EV/EBITDA 超过 100 通常是盈利低基数或数据错，flag 提示人工确认。"
+    severity: flag
+    applies_to:
+      - "P/E"
+      - "市盈率"
+      - "EV/EBITDA"
+    logic: "pe <= 200 and ev_ebitda <= 100"
+
+  - id: restatement_aware
+    description: "对重述敏感字段（EPS / 归母净利润 / BPS / 毛利率 / 净资产 / 营业收入），若交叉验证第二源返回值与 analysis 声明差异 > 10%，flag 为可能是 pre-restatement vs post-restatement 混用 —— 优先核对交易所 XBRL 最终版或最新年报重述版本。"
+    severity: flag
+    applies_to:
+      - "EPS"
+      - "每股收益"
+      - "归母净利润"
+      - "归属于母公司所有者的净利润"
+      - "BPS"
+      - "每股净资产"
+      - "毛利率"
+      - "净资产"
+      - "营业收入"
+      - "营收"
+    logic: "abs(primary_value - crosscheck_value) / primary_value > 0.10  → flag 'possible pre-restatement vs post-restatement mismatch — verify XBRL final version'"
+
+  - id: roe_definition_check
+    description: "ROE 口径规范：ROE 应为 净利润 / 平均净资产，不是 净利润 / 营收（后者是净利率）。若 provenance 行注明 derivation = NI/Revenue 或 净利/营收 而指标名是 ROE / 净资产收益率，判定口径错。"
+    severity: fail
+    applies_to:
+      - "ROE"
+      - "净资产收益率"
+    logic: "若 derivation 字段匹配 /NI ?/ ?Revenue|净利 ?/ ?营收/ → fail with 'ROE 口径错 — ROE 应为 净利润 / 平均净资产，不是 净利率'"
+
+  - id: price_basis_check
+    description: "同一公司股价交叉验证：若与第二源差异 > 3%，flag 为 price basis drift —— 核对 T+0 收盘 vs T-1 收盘 vs 最新实时报价口径，并确认币种、复权/不复权一致。"
+    severity: flag
+    applies_to:
+      - "股价"
+      - "收盘价"
+      - "最新价"
+      - "stock price"
+      - "close"
+    logic: "abs(primary_price - crosscheck_price) / primary_price > 0.03  → flag 'price basis drift — 核对 T+0 收盘 vs T-1 vs 最新报价口径'"

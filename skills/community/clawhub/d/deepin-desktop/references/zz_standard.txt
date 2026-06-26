@@ -1,0 +1,34 @@
+=== org.freedesktop.Notifications ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+not available
+
+=== org.gnome.SettingsDaemon ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.SettingsDaemon was not provided by any .service files
+not available
+
+=== org.gnome.PowerManager ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.PowerManager was not provided by any .service files
+not available
+
+=== org.bluez ===
+node / {
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.ObjectManager {
+    methods:
+      GetManagedObjects(out a{oa{sa{sv}}} objects);
+    signals:
+      InterfacesAdded(o object,
+                      a{sa{sv}} interfaces);
+      InterfacesRemoved(o object,
+                        as interfaces);
+    properties:
+  };
+  node org {
+  };
+};
+

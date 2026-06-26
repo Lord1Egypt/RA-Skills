@@ -1,0 +1,19 @@
+{
+  "slug": "godot-project-checklist-skill",
+  "name": "Godot Project Checklist Skill",
+  "version": "0.1.0",
+  "tags": [
+    "game",
+    "godot-project-checklist",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Development",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-04-28",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

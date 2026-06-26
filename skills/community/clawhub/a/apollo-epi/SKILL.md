@@ -1,35 +1,72 @@
 ---
-name: "Apollo Epi"
-description: "像表观遗传一样传承知识：让AI的学习经验能够跨代积累，不从零开始。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-epi"
-sourceUrl: "https://clawhub.ai/skills/apollo-epi"
+name: apollo-epi
+description: >
+  像表观遗传一样传承知识：让AI的学习经验能够跨代积累，不从零开始。
+version: 2.0.0
+read_when:
+  - 用户提到学习、传承、积累、fine-tuning
+  - 系统学到新能力时
+  - 需要把经验固化时
+metadata:
+  openclaw:
+    emoji: "🧬"
+    requires: []
+    triggers:
+      - 学习
+      - 传承
+      - 积累
+      - fine-tuning
+      - 知识固化
+    suite: apollo
 ---
 
-# Apollo Epi
+# Apollo Epi — 知识传承系统
 
-> 像表观遗传一样传承知识：让AI的学习经验能够跨代积累，不从零开始。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-epi`
-- **Source URL:** [https://clawhub.ai/skills/apollo-epi](https://clawhub.ai/skills/apollo-epi)
+**AI的知识传承应该像表观遗传：后天学到的东西能够改变基因表达，且可以遗传给后代。**
 
-## Overview
+表观遗传的核心机制：
+- **DNA甲基化**：给基因加标签，不改变序列但改变表达
+- **组蛋白修饰**：决定基因是否被"读取"
+- **跨代表型**：后天环境直接影响可遗传的特征
 
+对应的AI映射：
+- **知识固化**：把学到的经验标记为"重要"，不易被覆盖
+- **传承机制**：把经验传递到新会话/新能力
+- **甲基化类似物**：给记忆加标签，影响后续行为
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-epi
+## 触发条件
+
+- 用户明确说"记住这个/以后都这样/这是我的偏好"
+- 系统执行了某任务多次，找到最优方法
+- apollo-dream整理时发现重要模式
+
+## 传承流程
+
 ```
+触发传承 →
+  1. 识别传承内容：什么经验需要传承
+  2. 标记重要程度：决定保留优先级
+  3. 选择传承载体：
+     - 短期：写入MEMORY.md
+     - 中期：fine-tuning数据
+     - 长期：专用skill
+  4. 执行传承：写入对应载体
+  5. 验证传承效果：新会话能否继承
+```
+
+## 与其他Skill的协同
+
+```
+apollo-dream ──────→ 整理时发现重要模式 → 触发传承
+apollo-stem ──────→ 能力分化时 → 从传承库获取经验
+apollo-endo ──────→ 参数传承 → 偏好设置跨会话保留
+```
+
+## 待实施内容
+
+- [ ] 定义传承层级（短期/中期/长期）
+- [ ] 编写传承载体格式
+- [ ] 实现跨会话传承机制
+- [ ] 写验收标准

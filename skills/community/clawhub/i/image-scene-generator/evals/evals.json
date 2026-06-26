@@ -1,0 +1,23 @@
+{
+  "skill_name": "image-scene-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I sell hand-poured soy candles in amber glass jars. I need lifestyle images for my Shopify PDP and Instagram. The brand is cozy and minimalist. Can you generate Midjourney prompts for me?",
+      "expected_output": "Multiple angle prompts (macro, hero, flat lay, lifestyle) with warm lighting, amber glass material tags, cozy props (knit, wood), and correct Midjourney parameters.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我有一款磨砂玻璃材质的护肤精华瓶，主色调是淡粉色，定位是高端天然护肤。需要给亚马逊listing做主图和场景图，帮我出几组AI生图的prompt。",
+      "expected_output": "Prompts covering frosted glass material with translucency, soft diffused lighting, botanical/natural props, pink-complementary color scheme, Amazon-appropriate aspect ratios.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I just launched a brushed stainless steel water bottle. It's positioned as a premium everyday carry item for professionals. I need one really good hero shot prompt for my landing page banner (16:9). Using DALL-E 3.",
+      "expected_output": "Single hero shot prompt with brushed metal reflections, minimalist modern props, DALL-E 3-specific parameters (hd, natural style, 1792x1024), professional/tech aesthetic.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "yorkshire-puppy-care",
+  "version": "1.0.0",
+  "display_name": "约克夏小狗养育助手",
+  "description": "专为约克夏梗犬主人设计的智能助手。根据你家狗狗的情况自动提醒喂食、情绪关注、洗澡、驱虫时间，并能联网回答你提出的问题。",
+  "author": "heidi1998",
+  "language": "zh-CN",
+  "capabilities": ["reminder", "web_search", "conversation"],
+  "entry": "prompt.md",
+  "tools": [
+    {
+      "type": "web_search",
+      "provider": "deepseek",
+      "enabled": true
+    }
+  ],
+  "tags": ["pet", "dog", "yorkshire", "reminder", "care"]
+}

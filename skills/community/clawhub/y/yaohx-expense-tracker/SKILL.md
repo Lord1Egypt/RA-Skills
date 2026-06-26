@@ -1,35 +1,139 @@
 ---
-name: "Expense Tracker"
-description: "个人记账助手。当用户发送账单/消费信息（文本或支付截图），自动识别并记录到消费数据库；每月最后一天晚上8点自动生成月度消费报告。触发词包括：记账、账单、消费记录、花了多少钱、月度总结、消费报告等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yaohx-expense-tracker"
-sourceUrl: "https://clawhub.ai/skills/yaohx-expense-tracker"
+name: expense-tracker
+description: 个人记账助手。当用户发送账单/消费信息（文本或支付截图），自动识别并记录到消费数据库；每月最后一天晚上8点自动生成月度消费报告。触发词包括：记账、账单、消费记录、花了多少钱、月度总结、消费报告等。
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+      config: []
 ---
 
-# Expense Tracker
+# 记账助手 (Expense Tracker)
 
-> 个人记账助手。当用户发送账单/消费信息（文本或支付截图），自动识别并记录到消费数据库；每月最后一天晚上8点自动生成月度消费报告。触发词包括：记账、账单、消费记录、花了多少钱、月度总结、消费报告等。
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yaohx-expense-tracker`
-- **Source URL:** [https://clawhub.ai/skills/yaohx-expense-tracker](https://clawhub.ai/skills/yaohx-expense-tracker)
+一个完整的个人记账技能，支持文本输入和支付截图两种方式记录消费，按月归档，并在每月最后一天自动生成消费分类汇总报告。
 
-## Overview
+核心能力：
+- **自动识别账单**：收到支付类文本消息或支付截图时，自动提取关键信息（金额、商家、分类、支付方式等）
+- **消费分类管理**：维护 `categories.json` 分类定义文件
+- **按月归档**：每月消费记录存入 `expenses/expenses-YYYYMM.json`
+- **月度报告**：每月最后一天 20:00 自动生成并发送消费总结
+
+## 数据文件说明
+
+所有数据文件存放在 OpenCLAW 工作区根目录下：
+
+| 文件/目录 | 说明 |
+|-----------|------|
+| `categories.json` | 消费分类定义文件 |
+| `expenses/` | 消费记录目录 |
+| `expenses/expenses-YYYYMM.json` | 按月份的消费记录文件 |
+
+数据格式详见 `references/data_schema.md`。
+
+## 使用方法
+
+### 触发场景
+
+1. **文本记账**：用户直接发送消费描述文本，如 "午餐花了25元"、"打车15块"、"今天买了杯咖啡18元"
+2. **图片记账**：用户发送微信支付/支付宝截图，需调用 OCR 脚本识别
+3. **手动记录**：用户说"记账"并提供详细信息
+4. **查看记录**：用户说"看看本月消费"、"本月花了多少"
+5. **记账提醒**：每天20:00 自动触发
+6. **月度报告**：每月最后一天 20:00 自动触发，或用户说"生成本月消费报告"
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 工作流程
+
+#### 流程 A：处理文本账单
+
+1. 从用户消息中提取关键信息：日期、时间、金额、商家、消费类别、支付方式、备注
+2. 如果用户未提供日期/时间，默认使用当前日期和时间
+3. 根据商家名称和备注，自动匹配最合适的消费分类（参考 `categories.json`）
+4. 调用 `scripts/record_expense.py` 将数据写入当月 `expenses/expenses-YYYYMM.json` 文件
+5. 回复用户确认记录成功，并展示本次消费摘要和本月累计
+
+消费分类自动匹配规则：
+- 含"餐、饭、面、粉、菜、外卖、咖啡、奶茶、饮料、零食、烧烤、火锅"等 → `餐饮`
+- 含"打车、滴滴、公交、地铁、加油、停车、充电、单车"等 → `交通`
+- 含"超市、便利店、淘宝、京东、拼多多"等 → `购物`
+- 含"房租、房贷、水电、燃气、物业"等 → `居住`
+- 含"电影、KTV、游戏、旅游、景点"等 → `娱乐`
+- 含"医院、药房、诊所、挂号"等 → `医疗`
+- 含"话费、流量、宽带"等 → `通讯`
+- 其他默认归入 `其他`
+
+#### 流程 B：处理图片账单（支付截图）
+
+1. 用户发送图片到对话，先保存图片到临时文件
+2. 调用 `python3 scripts/ocr_bill.py <图片路径>` 执行 OCR 识别
+3. 解析 OCR 返回的 JSON 结果，提取账单信息
+4. 如果 OCR 识别出多条消费记录，逐条确认后记录
+5. 将识别结果展示给用户确认，用户回复"确认"后写入文件
+6. 如果 OCR 识别不完整（缺少金额、商家等），请用户补充缺失信息
+
+#### 流程 C：生成月度消费报告
+
+触发条件（每月最后一天 20:00 自动，或用户手动触发）：
+1. 调用 `python3 scripts/generate_report.py <YYYYMM>` 生成报告
+2. 报告内容包含：
+   - 本月总支出金额
+   - 各分类支出金额及占比（饼图数据）
+   - 日均消费金额
+   - 单笔最高消费
+   - 支付方式分布
+   - 与上月对比（如果上月数据存在）
+3. 将报告摘要回复给用户，同时写入当月 expense 文件的 `monthly_summaries` 字段
+
+## 指令
+
+### 初始化（首次使用时执行）
+
+当用户首次使用记账功能时，执行初始化：
+
 ```bash
-hermes skills install clawhub/yaohx-expense-tracker
+python3 scripts/init_db.py
 ```
+
+此脚本会创建：
+- `categories.json`（含默认分类：餐饮、交通、购物、居住、娱乐、医疗、通讯、服饰、教育、其他）
+- `expenses/` 目录
+- 当前月份的 `expenses/expenses-YYYYMM.json` 空文件
+
+### 记录消费
+
+当用户发送疑似账单内容时：
+
+1. **判断是否为账单**：消息含金额（数字+元/块/¥）、商家名、支付动词（花了、买了、支付、付款、消费）
+2. **提取信息并构造 JSON**，调用脚本写入：
+
+```bash
+python3 scripts/record_expense.py '<JSON字符串>'
+```
+
+JSON 格式见 `references/data_schema.md`。
+
+3. **确认回复**：简洁回复，包含消费摘要
+
+### 记账提醒
+
+每天 20:00 检查 `expenses/expenses-YYYYMM.json` 中是否有当天的记账记录，并发送记账提醒。
+
+### 月度总结自动化
+
+参考 `references/data_schema.md` 中的月度总结格式。
+
+每月最后一天 20:00，自动执行：
+```bash
+python3 scripts/generate_report.py YYYYMM
+```
+将生成的报告发送给用户。
+
+### 注意事项
+
+- `expenses-YYYYMM.json` 中 `id` 格式为 `YYYY-MM-DD-NNN`，NNN 为当天序号（001 起），同一日期内递增
+- 每次写入后更新 `last_updated` 时间戳
+- 金额保留原始精度，汇总时四舍五入到两位小数
+- 所有 Python 脚本必须使用 UTF-8 编码

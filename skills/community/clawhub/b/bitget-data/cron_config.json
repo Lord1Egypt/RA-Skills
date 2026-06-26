@@ -1,0 +1,34 @@
+{
+  "cronJobs": [
+    {
+      "name": "高频网格监控 - 每 30 分钟",
+      "schedule": "*/30 * * * *",
+      "command": "node /Users/zongzi/.openclaw/workspace/bitget_data/auto-monitor.js >> /Users/zongzi/.openclaw/workspace/bitget_data/cron_monitor.log 2>&1",
+      "enabled": true
+    },
+    {
+      "name": "每日报告生成 - 每晚 21:00",
+      "schedule": "0 21 * * *",
+      "command": "node /Users/zongzi/.openclaw/workspace/bitget_data/generate-daily-report.js >> /Users/zongzi/.openclaw/workspace/bitget_data/cron_monitor.log 2>&1",
+      "enabled": true
+    },
+    {
+      "name": "网格状态检查 - 每小时",
+      "schedule": "0 * * * *",
+      "command": "node /Users/zongzi/.openclaw/workspace/bitget_data/monitor-grid.js >> /Users/zongzi/.openclaw/workspace/bitget_data/grid_monitor.log 2>&1",
+      "enabled": true
+    }
+  ],
+  "setupInstructions": [
+    "1. 确认高频网格配置已应用 (运行 apply-highfreq.js)",
+    "2. 选择一种 cron 配置方式",
+    "3. 启动监控任务",
+    "4. 检查日志文件确认运行正常"
+  ],
+  "logFiles": {
+    "monitor": "/Users/zongzi/.openclaw/workspace/bitget_data/auto_monitor.log",
+    "cron": "/Users/zongzi/.openclaw/workspace/bitget_data/cron_monitor.log",
+    "grid": "/Users/zongzi/.openclaw/workspace/bitget_data/grid_monitor.log",
+    "daily": "/Users/zongzi/.openclaw/workspace/bitget_data/daily_report.md"
+  }
+}

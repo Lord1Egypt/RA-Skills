@@ -1,35 +1,19 @@
 ---
-name: "plantuml-render"
-description: "Render PlantUML diagrams using the PlantUML JAR. Use this skill to generate PNG/SVG/PDF images from PlantUML source code."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/plantuml-render"
-sourceUrl: "https://clawhub.ai/skills/plantuml-render"
+name: plantuml-render
+description: Render PlantUML diagrams using the PlantUML JAR. Use this skill to generate PNG/SVG/PDF images from PlantUML source code.
 ---
 
-# plantuml-render
+## How It Works
 
-> Render PlantUML diagrams using the PlantUML JAR. Use this skill to generate PNG/SVG/PDF images from PlantUML source code.
+1. use write tool save plantUML file that include user need info (tips class digram not use extends or implements)
+2. run python script to rander to image
+3. The skill runs the PlantUML JAR (`plantuml.jar` in the same directory) via `java -jar`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/plantuml-render`
-- **Source URL:** [https://clawhub.ai/skills/plantuml-render](https://clawhub.ai/skills/plantuml-render)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/plantuml-render
+### Example
+```shell
+python /Users/jiafei/openclaw/skills/plantuml-render/scripts/plantuml.py {file_name.puml}
 ```
+
+the image can be linke with markdown 
+
+![as](example.png)

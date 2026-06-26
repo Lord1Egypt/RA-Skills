@@ -1,0 +1,18 @@
+{
+  "name": "oil-price",
+  "displayName": "油价查询",
+  "description": "获取全国各省市最新油价信息。无需 API Key。",
+  "version": "1.0.0",
+  "author": "龙虾君 🦞",
+  "homepage": "https://v2.xxapi.cn",
+  "license": "MIT",
+  "tags": ["oil", "gas-price", "fuel", "china", "energy"],
+  "category": "data",
+  "requires": {
+    "bins": ["curl", "jq"]
+  },
+  "emoji": "⛽",
+  "examples": [
+    "./oil_price.sh"
+  ]
+}

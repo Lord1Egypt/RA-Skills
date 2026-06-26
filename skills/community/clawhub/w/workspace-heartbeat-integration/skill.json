@@ -1,0 +1,12 @@
+{
+  "name": "Workspace Heartbeat Integration",
+  "slug": "workspace-heartbeat-integration",
+  "version": "1.0.0",
+  "description": "将 workspace HEARTBEAT.md 与 self-improving heartbeat-state 同步，自动记录工作成果并更新长期记忆",
+  "homepage": "https://clawhub.ai/skills/workspace-heartbeat-integration",
+  "dependencies": {
+    "bins": [],
+    "python": ["3.8+"]
+  },
+  "configPaths": ["~/workspace-heartbeat-integration/"]
+}

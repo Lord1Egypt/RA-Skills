@@ -1,0 +1,38 @@
+{
+  "skill_name": "vmware-aria",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Which VMs are over-provisioned? Show me rightsizing recommendations and remaining capacity",
+      "expected_output": "Rightsizing list with CPU/memory recommendations",
+      "files": [],
+      "expectations": [
+        "Uses list_rightsizing_recommendations",
+        "Uses get_remaining_capacity for context",
+        "Presents actionable resize suggestions"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Generate a capacity report for the production cluster - how many days until we run out of resources?",
+      "expected_output": "Capacity forecast with time-remaining estimates",
+      "files": [],
+      "expectations": [
+        "Uses get_time_remaining for forecast",
+        "Uses get_capacity_overview for current state",
+        "Reports days remaining by resource type (CPU/memory/disk)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Are there any anomalies in the last 24 hours? Create an alert definition for high CPU ready time",
+      "expected_output": "Anomaly list + new alert definition created",
+      "files": [],
+      "expectations": [
+        "Uses list_anomalies for recent anomalies",
+        "Uses create_alert_definition with CPU ready symptom",
+        "Confirms the new alert definition is active"
+      ]
+    }
+  ]
+}

@@ -1,35 +1,120 @@
 ---
-name: "Ecom Intel"
+name: ecom-intel
 description: "电商情报站：竞品分析+评论分析+价格监控三合一。融合 Competitor Analysis + Price Tracker + Review Analyzer 三大技能，帮电商卖家盯竞品、分析评论、监控价格，数据驱动决策。适合电商卖家、运营、选品经理。"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, business, ecommerce]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecom-intel"
-sourceUrl: "https://clawhub.ai/skills/ecom-intel"
+slug: ecom-intel
+version: "1.0.0"
+author: "智美人团队"
+tags:
+  - ecommerce
+  - competitor analysis
+  - price tracking
+  - review analysis
+  - amazon
+  - shopify
+  - aliexpress
+  - market research
 ---
 
-# Ecom Intel
+# EcomIntel - 电商情报站
 
-> 电商情报站：竞品分析+评论分析+价格监控三合一。融合 Competitor Analysis + Price Tracker + Review Analyzer 三大技能，帮电商卖家盯竞品、分析评论、监控价格，数据驱动决策。适合电商卖家、运营、选品经理。
+融合了 Competitor Analysis（竞品分析）、Price Tracker（价格监控）、Review Analyzer（评论分析）三大技能的优点，提供电商卖家的全方位情报系统。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecom-intel`
-- **Source URL:** [https://clawhub.ai/skills/ecom-intel](https://clawhub.ai/skills/ecom-intel)
+## 为什么用 EcomIntel？
 
-## Overview
+- **三合一情报**：竞品+价格+评论，一个技能全面监控
+- **数据关联**：价格变动→评论变化→竞品策略，自动关联分析
+- **实时预警**：对手降价/差评暴增/新品上架 → 自动通知
+- **决策建议**：基于数据给出定价、选品、优化建议
 
+## 能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecom-intel
+### 1. 竞品分析 (Competitor)
+- 从 `competitor-analysis` 继承全部能力
+- SEO/GEO策略分析
+- 关键词排名、内容策略
+- 外链分析、AI引用模式
+- 竞品新品监控
+
+### 2. 价格监控 (Price)
+- 从 `price-tracker` 继承全部能力
+- Amazon/eBay/Walmart/BestBuy价格追踪
+- 历史价格曲线
+- 套利机会识别
+- 价格预警设置
+
+### 3. 评论分析 (Review)
+- 批量评论情感分析
+- 好评关键词提取（卖点确认）
+- 差评问题归类（改进方向）
+- 竞品评论对比
+- 评分趋势追踪
+
+## 情报看板
+
+```
+┌─────────────────────────────────────────┐
+│            EcomIntel 看板                │
+├─────────────────────────────────────────┤
+│ 📊 竞品动态   │ 📉 价格趋势   │ ⭐ 评论   │
+│───────────────┼───────────────┼──────────│
+│ 对手A 上新    │ 对手降价5%    │ 评分4.2→│
+│ 对手B 改策略  │ 历史最低价    │ 好评词TOP │
+│ 新品警报      │ 套利机会$12   │ 差评归类  │
+└─────────────────────────────────────────┘
+```
+
+## 使用方式
+
+```
+ecom-intel> 分析竞品 [产品名]
+  → SEO策略+价格+评论全方位报告
+
+ecom-intel> 监控 [产品链接] 价格变动
+  → 设置价格预警，追踪历史
+
+ecom-intel> 竞品评论对比 [产品A] vs [产品B]
+  → 情感分析+关键词提取+差距报告
+
+ecom-intel> 生成周报
+  → 竞品+价格+评论整合周报
+```
+
+## 已有技能融合点
+
+| 源技能 | 融合点 |
+|--------|--------|
+| competitor-analysis | SEO分析、竞品追踪、内容策略 |
+| price-tracker | 价格监控、套利识别、预警设置 |
+| (review analyzer 新创) | 评论分析、情感评分、趋势追踪 |
+
+---
+
+## 升级记录 v2.0
+
+### 融合卡兹克hv-analysis（横纵分析法）
+
+| 升级项 | 原EcomIntel | v2.0版 |
+|--------|-----------|--------|
+| 分析方法 | 浅层对比 | + 横纵深度研究 |
+| 输出格式 | 文本报告 | + 精美PDF研究报告 |
+| 研究框架 | 竞品对比 | + 纵向历史追踪+横向同期对比+交叉洞察 |
+| 研究范围 | 产品价格评论 | + 公司/产品/概念/人物全维度 |
+
+### 新增能力
+
+**4. 横纵深度研究（融合hv-analysis）**
+- **纵轴**：追踪产品/公司从诞生到当下的完整生命历程（叙事故事形式）
+- **横轴**：当下时间截面上与竞品进行系统性横向对比
+- **交叉洞察**：纵轴×横轴交汇产出独到判断
+- **输出**：排版精美的PDF研究报告
+
+### 使用方式
+
+```
+# 原有
+ecom-intel> 分析竞品 [产品名]
+
+# 深度研究（新增）
+ecom-intel> 横纵分析 [公司/产品/概念]
+ecom-intel> 帮我深度研究一下 [研究对象]
 ```

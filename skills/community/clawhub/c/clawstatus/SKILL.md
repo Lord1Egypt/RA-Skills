@@ -1,35 +1,26 @@
----
-name: "ClawStatus"
-description: "Real-time dashboard for monitoring OpenClaw devices, agents, sessions, cron jobs, models, and token usage with English/Chinese interface."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawstatus"
-sourceUrl: "https://clawhub.ai/skills/clawstatus"
----
-
 # ClawStatus
 
-> Real-time dashboard for monitoring OpenClaw devices, agents, sessions, cron jobs, models, and token usage with English/Chinese interface.
+Real-time monitoring dashboard for OpenClaw ecosystem. Track devices, agents, sessions, cron jobs, models, and token usage.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawstatus`
-- **Source URL:** [https://clawhub.ai/skills/clawstatus](https://clawhub.ai/skills/clawstatus)
+## Features
 
-## Overview
-
+- Device monitoring with online/offline status
+- Agent and subagent real-time tracking
+- Session management with statistics
+- Cron job scheduling and execution monitoring
+- Model overview and configuration display
+- 15-day token usage analytics
+- English/Chinese interface
+- Single-file deployment
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/clawstatus
+pip install --user -e .
+```
+
+## Usage
+
+```bash
+clawstatus --host 0.0.0.0 --port 8900 --no-debug
 ```

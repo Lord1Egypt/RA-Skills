@@ -1,35 +1,131 @@
 ---
-name: "古典黄历"
-description: "基于清乾隆钦定《协纪辨方书》的古典择日系统。 融合黄道黑道十二神、建除十二神、天德月德天赦、凶煞、彭祖百忌、奇门遁甲、五行生克， 提供结婚、开业、搬家、签约、出行等10类活动的择吉选日。 评分权重遵循协纪辨方书正统体系，非简化黄历。 触发词：择日、择吉、选日子、黄道吉日、古典择日、黄历、协纪辨方书、结婚日子、开业..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/classical-almanac"
-sourceUrl: "https://clawhub.ai/skills/classical-almanac"
+name: 古典择日
+description: |
+  基于清乾隆钦定《协纪辨方书》的古典择日系统。
+  融合黄道黑道十二神、建除十二神、天德月德天赦、凶煞、彭祖百忌、奇门遁甲、五行生克，
+  提供结婚、开业、搬家、签约、出行等10类活动的择吉选日。
+  评分权重遵循协纪辨方书正统体系，非简化黄历。
+  触发词：择日、择吉、选日子、黄道吉日、古典择日、黄历、协纪辨方书、结婚日子、开业日子、搬家日子。
+version: 1.0.0
+keywords: 择日, 择吉, 黄道吉日, 协纪辨方书, 建除十二神, 黄道黑道, 天德月德, 彭祖百忌, 奇门遁甲, 五行, 结婚择日, 开业择日, 搬家择日, classical date selection, almanac, auspicious date
+metadata:
+  openclaw:
+    emoji: "📅"
+    skillKey: "classical-almanac"
+    runtime:
+      node: ">=18"
+    install: []
+    security:
+      network:
+        default: none
 ---
 
-# 古典黄历
+# 古典择日（协纪辨方书体系）
 
-> 基于清乾隆钦定《协纪辨方书》的古典择日系统。 融合黄道黑道十二神、建除十二神、天德月德天赦、凶煞、彭祖百忌、奇门遁甲、五行生克， 提供结婚、开业、搬家、签约、出行等10类活动的择吉选日。 评分权重遵循协纪辨方书正统体系，非简化黄历。 触发词：择日、择吉、选日子、黄道吉日、古典择日、黄历、协纪辨方书、结婚日子、开业...
+基于清乾隆钦定《协纪辨方书》的择日系统，融合多维度吉凶判断，提供专业择吉服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/classical-almanac`
-- **Source URL:** [https://clawhub.ai/skills/classical-almanac](https://clawhub.ai/skills/classical-almanac)
+## 功能
 
-## Overview
+- **10类活动择日**: 结婚、开业、搬家、签约、订婚、装修、出行、祭祀、求财、上任
+- **多维度评分**: 建除十二神 + 黄道黑道 + 天德月德天赦 + 凶煞 + 彭祖百忌 + 奇门遁甲 + 五行生克
+- **个性化择吉**: 支持输入用户八字，根据日主五行定制评分
+- **吉时推荐**: 基于日主五行推荐最佳时辰
+- **详细报告**: 显示黄道、吉神、凶煞、宜忌等完整信息
 
+## 用法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/classical-almanac
+# 查看某月所有日期评分
+node scripts/zeri.js <YYYY-MM> <活动类型> [用户八字]
+
+# 查找某月最佳日期
+node scripts/zeri.js best <YYYY-MM> <活动类型> [用户八字]
 ```
+
+### 示例
+
+```bash
+# 查看2026年6月结婚吉日
+node scripts/zeri.js 2026-06 结婚
+
+# 查找2026年6月最佳开业日（带八字）
+node scripts/zeri.js best 2026-06 开业 "庚午 辛巳 庚辰 辛巳"
+
+# 查看搬家吉日
+node scripts/zeri.js 2026-06 搬家
+```
+
+### 支持的活动类型
+
+| 活动 | 说明 |
+|------|------|
+| 结婚 | 嫁娶择日 |
+| 开业 | 开市、开张择日 |
+| 搬家 | 入宅、移徙择日 |
+| 签约 | 合同、契约择日 |
+| 订婚 | 订盟、纳采择日 |
+| 装修 | 修造、动土择日 |
+| 出行 | 远行、出差择日 |
+| 祭祀 | 祭拜、祈福择日 |
+| 求财 | 求职、投资择日 |
+| 上任 | 就职、赴任择日 |
+
+## 评分体系（协纪辨方书）
+
+| 因素 | 权重 | 说明 |
+|------|------|------|
+| 建除十二神 | ±30分 | 建/除/满/平/定/执/破/危/成/收/开/闭 |
+| 黄道黑道 | ±25分 | 青龙/明堂/天德/玉堂/司命（吉）vs 天刑/朱雀/白虎/天牢/玄武/勾陈（凶） |
+| 天德月德天赦 | +25分 | 三大吉神值日加分 |
+| 凶煞 | -25分 | 劫煞、月破等负面神煞 |
+| 宜忌配合 | ±15分 | 日课宜忌与活动类型匹配度 |
+| 日冲 | -20分 | 与用户八字日柱相冲 |
+| 值符值使 | ±16分 | 奇门遁甲吉凶 |
+| 五行生克 | ±15分 | 日课五行与用户日主关系 |
+
+## 输出示例
+
+```
+🏆 综合最优（结婚）
+   6月9日（周二）⭐⭐⭐⭐⭐ 100分
+   干支：甲寅
+   建除：成日
+   黄道：玉堂（喜庆之星，利于嫁娶开市）
+   吉神：天德、月德
+   宜：开业、嫁娶、移徙、上任
+   忌：诉讼、破土
+
+   【奇门遁甲】
+   遁局：阳遁
+   值符：天柱（凶星）
+   值使：休门（休息、平稳）
+```
+
+## 文件结构
+
+```
+classical-zeri/
+├── SKILL.md              # 技能描述文件
+├── README.md             # 本文档
+├── scripts/
+│   └── zeri.js           # 择日主程序
+└── references/
+    └── xieji-bianfang.md # 协纪辨方书参考数据
+```
+
+## 数据来源
+
+- **协纪辨方书**: 清乾隆四年（1739年）钦定，36卷
+- **建除十二神**: 以月支起寅，按日支顺数
+- **黄道黑道**: 12神按固定顺序排列
+- **天德月德**: 按月查日干
+- **彭祖百忌**: 天干地支宜忌
+
+## 依赖
+
+- Node.js >= 18
+- 无外部 npm 依赖（纯 JavaScript 实现）
+
+## 许可
+
+MIT License

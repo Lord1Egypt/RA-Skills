@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeatherPanel Note AI PC</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+  :root {
+    --bg: #0c0e14;
+    --surface: #151822;
+    --surface2: #1c2030;
+    --border: #2a2f42;
+    --text: #e4e8f1;
+    --text2: #8891a8;
+    --accent: #6ee7b7;
+    --accent2: #38bdf8;
+    --warn: #fbbf24;
+    --red: #f87171;
+    --purple: #c084fc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(26,31,48,0.4) 0%, var(--bg) 100%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+  }
+  .header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(110,231,183,0.4); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(110,231,183,0); }
+  }
+  .badges {
+    display: flex;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 5px;
+  }
+  .debug-bar {
+    padding: 4px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 24px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .card:hover { border-color: #3a4060; }
+  .card h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+  .card-full { grid-column: 1 / -1; }
+  .current-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .metric {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+  }
+  .metric .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .metric .lbl {
+    font-size: 10px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .c-temp { color: var(--accent); }
+  .c-humid { color: var(--accent2); }
+  .c-wind { color: var(--warn); }
+  .c-precip { color: var(--purple); }
+  .c-press { color: var(--red); }
+  .c-cloud { color: #94a3b8; }
+  .chart-wrap { position: relative; height: 190px; }
+  .bottom-split {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 12px;
+  }
+  .summary-text {
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+  .summary-text::-webkit-scrollbar { width: 3px; }
+  .summary-text::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .cost-panel {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cost-panel h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .cost-big {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -1px;
+  }
+  .cost-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .cost-row .k { color: var(--text2); }
+  .cost-row .v { color: var(--text); }
+  .no-data {
+    text-align: center;
+    padding: 30px;
+    color: var(--text2);
+    font-style: italic;
+    font-size: 13px;
+  }
+  @media (max-width: 800px) {
+    .grid { grid-template-columns: 1fr; }
+    .bottom-split { grid-template-columns: 1fr; }
+    .current-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span class="dot"></span> WeatherPanel Note AI PC</h1>
+  <div class="badges">
+    <span class="badge" id="lastUpdate">--</span>
+    <span class="badge" id="dataPoints">0 pts</span>
+    <span class="badge" id="refreshCD">30s</span>
+  </div>
+</div>
+<div class="debug-bar" id="debugBar">Loading...</div>
+
+<div class="grid">
+  <div class="card card-full">
+    <h2>Current Conditions</h2>
+    <div class="current-grid">
+      <div class="metric"><div class="val c-temp" id="mTemp">--</div><div class="lbl">Temperature</div></div>
+      <div class="metric"><div class="val c-temp" id="mFeels">--</div><div class="lbl">Feels Like</div></div>
+      <div class="metric"><div class="val c-humid" id="mHumid">--</div><div class="lbl">Humidity</div></div>
+      <div class="metric"><div class="val c-wind" id="mWind">--</div><div class="lbl">Wind Speed</div></div>
+      <div class="metric"><div class="val c-wind" id="mGusts">--</div><div class="lbl">Gusts</div></div>
+      <div class="metric"><div class="val c-precip" id="mPrecip">--</div><div class="lbl">Precipitation</div></div>
+      <div class="metric"><div class="val c-press" id="mPress">--</div><div class="lbl">Pressure</div></div>
+      <div class="metric"><div class="val c-cloud" id="mCloud">--</div><div class="lbl">Cloud Cover</div></div>
+    </div>
+  </div>
+
+  <div class="card"><h2>Temperature (C)</h2><div class="chart-wrap"><canvas id="chTemp"></canvas></div></div>
+  <div class="card"><h2>Humidity (%)</h2><div class="chart-wrap"><canvas id="chHumid"></canvas></div></div>
+  <div class="card"><h2>Wind Speed (km/h)</h2><div class="chart-wrap"><canvas id="chWind"></canvas></div></div>
+  <div class="card"><h2>Precipitation (mm)</h2><div class="chart-wrap"><canvas id="chPrecip"></canvas></div></div>
+
+  <div class="bottom-split">
+    <div class="card">
+      <h2>Latest Summary</h2>
+      <div class="summary-text" id="summaryText">
+        <div class="no-data">Waiting for first summary...</div>
+      </div>
+    </div>
+    <div class="card" style="padding:0">
+      <div class="cost-panel" style="height:100%">
+        <h3>Accumulated Token Cost</h3>
+        <div class="cost-big" id="totalCost">$0.000000</div>
+        <div class="cost-row"><span class="k">Total calls</span><span class="v" id="cCalls">0</span></div>
+        <div class="cost-row"><span class="k">Input tokens</span><span class="v" id="cIn">0</span></div>
+        <div class="cost-row"><span class="k">Output tokens</span><span class="v" id="cOut">0</span></div>
+        <div class="cost-row"><span class="k">Avg cost/call</span><span class="v" id="cAvg">$0.000000</span></div>
+        <h3 style="margin-top:4px">Cost Over Time</h3>
+        <div style="height:80px"><canvas id="chCost"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const REFRESH_MS = 30000;
+let countdown = 30;
+let refreshCount = 0;
+
+Chart.defaults.color = '#8891a8';
+Chart.defaults.borderColor = '#2a2f42';
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.font.size = 10;
+
+function mkOpts(yLbl, clr) {
+  return {
+    responsive: true, maintainAspectRatio: false,
+    animation: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { maxTicksLimit: 8, maxRotation: 0 } },
+      y: { grid: { color: '#1c2030' }, title: { display: true, text: yLbl, color: '#8891a8' } }
+    },
+    elements: {
+      point: { radius: 2, hoverRadius: 5, backgroundColor: clr },
+      line: { borderWidth: 2, borderColor: clr, backgroundColor: clr + '18', fill: true, tension: 0.3 }
+    }
+  };
+}
+
+// Store chart instances in an object for easy destroy/recreate
+let charts = {};
+
+function createChart(id, yLbl, clr) {
+  const canvas = document.getElementById(id);
+  if (charts[id]) {
+    charts[id].destroy();
+  }
+  charts[id] = new Chart(canvas, {
+    type: 'line',
+    data: { labels: [], datasets: [{ data: [], borderColor: clr, backgroundColor: clr + '18', fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2 }] },
+    options: mkOpts(yLbl, clr)
+  });
+  return charts[id];
+}
+
+// Create cost chart
+let costChart = null;
+function createCostChart() {
+  const canvas = document.getElementById('chCost');
+  if (costChart) costChart.destroy();
+  costChart = new Chart(canvas, {
+    type: 'line',
+    data: { labels: [], datasets: [{ data: [], borderColor: '#6ee7b7', backgroundColor: '#6ee7b718', fill: true, tension: 0.3, pointRadius: 1, borderWidth: 2 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { display: false }, y: { grid: { color: '#1c2030' }, ticks: { callback: v => '$' + v.toFixed(4) } } }
+    }
+  });
+  return costChart;
+}
+
+// Use fetch timestamp (changes every 5 min) for labels, not Open-Meteo local_time (changes every 15 min)
+function fmtTime(ts) {
+  if (!ts) return '?';
+  try {
+    const d = new Date(ts);
+    const h = String(d.getHours()).padStart(2, '0');
+    const m = String(d.getMinutes()).padStart(2, '0');
+    return h + ':' + m;
+  } catch(e) {
+    return '?';
+  }
+}
+
+function fmtNow() {
+  const d = new Date();
+  return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+}
+
+async function getJSON(file) {
+  try {
+    const r = await fetch(file + '?_=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) { console.error(file, 'status', r.status); return null; }
+    return await r.json();
+  } catch(e) { console.error(file, e); return null; }
+}
+
+async function refresh() {
+  refreshCount++;
+  const debugParts = ['Refresh #' + refreshCount + ' at ' + fmtNow()];
+
+  try {
+    // Timeseries
+    const ts = await getJSON('timeseries.json');
+    if (ts && ts.length) {
+      const L = ts[ts.length - 1];
+      document.getElementById('mTemp').textContent = (L.temperature_2m != null ? L.temperature_2m : '--') + 'C';
+      document.getElementById('mFeels').textContent = (L.apparent_temperature != null ? L.apparent_temperature : '--') + 'C';
+      document.getElementById('mHumid').textContent = (L.relative_humidity_2m != null ? L.relative_humidity_2m : '--') + '%';
+      document.getElementById('mWind').textContent = (L.wind_speed_10m != null ? L.wind_speed_10m : '--') + ' km/h';
+      document.getElementById('mGusts').textContent = (L.wind_gusts_10m != null ? L.wind_gusts_10m : '--') + ' km/h';
+      document.getElementById('mPrecip').textContent = (L.precipitation != null ? L.precipitation : '--') + ' mm';
+      document.getElementById('mPress').textContent = (L.surface_pressure != null ? L.surface_pressure : '--') + ' hPa';
+      document.getElementById('mCloud').textContent = (L.cloud_cover != null ? L.cloud_cover : '--') + '%';
+      document.getElementById('lastUpdate').textContent = 'Last: ' + fmtTime(L.timestamp);
+      document.getElementById('dataPoints').textContent = ts.length + ' pts';
+
+      // Use timestamp (Python fetch time, changes every 5 min) for chart labels
+      const recent = ts.slice(-288);
+      const labels = recent.map(p => fmtTime(p.timestamp));
+      const tempData = recent.map(p => p.temperature_2m);
+      const humidData = recent.map(p => p.relative_humidity_2m);
+      const windData = recent.map(p => p.wind_speed_10m);
+      const precipData = recent.map(p => p.precipitation);
+
+      // Destroy and recreate charts every refresh to guarantee visual update
+      const chT = createChart('chTemp', 'C', '#6ee7b7');
+      chT.data.labels = labels;
+      chT.data.datasets[0].data = tempData;
+      chT.update();
+
+      const chH = createChart('chHumid', '%', '#38bdf8');
+      chH.data.labels = labels;
+      chH.data.datasets[0].data = humidData;
+      chH.update();
+
+      const chW = createChart('chWind', 'km/h', '#fbbf24');
+      chW.data.labels = labels;
+      chW.data.datasets[0].data = windData;
+      chW.update();
+
+      const chP = createChart('chPrecip', 'mm', '#c084fc');
+      chP.data.labels = labels;
+      chP.data.datasets[0].data = precipData;
+      chP.update();
+
+      debugParts.push(ts.length + ' pts');
+      debugParts.push('last: ' + fmtTime(L.timestamp));
+      debugParts.push('temp: ' + L.temperature_2m);
+    } else {
+      debugParts.push('timeseries: empty or null');
+    }
+
+    // Summaries
+    const sums = await getJSON('summaries.json');
+    if (sums && sums.length) {
+      document.getElementById('summaryText').textContent = sums[sums.length - 1].summary || 'No summary.';
+      debugParts.push(sums.length + ' summaries');
+    }
+
+    // Token Cost
+    const cost = await getJSON('token_cost.json');
+    if (cost) {
+      document.getElementById('totalCost').textContent = '$' + (cost.total_cost_usd || 0).toFixed(6);
+      document.getElementById('cCalls').textContent = cost.calls || 0;
+      document.getElementById('cIn').textContent = (cost.total_input_tokens || 0).toLocaleString();
+      document.getElementById('cOut').textContent = (cost.total_output_tokens || 0).toLocaleString();
+      const avg = cost.calls > 0 ? cost.total_cost_usd / cost.calls : 0;
+      document.getElementById('cAvg').textContent = '$' + avg.toFixed(6);
+
+      if (cost.history && cost.history.length) {
+        let cum = 0;
+        const cl = [], cd = [];
+        for (const h of cost.history.slice(-50)) {
+          cum += h.cost_usd || 0;
+          cl.push(fmtTime(h.timestamp));
+          cd.push(cum);
+        }
+        const chC = createCostChart();
+        chC.data.labels = cl;
+        chC.data.datasets[0].data = cd;
+        chC.update();
+      }
+    }
+  } catch(e) {
+    debugParts.push('ERROR: ' + e.message);
+    console.error('refresh error', e);
+  }
+
+  document.getElementById('debugBar').textContent = debugParts.join(' | ');
+  countdown = 30;
+}
+
+setInterval(() => {
+  countdown = Math.max(0, countdown - 1);
+  document.getElementById('refreshCD').textContent = countdown + 's';
+}, 1000);
+
+refresh();
+setInterval(refresh, REFRESH_MS);
+</script>
+</body>
+</html>

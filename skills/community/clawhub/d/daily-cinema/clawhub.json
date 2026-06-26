@@ -1,0 +1,16 @@
+{
+  "name": "daily-cinema",
+  "displayName": "Daily Cinema Content Generator",
+  "version": "1.1.0",
+  "description": "Generate 60-90 second TikTok scripts about movies, film industry, celebrity news, and entertainment using free entertainment news sources.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 1499,
+    "interval": "monthly"
+  },
+  "tags": ["cinema", "movies", "film", "entertainment", "tiktok", "content", "box-office", "celebrity-news"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "content-generation"
+}

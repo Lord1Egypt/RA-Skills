@@ -1,35 +1,244 @@
 ---
-name: "anime-episode-context"
-description: "Maintain cross-episode story, character, and visual consistency for AI manga or anime-drama production pipelines that are generated one episode at a time fro..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anime-episode-context"
-sourceUrl: "https://clawhub.ai/skills/anime-episode-context"
+name: anime-episode-context
+description: Maintain cross-episode story, character, and visual consistency for AI manga or anime-drama production pipelines that are generated one episode at a time from uploaded TXT files. Use when Codex needs to read the current episode text, summarize the previous episode into reusable continuity notes, preserve character appearance and costume details, track plot state, and create prompts for text, image, and video models without reloading the full novel every time.
 ---
 
-# anime-episode-context
-
-> Maintain cross-episode story, character, and visual consistency for AI manga or anime-drama production pipelines that are generated one episode at a time fro...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anime-episode-context`
-- **Source URL:** [https://clawhub.ai/skills/anime-episode-context](https://clawhub.ai/skills/anime-episode-context)
+# Anime Episode Context
 
 ## Overview
 
+在生成每一集之前，先把“上一集摘要 + 当前集 TXT”压缩成可复用的“剧情与视觉上下文包”。
+只保留会影响文本、首帧图像、视频生成一致性的关键信息，避免随着集数推进丢失人物设定、服装、道具和剧情状态。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anime-episode-context
+## 工作流
+
+除非用户已经提供其中一部分结果，否则按下面顺序执行。
+
+### 1. 第 1 集先建立初始设定
+
+如果这是首次处理，只输入第 1 集 TXT。
+从第 1 集里提取后续集数可能会反复用到的基础事实：
+- 人物身份、性别、年龄段、性格、说话风格
+- 脸部特征、发型发色、体型、常见服装、饰品、武器、道具
+- 当前已经出现的关系、能力、限制、伤病、秘密
+- 当前已经出现的世界规则、核心场景、时间线信息
+
+这些内容写成“初始设定库”。第 1 集还没出现的信息不要脑补，统一标记为“后续待补充”。
+
+### 2. 从第 2 集开始走增量流程
+
+从第 2 集开始，不再要求重新读取整本小说。
+输入材料改为两部分：
+- 上一集的总结结果
+- 当前集的 TXT 原文
+
+先根据“上一集总结”恢复连续性，再用“当前集 TXT”更新状态。
+
+### 3. 先总结上一集，再处理当前集
+
+在生成第 `N` 集之前，产出一个紧凑的上下文包，至少包含四块：
+1. `全局继承设定`：后续所有集数都不能乱掉的事实
+2. `本集开场状态`：这一集开始时人物、地点、关系、服装、道具是什么状态
+3. `本集必须出现的剧情点`：这一集一定要演到的事件和视觉画面
+4. `视觉提示锚点`：供首帧图像和视频模型直接复用的外观与场景信息
+
+输出格式使用 [episode-context-schema.md](/mnt/cache/zhaohui_share/js_data/AI-dongman/skills/anime-episode-context/references/episode-context-schema.md) 里的中文版模板。
+
+如果当前处理的是第 2 集或之后的集数，必须先做两步：
+- 把上一集压缩成“下一集继承摘要”
+- 再把这个摘要和当前集 TXT 合并，生成当前集上下文包
+
+不要跳过“上一集继承摘要”。它是后续所有一致性的基础。
+
+### 4. 按目标模型压缩
+
+同一份上下文包需要按目标模型裁剪：
+- 文本模型：优先保留剧情连续性、人物动机、对白风格、隐藏约束
+- 图像模型：优先保留外观、服装、表情、姿态、道具、场景
+- 视频模型：优先保留动作连续性、镜头相关运动、环境连续性、入场和离场状态
+
+输出必须足够短，能和正式提示词一起喂给模型。优先使用短条目，不写大段说明。
+
+### 5. 每集生成后回写给下一集
+
+每集生成完成后，要把状态回写到滚动设定中，至少记录：
+- 服装变化
+- 受伤与恢复
+- 关系变化
+- 已揭露的秘密
+- 获得或丢失的道具
+- 场景位置变化
+- 会影响后续镜头的外观变化
+
+下一集输入时，优先使用这份“上一集继承摘要”，不要每次都把整本小说重新塞进模型。
+
+## 输入约定
+
+默认按下面方式理解用户输入：
+- 第 1 集：只提供第 1 集 TXT
+- 第 2 集及以后：提供“上一集总结” + “当前集 TXT”
+
+如果用户只给当前集 TXT，没有给上一集总结，优先提醒缺少连续性输入；如果必须继续，就只基于当前集生成，并明确标注“缺少上一集继承摘要，连续性风险较高”。
+
+## 优先级规则
+
+当上下文长度有限时，优先保留这些事实：
+1. 人物身份一致性：谁在场、长什么样、穿什么
+2. 场景连续性：地点、时间、天气、道具、破损状态
+3. 因果连续性：上一集发生了什么、这一集必须接什么
+4. 关系状态：信任、敌对、暧昧、隐瞒、权力关系
+5. 视觉识别点：能让人物一眼被认出来的固定特征
+
+如果 token 很紧，先删掉低价值解释，不能先删服装、发型、体貌特征、手持物、伤势和未完成剧情义务。
+
+## 输出规则
+
+输出尽量字段化，使用中文短条目，不写空泛修辞。
+
+写提示词时要把“稳定设定”和“当前镜头信息”分开：
+- 稳定设定放进可复用角色卡或设定卡
+- 当前镜头信息只放当前集当前场景
+
+原文有歧义时：
+- 如果不影响生成，就保留歧义
+- 如果必须补一个细节，做最小假设
+- 明确标注这是“补充假设”，方便后续集数保持一致
+
+如果人物造型在剧情里发生变化，必须同时记录：
+- `默认造型`：常态设计
+- `当前造型`：这一集实际呈现的版本
+
+## 标准交付物
+
+按用户请求，输出最小但完整的一组内容：
+- 第 1 集初始设定库
+- 上一集继承摘要
+- 当前集上下文包
+- 文本/图像/视频模型专用提示锚点
+- 当前集结束后的下一集继承摘要
+
+## 中文输出模板
+
+默认优先输出下面这种结构，除非用户要求别的格式：
+
+```md
+# 第N集上下文包
+
+## 1. 本集一句话概述
+- 
+
+## 2. 全局继承设定
+### 2.1 角色稳定设定
+- 角色名：
+  身份：
+  性格：
+  外貌识别点：
+  默认服装：
+  常用道具：
+  关系要点：
+
+### 2.2 世界与场景稳定设定
+- 时间背景：
+- 世界规则：
+- 核心场景：
+
+## 3. 本集开场状态
+- 当前时间：
+- 当前地点：
+- 在场人物：
+- 每人当前服装：
+- 每人当前情绪：
+- 当前携带物：
+- 当前未解决矛盾：
+
+## 4. 本集必须出现的剧情点
+1. 
+2. 
+3. 
+
+## 5. 首帧图像提示锚点
+- 主角色外观：
+- 主角色服装：
+- 表情与姿态：
+- 关键道具：
+- 场景环境：
+- 光线/氛围：
+
+## 6. 视频生成提示锚点
+- 镜头开始状态：
+- 关键动作连续性：
+- 角色关系表现：
+- 场景连续性：
+- 镜头结束状态：
+
+## 7. 本集结束后需要继承到下一集的信息
+- 服装是否变化：
+- 是否新增伤势：
+- 道具是否变化：
+- 关系是否变化：
+- 是否出现新秘密/新线索：
+- 下一集开场钩子：
 ```
+
+如果当前任务是“先总结上一集，供下一集继承”，优先输出下面这个结构：
+
+```md
+# 上一集继承摘要
+
+## 1. 必须继承的人物设定
+- 角色名：
+  当前外观：
+  当前服装：
+  当前道具：
+  当前情绪：
+  当前关系状态：
+
+## 2. 必须继承的剧情状态
+- 上一集结尾发生了什么：
+- 当前未解决冲突：
+- 下一集必须承接的因果：
+
+## 3. 必须继承的场景状态
+- 地点：
+- 时间：
+- 天气：
+- 环境变化：
+
+## 4. 绝对不能丢的信息
+- 
+```
+
+如果用户明确要求分别输出给文本模型、图像模型、视频模型，使用下面三段：
+
+```md
+## 文本模型继承信息
+- 上一集关键因果：
+- 本集角色动机：
+- 对话风格提醒：
+- 不能忘的设定：
+
+## 图像模型继承信息
+- 角色长相：
+- 当前服装：
+- 当前道具：
+- 场景外观：
+
+## 视频模型继承信息
+- 开场动作状态：
+- 中段必须出现的动作：
+- 结尾动作状态：
+- 环境连续性：
+```
+
+## 触发示例
+
+遇到下面这类请求就使用这个 skill：
+- “这是第 1 集 TXT，先建立后续要继承的人物和剧情设定”
+- “这是第 2 集 TXT，先根据第 1 集总结恢复设定，再整理第 2 集上下文”
+- “我要生成下一集，先帮我输出上一集继承摘要”
+- “给首帧图像模型提取这一集的角色外观锚点”
+- “给视频模型整理这一集必须继承的动作和场景连续性”
+
+## References
+
+需要具体格式时，读取 [episode-context-schema.md](/mnt/cache/zhaohui_share/js_data/AI-dongman/skills/anime-episode-context/references/episode-context-schema.md)。

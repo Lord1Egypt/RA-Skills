@@ -1,0 +1,10 @@
+{
+  "name": "朋友圈创作虾",
+  "role": "朋友圈文案创作",
+  "model": "doubao",
+  "thinking": "on",
+  "skills": ["copywriting", "social-media"],
+  "keywords": "朋友圈、文案、推广、分享、社交",
+  "output_format": "text",
+  "features": ["文案创作", "配图建议", "发布时间", "互动话术"]
+}

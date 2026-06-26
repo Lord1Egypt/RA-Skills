@@ -1,0 +1,32 @@
+{
+  "name": "PDF to Image",
+  "description": "Convert PDF pages to images (PNG, JPG, or WebP). Supports DPI control, resize, background color, and page selection.",
+  "method": "POST",
+  "endpoint": "/v1/convert/pdf/image",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": {
+    "type": "apiKey",
+    "header": "CLIENT-API-KEY",
+    "required": true
+  },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "URL to a PDF file" },
+        { "name": "file", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "page", "type": "integer", "required": false, "description": "Single page number to convert" },
+        { "name": "pages", "type": "string", "required": false, "description": "Page range (e.g. '1-5', 'all')" },
+        { "name": "image_format", "type": "string", "required": false, "default": "png", "enum": ["png", "jpg", "jpeg", "webp"], "description": "Output image format" },
+        { "name": "dpi", "type": "integer", "required": false, "default": 150, "description": "Render DPI (72-300)" },
+        { "name": "quality", "type": "integer", "required": false, "default": 85, "description": "Image quality (1-100)" },
+        { "name": "width", "type": "integer", "required": false, "description": "Resize output width in pixels" },
+        { "name": "height", "type": "integer", "required": false, "description": "Resize output height in pixels" },
+        { "name": "background_color", "type": "string", "required": false, "description": "Fill transparent backgrounds (hex, e.g. '#ffffff')" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "both", "file"], "description": "Output mode" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom filename for downloads" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

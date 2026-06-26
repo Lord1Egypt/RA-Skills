@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "name": "ghostclaw",
+      "command": "ghostclaw-mcp",
+      "transport": "stdio",
+      "env": {
+        "GHOSTCLAW_REPO_PATH": "/absolute/path/to/repo"
+      }
+    }
+  ]
+}

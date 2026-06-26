@@ -1,0 +1,18 @@
+{
+  "id": "lanxin-media",
+  "name": "蓝信媒体发送",
+  "version": "1.0.0",
+  "description": "蓝信媒体发送技能，支持发送图片和文件",
+  "type": "skill",
+  "main": "index.js",
+  "keywords": [
+    "openclaw",
+    "lanxin",
+    "media",
+    "skill"
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

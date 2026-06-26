@@ -1,0 +1,68 @@
+name: yunlv-linkedin-outreach
+version: 1.0.2
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to generate personalized LinkedIn connection requests
+  or outreach messages. Use when automating LinkedIn lead generation and engagement.
+  Use when writing professional B2B messages for LinkedIn prospects. Use when user
+  mentions "LinkedIn开发信", "领英触达", "LinkedIn消息", "社交获客", "连接请求", "领英营销".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+- LINKEDIN_SESSION_TOKEN
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI MatchGPT API
+  url: https://api.yunlvai.com
+  purpose: LinkedIn消息内容生成与优化
+  auth: Bearer Token (TRADEGPT_API_KEY)
+- name: LinkedIn API
+  url: (用户自配置)
+  purpose: 社交关系数据查询和消息发送
+  auth: 用户自配置
+category: customer-development
+tags:
+- LinkedIn
+- 领英获客
+- 社交营销
+- B2B开发
+- 连接请求
+- 社媒触达
+triggers:
+- LinkedIn
+- 领英
+- 连接请求
+- LinkedIn消息
+- 领英营销
+- 社媒开发
+- 社交获客
+- B2B社交
+- LinkedIn outreach
+pricing:
+  free:
+    features:
+    - 每天10条消息生成
+    - 基础话术模板
+    - 英文消息
+  basic:
+    price: 199
+    currency: CNY
+    period: month
+    features:
+    - 无限消息生成
+    - 15种语言支持
+    - 个性化定制
+    - 跟进序列生成
+  pro:
+    price: 599
+    currency: CNY
+    period: month
+    features:
+    - 自动消息发送
+    - 高级序列设计
+    - A/B测试优化
+    - 回复分析

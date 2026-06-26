@@ -1,0 +1,13 @@
+{
+  "name": "presales-win-blueprint",
+  "version": "1.0.0",
+  "description": "售前方案通关秘籍：行业洞察与经验打法规则引擎",
+  "main": "src/index.js",
+  "bin": {
+    "presales-win-blueprint": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node tests/test.js"
+  }
+}

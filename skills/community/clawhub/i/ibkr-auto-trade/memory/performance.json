@@ -1,0 +1,23 @@
+{
+  "last_evaluated": null,
+  "all_time": {
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": null,
+    "total_pnl": 0.0,
+    "profit_factor": null,
+    "sharpe_ratio": null,
+    "max_drawdown_pct": 0.0,
+    "avg_holding_minutes": null
+  },
+  "rolling_30d": {
+    "total_trades": 0,
+    "win_rate": null,
+    "total_pnl": 0.0,
+    "sharpe_ratio": null,
+    "max_drawdown_pct": 0.0
+  },
+  "by_strategy": {},
+  "improvement_log": []
+}

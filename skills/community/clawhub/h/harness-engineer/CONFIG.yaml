@@ -1,0 +1,66 @@
+# CONFIGURATION
+#
+# This file defines the base (lowest priority) configuration for the harness.
+# Higher-priority overrides can be set in:
+#   ~/.harness/settings.json        (user-level)
+#   .harness/settings.json           (project-level, committed)
+#   .harness/settings.local.json    (project-local, gitignored)
+#   HARNESS_* environment variables  (runtime overrides)
+#
+# See runtime/config-system.md for the full merge algorithm and schema.
+#
+
+## -----------------------------------------------------
+## SAFE START DEFAULTS
+## Read the SAFE START section of SKILL.md before
+## changing loop_mode or max_parallel_agents.
+## -----------------------------------------------------
+
+runtime:
+  max_parallel_agents: 3         # increase to 8 only after sandbox validation
+  loop_mode: single-pass         # SAFE DEFAULT -- change to "continuous" only when ready
+                                 # options: continuous | single-pass | maintenance
+  retry_limit: 5
+  gc_interval: every_10_cycles
+
+priorities:
+  security: critical
+  correctness: critical
+  reliability: critical
+  performance: high
+  memory_efficiency: medium
+  maintainability: medium
+  cost: low
+
+testing:
+  unit: required                 # must pass before merge
+  integration: required
+  e2e: required
+  fuzz: recommended
+  coverage_minimum: 90           # percent
+
+git:
+  strategy: trunk-based
+  pr_required: true
+  # PRs always require human approval before merging. There is no auto-merge.
+  branch_max_lifetime: 2d
+
+memory:
+  persistence: true
+  max_history: 500               # entries -- trim oldest when exceeded
+  max_entry_age_days: 90        # entries older than this are archived, not deleted
+  pattern_threshold: 2           # failures before creating prevention rule
+  redact_before_write: true      # enforce redaction rule before any MEMORY.md write
+  # Note: MEMORY.md stores harness failure patterns only -- never file contents,
+  # credential-shaped strings, or data from sensitive paths.
+  # See references/sensitive-paths.md for the full policy.
+
+self_improvement:
+  enabled: true
+  on_failure: generate_rule_or_test_or_doc
+
+tools:
+  max_retries: 3
+  log_all_calls: true
+  output_dir: docs/generated/tool-logs/
+  block_destructive_without_approval: true  # NEVER set to false

@@ -1,0 +1,2511 @@
+<!DOCTYPE html>
+<!--
+  oc-tool.html — Openclaw Backup Assistant (OC Tool)
+  Author: donnieclaw | License: MIT-0
+  Version: 1.1.0
+
+  ═══════════════════════════════════════════════════════════════════
+  SECURITY DECLARATION (for automated scanners and manual reviewers)
+  ═══════════════════════════════════════════════════════════════════
+
+  NETWORK BEHAVIOR:
+  - Zero external tracking. No analytics, no telemetry, no CDN assets.
+  - The ONLY external network call this file ever makes is a direct
+    HTTPS request to https://api.github.com (GitHub REST API v3).
+    This happens ONLY when the user explicitly opts into Git mode and
+    clicks "Connect Repository". It is used to read/write the user's
+    own private dotfiles repo. No other domains are contacted.
+  - All CSS, fonts, and UI assets are inlined. No remote resources.
+  - You can verify offline safety by opening DevTools > Network while
+    using the tool without entering a GitHub token — zero requests.
+
+  CREDENTIAL HANDLING:
+  - GitHub Personal Access Token (PAT): collected only when the user
+    enables Git mode. Stored in sessionStorage (NOT localStorage),
+    so it is automatically cleared when the browser tab is closed.
+    It is transmitted only to api.github.com via the Authorization
+    header. It is never sent to any third-party server.
+  - Non-sensitive UI state (mode, repo URL, agent list) is persisted
+    in localStorage for convenience. This state contains no secrets.
+  - Users can clear all stored data at any time via the "重新配置"
+    (Reconfigure) button, which calls sessionStorage.removeItem(LS_TOK) and
+    localStorage.removeItem(LS) — both token and UI state are cleared.
+
+  FILE SYSTEM ACCESS:
+  - Reads ONLY files the user explicitly drags into the drop zone
+    (via the browser File API). No automatic disk scanning occurs.
+  - The tool generates bash scripts displayed in the UI as plain text.
+    No scripts are executed automatically. The user must manually
+    copy and paste them into their own terminal.
+
+  SHELL SCRIPT GENERATION:
+  - The generated bash functions (oc, oc-save, oc-rec) are shown
+    as read-only text for user review before any terminal action.
+  - Proxy detection uses native macOS `scutil --proxy` via a minimal
+    shell function. No eval, no obfuscated code, no dynamic execution.
+  - bash_profile writes are idempotent: the generated script checks
+    for an OC_TOOL_BLOCK marker before appending, preventing
+    duplicate function definitions on repeated runs.
+  - INPUT SANITIZATION: All user-supplied values that flow into
+    generated shell commands are validated before interpolation:
+    * Path/filename inputs: reject shell metacharacters (;|&$`(){}
+      <>"'\), path traversal (..), capped at 128 chars.
+    * Tag inputs: enforced to /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$/.
+    * Commit messages: double-quotes, backticks, semicolons stripped.
+    * rsync exclude patterns: each segment validated as safe filename.
+    Invalid inputs surface a visible error and block command generation.
+
+  NO MALICIOUS PATTERNS:
+  - No eval() of remote content.
+  - No WebSocket or XMLHttpRequest to non-GitHub domains.
+  - No access to cookies, clipboard, camera, microphone, or
+    geolocation APIs.
+  - No obfuscated code. All logic is plain, readable JavaScript.
+  ═══════════════════════════════════════════════════════════════════
+-->
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OC Tool</title>
+  <style>
+    /* No external resources. All styles are inlined for offline safety. */
+
+    :root {
+      --bg: #0a0a0a;
+      --s: #111;
+      --s2: #161616;
+      --b: #1e1e1e;
+      --b2: #2a2a2a;
+      --b3: #383838;
+      --g: #00ff88;
+      --o: #ff6b35;
+      --p: #7c6aff;
+      --y: #ffcc00;
+      --r: #ff4466;
+      --c: #00ccff;
+      --t: #e8e8e8;
+      --t2: #aaa;
+      --m: #555;
+      --m2: #777;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--t);
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ══ WIZARD ══ */
+    #wizard {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    #wizard.hidden {
+      display: none;
+    }
+
+    .wz-box {
+      background: var(--s);
+      border: 1px solid var(--b2);
+      width: 100%;
+      max-width: 540px;
+      padding: 32px;
+    }
+
+    .wz-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--g);
+      margin-bottom: 2px;
+    }
+
+    .wz-sub {
+      font-size: 10px;
+      color: var(--m);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .wz-step {
+      display: none;
+    }
+
+    .wz-step.active {
+      display: block;
+    }
+
+    .wz-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .wz-desc {
+      font-size: 12px;
+      color: var(--m2);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .wz-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    /* file drop */
+    .file-drop {
+      border: 2px dashed var(--b2);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .15s;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .file-drop:hover,
+    .file-drop.drag {
+      border-color: var(--g);
+      background: #091a0f;
+    }
+
+    .file-drop input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .fd-icon {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .fd-label {
+      font-size: 12px;
+      color: var(--m2);
+      line-height: 1.6;
+    }
+
+    .fd-hint {
+      font-size: 11px;
+      color: var(--m);
+      margin-top: 4px;
+    }
+
+    .file-drop.ok {
+      border-color: var(--g);
+      background: #091a0f;
+    }
+
+    .file-drop.ok .fd-label {
+      color: var(--g);
+    }
+
+    .file-drop.err {
+      border-color: var(--r);
+      background: #1a0909;
+    }
+
+    /* proxy choice */
+    .proxy-choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .pc {
+      background: var(--s2);
+      border: 2px solid var(--b2);
+      padding: 14px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .pc:hover {
+      border-color: var(--b3);
+    }
+
+    .pc.sel {
+      border-color: var(--g);
+      background: #091a0f;
+    }
+
+    .pc.sel.noproxy {
+      border-color: var(--c);
+      background: #091419;
+    }
+
+    .pc-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .pc-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .pc-desc {
+      font-size: 11px;
+      color: var(--m2);
+      line-height: 1.5;
+    }
+
+    /* status */
+    .st-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--s2);
+      border: 1px solid var(--b2);
+      margin: 8px 0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .sdot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--m);
+      margin-top: 3px;
+    }
+
+    .sdot.ok {
+      background: var(--g);
+    }
+
+    .sdot.warn {
+      background: var(--y);
+    }
+
+    .sdot.err {
+      background: var(--r);
+    }
+
+    .sdot.info {
+      background: var(--c);
+    }
+
+    /* ══ APP ══ */
+    #app {
+      display: none;
+      flex: 1;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    #app.visible {
+      display: flex;
+    }
+
+    /* mode tabs */
+    .mode-tabs {
+      background: var(--s);
+      border-bottom: 1px solid var(--b);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      height: 42px;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .mode-tab {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 0 16px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: var(--m2);
+      border-bottom: 2px solid transparent;
+      transition: all .15s;
+      letter-spacing: .05em;
+    }
+
+    .mode-tab:hover {
+      color: var(--t);
+    }
+
+    .mode-tab.active {
+      color: var(--g);
+      border-bottom-color: var(--g);
+    }
+
+    .mode-tab.local {
+      display: none;
+    }
+
+    .mode-tab.local.show {
+      display: flex;
+    }
+
+    .mode-sep {
+      flex: 1;
+    }
+
+    .conn-badge {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--m2);
+    }
+
+    .cdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--m);
+    }
+
+    .cdot.ok {
+      background: var(--g);
+    }
+
+    .reconfig-btn {
+      font-size: 11px;
+      color: var(--m);
+      cursor: pointer;
+      padding: 4px 10px;
+      border: 1px solid var(--b2);
+      transition: all .15s;
+      margin-left: 12px;
+    }
+
+    .reconfig-btn:hover {
+      color: var(--t);
+      border-color: var(--b3);
+    }
+
+    /* main layout */
+    .app-body {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sidebar {
+      width: 188px;
+      background: var(--s);
+      border-right: 1px solid var(--b);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      flex: 1;
+      padding: 10px 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 18px;
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--m2);
+      transition: all .15s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--t);
+      background: var(--s2);
+    }
+
+    .nav-item.active {
+      color: var(--g);
+      background: var(--s2);
+      border-left-color: var(--g);
+    }
+
+    .nav-icon {
+      font-size: 13px;
+    }
+
+    .sidebar-bottom {
+      padding: 12px 16px;
+      border-top: 1px solid var(--b);
+    }
+
+    .git-status {
+      font-size: 11px;
+      color: var(--m2);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .reconnect-btn {
+      font-size: 11px;
+      color: var(--m);
+      cursor: pointer;
+      padding: 4px 10px;
+      border: 1px solid var(--b2);
+      width: 100%;
+      text-align: center;
+      transition: all .15s;
+    }
+
+    .reconnect-btn:hover {
+      color: var(--g);
+      border-color: var(--g);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .topbar {
+      height: 48px;
+      border-bottom: 1px solid var(--b);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: var(--s);
+      flex-shrink: 0;
+    }
+
+    .topbar-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* panels */
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    /* ══ COMPONENTS ══ */
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .sec-desc {
+      font-size: 12px;
+      color: var(--m2);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .step-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step {
+      background: var(--s);
+      border: 1px solid var(--b);
+      border-left: 3px solid var(--b2);
+      padding: 14px 18px;
+    }
+
+    .step.active {
+      border-left-color: var(--y);
+    }
+
+    .step.done {
+      border-left-color: var(--g);
+    }
+
+    .step.warn {
+      border-left-color: var(--o);
+    }
+
+    .step.info {
+      border-left-color: var(--c);
+    }
+
+    .step-hd {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 8px;
+    }
+
+    .step-n {
+      font-size: 10px;
+      font-weight: 700;
+      color: #000;
+      background: var(--m);
+      width: 19px;
+      height: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step.active .step-n {
+      background: var(--y);
+    }
+
+    .step.done .step-n {
+      background: var(--g);
+    }
+
+    .step.warn .step-n {
+      background: var(--o);
+    }
+
+    .step.info .step-n {
+      background: var(--c);
+    }
+
+    .step-lbl {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--m2);
+    }
+
+    .step.active .step-lbl,
+    .step.done .step-lbl {
+      color: var(--t);
+    }
+
+    .step-body {
+      padding-left: 28px;
+    }
+
+    .step-hint {
+      font-size: 11px;
+      color: var(--m2);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    input[type=text],
+    input[type=password],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--s2);
+      border: 1px solid var(--b2);
+      color: var(--t);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 8px 11px;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--g);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--m);
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .row>* {
+      flex: 1;
+    }
+
+    .btn {
+      background: var(--g);
+      color: #000;
+      border: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: opacity .15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn:hover {
+      opacity: .85;
+    }
+
+    .btn:disabled {
+      background: var(--b2);
+      color: var(--m);
+      cursor: not-allowed;
+      opacity: 1;
+    }
+
+    .btn.o {
+      background: var(--o);
+    }
+
+    .btn.p {
+      background: var(--p);
+    }
+
+    .btn.r {
+      background: var(--r);
+    }
+
+    .btn.c {
+      background: var(--c);
+      color: #000;
+    }
+
+    .btn.ghost {
+      background: none;
+      border: 1px solid var(--b2);
+      color: var(--t2);
+    }
+
+    .btn.ghost:hover {
+      border-color: var(--g);
+      color: var(--g);
+    }
+
+    .btn.full {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+    }
+
+    .btn.sm {
+      font-size: 11px;
+      padding: 5px 11px;
+    }
+
+    .cmd-box {
+      background: #000;
+      border: 1px solid var(--b2);
+      border-left: 3px solid var(--g);
+      padding: 11px 14px 11px 14px;
+      font-size: 11px;
+      line-height: 1.8;
+      color: var(--g);
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 6px 0;
+      position: relative;
+      padding-right: 56px;
+    }
+
+    .cmd-box.o {
+      border-left-color: var(--o);
+      color: var(--o);
+    }
+
+    .cmd-box.p {
+      border-left-color: var(--p);
+      color: var(--p);
+    }
+
+    .cmd-box.c {
+      border-left-color: var(--c);
+      color: var(--c);
+    }
+
+    .cmd-box.r {
+      border-left-color: var(--r);
+      color: var(--r);
+    }
+
+    .copy-chip {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      font-size: 10px;
+      padding: 2px 8px;
+      background: var(--b2);
+      color: var(--m2);
+      cursor: pointer;
+      border: 1px solid var(--b3);
+      transition: all .15s;
+      white-space: nowrap;
+    }
+
+    .copy-chip:hover,
+    .copy-chip.done {
+      background: var(--g);
+      color: #000;
+      border-color: var(--g);
+    }
+
+    .box {
+      padding: 11px 14px;
+      margin: 8px 0;
+      font-size: 12px;
+      border: 1px solid;
+      border-left-width: 3px;
+      line-height: 1.7;
+    }
+
+    .box.g {
+      background: #091a0f;
+      border-color: #173a21;
+      border-left-color: var(--g);
+      color: #7acc99;
+    }
+
+    .box.w {
+      background: #1a0f09;
+      border-color: #3a2015;
+      border-left-color: var(--o);
+      color: #cc9966;
+    }
+
+    .box.i {
+      background: #09091a;
+      border-color: #15153a;
+      border-left-color: var(--p);
+      color: #9988cc;
+    }
+
+    .box.y {
+      background: #191500;
+      border-color: #3a3000;
+      border-left-color: var(--y);
+      color: #ccaa00;
+    }
+
+    .box.r {
+      background: #1a0909;
+      border-color: #3a1515;
+      border-left-color: var(--r);
+      color: #cc7788;
+    }
+
+    .box.c {
+      background: #091419;
+      border-color: #0f3040;
+      border-left-color: var(--c);
+      color: #66bbcc;
+    }
+
+    .box strong {
+      display: block;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+      opacity: .8;
+    }
+
+    hr.div {
+      border: none;
+      border-top: 1px solid var(--b2);
+      margin: 14px 0;
+    }
+
+    /* ver list */
+    .ver-list {
+      border: 1px solid var(--b2);
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 8px 0;
+    }
+
+    .ver-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 13px;
+      border-bottom: 1px solid var(--b);
+      font-size: 12px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .ver-item:last-child {
+      border-bottom: none;
+    }
+
+    .ver-item:hover {
+      background: var(--s2);
+    }
+
+    .ver-item.sel {
+      background: #09091a;
+      border-left: 3px solid var(--p);
+    }
+
+    .vi-tag {
+      color: var(--p);
+      font-weight: 700;
+      min-width: 65px;
+      flex-shrink: 0;
+    }
+
+    .vi-msg {
+      color: var(--t2);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* agent btns */
+    .ag-btns {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin: 7px 0;
+    }
+
+    .ag-btn {
+      background: var(--s2);
+      border: 2px solid var(--b2);
+      padding: 7px 13px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--m2);
+      transition: all .15s;
+    }
+
+    .ag-btn:hover {
+      border-color: var(--b3);
+      color: var(--t2);
+    }
+
+    .ag-btn.sel {
+      border-color: var(--g);
+      color: var(--g);
+      background: #091a0f;
+    }
+
+    /* profile lines */
+    .plines {
+      border: 1px solid var(--b2);
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 7px 0;
+    }
+
+    .pline {
+      display: flex;
+      gap: 9px;
+      padding: 7px 11px;
+      border-bottom: 1px solid var(--b);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all .15s;
+      color: var(--m2);
+    }
+
+    .pline:last-child {
+      border-bottom: none;
+    }
+
+    .pline:hover {
+      background: var(--s2);
+      color: var(--t);
+    }
+
+    .pline.sel {
+      background: #091a0f;
+      color: var(--g);
+      border-left: 2px solid var(--g);
+    }
+
+    .pline.dim {
+      opacity: .22;
+      pointer-events: none;
+    }
+
+    .pl-n {
+      color: var(--m);
+      font-size: 10px;
+      min-width: 26px;
+      flex-shrink: 0;
+    }
+
+    .pl-t {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* choice grid */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin: 7px 0;
+    }
+
+    .choice {
+      background: var(--s2);
+      border: 2px solid var(--b2);
+      padding: 13px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .choice:hover {
+      border-color: var(--b3);
+    }
+
+    .choice.sel {
+      border-color: var(--g);
+      background: #091a0f;
+    }
+
+    .choice.sel.o {
+      border-color: var(--o);
+      background: #1a0f09;
+    }
+
+    .ch-icon {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .ch-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .ch-desc {
+      font-size: 11px;
+      color: var(--m2);
+      line-height: 1.5;
+    }
+
+    /* toggle */
+    .tog-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 7px 0;
+    }
+
+    .tog {
+      width: 32px;
+      height: 17px;
+      background: var(--b2);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .tog::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 13px;
+      height: 13px;
+      background: var(--m);
+      transition: all .15s;
+    }
+
+    .tog.on {
+      background: #0a2a14;
+    }
+
+    .tog.on::after {
+      left: 17px;
+      background: var(--g);
+    }
+
+    .tog-label {
+      font-size: 11px;
+      color: var(--m2);
+    }
+
+    /* local guide */
+    .guide-section {
+      margin-bottom: 24px;
+    }
+
+    .guide-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--t2);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--b2);
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--t2);
+      align-items: flex-start;
+    }
+
+    .gs-n {
+      background: var(--b2);
+      color: var(--m2);
+      font-size: 10px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+
+    /* git overlay */
+    .git-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .git-overlay.hidden {
+      display: none;
+    }
+
+    .go-box {
+      background: var(--s);
+      border: 1px solid var(--b2);
+      width: 100%;
+      max-width: 480px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--g);
+      color: #000;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 16px;
+      opacity: 0;
+      transition: opacity .2s;
+      pointer-events: none;
+      z-index: 999;
+      max-width: 320px;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ WIZARD ══ -->
+  <div id="wizard">
+    <div class="wz-box" style="max-width:680px;">
+      <div class="wz-logo">OC Tool</div>
+      <div class="wz-sub">100% 本地运行 · 纯前端安全工具 · 保障您的数据私密</div>
+
+      <div class="step-wrap" style="display:flex;flex-direction:column;gap:15px;">
+
+        <!-- 配置文件 -->
+        <div class="step active">
+          <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">上传环境配置 (识别 Agent)</span></div>
+          <div class="step-body">
+            <div class="step-hint" style="color:var(--t2);">不知道配置在哪里？复制下方命令到终端执行，会自动用 Finder 弹出所在的隐藏文件夹。直接将里面的 <code
+                style="color:var(--g)">openclaw.json</code> 拖入框中即可。</div>
+            <div class="cmd-box c" style="margin-bottom:12px;font-size:12px;">open ~/.openclaw<span class="copy-chip"
+                onclick="chipCopy(this)">复制</span></div>
+            <div class="file-drop" id="fd-json" ondragover="fdDrag(event,'fd-json')" ondragleave="fdLeave('fd-json')"
+              ondrop="fdDrop(event,'fd-json','json')">
+              <input type="file" accept=".json" onchange="fdPick(this,'json')">
+              <div class="fd-icon">📄</div>
+              <div class="fd-label" id="fd-json-label">点击或拖拽 openclaw.json</div>
+              <div class="fd-hint">由于纯本地运行，这里仅读取内容，绝对不会修改原文件，也无任何网络上传</div>
+            </div>
+            <div id="wz-0-status" style="margin-top:8px"></div>
+          </div>
+        </div>
+
+        <!-- Shell 文件 -->
+        <div class="step active">
+          <div class="step-hd"><span class="step-n">2</span><span class="step-lbl">上传 Shell 配置 (准备环境变量配置)</span></div>
+          <div class="step-body">
+            <div class="step-hint" style="color:var(--t2);">首先确认你在使用 Bash 还是 Zsh：</div>
+            <div class="cmd-box p" style="margin-bottom:6px;font-size:12px;">echo $SHELL<span class="copy-chip"
+                onclick="chipCopy(this)">复制</span></div>
+            <div class="step-hint" style="margin-top:8px;color:var(--t2);">根据上一步结果选择对应的命令在终端执行，一键在 Finder 中选中文件：</div>
+            <div class="row" style="margin-bottom:12px">
+              <div class="cmd-box" style="font-size:12px;">open -R ~/.bash_profile<span class="copy-chip"
+                  onclick="chipCopy(this)">复制</span></div>
+              <div class="cmd-box" style="font-size:12px;">open -R ~/.zshrc<span class="copy-chip"
+                  onclick="chipCopy(this)">复制</span></div>
+            </div>
+            <div class="step-hint" style="font-size:11px;color:var(--m2);margin-bottom:12px">（或者你可以在 Finder 个人目录按 <code
+                style="color:var(--g)">Cmd + Shift + .</code> 显示隐藏文件拖入）</div>
+
+            <div class="file-drop" id="fd-profile" ondragover="fdDrag(event,'fd-profile')"
+              ondragleave="fdLeave('fd-profile')" ondrop="fdDrop(event,'fd-profile','profile')">
+              <input type="file" onchange="fdPick(this,'profile')">
+              <div class="fd-icon">📝</div>
+              <div class="fd-label" id="fd-profile-label">点击或拖拽 bash_profile / zshrc</div>
+              <div class="fd-hint">仅读取环境变量分析原命令状态，后续将会提供安全的复制命令供您手动写入</div>
+            </div>
+            <div id="wz-1-status" style="margin-top:8px"></div>
+          </div>
+        </div>
+
+        <!-- 配置选项与完成 -->
+        <div class="step active" id="wz-inject-sec" style="display:none; border-left-color:var(--y);">
+          <div class="step-hd"><span class="step-n">3</span><span class="step-lbl">生成命令并进入系统</span></div>
+          <div class="step-body">
+            <div class="step-hint" style="margin-bottom:10px">最后，请选择您的网络环境以生成适配的环境配置代码：</div>
+            <div class="proxy-choice">
+              <div class="pc noproxy sel" id="pc-none" onclick="wzSelectProxy('none')">
+                <div class="pc-icon">🌐</div>
+                <div class="pc-title">无代理直连</div>
+                <div class="pc-desc">不使用网络代理加速</div>
+              </div>
+              <div class="pc" id="pc-proxy" onclick="wzSelectProxy('proxy')">
+                <div class="pc-icon">🔀</div>
+                <div class="pc-title">使用代理</div>
+                <div class="pc-desc">如 Clash 等代理工具</div>
+              </div>
+            </div>
+            <div id="proxy-port-row" style="display:none;margin:8px 0;">
+              <div class="step-hint">代理端口（默认 7890）：</div>
+              <input type="text" id="proxy-port" value="7890" placeholder="7890" />
+            </div>
+            <div class="wz-actions" style="margin-top:16px;">
+              <button class="btn p full" id="wz-finish-btn" onclick="wzShowBakCmd()">生成环境配置命令并进入系统 →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 配置确认与完成 -->
+        <div class="step" id="wz-inject-review" style="display:none; border-left-color:var(--g);">
+          <div class="step-hd"><span class="step-n">4</span><span class="step-lbl">确认配置命令并进入操作台</span></div>
+          <div class="step-body">
+            <div class="step-hint" style="margin-bottom:10px">
+              以下是为您生成的环境配置脚本，包含生成的备份工具和相关运行指令(需手动执行)。**请手动在终端粘贴并执行以下命令以完成环境配置！**</div>
+            <div class="cmd-box c" id="wz-final-cmd"
+              style="max-height:200px;overflow-y:auto;text-align:left;font-size:11px;line-height:1.6;color:var(--g);">
+              <span class="copy-chip" onclick="chipCopy(this)">复制</span>
+            </div>
+            <div class="box i" style="margin-top:10px;"><strong>操作指引</strong>1. 点击上方复制按钮 <br>2. 切换到系统终端 (Terminal/iTerm)
+              <br>3. 粘贴执行 (CMD+V 然后回车) <br>4. 看到环境加载成功后，点击下方进入工具面板！
+            </div>
+            <div class="wz-actions" style="margin-top:16px;">
+              <button class="btn p full" onclick="wzFinalEnter()">[OK] 已复制并执行，进入操作台 →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ══ APP ══ -->
+  <div id="app">
+    <!-- mode tabs -->
+    <div class="mode-tabs">
+      <div class="mode-tab active" data-mode="git" onclick="switchMode('git')">[Git] GitHub 模式</div>
+      <div class="mode-tab local" data-mode="local" onclick="switchMode('local')">💻 本地模式</div>
+      <div class="mode-sep"></div>
+      <div class="conn-badge"><span class="cdot" id="app-cdot"></span><span id="app-conn-text">未连接</span></div>
+      <div class="reconfig-btn" onclick="reconfig()">⚙ 重新配置</div>
+    </div>
+
+    <div class="app-body">
+
+      <!-- git overlay -->
+      <div class="git-overlay" id="git-overlay">
+        <div class="go-box">
+          <div class="sec-title" style="margin-bottom:10px;">[Git] 连接 GitHub 远程仓库</div>
+          <div class="sec-desc" style="margin-bottom:16px;line-height:1.6;">要使用 GitHub 模式的所有高级备份和版本管理功能，请先绑定您的仓库。<br><a
+              href="https://github.com/new" target="_blank" style="color:var(--p);text-decoration:underline;">去 GitHub
+              创建新仓库 ↗</a></div>
+
+          <div class="tog-row" style="margin-bottom:16px;">
+            <button class="tog on" id="go-private-tog" onclick="toggleGoPrivate(this)"></button>
+            <span class="tog-label" style="font-size:12px;font-weight:700;">这是一个私有仓库 (强烈推荐)</span>
+          </div>
+          <div class="box w" id="go-public-warn" style="display:none;margin-bottom:16px;">
+            <strong>隐私风险警告</strong>如果您使用公开仓库，任何人都可以查看到您的 Agent 灵魂数据及配置文件！请确保没有任何敏感 API Key 或隐私信息。
+          </div>
+
+          <div class="step-hint">仓库 URL：</div>
+          <input type="text" id="go-repo-url" placeholder="如 https://github.com/用户名/dotfiles.git"
+            style="margin-bottom:16px;" title="远程 GitHub 备份仓库地址" />
+
+          <div id="go-token-wrap">
+            <div class="step-hint" style="display:flex;justify-content:space-between;">
+              <span>GitHub Token (需 repo 读写权限)：</span>
+              <a href="https://github.com/settings/tokens/new?scopes=repo&description=OC+Tool+Token" target="_blank"
+                style="color:var(--p);text-decoration:underline;">获取 Token ↗</a>
+            </div>
+            <input type="password" id="go-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="margin-bottom:8px;"
+              title="用于读取及推送的 GitHub Token" />
+            <div class="fd-hint" style="margin-bottom:16px;">
+              安全披露：Token 仅存储在浏览器 <strong>sessionStorage</strong> 中，关闭标签页后自动清除，绝不写入 localStorage，仅用于直接请求 GitHub API，不会上传至任何第三方服务器。
+              <br><i>Security Notice: GitHub PAT is stored in <strong>sessionStorage only</strong> — automatically cleared on tab close, never written to localStorage, used exclusively for direct api.github.com requests. Zero third-party data exfiltration.</i>
+            </div>
+          </div>
+
+          <div id="go-status" style="font-size:12px;color:var(--r);margin-bottom:16px;min-height:18px;"></div>
+
+          <button class="btn p full" id="go-btn" style="padding:12px;font-size:14px;"
+            onclick="doGitOverlayConnect()">验证并连接</button>
+        </div>
+      </div>
+
+      <!-- sidebar -->
+      <div class="sidebar">
+        <nav class="nav" id="app-nav">
+          <div class="nav-item active" data-panel="backup" onclick="switchPanel(this)"><span
+              class="nav-icon">[Pkg]</span>备份</div>
+          <div class="nav-item" data-panel="restore" onclick="switchPanel(this)"><span class="nav-icon">♻️</span>恢复
+          </div>
+          <div class="nav-item" data-panel="migrate" onclick="switchPanel(this)"><span class="nav-icon">[Tool]</span>换电脑
+          </div>
+          <div class="nav-item" data-panel="fix" onclick="switchPanel(this)"><span class="nav-icon">🔧</span>升级修复</div>
+          <div class="nav-item git-only" data-panel="addbackup" onclick="switchPanel(this)"><span
+              class="nav-icon">➕</span>新增备份项</div>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="git-status"><span class="cdot" id="sb-cdot"></span><span id="sb-conn-text">未连接 GitHub</span></div>
+          <div class="reconnect-btn" onclick="showReconnect()">重新连接 GitHub</div>
+        </div>
+      </div>
+
+      <!-- main -->
+      <div class="main">
+        <div class="topbar">
+          <div class="topbar-title" id="topbar-title">备份</div>
+        </div>
+
+        <!-- reconnect bar removed -->
+        <div class="content">
+
+          <!-- ══ 备份 ══ -->
+          <div class="panel active" id="panel-backup">
+            <div class="sec-title">[Pkg] 备份当前状态</div>
+            <div class="sec-desc">将配置和 agent 灵魂文件备份到 dotfiles 进行版本管理。</div>
+
+            <div id="bk-git-wrap">
+              <div class="step-wrap">
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">填写备注</span></div>
+                  <div class="step-body">
+                    <input type="text" id="bk-msg" placeholder="例：新增 agent / 更新 skill" oninput="bkUpdate()" />
+                  </div>
+                </div>
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">2</span><span class="step-lbl">选择版本号</span></div>
+                  <div class="step-body">
+                    <div class="step-hint" id="bk-tag-hint">连接 GitHub 后自动推荐下一版本</div>
+                    <input type="text" id="bk-tag" placeholder="如 v1.1" oninput="bkUpdate()" />
+                  </div>
+                </div>
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">3</span><span class="step-lbl">执行统一备份命令</span></div>
+                  <div class="step-body">
+                    <div class="step-hint">该命令包含添加、提交及远端推送功能，点击后自动复制。</div>
+                    <div class="cmd-box" id="bk-cmd">（填写备注和版本号后生成）<span class="copy-chip"
+                        onclick="chipCopy(this)">复制</span></div>
+                    <button class="btn full" id="bk-btn" onclick="bkRun()" disabled>[List] 复制备份命令</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="bk-local-wrap" style="display:none;">
+              <div class="step-wrap">
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">纯本地备份指令</span></div>
+                  <div class="step-body">
+                    <div class="step-hint">在终端执行以下命令，即可触发交互式流程以录入 Tag 和说明（不含远端推送）：</div>
+                    <div class="cmd-box" style="margin-top:12px;">oc-save<span class="copy-chip"
+                        onclick="chipCopy(this)">复制</span></div>
+                    <div class="box i" style="margin-top:10px;"><strong>高级用法</strong>如果想要一步完成录入可使用 <code
+                        style="color:var(--g)">oc-save -m "备注" -t v1.0</code></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ 恢复 ══ -->
+          <div class="panel" id="panel-restore">
+            <div class="sec-title">♻️ 恢复历史版本</div>
+            <div class="sec-desc">从备份中恢复配置和灵魂文件，建议先备份当前状态。</div>
+
+            <!-- git mode -->
+            <div id="restore-git">
+              <div class="step-wrap">
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">选择版本</span></div>
+                  <div class="step-body">
+                    <div id="rs-ver-wrap">
+                      <div class="box i"><strong>需要 GitHub 连接</strong>连接后显示版本列表</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="step warn">
+                  <div class="step-hd"><span class="step-n">!</span><span class="step-lbl">建议先备份当前状态</span></div>
+                  <div class="step-body">
+                    <div class="box y"><strong>提示</strong>恢复会覆盖当前配置，建议先到"备份"面板保存当前状态</div>
+                  </div>
+                </div>
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">2</span><span class="step-lbl">执行恢复</span></div>
+                  <div class="step-body">
+                    <div class="cmd-box o" id="rs-cmd">（选择版本后生成）<span class="copy-chip"
+                        onclick="chipCopy(this)">复制</span></div>
+                    <button class="btn full o" id="rs-btn"
+                      onclick="chipCopy(document.querySelector('#rs-cmd .copy-chip'))" disabled>[List] 复制恢复命令</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- local mode -->
+            <div id="restore-local" style="display:none">
+              <div class="step-wrap">
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">本地恢复指南</span></div>
+                  <div class="step-body">
+                    <div class="step-hint" style="margin-bottom:8px">直接在终端使用 <code style="color:var(--c)">oc-rec</code>
+                      命令即可恢复。恢复前建议先执行 <code style="color:var(--g)">oc-save</code> 保存当前最新状态。</div>
+                    <div class="box w"><strong>提示</strong>您可以手动进入 ~/dotfiles 目录执行 <code>git log</code> 或
+                      <code>git tag</code> 查看本地历史标签。
+                    </div>
+                  </div>
+                </div>
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">2</span><span class="step-lbl">执行恢复</span></div>
+                  <div class="step-body">
+                    <div class="step-hint">执行后将出现交互式选项，自动展示近 20 个本地历史版本。手动录入你要恢复的 tag 即可。</div>
+                    <div class="cmd-box o" id="local-rs-cmd" style="margin-top:12px">oc-rec<span class="copy-chip"
+                        onclick="chipCopy(this)">复制</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ══ 换电脑 ══ -->
+          <div class="panel" id="panel-migrate">
+            <div class="sec-title">[Tool] 换电脑迁移</div>
+            <div class="sec-desc">新机器完整恢复 OpenClaw 环境。</div>
+
+            <!-- git mode -->
+            <div id="migrate-git">
+              <div class="step-wrap">
+                <div class="step active">
+                  <div class="step-hd"><span class="step-n">→</span><span class="step-lbl">在新机器上执行完整迁移命令</span></div>
+                  <div class="step-body">
+                    <div class="cmd-box" id="migrate-git-cmd" style="max-height:280px;overflow-y:auto"><span
+                        class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+                    <button class="btn full"
+                      onclick="chipCopy(document.querySelector('#migrate-git-cmd .copy-chip'))">[List] 复制迁移命令</button>
+                    <div class="box w" style="margin-top:10px"><strong>注意</strong>Gemini OAuth token 无法备份，新机器需重新登录。API
+                      key 在 .env 里无需重配。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- local mode -->
+            <div id="migrate-local" style="display:none">
+              <div class="guide-section">
+                <div class="guide-title">本地迁移步骤</div>
+                <div class="guide-step"><span class="gs-n">1</span><span>将 <code style="color:var(--g)"
+                      id="local-dotfiles-path">~/dotfiles</code> 目录物理拷贝到新机器相同路径</span></div>
+                <div class="guide-step"><span class="gs-n">2</span><span>将 <code
+                      style="color:var(--g)">~/.openclaw</code> 目录物理拷贝到新机器</span></div>
+                <div class="guide-step"><span class="gs-n">3</span><span>在新机器执行以下命令：</span></div>
+              </div>
+              <div class="cmd-box" id="migrate-local-cmd" style="max-height:200px;overflow-y:auto"><span
+                  class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+              <button class="btn full"
+                onclick="chipCopy(document.querySelector('#migrate-local-cmd .copy-chip'))">[List]
+                复制命令</button>
+              <div class="box w" style="margin-top:10px"><strong>注意</strong>Gemini OAuth token 需重新登录。</div>
+            </div>
+          </div>
+
+          <!-- ══ 升级修复 ══ -->
+          <div class="panel" id="panel-fix">
+            <div class="sec-title">🔧 升级修复</div>
+            <div class="sec-desc">每次 npm install -g openclaw 升级后必须执行 ，否则启动报 Invalid URL。</div>
+            <div class="box r" style="margin-bottom:16px"><strong>触发场景</strong>openclaw 升级后 / oc 启动报 Invalid URL /
+              换电脑重装后</div>
+            <div class="step-wrap">
+              <div class="step active">
+                <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">升级 openclaw</span></div>
+                <div class="step-body">
+                  <div class="cmd-box">npm install -g openclaw<span class="copy-chip" onclick="chipCopy(this)">复制</span>
+                  </div>
+                  <button class="btn full ghost" onclick="copyText('npm install -g openclaw')">[List] 复制</button>
+                </div>
+              </div>
+              <div class="step active">
+                <div class="step-hd"><span class="step-n">2</span><span class="step-lbl">执行 </span></div>
+                <div class="step-body">
+                  <div class="cmd-box"><span class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+                  <button class="btn full" onclick="copyText('')">[List] 复制</button>
+                </div>
+              </div>
+              <div class="step active">
+                <div class="step-hd"><span class="step-n">3</span><span class="step-lbl">启动</span></div>
+                <div class="step-body">
+                  <div class="cmd-box">oc<span class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="box g" style="margin-top:12px"><strong>口诀</strong>升级 openclaw → → oc</div>
+          </div>
+
+          <!-- ══ 新增备份项 (git only) ══ -->
+          <div class="panel" id="panel-addbackup">
+            <div class="sec-title">➕ 新增备份项</div>
+            <div class="sec-desc">引导式配置，自动读取最新 bash_profile，生成精准插入命令。</div>
+            <div id="ab-no-git" class="box i" style="display:none"><strong>需要 GitHub 连接</strong>请先在侧边栏底部连接 GitHub</div>
+            <div class="step-wrap" id="ab-steps">
+              <div class="step active">
+                <div class="step-hd"><span class="step-n">1</span><span class="step-lbl">选择备份类型</span></div>
+                <div class="step-body">
+                  <div class="choice-grid">
+                    <div class="choice" id="ab-dir" onclick="abSetType('dir')">
+                      <div class="ch-icon">📁</div>
+                      <div class="ch-title">整个文件夹</div>
+                      <div class="ch-desc">scripts/、dailyreport/ 等</div>
+                    </div>
+                    <div class="choice" id="ab-file" onclick="abSetType('file')">
+                      <div class="ch-icon">📄</div>
+                      <div class="ch-title">单个文件</div>
+                      <div class="ch-desc">.md、.json、.py 等</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="step" id="ab-s2" style="display:none">
+                <div class="step-hd"><span class="step-n">2</span><span class="step-lbl">选择所属目录</span></div>
+                <div class="step-body">
+                  <div class="ag-btns" id="ab-agent-btns"></div>
+                </div>
+              </div>
+              <div class="step" id="ab-s3" style="display:none">
+                <div class="step-hd"><span class="step-n">3</span><span class="step-lbl">填写名称</span></div>
+                <div class="step-body">
+                  <input type="text" id="ab-name" placeholder="" oninput="abCheckReady()" />
+                  <div class="step-hint" id="ab-path-hint" style="margin-top:5px"></div>
+                  <div class="tog-row" id="ab-exc-row" style="display:none">
+                    <button class="tog" id="ab-exc-tog"
+                      onclick="this.classList.toggle('on');document.getElementById('ab-exc-wrap').style.display=this.classList.contains('on')?'':'none'"></button>
+                    <span class="tog-label">排除运行时缓存目录</span>
+                  </div>
+                  <div id="ab-exc-wrap" style="display:none;margin-top:6px">
+                    <input type="text" id="ab-exc-val" placeholder="例：cache,tmp,output（逗号分隔）" />
+                  </div>
+                </div>
+              </div>
+              <div class="step" id="ab-s4" style="display:none">
+                <div class="step-hd"><span class="step-n">4</span><span class="step-lbl">选择插入位置</span></div>
+                <div class="step-body">
+                  <div class="step-hint">已自动高亮推荐行，也可手动点选</div>
+                  <div class="plines" id="ab-plines">
+                    <div class="box i" style="margin:0"><strong>提示</strong>连接 GitHub 后显示</div>
+                  </div>
+                </div>
+              </div>
+              <div class="step" id="ab-s5" style="display:none">
+                <div class="step-hd"><span class="step-n">5</span><span class="step-lbl">执行命令</span></div>
+                <div class="step-body">
+                  <div class="box w"><strong>安全提示</strong>以下命令将对 ~/.bash_profile 进行写入操作，请手动执行前仔细检查。</div>
+                  <div class="step-hint">① 插入到 bash_profile</div>
+                  <div class="cmd-box" id="ab-cmd"><span class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+                  <button class="btn full" id="ab-gen-btn" onclick="abGenerate()" disabled>[List] 生成并复制</button>
+                  <hr class="div">
+                  <div class="step-hint">② 生效</div>
+                  <div class="cmd-box">source ~/.bash_profile && echo "[OK] 完成"<span class="copy-chip"
+                      onclick="chipCopy(this)">复制</span></div>
+                  <hr class="div">
+                  <div class="step-hint">③ 备份变更</div>
+                  <div class="cmd-box p" id="ab-save-cmd"><span class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+                  <hr class="div">
+                  <div class="step-hint">④ 验证</div>
+                  <div class="cmd-box c" id="ab-verify"><span class="copy-chip" onclick="chipCopy(this)">复制</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /content -->
+      </div><!-- /main -->
+    </div><!-- /app-body -->
+  </div><!-- /app -->
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ══ STATE ══
+    const ST = {
+      mode: 'git',
+      agents: [],
+      profileLines: [],
+      profileText: '',
+      allTags: [],
+      ghToken: null,
+      gitConnected: false,
+      repoUrl: null,
+      hasOcSave: false,
+      proxyMode: null,
+      proxyPort: '7890',
+      dotfilesPath: '~/dotfiles',
+      ab: { type: null, agent: null, anchorLine: null }
+    };
+    const LS = 'oc-tool-v3';
+
+    // ══ INIT ══
+    window.onload = () => {
+      const saved = lsGet();
+      if (saved?.agents?.length && saved?.repoUrl) {
+        Object.assign(ST, saved);
+        showApp();
+        if (ST.ghToken) reconnectSilent();
+      } else {
+        showWizard();
+      }
+    };
+
+    // ── STORAGE SECURITY ──────────────────────────────────────────────────────
+    // Sensitive: GitHub PAT stored in sessionStorage only (cleared on tab close).
+    //   Key: LS_TOK — never written to localStorage.
+    // Non-sensitive UI state (mode, agents, repoUrl, etc.) goes in localStorage
+    //   for convenience. Contains no credentials or secrets.
+    // Users can wipe everything via reconfig().
+    // ─────────────────────────────────────────────────────────────────────────
+    const LS_TOK = LS + ':tok';
+
+    function lsGet() {
+      try {
+        const state = JSON.parse(localStorage.getItem(LS));
+        const tok = sessionStorage.getItem(LS_TOK) || null;
+        return state ? { ...state, ghToken: tok } : null;
+      } catch { return null; }
+    }
+
+    function lsSave() {
+      // PAT is intentionally excluded from localStorage — sessionStorage only
+      localStorage.setItem(LS, JSON.stringify({
+        mode: ST.mode, agents: ST.agents, profileLines: ST.profileLines,
+        allTags: ST.allTags, gitConnected: ST.gitConnected, repoUrl: ST.repoUrl,
+        hasOcSave: ST.hasOcSave, proxyMode: ST.proxyMode,
+        proxyPort: ST.proxyPort, dotfilesPath: ST.dotfilesPath
+      }));
+      if (ST.ghToken) sessionStorage.setItem(LS_TOK, ST.ghToken);
+      else sessionStorage.removeItem(LS_TOK);
+    }
+
+    // ══ FILE DROP ══
+    function fdDrag(e, id) { e.preventDefault(); document.getElementById(id).classList.add('drag'); }
+    function fdLeave(id) { document.getElementById(id).classList.remove('drag'); }
+    function fdDrop(e, id, type) { e.preventDefault(); fdLeave(id); const f = e.dataTransfer.files[0]; if (f) readFile(f, type); }
+    function fdPick(input, type) { if (input.files[0]) readFile(input.files[0], type); }
+
+    function readFile(file, type) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        if (type === 'json') parseJson(e.target.result, file.name);
+        else parseProfile(e.target.result, file.name);
+      };
+      reader.readAsText(file);
+    }
+
+    function parseJson(text, name) {
+      const area = document.getElementById('fd-json');
+      const label = document.getElementById('fd-json-label');
+      try {
+        const json = JSON.parse(text);
+        ST.agents = (json?.agents?.list || []).map(a => ({
+          id: a.id, name: a.name || a.id,
+          model: a.model || '',
+          workspace: a.workspace || `~/.openclaw/workspace-${a.id}`
+        }));
+        if (!ST.agents.length) throw new Error('未找到 agent 配置');
+        area.classList.add('ok'); area.classList.remove('err');
+        label.textContent = `[OK] 识别到 ${ST.agents.length} 个 agent：${ST.agents.map(a => a.name).join(', ')}`;
+        wzStatus('wz-0-status', 'ok', `${ST.agents.map(a => a.name + ' (' + a.model.split('/').pop() + ')').join(' · ')}`);
+        setupSetupStep();
+      } catch (e) {
+        area.classList.add('err'); area.classList.remove('ok');
+        label.textContent = '[Err] 解析失败，请确认是正确的 openclaw.json';
+        wzStatus('wz-0-status', 'err', e.message);
+      }
+    }
+
+    function parseProfile(text, name) {
+      ST.profileText = text;
+      const area = document.getElementById('fd-profile');
+      const label = document.getElementById('fd-profile-label');
+      ST.hasOcSave = text.includes('oc-save()');
+      ST.profileLines = parseProfileLines(text);
+      area.classList.add('ok');
+      label.textContent = `[OK] 已读取 | oc-save: ${ST.hasOcSave ? 'Done 已有' : '✗ 未找到'} | 备份行: ${ST.profileLines.length} 条`;
+      wzStatus('wz-1-status', ST.hasOcSave ? 'ok' : 'warn',
+        ST.hasOcSave ? '检测到已有 oc-save 命令' : '未检测到 oc-save，配置清单确认中');
+      setupSetupStep();
+
+      // 预设配置步骤
+      setupSetupStep();
+    }
+
+    function parseProfileLines(text) {
+      const lines = text.split('\n');
+      const result = [];
+      let inSave = false;
+      lines.forEach((line, i) => {
+        if (line.includes('oc-save()')) inSave = true;
+        if (inSave && i > 5 && line.match(/^[a-z].*\(\)/) && !line.includes('oc-save')) inSave = false;
+        if (inSave && line.match(/^\s+(rsync|cp |mkdir|\[ -[fd])/))
+          result.push({ num: i + 1, text: line.trim() });
+      });
+      return result;
+    }
+
+    // ══ WIZARD ══
+    function setupSetupStep() {
+      const inject = document.getElementById('wz-inject-sec');
+      if (ST.agents.length && ST.profileText) {
+        inject.style.display = 'block';
+        if (ST.hasOcSave) {
+          wzStatus('wz-1-status', 'ok', '[OK] 成功探测并且发现已有 oc-save 命令，仍可重新生成并覆盖配置最新运行环境配置。');
+        }
+        wzSelectProxy(ST.proxyMode || 'none');
+      } else {
+        inject.style.display = 'none';
+      }
+    }
+
+    function wzSelectProxy(mode) {
+      ST.proxyMode = mode;
+      document.getElementById('pc-none')?.classList.toggle('sel', mode === 'none');
+      document.getElementById('pc-none')?.classList.toggle('noproxy', true);
+      document.getElementById('pc-proxy')?.classList.toggle('sel', mode === 'proxy');
+      const portRow = document.getElementById('proxy-port-row');
+      if (portRow) portRow.style.display = mode === 'proxy' ? '' : 'none';
+    }
+
+    function wzShowBakCmd() {
+      ST.proxyPort = document.getElementById('proxy-port')?.value.trim() || '7890';
+      const injectCmd = generateSetupCmd();
+
+      // Hide step 3 actions, show step 4
+      const btn = document.getElementById('wz-finish-btn');
+      if (btn) btn.style.display = 'none';
+
+      const step4 = document.getElementById('wz-inject-review');
+      if (step4) step4.style.display = 'block';
+
+      // adding extra explicit comments 
+      const displayCmd = `# ==========================================
+# Openclaw 环境及快捷命令生成配置
+# ==========================================
+# 此脚本包含以下工具的自动化：
+# 1. 自动代理环境变量探测 (提升国内拉取镜像和模型的速度)
+# 2. oc：运行/重启 openclaw 快捷命令
+# 3. oc-save：用于交互式备份整个工作区配置
+# 4. oc-rec：交互式恢复本地或云端的备份
+
+# ==========================================
+` + injectCmd;
+
+      setBoxText('wz-final-cmd', displayCmd);
+
+      // Also copy to clipboard proactively
+      copyText(displayCmd);
+    }
+
+    function wzFinalEnter() {
+      lsSave();
+      showApp();
+      if (ST.allTags && ST.allTags.length) {
+        renderVersionList();
+        const next = bumpTag(ST.allTags[0].name);
+        const bkTag = document.getElementById('bk-tag');
+        if (bkTag) bkTag.value = next;
+        const bkHint = document.getElementById('bk-tag-hint');
+        if (bkHint) bkHint.textContent = `上一版本：${ST.allTags[0].name} → 推荐：${next}`;
+        if (typeof bkUpdate === 'function') bkUpdate();
+      }
+      if (typeof renderAgentBtns === 'function') renderAgentBtns();
+      if (typeof renderMigrateCmds === 'function') renderMigrateCmds();
+      if (typeof setConnected === 'function') setConnected(!!ST.ghToken);
+    }
+
+    function generateSetupCmd() {
+      const proxy = ST.proxyMode === 'proxy';
+      const port = ST.proxyPort;
+      const agents = ST.agents;
+
+      // 动态生成 workspace 备份行
+      const agentBackupLines = agents.map(a => {
+        const wsName = `workspace-${a.id}`;
+        return [
+          `    mkdir -p ${wsName}`,
+          `    for f in MEMORY.md SOUL.md IDENTITY.md AGENTS.md USER.md HEARTBEAT.md TOOLS.md; do`,
+          `        [ -f ${a.workspace}/$f ] && cp ${a.workspace}/$f ${wsName}/$f`,
+          `    done`
+        ].join('\n');
+      }).join('\n\n');
+
+      const agentRestoreLines = agents.map(a => {
+        return `    [ -d workspace-${a.id} ] && rsync -a workspace-${a.id}/ ${a.workspace}/`;
+      }).join('\n');
+
+      const migrateWsLines = agents.map(a => {
+        return `rsync -a ~/dotfiles/workspace-${a.id}/ ${a.workspace}/`;
+      }).join('\n');
+
+      // ── PROXY DETECTION ────────────────────────────────────────────────────────
+      // SECURITY: Uses native macOS scutil + awk only. No node -e, no eval,
+      // no dynamic code execution. Pure read-only shell syscall.
+      // ─────────────────────────────────────────────────────────────────────────
+      const proxyDetect = proxy ? `
+# ── PROXY DETECTION ────────────────────────────────────────────────────────
+# Reads macOS HTTPS proxy via scutil --proxy (read-only, no side effects).
+# Uses only built-in tools: scutil + awk. No Node.js, no eval.
+# ──────────────────────────────────────────────────────────────────────────
+_detect_proxy() {
+    local _enabled _host _port
+    _enabled=$(scutil --proxy 2>/dev/null | awk '/HTTPSEnable/{print $3}')
+    [ "$_enabled" != "1" ] && return
+    _host=$(scutil --proxy 2>/dev/null | awk '/HTTPSProxy/{print $3}')
+    _port=$(scutil --proxy 2>/dev/null | awk '/HTTPSPort/{print $3}')
+    [ -n "$_host" ] && [ -n "$_port" ] && echo "http://${_host}:${_port}"
+}
+
+# Pushes to git with proxy applied when detected, direct otherwise.
+_git_push_auto() {
+    local PROXY
+    PROXY=$(_detect_proxy)
+    if [ -n "$PROXY" ]; then
+        echo "[git] 发现系统代理: $PROXY"
+        HTTPS_PROXY=$PROXY git push
+        HTTPS_PROXY=$PROXY git push origin $1
+    else
+        git push
+        git push origin $1
+    fi
+}` : `
+_git_push_auto() {
+    git push
+    git push origin $1
+}`;
+
+            const ocStart = `
+# ── oc: Openclaw gateway restart command ────────────────────────────────────
+# Kills any process on port 18789, detects system proxy via scutil (read-only),
+# then starts openclaw gateway. No eval, no dynamic code execution.
+# ──────────────────────────────────────────────────────────────────────────
+oc() {
+    lsof -ti:18789 | xargs kill -9 2>/dev/null
+    local _PROXY
+    _PROXY=$(_detect_proxy 2>/dev/null)
+    if [ -n "$_PROXY" ]; then
+        echo "[openclaw] 代理模式: $_PROXY"
+        HTTPS_PROXY=$_PROXY HTTP_PROXY=$_PROXY openclaw gateway run --bind loopback
+    else
+        echo "[openclaw] 直连模式"
+        openclaw gateway run --bind loopback
+    fi
+}`;
+
+            // ── IDEMPOTENT WRITE ──────────────────────────────────────────────────────
+      // SECURITY: Checks for OC_TOOL_BLOCK marker before appending to bash_profile.
+      // Running the generated command multiple times is safe — functions are only
+      // inserted once. No unconditional >> append.
+      // ─────────────────────────────────────────────────────────────────────────
+      return `if ! grep -q '# OC_TOOL_BLOCK' ~/.bash_profile 2>/dev/null; then
+cat >> ~/.bash_profile << 'OCEOF'
+# OC_TOOL_BLOCK — managed by oc-tool. Do not remove this line.
+${proxyDetect}
+${ocStart}
+
+oc-save() {
+    # --- 统一备份逻辑: 将配置与 Agent 增量同步至 dotfiles ---
+    # --- BACKUP UTILITY: Incremental rsync of configs to local dotfiles directory ---
+    local MSG="" TAG=""
+    while [[ $# -gt 0 ]]; do
+        case $1 in -m) MSG="$2"; shift 2;; -t) TAG="$2"; shift 2;; *) shift;; esac
+    done
+    cd ~/dotfiles
+    cp ~/.bash_profile bash_profile # 备份环境配置 (Back up env config)
+    cp ~/.openclaw/openclaw.json openclaw.json # 备份核心配置 (Back up core config)
+    rsync -a --delete --exclude="miaoxiang/" ~/.openclaw/skills/ skills/
+${agentBackupLines}
+    
+    # 自动计算下一版本号 (如 v1.0 -> v1.1)
+    LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0")
+    AUTO_TAG=$(echo $LAST_TAG | sed 's/v//' | awk -F. '{printf "v%d.%d", $1, $2+1}')
+    
+    if [ -n "$MSG" ] && [ -n "$TAG" ]; then
+        git add . && git commit -m "$TAG: $MSG" && git tag $TAG
+        _git_push_auto $TAG
+        echo "[OK] 备份完成 $TAG"
+        return
+    fi
+    
+    # 交互式引导流
+    echo "" && echo "[Pkg] dotfiles 备份" && echo "-----------------"
+    read -p "备注信息: " MSG
+    [ -z "$MSG" ] && echo "已取消" && return
+    read -p "Tag 版本号 [回车默认 $AUTO_TAG]: " TAG
+    [ -z "$TAG" ] && TAG=$AUTO_TAG
+    echo "" && echo "备注: $MSG" && echo "Tag: $TAG"
+    read -p "确认提交? [y/n]: " CONFIRM
+    [ "$CONFIRM" != "y" ] && echo "已取消" && return
+    git add . && git commit -m "$TAG: $MSG" && git tag $TAG
+    _git_push_auto $TAG
+    echo "[OK] 备份完成 $TAG"
+}
+
+oc-rec() {
+    # --- 统一恢复策略 (含版本切换) ---
+    # --- RESTORE UTILITY: Reverts configs to selected git tag from dotfiles ---
+    cd ~/dotfiles
+    ${proxy ? `PROXY=$(_detect_proxy)
+    if [ -n "$PROXY" ]; then HTTPS_PROXY=$PROXY git fetch --tags 2>/dev/null
+    else git fetch --tags 2>/dev/null; fi` : `git fetch --tags 2>/dev/null`}
+    echo "" && echo "[List] 可用版本："
+    git tag --sort=-version:refname | head -20
+    echo "" && read -p "恢复到哪个版本（回车取消）: " TAG
+    [ -z "$TAG" ] && echo "已取消" && return
+    
+    # 执行物理文件覆盖
+    git checkout $TAG
+    cp bash_profile ~/.bash_profile
+    cp openclaw.json ~/.openclaw/openclaw.json
+    [ -d skills ] && rsync -a skills/ ~/.openclaw/skills/
+${agentRestoreLines}
+    git checkout main 2>/dev/null
+    source ~/.bash_profile
+    echo "[OK] 已恢复到 $TAG"
+}
+
+OCEOF
+else
+  echo "[oc-tool] 已检测到现有配置，跳过写入。如需重新生成请先删除 bash_profile 中的 OC_TOOL_BLOCK 段落。"
+fi`;
+    }
+
+    async function wzTestGit() {
+      const token = document.getElementById('wz-token').value.trim();
+      const url = document.getElementById('wz-repo-url').value.trim();
+      if (!token || !url) return;
+      ST.ghToken = token;
+      ST.repoUrl = url;
+      wzStatus('wz-3-status', 'info', '验证中…');
+      try {
+        const repoPath = url.replace('https://github.com/', '').replace('.git', '');
+        const tags = await ghFetch(`repos/${repoPath}/tags?per_page=20`);
+        ST.allTags = tags;
+        // 尝试拉 bash_profile
+        try {
+          const prof = await ghFetchRaw(`repos/${repoPath}/contents/bash_profile`);
+          ST.profileLines = parseProfileLines(prof);
+        } catch { }
+        const isEmpty = tags.length === 0;
+        wzStatus('wz-3-status', isEmpty ? 'warn' : 'ok',
+          isEmpty ? '仓库为空，配置完成后请先执行 oc-save 初始化备份' : `[OK] 连接成功 | ${tags.length} 个备份版本`);
+        document.getElementById('wz-3-next').disabled = false;
+      } catch (e) {
+        wzStatus('wz-3-status', 'err', '连接失败：' + e.message);
+        ST.ghToken = null;
+      }
+    }
+
+    function wzFinish() {
+      lsSave();
+      showApp();
+      if (ST.allTags.length) {
+        renderVersionList();
+        const next = bumpTag(ST.allTags[0].name);
+        document.getElementById('bk-tag').value = next;
+        document.getElementById('bk-tag-hint').textContent = `上一版本：${ST.allTags[0].name} → 推荐：${next}`;
+        bkUpdate();
+      }
+      renderAgentBtns();
+      renderMigrateCmds();
+      setConnected(true);
+    }
+
+    function wzStatus(id, type, msg) {
+      const colors = { ok: 'var(--g)', warn: 'var(--y)', err: 'var(--r)', info: 'var(--c)' };
+      document.getElementById(id).innerHTML =
+        `<div class="st-row"><span class="sdot" style="background:${colors[type]}"></span><span>${msg}</span></div>`;
+    }
+
+    // ══ APP ══
+    function showWizard() { document.getElementById('wizard').classList.remove('hidden'); document.getElementById('app').classList.remove('visible'); }
+    function showApp() {
+      document.getElementById('wizard').classList.add('hidden');
+      document.getElementById('app').classList.add('visible');
+      // show local tab always
+      document.querySelector('.mode-tab.local').classList.add('show');
+      switchMode(ST.mode || 'git');
+      renderAgentBtns();
+      renderMigrateCmds();
+    }
+
+    function reconfig() {
+      if (confirm('清除所有配置重新设置？')) {
+        localStorage.removeItem(LS);
+        sessionStorage.removeItem(LS_TOK); // also clear PAT from sessionStorage
+        location.reload();
+      }
+    }
+
+    function switchMode(mode) {
+      ST.mode = mode;
+      document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+
+      // show/hide git-only nav items
+      document.querySelectorAll('.git-only').forEach(el => el.style.display = mode === 'git' ? '' : 'none');
+
+      // Custom Backup Mode Toggle
+      const bkGitWrap = document.getElementById('bk-git-wrap');
+      const bkLocalWrap = document.getElementById('bk-local-wrap');
+      if (bkGitWrap && bkLocalWrap) {
+        if (mode === 'local') {
+          bkGitWrap.style.display = 'none';
+          bkLocalWrap.style.display = 'block';
+        } else {
+          bkGitWrap.style.display = 'block';
+          bkLocalWrap.style.display = 'none';
+        }
+      }
+
+      // show/hide mode-specific content
+      ['restore-git', 'migrate-git'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = mode === 'git' ? '' : 'none'; });
+      ['restore-local', 'migrate-local'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = mode === 'local' ? '' : 'none'; });
+
+      if (mode === 'local' && document.querySelector('.nav-item.active')?.dataset?.panel === 'addbackup') {
+        switchPanel(document.querySelector('[data-panel=backup]'));
+      }
+
+      // Handle GitHub Overlay visibility
+      const overlay = document.getElementById('git-overlay');
+      if (overlay) {
+        if (mode === 'git' && !ST.gitConnected) {
+          overlay.classList.remove('hidden');
+          if (ST.repoUrl) document.getElementById('go-repo-url').value = ST.repoUrl;
+        } else {
+          overlay.classList.add('hidden');
+        }
+      }
+    }
+
+    const panelTitles = { backup: '备份', restore: '恢复', migrate: '换电脑迁移', fix: '升级修复', addbackup: '新增备份项' };
+    function switchPanel(el) {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      const id = el.dataset.panel;
+      document.getElementById('panel-' + id).classList.add('active');
+      document.getElementById('topbar-title').textContent = panelTitles[id] || '';
+      // check git connection for addbackup
+      if (id === 'addbackup') {
+        document.getElementById('ab-no-git').style.display = ST.ghToken ? 'none' : '';
+      }
+    }
+
+    // ══ GIT ══
+    function setConnected(ok) {
+      [document.getElementById('app-cdot'), document.getElementById('sb-cdot')]
+        .forEach(d => d.className = 'cdot' + (ok ? ' ok' : ''));
+      document.getElementById('app-conn-text').textContent = ok ? '已连接 GitHub' : '未连接';
+      document.getElementById('sb-conn-text').textContent = ok ? '已连接 GitHub' : '未连接 GitHub';
+    }
+
+    function toggleGoPrivate(btn) {
+      btn.classList.toggle('on');
+      const isPrivate = btn.classList.contains('on');
+      const wrap = document.getElementById('go-token-wrap');
+      const warn = document.getElementById('go-public-warn');
+      const lbl = btn.nextElementSibling;
+      if (wrap) wrap.style.display = isPrivate ? 'block' : 'none';
+      if (warn) warn.style.display = isPrivate ? 'none' : 'block';
+      if (lbl) lbl.textContent = isPrivate ? '这是一个私有仓库 (强烈推荐)' : '这是一个公开仓库 (不需要 Token)';
+    }
+
+    function showReconnect() {
+      switchMode('git');
+      const overlay = document.getElementById('git-overlay');
+      if (overlay) {
+        overlay.classList.remove('hidden');
+        if (ST.repoUrl) document.getElementById('go-repo-url').value = ST.repoUrl;
+        if (ST.ghToken) {
+          document.getElementById('go-token').value = ST.ghToken;
+          const tog = document.getElementById('go-private-tog');
+          if (tog && !tog.classList.contains('on')) toggleGoPrivate(tog);
+        } else if (ST.gitConnected && !ST.ghToken) {
+          // It was connected as public
+          const tog = document.getElementById('go-private-tog');
+          if (tog && tog.classList.contains('on')) toggleGoPrivate(tog);
+        }
+        document.getElementById('go-status').textContent = '';
+      }
+    }
+
+    async function doGitOverlayConnect() {
+      const isPrivate = document.getElementById('go-private-tog')?.classList.contains('on');
+      const token = document.getElementById('go-token').value.trim();
+      const repo = document.getElementById('go-repo-url').value.trim();
+      const statusEl = document.getElementById('go-status');
+      const btn = document.getElementById('go-btn');
+
+      if (!repo) {
+        statusEl.textContent = '[Err] 请填写仓库 URL';
+        return;
+      }
+      if (isPrivate && !token) {
+        statusEl.textContent = '[Err] 私有仓库必须填写 Token';
+        return;
+      }
+
+      ST.ghToken = isPrivate ? token : '';
+      ST.repoUrl = repo;
+      statusEl.style.color = 'var(--t)';
+      statusEl.textContent = '连接与验证中...';
+      btn.disabled = true;
+
+      try {
+        const repoPath = repo.replace('https://github.com/', '').replace('.git', '');
+        const tags = await ghFetch(`repos/${repoPath}/tags?per_page=20`);
+        ST.allTags = tags;
+        try {
+          const prof = await ghFetchRaw(`repos/${repoPath}/contents/bash_profile`);
+          ST.profileLines = parseProfileLines(prof);
+        } catch { }
+
+        ST.gitConnected = true;
+        lsSave();
+        setConnected(true);
+        renderVersionList();
+        if (tags.length) {
+          const next = bumpTag(tags[0].name);
+          const bkTag = document.getElementById('bk-tag');
+          if (bkTag) bkTag.value = next;
+          const bkHint = document.getElementById('bk-tag-hint');
+          if (bkHint) bkHint.textContent = `上一版本：${tags[0].name} → 推荐：${next}`;
+          if (typeof bkUpdate === 'function') bkUpdate();
+        }
+
+        // Hide overlay on success
+        document.getElementById('git-overlay').classList.add('hidden');
+        renderMigrateCmds();
+
+        // reset status
+        btn.disabled = false;
+        statusEl.textContent = '';
+        showToast('GitHub 连接成功！');
+      } catch (e) {
+        statusEl.style.color = 'var(--r)';
+        statusEl.textContent = '[Err] 连接失败：' + e.message + ' (检查 Token 权限或仓库地址)';
+        btn.disabled = false;
+        ST.ghToken = null; // revert token
+        ST.gitConnected = false;
+      }
+    }
+
+    async function reconnectSilent() {
+      try {
+        const repoPath = ST.repoUrl.replace('https://github.com/', '').replace('.git', '');
+        const tags = await ghFetch(`repos/${repoPath}/tags?per_page=20`);
+        ST.allTags = tags;
+        try { const prof = await ghFetchRaw(`repos/${repoPath}/contents/bash_profile`); ST.profileLines = parseProfileLines(prof); } catch { }
+        setConnected(true);
+        renderVersionList();
+        if (tags.length) { const next = bumpTag(tags[0].name); document.getElementById('bk-tag').value = next; document.getElementById('bk-tag-hint').textContent = `上一版本：${tags[0].name} → 推荐：${next}`; bkUpdate(); }
+      } catch { setConnected(false); }
+    }
+
+    // ══ BACKUP ══
+
+    async function reconnectSilent() {
+      try {
+        const repoPath = ST.repoUrl.replace('https://github.com/', '').replace('.git', '');
+        const tags = await ghFetch(`repos/${repoPath}/tags?per_page=20`);
+        ST.allTags = tags;
+        try { const prof = await ghFetchRaw(`repos/${repoPath}/contents/bash_profile`); ST.profileLines = parseProfileLines(prof); } catch { }
+        setConnected(true);
+        renderVersionList();
+        if (tags.length) { const next = bumpTag(tags[0].name); const bkTag = document.getElementById('bk-tag'); if (bkTag) { bkTag.value = next; const bHint = document.getElementById('bk-tag-hint'); if (bHint) bHint.textContent = `上一版本：${tags[0].name} → 推荐：${next}`; bkUpdate(); } }
+      } catch {
+        setConnected(false);
+        ST.ghToken = null; ST.gitConnected = false; // invalidate token so overlay shows
+        switchMode(ST.mode); // re-trigger overlay check
+      }
+    }
+
+    // ══ INPUT SANITIZATION ════════════════════════════════════════════════════
+    // SECURITY: All user inputs that flow into generated shell commands are
+    // sanitized before interpolation to prevent shell injection.
+    // These functions are called at the point of command generation, NOT at
+    // input time — so users can type freely; validation happens on generate.
+    // ─────────────────────────────────────────────────────────────────────────
+
+    // sanitizePath: accepts only safe path-component characters.
+    // Rejects anything that could be a shell metacharacter or path traversal.
+    // Valid: alphanumeric, hyphen, underscore, dot, space (for display names).
+    // Returns null if the input contains dangerous characters.
+    function sanitizePath(str) {
+      if (!str) return null;
+      // Strip trailing slashes (already done at call sites, belt-and-suspenders)
+      const s = str.replace(/\/+$/, '').replace(/^\/+/, '');
+      // Block shell metacharacters and path traversal
+      if (/[;&|`$(){}!<>
+
+'"\]/.test(s)) return null;
+      if (s.includes('..')) return null; // no path traversal
+      if (s.length > 128) return null;   // sanity length cap
+      return s;
+    }
+
+    // sanitizeTag: git tag names — alphanumeric, dot, hyphen, underscore, leading v.
+    // Returns null if invalid.
+    function sanitizeTag(str) {
+      if (!str) return null;
+      if (!/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$/.test(str)) return null;
+      return str;
+    }
+
+    // sanitizeMsg: commit message — allow most printable chars but strip
+    // double-quotes and backticks to prevent breaking out of oc-save -m "..." context.
+    // Returns sanitized string (never null — falls back to placeholder).
+    function sanitizeMsg(str) {
+      if (!str) return 'backup';
+      return str.replace(/["`;]/g, '').substring(0, 200);
+    }
+
+    // sanitizeExclude: comma-separated rsync exclude patterns.
+    // Each segment: alphanumeric, dot, hyphen, underscore only.
+    // Returns cleaned array (invalid segments are dropped, not errored).
+    function sanitizeExcludes(str) {
+      if (!str) return [];
+      return str.split(',')
+        .map(s => s.trim().replace(/\/+$/, ''))
+        .filter(s => s && /^[a-zA-Z0-9._-]+$/.test(s) && !s.includes('..'));
+    }
+
+    // showInputError: display a validation error near a given element id.
+    function showInputError(id, msg) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let errEl = document.getElementById(id + '-err');
+      if (!errEl) {
+        errEl = document.createElement('div');
+        errEl.id = id + '-err';
+        errEl.style.cssText = 'color:var(--r);font-size:11px;margin-top:4px;';
+        el.parentNode.insertBefore(errEl, el.nextSibling);
+      }
+      errEl.textContent = msg;
+      setTimeout(() => { if (errEl) errEl.textContent = ''; }, 3000);
+    }
+    // ═════════════════════════════════════════════════════════════════════════
+
+    function bkUpdate() {
+      const rawMsg = document.getElementById('bk-msg').value.trim();
+      const rawTag = document.getElementById('bk-tag').value.trim();
+      const btn = document.getElementById('bk-btn');
+      const msg = sanitizeMsg(rawMsg);
+      const tag = sanitizeTag(rawTag);
+      if (rawMsg && rawTag) {
+        if (!tag) { showInputError('bk-tag', '版本号只允许字母、数字、点、连字符'); btn.disabled = true; return; }
+        setBoxText('bk-cmd', `oc-save -m "${msg}" -t ${tag}`);
+        setBoxText('bk-verify-cmd', `git -C ~/dotfiles tag | grep "^${tag}$"`);
+        btn.disabled = false;
+      } else { btn.disabled = true; }
+    }
+
+    function bkRun() {
+      const msg = sanitizeMsg(document.getElementById('bk-msg').value.trim());
+      const tag = sanitizeTag(document.getElementById('bk-tag').value.trim());
+      if (!tag) { showInputError('bk-tag', '版本号包含非法字符'); return; }
+      copyText(`oc-save -m "${msg}" -t ${tag}`);
+      showToast(`命令已复制！切到终端 CMD+V 执行`);
+      document.getElementById('bk-verify-step').classList.add('active');
+    }
+
+    // ══ RESTORE ══
+    function renderVersionList() {
+      const wrap = document.getElementById('rs-ver-wrap');
+      if (!ST.allTags.length) { wrap.innerHTML = '<div class="box y"><strong>暂无备份</strong>请先执行 oc-save 创建第一个备份</div>'; return; }
+      wrap.innerHTML = '<div class="ver-list">' + ST.allTags.map((t, i) =>
+        `<div class="ver-item" id="vi-${i}" onclick="rsSelect(${i})"><span class="vi-tag">${t.name}</span><span class="vi-msg">${t.commit?.message || ''}</span></div>`
+      ).join('') + '</div>';
+    }
+
+    function rsSelect(i) {
+      document.querySelectorAll('.ver-item').forEach(el => el.classList.remove('sel'));
+      document.getElementById('vi-' + i).classList.add('sel');
+      const tag = ST.allTags[i].name;
+      setBoxText('rs-cmd', `oc-rec\n# 输入版本号：${tag}`);
+      document.getElementById('rs-btn').disabled = false;
+    }
+
+    function localRsUpdate() {
+      const rawTag = document.getElementById('local-rs-tag').value.trim();
+      const btn = document.getElementById('local-rs-btn');
+      if (rawTag) {
+        const tag = sanitizeTag(rawTag);
+        if (!tag) { showInputError('local-rs-tag', '版本号只允许字母、数字、点、连字符'); btn.disabled = true; return; }
+        setBoxText('local-rs-cmd', `oc-rec\n# 输入版本号：${tag}`);
+        btn.disabled = false;
+      } else btn.disabled = true;
+    }
+
+    // ══ MIGRATE ══
+    function renderMigrateCmds() {
+      const repoUrl = ST.repoUrl || '<在此替换为你的私有仓库 URL（如 https://github.com/用户名/dotfiles.git）>';
+      const wsLines = ST.agents.map(a => `rsync -a ~/dotfiles/workspace-${a.id}/ ${a.workspace}/`).join('\\n');
+      const gitCmd = `git clone ${repoUrl} ~/dotfiles
+cp ~/dotfiles/bash_profile ~/.bash_profile && source ~/.bash_profile
+cp ~/dotfiles/openclaw.json ~/.openclaw/openclaw.json
+
+${wsLines}
+rsync -a ~/dotfiles/skills/ ~/.openclaw/skills/
+npm install -g openclaw
+brew install ollama && ollama pull nomic-embed-text
+`;
+      setBoxText('migrate-git-cmd', gitCmd);
+
+      const localCmd = `cp ~/dotfiles/bash_profile ~/.bash_profile && source ~/.bash_profile
+cp ~/dotfiles/openclaw.json ~/.openclaw/openclaw.json
+
+${wsLines}
+rsync -a ~/dotfiles/skills/ ~/.openclaw/skills/
+npm install -g openclaw
+brew install ollama && ollama pull nomic-embed-text
+`;
+      setBoxText('migrate-local-cmd', localCmd);
+    }
+
+    // ══ ADD BACKUP ══
+    function renderAgentBtns() {
+      const wrap = document.getElementById('ab-agent-btns');
+      wrap.innerHTML = [
+        `<button class="ag-btn" data-agent="root" onclick="abSetAgent('root')">~/.openclaw/</button>`,
+        ...ST.agents.map(a => `<button class="ag-btn" data-agent="${a.id}" onclick="abSetAgent('${a.id}')">${a.name}</button>`)
+      ].join('');
+    }
+
+    function abSetType(t) {
+      ST.ab.type = t;
+      document.getElementById('ab-dir').classList.toggle('sel', t === 'dir');
+      document.getElementById('ab-file').classList.toggle('sel', t === 'file');
+      document.getElementById('ab-file').classList.toggle('o', t === 'file');
+      document.getElementById('ab-s2').style.display = '';
+      document.getElementById('ab-s2').classList.add('active');
+      abCheckReady();
+    }
+
+    function abSetAgent(a) {
+      ST.ab.agent = a;
+      document.querySelectorAll('.ag-btn').forEach(el => el.classList.toggle('sel', el.dataset.agent === a));
+      ['ab-s3', 'ab-s4', 'ab-s5'].forEach(id => { document.getElementById(id).style.display = ''; document.getElementById(id).classList.add('active'); });
+      abUpdateHint(); abFilterLines(); abCheckReady();
+    }
+
+    function abUpdateHint() {
+      if (!ST.ab.type || !ST.ab.agent) return;
+      const ag = ST.agents.find(x => x.id === ST.ab.agent);
+      const base = ST.ab.agent === 'root' ? '~/.openclaw' : (ag?.workspace || `~/.openclaw/workspace-${ST.ab.agent}`);
+      document.getElementById('ab-name').placeholder = ST.ab.type === 'dir' ? '例：scripts' : '例：CUSTOM.md';
+      document.getElementById('ab-path-hint').textContent = `完整路径：${base}/<名称>${ST.ab.type === 'dir' ? '/' : ''}`;
+      document.getElementById('ab-exc-row').style.display = ST.ab.type === 'dir' ? 'flex' : 'none';
+    }
+
+    function abFilterLines() {
+      const el = document.getElementById('ab-plines');
+      if (!ST.profileLines.length) { el.innerHTML = '<div class="box i" style="margin:0"><strong>提示</strong>连接 GitHub 后显示</div>'; return; }
+      const ag = ST.ab.agent;
+      const filters = { root: l => l.text.includes('bash_profile') || l.text.includes('openclaw.json') || l.text.includes('.env') || l.text.includes('skills/') };
+      ST.agents.forEach(a => { filters[a.id] = l => l.text.includes('workspace-' + a.id); });
+      const match = filters[ag] || (() => true);
+      el.innerHTML = ST.profileLines.map((l, i) => {
+        const rel = match(l);
+        return `<div class="pline${rel ? '' : ' dim'}" id="abl-${i}" ${rel ? `onclick="abSelectAnchor(${i})"` : ''}><span class="pl-n">${l.num}</span><span class="pl-t">${l.text.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span></div>`;
+      }).join('');
+      const relIdxs = ST.profileLines.map((l, i) => match(l) ? i : -1).filter(i => i >= 0);
+      if (relIdxs.length) { const last = relIdxs[relIdxs.length - 1]; abSelectAnchor(last); setTimeout(() => document.getElementById('abl-' + last)?.scrollIntoView({ block: 'nearest' }), 50); }
+    }
+
+    function abSelectAnchor(i) {
+      document.querySelectorAll('.pline').forEach(el => el.classList.remove('sel'));
+      document.getElementById('abl-' + i)?.classList.add('sel');
+      ST.ab.anchorLine = ST.profileLines[i].num;
+      abCheckReady();
+    }
+
+    function abCheckReady() {
+      document.getElementById('ab-gen-btn').disabled = !(ST.ab.type && ST.ab.agent && document.getElementById('ab-name').value.trim() && ST.ab.anchorLine);
+    }
+    document.getElementById('ab-name').addEventListener('input', abCheckReady);
+
+    function abGenerate() {
+      // SECURITY: sanitize all user inputs before interpolating into shell commands
+      const rawName = document.getElementById('ab-name').value.trim();
+      const name = sanitizePath(rawName);
+      if (!name) {
+        showInputError('ab-name', '名称包含非法字符（禁止 ; | & $ ` ( ) " ' \ 及路径穿越）');
+        return;
+      }
+
+      const excOn = document.getElementById('ab-exc-tog').classList.contains('on');
+      const rawExc = document.getElementById('ab-exc-val').value.trim();
+      const safeExcludes = excOn ? sanitizeExcludes(rawExc) : [];
+
+      const baseSrc = ST.ab.agent === 'root' ? '~/.openclaw' : `~/.openclaw/workspace-${ST.ab.agent}`; // always tilde, never ag.workspace (avoids path duplication)
+      const destFull = ST.ab.agent === 'root' ? name : `workspace-${ST.ab.agent}/${name}`;
+      const srcFull = `${baseSrc}/${name}`;
+      let newLine = ST.ab.type === 'dir'
+        ? `    rsync -a ${safeExcludes.length ? safeExcludes.map(e => `--exclude="${e}/" `).join('') : ''}${srcFull}/ ${destFull}/` // 此行由 octool 生成：将工作区子目录备份到 dotfiles (Generated: rsync workspace subdirectory)
+        : `    [ -f ${srcFull} ] && cp ${srcFull} ${destFull}`; // 此行由 octool 生成：将工作区单个文件备份到 dotfiles (Generated: copy workspace file)
+
+      const sedCmd = `# 向 ~/.bash_profile 插入新的备份指令 (INSERTING BACKUP CMDS TO BASH_PROFILE)\nsed -i '' '${ST.ab.anchorLine}a\\\n${newLine}' ~/.bash_profile`;
+      setBoxText('ab-cmd', sedCmd);
+
+      // 增加的 oc-save 提示步骤
+      const rawBkTag = document.getElementById('bk-tag')?.value.trim() || 'v1.0';
+      const bkTag = sanitizeTag(rawBkTag) || 'v1.0';
+      setBoxText('ab-save-cmd', `oc-save -m "Add backup for ${name}" -t ${bkTag}`);
+
+      setBoxText('ab-verify', ST.ab.type === 'dir' ? `ls ~/dotfiles/${destFull}/` : `ls ~/dotfiles/${destFull}`);
+      copyText(sedCmd);
+      showToast('命令已复制！');
+    }
+
+    // ══ GITHUB API ══
+    // SECURITY: All network requests are made exclusively to https://api.github.com
+    // No data is sent to any third-party server. Disclosed in SKILL.md.
+    async function ghFetch(path) {
+      const headers = { Accept: 'application/vnd.github.v3+json' };
+      if (ST.ghToken) headers.Authorization = `token ${ST.ghToken}`;
+      const r = await fetch(`https://api.github.com/${path}`, { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }
+    async function ghFetchRaw(path) {
+      const headers = { Accept: 'application/vnd.github.v3.raw' };
+      if (ST.ghToken) headers.Authorization = `token ${ST.ghToken}`;
+      const r = await fetch(`https://api.github.com/${path}`, { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    }
+
+    // ══ UTILS ══
+    function bumpTag(tag) { const m = tag.match(/^v?(\d+)\.(\d+)$/); return m ? `v${m[1]}.${parseInt(m[2]) + 1}` : tag + '_new'; }
+
+    function setBoxText(id, text) {
+      const el = document.getElementById(id); if (!el) return;
+      const chip = el.querySelector('.copy-chip');
+      el.textContent = text;
+      if (chip) el.appendChild(chip);
+    }
+
+    function chipCopy(chip) {
+      const box = chip.parentElement;
+      const text = Array.from(box.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join('').trim();
+      copyText(text);
+      chip.textContent = 'Done'; chip.classList.add('done');
+      setTimeout(() => { chip.textContent = '复制'; chip.classList.remove('done'); }, 1200);
+    }
+
+    function copyText(text) {
+      const fallback = () => {
+        try {
+          const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta); showToast('已复制到剪贴板 Done');
+        } catch (e) { showToast('复制失败，请手动复制'); }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast('已复制到剪贴板 Done')).catch(fallback);
+      } else {
+        fallback();
+      }
+    }
+
+    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+{
+  "id": "any-sync",
+  "name": "Any Sync",
+  "description": "Cross-device sync for OpenClaw workspace (skills, memory, settings) via GitHub",
+  "version": "0.2.1",
+  "skills": [
+    "./skills/start",
+    "./skills/pull",
+    "./skills/push",
+    "./skills/status",
+    "./skills/reset"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "repo": {
+        "type": "string",
+        "description": "GitHub repo in owner/repo format"
+      },
+      "branch": {
+        "type": "string",
+        "description": "Branch name (default: main)"
+      },
+      "autoSync": {
+        "type": "boolean",
+        "description": "Auto pull/push on session start/end"
+      }
+    }
+  },
+  "uiHints": {
+    "repo": {
+      "label": "Sync repository",
+      "placeholder": "myuser/my-sync-repo"
+    },
+    "branch": {
+      "label": "Branch",
+      "placeholder": "main"
+    },
+    "autoSync": {
+      "label": "Auto-sync on session start/end"
+    }
+  }
+}

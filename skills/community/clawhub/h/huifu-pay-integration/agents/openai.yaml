@@ -1,0 +1,4 @@
+interface:
+  display_name: "汇付支付集成"
+  short_description: "汇付支付接入副驾驶，覆盖聚合支付、托管支付、前端收银台、抖音直连、拆单查询"
+  default_prompt: "使用 $huifu-pay-integration 判断我的汇付支付产品线、阶段和技术栈，输出接入方案、联调排查、抖音直连/拆单查询、PHP/Java/Python 落地或版本升级提示，并列出本轮实际使用的 references。"

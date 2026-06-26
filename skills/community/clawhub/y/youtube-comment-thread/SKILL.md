@@ -1,35 +1,49 @@
 ---
-name: "YouTube Comment Thread"
-description: "Manage YouTube comment threads. Use this skill to list or insert new top-level comment threads. Useful when working with YouTube comment thread — provides co..."
-category: "other"
-source: "ClawHub"
-tags: [0.10.7-dev, 0.10.6-3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-comment-thread"
-sourceUrl: "https://clawhub.ai/skills/youtube-comment-thread"
+name: youtube-comment-thread
+description: "Manage YouTube comment threads. Use this skill to list or insert new top-level comment threads. Useful when working with YouTube comment thread — provides commands to insert and list comment thread via the yutu CLI. Includes setup and installation instructions for first-time users. Triggers: insert a new comment thread, insert comment thread, insert my comment thread, list comment threads, list comment thread, list my comment thread"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - YUTU_CREDENTIAL
+        - YUTU_CACHE_TOKEN
+      bins:
+        - yutu
+      config:
+        - client_secret.json
+        - youtube.token.json
+    primaryEnv: YUTU_CREDENTIAL
+    emoji: "\U0001F3AC\U0001F430"
+    homepage: https://github.com/eat-pray-ai/yutu
+    install:
+      - kind: node
+        package: "@eat-pray-ai/yutu"
+        bins: [yutu]
 ---
 
 # YouTube Comment Thread
 
-> Manage YouTube comment threads. Use this skill to list or insert new top-level comment threads. Useful when working with YouTube comment thread — provides co...
+Manage YouTube comment threads. Use this skill to list or insert new top-level comment threads.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-comment-thread`
-- **Source URL:** [https://clawhub.ai/skills/youtube-comment-thread](https://clawhub.ai/skills/youtube-comment-thread)
+## Before You Begin
 
-## Overview
+yutu requires Google Cloud Platform OAuth credentials and a cached token to access the YouTube API. If you haven't set up yutu yet, read the [setup guide](references/setup.md) first.
 
+## Operations
 
-## Installation
-To install this skill, run the following command in your terminal:
+Read the linked reference for full flag details and examples.
+
+| Operation | Description | Reference |
+|-----------|-------------|----------|
+| insert | Insert a new comment thread | [details](references/commentThread-insert.md) |
+| list | List comment threads | [details](references/commentThread-list.md) |
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/youtube-comment-thread
+# Show all comment thread commands
+yutu commentThread --help
+
+# List comment thread
+yutu commentThread list
 ```

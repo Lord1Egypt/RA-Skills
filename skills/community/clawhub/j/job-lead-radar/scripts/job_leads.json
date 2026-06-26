@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-04-07T15:52:57.488293",
+  "jobs": [
+    {
+      "source": "indeed",
+      "query": "film producer",
+      "jobs": []
+    },
+    {
+      "source": "ziprecruiter",
+      "query": "film producer",
+      "jobs": []
+    },
+    {
+      "source": "productionhub",
+      "jobs": []
+    },
+    {
+      "source": "linkedin",
+      "query": "film producer",
+      "jobs": []
+    },
+    {
+      "source": "peerspace",
+      "error": "'Adaptors' object has no attribute 'getall'"
+    }
+  ]
+}

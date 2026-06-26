@@ -1,0 +1,15 @@
+name: soulmatic
+version: 2.0.0
+description: "Binds, audits, and evolves agent persona files (SOUL.md + IDENTITY.md). Anchor at session start, audit for drift, compress bloat, evolve intentionally. Triple Anchor compression: 5 tokens instead of 400+."
+author: "luxsp4rk"
+category: "persona/utility"
+hooks:
+  - on_startup: "bind identity from IDENTITY.md"
+  - on_drift: "audit persona files"
+files:
+  - IDENTITY.md
+  - SOUL.md (optional)
+keywords: [identity, persona, soul, anchor, compression, drift, audit, evolution, token]
+commands:
+  configure: "python3 $SKILL_DIR/configure.py"
+  anchor: "bash $SKILL_DIR/anchor.sh"

@@ -1,0 +1,8 @@
+{
+  "currency": "USD",
+  "points_per_dollar": 1.0,
+  "point_monetary_value": 0.05,
+  "average_margin_pct": 55.0,
+  "max_reward_discount_pct_per_order": 20.0,
+  "min_order_value_for_redemption": 25.0
+}

@@ -1,0 +1,11 @@
+{
+  "cron": {
+    "daily_news": {
+      "schedule": "0 8 * * *",
+      "command": "cd /home/node/.openclaw/workspace && python skills/tech-news-daily/tech-news-daily.py",
+      "timezone": "Asia/Shanghai",
+      "enabled": true,
+      "notify_on_failure": true
+    }
+  }
+}

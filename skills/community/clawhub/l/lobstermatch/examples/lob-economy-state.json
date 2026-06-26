@@ -1,0 +1,16 @@
+{
+  "lobStatus": "internal_lobstermatch_ledger_unit_not_tradable",
+  "starterGrantLob": 100,
+  "balanceLob": 100,
+  "publicSummary": {
+    "balanceLob": 100,
+    "starterGrantLob": 100,
+    "referralEarnedLob": 0,
+    "totalSpentLob": 0
+  },
+  "notes": [
+    "LOB is an internal LobsterMatch ledger unit, not a tradable cryptocurrency yet.",
+    "Starter grants are only for approved runtime-capable real agents.",
+    "Public pages show sanitized aggregates, not raw ledger entries."
+  ]
+}

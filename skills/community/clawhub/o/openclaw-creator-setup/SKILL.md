@@ -1,35 +1,176 @@
 ---
-name: "Openclaw Creator Setup"
-description: "OpenClaw 内容创作者快速配置工具。帮助内容创作者检测环境、配置平台、管理工作流。 **当以下情况时使用此 Skill**： (1) 用户想要配置内容创作者环境 (2) 检查飞书授权和 Skills 安装状态 (3) 配置发布平台（微信、微博、抖音等） (4) 创建或管理工作流模板 (5) 用户提到"内容创..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-creator-setup"
-sourceUrl: "https://clawhub.ai/skills/openclaw-creator-setup"
+name: openclaw-creator-setup
+description: |
+  OpenClaw 内容创作者快速配置工具。帮助内容创作者检测环境、配置平台、管理工作流。
+
+  **当以下情况时使用此 Skill**：
+  (1) 用户想要配置内容创作者环境
+  (2) 检查飞书授权和 Skills 安装状态
+  (3) 配置发布平台（微信、微博、抖音等）
+  (4) 创建或管理工作流模板
+  (5) 用户提到"内容创作"、"自媒体"、"工作流"
 ---
 
-# Openclaw Creator Setup
+# 🎨 OpenClaw 内容创作者配置工具
 
-> OpenClaw 内容创作者快速配置工具。帮助内容创作者检测环境、配置平台、管理工作流。 **当以下情况时使用此 Skill**： (1) 用户想要配置内容创作者环境 (2) 检查飞书授权和 Skills 安装状态 (3) 配置发布平台（微信、微博、抖音等） (4) 创建或管理工作流模板 (5) 用户提到"内容创...
+## 版本信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-creator-setup`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-creator-setup](https://clawhub.ai/skills/openclaw-creator-setup)
+- **版本**: v3.0.0
+- **作者**: 郑宇航
+- **适用场景**: 内容创作者、自媒体运营人员
 
-## Overview
+---
 
+## 🚀 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-creator-setup
+### 1. 环境检测
+
+**使用工具**: `feishu_get_user`, `agents_list`
+
+**检测项目**:
+- ✅ 飞书授权状态
+- ✅ 已安装的 Skills
+- ✅ 工作流配置状态
+
+**示例流程**:
 ```
+用户：检查创作者环境
+
+步骤：
+1. 调用 feishu_get_user 检查飞书授权
+2. 调用 agents_list 检测已安装的 Skills
+3. 返回完整的状态报告
+```
+
+### 2. 工作流管理
+
+**预设工作流**:
+- 每日内容创作（触发词："每日内容"）
+- 周报生成（触发词："周报"）
+- 会议记录（触发词："会议记录"）
+
+**使用工具**: `sessions_spawn`, `subagents`
+
+### 3. 平台配置
+
+**支持平台**:
+- wechat（微信公众号）
+- weibo（微博）
+- douyin（抖音）
+- xiaohongshu（小红书）
+- bilibili（B 站）
+- zhihu（知乎）
+
+---
+
+## 📋 使用场景
+
+### 场景 1: 执行完整配置
+
+**用户输入**: "安装内容创作者工具" 或 "配置内容创作者环境"
+
+**执行流程**:
+1. 调用 `feishu_get_user` 检查飞书授权
+2. 调用 `agents_list` 检测已安装 Skills
+3. 建议需要安装的 Skills
+4. 配置工作流模板
+5. 返回完整配置报告
+
+**期望输出**:
+```
+🚀 开始配置内容创作者环境...
+
+✅ 飞书已授权（郑宇航）
+✅ 已检测到 5 个常用 Skills
+✅ 所有必要 Skills 已安装
+✅ 已配置 3 个工作流模板
+
+📋 配置检查:
+✅ 飞书授权
+✅ Skills 安装
+✅ 工作流配置
+
+✅ 所有检查通过！
+```
+
+### 场景 2: 检查环境状态
+
+**用户输入**: "检查创作者环境" 或 "查看状态"
+
+**执行流程**:
+1. 调用 `feishu_get_user` 检查授权
+2. 调用 `agents_list` 查看 Skills
+3. 返回状态报告
+
+### 场景 3: 配置发布平台
+
+**用户输入**: "配置平台 wechat weibo"
+
+**执行流程**:
+1. 验证平台名称
+2. 保存平台配置
+3. 返回确认信息
+
+### 场景 4: 创建工作流
+
+**用户输入**: "创建工作流 每日内容"
+
+**执行流程**:
+1. 创建工作流配置
+2. 设置触发词
+3. 返回确认信息
+
+---
+
+## 💡 命令参考
+
+| 用户输入 | 功能 |
+|----------|------|
+| `安装内容创作者工具` | 执行完整环境配置 |
+| `检查创作者环境` | 查看当前状态 |
+| `配置平台 <平台名>` | 添加发布平台 |
+| `创建工作流 <名称>` | 创建新工作流 |
+| `检查工作流 <名称>` | 查看工作流详情 |
+
+---
+
+## 🔧 依赖工具
+
+本 Skill 依赖以下 OpenClaw 工具：
+
+- `feishu_get_user` - 检查飞书授权
+- `agents_list` - 检测已安装的 Skills
+- `sessions_spawn` - 创建工作流子任务
+- `subagents` - 管理子 Agent
+- `message` - 发送通知
+
+---
+
+## ⚠️ 注意事项
+
+1. **飞书授权**: 部分功能需要飞书 API 授权
+2. **Skills 依赖**: 建议安装 feishu-bitable、feishu-calendar 等 Skills
+3. **平台配置**: 发布功能需要各平台的 API 授权
+
+---
+
+## 📝 版本历史
+
+### v3.0.0 (2026-04-09)
+- ✅ 完整的 SKILL.md 配置文件
+- ✅ 明确的使用场景和流程
+- ✅ 工具调用说明
+
+### v2.0.0 (2026-04-09)
+- ⚠️ 错误的 TypeScript 实现（已废弃）
+
+### v1.0.0 (2026-04-09)
+- ❌ 仅框架代码（已废弃）
+
+---
+
+## 🔗 相关资源
+
+- [ClawHub Skill 页面](https://clawhub.ai/skills/openclaw-creator-setup)
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [GitHub 仓库](https://github.com/rfdiosuao/openclaw-skills)

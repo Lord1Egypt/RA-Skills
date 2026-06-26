@@ -1,35 +1,222 @@
 ---
-name: "funds-agent"
-description: "自动生成基金日报，包含持仓基金数据、估值涨跌、单位净值和财经要闻。支持定时任务（每天下午 4 点自动发送），可配置基金代码列表。输出格式：Telegram 消息 + Word 文档。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/funds-agent"
-sourceUrl: "https://clawhub.ai/skills/funds-agent"
+name: fund-daily
+description: 自动生成基金日报，包含持仓基金数据、估值涨跌、单位净值和财经要闻。支持定时任务（每天下午 4 点自动发送），可配置基金代码列表。输出格式：Telegram 消息 + Word 文档。
+version: 1.0.0
+author: Joshua
 ---
 
-# funds-agent
+# 基金日报 Skill
 
-> 自动生成基金日报，包含持仓基金数据、估值涨跌、单位净值和财经要闻。支持定时任务（每天下午 4 点自动发送），可配置基金代码列表。输出格式：Telegram 消息 + Word 文档。
+自动生成基金日报，包含基金数据、估值、净值和财经新闻。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/funds-agent`
-- **Source URL:** [https://clawhub.ai/skills/funds-agent](https://clawhub.ai/skills/funds-agent)
+## 核心功能
 
-## Overview
+### ✅ 自动获取基金数据
+- 单位净值
+- 估值涨跌
+- 数据日期
+- 交易日判断
 
+### ✅ 财经新闻聚合
+- 东方财富
+- 雪球
+- 富途牛牛
+- 财联社等
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/funds-agent
+### ✅ 定时任务
+- 默认每天下午 4:00 自动运行
+- 可配置运行时间
+- 支持手动触发
+
+### ✅ 多格式输出
+- Telegram 消息（文字 + 表情）
+- Word 文档（表格 + 分析）
+
+---
+
+## 配置方法
+
+### 1. 配置基金代码
+
+编辑 `fund_daily.py`，修改 `FUND_CODES` 列表：
+
+```python
+FUND_CODES = ['001407', '017091', '050025']  # 你的基金代码
 ```
+
+### 2. 配置 Telegram Bot
+
+编辑 `fund_daily.py`，修改 Telegram 配置：
+
+```python
+TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN"
+TELEGRAM_CHAT_ID = "YOUR_CHAT_ID"
+```
+
+### 3. 设置定时任务
+
+**Windows 任务计划程序：**
+
+```bash
+schtasks /Create /TN "基金日报" /TR "python C:\path\to\fund_daily.py" /SC DAILY /ST 16:00 /F
+```
+
+**Linux Cron：**
+
+```bash
+# 每天下午 4 点
+0 16 * * * python /path/to/fund_daily.py
+```
+
+---
+
+## 使用方法
+
+### 手动运行
+
+```bash
+python skills/fund-daily/fund_daily.py
+```
+
+### 自动运行
+
+定时任务会在每天下午 4:00 自动执行。
+
+---
+
+## 输出示例
+
+### Telegram 消息
+
+```
+━━━━━━━━━━━━━━━━━━
+   📊 最新基金日报
+   2026 年 03 月 16 日
+━━━━━━━━━━━━━━━━━━
+📅 数据日期：2026-03-13 (净值未公布)
+
+【景顺长城稳健回报混合 C】
+├ 代码：001407
+├ 估值涨跌：+0.75%
+└ 单位净值：4.3300
+
+【景顺长城纳斯达克科技 ETF 联接】
+├ 代码：017091
+├ 估值涨跌：-0.88%
+└ 单位净值：2.2422
+
+━━━━━━━━━━━━━━━━━━
+📰 财经要闻
+━━━━━━━━━━━━━━━━━━
+
+1. 3 月 16 日证券报纸头条摘要
+   📌 东方财富
+   🔗 链接
+
+...
+
+━━━━━━━━━━━━━━━━━━
+注：交易日 15:00 前显示估值，20:00 后显示净值
+━━━━━━━━━━━━━━━━━━
+```
+
+### Word 文档
+
+- 📊 基金数据表格
+- 📈 走势分析
+- 📰 财经新闻
+- 📝 总结点评
+
+---
+
+## 数据来源
+
+| 数据类型 | 来源 | 说明 |
+|---------|------|------|
+| 基金净值 | 天天基金网 | 实时 API |
+| 基金估值 | 天天基金网 | 盘中实时 |
+| 财经新闻 | news-market skill | 多个财经媒体 |
+
+---
+
+## 交易日规则
+
+### 净值更新时间
+
+| 时间 | 状态 | 显示数据 |
+|------|------|---------|
+| 交易日 9:30-15:00 | 交易中 | 实时估值 |
+| 交易日 15:00-20:00 | 交易结束 | 上一交易日净值 |
+| 交易日 20:00 后 | 净值公布 | 当日实际净值 |
+| 非交易日 | 休市 | 上一交易日净值 |
+
+### 节假日处理
+
+自动排除：
+- 周末（周六、周日）
+- 法定节假日（元旦、春节、清明、劳动节、端午、中秋、国庆）
+- 调休工作日（自动识别）
+
+---
+
+## 文件结构
+
+```
+skills/fund-daily/
+├── SKILL.md              # 技能说明（本文件）
+├── fund_daily.py         # 主程序
+├── requirements.txt      # Python 依赖
+└── README.md            # 使用文档
+```
+
+---
+
+## 依赖安装
+
+```bash
+pip install requests python-docx
+```
+
+---
+
+## 常见问题
+
+### Q: 为什么净值数据不准确？
+
+A: QDII 基金（投资海外）净值公布比普通基金晚 1-2 天，这是正常现象。
+
+### Q: 如何修改发送时间？
+
+A: 修改定时任务配置即可。Windows 用 `schtasks /Change`，Linux 修改 crontab。
+
+### Q: 可以添加更多基金吗？
+
+A: 可以，在 `FUND_CODES` 列表中添加基金代码即可。
+
+### Q: 不想发 Telegram 可以吗？
+
+A: 可以，注释掉 Telegram 相关代码，只生成 Word 文档。
+
+---
+
+## 更新日志
+
+### v1.0.0 (2026-03-16)
+- ✅ 初始版本
+- ✅ 基金数据获取
+- ✅ 财经新闻聚合
+- ✅ Telegram 推送
+- ✅ Word 文档生成
+- ✅ 定时任务支持
+
+---
+
+## License
+
+MIT License
+
+---
+
+## 作者
+
+Created by Joshua for OpenClaw.

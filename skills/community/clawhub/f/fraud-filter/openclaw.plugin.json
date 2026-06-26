@@ -1,0 +1,11 @@
+{
+  "id": "fraud-filter",
+  "name": "fraud-filter",
+  "version": "0.4.0",
+  "description": "Community trust scores for agent payment endpoints — blocks low-trust payments and queues anonymous failure reports locally (network reporting is opt-in)",
+  "skills": ["SKILL.md"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

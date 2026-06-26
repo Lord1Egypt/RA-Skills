@@ -1,35 +1,45 @@
 ---
-name: "a-stock-stop-loss"
-description: "用动态止损锁定利润，避免"小盈大亏"。用于A股风控。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stop-loss-optimization"
-sourceUrl: "https://clawhub.ai/skills/stop-loss-optimization"
+name: stop-loss-optimization
+description: 用动态止损锁定利润，避免"小盈大亏"。用于A股风控。
 ---
 
-# a-stock-stop-loss
+# 移动止损优化 Skill
 
-> 用动态止损锁定利润，避免"小盈大亏"。用于A股风控。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stop-loss-optimization`
-- **Source URL:** [https://clawhub.ai/skills/stop-loss-optimization](https://clawhub.ai/skills/stop-loss-optimization)
+用动态止损锁定利润，避免"小盈大亏"。
 
-## Overview
+## 止损规则
 
+### 初始止损
+- 买入后跌破成本线 5%
+- **无条件止损**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stop-loss-optimization
-```
+### 移动止损
+- 股价上涨 5% → 止损位上移至成本线
+- 股价上涨 10% → 止损位上移至盈利 5% 位置
+- 股价上涨 15% → 止损位上移至盈利 10% 位置
+
+### 极端行情
+- 遇到一字跌停或突发利空
+- 次日竞价直接挂单卖出
+
+## 止损原则
+
+1. 永远不讓盈利变亏损
+2. 亏损5%必须止损
+3. 盈利后保护成本线
+4. 极端行情优先保命
+
+## 实战案例
+
+买入后股价上涨15%：
+- 把止损位设置在盈利10%的位置
+- 即使后续回调，也能锁定大部分利润
+
+## 触发场景
+
+- "这个票止损设在哪"
+- "要不要止损"
+- "还能持有吗"
+- "止盈还是止损"

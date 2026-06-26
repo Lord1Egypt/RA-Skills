@@ -1,0 +1,21 @@
+{
+  "native_language": "English",
+  "target_language": "Spanish",
+  "current_level": "A1",
+  "learning_goals": [
+    "conversational fluency",
+    "travel preparation"
+  ],
+  "interests": [
+    "cooking",
+    "travel",
+    "music",
+    "technology"
+  ],
+  "session_duration_minutes": 20,
+  "error_correction": "inline",
+  "formality": "informal",
+  "regional_preference": "Latin American",
+  "chinese_script": "simplified",
+  "portuguese_variant": "Brazilian"
+}

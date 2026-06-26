@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-cursor-agent",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "OpenClaw plugin for managing tmux-backed Cursor CLI tasks.",
+  "main": "index.js",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "devDependencies": {
+    "openclaw": "^2026.3.2"
+  }
+}

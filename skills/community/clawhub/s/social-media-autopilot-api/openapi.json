@@ -1,0 +1,672 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SocialEcho 对外 API",
+    "description": "对外 HTTP 接口模块。认证：HTTP Bearer（Team API Key）。成功判定：HTTP 200 且响应 JSON 的 code 为 0 或 200（以服务端为准）。单 Key 建议不超过 120 请求/分钟。",
+    "version": "1.1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.socialecho.net",
+      "description": "Production"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/v1/upload/url": {
+      "get": {
+        "summary": "获取OSS上传的URL",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "description": "zh_CN/en",
+            "example": "zh_CN",
+            "schema": {
+              "type": "string",
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "description": "",
+            "example": "{{TeamId}}",
+            "schema": {
+              "type": "integer",
+              "default": "{{TeamId}}"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/reddit/communities": {
+      "get": {
+        "summary": "获取Reddit的社区",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "description": "zh_CN/en",
+            "example": "zh_CN",
+            "schema": {
+              "type": "string",
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "description": "",
+            "example": "{{TeamId}}",
+            "schema": {
+              "type": "integer",
+              "default": "{{TeamId}}"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "type": "integer",
+                    "title": "帐户ID"
+                  }
+                },
+                "required": [
+                  "account_id"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/pinterest/boards": {
+      "get": {
+        "summary": "获取Pinterest的图版",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "description": "zh_CN/en",
+            "example": "zh_CN",
+            "schema": {
+              "type": "string",
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "description": "",
+            "example": "{{TeamId}}",
+            "schema": {
+              "type": "integer",
+              "default": "{{TeamId}}"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "type": "integer",
+                    "title": "帐户ID"
+                  }
+                },
+                "required": [
+                  "account_id"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/publish/article": {
+      "post": {
+        "summary": " 发布贴文",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "description": "zh_CN/en",
+            "example": "zh_CN",
+            "schema": {
+              "type": "string",
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "description": "",
+            "example": "{{TeamId}}",
+            "schema": {
+              "type": "integer",
+              "default": "{{TeamId}}"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "type": "integer",
+                    "title": "帐户ID"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "发布类型",
+                    "description": "Facebook(reels,post,stories) \nYouTube(shorts,video) \nInstagram(reels,post,stories)\nX(short_post,long_post) \nLinkedIn(post)\nTikTok(video,photo)\nPinterest(post)\nReddit(text,link,media)"
+                  },
+                  "status": {
+                    "type": "integer",
+                    "title": "状态",
+                    "description": "0=草稿,1=发布"
+                  },
+                  "scheduled_at": {
+                    "type": "string",
+                    "title": "定时时间",
+                    "description": "如果状态=1,定时时间可以填写，如果不填写，是立马发布"
+                  },
+                  "comment": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "title": "评论"
+                  },
+                  "content": {
+                    "type": "string",
+                    "title": "内容"
+                  },
+                  "extra": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "description": "YouTube标题,Pinterest标题,Reddit标题"
+                      },
+                      "category_id": {
+                        "type": "string",
+                        "description": "Pinterest图版ID,Reddit社区ID"
+                      },
+                      "link": {
+                        "type": "string",
+                        "description": "Reddit链接地址,Pinterest链接地址"
+                      },
+                      "draft": {
+                        "type": "boolean",
+                        "description": "TikTok是否保存草稿草稿（true=是,false=否）"
+                      },
+                      "flair": {
+                        "type": "object",
+                        "properties": {
+                          "uuid": {
+                            "type": "string",
+                            "description": "Reddit标识唯一ID"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Reddit标识标题"
+                          }
+                        },
+                        "required": [
+                          "uuid",
+                          "title"
+                        ],
+                        "description": "Reddit标识"
+                      }
+                    },
+                    "title": "扩展属性",
+                    "description": "不同的平台有不同扩展",
+                    "required": [
+                      "title",
+                      "link",
+                      "category_id",
+                      "draft",
+                      "flair"
+                    ]
+                  },
+                  "attachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "title": "文件地址",
+                          "description": "需要先上传到OSS后获取的URL地址"
+                        }
+                      },
+                      "required": [
+                        "url"
+                      ]
+                    },
+                    "title": "附件"
+                  }
+                },
+                "required": [
+                  "account_id",
+                  "type",
+                  "status",
+                  "comment",
+                  "extra",
+                  "attachments"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/team": {
+      "get": {
+        "summary": "团队信息",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/account": {
+      "get": {
+        "summary": "社媒账号列表",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer",
+                    "title": "页码",
+                    "description": "如果没有传，则默认获取所有数据"
+                  },
+                  "type": {
+                    "type": "integer",
+                    "title": "类型",
+                    "description": "1=授权帐户,2=竞品帐户"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/article": {
+      "get": {
+        "summary": "贴文列表",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer",
+                    "title": "页码",
+                    "description": "如果没有传，则默认获取所有数据"
+                  },
+                  "account_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "title": "帐户"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/report": {
+      "get": {
+        "summary": "数据报告",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "X-Lang",
+            "in": "header",
+            "description": "zh_CN/en",
+            "example": "zh_CN",
+            "schema": {
+              "type": "string",
+              "default": "zh_CN"
+            }
+          },
+          {
+            "name": "X-Team-Id",
+            "in": "header",
+            "description": "",
+            "example": "{{TeamId}}",
+            "schema": {
+              "type": "integer",
+              "default": "{{TeamId}}"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "start_date": {
+                    "type": "string",
+                    "title": "开始日期"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "title": "结束日期"
+                  },
+                  "account_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "title": "帐户ID"
+                  },
+                  "time_type": {
+                    "type": "integer",
+                    "title": "时间类型",
+                    "description": "1=日期内新增贴文，2=历史全部贴文"
+                  },
+                  "group": {
+                    "type": "string",
+                    "title": "分组",
+                    "description": "不传表示获取总量,day=每一天，app=应用, account=帐户"
+                  }
+                },
+                "required": [
+                  "start_date",
+                  "end_date",
+                  "time_type"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

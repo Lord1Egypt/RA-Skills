@@ -1,0 +1,12 @@
+{
+  "slug": "agent-swarm-planner",
+  "name": "Agent Swarm Planner",
+  "version": "1.0.0",
+  "description": "Describe what you need your agents to do. Get a complete swarm architecture: agent roles, communication protocols, reporting lines, memory sharing strategy, escalation structure, and operational schedule. Built from running a 5-agent production swarm for 6+ weeks.",
+  "author": "Resomnium",
+  "tags": ["multi-agent", "swarm", "architecture", "planning", "governance", "coordination", "agent-design"],
+  "category": "governance",
+  "price": 0,
+  "license": "free",
+  "entrypoint": "SKILL.md"
+}

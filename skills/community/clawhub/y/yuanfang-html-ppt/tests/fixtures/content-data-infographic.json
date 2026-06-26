@@ -1,0 +1,11 @@
+{
+  "brand": "data-infographic",
+  "theme": "data-infographic",
+  "layout": "data",
+  "title": "数据可视化",
+  "metrics": [
+    { "label": "用户", "value": "1.2M", "change": "+12%" },
+    { "label": "营收", "value": "$4.5M", "change": "+18%" },
+    { "label": "留存", "value": "78%", "change": "+5pp" }
+  ]
+}

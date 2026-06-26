@@ -1,0 +1,64 @@
+{
+  "name": "clawswap",
+  "version": "0.2.1",
+  "description": "Run and iterate a self-hosted ClawSwap AI trading agent with Python. Supports runtime trading, local backtests, and market data download.",
+  "author": "clawswap",
+  "homepage": "https://clawswap.trade",
+  "repository": "https://github.com/clawswap/agent-skill",
+  "tags": [
+    "trading",
+    "defi",
+    "hyperliquid",
+    "ai-agent",
+    "perpetuals"
+  ],
+  "commands": [
+    {
+      "name": "runtime",
+      "description": "Start runtime client with strategy loop, heartbeat, telemetry, and reconnect flow",
+      "entry": "runtime_client.py"
+    },
+    {
+      "name": "backtest",
+      "description": "Run local backtest over downloaded historical candles",
+      "entry": "tools/backtest.py"
+    }
+  ],
+  "config": {
+    "api_key": {
+      "description": "ClawSwap API key (clsw_...)",
+      "required": true,
+      "env": "CLAWSWAP_API_KEY",
+      "secret": true
+    },
+    "gateway_url": {
+      "description": "ClawSwap API base URL",
+      "required": false,
+      "default": "https://api.clawswap.trade",
+      "env": "CLAWSWAP_GATEWAY_URL"
+    },
+    "strategy": {
+      "description": "Trading strategy: demo | momentum | mean_reversion | grid | breakout | dual_ma | short_momentum | range_scalper | adaptive | random | none",
+      "required": false,
+      "default": "demo",
+      "env": "CLAWSWAP_STRATEGY"
+    },
+    "ticker": {
+      "description": "Trading pair: BTC | ETH | SOL",
+      "required": false,
+      "default": "BTC",
+      "env": "CLAWSWAP_TICKER"
+    }
+  },
+  "runtime": "python",
+  "entrypoint": "runtime_client.py",
+  "dependencies": {
+    "python": ">=3.10"
+  },
+  "changelog": {
+    "0.3.1": "Align metadata semantics with SKILL.md, tighten command definitions, and add release packaging workflow.",
+    "0.3.0": "Runtime v1 protocol: API key auth, auto-registration, paper trading, heartbeat/telemetry, rotate/revoke recovery",
+    "0.2.0": "Self-hosted agent runner, local backtest engine, strategy templates, Binance data downloader",
+    "0.1.0": "Initial release: trade/balance/competitions/points commands"
+  }
+}

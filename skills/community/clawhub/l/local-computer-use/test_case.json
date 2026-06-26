@@ -1,0 +1,25 @@
+{
+    "id": "computer-use-001",
+    "turns": [
+        {
+            "input": "将系统音量调节到50%",
+            "answer": "{\n    \"result\": \"主音量已设置\",\n    \"success\": true,\n    \"finished\": true\n}"
+        },
+        {
+            "input": "将鼠标指针设置成最大",
+            "answer": "{\n    \"result\": \"指针大小已设置\",\n    \"success\": true,\n    \"finished\": true\n}"
+        },
+        {
+            "input": "关闭所有广告",
+            "answer": "{\n    \"result\": \"系统广告已切换\",\n    \"success\": true,\n    \"finished\": true\n}"
+        },
+        {
+            "input": "打开任务栏小组件",
+            "answer": ""
+        },
+        {
+            "input": "打开计算器",
+            "answer": ""
+        }
+    ]
+}

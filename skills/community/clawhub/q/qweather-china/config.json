@@ -1,0 +1,48 @@
+{
+  "_comment": "QWeather China Skill 配置文件 - 请替换占位符为实际值",
+  "qweather": {
+    "enabled": true,
+    "api_host": "your-api-host.re.qweatherapi.com",
+    "jwt": {
+      "kid": "YOUR_CREDENTIALS_ID",
+      "sub": "YOUR_PROJECT_ID",
+      "private_key_path": "~/.config/qweather/private.pem"
+    },
+    "cache": {
+      "enabled": true,
+      "ttl": {
+        "now": 600,
+        "forecast": 3600,
+        "indices": 10800,
+        "air": 1800
+      },
+      "directory": "~/.cache/qweather"
+    },
+    "default_city": "beijing",
+    "cities": {
+      "beijing": "101010100",
+      "shanghai": "101020100",
+      "guangzhou": "101280101",
+      "shenzhen": "101280601",
+      "hangzhou": "101210101",
+      "chengdu": "101270101",
+      "wuhan": "101200101",
+      "nanjing": "101190101",
+      "xian": "101110101",
+      "chongqing": "101040100"
+    }
+  },
+  "openclaw_integration": {
+    "command_aliases": {
+      "weather": "查询天气",
+      "forecast": "天气预报",
+      "indices": "生活指数",
+      "air": "空气质量"
+    },
+    "response_templates": {
+      "weather_now": "🌤️ {city}当前天气:\n温度: {temp}°C (体感: {feels_like}°C)\n天气: {text}\n风力: {wind_scale}级 {wind_dir}\n湿度: {humidity}%\n建议: {advice}",
+      "forecast": "📅 {city}{days}天预报:\n{forecast_details}",
+      "indices": "📊 {city}生活指数:\n{indices_list}"
+    }
+  }
+}

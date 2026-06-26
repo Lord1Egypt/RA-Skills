@@ -1,35 +1,20 @@
----
-name: "Logfmt Parser"
-description: "Parses and converts various log formats into clean JSON for improved analysis and debugging, with options for timestamp extraction and format control."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/logfmt-parser"
-sourceUrl: "https://clawhub.ai/skills/logfmt-parser"
----
-
 # Logfmt Parser
 
-> Parses and converts various log formats into clean JSON for improved analysis and debugging, with options for timestamp extraction and format control.
+Converts messy log files from any format into clean, uniform JSON for easier analysis, debugging, and forwarding to log aggregators.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/logfmt-parser`
-- **Source URL:** [https://clawhub.ai/skills/logfmt-parser](https://clawhub.ai/skills/logfmt-parser)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/logfmt-parser
+# Convert a log file to JSON
+logfmt_parser -i app.log -o structured.json
+
+# Pipe logs through parser with timestamp extraction
+cat server.log | logfmt_parser --timestamp | jq '.'
+
+# Parse without keeping original log lines
+logfmt_parser -i nginx.log --no-log-field > clean.json
 ```
+
+## Price
+
+$2.50

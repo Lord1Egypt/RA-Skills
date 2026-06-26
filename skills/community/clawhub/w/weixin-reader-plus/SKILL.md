@@ -1,35 +1,52 @@
----
-name: "微信公众号文章阅读器"
-description: "读取并提取微信公众号文章标题、公众号名称及正文内容，支持移动端访问和自动重定向，适用于mp.weixin.qq.com链接。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weixin-reader-plus"
-sourceUrl: "https://clawhub.ai/skills/weixin-reader-plus"
----
+# weixin_reader
 
-# 微信公众号文章阅读器
+读取微信公众号文章内容。
 
-> 读取并提取微信公众号文章标题、公众号名称及正文内容，支持移动端访问和自动重定向，适用于mp.weixin.qq.com链接。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weixin-reader-plus`
-- **Source URL:** [https://clawhub.ai/skills/weixin-reader-plus](https://clawhub.ai/skills/weixin-reader-plus)
+当用户提供微信公众号文章链接（mp.weixin.qq.com）并要求阅读、读取、查看文章内容时使用此 skill。
 
-## Overview
+触发关键词：
+- "读这篇微信文章"
+- "看一下这个公众号文章"
+- "帮我读取微信文章"
+- 用户发送 mp.weixin.qq.com 链接
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/weixin-reader-plus
+python3 ~/.claude/skills/weixin_reader/weixin_reader.py "<微信文章URL>"
 ```
+
+## 示例
+
+```bash
+python3 ~/.claude/skills/weixin_reader/weixin_reader.py "https://mp.weixin.qq.com/s?__biz=xxx&mid=xxx"
+```
+
+## 输出格式
+
+```
+标题: 文章标题
+公众号: 公众号名称
+
+--- 正文内容 ---
+
+文章正文内容...
+```
+
+## 依赖
+
+- httpx
+- beautifulsoup4
+
+如未安装，运行：
+```bash
+pip install httpx beautifulsoup4
+```
+
+## 注意事项
+
+1. 部分文章可能需要验证码，无法直接读取
+2. 使用移动端 User-Agent 模拟微信内置浏览器访问
+3. 支持自动跟随重定向

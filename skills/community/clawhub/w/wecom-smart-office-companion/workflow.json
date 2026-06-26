@@ -1,0 +1,135 @@
+{
+  "combo_id": "wecom-smart-office-companion",
+  "name": "企业微信智能办公助手",
+  "version": "1.0.0",
+  "description": "每日自动汇总企业微信日程、会议、待办和团队智能表格数据，生成可视化早报卡片",
+  "skills": [
+    {
+      "name": "wecom-schedule",
+      "role": "日程数据源",
+      "method": "list",
+      "params": {
+        "date_range": "today"
+      },
+      "output": "日程列表（时间/地点/参与人）"
+    },
+    {
+      "name": "wecom-meeting-query",
+      "role": "会议数据源",
+      "method": "list",
+      "params": {
+        "filter_date": "today"
+      },
+      "output": "今日会议列表+确认状态"
+    },
+    {
+      "name": "wecom-get-todo-list",
+      "role": "待办数据源",
+      "method": "list",
+      "params": {
+        "sort_by": "due_time",
+        "order": "asc"
+      },
+      "output": "按优先级排序的待办列表"
+    },
+    {
+      "name": "wecom-get-todo-detail",
+      "role": "重点待办详情",
+      "method": "get",
+      "params": {
+        "filter_urgent": true
+      },
+      "output": "紧急待办详细内容"
+    },
+    {
+      "name": "wecom-smartsheet-data",
+      "role": "团队数据源",
+      "method": "list_records",
+      "params": {
+        "scope": "key_metrics"
+      },
+      "output": "项目进度/OKR/风险指标"
+    },
+    {
+      "name": "card-renderer",
+      "role": "可视化渲染",
+      "method": "render",
+      "params": {
+        "style": "mac-pro",
+        "layout": "vertical",
+        "title": "今日办公早报"
+      },
+      "output": "PNG卡片图片"
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "skill": "wecom-preflight",
+      "action": "check_config",
+      "description": "检查企业微信配置和权限"
+    },
+    {
+      "step": 2,
+      "skill": "wecom-schedule",
+      "action": "list_today",
+      "description": "查询今日全部日程",
+      "parallel": true
+    },
+    {
+      "step": 2,
+      "skill": "wecom-meeting-query",
+      "action": "list_today",
+      "description": "拉取今日所有会议",
+      "parallel": true
+    },
+    {
+      "step": 2,
+      "skill": "wecom-get-todo-list",
+      "action": "list",
+      "description": "获取全部待办并按优先级排序",
+      "parallel": true
+    },
+    {
+      "step": 3,
+      "skill": "wecom-smartsheet-data",
+      "action": "list_records",
+      "description": "读取团队关键智能表格数据",
+      "depends_on": [2]
+    },
+    {
+      "step": 4,
+      "skill": "wecom-get-todo-detail",
+      "action": "get_batch",
+      "description": "读取紧急待办的详细内容",
+      "depends_on": [2]
+    },
+    {
+      "step": 5,
+      "skill": "card-renderer",
+      "action": "render_morning_brief",
+      "description": "聚合所有数据渲染早报卡片",
+      "depends_on": [2, 3, 4],
+      "params": {
+        "sections": ["schedule", "meetings", "todos", "team_data"],
+        "style": "mac-pro",
+        "format": "png"
+      }
+    }
+  ],
+  "output": {
+    "format": "image/png",
+    "delivery": "飞书消息或企业微信消息",
+    "filename_pattern": "office-brief-{date}.png"
+  },
+  "cron_recommend": "0 7 * * 1-5 Asia/Shanghai",
+  "use_cases": [
+    "每日早8点自动生成早报卡片",
+    "用户说「今天的日程」时手动触发",
+    "配合 wecom-edit-todo 生成待办创建建议"
+  ],
+  "dependencies": [
+    "wecom-preflight (自动检查)",
+    "企业微信应用需开通日程/会议/智能表格权限"
+  ]
+}

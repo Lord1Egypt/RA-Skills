@@ -1,35 +1,24 @@
 ---
-name: "terry-camsnap"
-description: "Take camera snapshots and save them to disk. Use when the user asks to take a photo, capture an image from webcam, or take a snapshot."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/terry-camsnap"
-sourceUrl: "https://clawhub.ai/skills/terry-camsnap"
+name: camsnap
+description: Take camera snapshots and save them to disk. Use when the user asks to take a photo, capture an image from webcam, or take a snapshot.
+allowed-tools: Bash
+argument-hint: "[output_path] [--preview]"
 ---
+Take a snapshot from the default webcam using the camsnap utility.
 
-# terry-camsnap
+## Usage
+/camsnap [output_path] [--preview] [--output-dir DIR]
 
-> Take camera snapshots and save them to disk. Use when the user asks to take a photo, capture an image from webcam, or take a snapshot.
+If no output path is provided, the snapshot will be saved to the `./snapshots/` directory with a timestamp filename.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/terry-camsnap`
-- **Source URL:** [https://clawhub.ai/skills/terry-camsnap](https://clawhub.ai/skills/terry-camsnap)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Steps
+1. Run the snapshot script:
 ```bash
-hermes skills install clawhub/terry-camsnap
+python3 ~/.openclaw/workspace/src/camsnap.py {{ $ARGUMENTS }}
 ```
+2. Confirm the snapshot was saved successfully and return the file path.
+
+## Notes
+- The script discards the first few warm-up frames to avoid underexposed captures.
+- Output paths are validated against path-traversal; only allowed directories are writable.
+- Use `--preview` only in environments with a display (headless servers will fail).

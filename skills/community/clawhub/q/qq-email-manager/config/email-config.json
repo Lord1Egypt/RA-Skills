@@ -1,0 +1,16 @@
+{
+  "imap": {
+    "host": "imap.exmail.qq.com",
+    "port": 993,
+    "ssl": true
+  },
+  "smtp": {
+    "host": "smtp.exmail.qq.com",
+    "port": 465,
+    "ssl": true
+  },
+  "account": {
+    "username": "your-email@example.com",
+    "password": "your-password"
+  }
+}

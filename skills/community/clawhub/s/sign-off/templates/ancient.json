@@ -1,0 +1,13 @@
+{
+  "name": "ancient",
+  "displayName": "🎭 古风",
+  "description": "古风雅致，有诗词韵味",
+  "template": "{zodiac}{season}，{name}灯下",
+  "emoji": "🕯️",
+  "seal": "",
+  "contextMode": {
+    "work": "{name} 谨呈",
+    "casual": "{zodiac}{season}，{name}灯下"
+  },
+  "preview": "蛇年春，小橘灯下"
+}

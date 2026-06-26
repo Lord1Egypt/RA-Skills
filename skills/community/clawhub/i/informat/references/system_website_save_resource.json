@@ -1,0 +1,33 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_website_save_resource",
+		"description": "Create or edit website module resource information. When creating resources, do not actively generate id; when editing resources, you must first call _website_query_resource to get the real id. If a single file content exceeds 300 lines or 8000 characters, it must be actively split into multiple files.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"websiteId": {
+					"type": "string",
+					"description": "Website module ID."
+				},
+				"id": {
+					"type": "string",
+					"description": "Resource ID. Can be empty when adding, cannot be empty when editing."
+				},
+				"name": {
+					"type": "string",
+					"description": "Resource name. File name, such as index.html, main.css, app.js. It is recommended to use lowercase English letters, numbers, hyphens or underscores for naming."
+				},
+				"content": {
+					"type": "string",
+					"description": "Resource file content."
+				},
+				"parentId": {
+					"type": "string",
+					"description": "Parent directory ID. Empty means placing in the website root directory."
+				}
+			},
+			"required": ["websiteId", "name", "content"]
+		}
+	}
+}

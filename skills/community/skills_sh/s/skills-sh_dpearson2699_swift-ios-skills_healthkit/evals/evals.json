@@ -1,0 +1,46 @@
+{
+  "skill_name": "healthkit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Review this HealthKit setup plan for an iOS 26/iPadOS app: the team says HealthKit never works on iPad, creates HKHealthStore before any availability check, treats authorizationStatus as proof that read permission was denied, and assumes denied reads always return empty arrays. Give concise corrected guidance.",
+      "expected_output": "A correction-focused review that explains current platform availability, availability checks, write-vs-read authorization privacy, and partial app-owned results after read denial.",
+      "files": [],
+      "assertions": [
+        "States that HealthKit data is available on iPadOS 17 or later, not categorically unsupported on iPad.",
+        "Requires HKHealthStore.isHealthDataAvailable() before using other HealthKit APIs.",
+        "Explains that authorizationStatus(for:) reports write/share authorization, not whether read access was granted.",
+        "Explains that denied read access can return only samples the app saved, so results may be empty or partial rather than a reliable denial signal.",
+        "Mentions required HealthKit capability and NSHealthShareUsageDescription or NSHealthUpdateUsageDescription as appropriate."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this background step-count sync plan: enableBackgroundDelivery(.immediate) is called after the first dashboard screen appears, the HKObserverQuery is created only when the screen is visible, the completion handler is skipped on errors, and QA plans to validate the behavior only in Simulator. What should change?",
+      "expected_output": "A review that fixes HealthKit background delivery setup, launch-time observer registration, completion handling, device testing, entitlement, and frequency expectations.",
+      "files": [],
+      "assertions": [
+        "Requires the HealthKit Background Delivery capability or com.apple.developer.healthkit.background-delivery entitlement.",
+        "Says observer queries should be set up as the app launches, not only when a screen appears.",
+        "Pairs enableBackgroundDelivery with an HKObserverQuery for the same sample type.",
+        "Requires calling the observer completion handler even when processing fails.",
+        "States that Simulator is not a valid background-delivery test target.",
+        "Explains that requested frequency is a maximum and some types such as iOS step count may be capped hourly."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A team is building an iOS 26 workout recorder with HKWorkoutSession and HKLiveWorkoutBuilder. They also want the same code path to support iOS 17 devices, assume iPhone has live heart-rate samples like Apple Watch, and mirror Apple Watch workouts to iPhone whenever possible. Review the plan and identify HealthKit pitfalls.",
+      "expected_output": "A workout-session review that distinguishes HKWorkoutSession and HKLiveWorkoutBuilder availability, handles live heart-rate collection on iPhone/iPad, and outlines correct mirroring setup.",
+      "files": [],
+      "assertions": [
+        "Distinguishes HKWorkoutSession availability from HKLiveWorkoutBuilder availability.",
+        "States that HKLiveWorkoutBuilder requires iOS/iPadOS 26 or watchOS 5 and should be availability-gated for older iOS/iPadOS targets.",
+        "States that iPhone and iPad need a paired external heart-rate sensor for live heart-rate collection.",
+        "Mentions that Apple Watch can collect high-frequency heart-rate samples during workouts.",
+        "For mirroring, starts mirroring from the watchOS session and assigns workoutSessionMirroringStartHandler early on the iOS app.",
+        "Mentions lock-screen or locked-device workout data access considerations when showing live iPhone metrics."
+      ]
+    }
+  ]
+}

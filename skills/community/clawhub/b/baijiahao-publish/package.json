@@ -1,0 +1,26 @@
+{
+  "name": "baijiahao-publish",
+  "version": "1.0.0",
+  "description": "百家号自动发布技能：用 auth 打开发布页，填标题/正文（支持 .md）、选封面、存草稿或发布。",
+  "main": "scripts/open_baijiahao_edit.py",
+  "scripts": {
+    "test": "python scripts/open_baijiahao_edit.py --help",
+    "install-deps": "pip install -r requirements.txt && playwright install chromium"
+  },
+  "keywords": ["baijiahao", "百家号", "publish", "automation", "playwright", "draft"],
+  "author": "Maynor",
+  "license": "MIT",
+  "repository": "",
+  "homepage": "",
+  "openclaw": {
+    "skill": true,
+    "category": "publishing",
+    "language": "python"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/open_baijiahao_edit.py",
+    "requirements.txt",
+    "_meta.json"
+  ]
+}

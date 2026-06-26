@@ -1,35 +1,27 @@
 ---
-name: "Operational Heartbeat"
-description: "Automated daily health check for OpenClaw instances. Verifies memory file presence, detects stale/overdue cron jobs, and surfaces system status. Intended for..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/operational-heartbeat"
-sourceUrl: "https://clawhub.ai/skills/operational-heartbeat"
+name: operational-heartbeat
+description: Automated daily health check for OpenClaw instances. Verifies memory file presence, detects stale/overdue cron jobs, and surfaces system status. Intended for scheduled execution via cron.
 ---
 
-# Operational Heartbeat
+1. Ensure memory file exists for today:
+   - Path: memory/YYYY-MM-DD.md
+   - If missing, create with minimal template
 
-> Automated daily health check for OpenClaw instances. Verifies memory file presence, detects stale/overdue cron jobs, and surfaces system status. Intended for...
+2. Check cron job health:
+   - Use `cron list` to fetch all jobs
+   - For each job, verify state.nextRunAtMs is in the future
+   - Flag jobs with consecutiveErrors > 0 or lastRunStatus != 'ok'
+   - Count stale/overdue jobs
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/operational-heartbeat`
-- **Source URL:** [https://clawhub.ai/skills/operational-heartbeat](https://clawhub.ai/skills/operational-heartbeat)
+3. Optional: promote learnings from recent memory files (if configured)
 
-## Overview
+4. Report summary:
+   - Memory file: created/exists
+   - Cron jobs: total, healthy, stale count
+   - Any errors or warnings
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/operational-heartbeat
-```
+Implementation notes:
+- Use a small Node.js script to parse cron JSON and filter stale jobs
+- Comparison: new Date().getTime() vs nextRunAtMs
+- Consider timezone-aware scheduling
+- Exit 0 if healthy; non-zero if issues found

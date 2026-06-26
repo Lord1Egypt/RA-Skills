@@ -1,0 +1,14 @@
+{
+  "name": "polymarket-autotrader",
+  "version": "1.0.0",
+  "description": "Auto-trade BTC/ETH/SOL/XRP on Polymarket at 5m/15m intervals",
+  "main": "trader.js",
+  "scripts": {
+    "start": "node trader.js",
+    "dry-run": "DRY_RUN=true node trader.js"
+  },
+  "dependencies": {
+    "@polymarket/clob-client": "^3.9.0",
+    "ethers": "^6.13.0"
+  }
+}

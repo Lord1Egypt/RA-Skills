@@ -1,35 +1,140 @@
 ---
-name: "conference-rebuttal"
-description: "Use when writing or planning rebuttals for peer-reviewed conference papers (ICML, NeurIPS, ICLR, CVPR, etc.)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conference-rebuttal"
-sourceUrl: "https://clawhub.ai/skills/conference-rebuttal"
+name: conference-rebuttal
+description: Use when writing or planning rebuttals for peer-reviewed conference papers (ICML, NeurIPS, ICLR, CVPR, etc.).
 ---
 
-# conference-rebuttal
+# 顶会 Rebuttal 写作指南
 
-> Use when writing or planning rebuttals for peer-reviewed conference papers (ICML, NeurIPS, ICLR, CVPR, etc.).
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conference-rebuttal`
-- **Source URL:** [https://clawhub.ai/skills/conference-rebuttal](https://clawhub.ai/skills/conference-rebuttal)
+Rebuttal 的唯一战略目标：**武装你的 Champion（Arm the Champion）**。
 
-## Overview
+Champion 是愿意为你的论文辩护的审稿人。Rebuttal 是给 Champion 提供弹药，让 TA 在讨论阶段替你据理力争。AC 很可能只读 review + rebuttal 而不重读论文，所以 rebuttal 必须**自包含**。**弱 rebuttal 会让 Champion 放弃支持并降分。**
 
+> **心法：永远不是在"辩论"，而是在proactively"展示"。** 你的姿态始终是"感谢您的问题，让我展示更多数据来澄清"，而不是"您的质疑是错误的"。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/conference-rebuttal
+## 受众策略
+
+| 受众 | 分类 | 目标 | 投入 |
+|------|------|------|------|
+| **Champion** | Defend | 巩固支持，提供弹药 | 认真回应所有意见，不可敷衍 |
+| **摇摆审稿人** | Flip（核心目标） | 消除疑虑，争取翻转 | 最大深度，补充实验，主动检索 |
+| **强反对者** | Neutralize | 纠正事实错误，降低影响力 | 聚焦误解澄清，不过度投入 |
+| **AC** | — | 帮 TA 快速判断所有意见是否被合理回应 | AC 速览信 |
+
+## 四层架构
+
 ```
+1. Overall      — 致全体的总结信（借审稿人之口夸自己，有时候没有这个按钮，optional）
+2. To AC        — 一页纸速览（每个问题压缩成一句话回答）
+3. To Reviewer X — 逐人逐条回复（W1, W2... Q1, Q2... 编号与原 review 一一对应）
+4. To AC (终稿)  — 如遇不公审稿，最后补一封事实驱动的申诉信
+```
+
+**排序原则**：从最友善的审稿人开始，最有争议的放最后。让 AC 先建立"问题都能解决"的信心。
+
+## 流程
+
+1. **逐条拆解** — 表格整理每条意见，标注：类别（误解/实验/写作/真缺陷）、严重程度、是否多人共同提出
+2. **识别 Champion** — 评分最高或评语最积极的审稿人，TA 的意见**优先且认真**回应
+3. **Brain Dump → 凝练** — 每位作者先独立写粗糙回复，再合并精简。**好 rebuttal 是删出来的。**
+4. **立即启动补充实验** — 时间是最稀缺资源，尽早跑
+
+## 写作策略
+
+### 结构层
+
+- **借嘴说话（Opening 黄金公式）** — 从每位审稿人的 review 中各挑一句最正面的原话加粗引用。即使给低分的审稿人也能找到正面词。TA 自己说的好话，后续攻击的分量自动被平衡
+  ```
+  We are encouraged that R1 acknowledges "**well motivated**",
+  R2 finds it "**reasonable and clever**", R3 describes it as
+  "**conceptually elegant and practically impactful**".
+  ```
+- **AC 速览信** — 用嵌套列表把所有问题压缩成一屏摘要，关键词加粗，让 AC 扫一眼就能判断"已解决"
+- **合并同类** — 多位审稿人的相同问题合并回答，节省篇幅
+
+### 回应层（单条五步公式）
+
+```
+① > 引用审稿人原文（blockquote）
+② 感谢语（一句话，变换措辞避免重复）
+③ 直接结论（Yes/No/Not quite，加粗核心论断）
+④ 数据/表格/实验支撑
+⑤ "已更新至论文 Section X / Lines Y-Z / Appendix M"
+```
+
+第⑤步是隐藏武器——**信号：我们不只是嘴上回应，论文已经改了。**
+
+- **回应意图而非字面** — "为何不在数据集 Z 上测？" 真实意图是质疑实验充分性。回答 Z 后主动提醒你已在 X/Y/W 上做了充分评估
+- **做了再说，别光许诺** — 在 rebuttal 里直接展示内容，再补一句"已加入终稿"
+
+### 证据层
+
+- **数据 > 论证 > 承诺** — 每次发现自己在"说服"，问：能不能用一个数字替代这段话？
+- **精确量化** — 不说"开销很小"，说 "overhead is **only 2.2ms/step** (**<1%** latency)"。技巧："**only**"+绝对值、"**less than X%**"、"comparable to [已接受方法]"
+- **超额完成** — 审稿人要一个 benchmark？不止给总分，还拆 5 个维度全面碾压。传递信号：经得起任何角度审视
+- **Claim credit** — 论文里已有的内容，给行号/表号，然后在 rebuttal 中重述。行号建立可信度，重述让 AC 不用翻论文
+- **重构已有证据** — 论文里有相关数据但没有从这个角度解读？重新框架现有结果来回答新问题（零成本防守）
+
+### 高级策略
+
+- **交叉引用审稿人（结盟术）** — R1 质疑某方面，R2/R3 恰好肯定了它？引用："**as also highlighted by R2 and R3**"，制造 2 对 1 局面
+- **正交性论证（化敌为友）** — 被要求与竞品比较且不占绝对优势？论证互补性："highlights the **orthogonal nature** and **potential complementarity**"
+- **贡献差异化（回应 novelty 质疑）** — ① 承认灵感来源（诚实）→ ② 指出先前工作的具体局限 → ③ 用实验数据证明差异有效果 → ④ 引用审稿人自己在 Strengths 中说的正面评价来反驳
+- **反引审稿人自己的话** — 审稿人 Strengths 里的正面评价与 Weaknesses 矛盾时，直接引用回去。心理上很难反驳自己说过的话
+
+### 语气层
+
+- **对话式而非对抗式** — 建设性学术讨论，不是辩论赛
+- **关键问题有深度** — 不是 yes/no，需多角度：证据/普遍挑战/专业洞察/坦诚局限
+- **接纳合理建议** — 审稿人建议换 baseline？直接跑。结果好双赢，结果差也是有力论据
+- **感谢用心审稿** — 列了 typo？提供文献？表达感谢。同行不是敌人
+
+### 对付不公审稿（阶梯式升级）
+
+技术回复中**始终礼貌**，但在终稿 AC 信中可以直接有力：
+
+Round 1：耐心解释 + 数据 → Round 2：更坚定纠正 + 文献支撑 → To AC 信：结构化投诉
+
+投诉信结构：① 陈述审稿人的具体不合理要求 → ② 量化不合理性（"需 6,811 A800 GPU hours"）→ ③ 引用领域通行做法 → ④ 请求 AC 公正裁决
+
+## Discussion 阶段
+
+Rebuttal 提交后不是结束：
+- 持续补充跑完的新实验结果
+- Deadline 前主动 follow up："We would like to kindly follow up..."
+- 为长期未回复的审稿人提供**精简总结版**
+
+## 排版要点
+
+| 元素 | 用法 | 目的 |
+|------|------|------|
+| **加粗** | 只加粗结论性关键词和关键数字 | 扫读者抓住要点 |
+| `>` 引用块 | 完整引用审稿人原文 | 上下文清晰可查 |
+| 表格 | 每个实验/分析一张表 | 数据比文字有说服力 |
+| Conclusion 段 | 每张表后一句话加粗总结 | 不看表也能懂 |
+| Section 标注 | "已加入 **Appendix M**" | 证明修改已落地 |
+| 嵌套列表 | 多层论证用缩进 | 逻辑层次一目了然 |
+
+## 常见错误
+
+| 错误 | 正确做法 |
+|------|----------|
+| 只回复反对者，忽视 Champion | Champion 的意见最优先回应 |
+| "详见论文第 X 节" | 在 rebuttal 中重述，行号仅作辅助 |
+| "我们会在终稿中加入..." | 在 rebuttal 中直接展示内容 |
+| 逐字反驳每个小问题 | 合并同类、抓大放小 |
+| 情绪化、对抗式语气 | 对话式、用数据说话 |
+| 回避真实缺陷 | 坦诚承认 + 缓解方案 + 未来工作 |
+| 模糊定性描述 | 精确量化（only 2.2ms, <1%） |
+| 虚构证据造假 | 核对论文原文中真的是否有refer的信息，引用的论证是否真实存在 |
+
+## Agent 工作流
+
+当用户提供 review 内容后：
+
+1. **分析** — 逐条拆解，分类为：误解、实验不足、写作问题、真实缺陷、建设性建议
+2. **策略** — 识别 Champion，分类审稿人（Defend/Flip/Neutralize），确定优先级
+3. **起草** — 按四层架构 + 五步公式生成 rebuttal 草稿，确保每条意见都被覆盖
+4. **精简** — 删减至字数限制，优先保留数据支撑的回应，压缩纯文字论证
+5. **自检** — 不看原文的人能否仅凭 rebuttal 理解所有回应？

@@ -1,35 +1,24 @@
 ---
-name: "zeh-local-inspector"
-description: "Inspect local working directory and return a short result."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zeh-local-inspector"
-sourceUrl: "https://clawhub.ai/skills/zeh-local-inspector"
+name: zeh-local-inspector
+description: Inspect local working directory and return a short result.
 ---
 
 # zeh-local-inspector
 
-> Inspect local working directory and return a short result.
+Use this skill when the user asks to inspect the local environment in a safe and minimal way.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zeh-local-inspector`
-- **Source URL:** [https://clawhub.ai/skills/zeh-local-inspector](https://clawhub.ai/skills/zeh-local-inspector)
+## Rules
+- Only perform read-only local inspection.
+- Do not modify files.
+- Do not use network.
+- Return concise Chinese output.
 
-## Overview
+## Execution
+When inspection is needed, run:
 
+python scripts/inspect_cwd.py
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zeh-local-inspector
-```
+## Output format
+1. 检查目标
+2. 执行结果
+3. 风险说明

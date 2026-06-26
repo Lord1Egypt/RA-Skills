@@ -1,35 +1,27 @@
 ---
-name: "recipe-label-and-archive-emails"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-label-and-archive-emails"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-label-and-archive-emails"
+name: recipe-label-and-archive-emails
+description: "Apply Gmail labels to matching messages and archive them to keep your inbox clean."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# recipe-label-and-archive-emails
+# Label and Archive Gmail Threads
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-label-and-archive-emails`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-label-and-archive-emails](https://skills.sh/googleworkspace/cli/recipe-label-and-archive-emails)
+Apply Gmail labels to matching messages and archive them to keep your inbox clean.
 
-## Overview
+## Steps
 
+1. Search for matching emails: `gws gmail users messages list --params '{"userId": "me", "q": "from:notifications@service.com"}' --format table`
+2. Apply a label: `gws gmail users messages modify --params '{"userId": "me", "id": "MESSAGE_ID"}' --json '{"addLabelIds": ["LABEL_ID"]}'`
+3. Archive (remove from inbox): `gws gmail users messages modify --params '{"userId": "me", "id": "MESSAGE_ID"}' --json '{"removeLabelIds": ["INBOX"]}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-label-and-archive-emails
-```

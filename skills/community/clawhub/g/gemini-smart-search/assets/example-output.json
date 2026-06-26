@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "query": "BoundaryML context engineering",
+  "mode": "cheap",
+  "model_used": "gemini-2.5-flash-lite",
+  "fallback_chain": [
+    "gemini-2.5-flash-lite"
+  ],
+  "display_chain": [
+    "gemini-2.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-2.5-flash"
+  ],
+  "answer": "BoundaryML publishes high-signal content around AI coding and context engineering.",
+  "citations": [
+    {
+      "title": "BoundaryML - YouTube",
+      "url": "https://www.youtube.com/@boundaryml"
+    }
+  ],
+  "usage": {
+    "provider": "gemini",
+    "grounding": true
+  },
+  "error": null,
+  "escalation": {
+    "should_open_issue": false,
+    "issue_url": null,
+    "reason": null,
+    "kind": null,
+    "recommended_details": []
+  }
+}

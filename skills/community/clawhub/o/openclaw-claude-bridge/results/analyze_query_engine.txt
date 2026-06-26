@@ -1,0 +1,45 @@
+🚀 启动 Claude Code + DashScope 代理...
+✅ 代理服务器已在端口 3458 运行
+🎯 启动 Claude Code...
+   API: http://localhost:3458 -> https://coding.dashscope.aliyuncs.com/apps/anthropic
+
+## QueryEngine.ts 技术分析
+
+### 1. 核心架构
+QueryEngine 采用 **生命周期管理器模式**，封装对话会话状态（`mutableMessages`、文件缓存、使用统计）。每个 conversation 一个引擎实例，`submitMessage()` 支持多轮对话。关键设计：
+- **状态隔离**：`mutableMessages` 私有，外部通过 `getMessages()` 访问
+- **功能解耦**：依赖外部配置（tools、canUseTool、MCP 客户端），不硬编码业务逻辑
+- **生成器模式**：`AsyncGenerator` 实现流式响应
+
+### 2. 消息处理流程
+1. **预处理**：`processUserInput()` 处理用户输入（解析 `/` 命令、附件）
+2. **会话持久化**：写入 transcript（支持 `--resume`）
+3. **初始化**：构造 system prompt（支持 memory mechanics、自定义/附加提示）
+4. **查询循环**：`query()` 与 Claude API 交互，处理工具调用
+5. **后处理**：追踪用量、预算、停止原因
+
+### 3. 工具调用机制
+- **权限包装**：`wrappedCanUseTool` 拦截工具执行，记录拒绝（`permissionDenials`）
+- **上下文传递**：`ToolUseContext` 携带 elicitations、文件历史状态
+- **结果归一化**：`normalizeMessage()` 统一处理工具结果消息
+- **MCP 集成**：支持外部 MCP 服务器工具
+
+### 4. 权限控制设计
+- **策略注入**：`canUseTool` 回调外部权限逻辑
+- **模式感知**：传递 `permissionMode` 到 system init
+- **审计追踪**：拒绝记录随结果返回（`permission_denials`）
+- **孤儿权限处理**：`handleOrphanedPermission` 恢复中断的权限请求
+
+### 5. 与 OpenClaw 对比优势
+| 维度 | Claude Code | OpenClaw |
+|------|-------------|----------|
+| **架构成熟度** | 类封装会话生命周期，状态管理清晰 | 简单线程模型，状态隐式 |
+| **流式处理** | `AsyncGenerator` 原生支持分块响应 | 回调模式，需手动拼接 |
+| **持久化** | transcript + compact boundary 内存优化 | 基础聊天历史，无压缩 |
+| **工具扩展** | MCP 集成 + 技能系统（slash commands） | 有限的工具集 |
+| **预算控制** | 实时追踪 `$` 花费、轮次限制 | 无内置预算机制 |
+| **调试支持** | headless profiler checkpoints | 基础日志 |
+
+**总结**：QueryEngine 是生产级对话引擎，设计聚焦可维护性、可观测性和资源控制；OpenClaw 适合轻量/嵌入场景。
+
+

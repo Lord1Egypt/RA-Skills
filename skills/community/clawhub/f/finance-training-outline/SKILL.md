@@ -1,35 +1,80 @@
----
-name: "Finance Training Outline"
-description: "为财务骨干设计3天课程大纲，涵盖资金管理、融资筹划、经营分析等关键能力，促进财务价值创造转型。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-training-outline"
-sourceUrl: "https://clawhub.ai/skills/finance-training-outline"
----
+# Skill: 财务培训课程大纲生成器
 
-# Finance Training Outline
+## 基础信息
+- **Slug**: finance-training-outline
+- **Version**: 1.0.0
+- **名称**: 财务条线专业培训课程大纲
+- **描述**: 为集团财务与经营管理中心骨干员工设计3天培训课程大纲
+- **作者**: 户部 (hubu)
+- **标签**: 财务, 培训, 课程设计, 人才发展
 
-> 为财务骨干设计3天课程大纲，涵盖资金管理、融资筹划、经营分析等关键能力，促进财务价值创造转型。
+## 输入参数
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-training-outline`
-- **Source URL:** [https://clawhub.ai/skills/finance-training-outline](https://clawhub.ai/skills/finance-training-outline)
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| target | string | 是 | 目标学员：骨干员工（5-8年经验） |
+| duration | number | 是 | 培训时长（天），默认3天 |
+| capabilities | array | 是 | 重点覆盖能力，选择3-4项 |
+| goal | string | 否 | 培训目标 |
 
-## Overview
+## 输出格式
 
+### Markdown格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-training-outline
+```markdown
+## 课程名称
+## 培训目标
+- 目标1
+- 目标2
+## 课程大纲
+### Day 1: 主题
+- 上午模块：内容要点、案例、互动形式
+- 下午模块：内容要点、案例、互动形式
+### Day 2: 主题
+### Day 3: 主题
+## 结业考核方式
+## 师资建议
 ```
+
+## 课程设计原则
+
+### 互动形式
+- 小组讨论
+- 沙盘模拟
+- 角色扮演
+- 汇报展示
+- 案例分析
+
+### 案例要求
+- 每个模块至少一个真实企业案例
+- 使用虚构案例需贴近集团业务场景
+
+## 课程模块示例
+
+### Day 1: 金融思维与资金管理
+- 上午：集团资金池运营实务
+- 下午：流动性风险管控沙盘模拟
+
+### Day 2: 融资筹划与资本运作
+- 上午：股权与债务融资策略
+- 下午：并购重组案例研讨
+
+### Day 3: 战略财务与数字化
+- 上午：经营分析与决策支持
+- 下午：财务数字化系统应用
+
+## 使用示例
+
+```
+设计一个面向骨干员工的3天培训
+重点能力：资金管理、融资筹划、经营分析
+目标：提升金融思维，从核算型向价值创造型转型
+```
+
+## 触发关键词
+- 培训大纲
+- 课程设计
+- 财务培训
+- 企业大学
+- 学习发展
+- 人才培养

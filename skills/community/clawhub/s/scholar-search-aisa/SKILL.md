@@ -1,35 +1,58 @@
 ---
-name: "scholar-search-aisa"
-description: "Search academic papers and scholarly sources through the AISA scholar endpoint. Use when: the user asks for papers, authors, recent research, citations, or y..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scholar-search-aisa"
-sourceUrl: "https://clawhub.ai/skills/scholar-search-aisa"
+name: scholar-search
+description: "Search academic papers and scholarly sources through the AISA scholar endpoint. Use when: the user asks for papers, authors, recent research, citations, or year-filtered academic evidence."
+author: aisa
+version: "1.0.0"
+license: Apache-2.0
+user-invocable: true
+primaryEnv: AISA_API_KEY
+requires:
+  env:
+    - AISA_API_KEY
+  bins:
+    - python3
+metadata:
+  openclaw:
+    primaryEnv: AISA_API_KEY
+    requires:
+      env:
+        - AISA_API_KEY
+      bins:
+        - python3
 ---
+# Scholar Search
 
-# scholar-search-aisa
+## When to Use
 
-> Search academic papers and scholarly sources through the AISA scholar endpoint. Use when: the user asks for papers, authors, recent research, citations, or y...
+- Search academic papers and scholarly sources through the AISA scholar endpoint. Use when: the user asks for papers, authors, recent research, citations, or year-filtered academic evidence.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scholar-search-aisa`
-- **Source URL:** [https://clawhub.ai/skills/scholar-search-aisa](https://clawhub.ai/skills/scholar-search-aisa)
+## When NOT to Use
 
-## Overview
+- Do not use this skill for browser-cookie extraction, passwords, Keychain access, or other local sensitive credential access.
+- Prefer a different skill when the user request is outside this skill's domain.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Focus on academic papers, scholar indexing, and year-filtered retrieval.
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/scholar-search-aisa
+export AISA_API_KEY="your-key"
 ```
+
+## Primary Runtime
+
+Use the bundled Python client as the canonical ClawHub runtime path:
+
+```bash
+python3 scripts/search_client.py
+```
+
+## Example Queries
+
+- Find papers on state-space models published after 2024.
+
+## Notes
+
+- Use when scholarly evidence is the priority.

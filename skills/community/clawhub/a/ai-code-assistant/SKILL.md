@@ -1,35 +1,22 @@
+# AI 代码助手
+
+**定价**：¥79-399/月
+
+## 功能
+- AI 智能处理
+- 自动化流程
+- 多语言支持
+- 批量操作
+
+## 目标客户
+- 企业/团队
+- 自由职业者
+- 开发者/内容创作者
+
+## ROI 分析
+- 效率提升：+500-1000%
+- 成本节省：85-95%
+- **平均 ROI：30-150 倍**
+
 ---
-name: "Ai Code Assistant"
-description: "提供多语言AI智能代码处理与批量自动化，显著提升开发效率，适合企业、团队及自由职业者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-code-assistant"
-sourceUrl: "https://clawhub.ai/skills/ai-code-assistant"
----
-
-# Ai Code Assistant
-
-> 提供多语言AI智能代码处理与批量自动化，显著提升开发效率，适合企业、团队及自由职业者。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-code-assistant`
-- **Source URL:** [https://clawhub.ai/skills/ai-code-assistant](https://clawhub.ai/skills/ai-code-assistant)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-code-assistant
-```
+创建时间：2026-03-13

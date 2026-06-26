@@ -1,0 +1,45 @@
+{
+  "http://stable.test/robots.txt": {
+    "statusCode": 404,
+    "body": "missing"
+  },
+  "http://stable.test/sitemap.xml": {
+    "body": "<?xml version=\"1.0\"?><urlset><url><loc>http://stable.test/blog/post-1</loc></url><url><loc>http://stable.test/blog/post-2</loc></url><url><loc>http://stable.test/blog/post-3</loc></url><url><loc>http://stable.test/blog/post-4</loc></url><url><loc>http://stable.test/blog/post-5</loc></url><url><loc>http://stable.test/blog/post-6</loc></url><url><loc>http://stable.test/blog/post-7</loc></url><url><loc>http://stable.test/blog/post-8</loc></url></urlset>"
+  },
+  "http://stable.test/sitemap_index.xml": {
+    "statusCode": 404,
+    "body": "missing"
+  },
+  "http://stable.test/blog/post-1": {
+    "body": "<html><body><main><h1>Page 1</h1><ul><li>x</li></ul></main></body></html>"
+  },
+  "http://stable.test/blog/post-2": {
+    "body": "<html><body><main><h1>Page 2</h1><form><input></form></main></body></html>"
+  },
+  "http://stable.test/blog/post-3": {
+    "body": "<html><body><main><h1>Page 3</h1><table><tr><td>x</td></tr></table></main></body></html>"
+  },
+  "http://stable.test/blog/post-4": {
+    "body": "<html><body><main><h1>Page 4</h1><form><input></form></main></body></html>"
+  },
+  "http://stable.test/blog/post-5": {
+    "body": "<html><body><main><h1>Page 5</h1><ul><li>x</li></ul></main></body></html>"
+  },
+  "http://stable.test/blog/post-6": {
+    "body": "<html><body><main><h1>Page 6</h1><table><tr><td>x</td></tr></table></main></body></html>"
+  },
+  "http://stable.test/blog/post-7": {
+    "body": "<html><body><main><h1>Page 7</h1><ul><li>x</li></ul></main></body></html>"
+  },
+  "http://stable.test/blog/post-8": {
+    "body": "<html><body><main><h1>Page 8</h1><form><input></form></main></body></html>"
+  },
+  "http://stable.test/api/v1/index.json": {
+    "statusCode": 404,
+    "body": "missing"
+  },
+  "http://stable.test/api/index.json": {
+    "statusCode": 404,
+    "body": "missing"
+  }
+}

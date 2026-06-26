@@ -1,0 +1,30 @@
+{
+  "extract": {
+    "maxTopics": 20,
+    "maxPitfalls": 6,
+    "maxConcepts": 6,
+    "maxInsights": 6,
+    "minInsightLength": 10
+  },
+  "summary": {
+    "includeTopics": true,
+    "includeDecisions": true,
+    "includePitfalls": true,
+    "includeConcepts": true,
+    "includeInsights": true,
+    "emojiStyle": "unicode"
+  },
+  "schedule": {
+    "hour": 10,
+    "minute": 0,
+    "timezone": "Asia/Shanghai"
+  },
+  "channels": {
+    "sources": ["webui", "feishu"],
+    "delivery": "feishu"
+  },
+  "feishu": {
+    "target": "oc_961ed2e84e1c196a9598dc6414d92ea6"
+  },
+  "language": "zh"
+}

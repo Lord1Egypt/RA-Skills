@@ -1,0 +1,27 @@
+{
+  "name": "ocax-passport",
+  "version": "1.0.0",
+  "description": "OCAX Passport - 节点身份证技能",
+  "author": "OCAX Team",
+  "tags": ["ocax", "passport", "node", "hardware", "reputation"],
+  "license": "MIT",
+  "repository": "https://github.com/HKUDS/OCAX-Passport",
+  "homepage": "https://github.com/HKUDS/OCAX-Passport",
+  "keywords": [
+    "ocax",
+    "passport",
+    "node",
+    "hardware",
+    "reputation",
+    "credential"
+  ],
+  "triggers": [
+    "passport",
+    "节点信息",
+    "节点评分",
+    "我的节点"
+  ],
+  "dependencies": [
+    "psutil>=5.9.0"
+  ]
+}

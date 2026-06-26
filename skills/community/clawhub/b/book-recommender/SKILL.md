@@ -1,35 +1,113 @@
----
-name: "Book Recommender - 书籍推荐"
-description: "Recommend books based on interests or history, check Douban ratings and reviews, and manage reading notes and book lists."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-recommender"
-sourceUrl: "https://clawhub.ai/skills/book-recommender"
----
+# 📚 Book Recommender - 书籍推荐助手
 
-# Book Recommender - 书籍推荐
+## 触发规则
 
-> Recommend books based on interests or history, check Douban ratings and reviews, and manage reading notes and book lists.
+**关键词：**
+- 推荐书籍、书单推荐、看什么书
+- 豆瓣评分、书籍评分
+- 读书笔记、读后感
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-recommender`
-- **Source URL:** [https://clawhub.ai/skills/book-recommender](https://clawhub.ai/skills/book-recommender)
+**场景：**
+- 用户想找书看但不知道选什么
+- 用户查询某本书的评分
+- 用户想记录读书笔记
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/book-recommender
+1. **书籍推荐**
+   - 根据兴趣推荐
+   - 根据阅读历史推荐
+   - 热门书单
+
+2. **豆瓣对接**
+   - 评分查询
+   - 书评查看
+   - 作者信息
+
+3. **读书笔记**
+   - 记录阅读进度
+   - 摘录金句
+   - 写读后感
+
+4. **书单管理**
+   - 想读清单
+   - 已读清单
+   - 在读清单
+
+## 权限需求
+
+- [x] 网络访问（豆瓣 API）
+- [x] 文件读写（笔记存储）
+
+## 示例对话
+
 ```
+用户：推荐几本好看的小说
+助手：好的！根据你的兴趣推荐：
+
+📚 **小说推荐**
+
+1. 《活着》- 余华 ⭐9.4
+   📝 简介：讲述一个人一生的苦难与坚强
+   🏷️ 标签：中国文学、人生、经典
+
+2. 《百年孤独》- 马尔克斯 ⭐9.3
+   📝 简介：布恩迪亚家族七代人的传奇故事
+   🏷️ 标签：魔幻现实主义、拉美文学
+
+3. 《追风筝的人》- 卡勒德·胡赛尼 ⭐9.2
+   📝 简介：关于救赎与成长的感人故事
+   🏷️ 标签：成长、友情、救赎
+
+想深入了解哪一本？或者告诉我你喜欢的类型~
+
+用户：查一下《三体》的评分
+助手：📖 《三体》- 刘慈欣
+
+⭐ 豆瓣评分：9.5 (50 万人评分)
+📝 简介：地球文明与三体文明的生死较量
+🏆 奖项：雨果奖最佳长篇小说
+📚 系列：三体三部曲第一部
+
+用户：记录读书笔记：《活着》
+助手：✅ 已添加读书笔记：
+
+📖 《活着》- 余华
+📅 阅读日期：2026-03-16
+⭐ 评分：★★★★★
+💭 感想：...
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/book-recommender/library.json
+{
+  "want_to_read": [],
+  "reading": [],
+  "read": [
+    {
+      "title": "活着",
+      "author": "余华",
+      "rating": 5,
+      "notes": "...",
+      "finished_date": "2026-03-16"
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 豆瓣 API 对接
+- [ ] 推荐算法
+- [ ] 读书笔记系统
+- [ ] 书单管理
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

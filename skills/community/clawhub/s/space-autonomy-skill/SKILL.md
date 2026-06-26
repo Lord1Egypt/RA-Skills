@@ -1,35 +1,21 @@
 ---
-name: "Pydaqua SpaceAutonomySkill"
-description: "Autonomous space navigation agent using optical quantum kernels for terrain classification."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/space-autonomy-skill"
-sourceUrl: "https://clawhub.ai/skills/space-autonomy-skill"
+name: space-autonomy-quantum
+description: Autonomous space navigation agent using optical quantum kernels for terrain classification.
+author: tempguest
+version: 0.1.0
+license: MIT
 ---
 
-# Pydaqua SpaceAutonomySkill
+# Space Autonomy Quantum Skill
 
-> Autonomous space navigation agent using optical quantum kernels for terrain classification.
+This skill simulates an autonomous agent for space exploration that uses **Optical Quantum Kernels** to classify terrain.
+It emphasizes **highest safety** by implementing strict confidence thresholds. If the quantum classifier is uncertain, the agent triggers a failsafe "SAFE MODE".
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/space-autonomy-skill`
-- **Source URL:** [https://clawhub.ai/skills/space-autonomy-skill](https://clawhub.ai/skills/space-autonomy-skill)
+## Features
+- **Quantum Perception**: Uses simulated optical quantum interference to recognize terrain features.
+- **Safety Failsafe**: Automatically halts if classification confidence is below 0.8.
+- **Autonomous Decision Making**: Decides to "Navigate" or "Avoid" based on quantum kernel results.
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/space-autonomy-skill
-```
+- `navigate`: Process a sensor reading and decide on an action.

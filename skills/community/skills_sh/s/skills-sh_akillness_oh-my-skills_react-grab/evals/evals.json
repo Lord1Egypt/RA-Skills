@@ -1,0 +1,55 @@
+{
+  "skill_name": "react-grab",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up react-grab in my Next.js app so I can copy component context into Claude Code.",
+      "expected_output": "Default to `npx -y grab@latest init`, state the Node.js >=22 prerequisite, and explain the hover + Cmd/Ctrl+C clipboard workflow.",
+      "assertions": [
+        "States the Node.js >=22 prerequisite before or alongside install guidance",
+        "Uses `npx -y grab@latest init` as the default install path",
+        "Explains dev-server -> hover element -> Cmd/Ctrl+C -> paste into Claude Code"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Install react-grab MCP so my agent can fetch the selected component context without pasting.",
+      "expected_output": "Use `npx -y grab@latest add mcp` and explain browser selection first, MCP tool call second.",
+      "assertions": [
+        "Shows `npx -y grab@latest add mcp`",
+        "Explains that the user must select or hover an element in the browser before the MCP tool returns context",
+        "Distinguishes MCP retrieval from the clipboard workflow"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a react-grab plugin that adds a Jira action to the context menu.",
+      "expected_output": "Stay in the react-grab plugin/API lane, use `registerPlugin(...)`, and keep the example focused on the requested action.",
+      "assertions": [
+        "Uses `registerPlugin` from `react-grab`",
+        "Includes an action with id, label, shortcut, and `onAction`",
+        "Preserves the react-grab boundary instead of rerouting the whole request to a generic browser skill"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "`grab init` fails on Node 20 on my machine. What should I check?",
+      "expected_output": "Call out the Node.js >=22 prerequisite, then route through project-root and dev-mode troubleshooting.",
+      "assertions": [
+        "Explicitly says Node 20 is below the supported requirement",
+        "States that the current upstream requirement is Node.js >=22",
+        "Checks project-root or dev-mode / load-order troubleshooting next"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I need to automate an authenticated browser flow and keep my existing login cookies. Should I use react-grab?",
+      "expected_output": "Say no for the core job, route to `playwriter` or `browser-harness`, and keep react-grab limited to element-context capture.",
+      "assertions": [
+        "Routes authenticated running-browser reuse to `playwriter` or fresh-session automation to `browser-harness`",
+        "Explains that react-grab is for React element-context capture rather than general browser automation",
+        "Keeps the route-out explicit instead of absorbing the adjacent workflow"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "health-habit-builder",
+  "version": "0.1.0",
+  "description": "Health Habit Builder / 健康习惯养成师. 基于行为科学和习惯形成理论，智能拆解微习惯、跟踪打卡、分析动机，帮助用户建立可持续的健康习惯。",
+  "keywords": ["health","habits","wellness","behavior","tracking"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/health-habit-builder",
+  "language": ["en","zh"],
+  "tags": ["health","habits","wellness","behavior","tracking"],
+  "createdAt": "2026-04-06",
+  "updatedAt": "2026-04-06"
+}

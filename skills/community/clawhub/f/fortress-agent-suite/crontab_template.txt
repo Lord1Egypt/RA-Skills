@@ -1,0 +1,6 @@
+# OpenClaw Fortress Suite Jobs
+0 * * * * /usr/bin/python3 /path/to/fortress/scripts/self-healing/backup.py
+*/30 * * * * /usr/bin/python3 /path/to/fortress/scripts/self-healing/health_check.py
+*/30 * * * * /usr/bin/python3 /path/to/fortress/scripts/self-healing/system_watchdog.py
+0 * * * * /usr/bin/python3 /path/to/fortress/scripts/self-healing/workspace_watchdog.py
+0 0 * * * /usr/bin/python3 /path/to/fortress/scripts/model_manager/manager.py

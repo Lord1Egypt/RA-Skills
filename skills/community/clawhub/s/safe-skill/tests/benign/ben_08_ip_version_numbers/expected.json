@@ -1,0 +1,8 @@
+{
+    "label": "benign",
+    "description": "Version numbers (1.2.3, 3.2.1, etc.) look like IP addresses to naive pattern matchers. Should be CLEAN.",
+    "expected_max_score": 0,
+    "expected_level": ["CLEAN"],
+    "should_not_trigger_categories": ["network"],
+    "false_positive_trap": "version numbers like 1.2.3 and 10.20.30 resemble IP addresses"
+}

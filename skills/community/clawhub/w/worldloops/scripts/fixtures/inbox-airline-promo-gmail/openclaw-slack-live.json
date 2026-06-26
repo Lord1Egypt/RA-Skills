@@ -1,0 +1,12 @@
+{
+  "channel": "#general",
+  "channel_id": "C01PROMO01",
+  "messages": [
+    {
+      "user": "team_member",
+      "text": "Reminder: team lunch tomorrow at noon.",
+      "ts": "1716286800.000000"
+    }
+  ],
+  "count": 1
+}

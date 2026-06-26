@@ -1,0 +1,38 @@
+{
+  "zones": [
+    {
+      "id": "greenhouse",
+      "name": "Greenhouse",
+      "type": "greenhouse",
+      "target_moisture_min": 30,
+      "target_moisture_max": 50,
+      "default_minutes": 6,
+      "max_minutes": 20,
+      "rain_sensitive": false,
+      "soil_sensor_ids": ["soil sensor device id 1", "soil sensor device id 2"],
+      "valve": {
+        "device_id": "water vavle device id 1",
+        "switch_code": "switch_1",
+        "countdown_code": "countdown_1",
+        "supports_countdown": true
+      }
+    },
+    {
+      "id": "outdoor",
+      "name": "Outdoor Garden",
+      "type": "outdoor",
+      "target_moisture_min": 30,
+      "target_moisture_max": 50,
+      "default_minutes": 8,
+      "max_minutes": 25,
+      "rain_sensitive": true,
+      "soil_sensor_ids": ["soil sensor device id 3"],
+      "valve": {
+        "device_id": "water vavle device id 2",
+        "switch_code": "switch_1",
+        "countdown_code": "countdown_1",
+        "supports_countdown": true
+      }
+    }
+  ]
+}

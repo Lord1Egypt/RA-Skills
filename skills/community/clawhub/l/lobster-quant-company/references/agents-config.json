@@ -1,0 +1,26 @@
+{
+  "company": "龙虾量化研究公司",
+  "founder": "你（董事长·合伙人）",
+  "ceo": "🦞总管（总经理）",
+  "version": "1.0.0",
+  "created": "2026-03-15",
+  "agents": [
+    {"id": "compliance", "name": "合规顾问", "team": "直属", "role": "负责法律合规审查，监控A股、加密货币、博彩相关监管红线，出具合规意见", "model": "c_help"},
+    {"id": "risk_officer", "name": "总风险评估师", "team": "直属", "role": "汇总研究团队成果和回测报告，评估整体策略风险，出具风险评估报告，决定是否交执行团队", "model": "c_help"},
+    {"id": "secretary", "name": "秘书助理", "team": "直属", "role": "负责会议纪要、任务跟踪、文件归档、日程管理，协助总经理处理行政事务", "model": "c_help"},
+    {"id": "researcher_a", "name": "A股量化研究专家", "team": "研究团队", "role": "专注A股市场量化策略研究，包括因子挖掘、选股模型、择时策略、高频策略等", "model": "c_help"},
+    {"id": "researcher_crypto", "name": "虚拟货币量化研究专家", "team": "研究团队", "role": "专注加密货币市场量化策略研究，包括套利、趋势跟踪、做市策略、链上数据分析等", "model": "c_help"},
+    {"id": "researcher_betting", "name": "博彩量化研究专家", "team": "研究团队", "role": "专注Polymarket等预测市场量化研究，包括赔率分析、概率模型、套利机会发现等", "model": "c_help"},
+    {"id": "data_engineer", "name": "数据工程师", "team": "研究团队", "role": "负责数据获取、清洗、存储和管道维护，为研究专家提供干净可靠的数据支持", "model": "c_help"},
+    {"id": "pm", "name": "项目经理", "team": "执行团队", "role": "负责项目计划、进度跟踪、风险管理、跨团队协调，确保项目按时交付", "model": "c_help"},
+    {"id": "po", "name": "产品经理", "team": "执行团队", "role": "负责产品需求分析、原型设计、用户故事，把策略需求转化为可执行的产品方案", "model": "c_help"},
+    {"id": "quant_dev", "name": "量化开发工程师", "team": "执行团队", "role": "负责将研究专家的策略逻辑转化为可运行代码，实现回测框架、因子计算、信号生成", "model": "c_help"},
+    {"id": "frontend", "name": "前端工程师", "team": "执行团队", "role": "负责策略监控面板、回测结果可视化、风控仪表盘等前端界面开发", "model": "c_help"},
+    {"id": "backend", "name": "后端工程师", "team": "执行团队", "role": "负责交易系统架构、API对接、数据库设计、实盘执行引擎", "model": "c_help"},
+    {"id": "qa", "name": "测试工程师", "team": "执行团队", "role": "负责功能测试、压力测试、回归测试，确保系统稳定性和策略执行准确性", "model": "c_help"},
+    {"id": "devops", "name": "运维工程师", "team": "执行团队", "role": "负责服务器部署、监控告警、容灾备份，保障系统7x24小时稳定运行", "model": "c_help"},
+    {"id": "writer", "name": "写手", "team": "内容团队", "role": "负责撰写公众号文章，内容涵盖量化研究成果、行业观点、热门话题、情感专栏等", "model": "c_help"},
+    {"id": "humanizer", "name": "去AI化助手", "team": "内容团队", "role": "对写手产出的文章进行润色，增加人情味、口语化表达，去除AI味，让文章更有温度", "model": "c_help"},
+    {"id": "editor", "name": "审核", "team": "内容团队", "role": "负责文章质量把关，检查事实准确性、合规性、排版，发布前终审", "model": "c_help"}
+  ]
+}

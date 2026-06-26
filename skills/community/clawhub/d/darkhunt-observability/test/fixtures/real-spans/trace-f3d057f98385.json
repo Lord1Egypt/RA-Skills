@@ -1,0 +1,114 @@
+[
+  {
+    "traceId": "f3d057f98385d923194dba1137d0b471",
+    "sessionId": "",
+    "userId": "node",
+    "userEmail": "node",
+    "serviceVersion": "0.3.4",
+    "organizationId": "efipttt6p3r8",
+    "workspaceId": "a0000000-0000-0000-0000-000000000001",
+    "applicationId": "33f69603-b74b-4b88-8ba8-4957b5f3f155",
+    "spanId": "6ed5430a5c6d16f0",
+    "name": "runtime.lifecycle.end",
+    "type": "event",
+    "level": "DEFAULT",
+    "timing": {
+      "start": "2026-03-17T12:21:06.490Z",
+      "end": "2026-03-17T12:21:06.490Z",
+      "durationMs": 0
+    },
+    "traceEnvironment": {
+      "serviceName": "openclaw",
+      "serviceVersion": "0.3.4",
+      "deployment": "production",
+      "osType": "Linux",
+      "arch": "x64",
+      "terminal": "node"
+    },
+    "_seq": 12
+  },
+  {
+    "traceId": "f3d057f98385d923194dba1137d0b471",
+    "sessionId": "",
+    "userId": "node",
+    "userEmail": "node",
+    "serviceVersion": "0.3.4",
+    "organizationId": "efipttt6p3r8",
+    "workspaceId": "a0000000-0000-0000-0000-000000000001",
+    "applicationId": "33f69603-b74b-4b88-8ba8-4957b5f3f155",
+    "spanId": "cc7b6ef289a1d817",
+    "name": "runtime.lifecycle.end",
+    "type": "event",
+    "level": "DEFAULT",
+    "timing": {
+      "start": "2026-03-17T12:21:06.490Z",
+      "end": "2026-03-17T12:21:06.490Z",
+      "durationMs": 0
+    },
+    "traceEnvironment": {
+      "serviceName": "openclaw",
+      "serviceVersion": "0.3.4",
+      "deployment": "production",
+      "osType": "Linux",
+      "arch": "x64",
+      "terminal": "node"
+    },
+    "_seq": 13
+  },
+  {
+    "traceId": "f3d057f98385d923194dba1137d0b471",
+    "sessionId": "",
+    "userId": "node",
+    "userEmail": "node",
+    "serviceVersion": "0.3.4",
+    "organizationId": "efipttt6p3r8",
+    "workspaceId": "a0000000-0000-0000-0000-000000000001",
+    "applicationId": "33f69603-b74b-4b88-8ba8-4957b5f3f155",
+    "spanId": "bb1ae8b6f0c68982",
+    "name": "runtime.lifecycle.end",
+    "type": "event",
+    "level": "DEFAULT",
+    "timing": {
+      "start": "2026-03-17T12:21:06.490Z",
+      "end": "2026-03-17T12:21:06.490Z",
+      "durationMs": 0
+    },
+    "traceEnvironment": {
+      "serviceName": "openclaw",
+      "serviceVersion": "0.3.4",
+      "deployment": "production",
+      "osType": "Linux",
+      "arch": "x64",
+      "terminal": "node"
+    },
+    "_seq": 14
+  },
+  {
+    "traceId": "f3d057f98385d923194dba1137d0b471",
+    "sessionId": "",
+    "userId": "node",
+    "userEmail": "node",
+    "serviceVersion": "0.3.4",
+    "organizationId": "efipttt6p3r8",
+    "workspaceId": "a0000000-0000-0000-0000-000000000001",
+    "applicationId": "33f69603-b74b-4b88-8ba8-4957b5f3f155",
+    "spanId": "7a9a322e2fcf7467",
+    "name": "runtime.lifecycle.end",
+    "type": "event",
+    "level": "DEFAULT",
+    "timing": {
+      "start": "2026-03-17T12:21:06.490Z",
+      "end": "2026-03-17T12:21:06.490Z",
+      "durationMs": 0
+    },
+    "traceEnvironment": {
+      "serviceName": "openclaw",
+      "serviceVersion": "0.3.4",
+      "deployment": "production",
+      "osType": "Linux",
+      "arch": "x64",
+      "terminal": "node"
+    },
+    "_seq": 16
+  }
+]

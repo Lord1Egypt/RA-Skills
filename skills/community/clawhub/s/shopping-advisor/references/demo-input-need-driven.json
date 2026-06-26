@@ -1,0 +1,9 @@
+{
+  "category": "投影仪",
+  "budget": { "max": 3000 },
+  "scenario": "卧室夜间看电影",
+  "priorities": ["性价比", "噪音低"],
+  "decision_mode": "need_driven",
+  "notes": "我还没有具体候选，先给我选购方向。",
+  "items": []
+}

@@ -1,0 +1,92 @@
+# ontology-clawra 实体类型定义
+
+types:
+  Person:
+    required: [name]
+    properties:
+      name: string
+      role: string
+      goals: list
+      preferences: map
+      created: datetime
+      updated: datetime
+      
+  Objective:
+    required: [name, priority]
+    properties:
+      name: string
+      priority: enum[P0, P1, P2, P3]
+      criteria: map
+      status: enum[active, completed, abandoned]
+      created: datetime
+      
+  Project:
+    required: [name, status]
+    properties:
+      name: string
+      objectives: list
+      status: enum[planning, active, paused, completed]
+      owner: string
+      depends_on: list
+      created: datetime
+      
+  Task:
+    required: [title, status]
+    properties:
+      title: string
+      status: enum[todo, in_progress, blocked, done]
+      priority: enum[high, medium, low]
+      assignee: string
+      blockers: list
+      estimated_hours: number
+      
+  Rule:
+    required: [name, condition, action]
+    properties:
+      name: string
+      condition: string
+      action: string
+      enabled: boolean
+      created: datetime
+      
+  Decision:
+    required: [context, selected]
+    properties:
+      context: string
+      options: list
+      selected: string
+      rationale: string
+      based_on_rules: list
+      timestamp: datetime
+
+relations:
+  works_on:
+    from: [Person]
+    to: [Project, Task]
+    type: many_to_many
+    
+  has_objective:
+    from: [Project]
+    to: [Objective]
+    type: one_to_many
+    
+  has_rule:
+    from: [Project, Objective]
+    to: [Rule]
+    type: many_to_many
+    
+  triggers:
+    from: [Rule]
+    to: [Decision]
+    type: one_to_many
+    
+  depends_on:
+    from: [Task, Project]
+    to: [Task, Project]
+    type: many_to_many
+    acyclic: true
+    
+  relates_to:
+    from: [Any]
+    to: [Any]
+    type: many_to_many

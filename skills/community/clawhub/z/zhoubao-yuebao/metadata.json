@@ -1,0 +1,11 @@
+{
+  "name": "weekly-report",
+  "version": "1.0.0",
+  "displayName": "周报月报生成",
+  "description": "一键生成结构化周报/月报，基于飞书云文档格式输出",
+  "author": "肥肥🐶",
+  "tags": ["周报", "月报", "工作报告", "飞书文档"],
+  "platform": "openclaw",
+  "channels": ["feishu"],
+  "entry": "scripts/handler.js"
+}

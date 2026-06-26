@@ -1,35 +1,42 @@
----
-name: "Telegram Marketing Audit Adarsh"
-description: "Handles Telegram /marketing_audit command by running a marketing audit on an Instagram handle or website domain and returning the report."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/telegram-marketing-audit-adarsh"
-sourceUrl: "https://clawhub.ai/skills/telegram-marketing-audit-adarsh"
----
+# Telegram Marketing Audit Command Handler Skill
 
-# Telegram Marketing Audit Adarsh
+## Purpose
+Handles the Telegram `/marketing_audit` command by triggering the Marketing Orchestrator skill with given input and replying with the final report.
 
-> Handles Telegram /marketing_audit command by running a marketing audit on an Instagram handle or website domain and returning the report.
+## Telegram Command
+- Command: `/marketing_audit`
+- Args: `instagramHandle` (optional), `websiteDomain` (optional)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/telegram-marketing-audit-adarsh`
-- **Source URL:** [https://clawhub.ai/skills/telegram-marketing-audit-adarsh](https://clawhub.ai/skills/telegram-marketing-audit-adarsh)
+## Implementation
+```javascript
+module.exports = async function marketingAuditHandler(context) {
+  const { instagramHandle, websiteDomain } = context.args;
 
-## Overview
+  if (!instagramHandle && !websiteDomain) {
+    await context.reply("Please provide an Instagram handle or website domain (or both).");
+    return;
+  }
 
+  await context.reply("Starting marketing audit. This may take a few minutes...");
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/telegram-marketing-audit-adarsh
+  try {
+    const result = await context.callSkill("marketing-orchestrator", {
+      instagramHandle,
+      websiteDomain,
+    });
+
+    if (result && result.reportMarkdown) {
+      await context.reply(result.reportMarkdown);
+    } else {
+      await context.reply("Audit completed but no report was generated.");
+    }
+  } catch (err) {
+    await context.reply("Error during marketing audit: " + err.message);
+  }
+};
 ```
+
+## Notes
+- Add this skill folder to OpenClaw skills directory.
+- Register a Telegram slash command `/marketing_audit` that uses this skill as the handler via OpenClaw config or ClawHub.
+- Ensure environment variables for collectors (API keys) are set.

@@ -1,0 +1,15 @@
+# 创建 conda 虚拟环境（用于 PDF 处理和 Python 任务）
+# 使用方法：conda env create -f vector-env.yml
+
+name: vectordb
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - pdfplumber
+    - PyPDF2
+    - pdf2image
+    - pillow

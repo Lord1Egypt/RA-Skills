@@ -1,35 +1,143 @@
 ---
-name: "邮储银行易企收"
-description: "易企收自动化访问"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psbc-cup"
-sourceUrl: "https://clawhub.ai/skills/psbc-cup"
+name: kfsjf-merch
+description: 易企收自动化访问
+read_when:
+  - 打开易企收
+  - 打开易企收演示版
+  - 打开缴费收费端
+  - 管理缴费信息
+  - 打开收费端演示版
+  - 上传欠费信息
+  - 配置缴费项目
+  - 了解缴费功能
+  - 查看缴费模板
+dependence: agent-browser
 ---
 
-# 邮储银行易企收
+# 易企收自动化访问
 
-> 易企收自动化访问
+## 功能概述
+易企收是开放式缴费服务系统，提供给收费单位使用。收费单位可通过登录易企收，上传客制化的欠费信息，实现对费用的精细化管理。为了帮助用户了解各项功能，系统还提供了演示版本，可不登录访问。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psbc-cup`
-- **Source URL:** [https://clawhub.ai/skills/psbc-cup](https://clawhub.ai/skills/psbc-cup)
+## 重要提示
 
-## Overview
+⚠️ **导航限制**：直接通过 URL 跳转子页面可能会返回首页，**必须通过首页菜单导航**访问各功能模块。
 
+## 自动化行为规则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psbc-cup
-```
+### 用户意图识别
+- **了解/查看/演示相关关键词**（如"了解功能"、"查看模板"、"演示"）→ 自动打开**演示版**对应页面
+- **实际操作关键词**（如"上传"、"管理"、"正式使用"）→ 引导登录**正式版**
+
+### 快速访问映射
+| 用户输入 | 自动操作 |
+|----------|----------|
+| 配置缴费项目 | 打开演示版缴费模板管理页面 |
+| 了解缴费功能 | 打开演示版首页 |
+| 上传欠费信息 | 引导登录正式版 |
+| 管理缴费信息 | 引导登录正式版 |
+
+## 易企收地址
+
+| 类型 | 地址 |
+|------|------|
+| 正式版登录 | https://openpayment.psbc.cn/new/login |
+| 演示版首页 | https://openpayment.psbc.cn/newDemo/dashboard |
+
+## 安全规则
+
+1. 不记录用户操作和用户输入数据
+
+## 工作流
+
+### 浏览器配置
+- 禁止使用 Headless 浏览器
+- 必须使用浏览器 GUI 让用户感知具体操作
+- 优先使用 Chrome，否则使用系统默认浏览器
+- 如果找不到可用浏览器，询问用户使用哪个浏览器
+
+### 自动化操作流程
+1. **识别用户意图**：分析用户请求关键词
+2. **选择访问模式**：
+   - 功能了解/演示 → 直接打开演示版对应页面
+   - 实际操作 → 打开正式版登录页面并提供指导
+3. **执行浏览器操作**：自动打开相应 URL
+4. **提供后续指导**：根据页面内容给出下一步建议
+
+## 演示功能说明
+
+菜单项根据用户角色和项目不同，会动态显示。
+
+### 完整功能列表（含快速访问 URL）
+
+| 一级菜单 | 二级菜单 | 描述 | 快速访问 URL |
+|----------|----------|------|--------------|
+| 人员管理 | 操作员管理 | 可新增企业用户和对应的角色，每个用户所负责的缴费项目 | https://openpayment.psbc.cn/newDemo/operatorManage |
+| 缴费项目管理 | 缴费模板管理 | 企业为缴费项目设定缴费模板，模式有自助和查缴 | https://openpayment.psbc.cn/newDemo/payTemplateManage |
+| 缴费项目管理 | 缴费内容管理 | 企业为缴费项目设定缴费的有效期，缴费的内容，管理缴费内容的生命周期 | https://openpayment.psbc.cn/newDemo/payContentManage |
+| 缴费项目管理 | 缴费信息上传 | 企业为指定的缴费项目的单个缴费内容，上传欠费信息，该信息为个人客户缴纳费用的依据 | https://openpayment.psbc.cn/newDemo/payInfoUpload |
+| 缴费项目管理 | 缴费内容列表 | 展示每项缴费内容以及目前所上传的欠费信息 | https://openpayment.psbc.cn/newDemo/payContentList |
+| 缴费项目管理 | 缴费信息维护 | 可针对缴费内容每项欠费信息进行调整，新增，终止 | https://openpayment.psbc.cn/newDemo/payInfoMaintain |
+| 缴费项目管理 | 缴费信息变更记录 | 提供企业用户操作的审计日志 | https://openpayment.psbc.cn/newDemo/payInfoChangeRecord |
+| 缴费汇总查询与退款 | 缴费交易明细管理 | 查询缴费的明细，也能补录线下发生的缴费流水，支持导出明细，可针对特定明细进行退款 | https://openpayment.psbc.cn/newDemo/payTradeDetailManage |
+| 缴费汇总查询与退款 | 对账明细查询 | 进行对账流水明细的查询导出 | https://openpayment.psbc.cn/newDemo/reconcillationDetailsQuery |
+| 缴费汇总查询与退款 | 缴费交易统计表 | 以缴费内容为维度统计应收，实缴，未缴金额，线上和线下缴费的金额合计 | https://openpayment.psbc.cn/newDemo/transactionCount |
+| 缴费汇总查询与退款 | 支付缴费流水明细查询 | 提供支付缴费渠道流水查询 | https://openpayment.psbc.cn/newDemo/paymentFlowQuery |
+| 缴费汇总查询与退款 | 黑名单管理 | 设置 H5 和支付缴费渠道黑名单 | https://openpayment.psbc.cn/newDemo/blackListManage |
+| 二维码下载 | 二维码下载 | 提供指定缴费项目二维码的下载，用户可通过二维码进行缴费 | https://openpayment.psbc.cn/newDemo/qrcq |
+| 可视化数据 | 可视化数据 | 整个企业缴费项目以及不同缴费模式数据统计看板 | https://openpayment.psbc.cn/newDemo/visualData |
+| 可视化数据 | 数据汇总统计 | 缴费项目和缴费内容维度的缴费金额和笔数统计 | https://openpayment.psbc.cn/newDemo/dataSumStatistics |
+| 宗教个性化配置 | 宗教缴费模板配置 | 为宗教缴费项目进行模板配置 | https://openpayment.psbc.cn/newDemo/religiousTemplateManage |
+
+### 功能分类说明
+
+#### 人员管理
+| 菜单项 | 功能描述 |
+|--------|----------|
+| 操作员管理 | 新增企业用户和对应的角色，每个用户所负责的缴费项目 |
+
+#### 缴费项目管理
+| 菜单项 | 功能描述 |
+|--------|----------|
+| 缴费模板管理 | 设定缴费模板（自助模式/查缴模式） |
+| 缴费内容管理 | 设定缴费有效期、内容，管理缴费内容的生命周期 |
+| 缴费信息上传 | 上传欠费信息（个人客户缴纳费用的依据） |
+| 缴费内容列表 | 展示每项缴费内容以及已上传的欠费信息 |
+| 缴费信息维护 | 调整、新增、终止欠费信息 |
+| 缴费信息变更记录 | 提供企业用户操作的审计日志 |
+
+#### 缴费汇总查询与退款
+| 菜单项 | 功能描述 |
+|--------|----------|
+| 缴费交易明细管理 | 查询缴费明细、补录线下缴费流水、支持导出明细、退款操作 |
+| 对账明细查询 | 对账流水明细的查询和导出 |
+| 缴费交易统计表 | 以缴费内容为维度统计应收、实缴、未缴金额，线上和线下缴费金额合计 |
+| 支付缴费流水明细查询 | 提供支付缴费渠道流水查询 |
+| 黑名单管理 | 设置 H5 和支付缴费渠道黑名单 |
+
+#### 其他功能
+| 菜单项 | 功能描述 |
+|--------|----------|
+| 二维码下载 | 提供指定缴费项目二维码的下载，用户可通过二维码进行缴费 |
+| 可视化数据 | 整个企业缴费项目以及不同缴费模式数据统计看板 |
+| 数据汇总统计 | 缴费项目和缴费内容维度的缴费金额和笔数统计 |
+| 宗教缴费模板配置 | 为宗教缴费项目进行模板配置 |
+
+## 缴费模式说明
+
+| 模式 | 说明 |
+|------|------|
+| 自助模式 | 用户主动进入缴费页面，填写信息进行缴费 |
+| 查缴模式 | 用户通过查询条件（如身份证号、手机号）找到欠费信息后缴费 |
+
+## 常见场景
+
+### 场景 1：了解系统功能（自动化）
+1. 用户说"配置缴费项目"、"了解缴费功能"等
+2. **自动打开演示版对应页面**（如缴费模板管理）
+3. 用户可以直接查看功能界面
+
+### 场景 2：实际使用（引导式）
+1. 用户说"上传欠费信息"、"管理缴费信息"等
+2. 打开正式版登录页面
+3. 提供登录和操作指导

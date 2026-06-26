@@ -1,0 +1,18 @@
+{
+  "type": "alert",
+  "title": "操作失败",
+  "message": "",
+  "errorCode": "",
+  "actions": [
+    {
+      "label": "重新发起签署",
+      "type": "action",
+      "action": "retry"
+    },
+    {
+      "label": "联系客服",
+      "type": "link",
+      "url": "https://www.fadada.com/contact"
+    }
+  ]
+}

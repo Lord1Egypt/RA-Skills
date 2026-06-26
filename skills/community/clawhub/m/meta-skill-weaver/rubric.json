@@ -1,0 +1,32 @@
+{
+  "skill_id": "meta-skill-weaver",
+  "version": "v2.3.1",
+  "evaluation_date": "2026-04-01",
+  "dimensions": {
+    "T": {
+      "score": 0.70,
+      "evidence": "EventBus 事件系统、Jest 单元测试、第一性原理分解器",
+      "improvement": "可增加更多设计模式"
+    },
+    "O": {
+      "score": 0.80,
+      "evidence": "支持并发执行、Middleware 链、虚拟路径系统",
+      "improvement": "可增强错误恢复机制"
+    },
+    "M": {
+      "score": 0.55,
+      "evidence": "已在 ClawHub 上架",
+      "improvement": "需要收集用户反馈"
+    }
+  },
+  "upgrade_plan": {
+    "next_version": "v2.4.0",
+    "priority_improvements": [
+      {
+        "dimension": "O",
+        "action": "增强错误恢复机制",
+        "expected_score": 0.85
+      }
+    ]
+  }
+}

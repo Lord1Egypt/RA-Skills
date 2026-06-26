@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.dev/schemas/shopping-advisor.schema.json",
+  "title": "ShoppingAdvisorContracts",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "shopping_context": {
+      "$ref": "#/$defs/ShoppingContext"
+    },
+    "decision_report": {
+      "$ref": "#/$defs/DecisionReport"
+    }
+  },
+  "$defs": {
+    "ShoppingContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["query", "candidates", "meta"],
+      "properties": {
+        "query": {
+          "$ref": "#/$defs/Query"
+        },
+        "candidates": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/Candidate"
+          }
+        },
+        "market_context": {
+          "$ref": "#/$defs/MarketContext"
+        },
+        "meta": {
+          "$ref": "#/$defs/Meta"
+        }
+      }
+    },
+    "Query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_mode"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "budget": {
+          "$ref": "#/$defs/Budget"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "priorities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10
+        },
+        "decision_mode": {
+          "type": "string",
+          "enum": ["compare", "single_judgement", "need_driven"]
+        },
+        "user_intent": {
+          "type": "string",
+          "enum": ["buy_now", "compare_only", "worth_it", "find_direction", "undecided"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "Budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "default": "CNY"
+        },
+        "flexible": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "source"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "enum": ["taobao", "tmall", "jd", "pdd", "manual", "other"]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/$defs/Price"
+        },
+        "seller": {
+          "$ref": "#/$defs/Seller"
+        },
+        "specs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "boolean", "null"]
+          }
+        },
+        "bundle": {
+          "$ref": "#/$defs/Bundle"
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        },
+        "fit_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "maxItems": 50
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "Price": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "list_price": {
+          "type": "number",
+          "minimum": 0
+        },
+        "final_price": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "default": "CNY"
+        },
+        "price_label": {
+          "type": "string",
+          "enum": ["list_price", "discounted", "coupon_price", "bundle_price", "estimated", "unknown"]
+        },
+        "captured_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Seller": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shop_name": {
+          "type": "string"
+        },
+        "shop_type": {
+          "type": "string",
+          "enum": ["flagship", "official", "authorized", "marketplace", "individual", "unknown"]
+        },
+        "platform_flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        },
+        "after_sales_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "Bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "includes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30
+        },
+        "notes": {
+          "type": "string"
+        },
+        "bundle_risk": {
+          "type": "string"
+        }
+      }
+    },
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["user_input", "screenshot_ocr", "page_parse", "manual_note", "review_summary", "other"]
+        },
+        "value": {
+          "type": "string"
+        },
+        "source_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "MarketContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "category_baseline": {
+          "$ref": "#/$defs/CategoryBaseline"
+        },
+        "timing": {
+          "$ref": "#/$defs/Timing"
+        }
+      }
+    },
+    "CategoryBaseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "typical_price_band": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "common_tradeoffs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        }
+      }
+    },
+    "Timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "promotion_sensitive": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "Meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data_source_mode"],
+      "properties": {
+        "data_source_mode": {
+          "type": "string",
+          "enum": ["user_only", "partial_enriched", "fully_enriched"]
+        },
+        "adapter": {
+          "type": "string"
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50
+        }
+      }
+    },
+    "DecisionReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/Summary"
+        },
+        "rankings": {
+          "$ref": "#/$defs/Rankings"
+        },
+        "price_explanations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PriceExplanation"
+          },
+          "maxItems": 20
+        },
+        "pitfalls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30
+        },
+        "alternative_directions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        },
+        "missing_info": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30
+        },
+        "candidate_summaries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CandidateSummary"
+          },
+          "maxItems": 20
+        }
+      }
+    },
+    "Summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision"],
+      "properties": {
+        "worth_buying": {
+          "type": ["boolean", "null"]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recommended_action": {
+          "type": "string",
+          "enum": ["buy_now", "wait", "gather_more_info", "change_direction", "compare_more"]
+        }
+      }
+    },
+    "Rankings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lowest_price": {
+          "type": "string"
+        },
+        "best_after_sales": {
+          "type": "string"
+        },
+        "best_value": {
+          "type": "string"
+        },
+        "best_fit": {
+          "type": "string"
+        }
+      }
+    },
+    "PriceExplanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pair", "reason"],
+      "properties": {
+        "pair": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string"
+          }
+        },
+        "reason": {
+          "type": "string"
+        },
+        "worth_paying": {
+          "type": ["boolean", "null"]
+        }
+      }
+    },
+    "CandidateSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id"],
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "pros": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10
+        },
+        "cons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10
+        },
+        "best_for": {
+          "type": "string"
+        },
+        "not_ideal_for": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

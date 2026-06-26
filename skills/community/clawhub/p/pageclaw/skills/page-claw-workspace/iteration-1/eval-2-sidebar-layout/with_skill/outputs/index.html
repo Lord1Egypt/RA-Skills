@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ying Xiao — PhD Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Design tokens ─────────────────────────────────────────────────── */
+    :root {
+      --color-bg: #faf7f2;
+      --color-surface: #f5f0e8;
+      --color-border: #e8ddd0;
+      --color-text-primary: #2c2420;
+      --color-text-secondary: #6b5c52;
+      --color-accent: #8b4513;
+      --color-accent-muted: #c4956a;
+      --color-badge-bg: #ede6da;
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 32px;
+      --space-xl: 64px;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Source Sans 3', system-ui, sans-serif;
+      --column-width: 720px;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── Base ──────────────────────────────────────────────────────────── */
+    body {
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      color: var(--color-accent);
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ─── Skip link ─────────────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-md);
+      background: var(--color-bg);
+      color: var(--color-accent);
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      border: 1px solid var(--color-accent);
+      border-radius: 3px;
+      z-index: 100;
+    }
+    .skip-link:focus {
+      top: var(--space-md);
+    }
+
+    /* ─── Column layout ──────────────────────────────────────────────────── */
+    .column {
+      max-width: var(--column-width);
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* ─── Header ────────────────────────────────────────────────────────── */
+    .site-header {
+      padding: var(--space-xl) 0 var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .site-header h1 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .site-header .subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── Section card ───────────────────────────────────────────────────── */
+    .section-card {
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-card:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    /* ─── About Me ───────────────────────────────────────────────────────── */
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: var(--space-md);
+      border: 2px solid var(--color-border);
+    }
+
+    .about-bio {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+    }
+
+    .job-callout {
+      border-left: 3px solid var(--color-accent-muted);
+      padding-left: var(--space-md);
+      font-style: italic;
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ─── Links (icon row) ───────────────────────────────────────────────── */
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: var(--color-text-secondary);
+      border-radius: 4px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .icon-link:hover,
+    .icon-link:focus-visible {
+      color: var(--color-accent);
+      background: var(--color-surface);
+      text-decoration: none;
+    }
+
+    .icon-link svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    /* ─── News ───────────────────────────────────────────────────────────── */
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: var(--space-sm);
+      align-items: start;
+    }
+
+    .news-date {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      padding-top: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .news-body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .news-body em {
+      font-style: italic;
+    }
+
+    /* ─── Publications & Preprints ───────────────────────────────────────── */
+    .pub-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .pub-item {
+      border-left: 2px solid var(--color-border);
+      padding-left: var(--space-md);
+    }
+
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--color-text-primary);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    .pub-authors {
+      font-family: var(--font-sans);
+      font-size: 0.83rem;
+      color: var(--color-text-secondary);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+
+    .venue-badge {
+      display: inline-block;
+      background: var(--color-badge-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 3px;
+      padding: 1px 7px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+    }
+
+    .preprint-label {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-variant: small-caps;
+      letter-spacing: 0.05em;
+      color: var(--color-accent-muted);
+    }
+
+    /* ─── Invited Talk (timeline) ────────────────────────────────────────── */
+    .talk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .talk-list::before {
+      content: '';
+      position: absolute;
+      left: 26px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--color-border);
+    }
+
+    .talk-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: var(--space-sm);
+      align-items: start;
+      padding: var(--space-sm) 0;
+      position: relative;
+    }
+
+    .talk-item::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 16px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--color-accent-muted);
+      border: 2px solid var(--color-bg);
+    }
+
+    .talk-year {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      padding-top: 0.25rem;
+      text-align: right;
+    }
+
+    .talk-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────────────── */
+    .site-footer {
+      padding: var(--space-lg) 0 var(--space-xl);
+      text-align: center;
+    }
+
+    .site-footer p {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .site-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .column {
+        padding: 0 var(--space-md);
+      }
+
+      .section-card {
+        padding: var(--space-md) 0;
+      }
+
+      .news-item {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+      }
+
+      .news-date {
+        padding-top: 0;
+      }
+
+      .talk-item {
+        grid-template-columns: 46px 1fr;
+      }
+
+      .avatar {
+        width: 88px;
+        height: 88px;
+      }
+    }
+
+    /* ─── Reduced motion ─────────────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      a {
+        transition: none;
+      }
+      .icon-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="column">
+
+    <!-- Header -->
+    <header class="site-header">
+      <h1>Ying Xiao</h1>
+      <p class="subtitle">PhD Researcher &middot; King's College London &amp; SUSTech</p>
+    </header>
+
+    <!-- Main content -->
+    <main id="main">
+
+      <!-- About Me -->
+      <section class="section-card" aria-labelledby="label-about">
+        <p class="section-label" id="label-about">About Me</p>
+
+        <img
+          src="YING.jpg"
+          alt="Portrait of Ying Xiao"
+          class="avatar"
+          width="112"
+          height="112"
+        >
+
+        <p class="about-bio">
+          I am a third-year PhD student at King's College London, supervised by Prof.
+          <a href="https://sites.google.com/view/jie-zhang/home" target="_blank" rel="noopener">Jie M. Zhang</a>,
+          and a visiting student at the Southern University of Science and Technology, where I am supervised by Prof.
+          <a href="https://yepangliu.github.io/" target="_blank" rel="noopener">Yepang Liu</a>.
+          Previously, I earned my MSc from the University of Birmingham with Prof.
+          <a href="https://www.birmingham.ac.uk/staff/profiles/eese/tarte-edward" target="_blank" rel="noopener">Edward Tarte</a>
+          and my BEng from Guangzhou University with Prof.
+          <a href="https://jd.gzhu.edu.cn/info/1149/5037.htm" target="_blank" rel="noopener">Zhijia Zhao</a>.
+          I am committed to advancing trustworthy and reliable AI software and agents. My research interests primarily
+          focus on AI agents, AI ethics, AI4Healthcare, SE4AI.
+        </p>
+
+        <p class="job-callout">
+          I am currently on the job market and seeking a postdoctoral position in research related to
+          AI agents, AI alignment, SE4AI and AI4Healthcare.
+        </p>
+      </section>
+
+      <!-- Links -->
+      <section class="section-card" aria-labelledby="label-links">
+        <p class="section-label" id="label-links">Links</p>
+
+        <div class="links-row">
+
+          <!-- Email -->
+          <a href="mailto:ying.1.xiao@kcl.ac.uk" class="icon-link" aria-label="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </a>
+
+          <!-- Google Scholar -->
+          <a href="https://scholar.google.com/citations?user=TfdJ-DYAAAAJ&hl=en&oi=ao" class="icon-link" aria-label="Google Scholar" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+            </svg>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/xy-showing" class="icon-link" aria-label="GitHub" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/ying-xiao-7b4779147/" class="icon-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+
+          <!-- rednote / Xiaohongshu -->
+          <a href="https://www.xiaohongshu.com/user/profile/5e26640700000000010016b0" class="icon-link" aria-label="rednote" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <!-- Generic chain-link icon for unrecognized or custom platform -->
+              <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+            </svg>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- News -->
+      <section class="section-card" aria-labelledby="label-news">
+        <p class="section-label" id="label-news">News</p>
+
+        <ul class="news-list">
+
+          <li class="news-item">
+            <span class="news-date">Dec 17th</span>
+            <p class="news-body">
+              Our paper <em>"Fairness Is Not Just Ethical: Performance Trade-Off via Data Correlation Tuning
+              to Mitigate Bias in ML Software"</em> (by Ying Xiao, Shangwen Wang, Sicen Liu, Dingyuan Xue,
+              Xian Zhan, Yepang Liu, Jie Zhang) is accepted by ICSE 2026.
+            </p>
+          </li>
+
+          <li class="news-item">
+            <span class="news-date">Nov 22nd</span>
+            <p class="news-body">
+              Our paper <em>"Mitigating Medical Bias in Large Language Models by Prompt Engineering:
+              An Empirical Study of Effectiveness and Trade-offs"</em> (Ying Xiao, Zhenpeng Chen, and
+              Jie M. Zhang) is accepted by Philosophical Transactions of the Royal Society A.
+            </p>
+          </li>
+
+          <li class="news-item">
+            <span class="news-date">Apr 15, 2024</span>
+            <p class="news-body">
+              Our paper <em>"MirrorFair: Fixing Fairness Bugs in Machine Learning Software via
+              Counterfactual Predictions"</em> (by Ying Xiao, Jie M. Zhang, Yepang Liu, Mohammad Reza
+              Mousavi, Sicen Liu, Dingyuan Xue) has been accepted by FSE 2024.
+            </p>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- Selected Publications -->
+      <section class="section-card" aria-labelledby="label-pubs">
+        <p class="section-label" id="label-pubs">Selected Publications</p>
+
+        <ul class="pub-list">
+
+          <li class="pub-item">
+            <span class="pub-title">Fairness Is Not Just Ethical: Performance Trade-Off via Data Correlation Tuning to Mitigate Bias in ML Software</span>
+            <span class="pub-authors">Ying Xiao, Shangwen Wang, Sicen Liu, Dingyuan Xue, Xian Zhan, Yepang Liu, and Jie M. Zhang</span>
+            <div class="pub-meta">
+              <span class="venue-badge">ICSE 2026</span>
+              <span class="venue-badge">Core A*</span>
+              <span class="venue-badge">CCF-A</span>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <span class="pub-title">Mitigating Medical Bias in Large Language Models by Prompt Engineering: An Empirical Study of Effectiveness and Trade-offs</span>
+            <span class="pub-authors">Ying Xiao, Zhenpeng Chen, and Jie M. Zhang</span>
+            <div class="pub-meta">
+              <span class="venue-badge">Philosophical Transactions of the Royal Society A</span>
+              <span class="venue-badge">JCR Q1</span>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <span class="pub-title">Software Fairness Dilemma: Is Bias Mitigation a Zero-Sum Game?</span>
+            <span class="pub-authors">Zhenpeng Chen, Xinyue Li, Jie M. Zhang, Weisong Sun, Ying Xiao, Tianlin Li, Yiling Lou, and Yang Liu</span>
+            <div class="pub-meta">
+              <span class="venue-badge">FSE (PACMSE)</span>
+              <span class="venue-badge">Core A*</span>
+              <span class="venue-badge">CCF-A</span>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <span class="pub-title">MirrorFair: Fixing Fairness Bugs in Machine Learning Software via Counterfactual Predictions</span>
+            <span class="pub-authors">Ying Xiao, Jie M. Zhang, Yepang Liu, Mohammad Reza Mousavi, Sicen Liu, Dingyuan Xue</span>
+            <div class="pub-meta">
+              <span class="venue-badge">FSE 2024</span>
+              <span class="venue-badge">Core A*</span>
+              <span class="venue-badge">CCF-A</span>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <span class="pub-title">A Comprehensive Study of Real-World Bugs in Machine Learning Model Optimization</span>
+            <span class="pub-authors">Hao Guang, Ying Xiao, Jiaying Li, Yepang Liu, Guangdong Bai</span>
+            <div class="pub-meta">
+              <span class="venue-badge">ICSE 2023</span>
+              <span class="venue-badge">Core A*</span>
+              <span class="venue-badge">CCF-A</span>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- Preprints -->
+      <section class="section-card" aria-labelledby="label-preprints">
+        <p class="section-label" id="label-preprints">Preprints</p>
+
+        <ul class="pub-list">
+
+          <li class="pub-item">
+            <span class="pub-title">Bias in Large AI Models for Medicine and Healthcare: Survey and Challenges</span>
+            <span class="pub-authors">Ying Xiao, Zhenpeng Chen, Jen-tse Huang, Wenting Chen, Yepang Liu, Kezhi Li, Mohammad Reza Mousavi, Richard Dobson, and Jie M. Zhang</span>
+            <div class="pub-meta">
+              <span class="preprint-label">Preprint</span>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <span class="pub-title">AMQA: An Adversarial Dataset for Benchmarking Bias of LLMs in Medicine and Healthcare</span>
+            <span class="pub-authors">Ying Xiao, Jie Huang, Ruijuan He, Jing Xiao, Mohammad Reza Mousavi, Yepang Liu, Kezhi Li, Zhenpeng Chen, Jie M. Zhang</span>
+            <div class="pub-meta">
+              <span class="preprint-label">Preprint</span>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <span class="pub-title">FITNESS: A Causal De-correlation Approach for Mitigating Bias in Machine Learning Software</span>
+            <span class="pub-authors">Ying Xiao, Shangwen Wang, Sicen Liu, Dingyuan Xue, Xian Zhan, and Yepang Liu</span>
+            <div class="pub-meta">
+              <span class="preprint-label">Preprint</span>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- Invited Talk -->
+      <section class="section-card" aria-labelledby="label-talks">
+        <p class="section-label" id="label-talks">Invited Talk</p>
+
+        <ul class="talk-list">
+
+          <li class="talk-item">
+            <span class="talk-year">2026</span>
+            <p class="talk-body">Mitigating machine learning software bias via correlation tuning, London, United Kingdom.</p>
+          </li>
+
+          <li class="talk-item">
+            <span class="talk-year">2024</span>
+            <p class="talk-body">Mitigating machine learning software bias via ensembling counterfactual predictions, Porto de Galinhas, Brazil.</p>
+          </li>
+
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>&copy; 2026 Ying Xiao</p>
+    </footer>
+
+  </div><!-- /.column -->
+
+</body>
+</html>

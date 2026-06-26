@@ -1,0 +1,29 @@
+{
+  "name": "openclaw-wechat-mail-bridge-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenClaw plugin-first WeChat to mail bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "fake:bhmailer": "tsx scripts/fake_bhmailer_server.ts",
+    "smoke:event": "bash scripts/smoke_event.sh",
+    "smoke:roundtrip": "bash scripts/smoke_roundtrip.sh",
+    "smoke:push-roundtrip": "bash scripts/smoke_push_roundtrip.sh"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "fastify": "^5.2.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
+  }
+}

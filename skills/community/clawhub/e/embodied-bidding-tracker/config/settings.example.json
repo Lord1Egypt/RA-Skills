@@ -1,0 +1,45 @@
+{
+  "llm": {
+    "provider": "openai-compatible",
+    "openaiCompatible": {
+      "baseURL": "https://api.moonshot.cn/v1",
+      "apiKey": "REPLACE_WITH_YOUR_API_KEY",
+      "model": "moonshot-v1-32k",
+      "maxTokens": 2000
+    }
+  },
+  "browser": {
+    "debugPort": 9222,
+    "defaultTimeout": 30000
+  },
+  "search": {
+    "delayMin": 3000,
+    "delayMax": 6000,
+    "maxRetries": 3
+  },
+  "bidding": {
+    "year": 2026,
+    "minAmountWan": 20,
+    "maxPages": 50,
+    "delayMin": 2000,
+    "delayMax": 5000
+  },
+  "overseas_keywords": [
+    "美国",
+    "英国",
+    "德国",
+    "法国",
+    "日本",
+    "韩国",
+    "挪威",
+    "加州",
+    "德州",
+    "俄勒冈",
+    "马萨诸塞",
+    "宾州",
+    "伦敦",
+    "香港",
+    "澳门",
+    "台湾"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "storage-manager",
+  "version": "1.0.0",
+  "description": "飞书多维表格收纳管家 - 物品入库、检索、位置更新一体化工具",
+  "main": "cli.py",
+  "scripts": {
+    "test": "python3 test_basic.py",
+    "install": "./install.sh"
+  },
+  "keywords": [
+    "feishu",
+    "bitable",
+    "storage",
+    "manager",
+    "inventory",
+    "organization"
+  ],
+  "author": "OpenClaw AI Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.25.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/storage-manager"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://skillhub.cn/skills/storage-manager",
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["feishu", "storage", "management", "bitable"],
+    "emoji": "🗃️",
+    "compatibility": ["openclaw>=2026.3.0"],
+    "permissions": ["files:read", "network:outbound"]
+  }
+}

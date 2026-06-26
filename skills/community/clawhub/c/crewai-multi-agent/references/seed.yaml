@@ -1,0 +1,1488 @@
+meta:
+  id: finance-bp-134-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-134
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:19:03.560558+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 6 AIL items reviewed (1 NA + 4 warn + 1 fail) + 5 DAT items reviewed
+      (1 pass + 3 warn + 1 fail) = 31 items reviewed across applicable scope
+    audit_pass_rate: 1/11 (9% applicable items pass; 10 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-134. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-134-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: Marketing Strategy Multi-agent
+    positive_terms:
+    - marketing
+    - strategy
+    - multi-agent
+    - campaign
+    data_domain: mixed
+    negative_terms:
+    - content (overlaps UC-005)
+    - email (overlaps UC-006)
+    ambiguity_question: Is the workflow channel-agnostic strategy planning, or content production? Strategy → UC-001; production
+      pipeline → UC-005.
+  - uc_id: UC-002
+    name: Job Posting Generation
+    positive_terms:
+    - recruitment
+    - jd generation
+    - hiring
+    - HR automation
+    data_domain: domain_specific
+    negative_terms:
+    - executive search (needs human-in-the-loop final decision)
+  - uc_id: UC-003
+    name: Game Builder Crew
+    positive_terms:
+    - code generation
+    - game development
+    - multi-agent coding
+    data_domain: technical_demo
+    negative_terms:
+    - coding agent (overlaps with non-game code generation)
+    ambiguity_question: Is the goal a game specifically, or general code generation? Game → UC-003; general → see docs/en/learn/coding-agents.mdx
+      (extension example).
+  - uc_id: UC-004
+    name: Match Profile to Positions
+    positive_terms:
+    - cv matching
+    - vector search
+    - candidate sourcing
+    data_domain: domain_specific
+    negative_terms:
+    - simple keyword search (overkill)
+  - uc_id: UC-005
+    name: Content Creator Flow
+    positive_terms:
+    - content production
+    - flow
+    - multi-crew
+    - routing
+    data_domain: mixed
+    negative_terms:
+    - marketing strategy (overlaps UC-001)
+    - hierarchical mode (overlaps UC-007)
+    ambiguity_question: Is the workflow event-driven with conditional branches (use Flow → UC-005), or a linear pipeline (use
+      Process.sequential → UC-008), or manager-routed (use Process.hierarchical → UC-007)?
+  - uc_id: UC-006
+    name: Email Auto Responder Flow
+    positive_terms:
+    - email
+    - automation
+    - monitoring
+    - long-running listener
+    data_domain: behavioral
+    negative_terms:
+    - one-shot batch processing (use kickoff_for_each instead)
+  - uc_id: UC-007
+    name: Hierarchical Process Crew (manager_llm-routed)
+    positive_terms:
+    - manager
+    - hierarchical
+    - delegation
+    - dynamic routing
+    data_domain: mixed
+    negative_terms:
+    - sequential (overlaps UC-008)
+    ambiguity_question: Need dynamic dispatch decided by an LLM? hierarchical → UC-007. Need static pipeline order? sequential
+      → UC-008.
+  - uc_id: UC-008
+    name: Sequential Process Crew (Quickstart)
+    positive_terms:
+    - sequential
+    - pipeline
+    - research-and-report
+    - quickstart
+    data_domain: mixed
+    negative_terms:
+    - hierarchical (overlaps UC-007)
+    ambiguity_question: see UC-007
+  - uc_id: UC-009
+    name: Conditional Tasks
+    positive_terms:
+    - conditional
+    - branching
+    - if/else task
+    data_domain: mixed
+    negative_terms:
+    - first task slot (ConditionalTask cannot be first)
+    - async slot (ConditionalTask cannot be async)
+  - uc_id: UC-010
+    name: Async Kickoff for Each (batch / parallel)
+    positive_terms:
+    - batch
+    - async
+    - parallel inputs
+    - kickoff_for_each
+    data_domain: mixed
+    negative_terms:
+    - tasks that must observe each others' outputs (use Process.sequential within one Crew instead)
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 27
+    fatal_constraints_count: 5
+    non_fatal_constraints_count: 51
+    use_cases_count: 10
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 7 source groups: agent_setup(6),
+        crew_initialization(2), cross_cutting(6), memory_unified(4), process_selection(3), task_execution(5), and 1 more.'
+      key_decisions: 27 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-005
+      type: B/BA
+      summary: Default Agent.max_iter=25
+    - id: BD-006
+      type: B
+      summary: On hitting max_iter, framework fires ONE additional LLM call with the i18n force_final_answer template, forcing
+        the LLM to emit a final answer (total = max_iter+1 LLM calls in this branch)
+    - id: BD-013
+      type: B
+      summary: Tool repeated-usage detection only compares against last_used_tool (single-slot)
+    - id: BD-019
+      type: T/B
+      summary: LLM provider routing — native SDK preferred for 5 providers, LiteLLM is fallback; missing LiteLLM raises ImportError
+        pointing to uv add 'crewai[litellm]'
+    - id: BD-020
+      type: T
+      summary: 76 @abstractmethod across 20+ base classes provide extension surface (RAG, knowledge storage, state providers,
+        CLI auth, MCP transports, agent variants)
+    - id: BD-021
+      type: B
+      summary: Tool-loop selection (_invoke_loop) is a silent feature-detection dispatcher — no log / warning / event when
+        ReAct fallback is taken
+    - id: BD-002
+      type: B
+      summary: Sequential mode requires every Task to declare an explicit agent at construction
+    - id: BD-018
+      type: B
+      summary: Crew structural rules — at most one async task at the end; async task may not depend on consecutive async tasks;
+        ConditionalTask can neither be first nor async
+    - id: BD-022
+      type: missing
+      summary: No multi-agent consensus / quorum / voting topology in core (Process enum has TODO comment for consensual but
+        no implementation)
+    - id: BD-023
+      type: missing
+      summary: No typed contract between manager and worker agents in hierarchical mode — delegation passes string prompts
+    - id: BD-024
+      type: missing
+      summary: step_callback exception isolation is partial — single-step callback raise can corrupt the surrounding task
+    - id: BD-025
+      type: missing
+      summary: Cost tracking only counts tokens — completion_cost field is defined but never populated; dollar cost requires
+        user-supplied LiteLLM cost callback
+    - id: BD-026
+      type: missing
+      summary: Memory composite-score weights (0.3 / 0.5 / 0.2) and half-life (30 days) lack sensitivity analysis or recommendation
+        per use case
+    - id: BD-027
+      type: missing
+      summary: No deepcopy / immutable-clone helper for long-lived Crew instances; users reusing a Crew across kickoffs inherit
+        any prior mutations (e.g. manager mutate-then-raise in BD-004)
+    - id: BD-008
+      type: B/M
+      summary: Memory hardcoded defaults — LLM=gpt-4o-mini, storage=lancedb, embedder= OpenAIEmbeddingFunction
+    - id: BD-009
+      type: M/BA
+      summary: Memory composite relevance weights — recency=0.3, semantic=0.5, importance=0.2
+    - id: BD-010
+      type: M
+      summary: Recency uses exponential decay with half-life 30 days
+    - id: BD-011
+      type: M/BA
+      summary: Memory recall confidence routing — confidence_threshold_high=0.8 (early return), confidence_threshold_low=0.5
+        (trigger LLM exploration), exploration_budget=1
+    - id: BD-001
+      type: B
+      summary: Process enum ships two production values — sequential and hierarchical — with a TODO comment for consensual
+        that has not been implemented in this commit
+    - id: BD-003
+      type: B/DK
+      summary: Hierarchical-mode auto-built manager pulls role/goal/backstory from the English i18n file ("Crew Manager")
+    - id: BD-004
+      type: B
+      summary: User-supplied manager_agent must NOT carry tools — framework mutates manager.tools=[] AND manager.allow_delegation=True
+        before raising Exception
+    - id: BD-007
+      type: B/BA
+      summary: Default Task.guardrail_max_retries=3
+    - id: BD-014
+      type: B/BA
+      summary: Default task.context = NOT_SPECIFIED triggers implicit aggregation of ALL preceding task outputs
+    - id: BD-015
+      type: B/BA
+      summary: aggregate_raw_outputs_from_task_outputs has NO token cap, NO truncation, NO summarization
+    - id: BD-016
+      type: M/B
+      summary: Context-overflow recovery uses chunked summarization AFTER the LLM raises
+    - id: BD-017
+      type: T/B
+      summary: kickoff_async is asyncio.to_thread(self.kickoff, ...) (thread-wrap), akickoff is the native async path
+    - id: BD-012
+      type: B
+      summary: Telemetry is opt-out — auto-init at import time unless one of three ENVs is set; payload layered (skeleton
+        always, business context when share_crew=True)
+resources:
+  packages:
+  - name: crewAI (lib/crewai/src/crewai)
+    version_pin: latest
+  - name: crewai-tools (companion package)
+    version_pin: latest
+  - name: pydantic v2
+    version_pin: latest
+  - name: opentelemetry-sdk + opentelemetry-exporter-otlp
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install crewAI (lib/crewai/src/crewai)
+    - python3 -m pip install crewai-tools (companion package)
+    - python3 -m pip install pydantic v2
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: crewai-C-001
+    when: When constructing a Crew with 5 or more sequential tasks and verbose intermediate outputs
+    action: Always set task.context = [task1, task2, ...] explicitly to declare which prior outputs are needed, OR install
+      a task callback that summarizes raw output before the next task consumes it. Do not rely on the default aggregation
+      path for chains beyond ~4 tasks. Verify by inspecting agent prompt token counts at the boundary task.
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-002
+    when: When configuring an Agent with 2 or more tools where the model could plausibly toggle between them
+    action: On every tool instance reachable by an agent with >=2 tools, set max_usage_count to a budget you can afford (e.g.
+      5-10 per kickoff). Additionally hook step_callback to maintain a per-tool counter and abort the loop when an A→B→A pattern
+      persists for >=2 cycles. Do NOT rely on _check_tool_repeated_usage to catch oscillation.
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-003
+    when: When deploying any application that imports crewai in an environment with privacy / compliance / GDPR / SOC2 / data-residency
+      requirements
+    action: Set CREWAI_DISABLE_TELEMETRY=true (or one of the equivalents) BEFORE any process imports crewai — set it in .env,
+      docker-compose, Kubernetes manifests, CI workflows, and developer onboarding scripts. Do NOT rely on assuming SDK frameworks
+      are silent. Audit by running with logging enabled and confirming no OTLP exporter init log appears.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-004
+    when: When configuring share_crew at Crew construction in any non-development environment
+    action: Keep share_crew=False (the default). If telemetry must be enabled at all, ensure share_crew is explicitly False
+      AND validate via a unit test that no agent role/goal/backstory string appears in outgoing OTLP payloads. Treat share_crew=True
+      as requiring legal review even on internal tooling.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-005
+    when: When implementing a custom BaseLLM subclass for a non-native LLM provider (anything beyond OpenAI/Anthropic/Azure/Bedrock/Gemini)
+    action: (1) Override supports_function_calling() in your BaseLLM subclass to return True only when your provider actually
+      supports OpenAI-compatible tool schemas; default-False inheritance is wrong for any function-calling-capable model.
+      (2) Immediately after Crew construction, assert each agent.llm.supports_function_calling() == True (or accept ReAct
+      deliberately). (3) Do NOT rely on logs to diagnose ReAct fallback — there are none.
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: null
+  regular:
+  - id: crewai-C-006
+    when: When designing the lifetime of Crew instances in hierarchical mode
+    action: (a) Construct a fresh Crew per kickoff in hierarchical mode (cheapest fix). (b) If you must reuse, deepcopy the
+      Crew (or rebuild manager_agent from a known-good template) BEFORE every kickoff. (c) NEVER swallow exceptions from kickoff
+      and reuse the same instance. (d) Validate manager_agent.tools=[] at construction time (before passing to Crew) so the
+      framework never enters the mutate-then-raise path.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-007
+    when: When estimating LLM cost per agent or setting max_iter for cost-sensitive deployments
+    action: Use (max_iter + 1) * per_call_cost as your worst-case agent budget formula. Lower max_iter to a value matched
+      to your task complexity (e.g. 10 for simple research, 5 for one-shot extraction). Always pair the lower max_iter with
+      per-tool max_usage_count (see crewai-C-002) so the cap is hit by progress, not oscillation.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-008
+    when: When choosing process topology for a multi-agent system that needs robustness via consensus, voting, or quorum
+    action: For decision-robustness use cases (legal review, financial trading, medical diagnosis), build a consensus topology
+      on top of Flow with @start/@listen/@router decorators rather than waiting for Process.consensual. Do NOT pass Process.consensual
+      or any other enum value — it will reach NotImplementedError. Hierarchical mode's single-manager LLM dispatch is NOT
+      a consensus mechanism.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-009
+    when: When constructing Tasks for a Process.sequential Crew
+    action: For sequential mode, set task.agent on every Task at construction. If routing must be dynamic, choose Process.hierarchical
+      and provide either manager_llm OR manager_agent (mutually exclusive — see crewai-C-010). Do not attempt to leave task.agent
+      empty hoping the framework will auto-assign.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-010
+    when: When constructing a hierarchical Crew with a custom manager_agent
+    action: 'Decide explicitly: (a) auto-build manager → pass manager_llm only, leave manager_agent=None, accept the i18n
+      English ''Crew Manager'' role. (b) custom manager → pass a manager_agent constructed with tools=[] and DO NOT pass manager_llm
+      (it will be ignored). Validate manager_agent.tools is [] BEFORE handing the agent to Crew.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-011
+    when: When choosing the async entrypoint for crewAI in a high-concurrency host (FastAPI, asyncio web server, batch dispatcher)
+    action: (a) Use akickoff for high-concurrency workloads where every LLM and tool client supports async-native I/O. (b)
+      Use kickoff_async only as a bridge for legacy sync code paths and only when concurrent kickoff count <= thread pool
+      size. (c) Verify by load-testing — if throughput plateaus at ~32 concurrent kickoffs regardless of CPU/network, you
+      are thread-pool-bound, not LLM-bound.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-012
+    when: When designing a multi-task workflow that involves parallelism, branching, or conditional skipping
+    action: 'Map your workflow to one of: (a) linear sequential pipeline → Crew(process=Process.sequential). (b) manager-routed
+      dispatch → Crew(process=Process.hierarchical). (c) parallel branches / conditional fan-out / event-driven → Flow with
+      @start/@listen/@router. ConditionalTask is for a single in-pipeline skip, not a DAG primitive. Validate task list against
+      the 3 rules at construction time.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-013
+    when: When designing a hierarchical Crew where manager and worker need to exchange structured (non-prose) data
+    action: (a) Serialize structured payloads to JSON before delegation, and validate-then-parse on the worker side using
+      your own Pydantic model. (b) Accept that the round-trip can lose typing guarantees — log a checksum of the round-trip
+      data on both sides during dev. (c) For domains where structured contracts are mandatory (finance, medical), consider
+      Flow with explicit typed events instead of hierarchical Crew.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-014
+    when: When wiring step_callback for observability, logging, or external metrics integration
+    action: Wrap the entire step_callback body in try/except Exception. Inside the except, log to a fallback logger or no-op
+      silently — never re-raise. Test the safe pattern by deliberately raising in the callback during dev and verifying the
+      crew still completes. Do NOT assume the framework isolates callback exceptions.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-015
+    when: When building cost monitoring or budget alerts for crewAI deployments
+    action: (a) Wire LiteLLM's cost callback (`litellm.success_callback = ['callback_func']`) at the LiteLLM level for non-native
+      providers. (b) For native providers, maintain your own per-model rate table and multiply against TokenCalcHandler counts
+      after each kickoff. (c) Do NOT read llm.completion_cost — it will always be its default value. (d) Account for the +1
+      force_final_answer call (see crewai-C-007) in your projection.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-016
+    when: When creating a custom Agent subclass (or any other base class subclass — RAG client, knowledge storage, state provider,
+      MCP transport, CLI auth provider)
+    action: 'Before subclassing, run `grep -rn ''@abstractmethod'' lib/crewai/src/crewai/<your-base-path>` and implement EVERY
+      method listed. For BaseAgent specifically: execute_task, aexecute_task, create_agent_executor, get_delegation_tools,
+      get_platform_tools (CrewAI Platform — return [] if unused), get_mcp_tools (Model Context Protocol — return [] if unused).
+      Densest base classes: rag/core/base_client.py (12), state/provider/core.py (6), knowledge/storage/base_knowledge_storage.py
+      (6), cli/authentication/providers/base_provider.py (6), mcp/transports/base.py (5).'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-017
+    when: When choosing or switching the LLM provider for a Crew (Agent.llm or manager_llm) in production
+    action: '(a) Standardize on native providers (OpenAI/Anthropic/Azure/Bedrock/Gemini) when possible — richer features,
+      lower latency, no extra dependency. (b) For other providers: install ''crewai[litellm]'' explicitly in production requirements;
+      surface ImportError early in startup tests. (c) When switching providers: re-run a regression suite covering function-calling
+      output shape, streaming behavior, cost calculation, retry semantics. (d) Document the chosen provider and routing path.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-018
+    when: When enabling Memory in a deployment with vendor-lock, privacy, data-residency, or cost constraints
+    action: 'Pass an explicit Memory(...) instance with: llm= (your LLM provider), storage= (''qdrant'' or your custom storage),
+      embedder= (your embedder factory). Do NOT rely on memory=True. After any embedder switch on existing data, run a re-index
+      job — the old vectors are not portable. Document the chosen providers in your wrapper.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-019
+    when: When reading legacy crewAI documentation or migrating Memory code from older versions
+    action: Replace any ShortTermMemory / LongTermMemory / EntityMemory imports with `from crewai import Memory, MemoryScope,
+      MemorySlice` (exported at __init__.py:47-48 / :54). Replace three-tier writes with Memory.remember(...) using MemoryScope
+      to namespace. Replace cross-tier filters with MemorySlice. Read RecallFlow source if you need to understand adaptive-depth
+      recall behavior.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-020
+    when: When using Memory in a domain whose relevance horizon differs significantly from 30 days
+    action: '(a) Identify your domain''s effective relevance horizon: legal cases 90+ days, medical research years, breaking
+      news 7 days. (b) Pass a custom Memory(...) instance with recency_weight / semantic_weight / importance_weight / recency_half_life_days
+      overridden to match. (c) Validate against a sample query set with known relevance ground truth before production rollout.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-021
+    when: When tuning Memory recall quality or noticing high LLM call volume from RecallFlow
+    action: '(a) Profile a representative query set: log how many recalls fall into [<0.5, 0.5-0.8, >=0.8] composite-score
+      bands. (b) If many fall <0.5, the exploration step fires every time — raising exploration_budget linearly multiplies
+      LLM cost. Consider switching to a higher-quality embedder first. (c) If many fall >0.8 the LLM is rarely engaged — that''s
+      fine; default behavior. (d) For cost-sensitive deployments, lower confidence_threshold_low (e.g. 0.3) to suppress exploration
+      entirely.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-022
+    when: When customizing Memory persistence behavior (e.g. swapping to a queue-based async writer or a different executor)
+    action: (1) Keep the single-worker semantic (Memory writes are not safe for concurrent fan-out without external locks).
+      (2) Provide a drain_writes equivalent that blocks until ALL pending writes complete. (3) Hook drain into the Crew kickoff
+      finally block (or its async equivalent). (4) Test by writing then reading immediately after kickoff returns — must see
+      the write.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-023
+    when: When configuring telemetry disable in containerized or scripted environments
+    action: Set CREWAI_DISABLE_TELEMETRY=true in (a) Dockerfile ENV directive, (b) docker-compose service environment, (c)
+      Kubernetes pod env, (d) CI workflow env block, (e) shell rc files for developers. Verify by importing crewai then immediately
+      calling `from crewai.telemetry import Telemetry; assert not Telemetry().ready` in a startup smoke test. Setting `os.environ['CREWAI_DISABLE_TELEMETRY']='true'`
+      AFTER `import crewai` is too late.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-024
+    when: When constructing Crew / Agent / Task instances with kwargs whose names you have not double-checked against the
+      model definition
+    action: (a) Grep `class Crew\(` / `class Agent\(` / `class Task\(` and read the field list before constructing — never
+      copy-paste from old tutorials without verifying field names. (b) For high-stakes deployments wrap construction in a
+      helper that validates kwargs against `Crew.model_fields.keys()` (Pydantic v2 API) and raises on unknown keys. (c) Run
+      a simple unit test that constructs each model with a deliberate typo ('procoss' instead of 'process') — if the test
+      passes, you have NOT enabled extra='forbid' and silent drops are happening.
+    severity: medium
+    kind: domain_rule
+    modality: should_not
+    consequence: null
+  - id: crewai-C-025
+    when: When designing a Task whose output must satisfy strict format / business rules
+    action: (a) Define a Pydantic model or callable guardrail that the Task output must pass; pass it as the Task's guardrail.
+      (b) Keep guardrail_max_retries=3 (default) — increasing it wastes budget on persistently-failing patterns. (c) Pair
+      the deterministic guardrail with task callbacks that log retry rate; high retry rate signals the prompt needs refinement,
+      not more retries.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-026
+    when: When directing users to 'official examples' or when training a model on the crewAI repo expecting examples/ to be
+      present
+    action: Reference https://github.com/crewAIInc/crewAI-examples and https://github.com/crewAIInc/crewAI-quickstarts as
+      the source of examples. For project scaffolding inside this repo, point to lib/crewai/src/crewai/cli/templates/{crew,flow,tool}
+      which the `crewai create` CLI emits. Do not write code that assumes examples/ exists — it will fail.
+    severity: low
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-027
+    when: When integrating crewAI as a Doramagic-published skill or when scripting agentskills.io / CLAUDE.md generation around
+      crewAI
+    action: (a) Generate your own SKILL.md / AGENTS.md as the Doramagic skill bundle author — do not copy lib/crewai/src/crewai/cli/templates/crew/AGENTS.md
+      as authoritative. (b) When users ask 'where is the AGENTS.md', clarify it is a template the CLI emits, not a top-level
+      repo artifact. (c) When auditing repo contents for host-adapter compatibility, verify directory presence by `ls .claude-plugin/
+      .cursor-plugin/` (both will fail at this commit).
+    severity: low
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-028
+    when: When using Memory in workloads where the temporal order between memory creation and query matters (backtesting,
+      retrospective audit, time-aware experimentation)
+    action: Wrap Memory.recall(...) in your own helper that takes a query_time parameter and post-filters results to those
+      with created_at <= query_time. Do this even if you think your queries are 'live' — Memory is shared across kickoffs
+      and a long-running session can see writes from concurrent kickoffs. For retrospective backtests, snapshot the entire
+      vector store before each scenario.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-029
+    when: When designing rollback / audit / time-travel features around Crew kickoffs or Memory state
+    action: (a) Snapshot the Memory storage backend (LanceDB file, Qdrant collection) on a schedule and before any high-stakes
+      write. (b) Maintain your own application-level event log capturing pre-update / pre-delete payloads. (c) For Crew reuse
+      across kickoffs, manually deepcopy or reconstruct from a known-good template before each kickoff. (d) Accept that the
+      framework itself does not support undo — the work must happen at your application layer.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-030
+    when: When choosing between Task.execute_async and Task.aexecute_sync for task-level concurrency
+    action: Use Task.aexecute_sync (despite the slightly confusing name — it IS the native-async one, paired with awaitable
+      behavior). Reserve Task.execute_async for legacy sync code paths. Verify that the surrounding Crew uses akickoff (not
+      kickoff or kickoff_async) — otherwise the async surface is wasted.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-031
+    when: When configuring multiple Agents in one Crew with different LLM providers
+    action: '(a) Document each Agent''s llm field choice and whether it routes through native or LiteLLM. (b) Build a regression
+      test that exercises every (provider × tool-loop × streaming) combination present in your Crew. (c) Beware of provider-specific
+      subtleties: e.g. Anthropic''s tool-use schema differs from OpenAI''s, but crewAI smooths most of it via _invoke_loop_native_tools
+      — verify on your specific model versions.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-032
+    when: When using Process.hierarchical for an audience or content domain whose cultural register differs from English Western-management
+    action: Construct a custom manager_agent with role / goal / backstory written in the target language and cultural register.
+      Do NOT pass manager_llm and rely on the auto-build path — that locks you into the en.json strings. Validate by running
+      a sample kickoff and reading the manager's actual delegation prompts in the target language for register / politeness
+      / clarity.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-033
+    when: When using Process.hierarchical for any decision domain where being wrong has high downside (finance, medical, legal,
+      safety-critical)
+    action: (a) For decision-robustness, build a Flow with @router that fans out to 3+ agents, collects their independent
+      recommendations, and a final arbiter agent (or majority vote) decides. (b) Treat hierarchical Crew as a routing convenience
+      for low-stakes orchestration, not a robustness mechanism. (c) Document in your skill / wrapper that hierarchical is
+      single-manager dispatch, not consensus.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-034
+    when: When sharing Memory across multiple processes or worker pods
+    action: '(a) For single-process: keep lancedb default. (b) For multi-process / multi-pod: switch to Memory(storage=''qdrant'')
+      (embedded edge mode) and accept the additional dependency. (c) For cloud-scale: wire an external vector DB through your
+      own VectorStoreBase subclass. (d) Re-index existing memories after any storage switch — vector geometry is not portable
+      across stores.'
+    severity: high
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-035
+    when: When using kickoff_for_each / kickoff_for_each_async / akickoff_for_each for batch processing
+    action: (a) Prefer pure Process.sequential for batch — it has no mutate-then-raise paths. (b) For hierarchical batch,
+      construct a new Crew per input rather than reusing one across the batch. (c) If reuse is required, validate manager_agent.tools=[]
+      BEFORE the batch starts so the mutate-path never fires; combine with try/except + abort-on-failure semantics so a single
+      failed input does not corrupt subsequent ones.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-036
+    when: When deciding whether to override Memory weights for a domain whose relevance horizon you suspect differs from generic
+      chat
+    action: (a) Construct a holdout query set of 50-100 representative queries with ground-truth-relevant memories labeled.
+      (b) Sweep half-life ∈ {7, 30, 90, 365} days and weights (recency, semantic, importance) ∈ {(0.1,0.7,0.2), (0.3,0.5,0.2),
+      (0.5,0.3,0.2)}. (c) Pick the combination maximizing recall@k on your holdout. (d) Document the chosen weights and the
+      holdout methodology in your skill bundle.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-037
+    when: When auditing what crewAI sends to its telemetry endpoint and assuming share_crew=False is sufficient for compliance
+    action: Treat share_crew=False as the LAYER 1 mitigation (no business-context payload) and the disable ENVs as the LAYER
+      2 mitigation (no telemetry at all). For GDPR / SOC2 / data-residency compliance, you need LAYER 2; LAYER 1 alone still
+      emits the deployment fingerprint. Test by tcpdump / network egress monitoring on a deployment with share_crew=False
+      and the disable ENV unset — you will see OTLP traffic.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-038
+    when: When designing distributed agent communication and considering crewAI's a2a/ subsystem as the transport layer
+    action: (a) Treat a2a/ as a placeholder for future federated topologies, not as a built-in transport. (b) For real cross-process
+      communication, choose a battle-tested message broker. (c) If you do build on a2a/, expect to implement transport, retry,
+      ordering, and error handling yourself. (d) Watch the crewAI repo for a2a/ implementation density before committing to
+      it as the integration surface.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-039
+    when: When deciding which AgentExecutor implementation to use for production
+    action: (a) Use CrewAgentExecutor (default) for production — it is the path covered by the verified anti-pattern set (crewai-C-001
+      through crewai-C-005). (b) Reserve experimental.AgentExecutor for spike branches; do not deploy to production without
+      re-verifying the FATAL constraints against its specific code paths. (c) Document the choice in your skill bundle.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-040
+    when: When wrapping kickoff in try/except and continuing to use the same Crew instance after exception
+    action: (a) On any kickoff exception, treat the Crew instance as TAINTED — discard and reconstruct from a known-good template.
+      (b) Specifically validate manager_agent.tools and manager_agent.allow_delegation against your original construction
+      values before reusing. (c) Do NOT assume that 'caught the exception' = 'restored the state' — the finally block does
+      not restore state.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-041
+    when: When wanting to customize how a hierarchical manager delegates (e.g. structured payload contracts, audit logging,
+      per-worker rate limits)
+    action: (a) Accept the auto-attached AgentTools as fixed delegation transport. (b) Customize delegation BEHAVIOR via the
+      manager_agent's role/goal/backstory and prompt template — NOT by trying to swap the delegation tools. (c) For structured
+      payloads, see crewai-C-013 (string-only contract). (d) For audit logging, hook step_callback or the event_bus (see crewai-C-014
+      for safe-pattern requirements).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-042
+    when: When wiring step_callback for any production-monitoring use case where token usage tracking matters
+    action: 'Pattern: `def safe_step_callback(step): try: ... except Exception as e: logger.exception(''step_callback failed'');
+      return None`. NEVER re-raise. Validate by deliberately raising in the callback during dev and confirming you still get
+      a CrewOutput with valid token_usage fields (you will — but the kickoff aborts the in-progress task).'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-043
+    when: When constructing Agent or Task instances from old code, tutorials, or migration
+    action: (a) Replace Agent.reasoning with Agent.planning_config. (b) Replace Task.max_retries with Task.guardrail_max_retries.
+      (c) Audit Agent.allow_code_execution usage — read the field's deprecation docstring for its replacement (or remove if
+      unused). (d) Run construction with `warnings.simplefilter('error', DeprecationWarning)` in tests to surface deprecated
+      usage.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-044
+    when: When designing manager-to-worker payloads that must remain typed across the round-trip
+    action: (a) Define a Pydantic model for each delegation payload type. (b) On the manager side, model.model_dump_json()
+      to a single string field. (c) On the worker side, Pydantic.model_validate_json() with strict=True. (d) Log a checksum
+      on both sides during dev to verify round-trip integrity. (e) Never trust the manager's natural-language paraphrasing
+      of a structured argument.
+    severity: high
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-045
+    when: When integrating mem0 with crewAI agents or migrating memory state between the two systems
+    action: '(a) Decide explicitly which system owns persistence: mem0 for user-level long-term, crewAI Memory for within-execution
+      scratch. (b) Build a thin wrapper around RememberTool / RecallMemoryTool that translates calls into mem0 add/search
+      with consistent user_id+agent_id+run_id mapping (mem0 v3 syntax — see mem0-C-006). (c) Do NOT assume one''s recall semantics
+      map to the other''s — mem0 has hybrid BM25 fusion, crewAI has composite recency/semantic/importance scoring.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-046
+    when: When deploying crewAI to short-lived runtimes (Lambda, Cloud Run, ephemeral CI runners, serverless)
+    action: 'Always set CREWAI_DISABLE_TELEMETRY=true in serverless / ephemeral runtime configs (Lambda environment variables,
+      Cloud Run deploy spec, GitHub Actions env block). Validate with a synthetic load test: 100 cold starts with the ENV
+      set, then network egress monitor — must show zero OTLP traffic to CREWAI_TELEMETRY_BASE_URL.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-047
+    when: When extending or customizing Agent / LiteAgent behavior beyond what the abstract interface allows
+    action: (a) Override only the 6 abstract methods documented in BaseAgent. (b) Use the public surface (execute_task, aexecute_task,
+      etc.) — do not reach into private helpers (anything prefixed with _ in subclasses). (c) For behavior not covered by
+      the abstract surface, prefer composition (wrap the agent) over inheritance into private internals. (d) Pin the crewAI
+      version explicitly in pyproject.toml when relying on any near-private behavior.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-048
+    when: When designing Crew instance lifetime in long-running services where each kickoff should be isolated from prior
+      failures
+    action: (a) For each kickoff that must be isolated, run `fresh = copy.deepcopy(crew); result = fresh.kickoff(...)`. (b)
+      For batch operations (kickoff_for_each), wrap each iteration in deepcopy. (c) Verify the deepcopy actually isolates
+      by mutating an attribute on the fresh copy and confirming the original is unchanged (Pydantic v2 + threading sometimes
+      share state via weakrefs). (d) For hierarchical mode specifically, validate manager_agent.tools and allow_delegation
+      match construction values BEFORE each kickoff.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: crewai-C-049
+    when: When designing a workflow that involves parallel branches, conditional fan-out, event-driven listeners, or multi-Crew
+      composition
+    action: '(a) Map the workflow topology: pipeline → Crew(sequential); routed dispatch → Crew(hierarchical); event-driven
+      / parallel / conditional → Flow. (b) For consensus / multi-Crew composition: Flow with @router fanning out to multiple
+      Crews and an arbiter. (c) Read flow/__init__.py exports and the docs/en/concepts/flows.mdx (if present) before committing
+      to a Crew-only design that will hit structural limits later.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: crewai-C-050
+    when: When subscribing to crewai_event_bus events for observability, metrics, or behavioral hooks
+    action: (a) Wrap every event handler body in try/except Exception → log → return None. (b) For any I/O (HTTP, database
+      write), enqueue to a background worker; the handler must return in microseconds. (c) Treat the Crew instance and agent
+      state as READ-ONLY in event handlers — mutations leak across kickoffs (see crewai-C-040). (d) Subscribe with the BaseEventListener
+      base, not by monkey-patching crewai_event_bus.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-051
+    when: When wrapping kickoff in an outer try/except for application-level error handling
+    action: (a) Always re-raise OR explicitly emit CrewKickoffFailedEvent yourself if you must swallow. (b) Do NOT add a finally
+      block that overwrites CrewOutput state. (c) When unsure, let the framework's exception bubble up to your top-level handler
+      — its event-bus emit happens BEFORE your handler runs.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-052
+    when: When declaring task.context dependencies explicitly (the explicit-context mitigation for crewai-C-001)
+    action: 'Construct task.context as a list of actual Task objects: `task_b = Task(..., context=[task_a])` where task_a
+      is a previously-constructed Task instance. Do NOT pass `context=[''task-a'']` or `context=[task_a.id]`. For dynamic
+      lookups, build a dict {task.id: task} from Crew.tasks and resolve at construction time.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-053
+    when: When dynamically building or modifying a Crew between construction and kickoff
+    action: (a) Build the final task / agent list before Crew construction. (b) If you need to add tasks dynamically, construct
+      a NEW Crew with the updated lists rather than appending to self.tasks on an existing instance — the validators won't
+      re-run on mutation. (c) Validate dynamically-added Tasks against the structural rules manually if you must mutate (rare,
+      error-prone).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-054
+    when: When extending or replacing ToolsHandler to track richer tool-usage history
+    action: (a) If extending ToolsHandler with a history list, also patch tool_usage.py:706-716 _check_tool_repeated_usage
+      to walk the history (sliding window of N, frequency check, etc.). (b) Document the new contract clearly. (c) Test by
+      simulating an A→B→A→B oscillation and confirming detection fires before max_iter (the default doesn't — see crewai-C-002).
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-055
+    when: When implementing the mitigation pattern for the FATAL tool oscillation issue (crewai-C-002)
+    action: (a) Set max_usage_count on every tool reachable by an agent with >=2 tools (e.g. max_usage_count=10). (b) ADDITIONALLY
+      hook step_callback to maintain a rolling window (last 4-6 tool calls) and abort if the same A→B→A→B pattern persists.
+      (c) Test with a deliberately oscillating mock LLM to verify BOTH layers fire when expected. (d) Do NOT assume max_usage_count
+      alone covers the FATAL case — it does not.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: crewai-C-056
+    when: When designing observability or hook architecture around crewAI Crew kickoffs and assuming framework-level callback
+      safety
+    action: Treat step_callback as a framework hot path with no exception isolation. Do NOT design any observability/logging
+      architecture that assumes callback exceptions are caught by crewAI. Every step_callback in your codebase requires its
+      own try/except wrapper. Validate by deliberately raising in a callback during dev — if the kickoff aborts, the framework
+      is NOT isolating you (which is the documented behavior at this commit).
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-134 / Marketing Strategy Multi-agent
+    version: v6.1
+    intent_keywords:
+    - marketing
+    - strategy
+    - multi-agent
+    - campaign
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (4 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 5
+        ucs:
+        - uc_id: UC-001
+          name: Marketing Strategy Multi-agent
+          short_description: Multi-agent collaboration to plan a marketing campaign
+          sample_triggers:
+          - marketing
+          - strategy
+          - multi-agent
+        - uc_id: UC-002
+          name: Job Posting Generation
+          short_description: Recruitment workflow automation — generate job descriptions, match candidate profiles, schedule
+            follow-ups
+          sample_triggers:
+          - recruitment
+          - jd generation
+          - hiring
+        - uc_id: UC-003
+          name: Game Builder Crew
+          short_description: Multi-agent collaborative software design + Python code generation for small games (Snake, Tetris,
+            etc.)
+          sample_triggers:
+          - code generation
+          - game development
+          - multi-agent coding
+        - uc_id: UC-004
+          name: Match Profile to Positions
+          short_description: Match a candidate CV against open positions using vector search + agent evaluation
+          sample_triggers:
+          - cv matching
+          - vector search
+          - candidate sourcing
+        - uc_id: UC-005
+          name: Content Creator Flow
+          short_description: Multi-crew + Flow router pipeline for content production — research → outline → draft → review,
+            with conditional branches
+          sample_triggers:
+          - content production
+          - flow
+          - multi-crew
+      - group_id: live_trading
+        name: Live Trading
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-006
+          name: Email Auto Responder Flow
+          short_description: Listen for new emails → classify intent → draft reply → auto-send (or queue for review)
+          sample_triggers:
+          - email
+          - automation
+          - monitoring
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 3
+        ucs:
+        - uc_id: UC-007
+          name: Hierarchical Process Crew (manager_llm-routed)
+          short_description: 'A canonical hierarchical pattern — manager_llm dynamically routes tasks across a heterogeneous
+            pool of worker agents, each specialized to a different '
+          sample_triggers:
+          - manager
+          - hierarchical
+          - delegation
+        - uc_id: UC-008
+          name: Sequential Process Crew (Quickstart)
+          short_description: The default CLI template — researcher → reporter two-stage sequential collaboration
+          sample_triggers:
+          - sequential
+          - pipeline
+          - research-and-report
+        - uc_id: UC-009
+          name: Conditional Tasks
+          short_description: Branch task execution based on the output of a previous task
+          sample_triggers:
+          - conditional
+          - branching
+          - if/else task
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 1
+        ucs:
+        - uc_id: UC-010
+          name: Async Kickoff for Each (batch / parallel)
+          short_description: Run the same Crew over many input sets in parallel — batch processing, A/B input comparison,
+            fleet-style automation
+          sample_triggers:
+          - batch
+          - async
+          - parallel inputs
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try marketing strategy multi-agent
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try job posting generation
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try game builder crew
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 10 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Game Builder Crew
+    - Job Posting Generation
+    - Marketing Strategy Multi-agent
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

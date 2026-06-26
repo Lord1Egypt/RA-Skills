@@ -1,0 +1,1682 @@
+[
+  {
+    "code": "ths_reg_warehouse_receipts_num_future",
+    "name": "注册仓单数量",
+    "description": "仓单指标",
+    "params": ""
+  },
+  {
+    "code": "ths_long_position_change_future",
+    "name": "多头持仓增减",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_long_position_future",
+    "name": "多头持仓",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_new_long_list_future",
+    "name": "多头新进榜",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_position_vol_future",
+    "name": "成交量",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_net_top_list_future",
+    "name": "空头新进榜",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_position_change_future",
+    "name": "空头持仓增减",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_short_position_future",
+    "name": "空头持仓",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_chg_future",
+    "name": "成交量增减",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_new_top_list_future",
+    "name": "成交量新进榜",
+    "description": "持仓指标",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_yield_future",
+    "name": "平均收益率",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_volatility_future",
+    "name": "波动率",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_volitility_annual_future",
+    "name": "波动率（年化）",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_yeild_annual_future",
+    "name": "收益率（年化）",
+    "description": "风险指标",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_q_future",
+    "name": "季成交额",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_q_future",
+    "name": "季成交均价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_q_future",
+    "name": "季涨跌",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_q_future",
+    "name": "季涨跌幅",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_q_future",
+    "name": "季收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_q_future",
+    "name": "季日均成交额",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_q_future",
+    "name": "季日均持仓量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_q_future",
+    "name": "季日均成交量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_q_future",
+    "name": "季最高收盘价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_q_future",
+    "name": "季最高收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_q_future",
+    "name": "季最高价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_q_future",
+    "name": "季最高价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_q_future",
+    "name": "季最高结算价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_q_future",
+    "name": "季最高结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_q_future",
+    "name": "季最低收盘价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_q_future",
+    "name": "季最低收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_q_future",
+    "name": "季最低价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_q_future",
+    "name": "季最低价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_q_future",
+    "name": "季最低结算价日",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_q_future",
+    "name": "季最低结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_q_future",
+    "name": "季持仓量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_q_future",
+    "name": "季开盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_q_future",
+    "name": "季持仓变化",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_q_future",
+    "name": "季前收盘价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_q_future",
+    "name": "季前结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_q_future",
+    "name": "季涨跌(结算价)",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_q_future",
+    "name": "季涨跌幅(结算价)",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_q_future",
+    "name": "季结算价",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_q_future",
+    "name": "季振幅",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_q_future",
+    "name": "季成交量",
+    "description": "行情指标/季行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_y_future",
+    "name": "年成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_y_future",
+    "name": "年成交均价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_y_future",
+    "name": "年涨跌幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_y_future",
+    "name": "年涨跌",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_y_future",
+    "name": "年收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_y_future",
+    "name": "年日均成交额",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_y_future",
+    "name": "年日均持仓量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_y_future",
+    "name": "年日均成交量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_y_future",
+    "name": "年最高收盘价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_y_future",
+    "name": "年最高收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_y_future",
+    "name": "年最高价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_y_future",
+    "name": "年最高结算价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_y_future",
+    "name": "年最高结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_y_future",
+    "name": "年最高价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_y_future",
+    "name": "年最低收盘价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_y_future",
+    "name": "年最低收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_y_future",
+    "name": "年最低价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_y_future",
+    "name": "年最低结算价日",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_y_future",
+    "name": "年最低结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_y_future",
+    "name": "年最低价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_y_future",
+    "name": "年开盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_y_future",
+    "name": "年持仓变化",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_y_future",
+    "name": "年持仓量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_y_future",
+    "name": "年前收盘价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_y_future",
+    "name": "年前结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_ddifxbzcplzs_future",
+    "name": "DDI 方向标准差偏离指数",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_y_future",
+    "name": "年涨跌幅(结算价)",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_y_future",
+    "name": "年涨跌(结算价)",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_y_future",
+    "name": "年结算价",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_y_future",
+    "name": "年振幅",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_y_future",
+    "name": "年成交量",
+    "description": "行情指标/年行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_int_future",
+    "name": "区间成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_int_future",
+    "name": "区间成交均价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_int_future",
+    "name": "区间涨跌",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_settle_int_future",
+    "name": "区间涨跌幅(结算价)",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_settle_int_future",
+    "name": "区间涨跌(结算价)",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_int_future",
+    "name": "区间收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_int_future",
+    "name": "区间日均成交额",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_int_future",
+    "name": "区间日均持仓量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_int_future",
+    "name": "区间日均成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_int_future",
+    "name": "区间最高收盘价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_int_future",
+    "name": "区间最高收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_int_future",
+    "name": "区间最高价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_int_future",
+    "name": "区间最高价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_int_future",
+    "name": "区间最高结算价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_int_future",
+    "name": "区间最高结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_int_chg_ratio_future",
+    "name": "区间涨跌幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_int_future",
+    "name": "区间最低收盘价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_int_future",
+    "name": "区间最低收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_int_future",
+    "name": "区间最低价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_int_future",
+    "name": "区间最低价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_int_future",
+    "name": "区间最低结算价日",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_int_future",
+    "name": "区间最低结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_chg_int_future",
+    "name": "区间持仓变化",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_int_future",
+    "name": "区间开盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_int_future",
+    "name": "区间持仓量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_int_future",
+    "name": "区间前收盘价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_int_future",
+    "name": "区间前结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_int_future",
+    "name": "区间结算价",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_int_future",
+    "name": "区间振幅",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_int_future",
+    "name": "区间成交量",
+    "description": "行情指标/区间行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_future",
+    "name": "成交额",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_future",
+    "name": "涨跌",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_future",
+    "name": "涨跌幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_price_future",
+    "name": "收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_future_premium_and_discount_future",
+    "name": "期货升贴水",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_price_future",
+    "name": "最高价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_future",
+    "name": "最低价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_interest_future",
+    "name": "持仓量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_price_future",
+    "name": "开盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_future",
+    "name": "持仓变化",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_future",
+    "name": "前收盘价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_future",
+    "name": "前结算价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_future",
+    "name": "涨跌(结算价)",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_future",
+    "name": "涨跌幅(结算价)",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_future",
+    "name": "结算价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_d_future",
+    "name": "日振幅",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_trans_avg_price_future",
+    "name": "成交均价",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_future",
+    "name": "成交量",
+    "description": "行情指标/日行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_his_same_m_future",
+    "name": "成交额_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_his_same_m_future",
+    "name": "涨跌_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_his_same_m_future",
+    "name": "涨跌幅_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_close_his_same_m_future",
+    "name": "收盘价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_deal_avg_price_his_same_m_future",
+    "name": "成交均价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_high_his_same_m_future",
+    "name": "最高价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_low_his_same_m_future",
+    "name": "最低价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_open_his_same_m_future",
+    "name": "开盘价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_postion_change_his_same_m_future",
+    "name": "持仓变化_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_postion_vol_his_same_m_future",
+    "name": "持仓量_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_presettle_his_same_m_future",
+    "name": "前结算价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_his_same_m_future",
+    "name": "涨跌(结算价)_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_his_same_m_future",
+    "name": "涨跌幅(结算价)_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_his_same_m_future",
+    "name": "结算价_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_d_his_same_m_future",
+    "name": "日振幅_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_his_same_m_future",
+    "name": "成交量_期货历史同月",
+    "description": "行情指标/日行情_期货历史同月",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_m_future",
+    "name": "月成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_m_future",
+    "name": "月成交均价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_m_future",
+    "name": "月涨跌幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chgm_future",
+    "name": "月涨跌",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_m_future",
+    "name": "月收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_m_future",
+    "name": "月日均成交额",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_position_m_future",
+    "name": "月日均持仓量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_m_future",
+    "name": "月日均成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_m_future",
+    "name": "月最高收盘价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_m_future",
+    "name": "月最高收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_m_future",
+    "name": "月最高价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_m_future",
+    "name": "月最高价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_m_future",
+    "name": "月最高结算价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_m_future",
+    "name": "月最高结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_m_future",
+    "name": "月最低收盘价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_m_future",
+    "name": "月最低收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_m_future",
+    "name": "月最低价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_m_future",
+    "name": "月最低价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_m_future",
+    "name": "月最低结算价日",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_m_future",
+    "name": "月最低结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_m_future",
+    "name": "月持仓量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_m_future",
+    "name": "月开盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chgm_future",
+    "name": "月持仓变化",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_m_future",
+    "name": "月前收盘价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_m_future",
+    "name": "月前结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_m_future",
+    "name": "月涨跌幅(结算价)",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chgm_future",
+    "name": "月涨跌(结算价)",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_m_future",
+    "name": "月结算价",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swingm_future",
+    "name": "月振幅",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_m_future",
+    "name": "月成交量",
+    "description": "行情指标/月行情",
+    "params": ""
+  },
+  {
+    "code": "ths_amt_w_future",
+    "name": "周成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_avg_price_w_future",
+    "name": "周成交均价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_w_future",
+    "name": "周涨跌幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_w_future",
+    "name": "周涨跌",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_close_w_future",
+    "name": "周收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_amt_w_future",
+    "name": "周日均成交额",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_o_i_w_future",
+    "name": "周日均持仓量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_daily_avg_vol_w_future",
+    "name": "周日均成交量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_date_w_future",
+    "name": "周最高收盘价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_close_w_future",
+    "name": "周最高收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_date_w_future",
+    "name": "周最高价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_date_w_future",
+    "name": "周最高结算价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_settle_w_future",
+    "name": "周最高结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_high_w_future",
+    "name": "周最高价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_date_w_future",
+    "name": "周最低收盘价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_close_w_future",
+    "name": "周最低收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_date_w_future",
+    "name": "周最低价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_date_w_future",
+    "name": "周最低结算价日",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_settle_w_future",
+    "name": "周最低结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_low_w_future",
+    "name": "周最低价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_oi_w_future",
+    "name": "周持仓量",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_open_w_future",
+    "name": "周开盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_position_chg_w_future",
+    "name": "周持仓变化",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_close_w_future",
+    "name": "周前收盘价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_pre_settle_w_future",
+    "name": "周前结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_ratio_w_future",
+    "name": "周涨跌幅(结算价)",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_chg_w_future",
+    "name": "周涨跌(结算价)",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_settle_w_future",
+    "name": "周结算价",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_swing_w_future",
+    "name": "周振幅",
+    "description": "行情指标/周行情",
+    "params": ""
+  },
+  {
+    "code": "ths_chg_ratio_lmit_future",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日)合约基础涨跌幅限制",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  },
+  {
+    "code": "ths_contract_en_name_future",
+    "name": "合约英文名称",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_contract_listed_date_future",
+    "name": "合约上市日",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_contract_month_explain_future",
+    "name": "合约月份说明",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_contract_short_deposit_future",
+    "name": "合约空头保证金",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_delivery_date_explain_future",
+    "name": "交割日期说明",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_delivery_month_future",
+    "name": "交割月份",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_initial_td_deposit_future",
+    "name": "最初交易保证金",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_last_td_date_explian_future",
+    "name": "最后交易日说明",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_mini_chg_price_future",
+    "name": "最小变动价位",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_pricing_unit_future",
+    "name": "周前,103-1 月前,104-3 月前,105-6 月前,106-1 年前,107-2 年前,108-本年初,109-本月初,110-本周一,111-上市首日)合约基础报价单位",
+    "description": "交易日期(100-最新,101-前一交易日,102-1",
+    "params": ""
+  },
+  {
+    "code": "ths_start_trade_date_future",
+    "name": "开始交易日",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_td_time_explain_future",
+    "name": "交易时间说明",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_trade_deposit_future",
+    "name": "交易保证金",
+    "description": "合约基础",
+    "params": ""
+  },
+  {
+    "code": "ths_long_vol_change_future",
+    "name": "多单量增减",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_long_vol_future",
+    "name": "多单量",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_long_vol_rank_future",
+    "name": "多单量排名",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_member_vol_chg_future",
+    "name": "成交量增减",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_member_vol_future",
+    "name": "成交量",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_net_long_bill_change_future",
+    "name": "净多单增减",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_net_long_bill_future",
+    "name": "净多单",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_net_long_bill_rank_future",
+    "name": "净多单排名",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_net_short_bill_change_future",
+    "name": "净空单增减",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_net_short_bill_rank_future",
+    "name": "净空单排名",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_net_shortg_bill_future",
+    "name": "净空单",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_short_vol_change_future",
+    "name": "空单量增减",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_short_vol_future",
+    "name": "空单量",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_short_vol_rank_future",
+    "name": "空单量排名",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_rank_future",
+    "name": "成交量排名",
+    "description": "会员持仓",
+    "params": ""
+  },
+  {
+    "code": "ths_mi_future",
+    "name": "MI 动量指标",
+    "description": "技术指标/摆动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_micd_future",
+    "name": "MICD 异同离差动力指数",
+    "description": "技术指标/摆动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_rc_future",
+    "name": "RC 变化率指数",
+    "description": "技术指标/摆动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_rccd_future",
+    "name": "RCCD 异同离差变化率指数",
+    "description": "技术指标/摆动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_srmi_future",
+    "name": "SRMI(MI 修正指标)",
+    "description": "技术指标/摆动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_atr_future",
+    "name": "ATR 真实波幅",
+    "description": "技术指标/波动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cvlt_future",
+    "name": "CVLT 佳庆离散指标",
+    "description": "技术指标/波动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_massmsx_future",
+    "name": "MASS 梅斯线",
+    "description": "技术指标/波动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_std_future",
+    "name": "STD 标准差",
+    "description": "技术指标/波动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vhf_future",
+    "name": "VHF 纵横指标",
+    "description": "技术指标/波动指标",
+    "params": ""
+  },
+  {
+    "code": "ths_adtm_future",
+    "name": "ADTM 动态买卖气指标",
+    "description": "技术指标/超买超卖指标",
+    "params": ""
+  },
+  {
+    "code": "ths_skfj_future",
+    "name": "SKDJ 慢速随机指标",
+    "description": "技术指标/超买超卖指标",
+    "params": ""
+  },
+  {
+    "code": "ths_tapi_future",
+    "name": "TAPI 加权指数成交值",
+    "description": "技术指标/成交量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vma_future",
+    "name": "VMA 量简单移动平均",
+    "description": "技术指标/成交量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vmacd_future",
+    "name": "VMACD 量指数平滑异同平均",
+    "description": "技术指标/成交量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vol_ratio_future",
+    "name": "量比",
+    "description": "技术指标/成交量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vosc_future",
+    "name": "VOSC 成交量震荡",
+    "description": "技术指标/成交量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vstd_future",
+    "name": "VSTD 成交量标准差",
+    "description": "技术指标/成交量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_bias_future",
+    "name": "BIAS 乖离率",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cci_future",
+    "name": "CCI 顺势指标",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dpo_future",
+    "name": "DPO 区间震荡线",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_kdj_future",
+    "name": "KDJ 随机指标",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_lwr_future",
+    "name": "LWR 威廉指标",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_roc_future",
+    "name": "ROC 变动速率",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_rsi_future",
+    "name": "RSI 相对强弱指标",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_si_future",
+    "name": "SI 摆动指标",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_srdm_future",
+    "name": "SRDM 动向速度比率",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vroc_future",
+    "name": "VROC 量变动速率",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vrsi_future",
+    "name": "VRSI 量相对强弱",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_wr_future",
+    "name": "WR 威廉指标",
+    "description": "技术指标/反趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_mfi_future",
+    "name": "MFI 资金流向指标",
+    "description": "技术指标/量价指标",
+    "params": ""
+  },
+  {
+    "code": "ths_obv_future",
+    "name": "OBV 能量潮",
+    "description": "技术指标/量价指标",
+    "params": ""
+  },
+  {
+    "code": "ths_pvt_future",
+    "name": "PVT 量价趋势指标",
+    "description": "技术指标/量价指标",
+    "params": ""
+  },
+  {
+    "code": "ths_wvad_future",
+    "name": "WVAD 威廉变异离散量",
+    "description": "技术指标/量价指标",
+    "params": ""
+  },
+  {
+    "code": "ths_arbrrqyyzb_future",
+    "name": "人气意愿指标(ARBR)",
+    "description": "技术指标/能量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cr_future",
+    "name": "CR 能量指标",
+    "description": "技术指标/能量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_psy_future",
+    "name": "PSY 心理指标",
+    "description": "技术指标/能量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_vr_future",
+    "name": "VR 成交量比率",
+    "description": "技术指标/能量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_wad_future",
+    "name": "WAD 威廉聚散指标",
+    "description": "技术指标/能量指标",
+    "params": ""
+  },
+  {
+    "code": "ths_bbi_future",
+    "name": "BBI 多空指数",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_dma_future",
+    "name": "DMA 平均线差",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_expma_future",
+    "name": "EXPMA 指数平均数",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_ma_future",
+    "name": "MA 简单移动平均",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_macd_future",
+    "name": "MACD 指数平滑异同平均",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_mtm_future",
+    "name": "MTM 动力指标",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_price_osc_future",
+    "name": "PRICEOSC 价格震荡指标",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_trix_future",
+    "name": "TRIX 三重指数平滑平均",
+    "description": "技术指标/趋向指标",
+    "params": ""
+  },
+  {
+    "code": "ths_bbiboll_future",
+    "name": "BBIBOLL 多空布林线",
+    "description": "技术指标/压力支撑指标",
+    "params": ""
+  },
+  {
+    "code": "ths_boll_future",
+    "name": "BOLL 布林线",
+    "description": "技术指标/压力支撑指标",
+    "params": ""
+  },
+  {
+    "code": "ths_cdp_future",
+    "name": "CDP 逆势操作",
+    "description": "技术指标/压力支撑指标",
+    "params": ""
+  },
+  {
+    "code": "ths_env_future",
+    "name": "ENV 指标",
+    "description": "技术指标/压力支撑指标",
+    "params": ""
+  },
+  {
+    "code": "ths_mike_future",
+    "name": "MIKE 麦克指标",
+    "description": "技术指标/压力支撑指标",
+    "params": ""
+  },
+  {
+    "code": "ths_sar_future",
+    "name": "SAR 抛物转向指标",
+    "description": "技术指标/压力支撑指标",
+    "params": ""
+  }
+]

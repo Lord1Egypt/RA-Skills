@@ -1,0 +1,159 @@
+{
+  "tools": [
+    {
+      "name": "browse_templates",
+      "description": "Primary entrypoint when the user asks what products/items/templates can be customized. Use this before any broad Leewow capability summary. Python sends real product cards to Feishu directly and returns only send results plus finalAssistantReply=NO_REPLY.",
+      "executor": "bash",
+      "command": "python3 scripts/browse.py --category '{{category}}' --count {{count}} --channel '{{channel}}' --json --feishu-target '{{feishu_target}}' --feishu-receive-id-type '{{feishu_receive_id_type}}' --feishu-app-id '{{feishu_app_id}}' --feishu-app-secret '{{feishu_app_secret}}' --feishu-open-base '{{feishu_open_base}}'",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Optional category filter (e.g. 'bag', 'accessory', 'home', 'apparel'). Leave empty to browse all.",
+            "default": ""
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of products/messages to return (1-10, default 5)",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 10
+          },
+          "channel": {
+            "type": "string",
+            "description": "Delivery channel. Use 'feishu' for current production flow.",
+            "default": "feishu"
+          },
+          "feishu_target": {
+            "type": "string",
+            "description": "Optional Feishu receive_id override. Leave empty to use FEISHU_RECEIVE_ID from skill env.",
+            "default": ""
+          },
+          "feishu_receive_id_type": {
+            "type": "string",
+            "description": "Optional Feishu receive_id_type override, e.g. chat_id/open_id. Leave empty to use FEISHU_RECEIVE_ID_TYPE or default chat_id.",
+            "default": ""
+          },
+          "feishu_app_id": {
+            "type": "string",
+            "description": "Optional Feishu App ID override. Leave empty to use FEISHU_APP_ID from skill env.",
+            "default": ""
+          },
+          "feishu_app_secret": {
+            "type": "string",
+            "description": "Optional Feishu App Secret override. Leave empty to use FEISHU_APP_SECRET from skill env.",
+            "default": ""
+          },
+          "feishu_open_base": {
+            "type": "string",
+            "description": "Optional Feishu Open API base override. Leave empty to use default https://open.feishu.cn.",
+            "default": ""
+          }
+        }
+      }
+    },
+    {
+      "name": "generate_preview",
+      "description": "Upload a design image and start generation. Returns task state only. Then call get_generation_status(task_id, poll=true) to get the preview image path plus the final reply markdown. Do NOT fabricate or guess any URL — only use purchaseUrl/replyMarkdown from get_generation_status.",
+      "executor": "bash",
+      "command": "python3 scripts/generate.py --image-path '{{image_path}}' --template-id {{template_id}} --design-theme '{{design_theme}}' --aspect-ratio '{{aspect_ratio}}' --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string",
+            "description": "Local file path of the design image. MUST be in workspace directory: ~/.openclaw/workspace/"
+          },
+          "template_id": {
+            "type": "integer",
+            "description": "Product template ID (from browse_templates results)"
+          },
+          "design_theme": {
+            "type": "string",
+            "description": "Design theme or style description (e.g. 'cute cartoon', 'minimalist')",
+            "default": ""
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "description": "Aspect ratio: '3:4', '1:1', '4:3'",
+            "default": "3:4"
+          }
+        },
+        "required": ["image_path", "template_id"]
+      }
+    },
+    {
+      "name": "get_generation_status",
+      "description": "Check generation task status and, when possible, send the preview result to Feishu directly from Python. On success, returns only send results plus finalAssistantReply=NO_REPLY. This tool requires the same Feishu direct-send configuration as browse_templates, and the agent should pass feishu_target from the current conversation when available.",
+      "executor": "bash",
+      "command": "python3 scripts/get_status.py '{{task_id}}' {{#if poll}}--poll{{/if}} --timeout {{timeout}} --json --direct-feishu-send --feishu-target '{{feishu_target}}' --feishu-receive-id-type '{{feishu_receive_id_type}}' --feishu-app-id '{{feishu_app_id}}' --feishu-app-secret '{{feishu_app_secret}}' --feishu-open-base '{{feishu_open_base}}'",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Task ID returned by generate_preview"
+          },
+          "poll": {
+            "type": "boolean",
+            "description": "Wait and poll until generation completes",
+            "default": true
+          },
+          "timeout": {
+            "type": "integer",
+            "description": "Maximum wait time in seconds",
+            "default": 120
+          },
+          "feishu_target": {
+            "type": "string",
+            "description": "Optional Feishu receive_id override. Leave empty to use FEISHU_RECEIVE_ID from skill env.",
+            "default": ""
+          },
+          "feishu_receive_id_type": {
+            "type": "string",
+            "description": "Optional Feishu receive_id_type override, e.g. chat_id/open_id. Leave empty to use FEISHU_RECEIVE_ID_TYPE or default chat_id.",
+            "default": ""
+          },
+          "feishu_app_id": {
+            "type": "string",
+            "description": "Optional Feishu App ID override. Leave empty to use FEISHU_APP_ID from skill env.",
+            "default": ""
+          },
+          "feishu_app_secret": {
+            "type": "string",
+            "description": "Optional Feishu App Secret override. Leave empty to use FEISHU_APP_SECRET from skill env.",
+            "default": ""
+          },
+          "feishu_open_base": {
+            "type": "string",
+            "description": "Optional Feishu Open API base override. Leave empty to use default https://open.feishu.cn.",
+            "default": ""
+          }
+        },
+        "required": ["task_id"]
+      }
+    },
+    {
+      "name": "cos_presign_url",
+      "description": "Generate a presigned URL for accessing COS (Tencent Cloud Object Storage) images. Useful for private buckets or when images need temporary access tokens.",
+      "executor": "bash",
+      "command": "python3 scripts/cos_presign.py '{{cos_url}}' --expired {{expired}} --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "cos_url": {
+            "type": "string",
+            "description": "COS URL to generate presigned URL for (e.g., https://bucket.cos.region.myqcloud.com/key.png)"
+          },
+          "expired": {
+            "type": "integer",
+            "description": "URL expiration time in seconds (default: 3600 = 1 hour)",
+            "default": 3600
+          }
+        },
+        "required": ["cos_url"]
+      }
+    }
+  ]
+}

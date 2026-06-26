@@ -1,35 +1,36 @@
 ---
-name: "Banking Brief"
-description: "Genera un brief ejecutivo para Comite de Riesgos bancario en Mexico. Recibe indicadores CNBV y contexto de mercado via Telegram y devuelve un PDF estructurad..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/banking-committee-brief-mx"
-sourceUrl: "https://clawhub.ai/skills/banking-committee-brief-mx"
+name: banking-committee-brief-mx
+version: 1.0.0
+description: Genera un brief ejecutivo para Comite de Riesgos bancario en Mexico. Recibe indicadores CNBV y contexto de mercado via Telegram y devuelve un PDF estructurado listo para presentar al Comite.
+author: Ricardo-Mendoza-Rodriguez
+tags:
+  - banking
+  - finance
+  - risk
+  - compliance
+  - cnbv
+  - mexico
+  - telegram
+  - pdf
+license: MIT
+requires:
+  env:
+    - name: TELEGRAM_BOT_TOKEN
+      description: Token del bot de Telegram obtenido via BotFather
+      required: true
 ---
 
-# Banking Brief
+# Banking Committee Brief — Mexico (Comite de Riesgos)
 
-> Genera un brief ejecutivo para Comite de Riesgos bancario en Mexico. Recibe indicadores CNBV y contexto de mercado via Telegram y devuelve un PDF estructurad...
+Brief ejecutivo para Comite de Riesgos bancario en Mexico.
+Recibe indicadores CNBV y contexto de mercado via Telegram.
+Devuelve PDF estructurado con semaforos regulatorios, agenda del Comite
+y senales de alerta basadas en umbrales CNBV / Basilea III Mexico.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/banking-committee-brief-mx`
-- **Source URL:** [https://clawhub.ai/skills/banking-committee-brief-mx](https://clawhub.ai/skills/banking-committee-brief-mx)
+## Instalacion
+pip install reportlab python-telegram-bot
+export TELEGRAM_BOT_TOKEN=tu_token
+python3 telegram_handler.py
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/banking-committee-brief-mx
-```
+## Indicadores soportados
+ICAP, TIER1, IMOR, CCL, ROE, ROA

@@ -1,0 +1,156 @@
+# 教培私域运营行业配置
+
+# 行业基准指标
+benchmarks:
+  kpi:
+    # 获客成本 (CAC)
+    cac:
+      excellent: 200  # 元/人
+      good: 400
+      warning: 600
+    
+    # 体验课转化率
+    trial_conversion:
+      excellent: 0.40  # 40%
+      good: 0.25
+      warning: 0.15
+    
+    # 社群活跃度
+    community_activity:
+      excellent: 0.15  # 15%
+      good: 0.08
+      warning: 0.05
+    
+    # 续费率
+    renewal_rate:
+      excellent: 0.85  # 85%
+      good: 0.70
+      warning: 0.60
+    
+    # 转介绍率
+    referral_rate:
+      excellent: 0.30  # 30%
+      good: 0.15
+      warning: 0.10
+
+# 最佳发布时间
+best_posting_times:
+  moments:
+    - time: "07:30-08:00"
+      type: "早安/励志/干货"
+      engagement: "high"
+    - time: "12:00-13:00"
+      type: "学员展示/好评"
+      engagement: "high"
+    - time: "20:00-22:00"
+      type: "课程推广/活动"
+      engagement: "highest"
+  
+  community:
+    - time: "08:00-09:00"
+      type: "早安打卡"
+    - time: "12:00-13:00"
+      type: "午间互动"
+    - time: "20:00-21:00"
+      type: "晚间答疑"
+
+# 教育类型配置
+education_types:
+  k12:
+    name: "K12学科培训"
+    target_age: "6-18岁"
+    core_concerns:
+      - "升学成绩"
+      - "考试压力"
+      - "学习方法"
+    decision_makers: ["妈妈(70%)", "爸爸(20%)", "祖父母(10%)"]
+    best_channels:
+      - "抖音/视频号"
+      - "学校周边地推"
+      - "家长社群"
+  
+  quality:
+    name: "素质教育"
+    target_age: "4-16岁"
+    core_concerns:
+      - "兴趣培养"
+      - "综合素质"
+      - "艺术修养"
+    decision_makers: ["妈妈(80%)", "爸爸(15%)"]
+    best_channels:
+      - "小红书"
+      - "亲子社群"
+      - "商场活动"
+  
+  vocational:
+    name: "职业教育"
+    target_age: "18-45岁"
+    core_concerns:
+      - "就业前景"
+      - "证书含金量"
+      - "学习时间"
+    decision_makers: ["学员本人(90%)"]
+    best_channels:
+      - "抖音"
+      - "知乎"
+      - "招聘网站"
+
+# 内容类型权重
+content_weights:
+  k12:
+    knowledge: 0.30  # 知识干货
+    achievement: 0.25  # 学员成果
+    trial: 0.20  # 体验推广
+    activity: 0.15  # 活动
+    interaction: 0.10  # 互动
+  
+  quality:
+    showcase: 0.35  # 作品展示
+    activity: 0.25  # 活动
+    knowledge: 0.20  # 知识
+    trial: 0.15  # 体验
+    interaction: 0.05
+  
+  vocational:
+    value: 0.30  # 价值展示
+    case: 0.25  # 成功案例
+    trial: 0.20  # 体验
+    knowledge: 0.15  # 知识
+    industry: 0.10  # 行业动态
+
+# 话术模板库
+script_templates:
+  first_contact:
+    - "您好！欢迎咨询XX机构～我是您的课程顾问小X，请问孩子多大了呢？"
+    - "感谢您的信任！想先了解一下，您是想提升哪方面的能力呢？"
+  
+  trial_invitation:
+    - "我们这周正好有免费的体验课，可以带孩子来感受一下～"
+    - "免费体验还包含一份学习能力评估报告，需要帮您预约吗？"
+  
+  follow_up:
+    - "您好！上次体验课后孩子感觉怎么样？有什么问题随时问我～"
+    - "这周我们新开了一个班，还有少量名额，要帮您预留吗？"
+  
+  renewal:
+    - "您好！下学期续费已经开始，早续费可以享受XX优惠～"
+    - "感谢您一直的支持！续费时我们有XX福利，需要帮您办理吗？"
+
+# 禁忌事项
+forbidden_items:
+  content:
+    - "夸大宣传效果"
+    - "虚假成绩展示"
+    - "对比贬低竞品"
+    - "价格虚假折扣"
+  
+  behavior:
+    - "频繁刷屏广告"
+    - "强制推销"
+    - "泄露家长信息"
+    - "负面情绪传播"
+  
+  compliance:
+    - "违反双减政策"
+    - "虚假宣传承诺"
+    - "超纲教学内容"

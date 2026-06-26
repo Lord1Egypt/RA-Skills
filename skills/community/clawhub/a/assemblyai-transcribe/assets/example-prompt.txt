@@ -1,0 +1,9 @@
+Summarise the meeting for a software team.
+
+Return:
+- one concise title
+- a short summary paragraph
+- action items with clear owners
+- any explicit decisions
+
+Prefer speaker names if available. If the transcript is uncertain, say so briefly rather than inventing details.

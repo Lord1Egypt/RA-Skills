@@ -1,35 +1,62 @@
 ---
-name: "Caddy Reverse Proxy"
-description: "Add, manage, and troubleshoot Caddy reverse proxy routes for local apps via wildcard subdomains."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/caddy-reverse-proxy"
-sourceUrl: "https://clawhub.ai/skills/caddy-reverse-proxy"
+name: caddy
+description: Add, manage, and troubleshoot Caddy reverse proxy routes for local apps via wildcard subdomains.
+compatibility: macOS (LaunchDaemon) or Linux (systemd). Requires Caddy, Tailscale, Vercel DNS account.
 ---
 
-# Caddy Reverse Proxy
+# Caddy — Wildcard Reverse Proxy for Local Apps
 
-> Add, manage, and troubleshoot Caddy reverse proxy routes for local apps via wildcard subdomains.
+Routes `*.YOUR_DOMAIN` subdomains to local services over HTTPS via Caddy reverse proxy with automatic Let's Encrypt certificates. Designed for Tailscale-only access (no public exposure).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/caddy-reverse-proxy`
-- **Source URL:** [https://clawhub.ai/skills/caddy-reverse-proxy](https://clawhub.ai/skills/caddy-reverse-proxy)
+> **DNS provider:** This skill uses **Vercel DNS** for DNS-01 ACME challenges. If you use a different DNS provider, swap the `caddy-dns/vercel` plugin and TLS snippet for your provider's equivalent (see [caddy-dns](https://github.com/caddy-dns)).
 
-## Overview
+## Add a New App
 
+1. **Create a background service** (LaunchAgent on macOS, systemd on Linux) — see `reference.md` for templates
+2. **Add to Caddyfile** (`~/.config/caddy/Caddyfile`):
+   ```caddy
+   appname.YOUR_DOMAIN {
+       import vercel_tls
+       reverse_proxy localhost:31XX
+   }
+   ```
+   Also add a `<li>` entry in the dashboard HTML block at the top.
+3. **Reload Caddy:**
+   ```bash
+   ~/.local/bin/caddy reload --config ~/.config/caddy/Caddyfile --address localhost:2019
+   ```
+   TLS cert provisioning takes 30–60 seconds (DNS-01 challenge).
+4. **If it connects to OpenClaw Gateway** — see `OPENCLAW.md` in this folder for gateway-specific config.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Dev Servers
+
+Companion skill: [dev-serve](https://clawhub.com/skills/dev-serve) — one-command dev server + Caddy routing.
+
 ```bash
-hermes skills install clawhub/caddy-reverse-proxy
+dev-serve up ~/projects/myapp        # → https://myapp.YOUR_DOMAIN
+dev-serve down myapp
+dev-serve ls
 ```
+
+## Reload / Restart
+
+```bash
+# Reload config (no restart, no sudo)
+~/.local/bin/caddy reload --config ~/.config/caddy/Caddyfile --address localhost:2019
+
+# Full restart
+# macOS:
+sudo launchctl unload /Library/LaunchDaemons/com.caddyserver.caddy.plist
+sudo launchctl load /Library/LaunchDaemons/com.caddyserver.caddy.plist
+# Linux:
+systemctl --user restart caddy
+```
+
+## Troubleshoot
+
+- **Cert not issuing:** `tail -50 /var/log/caddy-error.log | grep -i error` — likely expired Vercel API token
+- **DNS not resolving:** `dig +short appname.YOUR_DOMAIN` — should return your Tailscale IP
+- **TLS error (curl exit 35):** Cert hasn't provisioned yet, wait 30-60s
+
+For full reference (example apps, key files, build instructions): see `reference.md`.
+For OpenClaw gateway integration: see `OPENCLAW.md`.

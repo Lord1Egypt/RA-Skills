@@ -1,0 +1,68 @@
+{
+  "main": "./dist/plugin.js",
+  "id": "appstore-skill",
+  "name": "App Store Skill",
+  "description": "1Panel 应用商店管理 Skill，支持搜索、安装、卸载和查看已安装应用，包含批量操作功能",
+  "version": "0.3.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "minLength": 1,
+        "description": "1Panel 服务器地址"
+      },
+      "apiKey": {
+        "type": "string",
+        "minLength": 1,
+        "description": "API 密钥"
+      },
+      "timeoutMs": {
+        "type": "integer",
+        "minimum": 1000,
+        "default": 30000,
+        "description": "请求超时时间（毫秒）"
+      },
+      "maxRetries": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 10,
+        "default": 3,
+        "description": "请求失败最大重试次数"
+      },
+      "retryDelay": {
+        "type": "integer",
+        "minimum": 100,
+        "maximum": 10000,
+        "default": 1000,
+        "description": "重试延迟（毫秒）"
+      }
+    },
+    "required": ["baseUrl", "apiKey"]
+  },
+  "uiHints": {
+    "baseUrl": {
+      "label": "1Panel 地址",
+      "placeholder": "http://your-server:port",
+      "description": "1Panel 服务器访问地址"
+    },
+    "apiKey": {
+      "label": "1Panel API 密钥",
+      "sensitive": true,
+      "description": "1Panel 管理 API 的认证密钥（在 1Panel 设置中生成）"
+    },
+    "timeoutMs": {
+      "label": "超时时间",
+      "placeholder": "30000"
+    },
+    "maxRetries": {
+      "label": "最大重试次数",
+      "placeholder": "3"
+    },
+    "retryDelay": {
+      "label": "重试延迟",
+      "placeholder": "1000"
+    }
+  }
+}

@@ -1,35 +1,37 @@
----
-name: "Federated Chaos Testing"
-description: "Simulate faults in federated learning systems by injecting noise, dropout, data poisoning, and delays to evaluate model robustness and fault tolerance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/federated-chaos-testing"
-sourceUrl: "https://clawhub.ai/skills/federated-chaos-testing"
----
-
 # Federated Chaos Testing
 
-> Simulate faults in federated learning systems by injecting noise, dropout, data poisoning, and delays to evaluate model robustness and fault tolerance.
+> 联邦学习 × 混沌工程：验证分布式AI系统在节点故障下的学习质量。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/federated-chaos-testing`
-- **Source URL:** [https://clawhub.ai/skills/federated-chaos-testing](https://clawhub.ai/skills/federated-chaos-testing)
+## 何时使用
+- 联邦学习系统的鲁棒性验证
+- 评估恶意/故障节点对全局模型的影响
+- 设计容错的联邦训练协议
 
-## Overview
+## 核心认知
 
+### 1. 联邦系统的故障面与传统系统不同
+传统分布式系统的故障是"正确性"问题（数据一致、请求完整）。联邦学习的故障是"质量"问题——某个节点的模型更新是恶意的、低质的、或基于偏斜数据的，全局聚合后导致模型退化。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/federated-chaos-testing
+**故障模式分类**：
+- **静默故障**：节点返回看似正常但含微妙偏见的模型更新（最难检测）
+- **拜占庭故障**：节点返回任意或恶意的模型参数
+- **数据偏斜故障**：节点的本地数据分布严重偏离全局分布
+- **通信故障**：模型更新在传输中丢失或损坏
+
+### 2. 联邦混沌注入策略
+- **梯度扰动注入**：在随机节点的模型更新中注入噪声，测试聚合算法的鲁棒性
+- **节点撤离模拟**：训练过程中随机踢出节点，验证全局模型是否退化
+- **数据投毒模拟**：在部分节点注入有毒数据，测试异常检测机制
+- **通信延迟注入**：模拟高延迟/丢包环境，测试异步聚合的收敛性
+
+### 3. 联邦弹性指标
 ```
+FERI = (基准准确率 - 故障后准确率) / 故障节点比例
+
+FERI越低越好（说明故障节点对全局影响小）
+目标: FERI < 0.1（10%故障节点只造成<1%准确率下降）
+```
+
+## 碰撞来源
+- `federated-learning` × `chaos-engineering-playbook` × `chaos-data-pipeline`
+- `self-healing-database`（自愈模式）× `byzantine-fault-tolerance`概念

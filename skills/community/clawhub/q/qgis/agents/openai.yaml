@@ -1,0 +1,7 @@
+interface:
+  display_name: "QGIS Geospatial"
+  short_description: "Run safe, repeatable QGIS CLI workflows."
+  default_prompt: "Use $qgis to inspect QGIS algorithms and run a reproducible geospatial processing workflow on local files."
+
+policy:
+  allow_implicit_invocation: true

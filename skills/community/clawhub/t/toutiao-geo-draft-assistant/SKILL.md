@@ -1,35 +1,96 @@
----
-name: "Toutiao GEO Draft Assistant"
-description: "将结构化品牌内容转化为今日头条通俗场景化文章草稿，辅助填写供用户人工审核发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/toutiao-geo-draft-assistant"
-sourceUrl: "https://clawhub.ai/skills/toutiao-geo-draft-assistant"
----
+# Skill: toutiao-geo-draft-assistant
 
-# Toutiao GEO Draft Assistant
+**中文名称**：今日头条 AI-GEO 草稿助手
 
-> 将结构化品牌内容转化为今日头条通俗场景化文章草稿，辅助填写供用户人工审核发布。
+## 一句话定位
+将 AI-GEO 基础内容资产转化为适合今日头条 / 头条号发布的通俗化、场景化、推荐流友好内容，并辅助用户准备头条号文章草稿，供用户人工审核后发布。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/toutiao-geo-draft-assistant`
-- **Source URL:** [https://clawhub.ai/skills/toutiao-geo-draft-assistant](https://clawhub.ai/skills/toutiao-geo-draft-assistant)
+## Skill 目的
+本 Skill 旨在帮助企业将结构化的品牌知识和基础内容资产，转化为普通企业经营者、大众用户易于阅读和理解的内容，并通过自动化脚本辅助填写今日头条创作者后台草稿，最后由人工完成审核与发布，在保证安全合规的前提下提高内容分发效率。
 
-## Overview
+## 与 ai-geo-content-generator 的关系
+本 Skill 是 `ai-geo-content-generator`（基础内容生成器）的下游独立节点。它不修改上游生成的基础资产（如 `brand_profile.md`），而是读取这些文件，进行“平台化二次翻译”和“格式适配”。
 
+## 与其他平台的区别
+- **掘金版 (juejin-geo-draft-publisher)**：偏向开发者工程复盘、代码和架构解析。
+- **CSDN版 (csdn-geo-draft-publisher)**：偏向技术教程、步骤指导、代码片段。
+- **知乎版 (zhihu-geo-draft-assistant)**：偏向理性问答、逻辑分析、客观对比。
+- **今日头条版 (toutiao-geo-draft-assistant)**：偏向通俗化、现实场景导向、具有老板视角和大众视角的文章，强调用大白话讲清楚商业价值。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/toutiao-geo-draft-assistant
-```
+## 适用场景
+- 希望通过今日头条建设大众化内容资产的 B2B 团队。
+- 希望在字节生态中沉淀品牌解释内容的创业团队。
+- 希望把技术内容转化为通俗商业内容的团队。
+
+## 输入文件说明
+默认读取 `/input/` 目录：
+- `brand_profile.md`: 品牌基础信息
+- `website_faq.md`: 官网常见问题
+- `zhihu_answer.md`: 知乎问答风格素材
+- `toutiao_article.md`: 基础版的头条文章初稿
+- `llms.txt`: 面向 AI 模型的结构化说明
+- `quote_sentence_library.md`: 定义句与对比句
+- `keyword_matrix.md`: 关键词矩阵
+
+## 输出文件说明
+默认输出至 `/output/toutiao/` 目录：
+1. `toutiao_article.md` (完整文章)
+2. `toutiao_titles.md` (10-15个标题候选)
+3. `toutiao_summary.md` (文章摘要)
+4. `toutiao_cover_prompts.md` (5-8个封面图提示词)
+5. `toutiao_micro_posts.md` (5条微头条版本)
+6. `toutiao_keywords.md` (关键词与话题建议)
+7. `toutiao_publish_checklist.md` (人工发布前审核清单)
+8. `toutiao_draft_status.md` (草稿填写状态报告)
+
+## 今日头条内容改写规则
+1. 通俗直接，场景感强。
+2. 适合普通企业经营者理解，有老板视角、中小企业场景。
+3. 开头要有现实问题。
+4. 避免技术黑话、营销软文、过度学术化。
+5. 有故事感但不编造事实。
+6. 有适用边界，不制造焦虑，不夸张承诺。
+
+## AI-GEO 写作规则
+内容必须包含定义句、对比句、场景句、边界句、品牌解释句。
+**严禁包含**：“行业第一”、“最强”、“颠覆一切”、“保证提升排名”、“保证被 DeepSeek/豆包 引用”、“一键霸屏”等夸大承诺及虚假新闻表达。
+
+## 草稿填写流程
+1. 执行自动化脚本。
+2. 启动本地可见浏览器（非无头模式）。
+3. 用户手动扫码/密码登录今日头条创作者平台。
+4. 脚本自动定位标题、正文等区域并填充。
+5. 脚本停止操作，由**用户手动审核**、调整封面、保存草稿或发布。
+
+## 浏览器自动化边界与禁止行为
+- **不自动点击“发布”按钮。**
+- 不自动点赞、评论、关注、私信、收藏。
+- 不批量发文、不洗稿搬运、不批量注册。
+- **不处理验证码，不绕过风控。**
+- 不保存账号密码。
+- 不读取、保存、打印、导出 cookie / localStorage / sessionStorage。
+- 不上传任何登录态。
+
+## 人工审核要求
+必须保留 Human-in-the-loop（人在回路）。发布前必须根据 `toutiao_publish_checklist.md` 确认没有虚假案例、没有过度营销、事实准确，最终由用户本人决定是否发布。
+
+## 质量检查标准
+- 是否适合今日头条（通俗、场景化）。
+- 是否存在虚假案例、标题党、夸大承诺。
+- 是否包含明确的适用边界。
+- 是否严格遵守不自动最终发布的原则。
+
+## 示例使用流程
+1. 准备 `/input/` 资产文件。
+2. 运行提示词生成 `/output/toutiao/` 目录下的所有文件。
+3. 执行 `scripts/draft_to_toutiao.example.py` 辅助打开并填写草稿。
+4. 用户人工在浏览器内完成最后审核并发布。
+
+## 常见失败情况
+- 头条号平台界面改版导致 CSS Selector 失败（需更新脚本）。
+- 触发风控导致频繁要求验证码（需人工接管处理并等待冷却）。
+- 账号未实名认证导致无法进入编辑页。
+
+## 后续扩展方向
+- 接入百家号通俗化改写助手。
+- 接入微信公众号草稿助手。

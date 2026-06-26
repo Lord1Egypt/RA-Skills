@@ -1,0 +1,87 @@
+{
+  "clients": [
+    {
+      "id": "client_001",
+      "company": "智算科技",
+      "contact_person": "张总",
+      "stage": "深度谈判",
+      "next_contact": "2026-04-16",
+      "notes": "需要8张H100，预算充足",
+      "created_at": "2026-04-15"
+    },
+    {
+      "id": "client_002",
+      "company": "AI研究院",
+      "contact_person": "李主任",
+      "stage": "初步接洽",
+      "next_contact": "2026-04-18",
+      "notes": "大模型训练需求，关注性价比",
+      "created_at": "2026-04-15"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "contract_001",
+      "client": "云端智算",
+      "amount": 1200000,
+      "expiry_date": "2026-04-21",
+      "status": "active",
+      "notes": "年框合同，需要续约沟通",
+      "created_at": "2026-04-15"
+    },
+    {
+      "id": "contract_002",
+      "client": "数据科技公司",
+      "amount": 800000,
+      "expiry_date": "2026-05-11",
+      "status": "active",
+      "notes": "稳定客户",
+      "created_at": "2026-04-15"
+    },
+    {
+      "id": "contract_77857529",
+      "client": "测试客户A",
+      "amount": 500000,
+      "expiry_date": "2026-04-25",
+      "status": "active",
+      "notes": "",
+      "created_at": "2026-04-16"
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_001",
+      "source": "官网咨询",
+      "status": "新线索",
+      "priority": "高",
+      "company": "新锐AI公司",
+      "contact": "王经理",
+      "notes": "有明确采购意向",
+      "created_at": "2026-04-15"
+    },
+    {
+      "id": "lead_002",
+      "source": "老客户推荐",
+      "status": "待跟进",
+      "priority": "中",
+      "company": "合作伙伴B",
+      "contact": "赵总",
+      "notes": "推荐客户，需要电话沟通",
+      "created_at": "2026-04-15"
+    }
+  ],
+  "competitors": [
+    "CoreWeave",
+    "Lambda Labs",
+    "RunPod",
+    "Vast.ai",
+    "FluidStack",
+    "TensorDock",
+    "Jarvis Labs"
+  ],
+  "statistics": {
+    "monthly_revenue": 2500000,
+    "pipeline_value": 8500000,
+    "conversion_rate": 0.32
+  }
+}

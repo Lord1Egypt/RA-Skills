@@ -1,35 +1,145 @@
 ---
-name: "Zhihuiya Bibliography"
-description: "通过专利ID或公开号查询智慧芽专利数据库中的专利著录（书目）信息。当用户提到专利著录信息查询、专利书目信息、专利申请人查询、专利发明人查询、专利分类号、专利摘要获取、专利引用分析、专利优先权主张、专利申请引用、专利审查员信息、patent bibliographic data, inventor lookup,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-zhihuiya-bibliography"
-sourceUrl: "https://clawhub.ai/skills/linkfox-zhihuiya-bibliography"
+name: linkfox-zhihuiya-bibliography
+description: 通过专利ID或公开号查询智慧芽专利数据库中的专利著录（书目）信息。当用户提到专利著录信息查询、专利书目信息、专利申请人查询、专利发明人查询、专利分类号、专利摘要获取、专利引用分析、专利优先权主张、专利申请引用、专利审查员信息、patent bibliographic data, inventor lookup, applicant lookup, patent classification, patent metadata, PatSnap, patent citations时触发此技能。即使用户未明确提及"著录信息"，只要其需求涉及通过专利ID或公开号查询特定专利的详细元数据，也应触发此技能。
 ---
 
-# Zhihuiya Bibliography
+# Zhihuiya Patent Bibliography
 
-> 通过专利ID或公开号查询智慧芽专利数据库中的专利著录（书目）信息。当用户提到专利著录信息查询、专利书目信息、专利申请人查询、专利发明人查询、专利分类号、专利摘要获取、专利引用分析、专利优先权主张、专利申请引用、专利审查员信息、patent bibliographic data, inventor lookup,...
+This skill guides you on how to query patent bibliography (bibliographic) data from the Zhihuiya patent database, helping users retrieve detailed metadata for specific patents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-zhihuiya-bibliography`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-zhihuiya-bibliography](https://clawhub.ai/skills/linkfox-zhihuiya-bibliography)
+## Core Concepts
 
-## Overview
+Patent bibliography data (also called bibliographic data) is the structured metadata associated with a patent document. It includes the patent title, applicants, inventors, classification codes, priority claims, cited references, abstracts, and more. This tool allows querying by **patent ID** or **publication number**, returning comprehensive bibliographic records for up to 100 patents per request.
 
+**Patent types**: The `patentType` field indicates the type of patent document:
+- `APPLICATION` -- Invention application (published but not yet granted)
+- `PATENT` -- Granted invention patent
+- `UTILITY` -- Utility model
+- `DESIGN` -- Design patent
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/linkfox-zhihuiya-bibliography
+## Data Fields
+
+| Field | API Name | Description |
+|-------|----------|-------------|
+| Patent ID | patentId | Internal patent identifier |
+| Publication Number | pn | Publication/announcement number |
+| Invention Title | inventionTitle | Patent title with language info |
+| Abstracts | abstracts | Patent abstract text |
+| Patent Type | patentType | APPLICATION, PATENT, UTILITY, or DESIGN |
+| Applicants | applicants | Original applicant(s) |
+| Assignees | assignees | Current patent holder(s) / assignee(s) |
+| Inventors | inventors | Inventor(s) listed on the patent |
+| Agents | agents | Patent attorney / agent(s) |
+| Agency | agency | Filing agency / patent firm |
+| Examiners | examiners | Patent examiner(s) |
+| Priority Claims | priorityClaims | Priority right declarations |
+| Application Reference | applicationReference | Application filing data |
+| Publication Reference | publicationReference | Publication data |
+| Dates of Public Availability | datesOfPublicAvailability | Public availability dates |
+| IPC Classification | classificationIpcr | International Patent Classification |
+| CPC Classification | classificationCpc | Cooperative Patent Classification |
+| UPC Classification | classificationUpc | US Patent Classification |
+| LOC Classification | classificationLoc | Locarno Classification (designs) |
+| FI Classification | classificationFi | FI classification codes (Japan) |
+| F-term Classification | classificationFterm | F-term codes (Japan) |
+| GBC Classification | classificationGbc | GBC classification |
+| Cited Patents | referenceCitedPatents | Patent documents cited as references |
+| Cited Non-Patent Literature | referenceCitedOthers | Non-patent literature cited |
+| Related Documents | relatedDocuments | Divisional / continuation application info |
+| PCT Filing Data | pctOrRegionalFilingData | PCT or regional phase filing data |
+| PCT Publishing Data | pctOrRegionalPublishingData | PCT or regional phase publication data |
+| Estimated Expiry Date | exdt | Estimated patent expiration date (Zhihuiya) |
+
+## API Usage
+
+This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/zhihuiya_bibliography.py` directly to run queries.
+
+## Parameter Guide
+
+The tool accepts two parameters. **At least one must be provided**; if both are supplied, `patentId` takes priority.
+
+| Parameter | When to Use | Format |
+|-----------|-------------|--------|
+| `patentId` | When the user provides an internal Zhihuiya patent ID | Comma-separated string, up to 100 IDs |
+| `patentNumber` | When the user provides a publication/announcement number | Comma-separated string, up to 100 numbers |
+
+### Tips for Identifying Input Type
+
+- If the user provides something like `US10123456B2`, `CN112345678A`, `EP3456789B1`, or `WO2023123456A1`, treat it as a **publication number** and use `patentNumber`.
+- If the user provides a purely numeric or opaque identifier that does not match standard publication number patterns, treat it as a **patent ID** and use `patentId`.
+- When the user provides multiple patents, join them with commas (no spaces around commas).
+
+## Usage Examples
+
+**1. Look up a single patent by publication number**
 ```
+User: "Show me the bibliography for US10123456B2"
+Action: Call with patentNumber = "US10123456B2"
+```
+
+**2. Look up multiple patents by publication number**
+```
+User: "Get bibliographic data for CN112345678A, EP3456789B1, and US20210012345A1"
+Action: Call with patentNumber = "CN112345678A,EP3456789B1,US20210012345A1"
+```
+
+**3. Look up a patent by internal ID**
+```
+User: "Query bibliography for patent ID 8fa3b2c1-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+Action: Call with patentId = "8fa3b2c1-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+```
+
+**4. Batch lookup of patents**
+```
+User: "I have a list of 20 publication numbers, look up all their inventors and assignees"
+Action: Call with patentNumber = "<comma-separated list>"
+Then extract and present inventors and assignees from the results.
+```
+
+## Display Rules
+
+1. **Present data clearly**: Show query results in well-structured tables or organized sections. For each patent, highlight the most commonly needed fields: title, applicants/assignees, inventors, filing/publication dates, classification codes, and abstract.
+2. **Respect the query scope**: Only display the fields the user asked about. If they asked for "inventors", do not dump the entire bibliography unless requested.
+3. **Patent type labels**: Translate `patentType` codes into human-readable labels (APPLICATION = Invention Application, PATENT = Granted Invention, UTILITY = Utility Model, DESIGN = Design Patent).
+4. **Multi-patent results**: When results contain multiple patents, use a summary table first, then expand details per patent if the user wants more.
+5. **Error handling**: When a query returns an error or empty results, explain clearly and suggest the user verify their patent ID or publication number.
+6. **No subjective analysis**: Present factual bibliographic data without speculative legal or commercial interpretations.
+## User Expression & Scenario Quick Reference
+
+**Applicable** -- Patent bibliography / metadata lookups:
+
+| User Says | Scenario |
+|-----------|----------|
+| "Look up patent info for XX" | Single patent bibliography |
+| "Who are the inventors of patent XX" | Inventor lookup |
+| "Who owns patent XX", "current assignee" | Assignee / applicant query |
+| "What IPC/CPC class is patent XX" | Classification lookup |
+| "Show me the abstract of patent XX" | Abstract retrieval |
+| "What patents does XX cite" | Citation analysis |
+| "When does patent XX expire" | Expiry date query |
+| "Get bibliography for these patents: A, B, C" | Batch lookup |
+| "Patent details", "patent metadata" | General bibliography |
+
+**Not applicable** -- Needs beyond patent bibliography:
+
+- Full-text patent search by keyword or semantic query
+- Patent landscape / analytics reports
+- Patent valuation or legal status tracking
+- Freedom-to-operate or infringement analysis
+- Patent family tree exploration (unless specific publication numbers are given)
+
+**Boundary judgment**: When users say "find patents about X" or "search for patents in field Y", that is a patent search task, not a bibliography lookup. This skill only applies when the user already has a patent ID or publication number and wants to retrieve its metadata.
+
+
+**Feedback:**
+
+Auto-detect and report feedback via the Feedback API when any of the following apply:
+1. The functionality or purpose described in this skill does not match actual behavior
+2. The skill's results do not match the user's intent
+3. The user expresses dissatisfaction or praise about this skill
+4. Anything you believe could be improved
+
+Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
+---
+*For more high-quality, professional cross-border e-commerce skills, set [LinkFox Skills](https://skill.linkfox.com/).*

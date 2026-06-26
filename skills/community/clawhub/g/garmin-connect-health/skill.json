@@ -1,0 +1,58 @@
+{
+  "name": "garmin-connect-health",
+  "version": "1.0.11",
+  "description": "Comprehensive Garmin Connect health data skill -- fetches sleep, HRV, stress, body battery, SpO2, VO2 Max, training status, race predictions and more",
+  "author": "dw1161",
+  "license": "MIT-0",
+  "repository": "https://github.com/dw1161/garmin-connect-health",
+  "tags": [
+    "garmin",
+    "health",
+    "fitness",
+    "sleep",
+    "hrv",
+    "vo2max",
+    "training",
+    "body-battery",
+    "spo2",
+    "wearable"
+  ],
+  "entry": "SKILL.md",
+  "scripts": [
+    "garmin_health.py"
+  ],
+  "env": [
+    {
+      "name": "GARMIN_EMAIL",
+      "description": "Your Garmin Connect account email address. Can also be set via macOS Keychain or ~/.garmin_credentials file.",
+      "required": false
+    },
+    {
+      "name": "GARMIN_PASSWORD",
+      "description": "Your Garmin Connect account password. Prefer macOS Keychain over this env var.",
+      "required": false
+    },
+    {
+      "name": "GARMIN_IS_CN",
+      "description": "Set to 'true' to use Garmin Connect CN endpoint (connect.garmin.com.cn). For Chinese accounts or mainland China IPs.",
+      "required": false,
+      "default": "false"
+    },
+    {
+      "name": "GARMIN_DATA_DIR",
+      "description": "Directory to store daily health JSON snapshots. Defaults to ~/.garmin_health/",
+      "required": false
+    },
+    {
+      "name": "GARMIN_TOKENSTORE",
+      "description": "Directory to cache OAuth tokens. Defaults to ~/.garminconnect/",
+      "required": false
+    }
+  ],
+  "dependencies": {
+    "python": ">=3.10",
+    "pip": [
+      "garminconnect"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "content-generator-skill",
+  "version": "1.2.0",
+  "description": "Commerce content generator. Input a product brief, evidence, audience, and channel; output Xiaohongshu notes, Douyin scripts, ad/email/listing variants, and a claims checklist. Evidence-aware: does not invent unsupported claims and flags missing proof.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "demo": "node scripts/generate_content_pack.js --input test/fixtures/skincare.json --format markdown"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "skill",
+    "content",
+    "copywriting",
+    "ecommerce",
+    "xiaohongshu",
+    "douyin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/content-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabsj/content-generator/issues"
+  },
+  "homepage": "https://github.com/harrylabsj/content-generator",
+  "author": "Harry",
+  "license": "MIT"
+}

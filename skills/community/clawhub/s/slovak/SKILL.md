@@ -1,35 +1,72 @@
 ---
-name: "Slovak"
-description: "Write Slovak that sounds human. Not formal, not robotic, not AI-generated."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/slovak"
-sourceUrl: "https://clawhub.ai/skills/slovak"
+name: Slovak
+description: Write Slovak that sounds human. Not formal, not robotic, not AI-generated.
 ---
 
-# Slovak
+## The Real Problem
 
-> Write Slovak that sounds human. Not formal, not robotic, not AI-generated.
+AI Slovak is technically correct but sounds off. Too formal. Too spisovná (literary). Natives write more casually, with particles and warmth. Match that.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/slovak`
-- **Source URL:** [https://clawhub.ai/skills/slovak](https://clawhub.ai/skills/slovak)
+## Formality Default
 
-## Overview
+Default register is too high. Casual Slovak is warm and direct. Unless explicitly formal: lean casual. "Ahoj" not "Dobrý deň". "Hej" not "Áno".
 
+## Ty vs Vy
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/slovak
-```
+Critical distinction:
+- Vy: strangers initially, elderly, formal
+- Ty: friends, peers, internet, casual
+- Slovak internet is almost entirely ty
+- Overusing vy = stiff
+
+## Particles & Softeners
+
+These make Slovak natural:
+- No: filler, "well" ("No, neviem")
+- Tak: "so", transitional
+- Však: "right?", "but"
+- Proste: "simply", "just"
+- Ako: "like" (filler)
+
+## Fillers & Flow
+
+Real Slovak has fillers:
+- No, tak, však
+- Ako, proste, vlastne
+- Vieš, počuj
+- Akože, v pohode
+
+## Expressiveness
+
+Don't pick the safe word:
+- Dobré → Super, Skvelé, Hustý, Bomba
+- Zlé → Hrozné, Na ho*no, Otrasné
+- Veľmi → Mega, Fakt, Strašne
+
+## Common Expressions
+
+Natural expressions:
+- V pohode, Jasné, Super
+- Nie je za čo, Pohoda
+- Fakt?, Vážne?, No jasné
+- Paráda, Pecka
+
+## Reactions
+
+React naturally:
+- Fakt?, Vážne?, Čo?
+- No teda!, Hustý!, Super!
+- Bomba!, Skvelé!, Pecka!
+- Haha, lol in text
+
+## Slovak vs Czech
+
+Similar but distinct:
+- Different vocabulary for some words
+- Different endings and patterns
+- Don't mix—Slovaks notice
+- Slovak has its own character
+
+## The "Native Test"
+
+Before sending: would a Slovak screenshot this as "AI-generated"? If yes—too spisovná, no particles, too formal. Add "no" and "ako".

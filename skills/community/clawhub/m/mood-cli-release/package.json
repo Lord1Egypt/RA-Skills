@@ -1,0 +1,41 @@
+{
+  "name": "mood-weather-cli",
+  "version": "1.0.0",
+  "description": "情绪分析 CLI 工具 - 用天气可视化你的心情",
+  "author": "万万粥 <wanwan_app@163.com>",
+  "license": "MIT-0",
+  "bin": {
+    "mood": "./bin/mood"
+  },
+  "scripts": {
+    "test": "bash test/test.sh"
+  },
+  "keywords": [
+    "mood",
+    "emotion",
+    "weather",
+    "cli",
+    "ai",
+    "deepseek",
+    "sentiment-analysis",
+    "情绪分析",
+    "天气"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WecomTeam/wecom-openclaw-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WecomTeam/wecom-openclaw-plugin/issues"
+  },
+  "homepage": "https://github.com/WecomTeam/wecom-openclaw-plugin#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9",
+    "commander": "^9.4.0",
+    "dotenv": "^16.0.3",
+    "axios": "^1.4.0"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "skill_name": "tv-launcher-prototype",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我做一个电视 Launcher 主屏，内容要多一些：顶部导航栏（带时间和WiFi图标），然后依次是推荐内容大横幅、热门应用行、最近观看行、热门影视行、游戏推荐行、教育专区行。内容要超出一屏，能通过方向键往下滚动看到更多",
+      "expected_output": "一个纵向可滚动的 TV Launcher 页面，首屏展示导航栏+推荐横幅+前两行内容，焦点下移时页面自动滚动露出更多内容行。所有元素用 vw 单位等比缩放，焦点有缩放+白色投影+白色边框，深色渐变背景，高度不锁死在 100vh",
+      "files": [],
+      "assertions": [
+        { "name": "responsive_scaling", "description": "使用 vw 单位或 scale 变换，非固定 1920px" },
+        { "name": "not_locked_height", "description": "页面高度不锁死在 100vh，内容超出首屏" },
+        { "name": "focus_scroll_follow", "description": "焦点移出视口时页面自动滚动跟随" },
+        { "name": "focus_scale", "description": "所有可聚焦元素有 scale 缩放效果" },
+        { "name": "focus_white_glow", "description": "所有可聚焦元素有白色高光投影" },
+        { "name": "focus_white_border", "description": "所有可聚焦元素有白色边框" },
+        { "name": "dark_theme", "description": "深色渐变背景" },
+        { "name": "keyboard_nav", "description": "方向键+Enter+Backspace 全部可用" },
+        { "name": "hidden_scrollbar", "description": "隐藏所有滚动条" },
+        { "name": "auto_focus", "description": "页面加载后自动聚焦第一个元素" }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "做一个电视端的电影详情页，上半部分是海报+电影信息+操作按钮（播放、收藏、下载），下半部分有剧情简介、演员列表、相关推荐横向滚动行、用户评论区。内容比较多，需要能往下滚动",
+      "expected_output": "一个电影详情页，上方海报+信息区在首屏内，下方内容（评论、推荐等）需要焦点下移后滚动可见。所有按钮、卡片、列表项的焦点效果统一使用缩放+白色投影+白色边框，不用文字变色代替",
+      "files": [],
+      "assertions": [
+        { "name": "responsive_scaling", "description": "使用 vw 单位等比缩放" },
+        { "name": "not_locked_height", "description": "内容超出首屏，可纵向滚动" },
+        { "name": "consistent_focus_style", "description": "所有可聚焦元素（按钮、卡片、列表项）焦点效果一致：缩放+白色投影+白色边框，不用文字变色代替" },
+        { "name": "action_buttons", "description": "包含播放和收藏按钮" },
+        { "name": "related_recommendations", "description": "包含相关推荐横向滚动区域" },
+        { "name": "dark_theme", "description": "深色渐变背景" },
+        { "name": "keyboard_nav", "description": "方向键导航+Enter确认+Esc返回" }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "设计一个智能电视的设置页面，左侧是设置分类菜单（网络、显示、声音、蓝牙、存储、无障碍、系统信息、关于），右侧是选中分类的详细设置项。设置项比较多，右侧面板需要能上下滚动",
+      "expected_output": "左右分栏的设置页，左侧菜单和右侧详情面板的焦点效果都使用缩放+白色投影+白色边框。右侧内容可滚动，焦点移到面板底部时自动滚动。Enter切换分类或操作开关，Esc从右侧返回左侧菜单",
+      "files": [],
+      "assertions": [
+        { "name": "responsive_scaling", "description": "使用 vw 单位等比缩放" },
+        { "name": "consistent_focus_style", "description": "左侧菜单项和右侧设置项的焦点效果一致：缩放+白色投影+白色边框" },
+        { "name": "all_settings_categories", "description": "包含至少 5 个设置分类" },
+        { "name": "right_panel_scrollable", "description": "右侧详情面板内容可滚动" },
+        { "name": "enter_key", "description": "Enter 键可切换分类或操作设置项" },
+        { "name": "back_key", "description": "Esc/Backspace 从右侧返回左侧菜单" },
+        { "name": "dark_theme", "description": "深色渐变背景" }
+      ]
+    }
+  ]
+}

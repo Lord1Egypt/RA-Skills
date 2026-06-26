@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Fix hardcoded /Users/lesa fallback path in bridge core.ts",
+    "labels": ["bug", "priority:high"],
+    "body": "## Problem\n\n`src/bridge/core.ts` line 13 has:\n```ts\nconst HOME = process.env.HOME || \"/Users/lesa\";\n```\n\nThis leaks a developer path and will break for any other user where `$HOME` is unset.\n\n## Fix\n\nReplace with `os.homedir()`:\n```ts\nimport { homedir } from 'node:os';\nconst HOME = process.env.HOME || homedir();\n```\n\n## Effort\n5 minutes"
+  },
+  {
+    "title": "Add test infrastructure using node:test",
+    "labels": ["enhancement", "priority:high", "testing"],
+    "body": "## Problem\n\nZero test files in the repo. Core modules (`lib/deploy.mjs`, `lib/state.mjs`, `lib/safe.mjs`) have no automated tests.\n\n## Proposal\n\nUse Node's built-in `node:test` runner (zero external deps, aligns with project philosophy).\n\n### New files\n- `test/lib/safe.test.mjs` — trash-instead-of-delete safety net (test first)\n- `test/lib/deploy.test.mjs` — deployment engine unit tests\n- `test/lib/state.test.mjs` — state reconciliation tests\n- `test/bridge/core.test.ts` — config resolution tests\n\n### package.json\n```json\n\"scripts\": {\n  \"test\": \"node --test test/**/*.test.mjs\",\n  \"test:bridge\": \"npx tsx --test test/bridge/*.test.ts\"\n}\n```\n\n## Priority test targets (by risk)\n1. `lib/safe.mjs` — safety net should itself be tested\n2. `lib/deploy.mjs` — 1000+ lines of critical deployment logic\n3. `lib/state.mjs` — state reconciliation bugs could cause data loss\n4. `src/bridge/core.ts` — config resolution, API key lookup\n\n## Effort\n2-4 hours for initial coverage"
+  },
+  {
+    "title": "Add GitHub Actions CI pipeline",
+    "labels": ["enhancement", "priority:high", "ci"],
+    "body": "## Problem\n\nNo CI/CD. Build breakage and regressions are only caught manually.\n\n## Proposal\n\nAdd `.github/workflows/ci.yml`:\n\n```yaml\nname: CI\non: [push, pull_request]\njobs:\n  build-and-test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: '20'\n      - run: npm ci\n      - run: npm run build:bridge\n      - run: npm test\n```\n\nExpand later with lint check (`fmt:check`) once Prettier is added.\n\n## Effort\n30 minutes"
+  },
+  {
+    "title": "Break bin/ldm.js into per-command modules",
+    "labels": ["enhancement", "priority:medium", "refactor"],
+    "body": "## Problem\n\n`bin/ldm.js` is 2,600+ lines handling 9+ commands (`init`, `install`, `doctor`, `status`, `sessions`, `msg`, `updates`, `worktree`). Hard to navigate, review, or test in isolation.\n\n## Proposal\n\nExtract each command into its own module:\n\n```\nbin/\n  ldm.js              (slim dispatcher — parse args, route to command)\n  commands/\n    init.mjs\n    install.mjs\n    doctor.mjs\n    status.mjs\n    sessions.mjs\n    msg.mjs\n    updates.mjs\n    worktree.mjs\n```\n\nEach command exports a single `run(args, opts)` function. Shared helpers (console formatting, lockfile, registry) move to `lib/cli-helpers.mjs`.\n\nCan be done incrementally — one command per PR.\n\n## Effort\n3-5 hours total (incremental)"
+  },
+  {
+    "title": "Replace silent catch blocks with debug logging",
+    "labels": ["enhancement", "priority:medium"],
+    "body": "## Problem\n\nMultiple `catch {}` blocks suppress errors entirely with no logging:\n- `lib/deploy.mjs` (several locations)\n- `lib/state.mjs`\n- `bin/ldm.js`\n\nThis makes debugging failures extremely difficult.\n\n## Proposal\n\nAdd a lightweight debug logger:\n```javascript\n// lib/log.mjs\nconst DEBUG = process.env.LDM_DEBUG === '1';\nexport function debug(context, msg, err) {\n  if (DEBUG) console.error(`[ldm:${context}] ${msg}`, err?.message || '');\n}\n```\n\nReplace `catch {}` with `catch (err) { debug('deploy', 'optional step failed', err); }`.\n\nUsers opt-in with `LDM_DEBUG=1 ldm install`.\n\n## Effort\n1-2 hours"
+  },
+  {
+    "title": "Add Prettier config for consistent formatting",
+    "labels": ["enhancement", "priority:medium", "dx"],
+    "body": "## Problem\n\nNo linting or formatting config. Style drift is likely with multiple contributors (including AI agents).\n\n## Proposal\n\nMinimal Prettier config (no heavy ESLint — aligns with zero-deps philosophy):\n\n```json\n{\n  \"singleQuote\": true,\n  \"trailingComma\": \"all\",\n  \"printWidth\": 100\n}\n```\n\n```json\n\"scripts\": {\n  \"fmt\": \"npx prettier --write 'src/**/*.{ts,mjs}' 'lib/**/*.mjs' 'bin/**/*.js'\",\n  \"fmt:check\": \"npx prettier --check 'src/**/*.{ts,mjs}' 'lib/**/*.mjs' 'bin/**/*.js'\"\n}\n```\n\nAdd `fmt:check` to CI pipeline. Do one initial format commit, then enforce going forward.\n\n## Effort\n1 hour"
+  },
+  {
+    "title": "Replace shell rm -rf with fs.rmSync in deploy.mjs",
+    "labels": ["enhancement", "priority:low"],
+    "body": "## Problem\n\n`lib/deploy.mjs` line ~709 shells out for `rm -rf` via `execSync`. This has a theoretical shell injection surface and isn't cross-platform.\n\n## Fix\n\nReplace with:\n```javascript\nfs.rmSync(path, { recursive: true, force: true });\n```\n\nNode's built-in `fs.rmSync` is safer (no shell) and cross-platform.\n\n## Effort\n15 minutes"
+  },
+  {
+    "title": "Add engines field to package.json for Node 18+ requirement",
+    "labels": ["enhancement", "priority:low"],
+    "body": "## Problem\n\n`SKILL.md` documents Node 18+ requirement but `package.json` doesn't enforce it.\n\n## Fix\n\nAdd to `package.json`:\n```json\n\"engines\": {\n  \"node\": \">=18\"\n}\n```\n\nThis gives users a clear error on older Node versions instead of cryptic ESM failures.\n\n## Effort\n5 minutes"
+  },
+  {
+    "title": "Remove dist/ from git tracking",
+    "labels": ["enhancement", "priority:low"],
+    "body": "## Problem\n\n`dist/bridge/` contains compiled TypeScript output checked into git. This creates noisy diffs and risks stale builds.\n\n## Fix\n\n1. Add `dist/` to `.gitignore`\n2. Add `\"prepublishOnly\": \"npm run build:bridge\"` to package.json scripts\n3. Remove from tracking: `git rm -r --cached dist/`\n\n**Note:** Only do this if npm publish workflow can run a build step. The `prepublishOnly` hook handles manual publishes. If publishing from CI, add the build step there.\n\n## Effort\n15 minutes"
+  }
+]

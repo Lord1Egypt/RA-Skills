@@ -1,0 +1,8 @@
+interface:
+  display_name: "Gold News Sentiment"
+  short_description: "Recent global gold news with structured bullish, bearish, or wait-and-see analysis"
+  brand_color: "#9D7A1C"
+  default_prompt: "Use $gold-news-sentiment to pull recent global gold-related news, analyze the current short-term and medium-term sentiment, and give a structured conclusion of 看涨, 看跌, or 观望."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,27 @@
----
-name: "Feishu Perm"
-description: "Manage Feishu document, file, folder, or wiki permissions by setting access levels, sharing, or revoking user or group permissions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-perm-cn"
-sourceUrl: "https://clawhub.ai/skills/feishu-perm-cn"
----
+# Feishu Perm Skill
 
-# Feishu Perm
+Use this skill when user wants to manage Feishu (飞书) document/file/workspace permissions.
 
-> Manage Feishu document, file, folder, or wiki permissions by setting access levels, sharing, or revoking user or group permissions.
+## Tools Available
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-perm-cn`
-- **Source URL:** [https://clawhub.ai/skills/feishu-perm-cn](https://clawhub.ai/skills/feishu-perm-cn)
+- `feishu_doc`: Update permissions when creating/updating documents
+- `feishu_drive`: Manage file/folder permissions via `feishu_drive` actions
+- `feishu_wiki`: Manage wiki page permissions
 
-## Overview
+## Use Cases
 
+- Set document access permissions (read-only, edit, owner)
+- Share files/folders with specific users or groups
+- Change permission levels
+- Revoke access
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-perm-cn
-```
+## Auth
+
+User must have Feishu account with appropriate permissions (owner/editor) to manage permissions.
+
+## Examples
+
+- "把这个文档权限改为只读"
+- "分享这个文件给张三"
+- "把这个知识库页面权限设为仅团队可见"
+- "收回李四的访问权限"

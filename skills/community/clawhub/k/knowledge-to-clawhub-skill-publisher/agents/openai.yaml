@@ -1,0 +1,6 @@
+interface:
+  display_name: "Knowledge to ClawHub Publisher"
+  short_description: "Turn proven workflows into docs and publishable skills"
+  default_prompt: "Use $knowledge-to-clawhub-skill-publisher to turn this validated workflow into canonical knowledge docs and a publishable ClawHub skill."
+policy:
+  allow_implicit_invocation: false

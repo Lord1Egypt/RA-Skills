@@ -1,0 +1,29 @@
+{
+  "channels": [
+    {"name": "Lex Fridman", "channel_id": "UCSHZKyawb77ixDdsGog4iWA"},
+    {"name": "Lenny's Podcast", "channel_id": "UC6t1O76G0jYXOAoYCm153dA"},
+    {"name": "a16z speedrun", "channel_id": "UCp-aroxb6hOKPQGyGp0c3Dw"},
+    {"name": "Latent Space", "channel_id": "UCxBcwypKK-W3GHd_RZ9FZrQ"},
+    {"name": "AI Engineer", "channel_id": "UCLKPca3kwwd-B59HNr-_lvA"},
+    {"name": "Aakash Gupta", "channel_id": "UCsHBhXybRz2CCfpU0hWp7ow"},
+    {"name": "App Breakdown", "channel_id": "UC5d5jyLMsze4S8x16-X71-A"},
+    {"name": "WhynotTV", "channel_id": "UC5xLV_gJAP9psKcyrJ3ZIcw"},
+    {"name": "Ben Erez", "channel_id": "UCZ37wuLYmh5fHTUbqy2VNGA"},
+    {"name": "Brock Mesarich | AI for Non Techies", "channel_id": "UCjc1vfduI7BhVMXBLJLDjmA"},
+    {"name": "David Ondrej", "channel_id": "UCPGrgwfbkjTIgPoOh2q1BAg"},
+    {"name": "Paul J Lipsky", "channel_id": "UCmeU2DYiVy80wMBGZzEWnbw"},
+    {"name": "Ali H. Salem", "channel_id": "UCHMjsLKv6MkrmHnx4HrGndQ"}
+  ],
+  "feishu": {
+    "app_id": "cli_a9275fd31378dcce",
+    "app_secret": "W0SGoPAcmYbgvsAKFjstMciH2eTCkf1a",
+    "user_open_id": "ou_42cd041e3e3706e7cd00f869e95a2fc1"
+  },
+  "openclaw_gateway": {
+    "url": "http://localhost:18789/v1",
+    "token": "964d77954ff19cd9480507cd17230a3a009643e9305b3e63"
+  },
+  "rsshub_base": "http://localhost:1200",
+  "lookback_hours": 168,
+  "model": "anthropic/claude-sonnet-4-6"
+}

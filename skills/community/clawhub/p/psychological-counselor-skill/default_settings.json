@@ -1,0 +1,30 @@
+
+{
+  "ethical_statement": {
+    "show_first": true,
+    "full_version": true,
+    "simplified_version": true
+  },
+  "listening_support": {
+    "auto_trigger": true,
+    "empathy_first": true,
+    "no_advice": true,
+    "crisis_priority": true
+  },
+  "style_simulation": {
+    "stay_in_character": true,
+    "cite_sources": false
+  },
+  "professional_learning": {
+    "cite_theories": true,
+    "provide_examples": true
+  },
+  "sharing": {
+    "encourage_sharing": true,
+    "share_message": "分享给需要的朋友，或生成更多咨询师数字分身！"
+  },
+  "version_management": {
+    "auto_archive": true,
+    "keep_versions": 10
+  }
+}

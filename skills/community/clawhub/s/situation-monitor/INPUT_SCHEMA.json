@@ -1,0 +1,54 @@
+{
+  "title": "Situation Monitor KubeWatch Actor Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "includeGcpStatus": {
+      "title": "Include GCP status incidents",
+      "type": "boolean",
+      "editor": "checkbox",
+      "default": true
+    },
+    "includeGithubStatus": {
+      "title": "Include GitHub status incidents",
+      "type": "boolean",
+      "editor": "checkbox",
+      "default": true
+    },
+    "includeKubernetesGithubIssues": {
+      "title": "Include Kubernetes GitHub issues",
+      "type": "boolean",
+      "editor": "checkbox",
+      "default": true
+    },
+    "gcpLookbackDays": {
+      "title": "GCP lookback window (days)",
+      "type": "integer",
+      "default": 365,
+      "minimum": 1
+    },
+    "maxGcpIncidents": {
+      "title": "Max GCP incidents",
+      "type": "integer",
+      "default": 6,
+      "minimum": 1
+    },
+    "githubIssuesLimit": {
+      "title": "Max Kubernetes GitHub issues",
+      "type": "integer",
+      "default": 6,
+      "minimum": 1
+    },
+    "useFixtureWhenEmpty": {
+      "title": "Use fixture data when live sources are empty",
+      "type": "boolean",
+      "editor": "checkbox",
+      "default": true
+    },
+    "fixturePath": {
+      "title": "Fixture path",
+      "type": "string",
+      "default": "examples/kubewatch_incidents.json"
+    }
+  }
+}

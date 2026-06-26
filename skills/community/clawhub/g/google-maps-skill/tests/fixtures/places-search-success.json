@@ -1,0 +1,12 @@
+{
+  "places": [
+    {
+      "id": "ChIJCewJkL2LGGAR2HQ6PeTfivU",
+      "formattedAddress": "4-chōme-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan",
+      "location": { "latitude": 35.6585805, "longitude": 139.7454329 },
+      "rating": 4.3,
+      "displayName": { "text": "Tokyo Tower", "languageCode": "en" },
+      "types": ["tourist_attraction", "point_of_interest"]
+    }
+  ]
+}

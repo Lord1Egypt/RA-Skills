@@ -1,0 +1,20 @@
+# 中文关键词归一化（MVP）
+# 用途：帮助路由阶段的 slot filling；不是严格 NLP。
+
+freq:
+  realtime: ["实时", "盘面", "盘口", "最新", "当前", "现价", "tick", "成交", "持仓"]
+  intraday: ["分钟", "分时", "1m", "5m", "15m", "30m", "60m", "K线"]
+  daily: ["日线", "日频", "历史", "近一年", "从", "到", "回测"]
+
+asset:
+  futures: ["期货", "主连", "次主连", "连续", "合约"]
+  options: ["期权", "看涨", "看跌", "行权", "IV", "隐含波动率", "Delta", "Gamma", "Vega", "Theta", "Rho"]
+
+need_compute:
+  indicators: ["指标", "MA", "EMA", "MACD", "RSI", "布林", "BOLL", "ATR"]
+  greeks_iv: ["IV", "隐含波动率", "Delta", "Gamma", "Vega", "Theta", "Rho", "Greeks"]
+  rr25: ["RR25", "25D", "风险逆转", "Skew"]
+
+# TODO：完善合约正则：
+# - 期货：^[A-Z]{1,2}\d{3,4}$ 或者中文“螺纹钢主连”
+# - 期权：^\d{8}$（Sina 内码，如 10009633）或交易代码形如 510050C2603A02700

@@ -1,35 +1,196 @@
 ---
-name: "iwatch health data analysis"
-description: "Apple Health 数据全景分析。从 export.zip 流式解析 XML（支持 1-2GB 大文件），提取 RHR/HRV/VO₂Max/睡眠/步数/血氧等核心指标，基于用户个人信息（年龄/性别/身高/体重/病史）动态校准参考范围，生成个性化交互式 HTML 报告（含 6 张 Chart.js 图表）。..."
-category: "other"
-source: "ClawHub"
-tags: [health care, personalized, stable]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/iwatch-health-data-analysis"
-sourceUrl: "https://clawhub.ai/skills/iwatch-health-data-analysis"
+name: apple-health-analysis
+version: 2.0.0
+description: Apple Health 数据全景分析。从 export.zip 流式解析 XML（支持 1-2GB 大文件），提取 RHR/HRV/VO₂Max/睡眠/步数/血氧等核心指标，基于用户个人信息（年龄/性别/身高/体重/病史）动态校准参考范围，生成个性化交互式 HTML 报告（含 6 张 Chart.js 图表）。使用场景：用户说「帮我分析健康数据」「看看我的 Apple Health 数据」「生成健康报告」「分析运动/睡眠/心率趋势」时使用。
 ---
 
-# iwatch health data analysis
+# apple-health-analysis v2.0
 
-> Apple Health 数据全景分析。从 export.zip 流式解析 XML（支持 1-2GB 大文件），提取 RHR/HRV/VO₂Max/睡眠/步数/血氧等核心指标，基于用户个人信息（年龄/性别/身高/体重/病史）动态校准参考范围，生成个性化交互式 HTML 报告（含 6 张 Chart.js 图表）。...
+## 目录结构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/iwatch-health-data-analysis`
-- **Source URL:** [https://clawhub.ai/skills/iwatch-health-data-analysis](https://clawhub.ai/skills/iwatch-health-data-analysis)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/iwatch-health-data-analysis
 ```
+scripts/
+  parse_health.py      # 流式解析 export.zip → chart_data.json
+  generate_report.py   # chart_data.json + 用户画像 → 个性化 HTML 报告
+```
+
+## 用户数据导出指南
+
+**步骤（iOS）：**
+1. 打开「健康」App → 右上角头像
+2. 向下滚动 → 「导出所有健康数据」
+3. 等待打包（约 1-5 分钟）→ 保存或分享 `export.zip`
+4. 将 zip 文件发给 AI
+
+**数据规模参考：**
+- 使用 1 年：~200MB-500MB
+- 使用 2-3 年：~1-2GB
+- 解析时间：约 30-60 秒（流式，无需解压）
+
+## 核心依赖
+
+标准库（`zipfile`, `re`, `json`, `statistics`），无需额外安装。
+
+---
+
+## 工作流（v2.0 标准流程）
+
+### Step 0：收集用户画像
+
+收到 export.zip 后，**必须先向用户询问以下信息**，再进行分析：
+
+```
+为了给你提供个性化的健康基准，我需要了解几个基本信息：
+
+1. 性别（影响 RHR/HRV/VO₂Max/体脂参考范围）
+2. 年龄或出生年份（参考范围随年龄变化显著）
+3. 身高（计算 BMI，校准体重意义）
+4. 体重单位（Apple Health 体重默认为 lb，需确认）
+5. 有无已知慢性病/服药史（如甲亢、高血压、心律失常等）
+6. 运动习惯（日常久坐/轻度活动/规律运动/专业训练）
+
+以上信息不会离开对话，分析完成后不会保存。
+```
+
+将收到的信息存入 `user_profile` 字典，传给解析和报告脚本。
+
+### Step 1：解析数据
+
+```bash
+python3 scripts/parse_health.py /path/to/export.zip /tmp/chart_data.json
+```
+
+### Step 2：加载用户画像，动态确定参考范围
+
+根据 Step 0 收集的信息，调用 `scripts/generate_report.py` 中的 `build_reference()` 函数：
+
+```python
+profile = {
+    "gender": "female",      # male / female / other
+    "age": 26,               # 岁
+    "height_cm": 170,        # 厘米
+    "weight_unit": "lb",     # lb / kg
+    "conditions": ["hyperthyroidism"],  # 已知病史，影响异常标注
+    "activity_level": "active"  # sedentary / light / active / athlete
+}
+```
+
+### Step 3：执行分析（AI 执行，基于动态参考范围）
+
+**心血管系统**
+- RHR：与同龄同性别参考范围对比（见下方参考表）
+- HRV SDNN：个体化趋势分析优先于绝对值
+- VO₂Max：对应年龄/性别分级（差/一般/良好/优秀/精英）
+
+**神经系统（自主神经）**
+- HRV < `ref.hrv_low` → 交感亢奋
+- HRV > `ref.hrv_high` → 副交感主导（迷走张力高者不追求过高）
+
+**睡眠**
+- Deep Sleep 占比 < 10% 关注；REM 占比 < 15% 关注
+- Awake 次数与 RHR 同向波动 → 睡眠质量与自主神经相互印证
+
+**代谢**
+- BMI = 体重kg ÷ 身高m²（体重单位自动换算）
+- 体脂参考范围按性别/年龄分级
+- 步数目标：久坐人群 6000+，一般成人 8000+，健康目标 10000+
+
+**异常检测**
+- 连续 3+ 个月 RHR 上升 + HRV 下降 → 系统性应激（疾病/压力），建议就医
+- 血氧月均 < 95% → 建议筛查
+- 步数骤降持续 2+ 个月 → 生活方式变化
+
+### Step 4：生成报告
+
+```bash
+python3 scripts/generate_report.py \
+  /tmp/chart_data.json \
+  health_report.html \
+  --gender female \
+  --age 26 \
+  --height 170 \
+  --weight-unit lb \
+  --conditions "hyperthyroidism" \
+  --activity active \
+  --verdict "整体判断：亚健康恢复期..."
+```
+
+---
+
+## 动态参考范围表
+
+### 静息心率 RHR（bpm）
+
+| 性别 | 年龄 | 优秀 | 良好 | 正常 | 偏高 | 过高 |
+|------|------|------|------|------|------|------|
+| 女 | 18-25 | <54 | 54-60 | 61-73 | 74-82 | >82 |
+| 女 | 26-35 | <55 | 55-61 | 62-74 | 75-83 | >83 |
+| 女 | 36-45 | <56 | 56-62 | 63-75 | 76-84 | >84 |
+| 男 | 18-25 | <49 | 49-55 | 56-68 | 69-77 | >77 |
+| 男 | 26-35 | <50 | 50-56 | 57-69 | 70-78 | >78 |
+| 男 | 36-45 | <51 | 51-57 | 58-70 | 71-79 | >79 |
+
+### VO₂Max 分级（mL/kg/min）
+
+| 性别 | 年龄 | 差 | 一般 | 良好 | 优秀 | 精英 |
+|------|------|----|------|------|------|------|
+| 女 | 20-29 | <29 | 29-34 | 35-43 | 44-48 | >48 |
+| 女 | 30-39 | <28 | 28-33 | 34-41 | 42-46 | >46 |
+| 男 | 20-29 | <38 | 38-43 | 44-51 | 52-56 | >56 |
+| 男 | 30-39 | <35 | 35-41 | 42-49 | 50-53 | >53 |
+
+### HRV SDNN 参考（ms，Apple Watch 连续监测）
+
+| 年龄 | 低（需关注） | 正常 | 良好 |
+|------|------------|------|------|
+| 20-30 | <25 | 25-50 | >50 |
+| 30-40 | <20 | 20-45 | >45 |
+| 40-50 | <15 | 15-40 | >40 |
+
+### 体脂率参考
+
+| 性别 | 18-30岁 | 31-40岁 |
+|------|---------|---------|
+| 女 | 21-32% | 23-34% |
+| 男 | 8-20% | 11-22% |
+
+---
+
+## 病史对分析的影响
+
+| 病史 | 影响的指标 | 分析调整 |
+|------|-----------|---------|
+| 甲亢/甲减 | RHR、HRV、VO₂Max、体重 | RHR偏高/偏低时先排除甲状腺因素；标注治疗前后对比 |
+| 高血压 | RHR、血氧 | 加入血压数据（如有）分析；RHR目标更严格（<70） |
+| 心律失常（早搏） | RHR、HRV | HRV数据可能失真；日常心率偏高有代偿机制解释 |
+| 血管迷走性晕厥 | HRV | 不追求HRV越高越好；避免过高迷走张力风险 |
+| 低血压 | RHR | 心率轻度代偿（75-85bpm）属正常，不作为异常标注 |
+| 贫血 | RHR、VO₂Max、活动卡路里 | RHR偏高/VO₂Max偏低时排除贫血因素 |
+| 糖尿病 | 步数、卡路里 | 步数目标提升至10000+；关注活动消耗稳定性 |
+
+---
+
+## 数据质量说明
+
+- **体重单位**：Apple Health 体重默认 lb（磅），换算：`kg = lb × 0.4536`，**必须向用户确认单位**
+- **HRV 数据源**：旧设备 HRV 条目极少（每月1-2条）且量级差异大，不可与新设备数据混合对比；自动检测 `sourceName` 字段分段处理
+- **睡眠格式**：旧格式只有 InBed/Asleep，无分期；Series 6+ 才有 Deep/REM/Core；报告分段显示
+- **血氧**：Apple Watch Series 6（2020年）起才有，早期数据缺失属正常
+- **步数多设备重复**：已用日汇总方式处理
+- **隐私提示**：数据含完整健康信息，分析完成后建议删除 export.zip
+
+---
+
+## 常见 Q&A
+
+**Q: 没有 HRV 数据？**
+A: 需要 Apple Watch 且设置中开启「心率通知」。无 HRV 时跳过自主神经分析，其余正常生成。
+
+**Q: 为什么 HRV 早期数值异常高（80-160ms）？**
+A: 旧 Apple Watch 测量 HRV 频率极低（每月1-2次），且算法不同，不可与新版连续监测数据对比。脚本会自动识别设备名称分段处理。
+
+**Q: XML 太大内存不足？**
+A: `parse_health.py` 流式解析，512KB 分块，1GB+ 文件正常。
+
+**Q: 分析多少时间跨度合适？**
+A: 理论无限。月度聚合后每年12个数据点，图表不会过密。建议至少6个月才能做趋势分析。

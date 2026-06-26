@@ -1,0 +1,40 @@
+{
+  "databaseId": 1002,
+  "workflowName": "CI",
+  "headBranch": "main",
+  "headSha": "abc1002",
+  "url": "https://github.com/example/repo/actions/runs/1002",
+  "jobs": [
+    {
+      "name": "test (ubuntu-latest, python-3.12)",
+      "conclusion": "timed_out",
+      "status": "completed",
+      "completedAt": "2026-03-05T11:02:00Z",
+      "url": "https://github.com/example/repo/actions/runs/1002/job/2",
+      "steps": [
+        {"name": "Install deps", "conclusion": "success"},
+        {"name": "Run tests", "conclusion": "timed_out"}
+      ]
+    },
+    {
+      "name": "lint / ubuntu-latest",
+      "conclusion": "failure",
+      "status": "completed",
+      "completedAt": "2026-03-05T11:03:00Z",
+      "url": "https://github.com/example/repo/actions/runs/1002/job/3",
+      "steps": [
+        {"name": "npm run lint", "conclusion": "failure"}
+      ]
+    },
+    {
+      "name": "build [ubuntu-latest, node-20]",
+      "conclusion": "failure",
+      "status": "completed",
+      "completedAt": "2026-03-05T11:04:00Z",
+      "url": "https://github.com/example/repo/actions/runs/1002/job/4",
+      "steps": [
+        {"name": "Build app", "conclusion": "failure"}
+      ]
+    }
+  ]
+}

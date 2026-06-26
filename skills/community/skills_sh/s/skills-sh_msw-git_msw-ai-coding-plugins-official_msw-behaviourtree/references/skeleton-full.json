@@ -1,0 +1,117 @@
+{
+  "Id": "",
+  "GameId": "",
+  "EntryKey": "behaviourtree://{UUID_FILE}",
+  "ContentType": "x-mod/behaviourtree",
+  "Content": "",
+  "Usage": 0,
+  "UsePublish": 1,
+  "UseService": 0,
+  "CoreVersion": "{CORE_VERSION}",
+  "StudioVersion": "0.1.0.0",
+  "DynamicLoading": 0,
+  "ContentProto": {
+    "Use": "Json",
+    "Json": {
+      "id": "behaviourtree://{UUID_FILE}",
+      "name": "{NAME}",
+      "RootNode": {
+        "startNodeId": "{UUID_ROOT_COMPOSITE}",
+        "nodePosition": { "x": 0.0, "y": 0.0 }
+      },
+      "Blackboard": {
+        "Variables": [
+          {
+            "Name": "bb_Bool",
+            "Type": {
+              "$type": "MODNativeType",
+              "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+            },
+            "ObjectValue": true
+          },
+          {
+            "Name": "bb_TargetPosition",
+            "Type": {
+              "$type": "MODNativeType",
+              "type": "MOD.Core.MODVector3, MOD.Core, Version={CORE_VERSION}, Culture=neutral, PublicKeyToken=null"
+            },
+            "ObjectValue": { "x": 0.0, "y": 0.0, "z": 0.0 }
+          }
+        ]
+      },
+      "Nodes": [
+        {
+          "nodeId": "{UUID_ROOT_COMPOSITE}",
+          "nodeName": "SequenceNode",
+          "definitionId": "SequenceNode",
+          "btNodeType": 1,
+          "nodeParentId": "",
+          "nodePosition": { "x": 0.0, "y": -200.0 },
+          "childNodes": [
+            "{UUID_DECORATOR}"
+          ]
+        },
+        {
+          "nodeId": "{UUID_DECORATOR}",
+          "nodeName": "BlackboardCondition_Bool",
+          "definitionId": "codeblock://{DECORATOR_DEFINITION_ID}",
+          "btNodeType": 2,
+          "nodeParentId": "{UUID_ROOT_COMPOSITE}",
+          "nodeProperties": [
+            {
+              "propertyKey": "Key",
+              "propertyType": {
+                "$type": "MODNativeType",
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+              },
+              "propertyValue": "bb_Bool"
+            },
+            {
+              "propertyKey": "Operator",
+              "propertyType": {
+                "$type": "MODNativeType",
+                "type": "System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+              },
+              "propertyValue": 2
+            },
+            {
+              "propertyKey": "CompareValue",
+              "propertyType": {
+                "$type": "MODNativeType",
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+              },
+              "propertyValue": true
+            }
+          ],
+          "decoChildNodes": "{UUID_ACTION}"
+        },
+        {
+          "nodeId": "{UUID_ACTION}",
+          "nodeName": "SetBlackboardValue_Bool",
+          "definitionId": "codeblock://{ACTION_DEFINITION_ID}",
+          "btNodeType": 0,
+          "nodeParentId": "{UUID_DECORATOR}",
+          "nodePosition": { "x": 0.0, "y": -600.0 },
+          "nodeProperties": [
+            {
+              "propertyKey": "Key",
+              "propertyType": {
+                "$type": "MODNativeType",
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+              },
+              "propertyValue": "bb_Bool"
+            },
+            {
+              "propertyKey": "Value",
+              "propertyType": {
+                "$type": "MODNativeType",
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+              },
+              "propertyValue": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

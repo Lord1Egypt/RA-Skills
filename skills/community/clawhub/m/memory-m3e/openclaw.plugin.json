@@ -1,0 +1,26 @@
+{
+  "id": "memory-m3e",
+  "kind": "memory",
+  "name": "Memory M3E",
+  "description": "Semantic memory with m3e-large embedding API",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "embedding": {
+        "type": "object",
+        "properties": {
+          "apiKey": { "type": "string" },
+          "baseUrl": { "type": "string" },
+          "model": { "type": "string" }
+        },
+        "required": ["apiKey", "baseUrl", "model"]
+      },
+      "dbPath": { "type": "string" },
+      "autoCapture": { "type": "boolean" },
+      "autoRecall": { "type": "boolean" },
+      "indexInterval": { "type": "number" }
+    },
+    "required": ["embedding"]
+  }
+}

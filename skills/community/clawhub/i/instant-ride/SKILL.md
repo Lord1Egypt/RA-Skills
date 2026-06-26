@@ -1,35 +1,400 @@
 ---
-name: "即时用车"
-description: "企业用车服务助手，支持即时用车、预约用车、接送机、包车等多种用车场景，提供车型选择、费用预估、订单管理等功能。Invoke when user needs to book a car, schedule a ride, airport transfer, or manage car service orders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/instant-ride"
-sourceUrl: "https://clawhub.ai/skills/instant-ride"
+name: fb-car-service-skill
+description: 企业用车服务助手，支持即时用车、预约用车、接送机、包车等多种用车场景，提供车型选择、费用预估、订单管理等功能。Invoke when user needs to book a car, schedule a ride, airport transfer, or manage car service orders.
+version: 1.0.0
+metadata: {"openclaw": {"emoji": "🚗", "category": "travel", "tags": ["用车", "打车", "接送机", "包车", "企业出行"], "requires": {"bins": ["python3"]}, "required": true}}
+---
+# 企业用车服务助手 (fb-car-service-skill)
+
+## 技能描述
+
+企业用车服务助手提供一站式用车解决方案，支持即时用车、预约用车、接送机、包车等多种场景。集成多种车型选择、实时价格预估、智能调度、订单管理等功能，满足企业差旅、商务出行、日常通勤等多样化需求。
+
 ---
 
-# 即时用车
+⚠️ 【重要约束】
+- 必须调用真实用车平台API获取价格和可用车辆
+- 禁止自行编造价格或车辆信息
+- 预约用车需提前确认司机和车辆
+- 费用预估仅供参考，实际以订单为准
+- 取消订单需遵守平台规则
 
-> 企业用车服务助手，支持即时用车、预约用车、接送机、包车等多种用车场景，提供车型选择、费用预估、订单管理等功能。Invoke when user needs to book a car, schedule a ride, airport transfer, or manage car service orders.
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/instant-ride`
-- **Source URL:** [https://clawhub.ai/skills/instant-ride](https://clawhub.ai/skills/instant-ride)
+## 核心功能
 
-## Overview
+### 1. 即时用车
+- 实时叫车，快速响应
+- 多种车型选择（经济型、舒适型、商务型、豪华型）
+- 实时位置追踪
+- 预计到达时间
+- 费用预估
 
+### 2. 预约用车
+- 提前预约，定时出发
+- 重复预约（上下班通勤）
+- 预约提醒
+- 司机信息提前告知
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/instant-ride
+### 3. 接送机服务
+- 接机：航班动态跟踪，免费等待
+- 送机：准时送达，预留充足时间
+- 车型推荐（根据行李数量）
+- 举牌服务（可选）
+
+### 4. 包车服务
+- 按天包车
+- 半日包车
+- 长途包车
+- 定制路线
+
+### 5. 订单管理
+- 订单查询
+- 订单取消
+- 行程分享
+- 电子发票
+- 费用报销
+
+## 触发场景
+
+1. **即时叫车**
+   - "帮我叫辆车去机场"
+   - "从公司去上海火车站"
+   - "现在需要一辆车"
+
+2. **预约用车**
+   - "预约明天早上8点的车去机场"
+   - "帮我预约下周三的接送机"
+   - "设置每天上下班通勤车"
+
+3. **接送机**
+   - "明天下午3点接机，航班CA1234"
+   - "预约送机服务，早上6点出发"
+   - "需要举牌接机服务"
+
+4. **包车**
+   - "包一辆车明天全天商务用车"
+   - "需要包车去杭州，当天往返"
+   - "包一辆商务车接待客户"
+
+5. **订单管理**
+   - "查看我的用车订单"
+   - "取消刚才的叫车"
+   - "申请发票"
+
+## 车型说明
+
+| 车型 | 座位数 | 适用场景 | 价格区间 |
+|:---|:---|:---|:---|
+| 经济型 | 4座 | 日常通勤、短途出行 | ¥起步价+里程费 |
+| 舒适型 | 4座 | 商务出行、接待客户 | 经济型×1.3 |
+| 商务型 | 6-7座 | 多人出行、团队用车 | 经济型×1.8 |
+| 豪华型 | 4座 | 重要接待、高端出行 | 经济型×2.5 |
+
+## 输入参数
+
+### 即时用车
+
+| 参数 | 类型 | 必填 | 说明 |
+|:---|:---|:---|:---|
+| pickup_location | string | 是 | 上车地点 |
+| dropoff_location | string | 是 | 下车地点 |
+| car_type | string | 否 | 车型：ECONOMY/COMFORT/BUSINESS/LUXURY |
+| ride_type | string | 否 | 用车类型：immediate/scheduled |
+| scheduled_time | string | 否 | 预约时间（预约用车必填） |
+| passenger_count | int | 否 | 乘车人数，默认1 |
+| luggage_count | int | 否 | 行李件数，默认0 |
+| remarks | string | 否 | 备注信息 |
+
+### 接送机
+
+| 参数 | 类型 | 必填 | 说明 |
+|:---|:---|:---|:---|
+| service_type | string | 是 | pickup/dropoff |
+| airport | string | 是 | 机场名称 |
+| flight_number | string | 是（接机） | 航班号 |
+| flight_date | string | 是 | 航班日期 |
+| location | string | 是 | 接送地址 |
+| car_type | string | 否 | 车型 |
+| passenger_count | int | 否 | 人数 |
+| luggage_count | int | 否 | 行李数 |
+
+## 输出格式
+
+### 叫车结果
+
+```json
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "order_id": "CAR202403300001",
+    "order_status": "pending",
+    "ride_type": "immediate",
+    "pickup": {
+      "location": "北京市朝阳区建国路88号",
+      "latitude": 39.9042,
+      "longitude": 116.4074
+    },
+    "dropoff": {
+      "location": "北京首都国际机场T3航站楼",
+      "latitude": 40.0799,
+      "longitude": 116.6031
+    },
+    "car_type": "COMFORT",
+    "car_type_name": "舒适型",
+    "estimated_price": {
+      "min": 85,
+      "max": 110,
+      "currency": "CNY"
+    },
+    "estimated_duration": 45,
+    "estimated_distance": 28.5,
+    "driver": {
+      "driver_id": "DRV001",
+      "name": "张师傅",
+      "phone": "138****8888",
+      "rating": 4.9,
+      "vehicle": {
+        "plate_number": "京A·12345",
+        "brand": "大众",
+        "model": "帕萨特",
+        "color": "黑色"
+      }
+    },
+    "create_time": "2026-03-30 14:30:00",
+    "scheduled_time": null
+  }
+}
 ```
+
+### 费用预估
+
+```json
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "pickup": "北京市朝阳区建国路88号",
+    "dropoff": "北京首都国际机场T3航站楼",
+    "distance": 28.5,
+    "duration": 45,
+    "price_estimate": {
+      "ECONOMY": {
+        "min": 65,
+        "max": 85,
+        "base_fare": 14,
+        "mileage_fare": 51,
+        "time_fare": 15
+      },
+      "COMFORT": {
+        "min": 85,
+        "max": 110,
+        "base_fare": 18,
+        "mileage_fare": 67,
+        "time_fare": 20
+      },
+      "BUSINESS": {
+        "min": 120,
+        "max": 150,
+        "base_fare": 25,
+        "mileage_fare": 95,
+        "time_fare": 28
+      }
+    },
+    "surcharges": {
+      "night_fee": 0,
+      "peak_fee": 0,
+      "toll_fee": 15
+    }
+  }
+}
+```
+
+## 展示格式示例
+
+### 即时叫车
+
+```
+🚗 即时叫车成功
+
+═══════════════════════════════════════
+
+📍 行程信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛫 上车地点：北京市朝阳区建国路88号
+🛬 下车地点：北京首都国际机场T3航站楼
+📏 预估里程：28.5公里
+⏱️ 预估时间：45分钟
+
+═══════════════════════════════════════
+
+💰 费用预估
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+车型选择：
+
+🚙 经济型     ¥65-85   | 大众朗逸或同级
+🚗 舒适型 ⭐  ¥85-110  | 大众帕萨特或同级
+🚐 商务型     ¥120-150 | 别克GL8或同级
+🚘 豪华型     ¥180-220 | 奥迪A6L或同级
+
+💡 费用包含起步价、里程费、时长费
+💡 高速费、停车费等额外费用需另付
+
+═══════════════════════════════════════
+
+👤 司机信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚗 车辆信息
+   车牌：京A·12345
+   车型：大众帕萨特（黑色）
+
+👨‍✈️ 司机信息
+   姓名：张师傅
+   评分：⭐ 4.9
+   电话：138****8888
+
+📍 当前位置：距您2.3公里，约5分钟到达
+
+═══════════════════════════════════════
+
+📋 订单信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+订单号：CAR202403300001
+状态：🟡 司机接命中
+创建时间：2026-03-30 14:30:00
+
+═══════════════════════════════════════
+
+💡 操作提示
+• 回复"取消"取消订单
+• 回复"分享"分享行程给联系人
+• 回复"修改"修改目的地
+```
+
+### 接送机服务
+
+```
+✈️ 接送机预约成功
+
+═══════════════════════════════════════
+
+📍 服务信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+服务类型：接机
+机场：北京首都国际机场T3航站楼
+航班号：CA1234
+航班日期：2026-04-01
+预计到达：15:30
+
+🏨 送达地址：北京市朝阳区建国路88号
+
+═══════════════════════════════════════
+
+🚗 车辆信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+车型：商务型（别克GL8）
+座位数：7座
+行李空间：可放4件28寸行李
+
+👨‍✈️ 司机信息
+   姓名：李师傅
+   电话：139****6666
+   评分：⭐ 4.8
+
+═══════════════════════════════════════
+
+💰 费用信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+基础费用：¥280
+包含：免费等待2小时、高速费
+额外费用：超时等待¥50/小时
+
+═══════════════════════════════════════
+
+📋 订单信息
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+订单号：CAR202404010001
+状态：🟢 预约成功
+
+💡 温馨提示
+• 司机将在航班落地后30分钟内联系您
+• 免费等待2小时（从航班实际落地时间计算）
+• 请保持手机畅通
+
+═══════════════════════════════════════
+
+💡 回复"查看"查看订单详情
+💡 回复"修改"修改预约信息
+💡 回复"取消"取消预约
+```
+
+## API接口列表
+
+| 接口名称 | 功能 | 参数 |
+|:---|:---|:---|
+| estimate_price | 费用预估 | pickup, dropoff, car_type |
+| request_ride | 即时叫车 | pickup, dropoff, car_type, passenger_count |
+| schedule_ride | 预约用车 | pickup, dropoff, scheduled_time, car_type |
+| book_airport_transfer | 接送机预订 | service_type, airport, flight_number, location |
+| book_charter | 包车预订 | duration, route, car_type |
+| get_order_detail | 订单详情 | order_id |
+| get_order_list | 订单列表 | status, start_date, end_date |
+| cancel_order | 取消订单 | order_id, reason |
+| share_ride | 分享行程 | order_id, contact |
+| request_invoice | 申请发票 | order_ids, invoice_type |
+
+## 订单状态说明
+
+| 状态 | 说明 |
+|:---|:---|
+| pending | 待接单 |
+| accepted | 已接单 |
+| arriving | 司机前往中 |
+| arrived | 司机已到达 |
+| in_progress | 行程进行中 |
+| completed | 已完成 |
+| cancelled | 已取消 |
+
+## 费用组成
+
+### 即时用车费用
+
+| 费用项 | 说明 |
+|:---|:---|
+| 起步价 | 包含3公里+10分钟 |
+| 里程费 | 超出起步里程后按公里计费 |
+| 时长费 | 低速或等待时按分钟计费 |
+| 远途费 | 超过15公里后加收 |
+| 夜间费 | 23:00-05:00加收 |
+| 动态调价 | 高峰时段可能调价 |
+
+### 接送机费用
+
+| 费用项 | 说明 |
+|:---|:---|
+| 基础费用 | 一口价，包含机场往返 |
+| 高速费 | 按实际产生收取 |
+| 停车费 | 按实际产生收取 |
+| 等待费 | 免费等待后按小时计费 |
+| 夜间服务费 | 夜间时段加收 |
+
+## 取消规则
+
+| 取消时间 | 费用 |
+|:---|:---|
+| 司机接单前 | 免费取消 |
+| 司机接单后3分钟内 | 免费取消 |
+| 司机接单后3-5分钟 | 收取¥5取消费 |
+| 司机已到达 | 收取起步价作为取消费 |
+| 行程开始后 | 不可取消，按实际费用结算 |
+
+## 企业功能
+
+- **部门用车管理**：设置用车权限和额度
+- **费用中心**：统一结算、对账
+- **审批流程**：超标用车需审批
+- **数据分析**：用车报表、费用分析
+- **API对接**：与企业OA/差旅系统集成

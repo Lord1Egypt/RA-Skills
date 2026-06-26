@@ -1,0 +1,7 @@
+interface:
+  display_name: "Memory Distiller"
+  short_description: "Turn repeated patterns into reusable memory rules"
+  default_prompt: "Use $memory-distiller to extract durable preferences and a concise reusable context block from this material."
+
+policy:
+  allow_implicit_invocation: false

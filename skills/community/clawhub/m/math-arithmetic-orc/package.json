@@ -1,0 +1,12 @@
+{
+  "name": "math-arithmetic-ocr",
+  "version": "1.0.0",
+  "description": "腾讯云算式识别 Skill for OpenClaw",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "author": "yuejian chen",
+  "license": "MIT"
+}
+

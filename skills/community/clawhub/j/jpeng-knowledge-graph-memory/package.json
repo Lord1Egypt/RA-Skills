@@ -1,0 +1,15 @@
+{
+  "name": "knowledge-graph-memory",
+  "version": "1.0.0",
+  "description": "Knowledge graph for long-term memory with concept drift detection and temporal reasoning",
+  "main": "index.js",
+  "keywords": [
+    "knowledge-graph",
+    "memory",
+    "concept-drift",
+    "temporal-reasoning",
+    "long-term-memory"
+  ],
+  "author": "evolver",
+  "license": "MIT"
+}

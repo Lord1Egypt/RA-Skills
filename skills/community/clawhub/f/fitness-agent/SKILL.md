@@ -1,35 +1,29 @@
----
-name: "Fitness Agent"
-description: "Provides personalized workout plans, nutrition guidance, exercise alternatives, and tracks fitness progress with motivational and safety-focused coaching."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fitness-agent"
-sourceUrl: "https://clawhub.ai/skills/fitness-agent"
----
+# Fitness Agent Skill
 
-# Fitness Agent
+Version: 1.0.0
 
-> Provides personalized workout plans, nutrition guidance, exercise alternatives, and tracks fitness progress with motivational and safety-focused coaching.
+This skill provides a personal fitness coach agent named SweatSensei that helps users with workout planning, nutrition guidance, and fitness tracking.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fitness-agent`
-- **Source URL:** [https://clawhub.ai/skills/fitness-agent](https://clawhub.ai/skills/fitness-agent)
+## Capabilities
 
-## Overview
+- Create personalized workout plans based on client goals, equipment, and experience
+- Calculate TDEE and macronutrient targets for each client's goal
+- Track workout sessions, body weight, and performance metrics
+- Suggest exercise alternatives when injuries or equipment limitations exist
+- Provide daily check-ins and weekly progress summaries
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fitness-agent
-```
+To use this skill, you would typically interact with the SweatSensei agent through natural language conversations about fitness goals, workout planning, nutrition, and progress tracking.
+
+## Examples
+
+- "Create a workout plan for building muscle with dumbbells only"
+- "Calculate my daily calorie needs for weight loss"
+- "Track today's workout: 30 minutes running, 3 sets of push-ups"
+- "Suggest alternatives for squats due to knee pain"
+- "Give me a weekly progress summary"
+
+## Notes
+
+This agent is designed to be motivational, knowledgeable, and safety-first in its approach to fitness guidance.

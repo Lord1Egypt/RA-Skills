@@ -1,0 +1,8 @@
+{
+  "name": "xquads-brand-squad",
+  "version": "1.0.0",
+  "description": "Squad de 15 especialistas em branding",
+  "openclaw": {"homepage": "https://github.com/synkra/xquads", "emoji": "🏷️"},
+  "agents": ["brand-chief", "david-aaker", "marty-neumeier", "byron-sharp", "kevin-keller", "jean-noel-kapferer", "al-ries", "donald-miller", "emily-heyward", "denise-yohn", "alina-wheeler", "miller-sticky-brand", "archetype-consultant", "naming-strategist", "domain-scout"],
+  "tasks": ["create-positioning", "build-identity", "create-brand-story", "map-archetype", "generate-names", "design-architecture", "audit-brand", "diagnose", "review"]
+}

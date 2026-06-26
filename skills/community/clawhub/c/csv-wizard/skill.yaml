@@ -1,0 +1,21 @@
+name: csv-wizard
+description: 交互式数据清洗 CLI，支持自动类型推断、缺失值处理、重复检测
+version: 1.0.0
+author: openclaw
+entry: bin/clean-csv
+commands:
+  - name: clean-csv
+    description: 清洗和转换 CSV 文件
+    usage: |
+      /clean-csv <input.csv> [options]
+      
+      Options:
+        --info                   显示数据基本信息
+        --preview N              预览前 N 行（默认 10）
+        --fill-missing STRATEGY  缺失值填充策略
+        --fill-value VALUE       固定填充值
+        --drop-duplicates        删除重复行
+        --standardize-names      标准化列名
+        --interactive            交互式模式
+        --output, -o FILE        输出文件路径
+        --help, -h               显示帮助

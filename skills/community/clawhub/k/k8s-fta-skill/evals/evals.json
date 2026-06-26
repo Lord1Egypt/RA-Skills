@@ -1,0 +1,125 @@
+{
+  "skill_name": "k8s-fta-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我的Pod一直处于CrashLoopBackOff状态，如何排查？",
+      "expected_output": "自动执行kubectl get pods识别异常Pod，执行kubectl describe和kubectl logs命令分析问题，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "My Pod keeps restarting with CrashLoopBackOff status, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl get pods to identify abnormal Pod, run kubectl describe and kubectl logs commands to analyze the issue, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我的Service创建成功但无法访问，如何排查？",
+      "expected_output": "自动执行kubectl get svc和kubectl describe svc命令检查Service配置，执行kubectl get endpoints检查后端Pod，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Service is created but cannot be accessed, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl get svc and kubectl describe svc commands to check Service configuration, run kubectl get endpoints to check backend Pods, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "我的Pod处于Pending状态，一直无法调度，如何排查？",
+      "expected_output": "自动执行kubectl describe pod、kubectl get resourcequota和kubectl describe node命令分析资源问题，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Pod is stuck in Pending status and cannot be scheduled, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl describe pod, kubectl get resourcequota, and kubectl describe node commands to analyze resource issues, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Pod被OOMKilled，如何解决？",
+      "expected_output": "自动执行kubectl describe pod和kubectl top pod命令检查内存使用，分析内存限制问题，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Pod is OOMKilled, how to resolve?",
+      "expected_output": "Automatically execute kubectl describe pod and kubectl top pod commands to check memory usage, analyze memory limit issues, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "健康检查失败导致Pod重启，如何排查？",
+      "expected_output": "自动执行kubectl describe pod和kubectl logs命令检查健康检查配置，分析健康检查失败原因，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Health check failures causing Pod restarts, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl describe pod and kubectl logs commands to check health check configuration, analyze health check failure causes, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "RBAC权限拒绝错误，如何解决？",
+      "expected_output": "自动执行kubectl auth can-i、kubectl get role和kubectl get rolebinding命令检查权限配置，分析权限问题，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "RBAC permission denied errors, how to resolve?",
+      "expected_output": "Automatically execute kubectl auth can-i, kubectl get role, and kubectl get rolebinding commands to check permission configuration, analyze permission issues, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "Pod无法解析域名，DNS问题如何排查？",
+      "expected_output": "自动执行kubectl exec nslookup和kubectl get svc kube-dns命令检查DNS配置，分析DNS解析问题，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "Pod cannot resolve domain names, how to troubleshoot DNS issues?",
+      "expected_output": "Automatically execute kubectl exec nslookup and kubectl get svc kube-dns commands to check DNS configuration, analyze DNS resolution issues, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "HPA自动扩展不工作，如何排查？",
+      "expected_output": "自动执行kubectl get hpa、kubectl describe hpa和kubectl get pods metrics-server命令检查HPA配置，分析扩展问题，提供自动修复建议",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "HPA auto-scaling not working, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl get hpa, kubectl describe hpa, and kubectl get pods metrics-server commands to check HPA configuration, analyze scaling issues, and provide automatic fix recommendations",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "k3s集群Pod处于CrashLoopBackOff状态，如何排查？",
+      "expected_output": "自动执行kubectl get pods识别异常Pod，执行kubectl describe和kubectl logs命令分析问题，提供自动修复建议（支持k3s）",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "k3s cluster Pod in CrashLoopBackOff status, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl get pods to identify abnormal Pod, run kubectl describe and kubectl logs commands to analyze the issue, and provide automatic fix recommendations (supports k3s)",
+      "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "k3s服务无法访问，如何排查？",
+      "expected_output": "自动执行kubectl get svc和kubectl describe svc命令检查Service配置，执行kubectl get endpoints检查后端Pod，提供自动修复建议（支持k3s）",
+      "files": []
+    },
+    {
+      "id": 20,
+      "prompt": "k3s service cannot be accessed, how to troubleshoot?",
+      "expected_output": "Automatically execute kubectl get svc and kubectl describe svc commands to check Service configuration, run kubectl get endpoints to check backend Pods, and provide automatic fix recommendations (supports k3s)",
+      "files": []
+    }
+  ]
+}

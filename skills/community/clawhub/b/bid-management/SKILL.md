@@ -1,35 +1,100 @@
+﻿---
+name: bid-management
+description: >
+  投标全流程管理。输入招标文件，自动输出标书CheckList+投标总体计划+投标文件目录结构+单一来源说明（如需）。
+  触发词：投标、招标、标书、投标管理、投标准备、单一来源。
+version: 1.0.2
+author: Dick Dunkel
+license: MIT-0
+tags: [sales, bid, procurement, single-source]
+category: sales
+created_by: agent
 ---
-name: "Bid Management"
-description: "投标全流程管理。输入招标文件，自动输出标书CheckList+投标总体计划+投标文件目录结构+单一来源说明（如需）。 触发词：投标、招标、标书、投标管理、投标准备、单一来源。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bid-management"
-sourceUrl: "https://clawhub.ai/skills/bid-management"
----
 
-# Bid Management
+# 投标全流程管理
 
-> 投标全流程管理。输入招标文件，自动输出标书CheckList+投标总体计划+投标文件目录结构+单一来源说明（如需）。 触发词：投标、招标、标书、投标管理、投标准备、单一来源。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bid-management`
-- **Source URL:** [https://clawhub.ai/skills/bid-management](https://clawhub.ai/skills/bid-management)
+用户提到以下意图时触发：
+- "收到一个招标文件，帮我梳理"
+- "帮我做投标准备"
+- "投标CheckList"
+- "单一来源采购说明"
+- "帮我做投标计划"
 
-## Overview
+## 必需输入
 
+| 输入项 | 必需 | 说明 |
+|--------|------|------|
+| 招标文件 | ✅（CheckList模式） | PDF/Word格式的招标文件 |
+| 项目名称 | ✅ | 投标项目名称 |
+| 投标截止日期 | 推荐 | 用于自动生成时间计划 |
+| 采购方式 | 推荐 | 公开招标/邀请招标/竞争性谈判/单一来源 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bid-management
+## 功能模块
+
+### 模块1：标书CheckList（收到招标文件后第一步）
+
+解析招标文件，自动提取并生成：
+
+**1.1 资格要求清单**
+| 检查项 | 招标文件要求 | 我方状态 | 行动项 |
+|--------|-------------|---------|--------|
+
+**1.2 废标项清单（高危）**
+| 废标项 | 具体要求 | 对策 |
+|--------|---------|------|
+
+**1.3 评分项清单**
+| 评分维度 | 分值 | 我方优势分析 | 策略建议 |
+|---------|------|-------------|---------|
+
+**1.4 关键时间节点**
+| 节点 | 日期 | 备注 |
+|------|------|------|
+
+### 模块2：投标总体计划
+
+基于投标截止日期自动倒推：
+| 阶段 | 工作内容 | 责任人 | 开始 | 完成 | 交付物 |
+|------|---------|--------|------|------|--------|
+
+关键里程碑：T-7/T-5/T-3/T-2/T-1/T日
+
+### 模块3：投标文件目录结构
+
+根据招标文件要求生成标准目录树：
 ```
+投标文件/
+├── 第一部分：商务文件
+├── 第二部分：技术文件
+├── 第三部分：报价文件
+└── 附件
+```
+
+### 模块4：单一来源采购说明（按需）
+
+当采购方式为单一来源时，自动生成：
+- 三层论证框架（制度层→技术层→经济层）
+- 单一来源说明模板
+- 应对采购驳回的策略建议
+
+参考知识文档：`knowleadge/03-bid/02-single-source.md`
+
+## 输出格式
+
+- CheckList → MD表格 或 Excel
+- 投标计划 → MD表格 或 Excel
+- 目录结构 → MD树形结构
+- 单一来源说明 → Word文档
+
+如用户要求，打包为Excel（多Sheet）通过企微发送。
+
+## 质量标准
+
+- ✅ CheckList必须逐项覆盖招标文件的所有要求
+- ✅ 废标项必须高亮标注并给出预防措施
+- ✅ 时间计划必须可执行（不能每个阶段都是1天）
+- ✅ 单一来源说明必须基于事实论证，不编造
+- ❌ 不遗漏任何废标项
+- ❌ 不输出与招标文件无关的通用内容

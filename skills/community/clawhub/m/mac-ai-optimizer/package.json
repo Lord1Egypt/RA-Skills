@@ -1,0 +1,10 @@
+{
+  "name": "@mac-ai-optimizer/openclaw-plugin",
+  "version": "1.0.0",
+  "description": "OpenClaw plugin: optimize macOS for AI workloads",
+  "type": "module",
+  "main": "index.js",
+  "openclaw": {
+    "extensions": ["./index.js"]
+  }
+}

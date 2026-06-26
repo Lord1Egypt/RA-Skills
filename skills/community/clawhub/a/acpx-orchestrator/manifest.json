@@ -1,0 +1,40 @@
+{
+  "name": "acpx",
+  "version": "4.0.0",
+  "description": "Enhanced terminal AI agent orchestrator with parallel execution, health checks, and workflow presets",
+  "author": "qriiz112",
+  "email": "christianovianto@gmail.com",
+  "tags": ["agents", "orchestration", "cli", "automation", "acp", "ai", "terminal"],
+  "license": "MIT",
+  "requirements": {
+    "binaries": ["acpx"],
+    "optional": ["opencode", "pi", "kimi", "kilo", "codex", "claude", "gemini"],
+    "note": "Install at least one ACP agent (opencode/pi) or CLI agent (kimi/kilo)"
+  },
+  "install": {
+    "npm": ["acpx"],
+    "optional": {
+      "acp-agents": ["opencode-ai", "@anthropic-ai/pi"],
+      "cli-agents": ["kimi-cli", "kilocode"]
+    }
+  },
+  "commands": [
+    "acpx discover",
+    "acpx health",
+    "acpx run <agent> <task>",
+    "acpx parallel <file>",
+    "acpx batch <file>",
+    "acpx watch <agent>",
+    "acpx kill <agent>",
+    "acpx workflow <name>",
+    "acpx json <agent> <task>"
+  ],
+  "workflows": ["review", "refactor", "test", "debug"],
+  "agents": {
+    "acp": ["opencode", "pi"],
+    "cli": ["kimi", "kilo", "gemini"],
+    "pty": ["codex", "claude", "cline"]
+  },
+  "homepage": "https://github.com/qriiz112/acpx-orchestrator",
+  "repository": "https://github.com/qriiz112/acpx-orchestrator.git"
+}

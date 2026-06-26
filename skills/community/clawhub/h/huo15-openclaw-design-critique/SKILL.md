@@ -1,35 +1,276 @@
 ---
-name: "Huo15 Openclaw Design Critique"
-description: "6 维度设计评审（美学 / 可用性 / 品牌一致 / 内容 / 技术实现 / 时代感）+ 审美档位识别（AI-Slop / Junior / Senior / Master 四档）+ 年代识别（命中过时视觉信号自动扣分）+ Master 级对标参考库（每流派 2-3 个真实标杆）+ Keep/Fix/Quick..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huo15-openclaw-design-critique"
-sourceUrl: "https://clawhub.ai/skills/huo15-openclaw-design-critique"
+name: huo15-openclaw-design-critique
+displayName: 火一五设计评审技能
+description: 6 维度设计评审（美学 / 可用性 / 品牌一致 / 内容 / 技术实现 / 时代感）+ 审美档位识别（AI-Slop / Junior / Senior / Master 四档）+ 年代识别（命中过时视觉信号自动扣分）+ Master 级对标参考库（每流派 2-3 个真实标杆）+ Keep/Fix/Quick Wins 三分类 + 雷达图。用于对现成网页、HTML、截图、Figma 链接做专业打分与改进建议。触发词：设计评审、UI 审查、给这个页面打分、review 这个设计、这个界面怎么样、优化建议、审美档位、年代识别、Master 对标。
+version: 2.0.0
+aliases:
+  - 火一五设计评审技能
+  - 火一五UI审查技能
+  - 火一五UX评审技能
+  - 火一五设计打分技能
+  - 火一五设计评审
+  - 设计评审
+  - UI 审查
+  - UX 评审
+  - 设计打分
+  - design review
+  - design critique
+  - 审美档位
+  - 年代识别
+  - Master 对标
 ---
 
-# Huo15 Openclaw Design Critique
+# 火一五设计评审技能 v2.0
 
-> 6 维度设计评审（美学 / 可用性 / 品牌一致 / 内容 / 技术实现 / 时代感）+ 审美档位识别（AI-Slop / Junior / Senior / Master 四档）+ 年代识别（命中过时视觉信号自动扣分）+ Master 级对标参考库（每流派 2-3 个真实标杆）+ Keep/Fix/Quick...
+> 结构化 6 维设计评审 + 4 档审美档位 + 年代识别 + Master 级对标库 — 青岛火一五信息科技有限公司
+> **v2.0 起**：从 5 维扩到 6 维（加时代感）+ 4 档审美档位识别（AI-Slop / Junior / Senior / Master）+ 9 类过时视觉年代信号 + 8 流派 Master 级对标库 + 评审报告新增"对标差距"段
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huo15-openclaw-design-critique`
-- **Source URL:** [https://clawhub.ai/skills/huo15-openclaw-design-critique](https://clawhub.ai/skills/huo15-openclaw-design-critique)
+---
 
-## Overview
+## 一、触发场景
 
+当用户对一个已存在的界面/页面/截图，要求**专业评价或改进建议**：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huo15-openclaw-design-critique
+- "给这个页面打分"
+- "review 一下这个 UI"
+- "这个设计哪里有问题"
+- "这个落地页怎么优化"
+- **"这是几档？"** ⭐v2.0
+- **"对标 Linear / Stripe 差多远？"** ⭐v2.0
+- 附带一张截图或一个 URL 要求评估
+
+**产出**：先**判档位**（4 档）→ 跑**年代识别**（9 类信号）→ 6 维打分（雷达图文本化）+ Keep/Fix/Quick Wins 三分类 + **对标差距分析** + 升级路径建议。
+
+---
+
+## 二、四档审美档位（v2.0 新增 — 必须先识别）
+
+| 档位 | 信号 | 可救度 |
+|------|------|--------|
+| **AI-Slop** | 紫粉渐变 / Inter 默认字体 / Tailwind 默认色 / 玻璃拟态 / Hero+Features+CTA 千篇一律骨架 | 不可救药，建议**重做** |
+| **Junior pass** | 占位文案 + 占位图 + 跑通骨架 + shadcn 默认组件 | 可救，目标是先到 Senior |
+| **Senior 落地** | 字体定制 / 自家配色 / 自家组件 / OKLCH 色板 / 反差字体 | 已经合格，可考虑升 Master |
+| **Master 级** | 单一签名钩子 / 反工业范式 / 时代感强 / 字距精调 / 微版式 | 顶尖，提改进只动小细节 |
+
+**判档流程**（30 秒筛）：
+1. 先扫**年代信号**（§三）— 命中任一过时信号 → 直接 AI-Slop 档
+2. 再看**字体 / 配色 / 装饰是否定制** — 都默认 → Junior pass
+3. 再看**有没有签名钩子**（"用户记得住的那一件事"）— 没有 → Senior（上限）
+4. 钩子 + 时代感 + 反范式 + 字距精调齐 → Master
+
+**判档结果直接写在报告顶端**，决定全篇评审基调（AI-Slop 档不需要细评，重做就行）。
+
+---
+
+## 三、9 类过时视觉年代信号（v2.0 新增）
+
+命中任一**美学维度直接 ≤ 2**，不要客气。
+
+| # | 年代信号 | 出现年代 | 当前判定 |
+|---|---------|---------|---------|
+| 1 | **紫粉渐变 + 玻璃磨砂** | 2023-2024 AI slop 高峰 | ❌ 已死 |
+| 2 | **默认 Inter + 16px Tailwind 圆角** | 2022-2023 shadcn 范式 | ❌ 千篇一律 |
+| 3 | **Hero / Features / CTA / Footer 模板化骨架** | 2020 - 至今 | ⚠️ 需要打破 |
+| 4 | **Material You 默认 dynamic color 不改** | 2021- | ⚠️ 没品牌识别 |
+| 5 | **重型拟物 / Skeuomorphism**（除非"轻拟物 iOS 26 风"） | 2008-2013 iOS 风 | ❌ 过时（iOS 26 是新拟物，不是这个） |
+| 6 | **Comic Sans / 默认 emoji 当图标** | 永远过时 | ❌ |
+| 7 | **左侧彩色竖条 + 圆角卡片千篇一律** | 2020 Tailwind 范式 | ❌ 烂大街 |
+| 8 | **CSS 画的伪 3D 产品图** | 2015 Material 时代延续 | ❌ |
+| 9 | **大色块 blur 渐变背景**（粉紫蓝青） | 2023 AI 生成范式 | ❌ AI slop 标志 |
+
+**反过来：v2.0 当代信号**（命中 = 加分项，记到 Keep 里）：
+- ✅ OKLCH 色空间 / OKLab spotlight
+- ✅ 等宽字 caption / 永久版本戳 / BUILD 标记
+- ✅ 衬线 display + sans body 反差大
+- ✅ 不规则版式（破网格但有意图）
+- ✅ Editorial Tech 编辑科技感（米色底 + 衬线 + 长篇）
+- ✅ Brutalist 2026 克制版（灰白 + 警示黄 + 等宽）
+- ✅ 自定签名钩子（不是模板化的 hero）
+
+---
+
+## 四、6 维评分体系（每项 1-5 分）⭐v2.0 加时代感
+
+| 维度 | 关注点 | 1 分 | 5 分 |
+|------|--------|------|------|
+| **美学 Aesthetic** | 字体 / 颜色 / 动效 / 空间 / 氛围 | AI slop | 意图明确的流派 |
+| **可用性 Usability** | 信息层级、可点击性、反馈、a11y | 用户需要猜 | 一眼理解下一步 |
+| **品牌一致 Brand** | 与品牌调性 / 产品定位一致度 | 和任何其他站能混用 | 一眼辨识品牌 |
+| **内容 Content** | 文案质量、信息密度、有无废话 | 占位文案 / 废话堆砌 | 每个字都在做事 |
+| **实现 Implementation** | 性能、响应式、代码质量、可维护 | 打开慢 / 布局崩 | 丝滑 / 鲁棒 |
+| **时代感 Era** ⭐v2.0 | 是 2026 当代设计还是过时复刻 | 命中 §三 任一过时信号 | 命中 §三 当代信号 ≥ 2 个 |
+
+**总分规则**：
+- 6×5 = 30 分制
+- **短板决定印象**：任何一项 ≤ 2 分，总分不得超过 18（木桶短板）
+- **AI-Slop 档自动 ≤ 12**（§二 判档为 AI-Slop 时所有维度上限 2）
+- **Master 档可超 25**
+
+---
+
+## 五、8 流派 Master 级对标库（v2.0 新增）
+
+每个流派给 2-3 个真实可访问的 Master 标杆，评审时**必须挑 1 个对标**，落到"对标差距"段。
+
+| 流派 | Master 对标 | 关键学习点 |
+|------|------------|----------|
+| **bold-minimal** | linear.app / vercel.com / stripe.press / raycast.com | OKLCH 渐变文字 / 永久 BUILD 戳 / 衬线 display + Söhne body |
+| **editorial** | nytimes.com（深度专题）/ monocle.com / linear.app/blog / stripe.press | 衬线 display 78pt+ / 引号装饰 / 纵向栅格 / 长篇排版 |
+| **brutalist 2026** | are.na / nothing.tech / plainenglishpodcast.com / tylko.com | 灰白底 + 警示黄 / 等宽字 / 极少装饰 / 永久 metadata |
+| **retro-future** | nothing.tech ROM / A.G. Cook 网站 / Cyberpunk 2077 UI | Druk Wide / OKLCH 单一霓虹 accent / 不要堆砌 |
+| **organic** | aesop.com / oatly.com / Notion 早期 / cosmos.so | 暖灰 / 衬线 + 手绘元素 / 真摄影不要 emoji |
+| **mobile-native-ios** | iOS 26 Settings / Apple Notes 真机 / Day One / Things 3 | 系统蓝 + safe-area / large title / blur navbar / segmented control |
+| **mobile-native-md3** | Pixel Launcher / Gmail Android 2025 / m3.material.io | seed 派生主色 / FAB / emphasized easing 4 档 |
+| **mobile-native-harmony** | HarmonyOS 4 Settings / 鸿蒙音乐 / 华为新闻 | 灵动色块 L≈0.78 / 大圆角胶囊 / fluid easing |
+
+**对标差距分析模板**（评审报告必含，§六 输出结构）：
+
 ```
+### 对标差距
+对标 [linear.app]（bold-minimal Master 标杆）
+- 字体：linear 用 Söhne 自定字距 -1.5%；本设计用默认 Inter → -1 美学
+- accent：linear 用 OKLCH 渐变文字做 hero；本设计用纯色 → -0.5 品牌识别
+- metadata：linear 永久显示 BUILD · 日期；本设计无版本戳 → -0.5 时代感
+- 升级路径：换 Söhne / 加 OKLCH 渐变 hero / 加 BUILD 戳 → 可达 Senior 上限
+```
+
+---
+
+## 六、输出结构（v2.0 升级 — 每次评审必按此格式）
+
+```
+### 档位识别 ⭐v2.0
+**[AI-Slop / Junior pass / Senior 落地 / Master 级]**
+理由：[1-2 句话，引用 §二 判档信号]
+
+### 年代信号扫描 ⭐v2.0
+- 过时信号命中：[§三 #X / 无]
+- 当代信号命中：[§三 当代信号 / 无]
+
+### 总评
+[一句话总结：这个设计是什么流派？档位？最大亮点？最大问题？]
+
+### 6 维打分 ⭐v2.0
+| 维度 | 分数 | 备注 |
+|------|------|------|
+| 美学 | X/5 | ... |
+| 可用性 | X/5 | ... |
+| 品牌一致 | X/5 | ... |
+| 内容 | X/5 | ... |
+| 实现 | X/5 | ... |
+| 时代感 | X/5 | ... |
+**总分：XX/30**
+
+### 对标差距 ⭐v2.0
+对标 [Master 标杆 URL]
+- 维度 1：差距具体描述
+- 维度 2：差距具体描述
+- 升级路径：[换 X / 加 Y / 改 Z → 可达 Senior 上限 / Master 级]
+
+### 雷达图（ASCII）
+        美学 5
+          ●
+   时代感●─┼─● 可用性
+        ●│●
+  品牌 ● ─┼─● 内容
+          ●
+        实现
+(用 ● 的位置表示分数，1-5 对应距离中心)
+
+### Keep（保持）
+- ...（这几点做得好，不要动）
+- 命中 §三 当代信号的项放这里加分
+
+### Fix（必改）
+- P0 ...（上线前必须修，命中 §三 过时信号的优先 P0）
+- P1 ...（下个迭代）
+
+### Quick Wins（1 小时内能做）
+- ...（性价比最高的小改动）
+
+### 升级路径 ⭐v2.0
+[改完 Fix P0 + Quick Wins → 预计从 X/30 到 Y/30，从 Junior 升 Senior（或 Senior 升 Master）]
+[如果想到 Master，需要 [具体 1-2 个签名钩子 / 反工业范式动作]]
+```
+
+---
+
+## 七、评审工作流
+
+### 阶段 1 · 获取素材
+- 如果给的是 URL → 要求用户提供截图（调用 `huo15-openclaw-frontend-design §六·阶段 4` 的 Chrome MCP / Playwright 截图路线）
+- 如果给的是 HTML 代码 → 自己读 + 要求用户在本地浏览器打开后截图
+- 如果只给了描述 → 拒绝评审，要求至少提供一张截图
+
+### 阶段 2 · 30 秒判档（v2.0 新增）
+- 跑 §二 判档流程
+- 跑 §三 9 类年代信号扫描
+- 命中过时信号 → 美学直接锁 ≤ 2，AI-Slop 档不细评直接建议重做
+
+### 阶段 3 · 硬红线体检
+对照 `huo15-openclaw-frontend-design §四` 的 15 条硬红线逐一过一遍。命中直接列入 Fix · P0。
+
+### 阶段 4 · 6 维打分
+依次给 6 个维度打分，每个维度**至少一条具体理由**（不能只给分数）。
+
+### 阶段 5 · 对标差距分析（v2.0 新增）
+- 从 §五 流派对标库挑 1 个 Master 标杆
+- 维度对维度比对，给具体差距清单
+- 给升级路径
+
+### 阶段 6 · 三分类建议
+- **Keep**：避免改掉的闪光点（保护用户已有投入 + 命中当代信号的项）
+- **Fix**：必改项，按 P0/P1 排序（命中过时信号 = P0）
+- **Quick Wins**：投入 ≤ 1 小时、收益明显的
+
+### 阶段 7 · 出报告
+按 §六 的格式出一份完整报告。
+
+---
+
+## 八、常见评审反模式（Claude 自己要避免）
+
+1. ❌ 只夸不改 —— 这不是评审是吹捧
+2. ❌ 全盘否定 —— 用户的投入也有价值，要找 Keep
+3. ❌ 空话大话 —— "这里可以更现代化"，没用。要说"字体改成 Söhne，字号从 48px 改到 72px，字距 -2%"
+4. ❌ 建议互相矛盾 —— 先想清楚整体方向再逐条提
+5. ❌ 忽略实现成本 —— 要分 P0/P1/Quick Win
+6. ❌ **不判档位上来就细评** ⭐v2.0 — AI-Slop 档不应该细评，直接建议重做
+7. ❌ **不对标只评相对值** ⭐v2.0 — 没有 Master 标杆做尺子，分数都是相对的，user 不知道差距在哪
+
+---
+
+## 九、与其他 huo15 技能的分工
+
+| 场景 | 归属 |
+|------|------|
+| 评审 Web UI / HTML / 截图 + 档位识别 + 对标差距 | **本技能 v2.0** |
+| 评审 PPT 演示稿 | `huo15-openclaw-ppt` 的 review 模式（如有） |
+| 评审 Word 文档结构 | `huo15-openclaw-office-doc` |
+| 生成设计后自检 | `huo15-openclaw-frontend-design §六·阶段 5` 调用本技能 |
+| 设计方向选型（含档位） | `huo15-openclaw-design-director` v3.0 |
+| 反 AI Slop 红线 | `huo15-openclaw-frontend-design §四` 15 条硬红线 |
+
+---
+
+## 十、触发词
+
+- 设计评审 / UI 审查 / UX 评审
+- 给这个页面打分 / 给这个设计打分
+- review 这个设计 / review UI
+- 这个界面怎么样 / 这个页面有什么问题
+- 优化建议 / 改进建议（针对已有页面）
+- **审美档位 / 这是几档 / 是 Master 还是 Junior** ⭐v2.0
+- **对标 Linear / 对标 Stripe / 对标差距** ⭐v2.0
+- **年代识别 / 是不是过时 / 是 AI Slop 吗** ⭐v2.0
+
+---
+
+## 十一、版本历史
+
+- **v2.0.0（当前 · 2026-04-28）**：审美升级。新增 §二 **4 档审美档位识别**（AI-Slop / Junior pass / Senior 落地 / Master 级）+ 30 秒判档流程；新增 §三 **9 类过时视觉年代信号**（紫粉渐变 / 默认 Inter / 模板化骨架 / Material You 默认 / 重型拟物 / Comic Sans / 左侧彩色竖条 / CSS 伪 3D / blur 渐变）+ 7 类当代加分信号；§四 评分体系**从 5 维扩到 6 维**（加时代感 Era），总分从 25 改到 30；新增 §五 **8 流派 Master 级对标库**（每流派 2-3 个真实可访问标杆 + 关键学习点）；§六 输出结构升级 — 报告顶端新增"档位识别 + 年代信号扫描"段，新增"对标差距"段（必含 Master 标杆 URL + 维度差距清单 + 升级路径）；§七 工作流加阶段 2（30 秒判档）+ 阶段 5（对标差距分析）；§八 反模式加 #6（不判档上来就细评）+ #7（不对标只评相对值）；触发词扩到审美档位 / 对标 / 年代识别。**5 维评分骨架不变**，纯审美评审品味升级 — 评审师从"打分员"升级到"对标分析师 + 档位识别师"。
+- **v1.0.0（2026-04-23）**：初始版本。5 维评分体系 + Keep/Fix/Quick Wins 三分类 + ASCII 雷达图 + 硬红线体检快速筛 + 5 类反模式警示。
+
+---
+
+**技术支持：** 青岛火一五信息科技有限公司

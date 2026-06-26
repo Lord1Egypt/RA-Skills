@@ -1,0 +1,118 @@
+{
+  "name": "geo-agentops",
+  "version": "2.0.4",
+  "description": "AI-powered GEO operations system for B2B export companies — from content generation to AI citation tracking across ChatGPT, Claude, Gemini, Perplexity",
+  "author": "OpenClaw AI Team",
+  "license": "MIT-0",
+  "keywords": [
+    "GEO",
+    "SEO",
+    "AI marketing",
+    "B2B export",
+    "content marketing",
+    "generative engine optimization",
+    "AI citation",
+    "Perplexity optimization",
+    "ChatGPT optimization"
+  ],
+  "category": "marketing",
+  "triggers": [
+    "GEO optimization",
+    "generative engine optimization",
+    "AI citation tracking",
+    "GEO content generation",
+    "B2B export inquiry",
+    "AI-powered marketing",
+    "Perplexity optimization",
+    "ChatGPT optimization"
+  ],
+  "agents": [
+    {
+      "id": "topic-planner",
+      "name": "Topic Planner",
+      "description": "Generate weekly topic library"
+    },
+    {
+      "id": "headline-generator",
+      "name": "Headline Generator",
+      "description": "Generate 10 high-CTR headlines"
+    },
+    {
+      "id": "geo-article",
+      "name": "GEO Article",
+      "description": "Generate 1200-word full article"
+    },
+    {
+      "id": "faq-generator",
+      "name": "FAQ Content",
+      "description": "Generate 8 AI-citable Q&A pairs"
+    },
+    {
+      "id": "linkedin-post",
+      "name": "LinkedIn Post",
+      "description": "Generate professional LinkedIn post"
+    },
+    {
+      "id": "weekly-report",
+      "name": "Weekly Report",
+      "description": "Auto-generate operations report"
+    }
+  ],
+  "pricing": [
+    {
+      "name": "Starter",
+      "price": 19,
+      "currency": "USD",
+      "period": "month"
+    },
+    {
+      "name": "Pro Bundle",
+      "price": 59,
+      "currency": "USD",
+      "period": "month"
+    },
+    {
+      "name": "Enterprise",
+      "price": 399,
+      "currency": "USD",
+      "period": "month"
+    }
+  ],
+  "models": [
+    "chatgpt",
+    "claude",
+    "perplexity",
+    "gemini"
+  ],
+  "platforms": [
+    "linkedin",
+    "twitter",
+    "reddit",
+    "medium",
+    "quora",
+    "perplexity",
+    "chatgpt",
+    "claude",
+    "gemini"
+  ],
+  "target_audience": [
+    "B2B export companies",
+    "Alibaba International sellers",
+    "Amazon FBA merchants",
+    "Shopify DTC brands",
+    "SaaS B2B software companies"
+  ],
+  "social_proof": {
+    "exporters": "500+",
+    "countries": 23,
+    "citation_increase": "45%",
+    "timeframe": "60 days",
+    "cost_per_inquiry": "$0.04",
+    "google_ads_comparison": "$1.20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WangM-A3/geo-agentops"
+  },
+  "homepage": "https://jmgc0l91v1c6.space.minimaxi.com"
+}

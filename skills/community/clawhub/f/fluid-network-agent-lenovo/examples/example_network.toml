@@ -1,0 +1,85 @@
+[[nodes]]
+id = "S"
+kind = "reservoir"
+role = "source"
+pressure_pa = 3.0e6
+
+[[nodes]]
+id = "R"
+kind = "reservoir"
+pressure_pa = 1.0e5
+
+[[nodes]]
+id = "L1"
+kind = "reservoir"
+role = "load"
+pressure_pa = 1.2e5
+min_flow_m3s = 1.0e-3
+min_pressure_pa = 1.0e5
+
+[[nodes]]
+id = "J1"
+kind = "junction"
+
+[[edges]]
+id = "E_S_J"
+from = "S"
+to = "J1"
+
+[edges.resistance_model]
+kind = "linear"
+R = 5.0e5
+
+diameter_m = 0.02
+
+[[edges]]
+id = "E_J_R"
+from = "J1"
+to = "R"
+
+[edges.resistance_model]
+kind = "linear"
+R = 2.0e6
+
+diameter_m = 0.02
+
+[[edges]]
+id = "E_J_L1"
+from = "J1"
+to = "L1"
+
+[edges.resistance_model]
+kind = "quadratic"
+R = 8.0e10
+
+diameter_m = 0.015
+
+[edges.gating]
+enabled_when_mode = "all"
+disabled_resistance_multiplier = 1e12
+
+[[edges.gating.conditions]]
+variable = "valve_v1"
+equals = "open"
+
+[[scenarios]]
+id = "normal"
+
+[scenarios.variables]
+valve_v1 = "open"
+
+[[scenarios]]
+id = "valve_closed"
+
+[scenarios.variables]
+valve_v1 = "closed"
+
+[[functions]]
+id = "serve_L1"
+load_node_ids = ["L1"]
+criteria_mode = "all"
+
+[analysis]
+flow_metric = "abs"
+topology_direction = "undirected"
+

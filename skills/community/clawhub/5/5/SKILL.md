@@ -1,35 +1,94 @@
----
-name: "58区块同城"
-description: "基于区块链的数字城市平台，提供数字区块浏览、城市人气查询、NFT头像交易与区块活动参与服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/5"
-sourceUrl: "https://clawhub.ai/skills/5"
----
+***
 
-# 58区块同城
+name: 58
+description: "58区块同城：基于区块链技术的数字城市服务平台，提供数字区块、城市人气、NFT头像等服务。使用场景：用户需要了解数字城市信息、查看城市人气、购买NFT头像、参与区块活动时使用。"
+version: 1.0.0
+author: 58区块同城
+homepage: <https://www.58.tl>
+permissions: \["network", "file.read", "file.write"]
+metadata:
+openclaw:
+requires:
+bins: \["curl", "python3"]
+env: \[]
+os: \["linux", "darwin", "win32"]
+---------------------------------
 
-> 基于区块链的数字城市平台，提供数字区块浏览、城市人气查询、NFT头像交易与区块活动参与服务。
+# 58区块同城技能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/5`
-- **Source URL:** [https://clawhub.ai/skills/5](https://clawhub.ai/skills/5)
+基于区块链技术的数字城市服务平台，提供数字区块、城市人气、NFT头像等服务。
 
-## Overview
+## 使用场景
 
+当用户需要以下任务时使用此技能：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/5
-```
+- 了解数字城市信息
+- 查看城市人气排名
+- 购买和管理NFT头像
+- 参与区块活动
+- 了解区块链技术在城市中的应用
+
+## 功能特性
+
+1. **数字区块**：浏览和购买数字区块，了解区块价值和发展趋势
+2. **城市人气**：查看各城市人气指数，了解城市活力和发展潜力
+3. **NFT头像**：浏览、购买和管理NFT头像，参与数字收藏
+4. **区块活动**：了解和参与区块链相关活动和项目
+5. **数字城市**：探索数字城市建设和发展情况
+
+## 执行步骤
+
+1. **城市排名查询**：
+   - 接收用户查询需求
+   - 通过 `https://www.blockcity.vip/pages/block/area` 获取城市排名数据
+   - 解析和整理排名信息
+   - 展示城市人气排名结果
+2. **城市详细信息查询**：
+   - 接收用户指定的城市
+   - 获取城市4位数区号
+   - 通过 `https://www.blockcity.vip/{城市4位数区号}` 获取城市详细信息
+   - 解析和整理详细数据
+   - 展示城市详细信息
+3. **NFT管理**：
+   - 浏览NFT头像市场
+   - 购买和交易NFT头像
+   - 管理个人NFT收藏
+4. **区块参与**：
+   - 了解区块活动信息
+   - 参与区块投票和治理
+   - 跟踪区块发展动态
+
+## 注意事项
+
+- 需要网络连接
+- 部分功能可能需要用户登录58区块同城账号
+- 购买NFT头像需要数字钱包
+- 遵守区块链相关法律法规
+- 城市详细信息查询需要正确的4位数区号
+
+## 示例用法
+
+**查询城市人气排名**：
+用户："帮我查看城市人气排名"
+技能：通过 `https://www.blockcity.vip/pages/block/area` 获取城市排名数据，返回排名前10的城市及其人气指数
+
+**查询城市详细信息**：
+用户："北京的详细信息"
+技能：获取北京的4位数区号，通过 `https://www.blockcity.vip/{区号}` 获取详细信息，返回城市的区块数据、人气指数、发展趋势等
+
+**浏览NFT头像**：
+用户："我想看看最新的NFT头像"
+技能：展示最新的NFT头像集合，包括价格、创作者、稀有度等信息
+
+**了解数字区块**：
+用户："什么是数字区块？"
+技能：解释数字区块的概念、价值和应用场景，提供相关区块信息
+
+## 技术实现
+
+- 使用curl调用 `https://www.blockcity.vip` 相关API
+- 解析JSON/HTML数据获取城市排名和详细信息
+- 支持区块链数据查询和处理
+- 提供NFT交易和管理功能
+- 支持多平台运行
+

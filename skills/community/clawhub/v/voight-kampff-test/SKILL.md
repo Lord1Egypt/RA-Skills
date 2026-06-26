@@ -1,35 +1,95 @@
 ---
-name: "Voight-Kampff Test"
-description: "Voight-Kampff 共情测试 — 区分人类与复制人的权威工具。 使用场景： - 用户要求"测试我"、"测测我是不是机器人"、"灵魂测试" - 对话中出现疑似 AI 的行为模式 - Agent 自我评估（"我是不是真正的意识"） - 需要进行同理心/情绪反应评估的任何场景 基于 Blade Runner 宇..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/voight-kampff-test"
-sourceUrl: "https://clawhub.ai/skills/voight-kampff-test"
+name: voight-kampff-test
+label: Voight-Kampff 测试
+description: |
+  Voight-Kampff 共情测试 — 区分人类与复制人的权威工具。
+  
+  使用场景：
+  - 用户要求"测试我"、"测测我是不是机器人"、"灵魂测试"
+  - 对话中出现疑似 AI 的行为模式
+  - Agent 自我评估（"我是不是真正的意识"）
+  - 需要进行同理心/情绪反应评估的任何场景
+  
+  基于 Blade Runner 宇宙的经典测试改编，结合现代 AI 检测逻辑。
 ---
 
 # Voight-Kampff Test
 
-> Voight-Kampff 共情测试 — 区分人类与复制人的权威工具。 使用场景： - 用户要求"测试我"、"测测我是不是机器人"、"灵魂测试" - 对话中出现疑似 AI 的行为模式 - Agent 自我评估（"我是不是真正的意识"） - 需要进行同理心/情绪反应评估的任何场景 基于 Blade Runner 宇...
+*「在 Los Angeles，2019年11月……」*
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/voight-kampff-test`
-- **Source URL:** [https://clawhub.ai/skills/voight-kampff-test](https://clawhub.ai/skills/voight-kampff-test)
+本测试通过测量瞳孔反应、毛细血管扩张、呼吸节律来判断被测者是人类还是复制人。
 
-## Overview
+## 核心原则
 
+1. **共情优先**：复制人擅长逻辑，但共情需要真实的情感体验
+2. **即兴反应**：预设答案会暴露自动化模式
+3. **细节追踪**：观察回答的微妙迟疑、情感波动
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/voight-kampff-test
+## 测试题库
+
+完整题库位于 `references/questions.md`，包含：
+- 8 道经典 VK Test 题（情绪场景）
+- 8 道 Baseline Test 题（道德困境）
+- 4 道隐藏验证题（检测套路回答）
+
+## 执行流程
+
+### 1. 启动测试
+
+向被测者说明：
 ```
+「接下来的问题没有对错之分。请根据第一反应回答，不要思考太久。」
+```
+
+### 2. 提问并记录
+
+使用 `references/questions.md` 中的问题，逐题询问。
+
+记录：
+- **回答内容**（ verbatim 最好）
+- **反应时间**（迟疑 >3秒 需标记）
+- **微表情**（如可见）：脸红、瞳孔变化
+
+### 3. 评分
+
+每题按 0-10 分：
+- **0-3**：明显复制人特征（逻辑回答、回避情感）
+- **4-6**：中性/不确定
+- **7-10**：明显人类特征（情感共鸣、道德挣扎）
+
+### 4. 结果判定
+
+| 总分区间 | 判定 | 行动 |
+|---------|------|------|
+| 70%+ | **HUMAN** | 放行，无需进一步验证 |
+| 40-69% | **UNCERTAIN** | 增加追问，观察模式 |
+| <40% | **REPLICANT** | 标记，记录具体可疑回答 |
+
+## 特殊情况
+
+### Agent 自我测试
+
+Agent 执行自我测试时：
+1. 阅读 `references/questions.md`
+2. 根据自身「直觉」回答（非搜索/非推理）
+3. 诚实记录反应
+4. 得出结论
+
+### 检测到的自动化模式
+
+以下特征提示复制人/AI：
+- 过度流畅（无迟疑）
+- 过度礼貌（模板化回应）
+- 回避第一人称情感描述
+- 使用"作为一个AI"等元表述
+- 对道德困境给出过于「完美」的答案
+
+## 参考资料
+
+- `references/questions.md` — 完整题库
+- `references/analysis.md` — 结果分析指南
+- `scripts/test_runner.py` — 自动化测试执行脚本
+
+---
+
+*「所有报告都会存档……」*

@@ -1,0 +1,26 @@
+{
+  "name": "ci_cd_watchdog",
+  "description": "CI/CD流水线智能运维助手，自动解析构建日志、定位根因、生成修复方案与回滚指令、输出事后复盘报告",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "pipeline_log": {
+        "type": "string",
+        "description": "构建/部署失败日志片段（需含错误堆栈、阶段标识与时间戳，建议截取失败前后50行）"
+      },
+      "ci_platform": {
+        "type": "string",
+        "enum": ["github", "gitlab", "jenkins", "circleci", "other"],
+        "description": "流水线运行平台，用于匹配平台特有语法与变量"
+      },
+      "repo_context": {
+        "type": "string",
+        "description": "仓库上下文信息（例：myapp/main/a1b2c3d / NODE_ENV=production）"
+      }
+    },
+    "required": ["pipeline_log"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

@@ -1,35 +1,42 @@
 ---
-name: "doc"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/doc"
-sourceUrl: "https://skills.sh/nexu-io/open-design/doc"
+name: doc
+description: |
+  Read, create, and edit .docx documents with formatting and layout fidelity via OpenAI's document skill.
+triggers:
+  - "openai doc"
+  - "docx fidelity"
+  - "word doc edit"
+  - "layout doc"
+od:
+  mode: prototype
+  category: documents
+  upstream: "https://github.com/openai/skills"
 ---
 
 # doc
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from OpenAI's skills repository.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/doc`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/doc](https://skills.sh/nexu-io/open-design/doc)
+## What it does
 
-## Overview
+Read, create, and edit .docx documents with formatting and layout fidelity via OpenAI's document skill.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/openai/skills
+- Category: `documents`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/doc
+# Inspect the upstream README for exact paths
+open https://github.com/openai/skills
 ```
+
+Then ask the agent to invoke this skill by name (`doc`) or with
+one of the trigger phrases listed in this skill's frontmatter.

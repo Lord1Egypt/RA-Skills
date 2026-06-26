@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {"type": "string"},
+    "summary": {"type": "string"},
+    "keyPoints": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 3,
+      "maxItems": 5
+    }
+  },
+  "required": ["title", "summary", "keyPoints"],
+  "additionalProperties": false
+}

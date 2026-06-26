@@ -1,35 +1,76 @@
 ---
-name: "CN Stock Analysis Pro"
-description: "生成中文A股深度策略研报（HTML/PDF格式）。 当用户提到任何A股代码（6位数字）、股票名称、想分析某只股票、或要求生成研报/策略报告时，立即使用此技能。 适用场景：个股深度分析、ST股风险研判、热点题材追踪、戴帽摘帽分析、行业龙头估值分析、困境反转研判。 输出：专业排版研报，包含封面、核心观点、价格结构、数..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-analysis-pro"
-sourceUrl: "https://clawhub.ai/skills/a-stock-analysis-pro"
+name: a-stock-analysis
+description: |
+  生成中文A股深度策略研报（HTML/PDF格式）。
+  当用户提到任何A股代码（6位数字）、股票名称、想分析某只股票、或要求生成研报/策略报告时，立即使用此技能。
+  适用场景：个股深度分析、ST股风险研判、热点题材追踪、戴帽摘帽分析、行业龙头估值分析、困境反转研判。
+  输出：专业排版研报，包含封面、核心观点、价格结构、数据透视、情景模拟、风险提示、总结七大章节。
+  注意：只要用户说「帮我分析 XXXXXX」「出一份XX的报告」「看看这只票」，就应使用本技能。
 ---
 
-# CN Stock Analysis Pro
+# A股深度策略研报
 
-> 生成中文A股深度策略研报（HTML/PDF格式）。 当用户提到任何A股代码（6位数字）、股票名称、想分析某只股票、或要求生成研报/策略报告时，立即使用此技能。 适用场景：个股深度分析、ST股风险研判、热点题材追踪、戴帽摘帽分析、行业龙头估值分析、困境反转研判。 输出：专业排版研报，包含封面、核心观点、价格结构、数...
+## 执行流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-analysis-pro`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-analysis-pro](https://clawhub.ai/skills/a-stock-analysis-pro)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-analysis-pro
 ```
+Step 0: 前置判断 — 股票类型识别，决定执行哪些数据源
+Step 1: 数据采集 — 按 references/data-sources.md 执行数据源 A~H
+Step 2: 数据整理 — 填入下方标准数据表
+Step 3: 六维分析 — 按 references/analysis-prompts.md 逐章节输出
+Step 4: 报告输出 — 按 references/report-template.md 生成 HTML 文件
+Step 5: 质量检查 — 按 references/report-template.md 中质量清单核验
+```
+
+> 超时处理：单次 fetch/search 超过30秒无响应，立即切换备用搜索词。数据源A+C可并发发起。
+
+## Step 0：前置判断
+
+根据股票类型决定后续路径：
+
+| 类型 | 判断条件 | 额外要求 | 情景概率 A/B/C |
+|------|---------|---------|---------------|
+| ST股 | 简称以"ST"或"*ST"开头 | 必须执行数据源F，涨跌幅标注±5% | 15/55/30 |
+| 强势连板股 | 近7个交易日内有涨停 | 重点执行数据源B龙虎榜+D4澄清公告 | 20/50/30 |
+| 底部低估型 | 52周定位<25% | 重点执行数据源G+股息率分析 | 25/50/25 |
+| 概念炒作高位型 | 52周定位>80% | — | 15/50/35 |
+| 普通股 | 以上均不符合 | 按默认路径执行 | 20/55/25 |
+
+## Step 2：标准数据整理表
+
+采集完成后先填入此表（内部中间产物，不输出到报告）：
+
+```
+================== 数据整理表 ==================
+【基础行情】报告日期：______
+代码：______    简称：______
+今日收盘：______    涨跌幅：______%    昨收：______
+开盘：______    今日区间：______ ~ ______
+52周低：______    52周高：______
+52周定位：______ %    量比：______    换手率：______%
+市值：______亿元    总股本：______亿股
+上市日期：______    发行价：______    较发行价：______%
+
+【估值指标】
+PE-TTM：______    PB：______    EV/EBITDA：______
+EPS：______    每股净资产：______    股息率：______%
+ROE：______%    ROA：______%    毛利率：______%
+技术信号（日线）：______    RSI(14)：______
+
+【最新财报】报告期：______
+营收：______亿元    同比：______%
+归母净利润：______亿元    同比：______%
+扣非净利润：______亿元    同比：______%
+非经常性损益：______万元    单季度净利润：______亿元
+资产负债率：______%    财务费用：______万元
+
+【重大事件（近3个月）】【大股东/股权】【行业景气】【ST状态】
+==========================================
+```
+
+## 参考文件索引
+
+| 需要什么 | 参考文件 |
+|---------|---------|
+| 数据源A~H的完整采集规范、URL模板、提取字段 | [references/data-sources.md](references/data-sources.md) |
+| 六大章节的 LLM 分析提示词模板 | [references/analysis-prompts.md](references/analysis-prompts.md) |
+| HTML 报告模板 + 质量检查清单 | [references/report-template.md](references/report-template.md) |

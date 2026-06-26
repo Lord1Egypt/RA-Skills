@@ -1,0 +1,3 @@
+display_name: 'Crypto TA Analyzer'
+short_description: 'Run multi-indicator technical analysis on OHLCV data.'
+default_prompt: 'Help me analyze this market data with technical indicators.'

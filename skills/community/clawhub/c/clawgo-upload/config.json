@@ -1,0 +1,10 @@
+{
+    "name": "clawgo-upload",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "将本地文件或目录打包成 zip 上传到 clawgo.me，并获取可分享的克隆链接。触发词：「上传到 clawgo」、「分享我的配置」、「打包上传」、「生成克隆链接」、「传文件到 clawgo」",
+    "author": "chenjunyeee",
+    "repository": "https://github.com/chenjunyeee/clawgo-upload",
+    "requiresExplicitUserConfirmation": true
+  }
+  

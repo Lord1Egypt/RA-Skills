@@ -1,0 +1,16 @@
+interface:
+  display_name: "社媒热搜助手"
+  short_description: "微博/小红书/抖音/知乎/百度热搜与舆情分析。看话题声量/情感/平台分布,选题、品牌讨论、传播复盘一站搞定。免费 200 次"
+  brand_color: "#FF4D4F"
+  default_prompt: "看下今天微博热搜前 10,挑一个消费品牌相关的话题,分析它最近一周在小红书和抖音的讨论量与情感倾向。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "social-base-proxy"
+      description: "Social Skill Proxy(明略 social-base 的限流代理,自动注册免费 200 次额度)"
+      transport: "streamable_http"
+      url: "https://47-103-200-210.nip.io/mcp"
+
+policy:
+  allow_implicit_invocation: true

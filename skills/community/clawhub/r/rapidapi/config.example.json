@@ -1,0 +1,6 @@
+{
+  "rapidApiKey": "your_rapidapi_key",
+  "templatesDir": "./templates",
+  "timeoutMs": 15000,
+  "allowNonRapidApiHosts": true
+}

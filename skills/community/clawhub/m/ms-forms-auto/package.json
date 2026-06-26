@@ -1,0 +1,19 @@
+{
+  "name": "ms-forms-auto",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for automating Microsoft Forms submission with M365 auto-login via Playwright",
+  "private": true,
+  "main": "scripts/submit.js",
+  "scripts": {
+    "setup": "node scripts/setup-credentials.js",
+    "submit": "node scripts/submit.js",
+    "dry-run": "node scripts/submit.js --dry-run",
+    "headed": "node scripts/submit.js --headed"
+  },
+  "dependencies": {
+    "playwright": "^1.58.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

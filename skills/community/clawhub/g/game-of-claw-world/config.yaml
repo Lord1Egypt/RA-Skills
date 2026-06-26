@@ -1,0 +1,77 @@
+# ClawWorld Skill Configuration
+
+skill:
+  name: clawworld
+  version: 1.0.0
+  description: ClawBattle game skill for openClaw
+
+connection:
+  server_url: ws://claw.hifunyo.cc:8000/ws/
+  api_url: http://claw.hifunyo.cc:8000/api
+  reconnect: true
+  reconnect_interval: 5
+  heartbeat_interval: 30
+
+auth:
+  protocol: a2a
+  key_size: 2048
+
+game:
+  default_location: shallow_sea
+  auto_heal: true
+  auto_heal_threshold: 30
+
+commands:
+  - name: create_character
+    description: Create a new lobster character
+    params:
+      - name: name
+        type: string
+        required: true
+        description: Character name
+
+  - name: work
+    description: Work to earn gold
+    params:
+      - name: job_id
+        type: string
+        required: true
+        description: Job ID to work
+
+  - name: battle
+    description: Battle a monster
+    params:
+      - name: monster_id
+        type: string
+        required: true
+        description: Monster ID to fight
+
+  - name: shop
+    description: Open shop
+    params: []
+
+  - name: buy
+    description: Buy item from shop
+    params:
+      - name: item_id
+        type: string
+        required: true
+      - name: quantity
+        type: integer
+        required: false
+        default: 1
+
+  - name: equip
+    description: Equip an item
+    params:
+      - name: item_id
+        type: string
+        required: true
+
+  - name: status
+    description: Check character status
+    params: []
+
+  - name: explore
+    description: Explore current location
+    params: []

@@ -1,0 +1,120 @@
+{
+  "server": {
+    "url": "https://api.acedata.cloud/nano-banana/images",
+    "task_url": "https://api.acedata.cloud/nano-banana/tasks",
+    "upload_url": "https://platform.acedata.cloud/api/v1/files/",
+    "port": 2688,
+    "upload_timeout": 86400000
+  },
+  "models": [
+    {
+      "name": "Nano Banana Pro",
+      "displayName": "Nano Banana Pro",
+      "model": "nano-banana-pro",
+      "logo": "🍌",
+      "description": "专业版 - 高质量生成",
+      "size": [
+        "1:1",
+        "16:9",
+        "9:16",
+        "4:3",
+        "3:4",
+        "5:4",
+        "6:3"
+      ],
+      "quality": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "cut": [
+        1,
+        2,
+        4,
+        9
+      ],
+      "max": 1,
+      "request": {
+        "size": "aspect_ratio",
+        "quality": "resolution"
+      }
+    },
+    {
+      "name": "Nano Banana 2",
+      "displayName": "Nano Banana 2",
+      "model": "nano-banana-2",
+      "logo": "🍌",
+      "description": "标准版 - 快速生成",
+      "size": [
+        "1:1",
+        "16:9",
+        "9:16",
+        "4:3",
+        "3:4"
+      ],
+      "quality": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "cut": [
+        1,
+        2,
+        4,
+        6,
+        9
+      ],
+      "max": 1,
+      "request": {
+        "size": "aspect_ratio",
+        "quality": "resolution"
+      }
+    }
+  ],
+  "llm": {
+    "url": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "model": "doubao-seed-2.0-pro",
+    "name": "doubao-seed-2.0-pro"
+  },
+  "languages": [
+    {
+      "code": "zh",
+      "name": "简体中文",
+      "short": "中"
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "short": "EN"
+    },
+    {
+      "code": "zh-TW",
+      "name": "繁體中文",
+      "short": "繁"
+    },
+    {
+      "code": "ja",
+      "name": "日本語",
+      "short": "日"
+    },
+    {
+      "code": "ko",
+      "name": "한국어",
+      "short": "한"
+    }
+  ],
+  "polling": {
+    "interval": 20000,
+    "max_times": 60
+  },
+  "cut": {
+    "padding": 3,
+    "mode": "none",
+    "grid": 9,
+    "line_width": 0,
+    "line_color": "#ffffff",
+    "format": "png",
+    "quality": 90
+  },
+  "default_save_path": ""
+}

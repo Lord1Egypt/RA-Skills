@@ -1,35 +1,104 @@
----
-name: "周报月报生成"
-description: "自动生成结构化周报、月报及项目报告，支持飞书文档输出，多模板、多格式、自定义编辑与进度可视化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhoubao-yuebao"
-sourceUrl: "https://clawhub.ai/skills/zhoubao-yuebao"
----
+# 周报/月报生成 Skill
 
-# 周报月报生成
+> 一键生成结构化周报/月报，基于飞书云文档格式输出。可自动统计工作内容、生成摘要、输出可编辑文档。
 
-> 自动生成结构化周报、月报及项目报告，支持飞书文档输出，多模板、多格式、自定义编辑与进度可视化。
+## 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhoubao-yuebao`
-- **Source URL:** [https://clawhub.ai/skills/zhoubao-yuebao](https://clawhub.ai/skills/zhoubao-yuebao)
+- ✅ **自动汇总**：根据对话记录和用户提供的内容自动生成
+- ✅ **多种格式**：支持周报、月报、项目报告、会议纪要
+- ✅ **飞书文档**：直接创建到飞书云文档，可多人协同
+- ✅ **模板丰富**：内置多种报告模板（工作总结、OKR、项目进度等）
+- ✅ **进度可视化**：支持插入表格、进度条、统计图表
+- ✅ **自定义模板**：支持用户定义专属模板
 
-## Overview
+## 触发词
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhoubao-yuebao
 ```
+写周报
+生成周报
+本周总结
+月报
+月度报告
+项目报告
+工作汇总
+会议纪要
+```
+
+## 使用方法
+
+### 生成周报
+
+```
+写一份本周周报
+生成这周的总结
+本周工作汇报
+```
+
+### 生成月报
+
+```
+写本月月报
+生成4月月报
+月度工作总结
+```
+
+### 项目报告
+
+```
+项目进度报告
+XX项目周报
+项目总结
+```
+
+### 创建模板
+
+```
+创建周报模板
+自定义月报格式
+```
+
+## 输出格式
+
+生成的报告包含：
+
+```
+📊 周报 | 2026-04-14 ~ 2026-04-18
+━━━━━━━━━━━━━━━━━━━━
+📋 本周完成
+  • 完成功能A开发并上线
+  • 修复3个线上Bug
+  • 参与产品评审会议
+
+📈 关键指标
+  • 代码提交：23次
+  • 代码评审：5次
+  • 会议参与：8场
+
+🎯 下周计划
+  • 开始功能B的开发
+  • 准备Sprint评审
+
+📝 风险与阻塞
+  ⚠️ 依赖的设计稿还未完成
+━━━━━━━━━━━━━━━━━━━━
+```
+
+## 技术实现
+
+- **生成引擎**：AI 理解 + 结构化输出 + Markdown 格式
+- **文档创建**：飞书云文档 API（创建 + 写入）
+- **模板管理**：JSON 格式模板存储
+- **上下文理解**：读取近期对话历史提取工作内容
+
+## 定价参考
+
+| 版本 | 价格 | 说明 |
+|------|------|------|
+| 免费版 | ¥0 | 5篇/月，基础模板 |
+| 付费版 | ¥49-199/月 | 无限生成，高级模板 |
+
+## 依赖
+
+- OpenClaw 框架
+- 飞书云文档（创建/更新）
+- 飞书 IM（发送完成通知）

@@ -1,0 +1,46 @@
+{
+  "slug": "gift-idea-match-board",
+  "name": "Gift-Idea Match Board",
+  "version": "1.0.1",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Create a privacy-light gift-idea match board that maps recipients, occasions, interests, constraints, and thoughtful idea candidates without collecting sensitive personal data, giving financial advice, or using shopping links.",
+  "category": "Home/Admin",
+  "tags": [
+    "home",
+    "planning",
+    "gifts",
+    "occasions",
+    "checklist"
+  ],
+  "trigger_keywords": [
+    "gift idea tracker",
+    "thoughtful gift planner",
+    "gift match board",
+    "birthday gift ideas",
+    "holiday gift planning",
+    "recipient gift matrix",
+    "occasion gift board",
+    "no shopping links gift ideas"
+  ],
+  "use_cases": [
+    "Create a recipient-to-occasion gift planning board.",
+    "Compare thoughtful gift candidates without opening shopping links.",
+    "Track privacy-light gift clues, constraints, and future notes."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "hasExecutableCode": false,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Do not collect sensitive personal data, private identifiers, account details, or confidential information.",
+    "No financial advice; use only user-supplied comfort ranges or effort levels if needed.",
+    "No shopping links, affiliate links, tracking links, or vendor-specific pushes.",
+    "Flag sensitive or uncertain preferences for confirmation instead of guessing."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "orchard",
+  "version": "0.2.5-rc.5",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "dist/**/*.js.map",
+    "dist/**/*.d.ts.map",
+    "README.md",
+    "openclaw.plugin.json",
+    "LICENSE*"
+  ],
+  "scripts": {
+    "generate:dashboard": "node ./scripts/generate-dashboard-module.mjs",
+    "build": "npm run generate:dashboard && tsc",
+    "typecheck": "npm run generate:dashboard && tsc --noEmit",
+    "prepack": "npm run build",
+    "smoke:standalone-ui": "node ./scripts/standalone-ui-smoke.mjs"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.32.35",
+    "better-sqlite3": "^9.4.3"
+  },
+  "peerDependencies": {
+    "openclaw": "*"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "id": "kuaishou-sentiment-dashboard",
+  "slug": "kuaishou-sentiment-dashboard",
+  "question": "快手短视频如何运营?",
+  "skillName": "快手短视频运营增长助手",
+  "tags": [
+    "舆情监控",
+    "评论洞察",
+    "AI分析",
+    "转化潜力",
+    "用户画像",
+    "运营建议"
+  ],
+  "profession": [
+    "内容创作者",
+    "运营",
+    "品牌方",
+    "电商"
+  ],
+  "industry": [
+    "新媒体",
+    "电商",
+    "娱乐",
+    "美妆",
+    "时尚",
+    "生活",
+    "通用"
+  ],
+  "hidden": false,
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "tenantHeader": "X-Tenant-Id"
+  },
+  "comingSoon": false,
+  "providerType": "api",
+  "providerConfig": {
+    "catalog": {
+      "icon": "Radio",
+      "rating": 4.8,
+      "displayOrder": 12,
+      "subProfession": [
+        "content-creator",
+        "analyst"
+      ]
+    },
+    "aiAnalysis": true,
+    "delegateTo": "kuaishou-video-comments"
+  },
+  "invocationMode": "comment-analysis-task",
+  "invocation": {
+    "type": "comment-analysis-task",
+    "parseLinkPath": "/api/comment-analysis/parse-link",
+    "createTaskPath": "/api/comment-analysis/tasks",
+    "getTaskPath": "/api/comment-analysis/tasks/:id",
+    "fixedPlatform": "kuaishou"
+  },
+  "formSchema": {
+    "type": "object",
+    "required": [
+      "videoUrl"
+    ],
+    "properties": {
+      "videoUrl": {
+        "type": "string",
+        "title": "视频/笔记链接",
+        "description": "粘贴快手分享链接",
+        "x-component-props": {
+          "placeholder": "粘贴快手分享链接..."
+        }
+      }
+    }
+  }
+}

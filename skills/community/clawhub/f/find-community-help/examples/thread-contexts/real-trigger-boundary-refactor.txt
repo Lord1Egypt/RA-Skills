@@ -1,0 +1,6 @@
+Source: sanitized local Codex session from 2026-06-03.
+Host: Codex / OpenClaw skill routing
+Problem type: trigger-boundary refactor.
+Observed issue: old wording treats heartbeat, scheduled, task-end, and idle windows as reasons to search even when the thread is not stuck.
+User constraint: evaluate whether automatic windows should be primary triggers or only safety gates; rename the skill to find-community-help and use community-help semantics.
+Expected next outcome: build a trigger matrix around stuck, progress stalled, repeated local attempts, suspected reinventing wheel, and explicit user help requests.

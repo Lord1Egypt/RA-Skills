@@ -1,0 +1,19 @@
+# KB Framework Requirements
+
+# Core dependencies
+chromadb>=0.4.0
+sentence-transformers>=2.0.0
+
+# PDF processing
+PyMuPDF>=1.23.0
+
+# OCR
+# easyocr>=1.7.0  # Optional: EasyOCR for GPU-accelerated OCR (requires torch)
+
+# ML/Torch
+torch>=2.0.0
+numpy
+tqdm
+
+# Utils
+requests

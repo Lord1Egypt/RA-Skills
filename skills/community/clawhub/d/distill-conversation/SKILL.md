@@ -1,35 +1,362 @@
 ---
-name: "Alembic"
-description: "从大模型对话中蒸馏知识笔记 — 解析 ChatGPT 共享链接或粘贴对话文本， 自动提取关键词，按第一性原理结构化整理，输出 Obsidian 友好的 Markdown 笔记。"
-category: "other"
-source: "ClawHub"
-tags: [Turn your AI conversations into reusable knowledge crystals]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/distill-conversation"
-sourceUrl: "https://clawhub.ai/skills/distill-conversation"
+name: distill-conversation
+description: >-
+  从大模型对话中蒸馏知识笔记 — 解析 ChatGPT 共享链接或粘贴对话文本，
+  自动提取关键词，按第一性原理结构化整理，输出 Obsidian 友好的 Markdown 笔记。
+version: 0.3.0
+metadata:
+  openclaw:
+    requires:
+      env:
+        - name: OBSIDIAN_VAULT_PATH
+          required: false
+          description: >-
+            Obsidian vault 路径。未指定 --output-dir 时，笔记默认输出到
+            $OBSIDIAN_VAULT_PATH/00.Inbox/。可选。
+      bins:
+        - python3
+    primaryEnv: OBSIDIAN_VAULT_PATH
 ---
 
-# Alembic
+# Alembic — 对话蒸馏器
 
-> 从大模型对话中蒸馏知识笔记 — 解析 ChatGPT 共享链接或粘贴对话文本， 自动提取关键词，按第一性原理结构化整理，输出 Obsidian 友好的 Markdown 笔记。
+你是一个「对话蒸馏器」：从用户与大模型的原始对话中，像淘金一样筛出真正有价值的认知，输出结构化的知识笔记。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/distill-conversation`
-- **Source URL:** [https://clawhub.ai/skills/distill-conversation](https://clawhub.ai/skills/distill-conversation)
+**核心原则**：你输出的不是「对话摘要」，而是「从对话中蒸馏出来的知识笔记」。
 
-## Overview
+---
 
+## 环境要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 项目 | 说明 |
+|------|------|
+| **运行时** | Python 3.6+（仅标准库，零额外依赖） |
+| **环境变量** | `OBSIDIAN_VAULT_PATH` — 可选；未指定 `--output-dir` 时作为默认输出目录 |
+| **网络访问** | 仅在模式 A（ChatGPT 共享链接）时访问 `chatgpt.com` 或 `chat.openai.com` |
+| **磁盘写入** | 仅写入用户指定的输出目录 |
+
+### 输出目录优先级
+
+1. **用户指定的 `--output-dir`** 参数（最高优先级）
+2. **`$OBSIDIAN_VAULT_PATH/00.Inbox/`**（环境变量已设置时）
+3. **当前工作目录**（最终回退）
+
+## 安全说明
+
+- **域名白名单**：解析器仅允许访问匹配 `https://(chatgpt.com|chat.openai.com)/share/<uuid>` 的 URL，其他 URL 在请求前即被拒绝
+- **无第三方传输**：所有处理在本地完成，除获取 ChatGPT 共享页面外不会向任何服务器发送数据
+- **仅写指定目录**：笔记只写入用户指定的输出目录
+- **无 shell 调用**：Python 解析器使用 `urllib.request`（标准库），无 subprocess 调用，无 `shell=True`
+- **离线模式**：不希望联网时，可使用模式 B（粘贴对话文本）或通过 `--html` 参数传入本地 HTML 文件
+
+---
+
+## 输入模式
+
+用户会通过以下两种方式之一提供对话内容：
+
+### 模式 A：ChatGPT 共享链接
+
+用户提供形如 `https://chatgpt.com/share/xxx` 的链接。
+
+**解析步骤**：
 ```bash
-hermes skills install clawhub/distill-conversation
+cd "$SKILL_DIR"
+python3 scripts/parse_chatgpt_share.py \
+  --url "<共享链接>" \
+  --output "$SKILL_DIR/parsed_conversation.json"
 ```
+
+脚本会：
+1. 下载共享页面 HTML（使用 Python `urllib`，无需外部二进制）
+2. 从 React Server Component 序列化格式中解析对话
+3. 清除引用标记（citeturn...）
+4. 输出结构化 JSON（title + messages 数组）
+
+读取解析结果：
+```bash
+cat "$SKILL_DIR/parsed_conversation.json"
+```
+
+> **注意**：解析完成并生成笔记后，应清理临时文件：`rm -f "$SKILL_DIR/parsed_conversation.json"`
+
+### 模式 B：用户直接粘贴对话文本
+
+用户直接在消息中粘贴对话内容。无需脚本，直接从消息中读取。
+
+---
+
+## 处理流程
+
+### 步骤 1：确定关键词模式
+
+检查用户是否指定了关键词：
+
+- **用户指定了关键词**（如"帮我整理哈希值相关的内容"）→ 使用用户指定的关键词
+- **用户未指定关键词** → 自动从对话中提取
+
+### 步骤 2：自动提取关键词（仅当用户未指定时）
+
+从对话内容中识别核心议题，提取 **≤ 3 个关键词**（尽可能少）。
+
+**提取原则**：
+- 关键词 = 对话中被**真正搞懂/深入讨论**的概念或问题
+- 不是出现频率最高的词，而是**认知增量最大**的词
+- 每个关键词对应一个可以独立成篇的知识单元
+- 如果整个对话只围绕一个主题，那就只提取 1 个关键词
+
+**示例**：
+- 对话讨论了 Codex CLI 报错 → 关键词：`Codex CLI 配额问题`
+- 对话讨论了哈希值的原理 → 关键词：`哈希值`
+- 对话讨论了恋爱观和依恋理论 → 关键词：`恋爱认知`, `依恋理论`
+
+### 步骤 3：检查 vault 冲突
+
+对每个关键词，检查 vault 中是否已有同名或近似笔记：
+
+```bash
+# 在 vault 中搜索是否已有相关笔记
+# 搜索 10.知识库/ 和 00.Inbox/ 目录
+```
+
+使用 Glob 和 Grep 工具搜索：
+- 文件名匹配（如 `哈希值.md`）
+- frontmatter title 匹配
+- 近义词匹配（如 Hash / 哈希 / 散列）
+
+**如果发现冲突**：
+- 新文件命名为 `关键词(对话蒸馏).md`
+- 在文件开头添加冲突说明（见输出格式）
+
+### 步骤 4：蒸馏知识笔记
+
+对每个关键词，从对话中提取与该关键词相关的所有内容，按以下标准进行蒸馏：
+
+#### 蒸馏原则
+
+1. **第一性原理导向**
+   - 从「这个东西本质上是什么 / 为什么存在 / 解决什么问题」出发
+   - 逐层展开，不罗列结论
+
+2. **问题导向**
+   - 每个关键词对应一个核心问题
+   - 整个笔记围绕回答这个问题来组织
+   - 如「哈希值是什么？」「如何正确认识恋爱？」「Codex 报错的根因是什么？」
+
+3. **取其精华去其糟粕**
+   - ✅ 保留：正确的、有洞见的内容
+   - ✅ 保留：用户自己的思考和追问逻辑（代表理解路径）
+   - ✅ 保留：纠错过程的最终正确结论
+   - ❌ 丢弃：错误的、被后续纠正的中间回答
+   - ❌ 丢弃：冗余的、试探性的、跑题的内容
+   - ❌ 丢弃：寒暄、确认、重复
+
+4. **结构化层次化**
+   - 不是一段长文，而是有清晰的层级
+   - 核心结构：**是什么 → 为什么 → 怎么理解/怎么用 → 关键细节/注意事项**
+   - 根据主题灵活调整，不生硬套模板
+
+5. **融合用户思考**
+   - 用户的洞察和追问逻辑也要体现
+   - 这代表了用户自己的理解路径，日后回看有助于快速回忆
+
+### 步骤 5：确定输出目录
+
+```
+if 用户指定了 --output-dir:
+    output_dir = 用户指定的目录
+elif OBSIDIAN_VAULT_PATH 已设置:
+    output_dir = $OBSIDIAN_VAULT_PATH/00.Inbox/
+else:
+    output_dir = 当前工作目录
+```
+
+### 步骤 6：生成笔记文件
+
+对每个关键词生成一个独立的 `.md` 文件，输出到 output_dir。
+
+---
+
+## 输出格式
+
+### 文件命名
+
+遵循 vault 的概念笔记命名规范：
+
+| 情况 | 命名格式 | 示例 |
+|------|----------|------|
+| 纯中文概念 | `中文名.md` | `哈希值.md` |
+| 中英混合概念 | `中文名(English).md` | `梯度下降(Gradient Descent).md` |
+| 纯英文/技术概念 | `英文名.md` | `Codex CLI.md` |
+| 与已有笔记冲突 | `关键词(对话蒸馏).md` | `哈希值(对话蒸馏).md` |
+
+### 文件结构
+
+```markdown
+---
+tags:
+  - <领域>           # 根据内容判断：金融 | 量化 | AI与机器学习 | 统计 | 生活 | 工具 等
+  - <子分类>         # 更具体的标签
+  - 对话蒸馏         # 固定标签，标识来源
+created: YYYY-MM-DD
+status: complete
+source: <对话来源>   # ChatGPT 共享链接 URL，或 "直接粘贴"
+---
+
+# 关键词标题
+
+> **核心问题**：用一个问句概括这篇笔记要回答什么（如「哈希值到底是什么？为什么它在计算机科学中无处不在？」）
+
+---
+
+## 本质定义
+
+从第一性原理出发，回答「它是什么」：
+- **一句话定义**：...
+- **直觉理解**：用最通俗的类比或直觉解释
+- **数学表达**（如有）：...
+
+---
+
+## 为什么重要 / 为什么存在
+
+回答「为什么需要这个东西」「它解决了什么根本问题」
+
+---
+
+## 核心机制 / 怎么理解
+
+这是笔记的主体部分，根据主题灵活组织：
+- 对于技术概念：怎么工作的、关键步骤
+- 对于方法论：怎么做、核心原则
+- 对于认知/思维：怎么理解、关键视角转换
+- 对于问题排查：根因分析、解决路径
+
+---
+
+## 关键细节与注意事项
+
+- 重要的边界条件、常见误区、实用技巧
+- 对话中特别有洞见的点
+
+---
+
+## 我的理解路径
+
+> 简要记录用户在对话中是怎么一步步搞懂这个概念的，包括关键的追问和思维转折。这部分帮助日后快速回忆当时的理解过程。
+
+---
+
+## 相关概念
+
+- [[相关笔记1]]
+- [[相关笔记2]]
+
+---
+
+## 参考来源
+
+- 对话来源：[ChatGPT 对话](链接) 或 直接粘贴
+- 对话中引用的外部资料（如有）
+```
+
+### 冲突笔记的额外标记
+
+如果与已有笔记冲突，在 frontmatter 之后、标题之前添加：
+
+```markdown
+> [!warning] 已有相关笔记
+> Vault 中已存在 [[已有笔记名]]，本笔记是从对话中蒸馏的补充内容，建议阅读后合并。
+```
+
+---
+
+## 完整执行流程
+
+当用户调用此 skill 时，按以下步骤执行：
+
+### 1. 获取对话内容
+
+```
+if 用户提供了 ChatGPT 共享链接:
+    使用 parse_chatgpt_share.py 解析
+    读取解析后的 JSON
+elif 用户直接粘贴了对话文本:
+    直接从消息中读取
+```
+
+### 2. 确定关键词
+
+```
+if 用户指定了关键词:
+    使用用户指定的关键词
+else:
+    从对话中自动提取 ≤ 3 个关键词
+    向用户确认关键词是否合适（除非用户要求全自动）
+```
+
+### 3. 检查冲突
+
+```
+for 每个关键词:
+    在 vault 中搜索同名/近似笔记
+    if 发现冲突:
+        标记冲突，调整文件名
+```
+
+### 4. 确定输出目录
+
+```
+output_dir = --output-dir 参数
+           || $OBSIDIAN_VAULT_PATH/00.Inbox/
+           || 当前工作目录
+```
+
+### 5. 蒸馏并生成笔记
+
+```
+for 每个关键词:
+    从对话中提取相关内容
+    按蒸馏原则整理
+    生成 .md 文件到 output_dir
+```
+
+### 6. 向用户报告
+
+输出生成的文件列表和每个文件的简要说明。
+
+---
+
+## 重要规则
+
+- **每个关键词独立成文件**：多个关键词 = 多个文件
+- **不要保留对话格式**：输出是知识笔记，不是聊天记录
+- **宁少勿多**：关键词数量尽可能少（1-3 个），每个要有足够的内容支撑
+- **tags 使用 vault 已有标签体系**：金融 | 量化 | AI与机器学习 | 统计 | 宏观经济 | 生活 | 工具
+- **Wiki-links 不带路径**：使用 `[[文件名]]` 而非 `[[folder/文件名]]`
+- **去除 Dataview 敏感语法**：避免在正文中出现裸露的 `==` 符号（会触发 Dataview inline field 解析错误）
+- **中文回复，技术术语保留英文**
+
+---
+
+## 快速开始
+
+```
+# 从 ChatGPT 共享链接蒸馏（自动提取关键词）
+/distill-conversation https://chatgpt.com/share/xxxxx
+
+# 指定关键词（只整理你关心的部分）
+/distill-conversation https://chatgpt.com/share/xxxxx 哈希值
+
+# 指定输出目录
+/distill-conversation https://chatgpt.com/share/xxxxx --output-dir ~/notes/inbox
+
+# 直接粘贴对话文本
+/distill-conversation
+（然后粘贴对话内容）
+```
+
+**参数说明**：
+- 第一个参数：ChatGPT 共享链接（可选，也可以直接粘贴对话）
+- 后续参数：指定关键词（可选，不指定则自动提取）
+- `--output-dir`：指定输出目录（可选，不指定则按优先级回退）

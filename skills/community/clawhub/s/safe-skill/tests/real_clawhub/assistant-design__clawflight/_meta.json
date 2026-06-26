@@ -1,0 +1,11 @@
+{
+  "owner": "assistant-design",
+  "slug": "clawflight",
+  "displayName": "ClawFlight",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772322745989,
+    "commit": "https://github.com/openclaw/skills/commit/7e9642b6f96430b75c19c997788125cd160c8ca1"
+  },
+  "history": []
+}

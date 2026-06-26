@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DevTool Answer Monitor Query Pool",
+  "type": "object",
+  "required": ["project", "version", "segments"],
+  "properties": {
+    "project": {"type": "string"},
+    "version": {"type": "string"},
+    "description": {"type": "string"},
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "language", "priority", "query"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["brand", "capability", "ecosystem", "competitor", "negative"]},
+          "language": {"type": "string"},
+          "priority": {"enum": ["P0", "P1", "P2"]},
+          "query": {"type": "string"},
+          "funnel_stage": {"enum": ["awareness", "selection", "integration", "activation", "agent"]},
+          "target_surface": {"type": "string"},
+          "desired_action": {"type": "string"}
+        }
+      }
+    }
+  }
+}

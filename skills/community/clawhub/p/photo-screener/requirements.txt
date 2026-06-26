@@ -1,0 +1,7 @@
+# photo-screener dependencies
+# Uses Apple MobileCLIP2-S0 via open_clip for fast inference
+torch>=2.0.0
+open-clip-torch>=2.24.0
+pillow>=10.0.0
+numpy>=1.24.0
+pillow-heif>=0.13.0  # optional: HEIC/HEIF support (iPhone/iPad). NOTE: GPLv2 licensed

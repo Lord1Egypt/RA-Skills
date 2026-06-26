@@ -1,0 +1,19 @@
+{
+  "name": "@modelfitai/outreach-crm",
+  "version": "1.0.0",
+  "description": "Track leads locally in JSON, manage outreach campaigns, log interactions, and export to CSV — no external database required.",
+  "keywords": ["openclaw", "skill", "crm", "lead-gen", "outreach", "csv", "sales"],
+  "author": "ModelFitAI <skills@modelfitai.com>",
+  "license": "MIT",
+  "homepage": "https://modelfitai.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelfitai/openclaw-skills"
+  },
+  "main": "outreach-crm.js",
+  "engines": { "node": ">=18" },
+  "openclaw": {
+    "skill": true,
+    "requires": {}
+  }
+}

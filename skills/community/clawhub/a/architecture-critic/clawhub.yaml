@@ -1,0 +1,36 @@
+name: architecture-critic
+version: 1.1.0
+license: MIT
+author: jfulmines-star
+
+runtime:
+  requires:
+    - python3 >= 3.8
+    - bash >= 4.0
+    - pip: anthropic
+
+credentials:
+  - name: ANTHROPIC_API_KEY
+    description: Anthropic API key — used to call claude-sonnet for the critic review. Billed to your Anthropic account (~$0.03–$0.10 per run).
+    required: true
+    source: env or ~/.openclaw/openclaw.json
+
+data:
+  sends_to_external: true
+  external_services:
+    - name: Anthropic API
+      purpose: Runs the architecture critic review (LLM call)
+      data_sent: task brief, repository file tree, dependency list, recent git commits
+  writes_local_files:
+    - path: specialists/critic-verdicts/YYYY-MM-DD-<slug>.md
+      purpose: Stores the critic verdict for audit trail
+  temp_files:
+    - path: /tmp/critic-prompt-XXXX.txt
+      purpose: Transient prompt file, removed immediately after use via EXIT trap
+
+human_override: true
+description: >
+  Adversarial pre-build architecture review. A structurally independent agent reviews
+  proposed builds before any code is written. Returns APPROVE, REVISE, or REJECT with
+  specific itemized findings. Acts as a build gate — builds do not proceed without an
+  APPROVE verdict or explicit human override. See SECURITY.md for full data handling details.

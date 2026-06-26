@@ -1,0 +1,220 @@
+<div class="content">
+  <h2 class="section-title page-break" id="part5">
+    <span class="num">§05</span> 交互说明
+  </h2>
+  <p class="section-en">Interaction Design</p>
+  <p class="section-intro">页面逻辑与交互细节</p>
+
+  <h3>5.1 设计原则</h3>
+  <ul>
+    <li><strong>一致性：</strong>相同功能的交互方式保持一致</li>
+    <li><strong>反馈：</strong>用户操作后提供即时反馈</li>
+    <li><strong>容错：</strong>允许用户撤销操作，提供明确的错误提示</li>
+    <li><strong>简洁：</strong>减少用户操作步骤，降低认知负担</li>
+  </ul>
+
+  <h3>5.2 全局交互</h3>
+
+  <h4>5.2.1 导航规范</h4>
+  <table>
+    <tr>
+      <th>导航类型</th>
+      <th>使用场景</th>
+      <th>交互说明</th>
+    </tr>
+    <tr>
+      <td>底部导航</td>
+      <td>一级页面切换</td>
+      <td>固定底部，点击切换页面，当前项高亮</td>
+    </tr>
+    <tr>
+      <td>顶部导航</td>
+      <td>返回/标题/操作</td>
+      <td>左侧返回，中间标题，右侧操作按钮</td>
+    </tr>
+    <tr>
+      <td>侧边导航</td>
+      <td>功能分类（Web端）</td>
+      <td>可折叠，当前选中的菜单高亮</td>
+    </tr>
+  </table>
+
+  <h4>5.2.2 状态规范</h4>
+  <table>
+    <tr>
+      <th>状态类型</th>
+      <th>视觉表现</th>
+      <th>交互说明</th>
+    </tr>
+    <tr>
+      <td>加载中</td>
+      <td>Loading动画/骨架屏</td>
+      <td>异步请求时显示，完成后消失</td>
+    </tr>
+    <tr>
+      <td>空状态</td>
+      <td>插图+文案+操作按钮</td>
+      <td>无数据时展示，引导用户操作</td>
+    </tr>
+    <tr>
+      <td>错误状态</td>
+      <td>错误插图+重试按钮</td>
+      <td>加载失败时展示，支持重试</td>
+    </tr>
+    <tr>
+      <td>禁用状态</td>
+      <td>置灰，不可点击</td>
+      <td>条件不满足时禁用，满足后启用</td>
+    </tr>
+  </table>
+
+  <h4>5.2.3 反馈规范</h4>
+  <table>
+    <tr>
+      <th>反馈类型</th>
+      <th>使用场景</th>
+      <th>持续时间</th>
+    </tr>
+    <tr>
+      <td>Toast</td>
+      <td>轻量级提示（成功/失败/警告）</td>
+      <td>2-3秒</td>
+    </tr>
+    <tr>
+      <td>Dialog</td>
+      <td>需要用户确认的操作</td>
+      <td>等待用户操作</td>
+    </tr>
+    <tr>
+      <td>Snackbar</td>
+      <td>带操作的提示（如撤销）</td>
+      <td>4-5秒</td>
+    </tr>
+    <tr>
+      <td>页面提示</td>
+      <td>表单校验错误</td>
+      <td>常驻，修正后消失</td>
+    </tr>
+  </table>
+
+  <h3>5.3 页面交互详情</h3>
+
+  <h4>5.3.1 【页面名称】</h4>
+
+  <p><strong>页面入口：</strong>【从哪些页面可以进入】</p>
+  <p><strong>页面出口：</strong>【可以跳转到哪些页面】</p>
+
+  <p><strong>页面元素：</strong></p>
+  <table>
+    <tr>
+      <th>元素</th>
+      <th>位置</th>
+      <th>交互</th>
+      <th>备注</th>
+    </tr>
+    <tr>
+      <td>【元素1】</td>
+      <td>【位置】</td>
+      <td>【点击/滑动等交互效果】</td>
+      <td>【特殊说明】</td>
+    </tr>
+    <tr>
+      <td>【元素2】</td>
+      <td>【位置】</td>
+      <td>【点击/滑动等交互效果】</td>
+      <td>【特殊说明】</td>
+    </tr>
+  </table>
+
+  <p><strong>交互流程：</strong></p>
+  <ol>
+    <li>【步骤1：用户操作】→ 【系统响应】</li>
+    <li>【步骤2：用户操作】→ 【系统响应】</li>
+    <li>【步骤3：用户操作】→ 【系统响应】</li>
+  </ol>
+
+  <p><strong>异常流程：</strong></p>
+  <ul>
+    <li>【异常情况1】→ 【处理方式】</li>
+    <li>【异常情况2】→ 【处理方式】</li>
+  </ul>
+
+  <h4>5.3.2 【页面名称】</h4>
+  <p>【参照上述结构描述其他页面】</p>
+
+  <h3>5.4 动画效果</h3>
+
+  <table>
+    <tr>
+      <th>动画场景</th>
+      <th>动画类型</th>
+      <th>时长</th>
+      <th>缓动函数</th>
+    </tr>
+    <tr>
+      <td>页面切换</td>
+      <td>左右滑动</td>
+      <td>300ms</td>
+      <td>ease-in-out</td>
+    </tr>
+    <tr>
+      <td>列表加载</td>
+      <td>渐显+上移</td>
+      <td>200ms</td>
+      <td>ease-out</td>
+    </tr>
+    <tr>
+      <td>按钮点击</td>
+      <td>缩放0.95</td>
+      <td>100ms</td>
+      <td>ease-in</td>
+    </tr>
+    <tr>
+      <td>Toast显示</td>
+      <td>渐显</td>
+      <td>200ms</td>
+      <td>ease-out</td>
+    </tr>
+  </table>
+
+  <h3>5.5 手势操作</h3>
+
+  <table>
+    <tr>
+      <th>手势</th>
+      <th>使用场景</th>
+      <th>触发效果</th>
+    </tr>
+    <tr>
+      <td>下拉刷新</td>
+      <td>列表页面顶部</td>
+      <td>刷新列表数据</td>
+    </tr>
+    <tr>
+      <td>上拉加载</td>
+      <td>列表页面底部</td>
+      <td>加载更多数据</td>
+    </tr>
+    <tr>
+      <td>左滑</td>
+      <td>列表项</td>
+      <td>显示删除/更多操作</td>
+    </tr>
+    <tr>
+      <td>右滑返回</td>
+      <td>任意页面左侧边缘</td>
+      <td>返回上一页</td>
+    </tr>
+    <tr>
+      <td>双击</td>
+      <td>图片</td>
+      <td>放大/缩小</td>
+    </tr>
+    <tr>
+      <td>长按</td>
+      <td>列表项/图片</td>
+      <td>弹出操作菜单</td>
+    </tr>
+  </table>
+
+</div>

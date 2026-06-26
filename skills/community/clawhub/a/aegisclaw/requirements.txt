@@ -1,0 +1,13 @@
+# 金甲龙虾 (AegisClaw) 依赖
+
+# HTTP 请求
+requests>=2.31.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# 日期处理
+python-dateutil>=2.8.2
+
+# 数据可视化（可选，用于海报生成）
+matplotlib>=3.8.0

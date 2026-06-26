@@ -1,0 +1,8 @@
+{
+  "name": "code-review",
+  "version": "1.0.1",
+  "displayName": "Code Review",
+  "description": "Iterative code review using multiple independent subagent reviews",
+  "license": "MIT",
+  "main": "SKILL.md"
+}

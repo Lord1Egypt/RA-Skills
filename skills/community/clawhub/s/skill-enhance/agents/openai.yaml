@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Enhance"
+  short_description: "Create, harden, review, and locally customize skills"
+  default_prompt: "Use $skill-enhance to create or improve a skill, harden its trigger boundary and workflow, fill missing artifacts such as README, evals, metadata, or references, review whether it is ready to publish, and safely optimize a local skill package. If local modification is requested, verify access and writeability first, then confirm the target path and edit intent before editing."

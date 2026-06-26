@@ -1,35 +1,123 @@
 ---
-name: "Weather Plus"
-description: "获取全球城市天气信息和预报。使用场景包括查询当前天气、未来7天预报、空气质量、穿衣建议等。适用于用户问天气、温度、预报等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anmu-weather"
-sourceUrl: "https://clawhub.ai/skills/anmu-weather"
+name: weather-plus
+description: 获取全球城市天气信息和预报。使用场景包括查询当前天气、未来7天预报、空气质量、穿衣建议等。适用于用户问天气、温度、预报等。
 ---
 
-# Weather Plus
+# 天气查询 Skill
 
-> 获取全球城市天气信息和预报。使用场景包括查询当前天气、未来7天预报、空气质量、穿衣建议等。适用于用户问天气、温度、预报等。
+获取全球城市天气信息和详细预报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anmu-weather`
-- **Source URL:** [https://clawhub.ai/skills/anmu-weather](https://clawhub.ai/skills/anmu-weather)
+## 数据来源
 
-## Overview
+- **wttr.in** — 全球城市天气，无 API Key 需要
+- **Open-Meteo** — 免费天气预报 API，支持 7 天预报
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anmu-weather
+### 1. 查询当前天气
+
+用户可能问：
+- "今天天气怎么样？"
+- "现在多少度？"
+- "北京今天冷吗？"
+
+执行流程：
+1. 提取城市名称
+2. 使用 wttr.in 获取天气数据
+3. 提取温度、天气状况、湿度、风力
+4. 返回简洁的天气报告
+
+### 2. 查询天气预报
+
+用户可能问：
+- "明天会下雨吗？"
+- "这周末天气如何？"
+- "下周一的天气怎么样？"
+- "东京未来7天天气"
+
+执行流程：
+1. 确定查询的天数（1-7天）
+2. 调用 wttr.in 或 Open-Meteo 获取预报
+3. 整理每日最高/最低温度、天气状况
+4. 返回预报列表
+
+### 3. 详细气象信息
+
+用户可能问：
+- "湿度多少？"
+- "风力几级？"
+- "空气质量怎么样？"
+- "日出日落时间？"
+
+执行流程：
+1. 获取完整天气数据（JSON 格式）
+2. 提取相关气象要素
+3. 格式化输出
+
+### 4. 穿衣建议
+
+用户可能问：
+- "明天穿什么？"
+- "去三亚需要带什么？"
+- "哈尔滨冬天穿什么？"
+
+执行流程：
+1. 获取温度范围和天气状况
+2. 根据温度给出穿衣建议
+3. 提醒是否需要带伞、防晒等
+
+### 5. 多城市对比
+
+用户可能问：
+- "北京和上海天气对比"
+- "这几个城市哪个更暖和？"
+
+执行流程：
+1. 提取多个城市名称
+2. 并行获取各城市天气
+3. 对比分析后返回
+
+## 输出格式
+
+### 当前天气
 ```
+🌤️ 北京今日天气
+- 温度：15°C
+- 体感：13°C
+- 天气：晴
+- 湿度：45%
+- 风力：东北风 3级
+- 空气质量：良
+```
+
+### 天气预报
+```
+📅 北京天气预报 (3月17日-19日)
+
+3月17日（周一）☀️ 晴
+- 最高 18°C | 最低 8°C
+- 风向：北风 2级
+
+3月18日（周二）🌤️ 多云
+- 最高 16°C | 最低 10°C
+- 风向：东南风 3级
+
+3月19日（周三）🌧️ 小雨
+- 最高 14°C | 最低 9°C
+- 降水概率：60%
+```
+
+### 穿衣建议
+```
+👕 穿衣建议（北京，3月17日）
+- 建议：长袖衬衫 + 薄外套
+- 早晚温差较大，建议带件外套
+- 无需带伞，适宜外出
+```
+
+## 注意事项
+
+- wttr.in 在国内访问可能不稳定，可备用 Open-Meteo
+- 预报准确度随天数递减，3天内较准确
+- 极端天气请查询官方气象预警
+- 部分小城市可能无法查询

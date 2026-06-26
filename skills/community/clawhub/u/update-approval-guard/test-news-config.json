@@ -1,0 +1,43 @@
+{
+  "name": "科技产业资讯简报",
+  "description": "人工智能与新能源领域的最新资讯",
+  
+  "keywords": [
+    {
+      "category": "人工智能",
+      "enabled": true,
+      "terms": [
+        "人工智能 最新进展",
+        "GPT 大模型"
+      ],
+      "weight": 1.0,
+      "maxResults": 5
+    },
+    {
+      "category": "新能源汽车",
+      "enabled": true,
+      "terms": [
+        "新能源汽车 技术"
+      ],
+      "weight": 0.8,
+      "maxResults": 3
+    }
+  ],
+  
+  "searchSettings": {
+    "days": 3,
+    "maxResultsPerKeyword": 10,
+    "language": "zh-CN"
+  },
+  
+  "output": {
+    "format": "markdown",
+    "includeSummary": true,
+    "includeStats": true,
+    "maxDescriptionLength": 200
+  },
+  
+  "push": {
+    "enabled": false
+  }
+}

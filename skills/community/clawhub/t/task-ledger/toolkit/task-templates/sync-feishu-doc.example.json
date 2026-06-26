@@ -1,0 +1,67 @@
+{
+  "taskId": "sync-feishu-doc-20260307-1241",
+  "title": "同步 Feishu 文档内容",
+  "goal": "将本地变更同步到指定 Feishu 文档并完成验证",
+  "status": "waiting",
+  "priority": "normal",
+  "createdAt": "2026-03-07T12:41:00+08:00",
+  "startedAt": "2026-03-07T12:42:00+08:00",
+  "updatedAt": "2026-03-07T12:48:00+08:00",
+  "completedAt": null,
+  "lastVerifiedAt": "2026-03-07T12:48:00+08:00",
+  "ownerSession": "main",
+  "owner": "main",
+  "assignedAgent": null,
+  "executionMode": "subsession",
+  "idempotent": true,
+  "canResume": true,
+  "retryCount": 0,
+  "maxRetries": 2,
+  "stage": "verify",
+  "stages": [
+    { "id": "read_local", "status": "done" },
+    { "id": "open_doc", "status": "done" },
+    { "id": "sync_content", "status": "done" },
+    { "id": "verify", "status": "running" },
+    { "id": "report", "status": "todo" }
+  ],
+  "dependsOn": [],
+  "blockedBy": [],
+  "blockedReason": null,
+  "nextAction": "Verify remote document content before reporting completion",
+  "resumeHint": "Check the actual remote document state before replaying writes.",
+  "decisionNotes": "Remote verification is its own stage to avoid double-writing content after interruptions.",
+  "workingSummary": "Remote write likely completed; waiting on verification before final report.",
+  "artifacts": {
+    "logPath": "logs/sync-feishu-doc-20260307-1241.log",
+    "outputDir": "outputs/sync-feishu-doc-20260307-1241",
+    "files": []
+  },
+  "process": {
+    "sessionId": null,
+    "pid": null
+  },
+  "subtask": {
+    "sessionKey": "example-subtask-session",
+    "agentId": "main"
+  },
+  "cron": {
+    "jobId": null,
+    "schedule": null,
+    "nextRunAt": null
+  },
+  "rollback": {
+    "available": false,
+    "strategy": null,
+    "status": "not-applicable",
+    "artifacts": []
+  },
+  "notifications": {
+    "notifiedStart": false,
+    "notifiedCompletion": false,
+    "notifiedRecovery": false
+  },
+  "events": [],
+  "result": null,
+  "error": null
+}

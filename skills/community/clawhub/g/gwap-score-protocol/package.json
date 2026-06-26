@@ -1,0 +1,28 @@
+{
+  "name": "gwap-score-protocol",
+  "version": "1.0.1",
+  "description": "Instruction-only GwapScore Protocol skill for transparent Solana onchain trust scoring using deterministic 300-900 scoring, confidence, attestations, caps, review triggers, and partner-safe explanations.",
+  "license": "MIT-0",
+  "keywords": [
+    "openclaw-skill",
+    "gwapscore",
+    "solana",
+    "trust-score",
+    "onchain-reputation",
+    "wallet-intelligence"
+  ],
+  "openclaw": {
+    "extensions": [
+      {
+        "type": "skill",
+        "path": "SKILL.md"
+      }
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "references/",
+    "templates/",
+    "assets/"
+  ]
+}

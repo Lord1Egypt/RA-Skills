@@ -1,0 +1,3 @@
+display_name: Taku Review
+short_description: Review implementation diffs before shipping.
+default_prompt: Use Taku Review to inspect the current diff, fix or report important findings, and summarize remaining concerns.

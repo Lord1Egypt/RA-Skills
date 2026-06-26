@@ -1,0 +1,77 @@
+{
+  "id": "code-review-assistant",
+  "name": "AI Code Review Assistant",
+  "version": "1.0.0",
+  "description": "AI驱动的智能代码审查助手，自动化代码质量、安全和性能分析。支持多语言、多维度审查，生成详细审查报告。",
+  "author": "蒲公英",
+  "license": "MIT",
+  "tags": ["code-review", "ai", "static-analysis", "code-quality", "security", "performance", "astronclaw", "developer-tools"],
+  "requires": {
+    "astronclaw": ">=1.0.0"
+  },
+  "capabilities": {
+    "tools": [
+      "CodeReview",
+      "CodeQualityScan",
+      "SecurityAudit",
+      "PerformanceAnalysis",
+      "GenerateReviewReport"
+    ],
+    "config": {
+      "reviewLevel": {
+        "description": "审查深度配置",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["basic", "standard", "advanced"],
+              "default": "standard"
+            },
+            "includeSecurity": {
+              "type": "boolean",
+              "default": true
+            },
+            "includePerformance": {
+              "type": "boolean",
+              "default": true
+            },
+            "includeArchitecture": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      },
+      "aiSettings": {
+        "description": "AI分析配置",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "provider": {
+              "type": "string",
+              "enum": ["iflytek-spark", "openai", "claude"],
+              "default": "iflytek-spark"
+            },
+            "model": {
+              "type": "string",
+              "default": "spark-3.0"
+            }
+          }
+        }
+      }
+    }
+  },
+  "entryPoints": {
+    "tool": "src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/code-review-assistant"
+  },
+  "documentation": "https://github.com/your-repo/code-review-assistant#readme"
+}

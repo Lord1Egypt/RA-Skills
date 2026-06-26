@@ -1,0 +1,19 @@
+{
+  "name": "book-skill-finder",
+  "version": "1.0.16",
+  "description": "Search 5904 nonfiction books from Heardly database. Local only, no network calls.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "book",
+    "search",
+    "nonfiction",
+    "heardly",
+    "agent",
+    "skill"
+  ],
+  "author": "jaysonmeng",
+  "license": "MIT"
+}

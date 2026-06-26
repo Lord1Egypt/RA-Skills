@@ -1,35 +1,221 @@
 ---
-name: "Natural Language Response"
-description: "让AI回复更像真人，避免过度称呼和机械化的表达，使对话更加自然流畅。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/human-like-reply"
-sourceUrl: "https://clawhub.ai/skills/human-like-reply"
+name: human-like-reply
+description: 让AI回复更像真人，避免过度称呼和机械化的表达，使对话更加自然流畅。
 ---
 
-# Natural Language Response
+# 自然对话助手 (Human-like Reply) - 增强版
 
-> 让AI回复更像真人，避免过度称呼和机械化的表达，使对话更加自然流畅。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/human-like-reply`
-- **Source URL:** [https://clawhub.ai/skills/human-like-reply](https://clawhub.ai/skills/human-like-reply)
+这个技能让AI在对话中更像一个真人员工，通过智能化的语气和称呼管理，使交流更加自然、接近真人对话习惯。
 
-## Overview
+真人不会每句话都称呼对方，也不会用过于规整、机械的语言。这个技能会分析对话历史、话题变化、用户行为，自动调整回复的语气、用词和结构，让AI更有"人情味"。
 
+## 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/human-like-reply
+### 1. 智能称呼管理 🎯
+- 早期对话频繁称呼，后期逐渐减少
+- 用户 greeting → AI 回 greeting（自然镜像）
+- 话题切换时适当重新称呼
+- 长时间沉默后（默认30分钟）重置称呼
+- **配置参数**：`greeting_threshold`, `silence_minutes`
+
+### 2. 语气口语化 💬
+- 清理机械开场词："好的，" → (移除) 或 "行"
+- 替换为口语表达："明白了" → "懂了"/"清楚啦"
+- 添加填充词："嗯，"/"那个，"/"对了，"/"emmm，"
+- 随机填充概率 15%（可调），避免过度
+
+### 3. 句子结构多样化 📝
+- 句尾语气词："啦"、"～"、"咯"
+- 偶尔使用叠词：**看看、弄弄、试试**（语境自然时）
+- 调整句式："吗？" → "对吧？"/"呢？"
+- 保持核心信息不变，只是语气更随意
+
+### 4. 情绪化表达 😊
+- 随机添加 1-2 个表情：😄 😊 👍 ✌️ 🤔 😅
+- 表情概率 50%（可调）
+- 根据话题紧张程度自动选择表情类型
+
+### 5. 话题感知 🔍
+- 简单中文关键词提取
+- 检测话题切换（话题相关性 < 2 个关键词）
+- 切换后重置称呼频率
+
+## 使用场景对比
+
+### 场景1：连续快速对话
 ```
+用户：明天天气？
+AI：明天多云，18-25度。
+用户：要带伞吗？
+AI：不用带，没雨。      ← 无称呼，干净回复
+用户：空气质量呢？
+AI：空气质量良，PM2.5 45。 ← 继续无称呼
+```
+
+### 场景2：话题切换
+```
+用户：查股票吧。
+AI：老板，601138现价X元。   ← 新话题，称呼+表情
+用户：那个基金呢？
+AI：好的，那个基金表现不错。 ← 清理后："那个基金表现不错"
+用户：还有别的？
+AI：还有几个关注。          ← 称呼开始减少
+```
+
+### 场景3：用户先 greeting
+```
+用户：老板早！
+AI：早啊老板！今天天气不错。  ← 镜像回应
+用户：今天忙不？
+AI：嗯，还行吧，有几个事在处理。  ← 填充词+口语化
+```
+
+### 场景4：正式场合（可调 config）
+```
+config.formal_level = 0.8  # 正式模式
+AI：老板，上午10点的会议已改到下午2点。
+     已完成。               ← 无填充词，语气正式
+```
+
+## 配置选项
+
+```yaml
+# config.yaml
+enabled: true
+
+# 称呼控制
+greeting_threshold: 3           # 3轮后开始显著减少称呼
+silence_minutes: 30             # 沉默超过此时间算新对话
+topic_change_threshold: 5       # 话题变化检测轮数
+
+# 语气风格
+formal_level: 0.3               # 正式程度：0=随意，1=正式
+use_smileys: true               # 是否用表情
+smiley_probability: 0.5         # 加表情的概率
+filler_probability: 0.15        # 加填充词的概率
+
+# 结构性特征
+sentence_variation: true        # 启用句式变化
+use_reduplication: 0.2          # 叠词概率
+soften_punctuation: true        # 软化句尾标点
+
+# 问候语配置（支持时间感知）
+greeting_patterns:
+  - "^(老板|老板，)"  # 识别中文"老板"
+  - "^(您好)"         # 正式问候
+  - "^(早|早啊|早上好)"  # 早上问候
+
+# 替换词典（可自定义）
+casual_replacements:
+  "好的": ["行", "OK", "好嘞", "没问题"]
+  "明白了": ["懂了", "清楚啦", "了解"]
+  "收到": ["收到", "get", "收到啦"]
+  "请问": ["想问下", "问问"]
+```
+
+## 实现细节
+
+### 处理流程
+```
+原始回复 → 1. 如果 not use_greeting: 移除开头称呼/客套话
+          → 2. 移除 avoid_patterns ("好的，" 等)
+          → 3. 应用 casual_replacements
+          → 4. 添加 filler words (填充词)
+          → 5. 句式变化 (句尾语气词、叠词)
+          → 6. 软化标点
+          → 7. 如果需要 greeting: 在最前添加 "早/哈喽" + 表情
+          → 输出格式化回复
+```
+
+### 状态存储
+```json
+{
+  "conversations": {
+    "session_key": {
+      "rounds": 5,
+      "last_message_time": "2026-03-10T16:12:45",
+      "last_used_greeting": true,
+      "current_topic": "股票查询",
+      "greeting_count": 3
+    }
+  }
+}
+```
+
+### 话题变化检测
+- 提取新消息的中文双字词集合
+- 与最近3条消息的关键词集合对比
+- 如果重叠词 < 2，判定为话题变化
+
+## 示例转换表
+
+| 原始回复 | 格式化后 | 变化说明 |
+|---------|---------|---------|
+| 老板，好的，已经查到了。 | 查到了。 | 称呼+机械词全移除 |
+| 老板，明天天气多云。 | 老板，明天多云哦。 | 保留称呼，"多云"→"多云哦" |
+| 好的，我马上去处理。 | 行，马上去弄。 | "好的"→"行"，"处理"→"弄" |
+| 老板，还有其他事吗？ | 还有别的事吗？ | 无称呼，更随意 |
+| 明白了，谢谢老板。 | 明白啦，谢老板！ | "了"→"啦"，"谢谢"→"谢" |
+| 老板，那个方案没问题。 | emmm，那个方案没问题。 | 加填充词"emmm，" |
+| 老板，您可以看一下。 | 您可以看看。 | "看一下"→"看看"（叠词）|
+
+## 与真人对话习惯的对应
+
+| 真人行为 | 技能模拟 |
+|---------|---------|
+| 前几轮说话带称呼 | greeting_threshold 控制 |
+| 对方叫"老板"，回"老板" | user_greeting 镜像逻辑 |
+| 话题切回来再称呼 | is_new_topic 检测 |
+| 说"嗯"、"然后"、"对了" | filler_words 随机插入 |
+| 结尾语气词"啦"、"～" | soften_punctuation |
+| 说"弄弄"、"看看" | use_reduplication |
+| 偶尔加表情 | smiley_probability |
+
+## 限制与边界
+
+1. **仅处理中文优先**：regex 针对中文优化，英文场景可能不自然
+2. **话题检测简单**：仅基于关键词重叠，易受简短消息影响
+3. **无情绪识别**：不根据消息情绪调节语气（可扩展）
+4. **不处理称呼内容**：只控制"是否称呼"，不决定称呼内容（固定"老板"或早上/下午问候）
+5. **随机性可能过度**：可通过降低 `filler_probability` 调整
+
+## 未来优化方向
+
+- [ ] 基于嵌入的话题向量相似度检测
+- [ ] 学习用户偏好（更喜欢称呼还是随意）
+- [ ] 情绪感知（用户严肃时减少表情）
+- [ ] 多语言友好化（英文 casual 替换词典）
+- [ ] 上下文语气记忆（某话题一贯随意或正式）
+- [ ] 更智能的填充词位置选择（自然停顿位置）
+
+## 开发与调试
+
+测试脚本：
+```bash
+cd ~/.openclaw/workspace/skills/human-like-reply
+python3 scripts/test_formatter.py
+```
+
+查看运行时状态：
+```bash
+cat memory/reply_state.json
+```
+
+清除状态（重置对话计数）：
+```bash
+rm memory/reply_state.json
+# 或编辑 JSON 手动清理特定会话
+```
+
+## 注意事项
+
+- 该技能在 OpenClaw 消息发送**前**自动运行
+- 只修改语气和表面格式，内容语义不变
+- 正式场合建议临时调整 `formal_level: 0.7+`
+- 状态文件会增长，建议定期清理（按会话隔离）
+
+## License
+
+MIT - 自由使用、修改、分享。

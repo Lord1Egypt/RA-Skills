@@ -1,0 +1,28 @@
+# Chronos Configuration Test Results
+
+## Test 1: Default (no env, no config file)
+✓ raises ValueError with actionable configuration instructions
+
+## Test 2: Environment variable
+✓ CHRONOS_CHAT_ID="12345678" → chat_id = 12345678
+
+## Test 3: Config file
+✓ ~/.config/chronos/config.json with {"chat_id": "99999999"} → chat_id = 99999999
+
+## Test 4: Environment overrides config
+✓ CHRONOS_CHAT_ID="11111111" with config file containing 99999999 → chat_id = 11111111
+
+## Test 5: Config file missing chat_id
+✓ Config with {"other": "value"} raises ValueError
+
+## Test 6: Config file merge in get_config()
+✓ get_config() returns {'chat_id': ..., other keys from config...}
+
+## Code Changes Verified
+- core/config.py: created with get_chat_id() and get_config()
+- periodic_task_manager.py: replaced hardcoded 58689511 with get_chat_id()
+- core/paths.py: added dynamic workspace/database resolution
+- Documentation updated (README.md, SKILL.md)
+- Test suite and demo script provided
+
+## All tests passed ✅

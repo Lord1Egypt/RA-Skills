@@ -1,0 +1,10 @@
+{
+  "name": "hexin-v-generator",
+  "version": "1.0.0",
+  "description": "同花顺问财 Hexin-V 签名生成器",
+  "main": "hexin_v.js",
+  "dependencies": {
+    "jsdom": "^24.0.0",
+    "canvas": "^2.11.2"
+  }
+}

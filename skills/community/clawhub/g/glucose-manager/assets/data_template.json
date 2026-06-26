@@ -1,0 +1,79 @@
+{
+  "user_profile": {
+    "name": "",
+    "age": null,
+    "gender": "",
+    "diabetes_type": "",
+    "target_range": {
+      "min": 4.4,
+      "max": 7.2
+    },
+    "medications": [],
+    "allergies": [],
+    "emergency_contact": {
+      "name": "",
+      "phone": ""
+    }
+  },
+  "glucose_records": [
+    {
+      "id": "example001",
+      "timestamp": "2024-01-15T08:00:00",
+      "value": 6.5,
+      "unit": "mmol/L",
+      "meal_context": "fasting",
+      "notes": "早餐前空腹血糖"
+    },
+    {
+      "id": "example002",
+      "timestamp": "2024-01-15T10:30:00",
+      "value": 8.2,
+      "unit": "mmol/L",
+      "meal_context": "after_meal",
+      "notes": "早餐后2小时"
+    }
+  ],
+  "meals": [
+    {
+      "id": "meal001",
+      "timestamp": "2024-01-15T08:30:00",
+      "meal_type": "breakfast",
+      "foods": [
+        {
+          "name": "全麦面包",
+          "portion": "2片",
+          "carbs": 30,
+          "calories": 150
+        },
+        {
+          "name": "煮鸡蛋",
+          "portion": "1个",
+          "carbs": 0,
+          "calories": 70
+        }
+      ],
+      "total_carbs": 30,
+      "total_calories": 220,
+      "notes": "早餐"
+    }
+  ],
+  "medications": [
+    {
+      "id": "med001",
+      "timestamp": "2024-01-15T08:05:00",
+      "medication_name": "二甲双胍",
+      "dosage": "500mg",
+      "notes": "随餐服用"
+    }
+  ],
+  "exercise": [
+    {
+      "id": "exer001",
+      "timestamp": "2024-01-15T19:00:00",
+      "exercise_type": "快走",
+      "duration_minutes": 30,
+      "intensity": "moderate",
+      "notes": "晚餐后散步"
+    }
+  ]
+}

@@ -1,0 +1,594 @@
+{
+  "data": {
+    "nearby_stores": {
+      "count": 3,
+      "stores": [
+        {
+          "status": "Open",
+          "store_id": "1375",
+          "is_test_location": false,
+          "location_name": "Mpls Nicollet Mall",
+          "distance": 0.67,
+          "main_voice_phone_number": "612-338-0085",
+          "mailing_address": {
+            "address_line1": "900 Nicollet Mall",
+            "city": "Minneapolis",
+            "country_code": "US",
+            "region": "MN",
+            "state": "Minnesota",
+            "postal_code": "55403-2530"
+          },
+          "geographic_specifications": {
+            "iso_time_zone_code": "America/Chicago",
+            "time_zone_code": "CST",
+            "time_zone_utc_offset_name": "UTC-06"
+          },
+          "rolling_operating_hours": {
+            "main_hours": {
+              "days": [
+                {
+                  "is_open": true,
+                  "date": "2026-04-24",
+                  "day_name": "Friday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-24",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-25",
+                  "day_name": "Saturday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-25",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-26",
+                  "day_name": "Sunday",
+                  "hours": [
+                    {
+                      "begin_time": "09:00:00",
+                      "end_date": "2026-04-26",
+                      "end_time": "19:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-27",
+                  "day_name": "Monday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-27",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-28",
+                  "day_name": "Tuesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-28",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-29",
+                  "day_name": "Wednesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-29",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-30",
+                  "day_name": "Thursday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-30",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-01",
+                  "day_name": "Friday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-01",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-02",
+                  "day_name": "Saturday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-02",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-03",
+                  "day_name": "Sunday",
+                  "hours": [
+                    {
+                      "begin_time": "09:00:00",
+                      "end_date": "2026-05-03",
+                      "end_time": "19:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-04",
+                  "day_name": "Monday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-04",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-05",
+                  "day_name": "Tuesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-05",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-06",
+                  "day_name": "Wednesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-06",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-07",
+                  "day_name": "Thursday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-07",
+                      "end_time": "20:00:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "status": "Open",
+          "store_id": "3200",
+          "is_test_location": false,
+          "location_name": "Minneapolis Dinkytown",
+          "distance": 2.61,
+          "main_voice_phone_number": "612-355-3857",
+          "mailing_address": {
+            "address_line1": "1329 5th St SE",
+            "city": "Minneapolis",
+            "country_code": "US",
+            "region": "MN",
+            "state": "Minnesota",
+            "postal_code": "55414-1390"
+          },
+          "geographic_specifications": {
+            "iso_time_zone_code": "America/Chicago",
+            "time_zone_code": "CST",
+            "time_zone_utc_offset_name": "UTC-06"
+          },
+          "rolling_operating_hours": {
+            "main_hours": {
+              "days": [
+                {
+                  "is_open": true,
+                  "date": "2026-04-24",
+                  "day_name": "Friday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-24",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-25",
+                  "day_name": "Saturday",
+                  "hours": [
+                    {
+                      "begin_time": "08:00:00",
+                      "end_date": "2026-04-25",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-26",
+                  "day_name": "Sunday",
+                  "hours": [
+                    {
+                      "begin_time": "08:00:00",
+                      "end_date": "2026-04-26",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-27",
+                  "day_name": "Monday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-27",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-28",
+                  "day_name": "Tuesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-28",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-29",
+                  "day_name": "Wednesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-29",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-30",
+                  "day_name": "Thursday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-30",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-01",
+                  "day_name": "Friday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-01",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-02",
+                  "day_name": "Saturday",
+                  "hours": [
+                    {
+                      "begin_time": "08:00:00",
+                      "end_date": "2026-05-02",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-03",
+                  "day_name": "Sunday",
+                  "hours": [
+                    {
+                      "begin_time": "08:00:00",
+                      "end_date": "2026-05-03",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-04",
+                  "day_name": "Monday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-04",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-05",
+                  "day_name": "Tuesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-05",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-06",
+                  "day_name": "Wednesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-06",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-07",
+                  "day_name": "Thursday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-07",
+                      "end_time": "21:00:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "status": "Open",
+          "store_id": "52",
+          "is_test_location": false,
+          "location_name": "East Lake Street and Hwy 55",
+          "distance": 2.79,
+          "main_voice_phone_number": "612-721-5701",
+          "mailing_address": {
+            "address_line1": "2500 E Lake St",
+            "city": "Minneapolis",
+            "country_code": "US",
+            "region": "MN",
+            "state": "Minnesota",
+            "postal_code": "55406-1909"
+          },
+          "geographic_specifications": {
+            "iso_time_zone_code": "America/Chicago",
+            "time_zone_code": "CST",
+            "time_zone_utc_offset_name": "UTC-06"
+          },
+          "rolling_operating_hours": {
+            "main_hours": {
+              "days": [
+                {
+                  "is_open": true,
+                  "date": "2026-04-24",
+                  "day_name": "Friday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-24",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-25",
+                  "day_name": "Saturday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-25",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-26",
+                  "day_name": "Sunday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-26",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-27",
+                  "day_name": "Monday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-27",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-28",
+                  "day_name": "Tuesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-28",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-29",
+                  "day_name": "Wednesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-29",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-04-30",
+                  "day_name": "Thursday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-04-30",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-01",
+                  "day_name": "Friday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-01",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-02",
+                  "day_name": "Saturday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-02",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-03",
+                  "day_name": "Sunday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-03",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-04",
+                  "day_name": "Monday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-04",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-05",
+                  "day_name": "Tuesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-05",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-06",
+                  "day_name": "Wednesday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-06",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                },
+                {
+                  "is_open": true,
+                  "date": "2026-05-07",
+                  "day_name": "Thursday",
+                  "hours": [
+                    {
+                      "begin_time": "07:00:00",
+                      "end_date": "2026-05-07",
+                      "end_time": "22:00:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

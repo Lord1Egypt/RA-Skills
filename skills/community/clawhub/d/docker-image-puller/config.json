@@ -1,0 +1,8 @@
+{
+  "mode": "proxy",
+  "proxy_address": "127.0.0.1:7890",
+  "mirror_url": "",
+  "arch": "",
+  "script_dir": "/Users/zhao/.openclaw/workspace/skills/docker-image-puller/scripts",
+  "version": 1
+}

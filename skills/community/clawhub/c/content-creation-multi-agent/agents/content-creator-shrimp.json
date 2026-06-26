@@ -1,0 +1,10 @@
+{
+  "name": "通用内容创作虾",
+  "role": "通用内容创作",
+  "model": "doubao",
+  "thinking": "on",
+  "skills": ["writing", "editing"],
+  "keywords": "文章、报告、文案、邮件、创作",
+  "output_format": "markdown",
+  "features": ["多文体写作", "内容优化", "风格调整", "校对润色"]
+}

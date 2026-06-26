@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <title>Enterprise AI Knowledge Governance Map</title>
+  <rect width="960" height="540" fill="#ffffff"/>
+  <text x="48" y="72" font-family="Arial" font-size="28" fill="#111827">Enterprise AI Knowledge Governance Map</text>
+  <text x="72" y="150" font-family="Arial" font-size="18" fill="#991b1b">Pain: stale docs, permission drift, weak evidence</text>
+  <text x="72" y="220" font-family="Arial" font-size="18" fill="#065f46">Strategy: owners, glossary, citations</text>
+  <text x="72" y="290" font-family="Arial" font-size="18" fill="#1d4ed8">Metric: traceable answer ratio, stale document ratio</text>
+</svg>

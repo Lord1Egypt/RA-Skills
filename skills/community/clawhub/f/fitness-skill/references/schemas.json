@@ -1,0 +1,91 @@
+{
+  "$comment": "JSON Schemas for Fitness Skill data files",
+
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "FitnessPlan",
+    "type": "object",
+    "required": ["version", "user_profile", "weekly_schedule"],
+    "properties": {
+      "version": { "type": "string", "const": "1.0" },
+      "user_profile": {
+        "type": "object",
+        "required": ["goals", "sport_pref", "frequency", "level"],
+        "properties": {
+          "goals":         { "type": "array", "items": { "type": "string" } },
+          "sport_pref":    { "type": "array", "items": { "type": "string", "enum": ["gym", "tennis", "cardio", "swim", "yoga"] } },
+          "frequency":     { "type": "integer", "minimum": 1, "maximum": 7 },
+          "level":         { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+          "constraints":   { "type": "string" },
+          "reminder_time": { "type": "string", "pattern": "^\\d{2}:\\d{2}$" }
+        }
+      },
+      "weekly_schedule": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["day", "type", "exercises"],
+          "properties": {
+            "day":          { "type": "string" },
+            "type":         { "type": "string" },
+            "duration_min": { "type": "integer", "minimum": 0 },
+            "exercises": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name":         { "type": "string" },
+                  "sets":         { "type": "integer", "minimum": 0 },
+                  "reps":         { "type": "integer", "minimum": 0 },
+                  "weight_kg":    { "type": "number",  "minimum": 0 },
+                  "duration_min": { "type": "number",  "minimum": 0 }
+                }
+              }
+            }
+          }
+        }
+      },
+      "created_at": { "type": "string", "format": "date-time" },
+      "updated_at": { "type": "string", "format": "date-time" }
+    }
+  },
+
+  "log": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "FitnessLog",
+    "type": "object",
+    "required": ["version", "entries"],
+    "properties": {
+      "version": { "type": "string", "const": "1.0" },
+      "entries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["date", "type"],
+          "properties": {
+            "date":            { "type": "string", "format": "date" },
+            "type":            { "type": "string" },
+            "duration_min":    { "type": "integer", "minimum": 0 },
+            "exercises": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name":      { "type": "string" },
+                  "sets":      { "type": "integer" },
+                  "reps":      { "type": "integer" },
+                  "weight_kg": { "type": "number" }
+                }
+              }
+            },
+            "feeling":         { "type": "string" },
+            "notes":           { "type": "string" },
+            "recovery_advice": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

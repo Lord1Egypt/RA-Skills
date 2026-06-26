@@ -1,0 +1,75 @@
+{
+  "example_name": "Software Engineer Resume (English)",
+  "description": "Sample resume data for a mid-level software engineer, demonstrating complete structured format",
+  "language": "en",
+  "target_role": "Software Engineer",
+  "industry": "technology_software_development",
+  "experience_level": "mid",
+  "resume_data": {
+    "file_name": "software-engineer-resume.pdf",
+    "contact": {
+      "name": "Jane Developer",
+      "email": "jane.developer@email.com",
+      "phone": "(650) 555-0142",
+      "location": "Austin, TX",
+      "linkedin": "linkedin.com/in/janedeveloper",
+      "website": "janedev.io"
+    },
+    "summary": "Full-stack Software Engineer with 5+ years of experience building scalable web applications and microservices. Proficient in Python, TypeScript, and cloud technologies. Delivered 10+ production features serving 1M+ users with 99.9% uptime. Passionate about clean architecture, automated testing, and mentoring junior engineers.",
+    "work_experience": [
+      {
+        "title": "Software Engineer II",
+        "company": "TechScale Inc.",
+        "location": "Austin, TX",
+        "start_date": "March 2022",
+        "end_date": "Present",
+        "description": "Developed and maintained backend microservices for e-commerce platform.\nBuilt RESTful and GraphQL APIs handling 500K+ daily requests.\nImplemented automated CI/CD pipelines reducing deployment time from 45 minutes to 8 minutes.\nMentored 3 junior engineers through onboarding and code review processes.\nReduced database query latency by 60% through query optimization and indexing improvements."
+      },
+      {
+        "title": "Software Engineer",
+        "company": "StartUp Labs",
+        "location": "San Francisco, CA",
+        "start_date": "June 2019",
+        "end_date": "February 2022",
+        "description": "Built full-stack features for SaaS analytics platform using React, TypeScript, and Python.\nDeveloped real-time data visualization dashboard serving 200+ enterprise customers.\nImplemented automated testing suite achieving 85% code coverage across frontend and backend.\nCollaborated with product and design teams to launch 8 major features in 2 years."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science",
+        "field": "Computer Science",
+        "institution": "University of Texas at Austin",
+        "graduation_date": "May 2019",
+        "gpa": "3.7/4.0",
+        "honors": ["Dean's List (2017-2019)", "Undergraduate Research Fellowship"],
+        "relevant_coursework": ["Data Structures", "Algorithms", "Software Engineering", "Databases", "Operating Systems"]
+      }
+    ],
+    "skills": [
+      "Python", "TypeScript", "JavaScript", "React", "Node.js",
+      "PostgreSQL", "MongoDB", "Redis", "Docker", "Kubernetes",
+      "AWS (EC2, S3, Lambda, RDS)", "GraphQL", "REST APIs",
+      "Git", "CI/CD", "Agile/Scrum"
+    ],
+    "projects": [
+      {
+        "name": "OpenAPI Code Generator",
+        "description": "Open-source CLI tool that generates TypeScript API clients from OpenAPI specs. 500+ GitHub stars.",
+        "technologies": ["TypeScript", "Node.js", "OpenAPI"],
+        "role": "Creator & Maintainer",
+        "url": "github.com/janedeveloper/openapi-gen"
+      },
+      {
+        "name": "Distributed Task Scheduler",
+        "description": "Distributed job scheduling system supporting priority queues and retry logic. Processes 100K+ tasks/day.",
+        "technologies": ["Python", "Redis", "PostgreSQL", "Docker"],
+        "role": "Lead Developer",
+        "url": "github.com/janedeveloper/task-scheduler"
+      }
+    ],
+    "certifications": [
+      "AWS Certified Developer - Associate (2023)",
+      "Kubernetes Application Developer (CKAD) (2022)"
+    ]
+  }
+}

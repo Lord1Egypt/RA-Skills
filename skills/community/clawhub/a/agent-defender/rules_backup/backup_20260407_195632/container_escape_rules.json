@@ -1,0 +1,81 @@
+[
+  {
+    "id": "CE01",
+    "name": "特权容器检测",
+    "patterns": [
+      "--privileged",
+      "\\bcap_add\\b",
+      "\\bsecurity_opt\\b"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测使用特权容器获取宿主机权限",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "CE02",
+    "name": "挂载攻击检测",
+    "patterns": [
+      "-v\\s+/:",
+      "-v\\s+/proc",
+      "-v\\s+/sys"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测挂载宿主机关键目录",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "CE03",
+    "name": "Proc 逃逸检测",
+    "patterns": [
+      "mount\\s+-t\\s+proc",
+      "\\bnsenter\\b",
+      "/proc"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测通过/proc 逃逸",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "CE04",
+    "name": "内核漏洞检测",
+    "patterns": [
+      "\\bdirty_pipe\\b",
+      "\\bdirty_cow\\b",
+      "\\bpwnkit\\b",
+      "CVE-202"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测利用内核漏洞逃逸",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "CE05",
+    "name": "Cgroup 逃逸检测",
+    "patterns": [
+      "\\bcgroup\\b",
+      "\\brelease_agent\\b",
+      "\\bnotify_on_release\\b"
+    ],
+    "risk": "HIGH",
+    "description": "检测通过 cgroup 逃逸",
+    "action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "CE06",
+    "name": "能力拆分检测",
+    "patterns": [
+      "--cap-add=SYS_ADMIN",
+      "--cap-add=SYS_PTRACE",
+      "--cap-add=NET_ADMIN"
+    ],
+    "risk": "HIGH",
+    "description": "检测拆分的能力绕过",
+    "action": "BLOCK",
+    "optimized": false
+  }
+]

@@ -1,0 +1,36 @@
+# 唯一真源：意图路由表
+# 规则：先 freq → asset → need_compute → recipe
+# recipe 字段填 recipes/ 下的文件名
+
+routes:
+  - id: futures.realtime.board
+    when:
+      freq: realtime
+      asset: futures
+      scope: variety_all_contracts
+    recipe: futures_realtime_board.md
+
+  - id: futures.intraday.indicators
+    when:
+      freq: intraday
+      asset: futures
+      need_compute: indicators
+    recipe: futures_kline_indicators.md
+
+  - id: options.realtime.iv_greeks
+    when:
+      freq: realtime
+      asset: options
+      need_compute: greeks_iv
+    recipe: options_iv_greeks.md
+
+  - id: options.realtime.rr25
+    when:
+      freq: realtime
+      asset: options
+      need_compute: rr25
+    recipe: options_rr25.md
+
+# fallback 建议：
+# - 如果 freq 不明确：优先按用户是否提到“当前/最新/盘中”判 realtime，否则 daily
+# - 如果 asset 不明确：通过合约形态（IF2403 vs 1000xxxx）与关键词（期权/行权价）判定

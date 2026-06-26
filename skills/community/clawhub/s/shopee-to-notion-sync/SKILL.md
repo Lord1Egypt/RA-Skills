@@ -1,35 +1,47 @@
 ---
-name: "Shopee to Notion Sync"
-description: "Sync Shopee products into Notion using the local Node.js workflow only."
-category: "domain"
-source: "ClawHub"
-tags: [ecommerce, notion, shopee, sync]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shopee-to-notion-sync"
-sourceUrl: "https://clawhub.ai/skills/shopee-to-notion-sync"
+name: shopee_notion_sync
+description: Sync Shopee products into Notion using the local Node.js workflow only.
 ---
 
-# Shopee to Notion Sync
+# Shopee Notion Sync
 
-> Sync Shopee products into Notion using the local Node.js workflow only.
+Use this skill for any request involving:
+- searching Shopee products
+- saving Shopee products to Notion
+- updating the Shopee product table in Notion
+- syncing Shopee with Notion
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shopee-to-notion-sync`
-- **Source URL:** [https://clawhub.ai/skills/shopee-to-notion-sync](https://clawhub.ai/skills/shopee-to-notion-sync)
+## Mandatory rule
 
-## Overview
+For any request covered by this skill, you MUST use only this command:
 
+`node jobs/sync-shopee-notion.js "<keyword>" <limit> <target>`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shopee-to-notion-sync
-```
+Do NOT:
+- use web search
+- use browser tools
+- use curl directly
+- create Python scripts
+- create shell scripts
+- scrape websites
+- write memory files
+- invent product results
+
+## Defaults
+
+- default target: `shopee_produtos`
+- default limit: `10`
+
+## Response format
+
+Return only:
+- keyword usada
+- target usado
+- criados
+- atualizados
+- falhas
+
+## Examples
+
+- `node jobs/sync-shopee-notion.js "celular" 10 shopee_produtos`
+- `node jobs/sync-shopee-notion.js "blusas de academia femininas" 10 shopee_produtos`

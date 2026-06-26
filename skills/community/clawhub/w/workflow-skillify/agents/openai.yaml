@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Skillify"
+  short_description: "Turn a session into a reusable skill"
+  default_prompt: "Extract the repeatable workflow from this session and write a reusable skill specification."

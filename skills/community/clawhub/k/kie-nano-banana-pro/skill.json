@@ -1,0 +1,48 @@
+{
+  "name": "kie-nano-banana-pro",
+  "displayName": "Kie AI Nano Banana Pro 生图",
+  "version": "1.0.0",
+  "description": "Kie AI Nano Banana Pro 官方生图助手，通过 Kie AI API 调用 Google Nano Banana Pro 模型生成高质量图像",
+  "author": "Spark",
+  "license": "MIT",
+  "keywords": [
+    "kie ai",
+    "nano banana",
+    "google",
+    "AI 生图",
+    "图像生成",
+    "pro image"
+  ],
+  "categories": [
+    "AI 工具",
+    "设计",
+    "图像生成"
+  ],
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/kie-nano-banana-pro"
+  },
+  "bugs": {
+    "url": "https://github.com/rfdiosuao/openclaw-skills/issues"
+  },
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/main/kie-nano-banana-pro#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "capabilities": {
+    "trigger": "keyword",
+    "triggerWords": [
+      "Kie AI",
+      "kie",
+      "Nano Banana",
+      "nano banana",
+      "Google 生图",
+      "Google 图像生成",
+      "Pro Image",
+      "生图 API"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

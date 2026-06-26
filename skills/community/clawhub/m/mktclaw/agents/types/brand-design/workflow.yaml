@@ -1,0 +1,88 @@
+name: brand-design-delivery
+version: "3.0"
+description: AI品牌设计顾问交付工作流 - 逐步交付视觉策略/Logo提案/VI系统/品牌手册
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+    delivery_plan:
+      type: object
+
+steps:
+  - id: visual_strategy
+    agent: types/brand-design/main-agent
+    action: deliver_visual_strategy
+    description: 交付品牌视觉策略（风格定位+色彩策略）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: visual_strategy
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认视觉风格方向？"
+
+  - id: logo_proposal
+    agent: types/brand-design/main-agent
+    action: deliver_logo_proposal
+    description: 交付Logo方向提案（3-5个方向）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      visual_strategy: "{{visual_strategy.output.visual_strategy}}"
+    output: logo_proposal
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请选择倾向的Logo方向？"
+
+  - id: vi_system
+    agent: types/brand-design/main-agent
+    action: deliver_vi_system
+    description: 交付VI系统方案（色彩/字体/图形/应用）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      visual_strategy: "{{visual_strategy.output.visual_strategy}}"
+      selected_logo: "{{logo_proposal.output.logo_proposal}}"
+    output: vi_system
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认VI系统方案？"
+
+  - id: brand_manual_outline
+    agent: types/brand-design/main-agent
+    action: deliver_brand_manual
+    description: 交付品牌手册大纲
+    input:
+      vi_system: "{{vi_system.output.vi_system}}"
+    output: brand_manual
+    checkpoint:
+      format: markdown
+      confirm: true
+
+  - id: quality_check
+    agent: types/brand-design/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 质量自检
+    input:
+      deliverables:
+        visual_strategy: "{{visual_strategy.output.visual_strategy}}"
+        logo: "{{logo_proposal.output.logo_proposal}}"
+        vi: "{{vi_system.output.vi_system}}"
+        manual: "{{brand_manual.output.brand_manual}}"
+    output: quality_report
+
+output:
+  deliverables:
+    visual_strategy: "{{visual_strategy.output.visual_strategy}}"
+    logo_proposal: "{{logo_proposal.output.logo_proposal}}"
+    vi_system: "{{vi_system.output.vi_system}}"
+    brand_manual: "{{brand_manual.output.brand_manual}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "3.0"
+    role: "brand_design"

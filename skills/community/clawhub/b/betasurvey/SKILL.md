@@ -1,35 +1,53 @@
 ---
-name: "Beta Survey Analysis"
-description: "AI-powered survey response analysis. Analyzes open-ended survey responses, clusters themes, detects sentiment, and generates actionable insights. Uses BERTop..."
-category: "other"
-source: "ClawHub"
-tags: [nlp, survey]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/betasurvey"
-sourceUrl: "https://clawhub.ai/skills/betasurvey"
+name: survey-analysis
+description: AI-powered survey response analysis. Analyzes open-ended survey responses, clusters themes, detects sentiment, and generates actionable insights. Uses BERTopic + GPT-4o-mini.
+metadata:
+  openclaw:
+    emoji: "📋"
+    requires:
+      bins: [python3]
+    always: false
 ---
 
-# Beta Survey Analysis
+# Survey Response Analysis Tool
 
-> AI-powered survey response analysis. Analyzes open-ended survey responses, clusters themes, detects sentiment, and generates actionable insights. Uses BERTop...
+AI-powered analysis of open-ended survey responses. Clusters themes, detects sentiment, generates actionable insights.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/betasurvey`
-- **Source URL:** [https://clawhub.ai/skills/betasurvey](https://clawhub.ai/skills/betasurvey)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/betasurvey
+python3 analyze.py --input responses.csv --output report.md
 ```
+
+## Input CSV Format
+
+```csv
+respondent_id,response
+1,"The product is great but delivery is slow"
+2,"Amazing quality, fast shipping"
+3,"Good but expensive"
+```
+
+## Output
+
+```markdown
+# Survey Analysis Report
+
+## Sentiment Distribution
+- Positive: 60%
+- Neutral: 25%  
+- Negative: 15%
+
+## Top Themes
+1. Delivery Speed (mentioned 45%)
+2. Product Quality (mentioned 38%)
+3. Price Value (mentioned 22%)
+
+## Action Items
+- Improve delivery logistics
+- Maintain quality standards
+```
+
+## Notes
+
+Requires: python3, pandas, openai (or Anthropic API key)

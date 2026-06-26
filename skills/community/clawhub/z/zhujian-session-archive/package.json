@@ -1,0 +1,26 @@
+{
+  "name": "@zhuJian/session-archive",
+  "version": "0.5.0",
+  "description": "OpenClaw plugin: real-time archive conversations and operations to SQLite",
+  "type": "module",
+  "main": "dist/index.js",
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.0"
+  }
+}

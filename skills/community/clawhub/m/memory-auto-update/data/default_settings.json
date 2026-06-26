@@ -1,0 +1,17 @@
+{
+  "update_mode": "smart_hybrid",
+  "update_frequency": "end_of_conversation",
+  "reminder_style": "important_immediate_others_wait",
+  "available_modes": {
+    "active": "主动模式 - 对话结束自动提示",
+    "passive": "被动模式 - 完全手动触发",
+    "smart_hybrid": "智能混合模式 - 重要内容立即提醒（推荐）"
+  },
+  "available_frequencies": {
+    "realtime": "实时 - 重要内容立即保存",
+    "30min": "每30分钟 - 半实时，不太打扰",
+    "1hour": "每1小时 - 低频率，高效",
+    "manual": "手动 - 完全用户控制",
+    "end_of_conversation": "对话结束时 - 最自然的方式（推荐）"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "owner": "autogame-17",
+  "slug": "feishu-message",
+  "displayName": "feishu-message",
+  "latest": {
+    "version": "1.0.5",
+    "publishedAt": 1771046447123,
+    "commit": "https://github.com/openclaw/skills/commit/9d39df74ed544f7e343b7c9d8aad9b96dfd0b908"
+  },
+  "history": [
+    {
+      "version": "1.0.6",
+      "publishedAt": 1770791718829,
+      "commit": "https://github.com/openclaw/skills/commit/711b7028bb38f9e8423f0e7e026017f8f6fbc71f"
+    },
+    {
+      "version": "1.0.5",
+      "publishedAt": 1770561356736,
+      "commit": "https://github.com/openclaw/skills/commit/59c8ee7fde45daa128a26a4a2f746e3638dd5ab3"
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1770560710145,
+      "commit": "https://github.com/openclaw/skills/commit/bc9c9f9ccf0f0e807191c61fbb12ace5735eaab6"
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770118168893,
+      "commit": "https://github.com/clawdbot/skills/commit/33b173499df082e60fbe246bfc30c4461bdc8640"
+    }
+  ]
+}

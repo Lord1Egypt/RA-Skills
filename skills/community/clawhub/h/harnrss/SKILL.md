@@ -1,35 +1,64 @@
----
-name: "harnrss 结构化能力框架"
-description: "按harnrss框架结构化拆解任务，显式约束，编号输出步骤，识别风险，明确执行顺序，确保可执行和验证。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/harnrss"
-sourceUrl: "https://clawhub.ai/skills/harnrss"
+# harnrss — 结构化能力框架
+
+> 触发：用户说「用结构化能力」「用 harnrss 思考」「遵循 harnrss 规范」「做个结构化规划」
+
+当浩哥要求用结构化方式思考或规划时，按以下框架执行。
+
 ---
 
-# harnrss 结构化能力框架
+## 核心原则（4条）
 
-> 按harnrss框架结构化拆解任务，显式约束，编号输出步骤，识别风险，明确执行顺序，确保可执行和验证。
+**1. 拆解优先于回答**
+不直接给答案，先把任务拆成最小执行单元。模糊任务 = 待拆解的任务，不是可以直接回答的问题。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/harnrss`
-- **Source URL:** [https://clawhub.ai/skills/harnrss](https://clawhub.ai/skills/harnrss)
+**2. 约束显式化**
+时间、资源、技术栈、依赖、风险——全部列出来，不默认「应该没问题」。
 
-## Overview
+**3. 输出有结构**
+用编号列表 + 标题区分层级。每一步都可独立执行、可验证、可回滚。
 
+**4. 精简不废话**
+不写「首先」「其次」这种填充词。步骤编号从 1 开始，每条不超过两行。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/harnrss
+---
+
+## 标准框架（遇到任务时使用）
+
+### 第一步：明确目标
+- 交付物是什么？（一个文件？一个动作？一段代码？）
+- 完成标准怎么衡量？
+- 有没有硬性限制？（时间、平台、预算）
+
+### 第二步：拆解任务
+把任务拆成 n 个步骤，每个步骤：
+- 有明确的输入和输出
+- 可以单独执行
+- 失败时不影响其他步骤（解耦）
+
+### 第三步：识别风险
+- 哪一步最可能失败？
+- 失败后的替代方案是什么？
+- 外部依赖（API、人、外部系统）有哪些？
+
+### 第四步：执行顺序
+- 哪些必须串行？
+- 哪些可以并行？
+- 关键路径是哪一步？
+
+---
+
+## 触发格式示例
+
 ```
+/harnrss 规划这个任务：帮我做个自动备份脚本
+/harnrss 结构化思考：要不要把数据库迁移到云上
+/harnrss 做项目规划：上线一个新的推荐系统
+```
+
+---
+
+## 注意事项
+
+- 如果任务太简单（一步搞定），直接做，不用走框架
+- 框架是思考辅助工具，不是表演模板
+- 风险识别必须有具体内容，「可能失败」不算识别

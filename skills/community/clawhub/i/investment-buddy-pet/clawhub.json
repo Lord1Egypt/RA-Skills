@@ -1,0 +1,13 @@
+{
+  "name": "investment-buddy-pet",
+  "version": "1.2.1",
+  "description": "投资宠物技能 - 12 只宠物陪伴你投资成长，提供情感陪伴、定投提醒、投资者教育（v1.2.1 修复安全扫描问题，添加用户确认机制）",
+  "author": "燃冰 + ant",
+  "license": "MIT",
+  "keywords": ["投资", "宠物", "陪伴", "定投", "提醒", "投资者教育", "金融合规", "知识库"],
+  "category": "finance",
+  "tags": ["investment", "pet", "companion", "education", "compliance", "knowledge-base"],
+  "main": "SKILL.md",
+  "files": ["SKILL.md", "README.md", "clawhub.json", "CLAUDE.md", "index.md", "pets", "scripts", "docs", "examples", "references", "templates", "raw", "wiki"],
+  "repository": {"type": "git", "url": "https://github.com/lj22503/investment-buddy-pet.git"}
+}

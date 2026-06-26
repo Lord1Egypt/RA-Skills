@@ -1,0 +1,37 @@
+{
+  "slug": "social-post-batcher",
+  "title": "社媒内容批处理器",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "把一个主题拆成 7/14/30 条系列帖子，控制重复度和叙事连续性。",
+  "inputHint": "主题、受众、语气、数量",
+  "sections": [
+    "系列主线",
+    "帖子分配",
+    "避免重复规则",
+    "CTA 节奏",
+    "素材清单",
+    "审校提醒"
+  ],
+  "useCases": [
+    "社媒排程",
+    "主题连续输出",
+    "品牌内容"
+  ],
+  "positiveExamples": [
+    "围绕一个主题帮我批量拆 14 条帖子",
+    "保证连续性不要重复"
+  ],
+  "negativeExamples": [
+    "不要刷屏式重复",
+    "不要编造事实"
+  ],
+  "risk": "适合作为批量文案骨架。",
+  "tags": [
+    "social-media",
+    "batching",
+    "content",
+    "campaign"
+  ]
+}

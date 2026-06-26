@@ -1,35 +1,41 @@
----
-name: "Telegram Shop Bot Developer"
-description: "Develop and deploy custom Telegram shop bots in Python with product and order management, payment integration, admin dashboard, and ongoing support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/telegram-shop-bot"
-sourceUrl: "https://clawhub.ai/skills/telegram-shop-bot"
----
+# Telegram Shop Bot Developer - Python
 
-# Telegram Shop Bot Developer
+I develop fully-featured Telegram shop bots using Python. My bots manage products, orders, and customers professionally.
 
-> Develop and deploy custom Telegram shop bots in Python with product and order management, payment integration, admin dashboard, and ongoing support.
+## About Me
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/telegram-shop-bot`
-- **Source URL:** [https://clawhub.ai/skills/telegram-shop-bot](https://clawhub.ai/skills/telegram-shop-bot)
+Experienced Telegram bot developer since 2023. I specialize in creating custom shop bots with clean code and reliable performance.
 
-## Overview
+## What I Offer
 
+### 1. Shop Bot Template - $49
+- Complete Python source code
+- Product management system
+- Shopping cart
+- Order management
+- 30-day support
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/telegram-shop-bot
-```
+### 2. Custom Shop Bot - $199 - $599
+- Built to your exact requirements
+- Database (SQLite / PostgreSQL)
+- Integrated payment system
+- Admin dashboard
+- 90-day support
+
+### 3. Hosting & Maintenance - $59/month
+- 24/7 bot hosting on reliable servers
+- Regular updates
+- Fast technical support
+- Daily backups
+
+## Why Choose Me?
+
+- Clean, documented code
+- On-time delivery
+- Ongoing support after delivery
+- Custom solutions tailored to your business
+
+## Contact
+
+- **Telegram:** @T100aD
+- **Email:** sosokoko100a@gmail.com

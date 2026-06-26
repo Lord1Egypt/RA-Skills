@@ -1,0 +1,7 @@
+httpx>=0.27
+pydantic>=2.0
+python-magic>=0.4.27
+pillow>=10.0
+pytesseract>=0.3.10  # optional, for Tesseract backend
+pdf2image>=1.17  # for PDF to image conversion in searchable PDF
+reportlab>=4.0  # for PDF generation

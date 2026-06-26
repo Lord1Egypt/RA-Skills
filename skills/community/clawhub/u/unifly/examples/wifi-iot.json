@@ -1,0 +1,13 @@
+{
+  "name": "IoT-WiFi",
+  "ssid": "IoT-WiFi",
+  "security_mode": "Wpa2Personal",
+  "passphrase": "IoTSecure2024!",
+  "enabled": true,
+  "network_id": "REPLACE_WITH_IOT_NETWORK_UUID",
+  "hide_ssid": false,
+  "broadcast_type": "iot-optimized",
+  "frequencies_ghz": [2.4],
+  "band_steering": false,
+  "fast_roaming": false
+}

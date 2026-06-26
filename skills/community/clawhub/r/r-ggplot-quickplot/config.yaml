@@ -1,0 +1,53 @@
+# r-ggplot-quickplot 配置文件
+# 版本: 2.0.0
+
+# 图表类型设置 (true = 生成, false = 跳过)
+charts:
+  scatter: true           # 散点图
+  barplot: true          # 柱状图
+  boxplot: true          # 箱线图
+  lineplot: true         # 折线图
+  histogram: true        # 直方图
+  facet: true            # 分面图
+  publication: true      # 出版级图表
+
+# 样式设置
+style:
+  theme: minimal         # 主题: minimal, classic, bw, light
+  palette: steelblue     # 主色调
+  primary_color: "#4682B4"  # 主色 (RGB 格式)
+  point_size: 3          # 散点大小
+  line_width: 1          # 线条粗细
+
+# 图表细节设置
+details:
+  boxplot_show_points: true    # 箱线图显示数据点
+  barplot_sort: true            # 柱状图排序
+  histogram_bins: 8             # 直方图柱子数量
+  scatter_alpha: 0.7            # 散点透明度
+
+# 输出设置
+output:
+  format: png              # 输出格式: png, pdf, svg
+  dpi: 150                 # 图片分辨率
+  width: 8                 # 宽度 (英寸)
+  height: 6                # 高度 (英寸)
+  directory: output        # 输出目录
+
+# 标题设置
+titles:
+  scatter: "Scatter Plot"
+  barplot: "Bar Plot - Average Value by Category"
+  boxplot: "Boxplot with Individual Points"
+  lineplot: "Line Plot - Value over Time"
+  histogram: "Histogram of Values"
+  facet: "Facet Plot by Category"
+  publication: "Publication Style Plot"
+
+# 轴标签设置
+labels:
+  x_default: "X Variable"
+  y_default: "Y Variable"
+  value_label: "Value"
+  category_label: "Category"
+  time_label: "Time"

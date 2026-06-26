@@ -1,35 +1,36 @@
 ---
-name: "目标信息网络搜索及总结"
-description: "高精度的目标信息搜索与总结工作流。用于在全球范围内检索各类隐蔽、专业或难以直接获取的信息。当用户需要执行以下任务时使用：(1) 跨境行业调研（如交易所费用、授权协议、金融费率）；(2) 海外政策与准入研究（如特定国家的行业标准、牌照申请、合规条款）；(3) 深度竞争对手情报挖掘（如供应商体系、未公开的商业报价、招..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/target-info-search-summarization"
-sourceUrl: "https://clawhub.ai/skills/target-info-search-summarization"
+name: target-info-search-summarization
+description: 高精度的目标信息搜索与总结工作流。用于在全球范围内检索各类隐蔽、专业或难以直接获取的信息。当用户需要执行以下任务时使用：(1) 跨境行业调研（如交易所费用、授权协议、金融费率）；(2) 海外政策与准入研究（如特定国家的行业标准、牌照申请、合规条款）；(3) 深度竞争对手情报挖掘（如供应商体系、未公开的商业报价、招标详情）；(4) 专业领域技术规范溯源（如行业标准协议、专业白皮书）。该技能通过跨语言迭代搜索、官方与生态系统交叉验证以及深度文件解析（filetype:pdf）确保信息的高置信度。
 ---
 
-# 目标信息网络搜索及总结
+# 目标信息网络搜索及总结 (Target-Info Search & Summarization)
 
-> 高精度的目标信息搜索与总结工作流。用于在全球范围内检索各类隐蔽、专业或难以直接获取的信息。当用户需要执行以下任务时使用：(1) 跨境行业调研（如交易所费用、授权协议、金融费率）；(2) 海外政策与准入研究（如特定国家的行业标准、牌照申请、合规条款）；(3) 深度竞争对手情报挖掘（如供应商体系、未公开的商业报价、招...
+此技能提供一套标准化的工作流，用于穿透网络表层，获取隐藏在复杂文档或特定区域语言后的深度事实。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/target-info-search-summarization`
-- **Source URL:** [https://clawhub.ai/skills/target-info-search-summarization](https://clawhub.ai/skills/target-info-search-summarization)
+## 核心流程
 
-## Overview
+1.  **识别核心主体与关联生态**：
+    *   识别目标机构及其背后的代理、子公司、分销商或监管机构。
+    *   构建信息生态图，锁定可能持有细节信息的非直接主体。
+2.  **执行深度指令搜索**：
+    *   组合使用域名限制（`site:`）、文件类型（`filetype:pdf`）及精确术语（`""`）。
+    *   在官方文档、行业报告、供应商配置指南及新闻发布中检索关键事实。
+3.  **实施跨语言迭代**：
+    *   将核心术语翻译为目标地区的母语进行搜索，打破地域性信息屏障。
+    *   优先检索当地语言的行业门户、政策公告及论坛讨论。
+4.  **事实交叉验证与冲突解决**：
+    *   对比官方披露与第三方记录（如分销商报价表），识别信息差异。
+    *   优先采用具有最新日期戳或审计标记的来源。
+5.  **结构化信息总结**：
+    *   将检索结果归纳为逻辑清晰的事实清单（如费用表、准入要求、技术指标）。
+    *   标注信息的出处、新鲜度及置信水平。
 
+## 资源引用
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/target-info-search-summarization
-```
+- [高精度目标信息搜索方法论 (references/targeted-search-methodology.md)](references/targeted-search-methodology.md)
+
+## 操作规范
+
+- **置信度标注**：明确区分“官方确认信息”与“第三方推断/参考信息”。
+- **单位转换**：在处理国际信息时，保持原始币种/单位，并提供实时汇率参考。
+- **链接存留**：为所有关键事实提供可追溯的源 URL 或文档名称。

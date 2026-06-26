@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Instagram Comment By Post URL"
+  short_description: "Submit Dataify Instagram post comment tasks by post URL"
+  icon_small: "./assets/dataify-instagram-comment-by-posturl-small.svg"
+  icon_large: "./assets/dataify-instagram-comment-by-posturl-large.svg"
+  default_prompt: "Use $dataify-instagram-comment-by-posturl to submit Instagram post comment Builder tasks by post URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

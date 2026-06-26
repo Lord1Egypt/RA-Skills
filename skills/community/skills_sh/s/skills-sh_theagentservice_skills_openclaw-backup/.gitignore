@@ -1,0 +1,33 @@
+# Recovery information (contains backup metadata)
+.openclaw-backup-recovery.txt
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Temporary files
+*.tmp
+*.tar.gz
+/tmp/
+
+# Test files
+test-*.md
+restored/
+backup-test/
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

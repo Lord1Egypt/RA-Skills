@@ -1,35 +1,97 @@
 ---
-name: "Quodd"
-description: "Fetch real-time stock quotes via Quodd API. Get current prices, daily high/low, and after-hours data for US equities. Use when the user asks for stock prices..."
-category: "other"
-source: "ClawHub"
-tags: [0.1.0, 1.1.0, 1.1.1, Initial Release]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quodd"
-sourceUrl: "https://clawhub.ai/skills/quodd"
+name: quodd
+description: Fetch real-time stock quotes via Quodd API. Get current prices, daily high/low, and after-hours data for US equities. Use when the user asks for stock prices, quotes, market data, or ticker information.
+metadata: {"openclaw":{"emoji":"📈","requires":{"bins":["python3"],"env":["QUODD_USERNAME","QUODD_PASSWORD"]}}}
 ---
 
-# Quodd
+# Quodd Stock Quotes
 
-> Fetch real-time stock quotes via Quodd API. Get current prices, daily high/low, and after-hours data for US equities. Use when the user asks for stock prices...
+Fetch real-time stock quotes for US equities via the Quodd API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quodd`
-- **Source URL:** [https://clawhub.ai/skills/quodd](https://clawhub.ai/skills/quodd)
+For more information, visit: https://www.quodd.com/stock-and-etf-data
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/quodd
+# Get a quote for Apple
+python3 /home/claw/.openclaw/workspace/skills/quodd/scripts/quote.py AAPL
+
+# Get quotes for multiple tickers
+python3 /home/claw/.openclaw/workspace/skills/quodd/scripts/quote.py AAPL MSFT META
 ```
+
+## Prerequisites
+
+Requires `QUODD_USERNAME` and `QUODD_PASSWORD` environment variables to be set.
+
+## Usage
+
+### Single Ticker
+
+```bash
+python3 /home/claw/.openclaw/workspace/skills/quodd/scripts/quote.py AAPL
+```
+
+### Multiple Tickers
+
+```bash
+python3 /home/claw/.openclaw/workspace/skills/quodd/scripts/quote.py AAPL MSFT META GOOGL
+```
+
+### JSON Output
+
+```bash
+python3 /home/claw/.openclaw/workspace/skills/quodd/scripts/quote.py AAPL --format json
+```
+
+### Force Token Refresh
+
+```bash
+python3 /home/claw/.openclaw/workspace/skills/quodd/scripts/quote.py AAPL --no-cache
+```
+
+## Output Format
+
+### Text (Default)
+
+```
+Quodd Stock Quotes
+Symbol   Date        Time      High      Low     Close    AH Time     AH Price
+-------------------------------------------------------------------------------
+AAPL     01/29/26    14:30    185.50   180.25   182.63   17:45:30     182.80
+```
+
+### JSON
+
+```json
+{
+  "quotes": [
+    {
+      "symbol": "AAPL",
+      "date": "01/29/26",
+      "time": "14:30",
+      "high": 185.50,
+      "low": 180.25,
+      "close": 182.63,
+      "after_hours_time": "17:45:30",
+      "after_hours_price": 182.80
+    }
+  ]
+}
+```
+
+## Output Fields
+
+- **Symbol** - Stock ticker symbol
+- **Date** - Quote date
+- **Time** - Quote time
+- **High** - Day high price
+- **Low** - Day low price
+- **Close** - Last traded price
+- **AH Time** - After hours trade time
+- **AH Price** - After hours price
+
+## Notes
+
+- Authentication tokens are cached at `~/.openclaw/credentials/quodd-token.json` for 20 hours
+- Use `--no-cache` if you encounter authentication errors after credential changes

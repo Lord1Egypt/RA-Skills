@@ -1,0 +1,46 @@
+{
+  "skill_name": "push-notifications",
+  "evals": [
+    {
+      "id": 1,
+      "name": "apns-registration-permission-review",
+      "prompt": "Review this SwiftUI push setup: it only calls registerForRemoteNotifications after the user grants alert permission, stores the APNs token in UserDefaults so it can skip uploads on future launches, and treats a simulator failure as a production bug. What should change?",
+      "expected_output": "A correction-focused review that separates APNs token registration from user-visible notification authorization, uploads APNs tokens on every callback without local token caching, and handles simulator push testing correctly.",
+      "files": [],
+      "assertions": [
+        "Explains that requestAuthorization is for alerts, sounds, and badges, while registerForRemoteNotifications is the APNs token registration path.",
+        "Says APNs registration should not be gated on .authorized when the app needs silent pushes or server token binding.",
+        "Requires sending the device token to the provider server on every didRegister callback and not persisting it locally as a source of truth.",
+        "Notes that Simulator can simulate pushes with .apns or simctl but does not provide real APNs device-token registration."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "background-push-payload-review",
+      "prompt": "A backend wants to keep chat fresh with silent pushes every few minutes and apns-priority 10. The app already has visible notification UI elsewhere. Review only the APNs payload, headers, and app-side notification handling.",
+      "expected_output": "A source-grounded review that requires a background payload and headers, rejects high-priority/frequent silent pushes, names the Remote notifications background mode, and keeps long-running background work in the background-processing boundary.",
+      "files": [],
+      "assertions": [
+        "Requires aps content-available: 1 with no alert, sound, or badge for a background notification.",
+        "Requires apns-push-type: background and apns-priority: 5.",
+        "Warns that background notifications are low priority, throttled, not guaranteed, and should not be sent every few minutes.",
+        "Requires Background Modes > Remote notifications and prompt UIBackgroundFetchResult completion.",
+        "Keeps visible-notification UI and long-running BGTaskScheduler work out of the push-notifications scope except as handoffs."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "rich-notification-extension-review",
+      "prompt": "Review a rich-notification plan: use mutable-content on a silent push to decrypt text, store the decryption key in an App Group UserDefaults suite, attach a downloaded file from any URL, use INSendMessageIntent without extra capability setup, and skip explicit fallback handling when work fails or time expires.",
+      "expected_output": "A review that corrects service-extension triggering, secure shared storage, attachment handling, communication notification setup, and fallback behavior for failed or timed-out service-extension work.",
+      "files": [],
+      "assertions": [
+        "Says a Notification Service Extension requires mutable-content: 1 and an alerting remote notification; silent pushes do not trigger it.",
+        "Uses Keychain Sharing for decryption secrets and App Groups only for shared files or UserDefaults.",
+        "Requires attachments to be supported files on disk and notes the system validates and stores them.",
+        "Requires Communication Notifications capability, NSUserActivityTypes intent entries, intent donation, and content.updating(from:).",
+        "Requires calling the content handler on success, failure, and serviceExtensionTimeWillExpire timeout paths with original, best-attempt, or updated content."
+      ]
+    }
+  ]
+}

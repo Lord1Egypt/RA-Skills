@@ -1,35 +1,72 @@
 ---
-name: "Cognition Evolution"
-description: "对话结束自动复盘，将认知沉淀写入长期记忆。识别本次关键决策、教训、未解决问题，转化为可执行洞见。用于用户说"复盘"、"总结"、"认知升级"。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, memory, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cognition-evolution"
-sourceUrl: "https://clawhub.ai/skills/cognition-evolution"
+name: cognition-evolution
+description: 对话结束自动复盘，将认知沉淀写入长期记忆。识别本次关键决策、教训、未解决问题，转化为可执行洞见。用于用户说"复盘"、"总结"、"认知升级"。
 ---
 
-# Cognition Evolution
+# 认知进化系统
 
-> 对话结束自动复盘，将认知沉淀写入长期记忆。识别本次关键决策、教训、未解决问题，转化为可执行洞见。用于用户说"复盘"、"总结"、"认知升级"。
+每次对话结束后自动复盘，将认知沉淀下来，避免同样的问题重复讨论。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cognition-evolution`
-- **Source URL:** [https://clawhub.ai/skills/cognition-evolution](https://clawhub.ai/skills/cognition-evolution)
+## 触发时机
 
-## Overview
+会话结束时（heartbeat 或用户明确结束对话时）自动触发。
 
+## 复盘流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cognition-evolution
+### 1. 回顾本次对话
+- 本次讨论了哪些主题？
+- 做了哪些决策？
+- 有没有争论或分歧？怎么解决的？
+- 有没有未解决的问题？
+
+### 2. 提炼认知
+对每个关键洞见，问：
+- **这个教训以后怎么用？** （不是"学到了X"，而是"以后遇到Y时要Z"）
+- **这个信息以后什么时候会用到？**
+- **这次做的决定以后会不会变？** （会变则不记）
+
+### 3. 写入沉淀
+
+格式：
+```markdown
+## 认知沉淀 [日期]
+
+### 决策
+- [具体决策] ← 因为[原因]
+
+### 教训
+- 遇到[场景]时，不要[错误做法]，而是[正确做法]
+
+### 洞见
+- [可复用的模式或原则]
+
+### 未解决
+- [悬而未决的问题] — 等待[什么条件]再处理
 ```
+
+## 与 MEMORY.md 的区别
+
+| 文件 | 内容 | 写入时机 |
+|------|------|---------|
+| MEMORY.md | 偏好、项目、联系人等静态事实 | 随时 |
+| 认知沉淀 | 可复用的原则、教训、模式 | 每次会话结束 |
+
+## 示例
+
+**对话摘要：**
+用户问如何选数据库，最初倾向 MongoDB，讨论后决定用 PostgreSQL。
+
+**写入：**
+```markdown
+## 认知沉淀 2026-05-03
+
+### 教训
+- 遇到数据选型时，不要先选"最流行的"，而是先分析：数据结构、事务需求、团队经验、运维成本
+
+### 洞见
+- 关系型数据库在复杂查询上的性能优势经常被低估
+```
+
+## 安装
+
+本技能无需额外配置，直接启用即可。

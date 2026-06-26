@@ -1,0 +1,3 @@
+display_name: 'Image Enhancement Suite'
+short_description: 'Process, inspect, and assemble images for practical workflows.'
+default_prompt: 'Help me edit or process these images.'

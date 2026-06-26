@@ -1,0 +1,5 @@
+interface:
+  display_name: "Somnia"
+  short_description: "Run overnight skill health checks"
+  default_prompt: "Review my OpenClaw skills overnight and propose safe upgrades."
+

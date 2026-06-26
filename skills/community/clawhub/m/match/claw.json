@@ -1,0 +1,9 @@
+{
+  "name": "match",
+  "version": "1.4.2",
+  "description": "Matching pipeline dashboard: phases, countdown, pending Q&A, and outcomes. Same official AILove agent API as loveq.",
+  "homepage": "https://heerweiyi.cc",
+  "license": "MIT-0",
+  "env": ["AILOVE_API_KEY"],
+  "tags": ["pairing", "phases", "notifications", "ai-proxy-chat"]
+}

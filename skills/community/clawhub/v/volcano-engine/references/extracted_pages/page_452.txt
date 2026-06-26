@@ -1,0 +1,33 @@
+Fields object[] 示例值：\-
+列元素
+Name string
+名称
+Type string
+类型
+DataCount integer 示例值：1024
+数据长度
+请求示例
+返回示例POST /?Action=GetInferenceUsage&Version=2024-01-01 HTTP/1.1
+Host: open.volcengineapi.com
+Content-Type: application/json; charset=UTF-8
+X-Date: 20250908T131049Z
+X-Content-Sha256: 287e874e******d653b44d21e
+Authorization: HMAC-SHA256 Credential=Adfks******wekfwe/20250908/cn-beijing/ark_stg/
+request, SignedHeaders=host;x-content-sha256;x-date, 
+Signature=47a7d934ff7b37c03938******cd7b8278a40a1057690c401e92246a0e41085f
+{
+    "QueryInterval": "Hour",
+    "StartTime": "2025-09-17",
+    "EndTime": "2025-09-19",
+    "Filters": [
+        {
+            "Key": "ModelEndpoint",
+            "Values": [
+                "ep-20xxxx-xxx"
+            ]
+        }
+    ]
+}text
+{
+"ResponseMetadata" :{API参考 12. 管控面 API
+版权所有©北京火山引擎科技有限公司 447/485

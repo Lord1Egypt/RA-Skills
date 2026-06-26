@@ -1,35 +1,37 @@
 ---
-name: "nansen-defi-positions"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-defi-positions"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-defi-positions"
+name: nansen-defi-positions
+description: "What DeFi positions does a wallet hold? Protocol-by-protocol breakdown of assets, debts, and rewards across chains."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# nansen-defi-positions
+# DeFi Exposure
 
-> Indexed by skills.sh from nansen-ai/nansen-cli
+**Answers:** "What DeFi positions does this wallet have across protocols?"
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-defi-positions`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-defi-positions](https://skills.sh/nansen-ai/nansen-cli/nansen-defi-positions)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-defi-positions
+ADDR=<address>
+
+nansen research portfolio defi --wallet $ADDR
+# → protocol_name, chain, total_value_usd, total_assets_usd, total_debts_usd, total_rewards_usd, tokens
+
+nansen research profiler balance --address $ADDR --chain ethereum
+# → token_symbol, token_name, token_amount, value_usd per holding
+
+nansen research profiler balance --address $ADDR --chain base
 ```
+
+Combine DeFi positions (lending, LPs, staking) with spot balances for a complete picture of on-chain exposure.
+
+Note: portfolio defi may return empty for wallets with no tracked DeFi positions.

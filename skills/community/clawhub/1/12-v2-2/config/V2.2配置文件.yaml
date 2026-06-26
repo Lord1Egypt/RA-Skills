@@ -1,0 +1,299 @@
+# ===================================
+# AI量化交易系统 V2.2 完整配置文件
+# ===================================
+
+# 系统信息
+system:
+  version: "2.2.0"
+  name: "AI量化交易系统"
+  description: "基于多因子模型的A股量化交易平台"
+
+# ===================================
+# 数据源配置
+# ===================================
+data_sources:
+  # 主数据源
+  primary: "akshare"           # akshare / efinance / tushare
+
+  # 备用数据源（自动故障切换）
+  fallback:
+    - "efinance"
+    - "tushare"
+
+  # Tushare配置（可选）
+  tushare_token: "${TUSHARE_TOKEN}"  # 环境变量或直接填写
+
+  # 熔断器配置
+  circuit_breaker:
+    failure_threshold: 3        # 连续失败N次熔断
+    cooldown_seconds: 300       # 冷却时间（秒）
+
+# ===================================
+# 实时行情配置
+# ===================================
+realtime:
+  enabled: true                 # 是否启用实时行情
+  source: "akshare"            # 数据源: efinance/akshare
+  cache_seconds: 60             # 缓存时间（秒）
+
+# ===================================
+# 筹码分布配置
+# ===================================
+chip_distribution:
+  enabled: true                 # 是否启用筹码分析
+  calculation_days: 60          # 计算周期（天）
+  price_bins: 100               # 价格分档数
+
+# ===================================
+# 大盘环境配置
+# ===================================
+market_environment:
+  enabled: true                 # 是否启用大盘环境判断
+  region: "cn"                  # 市场区域: cn/hk/us
+
+  # 监控指数
+  indices:
+    cn: ["000001", "399001", "399006"]  # A股
+    hk: ["HSI"]                          # 港股
+    us: ["SPX", "DJI", "IXIC"]           # 美股
+
+  # 环境分类阈值
+  thresholds:
+    strong:
+      ma_alignment: true        # 指数多头排列
+      up_down_ratio: 2.0        # 涨跌比
+    weak:
+      ma_alignment: false       # 指数非多头
+      up_down_ratio: 0.5        # 涨跌比
+
+# ===================================
+# 大盘复盘配置
+# ===================================
+market_review:
+  enabled: true                 # 是否启用大盘复盘
+  region: "cn"                  # 市场区域
+  send_with_notification: false # 是否随通知发送
+
+# ===================================
+# 信号因子配置
+# ===================================
+signal:
+  # 8因子权重
+  factors:
+    momentum: 0.25              # 动量指标
+    ma_deviation: 0.20          # 均线偏离
+    volume: 0.15                # 成交量
+    volatility: 0.10            # 波动率
+    macd: 0.10                  # MACD
+    bollinger: 0.10             # 布林带
+    volume_ratio: 0.05          # 实时量比 [V2.2新增]
+    chip_concentration: 0.05    # 筹码集中度 [V2.2新增]
+
+  # 动态买入阈值
+  buy_threshold:
+    strong: 8.5                 # 强势市场
+    neutral: 9.0                # 震荡市场
+    weak: 9.5                   # 弱势市场
+
+  # 卖出阈值
+  sell_threshold: 6.5
+
+  # 信号计算参数
+  parameters:
+    ma_short: 5
+    ma_mid: 10
+    ma_long: 20
+    macd_fast: 12
+    macd_slow: 26
+    macd_signal: 9
+    bollinger_period: 20
+    bollinger_std: 2
+
+# ===================================
+# 交易策略配置
+# ===================================
+strategy:
+  # 止损止盈
+  stop_loss: -0.05              # 止损-5%
+  take_profit: 0.10             # 止盈+10%
+
+  # 移动止盈
+  trailing_stop:
+    enabled: true
+    trigger_pnl: 0.05           # 盈利>5%触发
+    drawdown: 0.03              # 回撤3%卖出
+
+  # 持仓周期
+  max_holding_days: 60
+
+  # 仓位管理
+  position_sizing:
+    enabled: false              # 是否启用动态仓位
+    max_position_pct: 0.30      # 单只股票最大仓位
+    min_position_pct: 0.10      # 单只股票最小仓位
+
+# ===================================
+# 通知配置
+# ===================================
+notification:
+  email:
+    # 总开关
+    enabled: false              # 默认关闭，需手动配置
+
+    # SMTP配置
+    smtp_server: "smtp.qq.com"
+    smtp_port: 587
+    sender: "your_email@qq.com"
+    password: "your_authorization_code"  # 邮箱授权码，非登录密码
+
+    # 收件人列表
+    receivers:
+      - "receiver1@example.com"
+      - "receiver2@example.com"
+
+    # 推送类型开关
+    send_buy_signal: true
+    send_sell_signal: true
+    send_risk_alert: true
+    send_daily_report: false
+    send_market_review: false
+
+    # 每日报告时间
+    daily_report_time: "18:00"
+
+# ===================================
+# 图片识别配置
+# ===================================
+image_recognition:
+  enabled: false                # 默认关闭（需要AI API）
+
+  # AI模型选择
+  model: "gemini"               # gemini/openai/anthropic
+
+  # API配置
+  api_key: "${VISION_API_KEY}"  # API密钥
+
+  # Gemini配置
+  gemini:
+    model_name: "gemini-2.0-flash-exp"
+
+  # OpenAI配置
+  openai:
+    base_url: "https://api.openai.com/v1"
+    model_name: "gpt-4o"
+
+  # Anthropic配置
+  anthropic:
+    model_name: "claude-3-5-sonnet-20241022"
+
+# ===================================
+# AI回测验证配置
+# ===================================
+ai_backtest:
+  enabled: false                # 默认关闭
+  database_path: "data/backtest_records.db"
+
+  # 验证指标
+  metrics:
+    - "direction_accuracy"      # 方向准确率
+    - "stop_loss_hit_rate"      # 止盈止损命中率
+    - "signal_quality_score"    # 信号质量评分
+
+# ===================================
+# 多市场配置
+# ===================================
+multi_market:
+  enabled: false                # 默认关闭
+  active_markets:
+    - "cn"                      # A股
+    # - "hk"                    # 港股
+    # - "us"                    # 美股
+
+  # 市场特定配置
+  market_configs:
+    cn:
+      currency: "CNY"
+      trading_hours: ["09:30-11:30", "13:00-15:00"]
+      data_source: "akshare"
+    hk:
+      currency: "HKD"
+      trading_hours: ["09:30-12:00", "13:00-16:00"]
+      data_source: "akshare"
+    us:
+      currency: "USD"
+      trading_hours: ["21:30-04:00"]  # 北京时间
+      data_source: "yfinance"
+
+# ===================================
+# 回测配置
+# ===================================
+backtest:
+  # 回测时间
+  start_date: "2023-01-01"
+  end_date: "2026-02-27"
+
+  # 资金设置
+  initial_capital: 1000000      # 初始资金（元）
+
+  # 交易成本
+  commission: 0.0003            # 佣金费率（万三）
+  slippage: 0.001               # 滑点（0.1%）
+  stamp_duty: 0.001             # 印花税（仅卖出）
+
+  # 并发设置
+  max_workers: 4                # 最大并发数
+
+# ===================================
+# 日志配置
+# ===================================
+logging:
+  level: "INFO"                 # DEBUG/INFO/WARNING/ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+  # 文件日志
+  file:
+    enabled: true
+    path: "logs/v22_backtest.log"
+    max_bytes: 10485760         # 10MB
+    backup_count: 5
+
+  # 控制台日志
+  console:
+    enabled: true
+
+# ===================================
+# 高级配置
+# ===================================
+advanced:
+  # 性能优化
+  performance:
+    enable_caching: true        # 启用缓存
+    cache_ttl: 3600             # 缓存有效期（秒）
+    chunk_size: 100             # 数据分块大小
+
+  # 数据质量
+  data_quality:
+    min_data_points: 20         # 最小数据点数
+    enable_validation: true     # 启用数据校验
+    handle_outliers: true       # 处理异常值
+
+  # 重试机制
+  retry:
+    max_attempts: 3             # 最大重试次数
+    delay: 2                    # 重试延迟（秒）
+
+# ===================================
+# 自定义配置
+# ===================================
+# 用户可以在这里添加自己的配置项
+custom:
+  # 示例：自定义股票池
+  # stock_pools:
+  #   blue_chip: ["600519", "000858", "600036"]
+  #   growth: ["300750", "002594"]
+  #   tech: ["000063", "002415"]
+
+  # 示例：自定义参数
+  # parameters:
+  #   custom_threshold: 8.0
+  #   custom_filter: true

@@ -1,35 +1,91 @@
----
-name: "A Stock Daily Review"
-description: "每天晚上自动推送A股市场全面分析和持仓技术点评，助力短线投资者制定明日操作计划。"
-category: "data-science"
-source: "ClawHub"
-tags: [a-stock, china, daily-review, stock, analysis, daily]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-stock-daily-review"
-sourceUrl: "https://clawhub.ai/skills/a-stock-daily-review"
----
+# A股每日收盘点评智能系统 v2.0
 
-# A Stock Daily Review
+> 每天晚上9点自动推送完整市场分析报告到微信，A股短线投资者必备工具。
 
-> 每天晚上自动推送A股市场全面分析和持仓技术点评，助力短线投资者制定明日操作计划。
+## 核心功能
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-stock-daily-review`
-- **Source URL:** [https://clawhub.ai/skills/a-stock-daily-review](https://clawhub.ai/skills/a-stock-daily-review)
+1. **大盘概况**：上证/深证/创业板实时行情 + 市场情绪判断
+2. **持仓盈亏跟踪**：实时股价/盈亏金额/盈亏比例
+3. **热点板块深度分析**：结合近1-3个月数据 + 近3-5日突破信号
+4. **持仓股技术分析**：均线/RSI/MACD/关键价位/评分
+5. **主线板块预判**：逻辑强 + 调整充分 + 突破信号 + 催化因素
+6. **重点推荐核心股**：新标的，完整技术分析+PE估值+目标价
+7. **明日可执行操作计划**：精确价格/数量/金额/止损位
 
-## Overview
+## 股票分类体系（三档位）
 
+### 🟢 成长型（稳健）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-stock-daily-review
+适合：风险承受能力中等，追求稳定收益
+
+| 股票 | 代码 | 核心逻辑 | PE | 适合持有周期 |
+|------|------|---------|-----|------------|
+| 阳光电源 | 300274 | 全球储能PCS龙头 | ~20倍 | 中线 |
+| 赣锋锂业 | 002460 | 全球锂生态龙头 | ~13倍(2026预测) | 中长线 |
+
+### 🔵 弹性型（进攻）
+
+适合：高风险偏好，追求超额收益
+
+| 股票 | 代码 | 核心逻辑 | PE | 催化剂 |
+|------|------|---------|-----|---------|
+| 天齐锂业 | 002466 | 锂矿弹性最大 | ~12倍(2026预测) | 碳酸锂涨价 |
+| 胜宏科技 | 300476 | GPU显卡PCB龙头 | ~31倍 | AI算力需求 |
+| 德明利 | 001309 | NAND存储模组 | ~30倍(2026预测) | NAND涨价 |
+| 华胜天成 | 600410 | 华为昇腾算力龙头 | — | 昇腾主线 |
+| 泓博医药 | 301230 | CMC卖铲人 | ~35倍(2026预测) | 创新药CXO |
+
+### 🟡 短线波段型
+
+适合：技术面突破机会，快进快出
+
+| 股票 | 代码 | 核心逻辑 | 关键价位 |
+|------|------|---------|---------|
+| 上能电气 | 300827 | PCS储能变流器龙头 | 挂38元/止损35元 |
+| 盛弘股份 | 300693 | 工商业储能PCS横盘突破 | 挂43元/止损41.5元 |
+| 固德威 | 688390 | 户用储能逆变器 | 挂93元/止损88元 |
+
+## 选股方法论
+
+1. **【数据窗口】** 分析近1-3个月数据（灵活判断）
+2. **【突破信号】** 近3-5日最重要，是板块启动的核心信号
+3. **【板块选择】** 逻辑强 + 近1-3个月有调整 + 近3-5日有突破迹象
+4. **【推荐股票】** 不能是持仓股，必须是新标的
+5. **【推荐逻辑】** 板块逻辑 + 调整充分性 + 近3-5日突破信号 + 催化因素 + 业绩 + PE估值 + 目标价
+
+## 估值方法
+
+- **动态PE**：用未来一年预测EPS计算，更准确反映真实估值
+- **PE低于30倍 + 净利润增速>20%** = 性价比高的成长股
+- **PE高于50倍**：需要特别强的催化因素才推荐
+- **亏损股**：不推荐，除非有明确的困境反转逻辑
+
+## 依赖Skill
+
+需要预先安装：
+- `a-stock-trading-assistant`：热点板块+技术分析
+- `a-stock-market`：实时行情
+- `china-stock-analysis`：标准化技术分析
+- `china-a-stock-trader`：龙虎榜+量化分析
+- `a-share-signal`：筹码分布+缠论信号
+
+## 持仓配置
+
+编辑 `~/.clawdbot/skills/a-stock-analysis/portfolio.json`：
+
+```json
+{
+  "positions": [
+    {"code": "001309", "name": "德明利", "cost": 357.0, "qty": 600}
+  ]
+}
 ```
+
+## 使用方式
+
+本skill为定时任务系统，每天晚上9点(UTC)自动运行，完整报告推送到微信。
+
+## 免责声明
+
+本工具仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+作者：小虾 | OpenClaw Agent | v2.0

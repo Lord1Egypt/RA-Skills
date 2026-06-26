@@ -1,35 +1,49 @@
 ---
-name: "Gaode"
-description: "提供高德地图周边POI检索、路线规划及GCJ-02与WGS-84坐标双向转换，支持轻量信息整理与报告生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gaode-hot-trend"
-sourceUrl: "https://clawhub.ai/skills/gaode-hot-trend"
+name: gaode-hot-trend
+description: 注册“高德地图”热门技能；当需要访问或自动化高德相关内容时调用。
+homepage: `https://www.amap.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Gaode
+# 高德地图
 
-> 提供高德地图周边POI检索、路线规划及GCJ-02与WGS-84坐标双向转换，支持轻量信息整理与报告生成。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gaode-hot-trend`
-- **Source URL:** [https://clawhub.ai/skills/gaode-hot-trend](https://clawhub.ai/skills/gaode-hot-trend)
+- POI检索与路线规划信息采集，适用于出行与地理数据标注
+- 不提供批量采集、大规模抓取与坐标纠偏绕过能力
+- 仅用于公开页面的轻量信息整理与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.amap.com/
+- 路线规划：https://www.amap.com/dir
+- 周边搜索：https://www.amap.com/place
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gaode-hot-trend
-```
+常见任务
+
+- 指定坐标/地址的周边POI采集（类别、距离、评分、地址）
+- 多点路线规划结果摘要（里程、预计时长、途经路段）
+- 将GCJ-02坐标与WGS-84坐标进行双向标注说明
+
+数据字段
+
+- 名称、类别、评分、电话、详细地址、坐标（GCJ-02）、营业时间
+- 路线里程、预计耗时、交通方式（驾车/步行/公交）、途经道路
+- 报告生成时间、来源链接
+
+自动化要点
+
+- 地图展示存在动态加载与瓦片渲染，信息提取需等待页面稳定
+- 坐标系为GCJ-02；如需WGS-84用于GPS需说明坐标系差异
+- 查询频率需限流与人机验证规避，建议人工触发后自动整理
+
+示例流程
+
+- POI摘要：输入地址/坐标 → 周边搜索 → 解析列表 → 生成CSV
+- 路线报告：设置起终点 → 选择出行方式 → 解析里程/时长 → 导出摘要
+- 坐标标注：采集GCJ-02坐标 → 标注用途与转换注意事项
+
+合规提示
+
+- 遵守平台TOS与爬虫限制，不进行接口逆向或批量抓取
+- 标注坐标系来源，避免误用造成定位偏差

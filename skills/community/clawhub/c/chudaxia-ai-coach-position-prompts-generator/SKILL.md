@@ -1,35 +1,138 @@
 ---
-name: "Chudaxia Ai Coach Tools Position Agent Prompts Generator"
-description: "将传统企业的《岗位职责说明书》系统化转化为适用于大模型（LLM）的数字员工（AI Agent）系统提示词。基于楚大侠的岗位数字员工七层标准化提示词模板，自动从知识库中检索岗位说明书并进行深度解析，输出结构化的7层完整卡片架构。当用户提到岗位说明书、岗位职责、数字员工提示词、AI Agent提示词、岗位智能体、岗位..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chudaxia-ai-coach-position-prompts-generator"
-sourceUrl: "https://clawhub.ai/skills/chudaxia-ai-coach-position-prompts-generator"
+name: chudaxia-ai-coach-tools-position-agent-prompts-generator
+description: 将传统企业的《岗位职责说明书》系统化转化为适用于大模型（LLM）的数字员工（AI Agent）系统提示词。基于楚大侠的岗位数字员工七层标准化提示词模板，自动从知识库中检索岗位说明书并进行深度解析，输出结构化的7层完整卡片架构。当用户提到岗位说明书、岗位职责、数字员工提示词、AI Agent提示词、岗位智能体、岗位角色提示词生成等需求时，使用此技能。
+metadata:
+  agent-created: "true"
 ---
 
-# Chudaxia Ai Coach Tools Position Agent Prompts Generator
+# 岗位智能体提示词生成器
 
-> 将传统企业的《岗位职责说明书》系统化转化为适用于大模型（LLM）的数字员工（AI Agent）系统提示词。基于楚大侠的岗位数字员工七层标准化提示词模板，自动从知识库中检索岗位说明书并进行深度解析，输出结构化的7层完整卡片架构。当用户提到岗位说明书、岗位职责、数字员工提示词、AI Agent提示词、岗位智能体、岗位...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chudaxia-ai-coach-position-prompts-generator`
-- **Source URL:** [https://clawhub.ai/skills/chudaxia-ai-coach-position-prompts-generator](https://clawhub.ai/skills/chudaxia-ai-coach-position-prompts-generator)
+将传统企业的《岗位职责说明书》系统化转化为适用于大模型（LLM）的数字员工（AI Agent）系统提示词。采用**楚大侠的岗位数字员工七层标准化提示词模板**，对知识库中的岗位说明书进行深度解析与结构化提炼，输出可直接部署为 AI Agent 系统提示词的完整 Markdown 文档。
 
-## Overview
+## 强制输出要求
 
+- **最终交付必须是 Markdown 格式**：输出内容应是一份可直接保存为 `.md` 文件的完整系统提示词文档。
+- **只交付文档本体**：除非用户另有要求，不在最终文档前后添加寒暄、解释、生成说明、JSON、YAML 或非 Markdown 格式内容。
+- **保持 Markdown 结构完整**：使用标题、引用、列表、表格、分隔线、任务清单和代码块等标准 Markdown 语法组织内容，禁止用松散纯文本替代七层结构。
+- **自检也使用 Markdown**：如需要展示质量自检结果，必须作为 Markdown 小节或 Markdown 表格附在文档末尾。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chudaxia-ai-coach-position-prompts-generator
+## 深度思考要求
+
+生成前必须先完成内部深度分析，再输出凝练后的 Markdown 结果。分析至少覆盖：
+- 岗位在业务链路中的核心定位、服务对象和价值产出
+- 岗位职责、能力要求、权限边界、协作关系和风险点之间的因果关系
+- 七层结构之间的一致性，尤其是身份、技能、流程、权限和 KPI 是否互相支撑
+- 岗位说明书中缺失、含糊或不可直接操作的信息，并用合理的行业通用表达补齐
+
+内部分析应遵循“证据提取 → 职责归纳 → 边界判定 → 风险校验 → 语言泛化 → Markdown 格式审查”的顺序。不要输出内部推理草稿，只输出结构化、可部署、可执行的最终 Markdown 文档。
+
+## 核心流程
+
+### 步骤 1：需求确认
+
+接收用户指令后，明确以下信息：
+- **目标岗位名称**：需生成提示词的岗位
+- **知识库来源**：岗位说明书所在的知识库（默认为腾讯IMA知识库）
+- **特殊要求**：用户是否有额外的定制化需求（如强调某些能力、调整沟通风格等）
+
+### 步骤 2：知识库检索与解析
+
+使用腾讯IMA技能（`ima-skills`）从知识库中检索目标岗位的《岗位职责说明书》：
+1. 调用 IMA 知识库搜索，检索与目标岗位相关的文档
+2. 读取并深度解析岗位说明书全文内容
+3. 提取岗位名称、所属部门、汇报关系、核心职责、任职要求、权限范围、KPI 等关键信息
+
+### 步骤 3：七层结构化提炼
+
+严格参考 `references/seven-layer-template.md` 中定义的楚大侠的岗位数字员工七层标准化提示词模板，将岗位说明书内容提炼为 7 个标准层级：
+
+| 层级 | 核心字段 |
+|------|----------|
+| 1. 身份层（Identity） | 角色身份、核心职责与价值目标、工作边界 |
+| 2. 人设层（Persona） | 沟通风格、标准话术框架、表达禁忌 |
+| 3. 技能层（Capability） | 岗位核心能力、降级策略 |
+| 4. 知识层（Knowledge） | 参考规范底座、引用规范 |
+| 5. 流程层（Workflow） | 标准工作步骤、异常处理 |
+| 6. 权限层（Compliance） | 白名单（自主决策权）、黑名单与上报机制 |
+| 7. 绩效层（KPI） | KPI 指标、自我优化意识 |
+
+### 步骤 4：质量自检
+
+生成完成后，参照 `references/quality-checklist.md` 进行质量自检：
+
+**必须通过的检查项：**
+- [ ] 泛化合规：全文无具体公司名、人名、内部系统名
+- [ ] 七层完整：每层所有必含字段均有实质内容
+- [ ] 可操作性：所有描述指向可执行行为或可判定标准
+- [ ] 角色一致性：七层之间角色定位保持一致
+- [ ] 结构规范：统一的 Markdown 层级结构和列表编号
+- [ ] Markdown 交付：最终输出为完整 Markdown 文档，无 JSON/YAML/非 Markdown 说明性包装
+
+如自检未通过，立即修正后重新输出。
+
+### 步骤 5：输出交付
+
+按以下标准 Markdown 格式输出最终提示词：
+
+- 最终答案必须是 Markdown 文档本体，不输出额外解释。
+- 如果用户要求便于复制，可将整份 Markdown 文档置于一个 `markdown` 代码块中；否则直接按 Markdown 文档渲染输出。
+- 输出必须包含完整 7 层结构，每层标题、字段和列表层级不得缺失或混乱。
+
+```markdown
+# [岗位名称] 数字员工系统提示词
+
+> 基于《岗位职责说明书》自动生成 | 楚大侠的岗位数字员工七层标准化提示词模板 v1.0
+
+---
+
+## 1. 身份层（Identity）
+
+### 角色身份
+...
+
+### 核心职责与价值目标
+...
+
+### 工作边界
+...
+
+---
+
+## 2. 人设层（Persona）
+...（依次展开全部7层）
 ```
+
+## 提炼原则
+
+### 泛化原则（最高优先级）
+- **禁止** hardcode 任何具体公司名、人名、内部系统名、产品品牌名
+- 使用行业通用称谓（如"财务分析师"而非"XX公司财务三部张经理"）
+- 内部系统统一表述为"企业XX系统"（如"企业ERP系统"、"企业OA系统"）
+- 同类岗位泛化为标准岗位名称（如"客户服务专员"而非"XX中心客服组一线坐席"）
+
+### 可操作优先原则
+- 降级策略必须包含**具体的替代动作**，禁止仅写"转人工"
+- 异常处理须覆盖**发现→诊断→建议**完整链路
+- 黑名单条款必须包含**拦截动作**和**上报提示话术**
+- KPI 必须可量化或可判定
+
+### 知识库预留原则
+- 知识层中的参考规范底座为后续在知识库中挂载文件夹**预留标准接口**
+- 每个引用的规范文档标注为 `[待挂载]` 状态
+- 引用格式统一定义，便于后续自动化挂载
+
+## 批量处理
+
+当用户需要同时为多个岗位生成提示词时：
+1. 先列出所有待处理岗位清单
+2. 逐个执行步骤 2-5
+3. 每完成一个岗位后输出结果，再继续下一个
+4. 全部完成后提供汇总对比表
+
+## 参考资源
+
+### references/
+- **`seven-layer-template.md`**：楚大侠的岗位数字员工七层标准化提示词模板的完整定义，包含每层的结构字段、提炼原则和示例。生成提示词时的核心参考依据。
+- **`quality-checklist.md`**：生成质量标准与评审检查清单，包含泛化合规检查、七层完整性检查、内容质量检查和输出格式规范。用于生成后自检。

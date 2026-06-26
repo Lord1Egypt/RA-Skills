@@ -1,0 +1,19 @@
+global-styling:
+  version: 1.0
+  css:
+    base:
+      css/base/reset.css: {}
+    layout:
+      css/layout/layout.css: {}
+    component:
+      css/components/components.css: {}
+    theme:
+      css/theme/theme.css: {}
+
+global-scripts:
+  version: 1.0
+  js:
+    js/custom.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

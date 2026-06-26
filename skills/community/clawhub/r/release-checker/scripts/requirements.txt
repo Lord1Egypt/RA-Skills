@@ -1,0 +1,4 @@
+# Release Checker
+# Dependencies:
+sqlglot>=20.0.0
+# No other external dependencies required

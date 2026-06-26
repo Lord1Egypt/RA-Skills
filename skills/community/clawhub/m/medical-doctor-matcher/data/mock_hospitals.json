@@ -1,0 +1,117 @@
+[
+  {
+    "hospital_id": "H001",
+    "name": "北京协和医院",
+    "city": "北京",
+    "region": "东城区",
+    "level": "三甲",
+    "departments": [
+      "呼吸内科",
+      "感染科",
+      "心内科",
+      "消化内科"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": true
+  },
+  {
+    "hospital_id": "H002",
+    "name": "中日友好医院",
+    "city": "北京",
+    "region": "朝阳区",
+    "level": "三甲",
+    "departments": [
+      "呼吸内科",
+      "感染科",
+      "全科医学科",
+      "皮肤科"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": true
+  },
+  {
+    "hospital_id": "H003",
+    "name": "北京大学第三医院",
+    "city": "北京",
+    "region": "海淀区",
+    "level": "三甲",
+    "departments": [
+      "骨科",
+      "运动医学科",
+      "康复医学科",
+      "呼吸内科"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": true
+  },
+  {
+    "hospital_id": "H004",
+    "name": "北京儿童医院",
+    "city": "北京",
+    "region": "西城区",
+    "level": "三甲",
+    "departments": [
+      "儿科",
+      "呼吸科",
+      "感染内科"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": true
+  },
+  {
+    "hospital_id": "H005",
+    "name": "北京安贞医院",
+    "city": "北京",
+    "region": "朝阳区",
+    "level": "三甲",
+    "departments": [
+      "心内科",
+      "胸外科",
+      "急诊"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": false
+  },
+  {
+    "hospital_id": "H006",
+    "name": "首都医科大学宣武医院",
+    "city": "北京",
+    "region": "西城区",
+    "level": "三甲",
+    "departments": [
+      "神经内科",
+      "神经外科",
+      "全科医学科"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": false
+  },
+  {
+    "hospital_id": "H007",
+    "name": "北京积水潭医院",
+    "city": "北京",
+    "region": "西城区",
+    "level": "三甲",
+    "departments": [
+      "骨科",
+      "运动医学科",
+      "急诊"
+    ],
+    "supports_insurance": true,
+    "weekend_clinic": true
+  },
+  {
+    "hospital_id": "H008",
+    "name": "北京清和综合门诊",
+    "city": "北京",
+    "region": "海淀区",
+    "level": "专科门诊",
+    "departments": [
+      "全科医学科",
+      "皮肤科",
+      "消化内科"
+    ],
+    "supports_insurance": false,
+    "weekend_clinic": true
+  }
+]

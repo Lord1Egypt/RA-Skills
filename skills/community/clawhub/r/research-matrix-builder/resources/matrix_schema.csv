@@ -1,0 +1,9 @@
+field,description
+citation,Short citation key
+problem,Research problem
+method,Method or model
+data,Dataset or corpus
+metric,Evaluation metric
+key_result,Main finding
+limitation,Known limitation
+gap,Unaddressed opportunity

@@ -1,0 +1,36 @@
+{
+  "name": "interactive-games",
+  "displayName": "互动游戏框架",
+  "version": "1.0.0",
+  "description": "通用互动游戏框架，支持文字冒险、猜谜等多种游戏类型",
+  "author": "杨云霄（OpenClaw）",
+  "license": "MIT",
+  "keywords": [
+    "game",
+    "adventure",
+    "puzzle",
+    "interactive",
+    "entertainment",
+    "文字冒险",
+    "猜谜游戏"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "src/",
+    "templates/"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "interactive-games"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "changelog": "初始版本发布 - 支持文字冒险游戏（5 种题材）和猜谜游戏（3 种类型）"
+}

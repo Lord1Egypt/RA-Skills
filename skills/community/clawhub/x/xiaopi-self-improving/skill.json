@@ -1,0 +1,8 @@
+{
+  "name": "Self-Improving Agent",
+  "description": "AI自我改进与记忆系统 - 解决'同类错误反复犯、用户纠正不长记性'的痛点。自动捕获错误、用户纠正、最佳实践，并转化为长期记忆。",
+  "version": "1.0.0",
+  "identifier": "self-improving-agent-cn",
+  "author": "老二",
+  "category": "meta"
+}

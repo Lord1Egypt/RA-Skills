@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Maps Extractor (Apify)"
+  short_description: "Run Google Maps place and business data extraction through Apify"
+  default_prompt: "Use $google-maps-extractor-apify to build a Google Maps Extractor payload and run actor 2A4RTA5PjN7McqJXx with APIFY_TOKEN."

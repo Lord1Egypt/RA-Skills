@@ -1,35 +1,33 @@
----
-name: "Medical Imaging Suite"
-description: "Complete medical imaging solution with OHIF viewer, DICOMweb integration, segmentation, and MONAI workflows, deployable via Docker."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-imaging-suite"
-sourceUrl: "https://clawhub.ai/skills/medical-imaging-suite"
----
-
 # Medical Imaging Suite
 
-> Complete medical imaging solution with OHIF viewer, DICOMweb integration, segmentation, and MONAI workflows, deployable via Docker.
+Complete medical imaging solution with OHIF viewer and DICOM segmentation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-imaging-suite`
-- **Source URL:** [https://clawhub.ai/skills/medical-imaging-suite](https://clawhub.ai/skills/medical-imaging-suite)
+## Features
 
-## Overview
+- OHIF viewer deployment
+- DICOMweb integration (tbidea, orthanc, DCM4CHEE)
+- TotalSegmentator integration
+- MONAI workflow support
+- Docker deployment
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/medical-imaging-suite
+# Deploy full suite
+./deploy.sh
+
+# Deploy viewer only
+./deploy.sh viewer
+
+# Deploy segmentation API
+./deploy.sh segmentation
 ```
+
+## Requirements
+
+- Docker
+- 4GB RAM minimum
+
+## Author
+
+Sunshine-del-ux

@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GPT Image 2 Prompt Architect'
+  short_description: 'Build structured GPT Image 2 prompt packs'
+  default_prompt: 'Use $gpt-image-2-prompt-architect to turn my rough image idea into a structured GPT Image 2 prompt pack.'

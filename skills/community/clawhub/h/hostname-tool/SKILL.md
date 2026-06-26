@@ -1,35 +1,28 @@
 ---
-name: "Hostname Tool"
-description: "Display or set the system hostname. Use for identifying the current machine on a network and configuring system identity."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hostname-tool"
-sourceUrl: "https://clawhub.ai/skills/hostname-tool"
+name: hostname-tool
+description: Display or set the system hostname. Use for identifying the current machine on a network and configuring system identity.
 ---
+# Hostname - System Name Utility
 
-# Hostname Tool
+Show or modify the system's hostname. The hostname identifies the machine on the network and is used in shell prompts, logs, and network services.
 
-> Display or set the system hostname. Use for identifying the current machine on a network and configuring system identity.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hostname-tool`
-- **Source URL:** [https://clawhub.ai/skills/hostname-tool](https://clawhub.ai/skills/hostname-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hostname-tool
+hostname-tool [options] [new-hostname]
+```
+
+Running without arguments displays the current hostname. Provide a new hostname to change it (requires root privileges).
+
+## Examples
+
+```bash
+# Display current hostname
+hostname-tool
+
+# Show fully qualified domain name
+hostname-tool --fqdn
+
+# Display IP address associated with hostname
+hostname-tool --ip-address
 ```

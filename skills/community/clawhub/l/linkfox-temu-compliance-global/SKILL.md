@@ -1,35 +1,77 @@
 ---
-name: "Temu Compliance Global"
-description: "Temu 全球站电商合规（Compliance）API，经 LinkFox 网关转发 Partner Global 合规相关 OpenAPI（bg.compliance.*、bg.arbok.open.*、bg.flash.open.* 等，共 9 个接口）。当用户提到 Temu Global 合规、商品资质、G..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-temu-compliance-global"
-sourceUrl: "https://clawhub.ai/skills/linkfox-temu-compliance-global"
+name: linkfox-temu-compliance-global
+version: 1.0.0
+category: product-sourcing
+description: Temu 全球站电商合规（Compliance）API，经 LinkFox 网关转发 Partner Global 合规相关 OpenAPI（bg.compliance.*、bg.arbok.open.*、bg.flash.open.* 等，共 9 个接口）。当用户提到 Temu Global 合规、商品资质、GPSR、治理属性、实拍图、资质上传、bg.compliance.edit、arbok cert、site=global 合规 时触发。
 ---
 
-# Temu Compliance Global
+# Temu 全球站 — 电商合规（Compliance）
 
-> Temu 全球站电商合规（Compliance）API，经 LinkFox 网关转发 Partner Global 合规相关 OpenAPI（bg.compliance.*、bg.arbok.open.*、bg.flash.open.* 等，共 9 个接口）。当用户提到 Temu Global 合规、商品资质、G...
+本 skill（`linkfox-temu-compliance-global`）覆盖 Partner Platform for **Global** 的 **电商合规 / Product Compliance** 相关 OpenAPI。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-temu-compliance-global`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-temu-compliance-global](https://clawhub.ai/skills/linkfox-temu-compliance-global)
+已接入 **9** 个接口，清单见 [partner-global-catalog.md](./references/partner-global-catalog.md)。
 
-## Overview
+**网关（本 skill 内置）**：
 
+| 能力 | 方法 | 路径 |
+|------|------|------|
+| 合规 OpenAPI（`global_compliance_*`、`temu_global_proxy`） | POST | `https://tool-gateway.linkfox.com/temu/proxy` |
+| 加签文件下载 | POST | `https://tool-gateway.linkfox.com/temu/fileDownload` |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 相关 skill
+
+| 场景 | skill |
+|------|--------|
+| **电商合规**（本 skill） | **`linkfox-temu-compliance-global`** |
+| 商品列表/详情/编辑/库存 | `linkfox-temu-manage-product-global` |
+| 价格 | `linkfox-temu-price-global` |
+| 促销 | `linkfox-temu-promotion-global` |
+| 网关与 Temu token | 本 skill `scripts/` |
+
+## API Usage
+
+| 文档 | 内容 |
+|------|------|
+| [api.md](./references/api.md) | 网关、鉴权、错误码 |
+| [partner-global-catalog.md](./references/partner-global-catalog.md) | 接口目录 |
+| [apis/README.md](./references/apis/README.md) | 分接口文档 |
+
+## 默认参数
+
+| 字段 | 默认 | 说明 |
+|------|------|------|
+| site | `global` | Partner Global |
+| managementType | `semi-managed` | 半托管 |
+| tokenPurpose | `product-inventory` | 商品/合规场景 |
+
+## Scripts（按 type）
+
+| 脚本 | type | 状态 |
+|------|------|------|
+| `global_compliance_edit.py` | `bg.compliance.edit` | 已接入 |
+| `global_compliance_metadata_get.py` | `bg.compliance.metadata.get` | 已接入 |
+| `global_compliance_goods_compliancelabel_get.py` | `bg.goods.compliancelabel.get` | 已接入 |
+| `global_compliance_arbok_cert_query_need_upload_items.py` | `bg.arbok.open.cert.queryNeedUploadItems` | 已接入 |
+| `global_compliance_arbok_cert_upload_product_cert.py` | `bg.arbok.open.cert.uploadProductCert` | 已接入 |
+| `global_compliance_flash_upload_recognize.py` | `bg.flash.open.upload.recognize` | 已接入 |
+| `global_compliance_flash_upload_real_image.py` | `bg.flash.open.upload.real.image` | 已接入 |
+| `global_compliance_arbok_upload_upload_file.py` | `bg.arbok.open.upload.uploadFile` | 已接入 |
+| `global_compliance_arbok_product_cert_query.py` | `bg.arbok.open.product.cert.query` | 已接入 |
+| `temu_global_proxy.py` | 任意 `type` | 通用 |
+| `temu_global_file_download.py` | 加签文件下载 | 通用 |
+
+## 示例
+
 ```bash
-hermes skills install clawhub/linkfox-temu-compliance-global
+python scripts/global_compliance_edit.py '<JSON>'  # bg.compliance.edit
 ```
+
+```bash
+python scripts/global_compliance_metadata_get.py '<JSON>'  # bg.compliance.metadata.get
+```
+
+**Feedback：** `skillName`：`linkfox-temu-compliance-global`
+
+## 网关与授权脚本
+
+授权说明：[references/access-token.md](./references/access-token.md)

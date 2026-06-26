@@ -1,0 +1,26 @@
+name: paper-framework-figure-studio-pro
+version: "1.2.0"
+summary: >-
+  Production-grade studio skill for research-paper framework figures, regenerated
+  from research-paper-figure-skill-factory v1.0.1 with full-feasible local PDF
+  coverage, startup no-image behavior, strict text/image separation, P1-P9
+  workflow, mandatory candidate-image bridge, all-step/current-position state
+  footers, and ChatGPT web Create image / Codex $imagegen-first rendering.
+important_rules:
+  - First trigger is STARTUP_PLAN_ONLY and TEXT_ONLY; no substantive analysis and no image generation.
+  - If the first user message asks to generate images, record it as pending only; the first reply still must not call Create image, $imagegen, an image API, or include image artifacts.
+  - Every TEXT_ONLY reply must include 当前执行计划, 默认推荐, 当前状态与产物, and final 下一步你可以这样问.
+  - Every TEXT_ONLY footer must include 全部步骤与当前位置 and the current response mode.
+  - The production workflow is S0 plus P1-P9; P4/P5/P6 are the mandatory candidate-image bridge.
+  - After any multi-option text reply, the first recommended next prompt must ask to generate/display multiple candidate images or schematic candidates, usually 6.
+  - Do not move from 4-6 text candidates directly to final prompt, final image, caption, or text-only direction lock unless the user explicitly skips image candidates.
+  - P4 is TEXT_ONLY visual candidate-board setup; P5 is IMAGE_ONLY candidate-board generation; P6 is TEXT_ONLY candidate review and direction lock.
+  - Text candidates default to 6 within a 4-6 range.
+  - Candidate-board images default to 6 within a 4-6 range.
+  - Formal image candidates default to 6 within a 4-6 range unless the user explicitly requests otherwise.
+  - Diagram routing is multi-label; record all applicable labels before locking one primary production subtype.
+  - Source corpus coverage is all_accessible_relevant_pdfs: candidate=7631, accessible=7631, processed=7631, skipped=0, multi-label records=93088; representative pages are audit aids only.
+  - ChatGPT web must use Create image through ChatGPT Images 2.0.
+  - In Codex, use $imagegen first; if unavailable, use ChatGPT Images 2.0 API or another approved image-generation API.
+  - Never use SVG, Mermaid, TikZ, Graphviz, HTML/CSS, canvas, matplotlib, or code-rendered files as visual outputs or fallbacks.
+  - Reference images are optional; if provided, record per-image attribute preferences for style, layout, density, labels, colors, callouts, or negative-reference constraints.

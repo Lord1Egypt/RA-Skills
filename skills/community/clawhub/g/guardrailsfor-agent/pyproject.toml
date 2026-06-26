@@ -1,0 +1,9 @@
+[project]
+name = "agent-policy-guardrails"
+version = "0.1.0"
+description = "Production-grade Agent Policy & Guardrails Engine"
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

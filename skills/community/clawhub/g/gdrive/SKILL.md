@@ -1,35 +1,29 @@
 ---
-name: "gdrive"
-description: "Access Google Drive in a privacy-safe way by only working inside an allow-listed set of approved folders. Use when the user wants to browse, read, search, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gdrive"
-sourceUrl: "https://clawhub.ai/skills/gdrive"
+name: gdrive
+description: Access Google Drive in a privacy-safe way by only working inside an allow-listed set of approved folders. Use when the user wants to browse, read, search, or upload files in Google Drive but strictly within pre-approved folders.
 ---
 
-# gdrive
+# GDrive – Approved-Folder Google Drive Access
 
-> Access Google Drive in a privacy-safe way by only working inside an allow-listed set of approved folders. Use when the user wants to browse, read, search, or...
+## What this skill does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gdrive`
-- **Source URL:** [https://clawhub.ai/skills/gdrive](https://clawhub.ai/skills/gdrive)
+This skill lets the agent interact with Google Drive **only inside explicitly approved folders**.  
+It assumes there is some existing Google Drive access layer (CLI, API, or MCP server) and adds a strict, configurable **allow‑list** in front of it.
 
-## Overview
+Core capabilities:
 
+- List the approved folders and their permissions
+- Browse the contents of an approved folder
+- Read/download file contents
+- Search for files within approved folders
+- Upload files to approved folders (if allowed)
+- Add or remove approved folders (admin‑only)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gdrive
-```
+Everything outside the allow‑listed folders is treated as **off‑limits**.
+
+---
+
+## Configuration model
+
+The skill uses an “approved folders” configuration that can be represented as JSON or any other config source with the same fields:
+

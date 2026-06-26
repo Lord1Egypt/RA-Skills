@@ -1,0 +1,12 @@
+{
+  "senderAccount": "you@example.com",
+  "senderName": "Your Name",
+  "senderTitle": "OpenClaw assistant",
+  "senderBrandLine": "Built by Your Company · OpenClaw assistant",
+  "draftModeDefault": true,
+  "approvalRequiredForSend": true,
+  "defaultEmailMode": "html+brief",
+  "defaultBriefFormat": "pdf",
+  "reportOutputDir": "/mnt/data/clawd/reports/outreach-demo",
+  "maxOpenClawFits": 3
+}

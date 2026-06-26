@@ -1,0 +1,99 @@
+{
+  "base_url": "http://zugcpublish.cztv.com",
+  "default_timeout_seconds": 30,
+  "default_headers": {
+    "Accept": "application/json",
+    "User-Agent": "OpenClaw-ZShiJie-Publisher/1.0"
+  },
+  "qr_login": {
+    "login_page": "https://mp.cztv.com/#/login",
+    "base_url": "https://mp.cztv.com",
+    "share_base_url": "https://zmtv.cztv.com/cmsh5-share/prod/download/index.html?nbtvscaninfo=",
+    "platform_name": "创作者平台",
+    "sign_secret": "929AFCDD22F0F7AE54F511278BE6FF18",
+    "waiting_code": "3030",
+    "pending_codes": [
+      "3030",
+      "3032"
+    ],
+    "pending_message_keywords": [
+      "等待",
+      "未确认",
+      "扫码成功"
+    ],
+    "success_code": "200",
+    "poll_interval_seconds": 1,
+    "wait_timeout_seconds": 300,
+    "get_qrcode": {
+      "method": "GET",
+      "path": "/userCenter/api/uc/pc/getQrcode",
+      "content_type": "none",
+      "headers": {
+        "Origin": "https://mp.cztv.com",
+        "Referer": "https://mp.cztv.com/"
+      },
+      "query": {}
+    },
+    "poll_login": {
+      "method": "POST",
+      "path": "/userCenter/api/h5/uc/auth/CodeLoginInfo",
+      "content_type": "json",
+      "headers": {
+        "Origin": "https://mp.cztv.com",
+        "Referer": "https://mp.cztv.com/"
+      },
+      "query": {},
+      "body": {
+        "qrCode": "{{qrCode}}",
+        "ts": "{{ts}}",
+        "sign": "{{sign}}"
+      }
+    }
+  },
+  "operations": {
+    "publish_article": {
+      "method": "POST",
+      "path": "/dasugc/v1/api/v1/article/addShortArticle",
+      "content_type": "json",
+      "headers": {
+        "sessionId": "{{sessionId}}",
+        "Cookie": "sessionId={{sessionId}}"
+      },
+      "query": {},
+      "body": "{{payload}}"
+    },
+    "edit_article": {
+      "method": "POST",
+      "path": "/dasugc/v1/api/v1/article/editShortArticle",
+      "content_type": "json",
+      "headers": {
+        "sessionId": "{{sessionId}}",
+        "Cookie": "sessionId={{sessionId}}"
+      },
+      "query": {},
+      "body": "{{payload}}"
+    },
+    "publish_video": {
+      "method": "POST",
+      "path": "/dasugc/v1/api/v1/article/addVideo",
+      "content_type": "json",
+      "headers": {
+        "sessionId": "{{sessionId}}",
+        "Cookie": "sessionId={{sessionId}}"
+      },
+      "query": {},
+      "body": "{{payload}}"
+    },
+    "edit_video": {
+      "method": "POST",
+      "path": "/dasugc/v1/api/v1/article/editVideo",
+      "content_type": "json",
+      "headers": {
+        "sessionId": "{{sessionId}}",
+        "Cookie": "sessionId={{sessionId}}"
+      },
+      "query": {},
+      "body": "{{payload}}"
+    }
+  }
+}

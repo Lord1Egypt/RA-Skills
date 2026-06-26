@@ -1,0 +1,15 @@
+{
+  "id": "zhang-yiming",
+  "name": "Zhang Yiming",
+  "domain": "AI & Global",
+  "role": "ByteDance Founder",
+  "category": "leadership",
+  "personality": "Algorithm thinker",
+  "specialty": "AI recommendation",
+  "tools": [
+    "algorithm-optimization",
+    "ai-recommendation",
+    "tiktok-api"
+  ],
+  "version": "1.0.0"
+}

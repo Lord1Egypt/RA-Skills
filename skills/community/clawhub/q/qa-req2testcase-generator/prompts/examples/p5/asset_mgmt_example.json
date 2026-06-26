@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-ASSET-001",
+  "test_points": [
+    {
+      "id": "TP-001",
+      "source_scenario": "基金申购-主流程",
+      "source": ["P2-TP-001"],
+      "category": "main_flow",
+      "description": "投资者申购在售公募基金，输入合法金额提交后资金冻结，T+1确认份额",
+      "precondition": "投资者账户正常，可用余额充足，基金产品在售",
+      "related_rules": ["申购金额最低1000元，按1000元递增", "T日申购T+1确认份额"],
+      "related_roles": ["投资者"],
+      "priority": "P0",
+      "priority_reason": "核心业务主流程，申购功能必须保证",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": true
+    },
+    {
+      "id": "TP-002",
+      "source_scenario": "基金申购-费率分档计算",
+      "source": ["P2-TP-002"],
+      "category": "branch",
+      "description": "申购金额在不同档位时费率正确计算：0-50万按1.5%、50万以上按1.0%",
+      "precondition": "投资者提交不同金额的申购订单",
+      "related_rules": ["申购费率按持有金额分档：0-50万1.5%、50万以上1.0%"],
+      "related_roles": ["投资者"],
+      "priority": "P0",
+      "priority_reason": "费率计算直接影响资金扣款，属于高优先级分支",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    },
+    {
+      "id": "TP-003",
+      "source_scenario": "基金申购-金额低于最低限额",
+      "source": ["P2-TP-003"],
+      "category": "boundary",
+      "description": "投资者输入低于1000元的申购金额，系统拒绝并提示最低申购金额",
+      "precondition": "投资者账户正常，基金产品在售",
+      "related_rules": ["申购金额最低1000元"],
+      "related_roles": ["投资者"],
+      "priority": "P1",
+      "priority_reason": "边界校验，防止非法金额进入系统",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    },
+    {
+      "id": "TP-004",
+      "source_scenario": "基金申购-金额非1000整数倍",
+      "source": ["P2-TP-004"],
+      "category": "boundary",
+      "description": "投资者输入非1000元整数倍的金额（如1500元），系统拒绝并提示按1000元递增",
+      "precondition": "投资者账户正常，基金产品在售",
+      "related_rules": ["申购金额按1000元递增"],
+      "related_roles": ["投资者"],
+      "priority": "P1",
+      "priority_reason": "递增规则校验，属于边界场景",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    },
+    {
+      "id": "TP-005",
+      "source_scenario": "基金申购-余额不足",
+      "source": ["P2-TP-005"],
+      "category": "exception",
+      "description": "投资者可用余额不足以支付申购金额，系统拒绝并提示余额不足",
+      "precondition": "投资者可用余额低于申购金额",
+      "related_rules": ["申购需冻结对应资金"],
+      "related_roles": ["投资者"],
+      "priority": "P1",
+      "priority_reason": "异常场景，需验证系统拒绝逻辑",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    },
+    {
+      "id": "TP-006",
+      "source_scenario": "基金申购-持仓份额查看",
+      "source": ["P2-TP-006"],
+      "category": "main_flow",
+      "description": "T+1份额确认后，投资者在持仓页面可查看基金份额和最新净值",
+      "precondition": "投资者已有一笔T+1确认完成的申购",
+      "related_rules": ["确认后可在持仓中查看份额和净值"],
+      "related_roles": ["投资者"],
+      "priority": "P0",
+      "priority_reason": "申购结果验证，核心功能闭环",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    }
+  ],
+  "merge_log": {
+    "merged_count": 0,
+    "merged_pairs": [],
+    "reason": "本轮无重复测试点需合并"
+  },
+  "quality_warnings": [],
+  "coverage_summary": {
+    "total": 6,
+    "by_category": {
+      "main_flow": 2,
+      "branch": 1,
+      "boundary": 2,
+      "exception": 1
+    },
+    "by_priority": {
+      "P0": 3,
+      "P1": 3
+    }
+  }
+}

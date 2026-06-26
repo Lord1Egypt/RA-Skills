@@ -1,0 +1,25 @@
+{
+  "version": "2.0",
+  "accountId": null,
+  "status": "idle",
+  "lastCheck": null,
+  "videos": [],
+  "processedComments": [],
+  "pendingManualReview": [],
+  "stats": {
+    "totalProcessed": 0,
+    "totalReplied": 0,
+    "totalSkipped": 0,
+    "totalManualReview": 0
+  },
+  "config": {
+    "checkInterval": 30000,
+    "replyDelay": 5000,
+    "maxRepliesPerSession": 50,
+    "autoReplyEnabled": true,
+    "sensitiveCheckEnabled": true,
+    "keywordMatchEnabled": true
+  },
+  "createdAt": null,
+  "updatedAt": null
+}

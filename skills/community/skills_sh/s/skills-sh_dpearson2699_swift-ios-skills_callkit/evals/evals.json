@@ -1,0 +1,47 @@
+{
+  "skill_name": "callkit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm updating an iOS 26 VoIP app for the latest PushKit behavior. Sketch the PushKit + CallKit incoming-call path for iOS 26.4 and earlier iOS 26.x, including when I can ignore a VoIP push, when I must report to CallKit, and the APNs server settings that matter.",
+      "expected_output": "A source-grounded CallKit/PushKit implementation outline that prefers the iOS 26.4 metadata delegate, respects mustReport, keeps the older delegate as fallback, reports required calls before PushKit completion, and notes short VoIP push expiration.",
+      "files": [],
+      "expectations": [
+        "Uses the iOS 26.4+ PKPushRegistryDelegate method with PKVoIPPushMetadata when available.",
+        "Checks PKVoIPPushMetadata.mustReport and explains that false means the app is not required to report the push to CallKit or LiveCommunicationKit.",
+        "Keeps the older pushRegistry(_:didReceiveIncomingPushWith:for:completion:) path for iOS 26.0-26.3 or older deployment targets.",
+        "Reports required VoIP call pushes with CXProvider.reportNewIncomingCall before completing PushKit handling.",
+        "Mentions that apps built with the iOS 13 SDK or later must use CallKit for PushKit VoIP calls and repeated report failures can stop VoIP push delivery.",
+        "Recommends apns-expiration 0 or only a few seconds for VoIP push requests."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this CallKit plan for mistakes: when the user taps Answer, call action.fulfill() right away and then connect WebRTC; start the audio engine before provider(_:didActivate:); send another VoIP push if the caller hangs up; for encrypted payloads, always use CXProvider.reportNewIncomingVoIPPushPayload from a notification service extension.",
+      "expected_output": "A correction-focused review that defers answer fulfillment until connection succeeds, waits for CallKit audio activation, uses the app-server connection after the initial push, and limits reportNewIncomingVoIPPushPayload to Apple's documented encrypted-metadata case.",
+      "files": [],
+      "expectations": [
+        "Explains that CXAnswerCallAction should be fulfilled after the server/media connection is established and failed or ended if connection fails.",
+        "States that the audio engine should start only after provider(_:didActivate:) and should stop on provider(_:didDeactivate:).",
+        "Routes hangups and call-detail updates over the existing app-server connection after the initial VoIP push instead of sending more VoIP pushes.",
+        "Limits CXProvider.reportNewIncomingVoIPPushPayload to notification service extensions that decrypt payloads when the server cannot tell whether content is a VoIP call or other data.",
+        "Mentions that reportNewIncomingVoIPPushPayload requires the com.apple.developer.usernotifications.filtering entitlement.",
+        "Does not turn the answer into a generic APNs notification permission or rich-notification guide."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need caller ID and call blocking for a spam filter, plus iOS 26 call translation and normal APNs auth-key rotation. Can the Call Directory extension look up each caller from my API as calls arrive? What belongs in CallKit and what should move to another skill?",
+      "expected_output": "A boundary-aware answer that keeps Call Directory and CallKit call-translation behavior in scope, rejects per-call lookup, uses sorted country-code phone numbers and settings/status APIs, and routes generic APNs auth-key rotation to push notification guidance.",
+      "files": [],
+      "expectations": [
+        "States that Call Directory extensions load bulk caller ID/blocking data in beginRequest(with:) and are not invoked for per-call web lookups.",
+        "Represents CXCallDirectoryPhoneNumber as country code followed by digits and requires sorted or sequential entries.",
+        "Mentions checking extension status and opening Call Blocking & Identification settings with CXCallDirectoryManager when needed.",
+        "Covers iOS 26 call translation with supportsAudioTranslation and CXSetTranslatingCallAction at a concise CallKit level.",
+        "Warns not to deactivate upstream audio on mute while call translation is active.",
+        "Routes generic APNs auth-key rotation or normal remote-notification registration to push-notifications guidance instead of expanding CallKit scope."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "action": "require_non_empty",
+    "field": "title",
+    "message": "title 不能为空"
+  },
+  {
+    "action": "require_non_empty",
+    "field": "overview",
+    "message": "overview 不能为空"
+  },
+  {
+    "action": "require_non_empty",
+    "field": "poster_img_key",
+    "message": "poster_img_key 不能为空（请传 --poster-url/--poster-file 或 --var poster_img_key=...）"
+  },
+  {
+    "action": "default_value",
+    "field": "country",
+    "value": "待公布"
+  },
+  {
+    "action": "default_value",
+    "field": "status",
+    "value": "待公布"
+  },
+  {
+    "action": "default_value",
+    "field": "episode_runtime",
+    "value": "待公布"
+  },
+  {
+    "action": "remove_when_empty",
+    "field": "tagline",
+    "selector": {
+      "tag": "markdown",
+      "contentContains": "${tagline}"
+    }
+  },
+  {
+    "action": "remove_when_empty",
+    "field": "detail_url",
+    "selector": {
+      "tag": "button",
+      "textContains": "查看详情"
+    }
+  },
+  {
+    "action": "remove_when_empty",
+    "field": "tmdb_id",
+    "selector": {
+      "tag": "button",
+      "textContains": "立即订阅"
+    }
+  },
+  {
+    "action": "default_value",
+    "field": "media_type",
+    "value": "tv"
+  },
+  {
+    "action": "default_value",
+    "field": "subscribe_disabled",
+    "value": "false"
+  },
+  {
+    "action": "default_value",
+    "field": "subscribe_button_text",
+    "value": "立即订阅"
+  }
+]

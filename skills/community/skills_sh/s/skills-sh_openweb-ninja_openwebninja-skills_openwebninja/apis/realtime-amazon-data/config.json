@@ -1,0 +1,38 @@
+{
+  "calls": [
+    {
+      "title": "Best Seller",
+      "url": "https://real-time-amazon-data.p.rapidapi.com/best-sellers",
+      "method": "GET",
+      "params": {
+        "category": "electronics",
+        "type": "BEST_SELLERS",
+        "country": "US",
+        "page": "1"
+      },
+      "body": null,
+      "headers": {
+        "x-rapidapi-host": "real-time-amazon-data.p.rapidapi.com",
+        "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
+      },
+      "extractPath": "data.best_sellers[0]"
+    },
+    {
+      "title": "Movers & Shakers",
+      "url": "https://real-time-amazon-data.p.rapidapi.com/best-sellers",
+      "method": "GET",
+      "params": {
+        "category": "books",
+        "type": "MOVERS_AND_SHAKERS",
+        "country": "US",
+        "page": "1"
+      },
+      "body": null,
+      "headers": {
+        "x-rapidapi-host": "real-time-amazon-data.p.rapidapi.com",
+        "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
+      },
+      "extractPath": "data.best_sellers[0]"
+    }
+  ]
+}

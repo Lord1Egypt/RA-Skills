@@ -1,35 +1,31 @@
 ---
-name: "Daily Data Tracker"
+name: daily-data-tracker
 description: "每日数据追踪与历史记录。维护每日关键指标的历史表格（日期/Revenue/Gross Adds/EOP/Paid Subs/端拆分），支持 WoW 计算和趋势分析。数据追加到 memory/powerbi-daily-track.md 的历史表。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaozhua-daily-data-tracker"
-sourceUrl: "https://clawhub.ai/skills/xiaozhua-daily-data-tracker"
 ---
 
-# Daily Data Tracker
+# 每日数据追踪
 
-> 每日数据追踪与历史记录。维护每日关键指标的历史表格（日期/Revenue/Gross Adds/EOP/Paid Subs/端拆分），支持 WoW 计算和趋势分析。数据追加到 memory/powerbi-daily-track.md 的历史表。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaozhua-daily-data-tracker`
-- **Source URL:** [https://clawhub.ai/skills/xiaozhua-daily-data-tracker](https://clawhub.ai/skills/xiaozhua-daily-data-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaozhua-daily-data-tracker
+## 数据表格式
+```markdown
+| 日期 | Billed Revenue | Gross Adds | EOP | Paid Subs | PPT | Word | Excel | Channel |
+|------|---------------|------------|-----|-----------|-----|------|-------|---------|
+| 2026-04-10 | 22,942 | 5,703 | 643,532 | 13,222 | 11,115 | 6,298 | 2,690 | 735 |
 ```
+
+## 更新流程
+1. 每天抓完数据后，追加一行到历史表
+2. 如果有基准值（23:30 抓的），更新到备注
+3. 数据完整确认后，更新最终值
+
+## WoW 计算
+- WoW = (今天 - 7天前) / 7天前 × 100%
+- 跨月时如 7 天前无数据则标注"无对比"
+- 节假日/周末需特别标注
+
+## 趋势分析
+- 连续 3 天下降 → 预警
+- WoW 连续 2 周为负 → 趋势性下降
+- 取 7 日/30 日移动平均看趋势
+
+## 文件位置
+- memory/powerbi-daily-track.md

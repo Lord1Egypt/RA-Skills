@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_read_informat_expression_doc",
+    "description": "Query the expression documentation of Informat. It provides all expression functions for automation, data tables, data table field configuration, etc.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

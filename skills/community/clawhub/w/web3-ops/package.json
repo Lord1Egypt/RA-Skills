@@ -1,0 +1,29 @@
+{
+  "name": "openclaw-web3-ops",
+  "version": "1.1.4",
+  "description": "Web3 On-chain operations skill for OpenClaw (Gemini Telegram Bot)",
+  "main": "index.js",
+  "type": "module",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "index.js",
+    "mcp-server.js",
+    "actions",
+    "bin"
+  ],
+  "bin": {
+    "openclaw-web3-ops": "./bin/install.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "mcp": "node mcp-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "axios": "^1.6.8",
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.12.1"
+  }
+}

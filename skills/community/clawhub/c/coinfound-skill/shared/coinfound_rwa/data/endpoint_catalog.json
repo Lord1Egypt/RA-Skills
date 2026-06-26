@@ -1,0 +1,2401 @@
+[
+  {
+    "asset_class": "private-credit",
+    "doc_status": "partial",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "private-credit.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Field table omits currentAvgAPR and totalLoans."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/private-credit/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET private-credit.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "private-credit",
+    "doc_status": "documented",
+    "family": "timeseries",
+    "field_count": 7,
+    "key": "private-credit.active-loans.timeseries",
+    "method": "GET",
+    "metric": "active-loans",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/private-credit/active-loans/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET private-credit.active-loans.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "private-credit",
+    "doc_status": "documented",
+    "family": "timeseries",
+    "field_count": 7,
+    "key": "private-credit.total-loans.timeseries",
+    "method": "GET",
+    "metric": "total-loans",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/private-credit/total-loans/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET private-credit.total-loans.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "private-credit",
+    "doc_status": "documented",
+    "family": "list",
+    "field_count": 9,
+    "key": "private-credit.platforms.list",
+    "method": "GET",
+    "metric": "platforms",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/private-credit/platforms/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET private-credit.platforms.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "commodity.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/commodity/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET commodity.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "commodity.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET commodity.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "commodity.issuers.list",
+    "method": "GET",
+    "metric": "issuers",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/issuers/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET commodity.issuers.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "commodity.networks.list",
+    "method": "GET",
+    "metric": "networks",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/networks/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET commodity.networks.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "commodity.market-cap.timeseries",
+    "method": "GET",
+    "metric": "market-cap",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/market-cap/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET commodity.market-cap.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "commodity.transfer-volume.timeseries",
+    "method": "GET",
+    "metric": "transfer-volume",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/transfer-volume/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET commodity.transfer-volume.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "commodity.active-address.timeseries",
+    "method": "GET",
+    "metric": "active-address",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/active-address/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET commodity.active-address.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "commodity.mint-burn.timeseries",
+    "method": "GET",
+    "metric": "mint-burn",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/mint-burn/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET commodity.mint-burn.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "commodity.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET commodity.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "unsupported_by_design",
+    "family": "report-create",
+    "field_count": 0,
+    "key": "commodity.weekly-report.create",
+    "method": "POST",
+    "metric": "weekly-report",
+    "notes": [
+      "Excluded from the read skill by product decision.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/weekly-report/create",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "POST commodity.weekly-report.create",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "commodity.market-cap.pie",
+    "method": "GET",
+    "metric": "market-cap",
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/market-cap/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET commodity.market-cap.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "unsupported_by_design",
+    "family": "report",
+    "field_count": 0,
+    "key": "commodity.weekly-report",
+    "method": "GET",
+    "metric": "weekly-report",
+    "notes": [
+      "Excluded from the read skill by product decision.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/weekly-report",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "GET commodity.weekly-report",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "commodity",
+    "doc_status": "unsupported_by_design",
+    "family": "report-list",
+    "field_count": 0,
+    "key": "commodity.recently-report.list",
+    "method": "GET",
+    "metric": "recently-report",
+    "notes": [
+      "Excluded from the read skill by product decision.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/commodity/recently-report/list",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "GET commodity.recently-report.list",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "institutional-fund.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/institutional-fund/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET institutional-fund.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "institutional-fund.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET institutional-fund.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "institutional-fund.jurisdiction-country.list",
+    "method": "GET",
+    "metric": "jurisdiction-country",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/jurisdiction-country/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET institutional-fund.jurisdiction-country.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "institutional-fund.networks.list",
+    "method": "GET",
+    "metric": "networks",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/networks/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET institutional-fund.networks.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "institutional-fund.issuers.list",
+    "method": "GET",
+    "metric": "issuers",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/issuers/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET institutional-fund.issuers.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "institutional-fund.platforms.list",
+    "method": "GET",
+    "metric": "platforms",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/platforms/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET institutional-fund.platforms.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "institutional-fund.managers.list",
+    "method": "GET",
+    "metric": "managers",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/managers/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET institutional-fund.managers.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "institutional-fund.total-value.pie",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/total-value/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET institutional-fund.total-value.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "institutional-fund.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET institutional-fund.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "institutional-fund.mint-burn.timeseries",
+    "method": "GET",
+    "metric": "mint-burn",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/mint-burn/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET institutional-fund.mint-burn.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "institutional-fund",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "institutional-fund.total-value.timeseries",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/institutional-fund/total-value/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET institutional-fund.total-value.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "government-bond.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/government-bond/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET government-bond.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "government-bond.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET government-bond.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "government-bond.jurisdiction-country.list",
+    "method": "GET",
+    "metric": "jurisdiction-country",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/jurisdiction-country/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET government-bond.jurisdiction-country.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "government-bond.networks.list",
+    "method": "GET",
+    "metric": "networks",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/networks/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET government-bond.networks.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "government-bond.issuers.list",
+    "method": "GET",
+    "metric": "issuers",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/issuers/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET government-bond.issuers.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "government-bond.platforms.list",
+    "method": "GET",
+    "metric": "platforms",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/platforms/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET government-bond.platforms.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "government-bond.total-value.pie",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/total-value/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET government-bond.total-value.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "government-bond.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET government-bond.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "government-bond",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "government-bond.total-value.timeseries",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/government-bond/total-value/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET government-bond.total-value.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "corporate-bond.total-value.timeseries",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/total-value/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET corporate-bond.total-value.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "corporate-bond.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET corporate-bond.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "corporate-bond.total-value.pie",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/total-value/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET corporate-bond.total-value.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "corporate-bond.platforms.list",
+    "method": "GET",
+    "metric": "platforms",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/platforms/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET corporate-bond.platforms.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "corporate-bond.issuers.list",
+    "method": "GET",
+    "metric": "issuers",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/issuers/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET corporate-bond.issuers.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "corporate-bond.networks.list",
+    "method": "GET",
+    "metric": "networks",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/networks/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET corporate-bond.networks.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "corporate-bond.jurisdiction-country.list",
+    "method": "GET",
+    "metric": "jurisdiction-country",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/jurisdiction-country/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET corporate-bond.jurisdiction-country.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "corporate-bond.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/corporate-bond/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET corporate-bond.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "corporate-bond",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "corporate-bond.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/corporate-bond/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET corporate-bond.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "stable-coin.market-cap.timeseries",
+    "method": "GET",
+    "metric": "market-cap",
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/market-cap/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET stable-coin.market-cap.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "stable-coin.transfer-volume.timeseries",
+    "method": "GET",
+    "metric": "transfer-volume",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/transfer-volume/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET stable-coin.transfer-volume.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "stable-coin.active-addresses.timeseries",
+    "method": "GET",
+    "metric": "active-addresses",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/active-addresses/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET stable-coin.active-addresses.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "stable-coin.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET stable-coin.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "stable-coin.mint-burn-volume.timeseries",
+    "method": "GET",
+    "metric": "mint-burn-volume",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/mint-burn-volume/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET stable-coin.mint-burn-volume.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "stable-coin.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET stable-coin.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "stable-coin.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Document example is empty, but live response contains nested dataset fields.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/stable-coin/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_nested_networks",
+    "title": "GET stable-coin.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "unsupported_by_design",
+    "family": "report",
+    "field_count": 27,
+    "key": "stable-coin.weekly-report",
+    "method": "GET",
+    "metric": "weekly-report",
+    "notes": [
+      "Report endpoint is intentionally excluded from read skill coverage.",
+      "Excluded from the read skill by product decision."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/weekly-report",
+    "query_params": [
+      {
+        "location": null,
+        "name": "week",
+        "required": false,
+        "type": "number"
+      },
+      {
+        "location": null,
+        "name": "year",
+        "required": false,
+        "type": "number"
+      }
+    ],
+    "shape_family": "unsupported",
+    "title": "GET stable-coin.weekly-report",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "unsupported_by_design",
+    "family": "report-create",
+    "field_count": 0,
+    "key": "stable-coin.weekly-report.create",
+    "method": "POST",
+    "metric": "weekly-report",
+    "notes": [
+      "Excluded from the read skill by product decision."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/weekly-report/create",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "POST stable-coin.weekly-report.create",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "stable-coin",
+    "doc_status": "unsupported_by_design",
+    "family": "report-list",
+    "field_count": 27,
+    "key": "stable-coin.recently-report.list",
+    "method": "GET",
+    "metric": "recently-report",
+    "notes": [
+      "Excluded from the read skill by product decision."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/stable-coin/recently-report/list",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "GET stable-coin.recently-report.list",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "timeseries",
+    "field_count": 7,
+    "key": "us-treasuries.market-cap.timeseries",
+    "method": "GET",
+    "metric": "market-cap",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/market-cap/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET us-treasuries.market-cap.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "timeseries",
+    "field_count": 7,
+    "key": "us-treasuries.mint-burn.timeseries",
+    "method": "GET",
+    "metric": "mint-burn",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/mint-burn/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET us-treasuries.mint-burn.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "timeseries",
+    "field_count": 7,
+    "key": "us-treasuries.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET us-treasuries.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "pie",
+    "field_count": 5,
+    "key": "us-treasuries.market-cap.pie",
+    "method": "GET",
+    "metric": "market-cap",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/market-cap/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "groupBy",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET us-treasuries.market-cap.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "list",
+    "field_count": 9,
+    "key": "us-treasuries.protocols.list",
+    "method": "GET",
+    "metric": "protocols",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/protocols/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET us-treasuries.protocols.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "list",
+    "field_count": 9,
+    "key": "us-treasuries.issuers.list",
+    "method": "GET",
+    "metric": "issuers",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/issuers/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET us-treasuries.issuers.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "list",
+    "field_count": 9,
+    "key": "us-treasuries.networks.list",
+    "method": "GET",
+    "metric": "networks",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/networks/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET us-treasuries.networks.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "list",
+    "field_count": 9,
+    "key": "us-treasuries.jurisdiction-country.list",
+    "method": "GET",
+    "metric": "jurisdiction-country",
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/jurisdiction-country/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET us-treasuries.jurisdiction-country.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "dataset",
+    "field_count": 39,
+    "key": "us-treasuries.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/us-treasuries/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET us-treasuries.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "us-treasuries",
+    "doc_status": "documented",
+    "family": "aggregates",
+    "field_count": 9,
+    "key": "us-treasuries.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/us-treasuries/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET us-treasuries.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "market-overview",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "market-overview.market-cap.timeseries",
+    "method": "GET",
+    "metric": "market-cap",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/market-overview/market-cap/timeseries",
+    "query_params": [],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET market-overview.market-cap.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "market-overview",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "market-overview.network.list",
+    "method": "GET",
+    "metric": "network",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/market-overview/network/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET market-overview.network.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "market-overview",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "market-overview.issuer.list",
+    "method": "GET",
+    "metric": "issuer",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/market-overview/issuer/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET market-overview.issuer.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "market-overview",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "market-overview.platform.list",
+    "method": "GET",
+    "metric": "platform",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/market-overview/platform/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET market-overview.platform.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "market-overview",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "market-overview.asset-classes.list",
+    "method": "GET",
+    "metric": "asset-classes",
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/market-overview/asset-classes/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET market-overview.asset-classes.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "market-overview",
+    "doc_status": "probe_required",
+    "family": "summary",
+    "field_count": 0,
+    "key": "market-overview.main-asset-classes.summary",
+    "method": "GET",
+    "metric": "main-asset-classes",
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/market-overview/main-asset-classes/summary",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET market-overview.main-asset-classes.summary",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "x-stock.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET x-stock.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "x-stock.total-value.timeseries",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/total-value/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET x-stock.total-value.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "x-stock.transfer-volume.timeseries",
+    "method": "GET",
+    "metric": "transfer-volume",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/transfer-volume/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET x-stock.transfer-volume.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "x-stock.active-addresses.timeseries",
+    "method": "GET",
+    "metric": "active-addresses",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/active-addresses/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET x-stock.active-addresses.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "x-stock.mint-burn-volumes.timeseries",
+    "method": "GET",
+    "metric": "mint-burn-volumes",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/mint-burn-volumes/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET x-stock.mint-burn-volumes.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "x-stock.holders.timeseries",
+    "method": "GET",
+    "metric": "holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET x-stock.holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "x-stock.total-value.pie",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/total-value/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": false,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET x-stock.total-value.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "x-stock.platform.list",
+    "method": "GET",
+    "metric": "platform",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/platform/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET x-stock.platform.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "x-stock.underlying-stock.list",
+    "method": "GET",
+    "metric": "underlying-stock",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/underlying-stock/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET x-stock.underlying-stock.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "x-stock.network.list",
+    "method": "GET",
+    "metric": "network",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/network/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET x-stock.network.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "x-stock.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Dataset route may return code=0 without data for some candidate tickers.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "ticker"
+    ],
+    "path_template": "/v1/c/rwa/x-stock/dataset/{ticker}",
+    "query_params": [
+      {
+        "location": null,
+        "name": "ticker",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET x-stock.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "unsupported_by_design",
+    "family": "report",
+    "field_count": 0,
+    "key": "x-stock.weekly-report",
+    "method": "GET",
+    "metric": "weekly-report",
+    "notes": [
+      "Excluded from the read skill by product decision.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/weekly-report",
+    "query_params": [
+      {
+        "location": null,
+        "name": "week",
+        "required": false,
+        "type": "number"
+      },
+      {
+        "location": null,
+        "name": "year",
+        "required": false,
+        "type": "number"
+      }
+    ],
+    "shape_family": "unsupported",
+    "title": "GET x-stock.weekly-report",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "unsupported_by_design",
+    "family": "report-create",
+    "field_count": 0,
+    "key": "x-stock.weekly-report.create",
+    "method": "POST",
+    "metric": "weekly-report",
+    "notes": [
+      "Excluded from the read skill by product decision.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/weekly-report/create",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "POST x-stock.weekly-report.create",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "unsupported_by_design",
+    "family": "report-list",
+    "field_count": 0,
+    "key": "x-stock.recently-report.list",
+    "method": "GET",
+    "metric": "recently-report",
+    "notes": [
+      "Excluded from the read skill by product decision.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/recently-report/list",
+    "query_params": [],
+    "shape_family": "unsupported",
+    "title": "GET x-stock.recently-report.list",
+    "unsupported_by_design": true
+  },
+  {
+    "asset_class": "x-stock",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "x-stock.market.list",
+    "method": "GET",
+    "metric": "market",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/x-stock/market/list",
+    "query_params": [],
+    "shape_family": "envelope_list",
+    "title": "GET x-stock.market.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.total-value.timeseries",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/total-value/timeseries",
+    "query_params": [],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.total-value.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.asset-holders.timeseries",
+    "method": "GET",
+    "metric": "asset-holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/asset-holders/timeseries",
+    "query_params": [],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.asset-holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.active-addresses.timeseries",
+    "method": "GET",
+    "metric": "active-addresses",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/active-addresses/timeseries",
+    "query_params": [],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.active-addresses.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.transfer-volume.timeseries",
+    "method": "GET",
+    "metric": "transfer-volume",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/transfer-volume/timeseries",
+    "query_params": [],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.transfer-volume.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "platforms.asset-value.pie",
+    "method": "GET",
+    "metric": "asset-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/asset-value/pie",
+    "query_params": [],
+    "shape_family": "pie_name_value",
+    "title": "GET platforms.asset-value.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "platforms.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Document example is empty, but live response contains data.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/aggregates",
+    "query_params": [],
+    "shape_family": "envelope_object",
+    "title": "GET platforms.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "platforms.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Document example is empty, but live response contains nested dataset fields.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [],
+    "path_template": "/v1/c/rwa/platforms/dataset",
+    "query_params": [],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET platforms.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "platforms.detail.network.list",
+    "method": "GET",
+    "metric": "network",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/network/list",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "envelope_list",
+    "title": "GET platforms.detail.network.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "platforms.detail.asset-class.list",
+    "method": "GET",
+    "metric": "asset-class",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/asset-class/list",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "envelope_list",
+    "title": "GET platforms.detail.asset-class.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "list",
+    "field_count": 0,
+    "key": "platforms.detail.manager.list",
+    "method": "GET",
+    "metric": "manager",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/manager/list",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "envelope_list",
+    "title": "GET platforms.detail.manager.list",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.detail.total-value.timeseries",
+    "method": "GET",
+    "metric": "total-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/total-value/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.detail.total-value.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.detail.asset-holders.timeseries",
+    "method": "GET",
+    "metric": "asset-holders",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/asset-holders/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.detail.asset-holders.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.detail.active-addresses.timeseries",
+    "method": "GET",
+    "metric": "active-addresses",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/active-addresses/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.detail.active-addresses.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "timeseries",
+    "field_count": 0,
+    "key": "platforms.detail.transfer-volume.timeseries",
+    "method": "GET",
+    "metric": "transfer-volume",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/transfer-volume/timeseries",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "timeseries_aggregate",
+    "title": "GET platforms.detail.transfer-volume.timeseries",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "pie",
+    "field_count": 0,
+    "key": "platforms.detail.asset-value.pie",
+    "method": "GET",
+    "metric": "asset-value",
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/asset-value/pie",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "pie_name_value",
+    "title": "GET platforms.detail.asset-value.pie",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "platforms.detail.asset.dataset",
+    "method": "GET",
+    "metric": "asset",
+    "notes": [
+      "Document example is empty, but live response contains nested dataset fields.",
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/asset/dataset",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_nested_networks",
+    "title": "GET platforms.detail.asset.dataset",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "aggregates",
+    "field_count": 0,
+    "key": "platforms.detail.aggregates",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/aggregates",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "envelope_object",
+    "title": "GET platforms.detail.aggregates",
+    "unsupported_by_design": false
+  },
+  {
+    "asset_class": "platforms",
+    "doc_status": "probe_required",
+    "family": "dataset",
+    "field_count": 0,
+    "key": "platforms.detail.dataset",
+    "method": "GET",
+    "metric": null,
+    "notes": [
+      "Documentation contains an empty JSON example and no field table."
+    ],
+    "path_params": [
+      "platform"
+    ],
+    "path_template": "/v1/c/rwa/platforms/{platform}/dataset",
+    "query_params": [
+      {
+        "location": null,
+        "name": "platform",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "shape_family": "dataset_wrapped_list",
+    "title": "GET platforms.detail.dataset",
+    "unsupported_by_design": false
+  }
+]

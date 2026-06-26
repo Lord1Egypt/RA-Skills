@@ -1,0 +1,4 @@
+interface:
+  display_name: "数黑棋子"
+  short_description: "从围棋棋盘照片统计黑棋子并估算黑方中国规则面积"
+  default_prompt: "使用 $count-go-black-stones 统计这张围棋棋盘照片中的黑棋，并生成一张干净的结果棋盘图。英文说明：https://github.com/imcaptor/count-go-black-stones/blob/main/README.en.md"

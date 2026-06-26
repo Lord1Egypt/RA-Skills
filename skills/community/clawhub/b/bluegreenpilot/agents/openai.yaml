@@ -1,0 +1,7 @@
+interface:
+  display_name: "BlueGreenPilot"
+  short_description: "Safe blue-green deployment workflow"
+  brand_color: "#16A34A"
+  default_prompt: "Use $bluegreenpilot to configure and plan a safe blue-green deployment flow for this repository."
+policy:
+  allow_implicit_invocation: true

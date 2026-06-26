@@ -1,0 +1,62 @@
+CLAWHUB SKILL PACKAGER — REVIEW CHECKLIST
+
+PRODUCT PROMISE
+- Publish-ready skill package is the primary deliverable
+- Separate review file is the supporting deliverable
+- Exactly two user-facing deliverables are produced unless the user explicitly asks for a different structure
+
+IDENTITY ALIGNMENT
+- Display name is final
+- Slug is lowercase and hyphenated
+- Runtime name matches slug unless the user explicitly requested a split
+- Package folder matches slug
+- metadata.openclaw.skillKey matches slug
+- README publish fields match final identity
+- CHANGELOG reflects final version and identity
+
+FRONTMATTER HEALTH
+- SKILL.md exists
+- YAML frontmatter exists
+- name exists
+- description exists
+- version exists
+- metadata uses single-line JSON
+- user-invocable is present when needed
+- disable-model-invocation is present when needed
+
+BEHAVIORAL CLARITY
+- Purpose is clear
+- Activation is clear
+- Invocation is clear when needed
+- Skill scope is clear
+- Outputs are described
+- Claims are not overstated
+- Package-first promise is visible
+
+RUNTIME / SECURITY AWARENESS
+- Skill type is classified
+- Env var requirements are documented
+- API dependencies are documented
+- Binary / script dependencies are documented
+- Privilege assumptions are documented
+- Risky surfaces are highlighted
+
+DELIVERABLE SEPARATION
+- Publish bundle contains only skill-release files
+- Review content is kept outside the publish bundle
+- Review file is plain text
+- Final artifacts are surfaced separately
+
+DELIVERABLES
+- Package bundle created
+- Separate review file created
+- Changes summarized
+- Assumptions highlighted
+- Publish-readiness stated
+
+SEVERITY MARKER USE
+- ✅ FIXED AUTOMATICALLY used only for safe completed repairs
+- 🔶 INFERRED FIELD used only for best-effort inferred values
+- ⚠️ REQUIRED REVIEW used only for issues that could affect publishing or behavior
+- 📝 EDITED FOR ALIGNMENT used only for consistency fixes across identity or packaging surfaces
+- 🚀 READY TO PUBLISH used only when no major blocker remains

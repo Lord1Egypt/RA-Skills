@@ -1,0 +1,12 @@
+{
+  "name": "Vector Memory (Windows) for OpenClaw",
+  "slug": "vector-memory-windows",
+  "tagline": "Full memory stack: LanceDB + git-notes + hygiene, Windows-ready.",
+  "description": "Production-ready memory bundle for OpenClaw on Windows. Includes semantic memory storage/retrieval with LanceDB, branch-aware decision memory with git notes, and practical memory hygiene guidance for long-term quality.",
+  "category": "development",
+  "tags": ["openclaw", "memory", "windows", "lancedb", "git-notes"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://clawhub.ai/BluePointDigital/vector-memory"
+}

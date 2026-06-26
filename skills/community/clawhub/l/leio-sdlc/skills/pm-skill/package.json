@@ -1,0 +1,9 @@
+{
+  "name": "pm-skill",
+  "version": "0.1.0",
+  "description": "Technical PM AgentSkill for standardizing PRD generation and test strategy routing.",
+  "main": "SKILL.md",
+  "scripts": {
+    "preflight": "./preflight.sh"
+  }
+}

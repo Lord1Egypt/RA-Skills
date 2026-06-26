@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="赛博朋克主题图标">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="24" x2="232" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#081625"/>
+      <stop offset="0.55" stop-color="#09111E"/>
+      <stop offset="1" stop-color="#16081C"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="54" y1="48" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#35E8FF"/>
+      <stop offset="0.55" stop-color="#7AF1FF"/>
+      <stop offset="1" stop-color="#FF41D0"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect x="20" y="20" width="216" height="216" rx="42" fill="url(#bg)"/>
+  <path d="M52 88 L82 58 H192 L204 70 V178 L176 206 H64 L52 194 Z" fill="none" stroke="url(#neon)" stroke-width="10" filter="url(#glow)"/>
+  <path d="M86 92 H174 L186 104 V152 L162 176 H82 V104 Z" fill="rgba(9,17,30,0.88)" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M96 112 H162" stroke="#35E8FF" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M96 136 H146" stroke="#FF41D0" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M96 158 H132" stroke="#8FEFFF" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="184" cy="88" r="8" fill="#35E8FF" filter="url(#glow)"/>
+  <path d="M174 198 H214" stroke="#FF41D0" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+</svg>

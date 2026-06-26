@@ -1,0 +1,60 @@
+[
+  {
+    "id": "159502_0_20260318111929",
+    "code": "159502",
+    "name": "标普生物科技ETF嘉实",
+    "type": "BUY",
+    "price": 1.263,
+    "time": "2026-03-18 11:19:29",
+    "status": "CLOSED",
+    "reason": "MACD 金叉 + KDJ早期 (0.0) + 成交量正常",
+    "sell_price": 1.267,
+    "sell_time": "2026-03-18 13:53:46",
+    "profit": 0.004,
+    "profit_pct": 0.32
+  },
+  {
+    "id": "159502_SELL_20260318135346",
+    "code": "159502",
+    "name": "标普生物科技ETF嘉实",
+    "type": "SELL",
+    "price": 1.267,
+    "time": "2026-03-18 13:53:46",
+    "status": "CLOSED",
+    "reason": "MACD 死叉",
+    "linked_buy_id": "159502_0_20260318111929",
+    "buy_price": 1.263,
+    "buy_time": "2026-03-18 11:19:29",
+    "profit": 0.004,
+    "profit_pct": 0.32
+  },
+  {
+    "id": "513890_2_20260318135821",
+    "code": "513890",
+    "name": "恒生科技ETF摩根",
+    "type": "BUY",
+    "price": 0.996,
+    "time": "2026-03-18 13:58:21",
+    "status": "CLOSED",
+    "reason": "MACD 金叉 + KDJ早期 (0.0) + 成交量正常",
+    "sell_price": 0.998,
+    "sell_time": "2026-03-18 14:10:11",
+    "profit": 0.002,
+    "profit_pct": 0.2
+  },
+  {
+    "id": "513890_SELL_20260318141011",
+    "code": "513890",
+    "name": "恒生科技ETF摩根",
+    "type": "SELL",
+    "price": 0.998,
+    "time": "2026-03-18 14:10:11",
+    "status": "CLOSED",
+    "reason": "KDJ 超买 (100.0)",
+    "linked_buy_id": "513890_2_20260318135821",
+    "buy_price": 0.996,
+    "buy_time": "2026-03-18 13:58:21",
+    "profit": 0.002,
+    "profit_pct": 0.2
+  }
+]

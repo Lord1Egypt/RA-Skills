@@ -1,0 +1,20 @@
+{
+  "name": "Business Travel Wellness Integrator",
+  "slug": "travel-business-wellness-integrator",
+  "version": "1.0.0",
+  "description": "Integrates wellness into business travel",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel business wellness integrator",
+    "business travel wellness integrator"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

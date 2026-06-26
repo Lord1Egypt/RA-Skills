@@ -1,0 +1,74 @@
+# AI行业早报 Skill 配置
+
+name: "AI行业早报"
+version: "1.0.0"
+description: "定时获取AI行业最新资讯，整理成每日早报发送给用户"
+author: "AI顾问"
+
+# 触发方式
+trigger:
+  # 定时触发（cron表达式：每天早上8:30）
+  cron: "30 8 * * *"
+  timezone: "Asia/Shanghai"
+  
+  # 也支持手动触发
+  manual: true
+
+# 执行配置
+execution:
+  # 使用 isolated 模式运行
+  sessionMode: "isolated"
+  
+  # 超时时间（秒）
+  timeout: 300
+  
+  # 使用的模型（default 使用系统默认）
+  model: "default"
+
+# 交付配置
+delivery:
+  # 交付模式：announce 为公告模式
+  mode: "announce"
+  
+  # 发送渠道：wecom（企业微信）
+  channel: "wecom"
+  
+  # 是否尽力送达
+  bestEffort: true
+
+# 早报内容模板
+content:
+  # 搜索时间范围（小时）
+  searchHours: 24
+  
+  # 包含的板块
+  sections:
+    - core_news      # 核心新闻
+    - important_progress  # 重要进展
+    - trend_analysis # 趋势分析
+    - almanac        # 今日黄历
+    - maoxuan        # 毛选经典
+
+# 定时任务元数据（可直接导入使用）
+jobConfig:
+  id: "ai-daily-news-skill"
+  name: "AI行业早报"
+  enabled: true
+  schedule:
+    kind: "cron"
+    expr: "30 8 * * *"
+    tz: "Asia/Shanghai"
+    staggerMs: 0
+  sessionTarget: "isolated"
+  wakeMode: "now"
+  payload:
+    kind: "agentTurn"
+    # 提示词内容会从 prompt.md 加载
+    message: "你是产品方案顾问。请搜索过去24小时内AI行业的重大新闻和热点事件，整理成简洁的摘要格式发给用户。包含：1.核心新闻 2.重要进展 3.趋势分析。然后查询当日黄历（宜忌），最后从毛选中选一句经典语录，结合黄历推荐给用户。格式：\n【毛选经典】\n\"引用原文\" —— 毛泽东"
+    model: "default"
+    timeoutSeconds: 300
+  delivery:
+    mode: "announce"
+    channel: "wecom"
+    bestEffort: true
+  deleteAfterRun: false

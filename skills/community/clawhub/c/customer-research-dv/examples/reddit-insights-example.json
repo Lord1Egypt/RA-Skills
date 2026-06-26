@@ -1,0 +1,91 @@
+{
+  "category": "tax software",
+  "subreddits_searched": ["personalfinance", "tax", "fatFIRE"],
+  "timestamp": "2026-03-08T17:35:00.000000",
+  "total_posts_analyzed": 156,
+  "total_comments_analyzed": 428,
+  "themes": {
+    "tax optimization": 45,
+    "deductions": 38,
+    "filing complexity": 32,
+    "software cost": 28,
+    "audit fears": 22
+  },
+  "sentiment_distribution": {
+    "positive": 142,
+    "negative": 298,
+    "neutral": 144
+  },
+  "pain_points": [
+    {
+      "text": "Why is TurboTax so expensive for such a simple return? I paid $120 last year for something that took me 2 hours.",
+      "keywords": ["expensive", "complicated"],
+      "url": "https://reddit.com/r/personalfinance/comments/example1",
+      "score": 156,
+      "sentiment": "negative"
+    },
+    {
+      "text": "I feel like I'm missing deductions every year but don't know what to look for. My CPA is $500+ which feels excessive.",
+      "keywords": ["missing", "expensive"],
+      "url": "https://reddit.com/r/personalfinance/comments/example2",
+      "score": 143,
+      "sentiment": "negative"
+    },
+    {
+      "text": "Wish there was a tool that proactively told me throughout the year what I should be tracking for tax purposes.",
+      "keywords": ["wish", "needs"],
+      "url": "https://reddit.com/r/tax/comments/example3",
+      "score": 128,
+      "sentiment": "neutral"
+    },
+    {
+      "text": "Stock options tax is so confusing. I paid way more than I expected because I didn't understand the timing.",
+      "keywords": ["confusing", "complicated"],
+      "url": "https://reddit.com/r/fatFIRE/comments/example4",
+      "score": 112,
+      "sentiment": "negative"
+    },
+    {
+      "text": "Frustrated with tax software that doesn't explain WHY I'm entering things. Just feels like data entry.",
+      "keywords": ["frustrated", "confusing"],
+      "url": "https://reddit.com/r/personalfinance/comments/example5",
+      "score": 98,
+      "sentiment": "negative"
+    }
+  ],
+  "feature_requests": [
+    {
+      "text": "Would love a tool that automatically tracks business expenses throughout the year instead of scrambling in April",
+      "patterns": ["would love", "needs to"],
+      "url": "https://reddit.com/r/personalfinance/comments/example6",
+      "score": 134
+    },
+    {
+      "text": "Wish TurboTax would integrate with my brokerage so I don't have to manually enter every trade",
+      "patterns": ["wish"],
+      "url": "https://reddit.com/r/fatFIRE/comments/example7",
+      "score": 121
+    },
+    {
+      "text": "Need better guidance on quarterly estimated taxes for side hustle income",
+      "patterns": ["need"],
+      "url": "https://reddit.com/r/tax/comments/example8",
+      "score": 95
+    }
+  ],
+  "top_mentions": [],
+  "competitor_mentions": {
+    "turbotax": {
+      "count": 67,
+      "sentiment": ["negative", "neutral", "negative", "negative", "neutral"]
+    },
+    "h&r block": {
+      "count": 34,
+      "sentiment": ["neutral", "negative", "neutral"]
+    },
+    "freetaxusa": {
+      "count": 28,
+      "sentiment": ["positive", "positive", "neutral", "positive"]
+    }
+  }
+}

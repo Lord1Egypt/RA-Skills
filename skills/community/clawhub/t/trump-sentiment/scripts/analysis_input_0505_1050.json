@@ -1,0 +1,221 @@
+{
+  "report_date": "2026-04-05",
+  "report_time_cst": "10:50",
+  "run_type": "forced_timestamp_timeline_v6",
+  "market_status": "closed_sunday_cst",
+  "iran_war_day": 32,
+  "trigger": "forced_cron",
+  "nasdaq_status": "21,879 (休市期间)",
+  "current_time_utc": "2026-04-05T02:50:00Z",
+  "items": [
+    {
+      "time_utc": "2026-04-05T02:32:00Z",
+      "time_cst": "10:32 CST Apr 5",
+      "source": "KobeissiLetter",
+      "type": "market",
+      "headline": "光学板块成AI最热交易",
+      "summary": "Lumentum($LITE)过去12个月涨+1,137%，Applied Optoelectronics涨+551%，Coherent涨+282%。Nvidia 3月初宣布向Lumentum和Coherent各投资$20亿。光通信技术因AI基础设施需求加速普及。",
+      "engagement": "26K views, 262 likes, 35 RT",
+      "signal": "medium",
+      "market_reaction": "AI基础设施持续受益于光通信升级"
+    },
+    {
+      "time_utc": "2026-04-05T00:06:00Z",
+      "time_cst": "08:06 CST Apr 5",
+      "source": "KobeissiLetter",
+      "type": "macro",
+      "headline": "美国经济陷入招聘衰退",
+      "summary": "2月招聘率降至3.1%，创2011年1月以来最低，较2008金融危机低点仅高0.3个百分点。私营部门招聘率降至3.3%，为2010年2月以来最低。主动离职率降至1.9%，创2020疫情以来最低。",
+      "engagement": "125K views, 1,354 likes, 276 RT",
+      "signal": "high",
+      "market_reaction": "就业市场显著恶化，但失业率维持4.4%较低水平"
+    },
+    {
+      "time_utc": "2026-04-04T22:55:00Z",
+      "time_cst": "06:55 CST Apr 5",
+      "source": "KobeissiLetter",
+      "type": "macro",
+      "headline": "美国消费者金融压力加剧",
+      "summary": "次级贷款违约率升至未偿债务总额的10%，创11年来最高。违约率较2021年增长超3倍。次级贷款规模达$2.7万亿，占家庭债务总额约15%。2008年金融危机期间峰值约19%。",
+      "engagement": "111K views, 1,235 likes, 285 RT",
+      "signal": "high",
+      "market_reaction": "消费信贷风险上升，银行股承压"
+    },
+    {
+      "time_utc": "2026-04-04T21:18:00Z",
+      "time_cst": "05:18 CST Apr 5",
+      "source": "KobeissiLetter",
+      "type": "energy",
+      "headline": "美国司机额外支付$84亿燃油费用",
+      "summary": "伊朗战争（2月28日开始）以来，美国司机额外燃油支出$84亿。日均额外支出$2.4亿。美国平均油价升至$4.10/加仑，为2022年6月以来最高。较1月已上涨+$1.30/加仑。",
+      "engagement": "169K views, 2,319 likes, 618 RT",
+      "signal": "high",
+      "market_reaction": "能源价格持续上涨，通胀压力加大"
+    },
+    {
+      "time_utc": "2026-04-04T19:59:00Z",
+      "time_cst": "03:59 CST Apr 5",
+      "source": "KobeissiLetter / Reuters",
+      "type": "breaking",
+      "headline": "BREAKING: 伊朗回应Trump 48小时通牒",
+      "summary": "伊朗回应Trump「48小时开放霍尔木兹海峡否则将承受全面打击」的通牒：「如果紧张局势继续升级，整个地区将成为你们的地狱。」伊朗副外长Araghchi明确表示拒绝谈判，坚持要求美国停止「非法战争」。",
+      "engagement": "445K views, 6,525 likes, 752 RT",
+      "signal": "critical",
+      "market_reaction": "地区冲突升级概率大增，油价期货应声上涨"
+    },
+    {
+      "time_utc": "2026-04-04T19:08:00Z",
+      "time_cst": "03:08 CST Apr 5",
+      "source": "KobeissiLetter / Reuters",
+      "type": "breaking",
+      "headline": "BREAKING: 美情报：伊朗不太可能开放霍尔木兹",
+      "summary": "美情报机构报告显示：1）伊朗「不太可能」短期内开放霍尔木兹；2）伊朗对霍尔木兹的控制是美伊之间「唯一真正的筹码」；3）伊朗可能通过此次战争扩大地区影响力；4）Trump表示其他国家比美国更不愿看到这种结果。",
+      "engagement": "483K views, 3,147 likes, 360 RT",
+      "signal": "critical",
+      "market_reaction": "谈判破裂概率上升，能源板块持续走强"
+    },
+    {
+      "time_utc": "2026-04-04T18:15:00Z",
+      "time_cst": "02:15 CST Apr 5",
+      "source": "KobeissiLetter / Reuters",
+      "type": "breaking",
+      "headline": "BREAKING: 以色列准备打击伊朗能源设施",
+      "summary": "据Reuters，以色列正准备打击伊朗能源设施，等待美国「开绿灯」。1）Trump发出48小时通牒仅数小时后即有此报道；2）攻击时间窗口在一周内；3）伊朗官方媒体报道西南部石化区遭新空袭。打击伊朗发电厂可能性大增。",
+      "engagement": "515K views, 3,296 likes, 496 RT",
+      "signal": "critical",
+      "market_reaction": "能源基础设施遭袭将导致油价新一轮暴涨"
+    },
+    {
+      "time_utc": "2026-04-04T17:34:00Z",
+      "time_cst": "01:34 CST Apr 5",
+      "source": "KobeissiLetter",
+      "type": "macro",
+      "headline": "伊朗战争推高燃油成本，机票价格飙升",
+      "summary": "德意志银行分析：21天预购跨大西洋机票较一个月前平均上涨~$200。旧金山-新加坡+35%至$1,179，洛杉矶-上海+18%至$819。美联航上周警告若燃油成本维持高位可能提价20%。计划国际旅游的美国消费者比例降至16.9%，创2022年12月以来最低。",
+      "engagement": "152K views, 1,013 likes, 209 RT",
+      "signal": "medium",
+      "market_reaction": "消费者可支配收入被挤压，消费类股承压"
+    },
+    {
+      "time_utc": "2026-04-04T16:20:00Z",
+      "time_cst": "00:20 CST Apr 5",
+      "source": "KobeissiLetter",
+      "type": "macro",
+      "headline": "能源危机蔓延至食品价格",
+      "summary": "3月世界粮食价格指数环比+2.4%，至128.5点，创2025年9月以来最高。能源和运费成本飙升、霍尔木兹海峡粮食和化肥流通受阻是主要驱动因素。能源危机正向食品领域蔓延。",
+      "engagement": "151K views, 1,508 likes, 412 RT",
+      "signal": "medium",
+      "market_reaction": "食品CPI上涨，通胀螺旋风险上升"
+    },
+    {
+      "time_utc": "2026-04-04T14:43:00Z",
+      "time_cst": "22:43 CST Apr 4",
+      "source": "KobeissiLetter",
+      "type": "breaking",
+      "headline": "Trump 48小时通牒届满时间：周一美股开盘35分钟后",
+      "summary": "Trump对伊朗的「48小时通牒」将于周一（4月6日）美东时间上午10:05到期。这恰好是美股三天小长假后开盘仅35分钟后。将全程跟踪接下来这关键的48小时。",
+      "engagement": "615K views, 8,078 likes, 894 RT",
+      "signal": "critical",
+      "market_reaction": "周一开盘将面临重大地缘政治风险溢价定价"
+    },
+    {
+      "time_utc": "2026-04-04T14:16:00Z",
+      "time_cst": "22:16 CST Apr 4",
+      "source": "KobeissiLetter / 原始来源",
+      "type": "trump_direct",
+      "headline": "⚠️ TRUMP直接发声：伊朗48小时开放霍尔木兹",
+      "summary": "Trump：「伊朗有48小时开放霍尔木兹海峡，否则全面战争将降临伊朗。」「还记得我给伊朗10天达成协议吗？时间是最后的。」via Fox News采访原文。",
+      "engagement": "1.08M views, 7,009 likes, 913 RT",
+      "signal": "critical",
+      "market_reaction": "Trump最强硬表态，市场立即定价地缘政治风险"
+    },
+    {
+      "time_utc": "2026-04-04T12:53:00Z",
+      "time_cst": "20:53 CST Apr 4",
+      "source": "KobeissiLetter / Iran外长Araghchi",
+      "type": "iran_direct",
+      "headline": "BREAKING: 伊朗外长称美国媒体歪曲其和平谈判立场",
+      "summary": "伊朗外长Araghchi：「我们对巴基斯坦的努力深表感谢，从未拒绝前往伊斯兰堡。我们关心的是条款——一个被强加于我们的非法战争的明确且持久的结束。」",
+      "engagement": "424K views, 4,591 likes, 473 RT",
+      "signal": "high",
+      "market_reaction": "伊朗发出谈判信号，但坚持先停战条件"
+    },
+    {
+      "time_utc": "2026-04-04T12:20:00Z",
+      "time_cst": "20:20 CST Apr 4",
+      "source": "KobeissiLetter / IRGC",
+      "type": "escalation",
+      "headline": "BREAKING: 伊朗革命卫队称用无人机击中以色列关联船只",
+      "summary": "伊朗革命卫队（IRGC）表示，一艘以色列关联船只在霍尔木兹海峡被无人机击中后「停泊」并起火。霍尔木兹局势进一步升级。",
+      "engagement": "433K views, 7,150 likes, 908 RT",
+      "signal": "high",
+      "market_reaction": "霍尔木兹实际冲突事件确认，油价上行"
+    },
+    {
+      "time_utc": "2026-04-04T12:03:00Z",
+      "time_cst": "20:03 CST Apr 4",
+      "source": "KobeissiLetter / Iran外长Araghchi",
+      "type": "escalation",
+      "headline": "伊朗外长警告：以色列已轰炸布什尔核电站4次",
+      "summary": "伊朗外长Araghchi：「还记得西方对乌克兰扎波罗热核电站附近敌对行动的关注吗？以色列-美国已4次轰炸我们的布什尔核电站。放射性尘埃将终结GCC（海合会）首都人民的生命，而不是德黑兰。」",
+      "engagement": "1.13M views, 5,738 likes, 842 RT",
+      "signal": "critical",
+      "market_reaction": "核风险上升，原油和黄金避险需求激增"
+    },
+    {
+      "time_utc": "2026-04-04T05:57:00Z",
+      "time_cst": "13:57 CST Apr 4",
+      "source": "KobeissiLetter / NY Post",
+      "type": "domestic",
+      "headline": "Trump政府内斗：Hegseth担心被解雇",
+      "summary": "据NY Post，接近Trump政府的消息人士称，美国国防部长Pete Hegseth因担心被解雇而「追查」身边人，担心Army Secretary Dan Driscoll接任。Hegseth周四要求陆军参谋长George辞职。消息人士称「这一切都源于Signalgate（信号门）事件引发的焦虑和偏执」。",
+      "engagement": "763K views, 6,522 likes, 1,181 RT",
+      "signal": "high",
+      "market_reaction": "Trump政府内部不稳定加剧政策不确定性"
+    },
+    {
+      "time_utc": "2026-04-04T05:20:00Z",
+      "time_cst": "13:20 CST Apr 4",
+      "source": "KobeissiLetter / NY Post",
+      "type": "domestic",
+      "headline": "Hegseth对Driscoll的焦虑导致陆军最高将领被解职",
+      "summary": "Trump政府官员称Hegseth担心Driscoll抢其职位，导致周四要求陆军最高将领George辞职。这是Signalgate以来Hegseth的焦虑和偏执驱动所致。战争部内部紧张局势升级。",
+      "engagement": "1.14M views, 12,129 likes, 1,600 RT",
+      "signal": "high",
+      "market_reaction": "国防政策执行能力存疑，地缘风险管控能力受质疑"
+    },
+    {
+      "time_utc": "2026-04-04T01:44:00Z",
+      "time_cst": "09:44 CST Apr 4",
+      "source": "KobeissiLetter / ISM",
+      "type": "macro",
+      "headline": "美国制造业通胀压力飙升",
+      "summary": "3月ISM制造业PMI升至52.7，创2022年8月以来最高，连续第三个月扩张。但价格支付指数暴升+7.8点至78.3，创2022年6月以来最高。过去2个月上涨+19.3点，为至少10年来最大2个月涨幅。供应商交付时间升至58.9，为2022年5月以来最高。",
+      "engagement": "136K views, 942 likes, 149 RT",
+      "signal": "high",
+      "market_reaction": "通胀压力全面升温，滞胀风险上升"
+    },
+    {
+      "time_utc": "2026-04-03T23:57:00Z",
+      "time_cst": "07:57 CST Apr 4",
+      "source": "KobeissiLetter",
+      "type": "macro",
+      "headline": "韩国出口创纪录，芯片出口飙升+151%",
+      "summary": "3月韩国出口同比+41.9%，为至少2年来第二高。芯片出口同比+151.4%，至$328亿，创历史新高。对中国出口+64.2%，为2008年金融危机以来最高。对美国出口+47.1%。",
+      "engagement": "193K views, 1,685 likes, 265 RT",
+      "signal": "medium",
+      "market_reaction": "全球AI基础设施需求旺盛，半导体板块受益"
+    },
+    {
+      "time_utc": "2026-04-03T22:41:00Z",
+      "time_cst": "06:41 CST Apr 4",
+      "source": "KobeissiLetter",
+      "type": "energy_crisis",
+      "headline": "史上最大规模全球能源危机：中东石油出口暴跌63%",
+      "summary": "3月中东石油产品出口总量暴跌-63%，即-480万桶/天，至约280万桶/天。剩余280万桶/天中，约110万桶/天（39%）经沙特红海港口流出，绕过封锁的霍尔木兹。航空燃油降幅最大（-85%），触发亚太航班取消和燃油短缺。LPG和石脑油降100万桶/天。柴油、汽油、燃料油出口亦大幅下降（-60%至-70%）。",
+      "engagement": "306K views, 3,186 likes, 896 RT",
+      "signal": "critical",
+      "market_reaction": "史上最严重能源危机，油价将持续高位震荡"
+    }
+  ]
+}

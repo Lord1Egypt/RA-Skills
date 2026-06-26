@@ -1,35 +1,56 @@
 ---
-name: "Clipboard"
+name: clipboard
 description: "Interact with the system clipboard (text only) using `xclip` from any OpenClaw session."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clipboard"
-sourceUrl: "https://clawhub.ai/skills/clipboard"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📋",
+        "requires": { "bins": ["xclip"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "xclip",
+              "bins": ["xclip"],
+              "label": "Install xclip (dnf)",
+            },
+          ],
+      },
+  }
 ---
 
-# Clipboard
+# Clipboard Skill
 
-> Interact with the system clipboard (text only) using `xclip` from any OpenClaw session.
+Interact with the system clipboard (text only) from any OpenClaw session. Uses `xclip` on Linux.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clipboard`
-- **Source URL:** [https://clawhub.ai/skills/clipboard](https://clawhub.ai/skills/clipboard)
+## Copy to Clipboard
 
-## Overview
+Copy text to the clipboard:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clipboard
+echo "Hello, world!" | xclip -selection clipboard
+```
+
+## Paste from Clipboard
+
+Output current clipboard contents:
+
+```bash
+xclip -selection clipboard -o
+```
+
+## Copy File Contents
+
+Copy the contents of a file to the clipboard:
+
+```bash
+xclip -selection clipboard < /path/to/file.txt
+```
+
+## Install
+
+```bash
+sudo dnf install xclip
 ```

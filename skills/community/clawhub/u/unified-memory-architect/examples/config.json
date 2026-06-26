@@ -1,0 +1,89 @@
+{
+  "version": "1.0.0",
+  "name": "unified-memory-architect",
+  "displayName": "Unified Memory Architect",
+  "description": "梦境记忆系统重构与发布配置示例",
+  
+  "integration": {
+    "enabled": true,
+    "unifiedMemory": {
+      "version": "5.0.1",
+      "features": [
+        "hybrid-search",
+        "memory-compression",
+        "association-recommendation",
+        "lane-isolation"
+      ]
+    }
+  },
+
+  "search": {
+    "defaultLimit": 100,
+    "maxLimit": 1000,
+    "hybrid": {
+      "enabled": true,
+      "bm25": {
+        "enabled": true,
+        "weight": 0.4
+      },
+      "vector": {
+        "enabled": true,
+        "weight": 0.4
+      },
+      "rrf": {
+        "enabled": true,
+        "k": 60
+      }
+    }
+  },
+
+  "storage": {
+    "paths": {
+      "raw": "memory/raw",
+      "processed": "memory/processed",
+      "archive": "memory/archive",
+      "import": "memory/import"
+    },
+    "compression": {
+      "enabled": true,
+      "format": "jsonl"
+    },
+    "retention": {
+      "hot": "7d",
+      "warm": "30d",
+      "cold": "90d",
+      "archive": "365d"
+    }
+  },
+
+  "indexing": {
+    "autoBuild": true,
+    "incremental": true,
+    "rebuildOnChange": false,
+    "indexTypes": [
+      "byType",
+      "byDate",
+      "byTag",
+      "bySentiment",
+      "byLanguage",
+      "byEntity"
+    ]
+  },
+
+  "cache": {
+    "enabled": true,
+    "maxSize": 500,
+    "ttl": 3600
+  },
+
+  "logging": {
+    "level": "info",
+    "file": "memory/logs/app.log"
+  },
+
+  "performance": {
+    "queryTimeout": 5000,
+    "maxMemory": "512mb",
+    "batchSize": 100
+  }
+}

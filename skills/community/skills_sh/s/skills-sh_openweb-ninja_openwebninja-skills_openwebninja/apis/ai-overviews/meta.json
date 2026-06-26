@@ -1,0 +1,11 @@
+{
+  "api_id": "ai-overviews",
+  "portal_api_id": "ai_overviews",
+  "rapidapi_host": "real-time-web-search.p.rapidapi.com",
+  "notes": "The /ai-overviews endpoint is part of the realtime-web-search API. Use the realtime-web-search scrape.js with --endpoint /ai-overviews to access it. No separate scrape.js is provided for this subset.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_web_search.yaml",
+  "last_updated_yaml": "2026-03-30T00:00:00.000Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-web-search",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-web-search"
+}

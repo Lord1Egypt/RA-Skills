@@ -1,0 +1,229 @@
+{
+  "name": "veroq",
+  "description": "Verified AI. One function call. Shield any LLM output — claims extracted, fact-checked, corrected. Private knowledge base, 5-agent verified swarm, 1,061+ tickers, 260 sources, self-hosted Docker option.",
+  "version": "2.7.0",
+  "author": "VEROQ",
+  "homepage": "https://veroq.ai/integrations/openclaw",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "ask",
+      "description": "Ask any question — get a verified, sourced answer",
+      "usage": "/ask [question]",
+      "examples": ["/ask What's happening with NVDA?", "/ask How is the market doing today?", "/ask Compare AAPL and MSFT"]
+    },
+    {
+      "name": "verify",
+      "description": "Fact-check any claim against verified intelligence",
+      "usage": "/verify [claim]",
+      "examples": ["/verify NVIDIA revenue grew 200% last quarter", "/verify Bitcoin hit an all-time high in March 2026"]
+    },
+    {
+      "name": "news",
+      "description": "Get the latest verified news briefs",
+      "usage": "/news [category] [limit]",
+      "examples": ["/news", "/news crypto 5", "/news ai_ml 3"]
+    },
+    {
+      "name": "brief",
+      "description": "Generate an intelligence brief on any topic",
+      "usage": "/brief [topic]",
+      "examples": ["/brief impact of AI on healthcare", "/brief bitcoin ETF inflows"]
+    },
+    {
+      "name": "search",
+      "description": "Search verified news",
+      "usage": "/search [query]",
+      "examples": ["/search semiconductor export controls"]
+    },
+    {
+      "name": "trending",
+      "description": "See what's trending right now",
+      "usage": "/trending"
+    },
+    {
+      "name": "entities",
+      "description": "Search extracted entities (people, orgs, products) across briefs",
+      "usage": "/entities [query]",
+      "examples": ["/entities OpenAI", "/entities", "/entities NVIDIA"]
+    },
+    {
+      "name": "trending-entities",
+      "description": "See which entities are most mentioned in the last 24 hours",
+      "usage": "/trending-entities"
+    },
+    {
+      "name": "historical",
+      "description": "Search briefs within a date range",
+      "usage": "/historical [from] [to]",
+      "examples": ["/historical 2026-03-01 2026-03-10", "/historical 2026-03-01"]
+    },
+    {
+      "name": "similar",
+      "description": "Find briefs similar to a given brief using trigram similarity search",
+      "usage": "/similar [brief_id]",
+      "examples": ["/similar a1b2c3d4-5678-90ab-cdef-1234567890ab"]
+    },
+    {
+      "name": "clusters",
+      "description": "Get automatic story clusters — related briefs grouped by topic",
+      "usage": "/clusters [period]",
+      "examples": ["/clusters", "/clusters 7d", "/clusters 30d"]
+    },
+    {
+      "name": "data",
+      "description": "Query structured data (money, percentages, metrics, counts) extracted from coverage",
+      "usage": "/data [entity] [type]",
+      "examples": ["/data Bitcoin money", "/data OpenAI", "/data"]
+    },
+    {
+      "name": "timeline",
+      "description": "See how a living brief evolved over time — each update, confidence changes, and new sources",
+      "usage": "/timeline [brief_id]",
+      "examples": ["/timeline PR-2026-0319-042"]
+    },
+    {
+      "name": "forecast",
+      "description": "Get structured predictions on what's likely to happen next for any topic",
+      "usage": "/forecast [topic]",
+      "examples": ["/forecast AI regulation", "/forecast bitcoin halving impact"]
+    },
+    {
+      "name": "events",
+      "description": "Browse structured events extracted from coverage (acquisitions, funding, launches, etc.)",
+      "usage": "/events [type] [subject]",
+      "examples": ["/events acquisition", "/events funding OpenAI", "/events"]
+    },
+    {
+      "name": "ticker",
+      "description": "Resolve or look up a ticker symbol",
+      "usage": "/ticker [symbol]",
+      "examples": ["/ticker NVDA", "/ticker AAPL", "/ticker NVDA,AAPL,TSLA"]
+    },
+    {
+      "name": "ticker-score",
+      "description": "Get composite trading signal for a ticker",
+      "usage": "/ticker-score [symbol]",
+      "examples": ["/ticker-score NVDA", "/ticker-score TSLA"]
+    },
+    {
+      "name": "sectors",
+      "description": "Show all sectors with sentiment overview",
+      "usage": "/sectors [days]",
+      "examples": ["/sectors", "/sectors 30", "/sectors 7"]
+    },
+    {
+      "name": "portfolio",
+      "description": "Analyze a portfolio of tickers with weights",
+      "usage": "/portfolio [ticker:weight ...]",
+      "examples": ["/portfolio NVDA:0.30 AAPL:0.25 TSLA:0.20 MSFT:0.25", "/portfolio NVDA AAPL TSLA"]
+    },
+    {
+      "name": "events-calendar",
+      "description": "Show structured events filterable by ticker",
+      "usage": "/events-calendar [ticker] [days] [type]",
+      "examples": ["/events-calendar", "/events-calendar NVDA", "/events-calendar AAPL 30", "/events-calendar funding"]
+    },
+    {
+      "name": "web-search",
+      "description": "Search the web with optional VEROQ trust scoring",
+      "usage": "/web-search [query]",
+      "examples": ["/web-search latest AI breakthroughs", "/web-search climate policy updates"]
+    },
+    {
+      "name": "crawl",
+      "description": "Extract structured content from a URL",
+      "usage": "/crawl [url]",
+      "examples": ["/crawl https://example.com/article"]
+    },
+    {
+      "name": "candles",
+      "description": "Get OHLCV candlestick data for a ticker",
+      "usage": "/candles [symbol] [range]",
+      "examples": ["/candles NVDA", "/candles AAPL 3mo", "/candles TSLA 1y"]
+    },
+    {
+      "name": "technicals",
+      "description": "Get all technical indicators and signal summary for a ticker",
+      "usage": "/technicals [symbol]",
+      "examples": ["/technicals NVDA", "/technicals AAPL"]
+    },
+    {
+      "name": "market-movers",
+      "description": "Get top market gainers, losers, and most active stocks",
+      "usage": "/market-movers",
+      "examples": ["/market-movers"]
+    },
+    {
+      "name": "economy",
+      "description": "Get economic indicators (GDP, CPI, unemployment, etc.)",
+      "usage": "/economy [indicator]",
+      "examples": ["/economy", "/economy gdp", "/economy cpi", "/economy unemployment"]
+    },
+    {
+      "name": "crypto",
+      "description": "Get crypto token data or market overview",
+      "usage": "/crypto [symbol]",
+      "examples": ["/crypto", "/crypto BTC", "/crypto ETH", "/crypto SOL"]
+    },
+    {
+      "name": "defi",
+      "description": "Get DeFi TVL overview or protocol detail",
+      "usage": "/defi [protocol]",
+      "examples": ["/defi", "/defi aave", "/defi uniswap", "/defi lido"]
+    },
+    {
+      "name": "screener",
+      "description": "Screen stocks using natural language",
+      "usage": "/screener [query]",
+      "examples": ["/screener oversold tech stocks", "/screener high sentiment crypto with volume spike"]
+    },
+    {
+      "name": "backtest",
+      "description": "Backtest a news-driven trading strategy",
+      "usage": "/backtest [strategy JSON]",
+      "examples": ["/backtest {\"entry_filters\":{\"rsi_below\":30},\"exit_filters\":{\"rsi_above\":50},\"asset_type\":\"equity\"}"]
+    },
+    {
+      "name": "correlation",
+      "description": "Get correlation matrix for multiple tickers",
+      "usage": "/correlation [ticker1] [ticker2] [days]",
+      "examples": ["/correlation NVDA AMD INTC", "/correlation AAPL MSFT GOOGL 90"]
+    },
+    {
+      "name": "price",
+      "description": "Get live price and change for a ticker",
+      "usage": "/price [symbol]",
+      "examples": ["/price NVDA", "/price BTC", "/price AAPL"]
+    },
+    {
+      "name": "social",
+      "description": "Get social media sentiment for a ticker (Reddit + Twitter)",
+      "usage": "/social [symbol]",
+      "examples": ["/social TSLA", "/social NVDA", "/social BTC"]
+    },
+    {
+      "name": "social-trending",
+      "description": "See what tickers are trending on social media",
+      "usage": "/social-trending"
+    },
+    {
+      "name": "ipo",
+      "description": "Get upcoming IPO calendar from SEC EDGAR",
+      "usage": "/ipo",
+      "examples": ["/ipo"]
+    },
+    {
+      "name": "alerts",
+      "description": "Create price or sentiment alerts with webhook delivery",
+      "usage": "/alerts [action] [params]",
+      "examples": ["/alerts list", "/alerts create NVDA price_above 150"]
+    },
+    {
+      "name": "report",
+      "description": "Generate an AI analysis report for any ticker",
+      "usage": "/report [symbol] [tier]",
+      "examples": ["/report NVDA", "/report AAPL full", "/report BTC deep"]
+    }
+  ]
+}

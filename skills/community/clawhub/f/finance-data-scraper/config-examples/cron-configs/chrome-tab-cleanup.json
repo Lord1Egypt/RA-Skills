@@ -1,0 +1,11 @@
+{
+  "name": "chrome-tab-cleanup",
+  "category": "maintenance",
+  "cron": "20,50 * * * *",
+  "message": "执行Chrome浏览器Tab清理任务：保留1个东方财富标签页，关闭其他所有多余的标签页，防止内存溢出。",
+  "announce": false,
+  "context": {
+    "project": "finance-data-scraper",
+    "task": "tab-cleanup"
+  }
+}

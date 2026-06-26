@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="card overflow-hidden mb-6">
+            <div class="gradient-header px-10 py-12 text-white text-center">
+                <h1 class="text-3xl font-bold mb-3">{{title}}</h1>
+                <p class="text-lg opacity-90 font-light">{{subtitle}}</p>
+            </div>
+        </div>
+        
+        <div class="card px-10 py-8 mb-6 bg-gradient-to-r from-green-50 to-blue-50">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center"><p class="text-4xl font-bold text-green-600">{{overall_score}}</p><p class="text-sm text-gray-600 mt-2">综合评分</p></div>
+                <div class="text-center"><p class="text-4xl font-bold text-blue-600">{{commute_time}}</p><p class="text-sm text-gray-600 mt-2">通勤时间</p></div>
+                <div class="text-center"><p class="text-4xl font-bold text-purple-600">{{radius}}</p><p class="text-sm text-gray-600 mt-2">配套半径</p></div>
+                <div class="text-center"><p class="text-4xl font-bold text-orange-600">{{convenience}}</p><p class="text-sm text-gray-600 mt-2">生活便利</p></div>
+            </div>
+        </div>
+        
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">📊 五维雷达扫描</h2>
+            <div id="radar-content">{{radar_content}}</div>
+        </div>
+        
+        <div class="card px-10 py-8 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">🗺️ 小区位置与配套分布</h2>
+            <div class="rounded-xl overflow-hidden bg-gray-50">{{map_iframe}}</div>
+        </div>
+        
+        <div class="text-center text-gray-400 text-sm py-6">
+            <p>City Life Copilot · 硬核管家模式 · Generated on {{date}}</p>
+        </div>
+    </div>
+</body>
+</html>

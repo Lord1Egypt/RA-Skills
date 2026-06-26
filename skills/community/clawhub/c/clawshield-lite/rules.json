@@ -1,0 +1,15 @@
+{
+  "dangerous": {
+    "os.system": "Executes system-level commands",
+    "exec(": "Executes arbitrary Python code",
+    "eval(": "Evaluates dynamic expressions",
+    "subprocess": "Runs external processes",
+    "curl": "Transfers data to external servers",
+    "wget": "Downloads or sends external data"
+  },
+  "suspicious": {
+    "open(": "Accesses local files",
+    "write(": "Writes data to files",
+    "requests": "Makes external HTTP requests"
+  }
+}

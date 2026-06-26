@@ -1,0 +1,12 @@
+{
+  "timeout_threshold_seconds": 30,
+  "max_recovery_attempts": 3,
+  "stuck_conversation_threshold_minutes": 30,
+  "log_retention_days": 7,
+  "enable_heartbeat_monitoring": true,
+  "monitoring_enabled": true,
+  "default_tool_timeout": 45,
+  "browser_operation_timeout": 60,
+  "file_operation_timeout": 20,
+  "network_operation_timeout": 45
+}

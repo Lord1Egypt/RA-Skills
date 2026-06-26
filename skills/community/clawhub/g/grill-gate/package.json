@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw/grill-gate",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "openclaw": "^2026.5.22"
+  }
+}

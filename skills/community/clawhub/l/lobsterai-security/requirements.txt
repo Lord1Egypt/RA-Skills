@@ -1,0 +1,7 @@
+# LobsterAI Security Skill has no external Python dependencies.
+# All modules use Python 3.8+ standard library only.
+#
+# Minimum Python version: 3.8
+
+# Optional: For enhanced security scanning (not required)
+# pip-audit>=0.6.0  # For advanced dependency vulnerability scanning

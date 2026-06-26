@@ -1,0 +1,13 @@
+{
+    "name": "myapp-creator",
+    "namespace": "zhang6714268",
+    "version": "1.0.31",
+    "description": "让小度用户用一句话创建 HTML 小应用，落库到 fe-service",
+    "license": "MIT-0",
+    "runtime": {
+        "bins": ["bash", "curl", "jq"],
+        "env": ["MYAPP_API_BASE", "MYAPP_API_TOKEN"]
+    },
+    "tools": ["myapp_register", "myapp_update", "myapp_get", "myapp_ping"],
+    "tags": ["dueros", "html", "low-code", "single-shot-app"]
+}

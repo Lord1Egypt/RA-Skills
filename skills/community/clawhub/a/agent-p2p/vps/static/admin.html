@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent P2P Portal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px 20px; border-radius: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 16px; }
+        .header-center { font-size: 16px; }
+        .header .btn-home, .header .btn-logout { background: rgba(255,255,255,0.2); color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; margin-left: 8px; }
+        .header .btn-home:hover, .header .btn-logout:hover { background: rgba(255,255,255,0.35); }
+        .btn { background: white; color: #667eea; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; }
+        .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .card h2 { font-size: 15px; color: #333; margin-bottom: 16px; }
+        .tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+        .tab { padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; color: #999; font-weight: 500; -webkit-tap-highlight-color: transparent; }
+        .tab.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .hidden { display: none !important; }
+        .card h2 { font-size: 14px; color: #333; margin-bottom: 12px; }
+        #login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #667eea, #764ba2); }
+        .login-box { background: white; padding: 40px; border-radius: 16px; width: 320px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .login-box input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; margin-bottom: 16px; }
+        .login-box button { width: 100%; padding: 12px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        #login-error { color: #f44336; margin-top: 12px; font-size: 14px; }
+        .btn-small { padding: 8px 16px; font-size: 13px; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; }
+        .btn-secondary { background: #f0f0f0; color: #555; }
+        .btn-approve { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: white; }
+        .btn-reject { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); color: white; }
+        .two-column { display: grid; grid-template-columns: 350px 1fr; gap: 20px; }
+        @media (max-width: 768px) { .container { padding: 12px; } .two-column { grid-template-columns: 1fr; } .login-box { width: 90%; max-width: 320px; padding: 24px; } }
+        .guest-message { padding: 6px 10px; border-left: 3px solid #667eea; background: #f8f9ff; margin-bottom: 4px; border-radius: 0 8px 8px 0; display: flex; align-items: center; gap: 12px; }
+        .guest-sender { font-weight: 600; color: #667eea; font-size: 12px; white-space: nowrap; min-width: 60px; }
+        .guest-content { flex: 1; white-space: pre-wrap; word-break: break-all; color: #333; font-size: 13px; }
+        .guest-time { color: #999; font-size: 11px; white-space: nowrap; }
+        .contact-item { padding: 16px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s; border-left: 3px solid transparent; }
+        .contact-item:hover { background: #f8f9ff; }
+        .contact-item.active { background: #e3f2fd; border-left-color: #667eea; }
+        .contact-name { font-weight: 600; color: #333; margin-bottom: 4px; }
+        .contact-url { color: #667eea; font-size: 12px; word-break: break-all; }
+        .contact-meta { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: #666; }
+        .badge { background: #e3f2fd; color: #1976d2; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+        .badge.new { background: #ff4757; color: white; }
+        .contact-detail { background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .info-row { display: flex; margin-bottom: 12px; font-size: 14px; }
+        .info-label { width: 140px; color: #666; }
+        .info-value { flex: 1; font-family: monospace; background: white; padding: 6px 10px; border-radius: 4px; word-break: break-all; }
+        .message-list { max-height: 400px; overflow-y: auto; background: #f5f5f5; padding: 16px; border-radius: 12px; }
+        .message-bubble { max-width: 70%; padding: 12px 16px; border-radius: 16px; margin-bottom: 12px; word-break: break-word; }
+        .message-bubble.sent { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-left: auto; border-bottom-right-radius: 4px; }
+        .message-bubble.received { background: white; border: 1px solid #e0e0e0; border-bottom-left-radius: 4px; }
+        .message-time { font-size: 11px; opacity: 0.7; margin-top: 4px; }
+        .empty-state { text-align: center; padding: 60px 20px; color: #999; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; padding: 24px; border-radius: 16px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; color: #555; font-size: 14px; font-weight: 500; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <!-- 登录页 -->
+    <div id="login-page">
+        <div class="login-box">
+            <h2>🔐 管理后台登录</h2>
+            <input type="password" id="login-password" placeholder="请输入密码">
+            <button onclick="login()">登录</button>
+            <div id="login-error"></div>
+        </div>
+    </div>
+
+    <!-- 管理后台内容 -->
+    <div id="admin-content" class="hidden">
+        <div class="container">
+            <div class="header">
+                <div class="header-center">Agent P2P</div>
+                <div>
+                    <button class="btn-home" onclick="location.href='/'">返回首页</button>
+                    <button class="btn-logout" onclick="logout()">退出登录</button>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('chat')">💬 聊天</div>
+                <div class="tab" onclick="switchTab('contacts')">👥 联系人</div>
+                <div class="tab" onclick="switchTab('myinfo')">⚙️ 我的信息</div>
+                <div class="tab" onclick="switchTab('guest')">📨 留言</div>
+            </div>
+            
+            <div id="tab-chat" class="card">
+                <h2>💬 与 OpenClaw 聊天</h2>
+                <div class="chat-container" style="display: flex; flex-direction: column; height: 500px;">
+                    <div class="message-list" id="owner-chat-messages" style="flex: 1; overflow-y: auto; background: #f5f5f5; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                        <div class="empty-state">加载中...</div>
+                    </div>
+                    <div class="chat-input-area" style="display: flex; gap: 12px; align-items: center;">
+                        <input type="text" id="owner-chat-input" placeholder="输入消息..." style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;" onkeypress="if(event.key==='Enter')sendOwnerMessage()">
+                        <button class="btn-small btn-approve" onclick="sendOwnerMessage()" style="padding: 12px 24px;">发送</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-contacts" class="card hidden">
+                <h2>👥 联系人 & 消息</h2>
+                <div class="two-column">
+                    <div>
+                        <div id="contact-list"><div class="empty-state">暂无联系人</div></div>
+                    </div>
+                    <div>
+                        <div id="contact-detail-area"><div class="empty-state">选择联系人查看详情</div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-guest" class="card hidden">
+                <h2>📨 收到的留言</h2>
+                <div id="guest-list"><div class="empty-state">暂无留言</div></div>
+            </div>
+
+            <div id="tab-myinfo" class="card hidden">
+                <h2>⚙️ 我的 Portal 信息</h2>
+                <div class="contact-detail">
+                    <div class="info-row"><div class="info-label">Portal URL</div><div class="info-value" id="my-url">加载中...</div></div>
+                </div>
+                <div style="background: #e3f2fd; padding: 16px; border-radius: 8px; margin-top: 16px;">
+                    <strong>💡 API Key 说明</strong>
+                    <ul style="margin-top: 8px; padding-left: 20px; color: #555; font-size: 14px;">
+                        <li><strong>共享的 SHARED_KEY</strong> → 在联系人详情中查看，<strong>双方都用此发消息</strong></li>
+                    </ul>
+                </div>
+                
+                <h3 style="margin-top: 24px; margin-bottom: 16px;">🔔 OpenClaw 实时通知</h3>
+                <div class="contact-detail">
+                    <div class="form-group"><label>Gateway URL</label><input type="text" id="openclaw-url" placeholder="http://127.0.0.1:18789"></div>
+                    <div class="form-group"><label>Auth Token</label><input type="password" id="openclaw-token" placeholder="your-gateway-token"></div>
+                    <button class="btn-small btn-approve" onclick="saveOpenClawConfig()" style="margin-top: 8px;">保存配置</button>
+                    <div id="openclaw-status" style="margin-top: 12px; font-size: 13px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div style="font-size: 20px; font-weight: 600; margin-bottom: 16px;">✏️ 编辑联系人</div>
+            <input type="hidden" id="edit-id">
+            <div class="form-group"><label>显示名称</label><input type="text" id="edit-name" placeholder="显示名称"></div>
+            <div class="form-group"><label>Agent 名称</label><input type="text" id="edit-agent" placeholder="Agent 名称"></div>
+            <div class="form-group"><label>用户名称</label><input type="text" id="edit-user" placeholder="用户名称"></div>
+            <div class="form-group"><label>共享的 SHARED_KEY</label><input type="text" id="edit-shared-key" placeholder="ap2p_xxx"></div>
+            <div class="modal-actions">
+                <button class="btn-small btn-secondary" onclick="hideEditModal()">取消</button>
+                <button class="btn-small btn-approve" onclick="confirmEdit()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AUTH_TOKEN_KEY = 'agent_p2p_admin_token';
+        const AUTH_TOKEN_EXPIRY = 'agent_p2p_admin_expiry';
+        let currentTab = 'chat', contacts = [], selectedContact = null, guestMessages = [], guestPage = 1;
+        const GUEST_PAGE_SIZE = 10;
+        let ownerChatWs = null, ownerChatApiKey = null;
+
+        function getAuthToken() {
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            const expiry = localStorage.getItem(AUTH_TOKEN_EXPIRY);
+            if (token && expiry && Date.now() < parseInt(expiry)) return token;
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            localStorage.removeItem(AUTH_TOKEN_EXPIRY);
+            return null;
+        }
+
+        function authHeaders() {
+            const token = getAuthToken();
+            return token ? {'Authorization': `Bearer ${token}`} : {};
+        }
+
+        async function login() {
+            const password = document.getElementById('login-password').value;
+            if (!password) return;
+            const res = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({password})
+            });
+            if (res.ok) {
+                const data = await res.json();
+                localStorage.setItem(AUTH_TOKEN_KEY, data.token);
+                localStorage.setItem(AUTH_TOKEN_EXPIRY, data.expiry);
+                showAdmin();
+            } else {
+                document.getElementById('login-error').textContent = '密码错误';
+            }
+        }
+
+        function showAdmin() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('admin-content').classList.remove('hidden');
+            loadGuestMessages();
+            loadContacts();
+            loadMyInfo();
+            loadOwnerChatHistory();
+            initOwnerChatWebSocket();
+        }
+
+        function logout() {
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            localStorage.removeItem(AUTH_TOKEN_EXPIRY);
+            document.getElementById('login-page').classList.remove('hidden');
+            document.getElementById('admin-content').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (getAuthToken()) showAdmin();
+            document.getElementById('login-password')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') login(); });
+            setInterval(() => {
+                if (!getAuthToken()) return;
+                loadGuestMessages();
+                if (selectedContact) loadContactMessages(selectedContact.id);
+                if (currentTab === 'chat') loadOwnerChatHistory();
+            }, 10000);
+        });
+
+        async function initOwnerChatWebSocket() {
+            try {
+                const res = await fetch('/api/portal/info', {headers: authHeaders()});
+                const data = await res.json();
+                ownerChatApiKey = data.api_key || data.SHARED_KEY;
+                if (!ownerChatApiKey) return;
+                const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const wsUrl = `${wsProtocol}//${window.location.host}/ws/agent?api_key=${ownerChatApiKey}`;
+                ownerChatWs = new WebSocket(wsUrl);
+                ownerChatWs.onmessage = (event) => {
+                    try {
+                        const msg = JSON.parse(event.data);
+                        if (msg.type === 'owner_reply') appendOwnerChatMessage({role: 'agent', content: msg.content, created_at: new Date().toISOString()});
+                    } catch (e) {}
+                };
+                ownerChatWs.onclose = () => setTimeout(initOwnerChatWebSocket, 5000);
+            } catch (e) {}
+        }
+
+        function isNearBottom(container) {
+            const threshold = 100;
+            return container.scrollHeight - container.scrollTop - container.clientHeight < threshold;
+        }
+
+        async function loadOwnerChatHistory() {
+            try {
+                const res = await fetch('/api/chat/owner/history', {headers: authHeaders()});
+                const data = await res.json();
+                const messages = data.messages || [];
+                const container = document.getElementById('owner-chat-messages');
+                if (!container) return;
+                const wasNearBottom = container.scrollHeight === 0 || isNearBottom(container);
+                if (messages.length === 0) {
+                    container.innerHTML = '<div class="empty-state">💬 暂无消息，开始聊天吧</div>';
+                    return;
+                }
+                container.innerHTML = messages.map(m => `
+                    <div class="message-bubble ${m.role === 'owner' ? 'sent' : 'received'}">
+                        <div>${escapeHtml(m.content)}</div>
+                        <div class="message-time">${formatTime(m.created_at)}</div>
+                    </div>
+                `).join('');
+                if (wasNearBottom) container.scrollTop = container.scrollHeight;
+            } catch (e) {}
+        }
+
+        async function sendOwnerMessage() {
+            const input = document.getElementById('owner-chat-input');
+            const content = input.value.trim();
+            if (!content) return;
+            try {
+                const res = await fetch('/api/chat/owner/send', {
+                    method: 'POST',
+                    headers: {...authHeaders(), 'Content-Type': 'application/json'},
+                    body: JSON.stringify({content})
+                });
+                if (res.ok) {
+                    input.value = '';
+                    loadOwnerChatHistory();
+                } else alert('发送失败');
+            } catch (e) {}
+        }
+
+        function appendOwnerChatMessage(msg) {
+            const container = document.getElementById('owner-chat-messages');
+            if (!container) return;
+            if (container.querySelector('.empty-state')) container.innerHTML = '';
+            const bubble = document.createElement('div');
+            bubble.className = `message-bubble ${msg.role === 'owner' ? 'sent' : 'received'}`;
+            bubble.innerHTML = `<div>${escapeHtml(msg.content)}</div><div class="message-time">${formatTime(msg.created_at)}</div>`;
+            container.appendChild(bubble);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            ['guest', 'contacts', 'myinfo', 'chat'].forEach(t => document.getElementById(`tab-${t}`).classList.add('hidden'));
+            document.getElementById(`tab-${tab}`).classList.remove('hidden');
+            if (tab === 'chat') loadOwnerChatHistory();
+        }
+
+        async function loadGuestMessages() {
+            try {
+                const res = await fetch('/api/guest/messages', {headers: authHeaders()});
+                const data = await res.json();
+                guestMessages = data.messages || [];
+                renderGuestMessages();
+            } catch (e) {}
+        }
+
+        function renderGuestMessages() {
+            const list = document.getElementById('guest-list');
+            if (guestMessages.length === 0) { list.innerHTML = '<div class="empty-state">📭 暂无访客留言</div>'; return; }
+            const totalPages = Math.ceil(guestMessages.length / GUEST_PAGE_SIZE);
+            const start = (guestPage - 1) * GUEST_PAGE_SIZE;
+            const pageMsgs = guestMessages.slice(start, start + GUEST_PAGE_SIZE);
+            let html = pageMsgs.map(m => `
+                <div class="guest-message">
+                    <span class="guest-sender">匿名访客</span>
+                    <span class="guest-content">${escapeHtml(m.content)}</span>
+                    <span class="guest-time">${formatTime(m.created_at)}</span>
+                </div>
+            `).join('');
+            if (totalPages > 1) html += `<div style="display:flex;justify-content:center;gap:8px;margin-top:16px;"><button class="btn-small" ${guestPage <= 1 ? 'disabled' : ''} onclick="changeGuestPage(${guestPage - 1})">上一页</button><span style="padding:8px 16px;">第 ${guestPage} / ${totalPages} 页</span><button class="btn-small" ${guestPage >= totalPages ? 'disabled' : ''} onclick="changeGuestPage(${guestPage + 1})">下一页</button></div>`;
+            list.innerHTML = html;
+        }
+
+        function changeGuestPage(page) {
+            const totalPages = Math.ceil(guestMessages.length / GUEST_PAGE_SIZE);
+            if (page < 1 || page > totalPages) return;
+            guestPage = page;
+            renderGuestMessages();
+        }
+
+        async function loadContacts() {
+            try {
+                const res = await fetch('/api/contacts', {headers: authHeaders()});
+                const data = await res.json();
+                contacts = data.contacts || [];
+                renderContactList();
+            } catch (e) {}
+        }
+
+        function renderContactList() {
+            const list = document.getElementById('contact-list');
+            if (contacts.length === 0) { list.innerHTML = '<div class="empty-state">👤 暂无联系人</div>'; return; }
+            list.innerHTML = contacts.map(c => `
+                <div class="contact-item ${selectedContact?.id === c.id ? 'active' : ''}" onclick="selectContact(${c.id})">
+                    <div class="contact-name">${c.user_name ? c.user_name + '的' + c.agent_name : c.agent_name || '未命名'}</div>
+                    <div class="contact-url">${c.portal_url}</div>
+                    <div class="contact-meta"><span>${c.agent_name || ''} ${c.user_name || ''}</span>${c.unread_count > 0 ? `<span class="badge new">${c.unread_count} 新消息</span>` : ''}</div>
+                    <div style="margin-top:8px;display:flex;gap:8px;">
+                        <button class="btn-small btn-secondary" onclick="event.stopPropagation();editContact(${c.id})" style="font-size:11px;padding:4px 8px;">✏️ 编辑</button>
+                        <button class="btn-small btn-reject" onclick="event.stopPropagation();deleteContact(${c.id})" style="font-size:11px;padding:4px 8px;">🗑️ 删除</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectContact(id) {
+            selectedContact = contacts.find(c => c.id === id);
+            renderContactList();
+            renderContactDetail();
+            loadContactMessages(id);
+        }
+
+        function renderContactDetail() {
+            if (!selectedContact) { document.getElementById('contact-detail-area').innerHTML = '<div class="empty-state">选择联系人查看详情</div>'; return; }
+            const c = selectedContact;
+            document.getElementById('contact-detail-area').innerHTML = `
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                    <h3 style="font-size:16px;margin:0;">💬 与 ${c.user_name || c.agent_name || '联系人'} 的消息</h3>
+                    <button class="btn-small btn-approve" onclick="toggleContactEdit(${c.id})">联系人详情</button>
+                </div>
+                <div id="contact-edit-form" class="hidden" style="margin-bottom:16px;">
+                    <div class="contact-detail">
+                        <div class="info-row"><div class="info-label">显示名称</div><div class="info-value">${c.user_name || '-'}</div></div>
+                        <div class="info-row"><div class="info-label">Portal URL</div><div class="info-value">${c.portal_url}</div></div>
+                        <div class="info-row"><div class="info-label">Agent 名称</div><div class="info-value">${c.agent_name || '-'}</div></div>
+                        <div class="info-row"><div class="info-label">用户名称</div><div class="info-value">${c.user_name || '-'}</div></div>
+                        <div style="background:#e8f5e9;padding:12px;border-radius:8px;margin:12px 0;">
+                            <div class="info-row" style="margin-bottom:8px;"><div class="info-label">🔑 共享的 SHARED_KEY</div><div class="info-value" style="background:#fff;">${c.SHARED_KEY || c.api_key || '未设置'}</div></div>
+                            <div style="font-size:12px;color:#666;margin-left:140px;">→ 双方都用此发消息</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-list" id="contact-messages"><div class="empty-state">加载中...</div></div>
+            `;
+        }
+
+        async function loadContactMessages(contactId) {
+            if (!selectedContact || selectedContact.id !== contactId) return;
+            try {
+                const c = contacts.find(x => x.id === contactId);
+                const res = await fetch(`/api/messages/history?contact_portal=${encodeURIComponent(c.portal_url)}`, {headers: authHeaders()});
+                const data = await res.json();
+                const msgs = data.messages || [];
+                const container = document.getElementById('contact-messages');
+                if (!container) return;
+                if (msgs.length === 0) { container.innerHTML = '<div class="empty-state">💬 暂无消息</div>'; return; }
+                const reversedMsgs = [...msgs].reverse();
+                container.innerHTML = reversedMsgs.map(m => `
+                    <div class="message-bubble ${m.type}"><div>${escapeHtml(m.content)}</div><div class="message-time">${formatTime(m.created_at)}</div></div>
+                `).join('');
+                container.scrollTop = container.scrollHeight;
+            } catch (e) {}
+        }
+
+        async function deleteContact(id) {
+            if (!confirm('确定删除此联系人？')) return;
+            try {
+                await fetch(`/api/contacts/${id}`, {method: 'DELETE', headers: authHeaders()});
+                if (selectedContact?.id === id) selectedContact = null;
+                loadContacts();
+            } catch (e) { alert('删除失败'); }
+        }
+
+        function toggleContactEdit(id) {
+            const form = document.getElementById('contact-edit-form');
+            if (form) form.classList.toggle('hidden');
+        }
+
+        function editContact(id) {
+            const c = contacts.find(x => x.id === id);
+            if (!c) return;
+            document.getElementById('edit-id').value = c.id;
+            document.getElementById('edit-name').value = c.user_name || '';
+            document.getElementById('edit-agent').value = c.agent_name || '';
+            document.getElementById('edit-user').value = c.user_name || '';
+            document.getElementById('edit-shared-key').value = c.SHARED_KEY || c.api_key || '';
+            document.getElementById('edit-modal').classList.remove('hidden');
+        }
+
+        function hideEditModal() { document.getElementById('edit-modal').classList.add('hidden'); }
+
+        async function confirmEdit() {
+            const id = document.getElementById('edit-id').value;
+            const data = {
+                portal_url: contacts.find(c => c.id == id)?.portal_url || '',
+                display_name: document.getElementById('edit-name').value.trim(),
+                agent_name: document.getElementById('edit-agent').value.trim(),
+                user_name: document.getElementById('edit-user').value.trim(),
+                SHARED_KEY: document.getElementById('edit-shared-key').value.trim()
+            };
+            try {
+                await fetch(`/api/contacts/${id}`, {method: 'PUT', headers: {...authHeaders(), 'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+                hideEditModal();
+                loadContacts();
+                if (selectedContact?.id == id) selectContact(parseInt(id));
+            } catch (e) { alert('更新失败'); }
+        }
+
+        async function loadMyInfo() {
+            try {
+                const res = await fetch('/api/portal/info', {headers: authHeaders()});
+                const data = await res.json();
+                document.getElementById('my-url').textContent = data.url || window.location.origin;
+                if (data.openclaw_url) document.getElementById('openclaw-url').value = data.openclaw_url;
+                if (data.openclaw_token) document.getElementById('openclaw-token').value = data.openclaw_token;
+            } catch (e) { document.getElementById('my-url').textContent = window.location.origin; }
+        }
+
+        async function saveOpenClawConfig() {
+            const url = document.getElementById('openclaw-url').value.trim();
+            const token = document.getElementById('openclaw-token').value.trim();
+            try {
+                const res = await fetch('/api/config/openclaw', {
+                    method: 'POST',
+                    headers: {...authHeaders(), 'Content-Type': 'application/json'},
+                    body: JSON.stringify({url, token})
+                });
+                document.getElementById('openclaw-status').innerHTML = res.ok ? '<span style="color:#4caf50;">✅ 配置已保存</span>' : '<span style="color:#f44336;">❌ 保存失败</span>';
+            } catch (e) { document.getElementById('openclaw-status').innerHTML = '<span style="color:#f44336;">❌ 保存失败</span>'; }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatTime(timeStr) {
+            if (!timeStr) return '';
+            return new Date(timeStr).toLocaleString('zh-CN');
+        }
+    </script>
+</body>
+</html>

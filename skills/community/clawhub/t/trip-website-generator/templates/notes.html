@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>注意事项 - {{TRIP_TITLE}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="page-header">
+      <h1>注意事项</h1>
+      <p>出行前和旅途中需要注意的重要事项</p>
+    </div>
+
+    <div class="container">
+      <!-- NOTE_CATEGORY_START -->
+      <div class="note-category animate-in" style="animation-delay: {{ANIMATION_DELAY}}">
+        <div class="note-category-header">
+          <div class="note-icon note-icon-{{ICON_COLOR}}">
+            {{{ICON_SVG}}}
+          </div>
+          <div>
+            <div class="note-category-title">{{CATEGORY_TITLE}}</div>
+            <div class="note-category-desc">{{CATEGORY_DESC}}</div>
+          </div>
+        </div>
+        <div class="note-items">
+          <!-- NOTE_ITEM_START -->
+          <div class="note-item">
+            <span class="note-item-icon">{{ITEM_ICON}}</span>
+            <div class="note-item-content">
+              <strong>{{ITEM_TITLE}}</strong>
+              <p>{{ITEM_CONTENT}}</p>
+            </div>
+          </div>
+          <!-- NOTE_ITEM_END -->
+        </div>
+      </div>
+      <!-- NOTE_CATEGORY_END -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>renderTabbar('notes');</script>
+</body>
+</html>

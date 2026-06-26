@@ -1,0 +1,19 @@
+{
+  "name": "office-reader",
+  "version": "0.1.0",
+  "description": "Unified Office document reader - Word, Excel, PowerPoint, PDF support",
+  "main": "office-reader.ps1",
+  "scripts": {
+    "test": "echo 'PowerShell script - manual testing required'"
+  },
+  "keywords": [
+    "office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT"
+}

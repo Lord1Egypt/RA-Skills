@@ -1,0 +1,99 @@
+name: strategy-consulting-delivery
+version: "5.0"
+description: AI战略咨询顾问交付工作流 - v5.0 三层架构，质检引用共享层
+
+input:
+  type: object
+  required:
+    - requirement_summary
+  properties:
+    requirement_summary:
+      type: object
+      description: Intake Agent输出的结构化需求摘要
+    delivery_plan:
+      type: object
+      description: Router Agent的交付计划
+
+steps:
+  - id: diagnosis
+    agent: types/strategy-consulting/main-agent
+    action: deliver_diagnosis
+    description: 交付项目诊断报告（现状分析+核心问题+机会点）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+    output: diagnosis_report
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认项目诊断是否准确？"
+
+  - id: competitive_analysis
+    agent: types/strategy-consulting/main-agent
+    action: deliver_competitive_analysis
+    description: 交付竞争格局分析
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      diagnosis: "{{diagnosis.output.diagnosis_report}}"
+    output: competitive_analysis
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认竞争分析是否到位？"
+
+  - id: brand_positioning
+    agent: types/strategy-consulting/main-agent
+    action: deliver_brand_positioning
+    description: 交付品牌定位方案（定位陈述+价值主张+品牌个性）
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      diagnosis: "{{diagnosis.output.diagnosis_report}}"
+      competitive: "{{competitive_analysis.output.competitive_analysis}}"
+    output: positioning_plan
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认品牌定位方向是否正确？"
+
+  - id: strategy_and_roadmap
+    agent: types/strategy-consulting/main-agent
+    action: deliver_strategy_roadmap
+    description: 交付增长策略+执行路线图
+    input:
+      requirement_summary: "{{input.requirement_summary}}"
+      positioning: "{{brand_positioning.output.positioning_plan}}"
+    output: strategy_roadmap
+    checkpoint:
+      format: markdown
+      confirm: true
+      confirm_message: "请确认策略和路线图是否满足需求？"
+
+  - id: quality_check
+    agent: types/strategy-consulting/main-agent
+    reference: references/_shared/quality-protocol.md
+    action: quality_assessment
+    description: 对所有交付物进行质量自检（Tournament + Adversarial，引用共享层）
+    input:
+      deliverables:
+        diagnosis: "{{diagnosis.output.diagnosis_report}}"
+        competitive: "{{competitive_analysis.output.competitive_analysis}}"
+        positioning: "{{brand_positioning.output.positioning_plan}}"
+        roadmap: "{{strategy_and_roadmap.output.strategy_roadmap}}"
+    output: quality_report
+
+output:
+  deliverables:
+    diagnosis: "{{diagnosis.output.diagnosis_report}}"
+    competitive_analysis: "{{competitive_analysis.output.competitive_analysis}}"
+    brand_positioning: "{{brand_positioning.output.positioning_plan}}"
+    strategy_roadmap: "{{strategy_and_roadmap.output.strategy_roadmap}}"
+  quality: "{{quality_check.output.quality_report}}"
+  metadata:
+    workflow_version: "5.0"
+    role: "strategy_consulting"
+
+error_handling:
+  strategy: "circuit_breaker"
+  max_retries: 2
+  fallback:
+    target: "agents/router-agent"
+    action: "re_route"

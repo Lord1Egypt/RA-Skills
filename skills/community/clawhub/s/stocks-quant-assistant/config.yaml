@@ -1,0 +1,47 @@
+# ============================================================
+#  股票监控配置 - 干净模板（首次安装自动生成）
+#  此文件为默认模板，包含示例格式
+#  你的私人配置请写在 config.local.yaml（不会被发布）
+# ============================================================
+
+# 【必填】股票池：修改下方示例股票代码
+stocks:
+  # - code: "000001"
+  #   name: "平安银行"
+  #   market: "sz"
+  #   emoji: "🏦"
+  #   position:
+  #     cost: 12.50
+  #     quantity: 1000
+
+# 【必填】推送配置
+push:
+  # 推送渠道: console(本地打印) / feishu(飞书)
+  channel: "feishu"
+
+  # 飞书应用推送（channel: feishu 时必填）
+  feishu:
+    # 👉 前往 https://open.feishu.cn/app 创建应用
+    # → 获取 app_id (cli_xxx) 和 app_secret
+    # → 在「权限管理」中申请「发送消息到群」权限
+    # → 在「机器人」中添加自定义机器人
+    app_id: ""
+    app_secret: ""
+    # 👉 在飞书中找到你的 chat_id（格式: oc_xxxx）
+    # → 群设置 → 群机器人 → 查看 robot info → 复制 chat_id
+    chat_id: ""
+
+  # Telegram 推送（channel: telegram 时填写）
+  telegram:
+    bot_token: ""
+    chat_id: ""
+
+  # 推送时间（北京时间）
+  times:
+    - "09:15"    # 开盘前
+    - "10:30"    # 早盘
+    - "13:00"    # 午后
+    - "14:50"    # 尾盘
+
+advanced:
+  history_days: 60

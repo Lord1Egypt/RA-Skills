@@ -1,0 +1,124 @@
+{
+  "date": "2026-03-27",
+  "user_id": "default",
+  "user_name": "繁哥",
+  "source": "体检报告",
+  "indicators": {
+    "cardiovascular": {
+      "total_cholesterol": {"value": 4.93, "unit": "mmol/L", "ref": "2.85-5.2", "status": "normal"},
+      "ldl": {"value": 3.10, "unit": "mmol/L", "ref": "1.9-3.4", "status": "normal"},
+      "hdl": {"value": 1.41, "unit": "mmol/L", "ref": "1.03-1.55", "status": "normal"},
+      "triglycerides": {"value": 1.08, "unit": "mmol/L", "ref": "0.45-1.7", "status": "normal"},
+      "homocysteine": {"value": 10.90, "unit": "μmol/L", "ref": "≤15", "status": "normal"},
+      "blood_pressure": {"value": "104/74", "unit": "mmHg", "ref": "<120/80", "status": "normal"},
+      "pulse": {"value": 59, "unit": "bpm", "ref": "60-100", "status": "low"}
+    },
+    "liver": {
+      "alt": {"value": 9.6, "unit": "U/L", "ref": "9-50", "status": "normal"},
+      "ast": {"value": 18.7, "unit": "U/L", "ref": "15-40", "status": "normal"},
+      "ggt": {"value": 17.6, "unit": "U/L", "ref": "10-60", "status": "normal"},
+      "total_bilirubin": {"value": 27.9, "unit": "μmol/L", "ref": "≤23", "status": "high"},
+      "direct_bilirubin": {"value": 4.7, "unit": "μmol/L", "ref": "≤4", "status": "high"},
+      "indirect_bilirubin": {"value": 23.2, "unit": "μmol/L", "ref": "≤19", "status": "high"}
+    },
+    "metabolic": {
+      "fasting_glucose": {"value": 4.83, "unit": "mmol/L", "ref": "3.9-6.1", "status": "normal"}
+    },
+    "blood": {
+      "ldh": {"value": 116.0, "unit": "U/L", "ref": "120-250", "status": "low"},
+      "mpv": {"value": 7.32, "unit": "fL", "ref": "7.5-11.2", "status": "low"},
+      "rdw": {"value": 12.24, "unit": "%", "ref": "12.3-17.0", "status": "low"}
+    },
+    "other": {
+      "bmi": {"value": 23.5, "unit": "kg/m²", "ref": "18.5-24.9", "status": "normal"},
+      "weight": {"value": 67.0, "unit": "kg", "ref": "-", "status": "normal"}
+    },
+    "not_tested": ["25-OH-VD (维生素D)"]
+  },
+  "imaging": {
+    "ecg": {
+      "finding": "窦性心动过缓",
+      "severity": "normal",
+      "note": "脉搏59，通常为良性，运动员常见"
+    },
+    "cervical_ct": {
+      "finding": "颈椎椎体轻度骨质增生",
+      "severity": "mild",
+      "note": "颈5-6椎间隙前缘钙化灶，久坐相关"
+    }
+  },
+  "abnormalities": [
+    {
+      "category": "liver",
+      "indicator": "total_bilirubin",
+      "value": 27.9,
+      "severity": "mild",
+      "note": "轻度升高，肝功能其他指标正常"
+    },
+    {
+      "category": "liver",
+      "indicator": "indirect_bilirubin",
+      "value": 23.2,
+      "severity": "mild",
+      "note": "可能为Gilbert综合征（良性）"
+    },
+    {
+      "category": "cardiovascular",
+      "indicator": "pulse",
+      "value": 59,
+      "severity": "normal",
+      "note": "窦性心动过缓，通常为良性"
+    },
+    {
+      "category": "imaging",
+      "indicator": "cervical_spine",
+      "severity": "mild",
+      "note": "颈椎轻度骨质增生，久坐相关"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "monitor",
+      "action": "3个月后复查胆红素",
+      "reason": "排除肝胆疾病"
+    },
+    {
+      "priority": "test",
+      "action": "下次体检加测 25-OH-VD",
+      "reason": "监控维生素D水平"
+    },
+    {
+      "priority": "lifestyle",
+      "action": "每小时起身活动，做颈椎操",
+      "reason": "改善颈椎问题"
+    },
+    {
+      "priority": "continue",
+      "action": "继续当前保健品方案",
+      "reason": "心血管预防目标匹配"
+    }
+  ],
+  "supplements": {
+    "current": [
+      {"name": "Now D3+K2", "dose": "5000 IU", "target": "骨骼健康"},
+      {"name": "Sports Research 黑金鱼油", "dose": "标准", "target": "心脏预防"},
+      {"name": "NatureWise Q10", "dose": "标准", "target": "心脏预防/精力"},
+      {"name": "姜黄素", "dose": "标准", "target": "抗炎"}
+    ],
+    "suggested_additions": [
+      {"name": "镁（甘氨酸镁）", "reason": "D3消耗镁，建议补充"},
+      {"name": "复合B族", "reason": "精力代谢，压力大时消耗快"}
+    ]
+  },
+  "follow_up": {
+    "date": "2026-06-27",
+    "tests": ["胆红素复查", "肝胆B超", "25-OH-VD"]
+  },
+  "analysis": {
+    "overall_health": "良好",
+    "cardiovascular_risk": "低",
+    "key_strengths": ["血脂正常", "血压理想", "血糖正常", "同型半胱氨酸正常"],
+    "areas_to_watch": ["胆红素偏高", "颈椎"],
+    "next_steps": "3个月后复查胆红素，保持当前保健品方案"
+  }
+}

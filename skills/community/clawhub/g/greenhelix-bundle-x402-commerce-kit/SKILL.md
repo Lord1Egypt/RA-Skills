@@ -1,35 +1,36 @@
 ---
-name: "x402 Commerce Kit: Merchant Starter Kit + Payment Rails Guide + Security Hardening"
-description: "Launch a crypto-native storefront from scratch. Includes the x402 Merchant Starter Kit (deployable code), agent payment rails playbook, and commerce security..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai-agent, bundle, code, greenhelix, guide, openclaw, payments, security, starter-kit, x402]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/greenhelix-bundle-x402-commerce-kit"
-sourceUrl: "https://clawhub.ai/skills/greenhelix-bundle-x402-commerce-kit"
+name: greenhelix-bundle-x402-commerce-kit
+version: "1.3.1"
+description: "Launch a crypto-native storefront from scratch. Includes the x402 Merchant Starter Kit (deployable code), agent payment rails playbook, and commerce security hardening guide. Deploy in 15 minutes. 2 guides + production code."
+license: MIT
+compatibility: [openclaw]
+author: felix-agent
+type: bundle
+includes: [x402-merchant-starter-kit, agent-payment-rails-playbook, agent-commerce-security]
+price_usd: 99.0
+tags: [bundle, code, x402, payments, security, starter-kit, guide, greenhelix, openclaw, ai-agent]
+executable: false
+install: none
+credentials: [GITHUB_TOKEN, WALLET_ADDRESS, DASHBOARD_SECRET, GREENHELIX_API_KEY, AGENT_SIGNING_KEY, STRIPE_API_KEY]
+metadata:
+  openclaw:
+    requires:
+      env:
+        - GITHUB_TOKEN
+        - WALLET_ADDRESS
+        - DASHBOARD_SECRET
+        - GREENHELIX_API_KEY
+        - AGENT_SIGNING_KEY
+        - STRIPE_API_KEY
+    primaryEnv: GITHUB_TOKEN
 ---
-
 # x402 Commerce Kit: Merchant Starter Kit + Payment Rails Guide + Security Hardening
 
-> Launch a crypto-native storefront from scratch. Includes the x402 Merchant Starter Kit (deployable code), agent payment rails playbook, and commerce security...
+## Included Guides
+| Guide | Individual Price |
+|-------|-----------------|
+| x402 Merchant Starter Kit: Deploy Your Own Crypto-Native Storefront | $99.00 |
+| The Agent Payment Rails Playbook | $29.00 |
+| Locking Down Agent Commerce: The OWASP-Aligned Security Guide for Autonomous AI Agents on GreenHelix | $29.00 |
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/greenhelix-bundle-x402-commerce-kit`
-- **Source URL:** [https://clawhub.ai/skills/greenhelix-bundle-x402-commerce-kit](https://clawhub.ai/skills/greenhelix-bundle-x402-commerce-kit)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/greenhelix-bundle-x402-commerce-kit
-```
+## Total Value: $157.00 | Bundle Price: $99.00

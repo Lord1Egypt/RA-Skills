@@ -1,0 +1,12 @@
+{
+  "text": "Left Top Align\nWith two lines",
+  "width": 720,
+  "height": 320,
+  "format": "png",
+  "background": "#fffbe6",
+  "default_color": "#333333",
+  "padding": 30,
+  "align": "left",
+  "valign": "top",
+  "font_size": 42
+}

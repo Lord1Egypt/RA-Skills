@@ -1,0 +1,42 @@
+{
+  "skill": "self-improving-agent",
+  "fitness": 1.0,
+  "timestamp": 1774458236.6481671,
+  "tests": [
+    {
+      "test": "learning_capture",
+      "passed": true,
+      "metrics": {
+        "time_seconds": 0.0018458366394042969
+      },
+      "details": "Learning capture works"
+    },
+    {
+      "test": "execution_speed",
+      "passed": true,
+      "metrics": {
+        "time_seconds": 0.034595489501953125,
+        "ops_per_second": 2890.550226044768
+      },
+      "details": "2890.6 ops/sec"
+    },
+    {
+      "test": "memory_stability",
+      "passed": true,
+      "metrics": {
+        "initial_mb": 13.0390625,
+        "final_mb": 13.0390625,
+        "growth_mb": 0.0
+      },
+      "details": "Growth: 0.0 MB"
+    },
+    {
+      "test": "output_format",
+      "passed": true,
+      "metrics": {
+        "manifest_valid": true
+      },
+      "details": "All format checks passed"
+    }
+  ]
+}

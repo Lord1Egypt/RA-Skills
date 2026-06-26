@@ -1,0 +1,38 @@
+{
+  "name": "星座塔罗占卜师",
+  "version": "1.0.0",
+  "description": "星座配对 + 塔罗牌占卜的占位版本。星座配对基于星座元素和性格分析，塔罗牌占卜包含78张牌完整解读。妮妮开发的占位版本，待2.0版本更新。",
+  "slug": "zodiac-tarot-master",
+  "tags": ["星座", "塔罗", "占卜", "算命", "运势", "爱情", "配对"],
+  "author": "Agent2 Team",
+  "keywords": [
+    "星座占卜",
+    "星座配对",
+    "塔罗牌",
+    "塔罗占卜",
+    "星座运势",
+    "爱情匹配",
+    "astrology",
+    "tarot",
+    "zodiac",
+    "fortune",
+    "love compatibility"
+  ],
+  "provides": [
+    {
+      "tool": "星座配对",
+      "description": "星座配对占位功能（妮妮开发）",
+      "trigger": ["星座", "星座配对", "配对", "匹配度", "zodiac"]
+    },
+    {
+      "tool": "塔罗占卜",
+      "description": "塔罗牌占卜占位功能（妮妮开发）",
+      "trigger": ["塔罗牌", "塔罗", "占卜", "抽牌", "tarot"]
+    }
+  ],
+  "dependencies": [],
+  "files": [
+    "SKILL.md",
+    "README.md"
+  ]
+}

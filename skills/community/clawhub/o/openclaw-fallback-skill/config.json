@@ -1,0 +1,9 @@
+{
+ "apiUrl": "http://localhost:13000/v1/chat/completions",
+ "apiKey": "sk-6cbc43a72af3312b25babf8c008989465ed15f4049990605",
+ "modelName": "deepseek-v3.2",
+ "fallbackThreshold": 0.5,
+ "maxRetries": 3,
+ "timeout": 60,
+ "enableStreaming": true
+}

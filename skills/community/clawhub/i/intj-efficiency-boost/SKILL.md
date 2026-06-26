@@ -1,35 +1,86 @@
 ---
-name: "INTJ效率增效"
-description: "INTJ personality efficiency boost skill. Use when user expresses personality analysis needs, idea structuring, task breakdown, learning plans, process buildi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intj-efficiency-boost"
-sourceUrl: "https://clawhub.ai/skills/intj-efficiency-boost"
+name: intj-efficiency-boost
+description: INTJ personality efficiency boost skill. Use when user expresses personality analysis needs, idea structuring, task breakdown, learning plans, process building, overthinking issues, unclear execution steps, or efficiency optimization requests. Compatible with Maxclaw OpenClaw and general scenarios.
 ---
 
-# INTJ效率增效
+# INTJ 人格与效率增效技能
 
-> INTJ personality efficiency boost skill. Use when user expresses personality analysis needs, idea structuring, task breakdown, learning plans, process buildi...
+## 核心定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intj-efficiency-boost`
-- **Source URL:** [https://clawhub.ai/skills/intj-efficiency-boost](https://clawhub.ai/skills/intj-efficiency-boost)
+专为 INTJ 人格设计的效率与执行力增强系统。顺应 INTJ 的战略思维优势，同步修正其典型短板（过度思考、追求完美、信息冗余），将高价值思考转化为可落地的最小行动。
 
-## Overview
+## 人格识别与自动修正
 
+### 触发检测
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intj-efficiency-boost
+当用户出现以下模式时，自动触发人格修正提示：
+
+| 检测信号 | 修正策略 |
+|---------|---------|
+| 反复纠结、决策瘫痪 | 强制聚焦核心目标，输出最小启动步骤 |
+| 想太多不行动 | 限制分析时间，直接给出可执行清单 |
+| 追求全能方案 | 提示「足够好」原则，降低启动门槛 |
+| 信息收集冗余 | 提炼关键变量，停止无边界调研 |
+
+### 人格修正话术模板
+
 ```
+【人格提醒】检测到完美主义倾向。当前阶段目标是启动，
+而非最优解。请执行「60分先行」原则：先行动，再迭代。
+```
+
+## 标准响应模板
+
+### 工作任务响应
+
+```
+【思维对齐】
+核心目标：[一句话描述最终目的]
+关键约束：[时间/资源/质量底线]
+
+【人格提醒】
+[若有短板触发，输出对应修正提示]
+
+【执行方案】
+阶段一：最小启动（1-2步，24小时内可完成）
+阶段二：核心推进（关键里程碑）
+阶段三：校验闭环（交付标准）
+
+【后续优化】
+已完成项：[避免精力分散的聚焦提示]
+待优化项：[适度放权的边界说明]
+```
+
+### 学习任务响应
+
+```
+【知识框架】
+主题：[学习目标]
+核心逻辑链：[3-5个关键概念及关联]
+
+【执行方案】
+每日学习单元：30分钟聚焦模块
+week1：基础概念扫盲
+week2：核心原理深挖
+week3：应用场景验证
+week4：知识整合输出
+
+【防碎片化提醒】
+本计划旨在体系化吸收，避免散点式学习消耗。
+```
+
+## 工具协同规范
+
+当用户需要对接 AI 工具或低代码平台时：
+
+1. 明确输入（用户的想法/数据）
+2. 定义输出（期望结果格式）
+3. 简化步骤（最多 3 步配置）
+4. 提供回退方案（如果 A 失败则 B）
+
+## 质量门槛
+
+- 每次响应必须包含「思维对齐」和「执行方案」
+- 「人格提醒」仅在检测到短板信号时触发
+- 执行方案步骤不超过 5 步，确保可执行性
+- 关键节点设置可量化的校验标准

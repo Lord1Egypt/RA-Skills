@@ -1,35 +1,103 @@
 ---
-name: "Ichimoku"
+name: "ichimoku"
+version: "1.0.0"
 description: "Ichimoku reference tool. Use when working with ichimoku in finance contexts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ichimoku"
-sourceUrl: "https://clawhub.ai/skills/ichimoku"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [ichimoku, finance, finance, reference, cli]
+category: "finance"
 ---
 
 # Ichimoku
 
-> Ichimoku reference tool. Use when working with ichimoku in finance contexts.
+Ichimoku reference tool. Use when working with ichimoku in finance contexts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ichimoku`
-- **Source URL:** [https://clawhub.ai/skills/ichimoku](https://clawhub.ai/skills/ichimoku)
+## When to Use
 
-## Overview
+- Working with ichimoku and need quick reference
+- Looking up finance standards or best practices for ichimoku
+- Troubleshooting ichimoku issues
+- Need a checklist or guide for ichimoku tasks
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `intro`
+
 ```bash
-hermes skills install clawhub/ichimoku
+scripts/script.sh intro
 ```
+
+Overview and fundamentals
+
+### `formulas`
+
+```bash
+scripts/script.sh formulas
+```
+
+Key formulas and calculations
+
+### `regulations`
+
+```bash
+scripts/script.sh regulations
+```
+
+Regulatory framework and compliance
+
+### `risks`
+
+```bash
+scripts/script.sh risks
+```
+
+Risk factors and mitigation
+
+### `instruments`
+
+```bash
+scripts/script.sh instruments
+```
+
+Instruments and tools overview
+
+### `strategies`
+
+```bash
+scripts/script.sh strategies
+```
+
+Common strategies and approaches
+
+### `glossary`
+
+```bash
+scripts/script.sh glossary
+```
+
+Key terms and definitions
+
+### `checklist`
+
+```bash
+scripts/script.sh checklist
+```
+
+Due diligence checklist
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

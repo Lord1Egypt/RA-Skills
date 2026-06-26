@@ -1,35 +1,123 @@
----
-name: "LiveScript Protocol"
-description: "Structured live-streaming script framework using psychological principles across four stages to boost engagement, trust, urgency, and conversions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/live-script-protocol"
-sourceUrl: "https://clawhub.ai/skills/live-script-protocol"
+# LiveScript Protocol — 直播话术结构化协议
+
+> 通用直播话术生成框架 · Agent Native · v1.10.0
+
 ---
 
-# LiveScript Protocol
+## 心理学底座
 
-> Structured live-streaming script framework using psychological principles across four stages to boost engagement, trust, urgency, and conversions.
+| 阶段 | 原则 | 话术 |
+|------|------|------|
+| 开场 | 喜好+社会认同 | "刚进来3000人，今天都冲着XX来的" |
+| 塑品 | 权威+认知对比 | "别人卖XX，我们只要XX" / 展示数据证书 |
+| 逼单 | 稀缺+承诺一致 | 限量X份限时X分钟 / "拍了的家人扣1" |
+| 拉互动 | 互惠+社会认同 | 答疑送小礼 / "有多少人是朋友推荐来的？" |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/live-script-protocol`
-- **Source URL:** [https://clawhub.ai/skills/live-script-protocol](https://clawhub.ai/skills/live-script-protocol)
+---
 
-## Overview
+## 核心框架：人货场三层 + 四阶段话术
 
+### 四阶段（3-5分钟循环）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/live-script-protocol
+**第一阶段：开场（0-30秒）** — 介绍我是谁 + 今日主题 + 钩子（悬念/价格/身份认同选一）
+
+**第二阶段：塑品（30秒-2分钟）**
+- FAB三段式（必须走完）：F属性→A优势→**B利益**（B多说一句转化提升）
+- 社会认同≥2种：已售/在线/评论/榜单/权威/同行对比
+- 差异化：一个最强点反复说
+
+**第三阶段：逼单（2-3分钟）**
+- 价格锚定（原价比/竞品比，不用"最便宜"）
+- 稀缺性（限量/限时/恢复原价）
+- 承诺一致（让用户自己表态：扣屏/扣1）
+
+**第四阶段：拉互动（3-5分钟）**
+- 关门话术（锁定已种草用户）："还没拍的家人，最后一次机会"
+- 开门话术（悬念引入下一品）：停顿3秒后揭示
+
+---
+
+## 元数据协议（Agent读取层）
+
+```json
+{
+  "protocol_version": "1.0",
+  "product_type": "景区|电商|餐饮|服务|...",
+  "target_audience": ["人群1","人群2"],
+  "core_purpose": {"why_buy":"核心购买理由","why_today":"今日下单理由","why_here":"本店信任背书"},
+  "pricing": {"strategy":"价格策略","anchor_comparison":"对比锚点"},
+  "trust_mechanisms": ["背书1","背书2"],
+  "scarcity": "稀缺性来源",
+  "urgency_cycle_minutes": 3-5,
+  "stage_mapping": {"opening":"开场主题","shaping":"产品塑造","closing":"逼单机制","engagement":"互动引导"},
+  "conversion_funnel": {"awareness_hook":"开场钩子","urgency_trigger":"逼单机制","social_proof_moments":["社会认同时机"]},
+  "emotion_arc": {"stage":"opening|shaping|closing|engagement","emotion_target":"curious|excited|urgent|satisfied"},
+  "persuasion_techniques": ["损失厌恶","确定性触发","最后机会升级","权威降维","从众觉醒","锚定转移"],
+  "retention_hooks": ["换品留人","价格揭晓留人","沉默留人","爆发期留人","低谷留人"],
+  "cold_start_mode": false,
+  "prohibited_words": ["第一","史无前例","最","天花板","绝对"]
+}
 ```
+
+---
+
+## 话术禁区
+
+禁用词：第一/最/史无前例/天花板/绝对 | 涉医功效宣传 | 数据造假
+
+---
+
+## 使用方式
+
+输入：产品类型 + 名称 + 目标人群 + 核心卖点 + 价格锚点 + 信任背书
+
+输出：
+```
+--- SCRIPT ---
+[分阶段话术]
+--- METADATA ---
+{JSON}
+```
+
+---
+
+## 快速参考卡
+
+**开场**：钩子选一（悬念/价格/身份认同/场景触发）+ 身份10秒内 + 人群锁定
+**塑品**：FAB走完（F→A→B）+ 社会认同≥2种 + 差异化反复说
+**逼单**：价格锚定对比 + 稀缺性（限量/限时） + 承诺一致（扣屏/扣1）
+**结尾**：关门话术锁定 + 开门悬念引入
+
+---
+
+## 补充模块索引
+
+| 模块 | 主题 | 核心要点 |
+|------|------|---------|
+| ① | FOMO闭环 | 悬念→稀缺→公开验证→社交背书 |
+| ② | 冷启动策略 | 0-50人：制造悬念不说数字；50-500人：叠加社会认同；500+人：秀数字 |
+| ③ | 情绪节奏 | 好奇→兴奋→紧迫→满足；逼单后必须有满足感缓冲 |
+| ④ | 沉默处理 | 自问自答→点名引导→悬念转移；每30-45秒抛问题 |
+| ⑤ | 转化漏斗 | conversion_funnel + emotion_arc + cold_start_mode 字段 |
+| ⑥ | AIDA叠加 | A-开场抓注意力；I-兴趣建立；D-欲望激发；A-行动指令 |
+| ⑦ | 价格心理学 | 魅力价格/捆绑定价/锚定折扣/分摊话术/动态稀缺；骤降式(客单<200) vs 渐入式(客单>500) |
+| ⑧ | 异议ACE | A承认→C反击(数据/证据)→E评估；太贵/质量/等优惠/比价 |
+| ⑨ | 说服武器 | 损失厌恶/"亏120"替代"省120"；确定性触发；最后机会升级；权威降维(大白话翻译)；从众觉醒("像你这样的人买了")；锚定转移("你算价格我算性价比") |
+| ⑩ | 五关检验 | 注意力钩子→差异化→FAB走完B→信任叠加≥2层→行动指令清晰 |
+| ⑪ | 留人体系 | 换品关门/价格揭晓悬念/沉默触发④/爆发期欢迎/低谷情感归属 |
+| ⑫ | 迭代闭环 | 版本记录→话术/产品/流量三维度归因→有效句式入库 |
+| ⑬ | 购后闭环 | 锁定成就感→晒单动机→二次触达预约；减少退款+激活UGC |
+| ⑮ | 元数据增强 | script_variants(high_energy/low_key/price_lead)；style_tags；platform_compliance |
+| ⑯ | 时间轴 | 双峰结构：0-2分钟情绪峰值+2-3分钟紧迫峰值；关门+开门中间5秒过渡 |
+| ⑱ | 质检验证 | 七步验证：承诺一致/心理原理/AIDA/禁区扫描/METADATA一致/变体适用/漏斗穿透 |
+| ⑲(B) | 悬念留白 | 数字留白/结论留白/悬念留白；停顿≤5秒；挖坑必填 |
+| ⑲(A) | 峰终定律 | Peak：FAB-B后超预期揭示；End：归属感结尾 |
+| ⑳ | 触发词 | 时间/空间/情绪三类；开场5秒植入；检验：脑海有场景？与生活多近？能说服今天买？ |
+| ㉑ | 毕业切换 | 50→80人/150→200人/400→500人三阈值切换话术 |
+| ㉒ | 承诺阶梯 | L1认同→L2需求确认→L3行动承诺→L4社交曝光→L5内容创造；逐级爬升不跳级 |
+| ㉓ | 竞品对比 | 找单一差异点→隐性/自证/算账三模式→嵌入四阶段；不能说竞品"是假的" |
+| ㉔ | 人格化 | 4P：Persona/Passion/Punchline/Presence；禁用"本产品/感谢信任/我们的优势是" |
+
+---
+
+**by 翔川 & 虾1号 | v1.10.0 | 2026-04-05**

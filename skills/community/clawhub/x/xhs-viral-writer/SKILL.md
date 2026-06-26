@@ -1,35 +1,23 @@
----
-name: "小红书爆款笔记生成器"
-description: "自动生成符合小红书风格的爆款笔记，包括标题、正文、热门标签和配图建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-viral-writer"
-sourceUrl: "https://clawhub.ai/skills/xhs-viral-writer"
----
-
 # 小红书爆款笔记生成器
 
-> 自动生成符合小红书风格的爆款笔记，包括标题、正文、热门标签和配图建议。
+自动生成小红书爆款种草笔记，包含标题、正文、标签。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-viral-writer`
-- **Source URL:** [https://clawhub.ai/skills/xhs-viral-writer](https://clawhub.ai/skills/xhs-viral-writer)
+## 功能
 
-## Overview
+- 📝 生成小红书风格笔记
+- 🎯 爆款标题模板
+- 🏷️ 热门标签推荐
+- 📸 配图建议
+- 🚀 DeepSeek AI 驱动
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
+```
+写一篇关于 [产品/主题] 的小红书笔记
+```
+
+## 安装
+
 ```bash
-hermes skills install clawhub/xhs-viral-writer
+openclaw skills install xhs-writer
 ```

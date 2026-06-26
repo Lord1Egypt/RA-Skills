@@ -1,35 +1,39 @@
 ---
-name: "Log Scrubber"
-description: "Automatically redacts API keys, tokens, and secrets from workspace logs and memory files."
-category: "security"
-source: "ClawHub"
-tags: [maintenance, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/log-scrubber"
-sourceUrl: "https://clawhub.ai/skills/log-scrubber"
+name: log-scrubber
+description: Automatically redacts API keys, tokens, and secrets from workspace logs and memory files.
+homepage: https://github.com/Heather-Herbert/openclaw-log-scrubber
+metadata:
+  clawdbot:
+    requires:
+      env: []
+    files: ["scripts/*"]
 ---
 
 # Log Scrubber
 
-> Automatically redacts API keys, tokens, and secrets from workspace logs and memory files.
+This skill automatically scans your `/root/.openclaw/workspace/` environment, logs, and memory files to detect and redact sensitive information like API keys, tokens, and credentials.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/log-scrubber`
-- **Source URL:** [https://clawhub.ai/skills/log-scrubber](https://clawhub.ai/skills/log-scrubber)
+## Features
+- **Proactive Scanning**: Scans for known patterns (regex) of common secrets.
+- **Automated Redaction**: Sanitizes files in-place while keeping backups of original files (e.g., `.bak` extension).
+- **Dry-Run Mode**: Allows you to simulate redaction without modifying files.
+- **Security**: Ensures your secrets don't accidentally end up in logs sent to providers or stored in plain-text memory files.
 
-## Overview
+## Usage
+To perform a dry-run (check proposed changes without modification):
+`python3 /root/.openclaw/workspace/skills/log-scrubber/scripts/scrub.py --dry-run`
 
+To apply changes:
+`python3 /root/.openclaw/workspace/skills/log-scrubber/scripts/scrub.py`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/log-scrubber
-```
+## External Endpoints
+- This skill does not call any external endpoints. It operates entirely locally.
+
+## Security & Privacy
+- This skill performs all redaction operations locally on your machine. No data is sent to external servers.
+
+## Model Invocation
+- This skill runs locally and does not autonomously invoke models beyond the standard OpenClaw agent execution.
+
+## Trust Statement
+- By using this skill, you agree that it will overwrite files in your workspace with redacted versions. Always ensure you have backups of important data.

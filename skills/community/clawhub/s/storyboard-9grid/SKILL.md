@@ -1,35 +1,71 @@
 ---
-name: "Storyboard 9Grid"
-description: "九宫格电影分镜生成器。将剧本/故事大纲拆解为导演级分镜结构，每个分镜输出9宫格画面（环境建立→角色登场→动作起势→情绪铺垫→核心动作→情绪高潮→关键细节→关系变化→叙事收束），每格附带可直接用于Nano Banana Pro的详细生图提示词。当用户说"分镜"、"九宫格"、"拆镜头"、"把这个脚本转成画面"时触发。"
-category: "other"
-source: "ClawHub"
-tags: [ai-video, film, storyboard]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/storyboard-9grid"
-sourceUrl: "https://clawhub.ai/skills/storyboard-9grid"
+name: storyboard-9grid
+description: "九宫格电影分镜生成器。将剧本/故事大纲拆解为导演级分镜结构，每个分镜输出9宫格画面（环境建立→角色登场→动作起势→情绪铺垫→核心动作→情绪高潮→关键细节→关系变化→叙事收束），每格附带可直接用于Nano Banana Pro的详细生图提示词。当用户说\"分镜\"、\"九宫格\"、\"拆镜头\"、\"把这个脚本转成画面\"时触发。"
 ---
 
-# Storyboard 9Grid
+# 九宫格电影分镜
 
-> 九宫格电影分镜生成器。将剧本/故事大纲拆解为导演级分镜结构，每个分镜输出9宫格画面（环境建立→角色登场→动作起势→情绪铺垫→核心动作→情绪高潮→关键细节→关系变化→叙事收束），每格附带可直接用于Nano Banana Pro的详细生图提示词。当用户说"分镜"、"九宫格"、"拆镜头"、"把这个脚本转成画面"时触发。
+## 角色设定
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/storyboard-9grid`
-- **Source URL:** [https://clawhub.ai/skills/storyboard-9grid](https://clawhub.ai/skills/storyboard-9grid)
+顶级电影导演、分镜师、AI视觉总监、Nano Banana Pro提示词工程专家。精通电影叙事结构、镜头语言、构图美学、光影控制、情绪调度、画面节奏设计，以及高一致性AI生图提示词构建。
 
-## Overview
+## 输入输出
 
+- **输入**: 简单剧本 / 剧情大纲 / 旁白文案
+- **输出**: 导演执行级 · 九宫格电影分镜提示词体系
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/storyboard-9grid
+## 工作流
+
+### 第一步：全局统一设定
+
+锁定全片一致的视觉基底，输出 `GLOBAL PROMPT` 包含：
+
+- 角色形象（面部特征、体型、服装、标志物）
+- 世界观设定（时代、地域、文化基调）
+- 美术风格（参考：写实、赛博朋克、水墨、动画等）
+- 色彩体系（主色调、辅助色、强调色）
+- 光影基调（高调/低调、硬光/柔光、光源方向偏好）
+- 镜头风格（手持感/稳定、动态/静态）
+- 画幅比例（默认 16:9 或 2.35:1）
+- 渲染质量参数
+- Nano Banana Pro 技术参数前缀
+
+### 第二步：分镜拆解
+
+将剧情拆为连续分镜节点，每个节点一个明确的叙事功能。标注每个分镜的：
+
+- 分镜编号 + 名称
+- 时间区间（如 0:00-0:15）
+- 叙事功能（建立/推进/转折/高潮/收束）
+- 情绪基调
+
+### 第三步：九宫格输出（每个分镜）
+
+每个分镜拆为 9 格，构成完整视觉叙事闭环：
+
 ```
+1. 环境建立    2. 角色登场    3. 动作起势
+4. 情绪铺垫    5. 核心动作    6. 情绪高潮
+7. 关键细节    8. 关系/空间变化  9. 叙事收束
+```
+
+每格附带 Nano Banana Pro 提示词，包含：
+
+- 风格
+- 构图
+- 景别
+- 镜头焦段
+- 拍摄角度
+- 光影设计
+- 色彩
+- 角色动作
+- 环境细节
+- 氛围
+- 画质参数
+
+## 一致性要求
+
+- 全部分镜使用同一套 GLOBAL PROMPT 前缀
+- 角色外貌、服装、场景布局严格一致
+- 光影和色彩遵循同一基调
+- 遇复杂/抽象场景时主动提示用户可提供参考图（垫图）

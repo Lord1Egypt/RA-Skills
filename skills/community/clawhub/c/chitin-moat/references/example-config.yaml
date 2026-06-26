@@ -1,0 +1,37 @@
+# Chitin Trust Channels — Example Configuration
+# Copy this file to your workspace root as chitin-trust-channels.yaml
+# and customize with your own channel IDs.
+
+version: "0.1"
+
+# Owner identity — used to verify sovereign-level access
+owner:
+  telegram: "REPLACE_WITH_YOUR_TELEGRAM_USER_ID"
+  # signal: "+1XXXXXXXXXX"
+  # discord: "REPLACE_WITH_YOUR_DISCORD_USER_ID"
+
+# Channel mappings
+channels:
+  # Direct message with owner = full autonomy
+  - id: "telegram:REPLACE_WITH_YOUR_TELEGRAM_USER_ID"
+    level: sovereign
+
+  # Discord server with per-channel overrides
+  - id: "discord:REPLACE_WITH_SERVER_ID"
+    level: guarded
+    overrides:
+      - channel: "owners-lounge"
+        level: trusted
+      - channel: "pro-*"
+        level: trusted
+      - channel: "announcements"
+        level: observer
+
+  # All unknown Telegram groups = observer by default
+  - id: "telegram:group:*"
+    level: observer
+
+# Defaults for unmatched channels
+defaults:
+  unknown_channel: observer
+  unknown_dm: guarded

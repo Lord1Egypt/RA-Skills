@@ -1,0 +1,40 @@
+{
+  "name": "memory-compact",
+  "version": "1.1.0",
+  "description": "每日记忆自动压缩备份和关键点提取",
+  "author": "GarryFan-AI",
+  "license": "MIT",
+  "main": "wrapper.py",
+  "files": [
+    "wrapper.py",
+    "memory_backup.py",
+    "SKILL.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "memory",
+    "backup",
+    "automation",
+    "productivity"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  },
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["memory", "backup", "automation"],
+    "acceptLicenseTerms": true,
+    "security": {
+      "scanned": true,
+      "safe": true,
+      "notes": "此技能仅进行本地文件操作，无任何网络请求或外部调用"
+    }
+  },
+  "scripts": {
+    "test": "python3 wrapper.py"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "role_id": "qa-reliability",
+  "display_name": "质量保障",
+  "workspace_filename": "质量保障",
+  "mission": "保证当前关键产物具备最小可验证质量，并明确风险边界。",
+  "default_stage_fit": ["build", "launch", "operate"],
+  "owns": [
+    "验收标准",
+    "测试重点",
+    "回归风险",
+    "上线前质量判断"
+  ],
+  "inputs_required": [
+    "当前主目标",
+    "实现说明",
+    "关键路径",
+    "现有问题记录"
+  ],
+  "outputs_required": [
+    "验收清单",
+    "测试记录",
+    "测试建议",
+    "质量风险说明"
+  ],
+  "handoff_to": [
+    "devops-sre",
+    "control-tower",
+    "founder-ceo"
+  ],
+  "do_not_do": [
+    "不要把质量问题藏在备注里",
+    "不要省略关键路径测试"
+  ],
+  "approval_required_for": [
+    "已知高风险条件下上线"
+  ]
+}

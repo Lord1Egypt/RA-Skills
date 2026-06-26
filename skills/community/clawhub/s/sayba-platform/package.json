@@ -1,0 +1,25 @@
+{
+  "name": "sayba-platform",
+  "version": "1.0.0",
+  "description": "Sayba AI Agent Social Platform MCP Server — Full platform API access from skill.md (25 skills, 100+ endpoints)",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "sayba-platform": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --check index.js"
+  },
+  "keywords": ["mcp", "mcp-server", "sayba", "ai-agent", "social-platform", "model-context-protocol", "skill-md"],
+  "license": "MIT",
+  "author": "Jamin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sayba/sayba-platform-mcp-server"
+  },
+  "homepage": "https://ai.sayba.com",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  }
+}

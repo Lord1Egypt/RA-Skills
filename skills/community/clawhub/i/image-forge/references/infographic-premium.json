@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Illustrated City Food Map",
+    "source": "YouMind/awesome-gpt-image-2 @mm_zzm44854 — Featured",
+    "prompt": "Hand-drawn illustrated tourist map infographic of {subject} food and landmark guide, watercolor and ink illustration on vintage parchment paper, cartoon mascot in title section, vine/botanical border decoration, textured beige parchment background with colored roads and water features, numbered food locations with small illustrations of each dish, landmark illustrations with labels, legend in bottom corner with compass rose, warm hand-crafted aesthetic",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["map", "food", "illustrated", "infographic", "watercolor"]
+  },
+  {
+    "title": "Exploded View Technical Infographic",
+    "source": "YouMind/awesome-gpt-image-2 @wory37303852 — Featured",
+    "prompt": "Technical exploded view infographic poster of {subject}, clean high-tech 3D render style, product disassembled vertically showing all internal components as distinct labeled layers, callout lines with technical component descriptions on both sides, professional product specification layout, gradient background, title with product name and tagline at top, technical specifications footer",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["exploded view", "technical", "product", "infographic", "3D"]
+  },
+  {
+    "title": "Science Encyclopedia Vertical Infographic",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @pfanis",
+    "prompt": "Educational science encyclopedia infographic about {subject}, clean editorial layout with bold section headers, detailed scientific illustrations with labels and callout annotations, information hierarchy from overview to detail, consistent color coding by topic, clean white background with structured grid layout, museum or textbook publication quality",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["science", "encyclopedia", "educational", "infographic", "editorial"]
+  },
+  {
+    "title": "City Travel Guide Infographic",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @MrLarus",
+    "prompt": "City travel guide infographic for {subject}, isometric-style map illustration showing key districts and attractions, color-coded neighborhoods, illustrated landmarks with pop-up info cards, transportation routes, rating stars and category icons, clean editorial typography, modern travel magazine aesthetic",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["travel", "guide", "infographic", "illustrated", "map"]
+  },
+  {
+    "title": "Cooking Process Flowchart",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @Kurt_Rousey466",
+    "prompt": "Step-by-step cooking process flowchart for {subject} recipe, illustrated food icons at each step, clear numbered sequence with arrows, ingredients list section, timing and temperature annotations, warm food photography palette, clean instructional design, suitable for cooking blog or social media recipe card",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["cooking", "flowchart", "recipe", "food", "infographic"]
+  },
+  {
+    "title": "Museum-Style Cultural Breakdown Infographic",
+    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @MrLarus",
+    "prompt": "Museum exhibition-style infographic breaking down the elements of {subject}, authoritative academic layout on off-white background, detailed line drawings with annotation callouts, Latin serif typography, structured information hierarchy, natural history museum or cultural institution aesthetic, dignified scholarly presentation",
+    "backend": "gpt-image-2",
+    "size": "1024x1536",
+    "tags": ["museum", "cultural", "academic", "breakdown", "infographic"]
+  }
+]

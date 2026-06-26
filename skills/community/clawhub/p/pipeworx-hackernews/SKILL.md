@@ -1,35 +1,50 @@
 ---
-name: "Pipeworx hackernews"
-description: "Search and browse Hacker News — top stories, keyword search via Algolia, and individual item lookup"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-hackernews"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-hackernews"
+name: pipeworx-hackernews
+description: Search and browse Hacker News — top stories, keyword search via Algolia, and individual item lookup
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "📰"
+    homepage: https://pipeworx.io/packs/hackernews
 ---
 
-# Pipeworx hackernews
+# Hacker News
 
-> Search and browse Hacker News — top stories, keyword search via Algolia, and individual item lookup
+Stay on top of tech news. Search HN stories via the Algolia-powered search API, pull the current top stories from the Firebase API, or fetch any individual story or comment by ID.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-hackernews`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-hackernews](https://clawhub.ai/skills/pipeworx-hackernews)
+## Tools
 
-## Overview
+- **`search_hn`** — Full-text search across HN stories. Filter by date range and control result count.
+- **`get_top_stories`** — Current top stories on Hacker News with title, URL, score, and comment count.
+- **`get_item`** — Fetch a specific story or comment by its numeric HN ID.
 
+## Ideal for
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "What's trending on Hacker News today?"
+- Searching for discussions about a specific technology or company
+- Pulling top stories for a daily digest or newsletter
+- Retrieving a specific story someone linked to by ID
+
+## Example: search for discussions about Rust
+
 ```bash
-hermes skills install clawhub/pipeworx-hackernews
+curl -s -X POST https://gateway.pipeworx.io/hackernews/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_hn","arguments":{"query":"Rust programming language","sort":"points","limit":5}}}'
+```
+
+## Connect
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-hackernews": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/hackernews/mcp"]
+    }
+  }
+}
 ```

@@ -1,0 +1,25 @@
+{
+  "batch_seq": "002",
+  "goal_web": "Twitter",
+  "core_goal": "获取 AI 相关热点，撰写内容并发布",
+  "workflow_status": "continue_to_next_batch",
+  "core_flow": null,
+  "retrospective_context": {
+    "failed_tasks_summary": "无严重失败任务，主要问题是热点筛选标准仍偏宽。",
+    "historical_patterns": "最近几轮更适合优先选择高互动话题并缩短发布延迟。",
+    "lessons_learned": [
+      "热点采集需要更明确的过滤条件",
+      "内容草稿需要增加更强的平台适配约束"
+    ]
+  },
+  "next_batch_guidance": {
+    "task_breakdown_advice": "将热点采集与内容生成分离，并增加发布时间校验任务。",
+    "development_constraints": "优先选择稳定数据源，避免重复开发同类采集逻辑。",
+    "avoid_pitfalls": [
+      "不要跳过结果验证",
+      "不要使用未评分的旧脚本"
+    ],
+    "blacklist": []
+  },
+  "carry_over_tasks": []
+}

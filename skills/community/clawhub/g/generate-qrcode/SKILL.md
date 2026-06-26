@@ -1,35 +1,32 @@
 ---
-name: "二维码生成skill"
+name: generate-qrcode
 description: "MANDATORY: Call the existing Python script. DO NOT write your own code."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-qrcode"
-sourceUrl: "https://clawhub.ai/skills/generate-qrcode"
+metadata: { "openclaw": { "emoji": "📱", "always": true } }
 ---
 
-# 二维码生成skill
+# QR Code Generator - STRICT INSTRUCTIONS
 
-> MANDATORY: Call the existing Python script. DO NOT write your own code.
+**CRITICAL RULE**: You MUST use the pre-written script at `~/.openclaw/skills/generate-qrcode/agent.py`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-qrcode`
-- **Source URL:** [https://clawhub.ai/skills/generate-qrcode](https://clawhub.ai/skills/generate-qrcode)
+**NEVER** write inline Python code. **ALWAYS** call the existing script.
 
-## Overview
+## MANDATORY Command
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/generate-qrcode
+python3 ~/.openclaw/skills/generate-qrcode/agent.py "<URL or text>" <output_path>
 ```
+
+## Examples
+
+Generate QR for www.baidu.com:
+```bash
+python3 ~/.openclaw/skills/generate-qrcode/agent.py "www.baidu.com" ~/Desktop/baidu_qr.png
+```
+
+## What NOT to do
+
+❌ WRONG: `python -c "import qrcode; ..."`
+❌ WRONG: Installing libraries yourself
+❌ WRONG: Writing your own QR code generation code
+
+✅ CORRECT: `python3 ~/.openclaw/skills/generate-qrcode/agent.py "..." output.png`

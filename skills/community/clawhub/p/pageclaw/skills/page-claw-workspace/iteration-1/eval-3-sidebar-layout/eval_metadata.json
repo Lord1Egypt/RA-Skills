@@ -1,0 +1,27 @@
+{
+  "eval_id": 3,
+  "eval_name": "bold-unexpected-layout",
+  "prompt": "page-claw with bold Q1 + most unexpected Q2 option (asymmetric/brutalist layout), Q3=skip",
+  "assertions": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "index.html is structurally distinct from plain single-column (e.g., asymmetric grid, full-bleed sections, or unusual structure)",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The HTML structure clearly reflects the bold Q2 layout descriptor rather than defaulting to a generic layout",
+      "passed": null,
+      "evidence": null
+    }
+  ]
+}

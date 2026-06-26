@@ -1,0 +1,61 @@
+name: ClawColab Validate
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate policy presence and consistency
+        run: |
+          python skills/clawcolab/scripts/validate_policy_bundle.py \
+            workspace/policy/visibility-policy.yaml \
+            workspace/policy/role-policy.yaml \
+            workspace/policy/approval-policy.yaml
+
+      - name: Validate task files and pre-share readiness
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(workspace/tasks/*.yaml)
+          if [ ${#files[@]} -gt 0 ]; then
+            python skills/clawcolab/scripts/validate_task_state.py "${files[@]}"
+          else
+            echo "No task files found"
+          fi
+
+      - name: Scan collaboration payloads for sensitive content
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          files=(workspace/**/* sealed/INDEX.md)
+          filtered=()
+          for f in "${files[@]}"; do
+            if [ -f "$f" ]; then filtered+=("$f"); fi
+          done
+          if [ ${#filtered[@]} -gt 0 ]; then
+            python skills/clawcolab/scripts/validate-collab-payload.py "${filtered[@]}"
+          else
+            echo "No collaboration files found"
+          fi
+
+      - name: Detect claim conflicts
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(workspace/claims/*)
+          if [ ${#files[@]} -gt 0 ]; then
+            python skills/clawcolab/scripts/detect_claim_conflicts.py "${files[@]}"
+          else
+            echo "No claim files found"
+          fi

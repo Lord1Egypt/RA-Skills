@@ -1,0 +1,4 @@
+interface:
+  display_name: "Holiday Promo Poster"
+  short_description: "Turn product images and campaign copy into polished seasonal promo posters"
+  default_prompt: "Use $holiday-promo-poster to turn product images and marketing copy into a holiday-specific promo poster such as Double 11 or Christmas."

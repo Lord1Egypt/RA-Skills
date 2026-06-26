@@ -1,0 +1,37 @@
+{
+  "ticker": "TESCO",
+  "company": "Tesco PLC",
+  "analysis_year": 2007,
+  "data_source": "Tesco FY2007 annual report",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.249, "metric_used": "ROE", "years_averaged": "2005-2007", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.21, "fcf": 394, "net_income": 1892, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.4, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue and profit were still growing in 2005-2007 across UK and international retail. This was not a structural decline case at the decision point.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Reported gross margin improved from 7.7% to 8.1%; no two-year margin erosion before the investment case.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.047, "net_income_m": 1892, "ev_m": 40469, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": null, "description": "Tesco looked dominant, but grocery customers still switch primarily on price, convenience, and promotions. Clubcard data, scale, and real estate helped execution, yet they did not create a 10-year moat that competitors could not replicate. Thin margins plus low switching costs meant the apparent moat was narrower than the headline market share suggested.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "revenue_2007_m": 42641,
+    "gross_profit_2007_m": 3463,
+    "fcf_2007_m": 394,
+    "net_debt_2007_m": 5024
+  },
+
+  "control_groups": [
+    { "ticker": "SBRY", "company": "J Sainsbury", "year": 2007, "gates_failed": ["g6_earnings_yield", "g7_moat"], "conclusion": "PASS — recovering execution, but valuation support and moat quality were still insufficient for a Buffett-style BUY." },
+    { "ticker": "MRW", "company": "Wm Morrison Supermarkets", "year": 2007, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — post-Safeway integration strain and the same low-switching-cost grocery economics kept it outside the circle." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire began building Tesco in 2006-2007 and eventually accumulated a multibillion-dollar stake costing about $2.3B.",
+  "actual_result": "Buffett exited after Tesco's 2014 accounting scandal and market-share collapse, recording an after-tax loss of about $444M.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A retailer can show beautiful growth statistics and still fail Buffett's test when free cash flow is weak, valuation is full, and the customer relationship has no real switching cost."
+}

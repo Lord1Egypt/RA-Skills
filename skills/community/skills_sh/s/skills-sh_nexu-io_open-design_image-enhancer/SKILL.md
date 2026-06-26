@@ -1,35 +1,43 @@
 ---
-name: "image-enhancer"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/image-enhancer"
-sourceUrl: "https://skills.sh/nexu-io/open-design/image-enhancer"
+name: image-enhancer
+description: |
+  Improve image and screenshot quality by enhancing resolution, sharpness, and clarity for professional presentations and documentation.
+triggers:
+  - "enhance image"
+  - "upscale image"
+  - "image quality"
+  - "sharpen"
+  - "denoise"
+od:
+  mode: image
+  category: image-generation
+  upstream: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/image-enhancer"
 ---
 
 # image-enhancer
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from ComposioHQ awesome-claude-skills.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/image-enhancer`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/image-enhancer](https://skills.sh/nexu-io/open-design/image-enhancer)
+## What it does
 
-## Overview
+Improve image and screenshot quality by enhancing resolution, sharpness, and clarity for professional presentations and documentation.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/ComposioHQ/awesome-claude-skills/tree/master/image-enhancer
+- Category: `image-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/image-enhancer
+# Inspect the upstream README for exact paths
+open https://github.com/ComposioHQ/awesome-claude-skills/tree/master/image-enhancer
 ```
+
+Then ask the agent to invoke this skill by name (`image-enhancer`) or with
+one of the trigger phrases listed in this skill's frontmatter.

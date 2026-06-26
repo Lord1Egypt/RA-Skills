@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Structured SDS Output",
+  "type": "object",
+  "required": ["contract_version", "document_meta", "sections", "audit"],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "pattern": "^1\\.0$"
+    },
+    "document_meta": {
+      "type": "object",
+      "required": ["generation_mode", "ready_for_release", "input_files"],
+      "properties": {
+        "generation_mode": {
+          "type": "string"
+        },
+        "ready_for_release": {
+          "type": "boolean"
+        },
+        "input_files": {
+          "type": "array"
+        },
+        "template_file": {
+          "type": ["string", "null"]
+        },
+        "prompt_file": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "sections": {
+      "type": "object",
+      "required": [
+        "section_1",
+        "section_2",
+        "section_3",
+        "section_4",
+        "section_5",
+        "section_6",
+        "section_7",
+        "section_8",
+        "section_9",
+        "section_10",
+        "section_11",
+        "section_12",
+        "section_13",
+        "section_14",
+        "section_15",
+        "section_16"
+      ],
+      "patternProperties": {
+        "^section_([1-9]|1[0-6])$": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-Za-z0-9_]+$": {
+              "type": "object",
+              "required": ["display_value", "status", "sources", "review_flags", "origin"],
+              "properties": {
+                "value": {},
+                "display_value": {},
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "missing",
+                    "selected",
+                    "conflict",
+                    "overridden",
+                    "candidate_only",
+                    "review_required",
+                    "not_applicable",
+                    "system_default",
+                    "user_override",
+                    "derived"
+                  ]
+                },
+                "sources": {
+                  "type": "array"
+                },
+                "review_flags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "origin": {
+                  "type": "object",
+                  "required": ["source_files", "derived_from", "selection_reason"],
+                  "properties": {
+                    "kind": {
+                      "type": ["string", "null"],
+                      "enum": [
+                        "source_document",
+                        "company_config",
+                        "template_default",
+                        "user_override",
+                        "derived",
+                        "manual_default",
+                        null
+                      ]
+                    },
+                    "selection_reason": {
+                      "type": ["string", "null"]
+                    },
+                    "source_files": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "derived_from": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "selection_reason": {
+                      "type": ["string", "null"]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "audit": {
+      "type": "object",
+      "required": ["review_notes", "field_source_map_summary", "missing_fields"],
+      "properties": {
+        "review_notes": {
+          "type": "array"
+        },
+        "field_source_map_summary": {
+          "type": "array"
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

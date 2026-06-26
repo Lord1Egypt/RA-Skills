@@ -1,0 +1,111 @@
+{
+  "name": "socialrails",
+  "displayName": "SocialRails",
+  "description": "Manage your social media from chat. Schedule posts, view analytics, generate AI content, and list connected accounts using the SocialRails API.",
+  "version": "1.0.0",
+  "author": "SocialRails",
+  "commands": [
+    {
+      "name": "schedule-post",
+      "description": "Schedule a social media post",
+      "parameters": [
+        {
+          "name": "content",
+          "type": "string",
+          "required": true,
+          "description": "The post content"
+        },
+        {
+          "name": "platform",
+          "type": "string",
+          "required": true,
+          "description": "Target platform (twitter, linkedin, facebook, instagram, tiktok, bluesky, pinterest, threads, youtube)"
+        },
+        {
+          "name": "scheduled_for",
+          "type": "string",
+          "required": false,
+          "description": "ISO 8601 date to schedule the post (e.g., 2026-03-10T14:00:00Z). If omitted, saves as draft."
+        }
+      ]
+    },
+    {
+      "name": "show-analytics",
+      "description": "Show posting analytics",
+      "parameters": [
+        {
+          "name": "period",
+          "type": "string",
+          "required": false,
+          "description": "Time period: 7d, 30d, 90d, or 365d (default: 7d)"
+        },
+        {
+          "name": "platform",
+          "type": "string",
+          "required": false,
+          "description": "Filter by platform name"
+        }
+      ]
+    },
+    {
+      "name": "generate-caption",
+      "description": "Generate AI-powered social media content",
+      "parameters": [
+        {
+          "name": "prompt",
+          "type": "string",
+          "required": true,
+          "description": "What to generate"
+        },
+        {
+          "name": "platform",
+          "type": "string",
+          "required": false,
+          "description": "Optimize for a specific platform"
+        },
+        {
+          "name": "tone",
+          "type": "string",
+          "required": false,
+          "description": "Tone of voice (e.g., professional, casual, humorous, inspirational)"
+        }
+      ]
+    },
+    {
+      "name": "list-posts",
+      "description": "List your scheduled or published posts",
+      "parameters": [
+        {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "description": "Filter by status: scheduled, posted, draft, failed"
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "required": false,
+          "description": "Number of posts to show (default: 10)"
+        }
+      ]
+    },
+    {
+      "name": "list-accounts",
+      "description": "List your connected social media accounts",
+      "parameters": []
+    }
+  ],
+  "config": {
+    "apiKey": {
+      "type": "string",
+      "required": true,
+      "description": "Your SocialRails API key (starts with sr_live_)"
+    },
+    "baseUrl": {
+      "type": "string",
+      "required": false,
+      "description": "API base URL (default: https://socialrails.com/api/v1)",
+      "default": "https://socialrails.com/api/v1"
+    }
+  }
+}

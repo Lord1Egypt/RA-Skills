@@ -1,0 +1,50 @@
+[
+  {
+    "id": "case_benign_ba1",
+    "description": "High population frequency alone triggers BA1",
+    "pathogenic": {"very_strong": 0, "strong": 0, "moderate": 0, "supporting": 0},
+    "benign": {"standalone": 1, "strong": 0, "supporting": 0},
+    "conflict": false,
+    "expected": "Benign"
+  },
+  {
+    "id": "case_likely_pathogenic_pvs1_pm2",
+    "description": "Predicted LoF with rarity",
+    "pathogenic": {"very_strong": 1, "strong": 0, "moderate": 1, "supporting": 0},
+    "benign": {"standalone": 0, "strong": 0, "supporting": 0},
+    "conflict": false,
+    "expected": "Likely Pathogenic"
+  },
+  {
+    "id": "case_pathogenic_pvs1_ps3",
+    "description": "Very strong LoF plus strong functional evidence",
+    "pathogenic": {"very_strong": 1, "strong": 1, "moderate": 0, "supporting": 0},
+    "benign": {"standalone": 0, "strong": 0, "supporting": 0},
+    "conflict": false,
+    "expected": "Pathogenic"
+  },
+  {
+    "id": "case_likely_pathogenic_ps1_pm1_pm2_pp3",
+    "description": "Known amino-acid change plus hotspot, rarity, computational support",
+    "pathogenic": {"very_strong": 0, "strong": 1, "moderate": 2, "supporting": 1},
+    "benign": {"standalone": 0, "strong": 0, "supporting": 0},
+    "conflict": false,
+    "expected": "Likely Pathogenic"
+  },
+  {
+    "id": "case_likely_benign_bs1_bp4",
+    "description": "Frequency too high for disease plus benign computational evidence",
+    "pathogenic": {"very_strong": 0, "strong": 0, "moderate": 0, "supporting": 0},
+    "benign": {"standalone": 0, "strong": 1, "supporting": 1},
+    "conflict": false,
+    "expected": "Likely Benign"
+  },
+  {
+    "id": "case_vus_conflict",
+    "description": "Pathogenic and benign evidence conflict and remain unresolved",
+    "pathogenic": {"very_strong": 0, "strong": 1, "moderate": 0, "supporting": 0},
+    "benign": {"standalone": 0, "strong": 1, "supporting": 0},
+    "conflict": true,
+    "expected": "VUS"
+  }
+]

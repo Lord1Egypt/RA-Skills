@@ -1,0 +1,126 @@
+{
+  "_comment": "Bitget 多 Agent 配置文件",
+  "_version": "1.0.0",
+  "_created": "2026-03-17 21:15 (Asia/Shanghai)",
+  
+  "apiCredentials": {
+    "apiKey": "bg_73063f99df20ccf3320032e80d0bd1f3",
+    "secretKey": "ecdc70207a6395da7772210d1c6c8bf1a88f47af83b24dec2aa066d91f495387",
+    "passphrase": "Lin12345",
+    "isSimulation": false
+  },
+  
+  "agents": {
+    "default": {
+      "model": "dashscope-coding-plan/qwen3.5-plus",
+      "timeout": 300,
+      "thinking": "off"
+    },
+    
+    "grid-monitor": {
+      "id": "grid-monitor-agent",
+      "model": "dashscope-coding-plan/qwen3.5-plus",
+      "description": "网格监控 Agent - 每 30 分钟检查挂单和成交状态",
+      "task": "检查 Bitget 网格挂单状态、成交情况、频率统计",
+      "schedule": "*/30 * * * *",
+      "enabled": true
+    },
+    
+    "technical-analysis": {
+      "id": "ta-analysis-agent",
+      "model": "dashscope-coding-plan/qwen3.5-plus",
+      "description": "技术分析 Agent - 每小时执行 RSI/MACD/布林带分析",
+      "task": "获取 K 线数据，计算技术指标，生成交易信号",
+      "schedule": "0 * * * *",
+      "enabled": true
+    },
+    
+    "grid-optimizer": {
+      "id": "grid-optimizer-agent",
+      "model": "dashscope-coding-plan/qwen3.5-plus",
+      "description": "网格优化 Agent - 根据成交频率自动调整参数",
+      "task": "分析成交频率，如超标则调整网格密度和区间",
+      "schedule": "0 */2 * * *",
+      "enabled": false,
+      "triggers": {
+        "frequencyThreshold": 5,
+        "autoAdjust": true
+      }
+    },
+    
+    "daily-report": {
+      "id": "daily-report-agent",
+      "model": "dashscope-coding-plan/qwen3.5-plus",
+      "description": "日报 Agent - 每日 20:00 生成收益报告",
+      "task": "汇总当日成交、收益、频率数据，生成 Markdown 报告",
+      "schedule": "0 20 * * *",
+      "enabled": true
+    }
+  },
+  
+  "gridSettings": {
+    "unlimitedMode": false,
+    "targetFrequency": {
+      "min": 2.5,
+      "max": 5,
+      "unit": "trades/hour"
+    },
+    "autoAdjust": {
+      "enabled": true,
+      "maxAdjustPercent": 20,
+      "checkInterval": 1800000
+    },
+    "coins": {
+      "sol": {
+        "symbol": "SOLUSDT",
+        "enabled": true,
+        "minOrderValue": 1.5,
+        "gridNum": 35,
+        "priceMin": 70,
+        "priceMax": 115,
+        "amount": 12,
+        "maxPosition": 400
+      },
+      "eth": {
+        "symbol": "ETHUSDT",
+        "enabled": true,
+        "minOrderValue": 1.5,
+        "gridNum": 22,
+        "priceMin": 2000,
+        "priceMax": 2700,
+        "amount": 5,
+        "maxPosition": 200
+      },
+      "btc": {
+        "symbol": "BTCUSDT",
+        "enabled": false,
+        "minOrderValue": 5,
+        "gridNum": 48,
+        "priceMin": 65000,
+        "priceMax": 76000,
+        "amount": 20,
+        "maxPosition": 600
+      }
+    }
+  },
+  
+  "notifications": {
+    "feishu": {
+      "enabled": true,
+      "chatId": "oc_2b13e0b377644b26fbbb72b7780d171c",
+      "alerts": [
+        "frequency_exceeded",
+        "api_error",
+        "order_failure",
+        "daily_report"
+      ]
+    }
+  },
+  
+  "logging": {
+    "level": "info",
+    "path": "/Users/zongzi/.openclaw/workspace/bitget_data/logs",
+    "rotate": "daily",
+    "retention": 7
+  }
+}

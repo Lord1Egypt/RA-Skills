@@ -1,0 +1,202 @@
+# clawhub.yaml - Feishu Agent Messenger 技能配置
+
+name: feishu-agent-messenger
+version: 1.0.1
+description: |
+  🚀 **下载就能用！无需额外配置，Agent 启动时自动扫描并调用。**
+  
+  飞书多 Agent 消息发送技能。让每个 Agent 用自己的飞书应用发送消息（群聊/私聊），解决 open_id 应用隔离问题。
+  
+  ## 核心功能
+  - 使用当前 Agent 的飞书凭证发送消息
+  - 支持群聊和私聊两种模式
+  - 飞书显示当前 Agent 的机器人名字
+  - 零配置 - 自动从 Agent 配置文件读取飞书凭证
+  
+  ## 使用场景
+  - 多 Agent 协作：统筹 Agent 派发任务 → 执行 Agent 自主汇报
+  - 任务完成后自主汇报结果
+  - 需要显示不同 Agent 身份的场景
+  
+  ## 前置条件
+  - ✅ 已配置飞书应用（App ID 和 App Secret）
+  - ✅ Agent 配置文件存在（~/.openclaw/openclaw-{agentId}.json）
+  - ✅ 飞书配置正确（channels.feishu.appId 和 appSecret）
+  
+  ## 自动调用
+  - 支持 sessions_send 自动调用
+  - Agent 收到消息后自动回复
+
+author: pikaqiuyaya
+license: MIT
+tags:
+  - feishu
+  - message
+  - multi-agent
+  - open_id
+  - auto-report
+  - zh-CN
+
+requirements:
+  - jq
+  - curl
+
+usage: |
+  ## 基本用法
+  
+  ## ⚠️ 重要说明
+  
+  **调用脚本 ≠ AI 回复**
+  
+  - ❌ 不要通过 AI 回复 sessions_send（这只是文字回复）
+  - ✅ 要调用 send.sh 脚本发送飞书群消息（这才是真正的发送）
+  
+  ## 基本用法
+  
+  ### Boss 派发任务时明确要求调用（推荐）
+  ```javascript
+  sessions_send({
+    sessionKey: "agent:agent-b:feishu:direct:ou_xxx",
+    message: `【任务派发】
+任务 ID: TASK-001
+任务内容：检查系统状态
+
+【回复要求】
+完成后请调用脚本发送群消息：
+./send.sh agent-b oc_xxx chat_id "任务已完成"
+
+⚠️ 注意：不要 AI 回复，要调用脚本！`,
+    timeoutSeconds: 0
+  })
+  ```
+  
+  ### 直接调用脚本
+  ```bash
+  # 发送群聊消息
+  ~/.openclaw/workspace-agent-b/skills/feishu-agent-messenger/send.sh \
+    agent-b oc_xxx chat_id "消息内容"
+  ```
+  
+  ### 直接调用飞书 API
+  ```bash
+  # 获取 token
+  TOKEN=$(curl -s -X POST https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal/ \
+    -H 'Content-Type: application/json' \
+    -d "{\"app_id\":\"$APP_ID\",\"app_secret\":\"$APP_SECRET\"}" | jq -r '.tenant_access_token')
+  
+  # 发送消息
+  curl -s -X POST "https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id" \
+    -H "Authorization: Bearer $TOKEN" \
+    -H 'Content-Type: application/json' \
+    -d "{\"receive_id\":\"oc_xxx\",\"msg_type\":\"text\",\"content\":\"{\\\"text\\\":\\\"消息\\\"}\"}"
+  ```
+
+parameters:
+  - name: agentId
+    type: string
+    required: true
+    description: "Agent 标识"
+    example: "agent-b"
+  
+  - name: target
+    type: string
+    required: true
+    description: "目标 ID（open_id 或 chat_id）"
+    example: "ou_xxx"
+  
+  - name: msg_type
+    type: string
+    required: true
+    description: "消息类型：open_id（私聊）或 chat_id（群聊）"
+    example: "open_id"
+  
+  - name: message
+    type: string
+    required: true
+    description: "消息内容"
+    example: "你好，这是测试消息"
+
+examples:
+  - name: "Agent-B 发送私聊消息"
+    command: "./send.sh agent-b ou_xxx open_id \"测试消息\""
+  
+  - name: "Agent-B 发送群聊消息"
+    command: "./send.sh agent-b oc_xxx chat_id \"群聊测试\""
+  
+  - name: "Agent-C 发送私聊消息"
+    command: "./send.sh agent-c ou_xxx open_id \"测试消息\""
+
+notes: |
+  ## 重要说明
+  
+  1. **下载就能用**
+     - 无需额外配置
+     - 自动从 Agent 配置文件读取飞书凭证
+     - 但需要已配置飞书应用（App ID 和 App Secret）
+  
+  2. **open_id 是应用隔离的**
+     - 不同应用的用户 open_id 不同
+     - 必须使用当前 Agent 应用中的 open_id
+  
+  3. **获取用户 open_id 的方法**
+     ```bash
+     journalctl --user -u openclaw-gateway-{agentId}.service | grep "received message from"
+     ```
+  
+  4. **chat_id 是通用的**
+     - 同一个群聊，不同应用看到的是同一个 chat_id
+     - 可以直接使用
+
+changelog:
+  - version: 1.0.5
+    date: 2026-03-20
+    changes:
+      - "添加重要说明：调用脚本 ≠ AI 回复"
+      - "明确说明：不要通过 AI 回复 sessions_send"
+      - "添加正确示例和错误示例对比"
+      - "更新 Boss 派发任务示例，强调调用脚本"
+  
+  - version: 1.0.4
+    date: 2026-03-20
+    changes:
+      - "添加定时进度汇报功能（每 5 分钟）"
+      - "Boss 定时发送指令要求 Agent 汇报进度"
+      - "添加进度汇报格式示例"
+      - "完善多 Agent 协作流程说明"
+  
+  - version: 1.0.3
+    date: 2026-03-20
+    changes:
+      - "添加 Boss 派发任务固定格式"
+      - "明确说明：Boss 派发时要求 Agent 调用技能回复"
+      - "不再依赖 hook 自动触发，改用明确指示"
+      - "优化 sessions_send 示例，包含回复要求"
+  
+  - version: 1.0.2
+    date: 2026-03-20
+    changes:
+      - "添加'配置自动回复'章节"
+      - "详细说明 hook 配置方法"
+      - "添加常见问题 Q6: 配置了 hook 但不自动回复"
+      - "明确说明'下载就能用'的含义"
+      - "实现双重保障：hook 触发 + Agent 配置提示"
+  
+  - version: 1.0.1
+    date: 2026-03-20
+    changes:
+      - "去掉 Boss/Ass/Ops 等本地 Agent 名称，改用通用名称"
+      - "明确说明'下载就能用'的含义和前置条件"
+      - "添加配置说明章节"
+      - "添加常见问题 Q5: 下载后不知道怎么用"
+      - "优化文档结构，更清晰易懂"
+  
+  - version: 1.0.0
+    date: 2026-03-20
+    changes:
+      - "初始版本"
+      - "支持多 Agent 发送消息"
+      - "支持群聊和私聊两种模式"
+      - "自动从配置文件读取飞书凭证"
+      - "支持 sessions_send 自动调用"
+      - "添加完整使用流程说明"
+      - "添加测试流程和常见问题解答"

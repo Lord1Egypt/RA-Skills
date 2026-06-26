@@ -1,0 +1,54 @@
+{
+  "id": "discord-admin",
+  "name": "Discord Admin",
+  "version": "0.1.0",
+  "description": "Full Discord server administration suite: roles, moderation, channels, invites, webhooks, audit log",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": { "type": "boolean", "default": true }
+    }
+  },
+  "uiHints": {
+    "discordToken": {
+      "label": "Discord Bot Token",
+      "sensitive": true,
+      "description": "Bot token with privileged intents (Guild Members, Guild Moderation). Sourced from channels.discord.token in OpenClaw config."
+    }
+  },
+  "openclaw": {
+    "primaryEnv": "DISCORD_TOKEN",
+    "requires": {
+      "bins": ["node"],
+      "network": true
+    },
+    "install": {
+      "steps": [
+        "npm install"
+      ]
+    },
+    "credentials": [
+      {
+        "env": "DISCORD_TOKEN",
+        "configPath": "channels.discord.token",
+        "label": "Discord Bot Token",
+        "sensitive": true,
+        "required": true,
+        "description": "Discord bot token with Guilds, GuildMembers (privileged), GuildModeration, GuildMessages, GuildInvites, and GuildWebhooks intents enabled."
+      }
+    ],
+    "permissions": [
+      "Manage Roles",
+      "Kick Members",
+      "Ban Members",
+      "Moderate Members",
+      "Manage Channels",
+      "Manage Messages",
+      "Create Instant Invite",
+      "Manage Webhooks",
+      "View Audit Log",
+      "Manage Nicknames"
+    ]
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Paper Defense QA Bank",
+  "type": "object",
+  "required": [
+    "paper",
+    "generation_context",
+    "qa_items",
+    "evidence_gaps",
+    "dangerous_questions"
+  ],
+  "properties": {
+    "paper": {
+      "type": "object",
+      "required": [
+        "paper_id",
+        "paper_title",
+        "paper_slug"
+      ],
+      "properties": {
+        "paper_id": {
+          "type": "string"
+        },
+        "paper_title": {
+          "type": "string"
+        },
+        "paper_slug": {
+          "type": "string"
+        },
+        "venue": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "subfield": {
+          "type": "string"
+        }
+      }
+    },
+    "generation_context": {
+      "type": "object",
+      "properties": {
+        "defense_context": {
+          "type": "string"
+        },
+        "target_audience": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "input_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risk_tolerance": {
+          "type": "string"
+        }
+      }
+    },
+    "qa_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "q_id",
+          "question_cn",
+          "audience",
+          "attack_axis",
+          "priority",
+          "answer_short_cn",
+          "evidence_labels",
+          "confidence",
+          "what_not_to_overclaim"
+        ],
+        "properties": {
+          "q_id": {
+            "type": "string"
+          },
+          "question_cn": {
+            "type": "string"
+          },
+          "question_en": {
+            "type": "string"
+          },
+          "audience": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "beginner",
+                "peer",
+                "advisor",
+                "reviewer",
+                "committee",
+                "practitioner",
+                "author_defender",
+                "bug_hunter",
+                "teacher"
+              ]
+            }
+          },
+          "attack_axis": {
+            "type": "string",
+            "enum": [
+              "problem",
+              "novelty",
+              "related_work",
+              "method",
+              "formula",
+              "theory",
+              "experiments",
+              "ablation",
+              "baseline",
+              "code",
+              "training",
+              "reproducibility",
+              "compute",
+              "ethics",
+              "limitations",
+              "future_work",
+              "presentation"
+            ]
+          },
+          "likelihood": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3",
+              "P4"
+            ]
+          },
+          "answer_readiness": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "needs_evidence",
+              "risky",
+              "cannot_defend"
+            ]
+          },
+          "why_they_may_ask": {
+            "type": "string"
+          },
+          "expected_concern": {
+            "type": "string"
+          },
+          "answer_short_cn": {
+            "type": "string"
+          },
+          "answer_long_cn": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_type": {
+                  "type": "string"
+                },
+                "path_or_section": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "evidence_labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "paper_grounded",
+                "code_grounded",
+                "experiment_log_grounded",
+                "review_grounded",
+                "inferred",
+                "missing_evidence",
+                "external_context"
+              ]
+            }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "what_not_to_overclaim": {
+            "type": "string"
+          },
+          "backup_slide": {
+            "type": "string"
+          },
+          "if_challenged_again": {
+            "type": "string"
+          },
+          "follow_up_experiment_or_code_check": {
+            "type": "string"
+          },
+          "visual_card_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "visualization_hint": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gap_id": {
+            "type": "string"
+          },
+          "gap": {
+            "type": "string"
+          },
+          "risk": {
+            "type": "string"
+          },
+          "affected_questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_fix": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dangerous_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "q_id": {
+            "type": "string"
+          },
+          "why_dangerous": {
+            "type": "string"
+          },
+          "best_honest_answer": {
+            "type": "string"
+          },
+          "risk_reduction_before_defense": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

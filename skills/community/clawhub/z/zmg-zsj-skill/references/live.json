@@ -1,0 +1,42 @@
+{
+  "get_hot_live_list": {
+    "description": "热门直播列表返回示例",
+    "example_response": {
+      "code": 0,
+      "data": {
+        "title": "热点推荐",
+        "total": 6,
+        "list": [
+          {
+            "liveId": "2035xxxxxxxxxxxxx01",
+            "title": "示例直播标题",
+            "subtitle": "示例副标题",
+            "liveUrl": "https://zmtv.cztv.com/cmsh5-share/prod/cztv-hdLive/index.html?pageId=2035xxxxxxxxxxxxx01"
+          }
+        ]
+      },
+      "msg": "success"
+    }
+  },
+  "get_live_detail": {
+    "description": "直播详情返回示例",
+    "example_response": {
+      "code": 0,
+      "data": {
+        "liveId": "LV_001",
+        "title": "示例直播标题",
+        "anchorName": "示例主播",
+        "anchorAvatar": "https://cdn.example.com/avatar.jpg",
+        "anchorId": "UR_001",
+        "viewerCount": 10000,
+        "likeCount": 50000,
+        "coverUrl": "https://cdn.example.com/cover.jpg",
+        "status": 1,
+        "description": "示例直播描述内容",
+        "startTime": "2026-04-09T20:00:00Z",
+        "tags": ["标签A", "标签B"]
+      },
+      "msg": "success"
+    }
+  }
+}

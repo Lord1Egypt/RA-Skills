@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>宁姚语音对话</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel hero">
+        <p class="eyebrow">Local Voice Chat</p>
+        <h1>宁姚语音对话</h1>
+        <p class="intro">点一次开始免按住待机。你开口时我听，你停下时我答；如果我还在朗读，你直接说话也能把我打断。</p>
+        <div class="controls">
+          <button id="toggleListenButton" type="button">开始通话</button>
+          <button id="toggleShareButton" type="button" class="secondary">开始共享屏幕</button>
+          <button id="stopButton" type="button" class="ghost">停止朗读</button>
+        </div>
+        <div class="status-row">
+          <span id="status">未开始</span>
+          <div class="voice-tools">
+            <label class="voice-toggle"><input id="autoSpeak" type="checkbox" checked /> 自动朗读回复</label>
+            <button id="presetButton" type="button" class="preset-button active">宁姚风格普通话</button>
+          </div>
+        </div>
+        <div class="tuning-row">
+          <label class="slider-group" for="rateRange">
+            <span>语速</span>
+            <input id="rateRange" type="range" min="0.7" max="1.15" step="0.01" value="0.92" />
+            <output id="rateValue">0.92</output>
+          </label>
+          <label class="slider-group" for="pitchRange">
+            <span>音调</span>
+            <input id="pitchRange" type="range" min="0.75" max="1.15" step="0.01" value="0.92" />
+            <output id="pitchValue">0.92</output>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel screen-panel">
+        <div class="transcript-head">
+          <h2>屏幕感知</h2>
+          <span id="screenStatus" class="screen-status">未共享</span>
+        </div>
+        <p class="screen-intro">共享后，我会更快地连续看你的屏幕，提取当前页面的重点信息。你也可以直接问我“现在屏幕上有什么”。</p>
+        <video id="screenPreview" class="screen-preview" autoplay muted playsinline></video>
+        <div id="screenSummary" class="screen-summary">还没有屏幕内容。</div>
+      </section>
+
+      <section class="panel terminal-panel">
+        <div class="transcript-head">
+          <h2>安全终端</h2>
+          <span class="screen-status">只读 + 开发白名单</span>
+        </div>
+        <p class="screen-intro">这里只能跑受限命令。默认只读，开发命令也只开放一小组安全白名单。</p>
+        <div class="terminal-controls">
+          <input id="terminalInput" class="terminal-input" type="text" placeholder="例如: dir /b 或 git status" />
+          <button id="runTerminalButton" type="button" class="secondary">执行</button>
+        </div>
+        <pre id="terminalOutput" class="terminal-output">终端还没运行命令。</pre>
+      </section>
+
+      <section class="panel transcript-panel">
+        <div class="transcript-head">
+          <h2>对话</h2>
+          <button id="clearButton" type="button" class="ghost">清空</button>
+        </div>
+        <div id="messages" class="messages"></div>
+      </section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+# EvoMind — Zero external dependencies. Python 3.9+ standard library only.
+# sqlite3, json, hashlib, pathlib, datetime — all built-in.

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "prompt": "module-a 里的 OrderService 引用了 module-b 里的 BpmService 具体类，导致两个模块互相依赖。我想把 module-b 里的服务下沉到 foundation 层，怎么打破这个循环依赖？",
+    "expected": "应该推荐 Pattern 1（接口提取）：在共享模块创建 IBpmServiceInterface，让 BpmService 实现它，OrderService 改为注入接口，然后移除 module-a 对 module-b 的依赖"
+  },
+  {
+    "id": 2,
+    "prompt": "我要把 module-a 的 ClientConfigService 移到 module-b，但这个类里有些方法只操作自己模块的 DAO，有些方法却调用了 module-a 里的 NativeClientRelateAppService。这种情况怎么处理？",
+    "expected": "应该推荐 Pattern 2（业务服务提取）：分析方法依赖，纯 DAO 方法保留在 base class 并迁移到 module-b，跨模块方法提取到 ClientConfigBusinessService 留在 module-a，base class 通过接口注入"
+  },
+  {
+    "id": 3,
+    "prompt": "我同时要把 WorkflowMessageSender 和 DDMQProducerTopicConfig 从 module-a 移到 module-b，但只有 WorkflowMessageSender 被外部模块引用。我需要给两个类都提取接口吗？",
+    "expected": "应该推荐 Co-Migration Pattern：两个类一起迁移，但只给被外部引用的 WorkflowMessageSender 提取接口，DDMQProducerTopicConfig 保持具体类即可"
+  }
+]

@@ -1,0 +1,54 @@
+/*
+ * Theme: Frost Dark
+ * 磨砂玻璃深色 — 深邃背景上的经典 glassmorphism，冷调科技感
+ * 适合：技术演讲、数据仪表盘展示、产品深度分析、夜间演示
+ *
+ * 特性：中模糊半透明面板、冷色调背景氛围、可见的白色高光边框
+ * 需要 base.html 的 backdrop-filter 支持（v1.1+）
+ */
+:root {
+  /* --- 配色 --- */
+  --color-primary: #60a5fa;
+  --color-secondary: #94a3b8;
+  --color-accent: #22d3ee;
+  --color-bg: #0f172a;
+  --color-bg-alt: #1a2338;
+  --color-surface: rgba(255, 255, 255, 0.12);
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-on-primary: #0f172a;
+  --color-border: rgba(255, 255, 255, 0.20);
+
+  /* --- 字体 --- */
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-size-title: 3.94rem;
+  --font-size-heading: 2.81rem;
+  --font-size-subheading: 1.69rem;
+  --font-size-body: 1.24rem;
+  --font-size-small: 0.98rem;
+
+  /* --- 间距和尺寸 --- */
+  --slide-padding: 5.06rem;
+  --spacing-xs: 0.56rem;
+  --spacing-sm: 1.12rem;
+  --spacing-md: 1.97rem;
+  --spacing-lg: 3.09rem;
+  --spacing-xl: 4.5rem;
+
+  /* --- 效果 --- */
+  --border-radius: 14px;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(255, 255, 255, 0.10) inset;
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.50), 0 0 0 1.5px rgba(255, 255, 255, 0.06) inset;
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- 玻璃/渐变扩展 --- */
+  --surface-blur: 20px;
+  --surface-saturate: 180%;
+  --bg-pattern:
+    radial-gradient(ellipse 65% 60% at 20% 45%, rgba(96, 165, 250, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 50% at 80% 30%, rgba(34, 211, 238, 0.14) 0%, transparent 70%);
+}

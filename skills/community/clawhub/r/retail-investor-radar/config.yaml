@@ -1,0 +1,33 @@
+# A股体检报告配置文件
+
+# 代理设置（境外 VPS 必填，境内留空即可）
+# 格式示例：http://127.0.0.1:7890 或 socks5://127.0.0.1:1080
+proxy: ""
+
+# AI 报告风格
+# casual     - 大白话，像朋友聊天（推荐）
+# analysis   - 专业分析风格
+style: casual
+
+# 报告包含的模块（按需开关）
+modules:
+  quote: true          # 今日行情
+  valuation: true      # 估值分析（PE/PB）
+  financials: true     # 财务健康度
+  fund_flow: true      # 主力资金流向
+  news: true           # 近期热点新闻
+  risk: true           # 风险提示
+
+# 新闻条数
+news_count: 5
+
+# 输出格式
+output:
+  console: true        # 打印到终端
+  save_file: true      # 同时保存到文件
+  file_dir: ./reports  # 报告保存目录
+
+# DeepSeek 模型
+deepseek_model: deepseek-chat
+max_tokens: 2000
+temperature: 0.7

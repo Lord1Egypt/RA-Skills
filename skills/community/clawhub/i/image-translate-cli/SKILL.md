@@ -1,35 +1,18 @@
 ---
-name: "Image Translate CLI"
-description: "Placeholder skill reserved for an upcoming open CLI + provider protocol for batch product-image translation workflows."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/image-translate-cli"
-sourceUrl: "https://clawhub.ai/skills/image-translate-cli"
+name: image-translate-cli
+description: Placeholder skill reserved for an upcoming open CLI + provider protocol for batch product-image translation workflows.
 ---
 
-# Image Translate CLI
+# image-translate-cli
 
-> Placeholder skill reserved for an upcoming open CLI + provider protocol for batch product-image translation workflows.
+This is a placeholder skill reserved for an upcoming open-source CLI + skill workflow for batch image translation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/image-translate-cli`
-- **Source URL:** [https://clawhub.ai/skills/image-translate-cli](https://clawhub.ai/skills/image-translate-cli)
+Planned direction:
+- batch translation of product marketing images
+- provider-agnostic remote API integration
+- OpenClaw skill wrapper for ecommerce teams
+- support for custom translation websites/providers
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/image-translate-cli
-```
+Current state:
+- name reservation / placeholder only
+- not intended for production use yet

@@ -1,0 +1,6 @@
+# skill-security-scanner dependencies
+# Currently uses only Python standard library (no external packages needed)
+# Future versions may include:
+# - requests (for VirusTotal API)
+# - jinja2 (for HTML templating)
+# - pyyaml (for config parsing)

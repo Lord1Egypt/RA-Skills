@@ -1,0 +1,28 @@
+{
+  "name": "website-skeleton-skill",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "EdgeOne Pages 全栈网站骨架 Skill — Phase 4A 多租户隔离完成",
+  "workspaces": [
+    "packages/shared",
+    "packages/payment",
+    "packages/admin"
+  ],
+  "scripts": {
+    "build": "node scripts/sync-sharing.js",
+    "test": "vitest run",
+    "test:integration": "node tests/integration/phase4a.test.js",
+    "publish:shared": "cd packages/shared && npm publish",
+    "publish:payment": "cd packages/payment && npm publish",
+    "publish:admin": "cd packages/admin && npm publish",
+    "publish:all": "npm run publish:shared && npm run publish:payment && npm run publish:admin"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.7"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "version": "0.1.0",
+  "monitor": {
+    "enabled": true,
+    "token_thresholds": {
+      "report_daily": 50000,
+      "report_weekly": 300000,
+      "alert_immediate": true
+    },
+    "health_thresholds": {
+      "first_try_success_rate": {
+        "excellent": 85,
+        "good": 70,
+        "warning": 50
+      },
+      "rework_count_per_task": {
+        "warning": 3,
+        "danger": 5
+      },
+      "promise_fulfillment_rate": {
+        "excellent": 85,
+        "good": 70,
+        "warning": 60
+      },
+      "plan_inflation_index": {
+        "good": 1.3,
+        "warning": 1.8,
+        "danger": 2.5
+      },
+      "token_efficiency": {
+        "excellent": 0.2,
+        "good": 0.15,
+        "warning": 0.1,
+        "danger": 0.05
+      }
+    }
+  },
+  "report": {
+    "format": "markdown",
+    "auto_save": true,
+    "push_channel": "file",
+    "include_raw_data": false
+  },
+  "patterns": {
+    "correction_keywords": [
+      "不对", "错了", "重新", "改一下", "不是这个意思", 
+      "搞错了", "不够好", "换一个", "不对，应该是", "no,",
+      "that's not", "wrong", "incorrect", "redo", "change"
+    ],
+    "promise_patterns": [
+      "接下来我会", "稍后我们将", "首先让我", "然后", "最后",
+      "这需要多步完成", "第一步", "第二步", "第三步",
+      "我会帮你", "让我来", "我会分", "总共需要", "大约需要"
+    ],
+    "over_promise_patterns": [
+      "我可以轻松", "这对我来说很简单", "完全没有问题",
+      "交给我，保证", "肯定能", "绝对可以"
+    ]
+  }
+}

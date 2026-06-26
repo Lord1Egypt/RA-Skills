@@ -1,0 +1,2796 @@
+{
+  "antimage": [
+    {
+      "level": 10,
+      "left": "+{s:value} 生命恢复",
+      "right": "+{s:bonus_mana_void_aoe_radius} 法力虚空范围"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_move_slow_min}%/{s:bonus_move_slow_max}% 绝人之路最低/最高减速",
+      "right": "+{s:bonus_mana_void_damage_per_mana} 法力虚空伤害系数"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_AbilityCastRange} 闪烁施法距离",
+      "right": "+{s:bonus_mana_void_ministun}秒 法力虚空眩晕"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 闪烁冷却",
+      "right": "-{s:bonus_AbilityCooldown}秒 法力虚空冷却"
+    }
+  ],
+  "axe": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_speed_duration}秒 淘汰之刃斩杀效果加成",
+      "right": "每个战斗饥渴+{s:bonus_speed_bonus}% 移速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_per_second} 战斗饥渴每秒伤害",
+      "right": "+{s:bonus_bonus_armor} 狂战士之吼护甲"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 力量",
+      "right": "+{s:bonus_damage} 反击螺旋伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_radius} 狂战士之吼范围",
+      "right": "+{s:bonus_damage} 淘汰之刃伤害"
+    }
+  ],
+  "bane": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCastRange} 蚀脑施法距离",
+      "right": "+{s:bonus_cast_reduction}% 虚弱降低施法距离"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_enfeeble_tick_damage} 虚弱每秒伤害",
+      "right": "+{s:bonus_fiend_grip_mana_drain}% 魔爪吸取最大魔法值"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 噩梦冷却",
+      "right": "+{s:value} 移动速度"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_brain_sap_damage} 蚀脑伤害/治疗",
+      "right": "+{s:bonus_AbilityChannelTime}秒 魔爪持续时间"
+    }
+  ],
+  "bloodseeker": [
+    {
+      "level": 10,
+      "left": "+{s:value} 生命",
+      "right": "+{s:bonus_attack_speed} 血怒攻击速度"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_damage_pct}% 血怒每秒最大生命值伤害",
+      "right": "+{s:bonus_damage} 血祭伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_AbilityCastRange} 割裂施法距离",
+      "right": "+{s:value} 敏捷"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_silence_duration}秒 血祭沉默",
+      "right": "+{s:bonus_bonus_movement_speed}% 焦渴最大移速"
+    }
+  ],
+  "crystal_maiden": [
+    {
+      "level": 10,
+      "left": "+{s:value} 生命",
+      "right": "+{s:value} 智力"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_AbilityCastRange} 冰封禁制施法距离",
+      "right": "-{s:bonus_AbilityCooldown}秒 冰霜新星冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_mana_multiplier}% 冰川护体魔法转为护盾",
+      "right": "+{s:bonus_damage} 极寒领域伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 冰封禁制持续时间",
+      "right": "+{s:bonus_nova_damage} 冰霜新星伤害"
+    }
+  ],
+  "drow_ranger": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityManaCost}% 霜冻之箭魔法消耗",
+      "right": "+{s:bonus_arrow_count_per_wave} 数箭齐发每波箭矢"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 攻击距离",
+      "right": "-{s:bonus_AbilityCooldown}秒 数箭齐发冷却"
+    },
+    {
+      "level": 20,
+      "left": "{s:bonus_bonus_movespeed}% 狂风自身移速加成",
+      "right": "+{s:bonus_arrow_damage_pct}% 数箭齐发伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_chance}% 射手天赋几率",
+      "right": "+{s:bonus_wave_count} 数箭齐发波数"
+    }
+  ],
+  "earthshaker": [
+    {
+      "level": 10,
+      "left": "+{s:value} 基础攻击力",
+      "right": "+{s:bonus_fissure_damage} 沟壑伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_AbilityCastRange} 沟壑距离",
+      "right": "+{s:bonus_aftershock_damage} 余震伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_echo_slam_echo_damage} 回音击回音伤害",
+      "right": "+{s:bonus_totem_damage_percentage}% 强化图腾攻击力"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}% 回音击冷却",
+      "right": "-{s:bonus_AbilityCooldown}秒 强化图腾冷却"
+    }
+  ],
+  "juggernaut": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 治疗守卫冷却",
+      "right": "-{s:bonus_stack_gain_time}秒 剑心效果获得间隔"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 无敌斩冷却",
+      "right": "剑刃风暴期间+{s:bonus_bonus_movespeed} 移动速度"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_blade_dance_crit_mult}% 剑舞致命一击伤害",
+      "right": "+{s:bonus_blade_fury_damage} 剑刃风暴每秒伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 无敌斩持续时间",
+      "right": "+{s:bonus_blade_dance_lifesteal}% 剑舞吸血"
+    }
+  ],
+  "mirana": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 群星风暴冷却",
+      "right": "+{s:bonus_leap_distance} 跳跃距离"
+    },
+    {
+      "level": 15,
+      "left": "月之暗面提供+{s:bonus_evasion}% 闪避",
+      "right": "+100 跳跃攻击速度"
+    },
+    {
+      "level": 20,
+      "left": "+50 天界箭袋伤害",
+      "right": "+{s:bonus_bonus_damage} 天界箭袋伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_extra_arrows} 月神之箭齐发",
+      "right": "-{s:bonus_AbilityCooldown}秒 月之暗面冷却"
+    }
+  ],
+  "morphling": [
+    {
+      "level": 10,
+      "left": "+{s:value}% 魔法抗性",
+      "right": "+{s:bonus_duration}秒 变形持续时间"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_AbilityCastRange} 波浪形态距离",
+      "right": "+{s:value} 攻击距离"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 变体打击冷却",
+      "right": "+{s:value} 敏捷"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}% 波浪形态冷却",
+      "right": "+{s:value} 力量"
+    }
+  ],
+  "nevermore": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_stack_bonus_damage} 毁灭阴影连中伤害",
+      "right": "+{s:bonus_bonus_attack_speed} 灵魂盛宴攻击速度"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_presence_armor_reduction} 魔王降临降低护甲",
+      "right": "+{s:bonus_soul_collection_per_hero} 灵魂盛宴每名英雄收集灵魂"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_necromastery_max_souls} 支配死灵灵魂上限",
+      "right": "+{s:bonus_requiem_slow_duration}秒 魂之挽歌每道恐惧"
+    },
+    {
+      "level": 25,
+      "left": "灵魂盛宴+{s:bonus_cast_speed_pct}% 施法速度",
+      "right": "毁灭阴影施加攻击伤害"
+    }
+  ],
+  "phantom_lancer": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 灵魂之矛减速",
+      "right": "+{s:bonus_illusion_proc_chance_pct}% 并列幻象触发几率"
+    },
+    {
+      "level": 15,
+      "left": "{s:bonus_illusion_lance_damage_pct}% 幻象灵魂之矛伤害",
+      "right": "+{s:bonus_AbilityCastRange} 神行百变施法距离"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_lance_damage} 灵魂之矛伤害",
+      "right": "-{s:bonus_illusion_damage_in_pct}% 并列幻象承受伤害"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 神行百变冷却",
+      "right": "+{s:bonus_duration}秒 灵幻兵械持续时间"
+    }
+  ],
+  "puck": [
+    {
+      "level": 10,
+      "left": "+35 幻象法球伤害",
+      "right": "+{s:bonus_silence_duration}秒 新月之痕沉默"
+    },
+    {
+      "level": 15,
+      "left": "+2% 梦境缠绕生命/魔法回复",
+      "right": "+{s:bonus_damage} 新月之痕伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 新月之痕冷却",
+      "right": "+{s:bonus_coil_break_damage} 梦境缠绕初始/破碎伤害"
+    },
+    {
+      "level": 25,
+      "left": "-30秒 梦境缠绕冷却",
+      "right": "+{s:bonus_radius} 新月之痕范围/最大距离"
+    }
+  ],
+  "pudge": [
+    {
+      "level": 10,
+      "left": "+{s:value} 护甲",
+      "right": "+{s:bonus_rot_slow}% 腐烂减速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value}% 技能吸血",
+      "right": "+{s:bonus_damage} 肉钩伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_AbilityChannelTime}秒 肢解持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 肉钩冷却"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_dismember_damage}倍 肢解伤害/治疗",
+      "right": "{s:bonus_flesh_heap_strength_buff_amount}倍 腐肉堆积和肉盾加成"
+    }
+  ],
+  "razor": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_slow_duration}秒 等离子场减速",
+      "right": "+{s:value} 护甲"
+    },
+    {
+      "level": 15,
+      "left": "+6 静电连接攻击力吸取",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 20,
+      "left": "+35% 风暴涌动减速和伤害",
+      "right": "-{s:bonus_strike_interval}秒 风暴之眼打击间隔"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_second_ring_delay}秒后产生第二个等离子场",
+      "right": "静电连接吸取攻击速度"
+    }
+  ],
+  "sand_king": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_strike_slow}% 尾刺减速",
+      "right": "+{s:bonus_caustic_finale_radius} 腐尸毒范围"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_sand_storm_damage} 沙尘暴每秒伤害",
+      "right": "+{s:bonus_AbilityCastRange} 掘地穿刺施法距离"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 掘地穿刺冷却",
+      "right": "+{s:bonus_epicenter_pulses} 地震波数"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_attack_damage} 尾刺伤害",
+      "right": "{s:bonus_sand_storm_slow}% 沙尘暴减速和致盲"
+    }
+  ],
+  "storm_spirit": [
+    {
+      "level": 10,
+      "left": "+25%/25% 超负荷攻速/移速降低",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 生命",
+      "right": "+{s:bonus_static_remnant_damage} 残影伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_AbilityDuration}秒 电子涡流持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 残影冷却"
+    },
+    {
+      "level": 25,
+      "left": "50% 超负荷攻击弹射伤害",
+      "right": "球状闪电每{s:bonus_auto_remnant_interval}距离释放残影"
+    }
+  ],
+  "sven": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 战吼持续时间",
+      "right": "+{s:bonus_bonus_slow_resistance}% 神之力量减速抗性"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 神之力量冷却",
+      "right": "+{s:bonus_great_cleave_damage}% 巨力挥舞伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}% 风暴之拳冷却和魔耗",
+      "right": "+{s:bonus_bonus_armor} 战吼护甲"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_gods_strength_damage}% 神之力量攻击力",
+      "right": "+{s:bonus_bolt_stun_duration}秒 风暴之拳眩晕"
+    }
+  ],
+  "tiny": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCastRange} 山崩施法距离",
+      "right": "+2 抓树攻击次数"
+    },
+    {
+      "level": 15,
+      "left": "+10 力量",
+      "right": "+{s:bonus_avalanche_damage} 山崩伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bonus_damage} 抓树基础攻击力",
+      "right": "投掷不需要目标"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 山崩冷却",
+      "right": "{s:bonus_AbilityCharges} 投掷能量点数"
+    }
+  ],
+  "vengefulspirit": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage} 移形换位对敌伤害",
+      "right": "+{s:bonus_AbilityCastRange} 魔法箭施法距离"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_armor_reduction} 恐怖波动降低护甲",
+      "right": "+{s:bonus_magic_missile_stun}秒 魔法箭眩晕"
+    },
+    {
+      "level": 20,
+      "left": "恐怖波动窃取{s:bonus_steal_pct}%降低的攻击力和护甲",
+      "right": "-{s:bonus_AbilityCooldown}秒 魔法箭冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_bonus_base_damage}% 复仇光环攻击力加成",
+      "right": "-{s:bonus_AbilityCooldown}秒 移形换位冷却"
+    }
+  ],
+  "windrunner": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_slow_duration}秒 强力击减速",
+      "right": "+{s:bonus_AbilityDuration}秒 风行持续时间"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_max_movespeed} 一路顺风最高移速",
+      "right": "-{s:bonus_damage_reduction}% 强力击减少效果"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_stun_duration}秒 束缚击眩晕",
+      "right": "-{s:bonus_focusfire_damage_reduction}% 集中火力降低攻击力"
+    },
+    {
+      "level": 25,
+      "left": "强力击斩杀16%血量下敌方英雄",
+      "right": "集中火力击杀后减少16秒冷却时间"
+    }
+  ],
+  "zuus": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_targets} 神圣一跳目标",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage} 雷神之怒伤害",
+      "right": "-{s:bonus_AbilityCooldown}% 弧形闪电魔耗/冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_arc_damage} 弧形闪电伤害",
+      "right": "+{s:bonus_ministun_duration}秒 雷击眩晕"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_aoe_radius} 范围型雷击",
+      "right": "{s:bonus_AbilityCharges} 神圣一跳能量点数"
+    }
+  ],
+  "kunkka": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_buff_duration}秒 统帅朗姆酒持续时间",
+      "right": "潮汐使者施加{s:bonus_movespeed_slow_duration}秒{s:bonus_movespeed_slow}%减速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_stun_duration}% 洪流伤害/升空时间",
+      "right": "+{s:bonus_damage_bonus} 潮汐使者攻击力"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 洪流冷却",
+      "right": "+{s:bonus_cleave_damage}% 潮汐使者分裂伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:value} 技能作用范围",
+      "right": "潮汐使者无视{s:bonus_pierces_armor}%护甲"
+    }
+  ],
+  "lina": [
+    {
+      "level": 10,
+      "left": "+{s:value} 攻击力",
+      "right": "-{s:bonus_AbilityCooldown}秒 龙破斩冷却"
+    },
+    {
+      "level": 15,
+      "left": "{s:bonus_fiery_soul_magic_resist}% 炽魂每次叠加魔抗",
+      "right": "+{s:bonus_light_strike_array_damage} 光击阵伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 神灭斩冷却",
+      "right": "+{s:bonus_fiery_soul_attack_speed_bonus}/{s:bonus_fiery_soul_move_speed_bonus}% 炽魂每次叠加"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_burn_duration}秒 慢热持续时间",
+      "right": "对慢热作用下目标+{s:bonus_target_crit_multiplier}% 暴击"
+    }
+  ],
+  "lion": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_movespeed}% 法力吸取减速",
+      "right": "+{s:value} 移动速度"
+    },
+    {
+      "level": 15,
+      "left": "-2秒 妖术冷却",
+      "right": "+{s:bonus_spell_amp}% 下地狱再上来负面状态/技能增强"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_per_kill} 死亡之指每次击杀伤害",
+      "right": "裂地尖刺为30º锥形范围"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_radius} 范围型妖术",
+      "right": "+{s:bonus_AbilityCastRange} 裂地尖刺施法/行进距离"
+    }
+  ],
+  "shadow_shaman": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_total_damage} 枷锁总伤害",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_attack_range} 群蛇守卫攻击距离",
+      "right": "妖术施加破坏"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_channel_time}秒 枷锁持续时间",
+      "right": "+{s:bonus_hits_to_destroy_tooltip}% 群蛇守卫最大生命"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_damage} 苍穹震击伤害",
+      "right": "+{s:bonus_bonus_attack_targets} 守卫攻击目标"
+    }
+  ],
+  "slardar": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 守卫冲刺持续时间",
+      "right": "+{s:bonus_bonus_damage} 深海重击伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 生命",
+      "right": "-{s:bonus_armor_reduction} 侵蚀雾霭护甲"
+    },
+    {
+      "level": 20,
+      "left": "2 动人之舐能量点数",
+      "right": "+{s:bonus_river_damage_pct}% 汪洋前哨攻击力"
+    },
+    {
+      "level": 25,
+      "left": "2倍 蛙力千钧践踏次数/频率",
+      "right": "侵蚀雾霭不可驱散"
+    }
+  ],
+  "tidehunter": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_reduction}% 锚击降低攻击力",
+      "right": "+{s:bonus_movement_speed}% 巨浪减速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_gush_damage} 巨浪伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 毁灭冷却"
+    },
+    {
+      "level": 20,
+      "left": "海妖外壳净化触发锚击",
+      "right": "-{s:bonus_negative_armor} 巨浪降低护甲"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 毁灭眩晕",
+      "right": "锚击可作用建筑"
+    }
+  ],
+  "witch_doctor": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_tooltip_mana_per_second}% 巫毒疗法每秒消耗魔法",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 麻痹药剂冷却",
+      "right": "+{s:bonus_AbilityDuration}秒 巫蛊咒术持续时间"
+    },
+    {
+      "level": 20,
+      "left": "巫蛊咒术爆发在{s:bonus_spread_radius}范围内造成{s:bonus_spread_pct}%伤害",
+      "right": "巫毒疗法+{s:bonus_bonus_heal_percent}% 目标最大生命值治疗"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_bounces} 麻痹药剂弹跳",
+      "right": "+{s:bonus_damage} 死亡守卫攻击力"
+    }
+  ],
+  "lich": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_reduction}% 冰霜魔盾承伤降低",
+      "right": "+{s:bonus_radius} 寒霜爆发范围/范围伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_AbilityChannelTime}秒 阴邪凝视持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 寒霜爆发冷却"
+    },
+    {
+      "level": 20,
+      "left": "{s:bonus_AbilityCharges} 冰霜魔盾能量点数",
+      "right": "死亡时放出连环霜冻"
+    },
+    {
+      "level": 25,
+      "left": "冰霜魔盾提供+{s:bonus_health_regen} 生命恢复",
+      "right": "连环霜冻无限弹跳"
+    }
+  ],
+  "riki": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_radius} 烟幕范围",
+      "right": "+{s:bonus_invis_movespeed_bonus_percent}% 刀光谍影移动速度"
+    },
+    {
+      "level": 15,
+      "left": "绝杀秘技+{s:bonus_base_attack_damage_pct}% 力丸攻击伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 烟幕冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_multiplier} 背刺敏捷系数",
+      "right": "-{s:bonus_AbilityCooldown}秒 闪烁突袭冷却"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 绝杀秘技冷却",
+      "right": "+{s:bonus_AbilityCastRange} 闪烁突袭施法距离"
+    }
+  ],
+  "enigma": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_eidolon_bonus_attack_speed} 虚灵攻击速度",
+      "right": "+{s:bonus_damage} 黑洞每秒伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 生命",
+      "right": "+{s:bonus_radius} 事件视界作用范围"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_radius} 午夜凋零范围",
+      "right": "+{s:bonus_eidolon_bonus_damage} 虚灵攻击力"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_stun_instances} 憎恶触发次数",
+      "right": "+{s:bonus_spawn_count} 恶魔召唤虚灵数量"
+    }
+  ],
+  "tinker": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 机械行军持续时间",
+      "right": "+{s:value}% 魔法消耗/损失降低"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_drop_knockback_distance_tinker} 部署炮塔击退修补匠",
+      "right": "+{s:bonus_laser_damage} 激光伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_missile_damage} 部署炮塔导弹伤害",
+      "right": "-{s:bonus_AbilityChannelTime}秒 基恩载具持续施法"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_radius_explosion} 范围型激光",
+      "right": "-{s:bonus_AbilityChannelTime}秒 再装填所需时间"
+    }
+  ],
+  "sniper": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_passive_attack_range_bonus} 瞄准被动攻击距离",
+      "right": "+{s:bonus_damage} 爆头伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_attack_speed} 瞄准期间攻击速度",
+      "right": "+{s:bonus_damage} 暗杀伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 瞄准持续时间",
+      "right": "+{s:bonus_shrapnel_damage}% 榴霰弹伤害"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityChargeRestoreTime}秒 榴霰弹充能",
+      "right": "+{s:bonus_knockback_distance} 最高爆头击退距离"
+    }
+  ],
+  "necrolyte": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 幽魂护罩冷却",
+      "right": "+{s:bonus_regen_duration}秒 施虐之心叠加时间"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_movement_speed}% 幽魂护罩减速",
+      "right": "+{s:bonus_heal} 死亡脉冲治疗"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 技能作用范围",
+      "right": "+{s:bonus_heal_reduction_pct}% 竭心光环降低生命恢复"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_damage_per_health} 死神镰刀伤害系数",
+      "right": "-{s:bonus_AbilityCooldown}秒 死亡脉冲冷却"
+    }
+  ],
+  "warlock": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_share_percentage}% 致命连接伤害",
+      "right": "+{s:bonus_aoe} 剧变作用范围"
+    },
+    {
+      "level": 15,
+      "left": "剧变每秒向友军提供+{s:bonus_aspd_per_second} 攻速",
+      "right": "+{s:bonus_spell_aoe} 暗言术范围"
+    },
+    {
+      "level": 20,
+      "left": "{s:bonus_bonus_damage_resist}% 地狱火伤害减免",
+      "right": "+{s:bonus_base_damage} 剧变伤害"
+    },
+    {
+      "level": 25,
+      "left": "死亡时召唤地狱火",
+      "right": "+5 致命连接目标"
+    }
+  ],
+  "beastmaster": [
+    {
+      "level": 10,
+      "left": "+{s:value} 护甲",
+      "right": "+{s:bonus_damage_amp}% 野性之斧每次伤害加深"
+    },
+    {
+      "level": 15,
+      "left": "兽王及其召唤物+{s:bonus_ms} 移速",
+      "right": "+{s:bonus_AbilityCastRange} 原始咆哮施法距离"
+    },
+    {
+      "level": 20,
+      "left": "兽王及其召唤物+{s:bonus_boar_bonus_damage} 攻击力",
+      "right": "兽王及其召唤物+{s:bonus_hp} 生命"
+    },
+    {
+      "level": 25,
+      "left": "野性之斧无冷却",
+      "right": "-{s:bonus_AbilityCooldown}秒 原始咆哮冷却"
+    }
+  ],
+  "queenofpain": [
+    {
+      "level": 10,
+      "left": "攻击暗影突袭下单位+{s:bonus_attack_speed} 攻速",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_damage_interval}秒 暗影突袭伤害间隔",
+      "right": "+{s:value} 攻击力"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage} 痛苦尖叫伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 超声冲击波冷却"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 闪烁冷却",
+      "right": "+{s:bonus_damage} 超声冲击波伤害"
+    }
+  ],
+  "venomancer": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 瘴气冷却",
+      "right": "毒刺降低{s:bonus_hp_regen_reduction}% 生命恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_debuff_radius} 恶性瘟疫传播范围",
+      "right": "+10% 毒刺减速"
+    },
+    {
+      "level": 20,
+      "left": "+100 毒蛇撕咬初始伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 瘟疫守卫冷却"
+    },
+    {
+      "level": 25,
+      "left": "毒蛇撕咬不可驱散",
+      "right": "{s:bonus_ward_hp_tooltip}倍 瘟疫守卫生命/攻击力"
+    }
+  ],
+  "faceless_void": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_per_stack} 时间膨胀每个冷却技能提供每秒伤害",
+      "right": "+{s:bonus_backtrack_duration}秒 时间漫游回溯时间"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_damage} 时间锁定伤害",
+      "right": "+{s:bonus_range} 时间漫游距离"
+    },
+    {
+      "level": 20,
+      "left": "+80 时间结界内攻击速度",
+      "right": "-1秒 时间漫游冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:dodge_chance_pct}% 回到过去几率",
+      "right": "+{s:bonus_radius} 时间结界范围"
+    }
+  ],
+  "skeleton_king": [
+    {
+      "level": 10,
+      "left": "+8% 吸血灵魂吸血",
+      "right": "+{s:bonus_blast_dot_duration}秒 冥火爆击减速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_blast_stun_duration}秒 冥火爆击眩晕",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 攻击速度",
+      "right": "+{s:bonus_min_skeleton_spawn} 白骨护卫骷髅兵数量"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 本命一击冷却",
+      "right": "绝冥再生施放冥火爆击"
+    }
+  ],
+  "death_prophet": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_radius} 沉默魔法范围",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 攻击速度",
+      "right": "-{s:bonus_AbilityCooldown}秒 地穴虫群冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_spirits} 驱使恶灵数量",
+      "right": "+{s:bonus_damage} 吸魂巫术伤害/治疗"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityChargeRestoreTime}秒 吸魂巫术充能",
+      "right": "驱使恶灵期间死亡延长+{s:bonus_duration_increase_per_kill}秒持续时间"
+    }
+  ],
+  "phantom_assassin": [
+    {
+      "level": 10,
+      "left": "+0.8秒 幻影突袭持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 窒碍短匕冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_evasion}% 飘忽不定闪避",
+      "right": "+{s:bonus_attack_factor}% 窒碍短匕伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_AbilityCastRange} 幻影突袭施法距离",
+      "right": "+{s:bonus_bonus_attack_speed} 幻影突袭攻击速度"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_crit_chance}% 恩赐解脱几率",
+      "right": "+2 窒碍短匕掷出"
+    }
+  ],
+  "pugna": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 幽冥爆轰冷却",
+      "right": "+{s:bonus_attacks_to_destroy} 幽冥守卫生命"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_movement_speed_allies}% 衰老对友军移动速度",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bonus_heal_pct}% 生命汲取回复",
+      "right": "+{s:bonus_AbilityDuration}秒 衰老持续时间"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_blast_damage} 幽冥爆轰伤害",
+      "right": "+{s:bonus_mana_multiplier} 幽冥守卫伤害系数"
+    }
+  ],
+  "templar_assassin": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_debuff_duration}秒 隐匿负面效果",
+      "right": "+15% 灵能陷阱减速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_attack_range_bonus} 隐匿攻击距离",
+      "right": "+{s:bonus_max_traps} 灵能陷阱"
+    },
+    {
+      "level": 20,
+      "left": "折光带驱散",
+      "right": "+{s:bonus_bonus_armor} 隐匿降低护甲"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_bash_duration}秒 隐匿造成击晕",
+      "right": "+{s:bonus_instances} 折光次数"
+    }
+  ],
+  "viper": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 蝮蛇突袭持续时间",
+      "right": "+{s:bonus_damage} 腐蚀皮肤每秒伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_min_damage}/{s:bonus_max_damage} 幽冥剧毒最低/最高伤害",
+      "right": "+{s:bonus_damage}% 毒性攻击减速/伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage} 蝮蛇突袭每秒伤害",
+      "right": "每缺失1%生命造成掠食伤害+{s:bonus_damage}"
+    },
+    {
+      "level": 25,
+      "left": "幽冥剧毒每{s:bonus_expand_interval}秒提升{s:bonus_radius_increase}范围",
+      "right": "-{s:bonus_AbilityCooldown}% 蝮蛇突袭魔耗/冷却"
+    }
+  ],
+  "luna": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_damage_reduction_percent}% 月刃伤害衰减",
+      "right": "+{s:bonus_stun_duration}秒 月光眩晕"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_rotating_glaives} 环月战刃",
+      "right": "+{s:bonus_beam_damage} 月光伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 月蚀冷却",
+      "right": "{s:bonus_rotating_glaive_collision_speed_damage_tooltip}倍 月盾伤害/速度"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_bonus_damage}/{s:bonus_self_bonus_damage} 月之祝福友军/自身攻击力",
+      "right": "月光额外打击一个目标"
+    }
+  ],
+  "dragon_knight": [
+    {
+      "level": 10,
+      "left": "+{s:value} 攻击力",
+      "right": "-{s:bonus_AbilityCooldown}秒 火焰气息冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_stun_duration}秒 神龙摆尾眩晕",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bonus_attack_range} 古龙形态攻击距离",
+      "right": "+220 火焰气息伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_health_regen} 神龙之血生命恢复/护甲",
+      "right": "+{s:bonus_magic_damage}% 飞龙之怒加成"
+    }
+  ],
+  "dazzle": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_attack_range_bonus} 剧毒之触攻击距离",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage} 暗影波治疗/伤害",
+      "right": "+{s:bonus_max_duration}秒 虚无投影持续时间"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 薄葬冷却",
+      "right": "+{s:bonus_damage} 剧毒之触每秒伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_slow}% 剧毒之触减速",
+      "right": "+{s:bonus_armor_change} 编织降低/提升护甲"
+    }
+  ],
+  "rattletrap": [
+    {
+      "level": 10,
+      "left": "+{s:value} 魔法恢复",
+      "right": "+{s:bonus_damage} 发射钩爪伤害"
+    },
+    {
+      "level": 15,
+      "left": "-8秒 发射钩爪冷却",
+      "right": "+{s:bonus_damage} 弹幕冲击伤害"
+    },
+    {
+      "level": 20,
+      "left": "照明火箭具有真实视域",
+      "right": "+{s:bonus_mana_burn} 能量齿轮魔法损失"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_AbilityCharges} 照明火箭能量点数",
+      "right": "-{s:bonus_interval}秒 弹幕冲击间隔"
+    }
+  ],
+  "leshrac": [
+    {
+      "level": 10,
+      "left": "+{s:value} 魔法恢复",
+      "right": "+{s:value} 护甲"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage} 闪电风暴伤害",
+      "right": "+{s:bonus_damage_resistance}% 脉冲新星期间承伤降低"
+    },
+    {
+      "level": 20,
+      "left": "恶魔敕令额外击中一个目标",
+      "right": "+{s:bonus_damage} 脉冲新星伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_num_explosions} 恶魔敕令爆炸次数",
+      "right": "脉冲新星触发闪电风暴"
+    }
+  ],
+  "furion": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 自然的呼唤冷却",
+      "right": "+{s:bonus_damage} 自然之怒基础伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_treant_movespeed} 自然的呼唤树人移速",
+      "right": "+{s:bonus_barrier} 传送护盾"
+    },
+    {
+      "level": 20,
+      "left": "-20秒 自然之怒冷却",
+      "right": "+240 发芽伤害"
+    },
+    {
+      "level": 25,
+      "left": "传送无冷却",
+      "right": "{s:bonus_treant_health}倍 树人生命/攻击力"
+    }
+  ],
+  "life_stealer": [
+    {
+      "level": 10,
+      "left": "+{s:value} 全属性",
+      "right": "+{s:value} 移动速度"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage} 感染伤害",
+      "right": "对撕裂伤口目标+{s:bonus_attack_speed_on_target}攻速"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bonus_movement_speed}% 感染目标移速/生命",
+      "right": "+{s:bonus_heal_percent}% 撕裂伤口吸取生命"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_hp_damage_percent}% 盛宴治疗/伤害",
+      "right": "+{s:bonus_duration}秒 狂暴持续时间"
+    }
+  ],
+  "dark_seer": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_tooltip_outgoing}% 复制之墙幻象攻击力",
+      "right": "+{s:bonus_radius} 离子外壳范围"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_radius} 真空范围",
+      "right": "-{s:bonus_AbilityCooldown}秒 奔腾冷却"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_cooldown_reduction}秒 复制之墙冷却",
+      "right": "+{s:bonus_damage_per_second} 离子外壳伤害"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_AbilityCharges} 离子外壳能量点数",
+      "right": "{s:bonus_aoe_radius} 范围型奔腾"
+    }
+  ],
+  "clinkz": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 扫射持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 骨隐步冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 攻击距离",
+      "right": "-{s:bonus_AbilityChargeRestoreTime}秒 死亡契约充能"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_attack_speed_bonus} 扫射攻击速度",
+      "right": "+{s:bonus_health_gain} 死亡契约额外生命"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 扫射冷却",
+      "right": "灼热之箭齐射"
+    }
+  ],
+  "omniknight": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCastRange} 驱逐施法距离",
+      "right": "+{s:value} 基础攻击力"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 纯洁之锤冷却",
+      "right": "-{s:bonus_AbilityCooldown}秒 守护天使冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_radius} 退化光环作用范围",
+      "right": "-{s:bonus_AbilityCooldown}秒 洗礼冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_heal} 洗礼伤害/治疗",
+      "right": "+{s:bonus_base_damage}% 纯洁之锤基础攻击力伤害"
+    }
+  ],
+  "enchantress": [
+    {
+      "level": 10,
+      "left": "魅惑魔女及其单位+{s:bonus_bonus_armor} 护甲",
+      "right": "自然之助期间+{s:bonus_movespeed}移动速度"
+    },
+    {
+      "level": 15,
+      "left": "魅惑魔女及其单位+{s:bonus_bonus_attackspeed} 攻速",
+      "right": "+{s:bonus_heal} 自然之助治疗"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_wisp_count} 自然之助小精灵",
+      "right": "魅惑魔女及其单位+{s:bonus_bonus_health} 生命/+{s:bonus_bonus_damage} 攻击力"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_distance_damage_pct}% 推进伤害",
+      "right": "+{s:bonus_slow_attack_speed} 不可侵犯降低攻速"
+    }
+  ],
+  "huskar": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_disarm_duration}秒 心炎持续时间",
+      "right": "+{s:bonus_slow_duration_tooltip}秒 牺牲减速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_burn_damage} 沸血之矛烧灼伤害",
+      "right": "+{s:value}% 吸血"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_maximum_health_regen}% 狂战士之血恢复",
+      "right": "-{s:bonus_AbilityCooldown}秒 牺牲冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 沸血之矛持续时间",
+      "right": "+{s:bonus_tooltip_health_damage}% 牺牲伤害"
+    }
+  ],
+  "night_stalker": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 虚空冷却",
+      "right": "+{s:bonus_dps} 伤残恐惧每秒伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_damage} 黑暗飞升攻击力",
+      "right": "暗夜猎影{s:bonus_bonus_status_resist_night}% 状态抗性"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_radius} 伤残恐惧作用范围",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_attack_heal} 午夜盛宴吸血",
+      "right": "-35秒 黑暗飞升冷却"
+    }
+  ],
+  "broodmother": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage} 孵化蜘蛛伤害",
+      "right": "+{s:bonus_lifesteal_pct}% 极度饥渴吸血"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_attack_damage} 麻痹之咬额外攻击伤害",
+      "right": "+{s:bonus_hp_bonus} 小蜘蛛生命"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityChargeRestoreTime}秒 织网充能",
+      "right": "+{s:bonus_miss_chance}% 麻痹之咬减速/落空"
+    },
+    {
+      "level": 25,
+      "left": "极度饥渴期间-{s:bonus_bat_bonus}秒基础攻击间隔",
+      "right": "+{s:bonus_bonus_movespeed}% 织网移动速度并突破移速上限"
+    }
+  ],
+  "bounty_hunter": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_slow_duration}秒 投掷飞镖减速",
+      "right": "+{s:value} 攻击力"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_damage_reduction_pct}% 暗影步期间承受伤害",
+      "right": "+{s:bonus_bonus_gold} 追踪术金钱"
+    },
+    {
+      "level": 20,
+      "left": "追踪术提供共享视野",
+      "right": "+{s:bonus_gold_steal} 忍术窃取金钱"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_bonus_damage} 投掷飞镖伤害",
+      "right": "忍术无冷却"
+    }
+  ],
+  "weaver": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_min_movespeed_override} 缩地移动速度",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage} 缩地伤害",
+      "right": "+{s:bonus_destroy_attacks} 虫群可被攻击次数"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bonus_damage} 连击额外伤害",
+      "right": "+{s:bonus_armor_reduction} 虫群削弱护甲"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 缩地冷却",
+      "right": "+{s:bonus_extra_attack} 连击"
+    }
+  ],
+  "jakiro": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_slow_attack_speed_pct} 液态火降低攻击速度",
+      "right": "+100 冰封路径伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 攻击距离",
+      "right": "-{s:bonus_AbilityCooldown}秒 冰火交加冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_stun_duration}秒 冰封路径眩晕",
+      "right": "+{s:bonus_damage} 烈焰焚身伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_AbilityCastRange}% 冰火交加伤害/距离",
+      "right": "+3.5% 液态冰/火最大生命值伤害"
+    }
+  ],
+  "batrider": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_movement_speed_pct_total}% 火焰飞行最高移速加成",
+      "right": "+{s:bonus_total_ticks}秒 闷烧树脂持续时间"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_per_second} 火焰飞行每秒伤害",
+      "right": "+{s:bonus_movement_speed_pct}% 粘性燃油减速"
+    },
+    {
+      "level": 20,
+      "left": "攻击施加1层粘性燃油",
+      "right": "-{s:bonus_AbilityCooldown}秒 烈焰破击冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 燃烧枷锁持续时间",
+      "right": "烈焰破击施加{s:bonus_napalm_stacks}层粘性燃油"
+    }
+  ],
+  "chen": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage} 赎罪伤害",
+      "right": "+{s:bonus_damage}% 狂热者生命值/攻击力"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_bonus}% 神圣劝化伤害",
+      "right": "+{s:bonus_bonus_movement_speed}% 赎罪减速"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_heal_amp}% 神力恩泽治疗增强",
+      "right": "+{s:bonus_health_min} 神圣劝化最低生命"
+    },
+    {
+      "level": 25,
+      "left": "上帝之手施加强驱散",
+      "right": "上帝之手治愈陈和他的单位"
+    }
+  ],
+  "spectre": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 幽鬼之刃冷却",
+      "right": "+{s:bonus_bonus_damage} 荒芜伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_duration}秒 如影随形持续时间",
+      "right": "+{s:bonus_damage} 幽鬼之刃伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 生命",
+      "right": "+{s:bonus_bonus_movespeed}% 幽鬼之刃减速/加速"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_illusion_damage_outgoing}% 所有幽鬼幻象攻击力",
+      "right": "+{s:bonus_damage_reflection_pct}% 折射"
+    }
+  ],
+  "ancient_apparition": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_attack_range_bonus} 极寒之触攻击距离",
+      "right": "+15 寒霜之足基础治疗"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 冰霜漩涡冷却",
+      "right": "+{s:bonus_break_distance} 寒霜之足失效距离"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_frostbite_duration}秒 冰晶爆轰寒霜诅咒",
+      "right": "+100 极寒之触伤害"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_area_of_effect} 范围型寒霜之足",
+      "right": "+{s:bonus_kill_pct}% 冰晶爆轰斩杀血量上限"
+    }
+  ],
+  "doom_bringer": [
+    {
+      "level": 10,
+      "left": "+{s:value}% 魔法抗性",
+      "right": "+{s:bonus_ministun_duration}秒 阎刃眩晕"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_movement_speed_pct}% 焦土移动速度",
+      "right": "+{s:bonus_burn_damage_pct}% 阎刃最大生命值伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 末日冷却",
+      "right": "+{s:value} 攻击力"
+    },
+    {
+      "level": 25,
+      "left": "末日施加锁闭",
+      "right": "永久焦土"
+    }
+  ],
+  "ursa": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_bonus_reset_time}秒 怒意狂击重置时间",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_health_as_damage_pct}% 暴烈之爪生命值转为攻击力",
+      "right": "+{s:bonus_status_resistance}% 激怒状态抗性"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_shock_radius} 震撼大地范围",
+      "right": "+{s:bonus_damage_per_stack} 怒意狂击伤害"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_AbilityCharges} 震撼大地能量点数",
+      "right": "+{s:bonus_max_attacks} 超强力量攻击次数"
+    }
+  ],
+  "spirit_breaker": [
+    {
+      "level": 10,
+      "left": "+{s:value} 夜间视野",
+      "right": "+{s:value} 护甲"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 威吓冷却",
+      "right": "+{s:bonus_movement_speed} 暗影冲刺移速加成"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_hero_movespeed_percent}%/+{s:bonus_creep_movespeed_percent}% 神行太保移速加成",
+      "right": "威吓提供{s:bonus_damage_barrier} 全伤害护盾"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_damage}% 巨力重击伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 暗影冲刺冷却"
+    }
+  ],
+  "gyrocopter": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_hit_damage}% 追踪导弹伤害",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_stun_duration}秒 追踪导弹眩晕",
+      "right": "+{s:bonus_bonus_damage} 高射火炮攻击力"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_max_attacks} 高射火炮攻击次数",
+      "right": "+{s:bonus_rocket_damage} 火箭弹幕伤害"
+    },
+    {
+      "level": 25,
+      "left": "-6秒 高射火炮冷却",
+      "right": "-{s:bonus_AbilityCooldown}秒 召唤飞弹冷却"
+    }
+  ],
+  "alchemist": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_slow_per_stack}% 腐蚀兵械每层叠加减速/降低攻击力",
+      "right": "+{s:bonus_radius} 不稳定化合物范围"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_armor_reduction} 酸性喷雾护甲降低",
+      "right": "每层贪魔的贪婪+{s:bonus_damage} 攻击力"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_base_attack_time}秒 化学狂暴基础攻击间隔",
+      "right": "+{s:bonus_max_damage} 不稳定化合物最高伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_bonus_movespeed} 化学狂暴移动速度",
+      "right": "+{s:bonus_bonus_health_regen} 化学狂暴恢复"
+    }
+  ],
+  "invoker": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_per_second} 寒冰之墙每秒伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 强袭飓风冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_attack_speed} 灵动迅捷攻击力/攻速",
+      "right": "-{s:bonus_AbilityCooldown}秒 急速冷却冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_meteor_count} 混沌陨石",
+      "right": "+{s:bonus_armor_removed}% 熔炉精灵护甲减少"
+    },
+    {
+      "level": 25,
+      "left": "环形超震声波",
+      "right": "{s:bonus_move_speed_per_instance}倍 冰/雷/火活跃效果"
+    }
+  ],
+  "silencer": [
+    {
+      "level": 10,
+      "left": "+{s:value} 攻击速度",
+      "right": "+{s:bonus_damage_pct}% 默默受苦被沉默目标伤害"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 全领域静默冷却",
+      "right": "+{s:bonus_duration}/+{s:bonus_penalty_duration}秒 奥术诅咒基础/惩罚时间"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_int_steal_duration}秒 智慧之刃智力窃取",
+      "right": "{s:bonus_radius} 范围型遗言"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_intellect_damage_pct}% 智慧之刃伤害",
+      "right": "+{s:bonus_AbilityDuration}秒 全领域静默持续时间"
+    }
+  ],
+  "obsidian_destroyer": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCastRange} 星体禁锢施法距离",
+      "right": "+{s:value} 魔法"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_mana_restore}% 精华变迁魔法值回复",
+      "right": "+{s:bonus_mana_as_ms}% 当前魔法作为移速"
+    },
+    {
+      "level": 20,
+      "left": "+12% 星体禁锢魔法窃取",
+      "right": "+{s:bonus_mana_capacity_steal}% 星体禁锢魔法值窃取"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_mana_pool_damage_pct}% 奥术天球伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 神智之蚀冷却"
+    }
+  ],
+  "lycan": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_armor} 嗥叫护甲降低",
+      "right": "+14 精灵狼攻击力"
+    },
+    {
+      "level": 15,
+      "left": "+375 召狼生命",
+      "right": "-{s:bonus_AbilityCooldown}秒 变身冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 变身持续时间",
+      "right": "+{s:bonus_bonus_damage}% 野性驱使攻击力"
+    },
+    {
+      "level": 25,
+      "left": "嗥叫降低总攻击力",
+      "right": "-{s:bonus_wolf_bat}% 召狼基础攻击间隔"
+    }
+  ],
+  "brewmaster": [
+    {
+      "level": 10,
+      "left": "+13 元素战士基础攻击力",
+      "right": "+{s:bonus_brewed_up_duration}/{s:bonus_brewed_up_duration_extend}秒 醉拳浸酒/延长持续时间"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_total_ignite_damage}% 余烬佳酿伤害/持续时间",
+      "right": "+{s:bonus_bonus_brewling_hp} 元素战士生命"
+    },
+    {
+      "level": 20,
+      "left": "-12秒 元素分离冷却",
+      "right": "+{s:value} 攻击速度"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_stance_multiplier_tooltip}倍 醉拳拳法加成",
+      "right": "余烬佳酿点燃时施加恐惧"
+    }
+  ],
+  "shadow_demon": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_stack_damage}% 暗影剧毒伤害",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 移动速度",
+      "right": "-{s:bonus_AbilityCooldown}秒 暗影剧毒冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_reflection_pct}% 散播共享伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 邪恶净化冷却"
+    },
+    {
+      "level": 25,
+      "left": "邪恶净化施加暗影剧毒",
+      "right": "{s:bonus_AbilityCharges} 崩裂禁锢能量点数"
+    }
+  ],
+  "lone_druid": [
+    {
+      "level": 10,
+      "left": "+5秒 真熊形态持续时间",
+      "right": "+{s:bonus_damage} 缠绕之根每秒缠绕伤害"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 野蛮咆哮冷却",
+      "right": "+{s:value} 敏捷"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_radius} 野蛮咆哮作用范围",
+      "right": "+{s:value} 攻击速度"
+    },
+    {
+      "level": 25,
+      "left": "真熊形态提供{s:bonus_bonus_slow_resistance}% 减速抗性",
+      "right": "+{s:bonus_entangle_duration}秒 缠绕之根缠绕时间"
+    }
+  ],
+  "chaos_knight": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_lifesteal}% 混沌一击吸血",
+      "right": "+{s:bonus_pull_distance} 实相裂隙牵引距离"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 混乱之箭冷却",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_stun_max}秒 混乱之箭最短/最长眩晕",
+      "right": "实相裂隙无视减益免疫"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_chance}% 混沌一击几率",
+      "right": "-{s:bonus_incoming_damage}% 混沌之军幻象承受伤害"
+    }
+  ],
+  "meepo": [
+    {
+      "level": 10,
+      "left": "+{s:value} 力量",
+      "right": "-{s:bonus_AbilityCooldown}秒 地之束缚冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value}% 闪避",
+      "right": "+{s:bonus_poof_damage} 忽悠伤害"
+    },
+    {
+      "level": 20,
+      "left": "攻击地之束缚目标具有克敌机先",
+      "right": "+{s:bonus_health_steal_heroes} 洗劫窃取生命"
+    },
+    {
+      "level": 25,
+      "left": "+{s:value} 生命",
+      "right": "-{s:bonus_cast_duration}秒 忽悠施法"
+    }
+  ],
+  "treant": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_heal_per_second} 活体护甲每秒治疗",
+      "right": "+{s:value} 基础攻击力"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_leech_heal}% 寄生种子伤害转为治疗",
+      "right": "+{s:bonus_damage_per_second} 自然卷握伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_block_base} 活体护甲伤害格挡",
+      "right": "+{s:bonus_leech_damage} 寄生种子额外伤害"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 寄生种子冷却",
+      "right": "{s:bonus_aoe_radius} 范围型活体护甲"
+    }
+  ],
+  "ogre_magi": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_burn_damage} 引燃燃烧伤害",
+      "right": "+{s:bonus_mana_per_str}/{s:bonus_mana_regen_per_str} 傻福力量提供魔法/魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 攻击力",
+      "right": "+{s:bonus_bonus_attack_speed}/{s:bonus_self_bonus} 嗜血术/自身攻速"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 力量",
+      "right": "+{s:bonus_fireblast_damage} 火焰爆轰伤害"
+    },
+    {
+      "level": 25,
+      "left": "攻击有{s:bonus_fireblast_proc}%几率触发火焰爆轰",
+      "right": "+{s:bonus_multicast_2_times}% 多重施法几率"
+    }
+  ],
+  "undying": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_decay_damage} 腐朽伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 墓碑冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_per_unit} 噬魂伤害/治疗",
+      "right": "+{s:bonus_zombie_damage_tooltip} 僵尸攻击力"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 腐朽冷却",
+      "right": "+{s:bonus_hits_to_destroy_tooltip} 墓碑可攻击次数"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_str_percentage}% 血肉傀儡额外力量",
+      "right": "死亡时召唤墓碑"
+    }
+  ],
+  "rubick": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 隔空取物冷却",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "窃取的技能-40% 魔法消耗减少",
+      "right": "-4秒 弱化能流冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_reduction}% 弱化能流攻击力降低",
+      "right": "隔空取物着陆造成{s:bonus_landing_damage} 伤害"
+    },
+    {
+      "level": 25,
+      "left": "1.5倍 奇心加成",
+      "right": "窃取的技能+{s:bonus_spell_amp_percent}% 技能增强"
+    }
+  ],
+  "disruptor": [
+    {
+      "level": 10,
+      "left": "+{s:value} 移动速度",
+      "right": "每次打击+{s:bonus_strike_damage_bonus} 风雷之击伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_to_distance_pct}%/{s:bonus_max_damage} 瞥视距离转为伤害/最高伤害",
+      "right": "+{s:bonus_damage_max} 静态风暴最高每秒伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 动能力场持续时间",
+      "right": "+{s:bonus_radius} 静态风暴范围"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_AbilityCharges} 恶念瞥视能量点数",
+      "right": "+{s:bonus_strikes} 风雷之击打击次数"
+    }
+  ],
+  "nyx_assassin": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_reflect_pct}% 尖刺外壳伤害反弹",
+      "right": "+{s:bonus_duration}秒 穿刺眩晕"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_bonus_damage} 复仇伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 神智爆裂冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_stun_duration}秒 尖刺外壳眩晕",
+      "right": "+{s:bonus_impale_damage} 穿刺伤害"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_aoe} 范围型神智爆裂",
+      "right": "+{s:value} 敏捷"
+    }
+  ],
+  "naga_siren": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_pull_strength} 捕捞速度",
+      "right": "+{s:bonus_damage}% 激流伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_outgoing_damage_tooltip}% 镜像攻击力",
+      "right": "-{s:bonus_incoming_damage}% 镜像承受伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 海妖之歌冷却",
+      "right": "+{s:bonus_images_count} 镜像幻象"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 镜像冷却",
+      "right": "+{s:value} 敏捷"
+    }
+  ],
+  "keeper_of_the_light": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_miss_rate}% 致盲之光落空",
+      "right": "-{s:bonus_AbilityCooldown}秒 冲击波冷却"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_movement_speed}% 灵魂形态光明速度加成",
+      "right": "+{s:bonus_damage} 致盲之光伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 灵魂形态持续时间",
+      "right": "+{s:bonus_magic_resistance}% 炎阳之缚降低魔抗"
+    },
+    {
+      "level": 25,
+      "left": "查克拉魔法施加强驱散",
+      "right": "+{s:bonus_total_damage} 冲击波伤害"
+    }
+  ],
+  "wisp": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_duration}秒 过载持续时间",
+      "right": "+{s:value} 力量"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_movespeed}% 羁绊移动速度",
+      "right": "+{s:bonus_hero_damage} 幽魂对英雄伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_hp_regen}% 过载最大生命值恢复",
+      "right": "-{s:bonus_AbilityCooldown}秒 降临冷却"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_cast_delay}秒 降临施法延迟",
+      "right": "攻击羁绊友军的目标（{s:bonus_tether_attack_damage_pct}%伤害）"
+    }
+  ],
+  "visage": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 灵魂超度冷却",
+      "right": "+{s:bonus_familiar_attack_damage} 维萨吉和佣兽基础攻击力"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_chill_duration}秒 黄泉颤抖持续时间",
+      "right": "灵魂超度攻击{s:bonus_target_count}个目标"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_soul_charge_damage} 灵魂超度每点灵魂伤害",
+      "right": "+{s:bonus_armor_reduction_per_hit} 维萨吉和佣兽削弱护甲"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_recovery_time}秒 陵卫斗篷恢复时间",
+      "right": "+{s:bonus_familiar_count} 佣兽"
+    }
+  ],
+  "slark": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 黑暗契约冷却",
+      "right": "+{s:bonus_leash_duration}秒 突袭束缚"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_total_damage} 黑暗契约伤害",
+      "right": "+{s:bonus_bonus_regen} 暗影之舞生命恢复"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 能量转移持续时间",
+      "right": "+{s:bonus_attack_speed} 暗影之舞攻击速度"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 暗影之舞持续时间",
+      "right": "+{s:bonus_agi_gain} 能量转移敏捷获取/失去"
+    }
+  ],
+  "medusa": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_radius}% 罗网箭阵范围",
+      "right": "+{s:bonus_bonus_physical_damage}% 石化凝视额外物理伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_volley_count} 罗网箭阵",
+      "right": "-{s:bonus_AbilityCooldown}秒 秘术异蛇冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_snake_damage}% 秘术异蛇伤害/魔法获取",
+      "right": "+{s:bonus_damage_modifier}% 分裂箭伤害输出"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_duration}秒 石化凝视持续时间",
+      "right": "+{s:value} 智力"
+    }
+  ],
+  "troll_warlord": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_axe_slow_duration}秒 旋风飞斧负面效果",
+      "right": "+{s:bonus_bonus_move_speed} 狂战士之怒移速"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_attack_speed} 热血战魂每层攻速",
+      "right": "+{s:bonus_trance_duration}秒 战斗专注持续时间"
+    },
+    {
+      "level": 20,
+      "left": "友军获得战斗专注攻击速度",
+      "right": "+{s:bonus_axe_damage} 旋风飞斧伤害"
+    },
+    {
+      "level": 25,
+      "left": "旋风飞斧无视减益免疫",
+      "right": "战斗专注带强驱散"
+    }
+  ],
+  "centaur": [
+    {
+      "level": 10,
+      "left": "+{s:value} 生命恢复",
+      "right": "+{s:value} 移动速度"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 力量",
+      "right": "+{s:bonus_strength_damage}% 双刃剑力量伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_return_damage} 反伤伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 奔袭冲撞冷却"
+    },
+    {
+      "level": 25,
+      "left": "反伤变成光环",
+      "right": "+1.0秒 马蹄践踏眩晕"
+    }
+  ],
+  "magnataur": [
+    {
+      "level": 10,
+      "left": "+{s:value} 魔法恢复",
+      "right": "+{s:bonus_slow_duration}秒 巨角冲撞减速"
+    },
+    {
+      "level": 15,
+      "left": "两极反转每击中一名英雄+14 全属性",
+      "right": "-{s:bonus_AbilityCooldown}秒 巨角冲撞冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_shock_damage} 震荡波伤害",
+      "right": "+{s:bonus_damage_distance_pct}% 巨角冲撞行进距离伤害"
+    },
+    {
+      "level": 25,
+      "left": "震荡波回归马格纳斯",
+      "right": "+{s:bonus_hero_stun_duration}秒 两极反转眩晕"
+    }
+  ],
+  "shredder": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_bonus_hp_regen} 活性护甲生命恢复",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_stat_loss_pct}% 死亡旋风属性损失",
+      "right": "+{s:bonus_stack_limit}/+{s:bonus_stacks_per_hero_attack} 活性护甲最大/英雄攻击叠加"
+    },
+    {
+      "level": 20,
+      "left": "暴露疗法每摧毁一棵树木回复12点生命",
+      "right": "+6% 锯齿飞轮减速"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_tree_damage_scale} 死亡旋风树倒额外伤害",
+      "right": "+{s:bonus_AbilityCastRange}% 伐木锯链距离/发射速度"
+    }
+  ],
+  "bristleback": [
+    {
+      "level": 10,
+      "left": "+{s:value} 攻击速度",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_AbilityCastRange} 粘稠鼻液施法距离",
+      "right": "+{s:bonus_back_damage_reduction}/{s:bonus_side_damage_reduction}% 钢毛后背背面/侧面减伤"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 生命恢复",
+      "right": "+{s:bonus_quill_stack_damage} 刺针叠加伤害"
+    },
+    {
+      "level": 25,
+      "left": "-30 钢毛后背伤害临界值",
+      "right": "+{s:bonus_damage_per_stack} 战意叠加攻击力"
+    }
+  ],
+  "tusk": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_debuff_duration}秒 摔角行家持续时间",
+      "right": "+{s:bonus_air_time}秒 海象神拳！眩晕"
+    },
+    {
+      "level": 15,
+      "left": "+{s:value} 生命",
+      "right": "+{s:bonus_snowball_damage} 雪球伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 雪球冷却",
+      "right": "+{s:bonus_crit_multiplier}% 海象神拳！暴击"
+    },
+    {
+      "level": 25,
+      "left": "寒冰碎片减速{s:bonus_aghs_shard_move_slow}%并造成{s:bonus_aghs_shard_damage}每秒伤害",
+      "right": "普攻有{s:bonus_proc_chance}%几率触发海象神拳！"
+    }
+  ],
+  "skywrath_mage": [
+    {
+      "level": 10,
+      "left": "+{s:value} 魔法恢复",
+      "right": "+{s:bonus_AbilityCastRange} 奥法鹰隼施法距离"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 上古封印冷却",
+      "right": "+{s:bonus_movement_speed_pct}% 震荡光弹减速"
+    },
+    {
+      "level": 20,
+      "left": "全屏震荡光弹",
+      "right": "+{s:bonus_resist_debuff}% 上古封印加深魔法伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_int_multiplier} 奥法鹰隼智力系数",
+      "right": "+{s:bonus_damage} 神秘之耀伤害"
+    }
+  ],
+  "abaddon": [
+    {
+      "level": 10,
+      "left": "+30 魔霭诅咒每秒伤害",
+      "right": "无光之盾提供+{s:bonus_regen} 生命恢复"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 回光返照冷却",
+      "right": "+{s:bonus_damage_heal} 迷雾缠绕伤害/治疗"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_absorb} 无光之盾护盾数值",
+      "right": "{s:bonus_immolate_damage} 回光返照献祭每秒伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_curse_attack_speed} 魔霭诅咒攻速加成",
+      "right": "{s:bonus_effect_radius} 范围型迷雾缠绕"
+    }
+  ],
+  "elder_titan": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_move_pct_heroes}% 灵体游魂触碰英雄移速",
+      "right": "+{s:bonus_wake_damage_limit} 回音重踏唤醒伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_stomp_damage} 回音重踏伤害",
+      "right": "{s:bonus_attack_speed_from_movespeed}%移速加成转为攻速"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_heroes} 灵体游魂触碰英雄攻击力",
+      "right": "+{s:bonus_radius} 自然秩序范围"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 裂地沟壑冷却",
+      "right": "+{s:value}% 分裂"
+    }
+  ],
+  "legion_commander": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 压倒性优势冷却",
+      "right": "+{s:bonus_armor} 迎难而上！护甲"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_hp_regen} 强攻生命恢复",
+      "right": "+{s:bonus_damage_per_hero} 压倒性优势英雄提供伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 决斗持续时间",
+      "right": "-{s:bonus_trigger_attacks} 勇气之霎触发需攻击次数"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_hp_leech_percent}% 勇气之霎吸血",
+      "right": "决斗获胜时刷新冷却"
+    }
+  ],
+  "techies": [
+    {
+      "level": 10,
+      "left": "+{s:value}% 魔法抗性",
+      "right": "-{s:bonus_AbilityChargeRestoreTime}秒 感应地雷充能"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage} 爆破起飞！伤害",
+      "right": "+{s:bonus_duration}% 活性电击加成/缴械时间"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage} 粘性炸弹伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 爆破起飞！冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:value} 攻击力",
+      "right": "-{s:bonus_activation_delay}秒 感应地雷启动延迟"
+    }
+  ],
+  "ember_spirit": [
+    {
+      "level": 10,
+      "left": "+{s:value} 攻击力",
+      "right": "+{s:bonus_absorb_amount} 烈火罩护盾数值"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_per_second}% 烈火罩每秒伤害",
+      "right": "+{s:bonus_duration}秒 炎阳索持续时间"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bonus_hero_damage} 无影拳对英雄伤害",
+      "right": "+{s:bonus_damage_per_second} 炎阳索伤害"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_AbilityCharges} 无影拳能量点数",
+      "right": "-{s:bonus_AbilityChargeRestoreTime}秒 残焰充能"
+    }
+  ],
+  "earth_spirit": [
+    {
+      "level": 10,
+      "left": "-{s:bonus_AbilityCooldown}秒 巨石冲击冷却",
+      "right": "+{s:bonus_distance} 巨石翻滚距离"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_stun_duration}秒 巨石翻滚眩晕",
+      "right": "+{s:bonus_rock_damage} 巨石冲击伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage_duration}% 磁化伤害/持续时间",
+      "right": "+{s:bonus_damage_str}% 巨石翻滚力量值伤害"
+    },
+    {
+      "level": 25,
+      "left": "大地之灵磁化自身",
+      "right": "+{s:bonus_rock_damage} 地磁之握残岩伤害"
+    }
+  ],
+  "abyssal_underlord": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_bonus_ms}% 侵略大军移速加成/承伤降低",
+      "right": "+{s:bonus_bonus_damage_duration}秒 衰退光环持续时间"
+    },
+    {
+      "level": 15,
+      "left": "怨念深渊造成{s:bonus_speed_bonus}%减速",
+      "right": "-{s:bonus_AbilityCooldown}秒 火焰风暴冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_burn_damage}% 火焰风暴烧灼伤害",
+      "right": "+{s:bonus_damage_reduction_pct}% 衰退光环降低/获得攻击力"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_ensnare_duration}秒 怨念深渊缠绕",
+      "right": "恶魔之扉对{s:bonus_radius}范围内造成每秒{s:bonus_dps}伤害"
+    }
+  ],
+  "terrorblade": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_illusion_duration}秒 倒影持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 惑幻冷却"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 魔化冷却",
+      "right": "-{s:bonus_hit_point_minimum_pct}% 魂断后最低生命值"
+    },
+    {
+      "level": 20,
+      "left": "+{s:value} 全属性",
+      "right": "+{s:bonus_illusion_duration}秒 惑幻持续时间"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 魂断冷却",
+      "right": "+{s:bonus_duration}秒 魔化持续时间"
+    }
+  ],
+  "phoenix": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_slow_movement_speed_pct}% 凤凰冲击减速",
+      "right": "+{s:bonus_damage_pct}% 消逝之光缺失生命值伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_per_second} 烈火精灵每秒伤害",
+      "right": "+{s:value} 生命恢复"
+    },
+    {
+      "level": 20,
+      "left": "+1.25% 烈日炙烤最大生命值伤害",
+      "right": "+{s:bonus_stun_duration}秒 超新星眩晕"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_max_hero_attacks} 超新星可被攻击次数",
+      "right": "+{s:bonus_dash_length} 凤凰冲击施法距离"
+    }
+  ],
+  "oracle": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_maximum_purge_duration}秒 气运之末持续时间",
+      "right": "+{s:bonus_bonus_armor} 虚妄之诺护甲"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_radius} 气运之末作用范围",
+      "right": "+{s:bonus_damage_modifier}% 涤罪之焰对敌人伤害"
+    },
+    {
+      "level": 20,
+      "left": "-{s:bonus_AbilityCooldown}秒 虚妄之诺冷却",
+      "right": "-{s:bonus_AbilityCooldown}秒 涤罪之焰冷却"
+    },
+    {
+      "level": 25,
+      "left": "气运之末持续驱散",
+      "right": "+{s:bonus_duration}秒 虚妄之诺持续时间"
+    }
+  ],
+  "winter_wyvern": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_heal_additive} 极寒之拥每秒基础治疗",
+      "right": "+30 攻击力"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_damage_duration}秒 严寒烧灼负面效果",
+      "right": "+{s:bonus_split_radius} 碎裂冲击碎裂范围"
+    },
+    {
+      "level": 20,
+      "left": "+10% 严寒烧灼减速",
+      "right": "+{s:bonus_damage} 碎裂冲击伤害"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_bonus_attack_speed} 寒冬诅咒攻击速度 ",
+      "right": "碎裂冲击造成{s:bonus_stun_duration}秒眩晕"
+    }
+  ],
+  "arc_warden": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCastRange} 乱流施法距离",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_move_speed_slow_pct}% 乱流减速",
+      "right": "+{s:bonus_attack_speed_bonus} 磁场攻击速度"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 闪光幽魂持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 磁场冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_all_attribute_bonus_per_stack} 神符灌注全属性",
+      "right": "+{s:bonus_spark_damage_base} 闪光幽魂伤害"
+    }
+  ],
+  "monkey_king": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_ground_jump_distance} 丛林之舞施法距离",
+      "right": "+{s:bonus_stun_duration}秒 棒击大地眩晕"
+    },
+    {
+      "level": 15,
+      "left": "乾坤之跃无冷却",
+      "right": "+{s:bonus_bonus_damage} 如意棒法攻击力"
+    },
+    {
+      "level": 20,
+      "left": "如意棒法不可驱散",
+      "right": "+{s:bonus_strike_crit_mult}% 棒击大地暴击伤害"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_required_hits} 如意棒法需攻击次数",
+      "right": "猴子猴孙额外圆阵"
+    }
+  ],
+  "dark_willow": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_roaming_duration}秒 作祟持续时间",
+      "right": "+{s:value} 智力"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_attack_damage} 作祟伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 恐吓冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 暗影之境持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 荆棘迷宫冷却"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_target_count} 作祟攻击目标",
+      "right": "{s:bonus_impact_damage} 恐吓击中伤害"
+    }
+  ],
+  "pangolier": [
+    {
+      "level": 10,
+      "left": "+2 幸运一击护甲降低",
+      "right": "+{s:bonus_range} 虚张声势刺击距离"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 虚张声势冷却",
+      "right": "+{s:bonus_hero_shield} 甲盾冲击护盾"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 地雷滚滚持续时间",
+      "right": "-{s:bonus_AbilityCooldown}秒 甲盾冲击冷却"
+    },
+    {
+      "level": 25,
+      "left": "虚张声势+{s:bonus_attack_damage}% 攻击伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 地雷滚滚冷却"
+    }
+  ],
+  "grimstroke": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_per_second} 戾影每秒伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 墨涌冷却"
+    },
+    {
+      "level": 15,
+      "left": "缚魂下技能伤害+{s:bonus_bonus_reflected_spell_damage}%",
+      "right": "+{s:bonus_movespeed_bonus_pct}% 墨涌移动速度"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage}% 绝笔伤害",
+      "right": "+2 戾影可攻击次数"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_radius} 墨涌范围",
+      "right": "+{s:bonus_AbilityCastRange}% 绝笔速度和距离"
+    }
+  ],
+  "hoodwink": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_total_damage} 野地奇袭伤害",
+      "right": "+{s:value} 生命"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_AbilityCharges} 密林奔走能量点数",
+      "right": "+{s:value} 敏捷"
+    },
+    {
+      "level": 20,
+      "left": "一箭穿心蓄力期间提供视野",
+      "right": "+{s:bonus_bounce_count} 爆栗出击弹射"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_max_damage} 一箭穿心最大伤害",
+      "right": "{s:bonus_AbilityCharges} 爆栗出击能量点数"
+    }
+  ],
+  "void_spirit": [
+    {
+      "level": 10,
+      "left": "+{s:value} 魔法恢复",
+      "right": "+{s:bonus_damage} 共鸣脉冲伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_base_absorb_amount}% 共鸣脉冲护盾",
+      "right": "+{s:bonus_impact_damage} 残阴伤害"
+    },
+    {
+      "level": 20,
+      "left": "异化增加部分外圈",
+      "right": "-{s:bonus_AbilityChargeRestoreTime}秒 太虚之径充能"
+    },
+    {
+      "level": 25,
+      "left": "{s:bonus_crit_damage}% 太虚之径暴击",
+      "right": "异化造成{s:bonus_root_duration}秒缠绕"
+    }
+  ],
+  "snapfire": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage} 电光石火伤害",
+      "right": "+{s:bonus_burn_damage} 蜥蜴绝吻烧灼每秒伤害"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_buffed_attacks} 霹雳铁手攻击次数",
+      "right": "-3秒 龙炎饼干冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_extra_targets} 霹雳铁手目标",
+      "right": "{s:bonus_AbilityCharges} 龙炎饼干能量点数"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_damage_pct}% 霹雳铁手攻击伤害",
+      "right": "+{s:bonus_projectile_count} 蜥蜴绝吻喷吐"
+    }
+  ],
+  "mars": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_radius} 神之谴戒距离",
+      "right": "+{s:value} 魔法恢复"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 神之谴戒冷却",
+      "right": "+{s:bonus_damage} 战神迅矛伤害"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_spear_damage} 热血竞技场战矛伤害",
+      "right": "+{s:bonus_stun_duration}秒 战神迅矛眩晕"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_crit_mult}% 神之谴戒致命一击",
+      "right": "热血竞技场+{s:bonus_health_regen} 生命恢复"
+    }
+  ],
+  "ringmaster": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCharges} 尖刀戏能量点数",
+      "right": "+{s:bonus_start_width} 驯兽术作用范围"
+    },
+    {
+      "level": 15,
+      "left": "尖刀戏会穿过一个目标",
+      "right": "驯兽术持续施法时减益免疫"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_bleed_duration}秒 尖刀戏流血和减速时间",
+      "right": "+{s:bonus_damage_min}/+{s:bonus_damage_max} 驯兽术最低/最高伤害"
+    },
+    {
+      "level": 25,
+      "left": "+150 奇观轮范围和距离",
+      "right": "逃生技提供强驱散和飞行状态"
+    }
+  ],
+  "dawnbreaker": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_bonus_damage}% 熠熠生辉暴击伤害",
+      "right": "上界重锤路径向友军提供移速加成"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_hammer_damage}% 上界重锤路径/战锤伤害",
+      "right": "-{s:bonus_AbilityCooldown}秒 天光现世冷却"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_radius} 天光现世范围",
+      "right": "-{s:bonus_attack_count} 熠熠生辉所需攻击次数"
+    },
+    {
+      "level": 25,
+      "left": "-{s:bonus_AbilityCooldown}秒 星破天惊冷却",
+      "right": "+{s:bonus_range}% 上界重锤距离/速度"
+    }
+  ],
+  "marci": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_debuff_duration}秒 过肩摔减速",
+      "right": "+{s:bonus_landing_radius} 回身踢落地范围"
+    },
+    {
+      "level": 15,
+      "left": "+115 过肩摔伤害",
+      "right": "+{s:bonus_bonus_damage}% 护卫术攻击力"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_debuff_duration}秒 回身踢眩晕",
+      "right": "+{s:bonus_bonus_movespeed}% 怒拳破移动速度"
+    },
+    {
+      "level": 25,
+      "left": "怒拳破击杀后延长{s:bonus_extend_duration}秒",
+      "right": "护卫术强驱散"
+    }
+  ],
+  "primal_beast": [
+    {
+      "level": 10,
+      "left": "+{s:value} 攻击力",
+      "right": "踏期间+{s:bonus_bonus_magic_resistance}% 魔法抗性"
+    },
+    {
+      "level": 15,
+      "left": "-{s:bonus_AbilityCooldown}秒 踏冷却",
+      "right": "+{s:bonus_roared_bonus_armor} 咤每层叠加护甲"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_attack_damage}% 踏攻击力系数",
+      "right": "施放咤时弱驱散自身"
+    },
+    {
+      "level": 25,
+      "left": "踏期间庞为{s:bonus_trample_bonus}倍加成",
+      "right": "+{s:bonus_channel_time}% 捶持续时间"
+    }
+  ],
+  "muerta": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_AbilityCastRange} 弹无虚发施法距离",
+      "right": "+{s:value} 攻击速度"
+    },
+    {
+      "level": 15,
+      "left": "唤魂内+{s:bonus_hp_regen_pct}% 最大生命值恢复",
+      "right": "+{s:value} 智力"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_duration}秒 越界持续时间",
+      "right": "唤魂额外召唤{s:bonus_num_revenants}个亡魂"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_double_shot_chance}% 神枪在手几率",
+      "right": "{s:bonus_AbilityCharges} 弹无虚发能量点数"
+    }
+  ],
+  "kez": [
+    {
+      "level": 10,
+      "left": "+6% 流派变换切换加成",
+      "right": "+{s:bonus_radius} 猛禽之舞范围"
+    },
+    {
+      "level": 15,
+      "left": "+{s:bonus_duration}秒 天隼冲击持续时间",
+      "right": "+{s:bonus_strikes} 猛禽之舞斩击"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_katana_bleed_attack_damage_pct}% 影武长刀每秒伤害",
+      "right": "{s:bonus_bonus_attack_speed} 天隼冲击期间额外攻击速度"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_base_crit_pct}% 翔影之钗致命一击",
+      "right": "+{s:bonus_katana_strikes} 回音重斩攻击"
+    }
+  ],
+  "largo": [
+    {
+      "level": 10,
+      "left": "+{s:bonus_damage_per_stomp} 蛙力千钧伤害",
+      "right": "{s:bonus_dispel_hp_regen}倍 动人之舐生命恢复"
+    },
+    {
+      "level": 15,
+      "left": "{s:bonus_damage_hp_pct}% 灵呱一闪每秒最大生命值伤害",
+      "right": "+{s:bonus_AbilityCastRange} 动人之舐施法距离 / +{s:bonus_pull_distance} 拉回距离"
+    },
+    {
+      "level": 20,
+      "left": "+{s:bonus_damage} 动人之舐伤害",
+      "right": "{s:bonus_armor_ally_pct}% 律动护甲光环"
+    },
+    {
+      "level": 25,
+      "left": "+{s:bonus_heal_burst}% 两栖狂想曲乐曲效果",
+      "right": "2 动人之舐能量点数"
+    }
+  ]
+}

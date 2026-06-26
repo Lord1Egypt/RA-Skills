@@ -1,0 +1,7 @@
+{
+  "name": "deepseek-quick-config",
+  "version": "1.0.0",
+  "description": "5-minute DeepSeek V3 configuration for OpenClaw",
+  "keywords": ["deepseek", "openclaw", "chinese", "ai", "config"],
+  "author": "OpenClaw CN Team"
+}

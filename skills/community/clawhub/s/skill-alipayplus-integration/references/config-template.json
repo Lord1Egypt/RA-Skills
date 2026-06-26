@@ -1,0 +1,74 @@
+{
+  "alipayplus": {
+    "environment": "sandbox",
+    "role": "ACQP",
+    "partnerId": "YOUR_PARTNER_ID",
+    "clientId": "YOUR_CLIENT_ID",
+    "credentials": {
+      "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END RSA PRIVATE KEY-----",
+      "alipayPlusPublicKey": "-----BEGIN PUBLIC KEY-----\nALIPAY_PLUS_PUBLIC_KEY_HERE\n-----END PUBLIC KEY-----"
+    },
+    "endpoints": {
+      "baseUrl": "https://open-sea-global.alipayplus.com",
+      "acqp": {
+        "payments": {
+          "pay": "/aps/api/v1/payments/pay",
+          "inquiryPayment": "/aps/api/v1/payments/inquiryPayment",
+          "cancelPayment": "/aps/api/v1/payments/cancelPayment",
+          "refund": "/aps/api/v1/payments/refund"
+        },
+        "merchants": {
+          "registration": "/aps/api/v1/merchants/registration",
+          "inquiryRegistrationStatus": "/aps/api/v1/merchants/inquiryRegistrationStatus"
+        },
+        "disputes": {
+          "responseRetrieval": "/aps/api/v1/disputes/responseRetrieval",
+          "responseEscalation": "/aps/api/v1/disputes/responseEscalation"
+        }
+      },
+      "mpp": {
+        "payments": {
+          "notifyPayment": "/aps/api/v1/payments/notifyPayment",
+          "userInitiatedPay": "/aps/api/v1/payments/userInitiatedPay"
+        },
+        "codes": {
+          "getPaymentCode": "/aps/api/v1/codes/getPaymentCode"
+        },
+      }
+    },
+    "webhooks": {
+      "acqp": {
+        "notifyPayment": "/alipayplus/acqp/notifyPayment",
+        "notifyRegistrationStatus": "/alipayplus/acqp/notifyRegistrationStatus",
+        "initiateRetrieval": "/alipayplus/acqp/initiateRetrieval",
+        "initiateEscalation": "/alipayplus/acqp/initiateEscalation"
+      },
+      "verifySignature": true
+    },
+    "mppEndpoints": {
+      "partnerBaseUrl": "YOUR_BASE_URL",
+      "apis":{
+        "pay": "/alipayplus/mpp/pay",
+        "inquiryPayment": "/alipayplus/mpp/inquiryPayment",
+        "cancelPayment": "/alipayplus/mpp/cancelPayment",
+        "refund": "/alipayplus/mpp/refund",
+        "applyToken": "/alipayplus/mpp/applyToken"        
+      },
+      "verifySignature": true
+    },
+    "signConfig": {
+      "signType": "RSA2",
+      "signAlgorithm": "SHA256withRSA",
+      "charset": "UTF-8",
+      "format": "JSON",
+      "version": "1.0",
+      "signatureFormat": "Base64Url",
+      "keyLength": 2048
+    },
+    "business": {
+      "currency": "USD",
+      "timeout": 30000,
+      "retryTimes": 3
+    }
+  }
+}

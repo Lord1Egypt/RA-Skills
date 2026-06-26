@@ -1,0 +1,3 @@
+name: textin-parse
+version: "1.0.0"
+description: Textin 文档解析 API 封装

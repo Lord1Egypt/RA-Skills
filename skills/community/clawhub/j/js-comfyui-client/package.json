@@ -1,0 +1,16 @@
+{
+  "name": "js-comfyui-skill",
+  "version": "1.2.0",
+  "private": true,
+  "description": "ComfyUI 工作流客户端技能：加载工作流、改 prompt、提交任务并下载产物",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "comfyui": "node scripts/comfyUIClient.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

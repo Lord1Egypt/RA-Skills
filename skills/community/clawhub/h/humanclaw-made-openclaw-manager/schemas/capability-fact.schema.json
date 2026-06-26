@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CapabilityFact",
+  "type": "object",
+  "required": ["fact_id", "session_id", "scenario_signature", "confidence", "sample_size", "timestamp"],
+  "properties": {
+    "fact_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "scenario_signature": { "type": "string" },
+    "skill_name": { "type": ["string", "null"] },
+    "workflow_name": { "type": ["string", "null"] },
+    "metrics": { "type": "object" },
+    "confidence": { "type": "number" },
+    "sample_size": { "type": "number" },
+    "timestamp": { "type": "string" }
+  }
+}

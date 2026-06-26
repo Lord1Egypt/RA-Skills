@@ -1,0 +1,13 @@
+{
+  "headers": [],
+  "rewrites": [
+    {
+      "source": "/api/pricing",
+      "destination": "https://api.asgcard.dev/pricing"
+    },
+    {
+      "source": "/api/health",
+      "destination": "https://api.asgcard.dev/health"
+    }
+  ]
+}

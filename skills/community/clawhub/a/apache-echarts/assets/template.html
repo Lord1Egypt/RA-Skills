@@ -1,0 +1,94 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding: 24px; background: #f0f2f5; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .chart-title { text-align: center; font-size: 22px; font-weight: 600; color: #1f2329; margin-bottom: 16px; }
+    #chart { width: 100%; height: {{HEIGHT}}; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      padding: 10px 20px; background: rgba(30,35,41,0.9); color: #fff;
+      border-radius: 8px; font-size: 14px; pointer-events: none;
+      opacity: 0; transition: opacity 0.3s; z-index: 9999;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="chart-title">{{TITLE}}</div>
+    <div id="chart"></div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+    var chartDom = document.getElementById('chart');
+    var rendererType = (window.__ECHARTS_RENDERER__ || 'canvas');
+    var chart = echarts.init(chartDom, null, { renderer: rendererType });
+
+    // Merge toolbox.saveAsImage into user option (avoid overwriting user config)
+    var userOption = {{OPTION}};
+    var option = (function() {
+      // If user option already has toolbox, append saveAsImage instead of overwriting
+      if (userOption.toolbox) {
+        userOption.toolbox.feature = Object.assign(
+          {},
+          userOption.toolbox.feature,
+          {
+            saveAsImage: Object.assign(
+              { type: 'png', pixelRatio: 2, name: document.title || 'chart' },
+              userOption.toolbox.feature ? userOption.toolbox.feature.saveAsImage : {}
+            )
+          }
+        );
+        return userOption;
+      }
+      // Default append toolbox.saveAsImage
+      return Object.assign({}, userOption, {
+        toolbox: {
+          right: 20,
+          top: 0,
+          feature: {
+            saveAsImage: {
+              type: 'png',
+              pixelRatio: 2,
+              name: document.title || 'chart',
+              title: 'Export PNG Image',
+              icon: 'path://M12 2H5a2 2 0 0 0-2 2v3h2V4h7v3h2V4a2 2 0 0 0-2-2zM5 20v-3h2v3H5zm12 0h-7v-3h7v3zm0-6h-2v-3h2v3zm0-6H5v-3h12v3z'
+            }
+          }
+        }
+      });
+    })();
+
+    chart.setOption(option);
+    window.addEventListener('resize', function() { chart.resize(); });
+
+    // Listen for saveAsImage completion event, show toast notification
+    chart.on('download', function() {
+      showToast('PNG image saved');
+    });
+
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 2000);
+    }
+
+    // window API for console invocation
+    window.__echarts_export__ = {
+      getPngUrl: function(pixelRatio) {
+        return chart.getDataURL({ type: 'png', pixelRatio: pixelRatio || 2, backgroundColor: '#fff' });
+      },
+      resize: function() { chart.resize(); }
+    };
+  </script>
+</body>
+</html>
+```

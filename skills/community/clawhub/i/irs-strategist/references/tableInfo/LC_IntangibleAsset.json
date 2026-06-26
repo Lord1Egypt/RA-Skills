@@ -1,0 +1,143 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "CompanyCode",
+        "columnChiName": "公司代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(50)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.94"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "SN",
+        "columnChiName": "序号",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Type",
+        "columnChiName": "无形资产类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "无形资产类别(Type)与(CT_SystemConst)表中的DM字段关联，令LB = 1233，得到无形资产类别的具体描述：1-商标，2-土地使用权，3-非专利技术，4-专利技术，5-特许经营权。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Name",
+        "columnChiName": "无形资产名称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.82"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Ownership",
+        "columnChiName": "所有权归属",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "所有权归属(Ownership)与(CT_SystemConst)表中的DM字段关联，令LB = 1229，得到所有权归属的具体描述：1-上市公司，2-控股股东，3-非控股股东，4-间接股东，5-其它单位。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "AcquiringOrUsingWays",
+        "columnChiName": "取得或使用方式",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "取得或使用方式(AcquiringOrUsingWays)与(CT_SystemConst)表中的DM字段关联，令LB = 1248，得到取得或使用方式的具体描述：1-独立拥有，2-无偿使用，3-有偿使用，4-无偿转让，5-有偿受让，6-有偿租赁，7-外部引进。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Statements",
+        "columnChiName": "项目具体说明",
+        "columnType": "text",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "10.33"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "XGRQ",
+        "columnChiName": "修改日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,0 +1,23 @@
+{
+  "name": "openclaw-security-handbook-cn",
+  "version": "1.0.0",
+  "description": "OpenClaw security audit and hardening tool based on ZAST.AI Security Handbook (Chinese)",
+  "keywords": [
+    "openclaw",
+    "security",
+    "audit",
+    "hardening",
+    "vulnerability"
+  ],
+  "author": "ruijh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zast-ai/openclaw-security"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "references/"
+  ]
+}

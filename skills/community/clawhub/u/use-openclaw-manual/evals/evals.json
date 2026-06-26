@@ -1,0 +1,54 @@
+{
+  "skill_name": "use-openclaw-manual",
+  "evals": [
+    {
+      "id": 1,
+      "name": "discord-notification-config",
+      "prompt": "我想配置 Discord 通知",
+      "expected_keywords": ["discord", "notification", "channel"],
+      "expected_docs": ["channels/discord.md", "automation/notifications.md"]
+    },
+    {
+      "id": 2,
+      "name": "cron-schedule",
+      "prompt": "设置每天早上 9 点的任务",
+      "expected_keywords": ["cron", "schedule", "every"],
+      "expected_docs": ["automation/cron.md"]
+    },
+    {
+      "id": 3,
+      "name": "gateway-config",
+      "prompt": "修改 gateway 端口",
+      "expected_keywords": ["gateway", "config", "port"],
+      "expected_docs": ["gateway/"]
+    },
+    {
+      "id": 4,
+      "name": "memory-usage",
+      "prompt": "MEMORY.md 怎么用",
+      "expected_keywords": ["memory", "MEMORY.md"],
+      "expected_docs": ["concepts/memory.md"]
+    },
+    {
+      "id": 5,
+      "name": "subagent-tool",
+      "prompt": "subagent 能用什么工具",
+      "expected_keywords": ["subagent", "tool"],
+      "expected_docs": ["tools/subagents.md"]
+    },
+    {
+      "id": 6,
+      "name": "telegram-bot",
+      "prompt": "配置 Telegram Bot",
+      "expected_keywords": ["telegram", "bot"],
+      "expected_docs": ["channels/telegram.md"]
+    },
+    {
+      "id": 7,
+      "name": "docs-sync",
+      "prompt": "文档怎么同步更新",
+      "expected_keywords": ["sync", "update"],
+      "expected_docs": ["scripts.md", "troubleshooting.md"]
+    }
+  ]
+}

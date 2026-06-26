@@ -1,0 +1,8 @@
+{
+  "name": "shopping-advisor",
+  "title": "Shopping Advisor / 购物军师",
+  "version": "1.0.0",
+  "summary": "不是告诉你商品是什么，而是告诉你这单怎么买更值。",
+  "category": "shopping",
+  "entry": "SKILL.md"
+}

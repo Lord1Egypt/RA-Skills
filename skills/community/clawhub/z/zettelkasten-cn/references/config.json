@@ -1,0 +1,119 @@
+{
+  "name": "zettelkasten",
+  "version": "1.0.0",
+  "description": "卢曼卡片学习法管理系统",
+  "commands": {
+    "create": {
+      "description": "创建新笔记",
+      "usage": "python scripts/card_manager.py create <type> <title> [options]",
+      "examples": [
+        "python scripts/card_manager.py create fleeting '闪念想法' --content '详细内容'",
+        "python scripts/card_manager.py create permanent '时间管理' --tags '效率,方法'",
+        "python scripts/card_manager.py create literature '深度工作' --source_type book"
+      ]
+    },
+    "list": {
+      "description": "列出笔记",
+      "usage": "python scripts/card_manager.py list [options]",
+      "examples": [
+        "python scripts/card_manager.py list --limit 10",
+        "python scripts/card_manager.py list --type permanent"
+      ]
+    },
+    "search": {
+      "description": "搜索笔记",
+      "usage": "python scripts/card_manager.py search <query> [options]",
+      "examples": [
+        "python scripts/card_manager.py search '时间管理'",
+        "python scripts/card_manager.py search 'OKR' --type zettel"
+      ]
+    },
+    "read": {
+      "description": "读取笔记内容",
+      "usage": "python scripts/card_manager.py read <id>",
+      "examples": [
+        "python scripts/card_manager.py read 20260301-0001"
+      ]
+    },
+    "update": {
+      "description": "更新笔记",
+      "usage": "python scripts/card_manager.py update <id> [options]",
+      "examples": [
+        "python scripts/card_manager.py update 20260301-0001 --content '新内容'"
+      ]
+    },
+    "delete": {
+      "description": "删除笔记（移至回收站）",
+      "usage": "python scripts/card_manager.py delete <id>",
+      "examples": [
+        "python scripts/card_manager.py delete 20260301-0001"
+      ]
+    },
+    "link": {
+      "description": "链接两个笔记",
+      "usage": "python scripts/card_manager.py link <from_id> <to_id> [options]",
+      "examples": [
+        "python scripts/card_manager.py link 20260301-0001 20260301-0002",
+        "python scripts/card_manager.py link 20260301-0001 20260301-0002 --type supports"
+      ]
+    },
+    "memory": {
+      "description": "管理记忆关联",
+      "subcommands": {
+        "add": {
+          "usage": "python scripts/card_manager.py memory add <note_id> <date> [options]",
+          "examples": [
+            "python scripts/card_manager.py memory add 20260301-0001 2026-03-01",
+            "python scripts/card_manager.py memory add 20260301-0001 2026-03-01 --context '讨论产生'"
+          ]
+        },
+        "find": {
+          "usage": "python scripts/card_manager.py memory find <date>",
+          "examples": [
+            "python scripts/card_manager.py memory find 2026-03-01"
+          ]
+        }
+      }
+    },
+    "convert": {
+      "description": "将闪念笔记转化为永久笔记",
+      "usage": "python scripts/card_manager.py convert <id> [options]",
+      "examples": [
+        "python scripts/card_manager.py convert 20260301-0001",
+        "python scripts/card_manager.py convert 20260301-0001 --summary '核心观点'"
+      ]
+    }
+  },
+  "note_types": {
+    "fleeting": {
+      "folder": "inbox",
+      "description": "闪念笔记，临时捕获的想法",
+      "template": "fleeting.md"
+    },
+    "literature": {
+      "folder": "lit",
+      "description": "文献笔记，阅读笔记",
+      "template": "literature.md"
+    },
+    "permanent": {
+      "folder": "zettel",
+      "description": "永久笔记，原子化知识",
+      "template": "permanent.md"
+    },
+    "project": {
+      "folder": "project",
+      "description": "项目笔记",
+      "template": "project.md"
+    },
+    "map": {
+      "folder": "map",
+      "description": "索引地图（MOC）",
+      "template": "map.md"
+    }
+  },
+  "paths": {
+    "cards_dir": "~/Desktop/cardsdata",
+    "memory_dir": "~/memory",
+    "workspace_dir": "~/.openclaw/workspace"
+  }
+}

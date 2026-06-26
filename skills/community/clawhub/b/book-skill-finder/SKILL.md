@@ -1,35 +1,51 @@
 ---
-name: "Book Skill Finder"
-description: "Instantly find nonfiction books with Goodreads ratings, summaries, key concepts, and AI suggestions for enhancing your agent's knowledge files. Covers 4 use..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/book-skill-finder"
-sourceUrl: "https://clawhub.ai/skills/book-skill-finder"
+name: book-skill-finder
+description: >-
+  Instantly find nonfiction books with Goodreads ratings, summaries, key concepts, and AI suggestions for enhancing your agent's knowledge files.
+  Covers 4 use cases:
+  ① Search books — ("find books about habit formation" "search for books on productivity")
+  ② Get book details — ("tell me about Atomic Habits" "what are the key concepts in Deep Work")
+  ③ Knowledge injection — ("suggest books for my agent's knowledge base" "recommend books to enhance my AI")
+  ④ Reading recommendations — ("what should I read next" "similar books to The Lean Startup")
+  Trigger when users say: "find a book" "search books" "book recommendation" "what to read"
+  or mention: book lookup / book search / nonfiction / Goodreads / Heardly.
+version: 1.0.0
+license: MIT
+tags:
+  - books
+  - search
+  - nonfiction
+  - heardskill
 ---
 
-# Book Skill Finder
+# book-skill-finder
 
-> Instantly find nonfiction books with Goodreads ratings, summaries, key concepts, and AI suggestions for enhancing your agent's knowledge files. Covers 4 use...
+Local book search. 5904 nonfiction books, no network calls.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/book-skill-finder`
-- **Source URL:** [https://clawhub.ai/skills/book-skill-finder](https://clawhub.ai/skills/book-skill-finder)
+## What it does
 
-## Overview
-
+- Search 5904 books by title or author
+- Return book metadata: title, author, rating, summary, link
+- Generate markdown suggestions for knowledge base
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/book-skill-finder
+openclaw skills install book-skill-finder
 ```
+
+## Usage
+
+```javascript
+const FindBookSkill = require('find-book');
+const skill = new FindBookSkill();
+const result = skill.search('Atomic Habits');
+```
+
+## Data
+
+- Source: Heardly database
+- Format: Local JSON cache
+- Books: 5904 nonfiction titles
+- Network: Zero external calls
+- Cost: Free

@@ -1,0 +1,88 @@
+name: Trading_Agents_for_Futures
+version: "2.0.26"
+description: |
+  期货六维分析数据引擎。零 API Key，纯规则引擎装完即用。
+  两种模式：(1) 数据模式 → 结构化 JSON 指标；(2) 决策模式 → 多空辩论 + 风控 + CIO 决策报告。
+  API 缺失时自动标注缺口并给出 AI 搜索指令（search_actions），支持 AI Agent 回填补全。
+author: "TradingAgent Team"
+license: MIT
+homepage: ""
+repository: ""
+
+type: skill
+tags:
+  - futures
+  - trading
+  - ai-analysis
+  - rule-engine
+  - quantitative
+  - finance
+  - zero-api-key
+  - data-gap-report
+
+# 依赖
+python_version: ">=3.10"
+dependencies:
+  - akshare>=1.14.0,<2.0.0
+  - pandas>=2.0.0,<3.0.0
+  - numpy>=1.24.0,<3.0.0
+  - pyarrow>=12.0.0,<20.0.0
+  - pyyaml>=6.0
+  - requests>=2.28.0
+  - python-dotenv>=1.0.0
+
+# 环境变量（无需任何 API Key）
+env_vars: []
+
+# 安装提示
+install:
+  hint: "python setup.py  # auto-installs deps, then: python main.py -s RB"
+
+# 技能入口
+entry:
+  main: "main.py"
+  skills_dir: "skills"
+  core_dir: "core"
+  config_dir: "config"
+
+# 可用技能列表
+available_skills:
+  - name: technical_analysis
+    description: "技术面分析 - K线形态、趋势指标、动量信号"
+    entry: "skills/technical_analysis.py"
+    category: analysis
+    
+  - name: basis_analysis
+    description: "基差分析 - 现货价格与期货价格偏离度评估"
+    entry: "skills/basis_analysis.py"
+    category: analysis
+    
+  - name: term_structure_analysis
+    description: "期限结构分析 - 跨期价差、展期收益与市场结构判断"
+    entry: "skills/term_structure_analysis.py"
+    category: analysis
+    
+  - name: inventory_analysis
+    description: "库存仓单分析 - 库存周期、仓单变化与供需平衡评估"
+    entry: "skills/inventory_analysis.py"
+    category: analysis
+    
+  - name: positioning_analysis
+    description: "持仓席位分析 - 主力席位、净多净空、拥挤度与持仓结构"
+    entry: "skills/positioning_analysis.py"
+    category: analysis
+    
+  - name: news_sentiment_analysis
+    description: "新闻情绪分析 - 期货相关资讯抓取与市场情绪评分"
+    entry: "skills/news_analysis.py"
+    category: analysis
+    
+  - name: debate_risk_decision
+    description: "辩论风控决策 - 多空辩论、风控评估与综合投资决策"
+    entry: "skills/debate_risk_decision.py"
+    category: decision
+
+# 配置文件
+config:
+  default_config: "config/core.yaml"
+  user_config: "config/user.yaml"

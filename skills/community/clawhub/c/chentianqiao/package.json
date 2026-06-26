@@ -1,0 +1,25 @@
+{
+  "name": "chentianqiao",
+  "version": "1.0.0",
+  "description": "陈天桥 - 盛大创始人 · 脑科学探索者 · 中国最年轻首富",
+  "keywords": [
+    "chentianqiao",
+    "shanda",
+    "legend",
+    "neuroscience",
+    "TCCI",
+    "陈天桥",
+    "盛大",
+    "传奇",
+    "脑科学",
+    "游戏"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "people",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

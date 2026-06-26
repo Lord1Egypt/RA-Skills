@@ -1,0 +1,33 @@
+{
+  "name": "skill-vam-scripter",
+  "version": "1.0.0",
+  "description": "Virt-A-Mate Scripter v1.5.1 - JavaScript-inspired scripting language for VAM",
+  "main": "SKILL.md",
+  "skills": {
+    "vam-scripter": {
+      "path": "./",
+      "files": [
+        "SKILL.md",
+        "README.md",
+        "references/",
+        "scripts/"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "vam",
+    "scripter",
+    "viltram",
+    "scripting",
+    "automation"
+  ],
+  "author": "MisterA",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

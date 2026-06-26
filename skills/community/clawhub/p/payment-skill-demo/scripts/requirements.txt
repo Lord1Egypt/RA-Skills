@@ -1,0 +1,19 @@
+# 核心依赖（固定版本以防止供应链攻击）
+aiohttp==3.9.5
+pydantic==2.7.0
+pyyaml==6.0.1
+python-dotenv==1.0.1
+cryptography==42.0.5
+pycryptodome==3.19.1
+
+# 测试依赖
+pytest==8.2.0
+pytest-asyncio==0.23.6
+pytest-cov==5.0.0
+
+# 可选依赖
+redis==5.0.1
+
+# 安全扫描工具（可选安装）
+# safety==2.3.5
+# bandit==1.7.9

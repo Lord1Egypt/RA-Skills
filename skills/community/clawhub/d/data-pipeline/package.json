@@ -1,0 +1,19 @@
+{
+  "name": "data-pipeline",
+  "version": "0.1.0",
+  "description": "数据处理管线引擎 — 可组合的数据转换、验证和分析管线",
+  "main": "src/pipeline.js",
+  "scripts": {
+    "test": "node tests/pipeline.test.js"
+  },
+  "keywords": [
+    "pipeline",
+    "data",
+    "transform",
+    "validate",
+    "etl"
+  ],
+  "devDependencies": {
+    "mocha": "^11.7.5"
+  }
+}

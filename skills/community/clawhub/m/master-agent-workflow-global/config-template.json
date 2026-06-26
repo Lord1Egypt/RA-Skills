@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "description": "master-agent-workflow-global 配置模板",
+  "defaults": {
+    "max_workers": 5,
+    "timeout_hours": 3,
+    "worker_timeout_minutes": 30,
+    "stuck_threshold_minutes": 15,
+    "fail_threshold": 10,
+    "auto_cleanup": true,
+    "report_channel": "feishu"
+  },
+  "templates": {
+    "file_processing": {
+      "name": "文件处理",
+      "description": "批量文件处理模板",
+      "config": {
+        "max_workers": 5,
+        "worker_timeout_minutes": 45,
+        "task_type": "file",
+        "report_channel": "feishu"
+      },
+      "examples": [
+        "使用 master-agent-workflow-global execute \"处理文件\" --template file_processing"
+      ]
+    },
+    "api_calling": {
+      "name": "API调用",
+      "description": "批量API调用模板",
+      "config": {
+        "max_workers": 3,
+        "worker_timeout_minutes": 60,
+        "task_type": "api",
+        "fail_threshold": 3,
+        "report_channel": "feishu"
+      },
+      "examples": [
+        "使用 master-agent-workflow-global execute \"调用API\" --template api_calling"
+      ]
+    },
+    "data_processing": {
+      "name": "数据处理",
+      "description": "批量数据处理模板",
+      "config": {
+        "max_workers": 10,
+        "worker_timeout_minutes": 30,
+        "task_type": "data",
+        "report_channel": "console"
+      },
+      "examples": [
+        "使用 master-agent-workflow-global execute \"处理数据\" --template data_processing"
+      ]
+    }
+  },
+  "environments": {
+    "development": {
+      "max_workers": 2,
+      "timeout_hours": 1,
+      "worker_timeout_minutes": 10,
+      "fail_threshold": 10,
+      "report_channel": "console"
+    },
+    "testing": {
+      "max_workers": 1,
+      "timeout_hours": 0.5,
+      "worker_timeout_minutes": 5,
+      "fail_threshold": 0,
+      "dry_run": true
+    },
+    "production": {
+      "max_workers": 8,
+      "timeout_hours": 6,
+      "worker_timeout_minutes": 30,
+      "stuck_threshold_minutes": 30,
+      "fail_threshold": 3,
+      "report_channel": "feishu"
+    }
+  },
+  "migration": {
+    "from_version": "1.0.0",
+    "to_version": "2.0.0",
+    "changes": [
+      "添加全局安装支持",
+      "添加配置迁移功能",
+      "添加模板系统",
+      "改进跨平台兼容性"
+    ]
+  }
+}

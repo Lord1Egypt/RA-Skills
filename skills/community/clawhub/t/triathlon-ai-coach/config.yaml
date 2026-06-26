@@ -1,0 +1,34 @@
+# AI 训练教练配置文件
+
+user:
+  name: 风致五香
+  birthday: "1977-12-09"
+  
+training:
+  # 每周训练时间（小时）
+  weekly_hours: 10
+  
+  # 当前水平
+  swim_pace: "1:50"  # 每100米配速
+  cycling_ftp: 250   # FTP 瓦数
+  running_halfmarathon: "1:40:00"  # 半马成绩
+  
+  # 比赛目标
+  races:
+    - name: "金海湖游跑两项"
+      date: "2026-05-17"
+      swim_distance: 2000
+      run_distance: 10
+      type: "swim_run"
+      
+    - name: "IRONMAN 70.3 大理站"
+      date: "2026-09-13"
+      swim_distance: 1900
+      bike_distance: 90
+      run_distance: 21
+      type: "ironman"
+
+# 推送设置
+notification:
+  time: "20:00"  # 每天晚上8点推送
+  method: "weixin"

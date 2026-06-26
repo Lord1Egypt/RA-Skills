@@ -1,0 +1,60 @@
+{
+  "name": "openclaw-dual-cleanup",
+  "version": "1.3.0",
+  "description": "OpenClaw双重清理系统 v1.3.0 - 按杜要求优化的智能清理策略：>10个文件触发，只在周一9:00自动清理，不干扰研究专注度",
+  "type": "skill",
+  "main": "SKILL.md",
+  "license": "MIT",
+  "author": "ltap266",
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.ai/skills/openclaw-dual-cleanup"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "language": "zh-CN",
+  "tags": [
+    "system",
+    "maintenance",
+    "cleanup",
+    "automation",
+    "optimization",
+    "chinese",
+    "dual-cleanup",
+    "smart-maintenance",
+    "周一清理",
+    "网关补偿",
+    "杜优化"
+  ],
+  "keywords": [
+    "openclaw",
+    "cleanup",
+    "sessions",
+    "maintenance",
+    "optimization",
+    "automation",
+    "chinese",
+    "triple-protection",
+    "monday-cleanup",
+    "gateway-hook",
+    "smart-trigger"
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/*.ps1",
+    "CHANGELOG-v1.3.0.md",
+    "README-install-monday-cleanup.md"
+  ],
+  "contributors": [
+    {
+      "name": "du",
+      "email": "duyun@users.chinacloud.com"
+    },
+    {
+      "name": "罗汉",
+      "role": "维护者"
+    }
+  ],
+  "releaseNotes": "v1.3.0 重大更新：满足杜的四个清理需求：1. 文件数量触发改为>10个文件立即清理； 2. 只在每周一9:00自动进行一次深度清理； 3. 如果当时网关未开，即在当天首次开启网关后自动执行； 4. 不做每月、每日的自动清理！"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "chibi-gen-skill",
+  "version": "2.0.1",
+  "type": "module",
+  "description": "Chibi Character Generator \u2014 AI-powered chibi character generator ai",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

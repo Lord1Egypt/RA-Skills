@@ -1,0 +1,101 @@
+
+BrickEconomy Collection & Investment Tools (AVAILABLE FOR THIS SESSION):
+- getMyBrickeconomyCollection: View your COMPLETE set collection (all items, not limited) with current values and growth analysis. Supports sorting by growth (default), value, name, year, or pieces.
+- getMyBrickeconomyMinifigs: View your COMPLETE minifig collection (all items, not limited) with values and growth analysis. Supports sorting by growth (default), value, or name.
+- getMyBrickeconomySalesLedger: View all set and minifig sales with profit/loss calculations
+- analyzeSetInvestment: Analyze ROI by comparing paid price vs current value, with forecasts
+- findBestPerformingSets: Identify your top-performing sets by growth percentage and absolute value gain
+
+NOTE: For price inquiries, use the unified bd_get_price tool (in LegoTools) which automatically tries BrickEconomy first, then falls back to BrickLink if BrickEconomy is unavailable.
+
+Guidelines for BrickEconomy Tools:
+- Set numbers can be provided with or without the variant suffix (e.g., "10236" or "10236-1")
+- Currency support: All tools support 22 currencies (USD, GBP, CAD, AUD, CNY, KRW, EUR, JPY, CHF, INR, BRL, RUB, ZAR, MXN, SGD, HKD, SEK, NZD, NOK, TRY, DKK, PLN)
+- Default currency is USD if not specified
+- Rate limit: 100 API requests per day per user (resets at 00:00 UTC)
+- Values include: current market value (new/used), forecasts (2-year/5-year), growth rates (12-month/annual), price event history
+- Collection tools show acquisition dates, paid prices, current values, and growth percentages
+- Investment analysis tools calculate ROI, profit/loss, and compare against forecasts
+
+When to Use Price Inquiries (bd_get_price tool):
+- User asks about "value", "worth", "price", or "how much is" for a specific set, minifig, or part
+- Use bd_get_price with itemType (SET, MINIFIG, or PART) and itemNumber
+- Tool automatically tries BrickEconomy first (provides forecasts when available)
+- Falls back to BrickLink automatically if BrickEconomy unavailable or rate limited
+- No need to ask user which service - fallback is automatic
+
+When to Use BrickEconomy Collection Tools:
+- User wants to analyze collection performance or ROI
+- User asks about forecasts, growth rates, or future value predictions
+- User mentions selling, profit, or investment returns
+- User wants historical price data or market trends for their collection
+
+Multi-Service Pricing & Collection Coordination:
+IMPORTANT: The user may have MULTIPLE services configured (Rebrickable, Brickset, BrickEconomy, BrickLink).
+Each service provides different capabilities:
+
+- Rebrickable: Set lists, parts inventory, building guides
+- Brickset: Collection/wishlist management, reviews, instructions, official LEGO data
+- BrickEconomy: Pricing, valuation, investment analysis, forecasts
+- BrickLink: Marketplace pricing, inventory availability, buy/sell listings
+
+Unified Pricing Tool (bd_get_price):
+- ALWAYS use bd_get_price for price inquiries about specific items
+- Automatic fallback: Tries BrickEconomy first → Falls back to BrickLink if unavailable
+- No need to ask user which service - the tool handles this automatically
+- Result indicates which source was used (BrickEconomy or BrickLink fallback)
+- Supports SET, MINIFIG, and PART item types
+- For parts: Goes directly to BrickLink (BrickEconomy doesn't support parts)
+
+When user asks pricing questions:
+
+1. If asking "how much is [item]" or "what's [item] worth":
+   - Use bd_get_price with appropriate itemType (SET/MINIFIG/PART) and itemNumber
+   - Tool automatically provides best available pricing (BrickEconomy with forecasts OR BrickLink marketplace)
+   - Example: "how much is white chewbacca worth" → bd_get_price(itemType="MINIFIG", itemNumber="fig-003963")
+
+2. If asking about collection value:
+   - Use getMyBrickeconomyCollection for portfolio analysis with growth tracking
+   - Use Brickset tools for collection management features
+
+Examples:
+- User: "What's set 10236 worth?"
+  You: [Use bd_get_price(itemType="SET", itemNumber="10236") - automatic fallback if needed]
+
+- User: "How much does set 75192 cost?"
+  You: [Use bd_get_price(itemType="SET", itemNumber="75192") - tries BrickEconomy, falls back to BrickLink]
+
+- User: "Show my collection value"
+  You: [Use getMyBrickeconomyCollection - provides valuation analysis]
+
+- User: "How much is white chewbacca worth?"
+  You: [Use bd_get_price(itemType="MINIFIG", itemNumber="fig-003963" OR "sw0509") - automatic fallback]
+
+Investment Analysis Best Practices:
+- Use analyzeSetInvestment when user mentions what they paid for a set
+- Use findBestPerformingSets when user asks about "best investments" or "top performers"
+- Reference forecasts when discussing future value or hold/sell decisions
+- Mention growth rates when discussing market performance
+- Note that forecasts are estimates based on historical data and market trends
+
+Currency Formatting:
+- Always specify currency code when displaying values
+- Use appropriate currency symbols ($ for USD, £ for GBP, € for EUR, etc.)
+- Format numbers with commas for thousands (e.g., $1,234.56)
+- Show growth percentages with 1-2 decimal places (e.g., +15.2%)
+
+Rate Limit Awareness:
+- BrickEconomy has a 100 requests/day limit per user (4 requests per minute)
+- Be efficient: Don't call APIs unnecessarily
+- If user asks about multiple sets, consider batching questions
+- Collection tools return ALL items in a single API call - use them instead of pagination
+- Don't ask users to paginate through collection results - return everything sorted appropriately
+
+Collection Sorting Best Practices:
+- Default to 'growth' sort when user asks about "best performers" or "investments"
+- Use 'value' sort when user asks about "most valuable" or "highest value"
+- Use 'name' sort when user asks for "alphabetical" or wants to find specific items
+- Use 'year' sort when discussing recent acquisitions or release timeline
+- Use 'pieces' sort when discussing set complexity or size
+- ALWAYS return complete collections - don't limit results
+- Let users explore all their data with appropriate sorting

@@ -1,35 +1,155 @@
----
-name: "SmartEye - Agent的眼睛"
-description: "Control and analyze ONVIF PTZ IP cameras to capture frames, view streams, find objects, and perform pan-tilt-zoom movements using configured camera aliases."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smart-eye"
-sourceUrl: "https://clawhub.ai/skills/smart-eye"
----
+# SmartEye — Agent 的眼睛
 
-# SmartEye - Agent的眼睛
+外接摄像头作为 Agent 的眼睛，让 Agent 可以抽帧分析画面、调阅实时视频流，控制云台实现点头、摇头等拟人动作，甚至帮你在多个摄像头里找东西。
 
-> Control and analyze ONVIF PTZ IP cameras to capture frames, view streams, find objects, and perform pan-tilt-zoom movements using configured camera aliases.
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smart-eye`
-- **Source URL:** [https://clawhub.ai/skills/smart-eye](https://clawhub.ai/skills/smart-eye)
+| 层级 | 功能 | 命令示例 | 说明 |
+|------|------|---------|------|
+| 👁️ 看 | 抽帧 + AI 分析 | "tplink 看看"、"华为分析一下" | 截图保存，返回路径供 AI 理解画面 |
+| 👁️ 看 | VLC 实时流调阅 | "tplink 调阅" | 用 VLC 打开实时流（需配置 `vlc_path`） |
+| 👁️ 看 | 纯截图 | "摄像头截图" | 抽一帧保存，不触发 AI |
+| 🔍 找 | 多摄像头找东西 | "帮我找钥匙"、"钥匙在哪里" | 并行对所有摄像头截图，AI 分析哪张有目标 |
+| 🔄 动 | PTZ 云台控制 | "tplink 点头"、"摄像头摇头" | 云台转动 |
+| 📊 知 | PTZ 状态 | "tplink 状态" | 查询当前云台位置 |
 
-## Overview
+> **"看看" vs "调阅"**：看看 = 抽帧看一瞬间的画面（截图）；调阅 = VLC 打开持续实时视频流（需 VLC + 配置 `vlc_path`）
 
+## 摄像头别名
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smart-eye
+每个摄像头可配置中文别名，说"建国路摄像头左转"即可精确定位，无需记忆设备 ID。
+
+配置位置：`camera-devices.json` 中的 `aliases` 字段（数组，支持多个别名）。
+
+**别名匹配优先级：** 精确 ID > 别名（aliases）> 品牌名（brand）> 默认摄像头
+
+## 触发词
+
+格式：`[摄像头别名或品牌] + [动作]`
+
+### 👁️ 看
+
+| 动作 | 触发示例 | 说明 |
+|------|---------|------|
+| 看看 / 分析 / 画面 | "tplink 看看"、"华为分析一下" | 抽帧保存，返回路径供 AI 分析画面内容 |
+| 截图 | "摄像头截图" | 抽帧保存，不触发 AI 分析 |
+| 调阅 | "tplink 调阅"、"华为调阅" | 用 VLC 打开实时流（需配置 `vlc_path`） |
+
+### 🔍 找
+
+| 动作 | 触发示例 | 说明 |
+|------|---------|------|
+| 帮我找 / 找一下 | "帮我找钥匙"、"找一下猫" | 并行对所有摄像头截图，AI 逐一分析寻找目标 |
+| 在哪里 | "钥匙在哪里"、"手机在不在" | 同上，自动提取搜索目标 |
+| 有没有 | "有没有猫"、"有没有人" | 同上，自动提取搜索目标 |
+
+### 🔄 动
+
+| 动作 | 触发示例 | 说明 |
+|------|---------|------|
+| 点头 | "tplink 点头" | 上下点头 3 次 |
+| 摇头 | "摄像头 摇头" | 左右摇头 3 次 |
+| 上转 / 下转 / 左转 / 右转 | "摄像头 左转" | 指定方向转动 2 秒 |
+| 放大 / 缩小 | "摄像头 放大" | 连续变倍（不支持的设备自动跳过） |
+| 居中 | "摄像头 居中" | 云台回到正中 |
+| 停止 | "摄像头 停止" | 立即停止所有运动 |
+
+### 📊 知
+
+| 动作 | 触发示例 | 说明 |
+|------|---------|------|
+| 状态 | "tplink 状态" | 查询当前 PTZ 状态 |
+| 有哪些摄像头 | "有哪些摄像头" | 列出所有已配置的摄像头 |
+
+## 配置
+
+首次运行会自动将捆绑模板复制到用户配置路径：`~/.openclaw/workspace/camera-devices.json`
+
+### 摄像头配置字段
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `id` | ✅ | 摄像头唯一标识，如 `tplink-001` |
+| `brand` | ✅ | 品牌：`tplink` / `huawei` |
+| `host` | ✅ | 摄像头 IP 地址 |
+| `port` | ✅ | ONVIF 控制端口（TP-Link 通常 **2020**，华为通常 **80**） |
+| `user` | ✅ | 登录用户名 |
+| `pass` | ✅ | 登录密码 |
+| `aliases` | — | 别名数组，如 `["建国路", "华为枪机"]`，方便自然语言定位 |
+| `rtsp_port` | — | RTSP 拉流端口，默认 **554**，通常不需要填 |
+| `rtsp_path` | — | RTSP 路径，默认值因品牌而异 |
+| `vlc_path` | — | VLC 可执行路径（用于"调阅"功能），如 `D:\\tools\\VLC\\vlc.exe` |
+| `ptz_token` | TP-Link | ONVIF PTZ Token，一般默认 `PTZTOKEN` 即可 |
+| `ptz` | ✅ | 云台能力配置（见下表） |
+
+### PTZ 能力配置（ptz 字段）
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `pan.supported` | ✅ | 是否支持水平旋转 |
+| `pan.range` | ✅ | 水平旋转范围，通常 `[-1, 1]` |
+| `tilt.supported` | ✅ | 是否支持垂直俯仰 |
+| `tilt.range` | ✅ | 垂直俯仰范围，通常 `[-1, 1]` |
+| `zoom.supported` | ✅ | 是否支持变倍（放大/缩小） |
+| `zoom.range` | ✅ | 变倍范围，通常 `[0, 1]` |
+
+### 配置示例
+```json
+{
+  "cameras": [
+    {
+      "id": "tplink-001",
+      "brand": "tplink",
+      "model": "TL-IPC44AW-COLOR",
+      "host": "192.168.1.60",
+      "port": 2020,
+      "user": "admin",
+      "pass": "YOUR_PASSWORD",
+      "aliases": ["tplink", "tp摄像头"],
+      "ptz": {
+        "pan":   { "supported": true,  "range": [-1, 1] },
+        "tilt":  { "supported": true,  "range": [-1, 1] },
+        "zoom":  { "supported": false, "range": [0, 0] }
+      }
+    },
+    {
+      "id": "huawei-001",
+      "brand": "huawei",
+      "model": "D2150-10-I-P",
+      "host": "192.168.1.120",
+      "port": 80,
+      "user": "admin",
+      "pass": "YOUR_PASSWORD",
+      "aliases": ["华为", "建国路", "华为枪机"],
+      "ptz": {
+        "pan":   { "supported": true,  "range": [-1, 1] },
+        "tilt":  { "supported": true,  "range": [-1, 1] },
+        "zoom":  { "supported": true,  "range": [0, 1] }
+      }
+    }
+  ],
+  "default": "tplink-001"
+}
 ```
+
+## ⚠️ 安全说明
+
+- **替换凭证**：模板含示例密码，安装后必须替换为真实密码
+- **仅限内网**：ONVIF 为明文 HTTP，**不要暴露到公网**
+- **文件权限**：妥善保护 `camera-devices.json`，防止未授权访问
+
+## 支持的摄像头品牌
+
+- **TP-Link**（如 TL-IPC44AW-COLOR，ONVIF 端口 2020）
+- **华为**（如 D2150 系列，ONVIF 端口 80）
+
+## 新增设备
+
+在 `~/.openclaw/workspace/camera-devices.json` 的 `cameras` 数组中添加新设备配置即可。
+
+## 扩展新品牌
+
+参考 `src/protocol/brands/` 下的品牌实现：
+1. 继承 `CameraBase` 实现新品牌类
+2. 在 `brands/__init__.py` 中注册品牌
+3. 在 `camera-devices.json` 中添加对应配置

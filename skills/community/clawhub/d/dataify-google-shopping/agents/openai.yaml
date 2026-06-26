@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Shopping"
+  short_description: "Search Google Shopping for products"
+  default_prompt: "Use $dataify-google-shopping to run a search query."

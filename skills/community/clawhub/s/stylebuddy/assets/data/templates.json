@@ -1,0 +1,9706 @@
+[
+  {
+    "id": "t_休闲_001",
+    "name": "休闲搭配 1",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_休闲_002",
+    "name": "休闲搭配 2",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_休闲_003",
+    "name": "休闲搭配 3",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "紫色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_休闲_004",
+    "name": "休闲搭配 4",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ],
+      "accessory": [
+        "眼镜"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_休闲_005",
+    "name": "休闲搭配 5",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_休闲_006",
+    "name": "休闲搭配 6",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "红色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_休闲_007",
+    "name": "休闲搭配 7",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_休闲_008",
+    "name": "休闲搭配 8",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "粉色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_休闲_009",
+    "name": "休闲搭配 9",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_休闲_010",
+    "name": "休闲搭配 10",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "红色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_休闲_011",
+    "name": "休闲搭配 11",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "日常"
+    ],
+    "items": {
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "黑色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_休闲_012",
+    "name": "休闲搭配 12",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_休闲_013",
+    "name": "休闲搭配 13",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "黑色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_休闲_014",
+    "name": "休闲搭配 14",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": [
+        "绿色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_休闲_015",
+    "name": "休闲搭配 15",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "灰色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_休闲_016",
+    "name": "休闲搭配 16",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ],
+      "accessory": [
+        "项链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "驼色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_休闲_017",
+    "name": "休闲搭配 17",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_休闲_018",
+    "name": "休闲搭配 18",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_休闲_019",
+    "name": "休闲搭配 19",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "手链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "蓝色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_休闲_020",
+    "name": "休闲搭配 20",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_休闲_021",
+    "name": "休闲搭配 21",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "卡其色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_休闲_022",
+    "name": "休闲搭配 22",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "戒指"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "绿色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_休闲_023",
+    "name": "休闲搭配 23",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_休闲_024",
+    "name": "休闲搭配 24",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "灰色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_休闲_025",
+    "name": "休闲搭配 25",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "红色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_休闲_026",
+    "name": "休闲搭配 26",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "蓝色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_休闲_027",
+    "name": "休闲搭配 27",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_休闲_028",
+    "name": "休闲搭配 28",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_休闲_029",
+    "name": "休闲搭配 29",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ],
+      "accessory": [
+        "围巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "粉色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_休闲_030",
+    "name": "休闲搭配 30",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "逛街"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_休闲_031",
+    "name": "休闲搭配 31",
+    "category": "休闲",
+    "gender": "unisex",
+    "occasions": [
+      "逛街",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_休闲_032",
+    "name": "休闲搭配 32",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_休闲_033",
+    "name": "休闲搭配 33",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_休闲_034",
+    "name": "休闲搭配 34",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "白色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_休闲_035",
+    "name": "休闲搭配 35",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_休闲_036",
+    "name": "休闲搭配 36",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_休闲_037",
+    "name": "休闲搭配 37",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_休闲_038",
+    "name": "休闲搭配 38",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "粉色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_休闲_039",
+    "name": "休闲搭配 39",
+    "category": "休闲",
+    "gender": "unisex",
+    "occasions": [
+      "日常",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "蓝色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_休闲_040",
+    "name": "休闲搭配 40",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "蓝色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_休闲_041",
+    "name": "休闲搭配 41",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "米色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_休闲_042",
+    "name": "休闲搭配 42",
+    "category": "休闲",
+    "gender": "unisex",
+    "occasions": [
+      "日常",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "藏青"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_休闲_043",
+    "name": "休闲搭配 43",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_休闲_044",
+    "name": "休闲搭配 44",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "卡其色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_休闲_045",
+    "name": "休闲搭配 45",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "眼镜"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "卡其色"
+      ],
+      "accent": [
+        "绿色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_休闲_046",
+    "name": "休闲搭配 46",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "紫色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_休闲_047",
+    "name": "休闲搭配 47",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "耳环"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "蓝色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_休闲_048",
+    "name": "休闲搭配 48",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "小白鞋"
+      ],
+      "accessory": [
+        "包包"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "蓝色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_休闲_049",
+    "name": "休闲搭配 49",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "放松"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "棕色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_休闲_050",
+    "name": "休闲搭配 50",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "藏青"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_休闲_051",
+    "name": "休闲搭配 51",
+    "category": "休闲",
+    "gender": "unisex",
+    "occasions": [
+      "周末",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_休闲_052",
+    "name": "休闲搭配 52",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "周末"
+    ],
+    "items": {
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "绿色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_休闲_053",
+    "name": "休闲搭配 53",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ],
+      "accessory": [
+        "戒指"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_休闲_054",
+    "name": "休闲搭配 54",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_休闲_055",
+    "name": "休闲搭配 55",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_休闲_056",
+    "name": "休闲搭配 56",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_休闲_057",
+    "name": "休闲搭配 57",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "周末"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "藏青"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_休闲_058",
+    "name": "休闲搭配 58",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_休闲_059",
+    "name": "休闲搭配 59",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "棕色"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_休闲_060",
+    "name": "休闲搭配 60",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "日常"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_休闲_061",
+    "name": "休闲搭配 61",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "灰色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_休闲_062",
+    "name": "休闲搭配 62",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "绿色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_休闲_063",
+    "name": "休闲搭配 63",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_休闲_064",
+    "name": "休闲搭配 64",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "逛街"
+    ],
+    "items": {
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_休闲_065",
+    "name": "休闲搭配 65",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "周末"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_休闲_066",
+    "name": "休闲搭配 66",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_休闲_067",
+    "name": "休闲搭配 67",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "日常"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "绿色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_休闲_068",
+    "name": "休闲搭配 68",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_休闲_069",
+    "name": "休闲搭配 69",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "放松"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_休闲_070",
+    "name": "休闲搭配 70",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "日常"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_休闲_071",
+    "name": "休闲搭配 71",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "周末"
+    ],
+    "items": {
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "驼色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_休闲_072",
+    "name": "休闲搭配 72",
+    "category": "休闲",
+    "gender": "unisex",
+    "occasions": [
+      "聚会",
+      "周末"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_休闲_073",
+    "name": "休闲搭配 73",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "周末"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "灰色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_休闲_074",
+    "name": "休闲搭配 74",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "周末",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "黑色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_休闲_075",
+    "name": "休闲搭配 75",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_休闲_076",
+    "name": "休闲搭配 76",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_休闲_077",
+    "name": "休闲搭配 77",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_休闲_078",
+    "name": "休闲搭配 78",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "驼色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_休闲_079",
+    "name": "休闲搭配 79",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "绿色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_休闲_080",
+    "name": "休闲搭配 80",
+    "category": "休闲",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "周末"
+    ],
+    "items": {
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "棕色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_职场_081",
+    "name": "职场搭配 81",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "蓝色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_职场_082",
+    "name": "职场搭配 82",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "会议",
+      "面试"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_职场_083",
+    "name": "职场搭配 83",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_职场_084",
+    "name": "职场搭配 84",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "会议",
+      "面试"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_职场_085",
+    "name": "职场搭配 85",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "会议"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_职场_086",
+    "name": "职场搭配 86",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_职场_087",
+    "name": "职场搭配 87",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "卡其色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_职场_088",
+    "name": "职场搭配 88",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_职场_089",
+    "name": "职场搭配 89",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_职场_090",
+    "name": "职场搭配 90",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "驼色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_职场_091",
+    "name": "职场搭配 91",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "面试"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_职场_092",
+    "name": "职场搭配 92",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_职场_093",
+    "name": "职场搭配 93",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "通勤"
+    ],
+    "items": {
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "黑色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_职场_094",
+    "name": "职场搭配 94",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "粉色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_职场_095",
+    "name": "职场搭配 95",
+    "category": "职场",
+    "gender": "unisex",
+    "occasions": [
+      "面试",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_职场_096",
+    "name": "职场搭配 96",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_职场_097",
+    "name": "职场搭配 97",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_职场_098",
+    "name": "职场搭配 98",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "会议",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_职场_099",
+    "name": "职场搭配 99",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "会议",
+      "通勤"
+    ],
+    "items": {
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_职场_100",
+    "name": "职场搭配 100",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_职场_101",
+    "name": "职场搭配 101",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "棕色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_职场_102",
+    "name": "职场搭配 102",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "通勤"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_职场_103",
+    "name": "职场搭配 103",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_职场_104",
+    "name": "职场搭配 104",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "驼色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_职场_105",
+    "name": "职场搭配 105",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "面试"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "黑色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_职场_106",
+    "name": "职场搭配 106",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_职场_107",
+    "name": "职场搭配 107",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "米色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_职场_108",
+    "name": "职场搭配 108",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "上班"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_职场_109",
+    "name": "职场搭配 109",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "卡其色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_职场_110",
+    "name": "职场搭配 110",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_职场_111",
+    "name": "职场搭配 111",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "商务",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "米色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_职场_112",
+    "name": "职场搭配 112",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "包包"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_职场_113",
+    "name": "职场搭配 113",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "黑色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_职场_114",
+    "name": "职场搭配 114",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "灰色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_职场_115",
+    "name": "职场搭配 115",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "面试"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_职场_116",
+    "name": "职场搭配 116",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "会议",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_职场_117",
+    "name": "职场搭配 117",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "会议",
+      "商务"
+    ],
+    "items": {
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ],
+      "accessory": [
+        "手链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_职场_118",
+    "name": "职场搭配 118",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "棕色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_职场_119",
+    "name": "职场搭配 119",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_职场_120",
+    "name": "职场搭配 120",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "毛呢大衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ],
+      "accessory": [
+        "包包"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_职场_121",
+    "name": "职场搭配 121",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "直筒裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "项链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "棕色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_职场_122",
+    "name": "职场搭配 122",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "上班"
+    ],
+    "items": {
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_职场_123",
+    "name": "职场搭配 123",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "卡其色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_职场_124",
+    "name": "职场搭配 124",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "商务"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_职场_125",
+    "name": "职场搭配 125",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "驼色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_职场_126",
+    "name": "职场搭配 126",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "会议"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "绿色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_职场_127",
+    "name": "职场搭配 127",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "通勤",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "红色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_职场_128",
+    "name": "职场搭配 128",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "上班"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_职场_129",
+    "name": "职场搭配 129",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "面试",
+      "商务"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "紫色"
+      ],
+      "accent": [
+        "绿色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_职场_130",
+    "name": "职场搭配 130",
+    "category": "职场",
+    "gender": "female",
+    "occasions": [
+      "上班",
+      "通勤"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "西装外套"
+      ],
+      "bottom": [
+        "西裙"
+      ],
+      "shoes": [
+        "中跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_约会_131",
+    "name": "约会搭配 131",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "晚餐"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_约会_132",
+    "name": "约会搭配 132",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_约会_133",
+    "name": "约会搭配 133",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "米色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_约会_134",
+    "name": "约会搭配 134",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_约会_135",
+    "name": "约会搭配 135",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "晚餐"
+    ],
+    "items": {
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_约会_136",
+    "name": "约会搭配 136",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "晚餐",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_约会_137",
+    "name": "约会搭配 137",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "晚餐",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "手链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_约会_138",
+    "name": "约会搭配 138",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "晚餐"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_约会_139",
+    "name": "约会搭配 139",
+    "category": "约会",
+    "gender": "unisex",
+    "occasions": [
+      "下午茶",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_约会_140",
+    "name": "约会搭配 140",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "下午茶"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_约会_141",
+    "name": "约会搭配 141",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_约会_142",
+    "name": "约会搭配 142",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "逛街"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_约会_143",
+    "name": "约会搭配 143",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "驼色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_约会_144",
+    "name": "约会搭配 144",
+    "category": "约会",
+    "gender": "unisex",
+    "occasions": [
+      "晚餐",
+      "下午茶"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_约会_145",
+    "name": "约会搭配 145",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "晚餐"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ],
+      "accessory": [
+        "包包"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "藏青"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_约会_146",
+    "name": "约会搭配 146",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "藏青"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_约会_147",
+    "name": "约会搭配 147",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "晚餐"
+    ],
+    "items": {
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "围巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_约会_148",
+    "name": "约会搭配 148",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "约会"
+    ],
+    "items": {
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "驼色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_约会_149",
+    "name": "约会搭配 149",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "晚餐"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_约会_150",
+    "name": "约会搭配 150",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "下午茶"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_约会_151",
+    "name": "约会搭配 151",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "晚餐"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ],
+      "accessory": [
+        "耳环"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_约会_152",
+    "name": "约会搭配 152",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "晚餐"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "红色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_约会_153",
+    "name": "约会搭配 153",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "白色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_约会_154",
+    "name": "约会搭配 154",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "晚餐"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "棕色"
+      ],
+      "accent": [
+        "白色"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_约会_155",
+    "name": "约会搭配 155",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "约会"
+    ],
+    "items": {
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_约会_156",
+    "name": "约会搭配 156",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "晚餐"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "紫色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_约会_157",
+    "name": "约会搭配 157",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "露肩上衣"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "绿色"
+      ],
+      "accent": [
+        "绿色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_约会_158",
+    "name": "约会搭配 158",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "戒指"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_约会_159",
+    "name": "约会搭配 159",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "晚餐",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "红色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_约会_160",
+    "name": "约会搭配 160",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "围巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "卡其色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_约会_161",
+    "name": "约会搭配 161",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "约会",
+      "下午茶"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_约会_162",
+    "name": "约会搭配 162",
+    "category": "约会",
+    "gender": "unisex",
+    "occasions": [
+      "晚餐",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "红色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_约会_163",
+    "name": "约会搭配 163",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "下午茶"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "红色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_约会_164",
+    "name": "约会搭配 164",
+    "category": "约会",
+    "gender": "unisex",
+    "occasions": [
+      "聚会",
+      "晚餐"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_约会_165",
+    "name": "约会搭配 165",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "下午茶",
+      "逛街"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "蓝色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_约会_166",
+    "name": "约会搭配 166",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "晚餐",
+      "聚会"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_约会_167",
+    "name": "约会搭配 167",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "逛街"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "粉色"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_约会_168",
+    "name": "约会搭配 168",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "晚餐",
+      "下午茶"
+    ],
+    "items": {
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "红色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_约会_169",
+    "name": "约会搭配 169",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "逛街",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "红色"
+      ],
+      "accent": [
+        "白色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_约会_170",
+    "name": "约会搭配 170",
+    "category": "约会",
+    "gender": "female",
+    "occasions": [
+      "晚餐",
+      "约会"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "棕色"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_运动_171",
+    "name": "运动搭配 171",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "健身",
+      "瑜伽"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "运动裙"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_运动_172",
+    "name": "运动搭配 172",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "运动",
+      "健身"
+    ],
+    "items": {
+      "top": [
+        "速干T恤"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "训练鞋"
+      ],
+      "accessory": [
+        "戒指"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "米色"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_运动_173",
+    "name": "运动搭配 173",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "瑜伽",
+      "跑步"
+    ],
+    "items": {
+      "top": [
+        "速干T恤"
+      ],
+      "bottom": [
+        "瑜伽裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "蓝色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_运动_174",
+    "name": "运动搭配 174",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "瑜伽",
+      "跑步"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "运动裙"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "藏青"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_运动_175",
+    "name": "运动搭配 175",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "运动",
+      "瑜伽"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "瑜伽裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "白色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_运动_176",
+    "name": "运动搭配 176",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "跑步",
+      "运动"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "运动裙"
+      ],
+      "shoes": [
+        "跑鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_运动_177",
+    "name": "运动搭配 177",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "跑步",
+      "户外活动"
+    ],
+    "items": {
+      "top": [
+        "速干T恤"
+      ],
+      "bottom": [
+        "运动短裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "白色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_运动_178",
+    "name": "运动搭配 178",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "运动",
+      "户外活动"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "黑色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_运动_179",
+    "name": "运动搭配 179",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "户外活动",
+      "健身"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "运动短裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "粉色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_运动_180",
+    "name": "运动搭配 180",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "户外活动",
+      "健身"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "运动裙"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "棕色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_运动_181",
+    "name": "运动搭配 181",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "健身",
+      "户外活动"
+    ],
+    "items": {
+      "top": [
+        "运动内衣"
+      ],
+      "bottom": [
+        "瑜伽裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ],
+      "accessory": [
+        "耳环"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_运动_182",
+    "name": "运动搭配 182",
+    "category": "运动",
+    "gender": "unisex",
+    "occasions": [
+      "户外活动",
+      "瑜伽"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "棕色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_运动_183",
+    "name": "运动搭配 183",
+    "category": "运动",
+    "gender": "unisex",
+    "occasions": [
+      "户外活动",
+      "运动"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "训练鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "蓝色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_运动_184",
+    "name": "运动搭配 184",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "健身",
+      "瑜伽"
+    ],
+    "items": {
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "瑜伽裤"
+      ],
+      "shoes": [
+        "训练鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "棕色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_运动_185",
+    "name": "运动搭配 185",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "户外活动",
+      "瑜伽"
+    ],
+    "items": {
+      "top": [
+        "运动内衣"
+      ],
+      "bottom": [
+        "运动短裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ],
+      "accessory": [
+        "手链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_运动_186",
+    "name": "运动搭配 186",
+    "category": "运动",
+    "gender": "unisex",
+    "occasions": [
+      "健身",
+      "运动"
+    ],
+    "items": {
+      "top": [
+        "速干T恤"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "训练鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_运动_187",
+    "name": "运动搭配 187",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "运动",
+      "健身"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "瑜伽裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_运动_188",
+    "name": "运动搭配 188",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "健身",
+      "运动"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "运动短裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "卡其色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_运动_189",
+    "name": "运动搭配 189",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "户外活动",
+      "跑步"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "瑜伽裤"
+      ],
+      "shoes": [
+        "跑鞋"
+      ],
+      "accessory": [
+        "项链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "米色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_运动_190",
+    "name": "运动搭配 190",
+    "category": "运动",
+    "gender": "female",
+    "occasions": [
+      "瑜伽",
+      "户外活动"
+    ],
+    "items": {
+      "top": [
+        "运动背心"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "训练鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "藏青"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_旅行_191",
+    "name": "旅行搭配 191",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "探索",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "棕色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_旅行_192",
+    "name": "旅行搭配 192",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "机场",
+      "度假"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "驼色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_旅行_193",
+    "name": "旅行搭配 193",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "机场",
+      "度假"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ],
+      "accessory": [
+        "手链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "棕色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_旅行_194",
+    "name": "旅行搭配 194",
+    "category": "旅行",
+    "gender": "unisex",
+    "occasions": [
+      "度假",
+      "探索"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_旅行_195",
+    "name": "旅行搭配 195",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "旅行",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "紫色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_旅行_196",
+    "name": "旅行搭配 196",
+    "category": "旅行",
+    "gender": "unisex",
+    "occasions": [
+      "度假",
+      "探索"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "紫色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_旅行_197",
+    "name": "旅行搭配 197",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "机场",
+      "出差"
+    ],
+    "items": {
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "腰带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_旅行_198",
+    "name": "旅行搭配 198",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "旅行",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "绿色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_旅行_199",
+    "name": "旅行搭配 199",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "探索",
+      "旅行"
+    ],
+    "items": {
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_旅行_200",
+    "name": "旅行搭配 200",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "出差",
+      "探索"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_旅行_201",
+    "name": "旅行搭配 201",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "探索",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "平底鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "红色"
+      ],
+      "accent": [
+        "灰色"
+      ]
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_旅行_202",
+    "name": "旅行搭配 202",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "出差",
+      "度假"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "蓝色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_旅行_203",
+    "name": "旅行搭配 203",
+    "category": "旅行",
+    "gender": "unisex",
+    "occasions": [
+      "度假",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "绿色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_旅行_204",
+    "name": "旅行搭配 204",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "探索",
+      "旅行"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "棕色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_旅行_205",
+    "name": "旅行搭配 205",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "旅行",
+      "探索"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_旅行_206",
+    "name": "旅行搭配 206",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "度假",
+      "机场"
+    ],
+    "items": {
+      "top": [
+        "针织衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "白色"
+      ],
+      "accent": [
+        "绿色"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_旅行_207",
+    "name": "旅行搭配 207",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "探索",
+      "度假"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_旅行_208",
+    "name": "旅行搭配 208",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "出差",
+      "旅行"
+    ],
+    "items": {
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "米色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_旅行_209",
+    "name": "旅行搭配 209",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "旅行",
+      "探索"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_旅行_210",
+    "name": "旅行搭配 210",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "机场",
+      "旅行"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "灰色"
+      ],
+      "accent": [
+        "卡其色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_旅行_211",
+    "name": "旅行搭配 211",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "度假",
+      "机场"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "红色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_旅行_212",
+    "name": "旅行搭配 212",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "出差",
+      "旅行"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "藏青"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_旅行_213",
+    "name": "旅行搭配 213",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "旅行",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_旅行_214",
+    "name": "旅行搭配 214",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "机场",
+      "探索"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "黑色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_旅行_215",
+    "name": "旅行搭配 215",
+    "category": "旅行",
+    "gender": "female",
+    "occasions": [
+      "探索",
+      "出差"
+    ],
+    "items": {
+      "outer": [
+        "风衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "卡其色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_聚会_216",
+    "name": "聚会搭配 216",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "KTV"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_聚会_217",
+    "name": "聚会搭配 217",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "围巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_聚会_218",
+    "name": "聚会搭配 218",
+    "category": "聚会",
+    "gender": "unisex",
+    "occasions": [
+      "KTV",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_聚会_219",
+    "name": "聚会搭配 219",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "社交",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_聚会_220",
+    "name": "聚会搭配 220",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "社交",
+      "聚餐"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ],
+      "accessory": [
+        "眼镜"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_聚会_221",
+    "name": "聚会搭配 221",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "派对",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "皮裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_聚会_222",
+    "name": "聚会搭配 222",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "派对",
+      "KTV"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "卡其色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_聚会_223",
+    "name": "聚会搭配 223",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_聚会_224",
+    "name": "聚会搭配 224",
+    "category": "聚会",
+    "gender": "unisex",
+    "occasions": [
+      "聚餐",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "紫色"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_聚会_225",
+    "name": "聚会搭配 225",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "社交",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_聚会_226",
+    "name": "聚会搭配 226",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "派对",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_聚会_227",
+    "name": "聚会搭配 227",
+    "category": "聚会",
+    "gender": "unisex",
+    "occasions": [
+      "KTV",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "驼色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_聚会_228",
+    "name": "聚会搭配 228",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "KTV"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "卡其色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_聚会_229",
+    "name": "聚会搭配 229",
+    "category": "聚会",
+    "gender": "unisex",
+    "occasions": [
+      "KTV",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "紫色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_聚会_230",
+    "name": "聚会搭配 230",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "派对"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "黑色"
+      ],
+      "accent": [
+        "白色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_聚会_231",
+    "name": "聚会搭配 231",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "社交",
+      "KTV"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "皮裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ],
+      "accessory": [
+        "围巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "粉色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_聚会_232",
+    "name": "聚会搭配 232",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "派对",
+      "KTV"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "驼色",
+        "蓝色"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_聚会_233",
+    "name": "聚会搭配 233",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚餐",
+      "KTV"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "卡其色"
+      ],
+      "accent": [
+        "白色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_聚会_234",
+    "name": "聚会搭配 234",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "派对"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_聚会_235",
+    "name": "聚会搭配 235",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚餐",
+      "社交"
+    ],
+    "items": {
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "皮裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ],
+      "accessory": [
+        "手链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_聚会_236",
+    "name": "聚会搭配 236",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "社交",
+      "聚会"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_聚会_237",
+    "name": "聚会搭配 237",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "KTV",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "皮裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "卡其色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_聚会_238",
+    "name": "聚会搭配 238",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "派对",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "皮裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "粉色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "配饰是点睛之笔，但不要过多"
+  },
+  {
+    "id": "t_聚会_239",
+    "name": "聚会搭配 239",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚餐",
+      "派对"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "黑色"
+      ],
+      "accent": [
+        "紫色"
+      ]
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_聚会_240",
+    "name": "聚会搭配 240",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "聚会",
+      "社交"
+    ],
+    "items": {
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ],
+      "accessory": [
+        "包包"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "粉色"
+      ],
+      "accent": [
+        "粉色"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_聚会_241",
+    "name": "聚会搭配 241",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "派对",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_聚会_242",
+    "name": "聚会搭配 242",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "社交",
+      "派对"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "短靴"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "棕色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_聚会_243",
+    "name": "聚会搭配 243",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "KTV",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "亮片上衣"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "驼色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_聚会_244",
+    "name": "聚会搭配 244",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "KTV",
+      "聚餐"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "卡其色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_聚会_245",
+    "name": "聚会搭配 245",
+    "category": "聚会",
+    "gender": "female",
+    "occasions": [
+      "KTV",
+      "社交"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "连衣裙"
+      ],
+      "bottom": [
+        "连衣裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "合身剪裁更显专业，配饰选择简约款"
+  },
+  {
+    "id": "t_正式_246",
+    "name": "正式搭配 246",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "典礼",
+      "年会"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "晚礼服"
+      ],
+      "shoes": [
+        "细跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_正式_247",
+    "name": "正式搭配 247",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "婚礼",
+      "颁奖"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "小黑裙"
+      ],
+      "shoes": [
+        "细跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_正式_248",
+    "name": "正式搭配 248",
+    "category": "正式",
+    "gender": "unisex",
+    "occasions": [
+      "婚礼",
+      "晚宴"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "小黑裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "卡其色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "同色系搭配显高级，层次感是关键"
+  },
+  {
+    "id": "t_正式_249",
+    "name": "正式搭配 249",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "年会",
+      "颁奖"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "礼服裙"
+      ],
+      "shoes": [
+        "水晶鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_正式_250",
+    "name": "正式搭配 250",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "婚礼",
+      "晚宴"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "旗袍"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "棕色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_正式_251",
+    "name": "正式搭配 251",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "晚宴",
+      "婚礼"
+    ],
+    "items": {
+      "bottom": [
+        "晚礼服"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_正式_252",
+    "name": "正式搭配 252",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "婚礼",
+      "典礼"
+    ],
+    "items": {
+      "bottom": [
+        "晚礼服"
+      ],
+      "shoes": [
+        "水晶鞋"
+      ],
+      "accessory": [
+        "手表"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "卡其色"
+      ],
+      "accent": [
+        "棕色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_正式_253",
+    "name": "正式搭配 253",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "典礼",
+      "年会"
+    ],
+    "items": {
+      "outer": [
+        "披肩"
+      ],
+      "bottom": [
+        "礼服裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_正式_254",
+    "name": "正式搭配 254",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "晚宴",
+      "年会"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "晚礼服"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_正式_255",
+    "name": "正式搭配 255",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "晚宴",
+      "典礼"
+    ],
+    "items": {
+      "bottom": [
+        "晚礼服"
+      ],
+      "shoes": [
+        "水晶鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_正式_256",
+    "name": "正式搭配 256",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "年会",
+      "婚礼"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "小黑裙"
+      ],
+      "shoes": [
+        "细跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "红色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_正式_257",
+    "name": "正式搭配 257",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "晚宴",
+      "婚礼"
+    ],
+    "items": {
+      "bottom": [
+        "礼服裙"
+      ],
+      "shoes": [
+        "水晶鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_正式_258",
+    "name": "正式搭配 258",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "晚宴",
+      "典礼"
+    ],
+    "items": {
+      "bottom": [
+        "旗袍"
+      ],
+      "shoes": [
+        "细跟鞋"
+      ],
+      "accessory": [
+        "耳环"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_正式_259",
+    "name": "正式搭配 259",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "晚宴",
+      "年会"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "礼服裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_正式_260",
+    "name": "正式搭配 260",
+    "category": "正式",
+    "gender": "female",
+    "occasions": [
+      "年会",
+      "典礼"
+    ],
+    "items": {
+      "outer": [
+        "礼服外套"
+      ],
+      "bottom": [
+        "礼服裙"
+      ],
+      "shoes": [
+        "水晶鞋"
+      ],
+      "accessory": [
+        "包包"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_居家_261",
+    "name": "居家搭配 261",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "睡眠"
+    ],
+    "items": {
+      "top": [
+        "睡衣"
+      ],
+      "bottom": [
+        "家居裤"
+      ],
+      "accessory": [
+        "丝巾"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_居家_262",
+    "name": "居家搭配 262",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "居家",
+      "宅家"
+    ],
+    "items": {
+      "top": [
+        "睡衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "卡其色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_居家_263",
+    "name": "居家搭配 263",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "休息",
+      "睡眠"
+    ],
+    "items": {
+      "top": [
+        "家居服上衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "居家鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "藏青"
+      ],
+      "accent": [
+        "白色"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_居家_264",
+    "name": "居家搭配 264",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "宅家",
+      "休息"
+    ],
+    "items": {
+      "top": [
+        "家居服上衣"
+      ],
+      "bottom": [
+        "睡裤"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_居家_265",
+    "name": "居家搭配 265",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "居家",
+      "宅家"
+    ],
+    "items": {
+      "top": [
+        "背心"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "居家鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "紫色"
+      ],
+      "accent": [
+        "红色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_居家_266",
+    "name": "居家搭配 266",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "休息",
+      "宅家"
+    ],
+    "items": {
+      "top": [
+        "背心"
+      ],
+      "bottom": [
+        "短裤"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "白色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_居家_267",
+    "name": "居家搭配 267",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "休息",
+      "居家"
+    ],
+    "items": {
+      "top": [
+        "家居服上衣"
+      ],
+      "bottom": [
+        "家居裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "绿色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_居家_268",
+    "name": "居家搭配 268",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "休息",
+      "宅家"
+    ],
+    "items": {
+      "top": [
+        "背心"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "居家鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "粉色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_居家_269",
+    "name": "居家搭配 269",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "休息",
+      "睡眠"
+    ],
+    "items": {
+      "top": [
+        "家居服上衣"
+      ],
+      "bottom": [
+        "休闲裤"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "颜色呼应让搭配更和谐"
+  },
+  {
+    "id": "t_居家_270",
+    "name": "居家搭配 270",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "宅家",
+      "居家"
+    ],
+    "items": {
+      "top": [
+        "睡衣"
+      ],
+      "bottom": [
+        "睡裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_居家_271",
+    "name": "居家搭配 271",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "睡眠",
+      "居家"
+    ],
+    "items": {
+      "top": [
+        "睡衣"
+      ],
+      "bottom": [
+        "睡裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "藏青"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_居家_272",
+    "name": "居家搭配 272",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "睡眠",
+      "休息"
+    ],
+    "items": {
+      "top": [
+        "背心"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "适当露肤增加轻盈感"
+  },
+  {
+    "id": "t_居家_273",
+    "name": "居家搭配 273",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "放松",
+      "睡眠"
+    ],
+    "items": {
+      "top": [
+        "睡衣"
+      ],
+      "bottom": [
+        "短裤"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "米色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_居家_274",
+    "name": "居家搭配 274",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "居家",
+      "宅家"
+    ],
+    "items": {
+      "top": [
+        "家居服上衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ],
+      "accessory": [
+        "项链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "藏青"
+      ],
+      "accent": [
+        "绿色"
+      ]
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_居家_275",
+    "name": "居家搭配 275",
+    "category": "居家",
+    "gender": "female",
+    "occasions": [
+      "居家",
+      "睡眠"
+    ],
+    "items": {
+      "top": [
+        "背心"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ],
+      "accessory": [
+        "发带"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "粉色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "腰线决定身材比例，高腰款显腿长"
+  },
+  {
+    "id": "t_其他_276",
+    "name": "其他搭配 276",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "铅笔裤"
+      ],
+      "shoes": [
+        "长靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_其他_277",
+    "name": "其他搭配 277",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "白色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "舒适度与美观度同样重要"
+  },
+  {
+    "id": "t_其他_278",
+    "name": "其他搭配 278",
+    "category": "其他",
+    "gender": "unisex",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "吊带"
+      ],
+      "bottom": [
+        "铅笔裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "藏青",
+        "棕色"
+      ],
+      "accent": []
+    },
+    "tips": "了解自己的身材优势，扬长避短"
+  },
+  {
+    "id": "t_其他_279",
+    "name": "其他搭配 279",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "大衣"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "凉鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_其他_280",
+    "name": "其他搭配 280",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "绿色"
+      ],
+      "accent": [
+        "白色"
+      ]
+    },
+    "tips": "质感比数量更重要"
+  },
+  {
+    "id": "t_其他_281",
+    "name": "其他搭配 281",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "棒球服"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "包臀裙"
+      ],
+      "shoes": [
+        "穆勒鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "粉色"
+      ],
+      "accent": [
+        "米色"
+      ]
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_其他_282",
+    "name": "其他搭配 282",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "毛呢外套"
+      ],
+      "top": [
+        "背心"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "蓝色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_其他_283",
+    "name": "其他搭配 283",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "凉鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "注意面料质感，提升整体档次"
+  },
+  {
+    "id": "t_其他_284",
+    "name": "其他搭配 284",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "皮衣"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "长靴"
+      ],
+      "accessory": [
+        "项链"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_其他_285",
+    "name": "其他搭配 285",
+    "category": "其他",
+    "gender": "unisex",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "夹克"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "小白鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "粉色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_其他_286",
+    "name": "其他搭配 286",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "top": [
+        "露肩上衣"
+      ],
+      "bottom": [
+        "短裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ],
+      "accessory": [
+        "帽子"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "黑色"
+      ],
+      "accent": []
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_其他_287",
+    "name": "其他搭配 287",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "大衣"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "棕色",
+        "紫色"
+      ],
+      "accent": []
+    },
+    "tips": "柔和色调更有亲和力，适当露肤增加女人味"
+  },
+  {
+    "id": "t_其他_288",
+    "name": "其他搭配 288",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "A字裙"
+      ],
+      "shoes": [
+        "拖鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "绿色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_其他_289",
+    "name": "其他搭配 289",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "西装"
+      ],
+      "top": [
+        "条纹衫"
+      ],
+      "bottom": [
+        "阔腿裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "米色"
+      ],
+      "accent": []
+    },
+    "tips": "根据场合选择合适的正式度"
+  },
+  {
+    "id": "t_其他_290",
+    "name": "其他搭配 290",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "其他",
+      "日常"
+    ],
+    "items": {
+      "outer": [
+        "卫衣外套"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "紫色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_其他_291",
+    "name": "其他搭配 291",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "毛呢外套"
+      ],
+      "top": [
+        "打底衫"
+      ],
+      "bottom": [
+        "包臀裙"
+      ],
+      "shoes": [
+        "短靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "绿色",
+        "灰色"
+      ],
+      "accent": []
+    },
+    "tips": "基础款永不过时，投资高品质单品"
+  },
+  {
+    "id": "t_其他_292",
+    "name": "其他搭配 292",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "棒球服"
+      ],
+      "top": [
+        "雪纺衫"
+      ],
+      "bottom": [
+        "休闲裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ],
+      "accessory": [
+        "眼镜"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "灰色",
+        "卡其色"
+      ],
+      "accent": [
+        "藏青"
+      ]
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_其他_293",
+    "name": "其他搭配 293",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "羽绒服"
+      ],
+      "top": [
+        "高领毛衣"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "运动鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "叠穿增加层次感，但不超过三层"
+  },
+  {
+    "id": "t_其他_294",
+    "name": "其他搭配 294",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "牛仔外套"
+      ],
+      "top": [
+        "T恤"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "平底鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "红色",
+        "米色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  },
+  {
+    "id": "t_其他_295",
+    "name": "其他搭配 295",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "毛呢外套"
+      ],
+      "top": [
+        "吊带"
+      ],
+      "bottom": [
+        "牛仔裤"
+      ],
+      "shoes": [
+        "乐福鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "蓝色"
+      ],
+      "accent": []
+    },
+    "tips": "上松下紧或上紧下松，打造好比例"
+  },
+  {
+    "id": "t_其他_296",
+    "name": "其他搭配 296",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "棒球服"
+      ],
+      "top": [
+        "吊带"
+      ],
+      "bottom": [
+        "喇叭裤"
+      ],
+      "shoes": [
+        "凉鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "米色",
+        "卡其色"
+      ],
+      "accent": [
+        "蓝色"
+      ]
+    },
+    "tips": "经典款投资好品质，潮流款选快时尚"
+  },
+  {
+    "id": "t_其他_297",
+    "name": "其他搭配 297",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "羽绒服"
+      ],
+      "top": [
+        "卫衣"
+      ],
+      "bottom": [
+        "运动裤"
+      ],
+      "shoes": [
+        "拖鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "黑色",
+        "藏青"
+      ],
+      "accent": [
+        "黑色"
+      ]
+    },
+    "tips": "敞开穿更休闲，内搭塞进去显腿长"
+  },
+  {
+    "id": "t_其他_298",
+    "name": "其他搭配 298",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "棉衣"
+      ],
+      "top": [
+        "打底衫"
+      ],
+      "bottom": [
+        "包臀裙"
+      ],
+      "shoes": [
+        "高跟鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "卡其色",
+        "藏青"
+      ],
+      "accent": []
+    },
+    "tips": "选择适合自己肤色的颜色"
+  },
+  {
+    "id": "t_其他_299",
+    "name": "其他搭配 299",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "outer": [
+        "针织开衫"
+      ],
+      "top": [
+        "毛衣"
+      ],
+      "bottom": [
+        "半裙"
+      ],
+      "shoes": [
+        "马丁靴"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "蓝色",
+        "驼色"
+      ],
+      "accent": []
+    },
+    "tips": "配件点缀提升精致度"
+  },
+  {
+    "id": "t_其他_300",
+    "name": "其他搭配 300",
+    "category": "其他",
+    "gender": "female",
+    "occasions": [
+      "日常",
+      "其他"
+    ],
+    "items": {
+      "top": [
+        "衬衫"
+      ],
+      "bottom": [
+        "铅笔裤"
+      ],
+      "shoes": [
+        "帆布鞋"
+      ]
+    },
+    "colors": {
+      "primary": [
+        "粉色",
+        "红色"
+      ],
+      "accent": [
+        "驼色"
+      ]
+    },
+    "tips": "混搭不同风格创造新意"
+  }
+]

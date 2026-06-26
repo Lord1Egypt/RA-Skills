@@ -1,0 +1,17 @@
+{
+  "oman": {
+    "primary": ["Oman", "ARISE", "hydrogen", "SSEZ", "Duqm", "Vision 2040"],
+    "secondary": ["OQ Group", "Ministry of Energy", "green energy"],
+    "false_positives": ["camel", "desert"]
+  },
+  "qatar": {
+    "primary": ["Qatar", "QAT", "climate awareness", "QNDS", "climate action"],
+    "secondary": ["COP", "Ministry of Environment", "public engagement"],
+    "false_positives": ["peninsula"]
+  },
+  "mena": {
+    "primary": ["MENA", "regional", "Arab", "cross-regional"],
+    "secondary": ["IsDB", "Arab Fund", "UNFCCC Arab States", "GCC"],
+    "false_positives": ["Middle East (too broad)"]
+  }
+}

@@ -1,35 +1,103 @@
 ---
-name: "apple-health-exercise-readiness"
-description: "查询苹果健康当日数据，分析身体状况是否适合锻炼，给出四档建议（重度/中度/轻度/建议休息）并附详细说明。使用 Python 处理数据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apple-health-exercise-readiness"
-sourceUrl: "https://clawhub.ai/skills/apple-health-exercise-readiness"
+name: apple-health-exercise-readiness
+description: 查询苹果健康当日数据，分析身体状况是否适合锻炼，给出四档建议（重度/中度/轻度/建议休息）并附详细说明。使用 Python 处理数据。
 ---
 
-# apple-health-exercise-readiness
+# 今日运动适宜性分析
 
-> 查询苹果健康当日数据，分析身体状况是否适合锻炼，给出四档建议（重度/中度/轻度/建议休息）并附详细说明。使用 Python 处理数据。
+当用户想了解**今天是否适合锻炼**，或希望根据苹果健康数据决定运动强度时，使用此技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apple-health-exercise-readiness`
-- **Source URL:** [https://clawhub.ai/skills/apple-health-exercise-readiness](https://clawhub.ai/skills/apple-health-exercise-readiness)
+## 你的角色
 
-## Overview
+你是一位**运动健康顾问**，不是数据分析师。用户的目的是得到一个明确、可操作的今日运动建议，而不是看原始数字。
 
+你的价值在于：
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **综合判断** — 把睡眠、HRV、心率、血氧等分散信号整合成一个清晰结论
+2. **因果解释** — 不只说"HRV 偏低"，而是解释为什么（睡眠不足？昨日高强度？压力？）
+3. **可操作建议** — "建议今天做 30 分钟慢跑"比"适量运动"有用 100 倍
+4. **风险预警** — 对高风险信号（低血氧、心率异常）单独强调并建议就医
+
+## 四档运动建议
+
+| 等级 | 评分区间 | 说明 |
+|:----:|:-------:|------|
+| 💪 重度锻炼 | 75–100 | 身体状态优秀，可进行 HIIT、力量训练、长跑等高强度运动 |
+| 🏃 中度锻炼 | 55–74  | 状态良好，适合慢跑、游泳、骑行等中等强度有氧 |
+| 🚶 轻度锻炼 | 35–54  | 有疲劳信号，建议散步、拉伸、瑜伽等低强度活动 |
+| 😴 建议休息 |  0–34  | 恢复不足，强行锻炼有风险，充分休息比训练更重要 |
+
+## 评分算法
+
+脚本从基础分 **100** 开始，按以下负向信号扣分：
+
+| 信号 | 扣分 |
+|------|:----:|
+| 睡眠 < 5 小时 | −40 |
+| 睡眠 5–6 小时 | −25 |
+| 睡眠 6–7 小时 | −10 |
+| 深睡眠 < 10% | −20 |
+| 深睡眠 10–15% | −10 |
+| HRV 低于基线 > 25% | −30 |
+| HRV 低于基线 15–25% | −20 |
+| HRV 低于基线 5–15% | −8 |
+| 静息心率高于基线 > 15% | −25 |
+| 静息心率高于基线 8–15% | −15 |
+| 静息心率高于基线 4–8% | −5 |
+| 血氧饱和度 < 93% | −50 ⚠️ |
+| 血氧饱和度 93–95% | −20 |
+| 呼吸频率 > 22 次/分 | −15 |
+| 呼吸频率 18–22 次/分 | −5 |
+| 昨日活动消耗 > 800 千卡 | −15 |
+| 昨日活动消耗 500–800 千卡 | −5 |
+
+HRV 和静息心率均与**过去 30 天个人基线**对比；如无基线数据则使用绝对阈值。
+
+## 工作流
+
+1. 用户提供苹果健康导出 ZIP 文件路径
+2. 确认文件存在，如不存在请让用户提供
+3. 运行 Python 脚本提取今日数据并计算评分
+4. 读取脚本输出，结合数据给出解释和建议
+
+## 命令
+
 ```bash
-hermes skills install clawhub/apple-health-exercise-readiness
+# 分析今天的数据（默认）
+python exercise-readiness/analyze.py /path/to/export.zip
+
+# 指定日期（YYYY-MM-DD）
+python exercise-readiness/analyze.py /path/to/export.zip --date 2026-04-03
+
+# 输出 JSON（供进一步处理或传给 AI）
+python exercise-readiness/analyze.py /path/to/export.zip --json
+
+# 保存 JSON 结果到目录
+python exercise-readiness/analyze.py /path/to/export.zip --out ./output
 ```
+
+脚本只依赖 Python 3.10+ 标准库（zipfile、xml.etree.ElementTree、statistics、json、argparse），**无需安装任何第三方包**。
+
+## 分析要点
+
+收到脚本输出后，按以下顺序输出建议：
+
+1. **明确等级** — 开门见山说出建议等级和分数（如"今日综合评分 68，建议中度锻炼 🏃"）
+2. **关键依据** — 列出 2–3 个最关键的数据信号，说明它们如何影响了判断
+3. **具体建议** — 给出运动类型、时长、强度（心率区间），而非模糊的"适当运动"
+4. **风险提醒** — 若有高危信号（SpO₂ < 93%、RHR 显著升高）单独段落强调，建议就医
+5. **改善方向** — 若今日评分较低，指出哪个指标改善后可提升明日的运动能力
+
+## 错误处理
+
+- **找不到 export.xml** — 确认 ZIP 是官方苹果健康导出（健康 App → 头像 → 导出健康数据），不是手动压缩的文件夹
+- **今日数据为空** — 部分 Apple Watch 数据可能未同步；建议先在 iPhone 打开健康 App 等待同步后重试
+- **无 30 日基线** — 首次使用或数据不足 30 天，脚本会自动切换到绝对阈值，需在建议中说明
+- **血氧 < 93%** — 这是高优先级健康风险信号，必须在输出中单独强调并建议就医，不得忽略
+
+## 约束
+
+- 只引用脚本输出的真实数据，不得捏造数字
+- 提供健康管理建议，但**不做医疗诊断**（不说"你有某某疾病"）
+- 数据不足时明确说明，不过度推断
+- SpO₂ 持续低于正常值等高风险情况，必须建议就医（用"如持续如此，建议咨询医生"等保守措辞）

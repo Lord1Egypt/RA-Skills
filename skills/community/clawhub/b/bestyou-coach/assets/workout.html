@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Workout</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #e5e5e5;
+    padding: 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #222;
+  }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header .meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    font-size: 13px;
+    color: #888;
+  }
+  .header .meta span { display: flex; align-items: center; gap: 6px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-warmup { background: #1a3a2a; color: #4ade80; }
+  .badge-main { background: #3a2a1a; color: #fb923c; }
+  .badge-cooldown { background: #1a2a3a; color: #60a5fa; }
+  .block {
+    margin-bottom: 32px;
+  }
+  .block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .block-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-header .duration {
+    font-size: 13px;
+    color: #666;
+  }
+  .exercise {
+    display: flex;
+    gap: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #141414;
+    border-radius: 12px;
+    border: 1px solid #1e1e1e;
+    transition: border-color 0.2s;
+  }
+  .exercise:hover { border-color: #333; }
+  .exercise-img {
+    width: 160px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #1a1a1a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .exercise-img.expanded {
+    width: 480px;
+    height: 270px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  /* When image is expanded, stack the exercise card vertically */
+  .exercise:has(.exercise-img.expanded) {
+    flex-direction: column;
+  }
+  .exercise-info { flex: 1; min-width: 0; }
+  .exercise-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .exercise-rx {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .rx-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #aaa;
+  }
+  .rx-pill strong { color: #ddd; font-weight: 600; }
+  .exercise-notes {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+  }
+  .exercise-cues {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .exercise-cues span { color: #555; }
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid #222;
+    font-size: 12px;
+    color: #444;
+  }
+  .footer img { height: 20px; margin-bottom: 8px; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💪 Dumbbell Full Body Strength</h1>
+  <div class="meta">
+    <span>⏱ 43 min total</span>
+    <span>🏋️ Dumbbells</span>
+    <span>📊 Intermediate</span>
+  </div>
+</div>
+
+<!-- WARMUP -->
+<div class="block">
+  <div class="block-header">
+    <h2><span class="badge badge-warmup">Warmup</span> Full Body Activation</h2>
+    <span class="duration">8 min</span>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V2/Bench T-Spine Mobs.jpg" alt="Bench T-Spine Mobs">
+    <div class="exercise-info">
+      <h3>1. Bench T-Spine Mobs</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>30s</strong></span>
+        <span class="rx-pill">Rest <strong>10s</strong></span>
+      </div>
+      <div class="exercise-notes">Focus on controlled rotation, breathe into the stretch.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V1/Worlds Greatest Stretch.jpg" alt="World's Greatest Stretch">
+    <div class="exercise-info">
+      <h3>2. World's Greatest Stretch</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>45s</strong> per side</span>
+        <span class="rx-pill">Rest <strong>10s</strong></span>
+      </div>
+      <div class="exercise-notes">Perform slowly and controlled, reaching high with the top arm.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V1/Walking Lunge.jpg" alt="Walking Lunges">
+    <div class="exercise-info">
+      <h3>3. Walking Lunges</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>45s</strong> per side</span>
+        <span class="rx-pill">Rest <strong>10s</strong></span>
+      </div>
+      <div class="exercise-notes">Maintain good posture, gentle lunge with each step.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V1/Scapular Pushup.jpg" alt="Scapular Push-Ups">
+    <div class="exercise-info">
+      <h3>4. Scapular Push-Ups</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>30s</strong></span>
+        <span class="rx-pill">Rest <strong>10s</strong></span>
+      </div>
+      <div class="exercise-notes">Keep arms straight, focus on moving shoulder blades.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V1/High Knees.jpg" alt="High Knees">
+    <div class="exercise-info">
+      <h3>5. High Knees</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>45s</strong></span>
+        <span class="rx-pill">Rest <strong>10s</strong></span>
+      </div>
+      <div class="exercise-notes">Light on your feet, bring knees up towards chest.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="block">
+  <div class="block-header">
+    <h2><span class="badge badge-main">Main</span> Dumbbell Full Body Strength & Stability</h2>
+    <span class="duration">30 min</span>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/strengthlibrary/V1/Dumbbell Squat.jpeg" alt="Dumbbell Squat">
+    <div class="exercise-info">
+      <h3>1. Dumbbell Squat</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>3</strong> × <strong>8-12</strong></span>
+        <span class="rx-pill"><strong>30 lbs</strong></span>
+        <span class="rx-pill">RPE <strong>7</strong></span>
+        <span class="rx-pill">Rest <strong>90s</strong></span>
+      </div>
+      <div class="exercise-notes">Keep your chest up and core engaged. Descend as if sitting into a chair, ensuring knees track over toes.</div>
+      <div class="exercise-cues"><span>Target:</span> Quadriceps &middot; Compound</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/strengthlibrary/V1/Dumbbell Bench Press.jpeg" alt="Dumbbell Bench Press">
+    <div class="exercise-info">
+      <h3>2. Dumbbell Bench Press</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>3</strong> × <strong>8-12</strong></span>
+        <span class="rx-pill"><strong>30 lbs</strong></span>
+        <span class="rx-pill">RPE <strong>7</strong></span>
+        <span class="rx-pill">Rest <strong>90s</strong></span>
+      </div>
+      <div class="exercise-notes">Lie flat, press dumbbells straight up, squeezing your chest at the top. Control the descent.</div>
+      <div class="exercise-cues"><span>Target:</span> Chest &middot; Compound</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/strengthlibrary/V3/Single Arm Bent Over Row.jpg" alt="Single Arm Bent Over Row">
+    <div class="exercise-info">
+      <h3>3. Single Arm Bent Over Row</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>3</strong> × <strong>8-12</strong> per arm</span>
+        <span class="rx-pill"><strong>35 lbs</strong></span>
+        <span class="rx-pill">RPE <strong>7</strong></span>
+        <span class="rx-pill">Rest <strong>90s</strong></span>
+      </div>
+      <div class="exercise-notes">Maintain a flat back and stable core. Pull the dumbbell towards your hip, squeezing your shoulder blade.</div>
+      <div class="exercise-cues"><span>Target:</span> Lats &middot; Compound</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/strengthlibrary/V1/Dumbbell Lateral Raise.jpeg" alt="Dumbbell Lateral Raise">
+    <div class="exercise-info">
+      <h3>4. Dumbbell Lateral Raise</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>3</strong> × <strong>10-15</strong></span>
+        <span class="rx-pill"><strong>15 lbs</strong></span>
+        <span class="rx-pill">RPE <strong>7</strong></span>
+        <span class="rx-pill">Rest <strong>90s</strong></span>
+      </div>
+      <div class="exercise-notes">Keep a slight bend in your elbows. Raise dumbbells out to the sides until arms are parallel to the floor.</div>
+      <div class="exercise-cues"><span>Target:</span> Side Delts &middot; Accessory</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/strengthlibrary/V1/Oblique Side Bend.jpeg" alt="Oblique Side Bend">
+    <div class="exercise-info">
+      <h3>5. Oblique Side Bend</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>3</strong> × <strong>10-15</strong> per side</span>
+        <span class="rx-pill"><strong>25 lbs</strong></span>
+        <span class="rx-pill">RPE <strong>7</strong></span>
+        <span class="rx-pill">Rest <strong>90s</strong></span>
+      </div>
+      <div class="exercise-notes">Hold a dumbbell in one hand. Slowly bend to the side, then contract your obliques to return upright.</div>
+      <div class="exercise-cues"><span>Target:</span> Obliques &middot; Accessory</div>
+    </div>
+  </div>
+</div>
+
+<!-- COOLDOWN -->
+<div class="block">
+  <div class="block-header">
+    <h2><span class="badge badge-cooldown">Cooldown</span> Static Stretching</h2>
+    <span class="duration">5 min</span>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V1/Warrior Series.jpg" alt="Warrior Series">
+    <div class="exercise-info">
+      <h3>1. Warrior Series</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>45s</strong> per side</span>
+      </div>
+      <div class="exercise-cues">Flow through Warrior I, II, and III. Strong legs and open chest.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V1/Quadriceps Stretch.jpg" alt="Quadriceps Stretch">
+    <div class="exercise-info">
+      <h3>2. Quadriceps Stretch</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>30s</strong> per side</span>
+      </div>
+      <div class="exercise-cues">Stand on one leg, pull other foot toward glutes, keep knees together.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <img class="exercise-img" src="https://cdn.bestyou.ai/mobilitylibrary/V2/Prisoner Lunge w-Pec Stretch.jpg" alt="Prisoner Lunge w/Pec Stretch">
+    <div class="exercise-info">
+      <h3>3. Prisoner Lunge w/Pec Stretch</h3>
+      <div class="exercise-rx">
+        <span class="rx-pill"><strong>30s</strong></span>
+      </div>
+      <div class="exercise-cues">Breathe deeply and relax into stretch. Hold at comfortable end range.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div>Generated by BestYou × OpenClaw</div>
+</div>
+
+<script>
+document.querySelectorAll('.exercise-img').forEach(img => {
+  img.addEventListener('click', () => {
+    img.classList.toggle('expanded');
+  });
+});
+</script>
+</body>
+</html>

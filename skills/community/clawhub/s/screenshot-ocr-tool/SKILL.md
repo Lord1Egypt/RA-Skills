@@ -1,35 +1,24 @@
----
-name: "屏幕截图OCR工具"
-description: "从屏幕截图中提取文字，支持纯文本、结构化及问答分离格式，适合中医考试题识别。"
-category: "other"
-source: "ClawHub"
-tags: [ocr, openclaw-skill, screenshot, text-extraction]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/screenshot-ocr-tool"
-sourceUrl: "https://clawhub.ai/skills/screenshot-ocr-tool"
----
+# Screenshot OCR Tool - 屏幕截图OCR工具
 
-# 屏幕截图OCR工具
+## 概述
+专门用于处理屏幕截图的OCR工具，特别适合中医考试题识别。
 
-> 从屏幕截图中提取文字，支持纯文本、结构化及问答分离格式，适合中医考试题识别。
+## 技能列表
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/screenshot-ocr-tool`
-- **Source URL:** [https://clawhub.ai/skills/screenshot-ocr-tool](https://clawhub.ai/skills/screenshot-ocr-tool)
+### 1. Screenshot OCR Extraction
+从屏幕截图中提取文字内容，特别适合处理考试题。
 
-## Overview
+**参数：**
+- `image_path` (string, 必需): 截图文件路径
+- `output_format` (string, 可选): 输出格式
+  - `text`: 纯文本
+  - `structured`: 结构化
+  - `question_answer`: 问答分离
 
+**实现：** Python 脚本 `./scripts/screenshot_ocr.py`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/screenshot-ocr-tool
+## 使用示例
+```
+输入：考试题目截图
+输出：提取后的文字内容
 ```

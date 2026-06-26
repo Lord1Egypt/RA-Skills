@@ -1,0 +1,10 @@
+{
+  "id": "doubao",
+  "label": "Doubao TTS",
+  "type": "cloud",
+  "description": "适合中文内容生产和字节生态配音流程。",
+  "confirmationFields": ["provider", "voice", "language", "speed", "fallbackProvider"],
+  "voiceRequired": true,
+  "supportsLocalFallback": true,
+  "envHints": ["DOUBAO_API_KEY"]
+}

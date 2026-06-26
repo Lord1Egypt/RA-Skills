@@ -1,0 +1,12 @@
+{
+  "household_id": "sample-household",
+  "display_name": "Sample household",
+  "members": {
+    "adults": 2,
+    "children": 0
+  },
+  "notes": [
+    "Replace these values with the real household shape.",
+    "Recipe-level serving notes remain the authoritative source for individual meal behavior."
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "toolflow",
+  "name": "ToolFlow",
+  "version": "0.0.0",
+  "description": "Bundled ToolFlow runtime plugin for OpenClaw.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "ledgerRoot": {
+        "type": "string"
+      },
+      "taskflowMirrorRoot": {
+        "type": "string"
+      },
+      "enableElevated": {
+        "type": "boolean"
+      },
+      "elevatedAllowedCommands": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "progressUpdates": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "longRunThresholdMs": {
+            "type": "number"
+          },
+          "intervalMs": {
+            "type": "number"
+          },
+          "sink": {
+            "type": "string",
+            "enum": ["stderr", "command"]
+          },
+          "command": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

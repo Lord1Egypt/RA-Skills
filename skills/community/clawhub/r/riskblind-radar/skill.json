@@ -1,0 +1,10 @@
+{
+  "name": "riskblind-radar",
+  "version": "1.0.0",
+  "description": "风险盲区雷达 — AI对话中主动追问被遗漏的风险和机会",
+  "author": "龙虾",
+  "license": "MIT",
+  "platforms": ["openclaw"],
+  "tags": ["AI助手增强", "决策辅助", "风险管理", "主动思考", "认知偏差"],
+  "price": 0
+}

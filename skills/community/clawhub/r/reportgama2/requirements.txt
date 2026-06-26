@@ -1,0 +1,17 @@
+# Report-gama Python 依赖
+# 安装命令: pip install -r requirements.txt
+
+# === 必需依赖 ===
+requests>=2.28.0          # HTTP 请求
+beautifulsoup4>=4.11.0    # HTML 解析
+lxml>=4.9.0               # lxml 解析器（BeautifulSoup 需要）
+
+# === 可选依赖（推荐安装）===
+fake-useragent>=1.1.0    # 随机用户代理池（可选，未安装时使用内置UA池）
+matplotlib>=3.5.0         # 图表生成
+reportlab>=4.0.0          # PDF 导出
+pillow>=9.0.0             # 图片处理（PDF 图表需要）
+
+# === 额外依赖（可选）===
+# python-dateutil>=2.8.0   # 日期处理
+# googletrans>=3.0.0a0    # 关键词翻译（非必须）

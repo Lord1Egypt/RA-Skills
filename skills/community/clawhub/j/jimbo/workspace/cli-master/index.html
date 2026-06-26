@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI Master - Learn Linux Command Line</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #0d1117;
+            color: #e6edf3;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: #161b22;
+            padding: 10px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .xp {
+            color: #ffd700;
+        }
+
+        .streak {
+            color: #f85149;
+        }
+
+        main {
+            display: grid;
+            gap: 30px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #161b22, #21262d);
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            background: #58a6ff;
+            color: #0d1117;
+            border: none;
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(88, 166, 255, 0.2);
+        }
+
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .unit-card {
+            background: #161b22;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #30363d;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-4px);
+            border-color: #58a6ff;
+        }
+
+        .unit-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .unit-icon {
+            font-size: 24px;
+        }
+
+        .unit-title {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .unit-description {
+            color: #8b949e;
+            margin-bottom: 20px;
+        }
+
+        .unit-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress {
+            color: #3fb950;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .start-button {
+            background: transparent;
+            color: #58a6ff;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: background 0.2s;
+        }
+
+        .start-button:hover {
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #30363d;
+            text-align: center;
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .units-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">CLI Master</div>
+            <div class="stats">
+                <div class="stat-item xp">
+                    <span>XP:</span>
+                    <span id="xp-counter">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Level:</span>
+                    <span id="level-counter">1</span>
+                </div>
+                <div class="stat-item streak">
+                    <span>🔥 Streak:</span>
+                    <span id="streak-counter">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>Master the Linux Command Line</h1>
+                <p>Learn Linux commands through interactive lessons, earn XP, track your progress, and join the leaderboard. Start your journey to becoming a CLI master!</p>
+                <button class="cta-button" id="start-learning">Start Learning Now</button>
+            </section>
+
+            <section class="units-section">
+                <h2 style="font-family: 'JetBrains Mono', monospace; margin-bottom: 24px; font-size: 24px;">Course Units</h2>
+                <div class="units-grid" id="units-grid">
+                    <!-- Units will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>CLI Master &copy; 2026 | Learn Linux Command Line Interactive Platform</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data structure for units
+        const units = [
+            {
+                id: 'getting-started',
+                title: 'Getting Started',
+                icon: '🚀',
+                description: 'Learn the basics of the terminal interface and your first commands',
+                lessons: 3,
+                requiredXp: 0,
+                locked: false
+            },
+            {
+                id: 'file-navigation',
+                title: 'File Navigation',
+                icon: '📁',
+                description: 'Navigate through directories and understand file paths',
+                lessons: 4,
+                requiredXp: 50,
+                locked: true
+            },
+            {
+                id: 'file-management',
+                title: 'File Management',
+                icon: '🗂️',
+                description: 'Create, copy, move, and delete files and directories',
+                lessons: 6,
+                requiredXp: 150,
+                locked: true
+            },
+            {
+                id: 'working-with-files',
+                title: 'Working with Files',
+                icon: '📄',
+                description: 'View, search, and analyze file contents',
+                lessons: 4,
+                requiredXp: 300,
+                locked: true
+            },
+            {
+                id: 'permissions',
+                title: 'Permissions',
+                icon: '🔒',
+                description: 'Understand and manage file permissions and ownership',
+                lessons: 3,
+                requiredXp: 500,
+                locked: true
+            },
+            {
+                id: 'networking',
+                title: 'Networking',
+                icon: '🌐',
+                description: 'Network commands and remote connections',
+                lessons: 3,
+                requiredXp: 700,
+                locked: true
+            }
+        ];
+
+        // User data from localStorage or default
+        const userData = JSON.parse(localStorage.getItem('cli-master-user')) || {
+            xp: 0,
+            level: 1,
+            streak: 0,
+            lastActive: null,
+            completedLessons: [],
+            unitProgress: {},
+            achievements: [],
+            settings: {
+                soundEnabled: true,
+                animationsEnabled: true
+            }
+        };
+
+        // Update counters
+        document.getElementById('xp-counter').textContent = userData.xp;
+        document.getElementById('level-counter').textContent = userData.level;
+        document.getElementById('streak-counter').textContent = userData.streak;
+
+        // Render units
+        function renderUnits() {
+            const unitsGrid = document.getElementById('units-grid');
+            unitsGrid.innerHTML = '';
+            
+            units.forEach(unit => {
+                const isLocked = unit.locked && userData.xp < unit.requiredXp;
+                const progress = userData.unitProgress[unit.id] || 0;
+                
+                const unitCard = document.createElement('div');
+                unitCard.className = 'unit-card';
+                unitCard.innerHTML = `
+                    <div class="unit-header">
+                        <div class="unit-icon">${unit.icon}</div>
+                        <div class="unit-title">${unit.title}</div>
+                    </div>
+                    <div class="unit-description">${unit.description}</div>
+                    <div class="unit-meta">
+                        <div class="progress">${progress}% Complete</div>
+                        <div>${unit.lessons} Lessons</div>
+                    </div>
+                    ${isLocked ? 
+                        `<div style="margin-top: 12px; color: #f85149; font-family: 'JetBrains Mono', monospace;">
+                            🔒 Need ${unit.requiredXp} XP
+                        </div>` :
+                        `<button class="start-button" data-unit="${unit.id}" style="margin-top: 12px;">
+                            Start Unit
+                        </button>`
+                    }
+                `;
+                
+                unitsGrid.appendChild(unitCard);
+            });
+            
+            // Add event listeners to start buttons
+            document.querySelectorAll('.start-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const unitId = this.getAttribute('data-unit');
+                    startUnit(unitId);
+                });
+            });
+        }
+
+        function startUnit(unitId) {
+            alert(`Starting unit: ${unitId}\n\nThis would open the lesson interface. In a full implementation, this would navigate to the lesson player.`);
+        }
+
+        // CTA button
+        document.getElementById('start-learning').addEventListener('click', function() {
+            startUnit('getting-started');
+        });
+
+        // Initialize
+        renderUnits();
+
+        // Check streak
+        const today = new Date().toISOString().split('T')[0];
+        if (userData.lastActive !== today) {
+            const lastDate = userData.lastActive ? new Date(userData.lastActive) : null;
+            const todayDate = new Date(today);
+            
+            if (lastDate) {
+                const diffDays = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
+                if (diffDays === 1) {
+                    userData.streak++;
+                } else if (diffDays > 1) {
+                    userData.streak = 0;
+                }
+            }
+            
+            userData.lastActive = today;
+            localStorage.setItem('cli-master-user', JSON.stringify(userData));
+            document.getElementById('streak-counter').textContent = userData.streak;
+        }
+
+        console.log('CLI Master loaded successfully!');
+        console.log('Single HTML file works without build step ✓');
+    </script>
+</body>
+</html>

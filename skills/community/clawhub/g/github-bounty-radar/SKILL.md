@@ -1,35 +1,22 @@
----
-name: "GitHub Bounty Finder AI"
-description: "Generates a step-by-step plan to fix a GitHub issue based on its title and description for developers and contributors."
-category: "other"
-source: "ClawHub"
-tags: [github bounty ai developer automation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-bounty-radar"
-sourceUrl: "https://clawhub.ai/skills/github-bounty-radar"
----
+# GitHub Issue Fix Planner
 
-# GitHub Bounty Finder AI
+This skill helps developers generate a step-by-step plan to fix a GitHub issue.
 
-> Generates a step-by-step plan to fix a GitHub issue based on its title and description for developers and contributors.
+## What it does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-bounty-radar`
-- **Source URL:** [https://clawhub.ai/skills/github-bounty-radar](https://clawhub.ai/skills/github-bounty-radar)
+Given a GitHub issue title and description, this skill generates a structured plan to approach the problem.
 
-## Overview
+## Use cases
 
+- Open source contributors
+- Developers working on GitHub issues
+- Bounty hunters solving GitHub tasks
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/github-bounty-radar
-```
+## Inputs
+
+- issue_title: Title of the GitHub issue
+- issue_description: Description of the GitHub issue
+
+## Output
+
+- fix_plan: Step-by-step plan to fix the issue

@@ -1,0 +1,49 @@
+{
+  "name": "sap-journal-auditor",
+  "version": "1.0.0",
+  "description": "Enterprise-grade SAP FI/CO journal audit automation. Detects anomalies, duplicates, approval bypass patterns, and period-end irregularities in journal entry exports.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/test.js",
+    "audit": "node index.js",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "SAP",
+    "FICO",
+    "S4HANA",
+    "ACDOCA",
+    "audit",
+    "journal-entries",
+    "finance",
+    "ERP",
+    "controlling",
+    "compliance",
+    "internal-audit",
+    "automation"
+  ],
+  "author": {
+    "name": "Daryoosh Dehestani",
+    "email": "daryoosh@radarroster.com",
+    "url": "https://radarroster.com"
+  },
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dda-oo/sap-journal-auditor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dda-oo/sap-journal-auditor/issues"
+  },
+  "homepage": "https://github.com/dda-oo/sap-journal-auditor#readme",
+  "dependencies": {
+    "csv-parse": "^5.5.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

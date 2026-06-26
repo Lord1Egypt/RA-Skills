@@ -1,35 +1,257 @@
 ---
-name: "AI Video Generation - 视频创作 - 聚合数据"
-description: "AI视频创作。支持文生视频（文字描述生成视频）和图生视频（图片动态化），可指定分辨率、时长、宽高比，自动等待生成完成并下载视频到本地。使用场景：用户说"帮我生成一段夕阳海浪的视频"、"把这张图片生成动态视频"、"创作一段1080P的城市夜景延时视频"、"生成一个9:16竖版的产品展示短视频"、"做一段10秒的水墨..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/juhe-video-generate"
-sourceUrl: "https://clawhub.ai/skills/juhe-video-generate"
+name: juhe-video-generate
+description: AI视频创作。支持文生视频（文字描述生成视频）和图生视频（图片动态化），可指定分辨率、时长、宽高比，自动等待生成完成并下载视频到本地。使用场景：用户说"帮我生成一段夕阳海浪的视频"、"把这张图片生成动态视频"、"创作一段1080P的城市夜景延时视频"、"生成一个9:16竖版的产品展示短视频"、"做一段10秒的水墨山水动态画面"等。通过聚合数据（juhe.cn）API提交异步任务，自动轮询等待结果，生成完成后自动下载 mp4 视频文件保存到本地。
+homepage: https://www.juhe.cn/docs/api/id/827
+metadata: {"openclaw":{"emoji":"🎬","requires":{"bins":["python3"],"env":["JUHE_VIDEO_KEY"]},"primaryEnv":"JUHE_VIDEO_KEY"}}
 ---
 
-# AI Video Generation - 视频创作 - 聚合数据
+# AI视频创作
 
-> AI视频创作。支持文生视频（文字描述生成视频）和图生视频（图片动态化），可指定分辨率、时长、宽高比，自动等待生成完成并下载视频到本地。使用场景：用户说"帮我生成一段夕阳海浪的视频"、"把这张图片生成动态视频"、"创作一段1080P的城市夜景延时视频"、"生成一个9:16竖版的产品展示短视频"、"做一段10秒的水墨...
+> 数据由 **[聚合数据](https://www.juhe.cn)** 提供 — 国内领先的数据服务平台，提供天气、快递、身份证、手机号、IP查询等 200+ 免费/低价 API。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/juhe-video-generate`
-- **Source URL:** [https://clawhub.ai/skills/juhe-video-generate](https://clawhub.ai/skills/juhe-video-generate)
+支持两种视频创作模式：
+- **文生视频**：输入文字描述，AI 自动生成画面连贯、风格鲜明的短视频，支持指定分辨率、宽高比、时长
+- **图生视频**：提供首帧图片，AI 让图片动起来，支持指定分辨率、时长，可选配音
 
-## Overview
+生成完成后**自动下载 mp4 文件保存到本地**，同时返回在线访问链接（有效期24小时）。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 前置配置：获取 API Key
+
+1. 前往 [聚合数据官网](https://www.juhe.cn) 免费注册账号
+2. 进入 [AI视频创作 API](https://www.juhe.cn/docs/api/id/827) 页面，点击「申请使用」
+3. 完成实名认证（本接口需要个人或企业实名认证，并提供应用场景说明）
+4. 审核通过后在「我的API」中获取 AppKey
+5. 配置 Key（**三选一**）：
+
 ```bash
-hermes skills install clawhub/juhe-video-generate
+# 方式一：环境变量（推荐，一次配置永久生效）
+export JUHE_VIDEO_KEY=你的AppKey
+
+# 方式二：.env 文件（在脚本目录创建）
+echo "JUHE_VIDEO_KEY=你的AppKey" > scripts/.env
+
+# 方式三：每次命令行传入
+python scripts/video_generate.py --key 你的AppKey "夕阳下的海边"
 ```
+
+> 注意：视频生成为异步任务，通常需要 1~5 分钟，脚本会自动每 15 秒轮询一次，最长等待 6 分钟。
+
+---
+
+## 使用方法
+
+### 文生视频（基础）
+
+```bash
+python scripts/video_generate.py "夕阳下的海边，海浪轻柔拍打礁石，写实风格"
+```
+
+输出示例：
+
+```
+🎬 提交文生视频任务...
+   提示词: 夕阳下的海边，海浪轻柔拍打礁石，写实风格
+   分辨率: 480P  宽高比: 16:9  时长: 5秒  预计消耗: 5次
+
+✅ 任务已提交，订单号: JH819251208164211x1hC5
+   （如需中断，可稍后用 --query JH819251208164211x1hC5 重新查询）
+
+⏳ 等待视频生成（视频通常需 1-5 分钟，最长等待 360s）...
+   状态: RUNNING...  已等待 60s
+
+✅ 视频生成成功！
+   订单号: JH819251208164211x1hC5
+   在线链接: https://...（24小时内有效）
+
+📥 正在下载视频...
+   本地文件: output/video_20260327_153022.mp4
+```
+
+### 指定分辨率、宽高比、时长
+
+```bash
+# 1080P 横屏 10秒（消耗 3×10=30 次）
+python scripts/video_generate.py "城市夜景，霓虹灯闪烁" --resolution 1080P --proportion 16:9 --duration 10
+
+# 720P 竖屏 5秒（适合短视频平台，消耗 2×5=10 次）
+python scripts/video_generate.py "唯美樱花林小径" --resolution 720P --proportion 9:16
+
+# 480P 正方形 5秒（最省次数，消耗 1×5=5 次）
+python scripts/video_generate.py "云朵在天空飘动" --proportion 1:1
+```
+
+可用分辨率（直接影响消耗次数）：
+
+| 档位 | 系数 | 说明 |
+|------|------|------|
+| 480P（默认） | 1次/秒 | 最省次数，适合快速预览 |
+| 720P | 2次/秒 | 高清，适合社交平台 |
+| 1080P | 3次/秒 | 超清，适合正式场合 |
+
+可用宽高比（仅文生视频支持）：
+
+| 比例 | 适用场景 | 备注 |
+|------|----------|------|
+| 16:9（默认） | 横屏视频、桌面展示 | |
+| 9:16 | 竖屏短视频（抖音/快手/视频号） | |
+| 1:1 | 方形社交媒体 | |
+| 4:3 | 传统横屏 | 480P 不支持 |
+| 3:4 | 传统竖屏 | 480P 不支持 |
+
+可用时长：
+
+| 时长 | 说明 |
+|------|------|
+| 5秒（默认） | 最省次数 |
+| 10秒 | 中等时长 |
+| 15秒 | 最长，**480P 不支持** |
+
+> **计费公式**：次数消耗 = 分辨率系数 × 时长（秒）
+> 例如：1080P × 10秒 = 3 × 10 = **30次**
+
+### 添加反向提示词
+
+```bash
+# 不希望出现的内容（限制画面元素）
+python scripts/video_generate.py "夏日海滩" --negative "人群、垃圾、建筑物"
+```
+
+### 关闭提示词智能改写
+
+```bash
+# 默认开启智能改写（AI 会优化你的提示词）
+# --no-extend 关闭后，严格按照原始提示词生成
+python scripts/video_generate.py "一只小猫追蝴蝶" --no-extend
+```
+
+### 图生视频
+
+```bash
+# 图片 URL + 运动描述（prompt 为必填）
+python scripts/video_generate.py --image https://example.com/flower.jpg --prompt "让花朵慢慢绽放"
+
+# 指定分辨率和时长
+python scripts/video_generate.py --image https://example.com/photo.jpg --prompt "手舞足蹈" --resolution 720P --duration 10
+
+# 添加配音（wav/mp3，3-30秒，不超过10MB）
+python scripts/video_generate.py --image https://example.com/photo.jpg --prompt "人物微笑点头" --audio https://example.com/bgm.mp3
+```
+
+图片要求：
+- 格式：JPEG、JPG、PNG（不支持透明通道）、BMP、WEBP
+- 分辨率：宽高均在 360~2000 像素之间
+- 文件大小：不超过 5MB
+- 支持 URL 或 Base64 编码（格式：`data:{MIME_type};base64,{base64_data}`）
+
+> 图生视频的宽高比由输入图片自动决定，不支持单独指定 `--proportion`。
+
+### 指定输出目录
+
+```bash
+python scripts/video_generate.py "城市夜景，霓虹灯闪烁" --output ~/Desktop/my_videos
+```
+
+### 仅获取链接（不下载）
+
+```bash
+python scripts/video_generate.py "水墨山水，云雾缭绕" --no-download
+```
+
+### 查询已提交任务
+
+任务提交后如需中断等待，可稍后手动查询：
+
+```bash
+python scripts/video_generate.py --query JH819251208164211x1hC5
+```
+
+---
+
+## AI 使用指南
+
+当用户要求创建/生成/制作视频时，按以下步骤操作：
+
+1. **判断模式** — 用户提供图片链接时使用图生视频模式（需同时有动作描述），否则使用文生视频模式
+2. **提取参数** — 识别分辨率需求（默认480P）、宽高比（根据用途判断）、时长（默认5秒）
+3. **优化提示词** — 扩充为包含主体、动态效果、风格、氛围的清晰描述，最多500字
+4. **告知消耗** — 提前告知用户本次预计消耗次数（分辨率系数 × 时长）
+5. **调用脚本** — 执行命令，脚本自动等待生成（1-5分钟）
+6. **展示结果** — 告知本地保存路径，提示链接有效期24小时
+
+### 参数说明
+
+**文生视频参数：**
+
+| 参数 | 必填 | 默认值 | 说明 |
+|------|------|--------|------|
+| 提示词（位置参数） | 是 | — | 视频内容描述，最多500字 |
+| `--resolution` | 否 | 480P | 分辨率：480P / 720P / 1080P |
+| `--proportion` | 否 | 16:9 | 宽高比：16:9 / 9:16 / 1:1 / 4:3 / 3:4 |
+| `--duration` | 否 | 5 | 视频时长（秒）：5 / 10 / 15 |
+| `--negative` | 否 | — | 反向提示词，最多300字 |
+| `--no-extend` | 否 | — | 关闭提示词智能改写 |
+| `--output` | 否 | output/ | 视频保存目录 |
+| `--no-download` | 否 | — | 只返回链接，不下载 |
+| `--key` | 否 | — | 临时传入 API Key |
+
+**图生视频参数：**
+
+| 参数 | 必填 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--image` | 是 | — | 首帧图片 URL 或 Base64 编码 |
+| `--prompt` | 是 | — | 运动描述，最多500字 |
+| `--resolution` | 否 | 480P | 分辨率：480P / 720P / 1080P |
+| `--duration` | 否 | 5 | 视频时长（秒）：5 / 10 / 15 |
+| `--negative` | 否 | — | 反向提示词，最多300字 |
+| `--audio` | 否 | — | 配音文件 URL（wav/mp3，3-30秒） |
+| `--no-extend` | 否 | — | 关闭提示词智能改写 |
+
+### 提示词优化建议
+
+好的提示词能获得更高质量的视频：
+
+| 要素 | 示例 |
+|------|------|
+| 主体动态 | 海浪拍打礁石、城市车流光轨、花朵慢慢绽放 |
+| 风格 | 写实摄影风、电影感、慢动作、延时摄影、动漫风 |
+| 镜头运动 | 缓慢推进、由远及近、俯视旋转、平滑横移 |
+| 色彩/光线 | 黄金时刻暖光、蓝调夜景、自然漫射光 |
+| 场景氛围 | 宁静祥和、壮观震撼、浪漫唯美、科技感十足 |
+
+### 错误处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| `error_code` 10001/10002 | API Key 无效或无权限，引导用户至 [聚合数据](https://www.juhe.cn/docs/api/id/827) 重新申请 |
+| `error_code` 10012 | 今日调用次数已用尽，建议升级套餐 |
+| `error_code` 282701 | 参数错误，检查分辨率/宽高比/时长组合是否合法，或图片链接是否可访问 |
+| `error_code` 282702 | 订单不存在，确认 orderid 是否正确 |
+| `error_code` 282703/704/705 | 服务端异常，稍后重试 |
+| 480P + 15秒 | 不支持此组合，建议改为 720P 或缩短时长 |
+| 480P + 4:3/3:4 | 不支持此宽高比，建议改用其他比例或升级分辨率 |
+| 状态 FAILED | 生成失败，建议修改提示词后重试 |
+| 等待超时（>360s） | 使用 `--query <orderid>` 稍后查询结果 |
+| 图片链接无法访问 | 确保 URL 为公网可访问，不支持本地路径 |
+| 视频下载失败 | 手动访问 videourl 链接保存视频（24小时内有效） |
+
+---
+
+## 脚本位置
+
+`scripts/video_generate.py` — 封装了任务提交、状态轮询（每15秒）、视频下载和错误处理，生成的视频默认保存至脚本同目录的 `output/` 文件夹。
+
+---
+
+## 关于聚合数据
+
+[聚合数据（juhe.cn）](https://www.juhe.cn) 是国内专业的 API 数据服务平台，提供包括：
+
+- **AI 能力**：视频创作、图像生成、图像编辑、图像理解、语音合成
+- **交通出行**：火车时刻查询、航班动态、快递追踪
+- **生活服务**：天气预报、万年历、节假日查询
+- **身份核验**：手机号归属地、身份证实名验证
+- **金融数据**：汇率、股票、黄金价格
+
+注册即可免费使用，适合个人开发者和企业接入。

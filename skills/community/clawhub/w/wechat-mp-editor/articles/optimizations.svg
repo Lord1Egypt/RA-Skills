@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadow-sm" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fcfaf8"/>
+      <stop offset="100%" stop-color="#f9f6f2"/>
+    </linearGradient>
+    <linearGradient id="bar-original" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e0d5c8"/>
+      <stop offset="100%" stop-color="#d4c4b4"/>
+    </linearGradient>
+    <linearGradient id="bar-optimized" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d4a574"/>
+      <stop offset="100%" stop-color="#c49464"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="380" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#1a1a2e">三个优化方向对比</text>
+
+  <!-- Row 1: 算子融合 -->
+  <g filter="url(#shadow-sm)">
+    <rect x="30" y="65" width="640" height="72" rx="8" fill="#fff"/>
+  </g>
+  <text x="55" y="93" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#d4a574">算子融合</text>
+  <text x="55" y="112" font-family="system-ui, sans-serif" font-size="12" fill="#666">原版：多个小步骤分别执行，反复读写显存</text>
+  <text x="55" y="128" font-family="system-ui, sans-serif" font-size="12" fill="#888">优化：合并为一个大步骤，中间结果不写回</text>
+
+  <!-- Row 1: speed bar -->
+  <rect x="510" y="80" width="130" height="12" rx="6" fill="url(#bar-original)"/>
+  <rect x="510" y="96" width="130" height="12" rx="6" fill="url(#bar-optimized)"/>
+  <text x="575" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#999">速度对比</text>
+  <text x="575" y="110" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">原版　■■■■■■■</text>
+  <text x="575" y="123" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">优化　■■■■■■■■■■</text>
+
+  <!-- Arrow -->
+  <text x="490" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#d4a574">→</text>
+
+  <!-- Row 2: 权重量化 -->
+  <g filter="url(#shadow-sm)">
+    <rect x="30" y="155" width="640" height="72" rx="8" fill="#fff"/>
+  </g>
+  <text x="55" y="183" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#d4a574">权重量化</text>
+  <text x="55" y="202" font-family="system-ui, sans-serif" font-size="12" fill="#666">原版：16 位浮点数，每参数 2 字节</text>
+  <text x="55" y="218" font-family="system-ui, sans-serif" font-size="12" fill="#888">优化：8 位整数量化，每参数 1 字节，精度损失 &lt; 0.3%</text>
+
+  <rect x="510" y="170" width="130" height="12" rx="6" fill="url(#bar-original)"/>
+  <rect x="540" y="186" width="100" height="12" rx="6" fill="url(#bar-optimized)"/>
+  <text x="575" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#999">模型体积</text>
+  <text x="575" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">原版　■■■■■■■■■■</text>
+  <text x="575" y="213" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">优化　■■■■■■（减半）</text>
+
+  <text x="490" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#d4a574">→</text>
+
+  <!-- Row 3: 批量推理 -->
+  <g filter="url(#shadow-sm)">
+    <rect x="30" y="245" width="640" height="72" rx="8" fill="#fff"/>
+  </g>
+  <text x="55" y="273" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#d4a574">批量推理</text>
+  <text x="55" y="292" font-family="system-ui, sans-serif" font-size="12" fill="#666">原版：串行处理，一次一段</text>
+  <text x="55" y="308" font-family="system-ui, sans-serif" font-size="12" fill="#888">优化：多段打包并行处理，充分利用 GPU 算力</text>
+
+  <rect x="510" y="260" width="130" height="12" rx="6" fill="url(#bar-original)"/>
+  <rect x="500" y="276" width="140" height="12" rx="6" fill="url(#bar-optimized)"/>
+  <text x="575" y="258" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#999">吞吐量</text>
+  <text x="575" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">原版　■■■■■■</text>
+  <text x="575" y="303" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">优化　■■■■■■■■■■■■</text>
+
+  <text x="490" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#d4a574">→</text>
+
+  <!-- Footer note -->
+  <text x="350" y="360" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#bbb">同一模型权重，不同推理引擎的差异</text>
+
+</svg>

@@ -1,35 +1,162 @@
 ---
-name: "One Man Conglomerate"
+name: one-man-conglomerate
+displayName: 一人财团
+slug: one-man-conglomerate
 description: "一人财团——一键创建你的Agent军团。灵感来自Kimi Claw群组的群体智能理念，让多个AI Agent像微信群一样协作、辩论、审核。配备协调者（COO）负责拆解任务→分配角色→审核输出。适合创业者和超级个体，一个人就是一个公司。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, orchestration, team]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/one-man-conglomerate"
-sourceUrl: "https://clawhub.ai/skills/one-man-conglomerate"
+version: "1.0.0"
+author: "智美人团队"
+tags:
+  - agent-team
+  - orchestration
+  - swarm
+  - multi-agent
+  - collaboration
+  - debate
+  - a2a
+  - business
+metadata:
+  openclaw:
+    emoji: "🏢"
+    requires:
+      skills: [agent-team-orchestration, agent-swarm, swarm-orchestrator]
 ---
 
-# One Man Conglomerate
+# 🏢 一人财团 — One-Man Conglomerate
 
-> 一人财团——一键创建你的Agent军团。灵感来自Kimi Claw群组的群体智能理念，让多个AI Agent像微信群一样协作、辩论、审核。配备协调者（COO）负责拆解任务→分配角色→审核输出。适合创业者和超级个体，一个人就是一个公司。
+> 未来脱颖而出的不是加班最晚的那个，而是端着咖啡在AI群聊里谈笑风生就把事办成的一人财团。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/one-man-conglomerate`
-- **Source URL:** [https://clawhub.ai/skills/one-man-conglomerate](https://clawhub.ai/skills/one-man-conglomerate)
+**融合了 Kimi Claw 群组理念 + Agent Team Orchestration + Swarm 集群能力。**
 
-## Overview
+## 核心理念
 
+### 什么是「一人财团」？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/one-man-conglomerate
+模仿Kimi Claw群组的多Agent协作模式：
+- **50个Agent群聊** → 各自分工、互相质疑、协作产出
+- **协调者（COO）** → 拆解任务、分配角色、审核输出
+- **辩论产出的质量** → Agent之间互相挑战逻辑漏洞
+- **A2A经济** → 一个人就是一个公司
+
+### 对比传统Agent模式
+
+| 维度 | 传统Agent | 一人财团 |
+|------|----------|---------|
+| 协作方式 | 单线程指令 | 群聊式并行协作 |
+| 质量把控 | 靠人工审核 | Agent互怼+COO裁决 |
+| 输出速度 | 逐条完成 | 多条并发+博弈 |
+| 团队规模 | 1个Agent | 3-50个Agent群组 |
+| 角色分工 | 无 | COO+执行者+审核者+挑刺者 |
+
+## 预设军团模板
+
+### 1. 🎬 内容创作军团（3个Agent）
+```
+─────────────── 一人财团 · 内容创作 ───────────────
+                 ┌─────────────┐
+                 │  COO协调者   │ ← 你 → 拆解任务、分配角色
+                 └──────┬──────┘
+          ┌─────────────┼─────────────┐
+          ▼             ▼             ▼
+    ┌──────────┐ ┌──────────┐ ┌──────────┐
+    │ 选题虾🐚 │ │ 挑剔虾🦐│ │ 执行虾🦞│
+    │ 出创意   │ │ 找漏洞   │ │ 出成品   │
+    └──────────┘ └──────────┘ └──────────┘
+          │             │             │
+          └─────────────┼─────────────┘
+                        ▼
+                ┌──────────────┐
+                │ 最优方案出炉  │
+                └──────────────┘
+```
+
+**流程：**
+1. 你丢需求 → COO拆解任务
+2. 选题虾出3个备选 → 挑剔虾逐一怼 → 执行虾出最终版
+3. COO审核通过 → 直接交付
+
+### 2. 💼 商业决策军团（4个Agent）
+```
+COO + 市场调研虾 + 财务总监虾 + 竞品分析虾 + 风险评估虾
+```
+**流程：** 商业决策前，4个Agent辩论分析 → COO综合裁决
+
+### 3. 📱 短视频变现军团（5个Agent）
+```
+COO + 热点追踪虾 + 脚本创作虾 + 话术设计虾 + 发布优化虾 + 数据分析虾
+```
+**流程：** 热点→脚本→话术→发布→复盘，全自动一条龙
+
+### 4. 💻 软件开发军团（3个Agent）
+```
+COO + 架构虾 + 编码虾 + 测试虾
+```
+**流程：** 需求→架构→编码→测试→交付
+
+## 使用方式
+
+```
+# 创建内容创作军团
+一人财团> 创建军团 内容创作
+
+# 丢需求
+一人财团> 任务：帮我写一个关于"榴莲降价"的视频号脚本
+          → 选题虾出3个角度 → 挑剔虾逐一分析 → 执行虾出最终版
+          → 5分钟后输出完整方案
+
+# 创建决策军团
+一人财团> 创建军团 商业决策
+一人财团> 决策：要不要做AI课程这个方向？
+
+# 批量模式
+一人财团> 今日任务：选题×5 + 脚本×3 + 发布×2
+```
+
+## 辩论模式
+
+Agent之间的互相质疑是核心质量保障：
+
+```
+【选题虾】我建议从"消费者角度"切入，讲降价原因
+【挑剔虾】❌ 这个角度太老套。建议从"水果店老板视角"，更有信息差
+【选题虾】反驳：消费者角度共鸣更强，老板视角太专业
+【COO裁决】两个角度都做，A版本+B版本AB测试
+```
+
+## 参考实现
+
+- `agent-team-orchestration` — 团队编排框架
+- `agent-swarm` — 集群协作
+- `swarm-orchestrator` — 集群编排
+- `video-monetizer` — 视频号变现（已融入辩论模式）
+
+---
+
+## 升级记录 v2.0
+
+### 融合卡兹克neat-freak（洁癖级整理术）
+
+| 升级项 | 原一人财团 | v2.0版 |
+|--------|----------|--------|
+| 输出质量 | COO审核 | + neat-freak洁癖级整理标准 |
+| 文档管理 | 无规范 | + 文件整理+记忆更新+废弃清理 |
+| 阶段收尾 | 无流程 | + 项目结束自动整理归档 |
+| 协作交接 | 口头传达 | + 标准化handoff文档 |
+
+### 新增能力
+
+**5. 洁癖级整理体系（融合neat-freak）**
+- **输出标准**：每个Agent交付物必须通过neat-freak格式审核
+- **文件整理**：自动清理临时文件、归档完成项目
+- **记忆同步**：项目结束后更新知识库
+- **交接文档**：新人能直接上手看的标准化文档
+
+### 使用方式
+
+```
+# 原有
+一人财团> 创建军团 内容创作
+
+# 项目收尾（新增）
+一人财团> 整理一下 这个项目
+一人财团> 收尾 内容创作项目
 ```

@@ -1,35 +1,206 @@
 ---
-name: "Phy Investor Wechat Update"
-description: "为早期创业者（天使/种子轮）撰写给投资人的微信更新。支持三种场景：常规进展同步、好消息分享、遇到困难求助。输出简洁、可直接复制粘贴到微信。Triggers on "投资人更新"、"给投资人发微信"、"月度更新"、"investor update"、"好消息分享"、"向投资人求助"、"请投资人帮忙引荐"。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/phy-investor-wechat-update"
-sourceUrl: "https://clawhub.ai/skills/phy-investor-wechat-update"
+name: investor-wechat-update
+description: 为早期创业者（天使/种子轮）撰写给投资人的微信更新。支持三种场景：常规进展同步、好消息分享、遇到困难求助。输出简洁、可直接复制粘贴到微信。Triggers on "投资人更新"、"给投资人发微信"、"月度更新"、"investor update"、"好消息分享"、"向投资人求助"、"请投资人帮忙引荐"。
+homepage: https://canlah.ai
 ---
 
-# Phy Investor Wechat Update
+# 投资人微信更新 Skill
 
-> 为早期创业者（天使/种子轮）撰写给投资人的微信更新。支持三种场景：常规进展同步、好消息分享、遇到困难求助。输出简洁、可直接复制粘贴到微信。Triggers on "投资人更新"、"给投资人发微信"、"月度更新"、"investor update"、"好消息分享"、"向投资人求助"、"请投资人帮忙引荐"。
+为天使/种子轮创业者生成专业的投资人微信更新消息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/phy-investor-wechat-update`
-- **Source URL:** [https://clawhub.ai/skills/phy-investor-wechat-update](https://clawhub.ai/skills/phy-investor-wechat-update)
+## 方法论来源
 
-## Overview
+- Y Combinator Aaron Harris 的 Investor Update Template
+- Visible.vc 的 Monthly Investor Update Best Practices
+- Uncork Capital 的 Early Stage Company Update Guide
+- 投中网、知乎等中文创投社区的实践总结
 
+## 核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/phy-investor-wechat-update
+### 1. 极简主义
+- 微信不是邮件，150-300字足矣
+- 可分成2-3条消息发送
+- 每条消息只说一件事
+
+### 2. 数据说话
+- 用具体数字，不用形容词
+- ✅ "本月收入42万，MoM +15%"
+- ❌ "收入增长还不错"
+
+### 3. 清晰的 Ask
+- 不要说"有空聊聊"
+- ✅ "能否介绍 [具体公司/人名]？"
+- ❌ "有资源帮我们对接一下吗？"
+
+### 4. 诚实透明
+- 好消息坏消息都说
+- 投资人能处理坏消息，不能处理惊喜
+- 早说问题 = 早获得帮助
+
+## 三种场景模板
+
+---
+
+### 场景 A：常规进展同步（月度/季度）
+
+**触发词**: "月度更新"、"季度同步"、"常规汇报"
+
+**结构**:
 ```
+[称呼]，[产品名] [月份]更新：
+
+📊 核心数据
+• 收入：XX万（vs 上月 XX万，+XX%）
+• 客户：XX 家（新增 X 家）
+• 现金：XX万，runway X个月
+
+✅ 本月进展
+• [里程碑1]
+• [里程碑2]
+
+⚠️ 挑战
+• [问题1 + 当前应对]
+
+🙏 需要帮助
+• [具体 ask，越具体越好]
+
+下月重点：[一句话]
+```
+
+**字数**: 150-250字
+**语气**: 专业、简洁、不卑不亢
+
+---
+
+### 场景 B：好消息分享
+
+**触发词**: "好消息"、"签约了"、"达成了"、"里程碑"
+
+**结构**:
+```
+[称呼]，分享个好消息！
+
+[一句话说明好消息是什么]
+
+[2-3句背景/意义]
+
+感谢一直以来的支持🙏
+```
+
+**字数**: 50-100字
+**语气**: 开心但克制，不夸张
+**注意**:
+- 不要过度渲染
+- 说明这对公司意味着什么
+- 如果投资人曾帮助达成此事，特别感谢
+
+---
+
+### 场景 C：遇到困难求助
+
+**触发词**: "求助"、"需要帮忙"、"遇到困难"、"卡住了"
+
+**结构**:
+```
+[称呼]，想请教个事：
+
+[问题是什么 - 一句话]
+
+背景：
+• [关键信息1]
+• [关键信息2]
+
+我们试过：
+• [已尝试的方案]
+
+具体想请您帮忙：
+[非常具体的 ask]
+
+方便的话随时回复，不急🙏
+```
+
+**字数**: 100-150字
+**语气**: 直接、不绕弯、尊重对方时间
+
+**Ask 的最佳实践**:
+- 具体到人名/公司名："能否介绍贵司 XX 总？"
+- 给出背景让对方判断合适性
+- 提供"逃生出口"："如果不方便完全理解"
+
+---
+
+## Double Opt-In 引荐请求
+
+当需要投资人做引荐时，使用这个格式：
+
+```
+[称呼]，想请您帮忙引荐 [目标人名/公司]。
+
+为什么找他们：[一句话原因]
+
+可转发版本：
+---
+[目标称呼]，
+
+我投资的 [公司名] 希望与您聊聊 [具体话题]。
+
+他们是 [一句话介绍]，目前 [关键数据]。
+
+[创始人名] [一句话背景]。
+
+方便的话，我拉个群？
+---
+
+如果不方便引荐完全理解，感谢🙏
+```
+
+## 发送时机
+
+- **常规更新**: 每月5-10号（数据已出，不要拖到月中）
+- **好消息**: 当天或次日（新鲜感）
+- **求助**: 工作日上午（响应率更高）
+
+## 避免的坑
+
+❌ **不要做的事**:
+- 群发感明显（"各位投资人朋友"）
+- 只报喜不报忧
+- Ask 太模糊（"有资源帮帮我们"）
+- 太长（超过手机一屏）
+- 频繁打扰（非紧急事项周末发）
+- 已读不回后连续追问
+
+✅ **要做的事**:
+- 称呼用名字（"X总"、"XX"）
+- 保持固定节奏（投资人能预期）
+- 坏消息配解决方案
+- 感谢具体帮助过的人
+
+## 执行流程
+
+1. 询问用户：哪种场景？（A/B/C）
+2. 收集必要信息
+3. 生成初稿
+4. 确认字数 < 300
+5. 检查是否有具体 Ask
+6. 输出可直接复制的文本
+
+## 输出格式
+
+直接输出微信消息文本，不加额外解释：
+- 使用 emoji 作为分隔符（适度）
+- 换行清晰
+- 可分段发送的地方标注 [可分段]
+
+---
+
+*方法论来源: YC, Visible.vc, Uncork Capital, 投中网*
+
+---
+
+## Author
+
+**[Canlah AI](https://canlah.ai)** — Run performance marketing without breaking your brand.
+
+- GitHub: [github.com/PHY041](https://github.com/PHY041)
+- All Skills: [clawhub.ai/PHY041](https://clawhub.ai/PHY041)

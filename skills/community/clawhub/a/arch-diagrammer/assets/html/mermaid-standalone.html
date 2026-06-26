@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mermaid Diagram</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { margin:0; padding:16px; background:#fafafa; color:#222;
+           font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    pre.mermaid { background:#fff; border:1px solid #ddd; border-radius:8px; padding:16px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mermaid Diagram</h1>
+    <p>将下面的内容替换为你的 Mermaid 代码，然后直接用浏览器打开本文件即可查看。</p>
+    <pre class="mermaid">
+flowchart TD
+  A[用户请求] --> B{鉴权?}
+  B -- 否 --> X[拒绝]
+  B -- 是 --> C[路由网关]
+  C --> D[服务A]
+  C --> E[服务B]
+  D -->|事件| F[(消息队列)]
+  E -->|订阅| F
+    </pre>
+  </div>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  </script>
+</body>
+</html>
+

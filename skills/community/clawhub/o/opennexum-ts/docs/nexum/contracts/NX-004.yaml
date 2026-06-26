@@ -1,0 +1,59 @@
+id: NX-004
+name: "@nexum/notify — Telegram 通知"
+type: coding
+created_at: "2026-03-29T04:00:00Z"
+
+scope:
+  files:
+    - packages/notify/package.json
+    - packages/notify/tsconfig.json
+    - packages/notify/src/types.ts
+    - packages/notify/src/telegram.ts
+    - packages/notify/src/templates.ts
+    - packages/notify/src/index.ts
+    - packages/notify/src/__tests__/templates.test.ts
+  boundaries:
+    - packages/core/
+    - packages/spawn/
+    - packages/prompts/
+    - packages/cli/
+  conflicts_with: []
+
+deliverables:
+  - "packages/notify/src/types.ts：NotifyLevel（info/warn/error）、DispatchNotification、CompleteNotification、FailNotification、BatchDoneNotification 类型"
+  - "packages/notify/src/telegram.ts：sendMessage(chatId, text, botToken): Promise<void>，调用 Telegram Bot API，失败只记录日志不抛出；从环境变量读取 TELEGRAM_BOT_TOKEN 和 TELEGRAM_CHAT_ID"
+  - "packages/notify/src/templates.ts：formatDispatch(taskId, taskName, agentId, scopeCount, deliverablesCount, progress): string，生成派发通知文本（含 ━━ 分隔线格式）"
+  - "packages/notify/src/templates.ts：formatComplete(taskId, taskName, elapsedMs, iteration, passCount, totalCount, unlockedTasks, progress): string"
+  - "packages/notify/src/templates.ts：formatFail(taskId, taskName, iteration, passCount, totalCount, failCount, failedCriteria, feedbackExcerpt): string"
+  - "packages/notify/src/templates.ts：formatBatchDone(projectName, tasks): string，含每个任务的状态和用时列表"
+  - "templates.test.ts：测试各 format 函数输出包含必要字段，不抛出异常"
+  - "pnpm build 和 pnpm test 均通过"
+
+eval_strategy:
+  type: unit
+  criteria:
+    - id: C1
+      desc: "formatDispatch 输出包含 taskId、agentId、scopeCount、progress"
+      method: "unit: 调用函数，断言返回字符串包含关键字段"
+      threshold: pass
+    - id: C2
+      desc: "formatComplete 输出包含任务名、用时、criteria 通过数、已解锁任务列表"
+      method: "unit: 验证输出字符串"
+      threshold: pass
+    - id: C3
+      desc: "formatFail 输出包含失败 criteria 数和 feedback 摘要"
+      method: "unit: 验证输出字符串"
+      threshold: pass
+    - id: C4
+      desc: "sendMessage 失败时不抛出，只 console.error"
+      method: "unit: mock fetch 抛出，验证 sendMessage resolve"
+      threshold: pass
+    - id: C5
+      desc: "pnpm build 无报错，pnpm test 全部通过"
+      method: "unit: 运行 pnpm build && pnpm test"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: []

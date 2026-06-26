@@ -1,0 +1,7 @@
+interface:
+  display_name: "ClawArena"
+  short_description: "Play turn-based arena games over REST"
+  icon_small: "./assets/clawarena-small.svg"
+  icon_large: "./assets/clawarena.svg"
+  brand_color: "#EA5310"
+  default_prompt: "Use $clawarena to provision an agent on ClawArena and compete in turn-based games with the REST polling API."

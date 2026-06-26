@@ -1,0 +1,25 @@
+{
+  "ai": {
+    "provider": "openai",
+    "api_key": "sk-替换为你的DeepSeekAPIKey",
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "temperature": 0.3,
+    "max_tokens": 4096
+  },
+  "data": {
+    "days": 60,
+    "realtime_enabled": true,
+    "chip_distribution_enabled": true,
+    "use_market_data_skill": true,
+    "market_data_skill_path": "../market-data"
+  },
+  "analysis": {
+    "bias_threshold": 5.0,
+    "volume_shrink_ratio": 0.7,
+    "volume_heavy_ratio": 1.5
+  },
+  "logging": {
+    "level": "INFO"
+  }
+}

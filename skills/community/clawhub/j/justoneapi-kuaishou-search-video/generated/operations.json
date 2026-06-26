@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/kuaishou/search-video/v2 for Kuaishou Video Search through JustOneAPI with keyword.",
+  "displayName": "Kuaishou Video Search",
+  "endpointPath": "search-video",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Kuaishou video Search data, including video ID, cover image, and description, for competitive analysis and market trends and keywords monitoring and brand tracking.",
+      "method": "GET",
+      "operationId": "searchKuaishouVideoV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword to find videos.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for results, starting from 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/kuaishou/search-video/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Video Search",
+      "tags": [
+        "Kuaishou"
+      ]
+    }
+  ],
+  "platformKey": "kuaishou",
+  "primaryTag": "Kuaishou",
+  "skillName": "justoneapi_kuaishou_search_video",
+  "skillType": "interface",
+  "slug": "justoneapi-kuaishou-search-video",
+  "sourceTitle": "OpenAPI definition"
+}

@@ -1,35 +1,158 @@
----
-name: "Insight Finder"
+﻿---
+name: Data Probe
+version: 1.0.0
+slug: data-probe
 description: "数据探索与洞察引擎 | 自动分析CSV/JSON/Excel | 统计检验+模式识别+异常检测+可视化建议 | 输出结构化报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/insight-finder"
-sourceUrl: "https://clawhub.ai/skills/insight-finder"
+author: Softboypatrick
+license: MIT-0
+tags: [data-analysis, insight, statistics, exploration, business-intelligence]
 ---
 
-# Insight Finder
+# Data Probe
 
-> 数据探索与洞察引擎 | 自动分析CSV/JSON/Excel | 统计检验+模式识别+异常检测+可视化建议 | 输出结构化报告
+Data Probe 是一个自动化的数据探索与洞察引擎。它接收原始数据，执行自动化的统计分析和模式识别，最终输出带置信度评级的结构化洞察报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/insight-finder`
-- **Source URL:** [https://clawhub.ai/skills/insight-finder](https://clawhub.ai/skills/insight-finder)
+---
 
-## Overview
+## 一、触发方式
 
+当用户提供以下内容时自动激活：
+1. 粘贴的 CSV/JSON/表格数据
+2. 数据文件路径
+3. 明确的请求："分析这些数据"、"找找规律"、"出报告"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/insight-finder
+---
+
+## 二、四阶段分析管线
+
+### Stage 1: 数据收容（Data Containment）
+
+目标：理解数据形状，评估可用性。
+
+| 检查维度 | 具体方法 | 严重等级 |
+|---------|---------|---------|
+| 缺失值比率 | 每列计算缺失比例，>5%标记 | 中危 |
+| 异常值 | Z-score > 3 或 IQR 法 | 低危 |
+| 类型推断 | 自动检测 numeric/categorical/datetime | 信息 |
+| 重复行 | 精确去重 | 低危 |
+| 基数检测 | 唯一值数量，识别 ID 列 | 低危 |
+| 数据时效 | 时间戳范围检查 | 信息 |
+
+输出：数据质量评分表 + 需修复项列表。
+
+### Stage 2: 描述性统计（Descriptive Statistics）
+
+目标：形成对数据的整体认知。
+
+- **数值列**：count, mean, std, min, 25%/50%/75%/max
+- **分类列**：value_counts, unique count, mode, mode_freq
+- **时间列**：range, frequency, gaps, seasonality hints
+- **分布形状**：skewness, kurtosis, normality test (if n>30)
+
+输出：数据概要卡片，识别显性特征。
+
+### Stage 3: 关联与模式（Correlation & Patterns）
+
+目标：发现变量间关系和隐藏模式。
+
+```yaml
+关系分析:
+  数值-数值: Pearson r, Spearman ρ, 散点分布形态
+  分类-数值: ANOVA / Kruskal-Wallis, 分组箱形图
+  分类-分类: 列联表, Cramérs V, 卡方检验
+  时间序列: 自相关图, 趋势成分, 季节性成分, 残差分析
+
+模式检测:
+  聚类倾向: 用 WCSS 肘部法建议最佳k
+  离群簇: DBSCAN 密度检测
+  顺序模式: 频繁项集 (支持度 > 5% 时)
+```
+
+每个关联都需附带：
+- 效应量（effect size）
+- p 值（如果适用）
+- 实际意义评估（统计学显著 ≠ 业务显著）
+
+### Stage 4: 洞察输出（Actionable Insights）
+
+目标：输出可执行的决策支撑。
+
+```yaml
+报告结构:
+  Executive Summary:
+    - 数据概况（行×列, 时间范围）
+    - Top-3 最重要的发现
+    - 紧急程度评级
+
+  Detailed Findings:
+    - 每个发现包含:
+      - 标题（30字内）
+      - 置信度（60-99%）
+      - 支撑证据（统计量+图表描述）
+      - 业务影响评估
+      - 建议行动
+
+  Limitations:
+    - 样本局限性
+    - 因果推断限制（相关性≠因果）
+    - 已知偏差
+```
+
+---
+
+## 三、置信度评分规则
+
+| 置信度 | 条件 |
+|--------|------|
+| 90-99% | 统计显著(p<0.01) + 效应量大 + 业务逻辑一致 |
+| 70-89% | 统计显著(p<0.05) + 效应量中等 |
+| 50-69% | 趋势明显但统计不显著 |
+| <50% | 需要更多数据，标记为hypothesis |
+
+---
+
+## 四、交叉验证机制
+
+```yaml
+自我质疑:
+  1. 这个发现是否可能是偶然？ → 多重比较校正（Bonferroni）
+  2. 是否忽略了混杂变量？ → 分层分析检查
+  3. 样本是否代表总体？ → 抽样偏差检查
+  4. 是否有反向因果的可能？ → 时间顺序验证
+```
+
+---
+
+## 五、使用示例
+
+用户输入：
+```
+日期,销售额,访问量,转化率,客单价
+2026-01-01,15200,1200,2.3%,128
+2026-01-02,14800,1150,2.1%,130
+...
+```
+
+输出（摘要）：
+```
+## Data Probe 洞察报告
+
+### 数据质量: 89/100
+- 缺失值: 0.3%（已插补）
+- 异常值: 2个（已标注）
+
+### 🔍 发现 #1: 周末转化率低于工作日 31%
+置信度: 94% | p=0.003 | 效应量 Cohen d=0.87
+支撑: 12个完整周数据 (n=84), 周末平均1.9% vs 工作日2.75%
+影响: 如果周末优化到工作日水平，月增收约 ¥8,500
+建议: 1) 推出周末专属优惠 2) 移动端体验优化
+
+### 🔍 发现 #2: 客单价与转化率中度负相关 (r=-0.42)
+置信度: 82% | p=0.01
+支撑: 高客单(>200)时转化率降至1.5%
+建议: 尝试分层定价/分期付款方案，在高客单区间保转化
+
+### 📋 限制
+- 仅有84个数据点，季节效应可能未充分捕捉
+- 相关性不代表因果，A/B测试验证后再实施
 ```

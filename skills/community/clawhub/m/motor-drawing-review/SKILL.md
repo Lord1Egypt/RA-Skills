@@ -1,35 +1,159 @@
 ---
-name: "Motor Drawing Review"
-description: "电机图纸审图助手 | 审核电机工程图纸、核查极槽配合、尺寸标注、技术要求、公差配合，输出审图报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/motor-drawing-review"
-sourceUrl: "https://clawhub.ai/skills/motor-drawing-review"
+name: motor-drawing-review
+description: 电机图纸审图助手 | 审核电机工程图纸、核查极槽配合、尺寸标注、技术要求、公差配合，输出审图报告
+version: 1.2.0
+tags: [motor, drawing, review, gdandt, tolerance, engineering, design]
+category: motor-engineering
 ---
 
-# Motor Drawing Review
+# 电机图纸审图助手 v1.2
 
-> 电机图纸审图助手 | 审核电机工程图纸、核查极槽配合、尺寸标注、技术要求、公差配合，输出审图报告
+审核电机工程图纸、核查尺寸标注、检查技术要求、核对公差配合，输出标准化审图报告。
+**v1.2新增：GD&T参考规范、完整审图清单脚本、公差配合速查表。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/motor-drawing-review`
-- **Source URL:** [https://clawhub.ai/skills/motor-drawing-review](https://clawhub.ai/skills/motor-drawing-review)
+## 审图清单脚本
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/motor-drawing-review
+# 完整审图清单（推荐）
+python scripts/drawing_checklist.py --type full --output review_full.txt
+
+# 电磁设计图纸审图
+python scripts/drawing_checklist.py --type electromagnetic
+
+# 结构设计图纸审图
+python scripts/drawing_checklist.py --type structural
+```
+
+## 审图基本流程
+
+```
+1. 图纸信息核对 → 2. 极槽配合检查 → 3. 尺寸标注检查
+    ↓
+4. 公差配合验证 → 5. 技术要求审核 → 6. 汇总问题 → 7. 审图报告
+```
+
+## 电机图纸必查项
+
+### 1. 极槽配合核查
+
+| 项目 | 检查内容 | 常见问题 |
+|------|---------|---------|
+| 极数 | 2P、4P、6P等，符合设计 | 极数与转速不匹配 |
+| 槽数 | 与极数配合合理 | q值过小（q<0.5需特殊考虑）|
+| 每极每相槽数 q | q=Q/(2pm) | q过小导致谐波增大 |
+| 极槽比 | 常见2/3、3/4、4/5等 | LCM过大导致振动 |
+| 绕组排布 | 60°相带/120°相带 | 相带选择不当 |
+
+### 2. 关键尺寸
+
+- [ ] 定子外径、内径（标注完整）
+- [ ] 转子外径（=定子内径-2×气隙）
+- [ ] 气隙长度（通常0.3~1.0mm，有依据）
+- [ ] 铁心长度（与设计一致）
+- [ ] 轴径、轴承位（配合正确）
+
+### 3. 公差配合（重点）
+
+| 配合部位 | 常用公差 | 检查要点 |
+|----------|----------|---------|
+| 轴承位（轴） | h6/k6/m6 | 与轴承内径配合 |
+| 机座止口 | H7 | 与端盖配合 |
+| 轴承室（孔） | H7 | 与轴承外径配合 |
+| 键槽 | N9/P9 | GB/T 1095 |
+| 转轴 | h6(IT6) | 光滑圆柱配合 |
+
+详见 `references/gdt-reference.md`
+
+### 4. 形位公差
+
+| 部位 | 形位公差 | 数值 |
+|------|---------|------|
+| 定子内圆跳动 | 圆跳动 | ≤0.03mm |
+| 转子外圆跳动 | 圆跳动 | ≤0.03mm |
+| 轴伸跳动 | 圆跳动 | ≤0.03mm |
+| 轴承位圆柱度 | 圆柱度 | IT6 |
+| 止口平面度 | 平面度 | ≤0.02mm |
+
+### 5. 技术要求
+
+- [ ] 材料牌号（硅钢片、磁钢、绝缘等级）
+- [ ] 表面处理要求（防锈、涂覆）
+- [ ] 热处理要求（调质/渗碳等）
+- [ ] 动平衡等级（G2.5/G6.3）
+- [ ] 绝缘等级（E/B/F/H）
+- [ ] 温升限值（有具体数值）
+
+## GD&T 形位公差参考
+
+详见 `references/gdt-reference.md`
+
+### 常用形位公差符号
+
+| 符号 | 名称 | 电机应用 |
+|------|------|---------|
+| ⬜ | 圆度 | 轴承位、转子外圆 |
+| ◎ | 圆柱度 | 轴、轴承位 |
+| — | 直线度 | 轴线 |
+| ⌒ | 平面度 | 端盖止口 |
+| ⬡ | 圆跳动 | 轴承位、转子外圆 |
+| ⟱ | 全跳动 | 整体跳动 |
+
+## 粗糙度 Ra 参考值
+
+| 表面 | Ra (μm) | 加工方法 |
+|------|---------|---------|
+| 轴承位 | 0.8~1.6 | 磨削 |
+| 转子外圆 | 0.8~1.6 | 磨削 |
+| 止口配合面 | 1.6~3.2 | 车削 |
+| 键槽侧面 | 1.6~3.2 | 插/铣 |
+| 键槽底面 | 3.2~6.3 | 铣 |
+
+## 常见问题清单
+
+### 尺寸问题
+- 尺寸漏标、重叠
+- 尺寸链不封闭
+- 基准不统一
+- 气隙无公差标注
+
+### 公差问题
+- 公差过松/过紧（与配合选择矛盾）
+- 配合选择不当（轴承位用H7等）
+- 未标注关键公差（气隙、键槽）
+
+### 技术要求问题
+- 材料牌号不明确
+- 表面处理缺失
+- 热处理未标注
+- 动平衡等级未标注
+- 绝缘等级/温升无具体数值
+
+### 标注规范问题
+- 粗糙度符号错误
+- 形位公差无基准
+- 未注公差不说明（应注明GB/T 1804-m）
+- 倒角未标注
+
+## 审图输出格式
+
+```markdown
+# 图纸审核报告
+
+图纸编号：XXX
+图纸名称：XXX
+审核日期：YYYY-MM-DD
+
+审核结论：□ 通过  □ 修改后通过  □ 不通过
+
+## 问题汇总
+
+| 序号 | 位置 | 问题描述 | 严重程度 | 建议 |
+|------|------|----------|----------|------|
+| 1 | 图2 | 气隙尺寸偏差无公差 | 严重 | 修改为xxx |
+| 2 | 图3 | 键槽宽度未标注公差 | 一般 | 建议N9 |
+
+## 修改建议
+（具体修改方案）
+
+总体评价：（对该设计的评价和建议）
 ```

@@ -1,35 +1,26 @@
 ---
-name: "Coral Memory (Deprecated)"
+name: coral-memory
 description: "DEPRECATED — Use persistent-agent-memory instead. This skill has been replaced by persistent-agent-memory (clawhub install persistent-agent-memory)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coral-memory"
-sourceUrl: "https://clawhub.ai/skills/coral-memory"
+metadata:
+  {
+    "openclaw": {
+      "requires": { "env": ["CORAL_API_KEY"], "bins": ["curl", "python3"] },
+      "primaryEnv": "CORAL_API_KEY",
+      "homepage": "https://coralbricks.ai",
+      "privacyPolicy": "https://www.coralbricks.ai/privacy",
+      "emoji": "🧠",
+    },
+  }
 ---
 
-# Coral Memory (Deprecated)
+# Coral Memory — DEPRECATED
 
-> DEPRECATED — Use persistent-agent-memory instead. This skill has been replaced by persistent-agent-memory (clawhub install persistent-agent-memory).
+**This skill has been deprecated.** Please use **persistent-agent-memory** instead:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coral-memory`
-- **Source URL:** [https://clawhub.ai/skills/coral-memory](https://clawhub.ai/skills/coral-memory)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/coral-memory
+clawhub install persistent-agent-memory
 ```
+
+The persistent-agent-memory skill provides the same functionality (store, retrieve, and delete memories by meaning) with the latest improvements.
+
+For more details, see [Persistent Agent Memory for AI Agents](https://www.coralbricks.ai/blog/persistent-memory-openclaw).

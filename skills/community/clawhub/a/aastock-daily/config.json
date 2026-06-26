@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "portfolio": [
+    {"name": "中国建筑", "code": "601668"},
+    {"name": "中国广核", "code": "003816"},
+    {"name": "中国电建", "code": "601669"},
+    {"name": "京沪高铁", "code": "601816"},
+    {"name": "中国电信", "code": "601728"},
+    {"name": "广深铁路", "code": "601333"},
+    {"name": "京东方A", "code": "000725"},
+    {"name": "中国石化", "code": "600028"},
+    {"name": "山西焦煤", "code": "000983"}
+  ],
+  "push_schedule": {
+    "morning": {"enabled": true, "time": "09:15"},
+    "close": {"enabled": true, "time": "15:00"},
+    "night": {"enabled": true, "time": "20:00"}
+  },
+  "portfolio_tracking": {
+    "enabled": true,
+    "times": ["09:30", "18:00"]
+  },
+  "weekend": {
+    "enabled": true,
+    "times": ["10:00", "15:00"]
+  }
+}

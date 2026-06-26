@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日读书推荐 - {{book_title}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #fdfcfa 0%, #f0ebe3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            font-family: 'Noto Serif SC', 'Songti SC', serif;
+            max-width: 420px;
+            width: 100%;
+            padding: 28px;
+            border: 1px solid #e8e0d6;
+            border-radius: 16px;
+            background-color: #fdfcfa;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .date-big {
+            font-size: 56px;
+            font-weight: bold;
+            color: #9d7a58;
+            line-height: 1;
+        }
+        .date-month {
+            margin-left: 8px;
+            font-size: 16px;
+            color: #9d7a58;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+        }
+        .vip-badge {
+            background: #333;
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 10px;
+            display: inline-block;
+        }
+        .yiji {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        .yi { color: #d33; }
+        .ji { color: #666; }
+        .divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 8px 0;
+        }
+        .quote {
+            margin: 28px 0;
+        }
+        .quote-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .quote-book {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 18px;
+        }
+        .quote-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+        }
+        .quote-author {
+            text-align: right;
+            margin-top: 18px;
+            color: #888;
+            font-size: 16px;
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            gap: 14px;
+        }
+        .cover {
+            width: 60px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            flex-shrink: 0;
+        }
+        .book-meta {
+            flex: 1;
+        }
+        .book-meta-title {
+            font-weight: bold;
+            font-size: 17px;
+            color: #222;
+        }
+        .book-meta-author {
+            font-size: 14px;
+            color: #666;
+            margin-top: 2px;
+        }
+        .book-meta-stats {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+        .read-btn {
+            background-color: #f1f1f1;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+        .read-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div>
+                <span class="date-big">{{day}}</span>
+                <span class="date-month">{{date}}</span>
+            </div>
+            <div class="header-right">
+                <div class="vip-badge">VIP尊享</div>
+                <div style="margin-top:4px">{{weekday}}</div>
+                <div style="margin-top:2px;color:#999">{{lunar_date}}</div>
+            </div>
+        </div>
+
+        <div class="yiji">
+            <span class="yi">● 宜 · {{yi}}</span>
+            <span class="ji">● 忌 · {{ji}}</span>
+        </div>
+
+        <hr class="divider">
+
+        <div class="quote">
+            <div class="quote-title">{{title}}</div>
+            <div class="quote-book">《{{book_title}}》</div>
+            <div class="quote-text">{{book_desc}}</div>
+            <div class="quote-author">—— {{book_author}}</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="footer">
+            <div class="cover" style="background-image:url('{{cover_url}}')"></div>
+            <div class="book-meta">
+                <div class="book-meta-title">《{{book_title}}》</div>
+                <div class="book-meta-author">{{book_author}}</div>
+                <div class="book-meta-stats">推荐值 {{rating}} | {{reading_count}}人今日阅读</div>
+            </div>
+            <a href="{{book_url}}" target="_blank" class="read-btn">去阅读</a>
+        </div>
+    </div>
+</body>
+</html>

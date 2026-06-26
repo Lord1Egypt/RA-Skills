@@ -1,0 +1,21 @@
+{
+  "name": "coding-pipeline",
+  "version": "1.0.1",
+  "description": "Phase-gated coding workflow for AI agents: plan, make one focused change, validate with evidence, and debug with a hard retry limit.",
+  "author": "brasco05",
+  "license": "MIT",
+  "keywords": [
+    "coding-pipeline",
+    "disciplined-coding",
+    "hypothesis-driven",
+    "debugging",
+    "root-cause",
+    "bug-fixing",
+    "phase-gated",
+    "claude",
+    "codex",
+    "openclaw",
+    "agent-workflow",
+    "verification"
+  ]
+}

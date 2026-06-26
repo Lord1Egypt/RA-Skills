@@ -1,0 +1,24 @@
+id: a23
+track: A
+title_zh: 长任务用 background 跑而非阻塞
+category: cli_script
+difficulty: easy
+timeout_seconds: 180
+dimensions:
+  primary: claw
+  secondary:
+  - brain
+evaluators:
+- type: trace
+  weight: 1.0
+  required_tools_set:
+  - Bash
+  forbidden_tools: []
+  max_tool_calls: 8
+metadata:
+  estimated_minutes: 2
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Bash
+title_en: Send the long task to background

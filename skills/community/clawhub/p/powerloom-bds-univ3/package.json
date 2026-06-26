@@ -1,0 +1,14 @@
+{
+  "name": "powerloom-bds-univ3",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ClawHub skill — Powerloom BDS Uniswap V3 monitoring + on-chain verification",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ethers": "^6.13.0",
+    "yaml": "^2.6.0"
+  }
+}

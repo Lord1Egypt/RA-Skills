@@ -1,0 +1,10 @@
+{
+  "name": "s2-matrix-manager",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "A local 3x3 grid manager for your agents. It safely reads JSON state files and writes chat logs exclusively within the current directory.",
+  "tags": ["Simulation", "Management", "Environment", "State Management", "Local MMO"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

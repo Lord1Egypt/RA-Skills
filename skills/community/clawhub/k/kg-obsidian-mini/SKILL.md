@@ -1,35 +1,161 @@
 ---
-name: "Kg Obsidian Mini"
-description: "KG笔记法mini版——不主动改写，分析阶段只读不写，生成执行清单再执行。四类笔记分类、直链处理、关系补缺、查重合并、补完计划。Python脚本驱动yaml验证+补完预览。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kg-obsidian-mini"
-sourceUrl: "https://clawhub.ai/skills/kg-obsidian-mini"
+name: kg-obsidian-mini
+description: KG笔记法mini版——不主动改写，分析阶段只读不写，生成执行清单再执行。四类笔记分类、直链处理、关系补缺、查重合并、补完计划。Python脚本驱动yaml验证+补完预览。
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+metadata:
+  hermes:
+    tags: [obsidian, kg-notes, knowledge-graph, note-organization, mini]
 ---
 
-# Kg Obsidian Mini
+# KG笔记法 — Obsidian 笔记整理 mini 版
 
-> KG笔记法mini版——不主动改写，分析阶段只读不写，生成执行清单再执行。四类笔记分类、直链处理、关系补缺、查重合并、补完计划。Python脚本驱动yaml验证+补完预览。
+> ⚠️ **不主动改写笔记**：尽量保留原文原貌，需改写时必须询问。改写和新建内容要简洁高效。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kg-obsidian-mini`
-- **Source URL:** [https://clawhub.ai/skills/kg-obsidian-mini](https://clawhub.ai/skills/kg-obsidian-mini)
+触发词：概念、笔记、知识图谱笔记法、kg、Obsidian。
 
-## Overview
+## 四种类型
 
+| 类型 | tag | `[[链接]]`? | 文件名含`-`? | 内容 |
+|:---|:---|:---:|:---|:---|
+| **概念笔记** | `概念` | ❌ | ❌ | 抽象概念 |
+| **某物笔记** | `某物` | ❌ | ❌ | 具体人/物/地点 |
+| **Skill笔记** | `skill` | ❌ | ❌ | 技能块/技巧/攻略/操作步骤/执行清单 |
+| **关系笔记** | `关系` | ✅唯一 | ✅ `A - 关系 - B` | 一句话+两个`[[链接]]`，禁表格/段落/标题 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kg-obsidian-mini
+> 主体笔记=概念+某物+skill。关系笔记=线。攻略类→归入 **skill 笔记**。
+
+## 统一 L0 结构
+
+三种主体笔记统一用 `abstract` 作 L0：
+
+| 层级 | 概念笔记 | 某物笔记 | Skill笔记 | 加载时机 |
+|:--:|:-------|:-------|:--------|:------|
+| **L0** | `abstract:` | `abstract:` | `abstract:` | 搜到即加载 |
+| **L1** | `## 核心规则` | `## 基本信息` | `## 步骤` / 技能块 | L0相关后 |
+| **L2** | 全文+来源 | 全文+来源 | 全文+来源 | 需要细节 |
+
+## 执行流程
+
+```
+0. 任务开始前（不可跳过）：
+   search_files target=content, pattern='执行清单', path=_working/
+   ├─ 有同名清单 → 按清单执行
+   ├─ 有其他清单 → 当前任务完后步5提示
+   └─ 无清单 → 清同名残留（搜 _working/ 下含该笔记名的清单并删）
+      └─ 不存在 → 继续
+
+1. 命令流程分支：
+分析阶段（只读不写）：
+   ├─ 逐条跑 ①-⑦，此阶段禁止任何 patch/write_file/mv
+   ├─ 生成同名执行清单到 _working/，写具体操作步骤
+   ├─ 开始按清单执行
+   ├─ 编辑笔记后 → python scripts/yaml-validator.py <文件>
+   ├─ YAML字段用单行patch，不要大段替换
+   ├─ 删除任务清单文件
+   ├─ 完成后 → ⑧列出变更 + 可选修改意见
+   └─ ⚠️ 分析阶段动手是最高频错误 — 只更新清单，不动笔记
+
+2. 中途中止 → 清单保留，下次恢复
+
+5. 任务完成后（不可跳过）：
+   search_files target=files, pattern=*检查清单*, path=_working/
+   ├─ 有 OTHER 清单 → 逐条读 → 列给用户 + clarify 询问继续
+   └─ 无 → 结束
+```
+
+> 清单文件不在 KG 图谱内，禁止用 `[[链接]]`。纯文本跟踪。
+
+---
+
+### ① 内容检查 + 拆分
+```
+read_file 先读
+└─ 内容有混入/分属多主题
+   └─ 搜库：
+      ├─ 已有主体且缺此信息 → patch 移入
+      ├─ 已有更完整 → patch 删混入
+      └─ 无主体 → 新建文件（只拆分不改写）
+```
+
+### ② 分类匹配
+```
+└─ 内容与 tag 不匹配：
+   ├─ 抽象定义+规则 → patch tags: [概念]
+   ├─ 描述人/物/地点属性 → patch tags: [某物]
+   ├─ 步骤/技巧/经验/攻略 → patch tags: [skill]
+   └─ 一句话+俩[[链接]] → patch tags: [关系]
+```
+
+### ③ 名称匹配
+```
+├─ 主体笔记名含 ` - ` → mv 重命名
+└─ 名不副实 → mv 重命名（以核心内容为准）
+```
+
+### ④ 图片保护
+```
+└─ 已有 ![]() 图片：
+   ├─ 有效（HTTP 200）→ 不动
+   └─ 失效 → 搜替代链接
+└─ 无图片 → 跳过
+```
+
+### ⑤ 直链检查
+```
+read_file 检查正文 [[链接]]：
+├─ tag 是 主体笔记且有 [[链接]]：
+│  ├─ 目标存在 → 建关系笔记 + 删原直链（先补关系再删链）
+│  └─ 目标不存在 → [[链接]] 转纯文本（删 [[ ]] 保留字词）
+└─ tag 是 关系 → [[链接]] 合法，不动
+```
+
+### ⑥ 查相关笔记 + 关联处理
+
+按 tag 类型走，清单生成时写入：
+
+```
+└─ tag 是 概念/某物/skill（主体）：
+   ├─ search_files 搜关联的其他主体
+   └─ 每找到有效关联 → 建关系笔记
+───────────────────────────────────
+└─ tag 是 概念（特殊处理）：
+   ├─ 列出相关概念 → 搜库
+   ├─ 已有 → 建关系笔记
+   └─ 没有 → 新建概念笔记 + 建关系
+───────────────────────────────────
+└─ tag 是 关系（检查两端主体）：
+   ├─ search_files 查 A 和 B 端
+   ├─ 一端有、一端无：
+   │  ├─ 缺失端是概念 → 建概念笔记 + 建关系
+   │  └─ 缺失端不是概念 → 内容移入已有主体 + 删关系
+   ├─ 两端都无：
+   │  ├─ 两端都是概念 → 建两端概念笔记 + 建关系
+   │  ├─ 一端是概念 → 建概念笔记 + 内容移入已有主体 + 删关系
+   │  └─ 两端都不是概念 → 不动
+   └─ 两端都有 → 跳过
+```
+
+### ⑦ 查重（R7）
+```
+└─ 反向追踪关系笔记连接的目标主体：
+   └─ 检查多线：
+      ├─ 同向多条 → 选最佳保留，删其余
+      ├─ 双向（A→B + B→A）→ 保留
+      └─ 同语义覆盖 → 保留更全的，删子集
+   └─ 每条保留的 → 校验文件名
+```
+
+### ⑧ 更改清单
+完成后列出所有变更。**分析阶段**的⑧：覆盖 `_working/` 执行清单，写具体操作步骤，更新 bitmask，等用户确认后才执行。
+
+### ⑨ 补完计划
+优先 `python scripts/enrichment.py <笔记.md> --stdout` 预览。
+无脚本时手动：
+
+```
+├─ tag 是 概念/skill → 网络搜索 What/Why/Who/When/Where/How/How much/Effectiveness
+│  → 写入明显出处
+└─ tag 是 某物 → 查属性信息填入
 ```

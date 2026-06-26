@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-03-19T01:22:24.154943",
+  "markets": [
+    {
+      "market": "Will Iranian regime fall by June 30?",
+      "resolution": "June 30, 2026",
+      "market_odds": "28% Yes",
+      "expert_probability": "60%",
+      "edge": "+32%",
+      "recommendation": "\u2705 Strong Yes",
+      "reasoning": "Geopolitical: 50% probability of prolonged conflict. Primary pathway: Forever War (95%) | Macro: Neutral (data-dependent). 0% stagflation risk. Policy path contingent on war duration.",
+      "link": "https://polymarket.com/event/will-iranian-regime-fall-by-june-30?"
+    },
+    {
+      "market": "US x Iran ceasefire by December 31?",
+      "resolution": "Dec 31, 2026",
+      "market_odds": "71% Yes",
+      "expert_probability": "60%",
+      "edge": "-11%",
+      "recommendation": "\u26a0\ufe0f Lean No",
+      "reasoning": "Geopolitical: 50% probability of prolonged conflict. Primary pathway: Forever War (95%) | Macro: Neutral (data-dependent). 0% stagflation risk. Policy path contingent on war duration.",
+      "link": "https://polymarket.com/event/us-x-iran-ceasefire-by-december-31?"
+    },
+    {
+      "market": "US forces enter Iran by December 31?",
+      "resolution": "Dec 31, 2026",
+      "market_odds": "64% Yes",
+      "expert_probability": "60%",
+      "edge": "-4%",
+      "recommendation": "\u2696\ufe0f Fair Value",
+      "reasoning": "Geopolitical: 50% probability of prolonged conflict. Primary pathway: Forever War (95%) | Macro: Neutral (data-dependent). 0% stagflation risk. Policy path contingent on war duration.",
+      "link": "https://polymarket.com/event/us-forces-enter-iran-by-december-31?"
+    },
+    {
+      "market": "Will crude oil hit $100+ by end of March?",
+      "resolution": "Mar 31, 2026",
+      "market_odds": "82% Yes",
+      "expert_probability": "60%",
+      "edge": "-22%",
+      "recommendation": "\u2705 Strong No",
+      "reasoning": "Geopolitical: 50% probability of prolonged conflict. Primary pathway: Forever War (95%) | Macro: Neutral (data-dependent). 0% stagflation risk. Policy path contingent on war duration.",
+      "link": "https://polymarket.com/event/will-crude-oil-hit-$100+-by-end-of-march?"
+    },
+    {
+      "market": "US recession by end of 2026?",
+      "resolution": "Dec 31, 2026",
+      "market_odds": "31% Yes",
+      "expert_probability": "60%",
+      "edge": "+29%",
+      "recommendation": "\u2705 Strong Yes",
+      "reasoning": "Geopolitical: 50% probability of prolonged conflict. Primary pathway: Forever War (95%) | Macro: Neutral (data-dependent). 0% stagflation risk. Policy path contingent on war duration.",
+      "link": "https://polymarket.com/event/us-recession-by-end-of-2026?"
+    },
+    {
+      "market": "US x Iran ceasefire by December 31?",
+      "resolution": "Dec 31, 2026",
+      "market_odds": "71% Yes",
+      "expert_probability": "0%",
+      "edge": "-71%",
+      "recommendation": "\u2705 Strong No",
+      "reasoning": "50% probability of prolonged conflict. Primary pathway: Forever War (95%)",
+      "link": "https://polymarket.com/event/us-x-iran-ceasefire-by-december-31?"
+    },
+    {
+      "market": "Will crude oil hit $100+ by end of March?",
+      "resolution": "Mar 31, 2026",
+      "market_odds": "82% Yes",
+      "expert_probability": "70%",
+      "edge": "-12%",
+      "recommendation": "\u26a0\ufe0f Lean No",
+      "reasoning": "50% probability of prolonged conflict. Primary pathway: Forever War (95%)",
+      "link": "https://polymarket.com/event/will-crude-oil-hit-$100+-by-end-of-march?"
+    }
+  ]
+}

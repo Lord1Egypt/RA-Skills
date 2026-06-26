@@ -1,35 +1,32 @@
 ---
-name: "fix-merge-conflicts"
-description: "Indexed by skills.sh from cursor/plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cursor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cursor/plugins/fix-merge-conflicts"
-sourceUrl: "https://skills.sh/cursor/plugins/fix-merge-conflicts"
+name: fix-merge-conflicts
+description: Resolve merge conflicts non-interactively, validate build and tests, and finalize conflict resolution
 ---
 
-# fix-merge-conflicts
+# Fix merge conflicts
 
-> Indexed by skills.sh from cursor/plugins
+## Trigger
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cursor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cursor/plugins/fix-merge-conflicts`
-- **Source URL:** [https://skills.sh/cursor/plugins/fix-merge-conflicts](https://skills.sh/cursor/plugins/fix-merge-conflicts)
+Branch has unresolved merge conflicts and needs a reliable path to a buildable state.
 
-## Overview
+## Workflow
 
+1. Detect all conflicting files from git status and conflict markers.
+2. Resolve each conflict with minimal, correctness-first edits.
+3. Prefer preserving both sides when safe. Otherwise, choose the variant that compiles and keeps public behavior stable.
+4. Regenerate lockfiles with package manager tools instead of hand-editing.
+5. Run compile, lint, and relevant tests.
+6. Stage resolved files and summarize key decisions.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cursor/plugins/fix-merge-conflicts
-```
+## Guardrails
+
+- Keep changes minimal and readable.
+- Do not leave conflict markers in any file.
+- Avoid broad refactors while resolving conflicts.
+- Do not push or tag during conflict resolution.
+
+## Output
+
+- Files resolved
+- Notable resolution choices
+- Build/test outcome

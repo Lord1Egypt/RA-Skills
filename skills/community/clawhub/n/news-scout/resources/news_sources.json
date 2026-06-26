@@ -1,0 +1,357 @@
+{
+    "_comment": "新闻斥候 (News Scout) 新闻源配置",
+    "_version": "2.0",
+    "_last_updated": "2026-03-12",
+    "_note": "优先级说明：P0=最高（官方博客/权威媒体），P1=高（主流科技媒体），P2=中（其他来源）",
+    
+    "rss_feeds": {
+        "ai": [
+            {
+                "name": "OpenAI Blog",
+                "url": "https://openai.com/blog/rss.xml",
+                "priority": "P0",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Anthropic News",
+                "url": "https://www.anthropic.com/news/rss",
+                "priority": "P0",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Google AI Blog",
+                "url": "https://blog.research.google/feeds/posts/default",
+                "priority": "P0",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Microsoft AI Blog",
+                "url": "https://blogs.microsoft.com/ai/feed/",
+                "priority": "P0",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Meta AI Blog",
+                "url": "https://ai.meta.com/blog/rss/",
+                "priority": "P0",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "DeepMind Blog",
+                "url": "https://deepmind.google/blog/rss.xml",
+                "priority": "P0",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "MIT Tech Review AI",
+                "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+                "priority": "P1",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Wired AI",
+                "url": "https://www.wired.com/feed/category/ideas/latest/rss",
+                "priority": "P1",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Ars Technica AI",
+                "url": "https://feeds.arstechnica.com/arstechnica/ai/index",
+                "priority": "P1",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "The Verge AI",
+                "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+                "priority": "P1",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "TechCrunch AI",
+                "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+                "priority": "P1",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "Hugging Face Blog",
+                "url": "https://huggingface.co/blog/feed.xml",
+                "priority": "P1",
+                "region": "global",
+                "language": "en"
+            },
+            {
+                "name": "机器之心",
+                "url": "https://www.jiqizhixin.com/rss",
+                "priority": "P0",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "量子位",
+                "url": "https://www.qbitai.com/feed",
+                "priority": "P0",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "新智元",
+                "url": "https://www.newzone.top/feed.xml",
+                "priority": "P1",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "AI 科技评论",
+                "url": "https://www.aitechtalk.com/feed",
+                "priority": "P1",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "36 氪 AI",
+                "url": "https://36kr.com/feed",
+                "priority": "P2",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "虎嗅 AI",
+                "url": "https://www.huxiu.com/rss/0.xml",
+                "priority": "P2",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "CSDN AI",
+                "url": "https://blog.csdn.net/nav/ai/rss",
+                "priority": "P2",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "InfoQ AI",
+                "url": "https://www.infoq.cn/topic/AI/rss",
+                "priority": "P2",
+                "region": "china",
+                "language": "zh"
+            }
+        ],
+        
+        "investing": [
+            {
+                "name": "Yahoo Finance Latest",
+                "url": "https://finance.yahoo.com/news/rssindex",
+                "priority": "P0",
+                "region": "us",
+                "language": "en"
+            },
+            {
+                "name": "Yahoo AAPL",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=AAPL",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "AAPL"
+            },
+            {
+                "name": "Yahoo NVDA",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=NVDA",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "NVDA"
+            },
+            {
+                "name": "Yahoo TSLA",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=TSLA",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "TSLA"
+            },
+            {
+                "name": "Yahoo MSFT",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=MSFT",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "MSFT"
+            },
+            {
+                "name": "Yahoo GOOGL",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=GOOGL",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "GOOGL"
+            },
+            {
+                "name": "Yahoo META",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=META",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "META"
+            },
+            {
+                "name": "Yahoo AMZN",
+                "url": "https://feeds.finance.yahoo.com/rss/2.0/headline?s=AMZN",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "ticker": "AMZN"
+            },
+            {
+                "name": "WSJ Markets",
+                "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "paywall": true
+            },
+            {
+                "name": "CNBC Finance",
+                "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
+                "priority": "P0",
+                "region": "us",
+                "language": "en"
+            },
+            {
+                "name": "Bloomberg Markets",
+                "url": "https://www.bloomberg.com/feed/podcast/markets.xml",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "paywall": true
+            },
+            {
+                "name": "FT Markets",
+                "url": "https://www.ft.com/markets?format=rss",
+                "priority": "P0",
+                "region": "us",
+                "language": "en",
+                "paywall": true
+            },
+            {
+                "name": "Reuters Business",
+                "url": "https://www.reutersagency.com/feed/?best-topics=markets&post_type=best",
+                "priority": "P1",
+                "region": "us",
+                "language": "en"
+            },
+            {
+                "name": "Investing.com Commodities",
+                "url": "https://www.investing.com/rss/commodities.rss",
+                "priority": "P1",
+                "region": "us",
+                "language": "en"
+            },
+            {
+                "name": "华尔街见闻",
+                "url": "https://wallstreetcn.com/rss",
+                "priority": "P0",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "新浪财经",
+                "url": "https://finance.sina.com.cn/rss/roll.xml",
+                "priority": "P1",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "东方财富",
+                "url": "https://www.eastmoney.com/rss",
+                "priority": "P2",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "财新网",
+                "url": "https://bbs.caixin.com/rss/category?id=1",
+                "priority": "P0",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "中国基金报",
+                "url": "https://www.chnfund.com/rss.xml",
+                "priority": "P1",
+                "region": "china",
+                "language": "zh"
+            },
+            {
+                "name": "证券时报",
+                "url": "https://www.stcn.com/rss/",
+                "priority": "P1",
+                "region": "china",
+                "language": "zh"
+            }
+        ]
+    },
+    
+    "search_queries": {
+        "ai": [
+            "Anthropic Claude latest release news 2026",
+            "OpenAI GPT new model announcement",
+            "Google Gemini AI update",
+            "Meta Llama new models",
+            "Microsoft Copilot AI features",
+            "Generative AI market trend 2026",
+            "AI Agent real world use cases",
+            "DeepMind research breakthrough",
+            "AI chip NVIDIA AMD competition",
+            "中国 AI 里程碑 中国 AI 热点 中国 AI 进展趋势 2026",
+            "阿里 达摩院 通义千问 大模型 发布",
+            "字节跳动 豆包 大模型 动态",
+            "腾讯混元大模型 AI 最新",
+            "百度 文心一言 大模型 更新",
+            "华为 盘古大模型 AI 进展",
+            "小米 AI 大模型 发布",
+            "中国 AI 创业公司 融资 新进展"
+        ],
+        
+        "investing": [
+            "Federal Reserve interest rate decision 2026",
+            "US inflation CPI data news March 2026",
+            "US stock market today NASDAQ S&P 500",
+            "Tech stocks earnings report 2026",
+            "AI stocks NVIDIA Microsoft OpenAI valuation",
+            "US tariff policy impacts economy",
+            "Nonfarm payrolls data US March 2026",
+            "Treasury yields market impact",
+            "Oil price OPEC production news",
+            "Gold price safe haven asset 2026",
+            "中国 宏观政策 A 股 美股 影响 2026",
+            "美股 中概股 财报 阿里巴巴 拼多多",
+            "原油 价格 走势 OPEC 2026",
+            "黄金 创新高 避险 资产 2026",
+            "美元 汇率 人民币 走势",
+            "港股 恒生指数 科技股 动态"
+        ]
+    },
+    
+    "priority_weights": {
+        "P0": 3,
+        "P1": 2,
+        "P2": 1
+    },
+    
+    "region_weights": {
+        "global": 1.0,
+        "china": 1.0,
+        "us": 1.0
+    }
+}

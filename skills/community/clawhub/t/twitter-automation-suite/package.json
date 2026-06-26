@@ -1,0 +1,22 @@
+{
+  "name": "twitter-automation-suite",
+  "version": "1.0.0",
+  "description": "Twitter/X 自动化运营套件 - 发推、监控、回复、分析",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "post": "node scripts/post.js",
+    "monitor": "node scripts/monitor.js",
+    "reply": "node scripts/auto-reply.js",
+    "analyze": "node scripts/analyze.js"
+  },
+  "keywords": ["twitter", "automation", "social-media", "x"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "twitter-api-v2": "^1.15.0",
+    "dotenv": "^16.3.0",
+    "node-cron": "^3.0.0"
+  }
+}

@@ -1,0 +1,177 @@
+# Crypto Sniper Bot - Quick Start Guide
+
+## 🚀 Getting Started
+
+### 1. Installation
+```bash
+cd "/e/Program Files/bmad/006-crypto-sniper-bot"
+npm install
+```
+
+### 2. Configuration
+
+Edit the `.env` file with your settings:
+
+```env
+# Your Solana wallet private key (base58 encoded)
+WALLET_PRIVATE_KEY=your_private_key_here
+
+# Trading parameters
+BUY_AMOUNT=0.1              # Amount in SOL to buy per token
+TAKE_PROFIT_PERCENT=50      # Sell when profit reaches 50%
+STOP_LOSS_PERCENT=30        # Sell when loss reaches 30%
+MAX_POSITIONS=10            # Maximum concurrent positions
+
+# Quality filters
+MIN_LIQUIDITY=1000          # Minimum liquidity in USD
+MIN_HOLDERS=10              # Minimum number of holders
+
+# Notifications (optional)
+TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_CHAT_ID=your_chat_id
+DISCORD_WEBHOOK_URL=your_webhook_url
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+EMAIL_TO=recipient@email.com
+```
+
+### 3. Start the Server
+```bash
+npm start
+```
+
+### 4. Configure the Bot
+
+```bash
+curl -X POST http://localhost:3000/configure \
+  -H "Content-Type: application/json" \
+  -H "x-skillpay-signature: your_signature" \
+  -d '{
+    "walletPrivateKey": "your_private_key",
+    "buyAmount": 0.1,
+    "takeProfitPercent": 50,
+    "stopLossPercent": 30,
+    "maxPositions": 10
+  }'
+```
+
+### 5. Start the Bot
+
+```bash
+curl -X POST http://localhost:3000/start \
+  -H "x-skillpay-signature: your_signature"
+```
+
+## 📊 Monitoring
+
+### Check Status
+```bash
+curl http://localhost:3000/status \
+  -H "x-skillpay-signature: your_signature"
+```
+
+### View Trading History
+```bash
+curl http://localhost:3000/history?limit=20 \
+  -H "x-skillpay-signature: your_signature"
+```
+
+### Stop the Bot
+```bash
+curl -X POST http://localhost:3000/stop \
+  -H "x-skillpay-signature: your_signature"
+```
+
+## ⚠️ Important Notes
+
+1. **Security**: Never share your private key. Use a dedicated wallet for bot trading.
+
+2. **Testing**: Start with small amounts (0.01-0.05 SOL) to test the bot.
+
+3. **Monitoring**: The bot runs 24/7. Monitor it regularly through notifications.
+
+4. **API Integration**: The current implementation uses placeholder APIs for pump.fun and four.meme. You'll need to integrate with actual APIs.
+
+5. **DEX Integration**: The trading engine needs integration with Jupiter Aggregator or similar DEX aggregator for actual swaps.
+
+## 🔧 Customization
+
+### Adjust Strategy
+Edit the strategy parameters in `.env` or via the `/configure` endpoint:
+- `TAKE_PROFIT_PERCENT`: Higher = wait for bigger gains
+- `STOP_LOSS_PERCENT`: Lower = cut losses earlier
+- `MAX_POSITIONS`: More positions = more diversification
+
+### Quality Filters
+Adjust token quality requirements:
+- `MIN_LIQUIDITY`: Higher = safer but fewer opportunities
+- `MIN_HOLDERS`: Higher = more established tokens
+
+## 📱 Notifications
+
+The bot sends notifications for:
+- ✅ Successful buys
+- ✅ Successful sells (take profit or stop loss)
+- ⚠️ Errors and warnings
+- 📊 Status updates
+
+Configure multiple channels in `/notifications` endpoint.
+
+## 🛠️ Troubleshooting
+
+**Bot won't start:**
+- Check wallet private key is valid
+- Ensure sufficient SOL balance for trading + fees
+- Verify API endpoints are accessible
+
+**No trades executing:**
+- Check quality filter settings (may be too strict)
+- Verify new tokens are being detected
+- Check logs for errors
+
+**Notifications not working:**
+- Verify credentials in `.env`
+- Test each channel individually
+- Check firewall/network settings
+
+## 📈 Performance Tips
+
+1. **Optimal Settings for Beginners:**
+   - BUY_AMOUNT: 0.05 SOL
+   - TAKE_PROFIT: 50-100%
+   - STOP_LOSS: 30-50%
+   - MAX_POSITIONS: 5
+
+2. **Aggressive Settings:**
+   - BUY_AMOUNT: 0.1-0.2 SOL
+   - TAKE_PROFIT: 30-50%
+   - STOP_LOSS: 20-30%
+   - MAX_POSITIONS: 10-15
+
+3. **Conservative Settings:**
+   - BUY_AMOUNT: 0.01-0.03 SOL
+   - TAKE_PROFIT: 100-200%
+   - STOP_LOSS: 40-60%
+   - MAX_POSITIONS: 3-5
+
+## 🔐 Security Checklist
+
+- [ ] Use a dedicated wallet for bot trading
+- [ ] Never commit `.env` file to git
+- [ ] Keep private keys encrypted at rest
+- [ ] Monitor wallet balance regularly
+- [ ] Set up alerts for unusual activity
+- [ ] Review trading history daily
+- [ ] Keep software updated
+
+## 📞 Support
+
+For issues or questions:
+- Check logs in console output
+- Review trading history for patterns
+- Test with small amounts first
+- Monitor notifications for errors
+
+---
+
+**Remember: Cryptocurrency trading is high risk. Only invest what you can afford to lose.**

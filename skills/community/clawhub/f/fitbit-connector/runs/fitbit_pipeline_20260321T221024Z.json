@@ -1,0 +1,122 @@
+{
+  "ok": true,
+  "run_id": "20260321T221024Z",
+  "started_at": "2026-03-21T22:10:24.235746+00:00",
+  "window": {
+    "start": "2026-03-19",
+    "end": "2026-03-21"
+  },
+  "backup_dir": "/Users/joao/.openclaw/workspace/fitbit-connector/backups/pipeline/20260321T221024Z",
+  "steps": [
+    {
+      "name": "backup",
+      "ok": true,
+      "snapshots": {
+        "fitbit_db": "/Users/joao/.openclaw/workspace/fitbit-connector/backups/pipeline/20260321T221024Z/fitbit_metrics.sqlite3",
+        "health_db": "/Users/joao/.openclaw/workspace/fitbit-connector/backups/pipeline/20260321T221024Z/health_unified.sqlite3",
+        "token": "/Users/joao/.openclaw/workspace/fitbit-connector/backups/pipeline/20260321T221024Z/fitbit_tokens.json",
+        "verification": {
+          "fitbit_db": [
+            true,
+            "ok"
+          ],
+          "health_db": [
+            true,
+            "ok"
+          ],
+          "token_exists": true
+        }
+      }
+    },
+    {
+      "name": "fitbit_sync",
+      "ok": true,
+      "days": 3,
+      "results": [
+        {
+          "date": "2026-03-19",
+          "status": "ok",
+          "quality": "complete",
+          "readiness": "amber",
+          "confidence": "high",
+          "errors": 0,
+          "updated_at": "2026-03-21T22:10:28.163523+00:00"
+        },
+        {
+          "date": "2026-03-20",
+          "status": "ok",
+          "quality": "complete",
+          "readiness": "red",
+          "confidence": "high",
+          "errors": 0,
+          "updated_at": "2026-03-21T22:10:31.432120+00:00"
+        },
+        {
+          "date": "2026-03-21",
+          "status": "ok",
+          "quality": "complete",
+          "readiness": "red",
+          "confidence": "high",
+          "errors": 0,
+          "updated_at": "2026-03-21T22:10:34.775174+00:00"
+        }
+      ]
+    },
+    {
+      "name": "unified_import",
+      "ok": true,
+      "result": {
+        "ok": true,
+        "operation": "import-fitbit-cache",
+        "rows": 3,
+        "start": "2026-03-19",
+        "end": "2026-03-21"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "preflight.fitbit_db_exists",
+      "ok": true,
+      "detail": "path=/Users/joao/.openclaw/workspace/fitbit-connector/assets/fitbit_metrics.sqlite3"
+    },
+    {
+      "name": "preflight.health_db_exists",
+      "ok": true,
+      "detail": "path=/Users/joao/.openclaw/workspace/fitbit-connector/assets/health_unified.sqlite3"
+    },
+    {
+      "name": "preflight.token_exists",
+      "ok": true,
+      "detail": "path=/Users/joao/.openclaw/workspace/fitbit-connector/assets/fitbit_tokens.json"
+    },
+    {
+      "name": "freshness.fitbit_daily_metrics",
+      "ok": true,
+      "detail": "latest=2026-03-21 lag_days=0 threshold=1"
+    },
+    {
+      "name": "parity.fitbit_cache_to_unified",
+      "ok": true,
+      "detail": "start=2026-03-19 end=2026-03-21 fitbit_rows=3 unified_rows=3"
+    },
+    {
+      "name": "quality.no_degraded_rows_in_window",
+      "ok": true,
+      "detail": "degraded_rows=0 window=2026-03-19..2026-03-21"
+    },
+    {
+      "name": "integrity.fitbit_db",
+      "ok": true,
+      "detail": "result=ok"
+    },
+    {
+      "name": "integrity.health_db",
+      "ok": true,
+      "detail": "result=ok"
+    }
+  ],
+  "rollback_performed": false,
+  "dry_run": false,
+  "finished_at": "2026-03-21T22:10:34.996487+00:00"
+}

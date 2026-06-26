@@ -1,0 +1,21 @@
+{
+  "workspace": "/Users/bot-eva/.openclaw/workspace",
+  "docs_dir": "docs",
+  "log_dir": "logs",
+  
+  "watch_pattern": "*.md",
+  
+  "notification": {
+    "auto_channels": true,
+    "channels": [],
+    "response_timeout_minutes": 5,
+    "evaluation_timeout_minutes": 30
+  },
+  
+  "integration": {
+    "openclaw_memory": {
+      "enabled": true,
+      "store_events": true
+    }
+  }
+}

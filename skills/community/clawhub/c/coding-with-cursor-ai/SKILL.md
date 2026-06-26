@@ -1,35 +1,31 @@
----
-name: "Coding with Cursor AI"
-description: "Execute coding tasks like feature implementation, bug fixes, refactoring, and code reviews using Cursor AI within specified project directories."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coding-with-cursor-ai"
-sourceUrl: "https://clawhub.ai/skills/coding-with-cursor-ai"
----
+# coding-with-cursor-ai
 
-# Coding with Cursor AI
+## Description
+Execute coding tasks using Cursor AI agent for advanced code generation, refactoring, and bug fixes. This skill is designed to handle complex logic changes, feature implementations, and code reviews within the `/home/ubuntu/workspace` projects.
 
-> Execute coding tasks like feature implementation, bug fixes, refactoring, and code reviews using Cursor AI within specified project directories.
+## Usage
+Use this skill whenever:
+- Implementing new features
+- Fixing bugs
+- Refactoring code
+- Writing unit tests
+- Performing code reviews
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coding-with-cursor-ai`
-- **Source URL:** [https://clawhub.ai/skills/coding-with-cursor-ai](https://clawhub.ai/skills/coding-with-cursor-ai)
+## Inputs
+- `project`: Path to the project root (e.g., `/home/ubuntu/workspace/zinner/repo/zinner-webapi`)
+- `task`: Natural language description of the coding task
+- `files`: Optional list of files to focus on
 
-## Overview
+## Execution
+The skill spawns a Cursor AI agent session with full access to the project repository. It uses Cursor's advanced reasoning and code editing capabilities to complete the task and commit changes.
 
+## Constraints
+- Always verify Cursor's edits before final commit
+- Do not run Cursor on production branches without review
+- Prefer `dev` or feature branches for automated coding
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/coding-with-cursor-ai
+## Example
+```yaml
+project: /home/ubuntu/workspace/zinner/repo/zinner-webcms
+task: Add Terms and Conditions page with dummy content
 ```

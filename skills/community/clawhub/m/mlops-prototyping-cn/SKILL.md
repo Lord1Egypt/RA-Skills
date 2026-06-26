@@ -1,35 +1,73 @@
 ---
-name: "MLOps Prototyping CN"
-description: "Structured Jupyter notebook prototyping with pipeline integrity"
-category: "mlops"
-source: "ClawHub"
-tags: [chinese, mlops]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mlops-prototyping-cn"
-sourceUrl: "https://clawhub.ai/skills/mlops-prototyping-cn"
+name: mlops-prototyping-cn
+version: 1.0.0
+description: Structured Jupyter notebook prototyping with pipeline integrity
+license: MIT
 ---
 
-# MLOps Prototyping CN
+# MLOps Prototyping 🔬
 
-> Structured Jupyter notebook prototyping with pipeline integrity
+Create standardized, reproducible Jupyter notebooks.
 
-- **Category:** MLOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mlops-prototyping-cn`
-- **Source URL:** [https://clawhub.ai/skills/mlops-prototyping-cn](https://clawhub.ai/skills/mlops-prototyping-cn)
+## Features
 
-## Overview
+### 1. Notebook Structure Check ✅
 
+Validate notebook follows best practices:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mlops-prototyping-cn
+./scripts/check-notebook.sh notebook.ipynb
 ```
+
+Checks for:
+- H1 title
+- Imports section
+- Config/Constants
+- Data loading
+- Pipeline usage
+
+### 2. Template 📝
+
+Use this structure:
+
+1. **Title & Purpose**
+2. **Imports** (standard → third-party → local)
+3. **Configs** (all constants at top)
+4. **Datasets** (load, validate, split)
+5. **Analysis** (EDA)
+6. **Modeling** (use `sklearn.pipeline.Pipeline`)
+7. **Evaluations** (metrics on test data)
+
+## Quick Start
+
+```bash
+# Check your notebook
+./scripts/check-notebook.sh my-notebook.ipynb
+
+# Follow structure in notebook
+# Use Pipeline for all transforms
+# Set RANDOM_STATE everywhere
+```
+
+## Key Rules
+
+✅ **DO:**
+- Put all params in Config section
+- Use `sklearn.pipeline.Pipeline`
+- Split data BEFORE any transforms
+- Set `random_state` everywhere
+
+❌ **DON'T:**
+- Magic numbers in code
+- Manual transforms (use Pipeline)
+- Fit on full dataset (data leakage)
+
+## Author
+
+Converted from [MLOps Coding Course](https://github.com/MLOps-Courses/mlops-coding-skills)
+
+## Changelog
+
+### v1.0.0 (2026-02-18)
+- Initial OpenClaw conversion
+- Added notebook checker

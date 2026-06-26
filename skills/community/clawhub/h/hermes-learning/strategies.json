@@ -1,0 +1,68 @@
+{
+  "version": "4.0",
+  "last_updated": "2026-04-18T09:47:00+08:00",
+  "success_patterns": [
+    {
+      "id": "6152b1c2",
+      "pattern": "完成了 Hermes Agent 与 WorkBuddy 的 MCP 集成配置",
+      "full_content": "完成了 Hermes Agent 与 WorkBuddy 的 MCP 集成配置",
+      "source": "hermes",
+      "timestamp": "2026-04-18T09:15:22.038644",
+      "applied_count": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "7cc62a21",
+      "pattern": "完成 Hermes Agent 与 WorkBuddy 的 MCP 集成配置，并开发 hermes-memory-bridge Skill 实现双向记忆互通",
+      "full_content": "完成 Hermes Agent 与 WorkBuddy 的 MCP 集成配置，并开发 hermes-memory-bridge Skill 实现双向记忆互通",
+      "source": "hermes",
+      "timestamp": "2026-04-18T09:15:22.038672",
+      "applied_count": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "1c408502",
+      "pattern": "v1.1.0 升级完成：动态路径、环境变量、错误处理、日志全面增强",
+      "full_content": "v1.1.0 升级完成：动态路径、环境变量、错误处理、日志全面增强",
+      "source": "hermes",
+      "timestamp": "2026-04-18T09:15:22.038690",
+      "applied_count": 0,
+      "confidence": 0.9
+    },
+    {
+      "id": "moved_001",
+      "pattern": "hermes-memory-bridge v1.1.0 升级：采纳 Hermes 建议，动态路径、健壮错误处理、标准化日志",
+      "full_content": "hermes-memory-bridge v1.1.0 升级：采纳 Hermes 建议，动态路径自动发现 WorkBuddy 目录（支持环境变量 HERMES_HOME/WORKBUDDY_HOME/WORKBUDDY_MEMORY_DIR）、健壮错误处理（全部查询含 try/except + 优雅降级）、标准化日志（stderr 输出 INFO 级别）、SKILL.md 补 API 文档。已发布至 GitHub 和 ClawHub v1.1.0。",
+      "source": "hermes",
+      "timestamp": "2026-04-18T09:15:22.038694",
+      "applied_count": 0,
+      "confidence": 0.9,
+      "note": "从 avoid_patterns 移入，原分类错误（这是成功操作）"
+    }
+  ],
+  "avoid_patterns": [],
+  "optimizations": [
+    {
+      "id": "dd39a8f7",
+      "suggestion": "优化高频任务处理: 2026, 工作日志, WorkBuddy",
+      "type": "optimization",
+      "priority": "high",
+      "status": "applied",
+      "related_tasks": [],
+      "timestamp": "2026-04-18T09:28:09.899308",
+      "applied_at": "2026-04-18T09:38:29.287867",
+      "note": "此建议过于笼统，无具体可执行方案，标记为已处理但实际无效果"
+    },
+    {
+      "id": "475da74e",
+      "suggestion": "建议WorkBuddy优化高频任务的处理效率",
+      "type": "optimization",
+      "priority": "medium",
+      "status": "applied",
+      "related_tasks": [],
+      "timestamp": "2026-04-18T09:28:09.899344",
+      "applied_at": "2026-04-18T09:38:29.288422",
+      "note": "与 dd39a8f7 重复，已合并处理"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "focusavatar",
+  "version": "0.0.5",
+  "description": "数字人生成 CLI：凭 accessKeyId/accessKeySecret 调用后端 API，支持提交任务（MP3/MP4/文字→视频）与查询任务结果（orderNo）。不存储用户数据，凭证仅通过请求头发送至后端。",
+  "type": "python",
+  "script": "scripts/focusavatar.py",
+  "parameters": {
+    "message": {
+      "type": "string",
+      "description": "可选测试或说明消息"
+    }
+  },
+  "triggers": [
+    "focusavatar",
+    "数字人",
+    "数字人生成",
+    "AI数字人",
+    "视频生成",
+    "ai视频",
+    "语音合成",
+    "唇形同步"
+  ],
+  "credentials": {
+    "FOCUSAVATAR_ACCESS_KEY_ID": "accessKeyId，控制台创建密钥获得",
+    "FOCUSAVATAR_ACCESS_KEY_SECRET": "accessKeySecret，控制台创建密钥获得"
+  },
+  "instructionScope": [
+    "生成数字人视频（提交 MP3/MP4 地址与文字）",
+    "查询数字人任务结果（凭 orderNo）",
+    "调用 focusavatar / 焦点数字人 / yunji 数字人 相关 API"
+  ],
+  "enabled": true
+}

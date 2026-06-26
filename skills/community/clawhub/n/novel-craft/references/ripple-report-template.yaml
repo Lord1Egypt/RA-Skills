@@ -1,0 +1,123 @@
+# 涟漪报告模板
+
+## 报告格式
+
+```yaml
+# ===== 涟漪修改报告 =====
+trigger:
+  type: setting_change        # setting_change | outline_change | timeline_change | foreshadow_change
+  target: @char:林凡
+  field: attributes.cultivation
+  before: "练气三层"
+  after: "筑基一层"
+  initiated_by: user          # user | auto
+  timestamp: 2026-05-15T19:00:00
+
+# ===== 影响分析 =====
+dependency_graph_snapshot: |
+  @char:林凡 ──引用──→ vol-01/ch-005 (使用练气三层剑招)
+  @char:林凡 ──引用──→ vol-01/ch-008 (他人评价修为)
+  @char:林凡 ──引用──→ vol-01/ch-012 (战斗推演)
+  @char:林凡 ──引用──→ vol-02/ch-003 (势力格局)
+
+# ===== 影响分层 =====
+depth_1:                      # 直接引用变更设定的章节
+  - chapter: vol-01/ch-005
+    location: "第3段"
+    original: "林凡以练气三层修为催动剑诀，勉强挡住了这一击"
+    conflict_reason: "修为已改为筑基一层，'勉强'的描写与筑基实力不符"
+    rewrite_strategy: "局部修改，调整战斗描写的难易程度"
+    auto_rewrite: true
+    status: pending           # pending | rewriting | completed | skipped
+
+  - chapter: vol-01/ch-008
+    location: "第7段"
+    original: "众人皆惊，此人不过练气三层，竟能..."
+    conflict_reason: "他人评价中直接提到练气三层"
+    rewrite_strategy: "替换修为描述，调整众人反应程度"
+    auto_rewrite: true
+    status: pending
+
+depth_2:                      # 间接引用（通过depth_1的修改结果）
+  - chapter: vol-01/ch-012
+    location: "第2段"
+    original: "基于之前的战斗结果，林凡此时应该已经力竭"
+    conflict_reason: "修为提升后，ch-005的战斗结果改变，ch-012的推演需调整"
+    rewrite_strategy: "调整战斗推演结论"
+    auto_rewrite: true
+    status: pending
+
+depth_3:                      # 需确认
+  - chapter: vol-02/ch-003
+    location: "第5段"
+    original: "筑基期以下的弟子不得参与此次任务"
+    conflict_reason: "林凡修为已达到筑基，原本不能参与的任务现在可以了"
+    rewrite_strategy: "可能需要重写整个任务分配逻辑，影响范围大"
+    auto_rewrite: false       # 需用户确认
+    status: pending
+
+# ===== 执行结果 =====
+execution:
+  total_affected: 4
+  auto_rewritten: 0/3         # 执行中更新
+  pending_confirmation: 1
+  skipped: 0
+  errors: []
+
+  changes:
+    - chapter: vol-01/ch-005
+      before: "林凡以练气三层修为催动剑诀，勉强挡住了这一击"
+      after: "林凡以筑基一层修为催动剑诀，轻松化解了这一击"
+      status: pending
+
+    - chapter: vol-01/ch-008
+      before: "众人皆惊，此人不过练气三层，竟能..."
+      after: "众人皆惊，此人不过筑基初期，竟能..."
+      status: pending
+
+# ===== 备份信息 =====
+backup:
+  location: "ripple-log/2026-05-15T19-00-00/"
+  files_backed_up:
+    - "chapters/vol-01/ch-005.md"
+    - "chapters/vol-01/ch-008.md"
+    - "chapters/vol-01/ch-012.md"
+    - "outline/vol-01.yaml"
+
+# ===== 级联检测 =====
+cascade_check:
+  new_ripples_detected: false
+  cascade_depth: 0
+  note: "修改后未产生新的涟漪"
+```
+
+## 局部重写策略
+
+### Depth 1: 精准替换
+- 只修改直接矛盾的句子/段落
+- 保持前后文不变
+- 示例：修为从"练气三层"改为"筑基一层"，只替换修为描述
+
+### Depth 2: 逻辑调整
+- 修改因Depth 1变化而逻辑不成立的段落
+- 可能需要调整事件因果关系
+- 示例：战斗结果从"惨胜"调整为"轻松胜出"，后续推演需同步
+
+### Depth 3: 场景重构
+- 可能需要重构整个场景的逻辑
+- 必须用户确认后执行
+- 示例：角色修为提升后，原本的情节限制不再成立，需要重新设计情节
+
+### Depth >3: 标记待审
+- 不自动处理
+- 输出影响分析报告
+- 等待用户决定
+
+## 回滚机制
+
+每次涟漪修改执行前：
+1. 将所有受影响文件的当前版本复制到 `ripple-log/<timestamp>/`
+2. 修改完成后，如果用户不满意：
+   - 从备份恢复原文
+   - 删除涟漪修改产生的变更
+3. 回滚后需手动处理原始修改意图

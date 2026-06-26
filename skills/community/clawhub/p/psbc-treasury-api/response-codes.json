@@ -1,0 +1,266 @@
+{
+  "version": "1.2.5",
+  "updateDate": "2026-03-04",
+  "standardCodes": {
+    "200": {
+      "code": "200",
+      "description": "请求成功",
+      "descriptionEn": "Request successful",
+      "suggestion": "无需处理"
+    },
+    "400": {
+      "code": "400",
+      "description": "请求参数错误",
+      "descriptionEn": "Bad request - invalid parameters",
+      "suggestion": "检查请求参数格式和内容"
+    },
+    "401": {
+      "code": "401",
+      "description": "认证失败",
+      "descriptionEn": "Unauthorized - authentication failed",
+      "suggestion": "检查证书和签名配置"
+    },
+    "403": {
+      "code": "403",
+      "description": "权限不足",
+      "descriptionEn": "Forbidden - insufficient permissions",
+      "suggestion": "联系管理员确认权限配置"
+    },
+    "429": {
+      "code": "429",
+      "description": "请求限流",
+      "descriptionEn": "Too many requests - rate limited",
+      "suggestion": "降低请求频率，稍后重试"
+    },
+    "500": {
+      "code": "500",
+      "description": "服务器内部错误",
+      "descriptionEn": "Internal server error",
+      "suggestion": "联系银行技术支持"
+    }
+  },
+  "businessCodes": {
+    "000000": {
+      "code": "000000",
+      "description": "操作成功",
+      "descriptionEn": "Operation successful",
+      "suggestion": "无需处理"
+    },
+    "010001": {
+      "code": "010001",
+      "description": "匹配原账户信息无记录",
+      "descriptionEn": "No matching account record found",
+      "suggestion": "检查账户信息是否正确"
+    },
+    "010002": {
+      "code": "010002",
+      "description": "{0}（查询失败的描述信息）",
+      "descriptionEn": "Query failed: {0}",
+      "suggestion": "根据具体错误信息排查"
+    },
+    "020006": {
+      "code": "020006",
+      "description": "该批次的单据已经存在",
+      "descriptionEn": "Batch document already exists",
+      "suggestion": "更换批次号或查询已存在的单据"
+    },
+    "020300": {
+      "code": "020300",
+      "description": "对方账号不合法",
+      "descriptionEn": "Invalid counterparty account number",
+      "suggestion": "核实收款账号格式和有效性"
+    },
+    "020301": {
+      "code": "020301",
+      "description": "未查询到开户行信息",
+      "descriptionEn": "Bank branch information not found",
+      "suggestion": "检查联行号是否正确"
+    },
+    "020302": {
+      "code": "020302",
+      "description": "查询无记录",
+      "descriptionEn": "No records found",
+      "suggestion": "确认查询条件，检查数据是否存在"
+    },
+    "020303": {
+      "code": "020303",
+      "description": "支付结果查询参数异常",
+      "descriptionEn": "Payment query parameter exception",
+      "suggestion": "检查查询参数格式"
+    },
+    "020304": {
+      "code": "020304",
+      "description": "联行号校验错误或在系统中不存在",
+      "descriptionEn": "Bank code validation failed or does not exist",
+      "suggestion": "联系管理员检查联行号配置"
+    },
+    "020306": {
+      "code": "020306",
+      "description": "付方日期必须大于等于当前日期",
+      "descriptionEn": "Payment date must be greater than or equal to current date",
+      "suggestion": "修改应付日期为当前日期或之后"
+    },
+    "020311": {
+      "code": "020311",
+      "description": "业务类型不合法",
+      "descriptionEn": "Invalid business type",
+      "suggestion": "检查业务类型代码是否在允许范围内"
+    },
+    "029999": {
+      "code": "029999",
+      "description": "{0}",
+      "descriptionEn": "Business error: {0}",
+      "suggestion": "根据具体错误信息处理"
+    },
+    "030045": {
+      "code": "030045",
+      "description": "资金下拨支付中——他行下拨一定该状态",
+      "descriptionEn": "Fund allocation in progress",
+      "suggestion": "等待支付完成，稍后查询结果"
+    },
+    "999990": {
+      "code": "999990",
+      "description": "非法参数异常，%s(具体的参数校验异常信息)",
+      "descriptionEn": "Invalid parameter exception: %s",
+      "suggestion": "根据具体参数错误信息修正报文"
+    }
+  },
+  "prefixCodes": {
+    "0000000000000000": {
+      "code": "0000000000000000",
+      "description": "请求成功（统一前置系统响应码）",
+      "descriptionEn": "Request successful (Unified Front-end Platform response code)",
+      "suggestion": "可继续解析 encData 中的业务报文"
+    }
+  },
+  "appendix": {
+    "currency": {
+      "156": "人民币"
+    },
+    "transactionType": {
+      "1": "对公支付",
+      "2": "对私支付",
+      "3": "工资代发"
+    },
+    "businessType": {
+      "001": "贷款",
+      "002": "手续费",
+      "003": "押金",
+      "004": "保证金",
+      "005": "质保金",
+      "006": "押汇",
+      "007": "客户费用",
+      "008": "押汇还款",
+      "009": "其他",
+      "010": "材料款",
+      "011": "设备款",
+      "012": "工资"
+    },
+    "paymentMethod": {
+      "1": "账户",
+      "2": "票据"
+    },
+    "networkFlag": {
+      "0": "非直连",
+      "1": "直连",
+      "2": "SWIFT"
+    },
+    "accountAttr": {
+      "ZH0001": "基本存款账户",
+      "ZH0002": "一般存款账户",
+      "ZH0003": "专用存款账户",
+      "ZH0004": "临时存款账户"
+    },
+    "accountStatus": {
+      "1": "未启用",
+      "2": "正常",
+      "3": "已销户",
+      "4": "待销户",
+      "5": "止付"
+    },
+    "dcFlag": {
+      "0": "借",
+      "1": "贷"
+    },
+    "privatePaymentPurpose": {
+      "100": "日常支出",
+      "101": "还款",
+      "102": "奖金",
+      "103": "缴费",
+      "104": "医保",
+      "105": "保险",
+      "106": "报销",
+      "107": "补偿",
+      "108": "补贴",
+      "109": "差旅",
+      "110": "冲正",
+      "111": "代付",
+      "112": "电费",
+      "113": "短信",
+      "114": "房租",
+      "115": "分红",
+      "116": "个税",
+      "117": "公积金",
+      "118": "理财",
+      "119": "社保",
+      "120": "水费",
+      "121": "税款",
+      "122": "学费",
+      "123": "收费",
+      "124": "捐赠",
+      "125": "医药费",
+      "126": "福利",
+      "127": "保费",
+      "128": "过节",
+      "129": "劳保",
+      "130": "通讯费",
+      "131": "安置",
+      "132": "权益",
+      "133": "劳务",
+      "134": "低保",
+      "135": "过渡",
+      "136": "退款",
+      "137": "借款",
+      "138": "贷款",
+      "139": "年金",
+      "140": "办公费",
+      "141": "报刊费",
+      "142": "餐费",
+      "143": "会议费",
+      "144": "工程款",
+      "145": "律师费",
+      "146": "垫付资金",
+      "147": "柜台销售结算款",
+      "148": "网上交易款",
+      "149": "制片费",
+      "150": "奖助学金",
+      "151": "案件款",
+      "152": "租赁费",
+      "153": "转款",
+      "154": "贷款",
+      "155": "采购款",
+      "156": "拨款",
+      "157": "运费",
+      "158": "服务费",
+      "159": "广告费",
+      "160": "物业费",
+      "161": "检测费",
+      "162": "佣金",
+      "163": "租金",
+      "164": "违约金",
+      "165": "保证金",
+      "166": "退休金",
+      "167": "维修费",
+      "168": "公共事业费",
+      "169": "高温费",
+      "170": "加班费",
+      "171": "过节费",
+      "172": "年终奖",
+      "173": "住房补贴",
+      "174": "交通补贴",
+      "175": "利息",
+      "176": "工资",
+      "177": "其他合法款项"
+    }
+  }
+}

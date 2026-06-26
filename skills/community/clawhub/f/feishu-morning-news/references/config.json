@@ -1,0 +1,8 @@
+{
+  "data_source": "https://60s.viki.moe/v2/60s",
+  "push_time": "08:30",
+  "target_open_id": "ou_b8bd6c6f4b69a9dda0dd16c2788c32ca",
+  "max_retries": 3,
+  "retry_delay": 60,
+  "log_file": "/var/log/feishu-morning-news.log"
+}

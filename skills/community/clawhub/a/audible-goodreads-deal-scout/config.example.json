@@ -1,0 +1,22 @@
+{
+  "artifactDir": ".audible-goodreads-deal-scout/artifacts/current",
+  "audibleAuthPath": null,
+  "audibleDealUrl": null,
+  "audibleFetchBackend": "auto",
+  "audibleFetchBackoffSeconds": 1.0,
+  "audibleFetchRetries": 2,
+  "audibleMarketplace": "us",
+  "csvColumns": {},
+  "dailyCron": "15 1 * * *",
+  "deliveryChannel": null,
+  "deliveryPolicy": "positive_only",
+  "deliveryTarget": null,
+  "freshnessDays": 180,
+  "enrichGoodreadsRatings": true,
+  "goodreadsRatingLimit": 20,
+  "goodreadsCsvPath": "/absolute/path/to/goodreads_library_export.csv",
+  "preferencesPath": ".audible-goodreads-deal-scout/preferences.md",
+  "privacyMode": "normal",
+  "stateFile": ".audible-goodreads-deal-scout/state.json",
+  "threshold": 3.8
+}

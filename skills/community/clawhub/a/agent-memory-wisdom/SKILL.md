@@ -1,35 +1,202 @@
 ---
-name: "brain 大脑"
-description: "brain v1.1.7 用户版（免费）：让AI Agent拥有类大脑决策架构。置信度触发、双保险记忆、经验胶囊复用。开箱即用，3片段内存池，2并发上限。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-memory-wisdom"
-sourceUrl: "https://clawhub.ai/skills/agent-memory-wisdom"
+name: brain
+version: 1.1.7-user
+description: brain v1.1.7 用户版（免费）：让AI Agent拥有类大脑决策架构。置信度触发、双保险记忆、经验胶囊复用。开箱即用，3片段内存池，2并发上限。
 ---
 
-# brain 大脑
+# brain v1.1.7 用户版
 
-> brain v1.1.7 用户版（免费）：让AI Agent拥有类大脑决策架构。置信度触发、双保险记忆、经验胶囊复用。开箱即用，3片段内存池，2并发上限。
+**你的AI Agent，正在漏掉你给它的每一次机会**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-memory-wisdom`
-- **Source URL:** [https://clawhub.ai/skills/agent-memory-wisdom](https://clawhub.ai/skills/agent-memory-wisdom)
+---
 
-## Overview
+## 你有没有遇到过这些？
 
+- 给了Agent一个任务，它做到一半突然问你"刚才那个是啥"
+- 复杂任务跑了2小时，Agent说"抱歉上下文太长了，我忘了前面干嘛了"
+- 好不容易调教好的工作方式，换个会话全忘光
+- 子agent派出去就收不回来，不知道是成功了还是还在跑
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-memory-wisdom
+这不怪Agent。怪它没有大脑。
+
+---
+
+## 给它装一个
+
+brain不是提示词模板，不是一堆规则文档。
+
+是真的让Agent有一套**类大脑神经网络**在工作：
+
 ```
+收到任务
+  → 感知：这是什么活儿，紧急吗，跟之前有关系吗
+  → 思考：这事我能做吗，要花多少预算，要不要先写个快照
+  → 记忆：有没有做过类似的，上次怎么干的
+  → 执行：派给谁，怎么派，超时了怎么办
+  → 复盘：成了吗，要不要把这次经验存起来
+```
+
+**每个环节都有脚本支撑，每个决策都有据可查。**
+
+---
+
+## 核心能力
+
+### 🔒 置信度双保险
+
+Agent每次接活儿，先给自己打个分（0~1）。
+
+- **0.9**：简单直接，直接干
+- **0.7~0.9**：有点东西，干完记得汇报
+- **< 0.6**：高危，先把快照写了再说
+
+打分不是拍脑袋，是**信号表**算出来的：
+```
++0.1  历史成功过这个类型
++0.1  任务描述很明确
+-0.3  涉及删除/销毁
+-0.2  涉及发布/上线
+-0.2  涉及密码/密钥
+-0.2  系统核心配置
+-0.2  第一次遇到这种任务
+```
+
+**置信度<0.6时，系统强制先写快照再执行。** 就算中途断电，回来一看就知道做到哪了。
+
+---
+
+### 📦 经验胶囊
+
+Agent每次成功搞定一个复杂任务，把这次"怎么干的"打包成胶囊。
+
+下次遇到类似的，直接调取经验，不用从0摸索。
+
+```
+胶囊 = 一套可复用的成功模式
+
+比如：
+CAP-飞书消息发送-20260401.md
+CAP-官网迭代流程-20260415.md
+```
+
+胶囊有成熟度：
+- **raw**：刚试成功，还不确保持续能用
+- **tested**：连续成功2次，可以用
+- **stable**：连续成功5次，默认自动用
+
+---
+
+### 🧠 语义记忆搜索
+
+问Agent："上次那个调研是怎么做的来着？"
+
+它能**语义搜索**历史记忆，不只是关键词匹配。
+
+---
+
+## vs 完整版差在哪
+
+| | 用户版 | 完整版 |
+|:---|:---:|:---:|
+| 置信度触发 | ✅ | ✅ 精确化+对抗验证 |
+| 经验胶囊 | ✅ 手动创建 | ✅ 自动维护成熟度 |
+| 语义记忆搜索 | ✅ 基础版 | ✅ 全量QMD（~24000 chunks） |
+| 并发Agent上限 | **2个** | **无限制** |
+| 内存池上限 | **3片段/5K tokens** | **无限制/30K tokens** |
+| 自动化脚本 | ❌ | ✅ 全部（含auto-*系列） |
+| 记忆Fragment接口 | ❌ | ✅ 标准化 |
+| 测试框架 | ❌ | ✅ 30+用例自动化验证 |
+| Context实时监控 | ❌ | ✅ 自动压缩+标注 |
+
+---
+
+## 脚本清单
+
+```
+scripts/
+├── build-session-injection.js   # 会话启动时自动组装上下文
+├── subagent-think-chain.js    # 任务分类+置信度评估（派agent前必跑）
+├── subagent-budget.js         # 任务复杂度→预算+模型分配
+├── subagent-watchdog.js       # 超时重试+失败兜底
+├── pre-checkpoint.js         # 高危任务前主动写快照
+├── capsule-auto-suggest.sh    # 任务完成后自动建议创建胶囊
+└── create-capsule.sh          # 手动创建胶囊
+```
+
+---
+
+## 安装
+
+```bash
+# 1. 复制脚本到brain目录
+cp ~/.openclaw/skills/brain-v1.1.7-user/scripts/* \
+   ~/.openclaw/skills/brain-v1.1.7/scripts/
+
+# 2. 启动上下文注入（在 openclaw.json 的 agents.defaults 下加入）
+"bootstrapExtraFiles": [
+  "memory/SNAPSHOT.md",
+  "memory/工作缓冲区.md"
+]
+
+# 3. 任务来了，先跑思考链
+node ~/.openclaw/skills/brain-v1.1.7/scripts/subagent-think-chain.js "<任务描述>"
+```
+
+---
+
+## 常见问题
+
+**Q: 为什么不给我更多并发和内存？**
+A: 用户版是证明能力的。如果这套系统对你有价值，完整版给你专业级的无限量。
+
+**Q: 真的有用吗？**
+A: 最直接验证：跑一个复杂任务，中途Ctrl+C断掉，然后新会话里问"刚才那个任务做到哪了"。有快照的版本能接上，没快照的版本从头开始。
+
+**Q: 会不会太复杂？**
+A: 用户版已经做了最大简化。你只需要记住一件事：**每个任务开始前跑一下 subagent-think-chain.js**，剩下的脚本自动处理。
+
+---
+
+## 一句话
+
+装上之后，你的Agent**不再健忘，不再乱来，不再忘了自己干到哪了**。
+
+不是变聪明了——是终于有记性了。
+
+---
+
+## 关于作者
+
+一个中国开发者。
+
+至今没搞懂python到底是干什么用的，没学过任何语言，但对架构及工程思维有那么一点点🤏天赋（自夸）。
+
+最初只是想让我的agent别那么健忘，省点token，结果越搞越上头，一不小心整出了一套类大脑神经网络架构。
+
+pete说过："你很难和一个只想玩的人做对手"
+
+如果你也觉得有意思，欢迎联系我交流。
+
+您的意见与反馈，是我进步的动力。
+
+---
+
+## 想要完整版？
+
+**brain v1.1.7 完整版** 包含：
+- **无限制并发Agent**：任务再复杂也能并行跑
+- **30K tokens内存池**：大型任务不断档
+- **全量QMD语义搜索**（~24000 chunks）：跨workspace全局记忆
+- **记忆Fragment标准接口**：统一记忆格式，注入全链路可控
+- **10K token硬上限**：自动压缩+标注，永远不爆token
+- **30+自动化测试用例**：每次改动都能秒级验证
+- **全部auto-*脚本**：主动预判+胶囊自动维护
+- **Context实时监控**：后台守护，永不失控
+
+**订阅费用：** $6/月
+**订阅方式：** 发送邮件至 `wangtianrui1999521@gmail.com`，标题注明"订阅brain完整版"
+**增值服务：** 若有升级/内测版本，会第一时间通过Gmail通知您
+
+---
+
+*brain v1.1.7 用户版 — 开箱即用，试试它到底有没有用*

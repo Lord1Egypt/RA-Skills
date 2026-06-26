@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "description": "ppt-pro Pipeline C: Puppeteer text extraction + python-pptx OOXML assembly",
+  "dependencies": {
+    "puppeteer": "^24.40.0"
+  }
+}

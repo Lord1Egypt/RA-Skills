@@ -1,0 +1,11 @@
+[
+  {
+    "type": "note_add",
+    "temp_id": "temp-note-1",
+    "uuid": "44444444-4444-4444-4444-444444444444",
+    "args": {
+      "item_id": "TASK_ID_HERE",
+      "content": "Reviewed during weekly planning."
+    }
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "A": {
+    "display": "Host",
+    "source": "manual"
+  },
+  "B": {
+    "display": "Guest",
+    "source": "manual"
+  },
+  "channel:0": {
+    "display": "Left channel / Agent",
+    "source": "manual"
+  },
+  "channel:1": {
+    "display": "Right channel / Customer",
+    "source": "manual"
+  }
+}

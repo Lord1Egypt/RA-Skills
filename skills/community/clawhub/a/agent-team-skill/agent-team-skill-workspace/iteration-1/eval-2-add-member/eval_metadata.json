@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "add-member",
+  "prompt": "添加一个新成员，名叫 Bob，角色是后端开发，擅长 Python 和 Go，不擅长前端",
+  "assertions": [
+    {"id": "a1", "text": "执行了 team.py update 命令", "expected": true},
+    {"id": "a2", "text": "成员名为 Bob", "expected": true},
+    {"id": "a3", "text": "角色包含后端开发/Backend Developer", "expected": true},
+    {"id": "a4", "text": "技能包含 Python 和 Go", "expected": true},
+    {"id": "a5", "text": "不擅长领域包含前端/frontend", "expected": true}
+  ]
+}

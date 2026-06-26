@@ -1,0 +1,41 @@
+# Platform definitions for the Weekend Scout skill generator.
+# Each platform specifies its output path, model, and any
+# platform-specific variables or extra files.
+
+platforms:
+  claude-code:
+    output_dir: ".claude/skills/weekend-scout"
+    vars:
+      MODEL: "haiku"
+      PLATFORM_NAME: "Claude Code"
+      INVOKE_CMD: "/weekend-scout"
+      RUN_COMPLETE_SEND_REASONS: "sent|telegram_not_configured|send_failed"
+
+  codex:
+    output_dir: ".agents/skills/weekend-scout"
+    vars:
+      MODEL: "gpt-5.4-mini"
+      PLATFORM_NAME: "Codex"
+      INVOKE_CMD: "$weekend-scout"
+      RUN_COMPLETE_SEND_REASONS: "sent|telegram_not_configured|send_failed"
+    extra_files:
+      "agents/openai.yaml": |
+        interface:
+          display_name: "Weekend Scout"
+          short_description: "Scout weekend outdoor events near your city"
+          brand_color: "#4CAF50"
+        policy:
+          allow_implicit_invocation: false
+
+  openclaw:
+    output_dir: ".openclaw/skills/weekend-scout"
+    vars:
+      MODEL: "gemini-3-flash"
+      PLATFORM_NAME: "OpenClaw"
+      INVOKE_CMD: "weekend-scout"
+      RUN_COMPLETE_SEND_REASONS: "sent|telegram_not_configured|telegram_internal|send_failed"
+
+# Variables available to all platforms
+shared_vars:
+  SKILL_NAME: "weekend-scout"
+  SKILL_VERSION: "0.1.0"

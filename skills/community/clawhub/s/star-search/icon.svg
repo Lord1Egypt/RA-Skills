@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="512" height="512">
+  <defs>
+    <linearGradient id="starGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0e0e10"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <!-- 圆角背景 -->
+  <rect width="32" height="32" rx="6" ry="6" fill="url(#bgGrad)"/>
+  <!-- 蓝渐变五角星 -->
+  <path d="M16 2 L19.29 11.47 L29.31 11.67 L21.33 17.73 L24.23 27.33 L16 21.6 L7.77 27.33 L10.67 17.73 L2.69 11.67 L12.71 11.47 Z"
+        fill="url(#starGrad)"
+        stroke="#93c5fd" stroke-width="0.5" stroke-linejoin="round"/>
+</svg>

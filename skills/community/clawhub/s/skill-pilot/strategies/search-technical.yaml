@@ -1,0 +1,42 @@
+# 调度策略模板：技术搜索优化
+# 适用场景：代码/技术文档搜索
+
+name: search-technical-optimized
+description: 针对代码和技术文档搜索的最优调度策略
+
+# 适用条件
+applicable_when:
+  category: search
+  is_technical_query: true
+
+# 路由配置
+routing:
+  # 首选技能
+  primary:
+    - skill: exa-web-search-free
+      filters: [github, stackoverflow, official_docs]
+      timeout: 20
+  
+  # 降级技能
+  fallback:
+    - skill: multi-search-engine
+      engines: [google, github]
+      timeout: 30
+    - skill: tavily-search
+      timeout: 20
+
+# 超时配置
+timeout: 30
+
+# 降级配置
+max_fallback: 2
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_seconds: 600  # 技术文档相对稳定，缓存 10 分钟
+
+# 优化建议
+# - 代码搜索优先 GitHub
+# - 文档搜索优先官方文档
+# - 问题解答优先 Stack Overflow

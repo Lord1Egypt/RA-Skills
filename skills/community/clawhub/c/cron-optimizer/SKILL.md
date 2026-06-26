@@ -1,35 +1,22 @@
 ---
-name: "Cron Optimizer"
-description: "Optimizes system cron jobs by removing stale, disabled, or redundant entries to reduce exec noise."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cron-optimizer"
-sourceUrl: "https://clawhub.ai/skills/cron-optimizer"
+name: cron-optimizer
+description: Optimizes system cron jobs by removing stale, disabled, or redundant entries to reduce exec noise.
 ---
 
 # Cron Optimizer
 
-> Optimizes system cron jobs by removing stale, disabled, or redundant entries to reduce exec noise.
+This skill cleans up the OpenClaw cron system by removing:
+- Stale "at" jobs older than 24 hours.
+- Disabled jobs that have not run recently.
+- Redundant or duplicate "Mad Dog" evolver loops.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cron-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/cron-optimizer](https://clawhub.ai/skills/cron-optimizer)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cron-optimizer
+node skills/cron-optimizer/index.js
 ```
+
+## Features
+- **Reduces Exec Noise**: Cleans up phantom cron jobs that trigger `exec` usage.
+- **System Stability**: Ensures critical watchdogs are present.
+- **Resource Management**: Removes stale job definitions from memory.

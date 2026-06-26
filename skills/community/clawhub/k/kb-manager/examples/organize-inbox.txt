@@ -1,0 +1,8 @@
+Please organize `knowledge/00_inbox/`.
+
+Requirements:
+1. Reclassify items when confidence is high
+2. Add or improve tags
+3. Suggest archive or deletion for low-value items
+4. Keep uncertain items in inbox
+5. Output a short organization report

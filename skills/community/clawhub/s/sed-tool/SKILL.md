@@ -1,35 +1,34 @@
 ---
-name: "Sed Tool"
-description: "Stream editor for filtering and transforming text using scripts. Use for find-and-replace, text manipulation, and batch file editing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sed-tool"
-sourceUrl: "https://clawhub.ai/skills/sed-tool"
+name: sed-tool
+description: Stream editor for filtering and transforming text using scripts. Use for find-and-replace, text manipulation, and batch file editing.
 ---
 
-# Sed Tool
+# Stream Editor
 
-> Stream editor for filtering and transforming text using scripts. Use for find-and-replace, text manipulation, and batch file editing.
+Perform basic text transformations on input streams using scripting commands. Supports find-and-replace, deletion, insertion, and conditional operations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sed-tool`
-- **Source URL:** [https://clawhub.ai/skills/sed-tool](https://clawhub.ai/skills/sed-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/sed-tool
+sed-tool [options] <script> [file...]
+```
+
+## Common Commands
+
+- `s/old/new/`: Substitute text
+- `/pattern/d`: Delete matching lines
+- `Np`: Print line N
+- `-i`: Edit files in-place
+
+## Examples
+
+```bash
+# Find and replace
+sed-tool 's/foo/bar/g' file.txt
+
+# Edit in-place
+sed-tool -i 's/old/new/g' config.ini
+
+# Delete lines matching pattern
+sed-tool '/debug/d' log.txt
 ```

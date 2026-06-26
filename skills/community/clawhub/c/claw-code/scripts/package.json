@@ -1,0 +1,17 @@
+{
+  "name": "claw-code",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI Agent Harness Runtime - TypeScript port for OpenClaw",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.39",
+    "typescript": "^5.3.0"
+  }
+}

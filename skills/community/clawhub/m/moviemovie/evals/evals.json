@@ -1,0 +1,40 @@
+{
+  "skill_name": "moviemovie",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我找夜王的4K下载资源",
+      "expected_output": "Standardizes '夜王' to 'Night King' via WebSearch, runs search_torrents.py, returns magnet links with size tier classification (light/balanced/premium)"
+    },
+    {
+      "id": 2,
+      "prompt": "find Inception 1080p magnet link",
+      "expected_output": "Searches 'Inception' across apibay+bitsearch+torrentdownload, returns Top 3 size tiers with magnet links (magnet:?xt=urn:btih:...), seeders count, and file sizes"
+    },
+    {
+      "id": 3,
+      "prompt": "最近有什么好看的电影推荐？",
+      "expected_output": "Fetches trending from Rotten Tomatoes (streaming+theaters) and Douban, merges/dedupes, searches torrents for each, only recommends movies with confirmed downloads"
+    },
+    {
+      "id": 4,
+      "prompt": "推荐类似银翼杀手的科幻电影",
+      "expected_output": "Uses WebSearch to find similar sci-fi movies, then searches torrent resources for each recommendation, only shows those with available downloads"
+    },
+    {
+      "id": 5,
+      "prompt": "流浪地球2有没有磁力链接？",
+      "expected_output": "Standardizes to 'The Wandering Earth II' via WebSearch, searches torrents, returns magnet links with size tiers"
+    },
+    {
+      "id": 6,
+      "prompt": "Rotten Tomatoes certified fresh movies with downloads",
+      "expected_output": "Fetches RT certified fresh list via WebFetch, verifies torrent availability for each, presents only downloadable ones"
+    },
+    {
+      "id": 7,
+      "prompt": "帮我找 Peaky Blinders 的字幕",
+      "expected_output": "Searches SubtitleCat (60+ languages) and SubHD for subtitles, returns language list with download links"
+    }
+  ]
+}

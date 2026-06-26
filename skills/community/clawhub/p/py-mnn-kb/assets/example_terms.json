@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "domain": "人工智能",
+  "description": "AI和机器学习领域专业词汇",
+  "entries": [
+    {
+      "word": "大语言模型",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["LLM", "大模型", "Large Language Model"]
+    },
+    {
+      "word": "Transformer",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["transformer", "注意力机制", "Attention Mechanism"]
+    },
+    {
+      "word": "神经网络",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["Neural Network", "NN"]
+    },
+    {
+      "word": "深度学习",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["Deep Learning", "DL"]
+    },
+    {
+      "word": "机器学习",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["Machine Learning", "ML"]
+    },
+    {
+      "word": "自然语言处理",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["NLP", "Natural Language Processing"]
+    },
+    {
+      "word": "计算机视觉",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["CV", "Computer Vision"]
+    },
+    {
+      "word": "强化学习",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["RL", "Reinforcement Learning"]
+    },
+    {
+      "word": "OpenAI",
+      "nature": "ntc",
+      "frequency": 10000,
+      "aliases": ["openai"]
+    },
+    {
+      "word": "Google",
+      "nature": "ntc",
+      "frequency": 10000,
+      "aliases": ["谷歌"]
+    },
+    {
+      "word": "微软",
+      "nature": "ntc",
+      "frequency": 10000,
+      "aliases": ["Microsoft"]
+    },
+    {
+      "word": "GPT",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": ["GPT-4", "ChatGPT"]
+    },
+    {
+      "word": "BERT",
+      "nature": "gi",
+      "frequency": 10000,
+      "aliases": []
+    },
+    {
+      "word": "卷积神经网络",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["CNN", "Convolutional Neural Network"]
+    },
+    {
+      "word": "循环神经网络",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["RNN", "Recurrent Neural Network"]
+    },
+    {
+      "word": "生成对抗网络",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["GAN", "Generative Adversarial Network"]
+    },
+    {
+      "word": "词嵌入",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["Word Embedding", "词向量"]
+    },
+    {
+      "word": "反向传播",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["Backpropagation", "BP"]
+    },
+    {
+      "word": "梯度下降",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["Gradient Descent"]
+    },
+    {
+      "word": "过拟合",
+      "nature": "gi",
+      "frequency": 9000,
+      "aliases": ["Overfitting"]
+    }
+  ]
+}

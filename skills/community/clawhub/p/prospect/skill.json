@@ -1,0 +1,48 @@
+{
+  "name": "prospect",
+  "version": "2.0.0",
+  "description": "Filter raw target lists into prioritized prospects. Score fit, timing, value, and access. Route each target to pursue, research, watch, or drop.",
+  "author": "dpetcr",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "prospect",
+    "target ranking",
+    "account prioritization",
+    "sales prospecting",
+    "business development",
+    "partnerships",
+    "prospect scoring"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "target_filtering": "Filter raw target lists into viable prospects",
+    "priority_ranking": "Rank prospects by fit, timing, value, and access",
+    "gap_identification": "Identify missing information before outreach",
+    "route_recommendation": "Recommend pursue, research, watchlist, or drop"
+  },
+  "triggers": [
+    "evaluate prospect",
+    "prioritize targets",
+    "filter prospects",
+    "rank prospects",
+    "should I pursue this target",
+    "who should I target",
+    "prospect assessment",
+    "target evaluation",
+    "prospect prioritization",
+    "account prioritization"
+  ],
+  "audience": [
+    "Founders doing outbound or partnerships",
+    "Sales teams building target lists",
+    "Business development operators prioritizing accounts",
+    "Partnership teams filtering potential partners"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "clawvet",
+  "version": "0.6.3",
+  "description": "Skill vetting & supply chain security for OpenClaw. Scans SKILL.md files for prompt injection, credential theft, RCE, typosquatting, and social engineering.",
+  "type": "module",
+  "bin": {
+    "clawvet": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "clawvet",
+    "security",
+    "scanner",
+    "skill",
+    "supply-chain",
+    "prompt-injection",
+    "ai-agent",
+    "malware",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohibShaikh/clawvet.git"
+  },
+  "homepage": "https://github.com/MohibShaikh/clawvet#readme",
+  "bugs": {
+    "url": "https://github.com/MohibShaikh/clawvet/issues"
+  },
+  "dependencies": {
+    "chalk": "^5.4.0",
+    "commander": "^13.0.0",
+    "fastest-levenshtein": "^1.0.16",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

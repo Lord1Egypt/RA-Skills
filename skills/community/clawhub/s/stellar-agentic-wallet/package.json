@@ -1,0 +1,19 @@
+{
+  "name": "stellar-agent-wallet",
+  "version": "1.7.0",
+  "description": "Stellar USDC wallet for AI agents. Pay 402-gated APIs (x402 or MPP Router), check balances, add USDC trustlines, swap XLM→USDC on the DEX, and send/bridge USDC cross-chain to EVM, Solana, or back to Stellar via Rozo. File-based secret storage, sponsored mode, testnet and mainnet.",
+  "type": "module",
+  "private": true,
+  "author": "Shawn Yu",
+  "license": "MIT",
+  "homepage": "https://www.mpprouter.dev/",
+  "keywords": ["stellar","wallet","usdc","x402","mpp","mpprouter","payments","crypto","402","bridge","rozo","agent"],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^15.0.1",
+    "mppx": "^0.4.11",
+    "tsx": "^4.0.0"
+  }
+}

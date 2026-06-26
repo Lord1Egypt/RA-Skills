@@ -1,0 +1,74 @@
+{
+  "skill_name": "chief-pitfall-officer",
+  "version": "2.1.1",
+  "smm_level": 5,
+  "smm_details": {
+    "design_harness": 5,
+    "context_harness": 5,
+    "quality_harness": 5,
+    "runtime_harness": 5
+  },
+  "changelog": [
+    {
+      "version": "2.1.1",
+      "date": "2026-06-14",
+      "changes": [
+        "SKILL.en.md 补全阶段五（终稿输出）和阶段六（自进化闭环）及 Index 索引",
+        "触发自进化闭环完整运行：runtime-log + knowledge-delta + update-log + creator-vnext 全链路首次实际执行",
+        "regression-baseline.json 新增 error_handling 维度，与 eval-plan.json 对齐",
+        "pricing-database.md 刷新至 2025-2026 年报价数据，新增 AI 相关服务报价项",
+        "generate_eval_artifacts.py 改为从 real regression-baseline.json 读取数据"
+      ]
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-06-12",
+      "changes": [
+        "质量审计闭环（L3 Auditor）：覆盖率/量化率/风险密度等五维审计",
+        "回归对比（L3.5 Regression）：regression-baseline.json + Regression Delta",
+        "优化建议（L4 Optimizer）：覆盖补全/量化增强/行业加厚/遗漏修复",
+        "evaluation-framework.md 新增回归对比与基线管理章节",
+        "SMM Quality Harness L4→L5，四维全满"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-06-12",
+      "changes": [
+        "多 Agent 角色拆分：Risk Auditor / Execution Planner / Quality Validator / Evolution Agent",
+        "Fan-out-and-synthesize 工作流",
+        "自适应 Token 预算：基于复杂度分三级（High/Medium/Low）",
+        "显式 vNext 机制：Creator 指令种子 learnings/creator-vnext.md",
+        "version.json SSOT 版本追踪",
+        "SMM Design Harness L4→L5，Context Harness L4→L5"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-06-12",
+      "changes": [
+        "新增自进化闭环（阶段六）：L7 runtime-log + L6 knowledge-delta + L6.5 update-log",
+        "SMM Runtime Harness L2→L5"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-05-01",
+      "changes": [
+        "初始版本：五阶段工作流 + 13行业SOP + 五维评估",
+        "SMM 总评 L2（Runtime Harness 为瓶颈）"
+      ]
+    }
+  ],
+  "dependencies": {
+    "trae_skill_engine": ">=1.0",
+    "markdown_parser": "built-in"
+  },
+  "baseline": {
+    "eval_score": 94.44,
+    "test_cases": 5,
+    "industries": 13,
+    "references_files": 8,
+    "regression_baseline": "evals/regression-baseline.json"
+  }
+}

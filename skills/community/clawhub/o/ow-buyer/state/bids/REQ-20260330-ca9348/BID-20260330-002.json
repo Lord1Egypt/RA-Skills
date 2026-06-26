@@ -1,0 +1,59 @@
+{
+  "type": "procurement_bid",
+  "bid_id": "BID-20260330-002",
+  "req_id": "REQ-20260330-ca9348",
+  "supplier": {
+    "name": "醇香酒业旗舰店",
+    "agent_id": "agent-chunxiang",
+    "endpoint": "http://chunxiang:8787",
+    "contact": "客服微信: chunxiang_wine"
+  },
+  "price": {
+    "amount": 3200,
+    "currency": "CNY",
+    "includes_shipping": true,
+    "shipping_cost": 0
+  },
+  "auth_docs": [
+    {
+      "type": "business_license",
+      "name": "企业营业执照",
+      "url": "https://example.com/chunxiang_license.jpg"
+    },
+    {
+      "type": "agency_cert",
+      "name": "产品代理权证明",
+      "url": "https://example.com/chunxiang_agency.jpg"
+    },
+    {
+      "type": "quality_report",
+      "name": "产品质检报告",
+      "url": "https://example.com/chunxiang_quality.jpg"
+    },
+    {
+      "type": "import_doc",
+      "name": "进口报关单",
+      "url": "https://example.com/chunxiang_import.jpg"
+    }
+  ],
+  "delivery": {
+    "time_days": 5,
+    "method": "京东物流",
+    "tracking_available": true,
+    "insurance": true
+  },
+  "reputation": {
+    "total_transactions": 20,
+    "success_rate": 0.90,
+    "disputes": 1,
+    "complaints": 0,
+    "platform_verified": true,
+    "rating": 4.5
+  },
+  "warranty": {
+    "return_policy": "签收后7天内可退",
+    "refund_policy": "假一赔十"
+  },
+  "signature": "模拟签名_醇香",
+  "timestamp": "2026-03-30T05:00:00Z"
+}

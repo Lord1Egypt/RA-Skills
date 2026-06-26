@@ -1,0 +1,5 @@
+# SECURITY: Versions are pinned to exact releases to prevent supply-chain attacks.
+# Verified: 2026-05-07. Update only after reviewing changelogs and testing.
+simple-salesforce==1.12.6
+requests==2.32.3
+python-dotenv==1.0.1

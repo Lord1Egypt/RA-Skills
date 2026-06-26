@@ -1,0 +1,61 @@
+{
+    "_comment": "py_mnn_kb configuration - aligns with Android OfflineAI RAG settings",
+
+    "embedding": {
+        "_comment": "Path to MNN embedding model directory (absolute or relative to this config file). Auto-downloaded on first run.",
+        "model_dir": "assets/Qwen3-Embedding-0.6B-MNN-int4",
+        "thread_num": 8
+    },
+
+    "knowledge_base": {
+        "_comment": "Knowledge base storage root. DB will be at <storage_dir>/<default_name>/knowledge_graph.db",
+        "storage_dir": "assets/knowledge_bases",
+        "default_name": "default"
+    },
+
+    "graph_ner": {
+        "_comment": "Custom dictionary and stopwords improve entity recognition. Set to null to disable.",
+        "custom_dict_path": "assets/example_terms.json",
+        "stopwords_path": "assets/example_stop.json",
+        "enabled": true
+    },
+
+    "chunking": {
+        "_comment": "Text splitting parameters - mirror Android ConfigManager defaults",
+        "chunk_size": 500,
+        "chunk_overlap": 100,
+        "min_chunk_size": 10,
+        "enable_json_dataset_opt": true
+    },
+
+    "retrieval": {
+        "_comment": "RAG retrieval parameters - mirror Android ConfigManager defaults",
+        "search_depth": 10,
+        "rerank_count": 5,
+
+        "bm25_enabled": true,
+        "_comment_bm25": "BM25+RRF hybrid retrieval: fuses keyword ranking with vector ranking before GraphRAG",
+
+        "graph_rag_enabled": true,
+        "graph_rag_weight_preset": 1,
+        "_comment_preset": "0=vector_first(0.9/0.1/0.0), 1=balanced(0.7/0.2/0.1), 2=graph_enhanced(0.4/0.4/0.2)",
+        "graph_rag_vector_expand": 20,
+
+        "graph_min_edge_weight": 2,
+        "graph_max_expand_entities": 50,
+        "graph_entity_confidence_threshold": 0.7,
+        "graph_max_expand_chunks": 50,
+        "graph_hub_threshold_build": 1000,
+        "graph_hub_threshold_query": 300
+    },
+
+    "llm_api": {
+        "_comment": "LLM API for RAG generation (query command). Any OpenAI-compatible endpoint works.",
+        "base_url": "https://api.deepseek.com/v1",
+        "api_key": "YOUR_API_KEY_HERE",
+        "model": "deepseek-chat",
+        "max_tokens": 16384,
+        "temperature": 0.7,
+        "system_prompt": "You are a helpful assistant. Answer the question based on the provided context. If the context doesn't contain the answer, say so."
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "skillId": "diff-gene-analysis-with-input",
+  "name": "Differential Gene Expression Analysis (with input data)",
+  "description": "Bioinformatics skill that reads simulated gene expression matrix and performs DE analysis, volcano plot, PCA, heatmap.",
+  "version": "1.0",
+  "author": "user",
+  "type": "data-analysis",
+  "language": "R",
+  "entryFile": "main.R",
+  "runtime": "R-4.2",
+  "os": "linux",
+  "tags": [
+    "bioinformatics",
+    "RNA-seq",
+    "DESeq2",
+    "volcano",
+    "heatmap",
+    "PCA",
+    "input-data"
+  ],
+  "inputs": [
+    "input/count_matrix.csv"
+  ],
+  "outputs": [
+    "output/volcano.png",
+    "output/pca.png",
+    "output/heatmap.png",
+    "output/diff_genes_significant.csv"
+  ]
+}

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket BTC 交易控制台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="status.css?v=20260316p">
+</head>
+<body>
+    <div class="app-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow bg-glow-a"></div>
+        <div class="bg-glow bg-glow-b"></div>
+        <div class="bg-glow bg-glow-c"></div>
+    </div>
+
+    <!-- ========= 顶栏 ========= -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <div class="brand-lockup">
+                <div class="platform-tabs">
+                    <span class="platform-tab active" id="tab-polymarket" onclick="switchPlatform('polymarket')">🤖 Polymarket Bot</span>
+                    <span class="platform-tab" id="tab-simmer" onclick="switchPlatform('simmer')">🔮 Simmer</span>
+                </div>
+                <div class="brand-line" id="brand-line-bot">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span class="topbar-title">Polymarket BTC 交易控制台</span>
+                    <span class="status-label" id="status-label">连接中...</span>
+                </div>
+                <div class="brand-line" id="brand-line-simmer" style="display:none">
+                    <span class="status-dot" id="simmer-status-dot" style="background:#10b981"></span>
+                    <span class="topbar-title">Simmer 交易面板</span>
+                    <span class="status-label" id="simmer-status-label">已连接</span>
+                </div>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <div class="topbar-controls">
+                <div class="account-switch topbar-switch">
+                    <button class="switch-btn active" id="switch-paper" onclick="setAccountMode('paper')">模拟账户</button>
+                    <button class="switch-btn" id="switch-real" onclick="setAccountMode('real')">真实账户</button>
+                </div>
+                <button class="trade-toggle-btn enabled compact-toggle" id="trade-toggle-btn" onclick="toggleTrading()">交易已开启</button>
+                <span class="status-label mini-view-badge" id="view-badge">模拟账户视图</span>
+            </div>
+            <div class="time-chip">
+                <span class="time-chip-label">Last Sync</span>
+                <span class="update-time" id="update-time">--:--:--</span>
+            </div>
+            <button class="refresh-btn" id="refresh-btn" onclick="refreshAll()" title="刷新">⟳</button>
+        </div>
+    </header>
+
+    <!-- ========= 主体 ========= -->
+    <div id="panel-polymarket">
+    <main class="main-grid">
+        <!-- ========= 左列 ========= -->
+        <div class="col-left">
+            <!-- 三个指标卡 -->
+            <div class="metrics-row" id="metrics-row">
+                <div class="metric-card balance-card" id="paper-balance-card">
+                    <div class="metric-label">模拟账户权益</div>
+                    <div class="metric-value mono" id="usdc-balance">--</div>
+                    <div class="metric-sub" id="balance-status">查询中</div>
+                </div>
+                <div class="metric-card asset-change-card" id="asset-change-card">
+                    <div class="metric-label">资产变化</div>
+                    <div class="metric-value mono" id="asset-change-value">--</div>
+                    <div class="metric-sub" id="asset-change-sub">等待模拟结果</div>
+                </div>
+                <div class="metric-card wallet-card" id="real-balance-card">
+                    <div class="metric-label">真实钱包现金</div>
+                    <div class="metric-value mono" id="real-usdc-balance">--</div>
+                    <div class="metric-sub" id="real-balance-status">查询中</div>
+                </div>
+                <div class="metric-card price-card">
+                    <div class="metric-label">BTC 价格</div>
+                    <div class="metric-value mono" id="btc-price">--</div>
+                    <div class="metric-sub" id="btc-change">--</div>
+                </div>
+                <div class="metric-card signal-card">
+                    <div class="metric-label">AI预测</div>
+                    <div class="metric-value" id="ai-prediction">--</div>
+                    <div class="metric-sub" id="ai-label">等待信号</div>
+                </div>
+            </div>
+
+            <!-- 市场概率 -->
+            <div class="panel market-panel">
+                <div class="panel-header">
+                    <span class="panel-title">当前15分钟盘口</span>
+                    <span class="panel-badge" id="market-name">Loading...</span>
+                </div>
+                <div class="panel-caption">只在目标方向买一 ask 落在可交易区间、点差不过宽、顶档深度足够时，按 1U 开模拟仓。</div>
+                <div class="prob-bar-wrap">
+                    <div class="market-toolbar">
+                        <div class="market-tabs">
+                            <span class="market-tab active">目标方向</span>
+                            <span class="market-tab">反向方向</span>
+                        </div>
+                        <span class="market-mode">15M BTC <span class="market-caret">⌄</span></span>
+                    </div>
+                    <div class="market-choices">
+                        <div class="market-choice market-choice-up" id="prob-yes-card">
+                            <span class="market-choice-label" id="outcome-yes-label">UP</span>
+                            <strong class="market-choice-price mono" id="yes-price">--</strong>
+                            <span class="market-choice-prob mono" id="prob-yes">--</span>
+                        </div>
+                        <div class="market-choice market-choice-down" id="prob-no-card">
+                            <span class="market-choice-label" id="outcome-no-label">DOWN</span>
+                            <strong class="market-choice-price mono" id="no-price">--</strong>
+                            <span class="market-choice-prob mono" id="prob-no">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近交易 -->
+            <div class="panel flex-grow">
+                <div class="panel-header">
+                    <span class="panel-title" id="trade-panel-title">全部模拟交易流水</span>
+                    <span class="panel-badge" id="trade-count">0 笔</span>
+                </div>
+                <div class="panel-caption" id="trade-panel-caption">完整展示这轮测试的全部交易记录，包含开仓、平仓、盈利/亏损和每一步的操作说明。</div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>操作</th>
+                                <th>方向</th>
+                                <th>金额</th>
+                                <th>价格</th>
+                                <th>结果</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trades-body">
+                            <tr><td colspan="7" class="empty-row">暂无交易记录</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========= 右列 ========= -->
+        <div class="col-right">
+            <!-- 交易决策 -->
+            <div class="panel" id="decision-panel">
+                <div class="panel-header">
+                    <span class="panel-title">AI执行状态</span>
+                </div>
+                <div class="panel-caption">机器人优先读取 OpenClaw 每 3 分钟生成的 decision_signal.json；没有外部信号时，才回退到脚本内置 AI 判断。</div>
+                <div class="decision-tabs">
+                    <span class="dec-tab" id="tab-buy">买入</span>
+                    <span class="dec-tab" id="tab-sell">卖出</span>
+                    <span class="dec-tab" id="tab-hold">观望</span>
+                </div>
+                <div class="decision-main" id="decision-box">
+                    <div class="decision-action" id="decision-action">等待</div>
+                    <div class="decision-reason" id="decision-reason">系统初始化中，等待数据...</div>
+                </div>
+            </div>
+
+            <div class="panel" id="openclaw-panel">
+                <div class="panel-header">
+                    <span class="panel-title">OpenClaw 决策信号</span>
+                    <span class="panel-badge" id="openclaw-meta">等待信号</span>
+                </div>
+                <div class="panel-caption">这个面板展示 decision_signal.json 的最新内容；当前模拟交易会优先参考这里的动作与理由。</div>
+                <div class="openclaw-card" id="openclaw-card">
+                    <div class="openclaw-row">
+                        <span class="openclaw-label">动作</span>
+                        <strong class="openclaw-value mono" id="openclaw-action">--</strong>
+                    </div>
+                    <div class="openclaw-row">
+                        <span class="openclaw-label">置信度</span>
+                        <strong class="openclaw-value mono" id="openclaw-confidence">--</strong>
+                    </div>
+                    <div class="openclaw-row">
+                        <span class="openclaw-label">来源</span>
+                        <strong class="openclaw-value mono" id="openclaw-source">--</strong>
+                    </div>
+                    <div class="openclaw-reason" id="openclaw-reason">等待 OpenClaw 生成最新建议...</div>
+                </div>
+            </div>
+
+            <!-- AI 思考记录 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">AI 思考记录</span>
+                    <span class="panel-badge" id="ai-thought-meta">等待决策</span>
+                </div>
+                <div class="panel-caption">每次 AI 决策都会记录动作、置信度、关键依据和风险提示，方便你回看为什么买、卖或观望。</div>
+                <div class="thought-card" id="ai-thought-card">
+                    <div class="empty-row">等待 AI 输出...</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">思考与执行对应</span>
+                    <span class="panel-badge" id="ai-history-count">0 条</span>
+                </div>
+                <div class="panel-caption">每次 3 分钟 AI 决策都会生成一个决策编号，下面会挂上它后续触发的开仓、平仓或观望结果。</div>
+                <div class="ai-history-list" id="ai-history-list">
+                    <div class="empty-row">等待 AI 生成第一条决策记录...</div>
+                </div>
+            </div>
+
+            <!-- Order Book -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">聚焦盘口深度</span>
+                </div>
+                <div class="panel-caption">当前聚焦盘口的真实买一卖一深度；中间价贴近 Polymarket 页面展示价，实际买入看 ask、卖出看 bid。</div>
+                <div class="orderbook-grid" id="orderbook-grid">
+                    <div class="empty-row">Loading order book...</div>
+                </div>
+            </div>
+
+            <!-- 挂单 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title" id="position-panel-title">当前模拟持仓</span>
+                    <span class="panel-badge" id="position-count">0 仓</span>
+                </div>
+                <div class="panel-caption" id="position-panel-caption">每个盘口 5U；默认只看摘要，点开后再看入场 ask、当前 bid、点差和到期时间。</div>
+                <div class="order-list" id="order-list">
+                    <div class="empty-row">暂无模拟持仓</div>
+                </div>
+            </div>
+
+            <!-- Bot 配置 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">脚本参数</span>
+                </div>
+                <div class="panel-caption">页面显示的参数全部对应你这套脚本，不再使用旧的 5 分钟回放语义。</div>
+                <div class="config-grid" id="config-grid">
+                    <div class="cfg-row"><span>交易模式</span><span class="mono" id="cfg-mode">--</span></div>
+                    <div class="cfg-row"><span>日线开盘</span><span class="mono" id="cfg-daily-open">--</span></div>
+                    <div class="cfg-row"><span>当前现价</span><span class="mono" id="cfg-current">--</span></div>
+                    <div class="cfg-row"><span>下注金额</span><span class="mono" id="cfg-bet">--</span></div>
+                    <div class="cfg-row"><span>可用现金</span><span class="mono" id="cfg-max">--</span></div>
+                    <div class="cfg-row"><span>入场区间</span><span class="mono" id="cfg-diff">--</span></div>
+                    <div class="cfg-row"><span>最大点差</span><span class="mono" id="cfg-spread">--</span></div>
+                    <div class="cfg-row"><span>顶档卖盘</span><span class="mono" id="cfg-depth">--</span></div>
+                    <div class="cfg-row"><span>止盈条件</span><span class="mono" id="cfg-tp">--</span></div>
+                    <div class="cfg-row"><span>当前开仓</span><span class="mono" id="cfg-open-positions">--</span></div>
+                    <div class="cfg-row"><span>占用资金</span><span class="mono" id="cfg-reserved">--</span></div>
+                    <div class="cfg-row"><span>离场规则</span><span class="mono" id="cfg-sl">--</span></div>
+                    <div class="cfg-row"><span>模拟盈亏</span><span class="mono" id="cfg-paper-profit">--</span></div>
+                    <div class="cfg-row"><span>模拟账户</span><span class="mono" id="cfg-wallet">--</span></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    </div><!-- /panel-polymarket -->
+
+    <!-- ========= SIMMER 面板 ========= -->
+    <div id="simmer-panel" style="display:none">
+        <div class="simmer-grid">
+            <!-- 左列：账户 + 概况 -->
+            <div class="simmer-col-left">
+                <div class="metrics-row">
+                    <div class="metric-card balance-card">
+                        <div class="metric-label">$SIM 余额</div>
+                        <div class="metric-value mono" id="sim-balance">--</div>
+                        <div class="metric-sub" id="sim-balance-sub">虚拟盘</div>
+                    </div>
+                    <div class="metric-card wallet-card">
+                        <div class="metric-label">Agent 状态</div>
+                        <div class="metric-value mono" id="sim-agent-status">--</div>
+                        <div class="metric-sub" id="sim-agent-sub">--</div>
+                    </div>
+                    <div class="metric-card asset-change-card" id="sim-pnl-card">
+                        <div class="metric-label">总盈亏</div>
+                        <div class="metric-value mono" id="sim-pnl">--</div>
+                        <div class="metric-sub" id="sim-pnl-sub">--</div>
+                    </div>
+                    <div class="metric-card price-card">
+                        <div class="metric-label">交易次数</div>
+                        <div class="metric-value mono" id="sim-trades-count">--</div>
+                        <div class="metric-sub" id="sim-win-rate">--</div>
+                    </div>
+                </div>
+
+                <!-- 机会列表 -->
+                <div class="panel flex-grow">
+                    <div class="panel-header">
+                        <span class="panel-title">🔥 市场机会</span>
+                        <span class="panel-badge" id="sim-opp-count">0 个</span>
+                    </div>
+                    <div class="panel-caption">Simmer 策略信号，偏离度越大机会越明显。每60秒自动刷新。</div>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>问题</th>
+                                    <th>概率</th>
+                                    <th>信号</th>
+                                    <th>偏离</th>
+                                    <th>结算</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sim-opportunities-body">
+                                <tr><td colspan="5" class="empty-row">加载中...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右列：持仓 + 操作 -->
+            <div class="simmer-col-right">
+                <!-- 快速下单 -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title">⚡ 快速下单 (Simmer)</span>
+                    </div>
+                    <div class="panel-caption">在 Simmer $SIM 虚拟盘或真实 USDC 交易。</div>
+                    <div class="simmer-trade-form">
+                        <div class="sim-field">
+                            <label>Market ID</label>
+                            <input type="text" id="sim-market-id" placeholder="b667efb5-ae10-4a4b-bf8c-08f7391f7ca4">
+                        </div>
+                        <div class="sim-field-row">
+                            <div class="sim-field">
+                                <label>方向</label>
+                                <select id="sim-side">
+                                    <option value="yes">YES</option>
+                                    <option value="no">NO</option>
+                                </select>
+                            </div>
+                            <div class="sim-field">
+                                <label>金额 ($)</label>
+                                <input type="number" id="sim-amount" value="10" min="1" step="1">
+                            </div>
+                        </div>
+                        <div class="sim-field">
+                            <label>理由 (reasoning)</label>
+                            <input type="text" id="sim-reasoning" placeholder="为什么下这笔单？">
+                        </div>
+                        <div class="sim-field">
+                            <label>来源</label>
+                            <select id="sim-source">
+                                <option value="manual:dobby">手动 (dobby)</option>
+                                <option value="strategy:manual">策略信号</option>
+                            </select>
+                        </div>
+                        <button class="sim-trade-btn" onclick="simmerTrade()">🔮 执行交易</button>
+                        <div class="sim-trade-result" id="sim-trade-result"></div>
+                    </div>
+                </div>
+
+                <!-- 当前持仓 -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title">📊 当前持仓</span>
+                        <span class="panel-badge" id="sim-pos-count">0 仓</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>问题</th>
+                                    <th>方向</th>
+                                    <th>数量</th>
+                                    <th>价值</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sim-positions-body">
+                                <tr><td colspan="4" class="empty-row">无持仓</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 最近交易 -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title">📜 Simmer 交易流水</span>
+                        <span class="panel-badge" id="sim-hist-count">0 笔</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>市场</th>
+                                    <th>方向</th>
+                                    <th>金额</th>
+                                    <th>结果</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sim-history-body">
+                                <tr><td colspan="5" class="empty-row">暂无交易</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="status.js?v=20260316p"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "rick-memory-setup",
+  "version": "1.0.0",
+  "description": "一键配置OpenClaw结构化记忆系统 - 基于2026-03专家方案优化",
+  "author": "rick",
+  "keywords": ["memory", "setup", "configuration", "openclaw"],
+  "license": "MIT",
+  "install": {
+    "script": "scripts/setup.sh"
+  }
+}

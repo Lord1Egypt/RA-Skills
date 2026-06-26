@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Content-Four-Columns</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #FFFFFF;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block {
+      position: absolute;
+      left: 80px;
+      top: 100px;
+      width: 1680px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .title-block [data-slot="title"] {
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.25;
+      color: #000000;
+    }
+    .title-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.4;
+      color: #000000;
+      /* 等效灰色（避免 opacity 导出丢失） */
+      color: #666666; /* black @ 60% on white */
+    }
+    .content-grid {
+      position: absolute;
+      left: 80px;
+      top: 304px;
+      width: 1760px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .content-row {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      height: 340px;
+    }
+    .content-card {
+      flex: 1;
+      background-color: #F1F1F1;
+      border-radius: 16px;
+      padding: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .card-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 7px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-image img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 27px;
+      flex: 1;
+    }
+    .content-card [data-slot$="Heading"] {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .content-card [data-slot$="Copy"] {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.22;
+      color: #000000;
+      /* 等效灰色（避免 opacity 导出丢失） */
+      color: #4D4D4D; /* black @ 70% on white */
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="content-four-columns">
+    <div class="title-block">
+      <h1 data-slot="title">I am a main title</h1>
+      <p data-slot="subtitle">If the title is English, I am the subtitle; if the title is Chinese, I am the English translation</p>
+    </div>
+    <div class="content-grid">
+      <div class="content-row">
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block1Image" src="https://placehold.co/80x80/F1F1F1/999?text=1" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block1Heading">I am a subheading</h2>
+            <p data-slot="block1Copy">I am the copy under the subheading, which can be 3 to 5 lines</p>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block2Image" src="https://placehold.co/80x80/F1F1F1/999?text=2" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block2Heading">I am a subheading</h2>
+            <p data-slot="block2Copy">I am the copy under the subheading, which can be 3 to 5 lines</p>
+          </div>
+        </div>
+      </div>
+      <div class="content-row">
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block3Image" src="https://placehold.co/80x80/F1F1F1/999?text=3" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block3Heading">I am a subheading</h2>
+            <p data-slot="block3Copy">I am the copy under the subheading, which can be 3 to 5 lines</p>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block4Image" src="https://placehold.co/80x80/F1F1F1/999?text=4" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block4Heading">I am a subheading</h2>
+            <p data-slot="block4Copy">I am the copy under the subheading, which can be 3 to 5 lines</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "cnki",
+  "version": "1.0.0",
+  "description": "中国知网 (CNKI) 统一入口 - 搜索、下载、导出、详情查询一体化技能",
+  "license": "MIT",
+  "author": "OpenClaw Community"
+}

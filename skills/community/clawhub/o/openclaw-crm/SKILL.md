@@ -1,35 +1,13 @@
----
-name: "openclaw-crm"
-description: "Local-first CRM for managing leads, deals, follow-ups, and pipelines via CLI using SQLite with WAL mode."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-crm"
-sourceUrl: "https://clawhub.ai/skills/openclaw-crm"
----
-
 # openclaw-crm
 
-> Local-first CRM for managing leads, deals, follow-ups, and pipelines via CLI using SQLite with WAL mode.
+Local-first CRM for tracking leads, deals, follow-ups, and pipeline. Uses SQLite with WAL mode, CLI via Commander.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-crm`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-crm](https://clawhub.ai/skills/openclaw-crm)
+## Quick Start
+- `cd skills/crm && npm install`
+- Run `node src/cli.js lead add "John Doe" --email john@example.com`
+- Generate interchange: `node src/cli.js refresh`
 
-## Overview
+## Integration
+Use `exec` tool: `crm lead list`, `crm deal add "New Deal" --contact abc123 --value 10000`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-crm
-```
+Interchange files in workspace/interchange/crm/ for cross-agent sharing.

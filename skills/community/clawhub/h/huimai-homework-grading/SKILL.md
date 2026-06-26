@@ -1,35 +1,69 @@
 ---
-name: "作业批改与学生学业综合评估Skill"
-description: "中国中小学作业批改与学生学业综合评估。教师拍照扫描批改作业、生成单生/全班单科及综合学科知识掌握评估图并给出指导建议。触发场景：(1)教师上传/拍照学生作业进行批改 (2)查询单个学生或全班的知识掌握情况 (3)生成单科或综合学科评估报告 (4)按角色（班主任/单科老师/校级管理层）分级查看学习数据。"
-category: "research"
-source: "ClawHub"
-tags: [education, homework, huimai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-homework-grading"
-sourceUrl: "https://clawhub.ai/skills/huimai-homework-grading"
+name: homework-grading-assessment
+description: 中国中小学作业批改与学生学业综合评估。教师拍照扫描批改作业、生成单生/全班单科及综合学科知识掌握评估图并给出指导建议。触发场景：(1)教师上传/拍照学生作业进行批改 (2)查询单个学生或全班的知识掌握情况 (3)生成单科或综合学科评估报告 (4)按角色（班主任/单科老师/校级管理层）分级查看学习数据。
 ---
 
-# 作业批改与学生学业综合评估Skill
+# 作业批改与学生学业综合评估
 
-> 中国中小学作业批改与学生学业综合评估。教师拍照扫描批改作业、生成单生/全班单科及综合学科知识掌握评估图并给出指导建议。触发场景：(1)教师上传/拍照学生作业进行批改 (2)查询单个学生或全班的知识掌握情况 (3)生成单科或综合学科评估报告 (4)按角色（班主任/单科老师/校级管理层）分级查看学习数据。
+## 核心功能
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-homework-grading`
-- **Source URL:** [https://clawhub.ai/skills/huimai-homework-grading](https://clawhub.ai/skills/huimai-homework-grading)
+### 1. 作业批改（拍照/扫描输入）
 
-## Overview
+- **输入方式**: 教师通过手机拍照或扫描学生作业（纸质或电子版）
+- **OCR+AI 识别**: 自动识别学生作答内容，并与标准答案/知识点映射对照
+- **批改结果**:
+  - 逐题标注对/错，标注错误类型（概念错误、计算错误、审题不清、表述不规范等）
+  - 每题关联对应的**课程标准知识点**
+  - 生成错题提示（告诉学生错在哪、正确思路是什么）
+  - 支持主观题人工复核接口
 
+### 2. 知识点掌握评估图
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huimai-homework-grading
-```
+- **单科维度**（单学生/全班）:
+  - 雷达图/柱状图：展示各知识点掌握率（0-100%）
+  - 知识点分级：**掌握/需巩固/薄弱** 三级
+  - 趋势线：近期历次测验的知识点掌握变化
+- **综合学科维度**（单学生/全班）:
+  - 学科间对比雷达图（语文/数学/英语/科学等）
+  - 各学科综合素养评分
+  - 学科均衡度分析
+
+### 3. 指导建议生成
+
+- **单学生层面**:
+  - 薄弱知识点专项练习题推荐
+  - 个性化学习计划建议
+  - 家长端简要报告（适合家长理解的语言）
+- **全班层面**:
+  - 班级共性薄弱知识点汇总
+  - 教学调整建议（哪些知识点需要重新讲授、哪些学生需要重点关注）
+  - 分组教学/分层作业建议
+
+### 4. 分级权限体系
+
+| 角色 | 可见范围 |
+|------|----------|
+| 单科教师 | 所教班级单科知识掌握情况、班级内学生个人单科情况 |
+| 班主任 | 所带班级全学科综合情况、班级内学生个人全科综合情况 |
+| 年级组长 | 年级内各班各科横向对比、年级整体水平报告 |
+| 校级管理层 | 全校各年级学科分析报告、教师教学质量综合数据 |
+
+## 数据结构参考
+
+见 [references/data-model.md](references/data-model.md) — 学生、班级、学科、知识点、作业记录数据模型。
+见 [references/permission-model.md](references/permission-model.md) — 分级角色权限映射。
+见 [references/chart-spec.md](references/chart-spec.md) — 评估图表规格说明。
+见 [references/ocr-implementation.md](references/ocr-implementation.md) — OCR 引擎选型（PaddleOCR推荐）、拍照批改工作流、Docker部署方案。
+见 [references/textbook-version-mapping.md](references/textbook-version-mapping.md) — 国内教材版本、三层知识点映射、5张数据表设计、跨版本兼容方案。
+
+---
+
+## 授权说明
+
+**版权与知识产权**: © 2026 Huimai Intelligence. All Rights Reserved.
+
+本技能文件（含所有附属参考文档）为**设计说明与产品预览**，仅限个人教师免费查阅和使用其中的教育理念与评估方法论。
+
+**商业使用许可**: 任何学校、教育机构或企业如需部署、集成、定制本系统，或进行任何形式的商业使用，须与惠迈智能（Huimai Intelligence）签订书面商业许可协议。
+
+本文件发布于 ClawHub 平台，发布时间戳作为原创性证明，受《中华人民共和国著作权法》及相关国际版权条约保护。未经授权复制、分发、修改或商用将追究法律责任。

@@ -1,0 +1,186 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "atlassian-python-api>=3.41.0,<4",
+#     "click>=8.1.0,<9",
+# ]
+# ///
+"""Jira board operations - list boards and get board issues."""
+
+import sys
+from pathlib import Path
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Shared library import (TR1.1.1 - PYTHONPATH approach)
+# ═══════════════════════════════════════════════════════════════════════════════
+_script_dir = Path(__file__).parent
+_lib_path = _script_dir.parent / "lib"
+if _lib_path.exists():
+    sys.path.insert(0, str(_lib_path.parent))
+
+import click
+from lib.client import LazyJiraClient
+from lib.output import error, format_output, format_table
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLI Definition
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+@click.group()
+@click.option("--json", "output_json", is_flag=True, help="Output as JSON")
+@click.option("--quiet", "-q", is_flag=True, help="Minimal output")
+@click.option("--env-file", type=click.Path(), help="Environment file path")
+@click.option("--profile", "-P", help="Jira profile name from ~/.jira/profiles.json")
+@click.option("--debug", is_flag=True, help="Show debug information on errors")
+@click.pass_context
+def cli(ctx, output_json: bool, quiet: bool, env_file: str | None, profile: str | None, debug: bool):
+    """Jira board operations.
+
+    List agile boards and get board issues.
+    """
+    ctx.ensure_object(dict)
+    ctx.obj["json"] = output_json
+    ctx.obj["quiet"] = quiet
+    ctx.obj["debug"] = debug
+    ctx.obj["client"] = LazyJiraClient(env_file=env_file, profile=profile)
+
+
+@cli.command("list")
+@click.option("--project", "-p", help="Filter by project key")
+@click.option("--type", "-t", "board_type", type=click.Choice(["scrum", "kanban"]), help="Filter by board type")
+@click.option("--name", "-n", "name_pattern", help="Filter by board name (server-side partial match)")
+@click.pass_context
+def list_boards(ctx, project: str | None, board_type: str | None, name_pattern: str | None):
+    """List agile boards.
+
+    Examples:
+
+      jira-board list
+
+      jira-board list --project PROJ
+
+      jira-board list --type scrum
+
+      jira-board list --name Lithium        # server-side partial match on board name
+    """
+    client = ctx.obj["client"]
+
+    try:
+        params = {}
+        if project:
+            params["projectKeyOrId"] = project
+        if board_type:
+            params["type"] = board_type
+        if name_pattern:
+            params["name"] = name_pattern
+
+        boards: list[dict] = []
+        start_at = 0
+        while True:
+            page_params = dict(params)
+            page_params["startAt"] = start_at
+            response = client.get("rest/agile/1.0/board", params=page_params) or {}
+            values = response.get("values", []) or []
+            boards.extend(values)
+            is_last = bool(response.get("isLast"))
+            if is_last or not values:
+                break
+            start_at += len(values)
+
+        if ctx.obj["json"]:
+            format_output(boards, as_json=True)
+        elif ctx.obj["quiet"]:
+            for b in boards:
+                print(b.get("id", ""))
+        else:
+            if not boards:
+                print("No boards found")
+                if project:
+                    print(f"  (filtered by project: {project})")
+                if name_pattern:
+                    print(f"  (filtered by name: {name_pattern})")
+            else:
+                print(f"Agile boards ({len(boards)} found):\n")
+                rows = []
+                for b in boards:
+                    loc = b.get("location", {})
+                    rows.append(
+                        {
+                            "ID": b.get("id", ""),
+                            "Name": b.get("name", ""),
+                            "Type": b.get("type", ""),
+                            "Project": loc.get("projectKey", "-"),
+                        }
+                    )
+                print(format_table(rows, ["ID", "Name", "Type", "Project"]))
+
+    except Exception as e:
+        if ctx.obj["debug"]:
+            raise
+        error(f"Failed to list boards: {e}")
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument("board_id", type=int)
+@click.option("--jql", help="Additional JQL filter")
+@click.option("--max-results", "-n", default=50, help="Maximum results")
+@click.pass_context
+def issues(ctx, board_id: int, jql: str | None, max_results: int):
+    """Get issues on a board.
+
+    BOARD_ID: The Jira agile board ID
+
+    Examples:
+
+      jira-board issues 42
+
+      jira-board issues 42 --jql "status = 'In Progress'"
+
+      jira-board issues 42 --max-results 20
+    """
+    client = ctx.obj["client"]
+
+    try:
+        params = {"maxResults": max_results}
+        if jql:
+            params["jql"] = jql
+
+        response = client.get(f"rest/agile/1.0/board/{board_id}/issue", params=params)
+        issues_list = response.get("issues", [])
+
+        if ctx.obj["json"]:
+            format_output(issues_list, as_json=True)
+        elif ctx.obj["quiet"]:
+            for issue in issues_list:
+                print(issue["key"])
+        else:
+            if not issues_list:
+                print(f"No issues on board {board_id}")
+                if jql:
+                    print(f"  (filtered by JQL: {jql})")
+            else:
+                print(f"Issues on board {board_id} ({len(issues_list)} shown):\n")
+                rows = []
+                for issue in issues_list:
+                    fields = issue.get("fields", {})
+                    status = fields.get("status", {}).get("name", "-")
+                    assignee = fields.get("assignee", {})
+                    assignee_name = assignee.get("displayName", "-") if assignee else "-"
+                    summary = fields.get("summary", "")
+                    if len(summary) > 40:
+                        summary = summary[:37] + "..."
+                    rows.append({"Key": issue["key"], "Summary": summary, "Status": status, "Assignee": assignee_name})
+                print(format_table(rows, ["Key", "Summary", "Status", "Assignee"]))
+
+    except Exception as e:
+        if ctx.obj["debug"]:
+            raise
+        error(f"Failed to get issues for board {board_id}: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    cli()

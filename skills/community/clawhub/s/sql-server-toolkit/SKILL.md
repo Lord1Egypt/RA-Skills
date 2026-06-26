@@ -1,35 +1,39 @@
----
-name: "sql-server-toolkit"
-description: "Command-line tools for SQL Server schema creation, migrations, index management, performance diagnostics, backups, restores, and bulk data import/export."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sql-server-toolkit"
-sourceUrl: "https://clawhub.ai/skills/sql-server-toolkit"
----
 
-# sql-server-toolkit
+# SQL Server Toolkit
 
-> Command-line tools for SQL Server schema creation, migrations, index management, performance diagnostics, backups, restores, and bulk data import/export.
+Command-line toolkit for Microsoft SQL Server.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sql-server-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/sql-server-toolkit](https://clawhub.ai/skills/sql-server-toolkit)
+## Capabilities
+- Schema creation
+- Versioned migrations
+- Index management
+- Performance diagnostics
+- Backup & restore
+- Bulk import/export
 
-## Overview
+## Connect
+sqlcmd -S localhost -E
+sqlcmd -S localhost -U sa -P YourPassword
 
+## Run Script
+sqlcmd -S localhost -d MyDatabase -i script.sql
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sql-server-toolkit
-```
+## Example Table
+CREATE TABLE Users (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Email NVARCHAR(255) NOT NULL UNIQUE,
+    Name NVARCHAR(100) NOT NULL,
+    CreatedAt DATETIME2 DEFAULT SYSDATETIME()
+);
+
+## Example Index
+CREATE INDEX IX_Users_Email ON Users(Email);
+
+## Backup Example
+BACKUP DATABASE MyDatabase
+TO DISK = 'C:\backup\MyDatabase.bak'
+WITH FORMAT, INIT;
+
+## Performance Diagnostics
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;

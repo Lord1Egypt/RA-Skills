@@ -1,0 +1,16 @@
+{
+  "name": "张三",
+  "title": "2026年度工作报告",
+  "date": "2026-03-25",
+  "department": "技术研发部",
+  "author": "小弟 AI 助手",
+  "summary": "本报告总结了 2026 年第一季度的重点工作内容和成果。",
+  "items_count": "5",
+  "total_budget": "¥1,200,000",
+  "status": "已完成",
+  "user": {
+    "name": "李四",
+    "position": "项目经理",
+    "email": "lisi@example.com"
+  }
+}

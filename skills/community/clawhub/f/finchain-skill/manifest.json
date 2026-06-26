@@ -1,0 +1,8 @@
+{
+  "skill": "finchain-skill",
+  "dist_version": "latest",
+  "files": [
+    "SKILL.md"
+  ],
+  "upload_root": "dist/skill/"
+}

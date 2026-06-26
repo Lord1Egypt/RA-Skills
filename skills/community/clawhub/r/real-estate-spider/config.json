@@ -1,0 +1,26 @@
+{
+  "name": "Real Estate Spider",
+  "slug": "real-estate-spider",
+  "version": "1.0.0",
+  "description": "专业爬取中国房产中介网站（安居客、搜房网、贝壳找房、链家）数据的通用爬虫技能，包含反爬虫策略和自动数据提取功能",
+  "author": "韩元东",
+  "category": "data-collection",
+  "tags": ["real-estate", "china", "spider", "data-collection", "anjuke", "soufun", "ke.com", "lianjia"],
+  "requires": {
+    "bins": ["python3", "agent-browser"]
+  },
+  "read_when": [
+    "需要爬取房产中介网站数据",
+    "需要绕过网站反爬虫机制",
+    "需要提取房产信息（价格、面积、位置、户型等）"
+  ],
+  "metadata": {
+    "clawdbot": {
+      "emoji": "🏠",
+      "requires": {
+        "bins": ["python3", "agent-browser"]
+      }
+    }
+  },
+  "allowed-tools": "Bash(agent-browser:*)"
+}

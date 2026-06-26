@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+/* Left half - accent background */
+.left-panel {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: {{ACCENT}};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px 48px 48px;
+  z-index: 1;
+  overflow: hidden;
+}
+/* Large decorative circle top-right */
+.left-panel::before {
+  content: '';
+  position: absolute;
+  width: 550px; height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
+  top: -160px;
+  right: -140px;
+  pointer-events: none;
+}
+/* Small decorative circle bottom-left */
+.left-panel::after {
+  content: '';
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%);
+  bottom: -80px;
+  left: -80px;
+  pointer-events: none;
+}
+/* Right half - light background */
+.right-panel {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: {{BG}};
+  overflow: hidden;
+}
+/* Dot grid texture on right */
+.right-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, {{ACCENT}} 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+/* Decorative ring on right */
+.right-panel::after {
+  content: '';
+  position: absolute;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  border: 1px solid {{ACCENT}};
+  opacity: 0.03;
+  top: -120px;
+  right: -100px;
+  pointer-events: none;
+}
+/* Vertical divider line */
+.divider {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.4) 0%,
+    rgba(255,255,255,0.1) 50%,
+    {{ACCENT__A15}} 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+/* Diagonal decorative accent line */
+.diagonal-line {
+  position: absolute;
+  left: calc(50% + 1px);
+  top: 18%;
+  width: 100px;
+  height: 1px;
+  background: {{ACCENT__A08}};
+  transform: rotate(-28deg);
+  transform-origin: left center;
+  z-index: 2;
+  pointer-events: none;
+}
+.content-wrap {
+  position: relative;
+  z-index: 1;
+}
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+  color: #FFFFFF;
+}
+.accent-line {
+  width: 48px;
+  height: 3px;
+  background: rgba(255,255,255,0.35);
+  margin: 24px 0;
+  border-radius: 2px;
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+  max-width: 95%;
+}
+.points {
+  list-style: none;
+  margin-top: 24px;
+}
+.points li {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 8px);
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  padding: 8px 0 8px 26px;
+  position: relative;
+}
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+.points:empty { display: none; }
+.brand {
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: {{ACCENT}};
+  opacity: 0.6;
+  z-index: 1;
+}
+.brand::before {
+  content: '';
+  width: 18px; height: 18px;
+  background: {{ACCENT}};
+  opacity: 0.4;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.source {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.6);
+  color: {{SECONDARY}};
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+/* Tall / portrait */
+@media (max-aspect-ratio: 4/5) {
+  body { flex-direction: column; }
+  .title { font-size: {{TITLE_SIZE_S}}; }
+  .left-panel { width: 100%; height: 55%; padding: 36px 40px 36px 36px; }
+  .right-panel { width: 100%; height: 45%; }
+  .content { max-width: 100%; }
+  .points li { font-size: calc({{CONTENT_SIZE}} - 6px); }
+  .left-panel::before { width: 380px; height: 380px; right: -90px; top: -100px; }
+  .diagonal-line { display: none; }
+  .brand { bottom: 20px; right: 20px; }
+}
+/* Landscape */
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .left-panel { padding: 40px 48px 40px 40px; }
+  .points li { font-size: calc({{CONTENT_SIZE}} - 10px); }
+  .left-panel::before { width: 400px; height: 400px; }
+  .right-panel::after { width: 320px; height: 320px; }
+}
+/* Very wide / banner */
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; }
+  .left-panel { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px; padding: 32px 48px; }
+  .accent-line { margin: 12px 0; width: 36px; }
+  .content { max-width: 70%; }
+  .points { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .points li { display: inline-block; padding: 4px 16px 4px 22px; }
+  .left-panel::before { width: 280px; height: 280px; top: -100px; right: -80px; }
+  .left-panel::after { width: 160px; height: 160px; bottom: -40px; left: -40px; }
+  .right-panel::after { width: 260px; height: 260px; }
+  .brand { bottom: 16px; right: 20px; }
+  .source { bottom: 16px; left: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="divider"></div>
+<div class="diagonal-line"></div>
+<div class="left-panel">
+  <div class="content-wrap">
+    <h1 class="title">{{TITLE}}</h1>
+    <div class="accent-line"></div>
+    <div class="content">{{CONTENT}}</div>
+    <ul class="points">{{POINTS_HTML}}</ul>
+  </div>
+</div>
+<div class="right-panel">
+  <div class="source">{{SOURCE}}</div>
+  <div class="brand">{{BRAND}}</div>
+</div>
+</body>
+</html>

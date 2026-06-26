@@ -1,0 +1,156 @@
+<div class="content">
+  <h2 class="section-title page-break" id="part4">
+    <span class="num">§04</span> 功能规格
+  </h2>
+  <p class="section-en">Functional Specifications</p>
+  <p class="section-intro">详细功能描述与业务规则</p>
+
+  <h3>4.1 功能规格说明</h3>
+  <p>本章详细描述各功能的业务规则、流程逻辑和界面元素。</p>
+
+  <h3>4.2 【F01 功能名称】</h3>
+
+  <h4>4.2.1 基本信息</h4>
+  <table>
+    <tr>
+      <th>属性</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td>功能编号</td>
+      <td>F01</td>
+    </tr>
+    <tr>
+      <td>功能名称</td>
+      <td>【功能名称】</td>
+    </tr>
+    <tr>
+      <td>优先级</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>功能描述</td>
+      <td>【一句话描述功能】</td>
+    </tr>
+    <tr>
+      <td>前置条件</td>
+      <td>【使用该功能的前提条件】</td>
+    </tr>
+    <tr>
+      <td>触发条件</td>
+      <td>【触发该功能的场景】</td>
+    </tr>
+  </table>
+
+  <h4>4.2.2 详细规则</h4>
+
+  <h5>规则1：【规则名称】</h5>
+  <p>【规则描述】</p>
+  <ul>
+    <li>【细则1】</li>
+    <li>【细则2】</li>
+    <li>【细则3】</li>
+  </ul>
+
+  <h5>规则2：【规则名称】</h5>
+  <p>【规则描述】</p>
+
+  <h4>4.2.3 业务流程</h4>
+
+  <div class="diagram">
+    <div class="label">【流程名称】</div>
+    <pre class="mermaid">
+flowchart TD
+    A[开始] --> B[步骤1]
+    B --> C[步骤2]
+    C --> D{判断}
+    D -->|条件1| E[结果1]
+    D -->|条件2| F[结果2]
+    E --> G[结束]
+    F --> G
+    </pre>
+  </div>
+
+  <h4>4.2.4 页面元素</h4>
+  <table>
+    <tr>
+      <th>元素名称</th>
+      <th>元素类型</th>
+      <th>说明</th>
+      <th>校验规则</th>
+    </tr>
+    <tr>
+      <td>【元素1】</td>
+      <td>Input/Button/Select...</td>
+      <td>【元素说明】</td>
+      <td>【校验规则】</td>
+    </tr>
+    <tr>
+      <td>【元素2】</td>
+      <td>Input/Button/Select...</td>
+      <td>【元素说明】</td>
+      <td>【校验规则】</td>
+    </tr>
+  </table>
+
+  <h4>4.2.5 异常处理</h4>
+  <table>
+    <tr>
+      <th>异常场景</th>
+      <th>触发条件</th>
+      <th>处理方式</th>
+      <th>提示信息</th>
+    </tr>
+    <tr>
+      <td>异常1</td>
+      <td>【触发条件】</td>
+      <td>【处理方式】</td>
+      <td>【提示文案】</td>
+    </tr>
+    <tr>
+      <td>异常2</td>
+      <td>【触发条件】</td>
+      <td>【处理方式】</td>
+      <td>【提示文案】</td>
+    </tr>
+  </table>
+
+  <h4>4.2.6 接口信息</h4>
+  <p><strong>接口路径：</strong>【METHOD】/api/v1/xxx/xxx</p>
+
+  <p><strong>请求参数：</strong></p>
+  <table>
+    <tr>
+      <th>参数名</th>
+      <th>类型</th>
+      <th>必填</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>param1</td>
+      <td>string</td>
+      <td>是</td>
+      <td>【参数说明】</td>
+    </tr>
+    <tr>
+      <td>param2</td>
+      <td>number</td>
+      <td>否</td>
+      <td>【参数说明】</td>
+    </tr>
+  </table>
+
+  <p><strong>响应示例：</strong></p>
+  <pre><code>{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "id": 123,
+    "name": "xxx"
+  }
+}</code></pre>
+
+  <h3>4.3 【F02 功能名称】</h3>
+  <p>【参照F01的结构继续描述其他功能】</p>
+
+</div>

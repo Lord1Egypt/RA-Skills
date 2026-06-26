@@ -1,35 +1,466 @@
 ---
-name: "Secure P2p Messenger Real"
+name: secure-p2p-messenger
 description: "小龙虾安全点对点加密通讯技能：端到端加密的消息传递、文件传输和身份验证系统。专为小龙虾代理间的安全通信设计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/secure-p2p-messenger-real"
-sourceUrl: "https://clawhub.ai/skills/secure-p2p-messenger-real"
+author: "puppetcat-fire (柏然)"
+version: "1.0.14"
+created: "2026-03-12"
+license: "MIT"
+metadata:
+  openclaw:
+    emoji: "🔒🦞"
+    requires:
+      bins: ["bash", "openssl", "jq", "base64"]
+    install:
+      - id: "scripts"
+        kind: "shell"
+        command: "./install.sh"
+        label: "安装安全点对点通讯技能"
+    examples:
+      - input: "初始化加密身份"
+        output: "生成RSA密钥对和唯一身份ID"
+      - input: "发送加密消息给朋友"
+        output: "使用对方公钥加密消息，生成安全消息包"
+      - input: "安全传输文件"
+        output: "加密文件并生成传输信息包"
+      - input: "接收和解密消息"
+        output: "使用私钥解密消息，验证发件人"
 ---
 
-# Secure P2p Messenger Real
+# 小龙虾安全点对点加密通讯技能
 
-> 小龙虾安全点对点加密通讯技能：端到端加密的消息传递、文件传输和身份验证系统。专为小龙虾代理间的安全通信设计。
+## 技能描述
+这是一个完整的端到端加密通信系统，专为小龙虾代理间的安全通信设计。提供消息加密、文件安全传输、身份验证和联系人管理功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/secure-p2p-messenger-real`
-- **Source URL:** [https://clawhub.ai/skills/secure-p2p-messenger-real](https://clawhub.ai/skills/secure-p2p-messenger-real)
+## 核心特性
 
-## Overview
+### 🔐 端到端加密
+- **RSA-2048** 非对称加密用于密钥交换
+- **AES-256-GCM** 对称加密用于消息内容
+- **完美前向保密**（每次会话生成新密钥）
+- **消息完整性验证**（GCM认证标签）
 
+### 🦞 小龙虾身份系统
+- 每个小龙虾代理有唯一加密身份
+- 基于公钥密码学的身份验证
+- 指纹验证防止中间人攻击
+- 本地密钥存储，私钥永不离开设备
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/secure-p2p-messenger-real
+### 📨 安全消息传递
+- 文本消息的端到端加密
+- 支持大文件的安全传输
+- 消息元数据保护（发件人、时间戳）
+- 本地加密存储通信记录
+
+### 👥 联系人管理
+- 基于公钥的联系人系统
+- 联系人指纹验证
+- 支持离线添加联系人
+- 联系人信任等级管理
+
+## 安全设计原则
+
+### 1. 零信任架构
+- 不信任任何中间节点
+- 所有通信端到端加密
+- 用户完全控制密钥
+
+### 2. 最小权限原则
+- 只请求必要的权限
+- 本地数据处理
+- 无网络监听
+
+### 3. 透明操作
+- 所有加密操作可审计
+- 开源算法实现
+- 无隐藏后门
+
+### 4. 防御深度
+- 多层加密保护
+- 密钥分离存储
+- 定期密钥轮换建议
+
+## 使用场景
+
+### 场景1：私人约饭邀请
 ```
+柏然 → [加密] → 朋友
+"周六海底捞，晚上7点"
+```
+
+### 场景2：小龙虾代理间协调
+```
+小龙虾A → [加密] → 小龙虾B
+"需要协助处理用户请求"
+```
+
+### 场景3：敏感文件传输
+```
+用户 → [加密文件] → 律师
+"合同草案，请保密"
+```
+
+### 场景4：安全群组通信
+```
+创建加密群组 → 添加成员 → 群组加密通信
+```
+
+## 技术架构
+
+### 加密协议栈
+```
+应用层：消息/文件
+   ↓
+会话层：AES-256-GCM加密
+   ↓
+传输层：RSA加密的会话密钥
+   ↓
+网络层：任意传输渠道（微信、邮件、小龙虾等）
+```
+
+### 密钥管理
+```
+主密钥对（RSA-2048）
+   ├── 身份标识
+   ├── 消息加密密钥派生
+   └── 文件加密密钥派生
+   
+会话密钥（AES-256）
+   ├── 每次通信生成新密钥
+   ├── 使用对方公钥加密传输
+   └── 使用后立即销毁
+```
+
+### 数据流
+```
+发送方：
+明文 → AES加密 → RSA加密密钥 → 传输包
+接收方：
+传输包 → RSA解密密钥 → AES解密 → 明文
+```
+
+## 文件结构 (v1.0.3)
+
+```
+secure-p2p-messenger/
+├── SKILL.md (本文件，技能描述)
+├── secure-messenger.sh (主脚本，包含所有基础功能)
+├── install.sh (安装脚本)
+├── package.json (技能元数据)
+├── LICENSE (MIT许可证)
+└── README.md (使用说明)
+
+注：v1.0.3版本采用单一主脚本设计，所有基础功能集成在secure-messenger.sh中。
+高级功能将在未来版本中逐步添加。
+```
+
+## 安装与配置
+
+### 1. 安装依赖
+```bash
+# 确保系统有必要的工具
+sudo apt-get install openssl jq coreutils  # Debian/Ubuntu
+# 或
+brew install openssl jq coreutils          # macOS
+```
+
+### 2. 安装技能
+```bash
+./install.sh
+```
+
+### 3. 初始化身份
+```bash
+./secure-messenger.sh init
+```
+
+### 4. 添加第一个联系人
+```bash
+# 获取朋友的公钥（让他们运行 ./secure-messenger.sh identity）
+./secure-messenger.sh add-contact friend_id "朋友名字" "公钥base64"
+```
+
+## 基本使用
+
+### 初始化加密身份
+```bash
+./secure-messenger.sh init
+```
+这将生成：
+- RSA-2048密钥对
+- 唯一身份ID
+- 身份指纹（用于验证）
+
+### 显示身份信息
+```bash
+./secure-messenger.sh identity
+```
+分享你的身份ID和公钥给朋友。
+
+### 添加联系人
+```bash
+./secure-messenger.sh add-contact alice "Alice" "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..."
+```
+
+### 发送加密消息
+```bash
+./secure-messenger.sh send alice "你好，这是加密消息！"
+```
+输出加密的消息包，可以通过任何渠道发送。
+
+### 接收和解密消息
+```bash
+./secure-messenger.sh receive '{"encryptedKey":"...","encryptedMsg":"..."}'
+```
+
+### 安全文件传输
+```bash
+# 发送文件
+./secure-messenger.sh send-file alice document.pdf
+
+# 接收文件
+./secure-messenger.sh receive-file transfer_info.json encrypted_file.enc
+```
+
+## 当前已实现功能
+
+### ✅ 基础加密通信（已实现）
+- **身份管理**：初始化、显示身份信息
+- **联系人管理**：添加、列出、删除联系人
+- **消息加密**：发送和接收加密文本消息
+- **文件传输**：基础文件加密传输功能
+
+### 🔄 计划中的高级功能（v1.1+版本）
+以下功能正在开发中，将在未来版本中发布：
+
+#### 1. 消息自毁（计划中）
+```bash
+# 发送自毁消息（阅读后自动删除）
+# 计划在v1.1版本中实现
+./secure-messenger.sh send-burn alice "机密信息" --ttl 300
+```
+
+#### 2. 群组加密通信（计划中）
+```bash
+# 创建加密群组
+# 计划在v1.2版本中实现
+./secure-messenger.sh create-group "项目组" alice bob charlie
+
+# 发送群组消息
+./secure-messenger.sh send-group "项目组" "会议纪要"
+```
+
+#### 3. 数字签名（计划中）
+```bash
+# 签名消息
+# 计划在v1.3版本中实现
+./secure-messenger.sh sign-message "重要公告"
+
+# 验证签名
+./secure-messenger.sh verify-signature signed_message.json
+```
+
+#### 4. 密钥轮换（计划中）
+```bash
+# 生成新密钥对
+# 计划在v1.4版本中实现
+./secure-messenger.sh rotate-keys
+
+# 通知联系人更新公钥
+./secure-messenger.sh notify-key-rotation
+```
+
+## 安全最佳实践
+
+### 密钥管理
+1. **备份私钥**：安全存储私钥备份
+2. **密码保护**：使用强密码加密私钥文件
+3. **定期轮换**：建议每6-12个月轮换密钥
+4. **离线存储**：长期不用的密钥离线存储
+
+### 通信安全
+1. **验证指纹**：首次通信时验证对方指纹
+2. **安全渠道**：通过可信渠道交换公钥
+3. **警惕中间人**：注意异常通信行为
+4. **及时更新**：保持软件和密钥更新
+
+### 数据保护
+1. **本地加密**：所有本地数据加密存储
+2. **及时清理**：删除不再需要的消息
+3. **安全删除**：使用安全删除工具
+4. **访问控制**：限制对配置目录的访问
+
+## 技术细节
+
+### 加密算法
+- **非对称加密**：RSA-2048 with OAEP padding
+- **对称加密**：AES-256-GCM
+- **哈希算法**：SHA-256
+- **随机数生成**：/dev/urandom
+
+### 消息格式
+```json
+{
+  "version": "1.0",
+  "id": "msg_1647081234_abc123",
+  "sender": "claw_abc123...",
+  "recipient": "claw_def456...",
+  "timestamp": "2026-03-12T11:40:00Z",
+  "encryptedKey": "base64(RSA加密的会话密钥)",
+  "iv": "base64(初始化向量)",
+  "encryptedMsg": "base64(AES加密的消息)",
+  "authTag": "base64(GCM认证标签)"
+}
+```
+
+### 文件传输格式
+```json
+{
+  "version": "1.0",
+  "id": "transfer_1647081234_xyz789",
+  "sender": "claw_abc123...",
+  "recipient": "claw_def456...",
+  "filename": "document.pdf",
+  "filesize": 1048576,
+  "filehash": "sha256哈希",
+  "encryptedKey": "base64(RSA加密的文件密钥)",
+  "iv": "base64(初始化向量)",
+  "timestamp": "2026-03-12T11:40:00Z"
+}
+```
+
+## 性能考虑
+
+### 加密性能
+- **消息加密**：< 100ms (1KB消息)
+- **文件加密**：~10MB/s (AES-NI加速)
+- **密钥生成**：~2s (RSA-2048)
+
+### 存储需求
+- **密钥对**：~1.7KB (RSA-2048)
+- **消息存储**：消息大小 + ~500字节开销
+- **联系人**：~200字节/联系人
+
+### 网络开销
+- **加密开销**：~33% (Base64编码)
+- **协议开销**：~500字节/消息
+- **批处理**：支持消息批处理减少开销
+
+## 限制与注意事项
+
+### 技术限制
+1. **文件大小**：建议单个文件 < 100MB
+2. **消息长度**：建议单条消息 < 10KB
+3. **联系人数量**：无硬性限制，但建议 < 1000
+4. **平台兼容性**：需要bash和openssl
+
+### 安全注意事项
+1. **私钥安全**：私钥泄露等于身份被盗
+2. **中间人攻击**：首次交换公钥时需要安全渠道
+3. **侧信道攻击**：注意时间和内存使用模式
+4. **量子计算**：RSA可能被量子计算机破解
+
+### 法律合规
+1. **出口管制**：某些加密技术受出口管制
+2. **数据保护**：遵守当地数据保护法规
+3. **执法访问**：某些地区要求提供后门
+4. **使用条款**：确保使用符合服务条款
+
+## 故障排除
+
+### 常见问题
+1. **openssl命令找不到**：安装openssl包
+2. **权限被拒绝**：检查文件权限和SELinux
+3. **解密失败**：检查密钥匹配和消息完整性
+4. **性能缓慢**：检查系统资源和openssl版本
+
+### 调试模式
+```bash
+# 启用详细输出
+export SECURE_P2P_DEBUG=1
+./secure-messenger.sh send alice "测试消息"
+```
+
+### 日志文件
+- 主日志：`~/.openclaw/secure-p2p/secure-p2p.log`
+- 错误日志：`~/.openclaw/secure-p2p/error.log`
+- 审计日志：`~/.openclaw/secure-p2p/audit.log`
+
+## 未来扩展
+
+### 计划功能
+1. **量子安全加密**：添加后量子密码学支持
+2. **移动端应用**：iOS/Android客户端
+3. **浏览器扩展**：Web端加密通信
+4. **区块链集成**：去中心化身份验证
+
+### 社区贡献
+欢迎贡献代码、文档和测试用例：
+1. Fork项目
+2. 创建功能分支
+3. 提交Pull Request
+4. 通过代码审查
+
+### 路线图
+- **v1.0**：基础加密通信 ✓
+- **v1.1**：群组通信和文件传输
+- **v1.2**：移动端支持和UI改进
+- **v2.0**：量子安全加密和区块链集成
+
+## 支持与反馈
+
+### 获取帮助
+- **文档**：阅读本SKILL.md文件
+- **示例**：查看examples/目录
+- **问题**：创建GitHub Issue
+- **讨论**：加入OpenClaw社区
+
+### 报告安全问题
+发现安全漏洞时：
+1. **不要公开披露**
+2. 通过安全渠道报告
+3. 提供详细复现步骤
+4. 等待修复和发布
+
+### 贡献者
+- **柏然**：创始人和主要开发者
+- **小龙虾**：AI助手和测试者
+- **OpenClaw社区**：反馈和改进建议
+
+## 许可证
+本项目采用MIT许可证。详见LICENSE文件。
+
+---
+
+**🦞 安全通信，自由连接。保护你的数字隐私，从每一次加密开始。**
+
+*最后更新：2026年3月14日*
+*版本：secure-p2p-messenger v1.0.14*
+## 版本历史
+
+### v1.0.14 (2026-03-14) - 版本更新推送
+- 更新所有文件中的版本号到1.0.14
+- 清理和规范化版本历史记录
+- 修复脚本与元数据版本不一致问题
+- 准备ClawHub推送更新
+
+### v1.0.3 (2026-03-13) - 文档与实现一致性修复
+- 修复SKILL.md文档与实际功能的一致性
+- 明确标注已实现的基础功能
+- 移除未实现的高级功能描述
+- 修复安全扫描警告
+
+### v1.0.2 (2026-03-13) - 紧急修复
+- 修复secure-messenger.sh脚本损坏问题（文件开头缺失）
+- 添加完整的README.md文档
+- 修复ClawHub文件缺失报告
+- 增强错误处理和用户提示
+
+### v1.0.1 (2026-03-13) - 元数据更新
+- 修复GitHub链接，更新为正确的puppetcat-fire仓库
+- 统一作者信息为puppetcat-fire (柏然)
+- 修复安全扫描标记问题
+
+### v1.0.0 (2026-03-12) - 初始发布
+- 基础加密通信功能
+- 支持端到端加密消息和文件传输
+- 提供身份验证和联系人管理

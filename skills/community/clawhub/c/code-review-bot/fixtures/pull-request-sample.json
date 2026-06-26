@@ -1,0 +1,23 @@
+{
+  "number": 42,
+  "title": "feat: add scheduled follow-up reminders",
+  "body": "Adds a new reminder job and updates the persistence layer.",
+  "author": {
+    "login": "octocat"
+  },
+  "baseRefName": "main",
+  "headRefName": "feature/follow-up-reminders",
+  "changedFiles": 11,
+  "additions": 428,
+  "deletions": 96,
+  "labels": [
+    {
+      "name": "feature"
+    },
+    {
+      "name": "scheduler"
+    }
+  ],
+  "isDraft": false,
+  "mergeable": "MERGEABLE"
+}

@@ -1,35 +1,73 @@
 ---
-name: "Ubuntu Inspector"
-description: "Ubuntu 系统巡检工具。用于执行全面的系统健康检查，包括 CPU、内存、磁盘、网络、服务状态、安全审计等。当用户需要检查 Ubuntu 服务器状态、排查系统问题、生成系统报告或进行日常运维巡检时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ubuntu-inspector"
-sourceUrl: "https://clawhub.ai/skills/ubuntu-inspector"
+name: ubuntu-inspector
+description: Ubuntu 系统巡检工具。用于执行全面的系统健康检查，包括 CPU、内存、磁盘、网络、服务状态、安全审计等。当用户需要检查 Ubuntu 服务器状态、排查系统问题、生成系统报告或进行日常运维巡检时触发。
 ---
 
-# Ubuntu Inspector
+# Ubuntu Inspector - 系统巡检工具
 
-> Ubuntu 系统巡检工具。用于执行全面的系统健康检查，包括 CPU、内存、磁盘、网络、服务状态、安全审计等。当用户需要检查 Ubuntu 服务器状态、排查系统问题、生成系统报告或进行日常运维巡检时触发。
+全面的 Ubuntu 系统健康检查和监控工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ubuntu-inspector`
-- **Source URL:** [https://clawhub.ai/skills/ubuntu-inspector](https://clawhub.ai/skills/ubuntu-inspector)
+## 功能
 
-## Overview
+- **系统信息**: 主机名、OS 版本、内核、架构、运行时间
+- **CPU 监控**: 型号、核心数、使用率、负载
+- **内存监控**: 总量、使用量、可用量、缓存
+- **磁盘监控**: 各分区使用率、容量、inode
+- **网络检查**: IP 地址、网关、DNS、监听端口
+- **服务状态**: SSH、Cron 等关键服务运行状态
+- **安全审计**: 登录记录、用户统计、失败尝试
+- **进程监控**: 进程总数、僵尸进程、内存占用 Top 10
+- **日志检查**: 最近系统错误
+- **更新状态**: 可更新软件包数量
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 快速巡检
+
 ```bash
-hermes skills install clawhub/ubuntu-inspector
+# 运行完整巡检
+bash ~/.openclaw/workspace/skills/ubuntu-inspector/scripts/inspect.sh
 ```
+
+### 查看报告
+
+脚本会自动生成报告文件，路径会显示在输出最后：
+```
+/tmp/ubuntu_inspection_YYYYMMDD_HHMMSS.txt
+```
+
+## 输出说明
+
+报告包含以下部分：
+1. 系统基本信息
+2. CPU 信息和使用率
+3. 内存使用情况
+4. 磁盘空间（含使用率警告）
+5. 网络配置
+6. 监听端口列表
+7. 关键服务状态
+8. 最近登录记录
+9. 当前登录用户
+10. 进程统计
+11. 内存占用 Top 10 进程
+12. 系统错误日志
+13. 安全信息
+14. 系统更新状态
+
+## 警告阈值
+
+- **磁盘使用率**: > 80% 会显示警告
+- **僵尸进程**: 数量会特别标注
+- **失败登录**: 最近10次失败尝试会列出
+
+## 依赖
+
+- bash
+- 标准 Linux 工具 (ps, df, free, ss, ip, systemctl, journalctl)
+- lsb_release (用于获取 OS 版本)
+
+## 注意事项
+
+- 需要 root 权限才能获取完整信息
+- 部分日志检查需要 systemd
+- 报告文件保存在 /tmp 目录，重启后会清除

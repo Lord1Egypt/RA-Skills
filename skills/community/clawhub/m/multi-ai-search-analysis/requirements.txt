@@ -1,0 +1,26 @@
+# Multi-AI Search Analysis - Python 依赖
+# 版本：v2.2（图表生成版）
+# Python 3.8+
+
+# 浏览器自动化（二选一）
+playwright>=1.40.0
+# selenium>=4.15.0
+
+# 数据处理
+json5>=0.9.14
+
+# 日志
+colorama>=0.4.6
+
+# 异步支持（Playwright 需要）
+asyncio>=3.4.3
+
+# 进度条（v1.7+）
+tqdm>=4.66.0
+
+# 图表生成（v2.2+）
+matplotlib>=3.8.0
+numpy>=1.24.0
+
+# 可选：高级图表
+# pandas>=2.1.0

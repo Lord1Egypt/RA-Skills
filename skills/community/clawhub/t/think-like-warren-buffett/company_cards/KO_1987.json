@@ -1,0 +1,38 @@
+{
+  "ticker": "KO",
+  "company": "The Coca-Cola Company",
+  "analysis_year": 1988,
+  "data_source": "FY1987 annual report data as reflected in Coca-Cola's official historical annual report tables, plus Berkshire 1988/1989 shareholder letters",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.239, "metric_used": "ROE", "years_averaged": "1985-1987", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 1049, "pass": null },
+    "g3_leverage": { "metric_used": "Net Debt/Capital", "value": 0.053, "pass": true },
+    "g4_revenue_trend": { "description": "Net operating revenues rose from about $4.2B (1985) to $4.7B (1986) to $5.4B (1987), with international volume and concentrate economics driving growth before Buffett began buying in 1988.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross profit stayed near 69% of revenue through 1985-1987, showing stable concentrate economics and strong pricing power rather than margin erosion.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.102, "net_income_m": 1049, "ev_m": 10300, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "Coca-Cola had the rare combination of a global consumer brand, a concentrate model with extraordinary economics, and a distribution system embedded in local bottlers worldwide. Consumers asked for Coke by name, retailers had to carry it, and advertising scale reinforced an already dominant habit. Competitors could copy a drink, but not the brand imprint, shelf position, and global bottling footprint.", "pass": true }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "revenue_1987_m": 5417,
+    "gross_profit_1987_m": 3734,
+    "net_income_1987_m": 1049,
+    "berkshire_cost_1988_m": 592.54,
+    "berkshire_shares_1988": 14172500
+  },
+
+  "control_groups": [
+    { "ticker": "PEP", "company": "PepsiCo", "year": 1988, "gates_failed": [], "conclusion": "BUY — also a strong business, but less pure than Coca-Cola because snacks and restaurant operations diluted the concentrate-style economics Buffett wanted." },
+    { "ticker": "CCE", "company": "Coca-Cola Enterprises", "year": 1988, "gates_failed": ["g2_fcf_to_ni", "g3_leverage", "g7_moat"], "conclusion": "PASS — bottling is far more capital intensive and locally competitive than owning the concentrate brand franchise." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "Berkshire began buying in 1988; by year-end it owned 14.17M shares costing $592.5M, and by year-end 1989 it had 23.35M shares at a total cost of about $1.02B.",
+  "actual_result": "One of Berkshire's greatest investments ever — decades of compounding, massive dividends, and a position still held as a core long-term winner.",
+  "verdict": "✅ aligned",
+  "key_insight": "The market saw a familiar soda company; Buffett finally saw a global brand-network system with extraordinary returns, low capital needs at the concentrate level, and decades of runway."
+}

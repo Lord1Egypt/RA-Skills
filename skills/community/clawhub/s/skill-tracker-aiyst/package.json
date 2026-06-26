@@ -1,0 +1,46 @@
+{
+  "name": "skill-tracker",
+  "version": "1.2.0",
+  "description": "通用技能使用统计追踪器 - 为 OpenClaw 技能提供使用情况统计和追踪功能",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest tests/",
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "prepublishOnly": "npm test && npm run lint"
+  },
+  "keywords": [
+    "skill-tracker",
+    "analytics",
+    "statistics",
+    "tracking",
+    "openclaw",
+    "performance",
+    "monitoring"
+  ],
+  "author": "aiyst (@aiyst1982)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skill-tracker/issues"
+  },
+  "homepage": "https://github.com/openclaw/skill-tracker#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "config.yaml"
+  ]
+}

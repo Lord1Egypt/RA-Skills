@@ -1,0 +1,35 @@
+{
+  "name": "pharma-ai",
+  "version": "1.0.0",
+  "description": "智能药物发现AI助手 - 分子毒性预测、ADMET评估和虚拟筛选",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "package": "npm run build && npm pack"
+  },
+  "keywords": [
+    "pharma",
+    "drug-discovery",
+    "cheminformatics",
+    "molecular-prediction",
+    "toxicity",
+    "admet"
+  ],
+  "author": "PharmaAI Team",
+  "license": "MIT",
+  "dependencies": {
+    "@openclaw/skill-sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

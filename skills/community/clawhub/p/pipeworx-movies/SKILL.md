@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx movies"
-description: "Movies MCP — wraps iTunes Search API (movies, free, no auth) and TVmaze API (TV shows, free, no au"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-movies"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-movies"
+name: pipeworx-movies
+description: Movies MCP — wraps iTunes Search API (movies, free, no auth) and TVmaze API (TV shows, free, no au
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/movies
 ---
 
-# Pipeworx movies
+# pipeworx-movies
 
-> Movies MCP — wraps iTunes Search API (movies, free, no auth) and TVmaze API (TV shows, free, no au
+Movies MCP — wraps iTunes Search API (movies, free, no auth) and TVmaze API (TV shows, free, no au. Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-movies`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-movies](https://clawhub.ai/skills/pipeworx-movies)
+## Tools
 
-## Overview
+- `search_movies`
+- `search_tv_shows`
+- `get_tv_show`
+- `get_tv_schedule`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-movies
+```json
+{
+  "mcpServers": {
+    "pipeworx-movies": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/movies/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/movies](https://pipeworx.io/packs/movies)

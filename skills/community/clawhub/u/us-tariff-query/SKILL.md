@@ -1,35 +1,73 @@
 ---
-name: "🇺🇸 美国最新关税政策查询"
-description: "查美国对XX产品的最新关税政策/税率变化/豁免条款。无需API Key，安装即用。"
-category: "other"
-source: "ClawHub"
-tags: [calibration, huimai, policy, tariff, us-trade]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/us-tariff-query"
-sourceUrl: "https://clawhub.ai/skills/us-tariff-query"
+name: 🇺🇸 美国最新关税政策查询
+description: 查美国对XX产品的最新关税政策/税率变化/豁免条款。无需API Key，安装即用。
+metadata: {"openclaw":{"emoji":"🇺🇸","requires":{"tools":["tavily-web","web_fetch"]}}}
 ---
 
 # 🇺🇸 美国最新关税政策查询
 
-> 查美国对XX产品的最新关税政策/税率变化/豁免条款。无需API Key，安装即用。
+> **无需API Key，安装即用。** 输入产品名称或HS编码，自动查询美国对该产品的最新关税政策、税率变化和豁免信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/us-tariff-query`
-- **Source URL:** [https://clawhub.ai/skills/us-tariff-query](https://clawhub.ai/skills/us-tariff-query)
+## 适用场景
 
-## Overview
+- **跨境电商卖家**：查美国对XX产品的最新关税变化
+- **外贸企业**：确认当前关税税率和合规要求
+- **供应链管理者**：关注301条款/豁免到期日
+- **政策研究者**：获取美国贸易政策最新动态
 
+## 使用示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/us-tariff-query
 ```
+用户: "查美国对太阳能组件的最新关税政策"
+返回: 当前税率 | 最新变化 | 豁免条款 | 合规建议
+
+用户: "HS编码 8504.40 的美国进口关税"
+返回: 产品分类 | 关税税率 | 许可证要求 | 特殊规定
+
+用户: "美国对中国钢铁产品的最新关税变化"
+返回: 当前税率 | 历史变化 | 301条款状态 | 豁免到期日
+
+用户: "中美贸易摩擦对电子产品的影响"
+返回: 加征清单 | 排除程序 | 替代方案 | 时间线
+```
+
+## 🔧 校准框架
+
+本Skill搭载惠迈校准框架 v1.0。
+
+### 快速校准（每次加载）
+- ✅ API查询通道可用性检测
+- ✅ 数据源时效性检查
+- ✅ 温情模式输出验证
+
+### 标准校准（首次安装）
+- ✅ 与其他已安装政策查询Skill的兼容性
+- ✅ 多语言查询支持测试
+- ✅ 边界场景（无效HS编码）处理
+
+## 🧭 模式选择
+
+- **温情模式（默认）**：输出先给出摘要结论，再附详细数据，对可能有贸易风险的品类提供风险提示和改进建议
+- **专业模式（可选）**：直出关税数据，适合熟手用户
+
+## 数据来源
+
+- 美国国际贸易委员会 (USITC)
+- 美国海关与边境保护局 (CBP)
+- 美国贸易代表办公室 (USTR)
+- 联邦公报 (Federal Register)
+
+## ⚠️ 免责声明
+本Skill基于公开数据提供参考信息，不构成法律或贸易建议。
+关税政策可能随时变化，请以美国官方最新公告为准。
+
+## 安装
+```bash
+clawhub install us-tariff-query
+```
+
+## 📬 联系与反馈
+
+- **作者**: Huimai AI
+- **邮箱**: yezhaowang888@icloud.com
+- **反馈建议**: 欢迎邮件反馈使用问题或功能建议

@@ -1,0 +1,50 @@
+{
+  "skill_name": "dotline-art",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "给我生成一个 spring 的点线图",
+      "expected_output": "生成 SPRING 的彩色点线艺术字，在终端中显示",
+      "assertions": [
+        {
+          "name": "生成点线艺术输出",
+          "check": "输出应包含 SPRING 的点线艺术表示"
+        },
+        {
+          "name": "包含颜色代码",
+          "check": "输出应包含 ANSI 颜色码"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "把 你好 做成终端艺术字",
+      "expected_output": "将中文'你好'转换为拼音'NIHAO'，生成彩色点线艺术字",
+      "assertions": [
+        {
+          "name": "中文转拼音",
+          "check": "中文应被转换为拼音（NIHAO）"
+        },
+        {
+          "name": "生成点线艺术输出",
+          "check": "输出应包含 NIHAO 的点线艺术表示"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "生成一个 CLI banner: Hello World",
+      "expected_output": "生成 HELLO WORLD 的彩色点线艺术字",
+      "assertions": [
+        {
+          "name": "处理空格",
+          "check": "HELLO 和 WORLD 之间应有适当间距"
+        },
+        {
+          "name": "生成点线艺术输出",
+          "check": "输出应包含 HELLO WORLD 的点线艺术表示"
+        }
+      ]
+    }
+  ]
+}

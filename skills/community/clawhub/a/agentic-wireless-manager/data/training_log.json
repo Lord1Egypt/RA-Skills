@@ -1,0 +1,96 @@
+{
+  "description": "Training results from 1000-episode SAC-LTC run",
+  "hyperparameters": {
+    "episodes": 1000,
+    "steps_per_episode": 100,
+    "batch_size": 128,
+    "gamma": 0.99,
+    "tau_polyak": 0.005,
+    "learning_rate": 0.0003,
+    "replay_buffer_size": 50000,
+    "gradient_clip": 1.0,
+    "sequence_length": 8,
+    "hidden_dim": 32,
+    "kan_hidden": 16,
+    "n_actions": 5,
+    "n_features": 8,
+    "switch_penalty": 0.3,
+    "target_entropy_ratio": 0.98
+  },
+  "results": {
+    "total_parameters": 17274,
+    "training_time_seconds": 536,
+    "hardware": "Apple M1, CPU only",
+    "pytorch_version": "2.8.0",
+    "checkpoints": [
+      {
+        "episode": 100,
+        "avg_reward": -43.8,
+        "best": -21.56,
+        "alpha": 0.38
+      },
+      {
+        "episode": 200,
+        "avg_reward": -43.11,
+        "best": -21.56,
+        "alpha": 0.231
+      },
+      {
+        "episode": 300,
+        "avg_reward": -45.5,
+        "best": -21.56,
+        "alpha": 0.233
+      },
+      {
+        "episode": 400,
+        "avg_reward": -45.89,
+        "best": -17.35,
+        "alpha": 0.211
+      },
+      {
+        "episode": 500,
+        "avg_reward": -43.14,
+        "best": -17.35,
+        "alpha": 0.204
+      },
+      {
+        "episode": 600,
+        "avg_reward": -43.62,
+        "best": -17.35,
+        "alpha": 0.217
+      },
+      {
+        "episode": 700,
+        "avg_reward": -43.55,
+        "best": -17.35,
+        "alpha": 0.194
+      },
+      {
+        "episode": 800,
+        "avg_reward": -46.61,
+        "best": -17.35,
+        "alpha": 0.219
+      },
+      {
+        "episode": 900,
+        "avg_reward": -43.49,
+        "best": -17.35,
+        "alpha": 0.185
+      },
+      {
+        "episode": 1000,
+        "avg_reward": -43.58,
+        "best": -17.35,
+        "alpha": 0.172
+      }
+    ],
+    "evaluation_50_episodes": {
+      "sac_ltc_mean": -27.05,
+      "sac_ltc_std": 21.86,
+      "sac_ltc_min": -106.55,
+      "sac_ltc_max": 10.1,
+      "random_mean": -42.43,
+      "improvement_over_random": "36.2%"
+    }
+  }
+}

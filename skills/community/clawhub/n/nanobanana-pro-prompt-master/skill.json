@@ -1,0 +1,55 @@
+{
+  "name": "nanobanana-pro-prompt-master",
+  "displayName": "NanobananaPro 生图大师",
+  "version": "1.0.0",
+  "description": "NanobananaPro 官方认证首席生图提示词大师，生成 100% 适配 NanobananaPro 平台、可直接复制粘贴落地、零废稿的极致专业生图提示词",
+  "author": "Spark",
+  "license": "MIT",
+  "keywords": [
+    "nanobanana",
+    "AI 生图",
+    "提示词",
+    "prompt",
+    "视频生成",
+    "NanobananaPro",
+    "生图工具"
+  ],
+  "categories": [
+    "AI 工具",
+    "设计",
+    "创意"
+  ],
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/nanobanana-pro"
+  },
+  "bugs": {
+    "url": "https://github.com/rfdiosuao/openclaw-skills/issues"
+  },
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/main/nanobanana-pro#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "capabilities": {
+    "trigger": "keyword",
+    "triggerWords": [
+      "NanobananaPro",
+      "nano",
+      "纳米香蕉",
+      "nbpro",
+      "生图",
+      "生成图片",
+      "做图",
+      "AI 绘画",
+      "提示词",
+      "prompt",
+      "咒语",
+      "分镜",
+      "镜头",
+      "视频生成"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

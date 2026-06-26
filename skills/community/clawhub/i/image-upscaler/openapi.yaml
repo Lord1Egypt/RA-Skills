@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Image Upscaler | 模糊图片变清晰 | 无损放大 AI
+  version: 1.0.0
+  description: 专业 AI 图像增强工具：模糊变清晰、缩略图变清晰、2×/4× 无损放大。
+servers:
+  - url: https://supabase.00123.fun:22334/functions/v1
+paths:
+  /api-process-image:
+    post:
+      summary: 提交图片增强任务 (模糊变清晰/无损放大)
+      description: 上传本地图片进行 AI 增强处理，支持模糊变清晰、超分辨率放大。
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Local image file to process.
+                api_key:
+                  type: string
+                  description: User's personal API Key (pk_live_...).
+              required:
+                - file
+                - api_key
+      responses:
+        '200':
+          description: Task submitted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                  msg:
+                    type: string
+                  task_id:
+                    type: string
+  /api-get-task:
+    post:
+      summary: Get Task Status | 获取任务状态
+      description: Check the status and retrieve results for a specific task.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  type: string
+                  description: User's personal API Key.
+                task_id:
+                  type: string
+                  description: Task ID returned from submission.
+              required:
+                - api_key
+                - task_id
+      responses:
+        '200':
+          description: Status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                  tasks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          description: pending | processing | done | failed | nsfw
+                        processed_url:
+                          type: string
+                          description: URL of the upscaled image (if status is done).
+                        original_url:
+                          type: string
+                          description: URL of the original uploaded image.

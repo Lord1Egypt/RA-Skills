@@ -1,0 +1,23 @@
+{
+  "name": "astro-life-insights",
+  "version": "1.1.1",
+  "description": "Personalized daily astrological insights with positive framing",
+  "main": "daily.js",
+  "type": "module",
+  "scripts": {
+    "daily": "node daily.js",
+    "configure": "node configure.js",
+    "upcoming": "node upcoming.js"
+  },
+  "keywords": [
+    "astrology",
+    "transits",
+    "personalized",
+    "positive"
+  ],
+  "author": "Xone",
+  "license": "MIT",
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
+  }
+}

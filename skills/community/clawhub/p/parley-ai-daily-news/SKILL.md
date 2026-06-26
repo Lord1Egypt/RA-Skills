@@ -1,35 +1,35 @@
 ---
-name: "AI行业早报"
-description: "每天定时推送AI行业最新重大新闻、技术进展、趋势分析及当日黄历和毛选语录早报。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, daily-report, news, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parley-ai-daily-news"
-sourceUrl: "https://clawhub.ai/skills/parley-ai-daily-news"
+summary: "定时获取AI行业最新资讯，整理成每日早报发送给用户"
+topic: "productivity"
 ---
 
 # AI行业早报
 
-> 每天定时推送AI行业最新重大新闻、技术进展、趋势分析及当日黄历和毛选语录早报。
+定时获取AI行业最新资讯，整理成每日早报发送给用户。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parley-ai-daily-news`
-- **Source URL:** [https://clawhub.ai/skills/parley-ai-daily-news](https://clawhub.ai/skills/parley-ai-daily-news)
+## 功能特点
 
-## Overview
+- 搜索过去24小时AI行业重大新闻
+- 整理为核心新闻、重要进展、趋势分析
+- 包含当日黄历（宜忌）
+- 从毛选中选择经典语录结合推荐
+- 定时自动发送（每天早上8:30）
 
+## 触发方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/parley-ai-daily-news
-```
+- **定时触发**：每天早上 8:30 (Asia/Shanghai)
+- **手动触发**：直接调用此 Skill 即可生成当日早报
+
+## 输出内容
+
+1. **核心新闻**：最重要的3-5条AI行业新闻
+2. **重要进展**：AI领域的重大技术进展、产品发布
+3. **趋势分析**：当前AI行业发展趋势简要分析
+4. **今日黄历**：当日宜忌
+5. **毛选经典**：毛泽东选集经典语录 + 黄历推荐
+
+## 依赖
+
+- 搜索工具（用于获取AI行业新闻）
+- 日历查询工具（获取黄历）
+- 消息发送渠道（企业微信/飞书等）

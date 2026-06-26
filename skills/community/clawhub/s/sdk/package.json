@@ -1,0 +1,70 @@
+{
+  "name": "edgebets-sdk",
+  "version": "1.0.2",
+  "description": "TypeScript SDK for EdgeBets sports simulation API with x402 payment support",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "edgebets",
+    "sports-betting",
+    "monte-carlo",
+    "simulation",
+    "x402",
+    "solana",
+    "usdc",
+    "nba",
+    "nfl",
+    "mlb",
+    "mls",
+    "openclaw",
+    "clawhub",
+    "ai-agent"
+  ],
+  "author": "EdgeBets",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edgebets/sdk"
+  },
+  "homepage": "https://edgebets.fun",
+  "bugs": {
+    "url": "https://github.com/edgebets/sdk/issues"
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.4.6",
+    "@solana/web3.js": "^1.91.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "peerDependencies": {
+    "@solana/web3.js": "^1.87.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

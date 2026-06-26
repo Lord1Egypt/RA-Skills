@@ -1,0 +1,174 @@
+# 日报 — 用户兴趣配置模板
+# 首次使用 /daily 时根据用户选择自动生成
+# 用户可随时手动编辑，下次运行即生效
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 第一部分：用户画像（关心什么）
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 角色：影响摘要的解读角度和行动建议的方向
+role: ""
+# 示例："AI 产品经理"、"独立开发者"、"二级市场研究者"
+
+# 角色补充描述（可选，帮助更精准解读）
+role_context: ""
+# 示例："负责 AI 产���规划与落地，关注模型能力变化和 Agent 生态"
+
+# 关注话题
+# priority: high（必选）| medium（有则采）| low（偶尔看看）
+# keywords 分 cn 和 en 两组：
+#   - cn: 中文关键词 → 分发给微博/小红书/B站搜索 + 中文 Google 搜索
+#   - en: 英文关键词 → 分发给 Twitter/Reddit 搜索 + 英文 Google 搜索
+# 同一个概念应在 cn 和 en 中各写一遍（如"大模型" + "large language model"）
+# 品牌名/产品名（如 OpenAI、Cursor）中英文通用，两边都写
+topics: []
+  # - name: "话题名称"
+  #   priority: high
+  #   keywords:
+  #     cn:
+  #       - "中文关键词1"
+  #       - "中文关键词2"
+  #       - "品牌名"
+  #     en:
+  #       - "English keyword 1"
+  #       - "English keyword 2"
+  #       - "brand name"
+
+# 不感兴趣的话题（采集和筛选时排除）
+exclude_topics: []
+  # - "纯营销稿"
+  # - "旧闻翻炒"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 第二部分：信息来源（去哪里找）
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 来源只需要声明"去哪个平台找"，不需要重复写关键词。
+# 关键词统一从上面的 topics[*].keywords 获取，自动分发到各平台。
+
+sources:
+  # 固定采集平台（opencli 原生支持，每次采集必须覆盖）
+  # 类型：opencli 平台名，用于自动生成 opencli 命令
+  platforms:
+    cn:
+      # - name: "微博"
+      #   opencli: "weibo"           # opencli 命令前缀
+      #   commands:                   # 支持的采集命令
+      #     - "hot --limit 30"       # 热搜（不需要登录）
+      #     - "search \"{keyword}\" --limit 10"  # 关键词搜索（需要登录）
+      #   login_required: partial     # partial=部分命令需要 | yes=全部需要 | no=不需要
+      # - name: "小红书"
+      #   opencli: "xiaohongshu"
+      #   commands:
+      #     - "search \"{keyword}\" --limit 10"
+      #     - "feed --limit 10"
+      #   login_required: yes
+      # - name: "B站"
+      #   opencli: "bilibili"
+      #   commands:
+      #     - "hot --limit 20"
+      #     - "search \"{keyword}\" --limit 10"
+      #   login_required: partial
+    global:
+      # - name: "Twitter/X"
+      #   opencli: "twitter"
+      #   commands:
+      #     - "search \"{keyword}\" --limit 15 --filter top"
+      #     - "trending --limit 20"
+      #   login_required: yes
+      # - name: "Reddit"
+      #   opencli: "reddit"
+      #   commands:
+      #     - "search \"{keyword}\" --sort relevance --time week --limit 15"
+      #     - "hot --limit 20"
+      #   login_required: no
+
+  # 媒体/官网来源（通过 opencli web read 或 google site: 采集）
+  # 没有 opencli 专用适配器的站点放这里
+  websites:
+    cn: []
+      # - name: "机器之心"
+      #   url: "https://www.jiqizhixin.com/"
+      #   type: "media"              # media | official | community
+      # - name: "量子位"
+      #   url: "https://www.qbitai.com/"
+      #   type: "media"
+    global: []
+      # - name: "OpenAI News"
+      #   url: "https://openai.com/news/"
+      #   type: "official"
+
+  # 直达 URL（跳过搜索，直接抓取指定页面，适合需要每日必看的固定来源）
+  # 这些 URL 会被 build_queries.py 直接输出，由 collect_detail.py 抓取
+  direct: []
+    # - "https://openai.com/news/"
+    # - "https://www.anthropic.com/news"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 第三部分：采集规则
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+collection:
+  window_days: 3                 # 采集时���窗口
+  priority_order:                # 信息优先级排序
+    - "官方确认信息"
+    - "高讨论度社区信号"
+    - "开源与开发者实践"
+    - "背景性报道"
+  exclude_rules:                 # 排除规则（与 exclude_topics 配合）
+    - "纯搬运无信息增量"
+    - "无来源的情绪内容"
+    - "弱相关泛热点"
+    - "旧闻翻炒"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 第四部分：运行配置（一般不需要改）
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+daily:
+  target_items: 15               # 目标条数：速览 10 | 标准 15 | 深度 20
+  summary_style: "detailed"      # brief | detailed | deep
+  include_actions: true          # 是否生成行动建议
+  include_trends: true           # 是否生成趋势雷达
+  language: "zh-CN"              # 输出语言
+
+pipeline:
+  search_preference: "opencli-first"
+  fallback_search_tools:
+    - "web_search"
+    - "web_fetch"
+  fallback_requires_reason: true
+
+server:
+  host: "0.0.0.0"
+  timeout_hours: 24
+  port: 17890
+  public_url: ""      # 配置后服务启动时输出域名链接，如 "http://your-domain.com"
+
+feishu:
+  group_id: ""
+  tools:
+    wiki_list: ""
+    doc_read: ""
+    chat_messages: ""
+  notification:
+    enabled: false        # 改为 true 并填写 chat_id / account_id 后启用飞书卡片通知
+    chat_id: ""           # 飞书群 chat_id（oc_xxx）
+    account_id: ""        # 使用的飞书 bot 账号 ID（在 ~/.openclaw/openclaw.json 中配置）
+    # 通知格式固定为交互卡片（msg_type: interactive），禁止改为纯文本。
+
+# Graphify 知识图谱集成（可选）
+# 开启后，日报中点击"收藏"的文章会自动写入 Graphify 的 raw/ 目录
+# 需要先安装：pip install graphifyy
+# 启动 watch 模式：graphify ~/graphify-data --watch
+graphify:
+  enabled: false                  # 改为 true 开启
+  data_dir: "~/graphify-data"     # graphify 监听的目录，与 graphify 命令保持一致
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 采集执行约束（不可删除）：
+# 1) 关键词统一从 topics[*].keywords 获取，自动按语言分发到各平台
+# 2) 所有信息源内容抓取默认优先走 opencli
+# 3) 平台未登录时，降级到 opencli google search "site:<域名> <关键词>"
+# 4) 发生 fallback 时，必须在 raw 留痕里写清 fallback_reason
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -1,0 +1,27 @@
+{
+  "status": "ambiguous",
+  "query": "JOJO",
+  "core_query": "JOJO",
+  "match": {
+    "name": "JOJO的奇妙冒险 幻影血脉",
+    "name_jp": "ジョジョの奇妙な冒険 ファントムブラッド",
+    "air_date": "",
+    "rating": 7.6,
+    "url": "http://bgm.tv/subject/61534",
+    "id": 61534
+  },
+  "alternatives": [
+    {
+      "name": "JOJO的奇妙冒险 星尘斗士 埃及篇",
+      "name_jp": "ジョジョの奇妙な冒険 スターダストクルセイダース エジプト編",
+      "air_date": "",
+      "url": "http://bgm.tv/subject/113292"
+    },
+    {
+      "name": "JOJO的奇妙冒险 石之海",
+      "name_jp": "ジョジョの奇妙な冒険 ストーンオーシャン",
+      "air_date": "",
+      "url": "http://bgm.tv/subject/332261"
+    }
+  ]
+}

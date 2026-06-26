@@ -1,35 +1,53 @@
 ---
-name: "gws-drive-upload"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-drive-upload"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-drive-upload"
+name: gws-drive-upload
+description: "Google Drive: Upload a file with automatic metadata."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws drive +upload --help"
 ---
 
-# gws-drive-upload
+# drive +upload
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-drive-upload`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-drive-upload](https://skills.sh/googleworkspace/cli/gws-drive-upload)
+Upload a file with automatic metadata
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-drive-upload
+gws drive +upload <file>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `<file>` | ✓ | — | Path to file to upload |
+| `--parent` | — | — | Parent folder ID |
+| `--name` | — | — | Target filename (defaults to source filename) |
+
+## Examples
+
+```bash
+gws drive +upload ./report.pdf
+gws drive +upload ./report.pdf --parent FOLDER_ID
+gws drive +upload ./data.csv --name 'Sales Data.csv'
+```
+
+## Tips
+
+- MIME type is detected automatically.
+- Filename is inferred from the local path unless --name is given.
+
+> [!CAUTION]
+> This is a **write** command — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-drive](../gws-drive/SKILL.md) — All manage files, folders, and shared drives commands

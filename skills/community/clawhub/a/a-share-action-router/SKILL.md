@@ -1,35 +1,108 @@
 ---
-name: "a-share-action-router"
-description: "把当日盘面工作包、组合工作包和用户约束合成留减清加顺序、仓位框架和次日执行剧本。适用于用户明确要处理持仓、想要调仓路径、或要从市场主线映射到组合动作的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a-share-action-router"
-sourceUrl: "https://clawhub.ai/skills/a-share-action-router"
+name: a-share-action-router
+description: 把当日盘面工作包、组合工作包和用户约束合成留减清加顺序、仓位框架和次日执行剧本。适用于用户明确要处理持仓、想要调仓路径、或要从市场主线映射到组合动作的场景。
 ---
 
-# a-share-action-router
-
-> 把当日盘面工作包、组合工作包和用户约束合成留减清加顺序、仓位框架和次日执行剧本。适用于用户明确要处理持仓、想要调仓路径、或要从市场主线映射到组合动作的场景。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a-share-action-router`
-- **Source URL:** [https://clawhub.ai/skills/a-share-action-router](https://clawhub.ai/skills/a-share-action-router)
+# A Share Action Router
 
 ## Overview
 
+这个 skill 负责把信息汇总成动作，但动作必须建立在新鲜的市场底稿和已校准的组合底稿之上。它不靠情绪拍板，而是输出有触发条件和失效条件的动作序列。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a-share-action-router
-```
+## Hard Rules
+
+1. 没有当日市场工作包时，不能直接给最终调仓结论。
+2. 没有组合校准时，不能做精细化仓位建议。
+3. 每个动作必须包含：触发条件、失效条件、仓位思路、核心风险。
+4. 不给“梭哈”“满仓切换”这类粗暴建议。
+5. 若用户只给一个大方向，不强行扩展成十几个动作，保持优先级。
+
+## When To Use
+
+- 用户问“我现在该怎么调”
+- 用户发了持仓，希望给留减清和处理顺序
+- 用户要结合盘面与持仓一起决策
+- 用户要一只新建仓标的，但已有现有持仓约束
+
+## Workflow
+
+### Step 1: 预检
+
+先检查两类输入是否齐全：
+
+- 市场工作包是否足够新
+- 组合工作包是否足够完整
+
+若缺任何一项，先补，不跳步。
+
+### Step 2: 确定主场景
+
+把当前会话归到一个主场景，例如：
+
+- 主线扩散
+- 主线高位分歧
+- 防守轮动
+- 普跌退潮
+- 混沌震荡
+
+### Step 3: 逐仓分类
+
+将持仓分成：
+
+- `保留`
+- `减仓`
+- `清理`
+- `观察`
+- `可替换成更优标的`
+
+### Step 4: 排序
+
+动作顺序必须明确，优先处理：
+
+- 单票集中度过高
+- 与当前主场景冲突的仓位
+- 流动性差、解释力弱的边缘票
+- 可腾挪出的资金来源
+
+### Step 5: 新建仓或替代方案
+
+若用户要求“推荐今天建仓的一只”，必须在当前主场景内挑一只最匹配的，不做面面俱到的票池。并说明：
+
+- 为什么是它，不是板块内别的票
+- 适合什么买法
+- 什么时候不该买
+
+完整动作模板见 [router-template.md](references/router-template.md)。
+
+### Step 6: 次日执行剧本
+
+给出至少三种盘口情景：
+
+- 高开
+- 平开震荡
+- 低开或分歧
+
+每种情景下动作如何变化。
+
+## Tool Rules
+
+- 市场强弱与板块强弱优先来自当日数据
+- 个股动作不能只看盈亏，要看它与主线关系
+- 若用户提供的持仓截图时间不明，先按“当前截图”处理，但显式标注可能滞后
+
+## Output Contract
+
+默认输出：
+
+- `主场景判断`
+- `留减清加表`
+- `处理顺序`
+- `目标仓位结构`
+- `次日剧本`
+- `风险清单`
+
+## Practical Notes
+
+- 若组合里最大的风险是单票过重，要先解决集中度，再谈新开仓
+- 若市场没有明确主线，不强推新票，优先保留现金与观察
+- 若用户偏好左侧埋伏，仍要告诉他右侧确认线在哪里

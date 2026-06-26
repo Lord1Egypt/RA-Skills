@@ -1,35 +1,249 @@
 ---
-name: "围棋实战选点"
-description: "智能提取并生成围棋实战选点题，支持恶手检测、实战对比、交互答题、试下演练及保存SGF功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weiqi-move"
-sourceUrl: "https://clawhub.ai/skills/weiqi-move"
+name: 围棋实战选点
+description: 智能提取并生成围棋实战选点题，支持恶手检测、实战对比、交互答题、试下演练及保存SGF功能。
+tags: ["围棋", "weiqi", "go", "棋谱", "SGF", "选点", "做题", "习题", "AI分析", "实战", "恶手"]
+version: 1.1.0
 ---
 
-# 围棋实战选点
+# 围棋实战选点 (weiqi-move)
 
-> 智能提取并生成围棋实战选点题，支持恶手检测、实战对比、交互答题、试下演练及保存SGF功能。
+从带AI分析数据的SGF棋谱中提取选点题，生成交互式做题网页。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weiqi-move`
-- **Source URL:** [https://clawhub.ai/skills/weiqi-move](https://clawhub.ai/skills/weiqi-move)
+## 功能介绍
 
-## Overview
+- **智能提取**: 从AI变化图中提取选点题，自动识别最优着法和实战着法差异
+- **恶手题检测**: 识别实战棋手下出的低胜率着法（与AI推荐差距>20%）
+- **交互式做题**: 点击棋盘选点，即时显示对错和胜率对比
+- **实战对比**: 显示AI推荐变化和实战着法，了解棋手实际选择
+- **试下模式**: 在任意局面下尝试自己的着法，支持连续落子和提子
+- **变化图浏览**: 查看各选点的后续AI推荐变化
+- **保存SGF**: 将当前局面保存为SGF文件，支持主分支、试下和变化图
+- **音效反馈**: 落子、提子、答题对错均有音效提示
+- **难度分级**: 根据胜率差自动判断题目难度
+- **阶段分类**: 自动识别布局、中盘、官子阶段
 
+## 文件结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weiqi-move
 ```
+weiqi-move/
+├── SKILL.md                 # 本文件
+├── scripts/
+│   ├── sgf_parser.py        # SGF解析器
+│   └── quiz.py              # 主脚本
+└── templates/
+    └── quiz.html            # 做题网页模板
+```
+
+## 使用方法
+
+### 基本用法
+
+```bash
+# 生成选点题（默认5道，恶手题优先）
+python3 scripts/quiz.py game.sgf
+
+# 指定输出文件
+python3 scripts/quiz.py game.sgf -o quiz.html
+
+# 生成更多题目
+python3 scripts/quiz.py game.sgf -n 20
+```
+
+### 题目筛选
+
+```bash
+# 只生成恶手题
+python3 scripts/quiz.py game.sgf -t blunder
+
+# 只生成中盘题
+python3 scripts/quiz.py game.sgf --phase middle
+
+# 组合筛选
+python3 scripts/quiz.py game.sgf --phase middle -t easy -n 10
+```
+
+### 参数说明
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `-n, --number` | 最大题目数量 | 5 |
+| `-t, --type` | 题目类型 (blunder/easy/medium/hard) | 全部 |
+| `--phase` | 阶段筛选 (layout/middle/endgame) | 全部 |
+| `-o, --output` | 输出文件路径 | 输入文件名.html |
+
+### 题目类型说明
+
+| 类型 | 说明 |
+|------|------|
+| `blunder` | 恶手题：实战落子胜率比AI推荐低20%以上 |
+| `easy` | 简单题：最优胜率 > 次优15% |
+| `medium` | 中等题：胜率差 5%-15% |
+| `hard` | 困难题：胜率差 < 5% |
+
+### 阶段说明
+
+| 阶段 | 手数范围 |
+|------|----------|
+| `layout` | ≤ 60手 (布局) |
+| `middle` | 60-180手 (中盘) |
+| `endgame` | > 180手 (官子) |
+
+## 做题页面操作
+
+### 主面板（打谱模式）
+- **⏮️ / ⏭️**: 上一手/下一手浏览
+- **滑动条**: 快速跳转到任意手数
+- **⬅️ / ➡️**: 上一题/下一题
+- **🔊**: 音效开关
+- **💾**: 保存当前局面为SGF
+
+### 棋盘操作
+- **点击选点**: 直接点击棋盘上的A/B/C/D选点
+- **试下**: 点击非选点位置进入试下模式
+- **浏览历史**: 打谱时ABCD标记自动隐藏
+
+### 做题模式
+- **选项按钮**: 点击下方A/B/C/D按钮选点
+- **实战按钮**: 查看实战棋手的着法
+- **即时反馈**: 选点后立即显示 ✓ / ✗ 和胜率
+- **变化图**: 点击查看AI推荐变化（默认显示第一手）
+
+### 试下模式
+- **连续落子**: 黑白交替落子，支持提子
+- **上一步/下一步**: 浏览试下着法
+- **↩**: 返回主面板
+- **💾**: 保存试下局面
+
+### 变化图浏览
+- **上一步/下一步**: 逐步查看变化
+- **↩**: 返回答题结果面板
+- **💾**: 保存变化图局面
+
+## 恶手题说明
+
+**恶手题**是本技能的核心特色，指实战棋手下出了AI认为的低胜率着法。
+
+识别标准：
+- 实战落子的胜率比AI最高推荐胜率低20%以上
+- 例如：AI推荐A点胜率65%，实战下B点胜率40%，差值25% → 恶手题
+
+通过恶手题可以：
+- 了解高手也会犯的常见错误
+- 学习AI推荐的最优下法
+- 对比实战变化和AI变化，深入理解局面
+
+## 支持格式
+
+### 野狐围棋
+- 特征: 胜率标注、绝艺分析
+- 胜率格式: `黑65.3%`、`白48.2%`
+
+### KataGo
+- 特征: KataGo分析标签
+- 胜率格式: `B 65.3%`、`W 48.2%`
+
+### 星阵围棋
+- 特征: 星阵推荐、胜率标注
+- 胜率格式: `胜率:黑 65.3%`
+
+## 技术说明
+
+### 提取规则
+
+1. **变化去重**: 第一步坐标相同的变化只保留胜率最高的
+2. **实战关联**: 获取主分支的实战落子，与AI变化对比
+3. **恶手检测**: 实战落子胜率与最高胜率差>20%标记为恶手
+4. **答案打乱**: 正确答案随机分布在A/B/C/D中
+5. **难度计算**: 最优与次优选点的胜率差
+
+### HTML输出特性
+
+生成的单文件HTML包含:
+- 完整的围棋规则实现（提子、气、打劫）
+- Canvas棋盘渲染
+- 响应式布局（支持移动端）
+- 音效系统（落子音、提子音、答题音效）
+- 纯前端实现，无需服务器
+
+## 示例输出
+
+```bash
+$ python3 scripts/quiz.py example.sgf -n 10
+
+正在解析: example.sgf
+棋局: 卞相壹 vs 朴廷桓
+主分支手数: 215
+变化图数量: 555
+检测到的格式: foxwq
+
+正在提取选点题...
+提取到 10 道题目
+  - 布局: 7, 中盘: 3, 官子: 0
+  - 简单: 4, 中等: 1, 困难: 5
+  - 恶手题: 3
+
+正在生成做题网页...
+已生成做题网页: /path/to/example.html
+```
+
+## 扩展开发
+
+### 添加新的格式适配器
+
+在 `quiz.py` 中添加新的适配器类:
+
+```python
+class MyFormatAdapter(FormatAdapter):
+    """自定义格式适配器"""
+    
+    PATTERNS = ['特征字符串1', '特征字符串2']
+    WINRATE_PATTERN = re.compile(r'胜率[:\s]*([黑白BW])\s*(\d+\.?\d*)%')
+    
+    def detect(self, sgf_content: str) -> bool:
+        for pattern in self.PATTERNS:
+            if re.search(pattern, sgf_content):
+                return True
+        return False
+    
+    def parse_winrate(self, comment: str) -> Optional[Dict]:
+        match = self.WINRATE_PATTERN.search(comment)
+        if match:
+            color_str = match.group(1)
+            rate = float(match.group(2))
+            color = 'B' if color_str in ['黑', 'B'] else 'W'
+            return {'color': color, 'rate': rate}
+        return None
+    
+    def get_name(self) -> str:
+        return 'myformat'
+```
+
+然后将适配器添加到 `FORMAT_ADAPTERS` 列表。
+
+## 依赖
+
+- Python 3.6+
+- 仅使用标准库（无第三方依赖）
+
+## 注意事项
+
+1. 棋谱需要包含AI分析的变化图数据才能提取题目
+2. 纯对局记录（无AI分析）无法提取选点题
+3. 生成的HTML文件可以离线打开使用
+4. 建议使用带绝艺或KataGo分析的野狐/弈城棋谱
+
+## 更新日志
+
+### v1.1.0
+- 新增恶手题检测功能
+- 新增实战落点对比按钮
+- 新增试下模式支持
+- 新增保存SGF功能
+- 答案选项随机打乱
+- 优化音效系统
+- 优化UI交互体验
+
+### v1.0.0
+- 基础功能：选点题提取和做题
+- 支持野狐、KataGo、星阵阵棋谱格式
+- 基础打谱和变化图浏览

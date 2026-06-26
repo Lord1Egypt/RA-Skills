@@ -1,0 +1,13 @@
+{
+  "name": "decision-helper",
+  "version": "1.0.0",
+  "description": "🎯 The Ultimate Decision Weapon - Stop overthinking. Start deciding. 终极决策武器 - 停止过度思考，开始果断决策。",
+  "author": "Clawdbot",
+  "license": "MIT",
+  "main": "SKILL.md",
+  "keywords": ["decision", "thinking", "framework", "analysis", "choice"],
+  "clawdbot": {
+    "skill": true,
+    "type": "native"
+  }
+}

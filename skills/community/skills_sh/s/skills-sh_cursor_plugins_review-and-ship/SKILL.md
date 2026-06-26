@@ -1,35 +1,41 @@
 ---
-name: "review-and-ship"
-description: "Indexed by skills.sh from cursor/plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cursor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cursor/plugins/review-and-ship"
-sourceUrl: "https://skills.sh/cursor/plugins/review-and-ship"
+name: review-and-ship
+description: Review the current branch for bugs, intent fit, and test coverage; run or write tests; commit focused work; open or update a PR.
 ---
 
-# review-and-ship
+# Review and ship
 
-> Indexed by skills.sh from cursor/plugins
+## Trigger
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cursor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cursor/plugins/review-and-ship`
-- **Source URL:** [https://skills.sh/cursor/plugins/review-and-ship](https://skills.sh/cursor/plugins/review-and-ship)
+Reviewing changes before shipping. Close key issues, verify behavior, and open or update a PR.
 
-## Overview
+## Workflow
 
+1. Gather context: diff against base branch, uncommitted changes, recent commits, changed files, and user intent from recent relevant chats if useful.
+2. Run targeted tests for changed behavior. If no focused tests exist, decide whether to add them or document the gap.
+3. Review for correctness, regressions, security, and intent fit. Use parallel subagents for larger diffs.
+4. Fix critical issues before finalizing and re-run affected tests.
+5. Commit selective files with a concise message.
+6. Push branch and open or update a PR.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Suggested Checks
+
 ```bash
-hermes skills install skills-sh/cursor/plugins/review-and-ship
+git fetch origin main
+git diff origin/main...HEAD
+git status
+gh pr checks --json name,bucket,state,workflow,link
 ```
+
+## Guardrails
+
+- Prioritize correctness, security, and regressions over style-only comments.
+- Keep commits focused and avoid unrelated file changes.
+- If pre-commit checks fail, fix the issues rather than bypassing hooks.
+- Use `gh pr checks` instead of GitHub Actions-only commands when judging PR readiness.
+
+## Output
+
+- Findings summary (critical, warning, note)
+- Tests run and outcomes
+- PR URL

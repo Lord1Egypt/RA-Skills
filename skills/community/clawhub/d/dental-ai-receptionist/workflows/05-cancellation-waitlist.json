@@ -1,0 +1,522 @@
+{
+  "name": "Dental AI — 05 Cancellation & Waitlist",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dental-ai/cancel-appointment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Cancellation Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "dental-cancel-appt",
+      "id": "n5-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst action = body.action || 'cancel';\nconst data = {\n  action: action,\n  appointment_id: body.appointment_id || '',\n  patient_name: body.patient_name || body.caller_name || '',\n  patient_phone: body.caller_phone || body.patient_phone || '',\n  appointment_date: body.appointment_date || '',\n  appointment_end: body.appointment_end || '',\n  service_type: body.service_type || body.appointment_type || '',\n  cancellation_reason: body.cancellation_reason || body.reason || 'Not specified',\n  call_id: body.call_id || '',\n  freed_by: body.freed_by || 'patient_cancellation',\n  original_patient: body.original_patient || body.patient_name || '',\n  timestamp: new Date().toISOString()\n};\n\nreturn [{ json: data }];"
+      },
+      "name": "Parse Cancellation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n5-parse"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "is-cancel",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "cancel",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputLabel": "Cancel Appointment"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "is-waitlist",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "fill_from_waitlist",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputLabel": "Fill from Waitlist"
+            }
+          ],
+          "fallbackOutput": {
+            "renameOutput": true,
+            "outputLabel": "Unknown Action"
+          }
+        },
+        "options": {}
+      },
+      "name": "Action Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        680,
+        400
+      ],
+      "id": "n5-switch"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "appointment_id": "={{ $json.appointment_id }}",
+            "status": "cancelled",
+            "cancellation_reason": "={{ $json.cancellation_reason }}",
+            "cancelled_at": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [
+            "appointment_id"
+          ],
+          "schema": [
+            {
+              "id": "appointment_id",
+              "displayName": "appointment_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Mark Cancelled in Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        940,
+        240
+      ],
+      "id": "n5-cancel-sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALENDAR_ID}}",
+          "mode": "id"
+        },
+        "eventId": "={{ $json.appointment_id }}",
+        "options": {}
+      },
+      "name": "Delete Calendar Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 3,
+      "position": [
+        940,
+        80
+      ],
+      "id": "n5-delete-cal",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "={{$env.GOOGLE_CALENDAR_CRED_ID}}",
+          "name": "Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.patient_phone }}",
+        "body": "=Hi {{ $json.patient_name }}, your {{ $json.service_type }} appointment has been cancelled as requested. If you'd like to reschedule, just call us or reply BOOK. We're here whenever you need us!"
+      },
+      "name": "Cancellation Confirmation SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        160
+      ],
+      "id": "n5-sms-cancel",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Waitlist",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Waitlist",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        940,
+        560
+      ],
+      "id": "n5-read-waitlist",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst freedSlot = $('Parse Cancellation').first().json;\nconst slotDate = new Date(freedSlot.appointment_date);\nconst slotEnd = new Date(freedSlot.appointment_end || slotDate.getTime() + 3600000);\n\n// Find waitlist patients who want the same service or any slot near this date\nconst candidates = items.filter(item => {\n  const w = item.json;\n  if (w.status === 'filled' || w.status === 'declined') return false;\n  \n  // Check if preferred date matches (within 2 days)\n  if (w.preferred_date) {\n    const prefDate = new Date(w.preferred_date);\n    const daysDiff = Math.abs((slotDate - prefDate) / (1000 * 60 * 60 * 24));\n    if (daysDiff > 2) return false;\n  }\n  \n  // Check service compatibility\n  if (w.service_type && freedSlot.service_type) {\n    const wService = w.service_type.toLowerCase();\n    const fService = freedSlot.service_type.toLowerCase();\n    if (wService !== fService && wService !== 'any') return false;\n  }\n  \n  return true;\n}).sort((a, b) => {\n  // Priority: earlier waitlist entries first\n  return new Date(a.json.added_at || 0) - new Date(b.json.added_at || 0);\n});\n\nif (candidates.length === 0) {\n  return [{ json: { no_candidates: true, freed_slot: freedSlot } }];\n}\n\n// Return top 3 candidates to contact\nreturn candidates.slice(0, 3).map(c => ({\n  json: {\n    ...c.json,\n    freed_slot_date: freedSlot.appointment_date,\n    freed_slot_end: freedSlot.appointment_end,\n    freed_service: freedSlot.service_type,\n    freed_by: freedSlot.freed_by,\n    sms_message: `Hi ${c.json.patient_name}! Great news — a ${freedSlot.service_type} appointment slot just opened up on ${slotDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at ${slotDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}. Reply YES to book it or NO to pass. First come, first served!`\n  }\n}));"
+      },
+      "name": "Match Waitlist Candidates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        560
+      ],
+      "id": "n5-match"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-candidates",
+              "leftValue": "={{ $json.no_candidates }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Candidates Found?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        560
+      ],
+      "id": "n5-if-candidates"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.patient_phone }}",
+        "body": "={{ $json.sms_message }}"
+      },
+      "name": "Notify Waitlist Patient",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        480
+      ],
+      "id": "n5-sms-waitlist",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ assistantId: $env.VAPI_WAITLIST_ASSISTANT_ID, customer: { number: $json.patient_phone, name: $json.patient_name }, metadata: { freed_slot_date: $json.freed_slot_date, freed_service: $json.freed_service, action: 'waitlist_offer' } }) }}",
+        "options": {}
+      },
+      "name": "Call Waitlist Patient (Vapi)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1700,
+        640
+      ],
+      "id": "n5-vapi-waitlist"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_STAFF_EMAIL}}",
+        "subject": "=Cancellation: {{ $json.patient_name }} — {{ $json.service_type }} slot now open",
+        "html": "=<h2>Appointment Cancelled</h2><p><strong>{{ $json.patient_name }}</strong> cancelled their <strong>{{ $json.service_type }}</strong> appointment on <strong>{{ $json.appointment_date }}</strong>.</p><p>Reason: {{ $json.cancellation_reason }}</p><p>Waitlist patients have been notified automatically.</p>",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Notify Staff of Cancellation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        340
+      ],
+      "id": "n5-notify-staff",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', action: $json.action || 'processed' }) }}",
+        "options": {}
+      },
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1940,
+        400
+      ],
+      "id": "n5-respond"
+    },
+    {
+      "parameters": {},
+      "name": "No Waitlist Match",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        780
+      ],
+      "id": "n5-noop"
+    }
+  ],
+  "connections": {
+    "Cancellation Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Cancellation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Cancellation": {
+      "main": [
+        [
+          {
+            "node": "Action Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Router": {
+      "main": [
+        [
+          {
+            "node": "Mark Cancelled in Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Delete Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Waitlist",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Cancelled in Sheet": {
+      "main": [
+        [
+          {
+            "node": "Cancellation Confirmation SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Staff of Cancellation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Waitlist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Waitlist": {
+      "main": [
+        [
+          {
+            "node": "Match Waitlist Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match Waitlist Candidates": {
+      "main": [
+        [
+          {
+            "node": "Candidates Found?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Candidates Found?": {
+      "main": [
+        [
+          {
+            "node": "Notify Waitlist Patient",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call Waitlist Patient (Vapi)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Waitlist Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancellation Confirmation SMS": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Waitlist Patient": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

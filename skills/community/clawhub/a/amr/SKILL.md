@@ -1,35 +1,102 @@
 ---
-name: "Amr"
+name: "amr"
+version: "1.0.0"
 description: "Autonomous mobile robot fleet manager. Use when json amr tasks, csv amr tasks, checking amr status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amr"
-sourceUrl: "https://clawhub.ai/skills/amr"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [amr, industrial, cli, tool]
+category: "industrial"
 ---
 
-# Amr
+# amr
 
-> Autonomous mobile robot fleet manager. Use when json amr tasks, csv amr tasks, checking amr status.
+Autonomous mobile robot fleet manager. Use when json amr tasks, csv amr tasks, checking amr status.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amr`
-- **Source URL:** [https://clawhub.ai/skills/amr](https://clawhub.ai/skills/amr)
+### `status`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/amr
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Description |
+|----------|-------------|
+| `AMR_DIR` | Data directory (default: ~/.amr/) |
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

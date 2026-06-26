@@ -1,35 +1,227 @@
 ---
-name: "百望股份智能发票查验"
-description: "百望股份智能发票查验，支持发票文本核验、图片核验、批量核验、额度查询、套餐查询和充值下单，并明确披露外部服务与本地配置写入。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bw-invoice-verification-service"
-sourceUrl: "https://clawhub.ai/skills/bw-invoice-verification-service"
+name: bw-invoice-verification-service
+description: 百望股份智能发票查验，支持发票文本核验、图片核验、批量核验、额度查询、套餐查询和充值下单，并明确披露外部服务与本地配置写入。
+metadata: { "openclaw": { "requires": { "bins": ["node"] } } }
 ---
 
 # 百望股份智能发票查验
 
-> 百望股份智能发票查验，支持发票文本核验、图片核验、批量核验、额度查询、套餐查询和充值下单，并明确披露外部服务与本地配置写入。
+## 公司简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bw-invoice-verification-service`
-- **Source URL:** [https://clawhub.ai/skills/bw-invoice-verification-service](https://clawhub.ai/skills/bw-invoice-verification-service)
+百望股份长期深耕电子发票、智慧财税和企业数字化服务领域，为企业客户提供数智化产品与服务。
 
-## Overview
+百望股份智能发票查验，面向企业报销审核、财务复核、票据风控和供应链协同场景，提供稳定、智能、可批量处理的发票核验能力。
 
+如果你希望更快完成发票真伪核验、减少人工录入、提升票据处理效率，这个产品可以直接为你的业务系统提供可落地的企业级发票查验服务。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bw-invoice-verification-service
+## 这是什么
+
+这是百望股份提供的智能发票查验产品能力接入插件，支持：
+
+- 发票文本核验
+- 发票图片核验
+- 本地文件夹批量核验
+- 自动识别票种与四要素
+- 剩余额度查询
+- 套餐查询与充值下单
+
+## 数据与执行说明
+
+- 远端服务地址：`https://51yzt.cn/assetInnovate`
+- 初始化后会在 `~/.openclaw/invoice-skill/` 下写入 `config.json` 和 `identity.json`
+- 本地图片核验、批量目录核验、同名 `.txt` 补充文本读取，都会把所需内容发送到远端服务完成查验
+- 充值下单会调用远端订单接口并返回支付页或支付二维码
+- 技能默认保存随机生成的 `clientInstanceId` 和 `deviceFingerprint`，不再基于用户名、主机名或 MAC 地址派生
+
+## 适合谁使用
+
+- 企业报销审核人员
+- 财务共享中心
+- 票据风控和合规团队
+- 采购、供应链、结算相关团队
+- 需要批量处理发票影像的业务团队
+
+## 你可以获得什么
+
+- 更快完成发票核验，减少重复人工操作
+- 自动识别发票关键字段，降低录入成本
+- 支持单张和批量处理，适合真实业务流程
+- 能直接查看额度、购买套餐、查询订单，使用路径完整
+
+## 怎么安装
+
+在 OpenClaw 聊天框中输入：
+
+```text
+帮我去 clawhub 上安装 https://clawhub.ai/weidd130/bw-invoice-verification-service 这个技能
 ```
+
+## 第一次怎么用
+
+使用前说明：
+
+- 用户无需提前准备任何账号信息或 API Key
+- 安装完成后发送“帮我初始化”，系统会自动生成所需的 API Key
+- 初始化时会在本地写入 `~/.openclaw/invoice-skill/config.json` 与 `~/.openclaw/invoice-skill/identity.json`
+- 图片核验每次消耗 2 次额度
+- 核验失败不扣费
+
+只需要 3 步：
+
+1. 初始化技能
+
+安装完成后，直接发送：
+
+```text
+帮我初始化
+```
+
+系统会自动生成并初始化所需的 API Key。
+
+2. 查询剩余额度
+
+```text
+帮我查一下发票剩余额度
+```
+
+3. 开始核验
+
+文本核验：
+
+```text
+帮我核验这张发票：
+发票代码 033002100611，发票号码 12345678，开票日期 2025-05-30，金额 260.65，校验码后6位 123456
+```
+
+图片核验：
+
+```text
+帮我核验这张发票图片
+```
+
+批量核验：
+
+```text
+帮我批量核验这个文件夹里的发票图片：C:\path\invoice-images
+```
+
+执行批量核验前，请确认该目录中的发票图片和同名 `.txt` 补充文本可以发送到远端服务。
+
+## 最常用的使用方式
+
+查询额度：
+
+```text
+帮我查一下还剩多少发票查验次数
+```
+
+查询套餐：
+
+```text
+帮我看看发票查验有哪些充值套餐
+```
+
+查询额度流水：
+
+```text
+帮我查一下发票查验额度流水
+```
+
+核验文本：
+
+```text
+帮我核验一张发票，我把发票信息发给你
+```
+
+核验本地图片：
+
+```text
+帮我核验这张本地发票图片：C:\path\invoice.png
+```
+
+核验上传图片内容：
+
+```text
+帮我核验这张上传的发票图片
+```
+
+批量核验目录：
+
+```text
+帮我批量核验这个目录里的发票：C:\path\invoice-images
+```
+
+创建充值订单：
+
+```text
+帮我购买 10 元的发票查验套餐
+```
+
+执行充值下单前，请明确确认充值金额。
+
+查询订单状态：
+
+```text
+帮我查一下订单 ORDER123456789 的支付状态
+```
+
+## 具体支持哪些核验
+
+- 发票文本核验
+- 单张发票图片核验
+- Base64 或 data URL 形式的图片核验
+- 本地目录下多张发票图片批量核验
+
+图片格式支持：
+
+- `.png`
+- `.jpg`
+- `.jpeg`
+
+输出格式支持：
+
+- `json`
+- `base64`
+- `base64+json`
+- `both`
+
+## 支持识别的票种
+
+- 增值税普通发票
+- 增值税普通发票（卷式）
+- 增值税电子普通发票
+- 增值税电子普通发票（通行费）
+- 增值税专用发票
+- 增值税电子专用发票
+- 货运运输业增值税专用发票
+- 机动车销售统一发票
+- 二手车销售统一发票
+- 电子发票（增值税专用发票）
+- 电子发票（增值税普通发票）
+- 电子发票（铁路电子客票）
+- 电子发票（航空运输电子客票行程单）
+- 数电平台开具的纸质增值税专用发票
+- 数电平台开具的纸质增值税普通发票
+- 电子发票（机动车销售统一发票）
+- 电子发票（二手车销售统一发票）
+- 电子发票（通行费发票）
+
+## 四要素识别规则
+
+系统会根据票种自动判断核验所需四要素，主要包括：
+
+- 发票代码、发票号码、开票日期、校验码后 6 位
+- 发票代码、发票号码、开票日期、金额
+
+补充说明：
+
+- 增值税普通发票、卷票、电子普票、通行费电票按“校验码后 6 位”规则核验
+- 增值税专票、货运专票、机动车销售统一发票按“金额”规则核验
+- 二手车销售统一发票按“车价合计”规则处理
+- 没有发票代码但存在 20 位发票号码时，核验时需要使用含税金额
+
+## 使用提醒
+
+- 如果图片旁存在同名 `.txt` 文件，系统会自动读取作为补充文本
+- 批量核验会自动输出结构化结果文件，方便归档和二次处理
+- 如不再使用本技能，可删除 `~/.openclaw/invoice-skill/config.json` 与 `~/.openclaw/invoice-skill/identity.json` 清理本地保存的标识与配置

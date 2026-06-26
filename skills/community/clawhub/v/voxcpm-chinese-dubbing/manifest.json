@@ -1,0 +1,22 @@
+{
+  "name": "voxcpm-chinese-dubbing",
+  "version": "1.1.0",
+  "description": "🎯 唯一使用VoxCPM的中文配音技能 - 外语视频一键中文配音，支持硬字幕检测、断点续传、智能BGM",
+  "author": "newaiguy",
+  "tags": ["video", "dubbing", "voxcpm", "chinese", "translation", "whisper", "tts"],
+  "main": "SKILL.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newaiguy/voxcpm-chinese-dubbing"
+  },
+  "keywords": [
+    "视频配音",
+    "中文配音",
+    "VoxCPM",
+    "AI配音",
+    "视频翻译",
+    "Whisper",
+    "TTS"
+  ],
+  "license": "MIT"
+}

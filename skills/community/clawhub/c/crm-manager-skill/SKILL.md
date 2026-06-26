@@ -1,35 +1,230 @@
 ---
-name: "Crm Manager Skill"
-description: "一个基于对话的客户关系管理技能。管理员通过自然语言录入客户信息， 系统自动将客户资料存储为 YAML 文件，并支持查询、更新、跟踪等功能。 用于： - 新增客户并保存为 YAML 文件 - 更新客户信息 - 添加跟进记录 - 添加销售行为记录（支持销售漏斗分析） - 查询客户资料 - 条件搜索客户 - 销售漏斗分析报表"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crm-manager-skill"
-sourceUrl: "https://clawhub.ai/skills/crm-manager-skill"
+name: crm-manager-skill
+description: |
+  一个基于对话的客户关系管理技能。管理员通过自然语言录入客户信息，
+  系统自动将客户资料存储为 YAML 文件，并支持查询、更新、跟踪等功能。
+  用于：
+  - 新增客户并保存为 YAML 文件
+  - 更新客户信息
+  - 添加跟进记录
+  - 添加销售行为记录（支持销售漏斗分析）
+  - 查询客户资料
+  - 条件搜索客户
+  - 销售漏斗分析报表
 ---
 
-# Crm Manager Skill
+# CRM Manager
 
-> 一个基于对话的客户关系管理技能。管理员通过自然语言录入客户信息， 系统自动将客户资料存储为 YAML 文件，并支持查询、更新、跟踪等功能。 用于： - 新增客户并保存为 YAML 文件 - 更新客户信息 - 添加跟进记录 - 添加销售行为记录（支持销售漏斗分析） - 查询客户资料 - 条件搜索客户 - 销售漏斗分析报表
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crm-manager-skill`
-- **Source URL:** [https://clawhub.ai/skills/crm-manager-skill](https://clawhub.ai/skills/crm-manager-skill)
+CRM Manager 是一个基于自然语言对话的客户关系管理技能。管理员通过普通语言输入客户信息，Skill 自动解析意图、抽取实体，并将客户资料存储为 YAML 文件。
 
-## Overview
+## 核心功能
 
+### 1. 新增客户
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crm-manager-skill
+将新客户信息保存为 YAML 文件。
+
+**触发条件：** 包含姓名和电话的客户录入请求
+
+**示例：**
+- "新增一个客户，叫李雷，电话 13800001111"
+- "添加客户王芳，手机号 13900002222"
+- "录入客户张三，电话13933334444，邮箱zhangsan@example.com"
+- "添加客户李四，电话13700005555，微信号lisi123"
+
+**执行：** 调用 `scripts/create_customer.py`
+
+**数据存储：** `data/customers/{name}.yaml`
+
+### 2. 更新客户信息
+
+更新已有客户的字段信息。
+
+**触发条件：** 包含客户姓名和要更新的字段
+
+**示例：**
+- "李雷是男的，35岁"
+- "把王芳的等级改成VIP"
+- "张三喜欢高端产品"
+
+**执行：** 调用 `scripts/update_customer.py`
+
+### 3. 添加跟进记录
+
+为客户添加跟进备注。
+
+**触发条件：** 包含客户姓名和备注内容的请求
+
+**示例：**
+- "我今天联系了李雷，他说下周再来"
+- "给王芳加个备注：今天状态很好"
+
+**执行：** 调用 `scripts/add_note.py`
+
+### 4. 添加服务记录
+
+为客户添加结构化的服务记录，支持服务进度跟踪。
+
+**触发条件：** 包含客户姓名、服务类型和描述的记录请求
+
+**示例：**
+- "为李雷添加服务记录：单次服务，健身课60分钟，深蹲从50kg进步到60kg"
+- "记录王芳的课程购买：买了10次心理咨询课，金额3000元"
+- "张三今天上了编程课，完成了Python基础模块"
+
+**执行：** 调用 `scripts/add_service_record.py`
+
+**服务类型：** 课程购买、单次服务、体验课、续费、课程调整、进度评估、反馈沟通
+
+**出勤状态：** 出席、缺席、请假、补课
+
+**进度评级：** 优秀、良好、一般、需加强
+
+**结果状态：** 成功、失败、进行中
+
+### 5. 服务数据分析
+
+分析服务数据，查看服务记录分布和客户活跃度。
+
+**触发条件：** 包含服务数据分析或统计关键字的请求
+
+**示例：**
+- "服务数据分析"
+- "最近30天的服务情况"
+- "查看出勤率统计"
+
+**执行：** 调用 `scripts/analyze_sales_funnel.py`
+
+### 6. 查询客户
+
+查询单个客户的详细资料。
+
+**触发条件：** 包含客户姓名的查询请求
+
+**示例：**
+- "查一下李雷的状态"
+- "王芳现在情况怎样"
+- "给我看看张三的资料"
+
+**执行：** 调用 `scripts/query_customer.py`
+
+### 7. 搜索客户
+
+按条件搜索客户列表。
+
+**触发条件：** 包含搜索条件的请求
+
+**示例：**
+- "找一下标签为健身会员的客户"
+- "列出最近新增的客户"
+- "搜索邮箱包含 @example.com 的客户"
+- "搜索微信ID包含 wang 的客户"
+
+**执行：** 调用 `scripts/search_customers.py`
+
+## 数据结构
+
+每个客户存储为一个 YAML 文件，包含以下字段：
+
+```yaml
+name: 客户姓名（主键）
+phone: 电话号码
+email: 邮箱地址（可选）
+wechat_id: 微信ID（可选）
+age: 年龄
+gender: 性别（男/女/未知）
+level: 等级（普通/会员/VIP）
+source: 来源
+tags: 标签列表
+status: 状态（新增/跟进中/已成交/暂停/流失）
+last_contact: 最后联系日期
+notes: 跟进记录列表（日常沟通）
+service_records: 服务记录列表（结构化服务数据）
+  - id: 服务记录ID（格式：SR001）
+    date: 发生日期
+    type: 服务类型（课程购买/单次服务/体验课/续费/课程调整/进度评估/反馈沟通）
+    description: 描述说明
+    attendance: 出勤状态（出席/缺席/请假/补课，可选）
+    duration: 服务时长（分钟，可选）
+    progress: 进度评级（优秀/良好/一般/需加强，可选）
+    amount: 涉及金额（可选）
+    outcome: 结果状态（成功/失败/进行中）
+    related_note_id: 关联的跟进记录ID（可选）
 ```
+
+## 资源
+
+### scripts/
+
+包含处理客户数据的 Python 脚本：
+
+- `create_customer.py` - 创建新客户（邮箱可选，支持微信ID）
+- `update_customer.py` - 更新客户信息
+- `add_note.py` - 添加跟进记录
+- `add_service_record.py` - 添加服务记录
+- `query_customer.py` - 查询客户详情
+- `search_customers.py` - 搜索客户（支持邮箱、微信ID搜索）
+- `analyze_sales_funnel.py` - 服务数据分析
+
+### references/
+
+包含技能相关的参考文档。
+
+## 工作流
+
+### 新增客户流程
+
+1. 解析用户输入，提取 name 和 phone（必须），email 和 wechat_id（可选）
+2. 如提供邮箱，验证格式有效性
+3. 检查是否已存在同名客户
+4. 如存在，提示更新而非新建
+5. 创建 YAML 文件，包含基本信息
+6. 返回确认消息
+
+### 更新客户流程
+
+1. 解析用户输入，提取 name（必须）
+2. 查找对应客户文件
+3. 更新指定字段（支持 email、wechat_id 更新）
+4. 保存文件
+5. 返回更新后的信息
+
+### 添加跟进记录流程
+
+1. 解析用户输入，提取 name 和 note
+2. 查找客户文件
+3. 在 notes 列表追加记录（带日期）
+4. 更新 last_contact 字段
+5. 保存文件
+
+### 添加服务记录流程
+
+1. 解析用户输入，提取 name、type、description（必须）
+2. 查找客户文件
+3. 生成唯一服务记录ID（SR001、SR002...）
+4. 在 service_records 列表追加记录
+5. 根据结果自动更新客户状态
+6. 保存文件
+
+### 服务数据分析流程
+
+1. 解析用户输入，提取时间范围（可选）和服务类型筛选（可选）
+2. 加载所有客户数据
+3. 统计服务记录分布、类型分布、出勤情况、进度评级
+4. 计算活跃度和转化率指标
+5. 格式化输出分析报告
+
+### 查询客户流程
+
+1. 解析用户输入，提取 name
+2. 查找对应客户文件
+3. 格式化输出客户信息（包含联系方式和服务记录）
+4. 如不存在，返回友好提示
+
+### 搜索客户流程
+
+1. 解析用户输入，提取搜索条件（tags/status/level/age/email/wechat_id）
+2. 遍历所有客户文件
+3. 过滤符合条件的客户
+4. 返回客户列表

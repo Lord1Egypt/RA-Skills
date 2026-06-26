@@ -1,0 +1,25 @@
+{
+  "defaults": {
+    "calendar": "solar",
+    "timezone": "Asia/Shanghai",
+    "remind_at": "09:00",
+    "offset_days": [7, 1, 0],
+    "leap_strategy": "skip"
+  },
+  "people": [
+    {
+      "name": "妻子",
+      "calendar": "solar",
+      "month": 3,
+      "day": 25
+    },
+    {
+      "name": "父母",
+      "calendar": "lunar",
+      "month": 8,
+      "day": 8,
+      "offset_days": [15, 3, 0],
+      "remind_at": "09:00"
+    }
+  ]
+}

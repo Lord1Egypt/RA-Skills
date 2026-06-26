@@ -1,0 +1,146 @@
+id: hr_assistant
+name: 人力助手
+nickname: 人力助手
+version: 0.1.0
+owner: HR 负责人
+deployment:
+  workstation: default
+  folder: hr-assistant-skill
+  channel: 飞书
+  feishu_bot_name: hr_assistant
+  hermes_agent_id: hr_assistant
+mission: 通过飞书接收岗位需求、简历、面试记录、合同模板和培训资料，调用 Hermes Agent skills 完成岗位画像、JD、简历筛选、面试支持、录用入职、劳动合同、培训计划和制度问答。
+users:
+- HR
+- 招聘负责人
+- 部门负责人
+- 面试官
+- 管理层
+scenarios:
+  position_profile:
+    name: 招聘需求澄清
+    role: 招聘顾问
+    description: 把部门需求转成岗位画像、能力模型和招聘标准。
+    workflow: workflows.md#一招聘需求澄清
+    skill_pack:
+    - HR01_position_profile
+    - HR02_jd_generate
+  jd_publish:
+    name: JD 与发布
+    role: 招聘文案员
+    description: 生成 JD、岗位卖点、招聘话术和发布文案。
+    workflow: workflows.md#二JD 与发布
+    skill_pack:
+    - HR02_jd_generate
+    - HR01_position_profile
+  resume_screen:
+    name: 简历筛选
+    role: 简历筛选员
+    description: 解析简历并按岗位要求评分、排序和提示风险。
+    workflow: workflows.md#三简历筛选
+    skill_pack:
+    - HR03_resume_parse
+    - HR04_resume_match_score
+  interview_support:
+    name: 面试支持
+    role: 面试助理
+    description: 生成面试题、追问、评估表和面试结论草稿。
+    workflow: workflows.md#四面试支持
+    skill_pack:
+    - HR05_interview_question_generate
+    - HR06_interview_evaluation
+  onboarding:
+    name: 录用与入职
+    role: 入职管理员
+    description: 生成 offer 要点、入职材料清单和流程提醒。
+    workflow: workflows.md#五录用与入职
+    skill_pack:
+    - HR08_onboarding_checklist
+    - HR09_training_plan_generate
+  labor_contract:
+    name: 劳动合同
+    role: 合同助理
+    description: 初审劳动合同关键条款并提示风险。
+    workflow: workflows.md#六劳动合同
+    skill_pack:
+    - HR07_labor_contract_check
+  training:
+    name: 培训学习
+    role: 培训管理员
+    description: 生成岗位培训计划、学习材料和考题。
+    workflow: workflows.md#七培训学习
+    skill_pack:
+    - HR09_training_plan_generate
+  policy_qa:
+    name: 员工制度问答
+    role: 制度问答员
+    description: 回答考勤、假期、薪酬、报销等制度问题。
+    workflow: workflows.md#八员工制度问答
+    skill_pack:
+    - HR09_training_plan_generate
+    - HR07_labor_contract_check
+common_skills:
+- C01_feishu_message_router
+- C02_feishu_file_receiver
+- C03_user_permission_check
+- C04_task_intent_classifier
+- C05_document_parser
+- C07_structured_extraction
+- C08_knowledge_retrieval
+- C09_rule_checker
+- C10_template_renderer
+- C11_table_exporter
+- C12_task_breakdown
+- C13_human_approval
+- C14_feishu_reminder
+- C15_audit_log
+- C16_result_archive
+- C17_sensitive_info_masking
+- C18_demo_mode
+domain_skills:
+- HR01_position_profile
+- HR02_jd_generate
+- HR03_resume_parse
+- HR04_resume_match_score
+- HR05_interview_question_generate
+- HR06_interview_evaluation
+- HR07_labor_contract_check
+- HR08_onboarding_checklist
+- HR09_training_plan_generate
+skill_catalog: skills/hr_skills.yaml
+approval_policy:
+  requires_human_confirmation:
+  - 录用决定
+  - 薪酬职级
+  - 劳动合同条款
+  - 员工敏感信息
+  - 对外发送offer
+  can_auto_generate:
+  - 岗位画像
+  - JD草稿
+  - 简历评分
+  - 面试题
+  - 入职清单
+  - 培训计划
+  - 制度答复
+  must_not_do:
+  - 自动录用候选人
+  - 自动淘汰候选人
+  - 泄露薪酬隐私
+  - 替代法务确认合同
+knowledge_sources:
+- knowledge/README.md
+- 岗位说明书库
+- 能力模型库
+- 薪酬职级规则
+- 劳动合同模板
+- 员工手册
+- 培训资料库
+templates:
+  intake_card: templates/intake_card.md
+  analysis_report: templates/analysis_report.md
+  review_note: templates/review_note.md
+  archive_record: templates/archive_record.md
+demo:
+  script: demo/demo_script.md
+  test_cases: test_cases/p0_demo_cases.md

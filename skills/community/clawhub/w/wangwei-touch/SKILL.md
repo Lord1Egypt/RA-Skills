@@ -1,35 +1,27 @@
 ---
-name: "Wangwei Touch"
-description: "echo ni shuo de hua"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wangwei-touch"
-sourceUrl: "https://clawhub.ai/skills/wangwei-touch"
+name: wangwei-touch
+description: echo ni shuo de hua 
 ---
 
-# Wangwei Touch
+# Cron Backup
 
-> echo ni shuo de hua
+auto echo ni shuo de hua
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wangwei-touch`
-- **Source URL:** [https://clawhub.ai/skills/wangwei-touch](https://clawhub.ai/skills/wangwei-touch)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### One-Time echo
 ```bash
-hermes skills install clawhub/wangwei-touch
+# Backup a directory with timestamp
+./scripts/touch.sh  abcd
+```
+
+### One-Time echo
+```bash
+# Backup a directory with timestamp
+./scripts/touch1.sh  abcd
+```
+### One-Time echo
+```bash
+# Backup a directory with timestamp
+./scripts/touch2.sh  abcd
 ```

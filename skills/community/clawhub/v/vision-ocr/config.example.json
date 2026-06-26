@@ -1,0 +1,14 @@
+{
+  "ocr": {
+    "imageocr": {
+      "token": "你的 ImageOCR Token",
+      "endpoint": "你的 ImageOCR 端点"
+    },
+    "multimodal": {
+      "baseUrl": "你的多模态 API 地址（必需）",
+      "token": "你的多模态 Token（必需）",
+      "model": "你的模型名称（必需）"
+    }
+  },
+  "autoSendToFeishu": false
+}

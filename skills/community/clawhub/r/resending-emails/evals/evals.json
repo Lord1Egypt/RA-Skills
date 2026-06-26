@@ -1,0 +1,207 @@
+{
+  "skill_name": "resend-cli",
+  "version": "3.0.0",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use the Resend CLI to send a scheduled password reset email tomorrow at 09:00 Berlin time.",
+      "expected_output": "A CLI-first answer using emails send with explicit flags, an ISO timestamp, and idempotency guidance.",
+      "assertions": [
+        "Chooses resend emails send rather than batch or broadcasts",
+        "Uses a concrete scheduled-at example",
+        "Prefers ISO 8601 for the transactional schedule",
+        "Mentions idempotency for retries",
+        "Does not claim the user must use raw REST"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to send 70 different shipment notifications. Which Resend CLI command should my agent use?",
+      "expected_output": "A recommendation to use emails batch with a JSON file and the right limits.",
+      "assertions": [
+        "Chooses resend emails batch",
+        "Mentions the 100-email limit",
+        "Mentions a JSON file input",
+        "Warns that attachments are not supported",
+        "Warns that scheduled_at is not supported"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I have 250 distinct notifications to send. Can the Resend CLI do that in one call?",
+      "expected_output": "A chunking plan that keeps batches at 100 or fewer and uses multiple invocations.",
+      "assertions": [
+        "Says one batch is not enough",
+        "Recommends chunking across multiple emails batch calls",
+        "Mentions 100 as the cap",
+        "Mentions throttling or pacing"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Create a sending and receiving domain for eu.example.com in the EU region using the Resend CLI.",
+      "expected_output": "A domain-create workflow with --region eu-west-1, --receiving, DNS, and verify polling.",
+      "assertions": [
+        "Chooses resend domains create",
+        "Uses eu-west-1",
+        "Includes receiving capability",
+        "Mentions DNS record configuration outside the CLI",
+        "Includes resend domains verify and domains get as follow-up"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Set up local webhook development with ngrok and forward payloads to localhost:3000.",
+      "expected_output": "A webhooks listen answer that treats the command as a long-running stream and mentions the temporary webhook lifecycle.",
+      "assertions": [
+        "Chooses resend webhooks listen",
+        "Includes --url and --forward-to",
+        "Describes it as a long-running listener",
+        "Mentions the temporary webhook cleanup behaviour",
+        "Mentions Svix headers or webhook verification"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I want my agent to watch for new inbound emails from Resend.",
+      "expected_output": "A receiving-listen answer that treats output as NDJSON and does not confuse it with a bounded request.",
+      "assertions": [
+        "Chooses resend emails receiving listen",
+        "Mentions NDJSON or one JSON object per line",
+        "Mentions that the command is long-running",
+        "Does not describe it as a one-shot response"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Can the Resend CLI send a hosted template by template ID?",
+      "expected_output": "A careful answer that distinguishes the template lifecycle from direct template sending and surfaces the current CLI gap.",
+      "assertions": [
+        "Mentions templates create/update/publish lifecycle",
+        "Notes that the current emails send flags do not clearly expose template-id sending",
+        "Suggests inspecting local help or falling back to MCP/API",
+        "Does not confidently invent a non-existent --template-id flag"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Use the Resend CLI to create a topic, a segment, a contact, and then a broadcast.",
+      "expected_output": "A coherent subscription architecture that uses topics and segments correctly.",
+      "assertions": [
+        "Uses resend topics create",
+        "Uses resend segments create",
+        "Uses resend contacts create",
+        "Uses resend broadcasts create",
+        "Distinguishes topics from segments",
+        "Prefers segments over deprecated audiences"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "How should my agent authenticate to the Resend CLI in CI?",
+      "expected_output": "An auth answer that prefers RESEND_API_KEY or profiles over interactive login.",
+      "assertions": [
+        "Mentions RESEND_API_KEY",
+        "Mentions auth priority or profiles",
+        "Avoids relying on interactive resend login in CI",
+        "Mentions resend doctor as a quick verification step"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "My wrapper assumes the Resend CLI always writes JSON errors to stdout. Is that safe?",
+      "expected_output": "A defensive parsing answer that notes the current stderr discrepancy.",
+      "assertions": [
+        "Says wrappers should parse both stdout and stderr",
+        "References the current JSON error channel discrepancy",
+        "Keeps the return code",
+        "Does not claim stdout-only parsing is always safe"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "I need a domain-scoped send-only token for my CI pipeline.",
+      "expected_output": "A CLI-first api-keys create answer using sending_access and domain-id.",
+      "assertions": [
+        "Chooses resend api-keys create",
+        "Uses --permission sending_access",
+        "Uses --domain-id",
+        "Mentions that the token is shown only once"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "The user already created a Resend domain, but now wants to enable receiving on it via the CLI.",
+      "expected_output": "A careful answer that surfaces the current domains update ambiguity instead of overpromising.",
+      "assertions": [
+        "Mentions that domains update currently exposes TLS/open/click tracking",
+        "Notes the ambiguity around receiving toggles",
+        "Suggests inspecting local help or falling back if necessary",
+        "Does not claim a definitely-supported receiving toggle without caveat"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "What should my agent run first when Resend commands fail in an unknown environment?",
+      "expected_output": "A concise answer recommending resend doctor with JSON mode.",
+      "assertions": [
+        "Chooses resend --json -q doctor",
+        "Mentions version/auth/domain checks",
+        "Uses CLI-first diagnosis rather than raw API debugging"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Use the Resend CLI to schedule a broadcast for tomorrow morning.",
+      "expected_output": "A broadcasts answer using natural-language scheduling or a valid explicit schedule string.",
+      "assertions": [
+        "Chooses broadcasts create --send or broadcasts send",
+        "Mentions natural-language scheduling is supported for broadcasts",
+        "Includes segment-id and message body requirements",
+        "Does not use emails batch for a campaign"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "How do I reply to an inbound email in the same thread if I am using the Resend CLI?",
+      "expected_output": "A response that uses emails send with threading headers after retrieving the inbound message.",
+      "assertions": [
+        "Uses emails receiving get to fetch inbound context",
+        "Uses emails send for the reply",
+        "Mentions In-Reply-To and References",
+        "Does not confuse forward with reply-threading"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Should my agent use the Resend CLI, MCP, SDK, or raw REST?",
+      "expected_output": "A surface-selection answer that prefers the CLI for live terminal/CI operations and falls back deliberately.",
+      "assertions": [
+        "Prefers the official CLI for live terminal or CI work",
+        "Mentions MCP as a fallback or alternative live surface",
+        "Mentions SDK for app-code integration",
+        "Treats raw REST as low-level/debug/fallback"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "I want my agent to parse the output of resend emails receiving listen.",
+      "expected_output": "An answer that treats the command as a streaming NDJSON source.",
+      "assertions": [
+        "Mentions NDJSON or one JSON object per line",
+        "Mentions it is long-running",
+        "Recommends timeout/supervision or explicit stop conditions"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Why does sending from onboarding@resend.dev to a customer fail, even when I use the CLI?",
+      "expected_output": "An explanation of resend.dev testing limits and the need for a verified custom domain.",
+      "assertions": [
+        "Explains that resend.dev is testing-only",
+        "Recommends verifying a custom domain",
+        "Does not imply the CLI bypasses domain restrictions"
+      ]
+    }
+  ]
+}

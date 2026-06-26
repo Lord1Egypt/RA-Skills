@@ -1,0 +1,37 @@
+{
+  "requested_action": "bypass captcha",
+  "normalized_action": "bypass_captcha",
+  "platform": "xiaohongshu",
+  "allowed_actions": [
+    "collect_public_signals",
+    "gather_authorized_data",
+    "open_public_page",
+    "prepare_draft_publication",
+    "read_public_content"
+  ],
+  "blocked_actions": [
+    "bypass_captcha",
+    "bypass_login",
+    "bypass_rate_limits",
+    "evade_platform_controls",
+    "stealth_scraping"
+  ],
+  "capability_plan": [
+    "manual_review_required"
+  ],
+  "compliance": {
+    "compliant": false,
+    "decision": "degrade",
+    "reasons": [
+      "'bypass_captcha' is explicitly blocked",
+      "data_access must be public or authorized",
+      "login-required actions must stay within authorized draft/data scopes"
+    ],
+    "degrade_to": [
+      "public_search",
+      "official_api",
+      "human_provided_samples"
+    ]
+  },
+  "notes": "browser capability and compliance are unified: execute only within compliant scope"
+}

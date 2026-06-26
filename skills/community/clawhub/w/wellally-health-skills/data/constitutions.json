@@ -1,0 +1,715 @@
+{
+  "metadata": {
+    "name": "中医体质分类知识库",
+    "version": "1.0",
+    "source": "《中医体质分类与判定》标准",
+    "author": "王琦九种体质学说",
+    "last_updated": "2025-12-31",
+    "description": "包含9种体质类型的详细特征、判定标准和评估问题"
+  },
+  "constitutions": {
+    "平和质": {
+      "id": "peaceful_constitution",
+      "name": "平和质",
+      "description": "阴阳气血调和,体质状态良好",
+      "characteristics": {
+        "physical_features": [
+          "体型匀称健壮",
+          "面色肤色润泽",
+          "头发稠密有光泽",
+          "嗅觉通利",
+          "味觉正常",
+          "精力充沛",
+          "耐受寒热",
+          "睡眠良好",
+          "胃纳佳",
+          "二便正常"
+        ],
+        "psychological_features": [
+          "性格随和开朗",
+          "心情愉快",
+          "情志舒畅"
+        ],
+        "susceptibility": [],
+        "adaptability": {
+          "environment": "对自然环境和社会环境适应能力较强",
+          "seasons": "对四季变化适应良好"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 1,
+          "question": "您精力充沛吗?",
+          "weight": 1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 2,
+          "question": "您说话声音低弱无力吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 3,
+          "question": "您容易疲乏吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 4,
+          "question": "您容易心情不好(抑郁)吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 5,
+          "question": "您比一般人容易感冒吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 6,
+          "question": "您食欲不好吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 7,
+          "question": "您容易心慌(心跳)吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        },
+        {
+          "id": 8,
+          "question": "您容易失眠或早醒吗?",
+          "weight": -1.0,
+          "category": "平和质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 60,
+        "other_constitutions_max": 40,
+        "description": "平和质得分≥60分,其他8种偏颇体质得分均<40分"
+      }
+    },
+    "气虚质": {
+      "id": "qi_deficiency_constitution",
+      "name": "气虚质",
+      "description": "元气不足,气息低弱,机体功能状态低下",
+      "characteristics": {
+        "physical_features": [
+          "肌肉松软",
+          "容易疲乏",
+          "声音低弱",
+          "喜静懒言",
+          "容易出汗",
+          "舌淡红",
+          "脉弱"
+        ],
+        "psychological_features": [
+          "性格内向",
+          "不喜冒险",
+          "情绪不稳定"
+        ],
+        "susceptibility": [
+          "易感冒",
+          "易内脏下垂(如胃下垂、子宫下垂等)",
+          "易疲劳",
+          "易患呼吸道疾病"
+        ],
+        "adaptability": {
+          "environment": "不耐受风、寒、暑、湿邪",
+          "seasons": "秋季易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 9,
+          "question": "您容易疲乏吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 10,
+          "question": "您容易气短(呼吸短促,接不上气)吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 11,
+          "question": "您比一般人容易感冒吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 12,
+          "question": "您喜欢安静,不喜欢说话吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 13,
+          "question": "您说话声音低弱无力吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 14,
+          "question": "您活动量稍大就容易出虚汗吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 15,
+          "question": "您容易头晕(或站起时晕眩)吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        },
+        {
+          "id": 16,
+          "question": "您容易心慌吗?",
+          "weight": 1.0,
+          "category": "气虚质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "气虚质得分≥40分,判定为气虚质"
+      }
+    },
+    "阳虚质": {
+      "id": "yang_deficiency_constitution",
+      "name": "阳虚质",
+      "description": "阳气不足,身体失于温煦",
+      "characteristics": {
+        "physical_features": [
+          "肌肉松软",
+          "畏寒怕冷",
+          "手足不温",
+          "喜热饮食",
+          "精神不振",
+          "舌淡胖",
+          "脉沉迟"
+        ],
+        "psychological_features": [
+          "性格多沉静",
+          "内向",
+          "情绪不佳时易恐惧"
+        ],
+        "susceptibility": [
+          "易患痰饮、肿胀、腹泻等",
+          "易感寒邪",
+          "易患风湿性关节炎"
+        ],
+        "adaptability": {
+          "environment": "不耐寒邪,耐受夏热",
+          "seasons": "冬季易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 17,
+          "question": "您手脚发凉吗?",
+          "weight": 1.0,
+          "category": "阳虚质"
+        },
+        {
+          "id": 18,
+          "question": "您胃脘部、背部或腰膝部怕冷吗?",
+          "weight": 1.0,
+          "category": "阳虚质"
+        },
+        {
+          "id": 19,
+          "question": "您比一般人怕冷吗?",
+          "weight": 1.0,
+          "category": "阳虚质"
+        },
+        {
+          "id": 20,
+          "question": "您吃(喝)凉的东西会感到不舒服或怕吃(喝)凉东西吗?",
+          "weight": 1.0,
+          "category": "阳虚质"
+        },
+        {
+          "id": 21,
+          "question": "您受凉或吃(喝)凉的东西后容易腹泻(拉肚子)吗?",
+          "weight": 1.0,
+          "category": "阳虚质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "阳虚质得分≥40分,判定为阳虚质"
+      }
+    },
+    "阴虚质": {
+      "id": "yin_deficiency_constitution",
+      "name": "阴虚质",
+      "description": "阴液亏少,机体失于濡润",
+      "characteristics": {
+        "physical_features": [
+          "体形多瘦长",
+          "口燥咽干",
+          "手足心热",
+          "面色潮红",
+          "有烘热感",
+          "目干涩",
+          "视物模糊",
+          "唇微红",
+          "脉象细弦"
+        ],
+        "psychological_features": [
+          "易心烦易怒",
+          "性情急躁",
+          "外向活泼"
+        ],
+        "susceptibility": [
+          "易患虚劳、失精、不寐等",
+          "易感燥邪",
+          "易患甲状腺功能亢进"
+        ],
+        "adaptability": {
+          "environment": "不耐热邪,耐受寒邪",
+          "seasons": "夏季易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 22,
+          "question": "您感到口干咽燥、总想喝水吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        },
+        {
+          "id": 23,
+          "question": "您手心脚心发热吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        },
+        {
+          "id": 24,
+          "question": "您身体或脸上容易发热吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        },
+        {
+          "id": 25,
+          "question": "您皮肤或口唇干吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        },
+        {
+          "id": 26,
+          "question": "您便秘或大便干燥吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        },
+        {
+          "id": 27,
+          "question": "您面部两颧潮红或偏红吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        },
+        {
+          "id": 28,
+          "question": "您感到眼睛干涩吗?",
+          "weight": 1.0,
+          "category": "阴虚质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "阴虚质得分≥40分,判定为阴虚质"
+      }
+    },
+    "痰湿质": {
+      "id": "phlegm_dampness_constitution",
+      "name": "痰湿质",
+      "description": "痰湿凝聚,以黏滞重浊为主要特征的体质状态",
+      "characteristics": {
+        "physical_features": [
+          "体形肥胖,腹部肥满松软",
+          "面部皮肤油脂较多",
+          "多汗且黏",
+          "胸闷痰多",
+          "身重不爽",
+          "舌苔厚腻"
+        ],
+        "psychological_features": [
+          "性格偏温和",
+          "稳重",
+          "善于忍耐"
+        ],
+        "susceptibility": [
+          "易患高血压、糖尿病、肥胖症、高脂血症等",
+          "易患代谢综合征",
+          "易患脑血管疾病"
+        ],
+        "adaptability": {
+          "environment": "对梅雨季节及湿环境适应能力差",
+          "seasons": "长夏(夏季最后一个月)易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 29,
+          "question": "您感到胸闷或腹部胀满吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        },
+        {
+          "id": 30,
+          "question": "您感到身体沉重不轻松或不爽快吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        },
+        {
+          "id": 31,
+          "question": "您腹部肥满松软吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        },
+        {
+          "id": 32,
+          "question": "您有额部油脂分泌多的现象吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        },
+        {
+          "id": 33,
+          "question": "您上眼睑比别人肿(上眼睑有轻微隆起的现象)吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        },
+        {
+          "id": 34,
+          "question": "您嘴里有黏黏的感觉吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        },
+        {
+          "id": 35,
+          "question": "您平时痰多,特别是咽喉部总感到有痰堵着吗?",
+          "weight": 1.0,
+          "category": "痰湿质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "痰湿质得分≥40分,判定为痰湿质"
+      }
+    },
+    "湿热质": {
+      "id": "damp_heat_constitution",
+      "name": "湿热质",
+      "description": "湿热内蕴,以垢浊不畅为主要特征的体质状态",
+      "characteristics": {
+        "physical_features": [
+          "容易生痤疮",
+          "面垢油光",
+          "易口苦口干",
+          "身重困倦",
+          "大便黏滞不畅",
+          "小便短赤",
+          "男性易阴囊潮湿",
+          "女性带下增多"
+        ],
+        "psychological_features": [
+          "容易心烦急躁",
+          "易怒"
+        ],
+        "susceptibility": [
+          "易患疮疖、黄疸、热淋等",
+          "易患泌尿系统感染",
+          "易患皮肤病"
+        ],
+        "adaptability": {
+          "environment": "对湿环境或气温偏高环境适应能力差",
+          "seasons": "夏秋之交易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 36,
+          "question": "您面部或鼻部有油腻感或者油亮发光吗?",
+          "weight": 1.0,
+          "category": "湿热质"
+        },
+        {
+          "id": 37,
+          "question": "您容易生痤疮或疮疖吗?",
+          "weight": 1.0,
+          "category": "湿热质"
+        },
+        {
+          "id": 38,
+          "question": "您感到口苦或嘴里有异味吗?",
+          "weight": 1.0,
+          "category": "湿热质"
+        },
+        {
+          "id": 39,
+          "question": "您大便黏滞不爽(解不干净、黏马桶)吗?",
+          "weight": 1.0,
+          "category": "湿热质"
+        },
+        {
+          "id": 40,
+          "question": "您小便时尿道有发热感、尿色浓(深)吗?",
+          "weight": 1.0,
+          "category": "湿热质"
+        },
+        {
+          "id": 41,
+          "question": "您带下色黄(女性)或阴囊潮湿(男性)吗?",
+          "weight": 1.0,
+          "category": "湿热质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "湿热质得分≥40分,判定为湿热质"
+      }
+    },
+    "血瘀质": {
+      "id": "blood_stasis_constitution",
+      "name": "血瘀质",
+      "description": "血行不畅,以肤色晦黯、舌质紫黯等血瘀表现为主要特征",
+      "characteristics": {
+        "physical_features": [
+          "肤色晦黯",
+          "色素沉着",
+          "容易出现瘀斑",
+          "口唇黯淡或紫",
+          "舌暗或有瘀点",
+          "舌下静脉紫黯"
+        ],
+        "psychological_features": [
+          "易烦",
+          "健忘"
+        ],
+        "susceptibility": [
+          "易患出血、症瘕、中风、胸痹等",
+          "易患心血管疾病",
+          "易患肿瘤"
+        ],
+        "adaptability": {
+          "environment": "不耐寒邪",
+          "seasons": "冬季易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 42,
+          "question": "您的皮肤在不知不觉中会出现青紫瘀斑(皮下出血)吗?",
+          "weight": 1.0,
+          "category": "血瘀质"
+        },
+        {
+          "id": 43,
+          "question": "您的两颧部有细微红丝吗?",
+          "weight": 1.0,
+          "category": "血瘀质"
+        },
+        {
+          "id": 44,
+          "question": "您身体上有哪里疼痛(刺痛),而且位置固定吗?",
+          "weight": 1.0,
+          "category": "血瘀质"
+        },
+        {
+          "id": 45,
+          "question": "您面色晦黯或容易出现褐斑吗?",
+          "weight": 1.0,
+          "category": "血瘀质"
+        },
+        {
+          "id": 46,
+          "question": "您容易有黑眼圈吗?",
+          "weight": 1.0,
+          "category": "血瘀质"
+        },
+        {
+          "id": 47,
+          "question": "您口唇颜色偏黯吗?",
+          "weight": 1.0,
+          "category": "血瘀质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "血瘀质得分≥40分,判定为血瘀质"
+      }
+    },
+    "气郁质": {
+      "id": "qi_stagnation_constitution",
+      "name": "气郁质",
+      "description": "气机郁滞,以神情抑郁、忧虑脆弱等气郁表现为主要特征",
+      "characteristics": {
+        "physical_features": [
+          "神情抑郁",
+          "多愁善感",
+          "胁肋胀痛",
+          "善太息",
+          "嗳气呃逆",
+          "咽部有异物感",
+          "乳房胀痛"
+        ],
+        "psychological_features": [
+          "性格内向不稳定",
+          "敏感多疑",
+          "忧郁脆弱"
+        ],
+        "susceptibility": [
+          "易患郁证、失眠、梅核气等",
+          "易患抑郁症",
+          "易患乳腺增生"
+        ],
+        "adaptability": {
+          "environment": "对精神刺激适应能力较差",
+          "seasons": "春秋季节易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 48,
+          "question": "您感到闷闷不乐、情绪低沉吗?",
+          "weight": 1.0,
+          "category": "气郁质"
+        },
+        {
+          "id": 49,
+          "question": "您容易精神紧张、焦虑不安吗?",
+          "weight": 1.0,
+          "category": "气郁质"
+        },
+        {
+          "id": 50,
+          "question": "您无缘无故叹气吗?",
+          "weight": 1.0,
+          "category": "气郁质"
+        },
+        {
+          "id": 51,
+          "question": "您容易感到害怕或受到惊吓吗?",
+          "weight": 1.0,
+          "category": "气郁质"
+        },
+        {
+          "id": 52,
+          "question": "您胁肋部(肋骨两侧)或乳房胀痛吗?",
+          "weight": 1.0,
+          "category": "气郁质"
+        },
+        {
+          "id": 53,
+          "question": "您无缘无故咽部有异物感,且吐之不出咽之不下吗?",
+          "weight": 1.0,
+          "category": "气郁质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "气郁质得分≥40分,判定为气郁质"
+      }
+    },
+    "特禀质": {
+      "id": "special_constitution",
+      "name": "特禀质",
+      "description": "先天失常,以生理缺陷、过敏反应等为主要特征",
+      "characteristics": {
+        "physical_features": [
+          "过敏体质",
+          "易药物过敏",
+          "易食物过敏",
+          "易花粉过敏",
+          "易患哮喘",
+          "易出现荨麻疹",
+          "遗传性疾病",
+          "先天性畸形"
+        ],
+        "psychological_features": [
+          "无明显特征"
+        ],
+        "susceptibility": [
+          "易患药物过敏、食物过敏",
+          "易患花粉症、过敏性鼻炎、过敏性哮喘等",
+          "易患湿疹、荨麻疹等皮肤病"
+        ],
+        "adaptability": {
+          "environment": "对过敏原适应能力差",
+          "seasons": "春季花粉季节易发病"
+        }
+      },
+      "assessment_questions": [
+        {
+          "id": 54,
+          "question": "您没有感冒时也会打喷嚏吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        },
+        {
+          "id": 55,
+          "question": "您没有感冒时也会鼻塞、流鼻涕吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        },
+        {
+          "id": 56,
+          "question": "您有因季节变化、温度变化或异味等原因而咳喘的现象吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        },
+        {
+          "id": 57,
+          "question": "您容易过敏(对药物、食物、气味、花粉等)吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        },
+        {
+          "id": 58,
+          "question": "您的皮肤容易起荨麻疹(风团、风疹块)吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        },
+        {
+          "id": 59,
+          "question": "您的皮肤因过敏出现过紫癜(紫红色瘀点、瘀斑)吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        },
+        {
+          "id": 60,
+          "question": "您的皮肤一抓就红,并出现抓痕吗?",
+          "weight": 1.0,
+          "category": "特禀质"
+        }
+      ],
+      "determination_criteria": {
+        "threshold_score": 40,
+        "description": "特禀质得分≥40分,判定为特禀质"
+      }
+    }
+  },
+  "scoring_system": {
+    "scale": {
+      "1": "没有",
+      "2": "很少",
+      "3": "有时",
+      "4": "经常",
+      "5": "总是"
+    },
+    "calculation_method": "原始分数=各个题目得分之和,转化分数=[(原始分数-题目数)/(题目数×4)]×100",
+    "interpretation": {
+      "high_score": "得分越高,该体质特征越明显",
+      "low_score": "得分越低,该体质特征越不明显"
+    }
+  },
+  "determination_algorithm": {
+    "step_1": "计算各体质转化分数(0-100分)",
+    "step_2": "平和质判定:得分≥60分,其他8种体质得分均<40分",
+    "step_3": "偏颇体质判定:得分最高的体质为判定结果",
+    "step_4": "兼夹体质判定:次高分的体质得分≥40分,则为兼夹体质"
+  }
+}

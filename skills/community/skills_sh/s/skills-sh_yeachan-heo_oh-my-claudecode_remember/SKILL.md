@@ -1,35 +1,41 @@
 ---
-name: "remember"
-description: "Indexed by skills.sh from yeachan-heo/oh-my-claudecode"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yeachan-heo"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yeachan-heo/oh-my-claudecode/remember"
-sourceUrl: "https://skills.sh/yeachan-heo/oh-my-claudecode/remember"
+name: remember
+description: Review reusable project knowledge and decide what belongs in project memory, notepad, or durable docs
 ---
 
-# remember
+# Remember
 
-> Indexed by skills.sh from yeachan-heo/oh-my-claudecode
+Use this skill when the user wants to preserve or organize useful knowledge discovered during a session.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yeachan-heo
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yeachan-heo/oh-my-claudecode/remember`
-- **Source URL:** [https://skills.sh/yeachan-heo/oh-my-claudecode/remember](https://skills.sh/yeachan-heo/oh-my-claudecode/remember)
+## Goal
+Promote durable, reusable knowledge into the right memory surface instead of leaving it buried in chat history.
 
-## Overview
+## Memory surfaces
+- **Project memory** — durable team/project knowledge
+- **Notepad priority** — short high-signal context for the next turns
+- **Notepad working** — temporary active-session notes
+- **Docs / AGENTS / CLAUDE files** — durable instructions and conventions when they truly belong there
 
+## Workflow
+1. Gather the relevant session findings.
+2. Classify each item:
+   - durable project fact
+   - temporary working note
+   - operator preference or instruction
+   - duplicate / stale / conflicting information
+3. Propose the best destination for each item.
+4. Write or update only the appropriate memory surface.
+5. Call out duplicates or conflicts that should be cleaned up.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yeachan-heo/oh-my-claudecode/remember
-```
+## Rules
+- Do not dump everything into one store.
+- Prefer project memory for durable team knowledge.
+- Prefer notepad for short-lived working context.
+- Keep entries concise and actionable.
+- If something is uncertain, mark it as uncertain rather than storing it as fact.
+
+## Output
+- What was stored
+- Where it was stored
+- Any duplicates/conflicts found
+

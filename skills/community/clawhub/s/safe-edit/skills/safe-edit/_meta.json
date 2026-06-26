@@ -1,0 +1,25 @@
+{
+  "owner": "ijevin",
+  "slug": "safe-edit",
+  "displayName": "Safe Edit - 安全配置修改辅助技能",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772942000000,
+    "commit": "initial"
+  },
+  "description": "在修改重要配置文件前自动设置回滚机制，防止 OpenClaw 自己把自己改崩溃。支持 Linux/macOS/FreeBSD/Windows。",
+  "keywords": ["safe-edit", "backup", "rollback", "config", "safety", "openclaw"],
+  "tags": ["safety", "backup", "rollback", "config"],
+  "features": [
+    "✅ 自动备份配置文件",
+    "⏱️ 15分钟后自动回滚",
+    "✅ 确认成功后取消回滚",
+    "🌐 跨平台支持：Linux/macOS/FreeBSD/Windows",
+    "🛡️ 防止配置错误导致服务崩溃"
+  ],
+  "requirements": {
+    "bash": ">=4.0",
+    "at": "（Linux/BSD 可选）"
+  },
+  "usage": "修改配置文件前说'使用 safe-edit'即可自动设置回滚机制"
+}

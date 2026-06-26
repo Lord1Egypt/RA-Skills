@@ -1,0 +1,255 @@
+# Layout Matrix — DeckCraft v5
+# Each layout's constraints: char budget, element limits, recommended content density
+
+layouts:
+  cover:
+    display_name: "Cover Slide"
+    description: "Title slide with optional subtitle, author, date, background image"
+    char_budget:
+      title: 60
+      subtitle: 40
+    element_limits:
+      max_images: 1
+    recommended_for: [opening, title]
+    dark_bg: true
+
+  closing:
+    display_name: "Closing Slide"
+    description: "Thank you slide with optional message and contact"
+    char_budget:
+      title: 30
+      message: 50
+      contact: 40
+    element_limits: {}
+    recommended_for: [closing, q_and_a]
+    dark_bg: true
+
+  toc:
+    display_name: "Table of Contents"
+    description: "Agenda slide with numbered items"
+    char_budget:
+      item_title: 30
+      item_desc: 40
+    element_limits:
+      max_items: 6
+    recommended_for: [agenda, overview]
+
+  section_divider:
+    display_name: "Section Divider"
+    description: "Full dark background section separator"
+    char_budget:
+      title: 40
+      subtitle: 50
+    element_limits: {}
+    recommended_for: [transition, section_break]
+    dark_bg: true
+
+  content:
+    display_name: "Content Slide"
+    description: "Standard bullet slide with optional image and key point"
+    char_budget:
+      title: 50
+      bullet: 80
+      key_point: 80
+    element_limits:
+      max_bullets: 5
+      max_images: 1
+    recommended_for: [overview, explanation, data_commentary]
+
+  content_with_icon:
+    display_name: "Icon Row Content"
+    description: "Content with icon-style rows (icon + heading + description)"
+    char_budget:
+      heading: 30
+      description: 60
+    element_limits:
+      max_items: 5
+    recommended_for: [features, capabilities, list]
+
+  two_col:
+    display_name: "Two-Column Comparison"
+    description: "Side-by-side comparison with card layout"
+    char_budget:
+      title: 50
+      card_title: 20
+      bullet: 60
+    element_limits:
+      max_items_per_col: 5
+    recommended_for: [comparison, before_after, pros_cons]
+
+  vs_compare:
+    display_name: "VS Comparison Table"
+    description: "Structured comparison table with dimension rows"
+    char_budget:
+      title: 50
+      dimension: 20
+      value: 20
+    element_limits:
+      max_rows: 6
+    recommended_for: [comparison, competitive_analysis]
+
+  table:
+    display_name: "Data Table"
+    description: "Structured data table with optional insight bullets"
+    char_budget:
+      title: 50
+      header: 15
+      cell: 20
+      insight: 60
+    element_limits:
+      max_cols: 6
+      max_rows: 8
+      max_insights: 3
+    recommended_for: [data, metrics, financials]
+
+  stat_cards:
+    display_name: "Stat Cards"
+    description: "Big number KPI cards"
+    char_budget:
+      number: 12
+      label: 20
+    element_limits:
+      max_cards: 4
+    recommended_for: [kpis, headline_numbers, quarterly_results]
+
+  chart_bar:
+    display_name: "Bar Chart"
+    description: "Vertical or horizontal bar chart"
+    char_budget:
+      title: 50
+      label: 15
+    element_limits:
+      max_categories: 8
+      max_series: 3
+    recommended_for: [comparison, trends, budget_allocation]
+
+  chart_pie:
+    display_name: "Pie/Donut Chart"
+    description: "Pie or donut chart for proportions"
+    char_budget:
+      title: 50
+      label: 15
+    element_limits:
+      max_segments: 6
+    recommended_for: [market_share, segmentation, distribution]
+
+  chart_line:
+    display_name: "Line/Area Chart"
+    description: "Line or area chart for trends over time"
+    char_budget:
+      title: 50
+      label: 10
+    element_limits:
+      max_points: 12
+      max_series: 3
+    recommended_for: [trends, growth, forecasting]
+
+  chart_gauge:
+    display_name: "Gauge Chart"
+    description: "Speedometer-style single metric"
+    char_budget:
+      title: 50
+      label: 15
+    element_limits: {}
+    recommended_for: [single_metric, target_vs_actual, score]
+
+  timeline:
+    display_name: "Timeline"
+    description: "Horizontal timeline with milestone nodes"
+    char_budget:
+      period: 10
+      event: 25
+    element_limits:
+      max_milestones: 5
+    recommended_for: [roadmap, milestones, project_timeline]
+
+  process_flow:
+    display_name: "Process Flow"
+    description: "Sequential steps with colored cards"
+    char_budget:
+      step: 30
+    element_limits:
+      max_steps: 5
+    recommended_for: [process, workflow, methodology]
+
+  matrix_2x2:
+    display_name: "2×2 Matrix"
+    description: "Priority/BCG/SWOT-style quadrant matrix"
+    char_budget:
+      quadrant_title: 20
+      quadrant_desc: 50
+    element_limits: {}
+    recommended_for: [prioritization, bcg_matrix, swot, strategic_framework]
+
+  quote:
+    display_name: "Quote Slide"
+    description: "Large quote with attribution on dark background"
+    char_budget:
+      quote: 120
+      attribution: 30
+    element_limits: {}
+    recommended_for: [testimonial, vision_statement, keynote_moment]
+    dark_bg: true
+
+  image_full:
+    display_name: "Full Image"
+    description: "Full-width image with title and caption"
+    char_budget:
+      title: 50
+      caption: 60
+    element_limits:
+      max_images: 1
+    recommended_for: [visual_evidence, screenshot, product_photo]
+
+  image_split:
+    display_name: "Split Image + Text"
+    description: "Image on one side, bullets on the other"
+    char_budget:
+      title: 50
+      bullet: 60
+    element_limits:
+      max_bullets: 4
+      max_images: 1
+    recommended_for: [product_feature, case_study, data_with_visual]
+
+  kpi_dashboard:
+    display_name: "KPI Dashboard"
+    description: "Dashboard with stat cards and progress bars"
+    char_budget:
+      label: 15
+      value: 8
+      unit: 5
+    element_limits:
+      max_kpis: 4
+    recommended_for: [dashboard, performance_review, metrics_overview]
+
+  team_grid:
+    display_name: "Team Grid"
+    description: "Team member cards with avatar initials"
+    char_budget:
+      name: 15
+      role: 20
+    element_limits:
+      max_members: 6
+    recommended_for: [team_introduction, stakeholders, about_us]
+
+  checklist:
+    display_name: "Checklist"
+    description: "Checkable items with done/pending status"
+    char_budget:
+      item: 50
+    element_limits:
+      max_items: 8
+    recommended_for: [action_items, requirements, audit]
+
+  summary:
+    display_name: "Summary / Key Takeaways"
+    description: "Key takeaways on dark background with card list"
+    char_budget:
+      title: 40
+      point: 80
+      conclusion: 60
+    element_limits:
+      max_points: 5
+    recommended_for: [closing, key_takeaways, recommendations]
+    dark_bg: true

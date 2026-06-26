@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <defs>
+    <style>
+      .title { font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 600; fill: #1a1a2e; }
+      .label { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 500; fill: #4a5568; }
+      .value { font-family: ui-monospace, monospace; font-size: 14px; fill: #2d3748; }
+      .footer { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #718096; }
+    </style>
+  </defs>
+  <rect x="12" y="12" width="456" height="296" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="240" y="48" text-anchor="middle" class="title" data-field="title">ClawHub Skill &#21024;&#38500;&#35831;&#27714; / Deletion Request</text>
+  <line x1="48" y1="68" x2="432" y2="68" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="48" y="98" class="label" data-field="search-label">&#22312; ClawHub &#25628;&#32034;&#20197;&#19979;&#20851;&#38190;&#35789;&#21487;&#23450;&#20301;&#27492; skill:</text>
+  <text x="48" y="122" class="value" data-field="search-keywords"><tspan>'uninstaller'</tspan><tspan dx="8">&#25110;</tspan><tspan dx="8">'OpenClaw uninstall'</tspan></text>
+  <text x="48" y="158" class="label" data-field="urls-label">ClawHub &#20837;&#21475;:</text>
+  <text x="48" y="182" class="value" data-field="urls">claw-hub.net, clawhub.biz, clawhub.ai</text>
+  <text x="240" y="280" text-anchor="middle" class="footer" data-field="footer">&#29992;&#36884;&#65306;&#25351;&#23548;&#29992;&#25143;&#23433;&#20840;&#21368;&#36733; OpenClaw&#12290;&#31038;&#21306;&#32500;&#25252;&#65292;&#26080;&#21830;&#19994;&#20851;&#32852;&#12290;</text>
+</svg>

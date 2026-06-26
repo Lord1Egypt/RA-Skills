@@ -1,0 +1,10 @@
+# DeepRecall Dependencies
+# Required for LLM summarization functionality
+aiohttp>=3.8.0
+
+# SQLite3 is included in Python standard library
+# No additional dependencies needed for core memory retrieval functions
+
+# For development and testing
+# pytest>=7.0.0
+# black>=22.0.0

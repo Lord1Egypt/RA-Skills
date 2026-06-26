@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bbc-skill — 哔哩哔哩评论采集 for AI Agents</title>
+  <meta name="description" content="Agent 原生 CLI：一键拉取 B 站视频全部评论，交给 Claude Code / Codex 做情感、关键词、受众分析。零依赖、JSON envelope、串行批量模式，支持 Claude Code / Codex / OpenClaw。">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="canonical" href="https://agents365-ai.github.io/bbc-skill/zh.html">
+  <link rel="alternate" hreflang="en" href="https://agents365-ai.github.io/bbc-skill/">
+  <link rel="alternate" hreflang="zh" href="https://agents365-ai.github.io/bbc-skill/zh.html">
+  <meta property="og:title" content="bbc-skill — 哔哩哔哩评论采集 for AI Agents">
+  <meta property="og:description" content="一键拉取 B 站视频全部评论，交给 AI agent 做情感 / 关键词 / 受众分析。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agents365-ai.github.io/bbc-skill/zh.html">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    [data-theme="dark"] {
+      --bg: #0d1117; --bg-card: #161b22; --bg-code: #1c2128;
+      --border: #30363d; --text: #e6edf3; --text-muted: #8b949e;
+      --accent: #FB7299; --accent-hover: #ff8ea8;
+      --green: #3fb950; --red: #f85149; --amber: #d29922;
+    }
+    [data-theme="light"] {
+      --bg: #ffffff; --bg-card: #f6f8fa; --bg-code: #f0f3f6;
+      --border: #d0d7de; --text: #1f2328; --text-muted: #656d76;
+      --accent: #d94d77; --accent-hover: #b53865;
+      --green: #1a7f37; --red: #cf222e; --amber: #9a6700;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    code, pre {
+      font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.3s;
+    }
+    nav .logo { font-weight: 700; font-size: 16px; color: var(--text); }
+    nav .logo span { color: var(--accent); }
+    nav .nav-right { display: flex; align-items: center; gap: 16px; }
+    .lang-switch {
+      font-size: 14px; font-weight: 500; color: var(--text-muted);
+      padding: 4px 12px; border: 1px solid var(--border); border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .lang-switch:hover { color: var(--text); border-color: var(--text-muted); text-decoration: none; }
+    .theme-btn {
+      background: none; border: 1px solid var(--border); color: var(--text-muted);
+      border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 16px;
+      transition: all 0.2s; line-height: 1;
+    }
+    .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 72px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .hero { text-align: center; padding: 96px 0 72px; border-bottom: 1px solid var(--border); }
+    .hero-badge {
+      display: inline-block; font-size: 13px; color: var(--accent);
+      border: 1px solid var(--accent); border-radius: 20px;
+      padding: 4px 14px; margin-bottom: 20px; letter-spacing: 0.5px;
+    }
+    .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p.tagline { font-size: 19px; color: var(--text-muted); max-width: 680px; margin: 0 auto 32px; }
+    .hero-install {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--bg-code); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 20px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 14px;
+      margin-bottom: 24px; max-width: 90%;
+    }
+    .hero-install code { color: var(--green); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .copy-btn {
+      background: none; border: 1px solid var(--border); color: var(--text-muted);
+      border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 13px; transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { color: var(--text); border-color: var(--text-muted); }
+    .hero-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px;
+      border-radius: 8px; font-size: 15px; font-weight: 600; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    [data-theme="light"] .btn-primary { color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); text-decoration: none; }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--text-muted); text-decoration: none; }
+
+    .section-title { font-size: 32px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+    .section-sub { color: var(--text-muted); font-size: 17px; text-align: center; margin-bottom: 48px; max-width: 720px; margin-left: auto; margin-right: auto; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .feature-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px; transition: background 0.3s;
+    }
+    .feature-icon { font-size: 28px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .feature-card p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+
+    .steps { display: grid; gap: 28px; max-width: 820px; margin: 0 auto; }
+    .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start; }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px;
+    }
+    .step h3 { font-size: 18px; margin-bottom: 8px; }
+    .step p { color: var(--text-muted); margin-bottom: 12px; font-size: 15px; }
+    .step pre {
+      background: var(--bg-code); border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 18px; font-size: 13px; color: var(--green);
+      overflow-x: auto; line-height: 1.5;
+    }
+
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    .compare-table th, .compare-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    .compare-table th { color: var(--text-muted); font-weight: 600; font-size: 13px; letter-spacing: 0.5px; }
+    .compare-table tr:hover { background: var(--bg-card); }
+    .check { color: var(--green); font-weight: 700; }
+    .cross { color: var(--red); }
+
+    .ethics {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-code) 100%);
+      border: 1px solid var(--amber); border-radius: 12px; padding: 32px;
+      max-width: 820px; margin: 0 auto;
+    }
+    .ethics h3 { font-size: 20px; margin-bottom: 16px; color: var(--amber); }
+    .ethics ul { margin-left: 20px; color: var(--text-muted); font-size: 15px; }
+    .ethics ul li { margin-bottom: 8px; }
+    .ethics ul li strong { color: var(--text); }
+
+    .output-preview {
+      background: var(--bg-code); border: 1px solid var(--border); border-radius: 10px;
+      padding: 20px; overflow-x: auto;
+      font-size: 13px; color: var(--text); line-height: 1.6;
+    }
+    .output-preview .key { color: var(--accent); }
+    .output-preview .str { color: var(--green); }
+    .output-preview .num { color: #58a6ff; }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 32px 0;
+      text-align: center; color: var(--text-muted); font-size: 14px;
+    }
+    footer a { color: var(--text-muted); }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 32px; }
+      .hero p.tagline { font-size: 17px; }
+      section { padding: 48px 0; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-install { flex-direction: column; font-size: 12px; }
+    }
+    .skip-link {
+      position: absolute; top: -40px; left: 0; background: var(--accent); color: #fff;
+      padding: 8px 16px; z-index: 200; font-size: 14px; transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">跳到主内容</a>
+
+  <nav role="navigation" aria-label="主导航">
+    <div class="logo">bbc-<span>skill</span></div>
+    <div class="nav-right">
+      <a href="index.html" class="lang-switch">EN</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="切换主题" aria-label="切换明暗主题">&#x1F319;</button>
+    </div>
+  </nav>
+
+  <main id="main-content">
+  <div class="hero">
+    <div class="container">
+      <div class="hero-badge">v1.0.0 &mdash; Agent 原生 CLI</div>
+      <h1>bbc-<span>skill</span></h1>
+      <p class="tagline">一键拉取 B 站视频全部评论，交给 Claude Code / Codex 做情感、关键词、受众分析。零依赖，专为 AI agent 设计。</p>
+      <div class="hero-install">
+        <code id="install-cmd">git clone https://github.com/Agents365-ai/bbc-skill.git ~/.claude/skills/bbc-skill</code>
+        <button class="copy-btn" onclick="copyInstall()">复制</button>
+      </div>
+      <div class="hero-links">
+        <a href="https://github.com/Agents365-ai/bbc-skill" class="btn btn-primary">GitHub</a>
+        <a href="#quick-start" class="btn btn-outline">快速上手</a>
+        <a href="index.html" class="btn btn-outline">English</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">为什么用这个 skill</h2>
+      <p class="section-sub">唯一为 AI agent 设计的 B 站评论工具：结构化 JSON 输出、自描述 schema、委托式认证、严格串行批量模式。</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F40D;</div>
+          <h3>零依赖</h3>
+          <p>纯 Python 3.9+ 标准库，不需要 <code>pip install</code>。Cookie 解密走系统自带的 <code>security</code> / <code>openssl</code>。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F4AC;</div>
+          <h3>完整评论</h3>
+          <p>顶级评论 + 楼中楼 + 置顶；视频元数据一起拉：播放、点赞、投币、收藏、标签、UP 主信息。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F916;</div>
+          <h3>Agent 原生 CLI</h3>
+          <p>stdout 稳定 JSON envelope、stderr NDJSON 进度、分类 exit code、dry-run 预览、schema 自描述。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F9D1;&#x200D;&#x1F3A4;</div>
+          <h3>串行批量模式</h3>
+          <p>按 UID 拉 UP 主所有视频评论 —— 一个一个来，从不并行。视频之间 5-10s 随机休眠，断点续跑。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F510;</div>
+          <h3>认证委托</h3>
+          <p>人在浏览器登录，用开源插件 <a href="https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc">Get cookies.txt LOCALLY</a> 导出 cookie 即可，agent 永远不碰 OAuth。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x267B;&#xFE0F;</div>
+          <h3>断点续传与增量</h3>
+          <p>重跑同一 <code>fetch</code> 自动跳过已拉页。<code>--since</code> 只拉新评论，方便长期监控。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quick-start">
+    <div class="container">
+      <h2 class="section-title">快速上手</h2>
+      <p class="section-sub">三步从零到分析完成。</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>装 Chrome 插件「Get cookies.txt LOCALLY」</h3>
+            <p>完全本地、开源、不上传任何数据。在已登录 bilibili.com 的标签页点 Export，保存 <code>www.bilibili.com_cookies.txt</code>。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>安装 bbc-skill</h3>
+            <p>根据你用的 agent 选路径（完整列表见下方）。</p>
+<pre>git clone https://github.com/Agents365-ai/bbc-skill.git ~/.claude/skills/bbc-skill</pre>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>拉评论 → 交给 Claude 分析</h3>
+            <p>验证 cookie → 拉取 → 让 Claude Code 读分析。</p>
+<pre>bbc cookie-check --cookie-file ~/Downloads/www.bilibili.com_cookies.txt
+bbc fetch BV1NjA7zjEAU --cookie-file ~/Downloads/www.bilibili.com_cookies.txt
+# 然后跟 Claude 说：「读 bilibili-comments/BV1NjA7zjEAU/summary.json，
+# 告诉我受众情绪和高频反馈主题」</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">多平台支持</h2>
+      <p class="section-sub">同一份 <code>SKILL.md</code> + <code>agents/openai.yaml</code> sidecar，兼容 6 个平台。</p>
+      <div class="table-wrapper">
+      <table class="compare-table">
+        <thead>
+          <tr><th>平台</th><th>状态</th><th>安装路径</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Claude Code</td><td class="check">&#x2713; 原生支持</td><td><code>~/.claude/skills/bbc-skill/</code></td></tr>
+          <tr><td>OpenAI Codex</td><td class="check">&#x2713; 原生支持</td><td><code>~/.agents/skills/bbc-skill/</code></td></tr>
+          <tr><td>OpenClaw / ClawHub</td><td class="check">&#x2713; 原生支持</td><td><code>~/.openclaw/skills/bbc-skill/</code></td></tr>
+          <tr><td>Hermes Agent</td><td class="check">&#x2713; 原生支持</td><td><code>~/.hermes/skills/data/bbc-skill/</code></td></tr>
+          <tr><td>Opencode</td><td class="check">&#x2713; 原生支持</td><td><code>~/.config/opencode/skills/bbc-skill/</code></td></tr>
+          <tr><td>SkillsMP</td><td class="check">&#x2713; 已索引</td><td><code>skills install bbc-skill</code></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">输出格式</h2>
+      <p class="section-sub">JSONL 扁平评论 + 丰富的 summary.json，Claude 先读后者建立全局认知再按需采样前者。</p>
+      <pre class="output-preview">bilibili-comments/BV1NjA7zjEAU/
+<span class="key">├── comments.jsonl</span>       <span class="str"># 每行一条评论，共 59 行</span>
+<span class="key">├── summary.json</span>         <span class="str"># 视频元数据 + 统计 + Top-N（~13KB）</span>
+<span class="key">├── raw/</span>                  <span class="str"># 原始 API 响应归档</span>
+<span class="key">└── .bbc-state.json</span>      <span class="str"># 断点 & 增量状态</span>
+
+<span class="str">// summary.json 预览</span>
+{
+  <span class="key">"video"</span>: {
+    <span class="key">"title"</span>: <span class="str">"会魔法吗？3步搞定Claude Code…"</span>,
+    <span class="key">"stat"</span>: { <span class="key">"view"</span>: <span class="num">7287</span>, <span class="key">"like"</span>: <span class="num">97</span>, <span class="key">"coin"</span>: <span class="num">70</span>, <span class="key">"reply"</span>: <span class="num">59</span> }
+  },
+  <span class="key">"counts"</span>: { <span class="key">"total"</span>: <span class="num">59</span>, <span class="key">"top_level"</span>: <span class="num">44</span>, <span class="key">"nested"</span>: <span class="num">14</span>, <span class="key">"pinned"</span>: <span class="num">1</span>,
+              <span class="key">"completeness"</span>: <span class="num">1.0</span>, <span class="key">"unique_users"</span>: <span class="num">46</span> },
+  <span class="key">"time_distribution"</span>: { <span class="key">"earliest_iso"</span>: <span class="str">"…"</span>, <span class="key">"by_day"</span>: [...] },
+  <span class="key">"top_liked"</span>: [...],
+  <span class="key">"top_replied"</span>: [...],
+  <span class="key">"ip_distribution"</span>: { <span class="str">"浙江"</span>: <span class="num">5</span>, <span class="str">"广东"</span>: <span class="num">4</span>, ... }
+}</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">⚠️ 合理使用声明</h2>
+      <p class="section-sub">本工具仅限个人少量合法使用。不接受请不要跑。</p>
+      <div class="ethics">
+        <h3>&#x2705; 可以</h3>
+        <ul>
+          <li><strong>分析你自己的视频</strong> —— 这是主要使用场景。</li>
+          <li><strong>协助其他 UP 主</strong>，在对方明确授权下使用。</li>
+          <li><strong>遵守内置节流</strong>：每请求 1s、批量模式视频间 5-10s 随机休眠。不要改源码去掉这些。</li>
+        </ul>
+        <h3>&#x274C; 不可以</h3>
+        <ul>
+          <li><strong>大规模爬取陌生 UP 主的视频评论</strong>或整个分区。</li>
+          <li><strong>商业转卖或公开二次发布</strong>爬下来的数据。</li>
+          <li><strong>绕过速率限制</strong>、伪造 UA、使用代理池规避 B 站风控。</li>
+          <li><strong>高频自动化任务</strong> —— 例如每天定时全量重扫同一 UP。</li>
+          <li><strong>骚扰、人肉、定向引战</strong> —— 用爬到的 UID / IP 属地做这种事。</li>
+        </ul>
+        <p style="margin-top: 20px; color: var(--text-muted); font-size: 14px;">
+          机构 / 商业用途请走
+          <a href="https://openhome.bilibili.com/">B 站开放平台</a>
+          官方 API。贯彻数据最小化原则：拉完 → 分析 → 删除。
+          本项目与 bilibili.com 无任何关联；使用本工具造成的账号风控、封禁、法律后果由使用者自行承担。
+        </p>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>由 <a href="https://github.com/Agents365-ai">Agents365-ai</a> 构建 · MIT License · 与哔哩哔哩无任何关联</p>
+      <p style="margin-top: 8px;">
+        <a href="https://github.com/Agents365-ai/bbc-skill">GitHub</a> &middot;
+        <a href="https://github.com/Agents365-ai/bbc-skill/blob/main/README_CN.md">README</a> &middot;
+        <a href="https://github.com/Agents365-ai/bbc-skill/issues">提 Issue</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const cur = root.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('bbc-theme', next); } catch (e) {}
+    }
+    (function () {
+      try {
+        const saved = localStorage.getItem('bbc-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+    function copyInstall() {
+      const text = document.getElementById('install-cmd').textContent;
+      navigator.clipboard.writeText(text).then(function () {
+        const btn = document.querySelector('.copy-btn');
+        const orig = btn.textContent;
+        btn.textContent = '已复制!';
+        setTimeout(function () { btn.textContent = orig; }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Abstract Fit",
+  "tagline": "摘要字数与四段结构槽位",
+  "description": "Count abstract length and split into 背景/方法/结果/结论-style slots for Chinese thesis abstracts.",
+  "category": "utility",
+  "tags": ["student", "摘要", "论文", "毕业设计", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

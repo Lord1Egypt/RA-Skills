@@ -1,0 +1,22 @@
+{
+  &quot;invoice_num&quot;: &quot;2026-001&quot;,
+  &quot;date&quot;: &quot;2026-03-29&quot;,
+  &quot;due_date&quot;: &quot;2026-04-28&quot;,
+  &quot;client&quot;: {
+    &quot;name&quot;: &quot;Example Client Inc.&quot;,
+    &quot;address&quot;: &quot;456 Client St, Saskatoon, SK S7K 1A1&quot;,
+    &quot;email&quot;: &quot;billing@example.com&quot;
+  },
+  &quot;items&quot;: [
+    {
+      &quot;desc&quot;: &quot;Custom skill: weather integration&quot;,
+      &quot;hours&quot;: 8,
+      &quot;rate&quot;: 150
+    },
+    {
+      &quot;desc&quot;: &quot;ClawHub publish and validation&quot;,
+      &quot;fixed&quot;: 100
+    }
+  ],
+  &quot;expenses&quot;: 25.50
+}

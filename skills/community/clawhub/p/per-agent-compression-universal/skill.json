@@ -1,0 +1,27 @@
+{
+  "name": "per-agent-compression-universal",
+  "version": "1.4.0",
+  "description": "Zero-config memory consolidation for multi-agent OpenClaw deployments. Auto-discovers agents and registers staggered cron tasks with full state tracking, deduplication, and domain-aware extraction.",
+  "author": "OpenClaw CTO",
+  "license": "MIT",
+  "tags": ["memory", "automation", "cron", "compression", "multi-agent", "auto-discovery"],
+  "capabilities": [
+    "memory-consolidation",
+    "workspace-isolation",
+    "agent-auto-discovery",
+    "state-persistence",
+    "deduplication"
+  ],
+  "entry": {
+    "type": "installer",
+    "installScript": "install.sh",
+    "uninstallScript": "uninstall.sh",
+    "postInstallMessage": "Per-agent compression tasks registered for all discovered agents with full state tracking and deduplication. Note: Skill is in active testing; see README for limitations and manual verification steps."
+  },
+  "requirements": {
+    "openclawVersion": ">=2026.3.8",
+    "binaries": ["openclaw", "jq"],
+    "plugins": []
+  },
+  "preInstallChecks": []
+}

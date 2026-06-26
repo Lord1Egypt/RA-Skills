@@ -1,0 +1,22 @@
+# =============================================
+# project-init Skill 环境变量配置示例
+# 复制本文件内容到 ~/.config/project-init/.env
+# =============================================
+
+# Gitea 服务器地址
+GITEA_URL=http://43.156.243.152:3000
+
+# AIFusionBot 的 Personal Access Token
+# 获取方式：登录 Gitea → 用户设置 → 应用 → 生成令牌
+GITEA_TOKEN=your_token_here
+
+# 操作的 Gitea 组织名
+GITEA_ORG=HKU-AIFusion
+
+# imap-smtp-email Skill 的绝对路径（用于发送邮件通知）
+# 例如：/home/ubuntu/.openclaw/skills/imap-smtp-email
+EMAIL_SKILL_PATH=/path/to/imap-smtp-email
+
+# 发件邮箱账号名称（对应 imap-smtp-email/.env 中的账号前缀，留空则用默认账号）
+# 例如配置了 BOT_SMTP_HOST=... 则填 bot，留空则用无前缀的默认账号
+EMAIL_ACCOUNT=

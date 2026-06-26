@@ -1,0 +1,15 @@
+{
+  "name": "stdb_forget",
+  "description": "Deletes a local SpacetimeDB memory by ID.",
+  "command": "node ~/.openclaw/workspace/skills/spacetime-memory/tools/stdb_forget.js",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The ID of the memory to delete."
+      }
+    },
+    "required": ["id"]
+  }
+}

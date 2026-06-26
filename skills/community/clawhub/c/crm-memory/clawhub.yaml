@@ -1,0 +1,16 @@
+﻿name: crm-memory
+version: 1.0.0
+description: 面向对象的客户记忆体系 - 自动维护客户索引和详情文件，联系人/机会/项目/合同/交付/沟通记录结构化集中存放。对话后自动写入更新。
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/crm-memory
+license: MIT-0
+tags:
+  - memory
+  - customer
+  - crm
+  - knowledge-base
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

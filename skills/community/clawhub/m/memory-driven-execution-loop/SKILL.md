@@ -1,35 +1,41 @@
 ---
-name: "Memory Driven Execution Loop"
-description: "Deterministic external-memory execution loop using rules/goal/plan/progress/notes/lessons with strict preflight, one-step execution, and measurable lesson qu..."
-category: "productivity"
-source: "ClawHub"
-tags: [memory, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-driven-execution-loop"
-sourceUrl: "https://clawhub.ai/skills/memory-driven-execution-loop"
+name: memory-driven-execution-loop
+description: Deterministic external-memory execution loop using rules/goal/plan/progress/notes/lessons with strict preflight, one-step execution, and measurable lesson quality gates.
 ---
 
-# Memory Driven Execution Loop
+# Memory-Driven Execution Loop
 
-> Deterministic external-memory execution loop using rules/goal/plan/progress/notes/lessons with strict preflight, one-step execution, and measurable lesson qu...
+Run execution from external state files only.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-driven-execution-loop`
-- **Source URL:** [https://clawhub.ai/skills/memory-driven-execution-loop](https://clawhub.ai/skills/memory-driven-execution-loop)
+## Required Files
+- `rules.md`
+- `goal.md`
+- `plan.md`
+- `progress.md`
+- `notes.md`
+- `lessons.md`
 
-## Overview
+## Strict Loop
+1. Read `rules.md` first.
+2. Read all other memory files.
+3. Validate one clear next action.
+4. Write reasoning in notes.
+5. Execute one step only.
+6. Update progress and notes.
+7. Convert failures into lessons.
 
+## Timed Task Rule
+If user specifies duration (e.g., 30 minutes):
+- satisfy wall-clock duration first
+- never substitute with output count
+- completion requires start/end/elapsed proof
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-driven-execution-loop
-```
+## Lesson Quality Gate (Universal but actionable)
+Every universal lesson must include:
+- Trigger
+- Action
+- Metric/threshold
+- Boundary conditions
+- At least 2 cross-field examples
+
+Missing fields => lesson invalid.

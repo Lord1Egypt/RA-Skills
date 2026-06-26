@@ -1,0 +1,50 @@
+{
+  "name": "expense",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for tracking, categorizing, and reporting expenses. Covers personal spending, employee reimbursement, freelancer tax deductions, and small business financial records.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "expense", "spending", "reimbursement", "receipt", "budget",
+    "tax deduction", "business expense", "expense report", "freelancer",
+    "small business", "accounting", "finance", "tracking", "mileage"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "expense_logging": "Captures expenses with all details needed for reimbursement or tax records",
+    "spending_analysis": "Identifies patterns and categories where spending exceeds intentions",
+    "reimbursement_reports": "Builds expense reports that meet company policy requirements",
+    "tax_preparation": "Organizes business expenses by deduction category for tax filing",
+    "receipt_management": "Documents expenses with or without physical receipts",
+    "budget_tracking": "Monitors spending against budget by category throughout the month"
+  },
+  "triggers": [
+    "expense", "spending", "receipt", "reimbursement", "expense report",
+    "business expense", "tax deduction", "mileage", "per diem",
+    "budget", "subscription", "home office", "client meal",
+    "travel expense", "out of pocket", "write off", "deductible"
+  ],
+  "heartbeat": {
+    "daily": "Log expenses while details are fresh",
+    "weekly": "Check for duplicate charges and reimbursable items",
+    "monthly": "Full spending review and expense report submission",
+    "quarterly": "Strategic review and estimated tax calculation",
+    "annual": "Complete expense audit for tax preparation"
+  },
+  "audience": [
+    "Employees tracking reimbursable work expenses",
+    "Freelancers and self-employed capturing tax deductions",
+    "Small business owners managing financial records",
+    "Individuals monitoring personal spending against budget",
+    "Anyone preparing for tax season with business expenses"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

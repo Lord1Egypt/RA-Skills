@@ -1,0 +1,9 @@
+{
+  "name": "generate-podcast-clips-skill",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "generate-podcast-clips": "node ./scripts/generate-podcast-clips.js"
+  }
+}

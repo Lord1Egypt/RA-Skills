@@ -1,0 +1,4 @@
+version: 1
+display_name: 专家思维
+short_description: 用私董会式动态讨论处理复杂问题，支持自然接话、脑暴、红队和收束结论。
+default_prompt: 使用 expert-thinking，按私董会模式让最适合的专家自然接话讨论，讨论出结果就停，并给我明确结论。

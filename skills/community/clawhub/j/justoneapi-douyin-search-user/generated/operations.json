@@ -1,0 +1,74 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin/search-user/v2 for Douyin (TikTok China) User Search through JustOneAPI with keyword.",
+  "displayName": "Douyin (TikTok China) User Search",
+  "endpointPath": "search-user",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin (TikTok China) user Search data, including profile metadata and follower signals, for creator discovery and account research.",
+      "method": "GET",
+      "operationId": "searchDouyinUserV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number (starting from 1).",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by user type.\n\nAvailable Values:\n- `common_user`: Common User\n- `enterprise_user`: Enterprise User\n- `personal_user`: Verified Individual User",
+          "enumValues": [
+            "common_user",
+            "enterprise_user",
+            "personal_user"
+          ],
+          "location": "query",
+          "name": "userType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin/search-user/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Search",
+      "tags": [
+        "Douyin (TikTok China)"
+      ]
+    }
+  ],
+  "platformKey": "douyin",
+  "primaryTag": "Douyin (TikTok China)",
+  "skillName": "justoneapi_douyin_search_user",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-search-user",
+  "sourceTitle": "OpenAPI definition"
+}

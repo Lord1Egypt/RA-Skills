@@ -1,0 +1,17 @@
+{
+  "title": "访问来源占比",
+  "subtitle": "默认示例数据",
+  "chartType": "pie",
+  "goal": "composition",
+  "categoryField": "source",
+  "valueField": "visits",
+  "dataset": [
+    { "source": "直接访问", "visits": 335 },
+    { "source": "邮件营销", "visits": 310 },
+    { "source": "联盟广告", "visits": 234 },
+    { "source": "视频广告", "visits": 135 },
+    { "source": "搜索引擎", "visits": 1548 }
+  ],
+  "width": 960,
+  "height": 540
+}

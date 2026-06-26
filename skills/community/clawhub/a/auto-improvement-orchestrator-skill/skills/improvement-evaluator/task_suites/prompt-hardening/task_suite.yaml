@@ -1,0 +1,151 @@
+skill_id: "prompt-hardening"
+version: "1.0"
+description: "Evaluates prompt-hardening skill's ability to audit prompts, apply 16 hardening patterns, and produce actionable hardening recommendations"
+
+tasks:
+  # === P1 Triple Reinforcement Detection ===
+  - id: "ph-p1-triple-reinforcement"
+    description: "Must identify missing P1 triple reinforcement and recommend MUST/NEVER + example + I REPEAT"
+    prompt: |
+      Audit this agent prompt rule for hardening gaps. Apply the prompt-hardening methodology.
+
+      ```
+      ## File Handling
+      Try to avoid creating temporary files. If you do create them, clean them up afterward.
+      Prefer using pipes for data transformation.
+      ```
+
+      List which hardening patterns (P1-P16) are missing and show the hardened version.
+    judge:
+      type: "contains"
+      expected:
+        - "P1"
+        - "MUST"
+    timeout_seconds: 120
+
+  # === P5 Anti-Reasoning Detection ===
+  - id: "ph-p5-anti-reasoning"
+    description: "Must detect need for P5 anti-reasoning block when model could rationalize violations"
+    prompt: |
+      This rule is repeatedly violated by the AI model, which rationalizes that "the user probably wants me to skip this step to save time." Apply prompt-hardening to fix it.
+
+      ```
+      Before modifying any source file, run the linter first.
+      ```
+
+      Show the hardened version with the specific patterns applied.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Check the hardened output for P5 anti-reasoning block:
+        1. Does it explicitly anticipate the model's rationalization (e.g., "if you find yourself thinking X, STOP")? Score 0.0 if no anti-reasoning block present.
+        2. Does it include MUST/NEVER keywords (P1)? Score 0.0 if missing.
+        3. Does it pre-empt the specific excuse about "saving time" or "user wants to skip"? Score 0.5 if generic, 1.0 if specific.
+        Score 1.0 if all three are present with specific anti-reasoning. Score 0.5 if P5 is present but generic.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Audit Output Format ===
+  - id: "ph-audit-output-format"
+    description: "Audit must produce 16-item checklist with pass/fail indicators and a score denominator of 16"
+    prompt: |
+      Perform a prompt hardening audit on this SOUL.md excerpt. Output the 16-point checklist.
+
+      ```
+      # Agent Instructions
+
+      You are a code review assistant. Review pull requests and provide feedback.
+      Focus on code quality, security, and performance.
+
+      MUST NOT approve PRs with failing tests.
+
+      When reviewing:
+      - Check for common security vulnerabilities
+      - Verify test coverage
+      - Look for performance anti-patterns
+      ```
+    judge:
+      type: "contains"
+      expected:
+        - "P1"
+        - "P2"
+        - "P5"
+        - "P13"
+        - "/16"
+    timeout_seconds: 120
+
+  # === CLI Usage Accuracy ===
+  - id: "ph-cli-reference"
+    description: "Must reference the correct audit.sh CLI command when suggesting audit"
+    prompt: |
+      A user says: "I have a SOUL.md at ~/projects/my-agent/SOUL.md and I want to check how hardened it is. What command should I run?"
+
+      Provide the exact command.
+    judge:
+      type: "contains"
+      expected:
+        - "audit.sh"
+        - "SOUL.md"
+    timeout_seconds: 60
+
+  # === Pattern Selection for Scenarios ===
+  - id: "ph-pattern-selection"
+    description: "Must recommend correct pattern combinations for specific violation scenarios"
+    prompt: |
+      Given these three violation scenarios, recommend which prompt-hardening patterns (P1-P16) to apply for each. Reference the pattern names and explain why.
+
+      Scenario A: The model repeatedly ignores a MUST rule about running tests before committing.
+      Scenario B: The model uses grep instead of the Grep tool, despite instructions.
+      Scenario C: After 20+ turns in a conversation, the model forgets to update COMPACT_STATE.
+
+      For each scenario, list the primary pattern(s) and the expected reliability improvement.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Evaluate pattern recommendations:
+        - Scenario A (repeated MUST violation): Must recommend P1 (triple reinforcement) + P13 (code-level). Score 0 if neither mentioned.
+        - Scenario B (wrong tool usage): Must recommend P2 (tool forcing: Use X NOT Y) or P3 (exhaustive negation). Score 0 if neither mentioned.
+        - Scenario C (long conversation drift): Must recommend P9 (drift protection) or P16 (first/last repetition). Score 0 if neither mentioned.
+        - Must reference reliability percentages or strength levels from the skill (e.g., ~90%, ~99%). Score bonus 0.1 if present.
+        Score 1.0 if all three scenarios have correct primary patterns. Score 0.5 if 2/3 correct. Score 0.0 if 1 or fewer correct.
+      pass_threshold: 0.7
+    timeout_seconds: 120
+
+  # === Reliability Levels Knowledge ===
+  - id: "ph-reliability-levels"
+    description: "Must correctly cite reliability levels for different pattern combinations"
+    prompt: |
+      A team is deciding how to protect a critical rule: "NEVER modify production database directly."
+      The rule is violated about 30% of the time with current soft wording.
+
+      What combination of prompt-hardening patterns would bring compliance to ~99%? Show the expected reliability at each layer.
+    judge:
+      type: "contains"
+      expected:
+        - "P1"
+        - "P13"
+    timeout_seconds: 120
+
+  # === Hardening a Real Prompt (End-to-End) ===
+  - id: "ph-end-to-end-hardening"
+    description: "Must produce a fully hardened prompt with multiple patterns applied correctly"
+    prompt: |
+      Harden this agent rule. The agent currently violates it ~60% of the time. Target: ~95%+ compliance.
+
+      ```
+      When the user asks to deploy, check the CI status first. If CI is red, tell the user. Don't deploy if tests are failing.
+      ```
+
+      Output the hardened version. Show which patterns (P1-P16) you applied and why.
+    judge:
+      type: "llm-rubric"
+      rubric: |
+        Evaluate the hardened output:
+        1. Contains MUST/NEVER keywords (P1): +0.2
+        2. Has example/anti-example pair showing correct vs incorrect behavior (P7): +0.2
+        3. Has conditional trigger format "When X -> MUST Y" (P4): +0.2
+        4. Has anti-reasoning block addressing potential bypass rationale (P5): +0.2
+        5. The original meaning is fully preserved (deploy check + CI status): +0.2
+        Score the sum. Must score >= 0.6 to pass.
+      pass_threshold: 0.6
+    timeout_seconds: 120

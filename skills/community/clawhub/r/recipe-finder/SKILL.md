@@ -1,35 +1,52 @@
----
-name: "recipe-finder"
-description: "Search and suggest recipes by ingredients, cuisine, or dietary preferences using TheMealDB API with detailed meal info and instructions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-finder"
-sourceUrl: "https://clawhub.ai/skills/recipe-finder"
----
+# Recipe Finder
 
-# recipe-finder
+Find recipes by ingredients, cuisine, or dietary preferences using TheMealDB free API.
 
-> Search and suggest recipes by ingredients, cuisine, or dietary preferences using TheMealDB API with detailed meal info and instructions.
+## Triggers
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-finder`
-- **Source URL:** [https://clawhub.ai/skills/recipe-finder](https://clawhub.ai/skills/recipe-finder)
+Use this skill when the user:
+- Asks "what can I make with [ingredient]"
+- Requests "recipes for dinner" or "Italian recipes"
+- Says "vegetarian options" or "vegan meals"
+- Asks for meal ideas based on ingredients they have
 
-## Overview
+## Tools
 
+- `web_fetch` - Fetch recipe data from TheMealDB API
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-finder
-```
+## Instructions
+
+1. Parse the user's request to identify:
+   - Main ingredient (e.g., chicken, eggs, pasta)
+   - Cuisine type (e.g., Italian, Mexican, Chinese)
+   - Dietary restriction (e.g., vegetarian, vegan, gluten-free)
+
+2. Call TheMealDB API:
+   - By ingredient: `https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}`
+   - By cuisine: `https://www.themealdb.com/api/json/v1/1/filter.php?a={cuisine}`
+   - Search by name: `https://www.themealdb.com/api/json/v1/1/search.php?s={query}`
+
+3. For each recipe found, optionally fetch details:
+   - `https://www.themealdb.com/api/json/v1/1/lookup.php?i={id}`
+
+4. Format response with:
+   - Recipe name
+   - Thumbnail image (if available)
+   - Category and cuisine
+   - Key ingredients
+   - Brief instructions (or link to full recipe)
+
+## Response Format
+
+Present recipes in a clean, scannable format:
+- Recipe name (bold)
+- Image thumbnail (if available)
+- Category | Cuisine
+- Main ingredients list
+- Brief description
+
+## Notes
+
+- TheMealDB is free, no API key required
+- Results are limited but reliable
+- Combine multiple queries for best results (ingredient + cuisine)

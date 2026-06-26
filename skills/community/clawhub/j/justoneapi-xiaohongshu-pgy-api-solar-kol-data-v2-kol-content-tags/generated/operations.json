@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV2/kolContentTags/v1 for Xiaohongshu Creator Marketplace (Pugongying) Creator Content Tags through JustOneAPI with userId.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying) Creator Content Tags",
+  "endpointPath": "api/solar/kol/dataV2/kolContentTags",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Content Tags data, including topic labels that describe publishing themes and content focus, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV2KolContentTagsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV2/kolContentTags/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Content Tags",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy_api_solar_kol_data_v2_kol_content_tags",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-pgy-api-solar-kol-data-v2-kol-content-tags",
+  "sourceTitle": "OpenAPI definition"
+}

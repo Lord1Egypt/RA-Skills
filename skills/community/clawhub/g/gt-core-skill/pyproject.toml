@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gumtree-skills"
+version = "0.1.0"
+description = "Gumtree 自动化 Skills，基于 Chrome Extension Bridge 浏览器自动化"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = [
+    "websockets>=12.0",
+]
+
+[project.scripts]
+gumtree-skills = "gumtree_skills.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["gumtree_skills*", "scripts*"]

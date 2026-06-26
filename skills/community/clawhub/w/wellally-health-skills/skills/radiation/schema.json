@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/radiation-record.json",
+  "title": "RadiationRecord",
+  "description": "医学辐射暴露记录的数据结构定义",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "唯一标识符"
+    },
+    "exam_type": {
+      "type": "string",
+      "enum": ["CT", "X光", "PET-CT", "骨扫描", "血管造影", "乳腺钼靶"],
+      "description": "检查类型"
+    },
+    "body_part": {
+      "type": "string",
+      "description": "检查部位"
+    },
+    "exam_date": {
+      "type": "string",
+      "format": "date",
+      "description": "检查日期"
+    },
+    "standard_dose": {
+      "type": "number",
+      "description": "标准剂量"
+    },
+    "body_surface_area": {
+      "type": "number",
+      "description": "体表面积（m²）"
+    },
+    "adjustment_factor": {
+      "type": "number",
+      "description": "剂量调整系数"
+    },
+    "actual_dose": {
+      "type": "number",
+      "description": "实际剂量"
+    },
+    "dose_unit": {
+      "type": "string",
+      "enum": ["mSv"],
+      "description": "剂量单位"
+    }
+  }
+}

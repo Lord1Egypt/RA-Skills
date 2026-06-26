@@ -1,0 +1,114 @@
+{
+  "date": "2025-04-27",
+  "user_id": "default",
+  "user_name": "繁哥",
+  "source": "体检报告",
+  "indicators": {
+    "cardiovascular": {
+      "total_cholesterol": {"value": 4.69, "unit": "mmol/L", "ref": "2.85-5.2", "status": "normal"},
+      "ldl": {"value": 2.95, "unit": "mmol/L", "ref": "1.9-3.4", "status": "normal"},
+      "hdl": {"value": 1.40, "unit": "mmol/L", "ref": "1.03-1.55", "status": "normal"},
+      "triglycerides": {"value": 1.10, "unit": "mmol/L", "ref": "0.45-1.7", "status": "normal"},
+      "homocysteine": {"value": 12.40, "unit": "μmol/L", "ref": "≤15", "status": "normal"},
+      "lipoprotein_a": {"value": 589.0, "unit": "mg/L", "ref": "0-300", "status": "high"},
+      "blood_pressure": {"value": "112/67", "unit": "mmHg", "ref": "<120/80", "status": "normal"}
+    },
+    "metabolic": {
+      "fasting_glucose": {"value": 4.57, "unit": "mmol/L", "ref": "3.9-6.1", "status": "normal"},
+      "hba1c": {"value": 4.9, "unit": "%", "ref": "4-6.1", "status": "normal"},
+      "c_peptide": {"value": 0.94, "unit": "ng/mL", "ref": "1.00-4.80", "status": "low"}
+    },
+    "blood": {
+      "mpv": {"value": 7.39, "unit": "fL", "ref": "7.5-11.2", "status": "low"}
+    },
+    "other": {
+      "bmi": {"value": 24.2, "unit": "kg/m²", "ref": "18.5-24.9", "status": "high"},
+      "weight": {"value": 67.5, "unit": "kg", "ref": "-", "status": "normal"}
+    },
+    "not_tested": ["25-OH-VD (维生素D)", "肝功能详细指标"]
+  },
+  "imaging": {
+    "thyroid": {
+      "finding": "甲状腺右叶结节",
+      "ti_rads": 3,
+      "severity": "mild",
+      "note": "TI-RADS 3级，建议6个月后复查"
+    },
+    "lung": {
+      "finding": "双肺多发微小结节 + 右肺下叶片状磨玻璃影",
+      "severity": "mild",
+      "note": "建议年度复查，呼吸内科就诊"
+    },
+    "heart": {
+      "finding": "三尖瓣轻度返流 + 窦性心动过缓",
+      "severity": "mild",
+      "note": "定期观察"
+    },
+    "lumbar": {
+      "finding": "腰椎间盘轻度突出 + 椎体许莫氏结节 + 轻度骨质增生",
+      "severity": "mild",
+      "note": "久坐相关"
+    },
+    "abdomen": {
+      "finding": "肝胆胰脾双肾未见明显异常",
+      "severity": "normal",
+      "note": "正常"
+    }
+  },
+  "abnormalities": [
+    {
+      "category": "cardiovascular",
+      "indicator": "lipoprotein_a",
+      "value": 589.0,
+      "severity": "mild",
+      "note": "脂蛋白(a)升高，心血管风险因子"
+    },
+    {
+      "category": "metabolic",
+      "indicator": "c_peptide",
+      "value": 0.94,
+      "severity": "watch",
+      "note": "C肽偏低，胰岛素分泌功能"
+    },
+    {
+      "category": "other",
+      "indicator": "bmi",
+      "value": 24.2,
+      "severity": "mild",
+      "note": "超重（接近上限）"
+    },
+    {
+      "category": "blood",
+      "indicator": "mpv",
+      "value": 7.39,
+      "severity": "watch",
+      "note": "平均血小板体积偏低"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "follow_up",
+      "action": "6个月后复查甲状腺结节",
+      "reason": "TI-RADS 3级"
+    },
+    {
+      "priority": "follow_up",
+      "action": "年度复查肺结节",
+      "reason": "微小结节监测"
+    },
+    {
+      "priority": "specialist",
+      "action": "呼吸内科就诊",
+      "reason": "右肺下叶磨玻璃影"
+    },
+    {
+      "priority": "lifestyle",
+      "action": "积极生活方式干预",
+      "reason": "减重，BMI降至正常范围"
+    }
+  ],
+  "follow_up": {
+    "thyroid": "2025-10-27",
+    "lung": "2026-04-27"
+  }
+}

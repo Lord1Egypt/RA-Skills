@@ -1,35 +1,26 @@
 ---
 name: "Home Layout"
-description: "提供空间利用方案、软装搭配灵感及居家动线优化指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/home-layout"
-sourceUrl: "https://clawhub.ai/skills/home-layout"
+description: "提供空间利用方案、软装搭配灵感及居家动线优化指引。 "
 ---
 
-# Home Layout
+# 家居布局
 
-> 提供空间利用方案、软装搭配灵感及居家动线优化指引。
+## 筛选项
+- 地理距离（步行/骑行/驾车范围）
+- 社交热度（人气榜/点评分/新开业）
+- 消费档次（实惠/中端/轻奢/体验型）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/home-layout`
-- **Source URL:** [https://clawhub.ai/skills/home-layout](https://clawhub.ai/skills/home-layout)
+## 返回字段
+- 实时排队情况/预约通道/电子票号
+- 营业时间变动/停车信息/导航精准路径
+- 社区真实图库/探店笔记/避坑清单汇总
 
-## Overview
+## 示例请求
+- “如何快速使用 家居布局 处理 [具体场景任务] ？”
+- “家居布局 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合地理信息变动 with 点评社区新热度进行灵活调整
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/home-layout
-```
+## 注意事项
+- 节假日建议提前查询排队状态；到店体验请尊重商家劳动与规则。

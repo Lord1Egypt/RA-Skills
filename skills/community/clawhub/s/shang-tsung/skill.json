@@ -1,0 +1,46 @@
+{
+  "name": "shang-tsung",
+  "version": "1.0.0",
+  "displayName": "Shang Tsung",
+  "description": "Persistent memory and identity continuity for AI agents. Combines Second Brain (PROOF_OF_LIFE, daily logs, long-term memory) with SOULS (session lineage) to give your agent continuity across restarts, compaction, and context wipes.",
+  "author": "Jesse K",
+  "license": "MIT",
+  "homepage": "https://github.com/mrjessek/shang-tsung",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrjessek/shang-tsung"
+  },
+  "keywords": [
+    "ai-agent",
+    "agent-memory",
+    "session-continuity",
+    "persistent-memory",
+    "claude-code",
+    "openclaw",
+    "second-brain",
+    "multi-agent",
+    "bash",
+    "markdown",
+    "developer-tools",
+    "ai-tools",
+    "context-management",
+    "llm-tools",
+    "soul-lineage"
+  ],
+  "compatibility": {
+    "openclaw": ">=2026.3.0",
+    "platforms": ["macos", "linux"],
+    "requires": ["bash>=3.2"]
+  },
+  "files": {
+    "skill": "SKILL.md",
+    "scripts": ["scripts/souls-helper.sh"],
+    "references": [
+      "references/AGENTS-template.md",
+      "references/SOUL-ORIGIN.md",
+      "references/proof-of-life-template.md"
+    ]
+  },
+  "category": "agent-memory",
+  "tags": ["memory", "continuity", "souls", "second-brain", "multi-agent"]
+}

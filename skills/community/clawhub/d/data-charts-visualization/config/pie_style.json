@@ -1,0 +1,56 @@
+{
+  "chartType": "pie",
+  "common": {
+    "title": {
+      "main": {
+        "show": true,
+        "align": "center",
+        "fontSize": 24,
+        "color": "#1f2937",
+        "bold": true
+      },
+      "subtitle": {
+        "show": true,
+        "fontSize": 14,
+        "color": "#6b7280"
+      }
+    },
+    "canvas": {
+      "backgroundColor": "#ffffff",
+      "palette": [
+        "#2563eb",
+        "#14b8a6",
+        "#f59e0b",
+        "#ef4444",
+        "#8b5cf6"
+      ],
+      "plotArea": {
+        "left": "30%",
+        "right": "30%",
+        "top": "30%",
+        "bottom": "15%"
+      }
+    },
+    "legend": {
+      "show": true,
+      "position": "bottom-right",
+      "orient": "vertical",
+      "fontSize": 12,
+      "color": "#4b5563"
+    }
+  },
+  "specific": {
+    "labelPosition": "outside",
+    "startAngle": 90,
+    "showLabel": true,
+    "labelFontSize": 12,
+    "labelColor": "#334155",
+    "labelFormatter": "{b} {d}%",
+    "labelLineShow": true,
+    "labelLineColor": "#94a3b8",
+    "labelLineWidth": 1,
+    "itemOpacity": 0.96,
+    "borderWidth": 0,
+    "borderColor": "#ffffff"
+  }
+}

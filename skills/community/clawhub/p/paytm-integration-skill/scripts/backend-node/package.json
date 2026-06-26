@@ -1,0 +1,15 @@
+{
+  "name": "paytm-backend-node",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Express backend for Paytm JS Checkout (initiateTransaction + callback + order status)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "paytmchecksum": "^1.5.1"
+  }
+}

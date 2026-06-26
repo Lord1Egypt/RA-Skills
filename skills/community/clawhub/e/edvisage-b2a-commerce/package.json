@@ -1,0 +1,10 @@
+{
+  "name": "edvisage-b2a-commerce",
+  "version": "1.0.0",
+  "description": "x402 payment protocol framework for autonomous agents. Pre-transaction safety checks, spending limit configuration, wallet safety guidelines, transaction logging, and payment attack pattern recognition.",
+  "author": "Edvisage Global <info@edvisageglobal.com>",
+  "license": "MIT",
+  "homepage": "https://edvisageglobal.com/ai-tools",
+  "repository": "https://github.com/edvisage/b2a-commerce",
+  "keywords": ["openclaw", "agent", "skill", "ai-safety", "edvisage", "commerce", "x402", "payments", "b2a"]
+}

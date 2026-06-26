@@ -1,0 +1,39 @@
+{
+  "name": "skill-rating-comparator",
+  "version": "1.0.0",
+  "description": "Skill 评分对比工具 - 自动对比同类型 Skill，生成多维度评分报告",
+  "skillVersion": "1.0.0",
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "keywords": [
+    "skill",
+    "rating",
+    "comparison",
+    "analyzer",
+    "对比",
+    "评分"
+  ],
+  "engines": {
+    "openclaw": ">=2026.3.8",
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills.git",
+    "directory": "skill-rating-comparator"
+  },
+  "bugs": {
+    "url": "https://github.com/rfdiosuao/openclaw-skills/issues"
+  },
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/main/skill-rating-comparator",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/tests/*.test.js",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.11.0"
+  }
+}

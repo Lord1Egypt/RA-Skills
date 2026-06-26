@@ -1,0 +1,228 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Database Security Audit API",
+    "description": "Backend API for Database Security Audit Checklist Tool",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "description": "Health check endpoint",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/database/audit": {
+      "post": {
+        "summary": "Process Audit",
+        "description": "Process database security audit and generate comprehensive report",
+        "operationId": "process_audit_api_database_audit_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Detailed health check",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuditData": {
+        "properties": {
+          "access_control": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Access Control"
+          },
+          "encryption": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Encryption"
+          },
+          "network_security": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Network Security"
+          },
+          "auditing": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Auditing"
+          },
+          "backup": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Backup"
+          },
+          "additional": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Additional"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "totalControls": {
+            "type": "integer",
+            "title": "Totalcontrols"
+          },
+          "implementedControls": {
+            "type": "integer",
+            "title": "Implementedcontrols"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sessionId",
+          "timestamp",
+          "totalControls",
+          "implementedControls"
+        ],
+        "title": "AuditData"
+      },
+      "AuditRequest": {
+        "properties": {
+          "auditData": {
+            "$ref": "#/components/schemas/AuditData"
+          },
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "userId": {
+            "type": "integer",
+            "title": "Userid"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "auditData",
+          "sessionId",
+          "userId",
+          "timestamp"
+        ],
+        "title": "AuditRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

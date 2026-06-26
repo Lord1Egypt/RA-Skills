@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kivicube Web Plugin AR/XR Builder"
+  short_description: "Build WebAR, Web3D, and XR landing pages."
+  default_prompt: "Use $kivicube-web-plugin-ar-xr-builder to build or troubleshoot a Kivicube Web Plugin WebAR/Web3D H5 page, landing page, or iframe scene integration."

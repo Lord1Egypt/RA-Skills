@@ -1,35 +1,73 @@
----
-name: "Study Buddy - 牛宝华版"
-description: "AI助手帮助备考日语N2和软考架构师，支持智能出题、自动判分、错题记录和个性化学习计划。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/study-buddy-niu"
-sourceUrl: "https://clawhub.ai/skills/study-buddy-niu"
----
+# Study Buddy - 双轨学习助手
 
-# Study Buddy - 牛宝华版
+## 技能描述
+一个帮助用户同时备考日语 N2 和软考架构师的 AI 学习助手。支持智能出题、自动判分、错题记录和学习计划生成。
 
-> AI助手帮助备考日语N2和软考架构师，支持智能出题、自动判分、错题记录和个性化学习计划。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/study-buddy-niu`
-- **Source URL:** [https://clawhub.ai/skills/study-buddy-niu](https://clawhub.ai/skills/study-buddy-niu)
+当用户消息包含以下**任意关键词**时激活本技能：
 
-## Overview
+### 出题相关
+- "来一道" / "来一题"
+- "练习题" / "做题" / "刷题"
+- "模拟考" / "模拟考试" / "测试"
+- "N2" / "N1" / "日语" / "日文"
+- "软考" / "架构师" / "系统架构设计师"
+- "语法题" / "词汇题" / "选择题"
 
+### 学习计划
+- "学习计划" / "今日计划" / "今天学什么"
+- "复习计划" / "备考计划"
+- "距离考试" / "还有几天考试"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/study-buddy-niu
+### 错题本
+- "错题" / "错题本" / "我错的题"
+- "查看错题" / "我的错题"
+
+### 进度统计
+- "进度" / "学习进度" / "我的进度"
+- "统计" / "学习统计" / "正确率"
+
+### 帮助
+- "帮助" / "怎么用" / "你能做什么"
+- "功能" / "介绍"
+
+## 功能列表
+
+1. **智能出题**: 根据用户指令随机抽取题目（支持按类型/难度筛选）
+2. **自动判分**: 用户回答后自动判断对错，显示解析
+3. **错题记录**: 答错的题自动存入飞书 Bitable 错题本
+4. **学习计划**: 根据考试日期生成每日学习任务
+5. **进度追踪**: 统计答题数量、正确率、学习时长
+6. **帮助菜单**: 展示可用功能和使用方法
+
+## 依赖配置
+
+使用前需要配置以下环境变量或在代码中设置：
+
+```javascript
+const CONFIG = {
+  BITABLE_APP_TOKEN: "SoZ5bkTBOa3LQisZHO1cAQuknDh",
+  BITABLE_TABLE_ID: "tbl0TEk3P0GCqR2p"
+};
 ```
+
+## 使用示例
+
+**用户**: 来一道 N2 语法题  
+**助手**: 📚 【N2 语法练习】第 38 题...（展示题目和选项）
+
+**用户**: B  
+**助手**: ✅ 回答正确！解析：...
+
+**用户**: 生成今日学习计划  
+**助手**: 📅 今日学习计划（2026-03-27）...
+
+**用户**: 查看我的错题  
+**助手**: 📝 错题本统计...
+
+---
+
+**版本**: v1.0.0  
+**作者**: 牛宝华  
+**比赛**: OPC 极限挑战赛（上海站）

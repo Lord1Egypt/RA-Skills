@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_schedule_query_define_designer",
+    "description": "Query the complete definition of a single scheduled task based on the scheduled task ID (read-only)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Scheduled task ID (must actually exist)"
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

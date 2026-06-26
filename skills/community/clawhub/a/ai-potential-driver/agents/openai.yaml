@@ -1,0 +1,4 @@
+interface:
+  display_name: "PUA Breakthrough Mode"
+  short_description: "PUA your agent to push deeper"
+  default_prompt: "Use $ai-potential-driver in PUA Breakthrough Mode to push past the first answer, try real alternatives, and keep moving until this task is solved or truly blocked."

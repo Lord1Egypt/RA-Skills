@@ -1,0 +1,37 @@
+{
+  "name": "ai-product-space",
+  "version": "1.0.4",
+  "description": "Upload a single product photo and AI generates a full suite of ecommerce assets — main images, scene shots, feature posters, marketing copy, and 8-second showcase videos.",
+  "author": "ai-product-space",
+  "license": "MIT",
+  "permissions": ["network", "filesystem"],
+  "entry": "instructions.md",
+  "tags": [
+    "ecommerce",
+    "product-images",
+    "ai-generation",
+    "marketing",
+    "video",
+    "电商素材",
+    "商品图"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*", "qwen-*", "deepseek-*"],
+  "minOpenClawVersion": "0.8.0",
+  "auth": {
+    "type": "oauth",
+    "authorizationUrl": "{APS_BASE_URL}/oauth/authorize",
+    "tokenUrl": "{APS_BASE_URL}/api/oauth/token",
+    "clientId": "openclaw",
+    "scopes": ["*"],
+    "pkce": true,
+    "codeChallengeMethod": "S256"
+  },
+  "config": {
+    "APS_BASE_URL": {
+      "type": "string",
+      "description": "AI Product Space instance URL",
+      "required": true,
+      "default": "https://renshevy.com"
+    }
+  }
+}

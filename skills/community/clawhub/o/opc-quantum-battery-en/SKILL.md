@@ -1,35 +1,325 @@
 ---
-name: "胡田 OPC导师 量子电池 英文版"
-description: "Quantum Battery technology due diligence English version, assessment framework for quantum battery projects"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/opc-quantum-battery-en"
-sourceUrl: "https://clawhub.ai/skills/opc-quantum-battery-en"
+name: opc-quantum-battery-en
+description: Quantum Battery technology due diligence English version, assessment framework for quantum battery projects
+license: MIT
+compatibility:
+  - claude-code
+  - copilot
+  - cursor
+  - openclaw
+  - coze
+author: 胡田
+version: 1.0.0
 ---
 
-# 胡田 OPC导师 量子电池 英文版
+harness:enabled:yes
+harness:pre-check:4
+harness:checkpoints:6
+harness:post-check:6
+harness:files:6
+harness:dependencies:none
+harness:self-heal:yes
+harness:max-retries:3
+harness:quality-gate:70
+harness:version:1.0
 
-> Quantum Battery technology due diligence English version, assessment framework for quantum battery projects
+# 量子电池专家 (Quantum Battery Expert)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/opc-quantum-battery-en`
-- **Source URL:** [https://clawhub.ai/skills/opc-quantum-battery-en](https://clawhub.ai/skills/opc-quantum-battery-en)
+## 技能概述
 
-## Overview
+量子电池专家是一个专注于量子电池领域的垂直领域专业知识库，涵盖理论基础、技术原理、全球研发进展、产业链分析和投资决策支持。
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/opc-quantum-battery-en
+- **技术咨询**：量子电池原理、技术路线、技术指标等专业知识查询
+- **投资尽调**：技术成熟度评估、风险识别、投资框架分析
+- **技术解读**：分析技术论文、评估技术突破、跟踪前沿进展
+- **行业研究**：产业链分析、竞争格局、市场动态追踪
+
+## 核心能力
+
+1. **专业知识库**：提供量子电池领域全面、系统的知识体系
+2. **技术分析**：解读技术原理、评估技术路线、识别关键突破
+3. **动态追踪**：跟踪全球研发进展、行业动态、学术发表
+4. **投资决策**：提供技术成熟度评估和投资风险分析框架
+
+---
+
+## 知识库体系
+
+### 第一部分：理论基础
+
+量子电池的理论基础源自量子力学和量子热力学的交叉领域，核心包括：
+
+**量子力学基础概念**
+- 量子态与叠加原理
+- 量子纠缠与量子关联
+- 量子相干性与退相干
+- 能级系统与量子跃迁
+
+**量子热力学核心**
+- 量子功与量子热量
+- 可提取能(Ergotropy)
+- 自由能与量子卡诺循环
+- 量子资源理论
+
+**关键术语词典**
+- 详见 `references/glossary.md`
+
+### 第二部分：技术核心
+
+**量子电池原理**
+- **超吸收效应(Superabsorption)**：集体增强的光吸收能力，吸收速率随系统规模N呈超线性增长
+- **量子纠缠储能**：利用量子纠缠减少Hilbert空间遍历状态数
+- **Dicke量子电池模型**：基于Tavis-Cummings模型的腔量子电池
+- **自旋链量子电池**：通过自旋自由度存储能量
+
+**技术路线对比**
+
+| 技术路线 | 代表研究 | 核心优势 | 主要挑战 | 成熟度 |
+|---------|---------|---------|---------|--------|
+| 有机微腔 | CSIRO(澳大利亚) | 室温运行、可扩展 | 储能时间短 | TRL 2-3 |
+| 超导体系 | MIT、Caltech | 高相干性 | 极低温要求 | TRL 1-2 |
+| 拓扑量子电池 | RIKEN(日本) | 长距离传输、抗噪 | 材料制备难 | TRL 1-2 |
+| 自旋链量子电池 | 热那亚大学(意大利) | 无外场充电 | 规模化困难 | TRL 1-2 |
+| 钙钛矿量子电池 | CNR(意大利) | 宽光谱吸收 | 稳定性问题 | TRL 1-2 |
+
+**关键技术指标**
+- **充电时间**：飞秒级至微秒级（理论），比传统电池快多个数量级
+- **能量密度**：目前原型极低，研究目标达到或超越锂离子电池
+- **储能时间**：纳秒级（当前最佳）→ 秒级 → 分钟级（目标）
+- **循环寿命**：尚无系统性数据，需解决退相干和老化问题
+- **工作温度**：部分有机体系可室温运行
+
+**实验方法**
+- 超快泵浦-探测光谱学
+- 瞬态吸收光谱
+- 低温强磁场实验系统
+- 纳米级微腔制备工艺
+
+### 第三部分：全球研发进展
+
+**澳大利亚CSIRO团队**
+- 2022年：首次实验验证超吸收效应
+- 2026年：实现首个完整充放电循环量子电池原型
+- 发表期刊：Science Advances, Light: Science & Applications
+- 关键技术：有机微腔、室温运行、激光无线充电
+
+**中国研究机构**
+- 西北大学：量子电池理论模型、开放系统特性
+- 兰州大学+湖北大学+中科院：自放电缓解方案
+- 成都：量子科技产业链布局
+- 特点：理论研究较强，实验验证起步
+
+**欧美日韩动态**
+- 欧盟：量子旗舰计划支持量子储能研究
+- 美国：MIT、Caltech聚焦超导体系
+- 日本：RIKEN主导拓扑量子电池
+- 韩国：材料科学端突破，有机半导体研发
+- 加拿大：CQCP计划投资近亿加元
+
+**学术发表统计**
+- 2023年后进入快速增长期
+- 主要期刊：Physical Review Letters, Science Advances, Nature Physics
+- 高被引研究方向：量子优势、充放电协议、开放系统
+
+### 第四部分：产业链分析
+
+**上游材料**
+- 有机半导体材料（酞菁铜、Lumogen F橙染料）
+- 量子点材料（纳米晶体量子点）
+- 高反射镜材料（银镜、分布式布拉格反射镜DBR）
+- C60富勒烯（电荷传输层）
+- 钙钛矿材料
+
+**中游器件**
+- 微腔制造（法布里-佩罗谐振器）
+- 激光系统（超快激光器）
+- 光谱检测设备
+- 电荷传输层设计
+
+**下游应用**
+- 量子计算供能系统
+- 微型传感器
+- 太阳能电池效率提升
+- 物联网设备
+- 低功耗精密设备
+
+**代表企业**
+- QuantumScape（固态电池，跨界探索）
+- 特斯拉（量子点电池应用于储能）
+- 宁德时代（布局量子点电池）
+- 本源量子（量子计算+储能概念）
+- 量旋科技（量子计算硬件）
+
+### 第五部分：投资视角
+
+**技术成熟度评估（TRL）**
+
+| 等级 | 描述 | 量子电池现状 |
+|-----|------|-------------|
+| TRL 1-2 | 基础原理观察 | 理论模型验证完成 |
+| TRL 3-4 | 概念验证 | 超吸收效应验证完成 |
+| TRL 5-6 | 实验室验证 | 原型演示中 |
+| TRL 7-9 | 系统验证→商业化 | 距商业化15-20年 |
+
+**核心风险识别**
+
+1. **技术风险**
+   - 储能时间过短（纳秒级 vs 秒级需求）
+   - 能量密度极低（无法驱动日常设备）
+   - 量子退相干（环境敏感性）
+   - 规模化困难
+
+2. **工程风险**
+   - 纳米级制造精度要求
+   - 规模化生产成本控制
+   - 新型充电基础设施需求
+
+3. **市场风险**
+   - 传统电池持续改进
+   - 固态电池可能形成竞争
+   - 商业化时间线不确定
+
+**投资建议框架**
+
 ```
+投资阶段          时间窗口         建议策略
+─────────────────────────────────────────────────
+早期研究阶段      2026-2030        关注学术合作、专利布局
+                 建议：关注材料科学突破、量子物理基础研究
+                 
+概念验证阶段      2029-2035        选择性跟投、战略合作
+                 建议：关注室温运行、储能时间突破
+                 
+早期商业化        2033-2040        布局细分应用、供应链
+                 建议：关注量子计算供能、微型传感器领域
+                 
+规模商业化        2040+            大规模投资决策
+                 建议：待技术成熟后介入
+```
+
+**典型案例参考**
+- CSIRO技术转化模式：学术机构→产业合作
+- 量子计算企业发展路径：通用量子→垂直整合
+
+---
+
+## 使用方式
+
+### 1. 知识查询
+直接提问，Skill将从知识库中检索相关信息：
+```
+示例问题：
+- 量子电池的超吸收效应是什么？
+- 有机微腔量子电池的工作原理？
+- 目前储能时间最长的是哪种技术路线？
+```
+
+### 2. 技术分析
+提供技术材料或论文，Skill将进行分析解读：
+```
+示例：
+- 分析这篇关于拓扑量子电池的论文
+- 评估CSIRO最新原型的技术突破
+```
+
+### 3. 动态追踪
+查询最新行业动态和技术进展：
+```
+示例：
+- 最近有什么量子电池的学术突破？
+- 中国在量子电池领域有哪些研究进展？
+```
+
+### 4. 投资决策
+获取投资评估框架和风险分析：
+```
+示例：
+- 量子电池目前处于什么技术成熟度？
+- 投资量子电池的核心风险有哪些？
+- 评估某公司量子电池技术的投资价值
+```
+
+---
+
+## 参考文档
+
+| 文档 | 内容说明 |
+|-----|---------|
+| `references/quantum_basics.md` | 量子力学基础概念详解 |
+| `references/quantum_battery_theory.md` | 量子电池理论详解 |
+| `references/research_progress.md` | 全球研发进展汇编 |
+| `references/industry_chain.md` | 产业链分析 |
+| `references/investment_guide.md` | 投资指南 |
+| `references/glossary.md` | 术语词典（中英文对照） |
+
+---
+
+## 知识库维护
+
+本Skill内容基于截至2026年4月的最新研究进展汇编，建议定期更新以下内容：
+- 学术发表动态
+- 技术突破进展
+- 产业链企业动态
+- 投资并购事件
+- 政策法规变化
+
+---
+
+*本技能由量子电池专家知识库驱动，为技术尽调和投资决策提供专业支持。*
+
+---
+
+## Agent Harness（执行保障体系）
+
+### Harness标签
+| 标签 | 值 |
+|------|-----|
+| harness:enabled | yes |
+| harness:pre-check | 4 |
+| harness:checkpoints | 6 |
+| harness:post-check | 6 |
+| harness:files | 6 |
+| harness:dependencies | none |
+| harness:self-heal | yes |
+
+### Pre-Check（执行前检查）
+| 序号 | 检查项 | 检查方法 | 失败处理 |
+|------|--------|---------|---------|
+| PC1 | references目录存在 | 确认./references/目录存在 | 报错终止执行 |
+| PC2 | 知识库文件存在 | 确认6个知识库文件存在（glossary.md, industry_chain.md, investment_guide.md, quantum_basics.md, quantum_battery_theory.md, research_progress.md） | 提示缺失文件 |
+| PC3 | 目录可写 | 确认references目录可写入 | 报错终止执行 |
+| PC4 | 输入参数有效性 | 确认查询主题或任务描述有效 | 报错终止执行 |
+
+### Checkpoints（关键步骤检查点）
+| 序号 | 检查点 | 触发时机 | 验证内容 | 失败处理 |
+|------|--------|---------|---------|---------|
+| CP1 | 量子基础理论库验证 | quantum_basics.md读取后 | 文件存在、非空、包含量子力学核心概念（≥5个术语） | 触发重写 |
+| CP2 | 量子电池原理库验证 | quantum_battery_theory.md读取后 | 文件存在、非空、包含超吸收效应、Dicke模型等技术原理 | 触发重写 |
+| CP3 | 技术路线对比验证 | quantum_battery_theory.md技术路线表 | 包含≥4种技术路线对比（有机微腔、超导、拓扑、自旋链） | 触发重写 |
+| CP4 | 全球研发进展验证 | research_progress.md读取后 | 文件存在、非空、包含主要国家/机构研发进展 | 触发重写 |
+| CP5 | 产业链分析验证 | industry_chain.md读取后 | 文件存在、非空、包含上中下游完整产业链 | 触发重写 |
+| CP6 | 投资指南验证 | investment_guide.md读取后 | 文件存在、非空、包含TRL评估、风险识别、投资框架 | 触发重写 |
+
+### Post-Check（执行后验证）
+| 序号 | 验证项 | 验证方法 | 最低标准 | 失败处理 |
+|------|--------|---------|---------|---------|
+| PV1 | 术语词典内容充实度 | 读取glossary.md统计内容 | ≥30个量子电池专业术语定义 | 警告+重写 |
+| PV2 | 理论基础库技术准确性 | 验证quantum_basics.md量子概念 | 概念定义准确无误 | 触发Self-Heal |
+| PV3 | 技术原理库内容完整性 | 验证quantum_battery_theory.md | 包含所有4种技术路线详细分析 | 触发Self-Heal |
+| PV4 | 研发进展时效性 | 验证research_progress.md年份 | 包含2022-2026年最新进展 | 警告+更新 |
+| PV5 | 产业链完整性 | 验证industry_chain.md结构 | 包含上游材料、中游器件、下游应用完整链条 | 触发重写 |
+| PV6 | 投资建议实用性 | 验证investment_guide.md | 包含TRL等级、风险矩阵、投资阶段建议 | 触发重写 |
+
+### Self-Heal（自修复策略）
+| 故障场景 | 修复策略 | 重试上限 |
+|---------|---------|---------|
+| 知识库文件为空或内容不足 | 重新生成该文件完整内容 | 3次 |
+| 技术数据不准确 | 搜索最新资料进行修正 | 2次 |
+| 文件写入失败 | 检查目录权限后重试写入 | 3次 |
+
+### Handoff（Skill间交接）
+| 方向 | Skill名称 | 接口类型 | 数据格式 |
+|------|----------|---------|---------|
+| 无依赖 | - | - | - |

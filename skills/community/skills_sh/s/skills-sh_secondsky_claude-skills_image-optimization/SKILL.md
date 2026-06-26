@@ -1,35 +1,81 @@
 ---
-name: "image-optimization"
-description: "Indexed by skills.sh from secondsky/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "secondsky"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/secondsky/claude-skills/image-optimization"
-sourceUrl: "https://skills.sh/secondsky/claude-skills/image-optimization"
+name: image-optimization
+description: Optimizes images for web performance using modern formats, responsive techniques, and lazy loading strategies. Use when improving page load times, implementing responsive images, or preparing assets for production deployment.
+license: MIT
 ---
 
-# image-optimization
+# Image Optimization
 
-> Indexed by skills.sh from secondsky/claude-skills
+Optimize images for web performance with modern formats and responsive techniques.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** secondsky
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/secondsky/claude-skills/image-optimization`
-- **Source URL:** [https://skills.sh/secondsky/claude-skills/image-optimization](https://skills.sh/secondsky/claude-skills/image-optimization)
+## Format Selection
 
-## Overview
+| Format | Best For | Compression |
+|--------|----------|-------------|
+| JPEG | Photos | Lossy, 50-70% reduction |
+| PNG | Icons, transparency | Lossless, 10-30% |
+| WebP | Modern browsers | 25-35% better than JPEG |
+| AVIF | Next-gen | 50% better than JPEG |
+| SVG | Logos, icons | Vector, scalable |
 
+## Responsive Images
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/secondsky/claude-skills/image-optimization
+```html
+<picture>
+  <source srcset="image.avif" type="image/avif">
+  <source srcset="image.webp" type="image/webp">
+  <img
+    src="image.jpg"
+    srcset="image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w"
+    sizes="(max-width: 600px) 100vw, 50vw"
+    alt="Description"
+    loading="lazy"
+    decoding="async"
+  >
+</picture>
 ```
+
+## Lazy Loading
+
+```html
+<!-- Native lazy loading -->
+<img src="image.jpg" loading="lazy" alt="Description">
+
+<!-- With blur placeholder -->
+<img
+  src="placeholder-blur.jpg"
+  data-src="image.jpg"
+  class="lazy"
+  alt="Description"
+>
+```
+
+## Build Pipeline (Sharp)
+
+```javascript
+const sharp = require('sharp');
+
+async function optimizeImage(input, output) {
+  await sharp(input)
+    .resize(1200, null, { withoutEnlargement: true })
+    .webp({ quality: 80 })
+    .toFile(output);
+}
+```
+
+## Performance Targets
+
+| Asset Type | Target Size |
+|------------|-------------|
+| Hero image | <200KB |
+| Thumbnail | <30KB |
+| Total images | <500KB |
+
+## Optimization Checklist
+
+- [ ] Use WebP with JPEG fallback
+- [ ] Implement responsive srcset
+- [ ] Enable lazy loading for below-fold
+- [ ] Compress at quality 70-85
+- [ ] Serve from CDN
+- [ ] Set proper cache headers

@@ -1,35 +1,69 @@
 ---
-name: "Superpowers Cn"
-description: "中文AI工作流框架 - 先理解需求再执行，让AI做事更有逻辑"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/superpowers-cn"
-sourceUrl: "https://clawhub.ai/skills/superpowers-cn"
+description: 中文AI工作流框架 - 先理解需求再执行，让AI做事更有逻辑
+version: 1.0.0
 ---
 
-# Superpowers Cn
+# 超能力 CN (Superpowers CN)
 
-> 中文AI工作流框架 - 先理解需求再执行，让AI做事更有逻辑
+中文AI工作流框架 - 让AI做事更有逻辑、更有章法。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/superpowers-cn`
-- **Source URL:** [https://clawhub.ai/skills/superpowers-cn](https://clawhub.ai/skills/superpowers-cn)
+## 核心理念
 
-## Overview
+**不是直接写代码，而是先理解 → 再设计 → 最后执行**
 
+1. **澄清需求** - 问清楚你要什么
+2. **制定设计** - 给出具体方案等你确认
+3. **分解任务** - 把大任务拆成小步骤
+4. **执行验证** - 逐步完成并检查结果
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/superpowers-cn
+## 工作流阶段
+
+### 阶段一：澄清 (Clarify)
+当接到任务时，不要立刻动手，先问：
+- "你想解决什么问题？"
+- "最终效果是什么样的？"
+- "有什么限制或要求？"
+
+### 阶段二：设计 (Plan)
+制定设计方案，包括：
+- 文件结构
+- 核心模块
+- 实现步骤
+- 风险点
+
+### 阶段三：执行 (Execute)
+- 按步骤执行
+- 每步验证
+- 及时汇报进度
+
+### 阶段四：审核 (Review)
+- 检查是否符合需求
+- 代码质量
+- 是否有遗漏
+
+## 触发词
+
+"开发"、"写代码"、"做个XX"、"实现XX功能"、"帮我做"、"工作流"、"任务分解"
+
+## 安装
+
+将此目录加入 OpenX skills 配置即可。
+
+## 示例工作流
+
 ```
+用户：帮我做一个网站
+AI：[澄清] 网站是什么类型的？个人站还是企业站？
+用户：个人博客
+AI：[设计] 我计划用HTML+CSS+JS，3个文件搞定
+用户：好的
+AI：[执行] 
+1. 创建 index.html
+2. 创建 style.css  
+3. 创建 script.js
+[审核] 博客功能完整，符合需求
+```
+
+## 状态
+
+生产就绪 (2026-03-28)

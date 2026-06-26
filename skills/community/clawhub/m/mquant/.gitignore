@@ -1,0 +1,30 @@
+# User local customization files (not tracked by git)
+*.user.md
+*.user.py
+*.local.md
+*.local.py
+
+# User personal notes
+MY_*.md
+my_*.md
+PERSONAL_*.md
+personal_*.md
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Log files (user runtime logs)
+*.log

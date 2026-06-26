@@ -1,0 +1,4 @@
+interface:
+  display_name: "Server-Mate"
+  short_description: "Lightweight server monitoring, alerts, and AI ops for CentOS and Baota."
+  default_prompt: "Use $server-mate to design or extend a lightweight monitoring workflow for a CentOS server running Baota and Nginx or Apache."

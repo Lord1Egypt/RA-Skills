@@ -1,35 +1,28 @@
 ---
-name: "Sop Architect"
-description: "Automatically generates detailed Standard Operating Procedures (SOPs) for recurring digital tasks. Ideal for scaling agency operations or documenting interna..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sop-architect"
-sourceUrl: "https://clawhub.ai/skills/sop-architect"
+name: sop-architect
+description: Automatically generates detailed Standard Operating Procedures (SOPs) for recurring digital tasks. Ideal for scaling agency operations or documenting internal AI workflows.
 ---
 
-# Sop Architect
+# SOP Architect
 
-> Automatically generates detailed Standard Operating Procedures (SOPs) for recurring digital tasks. Ideal for scaling agency operations or documenting interna...
+Turn any complex task into a repeatable manual. 
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sop-architect`
-- **Source URL:** [https://clawhub.ai/skills/sop-architect](https://clawhub.ai/skills/sop-architect)
+## Workflow
 
-## Overview
+1. **Input Task**: Describe the goal (e.g., "Monthly SEO Audit").
+2. **Deconstruct**: Identify required tools, access levels, and prerequisites.
+3. **Step-by-Step**: Generate 5-10 specific, numbered steps.
+4. **Failure Modes**: Document what to do when things go wrong at each step.
 
+## Output Format
+SOPs are saved to `SOPs/<task-name>.md`.
+
+## Benefits
+- Reduces agent errors.
+- Makes results consistent across different sessions.
+- Easy to hand off to human team members.
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/sop-architect
+clawhub install sop-architect
 ```

@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {
+      "id": "case-001",
+      "input": "Description or content of test input",
+      "expected": "Description of expected output"
+    }
+  ]
+}

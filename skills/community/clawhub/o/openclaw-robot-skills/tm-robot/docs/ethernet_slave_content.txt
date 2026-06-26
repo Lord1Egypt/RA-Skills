@@ -1,0 +1,246 @@
+
+=== Page 3 ===
+3
+CONFIDENTIAL
+功能介绍
+Omron TM的Ethernet Slave功能是在SW 1.76.6300及以上所新增的通讯方式。当启用该通讯方式，手
+臂将建立Socket TCP Listener Server，且定时(但不保证实时性) 周期性地将手臂状态与数据发送给所有联机的
+Client 端，或是接收Client 端所发送的内容，并执行对应的指令，或是更新对应的数据。固定端口：5891，固
+定发送周期为100Hz,最多8个Client端同时连接。
+Ethernet Slave与Client端之间发送的内容是从数据表中的项目列表，自定义选择所需的发送/接收内容并
+设定通讯协议中的数据格式，存储之后生成通讯档案。当启用该通讯方式，会依照所选通讯档案内的项目列表，
+建立对应项目的数据内容，并以固定周期向已连接的Client 端发送数据。
+
+
+=== Page 9 ===
+9
+CONFIDENTIAL
+实现步骤
+启用Ethernet Slave
+IP地址过滤
+◼
+当设置IP地址过滤时，只有在所设定的IP地址范围内可以建立通讯，其他IP地址会被拒绝。
+◼
+当未设置IP地址过滤时，则表示接受任何IP地址建立通讯
+1
+3
+2
+写入允许
+当勾选“写入允许”则允许Client端向Ethernet Slave发送数
+据时，会使Ethernet Slave做数据写入的动作。
+
+
+=== Page 10 ===
+10
+CONFIDENTIAL
+实现步骤
+数据表
+设置用户自定义文件名称
+设置系统定义传输文件名称
+设置通讯格式模式
+◼
+BINARY 
+二进制格式，转为Byte 数组(Little Endian / UTF8) 
+◼
+STRING 
+字符串格式
+◼
+JSON 
+JSON通讯字符串格式
+
+
+=== Page 13 ===
+13
+CONFIDENTIAL
+实现步骤
+数据表
+用户自定义变量名
+数据类型：
+◼
+Int
+◼
+Float
+◼
+String
+◼
+Double
+◼
+Bool
+◼
+byte
+权限：
+◼
+R/W
+读取/写入
+◼
+R
+只读
+写入权限：
+◼
+None
+无限制
+◼
+A（Auto mode access only）
+仅在自动模式下允许写入
+◼
+M（Manual mode access only）
+仅在手动模式下允许写入
+
+
+=== Page 15 ===
+15
+CONFIDENTIAL
+实现步骤
+读取与写入-TM本机
+1
+2
+svr_read()指令：TM机器人读取Ethernet Slave通讯数据表数据
+格式：svr_read(string)
+string是Ethernet Slave中的Item的名称
+范例：svr_read("Camera_Light")
+读取Ethernet Slave中Camera_Light的状态
+svr_write()指令：TM机器人写入Ethernet Slave通讯数据表数据
+格式：svr_write(string)
+string是Ethernet Slave中的Item的名称
+范例：svr_write("Camera_Light")=1
+写入Ethernet Slave中Camera_Light的状态为1
+
+
+=== Page 16 ===
+16
+CONFIDENTIAL
+实现步骤
+读取与写入-Client端
+1. Header：
+◼TMSVR – 定义TM Ethernet Slave功能
+◼CPERR – 通讯数据错误（如Packet错误，Checksum错误，Header错误等）
+2. Length：
+设置data的数据长度
+3. Checksum：
+指令校验和XOR，校验的范围是从$到*之间的所有字节（不包含$与* ）
+数据校验和计算使用如下格式：
+Checksum = Byte[1] ^ Byte[2] … ^ Byte[N-6]
+Socket TCP Listener Server命令有以下通讯格式：
+$Header, Length, Data, *Checksum \r\n
+
+
+=== Page 17 ===
+17
+CONFIDENTIAL
+实现步骤
+读取与写入-Client端
+1. Data：
+通讯数据内容，需结合Header来定义Data的通讯数据格式
+TMSVR将Data通讯数据分成三部分如下图所示：
+Socket TCP Listener Server命令有以下通讯格式：
+$Header, Length, Data, *Checksum \r\n
+Data
+Data
+ID
+Mode
+Content
+传输编码
+,
+0/1/2/3
+,
+Item名称和数值
+Mode: 用于指定Content的数据格式
+0：表示Server 响应Client 的命令，格式为字符串
+1：表示Content 的数据格式为BINARY，采用二进制格式
+2：表示Content 的数据格式为STRING，采用字符串格式
+3：表示Content 的数据格式为JSON，采用JSON 字符串格式
+ID：可以为任意数字，作为通讯响应时，一
+个识别哪组数据相应的传输编码。TM周期
+性发送会以0-9循环变化
+Content：数据内容根据Mode 0/1/2/3定义
+
+
+=== Page 18 ===
+18
+CONFIDENTIAL
+实现步骤
+读取与写入-Client端
+Mode=0 （由Server 响应Client端命令处理状态) 
+当TM接收到Client端发送的数据时，TM会响应Client端命令处理状态。
+ID
+Mode
+Error Code
+Error Description
+传输编码
+,
+0
+,
+00..07
+错误描述
+Error Code：定义错误码（固定为2字节，且采用十六进制书写）
+00：写入正确，无错误
+01：传输的数据格式不支持(如: Mode=99) 
+02：联机的Client端不具有写入权限(IP filter without write permission) 
+03：传输的数据格式与Content 的数据格式不符合(如: Mode=3但却不是JSON的数据格式) 
+04：写入(或读取)的Item不存在
+05：无法写入只读Item
+06：写入时的M/A 模式不正确
+07：写入的值与设定的型别或长度不符合
+
+
+=== Page 19 ===
+19
+CONFIDENTIAL
+实现步骤
+读取与写入-Client端
+Mode=1 （BINARY ) 
+数据内容以二进制的方式传输，将Item名称和数据，以UTF8方式转换成Byte数组。
+ID
+Mode
+Content
+传输编码
+,
+1
+,
+Item名称和数值
+举例：24 54 4D 53 56 52 2C // $TMSVR, (Header)
+33 36 2C                     // 36, (Length)
+30 2C                         // 0, (ID)
+31 2C                         // 1, (Mode)
+43 61 6D 65 72 61 5F 4C 69 67 68 74          // Camera_Light, (Content)
+
+
+=== Page 20 ===
+20
+CONFIDENTIAL
+实现步骤
+读取与写入-Client端
+Mode=2 （STRING ) 
+数据内容以字符串的方式传输。
+ID
+Mode
+Content
+传输编码
+,
+2
+,
+Item名称和数值
+举例：
+$TMSVR,32,3,2,Robot_Link=1                         // Robot_Link=1//编号3//模式2 String
+Camera_Light=0,*67
+// Camera_Light=0
+
+
+=== Page 21 ===
+21
+CONFIDENTIAL
+实现步骤
+读取与写入-Client端
+Mode=3 （JSON ) 
+数据内容以JSON字符串的方式传输。
+ID
+Mode
+Content
+传输编码
+,
+3
+,
+Item名称和数值
+举例：
+$TMSVR,71,2,3,[{“Item”:“Robot_Link”,“Value”:1},          // Robot_Link=1//编号2//模式3 JSON
+{"Item":"Camera_Light","Value":0}],*4D                                  // Camera_Light=0

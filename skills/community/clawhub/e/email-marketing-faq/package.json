@@ -1,0 +1,92 @@
+{
+  "name": "@zlr_236/email-marketing",
+  "version": "1.2.0",
+  "description": "智能邮件营销工具，支持AI自动生成美观HTML、个性化群发、自动回信等功能",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "email",
+    "marketing",
+    "automation",
+    "ai",
+    "html-generator",
+    "bulk-email",
+    "auto-reply",
+    "openclaw",
+    "skill"
+  ],
+  "author": "zlr_236",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zlr_236/email-marketing.git"
+  },
+  "files": [
+    "scripts/**/*",
+    "assets/**/*",
+    "requirements.txt",
+    "README.md",
+    "SKILL.md",
+    ".env.example",
+    ".gitignore"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "openclaw": {
+    "env": {
+      "EMAIL_SMTP_USER": {
+        "description": "SMTP sender email address",
+        "required": true
+      },
+      "EMAIL_SMTP_PASS": {
+        "description": "SMTP email password or app-specific password",
+        "required": true,
+        "secret": true
+      },
+      "EMAIL_TEST_TARGET": {
+        "description": "Test recipient email for validation before bulk sending",
+        "required": true
+      },
+      "EMAIL_SMTP_HOST": {
+        "description": "SMTP server hostname (e.g., smtp.gmail.com)",
+        "required": false
+      },
+      "EMAIL_SMTP_PORT": {
+        "description": "SMTP server port (e.g., 465)",
+        "required": false
+      },
+      "EMAIL_IMAP_HOST": {
+        "description": "IMAP server hostname for receiving emails",
+        "required": false
+      },
+      "EMAIL_IMAP_PORT": {
+        "description": "IMAP server port (e.g., 993)",
+        "required": false
+      },
+      "EMAIL_FROM_NAME": {
+        "description": "Display name in the From field of sent emails",
+        "required": false
+      },
+      "EMAIL_EXCEL_PATH": {
+        "description": "Path to the Excel recipient list file",
+        "required": false
+      },
+      "EMAIL_HTML_PATH": {
+        "description": "Path to the HTML email content file",
+        "required": false
+      },
+      "EMAIL_TITLE_PATH": {
+        "description": "Path to the email subject line text file",
+        "required": false
+      },
+      "EMAIL_FAQ_PATH": {
+        "description": "Path to the FAQ file for auto-reply matching",
+        "required": false
+      }
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

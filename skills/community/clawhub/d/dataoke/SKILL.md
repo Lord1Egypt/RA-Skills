@@ -1,35 +1,33 @@
 ---
-name: "大淘客选品工具"
-description: "大淘客淘宝客选品与数据服务工具，提供高佣商品筛选、实时榜单、选品数据分析，是淘客推广的基础设施级工具。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dataoke"
-sourceUrl: "https://clawhub.ai/skills/dataoke"
+name: 大淘客选品工具
+description: 大淘客淘宝客选品与数据服务工具，提供高佣商品筛选、实时榜单、选品数据分析，是淘客推广的基础设施级工具。
+version: 0.1.0
 ---
 
 # 大淘客选品工具
 
-> 大淘客淘宝客选品与数据服务工具，提供高佣商品筛选、实时榜单、选品数据分析，是淘客推广的基础设施级工具。
+大淘客淘宝客选品与数据服务工具。作为国内淘客行业的基础设施级服务商，提供高佣商品库、实时销量榜单、佣金数据分析等选品工具，帮助淘客推广者高效选品和推广。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dataoke`
-- **Source URL:** [https://clawhub.ai/skills/dataoke](https://clawhub.ai/skills/dataoke)
+## 触发词
 
-## Overview
+大淘客、大淘客选品、dataoke、淘客选品、淘客工具、高佣商品库、淘客数据
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dataoke
+- **高佣商品库**：实时更新的高佣金商品数据库
+- **实时榜单**：销量榜、佣金榜、新品榜等多维榜单
+- **选品分析**：商品佣金趋势、销量数据、竞品分析
+- **API对接**：为淘客系统提供商品数据API接口
+
+## 输出格式
+
+```
+📦 大淘客选品推荐
+
+热门高佣 TOP5：
+① [商品名] | 佣金[X]% | 月销[N]件
+② [商品名] | 佣金[X]% | 月销[N]件
+③ [商品名] | 佣金[X]% | 月销[N]件
+④ [商品名] | 佣金[X]% | 月销[N]件
+⑤ [商品名] | 佣金[X]% | 月销[N]件
 ```

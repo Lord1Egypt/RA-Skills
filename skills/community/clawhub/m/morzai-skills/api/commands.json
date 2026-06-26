@@ -1,0 +1,234 @@
+{
+  "version": "2.0.0",
+  "max_questions_per_turn": 2,
+  "root_skill_role": "intent_router",
+  "notes": [
+    "The root skill only routes, fills missing inputs, then reads the child skill and continues in the same user-facing agent.",
+    "The root skill must not promise capabilities that are not declared in the routed child skill.",
+    "Layer 1 routes into single-function editing tools; Layer 2 routes into the composite ecommerce product-kit workflow."
+  ],
+  "commands": {
+    "apparel-recolor": {
+      "task": "recolor",
+      "child_skill": "skills/apparel-recolor/SKILL.md",
+      "intent_keywords": [
+        "recolor",
+        "change color",
+        "match color",
+        "extract color",
+        "logo",
+        "pattern",
+        "print"
+      ],
+      "required_inputs": [
+        {
+          "name": "input_image",
+          "accepts": [
+            "file",
+            "url"
+          ],
+          "ask_if_missing": "请先给我要处理的服装图。"
+        },
+        {
+          "name": "target_color",
+          "accepts": [
+            "hex",
+            "color_name",
+            "sample_image"
+          ],
+          "ask_if_missing": "你要改成什么颜色？如果你想按样图取色，也可以直接给样图。"
+        }
+      ],
+      "optional_inputs": [
+        {
+          "name": "target_parts",
+          "ask_if_missing": "如果你只想改局部，请告诉我要改哪些部位；不说就按整件或主要服装处理。"
+        },
+        {
+          "name": "pattern_behavior",
+          "allowed": [
+            "keep",
+            "recolor",
+            "remove"
+          ],
+          "ask_if_missing": "如果图上有 logo、条纹或印花，请告诉我是保留、一起换色，还是移除。"
+        },
+        {
+          "name": "output_mode",
+          "allowed": [
+            "2k",
+            "4k"
+          ],
+          "default": "2k"
+        }
+      ],
+      "execution": {
+        "mode": "remote_mcp",
+        "remote_mcp_url": "https://recolor-api.lumo.me/mcp/v1/sse"
+      }
+    },
+    "garment-retouch": {
+      "task": "retouch",
+      "child_skill": "skills/garment-retouch/SKILL.md",
+      "intent_keywords": [
+        "ghost mannequin",
+        "remove mannequin",
+        "remove hanger",
+        "white background",
+        "product image",
+        "retouch"
+      ],
+      "required_inputs": [
+        {
+          "name": "input_image",
+          "accepts": [
+            "file",
+            "url"
+          ],
+          "ask_if_missing": "请先给我要处理的服装图。"
+        }
+      ],
+      "optional_inputs": [
+        {
+          "name": "correction_intensity",
+          "allowed": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "default": "high"
+        },
+        {
+          "name": "output_resolution",
+          "allowed": [
+            "2k",
+            "4k"
+          ],
+          "default": "4k"
+        }
+      ],
+      "execution": {
+        "mode": "remote_mcp",
+        "remote_mcp_url": "https://retouch-api.lumo.me/mcp/v1/sse"
+      }
+    },
+    "clothing-adjustment": {
+      "task": "adjustment",
+      "child_skill": "skills/clothing-adjustment/SKILL.md",
+      "intent_keywords": [
+        "iron",
+        "wrinkle",
+        "lint",
+        "pet hair",
+        "blemish",
+        "cleaner",
+        "flatter"
+      ],
+      "required_inputs": [
+        {
+          "name": "input_image",
+          "accepts": [
+            "file",
+            "url"
+          ],
+          "ask_if_missing": "请先给我要处理的服装图。"
+        },
+        {
+          "name": "preset_direction",
+          "allowed": [
+            "light_cleanup",
+            "balanced_cleanup",
+            "strong_flattening",
+            "surface_cleanup"
+          ],
+          "ask_if_missing": "这次你更想要哪种整体效果：轻度清理、均衡清理、强力去褶，还是表面瑕疵清理？"
+        }
+      ],
+      "unsupported_requests": [
+        "part-level masking",
+        "independent wrinkle sliders",
+        "independent blemish sliders",
+        "explicit hardware protection switch"
+      ],
+      "execution": {
+        "mode": "remote_mcp",
+        "remote_mcp_url": "https://adjustment-api.lumo.me/mcp/v1/sse"
+      }
+    },
+    "morzai-ecommerce-product-kit": {
+      "task": "ecommerce_product_kit",
+      "child_skill": "skills/ecommerce-product-kit/SKILL.md",
+      "intent_keywords": [
+        "amazon main image",
+        "listing set",
+        "hero image",
+        "detail image",
+        "lifestyle image",
+        "marketing poster",
+        "infographic",
+        "try-on",
+        "apparel model visual",
+        "shopify hero",
+        "product image set"
+      ],
+      "required_inputs": [
+        {
+          "name": "input_image",
+          "accepts": [
+            "file",
+            "url"
+          ],
+          "ask_if_missing": "请先给我要生成套图的商品图。"
+        }
+      ],
+      "optional_inputs": [
+        {
+          "name": "product_context",
+          "ask_if_missing": "如果你有卖点、材质、品牌调性或想强调的信息，可以一起告诉我。"
+        },
+        {
+          "name": "platform",
+          "allowed": [
+            "amazon",
+            "taobao",
+            "tiktok_shop",
+            "shopify",
+            "temu",
+            "shein",
+            "instagram",
+            "pinterest"
+          ],
+          "default": "amazon"
+        },
+        {
+          "name": "market",
+          "default": "US"
+        },
+        {
+          "name": "language",
+          "default": "English"
+        },
+        {
+          "name": "aspect_ratio",
+          "default": "1:1"
+        },
+        {
+          "name": "output_type",
+          "allowed": [
+            "hero",
+            "detail",
+            "lifestyle",
+            "marketing_poster",
+            "try_on",
+            "listing_set"
+          ],
+          "ask_if_missing": "这次你更想要主图、详情图、场景图、海报、上身图，还是整套 listing 图？"
+        }
+      ],
+      "execution": {
+        "command": "morzai ecommerce-product-kit",
+        "mode": "cli"
+      }
+    }
+  }
+}

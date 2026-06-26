@@ -1,0 +1,5 @@
+{
+  "freelance": {"time_to_profit": 1, "avg_gain": 200},
+  "local_business": {"time_to_profit": 0.5, "avg_gain": 100},
+  "digital_product": {"time_to_profit": 2, "avg_gain": 500}
+}

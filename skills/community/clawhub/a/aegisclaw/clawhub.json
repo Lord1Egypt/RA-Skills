@@ -1,0 +1,44 @@
+{
+  "name": "aegisclaw",
+  "version": "1.0.0",
+  "description": "🦞 金甲龙虾 - 币安安全赚币与护境神将。基于最小权限原则的防御型 AI 代理，专注低风险套利与全自动赚取 BNB。",
+  "author": "hyy2099",
+  "repository": "https://github.com/hyy2099/aegisclaw",
+  "main": "openclaw_plugin/plugin.py",
+  "entry": "main.py",
+  "dependencies": [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "python-dateutil>=2.8.2"
+  ],
+  "keywords": [
+    "binance",
+    "trading",
+    "arbitrage",
+    "security",
+    "ai",
+    "cryptocurrency",
+    "bnb",
+    "launchpool",
+    "funding-rate"
+  ],
+  "commands": {
+    "init": "初始化插件: /aegisclaw init <api_key> <api_secret>",
+    "check": "运行安全围栏检查",
+    "scan": "扫描闲置资产和零钱",
+    "arbitrage": "扫描资金费率套利机会",
+    "dust": "执行零钱兑换",
+    "report": "生成周收益战报",
+    "status": "查看当前状态",
+    "help": "显示帮助信息"
+  },
+  "environment": {
+    "BINANCE_API_KEY": "Binance API Key（必需）",
+    "BINANCE_API_SECRET": "Binance API Secret（必需）",
+    "BINANCE_TESTNET": "是否使用测试网（可选，默认false）"
+  },
+  "permissions": [
+    "network",
+    "storage"
+  ]
+}

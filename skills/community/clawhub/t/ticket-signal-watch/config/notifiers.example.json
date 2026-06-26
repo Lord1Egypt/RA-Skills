@@ -1,0 +1,31 @@
+{
+  "notifiers": [
+    {
+      "type": "webhook",
+      "enabled": true,
+      "name": "primary-webhook",
+      "url": "https://example.com/ticket-events",
+      "headers": {
+        "Authorization": "Bearer replace-me"
+      },
+      "min_signal_level": "medium"
+    },
+    {
+      "type": "openclaw-channel",
+      "enabled": false,
+      "name": "telegram-alert",
+      "channel": "telegram",
+      "target": "123456789",
+      "min_signal_level": "high"
+    },
+    {
+      "type": "file",
+      "enabled": true,
+      "name": "local-debug",
+      "path": "{baseDir}/state/events.jsonl",
+      "min_signal_level": "low"
+    }
+  ],
+  "cooldown_seconds": 300,
+  "dedupe_window_seconds": 1800
+}

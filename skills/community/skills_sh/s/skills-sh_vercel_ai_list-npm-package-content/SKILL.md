@@ -1,35 +1,30 @@
 ---
-name: "list-npm-package-content"
-description: "Indexed by skills.sh from vercel/ai"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vercel"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vercel/ai/list-npm-package-content"
-sourceUrl: "https://skills.sh/vercel/ai/list-npm-package-content"
+name: list-npm-package-content
+description: List the contents of an npm package tarball before publishing. Use when the user wants to see what files are included in an npm bundle, verify package contents, or debug npm publish issues.
+metadata:
+  internal: true
 ---
 
-# list-npm-package-content
+# List npm Package Content
 
-> Indexed by skills.sh from vercel/ai
+This skill lists the exact contents of an npm package tarball - the same files that would be uploaded to npm and downloaded by users.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vercel
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vercel/ai/list-npm-package-content`
-- **Source URL:** [https://skills.sh/vercel/ai/list-npm-package-content](https://skills.sh/vercel/ai/list-npm-package-content)
+## Usage
 
-## Overview
+Run the script from the package directory (e.g., `packages/ai`):
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/vercel/ai/list-npm-package-content
+bash scripts/list-package-files.sh
 ```
+
+The script will build the package, create a tarball, list its contents, and clean up automatically.
+
+## Understanding Package Contents
+
+The files included are determined by:
+
+1. **`files` field in `package.json`** - explicit allowlist of files/directories
+2. **`.npmignore`** - files to exclude (if present)
+3. **`.gitignore`** - used if no `.npmignore` exists
+4. **Always included**: `package.json`, `README`, `LICENSE`, `CHANGELOG`
+5. **Always excluded**: `.git`, `node_modules`, `.npmrc`, etc.

@@ -1,0 +1,39 @@
+{
+  "name": "@frontend-craft/fec-nuxt-project-standard",
+  "version": "2.4.0",
+  "description": "Use when creating or reviewing Nuxt 3 projects, file routes, pages, layouts, SSR/SSG/SPA behavior, Nuxt data fetching, route middleware, plugins, modules, server routes, or Nuxt-specific Vue 3 conventions. For generic Vue component architecture, apply the project's Vue conventions separately; Chinese triggers include Nuxt, Nuxt 3.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-nuxt-project-standard"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "project-standard",
+    "nuxt",
+    "vue",
+    "ssr",
+    "ssg",
+    "data-fetching"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "thresholds": {
+    "memoryMdMaxLines": 500,
+    "memoryMdMaxChars": 25000,
+    "tierArchiveMinAgeDays": 3,
+    "auditMaxFiles": 50
+  },
+  "tiering": {
+    "archiveDir": "memory/active",
+    "backupDir": "memory/backups",
+    "retentionDays": 90,
+    "minCoreLines": 20,
+    "minCoreChars": 1000,
+    "keepInMemory": [
+      "identity",
+      "preferences",
+      "relationships",
+      "projects",
+      "patterns",
+      "boundaries",
+      "key_facts"
+    ]
+  },
+  "manifest": {
+    "generateOnTier": true,
+    "manifestPath": "memory/memory-manifest.json"
+  },
+  "audit": {
+    "reportPath": "memory/memory-audit-report.md",
+    "duplicateThreshold": 0.7,
+    "conflictKeywords": ["revised", "updated", "changed", "no longer", "actually", "correction", "mistake"]
+  }
+}

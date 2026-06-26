@@ -1,0 +1,39 @@
+# Reference notes:
+# - references/overview.md
+# - references/mysql.md
+# - references/starrocks.md
+
+sources:
+- source:
+    type: mysql
+    name: MySQL Source
+    hostname: ${mysql_hostname}
+    port: ${mysql_port}
+    username: ${mysql_username}
+    password: ${mysql_password}
+    tables: ${mysql_tables}
+    server-id: ${mysql_server_id}
+    schema-change.enabled: true
+
+sink:
+  type: starrocks
+  name: StarRocks Sink
+  # Note: StarRocks pipeline sink only supports primary-key tables.
+  jdbc-url: ${starrocks_jdbc_url}
+  load-url: ${starrocks_load_url}
+  username: ${starrocks_username}
+  password: ${starrocks_password}
+  sink.label-prefix: ${starrocks_sink_label_prefix}
+  sink.buffer-flush.max-bytes: ${starrocks_sink_buffer_flush_max_bytes}
+  sink.buffer-flush.interval-ms: ${starrocks_sink_buffer_flush_interval_ms}
+  table.create.num-buckets: ${starrocks_table_create_num_buckets}
+  table.create.properties.fast_schema_evolution: ${starrocks_table_create_properties_fast_schema_evolution}
+
+route:
+- source-table: ${route_source_table}
+  sink-table: ${route_sink_table}
+  description: ${route_description}
+
+pipeline:
+  name: ${pipeline_name}
+  parallelism: ${pipeline_parallelism}

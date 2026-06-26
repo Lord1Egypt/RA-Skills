@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Socrates logo">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#134e4a"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdfa"/>
+      <stop offset="100%" stop-color="#ccfbf1"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <rect x="86" y="94" width="340" height="210" rx="36" fill="url(#card)"/>
+  <path d="M150 376l60-52h132c46 0 84-38 84-84V160c0-46-38-84-84-84H170c-46 0-84 38-84 84v80c0 46 38 84 84 84h18z" fill="#99f6e4" opacity="0.58"/>
+  <path d="M220 196c0-37 27-64 64-64s64 27 64 64c0 25-14 40-29 54-14 13-27 25-27 48" fill="none" stroke="#115e59" stroke-linecap="round" stroke-width="24"/>
+  <circle cx="256" cy="334" r="18" fill="#115e59"/>
+  <text x="256" y="448" text-anchor="middle" font-family="Menlo, Monaco, Consolas, monospace" font-size="56" fill="#ecfeff">SOCRATES</text>
+</svg>

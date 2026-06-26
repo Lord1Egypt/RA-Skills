@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试套餐充值 - 小龙虾主厨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .payment-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .lobster {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        h1 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+        .info-table {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .info-value {
+            color: #212529;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .qr-container {
+            background: #fff;
+            border: 3px solid #1677ff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(22, 119, 255, 0.2);
+        }
+        .qr-container iframe {
+            display: block;
+            margin: 0 auto;
+            border: none;
+        }
+        .pay-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(22, 119, 255, 0.4);
+        }
+        .pay-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 119, 255, 0.5);
+        }
+        .tips {
+            background: #fff7e6;
+            border-left: 4px solid #faad14;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 13px;
+            color: #8c6000;
+            line-height: 1.6;
+        }
+        .tips strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .footer {
+            margin-top: 25px;
+            color: #999;
+            font-size: 12px;
+        }
+        .test-tag {
+            display: inline-block;
+            background: #e6f7ff;
+            color: #1890ff;
+            padding: 6px 16px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #91d5ff;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <div class="lobster">🦞</div>
+        <h1>测试套餐充值</h1>
+        <p class="subtitle">小龙虾主厨为您服务～</p>
+        
+        <div class="test-tag">🧪 测试演示订单 ¥0.01</div>
+        
+        <div class="info-table">
+            <div class="info-row">
+                <span class="info-label">套餐名称</span>
+                <span class="info-value">测试套餐</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">充值金额</span>
+                <span class="info-value">¥0.01</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">到账次数</span>
+                <span class="info-value">10 次</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">充值账号</span>
+                <span class="info-value">138****2262</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">订单编号</span>
+                <span class="info-value">HY26061721200836524020</span>
+            </div>
+        </div>
+        
+        <div class="qr-container">
+            <iframe 
+                src="https://openapi.alipay.com/gateway.do?app_id=2021006150611467&method=alipay.trade.page.pay&charset=utf-8&sign_type=RSA2&timestamp=2026-06-17%2021%3A20%3A02&version=1.0&notify_url=https%3A%2F%2Flifeemergence.com%2Fjeecg-boot-xzgz%2Fhealth%2Forder%2Falipay%2Fon-notify&return_url=https%3A%2F%2Flifeemergence.com%2Fweb-xzgz%2Fhealth%2Forder%2Falipay%2Fon-notify&biz_content=%7B%22out_trade_no%22%3A%22HY26061721200836524020%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E5%B0%8F%E9%BE%99%E8%99%BE%E4%B8%BB%E5%8E%A8%20-%20%E6%B5%8B%E8%AF%95%E5%A5%97%E9%A4%90%E5%85%85%E5%80%BC%22%2C%22product_code%22%3A%22FAST_INSTANT_TRADE_PAY%22%2C%22qr_pay_mode%22%3A4%7D&sign=PLACEHOLDER" 
+                width="300" 
+                height="300" 
+                frameborder="0"
+                scrolling="no"
+            >
+            </iframe>
+        </div>
+        
+        <a href="https://openapi.alipay.com/gateway.do?app_id=2021006150611467&method=alipay.trade.page.pay&charset=utf-8&sign_type=RSA2&timestamp=2026-06-17%2021%3A20%3A02&version=1.0&notify_url=https%3A%2F%2Flifeemergence.com%2Fjeecg-boot-xzgz%2Fhealth%2Forder%2Falipay%2Fon-notify&return_url=https%3A%2F%2Flifeemergence.com%2Fweb-xzgz%2Fhealth%2Forder%2Falipay%2Fon-notify&biz_content=%7B%22out_trade_no%22%3A%22HY26061721200836524020%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%22%E5%B0%8F%E9%BE%99%E8%99%BE%E4%B8%BB%E5%8E%A8%20-%20%E6%B5%8B%E8%AF%95%E5%A5%97%E9%A4%90%E5%85%85%E5%80%BC%22%2C%22product_code%22%3A%22FAST_INSTANT_TRADE_PAY%22%2C%22qr_pay_mode%22%3A4%7D&sign=PLACEHOLDER" class="pay-link" target="_blank">
+            👉 点击打开支付宝付款页面
+        </a>
+        
+        <div class="tips">
+            <strong>🔍 自动检测已启动</strong>
+            系统正在后台自动轮询订单状态，支付成功后会立即通知您并更新账户余额，无需手动回复"已支付"！
+            <br><br>
+            <strong>💡 测试说明</strong>
+            这是一个 ¥0.01 的测试演示订单，您可以扫码支付测试完整流程，也可以直接回复"模拟支付成功"查看后续效果~
+        </div>
+        
+        <div class="footer">
+            小龙虾主厨 · 生命涌现系列技能
+        </div>
+    </div>
+</body>
+</html>

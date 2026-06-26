@@ -1,35 +1,32 @@
 ---
-name: "Capability Pipeline OS"
-description: "通用能力管线操作系统。基于"万物皆可单元化"思想，将任意领域的任意任务分解为可执行、可组合的能力单元，通过管线编排完成。6大元操作集群（感知/认知/行动/组织/交互/守护）覆盖一切任务类型的原子操作，领域差异通过推导规则注入。触发词：能力单元、管线、Pipeline、任务分解、工作流、原子任务、单元化、编排、执行..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/capability-pipeline-os"
-sourceUrl: "https://clawhub.ai/skills/capability-pipeline-os"
+name: capability-pipeline-os
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 通用能力管线操作系统。基于"万物皆可单元化"思想，将任意领域的任意任务分解为可执行、可组合的能力单元，通过管线编排完成。6大元操作集群（感知/认知/行动/组织/交互/守护）覆盖一切任务类型的原子操作，领域差异通过推导规则注入。触发词：能力单元、管线、Pipeline、任务分解、工作流、原子任务、单元化、编排、执行框架、能力管线、任务编排、流水线、自动编排、分解执行、元操作。
 ---
 
-# Capability Pipeline OS
+# Capability Pipeline OS - 通用能力管线操作系统
 
-> 通用能力管线操作系统。基于"万物皆可单元化"思想，将任意领域的任意任务分解为可执行、可组合的能力单元，通过管线编排完成。6大元操作集群（感知/认知/行动/组织/交互/守护）覆盖一切任务类型的原子操作，领域差异通过推导规则注入。触发词：能力单元、管线、Pipeline、任务分解、工作流、原子任务、单元化、编排、执行...
+万物皆可单元化。6大元操作集群覆盖一切任务类型，领域差异通过推导规则自动适配。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/capability-pipeline-os`
-- **Source URL:** [https://clawhub.ai/skills/capability-pipeline-os](https://clawhub.ai/skills/capability-pipeline-os)
+## Step 0：复杂度判定
 
-## Overview
+| 复杂度 | 判定标准 | 执行路径 |
+|--------|----------|----------|
+| **简单** | 可直接完成，无需多步分解 | 单一IPO基元执行 |
+| **中等** | 需要3-7个步骤协调 | 单层管线编排 |
+| **复杂** | 需要8+步骤或多层嵌套 | 多层管线+IPO递归 |
 
+简单任务走IPO基元快速通道。中等及以上任务，读取参考文件按完整流程执行。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/capability-pipeline-os
-```
+## 6大元操作速览
+
+| 代号 | 元操作 | 本质 | 执行身份 |
+|------|--------|------|----------|
+| S | 感知 | 从环境中获取信息 | 侦察者 |
+| C | 认知 | 对信息进行加工处理 | 分析师 |
+| A | 行动 | 产生可观测的产出 | 执行者 |
+| O | 组织 | 结构化管理和维护资源 | 管理者 |
+| I | 交互 | 与外部主体建立关系 | 协调者 |
+| G | 守护 | 确保安全、合规、质量 | 守门人 |
+
+完整定义（核心理念、能力单元Schema 8必选2可选字段及字段逻辑关系、6大元操作集群、管线编排6模式、IPO统一结构、7种通用管线模式P1-P7、自适应身份叠加深层定义两层正交架构、领域校准R1-R5、4个实例化演示、执行规则、工具调用策略、呈现规则、事实纪律）在参考文件 `references/capability-pipeline-os.md`。

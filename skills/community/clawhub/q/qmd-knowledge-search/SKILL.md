@@ -1,35 +1,36 @@
 ---
-name: "QMD Knowledge Search"
-description: "Query the local knowledge base (OpenClaw docs, skills, internal wikis) using the QMD hybrid search engine (BM25 + Vector + LLM Re-ranking). Use this for tech..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qmd-knowledge-search"
-sourceUrl: "https://clawhub.ai/skills/qmd-knowledge-search"
+name: qmd-search
+description: Query the local knowledge base (OpenClaw docs, skills, internal wikis) using the QMD hybrid search engine (BM25 + Vector + LLM Re-ranking). Use this for technical questions about the agent's own capabilities, available skills, or documentation.
 ---
 
-# QMD Knowledge Search
+# QMD Search
 
-> Query the local knowledge base (OpenClaw docs, skills, internal wikis) using the QMD hybrid search engine (BM25 + Vector + LLM Re-ranking). Use this for tech...
+Access the local knowledge base at `/root/clawd/knowledge`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qmd-knowledge-search`
-- **Source URL:** [https://clawhub.ai/skills/qmd-knowledge-search](https://clawhub.ai/skills/qmd-knowledge-search)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Search (Hybrid)
+Best for general queries. Combines keyword and semantic search with re-ranking.
 ```bash
-hermes skills install clawhub/qmd-knowledge-search
+qmd query "your query here"
 ```
+
+### Search (Fast)
+Keyword-only search. Use for exact phrases.
+```bash
+qmd search "exact phrase"
+```
+
+### Get Document
+Read a specific document by path or docid (from search results).
+```bash
+qmd get "path/to/doc.md" --full
+```
+
+### Tips
+- Use `--json` if you need structured output for processing.
+- Use `--min-score 0.5` to filter noise.
+- The knowledge base includes:
+  - OpenClaw Documentation (`openclaw-docs/`)
+  - Skill Definitions (`skills/`)
+  - QMD Documentation (`qmd.md`)

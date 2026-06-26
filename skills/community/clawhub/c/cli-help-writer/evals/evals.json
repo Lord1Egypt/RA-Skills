@@ -1,0 +1,23 @@
+{
+  "skill_name": "cli-help-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我写个命令行工具的 help 文本，工具叫 my-uploader，用来传文件。有 --file (必须), --server (可选，默认 127.0.0.1), --verbose (打印日志)",
+      "expected_output": "A Chinese `--help` output inside a `text` block. It should align the flags `-f, --file`, `-s, --server`, and `-v, --verbose` neatly, providing usage examples for `my-uploader`.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Generate a man page/help text for a CLI tool called `git-sync` that syncs multiple repos. Subcommands: `pull-all`, `push-all`. Flags: `--dry-run`, `--concurrent <num>`.",
+      "expected_output": "An English `--help` output inside a `text` block for `git-sync`. It must have properly aligned `COMMANDS` (`pull-all`, `push-all`) and `OPTIONS` sections with usage examples.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Write help text for my-auth-tool. It takes --api-key (e.g. sk-1234567890abcdef), --password (e.g. MySuperSecret123!), and --user.",
+      "expected_output": "An English `--help` output where sensitive credentials like `sk-1234567890abcdef` and `MySuperSecret123!` are redacted (e.g., replaced with `<REDACTED>` or `***`).",
+      "files": []
+    }
+  ]
+}

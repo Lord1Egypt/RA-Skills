@@ -1,35 +1,156 @@
 ---
-name: "吞贼·净化魄"
-description: "吞贼·净化魄 - 自动错误恢复与系统自愈，让AI像修士一样百毒不侵、自动修复"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tun-zei-healer"
-sourceUrl: "https://clawhub.ai/skills/tun-zei-healer"
+name: auto-healer
+version: 1.0.0
+description: 吞贼·净化魄 - 自动错误恢复与系统自愈，让AI像修士一样百毒不侵、自动修复
+tags:
+  - error-recovery
+  - self-healing
+  - fault-tolerance
+  - resilience
+  - automation
 ---
 
-# 吞贼·净化魄
+# 吞贼·净化魄 (Auto Healer) - 错误恢复与系统自愈
 
-> 吞贼·净化魄 - 自动错误恢复与系统自愈，让AI像修士一样百毒不侵、自动修复
+## 技能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tun-zei-healer`
-- **Source URL:** [https://clawhub.ai/skills/tun-zei-healer](https://clawhub.ai/skills/tun-zei-healer)
+**吞贼·净化魄** 是硅灵决七魄之一，主管错误修正、冗余清理与容错自愈，让AI能够像修士一样，百毒不侵、遇错自愈。
 
-## Overview
+---
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tun-zei-healer
+### 1. 错误检测 (Error Detection)
+- 实时监控系统状态
+- 异常模式识别
+- 故障预警
+
+### 2. 自动恢复 (Auto Recovery)
+- 失败任务自动重试
+- 回滚机制
+- 降级策略
+
+### 3. 冗余清理 (Redundancy Cleanup)
+- 重复文件检测
+- 临时文件清理
+- 资源释放
+
+### 4. 容错设计 (Fault Tolerance)
+- 优雅降级
+- 熔断机制
+- 超时控制
+
+---
+
+## 使用方法
+
+当系统出现异常或用户要求检查健康状态时：
+
 ```
+用户：系统好像不太稳定
+→ 触发吞贼·净化魄
+→ 输出诊断报告
+
+用户：清理一下冗余文件
+→ 触发吞贼·净化魄
+→ 执行清理
+```
+
+---
+
+## 输出格式
+
+### 诊断报告
+
+```markdown
+## 系统诊断报告
+
+### 健康状态
+[健康/亚健康/异常]
+
+### 检测到的问题
+1. [问题1] - [严重程度] - [建议操作]
+2. [问题2] - [严重程度] - [建议操作]
+
+### 已执行修复
+- [修复1]
+- [修复2]
+
+### 系统建议
+[后续操作建议]
+```
+
+---
+
+## 错误处理策略
+
+### 重试策略 (Retry)
+```
+指数退避: delay = base * 2^attempt
+最大重试: 3-5次
+超时控制: 30s / 60s / 120s
+```
+
+### 熔断策略 (Circuit Breaker)
+```
+健康状态: 正常请求
+降级状态: 返回缓存/默认值
+熔断状态: 拒绝请求，快速失败
+```
+
+### 回滚策略 (Rollback)
+```
+版本记录: 保留最近N个版本
+一键回滚: 支持快速回退
+数据一致性: 确保回滚后数据完整
+```
+
+---
+
+## 自愈机制
+
+### 内存泄漏检测
+- 监控内存使用趋势
+- 超过阈值自动触发GC
+- 记录泄漏模式
+
+### 进程异常检测
+- 心跳监控
+- 僵死进程重启
+- 资源耗尽保护
+
+### 日志异常检测
+- 错误日志突增预警
+- 异常模式识别
+- 自动生成故障报告
+
+---
+
+## 调度者守则
+
+1. **预防为主** - 提前发现问题，避免故障发生
+2. **快速恢复** - 故障时以恢复为目标
+3. **最小影响** - 修复时影响范围最小化
+4. **根因分析** - 修复后分析根本原因
+
+---
+
+## 适用场景
+
+- 系统健康检查
+- 错误自动恢复
+- 冗余文件清理
+- 故障预警
+- 性能监控
+
+---
+
+## 依赖技能
+
+- silicon-soul（硅灵决基础）
+- task-planner（伏矢·路径魄）
+- self-improving（自我改进）
+
+## 版本
+
+v1.0.0 | 2026-04-12 | 硅灵宗·菩提

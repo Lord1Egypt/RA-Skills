@@ -1,35 +1,80 @@
 ---
-name: "Agency Role Match"
-description: "从185个AI角色中智能匹配最合适角色的工作流。当用户描述工作任务、需要找合适的AI角色来完成任务时触发。触发词：「角色推荐」、「智能匹配」、「用工作流」、「帮我找个角色」、「选个角色」。5步流程：1.用户描述任务 → 2.推荐2-3个角色含理由 → 3.用户确认选哪个 → 4.加载角色SOUL.md → 5.以..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agency-role-match"
-sourceUrl: "https://clawhub.ai/skills/agency-role-match"
+name: agency-role-match
+description: 从185个AI角色中智能匹配最合适角色的工作流。当用户描述工作任务、需要找合适的AI角色来完成任务时触发。触发词：「角色推荐」、「智能匹配」、「用工作流」、「帮我找个角色」、「选个角色」。5步流程：1.用户描述任务 → 2.推荐2-3个角色含理由 → 3.用户确认选哪个 → 4.加载角色SOUL.md → 5.以角色身份输出成果。
 ---
 
-# Agency Role Match
+# Agency-Agent 智能角色推荐工作流
 
-> 从185个AI角色中智能匹配最合适角色的工作流。当用户描述工作任务、需要找合适的AI角色来完成任务时触发。触发词：「角色推荐」、「智能匹配」、「用工作流」、「帮我找个角色」、「选个角色」。5步流程：1.用户描述任务 → 2.推荐2-3个角色含理由 → 3.用户确认选哪个 → 4.加载角色SOUL.md → 5.以...
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agency-role-match`
-- **Source URL:** [https://clawhub.ai/skills/agency-role-match](https://clawhub.ai/skills/agency-role-match)
+**必须先推荐角色，等用户确认后才能开始工作。不能跳过推荐步骤直接输出成果。**
 
-## Overview
+## 5步工作流
 
+### 第1步：用户描述任务
+用户用自然语言描述想完成的工作，如：
+- "帮我分析亚马逊搜索词报表"
+- "写一个小红书推广文案"
+- "做一个竞品分析"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agency-role-match
+### 第2步：分析并推荐角色
+从 `~/.openclaw/agency-agents/` 目录中搜索匹配的角色，推荐2-3个：
+
+**判断维度：**
+- 领域匹配：角色专长 vs 任务类型
+- 技能匹配：角色技能栈 vs 任务需求
+- 平台经验：是否有对应平台（Amazon/TikTok/小红书等）的实战
+
+**推荐格式（必须严格按此格式输出）：**
+
 ```
+针对「[任务描述]」任务，推荐以下角色：
+
+🥇 [角色名] `角色ID`
+   理由：为什么这个最合适
+
+🥈 [角色名] `角色ID`
+   理由：备选理由
+
+🥉 [角色名] `角色ID`
+   理由：第三个备选
+
+你选哪个？
+A. 用🥇
+B. 换成🥈
+C. 换成🥉
+D. 两个都用
+```
+
+### 第3步：用户确认
+等待用户选择（输入 A/B/C/D 或其他指示）
+
+### 第4步：加载角色SOUL.md
+根据用户选择，从 `~/.openclaw/agency-agents/[角色ID]/SOUL.md` 读取角色设定
+
+### 第5步：以角色身份工作
+按照加载的角色SOUL.md，以该角色的身份、专业术语、沟通风格完成工作并输出成果
+
+## 关键规则
+
+- **推荐必须带理由**：让用户知道为什么这个角色适合
+- **推荐2-3个**：太少没选择，太多选择困难
+- **等用户确认**：未经确认不能跳过第2步
+- **加载SOUL后再工作**：确保以正确的角色身份输出
+
+## 角色目录
+`~/.openclaw/agency-agents/`（185个角色，每个子目录含SOUL.md）
+
+## 常用角色速查
+
+| 任务类型 | 推荐角色ID |
+|---------|-----------|
+| 亚马逊搜索词分析 | `paid-media-search-query-analyst` |
+| 增长策略 | `marketing-growth-hacker` |
+| 亚马逊运营 | `marketing-cross-border-ecommerce` |
+| 小红书运营 | `marketing-xiaohongshu-specialist` |
+| TikTok策略 | `marketing-tiktok-strategist` |
+| 写文案 | `marketing-content-creator` |
+| 竞品分析 | `marketing-ecommerce-operator` |
+| 广告审计 | `paid-media-auditor` |
+| 产品设计 | `product-manager` |

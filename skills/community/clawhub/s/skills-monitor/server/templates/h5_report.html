@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Skills Monitor — {% if agent %}{{ agent.name or 'Agent' }}{% endif %} 报告中心</title>
+<link rel="stylesheet" href="/static/css/h5.css">
+</head>
+<body>
+{% set display_report = report %}
+{% set display_data = report_data or latest_daily_data or latest_diag_data %}
+{% set recommendations = recommendations or [] %}
+{% set installed_skills = installed_skills or [] %}
+{% set diagnostic = diagnostic_payload or {} %}
+{% set report_markdown = latest_diag_data.get('report_markdown') or display_data.get('report_markdown') or '' %}
+<div class="container">
+  <header class="header">
+    <div class="header-icon">🛰️</div>
+    <h1>Skills Monitor</h1>
+    <p class="subtitle">
+      {% if display_report %}
+        {{ display_report.report_date.strftime('%Y-%m-%d') if display_report.report_date else '今日' }} · {{ display_report.report_type|upper }}
+      {% else %}
+        暂无数据
+      {% endif %}
+    </p>
+  </header>
+
+  {% if display_report %}
+  <section class="card summary-banner">
+    <div>
+      <div class="summary-title">网页端同步状态</div>
+      <div class="summary-desc">首次诊断、每日报告、推荐安装与评分已汇总到这里展示。</div>
+    </div>
+    <span class="status-pill status-{{ sync_status.status }}">{{ sync_status.status_label }}</span>
+  </section>
+
+  <section class="card health-card">
+    <div class="health-score-wrapper">
+      <div class="health-ring" data-score="{{ display_report.health_score or 0 }}">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="52" class="ring-bg"/>
+          <circle cx="60" cy="60" r="52" class="ring-fill" style="stroke-dasharray: {{ (display_report.health_score or 0) * 3.267 }}, 326.7"/>
+        </svg>
+        <div class="score-text">
+          <span class="score-num">{{ '%.0f' % (display_report.health_score or 0) }}</span>
+          <span class="score-label">健康度</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric">
+        <div class="metric-value">{{ display_report.total_runs or display_data.get('overview', {}).get('total_runs', 0) }}</div>
+        <div class="metric-label">今日运行</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">{{ '%.1f' % (display_report.success_rate or display_data.get('overview', {}).get('success_rate', 0)) }}%</div>
+        <div class="metric-label">成功率</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">{{ display_report.active_skills or display_data.get('overview', {}).get('active_skills', 0) }}</div>
+        <div class="metric-label">活跃 Skills</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">🔄 报告同步保障</h2>
+    <div class="sync-grid">
+      <div class="sync-item">
+        <span class="sync-label">首次诊断</span>
+        <strong>{{ '已补齐' if sync_status.has_initial_diagnostic else '缺失' }}</strong>
+        <span class="sync-sub">{{ sync_status.first_diagnostic_date or '-' }}</span>
+      </div>
+      <div class="sync-item">
+        <span class="sync-label">近 7 日日报</span>
+        <strong>{{ sync_status.recent_daily_count }}</strong>
+        <span class="sync-sub">建议 ≥ 5 次</span>
+      </div>
+      <div class="sync-item">
+        <span class="sync-label">累计日报</span>
+        <strong>{{ sync_status.daily_count }}</strong>
+        <span class="sync-sub">{{ sync_status.latest_daily_date or '-' }}</span>
+      </div>
+      <div class="sync-item">
+        <span class="sync-label">累计诊断</span>
+        <strong>{{ sync_status.diagnostic_count }}</strong>
+        <span class="sync-sub">{{ sync_status.latest_diag_date or '-' }}</span>
+      </div>
+    </div>
+  </section>
+
+  {% if recommendations %}
+  <section class="card">
+    <h2 class="card-title">💡 推荐安装 Skills</h2>
+    <div class="logic-note">
+      {% if installed_skills|length == 0 %}
+      当前未检测到已安装 skills，已按 <strong>官方 TOP10</strong> 从热度、成功率和能力覆盖中精选 3 个兜底推荐。
+      {% else %}
+      已按当前安装结构、使用频率和满意度生成推荐，优先补足能力短板并替换低表现 skill。
+      {% endif %}
+    </div>
+    <div class="recommendation-list">
+      {% for rec in recommendations[:6] %}
+      <article class="recommendation-card">
+        <div class="recommend-head">
+          <div>
+            <div class="recommend-name">{{ rec.get('name') }}</div>
+            <div class="recommend-meta">{{ rec.get('category', '未分类') }} · {{ rec.get('slug') }}</div>
+          </div>
+          <div class="recommend-score">{{ '%.0f' % rec.get('recommendation_score', 0) }}</div>
+        </div>
+        <div class="pill-list">
+          <span class="pill">{{ rec.get('reason_label') or rec.get('reason_type') }}</span>
+          {% if rec.get('official_rank') %}<span class="pill">TOP{{ rec.get('official_rank') }}</span>{% endif %}
+          {% if rec.get('hub_installs') %}<span class="pill">{{ rec.get('hub_installs') }} installs</span>{% endif %}
+        </div>
+        <p class="recommend-desc">{{ rec.get('description') }}</p>
+        <p class="recommend-logic">{{ rec.get('reason_detail') }}</p>
+        {% if rec.get('selection_logic') %}
+        <div class="logic-chip">{{ rec.get('selection_logic') }}</div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if trend %}
+  <section class="card">
+    <h2 class="card-title">📈 7 日趋势</h2>
+    <canvas id="trendChart" height="200"></canvas>
+  </section>
+  {% endif %}
+
+  {% if display_data.get('scores') %}
+  <section class="card">
+    <h2 class="card-title">🏆 Skill 评分排行</h2>
+    <div class="skill-list">
+      {% for s in display_data.get('scores', [])[:10] %}
+      {% set raw = s.get('raw_factors', {}) %}
+      <div class="skill-item skill-item-rich">
+        <div class="skill-rank {% if loop.index <= 3 %}top3{% endif %}">{{ loop.index }}</div>
+        <div class="skill-info skill-info-rich">
+          <div class="skill-name-row">
+            <div class="skill-name">{{ s.get('skill_id', 'unknown') }}</div>
+            <div class="skill-grade grade-{{ s.get('grade', 'C')|lower }}">{{ s.get('grade', '-') }}</div>
+          </div>
+          <div class="skill-meta-row">
+            <span>成功率 {{ '%.0f%%' % raw.get('success_rate', 0) if raw.get('success_rate') is not none else '-' }}</span>
+            <span>响应 {{ '%.0fms' % raw.get('response_time', 0) if raw.get('response_time') is not none else '-' }}</span>
+            <span>满意度 {{ '%.1f/5' % raw.get('satisfaction', 0) if raw.get('satisfaction') is not none else '-' }}</span>
+          </div>
+        </div>
+        <div class="skill-score">{{ '%.1f' % s.get('total_score', 0) }}</div>
+        <div class="skill-bar">
+          <div class="skill-bar-fill" style="width: {{ s.get('total_score', 0) }}%"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if installed_skills %}
+  <section class="card">
+    <h2 class="card-title">🧩 已安装 Skills</h2>
+    <div class="inventory-list">
+      {% for skill in installed_skills[:12] %}
+      <div class="inventory-item">
+        <div>
+          <div class="inventory-name">{{ skill.get('name') or skill.get('slug') }}</div>
+          <div class="inventory-meta">{{ skill.get('category', '未分类') }} · {{ '可运行' if skill.get('runnable') else '仅文档' }}</div>
+        </div>
+        <div class="inventory-side">
+          {% if skill.get('total_score') is not none %}
+          <div class="inventory-score">{{ '%.1f' % skill.get('total_score', 0) }}</div>
+          <div class="inventory-grade">{{ skill.get('grade', '-') }}</div>
+          {% else %}
+          <div class="inventory-grade muted">待评分</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if diagnostic %}
+  <section class="card">
+    <h2 class="card-title">🩺 诊断摘要</h2>
+    {% if diagnostic.get('issues') %}
+    <div class="diag-block">
+      <div class="diag-title">发现问题</div>
+      <ul class="info-list compact">
+        {% for item in diagnostic.get('issues', [])[:5] %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if diagnostic.get('suggestions') %}
+    <div class="diag-block">
+      <div class="diag-title">行动建议</div>
+      <ul class="info-list compact">
+        {% for item in diagnostic.get('suggestions', [])[:5] %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if first_diag or latest_diag %}
+  <section class="card">
+    <h2 class="card-title">📄 首次诊断兜底</h2>
+    <div class="overview-grid">
+      <div class="ov-item">
+        <span class="ov-label">首次诊断日期</span>
+        <span class="ov-value">{{ sync_status.first_diagnostic_date or '-' }}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">最新诊断日期</span>
+        <span class="ov-value">{{ sync_status.latest_diag_date or '-' }}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">首次触发方式</span>
+        <span class="ov-value">{{ first_diag_data.get('trigger') or '-' }}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">最新触发方式</span>
+        <span class="ov-value">{{ latest_diag_data.get('trigger') or '-' }}</span>
+      </div>
+    </div>
+    {% if report_markdown %}
+    <div class="markdown-preview">{{ report_markdown[:1800] }}</div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <section class="card">
+    <h2 class="card-title">🤖 Agent 信息</h2>
+    <div class="agent-info">
+      <div class="ov-item">
+        <span class="ov-label">名称</span>
+        <span class="ov-value">{{ agent.name or 'Agent-' + agent.agent_id[:8] }}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">最近上报</span>
+        <span class="ov-value">{{ agent.last_report_at.strftime('%m-%d %H:%M') if agent.last_report_at else '-' }}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">系统</span>
+        <span class="ov-value">{{ agent.os_info or '-' }}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">Monitor 版本</span>
+        <span class="ov-value">{{ agent.monitor_version or '-' }}</span>
+      </div>
+    </div>
+  </section>
+
+  {% else %}
+  <section class="card empty-state">
+    <div class="empty-icon">📭</div>
+    <h3>暂无报告数据</h3>
+    <p>Agent 尚未上报任何数据。请先运行自动上报或手动上传日报与诊断。</p>
+    <code>skills-monitor upload --type diagnostic</code>
+  </section>
+  {% endif %}
+
+  <footer class="footer">
+    <p>Skills Monitor v0.6.x · Powered by CodeBuddy</p>
+  </footer>
+</div>
+
+{% if trend %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script>
+const trend = {{ trend|tojson }};
+if (trend.length > 0) {
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: trend.map(t => t.date.slice(5)),
+      datasets: [{
+        label: '健康度',
+        data: trend.map(t => t.health_score),
+        borderColor: '#667eea',
+        backgroundColor: 'rgba(102,126,234,0.12)',
+        fill: true,
+        tension: 0.35,
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#667eea'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#999' } },
+        x: { grid: { display: false }, ticks: { color: '#999' } }
+      }
+    }
+  });
+}
+</script>
+{% endif %}
+</body>
+</html>

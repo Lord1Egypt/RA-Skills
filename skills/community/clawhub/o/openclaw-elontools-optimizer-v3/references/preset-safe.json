@@ -1,0 +1,30 @@
+{
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "model": "elon/claude-haiku-4-5"
+      },
+      "subagents": {
+        "archiveAfterMinutes": 30
+      }
+    }
+  },
+  "session": {
+    "maintenance": {
+      "mode": "enforce",
+      "pruneDays": 7,
+      "maxEntries": 500
+    }
+  },
+  "plugins": {
+    "entries": {
+      "whatsapp": { "enabled": false },
+      "discord": { "enabled": false },
+      "slack": { "enabled": false },
+      "nostr": { "enabled": false },
+      "googlechat": { "enabled": false },
+      "imessage": { "enabled": false },
+      "signal": { "enabled": false }
+    }
+  }
+}

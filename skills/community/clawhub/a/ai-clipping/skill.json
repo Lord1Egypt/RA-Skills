@@ -1,0 +1,6 @@
+{
+  "name": "ai-clipping",
+  "version": "1.0.0",
+  "description": "AI-powered video clipping and highlight extraction using WayinVideo API.",
+  "commands": []
+}

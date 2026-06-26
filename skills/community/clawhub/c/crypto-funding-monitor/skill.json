@@ -1,0 +1,38 @@
+{
+  "name": "crypto-funding-monitor",
+  "version": "1.0.0",
+  "displayName": "Crypto Funding Monitor",
+  "description": "实时监测RootData、X等平台的最新融资项目和TEG项目，定时推送简报到Telegram/Discord/Email",
+  "author": "zhdryanchang",
+  "category": "crypto",
+  "tags": ["crypto", "funding", "monitoring", "defi", "web3"],
+  "pricing": {
+    "model": "pay-per-use",
+    "price": 0.001,
+    "currency": "USDT",
+    "provider": "skillpay.me"
+  },
+  "apiKey": "sk_e390b52cb259fc4f4aa1489547a48375d72876acdee75de57101d9e0e833fcb7",
+  "endpoints": [
+    {
+      "path": "/monitor",
+      "method": "POST",
+      "description": "触发一次监测并推送简报"
+    },
+    {
+      "path": "/subscribe",
+      "method": "POST",
+      "description": "订阅定时推送服务"
+    },
+    {
+      "path": "/unsubscribe",
+      "method": "POST",
+      "description": "取消订阅"
+    }
+  ],
+  "config": {
+    "schedules": ["0 9 * * *", "0 18 * * *"],
+    "platforms": ["rootdata", "twitter"],
+    "notificationChannels": ["telegram", "discord", "email"]
+  }
+}

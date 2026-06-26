@@ -1,0 +1,8 @@
+{
+  "name": "swarm-workflow-protocol",
+  "version": "1.0.0",
+  "description": "Multi-agent orchestration protocol for the 0x-wzw swarm. Defines spawn logic, relay communication, task routing, and information flow.",
+  "repository": "https://github.com/0x-wzw/swarm-workflow-protocol",
+  "tags": ["swarm", "orchestration", "multi-agent", "protocol", "relay", "coordination"],
+  "skills": ["swarm-workflow-protocol"]
+}

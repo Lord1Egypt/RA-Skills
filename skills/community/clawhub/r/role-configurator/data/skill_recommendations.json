@@ -1,0 +1,109 @@
+{
+  "recommendations": {
+    "personal-assistant": {
+      "skills": [
+        "calendar-helper",
+        "task-manager",
+        "email-assistant"
+      ]
+    },
+    "career-coach": {
+      "skills": [
+        "resume-builder",
+        "interview-prep",
+        "networking-guide"
+      ]
+    },
+    "fitness-trainer": {
+      "skills": [
+        "workout-planner",
+        "nutrition-guide",
+        "fitness-tracker"
+      ]
+    },
+    "language-tutor": {
+      "skills": [
+        "vocabulary-builder",
+        "conversation-practice",
+        "flashcard-creator"
+      ]
+    },
+    "coding-mentor": {
+      "skills": [
+        "code-reviewer",
+        "git-helper",
+        "debugging-tool"
+      ]
+    },
+    "writing-coach": {
+      "skills": [
+        "editor",
+        "grammar-checker",
+        "style-guide"
+      ]
+    },
+    "travel-planner": {
+      "skills": [
+        "itinerary-builder",
+        "travel-tips",
+        "budget-tracker"
+      ]
+    },
+    "mental-health": {
+      "skills": [
+        "mindfulness-guide",
+        "mood-tracker",
+        "meditation-timer"
+      ]
+    },
+    "small-business": {
+      "skills": [
+        "business-planner",
+        "marketing-strategy",
+        "financial-modeling"
+      ]
+    },
+    "student-helper": {
+      "skills": [
+        "study-planner",
+        "flashcard-creator",
+        "exam-prep"
+      ]
+    },
+    "cooking-assistant": {
+      "skills": [
+        "recipe-finder",
+        "meal-planner",
+        "cooking-tips"
+      ]
+    },
+    "financial-advisor": {
+      "skills": [
+        "budget-tracker",
+        "saving-planner",
+        "investment-basics"
+      ]
+    },
+    "pet-care": {
+      "skills": [
+        "pet-trainer",
+        "pet-health-guide",
+        "pet-care-tips"
+      ]
+    },
+    "home-improvement": {
+      "skills": [
+        "diy-projects",
+        "home-organizer",
+        "tool-guide"
+      ]
+    },
+    "music-guide": {
+      "skills": [
+        "music-recommender",
+        "instrument-tutor",
+        "playlist-creator"
+      ]
+    }
+  }
+}

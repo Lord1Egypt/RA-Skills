@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw/hnbc-provider",
+  "version": "2026.5.22",
+  "private": true,
+  "description": "OpenClaw HNBC provider plugins",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

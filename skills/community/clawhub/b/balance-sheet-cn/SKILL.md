@@ -1,35 +1,115 @@
----
-name: "资产负债表生成"
-description: "根据财务报表Excel文件自动生成规范资产负债表，应用11条规则保留格式和公式，支持银行账户和利润合计计算。"
-category: "domain"
-source: "ClawHub"
-tags: [chinese, excel, finance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/balance-sheet-cn"
-sourceUrl: "https://clawhub.ai/skills/balance-sheet-cn"
----
+# 资产负债表生成技能
 
-# 资产负债表生成
+根据财务报表源文件（含利润表、明细表、资产负债表模板）自动生成规范化的资产负债表。
 
-> 根据财务报表Excel文件自动生成规范资产负债表，应用11条规则保留格式和公式，支持银行账户和利润合计计算。
+## 技能信息
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/balance-sheet-cn`
-- **Source URL:** [https://clawhub.ai/skills/balance-sheet-cn](https://clawhub.ai/skills/balance-sheet-cn)
+- **名称**: 资产负债表生成
+- **版本**: 1.0.0
+- **作者**: 小古
+- **适用场景**: 财务做账、报表生成、月度/年度资产负债表编制
 
-## Overview
+## 输入要求
 
+1. **源文件格式**: Excel (.xlsx)
+2. **必需工作表**:
+   - `资产负债表` - 包含格式模板和初始数据
+   - `明细表` - 包含财务明细记录（含 M 列银行账户信息）
+   - `利润表` - 包含利润表数据（含经营利润）
 
-## Installation
-To install this skill, run the following command in your terminal:
+3. **明细表列要求**:
+   - A 列：余额
+   - C 列：分类 1（应收/预收/应付等）
+   - H 列：发生金额
+   - M 列：银行账户名称（招商银行/交通银行等）
+
+## 执行规则
+
+按顺序执行以下 11 条规则：
+
+| 规则 | 说明 | 操作 |
+|------|------|------|
+| 1 | 保留格式 | 保留表格格式、边框、字体、合并单元格；非数字文字保留；EXCEL 公式保留 |
+| 2 | 累计金额→上月余额 | 将 D 列（累计金额）的**数值**（公式计算后的值）复制到 B 列（上月余额） |
+| 3 | 固定资产合计 | C5（本月发生额）= 0 |
+| 4 | 招商银行 | D7（累计金额）= 明细表 M 列"招商银行"对应 A 列"余额"的总计 |
+| 5 | 交通银行 | D8（累计金额）= 明细表 M 列"交通银行"对应 A 列"余额"的总计 |
+| 6 | 应收款合计 | C9（本月发生额）= 明细表 C 列"应收"对应 H 列"发生金额"的总计 |
+| 7 | 预收款 | C11（本月发生额）= 明细表 C 列"预收"对应 H 列"发生金额"的总计 |
+| 8 | 应付款 | C12（本月发生额）= 明细表 C 列"应付"对应 H 列"发生金额"的总计 |
+| 9 | 当年利润 | C14（本月发生额）= 利润表 B 列"经营利润"对应 E 列数值 |
+| 10 | 未分配利润 | C15（本月发生额）= 0 |
+| 11 | 公式计算 | 有计算公式的单元格采用公式计算 |
+
+## 使用方法
+
+### 命令行方式
+
 ```bash
-hermes skills install clawhub/balance-sheet-cn
+cd ~/.openclaw/workspace/skills/资产负债表
+python3 scripts/generate_balance_sheet.py <源文件路径> [输出文件路径]
 ```
+
+### Python 调用方式
+
+```python
+from scripts.balance_sheet_generator import BalanceSheetGenerator
+
+generator = BalanceSheetGenerator('财务报表 202511-t.xlsx')
+generator.generate('资产负债表.xlsx')
+```
+
+### OpenClaw 对话方式
+
+1. 上传财务报表文件到 workspace
+2. 说："生成资产负债表"
+3. 技能自动读取最新文件并生成
+
+## 输出文件
+
+- **文件名**: `资产负债表.xlsx`
+- **位置**: workspace 根目录
+- **格式**: 与源文件资产负债表工作表格式一致
+- **内容**: 应用 11 条规则后的数据
+
+## 注意事项
+
+1. **规则执行顺序**: 必须按 1→2→3→...→11 顺序执行，特别是规则 2 在规则 4-5 之前
+2. **M 列银行数据**: 明细表 M 列可能有多个银行账户记录，需要求和
+3. **公式保留**: C 列的公式（如 C4=D4-B4, C7=D7-B7 等）必须保留
+4. **数值精度**: 金额保留 2 位小数
+5. **格式完整**: 边框、字体、合并单元格、列宽、行高全部保留
+
+## 文件结构
+
+```
+资产负债表/
+├── SKILL.md                 # 技能说明文档（本文件）
+├── scripts/
+│   ├── generate_balance_sheet.py   # 命令行入口
+│   └── balance_sheet_generator.py  # 核心生成逻辑
+└── references/
+    └── rules.md             # 规则详细说明
+```
+
+## 示例
+
+### 源文件数据
+- 招商银行 M 列余额：27,780.68 + 201,062.35 = 228,843.03
+- 交通银行 M 列余额：78,128.70
+- 应收发生金额总计：200,000
+- 预收发生金额总计：201,736
+- 经营利润：29,583.54
+
+### 生成结果
+| 科目 | 上月余额 | 本月发生额 | 累计金额 |
+|------|---------|-----------|---------|
+| 招商银行 | 258,498.64 | =D7-B7 | 228,843.03 |
+| 交通银行（公） | 17,153.55 | =D8-B8 | 78,128.70 |
+| 应收款合计 | 1,685,000 | 200,000 | =B9+C9 |
+| 预收款 | 689,872.40 | 201,736 | =B11+C11 |
+| 当年利润 | 557,069.52 | 29,583.54 | =B14+C14 |
+
+## 更新日志
+
+- **v1.0.0** (2026-03-28): 初始版本，实现 11 条规则

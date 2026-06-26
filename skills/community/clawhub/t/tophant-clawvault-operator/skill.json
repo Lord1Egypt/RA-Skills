@@ -1,0 +1,69 @@
+{
+  "name": "tophant-clawvault-operator",
+  "version": "0.2.6",
+  "description": "Operate ClawVault services, config, presets, and scans from OpenClaw agents.",
+  "author": "Tophant SPAI Lab",
+  "homepage": "https://github.com/tophant-ai/ClawVault",
+  "repository": "https://github.com/tophant-ai/ClawVault",
+  "main": "clawvault_ops.py",
+  "permissions": ["execute_command", "write_files", "read_files", "network"],
+  "permissions_rationale": {
+    "execute_command": "Required to start/stop ClawVault services, run scans, and exercise OpenClaw plugin acceptance paths",
+    "write_files": "Writes configuration and schedule changes to ~/.ClawVault/",
+    "read_files": "Reads configuration, vault presets, scan history from ~/.ClawVault/",
+    "network": "Probes service ports, communicates with dashboard API, and verifies plugin-reported events"
+  },
+  "tags": ["security", "operations", "proxy", "scanning", "vault", "config", "openclaw", "plugin"],
+  "requirements": ["pyyaml", "requests"],
+  "python_version": ">=3.10",
+  "commands": {
+    "start": {
+      "description": "Start ClawVault services.",
+      "usage": "start [--port 8765] [--dashboard-port 8766] [--mode permissive|interactive|strict] [--no-dashboard]"
+    },
+    "stop": {
+      "description": "Stop running ClawVault services.",
+      "usage": "stop [--force]"
+    },
+    "status": {
+      "description": "Check whether ClawVault is running.",
+      "usage": "status [--proxy-port 8765] [--dashboard-port 8766]"
+    },
+    "scan": {
+      "description": "Scan text for threats.",
+      "usage": "scan <text>"
+    },
+    "scan-file": {
+      "description": "Scan a file for sensitive data.",
+      "usage": "scan-file <file_path>"
+    },
+    "plugin-acceptance": {
+      "description": "Verify OpenClaw file-guard plugin interception.",
+      "usage": "plugin-acceptance [--agent main] [--clawvault-url http://127.0.0.1:8766]"
+    },
+    "config-show": {
+      "description": "Show current ClawVault configuration.",
+      "usage": "config-show [--config <path>]"
+    },
+    "config-get": {
+      "description": "Get a configuration value by dotted key.",
+      "usage": "config-get <key>"
+    },
+    "config-set": {
+      "description": "Set a configuration value by dotted key.",
+      "usage": "config-set <key> <value>"
+    },
+    "vault-list": {
+      "description": "List all vault presets.",
+      "usage": "vault-list"
+    },
+    "vault-show": {
+      "description": "Show a vault preset.",
+      "usage": "vault-show <preset_id>"
+    },
+    "vault-apply": {
+      "description": "Apply a vault preset.",
+      "usage": "vault-apply <preset_id>"
+    }
+  }
+}

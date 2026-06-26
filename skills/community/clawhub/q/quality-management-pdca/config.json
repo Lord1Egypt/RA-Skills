@@ -1,0 +1,142 @@
+﻿{
+  "meta": {
+    "name": "quality-management",
+    "version": "1.0.0",
+    "description": "PDCA+ISO9001质量管理决策系统技能",
+    "author": "QClaw Team",
+    "created_at": "2026-04-08T18:55:00+08:00",
+    "last_updated": "2026-04-08T18:55:00+08:00"
+  },
+  "quality": {
+    "enable_auto_check": true,
+    "quality_score_threshold": 80,
+    "risk_level_threshold": "medium",
+    "enable_auto_warning": true,
+    "decision_review_required": true,
+    "evidence_required": true,
+    "traceability_required": true
+  },
+  "pdca": {
+    "enable_phase_gate": true,
+    "require_review_before_next_phase": true,
+    "auto_archive_on_complete": true,
+    "phase_requirements": {
+      "plan": [
+        "target_smart_compliant",
+        "risk_assessment_completed",
+        "quality_standard_defined",
+        "resource_plan_completed"
+      ],
+      "do": [
+        "process_records_complete",
+        "milestones_achieved",
+        "exception_handled"
+      ],
+      "check": [
+        "quality_check_completed",
+        "deviation_analyzed",
+        "root_cause_identified",
+        "problem_list_finalized"
+      ],
+      "act": [
+        "correction_plan_approved",
+        "improvement_measures_implemented",
+        "experience_summarized",
+        "knowledge_base_updated"
+      ]
+    }
+  },
+  "iso9001": {
+    "enabled": true,
+    "principles": {
+      "customer_focus": true,
+      "leadership": true,
+      "engagement_of_people": true,
+      "process_approach": true,
+      "improvement": true,
+      "evidence_based_decision_making": true,
+      "relationship_management": true
+    },
+    "requirements": {
+      "documented_information_required": true,
+      "risk_based_thinking_required": true,
+      "process_effectiveness_evaluation_required": true,
+      "continual_improvement_required": true
+    }
+  },
+  "decision_check": {
+    "enabled": true,
+    "check_items": [
+      "information_authenticity",
+      "information_completeness",
+      "logic_consistency",
+      "risk_assessment",
+      "impact_analysis",
+      "feasibility_verification",
+      "compliance_check",
+      "stakeholder_consideration"
+    ],
+    "pass_score_threshold": 75,
+    "mandatory_checks": [
+      "information_authenticity",
+      "risk_assessment",
+      "compliance_check"
+    ]
+  },
+  "knowledge": {
+    "enable_auto_learning": true,
+    "experience_extraction_threshold": 3,
+    "auto_update_templates": true,
+    "knowledge_base_path": "./knowledge_base",
+    "retention_period": "365d",
+    "auto_cleanup_enabled": true
+  },
+  "notification": {
+    "enable_system_notice": true,
+    "notification_channels": ["webchat"],
+    "notification_events": [
+      "phase_completed",
+      "quality_issue_found",
+      "risk_warning",
+      "task_overdue",
+      "review_required"
+    ],
+    "notification_levels": {
+      "info": true,
+      "warning": true,
+      "error": true,
+      "critical": true
+    }
+  },
+  "scoring": {
+    "quality_score_weights": {
+      "completeness": 20,
+      "accuracy": 25,
+      "timeliness": 15,
+      "compliance": 20,
+      "effectiveness": 20
+    },
+    "risk_score_weights": {
+      "probability": 40,
+      "impact": 40,
+      "detectability": 20
+    },
+    "decision_score_weights": {
+      "logic": 30,
+      "evidence": 30,
+      "risk": 20,
+      "benefit": 20
+    }
+  },
+  "templates": {
+    "template_path": "./templates",
+    "auto_fill_enabled": true,
+    "custom_templates_allowed": true
+  },
+  "reporting": {
+    "report_path": "./reports",
+    "auto_generate_reports": true,
+    "report_formats": ["markdown", "json", "html"],
+    "include_visualizations": true
+  }
+}

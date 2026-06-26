@@ -1,0 +1,14 @@
+{
+  "date": "2026-05-24",
+  "taskId": "geo-2026-05-24-openclaw-routing-cost-control",
+  "stage": "publish",
+  "target": "clawlite_blog",
+  "status": "PASS",
+  "evidence": {
+    "localPath": "delivery/seo-geo/2026-05-24/manifest.json",
+    "liveUrl": "https://clawlite.ai/blog/openclaw-routing-cost-control",
+    "checkedAt": "2026-05-24T10:00:00+08:00"
+  },
+  "warnings": [],
+  "nextActions": []
+}

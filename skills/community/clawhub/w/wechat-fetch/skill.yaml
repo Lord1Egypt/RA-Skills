@@ -1,0 +1,28 @@
+name: wechat-fetch
+description: 微信公众号文章抓取工具 v3.0 - Lite轻量版 + Playwright版，支持免登录、批量抓取、图片下载、多格式输出
+version: 3.0.0
+author: jackyfan01 (optimized by xiaoming)
+entry:
+  lite: scripts/wechat_fetch_lite.py
+  playwright: scripts/wechat_fetch_v3.py
+dependencies:
+  required:
+    - beautifulsoup4
+    - requests
+  optional:
+    - playwright
+config:
+  default_output_dir: ~/openclaw/workspace/articles
+  headless: true
+  timeout: 30
+  supported_formats:
+    - markdown
+    - html
+    - json
+    - txt
+features:
+  - lite_version
+  - no_login_mode
+  - batch_fetch
+  - image_download
+  - multi_format_output

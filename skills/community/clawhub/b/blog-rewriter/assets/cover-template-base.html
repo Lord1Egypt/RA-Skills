@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=900">
+    <title>文章封面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 900px;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+        }
+        .title {
+            font-size: 72px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        .subtitle {
+            font-size: 32px;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-weight: 400;
+        }
+        .accent {
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        /* 使用说明：
+           1. 修改 .title 内的文字为主标题
+           2. 修改 .subtitle 内的文字为副标题
+           3. 可用浏览器打开后截图使用
+           4. 推荐尺寸：1200x900 (4:3 比例)
+        */
+    </style>
+</head>
+<body>
+    <div class="title">主标题<br><span class="accent">关键词</span></div>
+    <div class="subtitle">副标题或补充说明</div>
+</body>
+</html>

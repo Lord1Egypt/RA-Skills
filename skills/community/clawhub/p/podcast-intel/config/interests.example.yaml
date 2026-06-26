@@ -1,0 +1,28 @@
+# User interest profile for relevance scoring
+# Weights are 0.0-1.0 indicating how much you care about each topic area
+
+interests:
+  primary:  # High relevance weight (0.8-1.0)
+    - "artificial intelligence and machine learning"
+    - "neuroscience and brain optimization"
+    - "startup strategy and fundraising"
+  secondary:  # Medium relevance weight (0.5-0.7)
+    - "health optimization and longevity"
+    - "physics and mathematics"
+    - "geopolitics and economics"
+  casual:  # Lower relevance weight (0.2-0.4)
+    - "philosophy and consciousness"
+    - "history and biography"
+    - "creative process and writing"
+
+anti_interests:  # Negative weight — penalize these topics
+  - "celebrity gossip"
+  - "sports commentary"
+  - "product advertisements"
+
+# Custom keywords that always boost relevance
+boost_keywords:
+  - "spiking neural networks"
+  - "EV charging"
+  - "knowledge graphs"
+  - "energy-based models"

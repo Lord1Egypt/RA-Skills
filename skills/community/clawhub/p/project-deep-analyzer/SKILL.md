@@ -1,35 +1,62 @@
 ---
 name: "project-deep-analyzer"
 description: "深度分析项目的系统边界、核心概念、模块架构、关键算法、技术选型以及错误排查。当用户需要深入理解代码库或定位疑难问题时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-deep-analyzer"
-sourceUrl: "https://clawhub.ai/skills/project-deep-analyzer"
 ---
 
-# project-deep-analyzer
+# Project Deep Analyzer
 
-> 深度分析项目的系统边界、核心概念、模块架构、关键算法、技术选型以及错误排查。当用户需要深入理解代码库或定位疑难问题时调用。
+本技能提供了一套结构化的方法论，用于深度剖析和理解任何规模的软件项目。它通过六个核心维度引导用户或 AI 进行全方位的项目审计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-deep-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/project-deep-analyzer](https://clawhub.ai/skills/project-deep-analyzer)
+## 核心分析流程
 
-## Overview
+### 1. 系统边界分析 (System Boundary)
+明确项目的外部交互和运行环境。
+- **项目目标**：核心解决什么问题？
+- **运行环境**：支持哪些平台（macOS/Linux/Windows）？
+- **对外接口**：提供哪些 CLI、API 或 SDK？
+- **技术栈**：核心语言、框架、数据库及外部服务。
+- **安装与使用**：前置条件、依赖项及启动步骤。
 
+### 2. 核心概念体系 (Core Concept System)
+提取项目中的关键领域模型和术语。
+- **术语清单**：列出项目中的所有关键术语。
+- **定义与动机**：每个概念的定义及其存在的原因。
+- **关系图谱**：层级、依赖或组合关系。
+- **核心 vs 辅助**：区分核心业务逻辑和周边支持工具。
+- **代码映射**：概念在代码结构中的具体位置。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/project-deep-analyzer
-```
+### 3. 模块架构分析 (Module Architecture)
+拆解项目的物理和逻辑组织。
+- **目录结构**：模块的物理划分。
+- **职责划分**：每个模块的核心职责和边界。
+- **依赖关系**：模块间的耦合度和调用链。
+- **代码度量**：行数、文件数及其揭示的开发重心。
+- **解耦建议**：识别可独立拆分的模块和强耦合点。
+
+### 4. 核心算法分析 (Core Algorithm)
+深入理解项目的逻辑心脏。
+- **算法清单**：项目使用的关键算法及其作用。
+- **性能评估**：时间/空间复杂度及限制。
+- **数据结构**：算法的输入输出及核心数据流动。
+- **源码定位**：算法的具体实现文件和函数。
+
+### 5. 技术选型评估 (Technical Selection)
+反思设计决策的合理性。
+- **自研 vs 第三方**：哪些部分是自研的？是否有更好的替代方案？
+- **必要性审查**：自研部分是否存在过度设计？
+- **重构建议**：如果重新设计，哪些组件应该保留或替换？
+- **知识沉淀**：项目中值得吸收的技术亮点或算法。
+
+### 6. 错误排查与分析 (Error Handling)
+结构化定位和修复问题。
+- **日志定位**：通过错误日志定位具体的文件和函数。
+- **链路追溯**：分析完整的调用栈（Stack Trace）。
+- **根本原因**：解释错误发生的深层原因。
+- **修复方案**：提供具体的修复代码或配置建议。
+
+## 使用场景
+
+- **新项目接手**：快速建立对陌生代码库的全局视野。
+- **架构审计**：识别现有项目中的设计缺陷或优化空间。
+- **技术调研**：分析开源项目的实现原理，评估其是否适合集成。
+- **复杂 Bug 定位**：通过结构化的调用链路分析解决疑难杂症。

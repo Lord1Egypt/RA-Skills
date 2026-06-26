@@ -1,35 +1,42 @@
 ---
-name: "property-value"
+name: jpeng-property-value
 description: "Estimate property values"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-property-value"
-sourceUrl: "https://clawhub.ai/skills/jpeng-property-value"
+version: "1.0.0"
+author: "jpeng"
+tags: ["valuation", "property", "realestate"]
 ---
 
-# property-value
+# Property Value Estimator
 
-> Estimate property values
+Estimate property values
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-property-value`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-property-value](https://clawhub.ai/skills/jpeng-property-value)
+## When to Use
 
-## Overview
+- User needs valuation related functionality
+- Automating property tasks
+- Realestate operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-property-value
+python3 scripts/property_value.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export PROPERTY_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

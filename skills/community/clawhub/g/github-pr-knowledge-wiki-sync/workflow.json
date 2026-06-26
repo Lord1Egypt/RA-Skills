@@ -1,0 +1,185 @@
+{
+  "name": "github-pr-knowledge-wiki-sync",
+  "version": "1.0.0",
+  "description": "GitHub PR 文档自动生成与知识库同步 — 自动抓取PR内容、分析代码变更、生成技术文档并同步到飞书/wiki",
+  "author": "OpenClaw Agent",
+  "license": "MIT",
+  "comboType": "sequential",
+  "input": {
+    "prUrl": "string (required) - GitHub PR 链接，格式：https://github.com/owner/repo/pull/number",
+    "target": "string (enum: feishu-wiki | wecom-doc | markdown, default: feishu-wiki) - 文档输出目标",
+    "wikiSpaceId": "string (optional) - 飞书知识空间 ID",
+    "docTitle": "string (optional) - 自定义文档标题，默认使用 PR 标题",
+    "output": "string (default: ./output) - 本地输出目录"
+  },
+  "steps": [
+    {
+      "id": "step1",
+      "name": "获取 PR 详情",
+      "skill": "github",
+      "description": "使用 gh CLI 获取 PR 的完整信息（标题、描述、作者、状态、变更文件列表）",
+      "input": {
+        "command": "gh pr view ${prNumber} --repo ${owner}/${repo} --json title,body,state,author,createdAt,mergedAt,files,commits,additions,deletions",
+        "prNumber": "${prNumber}",
+        "repo": "${owner}/${repo}"
+      },
+      "output": {
+        "prData": "JSON - PR 完整元数据",
+        "files": "变更文件列表及统计",
+        "prTitle": "PR 标题",
+        "prBody": "PR 描述正文"
+      },
+      "timeout": 30,
+      "continueOnError": false
+    },
+    {
+      "id": "step2",
+      "name": "获取代码 Diff",
+      "skill": "github",
+      "description": "获取 PR 的完整代码变更 diff，用于后续分析",
+      "input": {
+        "command": "gh pr diff ${prNumber} --repo ${owner}/${repo} --no-color",
+        "prNumber": "${prNumber}",
+        "repo": "${owner}/${repo}"
+      },
+      "output": {
+        "diff": "完整代码 diff 文本",
+        "summary": "变更统计（新增行数/删除行数/文件数）"
+      },
+      "timeout": 30,
+      "continueOnError": true
+    },
+    {
+      "id": "step3",
+      "name": "分析代码变更",
+      "skill": "code-review",
+      "description": "分析 diff 内容，识别关键文件变更、风险点、影响范围，并输出结构化变更说明",
+      "input": {
+        "diff": "${step2.diff}",
+        "prTitle": "${step1.prTitle}",
+        "prBody": "${step1.prBody}",
+        "files": "${step1.files}"
+      },
+      "output": {
+        "keyChanges": "关键变更列表（文件 + 变更说明）",
+        "riskPoints": "风险点列表",
+        "affectedAreas": "影响范围分析"
+      },
+      "timeout": 60,
+      "continueOnError": true
+    },
+    {
+      "id": "step4",
+      "name": "生成技术文档",
+      "skill": "summarize",
+      "description": "将 PR 元数据 + 代码分析结果汇总，生成结构化的 Markdown 技术文档",
+      "input": {
+        "content": "请为以下 GitHub PR 生成完整的技术变更文档：\n\nPR 标题：${step1.prTitle}\nPR 描述：${step1.prBody}\n作者：${step1.author}\n状态：${step1.state}\n合并时间：${step1.mergedAt}\n\n变更文件：${step1.files}\n\n关键代码变更：${step3.keyChanges}\n风险点：${step3.riskPoints}\n影响范围：${step3.affectedAreas}",
+        "format": "markdown",
+        "style": "technical-documentation"
+      },
+      "output": {
+        "document": "完整 Markdown 技术文档",
+        "title": "文档标题（PR 标题）",
+        "summary": "变更摘要（用于消息通知）"
+      },
+      "timeout": 60,
+      "continueOnError": false
+    },
+    {
+      "id": "step5-feishu",
+      "name": "同步到飞书 Wiki",
+      "skill": "feishu-wiki",
+      "description": "在指定的飞书知识空间创建 Wiki 页面，写入生成的技术文档",
+      "condition": "${input.target} == 'feishu-wiki'",
+      "input": {
+        "action": "create",
+        "space_id": "${input.wikiSpaceId}",
+        "title": "${input.docTitle || step1.prTitle}",
+        "content": "${step4.document}",
+        "parent_node_token": "${input.parentNodeToken}"
+      },
+      "output": {
+        "wikiUrl": "创建的 Wiki 页面链接",
+        "nodeToken": "节点 Token"
+      },
+      "timeout": 30,
+      "continueOnError": true
+    },
+    {
+      "id": "step5-wecom",
+      "name": "同步到企业微信文档",
+      "skill": "wecom-doc",
+      "description": "在企业微信文档库创建文档，写入生成的技术变更文档",
+      "condition": "${input.target} == 'wecom-doc'",
+      "input": {
+        "action": "create",
+        "title": "${input.docTitle || step1.prTitle}",
+        "content": "${step4.document}"
+      },
+      "output": {
+        "docUrl": "创建的企业微信文档链接"
+      },
+      "timeout": 30,
+      "continueOnError": true
+    },
+    {
+      "id": "step5-markdown",
+      "name": "输出 Markdown 文件",
+      "skill": "local",
+      "description": "将技术文档保存为本地 Markdown 文件",
+      "condition": "${input.target} == 'markdown'",
+      "input": {
+        "path": "${input.output}/${prNumber}-pr-doc.md",
+        "content": "${step4.document}"
+      },
+      "output": {
+        "filePath": "保存的文件路径"
+      },
+      "timeout": 10,
+      "continueOnError": false
+    },
+    {
+      "id": "step6-notify",
+      "name": "生成通知摘要",
+      "skill": "local",
+      "description": "汇总执行结果，输出给用户",
+      "input": {
+        "prTitle": "${step1.prTitle}",
+        "prUrl": "${input.prUrl}",
+        "docUrl": "${step5-feishu.wikiUrl || step5-wecom.docUrl || step5-markdown.filePath}",
+        "summary": "${step4.summary}",
+        "target": "${input.target}"
+      },
+      "output": {
+        "message": "执行结果通知消息"
+      },
+      "timeout": 5,
+      "continueOnError": false
+    }
+  ],
+  "errorHandling": {
+    "defaultStrategy": "retry-once",
+    "step2OnError": "skip-step3-use-pr-meta-only",
+    "step3OnError": "skip-risk-analysis-continue",
+    "step5OnError": "fallback-to-markdown"
+  },
+  "examples": [
+    {
+      "input": {
+        "prUrl": "https://github.com/myorg/backend/pull/234",
+        "target": "feishu-wiki",
+        "wikiSpaceId": "知识空间ID"
+      },
+      "description": "获取 PR #234 详情，生成文档并同步到飞书 Wiki"
+    },
+    {
+      "input": {
+        "prUrl": "https://github.com/myorg/backend/pull/234",
+        "target": "markdown",
+        "output": "./docs"
+      },
+      "description": "获取 PR #234 详情，仅生成本地 Markdown 文档"
+    }
+  ]
+}

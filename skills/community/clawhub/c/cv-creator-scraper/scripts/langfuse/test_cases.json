@@ -1,0 +1,213 @@
+{
+  "basic_tests": [
+    {
+      "name": "通过用户名查找 TikTok 相似达人",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 5,
+        "expected_fields": ["uid", "username", "nickname", "followers_count", "match_score"]
+      },
+      "tags": ["basic", "tiktok", "username"]
+    },
+    {
+      "name": "通过 URL 查找相似达人",
+      "input": {
+        "profile_url": "https://www.tiktok.com/@charlidamelio",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 5,
+        "expected_fields": ["uid", "username", "nickname", "followers_count", "match_score"]
+      },
+      "tags": ["basic", "tiktok", "url"]
+    },
+    {
+      "name": "查找 YouTube 相似达人",
+      "input": {
+        "username": "MrBeast",
+        "platform": "youtube",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 3,
+        "expected_fields": ["uid", "username", "nickname", "followers_count", "match_score"]
+      },
+      "tags": ["basic", "youtube", "username"]
+    }
+  ],
+  "cross_platform_tests": [
+    {
+      "name": "TikTok 达人找 YouTube 相似达人",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "target_platform": "youtube",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 3,
+        "expected_fields": ["uid", "username", "nickname", "followers_count", "match_score"]
+      },
+      "tags": ["cross-platform", "tiktok-to-youtube"]
+    },
+    {
+      "name": "YouTube 达人找 TikTok 相似达人",
+      "input": {
+        "username": "MrBeast",
+        "platform": "youtube",
+        "target_platform": "tiktok",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 3,
+        "expected_fields": ["uid", "username", "nickname", "followers_count", "match_score"]
+      },
+      "tags": ["cross-platform", "youtube-to-tiktok"]
+    }
+  ],
+  "filter_tests": [
+    {
+      "name": "粉丝数范围过滤",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "follower_min": 100000,
+        "follower_max": 1000000,
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 1,
+        "validate_followers": true,
+        "follower_min": 100000,
+        "follower_max": 1000000
+      },
+      "tags": ["filter", "followers"]
+    },
+    {
+      "name": "国家过滤",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "target_region": "US",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 3,
+        "validate_country": true,
+        "expected_country": "US"
+      },
+      "tags": ["filter", "country"]
+    },
+    {
+      "name": "平均播放量过滤",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "avg_views_min": 10000,
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 1,
+        "validate_avg_views": true,
+        "avg_views_min": 10000
+      },
+      "tags": ["filter", "avg-views"]
+    }
+  ],
+  "edge_case_tests": [
+    {
+      "name": "不存在的用户名",
+      "input": {
+        "username": "nonexistent_user_xyz_12345",
+        "platform": "tiktok",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": false,
+        "expected_error_code": 40401
+      },
+      "tags": ["edge-case", "not-found"]
+    },
+    {
+      "name": "无效的平台参数",
+      "input": {
+        "username": "test",
+        "platform": "invalid_platform",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": false
+      },
+      "tags": ["edge-case", "invalid-param"]
+    },
+    {
+      "name": "超大 limit 参数",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "limit": 1000
+      },
+      "expected": {
+        "should_succeed": true,
+        "max_results": 50
+      },
+      "tags": ["edge-case", "limit"]
+    },
+    {
+      "name": "空用户名",
+      "input": {
+        "username": "",
+        "platform": "tiktok",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": false
+      },
+      "tags": ["edge-case", "empty-input"]
+    }
+  ],
+  "service_level_tests": [
+    {
+      "name": "S1 服务等级",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "service_level": "S1",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 5,
+        "expected_fields": ["uid", "username", "nickname", "followers_count"]
+      },
+      "tags": ["service-level", "s1"]
+    },
+    {
+      "name": "S2 服务等级",
+      "input": {
+        "username": "charlidamelio",
+        "platform": "tiktok",
+        "service_level": "S2",
+        "limit": 10
+      },
+      "expected": {
+        "should_succeed": true,
+        "min_results": 5,
+        "expected_fields": ["uid", "username", "nickname", "followers_count", "engagement_rate", "country_code"]
+      },
+      "tags": ["service-level", "s2"]
+    }
+  ]
+}

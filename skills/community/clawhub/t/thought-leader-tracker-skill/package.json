@@ -1,0 +1,23 @@
+{
+  "name": "thought-leader-tracker",
+  "version": "1.0.0",
+  "description": "Daily automated collection of podcasts, interviews, and videos from thought leaders across YouTube, Apple Podcasts, and Spotify. Generates Markdown reports with content summaries, key points, and common theme analysis.",
+  "slug": "thought-leader-tracker",
+  "author": "牛全有",
+  "license": "MIT",
+  "keywords": [
+    "thought-leader",
+    "podcast",
+    "youtube",
+    "content-collection",
+    "daily-digest",
+    "automation",
+    "research",
+    "trend-analysis"
+  ],
+  "category": "automation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  }
+}

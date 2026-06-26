@@ -1,0 +1,23 @@
+{
+  "name": "@zettelclaw/skill",
+  "version": "2026.3.11",
+  "description": "Zettelclaw skill package for OpenClaw and ClawHub",
+  "private": false,
+  "type": "module",
+  "files": [
+    "SKILL.md"
+  ],
+  "clawhub": {
+    "skill": {
+      "entry": "SKILL.md"
+    }
+  },
+  "scripts": {
+    "lint": "biome check .",
+    "lint:biome": "biome check .",
+    "fix": "biome check --write ."
+  },
+  "devDependencies": {
+    "@types/bun": "1.2.5"
+  }
+}

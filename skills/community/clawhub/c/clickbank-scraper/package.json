@@ -1,0 +1,18 @@
+{
+  "name": "clickbank-scraper",
+  "version": "1.0.0",
+  "description": "ClickBank Health & Fitness product scraper for affiliate marketing automation",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "test": "node scraper.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "desensitize-file",
+  "description": "对文件进行脱敏处理",
+  "command": "python3 ~/.workbuddy/skills/mitools-desensitize/desensitize.py file",
+  "args": [
+    {
+      "name": "file",
+      "description": "要脱敏的文件路径",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "output",
+      "description": "输出文件路径",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "level",
+      "description": "脱敏级别",
+      "required": false,
+      "type": "string"
+    }
+  ]
+}

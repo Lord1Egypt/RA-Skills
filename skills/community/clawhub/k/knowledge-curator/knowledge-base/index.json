@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-03-15T23:48:00.000Z",
+  "updatedAt": "2026-03-16T01:16:00.000Z",
+  "entries": [
+    {
+      "id": "kb-20260315-001",
+      "title": "1800 分绝活哥 这套打法值得学习",
+      "url": "https://www.bilibili.com/video/BV1kQwTzmEiV",
+      "platform": "B 站",
+      "category": "学习",
+      "subcategory": "体育",
+      "tags": ["乒乓球", "体育技巧", "打法学习", "业余进阶"],
+      "createdAt": "2026-03-15T23:59:00.000Z"
+    },
+    {
+      "id": "kb-20260316-001",
+      "title": "户外人正在集体换上"渔网装"",
+      "url": "https://www.xiaohongshu.com/explore/69b23af20000000023039920",
+      "platform": "小红书",
+      "category": "生活",
+      "subcategory": "户外",
+      "tags": ["户外", "户外装备", "抓绒衣", "科技面料", "AD 绒", "AE 绒"],
+      "createdAt": "2026-03-16T01:16:00.000Z"
+    }
+  ],
+  "categories": {
+    "学习": ["kb-20260315-001"],
+    "生活": ["kb-20260316-001"]
+  },
+  "stats": {
+    "total": 2,
+    "byCategory": {
+      "科技": 0,
+      "生活": 1,
+      "学习": 1,
+      "娱乐": 0,
+      "工作": 0,
+      "健康": 0
+    }
+  }
+}

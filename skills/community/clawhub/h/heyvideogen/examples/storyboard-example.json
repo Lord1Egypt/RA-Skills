@@ -1,0 +1,62 @@
+{
+  "topic": "AI将取代哪些职业",
+  "mode": "B",
+  "total_duration": 60,
+  "panels": [
+    {
+      "panel_number": 1,
+      "scene_type": "剧情场景",
+      "shot_type": "全景/建立景",
+      "camera_move": "固定镜头",
+      "description": "深夜办公室，白领对着电脑焦虑",
+      "video_prompt": "establishing shot, modern office at night, lone worker staring at computer screen, moody cinematic lighting, shallow depth of field, 9:16 vertical",
+      "narration": "凌晨两点，小王收到公司邮件：下个月，AI将接手他的工作。",
+      "duration": 5,
+      "transition": "淡入淡出"
+    },
+    {
+      "panel_number": 2,
+      "scene_type": "知识讲解",
+      "shot_type": "中景",
+      "camera_move": "推进",
+      "description": "AI替代职业数据图表",
+      "video_prompt": "data visualization, holographic chart showing job displacement by AI, glowing blue lines, dark tech background, 9:16 vertical, cinematic",
+      "narration": "根据最新报告，这五个职业正在被AI快速取代。",
+      "duration": 8,
+      "transition": "滑入"
+    },
+    {
+      "panel_number": 3,
+      "scene_type": "数据展示",
+      "shot_type": "特写",
+      "camera_move": "左摇",
+      "description": "数据可视化动画",
+      "video_prompt": "close-up animated bar chart, red declining bars, financial data streams, modern dashboard aesthetic, dark theme, 9:16 vertical",
+      "narration": "第一名：数据录入员。效率比人类快20倍，错误率接近零。",
+      "duration": 10,
+      "transition": "淡入淡出"
+    },
+    {
+      "panel_number": 4,
+      "scene_type": "知识讲解",
+      "shot_type": "中景",
+      "camera_move": "固定镜头",
+      "description": "人类与AI协作场景",
+      "video_prompt": "human and AI robot working together at modern desk, warm lighting, collaborative atmosphere, 9:16 vertical, cinematic",
+      "narration": "但真正危险的，是那些以为AI无法取代自己的人。",
+      "duration": 10,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 5,
+      "scene_type": "过渡页",
+      "shot_type": "全景",
+      "camera_move": "拉出",
+      "description": "城市天际线，日出",
+      "video_prompt": "city skyline at sunrise, golden hour, hopeful mood, aerial drone shot, 9:16 vertical, cinematic",
+      "narration": "拥抱AI，不是为了取代它，而是让它替你完成重复工作。",
+      "duration": 10,
+      "transition": "淡入淡出"
+    }
+  ]
+}

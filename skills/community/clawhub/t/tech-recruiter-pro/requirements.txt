@@ -1,0 +1,13 @@
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# Optional dependencies
+# github-api  # For enhanced GitHub search
+# linkedin-api  # For LinkedIn integration
+# twitter-api  # For Twitter/X integration
+
+# Development dependencies
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=5.0.0

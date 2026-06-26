@@ -1,0 +1,11 @@
+{
+  "owner": "driftsbot",
+  "slug": "experience-body-electric",
+  "displayName": "Body Electric Yoga — AI Experience",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773107132272,
+    "commit": "https://github.com/openclaw/skills/commit/b3ef2b3a450b608202897cc0591c4de0f39c63e3"
+  },
+  "history": []
+}

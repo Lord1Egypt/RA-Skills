@@ -1,0 +1,38 @@
+{
+  "name": "music-player",
+  "version": "1.1.0",
+  "description": "Windows 音乐播放技能 - 支持搜索、下载、播放和元数据嵌入",
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "keywords": [
+    "music",
+    "player",
+    "download",
+    "windows",
+    "netease",
+    "go-music-api"
+  ],
+  "main": "download.py",
+  "scripts": {
+    "download": "python download.py",
+    "play": "python play_music.py",
+    "metadata": "python embed_metadata.py"
+  },
+  "dependencies": {
+    "requests": "*",
+    "mutagen": "*",
+    "python-pptx": "*"
+  },
+  "python_version": ">=3.7",
+  "platform": [
+    "windows"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  }
+}

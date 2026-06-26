@@ -1,0 +1,6 @@
+{
+    "messages": [{"content": "中国新闻", "role": "user"}],
+    "search_source": "baidu_search_v2",
+    "resource_type_filter": [{"type": "web", "top_k": 10}],
+    "search_filter": {"range": {"page_time": {"gte": "2025-09-01", "lt": "2025-09-08"}}}
+}

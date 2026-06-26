@@ -1,35 +1,24 @@
 ---
-name: "Telegram File Sender"
-description: "Send files (zip, pdf, image, etc.) to the current Telegram chat using openclaw message send --media. Use when user asks to &quot;gửi file&quot;, &quot;send z..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/better-telegram-file-sender"
-sourceUrl: "https://clawhub.ai/skills/better-telegram-file-sender"
+name: telegram-file-sender
+description: Send files (zip, pdf, image, etc.) to the current Telegram chat using openclaw message send --media. Use when user asks to &quot;gửi file&quot;, &quot;send zip/file&quot;, &quot;attach pdf&quot;, or &quot;ship file to me&quot;. Handles path resolution, caption, validation. ALWAYS use this skill for ALL sessions when instructed to send files via Telegram.
 ---
 
 # Telegram File Sender
 
-> Send files (zip, pdf, image, etc.) to the current Telegram chat using openclaw message send --media. Use when user asks to &quot;gửi file&quot;, &quot;send z...
+## Workflow
+1. Confirm file exists (read path).
+2. Read `chat_id` from the `## Inbound Context (trusted metadata)` JSON block in the system prompt (value looks like `telegram:1234567890`).
+3. Run `scripts/send_file.sh <path> ['caption'] <chat_id>`.
+4. Confirm sent (msg ID logged).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/better-telegram-file-sender`
-- **Source URL:** [https://clawhub.ai/skills/better-telegram-file-sender](https://clawhub.ai/skills/better-telegram-file-sender)
+## Examples
+- User: &quot;Gửi zip cho tao&quot; → exec `send_file.sh ./file.zip "Your file 🦾" telegram:1234567890`
+- User: &quot;Attach test.pdf&quot; → `send_file.sh test.pdf "File from OpenClaw 🦾" telegram:1234567890`
 
-## Overview
+File not found? Ask user confirm path.
 
+Caption optional, default &quot;File from OpenClaw 🦾&quot;.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/better-telegram-file-sender
-```
+**Resolve paths:** workspace rel, abs ok.
+
+**chat_id:** always taken from `## Inbound Context` → `chat_id` field. Never hardcode.

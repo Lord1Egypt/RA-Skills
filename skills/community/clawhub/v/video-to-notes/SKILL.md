@@ -1,35 +1,160 @@
 ---
-name: "Video To Notes"
-description: "将视频内容（课程/讲座/教程/纪录片/会议/演讲等）自动转为高质量结构化学习笔记。核心价值：看视频容易忘、看一遍记不住 → 转成笔记随时回看。支持本地视频文件、YouTube/B站等网络链接。流程：提取音轨 → Whisper 语音转文字 → AI 生成结构化笔记。适用场景：任何想从视频中高效学习的人——自学程序..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-to-notes"
-sourceUrl: "https://clawhub.ai/skills/video-to-notes"
+name: video-to-notes
+description: 将视频内容（课程/讲座/教程/纪录片/会议/演讲等）自动转为高质量结构化学习笔记。核心价值：看视频容易忘、看一遍记不住 → 转成笔记随时回看。支持本地视频文件、YouTube/B站等网络链接。流程：提取音轨 → Whisper 语音转文字 → AI 生成结构化笔记。适用场景：任何想从视频中高效学习的人——自学程序员、学生、职场进修者、知识爱好者。触发条件：用户提供视频路径/链接，或说"把这个视频整理成笔记"、"帮我记笔记"、"转成学习笔记"。支持中英文，一次 1-3 个文件。
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3", "ffmpeg", "ffprobe"]
+      pip:
+        - openai-whisper
 ---
 
-# Video To Notes
+# Video to Notes — 视频转学习笔记
 
-> 将视频内容（课程/讲座/教程/纪录片/会议/演讲等）自动转为高质量结构化学习笔记。核心价值：看视频容易忘、看一遍记不住 → 转成笔记随时回看。支持本地视频文件、YouTube/B站等网络链接。流程：提取音轨 → Whisper 语音转文字 → AI 生成结构化笔记。适用场景：任何想从视频中高效学习的人——自学程序...
+**看视频 ≠ 学会。笔记才是真正属于你的知识。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-to-notes`
-- **Source URL:** [https://clawhub.ai/skills/video-to-notes](https://clawhub.ai/skills/video-to-notes)
+用户只需要说一句："帮我把这个视频整理成笔记"。剩下的事 AI 自己搞定。
 
-## Overview
+---
 
+## 用户视角 —— 他们只需要知道这些
 
-## Installation
-To install this skill, run the following command in your terminal:
+用户不需要理解 Python、ffmpeg、whisper 是什么。他们只需要：
+
+1. **提供视频** — 给文件路径，或者发个链接（YouTube/B站等）
+2. **说明需求**（可选）— "用英文"、"只要重点"、"按课堂笔记风格"
+3. **等着拿笔记**
+
+AI 自动完成全部工作。
+
+---
+
+## AI 工作流
+
+### 第一步：检测 & 安装依赖
+
+用户说想转视频后，**AI 先静默检查环境**：
+
 ```bash
-hermes skills install clawhub/video-to-notes
+# 检查所有依赖，缺什么装什么
+python3 --version               # 缺 → brew install python3
+ffmpeg -version                  # 缺 → brew install ffmpeg
+python3 -c "import whisper"      # 缺 → pip3 install openai-whisper
+pip3 list 2>/dev/null | grep -q yt-dlp  # 缺 → pip3 install yt-dlp （可选，仅URL需要）
+```
+
+> ⚡ **依赖安装规则（必遵守）**
+>
+> 所有环境安装操作必须遵循以下步骤：
+>
+> 1. **先检测，再报告** — 运行检测后，明确告诉用户哪些工具/包缺失，用具体名称列出
+> 2. **必须征得用户明确同意** — 拿到 `yes` / `可以` / `装` 后再执行；不要直接后台静默安装
+> 3. **安装命令必须完整告知** — 例如 `pip3 install openai-whisper` 或 `brew install python3 ffmpeg`
+> 4. **没有例外** — 即使是 pip 包也需用户确认后再装
+
+### 第二步：获取视频
+
+| 来源 | AI 处理方式 |
+|------|------------|
+| **本地文件** | 直接读取路径 |
+| **URL（YouTube/B站等）** | 先告知用户要下载到哪个目录，确认后再执行 `python3 scripts/download_video.py <URL> --output-dir <目录>` |
+| **平台限制无法下载** | 礼貌告知用户："这个平台的视频有限制，能不能先下载到本地发给我？" |
+
+### 第三步：转写
+
+```bash
+python3 scripts/transcribe.py <视频路径> [选项]
+```
+
+**参数选择逻辑：**
+
+| 场景 | 推荐参数 |
+|------|---------|
+| 普通视频 | `--model base`（默认，速度与精度平衡） |
+| 长视频（>1h） | `--model turbo`（速度快，精度接近 large） |
+| 中文视频 | 加 `--language zh` 提升准确率 |
+| 批量处理 | 多个路径一起传，最多 3 个 |
+| 超长视频（>2h） | 自动提示用户，建议只处理单个文件确保质量 |
+
+### 第四步：AI 生成学习笔记 ⭐ — 核心价值
+
+转写完成后，读取 `.txt` 文件，自动生成结构化学习笔记。
+
+**笔记风格自动匹配：**
+
+| 内容类型 → | 自动选择风格 |
+|------------|-------------|
+| 编程/技术教程 | 📚 **标准学习笔记** — 带代码块、架构说明 |
+| 学生网课/公开课 | 🎓 **课堂笔记** — 考点、例题、易错点 |
+| TED/演讲/行业分享 | 🏢 **演讲笔记** — 核心观点、金句、行动项 |
+| 纪录片/科普 | 📰 **纪录片笔记** — 时间线、发现、数据 |
+| 一般教学/培训 | 📚 **标准学习笔记** — 知识要点结构化 |
+
+> 详细模板见 → [📖 笔记模板参考](references/note-templates.md)
+
+**笔记语言：** 默认用当前对话语言。用户可指定（"用英文写"、"中日双语"等）。
+
+**质量准则：** 详细准确 / 结构化清晰 / 信息密度高 / 忠实原文不编造 / 设计为可复习
+
+---
+
+## 脚本参考（AI 用）
+
+### `scripts/transcribe.py`
+
+```bash
+# 日常
+python3 scripts/transcribe.py course.mp4
+
+# 长视频 + 中文
+python3 scripts/transcribe.py lecture.mp4 --model turbo --language zh
+
+# 批量
+python3 scripts/transcribe.py p1.mp4 p2.mp4 p3.mp4
+```
+
+### `scripts/download_video.py`
+
+```bash
+python3 scripts/download_video.py "https://youtube.com/watch?v=xxx" --output-dir 目录
+```
+
+---
+
+## 常见用户需求 & AI 应对
+
+| 用户说 | AI 怎么做 |
+|--------|----------|
+| "帮我把这个视频整理成笔记" | 检测依赖 → 转写 → 自动匹配风格生成笔记 |
+| "把桌面上这三个视频都处理了" | 批量转写，最多3个；如果是系列课程，跨文件整合成连贯知识体系 |
+| "用英文写笔记" | 转写保持原语言，笔记用英文生成 |
+| "这个 TED 演讲帮我记一下" | 识别为演讲类型 → 用演讲笔记模板 |
+| "只要第二个部分的内容" | 选择性转写/笔记，跳过无关内容 |
+| "太长了，先处理这一个" | 长视频自动建议只处理单个 |
+| "这是 YouTube 链接" | 下载 → 转写 → 笔记 |
+
+---
+
+## 注意事项
+
+- **隐私：** 转写稿和笔记可能包含敏感内容，完成后提醒用户检查并酌情删除
+- **版权：** 下载网络视频请遵守平台条款，仅用于个人学习
+- **文件清理：** 临时 `.wav` 自动删除，只留 `.txt` 和笔记
+- **输出路径：** 默认以视频文件所在目录或用户指定目录作为输出位置，生成前告知用户
+- **长视频：** >2h 自动提示，建议单文件处理
+- **失败处理：** 下载失败/转写出错 → 友好告知用户并提供替代建议
+
+---
+
+## 资源结构
+
+```
+video-to-notes/
+├── SKILL.md                      ← 本文
+├── scripts/
+│   ├── transcribe.py             ← 语音转文字
+│   └── download_video.py         ← 网络视频下载
+└── references/
+    ├── workflow.md               ← 详细工作流（AI 参考）
+    └── note-templates.md         ← 笔记模板 & 示例
 ```

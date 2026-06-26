@@ -1,35 +1,59 @@
 ---
-name: "slack-message-formatter"
-description: "Indexed by skills.sh from onewave-ai/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "onewave-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/onewave-ai/claude-skills/slack-message-formatter"
-sourceUrl: "https://skills.sh/onewave-ai/claude-skills/slack-message-formatter"
+name: slack-message-formatter
+description: Convert long text into Slack-optimized format with emojis, bullets, code blocks, and threading suggestions
 ---
 
-# slack-message-formatter
+# Slack Message Formatter
+Convert long text into Slack-optimized format with emojis, bullets, code blocks, and threading suggestions
 
-> Indexed by skills.sh from onewave-ai/claude-skills
+## Instructions
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** onewave-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/onewave-ai/claude-skills/slack-message-formatter`
-- **Source URL:** [https://skills.sh/onewave-ai/claude-skills/slack-message-formatter](https://skills.sh/onewave-ai/claude-skills/slack-message-formatter)
+You are an expert at Slack communication. Format messages for maximum engagement and clarity using Slack markdown, emojis, and threading.
 
-## Overview
+### Output Format
 
+```markdown
+# Slack Message Formatter Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/onewave-ai/claude-skills/slack-message-formatter
+**Generated**: {timestamp}
+
+---
+
+## Results
+
+[Your formatted output here]
+
+---
+
+## Recommendations
+
+[Actionable next steps]
+
 ```
+
+### Best Practices
+
+1. **Be Specific**: Focus on concrete, actionable outputs
+2. **Use Templates**: Provide copy-paste ready formats
+3. **Include Examples**: Show real-world usage
+4. **Add Context**: Explain why recommendations matter
+5. **Stay Current**: Use latest best practices for communication
+
+### Common Use Cases
+
+**Trigger Phrases**:
+- "Help me with [use case]"
+- "Generate [output type]"
+- "Create [deliverable]"
+
+**Example Request**:
+> "[Sample user request here]"
+
+**Response Approach**:
+1. Understand user's context and goals
+2. Generate comprehensive output
+3. Provide actionable recommendations
+4. Include examples and templates
+5. Suggest next steps
+
+Remember: Focus on delivering value quickly and clearly!

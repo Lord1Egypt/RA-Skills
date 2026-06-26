@@ -1,35 +1,29 @@
----
-name: "Pipeworx spacenews"
-description: "Provides the latest spaceflight news articles and blog posts with search by keyword via the Spaceflight News API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-spacenews"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-spacenews"
----
+# Space News
 
-# Pipeworx spacenews
+Stay current with spaceflight news. Pulls articles and blog posts from the Spaceflight News API, aggregating coverage from dozens of space journalism outlets.
 
-> Provides the latest spaceflight news articles and blog posts with search by keyword via the Spaceflight News API.
+## Three tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-spacenews`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-spacenews](https://clawhub.ai/skills/pipeworx-spacenews)
+1. **get_articles** -- Latest spaceflight news articles, sorted by publication date
+2. **search_articles** -- Keyword search across all articles (e.g., "SpaceX Starship launch")
+3. **get_blogs** -- Latest spaceflight blog posts from the community
 
-## Overview
+All three return title, summary, URL, image, source outlet, and publication timestamp.
 
+## Example
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-spacenews
+curl -X POST https://gateway.pipeworx.io/spacenews/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_articles","arguments":{"query":"Artemis moon","limit":5}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "spacenews": {
+      "url": "https://gateway.pipeworx.io/spacenews/mcp"
+    }
+  }
+}
 ```

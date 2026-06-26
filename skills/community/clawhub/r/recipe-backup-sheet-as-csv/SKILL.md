@@ -1,35 +1,28 @@
 ---
-name: "Recipe Backup Sheet As Csv"
+name: recipe-backup-sheet-as-csv
 description: "Export a Google Sheets spreadsheet as a CSV file for local backup or processing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-backup-sheet-as-csv"
-sourceUrl: "https://clawhub.ai/skills/recipe-backup-sheet-as-csv"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-sheets
+        - gws-drive
 ---
 
-# Recipe Backup Sheet As Csv
+# Export a Google Sheet as CSV
 
-> Export a Google Sheets spreadsheet as a CSV file for local backup or processing.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-sheets`, `gws-drive`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-backup-sheet-as-csv`
-- **Source URL:** [https://clawhub.ai/skills/recipe-backup-sheet-as-csv](https://clawhub.ai/skills/recipe-backup-sheet-as-csv)
+Export a Google Sheets spreadsheet as a CSV file for local backup or processing.
 
-## Overview
+## Steps
 
+1. Get spreadsheet details: `gws sheets spreadsheets get --params '{"spreadsheetId": "SHEET_ID"}'`
+2. Export as CSV: `gws drive files export --params '{"fileId": "SHEET_ID", "mimeType": "text/csv"}'`
+3. Or read values directly: `gws sheets +read --spreadsheet SHEET_ID --range 'Sheet1' --format csv`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-backup-sheet-as-csv
-```

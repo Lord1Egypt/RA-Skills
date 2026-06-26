@@ -1,0 +1,35 @@
+{
+  "slug": "openclaw-security-auditor",
+  "name": "Security Auditor",
+  "description": "安全审计 - 代码安全漏洞审查",
+  "version": "1.0.0",
+  "tags": [
+    "security",
+    "audit",
+    "code-review",
+    "owasp"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "references/"
+  ],
+  "main": "SKILL.md",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "optimization": {
+    "optimized": true,
+    "date": "2026-03-16",
+    "principles": [
+      "karpathy-minimalism",
+      "education-first",
+      "test-coverage"
+    ],
+    "quality_score": 93.8,
+    "batch": "2026-03-16-mass-optimization"
+  }
+}

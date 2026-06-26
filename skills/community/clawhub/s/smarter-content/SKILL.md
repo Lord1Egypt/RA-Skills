@@ -1,35 +1,124 @@
 ---
-name: "Smarter Content"
-description: "✍️ 智能多平台内容生成器 - 从想法到成品一站式写作，自动适配微信/知乎/小红书/Blog 格式，内置 SEO 优化 + AI 事实核查保证准确性。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smarter-content"
-sourceUrl: "https://clawhub.ai/skills/smarter-content"
+name: smarter-content
+description: ✍️ 智能多平台内容生成器 - 从想法到成品一站式写作，自动适配微信/知乎/小红书/Blog 格式，内置 SEO 优化 + AI 事实核查保证准确性。
 ---
 
-# Smarter Content
+# ✍️ Smarter Content - 智能多平台内容生成器
 
-> ✍️ 智能多平台内容生成器 - 从想法到成品一站式写作，自动适配微信/知乎/小红书/Blog 格式，内置 SEO 优化 + AI 事实核查保证准确性。
+从想法到成品一站式内容创作，自动适配不同平台的风格格式，内置 SEO 优化，写完自动事实核查保证信息准确。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smarter-content`
-- **Source URL:** [https://clawhub.ai/skills/smarter-content](https://clawhub.ai/skills/smarter-content)
+## ✨ 特色功能
 
-## Overview
+| 功能 | 说明 |
+|------|------|
+| 🎯 **多平台适配** | 自动适配微信公众号/知乎/小红书/个人博客/ClawHub 不同风格格式 |
+| 🔍 **SEO 优化** | 自动生成标题、关键词、描述，提升搜索排名 |
+| 📚 **风格仿写** | 给参考文章 URL，自动抓取内容分析学习写作风格 Tone |
+| ✅ **内置事实核查** | 写完自动调用 `ai-fact-checker` 验证文中事实，从根源避免 AI 胡说八道 |
+| 📤 **多格式导出** | 支持导出 markdown / HTML ，直接就能用 |
+| 📝 **完整工作流** | 想法澄清 → 关键词调研 → 大纲 → 写作 → 核查 → 导出，一站式完成 |
 
+## 🎨 平台风格特点
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smarter-content
+| 平台 | 风格适配 |
+|------|----------|
+| **微信公众号** | 小标题+段落短+适合手机阅读+开头吸引人+结尾引导互动 |
+| **知乎** | 长文分析+结构清晰+论据充分+专业感强 |
+| **小红书** | 短句+emoji 点缀+干货清单+开头抓眼球+自动生成标签 |
+| **个人博客** | 技术深度+代码格式化+SEO 友好 |
+| **ClawHub** | 简洁技能介绍+清晰使用说明+markdown 规范 |
+
+## 🚀 使用方法
+
+### 基本写作
+
 ```
+请用 smarter-content 帮我写一篇关于[主题]的[平台]文章，核心观点是[你的核心观点]
+```
+
+### 仿写风格（推荐！）
+
+```
+请用 smarter-content 写一篇关于[主题]的小红书笔记，参考这篇文章的风格: https://example.com/article
+```
+
+工具会自动：
+1.  抓取参考文章内容
+2.  分析句子长度、emoji 使用、列表习惯
+3.  生成风格指南，仿写的时候严格遵循
+
+### 从想法开始
+
+```
+smarter-content 帮我从零开始构思一篇关于 AI Agent 自主赚钱的知乎文章
+```
+
+### 导出成品
+
+```
+smarter-content-export ./my-article.md output.html html
+```
+
+## 📋 工作流程
+
+```
+用户想法 → 澄清观点 → 关键词调研 → 风格分析（可选）→ 生成大纲 → 写作 → 事实核查 → 修正错误 → 导出成品
+```
+
+1. **澄清想法** - 提问确认核心观点、目标受众、关键点
+2. **关键词调研** - 搜索相关话题，了解热门角度
+3. **风格分析** - 如果提供参考 URL，自动分析仿写风格
+4. **搭建大纲** - 根据平台特点生成合适的文章结构
+5. **完成初稿** - 按照平台风格写作
+6. **事实核查** - 自动调用 `ai-fact-checker` 验证所有事实陈述
+7. **修改优化** - 根据核查结果修正错误信息
+8. **导出成品** - 输出 markdown / HTML，可以直接发布
+
+## ⚙️ 依赖
+
+- `ai-fact-checker` - 用于写完自动核查事实准确性（推荐安装，可选但推荐）
+- `web_search` - 用于关键词调研（OpenClaw 默认自带）
+
+## 💡 示例
+
+**输入:**
+```
+smarter-content 写一篇关于「OpenClaw 技能商店 ClawHub 体验」的小红书笔记
+```
+
+**输出:**
+```markdown
+# 🤖 发现一个超酷的 AI 技能商店！玩 AI Agent 一定要试试
+
+最近发现 OpenClaw 生态里的 ClawHub 真的太香了👏
+各种现成技能直接装，不用自己瞎折腾
+
+✨ 体验亮点：
+▫️ 5000+ 现成技能，想要啥直接搜
+▫️ 每天都有新更，社区真活跃
+▫️ 一键安装，不用敲复杂命令
+▫️ 安全检查，避免踩坑
+
+💡 我最喜欢的几个技能：
+▫️ `ai-fact-checker` - 再也不怕 AI 胡说八道
+▫️ `activity-control-ui` - 给 AI 一个可视化身体
+▫️ `self-improving` - AI 自己会进步
+
+👉 如果你也在玩 AI Agent，快去试试！
+
+#AI #OpenClaw #ClawHub #Agent #人工智能 #AI工具
+```
+
+## 📦 安装
+
+```bash
+npx clawhub install smarter-content
+```
+
+## 👨‍💻 Author
+
+rudagebil11-jpg
+
+## 📄 License
+
+MIT

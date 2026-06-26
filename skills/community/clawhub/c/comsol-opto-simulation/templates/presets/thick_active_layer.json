@@ -1,0 +1,17 @@
+﻿{
+  "simulation_type": "optoelectronic",
+  "name": "thick_active_layer_template",
+  "description": "Template for testing a thicker user-defined active, window, transport, or functional layer. Configure the actual layer and expected tradeoff before running.",
+  "requires_configuration": true,
+  "base_template": "optoelectronic_template",
+  "variation": {
+    "target_field": "device_stack.layers[<CONFIGURE_LAYER_INDEX>].thickness_nm",
+    "value": "<CONFIGURE_THICK_LAYER_THICKNESS_NM>",
+    "hypothesis": "<CONFIGURE_USER_HYPOTHESIS>"
+  },
+  "device_stack": "<CONFIGURE_OR_COPY_DEVICE_STACK_FROM_YOUR_PROJECT_CONFIG>",
+  "optical_generation": "<CONFIGURE_OPTICAL_GENERATION>",
+  "bias_range": "<CONFIGURE_BIAS_RANGE>",
+  "temperature_K": "<CONFIGURE_TEMPERATURE_K>",
+  "output_dir": "output/opto_thick_active_layer_configured_project"
+}

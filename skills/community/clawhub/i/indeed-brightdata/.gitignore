@@ -1,0 +1,25 @@
+# Private docs and specs
+openspec/
+.claude/
+.coderabbit.yaml
+CODE_PRINCIPLES.md
+CLAUDE.md
+docs/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Build artifacts
+indeed-brightdata.zip

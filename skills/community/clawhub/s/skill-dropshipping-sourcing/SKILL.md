@@ -1,35 +1,28 @@
 ---
-name: "Skill Dropshipping Sourcing"
-description: "Query CJ Dropshipping API v2.0 to source products and fetch details for catalog building. Use for CJ keyword search, pulling product records (SPU/SKU, images..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-dropshipping-sourcing"
-sourceUrl: "https://clawhub.ai/skills/skill-dropshipping-sourcing"
+name: skill-dropshipping-sourcing
+description: Query CJ Dropshipping API v2.0 to source products and fetch details for catalog building. Use for CJ keyword search, pulling product records (SPU/SKU, images, categories, variants/colors when available), refreshing access tokens, and producing normalized JSON outputs for dropshipping catalog automation.
 ---
 
-# Skill Dropshipping Sourcing
+# CJ Sourcing
 
-> Query CJ Dropshipping API v2.0 to source products and fetch details for catalog building. Use for CJ keyword search, pulling product records (SPU/SKU, images...
+Use this skill to reliably pull CJ product data (instead of manual browsing).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-dropshipping-sourcing`
-- **Source URL:** [https://clawhub.ai/skills/skill-dropshipping-sourcing](https://clawhub.ai/skills/skill-dropshipping-sourcing)
+## Files / creds (local convention)
+- Config: `./cj-api.json`
+  - `apiKey`, `baseUrl`, `accessToken`, `tokenExpiry`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 1) Refresh access token
 ```bash
-hermes skills install clawhub/skill-dropshipping-sourcing
+node scripts/token.js
 ```
+
+## 2) Search products by keyword (listV2)
+```bash
+node scripts/source.js --keyword "sunset lamp" --size 20 --out cj-results.json
+```
+
+Output: `cj-results.json` with normalized fields.
+
+## Notes
+- Token refresh is conservative (refreshes ~10 minutes before expiry).
+- `source.js` uses `GET /product/listV2` and requests `enable_description` + category fields.

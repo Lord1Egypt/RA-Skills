@@ -1,0 +1,42 @@
+{
+  "name": "free-ride-prefix-fix",
+  "displayName": "FreeRide Prefix Fix - Free AI for OpenClaw",
+  "version": "1.0.8",
+  "description": "Fixed fork of FreeRide: resolves OpenRouter prefix routing bug so model fallbacks work reliably. Unlimited free AI via OpenRouter with automatic fallback switching.",
+  "author": "rongtianhua (forked from Shaishav Pidadi)",
+  "repository": "https://clawhub.ai/skills/free-ride-prefix-fix",
+  "license": "MIT",
+  "changelog": "v1.0.8: Fix get_api_key() to also scan agent auth-profiles.json for OpenRouter API key. Automatically detects key without manual env var export.",
+  "commands": [
+    "list",
+    "switch",
+    "auto",
+    "status",
+    "refresh",
+    "fallbacks"
+  ],
+  "binaries": {
+    "freeride-fix": "main:main",
+    "freeride-watcher-fix": "watcher:main"
+  },
+  "dependencies": {
+    "requests": ">=2.31.0"
+  },
+  "config": {
+    "OPENROUTER_API_KEY": {
+      "description": "Your OpenRouter API key (get free at openrouter.ai/keys)",
+      "required": true,
+      "env": true
+    }
+  },
+  "openclaw": {
+    "compatible": true,
+    "minVersion": "1.0.0",
+    "configPath": "~/.openclaw/openclaw.json",
+    "configKeys": [
+      "agents.defaults.model",
+      "agents.defaults.models"
+    ]
+  },
+  "install": "npx clawhub@latest install free-ride-prefix-fix && cd ~/.openclaw/workspace/skills/free-ride-prefix-fix && pip install -e ."
+}

@@ -1,0 +1,64 @@
+name: li_PhotoIndexWithLLM
+version: 1.1.0
+description: Smart photo indexing and search system powered by VL (Vision-Language) large models. Cross-platform support (Windows/Ubuntu/Linux/macOS). Scan, analyze, and semantically search your photo collection.
+author: Beijing Lao Li (beijingLL)
+license: MIT
+keywords:
+  - photo
+  - search
+  - VL
+  - vision-language
+  - indexing
+  - semantic-search
+  - LM-Studio
+  - image-analysis
+  - cross-platform
+  - windows
+  - linux
+  - ubuntu
+  - macos
+
+main: skills/photo-search/skill.py
+
+engines:
+  python: ">=3.10"
+
+platforms:
+  - windows
+  - linux
+  - macos
+
+scripts:
+  scan: python skills/photo-search/skill.py scan --dir
+  search: python skills/photo-search/skill.py search
+  stats: python skills/photo-search/skill.py stats
+  test: python skills/photo-search/skill.py test
+
+dependencies:
+  - requests>=2.31.0
+
+privacy:
+  local_only_by_default: true
+  requires_consent_for_remote: true
+  stores_api_keys_locally: true
+  database_encrypted: false
+  notes: >
+    By default, this skill uses LOCAL VL MODELS ONLY (LM Studio).
+    Photos are NEVER sent to remote servers unless explicitly configured.
+    Remote model usage requires explicit user confirmation.
+    API keys are stored in .env file (not committed to git).
+    All photo analysis data stays on your machine in local SQLite database.
+
+examples:
+  - description: "Scan photos from a directory"
+    command: "python skills/photo-search/skill.py scan --dir D:\Photos"
+  - description: "Search photos by keywords"
+    command: "python skills/photo-search/skill.py search 'beach sunset'"
+  - description: "Search with JSON output"
+    command: "python skills/photo-search/skill.py search 'beach' --format json"
+  - description: "View statistics"
+    command: "python skills/photo-search/skill.py stats"
+
+repository:
+  type: git
+  url: "G:\python\PhotoIndexWithLLM"

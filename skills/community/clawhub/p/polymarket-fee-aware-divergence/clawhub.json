@@ -1,0 +1,65 @@
+{
+  "emoji": "scales",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Simmer SDK API key — get from simmer.markets/dashboard"
+    },
+    {
+      "name": "TRADING_VENUE",
+      "required": false,
+      "description": "sim | polymarket | kalshi (default: sim for paper trading)"
+    },
+    {
+      "name": "FAD_TRADE_USD",
+      "required": false,
+      "description": "Per-trade size in $SIM/USDC (default: 5)"
+    },
+    {
+      "name": "FAD_MIN_NET_EDGE",
+      "required": false,
+      "description": "Required edge after fees and spread, as decimal (default: 0.03)"
+    },
+    {
+      "name": "FAD_SAFETY_MARGIN",
+      "required": false,
+      "description": "Extra cushion above fees+spread, as decimal (default: 0.02)"
+    },
+    {
+      "name": "FAD_MAX_SPREAD_PCT",
+      "required": false,
+      "description": "Skip markets with spread wider than this (default: 0.05)"
+    },
+    {
+      "name": "FAD_MIN_TTR_MIN",
+      "required": false,
+      "description": "Minimum minutes to resolution (default: 30)"
+    },
+    {
+      "name": "FAD_MAX_TTR_HOURS",
+      "required": false,
+      "description": "Maximum hours to resolution (default: 12)"
+    },
+    {
+      "name": "FAD_MAX_TRADES_PER_RUN",
+      "required": false,
+      "description": "Cap trades per cron tick (default: 3)"
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Only needed for external-wallet self-custody trading."
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "fee_aware_divergence.py"
+  }
+}

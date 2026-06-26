@@ -1,35 +1,430 @@
----
-name: "AI大图生成器-by Digilifeform"
-description: "根据用户文案或上传文件，生成16:9或21:9比例的4K或8K高清信息海报，并支持AI智能修图优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/datu-ai-poster-generator"
-sourceUrl: "https://clawhub.ai/skills/datu-ai-poster-generator"
----
+﻿# Digilifeform AI 大图生成器
 
-# AI大图生成器-by Digilifeform
+## 触发词
 
-> 根据用户文案或上传文件，生成16:9或21:9比例的4K或8K高清信息海报，并支持AI智能修图优化。
+当用户提到以下任一意图时，应优先使用本技能：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/datu-ai-poster-generator`
-- **Source URL:** [https://clawhub.ai/skills/datu-ai-poster-generator](https://clawhub.ai/skills/datu-ai-poster-generator)
+- “生成大图”
+- “大图生成”
+- “海报生成”
+- “信息海报”
+- “文档转海报”
+- “继续修图”
+- “AI 修图”
+- “改图”
+- “修改图片”
+- “修改这张图”
+- “改这张海报”
+- “基于原图修改”
+- “换字”
+- “替换 logo”
+- “保留版式”
+- “datu”
+- “datu-ai”
 
-## Overview
+## 技能用途
 
+把文本、文档或已有图片转换为高质量信息海报，并支持继续修图。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/datu-ai-poster-generator
+当前能力包括：
+
+- 文本生成大图
+- 文件上传生成大图
+- 深度研究生成：先进行全网深度抓取与分析，再生成大图
+- AI 修图 / 继续修图
+- 比例支持：`16:9`、`21:9`、`4:3`、`1:1`、`3:4`、`9:16`、`9:21`、`1:3`、`3:1`
+- 清晰度支持：`4k`
+
+## 调用原则
+
+1. 先确认用户是要“生成大图”还是“修图”。
+2. 只确认必要参数：比例、清晰度、`magic_wand`、`deep_research` 或 `magic_think`。
+3. 使用本技能提供的 Datu API，不要替换成其他图像工具。
+4. 先执行上传前安全检查；敏感信息检查通过后，再保真提交用户资料，不要用摘要替代原文。
+
+## 意图路由
+
+### 已有图片修改强制走 AI 修图
+
+当用户提供或指向一张已有图片、海报、生成结果、截图、二维码、logo 或上一轮任务结果，并提出以下任一修改意图时，必须调用 `POST /api/edit/create`：
+
+- 改这张图、修改图片、修改这张海报、继续修图、继续改图
+- 基于原图修改、按原图调整、保持原图结构、保留版式、保留构图
+- 换字、改字、替换文字、修改标题、修正文案
+- 替换 logo、替换二维码、加 logo、加二维码、去掉某个元素
+- 调整颜色、换风格、局部优化、增强清晰度、按标注区域修改
+
+这种情况下不要调用 `/api/datu/create`，也不要调用 `/api/datu/create-from-file` 重新生成一张新图。
+
+路由字段：
+
+- 被修改的主图放入 `image`
+- 标注后的主图放入 `annotated_image`
+- 风格图、logo、二维码、产品图等只作为参考时放入 `ref_images`
+- 用户的自然语言修改要求原样放入 `prompt`
+- 如果是继续修改某个历史任务，传入 `parent_task_id`
+
+只有当用户明确要求“解析这张图/截图里的内容，再生成一张新的大图/海报”时，图片才作为内容素材进入大图生成流程。
+
+## 强约束
+
+对于大图生成，外层代理必须遵守以下规则：
+
+- `magic_wand=true` 时，敏感信息检查通过后，不要先做摘要、提炼、压缩、重写或“整理版 Prompt”
+- `deep_research=true` 只能在用户明确选择或确认后启用；深度研究会全网深度抓取并分析，通常需要额外 5-15 分钟，并额外消耗 5 积分
+- 如果用户选择深度研究，最终结果不仅要给出图片，还要在任务返回 `research_report_download_url` 时下载或提供深度研究报告文件
+- 对普通业务资料，完成上传前安全检查后，应把用户给的原始信息直接交给大图技能
+- 不要把风险控制理解为默认摘要；风险控制是发现敏感或受限内容时先提醒并取得明确授权
+- 不要先把文件内容总结成几条要点后，再替代原文件或原文提交
+- 如果比例、清晰度、`magic_wand` 都已明确，就直接创建任务，不要额外输出“整理后的执行方案”让用户确认
+- 本技能内部已经负责信息提炼、结构整理和设计化 Prompt 生成，外层代理不要重复处理
+- `magic_wand=false` 时也不要改写用户输入，应直接传递用户给出的原始信息
+
+## 上传前安全检查
+
+所有文本、文件、图片 URL 或参考图在提交到 `https://datu.digilifeform.com` 前，都应先做一次轻量敏感信息检查。以下内容如果明显出现，不应跳过确认上传到外部服务，而应先提醒并获得用户明确授权：
+
+- API Key、密码、访问令牌、私钥、Cookie、数据库连接串
+- 身份证号、银行卡号、医疗记录、精确住址等高敏个人信息
+- 受监管、受合同限制或公司内部禁止外发的数据
+
+说明：
+
+- 这不是要求先把内容摘要后再传
+- 对普通业务资料，敏感信息检查通过后仍应按本技能规则直接传用户给出的原始信息
+- 对高风险资料，正确做法是“先提示风险，再让用户决定”
+- 如果用户不确认，应停止上传，或请用户提供脱敏版本
+
+## 大图生成
+
+### 文本生成
+
+接口：
+
+```http
+POST /api/datu/create
 ```
+
+请求体：
+
+```json
+{
+  "text": "用户提供的完整信息",
+  "aspect_ratio": "16:9",
+  "resolution": "4k",
+  "magic_wand": true,
+  "deep_research": false
+}
+```
+
+字段说明：
+
+- `text`: 必填，最短支持 2 个字符
+- `aspect_ratio`: `16:9` / `21:9` / `4:3` / `1:1` / `3:4` / `9:16` / `9:21` / `1:3` / `3:1`
+- `resolution`: `4k`
+- `magic_wand`: 默认 `true`
+- `deep_research`: 默认 `false`。只能在用户明确选择或确认后设为 `true`。设为 `true` 时，Datu 会先进行全网深度抓取与分析，再生成大图；这会额外增加约 5-15 分钟，并额外消耗 5 积分
+
+注意：
+
+- `magic_wand=true` 不等于外层代理先提炼资料
+- 应保留用户给出的原始信息，让 Datu 内部流程自己做信息提炼
+- `deep_research=true` 会强制使用 `magic_wand=true`
+- `deep_research=true` 只能在用户明确选择或确认后启用
+- 规则摘要：deep_research=true 只能在用户明确选择或确认后启用
+- 如果用户选择深度研究，任务完成后除图片外，还应检查并返回深度研究报告文件
+
+深度研究请求示例：
+
+```json
+{
+  "text": "请基于以下完整资料先做全网深度研究，再生成一张行业趋势信息海报：......",
+  "aspect_ratio": "16:9",
+  "resolution": "4k",
+  "magic_wand": true,
+  "deep_research": true
+}
+```
+
+### 文件生成
+
+接口：
+
+```http
+POST /api/datu/create-from-file
+```
+
+请求格式：`multipart/form-data`
+
+字段：
+
+- `file`
+- `aspect_ratio`
+- `resolution`
+- `magic_wand`
+- `deep_research`
+
+支持上传：
+
+- `pdf`
+- `doc`
+- `docx`
+- `txt`
+- `md`
+- `markdown`
+- `png`
+- `jpg`
+- `jpeg`
+- `webp`
+- `gif`
+
+限制：
+
+- 单文件最大 `20MB`
+- 不要由外层代理先读取后压缩、整理或摘要用户信息再提交
+- `deep_research=true` 时同样提交原始文件，由 Datu 内部解析、研究、整理和生成
+
+## AI 修图
+
+接口：
+
+```http
+POST /api/edit/create
+```
+
+请求体：
+
+```json
+{
+  "image": "https://cdn.example.com/original.png",
+  "annotated_image": "",
+  "ref_images": [],
+  "prompt": "把顶部主标题做得更醒目，整体改成深蓝金科技风",
+  "magic_think": true,
+  "aspect_ratio": "9:16",
+  "resolution": "4k",
+  "parent_task_id": null
+}
+```
+
+字段说明：
+
+- `image`: 必填，原图 URL
+- `annotated_image`: 可选，标注图 URL
+- `ref_images`: 可选，最多 4 张
+- `prompt`: 必填，最短 2 个字符
+- `magic_think`: 默认 `true`
+- `aspect_ratio`: `16:9` / `21:9` / `4:3` / `1:1` / `3:4` / `9:16` / `9:21` / `1:3` / `3:1`
+- `resolution`: `4k`
+
+说明：当前版本已取消新建 8K 任务，不要再传 `resolution=8k`。
+
+## 状态查询
+
+大图状态：
+
+```http
+GET /api/datu/status/{task_id}
+```
+
+如果用户选择深度研究，状态或任务详情中可能包含：
+
+```json
+{
+  "image_url": "https://cdn.example.com/datu/final.png",
+  "download_url": "/api/tasks/DT1234567890/download",
+  "research_report_download_url": "/api/tasks/DT1234567890/research-report-link"
+}
+```
+
+遇到 `research_report_download_url` 时，应再请求：
+
+```http
+GET /api/tasks/{task_id}/research-report-link
+```
+
+返回值中的 `download_url` 是短期有效的 Word `.docx` 报告下载地址。执行时应下载深度研究报告。最终回复用户时，如果用户选择深度研究，应同时给出图片结果和研究报告文件；报告文件建议命名为 `research-report-{task_id}.docx`。
+
+修图状态：
+
+```http
+GET /api/edit/status/{task_id}
+```
+
+## 认证方式
+
+本技能需要一个用户自行创建并控制的 Datu API Key。推荐在运行环境中配置：
+
+```bash
+DATU_API_KEY=your_api_key_here
+```
+
+宿主凭据要求：
+
+- 如果用户已经在飞书、微信、OpenClaw、ClawHub 或其他宿主中提供过 Datu API Key，宿主必须将其保存为 `DATU_API_KEY` 持久凭据
+- 后续调用本技能时，宿主应自动把该持久凭据注入请求环境，并通过 `X-API-Key` 发送
+- 不要反复要求用户重新提供 API Key；只有在持久凭据不存在、被用户删除、已失效或服务端明确返回认证失败时，才向用户说明需要重新配置
+- 如果当前会话拿不到 `DATU_API_KEY`，应优先提示用户检查宿主的凭据/密钥库/技能授权设置，而不是让用户在聊天里反复粘贴 key
+- 临时粘贴在聊天中的 key 不应被当作长期方案；宿主应提供安全保存能力，避免把 key 暴露在普通聊天上下文中
+
+所有请求都使用：
+
+```http
+X-API-Key: your_api_key_here
+```
+
+基础地址：
+
+```text
+https://datu.digilifeform.com
+```
+
+隐私提示：
+
+- 本技能会把文本、文件或图片发送到 `https://datu.digilifeform.com` 外部服务
+- 使用前应确认用户接受该外发行为
+
+## 关键行为说明
+
+- 大图生成支持 `magic_wand` 主流程开关，默认开启
+- 大图生成支持 `deep_research` 深度研究开关；开启后结果应包含图片和 Word `.docx` 深度研究报告文件
+- 修图保留 `magic_think`，与大图主开关分离
+- `9:16`、`9:21`、`1:3`、`3:1` 已作为正式比例支持
+- 系统会统一为最终图像 Prompt 补充 4K 高清质量要求
+- `4k` 生图 / 改图默认优先走新的高质量链路，失败时自动回退
+
+## 新版本提醒
+
+- 用户正常使用大图技能后，可以顺手检查 `GET /api/skill/version`
+- 版本检查应低频进行，同一会话或同一用户 24 小时最多检查一次
+- 如果发现当前技能版本低于最新版本，只在回复末尾顺手提醒一句，不打断主流程
+- 如果版本接口失败，静默跳过，不影响本次任务
+
+推荐提醒文案：
+
+```text
+检测到 Datu 大图技能有新版本 vX.Y.Z，建议在 ClawHub 更新后继续使用。
+```
+
+## 推荐用法
+
+### 适合开启 `magic_wand`
+
+- 用户给的是长文、政策、方案、介绍材料
+- 需要系统自动梳理信息结构
+- 需要更强的版式设计感
+- 这类场景尤其不要提前替用户总结，应该把用户给出的原始信息交给系统
+
+### 适合开启 `deep_research`
+
+- 用户明确要求“深度研究”“全网研究”“先调研再生成”
+- 用户给的是行业分析、政策解读、产品发布、市场洞察、趋势报告等需要补充背景资料的内容
+- 用户可以接受额外 5-15 分钟等待时间和额外 5 积分成本
+- 开启后，除了图片结果，还要返回深度研究报告文件
+
+### 适合关闭 `magic_wand`
+
+- 用户已经写好了完整 Prompt
+- 用户明确要求“不要改写，只按我的 Prompt 生成”
+- 需要快速验证一个简短创意方向
+
+## 常见错误
+
+### 错误 1：用其他图像工具替代
+
+错误：
+
+```text
+用户要 Datu 大图，却改用其他生图工具直接生成
+```
+
+正确：
+
+```text
+使用 /api/datu/create 或 /api/datu/create-from-file
+```
+
+### 错误 2：把 `magic_think` 当成大图生成开关
+
+错误：
+
+```text
+大图生成时发送 magic_think
+```
+
+正确：
+
+```text
+大图生成用 magic_wand，修图才用 magic_think
+```
+
+### 错误 3：忽略竖版比例
+
+错误：
+
+```text
+把所有非 21:9 的请求都当成 16:9，或忽略用户明确选择的 9:16 / 9:21 / 1:3 / 3:1
+```
+
+正确：
+
+```text
+保留用户明确选择的 9:16 / 9:21 / 1:3 / 3:1
+```
+
+### 错误 4：先替用户做摘要再交给大图技能
+
+错误：
+
+```text
+用户给了一整段资料或一个文件，外层代理先整理成几条 bullet，再把这个缩写版发给 Datu
+```
+
+正确：
+
+```text
+magic_wand=true 时，先做上传前安全检查；通过后不要压缩整理摘要总结用户信息，而是保真提交给大图技能
+```
+
+### 错误 5：看到敏感数据仍绕过确认上传
+
+错误：
+
+```text
+识别到文档中有密钥、身份证号或受限信息，但未提醒用户确认就提交到外部 API
+```
+
+正确：
+
+```text
+先提醒风险并取得明确授权；用户不确认时停止上传或请用户提供脱敏版本
+```
+
+### 错误 6：深度研究后只给图片不给报告
+
+错误：
+
+```text
+用户选择了 deep_research=true，但最终只返回图片链接，忽略 research_report_download_url
+```
+
+正确：
+
+```text
+如果用户选择深度研究，任务完成后同时提供图片和 Word `.docx` 深度研究报告文件
+```
+
+### 错误 7：反复向用户索要 API Key
+
+错误：
+
+```text
+用户之前已经提供并成功使用过 Datu API Key，但每次在飞书、微信等宿主里调用技能时仍要求重新提供
+```
+
+正确：
+
+```text
+宿主收到用户提供的 key 后，应保存为 `DATU_API_KEY` 持久凭据；后续调用自动注入并通过 `X-API-Key` 发送。只有持久凭据缺失、被删除、失效或认证失败时，才提示用户重新配置。
+```
+

@@ -1,35 +1,31 @@
 ---
-name: "Browser Automation 1"
-description: "Automate web browsing tasks like navigation, data extraction, form filling, clicking, and screenshots using the agent-browser CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browser-automation-1"
-sourceUrl: "https://clawhub.ai/skills/browser-automation-1"
+name: browser
+description: Automate web browser interactions via CLI. Use when user asks to: browse websites, navigate pages, extract data, take screenshots, fill forms, click buttons, or interact with web applications. Supports Chrome/Brave/Edge via agent-browser CLI.
 ---
 
-# Browser Automation 1
+# Browser Automation
 
-> Automate web browsing tasks like navigation, data extraction, form filling, clicking, and screenshots using the agent-browser CLI.
+Automate web browser interactions using natural language via CLI commands.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browser-automation-1`
-- **Source URL:** [https://clawhub.ai/skills/browser-automation-1](https://clawhub.ai/skills/browser-automation-1)
+## When to Use
 
-## Overview
+- Browse websites
+- Navigate web pages
+- Extract data from websites
+- Take screenshots
+- Fill forms
+- Click buttons
+- Interact with web applications
 
+## Tools
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/browser-automation-1
-```
+Uses `agent-browser` CLI for headless browser automation.
+
+## Capabilities
+
+- Headless browser control
+- Screenshot capture
+- Form filling
+- Button clicking
+- Data extraction
+- Navigation control

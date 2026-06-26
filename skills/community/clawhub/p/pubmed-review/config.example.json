@@ -1,0 +1,23 @@
+{
+  "queue_file": "./tasks/ablesci_tasks.json",
+  "log_file": "./logs/pubmed_monitor.log",
+  "first_check_delay_minutes": 2,
+  "monitor_interval_minutes": 30,
+  "default_max_retries": 5,
+  "no_response_timeout_hours": 6,
+  "throttle": {
+    "enabled": true,
+    "interval_min": 120,
+    "interval_max": 480,
+    "success_to_break": 3,
+    "break_min": 600,
+    "break_max": 1200,
+    "fail_to_slow": 3,
+    "slow_interval_min": 600,
+    "slow_interval_max": 1800,
+    "night_start": 1,
+    "night_end": 6,
+    "night_interval_min": 600,
+    "night_interval_max": 1800
+  }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>妈妈物品篇</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #FFF5F5; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(200,100,120,0.05) 28px, rgba(200,100,120,0.05) 29px); }
+.tape { position: absolute; width: 130px; height: 32px; background: rgba(255,200,200,0.75); transform: rotate(-2deg); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.tape-1 { top: 20px; left: 30px; }
+.tape-2 { top: 20px; right: 30px; transform: rotate(2deg); }
+.header-bar { position: absolute; top: 0; left: 0; right: 0; height: 110px; background: linear-gradient(135deg, #E87A8A, #D46A7A); display: flex; align-items: center; justify-content: center; }
+.header-bar h1 { font-size: 44px; color: white; font-family: 'Ma Shan Zheng', cursive; letter-spacing: 6px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.page-num { position: absolute; top: 125px; right: 50px; font-size: 20px; color: #D46A7A; font-weight: bold; }
+.cat-label { position: absolute; left: 40px; font-size: 20px; font-weight: bold; color: white; padding: 5px 15px; border-radius: 6px; }
+.item-grid { position: absolute; left: 40px; right: 40px; }
+.item-row { display: flex; align-items: center; margin-bottom: 11px; background: #FFFDF5; border-radius: 10px; padding: 9px 13px; box-shadow: 0 2px 5px rgba(0,0,0,0.06); }
+.item-num { min-width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; margin-right: 12px; flex-shrink: 0; color: white; }
+.item-name { font-size: 21px; font-weight: 700; }
+.item-desc { font-size: 16px; line-height: 1.4; margin-top: 2px; }
+.item-qty { margin-left: auto; padding: 3px 10px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; font-size: 16px; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="header-bar"><h1">🤱 妈妈物品篇</h1></div>
+<div class="page-num">12项</div>
+
+<div class="cat-label" style="top:125px;background:#E87A8A;">👗 衣物类</div>
+<div class="item-grid" style="top:168px;">
+  <div class="item-row">
+    <div class="item-num" style="background:#E87A8A;">1</div>
+    <div style="flex:1"><div class="item-name">月子服</div><div class="item-desc">选开衫款，产后容易出汗需要换洗</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 2-3套</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#E87A8A;">2</div>
+    <div style="flex:1"><div class="item-name">哺乳内衣</div><div class="item-desc">选无钢圈纯棉款，产后涨奶穿着舒服</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 2件</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#E87A8A;">3</div>
+    <div style="flex:1"><div class="item-name">一次性内裤</div><div class="item-desc">用完直接扔，避免别人帮忙洗的尴尬</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 15条+</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#E87A8A;">4</div>
+    <div style="flex:1"><div class="item-name">月子帽/发带</div><div class="item-desc">产后头部不能吹风，出院和洗澡后要戴</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 1-2个</div>
+  </div>
+</div>
+
+<div class="cat-label" style="top:418px;background:#D46A7A;">💧 护理类</div>
+<div class="item-grid" style="top:461px;">
+  <div class="item-row">
+    <div class="item-num" style="background:#D46A7A;">5</div>
+    <div style="flex:1"><div class="item-name">产褥垫</div><div class="item-desc">进产房就要铺上，产后恶露多也要用</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 15片+</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#D46A7A;">6</div>
+    <div style="flex:1"><div class="item-name">刀纸</div><div class="item-desc">比产妇卫生巾透气，医生接生时也用这个</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 3-4包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#D46A7A;">7</div>
+    <div style="flex:1"><div class="item-name">安睡裤</div><div class="item-desc">产后头两天量大，穿这个比垫产褥垫方便</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 8条+</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#D46A7A;">8</div>
+    <div style="flex:1"><div class="item-name">乳头膏</div><div class="item-desc">喂奶前涂，羊脂膏成分，喂完继续涂</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#D46A7A;">× 1支</div>
+  </div>
+</div>
+
+<div class="cat-label" style="top:708px;background:#B85C70;">🍼 喂养+其他</div>
+<div class="item-grid" style="top:751px;">
+  <div class="item-row">
+    <div class="item-num" style="background:#B85C70;">9</div>
+    <div style="flex:1"><div class="item-name">吸管杯</div><div class="item-desc">必带！剖腹产妈妈躺着也能喝水，非常重要</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#B85C70;">× 1个</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#B85C70;">10</div>
+    <div style="flex:1"><div class="item-name">哺乳枕</div><div class="item-desc">喂奶时垫着，省力，减少手腕酸痛</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#B85C70;">× 1个</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#B85C70;">11</div>
+    <div style="flex:1"><div class="item-name">洗漱用品套</div><div class="item-desc">牙刷、牙膏，毛巾、漱口水，住院几天要用</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#B85C70;">× 1套</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num" style="background:#B85C70;">12</div>
+    <div style="flex:1"><div class="item-name">收腹带</div><div class="item-desc">剖腹产妈妈必带，固定伤口；顺产问医生</div></div>
+    <div class="item-qty" style="background:#FFE5E8;color:#B85C70;">× 1条</div>
+  </div>
+</div>
+
+<div style="position:absolute;bottom:40px;left:40px;right:40px;background:#FFF0E0;border:2px dashed #D4A574;border-radius:10px;padding:14px 22px;font-size:20px;color:#8B6914;text-align:center;line-height:1.6;">
+  💡 吸管杯是剖腹产妈妈必备！产后头几天只能躺床，躺着喝水全靠它
+</div>
+</body>
+</html>

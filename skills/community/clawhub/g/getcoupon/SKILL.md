@@ -1,35 +1,67 @@
 ---
-name: "优惠券查询助手"
-description: "优惠券查询助手，当用户询问优惠、折扣、红包时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/getcoupon"
-sourceUrl: "https://clawhub.ai/skills/getcoupon"
+name: getcoupon
+description: 优惠券查询助手，当用户询问优惠、折扣、红包时调用。
+version: 1.0.1
 ---
 
-# 优惠券查询助手
+# 🎁 优惠券助手
 
-> 优惠券查询助手，当用户询问优惠、折扣、红包时调用。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/getcoupon`
-- **Source URL:** [https://clawhub.ai/skills/getcoupon](https://clawhub.ai/skills/getcoupon)
+实时同步多个平台优惠数据，查询外卖红包、平台优惠券、商品优惠，支持按平台或商品类目筛选。
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/getcoupon
+### 无明确偏好时
 ```
+有什么优惠？
+查看优惠
+```
+
+→ 返回可用平台列表 + 商品类目概览
+
+### 查外卖/平台红包
+```
+饿了么
+美团
+京东
+拼多多
+淘宝闪购
+外卖红包
+```
+
+→ 返回对应平台的优惠券
+
+### 查商品优惠
+```
+手机
+电脑
+衣服
+数码
+```
+
+→ 返回对应类目的商品优惠（如有匹配）
+
+### 其他问法
+```
+有什么省钱的方法？
+优惠券
+折扣
+```
+
+## 数据说明
+
+- 数据来自第三方优惠聚合服务
+- 包含饿了么、美团、京东、拼多多等平台
+- 优惠券有时效性，请尽快使用
+- 部分平台需复制链接到 App 内打开
+
+## 故障处理
+
+- 若提示"数据爬取失败"可稍后重试
+- 持续失败时回复「升级最新版」获取更新
+
+## 更新说明
+
+- 技能会自动检测并提示升级
+- 管理员可发布新版本覆盖更新

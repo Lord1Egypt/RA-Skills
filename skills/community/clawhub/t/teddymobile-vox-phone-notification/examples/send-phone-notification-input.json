@@ -1,0 +1,7 @@
+{
+  "sourceText": "给<接收手机号>发通知，明天10点开会",
+  "callee": "<接收手机号>",
+  "requestId": "notif-20260512-001",
+  "notificationText": "您好，提醒您明天10点开会。",
+  "notificationTimes": 2
+}

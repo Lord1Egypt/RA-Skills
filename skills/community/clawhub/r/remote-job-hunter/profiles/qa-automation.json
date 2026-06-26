@@ -1,0 +1,18 @@
+{
+  "domain": "qa-automation",
+  "label": "QA Engineer",
+  "salary_filter_enabled": false,
+  "phrases": [
+    "test automation", "qa automation", "quality assurance", "tosca",
+    "automation engineer", "automation architect", "test architect",
+    "automation lead", "selenium", "cypress", "playwright",
+    "sdet", "software development engineer in test", "quality engineer",
+    "manual testing", "functional testing", "manual tester", "qa engineer",
+    "qa analyst", "qa lead", "qa manager", "test engineer", "test lead",
+    "test manager", "software tester", "regression testing",
+    "api testing", "integration testing", "test strategy"
+  ],
+  "title_keywords": [
+    "qa", "quality", "test", "sdet", "automation", "tosca", "selenium"
+  ]
+}

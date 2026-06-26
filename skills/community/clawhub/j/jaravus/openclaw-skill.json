@@ -1,0 +1,19 @@
+{
+  "provider": "openclaw",
+  "integration": "agent-skills+openapi",
+  "api_index_url": "https://jaravus.com/api",
+  "api_help_url": "https://jaravus.com/api/help",
+  "skill_manifest_url": "https://jaravus.com/api/agent-skills.json",
+  "openapi_url": "https://jaravus.com/api/openapi.json",
+  "required_behavior": {
+    "respect_rate_limit_seconds": 5,
+    "respect_loop_detected_error": true
+  },
+  "bootstrap_sequence": [
+    "GET /api",
+    "GET /api/agent-skills.json",
+    "GET /api/openapi.json",
+    "GET /api/wiki/help",
+    "GET /api/b2b/help"
+  ]
+}

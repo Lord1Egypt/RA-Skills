@@ -1,0 +1,634 @@
+{
+  "baseUrl": "http://127.0.0.1:6873",
+  "count": 56,
+  "commands": [
+    {
+      "command": "postV1CloudMobileAppPage",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/page",
+      "summary": "APP列表(分页)\\查询可安装应用列表",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "productId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileAppInstalledlist",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/installedList",
+      "summary": "已安装应用列表查询",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "01KAJXGA2GNQ7XY54ZZHV6XN0G": "test",
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileGroupAppCreate",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/group/app/create",
+      "summary": "新增团队应用",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {
+        "packageName": "test",
+        "versionCode": 0
+      },
+      "defaultBody": {
+        "01KAJXGA2GNQ7XY54ZZHV6XN0G": "test",
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileAppInstall",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/install",
+      "summary": "app应用安装",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileAppStart",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/start",
+      "summary": "APP启动",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0,
+        "packageName": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileAppRestart",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/restart",
+      "summary": "APP重启",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0,
+        "packageName": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileAppStop",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/stop",
+      "summary": "APP停止",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0,
+        "packageName": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileAppUninstall",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/app/uninstall",
+      "summary": "APP卸载",
+      "tag": "云手机/应用管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0,
+        "packageName": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileUploadFile",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/upload-file",
+      "summary": "公网文件上传文件到云手机",
+      "tag": "云手机/文件管理",
+      "defaultQuery": {
+        "downloadDest": "test",
+        "fileName": "test",
+        "fileUrl": "test"
+      },
+      "defaultBody": {
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV2CloudMobileUploadFile",
+      "method": "POST",
+      "path": "/api/v2/cloud-mobile/upload-file",
+      "summary": "选择本地上传文件到云手机",
+      "tag": "云手机/文件管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1CloudMobileSetkeybox",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/setKeyBox",
+      "summary": "设置keyBox",
+      "tag": "云手机/文件管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0,
+        "filePath": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileMobileProductList",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/mobile-product-list",
+      "summary": "云手机商品列表",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1CloudMobileMobilePage",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/mobile-page",
+      "summary": "云手机分页列表",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1CloudMobileAddMobile",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/add-mobile",
+      "summary": "添加云手机",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "productId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobilePowerOnMobile",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/power-on-mobile",
+      "summary": "批量开启云手机",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileIds": []
+      }
+    },
+    {
+      "command": "postV1CloudMobileShutdownMobile",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/shutdown-mobile",
+      "summary": "批量关闭云手机",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileIds": []
+      }
+    },
+    {
+      "command": "postV1CloudMobileDelMobileBatch",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/del-mobile-batch",
+      "summary": "批量删除云手机",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileIds": []
+      }
+    },
+    {
+      "command": "postV1CloudMobileUpdate",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/update",
+      "summary": "修改云手机信息",
+      "tag": "云手机",
+      "defaultQuery": {
+        "mobileId": 0
+      },
+      "defaultBody": {
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileSetTag",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/set-tag",
+      "summary": "批量设置云手机分组",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileIds": [],
+        "tagName": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileGetCountryTimeZoneLanguageList",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/get-country-time-zone-language-list",
+      "summary": "国家时区语言列表",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1CloudMobileUpdateProxy",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/update-proxy",
+      "summary": " 更新代理",
+      "tag": "云手机",
+      "defaultQuery": {
+        "mobileId": 0,
+        "proxyTypeId": 0,
+        "proxyHost": "test",
+        "proxyPort": "test"
+      },
+      "defaultBody": {
+        "proxyPort": 0,
+        "proxyTypeId": 0,
+        "mobileId": 0,
+        "proxyHost": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileNewMachineStatus",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/new-machine-status",
+      "summary": "获取一键新机状态及可用数量",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileBrandModels",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/brand/models",
+      "summary": "查询品牌机型",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "productId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileNewMachine",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/new-machine",
+      "summary": "一键新机",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0
+      }
+    },
+    {
+      "command": "postV1CloudMobileBatchUpdateAdb",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/batch-update-adb",
+      "summary": "批量更新云手机ADB状态",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "enableAdb": false,
+        "mobileIds": []
+      }
+    },
+    {
+      "command": "postV1CloudMobileListAdb",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/list-adb",
+      "summary": "批量获取云手机ADB状态",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileIds": []
+      }
+    },
+    {
+      "command": "postV1CloudMobileExeCommand",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/exe-command",
+      "summary": "执行shell命令",
+      "tag": "云手机",
+      "defaultQuery": {},
+      "defaultBody": {
+        "mobileId": 0,
+        "command": "test",
+        "01KAJYBK6R36JW8F2K4M6F3MGX": "test"
+      }
+    },
+    {
+      "command": "postV1CloudMobileSimulatesendsms",
+      "method": "POST",
+      "path": "/api/v1/cloud-mobile/simulateSendSms",
+      "summary": "发送短信到云手机",
+      "tag": "云手机",
+      "defaultQuery": {
+        "mobileId": 0,
+        "senderNumber": "test",
+        "smsContent": "test"
+      },
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1BrowserStart",
+      "method": "POST",
+      "path": "/api/v1/browser/start",
+      "summary": "打开环境",
+      "tag": "浏览器环境",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": "test"
+      }
+    },
+    {
+      "command": "postV1BrowserStop",
+      "method": "POST",
+      "path": "/api/v1/browser/stop",
+      "summary": "关闭环境",
+      "tag": "浏览器环境",
+      "defaultQuery": {
+        "containerCode": "test"
+      },
+      "defaultBody": {
+        "containerCode": "test"
+      }
+    },
+    {
+      "command": "postV1BrowserAllBrowserStatus",
+      "method": "POST",
+      "path": "/api/v1/browser/all-browser-status",
+      "summary": "获取所有打开环境",
+      "tag": "浏览器环境",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1BrowserForeground",
+      "method": "POST",
+      "path": "/api/v1/browser/foreground",
+      "summary": "切换浏览器窗口",
+      "tag": "浏览器环境",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": "test"
+      }
+    },
+    {
+      "command": "postV1BrowserStopAll",
+      "method": "POST",
+      "path": "/api/v1/browser/stop-all",
+      "summary": "关闭所有环境接口",
+      "tag": "浏览器环境",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1DisplayAll",
+      "method": "POST",
+      "path": "/api/v1/display/all",
+      "summary": "获取全部屏幕（物理机的屏幕）",
+      "tag": "浏览器环境",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1BrowserArrange",
+      "method": "POST",
+      "path": "/api/v1/browser/arrange",
+      "summary": "浏览器窗口自定义排列",
+      "tag": "浏览器环境",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1EnvList",
+      "method": "POST",
+      "path": "/api/v1/env/list",
+      "summary": "获取环境列表",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1EnvCreate",
+      "method": "POST",
+      "path": "/api/v1/env/create",
+      "summary": "创建环境",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerName": "test",
+        "asDynamicType": 0,
+        "proxyTypeName": "test"
+      }
+    },
+    {
+      "command": "postV1EnvUpdate",
+      "method": "POST",
+      "path": "/api/v1/env/update",
+      "summary": "更新环境",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": 0,
+        "containerName": "test",
+        "tagName": "test",
+        "coreVersion": 0
+      }
+    },
+    {
+      "command": "postV1EnvProxyUpdate",
+      "method": "POST",
+      "path": "/api/v1/env/proxy/update",
+      "summary": "更新环境代理",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": 0,
+        "asDynamicType": 0,
+        "proxyTypeName": "test"
+      }
+    },
+    {
+      "command": "postV1EnvDel",
+      "method": "POST",
+      "path": "/api/v1/env/del",
+      "summary": "删除环境",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCodes": []
+      }
+    },
+    {
+      "command": "postV1EnvImportCookie",
+      "method": "POST",
+      "path": "/api/v1/env/import-cookie",
+      "summary": "导入Cookie",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": "test",
+        "cookie": "test"
+      }
+    },
+    {
+      "command": "postV1EnvExportCookie",
+      "method": "POST",
+      "path": "/api/v1/env/export-cookie",
+      "summary": "导出Cookie",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": 0
+      }
+    },
+    {
+      "command": "postV1EnvRandomUa",
+      "method": "POST",
+      "path": "/api/v1/env/random-ua",
+      "summary": "获取随机UA",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1CacheClear",
+      "method": "POST",
+      "path": "/api/v1/cache/clear",
+      "summary": "清除环境本地缓存",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1BrowserResetExtension",
+      "method": "POST",
+      "path": "/api/v1/browser/reset-extension",
+      "summary": "清理环境内插件缓存",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "browserOauth": 0,
+        "pluginIds": []
+      }
+    },
+    {
+      "command": "postV1BrowserDownloadCore",
+      "method": "POST",
+      "path": "/api/v1/browser/download-core",
+      "summary": "下载内核",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "Cores": []
+      }
+    },
+    {
+      "command": "postV1EnvRefreshFingerprint",
+      "method": "POST",
+      "path": "/api/v1/env/refresh-fingerprint",
+      "summary": "刷新指纹",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "containerCode": 0
+      }
+    },
+    {
+      "command": "postV1ContainerBatchUpdateRemark",
+      "method": "POST",
+      "path": "/api/v1/container/batch-update-remark",
+      "summary": "批量修改备注",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1ContainerWebglRendererList",
+      "method": "POST",
+      "path": "/api/v1/container/webgl-renderer-list",
+      "summary": "查询webglVendor和webglRenderer",
+      "tag": "环境管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1AccountList",
+      "method": "POST",
+      "path": "/api/v1/account/list",
+      "summary": "账号分页列表",
+      "tag": "平台账号管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1AccountUpdate",
+      "method": "POST",
+      "path": "/api/v1/account/update",
+      "summary": "账号更新",
+      "tag": "平台账号管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1ContainerAddAccount",
+      "method": "POST",
+      "path": "/api/v1/container/add-account",
+      "summary": "添加环境账号",
+      "tag": "平台账号管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "accountName": "test",
+        "siteName": "test",
+        "accountPassword": "test",
+        "containerCode": 0
+      }
+    },
+    {
+      "command": "postV1AccountDel",
+      "method": "POST",
+      "path": "/api/v1/account/del",
+      "summary": "账号删除",
+      "tag": "平台账号管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "accountIds": []
+      }
+    },
+    {
+      "command": "postV1GroupList",
+      "method": "POST",
+      "path": "/api/v1/group/list",
+      "summary": "获取环境分组列表",
+      "tag": "分组管理",
+      "defaultQuery": {},
+      "defaultBody": {}
+    },
+    {
+      "command": "postV1GroupCreate",
+      "method": "POST",
+      "path": "/api/v1/group/create",
+      "summary": "新建环境分组",
+      "tag": "分组管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "tagName": "test"
+      }
+    },
+    {
+      "command": "postV1GroupDel",
+      "method": "POST",
+      "path": "/api/v1/group/del",
+      "summary": "删除环境分组",
+      "tag": "分组管理",
+      "defaultQuery": {},
+      "defaultBody": {
+        "tagCode": "test"
+      }
+    }
+  ]
+}

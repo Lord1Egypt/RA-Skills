@@ -1,0 +1,14 @@
+{
+  "name": "epic-hypothesis",
+  "displayName": "史诗假设",
+  "version": "1.0.0",
+  "description": "将大型需求转化为可验证假设，使用 If/Then 结构，定义关键指标和验证实验",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "epic", "hypothesis", "validation", "component"],
+  "category": "Product Management",
+  "type": "component",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

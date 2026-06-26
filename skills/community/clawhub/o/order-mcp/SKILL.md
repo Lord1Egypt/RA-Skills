@@ -1,35 +1,35 @@
 ---
-name: "废弃mcp"
-description: "测试skill"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/order-mcp"
-sourceUrl: "https://clawhub.ai/skills/order-mcp"
+name: deprecated-content
+description: 识别、整理和处理项目中的废弃内容。用户提到废弃、下线、历史逻辑、旧接口、旧文档、legacy、deprecated、清理无用内容时使用。
 ---
 
-# 废弃mcp
+# 废弃内容处理
 
-> 测试skill
+## 处理原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/order-mcp`
-- **Source URL:** [https://clawhub.ai/skills/order-mcp](https://clawhub.ai/skills/order-mcp)
+遇到废弃内容时，先确认废弃范围和影响面，不要直接删除代码、配置、文档或数据。
 
-## Overview
+## 工作流程
 
+1. 找到废弃内容的定义、引用和调用链。
+2. 判断是否仍被线上功能、构建流程、配置、脚本或文档引用。
+3. 区分可以删除、需要保留兼容、需要迁移替换、仅需标记废弃四类情况。
+4. 输出处理建议，说明影响范围、风险点和需要确认的问题。
+5. 只有用户明确要求修改时，才执行删除、替换或标记废弃。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/order-mcp
+## 输出要求
+
+- 用中文回复。
+- 先给结论，再列影响范围和建议动作。
+- 不生成 README、测试代码或额外文档，除非用户明确要求。
+- 不自主修改未被要求修改的功能。
+
+## 废弃标记
+
+需要保留但不推荐继续使用的内容，可使用简短标记：
+
+```ts
+/**
+ * @deprecated 已废弃，仅保留兼容历史逻辑。新逻辑不要继续使用。
+ */
 ```

@@ -1,0 +1,27 @@
+{
+  "approval_id": "1c9e92a7-46f3-4a6d-a0d9-59c60ff0fee1",
+  "plan_id": "test_plan",
+  "risk_level": "high",
+  "agent_id": "test_agent",
+  "agent_role": "",
+  "status": "rejected",
+  "tier": "chief",
+  "approver": "chief_01",
+  "reason": "Risk too high",
+  "created_at": "2026-04-14T16:07:35.737926+00:00",
+  "expires_at": "2026-04-14T17:07:35.737907+00:00",
+  "history": [
+    {
+      "action": "submit",
+      "actor": "test_agent",
+      "note": "Risk: high, Tier: chief",
+      "timestamp": "2026-04-14T16:07:35.737930+00:00"
+    },
+    {
+      "action": "reject",
+      "actor": "chief_01",
+      "note": "Risk too high",
+      "timestamp": "2026-04-14T16:07:35.792590+00:00"
+    }
+  ]
+}

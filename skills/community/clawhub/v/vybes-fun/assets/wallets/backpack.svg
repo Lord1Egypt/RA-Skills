@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <rect width="128" height="128" rx="26" fill="#181818"/>
+  <g transform="translate(32, 24)">
+    <!-- Handle/strap at top -->
+    <rect x="20" y="0" width="24" height="12" rx="6" fill="#E33E3F"/>
+    <!-- Main backpack body -->
+    <rect x="4" y="16" width="56" height="64" rx="12" fill="#E33E3F"/>
+    <!-- Front pocket -->
+    <rect x="12" y="40" width="40" height="32" rx="8" fill="#C62828"/>
+    <!-- Pocket line/zipper -->
+    <rect x="20" y="52" width="24" height="4" rx="2" fill="#A31C1C"/>
+    <!-- Top section line -->
+    <rect x="12" y="24" width="40" height="12" rx="4" fill="#C62828"/>
+  </g>
+</svg>

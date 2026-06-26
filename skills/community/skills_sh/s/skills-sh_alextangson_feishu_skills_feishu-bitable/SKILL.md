@@ -1,35 +1,231 @@
 ---
-name: "feishu-bitable"
-description: "Indexed by skills.sh from alextangson/feishu_skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "alextangson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/alextangson/feishu_skills/feishu-bitable"
-sourceUrl: "https://skills.sh/alextangson/feishu_skills/feishu-bitable"
+name: feishu-bitable
+description: 飞书多维表格操作。记录 CRUD、字段管理、视图、权限、公式、关联。
+required_permissions:
+  - bitable:app
+  - bitable:app:readonly
 ---
 
-# feishu-bitable
+# 飞书多维表格
 
-> Indexed by skills.sh from alextangson/feishu_skills
+通过 Bitable API 操作数据、字段、视图和权限。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** alextangson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/alextangson/feishu_skills/feishu-bitable`
-- **Source URL:** [https://skills.sh/alextangson/feishu_skills/feishu-bitable](https://skills.sh/alextangson/feishu_skills/feishu-bitable)
+**Base URL**: `https://open.feishu.cn/open-apis/bitable/v1`
 
-## Overview
+## 认证与 Token 获取
 
+从 `feishu_skills` 根目录执行共享脚本：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/alextangson/feishu_skills/feishu-bitable
+TOKEN="$(./scripts/get_feishu_token.sh)"
 ```
+
+请求头统一使用 `Authorization: Bearer ${TOKEN}`。
+
+如果业务接口返回 token 无效、过期或 401，强制刷新后仅重试一次原请求：
+
+```bash
+TOKEN="$(./scripts/get_feishu_token.sh --force-refresh)"
+```
+
+**环境变量**:
+- `FEISHU_APP_ID`
+- `FEISHU_APP_SECRET`
+
+**本地缓存**: `./.feishu_token_cache.json`（未过期直接复用，默认提前 5 分钟刷新）
+
+**关键参数**:
+- `app_token`: 多维表格 URL 中 `/base/` 后的字符串
+- `table_id`: 调用列表 API 获取
+
+---
+
+## 记录操作
+
+| API | 端点 | 说明 |
+|-----|------|------|
+| 新增单条 | `POST /apps/{app_token}/tables/{table_id}/records` | - |
+| 批量新增 | `POST .../records/batch_create` | 最多 500 条，支持 Upsert |
+| 更新 | `PUT .../records/{record_id}` | - |
+| 批量更新 | `POST .../records/batch_update` | 最多 500 条 |
+| 批量删除 | `POST .../records/batch_delete` | 最多 500 条 |
+| 查询 | `POST .../records/search` | 支持 filter/sort/分页 |
+
+**分页查询全部记录**（单次最多 500 条，循环直到 `has_more: false`）：
+```python
+page_token = None
+all_records = []
+while True:
+    body = {"page_size": 500}
+    if page_token:
+        body["page_token"] = page_token
+    resp = post(".../records/search", json=body)
+    all_records.extend(resp["data"]["items"])
+    if not resp["data"].get("has_more"):
+        break
+    page_token = resp["data"]["page_token"]
+```
+
+**请求示例**:
+```json
+{
+  "fields": {
+    "名称": "测试",
+    "金额": 100,
+    "进度": 0.75,
+    "评分": 4,
+    "日期": 1770508800000,
+    "状态": "进行中",
+    "标签": ["重要", "紧急"],
+    "完成": true,
+    "负责人": [{"id": "ou_xxx"}],
+    "电话": "13800138000",
+    "链接": {"text": "官网", "link": "https://example.com"}
+  }
+}
+```
+
+⚠️ 数值不要传字符串，日期必须是 13 位毫秒时间戳。
+
+---
+
+## 字段类型格式
+
+| type | ui_type | 中文名 | 写入格式 | 示例 |
+|------|---------|--------|---------|------|
+| 1 | Text | 多行文本 | 字符串 | `"办公用品"` |
+| 1 | Email | 邮箱 | 字符串 | `"test@example.com"` |
+| 2 | Number | 数字 | 数值 | `100` |
+| 2 | Currency | 货币 | 数值 | `1280.50` |
+| 2 | Progress | 进度 | 数值(0~1) | `0.25` (25%) |
+| 2 | Rating | 评分 | 数值(1~5) | `3` |
+| 3 | SingleSelect | 单选 | 字符串 | `"支出"` (自动创建选项) |
+| 4 | MultiSelect | 多选 | 字符串数组 | `["餐饮","交通"]` |
+| 5 | DateTime | 日期 | 毫秒时间戳 | `1770508800000` |
+| 7 | Checkbox | 复选框 | 布尔值 | `true` |
+| 11 | User | 人员 | 对象数组 | `[{"id":"ou_xxx"}]` |
+| 13 | Phone | 电话 | 字符串 | `"13800138000"` |
+| 15 | Url | 超链接 | 对象 | `{"text":"名称","link":"https://..."}` |
+| 17 | Attachment | 附件 | 对象数组 | `[{"file_token":"xxx"}]` |
+| 18 | SingleLink | 单向关联 | 字符串数组 | `["recuxxx"]` |
+| 21 | DuplexLink | 双向关联 | 字符串数组 | `["recuxxx"]` |
+| 22 | Location | 地理位置 | 字符串 | `"116.397,39.903"` |
+
+**不支持 API 写入**: 公式、查找引用、创建时间、修改人、自动编号
+
+**日期格式转换**:
+```python
+import datetime
+ts = int(datetime.datetime(2026, 2, 9).timestamp() * 1000)
+# → 1770508800000
+```
+
+---
+
+## 字段管理
+
+| API | 端点 | 说明 |
+|-----|------|------|
+| 获取字段列表 | `GET .../fields` | 返回 type 和 ui_name |
+| 新增字段 | `POST .../fields` | `{"field_name":"新字段","type":1}` |
+| 更新字段 | `PUT .../fields/{field_id}` | 修改单选需提供完整 property |
+| 删除字段 | `DELETE .../fields/{field_id}` | - |
+
+**公式字段示例**:
+```json
+{
+  "type": 20,
+  "field_name": "利润",
+  "property": {"formula_expression": "[营收]-[成本]"}
+}
+```
+
+**关联字段示例**:
+```json
+{
+  "type": 18,
+  "field_name": "关联客户",
+  "property": {"table_id": "tblXXX", "multiple": true}
+}
+```
+
+---
+
+## 数据表管理
+
+| API | 端点 | 说明 |
+|-----|------|------|
+| 创建多维表格 | `POST /apps` | `{"name":"数据库名称"}` |
+| 列出数据表 | `GET /apps/{app_token}/tables` | - |
+| 新增数据表 | `POST /apps/{app_token}/tables` | `{"table":{"name":"表名"}}` |
+| 批量新增表 | `POST .../tables/batch_create` | 最多 10 张表 |
+| 删除数据表 | `DELETE .../tables/{table_id}` | - |
+| 复制数据表 | `POST .../tables/{table_id}/copy` | - |
+
+⚠️ **权限管理（重要）**：
+- 通过 API 创建的表格默认只对机器人可见
+- 创建后需添加用户为协作者：
+```
+POST /permissions/{app_token}/members
+{
+  "member_type": "user",
+  "member_id": "ou_xxx",
+  "perm": "full_access"
+}
+```
+- 权限类型：`view` / `edit` / `full_access`
+
+---
+
+## 视图管理
+
+| API | 端点 | 说明 |
+|-----|------|------|
+| 列出视图 | `GET .../tables/{table_id}/views` | - |
+| 创建视图 | `POST .../tables/{table_id}/views` | `{"view_name":"新视图","view_type":"grid"}` |
+| 删除视图 | `DELETE .../views/{view_id}` | - |
+
+**视图类型**: `grid`(表格) / `kanban`(看板) / `gallery`(画册) / `gantt`(甘特图)
+
+---
+
+## 权限管理
+
+| API | 端点 | 说明 |
+|-----|------|------|
+| 创建协作者 | `POST /apps/{app_token}/roles/{role_id}/members/batch_create` | - |
+| 删除协作者 | `POST .../members/batch_delete` | - |
+| 更新权限 | `PUT /apps/{app_token}/roles/{role_id}` | - |
+
+**角色类型**: `owner` / `editor` / `reader`
+
+---
+
+## ⚠️ 不存在的接口
+
+`/apps/:app_token/tables/:table_id/statistics` **该接口不存在**，飞书官方文档中未提供统计汇总 API。
+
+如需统计数据（如求和、计数），建议：
+1. 用 `POST .../records/search` 拉取全量记录后在客户端计算
+2. 在多维表格中创建**公式字段**（如 `SUM`、`COUNT`）后通过 API 读取字段值
+
+---
+
+## 最佳实践
+
+1. **批量操作优先**（减少 API 调用）
+2. **字段类型严格匹配**（避免写入失败）
+3. **日期用毫秒时间戳**（Python: `int(datetime.timestamp() * 1000)`）
+4. **关联字段实现关系型能力**
+5. **创建表格后立即添加用户为协作者**（避免不可见）
+6. **单选字段自动创建选项**（直接写入选项文本即可）
+
+---
+
+## 测试验证
+
+已通过实测验证的 15 种字段类型：
+- 文本、进度、多选、单选、日期、复选框、电话、人员、超链接
+- 邮箱、货币、评分、地理位置、单向关联、双向关联
+
+测试表格：https://jvbmlo28x0.feishu.cn/base/YdOpb47PvalSbQsHPyXc7LrNnUh

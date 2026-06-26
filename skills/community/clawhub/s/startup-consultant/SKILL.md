@@ -1,35 +1,49 @@
 ---
-name: "Startup Consultant — On-Demand Growth Advisory Framework"
-description: "Startup growth consulting agent specializing in Product Hunt launches, open-source marketing, and Go-to-Market audits. Get expert-level strategic reviews and..."
-category: "other"
-source: "ClawHub"
-tags: [advisor, consultant, engagement, expert, fractional, growth, growth-audit, gtm-audit, hire, oss-consulting, product-hunt-consulting, sprint, startup, startup-consulting, strategy-review]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/startup-consultant"
-sourceUrl: "https://clawhub.ai/skills/startup-consultant"
+name: startup-consultant
+description: |
+  Startup growth consulting agent specializing in Product Hunt launches, open-source marketing, and Go-to-Market audits. Get expert-level strategic reviews and actionable recommendations. By @WeiYipei — fractional growth lead for AI startups.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/startup-consultant
+tags:
+  - startup-consulting
+  - startup-strategy
+  - go-to-market
+  - product-market-fit
+  - fundraising
+  - growth-strategy
+  - saas
+  - b2b
+  - founder
+  - claude-code
+  - ai-agent-skill
+  - agent-skill
+  - latest
+---
+# Startup Growth Consultant — PH Launch, OSS, GTM Audits
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+## 📦 Install
+
+```bash
+clawhub install startup-consultant
+```
+
+**What you get after installing:**
+- Product Hunt launch audit framework and timing strategy
+- OSS growth review (repo, README, distribution analysis)
+- GTM strategy critique with prioritized 2-week growth sprints
+
 ---
 
-# Startup Consultant — On-Demand Growth Advisory Framework
+On-demand consulting for the three highest-leverage startup growth challenges.
 
-> Startup growth consulting agent specializing in Product Hunt launches, open-source marketing, and Go-to-Market audits. Get expert-level strategic reviews and...
+- **Product Hunt audit**: Review your launch assets, timing, and strategy before go-live
+- **OSS growth review**: Analyze your repo, README, and distribution for star velocity
+- **GTM strategy critique**: Get feedback on your positioning, channels, and messaging
+- **Sprint planning**: Prioritized 2-week growth sprints with clear deliverables
+- **Fractional growth lead**: Ongoing strategic guidance without a full-time hire
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/startup-consultant`
-- **Source URL:** [https://clawhub.ai/skills/startup-consultant](https://clawhub.ai/skills/startup-consultant)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/startup-consultant
-```
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-growth-finder
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

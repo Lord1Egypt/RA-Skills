@@ -1,35 +1,60 @@
 ---
-name: "PDF to Markdown - Extract Text, Tables, Formulas from PDF"
-description: "PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown. Use when converting PDF documents, extracting PDF content, pa..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdftomd"
-sourceUrl: "https://clawhub.ai/skills/pdftomd"
+name: pdf2md
+description: "PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown. Use when converting PDF documents, extracting PDF content, parsing PDF text, or summarizing PDF reports."
+homepage: https://mineru.net
+metadata: {"openclaw":{"emoji":"📄","requires":{"bins":["mineru-open-api"]},"install":[{"id":"npm","kind":"node","package":"mineru-open-api","bins":["mineru-open-api"],"label":"Install via npm"},{"id":"uv","kind":"uv","package":"mineru-open-api","bins":["mineru-open-api"],"label":"Install via uv"},{"id":"go","kind":"go","package":"github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api","bins":["mineru-open-api"],"label":"Install via go install","os":["darwin","linux"]}]}}
 ---
 
 # PDF to Markdown - Extract Text, Tables, Formulas from PDF
 
-> PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown. Use when converting PDF documents, extracting PDF content, pa...
+Convert PDF files to clean Markdown using MinerU Open API. No API key required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdftomd`
-- **Source URL:** [https://clawhub.ai/skills/pdftomd](https://clawhub.ai/skills/pdftomd)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pdftomd
+# Convert a local PDF to Markdown
+mineru-open-api flash-extract report.pdf
+
+# Convert a PDF from URL (no download needed)
+mineru-open-api flash-extract https://cdn-mineru.openxlab.org.cn/demo/example.pdf
+
+# Save to file
+mineru-open-api flash-extract report.pdf -o ./output/
+
+# Convert specific pages
+mineru-open-api flash-extract report.pdf --pages 1-10
 ```
+
+## Language Rule
+
+You MUST reply to the user in the SAME language they use. This is non-negotiable.
+
+## Capabilities
+
+- Extracts text, tables, and formulas from PDF
+- Supports both local files and URLs directly
+- Page range selection with `--pages`
+- Language hint with `--language` (default: `ch`, use `en` for English)
+- No API key, no signup, no authentication
+- Max 10MB / 20 pages per document
+
+## When to Use
+
+- User asks to "read", "extract", "convert", or "parse" a PDF
+- User shares a PDF file or PDF link and asks for its content
+- User wants to summarize or analyze a PDF document
+- User needs PDF content in Markdown format
+
+## CLI Reference
+
+Run `mineru-open-api flash-extract --help` for all available options.
+
+## Data Flow
+
+`flash-extract` sends the document to the MinerU API (mineru.net) for processing and returns Markdown. This is a stateless API call — no account, no persistent storage. MinerU is an open-source project by OpenDataLab (Shanghai AI Lab): https://github.com/opendatalab/MinerU
+
+## Notes
+
+- Output is Markdown only; images/tables/formulas may be replaced with placeholders
+- For larger files (up to 200MB/600 pages) or precision extraction with full assets, use `mineru-open-api extract` (requires auth via `mineru-open-api auth`)
+- If the CLI cannot be installed via npm/uv/go, download it from https://mineru.net/ecosystem?tab=cli

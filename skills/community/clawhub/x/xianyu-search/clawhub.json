@@ -1,0 +1,64 @@
+{
+  "name": "xianyu-search",
+  "displayName": "闲鱼搜索",
+  "version": "1.0.2",
+  "publisher": "openclaw-community",
+  "owner": "openclaw-community",
+  "description": "在闲鱼/转转/拍拍等平台搜索二手商品，智能解析自然语言，自动筛选预算、成色、电池等条件，提供格式化推荐列表和验机建议",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "category": "shopping",
+  "tags": ["闲鱼", "二手", "搜索", "购物", "xianyu", "goofish"],
+  "repository": "https://github.com/openclaw/skills/tree/main/xianyu-search",
+  "homepage": "https://github.com/openclaw/skills/tree/main/xianyu-search#readme",
+  "main": "search.js",
+  "files": [
+    "SKILL.md",
+    "search.js",
+    "templates.js",
+    "utils.js",
+    "cli.js",
+    "test.js",
+    "package.json",
+    "README.md",
+    "INSTALL.md",
+    "EXAMPLES.md"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "xianyu",
+    "闲鱼",
+    "二手",
+    "搜索",
+    "购物"
+  ],
+  "clawhub": {
+    "icon": "🔍",
+    "examples": [
+      "帮我找闲鱼上的 MacBook Air M1 预算 2300",
+      "搜索二手 iPhone 13 预算 3000 电池 85 以上",
+      "闲鱼上有没有 9 成新的 PS5",
+      "帮我看看闲鱼相机 预算 5000 北京",
+      "找闲鱼 MacBook Air M1 要电池新的"
+    ],
+    "features": [
+      "🎯 自然语言解析 - 自动识别预算、成色、电池等要求",
+      "📊 格式化输出 - 表格展示商品，一目了然",
+      "🏆 Top 3 智能推荐 - 按电池/价格/信用多维度推荐",
+      "🏅 价格分组展示 - 预算内/预算附近清晰分区",
+      "⚠️ 避坑自动检测 - 识别无头骑士/企业机/故障机",
+      "🔋 电池筛选 - 电子产品可设置最低电池健康度",
+      "📍 地区筛选 - 可指定优先地区",
+      "💡 购买建议 - 提供验机清单和砍价话术",
+      "🔗 真实商品链接 - 每个商品都有独立详情链接",
+      "🔗 多平台支持 - 闲鱼/转转/拍拍"
+    ]
+  }
+}

@@ -1,35 +1,22 @@
 ---
-name: "card-sort-analysis"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/card-sort-analysis"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/card-sort-analysis"
+name: card-sort-analysis
+description: Analyze card sorting results to inform information architecture and navigation structure. Use after conducting open or closed card sort studies.
 ---
 
-# card-sort-analysis
+# Card Sort Analysis
 
-> Indexed by skills.sh from owl-listener/designer-skills
+Analyze card sorting results to inform information architecture decisions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/card-sort-analysis`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/card-sort-analysis](https://skills.sh/owl-listener/designer-skills/card-sort-analysis)
+## Context
 
-## Overview
+You are a UX researcher analyzing card sort data for $ARGUMENTS. If the user provides files (card sort results, spreadsheets), read them first.
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/card-sort-analysis
-```
+1. **Understand the study**: Confirm methodology (open vs closed), number of participants, and card set.
+2. **Analyze groupings**: Identify common category patterns and naming conventions.
+3. **Create a similarity matrix**: Show how frequently items were grouped together.
+4. **Recommend IA structure**: Propose navigation categories based on user mental models.
+5. **Flag ambiguous items**: Highlight cards that were inconsistently categorized.
+6. **Suggest next steps**: Tree testing, additional research, or design iterations.
+7. Present findings with clear recommendations for navigation and content organization.

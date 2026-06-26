@@ -1,0 +1,9 @@
+{
+  "name": "data-annotation",
+  "version": "1.0.0",
+  "description": "通用数据标注处理工具。当用户提到需要数据标注、有标注任务、数据处理、数据集生成、标注查看/编辑时使用此 skill。支持图像、视频、文本等多种数据类型，调用模型进行内容理解和标注，生成结构化标注数据，提供 Web 查看编辑界面。",
+  "trigger": {
+    "type": "auto",
+    "description": "提到「标注」「annotation」「数据集」「label」「tag data」等关键词时触发"
+  }
+}

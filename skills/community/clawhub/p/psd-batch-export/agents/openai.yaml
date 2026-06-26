@@ -1,0 +1,4 @@
+interface:
+  display_name: "PSD Batch Export"
+  short_description: "Analyze PSD layers and generate verified PSD/PNG batches from data"
+  default_prompt: "Analyze this PSD template, map the data source to editable text layers, preview the first rows, export editable PSD and print-ready PNG files, and verify the outputs with a structured report."

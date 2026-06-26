@@ -1,0 +1,19 @@
+# Temporary Context
+
+## Current subproblem
+...
+
+## What has already been tried
+- ...
+
+## Partial findings
+- ...
+
+## Open questions
+- ...
+
+## Known pitfalls
+- ...
+
+## Suggested next move for the next agent
+- ...

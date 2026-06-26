@@ -1,0 +1,8 @@
+{
+  "name": "toutiao-draft",
+  "version": "1.0.0",
+  "description": "批量上传内容到今日头条微头条草稿箱",
+  "triggers": ["上传头条草稿箱", "今日头条草稿", "toutiao draft", "微头条草稿", "批量上传头条"],
+  "author": "openclaw",
+  "tags": ["toutiao", "draft", "publish", "automation"]
+}

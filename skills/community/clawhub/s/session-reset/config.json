@@ -1,0 +1,41 @@
+{
+  "name": "session-reset",
+  "version": "1.0.0",
+  "description": "安全地重置 OpenClaw agent sessions，支持备份、预览、恢复和批量操作",
+  "author": "Bingo AI Team",
+  "license": "MIT",
+  "keywords": [
+    "session",
+    "reset",
+    "cleanup",
+    "backup",
+    "restore",
+    "maintenance"
+  ],
+  "categories": [
+    "maintenance",
+    "utility"
+  ],
+  "requirements": {
+    "openclaw": ">=0.1.0"
+  },
+  "scripts": {
+    "reset-session": "scripts/reset-session.py"
+  },
+  "commands": [
+    {
+      "name": "session-reset",
+      "description": "重置 OpenClaw agent sessions",
+      "script": "scripts/reset-session.py"
+    }
+  ],
+  "documentation": {
+    "skill": "SKILL.md",
+    "readme": "README.md",
+    "examples": "examples/"
+  },
+  "repository": {
+    "type": "skill",
+    "url": ""
+  }
+}

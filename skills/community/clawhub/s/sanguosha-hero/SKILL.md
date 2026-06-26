@@ -1,35 +1,38 @@
 ---
-name: "sanguosha-hero"
-description: "三国杀标准版武将技能查询。当用户询问三国杀武将的技能时使用此技能。触发关键词包括：三国杀、武将技能、查武将、技能查询，以及直接提到武将名（如"赵云"、"诸葛亮"、"张飞"等）并询问其技能、能力、效果的场景。支持自然语言提问，如"赵云有什么技能"、"查一下诸葛亮的技能"、"三国杀 张飞 技能"等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sanguosha-hero"
-sourceUrl: "https://clawhub.ai/skills/sanguosha-hero"
+name: sanguosha-hero
+description: 三国杀标准版武将技能查询。当用户询问三国杀武将的技能时使用此技能。触发关键词包括：三国杀、武将技能、查武将、技能查询，以及直接提到武将名（如"赵云"、"诸葛亮"、"张飞"等）并询问其技能、能力、效果的场景。支持自然语言提问，如"赵云有什么技能"、"查一下诸葛亮的技能"、"三国杀 张飞 技能"等。
 ---
 
-# sanguosha-hero
+# 三国杀武将技能查询
 
-> 三国杀标准版武将技能查询。当用户询问三国杀武将的技能时使用此技能。触发关键词包括：三国杀、武将技能、查武将、技能查询，以及直接提到武将名（如"赵云"、"诸葛亮"、"张飞"等）并询问其技能、能力、效果的场景。支持自然语言提问，如"赵云有什么技能"、"查一下诸葛亮的技能"、"三国杀 张飞 技能"等。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sanguosha-hero`
-- **Source URL:** [https://clawhub.ai/skills/sanguosha-hero](https://clawhub.ai/skills/sanguosha-hero)
+1. 从用户输入中识别武将名称
+2. 使用 `web_search` 搜索该武将的技能信息
+3. 整理并输出：技能名 + 技能描述
 
-## Overview
+## 搜索策略
 
+搜索关键词格式：`三国杀 <武将名> 技能`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sanguosha-hero
-```
+优先参考以下可信来源：
+- 三国杀 Wiki（wiki.sanguosha.com 或 bwiki）
+- 百度百科三国杀词条
+- 三国杀官网
+
+## 输出格式
+
+用简洁清晰的格式返回，例如：
+
+**赵云**（蜀 / 4血）
+
+- 【龙胆】：出牌阶段，你可以将【杀】当【闪】或将【闪】当【杀】使用或打出。
+- 【烈弓】：当你使用【杀】指定目标后，若目标的手牌数等于其体力值或等于其体力上限，你可以令其弃置一张牌。
+
+> 若搜索结果不够完整，可补充说明"建议查阅三国杀 Wiki 获取完整信息"。
+
+## 注意事项
+
+- 仅覆盖**标准版**武将（不含风火林山、一将成名、神将等扩展包）
+- 若用户未指定武将，询问其想查询哪位武将
+- 技能描述以最新官方版本为准

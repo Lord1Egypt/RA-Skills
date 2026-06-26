@@ -1,0 +1,72 @@
+$json = @'
+[
+  {"title":"Trump: Iran deal will be signed today in Pakistan with US delegation (including JD Vance) heading to Islamabad","snippet":"Trump stated today that an Iran deal will be signed today in Pakistan, with a US delegation (including JD Vance) heading to Islamabad for talks as the ceasefire ends. Multiple outlets (Reuters, Al Jazeera, NPR) confirm.","url":"https://x.com/grok","time":"2026-04-21T11:41:51Z"},
+  {"title":"Iran Ceasefire Ending Wednesday as Trump Says Extension Highly Unlikely Without Deal","snippet":"Axsam News: Iran Ceasefire Ending Wednesday as Trump Says Extension Highly Unlikely Without Deal","url":"https://x.com/laurentmahieu01","time":"2026-04-21T11:42:51Z"},
+  {"title":"Trump: Ceasefire expires Wednesday evening; further extension highly unlikely without full deal","snippet":"Grok: The current ceasefire (announced April 7) expires Wednesday evening. Trump called any further extension highly unlikely without a full deal.","url":"https://x.com/grok","time":"2026-04-21T11:43:51Z"},
+  {"title":"AP: US and Iran signal they will attend new round of ceasefire talks in Islamabad","snippet":"Two regional officials tell the AP that US and Iran signal they will attend a new round of ceasefire talks in Islamabad.","url":"https://x.com/GlobalTelevsion","time":"2026-04-21T11:51:26Z"},
+  {"title":"BREAKING: Iranian Parliamentary Speaker Ghalibaf Warns Trump Iran Does Not Accept Negotiations Under Threat","snippet":"Iran Does Not Accept Negotiations Under the Shadow of Threat and Is Ready to Reveal New Cards on the Battlefield. Trump claims Iran has violated the ceasefire numerous times.","url":"https://x.com/KhorasanLetter","time":"2026-04-21T11:51:18Z"},
+  {"title":"Iran IRGC says ready if war resumes, prepared new surprises, blames US naval blockade for stalling talks","snippet":"IRGC says ready if war resumes, blaming the US naval blockade and pressure tactics for stalling talks. Iran has spent 2 weeks preparing militarily and warns of strong, decisive response if conflict restarts.","url":"https://x.com/RealBababanaras","time":"2026-04-21T11:51:24Z"},
+  {"title":"Iran Tasnim: Iran prepared new surprises in case war resumes","snippet":"Tasnim News Agency said Iran has prepared new surprises in case the war resumes. Iran is fully prepared for the possibility of the war resuming.","url":"https://x.com/MayadeenEnglish","time":"2026-04-21T11:51:28Z"},
+  {"title":"Pakistan to announce 2-month ceasefire extension and US-Iran meeting in Islamabad","snippet":"Pakistan will announce extension of ceasefire for two months. Meeting will be held in Islamabad between America and Iran and signing of memorandum of understanding on principles.","url":"https://x.com/amjadm89","time":"2026-04-21T11:51:18Z"},
+  {"title":"Qatar FM: All Gulf countries in direct contact with parties to resolve US/Israel war on Iran","snippet":"Qatar FM spokesperson says all countries in the Gulf are in direct contact with different parties on a daily basis to resolve the US/Israel war on Iran. The crisis is ours and the crisis of our region.","url":"https://x.com/ShaykhSulaiman","time":"2026-04-21T11:51:42Z"},
+  {"title":"US seized Iran TOUSKA vessel and continues naval blockade despite Strait of Hormuz open","snippet":"It was US who seized Iran TOUSKA vessel, continued naval blockade despite Strait of Hormuz being open, they kept on giving Iran threats. Iran says US violates the ceasefire.","url":"https://x.com/TheLaibaKhan","time":"2026-04-21T11:51:43Z"},
+  {"title":"JPMorgan raises S&P 500 2026 year-end target from 7200 to 7600 on earnings","snippet":"JPMorgan raises its 2026 S&P 500 year-end Price Target from 7200 to 7600 on the back of earnings. USD 330 for 2026 or plus 22 percent year over year, USD 385 for 2027 or plus 17 percent year over year.","url":"https://x.com/zerohedge","time":"2026-04-21T11:51:09Z"},
+  {"title":"Five Reasons An Oil Capex Upcycle Is Coming And Could Echo 2000s Boom","snippet":"Zerohedge: Five Reasons An Oil Capex Upcycle Is Coming And Could Echo 2000s Boom - energy sector investment revival","url":"https://x.com/zerohedge","time":"2026-04-21T11:43:51Z"}
+]
+'@
+
+$allResults = $json | ConvertFrom-Json
+$seen = @{}
+$noteworthy = @()
+
+foreach ($r in $allResults) {
+    $title = $r.title
+    $desc = $r.snippet
+    $url = $r.url
+    $t = ($title + ' ' + $desc).ToLower()
+    $score = 0
+    $cat = 'other'
+    $sig = '低'
+    $kwlist = @()
+
+    if ($title -match 'BREAKING|URGENT') { $score += 3; $kwlist += '突发' }
+    if ($t -match 'bitcoin|btc|ethereum|crypto|加密') { $score += 2; $kwlist += 'BTC'; $cat = 'crypto' }
+    if ($t -match 'oil|brent|wti|gasoline|energy|petroleum|原油|油价') { $score += 2; $kwlist += '能源'; $cat = 'commodity' }
+    if ($t -match 'gold|silver|xau|黄金') { $score += 2; $kwlist += '黄金'; $cat = 'commodity' }
+    if ($t -match 'stock|s&p|nasdaq|market futures|dow|标普|美股') { $score += 2; $kwlist += '美股'; $cat = 'equity' }
+    if ($t -match 'trump|iran|war|strike|military|israel|houthi|tehran|ceasefire|negotiate') { $score += 3; $kwlist += 'Trump地缘'; if ($cat -eq 'other') { $cat = 'macro' } }
+    if ($t -match 'deal|协议|停火') { $score += 2; $kwlist += '停火协议'; if ($cat -eq 'other') { $cat = 'macro' } }
+    if ($t -match 'tariff|tariffs|关税') { $score += 3; $kwlist += '宏观TARIFF'; if ($cat -eq 'other') { $cat = 'macro' } }
+    if ($t -match 'fed|federal reserve|interest rate|inflation|cpi|降息|利率') { $score += 2; $kwlist += '宏观政策'; if ($cat -eq 'other') { $cat = 'macro' } }
+    if ($t -match 'bond|treasury|yield|10-year|美债') { $score += 2; $kwlist += '债券'; if ($cat -eq 'other') { $cat = 'macro' } }
+
+    if ($score -ge 5) { $sig = '高' } elseif ($score -ge 3) { $sig = '中' }
+    if ($score -ge 3 -and -not $seen.ContainsKey($url)) {
+        $seen[$url] = $true
+        $noteworthy += @{
+            category=$cat
+            time=$r.time
+            title=$title.Substring(0,[Math]::Min(200,$title.Length))
+            snippet=$desc.Substring(0,[Math]::Min(200,$desc.Length))
+            url=$url
+            score=$score
+            signal=$sig
+            keywords=$kwlist
+        }
+    }
+}
+
+$noteworthy = $noteworthy | Sort-Object score -Descending | Select-Object -First 15
+
+$out = @{
+    checked=(Get-Date).ToUniversalTime().ToString('o')
+    total_results=$allResults.Count
+    noteworthy=@($noteworthy)
+    count=$noteworthy.Count
+}
+
+Write-Host "Total: $($allResults.Count), Noteworthy: $($noteworthy.Count)"
+foreach ($n in $noteworthy) {
+    Write-Host "  [$($n.signal)] SCORE=$($n.score) CAT=$($n.category) TIME=$($n.time)"
+    Write-Host "    $($n.title.Substring(0, [Math]::Min(100, $n.title.Length)))}"
+}

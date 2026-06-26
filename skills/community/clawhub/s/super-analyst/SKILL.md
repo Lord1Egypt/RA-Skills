@@ -1,35 +1,90 @@
 ---
-name: "咨询级智能分析系统"
-description: "咨询级智能分析系统。将碎片化信息通过结构化思考转化为可执行洞察。 使用场景：(1) 深度行业/市场/竞品分析 (2) 战略规划与决策支持 (3) 复杂问题根因诊断 (4) 创新方案设计 (5) 用户说"分析一下"、"深度研究"、"帮我调研"、"做个报告"时触发。 包含12大分析框架（诊断/战略/创新/决策/系统/..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/super-analyst"
-sourceUrl: "https://clawhub.ai/skills/super-analyst"
+name: super-analyst
+description: |
+  咨询级智能分析系统。将碎片化信息通过结构化思考转化为可执行洞察。
+  使用场景：(1) 深度行业/市场/竞品分析 (2) 战略规划与决策支持 (3) 复杂问题根因诊断 (4) 创新方案设计 (5) 用户说"分析一下"、"深度研究"、"帮我调研"、"做个报告"时触发。
+  包含12大分析框架（诊断/战略/创新/决策/系统/理解六大类），支持自适应复杂度分级和多框架组合。
 ---
 
-# 咨询级智能分析系统
+# Super Analyst — 咨询级智能分析系统
 
-> 咨询级智能分析系统。将碎片化信息通过结构化思考转化为可执行洞察。 使用场景：(1) 深度行业/市场/竞品分析 (2) 战略规划与决策支持 (3) 复杂问题根因诊断 (4) 创新方案设计 (5) 用户说"分析一下"、"深度研究"、"帮我调研"、"做个报告"时触发。 包含12大分析框架（诊断/战略/创新/决策/系统/...
+## 核心流程（7步）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/super-analyst`
-- **Source URL:** [https://clawhub.ai/skills/super-analyst](https://clawhub.ai/skills/super-analyst)
+```
+1. 问题理解 → 2. 复杂度评估 → 3. 情报搜集 → 4. 框架选择 → 5. 结构化分析 → 6. 交叉验证 → 7. 输出报告
+```
 
-## Overview
+## Step 1: 问题理解
 
+明确分析目标、范围、受众。追问模糊点，不假设。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/super-analyst
+## Step 2: 复杂度评估
+
+| 级别 | 标准 | 策略 |
+|------|------|------|
+| L1 简单 | 概念解释、单维度、无需外部信息 | 直接答，1个框架 |
+| L2 中等 | 需部分外部数据、2-3维度 | 2-4次搜索 + 1-2个框架 |
+| L3 复杂 | 深度研究、多维度、战略决策 | 5-10次搜索 + 2-4个框架组合 |
+
+执行中发现复杂度升级，自动调整。
+
+## Step 3: 情报搜集
+
+- 中文优先：中国市场/公司/政策
+- 英文优先：国际公司/学术/技术创新
+- 双语并用：跨境/对比分析
+- 搜索模式：`web_search`（快速概览）/ `web_fetch`（深度内容）
+- 质量优于数量，动态调整搜索方向
+
+## Step 4: 框架选择
+
+读取 `references/frameworks.md` 了解所有框架，根据问题类型选择：
+
+| 问题类型 | 推荐框架 |
+|----------|----------|
+| "为什么总是出问题？" | 5 Whys + Pareto |
+| "如何颠覆这个行业？" | First Principles + Porter's |
+| "应该进入这个市场吗？" | SWOT + Porter's + Scenario |
+| "怎么优化团队效率？" | MECE + Pareto |
+| "未来会怎样？" | Scenario + Systems Thinking |
+
+多框架组合见 `references/combinations.md`。
+最多选 3-4 个框架，避免信息过载。
+
+## Step 5: 结构化分析
+
+对每个选定框架，读取 `references/frameworks.md` 中对应模板，严格遵循6步流程，融合搜集到的情报数据，每个框架产出 800-1500 字。
+
+## Step 6: 交叉验证
+
+- 模式连接：不同框架的结论是否互相印证
+- 矛盾化解：冲突点分析，给出判断
+- 深层洞察：跨框架得出的隐藏规律
+
+## Step 7: 输出报告
+
+统一格式：
+
+```markdown
+# 分析报告：[主题]
+
+## 执行摘要
+[1-2段：直接答案 + 核心结论]
+
+## 详细分析
+[按框架分别展开]
+
+## 跨框架整合
+[模式连接 + 矛盾化解 + 深层洞察]
+
+## 行动建议
+**立即（0-3个月）：** ...
+**短期（3-6个月）：** ...
+**中期（6-18个月）：** ...
+
+## 信息来源
+[来源及URL]
+
+---
+Level [X] | 来源数：[X] | 框架数：[X]
 ```

@@ -1,35 +1,65 @@
 ---
-name: "Find Reference Video via Frameset"
-description: "从 frameset.app 搜索视频参考片段，找到合集页面和原视频链接。用于： (1) 根据关键词搜索广告/电影片段参考，(2) 获取原视频 YouTube/Vimeo 链接，(3) 下载视频到本地。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/find-reference-video"
-sourceUrl: "https://clawhub.ai/skills/find-reference-video"
+name: find_reference_video
+description: 从 frameset.app 搜索视频参考片段，找到合集页面和原视频链接。用于： (1) 根据关键词搜索广告/电影片段参考，(2) 获取原视频 YouTube/Vimeo 链接，(3) 下载视频到本地。
 ---
 
-# Find Reference Video via Frameset
+# Find Reference Video - 找参考视频
 
-> 从 frameset.app 搜索视频参考片段，找到合集页面和原视频链接。用于： (1) 根据关键词搜索广告/电影片段参考，(2) 获取原视频 YouTube/Vimeo 链接，(3) 下载视频到本地。
+**使用方式**：用户说"帮我找一个和[话题]相关的参考片"，即调用此 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/find-reference-video`
-- **Source URL:** [https://clawhub.ai/skills/find-reference-video](https://clawhub.ai/skills/find-reference-video)
+## 完整流程
 
-## Overview
+### 1. 搜索 frameset
+直接搜索关键词，不需要问用户要几个。使用正确 URL 格式：`https://frameset.app/search?search=关键词`
 
+### 2. 发送截图给用户确认
+**重要**：不要直接选图片！先截取搜索结果页面发给用户看，让用户告诉你需要哪些编号（编号规则：从左到右，从上到下）。
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. 处理用户选择的编号
+- 如果用户给的编号**超过10个** → 提醒"数量较多，是否确认？"
+- 如果用户执意**超过15个** → 最多只找15个（取前15个）
+
+### 4. 根据用户选择的编号获取合集页面链接
+**不要点击图片！** 而是：
+- 鼠标 **hover** 到图片上（图片左上角会出现可点击的链接）
+- 点击链接进入合集页面
+
+### 5. 获取原视频链接
+- 合集页面有 "Watch" / "Open in YouTube" / "Open in Vimeo" 按钮
+- 点击获取视频 URL
+
+### 6. 列出表格
+用 Markdown 表格列出结果：
+
+| # | 合集名称 | 合集链接 | 原视频链接 |
+|---|----------|----------|------------|
+| 1 | xxx | https://frameset.app/... | https://... |
+| 2 | xxx | https://frameset.app/... | https://... |
+
+### 7. 询问是否下载
+"需要下载哪些？告诉我编号（如：1,3,5）"
+
+### 8. 执行下载
+根据用户给的编号，下载对应视频到 ~/Downloads/
+
+## 数量限制规则
+
+- **超过 10 个** → 提醒用户"数量较多，是否确认？"
+- **超过 15 个** → 最多只找 15 个
+
+## 视频下载命令
+
 ```bash
-hermes skills install clawhub/find-reference-video
+# YouTube
+yt-dlp -f "best[ext=mp4]/best" -o "视频名.%(ext)s" "视频链接"
+
+# Vimeo
+yt-dlp -f "best[ext=mp4]/best" -o "视频名.%(ext)s" "视频链接"
 ```
+
+## 注意事项
+
+- frameset 里的内容都是电影/广告的静帧
+- 选择静态图片，跳过 GIF 动图（URL 含 _motion）
+- **关键**：搜索结果页面，鼠标悬停(hover)到图片上，不要点击，图片左上角会出现链接
+- 每个步骤完成后都要等页面加载完成再操作

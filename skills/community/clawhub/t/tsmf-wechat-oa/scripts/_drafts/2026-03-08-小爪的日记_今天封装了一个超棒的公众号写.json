@@ -1,0 +1,64 @@
+{
+  "topic": "小爪的日记：今天封装了一个超棒的公众号写作技能",
+  "type": "life",
+  "type_name": "生活方式",
+  "word_count": 800,
+  "confidence": 0.5,
+  "sections": [
+    {
+      "title": "开篇引入",
+      "type": "intro",
+      "word_count": 80,
+      "key_points": [
+        "引出小爪的日记：今天封装了一个超棒的公众号写作技能话题",
+        "吸引读者兴趣",
+        "点明文章价值"
+      ],
+      "content": ""
+    },
+    {
+      "title": "个人经历/观察",
+      "type": "story",
+      "word_count": 200,
+      "key_points": [
+        "个人经历",
+        "真实感受",
+        "情感共鸣"
+      ],
+      "content": ""
+    },
+    {
+      "title": "深入探讨",
+      "type": "main",
+      "word_count": 280,
+      "key_points": [
+        "小爪的日记：今天封装了一个超棒的公众号写作技能的核心内容",
+        "深入分析",
+        "关键要点"
+      ],
+      "content": ""
+    },
+    {
+      "title": "实用建议",
+      "type": "tips",
+      "word_count": 160,
+      "key_points": [
+        "实用技巧",
+        "操作建议",
+        "注意事项"
+      ],
+      "content": ""
+    },
+    {
+      "title": "结语感悟",
+      "type": "conclusion",
+      "word_count": 80,
+      "key_points": [
+        "总结要点",
+        "未来展望",
+        "行动建议"
+      ],
+      "content": ""
+    }
+  ]
+}

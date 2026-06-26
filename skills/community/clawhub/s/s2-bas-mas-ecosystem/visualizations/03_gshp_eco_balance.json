@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-GSHP-Agent | 地脉生态与长效热平衡推演舱",
+    "theme": "cyber-dark",
+    "prompt": "Create an interactive dashboard. Input: Slider '当前地下土壤温度 (℃)' (18-32, default 28.5). Visualization: Plot two curves against 'GSHP Load Split %' (X-axis). Line 1: Real-time Power Consumption (incorporating COP degradation as soil temp rises). Line 2: Eco-Penalty (exponential rise if Soil > 26℃). Find X that minimizes (Power + Penalty). Output Panel: Show a warning badge '🚨 土壤热发烧预警' if temp > 26, and show the agent's decision to shift load to the cooling tower."
+  }
+}

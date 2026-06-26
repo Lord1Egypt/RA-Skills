@@ -1,0 +1,6 @@
+# Video Merger Dependencies
+# No external Python dependencies required!
+# Only needs ffmpeg installed on system:
+# macOS: brew install ffmpeg
+# Ubuntu/Debian: sudo apt install ffmpeg
+# Windows: Download from https://ffmpeg.org/download.html

@@ -1,0 +1,8 @@
+{
+  "name": "@leezongdai/thinking-protocol",
+  "version": "1.0.0",
+  "description": "Thinking-Claude inspired comprehensive thinking protocol for OpenClaw",
+  "repository": "https://github.com/leezongdai/thinking-protocol",
+  "keywords": ["thinking", "protocol", "openclaw", "claude"],
+  "license": "MIT"
+}

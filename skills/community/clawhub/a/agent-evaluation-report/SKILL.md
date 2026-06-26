@@ -1,35 +1,128 @@
 ---
-name: "Agent Evaluation Report"
-description: "根据测试数据自动生成标准化的智能体系统评测报告。 Use when: 用户说"生成智能体评测报告"、"创建测试报告"、"项目测试报告"。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-evaluation-report"
-sourceUrl: "https://clawhub.ai/skills/agent-evaluation-report"
+name: agent-evaluation-report
+description: >
+  根据测试数据自动生成标准化的智能体系统评测报告。
+  Use when: 用户说"生成智能体评测报告"、"创建测试报告"、"项目测试报告"。
+allowed-tools: [read, write, feishu_create_doc, feishu_update_doc, feishu_fetch_doc, message]
 ---
 
-# Agent Evaluation Report
+# Agent Evaluation Report - 智能体评测报告生成器
 
-> 根据测试数据自动生成标准化的智能体系统评测报告。 Use when: 用户说"生成智能体评测报告"、"创建测试报告"、"项目测试报告"。
+## 飞书文档写入位置
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-evaluation-report`
-- **Source URL:** [https://clawhub.ai/skills/agent-evaluation-report](https://clawhub.ai/skills/agent-evaluation-report)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-evaluation-report
 ```
+知识库: 7616288931050507220
+节点: 效果评测/测试报告
+```
+
+根据测试数据自动生成标准化的智能体系统评测报告。
+
+## 触发条件
+
+当用户需要以下报告时触发：
+- "生成智能体评测报告"
+- "创建测试报告"
+- "项目测试报告"
+- "AI系统测试报告"
+- "智能体测试报告"
+
+## 功能
+
+基于用户提供的测试数据，自动生成包含以下章节的标准化报告：
+1. 报告概述（基本信息、执行摘要）
+2. 测试范围与目标
+3. 测试环境（硬件、软件、测试数据）
+4. 测试执行详情（功能测试、性能测试、安全测试、兼容性测试）
+5. 缺陷分析
+6. 业务场景验证
+7. 风险评估
+8. 测试结论与建议
+9. 附录
+
+## 使用方法
+
+提供以下信息即可生成报告：
+
+```
+项目名称: [项目名称]
+测试周期: [开始日期] - [结束日期]
+报告日期: [日期]
+测试版本: [版本号]
+
+执行摘要: [测试总结]
+
+测试模块:
+- 模块1: [描述] - [优先级]
+- 模块2: [描述] - [优先级]
+
+功能测试结果:
+- [模块名]: 用例数X, 通过Y, 失败Z, 通过率P%
+
+性能测试结果:
+- [并发数]: 首字平均响应时间Xs
+
+缺陷列表:
+1. [模块] - [描述] - [严重程度] - [状态]
+
+风险评估:
+- [风险项] - [影响程度] - [发生概率] - [应对措施]
+
+关键指标:
+- 功能测试通过率: X% (目标: Y%)
+- 性能响应时间: Xms (目标: Yms)
+```
+
+## 报告模板结构
+
+### 1. 报告概述
+- 报告基本信息（项目名称、测试周期、报告日期、测试版本）
+- 执行摘要
+
+### 2. 测试范围与目标
+- 测试范围（测试模块、测试内容、测试优先级）
+- 测试目标
+
+### 3. 测试环境
+- 硬件环境（组件、配置、数量）
+- 软件环境（序号、是否携带、名称、部署版本、端口）
+- 测试数据
+
+### 4. 测试执行详情
+- 功能测试结果（各模块测试项统计）
+- 性能测试结果（负载测试数据表格）
+- 安全测试结果（Web安全、业务逻辑安全、服务器安全、中间件安全）
+- 兼容性测试结果
+
+### 5. 缺陷分析
+- 关键缺陷列表（编号、模块、描述、严重程度、状态、修复方案）
+
+### 6. 业务场景验证
+- 核心业务流测试
+- 用户体验评估
+
+### 7. 风险评估
+- 技术风险（风险项、影响程度、发生概率、应对措施）
+
+### 8. 测试结论与建议
+- 总体评价
+- 关键指标达成情况
+- 上线建议（立即行动项、短期优化项、长期规划项）
+- 发布建议
+
+### 9. 附录
+- 测试用例清单
+- 性能测试详细数据
+- 缺陷跟踪记录
+
+## 输出格式
+
+- 格式：Markdown / Word文档
+- 保存位置：`output/effect-reports/`
+- 文件名格式：`{项目名称}_效果评测报告_{日期}.md`
+
+## 示例
+
+参考模板：北银金租AI中台建设项目测试报告
+- 测试模块：智能问答Agent、智能问数Agent、智能审单Agent、智能写作Agent
+- 测试维度：功能、性能、安全、兼容性
+- 关键指标：功能测试通过率≥95%、性能响应时间≤500ms、系统可用性≥99.5%

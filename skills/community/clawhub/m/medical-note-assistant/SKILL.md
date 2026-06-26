@@ -1,35 +1,23 @@
----
-name: "醫療病歷結構化助手"
-description: "自動將門診或住院病歷內容轉換為結構化摘要，包括主訴、病史、檢查發現、診斷建議及治療方案。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-note-assistant"
-sourceUrl: "https://clawhub.ai/skills/medical-note-assistant"
----
-
 # 醫療病歷結構化助手
 
-> 自動將門診或住院病歷內容轉換為結構化摘要，包括主訴、病史、檢查發現、診斷建議及治療方案。
+將門診或住院病歷輸入，自動輸出結構化總結。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-note-assistant`
-- **Source URL:** [https://clawhub.ai/skills/medical-note-assistant](https://clawhub.ai/skills/medical-note-assistant)
+## 功能
 
-## Overview
+- 主訴提取 (Chief Complaint)
+- 病史分析 (History of Present Illness)
+- 檢查發現 (Physical Exam Findings)
+- 診斷建議 (Assessment)
+- 治療方案 (Plan)
+- 用藥建議 (Medication Recommendations)
 
+## 適用範圍
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-note-assistant
-```
+- 家庭醫學
+- 內科
+- 急診
+- 任何需要快速病歷摘要既醫療人員
+
+## 範例
+
+輸入病人症狀同檢查結果輸出結構化病歷摘要

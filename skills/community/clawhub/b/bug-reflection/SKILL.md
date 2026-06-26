@@ -1,35 +1,117 @@
 ---
-name: "bug reflection for debugging"
+name: "bug-reflection"
 description: "Bug修复流程规范：包含反省、检查模块逻辑语法、对比官方文档、性能检查，以及修复后写Fix Report。触发条件：用户反馈有bug时。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bug-reflection"
-sourceUrl: "https://clawhub.ai/skills/bug-reflection"
 ---
 
-# bug reflection for debugging
+# Bug Reflection & Fix Report
 
-> Bug修复流程规范：包含反省、检查模块逻辑语法、对比官方文档、性能检查，以及修复后写Fix Report。触发条件：用户反馈有bug时。
+这个 Skill 用于管理 Bug 修复的完整流程，包括问题分析、检查验证、用户沟通和经验沉淀。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bug-reflection`
-- **Source URL:** [https://clawhub.ai/skills/bug-reflection](https://clawhub.ai/skills/bug-reflection)
+## 触发条件
 
-## Overview
+**当用户反馈有 Bug 时，必须立即触发此 Skill。**
 
+## 一、问题分析阶段
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bug-reflection
+### 1.1 收集 Bug 信息
+
+- 详细记录 Bug 的表现形式
+- 了解触发 Bug 的操作步骤
+- 记录错误日志、截图等相关信息
+
+### 1.2 推断问题模块
+
+**永远不要直接打补丁**。必须根据 Bug 表现推断可能产生问题的模块：
+
+1. 分析错误信息中的关键提示
+2. 定位相关代码模块
+3. 检查模块之间的调用关系
+
+## 二、检查验证阶段
+
+### 2.1 对比官方文档
+
+检查模块的逻辑语法是否正确：
+
+1. 查阅官方文档说明
+2. 对比实际代码实现与文档规范
+3. 检查 API 使用方式、参数类型、返回值等
+
+### 2.2 性能检查
+
+1. 检查代码是否存在性能问题
+2. 分析时间复杂度和空间复杂度
+3. 检查是否存在内存泄漏、死循环等问题
+
+### 2.3 向用户确认
+
+如果检查后认为**没有问题**，询问用户是否需要打补丁时，必须：
+
+- 告知用户已检查的具体模块
+- 说明检查的依据（官方文档、代码逻辑等）
+- 解释为什么当前实现是合理的
+- 提供替代方案或建议（如果用户仍希望修改）
+
+## 三、Fix Report 书写规范
+
+### 3.1 记录内容
+
+修复完 Bug 后，必须将以下内容写入 Fix Report：
+
+1. **Bug 描述**：问题的具体表现
+2. **问题根因**：导致 Bug 的根本原因
+3. **尝试过的方案**：
+   - 成功的尝试
+   - 失败的尝试（以及失败原因）
+4. **最终解决方案**：采用的修复方式
+5. **检查清单**：
+   - 对比了哪些官方文档
+   - 检查了哪些模块
+   - 性能检查结果
+6. **经验教训**：从这个 Bug 中学到什么
+
+### 3.2 报告格式示例
+
+```markdown
+# Fix Report - [Bug名称]
+
+## Bug 描述
+[详细描述问题表现]
+
+## 问题根因
+[分析导致问题的根本原因]
+
+## 尝试记录
+### 尝试 1：[方案名称]
+- 结果：成功/失败
+- 原因：[成功原因/失败原因]
+
+### 尝试 2：[方案名称]
+- 结果：成功/失败
+- 原因：[成功原因/失败原因]
+
+## 最终方案
+[采用的修复方式]
+
+## 检查清单
+- [ ] 已对比官方文档：XXX
+- [ ] 已检查模块：XXX
+- [ ] 性能检查：XXX
+
+## 经验教训
+[从这个 Bug 学到的经验]
 ```
+
+## 四、经验复用
+
+1. 在修复新的 Bug 时，查阅历史 Fix Report
+2. 确保犯过的错误不再重复
+3. 将常见的排查方法整理成知识库
+4. 定期回顾 Fix Report，优化排查流程
+
+## 关键原则
+
+1. **不盲目打补丁**：先分析问题，找到根因
+2. **彻底检查**：对比官方文档，检查逻辑语法和性能
+3. **透明沟通**：向用户清晰说明检查过程和结果
+4. **经验沉淀**：所有尝试都记录到 Fix Report

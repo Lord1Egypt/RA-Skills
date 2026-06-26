@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "prompt": "用花叔视角分析AI编程方法",
+    "expected": "输出Harness Engineering方法论和最佳实践"
+  },
+  {
+    "id": 2,
+    "prompt": "如何用AI快速开发产品原型",
+    "expected": "展示Vibe→Spec→SDD三阶段进化过程"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "error_code": "INVALID_STATUS_TRANSITION",
+  "message": "Cannot move shipped order back to processing",
+  "context": {
+    "order_id": 456,
+    "current_status": "shipped",
+    "requested_status": "processing_in_progress"
+  },
+  "retryable": false
+}

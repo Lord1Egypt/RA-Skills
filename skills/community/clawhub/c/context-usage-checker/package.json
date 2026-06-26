@@ -1,0 +1,24 @@
+{
+  "name": "context-usage-checker",
+  "version": "1.0.0",
+  "description": "查询当前会话的上下文（Token）使用率",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "context",
+    "token",
+    "usage",
+    "monitor"
+  ],
+  "author": "Spark",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

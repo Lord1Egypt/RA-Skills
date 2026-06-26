@@ -1,0 +1,10 @@
+{
+  "attribution_model": "last_touch",
+  "lookback_window_days": 30,
+  "channels": {
+    "paid_social": ["facebook", "instagram", "tiktok"],
+    "paid_search": ["google_ads", "bing_ads"],
+    "organic_social": ["x", "linkedin", "reddit"],
+    "email": ["newsletter", "welcome_sequence"]
+  }
+}

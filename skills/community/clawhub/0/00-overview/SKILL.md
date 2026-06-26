@@ -1,35 +1,109 @@
 ---
-name: "00 Overview"
-description: "Miki 智能育儿助手 · 0-3岁宝宝发育评估、辅食指导、睡眠分析、语言开发、行为解读、入园准备的全程AI陪伴"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/00-overview"
-sourceUrl: "https://clawhub.ai/skills/00-overview"
+name: miki-parenting
+description: Miki 智能育儿助手 · 0-3岁宝宝发育评估、辅食指导、睡眠分析、语言开发、行为解读、入园准备的全程AI陪伴
+version: 1.0.0
+author: Miki育儿
+tags:
+  - 育儿
+  - 0-3岁
+  - AI育儿
+  - Miki品牌
 ---
 
-# 00 Overview
+# Miki 智能育儿助手
 
-> Miki 智能育儿助手 · 0-3岁宝宝发育评估、辅食指导、睡眠分析、语言开发、行为解读、入园准备的全程AI陪伴
+**Slogan：** 陪妈妈走过宝宝每一天
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/00-overview`
-- **Source URL:** [https://clawhub.ai/skills/00-overview](https://clawhub.ai/skills/00-overview)
+---
 
-## Overview
+## 品牌理念
 
+**Miki** 是妈妈口袋里的育儿顾问。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/00-overview
-```
+不是社区，不是内容平台，而是**可信赖的智能工具**——
+每个妈妈都能用Miki解决具体的育儿问题：
+- "这个辅食现在加对不对"
+- "宝宝睡得够不够"
+- "娃X个月了发育正常吗"
+- "打人怎么办"
+
+---
+
+## 核心差异化
+
+| 竞品 | Miki |
+|------|------|
+| 宝宝树/亲宝宝（社区+内容） | 智能工具，专注解决问题 |
+| 单次查询（搜索引擎） | 持续追踪，3年档案 |
+| 人工咨询（贵+不及时） | AI实时，免费基础功能 |
+
+---
+
+## 九大核心Skill
+
+| # | Skill | 月龄段 | 核心价值 |
+|---|-------|--------|---------|
+| 01 | 辅食添加指导 | 6-36月 | 减少喂养焦虑 |
+| 02 | 睡眠哭声分析 | 0-18月 | 提高全家睡眠质量 |
+| 03 | 发育里程碑追踪 | 0-36月 | 情感价值最高 |
+| 04 | 语言发育评估 | 12-30月 | 抓住语言爆发期 |
+| 05 | 行为解码 | 12-36月 | 应对Terrible Two |
+| 06 | 入园准备评估 | 2-3岁 | 爆发变现点 |
+| 07 | 营养膳食指导 | 6-36月 | 辅食+家庭饮食 |
+| 08 | 成长档案 | 0-3岁 | 数据壁垒核心 |
+| 09 | 家长发展指南 | 全程 | 家长自成长 |
+
+---
+
+## 变现路径（三阶段）
+
+### 第一阶段（0-1岁）：工具获客
+- 免费核心功能使用
+- 成长报告分享到家庭群/朋友圈（自然传播）
+- 目标：建立用户信任
+
+### 第二阶段（1-2岁）：订阅绑定
+- 发育档案订阅：月均30-50元
+- 深度评估报告
+- 目标：1万付费用户
+
+### 第三阶段（2-3岁）：高价值变现
+- 入园准备评估报告：99-199元/次
+- 幼小衔接测评：99-199元/次
+- 目标：客单价突破200元
+
+---
+
+## 数据壁垒
+
+**3年成长档案 = 最强护城河**
+
+- 妈妈记录越久，数据越珍贵
+- 换平台 = 丢失3年积累
+- 与同龄孩子对比曲线（独有关系）
+- 分享给家人的入口（家人也会用）
+
+---
+
+## 品牌个性
+
+**BabySuzy** — Miki的虚拟形象
+
+一只温暖、靠谱、有点呆萌的橘猫。
+总是用温柔的声音给出专业判断。
+关键时刻不废话，直接给答案。
+
+---
+
+## 执行节奏
+
+**不急，慢慢来。**
+
+- Q2-Q3：01-05 核心Skill完成
+- Q4：06 入园评估 + 07营养
+- 明年Q1：08成长档案 + 09家长指南
+- 明年Q2：开始变现
+
+---
+
+*Miki — 陪妈妈走过宝宝每一天*

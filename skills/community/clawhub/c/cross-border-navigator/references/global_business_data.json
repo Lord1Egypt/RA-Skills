@@ -1,0 +1,123 @@
+{
+  "regions": [
+    {
+      "name": "North America",
+      "countries": ["US", "CA", "MX"],
+      "key_frameworks": ["USMCA", "FCPA", "SEC regulations", "CFIUS"],
+      "business_culture": "Direct communication, contract-centric, time-is-money ethos",
+      "regulatory_bodies": ["SEC", "FTC", "CFIUS", "USPTO"]
+    },
+    {
+      "name": "European Union",
+      "countries": ["DE", "FR", "IT", "ES", "NL", "SE", "PL", "IE"],
+      "key_frameworks": ["GDPR", "DSA", "DMA", "AI Act", "CBAM"],
+      "business_culture": "Relationship-building, formal hierarchy, work-life balance emphasis",
+      "regulatory_bodies": ["European Commission", "ECB", "EMA", "EDPB"]
+    },
+    {
+      "name": "Asia-Pacific",
+      "countries": ["CN", "JP", "KR", "IN", "SG", "AU", "ID", "VN"],
+      "key_frameworks": ["RCEP", "CPTPP", "Personal Information Protection Law (CN)", "APPI (JP)"],
+      "business_culture": "Relationship-first (guanxi in CN), hierarchical, face-saving, long-term orientation",
+      "regulatory_bodies": ["MOFCOM (CN)", "METI (JP)", "ASIC (AU)", "MAS (SG)"]
+    },
+    {
+      "name": "Middle East & Africa",
+      "countries": ["AE", "SA", "ZA", "NG", "KE", "EG", "IL"],
+      "key_frameworks": ["GCC trade agreements", "AfCFTA"],
+      "business_culture": "Relationship-driven, wasta (connections) important, religious considerations",
+      "regulatory_bodies": ["DIFC", "ADGM", "SAMA"]
+    },
+    {
+      "name": "Latin America",
+      "countries": ["BR", "AR", "CL", "CO", "PE"],
+      "key_frameworks": ["Mercosur", "Pacific Alliance"],
+      "business_culture": "Personal relationships critical, flexible time, indirect communication",
+      "regulatory_bodies": ["CADE (BR)", "CNV (AR)", "SVS (CL)"]
+    }
+  ],
+  "risk_categories": [
+    {
+      "category": "Regulatory & Compliance",
+      "factors": ["Trade sanctions", "Export controls", "Data localization", "Anti-corruption", "Antitrust/competition", "Sector-specific licensing"],
+      "severity": "HIGH"
+    },
+    {
+      "category": "Currency & Financial",
+      "factors": ["Exchange rate volatility", "Capital controls", "Inflation risk", "Sovereign default risk", "Transfer pricing"],
+      "severity": "HIGH"
+    },
+    {
+      "category": "Political & Geopolitical",
+      "factors": ["Regime stability", "Sanctions risk", "Expropriation", "Civil unrest", "Trade wars"],
+      "severity": "MEDIUM"
+    },
+    {
+      "category": "Cultural & Operational",
+      "factors": ["Communication barriers", "Negotiation style mismatch", "Local partnership difficulties", "Talent localization"],
+      "severity": "MEDIUM"
+    },
+    {
+      "category": "IP & Technology",
+      "factors": ["IP protection adequacy", "Technology transfer requirements", "Cybersecurity threats", "Forced localization"],
+      "severity": "MEDIUM"
+    }
+  ],
+  "entry_strategies": [
+    {
+      "mode": "Direct Export",
+      "risk_level": "Low",
+      "investment": "Low",
+      "control": "Low",
+      "best_for": "Initial market testing, low-commitment exploration"
+    },
+    {
+      "mode": "Licensing / Franchising",
+      "risk_level": "Low-Medium",
+      "investment": "Medium",
+      "control": "Medium",
+      "best_for": "Brand expansion, IP-heavy industries, standardized operations"
+    },
+    {
+      "mode": "Joint Venture",
+      "risk_level": "Medium",
+      "investment": "Medium-High",
+      "control": "Shared",
+      "best_for": "Markets requiring local partner (e.g., China, India), resource sharing"
+    },
+    {
+      "mode": "Wholly Owned Subsidiary",
+      "risk_level": "High",
+      "investment": "High",
+      "control": "Full",
+      "best_for": "Strategic markets, long-term commitment, sensitive IP"
+    },
+    {
+      "mode": "Strategic Alliance",
+      "risk_level": "Medium",
+      "investment": "Variable",
+      "control": "Shared",
+      "best_for": "Technology collaboration, R&D sharing, market access"
+    },
+    {
+      "mode": "Merger & Acquisition",
+      "risk_level": "High",
+      "investment": "Very High",
+      "control": "Full",
+      "best_for": "Rapid market entry, acquiring market share or technology"
+    }
+  ],
+  "tax_treaty_networks": [
+    {"country": "United States", "treaty_count": 68},
+    {"country": "United Kingdom", "treaty_count": 130},
+    {"country": "China", "treaty_count": 107},
+    {"country": "Germany", "treaty_count": 96},
+    {"country": "Singapore", "treaty_count": 88},
+    {"country": "Netherlands", "treaty_count": 92},
+    {"country": "Switzerland", "treaty_count": 78},
+    {"country": "UAE", "treaty_count": 137},
+    {"country": "Japan", "treaty_count": 75},
+    {"country": "India", "treaty_count": 94}
+  ]
+}
+（内容由AI生成，仅供参考）

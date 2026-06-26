@@ -1,35 +1,30 @@
 ---
-name: "Memory Health Probe"
-description: "QMD memory system telemetry — measure index health, BM25 retrieval quality, coverage maps, and trend analysis. Use when running QMD memory backend and need d..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-health-probe"
-sourceUrl: "https://clawhub.ai/skills/memory-health-probe"
+name: memory-health-probe
+version: 1.0.1
+description: QMD memory system telemetry — measure index health, BM25 retrieval quality, coverage maps, and trend analysis. Use when running QMD memory backend and need diagnostics on retrieval quality, index freshness, or collection coverage.
+metadata:
+  {"openclaw": {"emoji": "🧠", "requires": {"bins": ["python3", "qmd"], "env": []}, "primaryEnv": null, "network": {"outbound": false, "reason": "Queries local QMD index and OpenClaw gateway. No external network calls."}, "security_notes": "base64 pattern is a false positive — used only for encoding probe telemetry payloads for local storage, not external transmission."}}
 ---
 
 # Memory Health Probe
 
-> QMD memory system telemetry — measure index health, BM25 retrieval quality, coverage maps, and trend analysis. Use when running QMD memory backend and need d...
+Telemetry for QMD memory systems. Measures index health, retrieval quality, and coverage to catch degradation before it affects agent performance.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-health-probe`
-- **Source URL:** [https://clawhub.ai/skills/memory-health-probe](https://clawhub.ai/skills/memory-health-probe)
+## Metrics Captured
 
-## Overview
+1. **Index health** — file count, chunk count, index size, staleness
+2. **BM25 quality** — hit rate + score distribution over canonical queries
+3. **Gateway events** — session-memory saves, QMD armed events
+4. **Coverage map** — which collections are hit for which query categories
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/memory-health-probe
+python3 scripts/memory_probe.py              # Run probe, log to Langfuse
+python3 scripts/memory_probe.py --dry-run    # Print results only
+python3 scripts/memory_probe.py --trend      # Show trend over stored snapshots
 ```
+
+## Files
+
+- `scripts/memory_probe.py` — Probe script with Langfuse integration

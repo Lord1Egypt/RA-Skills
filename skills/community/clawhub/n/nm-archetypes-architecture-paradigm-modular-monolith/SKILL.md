@@ -1,35 +1,79 @@
 ---
-name: "Nm Archetypes Architecture Paradigm Modular Monolith"
-description: "Applies modular monolith with enforced internal boundaries"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-archetypes-architecture-paradigm-modular-monolith"
-sourceUrl: "https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-modular-monolith"
+name: architecture-paradigm-modular-monolith
+description: Applies modular monolith with enforced internal boundaries
+version: 1.9.8
+triggers:
+  - architecture
+  - modular-monolith
+  - monolith
+  - internal-boundaries
+  - team-autonomy
+  - teams want service-level autonomy without distributed system overhead
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
+source: claude-night-market
+source_plugin: archetypes
 ---
 
-# Nm Archetypes Architecture Paradigm Modular Monolith
-
-> Applies modular monolith with enforced internal boundaries
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-archetypes-architecture-paradigm-modular-monolith`
-- **Source URL:** [https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-modular-monolith](https://clawhub.ai/skills/nm-archetypes-architecture-paradigm-modular-monolith)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-archetypes-architecture-paradigm-modular-monolith
-```
+# The Modular Monolith Paradigm
+
+
+## When To Use
+
+- Organizing large codebases into well-bounded modules
+- Teams wanting microservice boundaries without distributed complexity
+
+## When NOT To Use
+
+- Already distributed as microservices
+- Tiny applications where module boundaries add unnecessary complexity
+
+## When to Employ This Paradigm
+- When you desire team autonomy similar to that of microservices, but without the operational overhead of a distributed system.
+- When release velocity is slowed by tangled dependencies between internal modules.
+- When a monolithic architecture is simpler to operate today, but there is a clear need to evolve toward a service-based model in the future.
+
+## Adoption Steps
+1. **Identify Modules**: Define module boundaries that align with distinct business capabilities or Bounded Contexts from Domain-Driven Design.
+2. **Encapsulate Internals**: Use language-level visibility modifiers (e.g., public/private), separate packages, or namespaces to hide the implementation details of each module.
+3. **Expose Public Contracts**: Each module should expose its functionality through well-defined facades, APIs, or events. Forbid direct database table access or direct implementation calls between modules.
+4. **Enforce Architectural Fitness**: Implement automated tests that fail the build if forbidden dependencies or package references are introduced between modules.
+5. **Plan for Evolution**: Continuously track metrics such as change coupling and deployment scope to make informed decisions about if and when to split a module into a separate service.
+
+## Key Deliverables
+- An Architecture Decision Record (ADR) that maps module boundaries and defines the rules for any shared code.
+- Formal contract documentation (e.g., OpenAPI specs, event schemas) for every interaction point between modules.
+- Automated dependency checks and dedicated CI/CD jobs for each module to enforce boundaries.
+
+## Risks & Mitigations
+- **Regression to a "Big Ball of Mud"**:
+  - **Mitigation**: Without strict enforcement, module boundaries will inevitably erode. Treat any boundary violation as a build-breaking error and maintain a disciplined approach to code reviews.
+- **Shared Database Hotspots**:
+  - **Mitigation**: High contention on a shared database can become a bottleneck. Introduce clear schema ownership, use view-based access to restrict data visibility, or implement data replication strategies to reduce coupling.
+## Troubleshooting
+
+### Common Issues
+
+**Skill not loading**
+Check YAML frontmatter syntax and required fields
+
+**Token limits exceeded**
+Use progressive disclosure - move details to modules
+
+**Modules not found**
+Verify module paths in SKILL.md are correct
+
+## Concrete Components
+
+These vocabulary items name the concrete tools and abstractions
+that show up when the paradigm is implemented. They are not
+required dependencies and they are not part of the skill's
+``tools:`` frontmatter (which is reserved for Claude Code tool
+restrictions). Use this list to disambiguate during architecture
+discussions.
+
+- ``dependency-analyzer`` -- module dependency graph builder for spotting forbidden edges
+- ``module-boundary-enforcer`` -- fails the build when a module imports across a boundary
+- ``refactoring-planner`` -- ranks modules by extraction-readiness for a future split

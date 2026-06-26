@@ -1,0 +1,35 @@
+{
+  "name": "whale-shark",
+  "version": "0.1.0",
+  "description": "🐋 WhaleWatch - 巨鲸追踪，监控大户钱包动向",
+  "main": "scripts/whale.mjs",
+  "type": "module",
+  "scripts": {
+    "whale": "node scripts/whale.mjs",
+    "holdings": "node scripts/holdings.mjs",
+    "transfers": "node scripts/transfers.mjs",
+    "smart": "node scripts/smart.mjs",
+    "alert": "node scripts/alert.mjs",
+    "test": "node scripts/whale.mjs"
+  },
+  "keywords": [
+    "whale",
+    "crypto",
+    "onchain",
+    "tracking",
+    "smart-money",
+    "defi"
+  ],
+  "author": "@gztanht",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gztanht/whale-watch"
+  },
+  "homepage": "https://clawhub.com/skills/whale-watch",
+  "funding": {
+    "type": "crypto",
+    "usdt": "0x33f943e71c7b7c4e88802a68e62cca91dab65ad9",
+    "usdc": "0xcb5173e3f5c2e32265fbbcaec8d26d49bf290e44"
+  }
+}

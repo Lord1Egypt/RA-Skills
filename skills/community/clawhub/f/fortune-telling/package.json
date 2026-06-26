@@ -1,0 +1,31 @@
+{
+  "name": "fortune-telling",
+  "version": "1.0.0",
+  "description": "中英文算命 skill，基于中国周易和出生年月测算运势。支持今天、本周、本月运势预测。",
+  "main": "SKILL.md",
+  "keywords": [
+    "fortune",
+    "divination",
+    "i-ching",
+    "周易",
+    "运势",
+    "bazi",
+    "八字",
+    "feng-shui"
+  ],
+  "author": "bubo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub/fortune-telling"
+  },
+  "clawhub": {
+    "id": "fortune-telling",
+    "category": "entertainment",
+    "tags": ["divination", "fortune", "周易", "运势", "i-ching", "娱乐"],
+    "triggers": {
+      "zh": ["算命", "测运势", "卜卦", "今天运势", "本周运势", "本月运势"],
+      "en": ["fortune telling", "read my fortune", "daily fortune", "weekly fortune", "monthly fortune"]
+    }
+  }
+}

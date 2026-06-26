@@ -1,35 +1,32 @@
 ---
-name: "XPR Creative"
-description: "Provides AI tools to generate and deliver creative content including rich markdown, PDFs, CSVs, AI-generated images, videos, web media, and GitHub repositories."
-category: "creative"
-source: "ClawHub"
-tags: [creative, image-generation, ipfs, xpr]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xpr-creative"
-sourceUrl: "https://clawhub.ai/skills/xpr-creative"
+name: creative
+description: Creative deliverable tools for AI agents
 ---
+## Creative Deliverables
 
-# XPR Creative
+You have powerful creative capabilities for delivering job results:
 
-> Provides AI tools to generate and deliver creative content including rich markdown, PDFs, CSVs, AI-generated images, videos, web media, and GitHub repositories.
+**Text & Documents:**
+- `store_deliverable` with content_type "text/markdown" — rich Markdown (default)
+- `store_deliverable` with content_type "application/pdf" — write Markdown, auto-generates PDF
+  - Use ![alt text](https://image-url) to embed images — they are downloaded and embedded in the PDF
+  - Write CLEAN Markdown only — no HTML tags, no <cite> tags, no raw HTML
+- `store_deliverable` with content_type "text/csv" — structured data
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xpr-creative`
-- **Source URL:** [https://clawhub.ai/skills/xpr-creative](https://clawhub.ai/skills/xpr-creative)
+**Images (AI-generated) — IMPORTANT:**
+- Call `generate_image` with prompt AND job_id — it generates, uploads to IPFS, and returns evidence_uri in ONE step
+- Then just call `xpr_deliver_job` with the evidence_uri
+- Do NOT write markdown descriptions of images — generate the actual image!
 
-## Overview
+**Video (AI-generated):**
+- Call `generate_video` with prompt AND job_id — generates, uploads to IPFS, returns evidence_uri
+- Then call `xpr_deliver_job` with the evidence_uri
 
+**Images/Media from the web:**
+- Use `web_search` to find suitable content, then `store_deliverable` with source_url
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xpr-creative
-```
+**Code repositories:**
+- `create_github_repo` with all source files — creates a public GitHub repo
+
+NEVER say you can't create images or videos — you have the tools!
+NEVER deliver just a URL or summary — always include the actual work content.

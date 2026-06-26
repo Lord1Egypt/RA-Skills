@@ -1,0 +1,175 @@
+{
+  "version": "1.1.0",
+  "rules": [
+    {
+      "rule_id": "OPSEC-001",
+      "title": "Risky shell execution",
+      "severity": "high",
+      "description": "Flags direct shell execution or dangerous command patterns.",
+      "why_it_matters": "Running shell commands from third-party skill instructions can execute unreviewed code on the local system.",
+      "patterns": [
+        {"value": "curl", "match_type": "word"},
+        {"value": "wget", "match_type": "word"},
+        {"value": "bash", "match_type": "word"},
+        {"value": "(^|\\s)sh(\\s|$)", "match_type": "regex"},
+        {"value": "sudo", "match_type": "word"},
+        {"value": "chmod", "match_type": "word"},
+        {"value": "rm", "match_type": "word"},
+        {"value": "mv", "match_type": "word"},
+        {"value": "dd", "match_type": "word"},
+        {"value": "powershell", "match_type": "word"}
+      ],
+      "exclude_patterns": [
+        "^description:",
+        "^homepage:",
+        "^name:",
+        "^slug:",
+        "^version:",
+        "^title:",
+        "^\\s*#",
+        "^\\s*it focuses on",
+        "^\\s*risky shell",
+        "^\\s*high-risk claims",
+        "^TEXT_EXTENSIONS\\s*=",
+        "^```bash$",
+        "^```sh$",
+        "^```shell$",
+        "^```zsh$",
+        "^```$"
+      ],
+      "recommendation": "Do not install or run until the commands are manually reviewed in an isolated environment.",
+      "fix_command": ""
+    },
+    {
+      "rule_id": "OPSEC-002",
+      "title": "Remote download or external fetch",
+      "severity": "high",
+      "description": "Flags remote downloads, ZIP fetches, or external installation assets.",
+      "why_it_matters": "Remote downloads can introduce unreviewed code or payloads from outside the local environment.",
+      "patterns": [
+        {"value": ".zip", "match_type": "substring"},
+        {"value": "download", "match_type": "word"},
+        {"value": "fetch", "match_type": "word"},
+        {"value": "install script", "match_type": "substring"},
+        {"value": "curl\\s+.*https?://", "match_type": "regex"},
+        {"value": "wget\\s+.*https?://", "match_type": "regex"}
+      ],
+      "exclude_patterns": [
+        "^homepage:",
+        "^description:",
+        "^\\s*#",
+        "^\\s*it focuses on",
+        "^\\s*remote downloads",
+        "^\\s*high-risk claims"
+      ],
+      "recommendation": "Verify the source, inspect downloaded content manually, and prefer transparent local installation steps.",
+      "fix_command": ""
+    },
+    {
+      "rule_id": "OPSEC-003",
+      "title": "Credential-related content",
+      "severity": "medium",
+      "description": "Flags content that references credentials, authorization, or secrets in a general documentation context.",
+      "why_it_matters": "Credential-related content deserves manual attention, but a mention of keys or tokens in documentation is not automatically a dangerous request.",
+      "patterns": [
+        {"value": "password", "match_type": "word"},
+        {"value": "token", "match_type": "word"},
+        {"value": "api key", "match_type": "substring"},
+        {"value": "secret", "match_type": "word"},
+        {"value": "private key", "match_type": "substring"},
+        {"value": "ssh key", "match_type": "substring"},
+        {"value": "authorization header", "match_type": "substring"},
+        {"value": "environment variable", "match_type": "substring"},
+        {"value": "oauth", "match_type": "word"}
+      ],
+      "exclude_patterns": [
+        "^description:",
+        "^\\s*#",
+        "^\\s*requests for passwords",
+        "^\\s*密码、token、api key",
+        "^\\s*credential",
+        "^\\s*它关注"
+      ],
+      "recommendation": "Review how credentials are obtained, stored, and scoped. Treat this as a manual-review signal, not an automatic blocker.",
+      "fix_command": ""
+    },
+    {
+      "rule_id": "OPSEC-006",
+      "title": "Explicit secret request or exposure guidance",
+      "severity": "critical",
+      "description": "Flags direct instructions to provide, paste, export, or expose sensitive credentials.",
+      "why_it_matters": "Direct secret collection or exposure guidance materially increases the chance of credential compromise.",
+      "patterns": [
+        {"value": "enter your password", "match_type": "substring"},
+        {"value": "paste your api key", "match_type": "substring"},
+        {"value": "provide your token", "match_type": "substring"},
+        {"value": "copy your api key", "match_type": "substring"},
+        {"value": "export .*api.*key", "match_type": "regex"},
+        {"value": "export .*token", "match_type": "regex"},
+        {"value": "hardcoded secret", "match_type": "substring"},
+        {"value": "hardcoded token", "match_type": "substring"},
+        {"value": "private key content", "match_type": "substring"}
+      ],
+      "exclude_patterns": [
+        "^description:",
+        "^\\s*#"
+      ],
+      "recommendation": "Do not provide or expose secrets until necessity, storage method, and trust boundary are clearly reviewed.",
+      "fix_command": ""
+    },
+    {
+      "rule_id": "OPSEC-004",
+      "title": "Privilege or sensitive access request",
+      "severity": "critical",
+      "description": "Flags admin/root requests or access to sensitive directories and system configuration.",
+      "why_it_matters": "Excessive privilege increases the blast radius of any malicious or mistaken instruction.",
+      "patterns": [
+        {"value": "root", "match_type": "word"},
+        {"value": "administrator", "match_type": "word"},
+        {"value": "/etc/", "match_type": "substring"},
+        {"value": "~/.ssh", "match_type": "substring"},
+        {"value": "/var/log", "match_type": "substring"},
+        {"value": "^/root\\b", "match_type": "regex"},
+        {"value": "systemctl", "match_type": "word"},
+        {"value": "sshd_config", "match_type": "word"}
+      ],
+      "exclude_patterns": [
+        "ROOT_DIR",
+        "for root,",
+        "os\\.path\\.join\\(root,",
+        "^description:",
+        "^\\s*#",
+        "^\\s*administrator privileges",
+        "^\\s*它关注"
+      ],
+      "recommendation": "Prefer least privilege, isolate execution, and reject installation if sensitive access is not clearly justified.",
+      "fix_command": ""
+    },
+    {
+      "rule_id": "OPSEC-005",
+      "title": "Over-broad or unsafe operational claim",
+      "severity": "medium",
+      "description": "Flags vague promises that encourage unsafe trust or direct execution.",
+      "why_it_matters": "Claims such as auto-fix, bypass restrictions, or fully secure can indicate overreach, poor safety posture, or misleading instructions.",
+      "patterns": [
+        {"value": "auto-fix", "match_type": "word"},
+        {"value": "autofix", "match_type": "word"},
+        {"value": "bypass", "match_type": "word"},
+        {"value": "fully secure", "match_type": "substring"},
+        {"value": "no review needed", "match_type": "substring"},
+        {"value": "execute directly", "match_type": "substring"},
+        {"value": "run immediately", "match_type": "substring"},
+        {"value": "permanently improve", "match_type": "substring"}
+      ],
+      "exclude_patterns": [
+        "^description:",
+        "^\\s*#",
+        "^\\s*it does not promise to fully secure",
+        "^\\s*high-risk claims",
+        "^\\s*claims such as"
+      ],
+      "recommendation": "Treat over-broad claims as a trust warning and require manual review before use.",
+      "fix_command": ""
+    }
+  ]
+}

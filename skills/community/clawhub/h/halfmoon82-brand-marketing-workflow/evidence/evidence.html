@@ -1,0 +1,4 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Brand Workflow Evidence</title><style>body{font-family:ui-monospace,Menlo,monospace;padding:20px}pre{background:#111;color:#eee;padding:12px;white-space:pre-wrap;border-radius:8px}h2{margin-top:28px}</style></head><body><h1>Brand Marketing Workflow - Runtime Evidence</h1><p>Generated from real script executions.</p><h2>Smoke Test</h2><pre id='smoke'></pre><h2>Browser Allow Case</h2><pre id='allow'></pre><h2>Browser Degrade Case</h2><pre id='degrade'></pre><h2>Authorization Resume Case</h2><pre id='auth'></pre><h2>Recent Commits</h2><pre id='git'></pre><script>
+async function load(id,file){const t=await fetch(file).then(r=>r.text());document.getElementById(id).textContent=t}
+load('smoke','smoke_output.json');load('allow','browser_allow.json');load('degrade','browser_degrade.json');load('auth','auth_resume.json');load('git','git_log.txt');
+</script></body></html>

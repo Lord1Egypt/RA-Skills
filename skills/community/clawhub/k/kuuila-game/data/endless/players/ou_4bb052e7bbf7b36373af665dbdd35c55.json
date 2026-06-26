@@ -1,0 +1,103 @@
+{
+  "playerId": "ou_4bb052e7bbf7b36373af665dbdd35c55",
+  "name": "李寻欢",
+  "title": "小李飞刀",
+  "createdAt": "2026-03-21T08:48:00+08:00",
+  "actionPoints": {
+    "max": 5,
+    "current": 0,
+    "lastReset": "2026-03-21T08:00:00+08:00"
+  },
+  "attributes": {
+    "strength": 8,
+    "agility": 15,
+    "intelligence": 14,
+    "charisma": 12,
+    "luck": 11
+  },
+  "skills": [
+    {
+      "name": "小李飞刀",
+      "level": 1,
+      "description": "例不虚发的飞刀绝技",
+      "damage": 50,
+      "accuracy": 95
+    }
+  ],
+  "inventory": [
+    {
+      "name": "飞刀(三把)",
+      "type": "weapon",
+      "damage": 25,
+      "quantity": 2
+    },
+    {
+      "name": "碎银",
+      "type": "currency",
+      "quantity": 100
+    },
+    {
+      "name": "城主令",
+      "type": "key_item",
+      "description": "灵安城城主信物，持此令可在城内享有诸多便利",
+      "effect": "购买折扣10%, 任务优先"
+    }
+  ],
+  "quests": [
+    {
+      "id": "clear_black_wind",
+      "name": "清剿黑风寨",
+      "status": "active",
+      "currentPhase": "infiltrated",
+      "objectives": [
+        { "desc": "击败黑风寨主", "completed": false },
+        { "desc": "解救被劫持的商队", "completed": false }
+      ],
+      "progress": {
+        "infiltrated": true,
+        "location": "中寨",
+        "kills": 2,
+        "alerts": 0
+      },
+      "intel": {
+        "mountain_layout": "山寨分三层: 前寨→中寨→后寨",
+        "weak_points": [
+          "东侧悬崖守卫薄弱",
+          "夜间换班时间: 子时",
+          "寨主住在后寨阁楼"
+        ],
+        "enemy_info": {
+          "黑风寨主": "外家功夫好手,擅长大刀,勇猛但急躁",
+          "喽啰数量": "约300人",
+          "巡逻规律": "每刻钟巡逻一次"
+        },
+        "prisoner_location": "被俘商队关押在中寨地牢",
+        "recent_events": "三日前劫了药王谷的药材"
+      },
+      "rewards": {
+        "gold": 500,
+        "reputation": 50,
+        "items": ["玄铁飞刀×5"]
+      },
+      "acceptedAt": "2026-03-21T08:53:00+08:00"
+    }
+  ],
+  "status": "健康",
+  "location": "黑风寨-中寨",
+  "faction": null,
+  "reputation": 0,
+  "level": 1,
+  "experience": 50,
+  "expToNext": 100,
+  "gold": 100,
+  "dailyActions": [
+    { "type": "dialog", "target": "城主李天衡", "cost": 1, "time": "08:48", "result": "接取任务" },
+    { "type": "explore", "target": "茶馆", "cost": 1, "time": "08:55", "result": "到达茶馆" },
+    { "type": "dialog", "target": "说书人", "cost": 1, "time": "08:57", "result": "获得情报" },
+    { "type": "explore", "target": "城外森林", "cost": 1, "time": "09:01", "result": "到达黑风寨外围" },
+    { "type": "infiltrate", "target": "东侧悬崖", "cost": 1, "time": "10:07", "result": "潜入成功，进入中寨" }
+  ],
+  "totalActions": 5,
+  "achievements": ["🎯 例不虚发"],
+  "backstory": "关外浪子，飞刀绝技传人。因厌倦江湖纷争，云游至灵安城..."
+}

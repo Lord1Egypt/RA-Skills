@@ -1,0 +1,10 @@
+<testsuite name="pytest" tests="4" failures="2" errors="0" skipped="0">
+  <testcase classname="tests.test_api" name="test_quote_happy_path" time="0.12" />
+  <testcase classname="tests.test_api" name="test_rate_limit" time="0.55">
+    <failure message="AssertionError">429 expected</failure>
+  </testcase>
+  <testcase classname="tests.test_jobs" name="test_worker_retry" time="1.20">
+    <failure message="TimeoutError">job timed out</failure>
+  </testcase>
+  <testcase classname="tests.test_jobs" name="test_scheduler_tick" time="0.40" />
+</testsuite>

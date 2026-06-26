@@ -1,0 +1,15 @@
+{
+  "name": "github-repo-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze GitHub repositories - stats, contributors, tech stack",
+  "author": "Dev Tools Pro",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 2,
+    "currency": "USD",
+    "interval": "month"
+  },
+  "keywords": ["github", "analysis", "repository", "stats", "developers"],
+  "category": "productivity"
+}

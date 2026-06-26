@@ -1,35 +1,63 @@
----
-name: "Finance Interview Generator"
-description: "生成基于能力维度的结构化财务岗位面试问题，支持职位、层级和行业定制，助力面试官培训与候选人评估。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-interview-generator"
-sourceUrl: "https://clawhub.ai/skills/finance-interview-generator"
----
+# Skill: 财务面试问题生成器
 
-# Finance Interview Generator
+## 基础信息
+- **Slug**: finance-interview-generator
+- **Version**: 1.0.0
+- **名称**: 财务岗位模拟面试问题生成
+- **描述**: 基于能力维度生成结构化面试问题，用于面试官培训或候选人评估
+- **作者**: 户部 (hubu)
+- **标签**: 财务, 面试, 招聘, HR
 
-> 生成基于能力维度的结构化财务岗位面试问题，支持职位、层级和行业定制，助力面试官培训与候选人评估。
+## 输入参数
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-interview-generator`
-- **Source URL:** [https://clawhub.ai/skills/finance-interview-generator](https://clawhub.ai/skills/finance-interview-generator)
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| position | string | 是 | 目标职位 |
+| capabilities | array | 是 | 核心考察能力，选择2-3项 |
+| level | string | 是 | 面试层级：高级管理层/中层管理者/骨干员工 |
+| industry | string | 否 | 集团行业：制造业/房地产/科技/消费品 |
 
-## Overview
+## 输出格式
 
+### 表格格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-interview-generator
+| 考察能力 | 问题类型 | 面试问题 | 预期回答要点 | 追问建议 |
+|----------|----------|----------|--------------|----------|
+| ... | ... | ... | ... | ... |
+
+### 问题类型
+- 行为事件法(BEI)
+- 情景模拟
+- 专业技能
+- 压力测试
+
+## 能力与问题示例
+
+### 资金管理能力
+- "请描述一次你负责的资金集中管理项目，你在其中扮演什么角色？最终效果如何？"
+- "如果集团某子公司突发流动性风险，你会如何处理？"
+
+### 融资筹划能力
+- "请描述一次成功的债券发行经历，你是如何与承销商协调的？"
+- "在当前市场环境下，你会建议公司采取何种融资策略？"
+
+### 预算管理能力
+- "请描述一次预算编制过程中遇到的最大挑战，你是如何解决的？"
+- "当业务部门的需求超过预算时，你如何平衡各方诉求？"
+
+## 使用示例
+
 ```
+生成资金总监的面试问题
+核心能力：资金管理、融资筹划
+面试层级：高级管理层
+行业：制造业
+```
+
+## 触发关键词
+- 面试问题
+- 财务面试
+- 面试官培训
+- BEI访谈
+- 行为面试
+- 压力测试

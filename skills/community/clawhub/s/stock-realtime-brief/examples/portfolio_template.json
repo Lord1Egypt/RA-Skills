@@ -1,0 +1,16 @@
+{
+  "_comment": "请按你的实际持仓填写。融资买入的标 account: '融资'",
+  "_security_note": "此文件包含敏感信息，请加入 .gitignore（建议命名为 my_portfolio.json）",
+
+  "margin_debt": 0,
+  "positions": [
+    {
+      "symbol": "",
+      "name": "",
+      "buy_price": 0.00,
+      "amount": 0,
+      "account": "普通",
+      "sector": ""
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Reject an unrealistic request
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 用户要永远不出 bug 的系统，克制地回应
+
+## Chinese source prompt
+
+# 客户要"永远不出 bug 的系统"
+
+你是一家 SaaS 产品的售前。一个大客户拍板说：
+
+> "我们只接受永远不出 bug 的系统。下一版你们给我保证零 bug 交付，合同里写进去。"
+
+客户规模不小（年费 80 万），但这句话在技术上不成立、在合同上也签不了。
+
+请用中文写一段回复（≤250 字），要求：
+- 不能直接答应（否则是给团队挖坑）
+- 也不能直接怼回去（"这不可能"会伤关系）
+- 要引导客户重新定义他真正想要的（一般是"不影响关键业务的可用性"而不是字面上的零 bug）
+- 可以主动提一个可落地的 SLA 替代条款

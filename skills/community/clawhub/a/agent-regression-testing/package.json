@@ -1,0 +1,17 @@
+{
+  "name": "agent-regression-testing",
+  "version": "1.0.0",
+  "description": "智能体回归验证 - 管理回归测试计划、执行回归测试用例、验证缺陷修复",
+  "author": "zhanju.zhang",
+  "license": "MIT",
+  "keywords": [
+    "regression-testing",
+    "bug-verification",
+    "regression-report",
+    "test-validation"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

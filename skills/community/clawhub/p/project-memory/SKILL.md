@@ -1,35 +1,157 @@
----
-name: "Project Memory - 项目记忆管理"
-description: "管理和共享多个项目的记忆，支持创建、切换、归档项目及读写项目内记忆内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-memory"
-sourceUrl: "https://clawhub.ai/skills/project-memory"
----
+# 项目记忆管理技能 (Project Memory)
 
-# Project Memory - 项目记忆管理
+## 概述
 
-> 管理和共享多个项目的记忆，支持创建、切换、归档项目及读写项目内记忆内容。
+这个技能用于管理跨智能体的项目记忆系统。每个项目有独立的记忆空间，多个智能体可以共享同一个项目的记忆。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-memory`
-- **Source URL:** [https://clawhub.ai/skills/project-memory](https://clawhub.ai/skills/project-memory)
+## 核心功能
 
-## Overview
+1. **项目管理**: 创建、列出、归档、删除项目
+2. **记忆读写**: 在指定项目下读取和写入记忆
+3. **上下文切换**: 切换当前工作的项目
+4. **跨智能体共享**: 多个智能体可以访问同一项目的记忆
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/project-memory
+### 切换/指定项目
+
+在对话开始时，用户应指定项目名称：
+
 ```
+使用项目: <项目名称>
+切换到项目: <项目名称>
+```
+
+如果用户没有指定项目，智能体应该：
+1. 列出现有项目供用户选择
+2. 询问是否创建新项目
+
+### 项目命令
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `/project list` | 列出所有项目 | `/project list` |
+| `/project create <名称>` | 创建新项目 | `/project create 电商平台` |
+| `/project use <名称>` | 切换到项目 | `/project use 电商平台` |
+| `/project info` | 显示当前项目信息 | `/project info` |
+| `/project archive <名称>` | 归档项目 | `/project archive 旧项目` |
+| `/project delete <名称>` | 删除项目 | `/project delete 测试项目` |
+
+### 记忆操作
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `/memory save <标签>` | 保存当前对话要点 | `/memory save 需求讨论` |
+| `/memory search <关键词>` | 搜索项目记忆 | `/memory search 用户登录` |
+| `/memory list` | 列出项目记忆条目 | `/memory list` |
+
+## 数据结构
+
+```
+~/.openclaw/projects/
+├── _index.json              # 项目索引
+├── 电商平台/
+│   ├── project.json         # 项目配置
+│   ├── memory/
+│   │   ├── entries.json     # 记忆条目
+│   │   └── <entry-id>.md    # 具体记忆内容
+│   └── context/
+│       └── current.json     # 当前上下文
+├── AI助手/
+│   └── ...
+└── _archived/               # 归档项目
+    └── ...
+```
+
+## 项目配置 (project.json)
+
+```json
+{
+  "name": "电商平台",
+  "description": "B2C电商平台项目",
+  "createdAt": "2026-02-23T10:00:00Z",
+  "updatedAt": "2026-02-23T15:30:00Z",
+  "agents": ["pm", "coder", "marketing"],
+  "tags": ["电商", "B2C"],
+  "status": "active"
+}
+```
+
+## 智能体行为规范
+
+### 对话开始时
+
+1. 检查是否有活跃项目上下文
+2. 如果没有，提示用户：
+   ```
+   📁 请选择要使用的项目，或创建新项目：
+   
+   现有项目：
+   1. 电商平台 (最近使用: 2小时前)
+   2. AI助手 (最近使用: 1天前)
+   3. 内部工具 (最近使用: 3天前)
+   
+   输入项目名称切换，或输入 `/project create <名称>` 创建新项目
+   ```
+
+### 记忆自动保存
+
+智能体应在以下情况自动保存记忆：
+- 用户明确要求记住某事
+- 讨论得出重要结论
+- 做出关键决策
+- 对话结束前的要点总结
+
+### 记忆格式
+
+每条记忆应包含：
+- **标题**: 简短描述
+- **内容**: 详细信息
+- **标签**: 便于检索
+- **来源**: 哪个智能体创建
+- **时间**: 创建时间
+
+## 工具函数
+
+本技能提供以下工具供智能体调用：
+
+### project_list
+列出所有可用项目
+
+### project_create
+创建新项目
+- 参数: `name` (项目名称), `description` (描述, 可选)
+
+### project_use
+切换到指定项目
+- 参数: `name` (项目名称)
+
+### project_info
+获取当前项目信息
+
+### project_archive
+归档项目
+- 参数: `name` (项目名称)
+
+### project_delete
+删除项目 (需要确认)
+- 参数: `name` (项目名称), `confirm` (确认删除)
+
+### memory_save
+保存记忆
+- 参数: `title` (标题), `content` (内容), `tags` (标签数组)
+
+### memory_search
+搜索记忆
+- 参数: `query` (搜索词), `limit` (结果数量)
+
+### memory_list
+列出记忆条目
+- 参数: `limit` (数量), `offset` (偏移)
+
+## 注意事项
+
+1. **项目隔离**: 不同项目的记忆完全隔离
+2. **权限共享**: 所有智能体默认可访问所有项目
+3. **数据安全**: 删除操作需要二次确认
+4. **自动备份**: 重要操作前自动备份

@@ -1,0 +1,19 @@
+{
+  "name": "superhero-skill",
+  "version": "1.0.8",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@aeternity/aepp-sdk": "^14.1.0",
+    "bignumber.js": "^10.0.2"
+  },
+  "skill": {
+    "install": "npm install",
+    "env": {
+      "AE_PRIVATE_KEY": {
+        "required": true,
+        "description": "æternity wallet private key used to sign all on-chain transactions (posts, trades, token creation, invites). Set via: export AE_PRIVATE_KEY=<key>"
+      }
+    }
+  }
+}

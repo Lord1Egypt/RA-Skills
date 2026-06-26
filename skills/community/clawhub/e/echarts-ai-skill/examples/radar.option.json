@@ -1,0 +1,57 @@
+{
+  "title": {
+    "text": "Skill capability radar",
+    "left": "center"
+  },
+  "tooltip": {
+    "trigger": "item"
+  },
+  "legend": {
+    "top": 28
+  },
+  "radar": {
+    "indicator": [
+      {
+        "name": "reasoning",
+        "max": 100
+      },
+      {
+        "name": "delivery",
+        "max": 100
+      },
+      {
+        "name": "speed",
+        "max": 100
+      },
+      {
+        "name": "reliability",
+        "max": 100
+      }
+    ]
+  },
+  "series": [
+    {
+      "type": "radar",
+      "data": [
+        {
+          "name": "Codex",
+          "value": [
+            88,
+            92,
+            85,
+            90
+          ]
+        },
+        {
+          "name": "OpenClaw",
+          "value": [
+            76,
+            80,
+            91,
+            78
+          ]
+        }
+      ]
+    }
+  ]
+}

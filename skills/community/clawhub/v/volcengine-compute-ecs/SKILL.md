@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Compute Ecs"
-description: "Manage Volcengine ECS instances and related resources. Use when users need instance inventory, lifecycle operations, troubleshooting, or automation templates for ECS."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-compute-ecs"
-sourceUrl: "https://clawhub.ai/skills/volcengine-compute-ecs"
+name: volcengine-compute-ecs
+description: Manage Volcengine ECS instances and related resources. Use when users need instance inventory, lifecycle operations, troubleshooting, or automation templates for ECS.
 ---
 
-# Volcengine Compute Ecs
+# volcengine-compute-ecs
 
-> Manage Volcengine ECS instances and related resources. Use when users need instance inventory, lifecycle operations, troubleshooting, or automation templates for ECS.
+Operate ECS resources safely with clear scope, dry-run style checks, and auditable output.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-compute-ecs`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-compute-ecs](https://clawhub.ai/skills/volcengine-compute-ecs)
+## Execution Checklist
 
-## Overview
+1. Confirm region, account scope, and instance filters.
+2. Query inventory before mutating operations.
+3. Execute lifecycle actions (start/stop/reboot) only with explicit target IDs.
+4. Return action summary with instance IDs and status.
 
+## Safety Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-compute-ecs
-```
+- Prefer read-only commands first.
+- Batch operations by region and tag.
+- Record pre/post status for rollback.
+
+## References
+
+- `references/sources.md`

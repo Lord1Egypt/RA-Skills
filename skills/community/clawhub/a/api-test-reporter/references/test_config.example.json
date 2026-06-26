@@ -1,0 +1,267 @@
+{
+  "_comment": "通用 API 接口测试配置模板 - 复制此文件并按需修改",
+
+  "meta": {
+    "title": "发票查询接口测试报告",
+    "base_url": "http://172.28.31.128:80/post",
+    "method": "baiwang.image.invoices.query",
+    "version": "1.0",
+    "http_method": "POST",
+    "timeout": 30,
+    "url_params": {}
+  },
+
+  "fixed_params": {
+    "tenantId": "2445841509646336",
+    "userAccount": "admin_100"
+  },
+
+  "_comment_db_fixture": [
+    "db_fixture 为可选配置，启用后测试执行前自动从数据库查询真实数据，",
+    "通过 {{变量名}} 占位符注入到用例 body 中。",
+    "依赖：pip install pymysql",
+    "若不需要数据库注入，删除整个 db_fixture 节点即可。"
+  ],
+  "db_fixture": {
+    "connection": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "user": "db_user",
+      "password": "db_password",
+      "database": "db_name",
+      "charset": "utf8mb4"
+    },
+    "queries": [
+      {
+        "_comment": "查询传统发票（有发票代码），取发票号码和发票代码",
+        "name": "classic_invoice",
+        "sql": "SELECT INV_NUM, INV_KIND FROM bw_jms_auth1 WHERE BUYER_TAXNO='YOUR_TAX_NO' AND INV_KIND IS NOT NULL LIMIT 1",
+        "mapping": {
+          "invoiceNumber": "INV_NUM",
+          "invoiceCode":   "INV_KIND"
+        }
+      },
+      {
+        "_comment": "查询数电票（无发票代码），取数电发票号码",
+        "name": "digital_invoice",
+        "sql": "SELECT INV_NUM FROM bw_jms_auth1 WHERE BUYER_TAXNO='YOUR_TAX_NO' AND INV_KIND IS NULL LIMIT 1",
+        "mapping": {
+          "digitalInvoiceNumber": "INV_NUM"
+        }
+      }
+    ]
+  },
+
+  "test_cases": [
+
+    {
+      "id": "TC_001",
+      "group": "必填参数验证",
+      "name": "仅传必填参数",
+      "desc": "只传 tenantId 和 userAccount，验证接口能正常响应",
+      "body": {},
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "has_response": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "id": "TC_002",
+      "group": "必填参数验证",
+      "name": "缺少 tenantId",
+      "desc": "不传 tenantId，期望返回错误",
+      "body": {
+        "tenantId": null,
+        "_override_fixed": ["tenantId"]
+      },
+      "expect": {
+        "http_status": 200,
+        "success": false,
+        "error_field_exists": true
+      }
+    },
+
+    {
+      "id": "TC_010",
+      "group": "分页参数验证",
+      "name": "pageNo=1, pageSize=10",
+      "desc": "正常分页查询",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 10
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "id": "TC_011",
+      "group": "分页参数验证",
+      "name": "pageSize=1000（最大值）",
+      "desc": "pageSize 取文档允许最大值",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 1000
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "_comment": "以下用例使用 db_fixture 注入的真实发票号码，需配置 db_fixture",
+      "id": "TC_020",
+      "group": "精确查询-传统发票",
+      "name": "按发票号码+发票代码精确查询",
+      "desc": "使用数据库中真实的传统发票号码和发票代码查询，期望命中数据",
+      "body": {
+        "invoiceNumber": "{{invoiceNumber}}",
+        "invoiceCode":   "{{invoiceCode}}"
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "has_response": true
+      }
+    },
+
+    {
+      "_comment": "数电发票精确查询，使用 db_fixture 注入数电发票号",
+      "id": "TC_021",
+      "group": "精确查询-数电发票",
+      "name": "按数电发票号码精确查询",
+      "desc": "使用数据库中真实的数电发票号码查询，期望命中数据",
+      "body": {
+        "digitalInvoiceNumber": "{{digitalInvoiceNumber}}"
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "has_response": true
+      }
+    },
+
+    {
+      "id": "TC_030",
+      "group": "发票类型筛选",
+      "name": "invoiceType=01（增值税专用发票）",
+      "desc": "筛选增值税专用发票",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 10,
+        "invoiceType": "01"
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "id": "TC_031",
+      "group": "发票类型筛选",
+      "name": "invoiceType=INVALID（非法类型）",
+      "desc": "传入不存在的发票类型，验证容错",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 10,
+        "invoiceType": "INVALID"
+      },
+      "expect": {
+        "http_status": 200
+      }
+    },
+
+    {
+      "id": "TC_040",
+      "group": "日期范围筛选",
+      "name": "invoiceDateStart + invoiceDateEnd 正常范围",
+      "desc": "合法的发票日期起止范围",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 10,
+        "invoiceDateStart": "2025-01-01",
+        "invoiceDateEnd": "2026-03-30"
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "id": "TC_041",
+      "group": "日期范围筛选",
+      "name": "起止日期倒置",
+      "desc": "invoiceDateStart > invoiceDateEnd",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 10,
+        "invoiceDateStart": "2026-03-30",
+        "invoiceDateEnd": "2025-01-01"
+      },
+      "expect": {
+        "http_status": 200
+      }
+    },
+
+    {
+      "id": "TC_050",
+      "group": "状态筛选",
+      "name": "invoiceState=0（正常）",
+      "desc": "查询状态为正常的发票",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 10,
+        "invoiceState": 0
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "id": "TC_060",
+      "group": "综合多条件组合",
+      "name": "发票类型 + 日期范围 + 状态组合",
+      "desc": "多字段组合查询",
+      "body": {
+        "pageNo": 1,
+        "pageSize": 20,
+        "invoiceType": "01",
+        "invoiceDateStart": "2025-01-01",
+        "invoiceDateEnd": "2026-03-30",
+        "invoiceState": 0
+      },
+      "expect": {
+        "http_status": 200,
+        "success": true,
+        "check_page_data": true
+      }
+    },
+
+    {
+      "id": "TC_070",
+      "group": "边界与异常参数",
+      "name": "空 body 请求",
+      "desc": "不传任何业务参数（固定参数仍会合并），验证容错",
+      "body": {},
+      "expect": {
+        "http_status": 200
+      }
+    }
+
+  ]
+}

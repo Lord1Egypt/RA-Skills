@@ -1,0 +1,41 @@
+{
+  "name": "daily-hot-aggregator",
+  "version": "1.0.0",
+  "description": "🔥 一键获取全平台热榜！B站+微博+小红书+抖音+百度+知乎，一站搞定所有热点",
+  "author": "小天🦞",
+  "license": "MIT",
+  "keywords": [
+    "hot",
+    "trending",
+    "aggregator",
+    "bilibili",
+    "weibo",
+    "zhihu",
+    "baidu",
+    "热榜",
+    "聚合"
+  ],
+  "main": "fetch_all.py",
+  "scripts": {
+    "start": "python3 fetch_all.py",
+    "all": "python3 fetch_all.py --top 5",
+    "bilibili": "python3 fetch_all.py --bilibili --top 10",
+    "weibo": "python3 fetch_all.py --weibo --top 10",
+    "export": "python3 fetch_all.py --summary --output daily_report.json"
+  },
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "pricing": {
+    "free": {
+      "description": "免费版 - 每平台 Top 3",
+      "features": ["每平台Top 3", "基础数据展示"]
+    },
+    "pro": {
+      "price": 99,
+      "currency": "CNY",
+      "description": "Pro版 - 全部功能",
+      "features": ["每平台Top 10", "AI摘要", "多渠道推送", "定时任务", "跨平台分析"]
+    }
+  }
+}

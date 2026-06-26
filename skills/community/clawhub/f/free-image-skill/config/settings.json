@@ -1,0 +1,18 @@
+{
+  "free_mode": true,
+  "max_ai_cost": 0.0,
+  "prefer_free_sources": true,
+  "watermark_removal": "auto",
+  "output_format": "webp",
+  "default_size": "1200x800",
+  "quality": 85,
+  "free_sources": ["unsplash", "pexels", "pixabay"],
+  "ai_model": "dall-e-3",
+  "ai_quality": "standard",
+  "max_images_per_search": 20,
+  "cache_enabled": true,
+  "cache_ttl_days": 30,
+  "auto_watermark_detection": true,
+  "batch_processing": true,
+  "create_index": true
+}

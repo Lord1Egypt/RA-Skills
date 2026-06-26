@@ -1,0 +1,10 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-stripe-mcp": {
+      "baseUrl": "https://mcp.stripe.com",
+      "transport": "http",
+      "bearerTokenEnv": "MAVERICK_STRIPE_MCP_ACCESS_TOKEN"
+    }
+  }
+}

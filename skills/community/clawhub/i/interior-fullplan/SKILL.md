@@ -1,35 +1,37 @@
----
-name: "Interior Fullplan"
-description: "Generate a complete interior design plan including layout, lighting, materials, budget, and construction guidelines based on client input and design standards."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, design-plan, interior-design]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interior-fullplan"
-sourceUrl: "https://clawhub.ai/skills/interior-fullplan"
----
+# 室内设计·全案方案自动生成器
 
-# Interior Fullplan
+## 功能
+一键生成完整室内设计前期方案，包含：
+1. **户型诊断** —— 动线、采光、结构问题分析
+2. **风格定位** —— 主辅色、材质组合、避坑提示
+3. **平面布局逻辑** —— 尺寸规范、功能分区、收纳系统（文字版可直接转CAD）
+4. **灯光系统设计** —— 灯具选型、色温、防眩光要点
+5. **材料清单** —— 可落地极简选型推荐
+6. **预算拆分** —— 行业通用比例拆分
+7. **设计说明** —— 直接复制进方案册
+8. **施工要点** —— 规范级工艺注意事项
 
-> Generate a complete interior design plan including layout, lighting, materials, budget, and construction guidelines based on client input and design standards.
+输出格式：Markdown，可直接导入PPT/方案册，符合国内家装/工装规范。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interior-fullplan`
-- **Source URL:** [https://clawhub.ai/skills/interior-fullplan](https://clawhub.ai/skills/interior-fullplan)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
 ```bash
-hermes skills install clawhub/interior-fullplan
+# 交互式生成
+python3 generate_fullplan.py
 ```
+
+按提示输入：
+- 项目名称
+- 面积（㎡）
+- 户型结构
+- 风格定位
+- 客户需求
+
+输出：`项目名称_全案方案.md` 到指定路径
+
+## 设计规范遵循
+- 动线宽度：客餐厅≥900mm，卧室过道≥600mm
+- 衣柜深度：≥600mm
+- 厨房洗切炒顺序
+- 卫生间干湿分离、马桶中心距要求
+- 色温标准：客厅3500K / 卧室3000K / 厨房4000K
+- 防水高度规范

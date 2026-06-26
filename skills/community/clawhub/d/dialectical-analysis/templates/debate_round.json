@@ -1,0 +1,62 @@
+{
+  "round_template": {
+    "round": 0,
+    "agent": "pro|con",
+    "timestamp": "ISO8601时间戳",
+    "content": {
+      "main_arguments": [
+        {
+          "id": "pro_0_1",
+          "point": "核心观点",
+          "evidence": ["支撑论据1", "支撑论据2"],
+          "conditions": "适用条件",
+          "impact": "影响程度"
+        }
+      ],
+      "responses": [
+        {
+          "target": "con_-1",
+          "response": "回应内容",
+          "mitigation": "缓解措施或证明"
+        }
+      ],
+      "acknowledges_con": false,
+      "acknowledges_pro": false,
+      "new_points_count": 0,
+      "persuaded": false,
+      "summary": "本轮总结"
+    }
+  },
+  "convergence_check": {
+    "max_round": {
+      "condition": "current_round >= max_rounds",
+      "status": "max_round"
+    },
+    "consensus": {
+      "condition": "共识度 > 0.8",
+      "status": "consensus"
+    },
+    "mutual_acknowledgment": {
+      "condition": "pro_acknowledges_con AND con_acknowledges_pro",
+      "status": "mutual_acknowledgment"
+    },
+    "persuasion": {
+      "condition": "pro.persuaded OR con.persuaded",
+      "status": "persuasion"
+    },
+    "diminishing_returns": {
+      "condition": "pro_new_points == 0 AND con_new_points == 0",
+      "status": "diminishing_returns"
+    }
+  },
+  "debate_context": {
+    "topic": "分析主题",
+    "background": "背景信息",
+    "focus_questions": ["问题1", "问题2"],
+    "constraints": ["约束1", "约束2"],
+    "round": 0,
+    "max_rounds": 5,
+    "pro_previous": {},
+    "con_previous": {}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "python": {
+    "hello_world": "# Python Hello World\nprint(\"Hello, World!\")\n",
+    "web_server": "# Python Web Server using Flask\nfrom flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef hello():\n    return \"Hello, World!\"\n\nif __name__ == \"__main__\":\n    app.run(debug=True)\n",
+    "data_analysis": "# Python Data Analysis using pandas\nimport pandas as pd\n\n# Read data\ndf = pd.read_csv('data.csv')\n\n# Basic analysis\nprint(df.head())\nprint(df.describe())\n\n# Filter data\nfiltered = df[df['value'] > 100]\nprint(filtered)\n"
+  },
+  "javascript": {
+    "hello_world": "// JavaScript Hello World\nconsole.log(\"Hello, World!\");\n",
+    "web_server": "// JavaScript Web Server using Express\nconst express = require('express');\nconst app = express();\nconst port = 3000;\n\napp.get('/', (req, res) => {\n  res.send('Hello, World!');\n});\n\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});\n",
+    "react_component": "// React Component\nimport React from 'react';\n\nfunction HelloWorld() {\n  return (\n    <div>\n      <h1>Hello, World!</h1>\n      <p>Welcome to React</p>\n    </div>\n  );\n}\n\nexport default HelloWorld;\n"
+  },
+  "go": {
+    "hello_world": "// Go Hello World\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello, World!\")\n}\n",
+    "web_server": "// Go Web Server\npackage main\n\nimport (\n    \"fmt\"\n    \"net/http\"\n)\n\nfunc hello(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprintf(w, \"Hello, World!\")\n}\n\nfunc main() {\n    http.HandleFunc(\"/\", hello)\n    http.ListenAndServe(\":8080\", nil)\n}\n"
+  },
+  "java": {
+    "hello_world": "// Java Hello World\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n",
+    "web_server": "// Java Web Server using Spring Boot\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\n@SpringBootApplication\n@RestController\npublic class Application {\n\n    @GetMapping(\"/\")\n    public String hello() {\n        return \"Hello, World!\";\n    }\n\n    public static void main(String[] args) {\n        SpringApplication.run(Application.class, args);\n    }\n}\n"
+  }
+}

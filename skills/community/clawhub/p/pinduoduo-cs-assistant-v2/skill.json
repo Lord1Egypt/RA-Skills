@@ -1,0 +1,77 @@
+{
+  "name": "pinduoduo-cs-assistant-v2",
+  "displayName": "拼多多客服助手",
+  "version": "1.1.1",
+  "description": "拼多多商家客服自动化助手 - 浏览器自动登录拼多多商家后台、智能读取买家消息、自动生成回复话术、快捷发送回复、售后订单处理",
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/main/pinduoduo-cs-assistant",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills.git",
+    "directory": "pinduoduo-cs-assistant"
+  },
+  "keywords": [
+    "拼多多",
+    "客服",
+    "自动化",
+    "电商",
+    "商家后台",
+    "消息回复",
+    "售后处理",
+    "RPA",
+    "浏览器自动化"
+  ],
+  "categories": [
+    "电商运营",
+    "客服自动化",
+    "RPA",
+    "生产力工具"
+  ],
+  "features": [
+    "浏览器自动登录拼多多商家后台",
+    "实时监听买家咨询消息",
+    "智能匹配回复话术",
+    "一键发送快捷回复",
+    "售后工单自动处理",
+    "物流信息查询",
+    "数据看板统计"
+  ],
+  "requirements": {
+    "bins": ["node"],
+    "npm_deps": ["puppeteer"],
+    "os": ["linux", "darwin", "win32"]
+  },
+  "commands": [
+    {
+      "name": "login",
+      "description": "登录拼多多商家后台",
+      "usage": "node src/index.ts login --shop \"店铺名称\""
+    },
+    {
+      "name": "listen",
+      "description": "监听买家消息",
+      "usage": "node src/index.ts listen --duration 3600"
+    },
+    {
+      "name": "messages",
+      "description": "查看未读消息",
+      "usage": "node src/index.ts messages --unread"
+    },
+    {
+      "name": "reply",
+      "description": "智能回复买家",
+      "usage": "node src/index.ts reply --conversation-id \"会话 ID\""
+    },
+    {
+      "name": "templates",
+      "description": "管理话术库",
+      "usage": "node src/index.ts templates --list"
+    }
+  ],
+  "metadata": {
+    "emoji": "🛒",
+    "color": "#e02e24",
+    "icon": "shopping-cart"
+  }
+}

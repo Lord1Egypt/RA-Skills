@@ -1,0 +1,42 @@
+{
+  "name": "bioinfo-daily",
+  "version": "1.0.0",
+  "description": "每日生物信息学与肿瘤学研究进展日报生成器。使用 PubMed API 自动搜索前一天的 CNS 及 Nature Index 期刊文献，筛选生物信息学、肿瘤免疫、单细胞测序、空间转录组等领域的高影响力研究，生成包含中文亮点介绍的日报。",
+  "author": "王诗翔 (Shixiang Wang) <wangshx@csu.edu.cn>",
+  "license": "MIT",
+  "keywords": [
+    "bioinformatics",
+    "cancer",
+    "pubmed",
+    "daily-report",
+    "research",
+    "single-cell",
+    "spatial-transcriptomics",
+    "tumor-immunology"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WangLabCSU/bioinfo-daily-skill.git"
+  },
+  "homepage": "https://github.com/WangLabCSU/bioinfo-daily-skill",
+  "bugs": {
+    "url": "https://github.com/WangLabCSU/bioinfo-daily-skill/issues"
+  },
+  "main": "scripts/pubmed_search.py",
+  "scripts": {
+    "daily": "python3 scripts/pubmed_search.py"
+  },
+  "engines": {
+    "python": ">=3.6"
+  },
+  "openclaw": {
+    "skill": {
+      "name": "bioinfo-daily",
+      "displayName": "Bioinfo Daily - 生物信息学日报",
+      "description": "每日生物信息学与肿瘤学研究进展日报生成器。使用 PubMed API 自动搜索前一天的 CNS 及 Nature Index 期刊文献，筛选生物信息学、肿瘤免疫、单细胞测序、空间转录组等领域的高影响力研究，生成包含中文亮点介绍的日报。",
+      "entry": "SKILL.md",
+      "category": "science",
+      "tags": ["bioinformatics", "cancer", "pubmed", "research", "daily-report"]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "openclaw-pet",
+  "version": "0.1.0",
+  "description": "🐣 Tamagotchi-style coding companion for OpenClaw",
+  "main": "pet-cli.js",
+  "bin": { "openclaw-pet": "./pet-cli.js" },
+  "scripts": { "start": "node pet-cli.js" },
+  "keywords": ["openclaw", "skill", "pet", "game", "cli"],
+  "author": "TURAC",
+  "license": "MIT",
+  "dependencies": { "chalk": "^4.1.2", "express": "^4.18.0" }
+}

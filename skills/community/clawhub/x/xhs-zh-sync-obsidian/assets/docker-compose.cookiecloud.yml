@@ -1,0 +1,8 @@
+services:
+  cookiecloud:
+    image: dockerproxy.net/easychen/cookiecloud:latest
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./.cookiecloud-data:/data/api/data
+    restart: unless-stopped

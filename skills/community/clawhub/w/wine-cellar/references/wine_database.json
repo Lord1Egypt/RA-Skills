@@ -1,0 +1,88 @@
+{
+  "wines": [
+    {
+      "barcode": "085000014315",
+      "producer": "Robert Mondavi",
+      "name": "Private Selection",
+      "varietal": "Cabernet Sauvignon",
+      "vintage": "2019",
+      "region": "California",
+      "appellation": "Napa Valley",
+      "description": "A rich and fruity Cabernet with notes of black cherry and vanilla.",
+      "typical_price": 15.99,
+      "wine_spectator_score": 88
+    },
+    {
+      "barcode": "080686001022",
+      "producer": "Kendall-Jackson",
+      "name": "Vintner's Reserve",
+      "varietal": "Chardonnay",
+      "vintage": "2020",
+      "region": "California",
+      "appellation": "Sonoma County",
+      "description": "A buttery Chardonnay with tropical fruit and oak notes.",
+      "typical_price": 14.99,
+      "wine_spectator_score": 86
+    },
+    {
+      "barcode": "086024008345",
+      "producer": "La Crema",
+      "name": "Pinot Noir",
+      "varietal": "Pinot Noir",
+      "vintage": "2018",
+      "region": "California",
+      "appellation": "Sonoma Coast",
+      "description": "Elegant Pinot Noir with red fruit and spice notes.",
+      "typical_price": 24.99,
+      "wine_spectator_score": 91
+    },
+    {
+      "barcode": "088076009106",
+      "producer": "Kim Crawford",
+      "name": "Sauvignon Blanc",
+      "varietal": "Sauvignon Blanc",
+      "vintage": "2021",
+      "region": "New Zealand",
+      "appellation": "Marlborough",
+      "description": "Vibrant Sauvignon Blanc with citrus and tropical fruit notes.",
+      "typical_price": 16.99,
+      "wine_spectator_score": 89
+    },
+    {
+      "barcode": "080432106373",
+      "producer": "Masi",
+      "name": "Campofiorin",
+      "varietal": "Corvina Blend",
+      "vintage": "2017",
+      "region": "Italy",
+      "appellation": "Veneto",
+      "description": "Ripasso-style red with dried cherry and spice notes.",
+      "typical_price": 18.99,
+      "wine_spectator_score": 87
+    },
+    {
+      "barcode": "080660007254",
+      "producer": "Chateau Ste. Michelle",
+      "name": "Dry Riesling",
+      "varietal": "Riesling",
+      "vintage": "2020",
+      "region": "Washington State",
+      "appellation": "Columbia Valley",
+      "description": "Crisp Riesling with green apple and lime notes.",
+      "typical_price": 12.99,
+      "wine_spectator_score": 88
+    },
+    {
+      "barcode": "8437013484459",
+      "producer": "Finca Amelia",
+      "name": "Rioja Tempranillo",
+      "varietal": "Tempranillo",
+      "vintage": "2018",
+      "region": "Spain",
+      "appellation": "La Rioja",
+      "description": "A traditional Rioja Tempranillo with notes of red fruit, vanilla, and oak.",
+      "typical_price": 19.99,
+      "wine_spectator_score": 90
+    }
+  ]
+}

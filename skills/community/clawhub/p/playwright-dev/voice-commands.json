@@ -1,0 +1,157 @@
+{
+  "version": "1.0",
+  "created": "2026-03-08",
+  "device": "Kugou K8",
+  "wakeWord": "嗨阿福",
+  "commands": [
+    {
+      "name": "生成周报",
+      "action": "weekly-report",
+      "synonyms": ["周报", "写周报", "生成工作周报"],
+      "category": "执行类",
+      "description": "调用周报生成 Skill"
+    },
+    {
+      "name": "当前优先级",
+      "action": "priority-reminder",
+      "synonyms": ["优先级", "优先任务", "现在做啥", "现在做什么"],
+      "category": "查询类",
+      "description": "显示当前优先级提醒"
+    },
+    {
+      "name": "保存会话",
+      "action": "save-session",
+      "synonyms": ["保存豆包", "归档会话", "保存刚才的"],
+      "category": "执行类",
+      "description": "调用豆包会话归档 Skill"
+    },
+    {
+      "name": "打开 Chrome",
+      "action": "open-chrome",
+      "synonyms": ["开浏览器", "启动 Chrome", "打开浏览器"],
+      "category": "执行类",
+      "description": "启动 Chrome 浏览器"
+    },
+    {
+      "name": "发送飞书",
+      "action": "send-feishu",
+      "synonyms": ["发飞书", "通知", "发消息"],
+      "category": "执行类",
+      "description": "调用飞书消息自动化 Skill"
+    },
+    {
+      "name": "今天天气",
+      "action": "weather-today",
+      "synonyms": ["天气", "天气预报", "外面天气"],
+      "category": "查询类",
+      "description": "查询今天天气预报"
+    },
+    {
+      "name": "我的工作",
+      "action": "show-worklog",
+      "synonyms": ["工作日志", "worklog", "今天干了啥"],
+      "category": "查询类",
+      "description": "显示 worklog.txt 内容"
+    },
+    {
+      "name": "项目进度",
+      "action": "project-progress",
+      "synonyms": ["项目状态", "进度", "项目情况"],
+      "category": "查询类",
+      "description": "显示项目卡片进度"
+    },
+    {
+      "name": "播放语音",
+      "action": "play-voice",
+      "synonyms": ["播放", "放语音", "听语音"],
+      "category": "执行类",
+      "description": "播放最新 TTS 语音"
+    },
+    {
+      "name": "新建待办",
+      "action": "new-task",
+      "synonyms": ["添加待办", "创建任务", "新任务"],
+      "category": "创建类",
+      "description": "创建新的待办任务"
+    },
+    {
+      "name": "记录想法",
+      "action": "save-idea",
+      "synonyms": ["记一下", "记录", "写想法"],
+      "category": "创建类",
+      "description": "写入 memory/日期.md"
+    },
+    {
+      "name": "专家点评",
+      "action": "expert-review",
+      "synonyms": ["生成点评", "HTML 点评", "专家分析"],
+      "category": "执行类",
+      "description": "调用 HTML 专家点评 Skill"
+    },
+    {
+      "name": "知识库索引",
+      "action": "update-knowledge-index",
+      "synonyms": ["更新索引", "索引更新", "刷新知识库"],
+      "category": "执行类",
+      "description": "运行知识库索引更新脚本"
+    },
+    {
+      "name": "OAuth 配置",
+      "action": "oauth-config",
+      "synonyms": ["飞书 OAuth", "配置 OAuth", "授权配置"],
+      "category": "执行类",
+      "description": "飞书 OAuth 配置流程"
+    },
+    {
+      "name": "查看文件",
+      "action": "view-file",
+      "synonyms": ["打开文件", "看文件", "显示文件"],
+      "category": "查询类",
+      "description": "查看指定文件内容"
+    },
+    {
+      "name": "删除提醒",
+      "action": "delete-reminder",
+      "synonyms": ["删除任务", "取消提醒", "移除"],
+      "category": "删除类",
+      "description": "删除 Cron 任务或提醒"
+    },
+    {
+      "name": "清空缓存",
+      "action": "clear-cache",
+      "synonyms": ["清理缓存", "清理 Temp", "清空临时文件"],
+      "category": "删除类",
+      "description": "清理 Temp 文件夹"
+    },
+    {
+      "name": "技能列表",
+      "action": "list-skills",
+      "synonyms": ["有哪些技能", "技能", "你能干啥"],
+      "category": "查询类",
+      "description": "显示所有可用 Skills"
+    },
+    {
+      "name": "帮助",
+      "action": "help",
+      "synonyms": ["咋用", "怎么用", "帮助", "help"],
+      "category": "查询类",
+      "description": "显示语音控制帮助信息"
+    },
+    {
+      "name": "晚安",
+      "action": "goodnight",
+      "synonyms": ["睡觉", "休息", "晚安记忆同步"],
+      "category": "执行类",
+      "description": "调用晚安记忆同步 Skill"
+    }
+  ],
+  "settings": {
+    "recognitionEngine": "aliyun",
+    "fallbackEngine": "whisper",
+    "language": "zh-CN",
+    "minConfidence": 0.5,
+    "autoPlayFeedback": true,
+    "sendTextFeedback": true,
+    "logAllCommands": true
+  }
+}

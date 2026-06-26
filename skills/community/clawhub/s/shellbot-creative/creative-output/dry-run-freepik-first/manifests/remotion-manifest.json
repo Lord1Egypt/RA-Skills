@@ -1,0 +1,154 @@
+{
+  "composition": {
+    "id": "Creative_create-a-45-second-product-marketing-video-for-a",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "durationInFrames": 1350,
+    "defaultProps": {
+      "title": "Create a 45-second product marketing video for an AI note-taking app for founders",
+      "aspectRatio": "16:9",
+      "sequences": [
+        {
+          "id": 1,
+          "name": "Scene 1: Hook",
+          "from": 0,
+          "durationInFrames": 180,
+          "goal": "Hook",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Hook scene, 16:9, modern cinematic lighting.",
+          "animationHint": "dynamic opener with brand color burst",
+          "narration": "Hook: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "Hook - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-1.mp4",
+            "fallbackImage": "./assets/scene-1.png"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Scene 2: Pain",
+          "from": 180,
+          "durationInFrames": 180,
+          "goal": "Pain",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Pain scene, 16:9, modern cinematic lighting.",
+          "animationHint": "fast cuts of user frustration",
+          "narration": "Pain: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "Pain - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-2.mp4",
+            "fallbackImage": "./assets/scene-2.png"
+          }
+        },
+        {
+          "id": 3,
+          "name": "Scene 3: Reveal",
+          "from": 360,
+          "durationInFrames": 180,
+          "goal": "Reveal",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Reveal scene, 16:9, modern cinematic lighting.",
+          "animationHint": "hero product reveal with camera push-in",
+          "narration": "Reveal: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "Reveal - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-3.mp4",
+            "fallbackImage": "./assets/scene-3.png"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Scene 4: Features",
+          "from": 540,
+          "durationInFrames": 180,
+          "goal": "Features",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Features scene, 16:9, modern cinematic lighting.",
+          "animationHint": "interface zooms and feature callouts",
+          "narration": "Features: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "Features - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-4.mp4",
+            "fallbackImage": "./assets/scene-4.png"
+          }
+        },
+        {
+          "id": 5,
+          "name": "Scene 5: Proof",
+          "from": 720,
+          "durationInFrames": 180,
+          "goal": "Proof",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Proof scene, 16:9, modern cinematic lighting.",
+          "animationHint": "testimonial or metric-driven proof scene",
+          "narration": "Proof: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "Proof - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-5.mp4",
+            "fallbackImage": "./assets/scene-5.png"
+          }
+        },
+        {
+          "id": 6,
+          "name": "Scene 6: CTA",
+          "from": 900,
+          "durationInFrames": 150,
+          "goal": "CTA",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. CTA scene, 16:9, modern cinematic lighting.",
+          "animationHint": "clean end card with strong call to action",
+          "narration": "CTA: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "CTA - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-6.mp4",
+            "fallbackImage": "./assets/scene-6.png"
+          }
+        },
+        {
+          "id": 7,
+          "name": "Scene 7: Hook",
+          "from": 1050,
+          "durationInFrames": 150,
+          "goal": "Hook",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Hook scene, 16:9, modern cinematic lighting.",
+          "animationHint": "dynamic opener with brand color burst",
+          "narration": "Hook: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused.",
+          "onScreenText": "Hook - Create a 45-second product marketing video for an AI note-taking app for",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-7.mp4",
+            "fallbackImage": "./assets/scene-7.png"
+          }
+        },
+        {
+          "id": 8,
+          "name": "Scene 8: Pain",
+          "from": 1200,
+          "durationInFrames": 150,
+          "goal": "Pain",
+          "visualPrompt": "Create a 45-second product marketing video for an AI note-taking app for founders. Pain scene, 16:9, modern cinematic lighting.",
+          "animationHint": "fast cuts of user frustration",
+          "narration": "Pain: Create a 45-second product marketing video for an AI note-taking app for founders. Keep this line concise, clear, and benefit-focused. Try it today",
+          "onScreenText": "Try it today",
+          "asset": {
+            "type": "image_or_video",
+            "src": "./assets/scene-8.mp4",
+            "fallbackImage": "./assets/scene-8.png"
+          }
+        }
+      ],
+      "audio": {
+        "voiceover": "./audio/voiceover.mp3",
+        "music": "./audio/music.mp3",
+        "musicVolume": 0.2,
+        "voiceVolume": 1.0
+      },
+      "style": {
+        "captionSafeMargin": 80,
+        "textColor": "#FFFFFF",
+        "brandAccent": "#6C5CE7"
+      }
+    }
+  }
+}

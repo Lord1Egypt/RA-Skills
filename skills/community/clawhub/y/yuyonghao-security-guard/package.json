@@ -1,0 +1,23 @@
+{
+  "name": "security-guard",
+  "version": "0.1.0",
+  "description": "OpenClaw 安全守护系统 - 权限管理 + 内容审查 + 审计日志",
+  "main": "src/security-guard.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/security-test.js"
+  },
+  "keywords": [
+    "security",
+    "guardrails",
+    "permissions",
+    "audit",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuyonghao-123/openclaw-skills"
+  }
+}

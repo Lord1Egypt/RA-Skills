@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "destination": "Seoul",
+    "locationKey": "g294197",
+    "agodaCityId": 14690,
+    "checkIn": "2026-04-10",
+    "checkOut": "2026-04-12",
+    "nights": 2,
+    "adults": 2,
+    "rooms": 1,
+    "currency": "USD",
+    "mode": "free_xotelo",
+    "agodaSearchUrl": "https://www.agoda.com/search?city=14690&checkIn=2026-04-10&checkOut=2026-04-12&los=2&rooms=1&adults=2&currency=USD",
+    "totalHotelsInCity": 4170
+  },
+  "hotels": [
+    {
+      "rank": 1,
+      "name": "Hotel the BOTANIK Sewoon Myeongdong",
+      "key": "g294197-d32743802",
+      "type": "Hotel",
+      "rating": 4.9,
+      "reviewCount": 352,
+      "priceRange": { "min": 113, "max": 301 },
+      "geo": { "lat": 37.56747, "lng": 126.99403 },
+      "otaPrices": [
+        {
+          "ota": "Agoda.com",
+          "code": "Agoda",
+          "rate": 280,
+          "tax": 53,
+          "total": 333,
+          "bookingUrl": "https://www.agoda.com/search?q=Hotel%20the%20BOTANIK%20Sewoon%20Myeongdong&city=14690&checkIn=2026-04-10&checkOut=2026-04-12&los=2&rooms=1&adults=2"
+        },
+        {
+          "ota": "Trip.com",
+          "code": "CtripTA",
+          "rate": 347,
+          "tax": 34,
+          "total": 381,
+          "bookingUrl": "https://www.trip.com/hotels/list?keyword=Hotel%20the%20BOTANIK%20Sewoon%20Myeongdong&checkin=2026-04-10&checkout=2026-04-12"
+        },
+        {
+          "ota": "Vio.com",
+          "code": "Vio",
+          "rate": 371,
+          "tax": 37,
+          "total": 408,
+          "bookingUrl": "https://www.vio.com/?q=Hotel%20the%20BOTANIK%20Sewoon%20Myeongdong"
+        },
+        {
+          "ota": "Booking.com",
+          "code": "BookingCom",
+          "rate": 348,
+          "tax": 67,
+          "total": 415,
+          "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20the%20BOTANIK%20Sewoon%20Myeongdong&checkin=2026-04-10&checkout=2026-04-12&group_adults=2&no_rooms=1"
+        }
+      ],
+      "bestDeal": { "ota": "Agoda.com", "total": 333 },
+      "savings": 82,
+      "savingsNote": "Save $82 by booking on Agoda.com vs Booking.com"
+    },
+    {
+      "rank": 2,
+      "name": "Hotel Skypark Myeongdong 3",
+      "key": "g294197-d2202400",
+      "type": "Hotel",
+      "rating": 4.7,
+      "reviewCount": 2272,
+      "priceRange": { "min": 113, "max": 314 },
+      "otaPrices": [
+        {
+          "ota": "Trip.com",
+          "code": "CtripTA",
+          "rate": 266,
+          "tax": 26,
+          "total": 292,
+          "bookingUrl": "https://www.trip.com/hotels/list?keyword=Hotel%20Skypark%20Myeongdong%203&checkin=2026-04-10&checkout=2026-04-12"
+        },
+        {
+          "ota": "Agoda.com",
+          "code": "Agoda",
+          "rate": 253,
+          "tax": 50,
+          "total": 303,
+          "bookingUrl": "https://www.agoda.com/search?q=Hotel%20Skypark%20Myeongdong%203&city=14690&checkIn=2026-04-10&checkOut=2026-04-12&los=2&rooms=1&adults=2"
+        },
+        {
+          "ota": "Booking.com",
+          "code": "BookingCom",
+          "rate": 276,
+          "tax": 58,
+          "total": 334,
+          "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Skypark%20Myeongdong%203&checkin=2026-04-10&checkout=2026-04-12&group_adults=2&no_rooms=1"
+        },
+        {
+          "ota": "Vio.com",
+          "code": "Vio",
+          "rate": 368,
+          "tax": 36,
+          "total": 404,
+          "bookingUrl": "https://www.vio.com/?q=Hotel%20Skypark%20Myeongdong%203"
+        }
+      ],
+      "bestDeal": { "ota": "Trip.com", "total": 292 },
+      "savings": 112,
+      "savingsNote": "Save $112 by booking on Trip.com vs Vio.com"
+    }
+  ]
+}

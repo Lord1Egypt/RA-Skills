@@ -1,35 +1,21 @@
 ---
-name: "api-docs"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/api-docs"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/api-docs"
+name: api-docs
+description: Generate API documentation from source code with JSDoc and OpenAPI support
+argument-hint: "<source-path>"
+allowed-tools: Bash(npx *) mcp__claude-flow__hooks_worker-dispatch Read Write Grep
 ---
+Generate API documentation from TypeScript/JavaScript source:
 
-# api-docs
+1. **Scan exports**: Find all public functions, classes, and interfaces
+2. **Extract JSDoc**: Parse `@param`, `@returns`, `@throws`, `@example` annotations
+3. **Generate missing docs**: Add JSDoc for undocumented public APIs
+4. **OpenAPI spec**: For HTTP endpoints, generate OpenAPI 3.0 definitions
 
-> Indexed by skills.sh from ruvnet/ruflo
+Dispatch via MCP: `mcp__claude-flow__hooks_worker-dispatch({ trigger: "document", scope: "api" })`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/api-docs`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/api-docs](https://skills.sh/ruvnet/ruflo/api-docs)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/api-docs
-```
+Conventions:
+- Every public export must have a JSDoc comment
+- Include `@param` with type and description
+- Include `@returns` with type and description
+- Include `@throws` for known error conditions
+- Include `@example` for non-obvious usage

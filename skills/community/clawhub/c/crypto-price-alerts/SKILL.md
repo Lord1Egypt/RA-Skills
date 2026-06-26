@@ -1,35 +1,43 @@
----
-name: "Crypto Price Alerts"
-description: "Set and manage price alerts for any cryptocurrency pair and receive instant notifications when targets are reached."
-category: "blockchain"
-source: "ClawHub"
-tags: [alerts, crypto, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-price-alerts"
-sourceUrl: "https://clawhub.ai/skills/crypto-price-alerts"
----
+# Crypto Price Alerts Skill
 
-# Crypto Price Alerts
+Set price alerts for cryptocurrencies and get instant notifications.
 
-> Set and manage price alerts for any cryptocurrency pair and receive instant notifications when targets are reached.
+## Capabilities
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-price-alerts`
-- **Source URL:** [https://clawhub.ai/skills/crypto-price-alerts](https://clawhub.ai/skills/crypto-price-alerts)
+- Set price alerts for any crypto pair
+- Monitor multiple alerts simultaneously
+- Get notified via message when price hits target
+- Manage alerts (list, add, remove)
 
-## Overview
+## Commands
 
+- "Alert me when BTC hits $100k"
+- "Notify me if ETH drops below $3000"
+- "Show my active alerts"
+- "Remove BTC alert"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crypto-price-alerts
-```
+## Setup
+
+Alerts are stored locally in `~/.openclaw/workspace/data/price_alerts.json`
+
+## Tools
+
+### set_price_alert
+Create a new price alert.
+
+### list_alerts
+Show all active alerts.
+
+### remove_alert
+Delete an alert.
+
+### check_alerts
+Check if any alerts have been triggered (runs automatically).
+
+## Pricing
+
+$3/month subscription
+
+## Author
+
+AI Trading Tools

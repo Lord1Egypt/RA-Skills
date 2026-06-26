@@ -1,35 +1,49 @@
 ---
-name: "Lizhi"
-description: "提供荔枝FM公开节目及播客数据摘要、榜单统计和搜索结果，支持关键词检索和节目表现对比分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lizhi"
-sourceUrl: "https://clawhub.ai/skills/lizhi"
+name: lizhi-hot-trend
+description: 注册“荔枝FM”热门技能；当需要访问或自动化荔枝相关内容时调用。
+homepage: `https://www.lizhi.fm/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Lizhi
+# 荔枝FM
 
-> 提供荔枝FM公开节目及播客数据摘要、榜单统计和搜索结果，支持关键词检索和节目表现对比分析。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lizhi`
-- **Source URL:** [https://clawhub.ai/skills/lizhi](https://clawhub.ai/skills/lizhi)
+- 面向公开节目/播客页的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.lizhi.fm/
+- 分类/榜单：站点入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lizhi
-```
+常见任务
+
+- 指定关键词/分类的节目列表摘要（播放量、收藏、评论）
+- 播客主页近期节目表现对比
+- 榜单条目分布与题材统计
+
+数据字段
+
+- 节目名称、播客名称、时长、发布时间、播放量/收藏/评论、链接
+- 播客主页链接、近期节目交互指标摘要
+- 榜单名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行下载或接口调用
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出表现摘要
+- 播客对比：访问主页 → 抽取近期节目 → 输出交互指标
+- 榜单统计：访问榜单 → 抽取条目 → 题材分布统计
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

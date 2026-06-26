@@ -1,0 +1,31 @@
+# 智能文档助手 - 配置文件
+# 支持 ${ENV_VAR} 和 ${ENV_VAR:default} 语法
+
+# 爬虫配置
+crawler:
+  request_delay: 1.0  # 请求间隔（秒），建议 1-2 秒，避免触发速率限制
+  max_retries: 2      # 最大重试次数
+  timeout: 15         # 请求超时时间（秒）
+
+# 存储配置
+storage:
+  type: "sqlite"
+  db_path: "./data/docs.db"
+  keep_versions: 10
+
+# 缓存配置
+cache:
+  enabled: true
+  cache_dir: "./cache"
+  ttl_hours: 24  # 缓存有效期 24 小时
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "./logs/monitor.log"
+
+# 通知配置
+notifications:
+  - type: "file"
+    enabled: true
+    output_dir: "./notifications"

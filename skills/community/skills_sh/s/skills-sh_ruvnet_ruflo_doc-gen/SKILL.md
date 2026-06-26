@@ -1,35 +1,19 @@
 ---
-name: "doc-gen"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/doc-gen"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/doc-gen"
+name: doc-gen
+description: Generate and maintain documentation with drift detection
+argument-hint: "[--target PATH]"
+allowed-tools: Bash(npx *) mcp__claude-flow__hooks_worker-dispatch mcp__claude-flow__memory_store CronCreate Read Write
 ---
+Generate docs via MCP worker dispatch:
+`mcp__claude-flow__hooks_worker-dispatch({ trigger: "document" })`
 
-# doc-gen
+For continuous doc maintenance via CronCreate:
+`CronCreate({ schedule: "0 */2 * * *", prompt: "Run document worker" })`
 
-> Indexed by skills.sh from ruvnet/ruflo
+Detect drift by comparing current code against existing docs and flagging inconsistencies.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/doc-gen`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/doc-gen](https://skills.sh/ruvnet/ruflo/doc-gen)
+Scoped generation:
+- API docs: `npx @claude-flow/cli@latest hooks worker dispatch --trigger document --scope api`
+- Full project: `npx @claude-flow/cli@latest hooks worker dispatch --trigger document --scope full`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/doc-gen
-```
+Store the approach: `mcp__claude-flow__memory_store({ key: "doc-pattern", value: "APPROACH", namespace: "patterns" })`

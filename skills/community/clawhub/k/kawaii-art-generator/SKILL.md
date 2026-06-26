@@ -1,35 +1,34 @@
 ---
-name: "Kawaii Art Generator"
-description: "AI kawaii art generator — create cute kawaii characters, chibi-style illustrations, and adorable Japanese kawaii artwork with soft pastel colors, big sparkli..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kawaii-art-generator"
-sourceUrl: "https://clawhub.ai/skills/kawaii-art-generator"
+name: kawaii-art-generator
+description: AI kawaii art generator — create cute kawaii characters, chibi-style illustrations, and adorable Japanese kawaii artwork with soft pastel colors, big sparkling eyes, and dreamy aesthetics. Perfect for kawaii profile pictures, cute stickers, chibi OC designs, and kawaii wallpapers via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Kawaii Art Generator
 
-> AI kawaii art generator — create cute kawaii characters, chibi-style illustrations, and adorable Japanese kawaii artwork with soft pastel colors, big sparkli...
+AI kawaii art generator — create cute kawaii characters, chibi-style illustrations, and adorable Japanese kawaii artwork with soft pastel colors, big sparkling eyes, and dreamy aesthetics. Perfect for kawaii profile pictures, cute stickers, chibi OC designs, and kawaii wallpapers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kawaii-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/kawaii-art-generator](https://clawhub.ai/skills/kawaii-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/kawaii-art-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create kawaii art generator images.
+
+## Quick start
+```bash
+node kawaiiartgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `square`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/kawaii-art-generator
 ```

@@ -1,0 +1,14 @@
+{
+  "name": "multi-step-workflow",
+  "version": "4.4.5",
+  "description": "Professional SOP with Machine-Gated Planning, Native-CLI Config, and Audit-Hardened Private Sandbox Storage.",
+  "homepage": "https://github.com/chyern/Agent-Skills",
+  "repository": "https://github.com/chyern/Agent-Skills.git",
+  "requires": {
+    "bins": [
+      "node",
+      "openclaw"
+    ],
+    "envs": []
+  }
+}

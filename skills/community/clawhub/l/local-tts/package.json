@@ -1,0 +1,54 @@
+{
+  "name": "local-tts",
+  "version": "1.0.0",
+  "description": "Local text-to-speech using Qwen3-TTS with mlx_audio (macOS) or qwen-tts (Linux/Windows). Privacy-first offline TTS with voice cloning and voice design capabilities.",
+  "author": "irachex",
+  "license": "MIT",
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "qwen3-tts",
+    "local",
+    "offline",
+    "privacy",
+    "voice-cloning",
+    "voice-design",
+    "mlx-audio",
+    "qwen-tts",
+    "natural",
+    "real",
+    "realistic",
+    "human-like",
+    "high-quality"
+  ],
+  "homepage": "https://github.com/irachex/local-tts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/irachex/local-tts.git"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "platforms": [
+    "macOS (Apple Silicon)",
+    "Linux",
+    "Windows"
+  ],
+  "requirements": {
+    "macos": {
+      "python": ">=3.8",
+      "packages": ["mlx-audio", "ffmpeg"],
+      "hardware": "Apple Silicon (M1/M2/M3/M4)"
+    },
+    "linux": {
+      "python": ">=3.8",
+      "packages": ["qwen-tts", "torch", "transformers"],
+      "hardware": "NVIDIA GPU with CUDA (recommended)"
+    },
+    "windows": {
+      "python": ">=3.8",
+      "packages": ["qwen-tts", "torch", "transformers"],
+      "hardware": "NVIDIA GPU with CUDA (recommended)"
+    }
+  }
+}

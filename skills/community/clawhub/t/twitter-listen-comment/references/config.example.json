@@ -1,0 +1,23 @@
+{
+  "pollIntervalSeconds": 10,
+  "maxResultsPerUser": 5,
+  "fromUsers": [
+    "0xJJbone"
+  ],
+  "agentTarget": "telegram:YOUR_CHAT_ID",
+  "notifyChannel": "telegram",
+  "notifyTarget": "telegram:YOUR_CHAT_ID",
+  "maxTweetAgeSeconds": 300,
+  "replyStyle": {
+    "language": "zh",
+    "tone": "humorous",
+    "maxSentences": 2,
+    "constraints": [
+      "像真人",
+      "简短",
+      "不客服腔",
+      "不要投资建议",
+      "不要夸张承诺"
+    ]
+  }
+}

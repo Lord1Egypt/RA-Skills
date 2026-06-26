@@ -1,0 +1,146 @@
+{
+  "thresholds": {
+    "audit_bytes": 8192,
+    "cleanup_bytes": 20480,
+    "critical_bytes": 40960,
+    "fuzzy_duplicate_ratio": 0.72,
+    "fuzzy_duplicate_min_length": 28,
+    "pollution_notice_ratio": 0.2,
+    "pollution_cleanup_ratio": 0.35
+  },
+  "intervention_triggers": {
+    "secret_count_gt": 0,
+    "conflict_count_gt": 0,
+    "task_state_count_gt": 0,
+    "pollution_notice_ratio": 0.2,
+    "pollution_cleanup_ratio": 0.35,
+    "candidate_remove_or_flag": true
+  },
+  "likely_memory_names": [
+    "user.md",
+    "user.txt",
+    "user.json",
+    "memory.md",
+    "memory.txt",
+    "memory.json",
+    "memories.md",
+    "memories.txt",
+    "memories.json",
+    "profile.md",
+    "profile.txt",
+    "profile.json",
+    "preferences.md",
+    "preferences.txt",
+    "preferences.json",
+    "agent_memory.md",
+    "agent_memory.txt",
+    "agent_memory.json"
+  ],
+  "allowed_memory_extensions": [".md", ".txt", ".json"],
+  "blocked_memory_extensions": [".db", ".sqlite", ".sqlite3", ".bin"],
+  "project_policy_names": [
+    "agents.md",
+    "claude.md",
+    ".cursorrules"
+  ],
+  "search_roots": [
+    ".",
+    ".codex",
+    ".claude",
+    "memory",
+    "memories"
+  ],
+  "keep_patterns": [
+    "\\bprefer(?:s|red|ence)?\\b",
+    "\\bwants?\\b",
+    "\\brequires?\\b",
+    "\\bneeds?\\b",
+    "\\balways\\b",
+    "\\bnever\\b",
+    "\\bworks? with\\b",
+    "\\buses?\\b",
+    "\\blanguage\\b",
+    "\\btimezone\\b",
+    "\\blocale\\b",
+    "\\bbackups?\\b",
+    "\\btesting\\b",
+    "\\bcommunication\\b",
+    "\\bformat(?:ting)?\\b",
+    "\\bopenclaw\\b",
+    "\\bhermes agent\\b",
+    "\\bcodex\\b"
+  ],
+  "remove_patterns": [
+    "\\bcurrent task\\b",
+    "\\bnext step\\b",
+    "\\btodo\\b",
+    "\\btoday\\b",
+    "\\btomorrow\\b",
+    "\\byesterday\\b",
+    "\\blast week\\b",
+    "\\bafter lunch\\b",
+    "\\bdebug(?:ged|ging)?\\b",
+    "\\bstack trace\\b",
+    "\\blog output\\b",
+    "\\btemporary\\b",
+    "\\bone[- ]off\\b",
+    "\\bbranch\\b",
+    "\\bpr\\s*#?\\d+\\b",
+    "\\bpull request\\b",
+    "\\bissue\\s*#?\\d+\\b",
+    "\\bticket\\b",
+    "\\brerun\\b",
+    "\\bpytest\\b"
+  ],
+  "secret_patterns": [
+    "sk-[A-Za-z0-9_-]{16,}",
+    "ghp_[A-Za-z0-9_]{16,}",
+    "github_pat_[A-Za-z0-9_]{16,}",
+    "xox[baprs]-[A-Za-z0-9-]{16,}",
+    "AKIA[0-9A-Z]{16}",
+    "glpat-[A-Za-z0-9_-]{16,}",
+    "pypi-[A-Za-z0-9_-]{20,}",
+    "npm_[A-Za-z0-9]{20,}",
+    "AKCp[A-Za-z0-9]{10,}",
+    "jfrog_[A-Za-z0-9_-]{16,}",
+    "(?i)\\b(api[_-]?key|token|password|secret)\\s*[:=]\\s*['\\\"]?[^'\\\"\\s`]+",
+    "(?i)\\bBearer\\s+[A-Za-z0-9._-]{16,}",
+    "<API_TOKEN_PLACEHOLDER>"
+  ],
+  "task_state_patterns": [
+    "\\bcurrent task\\b",
+    "\\bnext step\\b",
+    "\\btodo\\b",
+    "\\btoday\\b",
+    "\\btomorrow\\b",
+    "\\byesterday\\b",
+    "\\blast week\\b",
+    "\\bbranch\\b",
+    "\\bpr\\s*#?\\d+\\b",
+    "\\bdebug(?:ged|ging)?\\b",
+    "\\bstack trace\\b"
+  ],
+  "conflict_rules": [
+    {
+      "name": "answer_length_preference",
+      "positive": ["concise", "short", "brief", "direct"],
+      "negative": ["detailed", "long-form", "very long", "exhaustive"]
+    },
+    {
+      "name": "cleanup_permission",
+      "positive": ["ask before editing", "ask before applying", "requires approval", "with user approval"],
+      "negative": ["automatic cleanup without asking", "apply without asking", "unattended edits"]
+    }
+  ],
+  "condense_rewrites": [
+    {
+      "when_contains_any": ["backup", "backups"],
+      "rewrite": "The user wants recoverable backups before edits to memory files"
+    },
+    {
+      "when_contains_any": ["openclaw", "hermes agent", "codex"],
+      "rewrite": "The user works with agent memory files across OpenClaw, Hermes Agent, and Codex"
+    }
+  ],
+  "secret_instruction": "Do not store secrets, tokens, passwords, or credentials in memory files"
+}

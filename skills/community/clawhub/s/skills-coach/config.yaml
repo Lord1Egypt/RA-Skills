@@ -1,0 +1,296 @@
+# Skills-Coach v2.3.1 Configuration
+
+# Optimization Method Selection
+optimization:
+  method: "training_free_grpo"       # training_free_grpo | vanilla_grpo
+  # training_free_grpo: No parameter updates, uses experience library (recommended)
+  # vanilla_grpo: Traditional GRPO with numerical advantages (legacy)
+
+# Training-Free GRPO Parameters (v2.0.0)
+training_free_grpo:
+  group_size: 2                      # Number of rollouts per group (G) - REDUCED for large docs
+  num_epochs: 2                      # Number of optimization epochs
+  temperature_learning: 0.7          # Temperature during learning phase
+  temperature_eval: 0.3              # Temperature during evaluation
+
+  # Experience Library Management
+  max_experiences: 10                # Maximum experiences to keep per domain
+  experience_confidence_threshold: 0.6  # Minimum confidence to use experience
+
+  # Command Optimization (v2.1.0)
+  command_optimization:
+    enabled: false                   # Enable command optimization - DISABLED due to API timeout issues
+    analyze_execution_results: true  # Analyze command execution results
+    improve_poor_commands: true      # Generate improved commands for poor output
+    min_output_threshold: 100        # Minimum output bytes to consider acceptable
+    test_improved_commands: true     # Test improved commands before applying
+    max_command_timeout: 30          # Timeout for command execution (seconds)
+
+  # Domain-Specific Optimization
+  markdown_optimization:
+    enabled: true
+    focus_areas:
+      - clarity
+      - structure
+      - examples
+      - completeness
+
+  code_optimization:
+    enabled: true
+    focus_areas:
+      - bug_fixes
+      - error_handling
+      - performance
+      - code_quality
+    optimize_files:
+      - "*.py"
+      - "*.sh"
+
+  # LLM Configuration
+  llm_model: "claude-sonnet-4-6"     # Model for introspection and generation
+  max_tokens_summary: 300            # Max tokens for rollout summaries - REDUCED
+  max_tokens_advantage: 300          # Max tokens for semantic advantage - REDUCED
+  max_tokens_variant: 4000           # Max tokens for variant generation - REDUCED for faster processing
+
+# Legacy GRPO Parameters (for vanilla_grpo method)
+grpo:
+  num_variants: 4                    # Number of candidate variants per iteration
+  min_iterations: 3                  # Minimum iterations before early stopping
+  max_iterations: 10                 # Maximum iterations
+  early_stop_patience: 2             # Stop if no improvement for N iterations
+
+  # Mutation Strategy
+  mutation_strategy: "adaptive"      # adaptive | conservative | aggressive
+  diversity_weight: 0.3              # Weight for mutation diversity (0-1)
+
+  # v1.5.0: Variant Diversity Control
+  min_variant_diversity: 0.1         # Minimum diversity score between variants
+  switch_strategy_on_stagnation: true # Switch to aggressive mode if all variants identical
+  exploration_mode_threshold: 3      # Enter exploration mode after N identical iterations
+
+  # Optimization Levels (v1.2.0)
+  optimization_levels:
+    - skill_md                       # Always enabled
+    - code                           # NEW: Optimize Python/shell scripts
+    - config                         # NEW: Tune configuration files
+
+  # Code Optimization (v1.2.0)
+  code_mutations:
+    - add_caching
+    - add_validation
+    - optimize_algorithm
+    - add_error_handling
+    - refactor_structure
+
+  # Overfitting Prevention
+  use_validation_set: false          # Split training set for validation (future)
+  validation_split: 0.2              # Percentage for validation (future)
+  overfitting_penalty: 0.2           # Penalty when train >> val (future)
+
+# Task Generation Parameters (v1.5.0 Enhanced)
+task_generation:
+  num_training_tasks: 12             # Base training tasks (before boundary probing)
+  num_test_tasks: 8                  # Base test tasks (before boundary probing)
+
+  # Task Distribution (v1.2.0)
+  # When boundary probing is enabled, final counts will be:
+  # - Training: 6 standard + 4 advanced + 6 boundary = 16 total
+  # - Test: 4 standard + 3 advanced + 3 boundary = 10 total
+  standard_ratio: 0.5                # 6/12 training (50%)
+  advanced_ratio: 0.5                # 6/12 training (50%)
+  boundary_ratio: 0.375              # 6/16 final training (when enabled)
+
+  # Task Diversity (v2.2.0)
+  ensure_diversity: true             # Ensure diverse task types
+  max_similarity: 0.3                # Maximum similarity between tasks (0-1)
+  local_file_ratio: 0.6              # Ratio of tasks using local files (no downloads) - INCREASED
+  api_task_ratio: 0.1                # Ratio of tasks requiring API calls - REDUCED to minimize API dependencies
+  offline_task_ratio: 0.3            # Ratio of tasks that work completely offline
+
+  # Boundary Probing (v1.2.0)
+  probe_boundaries: true             # NEW: Generate boundary tasks
+  boundary_types:
+    - input_minimal
+    - input_maximal
+    - input_invalid
+    - resource_limits
+    - failure_modes
+    - combinations
+
+  # Task Diversity
+  ensure_diversity: true             # Check for task overlap
+  max_similarity: 0.3                # Max allowed similarity between tasks
+
+# Evaluation Parameters
+evaluation:
+  pass_threshold_default: 0.7        # Default pass threshold (70%)
+
+  # Retention Decision
+  min_improvement: 0.0               # Minimum improvement to retain (0 = any improvement)
+  max_regression_count: 3            # Max regressed tasks before rejection
+
+  # Scoring Weights
+  weights:
+    pass_rate: 0.3
+    avg_score: 0.4
+    standard_score: 0.15
+    advanced_score: 0.15
+
+# Execution Parameters
+execution:
+  timeout_per_task: 300              # Timeout in seconds (5 minutes)
+  max_retries: 2                     # Retry failed executions
+  parallel_execution: false          # Run tasks in parallel (NEW v1.3)
+  auto_install_deps: true           # Auto-install missing dependencies (NEW v1.3)
+  track_performance: true            # Track CPU/memory metrics (NEW v1.3)
+  stuck_process_timeout_minutes: 30  # Kill process after N minutes of zero CPU (NEW v2.1)
+
+# GRPO Training Execution Mode (NEW v1.4.1)
+grpo_execution:
+  mode: "real"                  # simulated | real
+  # simulated: Fast, uses deterministic scoring (seconds per iteration)
+  # real: Slow but accurate, executes actual commands (minutes per iteration)
+
+# Final Evaluation Execution Mode (NEW v1.4.1)
+evaluation_execution:
+  mode: "real"                       # simulated | real
+  # real (default): Always use real execution for final test evaluation
+  # simulated: Only for debugging, not recommended for production
+
+# Output Structure (v1.2.0)
+output:
+  use_versioned_runs: true           # NEW: Create timestamped run directories
+  runs_directory: "skills-coach-runs"
+  keep_latest_symlink: true
+  max_runs_to_keep: 10               # Auto-cleanup old runs
+
+  # What to save
+  save_intermediate_variants: true   # Save all variants, not just best
+  save_execution_logs: true
+  save_metadata: true
+
+# Run Comparison (v1.2.0)
+comparison:
+  enable_comparison_tool: true
+  auto_compare_with_previous: true   # Compare with last run
+  comparison_metrics:
+    - baseline_score
+    - final_score
+    - improvement
+    - duration
+    - iterations
+
+# Logging and Output
+logging:
+  verbose: true                      # Detailed logging
+  save_intermediate: true            # Save intermediate results
+  log_mutations: true                # Log mutation details
+
+# Output Directories (Legacy - used when use_versioned_runs: false)
+paths:
+  tasks_dir: "tasks"
+  exec_results_dir: "exec_results"
+  output_dir: "."
+
+# Experimental Features (not yet implemented)
+experimental:
+  multi_objective: false             # Multi-objective optimization
+  failure_driven_mutations: false    # Generate mutations from failure analysis
+  adaptive_task_generation: false    # Generate tasks based on skill complexity
+
+# ============================================================
+# v1.5.0 New Features
+# ============================================================
+
+# Immutability Rule (v1.5.0)
+immutability:
+  never_modify_original: true        # CRITICAL: Never modify {target-skill}
+  always_work_in_optimized: true     # All changes go to {target-skill}-optimized
+  create_optimized_early: true       # Create optimized copy before any modifications
+
+# Failure Analysis (v1.5.0)
+failure_analysis:
+  enabled: true                      # Enable automatic failure analysis
+  extract_error_messages: true       # Extract key error messages from logs
+  categorize_errors: true            # Categorize error types
+  generate_fix_suggestions: true     # Generate specific fix suggestions
+  error_categories:
+    - missing_parameter              # Script missing required parameter
+    - missing_dependency             # Missing library or tool
+    - file_not_found                 # File path issues
+    - logic_error                    # Code logic problems
+    - timeout                        # Execution timeout
+    - invalid_input                  # Input validation failure
+
+# Auto-Fix (v2.3.0 NEW)
+auto_fix:
+  enabled: true                      # Enable automatic fixing of detected issues
+  max_iterations: 2                  # Maximum fix-test-reanalyze iterations
+  fix_categories:
+    - missing_dependency             # Auto-install or add to requirements.txt
+    - missing_parameter              # Add parameters to scripts using LLM
+    - file_not_found                 # Fix file paths where possible
+  use_llm_for_fixes: true           # Use LLM to generate intelligent fixes
+  confidence_threshold: 0.7          # Minimum confidence to apply fix
+  backup_before_fix: true            # Backup files before modifying
+  stop_on_regression: false          # Continue even if a fix causes regression
+
+# Code Capability Detection (v1.5.0)
+code_capability:
+  enabled: true                      # Enable code capability detection
+  analyze_before_task_generation: true # Analyze scripts before generating tasks
+  detect_parameters: true            # Detect supported command-line parameters
+  detect_input_formats: true         # Detect supported input formats
+  detect_output_formats: true        # Detect supported output formats
+  cache_analysis: true               # Cache analysis results
+
+# Code Fix Suggester (v1.5.0)
+code_fix:
+  enabled: true                      # Enable automatic fix suggestions
+  suggest_parameter_additions: true  # Suggest missing parameters
+  suggest_error_handling: true       # Suggest error handling improvements
+  suggest_validation: true           # Suggest input validation
+  generate_code_patches: true        # Generate actual code patches
+  confidence_threshold: 0.7          # Minimum confidence to suggest fix
+
+# Enhanced Retention Decision (v1.5.0)
+retention:
+  consider_training_improvement: true # Consider training set improvements
+  consider_partial_improvement: true  # Value partial improvements
+  preserve_code_improvements: true    # Keep code-level improvements
+  min_test_improvement: 0.0          # Minimum test improvement (0 = any improvement)
+  min_train_improvement: 0.05        # Minimum training improvement to consider
+  improvement_types:
+    - test_performance               # Test set performance
+    - train_performance              # Training set performance
+    - code_quality                   # Code improvements
+    - documentation                  # Documentation improvements
+    - error_handling                 # Error handling improvements
+
+# Detailed Error Reporting (v1.5.0)
+error_reporting:
+  enabled: true                      # Enable detailed error reports
+  include_error_analysis: true       # Include failure analysis in report
+  include_fix_suggestions: true      # Include fix suggestions in report
+  include_code_locations: true       # Include file paths and line numbers
+  estimate_fix_difficulty: true      # Estimate fix difficulty (easy/medium/hard)
+  group_similar_errors: true         # Group similar errors together
+
+# Incremental Optimization (v1.5.0)
+incremental_optimization:
+  enabled: true                      # Enable incremental optimization mode
+  phases:
+    - name: "code_fixes"
+      description: "Fix obvious code issues"
+      focus: ["missing_parameters", "missing_dependencies"]
+      max_iterations: 3
+    - name: "documentation"
+      description: "Optimize documentation and prompts"
+      focus: ["skill_md"]
+      max_iterations: 3
+    - name: "performance"
+      description: "Performance and edge case optimization"
+      focus: ["code", "config"]
+      max_iterations: 4
+  preserve_between_phases: true      # Keep improvements between phases
+  stop_on_regression: false          # Continue even if a phase regresses

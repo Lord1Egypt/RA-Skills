@@ -1,0 +1,67 @@
+name: python-code-analyze
+description: |
+  专业的 Python 代码分析与优化工具。
+  
+  功能特性：
+  - 语法检查：Python AST 解析，精准定位语法错误
+  - 安全扫描：检测硬编码密钥、裸 except、注入漏洞等安全隐患
+  - 性能分析：识别低效代码、冗余计算、缓存机会
+  - 代码质量：复杂度评估、重复代码检测、类型提示检查
+  - 自动修复：生成可直接使用的优化后代码
+  
+  支持 P0/P1/P2/P3 四级问题分级，帮助开发者优先处理关键问题。
+version: 1.0.0
+author: "sohot-gdjinni <sujian0606@gmail.com>"
+license: MIT
+tags:
+  - code-review
+  - python
+  - security
+  - optimization
+  - static-analysis
+  - lint
+  - code-quality
+  - refactoring
+  - best-practices
+  - vulnerability-detection
+  - performance
+  - type-checking
+  - code-smell
+  - automation
+  - dev-tools
+
+# Skill 入口配置
+entry:
+  # 作为主 Skill 使用时的入口
+  main: analyzer.py
+  
+# 文件关联
+patterns:
+  - "*.py"
+
+# 依赖检查
+dependencies:
+  # 纯 Python 标准库，无外部依赖
+  python: ">=3.8"
+
+# 示例用法
+examples:
+  - title: 分析单个文件
+    command: python3 analyzer.py your_code.py
+  
+  - title: JSON 格式输出
+    command: python3 analyzer.py your_code.py --format json
+  
+  - title: 在 Python 中使用
+    code: |
+      from analyzer import CodeAnalyzer
+      
+      analyzer = CodeAnalyzer()
+      result = analyzer.analyze_file('your_code.py')
+      print(analyzer.generate_report(result))
+
+# 相关链接
+links:
+  repository: https://github.com/yourusername/code-analyzer-skill
+  issues: https://github.com/yourusername/code-analyzer-skill/issues
+  homepage: https://github.com/yourusername/code-analyzer-skill#readme

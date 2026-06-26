@@ -1,0 +1,51 @@
+design_name: simple_fifo
+top_module: simple_fifo
+description: 8-bit wide, 16-depth synchronous FIFO
+inputs:
+  - name: clk
+    width: 1
+    desc: main clock
+  - name: rst_n
+    width: 1
+    desc: active-low reset
+  - name: wr_en
+    width: 1
+    desc: write enable
+  - name: rd_en
+    width: 1
+    desc: read enable
+  - name: din
+    width: 8
+    desc: input data
+outputs:
+  - name: dout
+    width: 8
+    desc: output data
+  - name: full
+    width: 1
+    desc: fifo full flag
+  - name: empty
+    width: 1
+    desc: fifo empty flag
+clock:
+  name: clk
+  edge: posedge
+reset:
+  name: rst_n
+  active_level: low
+  sync_or_async: async
+functional_requirements:
+  - write on wr_en when not full
+  - read on rd_en when not empty
+  - maintain full and empty correctly
+timing_target: 20
+target_flow: openlane
+verification_targets:
+  - reset behavior
+  - sequential writes
+  - sequential reads
+  - flag correctness
+assumptions:
+  - single clock domain
+  - no CDC
+  - no memory macros

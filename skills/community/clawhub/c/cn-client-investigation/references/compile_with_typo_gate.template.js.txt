@@ -1,0 +1,174 @@
+// compile_with_typo_gate.template.js
+// -----------------------------------------------------------------------------
+// Template for slides/compile.js when the target is a Chinese-market company.
+// This template ADDS a mandatory cn_typo_scan post-write gate to the usual
+// pptxgenjs compile loop: after the pptx is written, it shells out to the
+// skill's Python scanner; if the scanner returns non-zero, node exits with
+// code 1 and the pptx is considered rejected.
+//
+// How to use:
+//   1) Copy this file to your deliverable's slides/compile.js
+//   2) Adjust the `SLIDE_COUNT`, `OUTPUT_PATH`, `THEME` constants at the top
+//   3) Adjust `TYPO_SCAN_SCRIPT` if the skill is installed in a non-default
+//      location (default: tries common macmini / local paths in order)
+//   4) `cd slides && node compile.js`
+//   5) A non-zero exit here MUST block downstream delivery of the pptx.
+//
+// Why mandatory: MiniMax-M2.7 demonstrably produces Chinese character-level
+// typos when generating pptxgenjs code with long `\uXXXX` escapes. The scanner
+// greps the output for the specific red-flag patterns we have observed and
+// fails the build if any hit.
+// -----------------------------------------------------------------------------
+
+'use strict';
+
+const path = require('path');
+const fs = require('fs');
+const { execSync, spawnSync } = require('child_process');
+const pptxgen = require('pptxgenjs');
+
+// ==== CONFIGURE PER DELIVERABLE ==============================================
+const SLIDE_COUNT = 20;
+const OUTPUT_PATH = path.resolve(__dirname, '..', 'presentation.pptx');
+const THEME = {
+  primary:   '2B2D42',
+  secondary: '8D99AE',
+  accent:    'EF233C',
+  light:     'EDF2F4',
+  bg:        'FFFFFF',
+};
+
+// Candidate locations for cn_typo_scan.py — first hit wins. Extend if the
+// skill is installed in a custom place.
+const TYPO_SCAN_CANDIDATES = [
+  // macmini ClawHub install
+  path.join(process.env.HOME || '', '.openclaw/extensions/aigroup-financial-services-openclaw/skills/cn-client-investigation/scripts/cn_typo_scan.py'),
+  // local dev repo checkout
+  path.join(process.env.HOME || '', 'claude/ai/aigroup-financial-services-openclaw/skills/cn-client-investigation/scripts/cn_typo_scan.py'),
+  // sibling path when skill is bundled with the deck
+  path.resolve(__dirname, '..', '..', 'cn-client-investigation', 'scripts', 'cn_typo_scan.py'),
+];
+// =============================================================================
+
+function findTypoScanner() {
+  for (const p of TYPO_SCAN_CANDIDATES) {
+    if (p && fs.existsSync(p)) return p;
+  }
+  return null;
+}
+
+function extractPptxText(pptxPath) {
+  // python-pptx text extraction (fast, deterministic). If python-pptx is
+  // missing, the spawned process exits 2 and the caller aborts — we
+  // intentionally do not fall back to markitdown: the scanner needs the raw
+  // paragraph text structure that python-pptx preserves.
+  const script = `
+import sys
+try:
+    from pptx import Presentation
+except ImportError:
+    print('ERR: python-pptx missing — pip install python-pptx', file=sys.stderr)
+    sys.exit(2)
+prs = Presentation(sys.argv[1])
+for i, s in enumerate(prs.slides, 1):
+    print(f'--- slide {i} ---')
+    for sh in s.shapes:
+        if sh.has_text_frame:
+            for para in sh.text_frame.paragraphs:
+                t = para.text
+                if t.strip():
+                    print(t)
+`;
+  const out = spawnSync('python3', ['-c', script, pptxPath], { encoding: 'utf8' });
+  if (out.status !== 0) {
+    throw new Error(`python-pptx extraction failed: ${out.stderr}`);
+  }
+  return out.stdout;
+}
+
+async function main() {
+  // ---- 1) pptxgenjs compile loop (standard) ---------------------------------
+  const pres = new pptxgen();
+  pres.layout = 'LAYOUT_16x9';
+
+  let loadedSlides = 0;
+  for (let i = 1; i <= SLIDE_COUNT; i++) {
+    const num = String(i).padStart(2, '0');
+    const file = path.resolve(__dirname, `slide-${num}.js`);
+    if (!fs.existsSync(file)) {
+      console.error(`[compile] slide-${num}.js missing — skipping`);
+      continue;
+    }
+    try {
+      const mod = require(file);
+      if (typeof mod.createSlide !== 'function') {
+        console.error(`[compile] slide-${num}.js has no createSlide(pres, theme) export — FAIL`);
+        process.exit(5);
+      }
+      // Signature sanity: createSlide MUST take 2 params (pres, theme). If it
+      // declares only (theme) and internally `new pptxgen()`, the slide gets
+      // written to a local pres we then throw away, producing silent empty
+      // pages in the final compile. This exact bug hit Moore Threads v8 with
+      // 19 slides producing <640 shapes instead of expected 950+.
+      if (mod.createSlide.length < 2) {
+        console.error(
+          `[compile] slide-${num}.js createSlide declares ${mod.createSlide.length} ` +
+          `param(s); MUST take (pres, theme). Fix the function signature and do ` +
+          `NOT call \`new pptxgen()\` inside createSlide — always mutate the ` +
+          `shared \`pres\` passed in. Aborting.`
+        );
+        process.exit(6);
+      }
+      mod.createSlide(pres, THEME);
+      loadedSlides += 1;
+    } catch (err) {
+      console.error(`[compile] slide-${num}.js failed: ${err.message}`);
+      process.exit(7);
+    }
+  }
+
+  if (loadedSlides === 0) {
+    console.error('[compile] no slides loaded — aborting');
+    process.exit(2);
+  }
+
+  await pres.writeFile({ fileName: OUTPUT_PATH });
+  console.log(`[compile] wrote ${OUTPUT_PATH} (${loadedSlides} slides)`);
+
+  // ---- 2) MANDATORY typo scan gate ------------------------------------------
+  const scanner = findTypoScanner();
+  if (!scanner) {
+    console.error('[typo-gate] cn_typo_scan.py NOT FOUND — refusing to ship pptx without scan.');
+    console.error('[typo-gate] expected locations (first hit wins):');
+    for (const p of TYPO_SCAN_CANDIDATES) console.error(`  - ${p}`);
+    process.exit(3);
+  }
+  console.log(`[typo-gate] using scanner: ${scanner}`);
+
+  let deckText;
+  try {
+    deckText = extractPptxText(OUTPUT_PATH);
+  } catch (e) {
+    console.error(`[typo-gate] text extraction failed: ${e.message}`);
+    process.exit(4);
+  }
+  const tmpFile = path.join(require('os').tmpdir(), `deck-text-${process.pid}.txt`);
+  fs.writeFileSync(tmpFile, deckText, 'utf8');
+
+  const scan = spawnSync('python3', [scanner, tmpFile], { encoding: 'utf8' });
+  process.stdout.write(scan.stdout || '');
+  process.stderr.write(scan.stderr || '');
+  if (scan.status !== 0) {
+    console.error('[typo-gate] FAIL — pptx contains red-flag typos. DO NOT ship.');
+    console.error('[typo-gate] fix the offending slide-NN.js files and re-run compile.');
+    process.exit(1);
+  }
+
+  console.log('[typo-gate] OK — cn_typo_scan clean.');
+  try { fs.unlinkSync(tmpFile); } catch (_) {}
+}
+
+main().catch((err) => {
+  console.error(`[compile] unexpected error: ${err.message}`);
+  process.exit(10);
+});

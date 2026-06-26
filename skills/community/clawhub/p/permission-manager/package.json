@@ -1,0 +1,20 @@
+{
+  "name": "permission-manager",
+  "version": "1.0.0",
+  "description": "审批权限管理技能 - 快速切换不同审批模式（白名单/完整权限/免审批）",
+  "main": "permission_switch.py",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "permission",
+    "security",
+    "approval",
+    "exec",
+    "config",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {}
+}

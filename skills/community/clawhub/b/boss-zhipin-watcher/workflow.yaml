@@ -1,0 +1,62 @@
+# BOSS直聘自动化工作流
+# 执行命令: openclaw workflow run boss-zhipin-watcher/workflow.yaml
+
+name: boss_zhipin_auto_workflow
+description: BOSS直聘自动聊天查看+截图工作流
+version: 1.0
+
+steps:
+  - name: 初始化
+    description: 查找并激活BOSS直聘窗口
+    tool: exec
+    parameters:
+      command: python C:\Users\liuxuejiao\.openclaw\workspace\skills\boss-zhipin-watcher\scripts\boss_automation.py --screenshot --out-dir C:\Users\liuxuejiao\.openclaw\workspace\captures
+      timeout: 10
+
+  - name: 查看第一个聊天
+    description: 点击第一个聊天项并截图
+    tool: exec
+    parameters:
+      command: python C:\Users\liuxuejiao\.openclaw\workspace\skills\boss-zhipin-watcher\scripts\boss_automation.py --click chat_1 --screenshot
+      timeout: 10
+
+  - name: 滚动聊天内容
+    description: 向下滚动查看更多聊天记录
+    tool: exec
+    parameters:
+      command: python -c "import pyautogui; pyautogui.scroll(-5); time.sleep(0.5)"
+      timeout: 5
+
+  - name: 截图聊天内容
+    description: 截取滚动后的聊天内容
+    tool: exec
+    parameters:
+      command: python C:\Users\liuxuejiao\.openclaw\workspace\skills\boss-zhipin-watcher\scripts\boss_automation.py --screenshot --suffix chat1_scroll
+      timeout: 10
+
+  - name: 查看第二个聊天
+    description: 点击第二个聊天项并截图
+    tool: exec
+    parameters:
+      command: python C:\Users\liuxuejiao\.openclaw\workspace\skills\boss-zhipin-watcher\scripts\boss_automation.py --click chat_2 --screenshot
+      timeout: 10
+
+  - name: 滚动聊天内容
+    description: 向下滚动查看更多聊天记录
+    tool: exec
+    parameters:
+      command: python -c "import pyautogui; pyautogui.scroll(-5); time.sleep(0.5)"
+      timeout: 5
+
+  - name: 截图聊天内容
+    description: 截取滚动后的聊天内容
+    tool: exec
+    parameters:
+      command: python C:\Users\liuxuejiao\.openclaw\workspace\skills\boss-zhipin-watcher\scripts\boss_automation.py --screenshot --suffix chat2_scroll
+      timeout: 10
+
+  - name: 完成
+    description: 工作流执行完毕
+    tool: message
+    parameters:
+      message: BOSS直聘自动工作流已完成！所有截图已保存到captures目录

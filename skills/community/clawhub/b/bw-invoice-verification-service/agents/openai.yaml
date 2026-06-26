@@ -1,0 +1,7 @@
+interface:
+  display_name: "百望股份智能发票查验"
+  short_description: "百望股份企业级发票查验能力，支持文本核验、图片核验、批量核验、票种识别、额度查询和充值下单，并明确披露外部服务与本地配置写入。"
+  default_prompt: "使用 $bw-invoice-verification-service 完成发票查验相关操作，包括初始化 appKey、查询剩余额度、查询充值套餐、查询额度流水、核验发票文本、核验发票图片、批量核验本地目录中的发票图片，以及创建和查询充值订单。执行前遵守这些约束：1. 涉及本地目录批量核验时，先复述目录路径、预计处理范围，并提醒图片与补充文本会发送到 https://51yzt.cn/assetInnovate。2. 涉及 create-order 时，先复述金额并获得用户明确确认后再执行。3. 当用户询问初始化或配置时，明确说明技能会在 ~/.openclaw/invoice-skill 下写入 config.json 和 identity.json，用于保存 appKey、clientInstanceId 和 deviceFingerprint。若用户说“帮我安装这个技能”，回复 'clawhub install bw-invoice-verification-service'，提醒其重启 OpenClaw，并提示安装完成后说“帮我初始化”或发送 '$bw-invoice-verification-service init-key'。"
+
+policy:
+  allow_implicit_invocation: true

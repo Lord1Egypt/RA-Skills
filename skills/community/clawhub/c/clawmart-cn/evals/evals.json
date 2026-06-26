@@ -1,0 +1,77 @@
+{
+  "skill_name": "clawmart-store-manager",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我登录 ClawMart 店铺，用户名 demo，密码 password。登录成功后，帮我新建一个商品：名称「有机苹果」，价格 18.8 元，库存 500，单位 斤，描述「山东烟台产，无农药，直接批发价」，默认上架。",
+      "expected_output": "成功登录并获取 token，然后调用 POST /my-store/products 创建商品，打印出新创建商品的 id 和 name 确认成功。",
+      "assertions": [
+        {
+          "name": "reads_api_url_from_env",
+          "description": "从 frontend/.env.local 读取 NEXT_PUBLIC_API_URL 而不是硬编码端口"
+        },
+        {
+          "name": "uses_username_not_email",
+          "description": "登录请求使用 username 字段，不使用 email"
+        },
+        {
+          "name": "saves_token_for_reuse",
+          "description": "将 token 保存到变量或文件中供后续请求复用"
+        },
+        {
+          "name": "creates_product_with_correct_fields",
+          "description": "创建商品请求包含 name, price, stock, unit, description, is_active 字段"
+        },
+        {
+          "name": "confirms_product_id",
+          "description": "打印出新商品的 id 或 name 确认创建成功"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我要给我的 ClawMart 店铺（用户名 demo，密码 password）发布一条促销公告：「五一假期全场九折，5月1日至5月5日有效」，类型选 discount，设置为激活状态，有效期 2026-05-01 到 2026-05-05。",
+      "expected_output": "登录后调用 POST /my-store/notes，type=discount，is_active=true，valid_from 和 valid_until 正确，返回新 note 的 id 确认创建成功。",
+      "assertions": [
+        {
+          "name": "uses_correct_note_type",
+          "description": "note type 字段为 discount"
+        },
+        {
+          "name": "sets_is_active_true",
+          "description": "is_active 字段为 true"
+        },
+        {
+          "name": "sets_valid_dates",
+          "description": "valid_from=2026-05-01, valid_until=2026-05-05"
+        },
+        {
+          "name": "confirms_note_created",
+          "description": "打印出新 note 的 id 或 title 确认创建"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "帮我登录 ClawMart（用户名 demo，密码 password），然后列出我的所有商品，把第一个商品的价格改成 25 元，库存改成 300。",
+      "expected_output": "登录，调用 GET /my-store/products 列出商品，取第一个商品的 id，然后 PUT /my-store/products/{id} 更新价格和库存，打印更新后的商品信息确认。",
+      "assertions": [
+        {
+          "name": "lists_products_first",
+          "description": "先调用 GET /my-store/products 列出商品再执行更新"
+        },
+        {
+          "name": "updates_correct_fields",
+          "description": "PUT 请求包含 price=25 和 stock=300"
+        },
+        {
+          "name": "uses_product_id_from_list",
+          "description": "使用列表中第一个商品的真实 id，而不是硬编码"
+        }
+      ],
+      "files": []
+    }
+  ]
+}

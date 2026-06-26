@@ -1,0 +1,8 @@
+---
+name: api-integration
+description: Integrate third-party APIs with auth, retries, timeouts, and logging.
+version: 1.0.0
+display_name: "API Integration"
+triggers:
+System.Object[]
+---

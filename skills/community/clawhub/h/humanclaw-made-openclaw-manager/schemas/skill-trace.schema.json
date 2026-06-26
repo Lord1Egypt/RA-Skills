@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SkillTrace",
+  "type": "object",
+  "required": ["trace_id", "session_id", "run_id", "skill_name", "role", "timestamp"],
+  "properties": {
+    "trace_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "skill_name": { "type": "string" },
+    "role": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "input_summary": { "type": "string" },
+    "output_summary": { "type": "string" },
+    "outcome": { "type": "string" }
+  }
+}
+

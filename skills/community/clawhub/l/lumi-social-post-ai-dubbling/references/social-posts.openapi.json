@@ -1,0 +1,141 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - Social Posts",
+    "description": "Publish videos to TikTok, YouTube, and Instagram",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "Social Posts" }],
+  "paths": {
+    "/api/v1/social-posts": {
+      "post": {
+        "summary": "Publish a video to one or more social platforms",
+        "description": "Publish a video to TikTok, YouTube, and/or Instagram. Obtain connectionIds first from GET /api/v1/connections. mediaUrls should be OSS-hosted URLs from the video upload endpoints.",
+        "tags": ["Social Posts"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "platforms": {
+                    "type": "array",
+                    "items": { "type": "string", "enum": ["TIKTOK", "YOUTUBE", "INSTAGRAM"] },
+                    "description": "Target platforms to publish to"
+                  },
+                  "contentType": {
+                    "type": "string",
+                    "enum": ["VIDEO"],
+                    "description": "Must be VIDEO"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Caption or description for the post"
+                  },
+                  "mediaUrls": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Video URLs (OSS-hosted). Only the first URL is used."
+                  },
+                  "tiktokConnectionIds": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "TikTok account connectionIds from /api/v1/connections"
+                  },
+                  "tiktokConfigs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "connectionId": { "type": "string" },
+                        "allowComments": { "type": "boolean" },
+                        "allowDuet": { "type": "boolean" },
+                        "allowStitch": { "type": "boolean" },
+                        "privacyLevel": {
+                          "type": "string",
+                          "enum": ["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "FOLLOWER_OF_CREATOR", "SELF_ONLY"]
+                        }
+                      },
+                      "required": ["connectionId"]
+                    }
+                  },
+                  "youtubeConnectionIds": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "YouTube account connectionIds from /api/v1/connections"
+                  },
+                  "youtubeConfigs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "connectionId": { "type": "string" },
+                        "title": { "type": "string", "description": "YouTube video title" },
+                        "visibility": {
+                          "type": "string",
+                          "enum": ["public", "private", "unlisted"]
+                        }
+                      },
+                      "required": ["connectionId"]
+                    }
+                  },
+                  "instagramConnectionIds": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Instagram account connectionIds from /api/v1/connections"
+                  }
+                },
+                "required": ["platforms", "contentType", "text", "mediaUrls"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Publish results per platform",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "object",
+                      "description": "Keyed by platform name (e.g. TIKTOK, YOUTUBE, INSTAGRAM)",
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "connectionId": { "type": "string" },
+                            "status": { "type": "string", "enum": ["success", "processing", "failed"] },
+                            "publishId": { "type": "string", "nullable": true },
+                            "mediaId": { "type": "string", "nullable": true },
+                            "info": { "type": "string", "nullable": true },
+                            "error": { "type": "string", "nullable": true }
+                          },
+                          "required": ["connectionId", "status"]
+                        }
+                      }
+                    }
+                  },
+                  "required": ["results"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

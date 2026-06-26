@@ -1,0 +1,336 @@
+{
+  "metadata": {
+    "last_updated": "2026-03-15",
+    "source": "Ministry of Industry and Information Technology, China Toy & Juvenile Products Association, National Bureau of Statistics, 中国玩具和婴童用品协会",
+    "industry_scale_2026_target": "¥1.1 trillion revenue",
+    "growth_rate_target": "5.8% average annual growth (2024-2026)"
+  },
+  "industry_overview": {
+    "title": "China Toys Industry Overview (2026)",
+    "summary": "China is the world's largest toy producer and exporter, accounting for over 70% of global toy production. The industry encompasses a wide range of products including plastic toys, electronic toys, wooden toys, plush toys, model kits, educational toys, and outdoor play equipment. In 2026, the industry is projected to exceed ¥1.1 trillion in revenue, driven by rising disposable incomes, educational trends, licensing (movies/games), and e-commerce growth.",
+    "key_policy_initiatives": [
+      {
+        "name": "Action Plan for High-Quality Development of Toys and Juvenile Products (2024-2026)",
+        "issuing_authorities": ["MIIT", "SAMR", "Ministry of Commerce"],
+        "key_measures": [
+          "Strengthen toy safety standards (GB 6675 series)",
+          "Promote intelligent and educational toys",
+          "Encourage use of eco-friendly materials",
+          "Support cross-border e-commerce toy exports",
+          "Establish national-level toy design and innovation centers"
+        ]
+      }
+    ],
+    "current_status_2025": {
+      "total_output_value": "¥1.04 trillion",
+      "share_of_global_exports": "72%",
+      "key_drivers": ["STEM/educational toys", "licensed character toys", "interactive electronic toys", "outdoor playsets"],
+      "automation_rate": "52% (injection molding and assembly lines in large factories)",
+      "export_value": "$60 billion",
+      "domestic_market_share": "35% of sales are domestic"
+    }
+  },
+  "supply_chain_structure": {
+    "title": "Toys Supply Chain Structure",
+    "upstream": {
+      "description": "Raw materials, components, and design",
+      "categories": [
+        {
+          "name": "Plastic Materials",
+          "items": ["ABS", "PP", "PVC", "PE", "EVA", "TPR", "silicone"],
+          "key_suppliers": ["Kingfa", "LG Chem China", "BASF China", "Sinopec"]
+        },
+        {
+          "name": "Electronic Components",
+          "items": ["PCBs", "LEDs", "microcontrollers", "speakers", "motors", "batteries", "sensors"],
+          "key_suppliers": ["Shenzhen Kaifa", "Jiangsu Huasheng", "Sunwoda"]
+        },
+        {
+          "name": "Packaging & Printing",
+          "items": ["cartons", "blister packs", "instruction manuals", "labels"],
+          "key_suppliers": ["MYS Group", "Shenzhen Jinjia", "Zhongshan Hongchang"]
+        }
+      ]
+    },
+    "midstream": {
+      "description": "Toy manufacturing and assembly",
+      "subsectors": [
+        "plastic toys (figures, vehicles, playsets)",
+        "electronic toys (remote control, robots, learning tablets)",
+        "wooden toys (puzzles, blocks, trains)",
+        "plush toys (stuffed animals, dolls)",
+        "model kits and collectibles",
+        "educational toys (STEM, science kits)",
+        "outdoor toys (tricycles, slides, sandboxes)",
+        "infant and preschool toys"
+      ],
+      "key_companies_by_subsector": {
+        "plastic_toys": ["Alpha Group", "Guangdong Loctek", "Shenzhen Fangle"],
+        "electronic_toys": ["Silverlit China", "Guangdong Qunxing", "Shantou Chenghai cluster"],
+        "wooden_toys": ["Hape International (Ningbo)", "Melissa & Doug (suppliers)", "Zhejiang Mulinsen"],
+        "plush_toys": ["Zhongshan Yuesheng", "Yangzhou plush cluster"],
+        "educational": ["Guangdong Huafon", "Ningbo Smart"],
+        "model_kits": ["Xiamen BanDai (licensed)", "Shanghai King & Country"]
+      }
+    },
+    "downstream": {
+      "description": "Sales channels and end users",
+      "applications": [
+        "retail (toy stores, supermarkets, department stores)",
+        "e-commerce (Tmall, JD.com, Pinduoduo, Douyin)",
+        "cross-border e-commerce (Amazon, AliExpress, Temu)",
+        "export to global markets (US, EU, Japan, Southeast Asia)",
+        "OEM/ODM for international brands"
+      ]
+    }
+  },
+  "regional_clusters": [
+    {
+      "region": "Pearl River Delta",
+      "provinces_cities": ["Guangdong", "Shantou (Chenghai)", "Shenzhen", "Dongguan", "Guangzhou"],
+      "share_of_industry": "50% of national output",
+      "specializations": [
+        "plastic toys",
+        "electronic toys",
+        "remote control toys",
+        "licensed character toys"
+      ],
+      "key_hubs": [
+        {
+          "city": "Shantou (Chenghai District)",
+          "specialization": "Plastic toys, electronic toys, global toy manufacturing hub",
+          "supplier_example": "Alpha Group (Auldey) – leading toy company, also produces for Disney etc."
+        },
+        {
+          "city": "Shenzhen",
+          "specialization": "High-tech electronic toys, RC drones, robotics",
+          "supplier_example": "Shenzhen Fangle Technology – educational robots and toys"
+        },
+        {
+          "city": "Dongguan",
+          "specialization": "Plastic injection molding, action figures",
+          "supplier_example": "Dongguan Fong's Industrial – OEM for many global brands"
+        }
+      ],
+      "strengths": [
+        "Largest and most complete toy ecosystem",
+        "Fast tooling and prototyping",
+        "Proximity to Hong Kong for logistics"
+      ]
+    },
+    {
+      "region": "Yangtze River Delta",
+      "provinces_cities": ["Zhejiang", "Jiangsu", "Shanghai"],
+      "share_of_industry": "25% of national output",
+      "specializations": [
+        "wooden toys",
+        "educational toys",
+        "model kits",
+        "plush toys"
+      ],
+      "key_hubs": [
+        {
+          "city": "Ningbo (Zhejiang)",
+          "specialization": "Wooden toys, educational toys",
+          "supplier_example": "Hape International – premium wooden toys, eco-friendly"
+        },
+        {
+          "city": "Yangzhou (Jiangsu)",
+          "specialization": "Plush toys, dolls",
+          "supplier_example": "Yangzhou plush cluster – supplies to Disney, IKEA"
+        },
+        {
+          "city": "Shanghai",
+          "specialization": "Design, licensing, trading",
+          "supplier_example": "Bandai China – regional HQ and licensing"
+        }
+      ],
+      "strengths": [
+        "High-quality wood processing",
+        "Strong design and licensing presence",
+        "Access to Shanghai port"
+      ]
+    },
+    {
+      "region": "Shandong Peninsula",
+      "provinces_cities": ["Shandong", "Qingdao", "Yantai"],
+      "share_of_industry": "10% of national output",
+      "specializations": [
+        "outdoor toys",
+        "ride-on toys",
+        "plastic toys"
+      ],
+      "key_hubs": [
+        {
+          "city": "Qingdao",
+          "specialization": "Outdoor play equipment, ride-ons",
+          "supplier_example": "Qingdao Noble Toys – outdoor toys and playground equipment"
+        }
+      ],
+      "strengths": [
+        "Strong plastics industry",
+        "Port access"
+      ]
+    },
+    {
+      "region": "Fujian Province",
+      "provinces_cities": ["Fuzhou", "Xiamen"],
+      "share_of_industry": "8% of national output",
+      "specializations": [
+        "electronic toys",
+        "model kits"
+      ],
+      "key_hubs": [
+        {
+          "city": "Xiamen",
+          "specialization": "Model kits, collectibles",
+          "supplier_example": "Xiamen BanDai (licensed) – Gundam model kits"
+        }
+      ],
+      "strengths": [
+        "Growing electronics base",
+        "Export-oriented"
+      ]
+    }
+  ],
+  "subsector_details": {
+    "plastic_toys": {
+      "description": "Action figures, vehicles, playsets, building blocks, and various molded toys. Largest segment by volume.",
+      "key_clusters": ["Pearl River Delta (Chenghai)", "Zhejiang"],
+      "growth_drivers": [
+        "Licensed movie/game characters",
+        "Collectible trends (blind boxes)",
+        "Durability and low cost"
+      ],
+      "market_trends": "Eco-friendly plastics; complex molding; integrated electronics.",
+      "key_players": ["Alpha Group", "Guangdong Loctek", "Chenghai Toy Industry Association"]
+    },
+    "electronic_toys": {
+      "description": "Remote control cars, drones, robots, interactive pets, learning tablets, coding toys.",
+      "key_clusters": ["Pearl River Delta (Shenzhen, Shantou)"],
+      "growth_drivers": [
+        "STEM education",
+        "Smart toys with AI",
+        "App connectivity"
+      ],
+      "market_trends": "Voice recognition; programmable robots; augmented reality integration.",
+      "key_players": ["Silverlit", "Shenzhen Fangle", "Guangdong Qunxing"]
+    },
+    "wooden_toys": {
+      "description": "Puzzles, building blocks, train sets, educational toys, often eco-friendly.",
+      "key_clusters": ["Yangtze River Delta (Ningbo, Zhejiang)", "Jiangsu"],
+      "growth_drivers": [
+        "Parental preference for natural materials",
+        "Montessori/educational trends"
+      ],
+      "market_trends": "Sustainable forestry (FSC); water-based paints; minimalist design.",
+      "key_players": ["Hape", "Melissa & Doug (suppliers)", "Zhejiang Mulinsen"]
+    },
+    "plush_toys": {
+      "description": "Stuffed animals, character plush, pillows, soft dolls.",
+      "key_clusters": ["Yangtze River Delta (Yangzhou)", "Pearl River Delta"],
+      "growth_drivers": [
+        "Licensed character popularity (anime, movies)",
+        "Comfort/collectible"
+      ],
+      "market_trends": "Eco-friendly fillings (recycled polyester); interactive plush (with sounds).",
+      "key_players": ["Yangzhou plush cluster", "Zhongshan Yuesheng"]
+    },
+    "model_kits": {
+      "description": "Plastic model kits (cars, planes, ships, Gundam), die-cast models, collectible figures.",
+      "key_clusters": ["Pearl River Delta", "Fujian"],
+      "growth_drivers": [
+        "Hobbyist community growth",
+        "Licensed anime/movie kits"
+      ],
+      "market_trends": "High-precision molds; pre-painted kits; limited editions.",
+      "key_players": ["Xiamen BanDai", "Shanghai King & Country"]
+    },
+    "educational_toys": {
+      "description": "STEM kits, science experiments, learning puzzles, coding robots.",
+      "key_clusters": ["Pearl River Delta", "Yangtze River Delta"],
+      "growth_drivers": [
+        "Parents' focus on early education",
+        "School curriculum integration"
+      ],
+      "market_trends": "Subscription boxes; app-connected experiments; gender-neutral themes.",
+      "key_players": ["Guangdong Huafon", "Ningbo Smart", "Shenzhen Fangle"]
+    }
+  },
+  "sourcing_guide": {
+    "supplier_evaluation_metrics": [
+      {
+        "metric": "Safety compliance",
+        "target": "GB 6675 (China), EN 71 (EU), ASTM F963 (US), ISO 8124"
+      },
+      {
+        "metric": "Quality certification",
+        "target": "ISO 9001, ISO 14001, ICTI (ethical toy manufacturing)"
+      },
+      {
+        "metric": "Production capability",
+        "target": "Injection molding machines, assembly lines, printing, testing lab"
+      },
+      {
+        "metric": "Social compliance",
+        "target": "BSCI, SMETA, ICTI Care Process"
+      },
+      {
+        "metric": "Material compliance",
+        "target": "REACH, RoHS, CPSIA (lead/phthalates)"
+      }
+    ],
+    "verification_methods": [
+      "Request certificates and test reports",
+      "Conduct factory audit (quality control, social compliance)",
+      "Order samples for safety testing (small parts, sharp edges, chemical migration)",
+      "Check references from other buyers",
+      "Use third-party inspection (SGS, Bureau Veritas, TÜV) for pre-shipment"
+    ],
+    "communication_best_practices": [
+      "Provide detailed product specifications (dimensions, materials, functions)",
+      "Share 3D drawings or reference photos",
+      "Discuss safety requirements and target market regulations",
+      "Clarify packaging (blister, window box, retail ready)",
+      "Establish quality agreement (AQL levels, acceptable defects)"
+    ],
+    "payment_terms": "Typical: 30% deposit, 70% balance before shipment (or against scanned B/L). For mold development: 50% deposit, 50% on sample approval.",
+    "lead_times": {
+      "samples": "15-30 days (including mold if new)",
+      "bulk_production": "30-60 days after sample approval",
+      "container_loading": "7-15 days after production"
+    }
+  },
+  "faq": [
+    {
+      "question": "What are typical MOQs for toys in China?",
+      "answer": "For simple plastic toys, MOQ often 3000-5000 pieces per design. For electronic toys, 1000-3000 pieces. Wooden toys may have MOQ 1000-2000 sets. Some factories accept lower MOQs for sample orders or if you pay higher unit price."
+    },
+    {
+      "question": "Do Chinese suppliers provide custom mold making?",
+      "answer": "Yes, mold making is a core service. Provide 3D drawings. Mold costs vary by complexity: $2000-$20,000+. Mold ownership is negotiable."
+    },
+    {
+      "question": "How can I ensure toys meet international safety standards?",
+      "answer": "Request test reports from accredited labs (SGS, TÜV, Intertek). Specify required standards in your contract. Use pre-shipment inspection."
+    },
+    {
+      "question": "What is the ICTI Care process?",
+      "answer": "ICTI Care is an ethical toy manufacturing certification program. Factories are audited for labor standards. Many international buyers require it."
+    },
+    {
+      "question": "Can I get licensed character toys made?",
+      "answer": "Yes, but you must have licensing rights from the IP owner. Many factories can produce licensed toys if you provide the license authorization."
+    }
+  ],
+  "glossary": {
+    "AQL": "Acceptable Quality Level – sampling standard for inspection.",
+    "BSCI": "Business Social Compliance Initiative – social compliance audit.",
+    "CPSIA": "Consumer Product Safety Improvement Act (US) – regulates lead, phthalates.",
+    "EN 71": "European safety standard for toys.",
+    "ICTI": "International Council of Toy Industries – ethical manufacturing program.",
+    "IP": "Intellectual Property (e.g., character licensing).",
+    "MOQ": "Minimum Order Quantity.",
+    "STEM": "Science, Technology, Engineering, Mathematics – educational toys."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "content_id": "post-001",
+  "content_file": "tests/sample-draft.md",
+  "verdict": "REVISE",
+  "content_type": "financial",
+  "issues": [
+    {
+      "issue_type": "missing_disclaimer",
+      "severity": "critical",
+      "description": "No financial disclaimer found. Content discusses investment returns without legal disclaimer.",
+      "original_text": "",
+      "location": "end"
+    },
+    {
+      "issue_type": "banned_phrase",
+      "severity": "minor",
+      "description": "Found banned phrase: 'game-changer'",
+      "original_text": "This is a game-changer for investors.",
+      "location": "paragraph 1"
+    },
+    {
+      "issue_type": "banned_phrase",
+      "severity": "minor",
+      "description": "Found banned phrase: 'revolutionary'",
+      "original_text": "revolutionary approach to portfolio management",
+      "location": "paragraph 2"
+    },
+    {
+      "issue_type": "missing_cta",
+      "severity": "low",
+      "description": "No call-to-action found. Content ends without directing the reader to take next steps.",
+      "original_text": "",
+      "location": "end"
+    },
+    {
+      "issue_type": "tone_misalignment",
+      "severity": "major",
+      "description": "Tone is too casual for a financial audience. Uses first-person informal language throughout.",
+      "original_text": "I'm super excited to share this amazing strategy with you guys!",
+      "location": "paragraph 1"
+    }
+  ]
+}

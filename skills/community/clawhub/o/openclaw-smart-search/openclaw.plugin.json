@@ -1,0 +1,91 @@
+{
+  "name": "openclaw-smart-search",
+  "version": "1.0.14",
+  "description": "统一智能搜索技能，整合多个搜索引擎（百炼 MCP、Tavily、Serper、Exa、Firecrawl），自动选择最佳引擎并融合结果",
+  "author": "小胖虾",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/smart-search",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/smart-search"
+  },
+  "keywords": [
+    "search",
+    "ai",
+    "multi-engine",
+    "smart-search",
+    "openclaw",
+    "skill"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "bin": {
+    "smart-search": "./scripts/search.sh"
+  },
+  "requires": {
+    "bins": ["mcporter"]
+  },
+  "env": {
+    "OPENCLAW_MASTER_KEY": {
+      "required": true,
+      "description": "主密钥（至少 32 字符），用于加密存储的 API Key。请通过环境变量设置，不要提交到版本控制。示例：export OPENCLAW_MASTER_KEY=\"your-32-char-secure-random-string\""
+    }
+  },
+  "clawhub": {
+    "category": "search",
+    "tags": [
+      "search",
+      "ai",
+      "multi-engine",
+      "smart",
+      "bailian",
+      "tavily",
+      "serper",
+      "exa",
+      "firecrawl"
+    ],
+    "features": [
+      "统一智能搜索",
+      "5 个搜索引擎整合",
+      "智能路由",
+      "自动降级",
+      "结果优化",
+      "加密 Key 管理"
+    ],
+    "engines": [
+      {
+        "name": "百炼 MCP",
+        "quota": "2000 次/月",
+        "use": "中文搜索"
+      },
+      {
+        "name": "Tavily",
+        "quota": "1000 次/月",
+        "use": "高级搜索"
+      },
+      {
+        "name": "Serper",
+        "quota": "2500 次/月",
+        "use": "Google 结果"
+      },
+      {
+        "name": "Exa",
+        "quota": "1000 次/月",
+        "use": "学术/技术"
+      },
+      {
+        "name": "Firecrawl",
+        "quota": "500 页/月",
+        "use": "网页抓取"
+      }
+    ],
+    "totalQuota": "~7000 次/月",
+    "security": {
+      "encryption": "AES-256-GCM",
+      "keyDerivation": "PBKDF2 (100,000 rounds)",
+      "saltGeneration": "Random 16 bytes per encryption",
+      "masterKeyRequirement": "Minimum 32 characters, set via environment variable"
+    }
+  }
+}

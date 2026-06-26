@@ -1,0 +1,18 @@
+name: bus_ticket_ocr
+version: 1.0.3
+description: 支持识别汽车票票据。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+optional_env_vars:
+  - SCNET_API_BASE
+primary_credential: SCNET_API_KEY
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/bus_ticket_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests

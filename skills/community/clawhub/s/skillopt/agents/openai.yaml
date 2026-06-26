@@ -1,0 +1,4 @@
+interface:
+  display_name: "SkillOpt"
+  short_description: "训练、验证并迭代提升可复用 Agent skill。"
+  default_prompt: "Use $skillopt to improve this skill with a train/validation task suite and export a best_skill.md."

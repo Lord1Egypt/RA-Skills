@@ -1,0 +1,16 @@
+agents:
+  - name: "ghostclaw"
+    mcp_servers:
+      - name: "ghostclaw"
+        command: "ghostclaw-mcp"
+        env:
+          GHOSTCLAW_REPO_PATH: "."
+          GHOSTCLAW_USE_QMD: "true"
+    tools:
+      - "ghostclaw_analyze"
+      - "ghostclaw_memory_search"
+      - "ghostclaw_memory_get_run"
+      - "ghostclaw_memory_list_runs"
+      - "ghostclaw_memory_diff_runs"
+      - "ghostclaw_knowledge_graph"
+      - "ghostclaw_refactor_plan"

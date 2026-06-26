@@ -1,0 +1,258 @@
+=== Captured 2026-03-24T04:39:30Z ===
+Python: Python 3.12.12
+Invoked via: /Users/y/.myagent/skills/superpicky-cli/scripts/run.sh (cwd fixed to repo root)
+
+########## superpicky_cli.py <no subcommand> -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli [-h] {process,reset,restar,info,burst,identify} ...
+
+慧眼选鸟命令行工具 - 支持照片整理、重新评星与连拍检测
+
+positional arguments:
+  {process,reset,restar,info,burst,identify}
+                        可用命令
+    process             处理照片目录
+    reset               重置目录
+    restar              重新评星
+    info                查看目录信息
+    burst               连拍检测与分组
+    identify            识别鸟类
+
+options:
+  -h, --help            show this help message and exit
+
+Examples:
+  superpicky_cli process ~/Photos/Birds              # 处理照片
+  superpicky_cli process ~/Photos/Birds -s 600       # 自定义锐度阈值
+  superpicky_cli reset ~/Photos/Birds -y             # 重置目录(无确认)
+  superpicky_cli restar ~/Photos/Birds -s 700 -n 5.5 # 重新评星
+  superpicky_cli info ~/Photos/Birds                 # 查看目录信息
+  superpicky_cli identify ~/Photos/bird.jpg          # 识别鸟类
+  superpicky_cli identify bird.NEF --write-exif      # 识别并写入EXIF
+        
+
+########## superpicky_cli.py process -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli process [-h] [-s SHARPNESS] [-n NIMA_THRESHOLD]
+                              [-c CONFIDENCE] [--flight] [--no-flight]
+                              [--burst] [--no-burst] [--xmp] [--no-xmp]
+                              [--no-organize] [--no-cleanup] [-q]
+                              [--auto-identify]
+                              [--birdid-country BIRDID_COUNTRY]
+                              [--birdid-region BIRDID_REGION]
+                              [--birdid-threshold BIRDID_THRESHOLD]
+                              [--keep-temp-files] [--no-keep-temp-files]
+                              [--cleanup-days CLEANUP_DAYS] [--save-crop]
+                              directory
+
+positional arguments:
+  directory             照片目录路径
+
+options:
+  -h, --help            show this help message and exit
+  -s SHARPNESS, --sharpness SHARPNESS
+                        锐度阈值 (默认: 400, 范围: 200-600)
+  -n NIMA_THRESHOLD, --nima-threshold NIMA_THRESHOLD
+                        美学阈值 (TOPIQ, 默认: 5.0, 范围: 4.0-7.0)
+  -c CONFIDENCE, --confidence CONFIDENCE
+                        AI置信度阈值 (默认: 50)
+  --flight              识别飞鸟 (默认: 开启)
+  --no-flight           禁用飞鸟识别
+  --burst               连拍检测 (默认: 开启)
+  --no-burst            禁用连拍检测
+  --xmp                 写入XMP侧车(不改RAW)
+  --no-xmp              直接写入RAW(默认)
+  --no-organize         不移动文件到分类文件夹
+  --no-cleanup          不清理临时JPG文件
+  -q, --quiet           静默模式
+  --auto-identify, -i   自动识别 2★+ 照片的鸟种并按鸟种分目录
+  --birdid-country BIRDID_COUNTRY
+                        BirdID 国家代码 (如 AU, CN, US)
+  --birdid-region BIRDID_REGION
+                        BirdID 区域代码 (如 AU-SA, CN-31)
+  --birdid-threshold BIRDID_THRESHOLD
+                        BirdID 置信度阈值 (默认: 70%)
+  --keep-temp-files     保留临时预览图片（默认: 开启）
+  --no-keep-temp-files  不保留临时预览图片
+  --cleanup-days CLEANUP_DAYS
+                        自动清理周期（天），0=永久 (默认: 30)
+  --save-crop           保留 bird/debug 裁剪图片 (保存到 .superpicky/cache/debug)
+
+########## superpicky_cli.py reset -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli reset [-h] [-y] directory
+
+positional arguments:
+  directory   照片目录路径
+
+options:
+  -h, --help  show this help message and exit
+  -y, --yes   跳过确认提示
+
+########## superpicky_cli.py restar -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli restar [-h] [-s SHARPNESS] [-n NIMA_THRESHOLD]
+                             [-c CONFIDENCE] [--burst] [--no-burst] [--xmp]
+                             [--no-xmp] [--no-organize] [-y]
+                             directory
+
+positional arguments:
+  directory             照片目录路径
+
+options:
+  -h, --help            show this help message and exit
+  -s SHARPNESS, --sharpness SHARPNESS
+                        新锐度阈值 (默认: 400, 范围: 200-600)
+  -n NIMA_THRESHOLD, --nima-threshold NIMA_THRESHOLD
+                        TOPIQ 美学评分阈值 (默认: 5.0, 范围: 4.0-7.0)
+  -c CONFIDENCE, --confidence CONFIDENCE
+                        AI置信度阈值 (默认: 50)
+  --burst               连拍检测 (默认: 开启)
+  --no-burst            禁用连拍检测
+  --xmp                 写入XMP侧车(不改RAW)
+  --no-xmp              直接写入RAW(默认)
+  --no-organize         不重新分配文件目录
+  -y, --yes             跳过确认提示
+
+########## superpicky_cli.py info -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli info [-h] directory
+
+positional arguments:
+  directory   照片目录路径
+
+options:
+  -h, --help  show this help message and exit
+
+########## superpicky_cli.py burst -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli burst [-h] [-m MIN_COUNT] [-t THRESHOLD] [--no-phash]
+                            [--execute]
+                            directory
+
+positional arguments:
+  directory             照片目录路径
+
+options:
+  -h, --help            show this help message and exit
+  -m MIN_COUNT, --min-count MIN_COUNT
+                        最小连拍张数 (默认: 4)
+  -t THRESHOLD, --threshold THRESHOLD
+                        时间阈值(ms) (默认: 250)
+  --no-phash            禁用 pHash 验证（默认启用）
+  --execute             实际执行处理（默认仅预览）
+
+########## superpicky_cli.py identify -h ##########
+✅ Language pack loaded: zh_CN
+usage: superpicky_cli identify [-h] [-t TOP] [--no-yolo] [--no-gps]
+                               [--write-exif]
+                               image
+
+positional arguments:
+  image              图片文件路径
+
+options:
+  -h, --help         show this help message and exit
+  -t TOP, --top TOP  返回前 N 个结果 (默认: 5)
+  --no-yolo          禁用 YOLO 裁剪
+  --no-gps           禁用 GPS 过滤
+  --write-exif       将识别结果写入 EXIF Title
+
+########## birdid_cli.py -h ##########
+✅ Language pack loaded: zh_CN
+usage: birdid_cli [-h] {identify,organize,reset,list-countries} ...
+
+慧眼识鸟命令行工具 - 独立鸟类识别与EXIF写入
+
+positional arguments:
+  {identify,organize,reset,list-countries}
+                        可用命令
+    identify            识别鸟类 (默认)
+    organize            批量识别并按鸟种分目录
+    reset               恢复原始目录结构
+    list-countries      列出支持的国家代码
+
+options:
+  -h, --help            show this help message and exit
+
+Examples:
+  birdid_cli bird.jpg                        # 识别单张图片 (birdid2024)
+  birdid_cli bird.jpg --model osea           # 使用 OSEA 模型识别
+  birdid_cli bird.jpg --model osea --tta     # OSEA + TTA (更准但更慢)
+  birdid_cli bird.NEF --country AU           # 指定澳大利亚过滤 (birdid2024)
+  birdid_cli bird.jpg --region AU-SA         # 指定南澳州过滤
+  birdid_cli *.jpg --batch --write-exif      # 批量识别并写入EXIF
+  birdid_cli organize ~/Photos/Birds -y      # 按鸟种自动分目录
+  birdid_cli reset ~/Photos/Birds -y         # 恢复原始目录结构
+  birdid_cli list-countries                  # 列出国家代码
+        
+
+########## birdid_cli.py identify -h ##########
+✅ Language pack loaded: zh_CN
+usage: birdid_cli identify [-h] [-t TOP] [--model {birdid2024,osea}] [--tta]
+                           [--no-yolo] [--no-gps] [--no-ebird]
+                           [--country COUNTRY] [--region REGION]
+                           [--write-exif] [--threshold THRESHOLD] [--batch]
+                           images [images ...]
+
+positional arguments:
+  images                图片文件路径 (支持 glob 模式)
+
+options:
+  -h, --help            show this help message and exit
+  -t TOP, --top TOP     返回前 N 个结果 (默认: 5)
+  --model {birdid2024,osea}, -m {birdid2024,osea}
+                        选择模型: birdid2024 (默认) 或 osea
+  --tta                 启用 TTA 模式 (仅 OSEA 模型，更准但更慢)
+  --no-yolo             禁用 YOLO 裁剪
+  --no-gps              禁用 GPS 自动检测
+  --no-ebird            禁用 eBird 区域过滤
+  --country COUNTRY, -c COUNTRY
+                        手动指定国家代码 (如 AU, CN, US)
+  --region REGION, -r REGION
+                        手动指定区域代码 (如 AU-SA, CN-31)
+  --write-exif, -w      将识别结果写入 EXIF (Title, Caption, Keywords)
+  --threshold THRESHOLD
+                        写入EXIF的置信度阈值 (默认: 70%)
+  --batch, -b           批量模式 (简化输出)
+
+########## birdid_cli.py organize -h ##########
+✅ Language pack loaded: zh_CN
+usage: birdid_cli organize [-h] [--threshold THRESHOLD] [--no-ebird]
+                           [--country COUNTRY] [--region REGION]
+                           [--write-exif] [-y]
+                           directory
+
+positional arguments:
+  directory             照片目录路径
+
+options:
+  -h, --help            show this help message and exit
+  --threshold THRESHOLD
+                        置信度阈值 (默认: 70%)
+  --no-ebird            禁用 eBird 区域过滤
+  --country COUNTRY, -c COUNTRY
+                        手动指定国家代码 (如 AU, CN, US)
+  --region REGION, -r REGION
+                        手动指定区域代码 (如 AU-SA, CN-31)
+  --write-exif, -w      同时写入 EXIF 元数据
+  -y, --yes             跳过确认提示
+
+########## birdid_cli.py reset -h ##########
+✅ Language pack loaded: zh_CN
+usage: birdid_cli reset [-h] [-y] directory
+
+positional arguments:
+  directory   照片目录路径
+
+options:
+  -h, --help  show this help message and exit
+  -y, --yes   跳过确认提示
+
+########## birdid_cli.py list-countries -h ##########
+✅ Language pack loaded: zh_CN
+usage: birdid_cli list-countries [-h]
+
+options:
+  -h, --help  show this help message and exit
+

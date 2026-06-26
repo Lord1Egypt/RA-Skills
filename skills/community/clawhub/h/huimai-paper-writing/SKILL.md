@@ -1,35 +1,76 @@
 ---
-name: "📝 论文写作指导"
-description: "论文结构模板、引用规范、写作技巧——从开题到终稿全程陪伴。"
-category: "research"
-source: "ClawHub"
-tags: [academic, huimai, paper]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-paper-writing"
-sourceUrl: "https://clawhub.ai/skills/huimai-paper-writing"
+name: 📝 论文写作指导
+description: 论文结构模板、引用规范、写作技巧——从开题到终稿全程陪伴。
+metadata: {"openclaw":{"emoji":"📝","pricing":"free"}}
 ---
 
 # 📝 论文写作指导
 
-> 论文结构模板、引用规范、写作技巧——从开题到终稿全程陪伴。
+> 写论文头疼？从选题到参考文献，手把手带你走一遍。
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-paper-writing`
-- **Source URL:** [https://clawhub.ai/skills/huimai-paper-writing](https://clawhub.ai/skills/huimai-paper-writing)
+## 📜 更新日志
 
-## Overview
+### v1.0.0 (2026-05-08)
+- 初版发布
 
+## 🆕 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1️⃣ 论文结构模板
+| 论文类型 | 模板支持 |
+|---------|---------|
+| 本科毕业论文 | 开题报告→文献综述→正文→结论 |
+| 硕士论文 | 绪论→文献→方法→结果→讨论→结论 |
+| 课程论文 | 摘要→引言→主体→结论→参考文献 |
+| 学术报告 | 背景→方法→结果→讨论 |
+
+### 2️⃣ 引用规范指导
+- **GB/T 7714**（中文学术标准）
+- **APA 7th**（心理学/教育学）
+- **MLA 9th**（人文学科）
+- **Chicago**（历史/艺术）
+- **IEEE**（工程/计算机）
+
+### 3️⃣ 写作技巧
+- 文献综述写作方法
+- 摘要撰写要领（四要素：目的/方法/结果/结论）
+- 关键词选择策略
+- 过渡句与段落衔接
+- 学术语言规范化
+
+### 4️⃣ 常见问题解答
+- 如何降重（合理改写而非机器化）
+- 如何避免学术不端
+- 图表规范与标注
+- 参考文献管理技巧
+
+## 👤 为什么做这个
+
+论文写作是学生的刚需，但很多学校教得不够细。我们收集了近千篇高分论文的结构规律，总结成模板和技巧，全部免费开放。
+
+## 👔 适用人群
+- **本科生**：毕业论文全流程指导
+- **研究生**：学术论文写作提升
+- **留学生**：中英文学术写作支持
+
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。
+- **温情模式（默认）**：先了解你的论文阶段再给出建议
+- **专业模式（可选）**：直出写作框架和要点
+
+## 💡 使用小贴士
+- 告诉论文类型和学科，推荐更精准
+- 引用规范请与学校要求核对
+- 模板只是起点，个性化修改才出彩
+
+## ⚠️ 免责与已知限制
+- 本Skill提供写作指导，不代写论文
+- 建议结合导师意见使用
+- 引用格式请最终核对原版规范手册
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/huimai-paper-writing
+clawhub install paper-writing-guide
 ```

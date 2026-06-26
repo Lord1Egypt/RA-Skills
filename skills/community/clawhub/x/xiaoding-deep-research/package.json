@@ -1,0 +1,9 @@
+{
+  "name": "deep-research",
+  "version": "1.0.0",
+  "description": "Deep Research Agent for complex, multi-step research tasks with planning and decomposition",
+  "main": "SKILL.md",
+  "keywords": ["research", "agent", "planning", "deep-research"],
+  "author": "xiaoding_agent",
+  "license": "MIT"
+}

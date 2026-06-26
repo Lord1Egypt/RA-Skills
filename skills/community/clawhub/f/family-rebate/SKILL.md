@@ -1,35 +1,66 @@
 ---
-name: "全家返利管家"
-description: "家庭返利统一管理工具，聚合全家人的购物返利账户，统一追踪、统一提现，帮全家省钱。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/family-rebate"
-sourceUrl: "https://clawhub.ai/skills/family-rebate"
+name: 全家返利管家
+description: 家庭返利统一管理工具，聚合全家人的购物返利账户，统一追踪、统一提现，帮全家省钱。
+version: 0.1.0
 ---
 
 # 全家返利管家
 
-> 家庭返利统一管理工具，聚合全家人的购物返利账户，统一追踪、统一提现，帮全家省钱。
+家庭场景的返利统一管理工具。将全家人（父母、配偶、子女等）的购物返利账户聚合管理，统一追踪各成员的返利订单，统一提现到家庭账户，让全家每一笔购物都不错过返利。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/family-rebate`
-- **Source URL:** [https://clawhub.ai/skills/family-rebate](https://clawhub.ai/skills/family-rebate)
+## 触发词
 
-## Overview
+全家返利、家庭返利、家庭省钱、帮爸妈返利、家庭购物省钱、family rebate、家人返利管理、全家省钱
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/family-rebate
+### 核心功能
+
+- **家庭账户聚合**：将家庭成员的各平台返利账户统一管理
+- **代下单服务**：帮不熟悉操作的家人（如父母）通过返利链接下单
+- **统一返利追踪**：一个面板查看全家人所有返利订单状态
+- **家庭省钱报告**：统计全家每月/每年通过返利省下的总金额
+
+### 家庭成员管理
+
+| 角色 | 常见需求 | 工具适配 |
+|------|---------|---------|
+| 家庭管理员 | 统一管理全家返利 | 主控面板、统一提现 |
+| 父母/长辈 | 不会操作返利流程 | 代下单、简化操作 |
+| 配偶 | 日常购物省钱 | 快速查返利、自动领券 |
+| 子女 | 学生购物省钱 | 低客单高频商品推荐 |
+
+### 家庭省钱场景
+
+```
+家庭管理员
+    ├── 管理家人账户
+    ├── 帮爸妈代查返利、代下单
+    ├── 配偶共享高返利商品信息
+    ├── 汇总全家返利收益
+    └── 统一提现到家庭账户
+```
+
+### 使用场景
+
+1. **帮父母省钱**：父母想买东西时，帮他们通过返利渠道下单
+2. **家庭采购**：家庭日用品集中采购，统一走返利渠道
+3. **节日送礼**：年节采购礼品，返利能省一笔
+4. **年度家庭账本**：全家全年省了多少钱，一目了然
+
+## 输出格式
+
+```
+👨‍👩‍👧‍👦 全家返利月报 - [年月]
+
+家庭总省钱：¥[金额]
+
+成员明细：
+  👤 [成员1]：¥[金额]（[N]笔订单）
+  👤 [成员2]：¥[金额]（[N]笔订单）
+  👤 [成员3]：¥[金额]（[N]笔订单）
+
+待到账：¥[金额]
+可提现：¥[金额]
+累计已省：¥[总金额]
 ```

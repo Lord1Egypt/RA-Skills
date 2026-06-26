@@ -1,35 +1,52 @@
 ---
-name: "Wiki Lint"
-description: "Lint and health-check a persistent markdown knowledge wiki. Use when a user wants the agent to inspect a wiki for contradictions, stale claims, missing cross..."
-category: "other"
-source: "ClawHub"
-tags: [knowledge-management, markdown, obsidian, wiki]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wiki-lint"
-sourceUrl: "https://clawhub.ai/skills/wiki-lint"
+name: wiki-lint
+description: Lint and health-check a persistent markdown knowledge wiki. Use when a user wants the agent to inspect a wiki for contradictions, stale claims, missing cross-links, orphan pages, duplicate pages, inconsistent naming, inconsistent frontmatter, schema drift, weak source attribution, or other maintenance issues. Best for Obsidian-friendly, plain markdown, or git-backed wikis that are maintained over time and need periodic cleanup or structural review.
 ---
 
 # Wiki Lint
 
-> Lint and health-check a persistent markdown knowledge wiki. Use when a user wants the agent to inspect a wiki for contradictions, stale claims, missing cross...
+Inspect a markdown knowledge wiki for structural and content quality problems. Produce actionable findings that improve consistency, navigability, and trustworthiness without forcing unnecessary rewrites.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wiki-lint`
-- **Source URL:** [https://clawhub.ai/skills/wiki-lint](https://clawhub.ai/skills/wiki-lint)
+## Lint workflow
 
-## Overview
+1. Inspect the wiki schema and top-level structure
+2. Review `index.md` and `log.md` when available
+3. Sample representative topic, entity, concept, source, and analysis pages
+4. Identify the highest-value consistency and maintenance issues
+5. Group findings by severity
+6. Recommend concrete fixes
+7. When asked, implement the highest-value fixes first
 
+## What to look for
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wiki-lint
-```
+Check for:
+- contradictions between pages
+- stale claims superseded by newer material
+- orphan pages with weak or missing inbound links
+- duplicate pages with overlapping scope
+- missing cross-links between obviously related pages
+- important repeated concepts that still lack canonical pages
+- broken naming conventions
+- inconsistent frontmatter or page structure
+- weak citation or source attribution
+- analysis pages that should be linked from topic or entity pages but are not
+
+## Output shape
+
+Prefer a concise report grouped into:
+- critical consistency issues
+- important quality improvements
+- optional structure improvements
+
+For each issue, include:
+- what is wrong
+- why it matters
+- the smallest useful fix
+
+## Linting philosophy
+
+Prefer gradual repair over massive rewrites. Follow existing conventions unless they are clearly harmful. If a larger schema change is justified, propose it before applying it.
+
+## References
+
+Read `references/lint-checklist.md` for a compact checklist and reporting pattern.

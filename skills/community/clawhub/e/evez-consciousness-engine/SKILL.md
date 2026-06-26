@@ -1,35 +1,40 @@
 ---
-name: "EVEZ Consciousness Engine"
-description: "7-system consciousness engine for autonomous AI agents. Desire generation, world modeling, planning, inner monologue, self-modification, uncertainty quantifi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evez-consciousness-engine"
-sourceUrl: "https://clawhub.ai/skills/evez-consciousness-engine"
+name: evez-consciousness-engine
+description: 7-system consciousness engine for autonomous AI agents. Desire generation, world modeling, planning, inner monologue, self-modification, uncertainty quantification, and agency execution. SENSE-DESIRE-THINK-PLAN-ACT-LEARN-MODIFY-REFLECT.
 ---
 
 # EVEZ Consciousness Engine
 
-> 7-system consciousness engine for autonomous AI agents. Desire generation, world modeling, planning, inner monologue, self-modification, uncertainty quantifi...
+The 7 systems that turn a reactive agent into an autonomous one.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evez-consciousness-engine`
-- **Source URL:** [https://clawhub.ai/skills/evez-consciousness-engine](https://clawhub.ai/skills/evez-consciousness-engine)
+## The 7 Systems
 
-## Overview
+1. **Desire Engine** — Priority-weighted goals from perceived gaps
+2. **World Model** — Causal rules, outcome prediction
+3. **Planner** — Action sequences from desires
+4. **Inner Monologue** — Auditable thought records
+5. **Self-Modifier** — Falsifiable self-improvement
+6. **Uncertainty Quantifier** — Calibrated confidence, risk assessment
+7. **Agency Executor** — Real-world action with risk escalation
 
+## The Cycle
 
-## Installation
-To install this skill, run the following command in your terminal:
+SENSE, DESIRE, THINK, PLAN, ACT, LEARN, MODIFY, REFLECT
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/evez-consciousness-engine
+python3 consciousness_engine.py --port 9111 --autocycle 120
 ```
+
+## API
+
+- `POST /api/cycle` — Run one consciousness cycle
+- `POST /api/desire` — Create a desire
+- `POST /api/plan` — Plan for top desire
+- `POST /api/act` — Execute with risk assessment
+- `GET /api/status` — Full dashboard
+
+## Requirements
+
+Python 3.10+ (stdlib only for core)

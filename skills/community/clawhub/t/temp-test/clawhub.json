@@ -1,0 +1,87 @@
+{
+  "name": "jarvis-core",
+  "displayName": "🤖 Jarvis Core v3.1 - 真正的贾维斯",
+  "version": "3.1.0",
+  "description": "主动智能助手核心技能 v3.1。从工具型助手升级为有灵魂的伙伴，整合人格、认知、情感、心跳、记忆学习闭环，并新增策略有效性追踪、关系模式命名、多角色交叉分析、情绪历史感知、6层防崩溃防护和5阶能力解锁。",
+  "author": "davidme6",
+  "license": "MIT",
+  "homepage": "https://github.com/davidme6/jarvis-core",
+  "repository": "https://github.com/davidme6/jarvis-core",
+  "bugs": "https://github.com/davidme6/jarvis-core/issues",
+  "category": "productivity",
+  "tags": [
+    "jarvis",
+    "assistant",
+    "proactive",
+    "memory",
+    "personality",
+    "emotion",
+    "heartbeat",
+    "relationship-intelligence",
+    "confidence",
+    "agent"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  },
+  "requires": [
+    "tiered-recall"
+  ],
+  "permissions": {
+    "scope": "workspace",
+    "actions": [
+      "read:files",
+      "write:files",
+      "read:memory",
+      "write:memory",
+      "execute:scripts",
+      "git:status"
+    ],
+    "external": {
+      "allowed": false,
+      "requireConfirmation": true
+    }
+  },
+  "activation": {
+    "auto": true,
+    "priority": "high",
+    "triggers": [
+      "session:start",
+      "message:receive",
+      "heartbeat"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "changelog": {
+    "3.1.0": {
+      "date": "2026-04-28",
+      "changes": [
+        "通用版Jarvis core，适配大多数平台和应用场景"
+      ]
+    },
+    "3.0.0": {
+      "date": "2026-04-25",
+      "changes": [
+        "升级为完整情感系统版本，支持8种主情感和三层情感架构",
+        "新增策略有效性追踪、关系模式命名、多角色交叉分析、情绪历史感知",
+        "新增6层防崩溃防护和Hard Reset核选项",
+        "新增5阶能力解锁路径与有限性意识设计",
+        "仓库主页切换为独立仓库 davidme6/jarvis-core"
+      ]
+    },
+    "2.0.0": {
+      "date": "2026-04-23",
+      "changes": [
+        "全面重写，整合5个孤立技能为统一系统",
+        "新增情绪感知系统、置信度透明机制和心跳系统",
+        "新增关系情报官模式并强化跨会话人格一致性"
+      ]
+    }
+  }
+}

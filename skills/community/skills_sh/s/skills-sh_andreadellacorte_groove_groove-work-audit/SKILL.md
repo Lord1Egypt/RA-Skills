@@ -1,35 +1,36 @@
 ---
-name: "groove-work-audit"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-work-audit"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-work-audit"
+name: groove-work-audit
+description: "Review current branch for blindspots; fix now / needs spec / create issues."
+license: MIT
+allowed-tools: Read Write Edit Glob Grep Bash(git:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
 
 # groove-work-audit
 
-> Indexed by skills.sh from andreadellacorte/groove
+## Outcome
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-work-audit`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-work-audit](https://skills.sh/andreadellacorte/groove/groove-work-audit)
+Blindspots and gaps are identified, actionable improvements are offered.
 
-## Overview
+## Acceptance Criteria
 
+Findings are categorized by action:
+- **Fix Now**: Trivial effort, fix immediately
+- **Needs Spec**: Important, requires planning
+- **Create Issues**: Large effort or nice-to-have
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-work-audit
-```
+## Constraints
+
+- Sanitize topic (if provided) for safe use — strip path separators, special characters, and traversal patterns (`../`)
+- Specs directory is always `.groove/memory/specs/`
+- Gather context: branch diff, relevant specs
+- Run analysis in isolated context (use general-purpose agent)
+- Fall back to direct review if subagent fails
+- Present findings with severity and effort estimates
+- Execute chosen action: fix directly, create spec via `/groove-work-spec <topic>`, or create issues
+
+## Scope Options
+
+- No args: Review current branch vs main
+- Topic: Focus on specific area

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    --spacing: 4px;
+}
+
+.card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    position: relative;
+    line-height: 1.75;
+    color: #24292e;
+    font-size: calc(var(--spacing) * 4);
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-content-inner {
+    flex: 1;
+    padding: 24px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    word-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text > *{
+    margin: 0;
+}
+
+.card-footer {
+    padding: 12px 20px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.page-num {
+    color: #6a737d;
+    font-size: 11px;
+}
+
+.card h1, .card h2, .card h3 {
+    margin-top: calc(var(--spacing) * 4);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.card h1 { font-size: calc(var(--spacing) * 6); }
+.card h2 { font-size: calc(var(--spacing) * 5); }
+.card h3 { font-size: calc(var(--spacing) * 4.5); }
+
+.card a { color: #0366d6; text-decoration: none; }
+.card strong { font-weight: 600; }
+.card em { font-style: italic; }
+
+.card-content blockquote {
+    border-left: 3px solid #8e8e93;
+    margin-top: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
+    font-style: italic;
+}
+
+.card-content ol, .card-content ul {
+    padding-left: calc(var(--spacing) * 7);
+    margin: calc(var(--spacing) * 4) 0;
+}
+
+.card-content ul > li {
+    margin-top: calc(var(--spacing) * 2);
+    list-style: disc;
+}
+
+.card-content code:not(pre code) {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    background-color: rgba(0,0,0,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: calc(var(--spacing) * 3.5);
+}
+
+.card-content pre {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: calc(var(--spacing) * 3);
+    font-size: calc(var(--spacing) * 3.25);
+    overflow-x: auto;
+    margin-top: calc(var(--spacing) * 4);
+}
+
+.card mark {
+    background: rgba(248, 206, 64, 0.2);
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+
+/* Theme-specific styles */
+/* --- Alibaba Style Card with SVG Backgrounds --- */
+
+.card-alibaba {
+  box-shadow: 0 8px 24px rgba(255, 106, 0, 0.1);
+  background: #ffffff;
+  position: relative;
+  --highlight-color: #ff6a00;
+  --highlight-bg-color: rgba(255, 106, 0, 0.03);
+}
+
+/* SVG Background Decoration - Top Right Corner */
+.card-alibaba .card-content::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -2.5); /* Adjust positioning as needed */
+  right: calc(var(--spacing) * -3.75);
+  width: calc(var(--spacing) * 30); /* Size of the SVG container */
+  height: calc(var(--spacing) * 30);
+  /* SVG: Abstract overlapping circles/blobs */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='80' cy='40' r='35' fill='%23FF6A00' opacity='0.08'/%3E%3Ccircle cx='95' cy='65' r='25' fill='%23FF8C00' opacity='0.06'/%3E%3Ccircle cx='70' cy='70' r='15' fill='%23FF6A00' opacity='0.1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain; /* Scale SVG to fit the container */
+  background-position: top right;
+  opacity: 0.8; /* Control overall visibility */
+  pointer-events: none; /* Don't interfere with clicks */
+  z-index: 0; /* Behind content */
+}
+
+/* SVG Background Decoration - Bottom Left Corner */
+.card-alibaba .card-content::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--spacing) * -15); /* Adjust positioning */
+  left: calc(var(--spacing) * 0);
+  width: 100%; /* Size of the SVG container */
+  height: calc(var(--spacing) * 52.5);
+  /* SVG: Simple wave pattern */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 100'%3E%3Cpath d='M0,50 Q37.5,10 75,50 T150,50 L150,100 L0,100 Z' fill='%23FF6A00' opacity='0.05'/%3E%3Cpath d='M0,60 Q37.5,30 75,60 T150,60 L150,100 L0,100 Z' fill='%23FF8C00' opacity='0.07'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom left;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Alibaba Orange Header */
+.card-alibaba .card-header {
+  height: calc(var(--spacing) * 3);
+  background: linear-gradient(90deg, #ff8c00, #ff6a00);
+  position: relative;
+  z-index: 1; /* Ensure header is above background SVGs if they overlap */
+}
+
+/* Header decoration - subtle dots */
+.card-alibaba .card-header::after {
+  content: "";
+  position: absolute;
+  right: calc(var(--spacing) * 4);
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(var(--spacing) * 1);
+  height: calc(var(--spacing) * 1);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow:
+    -10px 0 0 rgba(255, 255, 255, 0.4),
+    -20px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.card-alibaba .card-content {
+  padding: 0;
+  position: relative;
+  z-index: 1; /* Above background SVGs */
+  min-height: calc(var(--card-height) - calc(var(--spacing) * 15));
+  /* Removed the ::before and ::after from card-content as they are now on card-alibaba */
+}
+
+.card-alibaba .card-content-inner {
+  padding: calc(var(--spacing) * 6) calc(var(--spacing) * 7);
+  position: relative;
+  z-index: 2; /* Highest level for text content */
+  background: transparent; /* Ensure background SVGs are visible */
+}
+
+/* --- REST OF THE STYLES (h1, h2, p, lists, code, table, footer etc.) --- */
+/* Copy the rest of the styles from the previous response here */
+/* Make sure there are no conflicting ::before/::after rules on card-content */
+
+/* Main Title (H1) */
+.card-alibaba .card-content-inner h1 {
+  font-size: calc(var(--spacing) * 6);
+  line-height: 1.4;
+  font-weight: 600;
+  color: #111111;
+  position: relative;
+  padding-bottom: calc(var(--spacing) * 2.5);
+  border-bottom: 1px solid #eee;
+}
+.card-alibaba .card-content-inner h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--spacing) * -0.5);
+  width: calc(var(--spacing) * 12.5);
+  height: calc(var(--spacing) * 1);
+  background: #ff6a00;
+  border-radius: 2px;
+}
+
+/* Secondary Title (H2) */
+.card-alibaba h2 {
+  display: table;
+  padding: calc(var(--spacing) * 1.6) calc(var(--spacing) * 4.8);
+  margin: calc(var(--spacing) * 9.6) auto calc(var(--spacing) * 4.8);
+  font-size: calc(var(--spacing) * 4.8);
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6a00, #ff8c00);
+  border-radius: 30px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.2);
+  letter-spacing: 0.02em;
+  /* 淘宝特有的双层边框效果 */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+/* 光晕效果 */
+.card-alibaba h2::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing) * -1);
+  left: calc(var(--spacing) * -1);
+  right: calc(var(--spacing) * -1);
+  bottom: calc(var(--spacing) * -1);
+  background: linear-gradient(135deg, #ff6a00, #ff8c00);
+  border-radius: 32px;
+  z-index: -1;
+  opacity: 0.4;
+  filter: blur(12px);
+}
+
+/* Tertiary Title (H3) */
+.card-alibaba h3 {
+  font-size: calc(var(--spacing) * 4.6);
+  font-weight: 600;
+  color: #333;
+  margin: calc(var(--spacing) * 8) 0 calc(var(--spacing) * 3.2);
+  padding-left: calc(var(--spacing) * 3);
+  border-left: 3px solid #ff8c00;
+  line-height: 1.5;
+}
+
+/* Paragraph Text */
+.card-alibaba .card-content-inner p {
+  color: #555555;
+}
+
+/* List Container Styles */
+.card-alibaba .card-content-inner ol,
+.card-alibaba .card-content-inner ul {
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 2.5)
+    calc(var(--spacing) * 2.5) calc(var(--spacing) * 9);
+  background: rgba(255, 106, 0, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 106, 0, 0.08);
+}
+
+/* List Item Styles */
+.card-alibaba .card-content-inner li {
+  font-size: inherit;
+  line-height: 1.75;
+  color: #555555;
+  position: relative;
+}
+
+.card-alibaba .card-content-inner li::before {
+  position: absolute;
+  left: calc(var(--spacing) * -7);
+  top: calc(var(--spacing) * 1);
+}
+
+.card-alibaba .card-content-inner ol li::before {
+  content: attr(data-index);
+  background-color: #ff6a00;
+  color: white;
+  font-size: calc(var(--spacing) * 3);
+  font-weight: bold;
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  line-height: calc(var(--spacing) * 5);
+}
+
+.card-alibaba .card-content-inner ul li::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--spacing) * -5);
+  top: calc(var(--spacing) * 2.75);
+  width: calc(var(--spacing) * 1.5);
+  height: calc(var(--spacing) * 1.5);
+  background-color: #ff8c00;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+/* Strong/Bold Text */
+.card-alibaba .card-content-inner strong {
+  font-weight: 600;
+  color: #ff6a00;
+}
+
+/* Blockquote */
+.card-alibaba .card-content-inner blockquote {
+  padding: calc(var(--spacing) * 3.75) calc(var(--spacing) * 5)
+    calc(var(--spacing) * 3.75) calc(var(--spacing) * 6.25); /* Added left padding for quote */
+  background: #fffaf5;
+  border-left: 4px solid #ff6a00;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  color: #444;
+}
+.card-alibaba .card-content-inner blockquote::before {
+  content: "“";
+  font-family: Georgia, serif;
+  position: absolute;
+  left: calc(var(--spacing) * 2); /* Adjusted position */
+  top: calc(var(--spacing) * 1.25); /* Adjusted position */
+  font-size: calc(var(--spacing) * 7.5); /* Adjusted size */
+  color: rgba(255, 106, 0, 0.2);
+  line-height: 1;
+}
+
+/* Inline Code */
+.card-alibaba .card-content-inner code {
+  background: rgba(211, 211, 211, 0.2);
+  padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1.5);
+  border-radius: 4px;
+  font-size: calc(var(--spacing) * 3.5);
+  color: #d9480f;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Code Block */
+.card-alibaba .card-content-inner pre {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: calc(var(--spacing) * 4) calc(var(--spacing) * 5);
+  overflow-x: auto;
+  position: relative;
+  border: 1px solid #e0e0e0;
+  margin: calc(var(--spacing) * 5) 0;
+  line-height: 1.5;
+}
+.card-alibaba .card-content-inner pre::before {
+  content: "CODE";
+  position: absolute;
+  top: calc(var(--spacing) * -0.25);
+  right: calc(var(--spacing) * 3.75);
+  font-size: calc(var(--spacing) * 2.5);
+  font-weight: bold;
+  color: #aaa;
+  background: #f7f7f7;
+  padding: calc(var(--spacing) * 0.25) calc(var(--spacing) * 1.5);
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+}
+.card-alibaba .card-content-inner pre code {
+  background: transparent;
+  padding: 0;
+  color: #333;
+  border: none;
+  font-size: calc(var(--spacing) * 3.5);
+  display: block;
+}
+
+/* Table Styles */
+.card-alibaba .card-content-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(var(--spacing) * 3.5);
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+}
+.card-alibaba .card-content-inner table th {
+  background: rgba(255, 106, 0, 0.08);
+  font-weight: 600;
+  text-align: left;
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3.75);
+  color: #333;
+  border-bottom: 2px solid rgba(255, 106, 0, 0.2);
+}
+.card-alibaba .card-content-inner table td {
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3.75);
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+  line-height: 1.6;
+}
+.card-alibaba .card-content-inner table tr:nth-child(even) td {
+  background-color: #fffdfa;
+}
+.card-alibaba .card-content-inner table tr:last-child td {
+  border-bottom: none;
+}
+
+.card-alibaba .card-footer {
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 6);
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center; /* Vertically center items in the footer */
+  justify-content: space-between;
+  color: #aaaaaa;
+  font-size: calc(var(--spacing) * 3.25);
+  position: relative;
+  background: #fafafa;
+  min-height: calc(var(--spacing) * 10); /* Ensure footer has some height */
+  z-index: 1; /* Ensure footer is above background SVGs */
+}
+
+/* Replace the dot with the Taoxiaobao SVG */
+.card-alibaba .card-footer::before {
+  content: "";
+  display: inline-block;
+  width: calc(var(--spacing) * 5.5); /* Adjust size as needed */
+  height: calc(var(--spacing) * 5.5); /* Adjust size as needed */
+  /* background-color: #ff6a00; Removed */
+  /* border-radius: 50%; Removed */
+  margin-right: calc(
+    var(--spacing) * 2
+  ); /* Space between icon and any potential text */
+  vertical-align: middle; /* Align icon vertically if text is present */
+
+  /* Simple Taobao/Taoxiaobao Smiley SVG */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23FF6A00'/%3E%3Ccircle cx='8.5' cy='10' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='15.5' cy='10' r='1.5' fill='%23FFFFFF'/%3E%3Cpath d='M8 14.5 Q12 18 16 14.5' stroke='%23FFFFFF' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+
+  background-size: contain; /* Scale SVG nicely */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Optional: If you have text or other elements in the footer, ensure they align nicely */
+.card-alibaba .card-footer > * {
+  vertical-align: middle;
+}
+
+.card-alibaba .card-footer .page {
+  font-size: calc(var(--spacing) * 3);
+  color: #6a737d;
+}
+
+    </style>
+</head>
+<body>
+    <div class="card card-alibaba">
+        <div class="card-header"></div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                {{MAIN_TITLE}}
+                {{TITLE}}
+                <div class="text">{{TEXT}}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="page-num">{{PAGE_NUM}}</span>
+        </div>
+    </div>
+</body>
+</html>

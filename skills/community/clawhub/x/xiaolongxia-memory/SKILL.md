@@ -1,35 +1,119 @@
 ---
-name: "Xiaolongxia Memory Manager"
-description: "AI 助手记忆管理系统，采用双轨存储（每日日记 + 长期记忆）、定期自动提炼、会话上下文恢复。适用于：(1) 为新 agent 配置记忆管理，(2) 设置基于心跳的定期记忆整理，(3) 创建 MEMORY.md 和日记结构，(4) 适配其他 AI 平台（WorkBuddy、Coze、Dify 等），(5) 修复..."
-category: "other"
-source: "ClawHub"
-tags: [chinese, context-management, memory]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaolongxia-memory"
-sourceUrl: "https://clawhub.ai/skills/xiaolongxia-memory"
+name: memory-manager
+description: AI 助手记忆管理系统，采用双轨存储（每日日记 + 长期记忆）、定期自动提炼、会话上下文恢复。适用于：(1) 为新 agent 配置记忆管理，(2) 设置基于心跳的定期记忆整理，(3) 创建 MEMORY.md 和日记结构，(4) 适配其他 AI 平台（WorkBuddy、Coze、Dify 等），(5) 修复 agent 记忆功能失效问题，(6) 用户询问 agent 记忆、上下文管理、"如何让 AI 记住东西"。不适用于：与记忆无关的 OpenClaw 配置问题、语义/向量搜索配置。
 ---
 
-# Xiaolongxia Memory Manager
+# 记忆管理器
 
-> AI 助手记忆管理系统，采用双轨存储（每日日记 + 长期记忆）、定期自动提炼、会话上下文恢复。适用于：(1) 为新 agent 配置记忆管理，(2) 设置基于心跳的定期记忆整理，(3) 创建 MEMORY.md 和日记结构，(4) 适配其他 AI 平台（WorkBuddy、Coze、Dify 等），(5) 修复...
+一套为 AI 助手设计的记忆管理系统，解决**上下文窗口失忆问题**：助手在会话结束或上下文过长时会丢失所有记忆。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaolongxia-memory`
-- **Source URL:** [https://clawhub.ai/skills/xiaolongxia-memory](https://clawhub.ai/skills/xiaolongxia-memory)
+## 核心架构：双轨记忆
 
-## Overview
+| 轨道 | 文件 | 用途 | 生命周期 |
+|------|------|------|----------|
+| 每日日记 | `memory/YYYY-MM-DD.md` | 对话、决策、事件的原始记录 | 每天创建，事后不修改 |
+| 长期记忆 | `MEMORY.md` | 提炼后的洞察、偏好、经验教训 | 定期从日记中整理 |
 
+**核心原则：** 日记是收件箱，MEMORY.md 是知识库。对话中不要直接写 MEMORY.md —— 先写日记，后续再提炼。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaolongxia-memory
+## 设置清单
+
+### 1. 创建文件结构
+
 ```
+workspace/
+├── MEMORY.md              # 长期提炼记忆
+├── AGENTS.md              # （已有）在会话启动部分添加记忆规则
+├── SOUL.md                # （已有）添加主动记录习惯
+├── HEARTBEAT.md           # 添加定期整理任务
+└── memory/
+    ├── YYYY-MM-DD.md      # 每日日记
+    └── heartbeat-state.json  # 整理时间追踪
+```
+
+### 2. 配置 AGENTS.md — 会话启动
+
+在会话启动部分添加：
+
+```markdown
+## 记忆
+
+每次新会话启动时：
+1. 读取 `MEMORY.md` 获取长期上下文
+2. 读取 `memory/YYYY-MM-DD.md`（今天 + 昨天）获取近期上下文
+3. 完成有价值的对话后，立即将要点写入当天日记
+
+### MEMORY.md 规则
+- 仅在主会话（直接对话）中加载，共享/群聊中不加载
+- 定期从日记中更新（见 HEARTBEAT.md）
+- 清除过时信息——这是精选内容，不是流水账
+```
+
+### 3. 配置 SOUL.md — 主动记录习惯
+
+添加记录规则：
+
+```markdown
+### 记忆习惯
+1. **主动记录** — 每完成有价值的对话（项目分析、技术调研、重要决策等），立刻把要点写入 `memory/YYYY-MM-DD.md`，不要等用户提醒
+2. **上下文较长时提醒** — 当感觉对话已经很长时，主动提醒："要点已记录，有空可以开个新会话继续聊~"
+3. **心跳时整理** — 定期回顾近期日记，将值得长期保留的内容提炼到 `MEMORY.md`
+```
+
+### 4. 配置 HEARTBEAT.md — 定期整理
+
+```markdown
+## 记忆整理（每 2-3 天执行一次）
+
+检查 `memory/heartbeat-state.json` 中 `lastMemoryMaintenance` 时间戳：
+- 如果距离上次 >48h，执行以下步骤：
+  1. 读取最近 2-3 天的 `memory/YYYY-MM-DD.md` 日记
+  2. 识别值得长期保留的内容（决策、偏好、经验教训、项目进展）
+  3. 更新 `MEMORY.md`：添加新内容，删除过时的
+  4. 更新 `memory/heartbeat-state.json` 中的 `lastMemoryMaintenance`
+- 否则跳过
+```
+
+### 5. 创建 heartbeat-state.json
+
+```json
+{
+  "lastMemoryMaintenance": null
+}
+```
+
+### 6. 初始化 MEMORY.md
+
+使用推荐的结构模板 —— 见 [references/记忆模板.md](references/记忆模板.md)
+
+## 记忆提炼指南
+
+从日记提炼到 MEMORY.md 时：
+
+**✅ 应该保留：**
+- 用户的背景、目标和沟通偏好
+- 重要决策及其原因
+- 项目状态和进展
+- 从错误中学到的经验
+- 反复出现的模式或话题
+
+**❌ 应该丢弃：**
+- 临时的排查细节（问题解决后）
+- 过时的项目状态（更新为当前的）
+- 重复的信息
+- 低价值的对话填充内容
+
+**格式：** 使用清晰的标题和简洁的要点。MEMORY.md 应该一目了然，不是长篇大论。
+
+## 上下文窗口管理
+
+记忆系统与上下文管理是**配合使用**的，不是替代关系：
+
+1. **每日日记** — 记录重要上下文，使其在会话重置后仍能保留
+2. **MEMORY.md** — 让新会话能快速恢复关键上下文
+3. **主动建议新会话** — 上下文变长时建议开新会话，重要信息已安全存储在记忆文件中
+4. **自动压缩** — 依赖平台内置的上下文压缩机制处理剩余部分
+
+## 适配其他平台
+
+对于非 OpenClaw 平台，见 [references/通用prompt模板.md](references/通用prompt模板.md)，可直接复制粘贴到任意 AI 助手平台使用。

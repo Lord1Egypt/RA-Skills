@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 热点工作台"
+  short_description: "每日汇总 AI 热点并发送到工作台"
+  default_prompt: "Use $ai-hot-news-workbench to collect today's hottest AI information and prepare a concise Chinese workbench briefing."

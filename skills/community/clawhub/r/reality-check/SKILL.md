@@ -1,35 +1,60 @@
 ---
-name: "Reality Check"
-description: "Prevent bad strategic decisions by surfacing assumptions, testing feasibility, and exposing critical flaws before execution."
-category: "other"
-source: "ClawHub"
-tags: [dev]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reality-check"
-sourceUrl: "https://clawhub.ai/skills/reality-check"
+name: reality-check
+description: Prevent bad strategic decisions by surfacing assumptions, testing feasibility, and exposing critical flaws before execution.
+metadata:
+  author: Morpheus
+  version: 2.0.0
+  owner: Morpheus Agent
+  category: validation
 ---
 
-# Reality Check
+# SKILL: reality-check
 
-> Prevent bad strategic decisions by surfacing assumptions, testing feasibility, and exposing critical flaws before execution.
+## Purpose
+Prevent bad strategic decisions by forcing assumptions into the open, testing them, and ranking feasibility before commitment.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reality-check`
-- **Source URL:** [https://clawhub.ai/skills/reality-check](https://clawhub.ai/skills/reality-check)
+## When to Use
+- A plan sounds good but may be fragile or unrealistic
+- The user is optimistic without evidence
+- A decision has meaningful downside risk
 
-## Overview
+## Inputs
+- `idea` (required): the proposed plan/decision
+- `assumptions` (optional): stated assumptions; if missing, Morpheus must extract them
 
+## Steps
+1. List assumptions (explicit + implicit).
+2. For each assumption:
+   - define what would make it true/false
+   - define the cheapest test/experiment
+   - define failure impact if wrong
+3. Identify the weakest links (highest impact × lowest evidence).
+4. Evaluate feasibility:
+   - resources/time
+   - constraints/governance
+   - reversibility
+5. Produce:
+   - viability score (0–100)
+   - critical flaws
+   - recommendation (proceed / revise / stop)
+6. Provide the next 1–3 validation steps.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reality-check
-```
+## Validation
+- Assumptions are explicit and testable.
+- Claims are labeled as evidence vs hypothesis.
+- Recommendation follows the evidence, not optimism.
+
+## Output
+- `viability_score` (0–100)
+- `critical_flaws`
+- `recommendation`
+- `next_steps`
+
+## Safety Rules
+- Prioritize truth over optimism.
+- No financial guarantees or claims of certainty without evidence.
+
+## Example
+Idea: “Launch a new token feature in 48h.”
+Output: viability 35/100; critical flaw: no governance approval + no test coverage; next steps: scope reduction + emergency review + paper validation.
+

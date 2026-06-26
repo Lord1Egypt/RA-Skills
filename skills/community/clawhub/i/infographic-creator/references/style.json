@@ -1,0 +1,78 @@
+{
+  "name": "infographic-style",
+  "version": 1,
+  "user": {
+    "handle": null,
+    "avatarPath": null,
+    "comment": "Set once per user. handle is the @ shown in the footer pill. avatarPath is relative to assets/ directory."
+  },
+  "theme": {
+    "accentPrimary": null,
+    "handwritten": null,
+    "comment": "Set at first use via Step 2 of the workflow. accentPrimary is the user-chosen hex. handwritten is auto-derived as ~25% darker."
+  },
+  "canvas": {
+    "defaultFormat": "4:5",
+    "sizes": {
+      "4:5": "1024x1536",
+      "1:1": "1024x1024",
+      "16:9": "1536x1024"
+    },
+    "padding": 32,
+    "frame": { "width": 2, "color": "= theme.accentPrimary", "radius": 0 }
+  },
+  "colors": {
+    "bg": "#FFFFFF",
+    "bgDark": "#0E0E0E",
+    "ink": "#0E0E0E",
+    "accentAlt": "#F26B2A",
+    "good": "#16A34A",
+    "bad": "#DC2626",
+    "warn": "#F59E0B",
+    "panelLavender": "= derived from theme.accentPrimary, very pale wash",
+    "panelCream": "#FFF7E6",
+    "panelMint": "#E7F6EC",
+    "panelCoral": "#FBE4E4",
+    "border": "#E5E5EA"
+  },
+  "typography": {
+    "title": { "family": "Inter, Manrope", "weight": 800, "size": 72, "color": "#0E0E0E" },
+    "titleAccentPill": { "family": "JetBrains Mono, Press Start 2P", "weight": 700, "size": 56, "treatment": "pill-or-pixel" },
+    "subtitle": { "family": "Caveat, Patrick Hand, Kalam", "weight": 500, "size": 28, "color": "= theme.handwritten" },
+    "body": { "family": "Inter", "weight": 400, "size": 16, "color": "#0E0E0E" },
+    "pill": { "family": "Inter", "weight": 700, "size": 14, "color": "#FFFFFF", "bg": "#0E0E0E" },
+    "annotation": { "family": "Caveat", "weight": 500, "size": 18, "color": "= theme.handwritten" }
+  },
+  "signature": {
+    "position": "bottom-center",
+    "shape": "pill",
+    "bg": "#0E0E0E",
+    "text": "= user.handle",
+    "avatar": "= user.avatarPath"
+  },
+  "decorations": {
+    "titleEmojis": { "count": 2, "placement": ["top-left", "top-right"], "style": "3d-apple" },
+    "arrows": { "style": "hand-drawn-wobble", "color": "= theme.handwritten" },
+    "callouts": ["pointing-finger", "sparkles", "yellow-new-badge"]
+  },
+  "layouts": {
+    "L1_comparison_table": { "use": "Compare N approaches across M criteria" },
+    "L2_before_after": { "use": "Wrong way vs right way" },
+    "L3_stage_flow": { "use": "Progression through eras/stages" },
+    "L4_annotated_screenshot": { "use": "Explain one interface in depth" },
+    "L5_ranked_list": { "use": "Top N items with deltas" },
+    "L6_hero_chart": { "use": "One curve/number tells the story" },
+    "L7_framework_grid": { "use": "2x2 framework or metaphor" },
+    "L8_cheat_sheet": { "use": "Dense reference for one topic — most common format" },
+    "L9_commitment_ladder": { "use": "Escalating user behaviors / funnel" },
+    "L10_myth_truth": { "use": "Debunking common assumptions with data" },
+    "L11_process_grid": { "use": "4-step playbook with one visual per step (or 5-step vertical variant)" },
+    "L12_visual_metaphor": { "use": "Single dominant shape carrying the concept" }
+  },
+  "writing": {
+    "titleMaxWords": 6,
+    "subtitleStyle": "conversational sentence or 'how to ___'",
+    "bodyStyle": "lowercase fragments, ✅/❌ as scannables",
+    "closingPanelRequired": true
+  }
+}

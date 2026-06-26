@@ -1,0 +1,11 @@
+{
+  "name": "pixelletter",
+  "version": "1.0.0",
+  "description": "Send letters, PDFs, postcards, faxes, and registered mail via the PixelLetter HTTPS API. Supports test mode, dry-run, and Proton Pass secret injection.",
+  "author": "bone187",
+  "license": "MIT",
+  "keywords": ["pixelletter", "letter", "fax", "postal", "mail", "pdf", "registered-mail", "germany"],
+  "engines": {
+    "node": ">=18"
+  }
+}

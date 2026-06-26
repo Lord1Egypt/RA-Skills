@@ -1,0 +1,20 @@
+{
+  "name": "Multi-Generational Travel Harmonizer",
+  "slug": "travel-multigenerational-harmonizer",
+  "version": "1.0.0",
+  "description": "Creates travel experiences for multiple generations",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "tourism",
+    "travel",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "travel multigenerational harmonizer",
+    "multi-generational travel harmonizer"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

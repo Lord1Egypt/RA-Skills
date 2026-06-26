@@ -1,0 +1,586 @@
+# 义乌智能贸易系统 - 编排层配置
+# ============================================================
+# 此文件定义LangGraph状态机编排的所有配置，
+# 包括节点定义、边路由、条件分支、Checkpoint等
+
+# ============================================================
+# 图定义
+# ============================================================
+graph:
+  name: "yiwu_trade_workflow"
+  version: "1.0.0"
+  description: "义乌小商品AI智能贸易系统多Agent协作工作流"
+  
+  # 默认LLM配置
+  default_llm:
+    provider: "deepseek"
+    model: "deepseek-v4-flash"
+    temperature: 0.3
+
+# ============================================================
+# 状态定义
+# ============================================================
+state:
+  class_name: "YiwuTradeState"
+  description: "义乌贸易工作流全局状态"
+  
+  fields:
+    # 会话信息
+    session_id:
+      type: "string"
+      description: "会话ID"
+      required: true
+    
+    user_id:
+      type: "string"
+      description: "用户ID"
+      required: false
+    
+    # 用户输入
+    user_query:
+      type: "string"
+      description: "用户原始query"
+      required: true
+    
+    # Router输出
+    intent:
+      type: "string"
+      description: "识别的意图类型"
+      enum: ["match", "price_inquiry", "sample_request", 
+             "cooperation", "logistics", "complaint", "general"]
+    
+    intent_confidence:
+      type: "float"
+      description: "意图识别置信度"
+      range: [0.0, 1.0]
+    
+    extracted_params:
+      type: "object"
+      description: "从query中提取的参数"
+      properties:
+        categories:
+          type: "array"
+          items:
+            type: "string"
+        quantity_hint:
+          type: "string"
+        target_country:
+          type: "string"
+        budget:
+          type: "string"
+        urgency:
+          type: "string"
+    
+    # Matcher输出
+    products:
+      type: "array"
+      description: "匹配到的商品列表"
+      items:
+        type: "object"
+    
+    match_success:
+      type: "boolean"
+      description: "匹配是否成功"
+    
+    match_fallback_used:
+      type: "boolean"
+      description: "是否使用了降级策略"
+    
+    # Content输出
+    generated_content:
+      type: "string"
+      description: "生成的内容"
+    
+    content_language:
+      type: "string"
+      description: "内容语言"
+    
+    content_type:
+      type: "string"
+      description: "内容类型"
+      enum: ["whatsapp", "email", "social_media"]
+    
+    safety_check_passed:
+      type: "boolean"
+      description: "安全检查是否通过"
+    
+    # 系统状态
+    current_agent:
+      type: "string"
+      description: "当前执行的Agent"
+    
+    messages:
+      type: "array"
+      description: "消息历史"
+      items:
+        type: "object"
+    
+    errors:
+      type: "array"
+      description: "错误记录"
+      items:
+        type: "object"
+    
+    metadata:
+      type: "object"
+      description: "元数据"
+      properties:
+        start_time:
+          type: "string"
+        end_time:
+          type: "string"
+        total_tokens:
+          type: "integer"
+        retry_count:
+          type: "integer"
+    
+    # 人工介入
+    human_review_required:
+      type: "boolean"
+      description: "是否需要人工审核"
+    
+    human_review_status:
+      type: "string"
+      description: "人工审核状态"
+      enum: ["pending", "approved", "rejected"]
+    
+    # 流程控制
+    should_continue:
+      type: "boolean"
+      description: "是否继续执行"
+    
+    route_decision:
+      type: "string"
+      description: "路由决策"
+
+# ============================================================
+# 节点定义
+# ============================================================
+nodes:
+  # 入口节点
+  start:
+    type: "entry"
+    description: "工作流入口"
+    action: "initialize_state"
+  
+  # Router节点
+  router:
+    name: "router_node"
+    agent: "router_agent"
+    description: "意图识别与路由分发"
+    entry_point: true
+    
+    config:
+      timeout: 3
+      max_retries: 2
+    
+    output_mapping:
+      intent: "state.intent"
+      intent_confidence: "state.intent_confidence"
+      extracted_params: "state.extracted_params"
+  
+  # Matcher节点
+  matcher:
+    name: "matcher_node"
+    agent: "matcher_agent"
+    description: "商品向量匹配与推荐"
+    
+    config:
+      timeout: 5
+      max_retries: 2
+    
+    input_from:
+      - state.extracted_params
+      - state.intent
+    
+    output_mapping:
+      products: "state.products"
+      match_success: "state.match_success"
+      match_fallback_used: "state.match_fallback_used"
+  
+  # Content节点
+  content:
+    name: "content_node"
+    agent: "content_agent"
+    description: "多语言营销内容生成"
+    
+    config:
+      timeout: 4
+      max_retries: 2
+    
+    input_from:
+      - state.products
+      - state.extracted_params
+    
+    output_mapping:
+      generated_content: "state.generated_content"
+      content_language: "state.content_language"
+      content_type: "state.content_type"
+      safety_check_passed: "state.safety_check_passed"
+  
+  # 人工审核节点
+  human_review:
+    name: "human_review_node"
+    type: "human_in_the_loop"
+    description: "人工介入审核"
+    
+    config:
+      timeout: 300  # 5分钟
+      notification_channels:
+        - "email"
+        - "sms"
+      escalation_threshold: 600  # 10分钟未处理升级
+    
+    triggers:
+      conditions:
+        - intent_confidence: "< 0.7"
+        - match_success: "false"
+        - safety_check_passed: "false"
+        - user_requested: true
+    
+    actions:
+      on_approve:
+        next: "end"
+        log: "human_approved"
+      on_reject:
+        next: "fallback"
+        log: "human_rejected"
+  
+  # 降级节点
+  fallback:
+    name: "fallback_node"
+    type: "fallback"
+    description: "降级处理与兜底"
+    
+    config:
+      log_level: "warning"
+      alert_threshold: 3  # 连续3次降级触发告警
+    
+    strategies:
+      - name: "simple_response"
+        trigger: "all_timeout"
+        action: "return_fallback_message"
+      - name: "retry_with_simpler"
+        trigger: "llm_error"
+        action: "retry_simpler_prompt"
+  
+  # 结束节点
+  end:
+    name: "end_node"
+    type: "end"
+    description: "工作流结束"
+    action: "finalize_state"
+
+# ============================================================
+# 边定义
+# ============================================================
+edges:
+  # 入口边
+  - id: "entry_edge"
+    from: "start"
+    to: "router"
+    description: "初始化后进入Router"
+  
+  # Router路由边
+  - id: "router_to_matcher"
+    from: "router"
+    to: "matcher"
+    description: "意图为商品相关时进入Matcher"
+    condition:
+      type: "intent_match"
+      intents:
+        - "match"
+        - "price_inquiry"
+        - "sample_request"
+  
+  - id: "router_to_content"
+    from: "router"
+    to: "content"
+    description: "意图为一般咨询但有商品时进入Content"
+    condition:
+      type: "compound"
+      and:
+        - intent: "general"
+        - has_products: true
+  
+  - id: "router_to_human_review"
+    from: "router"
+    to: "human_review"
+    description: "置信度低时进入人工审核"
+    condition:
+      type: "confidence_threshold"
+      threshold: 0.7
+      comparison: "<"
+  
+  - id: "router_to_fallback"
+    from: "router"
+    to: "fallback"
+    description: "Router超时或错误时进入降级"
+    condition:
+      type: "error_occurred"
+      node: "router"
+  
+  # Matcher边
+  - id: "matcher_to_content"
+    from: "matcher"
+    to: "content"
+    description: "匹配成功时进入Content"
+    condition:
+      type: "match_success"
+      value: true
+  
+  - id: "matcher_to_human_review"
+    from: "matcher"
+    to: "human_review"
+    description: "匹配结果不足时人工介入"
+    condition:
+      type: "low_match_count"
+      threshold: 2
+  
+  - id: "matcher_to_fallback"
+    from: "matcher"
+    to: "fallback"
+    description: "匹配超时或失败时降级"
+    condition:
+      type: "error_occurred"
+      node: "matcher"
+  
+  # Content边
+  - id: "content_to_end"
+    from: "content"
+    to: "end"
+    description: "内容生成成功且安全检查通过"
+    condition:
+      type: "compound"
+      and:
+        - has_content: true
+        - safety_passed: true
+  
+  - id: "content_to_human_review"
+    from: "content"
+    to: "human_review"
+    description: "安全检查未通过时人工审核"
+    condition:
+      type: "safety_check_failed"
+  
+  - id: "content_to_fallback"
+    from: "content"
+    to: "fallback"
+    description: "内容生成失败时降级"
+    condition:
+      type: "error_occurred"
+      node: "content"
+  
+  # 人工审核边
+  - id: "human_review_approve"
+    from: "human_review"
+    to: "end"
+    description: "人工审核通过"
+    condition:
+      type: "human_decision"
+      decision: "approved"
+  
+  - id: "human_review_reject"
+    from: "human_review"
+    to: "fallback"
+    description: "人工审核拒绝"
+    condition:
+      type: "human_decision"
+      decision: "rejected"
+  
+  # 降级边
+  - id: "fallback_to_end"
+    from: "fallback"
+    to: "end"
+    description: "降级处理后正常结束"
+
+# ============================================================
+# 条件路由函数
+# ============================================================
+routing_functions:
+  intent_routing:
+    type: "python"
+    code: |
+      def route_by_intent(state):
+          intent = state.get("intent")
+          
+          routing_table = {
+              "match": "matcher",
+              "price_inquiry": "matcher", 
+              "sample_request": "matcher",
+              "cooperation": "human_review",
+              "logistics": "content",
+              "complaint": "human_review",
+              "general": "content"
+          }
+          
+          return routing_table.get(intent, "fallback")
+      
+      # 注册路由函数
+      {"route_by_intent": route_by_intent}
+  
+  confidence_check:
+    type: "python"
+    code: |
+      def check_confidence(state):
+          confidence = state.get("intent_confidence", 0.0)
+          threshold = 0.7
+          
+          if confidence < threshold:
+              return "human_review"
+          elif confidence >= threshold:
+              return "route_by_intent"
+          else:
+              return "fallback"
+      
+      {"check_confidence": check_confidence}
+  
+  safety_routing:
+    type: "python"
+    code: |
+      def route_by_safety(state):
+          safety_passed = state.get("safety_check_passed", True)
+          
+          if safety_passed:
+              return "end"
+          else:
+              return "human_review"
+      
+      {"route_by_safety": route_by_safety}
+
+# ============================================================
+# Checkpoint配置
+# ============================================================
+checkpoint:
+  enabled: true
+  storage:
+    type: "sqlite"
+    path: "./checkpoints/yiwu_trade.db"
+    connection_pool:
+      max_connections: 10
+  
+  checkpoint_after:
+    - "router"
+    - "matcher"
+    - "content"
+    - "human_review"
+  
+  checkpoint_before:
+    - "human_review"
+    - "end"
+  
+  restore_strategy:
+    on_startup: "check_pending_sessions"
+    on_error: "restore_last_checkpoint"
+
+# ============================================================
+# 超时与重试配置
+# ============================================================
+timeout:
+  node_defaults:
+    router: 3
+    matcher: 5
+    content: 4
+    human_review: 300
+    fallback: 1
+  
+  total_workflow: 15
+  
+  on_timeout:
+    action: "fallback"
+    log_level: "warning"
+
+retry:
+  max_attempts: 3
+  backoff:
+    type: "exponential"
+    initial_delay: 1
+    multiplier: 2
+    max_delay: 10
+  
+  retryable_errors:
+    - "timeout"
+    - "rate_limit"
+    - "connection_error"
+  
+  non_retryable_errors:
+    - "invalid_input"
+    - "unauthorized"
+    - "not_found"
+
+# ============================================================
+# 监控与告警配置
+# ============================================================
+monitoring:
+  enabled: true
+  
+  metrics:
+    - name: "workflow_duration"
+      type: "histogram"
+      buckets: [1, 3, 5, 10, 15]
+    - name: "node_duration"
+      type: "histogram"
+      buckets: [0.5, 1, 2, 3, 5]
+    - name: "error_rate"
+      type: "counter"
+      labels: ["node", "error_type"]
+    - name: "fallback_count"
+      type: "counter"
+      labels: ["node", "reason"]
+    - name: "human_review_rate"
+      type: "gauge"
+  
+  alerting:
+    conditions:
+      - name: "high_error_rate"
+        metric: "error_rate"
+        threshold: 0.05
+        window: "5m"
+        action: "alert_team"
+      - name: "slow_workflow"
+        metric: "workflow_duration"
+        threshold: 12
+        window: "5m"
+        action: "alert_team"
+      - name: "frequent_fallbacks"
+        metric: "fallback_count"
+        threshold: 10
+        window: "1m"
+        action: "alert_oncall"
+      - name: "human_review_overdue"
+        metric: "human_review_pending"
+        threshold: 1
+        window: "10m"
+        action: "escalate"
+  
+  channels:
+    - name: "slack"
+      webhook: "${SLACK_WEBHOOK}"
+      channel: "#ai-alerts"
+    - name: "email"
+      to: "ops@company.com"
+      subject: "[告警] 义乌系统异常"
+
+# ============================================================
+# 内存配置
+# ============================================================
+memory:
+  short_term:
+    enabled: true
+    type: "buffer"
+    max_messages: 20
+    ttl: 3600
+  
+  long_term:
+    enabled: true
+    type: "vector"
+    provider: "milvus"
+    collection: "agent_memory"
+    embedding_model: "text-embedding-3-small"
+  
+  entity_memory:
+    enabled: true
+    entities:
+      - "user_preferences"
+      - "product_knowledge"
+      - "conversation_patterns"

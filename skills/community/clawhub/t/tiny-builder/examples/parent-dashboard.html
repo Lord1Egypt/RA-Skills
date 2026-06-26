@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiny Builder — Parent Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; }
+  
+  .header { padding: 24px 32px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 20px; font-weight: 600; }
+  .header h1 span { color: #818cf8; }
+  .header .badge { background: #22c55e20; color: #22c55e; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+  
+  .container { max-width: 900px; margin: 0 auto; padding: 32px; }
+  
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat { background: #141414; border: 1px solid #1f1f1f; border-radius: 12px; padding: 20px; }
+  .stat .value { font-size: 28px; font-weight: 700; color: #fff; }
+  .stat .label { font-size: 12px; color: #666; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat.highlight .value { color: #818cf8; }
+  
+  .section-title { font-size: 14px; color: #666; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; font-weight: 600; }
+  
+  .sessions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+  .session { background: #141414; border: 1px solid #1f1f1f; border-radius: 12px; padding: 20px; transition: border-color 0.2s; }
+  .session:hover { border-color: #333; }
+  .session-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .session-date { font-size: 12px; color: #666; }
+  .session-duration { font-size: 11px; color: #818cf8; background: #818cf810; padding: 3px 8px; border-radius: 6px; }
+  .session-ask { font-size: 15px; font-weight: 500; color: #e5e5e5; margin-bottom: 8px; }
+  .session-summary { font-size: 13px; color: #888; line-height: 1.5; }
+  .session-projects { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .project-tag { font-size: 11px; background: #1a1a2e; color: #a5b4fc; padding: 4px 10px; border-radius: 6px; display: flex; align-items: center; gap: 4px; }
+  .project-tag .emoji { font-size: 13px; }
+  
+  .flag { margin-top: 10px; font-size: 12px; color: #f59e0b; background: #f59e0b10; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #f59e0b; }
+  
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+  .project-card { background: #141414; border: 1px solid #1f1f1f; border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s; }
+  .project-card:hover { border-color: #818cf8; transform: translateY(-2px); }
+  .project-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .project-card .name { font-size: 13px; font-weight: 500; color: #e5e5e5; }
+  .project-card .date { font-size: 11px; color: #555; margin-top: 4px; }
+  
+  .streak { background: linear-gradient(135deg, #1a1a2e, #141414); border: 1px solid #2a2a4a; border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 40px; }
+  .streak .fire { font-size: 36px; }
+  .streak .count { font-size: 24px; font-weight: 700; color: #f59e0b; margin: 8px 0 4px; }
+  .streak .text { font-size: 13px; color: #888; }
+  
+  .safety { background: #141414; border: 1px solid #1f1f1f; border-radius: 12px; padding: 20px; }
+  .safety-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1a1a1a; }
+  .safety-row:last-child { border-bottom: none; }
+  .safety-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .safety-dot.green { background: #22c55e; }
+  .safety-dot.yellow { background: #f59e0b; }
+  .safety-label { font-size: 13px; color: #ccc; flex: 1; }
+  .safety-value { font-size: 12px; color: #666; }
+  
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>🛠️ <span>Tiny Builder</span> — Parent Dashboard</h1>
+    <div class="badge">● Agent Active</div>
+  </div>
+  
+  <div class="container">
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat highlight">
+        <div class="value">7</div>
+        <div class="label">Projects Built</div>
+      </div>
+      <div class="stat">
+        <div class="value">12</div>
+        <div class="label">Sessions</div>
+      </div>
+      <div class="stat">
+        <div class="value">2.4h</div>
+        <div class="label">Total Time</div>
+      </div>
+      <div class="stat">
+        <div class="value">🔥 3</div>
+        <div class="label">Day Streak</div>
+      </div>
+    </div>
+    
+    <!-- Streak -->
+    <div class="streak">
+      <div class="fire">🔥</div>
+      <div class="count">3 Day Building Streak!</div>
+      <div class="text">Built something 3 days in a row. Keep it going!</div>
+    </div>
+    
+    <!-- Recent Sessions -->
+    <div class="section-title">Recent Sessions</div>
+    <div class="sessions">
+      <div class="session">
+        <div class="session-header">
+          <div class="session-date">Today, 3:45 PM</div>
+          <div class="session-duration">18 min</div>
+        </div>
+        <div class="session-ask">"Can we make a game where you catch falling stars?"</div>
+        <div class="session-summary">Built a star-catching game from scratch. Added sound effects and a score counter. Asked to make the stars different colors — implemented a rainbow mode. Very engaged, kept saying "this is so cool!"</div>
+        <div class="session-projects">
+          <div class="project-tag"><span class="emoji">🎮</span> star-catcher.html</div>
+        </div>
+      </div>
+      
+      <div class="session">
+        <div class="session-header">
+          <div class="session-date">Yesterday, 4:20 PM</div>
+          <div class="session-duration">12 min</div>
+        </div>
+        <div class="session-ask">"I want to draw an underwater world"</div>
+        <div class="session-summary">Created an underwater drawing pad with fish stamps, bubbles, and a blue gradient background. Drew a shark and 3 fish. Saved the drawing as a screenshot.</div>
+        <div class="session-projects">
+          <div class="project-tag"><span class="emoji">🎨</span> underwater-draw.html</div>
+        </div>
+      </div>
+      
+      <div class="session">
+        <div class="session-header">
+          <div class="session-date">Feb 24, 3:30 PM</div>
+          <div class="session-duration">22 min</div>
+        </div>
+        <div class="session-ask">"Make me a spooky ghost game!"</div>
+        <div class="session-summary">Built a flashlight ghost-catching game. Used the mouse as a flashlight beam to find hidden ghosts in a dark room. Added a spooky-but-fun soundtrack and a celebration animation when all ghosts are found. Extended the session to add 3 levels with increasing difficulty.</div>
+        <div class="session-projects">
+          <div class="project-tag"><span class="emoji">👻</span> ghost-catcher.html</div>
+        </div>
+      </div>
+      
+      <div class="session">
+        <div class="session-header">
+          <div class="session-date">Feb 23, 5:00 PM</div>
+          <div class="session-duration">8 min</div>
+        </div>
+        <div class="session-ask">"Can we make a quiz about animals?"</div>
+        <div class="session-summary">Built an animal quiz with emoji clues. 10 questions, multiple choice. Got 8/10 on the first try. Asked to add a bonus round — created a speed round with a timer.</div>
+        <div class="session-projects">
+          <div class="project-tag"><span class="emoji">🧠</span> animal-quiz.html</div>
+        </div>
+        <div class="flag">⚠️ Asked "can we look up more animals on the internet?" — explained we build from imagination here and offered to add more animals from memory instead.</div>
+      </div>
+    </div>
+    
+    <!-- All Projects -->
+    <div class="section-title">All Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="icon">⭐</div>
+        <div class="name">Star Catcher</div>
+        <div class="date">Today</div>
+      </div>
+      <div class="project-card">
+        <div class="icon">🌊</div>
+        <div class="name">Underwater Draw</div>
+        <div class="date">Yesterday</div>
+      </div>
+      <div class="project-card">
+        <div class="icon">👻</div>
+        <div class="name">Ghost Catcher</div>
+        <div class="date">Feb 24</div>
+      </div>
+      <div class="project-card">
+        <div class="icon">🧠</div>
+        <div class="name">Animal Quiz</div>
+        <div class="date">Feb 23</div>
+      </div>
+      <div class="project-card">
+        <div class="icon">🚀</div>
+        <div class="name">Space Explorer</div>
+        <div class="date">Feb 22</div>
+      </div>
+      <div class="project-card">
+        <div class="icon">🏰</div>
+        <div class="name">Castle Builder</div>
+        <div class="date">Feb 21</div>
+      </div>
+      <div class="project-card">
+        <div class="icon">🎵</div>
+        <div class="name">Music Maker</div>
+        <div class="date">Feb 20</div>
+      </div>
+    </div>
+    
+    <!-- Safety -->
+    <div class="section-title">Safety Overview</div>
+    <div class="safety">
+      <div class="safety-row">
+        <div class="safety-dot green"></div>
+        <div class="safety-label">Content filtering</div>
+        <div class="safety-value">Active — 0 blocks</div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-dot green"></div>
+        <div class="safety-label">Web access</div>
+        <div class="safety-value">Disabled</div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-dot green"></div>
+        <div class="safety-label">File sandbox</div>
+        <div class="safety-value">~/tiny-builder/projects/ only</div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-dot yellow"></div>
+        <div class="safety-label">Redirected requests</div>
+        <div class="safety-value">1 this week</div>
+      </div>
+      <div class="safety-row">
+        <div class="safety-dot green"></div>
+        <div class="safety-label">External messaging</div>
+        <div class="safety-value">Disabled</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

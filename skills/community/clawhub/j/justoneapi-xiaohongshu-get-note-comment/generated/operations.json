@@ -1,0 +1,110 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call 2 get-note-comment versions for Xiaohongshu (RedNote) Note Comments through JustOneAPI with noteId.",
+  "displayName": "Xiaohongshu (RedNote) Note Comments",
+  "endpointPath": "get-note-comment",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu (RedNote) note Comments data, including text, authors, and timestamps, for feedback analysis.",
+      "method": "GET",
+      "operationId": "getNoteCommentV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor from the previous page (use the cursor value returned by the last response).",
+          "enumValues": [],
+          "location": "query",
+          "name": "lastCursor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "latest",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `normal`: Normal\n- `latest`: Latest",
+          "enumValues": [
+            "normal",
+            "latest"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-comment/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Comments",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu (RedNote) note Comments data, including comment text, author profiles, and interaction data, for sentiment analysis and community monitoring.",
+      "method": "GET",
+      "operationId": "getNoteCommentV4",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Unique note identifier on Xiaohongshu.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu/get-note-comment/v4",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Comments",
+      "tags": [
+        "Xiaohongshu (RedNote)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu",
+  "primaryTag": "Xiaohongshu (RedNote)",
+  "skillName": "justoneapi_xiaohongshu_get_note_comment",
+  "skillType": "interface",
+  "slug": "justoneapi-xiaohongshu-get-note-comment",
+  "sourceTitle": "OpenAPI definition"
+}

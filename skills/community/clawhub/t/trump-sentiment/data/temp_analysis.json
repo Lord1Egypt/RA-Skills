@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-04-21T03:50:00Z",
+  "searches": {
+    "trump_iran_deal": [
+      {"source": "Republic @republic", "time_utc": "~03:50", "content": "Trump warns Iran: US ready to resume war if no deal reached soon. BREAKING", "engagement": "0 replies, 0 RT, 0 likes", "platform": "X"},
+      {"source": "FT for Schools @ft4s", "time_utc": "~03:49", "content": "Highly unlikely Iran ceasefire will be extended if no deal reached, Trump says", "engagement": "3 views", "platform": "X"},
+      {"source": "Serhii @Serhii51899362", "time_utc": "~03:50", "content": "What if the Iran deal does not happen under Trump? Will it be a long war like Vietnam and Afghanistan?", "engagement": "0 interactions", "platform": "X"}
+    ],
+    "iran_ceasefire": [
+      {"source": "Patriotic Night Owl @Patriot_Deanna", "time_utc": "~03:50", "content": "Ex-CENTCOM commander warns against risky US ground operation to seize Iran enriched uranium. Two-week ceasefire expires Wednesday, no extension expected.", "engagement": "0 interactions", "platform": "X"},
+      {"source": "Zenzeni Sangweni @Zenzeni_sangwen", "time_utc": "~03:49", "content": "Iran framing action as clear ceasefire violation. Which ceasefire from April 2026? How fragile does truce look before Pakistan talks?", "engagement": "1 reply, 1 RT, 1 like, 6 views", "platform": "X"}
+    ],
+    "iran_war": [
+      {"source": "Weidi @weidi_i", "time_utc": "~03:50", "content": "China supports Russia in Ukraine war. Russia helping Iran regime against US. Trump likes Putin.", "engagement": "0 interactions", "platform": "X"}
+    ]
+  },
+  "accounts": {
+    "KobeissiLetter": [
+      {"time_utc": "~17:50 Apr 20", "content": "Strong inverse correlation between US diesel prices and Consumer Sentiment. Trucking costs up 30%. Americans spent extra 10 billion USD on gasoline over 50 days. Consumer Sentiment at record low.", "engagement": "video", "platform": "X"},
+      {"time_utc": "~16:50 Apr 20", "content": "World experiencing biggest energy crisis in history with 600 million barrels of lost oil supply. US gas prices up 47 percent since December. Inflation nearing 4 percent similar to 1970s.", "engagement": "80 replies, 149 RT, 1173 likes, 119 bookmarks, 261K views", "platform": "X"}
+    ],
+    "WatcherGuru": [
+      {"time_utc": "Apr 18", "content": "Michael Saylor: Impossible to blockade Bitcoin.", "engagement": "565 replies, 691 RT, 5232 likes, 260K views", "platform": "X"}
+    ],
+    "zerohedge": [
+      {"time_utc": "~03:25", "content": "China chipmaking companies revenue growth strong but margin performance deteriorating due to intensifying domestic competition.", "engagement": "not visible", "platform": "X"},
+      {"time_utc": "~03:11", "content": "ASML China revenue share 29.1 percent in 2025. Tokyo Electron China more than 40 percent of revenue for fiscal 2025.", "engagement": "7 replies, 9 RT, 63 likes, 28K views", "platform": "X"}
+    ]
+  }
+}

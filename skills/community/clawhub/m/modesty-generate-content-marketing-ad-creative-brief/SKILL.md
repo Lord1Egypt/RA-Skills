@@ -1,35 +1,49 @@
 ---
-name: "generate-content-marketing-ad-creative-brief"
+name: "Generate Content Marketing Ad Creative Brief"
 description: "Plan campaign visuals and hooks for content marketing promotions. Use when working on paid campaign planning for content teams, creators, growth marketers."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/modesty-generate-content-marketing-ad-creative-brief"
-sourceUrl: "https://clawhub.ai/skills/modesty-generate-content-marketing-ad-creative-brief"
+homepage: "https://www.skillboss.co/skills/generate-content-marketing-ad-creative-brief"
+metadata: {"category":"content-creation","subcategory":"content-production","skill_id":"generate-content-marketing-ad-creative-brief","generated_day":"","seo_keywords":["ad creative brief AI","content marketing ad planning","content marketing AI","content ops automation"]}
 ---
 
-# generate-content-marketing-ad-creative-brief
+# Generate Content Marketing Ad Creative Brief
 
-> Plan campaign visuals and hooks for content marketing promotions. Use when working on paid campaign planning for content teams, creators, growth marketers.
+Plan campaign visuals and hooks for content marketing promotions. Use when working on paid campaign planning for content teams, creators, growth marketers.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/modesty-generate-content-marketing-ad-creative-brief`
-- **Source URL:** [https://clawhub.ai/skills/modesty-generate-content-marketing-ad-creative-brief](https://clawhub.ai/skills/modesty-generate-content-marketing-ad-creative-brief)
+## Use When
 
-## Overview
+Use this skill for paid campaign planning work for content teams, creators, growth marketers.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/modesty-generate-content-marketing-ad-creative-brief
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: ad creative brief AI, content marketing ad planning, content marketing AI, content ops automation
+- Search intent: paid campaign planning
+- Canonical slug: `generate-content-marketing-ad-creative-brief`
+- Install query: Install Generate Content Marketing Ad Creative Brief with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+
+## Suggested Prompt
+
+[Generate Content Marketing Ad Creative Brief] for my team
+
+## Notes
+
+- Plan campaign visuals and hooks for content marketing promotions
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- ad creative brief AI
+- content marketing ad planning
+- content marketing AI
+- content ops automation

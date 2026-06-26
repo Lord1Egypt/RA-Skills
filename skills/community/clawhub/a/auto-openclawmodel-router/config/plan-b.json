@@ -1,0 +1,38 @@
+{
+  "plan_name": "Plan B - China Models",
+  "description": "國內模型套餐，適合中國用戶使用",
+  "task_models": {
+    "high_logic": {
+      "primary": "deepseek/deepseek-r1",
+      "fallback": "zhipu/glm-5"
+    },
+    "code_generation": {
+      "primary": "zhipu/glm-5",
+      "fallback": "moonshot/kimi-k2"
+    },
+    "creative_writing": {
+      "primary": "minimax/minimax-m2.5",
+      "fallback": "baidu/wenxin-5.0"
+    },
+    "info_reading": {
+      "primary": "minimax/minimax-01",
+      "fallback": "zhipu/glm-4-long"
+    },
+    "simple_repeat": {
+      "primary": "zhipu/glm-4-flash",
+      "fallback": "deepseek/deepseek-v3"
+    },
+    "image_understanding": {
+      "primary": "minimax/minimax-vl-01",
+      "fallback": "zhipu/glm-4.6v"
+    },
+    "image_generation": {
+      "primary": "tencent/hunyuan-image",
+      "fallback": "bytedance/doubao-seed"
+    },
+    "video_audio": {
+      "primary": "vidu/vidu-q3",
+      "fallback": "kuaishou/kling-2.6"
+    }
+  }
+}

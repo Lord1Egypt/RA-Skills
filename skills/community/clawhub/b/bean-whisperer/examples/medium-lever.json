@@ -1,0 +1,108 @@
+{
+  "id": "6e8c0e6d-f632-4a2b-be9b-11112406a315",
+  "label": "Medium Colombian",
+  "type": "pro",
+  "description": "Medium roast, Colombia, washed, 18g\u219239.6g (1:2.2), lever profile",
+  "temperature": 90,
+  "phases": [
+    {
+      "name": "Fill",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 4,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 2,
+        "flow": 5
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Pre-infuse",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 4,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 2,
+        "flow": 2
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Ramp",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 3,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 9,
+        "flow": 4
+      },
+      "transition": {
+        "type": "ease-in",
+        "duration": 2,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "pressure",
+          "operator": "gte",
+          "value": 9
+        }
+      ]
+    },
+    {
+      "name": "Hold Peak",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 6,
+      "temperature": 0,
+      "pump": {
+        "target": "pressure",
+        "pressure": 9,
+        "flow": 4
+      },
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": 1
+      }
+    },
+    {
+      "name": "Decline",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 30,
+      "temperature": 0,
+      "pump": {
+        "target": "flow",
+        "pressure": 9,
+        "flow": -1
+      },
+      "transition": {
+        "type": "ease-out",
+        "duration": 8,
+        "adaptive": 1
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 39.6
+        }
+      ]
+    }
+  ]
+}

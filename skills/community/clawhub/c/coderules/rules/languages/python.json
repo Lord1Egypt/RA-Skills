@@ -1,0 +1,90 @@
+{
+  "name": "Python",
+  "version": "3.10+",
+  "priority": 70,
+
+  "rules": {
+    "types": {
+      "typeHints": {
+        "enabled": true,
+        "message": "所有函数参数和返回值必须有类型注解"
+      },
+      "usePyright": {
+        "enabled": true,
+        "message": "使用 pyright 或 mypy 进行静态类型检查"
+      }
+    },
+
+    "naming": {
+      "variables": "snake_case",
+      "functions": "snake_case",
+      "classes": "PascalCase",
+      "constants": "UPPER_SNAKE_CASE",
+      "private": "_single_leading_underscore",
+      "protected": "__double_leading_underscore",
+      "dunder": "__double_leading_and_trailing__"
+    },
+
+    "imports": {
+      "order": ["标准库", "第三方库", "本地模块"],
+      "grouping": "使用 isort 自动分组排序",
+      "relative": "避免相对导入，使用绝对导入"
+    },
+
+    "documentation": {
+      "docstrings": {
+        "enabled": true,
+        "style": "Google 或 NumPy 风格",
+        "message": "所有公开函数、类必须有 docstring"
+      },
+      "typeAnnotations": "类型注解替代文档中的类型说明"
+    },
+
+    "structure": {
+      "oneClassPerFile": true,
+      "moduleOrganization": {
+        "order": ["module docstring", "imports", "constants", "classes", "functions"]
+      }
+    },
+
+    "bestPractices": {
+      "fStrings": {
+        "enabled": true,
+        "message": "使用 f-string 进行字符串格式化，避免 % 或 .format()"
+      },
+      "contextManagers": {
+        "enabled": true,
+        "message": "文件、数据库连接等资源使用 with 语句管理"
+      },
+      "listComprehension": {
+        "enabled": true,
+        "message": "简单转换优先使用列表推导式，复杂逻辑使用 for 循环"
+      },
+      "dataclasses": {
+        "enabled": true,
+        "message": "数据容器类优先使用 @dataclass"
+      }
+    }
+  },
+
+  "promptTemplates": [
+    "所有函数参数和返回值必须有类型注解",
+    "变量和函数使用 snake_case 命名，类使用 PascalCase",
+    "导入顺序：标准库 → 第三方库 → 本地模块",
+    "所有公开函数必须有 docstring（Google 或 NumPy 风格）",
+    "使用 f-string 进行字符串格式化",
+    "资源管理使用 with 语句（上下文管理器）"
+  ],
+
+  "examples": {
+    "good": [
+      "def get_user(user_id: int) -> User | None:\n    \"\"\"根据 ID 获取用户信息。\n\n    Args:\n        user_id: 用户唯一标识\n\n    Returns:\n        用户对象，不存在则返回 None\n    \"\"\"\n    return session.query(User).filter_by(id=user_id).first()",
+      "from dataclasses import dataclass\n\n@dataclass\nclass Config:\n    host: str = 'localhost'\n    port: int = 8000"
+    ],
+    "bad": [
+      "def get_user(id):  # 缺少类型注解\n    return ...",
+      "name = '%s' % 'test'  # 使用旧式格式化",
+      "f = open('file.txt')  # 未使用 with 语句"
+    ]
+  }
+}

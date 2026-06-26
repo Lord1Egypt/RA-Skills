@@ -1,0 +1,84 @@
+{
+  "enabled": true,
+  "daemon": {
+    "interval_minutes": 5,
+    "min_interval_seconds": 240,
+    "_comment": "Fixed 5min cron. Agent can call daemon manually at boot."
+  },
+  "freeze": {
+    "substantive_threshold_seconds": 120,
+    "substantive_min_actions": 1,
+    "substantive_min_file_changes": 2,
+    "stale_cognition_hours": 24
+  },
+  "boot": {
+    "stale_threshold_hours": 24,
+    "very_stale_threshold_hours": 48,
+    "smooth_transition_threshold": 0.7,
+    "partial_transition_threshold": 0.4,
+    "_calibration_note": "Initial values. Calibrate from mindstate-boot.log after 2-4 weeks."
+  },
+  "temperature": {
+    "physical_vocab": [
+      "crisis",
+      "pressure",
+      "focus",
+      "impulse",
+      "accumulation",
+      "calm"
+    ],
+    "cognitive_vocab": [
+      "building",
+      "exploring",
+      "intensive",
+      "contemplation",
+      "brief",
+      "neutral"
+    ]
+  },
+  "environment_delta": {
+    "stale_file_threshold_hours": 72,
+    "watched_files": [
+      "INTENTIONS.md",
+      "TODO.md"
+    ],
+    "watched_dirs": [
+      "memory/",
+      "research/"
+    ]
+  },
+  "system_health": {
+    "check_gateway": true,
+    "gateway_process_name": "openclaw",
+    "disk_warning_threshold_pct": 90
+  },
+  "semantic_predictions": {
+    "enabled": false,
+    "_comment": "Set to true if cheap inference available. Works without."
+  },
+  "execution_gate": {
+    "enabled": true,
+    "max_action_time_seconds": 600,
+    "auto_defer_on_timeout": true,
+    "require_evidence": true,
+    "min_execution_rate_warning": 0.5,
+    "_comment": "Gate blocks new proposals until pending actions resolved. 600s = 10min max per action before auto-defer."
+  },
+  "watchdog": {
+    "max_stale_minutes": 15,
+    "max_process_age_seconds": 300,
+    "allow_kill": false,
+    "allow_cleanup": false,
+    "auto_freeze": true,
+    "auto_freeze_stale_hours": 6,
+    "_comment": "By default: detect + log only. Set allow_kill=true to let watchdog terminate hung mindstate-*.sh processes. Set allow_cleanup=true to let it delete orphaned .tmp files. Auto-freeze is safe (just runs freeze.sh) and enabled by default."
+  },
+  "wake_gate": {
+    "enabled": false,
+    "min_interval_seconds": 600,
+    "max_wakes_per_day": 20,
+    "tension_wake_threshold": 4.0,
+    "wake_on_pending_actions": true,
+    "_comment": "Phase 2: wakes agent via system event. Enable after testing gate in heartbeat-only mode."
+  }
+}

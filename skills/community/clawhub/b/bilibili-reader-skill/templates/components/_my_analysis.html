@@ -1,0 +1,54 @@
+{# ── 「我的解读」主区域 ── #}
+{% if my_analysis and my_analysis.concepts %}
+<div class="section">
+    <h3 class="section-title">🧠 我的解读</h3>
+
+    {# 概述 #}
+    {% if my_analysis.overview %}
+    <div style="background: linear-gradient(135deg, #e8f4fd, #f0f8ff); border: 1px solid #b8daff; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; font-size: 10pt; line-height: 1.8;">
+        {{ my_analysis.overview }}
+    </div>
+    {% endif %}
+
+    {# 遍历每个概念 #}
+    {% for concept in my_analysis.concepts %}
+        {% include "components/_concept_block.html" %}
+    {% endfor %}
+
+    {# 操作步骤（概念层之后）#}
+    {% if my_analysis.operations %}
+    <div style="margin-top: 15px;">
+        <div style="font-size: 11pt; color: #00a1d6; border-left: 4px solid #00a1d6; padding-left: 10px; margin-bottom: 10px; font-weight: bold;">
+            🔧 操作步骤
+        </div>
+        {% for op in my_analysis.operations %}
+        <div style="margin-bottom: 14px; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #28a745, #1e7e34); color: white; padding: 6px 15px; font-size: 10pt; font-weight: bold;">
+                步骤 {{ loop.index }}：{{ op.step }}
+            </div>
+            <div style="padding: 10px 15px; background: #fff; font-size: 10pt; line-height: 1.7;">
+                {{ op.description }}
+            </div>
+            {% if op.expected_result %}
+            <div style="padding: 6px 15px; background: #d4edda; font-size: 9pt; color: #155724;">
+                <strong>✅ 验证：</strong>{{ op.expected_result }}
+            </div>
+            {% endif %}
+            {% if op.pitfall %}
+            <div style="padding: 6px 15px; background: #fff3cd; font-size: 9pt; color: #856404;">
+                <strong>⚠️ 避坑：</strong>{{ op.pitfall }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {# 思考题 #}
+    {% if my_analysis.thinking_questions %}
+        {% with thinking_questions = my_analysis.thinking_questions %}
+            {% include "components/_thinking.html" %}
+        {% endwith %}
+    {% endif %}
+</div>
+{% endif %}

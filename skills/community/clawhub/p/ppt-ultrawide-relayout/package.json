@@ -1,0 +1,18 @@
+{
+  "name": "ppt-ultrawide-relayout",
+  "version": "1.0.0",
+  "description": "Turn standard PPT decks into cleaner ultra-wide layouts without stretching text",
+  "scripts": {
+    "check:python": "python3 -m py_compile scripts/pptx_layout_dump.py scripts/pptx_ultrawide_relayout.py"
+  },
+  "keywords": [
+    "ppt",
+    "powerpoint",
+    "presentation",
+    "layout",
+    "ultrawide",
+    "design"
+  ],
+  "author": "",
+  "license": "ISC"
+}

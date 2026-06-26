@@ -1,0 +1,108 @@
+{
+  "created_at": "2025-01-02T00:00:00.000Z",
+  "last_updated": "2025-01-02T00:00:00.000Z",
+  "cognitive_assessment": {
+    "user_id": "user_001",
+    "age": 75,
+    "education_years": 12,
+
+    "mmse": {
+      "date": null,
+      "total_score": null,
+      "max_score": 30,
+      "interpretation": null,
+
+      "subscores": {
+        "orientation": {
+          "time": null,
+          "place": null,
+          "total": null
+        },
+        "registration": null,
+        "attention": null,
+        "recall": null,
+        "language": null
+      },
+
+      "history": [],
+
+      "trend": null,
+      "annual_decline": null
+    },
+
+    "moca": {
+      "date": null,
+      "total_score": null,
+      "max_score": 30,
+      "education_adjusted": null,
+      "interpretation": null,
+
+      "subscores": {
+        "visuospatial_executive": null,
+        "naming": null,
+        "attention": null,
+        "language": null,
+        "abstraction": null,
+        "delayed_recall": null,
+        "orientation": null
+      }
+    },
+
+    "cognitive_domains": {
+      "memory": {
+        "status": null,
+        "immediate_recall": null,
+        "short_term_memory": null,
+        "long_term_memory": null
+      },
+      "executive_function": {
+        "status": null,
+        "planning": null,
+        "problem_solving": null
+      },
+      "language": {
+        "status": null,
+        "comprehension": null,
+        "expression": null
+      },
+      "visuospatial": {
+        "status": null,
+        "object_recognition": null,
+        "spatial_orientation": null
+      }
+    },
+
+    "functional_impact": {
+      "activities_of_daily_living": {
+        "bathing": null,
+        "dressing": null,
+        "toileting": null,
+        "transferring": null,
+        "continence": null,
+        "feeding": null
+      },
+      "instrumental_activities": {
+        "shopping": null,
+        "cooking": null,
+        "managing_medications": null,
+        "using_telephone": null,
+        "managing_finances": null
+      }
+    },
+
+    "risk_factors": [],
+
+    "next_assessment": null,
+    "recommendations": []
+  },
+  "statistics": {
+    "total_assessments": 0,
+    "tracking_months": 0,
+    "impaired_domains": 0,
+    "last_assessment_date": null
+  },
+  "settings": {
+    "reminder_months": 12,
+    "enabled": true
+  }
+}

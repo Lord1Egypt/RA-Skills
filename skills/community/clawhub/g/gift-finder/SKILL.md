@@ -1,35 +1,35 @@
 ---
-name: "Gift Finder"
+name: "gift-finder"
+version: "3.0.1"
 description: "Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Gift Finder concepts, best practices, and implementation patterns."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gift-finder"
-sourceUrl: "https://clawhub.ai/skills/gift-finder"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [gift,finder, reference]
+category: "life"
 ---
 
 # Gift Finder
 
-> Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Gift Finder concepts, best practices, and implementation patterns.
+Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Gift Finder concepts, best practices, and implementation patterns. No API keys or credentials required.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gift-finder`
-- **Source URL:** [https://clawhub.ai/skills/gift-finder](https://clawhub.ai/skills/gift-finder)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `quickstart` | quickstart reference |
+| `patterns` | patterns reference |
+| `debugging` | debugging reference |
+| `performance` | performance reference |
+| `security` | security reference |
+| `migration` | migration reference |
+| `cheatsheet` | cheatsheet reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gift-finder
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

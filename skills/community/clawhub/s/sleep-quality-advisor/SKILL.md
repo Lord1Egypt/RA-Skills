@@ -1,35 +1,19 @@
----
-name: "Sleep Quality Advisor"
-description: "Analyze sleep habits to assess quality, score restfulness, and provide prioritized improvement tips and basic sleep hygiene guidance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sleep-quality-advisor"
-sourceUrl: "https://clawhub.ai/skills/sleep-quality-advisor"
----
-
-# Sleep Quality Advisor
-
-> Analyze sleep habits to assess quality, score restfulness, and provide prioritized improvement tips and basic sleep hygiene guidance.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sleep-quality-advisor`
-- **Source URL:** [https://clawhub.ai/skills/sleep-quality-advisor](https://clawhub.ai/skills/sleep-quality-advisor)
+# Sleep Quality Advisor（睡眠质量顾问）
 
 ## Overview
+解析用户睡眠习惯，提供睡眠质量评估、改善建议和睡前仪式指导。
 
+## Trigger
+- 睡眠不好
+- 失眠/入睡困难
+- 睡眠质量
+- 几点睡
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sleep-quality-advisor
-```
+## Workflow
+1. 从用户描述中提取睡眠时间、质量和症状
+2. 评估睡眠质量并打分
+3. 给出针对性改善建议（按优先级排序）
+4. 提供睡眠卫生基础原则
+
+## Output
+JSON: {sleepAssessment{}, recommendations[], sleepHygiene[], medicalAdvice{}}

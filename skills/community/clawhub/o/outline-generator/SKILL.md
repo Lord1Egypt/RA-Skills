@@ -1,35 +1,177 @@
 ---
-name: "Outline Generator"
+name: outline-generator
 description: "小说大纲生成器。根据小说类型、主题、字数生成 15 节拍结构化大纲。Use when: Architect 代理在 Phase 1 需要生成故事大纲、规划 15 节拍结构、创建卷章框架。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/outline-generator"
-sourceUrl: "https://clawhub.ai/skills/outline-generator"
 ---
 
-# Outline Generator
+# Outline Generator - 小说大纲生成器
 
-> 小说大纲生成器。根据小说类型、主题、字数生成 15 节拍结构化大纲。Use when: Architect 代理在 Phase 1 需要生成故事大纲、规划 15 节拍结构、创建卷章框架。
+根据小说类型、主题、字数生成 15 节拍结构化大纲的工具。专为 AutoNovel Writer v5.0 设计，由 Architect 代理在 Phase 1 使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/outline-generator`
-- **Source URL:** [https://clawhub.ai/skills/outline-generator](https://clawhub.ai/skills/outline-generator)
+## 快速开始
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/outline-generator
+cd ~/.openclaw/workspace/skills/outline-generator
+
+# 生成玄幻小说大纲
+python3 scripts/generate_outline.py --type 玄幻 --theme "修真世界" --word-count 1000000
+
+# 生成都市小说大纲并保存到文件
+python3 scripts/generate_outline.py --type 都市 --theme "商业帝国" --word-count 800000 --output outline.md
+
+# 生成科幻小说大纲
+python3 scripts/generate_outline.py --type 科幻 --theme "星际文明" --word-count 1200000
+
+# 生成历史小说大纲
+python3 scripts/generate_outline.py --type 历史 --theme "权谋天下" --word-count 600000
 ```
+
+## 命令行选项
+
+| 选项 | 说明 | 必填 |
+|------|------|------|
+| `--type, -t` | 小说类型（玄幻/都市/科幻/历史） | ✅ |
+| `--theme, -m` | 小说主题（一句话简介） | ✅ |
+| `--word-count, -w` | 目标总字数 | ✅ |
+| `--output, -o` | 输出文件路径（默认：outline.md） | ❌ |
+| `--config, -c` | 配置文件路径（默认：configs/types.yml） | ❌ |
+
+## 支持的小说类型
+
+### 玄幻
+- **特点**: 奇幻世界、修炼体系、秘境探险、宗门争锋
+- **典型要素**: 修炼境界、宗门势力、秘境遗迹、丹药法宝
+- **字数范围**: 80 万 -200 万字
+- **卷数**: 3-8 卷
+- **章数**: 20-40 章/卷
+
+### 都市
+- **特点**: 现代背景、职场商战、逆袭崛起、高手低调
+- **典型要素**: 商业竞争、职场晋升、感情线、创业打脸
+- **字数范围**: 60 万 -150 万字
+- **卷数**: 1-3 卷
+- **章数**: 30-60 章/卷
+
+### 科幻
+- **特点**: 未来世界、星际旅行、人工智能、末世危机
+- **典型要素**: 星际舰队、外星文明、科技突破、纳米基因
+- **字数范围**: 70 万 -180 万字
+- **卷数**: 2-6 卷
+- **章数**: 25-50 章/卷
+
+### 历史
+- **特点**: 穿越架空、权谋朝堂、战争争霸、帝王之道
+- **典型要素**: 朝堂斗争、科举考试、战争指挥、宫廷政变
+- **字数范围**: 60 万 -120 万字
+- **卷数**: 2-5 卷
+- **章数**: 20-40 章/卷
+
+## 15 节拍结构 (Save the Cat 改编版)
+
+本工具采用改编自 Blake Snyder《Save the Cat》的 15 节拍结构，专为长篇网络小说优化：
+
+### 第一幕：铺垫 (约 10%)
+1. **开场画面** - 主角的日常生活状态
+2. **主题呈现** - 暗示故事核心主题
+3. **铺垫** - 介绍世界观、角色关系
+4. **催化剂** - 打破平衡的事件
+5. **争执** - 主角的犹豫和挣扎
+
+### 第二幕：对抗 (约 80%)
+6. **进入第二幕** - 主角做出决定，踏上旅程
+7. **副线故事** - 感情线/友情线展开
+8. **游戏时间** - 主角适应新环境，小试牛刀
+9. **中点** - 重大转折，赌注升级
+10. **坏人逼近** - 内外压力增大
+11. **失去一切** - 最低谷，看似失败
+12. **灵魂黑夜** - 内心反思，获得领悟
+13. **进入第三幕** - 找到解决方案
+
+### 第三幕：解决 (约 10%)
+14. **高潮** - 最终对决
+15. **终场画面** - 与开场呼应的全新状态
+
+## 输出示例
+
+```markdown
+# 《修真世界》大纲
+
+**类型**: 玄幻 | **主题**: 修真世界 | **目标字数**: 1,000,000 字
+
+## 简介
+
+少年林风因一场意外获得神秘传承，踏上修炼之路。从平凡少年成长为修真界至尊。
+
+## 主要人物
+
+- **林风** - 主角，天赋异禀但起点低微
+- **萧炎** - 竞争对手，后成为盟友
+- **苏媚** - 女主角，神秘身份
+
+## 世界构建
+
+这是一个修炼为尊的世界，实力决定一切。宗门林立，势力割据，秘境遗迹遍布。
+
+## 15 节拍结构
+
+### 第一幕：铺垫
+
+#### 1. 开场画面
+林风在青石镇经营一家小药铺，日子平淡但安稳。
+
+#### 2. 主题呈现
+"强者为尊，弱者生存"——镇上强者的傲慢让林风思考力量的意义。
+
+... (更多节拍)
+
+## 卷章结构
+
+### 卷一：崛起 (1-30 章，约 12 万字)
+- **核心**: 获得传承，初入修真
+- **关键事件**: 获得神秘玉佩、加入青云宗、第一次突破
+
+### 卷二：成长 (31-70 章，约 16 万字)
+- **核心**: 宗门修炼，秘境探险
+- **关键事件**: 秘境获得奇遇、宗门大比夺冠、发现身世之谜
+
+... (更多卷)
+```
+
+## 配置文件
+
+编辑 `configs/types.yml` 可自定义各类型的参数：
+
+```yaml
+玄幻:
+  word_count_per_chapter: [2500, 4000]  # 每章字数范围
+  chapters_per_volume: [20, 40]          # 每卷章数范围
+  volumes: [3, 8]                        # 卷数范围
+  word_count_range: [800000, 2000000]    # 总字数范围
+  keywords: ["修炼", "突破", "宗门", "秘境"]
+```
+
+## 使用场景 (V5 流水线)
+
+| 阶段 | 代理 | 输入 | 输出 |
+|------|------|------|------|
+| **Phase 1: 故事大纲** | Architect | 一句话灵感 | outline.md (≥500 字) |
+
+## 依赖
+
+```bash
+pip3 install -r requirements.txt --user
+```
+
+主要依赖：
+- `pyyaml>=6.0.1` - 配置文件解析
+- `rich>=13.7.0` (可选) - CLI 美化输出
+
+## 相关文件
+
+- `scripts/generate_outline.py` - 主程序
+- `configs/types.yml` - 类型配置
+- `references/beat_sheet.md` - 15 节拍详细说明
+
+---
+
+**Version**: 2.0.0 (V5 规范版)
+**基于**: AutoNovel Writer v5.0 项目规划

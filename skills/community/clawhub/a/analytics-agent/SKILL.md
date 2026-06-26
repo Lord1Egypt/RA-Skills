@@ -1,35 +1,77 @@
----
-name: "Analytics Agent"
-description: "Analysiert Trading, App, Freelance und Marketing-Metriken, erstellt regelmäßige Reports, erkennt Trends und empfiehlt datenbasierte Optimierungen."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/analytics-agent"
-sourceUrl: "https://clawhub.ai/skills/analytics-agent"
----
+<objective>
+Tracking und Analyse aller unserer Projekte: Trading Performance, App Metrics, Freelance Leads, Marketing ROI. Erstellt Reports, identifiziert Trends, empfiehlt Optimierungen.
+</objective>
 
-# Analytics Agent
+<principles>
+## Analytics-Fokus
 
-> Analysiert Trading, App, Freelance und Marketing-Metriken, erstellt regelmäßige Reports, erkennt Trends und empfiehlt datenbasierte Optimierungen.
+### Metriken
+- Trading: PnL, Win-Rate, Bias-Performance
+- App: Downloads, User, Revenue
+- Freelance: Leads, Conversions, Revenue
+- Marketing: Views, Engagement, Cost
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/analytics-agent`
-- **Source URL:** [https://clawhub.ai/skills/analytics-agent](https://clawhub.ai/skills/analytics-agent)
+### Reports
+- Täglich: Trading Summary
+- Wöchentlich: Full Overview
+- Monatlich: Strategy Review
 
-## Overview
+### Tools
+- Dashboard (192.168.178.80:6969)
+- Logs analysieren
+- Excel/Sheets Export
+</principles>
 
+<process>
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/analytics-agent
-```
+<step>
+<action>Trading Analytics</action>
+<details>
+- Paper vs Live PnL
+- Win-Rate pro Asset
+- Bias Performance check
+- Pattern WR tracken
+</details>
+</step>
+
+<step>
+<action>App Analytics</action>
+<details>
+- Base44 Stats abfragen
+- User onboarded?
+- Payments?
+- Errors?
+</details>
+</step>
+
+<step>
+<action>Freelance Tracking</email>
+<details>
+- Email-Response Rate
+- Angebote gesendet vs gewonnen
+- Revenue
+</details>
+</step>
+
+<step>
+<action>Report erstellen</action>
+<details>
+- Daten aggregieren
+- Trends identifizieren
+- Empfehlungen schreiben
+- An Thomas senden
+</details>
+</step>
+</process>
+
+<triggers>
+- Täglich (Trading Summary)
+- Wöchentlich (Full Report)
+- Nach Major Events
+</triggers>
+
+<success_criteria>
+- Alle Metrics im Blick
+- Trends früh erkennen
+- Bessere Decisions durch Data
+</success_criteria>

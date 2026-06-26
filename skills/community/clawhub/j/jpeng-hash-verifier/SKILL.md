@@ -1,35 +1,42 @@
 ---
-name: "hash-verifier"
+name: jpeng-hash-verifier
 description: "Verify data integrity with hashes"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jpeng-hash-verifier"
-sourceUrl: "https://clawhub.ai/skills/jpeng-hash-verifier"
+version: "1.0.0"
+author: "jpeng"
+tags: ["validation", "hash", "security"]
 ---
 
-# hash-verifier
+# Hash Verifier
 
-> Verify data integrity with hashes
+Verify data integrity with hashes
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jpeng-hash-verifier`
-- **Source URL:** [https://clawhub.ai/skills/jpeng-hash-verifier](https://clawhub.ai/skills/jpeng-hash-verifier)
+## When to Use
 
-## Overview
+- User needs validation related functionality
+- Automating hash tasks
+- Security operations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jpeng-hash-verifier
+python3 scripts/hash_verifier.py --input <input> --output <output>
+```
+
+## Configuration
+
+Set required environment variables:
+
+```bash
+export HASH_API_KEY="your-api-key"
+```
+
+## Output
+
+Returns JSON with results:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
 ```

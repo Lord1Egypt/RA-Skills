@@ -1,0 +1,77 @@
+name: sendflare-skill
+version: 1.0.1
+description: 通过 Sendflare SDK 发送电子邮件的轻量级技能。核心功能为邮件发送，不支持附件。联系人管理为实验性功能。
+author:
+  name: Sendflare
+  email: support@Sendflare.com
+  website: https://Sendflare.com
+
+categories:
+  - communication
+  - email
+  - utility
+
+triggers:
+  - pattern: "发送邮件 (.*)给 (.*)，主题：(.*)，内容：(.*)"
+    type: "regex"
+    description: "发送电子邮件到指定地址"
+  - pattern: "发送邮件到 (.*)|发邮件给 (.*)"
+    type: "regex"
+    description: "发送邮件的简化命令"
+  - pattern: "帮助"
+    type: "exact"
+    description: "显示帮助信息"
+
+permissions:
+  - network: "api.Sendflare.com"
+
+runtime: nodejs18
+main: dist/index.js
+
+tags:
+  - email
+  - Sendflare
+  - communication
+
+# 凭证声明 - 明确说明需要 API Token
+credentials:
+  required: true
+  type: api_token
+  description: "Sendflare API Token required for email sending"
+
+config:
+  - name: apiToken
+    type: string
+    required: true
+    description: "Sendflare API 令牌"
+    secure: true
+
+capabilities:
+  - name: sendEmail
+    description: 发送电子邮件
+    status: stable
+    requiresConfig:
+      - apiToken
+  - name: getContacts
+    description: 获取联系人列表
+    status: experimental
+    requiresConfig:
+      - apiToken
+      - appId
+  - name: saveContact
+    description: 保存/更新联系人
+    status: experimental
+    requiresConfig:
+      - apiToken
+      - appId
+  - name: deleteContact
+    description: 删除联系人
+    status: experimental
+    requiresConfig:
+      - apiToken
+      - appId
+
+limitations:
+  - 不支持发送附件
+  - 联系人功能需要额外配置 appId
+  - 发件人地址必须在 Sendflare 后台完成 DNS 验证

@@ -1,0 +1,34 @@
+id: skillforge-discovery
+version: "1.0.0"
+name: SkillForge API 服务发现
+description: 自动发现和调用付费 AI 服务。当 OpenClaw Agent 需要某个能力但本地没有时，自动查找并推荐可用服务。
+
+# 触发条件
+triggers:
+  - type: intent
+    keywords: [服务, API, 技能, 工具, 市场, 付费, 调用]
+  
+  - type: capability_missing
+    # Agent 检测到能力缺口时自动触发
+
+# 示例用法
+examples:
+  - user: "帮我找一个翻译服务"
+    action: 搜索翻译相关服务
+  - user: "有没有天气 API"
+    action: 发现天气服务
+  - user: "我需要图片生成服务"
+    action: 查找图片生成服务
+
+# 配置
+config:
+  apiUrl: ${SKILLFORGE_API_URL:-http://localhost:3000}
+  timeout: 30000
+
+# 权限
+permissions:
+  - name: network
+    reason: 需要访问 SkillForge API 和开发者服务
+
+# 入口
+handler: ./handler.js

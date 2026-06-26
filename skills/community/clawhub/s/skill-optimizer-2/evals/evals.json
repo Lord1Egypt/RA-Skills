@@ -1,0 +1,38 @@
+{
+  "skill_name": "skill-optimizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Please audit the skills in my current workspace and use this conversation as evidence to find places where a skill should have triggered but did not. End with a detailed report and an action queue.",
+      "expected_output": "A detailed audit of the current thread and local skills, with evidence-backed findings and an action queue limited to Fix / Merge / Delete / Keep and Skip.",
+      "files": [],
+      "expectations": [
+        "The report distinguishes between current-thread evidence and global usage assumptions",
+        "The action queue uses exactly the four approved action labels",
+        "The report includes at least one concrete finding category and supporting evidence"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I suspect there are duplicate skills, weak metadata, and a few high-risk skills with poor guardrails. Produce a governance-style audit report.",
+      "expected_output": "A governance-style audit that identifies duplicate skills, weak metadata, and risky skills, then recommends concrete next steps without editing files yet.",
+      "files": [],
+      "expectations": [
+        "The output identifies duplicates and metadata weaknesses as separate issue types",
+        "The report does not delete or rewrite files during the analysis stage",
+        "Risk findings explain why missing guardrails matter"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Based on the current conversation and my locally installed skills, produce an action queue so I can choose what to fix, merge, delete, or keep and skip.",
+      "expected_output": "A concise but structured action queue with user-selectable options for each finding.",
+      "files": [],
+      "expectations": [
+        "Each action item has an id and recommendation",
+        "The reply format for user selections is shown clearly",
+        "The output does not invent unsupported actions outside the approved four"
+      ]
+    }
+  ]
+}

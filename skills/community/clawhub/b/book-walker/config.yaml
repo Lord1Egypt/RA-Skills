@@ -1,0 +1,20 @@
+# PDF Reader 配置
+
+# 块级导航 + 模板：skill 返回 structured payload，由 agent 调用 LLM 加工
+
+pdf_reader:
+  # 按需解析+落盘，无总页数限制
+  scanned_threshold: 0.8
+  
+  # 缓存配置
+  cache:
+    max_size_mb: 100
+    max_cached_pages: 5
+  
+  # 阅读默认配置
+  reading:
+    default_mode: "block"
+  
+  # 布局检测
+  layout:
+    x_range_threshold: 0.6  # X坐标范围/页面宽度

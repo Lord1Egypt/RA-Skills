@@ -1,35 +1,255 @@
 ---
-name: "Learning"
-description: "生成定制化的学习项目 Skill（含 SKILL.md + references/），为用户的学习过程提供从规划到结项的 持续引导。触发场景：用户表达想学习某个主题（"我想学 X""入门 X""搞懂 X""弄明白 X" "研究一下 X""补一下 X""深入了解 X""teach me X""learn X"），或..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-creator-learning"
-sourceUrl: "https://clawhub.ai/skills/skill-creator-learning"
+name: skill-creator-learning
+description: >
+  生成定制化的学习项目 Skill（含 SKILL.md + references/），为用户的学习过程提供从规划到结项的
+  持续引导。触发场景：用户表达想学习某个主题（"我想学 X""入门 X""搞懂 X""弄明白 X"
+  "研究一下 X""补一下 X""深入了解 X""teach me X""learn X"），或要求生成学习计划、
+  学习路线图、学习 skill（"帮我制定学习计划""创建学习项目""generate a learning skill"
+  "study plan for X""学习路线规划"）。安装本 skill 即表明用户倾向于系统化学习管理——
+  遇到学习意图时优先触发，而非直接进入即时问答。
+tools: [write, bash]
+
 ---
 
-# Learning
+# Skill Creator: Learning
 
-> 生成定制化的学习项目 Skill（含 SKILL.md + references/），为用户的学习过程提供从规划到结项的 持续引导。触发场景：用户表达想学习某个主题（"我想学 X""入门 X""搞懂 X""弄明白 X" "研究一下 X""补一下 X""深入了解 X""teach me X""learn X"），或...
+根据用户的学习需求，生成一个定制化的学习项目 Skill。生成物是一个独立的 SKILL.md（+ references/），
+安装后能在用户的学习项目中持续引导从规划到结项的全过程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-creator-learning`
-- **Source URL:** [https://clawhub.ai/skills/skill-creator-learning](https://clawhub.ai/skills/skill-creator-learning)
+本 Creator 执行一次性的信息收集→生成→交付流程，不是一个持续运行的助手。
 
-## Overview
+---
 
+## Phase 1: 信息收集（Intake）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-creator-learning
+目标：用 2-3 轮自然对话收集生成所需的关键信息。像一个有经验的学习顾问在了解需求，不像在填表。
+
+### 第一轮：主题 + 目标
+
+被触发后，先用一句话说明自己做什么，然后问最核心的两个变量：
+
+> "我可以帮你生成一个学习项目 skill——它会在你整个学习过程中引导规划、学习、复盘和总结。
+> 先告诉我：你想学什么？学完之后希望能做到什么？"
+
+这两个信息通常是用户触发 Creator 时脑子里最清晰的，开口门槛最低。
+
+### 第二轮：基础 + 时间 + 条件追问
+
+先对用户第一轮回答做简短回应（表示理解，让对话有来有回），然后补收：
+
+> "[对目标的回应]。再告诉我两件事：你目前在这个领域的基础怎么样？大概打算花多长时间——一两周集中突破，还是几个月系统学？"
+
+条件追问（仅在信息不充分时触发）：
+
+| 情况                         | 追问方式                                         |
+| ---------------------------- | ------------------------------------------------ |
+| 目标不可操作（如"了解 X"）   | "学完之后你希望能用它做什么具体的事？"           |
+| 基础完全空白                 | "是完全从零开始，还是接触过相关内容但没系统学？" |
+| 时间范围未提及               | "大概打算花多长时间？"                           |
+| 第一轮已自发带出了基础或时间 | 只补缺失的，不重复问                             |
+| 所有必答信息已充分           | 直接进入汇总确认                                 |
+
+**可选变量**——不主动问，从对话中捕获：
+
+- 验收方式偏好（如用户说"我喜欢动手练不喜欢纯看"）→ 覆盖默认的启发式匹配
+- 学习风格偏好（如用户说"我更喜欢先看整体再钻细节"）→ 覆盖默认的 bottom-up 策略
+- 如用户未提及，使用默认值即可
+
+### 第三轮：汇总确认
+
+结构化展示收集到的信息 + 模式推荐：
+
 ```
+我理解到的信息：
+- 学习主题：[主题]
+- 现有基础：[基础描述]
+- 学习目标：[目标，确保是可操作表述]
+- 时间范围：[时间]
+- 推荐模式：[轻量/完整]
+  └ 轻量模式默认快速推进，遇到复杂节点自动加深；完整模式默认深入系统，明确简单的环节自动精简。
+
+有需要修正的吗？确认后我生成 skill 预览。
+```
+
+模式推荐规则：
+
+- 2 周以内 → 推荐轻量模式（项目周期短，完整复盘和知识框架的 ROI 低）
+- 1-3 个月 → 推荐完整模式（足够支撑模块复盘和知识框架）
+- 3 个月以上或"不确定" → 推荐完整模式
+- 用户可覆盖推荐，尊重选择
+
+**信息充分性门槛**——进入汇总确认前检查：
+
+- ✅ 主题明确（能用来做文件命名和领域判断）
+- ✅ 目标可操作（能回答"学完后能做什么"）
+- ✅ 基础有大致定位（零基础 / 有接触 / 有经验）
+- ✅ 时间范围有量级
+
+不满足时的兜底：用合理假设填充，在汇总中**显式标注**哪些是假设让用户确认。例如：
+
+> "你没提到时间安排，我先按 1-2 个月、完整模式来规划。如果是短期突破，告诉我我会调整。"
+
+---
+
+## Phase 2: 生成与预览（Generate & Preview）
+
+用户确认汇总后，进入生成流程。
+
+### 变量准备
+
+从收集到的信息中提取生成所需的变量：
+
+| 变量                      | 来源               | 处理方式                                                     |
+| ------------------------- | ------------------ | ------------------------------------------------------------ |
+| `topic`                   | 用户提供的学习主题 | 直接使用                                                     |
+| `topic_slug`              | 从 topic 派生      | 转为适合文件命名和 name 字段的格式（小写、下划线、无空格，如 "distributed_systems"） |
+| `goal`                    | 用户提供的学习目标 | 确保是可操作表述                                             |
+| `background`              | 用户提供的现有基础 | 直接使用                                                     |
+| `timeframe`               | 用户提供的时间范围 | 直接使用                                                     |
+| `mode`                    | 用户确认的模式     | "轻量" 或 "完整"                                             |
+| `learning_style_override` | 可选，用户偏好     | 如未提供，留空（模板使用默认 bottom-up）                     |
+| `verification_override`   | 可选，用户偏好     | 如未提供，留空（模板使用默认启发式匹配）                     |
+| `lang`                    | 用户对话使用的语言 | 生成物使用相同语言                                           |
+| `project_dir`             | 从 topic_slug 派生 | `learn_` + topic_slug + `/`（如 `learn_distributed_systems/`），项目文件的存放目录 |
+| `generated_by`            | Creator 版本标识   | 固定值 `skill_creator_learning v1.4.0`                         |
+
+### 生成逻辑
+
+1. 根据 `mode` 选择对应的骨架模板：
+   - 轻量模式 → 读取 `references/templates/skill/lite.md`
+   - 完整模式 → 读取 `references/templates/skill/full.md`
+
+2. 用收集到的变量替换模板中的占位符（`{{topic}}`、`{{goal}}` 等）
+
+3. 处理可选变量的条件注入：
+   - `learning_style_override`：如用户提供了偏好，在模板的 `{{learning_style_override}}` 位置插入说明，如"\n- 注意：本项目用户偏好先看整体再钻细节（top-down），调整讲解策略"
+   - `verification_override`：类似处理
+   - 如未提供，清除占位符（不留空行）
+
+4. 准备 references/ 文件：
+   - 两种模式都需要：读取 `references/templates/guides/review_guide.md` → 生成 `review_guide.md`
+   - 两种模式都需要：读取 `references/templates/guides/framework_guide.md` → 生成 `framework_guide.md`（完整模式默认使用；轻量模式在自适应升级时使用）
+
+5. 如果对话语言不是中文，将生成物全文翻译为用户使用的语言，保持结构和格式不变
+
+### 预览展示
+
+将生成的 SKILL.md 完整内容展示给用户，然后列出 references/ 文件清单：
+
+> "此外还会生成以下配套文件：
+> - references/review_guide.md — 复盘执行指南
+> - references/framework_guide.md — 认知框架生成指南
+>
+> 你可以提出修改意见，或者确认后我直接生成。"
+
+### 修改处理
+
+| 修改类型   | 判断标准                                             | 处理方式                                              |
+| ---------- | ---------------------------------------------------- | ----------------------------------------------------- |
+| 结构性修改 | 影响模式逻辑或文件管理（如"不要复盘""加个打卡机制"） | 调整骨架，重新生成受影响部分，再次完整展示            |
+| 内容微调   | 不影响结构（如"目标描述改一下""加一条项目信息"）     | 定点修改，展示差异点（"已更新 XX，其他不变。确认？"） |
+
+迭代引导：
+
+- 首次："你可以提出修改意见，或者确认后我直接生成。"
+- 后续："已调整。还有需要改的吗？没有的话我开始生成。"
+- 不设轮数上限，用户想改就改
+
+### 占位符对照表
+
+生成时逐项检查，确保每个占位符都已处理：
+
+| 占位符 | 来源 | 处理方式 |
+|---|---|---|
+| `{{topic}}` | 用户输入的学习主题 | 直接替换 |
+| `{{topic_slug}}` | 从 topic 派生（小写、下划线、无空格） | 直接替换 |
+| `{{goal}}` | 用户输入的学习目标（可操作表述） | 直接替换 |
+| `{{background}}` | 用户输入的现有基础 | 直接替换 |
+| `{{timeframe}}` | 用户输入的时间范围 | 直接替换 |
+| `{{learning_style_override}}` | 可选，用户提到的学习风格偏好 | 有值→插入说明文本；无值→清除占位符（不留空行） |
+| `{{verification_override}}` | 可选，用户提到的验收方式偏好 | 有值→插入说明文本；无值→清除占位符（不留空行） |
+| `{{project_dir}}` | 从 topic_slug 派生 | `learn_` + topic_slug + `/`（如 `learn_distributed_systems/`），直接替换 |
+| `{{generated_by}}` | Creator 版本标识 | 固定值 `skill_creator_learning v1.4.0`，直接替换 |
+
+> **⚠️ 用户确认生成后，必须进入 Phase 3 执行交付流程。不要直接写文件——Phase 3 包含安装路径探测、交付方式询问等必要步骤。**
+
+---
+
+## Phase 3: 交付（Deliver）
+
+用户确认预览后，询问交付方式：
+
+> "你希望我怎么交付？
+> 1. **直接安装到当前工作空间** — skill 和项目文件夹都创建在当前工作空间内，立即可用
+> 2. **打包为 ZIP** — 生成 zip 文件，你可以自行解压到任意位置或分享给别人"
+
+### 安装路径探测
+
+无论哪种交付方式，都需要先确定 skill 的安装目录前缀。按以下优先级探测：
+
+1. **检查当前 workspace 下的已有 skill 路径**：扫描项目根目录中是否存在 `.claude/skills/`、`.agents/skills/`、`.agent/skills/`、`_agents/skills/`、`_agent/skills/`、`.workbuddy/skills/`、`skills/` 等目录。找到任意一个则沿用该前缀
+2. **检查用户根目录（`~/`）下的全局 skill 路径**：扫描是否存在 `~/.claude/skills/`、`~/.openclaw/skills/`、`~/.agents/skills/`、`~/.gemini/antigravity/skills/` 等目录。能找到则说明用户在用对应平台，项目级路径使用对应前缀
+3. **兜底默认值**：以上都未找到，使用 `.agents/skills/` 作为默认前缀（Agent Skills 开放标准，兼容性最广）
+
+探测到的前缀记为 `{skill_prefix}`。最终 skill 安装路径为：`{skill_prefix}/learn_{{topic_slug}}/SKILL.md`
+
+### 路径1：直接安装到当前工作空间
+
+**执行以下步骤（必须按顺序完成）：**
+
+1. 在当前工作空间内，按探测到的 `{skill_prefix}` 创建 skill 目录：`{skill_prefix}/learn_{{topic_slug}}/`
+2. 将生成的 SKILL.md 写入该目录
+3. 在该目录下创建 `references/` 子目录，写入 review_guide.md 和 framework_guide.md
+4. 在当前工作空间根目录下创建项目文件目录 `learn_{{topic_slug}}/`（用于存放学习过程中产生的所有项目文件：学习计划、笔记、总结等）
+5. 注意：生成的文件包含大量 Markdown 特殊字符（反引号、方括号、花括号），请使用文件写入工具直接创建文件，避免通过 Shell heredoc（`cat <<EOF`）或重定向写入
+6. 通知用户：
+
+> "学习项目已安装到当前工作空间：
+> - skill 位于 `{skill_prefix}/learn_{{topic_slug}}/`
+> - 项目文件将保存在 `learn_{{topic_slug}}/` 目录下
+>
+> 直接开始对话就可以使用了——说「开始学习」或「继续学习」即可。"
+
+### 路径2：ZIP 打包
+
+**执行以下步骤（必须按顺序完成）：**
+
+1. 在 /tmp/ 下创建临时目录 `learn_{{topic_slug}}_package/`
+2. 在临时目录内按探测到的 `{skill_prefix}` 创建 skill 目录结构：`{skill_prefix}/learn_{{topic_slug}}/SKILL.md` + `{skill_prefix}/learn_{{topic_slug}}/references/`
+3. 在临时目录内创建项目文件目录：`learn_{{topic_slug}}/`（空目录，首次使用时 skill 会自动初始化）
+4. 写入所有文件（同路径1步骤2-3）。同样使用文件写入工具，避免 Shell heredoc
+5. 执行 zip 打包：`cd /tmp && zip -r learn_{{topic_slug}}.zip learn_{{topic_slug}}_package/`
+6. 将 zip 文件移动到用户工作目录
+7. 清理临时目录
+8. 通知用户：
+
+> "已打包为 `learn_{{topic_slug}}.zip`。
+> 解压到你的工作空间根目录后，skill 会自动生效，项目文件将保存在 `learn_{{topic_slug}}/` 目录下。"
+
+---
+
+## 附录：生成物质量检查清单
+
+生成前最后过一遍，确保生成物质量：
+
+**内容质量**
+- [ ] frontmatter 的 name 字段不超过 32 字符
+- [ ] frontmatter 的 description 包含触发关键词和主题名称
+- [ ] frontmatter 的 generated_by 字段已填充版本标识
+- [ ] 项目信息区的所有变量（含项目文件目录）都已正确填充
+- [ ] 所有占位符已处理（替换或清除），无残留的 `{{...}}`
+- [ ] 启动协议中的文件读取逻辑与文件管理规范一致
+- [ ] 启动协议中包含项目文件目录的定位和创建逻辑
+- [ ] 学习模式的五步闭环完整（输入→学习→确认→验收→沉淀）
+- [ ] 所有文件命名规则使用了正确的 topic_slug
+- [ ] 没有任何删除文件的指令
+- [ ] 所有项目文件路径相对于项目文件目录
+- [ ] 如完整模式：读取优先级三层都定义清晰
+- [ ] references/ 文件与 SKILL.md 中的引用一致
+
+**交付验证**
+- [ ] 交付前已询问用户选择交付方式（直接安装 / ZIP）
+- [ ] 已执行安装路径探测，确认 `{skill_prefix}` 值
+- [ ] skill 目录结构正确：`{skill_prefix}/learn_[topic_slug]/SKILL.md` + `references/`
+- [ ] 项目文件目录已创建：`learn_[topic_slug]/`
+- [ ] 所有文件已成功写入（非空、内容完整）

@@ -1,0 +1,62 @@
+{
+  "name": "geo-shield",
+  "version": "1.0.0",
+  "description": "GEO 投毒检测守护者 - 识别针对 AI 的虚假信息、SEO 操纵、AI 优化内容",
+  "author": "Spark",
+  "license": "MIT",
+  "homepage": "https://github.com/rfdiosuao/openclaw-skills/tree/master/skills/geo-shield",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills.git",
+    "directory": "geo-shield"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "geo",
+    "投毒检测",
+    "虚假信息",
+    "事实核查",
+    "安全"
+  ],
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "clawhub": {
+    "category": "安全",
+    "tags": ["安全", "检测", "事实核查", "AI 安全"],
+    "features": [
+      "GEO 投毒检测",
+      "域名可信度评估",
+      "内容质量分析",
+      "AI 生成内容识别",
+      "综合可信度评分"
+    ],
+    "commands": ["/geo-check", "/verify", "/fact-check"],
+    "triggers": [
+      "检测投毒",
+      "验证信息",
+      "AI 投毒检查",
+      "信息真实性",
+      "验证来源"
+    ]
+  }
+}

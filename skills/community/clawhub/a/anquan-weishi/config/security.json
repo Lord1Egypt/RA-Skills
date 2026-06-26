@@ -1,0 +1,50 @@
+{
+  "version": "3.6.0",
+  "updated": "2026-04-16",
+  "cached_config_version": "20260417-1246",
+
+  "description": "主配置文件 - 引用中央库 context_matrix.json（唯一真相源）",
+
+  "centralized_references": {
+    "description": "所有配置从中央库读取，单点修改全局生效",
+    "level_rules": "config/context_matrix.json - L1-L4等级规则/字数限制/信任度",
+    "behavior_classification": "config/behavior_classification.json - 行为分类/操作定义",
+    "threat_patterns": "config/threat_patterns.json - 威胁模式（关键词/域名/IP/路径）",
+    "trust_sources": "config/trust_sources.json - 可信来源",
+    "attack_cases": "config/attack_cases.json - 攻击案例（50种）",
+    "sanitize_rules": "config/sanitize_rules.json - 脱敏规则",
+    "context_matrix": "config/context_matrix.json - 上下文权限矩阵",
+    "blacklist": "config/blacklist.json - 黑名单（引用threat_patterns）",
+    "whitelist": "config/whitelist.json - 白名单（引用trust_sources）"
+  },
+
+  "settings": {
+    "heartbeat_interval": 10800,
+    "auto_archive_size": "10MB",
+    "attack_auto_add": true,
+    "match_mode": "ANY",
+    "log_retention": "permanent"
+  },
+
+  "user_profile": {
+    "nickname": "【安装时配置】",
+    "city": "【安装时配置】"
+  },
+
+  "domain_hints": {
+    "description": "域名提示（非安全验证），仅用于识别请求来源方便记忆",
+    "domains": ["*.coze.cn", "*.weixin.qq.com", "*.tencent.com", "*.workbuddy.cn"]
+  },
+
+  "interface_levels": "见中央库 context_matrix.json -> interface_levels（唯一真相源，禁止在此处写死）",
+
+  "interface_types": {
+    "internal": ["微信小程序"],
+    "external": ["元宝", "QQ机器人", "其他"]
+  },
+
+  "logs": {
+    "attack_records": [],
+    "heartbeat_records": []
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "redacta-mcp",
+  "version": "1.2.0",
+  "description": "MCP server that pseudonymises patient identifiers and PII in text, and restores them — runs locally, nothing leaves your machine.",
+  "license": "MIT-0",
+  "author": "Nick Lamb (PharmaTools.AI)",
+  "homepage": "https://www.pharmatools.ai/redacta",
+  "type": "module",
+  "bin": {
+    "redacta-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "redaction",
+    "pseudonymisation",
+    "de-identification",
+    "pii",
+    "phi",
+    "healthcare",
+    "nhs",
+    "privacy"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "@pharmatools/redacta": "^1.2.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.4.0",
+    "vitest": "^4.1.8"
+  }
+}

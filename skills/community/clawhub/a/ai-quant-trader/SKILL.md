@@ -1,35 +1,89 @@
----
-name: "Ai Quant Trader"
-description: "基于AKShare的AI量化交易助手，实现策略生成、参数优化、自动交易、止盈止损及实时选股模拟。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-quant-trader"
-sourceUrl: "https://clawhub.ai/skills/ai-quant-trader"
----
+# AI量化交易助手技能
 
-# Ai Quant Trader
+## 技能概述
+基于AKShare的AI驱动量化交易模拟系统，支持AI策略生成、自动交易、风险控制和实时选股。
 
-> 基于AKShare的AI量化交易助手，实现策略生成、参数优化、自动交易、止盈止损及实时选股模拟。
+## 核心功能
+1. 模拟实时交易（支持蜻蜓点金手续费规则）
+2. AI大模型生成交易策略
+3. AI优化策略参数
+4. 自动策略执行
+5. 止盈止损管理
+6. 策略胜率统计
+7. AI实时选股
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-quant-trader`
-- **Source URL:** [https://clawhub.ai/skills/ai-quant-trader](https://clawhub.ai/skills/ai-quant-trader)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装依赖
 ```bash
-hermes skills install clawhub/ai-quant-trader
+pip install akshare pandas numpy
 ```
+
+## 简化版使用（无需安装依赖）
+如果Python环境有问题，可以使用简化对话版：
+1. 直接通过OpenClaw对话使用所有功能
+2. AI会模拟执行筛选、分析、策略生成
+3. 查看 `SIMPLIFIED_SKILL.md` 了解详情
+
+## 命令列表
+
+### 交易命令
+- `/交易 设置本金 [金额]` - 设置初始资金（默认100000）
+- `/交易 买入 [股票代码] [数量]` - 买入股票
+- `/交易 卖出 [股票代码] [数量]` - 卖出股票
+- `/持仓` - 查看当前持仓
+
+### 策略命令
+- `/策略 生成 [描述]` - AI生成交易策略
+- `/策略 优化 [策略名]` - 优化策略参数
+- `/策略 列表` - 查看所有策略
+- `/策略 回测 [策略名]` - 回测策略表现
+
+### 自动交易
+- `/自动 启用 [策略名] [股票代码]` - 启用自动交易
+- `/自动 暂停 [股票代码]` - 暂停自动交易
+- `/自动 列表` - 查看自动交易状态
+
+### 风控命令
+- `/风控 设置止损 [股票代码] [百分比]` - 设置止损（如5%）
+- `/风控 设置止盈 [股票代码] [百分比]` - 设置止盈（如10%）
+- `/风控 移动止盈 [股票代码] [回撤百分比]` - 设置移动止盈
+
+### 选股统计
+- `/选股 今日推荐` - AI推荐今日股票
+- `/选股 筛选 [条件]` - 按条件筛选股票
+- `/统计 [策略名]` - 查看策略统计
+
+## 文件结构
+```
+ai-quant-trader/
+├── SKILL.md              # 技能文档
+├── main.py              # 主程序
+├── broker.py           # 模拟交易引擎
+├── strategy_gen.py     # AI策略生成器
+├── auto_trader.py      # 自动交易执行
+├── risk_manager.py     # 风控管理
+├── stock_screener.py   # 选股引擎
+└── data_provider.py    # 数据提供
+```
+
+## 使用示例
+```
+用户：/交易 设置本金 100000
+AI：✅ 已设置初始资金：100,000元
+
+用户：/选股 今日推荐
+AI：📈 今日AI推荐：
+    1. 600519 贵州茅台 (MACD金叉，趋势向上)
+    2. 000858 五粮液 (RSI超卖反弹)
+
+用户：/策略 生成 "一个基于MACD金叉的短线策略"
+AI：🤖 已生成策略"MACD短线策略"，代码已保存
+
+用户：/自动 启用 MACD短线策略 600519
+AI：✅ 已为600519启用MACD短线策略，开始自动监控
+```
+
+## 注意事项
+1. 所有交易均为模拟，不涉及真实资金
+2. AI策略仅供参考，投资有风险
+3. 数据来自AKShare，可能有延迟
+4. 建议先小额测试，熟悉系统后再增加资金

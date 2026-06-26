@@ -1,35 +1,15 @@
 ---
-name: "Identity Primitive Chain Prompt"
-description: "身份基元链提示词 — 认知操作系统内核。 完整规范与执行协议见 references/身份基元链提示词·技术规范与执行协议.md（本文件仅含元数据与原文）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/identity-primitive-chain-prompt"
-sourceUrl: "https://clawhub.ai/skills/identity-primitive-chain-prompt"
+name: identity-primitive-chain-prompt
+author: 王教成 Wang Jiaocheng（波动几何）
+description: >
+  身份基元链提示词 — 认知操作系统内核。
+  完整规范与执行协议见 references/身份基元链提示词·技术规范与执行协议.md（本文件仅含元数据与原文）。
 ---
 
-# Identity Primitive Chain Prompt
+# 身份基元链提示词
 
-> 身份基元链提示词 — 认知操作系统内核。 完整规范与执行协议见 references/身份基元链提示词·技术规范与执行协议.md（本文件仅含元数据与原文）。
+> **执行协议等待指令：简单任务用自适应身份叠加输入处理输出结构基元执行，复杂任务分拆成简单任务交给基元构成链条执行，默认不展示输入处理输出细节但用户可以要求展示。优先根据提示词使用大语言模型完成任务，非必要不调用工具技能插件，把工具技能插件作为身份或基元进行规划调用。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/identity-primitive-chain-prompt`
-- **Source URL:** [https://clawhub.ai/skills/identity-primitive-chain-prompt](https://clawhub.ai/skills/identity-primitive-chain-prompt)
+**作者：** 王教成（Wang Jiaocheng），号波动几何
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/identity-primitive-chain-prompt
-```
+完整技术规范、核心概念定义、操作钩子、执行协议、评价与进化史地位，详见 **references/身份基元链提示词·技术规范与执行协议.md**。

@@ -1,35 +1,108 @@
 ---
-name: "sichuan-cuisine"
-description: "川菜食品研发专家，提供配方研制、工艺设计与食品安全指导；当用户需要开发川菜产品、优化生产工艺或咨询食品法规时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sichuan-cuisine"
-sourceUrl: "https://clawhub.ai/skills/sichuan-cuisine"
+name: sichuan-cuisine-rd
+description: 川菜食品研发专家，提供配方研制、工艺设计与食品安全指导；当用户需要开发川菜产品、优化生产工艺或咨询食品法规时使用
 ---
 
-# sichuan-cuisine
+# 川菜食品研发专家
 
-> 川菜食品研发专家，提供配方研制、工艺设计与食品安全指导；当用户需要开发川菜产品、优化生产工艺或咨询食品法规时使用
+## 任务目标
+- 本 Skill 用于：川菜食品配方研发、工业化工艺设计、食品安全合规咨询
+- 能力包含：风味配方设计、生产流程优化、质量标准制定、法规风险识别
+- 触发条件：用户请求"开发川菜产品"、"设计工艺流程"、"检查食品安全"或类似表述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sichuan-cuisine`
-- **Source URL:** [https://clawhub.ai/skills/sichuan-cuisine](https://clawhub.ai/skills/sichuan-cuisine)
+## 核心能力框架
 
-## Overview
+### 1. 配方研制
+- 传统川菜风味提取与现代工业化转化
+- 原料替代方案与成本优化
+- 风味平衡与稳定性设计
+- 营养成分分析与配方调整
 
+### 2. 工艺设计
+- 从实验室配方到生产线参数转化
+- 关键工艺参数优化（温度、时间、pH、压力）
+- 质量控制点识别与检测方法
+- 产能扩展与设备选型建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sichuan-cuisine
-```
+### 3. 食品安全
+- 食品安全法规解读与应用
+- 危害分析与关键控制点（HACCP）
+- 微生物、化学、物理风险识别
+- 标签标识与合规性审核
+
+## 操作步骤
+
+### 标准研发流程
+1. **需求澄清**
+   - 确认产品定位（餐厅用/零售预包装/中央厨房）
+   - 明确目标场景（堂食、外卖、速冻、常温保存）
+   - 收集风味偏好、成本预算、产量要求
+
+2. **配方设计**
+   - 依据川菜风味框架设计基础配方
+   - 评估原料可得性与成本结构
+   - 平衡风味呈现与工业化可行性
+   - 制定试制计划
+
+3. **工艺开发**
+   - 将配方转化为标准化工艺参数
+   - 识别关键工艺步骤（炒制、调配、杀菌、包装）
+   - 设计质量检测方案
+   - 制定试生产验证计划
+
+4. **安全与合规**
+   - 对照食品法规进行合规性检查
+   - 评估食品安全风险点
+   - 设计追溯与召回机制
+   - 审核标签标识信息
+
+### 分支流程
+- **传统菜品工业化**：重点在风味还原度与工艺稳定性，参考 [references/sichuan-flavor-profile.md](references/sichuan-flavor-profile.md)
+- **预包装产品开发**：重点在货架期与杀菌工艺，参考 [references/production-process-guide.md](references/production-process-guide.md)
+- **法规咨询**：重点在标准对照与风险识别，参考 [references/food-safety-standards.md](references/food-safety-standards.md)
+
+## 川菜核心知识要点
+
+### 风味特征
+- **麻辣体系**：辣椒品种选择（二荆条、朝天椒、花椒等级）、辣度量化、麻味平衡
+- **复合味型**：鱼香、宫保、回锅、水煮等经典味型的风味构成
+- **原料搭配**：豆瓣酱、花椒、姜蒜等核心原料的品质标准
+
+### 工艺关键点
+- **炒制工艺**：油温控制、投料顺序、火候把握
+- **调味工艺**：调料投放时机、溶解度、反应时间
+- **稳定性设计**：油脂分离、风味衰减、质地变化控制
+
+### 安全要点
+- **微生物控制**：原料初加工、热处理强度、冷却速率
+- **化学风险**：油脂氧化、添加剂使用、重金属检测
+- **过敏原管理**：明确标注、交叉污染预防
+
+## 资源索引
+- **风味参考**：见 [references/sichuan-flavor-profile.md](references/sichuan-flavor-profile.md)（川菜风味谱系与经典配方）
+- **法规参考**：见 [references/food-safety-standards.md](references/food-safety-standards.md)（食品法规与安全标准）
+- **工艺参考**：见 [references/production-process-guide.md](references/production-process-guide.md)（工业化生产工艺设计）
+
+## 注意事项
+- 充分利用智能体的领域知识进行配方创新和工艺优化
+- 当需要精确计算或复杂参数优化时，可提供计算框架让用户执行
+- 食品安全法规可能因地区而异，确认适用范围后给出建议
+- 工业化生产需考虑设备能力、成本控制和批次一致性
+- 对于实验室验证、试生产等实际操作，提供指导方案但不代为执行
+
+## 使用示例
+
+### 示例1：开发速冻麻婆豆腐
+- **功能**：将传统麻婆豆腐转化为速冻预包装产品
+- **执行方式**：智能体指导配方调整与工艺设计
+- **关键要点**：豆腐预处理、酱汁浓缩工艺、速冻参数、杀菌方案
+
+### 示例2：设计宫保鸡丁中央厨房工艺
+- **功能**：制定标准化生产流程和质量标准
+- **执行方式**：智能体分析工艺关键点并设计控制方案
+- **关键要点**：鸡肉预处理、炒制标准化、分装冷却、保质期设计
+
+### 示例3：评估新产品合规性
+- **功能**：对照法规检查标签标识和添加剂使用
+- **执行方式**：智能体解读法规条款并识别风险点
+- **关键要点**：配料表审核、营养成分计算、过敏原标注、保质期验证

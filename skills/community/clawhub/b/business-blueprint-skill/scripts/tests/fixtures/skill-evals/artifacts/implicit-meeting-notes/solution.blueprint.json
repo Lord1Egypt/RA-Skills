@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "Manufacturing Plan-to-Quality Blueprint",
+    "industry": "manufacturing",
+    "blueprintType": "architecture"
+  },
+  "entities": {
+    "capabilities": [
+      {"id": "cap-plan-sync", "name": "Plan Synchronization"},
+      {"id": "cap-shopfloor-confirm", "name": "Shopfloor Confirmation"},
+      {"id": "cap-quality-trace", "name": "Quality Traceability"},
+      {"id": "cap-inventory-control", "name": "Inventory Control"}
+    ],
+    "actors": [
+      {"id": "actor-planner", "name": "Planner"},
+      {"id": "actor-supervisor", "name": "Workshop Supervisor"},
+      {"id": "actor-quality", "name": "Quality Inspector"},
+      {"id": "actor-warehouse", "name": "Warehouse Supervisor"}
+    ],
+    "systems": [
+      {"id": "sys-aps", "name": "APS"},
+      {"id": "sys-mes", "name": "MES"},
+      {"id": "sys-qms", "name": "QMS"},
+      {"id": "sys-wms", "name": "WMS"}
+    ],
+    "flowSteps": [
+      {"id": "step-change", "name": "Plan Change"},
+      {"id": "step-confirm", "name": "Workshop Confirm"},
+      {"id": "step-inspect", "name": "Quality Inspect"},
+      {"id": "step-release", "name": "Inventory Release"}
+    ]
+  },
+  "relations": [
+    {"from": "sys-aps", "to": "sys-mes", "type": "flows-to"},
+    {"from": "sys-mes", "to": "cap-shopfloor-confirm", "type": "supports"},
+    {"from": "sys-qms", "to": "cap-quality-trace", "type": "supports"},
+    {"from": "sys-wms", "to": "cap-inventory-control", "type": "supports"},
+    {"from": "step-inspect", "to": "sys-qms", "type": "flows-to"}
+  ]
+}

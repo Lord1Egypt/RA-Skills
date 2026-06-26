@@ -1,35 +1,79 @@
 ---
-name: "微头条素材库"
-description: "今日头条微头条内容素材生成工具。当用户提到微头条、微头条素材、微头条怎么写、微头条内容、今日头条创作、头条爆款、情感故事、赚钱干货、知识科普等与微头条内容创作相关需求时使用此技能。"
-category: "creative"
-source: "ClawHub"
-tags: [content-creation, micro-content, social-media, toutiao]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/microtoutiao-content-lib"
-sourceUrl: "https://clawhub.ai/skills/microtoutiao-content-lib"
+name: microtoutiao-content-lib
+description: 今日头条微头条内容素材生成工具。当用户提到微头条、微头条素材、微头条怎么写、微头条内容、今日头条创作、头条爆款、情感故事、赚钱干货、知识科普等与微头条内容创作相关需求时使用此技能。
 ---
 
 # 微头条素材库
 
-> 今日头条微头条内容素材生成工具。当用户提到微头条、微头条素材、微头条怎么写、微头条内容、今日头条创作、头条爆款、情感故事、赚钱干货、知识科普等与微头条内容创作相关需求时使用此技能。
+专为今日头条微头条自动化发布设计的素材生成工具，支持情感故事、知识科普、赚钱干货等多种热门内容类型。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/microtoutiao-content-lib`
-- **Source URL:** [https://clawhub.ai/skills/microtoutiao-content-lib](https://clawhub.ai/skills/microtoutiao-content-lib)
+## 核心能力
 
-## Overview
+### 1. 七大热门内容类型
 
+| 类型 | 流量特征 | 适用场景 |
+|------|----------|----------|
+| 情感故事 | 极高，互动强 | 婆媳、夫妻、亲子、前任 |
+| 人情世故 | 高，争议强 | 随礼、借钱、邻居、同事 |
+| 知识科普 | 中高，稳定 | 健康、生活妙招、职场技能 |
+| 赚钱干货 | 高，粘性强 | 副业、省钱、理财、创业 |
+| 热点解读 | 爆发性强 | 社会民生、娱乐、政策 |
+| 生活技巧 | 高，收藏高 | 家务、收纳、烹饪 |
+| 奇闻轶事 | 不稳定 | 身边奇事、见闻 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/microtoutiao-content-lib
+### 2. 模板结构
+
+每个模板包含：
+- **标题公式**: 情绪钩子 + 悬念 + 数字/对比
+- **正文结构**: 开头吸睛 → 内容展开 → 结尾引导
+- **关键词布局**: 自然融入平台推荐关键词
+- **配图建议**: 图片类型和风格建议
+
+### 3. 热点追踪
+
+根据节日、节气、社会热点自动匹配素材方向：
+- 节日类：春节/端午/中秋/情人节
+- 节气类：春夏秋冬季节性话题
+- 热点类：社会事件/明星八卦/政策解读
+
+## 输出格式
+
+### 标题公式
 ```
+矛盾型：[具体行为]让[身份]彻底[情绪动词]，结局没想到...
+对比型：A vs B，区别真的太大了
+提问型：你们遇到过这样的情况吗？
+数字型：[数字]个技巧/方法/秘密，一次性告诉你
+```
+
+### 正文结构
+```
+[开头30字] 制造悬念/冲突/共鸣
+[主体80-150字] 故事/知识/观点展开
+[结尾20字] 引导评论/转发/关注
+```
+
+## 使用示例
+
+**输入**: "生成一个职场干货类的微头条，主题是加薪技巧"
+
+**输出**:
+```
+标题：老板绝不会告诉你的3个加薪秘密，学会第2个工资翻倍
+
+正文：
+在职场混了8年，我发现一个扎心的事实：会干活的不如会说话的。
+今天分享3个我亲眼验证过的加薪技巧：
+1️⃣ 每月主动汇报工作成果（不是等老板问）
+2️⃣ 提加薪时机很重要：项目成功后的第一周
+3️⃣ 准备好数据：你的贡献值多少钱
+
+你们用过哪个？评论区说说
+```
+
+## 适用场景
+
+- 每日定时发布自动化内容
+- 热点话题快速跟进而缺乏素材时
+- 批量生产多账号内容矩阵
+- 新账号快速起号阶段

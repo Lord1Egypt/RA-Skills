@@ -1,35 +1,55 @@
 ---
-name: "Pipeworx dogceo"
-description: "Random dog photos by breed — 120+ breeds with sub-breeds from the Dog CEO API"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-dogceo"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-dogceo"
+name: pipeworx-dogceo
+description: Random dog photos by breed — 120+ breeds with sub-breeds from the Dog CEO API
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "🐕"
+    homepage: https://pipeworx.io/packs/dogceo
 ---
 
-# Pipeworx dogceo
+# Dog CEO
 
-> Random dog photos by breed — 120+ breeds with sub-breeds from the Dog CEO API
+Need a dog picture? This pack serves random dog images from a collection of 120+ breeds. Get a completely random dog, filter by breed, or browse the full breed list with sub-breeds.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-dogceo`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-dogceo](https://clawhub.ai/skills/pipeworx-dogceo)
+## Tools
 
-## Overview
+| Tool | Description |
+|------|-------------|
+| `random_image` | A random dog image URL from any breed |
+| `list_breeds` | All breeds and their sub-breeds |
+| `breed_images` | Multiple random images for a specific breed (default 3) |
+| `random_breed_image` | A single random image for a specific breed |
 
+## Perfect for
 
-## Installation
-To install this skill, run the following command in your terminal:
+- "Show me a golden retriever" requests
+- Placeholder images during UI development
+- Dog breed identification apps that need reference photos
+- Pet-themed chatbot responses
+
+## Example
+
 ```bash
-hermes skills install clawhub/pipeworx-dogceo
+curl -s -X POST https://gateway.pipeworx.io/dogceo/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"breed_images","arguments":{"breed":"labrador","count":3}}}'
+```
+
+Returns 3 image URLs of Labrador Retrievers.
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-dogceo": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/dogceo/mcp"]
+    }
+  }
+}
 ```

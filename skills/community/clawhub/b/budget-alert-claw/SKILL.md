@@ -1,35 +1,101 @@
 ---
-name: "支出预警管控虾"
-description: "支出预警管控虾 — 实时监控预算执行，发现超支或异常消费时自动报红。 当以下情况时使用此 Skill： (1) 需要校验某笔支出申请是否超出预算 (2) 需要批量核对支出流水与预算配置 (3) 需要生成预算执行报告（各部门/项目使用率） (4) 需要检测异常消费（金额异常、频次异常、类目异常） (5) 需要配置预..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/budget-alert-claw"
-sourceUrl: "https://clawhub.ai/skills/budget-alert-claw"
+name: budget-alert-claw
+description: |
+  支出预警管控虾 — 实时监控预算执行，发现超支或异常消费时自动报红。
+
+  当以下情况时使用此 Skill：
+  (1) 需要校验某笔支出申请是否超出预算
+  (2) 需要批量核对支出流水与预算配置
+  (3) 需要生成预算执行报告（各部门/项目使用率）
+  (4) 需要检测异常消费（金额异常、频次异常、类目异常）
+  (5) 需要配置预算预警规则（阈值、审批流、通知渠道）
+  (6) 用户提到"预算预警"、"超支提醒"、"支出监控"、"预算管控"、"费用超标"、"预算余额"、"异常消费"、"预算执行"、"支出审批"、"预算看板"
 ---
 
-# 支出预警管控虾
+# 支出预警管控虾 (budget-alert-claw)
 
-> 支出预警管控虾 — 实时监控预算执行，发现超支或异常消费时自动报红。 当以下情况时使用此 Skill： (1) 需要校验某笔支出申请是否超出预算 (2) 需要批量核对支出流水与预算配置 (3) 需要生成预算执行报告（各部门/项目使用率） (4) 需要检测异常消费（金额异常、频次异常、类目异常） (5) 需要配置预...
+实时监控预算执行，每笔支出自动比对预算余额，临近预警线提前通知，超标立即拦截审批。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/budget-alert-claw`
-- **Source URL:** [https://clawhub.ai/skills/budget-alert-claw](https://clawhub.ai/skills/budget-alert-claw)
+## 核心工作流
 
-## Overview
+### 1. 加载预算规则
+读取用户提供的预算配置（Excel/CSV 或自然语言描述），建立多维度规则库：
+- 维度：部门、项目、费用类别
+- 时间周期：月度/季度/年度
+- 预警阈值：默认 80%（黄灯）/ 100%（红灯），可自定义
 
+### 2. 接收支出申请
+提取关键字段：**金额、归属维度（部门/项目）、费用类别、申请人、日期**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/budget-alert-claw
+自然语言输入示例：
+- "市场部申请 5 万广告费，3 月份"
+- "帮我看看研发部差旅费超了没"
+
+### 3. 预算余额计算
 ```
+可用余额 = 预算总额 - 已使用金额 - 待审批金额
+使用率 = (已使用 + 本次申请) / 预算总额 × 100%
+```
+
+### 4. 分级预警判定
+
+| 状态 | 触发条件 | 处理方式 |
+|------|----------|----------|
+| 🟢 绿灯 | 使用率 < 80% | 自动通过 |
+| 🟡 黄灯 | 80% ≤ 使用率 < 100% | 通知负责人，允许通过 |
+| 🔴 红灯 | 使用率 ≥ 100% | 拦截，升级审批流程 |
+
+### 5. 异常检测（并行执行）
+- **金额异常**：超过该类别历史均值 3 倍
+- **频次异常**：同一申请人短期内高频申请
+- **类目异常**：费用类别与部门常规支出不符
+
+### 6. 通知与记录
+- 通过飞书消息推送预警通知（使用 `message` 工具）
+- 记录预警日志，更新预算余额
+
+## 输入格式
+
+### 结构化输入（推荐）
+预算配置表必填字段：`部门/项目`、`预算总额`、`预警阈值`、`时间周期`
+支出流水必填字段：`金额`、`归属维度`、`费用类别`、`申请人`、`日期`
+
+### 自然语言输入
+直接描述支出场景，从对话中提取关键字段。
+
+## 输出格式
+
+### 单笔校验结果
+```
+【预算校验结果】
+申请：{部门} - {费用类别} - {金额}元
+预算总额：{总额}元 | 已使用：{已用}元 | 可用余额：{余额}元
+使用率：{使用率}% → {🟢/🟡/🔴} {状态说明}
+处理建议：{自动通过 / 通知负责人 / 需升级审批}
+```
+
+### 批量校验结果
+汇总表格 + 异常清单，可写入飞书多维表格。
+
+### 预算执行报告
+各维度使用率排行 + 预警项汇总 + 趋势分析。
+
+## 参考文件
+
+- **预算规则详情** → 见 [references/budget-rules.md](references/budget-rules.md)
+- **异常检测规则** → 见 [references/anomaly-detection.md](references/anomaly-detection.md)
+- **通知模板** → 见 [references/notification-templates.md](references/notification-templates.md)
+- **批量校验脚本** → 见 [scripts/budget-check.sh](scripts/budget-check.sh)（需要 Python 3.8+ + pandas）
+
+## 与其他虾的协作
+
+- **bank-reconciliation-claw**：对账差异可触发异常预警
+- **auto-data-analysis-claw**：预算执行数据进一步趋势分析
+- **cross-platform-messenger-claw**：多渠道推送预警通知
+
+## 注意事项
+
+- 未配置预算的维度默认放行，建议设置兜底规则
+- 月度预算在月初自动重置，跨月申请注意时间归属
+- 预算调整需手动更新配置，暂不支持自动审批流
+- 不支持跨币种管控，需手动换算

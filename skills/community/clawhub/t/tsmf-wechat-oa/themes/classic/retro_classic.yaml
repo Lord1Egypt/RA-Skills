@@ -1,0 +1,77 @@
+name: 复古经典
+description: 怀旧复古风格，适合历史、传统文化、回忆录类文章
+keywords:
+  - 历史
+  - 传统
+  - 文化
+  - 复古
+  - 怀旧
+  - 经典
+  - 回忆
+  - 年代
+  - 老照片
+  - 往事
+colors:
+  primary: "#5c3d2e"
+  accent: "#c9a86c"
+  text: "#3d2914"
+  text_light: "#6b4423"
+  background: "#ffffff"
+  code_bg: "#faf6f0"
+  blockquote_bg: "#faf6f0"
+  border: "#e8dcc8"
+styles:
+  body:
+    font_size: "16px"
+    line_height: "1.85"
+    letter_spacing: "0.5px"
+    padding: "0 16px"
+    margin: "0 0 16px 0"
+  h1:
+    font_size: "22px"
+    font_weight: "normal"
+    margin: "24px 0 16px 0"
+    padding: "0 16px"
+    text_align: "center"
+    letter_spacing: "2px"
+  h2:
+    font_size: "18px"
+    font_weight: "normal"
+    margin: "20px 0 12px 0"
+    padding: "0 16px 6px 16px"
+    border_bottom: "1px solid #c9a86c"
+  h3:
+    font_size: "16px"
+    font_weight: "bold"
+    margin: "16px 0 10px 0"
+    padding: "0 16px"
+  blockquote:
+    font_size: "15px"
+    padding: "14px 16px"
+    margin: "16px 0"
+    border_top: "1px solid #c9a86c"
+    border_bottom: "1px solid #c9a86c"
+    text_align: "center"
+    font_style: "italic"
+    line_height: "1.8"
+  code_inline:
+    font_size: "14px"
+    padding: "1px 4px"
+    border_radius: "2px"
+  code_block:
+    font_size: "13px"
+    padding: "12px 16px"
+    margin: "16px 0"
+    border_radius: "4px"
+    border: "1px solid #e8dcc8"
+    line_height: "1.6"
+  list:
+    font_size: "16px"
+    margin: "12px 0"
+    padding: "0 16px"
+    line_height: "1.85"
+  separator:
+    border_bottom: "2px solid #c9a86c"
+    margin: "24px 30%"
+  image:
+    border_radius: "4px"

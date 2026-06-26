@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Maps Email Extractor (Apify)"
+  short_description: "Run Google Maps public business email extraction through Apify"
+  default_prompt: "Use $google-maps-email-extractor-apify to build a Google Maps Email Extractor payload and run actor f3dlnXVnBc6v8JMNK with APIFY_TOKEN."

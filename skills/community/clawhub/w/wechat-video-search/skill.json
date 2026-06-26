@@ -1,0 +1,14 @@
+{
+  "name": "wechat-video-search",
+  "version": "1.0.0",
+  "description": "微信视频号视频搜索技能，通过 TikHub API 搜索视频号视频，返回下载链接和分析数据",
+  "author": "明智的超级 AI 助理",
+  "license": "MIT",
+  "main": "scripts/wechat_video_search.py",
+  "requirements": [
+    "requests"
+  ],
+  "config": {
+    "tikhub_api_token": "required"
+  }
+}

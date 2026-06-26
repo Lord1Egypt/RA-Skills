@@ -1,35 +1,27 @@
 ---
-name: "mem"
-description: "Search local memory index (local-first). Use for /mem queries in Telegram."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mem"
-sourceUrl: "https://clawhub.ai/skills/mem"
+name: mem
+description: Search local memory index (local-first). Use for /mem queries in Telegram.
+user-invocable: true
 ---
 
-# mem
-
-> Search local memory index (local-first). Use for /mem queries in Telegram.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mem`
-- **Source URL:** [https://clawhub.ai/skills/mem](https://clawhub.ai/skills/mem)
+# Memory Search (/mem)
 
 ## Overview
 
+Run local-first memory search using the cached index.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+1) Update the index if needed:
 ```bash
-hermes skills install clawhub/mem
+scripts/index-memory.py
 ```
+
+2) Search the index with the user query:
+```bash
+scripts/search-memory.py "<query>" --top 5
+```
+
+## Output
+
+Return the top hits with their paths and headers. Summarize briefly if needed.

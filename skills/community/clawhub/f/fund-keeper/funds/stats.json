@@ -1,0 +1,55 @@
+{
+  "date": "2026-03-16 15:21",
+  "total_cost": 9980.43,
+  "total_amount": 9649.279999999999,
+  "total_profit": -331.15000000000146,
+  "profit_rate": -3.317993312913386,
+  "fund_count": 3,
+  "sip_count": 0,
+  "top_contributor": {
+    "code": "020274",
+    "name": "富国中证细分化工产业主题ETF联接C",
+    "amount": 552.48,
+    "cost": 550.0,
+    "profit": 2.48,
+    "sip_day": 0,
+    "note": "化工",
+    "is_sip": false,
+    "profit_contribution": -0.7489053299109132
+  },
+  "funds": [
+    {
+      "code": "020274",
+      "name": "富国中证细分化工产业主题ETF联接C",
+      "amount": 552.48,
+      "cost": 550.0,
+      "profit": 2.48,
+      "sip_day": 0,
+      "note": "化工",
+      "is_sip": false,
+      "profit_contribution": -0.7489053299109132
+    },
+    {
+      "code": "000218",
+      "name": "国泰黄金ETF联接A",
+      "amount": 5986.36,
+      "cost": 6030.429999999999,
+      "profit": -44.07,
+      "sip_day": 0,
+      "note": "黄金",
+      "is_sip": false,
+      "profit_contribution": 13.308168503699171
+    },
+    {
+      "code": "017470",
+      "name": "嘉实上证科创板芯片ETF联接C",
+      "amount": 3110.44,
+      "cost": 3400.0,
+      "profit": -289.56,
+      "sip_day": 0,
+      "note": "芯片",
+      "is_sip": false,
+      "profit_contribution": 87.4407368262113
+    }
+  ]
+}

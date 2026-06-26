@@ -1,35 +1,62 @@
 ---
-name: "Fortune China500 Skill"
+name: fortune-china500
 description: "获取《财富》中国 500 强企业排行榜数据，支持查询不同年份的完整 500 强企业名单。自动判断榜单发布时间（每年 7 月），输出 Excel 文件包含排名、企业名称、行业、营收等数据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fortune-china500-skill"
-sourceUrl: "https://clawhub.ai/skills/fortune-china500-skill"
+license: MIT
 ---
 
-# Fortune China500 Skill
+# 财富中国 500 强数据获取技能
 
-> 获取《财富》中国 500 强企业排行榜数据，支持查询不同年份的完整 500 强企业名单。自动判断榜单发布时间（每年 7 月），输出 Excel 文件包含排名、企业名称、行业、营收等数据。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fortune-china500-skill`
-- **Source URL:** [https://clawhub.ai/skills/fortune-china500-skill](https://clawhub.ai/skills/fortune-china500-skill)
+当用户提到以下关键词时触发：
+- "财富中国 500 强"
+- "中国 500 强企业"
+- "财富 500 强排名"
+- "获取 500 强名单"
+- "查询 500 强企业"
+- "fortune china 500"
 
-## Overview
+## 年份处理规则
 
+### 数据发布时间
+- 财富中国 500 强榜单于**每年 7 月下旬**发布
+- 例如：2025 年榜单于 2025 年 7 月 22 日发布
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fortune-china500-skill
+### 年份判断逻辑
+当前月份 < 7 月：最新可用数据是前年的
+当前月份 >= 7 月：最新可用数据是去年的
+
+如果用户请求的年份 > 最新可用年份，提示用户榜单尚未发布。
+
+## 使用方法
+
+### 基础用法
 ```
+获取 2025 年财富中国 500 强名单
+```
+
+### 带参数用法
+```
+查询财富中国 500 强 2024 年前 100 强企业
+```
+
+### 历史数据
+```
+获取 2023 年中国 500 强企业名单
+```
+
+## 输出格式
+
+返回 Excel 文件，包含以下字段：
+- **排名**：1-500
+- **企业名称**：中文全称
+- **行业分类**：所属行业类别
+- **营业收入**：百万美元
+- **数据源**：数据来源和获取时间
+
+## 注意事项
+
+1. 每年 7 月前请求当年数据时，需提示用户榜单尚未发布
+2. 自动从官方数据源获取数据
+3. 返回的 Excel 文件需包含数据源说明和获取时间
+4. 支持 2010 年之后的数据

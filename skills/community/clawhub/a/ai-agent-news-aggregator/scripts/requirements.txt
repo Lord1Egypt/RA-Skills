@@ -1,0 +1,10 @@
+# AI Agent News Aggregator - Python Dependencies
+# 安装：pip install -r requirements.txt
+
+# 无外部依赖！所有脚本使用 Python 标准库
+# 如需扩展功能，可添加：
+
+# requests - HTTP 请求（如需直接抓取网页）
+# beautifulsoup4 - HTML 解析
+# feedparser - RSS 源解析
+# numpy - 数值计算（高级相似度算法）

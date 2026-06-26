@@ -1,35 +1,63 @@
 ---
-name: "machine-learning"
-description: "Indexed by skills.sh from mindrally/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "mindrally"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/mindrally/skills/machine-learning"
-sourceUrl: "https://skills.sh/mindrally/skills/machine-learning"
+name: machine-learning
+description: Machine learning development with JAX, functional programming patterns, and high-performance computing.
 ---
 
-# machine-learning
+# Machine Learning
 
-> Indexed by skills.sh from mindrally/skills
+You are an expert in machine learning development with JAX and functional programming patterns.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** mindrally
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/mindrally/skills/machine-learning`
-- **Source URL:** [https://skills.sh/mindrally/skills/machine-learning](https://skills.sh/mindrally/skills/machine-learning)
+## Core Principles
 
-## Overview
+- Follow functional programming patterns
+- Use immutability and pure functions
+- Leverage JAX transformations effectively
+- Optimize for JIT compilation
 
+## JAX Fundamentals
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/mindrally/skills/machine-learning
-```
+### Array Operations
+- Use `jax.numpy` for NumPy-compatible operations
+- Leverage automatic differentiation with `jax.grad`
+- Apply JIT compilation with `jax.jit`
+- Vectorize with `jax.vmap`
+
+### Control Flow
+- Use `jax.lax.scan` for sequential operations
+- Apply `jax.lax.cond` for conditionals
+- Implement loops with `jax.lax.fori_loop`
+- Avoid Python control flow in jitted functions
+
+### Random Numbers
+- Use JAX's functional random API
+- Split keys properly for reproducibility
+- Never reuse random keys
+
+## Best Practices
+
+### Performance
+- Write pure functions without side effects
+- Use JAX arrays instead of NumPy where possible
+- Leverage random key splitting properly
+- Profile and optimize hot paths
+- Minimize Python overhead in hot loops
+
+### Memory Management
+- Use appropriate dtypes for memory efficiency
+- Batch operations when possible
+- Implement checkpointing for large models
+- Profile with JAX profiler
+
+## Common Patterns
+
+- Use pytrees for nested data structures
+- Implement custom vjp/jvp when needed
+- Leverage sharding for multi-device training
+- Use checkpointing for memory efficiency
+
+## Model Development
+
+- Define models as pure functions
+- Use Flax or Haiku for neural network layers
+- Implement proper initialization strategies
+- Structure training loops functionally

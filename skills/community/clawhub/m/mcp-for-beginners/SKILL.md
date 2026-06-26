@@ -1,35 +1,25 @@
 ---
-name: "MCP for Beginners"
-description: "Microsoft 出品的 Model Context Protocol (MCP) 入门课程，通过 .NET/Java/TypeScript/JavaScript/Rust/Python 多语言实例教学"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-for-beginners"
-sourceUrl: "https://clawhub.ai/skills/mcp-for-beginners"
+name: MCP for Beginners
+slug: mcp-for-beginners
+version: 1.0.0
+description: Microsoft 出品的 Model Context Protocol (MCP) 入门课程，通过 .NET/Java/TypeScript/JavaScript/Rust/Python 多语言实例教学
+homepage: https://github.com/microsoft/mcp-for-beginners
+source: use-case-candidate
+capability: 多Agent编排
 ---
 
-# MCP for Beginners
+## When to Use
+用户希望学习或快速上手 Model Context Protocol (MCP)，需要了解其核心概念、架构设计以及如何在实际项目中集成 MCP 时使用。
 
-> Microsoft 出品的 Model Context Protocol (MCP) 入门课程，通过 .NET/Java/TypeScript/JavaScript/Rust/Python 多语言实例教学
+## What It Does
+提供一套完整的 MCP 开源课程，涵盖从基础概念到服务编排的完整学习路径，支持 .NET、Java、TypeScript、JavaScript、Rust 和 Python 多语言示例，帮助开发者构建模块化、可扩展的 AI 工作流。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-for-beginners`
-- **Source URL:** [https://clawhub.ai/skills/mcp-for-beginners](https://clawhub.ai/skills/mcp-for-beginners)
+## How to Use
+1. Fork 仓库：`https://github.com/microsoft/mcp-for-beginners/fork`
+2. Clone 仓库：`git clone https://github.com/microsoft/mcp-for-beginners.git`
+3. 加入 Discord 社区获取支持：`https://discord.gg/nTYy5BXMWG`
+4. 按课程章节顺序学习，从会话配置到服务编排逐步深入
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-for-beginners
-```
+## References
+- https://github.com/microsoft/mcp-for-beginners
+- https://discord.gg/nTYy5BXMWG

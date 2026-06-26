@@ -1,0 +1,32 @@
+{
+  "id": "getmem-openclaw",
+  "name": "getmem.ai Memory",
+  "description": "Persistent memory for every user via getmem.ai. Automatically remembers users across sessions.",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiKey": {
+        "type": "string",
+        "description": "Your getmem.ai API key (starts with gm_live_). Get one at https://platform.getmem.ai"
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "API base URL (default: https://memory.getmem.ai)",
+        "default": "https://memory.getmem.ai"
+      },
+      "enabled": {
+        "type": "boolean",
+        "description": "Enable or disable memory (default: true)",
+        "default": true
+      }
+    },
+    "required": [
+      "apiKey"
+    ]
+  },
+  "extensions": [
+    "./dist/index.js"
+  ]
+}

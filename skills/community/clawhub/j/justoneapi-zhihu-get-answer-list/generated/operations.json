@@ -1,0 +1,91 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/zhihu/get-answer-list/v1 for Zhihu Answer List through JustOneAPI with questionId.",
+  "displayName": "Zhihu Answer List",
+  "endpointPath": "get-answer-list",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Zhihu answer List data, including answer content, author profiles, and interaction metrics, for question analysis and answer research.",
+      "method": "GET",
+      "operationId": "getAnswerListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "TOKEN",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Question ID",
+          "enumValues": [],
+          "location": "query",
+          "name": "questionId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Pagination cursor from previous result.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 0,
+          "description": "Start offset, begins with 0.",
+          "enumValues": [],
+          "location": "query",
+          "name": "offset",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "_updated",
+          "description": "Sorting criteria for answers.\n\nAvailable Values:\n- `_default`: Default sorting.\n- `_updated`: Sorted by updated time.",
+          "enumValues": [
+            "_default",
+            "_updated"
+          ],
+          "location": "query",
+          "name": "order",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Session ID from previous result.",
+          "enumValues": [],
+          "location": "query",
+          "name": "sessionId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/zhihu/get-answer-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Answer List",
+      "tags": [
+        "Zhihu"
+      ]
+    }
+  ],
+  "platformKey": "zhihu",
+  "primaryTag": "Zhihu",
+  "skillName": "justoneapi_zhihu_get_answer_list",
+  "skillType": "interface",
+  "slug": "justoneapi-zhihu-get-answer-list",
+  "sourceTitle": "OpenAPI definition"
+}

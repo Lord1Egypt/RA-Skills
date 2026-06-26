@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200,height=675">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white w-[1200px] h-[675px] overflow-hidden">
+  
+  <div class="h-full px-16 py-10">
+    
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="text-sm font-medium text-slate-400 tracking-wider uppercase mb-2">
+        Solution
+      </div>
+      <h1 class="text-3xl font-black text-navy-900">
+        RTMで要件から証跡まで<span class="text-emerald-600">完全追跡</span>可能に
+      </h1>
+    </div>
+    
+    <!-- RTM Definition -->
+    <div class="inline-flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 mb-8">
+      <span class="text-sm font-bold text-navy-800">RTM</span>
+      <span class="text-slate-400">=</span>
+      <span class="text-slate-600">Requirements Traceability Matrix</span>
+      <span class="text-slate-400">|</span>
+      <span class="text-slate-500 text-sm">要件トレーサビリティマトリクス</span>
+    </div>
+    
+    <!-- 5-Step Flow -->
+    <div class="flex items-stretch gap-3 mb-8">
+      
+      <!-- Step 1 -->
+      <div class="flex-1 relative">
+        <div class="bg-navy-900 text-white rounded-xl p-5 h-full flex flex-col">
+          <div class="text-xs font-bold text-slate-400 mb-1">01</div>
+          <div class="text-lg font-bold mb-2">要件定義</div>
+          <div class="text-sm text-slate-300 mt-auto">ReqID発行</div>
+        </div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-6 h-6 bg-white border-2 border-navy-700 rounded-full flex items-center justify-center text-navy-700 text-xs">→</div>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="flex-1 relative">
+        <div class="bg-navy-800 text-white rounded-xl p-5 h-full flex flex-col">
+          <div class="text-xs font-bold text-slate-400 mb-1">02</div>
+          <div class="text-lg font-bold mb-2">受け入れ条件</div>
+          <div class="text-sm text-slate-300 mt-auto">AC作成</div>
+        </div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-6 h-6 bg-white border-2 border-navy-700 rounded-full flex items-center justify-center text-navy-700 text-xs">→</div>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="flex-1 relative">
+        <div class="bg-navy-700 text-white rounded-xl p-5 h-full flex flex-col">
+          <div class="text-xs font-bold text-slate-400 mb-1">03</div>
+          <div class="text-lg font-bold mb-2">テスト設計</div>
+          <div class="text-sm text-slate-300 mt-auto">TestID紐付け</div>
+        </div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-6 h-6 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-slate-500 text-xs">→</div>
+      </div>
+      
+      <!-- Step 4 -->
+      <div class="flex-1 relative">
+        <div class="bg-slate-600 text-white rounded-xl p-5 h-full flex flex-col">
+          <div class="text-xs font-bold text-slate-400 mb-1">04</div>
+          <div class="text-lg font-bold mb-2">検証・証跡</div>
+          <div class="text-sm text-slate-300 mt-auto">Evidence記録</div>
+        </div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-6 h-6 bg-white border-2 border-emerald-500 rounded-full flex items-center justify-center text-emerald-500 text-xs">→</div>
+      </div>
+      
+      <!-- Step 5 -->
+      <div class="flex-1">
+        <div class="bg-emerald-600 text-white rounded-xl p-5 h-full flex flex-col">
+          <div class="text-xs font-bold text-emerald-300 mb-1">05</div>
+          <div class="text-lg font-bold mb-2">判定</div>
+          <div class="text-sm text-emerald-200 mt-auto">Pass / Gap分類</div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Benefits Row -->
+    <div class="grid grid-cols-3 gap-6">
+      
+      <div class="flex items-center gap-4 bg-emerald-50 border border-emerald-200 rounded-lg px-5 py-4">
+        <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white text-lg">1</div>
+        <div>
+          <div class="font-bold text-emerald-800">抜け漏れの可視化</div>
+          <div class="text-sm text-emerald-600">GapTypeで分類</div>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4 bg-emerald-50 border border-emerald-200 rounded-lg px-5 py-4">
+        <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white text-lg">2</div>
+        <div>
+          <div class="font-bold text-emerald-800">手戻り削減</div>
+          <div class="text-sm text-emerald-600">早期発見・早期対処</div>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4 bg-emerald-50 border border-emerald-200 rounded-lg px-5 py-4">
+        <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white text-lg">3</div>
+        <div>
+          <div class="font-bold text-emerald-800">品質担保</div>
+          <div class="text-sm text-emerald-600">証跡ベースの判定</div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+</body>
+</html>

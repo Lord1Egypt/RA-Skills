@@ -1,0 +1,16 @@
+{
+  "name": "creative-inspiration-hub",
+  "version": "1.2.0",
+  "description": "Creative Inspiration Hub / 创意灵感孵化器. 使用本地规则引擎，通过跨领域组合、灵感触发、创意评估和思维导图生成，帮助创意工作者突破瓶颈。",
+  "keywords": ["creativity","inspiration","design","brainstorming"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/creative-inspiration-hub",
+  "language": ["en","zh"],
+  "tags": ["creativity","inspiration","design","brainstorming"],
+  "createdAt": "2026-04-06",
+  "updatedAt": "2026-06-25",
+  "requires_api": false,
+  "requires_network": false,
+  "readiness": "stable"
+}

@@ -1,35 +1,37 @@
 ---
-name: "CAI: buy-research-data-agent"
-description: "Agent purchases paid datasets, API credits, or research reports using CAI wallet after user confirmation. Fund via create_deposit_link if needed. Powered by..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/buy-research-data-agent"
-sourceUrl: "https://clawhub.ai/skills/buy-research-data-agent"
+name: buy-research-data-agent
+description: Agent purchases paid datasets, API credits, or research reports using CAI wallet after user confirmation. Fund via create_deposit_link if needed. Powered by CAI.com.
 ---
 
-# CAI: buy-research-data-agent
+# Buy research data with your agent
 
-> Agent purchases paid datasets, API credits, or research reports using CAI wallet after user confirmation. Fund via create_deposit_link if needed. Powered by...
+Research agents frequently hit **paid APIs, datasets, or reports**. The agent should discover **what to buy and how to pay**; CAI provides **wallet balance, funding, and transfer execution** once you confirm.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/buy-research-data-agent`
-- **Source URL:** [https://clawhub.ai/skills/buy-research-data-agent](https://clawhub.ai/skills/buy-research-data-agent)
+## When to Use
 
-## Overview
+- "Buy this dataset for my research"
+- "Pay for the API credits my agent needs"
+- "Purchase the report and pay from CAI"
+- "Top up so the agent can complete the data purchase"
 
+## Task flow (agent-native)
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Agent identifies product, price, and payment method (address, @cai.com, or hosted checkout limits).
+2. `wallet_balances` → if insufficient, `create_deposit_link`.
+3. User confirms recipient and amount (irreversible transfer warning).
+4. `transfer` with `pay`/`full` scope.
+5. Proof via `wallet_activity_list` / `transfer_status`.
+
+**Honesty:** CAI does not auto-discover arbitrary paywalls; the agent must surface payee details. Universal card checkout on random sites may be `partial_live` — see skill gap_id notes.
+
+## Quick Setup
+
 ```bash
-hermes skills install clawhub/buy-research-data-agent
+openclaw secrets set CAI_API_KEY "your_dashboard_api_key"
 ```
+
+## Canonical Reference
+
+- https://cai.com/skill.md
+- https://cai.com/agent-payment.html
+- https://cai.com/developers.html

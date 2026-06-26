@@ -1,0 +1,282 @@
+# OpenClaw Nextcloud Skill
+
+A Node.js CLI tool for interacting with Nextcloud services including notes, files, calendars, tasks, and contacts.
+
+## Features
+
+- **Notes** - Create, read, update, and delete notes
+- **Files** - Upload, download, list, search, and delete files via WebDAV
+- **Calendar** - Manage calendar events via CalDAV
+- **Tasks** - Create and manage tasks/todos
+- **Contacts** - Full contact management via CardDAV
+
+## Prerequisites
+
+- Node.js 20 or higher
+- A Nextcloud instance with API access
+- An app password for your Nextcloud account
+
+## Installation
+
+```bash
+git clone https://github.com/keithvassallomt/openclaw-nextcloud.git
+cd openclaw-nextcloud
+```
+
+The skill is pre-bundled with all dependencies in `scripts/nextcloud.js` - no npm install required.
+
+## Development
+
+The project uses a bundled architecture:
+
+- **`index.js`** - Source code (edit this)
+- **`scripts/nextcloud.js`** - Bundled output with all dependencies (run this)
+
+To make changes:
+
+```bash
+npm install              # Install dev dependencies (first time only)
+# Edit index.js
+npm run build            # Bundle into scripts/nextcloud.js
+```
+
+Both files should be committed - the bundle allows users/agents to run the skill without npm install.
+
+## Configuration
+Store these values in environment variables, or openclawd.json, or use a .env file.
+
+```env
+NEXTCLOUD_URL=https://your-nextcloud-instance.com
+NEXTCLOUD_USER=your_username
+NEXTCLOUD_TOKEN=your_app_password
+```
+
+**Generating an App Password:**
+1. Log into your Nextcloud instance
+2. Go to Settings → Security
+3. Under "Devices & sessions", enter a name for the app and click "Create new app password"
+4. Copy the generated password to your `.env` file
+
+## Usage
+
+```bash
+node scripts/nextcloud.js <command> <subcommand> [options]
+```
+
+### Notes
+
+```bash
+# List all notes
+node scripts/nextcloud.js notes list
+
+# Create a note
+node scripts/nextcloud.js notes create --title "My Note" --content "Note content" --category "Personal"
+
+# Get a specific note
+node scripts/nextcloud.js notes get --id 123
+
+# Update a note
+node scripts/nextcloud.js notes edit --id 123 --title "Updated Title" --content "New content"
+
+# Delete a note
+node scripts/nextcloud.js notes delete --id 123
+```
+
+### Files
+
+```bash
+# List files in a directory
+node scripts/nextcloud.js files list --path "Documents/"
+
+# Upload a file (parent directories are created automatically if missing)
+node scripts/nextcloud.js files upload --path "Documents/Reports/test.txt" --content "Hello World"
+
+# Download a file
+node scripts/nextcloud.js files get --path "Documents/test.txt"
+
+# Search for files
+node scripts/nextcloud.js files search --query "report"
+
+# Delete a file
+node scripts/nextcloud.js files delete --path "Documents/test.txt"
+```
+
+`files list` and `files search` results include a `fileId` (when the server returns one) and a synthesized `internalLink` like `<NEXTCLOUD_URL>/index.php/f/<fileId>` that opens the file directly in the Nextcloud web UI.
+
+### Shares (public links)
+
+```bash
+# Create a public link share for a file or folder
+node scripts/nextcloud.js shares create-link --path "/Documents/Reports" \
+  --permissions read \
+  --password "Secret123" \
+  --expire "2026-04-15"
+
+# List all shares
+node scripts/nextcloud.js shares list
+
+# List shares for a specific path
+node scripts/nextcloud.js shares list --path "/Documents/Reports"
+
+# Delete a share by ID
+node scripts/nextcloud.js shares delete --id 29
+```
+
+`--permissions read` (default) is read-only; `--permissions edit` grants create/read/update/delete on the shared resource. `--password` and `--expire` are optional.
+
+### Calendar
+
+```bash
+# List available calendars
+node scripts/nextcloud.js calendars list
+
+# List events in a date range
+node scripts/nextcloud.js calendar list --from "2026-02-01T00:00:00Z" --to "2026-02-28T23:59:59Z"
+
+# Create an event (with optional location)
+node scripts/nextcloud.js calendar create --summary "Team Meeting" --start "2026-02-05T10:00:00Z" --end "2026-02-05T11:00:00Z" --location "Conference Room B"
+
+# Update an event
+node scripts/nextcloud.js calendar edit --uid event-uid --summary "Updated Meeting" --location "Zoom"
+
+# Delete an event
+node scripts/nextcloud.js calendar delete --uid event-uid
+```
+
+`--calendar` and `--addressbook` accept the display name (case-insensitive),
+the URL slug, or the full collection URL — so all of `Personal`, `personal`,
+and `/remote.php/dav/calendars/<user>/personal/` resolve to the same calendar.
+Date inputs accept either ISO 8601 (`2026-02-05T10:00:00Z`) or the compact
+CalDAV form (`20260205T100000Z`).
+
+### Tasks
+
+```bash
+# List all tasks
+node scripts/nextcloud.js tasks list
+
+# Create a task
+node scripts/nextcloud.js tasks create --title "Buy groceries" --due "2026-02-05T17:00:00Z" --priority 1
+
+# Complete a task
+node scripts/nextcloud.js tasks complete --uid task-uid
+
+# Delete a task
+node scripts/nextcloud.js tasks delete --uid task-uid
+```
+
+### Contacts
+
+```bash
+# List address books
+node scripts/nextcloud.js addressbooks list
+
+# List all contacts
+node scripts/nextcloud.js contacts list
+
+# Search contacts
+node scripts/nextcloud.js contacts search --query "john"
+
+# Create a contact
+node scripts/nextcloud.js contacts create --name "John Doe" --email "john@example.com" --phone "+1234567890"
+
+# Get a specific contact
+node scripts/nextcloud.js contacts get --uid contact-uid
+
+# Update a contact
+node scripts/nextcloud.js contacts edit --uid contact-uid --email "newemail@example.com"
+
+# Delete a contact
+node scripts/nextcloud.js contacts delete --uid contact-uid
+```
+
+## Output Format
+
+All commands return JSON output:
+
+```json
+{
+  "status": "success",
+  "data": [...]
+}
+```
+
+On error:
+
+```json
+{
+  "status": "error",
+  "message": "Error description"
+}
+```
+
+## API Protocols
+
+This tool uses the following Nextcloud APIs:
+
+| Service | Protocol | Endpoint |
+|---------|----------|----------|
+| Notes | REST | `/index.php/apps/notes/api/v1/notes` |
+| Files | WebDAV | `/remote.php/dav/files/` |
+| Calendar/Tasks | CalDAV | `/remote.php/dav/calendars/` |
+| Contacts | CardDAV | `/remote.php/dav/addressbooks/` |
+| Shares | OCS | `/ocs/v2.php/apps/files_sharing/api/v1/shares` |
+
+## Dependencies
+
+- [node-fetch](https://www.npmjs.com/package/node-fetch) - HTTP client
+- [fast-xml-parser](https://www.npmjs.com/package/fast-xml-parser) - XML parsing
+- [date-fns](https://www.npmjs.com/package/date-fns) - Date formatting
+
+## Security & Trust
+
+This skill executes a bundled JavaScript file (`scripts/nextcloud.js`) on your machine and is given a credential for your Nextcloud account. Because that's a non-trivial trust ask, here's what the skill does and how you can verify it:
+
+**What it can access**
+
+- The Nextcloud instance at `NEXTCLOUD_URL` — no other endpoints. There is no telemetry, no analytics, no auto-update, no third-party calls. You can confirm this by `grep -E 'fetch\(|http[s]?://' scripts/nextcloud.js`; every URL is built from `CONFIG.url` (i.e. `NEXTCLOUD_URL`) or relative API paths.
+- The environment variables `NEXTCLOUD_URL`, `NEXTCLOUD_USER`, `NEXTCLOUD_TOKEN`. No other env vars are read.
+- No filesystem access beyond the Node module loader and the standard `fs` for reading inputs you pass it.
+
+**Credentials**
+
+- Always use a Nextcloud **app password** (Settings → Security → "Devices & sessions"), not your account password. App passwords have account-level scope but can be revoked individually from the Nextcloud UI.
+- The token is sent as a Basic Auth header to the configured Nextcloud instance. **The script enforces HTTPS for `NEXTCLOUD_URL`** at startup and refuses to run over plain `http://` (except `localhost`/`127.0.0.1`/`[::1]` for local development). The check can be overridden with `OPENCLAW_ALLOW_HTTP=1`, but this is strongly discouraged outside isolated dev environments.
+
+**Static analysis**
+
+A static analyser scanning this skill will likely flag rules in the family of `suspicious.env_credential_access` — code that reads an environment variable and then makes a network call. That signal is **expected**: every authenticated API client matches it, including this one. The pattern is constrained as follows, and these constraints are what to audit:
+
+- The credential is read from `NEXTCLOUD_TOKEN` only. No other env var is consulted for credential material.
+- The credential is sent only to URLs derived from `NEXTCLOUD_URL`. There are no hard-coded hosts in the source (`grep -E 'http[s]?://' index.js` returns nothing).
+- HTTPS is enforced at startup (see above), so the credential cannot be sent in cleartext without an explicit opt-in.
+- There is no telemetry, analytics, auto-update, or third-party callback. The script makes one outbound destination — your Nextcloud — and exits.
+
+**Auditing the bundle**
+
+`scripts/nextcloud.js` is the output of running `esbuild` over `index.js` plus the three declared dependencies. To verify the bundle matches the source:
+
+```bash
+npm install
+npm run build
+git diff scripts/nextcloud.js   # should report no changes
+```
+
+If the diff is non-empty, the committed bundle does not match the source — please open an issue.
+
+**Reducing privilege**
+
+- Run on a per-user basis; no `sudo` is required or appropriate.
+- For first-time evaluation, point `NEXTCLOUD_URL` at a throwaway test account.
+- Treat `NEXTCLOUD_TOKEN` like any other credential: don't commit it, don't paste it into shared chats, and rotate it on any suspicion of compromise.
+
+## Contributors
+
+Thanks to:
+
+- [@schemann](https://github.com/schemann) — `fileId` / `internalLink` on file listings, auto-MKCOL on upload, public-link shares (`shares list` / `create-link` / `delete`).
+- [@KssimiClaw](https://github.com/KssimiClaw) — fix for `files search` 501 by routing the WebDAV `SEARCH` request to the DAV root.
+
+## License
+
+MIT

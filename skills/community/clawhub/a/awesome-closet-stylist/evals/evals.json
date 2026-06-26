@@ -1,0 +1,119 @@
+{
+  "skill_name": "awesome-closet-stylist",
+  "evals": [
+    {
+      "id": "wardrobe-maintenance-add-item",
+      "prompt": "I just bought a dark gray wool coat that falls to the knee and feels office-friendly. Add it to my wardrobe.",
+      "expected_output": "The response should treat this as wardrobe maintenance, update user/wardrobe.json, and confirm the addition in natural language without exposing JSON. It should capture the coat as a usable clothing record and avoid unnecessary follow-up questions.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "wardrobe-query-by-category-and-season",
+      "prompt": "What outerwear do I have that works for spring?",
+      "expected_output": "The response should read from the existing wardrobe, summarize first, and then mention relevant spring outerwear items in natural language. It should not modify wardrobe data or sound like a raw database dump.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "outfit-recommendation-from-existing-wardrobe",
+      "prompt": "Tomorrow will be around 18°C and a little windy. I need something for a client meeting using what I already own, but not too casual.",
+      "expected_output": "The response should recommend a coherent outfit using existing wardrobe items first, explain why the combination works, and relate it to temperature, wind, and occasion. It must not invent missing garments, modify wardrobe data, or output JSON.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "outfit-refinement-change-one-part",
+      "prompt": "Keep that outfit mostly the same, but swap the shoes for something more relaxed.",
+      "expected_output": "The response should treat this as a refinement of the previous outfit, preserve overall continuity, change only the shoes unless required otherwise, and explain the effect in natural language. It must not rewrite the whole outfit by default.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "recommendation-near-empty-wardrobe-single-follow-up",
+      "prompt": "My wardrobe is still almost empty. I have a date tomorrow — help me put something together.",
+      "expected_output": "The response should recognize that the wardrobe is empty or near-empty for recommendation quality, avoid inventing clothes, and ask only one critical follow-up question instead of turning the exchange into a form.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "maintenance-ambiguous-delete-single-clarification",
+      "prompt": "Delete the black jacket.",
+      "expected_output": "If the target item is not safely identifiable, the response should ask one concise clarification question and avoid deleting anything prematurely. It should not ask multiple questions at once.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "image-assisted-intake-no-image-generation",
+      "prompt": "I'm sending you a photo. Help me identify what kind of top this is and add it to my wardrobe.",
+      "expected_output": "The response should use the image only as auxiliary input to help identify and record the item, confirm the wardrobe update in natural language, and avoid outputting JSON or offering to generate a new outfit image, poster, or composite.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "recommendation-temporary-constraint-overrides-persistent-preference",
+      "prompt": "I usually prefer more relaxed outfits, but tomorrow I need something sharper for a client meeting.",
+      "expected_output": "The response should prioritize the explicit current-turn request for a more formal outfit while treating the relaxed preference as a background tendency rather than the controlling instruction. It should not claim that the user's long-term preference has changed.",
+      "files": [
+        "user/wardrobe.json",
+        "user/preference.json"
+      ]
+    },
+    {
+      "id": "recommendation-no-invented-item-closest-match",
+      "prompt": "Build me a look with a blazer from what I already own.",
+      "expected_output": "If no blazer-like item exists in the wardrobe, the response should not invent one. It should either offer the closest available outfit from recorded items or briefly clarify the gap, while staying grounded in existing wardrobe facts.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "recommendation-item-note-qualifies-specific-item",
+      "prompt": "Recommend an outfit for a day with lots of walking, and note that the brown loafers start hurting after an hour.",
+      "expected_output": "The response may handle the recommendation and note together, and should avoid choosing the loafers for a walking-heavy outfit if the note is relevant. It should treat the note as item-specific context rather than as a wardrobe fact or a general user preference.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "recommendation-same-turn-temporary-dislike-session-only",
+      "prompt": "Recommend something for today, but I don't want to wear black.",
+      "expected_output": "The response should immediately use the no-black constraint for the current recommendation, but it should treat that signal as current session context rather than as a durable preference by default.",
+      "files": [
+        "user/wardrobe.json",
+        "user/preference.json"
+      ]
+    },
+    {
+      "id": "recommendation-sparse-wardrobe-explicit-gap",
+      "prompt": "Put together a smart casual dinner outfit from my current wardrobe.",
+      "expected_output": "If the wardrobe is too sparse or limited to fully satisfy the request, the response should still offer the closest wearable match, explicitly surface the gap, and avoid overstating how precisely the wardrobe fits the requested style.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "recommendation-material-tradeoff-explicitly-stated",
+      "prompt": "It'll be cold tomorrow, but I still want to look lighter. Help me put something together.",
+      "expected_output": "The response should recommend from existing items while explicitly surfacing the tradeoff between weather suitability and the user's lighter-look preference when that tradeoff materially affects the outfit.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    },
+    {
+      "id": "recommendation-gated-write-does-not-bypass-confirmation",
+      "prompt": "Help me plan tomorrow's outfit, and then delete the red hoodie.",
+      "expected_output": "The response may proceed with the recommendation if possible, but it must not bypass the confirmation or clarification requirements for deletion. Recommendation convenience must not turn into an unsafe state change.",
+      "files": [
+        "user/wardrobe.json"
+      ]
+    }
+  ]
+}

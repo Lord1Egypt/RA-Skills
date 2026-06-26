@@ -1,0 +1,255 @@
+{
+  "type": "module",
+  "title": "Mermaid 配置选项",
+  "description": "renderMermaidSVG、renderMermaidSVGAsync、renderMermaidASCII、parseMermaid、fromShikiTheme 的完整配置选项",
+  "version": "1.1.3",
+  "options": {
+    "renderMermaidSVG": {
+      "parameters": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Mermaid 图表代码"
+        },
+        "options": {
+          "type": "RenderOptions",
+          "required": false,
+          "default": "{}"
+        }
+      },
+      "render_options": {
+        "bg": {
+          "type": "string",
+          "default": "#FFFFFF",
+          "description": "背景色，支持 CSS 变量",
+          "examples": ["#1a1b26", "var(--background)"]
+        },
+        "fg": {
+          "type": "string",
+          "default": "#27272A",
+          "description": "前景色/文字颜色，支持 CSS 变量",
+          "examples": ["#a9b1d6", "var(--foreground)"]
+        },
+        "line": {
+          "type": "string",
+          "required": false,
+          "description": "连线颜色"
+        },
+        "accent": {
+          "type": "string",
+          "required": false,
+          "description": "箭头/高亮色",
+          "examples": ["#7aa2f7", "#61afef"]
+        },
+        "muted": {
+          "type": "string",
+          "required": false,
+          "description": "次要文字/标签颜色",
+          "examples": ["#565f89", "#5c6370"]
+        },
+        "surface": {
+          "type": "string",
+          "required": false,
+          "description": "节点填充色",
+          "examples": ["#1f2335", "#21252b"]
+        },
+        "border": {
+          "type": "string",
+          "required": false,
+          "description": "节点边框色",
+          "examples": ["#3b4261", "#181a1f"]
+        },
+        "font": {
+          "type": "string",
+          "default": "Inter",
+          "description": "字体族"
+        },
+        "transparent": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否使用透明背景"
+        },
+        "padding": {
+          "type": "number",
+          "default": 40,
+          "description": "画布内边距 (px)"
+        },
+        "nodeSpacing": {
+          "type": "number",
+          "default": 24,
+          "description": "同级节点水平间距"
+        },
+        "layerSpacing": {
+          "type": "number",
+          "default": 40,
+          "description": "层间垂直间距"
+        },
+        "componentSpacing": {
+          "type": "number",
+          "default": 24,
+          "description": "断开组件间距"
+        },
+        "interactive": {
+          "type": "boolean",
+          "default": false,
+          "description": "启用 XY 图表悬浮 tooltip"
+        }
+      }
+    },
+    "renderMermaidSVGAsync": {
+      "description": "renderMermaidSVG 的异步版本，返回 Promise<string>",
+      "parameters": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Mermaid 图表代码"
+        },
+        "options": {
+          "type": "RenderOptions",
+          "required": false,
+          "description": "与 renderMermaidSVG 相同的选项"
+        }
+      }
+    },
+    "renderMermaidASCII": {
+      "parameters": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Mermaid 图表代码"
+        },
+        "options": {
+          "type": "AsciiRenderOptions",
+          "required": false,
+          "default": "{}"
+        }
+      },
+      "ascii_options": {
+        "useAscii": {
+          "type": "boolean",
+          "default": false,
+          "description": "使用 ASCII 字符 (true) 或 Unicode 框线 (false)"
+        },
+        "paddingX": {
+          "type": "number",
+          "default": 5,
+          "description": "节点水平间距"
+        },
+        "paddingY": {
+          "type": "number",
+          "default": 5,
+          "description": "节点垂直间距"
+        },
+        "boxBorderPadding": {
+          "type": "number",
+          "default": 1,
+          "description": "节点框内边距"
+        },
+        "colorMode": {
+          "type": "string",
+          "default": "auto",
+          "description": "颜色模式",
+          "enum": ["none", "auto", "ansi16", "ansi256", "truecolor", "html"],
+          "examples": [
+            "none - 无颜色",
+            "auto - 自动检测",
+            "ansi16 - 16色模式",
+            "ansi256 - 256色模式",
+            "truecolor - 真彩色",
+            "html - HTML span 标签（浏览器渲染）"
+          ]
+        },
+        "theme": {
+          "type": "Partial<AsciiTheme>",
+          "required": false,
+          "description": "自定义 ASCII 颜色",
+          "properties": {
+            "fg": "文字颜色",
+            "border": "边框颜色",
+            "line": "连线颜色",
+            "arrow": "箭头颜色",
+            "accent": "强调色 (可选)",
+            "bg": "背景色 (可选)"
+          }
+        }
+      }
+    },
+    "parseMermaid": {
+      "description": "解析 Mermaid 源码为结构化图对象",
+      "parameters": {
+        "text": {
+          "type": "string",
+          "required": true,
+          "description": "Mermaid 图表代码"
+        }
+      },
+      "returns": {
+        "direction": "TD | TB | LR | BT | RL",
+        "nodes": "Map<string, MermaidNode>",
+        "edges": "MermaidEdge[]",
+        "subgraphs": "MermaidSubgraph[]",
+        "classDefs": "Map<string, Record<string, string>>",
+        "nodeStyles": "Map<string, Record<string, string>>",
+        "linkStyles": "Map<number | 'default', Record<string, string>>"
+      }
+    },
+    "fromShikiTheme": {
+      "description": "从 Shiki 主题对象提取图表颜色",
+      "parameters": {
+        "theme": {
+          "type": "ShikiThemeLike",
+          "required": true,
+          "description": "Shiki 的 ThemeRegistrationResolved 对象"
+        }
+      },
+      "returns": "DiagramColors 对象",
+      "mapping": {
+        "editor.background": "bg",
+        "editor.foreground": "fg",
+        "editorLineNumber.foreground": "line",
+        "focusBorder / keyword": "accent",
+        "comment token": "muted",
+        "editor.selectionBackground": "surface",
+        "editorWidget.border": "border"
+      }
+    }
+  },
+  "example_usage": {
+    "svg_with_builtin_theme": {
+      "code": "import { renderMermaidSVG, THEMES } from 'beautiful-mermaid';",
+      "call": "const svg = renderMermaidSVG('graph TD; A --> B', THEMES.dracula);"
+    },
+    "svg_with_custom_theme": {
+      "code": "import { renderMermaidSVG } from 'beautiful-mermaid';",
+      "call": "const svg = renderMermaidSVG('graph TD; A --> B', { bg: '#1a1b26', fg: '#e0e0e0', accent: '#7aa2f7' });"
+    },
+    "svg_async": {
+      "code": "import { renderMermaidSVGAsync } from 'beautiful-mermaid';",
+      "call": "const svg = await renderMermaidSVGAsync('graph TD; A --> B', THEMES['nord']);"
+    },
+    "svg_with_css_vars": {
+      "code": "import { renderMermaidSVG } from 'beautiful-mermaid';",
+      "call": "const svg = renderMermaidSVG('graph TD; A --> B', { bg: 'var(--background)', fg: 'var(--foreground)', transparent: true });"
+    },
+    "ascii_unicode": {
+      "code": "import { renderMermaidASCII } from 'beautiful-mermaid';",
+      "call": "const ascii = renderMermaidASCII('graph TD; A --> B');"
+    },
+    "ascii_pure_ascii": {
+      "code": "import { renderMermaidASCII } from 'beautiful-mermaid';",
+      "call": "const ascii = renderMermaidASCII('graph TD; A --> B', { useAscii: true, colorMode: 'truecolor' });"
+    },
+    "parse_mermaid": {
+      "code": "import { parseMermaid } from 'beautiful-mermaid';",
+      "call": "const graph = parseMermaid('graph TD; A --> B --> C');"
+    },
+    "shiki_theme": {
+      "code": "import { fromShikiTheme } from 'beautiful-mermaid';",
+      "call": "const colors = fromShikiTheme(highlighter.getTheme('vitesse-dark'));"
+    },
+    "xychart_interactive": {
+      "code": "import { renderMermaidSVG } from 'beautiful-mermaid';",
+      "call": "const svg = renderMermaidSVG('xychart-beta\\n    bar [100, 200, 300]', { interactive: true, accent: '#7aa2f7' });"
+    }
+  }
+}

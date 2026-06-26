@@ -1,0 +1,6 @@
+{
+  "name": "edith-augment-code",
+  "version": "1.0.0",
+  "description": "Use Augment Code's Auggie CLI to build, analyze, and debug code through OpenClaw and Edith smart glasses",
+  "keywords": ["augment", "auggie", "code-generation", "edith", "smart-glasses", "openclaw"]
+}

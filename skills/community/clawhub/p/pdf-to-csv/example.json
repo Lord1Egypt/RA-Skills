@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/convert/pdf/csv",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sample-pdfinvoice-with-image.pdf", "pages": "1", "output": "file", "output_filename": "invoice_data.csv" }
+  },
+  "response": {
+    "status": 200,
+    "body": { "success": true, "input_format": "pdf", "output_format": "csv", "file_size_bytes": 2048, "csv_url": "https://cdn.pdfapihub.com/csv/converted.csv" }
+  }
+}

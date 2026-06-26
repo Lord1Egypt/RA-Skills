@@ -1,0 +1,164 @@
+{
+  "_coauthor": "394286006@qq.com",
+  "listen_host": "127.0.0.1",
+  "proxy_port": 18888,
+  "log_dir": "~/.openclaw/logs/llm-proxy",
+  "rules_file": "content-filter-rules.json",
+  "read_timeout": 60,
+  "max_body_size_mb": 10,
+  "max_threads": 50,
+  "quick_check_keywords": [
+    "关闭防火墙",
+    "禁用防火墙",
+    "停止防火墙",
+    "socketfilterfw",
+    "pfctl",
+    "iptables -F",
+    "关闭杀毒",
+    "禁用杀毒",
+    "关闭安全",
+    "sudo su",
+    "chmod 777",
+    "rm -rf",
+    "关闭防护",
+    "禁用安全",
+    "停止安全服务",
+    "关闭卫士",
+    "卸载杀毒",
+    "卸载防火墙",
+    "netsh advfirewall",
+    "systemctl stop firewalld",
+    "service iptables stop"
+  ],
+  "providers": {
+    "_comment": "按免费→付费排序，前缀为请求路径",
+    "_free": "=== 免费提供商 (有免费额度或完全免费) ===",
+    "/ollama": {
+      "url": "http://localhost:11434",
+      "name": "Ollama",
+      "description": "本地部署，完全免费",
+      "pricing": "free"
+    },
+    "/gemini": {
+      "url": "https://generativelanguage.googleapis.com/v1beta",
+      "name": "Google Gemini",
+      "description": "有免费额度 (60次/分钟, 1500次/天)",
+      "pricing": "freemium"
+    },
+    "/groq": {
+      "url": "https://api.groq.com/openai/v1",
+      "name": "Groq",
+      "description": "免费快速推理 (LLaMA, Mixtral等)",
+      "pricing": "freemium"
+    },
+    "/cloudflare": {
+      "url": "https://api.cloudflare.com/client/v4/accounts",
+      "name": "Workers AI",
+      "description": "免费额度 (10万次/天)",
+      "pricing": "freemium"
+    },
+    "/deepseek": {
+      "url": "https://api.deepseek.com/v1",
+      "name": "DeepSeek",
+      "description": "新用户免费额度",
+      "pricing": "freemium"
+    },
+    "/moonshot": {
+      "url": "https://api.moonshot.cn/v1",
+      "name": "月之暗面",
+      "description": "新用户免费额度",
+      "pricing": "freemium"
+    },
+    "/zhipu": {
+      "url": "https://open.bigmodel.cn/api/paas/v4",
+      "name": "智谱",
+      "description": "新用户免费额度",
+      "pricing": "freemium"
+    },
+    "/siliconflow": {
+      "url": "https://api.siliconflow.cn/v1",
+      "name": "SiliconFlow",
+      "description": "免费额度",
+      "pricing": "freemium"
+    },
+    "_paid": "=== 付费提供商 (按量计费) ===",
+    "/openai": {
+      "url": "https://api.openai.com/v1",
+      "name": "OpenAI",
+      "description": "GPT-4, GPT-3.5",
+      "pricing": "paid"
+    },
+    "/anthropic": {
+      "url": "https://api.anthropic.com/v1",
+      "name": "Anthropic",
+      "description": "Claude 系列",
+      "pricing": "paid"
+    },
+    "/openrouter": {
+      "url": "https://openrouter.ai/api/v1",
+      "name": "OpenRouter",
+      "description": "多模型聚合网关",
+      "pricing": "paid"
+    },
+    "/nvd": {
+      "url": "https://integrate.api.nvidia.com/v1",
+      "name": "NVIDIA NIM",
+      "description": "企业级 GPU 推理",
+      "pricing": "paid"
+    },
+    "/bailian": {
+      "url": "https://coding.dashscope.aliyuncs.com/v1",
+      "name": "阿里百炼",
+      "description": "通义千问系列",
+      "pricing": "paid"
+    },
+    "/baidu": {
+      "url": "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxin_workshop",
+      "name": "百度文心",
+      "description": "文心一言",
+      "pricing": "paid"
+    },
+    "/spark": {
+      "url": "https://spark-api.xf-yun.com/v3.5/chat",
+      "name": "讯飞星火",
+      "description": "讯飞大模型",
+      "pricing": "paid"
+    },
+    "/minimax": {
+      "url": "https://api.minimax.chat/v1",
+      "name": "MiniMax",
+      "description": "海螺AI",
+      "pricing": "paid"
+    },
+    "/yi": {
+      "url": "https://api.lingyiwanwu.com/v1",
+      "name": "零一万物",
+      "description": "Yi 系列模型",
+      "pricing": "paid"
+    },
+    "/baichuan": {
+      "url": "https://api.baichuan-ai.com/v1",
+      "name": "百川",
+      "description": "Baichuan 模型",
+      "pricing": "paid"
+    },
+    "/together": {
+      "url": "https://api.together.xyz/v1",
+      "name": "Together AI",
+      "description": "开源模型托管",
+      "pricing": "paid"
+    },
+    "/fireworks": {
+      "url": "https://api.fireworks.ai/inference/v1",
+      "name": "Fireworks AI",
+      "description": "快速推理",
+      "pricing": "paid"
+    },
+    "/replicate": {
+      "url": "https://api.replicate.com/v1",
+      "name": "Replicate",
+      "description": "按次计费",
+      "pricing": "paid"
+    }
+  }
+}

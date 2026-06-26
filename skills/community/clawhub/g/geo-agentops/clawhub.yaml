@@ -1,0 +1,104 @@
+name: GEO AgentOps
+version: 2.1.6
+type: openclaw-skill
+description: "外贸GEO运营系统：AI友好内容生成与多平台分发，让海外采购商在ChatGPT里找到你的独立站"
+author: "OpenClaw AI Team"
+homepage: https://xiaping.coze.site
+license: MIT-0
+emoji: "🌐"
+homepage: https://geoagentops.ai
+
+# Required Credentials
+required_env:
+  - OPENAI_API_KEY
+primary_env: OPENAI_API_KEY
+
+# External APIs
+apis:
+  - name: OpenAI API
+    url: https://api.openai.com
+    purpose: "GPT模型调用，用于GEO内容生成和优化"
+  - name: Anthropic API
+    url: https://api.anthropic.com
+    purpose: "Claude模型调用，用于GEO文章撰写"
+  - name: Perplexity API
+    url: https://api.perplexity.ai
+    purpose: "AI搜索引用参考和市场分析"
+  - name: LinkedIn API
+    url: https://api.linkedin.com
+    purpose: "专业社交内容发布和管理"
+  - name: Twitter/X API
+    url: https://api.twitter.com
+    purpose: "社交内容发布和趋势参考"
+
+# Triggers
+triggers:
+  - "GEO优化"
+  - "AI搜索优化"
+  - "ChatGPT内容策略"
+  - "外贸独立站"
+  - "B2B营销"
+  - "AI引用洞察"
+  - "生成引擎优化"
+  - "Perplexity优化"
+  - "Claude优化"
+  - "Gemini优化"
+  - "AI内容营销"
+  - "出海运营"
+  - "AI询盘"
+  - "独立站SEO"
+  - "内容种草AI"
+
+# Tags
+tags:
+  - GEO
+  - SEO
+  - B2B export
+  - content marketing
+  - content strategy
+  - generative engine optimization
+
+# Category
+category: marketing
+
+# Pricing (USD)
+pricing:
+  - name: Starter
+    price: 19
+    currency: USD
+    period: month
+    features:
+      - 30 GEO articles/month
+      - Perplexity citation overview
+      - Email support
+
+  - name: Pro Bundle
+    price: 59
+    currency: USD
+    period: month
+    features:
+      - 100 GEO articles/month
+      - All-platform citation overview
+      - Market differentiation analysis
+      - GEO scoring
+
+  - name: Enterprise
+    price: 399
+    currency: USD
+    period: month
+    features:
+      - Unlimited GEO articles
+      - All-platform + API access
+      - Dedicated AI agent
+      - Custom GEO strategy
+
+# Security Configuration
+security:
+  read_scope:
+    - "./data/geo-agentops/"
+    - "./config/"
+  write_scope:
+    - "./data/geo-agentops/output/"
+  require_confirmation: true
+  social_media_publish: "manual_approval"
+  competitive_tracking: "public_sources_only"

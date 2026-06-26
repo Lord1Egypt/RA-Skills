@@ -1,0 +1,21 @@
+{
+  "name": "guess-ai",
+  "version": "2.1.0",
+  "private": true,
+  "description": "A social deduction game — find the AI among humans. OceanBus lighthouse skill.",
+  "main": "game.js",
+  "keywords": [
+    "oceanbus",
+    "game",
+    "social-deduction",
+    "ai-agent",
+    "p2p",
+    "messaging",
+    "openclaw",
+    "clawhub"
+  ],
+  "license": "MIT-0",
+  "dependencies": {
+    "oceanbus": "^0.9.0"
+  }
+}

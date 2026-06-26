@@ -1,0 +1,90 @@
+{
+  "config": {
+    "zone": "7",
+    "location_name": "Backyard Garden - Richmond, VA",
+    "lat": 37.5407,
+    "lon": -77.4360,
+    "data_dir": "~/.openclaw/workspace/garden"
+  },
+  "plants": [
+    {
+      "id": "plant_001",
+      "name": "Cherokee Purple Tomato",
+      "type": "vegetable",
+      "variety": "Cherokee Purple",
+      "planted_date": "2025-05-10",
+      "location": "bed-A",
+      "notes": "Started indoors Mar 1, transplanted after last frost",
+      "days_to_harvest_min": 60,
+      "days_to_harvest_max": 80,
+      "expected_harvest": "2025-07-09",
+      "active": true
+    },
+    {
+      "id": "plant_002",
+      "name": "Genovese Basil",
+      "type": "herb",
+      "variety": "Genovese",
+      "planted_date": "2025-05-15",
+      "location": "container-1",
+      "notes": "Near tomatoes for companion planting",
+      "days_to_harvest_min": 25,
+      "days_to_harvest_max": 35,
+      "expected_harvest": "2025-06-09",
+      "active": true
+    },
+    {
+      "id": "plant_003",
+      "name": "Spacemaster Cucumber",
+      "type": "vegetable",
+      "variety": "Spacemaster",
+      "planted_date": "2025-05-18",
+      "location": "bed-B",
+      "notes": "Compact variety for small space",
+      "days_to_harvest_min": 50,
+      "days_to_harvest_max": 60,
+      "expected_harvest": "2025-07-07",
+      "active": true
+    },
+    {
+      "id": "plant_004",
+      "name": "Sugar Snap Peas",
+      "type": "vegetable",
+      "variety": "Sugar Snap",
+      "planted_date": "2025-03-15",
+      "location": "row-1",
+      "notes": "Direct sowed before last frost",
+      "days_to_harvest_min": 55,
+      "days_to_harvest_max": 70,
+      "expected_harvest": "2025-05-19",
+      "active": false,
+      "harvested_date": "2025-05-22"
+    }
+  ],
+  "watering_schedules": [
+    {
+      "target": "bed-A",
+      "frequency_days": 2,
+      "last_watered": "2025-06-10",
+      "notes": "Deep water 1 inch; morning preferred"
+    },
+    {
+      "target": "bed-B",
+      "frequency_days": 2,
+      "last_watered": "2025-06-10",
+      "notes": "Check soil moisture first"
+    },
+    {
+      "target": "container-1",
+      "frequency_days": 1,
+      "last_watered": "2025-06-11",
+      "notes": "Containers dry out faster; check daily in heat"
+    },
+    {
+      "target": "row-1",
+      "frequency_days": 3,
+      "last_watered": "2025-06-09",
+      "notes": "Mulched; less frequent watering needed"
+    }
+  ]
+}

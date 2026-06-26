@@ -1,0 +1,3 @@
+display_name: Product Video Script No Subtitles
+short_description: Turn product images into ecommerce video scripts with video handoff rules that forbid subtitles and text overlays.
+default_prompt: Upload product images and optional selling points, then choose a video direction such as口播带货、场景种草、促销活动、测评对比、海外 TikTok 风格、直播间带货 or商业广告. Generated videos should have no subtitles or text overlays by default.

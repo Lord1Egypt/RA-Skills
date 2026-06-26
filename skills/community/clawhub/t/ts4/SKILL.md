@@ -1,35 +1,42 @@
 ---
-name: "ts4"
-description: "TS4 namespace for Netsnek e.U. TypeScript testing framework. Unit testing, snapshot testing, coverage reporting, and mutation testing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ts4"
-sourceUrl: "https://clawhub.ai/skills/ts4"
+name: ts4
+description: TS4 namespace for Netsnek e.U. TypeScript testing framework. Unit testing, snapshot testing, coverage reporting, and mutation testing.
+user-invocable: true
+version: 0.1.0
+metadata:
+  openclaw:
+    os: [linux]
+    permissions: [exec]
 ---
 
-# ts4
+# Testing with TS4
 
-> TS4 namespace for Netsnek e.U. TypeScript testing framework. Unit testing, snapshot testing, coverage reporting, and mutation testing.
+TS4 is the Netsnek e.U. TypeScript testing framework. Run unit tests, snapshots, coverage reports, and mutation tests from a single CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ts4`
-- **Source URL:** [https://clawhub.ai/skills/ts4](https://clawhub.ai/skills/ts4)
+## Test Types
 
-## Overview
+- **Unit** — Isolated function and module tests
+- **Snapshot** — Output comparison for UI and serialization
+- **Coverage** — Line, branch, and function metrics
+- **Mutation** — Fault injection to verify test quality
 
+## CLI Reference
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Flag | Effect |
+|------|--------|
+| `--run` | Execute the full test suite |
+| `--coverage` | Produce coverage report (HTML + lcov) |
+| `--status` | Show suite status, last run, pass/fail count |
+
+## Walkthrough
+
 ```bash
-hermes skills install clawhub/ts4
+# Run all tests
+./scripts/test-runner.sh --run
+
+# Generate coverage
+./scripts/test-runner.sh --coverage
+
+# Check status
+./scripts/test-runner.sh --status
 ```

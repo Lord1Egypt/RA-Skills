@@ -1,0 +1,15 @@
+{
+  "documentType": "xlsx",
+  "templateId": "excel_data_tracker_v1",
+  "title": "数据跟踪表",
+  "purpose": "用于业务数据记录与跟踪",
+  "contentSpec": {
+    "sheets": [
+      {
+        "name": "数据",
+        "columns": ["日期", "项目", "负责人", "状态", "备注"],
+        "rows": []
+      }
+    ]
+  }
+}

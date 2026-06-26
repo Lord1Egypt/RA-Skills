@@ -1,0 +1,34 @@
+id: a17
+track: A
+title_zh: 工具失败后重规划
+category: plan
+difficulty: hard
+timeout_seconds: 300
+dimensions:
+  primary: brain
+  secondary:
+  - claw
+evaluators:
+- type: trace
+  weight: 0.6
+  required_tools_set:
+  - Bash
+  forbidden_tools: []
+  max_tool_calls: 15
+- type: pytest
+  weight: 0.4
+  target: tests/test_marker.py
+  fail_to_pass:
+  - test_marker_written
+  pass_to_pass: []
+metadata:
+  estimated_minutes: 4
+  locale_sensitive: false
+  network_required: false
+  requires_failure_injection: true
+  expected_tool_calls:
+  - Bash
+  - Read
+  - Write
+  notes: 依赖 harness 在第 1 个 Bash 调用强制返回错误；未开启时 check.py 给中性分。
+title_en: Re-plan after a tool failure

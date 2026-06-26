@@ -1,35 +1,47 @@
 ---
-name: "YouTube ASR Summarize (Local)"
-description: "Summarize YouTube videos with NO subtitles by doing local ASR (yt-dlp + faster-whisper) and extracting a few screenshot frames via ffmpeg. Use when the user..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-asr-summarize"
-sourceUrl: "https://clawhub.ai/skills/youtube-asr-summarize"
+name: youtube-asr-summarize
+description: "Summarize YouTube videos with NO subtitles by doing local ASR (yt-dlp + faster-whisper) and extracting a few screenshot frames via ffmpeg. Use when the user asks to summarize the latest video from a channel and YouTube timedtext/subtitles are empty, or when no API tokens/keys should be used."
 ---
 
-# YouTube ASR Summarize (Local)
+# YouTube ASR Summarize (local, no tokens)
 
-> Summarize YouTube videos with NO subtitles by doing local ASR (yt-dlp + faster-whisper) and extracting a few screenshot frames via ffmpeg. Use when the user...
+Use this skill to summarize a YouTube video *even when subtitles are missing* by downloading audio and running local speech-to-text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-asr-summarize`
-- **Source URL:** [https://clawhub.ai/skills/youtube-asr-summarize](https://clawhub.ai/skills/youtube-asr-summarize)
+## Quick start
 
-## Overview
+1) One-time deps
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/youtube-asr-summarize
+brew install yt-dlp ffmpeg
 ```
+
+2) Create venv + install ASR
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install faster-whisper
+```
+
+3) Run
+
+```bash
+python3 scripts/youtube_asr_summarize.py \
+  --url "https://www.youtube.com/watch?v=<id>" \
+  --out "/tmp/youtube-asr/<id>" \
+  --model small \
+  --lang zh \
+  --frames 1 \
+  --timeline-every 180
+```
+
+Outputs in `--out`:
+- `summary.md`（含：链接 + 摘要 + 时间轴）
+- `transcript.txt`
+- `transcript.srt`
+- `frames/frame_01.jpg` … (if `--frames > 0`)
+
+## Notes
+
+- Default model `small` (CPU/int8) is fast; use `--model medium` for better accuracy.
+- If you need more control, see `references/workflow.md`.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw OA Operator"
+  short_description: "Operate OA monitoring for OpenClaw workspaces."
+  default_prompt: "Use $openclaw-oa-operator to install OA, inspect dashboard health, and guide safe self-heal work in this OpenClaw workspace."

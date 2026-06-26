@@ -1,0 +1,179 @@
+{
+  "version": "1.0.0",
+  "description": "Food recommendation database - data source for meal decisions",
+  "categories": {
+    "breakfast": {
+      "name": "Breakfast",
+      "icon": "🌅",
+      "options": [
+        {
+          "name": "Chinese Breakfast",
+          "items": ["Soy milk & fried dough", "Steamed buns & congee", "Jianbing", "Rice rolls", "Soup dumplings", "Wonton", "Tofu pudding", "Egg pancake"],
+          "tags": ["Traditional", "Filling", "Hot food"],
+          "time": "10-20 min",
+          "budget": "low"
+        },
+        {
+          "name": "Western Breakfast",
+          "items": ["Sandwich", "Croissant", "Oatmeal", "Yogurt & fruit", "Bacon & eggs", "Waffles", "Bagel", "Cereal"],
+          "tags": ["Quick", "Healthy", "Light"],
+          "time": "5-15 min",
+          "budget": "medium"
+        },
+        {
+          "name": "Japanese Breakfast",
+          "items": ["Onigiri", "Miso soup & rice", "Tamagoyaki", "Grilled salmon set", "Natto rice"],
+          "tags": ["Light", "Balanced nutrition", "Refined"],
+          "time": "15-25 min",
+          "budget": "medium"
+        },
+        {
+          "name": "Quick Breakfast",
+          "items": ["Convenience store onigiri", "Bread & milk", "Energy bar", "Instant oatmeal", "Fruit"],
+          "tags": ["Ultra-fast", "Portable", "Easy"],
+          "time": "5 min",
+          "budget": "low"
+        }
+      ]
+    },
+    "lunch": {
+      "name": "Lunch",
+      "icon": "☀️",
+      "options": [
+        {
+          "name": "Chinese Fast Food",
+          "items": ["Rice with toppings", "Fried rice", "Noodles", "Dumplings", "Malatang", "Braised chicken rice", "Lanzhou lamian", "Shaxian snacks"],
+          "tags": ["Affordable", "Filling", "Hot food"],
+          "time": "20-40 min",
+          "budget": "low"
+        },
+        {
+          "name": "Japanese & Korean",
+          "items": ["Japanese set meal", "Sushi", "Korean bibimbap", "Stone pot rice", "Ramen", "Donburi", "Cold noodles", "Army stew"],
+          "tags": ["Refined", "Balanced", "Rich flavors"],
+          "time": "30-50 min",
+          "budget": "medium"
+        },
+        {
+          "name": "Western Fast Food",
+          "items": ["Burger", "Pizza", "Pasta", "Sandwich", "Salad", "Steak rice", "Burrito", "Bowl"],
+          "tags": ["Quick", "Standardized", "International"],
+          "time": "20-40 min",
+          "budget": "medium"
+        },
+        {
+          "name": "Southeast Asian",
+          "items": ["Pad Thai", "Pho", "Hainanese chicken rice", "Bak kut teh", "Curry rice", "Tom yum soup", "Laksa"],
+          "tags": ["Exotic", "Sour & spicy", "Specialty"],
+          "time": "30-50 min",
+          "budget": "medium"
+        },
+        {
+          "name": "Healthy Light Meal",
+          "items": ["Light salad", "Poke bowl", "Whole wheat sandwich", "Low-cal bento", "Chicken breast meal", "Vegetarian bowl", "Juice combo"],
+          "tags": ["Healthy", "Low-cal", "Refreshing"],
+          "time": "20-35 min",
+          "budget": "medium"
+        }
+      ]
+    },
+    "dinner": {
+      "name": "Dinner",
+      "icon": "🌙",
+      "options": [
+        {
+          "name": "Chinese Dinner",
+          "items": ["Sichuan cuisine", "Cantonese", "Hunan cuisine", "Northeastern", "Jiangzhe cuisine", "Hot pot", "BBQ", "Home-style", "Regional specialties"],
+          "tags": ["Abundant", "Group dining", "Hearty"],
+          "time": "60-120 min",
+          "budget": "medium-high"
+        },
+        {
+          "name": "Japanese",
+          "items": ["Izakaya", "Sushi", "Yakitori", "Ramen", "Wagyu", "Sashimi", "Tempura", "Sukiyaki"],
+          "tags": ["Refined", "Atmosphere", "Quality"],
+          "time": "60-90 min",
+          "budget": "high"
+        },
+        {
+          "name": "Western",
+          "items": ["Steak", "Italian", "French", "Spanish", "Pizza", "Burger", "Brunch restaurant"],
+          "tags": ["Ceremonial", "Date", "Slow dining"],
+          "time": "60-120 min",
+          "budget": "high"
+        },
+        {
+          "name": "Hot Pot & BBQ",
+          "items": ["Chongqing hot pot", "Beijing shabu", "Chaoshan beef hot pot", "Japanese BBQ", "Korean BBQ", "Skewers", "Grilled fish"],
+          "tags": ["Social", "Lively", "Satisfying"],
+          "time": "90-150 min",
+          "budget": "medium-high"
+        },
+        {
+          "name": "Simple Dinner",
+          "items": ["Congee", "Noodles", "Bento", "Light meal", "Convenience store", "Delivery", "Home cooking"],
+          "tags": ["Simple", "Easy", "Light"],
+          "time": "20-40 min",
+          "budget": "low"
+        }
+      ]
+    },
+    "snack": {
+      "name": "Snacks/Afternoon Tea",
+      "icon": "🍪",
+      "options": [
+        {
+          "name": "Desserts",
+          "items": ["Cake", "Ice cream", "Bubble tea", "Pudding", "Egg tart", "Donut", "Macaron", "Chocolate"],
+          "tags": ["Comforting", "Sweet", "Indulgent"],
+          "time": "10-20 min",
+          "budget": "low-medium"
+        },
+        {
+          "name": "Coffee & Tea",
+          "items": ["Americano", "Latte", "Milk tea", "Fruit tea", "Matcha", "Sparkling water", "Fresh juice"],
+          "tags": ["Energizing", "Social", "Leisure"],
+          "time": "15-30 min",
+          "budget": "low"
+        },
+        {
+          "name": "Healthy Snacks",
+          "items": ["Nuts", "Fruit", "Yogurt", "Whole grain crackers", "Seaweed", "Beef jerky", "Dark chocolate"],
+          "tags": ["Healthy", "Energy boost", "Guilt-free"],
+          "time": "Instant",
+          "budget": "low"
+        },
+        {
+          "name": "Street Snacks",
+          "items": ["Fried chicken", "Fries", "Skewers", "Stinky tofu", "Pancake", "Oden", "Takoyaki", "Egg waffle"],
+          "tags": ["Street food", "Craving", "Authentic"],
+          "time": "10-20 min",
+          "budget": "low"
+        }
+      ]
+    }
+  },
+  "cuisines": {
+    "chinese": {
+      "name": "Chinese",
+      "subtypes": ["Sichuan", "Cantonese", "Hunan", "Shandong", "Jiangsu", "Zhejiang", "Fujian", "Anhui", "Northeastern", "Northwestern", "Yunnan", "Guizhou"],
+      "characteristics": ["Rich flavors", "Diverse cooking", "Distinct regional features"]
+    },
+    "western": {
+      "name": "Western",
+      "subtypes": ["Italian", "French", "American", "Spanish", "German", "Mediterranean"],
+      "characteristics": ["Quality ingredients", "Elegant plating", "Dining ritual"]
+    },
+    "japanese": {
+      "name": "Japanese",
+      "subtypes": ["Sushi", "Ramen", "Izakaya", "Kaiseki", "Yakitori", "Tempura"],
+      "characteristics": ["Light & fresh", "Seasonal focus", "Refined & delicate"]
+    },
+    "korean": {
+      "name": "Korean",
+      "subtypes": ["BBQ", "Bibimbap", "Soup rice", "Fried chicken", "Army stew", "Cold noodles"],
+      "characteristics": ["Sour & spicy", "Colorful", "Social dining"]
+    },
+    "southeast_asian": {
+      "name": "Southeast Asian",
+      "subtypes": ["Thai", "Vietnamese", "Singaporean", "Malaysian", "Indonesian"],

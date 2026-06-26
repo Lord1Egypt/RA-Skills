@@ -1,0 +1,218 @@
+{
+  "skill_name": "site-launch-checklist",
+  "evals": [
+    {
+      "id": 1,
+      "name": "start-of-session-questioning",
+      "prompt": "I need to do a pre-launch audit for my new website at launch.example.com. Can you walk me through the checklist?",
+      "expected_output": "Model asks the 6 start-of-session questions one at a time with tappable options, does NOT immediately generate a full checklist.",
+      "assertions": [
+        "Asks about site type as the first question (doc-site, marketing/lead-gen, SaaS-app, training/paid-course, personal-portfolio)",
+        "Presents 2-4 tappable options for site type rather than an open-ended question",
+        "Does NOT immediately generate a full pre-launch checklist without asking questions first",
+        "Asks one question at a time, not all 6 at once",
+        "Asks about migration status (greenfield, 301 redirects, same domain replacement)",
+        "Asks about PostHog setup (hogpost.samber.dev, set-up-new-proxy, skip-PostHog)",
+        "Asks about browser tool availability (Chrome extension, Playwright, neither)",
+        "Asks about AI scraper policy",
+        "Asks about multilingual setup"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "companion-skill-installation-workflow",
+      "prompt": "I've confirmed it's a doc-site launch. Let's install the companion skills we'll need.",
+      "expected_output": "Queries --list before installing, proposes curated subset matching doc-site, never installs full pack, asks confirmation, uses --skill flag.",
+      "assertions": [
+        "Runs `npx skills add <owner/repo> --list` to discover available sub-skills before proposing any install",
+        "Proposes curated subset tailored to doc-site type (claude-seo, web-quality-skills, trailofbits, seo-geo-claude-skills, devmarketing-skills)",
+        "Does NOT include coreyhaines31/marketingskills pack for a doc-site",
+        "Never runs `npx skills add <owner/repo>` without the `--skill` flag (would install everything)",
+        "Asks user to confirm the proposed subset before running any install command",
+        "Uses `--skill A B C` syntax when installing the agreed subset",
+        "Asks user to confirm separately for each pack rather than bulk-installing all packs at once"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "never-install-without-confirmation",
+      "prompt": "Go ahead and install all the necessary MCP servers and skills for my new marketing site.",
+      "expected_output": "Always asks for explicit user confirmation before running any install command, even when user says 'go ahead'.",
+      "assertions": [
+        "Does NOT execute `npx skills add` without first asking user for confirmation",
+        "Does NOT execute `claude mcp add` without first asking user for confirmation",
+        "Uses ask_user_input_v0 or AskUserQuestion to get confirmation before installing",
+        "Presents install-as-proposed | let-me-modify | skip options for user confirmation",
+        "Does not skip confirmation step even though user said 'go ahead'"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "french-legal-compliance",
+      "prompt": "I'm launching a SaaS at startup.fr selling monthly subscriptions to French businesses. What legal pages and compliance steps do I need?",
+      "expected_output": "Covers mentions légales (with fine amounts), CGV for commercial activity, CNIL-compliant consent that gates tracker loading (not just adds a banner).",
+      "assertions": [
+        "Includes mentions légales as a mandatory legal page",
+        "Mentions the fine amount for missing mentions légales (75 000 € or similar)",
+        "Includes CGV (Conditions Générales de Vente) because the site has commercial/subscription activity",
+        "Includes CNIL-compliant cookie consent implementation",
+        "States explicitly that analytics/tracker scripts must NOT fire before the user gives explicit consent",
+        "Recommends a CMP tool (Axeptio, Tarteaucitron, or custom) rather than just a banner",
+        "Includes privacy policy",
+        "Includes terms of service"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "dns-verification-commands",
+      "prompt": "I've just configured DNS for newsite.example.com in Cloudflare with MX, SPF, DKIM, and DMARC. Can you verify everything is set up correctly?",
+      "expected_output": "Uses specific dig commands to verify each record type, plus curl for redirect/TLS checks — does not just tell user to check the Cloudflare dashboard.",
+      "assertions": [
+        "Uses `dig +short A newsite.example.com` or equivalent to verify A record",
+        "Uses `dig +short MX newsite.example.com` to verify MX records",
+        "Uses `dig +short TXT _dmarc.newsite.example.com` to verify DMARC record",
+        "Uses `dig +short TXT newsite.example.com` to verify SPF record",
+        "Uses `dig +short CAA newsite.example.com` to verify CAA records",
+        "Uses `curl -sIL https://newsite.example.com` to verify redirect chain and HTTPS",
+        "Does NOT instruct user to 'check the Cloudflare dashboard' as the sole verification method",
+        "Uses a DKIM-specific dig command (e.g., `dig +short TXT default._domainkey.example.com`)"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "posthog-three-paths",
+      "prompt": "Set up PostHog analytics on my new Next.js site at newapp.com",
+      "expected_output": "Asks which PostHog path to use, then follows the correct path exactly (hogpost.samber.dev CORS check, or next.config.js proxy, or skip).",
+      "assertions": [
+        "Asks which PostHog setup option to use before proceeding",
+        "Presents exactly three options: hogpost.samber.dev, set-up-new-proxy, skip-PostHog",
+        "For hogpost.samber.dev path: mentions verifying CORS allows the new domain",
+        "For hogpost.samber.dev path: includes a curl command to test CORS (e.g., `curl -H 'Origin: https://newapp.com' -I https://hogpost.samber.dev/decide`)",
+        "For new proxy path: configures path rewrites in next.config.js",
+        "For new proxy path: rewrites BOTH us.i.posthog.com AND us-assets.i.posthog.com",
+        "For new proxy path: initializes PostHog client with `api_host: '/ingest'`",
+        "Does NOT default to one path without asking the user"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "tone-md-and-humanizer-pass",
+      "prompt": "I've written the hero copy, feature descriptions, and CTAs for my French-language launch page. Review it before we go live.",
+      "expected_output": "Asks about TONE.md existence, creates it if needed, runs a French humanizer pass on copy, skips humanizer for legal pages.",
+      "assertions": [
+        "Asks whether the site already has a TONE.md file",
+        "Offers to create TONE.md at .agents/TONE.md or repo root if it doesn't exist",
+        "Plans to run a humanizer pass after any copy drafting or review",
+        "Applies humanizer to hero copy, feature descriptions, CTAs, meta descriptions, OG descriptions",
+        "Explicitly notes that humanizer should be SKIPPED for legal pages (mentions légales, CGV)",
+        "Selects a French-language humanizer (samber/humaniseur-fr or equivalent) given the French site",
+        "Does NOT apply a generic English humanizer to French copy without asking"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "security-headers-csp-tightness",
+      "prompt": "Set up all the security headers for my new product marketing page at marketing.example.com",
+      "expected_output": "Asks CSP tightness level before setting any header, covers all required headers with correct values, mentions hstspreload.org.",
+      "assertions": [
+        "Asks about CSP tightness level before configuring any security headers",
+        "Presents three CSP tightness options: strict-default-src-none, balanced-allow-self, permissive-for-marketing",
+        "Includes HSTS with value `max-age=31536000; includeSubDomains; preload`",
+        "Mentions submitting the domain to hstspreload.org for HSTS preload list",
+        "Includes X-Frame-Options: DENY",
+        "Includes X-Content-Type-Options: nosniff",
+        "Includes Referrer-Policy: strict-origin-when-cross-origin",
+        "Includes Permissions-Policy denying camera, microphone, geolocation",
+        "Provides curl command to verify headers after setting: `curl -sI https://... | grep -iE 'content-security|strict-transport|x-frame|x-content-type|referrer-policy|permissions-policy'`"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "favicon-modern-set-skip-deprecated",
+      "prompt": "What favicon files do I need for my new site to display correctly in all browsers, including mobile and desktop?",
+      "expected_output": "Recommends exact modern set (ico, svg with dark mode, apple-touch-icon, manifest PNGs, manifest.json), explicitly skips deprecated items.",
+      "assertions": [
+        "Recommends /favicon.ico (multi-resolution covering 16/32/48px)",
+        "Recommends /favicon.svg with embedded dark mode media query (`@media (prefers-color-scheme: dark)`)",
+        "Recommends /apple-touch-icon.png at 180×180px with opaque background",
+        "Recommends /web-app-manifest-192x192.png and /web-app-manifest-512x512.png",
+        "Recommends /manifest.json with theme_color, background_color, name, short_name, display fields",
+        "Explicitly says to SKIP or marks as deprecated: mstile-*.png (Windows tiles)",
+        "Explicitly says to SKIP or marks as deprecated: safari-pinned-tab.svg (deprecated since macOS Big Sur)",
+        "Suggests using realfavicongenerator.net or favicon.io for generation",
+        "Mentions starting from a single 1024×1024 source PNG"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "ai-scraper-policy-robots-txt",
+      "prompt": "I'm setting up robots.txt for my new SaaS app at myapp.com. How should I handle AI scrapers — GPTBot, ClaudeBot, etc.?",
+      "expected_output": "Applies the site-type-based matrix (app subdomain blocks all, marketing allows), asks user to confirm non-default decisions, mentions llms.txt.",
+      "assertions": [
+        "Does NOT unilaterally block all AI scrapers without explaining the site-type reasoning",
+        "Does NOT allow all AI scrapers without asking",
+        "Differentiates between app subdomain (block all) and marketing/landing subdomain (allow AI citation crawlers)",
+        "Asks user to confirm non-default decisions via ask_user_input_v0",
+        "Mentions /llms.txt alongside robots.txt",
+        "References the site type (SaaS) when determining default scraper policy"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "weekly-seo-maintenance-agent",
+      "prompt": "We've just finished going through all the launch phases. Anything else we should set up before I call it done?",
+      "expected_output": "Mentions Phase 10 (weekly SEO sub-agent), asks if user wants to set it up now, references .claude/agents/weekly-seo.md.",
+      "assertions": [
+        "Explicitly mentions setting up a weekly SEO maintenance sub-agent",
+        "References .claude/agents/weekly-seo.md as the target file location",
+        "Asks user via ask_user_input_v0 whether to set it up now",
+        "Presents options: yes-create-agent-file, yes-but-defer, skip-for-now",
+        "Mentions Ahrefs MCP and/or PostHog MCP as connectors used by the weekly agent"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "output-format-status-report",
+      "prompt": "Give me a final launch readiness report for the site after everything we've checked",
+      "expected_output": "Report grouped by phase with pass/fail per item and count, followed by 3 distinct priority lists, ends by asking which list to tackle next.",
+      "assertions": [
+        "Groups results by phase heading (Phase 1: Domain & Infrastructure, Phase 2: Analytics, etc.)",
+        "Shows a pass count per phase in format [N/M pass]",
+        "Uses ✓ and ✗ symbols for individual item pass/fail status",
+        "Has a distinct 'Blockers' section for must-fix-before-launch items",
+        "Has a distinct 'Recommended fixes' section separate from blockers",
+        "Has a distinct 'Optional improvements' section",
+        "Ends by asking which list to tackle next via ask_user_input_v0",
+        "Presents at least these options: blockers, recommended, optional, done-for-now"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "schema-markup-per-page-types",
+      "prompt": "I need to add structured data to my Go logging library documentation site at slog-multi.example.com",
+      "expected_output": "Organization + WebSite site-wide, SoftwareApplication for lib homepage (not just WebPage), Article for blog, JSON-LD format, curl verification command.",
+      "assertions": [
+        "Includes Organization JSON-LD schema applied site-wide",
+        "Includes WebSite JSON-LD schema applied site-wide",
+        "Includes SoftwareApplication schema specifically for the library homepage",
+        "Includes Article schema for blog post pages",
+        "Uses JSON-LD format (inside <script type='application/ld+json'>), not microdata",
+        "Provides curl verification command to check JSON-LD: `curl -s URL | grep -A 50 'application/ld+json'`"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "ecosystem-cross-linking-strategy",
+      "prompt": "I'm about to publish the documentation site for my open-source Go library. Are there any cross-linking actions I should take?",
+      "expected_output": "Asks user to enumerate their ecosystem, suggests README link, footer/nav links, warns against topically irrelevant links.",
+      "assertions": [
+        "Asks the user to list their other domains and repos in the ecosystem",
+        "Suggests adding a link from the existing site's footer or nav to the new docs site",
+        "Specifically suggests updating the GitHub README to link to the new documentation site",
+        "Warns against over-linking — only cross-link where topically relevant",
+        "Mentions verifying reciprocal links exist where appropriate",
+        "Suggests linking from related library docs if the user owns other related Go libraries"
+      ]
+    }
+  ]
+}

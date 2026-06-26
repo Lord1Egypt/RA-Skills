@@ -1,0 +1,155 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "指数内部代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "指数内部代码（InnerCode）：与“债券指数概况（Bond_IndexBasicInfo）”中的“指数内部代码（IndexCode）”关联，得到指数的代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "PrevClosePrice",
+        "columnChiName": "昨收盘(点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.84"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "OpenPrice",
+        "columnChiName": "今开盘(点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.46"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "HighPrice",
+        "columnChiName": "最高价(点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.46"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "LowPrice",
+        "columnChiName": "最低价(点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.46"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ClosePrice",
+        "columnChiName": "收盘价(点)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.88"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "TurnoverVolume",
+        "columnChiName": "成交量(元)",
+        "columnType": "decimal(19,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "76.36"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "TurnoverValue",
+        "columnChiName": "成交金额(元)",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "41.26"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "TurnoverDeals",
+        "columnChiName": "成交笔数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.43"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "ChangePCT",
+        "columnChiName": "涨跌幅(%)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.84"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

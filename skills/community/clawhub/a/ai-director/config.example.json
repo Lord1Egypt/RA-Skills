@@ -1,0 +1,6 @@
+{
+  "x2cApiKey": "",
+  "geminiApiKey": "",
+  "qcThreshold": 80,
+  "maxIterations": 5
+}

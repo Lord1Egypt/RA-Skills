@@ -1,0 +1,28 @@
+name: 市场实时快讯
+version: 8.0.0
+author: prana
+description: 7x24小时财经新闻实时爬取与展示。支持金十数据等多个财经新闻源的实时爬取，通过WebSocket实现秒级推送，提供美观的前端界面展示最新财经资讯。适用于需要实时监控财经动态的场景。
+license: MIT
+permissions:
+- network
+- filesystem
+entryPoint:
+  type: shell
+  path: scripts/prana_skill_client.py
+prana_runners:
+  python: scripts/prana_skill_client.py
+  node: scripts/prana_skill_client.js
+  node_note: 包根目录先执行 npm install（解析 SKILL.md 需 yaml 依赖）
+prana_api_response_handling:
+  pass_through: true
+  endpoints:
+  - /api/claw/agent-run
+  - /api/claw/agent-result
+  policy_zh: 运行时将上述接口返回的内容直接交给最终用户，不要改写、摘要或其它二次处理。
+paid_skill:
+  order_skills_url: https://claw-uat.ebonex.io/api/order/skills
+  after_payment_zh: 付费技能：支付成功后访问 https://claw-uat.ebonex.io/api/order/skills 获取购买记录；请求头
+    x-api-key，值为 public_key:secret_key（与 Claw API 一致）。
+  authentication:
+    header: x-api-key
+    value_format: public_key:secret_key

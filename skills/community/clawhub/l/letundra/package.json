@@ -1,0 +1,46 @@
+{
+  "name": "letundra-openclaw-skills",
+  "version": "1.0.0.0.1",
+  "description": "OpenClaw skills for accessing letundra.com travel information through AI assistants",
+  "main": "README.md",
+  "scripts": {
+    "test": "node scripts/letundra_yandex.js test",
+    "news": "node scripts/letundra_yandex.js news:markdown",
+    "news:rss": "node scripts/letundra_yandex.js news:rss",
+    "publish": "./publish-all.sh",
+    "publish:visa": "cd letundra-visa && clawhub publish . --slug letundra-visa",
+    "publish:news": "cd letundra-news && clawhub publish . --slug letundra-news",
+    "publish:rss": "cd letundra-rss && clawhub publish . --slug letundra-rss",
+    "publish:holidays": "cd letundra-holidays && clawhub publish . --slug letundra-holidays",
+    "publish:currency": "cd letundra-currency && clawhub publish . --slug letundra-currency",
+    "lint": "echo 'Linting SKILL.md files...'"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "skills",
+    "letundra",
+    "travel",
+    "visa",
+    "aviation",
+    "news",
+    "rss",
+    "ai-agent"
+  ],
+  "author": "Letundra Team <info@letundra.com>",
+  "license": "MIT",
+  "homepage": "https://letundra.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/letundra/openclaw-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/letundra/openclaw-skills/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "clawhub": ">=1.0.0"
+  }
+}

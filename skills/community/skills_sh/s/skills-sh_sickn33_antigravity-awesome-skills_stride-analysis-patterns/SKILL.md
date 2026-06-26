@@ -1,35 +1,41 @@
 ---
-name: "stride-analysis-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/stride-analysis-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/stride-analysis-patterns"
+name: stride-analysis-patterns
+description: "Apply STRIDE methodology to systematically identify threats. Use when analyzing system security, conducting threat modeling sessions, or creating security documentation."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# stride-analysis-patterns
+# STRIDE Analysis Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Systematic threat identification using the STRIDE methodology.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/stride-analysis-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/stride-analysis-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/stride-analysis-patterns)
+## Use this skill when
 
-## Overview
+- Starting new threat modeling sessions
+- Analyzing existing system architecture
+- Reviewing security design decisions
+- Creating threat documentation
+- Training teams on threat identification
+- Compliance and audit preparation
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/stride-analysis-patterns
-```
+- The task is unrelated to stride analysis patterns
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "meta": {
+    "blueprintType": "domain-knowledge",
+    "detectedIntent": ""
+  },
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": [],
+    "knowledge": {
+      "painPoints": [],
+      "strategies": [],
+      "rules": [],
+      "metrics": [],
+      "practices": [],
+      "pitfalls": []
+    }
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {},
+  "industryHints": {
+    "title": "跨境电商广告投放 know-how",
+    "description": "生成跨境电商广告 know-how 蓝图时，请覆盖以下六类实体：",
+    "checklist": [],
+    "knowledgeHints": {
+      "_status": "depth-validated",
+      "title": "跨境电商广告投放领域 know-how",
+      "checklist": [
+        "痛点：ROAS 波动（欧美市场 2.0-5.0）、素材疲劳（CTR 降 >10%）、平台封号（Facebook 封号率 >5%）、库存积压（周转率 <3）、汇率风险、合规风险",
+        "策略：测款节奏（3 天周期、70% 测款预算）、动态出价、受众分层（LTV 分层）、再营销触发（浏览 >3 次）、预算动态分配、多平台分散",
+        "规则：Facebook 政策红线（虚假折扣封号）、Google Quality Score（>7 才控成本）、TikTok 视频审核要点、Amazon 产品描述真实性",
+        "指标：ROAS（>3.0 欧美电商）、CPA（<$20）、CTR（>1.5%）、LTV（>$50）、转化率（>2%）",
+        "最佳实践：素材 7 天迭代周期、70%/30% 测款放量分配、再营销 20% 预算、单平台预算 <60%",
+        "误区：单平台依赖 >80%（封号风险）、忽视合规（违规率 >15% 封禁）、数据孤岛、盲目放量、忽视 LTV、素材疲劳不更换"
+      ],
+      "namingHints": {
+        "_purpose": "提升内容颗粒度到 pitch 级——把维度提示变成命名方案",
+        "strategy_name_rule": "用 4-10 字产品级名词短语（'统一归因模型'、'AIGC 素材工厂'、'智能调价机器人'）。不要写成动作（'优化素材'、'调价'），不要写成维度（'测款节奏'、'受众分层'）。如果只能想到动作或维度，把它包装成方案名（'7×24 智能竞价机器人' 而非 '动态出价'）。",
+        "painPoint_audience_rule": "每个 painPoint 加 'audience' 自由字段，标注主要受影响 persona。常见值：'品牌方/DTC'、'平台卖家'、'代运营/服务商'。同一痛点对多 persona 影响时，可写多值（'品牌方/DTC, 代运营'）；不需要建独立 persona 实体。",
+        "metric_forecast_rule": "如指标是对客户可承诺的提升收益，加可选字段 'forecast': {direction: 'up'|'down'|'neutral', magnitude: 数字, unit: '%'|'倍'}。现状基准仍用 value/benchmarkContext。例：ROAS 加 forecast: {direction:'up', magnitude:25, unit:'%'}，CPA 加 forecast: {direction:'down', magnitude:30, unit:'%'}。",
+        "strategy_named_examples": [
+          "统一归因模型（打通独立站 CDP 与多平台，跨渠道增量价值评估）— 受众：品牌方/DTC",
+          "AIGC 素材工厂（多语言文案/视频批量生成，千人千面）— 受众：品牌方/DTC, 代运营",
+          "LTV 预测出价模型（以预测 LTV 替代成交 ROAS 出价）— 受众：品牌方/DTC",
+          "智能调价机器人（7×24 基于竞品/搜索热度自动竞价）— 受众：平台卖家",
+          "SKU 分层运营策略（按 ABC 分类自动配置投放节奏）— 受众：平台卖家",
+          "新品冷启动加速（相似品类成功路径迁移、自动选词）— 受众：平台卖家",
+          "站内+站外联投（Amazon×Google×Meta 协同引流）— 受众：平台卖家",
+          "多店铺统一驾驶舱（一个后台管理全部账号/站点）— 受众：平台卖家, 代运营",
+          "AI 优化师助手（自动巡检×异常告警×策略建议）— 受众：代运营",
+          "多客户多平台中控台（一站式管理上百个账户）— 受众：代运营",
+          "自动化报表中心（客户专属看板，一键生成周月报）— 受众：代运营",
+          "策略模板库（沉淀打法为可复用 Playbook）— 受众：代运营",
+          "RBAC 权限体系（团队协作×客户隔离×审计追溯）— 受众：代运营"
+        ],
+        "metric_forecast_examples": [
+          "ROAS 提升 — forecast: {direction:'up', magnitude:25, unit:'%'} ('AI 出价×预算智能分配带来增量')",
+          "优化师人效投入下降 — forecast: {direction:'down', magnitude:35, unit:'%'} ('重复操作自动化，精力聚焦策略')",
+          "报表与复盘耗时下降 — forecast: {direction:'down', magnitude:60, unit:'%'} ('自动化报表替代手工汇总')",
+          "主流平台覆盖 — value: 10, unit:'+'（这是当前能力，不是预测，不加 forecast）"
+        ]
+      }
+    }
+  }
+}

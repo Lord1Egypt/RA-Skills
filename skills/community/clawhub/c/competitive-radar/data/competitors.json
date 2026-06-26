@@ -1,0 +1,88 @@
+{
+  "competitors": [
+    {
+      "slug": "gaviti",
+      "name": "Gaviti",
+      "active": true,
+      "added": "2026-03-14",
+      "baseline_date": null,
+      "last_run": null,
+      "urls": {
+        "homepage": "https://gaviti.com",
+        "pricing": "https://gaviti.com/pricing/",
+        "blog": "https://gaviti.com/blog/",
+        "changelog": null,
+        "rss": null,
+        "linkedin": "https://www.linkedin.com/company/gaviti",
+        "github_org": null,
+        "product_hunt": null
+      },
+      "alert_keywords": ["new pricing", "raises", "acquired", "enterprise", "series"],
+      "notify_channels": [],
+      "tier": "paid"
+    },
+    {
+      "slug": "growfin",
+      "name": "Growfin",
+      "active": true,
+      "added": "2026-03-14",
+      "baseline_date": null,
+      "last_run": null,
+      "urls": {
+        "homepage": "https://growfin.ai",
+        "pricing": "https://growfin.ai/pricing",
+        "blog": "https://growfin.ai/blog",
+        "changelog": null,
+        "rss": null,
+        "linkedin": "https://www.linkedin.com/company/growfin",
+        "github_org": null,
+        "product_hunt": null
+      },
+      "alert_keywords": ["new pricing", "raises", "acquired", "enterprise", "series"],
+      "notify_channels": [],
+      "tier": "paid"
+    },
+    {
+      "slug": "versapay",
+      "name": "Versapay",
+      "active": true,
+      "added": "2026-03-14",
+      "baseline_date": null,
+      "last_run": null,
+      "urls": {
+        "homepage": "https://www.versapay.com",
+        "pricing": "https://www.versapay.com/pricing",
+        "blog": "https://www.versapay.com/resources/blog",
+        "changelog": null,
+        "rss": null,
+        "linkedin": "https://www.linkedin.com/company/versapay",
+        "github_org": null,
+        "product_hunt": null
+      },
+      "alert_keywords": ["new pricing", "raises", "acquired", "enterprise", "series"],
+      "notify_channels": [],
+      "tier": "paid"
+    },
+    {
+      "slug": "kolleno",
+      "name": "Kolleno",
+      "active": true,
+      "added": "2026-03-14",
+      "baseline_date": null,
+      "last_run": null,
+      "urls": {
+        "homepage": "https://www.kolleno.com",
+        "pricing": "https://www.kolleno.com/pricing",
+        "blog": "https://www.kolleno.com/blog",
+        "changelog": null,
+        "rss": null,
+        "linkedin": "https://www.linkedin.com/company/kolleno",
+        "github_org": null,
+        "product_hunt": null
+      },
+      "alert_keywords": ["new pricing", "raises", "acquired", "enterprise", "series"],
+      "notify_channels": [],
+      "tier": "paid"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "prompt": {
+    "1": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "text": "未来城市的日落景色，电影感光影"
+      }
+    },
+    "2": {
+      "class_type": "KSampler",
+      "inputs": {
+        "seed": 1234,
+        "steps": 30,
+        "cfg_scale": 7.5,
+        "sampler_name": "Euler a"
+      }
+    },
+    "3": {
+      "class_type": "AnimateDiff",
+      "inputs": {
+        "frames": ["start.png", "end.png"],
+        "duration": 5,
+        "width": 512,
+        "height": 512,
+        "fps": 12
+      }
+    }
+  }
+}

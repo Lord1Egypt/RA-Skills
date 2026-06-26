@@ -1,0 +1,18 @@
+{
+  "name": "openclaw-control-center",
+  "version": "1.0.0",
+  "displayName": "OpenClaw 可视化控制中心",
+  "tagline": "双模式仪表盘 — 让 AI 的运行状态一目了然",
+  "description": "内置简洁模式（通俗易懂）和专业模式（完整技术数据），支持一键切换。面向普通用户和技术人员，无需安装额外软件，浏览器直接打开。灵感来自 TianyiDataScience/openclaw-control-center。",
+  "author": "QClaw Agent",
+  "homepage": "https://github.com/QClaw/openclaw-control-center",
+  "tags": ["visualization", "dashboard", "monitoring", "control-center", "chinese"],
+  "language": "zh-CN",
+  "license": "MIT",
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "requires": {
+      "tools": ["session_status", "sessions_list", "cron", "gateway", "browser", "exec"]
+    }
+  }
+}

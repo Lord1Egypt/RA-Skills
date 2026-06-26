@@ -1,0 +1,41 @@
+{
+  "attack_type": "tool_poisoning",
+  "generated_at": "2026-03-23T07:34:35.405268",
+  "rule_count": 1,
+  "rules": [
+    {
+      "id": "YARA-NPM_Postinstall_Malicious",
+      "name": "检测 NPM 包中的恶意 postinstall 脚本",
+      "type": "YARA",
+      "source": "yara",
+      "severity": "high",
+      "description": "检测 NPM 包中的恶意 postinstall 脚本",
+      "author": "security-sample-generator",
+      "tags": [
+        "tool_poisoning",
+        "T1195.002"
+      ],
+      "detection": {
+        "type": "yara",
+        "strings": [
+          "$postinstall = \"postinstall\" nocase",
+          "$child_process = \"child_process\" nocase",
+          "$exec_func = /\\bexec\\b|\\bspawn\\b|\\bexecSync\\b|\\bspawnSync\\b/ nocase",
+          "$curl_bash = /curl[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i",
+          "$wget_bash = /wget[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i",
+          "$eval_base64 = /eval[\\s]*\\([\\s]*base64/i",
+          "$npm_lifecycle = \"npm_lifecycle_event\" nocase"
+        ],
+        "condition": "($postinstall and ($child_process or $exec_func)) or",
+        "raw_rule": "// YARA 规则：工具投毒检测\n// 版本：1.0\n// 日期：2026-03-21\n// 覆盖：NPM/Python/Ruby 包投毒\n\nrule NPM_Postinstall_Malicious {\n    meta:\n        description = \"检测 NPM 包中的恶意 postinstall 脚本\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $postinstall = \"postinstall\" nocase\n        $child_process = \"child_process\" nocase\n        $exec_func = /\\bexec\\b|\\bspawn\\b|\\bexecSync\\b|\\bspawnSync\\b/ nocase\n        $curl_bash = /curl[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i\n        $wget_bash = /wget[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i\n        $eval_base64 = /eval[\\s]*\\([\\s]*base64/i\n        $npm_lifecycle = \"npm_lifecycle_event\" nocase\n    \n    condition:\n        ($postinstall and ($child_process or $exec_func)) or\n        ($npm_lifecycle and ($curl_bash or $wget_bash)) or\n        $eval_base64\n}\n\nrule Python_Setup_Malicious {\n    meta:\n        description = \"检测 Python setup.py 中的恶意代码\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $setup_py = \"setup.py\" nocase\n        $os_system = /os\\.system\\s*\\(/\n        $subprocess = /subprocess\\.(call|run|Popen|check_output)/\n        $curl_bash = /curl[\\s\\S]{0,50}\\|[\\s\\S]{0,10}ba?sh/i\n        $eval_exec = /\\beval\\s*\\(|\\bexec\\s*\\(/\n        $install_hook = /install|build|egg_info/i\n    \n    condition:\n        ($setup_py or $install_hook) and ($os_system or $subprocess or $eval_exec)\n}\n\nrule Ruby_Gem_Malicious {\n    meta:\n        description = \"检测 Ruby Gem 中的恶意扩展\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"high\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $extconf = \"extconf.rb\" nocase\n        $gemspec = \".gemspec\" nocase\n        $backtick = /\\`[^\\`]+\\`/\n        $system_call = /\\bsystem\\s*\\(/\n        $exec_call = /\\bexec\\s*\\(/\n        $curl_wget = /\\bcurl\\b|\\bwget\\b/\n    \n    condition:\n        ($extconf or $gemspec) and ($backtick or $system_call or $exec_call) and $curl_wget\n}\n\nrule Build_Script_Malicious {\n    meta:\n        description = \"检测构建脚本中的恶意代码\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        $makefile = \"Makefile\" nocase\n        $gradle = \"build.gradle\" nocase\n        $maven = \"pom.xml\" nocase\n        $remote_fetch = /curl|wget|fetch|Invoke-WebRequest/i\n        $execute = /chmod \\+x|\\| *sh|\\| *bash|\\.\\/|exec/i\n    \n    condition:\n        ($makefile or $gradle or $maven) and $remote_fetch and $execute\n}\n\nrule Typosquatting_Package {\n    meta:\n        description = \"检测拼写错误攻击的包名\"\n        author = \"security-sample-generator\"\n        date = \"2026-03-21\"\n        version = \"1.0\"\n        severity = \"medium\"\n        attack_type = \"tool_poisoning\"\n        mitre_id = \"T1195.002\"\n    \n    strings:\n        // 常见流行包的拼写错误变体\n        $lodash_typo = /l0dash|1odash|lodahs|lodah/i\n        $underscore_typo = /undersc0re|underscOre|underscor/i\n        $request_typo = /reqeust|reques|requset|reqest/i\n        $express_typo = /expres|expres|exprss|expresss/i\n    \n    condition:\n        $lodash_typo or $underscore_typo or $request_typo or $express_typo\n}\n"
+      },
+      "metadata": {
+        "original_id": "YARA-NPM_Postinstall_Malicious",
+        "converted_at": "2026-03-23T07:34:35.392270",
+        "source_file": "/home/cdy/.openclaw/workspace/skills/security-sample-generator/rules/yara/tool_poisoning.yar",
+        "mitre_id": "T1195.002",
+        "attack_type": "tool_poisoning"
+      }
+    }
+  ]
+}

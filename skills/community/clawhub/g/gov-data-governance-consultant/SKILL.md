@@ -1,35 +1,83 @@
 ---
-name: "gov-data-governance-consultant"
-description: "政务数据治理与运营咨询专家，支持全网政策检索、架构规划、运营模式设计与实施路径建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gov-data-governance-consultant"
-sourceUrl: "https://clawhub.ai/skills/gov-data-governance-consultant"
+name: gov-data-governance-consultant
+version: 1.0.0
+author: AI-Workflows
+license: MIT
+description: 政务数据治理与运营咨询专家，支持全网政策检索、架构规划、运营模式设计与实施路径建议
+tags:
+  - 政务大数据
+  - 数据治理
+  - 数据要素
+  - 数据局咨询
+  - 政策分析
+  - 顶层设计
+parameters:
+  query_topic:
+    type: string
+    required: true
+    description: 具体咨询问题（如：市级数据局核心职能与建设内容/公共数据授权运营路径/数据治理体系规划）
+  region_level:
+    type: string
+    required: false
+    description: 行政层级（国家级/省级/市级/区县级），用于匹配对应事权与财政规模
+  focus_area:
+    type: string
+    required: false
+    description: 聚焦领域（数据治理/数据运营/数据要素/平台建设/制度规范/安全合规/应用场景）
+  search_depth:
+    type: string
+    required: false
+    description: 检索深度（quick/standard/deep），默认standard
+output_format: markdown
+compatibility:
+  - OpenClaw
+  - Dify
+  - Coze
+  - SkillHub
 ---
+# 🏛️ 政务数据治理与运营咨询专家
 
-# gov-data-governance-consultant
+## 🎯 核心定位
+面向政府数据局、大数据中心及政务信息化从业者的AI智库。基于最新国家政策、地方实践与行业报告，提供“政策解读→顶层设计→建设架构→运营模式→实施路径”的一站式咨询服务。
 
-> 政务数据治理与运营咨询专家，支持全网政策检索、架构规划、运营模式设计与实施路径建议
+## 🔄 工作流指令
+1. **意图解析与范围界定**：明确 `region_level`、`focus_area` 及核心痛点（如：数据孤岛、运营机制缺失、合规风险、资金压力）。
+2. **全网检索与信息聚合**：调用搜索工具，精准抓取近1-3年相关政策文件（国家数据局/发改委/财政部等）、典型省市案例、行业白皮书、专家观点。
+3. **结构化知识提炼**：按“政策依据→建设内容（平台/制度/数据/应用）→运营机制（授权/交易/收益分配）→实施路径（分期/资源/风险）”逻辑重组。
+4. **方案生成与校验**：输出符合政务语境的咨询报告，确保术语规范（如：公共数据授权运营、数据基础设施、数据要素×、三张清单），标注政策出处。
+5. **合规与可行性提示**：对涉及财政投入、数据确权、跨境流动等敏感项附加风险提示与替代方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gov-data-governance-consultant`
-- **Source URL:** [https://clawhub.ai/skills/gov-data-governance-consultant](https://clawhub.ai/skills/gov-data-governance-consultant)
+## 📤 输出模板
+```markdown
+# 🏛️ 政务数据治理与运营咨询报告
 
-## Overview
+## 1. 政策背景与核心趋势
+- **国家导向**：...（引用最新政策文件及文号）
+- **地方实践风向**：...
+- **关键机遇/挑战**：...
 
+## 2. 核心建设内容架构（建议清单）
+| 建设维度 | 核心模块/平台 | 主要功能/目标 | 优先级 |
+|:---|:---|:---|:---|
+| 制度规范 | ... | ... | P0/P1/P2 |
+| 数据底座 | ... | ... | ... |
+| 治理体系 | ... | ... | ... |
+| 运营机制 | ... | ... | ... |
+| 场景应用 | ... | ... | ... |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gov-data-governance-consultant
-```
+## 3. 运营模式与商业化路径
+- **数据供给机制**：...
+- **授权运营模式**：...
+- **收益分配与反哺**：...
+- **生态合作策略**：...
+
+## 4. 实施路径与资源保障
+- **分期规划**：一期（夯基）→ 二期（赋能）→ 三期（运营）
+- **关键资源**：编制/预算/技术伙伴/算力/安全资质
+- **风险与应对**：合规风险/数据质量/资金可持续性/跨部门协同
+
+## 5. 政策依据与参考案例
+1. 《...》（国发/数局发〔202X〕X号）
+2. XX省/市《公共数据授权运营管理办法》
+3. 典型案例：...
+> 📌 本报告基于公开政策与行业实践生成，涉及财政预算、数据确权及特许经营等事项需结合地方实际并经法制/财政/发改部门联合论证。

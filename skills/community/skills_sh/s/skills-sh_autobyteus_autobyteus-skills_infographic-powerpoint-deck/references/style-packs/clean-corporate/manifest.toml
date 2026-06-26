@@ -1,0 +1,5 @@
+id = "clean-corporate"
+display_name = "Clean Corporate"
+inherits = ["base-core"]
+intent_keywords = ["corporate", "training", "briefing", "professional", "report"]
+default_scene_tags = ["corporate", "minimal", "diagram-friendly"]

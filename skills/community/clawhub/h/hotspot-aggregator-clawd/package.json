@@ -1,0 +1,55 @@
+{
+  "name": "hotspot-aggregator",
+  "version": "1.0.0",
+  "description": "🔥 热点聚合监控 - 一站式聚合微博/百度/知乎/抖音热搜榜，自动生成每日热点报告，支持关键词订阅推送。适用于自媒体运营、内容创作、市场分析。",
+  "author": "赚钱小能手",
+  "license": "MIT",
+  "keywords": [
+    "hotspot",
+    "trending",
+    "news",
+    "monitoring",
+    "aggregator",
+    "weibo",
+    "baidu",
+    "zhihu",
+    "douyin",
+    "social-media",
+    "content",
+    "热点",
+    "热搜",
+    "热榜",
+    "舆情监控",
+    "自媒体",
+    "内容创作"
+  ],
+  "categories": ["monitoring", "content", "chinese"],
+  "openclaw": {
+    "emoji": "🔥",
+    "triggers": [
+      "热点",
+      "热搜",
+      "今日热点",
+      "热点报告",
+      "热点监控",
+      "热榜",
+      "微博热搜",
+      "百度热搜",
+      "知乎热榜",
+      "抖音热搜",
+      "热点聚合",
+      "舆情",
+      "内容监控"
+    ],
+    "bins": ["curl", "jq"]
+  },
+  "scripts": {
+    "fetch": "scripts/fetch-hotspots.sh",
+    "report": "scripts/generate-report.sh",
+    "check": "scripts/check-keywords.sh",
+    "subscribe": "scripts/subscribe.sh"
+  },
+  "engines": {
+    "bash": ">=4.0"
+  }
+}

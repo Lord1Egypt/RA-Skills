@@ -1,0 +1,161 @@
+{
+  "name": "beautyplus-ai",
+  "version": "1.0.1",
+  "description": "BeautyPlus Portrait Beauty: body reshape (breast/butt with strength tiers), hair color and hairstyle, outfit change (formal, vacation, cosplay, party, sports), face style, expression (smile/wink/cool), photo art (tan/flash/film), photo restoration and AI ultra-HD. Use --task with the effect KEY; params from POST /skill/config.json invoke. Current catalog is image-only (blocking run-task). Video async spawn path reserved for future keys. Paid API. ",
+  "author": "BeautyPlus",
+  "license": "MIT",
+  "homepage": "https://beautyplus.com",
+  "repository": "https://github.com/beautyplusAI/beautyplus-ai/",
+  "keywords": [
+    "image-processing",
+    "body-reshape",
+    "hair-color",
+    "hairstyle",
+    "outfit-change",
+    "cosplay",
+    "photo-restoration",
+    "beautyplus",
+    "ai-image",
+    "quality-enhancement",
+    "face-style",
+    "expression",
+    "photo-art",
+    "flash-effect",
+    "party-outfit",
+    "sports-outfit"
+  ],
+  "sbom": {
+    "files": [
+      {
+        "path": "SKILL.md",
+        "required": true,
+        "description": "Agent instruction manual — how to use the BeautyPlus skill"
+      },
+      {
+        "path": "README.md",
+        "required": false,
+        "description": "Human-facing install, setup, and CLI examples"
+      },
+      {
+        "path": "scripts/beautyplus_ai.py",
+        "required": true,
+        "description": "Agent CLI — preflight, install-deps, run-task, query-task, spawn-run-task, last-task, history, resolve-input"
+      },
+      {
+        "path": "scripts/client.py",
+        "required": false,
+        "description": "SkillClient implementation — loaded by beautyplus_ai.py; agents should not need to read"
+      },
+      {
+        "path": "scripts/ai/api.py",
+        "required": false,
+        "description": "AiApi — internal SDK; loaded by client.py"
+      },
+      {
+        "path": "scripts/feishu_send_image.py",
+        "required": false,
+        "description": "Feishu image delivery helper"
+      },
+      {
+        "path": "scripts/feishu_send_video.py",
+        "required": false,
+        "description": "Feishu video delivery helper (native media message)"
+      },
+      {
+        "path": "scripts/telegram_send_image.py",
+        "required": false,
+        "description": "Telegram image delivery helper"
+      },
+      {
+        "path": "scripts/telegram_send_video.py",
+        "required": false,
+        "description": "Telegram video delivery helper (sendVideo)"
+      },
+      {
+        "path": "docs/multi-platform.md",
+        "required": false,
+        "description": "Multi-platform delivery setup (Feishu, Telegram, Discord)"
+      },
+      {
+        "path": "docs/errors-and-polling.md",
+        "required": false,
+        "description": "Polling env vars, stderr progress, timeouts, failure codes"
+      },
+      {
+        "path": "docs/im-attachments.md",
+        "required": false,
+        "description": "IM media sources and resolve-input CLI"
+      },
+      {
+        "path": "docs/feishu-send-video.md",
+        "required": false,
+        "description": "Feishu video send — cover, duration, modes"
+      }
+    ]
+  },
+  "openclaw": {
+    "emoji": "🖼️",
+    "category": "image-processing",
+    "requires": {
+      "bins": ["python3"],
+      "env": {
+        "BP_AK": {
+          "required": true,
+          "description": "BeautyPlus API Access Key (BP_AK)"
+        },
+        "BP_SK": {
+          "required": true,
+          "description": "BeautyPlus API Secret Key (BP_SK)"
+        }
+      }
+    },
+    "triggers": [
+      "beautyplus",
+      "beautyplus ai",
+      "body reshape",
+      "breast enhance",
+      "butt shape",
+      "hair color",
+      "hair style",
+      "dye hair",
+      "outfit change",
+      "dress up",
+      "cosplay",
+      "photo restoration",
+      "image restoration",
+      "super resolution",
+      "ai ultra hd",
+      "breast lift",
+      "butt lift",
+      "hair dye",
+      "haircut",
+      "outfit swap",
+      "image quality",
+      "hd upscale",
+      "face style",
+      "facial temperament",
+      "expression change",
+      "smile effect",
+      "wink effect",
+      "party outfit",
+      "sports outfit",
+      "tennis outfit",
+      "yoga outfit",
+      "bikini",
+      "racing suit",
+      "photo art",
+      "tan filter",
+      "flash effect",
+      "film effect",
+      "ccd flash",
+      "fuji filter"
+    ],
+    "platforms": [
+      "feishu",
+      "telegram",
+      "discord",
+      "whatsapp",
+      "signal"
+    ]
+  }
+}

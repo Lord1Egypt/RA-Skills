@@ -1,0 +1,14 @@
+﻿name: poc-battle-card
+version: 1.0.0
+description: POC绔炰簤鍒嗘瀽鍗?- 杈撳叆POC缁撴灉鍜岀珵鍝佽〃鐜帮紝鑷姩杈撳嚭宸紓鍖栦紭鍔跨煩闃?搴斿绛栫暐+鎺ㄨ崘璇濇湳+涓嬩竴姝ュ缓璁?author: Dick Dunkel
+homepage: https://clawhub.ai/skills/poc-battle-card
+license: MIT-0
+tags:
+  - sales
+  - poc
+  - competitive-analysis
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

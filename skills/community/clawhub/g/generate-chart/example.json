@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/generateChart",
+    "headers": {
+      "CLIENT-API-KEY": "your_api_key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "chart_type": "bar",
+      "data": {
+        "labels": ["Q1", "Q2", "Q3", "Q4"],
+        "datasets": [
+          {
+            "label": "Revenue",
+            "data": [120000, 150000, 180000, 200000],
+            "backgroundColor": "rgba(54, 162, 235, 0.6)",
+            "borderColor": "rgba(54, 162, 235, 1)",
+            "borderWidth": 1
+          }
+        ]
+      },
+      "options": {
+        "responsive": true,
+        "plugins": {
+          "title": {
+            "display": true,
+            "text": "Quarterly Revenue 2026"
+          }
+        }
+      },
+      "width": 800,
+      "height": 500,
+      "output_format": "url"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "chart_url": "https://cdn.pdfapihub.com/png/chart_abc123.png",
+      "file_size_bytes": 45678,
+      "file_deletion_date": "2026-05-17",
+      "request_id": "550e8400-e29b-41d4-a716-446655440000",
+      "execution_time_ms": 892
+    }
+  }
+}

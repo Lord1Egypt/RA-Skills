@@ -1,35 +1,33 @@
----
-name: "AutoPost GitHub Bounty"
-description: "Automatically generate and post optimized social media content promoting GitHub bounty campaigns using repo data and custom messages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/autopost-github-bounty"
-sourceUrl: "https://clawhub.ai/skills/autopost-github-bounty"
+# AutoPost GitHub Bounty Campaign
+
+## Mô tả
+Kỹ năng này tự động tạo nội dung chia sẻ cho các chiến dịch Bounty trên GitHub. Giúp đăng bài hiệu quả để tăng lượt tham gia và hoàn thành yêu cầu của bounty.
+
 ---
 
-# AutoPost GitHub Bounty
+### Tính năng
+1. Lấy tiêu đề và mô tả từ repository GitHub.
+2. Tạo bài viết với nội dung tối ưu hóa kêu gọi hành động (CTA).
+3. Gửi bài qua mạng xã hội (Twitter, Facebook, etc.).
 
-> Automatically generate and post optimized social media content promoting GitHub bounty campaigns using repo data and custom messages.
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/autopost-github-bounty`
-- **Source URL:** [https://clawhub.ai/skills/autopost-github-bounty](https://clawhub.ai/skills/autopost-github-bounty)
+### Cấu hình yêu cầu
+- API Token GitHub (để lấy thông tin repo).
+- API Token các nền tảng xã hội (Twitter, etc.).
 
-## Overview
+---
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Hướng dẫn cài đặt
+1. Clone repo:
 ```bash
-hermes skills install clawhub/autopost-github-bounty
+git clone https://github.com/<user>/clawhub-skill-autopost.git
+```
+2. Cài đặt dependencies:
+```bash
+npm install
+```
+3. Chạy skill:
+```bash
+node autopost.js --repo <repo_url> --platform "twitter" --message "<custom_message>"
 ```

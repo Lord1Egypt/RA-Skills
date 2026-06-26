@@ -1,0 +1,38 @@
+{
+  "name": "image-optimizer",
+  "version": "1.0.0",
+  "description": "图片批量压缩和格式转换工具，支持批量调整大小、压缩质量、转换格式，预览模式和撤销功能！",
+  "author": "小叮当",
+  "license": "MIT",
+  "keywords": [
+    "image",
+    "compression",
+    "optimizer",
+    "batch",
+    "图片",
+    "压缩",
+    "格式转换"
+  ],
+  "homepage": "https://github.com/yourusername/image-optimizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/image-optimizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/image-optimizer/issues"
+  },
+  "engines": {
+    "python": ">=3.7"
+  },
+  "dependencies": {
+    "Pillow": ">=9.0.0"
+  },
+  "main": "source/image_optimizer.py",
+  "bin": {
+    "image-optimizer": "source/image_optimizer.py"
+  },
+  "scripts": {
+    "install": "bash install.sh",
+    "test": "python source/image_optimizer.py --help"
+  }
+}

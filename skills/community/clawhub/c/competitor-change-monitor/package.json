@@ -1,0 +1,41 @@
+{
+  "name": "competitor-change-monitor",
+  "version": "1.0.0",
+  "description": "Monitor competitor websites for changes, analyze updates, generate competitive intelligence reports",
+  "main": "scripts/monitor.js",
+  "scripts": {
+    "monitor": "node scripts/monitor.js monitor",
+    "report": "node scripts/monitor.js report",
+    "watch": "node scripts/monitor.js monitor && node scripts/schedule.js"
+  },
+  "keywords": [
+    "competitors",
+    "monitoring",
+    "competitive-intelligence",
+    "market-research",
+    "automation"
+  ],
+  "author": "Clawdio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clawdio-afk/competitor-change-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clawdio-afk/competitor-change-monitor/issues"
+  },
+  "homepage": "https://github.com/clawdio-afk/competitor-change-monitor#readme",
+  "keywords_clawhub": [
+    "sales",
+    "competitive-intelligence",
+    "market-research",
+    "automation",
+    "business-intelligence"
+  ],
+  "clawhub": {
+    "category": "sales",
+    "tags": ["competitive-intelligence", "monitoring", "automation"],
+    "premium_link": "https://gumroad.com/clawdio/l/competitor-monitor-premium",
+    "demo_video": "https://youtu.be/demo-video-id"
+  }
+}

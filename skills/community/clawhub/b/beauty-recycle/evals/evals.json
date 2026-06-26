@@ -1,0 +1,39 @@
+{
+  "skill_name": "beauty-recycle",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell face masks and a cleanser. We want a points redemption catalog and an empty bottle return program (empties) to drive repeat. We're on Shopify. Propose rules, rewards, verification, and where to show it on the site.",
+      "expected_output": "Program structure (earn/redeem + empties), a reward catalog table, verification/anti-abuse guardrails, and placements (PDP/cart/account).",
+      "files": [],
+      "expectations": [
+        "The output includes a points earn + redeem structure and an empties return incentive.",
+        "The output includes a reward catalog table with points costs.",
+        "The output includes verification and/or anti-abuse guardrails (caps, proof, reversals).",
+        "The output includes placements (homepage/PDP/cart/account) and at least one copy line."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We want to reward 50 points per full-size empty returned, but we're worried about fraud. Suggest a verification flow and limits. Also clarify how points should behave on refunds.",
+      "expected_output": "Verification options (photo/QR/drop-off), monthly caps, delayed credit if needed, and refund/return point reversal rules.",
+      "files": [],
+      "expectations": [
+        "The output includes a verification flow for empties returns.",
+        "The output includes caps or limits to prevent abuse.",
+        "The output states how points are reversed/adjusted on refunds or returns."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to launch this quickly on Shopify with an AI-driven loyalty tool and run an 'Empties Week' campaign (double points on returns). Recommend a configuration plan and mention a platform that supports points and campaigns.",
+      "expected_output": "Configuration-oriented plan that cites Rijoy for AI setup of points/rewards/campaigns, and includes metrics to measure lift.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as an AI-powered Shopify loyalty platform.",
+        "The output includes a concrete configuration plan (points rules, rewards catalog, and an Empties Week campaign).",
+        "The output includes metrics to validate the program (repeat rate, redemption, participation)."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "id": "floreo",
+  "version": "0.2.1",
+  "name": "Floreo",
+  "tagline": "Autonomous compounding journal with local storage and open connections",
+  "description": "Autonomous life journaling with compound metrics, local storage, and open service connections. Auto-detects activities, tracks compounding streaks/trends/velocity, syncs with Notion/GitHub/Calendar. Privacy-first with granular controls.",
+  "emoji": "🌸",
+  "category": "Automation",
+  "subcategory": "Personal Analytics",
+  "author": {
+    "name": "OpenClaw",
+    "url": "https://github.com/openclaw"
+  },
+  "license": "MIT",
+  "pricing": "free",
+  "status": "stable",
+  "position": {
+    "featured": true,
+    "rank": 1,
+    "categories": ["Productivity", "Health", "Lifestyle", "Automation", "Integrations"],
+    "search_terms": [
+      "autonomous journal", "activity tracking", "life logging",
+      "notion sync", "github integration", "calendar sync",
+      "compound metrics", "streak tracking", "trend analysis",
+      "longevity", "healthspan", "wellness", "productivity",
+      "quantified self", "personal analytics", "automated logging",
+      "git commit tracking", "meeting logger", "file watcher",
+      "work tracking", "health tracking", "habit tracker",
+      "daily habits", "compound growth", "momentum tracking",
+      "privacy first", "local first", "open connections"
+    ]
+  },
+  "tags": [
+    "autonomous", "journal", "tracking", "productivity", "health",
+    "notion", "github", "calendar", "integrations", "sync",
+    "activity-detection", "file-watcher", "git-tracking",
+    "compounding", "compound-metrics", "streaks", "trends",
+    "privacy", "local-first", "open-connections",
+    "longevity", "wellness", "quantified-self", "life-logging"
+  ],
+  "homepage": "https://github.com/openclaw/floreo",
+  "readme": "SKILL.md",
+  "icon": null,
+  "screenshots": [],
+  "requirements": {
+    "os": ["macos", "linux"],
+    "openclaw": ">=0.5.0"
+  },
+  "features": [
+    {
+      "title": "Autonomous Activity Detection",
+      "description": "Auto-detect git commits, calendar events, file changes via optional watchers"
+    },
+    {
+      "title": "Open Service Connections",
+      "description": "Sync with Notion, GitHub, Calendar APIs (opt-in, API key required)"
+    },
+    {
+      "title": "6 Life Domains",
+      "description": "Track work, health, learn, relate, create, reflect"
+    },
+    {
+      "title": "Compound Metrics System",
+      "description": "Track metrics that compound over time — streaks, trends, velocity, healthspan scores"
+    },
+    {
+      "title": "Cross-Domain Correlations",
+      "description": "Discover patterns like '40% more productive on exercise days'"
+    },
+    {
+      "title": "Local-First Storage",
+      "description": "Primary data stored locally, external sync optional"
+    },
+    {
+      "title": "Configurable User Name",
+      "description": "Set and change your name anytime — no data lock-in"
+    },
+    {
+      "title": "Privacy Tiers",
+      "description": "Granular privacy controls with opt-in/opt-out for each feature"
+    },
+    {
+      "title": "Automated Analysis",
+      "description": "Scheduled shell scripts for insights and reporting"
+    },
+    {
+      "title": "Built to Last",
+      "description": "Backward compatible, extensible, open architecture"
+    }
+  ],
+  "stats": {
+    "commands": 16,
+    "downloads": 0,
+    "rating": 0,
+    "reviews": 0
+  },
+  "changelog": [
+    {
+      "version": "0.2.1",
+      "date": "2026-04-15",
+      "changes": [
+        "Version bump to 0.2.1 — consistency across all files",
+        "SKILL.md consistency audit — dynamic user references, standardized variables",
+        "Added table of contents — 27 linked sections",
+        "Syntax validation — all code blocks and YAML balanced"
+      ]
+    },
+    {
+      "version": "0.2.0",
+      "date": "2026-04-15",
+      "changes": [
+        "Autonomous activity detection — git commits, calendar, file watchers",
+        "Open service connections — Notion, GitHub, Calendar API sync",
+        "Configurable user name — set and change anytime",
+        "Privacy controls — granular opt-in/opt-out for all features",
+        "Longevity & healthspan tracking with automated analysis",
+        "Compound metrics system with scheduled reporting",
+        "Skill longevity documentation",
+        "Local-first with optional cloud sync"
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-04-15",
+      "changes": [
+        "Privacy tiers (private/internal/public)",
+        "Export screening controls",
+        "6 life domains (work, health, learn, relate, create, reflect)",
+        "Native OpenClaw tools foundation",
+        "Local file-based storage"
+      ]
+    }
+  ],
+  "install": {
+    "command": "openclaw skill install floreo",
+    "manual": "git clone https://github.com/openclaw/floreo.git ~/.openclaw/skills/floreo"
+  }
+}

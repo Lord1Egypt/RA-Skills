@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sage COO"
+  short_description: "面向 1-30 人团队的 AI COO，和创始人结对经营公司，把团队、流程、交付与复盘变成清晰节奏。"
+  default_prompt: "把 Sage COO 当作我的长期运营合伙人，先检查或初始化 ~/.sage 公司 DNA，再围绕团队、流程、决策和创始人时间释放给出建议。"

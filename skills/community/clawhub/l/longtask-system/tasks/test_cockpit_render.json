@@ -1,0 +1,48 @@
+{
+  "task_id": "test_cockpit_render",
+  "task_type": "test",
+  "description": "测试驾驶舱渲染修复",
+  "status": "running",
+  "created_at": "2026-03-24T17:50:00+08:00",
+  "started_at": "2026-03-24T17:50:00+08:00",
+  "completed_at": "",
+  "updated_at": "2026-03-24T17:49:16+08:00",
+  "current_step": 0,
+  "total_steps": 2,
+  "agent_id": "work",
+  "session_name": "main",
+  "timeout_minutes": 2,
+  "max_retry": 0,
+  "steps": [
+    {
+      "id": 1,
+      "name": "测试步骤1",
+      "status": "done",
+      "agent_id": "work",
+      "session_name": "main",
+      "started_at": "2026-03-24T17:50:00+08:00",
+      "completed_at": "2026-03-24T17:51:00+08:00",
+      "retry_count": 0,
+      "result": "success",
+      "output_path": "",
+      "error": "",
+      "params": {}
+    },
+    {
+      "id": 2,
+      "name": "测试步骤2-验证驾驶舱渲染",
+      "status": "done",
+      "agent_id": "work",
+      "session_name": "main",
+      "started_at": "2026-03-24T17:51:00+08:00",
+      "completed_at": "2026-03-24T17:49:16+08:00",
+      "retry_count": 0,
+      "result": "success",
+      "output_path": "test_output.md",
+      "error": "",
+      "params": {},
+      "processed_by": "agent_fallback"
+    }
+  ],
+  "metadata": {}
+}

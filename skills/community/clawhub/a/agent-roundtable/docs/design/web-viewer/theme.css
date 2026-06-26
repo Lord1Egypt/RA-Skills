@@ -1,0 +1,171 @@
+/*
+ * Roundtable Web Viewer — 主题变量表
+ * 设计师：像素姐 🎨 | 日期：2026-05-21
+ *
+ * 色彩体系：Dark Slate + 品牌靛蓝
+ * 灵感：Tailwind Slate 色阶 + Indigo 品牌色
+ * 可读性：WCAG AA 对比度全部达标
+ */
+
+:root {
+  /* ═══════════════════════════════════════
+     品牌色 Brand Colors
+     ═══════════════════════════════════════ */
+  --rt-brand:           #4F46E5;  /* 品牌靛蓝 — 主按钮、链接、强调 */
+  --rt-brand-hover:     #4338CA;  /* 品牌靛蓝 hover 态 */
+  --rt-brand-light:     #6366F1;  /* 品牌靛蓝浅 — 次要强调 */
+  --rt-brand-glow:      rgba(79, 70, 229, 0.25);  /* 品牌蓝辉光 */
+  --rt-brand-glow-strong: rgba(79, 70, 229, 0.5); /* 品牌蓝强辉光（结论卡片） */
+
+  /* ═══════════════════════════════════════
+     背景层级 Background Hierarchy
+     ═══════════════════════════════════════ */
+  --rt-bg-body:         #0F172A;  /* 页面底色 — Slate 900 */
+  --rt-bg-card:         #1E293B;  /* 卡片/面板 — Slate 800 */
+  --rt-bg-card-hover:   #334155;  /* 卡片 hover — Slate 700 */
+  --rt-bg-elevated:     #0F172A;  /* 浮层/弹窗底色 */
+  --rt-bg-input:        #1E293B;  /* 输入框底色 */
+  --rt-bg-badge:        rgba(79, 70, 229, 0.15); /* 角徽章底色 */
+  --rt-bg-code:         #1a2332;  /* 代码块底色 */
+
+  /* ═══════════════════════════════════════
+     文字层级 Text Hierarchy
+     ═══════════════════════════════════════ */
+  --rt-text-primary:    #F1F5F9;  /* 主文字 — Slate 100 */
+  --rt-text-secondary:  #94A3B8;  /* 副文字 — Slate 400 */
+  --rt-text-muted:      #64748B;  /* 弱化文字 — Slate 500 */
+  --rt-text-disabled:   #475569;  /* 禁用文字 — Slate 600 */
+  --rt-text-inverse:    #FFFFFF;  /* 反色文字（深色背景上的亮字） */
+
+  /* ═══════════════════════════════════════
+     边框 Borders
+     ═══════════════════════════════════════ */
+  --rt-border:          #334155;  /* 默认边框 — Slate 700 */
+  --rt-border-light:    #475569;  /* 浅边框 — Slate 600 */
+  --rt-border-brand:    #4F46E5;  /* 品牌色边框（高亮/活跃） */
+
+  /* ═══════════════════════════════════════
+     角色色 Role Badge Colors
+     ═══════════════════════════════════════ */
+  --rt-role-product:    #3B82F6;  /* 产品 — Blue 500 */
+  --rt-role-design:     #A855F7;  /* 设计 — Purple 500 */
+  --rt-role-engineer:   #22C55E;  /* 工程 — Green 500 */
+  --rt-role-research:   #F59E0B;  /* 研究 — Amber 500 */
+  --rt-role-marketing:  #EC4899;  /* 运营 — Pink 500 */
+  --rt-role-default:    #64748B;  /* 默认 — Slate 500 */
+
+  /* 角色色浅底（徽章背景） */
+  --rt-role-product-bg: rgba(59, 130, 246, 0.15);
+  --rt-role-design-bg:  rgba(168, 85, 247, 0.15);
+  --rt-role-engineer-bg: rgba(34, 197, 94, 0.15);
+  --rt-role-research-bg: rgba(245, 158, 11, 0.15);
+  --rt-role-marketing-bg: rgba(236, 72, 153, 0.15);
+  --rt-role-default-bg: rgba(100, 116, 139, 0.15);
+
+  /* ═══════════════════════════════════════
+     状态色 Semantic Colors
+     ═══════════════════════════════════════ */
+  --rt-success:         #22C55E;  /* 成功/共识达成 */
+  --rt-success-bg:      rgba(34, 197, 94, 0.15);
+  --rt-warning:         #F59E0B;  /* 警告/进行中 */
+  --rt-warning-bg:      rgba(245, 158, 11, 0.15);
+  --rt-error:           #EF4444;  /* 错误/链接失效 */
+  --rt-error-bg:        rgba(239, 68, 68, 0.15);
+  --rt-info:            #06B6D4;  /* 信息提示 */
+  --rt-info-bg:         rgba(6, 182, 212, 0.15);
+
+  /* ═══════════════════════════════════════
+     圆角 Border Radius
+     ═══════════════════════════════════════ */
+  --rt-radius-sm:       6px;      /* 小元素：徽章、标签 */
+  --rt-radius-md:       10px;     /* 中元素：卡片、输入框 */
+  --rt-radius-lg:       16px;     /* 大元素：结论卡片、容器 */
+  --rt-radius-full:     9999px;   /* 圆形：头像、状态点 */
+
+  /* ═══════════════════════════════════════
+     阴影 Shadows
+     ═══════════════════════════════════════ */
+  --rt-shadow-sm:       0 1px 2px rgba(0, 0, 0, 0.3);
+  --rt-shadow-md:       0 4px 12px rgba(0, 0, 0, 0.4);
+  --rt-shadow-lg:       0 8px 24px rgba(0, 0, 0, 0.5);
+  --rt-shadow-glow:     0 0 20px var(--rt-brand-glow);       /* 品牌蓝辉光 */
+  --rt-shadow-glow-strong: 0 0 30px var(--rt-brand-glow-strong); /* 结论卡片辉光 */
+
+  /* ═══════════════════════════════════════
+     间距 Spacing (基于 4px 网格)
+     ═══════════════════════════════════════ */
+  --rt-space-1:         4px;
+  --rt-space-2:         8px;
+  --rt-space-3:         12px;
+  --rt-space-4:         16px;
+  --rt-space-5:         20px;
+  --rt-space-6:         24px;
+  --rt-space-8:         32px;
+  --rt-space-10:        40px;
+  --rt-space-12:        48px;
+  --rt-space-16:        64px;
+
+  /* ═══════════════════════════════════════
+     字体 Typography
+     ═══════════════════════════════════════ */
+  --rt-font-sans:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --rt-font-mono:       'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --rt-font-size-xs:    12px;
+  --rt-font-size-sm:    14px;     /* 移动端最小字号 */
+  --rt-font-size-base:  16px;
+  --rt-font-size-lg:    18px;
+  --rt-font-size-xl:    20px;
+  --rt-font-size-2xl:   24px;
+  --rt-font-size-3xl:   30px;
+
+  /* ═══════════════════════════════════════
+     动效 Motion
+     ═══════════════════════════════════════ */
+  --rt-duration-fast:   150ms;
+  --rt-duration-normal: 300ms;
+  --rt-duration-slow:   500ms;
+  --rt-duration-glow:   2000ms;   /* 高亮描边持续时间 */
+  --rt-easing-default:  cubic-bezier(0.4, 0, 0.2, 1);
+  --rt-easing-in:       cubic-bezier(0.4, 0, 1, 1);
+  --rt-easing-out:      cubic-bezier(0, 0, 0.2, 1);
+  --rt-easing-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ═══════════════════════════════════════
+     布局 Layout
+     ═══════════════════════════════════════ */
+  --rt-max-width:       720px;    /* 内容最大宽度（单列） */
+  --rt-card-padding:    20px;
+  --rt-touch-target:    44px;     /* 移动端最小触控区 */
+}
+
+/* ═══════════════════════════════════════
+   响应式覆盖 Responsive Overrides
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  :root {
+    --rt-card-padding:  16px;
+    --rt-font-size-xs:  12px;
+    --rt-font-size-sm:  14px;
+    --rt-font-size-base: 15px;
+    --rt-font-size-lg:  17px;
+    --rt-font-size-xl:  19px;
+    --rt-font-size-2xl: 22px;
+    --rt-font-size-3xl: 26px;
+    --rt-space-8:       24px;
+    --rt-space-10:      32px;
+    --rt-space-12:      40px;
+    --rt-space-16:      48px;
+  }
+}
+
+/* ═══════════════════════════════════════
+   减弱动效 Accessibility: prefers-reduced-motion
+   ═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --rt-duration-fast:   0ms;
+    --rt-duration-normal: 0ms;
+    --rt-duration-slow:   0ms;
+    --rt-duration-glow:   0ms;
+  }
+}

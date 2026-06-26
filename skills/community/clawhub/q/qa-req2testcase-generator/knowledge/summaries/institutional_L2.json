@@ -1,0 +1,65 @@
+{
+  "domain": "机构业务域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "institutional.md",
+  "includes_L1": true,
+  "entity_states": {
+    "机构准入": ["意向接洽(Prospecting)", "资料收集(DataCollection)", "尽职调查(DueDiligence)", "内部审批(InternalApproval)", "协议签署(ContractSigning)", "系统开通(SystemSetup)", "已生效(Active)", "已冻结(Frozen)", "已注销(Terminated)"],
+    "PB服务": ["服务申请(Applied)", "方案定制(Customizing)", "协议签署(ContractSigning)", "账户开立(AccountSetup)", "服务运行中(Running)", "服务暂停(Paused)", "服务终止(Terminated)"],
+    "大宗交易": ["意向申报(IntentDeclared)", "意向匹配(IntentMatched)", "成交申报(TradeDeclared)", "交易所确认(ExchangeConfirmed)", "已成交(Executed)", "申报失败(Failed)", "已撤回(Withdrawn)"],
+    "场外产品": ["产品创设(ProductCreation)", "内部审批(InternalApproval)", "产品发行(Issued)", "存续期(Outstanding)", "到期结算(Settling)", "已终止(Terminated)", "提前终止(EarlyTerminated)"]
+  },
+  "state_transitions": [
+    {"entity": "机构准入", "from": "资料收集", "trigger": "资料齐全", "to": "尽职调查"},
+    {"entity": "机构准入", "from": "尽职调查", "trigger": "尽调通过", "to": "内部审批"},
+    {"entity": "机构准入", "from": "内部审批", "trigger": "三方会签通过", "to": "协议签署"},
+    {"entity": "机构准入", "from": "系统开通", "trigger": "权限配置完成", "to": "已生效"},
+    {"entity": "机构准入", "from": "已生效", "trigger": "合规问题", "to": "已冻结"},
+    {"entity": "PB服务", "from": "服务运行中", "trigger": "净值触及止损线", "to": "强制平仓"},
+    {"entity": "大宗交易", "from": "意向申报", "trigger": "对手方响应", "to": "意向匹配"},
+    {"entity": "大宗交易", "from": "成交申报", "trigger": "交易所确认", "to": "交易所确认"},
+    {"entity": "场外产品", "from": "存续期", "trigger": "触发敲出条款", "to": "提前终止"},
+    {"entity": "场外产品", "from": "存续期", "trigger": "到期日到达", "to": "到期结算"}
+  ],
+  "allowed_operations": {
+    "准入-已生效": ["变更服务内容", "冻结/解冻"],
+    "准入-已冻结": ["在途交易正常结算", "解冻(问题解决后)"],
+    "PB-运行中": ["交易通道服务", "托管服务", "融资服务", "研究服务"],
+    "大宗-意向申报": ["撤回意向(成交申报前)"],
+    "场外-存续期": ["每日估值", "风险监控"]
+  },
+  "forbidden_operations": {
+    "准入-已冻结": ["新委托(禁止新增交易)"],
+    "准入-已注销": ["直接恢复(需重新走准入流程)"],
+    "PB-未备案私募": ["申请PB服务"],
+    "PB-不同产品间": ["资金划转(账户隔离)"],
+    "大宗-非交易时段": ["提交申报"],
+    "大宗-价格超限": ["偏离收盘价>10%的申报"],
+    "场外-不合格投资者": ["购买场外衍生品"],
+    "场外-挂钩ST股票": ["创设产品"]
+  },
+  "role_permission_matrix": [
+    {"role": "机构客户经理", "permissions": ["准入申请发起", "客户关系维护", "服务方案沟通"]},
+    {"role": "合规部门", "permissions": ["尽调审核", "准入审批(会签)", "冻结/解冻"]},
+    {"role": "风控部门", "permissions": ["准入审批(会签)", "预警/止损监控", "强制平仓"]},
+    {"role": "运营部门", "permissions": ["系统开通", "账户配置", "估值计算"]},
+    {"role": "交易部门", "permissions": ["大宗交易撮合", "场外产品定价"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "基金业协会", "interaction": "私募备案状态查询"},
+    {"system": "交易所大宗交易系统", "interaction": "意向申报、成交确认"},
+    {"system": "中证报价系统", "interaction": "场外期权报备"},
+    {"system": "估值系统", "interaction": "PB产品净值计算、场外产品估值"},
+    {"system": "行情系统", "interaction": "敲入/敲出监测、大宗交易收盘价"},
+    {"system": "清算系统", "interaction": "大宗交易T+1交收、场外产品结算"}
+  ],
+  "core_calculation_rules": [
+    {"name": "PB预警线", "formula": "产品净值 ≤ 0.8 触发预警通知"},
+    {"name": "PB止损线", "formula": "产品净值 ≤ 0.7 触发强制平仓"},
+    {"name": "大宗交易价格范围", "formula": "收盘价 × 90% ≤ 申报价格 ≤ 收盘价 × 110%"},
+    {"name": "大宗交易门槛", "formula": "数量 ≥ 30万股 OR 金额 ≥ 200万元"},
+    {"name": "收益凭证到期收益", "formula": "固定收益型：本金 × 年化收益率 × 期限/365"},
+    {"name": "估值偏差阈值", "formula": "PB估值与管理人差异 > 0.1% 触发对账"}
+  ]
+}

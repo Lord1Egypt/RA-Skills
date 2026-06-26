@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-04-02T06:37:06.875Z",
+  "targets": [
+    {
+      "id": "test123",
+      "url": "https://creator.douyin.com/video/test123",
+      "title": "",
+      "enabled": true,
+      "monitorDepth": 2,
+      "lastCheck": null,
+      "addedAt": "2026-04-02T06:34:01.863Z"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+/* ===== HTML Slides Base CSS =====
+   Structural foundation for 1280×720 slide decks.
+   This file is STYLE-NEUTRAL — no colors, fonts, or brand tokens.
+   Copy into your project's styles.css, then add your own theme on top. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  /* Override these in your theme */
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #222;
+  background: #fff;
+}
+
+/* === Core Slide Container === */
+.slide {
+  width: 1280px;
+  height: 720px;
+  position: relative;
+  overflow: hidden;
+  padding: 48px 64px;
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+
+/* === Print Rules (DO NOT CHANGE) === */
+@page {
+  size: 1280px 720px;
+  margin: 0;
+}
+@media print {
+  body { margin: 0; }
+  .slide { break-inside: avoid; }
+}
+
+/* === Layout Helpers === */
+.slide-header {
+  margin-bottom: 24px;
+}
+.slide-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.slide-content {
+  flex: 1;
+}
+.slide-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+.slide-content.center-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+/* === Card Grid === */
+.card-grid {
+  display: grid;
+  gap: 20px;
+}
+.card-grid.two-col  { grid-template-columns: 1fr 1fr; }
+.card-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+.card {
+  border-radius: 14px;
+  padding: 28px;
+}
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.card p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* === Pills === */
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 4px;
+}
+
+/* === Slide Footer === */
+.slide-footer {
+  position: absolute;
+  bottom: 24px; left: 64px; right: 64px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+/* === Background Glow (optional — add colors in theme) === */
+.bg-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-center { top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.glow-top-right { top: -150px; right: -150px; }
+.glow-bottom-left { bottom: -150px; left: -150px; }
+.glow-left { top: 20%; left: -200px; }

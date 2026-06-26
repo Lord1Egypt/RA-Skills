@@ -1,0 +1,146 @@
+{
+   "extensionDescription": {
+      "description": "Description of the extension.",
+      "message": "`쿠키에 대해선 신경 쓰지 않아`의 커뮤니티 버전이에요.(Avast 없음)"
+   },
+   "extensionName": {
+      "description": "Name of the extension.",
+      "message": "쿠키에 대해선 신경 쓰지 않아"
+   },
+   "generalIssueOption": {
+      "description": "The option text for a general issue",
+      "message": "일반 문제(기록 필요)"
+   },
+   "genericErrorBack": {
+      "description": "Back button after error",
+      "message": "뒤로가기"
+   },
+   "genericErrorTitle": {
+      "description": "Genereric error title",
+      "message": "무언가 잘못됐어요"
+   },
+   "genericErrorTryAgain": {
+      "description": "Try again later message",
+      "message": "나중에 다시 시도해 주세요..."
+   },
+   "menuDisable": {
+      "description": "Menu option.",
+      "message": "$HOSTNAME$ 사이트에서 확장 프로그램 사용 중지",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "menuEnable": {
+      "description": "Menu option.",
+      "message": "$HOSTNAME$ 사이트에서 확장 프로그램 사용",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "menuIdle": {
+      "description": "Menu option visible when enabling/disabling doesn't work.",
+      "message": "이 웹사이트에서는 확장 프로그램이 작동하지 않아요"
+   },
+   "menuLoadingText": {
+      "description": "Loading messsage",
+      "message": "불러오는 중..."
+   },
+   "menuReport": {
+      "description": "Menu option.",
+      "message": "쿠키 알림 제보"
+   },
+   "menuSupport": {
+      "description": "Menu option.",
+      "message": "이 프로젝트 후원"
+   },
+   "modalIssueDescription": {
+      "description": "Explanation of what a modal issue is",
+      "message": "해당 옵션은 '상호 작용을 방해하는 팝업 상자가 있음'과 같이 이 페이지에 모달과 관련된 문제가 있음을 나타내요."
+   },
+   "modalIssueOption": {
+      "description": "The option text for a modal issue",
+      "message": "모달 관련"
+   },
+   "optionStatusIndicators": {
+      "description": "Option text for enabling the status indicator",
+      "message": "상태 표시기"
+   },
+   "optionsButton": {
+      "description": "Options text for SAVE button.",
+      "message": "설정 저장"
+   },
+   "optionsTitle": {
+      "description": "Title for the options page.",
+      "message": "설정"
+   },
+   "optionsWhitelist": {
+      "description": "Options text for whitelist box.",
+      "message": "허용한 모든 웹사이트 목록이에요. 한 줄에 한 웹사이트씩 있어요:"
+   },
+   "reportAnon": {
+      "description": "Menu item to report anonymously",
+      "message": "익명으로 제보"
+   },
+   "reportAnonCancel": {
+      "description": "Button to cCancel the report",
+      "message": "취소"
+   },
+   "reportAnonNotes": {
+      "description": "Notes for the report",
+      "message": "기록: "
+   },
+   "reportAnonSend": {
+      "description": "Button to send the report",
+      "message": "제보하기"
+   },
+   "reportAnonTitle": {
+      "description": "Translation of 'report' it will be shown like 'Report example.com'",
+      "message": "제보:"
+   },
+   "reportConfirm": {
+      "description": "Ask for confirmation before reporting a website. Don't use quotes here.",
+      "message": "$HOSTNAME$ 사이트에서 쿠키 알림을 제보할까요?",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "reportGithub": {
+      "description": "Menu item to report using Github",
+      "message": "Github을 사용해 제보"
+   },
+   "reportNotesPlaceholder": {
+      "description": "Placeholder for the notes (\n) is a new line & keep it 4 lines",
+      "message": "다음과 같은 사항:\n동영상 재생이 안 됨\n스크롤 바가 고장남\n오버레이가 회색임"
+   },
+   "reportSkippedMessage": {
+      "description": "Tells the user it cannot report a whitelisted domain.",
+      "message": "이 웹사이트에서 확장 프로그램을 사용 중지했어요. 사용 설정 후 제보 전 쿠키 알림을 보는지 확인해 주세요."
+   },
+   "reportSkippedTitle": {
+      "description": "Tells the user it cannot report a whitelisted domain.",
+      "message": "$HOSTNAME$ 사이트에서 확장 프로그램이 사용 중지됐어요.",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "scrollbarIssueDescription": {
+      "description": "Explanation of what a scrollbar issue is",
+      "message": "해당 옵션은 '사이트에 스크롤 바가 표시되지 않음'과 같이 이 페이지에 스크롤 바와 관련된 문제가 있음을 나타내요."
+   },
+   "scrollbarIssueOption": {
+      "description": "The option text for a scrollbar issue",
+      "message": "스크롤 바 관련"
+   }
+}

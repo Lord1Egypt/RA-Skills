@@ -1,0 +1,4 @@
+interface:
+  display_name: "收货总管"
+  short_description: "购物后链路管家，盯订单时限、售后动作、价保提醒与客服话术"
+  default_prompt: "Use $orderkeeper to manage my post-purchase order, tell me whether I should request a refund, exchange, reshipment, compensation, price protection, warranty service, or wait, flag any return or warranty deadlines, generate a customer-service script, and answer in Chinese."

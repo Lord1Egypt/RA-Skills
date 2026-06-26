@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skill-hr.local/schemas/p02-output.schema.json",
+  "title": "skill-hr P02 match output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "recall_shortlist",
+    "candidates",
+    "best",
+    "decision",
+    "decision_rationale"
+  ],
+  "properties": {
+    "recall_shortlist": {
+      "type": "array",
+      "description": "P02a: skill ids selected for P02b (max ~12)",
+      "items": { "type": "string", "minLength": 1 },
+      "maxItems": 16
+    },
+    "candidates": {
+      "type": "array",
+      "description": "P02b: rubric-scored rows; one per recall_shortlist id",
+      "items": { "$ref": "#/$defs/precisionCandidate" },
+      "minItems": 1
+    },
+    "best": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill_id", "score"],
+      "properties": {
+        "skill_id": { "type": "string", "minLength": 1 },
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["delegate", "confirm", "recruit"]
+    },
+    "decision_rationale": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "subscores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome_fit",
+        "competency_coverage",
+        "tool_stack_fit",
+        "quality_safety",
+        "freshness_trust"
+      ],
+      "properties": {
+        "outcome_fit": { "type": "integer", "minimum": 0, "maximum": 40 },
+        "competency_coverage": { "type": "integer", "minimum": 0, "maximum": 30 },
+        "tool_stack_fit": { "type": "integer", "minimum": 0, "maximum": 15 },
+        "quality_safety": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "freshness_trust": { "type": "integer", "minimum": 0, "maximum": 5 }
+      }
+    },
+    "coverageRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["competency", "coverage", "evidence"],
+      "properties": {
+        "competency": { "type": "string", "minLength": 1 },
+        "coverage": {
+          "type": "string",
+          "enum": ["covered", "partial", "missing"]
+        },
+        "evidence": { "type": "string" }
+      }
+    },
+    "hardNegative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill_id", "excluded_because"],
+      "properties": {
+        "skill_id": { "type": "string", "minLength": 1 },
+        "excluded_because": { "type": "string", "minLength": 1 }
+      }
+    },
+    "precisionCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skill_id",
+        "skill_name",
+        "score",
+        "subscores",
+        "competency_coverage_matrix",
+        "evidence",
+        "gaps",
+        "confidence"
+      ],
+      "properties": {
+        "skill_id": { "type": "string", "minLength": 1 },
+        "skill_name": { "type": "string", "minLength": 1 },
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "subscores": { "$ref": "#/$defs/subscores" },
+        "competency_coverage_matrix": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/coverageRow" },
+          "minItems": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "hard_negative_explanations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/hardNegative" }
+        }
+      }
+    }
+  }
+}

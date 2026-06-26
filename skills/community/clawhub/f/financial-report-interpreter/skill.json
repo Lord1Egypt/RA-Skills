@@ -1,0 +1,25 @@
+{
+  "name": "Financial Report Interpreter",
+  "slug": "financial-report-interpreter",
+  "version": "1.0.0",
+  "description": "Turns income statement, balance sheet, and cash flow inputs into plain-language signals, ratio commentary, and management follow-up questions.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "financial-statements",
+    "analysis",
+    "cash-flow",
+    "ratios"
+  ],
+  "trigger_keywords": [
+    "interpret financial statements",
+    "income statement analysis",
+    "balance sheet review",
+    "cash flow explanation",
+    "ratio commentary"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

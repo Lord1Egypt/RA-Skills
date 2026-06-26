@@ -1,35 +1,35 @@
 ---
-name: "WebSearch with SerpApi"
+name: serpapi-search
 description: "Search the web using SerpAPI with customizable engines (Google, Google AI Mode, Bing, etc.). Use when user needs web search results via SerpAPI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-search-with-serpapi"
-sourceUrl: "https://clawhub.ai/skills/web-search-with-serpapi"
+metadata:
+  { "openclaw": { "requires": { "python": true, "pip": ["serpapi"] }, "entrypoint": "serpapi_search.py" } }
 ---
 
-# WebSearch with SerpApi
+# SerpAPI Search Skill
 
-> Search the web using SerpAPI with customizable engines (Google, Google AI Mode, Bing, etc.). Use when user needs web search results via SerpAPI.
+## Description
+Use SerpAPI to fetch search results with support for multiple engines (Google, Google AI Mode, Bing, Yahoo, etc.). Requires a SerpAPI key.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-search-with-serpapi`
-- **Source URL:** [https://clawhub.ai/skills/web-search-with-serpapi](https://clawhub.ai/skills/web-search-with-serpapi)
+## Parameters
+- `query` (required): Search query string.
+- `engine` (optional): Search engine (default: `google`). Options: `google`, `google_ai_mode`, `google_images`, `google_maps`, `youtube`
 
-## Overview
+## Example Usage
+```python
+# Search with Google
+serpapi_search(query="2026年2月24日A股市场表现", engine="google")
 
+# Use Google AI Mode
+serpapi_search(query="AI最新进展", engine="google_ai_mode")
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-search-with-serpapi
+# Use Google Image for image search
+serpapi_search(query="Sunflowers", engine="google_images")
 ```
+
+## Setup
+1. Replace the API key in `serpapi_search.py` with your SerpAPI key.
+2. Install dependencies: `pip install serpapi`
+
+## Notes
+- Results are returned as text blocks from SerpAPI response.
+- API key can be set via environment variable `SERPAPI_API_KEY` for security.

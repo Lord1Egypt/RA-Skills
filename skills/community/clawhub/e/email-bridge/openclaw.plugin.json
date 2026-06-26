@@ -1,0 +1,59 @@
+{
+  "id": "email-bridge",
+  "name": "Email Bridge",
+  "version": "0.5.0",
+  "description": "Email management skill with real-time notifications, verification code extraction, and multi-provider support (Gmail, QQ Mail, NetEase)",
+  "author": "Ryan Chan",
+  "license": "MIT",
+  "repository": "https://github.com/ryanchan720/email-bridge",
+  "keywords": ["email", "gmail", "qq-mail", "imap", "smtp", "verification-code"],
+  "runtime": "python",
+  "entry": "email_bridge.cli:main",
+  "install": {
+    "command": "pip install -e .",
+    "dependencies": [
+      "click>=8.0",
+      "pydantic>=2.0",
+      "google-api-python-client>=2.0",
+      "google-auth>=2.0",
+      "google-auth-oauthlib>=1.0",
+      "imaplib2>=3.6"
+    ]
+  },
+  "triggers": {
+    "keywords": {
+      "zh": ["邮箱", "邮件", "电子邮件", "发邮件", "查看邮件", "验证码", "QQ邮箱", "Gmail", "163邮箱", "126邮箱"],
+      "en": ["email", "mail", "send email", "check email", "verification code"]
+    }
+  },
+  "capabilities": [
+    "email:receive",
+    "email:send",
+    "email:sync",
+    "email:extract_code",
+    "email:daemon"
+  ],
+  "config": {
+    "accounts": {
+      "type": "array",
+      "description": "Email accounts to configure",
+      "items": {
+        "email": "string",
+        "provider": "string",
+        "password": "string"
+      }
+    },
+    "daemon": {
+      "poll_interval": {
+        "type": "number",
+        "default": 300,
+        "description": "Polling interval for Gmail (seconds)"
+      },
+      "notify": {
+        "type": "boolean",
+        "default": true,
+        "description": "Send notifications for new emails"
+      }
+    }
+  }
+}

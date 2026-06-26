@@ -1,35 +1,165 @@
 ---
-name: "briefing-visualizer简报转手机长图"
-description: "简报转手机长图。将结构化文字简报（行业简报、市场简报、动态简报等）转化为适合手机阅读的长图。支持自定义资讯内容、标题、出品方、底部通栏广告图。触发词：做简报长图、生成手机长图、简报转图片、行业周报转图、市场简报转长图、转成手机长图"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/briefing-visualizer"
-sourceUrl: "https://clawhub.ai/skills/briefing-visualizer"
+name: briefing-visualizer
+description: 简报转手机长图。将结构化文字简报（行业简报、市场简报、动态简报等）转化为适合手机阅读的长图。支持自定义资讯内容、标题、出品方、底部通栏广告图。触发词：做简报长图、生成手机长图、简报转图片、行业周报转图、市场简报转长图、转成手机长图
+summary: 结构化简报 → 手机长图，支持资讯抓取、排版、截长图、底部通栏广告
+author: xieliuzhu888（WX/Wechat）
+version: "1.0"
+tags:
+  - 简报
+  - 长图
+  - 内容转化
+  - 手机端
+  - 自动化
 ---
 
-# briefing-visualizer简报转手机长图
+# briefing-visualizer · 简报转手机长图
 
-> 简报转手机长图。将结构化文字简报（行业简报、市场简报、动态简报等）转化为适合手机阅读的长图。支持自定义资讯内容、标题、出品方、底部通栏广告图。触发词：做简报长图、生成手机长图、简报转图片、行业周报转图、市场简报转长图、转成手机长图
+将文字简报转化为精美的手机端长图，适合发送至微信群、朋友圈、小红书等平台。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/briefing-visualizer`
-- **Source URL:** [https://clawhub.ai/skills/briefing-visualizer](https://clawhub.ai/skills/briefing-visualizer)
+## 适用场景
 
-## Overview
+- **行业简报**：海参/丸子/食品/零售等行业动态周报
+- **市场简报**：竞品动态、价格行情、市场趋势汇总
+- **动态简报**：新品发布、活动预告、公司动态
+- **招商简报**：招商政策、合作优势、联系方式
+- **任何结构化资讯**：只要有标题 + 正文条目，即可生成
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/briefing-visualizer
+## 完整工作流程
+
 ```
+资讯采集（用户提供 or AI抓取）
+        ↓
+生成 HTML 排版（390px 手机宽度，暗色暖调主题）
+        ↓
+Chrome headless 截图（window-size=390）
+        ↓
+PIL 裁剪底部纯色空白 + 拼接底部通栏广告图
+        ↓
+输出最终长图（weekly-final.jpg）
+```
+
+---
+
+## Step 1：准备内容
+
+用户提供以下信息，AI 负责生成和排版：
+
+### 必须提供
+
+| 字段 | 说明 | 示例 |
+|------|------|------|
+| `标题` | 简报大标题 | 「海产 · 丸子领域重要动态速递」 |
+| `副标题` | 英文副标题（可选） | WEEKLY INDUSTRY INSIGHT |
+| `日期` | 简报周期 | 2026年4月第3周（4.14 - 4.20） |
+| `资讯内容` | 每个条目的标题+正文+标签 | 见下方格式 |
+
+### 资讯条目格式（每条包含）
+
+```
+序号：01
+标题：[一句话核心信息]
+正文：[2-4句描述，数据/来源/意义]
+标签：[标签1, 标签2]  （最多3个）
+标记：🔥重要 / ⚡热门 / ⚡趋势 等（可选）
+```
+
+### 可选配置
+
+| 字段 | 说明 |
+|------|------|
+| `底部通栏图` | 品牌/产品/联系方式图片路径，宽度自动适应 |
+| `数据摘要` | 3个关键数字，顶部卡片展示 |
+| `亮点洞察` | 1段总结，放在底部页脚前 |
+| `数据来源` | 底部注明来源 |
+
+### 标签预设
+
+`消费趋势` `市场规模` `品牌建设` `供应链` `招商加盟` `产品创新` `渠道变革` `竞争格局` `行业热点`
+
+---
+
+## Step 2：生成 HTML
+
+根据用户提供的内容，自动生成 HTML 文件：
+
+- **设计宽度**：390px（匹配手机屏幕）
+- **主题色**：暖橙色调（#D4845A / #C46B3A）
+- **字体**：正文 13px / 标题 14px / 标签 10px（避免拉伸变形）
+- **结构**：顶部标题 → 数据摘要 → 分板块卡片 → 亮点洞察 → 底部页脚 → 通栏广告图
+
+输出：`briefing.html`
+
+---
+
+## Step 3：截图与处理
+
+运行脚本，将 HTML 转为最终长图：
+
+```bash
+python3 process_briefing.py <html文件路径> <底部通栏图路径> <输出文件名>
+```
+
+例如：
+```bash
+python3 process_briefing.py briefing.html /path/to/banner.png weekly-final.jpg
+```
+
+脚本自动完成：
+1. Chrome headless 截图（390x10000）
+2. 裁剪底部纯色空白（精确识别 body 背景色）
+3. 拼接底部通栏广告图
+4. 输出最终长图
+
+---
+
+## Step 4：交付
+
+- 输出最终图片文件
+- 用户可通过 企微/微信 直接发送至目标群/朋友圈
+
+---
+
+## 排版规范
+
+### HTML 结构
+
+```
+body { width: 390px; background: #FFF8F0; padding: 0; }
+.header { 渐变橙底 + 标题 + 日期 }
+.stats-row { 3列数据摘要卡片 }
+.section { 板块（图标+标题+描述） }
+.news-card { 每条资讯：序号+标题+正文+标签 }
+.highlight-box { 底部亮点洞察 }
+.footer { 数据来源 + 品牌 }
+.bottom-image { 宽度100%通栏广告图 }
+```
+
+### 标签配色
+
+- 消费趋势：`rgba(200,140,40)` 橙黄
+- 市场规模：`rgba(212,90,42)` 橙红
+- 品牌建设：`rgba(130,80,180)` 紫色
+- 供应链：`rgba(45,139,174)` 蓝绿
+- 招商加盟：`rgba(61,122,74)` 绿色
+
+---
+
+## 脚本说明
+
+`scripts/process_briefing.py` 为核心处理脚本，无需用户干预。
+
+关键参数：
+- `CHROME`：Chrome 路径（macOS 默认已配置）
+- `截图表格宽度`：390px（与 HTML body 宽度一致）
+- `底部通栏图`：自动等比缩放至报告宽度
+
+---
+
+## 注意事项
+
+1. **内容精简**：每条正文控制在 60-120 字，适合手机阅读
+2. **标签控制**：每条最多 3 个标签，优先选精准标签
+3. **底部通栏图**：建议 1080px 宽以上 PNG/JPG，比例建议 3:1 或 2:1
+4. **截图问题**：若底部有多余空白，脚本会自动裁剪；若裁剪过度，人工微调

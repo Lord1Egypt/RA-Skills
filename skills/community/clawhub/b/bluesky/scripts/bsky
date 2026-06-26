@@ -1,0 +1,19 @@
+#!/bin/bash
+# Bluesky CLI wrapper
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+    DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+VENV_DIR="$SCRIPT_DIR/venv"
+
+# Create venv if needed
+if [ ! -d "$VENV_DIR" ]; then
+    echo "Setting up Bluesky CLI..." >&2
+    python3 -m venv "$VENV_DIR"
+    "$VENV_DIR/bin/pip" install -q -r "$SCRIPT_DIR/../requirements.txt"
+fi
+
+"$VENV_DIR/bin/python" "$SCRIPT_DIR/bsky.py" "$@"

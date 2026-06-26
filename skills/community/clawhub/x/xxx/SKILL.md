@@ -1,35 +1,25 @@
 ---
-name: "xxx"
-description: "Capture frames or clips from RTSP/ONVIF cameras."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xxx"
-sourceUrl: "https://clawhub.ai/skills/xxx"
+name: camsnap
+description: Capture frames or clips from RTSP/ONVIF cameras.
+homepage: https://camsnap.ai
+metadata: {"clawdbot":{"emoji":"📸","requires":{"bins":["camsnap"]},"install":[{"id":"brew","kind":"brew","formula":"steipete/tap/camsnap","bins":["camsnap"],"label":"Install camsnap (brew)"}]}}
 ---
 
-# xxx
+# camsnap
 
-> Capture frames or clips from RTSP/ONVIF cameras.
+Use `camsnap` to grab snapshots, clips, or motion events from configured cameras.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xxx`
-- **Source URL:** [https://clawhub.ai/skills/xxx](https://clawhub.ai/skills/xxx)
+Setup
+- Config file: `~/.config/camsnap/config.yaml`
+- Add camera: `camsnap add --name kitchen --host 192.168.0.10 --user user --pass pass`
 
-## Overview
+Common commands
+- Discover: `camsnap discover --info`
+- Snapshot: `camsnap snap kitchen --out shot.jpg`
+- Clip: `camsnap clip kitchen --dur 5s --out clip.mp4`
+- Motion watch: `camsnap watch kitchen --threshold 0.2 --action '...'`
+- Doctor: `camsnap doctor --probe`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xxx
-```
+Notes
+- Requires `ffmpeg` on PATH.
+- Prefer a short test capture before longer clips.

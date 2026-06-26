@@ -1,35 +1,79 @@
 ---
-name: "Web Scraper Trae"
-description: "Opens browser and scrapes webpage content using Playwright. Invoke when user wants to crawl/scrape a webpage, extract data from a website, or get content fro..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-scraper-trae"
-sourceUrl: "https://clawhub.ai/skills/web-scraper-trae"
+name: "@web-scraper-trae"
+description: "Opens browser and scrapes webpage content using Playwright. Invoke when user wants to crawl/scrape a webpage, extract data from a website, or get content from a URL."
+allowed-tools: Bash(node:*)
 ---
 
 # Web Scraper Trae
 
-> Opens browser and scrapes webpage content using Playwright. Invoke when user wants to crawl/scrape a webpage, extract data from a website, or get content fro...
+Opens a browser using Playwright and scrapes webpage content.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-scraper-trae`
-- **Source URL:** [https://clawhub.ai/skills/web-scraper-trae](https://clawhub.ai/skills/web-scraper-trae)
+## Prerequisites
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/web-scraper-trae
+npm install playwright
+npx playwright install chromium
 ```
+
+## Usage
+
+When user provides a URL, create a Node.js script to scrape the page:
+
+```javascript
+const { chromium } = require('playwright');
+
+async function scrape(url) {
+  const browser = await chromium.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
+  const page = await browser.newPage();
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+
+  const title = await page.title();
+  const text = await page.textContent('body');
+  const html = await page.content();
+
+  await browser.close();
+
+  return { title, text, html, url };
+}
+
+const url = process.argv[2];
+if (!url) {
+  console.error('请提供 URL 参数');
+  process.exit(1);
+}
+
+scrape(url).then(result => {
+  console.log('=== SCRAPE_RESULT ===');
+  console.log(JSON.stringify(result, null, 2));
+}).catch(err => {
+  console.error('爬取失败:', err.message);
+  process.exit(1);
+});
+```
+
+## Execution
+
+Run the script with:
+```bash
+node scrape.js "https://example.com"
+```
+
+## Output Format
+
+Return JSON with:
+- `title`: Page title
+- `text`: Visible text content (HTML stripped)
+- `html`: Full HTML source
+- `url`: Original URL
+
+## Notes
+
+- Use `headless: true` for server environments
+- Use `waitUntil: 'networkidle'` to ensure full page load
+- Set timeout to 60 seconds for slow pages
+- Handle SPA (Single Page Applications) that load content dynamically
+- For pages requiring interaction, use `playwright-cli` skill instead

@@ -1,0 +1,21 @@
+name: social_security_card_ocr
+version: 1.0.3
+description: 将图片中的文字、社保卡信息识别并提取出来。本技能应在用户需要 OCR 识别图片中的文字，或识别社保卡时使用。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/social_security_card_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests

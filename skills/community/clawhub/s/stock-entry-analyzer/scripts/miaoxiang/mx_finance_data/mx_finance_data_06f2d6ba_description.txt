@@ -1,0 +1,8 @@
+金融数据查询结果说明
+========================================
+查询内容: 00700.HK EMA 均线
+数据文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_06f2d6ba.xlsx
+描述文件路径: /root/.openclaw/workspace/skills/stock-entry-analyzer/scripts/miaoxiang/mx_finance_data/mx_finance_data_06f2d6ba_description.txt
+数据行数: 1
+表数量: 1
+Sheet 列表: 腾讯控股(00700.HK)的EXPMA指数平均数

@@ -1,0 +1,49 @@
+{
+  "name": "insurance-marketing-assistant",
+  "version": "1.0.0",
+  "description": "AI-powered insurance marketing content assistant - generate copy, images, and compliance review through natural conversation",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [
+    "insurance",
+    "marketing",
+    "content",
+    "compliance",
+    "copywriting",
+    "wechat",
+    "朋友圈",
+    "保险营销",
+    "合规审核"
+  ],
+  "author": "gechengling",
+  "license": "MIT",
+  "skill": {
+    "type": "conversation",
+    "triggers": [
+      "营销素材",
+      "生成文案",
+      "生成海报",
+      "热点营销",
+      "朋友圈素材",
+      "合规审核",
+      "保险推广",
+      "蹭热点",
+      "文案审核",
+      "发朋友圈",
+      "产品推广"
+    ],
+    "platforms": [
+      "wechat-friends",
+      "wechat-official-account",
+      "wechat-group",
+      "enterprise-wechat"
+    ],
+    "compliance": {
+      "cbirc": true,
+      "p0Check": true,
+      "p1Check": true
+    }
+  }
+}

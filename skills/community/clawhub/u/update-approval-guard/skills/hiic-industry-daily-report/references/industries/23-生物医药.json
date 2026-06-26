@@ -1,0 +1,35 @@
+{
+  "id": "23",
+  "name": "生物医药",
+  "category": "未来产业",
+  "keywords": [
+    "生物医药",
+    "创新药",
+    "新药研发",
+    "基因治疗",
+    "抗体药物",
+    "临床试验"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🧬",
+    "maxDescriptionLength": 200
+  }
+}

@@ -1,35 +1,87 @@
 ---
-name: "summarize"
-description: "Indexed by skills.sh from steipete/clawdis"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "steipete"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/steipete/clawdis/summarize"
-sourceUrl: "https://skills.sh/steipete/clawdis/summarize"
+name: summarize
+description: "Summarize or transcribe URLs, YouTube/videos, podcasts, articles, transcripts, PDFs, and local files."
+homepage: https://summarize.sh
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🧾",
+        "requires": { "bins": ["summarize"] },
+        "install":
+          [
+            {
+              "id": "brew",
+              "kind": "brew",
+              "formula": "steipete/tap/summarize",
+              "bins": ["summarize"],
+              "label": "Install summarize (brew)",
+            },
+          ],
+      },
+  }
 ---
 
-# summarize
+# Summarize
 
-> Indexed by skills.sh from steipete/clawdis
+Fast CLI to summarize URLs, local files, and YouTube links.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** steipete
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/steipete/clawdis/summarize`
-- **Source URL:** [https://skills.sh/steipete/clawdis/summarize](https://skills.sh/steipete/clawdis/summarize)
+## When to use (trigger phrases)
 
-## Overview
+Use this skill immediately when the user asks any of:
 
+- "use summarize.sh"
+- "what's this link/video about?"
+- "summarize this URL/article"
+- "transcribe this YouTube/video" (best-effort transcript extraction; no `yt-dlp` needed)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick start
+
 ```bash
-hermes skills install skills-sh/steipete/clawdis/summarize
+summarize "https://example.com"
+summarize "/path/to/file.pdf"
+summarize "https://youtu.be/dQw4w9WgXcQ" --youtube auto
 ```
+
+## YouTube: summary vs transcript
+
+Best-effort transcript (URLs only):
+
+```bash
+summarize "https://youtu.be/dQw4w9WgXcQ" --youtube auto --extract
+```
+
+If the user asked for a transcript but it's huge, return a tight summary first, then ask which section/time range to expand.
+
+## Model + keys
+
+Set the API key for your chosen provider:
+
+- OpenAI: `OPENAI_API_KEY`
+- Anthropic: `ANTHROPIC_API_KEY`
+- xAI: `XAI_API_KEY`
+- Google: `GEMINI_API_KEY` (aliases: `GOOGLE_GENERATIVE_AI_API_KEY`, `GOOGLE_API_KEY`)
+
+Default model is `auto`; config may choose the provider/model.
+
+## Useful flags
+
+- `--length short|medium|long|xl|xxl|<chars>`
+- `--max-output-tokens <count>`
+- `--extract` (print extracted content, no LLM summary)
+- `--json` (machine readable)
+- `--firecrawl auto|off|always` (fallback extraction)
+- `--youtube auto` (Apify fallback if `APIFY_API_TOKEN` set)
+
+## Config
+
+Optional config file: `~/.summarize/config.json`
+
+```json
+{ "model": "openai/gpt-5.2" }
+```
+
+Optional services:
+
+- `FIRECRAWL_API_KEY` for blocked sites
+- `APIFY_API_TOKEN` for YouTube fallback

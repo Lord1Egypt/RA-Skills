@@ -1,0 +1,9 @@
+{
+  "name": "super-dev-skills",
+  "description": "全栈之神·自进化零缺陷交付套件 — 需求深访+共享语言+TDD+感官级UI/UX验证+供应链安全门禁+分层记忆系统+技能自我进化。内化 agent-skills 精华，支持 /spec /build /test /review /ship 桥接。",
+  "homepage": {
+    "url": "https://github.com/WeedFire",
+    "type": "github"
+  },
+  "license": "MIT"
+}

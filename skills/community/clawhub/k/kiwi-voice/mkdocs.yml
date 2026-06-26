@@ -1,0 +1,109 @@
+site_name: Kiwi Voice
+site_description: Open-source voice interface for AI agents — wake word, speaker ID, voice security, streaming TTS
+site_url: https://docs.kiwi-voice.com
+repo_url: https://github.com/ekleziast/kiwi-voice
+repo_name: ekleziast/kiwi-voice
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/microphone
+  favicon: assets/favicon.svg
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ekleziast/kiwi-voice
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Configuration: getting-started/configuration.md
+    - First Run: getting-started/first-run.md
+  - Features:
+    - Wake Word: features/wake-word.md
+    - Speaker ID: features/speaker-id.md
+    - Voice Security: features/voice-security.md
+    - STT Engines: features/stt-engines.md
+    - TTS Providers: features/tts-providers.md
+    - Streaming & Barge-In: features/streaming-tts.md
+    - Personalities: features/souls.md
+    - Multi-Language: features/multilanguage.md
+    - Web Dashboard: features/web-dashboard.md
+    - Web Microphone: features/web-microphone.md
+    - Home Assistant: features/home-assistant.md
+  - API Reference:
+    - REST API: api/rest.md
+    - WebSocket Events: api/websocket.md
+  - Deployment:
+    - Local Setup: deployment/local.md
+    - Docker: deployment/docker.md
+    - systemd Service: deployment/systemd.md
+    - Reverse Proxy: deployment/reverse-proxy.md
+    - GPU & Apple Silicon: deployment/gpu.md
+  - Development:
+    - Architecture: development/architecture.md
+    - Code Patterns: development/code-patterns.md
+    - Contributing: development/contributing.md

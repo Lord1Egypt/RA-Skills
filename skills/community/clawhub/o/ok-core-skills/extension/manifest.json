@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "OK Bridge",
+  "version": "1.0.0",
+  "description": "OK.com 自动化 Bridge - 连接本地 Python CLI",
+  "permissions": [
+    "tabs",
+    "cookies",
+    "scripting",
+    "alarms",
+    "debugger"
+  ],
+  "host_permissions": [
+    "https://*.ok.com/*",
+    "https://*pub.ok.com/*",
+    "ws://localhost/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.ok.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "title": "暗夜追凶",
+    "genre": "悬疑推理",
+    "total_chapters": 12,
+    "current_chapter": 1,
+    "created_at": "2024-01-01",
+    "updated_at": "2024-01-01"
+  },
+  "characters": [
+    {
+      "id": "chen_ming",
+      "name": "陈明",
+      "role": "主角",
+      "traits": ["前刑警", "PTSD患者", "酗酒", "执着"],
+      "background": "因一次任务失误被停职，妻子离他而去，独自抚养女儿",
+      "key_events": [],
+      "current_status": "被停职调查，独自寻找女儿",
+      "relationships": {}
+    }
+  ],
+  "timeline": [],
+  "locations": [],
+  "mysteries": [
+    {
+      "id": "daughter_missing",
+      "title": "女儿失踪案",
+      "description": "陈明女儿在雨夜失踪",
+      "clue_chapters": [],
+      "solved": false,
+      "resolution_chapter": null
+    }
+  ],
+  "themes": ["正义与复仇", "父爱的代价", "真相的代价"],
+  "notes": ""
+}

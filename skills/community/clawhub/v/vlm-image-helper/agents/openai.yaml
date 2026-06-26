@@ -1,0 +1,4 @@
+interface:
+  display_name: "VLM Image Helper"
+  short_description: "Help VLMs see image details more clearly"
+  default_prompt: "Use $vlm-image-helper to help a vision model inspect an image more clearly before a second pass."

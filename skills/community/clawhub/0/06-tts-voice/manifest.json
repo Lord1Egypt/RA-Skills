@@ -1,0 +1,28 @@
+{
+  "namespace": "user",
+  "name": "06-tts-voice",
+  "displayName": "06 TTS Voice",
+  "description": "台词生成配音",
+  "version": "1.0.0",
+  "input": {
+    "type": "object",
+    "properties": {
+      "dialogue": { "type": "string" }
+    },
+    "required": ["dialogue"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "audio_url": { "type": "string" }
+    },
+    "required": ["audio_url"]
+  },
+  "runtime": "nodejs",
+  "entry": "skill.js",
+  "environment": {
+    "API_KEY": {},
+    "API_BASE": {},
+    "MODEL_NAME": {}
+  }
+}

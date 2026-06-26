@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Travel Map - Optimized UI</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            height: 100%;
+            /* Essential clarity settings */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow: hidden;
+        }
+        .header {
+            display: none; /* Hide header to maximize map space */
+        }
+        #container { 
+            width: 100%; 
+            height: 100vh; /* Full viewport height for maximum map space */
+            /* Critical for map clarity */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0); /* Force GPU acceleration */
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* Left panel container */
+        .left-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            border: 1px solid rgba(233, 236, 239, 0.8);
+        }
+        
+        .panel-section {
+            margin-bottom: 20px;
+        }
+        
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4a9eff;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        /* Search section */
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: border-color 0.2s ease;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #4a9eff;
+            box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+        }
+        .search-box button {
+            padding: 10px 16px;
+            background: #4a9eff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            min-width: 70px;
+        }
+        .search-box button:hover {
+            background: #3a8eee;
+            transform: translateY(-1px);
+        }
+        
+        .results {
+            max-height: 180px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: none;
+            background: white;
+        }
+        .result-item {
+            padding: 12px;
+            border-bottom: 1px solid #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-item:hover {
+            background: #f0f8ff;
+            border-left: 2px solid #4a9eff;
+            padding-left: 10px;
+        }
+        .result-item h4 {
+            margin: 0 0 4px 0;
+            color: #212529;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .result-item p {
+            margin: 0 0 2px 0;
+            font-size: 11px;
+            color: #6c757d;
+        }
+        
+        /* POI List section */
+        .poi-list-container {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .poi-item {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+            font-size: 12px;
+            padding: 6px;
+            cursor: move;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .poi-item:hover {
+            background: #f8f9fa;
+            border-color: #4a9eff;
+        }
+        .poi-number {
+            width: 24px;
+            height: 24px;
+            background: #f59e0b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .poi-name {
+            color: #212529;
+            flex: 1;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .poi-actions {
+            display: flex;
+            gap: 4px;
+            margin-left: 6px;
+        }
+        .move-btn {
+            width: 26px;
+            height: 26px;
+            padding: 0;
+            font-size: 14px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+        .move-btn:hover {
+            background: #4a9eff;
+            transform: scale(1.05);
+        }
+        .move-btn:disabled {
+            background: #adb5bd;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .remove-btn {
+            width: 26px;
+            height: 26px;
+            padding: 0;
+            font-size: 16px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+        .remove-btn:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+        
+        /* Save button */
+        .save-section {
+            text-align: center;
+            padding-top: 12px;
+            border-top: 2px solid #e9ecef;
+        }
+        .save-btn {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .save-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* North indicator */
+        .north-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #4a9eff;
+            border: 1px solid #dee2e6;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Scrollbar styling */
+        .left-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        .left-panel::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+        .left-panel::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 3px;
+        }
+        .left-panel::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0;
+        }
+        
+        /* Critical: Ensure high DPI support */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            #container {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+        
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .left-panel {
+                width: 280px;
+                top: 10px;
+                left: 10px;
+                max-height: calc(100vh - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Map container takes full screen -->
+    <div id="container"></div>
+    <div class="north-indicator">↑ North</div>
+    
+    <!-- Left panel with all controls -->
+    <div class="left-panel">
+        <!-- Search Section -->
+        <div class="panel-section">
+            <div class="panel-title">🔍 搜索景点</div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索景点名称">
+                <button onclick="searchPOI()">搜索</button>
+            </div>
+            <div id="searchError" class="error" style="display:none; color: #dc3545; font-size: 11px; margin-top: 6px;"></div>
+            <div class="results" id="searchResults"></div>
+        </div>
+        
+        <!-- POI List Section -->
+        <div class="panel-section">
+            <div class="panel-title">📍 景点顺序</div>
+            <div class="poi-list-container">
+                <div id="poiList">
+                    <!-- POIs will be added here dynamically -->
+                </div>
+            </div>
+            <div style="font-size: 11px; color: #6c757d; margin-top: 8px;">
+                💡 提示: 拖拽或使用箭头按钮调整顺序
+            </div>
+        </div>
+        
+        <!-- Date Range Section -->
+        <div class="panel-section">
+            <div class="panel-title">📅 旅行日期</div>
+            <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                <input type="date" id="checkinDate" style="flex: 1; padding: 6px 8px; border: 2px solid #dee2e6; border-radius: 4px; font-size: 11px;">
+                <span style="align-self: center; font-size: 12px; color: #6c757d;">至</span>
+                <input type="date" id="checkoutDate" style="flex: 1; padding: 6px 8px; border: 2px solid #dee2e6; border-radius: 4px; font-size: 11px;">
+            </div>
+            <button id="hotelSearchBtn" onclick="saveWithHotelRecommendations()" style="width: 100%; padding: 8px; background: #4a9eff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-top: 4px;">搜酒店</button>
+            <div style="font-size: 10px; color: #6c757d; margin-top: 6px;">
+                💡 默认为今天入住，住1晚
+            </div>
+        </div>
+        
+        <!-- Notification Area -->
+        <div id="notificationArea" style="margin-bottom: 8px; min-height: 20px; font-size: 12px; color: #e74c3c; text-align: center; display: none;"></div>
+        
+        <!-- Hotel Results Section -->
+        <div class="panel-section" id="hotelResultsSection" style="display: none;">
+            <div class="panel-title">🏨 推荐酒店</div>
+            <div id="hotelResultsList" style="max-height: 200px; overflow-y: auto;">
+                <!-- Hotel results will be displayed here -->
+            </div>
+            <div style="font-size: 10px; color: #6c757d; margin-top: 8px;">
+                💡 点击酒店查看地图位置和预订详情
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://webapi.amap.com/maps?v=2.0&key=88628414733cf2ccb7ce2f94cfd680ef"></script>
+    <script>
+        // Generate unique map ID based on POI names to isolate localStorage
+        function generateMapId(pois) {
+            if (!pois || pois.length === 0) return 'default-map';
+            const poiNames = pois.map(poi => poi.name).join('-');
+            // Create a simple hash of the POI names
+            let hash = 0;
+            for (let i = 0; i < poiNames.length; i++) {
+                const char = poiNames.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+            return 'travelMap_' + Math.abs(hash).toString(36);
+        }
+
+        // Initialize map with ULTIMATE CLARITY configuration
+        var map = new AMap.Map('container', {
+            zoom: 17,
+            center: [FIRST_POI_LNG, FIRST_POI_LAT], // Will be replaced with first POI coordinates
+            viewMode: '2D',
+            pitch: 0,
+            rotation: 0,
+            layers: [
+                new AMap.TileLayer({
+                    detectRetina: true
+                }),
+                new AMap.TileLayer.RoadNet({
+                    opacity: 1.0
+                })
+            ],
+            mapStyle: 'normal',
+            features: ['bg', 'road', 'point'],
+            resizeEnable: true,
+            lang: 'zh_cn',
+            showLabel: true,
+            labelzIndex: 100
+        });
+        
+        // Store all markers and POIs
+        var markers = [];
+        var poiList = [
+            // POI_LIST_PLACEHOLDER - will be replaced with actual POIs
+        ];
+        
+        // Generate unique map ID for localStorage isolation
+        var mapId = generateMapId(poiList);
+        console.log('Using unique map ID:', mapId);
+        
+        // Function to load data from localStorage if available (with unique map ID)
+        function loadFromLocalStorage() {
+            try {
+                const savedData = localStorage.getItem(mapId);
+                if (savedData) {
+                    const parsedData = JSON.parse(savedData);
+                    
+                    // Handle both old format (array) and new format (object)
+                    if (Array.isArray(parsedData)) {
+                        // Old format - just POIs
+                        console.log('Loaded POIs from localStorage (old format):', parsedData);
+                        return { pois: parsedData, checkin: null, checkout: null };
+                    } else if (parsedData.pois && Array.isArray(parsedData.pois)) {
+                        // New format - POIs + dates
+                        console.log('Loaded data from localStorage (new format):', parsedData);
+                        
+                        // Set date inputs if available
+                        if (parsedData.checkin && parsedData.checkout) {
+                            document.getElementById('checkinDate').value = parsedData.checkin;
+                            document.getElementById('checkoutDate').value = parsedData.checkout;
+                        }
+                        
+                        return parsedData;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading from localStorage:', error);
+            }
+            return null;
+        }
+        
+        // Add initial markers
+        function addInitialMarkers() {
+            // Check if we have saved data in localStorage
+            const savedData = loadFromLocalStorage();
+            if (savedData) {
+                poiList = savedData.pois || [];
+                console.log('Using saved data from localStorage for map:', mapId);
+            }
+            
+            if (poiList.length > 0) {
+                // Set map center to first POI if available
+                map.setCenter(poiList[0].location);
+            }
+            
+            poiList.forEach(function(poi, index) {
+                addMarkerForPOI(poi, index + 1);
+            });
+            updatePOIList();
+        }
+        
+        // Function to add marker for POI
+        function addMarkerForPOI(poi, number) {
+            var marker = new AMap.Marker({
+                position: poi.location,
+                content: `<div style="width:28px;height:28px;background:#f59e0b;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;text-shadow:0 1px 1px rgba(0,0,0,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.4);">${number}</div>`,
+                offset: new AMap.Pixel(-14, -14),
+                draggable: true,
+                zIndex: 100
+            });
+            
+            // Create info window
+            var infoContent = `<div style="padding:14px; min-width:220px; background:white; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+                <h4 style="margin:0 0 8px 0; color:#f59e0b; font-size:15px; font-weight:700;">${number}. ${poi.name}</h4>
+                <p style="margin:0 0 6px 0; font-size:12px; color:#495057;">${poi.address || ''}</p>`;
+            if (poi.rating) {
+                infoContent += `<p style="margin:0 0 4px 0; font-size:11px; color:#4a9eff; font-weight:600;">评分: ${poi.rating} ⭐</p>`;
+            }
+            if (poi.id) {
+                infoContent += `<p style="margin:0; font-size:10px; color:#6c757d;">POI ID: ${poi.id}</p>`;
+            }
+            infoContent += `</div>`;
+            
+            var infoWindow = new AMap.InfoWindow({
+                content: infoContent,
+                autoMove: true,
+                offset: new AMap.Pixel(0, -10)
+            });
+            
+            // Click to open info window
+            marker.on('click', function() {
+                infoWindow.open(map, marker.getPosition());
+            });
+            
+            // Update position when dragged
+            marker.on('dragend', function(e) {
+                var lng = e.lnglat.getLng();
+                var lat = e.lnglat.getLat();
+                
+                // Find the corresponding POI
+                var markerIndex = markers.findIndex(m => m.marker === marker);
+                if (markerIndex !== -1) {
+                    poiList[markerIndex].location = [lng, lat];
+                    updatePOIList();
+                }
+            });
+            
+            // Add to map
+            map.add(marker);
+            markers.push({ marker: marker, poi: poi });
+        }
+        
+        // Function to update POI list display
+        function updatePOIList() {
+            var poiListDiv = document.getElementById('poiList');
+            var html = '';
+            
+            poiList.forEach(function(poi, index) {
+                // Disable up button for first item, down button for last item
+                var canMoveUp = index > 0;
+                var canMoveDown = index < poiList.length - 1;
+                
+                html += `
+                    <div class="poi-item" draggable="true" 
+                         ondragstart="dragStart(event)" 
+                         ondragover="dragOver(event)" 
+                         ondrop="drop(event)" 
+                         ondragenter="dragEnter(event)"
+                         ondragleave="dragLeave(event)"
+                         data-index="${index}">
+                        <div class="poi-number">${index + 1}</div>
+                        <div class="poi-name">${poi.name}</div>
+                        <div class="poi-actions">
+                            <button class="move-btn" ${!canMoveUp ? 'disabled' : ''} onclick="movePOI(${index}, -1)" title="上移">
+                                ↑
+                            </button>
+                            <button class="move-btn" ${!canMoveDown ? 'disabled' : ''} onclick="movePOI(${index}, 1)" title="下移">
+                                ↓
+                            </button>
+                            <button class="remove-btn" onclick="removePOI(${index})" title="删除">
+                                ×
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            poiListDiv.innerHTML = html;
+            
+            // Update marker numbers
+            markers.forEach(function(markerObj, index) {
+                if (index < poiList.length) {
+                    var newNumber = index + 1;
+                    markerObj.marker.setContent(`<div style="width:28px;height:28px;background:#f59e0b;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;text-shadow:0 1px 1px rgba(0,0,0,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.4);">${newNumber}</div>`);
+                }
+            });
+            
+            // Redraw route line
+            drawRouteLine();
+        }
+        
+        // Enhanced drag and drop functions
+        let dragSourceIndex = null;
+        
+        function dragStart(e) {
+            dragSourceIndex = parseInt(e.target.closest('.poi-item').dataset.index);
+            e.dataTransfer.setData('text/plain', dragSourceIndex);
+            e.target.closest('.poi-item').classList.add('dragging');
+        }
+        
+        function dragEnter(e) {
+            e.preventDefault();
+            const targetItem = e.target.closest('.poi-item');
+            if (targetItem && parseInt(targetItem.dataset.index) !== dragSourceIndex) {
+                targetItem.classList.add('drag-over');
+            }
+        }
+        
+        function dragLeave(e) {
+            const targetItem = e.target.closest('.poi-item');
+            if (targetItem) {
+                targetItem.classList.remove('drag-over');
+            }
+        }
+        
+        function dragOver(e) {
+            e.preventDefault();
+        }
+        
+        function drop(e) {
+            e.preventDefault();
+            const targetItem = e.target.closest('.poi-item');
+            if (!targetItem) return;
+            
+            const sourceIndex = dragSourceIndex;
+            const targetIndex = parseInt(targetItem.dataset.index);
+            
+            // Clean up drag classes
+            document.querySelectorAll('.poi-item').forEach(item => {
+                item.classList.remove('dragging', 'drag-over');
+            });
+            
+            if (!isNaN(sourceIndex) && !isNaN(targetIndex) && sourceIndex !== targetIndex) {
+                // Reorder POI list
+                const temp = poiList[sourceIndex];
+                poiList.splice(sourceIndex, 1);
+                poiList.splice(targetIndex, 0, temp);
+                
+                // Reorder markers
+                const tempMarker = markers[sourceIndex];
+                markers.splice(sourceIndex, 1);
+                markers.splice(targetIndex, 0, tempMarker);
+                
+                updatePOIList();
+            }
+            
+            dragSourceIndex = null;
+        }
+        
+        // New function for arrow button movement
+        function movePOI(currentIndex, direction) {
+            const newIndex = currentIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < poiList.length) {
+                // Reorder POI list
+                const temp = poiList[currentIndex];
+                poiList.splice(currentIndex, 1);
+                poiList.splice(newIndex, 0, temp);
+                
+                // Reorder markers
+                const tempMarker = markers[currentIndex];
+                markers.splice(currentIndex, 1);
+                markers.splice(newIndex, 0, tempMarker);
+                
+                updatePOIList();
+            }
+        }
+        
+        // Function to remove POI
+        function removePOI(index) {
+            if (poiList.length <= 1) {
+                showNotification('至少需要保留一个景点');
+                return;
+            }
+            
+            // Remove marker from map
+            map.remove(markers[index].marker);
+            
+            // Remove from arrays
+            poiList.splice(index, 1);
+            markers.splice(index, 1);
+            
+            updatePOIList();
+        }
+        
+        // Function to center map on POI
+        function centerOnPOI(index) {
+            map.setCenter(poiList[index].location);
+            map.setZoom(17);
+        }
+        
+        // Function to draw route line
+        function drawRouteLine() {
+            // Remove existing polyline if any
+            if (window.routePolyline) {
+                map.remove(window.routePolyline);
+            }
+            
+            if (poiList.length > 1) {
+                const routePath = poiList.map(poi => poi.location);
+                window.routePolyline = new AMap.Polyline({
+                    path: routePath,
+                    strokeColor: "#4a9eff",
+                    strokeWeight: 4,
+                    strokeOpacity: 0.95,
+                    showDir: true,
+                    dirColor: "#ff6b35",
+                    dirWidth: 8,
+                    zIndex: 50,
+                    lineJoin: 'round',
+                    lineCap: 'round'
+                });
+                map.add(window.routePolyline);
+            }
+        }
+        
+        // Function to search POI using local proxy
+        function searchPOI() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                showNotification('请输入搜索关键词');
+                return;
+            }
+            
+            // Hide error
+            document.getElementById('searchError').style.display = 'none';
+            
+            // Show loading state
+            const resultsDiv = document.getElementById('searchResults');
+            resultsDiv.innerHTML = '<div style="padding:12px; text-align:center; color:#6c757d; font-size:12px;">正在搜索高德地图...</div>';
+            resultsDiv.style.display = 'block';
+            
+            // Use local proxy API - city parameter will be set dynamically
+            fetch(`http://localhost:8769/api/search?q=${encodeURIComponent(query)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    displaySearchResults(data.pois, query);
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                    const errorDiv = document.getElementById('searchError');
+                    errorDiv.innerHTML = `搜索失败: ${error.message}`;
+                    errorDiv.style.display = 'block';
+                    resultsDiv.innerHTML = '<div style="padding:12px; text-align:center; color:#dc3545; font-size:12px;">搜索失败</div>';
+                });
+        }
+        
+        // Function to display search results
+        function displaySearchResults(pois, query) {
+            const resultsDiv = document.getElementById('searchResults');
+            
+            if (!pois || pois.length === 0) {
+                resultsDiv.innerHTML = '<div style="padding:12px; text-align:center; color:#6c757d; font-size:12px;">未找到结果</div>';
+                return;
+            }
+            
+            // Filter POIs with valid locations
+            const validPois = pois.filter(poi => poi.location && poi.location.split(',').length === 2);
+            
+            if (validPois.length === 0) {
+                resultsDiv.innerHTML = '<div style="padding:12px; text-align:center; color:#6c757d; font-size:12px;">未找到有效坐标</div>';
+                return;
+            }
+            
+            let html = '';
+            
+            validPois.forEach((poi, index) => {
+                const coords = poi.location.split(',');
+                const lng = parseFloat(coords[0]);
+                const lat = parseFloat(coords[1]);
+                const name = poi.name || '未命名位置';
+                const address = poi.address || '无地址';
+                const rating = poi.rating || '';
+                
+                html += `
+                    <div class="result-item" onclick="selectSearchResult(${lng}, ${lat}, '${name.replace(/'/g, "\\'")}', '${address.replace(/'/g, "\\'")}', '${rating}')">
+                        <h4>${name}</h4>
+                        <p>${address} ${rating ? '⭐' + rating : ''}</p>
+                    </div>
+                `;
+            });
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        // Function to select search result
+        function selectSearchResult(lng, lat, name, address, rating) {
+            // Add as new POI at the end
+            const newPOI = {
+                name: name,
+                location: [lng, lat],
+                address: address,
+                rating: rating,
+                id: 'search_result_' + Date.now()
+            };
+            
+            poiList.push(newPOI);
+            addMarkerForPOI(newPOI, poiList.length);
+            updatePOIList();
+            
+            // Hide search results
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('searchInput').value = '';
+        }
+        
+        // Function to get destination name for hotel search
+        function getDestinationName() {
+            if (poiList.length === 0) {
+                return null;
+            }
+            
+            // Get the last POI (destination)
+            const destinationPoi = poiList[poiList.length - 1];
+            const poiName = destinationPoi.name;
+            
+            // FlyAI works better with city names rather than specific attractions
+            // Define landmark-to-city mappings for major Chinese cities
+            const cityLandmarks = {
+                '北京': ['故宫', '天安门', '鸟巢', '水立方', '国家体育场', '国家游泳中心', 
+                        '颐和园', '圆明园', '长城', '王府井', '西单', '三里屯', '后海', '南锣鼓巷', '798'],
+                '上海': ['外滩', '东方明珠', '豫园', '南京路', '陆家嘴', '迪士尼', '田子坊', '新天地'],
+                '广州': ['广州塔', '珠江', '上下九', '北京路', '长隆', '白云山', '沙面'],
+                '深圳': ['世界之窗', '欢乐谷', '大梅沙', '小梅沙', '华侨城', '莲花山', '深圳湾'],
+                '杭州': ['西湖', '灵隐寺', '雷峰塔', '宋城', '千岛湖', '西溪湿地'],
+                '成都': ['宽窄巷子', '锦里', '春熙路', '大熊猫', '青城山', '都江堰'],
+                '重庆': ['解放碑', '洪崖洞', '磁器口', '朝天门', '南山', '武隆', '白象居', '十八梯'],
+                '西安': ['兵马俑', '大雁塔', '钟楼', '回民街', '华清池', '城墙'],
+                '三亚': ['天涯海角', '亚龙湾', '蜈支洲岛', '南山', '大小洞天', '椰梦长廊']
+            };
+            
+            // Check each city's landmarks
+            for (const [city, landmarks] of Object.entries(cityLandmarks)) {
+                if (landmarks.some(landmark => poiName.includes(landmark) || 
+                                          (destinationPoi.address && destinationPoi.address.includes(landmark)))) {
+                    return city;
+                }
+            }
+            
+            // Try to detect city from address
+            const cities = ['北京', '上海', '广州', '深圳', '杭州', '成都', '重庆', '西安', '三亚'];
+            if (destinationPoi.address) {
+                for (const city of cities) {
+                    if (destinationPoi.address.includes(city)) {
+                        return city;
+                    }
+                }
+            }
+            
+            // Default fallback to original POI name
+            return poiName;
+        }
+        
+        // Store hotel markers
+        var hotelMarkers = [];
+        
+        // Function to clear existing hotel markers
+        function clearHotelMarkers() {
+            hotelMarkers.forEach(function(markerObj) {
+                map.remove(markerObj.marker);
+            });
+            hotelMarkers = [];
+        }
+        
+        // Function to add hotel marker to map with mainPic
+        function addHotelMarker(hotel, index) {
+            // Use mainPic if available, otherwise use default hotel icon
+            let markerContent;
+            if (hotel.mainPic && hotel.mainPic.trim() !== '') {
+                // Use hotel image as marker
+                markerContent = `<div style="width:32px;height:32px;border-radius:4px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.4);">
+                    <img src="${hotel.mainPic}" style="width:100%;height:100%;object-fit:cover;" alt="酒店图片">
+                </div>`;
+            } else {
+                // Use default hotel icon
+                markerContent = `<div style="width:24px;height:24px;background:#6366f1;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px;text-shadow:0 1px 1px rgba(0,0,0,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.4);">🏨</div>`;
+            }
+            
+            var marker = new AMap.Marker({
+                position: [parseFloat(hotel.longitude), parseFloat(hotel.latitude)],
+                content: markerContent,
+                offset: new AMap.Pixel(-16, -16),
+                zIndex: 90
+            });
+            
+            // Create hotel info window with mainPic
+            var hotelInfo = `<div style="padding:12px; min-width:200px; background:white; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+                ${hotel.mainPic ? `<img src="${hotel.mainPic}" style="width:100%; height:120px; object-fit:cover; border-radius:6px; margin-bottom:8px;" alt="酒店图片">` : ''}
+                <h4 style="margin:0 0 6px 0; color:#6366f1; font-size:14px; font-weight:700;">🏨 ${hotel.name}</h4>
+                <p style="margin:0 0 4px 0; font-size:11px; color:#495057;">${hotel.address}</p>
+                <p style="margin:0 0 4px 0; font-size:12px; color:#4a9eff; font-weight:600;">${hotel.price}</p>
+                <p style="margin:0; font-size:10px; color:#6c757d;">星级: ${hotel.star || 'N/A'}</p>
+                <div style="margin-top:8px;">
+                    <a href="${hotel.detailUrl}" target="_blank" style="display:inline-block; padding:6px 12px; background:#4a9eff; color:white; text-decoration:none; border-radius:4px; font-size:11px; font-weight:600;">查看详情</a>
+                </div>
+            </div>`;
+            
+            var infoWindow = new AMap.InfoWindow({
+                content: hotelInfo,
+                autoMove: true,
+                offset: new AMap.Pixel(0, -10)
+            });
+            
+            marker.on('click', function() {
+                infoWindow.open(map, marker.getPosition());
+            });
+            
+            map.add(marker);
+            hotelMarkers.push({ marker: marker, hotel: hotel });
+        }
+        
+        // Function to calculate distance between two points
+        function calculateDistance(fromLat, fromLng, toLat, toLng) {
+            // Use AMap's distance calculation
+            const from = new AMap.LngLat(fromLng, fromLat);
+            const to = new AMap.LngLat(toLng, toLat);
+            const distance = Math.round(from.distance(to)); // Distance in meters
+            
+            if (distance < 1000) {
+                return distance + 'm';
+            } else {
+                return (distance / 1000).toFixed(1) + 'km';
+            }
+        }
+        
+        // Function to display hotel in list with distance
+        function displayHotelInList(hotel, index, destinationPoi) {
+            const hotelItem = document.createElement('div');
+            hotelItem.className = 'poi-item';
+            hotelItem.style.cursor = 'pointer';
+            hotelItem.style.backgroundColor = '#f8fafc';
+            hotelItem.style.borderLeft = '3px solid #6366f1';
+            
+            // Calculate distance from destination to hotel
+            let distanceText = '';
+            if (destinationPoi && destinationPoi.location) {
+                const destLat = destinationPoi.location[1];
+                const destLng = destinationPoi.location[0];
+                const hotelLat = parseFloat(hotel.latitude);
+                const hotelLng = parseFloat(hotel.longitude);
+                distanceText = calculateDistance(destLat, destLng, hotelLat, hotelLng);
+            }
+            
+            hotelItem.innerHTML = `
+                <div class="poi-number" style="background:#6366f1;">🏨</div>
+                <div class="poi-name" style="color:#6366f1; font-size:11px;">
+                    <strong>${hotel.name}</strong><br>
+                    <span style="font-size:10px; color:#64748b;">${hotel.price} · ${hotel.star || 'N/A'}${distanceText ? ' · ' + distanceText : ''}</span>
+                </div>
+            `;
+            
+            // Add click event to center map on hotel
+            hotelItem.onclick = function() {
+                const hotelPosition = [parseFloat(hotel.longitude), parseFloat(hotel.latitude)];
+                map.setCenter(hotelPosition);
+                map.setZoom(16);
+                
+                // Find and open the corresponding marker's info window
+                const hotelMarker = hotelMarkers.find(m => 
+                    Math.abs(m.marker.getPosition().getLng() - parseFloat(hotel.longitude)) < 0.0001 &&
+                    Math.abs(m.marker.getPosition().getLat() - parseFloat(hotel.latitude)) < 0.0001
+                );
+                
+                if (hotelMarker) {
+                    // Create and open info window with mainPic
+                    const hotelInfo = `<div style="padding:12px; min-width:200px; background:white; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+                        ${hotel.mainPic ? `<img src="${hotel.mainPic}" style="width:100%; height:120px; object-fit:cover; border-radius:6px; margin-bottom:8px;" alt="酒店图片">` : ''}
+                        <h4 style="margin:0 0 6px 0; color:#6366f1; font-size:14px; font-weight:700;">🏨 ${hotel.name}</h4>
+                        <p style="margin:0 0 4px 0; font-size:11px; color:#495057;">${hotel.address}</p>
+                        <p style="margin:0 0 4px 0; font-size:12px; color:#4a9eff; font-weight:600;">${hotel.price}</p>
+                        <p style="margin:0; font-size:10px; color:#6c757d;">星级: ${hotel.star || 'N/A'}</p>
+                        ${distanceText ? `<p style="margin:0; font-size:10px; color:#6c757d;">距离终点: ${distanceText}</p>` : ''}
+                        <div style="margin-top:8px;">
+                            <a href="${hotel.detailUrl}" target="_blank" style="display:inline-block; padding:6px 12px; background:#4a9eff; color:white; text-decoration:none; border-radius:4px; font-size:11px; font-weight:600;">查看详情</a>
+                        </div>
+                    </div>`;
+                    
+                    const infoWindow = new AMap.InfoWindow({
+                        content: hotelInfo,
+                        autoMove: true,
+                        offset: new AMap.Pixel(0, -10)
+                    });
+                    
+                    infoWindow.open(map, hotelMarker.marker.getPosition());
+                }
+            };
+            
+            return hotelItem;
+        }
+        
+        // Store destination POI for distance calculation
+        var currentDestinationPoi = null;
+        
+        // Function to calculate distance for sorting
+        function getHotelDistance(hotel, destinationPoi) {
+            if (!destinationPoi || !destinationPoi.location || !hotel.latitude || !hotel.longitude) {
+                return Infinity; // Put hotels without distance at the end
+            }
+            
+            const destLat = destinationPoi.location[1];
+            const destLng = destinationPoi.location[0];
+            const hotelLat = parseFloat(hotel.latitude);
+            const hotelLng = parseFloat(hotel.longitude);
+            
+            const from = new AMap.LngLat(destLng, destLat);
+            const to = new AMap.LngLat(hotelLng, hotelLat);
+            return from.distance(to); // Distance in meters
+        }
+        
+        // Function to display hotels on map AND in list (sorted by distance)
+        function displayHotelsOnMapAndList(hotels, destinationPoi) {
+            // Clear existing hotel markers
+            clearHotelMarkers();
+            
+            const hotelResultsSection = document.getElementById('hotelResultsSection');
+            const hotelResultsList = document.getElementById('hotelResultsList');
+            
+            if (!hotels || hotels.length === 0) {
+                hotelResultsSection.style.display = 'none';
+                showNotification('未找到相关酒店');
+                return;
+            }
+            
+            // Store destination POI for reference
+            currentDestinationPoi = destinationPoi;
+            
+            // Sort hotels by distance from destination (closest first)
+            const sortedHotels = [...hotels].sort((a, b) => {
+                const distA = getHotelDistance(a, destinationPoi);
+                const distB = getHotelDistance(b, destinationPoi);
+                return distA - distB;
+            });
+            
+            // Clear hotel list
+            hotelResultsList.innerHTML = '';
+            
+            // Add hotel markers to map and items to list (show top 5 closest)
+            const displayHotels = sortedHotels.slice(0, 5);
+            displayHotels.forEach(function(hotel, index) {
+                // Add to map
+                addHotelMarker(hotel, index + 1);
+                
+                // Add to list with distance calculation
+                const hotelItem = displayHotelInList(hotel, index + 1, destinationPoi);
+                hotelResultsList.appendChild(hotelItem);
+            });
+            
+            // Show hotel results section
+            hotelResultsSection.style.display = 'block';
+            
+            // Show success message
+            showNotification(`已找到 ${hotels.length} 家酒店！地图和列表中显示了前5家酒店。`, false);
+        }
+        
+        // Function to get selected dates
+        function getSelectedDates() {
+            const checkin = document.getElementById('checkinDate').value;
+            const checkout = document.getElementById('checkoutDate').value;
+            
+            if (!checkin || !checkout) {
+                // Return default dates if not set
+                const today = new Date();
+                const defaultCheckin = today.toISOString().split('T')[0];
+                const defaultCheckout = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
+                return { checkin: defaultCheckin, checkout: defaultCheckout };
+            }
+            
+            return { checkin, checkout };
+        }
+        
+        // Function to validate date range
+        function validateDates(checkin, checkout) {
+            if (!checkin || !checkout) {
+                return '请选择入住和退房日期';
+            }
+            
+            const checkinDate = new Date(checkin);
+            const checkoutDate = new Date(checkout);
+            
+            if (checkoutDate <= checkinDate) {
+                return '退房日期必须晚于入住日期';
+            }
+            
+            const maxStay = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+            if (checkoutDate - checkinDate > maxStay) {
+                return '住宿时间不能超过30天';
+            }
+            
+            return null;
+        }
+        
+        // Function to save with hotel recommendations (using unique map ID)
+        function saveWithHotelRecommendations() {
+            const hotelSearchBtn = document.getElementById('hotelSearchBtn');
+            
+            // Check if button is already disabled (search in progress)
+            if (hotelSearchBtn.disabled) {
+                return;
+            }
+            
+            if (poiList.length === 0) {
+                // Show error in console instead of alert
+                console.log('Error: Please add at least one POI');
+                return;
+            }
+            
+            // Validate dates
+            const dates = getSelectedDates();
+            const dateError = validateDates(dates.checkin, dates.checkout);
+            if (dateError) {
+                console.log('Date validation error:', dateError);
+                return;
+            }
+            
+            // Save current POI data and dates to localStorage with unique map ID
+            const saveData = {
+                pois: poiList,
+                checkin: dates.checkin,
+                checkout: dates.checkout
+            };
+            localStorage.setItem(mapId, JSON.stringify(saveData));
+            console.log('Saved data to localStorage with map ID:', mapId);
+            
+            // Get destination (city) and POI (specific attraction) for hotel recommendations
+            const destination = getDestinationName(); // City name like "北京"
+            const lastPoi = poiList[poiList.length - 1];
+            let poiName = lastPoi ? lastPoi.name : '';
+            
+            // Convert POI names to FlyAI-friendly format
+            const poiNameMappings = {
+                '798·751园区': '北京798艺术区',
+                '国家游泳中心': '水立方',
+                '国家体育场': '鸟巢',
+                '故宫博物院': '故宫'
+            };
+            
+            if (poiName in poiNameMappings) {
+                poiName = poiNameMappings[poiName];
+            }
+            
+            if (destination) {
+                // Update button state
+                hotelSearchBtn.textContent = '搜索中...';
+                hotelSearchBtn.disabled = true;
+                hotelSearchBtn.style.opacity = '0.6';
+                hotelSearchBtn.style.cursor = 'not-allowed';
+                
+                // Make AJAX call to hotel search backend with dates
+                // Use actual hotel server port that was started during generation
+                const hotelPort = 8780; // This should match the port used by hotel-search-server.py
+                const url = `http://localhost:${hotelPort}/api/hotel-search?destination=${encodeURIComponent(destination)}&poi=${encodeURIComponent(poiName)}&checkin=${dates.checkin}&checkout=${dates.checkout}`;
+                
+                // Set up timeout to re-enable button after 5 seconds
+                const timeoutId = setTimeout(() => {
+                    hotelSearchBtn.textContent = '搜酒店';
+                    hotelSearchBtn.disabled = false;
+                    hotelSearchBtn.style.opacity = '1';
+                    hotelSearchBtn.style.cursor = 'pointer';
+                }, 5000);
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear timeout since we got a response
+                        clearTimeout(timeoutId);
+                        
+                        // Restore button state
+                        hotelSearchBtn.textContent = '搜酒店';
+                        hotelSearchBtn.disabled = false;
+                        hotelSearchBtn.style.opacity = '1';
+                        hotelSearchBtn.style.cursor = 'pointer';
+                        
+                        if (data.error) {
+                            console.log('Hotel search error:', data.error);
+                            // Optionally show error in UI instead of alert
+                        } else if (data.data && data.data.itemList) {
+                            // Display hotels directly on the map
+                            // Get destination POI for distance calculation
+                            const destinationPoi = poiList[poiList.length - 1];
+                            displayHotelsOnMapAndList(data.data.itemList, destinationPoi);
+                        } else {
+                            console.log('Unexpected hotel data:', data);
+                        }
+                    })
+                    .catch(error => {
+                        // Clear timeout since we got an error
+                        clearTimeout(timeoutId);
+                        
+                        // Restore button state
+                        hotelSearchBtn.textContent = '搜酒店';
+                        hotelSearchBtn.disabled = false;
+                        hotelSearchBtn.style.opacity = '1';
+                        hotelSearchBtn.style.cursor = 'pointer';
+                        
+                        console.error('Hotel search error:', error);
+                    });
+            }
+        }
+        
+        // Function to show notification
+        function showNotification(message, isError = true) {
+            const notificationArea = document.getElementById('notificationArea');
+            notificationArea.textContent = message;
+            notificationArea.style.color = isError ? '#e74c3c' : '#27ae60';
+            notificationArea.style.display = 'block';
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                notificationArea.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Function to set default dates (today for check-in, tomorrow for check-out)
+        function setDefaultDates() {
+            const today = new Date();
+            const checkin = today.toISOString().split('T')[0];
+            
+            const checkoutDate = new Date(today);
+            checkoutDate.setDate(today.getDate() + 1);
+            const checkout = checkoutDate.toISOString().split('T')[0];
+            
+            document.getElementById('checkinDate').value = checkin;
+            document.getElementById('checkoutDate').value = checkout;
+        }
+        
+        // Initialize
+        setDefaultDates();
+        addInitialMarkers();
+        
+        // Allow Enter key to trigger search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPOI();
+            }
+        });
+        
+        // Handle global drag end
+        document.addEventListener('dragend', function() {
+            document.querySelectorAll('.poi-item').forEach(item => {
+                item.classList.remove('dragging', 'drag-over');
+            });
+            dragSourceIndex = null;
+        });
+        
+        // Ensure map resizes properly
+        window.addEventListener('resize', function() {
+            map.resize();
+        });
+    </script>
+</body>
+</html>

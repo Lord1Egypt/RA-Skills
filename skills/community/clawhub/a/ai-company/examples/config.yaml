@@ -1,0 +1,255 @@
+# AI Company 配置文件示例
+# 复制此文件到项目根目录并重命名为 config.yaml
+
+# 公司信息
+company:
+  name: "My AI Company"
+  industry: "software_development"
+  target_market: "individuals_small_business"
+  description: "自动化软件开发服务"
+
+# AI员工配置
+ai_employees:
+  # 市场研究AI
+  - name: market_researcher
+    enabled: true
+    version: "v1.0"
+    config:
+      scan_interval: 1800  # 30分钟
+      sources:
+        - github
+        - reddit
+        - hackernews
+      keywords:
+        - automation
+        - api
+        - tool
+
+  # 产品设计师AI
+  - name: product_designer
+    enabled: true
+    version: "v1.0"
+    config:
+      max_features: 5
+      pricing_strategy: "value_based"
+
+  # 开发者AI
+  - name: developer
+    enabled: true
+    version: "v1.0"
+    config:
+      language: "python"
+      test_coverage_target: 0.8
+      documentation_level: "standard"
+
+  # 销售营销AI
+  - name: sales_marketing
+    enabled: true
+    version: "v2.1"
+    config:
+      channels:
+        - email
+        - twitter
+        - reddit
+      response_time: 300  # 5分钟
+
+  # 客户支持AI
+  - name: customer_support
+    enabled: true
+    version: "v1.0"
+    config:
+      working_hours: "24/7"
+      auto_response: true
+      escalation_rules:
+        - condition: "urgent"
+          action: "alert_human"
+
+  # 监控AI
+  - name: monitor
+    enabled: true
+    version: "v1.0"
+    config:
+      check_interval: 900  # 15分钟
+      alert_threshold:
+        error_rate: 0.1
+        response_time: 30
+        revenue_drop: 0.2
+
+  # 财务AI
+  - name: finance
+    enabled: true
+    version: "v1.0"
+    config:
+      currency: "USD"
+      reporting_period: "daily"
+      tax_rate: 0.0
+
+# API配置
+apis:
+  # Anthropic Claude API
+  anthropic_api_key: "${ANTHROPIC_API_KEY}"
+  anthropic_model: "claude-3-sonnet-20240229"
+  anthropic_max_tokens: 4096
+
+  # GitHub API
+  github_token: "${GITHUB_TOKEN}"
+  github_default_branch: "main"
+
+  # 邮件服务（可选）
+  smtp_server: "${SMTP_SERVER}"
+  smtp_port: 587
+  smtp_username: "${SMTP_USERNAME}"
+  smtp_password: "${SMTP_PASSWORD}"
+
+  # 社交媒体（可选）
+  twitter_api_key: "${TWITTER_API_KEY}"
+  twitter_api_secret: "${TWITTER_API_SECRET}"
+  twitter_access_token: "${TWITTER_ACCESS_TOKEN}"
+  twitter_access_secret: "${TWITTER_ACCESS_SECRET}"
+
+# 调度配置
+schedule:
+  # 机会发现：每30分钟
+  opportunity_discovery: "*/30 * * * *"
+
+  # 每日优化：每天早上9点
+  daily_optimization: "0 9 * * *"
+
+  # 健康检查：每15分钟
+  health_check: "*/15 * * * *"
+
+  # 财务报告：每天下午6点
+  financial_report: "0 18 * * *"
+
+  # 备份数据：每天凌晨2点
+  backup: "0 2 * * *"
+
+# 监控和告警
+monitoring:
+  # 告警邮件
+  alert_email: "your-email@example.com"
+
+  # 告警级别
+  alert_levels:
+    - info
+    - warning
+    - error
+    - critical
+
+  # 告警阈值
+  thresholds:
+    # 错误率超过10%告警
+    error_rate: 0.1
+
+    # 收入下降超过20%告警
+    revenue_drop: 0.2
+
+    # 响应时间超过30秒告警
+    response_time: 30
+
+    # CPU使用率超过90%告警
+    cpu_usage: 0.9
+
+    # 内存使用率超过90%告警
+    memory_usage: 0.9
+
+# 数据存储
+storage:
+  # 数据目录
+  data_dir: "shared"
+
+  # 日志目录
+  log_dir: "logs"
+
+  # 备份目录
+  backup_dir: "backups"
+
+  # 保留天数
+  retention_days: 30
+
+# 版本控制
+version_control:
+  # 启用版本控制
+  enabled: true
+
+  # Git仓库路径
+  git_repo: "."
+
+  # 自动提交
+  auto_commit: true
+
+  # 提交消息前缀
+  commit_prefix: "[AI Company]"
+
+# A/B测试
+ab_testing:
+  # 启用A/B测试
+  enabled: true
+
+  # 默认流量分配
+  default_traffic_split: 0.5
+
+  # 测试持续时间（天）
+  test_duration_days: 7
+
+  # 最小样本量
+  min_sample_size: 100
+
+# 性能配置
+performance:
+  # 最大并发任务数
+  max_concurrent_tasks: 10
+
+  # 任务超时时间（秒）
+  task_timeout: 300
+
+  # 重试次数
+  max_retries: 3
+
+  # 重试延迟（秒）
+  retry_delay: 5
+
+# 日志配置
+logging:
+  # 日志级别
+  level: "INFO"
+
+  # 日志格式
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+  # 日志文件
+  file: "logs/ai-company.log"
+
+  # 最大日志文件大小（MB）
+  max_file_size: 10
+
+  # 保留日志文件数量
+  backup_count: 5
+
+# 安全配置
+security:
+  # 启用加密
+  encryption_enabled: false
+
+  # API密钥加密
+  encrypt_api_keys: true
+
+  # 访问控制
+  access_control:
+    enabled: false
+    allowed_ips: []
+    allowed_users: []
+
+# 开发模式
+development:
+  # 开发模式
+  enabled: false
+
+  # 调试模式
+  debug: false
+
+  # 详细日志
+  verbose: false
+
+  # 模拟API调用（不实际调用）
+  mock_apis: false

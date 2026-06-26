@@ -1,0 +1,12 @@
+﻿{
+    "version":  "1.1.0",
+    "skill":  "ai-company-cfo",
+    "tags":  [
+                 "ai-company",
+                 "c-suite"
+             ],
+    "description":  "AI Company cfo.ToUpper() skill",
+    "created":  "2026-04-12",
+    "name":  "ai-company-cfo",
+    "author":  "johnsmithfan"
+}

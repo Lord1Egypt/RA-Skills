@@ -1,0 +1,49 @@
+name: Test Demo
+description: End-to-end test without real agent spawn or deploy. Used for workflow-executor validation.
+version: "1.0.0"
+
+# Context: taskName, description, project_name (all optional)
+
+steps:
+  - mock_task:
+      taskName: "{taskName}"
+
+  - select_agent:
+      task_description: "{description}"
+      tech_stack: "typescript, react"
+
+  - create_briefing:
+      output: "temp/test-briefing.md"
+      content: |
+        # Test Briefing
+
+        **Task:** {task_name}
+        **Agent:** {agentId}
+        **Runtime:** subagent
+
+        This is a test run. No real changes will be made.
+
+  - spawn_agent:
+      agentId: "{agentId}"
+      runtime: subagent
+      task: "file:temp/test-briefing.md"
+      mode: run
+
+  - wait_completion:
+      sessionId: "{session_id}"
+      timeout: 60
+
+  - deploy:
+      project: "{project_name}"
+      cwd: "projects/your-project/production"
+      prod: false  # staging deploy for test
+
+  - notify_discord:
+      channel: chatteria
+      message: |
+        ✅ **Test Complete**
+
+        **Task:** {task_name}
+        **Agent:** {agentId}
+        **Runtime:** subagent
+        **Deploy:** {deploy_url} (simulated)

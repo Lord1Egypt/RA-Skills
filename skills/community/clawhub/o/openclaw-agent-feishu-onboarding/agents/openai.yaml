@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent + Feishu Onboarding"
+  short_description: "Create agents and bind Feishu peer routes; performs local openclaw.json reads/writes"
+  default_prompt: "Use $openclaw-agent-feishu-onboarding to create a new agent and bind it to a specific Feishu peer.id after step-by-step confirmation."
+policy:
+  allow_implicit_invocation: false

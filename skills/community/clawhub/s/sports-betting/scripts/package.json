@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@azuro-org/dictionaries": "^3.0.28",
+    "dotenv": "^16.0.0",
+    "viem": "^2.0.0"
+  }
+}

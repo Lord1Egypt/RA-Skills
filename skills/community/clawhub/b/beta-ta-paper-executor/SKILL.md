@@ -1,35 +1,38 @@
 ---
-name: "Beta TA Paper Executor"
-description: "Execute and track paper trades from TA setups with JSONL ledger, open/close workflow, and mark-to-market status."
-category: "blockchain"
-source: "ClawHub"
-tags: [backtesting, execution, ledger, paper-trading, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/beta-ta-paper-executor"
-sourceUrl: "https://clawhub.ai/skills/beta-ta-paper-executor"
+name: ta-paper-executor
+description: Execute and track paper trades from TA setups with JSONL ledger, open/close workflow, and mark-to-market status.
 ---
 
-# Beta TA Paper Executor
+# TA Paper Executor
 
-> Execute and track paper trades from TA setups with JSONL ledger, open/close workflow, and mark-to-market status.
+Use this skill when the user wants simulated execution (paper trading), not broker-connected live orders.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/beta-ta-paper-executor`
-- **Source URL:** [https://clawhub.ai/skills/beta-ta-paper-executor](https://clawhub.ai/skills/beta-ta-paper-executor)
+## Run
 
-## Overview
+Place order:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/beta-ta-paper-executor
+python3 scripts/ta_paper_executor.py place \
+  --symbol BTCUSDT --side long --entry 68000 \
+  --stop 66500 --target 71000 --qty 0.5 \
+  --strategy trend-follow --reason "SMA20>SMA50 + MACD"
 ```
+
+Close order:
+
+```bash
+python3 scripts/ta_paper_executor.py close --id ORD-20260310-001 --exit 70500
+```
+
+Status:
+
+```bash
+python3 scripts/ta_paper_executor.py status --symbol BTCUSDT --mark 70200 --json
+```
+
+## Workflow
+
+1. Receive setup from `ta-signal-engine`.
+2. Validate historical viability via `ta-backtest`.
+3. If accepted, place paper order and record rationale.
+4. Update status with mark price, then close with explicit reason.

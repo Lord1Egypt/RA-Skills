@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[PAPER NAME] Architecture</title>
+  <!-- For Chinese labels, add Noto+Sans+SC to the family parameter -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /*
+      Set data-theme="dark" or data-theme="light" on <html>.
+      When generating standalone SVG, inline the resolved values instead.
+    */
+    :root,
+    html[data-theme="dark"] {
+      --page-bg: #020617;
+      --panel-bg: rgba(15, 23, 42, 0.5);
+      --panel-border: #1e293b;
+      --svg-bg: #020617;
+      --box-mask: #0f172a;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --text-faint: #475569;
+      --grid: #1e293b;
+      --arrow: #64748b;
+      --core-fill: rgba(6, 78, 59, 0.4);
+      --core-stroke: #34d399;
+      --data-fill: rgba(8, 51, 68, 0.4);
+      --data-stroke: #22d3ee;
+      --generic-fill: rgba(30, 41, 59, 0.5);
+      --generic-stroke: #94a3b8;
+      --warning-fill: rgba(136, 19, 55, 0.25);
+      --warning-stroke: #fb7185;
+      --reward-fill: rgba(251, 146, 60, 0.3);
+      --reward-stroke: #fb923c;
+      --priority-fill: rgba(76, 29, 149, 0.4);
+      --priority-stroke: #a78bfa;
+      --shadow: none;
+    }
+
+    html[data-theme="light"] {
+      --page-bg: #f8fafc;
+      --panel-bg: #ffffff;
+      --panel-border: #d8e0ea;
+      --svg-bg: #ffffff;
+      --box-mask: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-faint: #64748b;
+      --grid: #dbe4ee;
+      --arrow: #94a3b8;
+      --core-fill: rgba(16, 185, 129, 0.13);
+      --core-stroke: #047857;
+      --data-fill: rgba(14, 165, 233, 0.12);
+      --data-stroke: #0284c7;
+      --generic-fill: rgba(100, 116, 139, 0.10);
+      --generic-stroke: #64748b;
+      --warning-fill: rgba(244, 63, 94, 0.12);
+      --warning-stroke: #e11d48;
+      --reward-fill: rgba(249, 115, 22, 0.13);
+      --reward-stroke: #ea580c;
+      --priority-fill: rgba(139, 92, 246, 0.12);
+      --priority-stroke: #7c3aed;
+      --shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--page-bg);
+      min-height: 100vh;
+      padding: 2rem;
+      color: var(--text-main);
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    .header { margin-bottom: 2rem; }
+
+    .header-row {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pulse-dot {
+      width: 12px; height: 12px;
+      background: var(--core-stroke);  /* emerald — matches the core contribution accent */
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; }
+
+    .subtitle {
+      color: var(--text-muted); font-size: 0.875rem; margin-left: 1.75rem;
+    }
+
+    .paper-ref {
+      color: var(--text-faint); font-size: 0.75rem;
+      margin-left: 1.75rem; margin-top: 0.25rem;
+    }
+
+    .diagram-container {
+      background: var(--panel-bg);
+      border-radius: 1rem;
+      border: 1px solid var(--panel-border);
+      padding: 1.5rem;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+    }
+
+    svg { width: 100%; min-width: 1100px; display: block; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--panel-bg);
+      border-radius: 0.75rem;
+      border: 1px solid var(--panel-border);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+
+    .card-dot.cyan    { background: var(--data-stroke); }
+    .card-dot.emerald { background: var(--core-stroke); }
+    .card-dot.violet  { background: var(--priority-stroke); }
+    .card-dot.amber   { background: #f59e0b; }
+    .card-dot.rose    { background: var(--warning-stroke); }
+    .card-dot.orange  { background: var(--reward-stroke); }
+
+    .card h3 { font-size: 0.875rem; font-weight: 600; }
+
+    .card ul {
+      list-style: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .card li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--text-faint);
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+      <div class="header-row">
+        <div class="pulse-dot"></div>
+        <h1>[PAPER SHORT NAME] · [Full title fragment]</h1>
+      </div>
+      <p class="subtitle">[One-line method summary — what the paper does]</p>
+      <p class="paper-ref">[Authors], [Affiliation] · arXiv:[ID] ([Month Year])</p>
+    </div>
+
+    <!-- ===== MAIN DIAGRAM ===== -->
+    <div class="diagram-container">
+      <!-- Set viewBox to match your content. 1200 × 800 is a typical starting point. -->
+      <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Marker and grid definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="var(--arrow)"/>
+          </marker>
+          <marker id="arrowhead-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="var(--core-stroke)"/>
+          </marker>
+          <marker id="arrowhead-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="var(--warning-stroke)"/>
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--grid)" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- ===================================================================
+             SECTION 1 · MAIN PIPELINE
+             Top-to-bottom or left-to-right flow of the method.
+             =================================================================== -->
+
+        <!-- Background and grid — always first -->
+        <rect width="100%" height="100%" fill="var(--svg-bg)"/>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+
+        <text x="40" y="40" fill="var(--core-stroke)" font-size="11" font-weight="700"
+              letter-spacing="1">▸ MAIN PIPELINE</text>
+
+        <!-- Input component (cyan) -->
+        <rect x="40" y="60" width="140" height="70" rx="6" fill="var(--box-mask)"/>
+        <rect x="40" y="60" width="140" height="70" rx="6"
+              fill="var(--data-fill)" stroke="var(--data-stroke)" stroke-width="1.5"/>
+        <text x="110" y="88" fill="var(--text-main)" font-size="11"
+              font-weight="600" text-anchor="middle">[Input]</text>
+        <text x="110" y="106" fill="var(--text-muted)" font-size="9" text-anchor="middle">[sublabel]</text>
+
+        <!-- Arrow -->
+        <line x1="180" y1="95" x2="218" y2="95" stroke="var(--arrow)" stroke-width="1.5"
+              marker-end="url(#arrowhead)"/>
+
+        <!-- Core contribution (emerald — make this the visual anchor) -->
+        <rect x="220" y="60" width="180" height="70" rx="6" fill="var(--box-mask)"/>
+        <rect x="220" y="60" width="180" height="70" rx="6"
+              fill="var(--core-fill)" stroke="var(--core-stroke)" stroke-width="1.5"/>
+        <text x="310" y="88" fill="var(--text-main)" font-size="11"
+              font-weight="600" text-anchor="middle">[Core method]</text>
+        <text x="310" y="106" fill="var(--core-stroke)" font-size="9" text-anchor="middle">[key formula]</text>
+
+        <!-- Arrow -->
+        <line x1="400" y1="95" x2="438" y2="95" stroke="var(--arrow)" stroke-width="1.5"
+              marker-end="url(#arrowhead)"/>
+
+        <!-- Output component -->
+        <rect x="440" y="60" width="140" height="70" rx="6" fill="var(--box-mask)"/>
+        <rect x="440" y="60" width="140" height="70" rx="6"
+              fill="var(--generic-fill)" stroke="var(--generic-stroke)" stroke-width="1.5"/>
+        <text x="510" y="88" fill="var(--text-main)" font-size="11"
+              font-weight="600" text-anchor="middle">[Output]</text>
+        <text x="510" y="106" fill="var(--text-muted)" font-size="9" text-anchor="middle">[sublabel]</text>
+
+        <!-- ===================================================================
+             SECTION 2 · CONTRAST PANEL (optional — only if central to argument)
+             Side-by-side: prior work (rose) vs this paper (emerald).
+             =================================================================== -->
+
+        <text x="40" y="200" fill="var(--warning-stroke)" font-size="11" font-weight="700"
+              letter-spacing="1">⚠ KEY INSIGHT · [Why prior approach fails]</text>
+
+        <!-- Prior work (rose — warning color) -->
+        <rect x="40" y="220" width="540" height="140" rx="8" fill="var(--box-mask)"/>
+        <rect x="40" y="220" width="540" height="140" rx="8"
+              fill="var(--warning-fill)" stroke="var(--warning-stroke)" stroke-width="1.5"/>
+        <text x="310" y="245" fill="var(--warning-stroke)" font-size="11"
+              font-weight="700" text-anchor="middle">[Prior Method]</text>
+        <text x="310" y="265" fill="var(--text-muted)" font-size="9"
+              text-anchor="middle" font-style="italic">[prior approach formula]</text>
+        <!-- Add concrete example numbers here -->
+        <text x="60" y="295" fill="var(--text-main)" font-size="9" font-weight="600">[example setup]:</text>
+        <text x="60" y="315" fill="var(--warning-stroke)" font-size="9">[result showing failure]</text>
+        <text x="60" y="340" fill="var(--warning-stroke)" font-size="9"
+              font-weight="700">✗ [Failure mode in one line]</text>
+
+        <!-- VS divider -->
+        <text x="610" y="295" fill="var(--text-muted)" font-size="14"
+              font-weight="700" text-anchor="middle">→</text>
+
+        <!-- This paper (emerald) -->
+        <rect x="640" y="220" width="540" height="140" rx="8" fill="var(--box-mask)"/>
+        <rect x="640" y="220" width="540" height="140" rx="8"
+              fill="var(--core-fill)" stroke="var(--core-stroke)" stroke-width="1.5"/>
+        <text x="910" y="245" fill="var(--core-stroke)" font-size="11"
+              font-weight="700" text-anchor="middle">[This paper's method]</text>
+        <text x="910" y="265" fill="var(--text-muted)" font-size="9"
+              text-anchor="middle" font-style="italic">[new approach formula]</text>
+        <!-- Same example under new method -->
+        <text x="660" y="295" fill="var(--text-main)" font-size="9" font-weight="600">[same setup]:</text>
+        <text x="660" y="315" fill="var(--core-stroke)" font-size="9">[result showing fix]</text>
+        <text x="660" y="340" fill="var(--core-stroke)" font-size="9"
+              font-weight="700">✓ [How it fixes things]</text>
+
+        <!-- ===================================================================
+             LEGEND — always OUTSIDE region boundaries
+             =================================================================== -->
+
+        <rect x="950" y="35" width="195" height="80" rx="6"
+              fill="var(--panel-bg)" stroke="var(--panel-border)" stroke-width="1"/>
+        <text x="960" y="50" fill="var(--text-main)" font-size="9" font-weight="700">LEGEND</text>
+
+        <rect x="960" y="58" width="14" height="9" rx="2"
+              fill="var(--data-fill)" stroke="var(--data-stroke)" stroke-width="1"/>
+        <text x="980" y="66" fill="var(--text-muted)" font-size="8">Input / data</text>
+
+        <rect x="960" y="72" width="14" height="9" rx="2"
+              fill="var(--core-fill)" stroke="var(--core-stroke)" stroke-width="1"/>
+        <text x="980" y="80" fill="var(--text-muted)" font-size="8">Core method</text>
+
+        <rect x="960" y="86" width="14" height="9" rx="2"
+              fill="var(--warning-fill)" stroke="var(--warning-stroke)" stroke-width="1"/>
+        <text x="980" y="94" fill="var(--text-muted)" font-size="8">Prior work / failure</text>
+
+        <rect x="960" y="100" width="14" height="9" rx="2"
+              fill="var(--generic-fill)" stroke="var(--generic-stroke)" stroke-width="1"/>
+        <text x="980" y="108" fill="var(--text-muted)" font-size="8">External / generic</text>
+
+      </svg>
+    </div>
+
+    <!-- ===== SUMMARY CARDS (3–6 total; tune per paper) ===== -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot rose"></div>
+          <h3>The Problem</h3>
+        </div>
+        <ul>
+          <li>• [What failure mode the paper identifies]</li>
+          <li>• [Why prior approaches miss it]</li>
+          <li>• [Concrete example where it shows up]</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot emerald"></div>
+          <h3>The Fix</h3>
+        </div>
+        <ul>
+          <li>• [Step 1 of the method]</li>
+          <li>• [Step 2]</li>
+          <li>• [Step 3 — what's genuinely new]</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot amber"></div>
+          <h3>Empirical Validation</h3>
+        </div>
+        <ul>
+          <li>• [Headline number with dataset + metric]</li>
+          <li>• [Second strongest result]</li>
+          <li>• [Honest limitation in the numbers]</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <p class="footer">
+      [Paper short name] · [Authors] · arXiv:[ID] ([Date]) · [Optional: code URL]
+    </p>
+  </div>
+</body>
+</html>

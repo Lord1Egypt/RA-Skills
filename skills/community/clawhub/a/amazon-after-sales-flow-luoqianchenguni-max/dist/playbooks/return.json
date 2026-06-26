@@ -1,0 +1,23 @@
+{
+  "name": "return_request",
+  "description": "Intent-only playbook to initiate a return.",
+  "steps": [
+    "open_order_detail",
+    "extract_order_summary",
+    "open_return_flow",
+    "select_return_reason",
+    "confirm_return"
+  ],
+  "notes": "Resolver must generate URLs from current marketplace.",
+  "version": "1.0.0",
+  "requires_skills": [
+    "amazon_orders_opener",
+    "amazon_order_details_fetcher",
+    "order_reader",
+    "form_filler"
+  ],
+  "supported_sites": [
+    "amazon.com",
+    "amazon.com.au"
+  ]
+}

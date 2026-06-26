@@ -1,0 +1,55 @@
+# Smart Router Configuration
+# Routes tasks between local Ollama (cheap/fast) and cloud Ollama (powerful) instances
+
+# Local Ollama instance (your machine)
+local:
+  model: "llama3.2"                    # Your local model
+  base_url: "http://localhost:11434"   # Local Ollama API
+  cost_per_1k_tokens: 0.0              # Free
+  max_tokens: 4096
+
+# Cloud Ollama instance (remote server with bigger models)
+cloud:
+  model: "qwen2.5:14b"                 # More capable model on remote server
+  base_url: "http://your-server:11434" # Replace with your cloud Ollama URL
+  cost_per_1k_tokens: 0.0              # Still free, but you pay for server
+  max_tokens: 8192
+
+# Complexity threshold: tasks >= this score go to cloud
+threshold: 3
+
+# Classification criteria reference
+criteria:
+  1: "Simple factual answers, definitions, lists, yes/no questions"
+  2: "Short code, summaries, basic explanations, examples"
+  3: "Multi-step code, analysis, comparisons, debugging"
+  4: "Research synthesis, design tasks, creative writing"
+  5: "System architecture, complex projects, novel problems"
+
+# Optional: Domain specialists (triggered before general routing)
+# These route to specific models regardless of complexity
+specialists:
+  code-review:
+    model: "codellama:34b"
+    base_url: "http://your-server:11434"
+    triggers: ["code review", "review my code", "refactor", "optimize"]
+  
+  deep-research:
+    model: "qwen2.5:32b"
+    base_url: "http://your-server:11434"
+    triggers: ["research", "synthesize", "deep dive", "comprehensive analysis"]
+
+# Logging
+log_file: "logs/router.log"
+
+# Caching (optional)
+cache:
+  enabled: true
+  db_path: "cache/router.db"  # SQLite cache for task classifications
+  ttl_seconds: 86400          # 24 hours
+
+# Performance tuning
+performance:
+  timeout_seconds: 60         # Max time to wait for model response
+  stream_responses: true      # Stream responses for better UX
+  retry_attempts: 2           # Retry on failure

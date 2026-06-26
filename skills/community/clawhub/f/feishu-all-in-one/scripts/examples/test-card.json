@@ -1,0 +1,37 @@
+{
+  "config": {
+    "wide_screen_mode": true
+  },
+  "header": {
+    "title": {
+      "content": "测试卡片",
+      "tag": "plain_text"
+    },
+    "template": "blue"
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "请点击下方按钮",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "content": "确认",
+            "tag": "plain_text"
+          },
+          "type": "primary",
+          "value": {
+            "action": "confirm"
+          }
+        }
+      ]
+    }
+  ]
+}

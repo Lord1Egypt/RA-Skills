@@ -1,0 +1,34 @@
+{
+  "name": "governed-agents",
+  "type": "executable/with-install",
+  "description": "Deterministic verification + reputation scoring for AI sub-agents.",
+  "source": "https://github.com/Nefas11/governed-agents",
+  "homepage": "https://github.com/Nefas11/governed-agents",
+  "install": {
+    "kind": "script",
+    "script": "install.sh"
+  },
+  "filesystem_writes": [
+    "~/.openclaw/workspace/.state/governed_agents/"
+  ],
+  "capabilities": [
+    "persistent_db_writes",
+    "external_cli_execution",
+    "network_requests"
+  ],
+  "network_access": true,
+  "requires": {
+    "bins": ["codex", "git", "pytest"],
+    "optional_bins": ["ruff", "flake8", "pylint"],
+    "env": [
+      { "name": "OPENCLAW_WORKSPACE", "optional": true, "description": "Workspace root directory (default: ~/.openclaw/workspace)" },
+      { "name": "GOVERNED_WORK_DIR", "optional": true, "description": "Temporary working directory (default: /tmp/governed)" },
+      { "name": "GOVERNED_DB_PATH", "optional": true, "description": "SQLite reputation database path" },
+      { "name": "GOVERNED_AUTH_TOKEN", "optional": true, "description": "Bearer token for HTTP API mode" },
+      { "name": "CODEX_CLI", "optional": true, "description": "Path to Codex CLI binary" },
+      { "name": "GOVERNED_NO_NETWORK", "optional": true, "description": "Disable network access in grounding gate" },
+      { "name": "GOVERNED_NO_DB", "optional": true, "description": "Disable reputation DB writes" },
+      { "name": "GOVERNED_DB_MODE", "optional": true, "description": "DB mode (default: sqlite)" }
+    ]
+  }
+}

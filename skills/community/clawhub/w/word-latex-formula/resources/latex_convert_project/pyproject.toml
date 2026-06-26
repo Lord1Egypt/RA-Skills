@@ -1,0 +1,25 @@
+[project]
+name = "latex-convert"
+version = "0.1.0"
+description = "Convert manually typed Word math text into editable Word OMML equations."
+requires-python = ">=3.10"
+dependencies = [
+  "lxml>=4.9",
+  "pywin32>=306; platform_system == 'Windows'",
+]
+
+[project.optional-dependencies]
+web = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "python-multipart>=0.0.9",
+  "pydantic>=2.7",
+  "PyMuPDF>=1.24",
+  "certifi>=2024.0",
+]
+
+[project.scripts]
+latex-word-convert = "latex_convert.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

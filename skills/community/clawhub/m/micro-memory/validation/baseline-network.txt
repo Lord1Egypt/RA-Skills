@@ -1,0 +1,41 @@
+﻿[1/5] Loading data...
+[2/5] Calculating statistics...
+[3/5] Identifying isolated memories...
+[4/5] Analyzing clusters...
+[5/5] Generating report...
+
+=== Memory Link Network Analysis ===
+
+[1] Statistics
+    Total memories: 23
+    Total links: 1
+    Memories with links: 1
+    Isolated memories: 22
+
+[2] Isolated Memories
+    #0: Clawdbot 响应优化：AGENTS.md 178 行压缩到 57 行
+    #1: 定时任务卡死修复 v2.0:120 秒超时保护
+    #2: P0 优化完成并测试通过：参数解析/错误处理/文件锁/搜索索引/删除/编辑/导出
+    #3: 完成 Micro Memory v2.0 P0 优化开发
+    #4: 与老大讨论 SEO 系统架构，确定 P0 优先级
+    #5: 发现数据库连接池泄漏问题，已修复 v2.1
+    #6: 新功能想法：支持语音输入记忆
+    #7: Micro Memory v2.0 技能包生成完成：包含 package.jso...
+    #8: 测试记忆：Micro Memory 本地功能验证成功
+    #9: Test batch 1
+    #10: Test batch 2
+    #11: Test batch 3
+    #12: v2.1 feature test - batch command
+    #13: 测试 v2.2 新功能：支持类型和重要性
+    #14: v2.2 任务 1
+    #15: v2.2 任务 2
+    #16: v2.2 任务 3
+    #17: V3.0 开发启动 - 强度系统实现
+    #19: 测试新记忆
+    #22: 工作记忆容量约 7±2 个组块
+    #23: 提取练习比重复阅读更有效
+
+[3] Clusters
+    Cluster 1 (2 memories): 24, 25
+
+鉁?Analysis complete

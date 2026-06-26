@@ -1,35 +1,71 @@
 ---
-name: "mar-emotion-state"
-description: "NL emotion tracking + prompt injection via OpenClaw hook"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mar-emotion-state"
-sourceUrl: "https://clawhub.ai/skills/mar-emotion-state"
+name: emotion-state
+description: NL emotion tracking + prompt injection via OpenClaw hook
 ---
+# Emotion State (NL) Skill
 
-# mar-emotion-state
+This skill describes how to install and configure the Emotion State hook, which
+adds a compact `emotion_state` block to the system prompt.
 
-> NL emotion tracking + prompt injection via OpenClaw hook
+## What it does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mar-emotion-state`
-- **Source URL:** [https://clawhub.ai/skills/mar-emotion-state](https://clawhub.ai/skills/mar-emotion-state)
+- Evaluates user and agent emotions as short natural-language phrases.
+- Stores per-user emotion state across sessions in the agent state directory.
+- Injects the latest entries plus a decayed trend line into the system prompt.
 
-## Overview
+## Install & enable (workspace hook)
 
+1) After installing the skill, copy the bundled hook into your workspace:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mar-emotion-state
+cp -R ./skills/emotion-state/hooks/emotion-state ./hooks/
 ```
+
+2) Enable the hook in OpenClaw:
+
+```bash
+openclaw hooks enable emotion-state
+```
+
+3) Restart the OpenClaw gateway.
+
+## Configuration
+
+Set environment variables for the hook via OpenClaw config, e.g. in
+`~/.openclaw/openclaw.json`:
+
+```json
+{
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "emotion-state": {
+          "enabled": true,
+          "env": {
+            "EMOTION_CLASSIFIER_URL": "",
+            "SKILLBOSS_API_KEY": "YOUR_KEY",
+            "EMOTION_CONFIDENCE_MIN": "0.35",
+            "EMOTION_HISTORY_SIZE": "100",
+            "EMOTION_HALF_LIFE_HOURS": "12",
+            "EMOTION_TREND_WINDOW_HOURS": "24",
+            "EMOTION_MAX_USER_ENTRIES": "3",
+            "EMOTION_MAX_AGENT_ENTRIES": "2",
+            "EMOTION_MAX_OTHER_AGENTS": "3",
+            "EMOTION_TIMEZONE": "America/Los_Angeles"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+The emotion classification uses SkillBoss API Hub (`https://api.heybossai.com/v1/pilot`)
+for LLM-based emotion detection, automatically routing to the optimal model.
+
+## Notes
+
+- The hook stores state at `~/.openclaw/agents/<agentId>/agent/emotion-state.json`.
+- It does not store raw user text; only model-inferred reasons.
+- If the classifier fails, entries fall back to `neutral/low/unsure`.

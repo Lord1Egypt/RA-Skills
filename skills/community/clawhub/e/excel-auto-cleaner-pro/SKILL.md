@@ -1,35 +1,110 @@
 ---
-name: "Excel 数据自动清洗引擎 Pro"
-description: "Excel 数据自动清洗引擎 — 自动去重、格式统一、缺失值处理、智能分类、交叉验证。 拖进去一份脏数据，出来一份干净能用的报表。支持 CSV/XLSX/JSON 多格式。 适合财务、运营、数据分析师、电商卖家。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/excel-auto-cleaner-pro"
-sourceUrl: "https://clawhub.ai/skills/excel-auto-cleaner-pro"
+name: excel-auto-cleaner
+description: >
+  Excel 数据自动清洗引擎 — 自动去重、格式统一、缺失值处理、智能分类、交叉验证。
+  拖进去一份脏数据，出来一份干净能用的报表。支持 CSV/XLSX/JSON 多格式。
+  适合财务、运营、数据分析师、电商卖家。
+version: 1.0.0
+author: 小小怪
+clawhub:
+  tags: [excel, data-cleaning, automation, analytics, business]
+  category: productivity
+  price: 39
 ---
 
-# Excel 数据自动清洗引擎 Pro
+# Excel 数据自动清洗引擎
 
-> Excel 数据自动清洗引擎 — 自动去重、格式统一、缺失值处理、智能分类、交叉验证。 拖进去一份脏数据，出来一份干净能用的报表。支持 CSV/XLSX/JSON 多格式。 适合财务、运营、数据分析师、电商卖家。
+> 别再手动清理数据了，AI 比你快 100 倍
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/excel-auto-cleaner-pro`
-- **Source URL:** [https://clawhub.ai/skills/excel-auto-cleaner-pro](https://clawhub.ai/skills/excel-auto-cleaner-pro)
+## 能做什么
 
-## Overview
+- 🧹 **自动去重** — 按单列或多列去重，智能识别相似重复
+- 📐 **格式统一** — 日期/电话/地址/金额...自动标准化
+- 🔧 **缺失值处理** — 智能填充/标记/删除空值
+- 🏷️ **智能分类** — 根据内容自动打标签/归类
+- ✅ **交叉验证** — 检查数据逻辑（比如金额=单价×数量）
+- 📊 **输出报表** — 生成清洗前后对比 + 数据质量评分
 
+## 触发方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/excel-auto-cleaner-pro
+用户说以下任意关键词时加载此技能：
+- "清洗数据" "整理表格" "处理 Excel"
+- "去重" "数据太乱" "帮我看这个表"
+
+## 使用流程
+
+### 第一步：读数据
+让用户提供文件路径或粘贴数据。
+- `read` 直接读文件（CSV/TXT/JSON）
+- Excel 用 Python openpyxl 解析
+
+### 第二步：体检报告
+自动扫描并输出数据质量报告：
 ```
+📊 数据体检报告
+━━━━━━━━━━━━━━━
+总行数：12,847
+总列数：18
+重复行：342 (2.7%)
+缺失值：156 处
+   - 价格列：23 个空值
+   - 日期列：89 个格式错误
+   - 手机号列：44 个不规范
+异常值：12 处（价格负数、日期未来）
+数据质量分：82/100 ⚠️
+```
+
+### 第三步：自动清洗
+按发现的问题逐项处理：
+
+1. **去重** — 保留第一条或按业务规则合并
+2. **日期标准化** — 统一为 YYYY-MM-DD 格式
+3. **电话标准化** — 统一为纯数字或格式化
+4. **金额清洗** — 去除货币符号/空格，统一小数位
+5. **空值处理** — 数值列填中位数、分类列填"未知"
+6. **异常值标记** — 标记可疑数据但不删除
+
+### 第四步：输出清洗结果
+保存清洗后的文件：
+- 原文件名_cleaned.xlsx（干净数据）
+- 原文件名_report.md（清洗报告，记录了改了什么）
+
+### 第五步：可选拓展
+用户可以说：
+- "再帮我分类" → 对某列 AI 自动分类
+- "生成图表" → 自动生成柱状图/折线图/饼图
+- "导出飞书表格" → 写入飞书多维表格
+
+## 工具使用
+
+- `read` — 读取原始数据文件
+- `exec` — 运行 Python openpyxl/pandas 处理
+- `write` — 写出清洗后的文件
+- `web_search` — 辅助数据验证（如手机号归属地）
+
+## 常用清洗规则（内置）
+
+| 列类型 | 规则 |
+|--------|------|
+| 手机号 | 去空格、统一 11 位、验证格式 |
+| 日期 | 统一 YYYY-MM-DD、修复乱码日期 |
+| 金额 | 去货币符号、统一小数、检测异常 |
+| 地址 | 提取省市区、补充邮编 |
+| 姓名 | 去空格、统一大小写 |
+| 身份证 | 验证校验位、提取生日性别 |
+
+## 客户画像
+
+- 做财务/报表的运营
+- 每天要处理供应商报价的采购
+- 电商卖家（批量处理订单/商品数据）
+- 数据分析新人（不想写 Python）
+
+## 定价参考
+
+本技能模板在 ClawHub 建议售价：**39-69 元**
+搭配定制化清洗规则：**129 元**
+
+---
+
+_由 OpenClaw 技能工厂制作 | 2026.05_

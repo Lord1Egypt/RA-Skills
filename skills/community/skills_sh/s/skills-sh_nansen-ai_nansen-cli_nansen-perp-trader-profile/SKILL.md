@@ -1,35 +1,39 @@
 ---
-name: "nansen-perp-trader-profile"
-description: "Indexed by skills.sh from nansen-ai/nansen-cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nansen-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-perp-trader-profile"
-sourceUrl: "https://skills.sh/nansen-ai/nansen-cli/nansen-perp-trader-profile"
+name: nansen-perp-trader-profile
+description: "Deep dive on a Hyperliquid perp trader. Identity, open positions, recent trades, and overall PnL."
+metadata:
+  openclaw:
+    requires:
+      env:
+        - NANSEN_API_KEY
+      bins:
+        - nansen
+    primaryEnv: NANSEN_API_KEY
+    install:
+      - kind: node
+        package: nansen-cli
+        bins: [nansen]
+allowed-tools: Bash(nansen:*)
 ---
 
-# nansen-perp-trader-profile
+# Perp Trader
 
-> Indexed by skills.sh from nansen-ai/nansen-cli
+**Answers:** "What is this perp trader doing? What are their positions and track record?"
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nansen-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-perp-trader-profile`
-- **Source URL:** [https://skills.sh/nansen-ai/nansen-cli/nansen-perp-trader-profile](https://skills.sh/nansen-ai/nansen-cli/nansen-perp-trader-profile)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nansen-ai/nansen-cli/nansen-perp-trader-profile
+ADDR=<address>
+
+nansen research profiler labels --address $ADDR --chain ethereum
+# → label, category (identity, SM labels)
+
+nansen research profiler perp-positions --address $ADDR
+# → asset_positions, margin_summary_account_value_usd, margin_summary_total_margin_used_usd
+
+nansen research profiler perp-trades --address $ADDR --days 7 --limit 20
+# → timestamp, token_symbol, side, action (Open/Close/Reduce), price, size, value_usd, closed_pnl, fee_usd
+
+nansen research perp leaderboard --days 7 --limit 50
+# → trader_address, total_pnl, roi, account_value (check if ADDR appears)
 ```
+
+Cross-reference perp-trades with perp-positions to see if the trader is scaling in/out. Leaderboard shows relative standing.

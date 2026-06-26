@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/convert/docx/pdf",
+    "headers": {
+      "CLIENT-API-KEY": "your_api_key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "url": "https://pdfapihub.com/sample.docx",
+      "output": "url"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "input_format": "docx",
+      "output_format": "pdf",
+      "file_size_bytes": 184320,
+      "pdf_url": "https://cdn.pdfapihub.com/pdf/converted.pdf"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "description": "知乎内部 HTTP API 端点配置",
+  "notes": "部分端点需要 x-zse-96 签名头，仅公开数据端点不需要",
+  "baseUrls": {
+    "zhihu": "https://www.zhihu.com",
+    "zhuanlan": "https://zhuanlan.zhihu.com"
+  },
+  "endpoints": {
+    "hotList": {
+      "url": "/api/v3/feed/topstory/hot-lists/total",
+      "method": "GET",
+      "requiresSignature": true,
+      "responseSchema": {
+        "data": "array",
+        "data[].target.title_area.text": "string",
+        "data[].target.metrics_area.text": "string"
+      },
+      "planBFallback": "browser",
+      "description": "全站热榜"
+    },
+    "search": {
+      "url": "/api/v4/search_v3?q={query}",
+      "method": "GET",
+      "requiresSignature": true,
+      "responseSchema": {
+        "data": "array",
+        "data[].object.text": "string"
+      },
+      "planBFallback": "browser",
+      "description": "全局搜索"
+    },
+    "article": {
+      "url": "/api/v4/articles/{id}",
+      "method": "GET",
+      "requiresSignature": true,
+      "responseSchema": {
+        "id": "number",
+        "title": "string",
+        "content": "string"
+      },
+      "planBFallback": "browser",
+      "description": "文章详情"
+    },
+    "user": {
+      "url": "/api/v4/members/{id}",
+      "method": "GET",
+      "requiresSignature": false,
+      "responseSchema": {
+        "id": "string",
+        "name": "string",
+        "headline": "string",
+        "url_token": "string"
+      },
+      "planBFallback": "none",
+      "description": "用户信息（公开数据）"
+    },
+    "question": {
+      "url": "/api/v4/questions/{id}",
+      "method": "GET",
+      "requiresSignature": false,
+      "responseSchema": {
+        "id": "number",
+        "title": "string",
+        "detail": "string"
+      },
+      "planBFallback": "none",
+      "description": "问题详情（公开数据）"
+    },
+    "answers": {
+      "url": "/api/v4/questions/{id}/answers",
+      "method": "GET",
+      "requiresSignature": false,
+      "responseSchema": {
+        "data": "array",
+        "data[].content": "string",
+        "data[].author.name": "string"
+      },
+      "planBFallback": "none",
+      "description": "问题回答列表（公开数据）"
+    }
+  }
+}

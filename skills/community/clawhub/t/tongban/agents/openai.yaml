@@ -1,0 +1,7 @@
+interface:
+  display_name: "上海办事指南"
+  short_description: "根据一网通办公开事项判断部门和办理路径。"
+  default_prompt: "Use $shanghai-service-guide 帮我判断在上海办理这件事应该找哪个部门、有哪些相关事项、能否线上办理，并给出下一步建议。"
+
+policy:
+  allow_implicit_invocation: true

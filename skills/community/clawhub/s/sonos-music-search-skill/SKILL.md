@@ -1,35 +1,106 @@
 ---
-name: "Sonos Music Search"
-description: "Search for music via Brave Search and play it on Sonos speakers. Supports play, current track, and speaker discovery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sonos-music-search-skill"
-sourceUrl: "https://clawhub.ai/skills/sonos-music-search-skill"
+name: sonos-music-search-skill
+description: Search for music via Brave Search and play it on Sonos speakers. Supports play, current track, and speaker discovery.
+homepage: https://clawhub.com/skills/sonos-music-search-skill
+metadata:
+  aren:
+    emoji: 🎵
+    requires:
+      bins: []
+      env:
+        - BRAVE_API_KEY
+    install:
+      - id: npm
+        kind: npm
+        package: sonos-music-search-skill@latest
+        label: Install Sonos Music Search skill
 ---
 
-# Sonos Music Search
+# Sonos Music Search Skill
 
-> Search for music via Brave Search and play it on Sonos speakers. Supports play, current track, and speaker discovery.
+Search for music via Brave Search and play it on your Sonos speakers directly from the command line.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sonos-music-search-skill`
-- **Source URL:** [https://clawhub.ai/skills/sonos-music-search-skill](https://clawhub.ai/skills/sonos-music-search-skill)
+## Features
 
-## Overview
+- Search for Spotify tracks using Brave Search
+- Play found tracks on a specified Sonos speaker
+- View the currently playing track
+- List available Sonos speakers on the network
+- Safe search enabled by default (opt into unrestricted with `--unsafe`)
 
+## Prerequisites
+
+- Node.js >= 18
+- A Brave Search API key ([get one here](https://brave.com/search/api/))
+- At least one Sonos speaker on the same network
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/sonos-music-search-skill
+npm install
 ```
+
+## Configuration
+
+Set your Brave Search API key as an environment variable:
+
+```bash
+export BRAVE_API_KEY=your-api-key
+```
+
+## Usage
+
+### Play a track
+
+```bash
+node src/index.js play "Living Room" "pink floyd comfortably numb"
+```
+
+Add `--unsafe` to disable safe search:
+
+```bash
+node src/index.js play "Living Room" "explicit track name" --unsafe
+```
+
+### View currently playing track
+
+```bash
+node src/index.js current "Living Room"
+```
+
+### List available speakers
+
+```bash
+node src/index.js list
+```
+
+## Programmatic API
+
+```js
+const { searchAndPlay, getCurrentTrack, listSpeakers } = require('sonos-music-search-skill');
+
+// Play a track
+const result = await searchAndPlay('Living Room', 'pink floyd comfortably numb');
+// { success: true, track: '...', speaker: 'Living Room', uri: 'spotify:track:...' }
+
+// Get current track
+const track = await getCurrentTrack('Living Room');
+// { title: '...', artist: '...', ... }
+
+// List speakers
+const speakers = await listSpeakers();
+// [{ name: 'Living Room', host: '192.168.1.50' }, ...]
+```
+
+## Scripts
+
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm start`            | Run the CLI                      |
+| `npm run audit`        | Run the skill audit              |
+| `npm run format`       | Format JS and Markdown files     |
+| `npm run format:check` | Check formatting without writing |
+
+## License
+
+MIT

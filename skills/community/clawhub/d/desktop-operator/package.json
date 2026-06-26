@@ -1,0 +1,26 @@
+{
+  "name": "@bondli-skills/desktop-operator",
+  "version": "1.0.2",
+  "description": "OpenClaw desktop automation skill for Electron apps via CDP",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md"
+  ],
+  "keywords": [
+    "openclaw",
+    "automation",
+    "rpa",
+    "macos",
+    "electron",
+    "cdp"
+  ],
+  "dependencies": {
+    "puppeteer": "^22.0.0",
+    "puppeteer-core": "^22.15.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <rect width="128" height="128" rx="26" fill="url(#phantom-bg)"/>
+  <path d="M110.584 64.914H99.142C99.142 41.765 80.173 23 56.772 23C33.661 23 14.872 41.306 14.403 64.058C13.924 87.258 35.577 107 59.134 107H63.462C83.863 107 103.381 93.807 109.617 74.468C110.269 72.451 110.584 70.337 110.584 68.211V64.914Z" fill="url(#phantom-ghost)"/>
+  <circle cx="42.5" cy="63" r="8" fill="#4E44CE"/>
+  <circle cx="70.5" cy="63" r="8" fill="#4E44CE"/>
+  <defs>
+    <linearGradient id="phantom-bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#534BB1"/>
+      <stop offset="1" stop-color="#551BF9"/>
+    </linearGradient>
+    <linearGradient id="phantom-ghost" x1="14" y1="23" x2="110" y2="107" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8E8E8"/>
+    </linearGradient>
+  </defs>
+</svg>

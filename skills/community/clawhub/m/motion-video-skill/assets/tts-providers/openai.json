@@ -1,0 +1,10 @@
+{
+  "id": "openai",
+  "label": "OpenAI TTS",
+  "type": "cloud",
+  "description": "通用性强，适合快速接入 API 语音合成。",
+  "confirmationFields": ["provider", "voice", "language", "speed", "fallbackProvider"],
+  "voiceRequired": true,
+  "supportsLocalFallback": true,
+  "envHints": ["OPENAI_API_KEY"]
+}

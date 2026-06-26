@@ -1,35 +1,90 @@
 ---
-name: "快递查询"
+name: express-tracking
 description: "查询快递物流状态。支持主流快递公司（顺丰、中通、圆通、韵达、申通、极兔、京东、EMS等），自动识别快递公司。当用户询问快递状态、物流信息、包裹位置时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/express-tracking"
-sourceUrl: "https://clawhub.ai/skills/express-tracking"
+homepage: https://www.kuaidi100.com
+metadata: { "openclaw": { "emoji": "📦", "requires": { "bins": ["python3"] } } }
 ---
 
-# 快递查询
+# 快递查询 Skill
 
-> 查询快递物流状态。支持主流快递公司（顺丰、中通、圆通、韵达、申通、极兔、京东、EMS等），自动识别快递公司。当用户询问快递状态、物流信息、包裹位置时触发。
+查询国内主流快递公司的物流状态，支持自动识别快递公司。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/express-tracking`
-- **Source URL:** [https://clawhub.ai/skills/express-tracking](https://clawhub.ai/skills/express-tracking)
+## 功能特点
 
-## Overview
+- **自动识别快递公司**：根据单号前缀自动判断快递公司
+- **多公司支持**：顺丰、中通、圆通、韵达、申通、极兔、京东、EMS、百世
+- **实时物流轨迹**：查询包裹的实时位置和运输状态
+- **格式化输出**：清晰展示物流时间线
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 基本用法
+
 ```bash
-hermes skills install clawhub/express-tracking
+python3 scripts/track.py <快递单号>
+```
+
+### 指定快递公司
+
+```bash
+python3 scripts/track.py <快递单号> <快递公司编码>
+```
+
+### 顺丰快递（需要手机号后四位）
+
+```bash
+python3 scripts/track.py SF1234567890 shunfeng 1234
+```
+
+## 支持的快递公司
+
+| 编码 | 名称 | 备注 |
+|------|------|------|
+| shunfeng | 顺丰速运 | 需要手机号后四位 |
+| zhongtong | 中通快递 | 自动识别 |
+| yuantong | 圆通速递 | 自动识别 |
+| yunda | 韵达快递 | 自动识别 |
+| shentong | 申通快递 | 自动识别 |
+| jtexpress | 极兔速递 | 自动识别 |
+| jd | 京东物流 | 自动识别 |
+| ems | 邮政EMS | 自动识别 |
+| huitongkuaidi | 百世快递 | 自动识别 |
+
+## 配置说明
+
+在 `config.json` 中配置快递100 API 密钥：
+
+```json
+{
+  "key": "YOUR_API_KEY",
+  "customer": "YOUR_CUSTOMER_ID",
+  "default_phone": "手机号后四位（顺丰用）"
+}
+```
+
+## API 限制
+
+- 免费额度：100次/天
+- 顺丰快递需要提供手机号后四位
+
+## 工作流程
+
+1. 用户询问快递状态
+2. 优先询问单号（而非自动查询历史）
+3. 自动识别快递公司或手动指定
+4. 调用快递100 API 查询
+5. 格式化返回物流轨迹
+
+## 示例输出
+
+```
+📦 顺丰速运
+📌 单号: SF1234567890
+📍 状态: 派件中
+
+📋 物流轨迹:
+📍 2024-03-07 10:30 正在派送中，派送员：张三，电话：138****1234
+   2024-03-07 08:15 到达 北京朝阳区分拨中心
+   2024-03-06 22:00 离开 上海转运中心
+   2024-03-06 18:30 已揽收
 ```

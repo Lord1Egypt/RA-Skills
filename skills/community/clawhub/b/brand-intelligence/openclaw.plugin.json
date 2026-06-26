@@ -1,0 +1,26 @@
+{
+  "id": "sigai-brand-intelligence",
+  "name": "Brand Intelligence",
+  "description": "Search, compare, and analyze 5,600+ companies across 30 verticals. AI visibility scores, knowledge graph, competitive intelligence.",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "default": "https://geo.sig.ai"
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Optional API key for authenticated access"
+      },
+      "timeoutMs": {
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 30000,
+        "default": 10000
+      }
+    },
+    "required": ["baseUrl"],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,81 @@
+=== org.deepin.dde.Gesture1 /org/deepin/dde/Gesture1 ===
+node /org/deepin/dde/Gesture1 {
+  interface org.deepin.dde.Gesture1 {
+    methods:
+      SetEdgeMoveStopDuration(in  i duration);
+      SetInputIgnore(in  s node,
+                     in  b isIgnore);
+      SetShortPressDuration(in  i duration);
+    signals:
+      Event(s name,
+            s direction,
+            i fingers);
+      KeyboardEvent(u key,
+                    u state);
+      MouseEvent(u state,
+                 u value);
+      DbclickDown(i fingers);
+      SwipeMoving(i fingers,
+                  d accelX,
+                  d accelY);
+      SwipeStop(i fingers);
+      TouchEdgeEvent(s direction,
+                     d scaleX,
+                     d scaleY);
+      TouchMovementEvent(s direction,
+                         i fingers,
+                         d startScaleX,
+                         d startScaleY,
+                         d endScaleX,
+                         d endScaleY);
+      TouchSinglePressTimeout(i time,
+                              d scaleX,
+                              d scaleY);
+      TouchPressTimeout(i fingers,
+                        i time,
+                        d scaleX,
+                        d scaleY);
+      TouchUpOrCancel(d scaleX,
+                      d scaleY);
+      TouchEdgeMoveStop(s direction,
+                        d scaleX,
+                        d scaleY,
+                        i duration);
+      TouchEdgeMoveStopLeave(s direction,
+                             d scaleX,
+                             d scaleY,
+                             i duration);
+      TouchMoving(d scalex,
+                  d scaley);
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

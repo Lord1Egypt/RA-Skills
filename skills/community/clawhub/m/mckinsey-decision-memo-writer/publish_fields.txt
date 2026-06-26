@@ -1,0 +1,14 @@
+Slug:
+decision-memo-writer
+
+Display name:
+Decision Memo Writer
+
+Version:
+1.2.0
+
+Tags:
+decision-making, executive-brief, summarization, productivity, analysis, pdf, contracts, research, planning, comparison
+
+Changelog:
+Reformatted the skill to match stronger top-listing patterns with a sharper first screen, new “Use when” and “Output” sections, and a more skimmable tool-like structure.

@@ -1,0 +1,37 @@
+{
+  "ticker": "COP",
+  "company": "ConocoPhillips",
+  "analysis_year": 2007,
+  "data_source": "ConocoPhillips FY2007 10-K, SEC EDGAR; Berkshire 2008 annual report; 2015 Berkshire AGM Q&A",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.207, "metric_used": "ROE", "years_averaged": "2005-2007", "pass": true },
+    "g2_fcf_to_ni": { "value": 0.66, "fcf": 10226, "net_income": 15550, "pass": false },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 1.2, "pass": true },
+    "g4_revenue_trend": { "description": "Revenue growth into 2007 was driven by commodity pricing and production, not by a structurally worsening business.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "No clear two-year structural gross-margin collapse before the purchase; the real problem was cyclicality and capital intensity.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.141, "net_income_m": 15550, "ev_m": 110000, "exemption": null, "pass": true },
+    "g7_moat": { "verdict": "FAIL", "moat_type": "cost_advantage", "description": "ConocoPhillips owned valuable assets, but its economics still depended primarily on oil and gas prices. It could not be described as a business competitors could not replicate in 10 years; the product remained a commodity and the returns were cycle-led rather than moat-led.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "revenue_2007_usd_m": 178558,
+    "net_income_2007_usd_m": 15550,
+    "operating_cash_flow_2007_usd_m": 24550,
+    "capital_expenditure_2007_usd_m": 14324
+  },
+
+  "control_groups": [
+    { "ticker": "XOM", "company": "Exxon Mobil", "year": 2008, "gates_failed": ["g7_moat"], "conclusion": "PASS — same commodity exposure and no Buffett-style moat despite better scale." },
+    { "ticker": "BP", "company": "BP p.l.c.", "year": 2008, "gates_failed": ["g2_fcf_to_ni", "g7_moat"], "conclusion": "PASS — similarly tied to oil prices and capital intensity, without a durable moat." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire built a roughly $7B ConocoPhillips position around the 2008 period.",
+  "actual_result": "Buffett later called the timing a mistake made near the oil-price peak; the investment was not a Berkshire-quality win.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "Peak-cycle commodity profits can make a stock look optically cheap while still failing the moat and cash-conversion test."
+}

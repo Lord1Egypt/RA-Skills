@@ -1,0 +1,45 @@
+{
+  "slug": "allergy-season-room-routine",
+  "name": "Allergy Season Room Routine",
+  "displayName": "Allergy Season Room Routine",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a low-effort room routine card with daily, weekly, and high-pollen-day actions for sneezing or irritation that feels worse indoors during allergy season.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Health, Routine, and Fitness",
+  "triggerKeywords": [
+    "allergy season room routine",
+    "indoor allergies",
+    "pollen indoors",
+    "sneezing indoors",
+    "allergy cleaning routine",
+    "high pollen day routine",
+    "bedroom allergy routine",
+    "room routine card",
+    "allergy season checklist",
+    "indoor irritation"
+  ],
+  "tags": [
+    "health-literacy",
+    "allergy-season",
+    "home-routine",
+    "cleaning-checklist",
+    "pollen",
+    "room-card"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ],
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires_api": false
+}

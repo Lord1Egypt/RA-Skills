@@ -1,0 +1,18 @@
+{
+  "resource": "webpage-template",
+  "endpoint": "POST /api/protected/templates/webpages/post-template",
+  "backendSource": "TemplateModels/Webpage.mjs (WebpageTemplateSchema)",
+  "createScript": "scripts/create-webpage-template.sh",
+  "fields": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "string", "required": false },
+    "content": { "type": "object", "required": false, "notes": "e.g. { html: '...' }" },
+    "tags": { "type": "array", "required": false, "notes": "default []" },
+    "companyId": { "type": "ObjectId", "required": false },
+    "createdBy": { "type": "ObjectId", "required": false, "notes": "Set by backend" },
+    "isPublished": { "type": "boolean", "required": false, "notes": "default false" },
+    "urlSlug": { "type": "string", "required": false, "notes": "unique, sparse" },
+    "snapShot": { "type": "string", "required": false },
+    "global": { "type": "boolean", "required": false, "notes": "default false" }
+  }
+}

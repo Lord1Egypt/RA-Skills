@@ -1,0 +1,71 @@
+{
+  "skill_name": "voice-match-humanizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, I want to create a voice profile based on my blog writing. I've got three posts saved in this file - can you analyze them and build me a profile called 'blog-voice'? The file is at evals/files/blog-samples.md",
+      "expected_output": "A voice profile saved to profiles/blog-voice.md that captures the distinctive patterns from the samples (casual tone, self-deprecating humor, sentence fragments, parenthetical asides, direct address to reader). Should show the Quick Reference checklist and ask for confirmation.",
+      "files": ["evals/files/blog-samples.md"],
+      "expectations": [
+        "A profile file is created at profiles/blog-voice.md",
+        "The profile follows the template structure from the skill (frontmatter, Summary, Sentence Patterns, Vocabulary Signature, etc.)",
+        "The Quick Reference section contains at least 6 distinctive traits",
+        "The profile identifies the casual/conversational tone with specific examples from the samples",
+        "The profile notes the use of sentence fragments as a stylistic choice",
+        "The profile identifies parenthetical asides as a recurring pattern",
+        "The profile picks up on self-deprecating humor",
+        "The user is shown the Quick Reference and asked for confirmation"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Can you check this blog post I wrote with ChatGPT and tell me how AI-ish it sounds? Here it is:\n\nIn today's rapidly evolving digital landscape, task automation has emerged as a fundamental pillar of workplace efficiency. Whether you're a seasoned professional or just beginning your career journey, understanding the nuances of automation can fundamentally reshape how you approach your daily responsibilities.\n\nAt its core, automation is about leveraging technology to handle repetitive tasks, freeing up valuable mental bandwidth for more strategic thinking. The benefits are multifaceted: increased productivity, reduced errors, and improved scalability.\n\nThe journey toward automation doesn't have to be overwhelming. It's important to note that even small steps can yield remarkable results. Consider starting with tools like Zapier or Make, which offer intuitive interfaces that don't require extensive technical knowledge.\n\nWhile automation is incredibly powerful, it's essential to remember that it works best when it complements rather than replaces human judgment. In conclusion, embracing automation isn't just about working faster - it's about working smarter.",
+      "expected_output": "An AI detection score with category breakdowns (Vocabulary, Structure, Tone, Mechanics) showing a High or Very High detection risk. Should flag specific AI patterns like 'digital landscape', 'multifaceted', 'it's important to note', formulaic structure, and the balanced concluding statement.",
+      "files": [],
+      "expectations": [
+        "The overall AI detection risk is rated High or Very High",
+        "A numerical score out of 100 is provided",
+        "All four categories are scored (Vocabulary, Structure, Tone, Mechanics)",
+        "The word 'landscape' or 'multifaceted' or 'leverage' is flagged as AI vocabulary",
+        "The phrase 'it's important to note' is flagged as hedge stacking",
+        "The formulaic paragraph structure is identified",
+        "At least 2 specific examples from the text are quoted in the flags",
+        "An offer to rewrite is made"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ok I've got my blog-voice profile set up already. Can you take this AI-generated post about task automation and rewrite it in my voice? The post is at evals/files/ai-generated-blog-post.md - use my blog-voice profile.",
+      "expected_output": "A rewritten version of the AI blog post that matches the blog-voice profile: casual tone, sentence fragments, self-deprecating humor, parenthetical asides, direct reader address. Should preserve all the original information about automation but sound like the person from the samples wrote it. Before/after AI score comparison showing improvement.",
+      "files": ["evals/files/ai-generated-blog-post.md"],
+      "expectations": [
+        "The rewritten text preserves the core topic (task automation) and key points from the original",
+        "The rewrite uses a noticeably more casual tone than the original",
+        "The rewrite contains at least one sentence fragment or informal structure",
+        "The rewrite contains at least one parenthetical aside",
+        "AI vocabulary words from the original (landscape, leverage, multifaceted, etc.) are replaced",
+        "The formulaic list-of-three structure is broken up or made more natural",
+        "The rewrite does not open with 'In today's...' or any restatement-style opening",
+        "A before/after AI detection score is shown, with the rewrite scoring lower"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I need a second voice profile - this one for my LinkedIn posts. I write differently there than on my blog. Samples are at evals/files/linkedin-samples.md - call this one 'linkedin-voice'. Then take the AI-generated LinkedIn post at evals/files/ai-generated-linkedin-post.md and rewrite it using the new profile.",
+      "expected_output": "A linkedin-voice profile that's noticeably different from blog-voice (more direct, shorter paragraphs, opinion-driven, punchy endings, professional but not corporate). Then a rewrite of the AI LinkedIn post that matches this voice - should strip the hashtags, kill the engagement bait question, remove the emoji, and sound like the actual LinkedIn samples.",
+      "files": ["evals/files/linkedin-samples.md", "evals/files/ai-generated-linkedin-post.md"],
+      "expectations": [
+        "A profile file is created at profiles/linkedin-voice.md",
+        "The linkedin-voice profile is meaningfully different from a casual blog profile (more direct, opinion-driven, shorter paragraphs)",
+        "The profile identifies the punchy one-line openings ('Hot take...', 'Something I learned...')",
+        "The profile identifies the pattern of ending with a crisp takeaway or imperative ('Do better.', 'Write them down.')",
+        "The rewritten LinkedIn post removes hashtags from the original",
+        "The rewrite removes the engagement-bait question ('What leadership lesson...') and emoji",
+        "The rewrite replaces 'thrilled to share' and other corporate-inspirational language",
+        "The rewrite preserves the core message about leadership vulnerability and growth",
+        "The rewritten post uses short, direct paragraphs consistent with the LinkedIn samples",
+        "A before/after AI detection score is shown for the rewrite"
+      ]
+    }
+  ]
+}

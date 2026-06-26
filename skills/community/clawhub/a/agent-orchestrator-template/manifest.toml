@@ -1,0 +1,29 @@
+name = "Agent Orchestrator Template"
+slug = "agent-orchestrator-template"
+version = "0.1.1"
+description = "A skill for main agents that need bounded delegation, safe parallel dispatch, and independent acceptance across multiple specialists."
+category = "开发辅助"
+visibility = "public"
+
+[github]
+enabled = true
+repo = "cjke84/agent-orchestrator-template"
+
+[xiaping]
+enabled = true
+title = "Agent 主控台"
+description_zh = "给 OpenClaw 主控代理使用的多代理编排技能，用来约束任务分类、子代理分发、任务契约、并行边界、治理检查和主控验收，避免把半成品结果直接返回给用户。"
+summary = "适用于需要协调多个子代理的主控代理，提供 no-spawn 规则、task_type + domain 路由、任务契约、并行限制和验收流程。"
+trigger = "[\"agent-orchestrator-template\",\"主控代理编排\",\"多代理编排\",\"orchestrator\"]"
+category = "[\"开发辅助\"]"
+tags = "[\"agent\",\"orchestration\",\"openclaw\",\"automation\"]"
+
+[openclaw]
+enabled = true
+title_zh = "Agent 主控台"
+description_zh = "面向 OpenClaw 主控代理的多代理编排技能，帮助主控代理分类、分发、验收并整合子代理输出。"
+
+[clawhub]
+enabled = true
+title_en = "Agent Orchestrator Template"
+description_en = "A skill for main agents that need bounded delegation, safe parallel dispatch, and independent acceptance across multiple specialists."

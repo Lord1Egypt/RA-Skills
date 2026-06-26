@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Space Adventure!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000000;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+        }
+        
+        #space-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #1a1a3e 0%, #000000 100%);
+        }
+        
+        #title {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 48px;
+            text-shadow: 0 0 20px #4facfe, 0 0 40px #4facfe;
+            z-index: 100;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+        
+        #rocket {
+            position: absolute;
+            font-size: 80px;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            filter: drop-shadow(0 0 20px #ff6b6b);
+            animation: rocket-fly 8s linear infinite;
+        }
+        
+        @keyframes rocket-fly {
+            0% {
+                left: -100px;
+                top: 50%;
+            }
+            100% {
+                left: 120%;
+                top: 30%;
+            }
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        #planet1 {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+            top: 20%;
+            right: 15%;
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.5);
+            animation-delay: 0s;
+        }
+        
+        #planet2 {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #ffd93d, #f59e0b);
+            bottom: 25%;
+            left: 20%;
+            box-shadow: 0 0 30px rgba(255, 217, 61, 0.5);
+            animation-delay: 1s;
+        }
+        
+        #planet3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, #4d96ff, #1e40af);
+            top: 60%;
+            right: 25%;
+            box-shadow: 0 0 50px rgba(77, 150, 255, 0.5);
+            animation-delay: 2s;
+        }
+        
+        #planet4 {
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #9d4edd, #6b21a8);
+            top: 15%;
+            left: 35%;
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.5);
+            animation-delay: 1.5s;
+        }
+        
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            width: 200px;
+            height: 200px;
+            border: 15px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+        }
+        
+        #saturn {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b);
+            border-radius: 50%;
+            bottom: 20%;
+            right: 40%;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+        
+        #saturn-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            width: 200px;
+            height: 50px;
+            border: 12px solid rgba(218, 165, 32, 0.6);
+            border-radius: 50%;
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white, -50px 0 20px white, -100px 0 30px white;
+            animation: shoot 2s ease-out forwards;
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-500px) translateY(500px);
+                opacity: 0;
+            }
+        }
+        
+        .moon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 35% 30%, #f0f0f0, #999);
+            border-radius: 50%;
+            top: 40%;
+            left: 15%;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            animation: orbit 15s linear infinite;
+        }
+        
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(100px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(100px) rotate(-360deg);
+            }
+        }
+        
+        .comet {
+            position: absolute;
+            font-size: 40px;
+            animation: comet-path 10s linear infinite;
+        }
+        
+        @keyframes comet-path {
+            0% {
+                left: 100%;
+                top: 0;
+                opacity: 1;
+            }
+            100% {
+                left: -100px;
+                top: 100%;
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #title {
+                font-size: 32px;
+            }
+            
+            #rocket {
+                font-size: 60px;
+            }
+            
+            .planet {
+                transform: scale(0.7);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="space-container">
+        <h1 id="title">🌌 Space Adventure! 🌌</h1>
+        
+        <!-- Rocket -->
+        <div id="rocket">🚀</div>
+        
+        <!-- Planets -->
+        <div id="planet1" class="planet"></div>
+        <div id="planet2" class="planet"></div>
+        <div id="planet3" class="planet"></div>
+        <div id="planet4" class="planet"></div>
+        
+        <!-- Saturn with rings -->
+        <div id="saturn">
+            <div id="saturn-ring"></div>
+        </div>
+        
+        <!-- Moon -->
+        <div class="moon"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById('space-container');
+        
+        // Create background stars
+        function createStars() {
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                container.appendChild(star);
+            }
+        }
+        
+        // Create shooting stars periodically
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.left = (Math.random() * 50 + 50) + '%';
+            star.style.top = Math.random() * 30 + '%';
+            
+            container.appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
+        
+        // Create comets periodically
+        function createComet() {
+            const comet = document.createElement('div');
+            comet.className = 'comet';
+            comet.textContent = '☄️';
+            comet.style.left = '100%';
+            comet.style.top = Math.random() * 50 + '%';
+            comet.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            
+            container.appendChild(comet);
+            
+            setTimeout(() => {
+                comet.remove();
+            }, 15000);
+        }
+        
+        // Add some UFOs flying by occasionally
+        function createUFO() {
+            const ufo = document.createElement('div');
+            ufo.style.position = 'absolute';
+            ufo.style.fontSize = '50px';
+            ufo.textContent = '🛸';
+            ufo.style.left = '-100px';
+            ufo.style.top = (Math.random() * 60 + 10) + '%';
+            ufo.style.filter = 'drop-shadow(0 0 20px #00ff00)';
+            
+            container.appendChild(ufo);
+            
+            let pos = -100;
+            const speed = Math.random() * 3 + 4;
+            const wobble = Math.random() * 20 + 10;
+            const baseTop = parseFloat(ufo.style.top);
+            
+            const moveInterval = setInterval(() => {
+                pos += speed;
+                const wobbleOffset = Math.sin(pos / 30) * wobble;
+                ufo.style.left = pos + 'px';
+                ufo.style.top = (baseTop + wobbleOffset) + '%';
+                
+                if (pos > window.innerWidth + 100) {
+                    clearInterval(moveInterval);
+                    ufo.remove();
+                }
+            }, 20);
+        }
+        
+        // Add twinkling effect to planets
+        function addPlanetTwinkle() {
+            const planets = document.querySelectorAll('.planet, #saturn');
+            planets.forEach(planet => {
+                setInterval(() => {
+                    const currentShadow = planet.style.boxShadow || window.getComputedStyle(planet).boxShadow;
+                    planet.style.boxShadow = currentShadow.replace(/0.5/g, Math.random() * 0.3 + 0.4);
+                }, 1000);
+            });
+        }
+        
+        // Initialize
+        createStars();
+        addPlanetTwinkle();
+        
+        // Periodic events
+        setInterval(createShootingStar, 3000);
+        setInterval(createComet, 8000);
+        setInterval(createUFO, 12000);
+        
+        // Create initial comet and UFO
+        setTimeout(createComet, 2000);
+        setTimeout(createUFO, 5000);
+        
+        // Add click interaction - create explosion of stars
+        container.addEventListener('click', (e) => {
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.textContent = '✨';
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.fontSize = '24px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.transition = 'all 1s ease-out';
+                
+                container.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    const angle = (Math.PI * 2 * i) / 10;
+                    const distance = 100;
+                    sparkle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+                    sparkle.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paytm Subscription (UPI Autopay)</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
+      button { padding: 0.65rem 1.25rem; font-size: 1rem; cursor: pointer; }
+      #payment-result { margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 0.4rem; font-size: 0.95rem; display: none; }
+      #payment-result.success { background: #e7f6e7; color: #1b5e20; display: block; }
+      #payment-result.failure { background: #fdecea; color: #a40000; display: block; }
+      #payment-result.pending { background: #fff8e1; color: #6d4c00; display: block; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    </style>
+  </head>
+  <body>
+    <h1>Paytm Subscription (UPI Autopay)</h1>
+    <p>
+      Server calls <code>/paytm/create-subscription</code> →
+      <code>txnToken</code> → JS Checkout for the user mandate consent.
+    </p>
+
+    <button type="button" id="subscribeBtn" disabled>Subscribe - first debit ₹2.00</button>
+    <div id="payment-result" role="status" aria-live="polite"></div>
+
+    <script>
+      var resultEl = document.getElementById("payment-result");
+      var btn = document.getElementById("subscribeBtn");
+
+      function showResult(kind, message) {
+        resultEl.className = kind;
+        resultEl.textContent = message;
+      }
+
+      // Load CheckoutJS via the backend's /paytm-client-config.json
+      fetch(new URL("paytm-client-config.json", document.baseURI).toString())
+        .then(function (r) { return r.json(); })
+        .then(function (cfg) {
+          if (!cfg.loader_url) throw new Error("Missing loader_url");
+          var s = document.createElement("script");
+          s.type = "application/javascript";
+          s.src = cfg.loader_url;
+          s.crossOrigin = "anonymous";
+          s.onload = function () { btn.disabled = false; };
+          s.onerror = function () { showResult("failure", "Could not load Paytm. Refresh and try again."); };
+          document.head.appendChild(s);
+        })
+        .catch(function (e) {
+          console.error("[paytm] client-config fetch failed", e);
+          showResult("failure", "Could not initialise subscription. Refresh and try again.");
+        });
+
+      btn.addEventListener("click", function () {
+        btn.disabled = true;
+
+        fetch(new URL("paytm/create-subscription", document.baseURI).toString(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            // Defaults baked in on the server side; override here if needed.
+            // amount:        first-debit amount (>= 2.00 for cross-rail safety)
+            // renewalAmount: optional - what you want shown on the consent screen
+            // frequencyUnit: DAY | WEEK | MONTH | YEAR | ONDEMAND
+            amount: "2.00",
+            frequency: "1",
+            frequencyUnit: "MONTH",
+            custId: "CUST_DEMO",
+            // mobile / email pre-fill the consent screen - strongly recommended in real flows
+            // mobile: "9999999999",
+            // email: "buyer@example.com",
+          }),
+        })
+          .then(function (r) {
+            if (!r.ok) return r.text().then(function (t) { throw new Error("HTTP " + r.status + " - " + t); });
+            return r.json();
+          })
+          .then(function (data) {
+            if (!window.Paytm || !window.Paytm.CheckoutJS) {
+              throw new Error("Paytm.CheckoutJS not available");
+            }
+            var config = {
+              root: "",
+              flow: "DEFAULT",
+              data: {
+                orderId: data.orderId,
+                token: data.txnToken,
+                tokenType: "TXN_TOKEN",
+                amount: data.amount,
+              },
+              merchant: { redirect: false },
+              handler: {
+                notifyMerchant: function (eventName, payload) {
+                  console.log("[paytm] notifyMerchant", eventName, payload);
+                  if (eventName === "APP_CLOSED") {
+                    showResult("failure", "Subscription cancelled.");
+                    btn.disabled = false;
+                  } else if (eventName === "SESSION_EXPIRED") {
+                    showResult("failure", "Session expired. Please try again.");
+                    btn.disabled = false;
+                  }
+                },
+                transactionStatus: function (data) {
+                  console.log("[paytm] transactionStatus", data);
+                  if (data && data.STATUS === "TXN_SUCCESS") {
+                    showResult("success", "Subscription set up. Mandate is active.");
+                  } else if (data && data.STATUS === "PENDING") {
+                    showResult("pending", "Mandate pending - we'll confirm shortly.");
+                  } else {
+                    showResult("failure", "Subscription setup failed. Please try again.");
+                  }
+                  window.Paytm.CheckoutJS.close();
+                  btn.disabled = false;
+                },
+              },
+            };
+            return window.Paytm.CheckoutJS.init(config).then(function () {
+              window.Paytm.CheckoutJS.invoke();
+            });
+          })
+          .catch(function (e) {
+            console.error("[paytm] subscription error", e);
+            showResult("failure", "Something went wrong. Please try again.");
+            btn.disabled = false;
+          });
+      });
+    </script>
+  </body>
+</html>

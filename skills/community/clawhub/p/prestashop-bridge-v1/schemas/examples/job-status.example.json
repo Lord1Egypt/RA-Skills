@@ -1,0 +1,11 @@
+{
+  "job_id": "550e8400-e29b-41d4-a716-446655440000",
+  "type": "product_update",
+  "status": "completed",
+  "result": {
+    "message": "Product update applied"
+  },
+  "created_at": "2026-03-21T07:00:00Z",
+  "started_at": "2026-03-21T07:00:02Z",
+  "completed_at": "2026-03-21T07:00:04Z"
+}

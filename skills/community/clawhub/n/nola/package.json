@@ -1,0 +1,27 @@
+{
+  "name": "nola-squad",
+  "version": "0.1.0",
+  "description": "Nola — an AI engineering squad for OpenClaw. 14 specialist agents that build, test, review, and ship code.",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "agent",
+    "skill",
+    "coding",
+    "ai",
+    "multi-agent",
+    "development"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flikq/nola-squad"
+  },
+  "openclaw": {
+    "type": "skill",
+    "skillDir": "."
+  },
+  "files": [
+    "SKILL.md",
+    "agents/"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "name": "master-agent-workflow-global",
+  "version": "2.0.0",
+  "description": "全局可迁移的主控代理工作流技能 - 支持一键安装、配置迁移和模板系统",
+  "author": "小龙",
+  "created": "2026-03-27",
+  "updated": "2026-03-27",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaolong-ai/master-agent-workflow.git"
+  },
+  "homepage": "https://clawhub.com/skills/master-agent-workflow",
+  "keywords": ["agent", "workflow", "parallel", "scheduling", "master-agent", "migration", "global"],
+  "categories": ["workflow", "automation", "agent-management"],
+  
+  "requirements": {
+    "openclaw": ">=1.0.0",
+    "node": ">=18.0.0",
+    "tools": ["sessions_spawn", "subagents", "message", "read", "write", "exec"]
+  },
+  
+  "configSchema": {
+    "max_workers": {
+      "type": "number",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 20,
+      "description": "最大并行工作代理数"
+    },
+    "timeout_hours": {
+      "type": "number",
+      "default": 3,
+      "minimum": 0.5,
+      "maximum": 24,
+      "description": "主控代理超时时间（小时）"
+    },
+    "worker_timeout_minutes": {
+      "type": "number",
+      "default": 30,
+      "minimum": 5,
+      "maximum": 240,
+      "description": "工作代理超时时间（分钟）"
+    },
+    "stuck_threshold_minutes": {
+      "type": "number",
+      "default": 15,
+      "description": "卡住检测阈值（分钟）"
+    },
+    "fail_threshold": {
+      "type": "number",
+      "default": 10,
+      "description": "失败阈值（超过此数则退出）"
+    },
+    "auto_cleanup": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否自动清理完成的工作代理"
+    },
+    "report_channel": {
+      "type": "string",
+      "default": "feishu",
+      "enum": ["feishu", "telegram", "discord", "console"],
+      "description": "进度报告渠道"
+    }
+  },
+  
+  "templates": {
+    "file_processing": {
+      "name": "文件处理",
+      "description": "批量文件处理模板",
+      "config": {
+        "max_workers": 5,
+        "worker_timeout_minutes": 45,
+        "task_type": "file"
+      }
+    },
+    "api_calling": {
+      "name": "API调用",
+      "description": "批量API调用模板",
+      "config": {
+        "max_workers": 3,
+        "worker_timeout_minutes": 60,
+        "task_type": "api"
+      }
+    },
+    "data_processing": {
+      "name": "数据处理",
+      "description": "批量数据处理模板",
+      "config": {
+        "max_workers": 10,
+        "worker_timeout_minutes": 30,
+        "task_type": "data"
+      }
+    }
+  },
+  
+  "migration": {
+    "supported_versions": ["1.0.0", "2.0.0"],
+    "export_formats": ["json", "yaml", "tar.gz"],
+    "import_formats": ["json", "yaml", "tar.gz"]
+  },
+  
+  "examples": [
+    {
+      "name": "快速开始",
+      "description": "使用默认配置启动任务",
+      "code": "使用 master-agent-workflow-global 执行我的任务"
+    },
+    {
+      "name": "自定义配置",
+      "description": "使用自定义配置",
+      "code": "使用 master-agent-workflow-global --max-workers 10 --timeout 2h 执行任务"
+    },
+    {
+      "name": "使用模板",
+      "description": "使用预定义模板",
+      "code": "使用 master-agent-workflow-global --template file_processing 处理文件列表"
+    }
+  ],
+  
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "config-template.json",
+    "migration-guide.md",
+    "install.sh",
+    "uninstall.sh",
+    "templates/",
+    "examples/",
+    "scripts/"
+  ]
+}

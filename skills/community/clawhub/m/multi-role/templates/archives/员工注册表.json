@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "description": "员工注册表模板 — 记录所有已注册角色的基本信息",
+  "last_updated": "{更新日期}",
+  "roles": [
+    {
+      "role_id": "{角色ID}",
+      "role_name": "{角色名称}",
+      "role_type": "{角色类型，如：管理、产品、研发、测试、运营}",
+      "version": "v{版本号}",
+      "status": "{状态：active / suspended / rebuilding}",
+      "constitution_path": "references/constitutions/{角色名}-角色宪法-SOP.md",
+      "registered_at": "{注册时间}",
+      "last_rebuilt_at": "{最近重建时间，无则填null}",
+      "performance": {
+        "score": 100,
+        "error_count": 0,
+        "rebuild_count": 0
+      },
+      "capabilities": [
+        "{能力描述1}",
+        "{能力描述2}"
+      ],
+      "notes": "{备注信息}"
+    }
+  ],
+  "rebuild_threshold": {
+    "error_count": 3,
+    "description": "错误次数达到此阈值时触发角色重建"
+  }
+}

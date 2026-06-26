@@ -1,35 +1,26 @@
+# asclaude-monitor: 智能任务与系统健康监控中心 📊🔔
+
+> **从“被动响应”到“主动关怀”，让您的 AI 助手拥有全天候的系统感知力。**
+
+## 🌟 核心亮点
+**asclaude-monitor** 是 OpenClaw 环境下的“运维驾驶舱”。它集成了系统资源监视、定时任务管家以及异步任务追踪功能。通过这套工具，黑米能够主动发现环境隐患，确保您的自动化流程（如股票监控、新闻抓取）稳定运行，不再出现“静默失败”。
+
+### 🚀 功能详解
+1.  **系统健康自检 (Health Check):**
+    *   **磁盘与内存:** 实时监控工作区存储空间，防止日志或归档文件占满磁盘。
+    *   **网关状态:** 快速确认 OpenClaw Gateway 是否在线，排查网络连接问题。
+2.  **Cron 任务管家:**
+    *   **一键清单:** 优雅地列出所有定时任务，包含运行时间表和状态。
+    *   **主动预警:** 配合 Heartbeat 机制，定期检查关键任务是否执行成功。
+3.  **子代理追踪 (Sub-agent Watch):**
+    *   监控后台运行的复杂任务进度。
+    *   当任务卡死或超时时，提供快速响应建议。
+4.  **主动提醒引擎:**
+    *   在关键节点（如任务完成、系统空闲）主动通过飞书或聊天窗口推送状态。
+
+## 🛠️ 使用指南
+- **运行健康检查:** `python scripts/health_check.py`
+- **查看定时任务:** `python scripts/cron_manager.py`
+
 ---
-name: "asclaude-monitor"
-description: "Monitors system resources, manages scheduled tasks, tracks background jobs, and sends proactive alerts to ensure stable automated workflows in OpenClaw."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/asclaude-monitor"
-sourceUrl: "https://clawhub.ai/skills/asclaude-monitor"
----
-
-# asclaude-monitor
-
-> Monitors system resources, manages scheduled tasks, tracks background jobs, and sends proactive alerts to ensure stable automated workflows in OpenClaw.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/asclaude-monitor`
-- **Source URL:** [https://clawhub.ai/skills/asclaude-monitor](https://clawhub.ai/skills/asclaude-monitor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/asclaude-monitor
-```
+*由 黑米 (HeiMi) 为您打造的 AI 运维中枢，让每一次自动化运行都心中有数。* 🌾

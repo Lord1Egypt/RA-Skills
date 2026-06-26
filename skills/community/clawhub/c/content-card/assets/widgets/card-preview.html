@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Card Preview</title>
+<!-- DATA_INJECTION_POINT: Agent will insert <script>window.__SKILL_DATA__ = {...};</script> here -->
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #18181b;
+    color: #e4e4e7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loading, .error {
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh; font-size: 14px; color: #71717a;
+  }
+  .error { color: #f87171; }
+
+  /* Header */
+  .header {
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #27272a;
+    flex-shrink: 0;
+  }
+  .header h1 {
+    font-size: 15px; font-weight: 600; color: #fafafa;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .header .meta {
+    font-size: 12px; color: #71717a; margin-top: 4px;
+  }
+
+  /* Content area */
+  .content { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+
+  /* --- Multi mode: horizontal scroll --- */
+  .scroll-strip {
+    flex: 1; display: flex; align-items: center;
+    overflow-x: auto; overflow-y: hidden;
+    padding: 20px; gap: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-strip::-webkit-scrollbar { height: 6px; }
+  .scroll-strip::-webkit-scrollbar-track { background: transparent; }
+  .scroll-strip::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+
+  .card-thumb {
+    flex-shrink: 0; position: relative; cursor: pointer;
+    border-radius: 12px; overflow: hidden;
+    background: #27272a; scroll-snap-align: start;
+    transition: transform .2s, box-shadow .2s;
+    max-height: calc(100vh - 120px);
+  }
+  .card-thumb:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+  .card-thumb img {
+    display: block; height: 100%; max-height: calc(100vh - 130px);
+    width: auto; object-fit: contain;
+  }
+
+  /* Download button on thumb */
+  .dl-btn {
+    position: absolute; top: 8px; right: 8px;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+    border: none; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    opacity: 0; transition: opacity .2s;
+  }
+  .card-thumb:hover .dl-btn, .single-view:hover .dl-btn { opacity: 1; }
+  .dl-btn svg { width: 16px; height: 16px; stroke: #e4e4e7; fill: none; stroke-width: 2; }
+  .dl-btn:hover { background: rgba(99,102,241,.8); }
+
+  /* Card index badge */
+  .card-badge {
+    position: absolute; bottom: 8px; left: 8px;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+    padding: 2px 8px; border-radius: 6px;
+    font-size: 11px; color: #a1a1aa; pointer-events: none;
+  }
+
+  /* --- Single mode --- */
+  .single-view {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 20px; position: relative; overflow: auto;
+  }
+  .single-view img {
+    max-width: 90%; max-height: calc(100vh - 120px);
+    border-radius: 12px; object-fit: contain; cursor: zoom-in;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 10px 20px; text-align: center;
+    font-size: 12px; color: #52525b;
+    border-top: 1px solid #27272a; flex-shrink: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* --- Modal --- */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,.75); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .modal-img {
+    max-width: 94vw; max-height: 92vh;
+    border-radius: 8px; object-fit: contain;
+    transition: transform .25s;
+  }
+  .modal-overlay:not(.open) .modal-img { transform: scale(.92); }
+
+  .modal-close {
+    position: absolute; top: 12px; right: 16px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close svg { width: 18px; height: 18px; stroke: #e4e4e7; fill: none; stroke-width: 2; }
+  .modal-close:hover { background: rgba(255,255,255,.25); }
+
+  .modal-dl {
+    position: absolute; bottom: 20px; right: 20px;
+    padding: 8px 16px; border-radius: 8px;
+    background: #6366f1; color: #fff; border: none;
+    font-size: 13px; cursor: pointer; display: flex;
+    align-items: center; gap: 6px; font-weight: 500;
+  }
+  .modal-dl:hover { background: #818cf8; }
+  .modal-dl svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  .modal-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,.1); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-nav:hover { background: rgba(255,255,255,.2); }
+  .modal-nav svg { width: 20px; height: 20px; stroke: #e4e4e7; fill: none; stroke-width: 2; }
+  .modal-nav.prev { left: 12px; }
+  .modal-nav.next { right: 12px; }
+  .modal-nav[hidden] { display: none; }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+  <button class="modal-close" id="modalClose"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <button class="modal-nav prev" id="modalPrev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="modal-nav next" id="modalNext"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <img class="modal-img" id="modalImg" alt="">
+  <button class="modal-dl" id="modalDl"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>下载</button>
+</div>
+
+<script>
+(function() {
+  const DL_ICON = '<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+  const root = document.getElementById('root');
+
+  // State
+  let data = null;
+  let modalIndex = -1;
+
+  // --- Load ---
+  root.innerHTML = '<div class="loading">加载中…</div>';
+  if (window.__SKILL_DATA__) {
+    data = window.__SKILL_DATA__;
+    render();
+  } else {
+    fetch('./data.json').then(r => {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(d => { data = d; render(); })
+      .catch(e => { root.innerHTML = '<div class="error">无法加载 data.json</div>'; });
+  }
+
+  // --- Render ---
+  function render() {
+    const isMulti = data.mode === 'multi';
+    const count = data.cards.length;
+
+    let html = '';
+    // Header
+    html += '<div class="header">';
+    html += '<h1>' + esc(data.title) + '</h1>';
+    html += '<div class="meta">' + esc(data.modeLabel) + ' · ' + formatTime(data.generatedAt) + '</div>';
+    html += '</div>';
+
+    // Content
+    if (isMulti && count > 1) {
+      html += '<div class="content"><div class="scroll-strip" id="strip">';
+      data.cards.forEach((c, i) => {
+        html += '<div class="card-thumb" data-i="' + i + '">';
+        html += '<img src="' + esc(c.imageUrl) + '" alt="' + esc(c.title) + '" loading="lazy">';
+        html += '<button class="dl-btn" data-dl="' + i + '" title="下载 PNG">' + DL_ICON + '</button>';
+        html += '<span class="card-badge">' + (i + 1) + ' / ' + count + '</span>';
+        html += '</div>';
+      });
+      html += '</div></div>';
+    } else {
+      const c = data.cards[0];
+      html += '<div class="content"><div class="single-view" data-i="0">';
+      html += '<img src="' + esc(c.imageUrl) + '" alt="' + esc(c.title) + '">';
+      html += '<button class="dl-btn" data-dl="0" title="下载 PNG">' + DL_ICON + '</button>';
+      html += '</div></div>';
+    }
+
+    // Footer
+    html += '<div class="footer">content-card · ' + esc(data.modeLabel) + ' · ' + count + ' 张</div>';
+
+    root.innerHTML = html;
+    bindEvents();
+  }
+
+  // --- Events ---
+  function bindEvents() {
+    // Click thumb → open modal
+    root.addEventListener('click', function(e) {
+      const dlBtn = e.target.closest('[data-dl]');
+      if (dlBtn) { e.stopPropagation(); download(+dlBtn.dataset.dl); return; }
+      const thumb = e.target.closest('[data-i]');
+      if (thumb) openModal(+thumb.dataset.i);
+    });
+  }
+
+  // --- Modal ---
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalClose = document.getElementById('modalClose');
+  const modalDl = document.getElementById('modalDl');
+  const modalPrev = document.getElementById('modalPrev');
+  const modalNext = document.getElementById('modalNext');
+
+  function openModal(i) {
+    if (!data) return;
+    modalIndex = i;
+    updateModal();
+    modal.classList.add('open');
+    document.addEventListener('keydown', onKey);
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modalIndex = -1;
+    document.removeEventListener('keydown', onKey);
+  }
+  function updateModal() {
+    const c = data.cards[modalIndex];
+    modalImg.src = c.imageUrl;
+    modalImg.alt = c.title;
+    const multi = data.cards.length > 1;
+    modalPrev.hidden = !multi || modalIndex === 0;
+    modalNext.hidden = !multi || modalIndex === data.cards.length - 1;
+  }
+  function onKey(e) {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft' && modalIndex > 0) { modalIndex--; updateModal(); }
+    if (e.key === 'ArrowRight' && modalIndex < data.cards.length - 1) { modalIndex++; updateModal(); }
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+  modalPrev.addEventListener('click', function() { if (modalIndex > 0) { modalIndex--; updateModal(); } });
+  modalNext.addEventListener('click', function() { if (modalIndex < data.cards.length - 1) { modalIndex++; updateModal(); } });
+  modalDl.addEventListener('click', function() { if (modalIndex >= 0) download(modalIndex); });
+
+  // --- Download ---
+  function download(i) {
+    const c = data.cards[i];
+    const a = document.createElement('a');
+    a.href = c.imageUrl;
+    a.download = c.imageUrl.split('/').pop() || ('card-' + (i + 1) + '.png');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // --- Helpers ---
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+  }
+  function formatTime(iso) {
+    if (!iso) return '';
+    try {
+      const d = new Date(iso);
+      return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+    } catch(e) { return iso; }
+  }
+  function p(n) { return n < 10 ? '0' + n : '' + n; }
+})();
+</script>
+</body>
+</html>

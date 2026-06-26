@@ -1,0 +1,40 @@
+{
+  "name": "editorial",
+  "displayName": "EDITORIAL · 编辑杂志",
+  "version": "1.0.0",
+  "color": {
+    "paper": "oklch(0.97 0.012 75)",
+    "ink": "oklch(0.20 0.015 280)",
+    "accent": "oklch(0.50 0.18 25)",
+    "mute": "oklch(0.42 0.02 280)",
+    "rule": "oklch(0.20 0.015 280 / .25)"
+  },
+  "colorHex": {
+    "paper": "#f6f3eb",
+    "ink": "#2c2c33",
+    "accent": "#a83a23",
+    "mute": "#5e5e6a",
+    "rule": "rgba(44,44,51,.25)"
+  },
+  "typography": {
+    "display": "DM Serif Display 400",
+    "body": "Source Serif 4 400/600 opsz"
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 16, "lg": 32, "xl": 48, "2xl": 96 },
+  "radius": { "none": 0, "sm": 2, "md": 4, "lg": 8 },
+  "shadow": {
+    "subtle": "0 1px 2px oklch(0 0 0 / .04)",
+    "card": "0 2px 8px oklch(0 0 0 / .06)",
+    "modal": "0 12px 36px oklch(0 0 0 / .12)"
+  },
+  "examplePath": "../examples/editorial/index.html",
+  "motion": {
+    "duration": { "fast": 250, "normal": 400, "slow": 700 },
+    "easing": {
+      "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
+      "standard": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": { "loose": 120 },
+    "philosophy": "稳重 — 偏长 duration 模仿翻页节奏、decelerate easing 像纸张展开；段落 stagger 120ms 模拟阅读视线下移"
+  }
+}

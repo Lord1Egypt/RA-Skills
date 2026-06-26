@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圆桌讨论 — Roundtable</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/viewer.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container flex items-center justify-between py-3">
+      <div class="flex items-center gap-2">
+        <span class="status-badge waiting" id="statusBadge">
+          <span class="badge-dot"></span>
+          <span id="statusLabel">等待中</span>
+        </span>
+        <h1 class="text-lg font-semibold" style="color:var(--rt-text-primary)" id="topicTitle">圆桌讨论</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Share button (desktop) -->
+        <div class="relative" id="shareContainer">
+          <button class="share-btn" id="shareBtn" aria-label="分享链接">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            <span>分享</span>
+          </button>
+          <!-- Desktop Popover -->
+          <div class="share-popover" id="sharePopover">
+            <div class="share-popover-title">📋 分享链接</div>
+            <div id="sharePanelContent">
+              <div class="share-link-row">
+                <input class="share-link-input" id="shareLinkInput" readonly>
+                <button class="copy-btn" id="copyBtn">复制</button>
+              </div>
+              <div class="share-hint">任何人通过此链接可查看讨论</div>
+              <button class="revoke-link-btn" id="revokeLinkBtn">⚠️ 撤销链接</button>
+            </div>
+            <div class="share-revoked-state hidden" id="shareRevokedState">
+              <div class="revoked-icon">🔒</div>
+              <div>链接已撤销</div>
+            </div>
+          </div>
+        </div>
+        <div class="conn-status">
+          <span class="conn-dot connected" id="connDot"></span>
+          <span id="connText">已连接</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="container py-4" id="mainContent">
+    <!-- Waiting state -->
+    <div id="waitingState" class="flex flex-col items-center justify-center py-20">
+      <div class="spinner mb-4"></div>
+      <p class="text-lg" style="color: var(--rt-text-secondary)">讨论即将开始…</p>
+      <p class="text-sm mt-2" style="color: var(--rt-text-muted)">发言将会实时显示在这里</p>
+    </div>
+
+    <!-- Active state (hidden initially) -->
+    <div id="activeState" class="hidden">
+      <!-- Participants bar -->
+      <div id="participantsBar" class="flex gap-2 mb-4 overflow-x-auto pb-2"></div>
+      <!-- Participants trigger (mobile) -->
+      <div id="participantsTrigger" class="participants-trigger mb-3" onclick="toggleParticipantsDrawer()">
+        <span class="trigger-avatars" id="triggerAvatars"></span>
+        <span id="triggerCount">0 位参与者</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <!-- Participants drawer (mobile) -->
+      <div id="participantsDrawerOverlay" class="participants-drawer-overlay" onclick="toggleParticipantsDrawer()"></div>
+      <div id="participantsDrawer" class="participants-drawer">
+        <div class="drawer-handle"></div>
+        <div class="drawer-title">👥 参与者</div>
+        <div id="drawerParticipantList" class="drawer-participant-list"></div>
+      </div>
+
+      <!-- Speeches container -->
+      <div id="speechesContainer"></div>
+
+      <!-- Conclusion card (hidden until concluded) -->
+      <div id="conclusionCard" class="hidden conclusion-card mt-6">
+        <h3 class="text-lg font-semibold mb-2" style="position:relative;z-index:1;color:var(--rt-text-primary)">📌 讨论结论</h3>
+        <div id="conclusionContent" class="leading-relaxed" style="position:relative;z-index:1;color:var(--rt-text-secondary)"></div>
+      </div>
+
+      <!-- Replay entry card (hidden until concluded) -->
+      <div id="replayEntry" class="hidden replay-entry" onclick="enterReplayMode()">
+        <div class="replay-entry-icon">🎬</div>
+        <div class="replay-entry-title">回放讨论全过程</div>
+        <div class="replay-entry-meta" id="replayEntryMeta">加载中…</div>
+        <div class="replay-entry-agents" id="replayEntryAgents"></div>
+      </div>
+    </div>
+
+    <!-- Revoked state (hidden) — updated to dark theme per design spec -->
+    <div id="revokedState" class="revoked-page hidden">
+      <div class="revoked-icon-lg">🔒</div>
+      <h2 class="revoked-title">此讨论链接已失效</h2>
+      <p class="revoked-desc">创作者已撤销了此链接的访问权限</p>
+      <p class="revoked-brand">Roundtable AI · 圆桌讨论</p>
+    </div>
+  </main>
+
+  <!-- ↓ 新消息 浮动按钮 -->
+  <button class="scroll-bottom-btn hidden" id="scrollBottomBtn">
+    <span>↓</span> <span>新消息</span>
+  </button>
+
+  <!-- Mobile Share Bar -->
+  <div class="mobile-share-bar" id="mobileShareBar">
+    <button class="share-btn" id="mobileShareBtn" aria-label="分享链接">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px">
+        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
+      </svg>
+      <span>分享讨论</span>
+    </button>
+  </div>
+
+  <!-- Mobile Bottom Sheet -->
+  <div class="share-sheet-overlay" id="shareSheetOverlay"></div>
+  <div class="share-sheet" id="shareSheet">
+    <div class="share-sheet-handle"></div>
+    <div class="share-popover-title">📋 分享链接</div>
+    <div id="shareSheetContent">
+      <input class="share-link-input" id="shareSheetLinkInput" readonly style="width:100%;margin-bottom:12px">
+      <button class="copy-btn" id="sheetCopyBtn" style="width:100%;padding:12px;font-size:var(--rt-font-size-base);margin-bottom:12px">复制链接</button>
+      <div class="share-hint">任何人通过此链接可查看讨论</div>
+      <button class="revoke-link-btn" id="sheetRevokeLinkBtn" style="justify-content:center;padding-top:16px">⚠️ 撤销链接</button>
+    </div>
+    <div class="share-revoked-state hidden" id="sheetRevokedState">
+      <div class="revoked-icon">🔒</div>
+      <div>链接已撤销</div>
+    </div>
+  </div>
+
+  <!-- Revoke Confirmation Modal -->
+  <div class="revoke-modal-overlay" id="revokeModalOverlay" role="dialog" aria-modal="true" aria-label="确认撤销链接">
+    <div class="revoke-modal">
+      <div class="revoke-modal-icon">⚠️</div>
+      <div class="revoke-modal-title">确认撤销链接？</div>
+      <div class="revoke-modal-desc">撤销后，所有通过此链接的访问将在 5 秒内失效，且不可恢复。</div>
+      <div class="revoke-modal-actions">
+        <button class="revoke-cancel-btn" id="revokeCancelBtn">取消</button>
+        <button class="revoke-confirm-btn" id="revokeConfirmBtn">确认撤销</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Replay View (full-page overlay, hidden by default) -->
+  <div id="replayView" class="hidden">
+    <!-- Top bar -->
+    <div class="replay-top-bar">
+      <button class="replay-back-btn" onclick="exitReplayMode()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        返回
+      </button>
+      <div class="replay-title-bar">
+        🎬 <span id="replayTopicTitle">回放</span>
+      </div>
+      <div class="replay-speed-selector" id="replaySpeedSelector">
+        <button class="replay-speed-btn active" data-speed="1">1x</button>
+        <button class="replay-speed-btn" data-speed="2">2x</button>
+        <button class="replay-speed-btn" data-speed="4">4x</button>
+      </div>
+    </div>
+
+    <!-- Timeline strip -->
+    <div class="timeline-strip" id="timelineStrip"></div>
+
+    <!-- Speeches container -->
+    <div class="replay-speeches" id="replaySpeeches"></div>
+
+    <!-- Control bar -->
+    <div class="replay-control-bar">
+      <div class="replay-progress-track" id="replayProgressTrack">
+        <div class="replay-progress-fill" id="replayProgressFill" style="width:0%"></div>
+        <div class="replay-progress-handle" id="replayProgressHandle" style="left:0%"></div>
+      </div>
+      <div class="replay-controls-row">
+        <button class="replay-play-btn" id="replayPlayBtn">▶</button>
+        <div class="replay-time-info">
+          <span id="replayCurrentTime">00:00</span>
+          <span>/</span>
+          <span id="replayTotalTime">00:00</span>
+          <span id="replayRoundInfo"></span>
+        </div>
+        <div class="replay-speed-selector" id="replaySpeedSelectorBottom">
+          <button class="replay-speed-btn active" data-speed="1">1x</button>
+          <button class="replay-speed-btn" data-speed="2">2x</button>
+          <button class="replay-speed-btn" data-speed="4">4x</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/viewer.js" defer></script>
+</body>
+</html>

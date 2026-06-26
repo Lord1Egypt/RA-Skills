@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{文档标题}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #0dcaf0;
+            --purple-color: #6f42c1;
+            --dark-color: #212529;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.8;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            background: var(--gradient-primary) !important;
+            box-shadow: var(--card-shadow);
+        }
+        .navbar-brand { font-weight: 700; font-size: 1.4rem; }
+        
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-section .lead { font-size: 1.3rem; opacity: 0.95; }
+        
+        /* 章节标题 */
+        .section-title {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 5px; bottom: 5px;
+            width: 5px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+        
+        /* 卡片 */
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 24px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            background: white;
+            border-bottom: 2px solid var(--light-bg);
+            font-weight: 600;
+            padding: 20px 24px;
+        }
+        .card-body { padding: 24px; }
+        
+        /* 表格 */
+        .table { border-collapse: separate; border-spacing: 0; }
+        .table thead th {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            font-weight: 600;
+            padding: 16px;
+        }
+        .table thead th:first-child { border-radius: 12px 0 0 12px; }
+        .table thead th:last-child { border-radius: 0 12px 12px 0; }
+        .table tbody td { padding: 16px; vertical-align: middle; border-color: #e9ecef; }
+        .table tbody tr:hover { background-color: #f8f9fa; }
+        
+        /* 代码块 */
+        .code-block {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            color: #d4d4d4;
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            position: relative;
+        }
+        .code-block::before {
+            content: 'CODE';
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+        .code-block .comment { color: #6a9955; font-style: italic; }
+        .code-block .command { color: #9cdcfe; }
+        .code-block .keyword { color: #569cd6; font-weight: 600; }
+        .code-block .arrow { color: #dcdcaa; }
+        
+        /* 目录 */
+        .toc-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+        }
+        .toc-list { list-style: none; padding-left: 0; }
+        .toc-item {
+            display: block;
+            padding: 8px 16px;
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .toc-item:hover { background: var(--light-bg); }
+        .toc-item.sub-item { padding-left: 36px; font-size: 0.95rem; }
+        
+        /* 动画 */
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 页脚 */
+        footer {
+            background: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        /* 颜色辅助类 */
+        .text-purple { color: var(--purple-color) !important; }
+        .bg-purple { background-color: var(--purple-color) !important; }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2rem; }
+            .section-title { font-size: 1.5rem; }
+            .card-body { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-{logo-icon} me-2"></i>{文档标题}
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1>{主标题}</h1>
+                    <p class="lead">{副标题/描述}</p>
+                    <div class="mt-4">
+                        <span class="badge bg-light text-dark me-2">
+                            <i class="bi bi-calendar3 me-1"></i>{日期}
+                        </span>
+                        <span class="badge bg-light text-dark">
+                            <i class="bi bi-building me-1"></i>{机构/公司名称}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- 目录 -->
+        <nav class="toc-section">
+            <h4 class="mb-3"><i class="bi bi-list-ul me-2"></i>目录</h4>
+            <ul class="toc-list">
+                <li><a href="#chapter1" class="toc-item">第一章 {章节 1 标题}</a></li>
+                <li><a href="#section1-1" class="toc-item sub-item">1.1 {小节 1}</a></li>
+                <li><a href="#section1-2" class="toc-item sub-item">1.2 {小节 2}</a></li>
+                <li><a href="#chapter2" class="toc-item">第二章 {章节 2 标题}</a></li>
+                <li><a href="#chapter3" class="toc-item">第三章 {章节 3 标题}</a></li>
+            </ul>
+        </nav>
+
+        <!-- 正文 -->
+        <main>
+            <!-- 第一章 -->
+            <section id="chapter1" class="mb-5">
+                <h2 class="section-title">
+                    <span class="chapter-badge purple">第一章</span>
+                    {章节 1 标题}
+                </h2>
+
+                <!-- 1.1 小节 -->
+                <div id="section1-1" class="card mb-4 animate-fadeInUp">
+                    <div class="card-header">
+                        <i class="bi bi-{icon} me-2 text-{color}"></i>
+                        1.1 {小节标题}
+                    </div>
+                    <div class="card-body">
+                        <p>{内容段落}</p>
+                        
+                        <!-- 表格示例 -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>列 1</th>
+                                        <th>列 2</th>
+                                        <th>列 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>数据 1</td>
+                                        <td>数据 2</td>
+                                        <td>数据 3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1.2 小节 -->
+                <div id="section1-2" class="card mb-4 animate-fadeInUp">
+                    <div class="card-header">
+                        <i class="bi bi-{icon} me-2 text-{color}"></i>
+                        1.2 {小节标题}
+                    </div>
+                    <div class="card-body">
+                        <!-- 警告框 -->
+                        <div class="alert alert-warning" style="border-left: 4px solid var(--warning-color);">
+                            <strong><i class="bi bi-exclamation-triangle me-2"></i>注意：</strong>
+                            重要提示内容
+                        </div>
+                        
+                        <!-- 列表 -->
+                        <ul>
+                            <li><strong>要点 1：</strong>说明</li>
+                            <li><strong>要点 2：</strong>说明</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第二章 -->
+            <section id="chapter2" class="mb-5">
+                <h2 class="section-title">
+                    <span class="chapter-badge purple">第二章</span>
+                    {章节 2 标题}
+                </h2>
+
+                <div id="section2-1" class="card mb-4 animate-fadeInUp">
+                    <div class="card-header">
+                        <i class="bi bi-{icon} me-2 text-{color}"></i>
+                        2.1 {小节标题}
+                    </div>
+                    <div class="card-body">
+                        <!-- 流程图示例 -->
+                        <h5 class="mt-4 mb-3"><i class="bi bi-diagram-2 me-2"></i>流程</h5>
+                        <div class="d-flex align-items-center justify-content-center flex-wrap" style="gap:10px;padding:20px;background:rgba(13,110,253,0.05);border-radius:12px;">
+                            <div class="text-center" style="min-width:100px;">
+                                <i class="bi bi-data-explode fs-3 text-primary"></i>
+                                <br><small class="fw-bold">步骤 1</small>
+                            </div>
+                            <i class="bi bi-arrow-right text-primary fs-4"></i>
+                            <div class="text-center" style="min-width:100px;">
+                                <i class="bi bi-search fs-3 text-info"></i>
+                                <br><small class="fw-bold">步骤 2</small>
+                            </div>
+                            <i class="bi bi-arrow-right text-primary fs-4"></i>
+                            <div class="text-center" style="min-width:100px;">
+                                <i class="bi bi-check-circle fs-3 text-success"></i>
+                                <br><small class="fw-bold">步骤 3</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第三章 -->
+            <section id="chapter3" class="mb-5">
+                <h2 class="section-title">
+                    <span class="chapter-badge purple">第三章</span>
+                    {章节 3 标题}
+                </h2>
+
+                <div id="section3-1" class="card mb-4 animate-fadeInUp">
+                    <div class="card-header">
+                        <i class="bi bi-{icon} me-2 text-{color}"></i>
+                        3.1 {小节标题}
+                    </div>
+                    <div class="card-body">
+                        <!-- 信息框 -->
+                        <div class="alert alert-info" style="border-left: 4px solid var(--info-color);">
+                            <strong>提示：</strong>说明内容
+                        </div>
+                        
+                        <!-- 代码块 -->
+                        <div class="code-block">
+                            <span class="command">命令 1</span> → 
+                            <span class="command">命令 2</span> → 
+                            <span class="command">命令 3</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6><i class="bi bi-shield-check me-2"></i>{文档标题}</h6>
+                    <p class="mb-0 opacity-75">{副标题/关键词}</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>快速链接</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#chapter1">第一章</a></li>
+                        <li><a href="#chapter2">第二章</a></li>
+                        <li><a href="#chapter3">第三章</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>项目信息</h6>
+                    <ul class="list-unstyled mb-0 opacity-75">
+                        <li>制作：{制作方}</li>
+                        <li>日期：{日期}</li>
+                        <li>类型：{文档类型}</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="text-center opacity-75">
+                <small>{版权/备注信息}</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

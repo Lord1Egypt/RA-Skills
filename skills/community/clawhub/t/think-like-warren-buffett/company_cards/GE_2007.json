@@ -1,0 +1,30 @@
+{
+  "ticker": "GE",
+  "company": "General Electric Company",
+  "analysis_year": 2008,
+  "data_source": "FY2007 annual report / 10-K, GE Sep-Oct 2008 guidance and Buffett deal filings",
+  "analyzed_date": "2026-03-25",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.192, "metric_used": "ROE", "years_averaged": "2005-2007", "pass": true },
+    "g2_fcf_to_ni": { "value": null, "fcf": null, "net_income": 22208, "pass": null },
+    "g3_leverage": { "metric_used": "Debt/Capital", "value": 11.4, "pass": false },
+    "g4_revenue_trend": { "description": "Strong industrial and infrastructure growth pre-crisis; 3Q08 guide cut driven by GE Capital stress, not industrial demand collapse", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Industrial margins and returns remained solid pre-crisis; pressure came from financial services, not a two-year industrial margin collapse", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": null, "net_income_m": null, "ev_m": null, "exemption": "CRISIS_PREFERRED", "pass": true },
+    "g7_moat": { "verdict": "PASS", "moat_type": "brand", "description": "The moat was not in GE Capital. It was in GE's industrial installed base, service backlogs, global infrastructure franchises, and quasi-systemic importance. Buffett was effectively underwriting whether the industrial crown jewels and government importance made GE solvent enough for a 10% preferred plus warrants deal.", "pass": true }
+  },
+
+  "special_channel": "CRISIS_PREFERRED",
+
+  "control_groups": [
+    { "ticker": "AIG", "company": "American International Group", "year": 2008, "gates_failed": ["g3_leverage", "g7_moat"], "conclusion": "PASS — needed a government rescue and was not a safe private capital candidate." },
+    { "ticker": "CIT", "company": "CIT Group", "year": 2008, "gates_failed": ["g3_leverage", "g7_moat"], "conclusion": "PASS — funding model was too fragile and the franchise was not strong enough to support Buffett-style rescue capital." }
+  ],
+
+  "conclusion": "BUY",
+  "buffett_action": "$3B in 10% perpetual preferred, callable after 3 years at a 10% premium, plus warrants for $3B of common at $22.25",
+  "actual_result": "GE redeemed the preferred in 2011 at a 10% premium after Berkshire collected $900M of dividends; Berkshire later exercised the warrants cashlessly for 10.7M GE shares. Positive outcome, but smaller than GS/BAC.",
+  "verdict": "✅ aligned",
+  "key_insight": "Crisis preferred channel: the common stock was messy, but the rescue-capital terms were excellent and GE remained solvent enough for Buffett to earn equity-like upside with bond-like protection."
+}

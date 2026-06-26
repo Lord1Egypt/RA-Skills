@@ -1,0 +1,4 @@
+version: 1
+display_name: Browser Relay
+short_description: Control a real signed-in Chrome session through the browser-relay-cli package and unpacked Browser Relay extension.
+default_prompt: Use Browser Relay to control the local Chrome browser through browser-relay-cli. Start by checking the runtime, confirming the extension path, verifying the relay is connected, then use DOM-first commands and screenshot-guided fallback only when selectors are unreliable.

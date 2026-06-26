@@ -1,0 +1,27 @@
+{
+  "user": {
+    "name": "Your Full Name",
+    "bot_name": "EntzClawBot",
+    "report_email": "your-personal@example.com",
+    "trusted_senders": [
+      "Angelo",
+      "@yourcompany.com",
+      "exactaddress@example.com"
+    ]
+  },
+  "mail": {
+    "account_id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "inbox_name": "INBOX"
+  },
+  "schedule": {
+    "interval_minutes": 60
+  },
+  "llm": {
+    "provider": "lm_studio",
+    "base_url": "http://localhost:1234/v1",
+    "api_key": "local",
+    "model": "your-model-id",
+    "max_tokens": 800,
+    "timeout": 45
+  }
+}

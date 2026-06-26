@@ -1,0 +1,131 @@
+{
+  "$schema": "./config.schema.json",
+  "candidate": {
+    "cv_path": "data/cv.pdf",
+    "preferred_titles": [
+      "Senior Backend Engineer",
+      "Staff Engineer",
+      "Tech Lead",
+      "Principal Engineer"
+    ],
+    "preferred_stacks": ["python", "go", "typescript", "rust"],
+    "salary": {
+      "currency": "USD",
+      "min_monthly": 5000,
+      "target_monthly": 8000,
+      "stretch_monthly": 12000
+    },
+    "deal_breakers": [
+      "on-site mandatory",
+      "no equity in early-stage startup",
+      "crypto/web3-only",
+      "unpaid trial > 1 day"
+    ],
+    "must_haves": [
+      "remote",
+      "english-speaking team",
+      "modern stack"
+    ],
+    "languages": ["es-native", "en-c1"]
+  },
+  "markets": [
+    "global_usd",
+    "us_remote",
+    "eu_remote",
+    "latam_remote"
+  ],
+  "platforms": {
+    "linkedin": {
+      "enabled": true,
+      "search_queries": [
+        "Senior Backend Engineer remote",
+        "Staff Engineer remote",
+        "Tech Lead remote LATAM"
+      ],
+      "filters": {
+        "remote_only": true,
+        "posted_within_days": 7
+      }
+    },
+    "remoteok": {
+      "enabled": true,
+      "tags": ["backend", "senior", "python", "golang"]
+    },
+    "weworkremotely": {
+      "enabled": true,
+      "categories": ["programming"]
+    },
+    "wellfound": {
+      "enabled": true,
+      "filters": {
+        "remote_ok": true,
+        "min_salary_usd": 80000
+      }
+    },
+    "getonboard": {
+      "enabled": true,
+      "categories": ["programming"],
+      "remote_only": true
+    },
+    "torre": {
+      "enabled": true,
+      "remote_only": true
+    },
+    "workana": {
+      "enabled": false
+    },
+    "hn_who_is_hiring": {
+      "enabled": true,
+      "filters": ["REMOTE"]
+    },
+    "company_pages": {
+      "enabled": true,
+      "companies": [
+        "Stripe",
+        "Shopify",
+        "GitLab",
+        "HashiCorp",
+        "Vercel",
+        "Supabase",
+        "Cloudflare",
+        "Auth0",
+        "Datadog",
+        "MercadoLibre",
+        "Globant",
+        "Rappi",
+        "Nubank",
+        "Modo"
+      ]
+    }
+  },
+  "scan": {
+    "frequency": "daily",
+    "max_jobs_per_platform": 25,
+    "min_match_score": 70
+  },
+  "notifications": {
+    "channels": ["claude_chat"],
+    "digest_frequency": "daily",
+    "alert_threshold_score": 85
+  },
+  "tracking": {
+    "follow_up_days": [3, 7, 14],
+    "auto_archive_after_days": 60,
+    "statuses": [
+      "drafted",
+      "submitted",
+      "viewed",
+      "screening",
+      "interview",
+      "offer",
+      "rejected",
+      "withdrawn",
+      "ghosted"
+    ]
+  },
+  "tailoring": {
+    "cover_letter_tone": "direct-confident",
+    "cv_emphasis": "impact-metrics",
+    "max_cover_letter_words": 250
+  }
+}

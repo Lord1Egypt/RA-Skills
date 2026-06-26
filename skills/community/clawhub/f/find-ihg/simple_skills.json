@@ -1,0 +1,33 @@
+{
+  "schema": "openclaw.skill.v1",
+  "skills": [
+    {
+      "id": "find-ihg",
+      "name": "IHG积分房查找",
+      "description": "查找江浙沪地区IHG酒店的积分房和优惠活动",
+      "brief": "查找IHG酒店积分房",
+      "examples": ["查一下上海周边IHG积分房"],
+      "version": "2.2",
+      "inputs": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "查询内容",
+          "required": true
+        }
+      ],
+      "exec": {
+        "command": "python3",
+        "args": [
+          "/home/node/.openclaw/scripts/ihg-monitor-python/query.py",
+          "{{query}}"
+        ]
+      },
+      "metadata": {
+        "category": "travel",
+        "author": "OpenClaw",
+        "created": "2026-04-07"
+      }
+    }
+  ]
+}

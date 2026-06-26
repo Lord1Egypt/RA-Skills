@@ -1,0 +1,13 @@
+# Payment dependencies — required only by pay.py (x402 protocol)
+# Install in addition to requirements.txt:
+#   pip install -r requirements.txt -r requirements-pay.txt
+
+# EVM payments (EIP-3009 / USDC on Ethereum, Base, Arbitrum, etc.)
+eth-account>=0.8
+eth-abi>=4.0
+eth-utils>=2.0
+
+# Solana payments (partial transaction signing)
+# Only needed if using `pay.py sign-solana`
+solders>=0.18
+base58>=2.1

@@ -1,0 +1,45 @@
+{
+  "name": "weread-import",
+  "version": "0.4.0",
+  "description": "Export WeRead highlights and notes into Markdown files, including Obsidian-friendly output.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "weread-import": "./src/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnixner/weread-import.git"
+  },
+  "homepage": "https://github.com/gnixner/weread-import#readme",
+  "bugs": {
+    "url": "https://github.com/gnixner/weread-import/issues"
+  },
+  "keywords": [
+    "weread",
+    "wechat-reading",
+    "markdown",
+    "obsidian",
+    "cli",
+    "nodejs"
+  ],
+  "scripts": {
+    "import": "node ./src/cli.mjs",
+    "check": "node --check ./src/cli.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "files": [
+    "src/",
+    "scripts/",
+    "env.example.md",
+    "TEMPLATE.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "playwright": "^1.53.0"
+  }
+}

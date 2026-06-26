@@ -1,0 +1,965 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2026-01-06",
+    "last_updated": "2026-01-06",
+    "language": "zh-CN",
+    "description": "营养素参考摄入量数据库",
+    "data_source": [
+      "中国居民膳食营养素参考摄入量 (DRIs 2013)",
+      "美国膳食营养素参考摄入量 (DRI 2023)",
+      "WHO/FAO 营养素需求标准"
+    ]
+  },
+
+  "population_groups": {
+    "adult_male_19_50": {
+      "name": "成年男性 (19-50岁)",
+      "name_en": "Adult Male (19-50 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "久坐",
+          "calories": 2400,
+          "notes": "几乎不运动,主要坐姿工作"
+        },
+        "moderate": {
+          "name": "中等活动",
+          "calories": 2600,
+          "notes": "每周中等强度运动3-5天"
+        },
+        "active": {
+          "name": "积极活动",
+          "calories": 3000,
+          "notes": "每周高强度运动6-7天"
+        }
+      }
+    },
+    "adult_female_19_50": {
+      "name": "成年女性 (19-50岁)",
+      "name_en": "Adult Female (19-50 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "久坐",
+          "calories": 1800,
+          "notes": "几乎不运动,主要坐姿工作"
+        },
+        "moderate": {
+          "name": "中等活动",
+          "calories": 2000,
+          "notes": "每周中等强度运动3-5天"
+        },
+        "active": {
+          "name": "积极活动",
+          "calories": 2400,
+          "notes": "每周高强度运动6-7天"
+        }
+      }
+    },
+    "adult_male_51_70": {
+      "name": "成年男性 (51-70岁)",
+      "name_en": "Adult Male (51-70 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "久坐",
+          "calories": 2200
+        },
+        "moderate": {
+          "name": "中等活动",
+          "calories": 2400
+        },
+        "active": {
+          "name": "积极活动",
+          "calories": 2800
+        }
+      }
+    },
+    "adult_female_51_70": {
+      "name": "成年女性 (51-70岁)",
+      "name_en": "Adult Female (51-70 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "久坐",
+          "calories": 1600
+        },
+        "moderate": {
+          "name": "中等活动",
+          "calories": 1800
+        },
+        "active": {
+          "name": "积极活动",
+          "calories": 2200
+        }
+      }
+    },
+    "pregnant": {
+      "name": "孕妇",
+      "name_en": "Pregnant Women",
+      "activity_levels": {
+        "moderate": {
+          "name": "中等活动",
+          "calories": 2200,
+          "notes": "孕中期和晚期"
+        }
+      },
+      "special_notes": "孕期营养需求增加,需额外关注叶酸、铁、钙"
+    },
+    "lactating": {
+      "name": "哺乳期",
+      "name_en": "Lactating Women",
+      "activity_levels": {
+        "moderate": {
+          "name": "中等活动",
+          "calories": 2400
+        }
+      },
+      "special_notes": "哺乳期能量和营养需求增加"
+    },
+    "children_4_8": {
+      "name": "儿童 (4-8岁)",
+      "name_en": "Children (4-8 years)",
+      "activity_levels": {
+        "moderate": {
+          "name": "中等活动",
+          "calories": 1400
+        }
+      }
+    },
+    "children_9_13": {
+      "name": "儿童 (9-13岁)",
+      "name_en": "Children (9-13 years)",
+      "activity_levels": {
+        "moderate_male": {
+          "name": "中等活动(男)",
+          "calories": 1800
+        },
+        "moderate_female": {
+          "name": "中等活动(女)",
+          "calories": 1600
+        }
+      }
+    },
+    "adolescents_14_18": {
+      "name": "青少年 (14-18岁)",
+      "name_en": "Adolescents (14-18 years)",
+      "activity_levels": {
+        "moderate_male": {
+          "name": "中等活动(男)",
+          "calories": 2200
+        },
+        "moderate_female": {
+          "name": "中等活动(女)",
+          "calories": 1800
+        }
+      }
+    }
+  },
+
+  "reference_daily_intake": {
+    "macronutrients": {
+      "calories": {
+        "name": "卡路里",
+        "name_en": "Calories",
+        "unit": "kcal/day",
+        "adult_male": {
+          "rda": 2600,
+          "min": 2000,
+          "max": 3200
+        },
+        "adult_female": {
+          "rda": 2000,
+          "min": 1600,
+          "max": 2400
+        },
+        "notes": "根据活动水平调整"
+      },
+      "protein": {
+        "name": "蛋白质",
+        "name_en": "Protein",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 56,
+          "ear": 0.66,
+          "ul": null,
+          "notes": "约0.8g/kg体重/天"
+        },
+        "adult_female": {
+          "rda": 46,
+          "ear": 0.66,
+          "ul": null,
+          "notes": "约0.8g/kg体重/天"
+        },
+        "pregnant": {
+          "rda": 71,
+          "notes": "孕期+25g"
+        },
+        "lactating": {
+          "rda": 71,
+          "notes": "哺乳期+25g"
+        },
+        "calculations": {
+          "sedentary": 0.8,
+          "active": 1.2,
+          "endurance": 1.4,
+          "strength": 1.7
+        }
+      },
+      "carbohydrates": {
+        "name": "碳水化合物",
+        "name_en": "Carbohydrates",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 130,
+          "min": 130,
+          "notes": "最低值,实际可根据活动量增加"
+        },
+        "adult_female": {
+          "rda": 130,
+          "min": 130
+        },
+        "acceptable_range": {
+          "min_percent": 45,
+          "max_percent": 65,
+          "notes": "占总热量百分比"
+        },
+        "added_sugar": {
+          "max": 50,
+          "ideal": 25,
+          "notes": "添加糖每日上限(克)"
+        }
+      },
+      "total_fat": {
+        "name": "总脂肪",
+        "name_en": "Total Fat",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 70,
+          "notes": "约占总热量20-35%"
+        },
+        "adult_female": {
+          "rda": 55
+        },
+        "acceptable_range": {
+          "min_percent": 20,
+          "max_percent": 35,
+          "notes": "占总热量百分比"
+        }
+      },
+      "saturated_fat": {
+        "name": "饱和脂肪",
+        "name_en": "Saturated Fat",
+        "unit": "g/day",
+        "limit": {
+          "adult": 22,
+          "notes": "<10%总热量,建议更低(<7%)"
+        }
+      },
+      "trans_fat": {
+        "name": "反式脂肪",
+        "name_en": "Trans Fat",
+        "unit": "g/day",
+        "limit": {
+          "adult": 2,
+          "notes": "尽可能避免"
+        }
+      },
+      "dietary_fiber": {
+        "name": "膳食纤维",
+        "name_en": "Dietary Fiber",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 38,
+          "notes": "19-50岁"
+        },
+        "adult_male_51_plus": {
+          "rda": 30,
+          "notes": "51岁以上"
+        },
+        "adult_female": {
+          "rda": 25,
+          "notes": "19-50岁"
+        },
+        "adult_female_51_plus": {
+          "rda": 21,
+          "notes": "51岁以上"
+        },
+        "notes": "可溶性纤维:25%,不可溶性:75%"
+      },
+      "water": {
+        "name": "水",
+        "name_en": "Water",
+        "unit": "ml/day",
+        "adult_male": {
+          "ai": 3700,
+          "notes": "包括饮料和食物中的水分"
+        },
+        "adult_female": {
+          "ai": 2700
+        },
+        "notes": "AI=充足摄入量,实际需求因气候、活动量而异"
+      }
+    },
+
+    "vitamins": {
+      "vitamin_a": {
+        "name": "维生素A",
+        "name_en": "Vitamin A",
+        "unit": "mcg RAE/day",
+        "adult_male": {
+          "rda": 900,
+          "ear": 625,
+          "ul": 3000
+        },
+        "adult_female": {
+          "rda": 700,
+          "ear": 500,
+          "ul": 3000
+        },
+        "sources": ["动物肝脏", "胡萝卜", "菠菜", "红薯"],
+        "notes": "RAE=视黄醇活性当量"
+      },
+      "vitamin_c": {
+        "name": "维生素C",
+        "name_en": "Vitamin C",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 90,
+          "ear": 75,
+          "ul": 2000
+        },
+        "adult_female": {
+          "rda": 75,
+          "ear": 60,
+          "ul": 2000
+        },
+        "pregnant": {
+          "rda": 85
+        },
+        "lactating": {
+          "rda": 120
+        },
+        "sources": ["柑橘类水果", "草莓", "西兰花", "青椒"],
+        "notes": "吸烟者需额外+35mg/天"
+      },
+      "vitamin_d": {
+        "name": "维生素D",
+        "name_en": "Vitamin D",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 15,
+          "ear": 10,
+          "ul": 100
+        },
+        "adult_female": {
+          "rda": 15,
+          "ear": 10,
+          "ul": 100
+        },
+        "older_adults": {
+          "rda": 20,
+          "notes": "71岁以上"
+        },
+        "sources": ["阳光照射", "富含脂肪的鱼类", "强化牛奶"],
+        "notes": "1 mcg = 40 IU,血清水平30-60 ng/mL为佳"
+      },
+      "vitamin_e": {
+        "name": "维生素E",
+        "name_en": "Vitamin E",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 15,
+          "ear": 12,
+          "ul": 1000
+        },
+        "adult_female": {
+          "rda": 15,
+          "ear": 12,
+          "ul": 1000
+        },
+        "sources": ["坚果", "种子", "植物油", "绿叶蔬菜"],
+        "notes": "以α-生育酚当量计"
+      },
+      "vitamin_k": {
+        "name": "维生素K",
+        "name_en": "Vitamin K",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 120,
+          "ai": 120,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 90,
+          "ai": 90,
+          "ul": null
+        },
+        "sources": ["绿叶蔬菜", "西兰花", "纳豆"],
+        "notes": "AI=充足摄入量,无UL设定"
+      },
+      "thiamine": {
+        "name": "维生素B1 (硫胺素)",
+        "name_en": "Thiamine (B1)",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1.2,
+          "ear": 1.0,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 1.1,
+          "ear": 0.9,
+          "ul": null
+        },
+        "sources": ["全谷物", "猪肉", "豆类"],
+        "notes": "能量代谢必需"
+      },
+      "riboflavin": {
+        "name": "维生素B2 (核黄素)",
+        "name_en": "Riboflavin (B2)",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1.3,
+          "ear": 1.1,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 1.1,
+          "ear": 0.9,
+          "ul": null
+        },
+        "sources": ["乳制品", "蛋类", "绿叶蔬菜", "强化谷物"]
+      },
+      "niacin": {
+        "name": "维生素B3 (烟酸)",
+        "name_en": "Niacin (B3)",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 16,
+          "ear": 12,
+          "ul": 35
+        },
+        "adult_female": {
+          "rda": 14,
+          "ear": 11,
+          "ul": 35
+        },
+        "sources": ["肉类", "鱼类", "全谷物", "蘑菇"],
+        "notes": "UL仅适用于合成烟酸"
+      },
+      "vitamin_b6": {
+        "name": "维生素B6",
+        "name_en": "Vitamin B6",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1.3,
+          "ear": 1.1,
+          "ul": 100
+        },
+        "adult_female": {
+          "rda": 1.3,
+          "ear": 1.1,
+          "ul": 100
+        },
+        "older_adults": {
+          "rda": 1.7,
+          "notes": "51岁以上"
+        },
+        "sources": ["鸡肉", "鱼肉", "马铃薯", "香蕉"]
+      },
+      "folate": {
+        "name": "叶酸",
+        "name_en": "Folate",
+        "unit": "mcg DFE/day",
+        "adult_male": {
+          "rda": 400,
+          "ear": 320,
+          "ul": 1000
+        },
+        "adult_female": {
+          "rda": 400,
+          "ear": 320,
+          "ul": 1000
+        },
+        "pregnant": {
+          "rda": 600,
+          "notes": "孕期需要增加"
+        },
+        "lactating": {
+          "rda": 500
+        },
+        "sources": ["绿叶蔬菜", "豆类", "强化谷物"],
+        "notes": "DFE=膳食叶酸当量,UL仅适用于合成叶酸"
+      },
+      "vitamin_b12": {
+        "name": "维生素B12",
+        "name_en": "Vitamin B12",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 2.4,
+          "ear": 2.0,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 2.4,
+          "ear": 2.0,
+          "ul": null
+        },
+        "pregnant": {
+          "rda": 2.6
+        },
+        "lactating": {
+          "rda": 2.8
+        },
+        "sources": ["动物性食品", "强化食品"],
+        "notes": "素食者需特别关注"
+      },
+      "pantothenic_acid": {
+        "name": "泛酸 (维生素B5)",
+        "name_en": "Pantothenic Acid (B5)",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 5,
+          "ul": null
+        },
+        "adult_female": {
+          "ai": 5,
+          "ul": null
+        },
+        "sources": ["广泛存在于各种食物中"]
+      },
+      "biotin": {
+        "name": "生物素 (维生素B7)",
+        "name_en": "Biotin (B7)",
+        "unit": "mcg/day",
+        "adult_male": {
+          "ai": 30,
+          "ul": null
+        },
+        "adult_female": {
+          "ai": 30,
+          "ul": null
+        },
+        "sources": ["蛋类", "坚果", "豆类"]
+      }
+    },
+
+    "minerals": {
+      "calcium": {
+        "name": "钙",
+        "name_en": "Calcium",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1000,
+          "ear": 800,
+          "ul": 2500
+        },
+        "adult_female": {
+          "rda": 1000,
+          "ear": 800,
+          "ul": 2500
+        },
+        "older_adults": {
+          "rda": 1200,
+          "notes": "女性51+,男性71+"
+        },
+        "sources": ["乳制品", "绿叶蔬菜", "豆腐(硫酸钙)"],
+        "notes": "维生素D促进钙吸收"
+      },
+      "iron": {
+        "name": "铁",
+        "name_en": "Iron",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 8,
+          "ear": 6,
+          "ul": 45
+        },
+        "adult_female": {
+          "rda": 18,
+          "ear": 8,
+          "ul": 45,
+          "notes": "育龄期"
+        },
+        "older_female": {
+          "rda": 8,
+          "notes": "绝经后"
+        },
+        "pregnant": {
+          "rda": 27
+        },
+        "lactating": {
+          "rda": 9
+        },
+        "sources": ["红肉", "禽类", "鱼类", "豆类", "强化谷物"],
+        "notes": "血红素铁(动物性)吸收率高于非血红素铁(植物性)"
+      },
+      "magnesium": {
+        "name": "镁",
+        "name_en": "Magnesium",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 400,
+          "ear": 330,
+          "ul": 350
+        },
+        "adult_female": {
+          "rda": 310,
+          "ear": 255,
+          "ul": 350
+        },
+        "older_adults": {
+          "rda": 420,
+          "notes": "男性31+"
+        },
+        "sources": ["坚果", "全谷物", "绿叶蔬菜", "豆类"]
+      },
+      "phosphorus": {
+        "name": "磷",
+        "name_en": "Phosphorus",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 700,
+          "ear": 580,
+          "ul": 4000
+        },
+        "adult_female": {
+          "rda": 700,
+          "ear": 580,
+          "ul": 4000
+        },
+        "sources": ["蛋白质食物", "乳制品", "谷物"],
+        "notes": "钙磷比例重要"
+      },
+      "potassium": {
+        "name": "钾",
+        "name_en": "Potassium",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 3400,
+          "ul": null
+        },
+        "adult_female": {
+          "ai": 2600,
+          "ul": null
+        },
+        "sources": ["水果", "蔬菜", "豆类", "乳制品"],
+        "notes": "有助于降低血压"
+      },
+      "sodium": {
+        "name": "钠",
+        "name_en": "Sodium",
+        "unit": "mg/day",
+        "adult": {
+          "ai": 1500,
+          "ul": 2300,
+          "notes": "约1茶匙盐"
+        },
+        "hypertension": {
+          "limit": 1500,
+          "notes": "高血压患者建议"
+        },
+        "sources": ["食盐", "加工食品", "腌制食品"],
+        "notes": "限制钠摄入有助于控制血压"
+      },
+      "zinc": {
+        "name": "锌",
+        "name_en": "Zinc",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 11,
+          "ear": 9.4,
+          "ul": 40
+        },
+        "adult_female": {
+          "rda": 8,
+          "ear": 6.8,
+          "ul": 40
+        },
+        "pregnant": {
+          "rda": 11
+        },
+        "lactating": {
+          "rda": 12
+        },
+        "sources": ["红肉", "贝类", "坚果", "全谷物"],
+        "notes": "植物性锌吸收率较低"
+      },
+      "copper": {
+        "name": "铜",
+        "name_en": "Copper",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 0.9,
+          "ear": 0.7,
+          "ul": 10
+        },
+        "adult_female": {
+          "rda": 0.9,
+          "ear": 0.7,
+          "ul": 10
+        },
+        "sources": ["贝类", "坚果", "种子", "全谷物"]
+      },
+      "manganese": {
+        "name": "锰",
+        "name_en": "Manganese",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 2.3,
+          "ul": 11
+        },
+        "adult_female": {
+          "ai": 1.8,
+          "ul": 11
+        },
+        "sources": ["全谷物", "坚果", "茶叶"]
+      },
+      "selenium": {
+        "name": "硒",
+        "name_en": "Selenium",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 55,
+          "ear": 45,
+          "ul": 400
+        },
+        "adult_female": {
+          "rda": 55,
+          "ear": 45,
+          "ul": 400
+        },
+        "sources": ["巴西坚果", "海鲜", "肉类", "谷物"]
+      },
+      "iodine": {
+        "name": "碘",
+        "name_en": "Iodine",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 150,
+          "ear": 95,
+          "ul": 1100
+        },
+        "adult_female": {
+          "rda": 150,
+          "ear": 95,
+          "ul": 1100
+        },
+        "pregnant": {
+          "rda": 220
+        },
+        "lactating": {
+          "rda": 290
+        },
+        "sources": ["海产品", "碘盐", "乳制品"],
+        "notes": "使用碘化盐是主要来源"
+      }
+    },
+
+    "special_nutrients": {
+      "omega_3_fatty_acids": {
+        "name": "Omega-3脂肪酸",
+        "name_en": "Omega-3 Fatty Acids",
+        "unit": "g/day",
+        "ai": 1.6,
+        "notes": "包括ALA、EPA、DHA",
+        "components": {
+          "ala": {
+            "name": "ALA (α-亚麻酸)",
+            "ai": 1.6,
+            "sources": ["亚麻籽", "核桃", "奇亚籽"]
+          },
+          "epa_dha": {
+            "name": "EPA + DHA",
+            "recommendation": "0.25-0.5",
+            "optimal": "0.5-1.0",
+            "sources": ["富含脂肪的鱼类", "鱼油补充剂"],
+            "notes": "有心血管疾病风险时可增加到1-4g"
+          }
+        }
+      },
+      "omega_6_fatty_acids": {
+        "name": "Omega-6脂肪酸",
+        "name_en": "Omega-6 Fatty Acids",
+        "unit": "g/day",
+        "ai": 17,
+        "notes": "包括LA、AA",
+        "ratio": {
+          "omega_6_to_omega_3": {
+            "typical": "15:1",
+            "recommended": "4:1或更低",
+            "notes": "现代饮食Omega-6过多,需增加Omega-3"
+          }
+        }
+      },
+      "choline": {
+        "name": "胆碱",
+        "name_en": "Choline",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 550,
+          "ul": 3500
+        },
+        "adult_female": {
+          "ai": 425,
+          "ul": 3500
+        },
+        "pregnant": {
+          "ai": 450
+        },
+        "lactating": {
+          "ai": 550
+        },
+        "sources": ["蛋类", "肝脏", "大豆", "小麦胚芽"]
+      },
+      "fiber_breakdown": {
+        "name": "膳食纤维构成",
+        "soluble": {
+          "name": "可溶性纤维",
+          "percent": 25,
+          "sources": ["燕麦", "豆类", "苹果", "柑橘类"],
+          "benefits": ["降低胆固醇", "调节血糖"]
+        },
+        "insoluble": {
+          "name": "不可溶性纤维",
+          "percent": 75,
+          "sources": ["全谷物", "坚果", "蔬菜"],
+          "benefits": ["促进肠道蠕动", "预防便秘"]
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "rda": "推荐膳食供给量 (Recommended Dietary Allowance) - 满足97-98%健康人群需求的营养素摄入量",
+    "ear": "平均需要量 (Estimated Average Requirement) - 满足50%人群需求的营养素摄入量",
+    "ai": "充足摄入量 (Adequate Intake) - 在缺乏RDA数据时,基于观察或实验确定的摄入量",
+    "ul": "可耐受最高摄入量 (Tolerable Upper Intake Level) - 几乎对所有个体都不产生不良反应的最高摄入量",
+    "dri": "膳食参考摄入量 (Dietary Reference Intakes) - 包含RDA、EAR、AI、UL的综合参考体系"
+  },
+
+  "special_diets": {
+    "dash": {
+      "name": "DASH饮食 (高血压)",
+      "description": "Dietary Approaches to Stop Hypertension",
+      "key_principles": [
+        "低钠 (<2300mg/天,理想<1500mg)",
+        "高钾 (3500-4700mg/天)",
+        "高钙、镁",
+        "大量蔬果、低脂乳品、全谷物"
+      ],
+      "servings": {
+        "grains": "6-8份/天",
+        "vegetables": "4-5份/天",
+        "fruits": "4-5份/天",
+        "dairy": "2-3份/天",
+        "meat_poultry_fish": "6盎司或更少/天",
+        "nuts_seeds_legumes": "4-5份/周"
+      }
+    },
+    "mediterranean": {
+      "name": "地中海饮食",
+      "description": "Mediterranean Diet Pattern",
+      "key_principles": [
+        "大量植物性食物",
+        "橄榄油作为主要脂肪来源",
+        "适量乳制品(主要是奶酪和酸奶)",
+        "每周至少2次鱼类",
+        "适量禽肉、蛋类",
+        "少量红肉",
+        "适量葡萄酒(可选)"
+      ]
+    },
+    "vegetarian": {
+      "name": "素食",
+      "types": {
+        "lacto_ovo": "蛋奶素 - 包括蛋类和乳制品",
+        "lacto": "奶素 - 包括乳制品但不包括蛋类",
+        "vegan": "纯素食 - 不包括任何动物性食品",
+        "pescatarian": "鱼素 - 包括鱼类"
+      },
+      "nutrients_to_monitor": [
+        "维生素B12",
+        "铁",
+        "钙",
+        "锌",
+        "Omega-3 (EPA/DHA)",
+        "蛋白质",
+        "维生素D"
+      ]
+    },
+    "low_carb": {
+      "name": "低碳水化合物饮食",
+      "variations": {
+        "very_low": "生酮饮食 (<50g/天)",
+        "moderate": "中等低碳 (50-150g/天)",
+        "liberal": "宽松低碳 (150-200g/天)"
+      },
+      "notes": "需咨询医生,特别是有慢性病时"
+    },
+    "diabetic_friendly": {
+      "name": "糖尿病友好饮食",
+      "principles": [
+        "选择低GI食物 (GI≤55)",
+        "控制总碳水化合物摄入",
+        "高纤维食物",
+        "规律进食",
+        "控制份量"
+      ],
+      "gi_categories": {
+        "low": "0-55",
+        "medium": "56-69",
+        "high": "70+"
+      }
+    }
+  },
+
+  "health_conditions": {
+    "hypertension": {
+      "name": "高血压",
+      "nutritional_focus": [
+        {"nutrient": "钠", "recommendation": "限制<2300mg,理想<1500mg/天"},
+        {"nutrient": "钾", "recommendation": "增加至3500-4700mg/天"},
+        {"nutrient": "钙", "recommendation": "确保充足1000-1200mg/天"},
+        {"nutrient": "镁", "recommendation": "确保充足400-420mg/天"}
+      ],
+      "recommended_diet": "DASH饮食"
+    },
+    "diabetes": {
+      "name": "糖尿病",
+      "nutritional_focus": [
+        {"nutrient": "碳水化合物", "recommendation": "控制总量和类型"},
+        {"nutrient": "膳食纤维", "recommendation": "增加至25-35g/天"},
+        {"nutrient": "升糖指数", "recommendation": "选择低GI食物"}
+      ],
+      "recommended_diet": "低GI饮食,地中海饮食"
+    },
+    "hyperlipidemia": {
+      "name": "高血脂",
+      "nutritional_focus": [
+        {"nutrient": "饱和脂肪", "recommendation": "限制<7%总热量"},
+        {"nutrient": "反式脂肪", "recommendation": "尽可能避免"},
+        {"nutrient": "Omega-3", "recommendation": "增加至500-1000mg/天"},
+        {"nutrient": "可溶性纤维", "recommendation": "增加至10-25g/天"}
+      ],
+      "recommended_diet": "地中海饮食,TLC饮食"
+    },
+    "osteoporosis": {
+      "name": "骨质疏松",
+      "nutritional_focus": [
+        {"nutrient": "钙", "recommendation": "1000-1200mg/天"},
+        {"nutrient": "维生素D", "recommendation": "15-20 mcg/天 (600-800 IU)"},
+        {"nutrient": "维生素K", "recommendation": "90-120 mcg/天"},
+        {"nutrient": "蛋白质", "recommendation": "充足但不过量"}
+      ]
+    },
+    "anemia": {
+      "name": "贫血",
+      "nutritional_focus": [
+        {"nutrient": "铁", "recommendation": "根据贫血类型确定剂量"},
+        {"nutrient": "叶酸", "recommendation": "400-600 mcg/天"},
+        {"nutrient": "维生素B12", "recommendation": "2.4-2.8 mcg/天"},
+        {"nutrient": "维生素C", "recommendation": "增加以促进铁吸收"}
+      ],
+      "notes": "需医生确定贫血类型后针对性补充"
+    }
+  }
+}

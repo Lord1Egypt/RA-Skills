@@ -1,0 +1,74 @@
+{
+  "weekdays": ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"],
+
+  "note_title":      "Ημερολόγιο CPAP",
+  "callout_title":   "Αυτόματη δημιουργία",
+  "callout_body":    "Αυτή η σημείωση δημιουργήθηκε αυτόματα από τα δεδομένα του API PrismaAPP (Löwenstein Medical).",
+
+  "summary_heading": "Σύνοψη",
+  "col_metric":      "Μέτρηση",
+  "col_value":       "Τιμή",
+  "col_rating":      "Αξιολόγηση",
+
+  "row_sleep":       "Διάρκεια ύπνου",
+  "row_deepsleep":   "Βαθύς ύπνος",
+  "row_ahi":         "AHI",
+  "row_leakage":     "Διαρροή",
+  "row_snoring":     "Ροχαλητό",
+  "row_mask":        "Εφαρμογή μάσκας",
+  "row_therapy":     "Λειτουργία θεραπείας",
+
+  "overall_prefix":  "Συνολική αξιολόγηση",
+
+  "sleep_heading":   "Ύπνος",
+  "sleep_duration":  "Διάρκεια",
+  "sleep_deepsleep": "Βαθύς ύπνος",
+  "sleep_goal":      "Στόχος",
+  "goal_reached":    "✅ επιτεύχθηκε",
+  "goal_not_reached":"❌ δεν επιτεύχθηκε",
+
+  "therapy_heading": "Θεραπεία CPAP",
+  "therapy_rating":  "Αξιολόγηση",
+  "therapy_mode":    "Λειτουργία θεραπείας",
+  "pressure_label":  "Πίεση",
+
+  "snoring_heading": "Ροχαλητό & Μάσκα",
+  "snoring_of_time": "του χρόνου ύπνου",
+  "mask_label":      "Εφαρμογή μάσκας",
+  "mask_perfect":    "🟢 Τέλειο",
+  "mask_ok":         "🟡 Αποδεκτό",
+  "mask_bad":        "🔴 Κακό",
+
+  "ahi_0":           "≤ 5 — φυσιολογικό",
+  "ahi_1":           "5–15 — ελαφρά αυξημένο",
+  "ahi_2":           "15–30 — μέτρια αυξημένο",
+  "ahi_3":           "> 30 — σοβαρά αυξημένο",
+  "ahi_4":           "—",
+
+  "q_0":             "🟢 Καλό",
+  "q_1":             "🟡 Αποδεκτό",
+  "q_2":             "🔴 Κακό",
+  "q_3":             "🟠 Οριακό",
+  "q_4":             "—",
+
+  "overall_great":   "🟢 Εξαιρετικό",
+  "overall_good":    "🟢 Καλό",
+  "overall_ok":      "🟡 Αποδεκτό",
+  "overall_border":  "🟠 Οριακό",
+  "overall_bad":     "🔴 Κακό",
+  "overall_none":    "— Χωρίς δεδομένα",
+
+  "tag_great":       "εξαιρετικο",
+  "tag_good":        "καλο",
+  "tag_ok":          "αποδεκτο",
+  "tag_border":      "οριακο",
+  "tag_bad":         "κακο",
+  "tag_none":        "χωρις-δεδομενα",
+
+  "no_data_msg":     "Δεν υπάρχουν δεδομένα για αυτή την ημερομηνία (η συσκευή δεν χρησιμοποιήθηκε ή δεν έχει συγχρονιστεί ακόμα).",
+
+  "fm_weekday_key":  "ημέρα",
+  "fm_source":       "PrismaAPP / Löwenstein prisma SOFT max",
+  "tag_health":      "υγεία",
+  "tag_auto":        "αυτόματο"
+}

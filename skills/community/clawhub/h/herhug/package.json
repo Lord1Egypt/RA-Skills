@@ -1,0 +1,18 @@
+{
+  "name": "herhug-sk",
+  "version": "2.0.0",
+  "description": "心理学评分引擎 - 让AI从专业角度理解用户",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "psychology",
+    "emotion",
+    "adaptive",
+    "herHug"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

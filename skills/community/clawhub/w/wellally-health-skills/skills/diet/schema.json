@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/diet-record.json",
+  "title": "DietRecord",
+  "description": "Data structure definition for diet and nutrition records",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Record unique ID (date + timestamp)",
+      "examples": ["20251231123456789"]
+    },
+    "record_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Record date (YYYY-MM-DD)",
+      "examples": ["2025-12-31"]
+    },
+    "meal_time": {
+      "type": "string",
+      "description": "Meal time (HH:mm)",
+      "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$",
+      "examples": ["12:30", "08:00", "18:45"]
+    },
+    "meal_type": {
+      "type": "string",
+      "enum": ["Breakfast", "Lunch", "Afternoon Tea", "Dinner", "Late Night Snack"],
+      "description": "Meal type"
+    },
+    "image_path": {
+      "type": "string",
+      "description": "Food image path"
+    },
+    "foods": {
+      "type": "array",
+      "description": "List of identified foods",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Food name"
+          },
+          "portion": {
+            "type": "string",
+            "description": "Portion description"
+          },
+          "weight_estimate": {
+            "type": "number",
+            "description": "Estimated weight (grams)"
+          },
+          "cooking_method": {
+            "type": "string",
+            "description": "Cooking method"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Recognition confidence"
+          }
+        }
+      }
+    },
+    "nutrition": {
+      "type": "object",
+      "description": "Nutritional content",
+      "properties": {
+        "calories": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "number" },
+            "unit": { "type": "string", "enum": ["kcal"] },
+            "breakdown": {
+              "type": "object",
+              "properties": {
+                "carbohydrate": { "type": "number" },
+                "protein": { "type": "number" },
+                "fat": { "type": "number" },
+                "fiber": { "type": "number" }
+              }
+            }
+          }
+        },
+        "macronutrients": {
+          "type": "object",
+          "properties": {
+            "protein": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "fat": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "carbohydrate": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "fiber": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } }
+          }
+        },
+        "vitamins": {
+          "type": "object",
+          "properties": {
+            "vitamin_a": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_b1": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_b2": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_b3": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_b6": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_b12": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_c": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_d": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_e": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "vitamin_k": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "folate": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } }
+          }
+        },
+        "minerals": {
+          "type": "object",
+          "properties": {
+            "calcium": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "iron": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "zinc": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "potassium": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "sodium": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "magnesium": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "phosphorus": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } }
+          }
+        },
+        "other": {
+          "type": "object",
+          "properties": {
+            "cholesterol": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } },
+            "water": { "type": "object", "properties": { "value": { "type": "number" }, "unit": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "health_score": {
+      "type": "object",
+      "description": "Health score",
+      "properties": {
+        "overall": { "type": "number", "minimum": 0, "maximum": 10 },
+        "balance": { "type": "number", "minimum": 0, "maximum": 10 },
+        "variety": { "type": "number", "minimum": 0, "maximum": 10 },
+        "nutrition_density": { "type": "number", "minimum": 0, "maximum": 10 }
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dietary recommendations"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "last_updated": { "type": "string", "format": "date-time" },
+        "ai_confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  },
+  "required": ["id", "record_date", "meal_time", "meal_type", "nutrition"]
+}

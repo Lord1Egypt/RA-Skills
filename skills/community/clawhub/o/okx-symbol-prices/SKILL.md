@@ -1,35 +1,38 @@
 ---
-name: "okx_symbol_prices"
-description: "Fetch specified crypto spot prices from OKX and present them in USD display. Use when the user asks to get OKX prices/quotes for specific symbols (e.g. BTC,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/okx-symbol-prices"
-sourceUrl: "https://clawhub.ai/skills/okx-symbol-prices"
+name: okx-symbol-prices
+description: Fetch specified crypto spot prices from OKX and present them in USD display. Use when the user asks to get OKX prices/quotes for specific symbols (e.g. BTC, ETH, SOL) or mentions OKX markets/top-cryptocurrency price list.
 ---
 
-# okx_symbol_prices
+# OKX Symbol Prices (USD display)
 
-> Fetch specified crypto spot prices from OKX and present them in USD display. Use when the user asks to get OKX prices/quotes for specific symbols (e.g. BTC,...
+## What this skill does
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/okx-symbol-prices`
-- **Source URL:** [https://clawhub.ai/skills/okx-symbol-prices](https://clawhub.ai/skills/okx-symbol-prices)
+Gets **one-shot** spot prices for user-specified symbols from OKX, displayed with a `$` sign. For each symbol it prefers quote currency **USDT > USDC > USD**.
 
-## Overview
+## How to run (Windows / PowerShell)
 
+From the workspace root, run:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/okx-symbol-prices
+python ".openclaw/workspace/skills/okx-symbol-prices/scripts/okx_symbol_prices.py" --symbols BTC,ETH,SOL
 ```
+
+Optional:
+
+- Increase timeout (seconds):
+
+```bash
+python ".openclaw/workspace/skills/okx-symbol-prices/scripts/okx_symbol_prices.py" --symbols BTC,ETH,SOL --timeout 20
+```
+
+- Output JSON (one object per symbol):
+
+```bash
+python ".openclaw/workspace/skills/okx-symbol-prices/scripts/okx_symbol_prices.py" --symbols BTC,ETH,SOL --format json
+```
+
+## Output conventions
+
+- Prints results in the **same order** as `--symbols`.
+- If a symbol has no `USDT/USDC/USD` spot ticker on OKX, prints `N/A`.
+

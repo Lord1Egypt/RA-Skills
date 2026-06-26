@@ -1,0 +1,27 @@
+{
+  "name": "form-builder",
+  "version": "2.0.0",
+  "description": "Comprehensive form builder, validation rules, UI components, and data binding. Use when Codex needs to: (1) Generate HTML5 form templates with semantic structure, (2) Implement multi-step wizards with conditional logic, (3) Handle file uploads with progress tracking, (4) Create responsive layouts using CSS Grid/Flexbox, (5) Bind forms to JSON schemas, (6) Implement accessibility (WCAG 2.1 AA), or (7) Export/import form definitions (JSON/YAML)",
+  "main": "scripts/index.js",
+  "author": "杜甫 <杜甫@openclaw.ai>",
+  "license": "MIT",
+  "keywords": [
+    "form-builder",
+    "html5",
+    "validation",
+    "ui-components",
+    "data-binding",
+    "wizard"
+  ],
+  "scripts": {
+    "build": "echo 'Form builder skill bundled'",
+    "test": "node scripts/verify.js",
+    "lint": "eslint . --quiet",
+    "example:generate-form": "node scripts/generate-contact-form.js",
+    "example:wizard": "node scripts/create-wizard.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

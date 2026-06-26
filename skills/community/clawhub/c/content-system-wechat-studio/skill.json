@@ -1,0 +1,9 @@
+{
+  "id": "wechat-studio",
+  "name": "WeChat Studio",
+  "layer": "workbench",
+  "executor": "wechat_studio_workbench_v1",
+  "input_kind": "article_workspace",
+  "output_kind": "preview_html_or_wechat_draft",
+  "description": "Launch a local browser workbench for importing article markdown, previewing WeChat HTML, tuning themes and images, and optionally pushing the checked result to the WeChat draft box."
+}

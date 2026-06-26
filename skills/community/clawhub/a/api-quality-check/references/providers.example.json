@@ -1,0 +1,42 @@
+{
+  "configs": [
+    {
+      "name": "ark-openai-prod",
+      "provider": "OpenAI-Compatible",
+      "base_url": "https://ark.cn-beijing.volces.com/api/coding/v3",
+      "api_key": "YOUR_API_KEY",
+      "model_id": "ark-code-latest"
+    },
+    {
+      "name": "ark-anthropic-prod",
+      "provider": "Anthropic",
+      "base_url": "https://ark.cn-beijing.volces.com/api/coding/v1",
+      "api_key": "YOUR_API_KEY",
+      "model_id": "ark-code-latest"
+    },
+    {
+      "name": "glm-openai-prod",
+      "provider": "OpenAI-Compatible",
+      "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "api_key": "YOUR_API_KEY",
+      "model_id": "glm-4.7"
+    },
+    {
+      "name": "siliconflow-v3-2",
+      "provider": "OpenAI-Compatible",
+      "base_url": "https://api.siliconflow.cn/v1",
+      "api_key": "YOUR_API_KEY",
+      "model_id": "deepseek-ai/DeepSeek-V3.2"
+    },
+    {
+      "name": "kimi-coding-openai",
+      "provider": "OpenAI-Compatible",
+      "base_url": "https://api.kimi.com/coding/v1",
+      "api_key": "YOUR_API_KEY",
+      "model_id": "kimi-k2.5",
+      "headers": {
+        "User-Agent": "KimiCLI/2.0.0"
+      }
+    }
+  ]
+}

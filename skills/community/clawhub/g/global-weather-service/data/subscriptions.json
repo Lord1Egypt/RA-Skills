@@ -1,0 +1,43 @@
+[
+  {
+    "id": "c71b0614-72a7-4d7e-a6bc-18f2b510805b",
+    "to": "openclaw-control-ui",
+    "city": "南京",
+    "time": "5分钟后",
+    "timezone": "Asia/Shanghai",
+    "mode": "tomorrow",
+    "days": 2,
+    "name": "天气订阅: 南京 明天天气",
+    "schedule": {
+      "kind": "at",
+      "at": "2026-04-28T14:57:00.000Z"
+    },
+    "delivery": {
+      "mode": "announce",
+      "channel": "qqbot",
+      "to": "openclaw-control-ui"
+    },
+    "deleteAfterRun": true
+  },
+  {
+    "id": "ddadfc20-4ae2-41cf-ba22-f88e95e885d3",
+    "to": "4D8D2C88C69A23E3FB161DC0B1D84127",
+    "city": "南京",
+    "time": "每天晚上10点30分",
+    "timezone": "Asia/Shanghai",
+    "mode": "tomorrow",
+    "days": 2,
+    "name": "天气订阅: 南京 明天天气",
+    "schedule": {
+      "kind": "cron",
+      "expr": "30 22 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "delivery": {
+      "mode": "announce",
+      "channel": "qqbot",
+      "to": "qqbot:c2c:4D8D2C88C69A23E3FB161DC0B1D84127"
+    },
+    "deleteAfterRun": false
+  }
+]

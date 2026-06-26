@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置管理员 - Free Model Router</title>
+  <link rel="stylesheet" href="/admin/css/style.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-header">
+        <h1>Free Model Router</h1>
+        <p>首次访问请设置管理员账号</p>
+      </div>
+
+      <form id="setupForm" class="login-form">
+        <div class="form-group">
+          <label for="username">管理员用户名</label>
+          <input type="text" id="username" name="username" placeholder="请输入管理员用户名" required autocomplete="username" minlength="3" maxlength="32">
+        </div>
+
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input type="password" id="password" name="password" placeholder="请输入密码（至少 6 位）" required autocomplete="new-password" minlength="6" maxlength="128">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">确认密码</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" required autocomplete="new-password" minlength="6" maxlength="128">
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <span class="btn-text">创建管理员</span>
+          <span class="btn-loading" style="display: none;">创建中...</span>
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <a href="/admin/login.html">已有账号？立即登录</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 本地访问免密，不需要设置管理员
+    fetch('/api/auth/status')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data.isLocalAccess) {
+          window.location.href = '/admin';
+        }
+      })
+      .catch(() => {});
+
+    document.getElementById('setupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorMessage = document.getElementById('errorMessage');
+      const btn = e.target.querySelector('button[type="submit"]');
+      const btnText = btn.querySelector('.btn-text');
+      const btnLoading = btn.querySelector('.btn-loading');
+
+      // 验证
+      if (username.length < 3) {
+        errorMessage.textContent = '用户名至少需要 3 个字符';
+        return;
+      }
+      if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        errorMessage.textContent = '用户名只能包含字母、数字和下划线';
+        return;
+      }
+      if (password.length < 6) {
+        errorMessage.textContent = '密码至少需要 6 个字符';
+        return;
+      }
+      if (password !== confirmPassword) {
+        errorMessage.textContent = '两次输入的密码不一致';
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      errorMessage.textContent = '';
+
+      try {
+        const response = await fetch('/api/auth/setup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (data.success) {
+          localStorage.setItem('adminToken', data.token);
+          // 同步写入 Cookie，确保页面导航时服务端 checkAuth 可通过 Cookie 识别身份
+          document.cookie = 'admin_token=' + data.token + ';path=/;max-age=604800;SameSite=Strict';
+          window.location.href = '/admin';
+        } else {
+          errorMessage.textContent = data.error || '设置失败';
+        }
+      } catch (error) {
+        errorMessage.textContent = '网络错误，请稍后重试';
+      } finally {
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

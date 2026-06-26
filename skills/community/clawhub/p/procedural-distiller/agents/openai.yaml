@@ -1,0 +1,4 @@
+version: 1
+display_name: Procedural Distiller
+short_description: Distill successful OpenClaw traces into reusable learned skills before compaction.
+default_prompt: Distill the completed OpenClaw session into a learned skill, preserving success patterns, failure triggers, concrete commands, and critical snippets.

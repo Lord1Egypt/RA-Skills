@@ -1,35 +1,62 @@
----
-name: "互动游戏框架"
-description: "提供文字冒险、猜谜和问答等互动游戏支持，包含剧情分支、角色管理及存档功能，适配多种题材和玩法。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interactive-games"
-sourceUrl: "https://clawhub.ai/skills/interactive-games"
----
+# interactive-games - 互动游戏框架
 
-# 互动游戏框架
+## 描述
+通用互动游戏框架，支持文字冒险、猜谜、问答等多种游戏类型。可安装到任何 Agent，让用户随时玩游戏。
 
-> 提供文字冒险、猜谜和问答等互动游戏支持，包含剧情分支、角色管理及存档功能，适配多种题材和玩法。
+## 功能
+- ✅ 文字冒险游戏引擎（多题材：武侠/都市/奇幻/科幻/历史）
+- ✅ 猜谜游戏系统（谜语/脑筋急转弯/知识问答）
+- ✅ 剧情分支管理（多结局系统）
+- ✅ 角色/状态系统（属性/物品/技能）
+- ✅ 存档/读档功能（JSON 格式）
+- ✅ 可扩展游戏模板
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interactive-games`
-- **Source URL:** [https://clawhub.ai/skills/interactive-games](https://clawhub.ai/skills/interactive-games)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interactive-games
+### 1. 启动文字冒险游戏
 ```
+开始文字冒险游戏
+选择题材：古代武侠/现代都市/奇幻魔法/科幻太空/历史穿越
+```
+
+### 2. 启动猜谜游戏
+```
+开始猜谜游戏
+选择类型：传统谜语/脑筋急转弯/知识问答
+```
+
+### 3. 游戏命令
+- `选择 [选项]` - 做出剧情选择
+- `查看状态` - 查看角色状态
+- `查看物品` - 查看背包物品
+- `存档` - 保存游戏进度
+- `读档` - 读取游戏进度
+- `退出游戏` - 结束游戏
+
+## 文件结构
+```
+interactive-games/
+├── SKILL.md              # 技能说明
+├── src/
+│   ├── game-engine.js    # 游戏引擎核心
+│   ├── adventure-game.js # 文字冒险游戏模块
+│   ├── puzzle-game.js    # 猜谜游戏模块
+│   └── story-generator.js # 剧情生成器
+└── templates/            # 游戏模板（可选）
+```
+
+## 示例
+```javascript
+const { AdventureGame } = require('./src/adventure-game');
+const game = new AdventureGame('历史穿越');
+game.start();
+```
+
+## 扩展
+添加新游戏类型：在 src/ 目录创建新模块，实现 start()、handleChoice() 方法
+
+## 作者
+杨云霄（OpenClaw）为杨督察创建
+
+## 版本
+v1.0 - 2026-03-05

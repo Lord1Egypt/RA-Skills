@@ -1,0 +1,36 @@
+name: novel-writer
+version: 1.0.0
+author: fatelei
+description: Long-form fiction writing skill for topic selection, novel planning, coherent chapter-by-chapter drafting, continuity tracking, and revision.
+license: MIT
+
+permissions: []
+
+prompt_file: SKILL.md
+
+triggers:
+  keywords:
+    - novel
+    - fiction
+    - story
+    - long-form fiction
+    - chapter
+    - outline
+    - plot
+    - character arc
+    - worldbuilding
+    - continuity
+    - write a novel
+    - continue the novel
+    - 小说
+    - 写小说
+    - 长篇小说
+    - 网文
+    - 章节
+    - 大纲
+    - 人物设定
+    - 世界观
+    - 连载
+    - 续写
+    - 伏笔
+    - 连贯

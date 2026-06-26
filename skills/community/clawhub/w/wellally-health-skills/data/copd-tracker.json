@@ -1,0 +1,90 @@
+{
+  "copd_management": {
+    "diagnosis_date": null,
+    "gold_grade": null,
+    "gold_group": null,
+
+    "lung_function": {
+      "date": null,
+      "post_bronchodilator": {
+        "fev1": null,
+        "fev1_percent_predicted": null,
+        "fvc": null,
+        "fev1_fvc_ratio": null
+      },
+      "interpretation": null
+    },
+
+    "symptom_assessment": {
+      "cat_score": {
+        "date": null,
+        "total_score": null,
+        "max_score": 40,
+        "interpretation": null,
+        "items": {
+          "cough": null,
+          "sputum": null,
+          "chest_tightness": null,
+          "breathlessness_climbing": null,
+          "activity_limitation": null,
+          "confidence_outdoors": null,
+          "sleep": null,
+          "energy": null
+        }
+      },
+      "mmrc_score": {
+        "date": null,
+        "score": null,
+        "max_score": 4,
+        "interpretation": null
+      }
+    },
+
+    "symptoms": {
+      "dyspnea": {
+        "severity": null,
+        "mrc_grade": null
+      },
+      "cough": {
+        "present": null,
+        "frequency": null,
+        "productive": null
+      },
+      "sputum": {
+        "present": null,
+        "amount": null,
+        "color": null,
+        "consistency": null
+      },
+      "wheeze": {
+        "present": null,
+        "frequency": null
+      }
+    },
+
+    "exacerbations": {
+      "last_year": 0,
+      "severe_exacerbations": 0,
+      "history": []
+    },
+
+    "medications": [],
+
+    "vaccination": {
+      "influenza": {
+        "last_date": null,
+        "next_due": null
+      },
+      "pneumococcal": {
+        "ppsv23": null,
+        "date": null,
+        "pcv13": null
+      }
+    },
+
+    "metadata": {
+      "created_at": null,
+      "last_updated": null
+    }
+  }
+}

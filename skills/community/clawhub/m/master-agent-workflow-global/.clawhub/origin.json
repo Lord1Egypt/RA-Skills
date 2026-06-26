@@ -1,0 +1,31 @@
+{
+  "name": "master-agent-workflow-global",
+  "version": "2.0.0",
+  "description": "全局可迁移的主控代理工作流技能",
+  "author": "小龙",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaolong-ai/master-agent-workflow.git"
+  },
+  "homepage": "https://clawhub.com/skills/master-agent-workflow-global",
+  "keywords": ["agent", "workflow", "parallel", "scheduling", "master-agent", "migration"],
+  "categories": ["workflow", "automation"],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "node": ">=18.0.0"
+  },
+  "installation": {
+    "type": "archive",
+    "url": "https://clawhub.com/skills/master-agent-workflow-global/v2.0.0/master-agent-workflow-global-v2.0.0.tar.gz",
+    "checksum": "sha256:待生成"
+  },
+  "dependencies": [],
+  "peerDependencies": {
+    "openclaw-cn": ">=1.0.0"
+  },
+  "publish": {
+    "registry": "clawhub",
+    "access": "public"
+  }
+}

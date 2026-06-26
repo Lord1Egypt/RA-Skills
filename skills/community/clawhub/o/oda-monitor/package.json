@@ -1,0 +1,29 @@
+{
+  "name": "oda-monitor",
+  "version": "1.0.0",
+  "description": "Official Oda Monitor skill for OpenClaw. Monitors the health of websites, APIs, and scheduled tasks (cron jobs) using the Watch.dog platform.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "oda-monitor": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "oda-monitor",
+    "monitoring",
+    "uptime",
+    "cron",
+    "mcp",
+    "openclaw",
+    "skill",
+    "clawhub"
+  ],
+  "author": "Oda Monitor Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  }
+}

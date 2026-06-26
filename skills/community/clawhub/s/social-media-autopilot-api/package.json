@@ -1,0 +1,55 @@
+{
+  "name": "socialecho-social-media-management-agent",
+  "version": "1.3.0",
+  "type": "module",
+  "description": "CLI helpers for SocialEcho social media management external APIs",
+  "author": "SocialEcho Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "socialecho-team": "./team.js",
+    "socialecho-account": "./account.js",
+    "socialecho-article": "./article.js",
+    "socialecho-report": "./report.js",
+    "socialecho-upload-url": "./upload-url.js",
+    "socialecho-reddit-communities": "./reddit-communities.js",
+    "socialecho-pinterest-boards": "./pinterest-boards.js",
+    "socialecho-publish-article": "./publish-article.js",
+    "socialecho-platform-limits": "./platform-limits.js"
+  },
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "openapi.yaml",
+    "openapi.json",
+    "client.js",
+    "team.js",
+    "account.js",
+    "article.js",
+    "report.js",
+    "upload-url.js",
+    "reddit-communities.js",
+    "pinterest-boards.js",
+    "publish-article.js",
+    "platform-limits.js",
+    "platform-publish-limits_cn.md",
+    "platform-publish-limits_en.md",
+    "publish-payload.example.json",
+    ".env.example"
+  ],
+  "scripts": {
+    "team": "node ./team.js",
+    "account": "node ./account.js",
+    "article": "node ./article.js",
+    "report": "node ./report.js",
+    "upload-url": "node ./upload-url.js",
+    "reddit-communities": "node ./reddit-communities.js",
+    "pinterest-boards": "node ./pinterest-boards.js",
+    "publish-article": "node ./publish-article.js",
+    "platform-limits": "node ./platform-limits.js",
+    "platform-limits:en": "node ./platform-limits.js --lang en"
+  },
+  "dependencies": {}
+}

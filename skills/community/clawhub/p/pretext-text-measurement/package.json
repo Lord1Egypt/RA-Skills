@@ -1,0 +1,56 @@
+{
+  "name": "pretext-skill",
+  "version": "1.0.0",
+  "description": "精准文本测量与布局引擎，基于 GitHub 42K Stars 开源项目 @chenglou/pretext。无需 DOM，纯算术计算文本高度。",
+  "main": "scripts/measure.js",
+  "keywords": [
+    "text-measurement",
+    "text-layout",
+    "pretext",
+    "virtual-scroll",
+    "canvas",
+    "chinese-text",
+    "frontend"
+  ],
+  "homepage": "https://github.com/chenglou/pretext",
+  "license": "MIT",
+  "scripts": {
+    "install-deps": "node scripts/install-deps.js",
+    "measure": "node scripts/measure.js",
+    "batch": "node scripts/batch.js",
+    "layout": "node scripts/layout-lines.js",
+    "stats": "node scripts/line-stats.js",
+    "rich": "node scripts/rich-inline.js",
+    "wrap": "node scripts/wrap-layout.js",
+    "clear": "node scripts/clear-cache.js",
+    "test": "npm run measure && npm run stats && npm run batch"
+  },
+  "dependencies": {
+    "@chenglou/pretext": "^0.0.5",
+    "canvas": "^2.11.2"
+  },
+  "optionalDependencies": {
+    "canvas": "^2.11.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "author": "Pretext Skill Author",
+  "thirdPartyLicenses": {
+    "@chenglou/pretext": {
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Cheng Lou and Pretext contributors",
+      "url": "https://github.com/chenglou/pretext"
+    },
+    "canvas": {
+      "license": "MIT",
+      "copyright": "Copyright (c) 2010-2024 canvas contributors",
+      "url": "https://github.com/Automattic/node-canvas"
+    }
+  }
+}

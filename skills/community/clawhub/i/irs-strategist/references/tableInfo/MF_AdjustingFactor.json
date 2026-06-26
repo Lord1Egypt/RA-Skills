@@ -1,0 +1,123 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "基金内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "基金内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到基金的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ExDiviDate",
+        "columnChiName": "除权除息日",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "remark": "除权除息日（ExDiviDate）：分红引起的除权，为“公募基金分红”表中“场外除息日”，没有“场外除息日”的，用“除息日”，个别分红披露的场外除息日与净值实际变动日不同的，修正为净值实际变化日。拆分折算引起的除权，为“公募基金拆分折算”表中“拆分折算日_实际”。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "RegDate",
+        "columnChiName": "权益登记日",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "remark": "权益登记日（RegDate）：分红引起的除权记录，与“公募基金分红”表中“权益登记日”同。拆分折算引起的除权记录，则该字段为空。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "91.67",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "GrowthRateFactor",
+        "columnChiName": "增长率比例复权因子",
+        "columnType": "float",
+        "isNullable": 1,
+        "remark": "增长率比例复权因子（GrowthRateFactor）：增长率比例复权因子 =（分红除息日单位净值+分红除息日分红金额）÷分红除息日单位净值×拆分折算比例",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.98",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "YieldRateFactor",
+        "columnChiName": "收益率比例复权因子",
+        "columnType": "float",
+        "isNullable": 1,
+        "remark": "收益率比例复权因子（YieldRateFactor）：收益率比例复权因子 =（分红除息日单位净值+分红除息日分红金额）÷分红除息日单位净值×拆分折算比例（注：与增长率比例复权因子相同，计划废弃中，建议使用增长率比例复权因子）",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.98",
+        "remarkNo": "注5"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "ReinvestDate",
+        "columnChiName": "红利再投资日",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "remark": "红利再投资日（ReinvestDate）：优先取“公募基金分红”表中的“红利再投资日”，没有的，取“发放日”。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.87",
+        "remarkNo": "注6"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ReinvestRateFactor",
+        "columnChiName": "红利再投资比例复权因子",
+        "columnType": "float",
+        "isNullable": 1,
+        "remark": "\n红利再投资比例复权因子（ReinvestRateFactor）：分红公告存在红利再投资日的，计算当日复权因子=（红利再投资日单位净值+分红）÷ 红利再投资日单位净值；不存在红利再投资日的则不计算本次复权因子。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "98.86",
+        "remarkNo": "注7"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "XGRQ",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

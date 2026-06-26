@@ -1,35 +1,197 @@
 ---
-name: "Ecommerce Trend Radar"
-description: "Cross-platform e-commerce trend detection engine covering Amazon, Shopify, Taobao, Pinduoduo, TikTok Shop. Identifies emerging products, pricing trends, and..."
-category: "domain"
-source: "ClawHub"
-tags: [amazon, dropshipping, ecommerce, product-research, retail, trend-analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecommerce-trend-radar"
-sourceUrl: "https://clawhub.ai/skills/ecommerce-trend-radar"
+name: Ecommerce Trend Radar
+description: Cross-platform e-commerce trend detection engine covering Amazon, Shopify, Taobao, Pinduoduo, TikTok Shop. Identifies emerging products, pricing trends, and category opportunities.
+author: ClawHub
+version: 1.0.0
+tags: ["ecommerce", "trend-analysis", "dropshipping", "product-research", "amazon", "retail"]
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 77b8dae6765ad1c34aaefe189236ab1c_ecommerce_trend_radar_001
+    ReservedCode1: Hp2qBVccXME7fY6dPo6rcicFpsCaJJkeYx3R7aPdi64=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 77b8dae6765ad1c34aaefe189236ab1c_ecommerce_trend_radar_001
+    ReservedCode2: Hp2qBVccXME7fY6dPo6rcicFpsCaJJkeYx3R7aPdi64=
 ---
 
-# Ecommerce Trend Radar
-
-> Cross-platform e-commerce trend detection engine covering Amazon, Shopify, Taobao, Pinduoduo, TikTok Shop. Identifies emerging products, pricing trends, and...
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecommerce-trend-radar`
-- **Source URL:** [https://clawhub.ai/skills/ecommerce-trend-radar](https://clawhub.ai/skills/ecommerce-trend-radar)
-
-## Overview
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecommerce-trend-radar
+# 电商选品雷达 (E-commerce Trend Radar)
+
+## 概述
+
+全网首创的跨平台电商选品引擎，聚合 TikTok Shop/亚马逊/Shopee/Temu/速卖通 五大平台热销数据，结合 Google Trends 搜索量、社交媒体话题增长与季节因子，内置利润计算器与发布策略推荐。
+
+## 适用场景
+
+1. TikTok Shop/亚马逊/Shopee/Temu/速卖通 跨平台选品趋势分析
+2. 蓝海品类发现与竞争饱和度评估
+3. 利润模拟器：含平台佣金/物流/广告成本估算
+4. 季节性选品策略与备货时间线规划
+5. 短视频带货素材灵感自动生成
+6. DTC 品牌独立站选品矩阵构建
+
+## 输入参数
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| platform | string | 是 | 具体值由技能数据底座智能匹配 |
+| category | string | 是 | 具体值由技能数据底座智能匹配 |
+| region | string | 是 | 具体值由技能数据底座智能匹配 |
+| budget | string | 是 | 具体值由技能数据底座智能匹配 |
+
+## 评分体系
+
+| 分数 | 等级 | 建议 |
+|------|------|------|
+| 90-100 | ⭐⭐⭐⭐⭐ 极佳 | 强烈推荐执行 |
+| 75-89 | ⭐⭐⭐⭐ 良好 | 具备较高置信度 |
+| 60-74 | ⭐⭐⭐ 一般 | 可参考，需交叉验证 |
+| 40-59 | ⭐⭐ 较差 | 信号较弱，谨慎采用 |
+| 0-39 | ⭐ 不可用 | 数据不足或噪音过大 |
+
+## 支付协议（AI收）
+
+本技能采用支付宝 AI 收 HTTP 402 协议，按次计费。
+
+| 项目 | 值 |
+|------|-----|
+| 单价 | ¥0.50 / 次 |
+| 支付协议 | `alipay_` 短链协议 |
+| 网关地址 | `http://8.145.54.67:3000` |
+| 技能路径 | `/skill/ecommerce-trend-radar` |
+| 支付确认路径 | `/pay-confirm` |
+
+### 支付流程
+
 ```
+1. 客户端发起分析请求  POST /skill/ecommerce-trend-radar
+2. 服务端返回 402 Payment Required
+   Header: Payment-Needed: <Base64支付信息>
+   Body: { step: "payment_required", short_link: "alipay_XXX", pay_url: "..." }
+3. 用户完成支付宝支付
+4. 客户端携带支付凭证回传  x-payment-credential
+5. 服务端验证通过 → 执行分析 → 返回结果
+```
+
+### HTTP 请求头规范
+
+| 头名称 | 说明 |
+|--------|------|
+| `Payment-Needed` | 服务端返回：Base64 编码的支付引导信息 |
+| `x-payment-credential` | 客户端回传：支付完成后的 alipay_ 凭证字符串 |
+
+## 数据底座
+
+所有数据存储于 `references/ecommerce-trend-radar.json`，包含完整的分析模型参数、行业数据库、策略模板与案例库。
+
+## 使用示例
+
+### 请求
+
+```bash
+curl -X POST http://8.145.54.67:3000/skill/ecommerce-trend-radar \
+  -H "Content-Type: application/json" \
+  -d '{ ... }'
+```
+
+### 响应（支付后）
+
+```json
+{
+  "status": "completed",
+  "skill": "ecommerce-trend-radar",
+  "data": { ... },
+  "payment": { "status": "paid", "amount": "0.50" }
+}
+```
+
+## 许可
+
+MIT License
+*（内容由AI生成，仅供参考）*
+
+
+## 平台对比
+
+| 维度 | TikTok Shop | Amazon | Shopee | Temu | 速卖通 |
+|------|------------|--------|--------|------|--------|
+| 覆盖地区 | 8国 | 15+ 国家 | 东南亚+巴西 | 美欧日韩澳 | 全球200+ |
+| 佣金率 | 5% | 8-15% | 2-6% | 0%（平台模式） | 5-8% |
+| 结算周期 | T+15 | T+14 | T+7 | 不定 | 确认收货+15天 |
+| 月活用户 | 1.2B | 310M | 380M | 250M | 150M |
+| 最优品类 | 美妆/时尚/家居 | 电子/家居/书籍 | 时尚/美妆/3C | 家居/时尚/电子 | 电子/手机/家居 |
+
+## 趋势生命周期
+
+| 阶段 | 信号强度 | 行动建议 | 失败率 | 利润空间 |
+|------|---------|---------|--------|---------|
+| 萌芽期 | 低搜索量 + 高增速 | 小量试单，低起订量 | 50% | 60-80% |
+| 上升期 | 搜索增长 + 媒体报道 | 扩大库存，优化 Listing | 30% | 40-60% |
+| 高峰期 | 搜索量最大 + 主流采用 | 最大化广告投放，守住排名 | 15% | 25-40% |
+| 衰退期 | 搜索下降 + 价格竞争 | 清仓折扣，准备下一趋势 | 高 | 10-25% |
+| 饱和期 | 搜索低迷 + 卖家退出 | 退出或转向配件/升级款 | 极高 | 5-15% |
+
+## 2026 热门选品
+
+| 方向 | 代表产品 | 价格区间 | 利润率 | 搜索增速 |
+|------|---------|---------|--------|---------|
+| AI 配件 | AI实时翻译耳机 | $149-349 | 45-60% | +1100% |
+| AI 配件 | AI宠物情绪翻译项圈 | $79-199 | 50-65% | +850% |
+| AI 配件 | AI睡眠优化头带 | $129-299 | 55-70% | +620% |
+| 家居园艺 | 自浇水模块化垂直花园 | $49-129 | 55-70% | +950% |
+| 健身健康 | 生物反馈姿势矫正器 | $39-79 | 50-65% | +720% |
+| 儿童教育 | 无屏编程机器人 | $49-99 | 45-55% | +410% |
+| 儿童教育 | 互动AR地球仪 | $39-79 | 50-60% | +580% |
+
+## 利润计算器
+
+### 核心公式
+售价 = (产品成本 + 运费 + 履约成本) / (1 - 佣金率 - 支付费率 - 广告费率 - 目标利润率)
+
+### 计算示例
+| 成本项 | 金额 | 占比 |
+|-------|------|------|
+| 产品成本 | $8.50 | 29.7% |
+| 头程运费 | $2.00 | 7.0% |
+| 履约费用(FBA) | $3.00 | 10.5% |
+| 平台佣金(15%) | $4.29 | 15.0% |
+| 支付处理(3%) | $0.86 | 3.0% |
+| 广告费(10%) | $2.86 | 10.0% |
+| 净利润(35%) | $10.07 | 35.0% |
+| **建议售价** | **$28.57** | **100%** |
+| 单件利润 | $10.07 | — |
+| ROI | 53.8% | — |
+
+## 季节矩阵
+
+| 季度 | 热门品类 | 关键节点 |
+|------|---------|---------|
+| Q1 | 健身器材、收纳、情人节礼品 | 新年决心/情人节 |
+| Q2 | 清洁、园艺、户外装备 | 母亲节/父亲节/毕业季 |
+| Q3 | 返校季、夏季户外、Prime Day | Prime Day/开学季 |
+| Q4 | 节日装饰、礼品套装、冬季服饰 | 黑五/网一/圣诞 |
+| 全年 | 手机壳、宠物用品、厨房基础品 | — |
+
+## 供应商速查
+
+| 区域 | 最优品类 | 典型起订量 | 交期 |
+|------|---------|-----------|------|
+| 深圳 | 智能配件/IoT/蓝牙产品 | 100-500 | 15-30天 |
+| 义乌 | 家居收纳/厨房小工具 | 50-200 | 7-14天 |
+| 广州 | 服饰/包包/鞋类 | 100-300/SKU | 14-21天 |
+| 成都 | 环保产品/竹制品 | 200-500 | 20-30天 |
+
+## 风险矩阵
+
+| 风险类型 | 典型场景 | 缓解措施 | 影响程度 |
+|---------|---------|---------|---------|
+| 知识产权 | 专利/版权侵权投诉 | 专利检索、自有摄影 | 下架/受损/诉讼 |
+| 供应链 | 工厂延期/质量问题 | 双供应商/安全库存/验货 | 断货→排名下降 |
+| 平台依赖 | 单一平台账户暂停 | 多平台/DTC/邮件列表 | 收入归零 |
+| 趋势逆转 | 热品变饱和 | 不超库存/多元化 | 死库存 |
+| 法规合规 | 新安全认证要求 | 预先合规测试 | 海关扣押/罚款 |
+
+## 数据底座
+
+`ecommerce-trend-radar.json` 包含：五大电商平台费率规则、六大趋势发现数据源、趋势生命周期模型、六大品类子品类库、完整利润计算器（含回本分析）、季度热门品类与关键节点、四大供应区域速查、9 大热门选品完整分析、四阶段营销清单、五大风险评估。

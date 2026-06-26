@@ -1,0 +1,67 @@
+{
+  "name": "free-model-finder",
+  "displayName": "Free Model Finder - 多平台免费模型",
+  "version": "0.1.0",
+  "description": "发现、对比和配置多平台免费/低价 AI 模型。支持 OpenRouter、Groq、Google AI Studio、Ollama、HuggingFace 等平台，自动配置最优性价比模型并监控 rate limit。",
+  "author": "SuCriss",
+  "repository": "https://github.com/SuCriss/free-model-finder",
+  "license": "MIT",
+  "commands": [
+    "list",
+    "auto",
+    "switch",
+    "status",
+    "refresh",
+    "compare"
+  ],
+  "binaries": {
+    "free-model-finder": "scripts.main:main"
+  },
+  "dependencies": {},
+  "config": {
+    "OPENROUTER_API_KEY": {
+      "description": "OpenRouter API key (免费获取：openrouter.ai/keys)",
+      "required": false,
+      "env": true
+    },
+    "GROQ_API_KEY": {
+      "description": "Groq API key (免费获取：console.groq.com/keys)",
+      "required": false,
+      "env": true
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Google AI Studio API key (aistudio.google.com/app/apikey)",
+      "required": false,
+      "env": true
+    },
+    "HF_TOKEN": {
+      "description": "HuggingFace token (huggingface.co/settings/tokens)",
+      "required": false,
+      "env": true
+    }
+  },
+  "openclaw": {
+    "compatible": true,
+    "minVersion": "1.0.0",
+    "configPath": "~/.openclaw/openclaw.json",
+    "configKeys": [
+      "agents.defaults.model",
+      "agents.defaults.models"
+    ]
+  },
+  "install": "cd ~/.openclaw/workspace/skills/free-model-finder && pip install -e .",
+  "submit": {
+    "category": "model-management",
+    "tags": ["free-models", "cost-optimization", "openrouter", "groq", "multi-platform"],
+    "features": [
+      "多平台免费模型发现（OpenRouter、Groq、Google、Ollama、HuggingFace）",
+      "自动配置最优性价比模型",
+      "模型对比和排序",
+      "一键切换模型",
+      "API Key 状态检查",
+      "支持 rate limit 监控（待实现）"
+    ],
+    "screenshots": [],
+    "demoVideo": ""
+  }
+}

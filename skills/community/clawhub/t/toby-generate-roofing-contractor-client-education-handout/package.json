@@ -1,0 +1,12 @@
+{
+  "name": "generate-roofing-contractor-client-education-handout",
+  "version": "1.0.0",
+  "description": "Generate Roofing Contractor Client Education Handout",
+  "author": "SkillBoss",
+  "license": "MIT",
+  "keywords": ["agent-skill", "openclaw"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TobeyRebecca/generate-roofing-contractor-client-education-handout.git"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "QWeather City + Weather"
+  short_description: "查询城市编码并获取和风实时天气"
+  default_prompt: "Use $qweather-city-weather to query official QWeather city IDs and current weather with required QWEATHER_API_HOST and QWEATHER_API_KEY."

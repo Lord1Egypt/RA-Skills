@@ -1,0 +1,10 @@
+{
+  "name": "agentic_cli_coding",
+  "version": "1.0.0",
+  "description": "CLI code-editing toolkit for agentic coders. Provides the oce command.",
+  "private": true,
+  "dependencies": {
+    "acorn": "^8.11.0",
+    "js-yaml": "^4.1.0"
+  }
+}

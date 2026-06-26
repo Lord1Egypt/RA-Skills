@@ -1,35 +1,35 @@
 ---
-name: "lossless-claw"
-description: "Indexed by skills.sh from martian-engineering/lossless-claw"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "martian-engineering"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/martian-engineering/lossless-claw/lossless-claw"
-sourceUrl: "https://skills.sh/martian-engineering/lossless-claw/lossless-claw"
+name: lossless-claw
+description: Configure, diagnose, and use lossless-claw effectively in OpenClaw, with emphasis on key settings, summary health, and recall-tool usage.
 ---
 
-# lossless-claw
+# Lossless Claw
 
-> Indexed by skills.sh from martian-engineering/lossless-claw
+Use this skill when the task is about operating, tuning, or debugging the `lossless-claw` OpenClaw plugin.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** martian-engineering
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/martian-engineering/lossless-claw/lossless-claw`
-- **Source URL:** [https://skills.sh/martian-engineering/lossless-claw/lossless-claw](https://skills.sh/martian-engineering/lossless-claw/lossless-claw)
+Start here:
 
-## Overview
+1. Confirm whether the user needs configuration help, diagnostics, recall-tool guidance, or session-lifecycle guidance.
+2. If they need a quick health check, tell them to run `/lossless` (`/lcm` is the shorter alias).
+3. If they are debugging lossless-claw behavior or failures, check the independent Lossless log before the shared OpenClaw gateway log.
+4. If they suspect summary corruption or truncation, use `/lossless doctor`.
+5. If they want high-confidence junk/session cleanup guidance, use `/lossless doctor clean` before recommending any deletes.
+6. If they ask how `/new`, `/reset`, or `/lossless rotate` interacts with LCM, read the session-lifecycle reference before answering.
+7. Load the relevant reference file instead of improvising details from memory.
 
+Reference map:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/martian-engineering/lossless-claw/lossless-claw
-```
+- Configuration (complete config surface on current main): `references/config.md`
+- Internal model and data flow: `references/architecture.md`
+- Diagnostics and summary-health workflow: `references/diagnostics.md`
+- Recall tools and when to use them: `references/recall-tools.md`
+- `/new`, `/reset`, and `/lossless rotate` behavior with current lossless-claw session mapping: `references/session-lifecycle.md`
+
+Working rules:
+
+- Prioritize explaining why a setting matters, not just what it does.
+- Prefer the native plugin command surface for MVP workflows (`/lossless`, with `/lcm` as alias).
+- Do not assume the Go TUI is installed.
+- Do not recommend advanced rewrite/backfill/transplant/dissolve flows unless the user explicitly asks for non-MVP internals.
+- For exact evidence retrieval from compacted history, guide the user toward recall tools instead of guessing from summaries.
+- When users compare `/lossless` to `/status`, explain that they report different layers: `/lossless` shows LCM-side frontier/summary metrics, while `/status` shows the last assembled runtime prompt snapshot.

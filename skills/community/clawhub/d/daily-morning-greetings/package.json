@@ -1,0 +1,18 @@
+{
+  "name": "daily-morning-greetings",
+  "version": "1.0.12",
+  "description": "Deterministic daily morning greetings with live weather, Shanghai default, rotating wisdom pairs, and optional Weixin bot fanout",
+  "author": "PsyVector",
+  "homepage": "https://iheaven.org",
+  "license": "MIT",
+  "keywords": [
+    "morning-greeting",
+    "weather",
+    "shanghai",
+    "openclaw-skill",
+    "daily-routine"
+  ],
+  "tags": ["productivity", "weather", "morning-routine", "greeting", "mindfulness"],
+  "kernel": "H2",
+  "scenario": "S6"
+}

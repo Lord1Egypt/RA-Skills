@@ -1,35 +1,84 @@
 ---
-name: "What To Eat"
-description: "Can't decide what to eat at the office? Let me pick for you! Triggered when you ask "what to eat", "lunch/dinner ideas", or any food-related questions. Combi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/what-to-eat-kounann"
-sourceUrl: "https://clawhub.ai/skills/what-to-eat-kounann"
+name: what-to-eat
+version: 1.0.0
+description: Can't decide what to eat at the office? Let me pick for you! Triggered when you ask "what to eat", "lunch/dinner ideas", or any food-related questions. Combines company cafeteria options with nearby highly-rated restaurants (4.1+) around the Yuan Center area for a random pick.
 ---
 
-# What To Eat
+# 今天吃什么
 
-> Can't decide what to eat at the office? Let me pick for you! Triggered when you ask "what to eat", "lunch/dinner ideas", or any food-related questions. Combi...
+## 触发条件
+用户问以下问题时使用此 Skill：
+- "中午吃什么"
+- "晚饭吃什么"  
+- "早饭吃什么"
+- "今天吃啥"
+- "吃点啥"
+- "吃啥"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/what-to-eat-kounann`
-- **Source URL:** [https://clawhub.ai/skills/what-to-eat-kounann](https://clawhub.ai/skills/what-to-eat-kounann)
+## 数据源
 
-## Overview
+### 食堂档口（内置）
+快手食堂档口列表，按区域分类：
 
+**B1南区餐厅**：单品零点、自选称重、饭搭子、小生之悦、鬼三鲜、夸父炸串、饺之饺子、港记烧腊、秘卤工坊、淮南牛肉汤、阿巴煲仔、无名缘米粉、卫孔记面馆
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/what-to-eat-kounann
+**B1西区餐厅**：亚洲风情、长沙食堂、粉面之旅、麻辣人家、风味精选、潮味坊
+
+**T3-2F餐厅**：鼎鼎香、单品零点、滋滋味、南粉北面
+
+**其他**：快速取餐区、头壹号、超级碗、胡同小馆·粤京熹、和府捞面、海盗虾饭、老乡鸡、蜀游记、赛百味、西少爷、喜家德、小木屋、西部马华、鱼你在一起、攸州小镇、朱壮壮
+
+### 元中心周边店铺（内置，评分 4.1+）
+
+**火锅类**
+- 汕头八合里海记牛肉店(清河店) ⭐4.8
+- 汕头八合里海记牛肉店(中关村软件园) ⭐4.7
+- 海底捞火锅(上地华联店) ⭐4.9
+- 牛三斤潮汕鲜牛肉火锅(昌发展万科店) ⭐4.4
+- 德华聚宝·老北京铜锅涮羊肉(安宁庄店) ⭐4.6
+
+**烤鸭/北京菜**
+- 京府宴烤鸭私房菜 ⭐4.5
+- 大鸭梨烤鸭店(西三旗店) ⭐4.2
+- 北平楼烤鸭·京菜(西三旗店) ⭐3.3（可选）
+- 香丰阁(汇苑仁和大厦店) ⭐4.7
+
+**快餐/简餐**
+- 和合谷(上地六街店) ⭐4.9
+- 麦当劳(清河餐厅) ⭐4.8
+- 吉野家(龙域北街) ⭐4.5
+
+**特色菜**
+- 四十大道·新疆菜(清河创始店) ⭐4.6
+- 丹江渔村(上地店) ⭐4.6
+- 上地宴·中关村的会客厅(清河高铁站店) ⭐4.6
+- 聚宝渔港·五钻酒家(上地店) ⭐4.1
+- 香丰渔港蒸汽海鲜·顺德菜(清河店) ⭐4.6
+- 雅佳神话·活鱼烤鱼(安宁庄店) ⭐4.8
+
+**其他**
+- 华府九号海鲜烧烤大排档(龙域店) ⭐4.8
+- 尊宝比萨(西二旗店) ⭐4.1
+
+## 工作流程
+
+1. **合并选项池**：食堂档口 + 周边店铺（全部混合）
+2. **随机抽取**：使用随机算法选择一个
+3. **展示结果**：格式化的输出，包含选项池和最终结果
+
+## 输出格式
+
 ```
+🎲 随机结果：【XXXX】
+   
+📋 选项池（共 XX 个）：
+   🏟️ 食堂：单品零点、自选称重、饭搭子...
+   🍜 周边：海底捞火锅(4.9)、麦当劳(4.8)、和合谷(4.9)...
+   
+✨ 今天是海底捞火锅(上地华联店)！祝您用餐愉快~
+```
+
+## 注意事项
+- 食堂档口和周边店铺数据均为内置，每月更新一次
+- 周边店铺均为元中心附近可堂食的餐厅
+- 数据按评分排序，高分店铺更靠前

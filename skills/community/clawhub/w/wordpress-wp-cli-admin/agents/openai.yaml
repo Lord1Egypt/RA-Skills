@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress WP-CLI Admin"
+  short_description: "Run WordPress admin and maintenance tasks with WP-CLI"
+  default_prompt: "Use $wordpress-wp-cli-admin to inspect a WordPress install, pick the correct WP-CLI command family, and carry out the admin task safely."

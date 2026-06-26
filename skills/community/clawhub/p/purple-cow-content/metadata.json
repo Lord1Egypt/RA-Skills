@@ -1,0 +1,54 @@
+{
+  "name": "purple-cow-content",
+  "description": "Purple Cow content strategy skill - apply Seth Godin & MrBeast framework to any writing or brainstorming. Transform regular content into remarkable, viral-worthy pieces using the 4-layer framework (Hook → Story → Unprecedented Test → CTA)",
+  "version": "1.0.0",
+  "author": "adelpro",
+  "tags": [
+    "content",
+    "writing",
+    "social-media",
+    "blog",
+    "viral",
+    "marketing",
+    "copywriting",
+    "strategy",
+    "brainstorming",
+    "linkedin",
+    "twitter",
+    "medium",
+    "youtube",
+    "instagram"
+  ],
+  "homepage": "https://github.com/adelpro/purple-cow-content",
+  "keywords": [
+    "purple cow",
+    "seth godin",
+    "mrbeast",
+    "viral content",
+    "content strategy",
+    "marketing",
+    " copywriting"
+  ],
+  "triggers": [
+    "write a post",
+    "draft an article",
+    "blog article",
+    "linkedin post",
+    "twitter thread",
+    "content strategy",
+    "viral content",
+    "marketing",
+    "brainstorm",
+    "stand out",
+    "differentiation",
+    "engagement",
+    "purple cow",
+    "how to go viral",
+    "content not working",
+    "make content better"
+  ],
+  "platforms": ["discord", "telegram", "whatsapp"],
+  "requires": {
+    "openclaw": ">=2026.0.0"
+  }
+}

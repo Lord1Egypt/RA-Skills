@@ -1,35 +1,28 @@
 ---
-name: "Feishu User Auth"
-description: "Complete one-time Feishu browser authorization and cache a local `user_access_token` so later `feishu-bitable-sync` runs can write Bitable rows as the curren..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-user-auth"
-sourceUrl: "https://clawhub.ai/skills/feishu-user-auth"
+name: feishu-user-auth
+description: Complete one-time Feishu browser authorization and cache a local `user_access_token` so later `feishu-bitable-sync` runs can write Bitable rows as the current user instead of app identity.
 ---
 
-# Feishu User Auth
+# feishu-user-auth
 
-> Complete one-time Feishu browser authorization and cache a local `user_access_token` so later `feishu-bitable-sync` runs can write Bitable rows as the curren...
+在当前租户下，如果 `tenant_access_token` 不能稳定写多维表，先运行这个 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-user-auth`
-- **Source URL:** [https://clawhub.ai/skills/feishu-user-auth](https://clawhub.ai/skills/feishu-user-auth)
+它会：
 
-## Overview
+- 打开浏览器进入飞书授权页
+- 通过本地回调地址接收授权码
+- 换取 `user_access_token + refresh_token`
+- 缓存在本机 `~/.codex/feishu-auth/content-system-sync.json`
 
+运行前请确认：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-user-auth
-```
+- 已配置 `FEISHU_APP_ID`
+- 已配置 `FEISHU_APP_SECRET`
+- 飞书应用已开通网页应用能力
+- 飞书应用回调地址已包含 `http://127.0.0.1:14578/callback`
+
+输出：
+
+- `content-production/published/YYYYMMDD-feishu-user-auth.md`
+
+授权成功后，再运行 `feishu-bitable-sync` 即可按用户身份写多维表。

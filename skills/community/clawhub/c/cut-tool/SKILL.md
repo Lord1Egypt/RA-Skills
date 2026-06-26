@@ -1,35 +1,34 @@
 ---
-name: "Cut Tool"
-description: "Extract specific fields or columns from text files using delimiter-based parsing. Use when you need to select columns from CSV, TSV, or delimited data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cut-tool"
-sourceUrl: "https://clawhub.ai/skills/cut-tool"
+name: cut-tool
+description: Extract specific fields or columns from text files using delimiter-based parsing. Use when you need to select columns from CSV, TSV, or delimited data.
 ---
 
-# Cut Tool
+# Cut Tool - Field Extraction
 
-> Extract specific fields or columns from text files using delimiter-based parsing. Use when you need to select columns from CSV, TSV, or delimited data.
+Extract columns and fields from delimited text files by specifying delimiter and field position. Ideal for processing log files, CSV data, and structured text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cut-tool`
-- **Source URL:** [https://clawhub.ai/skills/cut-tool](https://clawhub.ai/skills/cut-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cut-tool
+cut-tool -d ',' -f 1,3 data.csv
+```
+
+## Features
+
+- Extract fields by position (-f 1,3,5)
+- Custom delimiter (-d for comma, tab, space)
+- Complement selection (everything except specified fields)
+- Output range of characters (-c 1-10)
+
+## Examples
+
+```bash
+# Extract first and third columns from CSV
+cut-tool -d ',' -f 1,3 data.csv
+
+# Extract characters 1-10 from each line
+cut-tool -c 1-10 file.txt
+
+# Use tab as delimiter
+cut-tool -f 2-4 file.tsv
 ```

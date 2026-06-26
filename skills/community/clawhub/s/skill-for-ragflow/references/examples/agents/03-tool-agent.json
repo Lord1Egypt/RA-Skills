@@ -1,0 +1,207 @@
+{
+  "components": {
+    "begin": {
+      "obj": {
+        "component_name": "Begin",
+        "params": {
+          "mode": "conversational",
+          "prologue": "Hi! I can answer directly or call a tool."
+        }
+      },
+      "downstream": [
+        "agent:0"
+      ],
+      "upstream": []
+    },
+    "agent:0": {
+      "obj": {
+        "component_name": "Agent",
+        "params": {
+          "llm_id": "your-chat-model@provider",
+          "sys_prompt": "You are a helpful assistant. Use the retrieval tool when the user asks about private knowledge.",
+          "prompts": [
+            {
+              "role": "user",
+              "content": "{sys.query}"
+            }
+          ],
+          "max_tokens": 256,
+          "temperature": 0.1,
+          "top_p": 0.3,
+          "presence_penalty": 0,
+          "frequency_penalty": 0,
+          "max_retries": 3,
+          "delay_after_error": 1,
+          "max_rounds": 1,
+          "description": "Minimal tool-enabled agent",
+          "user_prompt": "",
+          "visual_files_var": "",
+          "tools": [
+            {
+              "component_name": "Retrieval",
+              "id": "Retrieval:tool0",
+              "name": "Retrieval",
+              "params": {
+                "description": "",
+                "similarity_threshold": 0.2,
+                "keywords_similarity_weight": 0.3,
+                "top_n": 8,
+                "top_k": 1024,
+                "kb_ids": [
+                  "your-dataset-id"
+                ],
+                "rerank_id": "",
+                "empty_response": "No relevant chunks found.",
+                "use_kg": false,
+                "toc_enhance": false,
+                "cross_languages": [],
+                "retrieval_from": "dataset"
+              }
+            }
+          ],
+          "mcp": [],
+          "cite": true
+        }
+      },
+      "downstream": [
+        "message:0"
+      ],
+      "upstream": [
+        "begin"
+      ]
+    },
+    "message:0": {
+      "obj": {
+        "component_name": "Message",
+        "params": {
+          "content": [
+            "{agent:0@content}"
+          ]
+        }
+      },
+      "downstream": [],
+      "upstream": [
+        "agent:0"
+      ]
+    }
+  },
+  "history": [],
+  "path": [],
+  "retrieval": [],
+  "variables": {},
+  "globals": {
+    "sys.query": "",
+    "sys.user_id": "",
+    "sys.conversation_turns": 0,
+    "sys.files": [],
+    "sys.history": [],
+    "sys.date": ""
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "begin",
+        "type": "beginNode",
+        "position": {
+          "x": 50,
+          "y": 200
+        },
+        "data": {
+          "label": "Begin",
+          "name": "begin",
+          "form": {
+            "mode": "conversational",
+            "prologue": "Hi! I can answer directly or call a tool."
+          }
+        }
+      },
+      {
+        "id": "agent:0",
+        "type": "agentNode",
+        "position": {
+          "x": 340,
+          "y": 200
+        },
+        "data": {
+          "label": "Agent",
+          "name": "agent_0",
+          "form": {
+            "llm_id": "your-chat-model@provider",
+            "sys_prompt": "You are a helpful assistant. Use the retrieval tool when the user asks about private knowledge.",
+            "prompts": [
+              {
+                "role": "user",
+                "content": "{sys.query}"
+              }
+            ],
+            "max_tokens": 256,
+            "temperature": 0.1,
+            "top_p": 0.3,
+            "presence_penalty": 0,
+            "frequency_penalty": 0,
+            "max_retries": 3,
+            "delay_after_error": 1,
+            "max_rounds": 1,
+            "description": "Minimal tool-enabled agent",
+            "user_prompt": "",
+            "visual_files_var": "",
+            "tools": [
+              {
+                "component_name": "Retrieval",
+                "id": "Retrieval:tool0",
+                "name": "Retrieval",
+                "params": {
+                  "description": "",
+                  "similarity_threshold": 0.2,
+                  "keywords_similarity_weight": 0.3,
+                  "top_n": 8,
+                  "top_k": 1024,
+                  "kb_ids": [
+                    "your-dataset-id"
+                  ],
+                  "rerank_id": "",
+                  "empty_response": "No relevant chunks found.",
+                  "use_kg": false,
+                  "toc_enhance": false,
+                  "cross_languages": [],
+                  "retrieval_from": "dataset"
+                }
+              }
+            ],
+            "mcp": [],
+            "cite": true
+          }
+        }
+      },
+      {
+        "id": "message:0",
+        "type": "messageNode",
+        "position": {
+          "x": 650,
+          "y": 200
+        },
+        "data": {
+          "label": "Message",
+          "name": "message_0",
+          "form": {
+            "content": [
+              "{agent:0@content}"
+            ]
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "begin-agent:0",
+        "source": "begin",
+        "target": "agent:0"
+      },
+      {
+        "id": "agent:0-message:0",
+        "source": "agent:0",
+        "target": "message:0"
+      }
+    ]
+  }
+}

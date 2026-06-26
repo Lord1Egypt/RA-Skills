@@ -1,0 +1,54 @@
+{
+  "name": "oto-sessions",
+  "version": "1.0.0",
+  "description": "Platform-agnostic browser session management for OpenClaw agents",
+  "main": "SKILL.md",
+  "type": "openclaw-skill",
+  "keywords": [
+    "oto",
+    "sessions",
+    "browser",
+    "automation",
+    "authentication",
+    "multi-account",
+    "web-scraping"
+  ],
+  "author": "Oto Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbahar/oto.git"
+  },
+  "documentation": "SKILL.md",
+  "references": [
+    "references/SETUP.md",
+    "references/INTEGRATION.md"
+  ],
+  "scripts": [
+    "scripts/list-sessions.sh",
+    "scripts/save-session.sh",
+    "scripts/delete-session.sh",
+    "scripts/launch-session.js",
+    "scripts/check-session.js"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "operating-system": [
+      "linux",
+      "darwin",
+      "win32"
+    ],
+    "display": "required (for login automation)"
+  },
+  "dependencies": {
+    "playwright": ">=1.40.0"
+  },
+  "installation": {
+    "steps": [
+      "git clone https://github.com/mbahar/oto.git ~/oto",
+      "cd ~/oto && npm install",
+      "cp -r oto-sessions ~/.openclaw/skills/"
+    ],
+    "verification": "node ~/oto/scripts/list-sessions.js"
+  }
+}

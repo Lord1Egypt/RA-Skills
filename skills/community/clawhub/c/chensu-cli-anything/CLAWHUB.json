@@ -1,0 +1,10 @@
+{
+  "name": "CLI-Anything",
+  "displayName": "CLI-Anything Harness Builder",
+  "description": "Build, refine, test, and validate CLI harnesses for GUI applications using CLI-Anything methodology. Adapts the CLI-Anything approach to OpenClaw for creating Python CLI tools from GUI software.",
+  "version": "1.0.0",
+  "author": "chen su",
+  "tags": ["cli", "automation", "harness", "builder", "python", "gui"],
+  "license": "MIT",
+  "homepage": "https://github.com/HKUDS/CLI-Anything"
+}

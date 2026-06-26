@@ -1,35 +1,34 @@
 ---
-name: "Gothic Portrait Generator"
-description: "Generate stunning gothic portraits with dark dramatic lighting, Victorian elegance, and moody atmosphere. Perfect for gothic art, dark fantasy portraits, hor..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gothic-portrait-generator"
-sourceUrl: "https://clawhub.ai/skills/gothic-portrait-generator"
+name: gothic-portrait-generator
+description: Generate stunning gothic portraits with dark dramatic lighting, Victorian elegance, and moody atmosphere. Perfect for gothic art, dark fantasy portraits, horror aesthetic avatars, Victorian-style character art, dark academia profile pictures, and goth community content creation via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Gothic Portrait Generator
 
-> Generate stunning gothic portraits with dark dramatic lighting, Victorian elegance, and moody atmosphere. Perfect for gothic art, dark fantasy portraits, hor...
+Generate stunning gothic portraits with dark dramatic lighting, Victorian elegance, and moody atmosphere. Perfect for gothic art, dark fantasy portraits, horror aesthetic avatars, Victorian-style character art, dark academia profile pictures, and goth community content creation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gothic-portrait-generator`
-- **Source URL:** [https://clawhub.ai/skills/gothic-portrait-generator](https://clawhub.ai/skills/gothic-portrait-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gothic-portrait-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create gothic portrait generator images.
+
+## Quick start
+```bash
+node gothicportraitgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/gothic-portrait-generator
 ```

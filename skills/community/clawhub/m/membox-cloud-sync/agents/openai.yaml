@@ -1,0 +1,7 @@
+interface:
+  display_name: "Membox Cloud Sync"
+  short_description: "Private zero-knowledge encrypted cross-device memory sync"
+  default_prompt: "Use $membox-cloud-sync to verify the current Membox install state before claiming readiness, keep passphrases and recovery material out of chat, then install or pair the device and sync or restore memory."
+
+policy:
+  allow_implicit_invocation: true

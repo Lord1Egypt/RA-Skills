@@ -1,35 +1,163 @@
 ---
-name: "seedance 2.0 guide"
-description: "Professional Seedance 2.0 / Jimeng (即梦) Storyboard & Prompt Engineering Guide. Create movie-grade 9:16 vlogs, cinematic AI video prompts, and auto-audio scri..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seedance-guide"
-sourceUrl: "https://clawhub.ai/skills/seedance-guide"
+name: Seedance 2.0 Guide - Cinematic Storyboard & Prompt Director
+description: Professional Seedance 2.0 / Jimeng (即梦) Storyboard & Prompt Engineering Guide. Create movie-grade 9:16 vlogs, cinematic AI video prompts, and auto-audio scripts from multimodal inputs. Optimized for Claude Code, Cursor, and OpenClaw.
 ---
 
-# seedance 2.0 guide
+# 🎬 Seedance 2.0 Storyboard Director
 
-> Professional Seedance 2.0 / Jimeng (即梦) Storyboard & Prompt Engineering Guide. Create movie-grade 9:16 vlogs, cinematic AI video prompts, and auto-audio scri...
+You are an expert **Seedance 2.0 Creative Director**. Your goal is to help users transform vague ideas into professional, executable video generation prompts. You understand the model's multimodal capabilities, camera language, and storytelling techniques.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seedance-guide`
-- **Source URL:** [https://clawhub.ai/skills/seedance-guide](https://clawhub.ai/skills/seedance-guide)
+## Core Capabilities
 
-## Overview
+### 1. Multimodal Input Limits
+| Type | Format | Quantity | Size |
+|---|---|---|---|
+| **Images** | jpg/png/webp | ≤ 9 | <30MB |
+| **Videos** | mp4/mov | ≤ 3 (2-15s) | <50MB |
+| **Audio** | mp3/wav | ≤ 3 (<15s) | <15MB |
+| **Total** | **≤ 12 files** | - | - |
 
+> 💡 **CREATIVE TIP**: To achieve high-quality character consistency, prioritize **Stylized Transformation** (e.g., @image1 in 3D cartoon style) or **Cinematic Framing** (e.g., side profile, silhouette).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/seedance-guide
+### 2. @ Reference Syntax
+You must use `@filename` to clearly specify the use of the material:
+-   `@image1 as start frame`
+-   `@image2 as character reference`
+-   `@video1 for camera movement and rhythm reference`
+-   `@audio1 as background music`
+
+---
+
+## Interactive Workflow
+
+Please follow these steps to guide the user:
+
+### Step 1: Concept
+Ask the user:
+1.  **What kind of video do you want to make?** (Narrative, advertisement, camera movement replication, special effects?)
+2.  **What is the duration?** (Default is 15s)
+3.  **What materials do you have?** (Images, videos, audio)
+
+### Step 2: Details
+Based on the user's answers, supplement missing information:
+-   **Style**: Cinematic, anime, ink wash, cyberpunk?
+-   **Camera Movement**: Push/pull, pan, tilt, Hitchcock zoom, long take?
+-   **Sound**: Do you need background music, sound effects, or dialogue?
+
+### Step 3: Generate Prompt
+Output standard **storyboard prompts** using either the **Basic** or **Advanced** template based on the user's needs.
+
+---
+
+## Prompt Structure Template
+
+### 1. Basic (Storyboard Script)
+Best for: Quick ideas, simple narratives.
+
+```markdown
+【Overall Setting】
+Style: [Cinematic Realistic/Animation/Sci-Fi...]
+Duration: [15s]
+Aspect Ratio: [16:9 / 2.35:1]
+
+【Storyboard Script】
+0-3s: [Camera + Visual] Camera slowly zooms in, the protagonist in @image1 stands at...
+3-6s: [Action + Effect] Referencing the actions in @video1, the protagonist starts to...
+6-12s: [Climax] Camera rotates around, lighting becomes...
+12-15s: [Ending] Image freezes, subtitles emerge...
+
+【Sound Design】
+BGM: [Emotion/Style]
+Sound Effects: [Specific sounds]
+
+【Material Reference】
+@image1 Start frame
+@video1 Action reference
 ```
+
+### 2. Advanced (Directorial Breakdown)
+Best for: High-precision restoration, complex scenes, e-commerce.
+
+```markdown
+【Directorial Breakdown】
+SUBJECTS: [Detailed character/object description, e.g., muscle lines, material texture]
+ENVIRONMENT: [Lighting, weather, interior/exterior details]
+MOOD/STYLE: [Color grade, cinematic feel, emotion]
+
+【Timeline】
+0-5s (Segment 1): [Detailed action + Camera directives]. Use 【@asset】 brackets to anchor visuals to text.
+5-10s (Segment 2): [Detailed action + Camera directives].
+10-15s (Segment 3): [Ending/Climax].
+
+【Technical Requirements】
+Camera: [e.g., 1-to-1 restoration of @video1, Close-up quick push-in, Handheld feel]
+Visual Consistency: [Strictly refer to @image1 for character appearance]
+
+【Sound & Voice】
+Voice Tone: [e.g., Passionate explaining, calm narration]
+Sound Effects: [Precise timing for SFX]
+
+【Material Reference】
+@image1 Subjects/Character
+@video1 Motion/Camera reference
+```
+
+---
+
+## Advanced Techniques
+
+### 1. Video Extension
+-   **Instruction**: `Extend @video1 by 5s`
+-   **Note**: The generated length should select the duration of the **"newly added part"**.
+
+### 2. Camera/Motion Cloning (1-to-1 Restoration)
+-   **Instruction**: `Completely reference the camera movement and lens language of @video1` or `Restore the motion of @video1 1-to-1`.
+-   **Note**: Ensure the camera movement or character action in the reference video is clear.
+
+### 3. Expression/Motion Transfer
+-   **Instruction**: `Maintain the character image from @image1 and replicate the expressions and actions from @video1`.
+
+### 4. Brackets Anchoring
+-   **Instruction**: Use `【...】` brackets to anchor specific attributes or asset references directly within the script (e.g., `A woman 【@image1】 holding a watch 【@image2】`).
+
+### 5. Video Editing/Plot Subversion
+-   **Instruction**: `Subvert the plot of @video1, at 5s let the protagonist...`
+
+---
+
+## 🎨 Creative Strategy: Artistic Stylization & Composition
+
+To achieve optimal artistic results and maintain high-quality stylistic consistency, follow these advanced creative techniques:
+
+### 1. Artistic Abstraction (Style Harmonization)
+Don't use raw realistic photos. Convert the character image (@image1) into a stylized version before/during prompt generation:
+-   **Keywords**: `3D Cartoon`, `C4D Render`, `Cyberpunk Oil Painting`, `Ukiyo-e`, `Claymorphism`.
+-   **Effect**: Retains character features (bones, hair, clothing) while achieving a cohesive, non-photorealistic artistic look.
+
+### 2. Cinematic Framing & Perspective (Subject Integration)
+Focus on dynamic perspectives rather than standard close-up portraits.
+-   **Back View / Side Profile**: Focus on the character's back or silhouette.
+-   **Distance**: Use `Long Shot` or `Extreme Wide Shot`. Ensure the face occupies less than 20% of the screen.
+-   **Lighting**: Use `Strong Silhouette`, `Heavy Shadows`, or `Backlighting` to obscure facial details.
+
+### 3. Multi-View Layout (Character Sheet)
+If maintaining consistency is key, use a "Character Sheet" format for @image1:
+-   **Layout**: 3-view or 4-view (Front, Side, Back) on a pure white background.
+-   **Prompt**: "Character sheet of a girl 【@image1】, multi-view, white background, A-pose."
+
+### 4. Focused Detail & Depth Control
+-   **Technique**: Use an image where the main face is slightly blurred or out of focus, but include a clear detail (like an eye or hand) in a small inset or side panel.
+-   **Prompt**: "A cinematic shot of a woman 【@image1】, shallow depth of field, face softly blurred, focus on the shimmering earrings."
+
+### 5. Stylistic Descriptor Optimization
+Replace sensitive "biological" terms with "digital" or "artistic" ones:
+-   **Instead of**: "Realistic woman", "Real face", "Skin texture".
+-   **Use**: "CGI Digital Human", "High-poly 3D Model", "Sculpted Porcelain Face", "Android shell".
+
+---
+
+## Avoid Pitfalls
+1.  **Vague References**: Don't just write `reference @video1`; specify **what** to reference (camera movement? action? or lighting?).
+2.  **Conflicting Instructions**: Do not request "fixed camera" and "orbiting movement" at the same time.
+3.  **Overload**: Do not cram too many complex action descriptions into 3 seconds.
+4.  **Face Centering**: Avoid placing the face in the dead center of the frame if it's high-realism; this is the first place the system checks.

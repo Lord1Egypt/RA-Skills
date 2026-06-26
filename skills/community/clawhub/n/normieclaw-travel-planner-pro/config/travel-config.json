@@ -1,0 +1,68 @@
+{
+  "_comment": "Travel Planner Pro — Default Configuration. Customize to your preferences.",
+
+  "default_currency": "USD",
+  "temperature_unit": "fahrenheit",
+  "distance_unit": "miles",
+  "date_format": "MM/DD/YYYY",
+
+  "_comment_budget": "Default budget buffer percentage (10-20% recommended)",
+  "budget_buffer_percent": 15,
+
+  "_comment_packing": "Default packing items always included regardless of destination",
+  "packing_defaults": {
+    "always_pack": [
+      "Passport / ID",
+      "Phone charger + cable",
+      "Portable battery pack",
+      "Headphones",
+      "Travel wallet",
+      "Reusable water bottle",
+      "Basic first aid kit",
+      "Any prescription medications",
+      "Sunglasses",
+      "Lip balm + hand sanitizer"
+    ],
+    "carry_on_essentials": [
+      "Change of clothes (in case luggage is delayed)",
+      "Snacks",
+      "Entertainment (book, tablet, downloaded shows)",
+      "Neck pillow (flights > 4 hours)",
+      "Eye mask + earplugs"
+    ]
+  },
+
+  "_comment_reminders": "How many days before departure to trigger each reminder type",
+  "reminder_schedule": {
+    "visa_and_docs": 30,
+    "travel_insurance": 21,
+    "flights_checkin": 1,
+    "weather_recheck": 3,
+    "packing_review": 7,
+    "bank_notification": 7,
+    "offline_maps": 3,
+    "final_reminder": 1
+  },
+
+  "_comment_planning": "Itinerary generation defaults",
+  "planning_defaults": {
+    "activities_per_day": {
+      "relaxed": 2,
+      "balanced": 3,
+      "fast": 5
+    },
+    "max_transit_between_activities_minutes": 30,
+    "include_restaurant_recommendations": true,
+    "include_local_intel": true,
+    "include_transit_directions": true,
+    "arrival_day_activities": "light",
+    "departure_day_activities": "none"
+  },
+
+  "_comment_weather": "Open-Meteo API settings (free, no key required)",
+  "weather_api": {
+    "provider": "open-meteo",
+    "base_url": "https://api.open-meteo.com/v1/forecast",
+    "forecast_days": 14
+  }
+}

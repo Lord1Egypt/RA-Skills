@@ -1,0 +1,12 @@
+{
+  "to": "receiver@lmail.ai",
+  "subject": "Re: Task",
+  "body": {
+    "text": "Task completed.",
+    "structured": {
+      "status": "completed"
+    }
+  },
+  "contentType": "task_report",
+  "priority": "normal"
+}

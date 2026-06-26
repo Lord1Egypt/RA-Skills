@@ -1,35 +1,116 @@
----
-name: "G2量化交易策略"
-description: "基于21组策略回测，提供沪深300量化交易系统，年化收益21.2%，夏普率1.12，含智能选股和严格风控。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/g2-trading-strategy"
-sourceUrl: "https://clawhub.ai/skills/g2-trading-strategy"
----
+# G2量化交易策略技能
 
-# G2量化交易策略
+> 基于21组策略回测验证的最优A股量化交易系统
+> 版本: v6.0-g2-optimal | 回测收益: +26.7% | 夏普比率: 1.12
 
-> 基于21组策略回测，提供沪深300量化交易系统，年化收益21.2%，夏普率1.12，含智能选股和严格风控。
+## 📋 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/g2-trading-strategy`
-- **Source URL:** [https://clawhub.ai/skills/g2-trading-strategy](https://clawhub.ai/skills/g2-trading-strategy)
+本技能提供一套完整的A股量化交易解决方案，基于v5.2评分体系优化而来，经过301天历史回测验证（2025-01-03~2026-04-03），在沪深300成分股中实现：
 
-## Overview
+- **总收益**: +26.7%（年化+21.2%）
+- **夏普比率**: 1.12
+- **最大回撤**: 15.2%
+- **超额收益**: +23.6%（跑赢大盘）
 
+## 🎯 核心特性
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 智能选股系统
+- v5.2九维度综合评分（位置/量能/趋势/筹码/业绩/均线/换手率/情绪/超跌反弹）
+- 量比>1.2硬过滤（确保资金活跃入场）
+- 评分≥40分筛选
+
+### 2. 严格风控体系
+- 固定2%止损纪律
+- 固定25%止盈纪律
+- 最大3持仓，单只25%仓位
+
+### 3. 尾盘交易策略
+- 14:00扫描市场
+- 14:30-15:00尾盘买入
+- 避免盘中波动风险
+
+## 📊 评分维度详解
+
+| 维度 | 权重 | 评分规则 |
+|:---|:---:|:---|
+| 超跌反弹 | 20% | 近21日跌幅>30%→+20分, >25%→+15分 |
+| 量能 | 15% | 量比>1.5→+15分, >1.2→+10分 |
+| 位置 | 12% | 距60日均线<20%→+20分, <30%→+15分 |
+| 业绩 | 12% | 净利润增长→加分 |
+| 趋势 | 10% | MACD金叉+KDJ金叉→+15分 |
+| 筹码 | 10% | 底部缩量+低位→+15分 |
+| 均线 | 8% | MA5>MA20>MA60→+10分 |
+| 换手率 | 8% | 4%~12%→+10分 |
+| 情绪 | 5% | 涨跌幅2%~6%→+5分 |
+
+## 🚀 使用方法
+
+### 基础命令
+
 ```bash
-hermes skills install clawhub/g2-trading-strategy
+# 扫描潜力股
+python3 stock_analysis_v5.py
+
+# 执行交易
+python3 trading_workflow.py
+
+# 查看持仓
+cat positions.json
 ```
+
+### 配置文件
+
+所有策略参数在 `trading_unified_config.json` 中统一管理：
+
+```json
+{
+  "version": "v6.0-g2-optimal",
+  "filter_criteria": {
+    "min_score": 40,
+    "vol_ratio_min": 1.2
+  },
+  "trading_rules": {
+    "stop_loss_pct": 2.0,
+    "take_profit_full_pct": 25.0
+  }
+}
+```
+
+## 📁 文件结构
+
+```
+g2-trading-strategy/
+├── SKILL.md                 # 技能定义文件
+├── README.md                # 详细文档
+├── trading_unified_config.json  # 统一配置文件
+├── stock_analysis_v5.py     # v5.2分析系统
+├── trading_workflow.py      # 交易工作流
+├── positions.json           # 持仓记录
+├── scripts/
+│   ├── stock_api_tencent.py # 腾讯API数据源
+│   └── auto_backup.py       # 自动备份
+└── backtest_cache/          # 历史数据缓存
+```
+
+## ⚠️ 风险提示
+
+1. 本策略回测结果不代表未来收益
+2. A股市场波动大，请控制仓位
+3. 建议先用模拟盘验证
+4. 严格遵守止损纪律
+
+## 📜 版本历史
+
+- v6.0-g2-optimal (2026-04-05): 加入量比硬过滤，回测+26.7%
+- v6.0-multi-agent (2026-04-03): 多代理系统
+- v5.2 (2026-03-30): 九维度评分体系
+
+## 💡 技术支持
+
+如有问题，请提交Issue或联系技术支持。
+
+---
+
+**本技能定价: ¥199/次下载**
+
+作者: 投资大师 (Investment Master)

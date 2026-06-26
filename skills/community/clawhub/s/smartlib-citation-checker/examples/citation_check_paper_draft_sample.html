@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参考文献核查报告 — SmartLib API 联网验证</title>
+<style>
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-radius: 12px;
+    padding: 32px;
+    color: white;
+    margin-bottom: 24px;
+}
+.header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.header .meta {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 16px;
+}
+.badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.badge-verified {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+.badge-diff {
+    background: rgba(250, 204, 21, 0.2);
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+}
+.badge-notfound {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+.badge-api {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+/* Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.stat-card .stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+}
+.stat-card .stat-label {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 6px;
+}
+.stat-green .stat-value { color: #16a34a; }
+.stat-yellow .stat-value { color: #ca8a04; }
+.stat-red .stat-value { color: #dc2626; }
+.stat-blue .stat-value { color: #2563eb; }
+
+/* Table */
+.table-wrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+.table-header-bar {
+    background: #f8fafc;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.table-header-bar h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+.download-all-btn {
+    background: #1e293b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.download-all-btn:hover {
+    background: #334155;
+}
+.table-container {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+thead {
+    background: #1e293b;
+    color: white;
+}
+th {
+    padding: 12px 12px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+td {
+    padding: 12px;
+    font-size: 13px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+}
+tr:nth-child(even) td {
+    background: #f8fafc;
+}
+tr:hover td {
+    background: #eff6ff;
+}
+.col-num { width: 40px; text-align: center; }
+.col-status { width: 80px; }
+.col-original { max-width: 300px; }
+.col-corrected { max-width: 300px; }
+.col-diff { max-width: 250px; }
+.col-verify { width: 80px; text-align: center; }
+
+.status-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.status-verified {
+    background: #dcfce7;
+    color: #166534;
+}
+.status-notfound {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.status-fuzzy {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.orig-text {
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.5;
+    word-break: break-all;
+}
+.corrected-text {
+    font-size: 12px;
+    color: #1e293b;
+    line-height: 1.6;
+    word-break: break-all;
+}
+.corrected-na {
+    font-size: 12px;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.diff-item {
+    font-size: 11px;
+    margin-bottom: 4px;
+    line-height: 1.5;
+}
+.diff-field {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #475569;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-right: 4px;
+}
+.del-text {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 1px 3px;
+    border-radius: 2px;
+    text-decoration: line-through;
+}
+.add-text {
+    background: #dcfce7;
+    color: #166534;
+    padding: 1px 3px;
+    border-radius: 2px;
+}
+.arrow {
+    color: #3b82f6;
+    margin: 0 4px;
+}
+
+.verify-link {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: #eff6ff;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+.verify-link:hover {
+    background: #dbeafe;
+}
+.verify-na {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.dl-btn {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: all 0.2s;
+}
+.dl-btn:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* Ref text block */
+.section-block {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+.section-block h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.warning-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #92400e;
+}
+.warning-box strong {
+    color: #b45309;
+}
+
+.pre-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 500px;
+    overflow-y: auto;
+    user-select: all;
+}
+
+/* Tab UI */
+.tab-nav {
+    display: flex;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 16px;
+    gap: 0;
+}
+.tab-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+}
+.tab-btn:hover {
+    color: #475569;
+}
+.tab-btn.active {
+    color: #1e293b;
+    border-bottom-color: #1e293b;
+}
+.tab-panel {
+    display: none;
+}
+.tab-panel.active {
+    display: block;
+}
+.tab-scene {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+/* Analysis */
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 16px;
+}
+.analysis-card {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+}
+.analysis-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 12px;
+}
+.chart-canvas {
+    width: 100%;
+    height: 260px;
+    display: block;
+}
+.chart-canvas-tall {
+    width: 100%;
+    height: 370px;
+    display: block;
+}
+.chart-card-full {
+    grid-column: 1 / -1;
+}
+
+.suggestion-list {
+    list-style: none;
+    padding: 0;
+}
+.suggestion-list li {
+    font-size: 13px;
+    color: #475569;
+    padding: 6px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.suggestion-list li:last-child {
+    border-bottom: none;
+}
+.suggestion-list li::before {
+    content: "• ";
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    padding: 16px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .container { padding: 12px 8px; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 18px; }
+    .badges { gap: 6px; }
+    .badge { font-size: 11px; padding: 4px 10px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat-card { padding: 14px; }
+    .stat-card .stat-value { font-size: 24px; }
+    .table-container { overflow-x: auto; }
+    table { min-width: 800px; }
+    .analysis-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+    <h1>参考文献核查报告</h1>
+    <div class="meta">
+        核查时间: 2026-05-21 18:00 | 
+        数据来源: SmartLib API 联网验证（全球文献检索） |
+        文献总数: 47 篇
+    </div>
+    <div class="badges">
+        <span class="badge badge-verified">API验证通过: 43</span>
+        <span class="badge badge-diff">存在差异: 16</span>
+        <span class="badge badge-notfound">未收录: 4</span>
+        <span class="badge badge-api">API接口: SmartLib 全球文献检索</span>
+    </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-grid">
+    <div class="stat-card stat-green">
+        <div class="stat-value">43</div>
+        <div class="stat-label">API验证通过</div>
+    </div>
+    <div class="stat-card stat-blue">
+        <div class="stat-value">47/47</div>
+        <div class="stat-label">有DOI文献</div>
+    </div>
+    <div class="stat-card stat-yellow">
+        <div class="stat-value">16</div>
+        <div class="stat-label">存在差异</div>
+    </div>
+    <div class="stat-card stat-red">
+        <div class="stat-value">4</div>
+        <div class="stat-label">未收录（书章/Scholarpedia等）</div>
+    </div>
+</div>
+
+<!-- Table -->
+<div class="table-wrapper">
+    <div class="table-header-bar">
+        <h2>核查结果明细</h2>
+        <button class="download-all-btn" onclick="downloadAll()">下载全部修正文献 (APA)</button>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-num">#</th>
+                    <th class="col-status">状态</th>
+                    <th class="col-original">原始参考文献 (APA)</th>
+                    <th class="col-corrected">修正后文献 (APA，与原始格式一致)</th>
+                    <th class="col-diff">主要差异</th>
+                    <th class="col-verify">验证</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                    <td class="col-num">1</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Afan, H. A., Wan Mohtar, W. H. M., Aksoy, M., Ahmed, A. N., Khaleel, F., Khan, M. M. H., &amp; El-Shafie, A. (2025). A multi-functional genetic algorithm-neural network model for predicting suspended sediment loads. Water Resources Management, 39(5), 2033–2048. https://doi.org/10.1007/s11269-024-04054-w</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Afan, H. A., Wan Mohtar, W. H. M., Aksoy, M., Ahmed, A. N., Khaleel, F., Khan, M. M. H., Kamel, A. H., Sherif, M., &amp; El-Shafie, A. (2025). A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads. Water Resources Management. https://doi.org/10.1007/s11269-024-04054-w <button class="dl-btn" onclick="downloadSingle('dl-1', 'Afan, H. A., Wan Mohtar, W. H. M., Aksoy, M., Ahmed, A. N., Khaleel, F., Khan, M. M. H., Kamel, A. H., Sherif, M., &amp; El-Shafie, A. (2025). A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads. Water Resources Management. https://doi.org/10.1007/s11269-024-04054-w')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031563775238" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">2</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">AlDahoul, N., Essam, Y., Kumar, P., Ahmed, A. N., Sherif, M., Sefelnasr, A., &amp; Elshafie, A. (2021). Suspended sediment load prediction using long short-term memory neural network. Scientific Reports, 11(1), 7826. https://doi.org/10.1038/s41598-021-87415-4</div></td>
+                    <td class="col-corrected"><div class="corrected-text">AlDahoul, N., Essam, Y., Kumar, P., Ahmed, A. N., Sherif, M., Sefelnasr, A., &amp; Elshafie, A. (2021). Suspended sediment load prediction using long short-term memory neural network. Scientific Reports. https://doi.org/10.1038/s41598-021-87415-4 <button class="dl-btn" onclick="downloadSingle('dl-2', 'AlDahoul, N., Essam, Y., Kumar, P., Ahmed, A. N., Sherif, M., Sefelnasr, A., &amp; Elshafie, A. (2021). Suspended sediment load prediction using long short-term memory neural network. Scientific Reports. https://doi.org/10.1038/s41598-021-87415-4')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031026295258" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">3</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Allawi, M. F., Sulaiman, S. O., Sayl, K. N., Sherif, M., &amp; El-Shafie, A. (2023). Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study. Heliyon, 9(8), e18506.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, &amp; Ahmed El-Shafie (2023). Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study. Heliyon. <button class="dl-btn" onclick="downloadSingle('dl-3', 'Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, &amp; Ahmed El-Shafie (2023). Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study. Heliyon.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031227006292" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">4</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5–32. https://doi.org/10.1023/A:1010933404324</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Breiman, L. (2001). Random forests. Machine Learning. https://doi.org/10.1023/A:1010933404324 <button class="dl-btn" onclick="downloadSingle('dl-4', 'Breiman, L. (2001). Random forests. Machine Learning. https://doi.org/10.1023/A:1010933404324')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203413119817" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">5</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Carter, J. H. (2000). The immune system as a model for pattern recognition and classification. Journal of the American Medical Informatics Association, 7(1), 28–41. https://doi.org/10.1136/jamia.2000.0070028</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Carter, J. (2000). The immune system as a model for pattern recognition and classification. Journal of the American Medical Informatics Association. https://doi.org/10.1136/jamia.2000.0070028 <button class="dl-btn" onclick="downloadSingle('dl-5', 'Carter, J. (2000). The immune system as a model for pattern recognition and classification. Journal of the American Medical Informatics Association. https://doi.org/10.1136/jamia.2000.0070028')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203325412378" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">6</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Chen, X. Y., &amp; Chau, K. W. (2016). A hybrid double feedforward neural network for suspended sediment load estimation. Water Resources Management, 30(7), 2179–2194. https://doi.org/10.1007/s11269-016-1281-2</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Chen, X. Y., &amp; Chau, K. W. (2016). A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation. Water Resources Management. https://doi.org/10.1007/s11269-016-1281-2 <button class="dl-btn" onclick="downloadSingle('dl-6', 'Chen, X. Y., &amp; Chau, K. W. (2016). A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation. Water Resources Management. https://doi.org/10.1007/s11269-016-1281-2')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203293462085" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">7</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Coello, C. A. C., &amp; Cortés, N. C. (2004). Hybridizing a genetic algorithm with an artificial immune system for global optimization. Engineering Optimization, 36(5), 607–634. https://doi.org/10.1080/03052150410001704845</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Coello, C., &amp; Cortés, N. (2004). Hybridizing a genetic algorithm with an artificial immune system for global optimization. Engineering Optimization. https://doi.org/10.1080/03052150410001704845 <button class="dl-btn" onclick="downloadSingle('dl-7', 'Coello, C., &amp; Cortés, N. (2004). Hybridizing a genetic algorithm with an artificial immune system for global optimization. Engineering Optimization. https://doi.org/10.1080/03052150410001704845')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203176702558" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">8</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Covert, I., Lundberg, S. M., &amp; Lee, S.-I. (2020). Understanding global feature contributions with additive importance measures. Advances in Neural Information Processing Systems, 33, 17212–17223.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Covert, I. C., Lundberg, S., &amp; Lee, S. (2020). Understanding Global Feature Contributions With Additive Importance Measures. ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020. <button class="dl-btn" onclick="downloadSingle('dl-8', 'Covert, I. C., Lundberg, S., &amp; Lee, S. (2020). Understanding Global Feature Contributions With Additive Importance Measures. ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Advances in Neural Information Processing Systems, 33, 17212–17223.</span>
+                <span class="arrow">→</span>
+                <span class="add-text">ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=20664705682" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">9</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Doroudi, S., &amp; Sharafati, A. (2024). A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load. Journal of Hydrology, 634, 131090. https://doi.org/10.1016/j.jhydrol.2024.131090</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Siyamak Doroudi, &amp; Ahmad Sharafati (2024). A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load. Journal of Hydrology. https://doi.org/10.1016/j.jhydrol.2024.131090 <button class="dl-btn" onclick="downloadSingle('dl-9', 'Siyamak Doroudi, &amp; Ahmad Sharafati (2024). A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load. Journal of Hydrology. https://doi.org/10.1016/j.jhydrol.2024.131090')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Journal of Hydrology, 634, 131090. https://doi.org/10.1016/j.jhydrol.2024.131090</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Journal of Hydrology</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031268865578" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">10</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Dorrell, R., Amy, L., Peakall, J., &amp; McCaffrey, W. (2018). Particle size distribution controls the threshold between net sediment erosion and deposition in suspended load dominated flows. Geophysical Research Letters, 45(3), 1443–1452. https://doi.org/10.1002/2017GL076489</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Dorrell, R. M., Amy, L. A., Peakall, J., &amp; McCaffrey, W. D. (2018). Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows. Geophysical Research Letters. https://doi.org/10.1002/2017GL076489 <button class="dl-btn" onclick="downloadSingle('dl-10', 'Dorrell, R. M., Amy, L. A., Peakall, J., &amp; McCaffrey, W. D. (2018). Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows. Geophysical Research Letters. https://doi.org/10.1002/2017GL076489')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203283666106" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">11</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Gelete, G., Nourani, V., Gökçekuş, H., &amp; Gichamo, T. (2024). Multi-step ahead suspended sediment load modeling using machine learning– multi-model approach. Earth Science Informatics, 17(1), 633–654. https://doi.org/10.1007/s12145-023-01192-4</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Gelete, G., Nourani, V., Gokcekus, H., &amp; Gichamo, T. (2024). Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach. Earth Science Informatics. https://doi.org/10.1007/s12145-023-01192-4 <button class="dl-btn" onclick="downloadSingle('dl-11', 'Gelete, G., Nourani, V., Gokcekus, H., &amp; Gichamo, T. (2024). Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach. Earth Science Informatics. https://doi.org/10.1007/s12145-023-01192-4')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031252511952" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">12</td>
+                    <td class="col-status"><span class="status-tag status-notfound">未收录</span></td>
+                    <td class="col-original"><div class="orig-text">Graves, A., &amp; Graves, A. (2012). Long short-term memory. Supervised sequence labelling with recurrent neural networks, 37–45.</div></td>
+                    <td class="col-corrected"><div class="corrected-na">—</div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#94a3b8">SmartLib 全球库未收录此文献类型（书籍章节 / Scholarpedia / 未被索引期刊）</div></td>
+                    <td class="col-verify"><span class="verify-na" title="API返回了低相似度匹配结果，经判定不相关">不匹配</span></td>
+                </tr>
+            <tr>
+                    <td class="col-num">13</td>
+                    <td class="col-status"><span class="status-tag status-notfound">未收录</span></td>
+                    <td class="col-original"><div class="orig-text">Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https://doi.org/10.4249/scholarpedia.1888</div></td>
+                    <td class="col-corrected"><div class="corrected-na">—</div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#94a3b8">SmartLib 全球库未收录此文献类型（书籍章节 / Scholarpedia / 未被索引期刊）</div></td>
+                    <td class="col-verify"><span class="verify-na" title="API返回了低相似度匹配结果，经判定不相关">不匹配</span></td>
+                </tr>
+            <tr>
+                    <td class="col-num">14</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Gul, N., Khan, A. U., Ullah, B., Khan, B. N., Almalki, H. M., Banga, A. S., &amp; Kumar, K. (2025). Optimizing LSTM for sediment load prediction in the Swat River Basin, Pakistan: Evaluation of optimizers and activation functions. Physics and Chemistry of the Earth, Parts A/B/C, 140, 104019. https://doi.org/10.1016/j.pce.2025.104019</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, &amp; Kailash Kumar (2025). Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions. Physics and Chemistry of the Earth, Parts A/B/C. https://doi.org/10.1016/j.pce.2025.104019 <button class="dl-btn" onclick="downloadSingle('dl-14', 'Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, &amp; Kailash Kumar (2025). Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions. Physics and Chemistry of the Earth, Parts A/B/C. https://doi.org/10.1016/j.pce.2025.104019')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Physics and Chemistry of the Earth, Parts A/B/C, 140, 104019. https://doi.org/10</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Physics and Chemistry of the Earth, Parts A/B/C</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031600744514" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">15</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Hanoon, M. S., Abdullatif, B. A. A., Ahmed, A. N., Razzaq, A., Birima, A. H., &amp; El-Shafie, A. (2022). A comparison of various machine learning approaches performance for suspended sediment load of river systems: A case study in Malaysia. Earth Science Informatics, 15(1), 91–104.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Hanoon, M. S., Abdullatif, A. A. B., Ahmed, A. N., Razzaq, A., Birima, A. H., &amp; El-Shafie, A. (2022). A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia. Earth Science Informatics. <button class="dl-btn" onclick="downloadSingle('dl-15', 'Hanoon, M. S., Abdullatif, A. A. B., Ahmed, A. N., Razzaq, A., Birima, A. H., &amp; El-Shafie, A. (2022). A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia. Earth Science Informatics.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">题名</span>
+                <span class="del-text">A comparison of various machine learning approaches performance for suspended sediment load of river systems: A case study in Malaysia</span>
+                <span class="arrow">→</span>
+                <span class="add-text">A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031051250583" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">16</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Hazarika, B. B., &amp; Gupta, D. (2023). Mode decomposition based large margin distribution machines for sediment load prediction. Expert Systems with Applications, 232, 120844. https://doi.org/10.1016/j.eswa.2023.120844</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Barenya Bikash Hazarika, &amp; Deepak Gupta (2023). Mode decomposition based large margin distribution machines for sediment load prediction. Expert Systems with Applications. https://doi.org/10.1016/j.eswa.2023.120844 <button class="dl-btn" onclick="downloadSingle('dl-16', 'Barenya Bikash Hazarika, &amp; Deepak Gupta (2023). Mode decomposition based large margin distribution machines for sediment load prediction. Expert Systems with Applications. https://doi.org/10.1016/j.eswa.2023.120844')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Expert Systems with Applications, 232, 120844. https://doi.org/10.1016/j.eswa.20</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Expert Systems with Applications</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031224301468" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">17</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Hazarika, B. B., Gupta, D., &amp; Berlin, M. (2020). Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction. Environmental Earth Sciences, 79(10), 234. https://doi.org/10.1007/s12665-020-08949-w</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Hazarika, B. B., Gupta, D., &amp; Berlin, M. (2020). Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction. Environmental Earth Sciences. https://doi.org/10.1007/s12665-020-08949-w <button class="dl-btn" onclick="downloadSingle('dl-17', 'Hazarika, B. B., Gupta, D., &amp; Berlin, M. (2020). Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction. Environmental Earth Sciences. https://doi.org/10.1007/s12665-020-08949-w')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203972947652" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">18</td>
+                    <td class="col-status"><span class="status-tag status-notfound">未收录</span></td>
+                    <td class="col-original"><div class="orig-text">Heddam, S., Naghibi, A., Khosravi, K., &amp; Singh, S. K. (2024). Suspended sediment load prediction and tree-based algorithms. In A. M. Melesse, O. Rahmati, K. Khosravi, &amp; G. P. Petropoulos (Eds.), Remote sensing of soil and landsurface processes (pp. 257–269). Elsevier.</div></td>
+                    <td class="col-corrected"><div class="corrected-na">—</div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#94a3b8">SmartLib 全球库未收录此文献类型（书籍章节 / Scholarpedia / 未被索引期刊）</div></td>
+                    <td class="col-verify"><span class="verify-na">—</span></td>
+                </tr>
+            <tr>
+                    <td class="col-num">19</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Hochreiter, S., &amp; Schmidhuber, J. (1997). Long short-term memory. Neural Computation, 9(8), 1735–1780. https://doi.org/10.1162/neco.1997.9.8.1735</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Hochreiter, S., &amp; Schmidhuber, J. (1997). Long short-term memory. Neural Computation. https://doi.org/10.1162/neco.1997.9.8.1735 <button class="dl-btn" onclick="downloadSingle('dl-19', 'Hochreiter, S., &amp; Schmidhuber, J. (1997). Long short-term memory. Neural Computation. https://doi.org/10.1162/neco.1997.9.8.1735')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203583158490" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">20</td>
+                    <td class="col-status"><span class="status-tag status-notfound">未收录</span></td>
+                    <td class="col-original"><div class="orig-text">Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., &amp; Salem, M. A. (2024). River streamflow prediction through advanced machine learning models for enhanced accuracy. Results in Engineering, 22, 102215.</div></td>
+                    <td class="col-corrected"><div class="corrected-na">—</div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#94a3b8">SmartLib 全球库未收录此文献类型（书籍章节 / Scholarpedia / 未被索引期刊）</div></td>
+                    <td class="col-verify"><span class="verify-na">—</span></td>
+                </tr>
+            <tr>
+                    <td class="col-num">21</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Khan, M. Y. A. (2025). Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments. Journal of Geochemical Exploration, 269, 107643. https://doi.org/10.1016/j.gexplo.2024.107643</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Mohd Yawar Ali Khan (2025). Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments. Journal of Geochemical Exploration. https://doi.org/10.1016/j.gexplo.2024.107643 <button class="dl-btn" onclick="downloadSingle('dl-21', 'Mohd Yawar Ali Khan (2025). Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments. Journal of Geochemical Exploration. https://doi.org/10.1016/j.gexplo.2024.107643')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Journal of Geochemical Exploration, 269, 107643. https://doi.org/10.1016/j.gexpl</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Journal of Geochemical Exploration</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031556026530" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">22</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Kundu, S., Swarnkar, S., &amp; Agarwal, A. (2025). Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport. Environmental Monitoring and Assessment, 197(5), 603. https://doi.org/10.1007/s10661-025-14039-w</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Kundu, S., Swarnkar, S., &amp; Agarwal, A. (2025). Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport. Environmental Monitoring and Assessment. https://doi.org/10.1007/s10661-025-14039-w <button class="dl-btn" onclick="downloadSingle('dl-22', 'Kundu, S., Swarnkar, S., &amp; Agarwal, A. (2025). Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport. Environmental Monitoring and Assessment. https://doi.org/10.1007/s10661-025-14039-w')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031587960548" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">23</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Latif, S. D., Chong, K., Ahmed, A. N., Huang, Y., Sherif, M., &amp; El-Shafie, A. (2023). Sediment load prediction in Johor river: Deep learning versus machine learning models. Applied Water Science, 13(3), 79. https://doi.org/10.1007/s13201-023-01874-w</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Latif, S. D., Chong, K. L., Ahmed, A. N., Huang, Y. F., Sherif, M., &amp; El-Shafie, A. (2023). Sediment load prediction in Johor river: deep learning versus machine learning models. Applied Water Science. https://doi.org/10.1007/s13201-023-01874-w <button class="dl-btn" onclick="downloadSingle('dl-23', 'Latif, S. D., Chong, K. L., Ahmed, A. N., Huang, Y. F., Sherif, M., &amp; El-Shafie, A. (2023). Sediment load prediction in Johor river: deep learning versus machine learning models. Applied Water Science. https://doi.org/10.1007/s13201-023-01874-w')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031210625870" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">24</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Li, Z., Xu, X., &amp; Wang, K. (2023). Scale-specific variation in daily suspended sediment load in karst catchments. Catena, 221, 106745. https://doi.org/10.1016/j.catena.2022.106745</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Zhenwei Li, Xianli Xu, &amp; Kelin Wang (2023). Scale-specific variation in daily suspended sediment load in karst catchments. CATENA. https://doi.org/10.1016/j.catena.2022.106745 <button class="dl-btn" onclick="downloadSingle('dl-24', 'Zhenwei Li, Xianli Xu, &amp; Kelin Wang (2023). Scale-specific variation in daily suspended sediment load in karst catchments. CATENA. https://doi.org/10.1016/j.catena.2022.106745')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Catena, 221, 106745. https://doi.org/10.1016/j.catena.2022.106745</span>
+                <span class="arrow">→</span>
+                <span class="add-text">CATENA</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031188595481" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">25</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Liu, H., Guo, C., Xiao, L., Liu, P., Du, J., &amp; Yi, Y. (2025). Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model. Engineering Applications of Computational Fluid Mechanics, 19(1), 2521825. https://doi.org/10.1080/19942060.2025.2521825</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Liu, H., Guo, C., Xiao, L., Liu, P., Du, J., &amp; Yi, Y. (2025). Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2025.2521825 <button class="dl-btn" onclick="downloadSingle('dl-25', 'Liu, H., Guo, C., Xiao, L., Liu, P., Du, J., &amp; Yi, Y. (2025). Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2025.2521825')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031603915100" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">26</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Madsen, A., Reddy, S., &amp; Chandar, S. (2023). Post-hoc interpretability for neural nlp: A survey. ACM Computing Surveys, 55(8), 1–42. https://doi.org/10.1145/3546577</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Madsen, A., Reddy, S., &amp; Chandar, S. (2023). Post-hoc Interpretability for Neural NLP: A Survey. ACM Computing Surveys. https://doi.org/10.1145/3546577 <button class="dl-btn" onclick="downloadSingle('dl-26', 'Madsen, A., Reddy, S., &amp; Chandar, S. (2023). Post-hoc Interpretability for Neural NLP: A Survey. ACM Computing Surveys. https://doi.org/10.1145/3546577')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031151335634" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">27</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Meshram, S. G., Singh, V. P., Kisi, O., Karimi, V., &amp; Meshram, C. (2020). Application of artificial neural networks, support vector machine and multiple model-ANN to sediment information: Application of newly developed data mining models. Hydrological Sciences Journal, 65(4), 624–637. https://doi.org/10.1080/02626667.2019.1703186</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Meshram, S. G., Singh, V. P., Kisi, O., Karimi, V., &amp; Meshram, C. (2020). Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction. Water Resources Management. https://doi.org/10.1080/02626667.2019.1703186 <button class="dl-btn" onclick="downloadSingle('dl-27', 'Meshram, S. G., Singh, V. P., Kisi, O., Karimi, V., &amp; Meshram, C. (2020). Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction. Water Resources Management. https://doi.org/10.1080/02626667.2019.1703186')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">题名</span>
+                <span class="del-text">Application of artificial neural networks, support vector machine and multiple model-ANN to sediment information: Application of newly developed data mining models</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction</span>
+            </div><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Hydrological Sciences Journal</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Water Resources Management</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203991598015" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">28</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Moazenzadeh, R., Katipoğlu, O. M., Shateri, A., Nasiri, H., &amp; Abdallah, M. (2024). Designing an explainable bio-inspired model for suspended sediment load estimation: Extreme gradient boosting coupled with marine predators algorithm. Engineering Applications of Computational Fluid Mechanics, 18(1), 2391449. https://doi.org/10.1080/19942060.2024.2391449</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Moazenzadeh, R., Katipoglu, O. M., Shateri, A., Nasiri, H., &amp; Abdallah, M. (2024). Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2024.2391449 <button class="dl-btn" onclick="downloadSingle('dl-28', 'Moazenzadeh, R., Katipoglu, O. M., Shateri, A., Nasiri, H., &amp; Abdallah, M. (2024). Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2024.2391449')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031402365908" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">29</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Mohammadi-Raigani, Z., Gholami, H., Mohamadifar, A., Samani, A. N., &amp; Pradhan, B. (2024). Using an interpretable deep learning model for the prediction of riverine suspended sediment load. Environmental Science and Pollution Research, 31(22), 32480–32493.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Mohammadi-Raigani, Z., Gholami, H., Mohamadifar, A., Samani, A. N., &amp; Pradhan, B. (2024). Using an interpretable deep learning model for the prediction of riverine suspended sediment load. Environmental Science and Pollution Research. <button class="dl-btn" onclick="downloadSingle('dl-29', 'Mohammadi-Raigani, Z., Gholami, H., Mohamadifar, A., Samani, A. N., &amp; Pradhan, B. (2024). Using an interpretable deep learning model for the prediction of riverine suspended sediment load. Environmental Science and Pollution Research.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031275317885" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">30</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Moradinejad, A. (2024). Suspended load modeling of river using soft computing techniques. Water Resources Management, 38(6), 1965–1986.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Moradinejad, A. (2024). Suspended Load Modeling of River Using Soft Computing Techniques. Water Resources Management. <button class="dl-btn" onclick="downloadSingle('dl-30', 'Moradinejad, A. (2024). Suspended Load Modeling of River Using Soft Computing Techniques. Water Resources Management.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031267203094" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">31</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Nourani, V., Alizadeh, F., &amp; Roushangar, K. (2016). Evaluation of a two-stage SVM and spatial statistics methods for modeling monthly river suspended sediment load. Water Resources Management, 30(1), 393–407. https://doi.org/10.1007/s11269-015-1168-7</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Nourani, V., Alizadeh, F., &amp; Roushangar, K. (2016). Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load. Water Resources Management. https://doi.org/10.1007/s11269-015-1168-7 <button class="dl-btn" onclick="downloadSingle('dl-31', 'Nourani, V., Alizadeh, F., &amp; Roushangar, K. (2016). Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load. Water Resources Management. https://doi.org/10.1007/s11269-015-1168-7')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203390292123" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">32</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Rajaee, T. (2011). Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers. Science of the Total Environment, 409(15), 2917–2928. https://doi.org/10.1016/j.scitotenv.2010.11.028</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Taher Rajaee (2011). Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers. Science of the Total Environment. https://doi.org/10.1016/j.scitotenv.2010.11.028 <button class="dl-btn" onclick="downloadSingle('dl-32', 'Taher Rajaee (2011). Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers. Science of the Total Environment. https://doi.org/10.1016/j.scitotenv.2010.11.028')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203104561360" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">33</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Rashidi, S., Vafakhah, M., Lafdani, E. K., &amp; Javadi, M. R. (2016). Evaluating the support vector machine for suspended sediment load forecasting based on gamma test. Arabian Journal of Geosciences, 9(11), 1–15. https://doi.org/10.1007/s12517-016-2601-9</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Rashidi, S., Vafakhah, M., Lafdani, E. K., &amp; Javadi, M. R. (2016). Evaluating the support vector machine for suspended sediment load forecasting based on gamma test. Arabian Journal of Geosciences. https://doi.org/10.1007/s12517-016-2601-9 <button class="dl-btn" onclick="downloadSingle('dl-33', 'Rashidi, S., Vafakhah, M., Lafdani, E. K., &amp; Javadi, M. R. (2016). Evaluating the support vector machine for suspended sediment load forecasting based on gamma test. Arabian Journal of Geosciences. https://doi.org/10.1007/s12517-016-2601-9')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203309829952" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">34</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Sahoo, B. B., Sankalp, S., &amp; Kisi, O. (2023). A novel smoothing-based deep learning time-series approach for daily suspended sediment load prediction. Water Resources Management, 37(11), 4271–4292. https://doi.org/10.1007/s11269-023-03552-7</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Sahoo, B. B., Sankalp, S., &amp; Kisi, O. (2023). A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction. Water Resources Management. https://doi.org/10.1007/s11269-023-03552-7 <button class="dl-btn" onclick="downloadSingle('dl-34', 'Sahoo, B. B., Sankalp, S., &amp; Kisi, O. (2023). A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction. Water Resources Management. https://doi.org/10.1007/s11269-023-03552-7')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031234691549" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">35</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Saleh, A., &amp; Zulkifley, M. A. (2025). Prediction of suspended sediment load in sungai semenyih using extreme learning machines and metaheuristic optimization approach. Journal of Environmental Management, 380, 124987. https://doi.org/10.1016/j.jenvman.2025.124987</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Azlan Saleh, &amp; Mohd Asyraf Zulkifley (2025). Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach. Journal of Environmental Management. https://doi.org/10.1016/j.jenvman.2025.124987 <button class="dl-btn" onclick="downloadSingle('dl-35', 'Azlan Saleh, &amp; Mohd Asyraf Zulkifley (2025). Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach. Journal of Environmental Management. https://doi.org/10.1016/j.jenvman.2025.124987')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Journal of Environmental Management, 380, 124987. https://doi.org/10.1016/j.jenv</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Journal of Environmental Management</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031579243661" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">36</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Salehinejad, H., Sankar, S., Barfett, J., Colak, E., &amp; Valaee, S. (2017). Recent advances in recurrent neural networks. arXiv preprint arXiv:1801.01078.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Salehinejad, H., Sankar, S., Barfett, J., Colak, E., &amp; Valaee, S. (2017). Recent advances in recurrent neural networks. arXiv. <button class="dl-btn" onclick="downloadSingle('dl-36', 'Salehinejad, H., Sankar, S., Barfett, J., Colak, E., &amp; Valaee, S. (2017). Recent advances in recurrent neural networks. arXiv.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">arXiv preprint arXiv:1801.01078.</span>
+                <span class="arrow">→</span>
+                <span class="add-text">arXiv</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031136717413" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">37</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Salih, S. Q., Sharafati, A., Khosravi, K., Faris, H., Kisi, O., Tao, H., Ali, M., &amp; Yaseen, Z. M. (2020). River suspended sediment load prediction based on river discharge pattern. Water, 12(10), 2820.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Salih, S. Q., Sharafati, A., Khosravi, K., Faris, H., Kisi, O., Tao, H., Ali, M., &amp; Yaseen, Z. M. (2020). River suspended sediment load prediction based on river discharge information: application of newly developed data mining models. Hydrological Sciences Journal. <button class="dl-btn" onclick="downloadSingle('dl-37', 'Salih, S. Q., Sharafati, A., Khosravi, K., Faris, H., Kisi, O., Tao, H., Ali, M., &amp; Yaseen, Z. M. (2020). River suspended sediment load prediction based on river discharge information: application of newly developed data mining models. Hydrological Sciences Journal.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">题名</span>
+                <span class="del-text">River suspended sediment load prediction based on river discharge pattern</span>
+                <span class="arrow">→</span>
+                <span class="add-text">River suspended sediment load prediction based on river discharge information: application of newly developed data mining models</span>
+            </div><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Water</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Hydrological Sciences Journal</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203889231025" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">38</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Samantaray, S., &amp; Sahoo, A. (2024). Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation. Groundwater for Sustainable Development, 26, 101178. https://doi.org/10.1016/j.gsd.2024.101178</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Sandeep Samantaray, &amp; Abinash Sahoo (2024). Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation. Groundwater for Sustainable Development. https://doi.org/10.1016/j.gsd.2024.101178 <button class="dl-btn" onclick="downloadSingle('dl-38', 'Sandeep Samantaray, &amp; Abinash Sahoo (2024). Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation. Groundwater for Sustainable Development. https://doi.org/10.1016/j.gsd.2024.101178')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Groundwater for Sustainable Development, 26, 101178. https://doi.org/10.1016/j.g</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Groundwater for Sustainable Development</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031279040750" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">39</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Sedighkia, M., Jahanshahloo, M., &amp; Datta, B. (2024). Hybrid neuro fuzzy inference systems for simulating catchment sediment yield. International Journal of Sediment Research, 39(3), 305–316.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Mahdi Sedighkia, Manizheh Jahanshahloo, &amp; Bithin Datta (2024). Hybrid neuro fuzzy inference systems for simulating catchment sediment yield. International Journal of Sediment Research. <button class="dl-btn" onclick="downloadSingle('dl-39', 'Mahdi Sedighkia, Manizheh Jahanshahloo, &amp; Bithin Datta (2024). Hybrid neuro fuzzy inference systems for simulating catchment sediment yield. International Journal of Sediment Research.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031271708752" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">40</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Shakya, D., Deshpande, V., Kumar, B., &amp; Agarwal, M. (2023). Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models. Artificial Intelligence Review, 56(9), 10067–10098. https://doi.org/10.1007/s10462-023-10422-6</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Shakya, D., Deshpande, V., Kumar, B., &amp; Agarwal, M. (2023). Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models. Artificial Intelligence Review. https://doi.org/10.1007/s10462-023-10422-6 <button class="dl-btn" onclick="downloadSingle('dl-40', 'Shakya, D., Deshpande, V., Kumar, B., &amp; Agarwal, M. (2023). Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models. Artificial Intelligence Review. https://doi.org/10.1007/s10462-023-10422-6')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031189120744" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">41</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Shapley, L. S. (1953). Stochastic games. Proceedings of the National Academy of Sciences, 39(10), 1095–1100. https://doi.org/10.1073/pnas.39.10.1095</div></td>
+                    <td class="col-corrected"><div class="corrected-text">SHAPLEY, L. (1953). STOCHASTIC GAMES. Proceedings of the National Academy of Sciences. https://doi.org/10.1073/pnas.39.10.1095 <button class="dl-btn" onclick="downloadSingle('dl-41', 'SHAPLEY, L. (1953). STOCHASTIC GAMES. Proceedings of the National Academy of Sciences. https://doi.org/10.1073/pnas.39.10.1095')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203597631108" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">42</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Sharafati, A., Haji Seyed Asadollah, S. B., Motta, D., &amp; Yaseen, Z. M. (2020). Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis. Hydrological Sciences Journal, 65(12), 2022–2042. https://doi.org/10.1080/02626667.2020.1786571</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Sharafati, A., Asadollah, S. B. H. S., Motta, D., &amp; Yaseen, Z. M. (2020). Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis. Hydrological Sciences Journal. https://doi.org/10.1080/02626667.2020.1786571 <button class="dl-btn" onclick="downloadSingle('dl-42', 'Sharafati, A., Asadollah, S. B. H. S., Motta, D., &amp; Yaseen, Z. M. (2020). Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis. Hydrological Sciences Journal. https://doi.org/10.1080/02626667.2020.1786571')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=203978301907" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">43</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Shojaeezadeh, S. A., Al-Wardy, M., &amp; Nikoo, M. R. (2024). Suspended sediment load modeling using hydro-climate variables and machine learning. Journal of Hydrology, 633, 130948.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Shahab Aldin Shojaeezadeh, Malik Al-Wardy, &amp; Mohammad Reza Nikoo (2024). Suspended sediment load modeling using Hydro-Climate variables and Machine learning. Journal of Hydrology. <button class="dl-btn" onclick="downloadSingle('dl-43', 'Shahab Aldin Shojaeezadeh, Malik Al-Wardy, &amp; Mohammad Reza Nikoo (2024). Suspended sediment load modeling using Hydro-Climate variables and Machine learning. Journal of Hydrology.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Journal of Hydrology, 633, 130948.</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Journal of Hydrology</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031261488716" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">44</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Tulla, P. S., Kumar, P., Vishwakarma, D. K., Kumar, R., Kuriqi, A., Kushwaha, N. L., Rajput, J., Srivastava, A., Pham, Q. B., &amp; Panda, K. C. (2024). Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: A case study of Bino Watershed, Uttarakhand. Theoretical and Applied Climatology, 155(5), 4023–4047.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Tulla, P. S., Kumar, P., Vishwakarma, D. K., Kumar, R., Kuriqi, A., Kushwaha, N. L., Rajput, J., Srivastava, A., Pham, Q. B., Panda, K. C., &amp; Kisi, O. (2024). Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand. Theoretical and Applied Climatology. <button class="dl-btn" onclick="downloadSingle('dl-44', 'Tulla, P. S., Kumar, P., Vishwakarma, D. K., Kumar, R., Kuriqi, A., Kushwaha, N. L., Rajput, J., Srivastava, A., Pham, Q. B., Panda, K. C., &amp; Kisi, O. (2024). Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand. Theoretical and Applied Climatology.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item" style="color:#16a34a">信息一致，无差异</div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031266360570" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">45</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Wang, B., Wei, W., Yin, Z., &amp; Xu, L. (2024). Using machine learning to analyze the changes in extreme precipitation in southern China. Atmospheric Research, 302, 107307.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Bojun Wang, Wei Wei, Zejiang Yin, &amp; Lianlian Xu (2024). Using machine learning to analyze the changes in extreme precipitation in southern China. Atmospheric Research. <button class="dl-btn" onclick="downloadSingle('dl-45', 'Bojun Wang, Wei Wei, Zejiang Yin, &amp; Lianlian Xu (2024). Using machine learning to analyze the changes in extreme precipitation in southern China. Atmospheric Research.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Atmospheric Research, 302, 107307.</span>
+                <span class="arrow">→</span>
+                <span class="add-text">Atmospheric Research</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031261521577" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">46</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Wei, P., &amp; Yu, W. (2023). Improved quantum artificial bee colony algorithm-optimized artificial intelligence models for suspended sediment load predicting. IEEE Access.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Wei, P., &amp; Yu, W. (2025). Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting. IEEE Access. <button class="dl-btn" onclick="downloadSingle('dl-46', 'Wei, P., &amp; Yu, W. (2025). Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting. IEEE Access.')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">IEEE Access.</span>
+                <span class="arrow">→</span>
+                <span class="add-text">IEEE Access</span>
+            </div><div class="diff-item">
+                <span class="diff-field">年份</span>
+                <span class="del-text">2023</span>
+                <span class="arrow">→</span>
+                <span class="add-text">2025</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=2031250794375" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            <tr>
+                    <td class="col-num">47</td>
+                    <td class="col-status"><span class="status-tag status-verified">API验证通过</span></td>
+                    <td class="col-original"><div class="orig-text">Zuo, Z., Shuai, B., Wang, G., Liu, X., Wang, X., Wang, B., &amp; Chen, Y. (2015). Convolutional recurrent neural networks: Learning spatial dependencies for image representation. Proceedings of the IEEE conference on computer vision and pattern recognition workshops.</div></td>
+                    <td class="col-corrected"><div class="corrected-text">Zuo, Z., Shuai, B., Wang, G., Liu, X., Wang, X., Wang, B., &amp; Chen, Y. (2015). Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation. 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW). <button class="dl-btn" onclick="downloadSingle('dl-47', 'Zuo, Z., Shuai, B., Wang, G., Liu, X., Wang, X., Wang, B., &amp; Chen, Y. (2015). Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation. 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW).')" title="下载此条">↓</button></div></td>
+                    <td class="col-diff"><div class="diff-item">
+                <span class="diff-field">期刊</span>
+                <span class="del-text">Proceedings of the IEEE conference on computer vision and pattern recognition wo</span>
+                <span class="arrow">→</span>
+                <span class="add-text">2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW)</span>
+            </div></td>
+                    <td class="col-verify"><a href="https://data.smart.vipslib.com/articlesearch/web_searchingDetail?id=20616610134" target="_blank" class="verify-link" title="在 SmartLib 中查看此文献详情">验证</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- 纯文本参考文献 -->
+<div class="section-block">
+    <h2>修正后参考文献（APA 格式，与原文格式一致）</h2>
+    <div class="warning-box">
+        <strong>注意：</strong>以下编号文献在 SmartLib 全球库中未检索到匹配记录（书籍章节/Scholarpedia/未被索引），保留原始引用，请手动核实：12, 13, 18, 20
+    </div>
+    <div class="pre-block">[1] Afan, H. A., Wan Mohtar, W. H. M., Aksoy, M., Ahmed, A. N., Khaleel, F., Khan, M. M. H., Kamel, A. H., Sherif, M., &amp; El-Shafie, A. (2025). A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads. Water Resources Management. https://doi.org/10.1007/s11269-024-04054-w
+[2] AlDahoul, N., Essam, Y., Kumar, P., Ahmed, A. N., Sherif, M., Sefelnasr, A., &amp; Elshafie, A. (2021). Suspended sediment load prediction using long short-term memory neural network. Scientific Reports. https://doi.org/10.1038/s41598-021-87415-4
+[3] Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, &amp; Ahmed El-Shafie (2023). Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study. Heliyon.
+[4] Breiman, L. (2001). Random forests. Machine Learning. https://doi.org/10.1023/A:1010933404324
+[5] Carter, J. (2000). The immune system as a model for pattern recognition and classification. Journal of the American Medical Informatics Association. https://doi.org/10.1136/jamia.2000.0070028
+[6] Chen, X. Y., &amp; Chau, K. W. (2016). A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation. Water Resources Management. https://doi.org/10.1007/s11269-016-1281-2
+[7] Coello, C., &amp; Cortés, N. (2004). Hybridizing a genetic algorithm with an artificial immune system for global optimization. Engineering Optimization. https://doi.org/10.1080/03052150410001704845
+[8] Covert, I. C., Lundberg, S., &amp; Lee, S. (2020). Understanding Global Feature Contributions With Additive Importance Measures. ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020.
+[9] Siyamak Doroudi, &amp; Ahmad Sharafati (2024). A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load. Journal of Hydrology. https://doi.org/10.1016/j.jhydrol.2024.131090
+[10] Dorrell, R. M., Amy, L. A., Peakall, J., &amp; McCaffrey, W. D. (2018). Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows. Geophysical Research Letters. https://doi.org/10.1002/2017GL076489
+[11] Gelete, G., Nourani, V., Gokcekus, H., &amp; Gichamo, T. (2024). Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach. Earth Science Informatics. https://doi.org/10.1007/s12145-023-01192-4
+[12] Graves, A., &amp; Graves, A. (2012). Long short-term memory. Supervised sequence labelling with recurrent neural networks, 37–45.
+[13] Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https://doi.org/10.4249/scholarpedia.1888
+[14] Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, &amp; Kailash Kumar (2025). Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions. Physics and Chemistry of the Earth, Parts A/B/C. https://doi.org/10.1016/j.pce.2025.104019
+[15] Hanoon, M. S., Abdullatif, A. A. B., Ahmed, A. N., Razzaq, A., Birima, A. H., &amp; El-Shafie, A. (2022). A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia. Earth Science Informatics.
+[16] Barenya Bikash Hazarika, &amp; Deepak Gupta (2023). Mode decomposition based large margin distribution machines for sediment load prediction. Expert Systems with Applications. https://doi.org/10.1016/j.eswa.2023.120844
+[17] Hazarika, B. B., Gupta, D., &amp; Berlin, M. (2020). Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction. Environmental Earth Sciences. https://doi.org/10.1007/s12665-020-08949-w
+[18] Heddam, S., Naghibi, A., Khosravi, K., &amp; Singh, S. K. (2024). Suspended sediment load prediction and tree-based algorithms. In A. M. Melesse, O. Rahmati, K. Khosravi, &amp; G. P. Petropoulos (Eds.), Remote sensing of soil and landsurface processes (pp. 257–269). Elsevier.
+[19] Hochreiter, S., &amp; Schmidhuber, J. (1997). Long short-term memory. Neural Computation. https://doi.org/10.1162/neco.1997.9.8.1735
+[20] Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., &amp; Salem, M. A. (2024). River streamflow prediction through advanced machine learning models for enhanced accuracy. Results in Engineering, 22, 102215.
+[21] Mohd Yawar Ali Khan (2025). Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments. Journal of Geochemical Exploration. https://doi.org/10.1016/j.gexplo.2024.107643
+[22] Kundu, S., Swarnkar, S., &amp; Agarwal, A. (2025). Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport. Environmental Monitoring and Assessment. https://doi.org/10.1007/s10661-025-14039-w
+[23] Latif, S. D., Chong, K. L., Ahmed, A. N., Huang, Y. F., Sherif, M., &amp; El-Shafie, A. (2023). Sediment load prediction in Johor river: deep learning versus machine learning models. Applied Water Science. https://doi.org/10.1007/s13201-023-01874-w
+[24] Zhenwei Li, Xianli Xu, &amp; Kelin Wang (2023). Scale-specific variation in daily suspended sediment load in karst catchments. CATENA. https://doi.org/10.1016/j.catena.2022.106745
+[25] Liu, H., Guo, C., Xiao, L., Liu, P., Du, J., &amp; Yi, Y. (2025). Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2025.2521825
+[26] Madsen, A., Reddy, S., &amp; Chandar, S. (2023). Post-hoc Interpretability for Neural NLP: A Survey. ACM Computing Surveys. https://doi.org/10.1145/3546577
+[27] Meshram, S. G., Singh, V. P., Kisi, O., Karimi, V., &amp; Meshram, C. (2020). Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction. Water Resources Management. https://doi.org/10.1080/02626667.2019.1703186
+[28] Moazenzadeh, R., Katipoglu, O. M., Shateri, A., Nasiri, H., &amp; Abdallah, M. (2024). Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2024.2391449
+[29] Mohammadi-Raigani, Z., Gholami, H., Mohamadifar, A., Samani, A. N., &amp; Pradhan, B. (2024). Using an interpretable deep learning model for the prediction of riverine suspended sediment load. Environmental Science and Pollution Research.
+[30] Moradinejad, A. (2024). Suspended Load Modeling of River Using Soft Computing Techniques. Water Resources Management.
+[31] Nourani, V., Alizadeh, F., &amp; Roushangar, K. (2016). Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load. Water Resources Management. https://doi.org/10.1007/s11269-015-1168-7
+[32] Taher Rajaee (2011). Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers. Science of the Total Environment. https://doi.org/10.1016/j.scitotenv.2010.11.028
+[33] Rashidi, S., Vafakhah, M., Lafdani, E. K., &amp; Javadi, M. R. (2016). Evaluating the support vector machine for suspended sediment load forecasting based on gamma test. Arabian Journal of Geosciences. https://doi.org/10.1007/s12517-016-2601-9
+[34] Sahoo, B. B., Sankalp, S., &amp; Kisi, O. (2023). A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction. Water Resources Management. https://doi.org/10.1007/s11269-023-03552-7
+[35] Azlan Saleh, &amp; Mohd Asyraf Zulkifley (2025). Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach. Journal of Environmental Management. https://doi.org/10.1016/j.jenvman.2025.124987
+[36] Salehinejad, H., Sankar, S., Barfett, J., Colak, E., &amp; Valaee, S. (2017). Recent advances in recurrent neural networks. arXiv.
+[37] Salih, S. Q., Sharafati, A., Khosravi, K., Faris, H., Kisi, O., Tao, H., Ali, M., &amp; Yaseen, Z. M. (2020). River suspended sediment load prediction based on river discharge information: application of newly developed data mining models. Hydrological Sciences Journal.
+[38] Sandeep Samantaray, &amp; Abinash Sahoo (2024). Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation. Groundwater for Sustainable Development. https://doi.org/10.1016/j.gsd.2024.101178
+[39] Mahdi Sedighkia, Manizheh Jahanshahloo, &amp; Bithin Datta (2024). Hybrid neuro fuzzy inference systems for simulating catchment sediment yield. International Journal of Sediment Research.
+[40] Shakya, D., Deshpande, V., Kumar, B., &amp; Agarwal, M. (2023). Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models. Artificial Intelligence Review. https://doi.org/10.1007/s10462-023-10422-6
+[41] SHAPLEY, L. (1953). STOCHASTIC GAMES. Proceedings of the National Academy of Sciences. https://doi.org/10.1073/pnas.39.10.1095
+[42] Sharafati, A., Asadollah, S. B. H. S., Motta, D., &amp; Yaseen, Z. M. (2020). Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis. Hydrological Sciences Journal. https://doi.org/10.1080/02626667.2020.1786571
+[43] Shahab Aldin Shojaeezadeh, Malik Al-Wardy, &amp; Mohammad Reza Nikoo (2024). Suspended sediment load modeling using Hydro-Climate variables and Machine learning. Journal of Hydrology.
+[44] Tulla, P. S., Kumar, P., Vishwakarma, D. K., Kumar, R., Kuriqi, A., Kushwaha, N. L., Rajput, J., Srivastava, A., Pham, Q. B., Panda, K. C., &amp; Kisi, O. (2024). Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand. Theoretical and Applied Climatology.
+[45] Bojun Wang, Wei Wei, Zejiang Yin, &amp; Lianlian Xu (2024). Using machine learning to analyze the changes in extreme precipitation in southern China. Atmospheric Research.
+[46] Wei, P., &amp; Yu, W. (2025). Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting. IEEE Access.
+[47] Zuo, Z., Shuai, B., Wang, G., Liu, X., Wang, X., Wang, B., &amp; Chen, Y. (2015). Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation. 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW).</div>
+</div>
+<!-- 多格式参考文献 -->
+<div class="section-block">
+    <h2>多格式参考文献</h2>
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('GB/T 7714')">GB/T 7714</button><button class="tab-btn" onclick="switchTab('MLA')">MLA</button><button class="tab-btn" onclick="switchTab('Chicago')">Chicago</button><button class="tab-btn" onclick="switchTab('BibTeX')">BibTeX</button>
+    </div>
+    <div class="tab-panel active" id="tab-GB/T 7714">
+        <div class="tab-scene">适用场景：国内期刊投稿、学位论文、中文出版物</div>
+        <div class="pre-block">[1] Afan, Haitham Abdulmohsin, Wan Mohtar, Wan Hanna Melini, Aksoy, Muammer, Ahmed, Ali Najah, Khaleel, Faidhalrahman, Khan, Md Munir Hayet, Kamel, Ammar Hatem, Sherif, Mohsen, El-Shafie, Ahmed. A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads[J]. Water Resources Management, 2025. https://doi.org/10.1007/s11269-024-04054-w
+[2] AlDahoul, Nouar, Essam, Yusuf, Kumar, Pavitra, Ahmed, Ali Najah, Sherif, Mohsen, Sefelnasr, Ahmed, Elshafie, Ahmed. Suspended sediment load prediction using long short-term memory neural network[J]. Scientific Reports, 2021. https://doi.org/10.1038/s41598-021-87415-4
+[3] Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, Ahmed El-Shafie. Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study[J]. Heliyon, 2023.
+[4] Breiman, L. Random forests[J]. Machine Learning, 2001. https://doi.org/10.1023/A:1010933404324
+[5] Carter, JH. The immune system as a model for pattern recognition and classification[J]. Journal of the American Medical Informatics Association, 2000. https://doi.org/10.1136/jamia.2000.0070028
+[6] Chen, Xiao Yun, Chau, Kwok Wing. A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation[J]. Water Resources Management, 2016. https://doi.org/10.1007/s11269-016-1281-2
+[7] Coello, CAC, Cortés, NC. Hybridizing a genetic algorithm with an artificial immune system for global optimization[J]. Engineering Optimization, 2004. https://doi.org/10.1080/03052150410001704845
+[8] Covert, Ian C., Lundberg, Scott, Lee, Su-In. Understanding Global Feature Contributions With Additive Importance Measures[J]. ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020, 2020.
+[9] Siyamak Doroudi, Ahmad Sharafati. A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load[J]. Journal of Hydrology, 2024. https://doi.org/10.1016/j.jhydrol.2024.131090
+[10] Dorrell, R. M., Amy, L. A., Peakall, J., McCaffrey, W. D.. Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows[J]. Geophysical Research Letters, 2018. https://doi.org/10.1002/2017GL076489
+[11] Gelete, Gebre, Nourani, Vahid, Gokcekus, Huseyin, Gichamo, Tagesse. Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach[J]. Earth Science Informatics, 2024. https://doi.org/10.1007/s12145-023-01192-4
+[12] Graves, A., &amp; Graves, A. (2012). Long short-term memory. Supervised sequence labelling with recurrent neural networks, 37–45.
+[13] Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https://doi.org/10.4249/scholarpedia.1888
+[14] Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, Kailash Kumar. Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions[J]. Physics and Chemistry of the Earth, Parts A/B/C, 2025. https://doi.org/10.1016/j.pce.2025.104019
+[15] Hanoon, Marwah Sattar, Abdullatif, Alharazi Abdulhadi B., Ahmed, Ali Najah, Razzaq, Arif, Birima, Ahmed H., El-Shafie, Ahmed. A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia[J]. Earth Science Informatics, 2022.
+[16] Barenya Bikash Hazarika, Deepak Gupta. Mode decomposition based large margin distribution machines for sediment load prediction[J]. Expert Systems with Applications, 2023. https://doi.org/10.1016/j.eswa.2023.120844
+[17] Hazarika, Barenya Bikash, Gupta, Deepak, Berlin, Mohanadhas. Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction[J]. Environmental Earth Sciences, 2020. https://doi.org/10.1007/s12665-020-08949-w
+[18] Heddam, S., Naghibi, A., Khosravi, K., &amp; Singh, S. K. (2024). Suspended sediment load prediction and tree-based algorithms. In A. M. Melesse, O. Rahmati, K. Khosravi, &amp; G. P. Petropoulos (Eds.), Remote sensing of soil and landsurface processes (pp. 257–269). Elsevier.
+[19] Hochreiter, S, Schmidhuber, J. Long short-term memory[J]. Neural Computation, 1997. https://doi.org/10.1162/neco.1997.9.8.1735
+[20] Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., &amp; Salem, M. A. (2024). River streamflow prediction through advanced machine learning models for enhanced accuracy. Results in Engineering, 22, 102215.
+[21] Mohd Yawar Ali Khan. Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments[J]. Journal of Geochemical Exploration, 2025. https://doi.org/10.1016/j.gexplo.2024.107643
+[22] Kundu, Soumya, Swarnkar, Somil, Agarwal, Akshay. Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport[J]. Environmental Monitoring and Assessment, 2025. https://doi.org/10.1007/s10661-025-14039-w
+[23] Latif, Sarmad Dashti, Chong, K. L., Ahmed, Ali Najah, Huang, Y. F., Sherif, Mohsen, El-Shafie, Ahmed. Sediment load prediction in Johor river: deep learning versus machine learning models[J]. Applied Water Science, 2023. https://doi.org/10.1007/s13201-023-01874-w
+[24] Zhenwei Li, Xianli Xu, Kelin Wang. Scale-specific variation in daily suspended sediment load in karst catchments[J]. CATENA, 2023. https://doi.org/10.1016/j.catena.2022.106745
+[25] Liu, Hongxi, Guo, Chao, Xiao, Leling, Liu, Pei, Du, Jizeng, Yi, Yujun. Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model[J]. Engineering Applications of Computational Fluid Mechanics, 2025. https://doi.org/10.1080/19942060.2025.2521825
+[26] Madsen, Andreas, Reddy, Siva, Chandar, Sarath. Post-hoc Interpretability for Neural NLP: A Survey[J]. ACM Computing Surveys, 2023. https://doi.org/10.1145/3546577
+[27] Meshram, Sarita Gajbhiye, Singh, Vijay P., Kisi, Ozgur, Karimi, Vahid, Meshram, Chandrashekhar. Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction[J]. Water Resources Management, 2020. https://doi.org/10.1080/02626667.2019.1703186
+[28] Moazenzadeh, Roozbeh, Katipoglu, Okan Mert, Shateri, Ahmadreza, Nasiri, Hamid, Abdallah, Mohammed. Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm[J]. Engineering Applications of Computational Fluid Mechanics, 2024. https://doi.org/10.1080/19942060.2024.2391449
+[29] Mohammadi-Raigani, Zeinab, Gholami, Hamid, Mohamadifar, Aliakbar, Samani, Aliakbar Nazari, Pradhan, Biswajeet. Using an interpretable deep learning model for the prediction of riverine suspended sediment load[J]. Environmental Science and Pollution Research, 2024.
+[30] Moradinejad, Amir. Suspended Load Modeling of River Using Soft Computing Techniques[J]. Water Resources Management, 2024.
+[31] Nourani, Vahid, Alizadeh, Farhad, Roushangar, Kiyoumars. Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load[J]. Water Resources Management, 2016. https://doi.org/10.1007/s11269-015-1168-7
+[32] Taher Rajaee. Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers[J]. Science of the Total Environment, 2011. https://doi.org/10.1016/j.scitotenv.2010.11.028
+[33] Rashidi, Sharareh, Vafakhah, Mehdi, Lafdani, Elham Kakaei, Javadi, Mohammad Reza. Evaluating the support vector machine for suspended sediment load forecasting based on gamma test[J]. Arabian Journal of Geosciences, 2016. https://doi.org/10.1007/s12517-016-2601-9
+[34] Sahoo, Bibhuti Bhusan, Sankalp, Sovan, Kisi, Ozgur. A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction[J]. Water Resources Management, 2023. https://doi.org/10.1007/s11269-023-03552-7
+[35] Azlan Saleh, Mohd Asyraf Zulkifley. Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach[J]. Journal of Environmental Management, 2025. https://doi.org/10.1016/j.jenvman.2025.124987
+[36] Salehinejad, Hojjat, Sankar, Sharan, Barfett, Joseph, Colak, Errol, Valaee, Shahrokh. Recent advances in recurrent neural networks[J]. arXiv, 2017.
+[37] Salih, Sinan Q., Sharafati, Ahmad, Khosravi, Khabat, Faris, Hossam, Kisi, Ozgur, Tao, Hai, Ali, Mumtaz, Yaseen, Zaher Mundher. River suspended sediment load prediction based on river discharge information: application of newly developed data mining models[J]. Hydrological Sciences Journal, 2020.
+[38] Sandeep Samantaray, Abinash Sahoo. Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation[J]. Groundwater for Sustainable Development, 2024. https://doi.org/10.1016/j.gsd.2024.101178
+[39] Mahdi Sedighkia, Manizheh Jahanshahloo, Bithin Datta. Hybrid neuro fuzzy inference systems for simulating catchment sediment yield[J]. International Journal of Sediment Research, 2024.
+[40] Shakya, Deepti, Deshpande, Vishal, Kumar, Bimlesh, Agarwal, Mayank. Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models[J]. Artificial Intelligence Review, 2023. https://doi.org/10.1007/s10462-023-10422-6
+[41] SHAPLEY, LS. STOCHASTIC GAMES[J]. Proceedings of the National Academy of Sciences, 1953. https://doi.org/10.1073/pnas.39.10.1095
+[42] Sharafati, Ahmad, Asadollah, Seyed Babak Haji Seyed, Motta, Davide, Yaseen, Zaher Mundher. Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis[J]. Hydrological Sciences Journal, 2020. https://doi.org/10.1080/02626667.2020.1786571
+[43] Shahab Aldin Shojaeezadeh, Malik Al-Wardy, Mohammad Reza Nikoo. Suspended sediment load modeling using Hydro-Climate variables and Machine learning[J]. Journal of Hydrology, 2024.
+[44] Tulla, Paramjeet Singh, Kumar, Pravendra, Vishwakarma, Dinesh Kumar, Kumar, Rohitashw, Kuriqi, Alban, Kushwaha, Nand Lal, Rajput, Jitendra, Srivastava, Aman, Pham, Quoc Bao, Panda, Kanhu Charan, Kisi, Ozgur. Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand[J]. Theoretical and Applied Climatology, 2024.
+[45] Bojun Wang, Wei Wei, Zejiang Yin, Lianlian Xu. Using machine learning to analyze the changes in extreme precipitation in southern China[J]. Atmospheric Research, 2024.
+[46] Wei, Peng, Yu, Wang. Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting[J]. IEEE Access, 2025.
+[47] Zuo, Zhen, Shuai, Bing, Wang, Gang, Liu, Xiao, Wang, Xingxing, Wang, Bing, Chen, Yushi. Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation[J]. 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW), 2015.</div>
+    </div><div class="tab-panel" id="tab-MLA">
+        <div class="tab-scene">适用场景：语言文学、人文艺术类英文论文</div>
+        <div class="pre-block">Afan, Haitham Abdulmohsin, Wan Mohtar, Wan Hanna Melini, Aksoy, Muammer, Ahmed, Ali Najah, Khaleel, Faidhalrahman, Khan, Md Munir Hayet, Kamel, Ammar Hatem, Sherif, Mohsen, and El-Shafie, Ahmed. "A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads." Water Resources Management, 2025.
+AlDahoul, Nouar, Essam, Yusuf, Kumar, Pavitra, Ahmed, Ali Najah, Sherif, Mohsen, Sefelnasr, Ahmed, and Elshafie, Ahmed. "Suspended sediment load prediction using long short-term memory neural network." Scientific Reports, 2021.
+Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, and Ahmed El-Shafie. "Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study." Heliyon, 2023.
+Breiman, L. "Random forests." Machine Learning, 2001.
+Carter, JH. "The immune system as a model for pattern recognition and classification." Journal of the American Medical Informatics Association, 2000.
+Chen, Xiao Yun, and Chau, Kwok Wing. "A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation." Water Resources Management, 2016.
+Coello, CAC, and Cortés, NC. "Hybridizing a genetic algorithm with an artificial immune system for global optimization." Engineering Optimization, 2004.
+Covert, Ian C., Lundberg, Scott, and Lee, Su-In. "Understanding Global Feature Contributions With Additive Importance Measures." ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020, 2020.
+Siyamak Doroudi, and Ahmad Sharafati. "A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load." Journal of Hydrology, 2024.
+Dorrell, R. M., Amy, L. A., Peakall, J., and McCaffrey, W. D.. "Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows." Geophysical Research Letters, 2018.
+Gelete, Gebre, Nourani, Vahid, Gokcekus, Huseyin, and Gichamo, Tagesse. "Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach." Earth Science Informatics, 2024.
+Graves, A., &amp; Graves, A. (2012). Long short-term memory. Supervised sequence labelling with recurrent neural networks, 37–45.
+Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https://doi.org/10.4249/scholarpedia.1888
+Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, and Kailash Kumar. "Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions." Physics and Chemistry of the Earth, Parts A/B/C, 2025.
+Hanoon, Marwah Sattar, Abdullatif, Alharazi Abdulhadi B., Ahmed, Ali Najah, Razzaq, Arif, Birima, Ahmed H., and El-Shafie, Ahmed. "A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia." Earth Science Informatics, 2022.
+Barenya Bikash Hazarika, and Deepak Gupta. "Mode decomposition based large margin distribution machines for sediment load prediction." Expert Systems with Applications, 2023.
+Hazarika, Barenya Bikash, Gupta, Deepak, and Berlin, Mohanadhas. "Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction." Environmental Earth Sciences, 2020.
+Heddam, S., Naghibi, A., Khosravi, K., &amp; Singh, S. K. (2024). Suspended sediment load prediction and tree-based algorithms. In A. M. Melesse, O. Rahmati, K. Khosravi, &amp; G. P. Petropoulos (Eds.), Remote sensing of soil and landsurface processes (pp. 257–269). Elsevier.
+Hochreiter, S, and Schmidhuber, J. "Long short-term memory." Neural Computation, 1997.
+Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., &amp; Salem, M. A. (2024). River streamflow prediction through advanced machine learning models for enhanced accuracy. Results in Engineering, 22, 102215.
+Mohd Yawar Ali Khan. "Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments." Journal of Geochemical Exploration, 2025.
+Kundu, Soumya, Swarnkar, Somil, and Agarwal, Akshay. "Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport." Environmental Monitoring and Assessment, 2025.
+Latif, Sarmad Dashti, Chong, K. L., Ahmed, Ali Najah, Huang, Y. F., Sherif, Mohsen, and El-Shafie, Ahmed. "Sediment load prediction in Johor river: deep learning versus machine learning models." Applied Water Science, 2023.
+Zhenwei Li, Xianli Xu, and Kelin Wang. "Scale-specific variation in daily suspended sediment load in karst catchments." CATENA, 2023.
+Liu, Hongxi, Guo, Chao, Xiao, Leling, Liu, Pei, Du, Jizeng, and Yi, Yujun. "Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model." Engineering Applications of Computational Fluid Mechanics, 2025.
+Madsen, Andreas, Reddy, Siva, and Chandar, Sarath. "Post-hoc Interpretability for Neural NLP: A Survey." ACM Computing Surveys, 2023.
+Meshram, Sarita Gajbhiye, Singh, Vijay P., Kisi, Ozgur, Karimi, Vahid, and Meshram, Chandrashekhar. "Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction." Water Resources Management, 2020.
+Moazenzadeh, Roozbeh, Katipoglu, Okan Mert, Shateri, Ahmadreza, Nasiri, Hamid, and Abdallah, Mohammed. "Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm." Engineering Applications of Computational Fluid Mechanics, 2024.
+Mohammadi-Raigani, Zeinab, Gholami, Hamid, Mohamadifar, Aliakbar, Samani, Aliakbar Nazari, and Pradhan, Biswajeet. "Using an interpretable deep learning model for the prediction of riverine suspended sediment load." Environmental Science and Pollution Research, 2024.
+Moradinejad, Amir. "Suspended Load Modeling of River Using Soft Computing Techniques." Water Resources Management, 2024.
+Nourani, Vahid, Alizadeh, Farhad, and Roushangar, Kiyoumars. "Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load." Water Resources Management, 2016.
+Taher Rajaee. "Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers." Science of the Total Environment, 2011.
+Rashidi, Sharareh, Vafakhah, Mehdi, Lafdani, Elham Kakaei, and Javadi, Mohammad Reza. "Evaluating the support vector machine for suspended sediment load forecasting based on gamma test." Arabian Journal of Geosciences, 2016.
+Sahoo, Bibhuti Bhusan, Sankalp, Sovan, and Kisi, Ozgur. "A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction." Water Resources Management, 2023.
+Azlan Saleh, and Mohd Asyraf Zulkifley. "Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach." Journal of Environmental Management, 2025.
+Salehinejad, Hojjat, Sankar, Sharan, Barfett, Joseph, Colak, Errol, and Valaee, Shahrokh. "Recent advances in recurrent neural networks." arXiv, 2017.
+Salih, Sinan Q., Sharafati, Ahmad, Khosravi, Khabat, Faris, Hossam, Kisi, Ozgur, Tao, Hai, Ali, Mumtaz, and Yaseen, Zaher Mundher. "River suspended sediment load prediction based on river discharge information: application of newly developed data mining models." Hydrological Sciences Journal, 2020.
+Sandeep Samantaray, and Abinash Sahoo. "Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation." Groundwater for Sustainable Development, 2024.
+Mahdi Sedighkia, Manizheh Jahanshahloo, and Bithin Datta. "Hybrid neuro fuzzy inference systems for simulating catchment sediment yield." International Journal of Sediment Research, 2024.
+Shakya, Deepti, Deshpande, Vishal, Kumar, Bimlesh, and Agarwal, Mayank. "Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models." Artificial Intelligence Review, 2023.
+SHAPLEY, LS. "STOCHASTIC GAMES." Proceedings of the National Academy of Sciences, 1953.
+Sharafati, Ahmad, Asadollah, Seyed Babak Haji Seyed, Motta, Davide, and Yaseen, Zaher Mundher. "Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis." Hydrological Sciences Journal, 2020.
+Shahab Aldin Shojaeezadeh, Malik Al-Wardy, and Mohammad Reza Nikoo. "Suspended sediment load modeling using Hydro-Climate variables and Machine learning." Journal of Hydrology, 2024.
+Tulla, Paramjeet Singh, Kumar, Pravendra, Vishwakarma, Dinesh Kumar, Kumar, Rohitashw, Kuriqi, Alban, Kushwaha, Nand Lal, Rajput, Jitendra, Srivastava, Aman, Pham, Quoc Bao, Panda, Kanhu Charan, and Kisi, Ozgur. "Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand." Theoretical and Applied Climatology, 2024.
+Bojun Wang, Wei Wei, Zejiang Yin, and Lianlian Xu. "Using machine learning to analyze the changes in extreme precipitation in southern China." Atmospheric Research, 2024.
+Wei, Peng, and Yu, Wang. "Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting." IEEE Access, 2025.
+Zuo, Zhen, Shuai, Bing, Wang, Gang, Liu, Xiao, Wang, Xingxing, Wang, Bing, and Chen, Yushi. "Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation." 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW), 2015.</div>
+    </div><div class="tab-panel" id="tab-Chicago">
+        <div class="tab-scene">适用场景：历史学、出版业、部分人文社科期刊</div>
+        <div class="pre-block">Afan, Haitham Abdulmohsin, Wan Mohtar, Wan Hanna Melini, Aksoy, Muammer, Ahmed, Ali Najah, Khaleel, Faidhalrahman, Khan, Md Munir Hayet, Kamel, Ammar Hatem, Sherif, Mohsen, and El-Shafie, Ahmed. "A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads." Water Resources Management (2025).
+AlDahoul, Nouar, Essam, Yusuf, Kumar, Pavitra, Ahmed, Ali Najah, Sherif, Mohsen, Sefelnasr, Ahmed, and Elshafie, Ahmed. "Suspended sediment load prediction using long short-term memory neural network." Scientific Reports (2021).
+Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, and Ahmed El-Shafie. "Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study." Heliyon (2023).
+Breiman, L. "Random forests." Machine Learning (2001).
+Carter, JH. "The immune system as a model for pattern recognition and classification." Journal of the American Medical Informatics Association (2000).
+Chen, Xiao Yun, and Chau, Kwok Wing. "A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation." Water Resources Management (2016).
+Coello, CAC, and Cortés, NC. "Hybridizing a genetic algorithm with an artificial immune system for global optimization." Engineering Optimization (2004).
+Covert, Ian C., Lundberg, Scott, and Lee, Su-In. "Understanding Global Feature Contributions With Additive Importance Measures." ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020 (2020).
+Siyamak Doroudi, and Ahmad Sharafati. "A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load." Journal of Hydrology (2024).
+Dorrell, R. M., Amy, L. A., Peakall, J., and McCaffrey, W. D.. "Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows." Geophysical Research Letters (2018).
+Gelete, Gebre, Nourani, Vahid, Gokcekus, Huseyin, and Gichamo, Tagesse. "Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach." Earth Science Informatics (2024).
+Graves, A., &amp; Graves, A. (2012). Long short-term memory. Supervised sequence labelling with recurrent neural networks, 37–45.
+Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https://doi.org/10.4249/scholarpedia.1888
+Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, and Kailash Kumar. "Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions." Physics and Chemistry of the Earth, Parts A/B/C (2025).
+Hanoon, Marwah Sattar, Abdullatif, Alharazi Abdulhadi B., Ahmed, Ali Najah, Razzaq, Arif, Birima, Ahmed H., and El-Shafie, Ahmed. "A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia." Earth Science Informatics (2022).
+Barenya Bikash Hazarika, and Deepak Gupta. "Mode decomposition based large margin distribution machines for sediment load prediction." Expert Systems with Applications (2023).
+Hazarika, Barenya Bikash, Gupta, Deepak, and Berlin, Mohanadhas. "Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction." Environmental Earth Sciences (2020).
+Heddam, S., Naghibi, A., Khosravi, K., &amp; Singh, S. K. (2024). Suspended sediment load prediction and tree-based algorithms. In A. M. Melesse, O. Rahmati, K. Khosravi, &amp; G. P. Petropoulos (Eds.), Remote sensing of soil and landsurface processes (pp. 257–269). Elsevier.
+Hochreiter, S, and Schmidhuber, J. "Long short-term memory." Neural Computation (1997).
+Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., &amp; Salem, M. A. (2024). River streamflow prediction through advanced machine learning models for enhanced accuracy. Results in Engineering, 22, 102215.
+Mohd Yawar Ali Khan. "Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments." Journal of Geochemical Exploration (2025).
+Kundu, Soumya, Swarnkar, Somil, and Agarwal, Akshay. "Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport." Environmental Monitoring and Assessment (2025).
+Latif, Sarmad Dashti, Chong, K. L., Ahmed, Ali Najah, Huang, Y. F., Sherif, Mohsen, and El-Shafie, Ahmed. "Sediment load prediction in Johor river: deep learning versus machine learning models." Applied Water Science (2023).
+Zhenwei Li, Xianli Xu, and Kelin Wang. "Scale-specific variation in daily suspended sediment load in karst catchments." CATENA (2023).
+Liu, Hongxi, Guo, Chao, Xiao, Leling, Liu, Pei, Du, Jizeng, and Yi, Yujun. "Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model." Engineering Applications of Computational Fluid Mechanics (2025).
+Madsen, Andreas, Reddy, Siva, and Chandar, Sarath. "Post-hoc Interpretability for Neural NLP: A Survey." ACM Computing Surveys (2023).
+Meshram, Sarita Gajbhiye, Singh, Vijay P., Kisi, Ozgur, Karimi, Vahid, and Meshram, Chandrashekhar. "Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction." Water Resources Management (2020).
+Moazenzadeh, Roozbeh, Katipoglu, Okan Mert, Shateri, Ahmadreza, Nasiri, Hamid, and Abdallah, Mohammed. "Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm." Engineering Applications of Computational Fluid Mechanics (2024).
+Mohammadi-Raigani, Zeinab, Gholami, Hamid, Mohamadifar, Aliakbar, Samani, Aliakbar Nazari, and Pradhan, Biswajeet. "Using an interpretable deep learning model for the prediction of riverine suspended sediment load." Environmental Science and Pollution Research (2024).
+Moradinejad, Amir. "Suspended Load Modeling of River Using Soft Computing Techniques." Water Resources Management (2024).
+Nourani, Vahid, Alizadeh, Farhad, and Roushangar, Kiyoumars. "Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load." Water Resources Management (2016).
+Taher Rajaee. "Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers." Science of the Total Environment (2011).
+Rashidi, Sharareh, Vafakhah, Mehdi, Lafdani, Elham Kakaei, and Javadi, Mohammad Reza. "Evaluating the support vector machine for suspended sediment load forecasting based on gamma test." Arabian Journal of Geosciences (2016).
+Sahoo, Bibhuti Bhusan, Sankalp, Sovan, and Kisi, Ozgur. "A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction." Water Resources Management (2023).
+Azlan Saleh, and Mohd Asyraf Zulkifley. "Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach." Journal of Environmental Management (2025).
+Salehinejad, Hojjat, Sankar, Sharan, Barfett, Joseph, Colak, Errol, and Valaee, Shahrokh. "Recent advances in recurrent neural networks." arXiv (2017).
+Salih, Sinan Q., Sharafati, Ahmad, Khosravi, Khabat, Faris, Hossam, Kisi, Ozgur, Tao, Hai, Ali, Mumtaz, and Yaseen, Zaher Mundher. "River suspended sediment load prediction based on river discharge information: application of newly developed data mining models." Hydrological Sciences Journal (2020).
+Sandeep Samantaray, and Abinash Sahoo. "Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation." Groundwater for Sustainable Development (2024).
+Mahdi Sedighkia, Manizheh Jahanshahloo, and Bithin Datta. "Hybrid neuro fuzzy inference systems for simulating catchment sediment yield." International Journal of Sediment Research (2024).
+Shakya, Deepti, Deshpande, Vishal, Kumar, Bimlesh, and Agarwal, Mayank. "Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models." Artificial Intelligence Review (2023).
+SHAPLEY, LS. "STOCHASTIC GAMES." Proceedings of the National Academy of Sciences (1953).
+Sharafati, Ahmad, Asadollah, Seyed Babak Haji Seyed, Motta, Davide, and Yaseen, Zaher Mundher. "Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis." Hydrological Sciences Journal (2020).
+Shahab Aldin Shojaeezadeh, Malik Al-Wardy, and Mohammad Reza Nikoo. "Suspended sediment load modeling using Hydro-Climate variables and Machine learning." Journal of Hydrology (2024).
+Tulla, Paramjeet Singh, Kumar, Pravendra, Vishwakarma, Dinesh Kumar, Kumar, Rohitashw, Kuriqi, Alban, Kushwaha, Nand Lal, Rajput, Jitendra, Srivastava, Aman, Pham, Quoc Bao, Panda, Kanhu Charan, and Kisi, Ozgur. "Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand." Theoretical and Applied Climatology (2024).
+Bojun Wang, Wei Wei, Zejiang Yin, and Lianlian Xu. "Using machine learning to analyze the changes in extreme precipitation in southern China." Atmospheric Research (2024).
+Wei, Peng, and Yu, Wang. "Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting." IEEE Access (2025).
+Zuo, Zhen, Shuai, Bing, Wang, Gang, Liu, Xiao, Wang, Xingxing, Wang, Bing, and Chen, Yushi. "Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation." 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW) (2015).</div>
+    </div><div class="tab-panel" id="tab-BibTeX">
+        <div class="tab-scene">适用场景：LaTeX文档、Zotero/EndNote导入</div>
+        <div class="pre-block">@article{ref001,
+  author = {{Afan, Haitham Abdulmohsin} and {Wan Mohtar, Wan Hanna Melini} and {Aksoy, Muammer} and {Ahmed, Ali Najah} and {Khaleel, Faidhalrahman} and {Khan, Md Munir Hayet} and {Kamel, Ammar Hatem} and {Sherif, Mohsen} and {El-Shafie, Ahmed}},
+  title = {A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads},
+  journal = {Water Resources Management},
+  year = {2025},
+  doi = {10.1007/s11269-024-04054-w}
+}
+
+@article{ref002,
+  author = {{AlDahoul, Nouar} and {Essam, Yusuf} and {Kumar, Pavitra} and {Ahmed, Ali Najah} and {Sherif, Mohsen} and {Sefelnasr, Ahmed} and {Elshafie, Ahmed}},
+  title = {Suspended sediment load prediction using long short-term memory neural network},
+  journal = {Scientific Reports},
+  year = {2021},
+  doi = {10.1038/s41598-021-87415-4}
+}
+
+@article{ref003,
+  author = {{Mohammed Falah Allawi} and {Sadeq Oleiwi Sulaiman} and {Khamis Naba Sayl} and {Mohsen Sherif} and {Ahmed El-Shafie}},
+  title = {Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study},
+  journal = {Heliyon},
+  year = {2023}
+}
+
+@article{ref004,
+  author = {{Breiman, L}},
+  title = {Random forests},
+  journal = {Machine Learning},
+  year = {2001},
+  doi = {10.1023/A:1010933404324}
+}
+
+@article{ref005,
+  author = {{Carter, JH}},
+  title = {The immune system as a model for pattern recognition and classification},
+  journal = {Journal of the American Medical Informatics Association},
+  year = {2000},
+  doi = {10.1136/jamia.2000.0070028}
+}
+
+@article{ref006,
+  author = {{Chen, Xiao Yun} and {Chau, Kwok Wing}},
+  title = {A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation},
+  journal = {Water Resources Management},
+  year = {2016},
+  doi = {10.1007/s11269-016-1281-2}
+}
+
+@article{ref007,
+  author = {{Coello, CAC} and {Cortés, NC}},
+  title = {Hybridizing a genetic algorithm with an artificial immune system for global optimization},
+  journal = {Engineering Optimization},
+  year = {2004},
+  doi = {10.1080/03052150410001704845}
+}
+
+@article{ref008,
+  author = {{Covert, Ian C.} and {Lundberg, Scott} and {Lee, Su-In}},
+  title = {Understanding Global Feature Contributions With Additive Importance Measures},
+  journal = {ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020},
+  year = {2020}
+}
+
+@article{ref009,
+  author = {{Siyamak Doroudi} and {Ahmad Sharafati}},
+  title = {A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load},
+  journal = {Journal of Hydrology},
+  year = {2024},
+  doi = {10.1016/j.jhydrol.2024.131090}
+}
+
+@article{ref010,
+  author = {{Dorrell, R. M.} and {Amy, L. A.} and {Peakall, J.} and {McCaffrey, W. D.}},
+  title = {Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows},
+  journal = {Geophysical Research Letters},
+  year = {2018},
+  doi = {10.1002/2017GL076489}
+}
+
+@article{ref011,
+  author = {{Gelete, Gebre} and {Nourani, Vahid} and {Gokcekus, Huseyin} and {Gichamo, Tagesse}},
+  title = {Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach},
+  journal = {Earth Science Informatics},
+  year = {2024},
+  doi = {10.1007/s12145-023-01192-4}
+}
+
+% [12] NOT_FOUND - Graves, A., &amp; Graves, A. (2012). Long short-term memory. Supervised sequence lab
+
+% [13] NOT_FOUND - Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https
+
+@article{ref014,
+  author = {{Nauman Gul} and {Afed Ullah Khan} and {Basir Ullah} and {Bakht Niaz Khan} and {Hamed M. Almalki} and {Abdulbasid S. Banga} and {Kailash Kumar}},
+  title = {Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions},
+  journal = {Physics and Chemistry of the Earth, Parts A/B/C},
+  year = {2025},
+  doi = {10.1016/j.pce.2025.104019}
+}
+
+@article{ref015,
+  author = {{Hanoon, Marwah Sattar} and {Abdullatif, Alharazi Abdulhadi B.} and {Ahmed, Ali Najah} and {Razzaq, Arif} and {Birima, Ahmed H.} and {El-Shafie, Ahmed}},
+  title = {A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia},
+  journal = {Earth Science Informatics},
+  year = {2022}
+}
+
+@article{ref016,
+  author = {{Barenya Bikash Hazarika} and {Deepak Gupta}},
+  title = {Mode decomposition based large margin distribution machines for sediment load prediction},
+  journal = {Expert Systems with Applications},
+  year = {2023},
+  doi = {10.1016/j.eswa.2023.120844}
+}
+
+@article{ref017,
+  author = {{Hazarika, Barenya Bikash} and {Gupta, Deepak} and {Berlin, Mohanadhas}},
+  title = {Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction},
+  journal = {Environmental Earth Sciences},
+  year = {2020},
+  doi = {10.1007/s12665-020-08949-w}
+}
+
+% [18] NOT_FOUND - Heddam, S., Naghibi, A., Khosravi, K., &amp; Singh, S. K. (2024). Suspended sediment
+
+@article{ref019,
+  author = {{Hochreiter, S} and {Schmidhuber, J}},
+  title = {Long short-term memory},
+  journal = {Neural Computation},
+  year = {1997},
+  doi = {10.1162/neco.1997.9.8.1735}
+}
+
+% [20] NOT_FOUND - Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., &amp; Salem, M. A. (2024). Rive
+
+@article{ref021,
+  author = {{Mohd Yawar Ali Khan}},
+  title = {Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments},
+  journal = {Journal of Geochemical Exploration},
+  year = {2025},
+  doi = {10.1016/j.gexplo.2024.107643}
+}
+
+@article{ref022,
+  author = {{Kundu, Soumya} and {Swarnkar, Somil} and {Agarwal, Akshay}},
+  title = {Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport},
+  journal = {Environmental Monitoring and Assessment},
+  year = {2025},
+  doi = {10.1007/s10661-025-14039-w}
+}
+
+@article{ref023,
+  author = {{Latif, Sarmad Dashti} and {Chong, K. L.} and {Ahmed, Ali Najah} and {Huang, Y. F.} and {Sherif, Mohsen} and {El-Shafie, Ahmed}},
+  title = {Sediment load prediction in Johor river: deep learning versus machine learning models},
+  journal = {Applied Water Science},
+  year = {2023},
+  doi = {10.1007/s13201-023-01874-w}
+}
+
+@article{ref024,
+  author = {{Zhenwei Li} and {Xianli Xu} and {Kelin Wang}},
+  title = {Scale-specific variation in daily suspended sediment load in karst catchments},
+  journal = {CATENA},
+  year = {2023},
+  doi = {10.1016/j.catena.2022.106745}
+}
+
+@article{ref025,
+  author = {{Liu, Hongxi} and {Guo, Chao} and {Xiao, Leling} and {Liu, Pei} and {Du, Jizeng} and {Yi, Yujun}},
+  title = {Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model},
+  journal = {Engineering Applications of Computational Fluid Mechanics},
+  year = {2025},
+  doi = {10.1080/19942060.2025.2521825}
+}
+
+@article{ref026,
+  author = {{Madsen, Andreas} and {Reddy, Siva} and {Chandar, Sarath}},
+  title = {Post-hoc Interpretability for Neural NLP: A Survey},
+  journal = {ACM Computing Surveys},
+  year = {2023},
+  doi = {10.1145/3546577}
+}
+
+@article{ref027,
+  author = {{Meshram, Sarita Gajbhiye} and {Singh, Vijay P.} and {Kisi, Ozgur} and {Karimi, Vahid} and {Meshram, Chandrashekhar}},
+  title = {Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction},
+  journal = {Water Resources Management},
+  year = {2020},
+  doi = {10.1080/02626667.2019.1703186}
+}
+
+@article{ref028,
+  author = {{Moazenzadeh, Roozbeh} and {Katipoglu, Okan Mert} and {Shateri, Ahmadreza} and {Nasiri, Hamid} and {Abdallah, Mohammed}},
+  title = {Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm},
+  journal = {Engineering Applications of Computational Fluid Mechanics},
+  year = {2024},
+  doi = {10.1080/19942060.2024.2391449}
+}
+
+@article{ref029,
+  author = {{Mohammadi-Raigani, Zeinab} and {Gholami, Hamid} and {Mohamadifar, Aliakbar} and {Samani, Aliakbar Nazari} and {Pradhan, Biswajeet}},
+  title = {Using an interpretable deep learning model for the prediction of riverine suspended sediment load},
+  journal = {Environmental Science and Pollution Research},
+  year = {2024}
+}
+
+@article{ref030,
+  author = {{Moradinejad, Amir}},
+  title = {Suspended Load Modeling of River Using Soft Computing Techniques},
+  journal = {Water Resources Management},
+  year = {2024}
+}
+
+@article{ref031,
+  author = {{Nourani, Vahid} and {Alizadeh, Farhad} and {Roushangar, Kiyoumars}},
+  title = {Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load},
+  journal = {Water Resources Management},
+  year = {2016},
+  doi = {10.1007/s11269-015-1168-7}
+}
+
+@article{ref032,
+  author = {{Taher Rajaee}},
+  title = {Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers},
+  journal = {Science of the Total Environment},
+  year = {2011},
+  doi = {10.1016/j.scitotenv.2010.11.028}
+}
+
+@article{ref033,
+  author = {{Rashidi, Sharareh} and {Vafakhah, Mehdi} and {Lafdani, Elham Kakaei} and {Javadi, Mohammad Reza}},
+  title = {Evaluating the support vector machine for suspended sediment load forecasting based on gamma test},
+  journal = {Arabian Journal of Geosciences},
+  year = {2016},
+  doi = {10.1007/s12517-016-2601-9}
+}
+
+@article{ref034,
+  author = {{Sahoo, Bibhuti Bhusan} and {Sankalp, Sovan} and {Kisi, Ozgur}},
+  title = {A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction},
+  journal = {Water Resources Management},
+  year = {2023},
+  doi = {10.1007/s11269-023-03552-7}
+}
+
+@article{ref035,
+  author = {{Azlan Saleh} and {Mohd Asyraf Zulkifley}},
+  title = {Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach},
+  journal = {Journal of Environmental Management},
+  year = {2025},
+  doi = {10.1016/j.jenvman.2025.124987}
+}
+
+@article{ref036,
+  author = {{Salehinejad, Hojjat} and {Sankar, Sharan} and {Barfett, Joseph} and {Colak, Errol} and {Valaee, Shahrokh}},
+  title = {Recent advances in recurrent neural networks},
+  journal = {arXiv},
+  year = {2017}
+}
+
+@article{ref037,
+  author = {{Salih, Sinan Q.} and {Sharafati, Ahmad} and {Khosravi, Khabat} and {Faris, Hossam} and {Kisi, Ozgur} and {Tao, Hai} and {Ali, Mumtaz} and {Yaseen, Zaher Mundher}},
+  title = {River suspended sediment load prediction based on river discharge information: application of newly developed data mining models},
+  journal = {Hydrological Sciences Journal},
+  year = {2020}
+}
+
+@article{ref038,
+  author = {{Sandeep Samantaray} and {Abinash Sahoo}},
+  title = {Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation},
+  journal = {Groundwater for Sustainable Development},
+  year = {2024},
+  doi = {10.1016/j.gsd.2024.101178}
+}
+
+@article{ref039,
+  author = {{Mahdi Sedighkia} and {Manizheh Jahanshahloo} and {Bithin Datta}},
+  title = {Hybrid neuro fuzzy inference systems for simulating catchment sediment yield},
+  journal = {International Journal of Sediment Research},
+  year = {2024}
+}
+
+@article{ref040,
+  author = {{Shakya, Deepti} and {Deshpande, Vishal} and {Kumar, Bimlesh} and {Agarwal, Mayank}},
+  title = {Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models},
+  journal = {Artificial Intelligence Review},
+  year = {2023},
+  doi = {10.1007/s10462-023-10422-6}
+}
+
+@article{ref041,
+  author = {{SHAPLEY, LS}},
+  title = {STOCHASTIC GAMES},
+  journal = {Proceedings of the National Academy of Sciences},
+  year = {1953},
+  doi = {10.1073/pnas.39.10.1095}
+}
+
+@article{ref042,
+  author = {{Sharafati, Ahmad} and {Asadollah, Seyed Babak Haji Seyed} and {Motta, Davide} and {Yaseen, Zaher Mundher}},
+  title = {Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis},
+  journal = {Hydrological Sciences Journal},
+  year = {2020},
+  doi = {10.1080/02626667.2020.1786571}
+}
+
+@article{ref043,
+  author = {{Shahab Aldin Shojaeezadeh} and {Malik Al-Wardy} and {Mohammad Reza Nikoo}},
+  title = {Suspended sediment load modeling using Hydro-Climate variables and Machine learning},
+  journal = {Journal of Hydrology},
+  year = {2024}
+}
+
+@article{ref044,
+  author = {{Tulla, Paramjeet Singh} and {Kumar, Pravendra} and {Vishwakarma, Dinesh Kumar} and {Kumar, Rohitashw} and {Kuriqi, Alban} and {Kushwaha, Nand Lal} and {Rajput, Jitendra} and {Srivastava, Aman} and {Pham, Quoc Bao} and {Panda, Kanhu Charan} and {Kisi, Ozgur}},
+  title = {Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand},
+  journal = {Theoretical and Applied Climatology},
+  year = {2024}
+}
+
+@article{ref045,
+  author = {{Bojun Wang} and {Wei Wei} and {Zejiang Yin} and {Lianlian Xu}},
+  title = {Using machine learning to analyze the changes in extreme precipitation in southern China},
+  journal = {Atmospheric Research},
+  year = {2024}
+}
+
+@article{ref046,
+  author = {{Wei, Peng} and {Yu, Wang}},
+  title = {Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting},
+  journal = {IEEE Access},
+  year = {2025}
+}
+
+@article{ref047,
+  author = {{Zuo, Zhen} and {Shuai, Bing} and {Wang, Gang} and {Liu, Xiao} and {Wang, Xingxing} and {Wang, Bing} and {Chen, Yushi}},
+  title = {Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation},
+  journal = {2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW)},
+  year = {2015}
+}</div>
+    </div>
+</div>
+<!-- 统计分析 -->
+<div class="section-block">
+    <h2>引用统计分析</h2>
+    <div class="analysis-grid">
+        <div class="analysis-card chart-card-full">
+            <h3>年份分布（1953 - 2025）</h3>
+            <canvas id="yearChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="analysis-card chart-card-full">
+            <h3>期刊集中度（Top 10）</h3>
+            <canvas id="journalChart" class="chart-canvas-tall"></canvas>
+        </div>
+        <div class="analysis-card">
+            <h3>作者合作模式分析</h3>
+            <div style="font-size:13px;line-height:2">
+                <div>独立作者：<strong>6</strong> 篇</div>
+                <div>合作论文（≥3作者）：<strong>29</strong> 篇</div>
+                <div>去重作者总数：<strong>152</strong> 人</div>
+                <div>平均作者数/篇：<strong>3.5</strong></div>
+            </div>
+        </div>
+        <div class="analysis-card">
+            <h3>整体建议</h3>
+            <ul class="suggestion-list">
+                <li>高引期刊集中在 Water Resources Management、Journal of Hydrology 等水资源领域期刊，引文来源专业对口</li>
+                <li>4 篇未收录文献为书籍章节和 Scholarpedia 条目，非传统期刊文献，建议补充 DOI 或 ISBN</li>
+                <li>#27 Meshram 引用期刊名有误：原写 Hydrological Sciences Journal，应为 Water Resources Management</li>
+                <li>#37 Salih 标题和期刊均有差异，建议根据 DOI 核实原文</li>
+                <li>#46 Wei 年份标注有误：原写 2023，数据库记录为 2025</li>
+                <li>年份跨度从 1953 到 2025，覆盖经典文献到最新研究，参考文献时效性和经典性兼顾良好</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<div class="footer">
+    <p>数据来源：SmartLib 全球文献检索 API（10亿+中外文文献元数据）</p>
+    <p>核查时间：2026-05-21 18:00:16 | 核查方式：题名关键词 + 年份 联网匹配</p>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ===== 柱状图绘制 =====
+const yearData = [[1953, 1], [1997, 1], [2000, 1], [2001, 1], [2004, 1], [2011, 1], [2015, 1], [2016, 3], [2017, 1], [2018, 1], [2020, 5], [2021, 1], [2022, 1], [2023, 7], [2024, 10], [2025, 7]];
+const journalData = [["Water Resources Management", 6], ["Journal of Hydrology", 2], ["Earth Science Informatics", 2], ["Engineering Applications of Computational Fluid Mechanics", 2], ["Hydrological Sciences Journal", 2], ["Scientific Reports", 1], ["Heliyon", 1], ["Machine Learning", 1], ["Journal of the American Medical Informatics Association", 1], ["Engineering Optimization", 1]];
+
+function drawColumnChart(canvasId, data, config) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    const W = rect.width;
+    const H = rect.height;
+
+    const pad = { top: 16, right: 16, bottom: config.labelRotate ? 88 : 48, left: 40 };
+    const cw = W - pad.left - pad.right;
+    const ch = H - pad.top - pad.bottom;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 最大值
+    const maxVal = Math.max(...data.map(d => d[1]), 1);
+    const n = data.length;
+
+    // Y轴
+    const ySteps = 5;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (let i = 0; i <= ySteps; i++) {
+        const y = pad.top + ch * (1 - i / ySteps);
+        const val = Math.round(maxVal * i / ySteps);
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '11px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif';
+        ctx.fillText(val, pad.left - 8, y);
+        if (i > 0) {
+            ctx.strokeStyle = '#f1f5f9';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, y);
+            ctx.lineTo(W - pad.right, y);
+            ctx.stroke();
+        }
+    }
+
+    // 坐标轴
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, pad.top);
+    ctx.lineTo(pad.left, H - pad.bottom);
+    ctx.lineTo(W - pad.right, H - pad.bottom);
+    ctx.stroke();
+
+    // 计算柱宽
+    const barAreaWidth = cw / n;
+    const barWidth = Math.min(barAreaWidth * 0.62, 48);
+
+    // 柱子
+    data.forEach((item, i) => {
+        const x = pad.left + barAreaWidth * i + (barAreaWidth - barWidth) / 2;
+        const barH = (item[1] / maxVal) * ch;
+        const y = pad.top + ch - barH;
+
+        // 渐变
+        const grad = ctx.createLinearGradient(x, y, x, pad.top + ch);
+        grad.addColorStop(0, '#3b82f6');
+        grad.addColorStop(0.5, '#60a5fa');
+        grad.addColorStop(1, '#93c5fd');
+        ctx.fillStyle = grad;
+
+        // 圆角矩形
+        const r = Math.min(4, barWidth / 4);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + barWidth - r, y);
+        ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
+        ctx.lineTo(x + barWidth, y + barH);
+        ctx.lineTo(x, y + barH);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.fill();
+
+        // 数值标签
+        ctx.fillStyle = '#1e293b';
+        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(item[1], x + barWidth / 2, y - 4);
+
+        // 底部标签
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif';
+        let label = config.formatLabel ? config.formatLabel(item[0]) : String(item[0]);
+        // 截断
+        ctx.textBaseline = 'top';
+        const maxLabelW = barAreaWidth - 4;
+        if (ctx.measureText(label).width > maxLabelW) {
+            while (ctx.measureText(label + '…').width > maxLabelW && label.length > 1) label = label.slice(0, -1);
+            label += '…';
+        }
+        if (config.labelRotate) {
+            ctx.save();
+            ctx.translate(x + barWidth / 2, H - pad.bottom + 8);
+            ctx.rotate(-Math.PI / 4);
+            ctx.textAlign = 'right';
+            ctx.fillText(label, 0, 0);
+            ctx.restore();
+        } else {
+            ctx.textAlign = 'center';
+            ctx.fillText(label, x + barWidth / 2, H - pad.bottom + 8);
+        }
+    });
+}
+
+// 渲染年份柱状图
+if (yearData.length > 0) {
+    drawColumnChart('yearChart', yearData, { labelRotate: yearData.length > 12 });
+} else {
+    const yc = document.getElementById('yearChart');
+    if (yc) { yc.insertAdjacentHTML('afterend', '<div style="font-size:12px;color:#94a3b8;text-align:center;padding:20px">无数据</div>'); yc.remove(); }
+}
+
+// 渲染期刊柱状图（展示完整期刊名）
+if (journalData.length > 0) {
+    drawColumnChart('journalChart', journalData, {
+        labelRotate: true
+    });
+} else {
+    const jc = document.getElementById('journalChart');
+    if (jc) { jc.insertAdjacentHTML('afterend', '<div style="font-size:12px;color:#94a3b8;text-align:center;padding:20px">无数据</div>'); jc.remove(); }
+}
+
+// 窗口缩放时重绘
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        if (yearData.length > 0) drawColumnChart('yearChart', yearData, { labelRotate: yearData.length > 12 });
+        if (journalData.length > 0) drawColumnChart('journalChart', journalData, { labelRotate: true });
+    }, 200);
+});
+
+// ===== 下载功能 =====
+function downloadAll() {
+    const refs = `[1] Afan, H. A., Wan Mohtar, W. H. M., Aksoy, M., Ahmed, A. N., Khaleel, F., Khan, M. M. H., Kamel, A. H., Sherif, M., & El-Shafie, A. (2025). A Multi-Functional Genetic Algorithm-Neural Network Model for Predicting Suspended Sediment Loads. Water Resources Management. https://doi.org/10.1007/s11269-024-04054-w
+[2] AlDahoul, N., Essam, Y., Kumar, P., Ahmed, A. N., Sherif, M., Sefelnasr, A., & Elshafie, A. (2021). Suspended sediment load prediction using long short-term memory neural network. Scientific Reports. https://doi.org/10.1038/s41598-021-87415-4
+[3] Mohammed Falah Allawi, Sadeq Oleiwi Sulaiman, Khamis Naba Sayl, Mohsen Sherif, & Ahmed El-Shafie (2023). Suspended sediment load prediction modelling based on artificial intelligence methods: The tropical region as a case study. Heliyon.
+[4] Breiman, L. (2001). Random forests. Machine Learning. https://doi.org/10.1023/A:1010933404324
+[5] Carter, J. (2000). The immune system as a model for pattern recognition and classification. Journal of the American Medical Informatics Association. https://doi.org/10.1136/jamia.2000.0070028
+[6] Chen, X. Y., & Chau, K. W. (2016). A Hybrid Double Feedforward Neural Network for Suspended Sediment Load Estimation. Water Resources Management. https://doi.org/10.1007/s11269-016-1281-2
+[7] Coello, C., & Cortés, N. (2004). Hybridizing a genetic algorithm with an artificial immune system for global optimization. Engineering Optimization. https://doi.org/10.1080/03052150410001704845
+[8] Covert, I. C., Lundberg, S., & Lee, S. (2020). Understanding Global Feature Contributions With Additive Importance Measures. ADVANCES IN NEURAL INFORMATION PROCESSING SYSTEMS 33, NEURIPS 2020.
+[9] Siyamak Doroudi, & Ahmad Sharafati (2024). A newly developed multi-objective evolutionary paradigm for predicting suspended sediment load. Journal of Hydrology. https://doi.org/10.1016/j.jhydrol.2024.131090
+[10] Dorrell, R. M., Amy, L. A., Peakall, J., & McCaffrey, W. D. (2018). Particle Size Distribution Controls the Threshold Between Net Sediment Erosion and Deposition in Suspended Load Dominated Flows. Geophysical Research Letters. https://doi.org/10.1002/2017GL076489
+[11] Gelete, G., Nourani, V., Gokcekus, H., & Gichamo, T. (2024). Multi-step ahead suspended sediment load modeling using machine learning- multi-model approach. Earth Science Informatics. https://doi.org/10.1007/s12145-023-01192-4
+[12] Graves, A., & Graves, A. (2012). Long short-term memory. Supervised sequence labelling with recurrent neural networks, 37–45.
+[13] Grossberg, S. (2013). Recurrent neural networks. Scholarpedia, 8(2), 1888. https://doi.org/10.4249/scholarpedia.1888
+[14] Nauman Gul, Afed Ullah Khan, Basir Ullah, Bakht Niaz Khan, Hamed M. Almalki, Abdulbasid S. Banga, & Kailash Kumar (2025). Optimizing LSTM for sediment load prediction in the Swat river basin, Pakistan: Evaluation of optimizers and activation functions. Physics and Chemistry of the Earth, Parts A/B/C. https://doi.org/10.1016/j.pce.2025.104019
+[15] Hanoon, M. S., Abdullatif, A. A. B., Ahmed, A. N., Razzaq, A., Birima, A. H., & El-Shafie, A. (2022). A comparison of various machine learning approaches performance for prediction suspended sediment load of river systems: a case study in Malaysia. Earth Science Informatics.
+[16] Barenya Bikash Hazarika, & Deepak Gupta (2023). Mode decomposition based large margin distribution machines for sediment load prediction. Expert Systems with Applications. https://doi.org/10.1016/j.eswa.2023.120844
+[17] Hazarika, B. B., Gupta, D., & Berlin, M. (2020). Modeling suspended sediment load in a river using extreme learning machine and twin support vector regression with wavelet conjunction. Environmental Earth Sciences. https://doi.org/10.1007/s12665-020-08949-w
+[18] Heddam, S., Naghibi, A., Khosravi, K., & Singh, S. K. (2024). Suspended sediment load prediction and tree-based algorithms. In A. M. Melesse, O. Rahmati, K. Khosravi, & G. P. Petropoulos (Eds.), Remote sensing of soil and landsurface processes (pp. 257–269). Elsevier.
+[19] Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural Computation. https://doi.org/10.1162/neco.1997.9.8.1735
+[20] Kedam, N., Tiwari, D. K., Kumar, V., Khedher, K. M., & Salem, M. A. (2024). River streamflow prediction through advanced machine learning models for enhanced accuracy. Results in Engineering, 22, 102215.
+[21] Mohd Yawar Ali Khan (2025). Regional ANN model for estimating missing daily suspended sediment load in complex, heterogeneous catchments. Journal of Geochemical Exploration. https://doi.org/10.1016/j.gexplo.2024.107643
+[22] Kundu, S., Swarnkar, S., & Agarwal, A. (2025). Bayesian-optimized recursive machine learning for predicting human-induced changes in suspended sediment transport. Environmental Monitoring and Assessment. https://doi.org/10.1007/s10661-025-14039-w
+[23] Latif, S. D., Chong, K. L., Ahmed, A. N., Huang, Y. F., Sherif, M., & El-Shafie, A. (2023). Sediment load prediction in Johor river: deep learning versus machine learning models. Applied Water Science. https://doi.org/10.1007/s13201-023-01874-w
+[24] Zhenwei Li, Xianli Xu, & Kelin Wang (2023). Scale-specific variation in daily suspended sediment load in karst catchments. CATENA. https://doi.org/10.1016/j.catena.2022.106745
+[25] Liu, H., Guo, C., Xiao, L., Liu, P., Du, J., & Yi, Y. (2025). Estimating over thousands of reservoirs sedimentation and effects on sediment flux through a newly proposed sediment transport model. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2025.2521825
+[26] Madsen, A., Reddy, S., & Chandar, S. (2023). Post-hoc Interpretability for Neural NLP: A Survey. ACM Computing Surveys. https://doi.org/10.1145/3546577
+[27] Meshram, S. G., Singh, V. P., Kisi, O., Karimi, V., & Meshram, C. (2020). Application of Artificial Neural Networks, Support Vector Machine and Multiple Model-ANN to Sediment Yield Prediction. Water Resources Management. https://doi.org/10.1080/02626667.2019.1703186
+[28] Moazenzadeh, R., Katipoglu, O. M., Shateri, A., Nasiri, H., & Abdallah, M. (2024). Designing an explainable bio-inspired model for suspended sediment load estimation: eXtreme Gradient Boosting coupled with Marine Predators Algorithm. Engineering Applications of Computational Fluid Mechanics. https://doi.org/10.1080/19942060.2024.2391449
+[29] Mohammadi-Raigani, Z., Gholami, H., Mohamadifar, A., Samani, A. N., & Pradhan, B. (2024). Using an interpretable deep learning model for the prediction of riverine suspended sediment load. Environmental Science and Pollution Research.
+[30] Moradinejad, A. (2024). Suspended Load Modeling of River Using Soft Computing Techniques. Water Resources Management.
+[31] Nourani, V., Alizadeh, F., & Roushangar, K. (2016). Evaluation of a Two-Stage SVM and Spatial Statistics Methods for Modeling Monthly River Suspended Sediment Load. Water Resources Management. https://doi.org/10.1007/s11269-015-1168-7
+[32] Taher Rajaee (2011). Wavelet and ANN combination model for prediction of daily suspended sediment load in rivers. Science of the Total Environment. https://doi.org/10.1016/j.scitotenv.2010.11.028
+[33] Rashidi, S., Vafakhah, M., Lafdani, E. K., & Javadi, M. R. (2016). Evaluating the support vector machine for suspended sediment load forecasting based on gamma test. Arabian Journal of Geosciences. https://doi.org/10.1007/s12517-016-2601-9
+[34] Sahoo, B. B., Sankalp, S., & Kisi, O. (2023). A Novel Smoothing-Based Deep Learning Time-Series Approach for Daily Suspended Sediment Load Prediction. Water Resources Management. https://doi.org/10.1007/s11269-023-03552-7
+[35] Azlan Saleh, & Mohd Asyraf Zulkifley (2025). Prediction of suspended sediment load in Sungai Semenyih using extreme learning machines and metaheuristic optimization approach. Journal of Environmental Management. https://doi.org/10.1016/j.jenvman.2025.124987
+[36] Salehinejad, H., Sankar, S., Barfett, J., Colak, E., & Valaee, S. (2017). Recent advances in recurrent neural networks. arXiv.
+[37] Salih, S. Q., Sharafati, A., Khosravi, K., Faris, H., Kisi, O., Tao, H., Ali, M., & Yaseen, Z. M. (2020). River suspended sediment load prediction based on river discharge information: application of newly developed data mining models. Hydrological Sciences Journal.
+[38] Sandeep Samantaray, & Abinash Sahoo (2024). Groundwater level prediction using an improved ELM model integrated with hybrid particle swarm optimisation and grey wolf optimisation. Groundwater for Sustainable Development. https://doi.org/10.1016/j.gsd.2024.101178
+[39] Mahdi Sedighkia, Manizheh Jahanshahloo, & Bithin Datta (2024). Hybrid neuro fuzzy inference systems for simulating catchment sediment yield. International Journal of Sediment Research.
+[40] Shakya, D., Deshpande, V., Kumar, B., & Agarwal, M. (2023). Predicting total sediment load transport in rivers using regression techniques, extreme learning and deep learning models. Artificial Intelligence Review. https://doi.org/10.1007/s10462-023-10422-6
+[41] SHAPLEY, L. (1953). STOCHASTIC GAMES. Proceedings of the National Academy of Sciences. https://doi.org/10.1073/pnas.39.10.1095
+[42] Sharafati, A., Asadollah, S. B. H. S., Motta, D., & Yaseen, Z. M. (2020). Application of newly developed ensemble machine learning models for daily suspended sediment load prediction and related uncertainty analysis. Hydrological Sciences Journal. https://doi.org/10.1080/02626667.2020.1786571
+[43] Shahab Aldin Shojaeezadeh, Malik Al-Wardy, & Mohammad Reza Nikoo (2024). Suspended sediment load modeling using Hydro-Climate variables and Machine learning. Journal of Hydrology.
+[44] Tulla, P. S., Kumar, P., Vishwakarma, D. K., Kumar, R., Kuriqi, A., Kushwaha, N. L., Rajput, J., Srivastava, A., Pham, Q. B., Panda, K. C., & Kisi, O. (2024). Daily suspended sediment yield estimation using soft-computing algorithms for hilly watersheds in a data-scarce situation: a case study of Bino watershed, Uttarakhand. Theoretical and Applied Climatology.
+[45] Bojun Wang, Wei Wei, Zejiang Yin, & Lianlian Xu (2024). Using machine learning to analyze the changes in extreme precipitation in southern China. Atmospheric Research.
+[46] Wei, P., & Yu, W. (2025). Improved Quantum Artificial Bee Colony Algorithm-Optimized Artificial Intelligence Models for Suspended Sediment Load Predicting. IEEE Access.
+[47] Zuo, Z., Shuai, B., Wang, G., Liu, X., Wang, X., Wang, B., & Chen, Y. (2015). Convolutional Recurrent Neural Networks: Learning Spatial Dependencies for Image Representation. 2015 IEEE CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION WORKSHOPS (CVPRW).`;
+    const blob = new Blob([refs], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '参考文献-核查结果.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function downloadSingle(id, text) {
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `参考文献-${id.replace('dl-', '')}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function switchTab(name) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => { if (b.textContent === name) b.classList.add('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+}
+</script>
+
+</body>
+</html>

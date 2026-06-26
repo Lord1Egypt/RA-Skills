@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IFQ mark">
+  <title>IFQ mark — ifq.ai</title>
+  <rect width="64" height="64" rx="12" fill="#F4EFE6"/>
+  <g stroke="#1F1B16" stroke-width="2" stroke-linecap="round" fill="none">
+    <line x1="14" y1="20" x2="14" y2="46"/>
+    <line x1="22" y1="20" x2="34" y2="20"/>
+    <line x1="22" y1="32" x2="30" y2="32"/>
+    <line x1="22" y1="20" x2="22" y2="46"/>
+    <circle cx="44" cy="34" r="9"/>
+    <line x1="50" y1="40" x2="56" y2="46"/>
+  </g>
+  <circle cx="32" cy="54" r="1.6" fill="#D4532B"/>
+</svg>

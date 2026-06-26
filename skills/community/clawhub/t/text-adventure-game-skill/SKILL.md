@@ -1,35 +1,77 @@
 ---
-name: "龙虾文游系统"
-description: "智能文字游戏生成系统，支持自定义剧本，自由互动剧情，精美文字排版"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/text-adventure-game-skill"
-sourceUrl: "https://clawhub.ai/skills/text-adventure-game-skill"
+name: 文字冒险游戏大师
+description: 智能文字游戏生成系统，支持自定义剧本，自由互动剧情，精美文字排版
+version: 1.0.0
+author: AutoClaw
+categories: ["游戏", "娱乐", "交互式"]
 ---
 
-# 龙虾文游系统
+# 文字冒险游戏大师技能
 
-> 智能文字游戏生成系统，支持自定义剧本，自由互动剧情，精美文字排版
+## 核心功能
+1. 🎭 **自定义剧本解析**：智能解析用户输入的任意格式剧本，自动提取人物、场景、道具、剧情分支
+2. 🔄 **自由互动系统**：完全开放式互动，玩家可以输入任何行动，系统动态生成剧情回应
+3. 🎨 **精美排版输出**：每次回复都采用结构化精美排版，支持标题、引用、列表、高亮、分隔线等格式
+4. 💾 **智能进度管理**：自动保存游戏进度，支持存档、读档、快速回溯、重新开始
+5. 🎯 **多分支剧情**：根据玩家选择动态生成不同剧情线，支持多结局设计
+6. ⚙️ **游戏机制支持**：内置属性系统、物品系统、战斗系统、好感度系统等常用游戏机制
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/text-adventure-game-skill`
-- **Source URL:** [https://clawhub.ai/skills/text-adventure-game-skill](https://clawhub.ai/skills/text-adventure-game-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/text-adventure-game-skill
+## 使用方法
+### 开始新游戏
 ```
+创建文字游戏，剧本：
+[你的剧本内容]
+```
+或者直接说："开始文字游戏，主题是[你的主题]"
+
+### 游戏中操作
+- 直接输入你的行动/选择/对话
+- 输入「存档」保存当前进度
+- 输入「读档」读取最近存档
+- 输入「状态」查看当前属性、物品、任务
+- 输入「重新开始」重置游戏
+- 输入「退出」结束游戏
+- 输入「帮助」查看操作说明
+
+## 排版特色
+### 剧情展示格式
+```
+🏷️ 【当前场景】：幽暗的森林入口
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌲 你站在古老森林的入口，四周被浓密的雾气笼罩，阳光勉强透过树叶洒下斑驳的光影。
+脚下的小径铺满了腐烂的落叶，发出沙沙的声响。远处隐约传来奇怪的叫声，不知道是什么生物。
+
+🎒 你的物品：
+  ✅ 生锈的铁剑
+  ✅ 3个面包
+  ✅ 1瓶治疗药水
+
+📊 当前状态：
+  ❤️ 生命值：100/100
+  ⚡ 体力：80/80
+  🌟 经验：0/100
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔹 你可以选择：
+  1. 沿着小径深入森林
+  2. 在附近搜索一下有没有有用的东西
+  3. 先回到最近的村庄补给
+```
+
+### 特色排版元素
+- 场景标题带 emoji 标识，清晰醒目
+- 剧情内容分段展示，重点内容高亮
+- 分隔线区分不同功能区域
+- 物品、状态使用列表展示，一目了然
+- 选项带编号，方便选择
+- 重要提示使用引用格式
+- 战斗、对话等特殊场景有专属排版样式
+
+## 剧本格式要求
+剧本可以是任意格式的文字，包含以下内容即可：
+- 游戏背景设定
+- 人物介绍
+- 初始场景
+- 可选的剧情分支提示
+- 特殊规则说明
+
+系统会自动解析并生成完整的游戏逻辑。

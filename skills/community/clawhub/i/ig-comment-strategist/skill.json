@@ -1,0 +1,26 @@
+{
+  "name": "ig-comment-strategist",
+  "version": "1.0.0",
+  "description": "AI analyzes Instagram reels/posts and generates 8 categories of high-performing comments designed to maximize visibility, drive replies, and build authentic connections.",
+  "category": "Social Media",
+  "tags": ["instagram", "social-media", "engagement", "growth", "comments"],
+  "price": {
+    "oneTime": 49,
+    "subscription": 9,
+    "currency": "USD"
+  },
+  "requirements": [
+    "Termux (Android) or Linux environment",
+    "Node.js v16+",
+    "OpenClaw agent system",
+    "SMTP credentials (for email reports, optional)"
+  ],
+  "author": {
+    "name": "Cod3Black",
+    "email": "support@cod3black.agency"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cod3black/ig-comment-strategist"
+  }
+}

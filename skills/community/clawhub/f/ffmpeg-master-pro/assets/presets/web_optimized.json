@@ -1,0 +1,44 @@
+{
+  "name": "Web 优化",
+  "description": "网站嵌入的流媒体优化，支持快速加载和流畅播放",
+  "version": "1.0",
+  "video": {
+    "codec": "libx264",
+    "preset": "medium",
+    "crf": 26,
+    "profile": "main",
+    "level": "3.1",
+    "pixel_format": "yuv420p",
+    "movflags": "+faststart"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "96k",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "recommendations": {
+    "1080p": {
+      "resolution": "1920x1080",
+      "bitrate": "2500k",
+      "audio_bitrate": "96k"
+    },
+    "720p": {
+      "resolution": "1280x720",
+      "bitrate": "1500k",
+      "audio_bitrate": "96k"
+    },
+    "480p": {
+      "resolution": "854x480",
+      "bitrate": "800k",
+      "audio_bitrate": "96k"
+    }
+  },
+  "use_cases": ["网站嵌入", "在线播放", "流媒体传输"],
+  "requirements": {
+    "fast_start": "必须",
+    "progressive_download": "支持",
+    "encoding_speed": "平衡",
+    "compatibility": "高"
+  }
+}

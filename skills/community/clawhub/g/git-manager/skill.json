@@ -1,0 +1,44 @@
+{
+  "name": "git-manager",
+  "version": "1.0.0",
+  "description": "Git 仓库管理工具 - 克隆、拉取、推送、分支管理等操作。",
+  "author": "local",
+  "license": "MIT",
+  "main": "scripts/git_manager.py",
+  "scripts": {
+    "clone": "scripts/clone_repo.sh",
+    "pull": "scripts/pull.sh",
+    "push": "scripts/push.sh",
+    "branch": "scripts/branch.sh"
+  },
+  "dependencies": {
+    "git": ">=2.0"
+  },
+  "requirements": [
+    "git installed on system"
+  ],
+  "capabilities": [
+    "version-control",
+    "git"
+  ],
+  "permissions": {
+    "file_system": {
+      "read": [
+        "~/.openclaw/workspace/**"
+      ],
+      "write": [
+        "~/.openclaw/workspace/**"
+      ],
+      "execute": [
+        "git"
+      ]
+    }
+  },
+  "configuration": {},
+  "documentation": "README.md",
+  "tags": [
+    "git",
+    "version-control",
+    "repository"
+  ]
+}

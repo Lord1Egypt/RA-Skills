@@ -1,0 +1,24 @@
+{
+  "styles": [
+    {
+      "name": "犀利观点型",
+      "description": "直接、有冲突、带批判"
+    },
+    {
+      "name": "温柔陪伴型",
+      "description": "有情绪、有共鸣"
+    },
+    {
+      "name": "专业干货型",
+      "description": "逻辑清晰、有方法"
+    },
+    {
+      "name": "老板表达型",
+      "description": "有判断、有经验"
+    },
+    {
+      "name": "高转化成交型",
+      "description": "更容易引导咨询和互动"
+    }
+  ]
+}

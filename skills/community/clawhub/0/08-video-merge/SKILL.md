@@ -1,35 +1,15 @@
----
-name: "08 Video Merge"
-description: "Locally merges video clips, dubbing audio, SRT subtitles, and background music into a 9:16 vertical short video ready for publishing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/08-video-merge"
-sourceUrl: "https://clawhub.ai/skills/08-video-merge"
----
-
-# 08 Video Merge
-
-> Locally merges video clips, dubbing audio, SRT subtitles, and background music into a 9:16 vertical short video ready for publishing.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/08-video-merge`
-- **Source URL:** [https://clawhub.ai/skills/08-video-merge](https://clawhub.ai/skills/08-video-merge)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/08-video-merge
-```
+# 视频合成技能
+## 功能介绍
+将视频、音频、字幕一键合成为 9:16 竖屏成品短剧。
+## 输入参数
+- video_url：视频地址（必填）
+- audio_url：音频地址（必填）
+- subtitle_url：字幕地址（可选）
+## 输出结果
+- final_video_url：最终成片地址
+## 使用场景
+- 短剧最终合成发布
+- 批量产出可发布视频
+- 一键成片自动化
+## 技术说明
+纯本地运行，无需API、无需模型配置。

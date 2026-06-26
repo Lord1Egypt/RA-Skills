@@ -1,35 +1,64 @@
 ---
-name: "NBATI"
-description: "NBATI 篮球人格测试。回答8个关于打球习惯和风格的问题，测出你的篮球人格类型。触发词：NBATI、篮球人格、篮球测试、测篮球风格、篮球类型。当用户提到 NBATI、篮球人格测试、想测篮球风格时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nbati"
-sourceUrl: "https://clawhub.ai/skills/nbati"
+name: nbati
+description: NBATI 篮球人格测试。回答8个关于打球习惯和风格的问题，测出你的篮球人格类型。触发词：NBATI、篮球人格、篮球测试、测篮球风格、篮球类型。当用户提到 NBATI、篮球人格测试、想测篮球风格时触发。
 ---
 
-# NBATI
+# NBATI — 你的篮球人格是什么？
 
-> NBATI 篮球人格测试。回答8个关于打球习惯和风格的问题，测出你的篮球人格类型。触发词：NBATI、篮球人格、篮球测试、测篮球风格、篮球类型。当用户提到 NBATI、篮球人格测试、想测篮球风格时触发。
+通过8个关于你打球习惯和风格的问题，揭示你的篮球灵魂。没有对错，只有风格。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nbati`
-- **Source URL:** [https://clawhub.ai/skills/nbati](https://clawhub.ai/skills/nbati)
+## 测试流程
 
-## Overview
+1. 告诉用户："来测测你的篮球人格吧！只需要回答8个问题，凭直觉选就行。"
+2. 从 `references/questions.md` 随机抽取 8 道不重复的题目（每题4个选项）。
+3. **逐题提问**，等用户回复选项后记录得分，再出下一题。
+4. 8题结束后，根据得分映射到篮球人格类型（见 `references/types.md`）。
+5. 生成结果卡片，格式如下：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nbati
 ```
+🏀 你的NBATI篮球人格：[幽默名称] — [类型代号]
+
+[一段300字以内的篮球人格解读，幽默中带着专业分析，结合实战场景]
+
+🔥 球风特征：
+• [特征1]
+• [特征2]
+• [特征3]
+
+⭐ 球星模板：[NBA球星名字] — [一句话解释为什么像]
+
+👯 最佳搭档类型：[另一个类型名]
+🤜🤛 最难对付的类型：[另一个类型名]
+
+— 本测试具有一定篮球专业度，但主要还是图一乐 —
+
+```
+
+## 出题风格
+
+- 问题围绕**实战打球场景**：进攻选择、防守习惯、团队配合、心态管理
+- 选项要**让人会心一笑但又确实能反映球风**
+- 结合野球场文化、NBA梗、中国篮球生态
+- 每个选项都要像真实球员会做出的选择
+- 中文提问，中文结果
+
+## 得分计算
+
+每道题的每个选项对应不同篮球维度的加分。8题结束后汇总各维度得分，组合确定类型。
+
+维度：
+- **S** (Score) 得分欲望 — 主动进攻还是团队配合
+- **D** (Defense) 防守态度 — 盯人死磕还是眼神防守
+- **P** (Playmaking) 组织意识 — 创造机会还是终结为主
+- **I** (Intensity) 竞争强度 — 养生篮球还是拼命三郎
+
+最终类型由得分分布确定，共24种类型。具体映射见 `references/types.md`。
+
+## 注意事项
+
+- 强调"只需要回答8个问题"
+- 每次测试的题目要随机，不要每次都一样
+- 解读要个性化，结合用户的具体回答分析球风
+- 如果用户半途放弃，已回答的题也可以出结果，但要说"你这打到一半就放弃的劲，果然是XX型"
+- 球星模板要选得合理，不能瞎配
+- 保持幽默但要有篮球专业度，不能纯搞笑

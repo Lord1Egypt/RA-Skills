@@ -1,0 +1,6 @@
+{
+  "expectations": [
+    {"text": "执行了 team.py list 命令", "passed": true, "evidence": "输出中包含 'python3 /home/yhb/work/agent-team-skill/scripts/team.py list'"},
+    {"text": "显示了团队成员列表", "passed": true, "evidence": "输出了 6 个团队成员的详细信息，包括小Q、小码、小谦、大钱、小权、Bob"}
+  ]
+}

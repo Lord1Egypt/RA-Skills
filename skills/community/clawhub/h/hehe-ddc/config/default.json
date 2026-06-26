@@ -1,0 +1,58 @@
+{
+  "_comment": "视频自动化配置 - 默认使用网络 BGM",
+  
+  "images": [
+    "/home/openclaw/.openclaw/workspace/skills/video-auto/temp_images/微信图片_20260405103932_272_1022.jpg",
+    "/home/openclaw/.openclaw/workspace/skills/video-auto/temp_images/微信图片_20260405103937_273_1022.jpg",
+    "/home/openclaw/.openclaw/workspace/skills/video-auto/temp_images/微信图片_20260405103952_276_1022.jpg",
+    "/home/openclaw/.openclaw/workspace/skills/video-auto/temp_images/微信图片_20260405103959_277_1022.jpg",
+    "/home/openclaw/.openclaw/workspace/skills/video-auto/temp_images/微信图片_20260405104005_278_1022.jpg"
+  ],
+  
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "crf": 20
+  },
+  
+  "subtitle": {
+    "enabled": true,
+    "fontSize": 24,
+    "fontFamily": "Microsoft YaHei",
+    "marginV": 50,
+    "maxLines": 1
+  },
+  
+  "audio": {
+    "tts": {
+      "voice": "male",
+      "speed": 5
+    },
+    "bgm": {
+      "enabled": true,
+      "volume": 0.2,
+      "random": true,
+      "from_internet": true,
+      "match_duration": true,
+      "_comment": "网络 BGM 来源：Pixabay（11 首不同风格随机选择）"
+    }
+  },
+  
+  "script": {
+    "autoGenerate": false,
+    "industry": "电动车",
+    "content": "惠水县爱玛店庆大促！72V 六块大电池，爱玛爱朵惊爆价 2399！72V 一千瓦大功率，爱玛领航管仅需 2799！活动截止 4 月 30 日，速来抢购！"
+  },
+  
+  "output": {
+    "copyToWindows": true,
+    "windowsPath": "/mnt/f/Desktop/aima/新建文件夹"
+  },
+  
+  "duration": {
+    "mode": "auto",
+    "minSeconds": 15,
+    "maxSeconds": 60
+  }
+}

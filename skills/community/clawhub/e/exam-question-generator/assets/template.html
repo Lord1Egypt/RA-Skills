@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>专属模拟题 · {{exam_type}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+  <style>
+    :root {
+      --bg-primary:    #F5F6FA;
+      --bg-surface:    #FFFFFF;
+      --bg-card:       #FFFFFF;
+      --brand:         #6C63FF;
+      --color-high:    #FF4757;
+      --color-mid:     #F0920A;
+      --color-low:     #18A85A;
+      --text-primary:  #1A1A2E;
+      --text-secondary:#6B7280;
+      --border:        rgba(108, 99, 255, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── 顶部信息栏 ── */
+    .header {
+      padding: 12px 24px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid rgba(108, 99, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-exam  { background: rgba(108, 99, 255, 0.15); color: var(--brand); }
+    .badge-days  { background: rgba(255,  71,  87, 0.12); color: var(--color-high); }
+    .badge-score { background: rgba( 24, 168,  90, 0.12); color: var(--color-low); }
+
+    /* ── Tab 导航栏 ── */
+    .tab-bar {
+      display: flex;
+      background: var(--bg-surface);
+      border-bottom: 2px solid rgba(108, 99, 255, 0.12);
+      padding: 0 24px;
+      flex-shrink: 0;
+    }
+    .tab-btn {
+      padding: 10px 22px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      font-family: inherit;
+      letter-spacing: 0.2px;
+    }
+    .tab-btn:hover { color: var(--text-primary); }
+    .tab-btn.active {
+      color: var(--brand);
+      border-bottom-color: var(--brand);
+    }
+
+    /* ── 题目内容区 ── */
+    .content-area {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+    .set-panel {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      padding: 20px 24px 24px;
+      display: none;
+    }
+    .set-panel.active { display: block; }
+
+    /* 滚动条美化 */
+    .set-panel::-webkit-scrollbar { width: 5px; }
+    .set-panel::-webkit-scrollbar-track { background: transparent; }
+    .set-panel::-webkit-scrollbar-thumb { background: rgba(108, 99, 255, 0.3); border-radius: 3px; }
+
+    /* ── 题目卡片 ── */
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(108, 99, 255, 0.14);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .q-card:hover { border-color: rgba(108, 99, 255, 0.35); box-shadow: 0 2px 8px rgba(108,99,255,0.1); }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .q-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(108, 99, 255, 0.18);
+      color: var(--brand);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .q-badge {
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .q-badge.mc  { background: rgba(108,  99, 255, 0.12); color: var(--brand); }
+    .q-badge.mma { background: rgba(240, 146,  10, 0.12); color: var(--color-mid); }
+    .q-badge.tf  { background: rgba( 24, 168,  90, 0.12); color: var(--color-low); }
+    .q-badge.sa  { background: rgba(255,  71,  87, 0.12); color: var(--color-high); }
+
+    .q-score {
+      font-size: 11px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    .q-point {
+      font-size: 11px;
+      color: rgba(108, 99, 255, 0.65);
+      margin-left: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 140px;
+    }
+
+    .q-content {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .options { margin-bottom: 10px; }
+    .option {
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+      line-height: 1.5;
+      cursor: default;
+      transition: background 0.15s;
+    }
+    .option:hover { background: rgba(108, 99, 255, 0.07); }
+
+    /* ── 查看答案按钮 ── */
+    .toggle-btn {
+      background: rgba(108, 99, 255, 0.1);
+      border: 1px solid rgba(108, 99, 255, 0.22);
+      color: var(--brand);
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: inherit;
+      letter-spacing: 0.2px;
+    }
+    .toggle-btn:hover { background: rgba(108, 99, 255, 0.2); }
+
+    /* ── 答案区 ── */
+    .answer-wrap {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: rgba(108, 99, 255, 0.04);
+      border-radius: 8px;
+      border-left: 3px solid var(--brand);
+    }
+    .answer-wrap.show { display: block; }
+
+    .answer-line {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .answer-line strong { color: var(--color-low); }
+
+    .explanation {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 8px;
+      white-space: pre-line;
+    }
+    .ref-chip {
+      display: inline-block;
+      font-size: 11px;
+      color: rgba(108, 99, 255, 0.7);
+      background: rgba(108, 99, 255, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── 底部统计栏 ── */
+    .footer {
+      padding: 9px 24px;
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(108, 99, 255, 0.2);
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .footer-set { display: none; align-items: center; gap: 4px; }
+    .footer-set.active { display: flex; }
+    .footer-set span { color: var(--brand); font-weight: 700; }
+    .footer-brand {
+      margin-left: auto;
+      color: rgba(108, 99, 255, 0.4);
+      font-size: 11px;
+      letter-spacing: 0.8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="badge badge-exam">📚 {{exam_type}}</div>
+    <div class="badge badge-days">⏳ 距考 {{days_remaining}} 天</div>
+    <div class="badge badge-score">🎯 {{target_score}}</div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('set1', this)">{{set1_label}}</button>
+    <button class="tab-btn"        onclick="switchTab('set2', this)">{{set2_label}}</button>
+    <button class="tab-btn"        onclick="switchTab('set3', this)">{{set3_label}}</button>
+  </div>
+
+  <div class="content-area">
+    <div id="set1" class="set-panel active">
+      {{set1_questions}}
+    </div>
+    <div id="set2" class="set-panel">
+      {{set2_questions}}
+    </div>
+    <div id="set3" class="set-panel">
+      {{set3_questions}}
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-set active" id="footer-set1">本套 <span>{{set1_stats}}</span></div>
+    <div class="footer-set"        id="footer-set2">本套 <span>{{set2_stats}}</span></div>
+    <div class="footer-set"        id="footer-set3">本套 <span>{{set3_stats}}</span></div>
+    <div class="footer-brand">天禧 AI Claw · 考前冲刺</div>
+  </div>
+
+  <script>
+    function switchTab(setId, btn) {
+      document.querySelectorAll('.set-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.footer-set').forEach(f => f.classList.remove('active'));
+      document.getElementById(setId).classList.add('active');
+      document.getElementById('footer-' + setId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function toggleAnswer(btn) {
+      const isOpen = btn.nextElementSibling.classList.toggle('show');
+      btn.textContent = isOpen ? '隐藏答案 ▲' : '查看答案 ▼';
+    }
+  </script>
+
+</body>
+</html>

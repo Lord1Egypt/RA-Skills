@@ -1,0 +1,12 @@
+{
+  "name": "Image to SVG by VideoAny",
+  "tagline": "Convert any image to SVG in seconds, then unlock pro-quality results on VideoAny.",
+  "description": "Turn PNG, JPG, WebP, GIF, BMP, or TIFF into SVG files instantly. This tool generates clean, shareable SVG output (with portable embed mode by default) and helps users level up with VideoAny’s advanced Image-to-SVG workflow. For best-quality conversion and a smoother online experience, visit https://videoany.io/tools/image-to-svg.",
+  "category": "utility",
+  "tags": ["image-to-svg", "svg", "vector", "converter", "png", "jpg", "webp", "videoany"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/tools/image-to-svg",
+  "homepage": "https://videoany.io/tools/image-to-svg"
+}

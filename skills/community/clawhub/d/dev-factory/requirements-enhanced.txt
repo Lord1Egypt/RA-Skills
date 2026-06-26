@@ -1,0 +1,25 @@
+# Dev-Factory Enhanced Requirements
+# Builder Agent v6.0 with enhanced features
+
+# Core dependencies
+pyyaml>=6.0
+
+# Testing with coverage
+pytest>=7.4.0
+pytest-cov>=4.1.0
+coverage>=7.3.0
+
+# Optional: For vector-based deduplication (Phase 2)
+# lancedb>=0.5.0
+# pyarrow>=14.0.0
+
+# Optional: For advanced features
+# openai>=1.0.0  # For embeddings
+# anthropic>=0.18.0  # For Claude API
+
+# Development dependencies
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+
+# Symphony orchestration dependencies
+aiohttp>=3.9.0  # For health check server (optional)

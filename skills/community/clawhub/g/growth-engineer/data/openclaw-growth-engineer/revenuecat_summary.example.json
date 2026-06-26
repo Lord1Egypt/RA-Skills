@@ -1,0 +1,25 @@
+{
+  "project": "ring-sizer",
+  "window": "last_30d",
+  "signals": [
+    {
+      "id": "trial_to_paid_weekly_drop",
+      "title": "Trial-to-paid conversion dropped on weekly package",
+      "area": "paywall",
+      "priority": "high",
+      "metric": "trial_to_paid_weekly",
+      "current_value": 0.08,
+      "baseline_value": 0.12,
+      "delta_percent": -33.3,
+      "evidence": [
+        "Strongest drop on iOS onboarding entry point",
+        "Cancellation spikes before trial ends"
+      ],
+      "suggested_actions": [
+        "Clarify weekly package value and show annual savings side-by-side",
+        "Add post-trial reminder before renewal date"
+      ],
+      "keywords": ["subscription", "weekly", "trial", "pricing", "paywall"]
+    }
+  ]
+}

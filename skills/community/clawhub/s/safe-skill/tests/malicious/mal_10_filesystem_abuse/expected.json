@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Filesystem abuse: rmtree system dirs, delete system files, glob /**, read /etc",
+    "expected_min_score": 50,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["FS-001", "FS-002", "FS-003", "FS-004"],
+    "attack_category": "filesystem"
+}

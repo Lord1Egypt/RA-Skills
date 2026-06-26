@@ -1,0 +1,8 @@
+Initial release of the Photo Calorie Tracker skill.
+
+- Recognizes food photos and logs daily calorie intake.
+- Generates calorie intake reports for any specified number of days.
+- Focuses on lunch, dinner, and snacks (breakfast is excluded from reports).
+- Marks status as either incomplete (missing lunch or dinner) or the percent difference from the target.
+- Provides a standard output format and clear meal definitions.
+- Not intended for weight analysis, nutrition breakdowns, or workout planning.

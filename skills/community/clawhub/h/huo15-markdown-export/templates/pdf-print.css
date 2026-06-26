@@ -1,0 +1,51 @@
+/* huo15-markdown-export — PDF 打印专用样式
+ * 仅在 puppeteer/Chromium 打印时生效;@page 控制纸张/边距/页眉页脚
+ * 配合 md2pdf-puppet.js 的 --paper / --margin / --header / --footer 参数
+ */
+
+@media print {
+  /* 不强制白底:让主题自己决定 PDF 背景(newsprint 米色 / manuscript 旧书纸 / xhs 暖白等)
+   * 暗主题(typora-night)在主题文件内单独 @media print 反色为浅底深字
+   * print-color-adjust: exact 防止 Chromium "省墨"擦掉浅彩色背景
+   */
+  html, body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .markdown-body {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 避免标题成为孤行 */
+  .markdown-body h1, .markdown-body h2, .markdown-body h3,
+  .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* 表格 / 代码 / 引用块尽量不跨页切断 */
+  .markdown-body table,
+  .markdown-body pre,
+  .markdown-body blockquote,
+  .markdown-body figure {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* 链接显示原始 URL(可被 md2pdf-puppet.js 通过 --no-print-urls 关闭) */
+  .print-show-urls a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #888;
+    word-break: break-all;
+  }
+
+  /* 默认 A4 + 18mm 边距;由 puppeteer.printOptions 覆盖更精细控制 */
+  @page {
+    size: A4;
+    margin: 18mm;
+  }
+}

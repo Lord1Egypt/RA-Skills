@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ApplicationRecord",
+  "description": "Schema de cada item del array applications[] en data/applications.json",
+  "type": "object",
+  "required": ["job_id", "slug", "status", "created_at", "updated_at", "events"],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "description": "Identificador único — usar el id del board si lo provee, o el URL canónico"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Slug short-lived para nombrar archivos: '{empresa}-{rol-corto}'"
+    },
+    "title": {"type": "string"},
+    "company": {"type": "string"},
+    "url": {"type": "string", "format": "uri"},
+    "status": {
+      "type": "string",
+      "enum": ["drafted", "submitted", "viewed", "screening", "interview", "offer", "rejected", "withdrawn", "ghosted"]
+    },
+    "score": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Match score del momento de descubrir la oferta"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "submitted_at": {"type": ["string", "null"], "format": "date-time"},
+    "events": {
+      "type": "array",
+      "description": "Audit log inmutable",
+      "items": {
+        "type": "object",
+        "required": ["at", "type"],
+        "properties": {
+          "at": {"type": "string", "format": "date-time"},
+          "type": {
+            "type": "string",
+            "enum": ["created", "status_change", "note", "follow_up_sent", "auto_archived"]
+          },
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "status": {"type": "string"},
+          "text": {"type": "string"}
+        }
+      }
+    },
+    "notes": {"type": "string"},
+    "salary_negotiation": {
+      "type": "object",
+      "description": "Snapshot del proceso de negociación si llegó a oferta",
+      "properties": {
+        "asked": {"type": "number"},
+        "offered": {"type": "number"},
+        "accepted": {"type": "number"},
+        "currency": {"type": "string"},
+        "period": {"type": "string", "enum": ["monthly", "annual"]}
+      }
+    }
+  }
+}

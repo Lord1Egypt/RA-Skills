@@ -1,0 +1,240 @@
+import { html } from "lit";
+import {
+  buildModelOptions,
+  parseFallbackList,
+  resolveEffectiveModelFallbacks,
+  resolveModelPrimary,
+} from "./agents-utils.ts";
+
+const THINKING_OPTIONS = ["", "off", "minimal", "low", "medium", "high", "xhigh", "adaptive"] as const;
+
+function normalizePositiveInteger(value: string): number | null {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+  const parsed = Number.parseInt(trimmed, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+export function renderAgentSubagents(params: {
+  agentId: string;
+  configForm: Record<string, unknown> | null;
+  configLoading: boolean;
+  configSaving: boolean;
+  configDirty: boolean;
+  onConfigReload: () => void;
+  onConfigSave: () => void;
+  onAgentSubagentModelChange: (agentId: string, modelId: string | null) => void;
+  onAgentSubagentFallbacksChange: (agentId: string, fallbacks: string[]) => void;
+  onAgentSubagentThinkingChange: (agentId: string, value: string | null) => void;
+  onDefaultSubagentModelChange: (modelId: string | null) => void;
+  onDefaultSubagentFallbacksChange: (fallbacks: string[]) => void;
+  onDefaultSubagentThinkingChange: (value: string | null) => void;
+  onDefaultSubagentLimitChange: (
+    key: "maxConcurrent" | "maxSpawnDepth" | "maxChildrenPerAgent",
+    value: number | null,
+  ) => void;
+  availableModels?: Array<{ id: string; name?: string; provider: string; contextWindow?: number }>;
+}) {
+  const cfg = (params.configForm ?? {}) as {
+    agents?: {
+      defaults?: {
+        model?: unknown;
+        subagents?: {
+          model?: unknown;
+          thinking?: string;
+          maxConcurrent?: number;
+          maxSpawnDepth?: number;
+          maxChildrenPerAgent?: number;
+        };
+      };
+      list?: Array<{
+        id?: string;
+        model?: unknown;
+        subagents?: {
+          model?: unknown;
+          thinking?: string;
+        };
+      }>;
+    };
+  };
+
+  const agentEntry = cfg.agents?.list?.find((entry) => entry?.id === params.agentId);
+  const defaults = cfg.agents?.defaults;
+  const agentSubagents = agentEntry?.subagents;
+  const defaultSubagents = defaults?.subagents;
+  const disabled = !params.configForm || params.configLoading || params.configSaving;
+
+  const agentPrimary = resolveModelPrimary(agentSubagents?.model);
+  const defaultPrimary = resolveModelPrimary(defaultSubagents?.model);
+  const inheritedPrimary = defaultPrimary ?? resolveModelPrimary(agentEntry?.model) ?? resolveModelPrimary(defaults?.model);
+  const effectivePrimary = agentPrimary ?? inheritedPrimary ?? null;
+
+  const agentFallbacks = resolveEffectiveModelFallbacks(agentSubagents?.model, defaultSubagents?.model) ?? [];
+  const defaultFallbacks = resolveEffectiveModelFallbacks(defaultSubagents?.model, undefined) ?? [];
+
+  const removeAgentFallback = (index: number) => {
+    params.onAgentSubagentFallbacksChange(
+      params.agentId,
+      agentFallbacks.filter((_, i) => i !== index),
+    );
+  };
+
+  const removeDefaultFallback = (index: number) => {
+    params.onDefaultSubagentFallbacksChange(defaultFallbacks.filter((_, i) => i !== index));
+  };
+
+  return html`
+    <section class="card">
+      <div class="card-title">Subagents</div>
+      <div class="card-sub">Per-agent spawn model overrides plus shared default limits.</div>
+
+      <div class="callout" style="margin-top: 14px;">
+        Model precedence for subagents spawned by <span class="mono">${params.agentId}</span>: agent
+        <span class="mono">subagents.model</span> → shared
+        <span class="mono">agents.defaults.subagents.model</span> → this agent’s primary model.
+        Concurrency and depth limits currently live only under shared defaults, so this panel edits them there.
+      </div>
+
+      ${params.configDirty
+        ? html`<div class="callout warn" style="margin-top: 12px;">You have unsaved config changes.</div>`
+        : nothing}
+
+      <div class="agents-overview-grid" style="margin-top: 16px; gap: 18px;">
+        <section class="card" style="margin:0; padding:16px; border:1px solid var(--border, #333);">
+          <div class="card-title" style="margin-bottom: 4px;">Agent overrides</div>
+          <div class="card-sub">Only affects subagents spawned by this agent.</div>
+
+          <div class="agent-model-fields" style="margin-top: 14px;">
+            <label class="field">
+              <span>Subagent model</span>
+              <select
+                .value=${agentPrimary ?? ""}
+                ?disabled=${disabled}
+                @change=${(e: Event) =>
+                  params.onAgentSubagentModelChange(
+                    params.agentId,
+                    (e.target as HTMLSelectElement).value || null,
+                  )}
+              >
+                <option value="">
+                  ${inheritedPrimary ? `Inherit (${inheritedPrimary})` : "Inherit shared default / agent model"}
+                </option>
+                ${buildModelOptions(params.configForm, effectivePrimary ?? undefined, params.availableModels)}
+              </select>
+            </label>
+
+            <div class="field">
+              <span>Fallbacks</span>
+              <div class="agent-chip-input" @click=${(e: Event) => (e.currentTarget as HTMLElement).querySelector("input")?.focus()}>
+                ${agentFallbacks.map(
+                  (chip, i) => html`<span class="chip">${chip}<button type="button" class="chip-remove" ?disabled=${disabled} @click=${() => removeAgentFallback(i)}>&times;</button></span>`,
+                )}
+                <input
+                  ?disabled=${disabled}
+                  placeholder=${agentFallbacks.length === 0 ? "provider/model" : ""}
+                  @keydown=${(e: KeyboardEvent) => {
+                    const input = e.target as HTMLInputElement;
+                    if (e.key === "Enter" || e.key === ",") {
+                      e.preventDefault();
+                      const parsed = parseFallbackList(input.value);
+                      if (parsed.length > 0) {
+                        params.onAgentSubagentFallbacksChange(params.agentId, [...agentFallbacks, ...parsed]);
+                        input.value = "";
+                      }
+                    }
+                  }}
+                  @blur=${(e: Event) => {
+                    const input = e.target as HTMLInputElement;
+                    const parsed = parseFallbackList(input.value);
+                    if (parsed.length > 0) {
+                      params.onAgentSubagentFallbacksChange(params.agentId, [...agentFallbacks, ...parsed]);
+                      input.value = "";
+                    }
+                  }}
+                />
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Thinking level</span>
+              <select
+                .value=${agentSubagents?.thinking ?? ""}
+                ?disabled=${disabled}
+                @change=${(e: Event) =>
+                  params.onAgentSubagentThinkingChange(
+                    params.agentId,
+                    (e.target as HTMLSelectElement).value || null,
+                  )}
+              >
+                <option value="">${defaultSubagents?.thinking ? `Inherit (${defaultSubagents.thinking})` : "Inherit model default"}</option>
+                ${THINKING_OPTIONS.filter((value) => value).map(
+                  (value) => html`<option value=${value}>${value}</option>`,
+                )}
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="card" style="margin:0; padding:16px; border:1px solid var(--border, #333);">
+          <div class="card-title" style="margin-bottom: 4px;">Shared subagent defaults</div>
+          <div class="card-sub">Applies when an agent does not override subagent settings.</div>
+
+          <div class="agent-model-fields" style="margin-top: 14px;">
+            <label class="field">
+              <span>Default subagent model</span>
+              <select
+                .value=${defaultPrimary ?? ""}
+                ?disabled=${disabled}
+                @change=${(e: Event) =>
+                  params.onDefaultSubagentModelChange((e.target as HTMLSelectElement).value || null)}
+              >
+                <option value="">Inherit agent primary model</option>
+                ${buildModelOptions(params.configForm, defaultPrimary ?? undefined, params.availableModels)}
+              </select>
+            </label>
+
+            <div class="field">
+              <span>Default fallbacks</span>
+              <div class="agent-chip-input" @click=${(e: Event) => (e.currentTarget as HTMLElement).querySelector("input")?.focus()}>
+                ${defaultFallbacks.map(
+                  (chip, i) => html`<span class="chip">${chip}<button type="button" class="chip-remove" ?disabled=${disabled} @click=${() => removeDefaultFallback(i)}>&times;</button></span>`,
+                )}
+                <input
+                  ?disabled=${disabled}
+                  placeholder=${defaultFallbacks.length === 0 ? "provider/model" : ""}
+                  @keydown=${(e: KeyboardEvent) => {
+                    const input = e.target as HTMLInputElement;
+                    if (e.key === "Enter" || e.key === ",") {
+                      e.preventDefault();
+                      const parsed = parseFallbackList(input.value);
+                      if (parsed.length > 0) {
+                        params.onDefaultSubagentFallbacksChange([...defaultFallbacks, ...parsed]);
+                        input.value = "";
+                      }
+                    }
+                  }}
+                  @blur=${(e: Event) => {
+                    const input = e.target as HTMLInputElement;
+                    const parsed = parseFallbackList(input.value);
+                    if (parsed.length > 0) {
+                      params.onDefaultSubagentFallbacksChange([...defaultFallbacks, ...parsed]);
+                      input.value = "";
+                    }
+                  }}
+                />
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Default thinking level</span>
+              <select
+                .value=${defaultSubagents?.thinking ?? ""}
+                ?disabled=${disabled}
+                @change=${(e: Event) =>
+                  params.onDefaultSubagentThinkingChange((e.target as HTMLSelectElement).value || null)}
+              >
+                <option value="">Model default</option>
+                ${THINKING_OPTIONS.filter((value) => value).map(
+                  (value) => html`<option value=${value}>${value}</option>`,

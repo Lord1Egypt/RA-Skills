@@ -1,0 +1,10 @@
+{
+  "id": "{{PLUGIN_ID}}",
+  "name": "{{DISPLAY_NAME}}",
+  "description": "{{SUMMARY}}",
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

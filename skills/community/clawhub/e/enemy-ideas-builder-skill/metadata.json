@@ -1,0 +1,19 @@
+{
+  "slug": "enemy-ideas-builder-skill",
+  "name": "Enemy Ideas Builder Skill",
+  "version": "0.1.0",
+  "tags": [
+    "enemy-ideas-builder",
+    "game",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Design",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-04",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

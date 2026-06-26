@@ -1,35 +1,32 @@
----
-name: "Ai Cv Weekly"
-description: "Generates in-depth weekly AI/Computer Vision reports by aggregating data from multiple sources with plugin-based pipeline and multi-channel delivery."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-cv-weekly"
-sourceUrl: "https://clawhub.ai/skills/ai-cv-weekly"
----
+# ClawCat Brief — AI 简报引擎 Skill
 
-# Ai Cv Weekly
+本项目提供两种使用模式。请根据你的角色选择：
 
-> Generates in-depth weekly AI/Computer Vision reports by aggregating data from multiple sources with plugin-based pipeline and multi-channel delivery.
+## 宿主 AI 模式（推荐）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-cv-weekly`
-- **Source URL:** [https://clawhub.ai/skills/ai-cv-weekly](https://clawhub.ai/skills/ai-cv-weekly)
+如果你是 Cursor / OpenClaw 等宿主 AI，请阅读：
 
-## Overview
+**[clawcat_skill/SKILL.md](clawcat_skill/SKILL.md)**
 
+该模式提供三个工具函数（`plan_report` / `fetch_data` / `render_report`），
+你只需调用工具获取数据和渲染，内容撰写由你完成，无需额外 LLM API Key。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-cv-weekly
+```python
+from clawcat_skill import plan_report, fetch_data, render_report
 ```
+
+## 独立运行模式
+
+如果你想独立运行完整 pipeline（自带 LLM），使用 CLI：
+
+```bash
+python -m clawcat.cli "做个每日 AI 新闻"
+python -m clawcat.cli "OCR 技术周报"
+python -m clawcat.cli "今天 A 股怎么样"
+```
+
+此模式需要在 `config.yaml` 或 `config.local.yaml` 中配置 LLM API Key。
+
+---
+
+*ClawCat Brief · Built by llx & Luna*

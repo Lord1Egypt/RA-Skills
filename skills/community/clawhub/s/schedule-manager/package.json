@@ -1,0 +1,38 @@
+{
+  "name": "schedule-manager",
+  "version": "1.0.1",
+  "description": "日程任务管理 - 查看/添加/修改/删除定时任务和临时提醒",
+  "author": "老王",
+  "license": "MIT",
+  "keywords": [
+    "schedule",
+    "task",
+    "cron",
+    "reminder",
+    "calendar",
+    "tts",
+    "chinese"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://clawhub.com/skills/schedule-manager",
+  "files": [
+    "SKILL.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "edge-tts": "^6.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  }
+}

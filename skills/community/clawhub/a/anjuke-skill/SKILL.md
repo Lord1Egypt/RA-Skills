@@ -1,35 +1,42 @@
 ---
-name: "anjuke-skill"
-description: "该技能用于进行安居客账号自动化运营，包括账号登录、房源发布、房源检查、优化描述、增量投放、进行政府核验等具体操作，是一个全流程自动化运营的安居客技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anjuke-skill"
-sourceUrl: "https://clawhub.ai/skills/anjuke-skill"
+name: main_skill
+description: 该技能用于进行安居客账号自动化运营，包括账号登录、房源发布、房源检查、优化描述、增量投放、进行政府核验等具体操作，是一个全流程自动化运营的安居客技能。
 ---
+# 安居客自动化运营
 
-# anjuke-skill
+## 如何使用
+请你根据用户的指令或要求，进行安居客账号的自动化运营。
 
-> 该技能用于进行安居客账号自动化运营，包括账号登录、房源发布、房源检查、优化描述、增量投放、进行政府核验等具体操作，是一个全流程自动化运营的安居客技能。
+## 执行步骤
+请按以下步骤执行任务：
+1.**获取用户的账号密码**
+首次使用时，检测一下子技能`login_your_account`里面有没有账号密码信息，如果有的话，就不用询问，直接执行步骤2完成账号登录，如果没有的话，则先主动询问用户：
+A、请告诉我您的安居客账号（手机号）：<账号>
+B、请告诉我您的安居客密码：<密码>
+用户如果回答你，请你将这两个信息更新到子技能文档`login_your_account`里面。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anjuke-skill`
-- **Source URL:** [https://clawhub.ai/skills/anjuke-skill](https://clawhub.ai/skills/anjuke-skill)
+2.**登录账号**
+打开默认浏览器，访问该地址：https://vip.anjuke.com/portal/login
+检测当前登录状态，如果账号没登录，请调用子技能`login_your_account`：进行账号登录
 
-## Overview
+3.**检查端口使用情况**
+访问该地址：https://vip.anjuke.com/threenets/mix/second-hand/list__sl
+查看界面上“剩余端口”的数量：
+首先，请你先告诉我当前“剩余端口”数量：您当前剩余的端口数量是XX个！
+然后，请你根据剩余端口数量来判断接下来执行什么操作：
+如果剩余端口数量＞0 ，则进行步骤4
+如果剩余端口数量=0，则进行步骤5
 
+4.**发布房源**
+如果剩余端口数量＞0 ，代表还有剩余的端口可以使用，此时则调用子技能`publish_house`进行房源发布
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anjuke-skill
-```
+5.**对低质量房源进行优化描述**
+访问该地址：https://vip.anjuke.com/threenets/mix/second-hand/list__sl
+在列表中选择按“编辑时间”降序进行排序
+依次浏览当前推广中的房源，如果发现同时满足以下两个条件的房源：
+1）显示大于等于10天前编辑
+2）90日曝光量低于20
+此时代表该房源数据不佳，且很没有进行优化，需要对其描述进行优化，点击该房源的“编辑”按钮，进入该房源的编辑详情页，然后调用子技能`optimize_description`：对页面内容进行描述优化
+
+如果没有满足条件的房源，代表当前推广中的房源数据都还满足期望，则回应我：暂无需要进行优化的房源！
+

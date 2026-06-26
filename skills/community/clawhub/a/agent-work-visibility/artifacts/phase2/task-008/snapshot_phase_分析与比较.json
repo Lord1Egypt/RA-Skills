@@ -1,0 +1,28 @@
+{
+  "taskId": "task-008",
+  "snapshotType": "phase_分析与比较",
+  "timestamp": "2026-03-17T20:57:07.106Z",
+  "metadata": {
+    "phase": "分析与比较"
+  },
+  "snapshot": {
+    "task_id": "task-008",
+    "task_title": "任务范围扩大需要确认",
+    "task_type": "research",
+    "overall_status": "running",
+    "current_phase": "分析与比较",
+    "progress_percent": 85,
+    "current_action": "正在进行：分析与比较",
+    "why_not_done": "等待用户输入",
+    "next_action": null,
+    "needs_user_input": true,
+    "user_question": "发现重要扩展内容：发现 5 个相关子领域，是否深入分析？",
+    "user_options": [
+      "是，深入分析",
+      "否，保持原范围",
+      "简要浏览即可"
+    ],
+    "started_at": "2026-03-17T20:57:07.105Z",
+    "updated_at": "2026-03-17T20:57:07.106Z"
+  }
+}

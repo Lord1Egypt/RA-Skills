@@ -1,0 +1,109 @@
+/* Custom styling for the Startup Researcher PDF outputs */
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 11pt;
+    color: #2F4F4F; /* Dark Slate Grey for main text */
+    line-height: 1.6;
+    margin: 40px;
+}
+
+p {
+    text-align: justify;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000080; /* Navy Blue */
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 24pt;
+    border-bottom: 2px solid #000080;
+    padding-bottom: 5px;
+}
+
+h2 {
+    font-size: 18pt;
+    border-bottom: 1px solid #708090; /* Slate Grey */
+    padding-bottom: 4px;
+}
+
+h3 {
+    font-size: 14pt;
+}
+
+/* Table styling: Strict lines, alternating colors */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 10pt;
+}
+
+th, td {
+    border: 1px solid #708090;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #000080;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #F8F8FF; /* Ghost White */
+}
+
+tr:hover {
+    background-color: #E6E6FA; /* Lavender */
+}
+
+/* Links */
+a {
+    color: #000080;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Flag highlights */
+code {
+    background-color: #F0F8FF;
+    color: #000080;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+@page {
+  size: Letter;
+  margin: 2.5cm 2cm 2.5cm 2cm; /* extra top and bottom margin for the fixed header/footer */
+}
+
+footer {
+  position: fixed;
+  bottom: -1.5cm; /* Push it down into the page margin */
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9pt;
+  color: #666;
+}
+
+header {
+  position: fixed;
+  top: -1.5cm;
+  left: 0;
+  right: 0;
+  text-align: right;
+  font-size: 9pt;
+  color: #666;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}

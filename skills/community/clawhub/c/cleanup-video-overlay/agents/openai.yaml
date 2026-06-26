@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Overlay Cleanup"
+  short_description: "Clean overlays from videos and screen recordings"
+  default_prompt: "Use $video-overlay-cleanup to remove a status bar, banner, watermark, or floating UI overlay from this video."

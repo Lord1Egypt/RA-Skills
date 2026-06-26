@@ -1,35 +1,95 @@
 ---
-name: "customer-onboarding-guider"
-description: "引导客户了解财资管理系统的对接开发测试流程。使用当客户询问：(1) 如何对接系统，(2) 开发测试流程是什么，(3) 上线步骤，(4) 需要做什么准备，(5) 对接周期多长时。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/customer-onboarding-guider"
-sourceUrl: "https://clawhub.ai/skills/customer-onboarding-guider"
+name: customer-onboarding
+description: 引导客户了解财资管理系统的对接开发测试流程。使用当客户询问：(1) 如何对接系统，(2) 开发测试流程是什么，(3) 上线步骤，(4) 需要做什么准备，(5) 对接周期多长时。
 ---
 
-# customer-onboarding-guider
+# 客户对接开发测试流程引导技能
 
-> 引导客户了解财资管理系统的对接开发测试流程。使用当客户询问：(1) 如何对接系统，(2) 开发测试流程是什么，(3) 上线步骤，(4) 需要做什么准备，(5) 对接周期多长时。
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/customer-onboarding-guider`
-- **Source URL:** [https://clawhub.ai/skills/customer-onboarding-guider](https://clawhub.ai/skills/customer-onboarding-guider)
+本技能用于向客户清晰展示财资管理系统的完整对接流程，帮助客户了解从开始对接到正式上线的每个步骤、工作内容和双方职责。
 
-## Overview
+## 使用方式
 
+### 1. 客户询问完整流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/customer-onboarding-guider
+当客户询问"如何对接"、"流程是什么"时：
+
+1. 读取 `references/onboarding-process.md` 获取完整流程
+2. 以清晰的步骤展示给客户（8 个步骤）
+3. 说明每个步骤的工作内容、执行方和配合方
+4. 告知客户当前所处阶段和下一步工作
+
+### 2. 客户询问特定步骤
+
+当客户询问某个具体步骤（如"测试怎么做"、"上线需要什么"）时：
+
+1. 定位到对应步骤
+2. 详细说明该步骤的具体工作内容
+3. 告知客户需要配合的事项
+
+### 3. 客户询问职责分工
+
+当客户询问"我们需要做什么"、"银行负责什么"时：
+
+1. 明确说明企业方和银行方的职责
+2. 列出客户需要完成的具体任务
+
+## 对接流程概览
+
+| 序号 | 工作内容 | 执行方 | 配合方 |
+|-----|---------|-------|-------|
+| 1 | 确定使用接口 | 企业 | 银行 |
+| 2 | 网络接入信息 | 企业 | 银行 |
+| 3 | 客户访问服务器信息 | 企业 | 银行 |
+| 4 | 开通测试网络 | 银行 | 企业 |
+| 5 | 提供测试数据 | 银行 | 企业 |
+| 6 | 联调测试 | 企业 | 银行 |
+| 7 | 生产上线 | 企业 | 银行 |
+| 8 | 上线验证 | 企业 | 银行 |
+
+## 输出格式建议
+
+### 完整流程展示
+
 ```
+## 财资系统对接流程（共 8 步）
+
+### 第 1 步：确定使用接口 📋
+- **工作内容**：根据实际业务场景，确定使用哪些接口
+- **执行内容**：银行提供相应的接口文档及外部系统接入确认单，企业确定使用的接口（填写联机交易）
+- **执行方**：企业
+- **配合方**：银行
+
+### 第 2 步：网络接入信息 🌐
+- **工作内容**：填写第三方网络信息
+- **执行方**：企业
+- **配合方**：银行
+
+...（继续展示所有步骤）
+```
+
+### 单步骤说明
+
+```
+## 第 X 步：[步骤名称]
+
+**工作内容**：...
+**执行内容**：...
+**您需要做**：...
+**银行配合**：...
+**预计时间**：...
+```
+
+## 注意事项
+
+- 整个流程通常需要 2-4 周，具体取决于客户开发进度
+- 第 6 步联调测试是关键环节，建议客户预留充足时间
+- 生产上线前必须完成所有测试用例验证
+- 上线验证建议使用小额交易进行测试
+
+## 相关文件
+
+- `references/onboarding-process.md` - 完整对接流程文档
+- `references/checklist.md` - 客户准备工作清单
+- `references/faq.md` - 常见问题解答

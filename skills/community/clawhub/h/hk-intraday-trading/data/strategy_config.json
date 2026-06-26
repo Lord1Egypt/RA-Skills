@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-03-12",
+  "description": "港股日内交易选股策略配置 - 通过复盘持续优化",
+  
+  "selection_criteria": {
+    "min_score": 65,
+    "max_rsi": 70,
+    "min_rsi": 30,
+    "min_volume": 3000000,
+    "max_change_negative": -3,
+    "max_change_positive": 8,
+    "stock_pool": [
+      {"code": "09988.HK", "name": "阿里巴巴-SW", "enabled": true},
+      {"code": "00700.HK", "name": "腾讯控股", "enabled": true},
+      {"code": "03690.HK", "name": "美团-W", "enabled": true},
+      {"code": "01810.HK", "name": "小米集团-W", "enabled": true},
+      {"code": "02318.HK", "name": "中国平安", "enabled": true},
+      {"code": "01299.HK", "name": "友邦保险", "enabled": true},
+      {"code": "00005.HK", "name": "汇丰控股", "enabled": true},
+      {"code": "00388.HK", "name": "香港交易所", "enabled": true}
+    ]
+  },
+  
+  "trade_settings": {
+    "max_positions": 3,
+    "buy_discount": 0.005,
+    "target_gain_pct": 1.0,
+    "stop_loss_pct": 1.5,
+    "trailing_stop_pct": 0.5
+  },
+  
+  "optimization_history": [
+    {
+      "date": "2026-03-05",
+      "change": "止损从0.1%调整为1.5%",
+      "reason": "原设置过紧，导致频繁触发止损",
+      "result": "待验证"
+    },
+    {
+      "date": "2026-03-06",
+      "change": "增加选股数量到3只",
+      "reason": "分散风险，避免过度集中",
+      "result": "待验证"
+    }
+  ],
+  
+  "notes": "本配置文件是选股策略的核心，每次复盘后根据结果自动更新"
+}

@@ -1,0 +1,15 @@
+temperature:
+  canonical_unit: C
+  aliases:
+    - C
+    - °C
+mass:
+  canonical_unit: g/mol
+  aliases:
+    - g/mol
+    - g/mole
+density:
+  canonical_unit: g/cm3
+  aliases:
+    - g/cm3
+    - g/cm^3

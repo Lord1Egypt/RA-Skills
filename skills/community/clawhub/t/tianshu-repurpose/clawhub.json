@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Repurpose",
+  "tagline": "一文多发 — 小红书/抖音/微博/公众号裁剪稿",
+  "description": "Repurpose one long article into platform-sized drafts (XHS, Douyin, Weibo, WeChat title+summary). Local text rules, no API.",
+  "category": "utility",
+  "tags": ["repurpose", "新媒体", "多平台", "矩阵", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

@@ -1,0 +1,443 @@
+{
+  "sent_records": {
+    "description": "开发信发送记录字段定义",
+    "fields": {
+      "record_id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "唯一记录 ID"
+      },
+      "campaign_id": {
+        "type": "string",
+        "description": "关联的营销活动 ID"
+      },
+      "recipient_email": {
+        "type": "string",
+        "format": "email",
+        "description": "收件人邮箱"
+      },
+      "recipient_name": {
+        "type": "string",
+        "description": "收件人姓名"
+      },
+      "company_name": {
+        "type": "string",
+        "description": "收件人公司名"
+      },
+      "template_id": {
+        "type": "string",
+        "description": "使用的邮件模板 ID"
+      },
+      "template_variant": {
+        "type": "string",
+        "enum": [
+          "A",
+          "B",
+          "C"
+        ],
+        "description": "A/B 测试变体标识"
+      },
+      "subject_line": {
+        "type": "string",
+        "description": "邮件主题"
+      },
+      "sent_timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "发送时间戳"
+      },
+      "sales_owner": {
+        "type": "string",
+        "description": "负责的销售人员"
+      },
+      "send_status": {
+        "type": "string",
+        "enum": [
+          "sent",
+          "failed",
+          "bounced",
+          "deferred"
+        ],
+        "description": "发送状态"
+      },
+      "error_message": {
+        "type": "string",
+        "description": "发送失败时的错误信息"
+      }
+    },
+    "required_fields": [
+      "record_id",
+      "campaign_id",
+      "recipient_email",
+      "template_id",
+      "sent_timestamp",
+      "sales_owner",
+      "send_status"
+    ]
+  },
+  "reply_tracking": {
+    "description": "回复追踪字段定义",
+    "fields": {
+      "reply_id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "回复记录唯一 ID"
+      },
+      "sent_record_id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "关联的发送记录 ID"
+      },
+      "reply_received": {
+        "type": "boolean",
+        "description": "是否收到回复"
+      },
+      "reply_timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "回复收到时间戳"
+      },
+      "reply_type": {
+        "type": "string",
+        "enum": [
+          "positive",
+          "negative",
+          "neutral",
+          "inquiry",
+          "out_of_office"
+        ],
+        "description": "回复类型分类"
+      },
+      "auto_classified_by_intent": {
+        "type": "boolean",
+        "description": "是否由 AI 自动分类意图"
+      },
+      "detected_intent": {
+        "type": "string",
+        "description": "检测到的意图（对接 task-001 intent 系统）"
+      },
+      "confidence_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "意图分类置信度"
+      },
+      "reply_snippet": {
+        "type": "string",
+        "description": "回复内容摘要（前 200 字符）"
+      },
+      "requires_manual_review": {
+        "type": "boolean",
+        "description": "是否需要人工审核"
+      },
+      "follow_up_action": {
+        "type": "string",
+        "enum": [
+          "quote",
+          "sample",
+          "call",
+          "meeting",
+          "close",
+          "discard"
+        ],
+        "description": "建议的后续动作"
+      }
+    },
+    "required_fields": [
+      "reply_id",
+      "sent_record_id",
+      "reply_received"
+    ]
+  },
+  "conversion_funnel": {
+    "description": "转化漏斗阶段定义",
+    "stages": [
+      {
+        "stage_id": "sent",
+        "stage_name": "已发送",
+        "description": "邮件已成功发送",
+        "entry_condition": "send_status = 'sent'",
+        "exit_condition": "reply_received = true OR bounce_detected = true",
+        "metrics": [
+          "count",
+          "rate"
+        ]
+      },
+      {
+        "stage_id": "opened",
+        "stage_name": "已打开",
+        "description": "收件人打开了邮件（需像素追踪支持）",
+        "entry_condition": "open_event_detected = true",
+        "exit_condition": "reply_received = true OR 7_days_no_action",
+        "metrics": [
+          "count",
+          "rate",
+          "open_time_avg"
+        ]
+      },
+      {
+        "stage_id": "replied",
+        "stage_name": "已回复",
+        "description": "收件人回复了邮件",
+        "entry_condition": "reply_received = true",
+        "exit_condition": "qualified = true OR discarded = true",
+        "metrics": [
+          "count",
+          "rate",
+          "response_time_avg"
+        ]
+      },
+      {
+        "stage_id": "qualified",
+        "stage_name": "合格线索",
+        "description": "回复被判定为有效询盘",
+        "entry_condition": "reply_type IN ('positive', 'inquiry') AND manual_review_passed = true",
+        "exit_condition": "converted = true OR lost = true",
+        "metrics": [
+          "count",
+          "rate",
+          "qualification_time_avg"
+        ]
+      },
+      {
+        "stage_id": "converted",
+        "stage_name": "已转化",
+        "description": "线索转化为样品单或订单",
+        "entry_condition": "sample_order_created = true OR sales_order_created = true",
+        "exit_condition": "closed_won = true OR closed_lost = true",
+        "metrics": [
+          "count",
+          "rate",
+          "conversion_time_avg"
+        ]
+      },
+      {
+        "stage_id": "closed_won",
+        "stage_name": "已成交",
+        "description": "成功获得订单",
+        "entry_condition": "order_confirmed = true AND deposit_received = true",
+        "exit_condition": "none",
+        "metrics": [
+          "count",
+          "rate",
+          "revenue"
+        ]
+      }
+    ],
+    "drop_off_analysis": {
+      "enabled": true,
+      "alert_threshold": 0.5,
+      "description": "当阶段间流失率超过 50% 时告警"
+    }
+  },
+  "metrics": {
+    "description": "统计指标定义",
+    "campaign_level": {
+      "reply_rate": {
+        "formula": "replied_count / sent_count",
+        "description": "回复率",
+        "target": 0.15,
+        "alert_if_below": 0.05
+      },
+      "conversion_rate": {
+        "formula": "converted_count / sent_count",
+        "description": "转化率",
+        "target": 0.03,
+        "alert_if_below": 0.01
+      },
+      "avg_response_time": {
+        "formula": "SUM(reply_timestamp - sent_timestamp) / replied_count",
+        "description": "平均响应时间（小时）",
+        "unit": "hours"
+      },
+      "open_rate": {
+        "formula": "opened_count / sent_count",
+        "description": "打开率（需像素追踪）",
+        "target": 0.4,
+        "alert_if_below": 0.2
+      },
+      "bounce_rate": {
+        "formula": "bounced_count / sent_count",
+        "description": "退信率",
+        "alert_if_above": 0.05
+      }
+    },
+    "template_performance": {
+      "metrics": [
+        "reply_rate",
+        "conversion_rate",
+        "open_rate"
+      ],
+      "comparison_basis": "template_id",
+      "min_sample_size": 50,
+      "description": "按模板 ID 对比性能指标"
+    },
+    "sales_owner_performance": {
+      "metrics": [
+        "reply_rate",
+        "conversion_rate",
+        "avg_response_time"
+      ],
+      "comparison_basis": "sales_owner",
+      "description": "按销售人员对比性能指标"
+    },
+    "time_series": {
+      "granularity": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "metrics": [
+        "sent_count",
+        "replied_count",
+        "converted_count"
+      ],
+      "description": "时间序列趋势分析"
+    }
+  },
+  "ab_testing": {
+    "description": "A/B 测试配置字段",
+    "test_config": {
+      "variant_a": {
+        "template_id": "string",
+        "subject_pattern": "string",
+        "send_time": "string",
+        "description": "对照组配置"
+      },
+      "variant_b": {
+        "template_id": "string",
+        "subject_pattern": "string",
+        "send_time": "string",
+        "description": "实验组配置"
+      },
+      "sample_size": {
+        "type": "integer",
+        "description": "每组样本数量",
+        "min": 100,
+        "recommended": 500
+      },
+      "split_ratio": {
+        "type": "object",
+        "properties": {
+          "variant_a": {
+            "type": "number",
+            "default": 0.5
+          },
+          "variant_b": {
+            "type": "number",
+            "default": 0.5
+          }
+        },
+        "description": "流量分配比例"
+      },
+      "success_metric": {
+        "type": "string",
+        "enum": [
+          "reply_rate",
+          "conversion_rate",
+          "open_rate"
+        ],
+        "default": "reply_rate",
+        "description": "成功判定指标"
+      },
+      "statistical_significance": {
+        "type": "number",
+        "default": 0.95,
+        "description": "统计显著性水平（置信度）"
+      },
+      "min_detectable_effect": {
+        "type": "number",
+        "default": 0.1,
+        "description": "最小可检测效应（10% 提升）"
+      }
+    },
+    "test_results": {
+      "fields": {
+        "test_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "variant_a_metrics": {
+          "type": "object"
+        },
+        "variant_b_metrics": {
+          "type": "object"
+        },
+        "winner": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "inconclusive"
+          ]
+        },
+        "p_value": {
+          "type": "number"
+        },
+        "confidence_interval": {
+          "type": "object"
+        },
+        "recommendation": {
+          "type": "string"
+        }
+      }
+    },
+    "test_groups": [
+      {
+        "test_id": "test-2026-03-24-01",
+        "name": "高效模板特征验证：template-intro-v1",
+        "hypothesis": "template-intro-v1 的高回复率源于其low_personalization特征",
+        "variant_a": {
+          "description": "对照组：当前低效模板",
+          "template_id": "template-intro-v2"
+        },
+        "variant_b": {
+          "description": "实验组：高效模板特征",
+          "template_id": "template-intro-v1"
+        },
+        "success_metric": "reply_rate",
+        "sample_size": 100,
+        "split_ratio": {
+          "variant_a": 0.5,
+          "variant_b": 0.5
+        },
+        "statistical_significance": 0.95,
+        "status": "recommended",
+        "priority": "high",
+        "created_at": "2026-03-24T07:37:45.488Z"
+      }
+    ]
+  },
+  "data_retention": {
+    "sent_records": "365_days",
+    "reply_tracking": "365_days",
+    "aggregated_metrics": "indefinite",
+    "ab_test_results": "indefinite",
+    "description": "数据保留策略"
+  },
+  "integrations": {
+    "task_001_email_system": {
+      "description": "对接 email-smart-reply 模板系统",
+      "template_sync": true,
+      "send_trigger": true
+    },
+    "task_002_okki_sync": {
+      "description": "对接 okki-email-sync 跟进记录",
+      "contact_sync": true,
+      "reply_classification_sync": true
+    },
+    "obsidian_knowledge_base": {
+      "description": "分析报告存入 Obsidian 知识库",
+      "weekly_report": true,
+      "monthly_report": true
+    }
+  }
+}

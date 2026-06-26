@@ -1,35 +1,25 @@
 ---
-name: "Methods Section Reviewer"
-description: "Review the structure, tense, voice, and details of the Methods section in academic papers"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/methods-reviewer"
-sourceUrl: "https://clawhub.ai/skills/methods-reviewer"
+name: methods-reviewer
+description: Review the structure, tense, voice, and details of the Methods section in academic papers
+version: 1.0.0
+author: qiuxin-bit
 ---
 
 # Methods Section Reviewer
 
-> Review the structure, tense, voice, and details of the Methods section in academic papers
+## Description
+Review the Methods section of academic papers and output structured revision suggestions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/methods-reviewer`
-- **Source URL:** [https://clawhub.ai/skills/methods-reviewer](https://clawhub.ai/skills/methods-reviewer)
+## Analysis Dimensions
+1. Structural completeness
+2. Tense usage
+3. Voice appropriateness
+4. Detail sufficiency
+5. Justification
+6. Problem handling
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/methods-reviewer
-```
+## Output Format
+- Overall evaluation
+- Sentence-by-sentence analysis table
+- Structural completeness score
+- Revised full text

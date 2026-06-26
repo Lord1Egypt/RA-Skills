@@ -1,0 +1,36 @@
+{
+  "name": "cocktail-boy",
+  "version": "1.0.0",
+  "description": "你的私人调酒师 🍸 - 根据用户需求提供鸡尾酒推荐、配方查询和调制指南。",
+  "author": "主人",
+  "source": "openclaw-workspace",
+  "type": "cli",
+  "commands": [
+    {
+      "name": "cocktail",
+      "description": "查询特定鸡尾酒配方",
+      "pattern": "/cocktail [酒名]"
+    },
+    {
+      "name": "search-ingredients",
+      "description": "搜索含某原料的鸡尾酒",
+      "pattern": "/search-ingredients [原料名]"
+    },
+    {
+      "name": "recommend",
+      "description": "推荐随机鸡尾酒",
+      "pattern": "/recommend"
+    },
+    {
+      "name": "scene",
+      "description": "按场景推荐鸡尾酒",
+      "pattern": "/scene [场景描述]"
+    }
+  ],
+  "files": {
+    "skill": "SKILL.md",
+    "main": "scripts/cocktail-boy"
+  },
+  "dependencies": [],
+  "location": "~/.openclaw/workspace/skills/cocktail-boy"
+}

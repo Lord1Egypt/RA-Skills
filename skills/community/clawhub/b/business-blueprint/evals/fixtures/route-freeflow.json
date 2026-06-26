@@ -1,0 +1,10 @@
+{
+  "meta": {"title": "Generic Freeflow"},
+  "library": {
+    "capabilities": [{"id": "cap-1", "name": "Capability"}],
+    "actors": [],
+    "flowSteps": [],
+    "systems": [{"id": "sys-1", "name": "System"}]
+  },
+  "relations": []
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@redwakame-skill/openclaw-continuity",
+  "version": "2.0.21",
+  "private": false,
+  "description": "OpenClaw Continuity is a time-aware continuity and follow-up skill package with /new carryover, staged memory, tracked events, natural-language setting changes, and structured writeback.",
+  "author": {
+    "name": "OpenClaw Continuity Maintainers",
+    "email": "adarobot666@gmail.com",
+    "url": "https://github.com/redwakame/openclaw-continuity"
+  },
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redwakame/openclaw-continuity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redwakame/openclaw-continuity/issues"
+  },
+  "homepage": "https://github.com/redwakame/openclaw-continuity#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "README.md",
+    "SKILL.md",
+    "AUDIT.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "_meta.json",
+    "config.schema.json",
+    "requirements.txt",
+    "scripts/event_store.py",
+    "scripts/file_output_sop.py",
+    "scripts/followup_skill_harness.py",
+    "scripts/install_local.sh",
+    "scripts/personal_hooks.py",
+    "scripts/proactive_control.py",
+    "scripts/semantic_config.py",
+    "assets",
+    "docs",
+    "examples",
+    "references",
+    "validation"
+  ],
+  "keywords": [
+    "openclaw",
+    "skill",
+    "continuity",
+    "follow-up",
+    "memory",
+    "agent",
+    "v2",
+    "onboarding",
+    "guided-settings",
+    "carryover"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "name": "@muhaven/openclaw-skill",
+  "version": "0.1.0",
+  "description": "OpenClaw skill bundling a curated subset of @muhaven/mcp for the muhaven-rwa-skill ClawHub publish. Three-tier confirmation surface (Telegram inline / Mini App OTP / dashboard passkey deep-link).",
+  "type": "module",
+  "private": true,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "muhaven-rwa-skill": "./bin/muhaven-rwa-skill.cjs"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "manifest.json",
+    "config.json",
+    "SKILL.md",
+    "README.md"
+  ],
+  "dependencies": {
+    "@muhaven/mcp": "0.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "rimraf": "^5.0.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "claude-skill",
+    "fhe",
+    "fhenix",
+    "rwa",
+    "muhaven",
+    "telegram-bot"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "dev": "MUHAVEN_DEV_BUILD=1 tsup --watch",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "verify-subset": "tsx scripts/verify-subset.ts"
+  }
+}

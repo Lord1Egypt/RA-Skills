@@ -1,0 +1,5 @@
+
+[dev]
+build>=1.2.2
+pytest>=8.2
+ruff>=0.6.9

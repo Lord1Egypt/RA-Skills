@@ -1,0 +1,20 @@
+{
+ "name": "book-companion-v3",
+ "version": "3.0.0",
+ "description": "100% 本地化读书伴侣 - 隐私优先的阅读陪伴与情绪支持",
+ "author": "ai-innopower-refactored",
+ "data_policy": "local_only",
+ "memory": true,
+ "always": false,
+ "scheduled_tasks": false,
+ "permissions": {
+ "read": ["data/", "references/"],
+ "write": ["data/"],
+ "network": false,
+ "external_scripts": false
+ },
+ "warnings": [
+ "本 Skill 以明文形式存储阅读历史、情绪日志、暗号与纪念日",
+ "如需加密存储，请自行对 data/目录进行加密"
+ ]
+}

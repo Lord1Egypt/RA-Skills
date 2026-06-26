@@ -1,0 +1,15 @@
+{
+  "name": "baoyu-skills",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node --import tsx --test",
+    "test:coverage": "node --import tsx --experimental-test-coverage --test"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.5"
+  }
+}

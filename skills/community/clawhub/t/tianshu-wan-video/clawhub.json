@@ -1,0 +1,10 @@
+{
+  "name": "Tianshu Wan Video",
+  "tagline": "通义万相 2.6 视频生成，Node.js 实现",
+  "description": "Generate videos with Alibaba Qwen Wan 2.6. Text-to-video and image-to-video. Node.js implementation, no Python required.",
+  "category": "utility",
+  "tags": ["video", "通义万相", "dashscope", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

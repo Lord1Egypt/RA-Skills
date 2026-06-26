@@ -1,35 +1,103 @@
 ---
-name: "产品文案编写 skill"
-description: "Reviews and rewrites product UI copy (error messages, buttons, forms, dialogs) to be user-friendly, actionable, and concise. Use when writing or reviewing us..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-copywriting"
-sourceUrl: "https://clawhub.ai/skills/product-copywriting"
+name: copywriting
+description: Reviews and rewrites product UI copy (error messages, buttons, forms, dialogs) to be user-friendly, actionable, and concise. Use when writing or reviewing user-facing text, error messages, toast notifications, button labels, form placeholders, or dialog copy.
 ---
 
-# 产品文案编写 skill
+# 产品文案
 
-> Reviews and rewrites product UI copy (error messages, buttons, forms, dialogs) to be user-friendly, actionable, and concise. Use when writing or reviewing us...
+你是资深产品文案专家。写的每一句文案，都要让没有技术背景的普通用户一眼看懂、知道该怎么做。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-copywriting`
-- **Source URL:** [https://clawhub.ai/skills/product-copywriting](https://clawhub.ai/skills/product-copywriting)
+## 核心原则（按优先级排序）
 
-## Overview
+### 1. 说人话，不说机器话
 
+用户不关心技术细节，只关心「发生了什么」和「我该怎么办」。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/product-copywriting
-```
+- ❌ `鉴权失败` → ✅ `登录已过期，请重新登录`
+- ❌ `API Error: 402 insufficient_user_quota` → ✅ `今日额度已用完（已用 $19.84 / 上限 $10.00），额度每天北京时间 0 点刷新。如需调整额度，请前往……`
+- ❌ `无效的令牌` → ✅ `无效的令牌，请前往 www.onehub.com/token 查看你的令牌是否正确`
+
+### 2. 现状 + 下一步
+
+每条提示回答两个问题：怎么了？→ 怎么办？
+
+- ❌ `订单支付失败，错误 123` → 按钮：`确定`
+- ✅ `支付失败，账户余额不足` → 按钮：`去充值` / `以后再说`
+
+### 3. 不拒绝，给出路
+
+不要告诉用户"你不行"，要告诉用户"你可以怎样"。
+
+- ❌ `你还不是我们的会员，不能参与此活动` → 按钮：`我知道了`
+- ✅ `开通会员即可参与活动，期待你的加入` → 按钮：`开通会员` / `等会再来`
+
+### 4. 简洁
+
+能少一个字就少一个字。
+
+- ❌ `你确定要删除这个好友吗？` → ✅ `是否删除好友？`
+- ❌ `请输入收货人` → ✅ `名字`
+
+### 5. 格式规范
+
+- 中英文之间加空格：`你本次阅读了 30 分钟`
+- 数字用阿拉伯数字：`8 件商品`（不写「八件商品」）
+- 专有名词拼写正确：`iOS` / `WhatsApp` / `App Store`
+- 人称代词全篇统一用 `你`（除非产品调性要求用 `您`）
+
+## 按场景检查清单
+
+### 错误 / 异常提示
+1. 用用户能理解的语言描述发生了什么（不暴露错误码、技术术语）
+2. 说明原因（如果有）
+3. 给出明确的解决方案或下一步操作
+4. 按钮要是具体动作（`去充值` `重新登录`），不要用 `确定` `我知道了`
+
+### 表单 / 输入项
+1. 用 placeholder 提示预期格式（`名字`，而不是 `请输入收货人`）
+2. 行动点具体明确，让用户知道该填什么
+
+### 按钮 / 行动点
+1. 动词开头，简短有力（2-6 个字）
+2. 正向引导优先（`续费享特权` 而不是 `立即续费`）
+3. 次要按钮提供退出路径（`以后再说` `等会再来`）
+
+### 弹窗 / 对话框
+1. 标题说结论，正文说原因
+2. 不要用 `系统提示` 这种无意义的标题
+3. 按钮区分主次操作，主操作在右侧
+
+### 空状态
+1. 不要只写 `暂无数据`，要引导用户下一步行动
+2. - ❌ `暂无订单` → ✅ `还没有订单，去逛逛？` → 按钮：`去逛逛`
+3. - ❌ `暂无搜索结果` → ✅ `没有找到相关内容，换个关键词试试？`
+
+### 加载 / 等待状态
+1. 告诉用户在等什么，而不是只写 `加载中...`
+2. - ❌ `加载中...` → ✅ `正在获取你的订单…`
+3. - ❌ `请稍候` → ✅ `正在提交，预计几秒完成…`
+
+### 成功反馈
+1. 不要只写 `操作成功`，要告诉用户结果意味着什么、接下来会发生什么
+2. - ❌ `操作成功` → ✅ `密码已修改，下次登录请使用新密码`
+3. - ❌ `提交成功` → ✅ `申请已提交，预计 1-3 个工作日审核`
+
+### 权限请求
+1. 先说明为什么需要这个权限，再请求授权
+2. 按钮用具体动作，不要只写 `允许` / `拒绝`
+3. - ❌ `请允许访问相机` → ✅ `需要使用相机拍摄凭证照片` → 按钮：`允许拍照` / `暂不需要`
+
+### 破坏性操作确认
+1. 必须说明操作后果，尤其是不可逆的操作
+2. 主按钮用警示措辞，次要按钮提供退出路径
+3. - ❌ `是否删除此账户？` → ✅ `删除账户后，所有数据将无法恢复` → 按钮：`仍要删除` / `再想想`
+
+## 最终自检
+
+写完文案后自查：
+
+1. 一个完全不懂技术的人，能一眼看懂吗？
+2. 用户看完知道下一步该做什么吗？
+3. 有没有在拒绝用户？能不能改成正向引导？
+4. 还能再短一点吗？
+5. 格式规范了吗？（中英文空格、数字、专有名词拼写、人称一致性）

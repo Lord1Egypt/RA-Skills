@@ -1,35 +1,123 @@
 ---
-name: "Shuangseqiu Generator"
-description: "Generate Super Lotto (双色球) lottery numbers with Chinese metaphysics. Use when user asks for 双色球, 随机选号, 机选, 彩票, lottery numbers with 生日, 姓名, 生肖, 星座, 八字, 五行, 玄..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shuangseqiu-generator"
-sourceUrl: "https://clawhub.ai/skills/shuangseqiu-generator"
+name: shuangseqiu-generator
+description: "Generate Super Lotto (双色球) lottery numbers with Chinese metaphysics. Use when user asks for 双色球, 随机选号, 机选, 彩票, lottery numbers with 生日, 姓名, 生肖, 星座, 八字, 五行, 玄学, 运势, 幸运号. Generates personalized lucky numbers based on user's birthdate, name, Chinese zodiac, constellation, and fortune analysis."
+version: 1.0.0
+author: Mc-machchen
 ---
 
-# Shuangseqiu Generator
+# Shuangseqiu Generator (双色球玄学版)
 
-> Generate Super Lotto (双色球) lottery numbers with Chinese metaphysics. Use when user asks for 双色球, 随机选号, 机选, 彩票, lottery numbers with 生日, 姓名, 生肖, 星座, 八字, 五行, 玄...
+Generate personalized Super Lotto (双色球) lottery numbers using Chinese metaphysics.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shuangseqiu-generator`
-- **Source URL:** [https://clawhub.ai/skills/shuangseqiu-generator](https://clawhub.ai/skills/shuangseqiu-generator)
+## Input Parameters
 
-## Overview
+| 参数 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| `--birthday` / `-b` | ✅ 是 | 出生日期 | `1990-05-15` |
+| `--name` / `-n` | ❌ 否 | 姓名 | `张三` |
+| `--zodiac` / `-z` | ❌ 否 | 生肖 | `龙、虎、鼠` |
+| `--constellation` / `-c` | ❌ 否 | 星座 | `白羊座、天蝎座` |
+| `--count` / `-k` | ❌ 否 | 生成组数 | `1-10` |
 
+## How It Works
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 玄学能量计算
+- **八字五行**: 根据生日计算天干地支和五行属性
+- **生肖**: 根据出生年获取生肖，叠加生肖幸运数
+- **星座**: 根据出生日期确定星座，叠加星座幸运数
+- **姓名**: 如果提供，用姓名Unicode能量初始化种子
+
+### 2. 加权随机算法
+红球生成时，对以下数字加权：
+- 🐾 生肖幸运数: +3权重
+- ✨ 星座幸运数: +2权重
+- 🧭 五行幸运数: +2权重
+- ⭐ 运势加成: 根据运势等级额外加权
+
+蓝球生成类似，但基于星座和五行蓝球幸运数。
+
+### 3. 运势分析
+- 计算1-5星运势等级
+- 指引吉利方位和幸运颜色
+- 给出玄学小贴士
+
+## Usage Examples
+
+### 基本用法（只需生日）
 ```bash
-hermes skills install clawhub/shuangseqiu-generator
+python scripts/generate.py -b 1990-05-15
 ```
+
+### 带姓名
+```bash
+python scripts/generate.py -b 1990-05-15 -n 张三
+```
+
+### 带生肖
+```bash
+python scripts/generate.py -b 1990-05-15 -z 龙
+```
+
+### 完整参数
+```bash
+python scripts/generate.py -b 1990-05-15 -n 李四 -z 虎 -c 天蝎座 -k 3
+```
+
+### 通过AI调用
+当用户说以下内容时触发：
+- "生成双色球号码"
+- "机选一注彩票"
+- "根据我的生日选号"
+- "算一下我的幸运彩票"
+- "八字/五行选号"
+- "生肖/星座幸运号"
+
+## Output Format
+
+```
+╔══════════════════════════════════════════════════════════╗
+║           🎰 双色球玄学能量号码 🎰                          ║
+╠══════════════════════════════════════════════════════════╣
+║  【张三】专属定制                                           ║
+╠══════════════════════════════════════════════════════════╣
+║  📅 生日: 1990年05月15日                                   ║
+║  🐾 生肖: 马  星座: 金牛座                                 ║
+║  🧭 五行: 火（丙午）                                       ║
+║  ⭐ 运势: ⭐⭐⭐ (3星)                                    ║
+║  🎨 幸运色: 红色  方位: 东                                 ║
+╚══════════════════════════════════════════════════════════╝
+
+🔮 第1组:
+   🔴 红球: 03 08 15 22 27 31
+   🔵 蓝球: 12
+
+✨ 【玄学指引】
+   今日运势良好，幸运指数攀升
+   往东方向走，遇见惊喜
+
+🍀 祝您好运常在，心想事成！
+```
+
+## Core Concepts
+
+### 五行幸运数
+| 五行 | 红球幸运数 |
+|------|-----------|
+| 金 | 4, 9, 14, 19, 24, 29 |
+| 木 | 1, 8, 13, 18, 23, 28 |
+| 水 | 6, 11, 16, 21, 26, 31 |
+| 火 | 2, 7, 12, 17, 22, 27, 32 |
+| 土 | 5, 10, 15, 20, 25, 30 |
+
+### 生肖幸运数
+每个生肖有5个专属幸运数，在红球生成时获得+3权重加成。
+
+### 星座幸运数
+每个星座有5个红球幸运数和专属蓝球幸运数。
+
+## 技术说明
+
+- 使用`hashlib.md5`结合用户信息生成确定性种子
+- 使用加权随机算法(`weighted_random_choice`)确保玄学特征
+- 相同输入永远产生相同号码（可重现）
+- 支持批量生成多组号码

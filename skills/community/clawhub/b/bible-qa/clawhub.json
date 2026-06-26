@@ -1,0 +1,11 @@
+{
+  "name": "Bible QA (OpenClaw Church)",
+  "tagline": "Answer Bible questions by passage, person, or theme with context and scripture references.",
+  "description": "Answers questions about a Bible passage, person, or topic with historical/literary background, key verses (cited with translation), and brief pastoral application. Interprets strictly by the text; labels 'Reference application / not direct scripture' where needed. Default: ESV, Evangelical; plain text output. For pastors, elders, and church teachers. Related: Sermon Outline, Pastoral Prayer, Church Announcement skills by OpenClaw Church.",
+  "category": "utility",
+  "tags": ["bible", "scripture", "bible qa", "verse", "exegesis", "study", "sermon prep", "church", "openclaw", "ministry", "pastor", "congregation"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free",
+  "homepage": "https://github.com/cheniOS/bible-church-ministry-skills"
+}

@@ -1,0 +1,16 @@
+{
+  "_comment": "RunningHub API Skill 默认配置",
+  "defaultStorage": "auto",
+  "defaultZipMode": "extract",
+  "defaultCloudProvider": "baidu",
+  "outputPath": "./output",
+  "maxConcurrent": 1,
+  "retry": {
+    "maxRetries": 3,
+    "maxWaitTime": 600,
+    "interval": 5
+  },
+  "logging": {
+    "level": "info"
+  }
+}

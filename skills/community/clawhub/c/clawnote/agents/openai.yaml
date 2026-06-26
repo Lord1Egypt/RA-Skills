@@ -1,0 +1,7 @@
+interface:
+  display_name: "Clawnote"
+  short_description: "Review-first Xiaohongshu ops for OpenClaw."
+  default_prompt: "Use $clawnote to create a Xiaohongshu draft workflow with review, approval, and exact publish steps."
+
+policy:
+  allow_implicit_invocation: true

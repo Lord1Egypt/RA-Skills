@@ -1,0 +1,5 @@
+interface:
+  display_name: "RAR Command Helper"
+  short_description: "Cross-platform rar/winrar compression and extraction with PATH repair and troubleshooting."
+  icon: "archive"
+  color: "#2563EB"

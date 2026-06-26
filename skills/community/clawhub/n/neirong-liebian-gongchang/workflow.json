@@ -1,0 +1,176 @@
+{
+  "name": "内容裂变工厂",
+  "version": "1.0.0",
+  "description": "小红书热点追踪 × 爆文生成 × 知识卡片 × 公众号发布全链路自动化",
+  "combo_id": "内容裂变工厂",
+
+  "inputs": {
+    "niche": {
+      "type": "string",
+      "default": "",
+      "description": "行业领域（如：科技、时尚、美食、职场），空则全品类"
+    },
+    "sources": {
+      "type": "object",
+      "default": {
+        "xiaohongshu": { "enabled": true, "limit": 10 },
+        "weibo": { "enabled": true, "limit": 10 },
+        "zhihu": { "enabled": true, "limit": 10 }
+      },
+      "description": "热点来源配置"
+    },
+    "card_styles": {
+      "type": "array",
+      "default": ["mac", "cyberpunk", "bauhaus"],
+      "description": "知识卡片风格列表：mac | cyberpunk | bauhaus"
+    },
+    "card_count": {
+      "type": "number",
+      "default": 3,
+      "description": "生成卡片数量"
+    },
+    "article_word_count": {
+      "type": "number",
+      "default": 3500,
+      "description": "文章目标字数（3000-5000）"
+    },
+    "feishu_folder": {
+      "type": "string",
+      "default": "",
+      "description": "飞书目标文件夹 token（可选）"
+    },
+    "draft": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否仅生成草稿（不发布存档）"
+    },
+    "topic": {
+      "type": "string",
+      "default": "",
+      "description": "指定创作话题（空则从热点中自动选择）"
+    }
+  },
+
+  "steps": [
+    {
+      "id": "step1_fetch",
+      "name": "抓取多平台热点",
+      "skill": "Agent-Reach",
+      "input": {
+        "action": "search",
+        "query": "小红书热搜微博知乎热点 ${inputs.niche}",
+        "source": "xiaohongshu,weibo,zhihu"
+      },
+      "output": {
+        "trending_data": "${step1.trending_raw}",
+        "platforms": "${step1.platforms}"
+      }
+    },
+    {
+      "id": "step2_analyze",
+      "name": "AI 热点分析与选题",
+      "skill": "summarize",
+      "input": {
+        "url": "",
+        "path": "${step1.trending_data}",
+        "tasks": [
+          "analyze_trending_topics",
+          "score_topic_viral_potential",
+          "suggest_content_angles",
+          "rank_topics_by_value"
+        ],
+        "outputFormat": "structured",
+        "maxChars": 50000
+      },
+      "output": {
+        "analysis": "${step2.analysis}",
+        "top_topics": "${step2.topics}",
+        "angles": "${step2.angles}",
+        "top_topic": "${step2.top_topic}"
+      }
+    },
+    {
+      "id": "step3_cards",
+      "name": "生成知识卡片",
+      "skill": "card-renderer",
+      "input": {
+        "topics": "${step2.top_topics}",
+        "styles": "${inputs.card_styles}",
+        "count": "${inputs.card_count}",
+        "niche": "${inputs.niche}"
+      },
+      "output": {
+        "cards": "${step3.card_urls[]}",
+        "primary_card": "${step3.primary_card}"
+      }
+    },
+    {
+      "id": "step4_article",
+      "name": "生成公众号文章",
+      "skill": "wechat-article-pro",
+      "input": {
+        "topic": "${inputs.topic || step2.top_topic}",
+        "angles": "${step2.angles}",
+        "style": "公众号深度文章风格，参考刘润写作风格",
+        "wordCount": "${inputs.article_word_count}",
+        "include_cards": true,
+        "card_urls": "${step3.cards}",
+        "niche": "${inputs.niche}",
+        "generateImages": false
+      },
+      "output": {
+        "article": "${step4.article_md}",
+        "title": "${step4.title}"
+      }
+    },
+    {
+      "id": "step5_archive",
+      "name": "发布存档至飞书",
+      "skill": "feishu_doc",
+      "condition": "!${inputs.draft}",
+      "input": {
+        "action": "create",
+        "title": "内容裂变 | ${step4.title} | ${DATE}",
+        "content": "# ${step4.title}\n\n> 选题来源：${step2.top_topic}\n\n---\n\n${step4.article_md}\n\n---\n\n## 📸 知识卡片\n\n![卡片1](${step3.cards[0]})\n![卡片2](${step3.cards[1]})\n![卡片3](${step3.cards[2]})\n\n---\n*由内容裂变工厂自动生成 | ${DATE}*",
+        "folder_token": "${inputs.feishu_folder}",
+        "grant_to_requester": true
+      },
+      "output": {
+        "doc_url": "${step5.docUrl}",
+        "doc_id": "${step5.docId}"
+      }
+    }
+  ],
+
+  "output": {
+    "doc_url": "${step5.doc_url}",
+    "doc_id": "${step5.doc_id}",
+    "article_title": "${step4.title}",
+    "article_content": "${step4.article_md}",
+    "knowledge_cards": "${step3.cards}",
+    "top_topic": "${step2.top_topic}",
+    "analysis_summary": "${step2.analysis}",
+    "platforms_covered": "${step1.platforms}"
+  },
+
+  "error_handling": {
+    "retry": {
+      "max_attempts": 2,
+      "delay_ms": 5000
+    },
+    "fallback": {
+      "step1": "使用 clawhub trending API 备用数据源",
+      "step2": "返回原始内容排序，不做 AI 分析",
+      "step3": "跳过卡片生成，继续生成文章",
+      "step5": "输出 markdown 内容，不存档"
+    }
+  },
+
+  "metadata": {
+    "author": "openclaw",
+    "created": "2026-04-29",
+    "tags": ["xiaohongshu", "内容创作", "热点追踪", "知识卡片", "公众号", "自动化"],
+    "category": "AI",
+    "skills_count": 5
+  }
+}

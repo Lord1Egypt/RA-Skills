@@ -1,0 +1,12 @@
+{
+  "name": "Component & API Design (组件与 API 设计)",
+  "tagline": "设计易用、可扩展、易维护的 React/Vue 组件 API 与文件结构",
+  "description": "面向组件与 API 设计的技能：职责单一、Props 设计（命名/类型/可控与不可控）、扩展方式（children/slots/className/透传）、事件与回调规范、文件与目录结构。适用于设计组件、封装组件、定义 props/slots/events，输出组件设计说明与使用示例。",
+  "category": "development",
+  "tags": ["react", "vue", "component", "api-design", "props", "组件", "封装"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

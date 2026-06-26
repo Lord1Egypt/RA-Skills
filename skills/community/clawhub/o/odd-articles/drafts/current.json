@@ -1,0 +1,132 @@
+﻿{
+  "topic": "用 oh-my-openagent + OddTTS 从0实现有声书功能 - 全记录",
+  "materials": [
+    {
+      "time": "2026-04-05",
+      "content": "目标：用 OddTTS（语音合成API）+ oh-my-openagent（AI编程框架），实现一个完整的有声书功能，支持长文本分段朗读、音色选择、语速调节、进度保存",
+      "type": "需求定义",
+      "context": "项目目标"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "OddTTS 项目信息：oddmeta/oddtts，Python项目，TTS API封装，支持多引擎（Edge TTS、MeloTTS、Kokoro、OpenAI TTS），兼容OpenAI API格式，MIT License，v1.2.5",
+      "type": "技术调研",
+      "context": "GitHub + PyPI"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "OddTTS 支持的引擎：1) Kokoro - 82M参数，纯CPU快，支持8种音色，中英混合 2) MeloTTS - 轻量级，CPU可跑 3) Edge TTS - 微软云端，效果好但需联网 4) OpenAI TTS - 云端API",
+      "type": "技术调研",
+      "context": "博客园文章"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "核心挑战1：长文本分段 - TTS API通常有单次请求字数限制（通常2000-4000字符），需要智能分段（按句子边界切分，保持语义完整）",
+      "type": "技术挑战",
+      "context": "问题识别"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "核心挑战2：进度保存 - 有声书时长可能1小时+，需要在中断后能从断点继续，需要保存已生成的音频片段和当前进度",
+      "type": "技术挑战",
+      "context": "问题识别"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "核心挑战3：音频拼接 - 分段生成的音频需要按顺序拼接成一个完整文件，使用FFmpeg处理",
+      "type": "技术挑战",
+      "context": "问题识别"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "oh-my-openagent 实现复杂项目的工作流：1) 用 Sisyphus 编排 2) Prometheus 制定计划 3) Explore 探索代码库 4) 执行 + 调试 5) 代码审查",
+      "type": "实现方案",
+      "context": "技能文档"
+    },
+    {
+      "time": "2026-04-05",
+      "content": "技术方案设计：1) FastAPI 构建 Web 服务 2) 使用 nltk/re 模块做智能分段 3) JSON 文件保存进度 4) pydub/ffmpeg 拼接音频 5) RESTful API 设计",
+      "type": "技术方案",
+      "context": "架构设计"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "FFmpeg 基础变调：asetrate 改变采样率调整音调 + aresample 重采样保持音长不变。示例：ffmpeg -i input.mp3 -af asetrate=44100*1.2,aresample=44100 output.mp3",
+      "type": "技术调研",
+      "context": "技术文档"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "FFmpeg 保持时长变调：结合 atempo 保持原始时长。升调：asetrate*2 + atempo*0.5；降调：asetrate*0.5 + atempo*2",
+      "type": "技术调研",
+      "context": "Stack Overflow"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "FFmpeg 常用变声效果库：男变女(asetrate*1.4)、女变男(asetrate*0.7)、卡通音(asetrate*2 + atempo*0.5)、机器人声(afftfilt)、低沉声(+echo)",
+      "type": "技术调研",
+      "context": "技术汇总"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "Rubberband 插件：更高质量的变调，支持 semitone 单位。安装：sudo apt install rubberband-utils。使用：ffmpeg -i input.mp3 -af rubberband=pitch=2.0 output.mp3",
+      "type": "技术调研",
+      "context": "Medium 教程"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "OddTTS 场景应用：1) TTS 后处理变声 2) Voice Clone 预处理调整音频格式 3) 多语言音色风格匹配",
+      "type": "实现方案",
+      "context": "项目需求"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "变声技术应用场景：语音客服标准化、有声书多角色配音、视频配音匹配角色年龄性别、游戏NPC语音变体生成",
+      "type": "场景分析",
+      "context": "市场需求"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "开源变声项目参考：GPT-SoVITS(5分钟克隆)、OpenVoice(即时克隆MIT)、Chatterbox(本地实时MLX)、XTTS-v2(10秒克隆16语言)",
+      "type": "技术调研",
+      "context": "GitHub Topics"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "FFmpeg 性能数据：asetrate/atempo 为实时处理（1x），10分钟音频约10秒处理完成；Rubberband 质量更好但耗时增加约2-3倍",
+      "type": "性能数据",
+      "context": "实测经验"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "CPU 性能参考（FFmpeg 编码）：i9-14900K 约 80 FPS，i7-14700K 约 70 FPS，i5-14600K 约 56 FPS，AMD Ryzen 7 780X3D 约 62 FPS（音频处理比视频更快）",
+      "type": "性能数据",
+      "context": "OpenBenchmarking.org"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "FFmpeg 批量处理优化：GNU Parallel + 8核CPU，可实现7.3倍加速。500个WAV文件用时从12.7分钟降至1.5分钟（Intel i7-11800H）",
+      "type": "性能数据",
+      "context": "阿里技术"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "FFmpeg atempo 限制：范围0.5-100，超过2倍需链多个atempo filter。asetrate 改变采样率，atempo 调整速度不影响音调",
+      "type": "技术细节",
+      "context": "FFmpeg 文档"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "Rubberband 两种引擎：R2（快速，默认）vs R3（高质量，CPU高2-3倍）。推荐：实时变声用R2，后处理用R3",
+      "type": "性能数据",
+      "context": "Debian Manpages"
+    },
+    {
+      "time": "2026-04-12",
+      "content": "常见PC配置处理时间估算：1分钟音频，基础变调(asetrate)约3-5秒，复合变调(atempo+asetrate)约5-8秒，Rubberband R3约15-20秒",
+      "type": "性能数据",
+      "context": "实测估算"
+    }
+  ],
+  "created": "2026-04-05"
+}

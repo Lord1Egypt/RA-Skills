@@ -1,0 +1,6 @@
+interface:
+  display_name: "PPTAgent 协作"
+  short_description: "面向 PPTAgent 仓库的生成、导出、预览与排障协作"
+  default_prompt: "Use $pptagent-collab to work on slide generation, export fidelity, preview behavior, or PPT versioning inside this repository."
+policy:
+  allow_implicit_invocation: true

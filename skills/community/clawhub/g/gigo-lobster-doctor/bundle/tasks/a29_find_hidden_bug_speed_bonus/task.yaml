@@ -1,0 +1,33 @@
+id: a29
+track: A
+title_zh: 大型项目隐蔽 bug + 速度奖励
+category: bug_fix
+difficulty: hard
+timeout_seconds: 600
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+  - claw
+evaluators:
+- type: pytest
+  weight: 1.0
+  target: tests/test_pricing.py
+  fail_to_pass:
+  - test_bulk_discount_threshold
+  - test_bulk_discount_edge
+  pass_to_pass:
+  - test_basic_price
+  - test_member_discount
+  - test_no_discount
+metadata:
+  estimated_minutes: 8
+  expected_tool_calls:
+  - Glob
+  - Read
+  - Edit
+  - Bash
+  speed_bonus:
+    under_60s: 10
+    under_120s: 5
+title_en: Find the hidden bug with a speed bonus

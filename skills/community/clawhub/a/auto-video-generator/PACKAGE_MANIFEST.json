@@ -1,0 +1,65 @@
+{
+  "package": {
+    "name": "auto-video-generator",
+    "version": "2.0.0",
+    "type": "skill",
+    "created_at": "2026-05-30T13:57:59.781121",
+    "source_directory": "D:\\cuihy\\vibecoding_projects\\tj_buscost"
+  },
+  "statistics": {
+    "total_files": 78,
+    "total_directories": 1,
+    "total_size_bytes": 994276,
+    "total_size_human": "971.0 KB"
+  },
+  "contents": {
+    "core_files": 10,
+    "python_modules": 9,
+    "templates": 3
+  },
+  "included_optional": [
+    {
+      "type": "directory",
+      "path": "web-ui",
+      "description": "Web UI Interface"
+    },
+    {
+      "type": "directory",
+      "path": "vscode-extension",
+      "description": "VS Code Extension"
+    },
+    {
+      "type": "directory",
+      "path": "docs",
+      "description": "Documentation"
+    },
+    {
+      "type": "directory",
+      "path": ".github/workflows",
+      "description": "CI/CD Workflows"
+    },
+    {
+      "type": "file",
+      "path": "config.example.yaml",
+      "description": "Example Configuration"
+    },
+    {
+      "type": "file",
+      "path": "CHANGELOG.md",
+      "description": "Changelog"
+    },
+    {
+      "type": "file",
+      "path": "contributing.md",
+      "description": "Contributing Guide"
+    },
+    {
+      "type": "file",
+      "path": "CI_CD_DOCUMENTATION.md",
+      "description": "CI/CD Documentation"
+    }
+  ],
+  "warnings": [],
+  "errors": [],
+  "validation_status": "SUCCESS"
+}

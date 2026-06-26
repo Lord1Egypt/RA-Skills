@@ -1,0 +1,14 @@
+{
+  "default": "kdniao",
+  "providers": {
+    "kdniao": {
+      "ebusiness_id": "",
+      "api_key": "",
+      "sandbox": false,
+      "request_type": "1002",
+      "api_url": "https://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx",
+      "sandbox_url": "http://sandboxapi.kdniao.com:8080/kdniaosandbox/gateway/exterfaceInvoke.json"
+    }
+  }
+}
+

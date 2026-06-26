@@ -1,0 +1,21 @@
+{
+  "name": "feishu-file-delivery",
+  "version": "1.0.1",
+  "description": "Deliver locally generated office files back into Feishu chats as real attachments.",
+  "author": "Dawei",
+  "homepage": "https://github.com/wd041216-bit/openclaw-feishu-file-delivery",
+  "metadata": {
+    "tags": [
+      "feishu",
+      "attachments",
+      "file-delivery",
+      "office",
+      "pptx",
+      "pdf"
+    ],
+    "categories": [
+      "Productivity",
+      "Document"
+    ]
+  }
+}

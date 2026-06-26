@@ -1,0 +1,41 @@
+{
+  "name": "zzz4ai-search-engine",
+  "engines": [
+    {
+      "name": "Bing CN",
+      "url": "https://cn.bing.com/search?q={keyword}&ensearch=0",
+      "region": "cn",
+      "description": "必应中国版-中文结果"
+    },
+    {
+      "name": "Bing INT",
+      "url": "https://cn.bing.com/search?q={keyword}&ensearch=1",
+      "region": "cn",
+      "description": "必应中国版-英文结果"
+    },
+    {
+      "name": "Bing Academic",
+      "url": "https://cn.bing.com/academic/search?q={keyword}",
+      "region": "cn",
+      "description": "必应学术搜索"
+    },
+    {
+      "name": "360",
+      "url": "https://www.so.com/s?q={keyword}",
+      "region": "cn",
+      "description": "360搜索-安全搜索"
+    },
+    {
+      "name": "Toutiao",
+      "url": "https://www.toutiao.com/search/?keyword={keyword}",
+      "region": "cn",
+      "description": "头条搜索-新闻资讯丰富"
+    },
+    {
+      "name": "Bilibili",
+      "url": "https://search.bilibili.com/all?keyword={keyword}",
+      "region": "cn",
+      "description": "B站搜索-视频教程内容"
+    }
+  ]
+}

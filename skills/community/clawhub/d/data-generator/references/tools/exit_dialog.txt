@@ -1,0 +1,3 @@
+**退出对话工具 exit_dialog**
+   - 工具调用格式：<tool_call>{"tool_name":"exit_dialog"}</tool_call>
+   - 包含退出意图时调用，如：再见、拜拜、退出、退下、退出语音、闭嘴、关闭语音等。

@@ -1,0 +1,21 @@
+name: education_certificate_ocr
+version: 1.0.0
+description: 支持识别各类毕业证书，提取姓名、证书编号、专业、院校名称及毕业时间等。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/education_certificate_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests

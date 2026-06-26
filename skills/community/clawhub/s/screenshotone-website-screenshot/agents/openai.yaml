@@ -1,0 +1,7 @@
+interface:
+  display_name: "ScreenshotOne Screenshot"
+  short_description: "Take website screenshots with curl"
+  default_prompt: "Use $screenshotone-website-screenshot to capture a website screenshot with ScreenshotOne via curl."
+
+policy:
+  allow_implicit_invocation: true

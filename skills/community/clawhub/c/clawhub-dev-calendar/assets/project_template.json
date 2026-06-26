@@ -1,0 +1,12 @@
+{
+  "name": "my-clawhub-skill",
+  "start": "2026-04-01T09:00:00-06:00",
+  "milestones": [
+    {"name": "Init", "hours": 2},
+    {"name": "Research/Plan", "hours": 4},
+    {"name": "Develop", "hours": 6},
+    {"name": "SKILL.md", "hours": 4},
+    {"name": "Test", "hours": 3},
+    {"name": "Publish", "hours": 1}
+  ]
+}

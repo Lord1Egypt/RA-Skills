@@ -1,35 +1,31 @@
 ---
-name: "Weekly Report"
-description: "周报生成器，自动汇总本周工作"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-report"
-sourceUrl: "https://clawhub.ai/skills/weekly-report"
+name: weekly-report
+version: 1.0.0
+description: 周报生成器，自动汇总本周工作
+author: 黄豆豆
+tags: [周报, 效率, 办公]
 ---
 
-# Weekly Report
+# weekly-report - 周报生成器
 
-> 周报生成器，自动汇总本周工作
+自动汇总本周工作，生成格式周报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-report`
-- **Source URL:** [https://clawhub.ai/skills/weekly-report](https://clawhub.ai/skills/weekly-report)
+## 功能
+1. **生成周报** - 自动汇总本周完成的任务
+2. **本周总结** - 简洁的周报格式
+3. **自定义模板** - 支持自定义周报格式
 
-## Overview
+## 触发关键词
+- 周报
+- 总结
+- 本周总结
+- 生成周报
 
+## 数据存储
+- tasks.json - 任务列表
+- reports.json - 历史周报
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-report
-```
+## 使用示例
+- "生成周报"
+- "本周总结"
+- "周报"

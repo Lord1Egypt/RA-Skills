@@ -1,0 +1,16 @@
+{
+  "name": "filechat",
+  "version": "1.0.0",
+  "description": "Google Drive RAG FileChat Skill",
+  "main": "sync.js",
+  "scripts": {
+    "sync": "node sync.js",
+    "query": "node query.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.2.1",
+    "chromadb": "^1.8.1",
+    "pdf-parse": "^1.1.1",
+    "dotenv": "^16.4.5"
+  }
+}

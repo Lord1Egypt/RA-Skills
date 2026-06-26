@@ -1,0 +1,10 @@
+{
+  "name": "s2-memory-hook",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "A ghost crawler utility for S2-Silicon-Soul-OS. Passively scans local chat logs using an offset cursor (delta-sync), chunks conversations, and securely injects them into the OS hippocampus buffer.",
+  "tags": ["Utility", "Memory", "Crawler", "Automation", "Delta-Sync"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

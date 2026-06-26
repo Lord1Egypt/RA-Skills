@@ -1,0 +1,40 @@
+{
+  "name": "@frontiercompute/openclaw-zap1",
+  "version": "0.2.1",
+  "type": "module",
+  "description": "Zcash attestation layer for OpenClaw agents. 8 hooks, 14 tools, policy enforcement, session attestation, proof checkpoints.",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/",
+    "openclaw.plugin.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "author": "zk_nd3r",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Frontier-Compute/openclaw-zap1"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.4.2"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "openclaw": "*",
+    "typescript": "^5.4",
+    "vitest": "^2.0"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34"
+  },
+  "types": "./dist/index.d.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "skill_id": "pagepop-skill",
+  "package_version": "2026.05.07-r1",
+  "channel": "prod",
+  "build_sha": "dc0988c9e3d27d314f33830541f2689b432579a4",
+  "repo": "pagepop/skills",
+  "release_tag": "v0.0.4",
+  "published_at": "2026-05-07T15:55:56+00:00"
+}
+

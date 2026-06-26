@@ -1,0 +1,582 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Track Weibo hot search boards, keyword results, creator profiles, fan or follower graphs, and post or video detail endpoints through JustOneAPI.",
+  "displayName": "Weibo",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Weibo user Fans data, including profile metadata and verification signals, for audience analysis and influencer research.",
+      "method": "GET",
+      "operationId": "getFansV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number, starting with 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/weibo/get-fans/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Fans",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo user Followers data, including profile metadata and verification signals, for network analysis and creator research.",
+      "method": "GET",
+      "operationId": "getFollowersV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number, starting with 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/weibo/get-followers/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Followers",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo post Comments data, including text, authors, and timestamps, for feedback analysis.",
+      "method": "GET",
+      "operationId": "getWeiboPostCommentsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo post mid.",
+          "enumValues": [],
+          "location": "query",
+          "name": "mid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "TIME",
+          "description": "Sort order for the result set.\n\nAvailable Values:\n- `TIME`: Time\n- `HOT`: Hot",
+          "enumValues": [
+            "TIME",
+            "HOT"
+          ],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor returned by the previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "maxId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-post-comments/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Comments",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo user Profile data, including follower counts, verification status, and bio details, for creator research and account analysis.",
+      "method": "GET",
+      "operationId": "getUserProfileV3",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-user-detail/v3",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Profile",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo user Published Posts data, including text, media, and publish times, for account monitoring.",
+      "method": "GET",
+      "operationId": "getUserPublishedPostsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number, starting with 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor (since_id). Required if page > 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "sinceId",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-user-post/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Posts",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo user Video list data (waterfall), including pagination cursor for next page.",
+      "method": "GET",
+      "operationId": "getWeiboUserVideoListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination cursor returned by the previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cursor",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-user-video-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Video List",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo post Details data, including media, author metadata, and engagement counts, for post analysis, archiving, and campaign monitoring.",
+      "method": "GET",
+      "operationId": "getWeiboDetailsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo post ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/get-weibo-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Post Details",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo hot Search data, including ranking data, for trend monitoring, newsroom workflows, and topic discovery.",
+      "method": "GET",
+      "operationId": "hotSearchV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/hot-search/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Hot Search",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo keyword Search data, including authors, publish times, and engagement signals, for trend monitoring.",
+      "method": "GET",
+      "operationId": "searchAllV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search Keywords.",
+          "enumValues": [],
+          "location": "query",
+          "name": "q",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Start Day (yyyy-MM-dd).",
+          "enumValues": [],
+          "location": "query",
+          "name": "startDay",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Start Hour (0-23).",
+          "enumValues": [],
+          "location": "query",
+          "name": "startHour",
+          "required": true,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "End Day (yyyy-MM-dd).",
+          "enumValues": [],
+          "location": "query",
+          "name": "endDay",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "End Hour (0-23).",
+          "enumValues": [],
+          "location": "query",
+          "name": "endHour",
+          "required": true,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": false,
+          "description": "Hot sort, true for hot sort, false for time sort. Default is false.",
+          "enumValues": [],
+          "location": "query",
+          "name": "hotSort",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Contains filter for the result set.\n\nAvailable Values:\n- `ALL`: All\n- `PICTURE`: Has Picture\n- `VIDEO`: Has Video\n- `MUSIC`: Has Music\n- `LINK`: Has Link",
+          "enumValues": [
+            "ALL",
+            "PICTURE",
+            "VIDEO",
+            "MUSIC",
+            "LINK"
+          ],
+          "location": "query",
+          "name": "contains",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number, starting with 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/weibo/search-all/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Keyword Search",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo search User Published Posts data, including matched results, metadata, and ranking signals, for author research and historical content discovery.",
+      "method": "GET",
+      "operationId": "searchProfileV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo User ID (UID).",
+          "enumValues": [],
+          "location": "query",
+          "name": "uid",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search Keywords.",
+          "enumValues": [],
+          "location": "query",
+          "name": "q",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Start Day (yyyy-MM-dd).",
+          "enumValues": [],
+          "location": "query",
+          "name": "startDay",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "End Day (yyyy-MM-dd).",
+          "enumValues": [],
+          "location": "query",
+          "name": "endDay",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number, starting with 1.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/weibo/search-profile/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Search User Published Posts",
+      "tags": [
+        "Weibo"
+      ]
+    },
+    {
+      "description": "Get Weibo tV Video Details data, including media URLs, author details, and engagement counts, for video research, archiving, and performance analysis.",
+      "method": "GET",
+      "operationId": "tvComponentV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "API access token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Weibo video/object ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oid",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/weibo/tv-component/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "TV Video Details",
+      "tags": [
+        "Weibo"
+      ]
+    }
+  ],
+  "platformKey": "weibo",
+  "primaryTag": "Weibo",
+  "skillName": "justoneapi_weibo",
+  "slug": "justoneapi-weibo",
+  "sourceTitle": "OpenAPI definition"
+}

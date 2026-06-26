@@ -1,0 +1,5117 @@
+[
+  {
+    "name": "cubes_51852",
+    "type": "freeform",
+    "shape_idx": 1,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据块",
+      "模块",
+      "集群"
+    ],
+    "tags_en": [
+      "cubes",
+      "cluster",
+      "module"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "vintage-web-cam_76843",
+    "type": "freeform",
+    "shape_idx": 2,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "摄像头",
+      "监控",
+      "安防"
+    ],
+    "tags_en": [
+      "camera",
+      "surveillance",
+      "security"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "surveillance-camera_62957",
+    "type": "freeform",
+    "shape_idx": 3,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "摄像头",
+      "监控",
+      "安防"
+    ],
+    "tags_en": [
+      "camera",
+      "surveillance",
+      "security"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "iconfont-10459-4813181",
+    "type": "freeform",
+    "shape_idx": 4,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "solar-panels_62953",
+    "type": "freeform",
+    "shape_idx": 5,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "太阳能",
+      "新能源",
+      "光伏"
+    ],
+    "tags_en": [
+      "solar",
+      "energy",
+      "green"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "server_161984",
+    "type": "freeform",
+    "shape_idx": 6,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "servers_141215",
+    "type": "freeform",
+    "shape_idx": 7,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "puzzle_208761",
+    "type": "freeform",
+    "shape_idx": 8,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "拼图",
+      "模块",
+      "集成"
+    ],
+    "tags_en": [
+      "puzzle",
+      "module",
+      "integration"
+    ],
+    "category": "通用"
+  },
+  {
+    "name": "graphics-card_100310",
+    "type": "freeform",
+    "shape_idx": 9,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "显卡",
+      "GPU",
+      "图形处理"
+    ],
+    "tags_en": [
+      "gpu",
+      "graphics",
+      "video-card"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "computers_36035",
+    "type": "freeform",
+    "shape_idx": 10,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "wifi_155685",
+    "type": "freeform",
+    "shape_idx": 11,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "iconfont-1044-807853",
+    "type": "freeform",
+    "shape_idx": 12,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5650915",
+    "type": "freeform",
+    "shape_idx": 13,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11464-5383814",
+    "type": "freeform",
+    "shape_idx": 14,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "mouse_122218",
+    "type": "freeform",
+    "shape_idx": 15,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "鼠标",
+      "外设",
+      "输入"
+    ],
+    "tags_en": [
+      "mouse",
+      "input",
+      "peripheral"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "virtual-reality_207921",
+    "type": "freeform",
+    "shape_idx": 16,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "VR",
+      "虚拟现实",
+      "头显"
+    ],
+    "tags_en": [
+      "vr",
+      "virtual-reality",
+      "headset"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "virtual-reality_207914",
+    "type": "freeform",
+    "shape_idx": 17,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "VR",
+      "虚拟现实",
+      "头显"
+    ],
+    "tags_en": [
+      "vr",
+      "virtual-reality",
+      "headset"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "iconfont-10263-5041652",
+    "type": "freeform",
+    "shape_idx": 18,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "heavy-machinery-truck_63495",
+    "type": "freeform",
+    "shape_idx": 19,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "卡车",
+      "机械",
+      "运输"
+    ],
+    "tags_en": [
+      "truck",
+      "machinery",
+      "transport"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "databases-symbol-variant-for-interface_30673",
+    "type": "freeform",
+    "shape_idx": 20,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "stethoscope_291309",
+    "type": "freeform",
+    "shape_idx": 21,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "医疗",
+      "健康",
+      "急救"
+    ],
+    "tags_en": [
+      "medical",
+      "health",
+      "hospital"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "first-aid-kit_230218",
+    "type": "freeform",
+    "shape_idx": 22,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "医疗",
+      "健康",
+      "急救"
+    ],
+    "tags_en": [
+      "medical",
+      "health",
+      "hospital"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "cupboard_87908",
+    "type": "freeform",
+    "shape_idx": 23,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "机柜",
+      "设备柜",
+      "机房"
+    ],
+    "tags_en": [
+      "cabinet",
+      "rack",
+      "datacenter"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "server_151098",
+    "type": "freeform",
+    "shape_idx": 24,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151095",
+    "type": "freeform",
+    "shape_idx": 25,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151104",
+    "type": "freeform",
+    "shape_idx": 26,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151112",
+    "type": "freeform",
+    "shape_idx": 27,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151106",
+    "type": "freeform",
+    "shape_idx": 28,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151114",
+    "type": "freeform",
+    "shape_idx": 29,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151105",
+    "type": "freeform",
+    "shape_idx": 30,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151110",
+    "type": "freeform",
+    "shape_idx": 31,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151111",
+    "type": "freeform",
+    "shape_idx": 32,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151096",
+    "type": "freeform",
+    "shape_idx": 33,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151107",
+    "type": "freeform",
+    "shape_idx": 34,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151094",
+    "type": "freeform",
+    "shape_idx": 35,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151099",
+    "type": "freeform",
+    "shape_idx": 36,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151093",
+    "type": "freeform",
+    "shape_idx": 37,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151101",
+    "type": "freeform",
+    "shape_idx": 38,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151109",
+    "type": "freeform",
+    "shape_idx": 39,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151108",
+    "type": "freeform",
+    "shape_idx": 40,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151100",
+    "type": "freeform",
+    "shape_idx": 41,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151103",
+    "type": "freeform",
+    "shape_idx": 42,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_151097",
+    "type": "freeform",
+    "shape_idx": 43,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "server_149744",
+    "type": "freeform",
+    "shape_idx": 44,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "laptop_159382",
+    "type": "freeform",
+    "shape_idx": 45,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159386",
+    "type": "freeform",
+    "shape_idx": 46,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159467",
+    "type": "freeform",
+    "shape_idx": 47,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159383",
+    "type": "freeform",
+    "shape_idx": 48,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159385",
+    "type": "freeform",
+    "shape_idx": 49,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159390",
+    "type": "freeform",
+    "shape_idx": 50,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159391",
+    "type": "freeform",
+    "shape_idx": 51,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159394",
+    "type": "freeform",
+    "shape_idx": 52,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159411",
+    "type": "freeform",
+    "shape_idx": 53,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159407",
+    "type": "freeform",
+    "shape_idx": 54,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159389",
+    "type": "freeform",
+    "shape_idx": 55,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159392",
+    "type": "freeform",
+    "shape_idx": 56,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159395",
+    "type": "freeform",
+    "shape_idx": 57,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159409",
+    "type": "freeform",
+    "shape_idx": 58,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159413",
+    "type": "freeform",
+    "shape_idx": 59,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159387",
+    "type": "freeform",
+    "shape_idx": 60,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159412",
+    "type": "freeform",
+    "shape_idx": 61,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159408",
+    "type": "freeform",
+    "shape_idx": 62,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159388",
+    "type": "freeform",
+    "shape_idx": 63,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "database_151072",
+    "type": "freeform",
+    "shape_idx": 64,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151083",
+    "type": "freeform",
+    "shape_idx": 65,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151076",
+    "type": "freeform",
+    "shape_idx": 66,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151073",
+    "type": "freeform",
+    "shape_idx": 67,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151089",
+    "type": "freeform",
+    "shape_idx": 68,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151075",
+    "type": "freeform",
+    "shape_idx": 69,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151086",
+    "type": "freeform",
+    "shape_idx": 70,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151078",
+    "type": "freeform",
+    "shape_idx": 71,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151092",
+    "type": "freeform",
+    "shape_idx": 72,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151084",
+    "type": "freeform",
+    "shape_idx": 73,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151087",
+    "type": "freeform",
+    "shape_idx": 74,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151082",
+    "type": "freeform",
+    "shape_idx": 75,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151081",
+    "type": "freeform",
+    "shape_idx": 76,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151079",
+    "type": "freeform",
+    "shape_idx": 77,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151074",
+    "type": "freeform",
+    "shape_idx": 78,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151088",
+    "type": "freeform",
+    "shape_idx": 79,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151085",
+    "type": "freeform",
+    "shape_idx": 80,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151090",
+    "type": "freeform",
+    "shape_idx": 81,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "database_151071",
+    "type": "freeform",
+    "shape_idx": 82,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "数据库",
+      "存储",
+      "数据"
+    ],
+    "tags_en": [
+      "database",
+      "storage",
+      "data"
+    ],
+    "category": "数据库"
+  },
+  {
+    "name": "组合 356",
+    "type": "group",
+    "shape_idx": 83,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 357",
+    "type": "group",
+    "shape_idx": 84,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "laptop_159402",
+    "type": "freeform",
+    "shape_idx": 85,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159404",
+    "type": "freeform",
+    "shape_idx": 86,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159415",
+    "type": "freeform",
+    "shape_idx": 87,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159403",
+    "type": "freeform",
+    "shape_idx": 88,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159421",
+    "type": "freeform",
+    "shape_idx": 89,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159417",
+    "type": "freeform",
+    "shape_idx": 90,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159414",
+    "type": "freeform",
+    "shape_idx": 91,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159397",
+    "type": "freeform",
+    "shape_idx": 92,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "laptop_159410",
+    "type": "freeform",
+    "shape_idx": 93,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "组合 234",
+    "type": "group",
+    "shape_idx": 94,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 368",
+    "type": "group",
+    "shape_idx": 95,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 242",
+    "type": "group",
+    "shape_idx": 96,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "computer_159340",
+    "type": "freeform",
+    "shape_idx": 97,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159377",
+    "type": "freeform",
+    "shape_idx": 98,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159335",
+    "type": "freeform",
+    "shape_idx": 99,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159342",
+    "type": "freeform",
+    "shape_idx": 100,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159354",
+    "type": "freeform",
+    "shape_idx": 101,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159339",
+    "type": "freeform",
+    "shape_idx": 102,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159375",
+    "type": "freeform",
+    "shape_idx": 103,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159334",
+    "type": "freeform",
+    "shape_idx": 104,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159367",
+    "type": "freeform",
+    "shape_idx": 105,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159362",
+    "type": "freeform",
+    "shape_idx": 106,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159373",
+    "type": "freeform",
+    "shape_idx": 107,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159351",
+    "type": "freeform",
+    "shape_idx": 108,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159349",
+    "type": "freeform",
+    "shape_idx": 109,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159369",
+    "type": "freeform",
+    "shape_idx": 110,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159361",
+    "type": "freeform",
+    "shape_idx": 111,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159353",
+    "type": "freeform",
+    "shape_idx": 112,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159344",
+    "type": "freeform",
+    "shape_idx": 113,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "computer_159338",
+    "type": "freeform",
+    "shape_idx": 114,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "组合 381",
+    "type": "group",
+    "shape_idx": 115,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 380",
+    "type": "group",
+    "shape_idx": 116,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "usb-port_80881",
+    "type": "freeform",
+    "shape_idx": 117,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "USB",
+      "接口",
+      "外设"
+    ],
+    "tags_en": [
+      "usb",
+      "port",
+      "peripheral"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "sd-card_76752",
+    "type": "freeform",
+    "shape_idx": 118,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "硬盘",
+      "存储",
+      "SSD"
+    ],
+    "tags_en": [
+      "drive",
+      "storage",
+      "ssd"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "sound-card_100311",
+    "type": "freeform",
+    "shape_idx": 119,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "声卡",
+      "音频",
+      "硬件"
+    ],
+    "tags_en": [
+      "sound-card",
+      "audio",
+      "hardware"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "hard-drive_22820",
+    "type": "freeform",
+    "shape_idx": 120,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "硬盘",
+      "存储",
+      "SSD"
+    ],
+    "tags_en": [
+      "drive",
+      "storage",
+      "ssd"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "pci-card_31859",
+    "type": "freeform",
+    "shape_idx": 121,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "PCI卡",
+      "扩展卡",
+      "硬件"
+    ],
+    "tags_en": [
+      "pci",
+      "expansion",
+      "card"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "random-access-memory-chip_18033",
+    "type": "freeform",
+    "shape_idx": 122,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "video-card_141235",
+    "type": "freeform",
+    "shape_idx": 123,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "显卡",
+      "GPU",
+      "图形处理"
+    ],
+    "tags_en": [
+      "gpu",
+      "graphics",
+      "video-card"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "sound-card_141237",
+    "type": "freeform",
+    "shape_idx": 124,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "声卡",
+      "音频",
+      "硬件"
+    ],
+    "tags_en": [
+      "sound-card",
+      "audio",
+      "hardware"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "sound-card_337601",
+    "type": "freeform",
+    "shape_idx": 125,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "声卡",
+      "音频",
+      "硬件"
+    ],
+    "tags_en": [
+      "sound-card",
+      "audio",
+      "hardware"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "earphones_337629",
+    "type": "freeform",
+    "shape_idx": 126,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "耳机",
+      "音频",
+      "外设"
+    ],
+    "tags_en": [
+      "earphones",
+      "audio",
+      "peripheral"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "video-card_337599",
+    "type": "freeform",
+    "shape_idx": 127,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "显卡",
+      "GPU",
+      "图形处理"
+    ],
+    "tags_en": [
+      "gpu",
+      "graphics",
+      "video-card"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "fan_161875",
+    "type": "freeform",
+    "shape_idx": 128,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "风扇",
+      "散热",
+      "冷却"
+    ],
+    "tags_en": [
+      "fan",
+      "cooling",
+      "heat"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "square-processor_77616",
+    "type": "freeform",
+    "shape_idx": 129,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "rectangular-processor_77615",
+    "type": "freeform",
+    "shape_idx": 130,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "plug_159049",
+    "type": "freeform",
+    "shape_idx": 131,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "电源",
+      "插头",
+      "供电"
+    ],
+    "tags_en": [
+      "power",
+      "plug",
+      "supply"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "memory-card_120453",
+    "type": "freeform",
+    "shape_idx": 132,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "内存",
+      "存储",
+      "RAM"
+    ],
+    "tags_en": [
+      "ram",
+      "memory",
+      "storage"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "plug-in_94940",
+    "type": "freeform",
+    "shape_idx": 133,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "电源",
+      "插头",
+      "供电"
+    ],
+    "tags_en": [
+      "power",
+      "plug",
+      "supply"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "motherboard_141231",
+    "type": "freeform",
+    "shape_idx": 134,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "主板",
+      "电路板",
+      "硬件"
+    ],
+    "tags_en": [
+      "motherboard",
+      "board",
+      "hardware"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "microchip_161973",
+    "type": "freeform",
+    "shape_idx": 135,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "chip_87166",
+    "type": "freeform",
+    "shape_idx": 136,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "ram_99476",
+    "type": "freeform",
+    "shape_idx": 137,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "内存",
+      "存储",
+      "RAM"
+    ],
+    "tags_en": [
+      "ram",
+      "memory",
+      "storage"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "ram-memory_141230",
+    "type": "freeform",
+    "shape_idx": 138,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "内存",
+      "存储",
+      "RAM"
+    ],
+    "tags_en": [
+      "ram",
+      "memory",
+      "storage"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "gfx-card_99482",
+    "type": "freeform",
+    "shape_idx": 139,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "显卡",
+      "GPU",
+      "图形处理"
+    ],
+    "tags_en": [
+      "gpu",
+      "graphics",
+      "video-card"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "hard-drive_99485",
+    "type": "freeform",
+    "shape_idx": 140,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "硬盘",
+      "存储",
+      "SSD"
+    ],
+    "tags_en": [
+      "drive",
+      "storage",
+      "ssd"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "memory-card_107932",
+    "type": "freeform",
+    "shape_idx": 141,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "内存",
+      "存储",
+      "RAM"
+    ],
+    "tags_en": [
+      "ram",
+      "memory",
+      "storage"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "microchip_99466",
+    "type": "freeform",
+    "shape_idx": 142,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "microchip_99475",
+    "type": "freeform",
+    "shape_idx": 143,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "microchip_99465",
+    "type": "freeform",
+    "shape_idx": 144,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "cpu_154574",
+    "type": "freeform",
+    "shape_idx": 145,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "chip_141229",
+    "type": "freeform",
+    "shape_idx": 146,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "usb-device-with-signal_35908",
+    "type": "freeform",
+    "shape_idx": 147,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "信号塔",
+      "天线",
+      "通信"
+    ],
+    "tags_en": [
+      "signal",
+      "antenna",
+      "tower"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "组合 383",
+    "type": "group",
+    "shape_idx": 148,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 400",
+    "type": "group",
+    "shape_idx": 149,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 123",
+    "type": "freeform",
+    "shape_idx": 150,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 412",
+    "type": "group",
+    "shape_idx": 151,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 171",
+    "type": "freeform",
+    "shape_idx": 152,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 432",
+    "type": "group",
+    "shape_idx": 153,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 473",
+    "type": "group",
+    "shape_idx": 154,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 476",
+    "type": "group",
+    "shape_idx": 155,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 487",
+    "type": "group",
+    "shape_idx": 156,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 520",
+    "type": "group",
+    "shape_idx": 157,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 527",
+    "type": "group",
+    "shape_idx": 158,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 530",
+    "type": "group",
+    "shape_idx": 159,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 536",
+    "type": "group",
+    "shape_idx": 160,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 541",
+    "type": "group",
+    "shape_idx": 161,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 312",
+    "type": "freeform",
+    "shape_idx": 162,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 548",
+    "type": "group",
+    "shape_idx": 163,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 321",
+    "type": "freeform",
+    "shape_idx": 164,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 560",
+    "type": "group",
+    "shape_idx": 165,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 568",
+    "type": "group",
+    "shape_idx": 166,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "dvd-disc_70982",
+    "type": "freeform",
+    "shape_idx": 167,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "光盘",
+      "保存",
+      "存储"
+    ],
+    "tags_en": [
+      "disc",
+      "save",
+      "storage"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "save-icon-silhouette_69539",
+    "type": "freeform",
+    "shape_idx": 168,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "光盘",
+      "保存",
+      "存储"
+    ],
+    "tags_en": [
+      "disc",
+      "save",
+      "storage"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "cable_193480",
+    "type": "freeform",
+    "shape_idx": 169,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "线缆",
+      "连接",
+      "布线"
+    ],
+    "tags_en": [
+      "cable",
+      "wire",
+      "connect"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "chip_141228",
+    "type": "freeform",
+    "shape_idx": 170,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "芯片",
+      "处理器",
+      "CPU"
+    ],
+    "tags_en": [
+      "chip",
+      "processor",
+      "cpu"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "ethernet_337623",
+    "type": "freeform",
+    "shape_idx": 171,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "以太网",
+      "网线",
+      "有线网络"
+    ],
+    "tags_en": [
+      "ethernet",
+      "cable",
+      "wired"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "magsafe_337627",
+    "type": "freeform",
+    "shape_idx": 172,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [],
+    "tags_en": [],
+    "category": "未分类"
+  },
+  {
+    "name": "iconfont-1177-866359",
+    "type": "freeform",
+    "shape_idx": 173,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "classroom-pc_73575",
+    "type": "freeform",
+    "shape_idx": 174,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "教学电脑",
+      "机房",
+      "教育"
+    ],
+    "tags_en": [
+      "classroom",
+      "education",
+      "pc"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "组合 600",
+    "type": "group",
+    "shape_idx": 175,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 188",
+    "type": "freeform",
+    "shape_idx": 176,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "wifi_155695",
+    "type": "freeform",
+    "shape_idx": 177,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "组合 717",
+    "type": "group",
+    "shape_idx": 178,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 736",
+    "type": "group",
+    "shape_idx": 179,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 729",
+    "type": "group",
+    "shape_idx": 180,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 728",
+    "type": "group",
+    "shape_idx": 181,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 727",
+    "type": "group",
+    "shape_idx": 182,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 726",
+    "type": "group",
+    "shape_idx": 183,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 725",
+    "type": "group",
+    "shape_idx": 184,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 732",
+    "type": "group",
+    "shape_idx": 185,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 733",
+    "type": "group",
+    "shape_idx": 186,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 734",
+    "type": "group",
+    "shape_idx": 187,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 731",
+    "type": "group",
+    "shape_idx": 188,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 735",
+    "type": "group",
+    "shape_idx": 189,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 718",
+    "type": "group",
+    "shape_idx": 190,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 719",
+    "type": "group",
+    "shape_idx": 191,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 720",
+    "type": "group",
+    "shape_idx": 192,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 721",
+    "type": "group",
+    "shape_idx": 193,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 722",
+    "type": "group",
+    "shape_idx": 194,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 723",
+    "type": "group",
+    "shape_idx": 195,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 724",
+    "type": "group",
+    "shape_idx": 196,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 730",
+    "type": "group",
+    "shape_idx": 197,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 737",
+    "type": "group",
+    "shape_idx": 198,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "iconfont-11442-3338437",
+    "type": "freeform",
+    "shape_idx": 199,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11442-3338440",
+    "type": "freeform",
+    "shape_idx": 200,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11442-3338443",
+    "type": "freeform",
+    "shape_idx": 201,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11442-3338444",
+    "type": "freeform",
+    "shape_idx": 202,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "router-signal_81726",
+    "type": "freeform",
+    "shape_idx": 203,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "路由器",
+      "网络设备",
+      "交换机"
+    ],
+    "tags_en": [
+      "router",
+      "network",
+      "switch"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "wifi-modem_103614",
+    "type": "freeform",
+    "shape_idx": 204,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "wifi-sign_81944",
+    "type": "freeform",
+    "shape_idx": 205,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "wifi-storage_72715",
+    "type": "freeform",
+    "shape_idx": 206,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "wifi-symbol_16062",
+    "type": "freeform",
+    "shape_idx": 207,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "modem_99546",
+    "type": "freeform",
+    "shape_idx": 208,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "调制解调器",
+      "网关",
+      "接入"
+    ],
+    "tags_en": [
+      "modem",
+      "gateway",
+      "access"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "modem_99543",
+    "type": "freeform",
+    "shape_idx": 209,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "调制解调器",
+      "网关",
+      "接入"
+    ],
+    "tags_en": [
+      "modem",
+      "gateway",
+      "access"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "modem_99547",
+    "type": "freeform",
+    "shape_idx": 210,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "调制解调器",
+      "网关",
+      "接入"
+    ],
+    "tags_en": [
+      "modem",
+      "gateway",
+      "access"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "wifi-signal-tower_15924",
+    "type": "freeform",
+    "shape_idx": 211,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "modem-with-two-antenna_81696",
+    "type": "freeform",
+    "shape_idx": 212,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "调制解调器",
+      "网关",
+      "接入"
+    ],
+    "tags_en": [
+      "modem",
+      "gateway",
+      "access"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "wifi_116065",
+    "type": "freeform",
+    "shape_idx": 213,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "ssd-card_100312",
+    "type": "freeform",
+    "shape_idx": 214,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "硬盘",
+      "存储",
+      "SSD"
+    ],
+    "tags_en": [
+      "drive",
+      "storage",
+      "ssd"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "laptop_159425",
+    "type": "freeform",
+    "shape_idx": 215,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "笔记本",
+      "电脑",
+      "终端"
+    ],
+    "tags_en": [
+      "laptop",
+      "computer",
+      "terminal"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "big-power-button_81172",
+    "type": "freeform",
+    "shape_idx": 216,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "电源",
+      "插头",
+      "供电"
+    ],
+    "tags_en": [
+      "power",
+      "plug",
+      "supply"
+    ],
+    "category": "硬件"
+  },
+  {
+    "name": "组合 858",
+    "type": "group",
+    "shape_idx": 217,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "networking-cable_3751",
+    "type": "freeform",
+    "shape_idx": 218,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "线缆",
+      "连接",
+      "布线"
+    ],
+    "tags_en": [
+      "cable",
+      "wire",
+      "connect"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "binoculars_1792",
+    "type": "freeform",
+    "shape_idx": 219,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "望远镜",
+      "观察",
+      "搜索"
+    ],
+    "tags_en": [
+      "binoculars",
+      "search",
+      "observe"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "satellite_207649",
+    "type": "freeform",
+    "shape_idx": 220,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "卫星",
+      "通信",
+      "太空"
+    ],
+    "tags_en": [
+      "satellite",
+      "space",
+      "communication"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "组合 870",
+    "type": "group",
+    "shape_idx": 221,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 879",
+    "type": "group",
+    "shape_idx": 222,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 882",
+    "type": "group",
+    "shape_idx": 223,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 886",
+    "type": "group",
+    "shape_idx": 224,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 187",
+    "type": "freeform",
+    "shape_idx": 225,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 252",
+    "type": "freeform",
+    "shape_idx": 226,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 975",
+    "type": "group",
+    "shape_idx": 227,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 262",
+    "type": "freeform",
+    "shape_idx": 228,
+    "colors": [
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 989",
+    "type": "group",
+    "shape_idx": 229,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "server-device_77474",
+    "type": "freeform",
+    "shape_idx": 230,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "服务器",
+      "数据中心",
+      "云计算"
+    ],
+    "tags_en": [
+      "server",
+      "datacenter",
+      "cloud"
+    ],
+    "category": "服务器"
+  },
+  {
+    "name": "组合 1006",
+    "type": "group",
+    "shape_idx": 232,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 1069",
+    "type": "group",
+    "shape_idx": 233,
+    "colors": [
+      "000000",
+      "FFFFFF",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "Freeform 341",
+    "type": "freeform",
+    "shape_idx": 234,
+    "colors": [
+      "000000",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "组合 1100",
+    "type": "group",
+    "shape_idx": 235,
+    "colors": [
+      "000000",
+      "FFFFFF",
+      "F84D4D"
+    ],
+    "tags_cn": [
+      "组合图标",
+      "设备"
+    ],
+    "tags_en": [
+      "composite",
+      "device"
+    ],
+    "category": "组合"
+  },
+  {
+    "name": "rss-logotypes_1057",
+    "type": "freeform",
+    "shape_idx": 236,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "订阅",
+      "推送",
+      "信息流"
+    ],
+    "tags_en": [
+      "rss",
+      "feed",
+      "subscribe"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "iconfont-11843-5650967",
+    "type": "freeform",
+    "shape_idx": 237,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5650962",
+    "type": "freeform",
+    "shape_idx": 238,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "wifi-antenna_99538",
+    "type": "freeform",
+    "shape_idx": 239,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "无线网络",
+      "WiFi",
+      "信号"
+    ],
+    "tags_en": [
+      "wifi",
+      "wireless",
+      "signal"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "radio-tower_80632",
+    "type": "freeform",
+    "shape_idx": 240,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "信号塔",
+      "天线",
+      "通信"
+    ],
+    "tags_en": [
+      "signal",
+      "antenna",
+      "tower"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "phone-signal-connection-symbol_37585",
+    "type": "freeform",
+    "shape_idx": 241,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "信号塔",
+      "天线",
+      "通信"
+    ],
+    "tags_en": [
+      "signal",
+      "antenna",
+      "tower"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "satellite_243512",
+    "type": "freeform",
+    "shape_idx": 242,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "卫星",
+      "通信",
+      "太空"
+    ],
+    "tags_en": [
+      "satellite",
+      "space",
+      "communication"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "space-satellite_21957",
+    "type": "freeform",
+    "shape_idx": 243,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "卫星",
+      "通信",
+      "太空"
+    ],
+    "tags_en": [
+      "satellite",
+      "space",
+      "communication"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "router_96888",
+    "type": "freeform",
+    "shape_idx": 244,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "路由器",
+      "网络设备",
+      "交换机"
+    ],
+    "tags_en": [
+      "router",
+      "network",
+      "switch"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "modern-satellite_71268",
+    "type": "freeform",
+    "shape_idx": 245,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "卫星",
+      "通信",
+      "太空"
+    ],
+    "tags_en": [
+      "satellite",
+      "space",
+      "communication"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "dish-signal_17793",
+    "type": "freeform",
+    "shape_idx": 246,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "信号塔",
+      "天线",
+      "通信"
+    ],
+    "tags_en": [
+      "signal",
+      "antenna",
+      "tower"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "ethernet_161903",
+    "type": "freeform",
+    "shape_idx": 247,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "以太网",
+      "网线",
+      "有线网络"
+    ],
+    "tags_en": [
+      "ethernet",
+      "cable",
+      "wired"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "ethernet-plug_3753",
+    "type": "freeform",
+    "shape_idx": 248,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "以太网",
+      "网线",
+      "有线网络"
+    ],
+    "tags_en": [
+      "ethernet",
+      "cable",
+      "wired"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "5-pin-connector_64323",
+    "type": "freeform",
+    "shape_idx": 249,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "连接器",
+      "接口",
+      "端口"
+    ],
+    "tags_en": [
+      "connector",
+      "port",
+      "interface"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "cable_92943",
+    "type": "freeform",
+    "shape_idx": 250,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "线缆",
+      "连接",
+      "布线"
+    ],
+    "tags_en": [
+      "cable",
+      "wire",
+      "connect"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "cable_92944",
+    "type": "freeform",
+    "shape_idx": 251,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "线缆",
+      "连接",
+      "布线"
+    ],
+    "tags_en": [
+      "cable",
+      "wire",
+      "connect"
+    ],
+    "category": "网络"
+  },
+  {
+    "name": "building-of-big-houses-style_48771",
+    "type": "freeform",
+    "shape_idx": 252,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "建筑",
+      "楼宇",
+      "企业"
+    ],
+    "tags_en": [
+      "building",
+      "enterprise",
+      "office"
+    ],
+    "category": "通用"
+  },
+  {
+    "name": "iconfont-1186-600061",
+    "type": "freeform",
+    "shape_idx": 253,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11837-5648589",
+    "type": "freeform",
+    "shape_idx": 254,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11837-5649439",
+    "type": "freeform",
+    "shape_idx": 255,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11837-5649954",
+    "type": "freeform",
+    "shape_idx": 256,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634473",
+    "type": "freeform",
+    "shape_idx": 257,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634475",
+    "type": "freeform",
+    "shape_idx": 258,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634476",
+    "type": "freeform",
+    "shape_idx": 259,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634489",
+    "type": "freeform",
+    "shape_idx": 260,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634358",
+    "type": "freeform",
+    "shape_idx": 261,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634361",
+    "type": "freeform",
+    "shape_idx": 262,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634363",
+    "type": "freeform",
+    "shape_idx": 263,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "simple-table_1329",
+    "type": "freeform",
+    "shape_idx": 264,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "表格",
+      "数据",
+      "报表"
+    ],
+    "tags_en": [
+      "table",
+      "data",
+      "report"
+    ],
+    "category": "通用"
+  },
+  {
+    "name": "hospital-building_78111",
+    "type": "freeform",
+    "shape_idx": 265,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "医疗",
+      "健康",
+      "急救"
+    ],
+    "tags_en": [
+      "medical",
+      "health",
+      "hospital"
+    ],
+    "category": "设备"
+  },
+  {
+    "name": "iconfont-1186-701144",
+    "type": "freeform",
+    "shape_idx": 266,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-1185-36809",
+    "type": "freeform",
+    "shape_idx": 267,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-1185-36810",
+    "type": "freeform",
+    "shape_idx": 268,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5651472",
+    "type": "freeform",
+    "shape_idx": 269,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5651535",
+    "type": "freeform",
+    "shape_idx": 270,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5651540",
+    "type": "freeform",
+    "shape_idx": 271,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5651523",
+    "type": "freeform",
+    "shape_idx": 272,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5651541",
+    "type": "freeform",
+    "shape_idx": 273,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11843-5651542",
+    "type": "freeform",
+    "shape_idx": 274,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-11790-5634537",
+    "type": "freeform",
+    "shape_idx": 275,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "tablet-smartphone-computer-checked_81287",
+    "type": "freeform",
+    "shape_idx": 276,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "台式电脑",
+      "显示器",
+      "工作站"
+    ],
+    "tags_en": [
+      "computer",
+      "desktop",
+      "monitor"
+    ],
+    "category": "电脑"
+  },
+  {
+    "name": "iconfont-10013-7993824",
+    "type": "freeform",
+    "shape_idx": 277,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  },
+  {
+    "name": "iconfont-10013-7993839",
+    "type": "freeform",
+    "shape_idx": 278,
+    "colors": [
+      "scheme:accent1"
+    ],
+    "tags_cn": [
+      "图标",
+      "设备"
+    ],
+    "tags_en": [
+      "icon",
+      "device"
+    ],
+    "category": "未标注"
+  }
+]

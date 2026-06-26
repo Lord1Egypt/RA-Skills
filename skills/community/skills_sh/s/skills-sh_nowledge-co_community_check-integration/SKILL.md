@@ -1,35 +1,151 @@
 ---
-name: "check-integration"
-description: "Indexed by skills.sh from nowledge-co/community"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nowledge-co"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nowledge-co/community/check-integration"
-sourceUrl: "https://skills.sh/nowledge-co/community/check-integration"
+name: check-integration
+description: Check Nowledge Mem setup, detect your agent, and guide native connector setup. Use when the user asks about setup, configuration, or when memory tools aren't working as expected.
 ---
 
-# check-integration
+# Check Connector
 
-> Indexed by skills.sh from nowledge-co/community
+> Verify Nowledge Mem is running and guide the user to the best connector for their agent.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nowledge-co
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nowledge-co/community/check-integration`
-- **Source URL:** [https://skills.sh/nowledge-co/community/check-integration](https://skills.sh/nowledge-co/community/check-integration)
+## When to Use
 
-## Overview
+- User asks about Nowledge Mem setup or configuration
+- Memory tools are failing or not available
+- User asks "is my memory working?" or "how do I set up Nowledge Mem?"
+- First time using Nowledge Mem in this agent
+- User asks about upgrading from skills to a native connector
 
+## Step 1: Check nmem CLI
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nowledge-co/community/check-integration
+nmem --json status
 ```
+
+Use this rule before repairing anything:
+
+- **Same machine as Nowledge Mem Desktop:** use the desktop app's bundled `nmem`. Ask the user to open Nowledge Mem; if the command is still missing, use **Settings → Preferences → Developer Tools → Install bundled CLI**.
+- **Different machine:** install the standalone PyPI package `nmem-cli` on this machine, then point it at the user's Mem server. This covers remote servers, dev boxes, CI runners, hosted agents, and SSH machines. Python 3.11+ is required.
+
+Do not install the PyPI CLI over the desktop-bundled CLI on the user's own desktop unless the user explicitly asks for a standalone CLI.
+
+If the agent is not on the desktop machine and `nmem` is missing, install the PyPI CLI:
+
+```bash
+python3 -m pip install --user nmem-cli
+# or: pipx install nmem-cli
+# or for one-off checks: uvx --from nmem-cli nmem --json status
+
+nmem config client set url https://<their-mem-server>
+nmem config client set api-key nmem_...
+nmem --json status
+```
+
+If `nmem` exists but status fails, Nowledge Mem is not reachable from this machine. Guide the user:
+- Local desktop: open the Nowledge Mem app, then retry `nmem --json status`
+- Remote/client machine: verify the URL/API key with `nmem config client show`
+- Full install guide: https://mem.nowledge.co/docs/installation
+- Remote access guide: https://mem.nowledge.co/docs/remote-access
+
+## Step 2: Detect Agent and Recommend The Best Path
+
+For a fresh install, start from the universal connect skill:
+
+```text
+Read https://mem.nowledge.co/SKILL.md and follow the instructions to install or update Nowledge Mem for the AI tool I am using.
+```
+
+Use this check-integration skill as the diagnostic fallback: confirm what was installed, explain what behavior the user should expect, and repair configuration when something failed.
+
+Do not only answer "install X". Explain the behavior contract the user will get:
+
+1. what starts automatically
+2. what is only guided by skills/rules and still model-driven
+3. whether threads are captured automatically, saved explicitly, or only supported as handoff summaries
+
+Use this priority order:
+
+1. **Native connector first** when the host has one
+2. **Reusable package** when the host supports shared skills/prompts but has no native connector
+3. **Direct MCP** only when there is no better package path
+
+Fresh users care about outcome, not transport. Tell them what they will actually get after setup.
+
+### Autonomy levels
+
+| Path | What usually happens | What it does not guarantee |
+|------|----------------------|----------------------------|
+| **Native connector** | Strongest setup: session bootstrap is often automatic; some hosts also add auto-capture or hook-driven recall | Exact proactive recall/distill timing can still be host-specific |
+| **Reusable package** | Working Memory, recall, and distill are guided by rules/skills | The host may still ignore the guidance unless prompts and project guidance are strong |
+| **Direct MCP** | Tools are available; with the recommended prompt block, the agent can use them proactively | MCP alone does not create host-enforced autonomy |
+
+Check which agent you're running in and recommend the native connector if available.
+
+The canonical source for this table is `community/integrations.json`.
+
+| Agent | How to Detect | Native connector setup | Docs |
+|-------|--------------|----------------------|------|
+| **Claude Code** | Running as Claude Code agent; `~/.claude/` exists | `claude plugin marketplace add https://github.com/nowledge-co/community && claude plugin install nowledge-mem@nowledge-community` | [Guide](https://mem.nowledge.co/docs/integrations/claude-code) |
+| **Grok** | Running as Grok; `~/.grok/` exists | `grok plugin install nowledge-co/community#nowledge-mem-claude-code-plugin --trust` | [Guide](https://mem.nowledge.co/docs/integrations/grok) |
+| **OpenClaw** | Running as OpenClaw agent; `~/.openclaw/` exists | `openclaw plugins install clawhub:@nowledge/openclaw-nowledge-mem` | [Guide](https://mem.nowledge.co/docs/integrations/openclaw) |
+| **Cursor** | Running inside Cursor IDE | Copy `nowledge-mem-cursor-plugin` from the community repo into `~/.cursor/plugins/local/nowledge-mem-cursor`, then reload Cursor | [Guide](https://mem.nowledge.co/docs/integrations/cursor) |
+| **Gemini CLI** | Running as Gemini CLI agent; `~/.gemini/` exists | `gemini extensions install https://github.com/nowledge-co/nowledge-mem-gemini-cli --auto-update` or install "Nowledge Mem" from the Extensions Gallery | [Guide](https://mem.nowledge.co/docs/integrations/gemini-cli) |
+| **Antigravity 2.0** | Running as Antigravity; `~/.gemini/antigravity/` exists | Use `npx skills add nowledge-co/community/nowledge-mem-npx-skills`; global skills should appear under `~/.gemini/config/skills`, not the old `~/.gemini/antigravity/skills` path. For conversation import, use the Antigravity Trajectory Extractor. | [Import guide](https://mem.nowledge.co/docs/import-existing-conversations) |
+| **Alma** | Running inside Alma; `~/.config/alma/` exists | In Alma: Settings > Plugins > Marketplace, search "Nowledge Mem" | [Guide](https://mem.nowledge.co/docs/integrations/alma) |
+| **Droid** | Running inside Droid (Factory) | Add nowledge-co/community marketplace, install nowledge-mem@nowledge-community | [Guide](https://mem.nowledge.co/docs/integrations/droid) |
+| **Codex** | Running inside Codex desktop or Codex CLI; `~/.codex/` exists | `codex plugin marketplace add nowledge-co/community && codex plugin add nowledge-mem@nowledge-community`, enable `[features] plugins = true`, `hooks = true`, `plugin_hooks = true`, and `[plugins."nowledge-mem@nowledge-community"] enabled = true`, then run the installed `scripts/install_hooks.py` once for automatic thread capture. Add `mcp_servers.nowledge-mem` only when overriding the bundled local MCP endpoint. The desktop app and CLI share the same `~/.codex` config. | [Guide](https://mem.nowledge.co/docs/integrations/codex-cli) |
+| **Bub** | Running inside Bub | `pip install nowledge-mem-bub` | [Guide](https://mem.nowledge.co/docs/integrations/bub) |
+| **Pi** | Running as Pi agent; `~/.pi/` exists | `pi install npm:nowledge-mem-pi` | [Guide](https://mem.nowledge.co/docs/integrations/pi) |
+| **OpenCode** | Running as OpenCode agent; `~/.config/opencode/` or `.opencode/` exists | `opencode plugin opencode-nowledge-mem -g` | [Guide](https://mem.nowledge.co/docs/integrations/opencode) |
+| **Hermes Agent** | Running as Hermes agent; `~/.hermes/` exists | Install the native Hermes provider (or use MCP only as fallback) | [Guide](https://mem.nowledge.co/docs/integrations/hermes) |
+
+For Hermes updates, run the setup command from the guide and confirm it prints `Thread import endpoint: /threads/import`. If it prints an old endpoint or no endpoint, the user is likely launching Hermes with a different `HERMES_HOME`; set that explicitly and rerun setup before restart.
+
+If the agent is not listed above:
+
+- use the shared `npx skills` package when the host supports it
+- otherwise use direct MCP plus the recommended prompt block
+
+Do not describe raw MCP as equivalent to a native connector.
+
+## Step 3: Verify
+
+After setup, verify with:
+
+```bash
+nmem --json m search "test" -n 1
+```
+
+If this returns results (or an empty list with no error), the connector is working.
+
+Then state the expected outcome in plain language:
+
+- **Working Memory**: automatic, guided, or manual
+- **Recall**: automatic, guided, or manual
+- **Distill**: automatic, guided, or manual
+- **Threads**: automatic capture, explicit save, handoff-only, or none
+
+If the path is only `guided`, say what strengthens it:
+
+- keep `nmem` available locally
+- restart the host after install
+- merge the package `AGENTS.md` or equivalent repo guidance when recommended
+- configure the local `nmem` client in remote mode
+
+## What Native Connectors Add
+
+Skills give you CLI-based memory access. Native connectors usually add:
+
+- **Auto-recall**: relevant memories injected before each response (no manual search needed)
+- **Auto-capture**: conversations saved as searchable threads at session end
+- **LLM distillation**: key decisions and insights extracted automatically
+- **Graph tools**: explore connections, evolution chains, and entity relationships
+- **Working Memory**: daily briefing loaded or injected at session start
+- **Slash commands**: `/remember`, `/recall`, `/forget` (where supported)
+
+Do not promise all of these on every host. Match the actual path the user is setting up.
+
+## Links
+
+- [All Connectors](https://mem.nowledge.co/docs/integrations)
+- [Documentation](https://mem.nowledge.co/docs)
+- [Discord Community](https://nowled.ge/discord)

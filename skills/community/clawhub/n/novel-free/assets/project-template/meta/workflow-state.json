@@ -1,0 +1,40 @@
+{
+  "phaseState": {
+    "currentPhase": 0,
+    "status": "initialized",
+    "lastTransitionAt": "{{updated_at}}",
+    "architectureFinalized": false
+  },
+  "chapterWorkflow": {
+    "currentChapter": 0,
+    "lastClosedChapter": 0,
+    "lastOocCheckChapter": 0,
+    "lastRollingSummaryChapter": 0,
+    "lastReaderFeedbackChapter": 0,
+    "resumeRequired": true,
+    "currentTrack": "none",
+    "chapterEntryChecklistComplete": false,
+    "currentChapterArtifacts": {
+      "plan": false,
+      "draft": false,
+      "polish": false,
+      "battlePass": false,
+      "oocCheck": false,
+      "finalReview": false,
+      "archiveSync": false,
+      "userReport": false
+    }
+  },
+  "milestoneAudit": {
+    "lastMilestoneAuditChapter": 0,
+    "lastAuditResult": "green",
+    "pendingWarnings": [],
+    "nextAuditChapter": 20
+  },
+  "phase3Maintenance": {
+    "lastModifiedChapter": 0,
+    "cascadeAffectedChapters": [],
+    "pendingRewrites": [],
+    "lastMaintenanceAt": ""
+  }
+}

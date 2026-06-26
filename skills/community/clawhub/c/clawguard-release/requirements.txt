@@ -1,0 +1,44 @@
+# ClawGuard - 龙虾卫士
+# 依赖说明
+
+## 核心功能（无需额外依赖）
+以下功能只需要 Python 标准库，无需安装任何额外依赖：
+- 区块链确权
+- 证书生成
+- 验真查询
+- 文件扫描
+- 批量确权
+- 证明文件夹生成
+
+## 可选功能（需要额外依赖）
+
+### 数字水印功能
+在图片中添加可见水印（右下角版权文字）
+
+**安装命令**:
+```bash
+pip install Pillow -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+**说明**:
+- Pillow 是 Python 最常用的图像处理库
+- 很多系统已预装
+- 轻量级（约 10MB）
+- 支持中文路径
+
+### 二维码生成（未来功能）
+生成二维码图片用于证书
+
+**安装命令**（暂不需要）:
+```bash
+pip install qrcode[pil] -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+## 完整安装（所有功能）
+```bash
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+## 版本要求
+- Python >= 3.8
+- Pillow >= 9.0.0 (可选)

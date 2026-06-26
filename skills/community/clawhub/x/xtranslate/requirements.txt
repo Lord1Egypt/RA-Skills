@@ -1,0 +1,11 @@
+python-docx
+pdf2docx
+openai
+jieba
+cryptography
+customtkinter
+ollama
+translate
+openpyxl
+python-pptx
+striprtf

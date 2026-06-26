@@ -1,0 +1,168 @@
+{
+  "skill_name": "matter-day-reminder",
+  "skill_version": "1.0.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "add-contact-basic",
+      "prompt": "帮我添加一个朋友，叫王五，是我高中同学。他的生日是农历六月初八。他喜欢打篮球和看电影。",
+      "expected_output": "创建包含王五信息的 Markdown 文件，包含正确的 frontmatter（name: 王五, relationship: friend, tags: [篮球, 电影]）和生日事件（农历六月初八）",
+      "files": [],
+      "assertions": [
+        {
+          "name": "文件已创建",
+          "type": "file_exists",
+          "target": "contacts/wang-wu.md"
+        },
+        {
+          "name": "姓名正确",
+          "type": "content_contains",
+          "target": "contacts/wang-wu.md",
+          "expected": "name: \"王五\""
+        },
+        {
+          "name": "关系类型正确",
+          "type": "content_contains",
+          "target": "contacts/wang-wu.md",
+          "expected": "relationship: \"friend\""
+        },
+        {
+          "name": "包含生日事件",
+          "type": "content_contains",
+          "target": "contacts/wang-wu.md",
+          "expected": "### 生日"
+        },
+        {
+          "name": "农历日期正确",
+          "type": "content_contains",
+          "target": "contacts/wang-wu.md",
+          "expected": "农历：六月初八"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "add-family-contact",
+      "prompt": "我要记一下我妈妈的生日。她叫李芳，生日是阳历1965年3月15日。她喜欢养花和做饭。",
+      "expected_output": "创建包含李芳信息的 Markdown 文件，relationship 为 family，包含阳历生日事件",
+      "files": [],
+      "assertions": [
+        {
+          "name": "文件已创建",
+          "type": "file_exists",
+          "target": "contacts/li-fang.md"
+        },
+        {
+          "name": "关系类型为家人",
+          "type": "content_contains",
+          "target": "contacts/li-fang.md",
+          "expected": "relationship: \"family\""
+        },
+        {
+          "name": "阳历日期格式正确",
+          "type": "content_contains",
+          "target": "contacts/li-fang.md",
+          "expected": "1965-03-15"
+        },
+        {
+          "name": "标签包含兴趣爱好",
+          "type": "content_contains",
+          "target": "contacts/li-fang.md",
+          "expected": "养花"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "generate-birthday-wish",
+      "prompt": "帮我写个生日祝福给我大学同学张三，他喜欢打篮球，今天是他生日。",
+      "expected_output": "生成一段个性化的生日祝福语，内容应包含篮球相关元素，语气适合朋友关系",
+      "files": [
+        {
+          "path": "contacts/zhang-san.md",
+          "content": "---\nname: \"张三\"\nrelationship: \"friend\"\nrelationship_detail: \"大学同学\"\ntags: [\"篮球\", \"科技\"]\ncreated_at: \"2024-01-15\"\nupdated_at: \"2024-01-15\"\n---\n\n# 张三\n\n## 事件\n\n### 生日\n- **类型**: 生日\n- **日期**: 1998-05-20\n- **农历**: false\n- **提醒**: true\n"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "包含称呼",
+          "type": "content_contains",
+          "target": "output",
+          "expected": "张三"
+        },
+        {
+          "name": "包含生日祝福",
+          "type": "content_contains",
+          "target": "output",
+          "expected": "生日"
+        },
+        {
+          "name": "语气友好",
+          "type": "content_match",
+          "target": "output",
+          "pattern": "(快乐|开心|祝福|愿你)",
+          "description": "祝福语应包含积极正面的词汇"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "check-upcoming-reminders",
+      "prompt": "最近有什么重要的日子要到了吗？帮我看一下接下来7天内有哪些提醒。",
+      "expected_output": "列出所有在接下来的7天内需要提醒的事件，包括联系人和事件详情",
+      "files": [
+        {
+          "path": "contacts/test-contact.md",
+          "content": "---\nname: \"测试联系人\"\nrelationship: \"friend\"\ntags: []\ncreated_at: \"2024-01-15\"\nupdated_at: \"2024-01-15\"\n---\n\n# 测试联系人\n\n## 事件\n\n### 生日\n- **类型**: 生日\n- **日期": " + new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] + "\n- **农历**: false\n- **提醒**: true\n"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "显示提醒列表",
+          "type": "content_contains",
+          "target": "output",
+          "expected": "提醒"
+        },
+        {
+          "name": "显示联系人姓名",
+          "type": "content_contains",
+          "target": "output",
+          "expected": "测试联系人"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "generate-gift-suggestion",
+      "prompt": "我好朋友李四下周过生日，他喜欢科技和音乐，预算300元以内，有什么礼物建议吗？",
+      "expected_output": "提供礼物建议，包含预算范围（≤300元）、礼物类别（如科技产品、音乐相关）、具体建议",
+      "files": [
+        {
+          "path": "contacts/li-si.md",
+          "content": "---\nname: \"李四\"\nrelationship: \"close_friend\"\nrelationship_detail: \"好朋友\"\ntags: [\"科技\", \"音乐\"]\ncreated_at: \"2024-01-15\"\nupdated_at: \"2024-01-15\"\n---\n\n# 李四\n\n## 事件\n\n### 生日\n- **类型**: 生日\n- **日期**: 1999-08-15\n- **农历**: false\n- **提醒**: true\n"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "包含预算信息",
+          "type": "content_contains",
+          "target": "output",
+          "expected": "300"
+        },
+        {
+          "name": "包含礼物类别",
+          "type": "content_contains",
+          "target": "output",
+          "expected": "科技"
+        },
+        {
+          "name": "提供具体建议",
+          "type": "content_match",
+          "target": "output",
+          "pattern": "(耳机|音响|音乐|科技)",
+          "description": "应提供具体的礼物建议"
+        }
+      ]
+    }
+  ]
+}

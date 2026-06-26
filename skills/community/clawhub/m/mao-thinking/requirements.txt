@@ -1,0 +1,12 @@
+﻿# 毛泽东思想实践工具包依赖
+# Mao Zedong Thought Practice Toolkit Requirements
+
+# 核心依赖（无需额外安装）
+# Python 3.7+ 标准库即可运行
+
+# 开发依赖（可选）
+pytest>=6.0
+pytest-cov>=3.0
+black>=22.0
+flake8>=4.0
+mypy>=0.950

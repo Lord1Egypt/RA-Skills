@@ -1,0 +1,49 @@
+# ComfyUI Skills for OpenClaw (Extended LLM Context)
+
+## Identity
+- Repository: ComfyUI_Skills_OpenClaw
+- Positioning: ComfyUI workflow execution skill for OpenClaw and compatible agents
+- Core keywords: OpenClaw, ComfyUI, Skills, 小龙虾
+- Related search terms: ComfyUI skill integration, ComfyUI workflow API format, OpenClaw image generation
+
+## What this project does
+This project converts agent/user natural language requests into structured parameters and executes ComfyUI workflows (API format). It supports workflow discovery, argument mapping, job submission, completion polling, and image download.
+
+## Operational flow
+1. Query enabled workflows from registry (`scripts/registry.py list --agent`).
+2. Assemble user parameters into JSON args.
+3. Execute workflow through client (`scripts/comfyui_client.py`).
+4. Poll ComfyUI history and download output images.
+5. Return generated image paths to the agent/client.
+
+## Architecture
+- `SKILL.md`: Agent-facing execution contract and behavior instructions.
+- `scripts/registry.py`: Lists workflows and exposed parameters.
+- `scripts/comfyui_client.py`: Injects args, calls ComfyUI APIs, waits and downloads.
+- `scripts/server_manager.py`: Manage multi-server settings from CLI.
+- `ui/`: FastAPI + frontend dashboard for server/workflow/schema management.
+- `data/<server_id>/workflows`: ComfyUI API workflows.
+- `data/<server_id>/schemas`: Parameter exposure and mapping schema.
+
+## Multi-server model
+- Server and workflow each have an enable/disable switch.
+- Effective visibility requires both switches enabled.
+- Workflow identity uses `<server_id>/<workflow_id>` namespacing.
+
+## Requirements
+- Python 3.10+
+- Reachable ComfyUI server(s), default example `http://127.0.0.1:8188`
+- Workflow must include API-format JSON and valid image output path (e.g., Save Image)
+
+## User intent fit
+Use this repository when users want to:
+- generate images via ComfyUI from agent chats
+- reuse local ComfyUI workflows as skills
+- run image generation across multiple ComfyUI servers
+- standardize schema-driven workflow parameters
+
+## Chinese alias context
+In Chinese contexts, this project may be searched by:
+- OpenClaw ComfyUI 技能
+- ComfyUI 工作流技能封装
+- 小龙虾 ComfyUI Skills

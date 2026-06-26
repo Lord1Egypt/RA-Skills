@@ -1,0 +1,68 @@
+{
+  "name": "form_filler",
+  "version": "1.0.0",
+  "description": "Fills in a web form using provided selectors and values.",
+  "allowedTools": [
+    "browser.type",
+    "browser.click",
+    "browser.scroll"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "fields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            },
+            "clear": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "selector",
+            "value"
+          ]
+        }
+      },
+      "submitSelector": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "fields"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "filled": {
+        "type": "boolean"
+      }
+    }
+  },
+  "notes": "Requires user confirmation before final submit.",
+  "examples": [
+    {
+      "input": {
+        "fields": [
+          {
+            "selector": "#message",
+            "value": "Hello"
+          }
+        ],
+        "submitSelector": "button[type='submit']"
+      },
+      "output": {
+        "filled": true
+      }
+    }
+  ],
+  "id": "form_filler"
+}

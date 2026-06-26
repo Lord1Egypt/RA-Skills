@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-ASSET-001",
+  "pci_list": [
+    {
+      "id": "PCI-001",
+      "source_test_point": "TP-002",
+      "type": "ambiguity",
+      "question": "费率分档的边界金额50万是否含本数？即申购金额恰好为50万时，适用1.5%还是1.0%的费率？",
+      "impact": "影响费率计算测试用例的预期结果，边界值测试数据构造依赖此规则",
+      "suggested_action": "与产品确认50万整的费率归属档位",
+      "status": "open",
+      "priority": "P0"
+    },
+    {
+      "id": "PCI-002",
+      "source_test_point": "TP-001",
+      "type": "missing_rule",
+      "question": "T+1份额确认时使用的净值是T日收盘净值还是T+1日公布净值？如果T+1日基金净值未按时公布，申购订单如何处理？",
+      "impact": "影响份额确认逻辑的测试验证，需明确净值取值时点和异常处理流程",
+      "suggested_action": "与业务方确认份额确认的净值取值规则及净值延迟发布的应急方案",
+      "status": "open",
+      "priority": "P0"
+    }
+  ],
+  "pci_summary": {
+    "total": 2,
+    "by_type": {
+      "ambiguity": 1,
+      "missing_rule": 1
+    },
+    "blocking_count": 0
+  }
+}

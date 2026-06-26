@@ -1,0 +1,26 @@
+vendor_key,vendor_name,vendor_type,track_type,region,source_url,enabled,official_site
+alibaba,阿里云百炼,model_provider,api,cn,https://help.aliyun.com/zh/model-studio/models,true,https://www.aliyun.com
+alibaba,阿里云百炼,model_provider,api,global,https://help.aliyun.com/zh/model-studio/models,true,https://www.aliyun.com
+alibaba,阿里云百炼,model_provider,api,international,https://help.aliyun.com/zh/model-studio/models,true,https://www.aliyun.com
+alibaba,阿里云百炼,model_provider,subscription,cn,https://help.aliyun.com/zh/model-studio/coding-plan-overview,true,https://www.aliyun.com
+anthropic,Anthropic,model_provider,api,global,https://docs.anthropic.com/en/docs/about-claude/pricing,true,https://www.anthropic.com
+anthropic,Anthropic,model_provider,subscription,global,https://www.anthropic.com/pricing,true,https://www.anthropic.com
+baidu,百度千帆,model_provider,api,cn,https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya,true,https://cloud.baidu.com
+bytedance,字节跳动豆包,model_provider,api,cn,https://www.volcengine.com/docs/82379/1099320,true,https://www.volcengine.com
+cursor,Cursor,code_tool,subscription,global,https://cursor.com/pricing,true,https://cursor.com
+deepseek,DeepSeek,model_provider,api,global,https://api-docs.deepseek.com/quick_start/pricing,true,https://www.deepseek.com
+github-copilot,GitHub Copilot,code_tool,subscription,global,https://github.com/features/copilot/plans,true,https://github.com
+google,Google,model_provider,api,global,https://ai.google.dev/gemini-api/docs/pricing,true,https://ai.google.dev
+google,Google,model_provider,subscription,global,https://one.google.com/about/google-ai-plans/,true,https://one.google.com
+kimi,Kimi,model_provider,api,cn,https://platform.kimi.com/docs/pricing/chat-k26,true,https://platform.kimi.com
+kimi,Kimi,model_provider,subscription,cn,https://www.kimi.com/code,true,https://www.kimi.com
+minimax,MiniMax,model_provider,api,global,https://platform.minimax.io/docs/guides/pricing-paygo,true,https://www.minimax.io
+openai,OpenAI,model_provider,api,global,https://developers.openai.com/api/docs/pricing,true,https://openai.com
+openai,OpenAI,model_provider,subscription,global,https://openai.com/chatgpt/pricing,true,https://openai.com
+tencent,腾讯混元,model_provider,api,cn,https://cloud.tencent.com/document/product/1729/97731,true,https://cloud.tencent.com
+windsurf,Windsurf,code_tool,subscription,global,https://windsurf.com/pricing,true,https://windsurf.com
+xai,xAI,model_provider,api,global,https://docs.x.ai/docs/models,true,https://x.ai
+zhipu,智谱AI,model_provider,api,cn,https://open.bigmodel.cn/pricing,true,https://open.bigmodel.cn
+zhipu,智谱AI,model_provider,api,global,https://docs.z.ai/guides/overview/pricing,true,https://z.ai
+zhipu,智谱AI,model_provider,subscription,cn,https://bigmodel.cn/glm-coding,true,https://open.bigmodel.cn
+zhipu,智谱AI,model_provider,subscription,global,https://z.ai/subscribe,true,https://z.ai

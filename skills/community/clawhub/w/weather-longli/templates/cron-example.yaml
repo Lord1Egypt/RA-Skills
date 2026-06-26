@@ -1,0 +1,23 @@
+# OpenClaw cron 配置示例（龙里县天气日报）
+# 将此配置添加到 OpenClaw 的 cron 配置中，或通过 `openclaw cron add` 命令添加
+
+name: longli_weather_morning
+schedule: "20 7 * * 1-5"  # 工作日（周一至周五）7:20
+command: |
+  cd ~/.openclaw/skills/weather-longli/scripts
+  python3 daily_weather_report.py
+description: "工作日早上 7:20 发送龙里县天气与穿衣建议"
+
+# 可选：测试 cron（立即运行一次）
+# openclaw cron run --name longli_weather_morning
+
+# 可选：查看日志
+# openclaw cron log --name longli_weather_morning
+
+# 依赖检查（确保已安装 Python 依赖）：
+# pip install requests beautifulsoup4
+
+# 若需调整提醒时间，修改 schedule 字段：
+# - 每天 8:00： "0 8 * * *"
+# - 周末也提醒： "20 7 * * *"
+# - 每小时一次： "0 * * * *"

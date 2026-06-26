@@ -1,0 +1,574 @@
+{
+  "name": "eComm AI — 04 Call Result Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/call-result",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Vapi Callback",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-call-result",
+      "id": "1c949c43-03b8-455b-b6da-aa4a80ffb56a"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Vapi end-of-call callback\nconst body = $input.first().json.body || $input.first().json;\n\nconst result = {\n  call_id: body.call_id || body.id || '',\n  order_id: body.metadata?.order_id || body.assistant_overrides?.metadata?.order_id || '',\n  order_number: body.metadata?.order_number || '',\n  call_type: body.metadata?.type || 'unknown',\n  status: (body.status || body.ended_reason || 'unknown').toLowerCase(),\n  duration: body.duration || body.call_duration || 0,\n  transcript: body.transcript || '',\n  summary: body.summary || body.analysis?.summary || '',\n  customer_phone: body.customer?.number || body.from || '',\n  customer_name: body.customer?.name || '',\n  recording_url: body.recording_url || '',\n  // Determine outcome from status/ended_reason\n  outcome: 'unknown',\n  timestamp: new Date().toISOString()\n};\n\n// Map Vapi statuses to outcomes\nconst statusMap = {\n  'completed': 'answered',\n  'ended': 'answered',\n  'no-answer': 'no_answer',\n  'busy': 'no_answer',\n  'failed': 'failed',\n  'canceled': 'failed',\n  'voicemail': 'voicemail'\n};\nresult.outcome = statusMap[result.status] || 'unknown';\n\n// Check tool calls for confirm/decline\nif (body.tool_calls || body.analysis?.tool_calls) {\n  const tools = body.tool_calls || body.analysis.tool_calls || [];\n  for (const tc of tools) {\n    const fn = tc.function?.name || tc.name || '';\n    if (fn.includes('confirm')) result.outcome = 'confirmed';\n    else if (fn.includes('decline')) result.outcome = 'declined';\n    else if (fn.includes('modify')) result.outcome = 'modify_requested';\n  }\n}\n\nreturn [{ json: result }];"
+      },
+      "name": "Parse Call Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "4f7c011f-93cb-4d80-b771-5307ac6dcdd0"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "call_id": "={{ $json.call_id }}",
+            "order_id": "={{ $json.order_id }}",
+            "call_type": "={{ $json.call_type }}",
+            "outcome": "={{ $json.outcome }}",
+            "duration": "={{ $json.duration }}",
+            "summary": "={{ $json.summary }}",
+            "status": "={{ $json.outcome }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Call Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        680,
+        400
+      ],
+      "id": "cdf3ca6b-8961-4f94-8938-ec9023c838f1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "80d8b63c-d118-4041-b686-04002e64c32d",
+                    "leftValue": "={{ $json.outcome }}",
+                    "rightValue": "confirmed",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Confirmed"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "19e23dc9-fa51-41e5-bf78-6d8446fb08c8",
+                    "leftValue": "={{ $json.outcome }}",
+                    "rightValue": "declined",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Declined"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "a95cc096-62f5-44a6-8b94-98315558cb31",
+                    "leftValue": "={{ $json.outcome }}",
+                    "rightValue": "no_answer",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "No Answer"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "da5405eb-7f77-4466-afa5-1c0c1fa56786",
+                    "leftValue": "={{ $json.outcome }}",
+                    "rightValue": "voicemail",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Voicemail"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "name": "Route by Outcome",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        920,
+        400
+      ],
+      "id": "d3849ad8-a797-4391-95bc-1b59b9eee02f"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "status": "confirmed",
+            "confirmed_at": "={{ $json.timestamp }}",
+            "call_duration": "={{ $json.duration }}"
+          },
+          "matchingColumns": [
+            "order_id"
+          ],
+          "schema": [
+            {
+              "id": "order_id",
+              "displayName": "order_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Mark Order Confirmed",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1180,
+        100
+      ],
+      "id": "9818d77f-141f-4fce-9ffa-121c408d8c1e",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/update-order-status",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ order_id: $json.order_id, status: 'confirmed', platform: 'auto' }) }}",
+        "options": {}
+      },
+      "name": "→ Update Platform (Confirmed)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        100
+      ],
+      "id": "6eca2996-dc8e-4e7d-a198-78f02760041e"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "status": "declined",
+            "declined_at": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [
+            "order_id"
+          ],
+          "schema": [
+            {
+              "id": "order_id",
+              "displayName": "order_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Mark Order Declined",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1180,
+        280
+      ],
+      "id": "d6a8e3b8-6d95-4105-8bbb-8e0314b19499",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/update-order-status",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ order_id: $json.order_id, status: 'cancelled', platform: 'auto' }) }}",
+        "options": {}
+      },
+      "name": "→ Update Platform (Cancelled)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        280
+      ],
+      "id": "17d76e81-d7eb-480a-8614-62671f91dbb8"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Retry Queue",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "call_type": "={{ $json.call_type }}",
+            "attempts": "1",
+            "last_attempt": "={{ $json.timestamp }}",
+            "status": "pending_retry"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Add to Retry Queue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1180,
+        460
+      ],
+      "id": "9c923b0d-754e-4c1d-9e93-bd8d31662154",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/whatsapp-sms-fallback",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ order_id: $json.order_id, customer_phone: $json.customer_phone, customer_name: $json.customer_name, reason: 'voicemail' }) }}",
+        "options": {}
+      },
+      "name": "→ SMS Fallback",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1180,
+        640
+      ],
+      "id": "1feba804-5c9f-4207-87e4-d022e49b125a"
+    },
+    {
+      "parameters": {},
+      "name": "Log Failed — No Action",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        820
+      ],
+      "id": "941aa8bd-64b5-4f2a-a634-a15765a033c2"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', call_id: $json.call_id, outcome: $json.outcome }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1660,
+        400
+      ],
+      "id": "82e48c6f-4992-462c-906b-f892d38f1d18"
+    }
+  ],
+  "connections": {
+    "Vapi Callback": {
+      "main": [
+        [
+          {
+            "node": "Parse Call Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Call Result": {
+      "main": [
+        [
+          {
+            "node": "Log Call Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Call Result": {
+      "main": [
+        [
+          {
+            "node": "Route by Outcome",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Outcome": {
+      "main": [
+        [
+          {
+            "node": "Mark Order Confirmed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Order Declined",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add to Retry Queue",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "→ SMS Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Failed — No Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Order Confirmed": {
+      "main": [
+        [
+          {
+            "node": "→ Update Platform (Confirmed)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ Update Platform (Confirmed)": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Order Declined": {
+      "main": [
+        [
+          {
+            "node": "→ Update Platform (Cancelled)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ Update Platform (Cancelled)": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Retry Queue": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ SMS Fallback": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Failed — No Action": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

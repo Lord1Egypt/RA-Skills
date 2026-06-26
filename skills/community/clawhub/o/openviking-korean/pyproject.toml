@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openviking-korean"
+version = "1.0.0"
+description = "한국어 Context DB for AI Agents. 토큰 절감 91% 달성."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "ClawHub", email = "support@clawhub.com"}
+]
+keywords = ["ai", "context", "korean", "openviking", "openclaw", "token-optimization"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "konlpy>=0.6.0; platform_system == 'Linux' or platform_system == 'Darwin'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+]
+
+[project.scripts]
+ovk = "openviking_korean.client:main"
+
+[project.urls]
+Homepage = "https://clawhub.com/skills/openviking-korean"
+Documentation = "https://docs.openviking.ai"
+Repository = "https://github.com/clawhub/openviking-korean"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["openviking_korean*"]
+
+[tool.setuptools.package-data]
+openviking_korean = ["templates/*.py"]

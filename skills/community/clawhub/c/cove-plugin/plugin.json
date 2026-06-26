@@ -1,0 +1,55 @@
+{
+  "id": "cove-verification",
+  "name": "CoVe — Chain of Verification",
+  "description": "Fact-checks LLM responses by extracting claims and verifying them against memory, workspace files, and web search.",
+  "version": "1.1.0",
+  "entry": "src/verify_claims.js",
+  "cli": "src/verifier.js",
+  "skill": "SKILL.md",
+  "config": "config/default.yaml",
+  "license": "MIT",
+  "homepage": "https://github.com/bhawanakatiyar/cove-plugin",
+
+  "env_vars": {
+    "required_one_of": [
+      { "name": "GEMINI_API_KEY", "description": "Gemini API key for direct LLM calls (auto-detects provider)" },
+      { "name": "ANTHROPIC_API_KEY", "description": "Anthropic API key for direct LLM calls (auto-detects provider)" },
+      { "name": "OPENAI_API_KEY", "description": "OpenAI API key for direct LLM calls (auto-detects provider)" }
+    ],
+    "optional": [
+      { "name": "COVE_LLM_PROVIDER", "description": "Explicit provider override: gemini | anthropic | openai" },
+      { "name": "COVE_LLM_API_KEY", "description": "Explicit API key (overrides provider-specific vars)" },
+      { "name": "COVE_MODEL", "description": "LLM model for verification (default: gemini-2.0-flash)" },
+      { "name": "BRAVE_API_KEY", "description": "Brave Search API key — required for standard/deep policies" },
+      { "name": "OPENCLAW_PROXY_PORT", "description": "Sidecar proxy port (default: 8888) — only needed in sidecar mode" },
+      { "name": "SIDECAR_PROXY_KEY", "description": "Sidecar proxy auth key — only needed in sidecar mode" }
+    ]
+  },
+
+  "file_access": {
+    "reads": [
+      "~/.openclaw/workspace/ (text files, max 10KB each, depth 1)",
+      "~/.openclaw/workspace/memory/ (markdown files, depth 2)",
+      "~/.openclaw/memory/main.sqlite (extracts text chunks, max 20KB)",
+      "~/.openclaw/.brave-api-key (Brave API key file, optional)",
+      "~/.openclaw/cove.yaml (user config override, optional)",
+      "config/default.yaml (plugin default config)"
+    ],
+    "writes": []
+  },
+
+  "network_access": [
+    "127.0.0.1:{proxy_port} (OpenClaw sidecar — LLM proxy, sidecar mode only)",
+    "generativelanguage.googleapis.com (Gemini API, direct mode)",
+    "api.anthropic.com (Anthropic API, direct mode)",
+    "api.openai.com (OpenAI API, direct mode)",
+    "api.search.brave.com (Brave Search, standard/deep policies only)",
+    "User-configured vector store URL (optional, if vector_store.url is set)"
+  ],
+
+  "transparency": {
+    "informs_user": true,
+    "auto_verify_opt_in": true,
+    "note": "The agent will tell the user when verification is run and report results. Auto-verify mode must be explicitly enabled in config."
+  }
+}

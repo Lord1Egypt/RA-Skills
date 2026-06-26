@@ -1,35 +1,27 @@
 ---
-name: "loop-worker"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/loop-worker"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/loop-worker"
+name: loop-worker
+description: Run Ruflo background workers using Claude Code native /loop scheduling
+argument-hint: "<worker-name>"
+allowed-tools: Bash(npx *) mcp__claude-flow__hooks_worker-dispatch mcp__claude-flow__hooks_worker-status ScheduleWakeup
 ---
+Use `/loop` for in-session periodic workers. Cache-aware delays keep prompt cache warm:
+- Delay formula: `min(270, cache_ttl * 0.9)` -- default 270s
 
-# loop-worker
+Dispatch a worker via MCP: `mcp__claude-flow__hooks_worker-dispatch({ trigger: "WORKER_NAME" })`
 
-> Indexed by skills.sh from ruvnet/ruflo
+Then schedule the next iteration: `ScheduleWakeup({ delaySeconds: 270, reason: "next WORKER_NAME iteration" })`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/loop-worker`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/loop-worker](https://skills.sh/ruvnet/ruflo/loop-worker)
+### Available Workers
 
-## Overview
+| Worker | Interval | Description |
+|--------|----------|-------------|
+| audit | 270s | Security analysis |
+| optimize | 270s | Performance optimization |
+| consolidate | 600s | Memory consolidation |
+| predict | 270s | Predictive preloading |
+| map | 600s | Codebase mapping |
+| testgaps | 270s | Test coverage analysis |
+| document | 600s | Auto-documentation |
+| benchmark | 600s | Performance benchmarking |
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/loop-worker
-```
+MCP tool responses include `[LOOP_SUGGESTION]` and `[CRON_SUGGESTION]` hints -- follow them.

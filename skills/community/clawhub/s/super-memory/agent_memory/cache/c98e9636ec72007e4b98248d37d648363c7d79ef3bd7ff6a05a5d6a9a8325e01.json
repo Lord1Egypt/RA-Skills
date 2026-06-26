@@ -1,0 +1,72 @@
+{
+  "value": {
+    "search_mode": "tempr_4way",
+    "total": 0,
+    "primary": [],
+    "related": [],
+    "causal_expansion": [],
+    "cultural_associations": [],
+    "phonetic_similar": [],
+    "entity_expansion": [],
+    "entity_context": {
+      "entities": [
+        {
+          "name": "When",
+          "type": "unknown",
+          "role": "queried"
+        }
+      ],
+      "expanded": false
+    },
+    "query": "When did I volunteer at the local animal shelter's fundraising dinner?",
+    "intent": "general",
+    "_trace": {
+      "trace_id": "tr_76b4f97b3185",
+      "query": "When did I volunteer at the local animal shelter's fundraising dinner?",
+      "result_summary": "found 0 results via tempr_4way, top_score=0.000",
+      "confidence": 0.3,
+      "sources_consulted": [],
+      "steps": [
+        {
+          "step_type": "init",
+          "detail": "mode_hints: structured=False, semantic=False, strategy=auto",
+          "timestamp": 1779786377.5967941
+        },
+        {
+          "step_type": "fts_search",
+          "detail": "structured found 0 results",
+          "timestamp": 1779786377.5967941
+        },
+        {
+          "step_type": "vec_search",
+          "detail": "semantic found 0 results (top_k=100)",
+          "timestamp": 1779786377.5967941
+        },
+        {
+          "step_type": "entity_search",
+          "detail": "entity expansion found 0 results",
+          "timestamp": 1779786377.5967941
+        },
+        {
+          "step_type": "causal_search",
+          "detail": "causal expansion found 0 results",
+          "timestamp": 1779786377.5967941
+        },
+        {
+          "step_type": "rrf_fusion",
+          "detail": "4way merged 0 results (hits: {'structured': 0, 'semantic': 0, 'entity': 0, 'causal': 0, 'bm25': 0}, multi: 0)",
+          "timestamp": 1779786377.5967941
+        }
+      ],
+      "uncertainty_factors": [
+        "low_result_count: only 0 results found"
+      ],
+      "alternatives_considered": [],
+      "created_at": 1779786377.5967941
+    },
+    "status": "no_results"
+  },
+  "expires_at": 1779786437.5967941,
+  "created_at": 1779786377.5967941,
+  "_hmac": "f91677b7ae42f83b582c3d3fe7f01ff5743a82c0875b8513251d6b81f721a4ea"
+}

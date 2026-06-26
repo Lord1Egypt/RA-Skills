@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — Friday Budgeting Pro{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Dashboard</h1>
+
+  <section>
+    <h2>Sync</h2>
+    <p>
+      <strong>Last synced:</strong>
+      <span id="last-synced">{% if last_synced_at %}{{ last_synced_at }}{% else %}Never{% endif %}</span>
+    </p>
+    {% if action_result %}
+      {% if action_result.ok %}
+      <div class="alert alert-success">{{ action_result.message }}</div>
+      {% else %}
+      <div class="alert alert-error">{{ action_result.message }}</div>
+      {% endif %}
+    {% endif %}
+    <div class="action-row">
+      <button class="btn-primary" id="btn-sync-now" onclick="doSync(this)">Sync Now</button>
+      <a href="/export/excel" class="btn-secondary">Export to Excel</a>
+    </div>
+    <div id="sync-result" style="margin-top:0.75rem"></div>
+    <script>
+    async function doSync(btn) {
+      btn.disabled = true;
+      btn.textContent = 'Syncing…';
+      document.getElementById('sync-result').innerHTML = '';
+      try {
+        const r = await fetch('/api/sync', {method: 'POST'});
+        const d = await r.json();
+        const el = document.getElementById('sync-result');
+        if (d.status === 'ok') {
+          el.innerHTML = '<div class="alert alert-success">✅ Synced — ' + (d.added || 0) + ' new transactions across ' + (d.connections_synced || 0) + ' accounts.</div>';
+          // Update last synced timestamp
+          const ts = document.getElementById('last-synced');
+          if (ts) ts.textContent = 'Just now';
+        } else {
+          el.innerHTML = '<div class="alert alert-error">❌ ' + (d.detail || d.message || 'Sync failed') + '</div>';
+        }
+      } catch(e) {
+        document.getElementById('sync-result').innerHTML = '<div class="alert alert-error">❌ Network error</div>';
+      }
+      btn.disabled = false;
+      btn.textContent = 'Sync Now';
+    }
+    </script>
+  </section>
+
+  <section>
+    <h2>Coming soon</h2>
+    <p class="hint">Charts and spending summaries will appear here in a future update.</p>
+  </section>
+</div>
+{% endblock %}

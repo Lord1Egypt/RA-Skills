@@ -1,0 +1,9 @@
+openapi: 3.0.3
+info:
+  title: AFOL Meta Skill
+  version: 1.0.0
+  description: >
+    Metadata-only placeholder for the afol orchestration skill. The skill
+    does not expose or wrap a network API directly; it routes agents to the
+    provider skills that wrap official APIs.
+paths: {}

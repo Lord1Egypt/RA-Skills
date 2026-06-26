@@ -1,0 +1,51 @@
+{
+  "project": "{{项目名称}}",
+  "version": "1.0",
+  "created": "{{YYYY-MM-DD}}",
+  "updated": "{{YYYY-MM-DD}}",
+  "methodology": "Effective harnesses for long-running agents (https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)",
+  "description": "{{项目描述}}",
+  "status": "in_progress",
+
+  "harness": {
+    "initializer_done": true,
+    "files": {
+      "feature_list": "feature_list.json",
+      "progress_log": "progress.txt",
+      "init_script": "init.sh"
+    },
+    "rules": [
+      "每个会话只做 1-2 个功能，不要贪多",
+      "开始前先运行 bash init.sh 了解当前状态",
+      "读取 progress.txt 获取上次进度",
+      "读取 feature_list.json 找到下一个优先级最高的未完成功能",
+      "完成后更新 feature_list.json 的 passes 字段",
+      "每次完成功能后 git commit",
+      "会话结束前更新 progress.txt",
+      "只修改 passes 字段，不要删除或编辑其他字段"
+    ]
+  },
+
+  "milestones": [
+    {
+      "name": "{{里程碑 1 名称}}",
+      "feature_ids": ["feat-01", "feat-02", "feat-03"],
+      "status": "pending",
+      "description": "{{里程碑描述}}"
+    }
+  ],
+
+  "files_to_modify": [
+    "path/to/file1.js",
+    "path/to/file2.css"
+  ],
+
+  "summary": {
+    "total_features": 3,
+    "categories": {
+      "foundation": 2,
+      "components": 1
+    },
+    "estimated_files_to_edit": 2
+  }
+}

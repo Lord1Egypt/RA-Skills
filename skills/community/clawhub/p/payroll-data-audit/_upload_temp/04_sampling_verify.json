@@ -1,0 +1,196 @@
+{
+  "version": "v5.4.0",
+  "verify_time": "2026-06-05T16:13:27.117713",
+  "total_records": 947,
+  "sample_size": 30,
+  "sample_rate": "3.2%",
+  "threshold": 0.05,
+  "formula_check": {
+    "sampled": 30,
+    "issues": 18,
+    "issue_details": [
+      {
+        "index": 114,
+        "工号": "1107",
+        "姓名代号": "275076Ge4Da9",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 22706.46,
+            "actual": 20935.82,
+            "diff": 1770.64
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 25,
+        "工号": "75",
+        "姓名代号": "994249Rr4Cf3",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 15214.46,
+            "actual": 14630.8,
+            "diff": 583.66
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 759,
+        "工号": "663",
+        "姓名代号": "956682Fj6Dl2",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 7187.05,
+            "actual": 7163.44,
+            "diff": 23.61
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 250,
+        "工号": "1244",
+        "姓名代号": "346048Ol0Qm2",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 34206.46,
+            "actual": 31285.82,
+            "diff": 2920.64
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 228,
+        "工号": "906",
+        "姓名代号": "542004Fv9Ii7",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 6206.46,
+            "actual": 6170.26,
+            "diff": 36.2
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 142,
+        "工号": "1345",
+        "姓名代号": "863835Hm7Ve0",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 22206.46,
+            "actual": 20485.82,
+            "diff": 1720.64
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 104,
+        "工号": "1068",
+        "姓名代号": "393087Fa6Hx9",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 22206.46,
+            "actual": 20485.82,
+            "diff": 1720.64
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 558,
+        "工号": "279",
+        "姓名代号": "994247Xc8Rm9",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 19819.45,
+            "actual": 18431.34,
+            "diff": 1388.11
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 89,
+        "工号": "893",
+        "姓名代号": "646040Fi3Yv1",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 20206.46,
+            "actual": 18685.82,
+            "diff": 1520.64
+          }
+        ],
+        "passed": false
+      },
+      {
+        "index": 432,
+        "工号": "888",
+        "姓名代号": "327005Wd1Ke1",
+        "issues": [
+          {
+            "type": "公式偏差",
+            "field": "实发金额合计",
+            "computed": 17258.43,
+            "actual": 16485.43,
+            "diff": 773.0
+          }
+        ],
+        "passed": false
+      }
+    ]
+  },
+  "red_line_check": {
+    "sampled": 30,
+    "issues": 0,
+    "issue_details": []
+  },
+  "business_rule_check": {
+    "sampled": 30,
+    "issues": 1,
+    "issue_details": [
+      {
+        "index": 616,
+        "工号": "1624",
+        "姓名代号": "349215Vt4Xw1",
+        "issues": [
+          {
+            "type": "BR-001",
+            "desc": "出勤工资 > 标准工资",
+            "actual": 3150.0,
+            "standard": 150.0
+          }
+        ],
+        "passed": false
+      }
+    ]
+  },
+  "summary": {
+    "total_issues": 19,
+    "issue_rate": "21.11%",
+    "verdict": "不通过",
+    "action": "偏差率超标，已输出根因分析报告，请人工核实",
+    "recommendation": "建议增加抽样比例至 50+ 条"
+  }
+}

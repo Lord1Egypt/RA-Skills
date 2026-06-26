@@ -1,0 +1,106 @@
+<!--
+  trip-planner 行程详情页骨架（必须包含以下三件套，缺一不可）：
+    1) Leaflet 地图容器 <div id="map"> + 状态栏 <div id="routeStatus">
+    2) marker 列表（每个 L.marker 的 popup 必须含 <strong>地名</strong>）
+    3) 文末"各路段 Google Maps 一键导航"表格（patch-trip-page.js 自动生成）
+
+  方案要点：
+    - 路线渲染走 OSRM 公共 API（router.project-osrm.org → routing.openstreetmap.de 级联）
+    - localStorage 本地缓存，二次打开秒出
+    - 请求失败时自动回退为直线（fallback dashArray 虚线），不会空白
+    - 路段导航链接用 `https://www.google.com/maps/dir/?api=1&origin=lat,lng&destination=lat,lng&travelmode=driving`
+
+  生成流程（skill 执行时）：
+    1) 先填 markers（按行程时间顺序排列，popup 首个 <strong>...</strong> 就是地名）
+    2) 保存 HTML 到 /tmp/<name>.html
+    3) 运行：node references/templates/patch-trip-page.js <name>
+       → 得到 /tmp/<name>_patched.html（已注入 OSRM 路线 + GMaps 导航表格）
+    4) rsync 到 /var/www/trip/<name>/index.html
+
+  注意事项：
+    - marker 顺序 = 行程顺序，patch 脚本会严格按顺序串接
+    - 跨海/跨境航段 OSRM 会失败，自动回退直线是预期行为
+    - 不要在注入的 <script> 前再有其他独立 <script>，patch 脚本会注入到最后一个 </script> 之前
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TRIP_TITLE}}</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  body { margin: 0; background: #0a192f; color: #e0e7ef; font-family: -apple-system, "PingFang SC", sans-serif; }
+  header { padding: 40px 24px; text-align: center; background: linear-gradient(135deg, #1e4976 0%, #0d1f3c 100%); }
+  header h1 { margin: 0; color: #fff; font-size: 28px; }
+  header p { margin: 8px 0 0; color: #90caf9; font-size: 14px; }
+
+  /* 地图：放在页面顶部区 */
+  #map { width: 100%; height: 520px; background: #a0c4d8; }
+  #routeStatus {
+    max-width: 1100px; margin: 8px auto 0; padding: 6px 12px;
+    font-size: 12px; color: #90caf9;
+    background: rgba(10,25,47,0.6); border: 1px solid #1e4976;
+    border-radius: 6px; text-align: center;
+  }
+
+  /* 地图弹窗暗色主题 */
+  .leaflet-popup-content-wrapper { background: #0d1f3c; color: #e0e7ef; border-radius: 8px; }
+  .leaflet-popup-tip { background: #0d1f3c; }
+  .leaflet-popup-content { margin: 10px 14px; font-size: 12px; line-height: 1.6; }
+  .leaflet-popup-content strong { color: #4fc3f7; }
+  .leaflet-container a.leaflet-popup-close-button { color: #90caf9; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>{{TRIP_TITLE}}</h1>
+  <p>{{TRIP_SUBTITLE}}</p>
+</header>
+
+<div id="map"></div>
+<div id="routeStatus">正在加载真实路径…（首次需几秒，之后走本地缓存秒开）</div>
+
+<!-- TODO: 行程 day-by-day 卡片区域（行程生成时填入） -->
+<section style="max-width:1100px; margin:24px auto; padding:0 16px;">
+  <!-- {{DAY_CARDS}} -->
+</section>
+
+<!--
+  下面这段由 patch-trip-page.js 在发布前自动插入到 <footer 之前：
+    1) <section> Google Maps 一键导航表格（每段一个 <tr>）
+    2) <script> OSRM 真实路由 + 本地缓存 + 回退直线 的完整逻辑（注入到最后一个 </script> 前）
+  所以模板里只需要准备好 markers，不需要手写地图脚本或导航表格。
+-->
+
+<footer style="text-align:center; color:#90caf9; padding:24px; font-size:12px; opacity:.6;">
+  {{TRIP_FOOTER}}
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map', { center: [{{CENTER_LAT}}, {{CENTER_LNG}}], zoom: {{ZOOM}}, scrollWheelZoom: false });
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Imagery © Esri, Maxar, Earthstar Geographics',
+  maxZoom: 18
+}).addTo(map);
+
+/* ======== MARKERS：按行程时间顺序排列，patch 脚本会按顺序串接路线 ========
+ * 每个 L.marker 的 popup 必须满足：以 <strong>地名</strong> 开头，地名会被提取到 GMaps 导航表格里
+ * 标号建议用 A/B/C/... 或 1/2/3/... 让用户一眼看出行程顺序
+ */
+
+L.marker([{{LAT}}, {{LNG}}], {
+  icon: L.divIcon({
+    className: 'custom-marker',
+    html: '<div style="background:#f44336;width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:700;">1</div>',
+    iconSize: [30, 30], iconAnchor: [15, 15]
+  })
+}).addTo(map).bindPopup('<strong>地名 Place Name</strong><br><small>简述</small>');
+
+/* 继续追加更多 L.marker ...（按顺序） */
+
+</script>
+</body>
+</html>

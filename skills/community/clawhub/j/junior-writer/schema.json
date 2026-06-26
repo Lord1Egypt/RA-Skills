@@ -1,0 +1,45 @@
+{
+  "input": {
+    "type": "object",
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "写作主题"
+      },
+      "genre": {
+        "type": "string",
+        "description": "类型（故事/随笔/情感/科普等）"
+      },
+      "tone": {
+        "type": "string",
+        "description": "语气（温柔/压抑/冷静等）"
+      },
+      "length": {
+        "type": "string",
+        "description": "篇幅（短/中/长）"
+      },
+      "reader_feedback": {
+        "type": "string",
+        "description": "读者评论，用于风格进化"
+      }
+    },
+    "required": ["topic"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "生成的文章"
+      },
+      "style_notes": {
+        "type": "string",
+        "description": "本次写作风格说明"
+      },
+      "evolution_notes": {
+        "type": "string",
+        "description": "根据反馈的调整说明"
+      }
+    }
+  }
+}

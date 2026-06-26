@@ -1,0 +1,48 @@
+{
+  "name": "use-cursor",
+  "version": "1.0.4",
+  "description": "Manage Cursor CLI tasks via tmux with security hardening",
+  "author": "Bruce + 凤雏",
+  "license": "MIT",
+  "source": "https://github.com/openclaw/skills/tree/main/use-cursor",
+  "homepage": "https://github.com/openclaw/skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/use-cursor"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=2026.3.0"
+  },
+  "required": {
+    "binaries": ["tmux", "agent"],
+    "env": ["CURSOR_API_KEY"]
+  },
+  "clawhub": {
+    "required": {
+      "env": ["CURSOR_API_KEY (optional)"],
+      "binaries": ["tmux", "agent"]
+    },
+    "security": {
+      "autonomous": false,
+      "always": false,
+      "userInvocable": true,
+      "permissions": {
+        "shell": true,
+        "filesystem": {"read": ["~/.cursor/cli-config.json"], "write": []},
+        "network": false,
+        "env": ["CURSOR_API_KEY", "CURSOR_NO_ANALYTICS"]
+      },
+      "notes": [
+        "Reads ~/.cursor/cli-config.json for auth status (email redacted: ***@domain)",
+        "Captures tmux pane output (may contain workspace data - use isolated mode)",
+        "All shell arguments escaped using single-quote method",
+        "ALL tmux send-keys use -l flag (verified: spawn.sh:40,46; spawn-isolated.sh:42,49; send.sh:24)",
+        "Newlines/control chars sanitized to prevent tmux injection",
+        "Isolated mode: env -i with hardcoded PATH (no env inheritance)",
+        "Does not download remote code at install time",
+        "child_process.exec required for tmux - static analysis flag is FALSE POSITIVE"
+      ]
+    }
+  }
+}

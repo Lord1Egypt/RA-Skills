@@ -1,0 +1,15 @@
+{
+  "name": "taobao_daily_sync",
+  "stores": ["taobao"],
+  "actions": [
+    "fetch_new_orders",
+    "update_inventory",
+    "sync_tracking_numbers"
+  ],
+  "schedule": "0 2 * * *",
+  "notifications": {
+    "on_success": false,
+    "on_error": true,
+    "channel": "email"
+  }
+}

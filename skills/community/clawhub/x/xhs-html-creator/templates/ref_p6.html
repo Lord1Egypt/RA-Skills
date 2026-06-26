@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>宝宝不买清单（一）</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1440px;background:linear-gradient(160deg,#FFF8F0,#FFF5EE);font-family:"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden;position:relative}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,160,122,0.1)0%,transparent 50%);pointer-events:none}
+.top-bar{background:linear-gradient(135deg,#FF8C6B,#FF7A5C);padding:28px 50px 22px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.top-bar::after{content:"";position:absolute;bottom:-18px;left:0;right:0;height:18px;background:linear-gradient(135deg,#FF8C6B,#FF7A5C);clip-path:ellipse(55% 100% at 50% 100%)}
+.top-title{color:white;font-size:44px;font-weight:800;letter-spacing:2px}
+.top-sub{color:rgba(255,255,255,0.9);font-size:20px;margin-top:4px}
+.top-emoji{font-size:56px}
+.page-num{background:rgba(255,255,255,0.25);color:white;font-size:18px;font-weight:600;padding:6px 18px;border-radius:20px}
+.content{padding:50px 50px 30px}
+.label{background:linear-gradient(135deg,#FF8C6B,#FF7A5C);color:white;font-size:20px;font-weight:700;padding:8px 24px;border-radius:16px;display:inline-block;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
+.card{background:white;border:2px dashed #FFB6C1;border-radius:16px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px}
+.num{width:34px;height:34px;background:linear-gradient(135deg,#FF8C6B,#FF7A5C);color:white;font-size:18px;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info{flex:1}
+.name{font-size:22px;font-weight:700;color:#333;margin-bottom:4px}
+.reason{font-size:16px;color:#FF6B8A;font-weight:600;margin-bottom:3px}
+.tip{font-size:14px;color:#999;line-height:1.4}
+.bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(135deg,#FFF0EE,#FFE4D6);border-top:2px dashed #FFB6C1;padding:16px 50px;display:flex;align-items:center;gap:20px}
+.icon{font-size:36px}
+.text{font-size:20px;color:#FF8C6B;font-weight:600}
+.tag{background:#FF8C6B;color:white;font-size:13px;padding:4px 12px;border-radius:10px}
+.tags{display:flex;gap:8px;margin-left:auto}
+</style></head>
+<body>
+<div class="bg"></div>
+<div class="top-bar">
+  <div><div class="top-title">🚫 宝宝不买清单</div><div class="top-sub">这些真的不需要！别交智商税</div></div>
+  <div class="top-emoji">❌</div>
+  <div class="page-num">6/8</div>
+</div>
+<div class="content">
+  <div class="label">⚠️ 宝宝用品避坑指南</div>
+  <div class="grid">
+    <div class="card"><div class="num">1</div><div class="info"><div class="name">婴儿提篮</div><div class="reason">使用时间极短，一般就用1-2次</div><div class="tip">0-6个月提篮使用频率极低，直接用安全座椅更实用</div></div></div>
+    <div class="card"><div class="num">2</div><div class="info"><div class="name">独立婴儿床</div><div class="reason">宝宝不爱睡，基本闲置</div><div class="tip">大床拼接婴儿床更实用，和妈妈一起睡更方便</div></div></div>
+    <div class="card"><div class="num">3</div><div class="info"><div class="name">防胀气大鹅</div><div class="reason">贵，用处不大</div><div class="tip">排气操+趴睡更有效，这个买回来基本吃灰</div></div></div>
+    <div class="card"><div class="num">4</div><div class="info"><div class="name">高景观婴儿车</div><div class="reason">太重太大，出行不方便</div><div class="tip">轻便伞车更实用，从出生用到3岁没问题</div></div></div>
+    <div class="card"><div class="num">5</div><div class="info"><div class="name">一次性隔尿垫（大量）</div><div class="reason">用不了那么多</div><div class="tip">准备10-20张就够了，不用囤很多</div></div></div>
+    <div class="card"><div class="num">6</div><div class="info"><div class="name">婴儿枕头</div><div class="reason">1岁前不需要，影响脊椎</div><div class="tip">美国儿科学会建议1岁前不用枕头</div></div></div>
+    <div class="card"><div class="num">7</div><div class="info"><div class="name">婴儿手套脚套</div><div class="reason">阻碍触觉发育，勤剪指甲即可</div><div class="tip">让宝宝多用手触摸外界，促进感知发育</div></div></div>
+    <div class="card"><div class="num">8</div><div class="info"><div class="name">大量婴儿衣服（0-3月）</div><div class="reason">月子里孩子长得快，很快穿不下</div><div class="tip">每个尺码准备3-5件够了，边穿边买</div></div></div>
+    <div class="card"><div class="num">9</div><div class="info"><div class="name">温奶器（消毒款）</div><div class="reason">功能复杂，价格贵</div><div class="tip">普通恒温壶+开水烫消毒就够用了</div></div></div>
+    <div class="card"><div class="num">10</div><div class="info"><div class="name">痱子粉</div><div class="reason">粉状物影响呼吸道</div><div class="tip">选液体痱子露，更安全方便</div></div></div>
+    <div class="card"><div class="num">11</div><div class="info"><div class="name">豪华婴儿浴桶套装</div><div class="reason">占地方，用不了几次</div><div class="tip">可折叠小浴盆实用，从出生用到长大</div></div></div>
+  </div>
+</div>
+<div class="bar">
+  <div class="icon">💡</div>
+  <div class="text">以上11项，买了就是吃灰！</div>
+  <div class="tags"><div class="tag">#待产包避坑</div><div class="tag">#孕期囤货</div></div>
+</div>
+</body></html>

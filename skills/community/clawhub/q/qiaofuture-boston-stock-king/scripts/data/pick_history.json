@@ -1,0 +1,80 @@
+{
+  "picks": [
+    {
+      "id": 1,
+      "date": "2026-03-13",
+      "datetime": "2026-03-13T01:14:58.212095",
+      "stock_code": "920375",
+      "stock_name": "派诺科技",
+      "pick_type": "荐股",
+      "status": "pending",
+      "t1_return": null,
+      "t5_return": null,
+      "t10_return": null
+    },
+    {
+      "id": 2,
+      "date": "2026-03-13",
+      "datetime": "2026-03-13T01:14:58.212414",
+      "stock_code": "600888",
+      "stock_name": "新疆众和",
+      "pick_type": "荐股",
+      "status": "pending",
+      "t1_return": null,
+      "t5_return": null,
+      "t10_return": null
+    },
+    {
+      "id": 3,
+      "date": "2026-03-13",
+      "datetime": "2026-03-13T01:14:58.212662",
+      "stock_code": "600256",
+      "stock_name": "广汇能源",
+      "pick_type": "荐股",
+      "status": "pending",
+      "t1_return": null,
+      "t5_return": null,
+      "t10_return": null
+    },
+    {
+      "id": 4,
+      "date": "2026-03-13",
+      "datetime": "2026-03-13T01:18:30.403267",
+      "stock_code": "920036",
+      "stock_name": "觅睿科技",
+      "pick_type": "荐股",
+      "status": "pending",
+      "t1_return": null,
+      "t5_return": null,
+      "t10_return": null
+    },
+    {
+      "id": 5,
+      "date": "2026-03-13",
+      "datetime": "2026-03-13T01:18:30.403777",
+      "stock_code": "920375",
+      "stock_name": "派诺科技",
+      "pick_type": "荐股",
+      "status": "pending",
+      "t1_return": null,
+      "t5_return": null,
+      "t10_return": null
+    },
+    {
+      "id": 6,
+      "date": "2026-03-13",
+      "datetime": "2026-03-13T01:18:30.404468",
+      "stock_code": "600888",
+      "stock_name": "新疆众和",
+      "pick_type": "荐股",
+      "status": "pending",
+      "t1_return": null,
+      "t5_return": null,
+      "t10_return": null
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "success": 0
+  }
+}

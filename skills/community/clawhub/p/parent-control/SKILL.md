@@ -1,35 +1,98 @@
 ---
-name: "Parent Control"
-description: "成长伙伴 - 青少年电脑管理神器！禁用游戏、屏蔽网站、时间管理、远程锁屏。7 天免费试用，¥9.9 起！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parent-control"
-sourceUrl: "https://clawhub.ai/skills/parent-control"
+name: parent-control
+description: 成长伙伴 - 青少年电脑管理神器！禁用游戏、屏蔽网站、时间管理、远程锁屏。7 天免费试用，¥9.9 起！
+version: 1.2.0
+metadata:
+  openclaw:
+    emoji: 🌱
+    requires:
+      bins: ["python3"]
 ---
 
-# Parent Control
+# 成长伙伴 - 青少年电脑管理
 
-> 成长伙伴 - 青少年电脑管理神器！禁用游戏、屏蔽网站、时间管理、远程锁屏。7 天免费试用，¥9.9 起！
+## 🎯 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parent-control`
-- **Source URL:** [https://clawhub.ai/skills/parent-control](https://clawhub.ai/skills/parent-control)
+### 被控端（孩子电脑）
+- ✅ 进程监控：记录所有运行软件的使用时长
+- ✅ 软件禁用：黑名单/白名单控制
+- ✅ 时间限制：总时长、分软件时长、时间段限制
+- ✅ 上网过滤：屏蔽不良网站、强制安全搜索
+- ✅ 定时锁屏：到时间自动锁屏、强制休息
+- ✅ 使用报告：生成日报/周报，邮件发送
+- ✅ 许可证管理：7 天免费试用 + 验证码激活
 
-## Overview
+### 家长管理端
+- ✅ Web 界面：手机/电脑浏览器访问
+- ✅ 远程限制：随时禁用软件、锁屏
+- ✅ 实时查看：查看当前使用情况
+- ✅ 时间设置：修改宵禁时间、使用限制
+- ✅ 无需安装：打开浏览器即可管理
 
+## 💰 定价策略（一折特惠）
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 套餐 | 验证码 | 可激活设备 | 价格 |
+|------|--------|-----------|------|
+| 个人版 | 1 个 | 3 台 | ¥9.9 |
+| 家庭版 | 2 个 | 6 台 | ¥19.9 |
+| 企业版 | 5 个 | 15 台 | ¥49.9 |
+
+**原价¥99，现仅需¥9.9！**
+
+## 🚀 快速开始
+
+### 安装依赖
 ```bash
-hermes skills install clawhub/parent-control
+pip install -r requirements.txt
 ```
+
+### 启动被控端
+```bash
+cd client
+python main.py
+```
+
+### 访问管理界面
+```
+http://localhost:8080
+```
+
+## 📦 包含内容
+
+- 被控端程序（Windows）
+- 家长管理界面（Web）
+- 验证码生成工具
+- 售后管理系统
+- 完整使用文档
+
+## ⚙️ 系统要求
+
+- 操作系统：Windows 10/11
+- Python: 3.8+
+- 管理员权限：需要（用于修改 hosts 文件和锁屏）
+
+## 📞 售后支持
+
+- 验证码问题 → 联系售后
+- 技术问题 → 联系技术支持
+- 激活问题 → 7×24 小时在线
+
+## ⚠️ 注意事项
+
+1. 合法使用：仅用于监护未成年人
+2. 告知义务：建议告知被监控方
+3. 隐私保护：不收集敏感信息
+
+## 📚 文档
+
+- README.md - 项目说明
+- QUICKSTART.md - 快速入门
+- AFTER_SALES_GUIDE.md - 售后指南
+- TROUBLESHOOTING.md - 故障排除
+
+---
+
+**作者**: 科特船长  
+**版本**: v1.2.0  
+**发布日期**: 2026-03-24  
+**许可证**: MIT-0

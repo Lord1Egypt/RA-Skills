@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Interactive setup for Sony Bravia TV skill.
+
+Discovers the TV on the local network, tests connectivity,
+and writes env vars to a .env file for tv_control.py.
+"""
+
+import json
+import os
+import re
+import socket
+import subprocess
+import sys
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+ENV_FILE = SKILL_DIR / ".env"
+
+def prompt(msg, default=None):
+    suffix = f" [{default}]" if default else ""
+    val = input(f"{msg}{suffix}: ").strip()
+    return val or default
+
+def discover_tv():
+    """Try to find Sony Bravia TVs via SSDP."""
+    print("\nScanning local network for Sony Bravia TVs...")
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.settimeout(3)
+        msg = (
+            'M-SEARCH * HTTP/1.1\r\n'
+            'HOST: 239.255.255.250:1900\r\n'
+            'MAN: "ssdp:discover"\r\n'
+            'MX: 2\r\n'
+            'ST: urn:schemas-sony-com:service:IRCC:1\r\n'
+            '\r\n'
+        )
+        sock.sendto(msg.encode(), ('239.255.255.250', 1900))
+        found = []
+        while True:
+            try:
+                data, addr = sock.recvfrom(4096)
+                if b'sony' in data.lower() or b'bravia' in data.lower():
+                    found.append(addr[0])
+            except socket.timeout:
+                break
+        sock.close()
+        if found:
+            print(f"  Found TV(s): {', '.join(found)}")
+            return found[0]
+        else:
+            print("  No TVs found via SSDP (TV might be off or on different subnet).")
+            return None
+    except Exception as e:
+        print(f"  Discovery failed: {e}")
+        return None
+
+def test_connection(ip, psk):
+    """Test if we can reach the TV API."""
+    import urllib.request
+    url = f"http://{ip}/sony/system"
+    payload = json.dumps({"method": "getPowerStatus", "id": 1, "params": [], "version": "1.0"})
+    req = urllib.request.Request(url, data=payload.encode(), headers={
+        "X-Auth-PSK": psk,
+        "Content-Type": "application/json"
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            result = json.loads(resp.read())
+            status = result.get("result", [{}])[0].get("status", "unknown")
+            return True, status
+    except Exception as e:
+        return False, str(e)
+
+def get_mac(ip):
+    """Try to get MAC address from ARP table."""
+    try:
+        result = subprocess.run(["ip", "neigh", "show", ip], capture_output=True, text=True, timeout=5)
+        match = re.search(r'([0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2})', result.stdout, re.I)
+        if match:
+            return match.group(1).upper()
+    except Exception:
+        pass
+    try:
+        result = subprocess.run(["arp", "-n", ip], capture_output=True, text=True, timeout=5)
+        match = re.search(r'([0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2})', result.stdout, re.I)
+        if match:
+            return match.group(1).upper()
+    except Exception:
+        pass
+    return None
+
+def main():
+    print("="*50)
+    print("  Sony Bravia TV Skill — Setup")
+    print("="*50)
+    print()
+    print("This will configure your TV connection.")
+    print("You need:")
+    print("  1. TV IP address (or we can try to discover it)")
+    print("  2. Pre-Shared Key (set in TV > Settings > Network > IP Control > Pre-Shared Key)")
+    print("  3. MAC address (optional, needed for Wake-on-LAN power on)")
+    print()
+
+    # Load existing values
+    existing = {}
+    if ENV_FILE.exists():
+        for line in ENV_FILE.read_text().splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                existing[k.strip()] = v.strip()
+
+    # Step 1: IP
+    discovered = discover_tv()
+    default_ip = discovered or existing.get("SONY_TV_IP")
+    tv_ip = prompt("\nTV IP address", default_ip)
+    if not tv_ip:
+        print("ERROR: IP address is required.")
+        sys.exit(1)
+
+    # Step 2: PSK
+    default_psk = existing.get("SONY_TV_PSK")
+    tv_psk = prompt("Pre-Shared Key", default_psk)
+    if not tv_psk:
+        print("ERROR: PSK is required.")
+        sys.exit(1)
+
+    # Test connection
+    print(f"\nTesting connection to {tv_ip}...")
+    ok, status = test_connection(tv_ip, tv_psk)
+    if ok:
+        print(f"  Connected! TV power status: {status}")
+    else:
+        print(f"  Connection failed: {status}")
+        cont = prompt("Continue anyway? (y/n)", "n")
+        if cont.lower() != "y":
+            sys.exit(1)
+
+    # Step 3: MAC
+    auto_mac = get_mac(tv_ip) if ok else None
+    default_mac = auto_mac or existing.get("SONY_TV_MAC")
+    if auto_mac:
+        print(f"\n  Auto-detected MAC: {auto_mac}")
+    tv_mac = prompt("TV MAC address (for Wake-on-LAN, optional)", default_mac) or ""
+
+    # Write .env
+    env_content = f"""# Sony Bravia TV — generated by setup.py
+SONY_TV_IP={tv_ip}
+SONY_TV_PSK={tv_psk}
+SONY_TV_MAC={tv_mac}
+"""
+    ENV_FILE.write_text(env_content)
+    print(f"\nSaved to {ENV_FILE}")
+    print()
+    print("Setup complete! Test with:")
+    print(f"  uv run {SKILL_DIR}/scripts/tv_control.py --action status")
+    print()
+
+if __name__ == "__main__":
+    main()

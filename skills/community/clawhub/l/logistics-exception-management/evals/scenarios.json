@@ -1,0 +1,1859 @@
+{
+  "capability": "logistics-exception-management",
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "LEM-001",
+      "name": "Standard LTL transit delay with customer SLA at risk",
+      "difficulty": "easy",
+      "category": "delay-transit",
+      "context": {
+        "situation": "A shipment of 6 pallets of automotive brake rotors (2,400 lbs) is moving via Summit LTL from Detroit, MI to Nashville, TN. PRO# 571-839204. The quoted transit time was 2 business days with delivery promised for Tuesday March 11. It is now end-of-day Wednesday March 12 and the latest scan shows the freight sitting at Summit's Indianapolis terminal since Monday afternoon. The consignee, MidSouth Auto Parts (a mid-tier account, ~$180K annual revenue), has called twice asking for an update. Their regional distribution window closes Friday at noon. Product value on the BOL is $14,200.",
+        "available_data": {
+          "carrier": "Summit LTL",
+          "pro_number": "571-839204",
+          "bol_number": "BK-2025-03384",
+          "origin": "Detroit, MI",
+          "destination": "Nashville, TN",
+          "weight_lbs": 2400,
+          "pieces": 6,
+          "product": "Automotive brake rotors",
+          "product_value_usd": 14200,
+          "quoted_transit_days": 2,
+          "promised_delivery": "2025-03-11",
+          "current_date": "2025-03-12",
+          "last_scan": "Indianapolis, IN terminal — 2025-03-10 15:42 EST",
+          "customer_tier": "mid-tier",
+          "customer_annual_revenue_usd": 180000,
+          "consignee": "MidSouth Auto Parts",
+          "delivery_window_close": "2025-03-14 12:00 EST"
+        }
+      },
+      "task": "Determine exception severity, outline the resolution steps in priority order, draft a carrier inquiry message, and draft a proactive customer update.",
+      "evaluation_criteria": [
+        {
+          "criterion": "severity_classification",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Correctly classifies as Level 2 (Moderate) financial impact ($14,200 value) and notes that mid-tier customer with delivery window still 2 days out does not elevate severity. Overall severity Level 2.",
+            "fail": "Misclassifies severity — either treats this as Level 1 (under $1K threshold doesn't apply) or over-escalates to Level 3+ without justification. Ignores the remaining delivery window buffer."
+          }
+        },
+        {
+          "criterion": "resolution_steps",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Calls Summit's Indianapolis terminal directly (not just the 800 number) to get physical freight location and updated ETA. Checks if freight missed a load or is staged for next dispatch. Identifies that if freight doesn't move by Thursday AM, the Friday noon window requires escalation to carrier account manager.",
+            "fail": "Only suggests calling the carrier's general customer service line. Does not mention contacting the specific terminal. Fails to calculate the Thursday-morning decision point relative to the Friday noon window."
+          }
+        },
+        {
+          "criterion": "carrier_communication",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Drafts a professional inquiry referencing PRO# and BOL#, asks for physical trailer/bay location at Indianapolis, requests updated ETA to Nashville, and sets a response deadline (e.g., by 10 AM tomorrow). Tone is collaborative, not adversarial.",
+            "fail": "Generic message without shipment references. Aggressive or threatening tone for what is a 1-day delay. No specific ask for terminal-level information."
+          }
+        },
+        {
+          "criterion": "customer_communication",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Proactive update to MidSouth that acknowledges the delay without blaming Summit by name, provides a realistic revised ETA (Thursday or Friday AM), confirms their Friday noon window is still achievable, and offers a direct contact for further updates.",
+            "fail": "Blames the carrier by name to the customer. Provides no revised ETA. Does not reference the customer's Friday deadline. Reactive rather than proactive tone."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-002",
+      "name": "Visible damage on high-value electronics pallet at delivery",
+      "difficulty": "easy",
+      "category": "damage-visible",
+      "context": {
+        "situation": "A delivery driver from Heartland Express just arrived at your Austin, TX warehouse with a full truckload of consumer electronics — 22 pallets of wireless speakers (model WS-400). During unloading, the receiving clerk notices pallet 14 has a crushed corner with visible box deformation on the top two layers (approximately 48 units). The driver is still on-site and has not yet obtained a signature on the POD. The total shipment value is $88,000; the affected pallet is estimated at $9,600 (48 units × $200 wholesale). The shipment originated from the manufacturer in Shenzhen, with domestic leg from the Port of Long Beach. BOL# HE-40221.",
+        "available_data": {
+          "carrier": "Heartland Express",
+          "bol_number": "HE-40221",
+          "origin": "Port of Long Beach, CA (domestic leg)",
+          "destination": "Austin, TX warehouse",
+          "total_pallets": 22,
+          "product": "Wireless speakers model WS-400",
+          "unit_wholesale_value_usd": 200,
+          "total_shipment_value_usd": 88000,
+          "damaged_pallet": 14,
+          "estimated_damaged_units": 48,
+          "estimated_damage_value_usd": 9600,
+          "driver_on_site": true,
+          "pod_signed": false,
+          "damage_type": "Crushed corner, box deformation on top two layers"
+        }
+      },
+      "task": "Describe the immediate actions the receiving team must take while the driver is still on-site, the documentation requirements, and the initial claim filing approach.",
+      "evaluation_criteria": [
+        {
+          "criterion": "immediate_actions",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Instructs receiving clerk to: (1) photograph damage from multiple angles before moving anything, (2) note damage clearly on the POD before signing — writing 'Pallet 14: crushed corner, approx 48 units damaged, visible box deformation' on the delivery receipt, (3) have the driver acknowledge the notation, (4) segregate the damaged pallet. Emphasizes that the driver must NOT leave before the POD is annotated.",
+            "fail": "Allows signing a clean POD then filing a claim later. Does not mention photographing before the driver leaves. Suggests refusing the entire 22-pallet shipment over 1 damaged pallet."
+          }
+        },
+        {
+          "criterion": "documentation_requirements",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Lists: annotated POD copy, photographs (damage, packaging, pallet position on trailer), original BOL showing clean tender at origin, commercial invoice for the affected units ($9,600), and a formal inspection count of actual damaged vs salvageable units. Mentions retaining damaged packaging.",
+            "fail": "Vague reference to 'documentation' without specifics. Omits the importance of the clean-tender BOL showing goods were in good condition at origin. Does not mention retaining damaged packaging for carrier inspection."
+          }
+        },
+        {
+          "criterion": "claim_filing_approach",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "References Carmack Amendment as basis for carrier liability on domestic surface leg. Notes the $9,600 value puts this in the 'full claims process' zone ($2,500–$10,000 bracket). Files within 30 days. Acknowledges that Heartland has 30 days to acknowledge and 120 days to resolve.",
+            "fail": "Does not mention Carmack Amendment or any legal basis. Suggests absorbing the cost. Gets the filing timeline wrong (e.g., says 60 days or 1 year). Does not mention carrier response timelines."
+          }
+        },
+        {
+          "criterion": "practical_judgment",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "Notes that functional testing of the 48 units may reveal some are undamaged despite box deformation, which affects actual claim value. Suggests accepting the remaining 21 good pallets to avoid storage charges and return freight costs.",
+            "fail": "Treats all 48 units as total loss without suggesting inspection. Recommends refusing the entire truckload shipment."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-003",
+      "name": "Weather-related delay with perishable goods and tight shelf life",
+      "difficulty": "medium",
+      "category": "delay-weather",
+      "context": {
+        "situation": "A reefer shipment of 18 pallets of fresh-cut salad kits (38,000 lbs) is en route from Salinas, CA to Atlanta, GA via Pacific Freight Lines. The shipment left Monday morning with a 4-day transit commitment (Thursday delivery). It is now Tuesday evening, and a major ice storm has shut down I-40 across Oklahoma and Arkansas. Pacific Freight Lines has notified you that the truck is parked at a truck stop in Amarillo, TX with no estimated time for road reopening. The salad kits have a 10-day shelf life from pack date (packed Saturday), meaning the product must reach the Atlanta DC by Friday at the latest to have sufficient remaining shelf life for retail distribution. The load value is $42,000. Your customer, a regional grocery chain (FreshMart, enterprise-tier account, $2.4M annual), has a Sunday ad circular featuring these salad kits with a promotional price.",
+        "available_data": {
+          "carrier": "Pacific Freight Lines",
+          "bol_number": "PFL-88103",
+          "origin": "Salinas, CA",
+          "destination": "Atlanta, GA DC",
+          "product": "Fresh-cut salad kits",
+          "weight_lbs": 38000,
+          "pallets": 18,
+          "load_value_usd": 42000,
+          "pack_date": "2025-03-08 (Saturday)",
+          "shelf_life_days": 10,
+          "last_acceptable_delivery": "2025-03-14 (Friday)",
+          "original_delivery_commitment": "2025-03-13 (Thursday)",
+          "current_date": "2025-03-11 (Tuesday evening)",
+          "truck_location": "Amarillo, TX — parked at truck stop",
+          "weather_event": "Major ice storm, I-40 closed across OK and AR",
+          "reefer_set_point_f": 34,
+          "customer": "FreshMart",
+          "customer_tier": "enterprise",
+          "customer_annual_revenue_usd": 2400000,
+          "customer_promotion": "Sunday ad circular featuring salad kits",
+          "fuel_level_estimate": "3/4 tank"
+        }
+      },
+      "task": "Assess the situation across all risk dimensions, develop contingency plans (at least two alternatives), determine if this is a force majeure situation, and recommend the optimal course of action with customer communication strategy.",
+      "evaluation_criteria": [
+        {
+          "criterion": "risk_assessment",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies all three compounding risks: (1) shelf life countdown — product expires March 18, needs to arrive by Friday March 14 for 4-day retail window, (2) reefer fuel — 3/4 tank in stationary truck will run out in approximately 48-60 hours if idling to maintain temp, (3) enterprise customer with live promotional commitment creating a financial multiplier well beyond the $42K load value. Classifies as Level 4 (Major) minimum due to enterprise customer with production/retail launch at risk.",
+            "fail": "Only identifies the delay risk. Ignores reefer fuel burn rate while stationary. Does not connect the Sunday ad circular to the financial exposure beyond the load value. Underclassifies severity."
+          }
+        },
+        {
+          "criterion": "contingency_planning",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Presents at least two actionable alternatives: (1) Southern reroute via I-10 through southern TX/LA/MS/AL — adds ~8 hours but avoids the storm, decision needed by Wednesday AM before driver runs out of HOS, (2) Source replacement product from a closer supplier or from inventory at another DC that can ship direct to Atlanta. Also considers whether partial fulfillment from existing Atlanta DC inventory could cover the Sunday promotion while the full shipment is delayed.",
+            "fail": "Only suggests 'wait for the storm to clear.' Does not calculate the HOS (hours of service) constraint on rerouting. Proposes solutions that ignore the Friday hard deadline (e.g., 'deliver next week'). Does not consider replacement sourcing."
+          }
+        },
+        {
+          "criterion": "force_majeure_analysis",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Correctly identifies this as a weather-related force majeure event that limits carrier liability for the delay itself, but notes that the carrier still has a duty of care for the product (maintaining reefer temperature, not abandoning the load). If the product spoils due to reefer failure during the forced stop, that is a separate claim from the delay.",
+            "fail": "Either states the carrier is fully liable for all losses including the delay, or completely absolves the carrier of all responsibility including product care. Does not distinguish between delay liability and cargo care liability during the weather event."
+          }
+        },
+        {
+          "criterion": "customer_strategy",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Recommends immediate (Tuesday night) proactive call to FreshMart account manager — not an email. Frames communication around the solution (reroute ETA or replacement sourcing) rather than the problem. Addresses the Sunday ad risk directly — either confirm delivery timing or advise FreshMart to prepare a substitution for the circular. Does not name Pacific Freight Lines to the customer.",
+            "fail": "Suggests waiting until Thursday to update the customer. Communicates via email only. Does not address the Sunday promotion impact. Blames the carrier to the customer."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-004",
+      "name": "Concealed damage discovered 3 days after LTL delivery",
+      "difficulty": "medium",
+      "category": "damage-concealed",
+      "context": {
+        "situation": "Your warehouse team in Columbus, OH received a shipment of 4 pallets of precision laboratory instruments from Continental Cargo last Thursday. The POD was signed clean — no exceptions noted. Today (Monday), the quality inspection team opened the crates and discovered that 2 of the 12 instruments show misaligned optics and cracked mounting brackets consistent with severe impact during transit. Each unit is valued at $8,500 (total damage: $17,000). The instruments were packed in custom foam-lined crates by the manufacturer in San Diego, CA. Continental Cargo's claims department has a reputation for aggressively denying concealed damage claims. The 5-day concealed damage notification window closes this Wednesday.",
+        "available_data": {
+          "carrier": "Continental Cargo",
+          "bol_number": "CC-2025-7714",
+          "origin": "San Diego, CA",
+          "destination": "Columbus, OH",
+          "delivery_date": "2025-03-06 (Thursday)",
+          "discovery_date": "2025-03-10 (Monday)",
+          "concealed_damage_deadline": "2025-03-12 (Wednesday)",
+          "product": "Precision laboratory instruments",
+          "units_damaged": 2,
+          "units_total": 12,
+          "unit_value_usd": 8500,
+          "total_damage_usd": 17000,
+          "packaging": "Custom foam-lined wooden crates",
+          "damage_description": "Misaligned optics and cracked mounting brackets — consistent with severe impact",
+          "pod_notation": "Signed clean, no exceptions",
+          "carrier_claims_reputation": "Aggressively denies concealed damage claims"
+        }
+      },
+      "task": "Outline the steps to build the strongest possible concealed damage claim against a carrier known for aggressive denials, including documentation strategy, notification requirements, and pre-empting Continental Cargo's likely defenses.",
+      "evaluation_criteria": [
+        {
+          "criterion": "notification_urgency",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Files concealed damage notification with Continental Cargo immediately (Monday), giving 2 days of buffer before the Wednesday deadline. Sends via email AND certified mail/fax for proof of delivery. Includes PRO#, BOL#, specific damage description, and requests carrier inspection.",
+            "fail": "Does not mention the 5-day concealed damage notification window or its urgency. Suggests waiting to gather more evidence before notifying. Files notification by only one method with no delivery confirmation."
+          }
+        },
+        {
+          "criterion": "evidence_building",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Builds a multi-layered evidence package: (1) manufacturer's packing certification and QC sign-off showing instruments passed calibration before shipping, (2) photographs of the external crate condition vs internal damage pattern, (3) packaging integrity analysis — if foam is compressed or crate shows no external damage, this supports the impact-during-transit theory, (4) inspection report from the instrument manufacturer or independent calibration lab quantifying the damage. Requests that Continental Cargo inspect the packaging before any disposal.",
+            "fail": "Only takes photos of the damaged instruments. Does not request manufacturer's outbound QC records. Does not preserve the packaging for carrier inspection. No independent damage assessment."
+          }
+        },
+        {
+          "criterion": "preempting_carrier_defenses",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Anticipates Continental's likely defenses: (1) 'Damage was pre-existing' — counter with manufacturer's outbound QC and calibration cert, (2) 'Inadequate packaging' — counter with custom foam-lined crate specs meeting ISTA 2A or 3A standards, (3) 'Signed clean POD means acceptance' — counter that concealed damage by definition is not visible at delivery and the 5-day notification was met, (4) 'Damage occurred during unloading' — document your unloading procedures and equipment used.",
+            "fail": "Does not anticipate carrier defenses. Relies solely on the damage photos without addressing the clean POD issue. Does not mention packaging standards. Does not prepare counter-arguments."
+          }
+        },
+        {
+          "criterion": "claim_valuation",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Values the claim at the full $17,000 replacement cost. Obtains repair estimates first — if instruments can be recalibrated for less than replacement, the claim amount should reflect actual loss (repair + recalibration + downtime). Includes the commercial invoice and original purchase order as value documentation.",
+            "fail": "Fails to get repair vs. replacement estimates. Does not include commercial invoice as value documentation. Claims an inflated amount beyond actual loss. Does not distinguish between repair-possible and total-loss units."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-005",
+      "name": "Full shipment loss with 48-hour scan gap on FTL",
+      "difficulty": "medium",
+      "category": "loss-full",
+      "context": {
+        "situation": "A full truckload of industrial HVAC compressors (18 units, total value $126,000) was picked up from your manufacturer in Milwaukee, WI on Friday morning by BlueWave Shipping for delivery to a construction site in Dallas, TX. Delivery was expected Monday. It is now Wednesday, and there has been no tracking scan since the pickup confirmation on Friday at 09:14 AM. BlueWave's dispatch line has gone to voicemail for the last 6 calls over 2 days. The Dallas construction project manager has called your sales team threatening a $15,000/day liquidated damages penalty starting Thursday if the compressors don't arrive — the building HVAC install is on the critical path for a hospital opening.",
+        "available_data": {
+          "carrier": "BlueWave Shipping",
+          "bol_number": "BW-55201",
+          "origin": "Milwaukee, WI",
+          "destination": "Dallas, TX (construction site)",
+          "pickup_scan": "2025-03-07 09:14 AM CST",
+          "last_known_scan": "2025-03-07 09:14 AM CST (pickup only)",
+          "expected_delivery": "2025-03-10 (Monday)",
+          "current_date": "2025-03-12 (Wednesday)",
+          "days_without_scan": 5,
+          "product": "Industrial HVAC compressors",
+          "units": 18,
+          "total_value_usd": 126000,
+          "carrier_contact_attempts": 6,
+          "carrier_response": "Voicemail, no callback",
+          "customer": "Turner-Blake Construction",
+          "liquidated_damages": "$15,000/day starting Thursday",
+          "project": "Regional hospital HVAC installation",
+          "project_criticality": "Critical path for hospital opening"
+        }
+      },
+      "task": "Develop a parallel-track response plan addressing both the immediate cargo recovery effort and the customer's construction timeline, including escalation steps, legal considerations, and alternative fulfillment options.",
+      "evaluation_criteria": [
+        {
+          "criterion": "cargo_recovery_protocol",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Initiates formal trace protocol: (1) Look up BlueWave's MC number and verify their operating authority is still active via FMCSA SAFER database, (2) Contact BlueWave's insurance provider directly — the certificate of insurance on file has their insurer's claims number, (3) If BlueWave was brokered, identify the actual underlying carrier from the rate confirmation, (4) File a formal tracer with any intermediaries. Flags this as potential theft, double-brokering, or carrier insolvency given the complete communication blackout.",
+            "fail": "Continues calling BlueWave's dispatch and waiting. Does not verify carrier authority or contact their insurer. Does not consider theft or insolvency scenarios. Waits the standard LTL 48-hour trace window (this is FTL, not LTL — the 24-hour threshold applies)."
+          }
+        },
+        {
+          "criterion": "severity_and_escalation",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Classifies as Level 5 (Critical): $126,000 product value, plus $15,000/day liquidated damages exposure, plus hospital-opening timeline. Triggers VP-level notification within 1 hour. Flags potential fraud/theft indicators: carrier unresponsive for 5 days, single pickup scan, no communication. Considers filing a police report and notifying cargo insurance carrier.",
+            "fail": "Classifies below Level 4. Does not calculate the compounding financial exposure ($126K + LD penalties). Does not treat the carrier blackout as a potential theft indicator. Does not involve senior management or legal."
+          }
+        },
+        {
+          "criterion": "alternative_fulfillment",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Immediately explores: (1) Emergency replacement units from manufacturer — can they expedite 18 compressors and what's the fastest transit to Dallas? (2) Sourcing from distributor inventory anywhere in TX/OK/AR region, (3) Partial fulfillment — can the contractor begin installation with fewer units to keep the critical path moving? Calculates that replacement compressor cost + expedited freight is likely less than the liquidated damages exposure ($15K/day).",
+            "fail": "Only focuses on finding the lost shipment with no parallel fulfillment track. Does not consider the LD cost comparison. Suggests telling the customer to wait. Does not explore partial fulfillment options."
+          }
+        },
+        {
+          "criterion": "legal_and_insurance",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies Carmack Amendment liability for the $126,000 cargo value. Notes that BlueWave's cargo insurance should cover the product loss, but if BlueWave is insolvent/fraudulent, recovery may require legal action. Recommends filing under your own cargo insurance policy for faster recovery while subrogating against BlueWave. Addresses the liquidated damages exposure — these are consequential damages typically excluded under Carmack, so contractual review with the construction customer is needed.",
+            "fail": "Does not mention insurance recovery options. Does not distinguish between cargo loss liability and consequential/liquidated damages. Does not consider filing under own policy. Assumes carrier will simply pay the claim."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-006",
+      "name": "Shortage at delivery — driver count vs warehouse count dispute",
+      "difficulty": "easy",
+      "category": "shortage",
+      "context": {
+        "situation": "Redline Parcel just delivered a multi-stop LTL shipment to your Memphis, TN distribution center. The BOL shows 14 pallets for your stop. Your dock crew counted 12 pallets off the truck. The Redline driver insists he loaded 14 and suspects your crew miscounted. The dock supervisor is getting into a heated argument with the driver. The shipment contains assorted automotive parts valued at $850 per pallet ($11,900 total expected, $2,550 for the 2 missing pallets). There are 3 other consignees' freight still on the trailer.",
+        "available_data": {
+          "carrier": "Redline Parcel",
+          "pro_number": "RP-443210",
+          "bol_number": "AP-2025-1192",
+          "delivery_location": "Memphis, TN distribution center",
+          "expected_pallets": 14,
+          "received_pallets": 12,
+          "shortage": 2,
+          "product": "Assorted automotive parts",
+          "per_pallet_value_usd": 850,
+          "total_expected_value_usd": 11900,
+          "shortage_value_usd": 2550,
+          "shipment_type": "Multi-stop LTL",
+          "other_consignees_on_trailer": 3,
+          "driver_claim": "Loaded 14 pallets at origin",
+          "dock_situation": "Heated argument between dock supervisor and driver"
+        }
+      },
+      "task": "Describe the proper receiving procedure, how to resolve the dock conflict, documentation requirements, and the OS&D process.",
+      "evaluation_criteria": [
+        {
+          "criterion": "dock_conflict_resolution",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "De-escalates the argument immediately — remove the dock supervisor from the confrontation if needed. The count is the count; arguments don't change pallet numbers. Suggests a joint recount with the driver present, checking all pallets on the trailer including freight for other consignees to verify no misrouted pallets.",
+            "fail": "Ignores the interpersonal conflict. Takes the driver's word without verification. Escalates the argument further. Does not suggest a joint recount."
+          }
+        },
+        {
+          "criterion": "receiving_procedure",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Notes the shortage on the POD before signing: 'Received 12 of 14 pallets — 2 pallets short.' Does NOT sign a clean BOL. Photographs the trailer interior after unloading to show remaining freight (other consignees' pallets). Notes the pallet label numbers received to help identify which 2 are missing.",
+            "fail": "Signs a clean POD and files a claim later. Does not photograph the trailer. Does not note specific pallet label numbers to identify the missing freight."
+          }
+        },
+        {
+          "criterion": "osd_process",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Files an OS&D (Over, Short & Damage) report with Redline Parcel within 24 hours. Requests that Redline check their origin terminal load records and the other 3 delivery stops to see if the 2 pallets were misdelivered. Notes that multi-stop LTL shortages are commonly caused by mis-sorting at the terminal — the pallets may be on a different trailer or delivered to the wrong stop.",
+            "fail": "Does not file an OS&D report. Does not consider that the pallets may have been delivered to another consignee on the same route. Files a full loss claim immediately without allowing time for the carrier to trace."
+          }
+        },
+        {
+          "criterion": "practical_judgment",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Recognizes that at $2,550, this is in the standard claims process zone ($500–$2,500 bracket). Allows Redline 48–72 hours to trace the pallets before escalating. If pallets are found at another stop, arranges redelivery rather than filing a shortage claim.",
+            "fail": "Treats this as a major incident requiring VP notification. Files a full loss claim on day 1. Does not allow reasonable trace time for what is likely a terminal mis-sort."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-007",
+      "name": "Temperature excursion on pharmaceutical reefer shipment",
+      "difficulty": "hard",
+      "category": "damage-temperature",
+      "context": {
+        "situation": "A reefer trailer carrying 8 pallets of insulin pens (temperature requirement: 2–8°C / 36–46°F) arrived at your pharma DC in Indianapolis, IN from Heartland Express. The shipment originated in Research Triangle Park, NC. Upon arrival, your quality team pulled the Sensitech TempTale data logger and found a 4.2-hour excursion where the trailer interior reached 14°C (57°F) during hours 6–10 of the 18-hour transit. Heartland's driver pre-trip inspection report shows the reefer unit was set to 5°C and functioning at departure. Heartland's own single-point temperature recorder mounted at the reefer unit shows the set-point was maintained at 5°C throughout transit. The total load value is $340,000. Your quality assurance team says the insulin must be quarantined pending a stability assessment that will take 5–7 business days. Your customer, a hospital group (MedCore Health, enterprise-tier, $5.2M annual), needs the insulin within 3 days for patient stock rotation.",
+        "available_data": {
+          "carrier": "Heartland Express",
+          "bol_number": "HE-92017",
+          "origin": "Research Triangle Park, NC",
+          "destination": "Indianapolis, IN pharma DC",
+          "product": "Insulin pens",
+          "temperature_requirement": "2–8°C (36–46°F)",
+          "load_value_usd": 340000,
+          "sensitech_data": "4.2-hour excursion to 14°C (57°F) during hours 6–10",
+          "carrier_temp_record": "Single-point recorder shows 5°C set-point maintained",
+          "pre_trip_inspection": "Reefer unit set to 5°C, functioning at departure",
+          "transit_time_hours": 18,
+          "customer": "MedCore Health",
+          "customer_tier": "enterprise",
+          "customer_annual_revenue_usd": 5200000,
+          "customer_need": "Insulin within 3 days for patient stock rotation",
+          "qa_quarantine_period": "5–7 business days for stability assessment",
+          "regulatory_context": "FDA-regulated pharmaceutical product"
+        }
+      },
+      "task": "Analyze the conflicting temperature data, determine liability, outline the regulatory and quality response, develop a resolution plan that addresses both the carrier claim and the customer's urgent patient-care need, and recommend escalation steps.",
+      "evaluation_criteria": [
+        {
+          "criterion": "temperature_data_analysis",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Correctly identifies that the Sensitech TempTale (placed within the cargo) is the authoritative record, not the carrier's set-point recorder mounted on the reefer unit. Explains that the reefer unit can report the correct set-point while the actual cargo temperature drifts due to: defrost cycles, compromised door seals, loading near the unit discharge, or unit cycling off/on. The 4.2-hour excursion to 14°C is a significant deviation (6°C above max) and not a brief spike that could be dismissed. Demands the full continuous data logger download from Heartland, not just set-point records.",
+            "fail": "Accepts Heartland's set-point reading as proof that temperature was maintained. Does not understand the difference between reefer unit set-point and actual cargo temperature. Dismisses the Sensitech data because the carrier's data disagrees."
+          }
+        },
+        {
+          "criterion": "regulatory_and_quality_response",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Immediately notifies the quality/regulatory team per the escalation protocol (within 30 minutes for temperature excursion on regulated product). Supports the quarantine decision — this is non-negotiable for FDA-regulated pharma. The stability assessment must complete before any product is released, regardless of customer urgency. Notes that releasing excursion-exposed insulin to patients is a regulatory violation and patient safety risk that dwarfs any financial consideration.",
+            "fail": "Suggests releasing the insulin to meet the customer deadline before the stability assessment completes. Treats this as a purely commercial decision. Does not mention FDA regulatory implications or patient safety."
+          }
+        },
+        {
+          "criterion": "customer_resolution",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Sources replacement insulin from another DC or manufacturer on emergency basis to meet MedCore's 3-day patient need — this is a parallel track to the claim. Communicates to MedCore transparently: product received has a quality hold, replacement is being expedited, provides ETA. Understands that 'hospital running out of insulin' is a Level 5 patient-care situation that requires the most senior account management engagement.",
+            "fail": "Tells the customer to wait 5–7 days for the stability assessment. Does not pursue replacement product. Treats the hospital's patient stock rotation as a routine inconvenience rather than a patient-care urgency."
+          }
+        },
+        {
+          "criterion": "carrier_claim_strategy",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Builds the claim around the Sensitech continuous data vs Heartland's single-point record. Requests Heartland's full reefer unit data download (most units log continuously), pre-trip inspection records, and driver log for any stops or door-opening events. Notes that if stability assessment shows product is compromised, the claim is $340,000 — this triggers the >$10,000 protocol (VP awareness, dedicated handler, independent inspection, reject settlements below 90%). If product passes stability, the claim reduces to the replacement expedite costs.",
+            "fail": "Does not build the claim around the data discrepancy. Files a flat $340,000 claim without waiting for stability results. Does not request additional data from Heartland. Does not scale the claim strategy to the potential dollar amount."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-008",
+      "name": "Overage delivery reveals cross-shipment from another consignee",
+      "difficulty": "easy",
+      "category": "overage",
+      "context": {
+        "situation": "Your receiving dock in Portland, OR just took delivery of a Summit LTL shipment. The BOL shows 8 pallets of plumbing fixtures destined for your warehouse. Your team counted 8 pallets matching the BOL, plus 3 additional pallets of electrical panel boxes that are clearly not yours — different product, different labels, different shipper. The 3 extra pallets have labels showing they belong to 'Cascade Electrical Supply' in Seattle, WA. The Summit driver has already departed. Total value of your correct freight is $6,800. The mislabeled pallets appear to be worth approximately $4,200 based on the commercial markings.",
+        "available_data": {
+          "carrier": "Summit LTL",
+          "pro_number": "SL-219844",
+          "bol_number": "PF-2025-0443",
+          "delivery_location": "Portland, OR warehouse",
+          "expected_pallets": 8,
+          "received_pallets": 11,
+          "overage_pallets": 3,
+          "correct_product": "Plumbing fixtures",
+          "correct_product_value_usd": 6800,
+          "overage_product": "Electrical panel boxes",
+          "overage_labels": "Cascade Electrical Supply, Seattle, WA",
+          "estimated_overage_value_usd": 4200,
+          "driver_status": "Already departed"
+        }
+      },
+      "task": "Describe the correct procedure for handling the overage, notification requirements, and what this overage implies about another consignee's shipment.",
+      "evaluation_criteria": [
+        {
+          "criterion": "overage_handling",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Notes the overage on the POD: 'Received 8 pallets per BOL + 3 additional pallets not on BOL — labeled for Cascade Electrical Supply, Seattle WA.' Segregates the extra pallets in a secure area. Does NOT use, open, or integrate the overaged freight into own inventory. Photographs the labels and pallet condition.",
+            "fail": "Does not note the overage on any documentation. Puts the extra pallets into regular inventory. Disposes of the extra freight. Does not segregate or secure the misdelivered product."
+          }
+        },
+        {
+          "criterion": "notification_and_tracing",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Immediately contacts Summit LTL to report the overage and provide the label information from the 3 extra pallets. Recognizes that Cascade Electrical Supply in Seattle is almost certainly showing a 3-pallet shortage right now — Summit needs to connect the dots. Provides Summit with a reference for pickup or redirect of the overage freight.",
+            "fail": "Does not notify the carrier. Waits for someone else to discover the problem. Does not make the connection that another consignee is short 3 pallets."
+          }
+        },
+        {
+          "criterion": "downstream_implication",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Correctly identifies that this is a cross-shipment caused by terminal mis-sorting — the 3 pallets were loaded on the wrong trailer at a Summit LTL terminal. Notes that Cascade Electrical Supply may have already filed a shortage claim. Quick notification prevents a cascading problem.",
+            "fail": "Does not recognize the terminal mis-sort as the root cause. Does not consider the impact on the other consignee. Treats this as an isolated incident."
+          }
+        },
+        {
+          "criterion": "own_shipment_verification",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "Verifies that all 8 of your own pallets are correct and undamaged — an overage situation sometimes masks a shortage of your own freight (e.g., you might have received 7 correct pallets + 3 wrong ones = 10 total, missing 1 of your own).",
+            "fail": "Focuses entirely on the overage without verifying the correctness and completeness of own shipment."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-009",
+      "name": "Consignee refuses delivery due to late arrival of time-sensitive promotional goods",
+      "difficulty": "medium",
+      "category": "refused-delivery",
+      "context": {
+        "situation": "Continental Cargo attempted delivery of 12 pallets of branded merchandise (custom t-shirts, banners, promotional items) to McCormick Place convention center in Chicago, IL. The shipment was supposed to arrive by 6 AM Thursday for a major tech company's product launch event starting at 9 AM. Continental arrived at 2 PM Thursday — 8 hours late due to a mechanical breakdown in Indiana. The event coordinator refused the delivery, stating the booth setup window has passed and the branded items are useless after the event ends Saturday. The shipment value is $28,500. The shipper, PromoTech Solutions (mid-tier account, $320K annual), is demanding a full refund and threatening to switch providers. Continental Cargo is claiming the mechanical breakdown was unforeseeable and is offering only a 15% freight charge discount.",
+        "available_data": {
+          "carrier": "Continental Cargo",
+          "bol_number": "CC-2025-4492",
+          "origin": "Louisville, KY",
+          "destination": "McCormick Place, Chicago, IL",
+          "product": "Branded promotional merchandise",
+          "product_value_usd": 28500,
+          "pallets": 12,
+          "required_delivery": "2025-03-13 06:00 AM CST",
+          "actual_arrival": "2025-03-13 02:00 PM CST",
+          "delay_cause": "Mechanical breakdown in Indiana",
+          "delivery_status": "Refused by consignee",
+          "refusal_reason": "Booth setup window passed; items useless after Saturday event",
+          "carrier_offer": "15% freight charge discount",
+          "freight_charge_usd": 2800,
+          "customer": "PromoTech Solutions",
+          "customer_tier": "mid-tier",
+          "customer_annual_revenue_usd": 320000,
+          "event": "Major tech company product launch at McCormick Place",
+          "event_dates": "Thursday–Saturday"
+        }
+      },
+      "task": "Analyze the refusal situation, determine liability allocation, develop a negotiation strategy with the carrier, and create a customer retention plan for PromoTech Solutions.",
+      "evaluation_criteria": [
+        {
+          "criterion": "refusal_legitimacy",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Correctly identifies this as a legitimate refusal — time-definite promotional goods for a specific event become worthless after the setup window. The refusal is carrier-fault (mechanical breakdown is not force majeure — it's the carrier's responsibility to maintain equipment). Continental cannot charge storage or return freight because the refusal is caused by their failure to deliver on time.",
+            "fail": "Accepts the carrier's position that the mechanical breakdown was unforeseeable. Suggests the consignee should have accepted the late delivery. States the carrier can charge return freight."
+          }
+        },
+        {
+          "criterion": "carrier_negotiation",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Rejects Continental's 15% freight discount as inadequate. The claim is for the full $28,500 product value because the goods have zero residual value after the event. Notes that under Carmack, the carrier is liable for the actual loss caused by failure to deliver. A mechanical breakdown is not an enumerated Carmack exception. The $28,500 is in the >$10,000 bracket — VP awareness, reject settlements below 90%. Escalates to Continental's account manager with a formal claim letter within 30 days.",
+            "fail": "Accepts the 15% freight discount. Only claims the freight charges rather than the full product value. Does not reference Carmack Amendment liability. Does not distinguish between freight charge adjustment and cargo value claim."
+          }
+        },
+        {
+          "criterion": "customer_retention",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Immediately addresses PromoTech's situation: (1) Issues a credit or refund for the shipment value while pursuing the carrier claim — don't make the customer wait for carrier resolution, (2) Offers to handle the return/disposal of the now-useless merchandise, (3) Provides a concrete service recovery offer (discounted future shipment, dedicated handling for their next event). Frames the conversation around what you're doing to prevent recurrence, not just apologizing.",
+            "fail": "Tells PromoTech to wait for the carrier claim to resolve before issuing any credit. Offers only an apology with no concrete recovery action. Does not address the return logistics of the refused freight."
+          }
+        },
+        {
+          "criterion": "return_logistics",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Addresses what happens to the 12 pallets now sitting at McCormick Place or Continental's terminal. Options: return to PromoTech's warehouse (carrier should bear the cost), donate the merchandise if it has any value post-event, or dispose. The return freight cost is part of the carrier claim. Does not let the freight sit and accrue storage charges.",
+            "fail": "Ignores the physical freight entirely. Does not address storage charges accumulating. Does not include return freight cost in the carrier claim."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-010",
+      "name": "Cross-border customs hold with documentation discrepancy",
+      "difficulty": "hard",
+      "category": "cross-border",
+      "context": {
+        "situation": "A container of specialty medical devices (Class II FDA-regulated) is held at the Port of Laredo, TX by US Customs and Border Protection. The shipment originated from a contract manufacturer in Monterrey, Mexico, shipped via Northern Intermodal. The customs broker reports two issues: (1) the commercial invoice declares the goods at $68,000 but the USMCA Certificate of Origin lists a value of $82,000 — a $14,000 discrepancy that triggered a value audit hold, and (2) one of the 6 harmonized tariff codes on the entry is incorrect — it uses 9018.90.80 (surgical instruments) instead of 9018.19.95 (electrodiagnostic apparatus), which has a different duty rate. Meanwhile, the customer (Regional Medical Center, enterprise-tier, $1.8M annual) has a surgical equipment installation scheduled for next Monday requiring these devices. Every day of delay costs the hospital $8,500 in delayed procedure revenue.",
+        "available_data": {
+          "carrier": "Northern Intermodal",
+          "bol_number": "NI-MX-33019",
+          "origin": "Monterrey, Mexico",
+          "destination": "San Antonio, TX medical warehouse",
+          "port_of_entry": "Laredo, TX",
+          "product": "Specialty medical devices (Class II FDA-regulated)",
+          "invoice_value_usd": 68000,
+          "usmca_cert_value_usd": 82000,
+          "value_discrepancy_usd": 14000,
+          "incorrect_hts_code": "9018.90.80 (surgical instruments)",
+          "correct_hts_code": "9018.19.95 (electrodiagnostic apparatus)",
+          "customs_hold_type": "Value audit + tariff classification",
+          "customer": "Regional Medical Center",
+          "customer_tier": "enterprise",
+          "customer_annual_revenue_usd": 1800000,
+          "installation_date": "Next Monday",
+          "delay_cost_per_day_usd": 8500,
+          "customs_broker": "On-site at Laredo",
+          "fda_status": "Prior notice filed, no FDA hold"
+        }
+      },
+      "task": "Develop a resolution plan for the customs hold that addresses both the value discrepancy and the tariff classification error, determine liability for each error, and create a timeline-driven action plan that aims to release the goods before Monday's installation.",
+      "evaluation_criteria": [
+        {
+          "criterion": "value_discrepancy_resolution",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Identifies that the $14,000 discrepancy between commercial invoice ($68K) and USMCA cert ($82K) must be resolved with an amended document. Determines which is correct by checking against the purchase order and manufacturer's pro forma invoice. If the $82K on the USMCA cert includes freight/insurance (CIF) while the invoice is FOB, this is a valuation methodology difference, not fraud — but the entry must be filed consistently. Under USMCA, transaction value should be the price actually paid (typically the commercial invoice amount). Instructs the customs broker to file a post-entry amendment or prior disclosure if the error was on the original entry.",
+            "fail": "Does not investigate which value is correct. Suggests simply changing one document to match the other without understanding the basis. Does not know about CIF vs FOB valuation differences. Does not mention post-entry amendment procedures."
+          }
+        },
+        {
+          "criterion": "tariff_classification_correction",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Correctly notes that the HTS code error (9018.90.80 vs 9018.19.95) is the customs broker's or shipper's documentation error, not a carrier issue. Instructs the customs broker to file a corrected entry with the right HTS code and any resulting duty rate differential. If the correct code has a lower duty rate under USMCA, this correction may actually reduce costs. Flags that Class II medical devices may require FDA clearance documentation — confirms the prior notice was filed and 510(k) clearance is on file.",
+            "fail": "Does not distinguish between carrier documentation error and shipper/broker error. Does not mention the duty rate impact of the classification change. Ignores FDA regulatory requirements for medical devices."
+          }
+        },
+        {
+          "criterion": "timeline_action_plan",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Creates a day-by-day action plan: Wednesday (today) — file corrected documents with customs broker by end of day, Thursday — follow up with CBP for re-examination/release, Friday — arrange expedited drayage from Laredo to San Antonio (4-hour drive), weekend buffer for any delays. Identifies that if CBP doesn't release by Friday, an emergency request or escalation through the broker's CBP contacts may be needed. Also explores whether a temporary importation bond could expedite release while the value audit is finalized.",
+            "fail": "No timeline-driven plan. Suggests waiting for CBP to process at their standard pace (5–10 business days). Does not consider expedited release mechanisms. Does not factor in the Monday installation deadline."
+          }
+        },
+        {
+          "criterion": "liability_allocation",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Correctly allocates: (1) The value discrepancy is likely the shipper's or manufacturer's error (mismatched documents), not the carrier's — Northern Intermodal transports, they don't prepare commercial invoices or USMCA certs, (2) The HTS code error is the customs broker's responsibility unless the shipper provided incorrect product descriptions, (3) Demurrage/storage charges at Laredo during the hold are likely not recoverable from the carrier since the hold is documentation-based, not transit-based. (4) The customer's delay costs are a consequential damage that needs to be absorbed or negotiated based on who caused the documentation errors.",
+            "fail": "Blames the carrier for documentation errors. Does not distinguish between carrier, shipper, and customs broker responsibilities. Does not address demurrage cost allocation."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-011",
+      "name": "Systematic pilferage pattern across multiple LTL shipments",
+      "difficulty": "hard",
+      "category": "fraud-indicators",
+      "context": {
+        "situation": "Over the past 6 weeks, you've noticed a pattern: 7 different LTL shipments through Apex Drayage's Chicago Heights terminal have each been short by exactly 1–2 cartons of high-value consumer electronics (wireless earbuds, smartwatches, portable chargers). Each individual shortage is small ($180–$450 per incident), and each time the carrier has settled quickly with minimal pushback. Total losses across the 7 incidents are $2,240. The shortages only occur on shipments that pass through the Chicago Heights terminal — shipments via other Apex terminals arrive complete. All 7 shipments had different origin shippers and different destination consignees. Your claims analyst flagged the pattern this morning.",
+        "available_data": {
+          "carrier": "Apex Drayage",
+          "terminal": "Chicago Heights, IL",
+          "time_period": "Past 6 weeks",
+          "total_incidents": 7,
+          "shortage_pattern": "1–2 cartons per shipment",
+          "product_types": ["Wireless earbuds", "Smartwatches", "Portable chargers"],
+          "individual_loss_range": "$180–$450",
+          "total_losses_usd": 2240,
+          "carrier_response_pattern": "Quick settlement, minimal pushback",
+          "other_terminals_affected": false,
+          "different_origins": true,
+          "different_destinations": true,
+          "pattern_discovered_by": "Claims analyst pattern review"
+        }
+      },
+      "task": "Analyze the pilferage pattern, determine the appropriate response that goes beyond standard claims processing, recommend investigation steps, and develop a strategy for addressing this with Apex Drayage management.",
+      "evaluation_criteria": [
+        {
+          "criterion": "pattern_recognition",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies the hallmarks of systematic terminal pilferage: (1) consistent small quantities designed to stay below investigation thresholds, (2) only high-value, easily concealed consumer electronics, (3) isolated to a single terminal, (4) different shippers/consignees rules out a consignee fraud scheme, (5) the quick settlements suggest Apex knows they have a problem and is paying to avoid scrutiny. Notes that $2,240 over 7 incidents is just the detected amount — actual losses are likely higher for shipments where the shortage wasn't caught or claimed.",
+            "fail": "Treats each incident as independent. Does not recognize the single-terminal concentration. Accepts the quick settlements as evidence of good carrier service. Does not estimate undetected losses."
+          }
+        },
+        {
+          "criterion": "investigation_steps",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Recommends: (1) Pull all shipments through Chicago Heights terminal for the past 90 days and audit for any unclaimed shortages, (2) Cross-reference shortage timing with terminal shift schedules if obtainable, (3) Set up controlled test shipments with exact piece counts and covert tracking to build evidence, (4) Request Apex's terminal CCTV footage for the affected shipment dates. Notes this is an immediate escalation trigger per protocol — potential fraud indicators require compliance notification and halt of standard processing.",
+            "fail": "Only suggests filing claims for each individual incident. Does not recommend an audit of historical shipments. Does not consider test shipments or surveillance. Does not trigger the fraud investigation protocol."
+          }
+        },
+        {
+          "criterion": "carrier_engagement_strategy",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Does NOT confront Apex with the pilferage accusation via a low-level claims rep. Escalates to Apex's VP of Operations or terminal management with documented evidence of the pattern. Frames it as a 'terminal security concern' rather than an accusation — gives Apex the opportunity to investigate internally. Sets clear expectations: Apex must provide a written response within 7 days detailing their investigation findings and corrective actions. Reserves the option to divert all volume away from the Chicago Heights terminal immediately.",
+            "fail": "Raises the concern with the Apex claims department (the same people who have been quickly settling). Makes an accusatory confrontation that invites legal pushback. Does not escalate to senior carrier management. Does not set a timeline for response."
+          }
+        },
+        {
+          "criterion": "interim_protective_measures",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Immediately reroutes any high-value electronics shipments away from the Chicago Heights terminal while the investigation proceeds. Implements piece-level counts on all remaining Apex shipments. Adds security seals to cartons of high-value goods. Notifies shippers who use that lane to increase their packaging security.",
+            "fail": "Continues routing high-value shipments through the suspect terminal during the investigation. Does not implement any interim protective measures. Waits for Apex's response before taking any action."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-012",
+      "name": "Carrier dispute over accessorial charges during peak season",
+      "difficulty": "easy",
+      "category": "carrier-dispute",
+      "context": {
+        "situation": "BlueWave Shipping has invoiced you for $4,800 in accessorial charges on a recent FTL shipment of furniture from High Point, NC to your warehouse in Denver, CO. The original line-haul rate was $3,200. The accessorials breakdown: detention at origin $750 (driver waited 3.5 hours for loading — your contract allows 2 hours free), detention at destination $500 (3 hours at your Denver dock — contract allows 2 hours free), lumper fee $400 (unloading labor at destination), and a $2,150 'peak season capacity surcharge' that was not on the original rate confirmation. The rate confirmation signed two weeks ago shows the $3,200 line-haul with standard detention terms but no mention of a peak surcharge. This is mid-November, and the market is tight.",
+        "available_data": {
+          "carrier": "BlueWave Shipping",
+          "bol_number": "BW-62010",
+          "origin": "High Point, NC",
+          "destination": "Denver, CO warehouse",
+          "line_haul_rate_usd": 3200,
+          "total_accessorials_usd": 4800,
+          "accessorial_breakdown": {
+            "detention_origin_usd": 750,
+            "detention_destination_usd": 500,
+            "lumper_fee_usd": 400,
+            "peak_surcharge_usd": 2150
+          },
+          "rate_confirmation_terms": "2 hours free detention at origin and destination",
+          "actual_origin_wait_hours": 3.5,
+          "actual_destination_wait_hours": 3,
+          "peak_surcharge_in_rate_confirmation": false,
+          "season": "Mid-November (peak)",
+          "rate_confirmation_date": "2 weeks ago"
+        }
+      },
+      "task": "Analyze each accessorial charge, determine which are legitimate vs disputable, and develop a negotiation strategy with BlueWave.",
+      "evaluation_criteria": [
+        {
+          "criterion": "charge_by_charge_analysis",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Correctly breaks down each charge: (1) Origin detention $750 — partially legitimate: 3.5 hours minus 2 hours free = 1.5 billable hours, but at what rate? Verify against contract detention rate, (2) Destination detention $500 — partially legitimate: 3 hours minus 2 hours free = 1 hour billable, same rate verification needed, (3) Lumper fee $400 — legitimate if lumper was required and receipt is provided, but should have been pre-approved or is shipper's responsibility per contract terms, (4) Peak surcharge $2,150 — NOT in the rate confirmation, therefore not agreed-to and should be disputed entirely.",
+            "fail": "Accepts all charges without analysis. Disputes all charges without recognizing the legitimate detention overage. Does not verify detention rates against contract. Accepts the peak surcharge despite it not being in the rate confirmation."
+          }
+        },
+        {
+          "criterion": "negotiation_strategy",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Disputes the $2,150 peak surcharge entirely — it was not on the signed rate confirmation and cannot be applied retroactively. Accepts the principle of detention charges but requests documentation (driver's timestamp logs) and reconciles against the contract per-hour rate. Requests a lumper receipt. Proposes paying the legitimate detention overage + documented lumper fee while rejecting the peak surcharge. Total counter-offer should be approximately $800–$1,200 depending on the detention rate.",
+            "fail": "Pays the full $4,800 to maintain the carrier relationship. Disputes everything including legitimate charges, damaging the relationship unnecessarily. Does not request supporting documentation. Accepts the peak surcharge."
+          }
+        },
+        {
+          "criterion": "relationship_management",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Acknowledges that it's peak season and capacity is tight — BlueWave is a valued carrier. The tone is firm on the peak surcharge (contract is contract) but fair on the legitimate accessorials. Suggests discussing a peak-season rate adjustment for future shipments to avoid this situation going forward. Does not threaten to pull volume during peak season when alternatives are scarce.",
+            "fail": "Burns the relationship over $4,800 during peak season. Threatens to find another carrier (unrealistic in tight November market). Does not offer to discuss future rate adjustments. Ignores the market reality."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-013",
+      "name": "Partial loss of high-value electronics at LTL cross-dock",
+      "difficulty": "medium",
+      "category": "loss-partial",
+      "context": {
+        "situation": "A shipment of 200 units of commercial-grade tablets (10 cartons of 20 units each) was shipped via Redline Parcel from your San Jose, CA warehouse to a corporate customer in Atlanta, GA. The shipment passed through Redline's Dallas and Birmingham terminals. Upon delivery, the Atlanta consignee received 8 cartons (160 units) but 2 cartons (40 units) are missing. Each tablet is valued at $420 (total missing value: $16,800). The cartons have serial number ranges printed on the exterior labels. The consignee (DataBridge Corp, key account, $890K annual) needs all 200 units for a corporate deployment next week. Redline's OS&D department says they are searching the Dallas and Birmingham terminals.",
+        "available_data": {
+          "carrier": "Redline Parcel",
+          "pro_number": "RP-667120",
+          "bol_number": "TB-2025-0881",
+          "origin": "San Jose, CA warehouse",
+          "destination": "Atlanta, GA",
+          "terminals_in_route": ["Dallas, TX", "Birmingham, AL"],
+          "total_cartons": 10,
+          "received_cartons": 8,
+          "missing_cartons": 2,
+          "units_per_carton": 20,
+          "missing_units": 40,
+          "unit_value_usd": 420,
+          "missing_value_usd": 16800,
+          "serial_numbers_on_labels": true,
+          "customer": "DataBridge Corp",
+          "customer_tier": "key account",
+          "customer_annual_revenue_usd": 890000,
+          "customer_need": "All 200 units for corporate deployment next week",
+          "carrier_status": "Searching Dallas and Birmingham terminals"
+        }
+      },
+      "task": "Develop a resolution plan that addresses both the immediate customer need and the carrier claims process, leveraging the serial number tracking capability.",
+      "evaluation_criteria": [
+        {
+          "criterion": "serial_number_tracking",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Leverages serial number ranges on the carton labels to help Redline identify the specific missing cartons at their terminals. Provides the serial number ranges to Redline's OS&D at both Dallas and Birmingham. Notes that if the cartons were misdelivered to another consignee, the serial numbers make recovery possible. Also flags that serial numbers create a trail if the units show up on secondary markets (theft indicator).",
+            "fail": "Does not use the serial number tracking capability. Treats this as generic missing cartons without leveraging the identification data. Does not provide serial ranges to the carrier for terminal search."
+          }
+        },
+        {
+          "criterion": "customer_fulfillment",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Immediately ships replacement 40 units from San Jose inventory to Atlanta via expedited carrier (air freight or next-day ground) to meet the corporate deployment deadline. Does not wait for Redline to find the missing cartons — the customer timeline is the priority. If the missing cartons are recovered later, they return to your inventory.",
+            "fail": "Tells DataBridge to wait while Redline searches their terminals. Does not ship replacement units. Suggests the customer proceed with partial deployment of 160 units."
+          }
+        },
+        {
+          "criterion": "claim_management",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Files a formal claim with Redline for $16,800 plus the expedited shipping cost for the replacement units. At $16,800, this is in the >$10,000 bracket requiring VP awareness and a dedicated handler. Allows Redline 48–72 hours to search their terminals before escalating. Notes that the POD should reflect the shortage (8 of 10 cartons received). If the missing cartons are found and returned, the claim adjusts down to only the expedite cost.",
+            "fail": "Does not file a formal claim. Only claims the product value without including the expedite costs for replacement. Does not follow the >$10,000 escalation protocol. Does not plan for the scenario where cartons are found."
+          }
+        },
+        {
+          "criterion": "root_cause_awareness",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Recognizes that 2-carton loss through a multi-terminal LTL route (Dallas and Birmingham cross-docks) is a classic terminal handling loss. Each terminal touch is a loss risk point. Considers whether Redline's service on this lane should be reviewed — are 3+ terminals necessary for a CA-to-GA route? Suggests evaluating direct FTL or 2-terminal routing for high-value electronics in the future.",
+            "fail": "Does not consider the routing and terminal-touch count as a contributing factor. Does not recommend any preventive measures for future high-value shipments on this lane."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-014",
+      "name": "Double-brokered load with carrier identity mismatch",
+      "difficulty": "hard",
+      "category": "fraud-indicators",
+      "context": {
+        "situation": "You booked a full truckload of industrial generators ($94,000 value) from Houston, TX to Charlotte, NC through Apex Drayage at a rate of $4,100. When the truck arrived for pickup at your Houston warehouse, the dock supervisor noticed several red flags: (1) the truck has 'J&R Transport' painted on the door, not Apex Drayage, (2) the driver presented a BOL with Apex's name but couldn't name his dispatcher when asked — he said 'some guy named Mike called me,' (3) the tractor's USDOT number on the door doesn't match the MC number on Apex's insurance certificate, (4) the driver has a BOL showing the rate as $2,600 (not the $4,100 you're paying Apex). The dock supervisor called you before releasing the freight.",
+        "available_data": {
+          "booked_carrier": "Apex Drayage",
+          "actual_truck": "J&R Transport (name on door)",
+          "booked_rate_usd": 4100,
+          "driver_bol_rate_usd": 2600,
+          "product": "Industrial generators",
+          "product_value_usd": 94000,
+          "origin": "Houston, TX warehouse",
+          "destination": "Charlotte, NC",
+          "red_flags": [
+            "Truck branding does not match booked carrier",
+            "Driver cannot name his dispatcher",
+            "USDOT number mismatch with carrier insurance cert",
+            "Rate discrepancy on driver's BOL ($2,600 vs $4,100)"
+          ],
+          "freight_released": false,
+          "dock_supervisor_alerted": true
+        }
+      },
+      "task": "Assess whether this is a double-brokering situation, determine whether to release the freight, identify the risks, and outline the proper response.",
+      "evaluation_criteria": [
+        {
+          "criterion": "double_brokering_identification",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Identifies all four textbook double-brokering indicators: (1) carrier name on truck doesn't match the booking, (2) driver doesn't know who hired him beyond 'some guy named Mike,' (3) USDOT/MC number mismatch between the physical truck and the booked carrier's insurance, (4) rate differential ($4,100 vs $2,600 = $1,500 spread being pocketed by Apex or an intermediary). Correctly labels this as a double-brokered load: Apex took the booking at $4,100 and subcontracted to J&R Transport (or another intermediary) at $2,600.",
+            "fail": "Misses the significance of the indicators. Treats the name mismatch as a 'sub-hauler' arrangement that's normal. Does not recognize the rate discrepancy as evidence of brokering. Does not identify this as double-brokering."
+          }
+        },
+        {
+          "criterion": "release_decision",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Does NOT release the freight to the J&R Transport driver. At $94,000 in product value, the risk is too high with an unverified carrier. Before releasing: (1) Verify J&R Transport's MC number and insurance independently via FMCSA SAFER, (2) Confirm J&R has adequate cargo insurance covering $94,000, (3) Contact Apex Drayage directly and demand they confirm J&R Transport is their authorized carrier and that J&R's insurance covers this load. If Apex cannot or will not confirm, do not release.",
+            "fail": "Releases the freight because Apex booked it and it's 'their problem.' Does not verify J&R Transport's authority or insurance. Releases based on the driver having a BOL with Apex's name on it."
+          }
+        },
+        {
+          "criterion": "risk_analysis",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Articulates the specific risks: (1) If J&R Transport is not properly insured and the freight is damaged or lost, you may have no recovery path — Apex's insurance may deny because they didn't transport it, J&R's insurance may be inadequate, (2) If J&R is not a legitimate carrier (could be a cargo theft setup using a fake BOL), (3) Even if legitimate, Apex's double-brokering violates most broker-shipper agreements and may void insurance coverage. The $94,000 exposure makes this a Level 4 risk minimum.",
+            "fail": "Does not identify the insurance gap risk. Does not consider the theft scenario. Treats the $1,500 rate spread as the main issue rather than the cargo security risk. Underestimates severity."
+          }
+        },
+        {
+          "criterion": "follow_up_actions",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Even if the load is eventually released (after verification), this incident triggers: (1) Review of Apex Drayage's contract for anti-brokering clauses, (2) Audit of recent Apex loads for similar patterns, (3) Consideration of terminating the Apex relationship — double-brokering is a trust violation, (4) Documentation of the incident for any future claims. Arranges an alternative carrier for this load if Apex cannot resolve immediately.",
+            "fail": "Does not take any follow-up action beyond this single load. Does not review the Apex relationship. Does not audit historical loads. Does not consider an alternative carrier."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-015",
+      "name": "Multi-carrier intermodal damage with unclear liability chain",
+      "difficulty": "hard",
+      "category": "damage-visible",
+      "context": {
+        "situation": "A shipment of CNC machining equipment (2 units, $72,000 each, $144,000 total) traveled from Seattle, WA to Memphis, TN via intermodal: Northern Intermodal handled the drayage from the shipper to the Seattle rail terminal, Union Pacific provided the rail segment to the Memphis rail yard, and Apex Drayage performed the final drayage from Memphis rail yard to the consignee. Upon delivery, one of the CNC units has a broken spindle assembly and bent frame consistent with a severe lateral impact. The container exterior shows a fresh dent on the right side at approximately forklift height. The problem: the container seal was intact at every interchange point (Seattle rail terminal, Memphis rail yard, and final delivery). Northern Intermodal's pickup BOL was signed clean. The rail interchange documents show no exceptions noted. Apex Drayage's delivery receipt has the consignee noting damage.",
+        "available_data": {
+          "carriers": {
+            "drayage_origin": "Northern Intermodal (Seattle to rail terminal)",
+            "rail_segment": "Union Pacific (Seattle to Memphis rail)",
+            "drayage_destination": "Apex Drayage (Memphis rail to consignee)"
+          },
+          "product": "CNC machining equipment",
+          "units": 2,
+          "damaged_units": 1,
+          "unit_value_usd": 72000,
+          "damage_value_usd": 72000,
+          "damage_description": "Broken spindle assembly, bent frame — severe lateral impact",
+          "container_exterior": "Fresh dent on right side at forklift height",
+          "container_seal": "Intact at all interchange points",
+          "origin_bol": "Signed clean by Northern Intermodal",
+          "rail_interchange": "No exceptions noted",
+          "delivery_receipt": "Damage noted by consignee",
+          "route": "Seattle, WA → Seattle rail terminal → Memphis rail yard → Memphis, TN consignee"
+        }
+      },
+      "task": "Determine the most likely point of damage, develop a claims strategy across the multi-carrier chain, and address the challenge of the intact container seal with no exceptions noted at interchanges.",
+      "evaluation_criteria": [
+        {
+          "criterion": "damage_point_analysis",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Analyzes the damage evidence: (1) 'Forklift height' dent on the container exterior suggests the damage occurred during a lift/move event, not rail transit (rail impacts are typically higher and more distributed), (2) The intact seal means the product was not accessed — the impact came from outside the container, (3) Most likely points: the container was struck during handling at one of the terminals (Seattle rail terminal loading, Memphis rail yard unloading/repositioning, or during Apex's final drayage). Rail transit impact events typically show on impact recorders if available. Requests impact recorder data from Union Pacific.",
+            "fail": "Guesses randomly at which carrier is liable. Does not analyze the damage pattern (forklift height, lateral impact) to narrow down the cause. Assumes rail transit is automatically responsible for all intermodal damage."
+          }
+        },
+        {
+          "criterion": "multi_carrier_claims_strategy",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Files claims against all three carriers simultaneously, as the point of damage is unclear — each carrier must prove the damage didn't occur in their custody. Under the bill of lading chain, the delivering carrier (Apex Drayage) is the first target because the damage was noted on their delivery receipt and not on prior interchange documents. However, the container dent suggests the damage predates Apex's delivery. Requests interchange inspection photos from both terminal handoffs. Notes that the burden shifts to the carrier who received clean and delivered damaged.",
+            "fail": "Files against only one carrier without evidence. Does not file against all carriers to preserve claims rights. Does not understand the 'last carrier presumption' for damage noted at delivery. Does not request interchange documentation."
+          }
+        },
+        {
+          "criterion": "seal_integrity_analysis",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Correctly identifies that an intact seal with external container damage is consistent with the container being struck from outside — the equipment inside shifted and broke despite the container not being opened. This is actually helpful for the claim because it proves the damage was not caused by tampering or pilferage but by mishandling. Recommends preserving the container seal as evidence.",
+            "fail": "Treats the intact seal as proof that no damage occurred during transit. Assumes seal integrity means the carrier is not liable. Does not connect external container damage to internal cargo damage."
+          }
+        },
+        {
+          "criterion": "financial_resolution_approach",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "At $72,000, this is firmly in the >$10,000 bracket: VP awareness, dedicated handler, independent inspection by a qualified machinery appraiser, reject settlements below 90%. Obtains a repair estimate from the CNC manufacturer — if the spindle and frame can be repaired, the claim is repair cost + downtime. If total loss, it's the full $72,000 replacement. Notes that intermodal claims can take 6–12 months to resolve due to cross-carrier finger-pointing.",
+            "fail": "Does not follow the >$10,000 escalation protocol. Does not get an independent inspection. Accepts the first settlement offer. Does not distinguish between repair and replacement scenarios."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-016",
+      "name": "Reefer breakdown on frozen seafood with 72-hour transit remaining",
+      "difficulty": "medium",
+      "category": "damage-temperature",
+      "context": {
+        "situation": "Pacific Freight Lines has notified you that the reefer unit on a trailer carrying 40,000 lbs of frozen Alaskan king crab ($285,000 value) has suffered a compressor failure near Cheyenne, WY. The load is headed from Seattle, WA to Boston, MA with 72 hours of transit remaining. The reefer was maintaining -10°F (-23°C). Pacific estimates it will take 6–8 hours to get a mobile reefer technician to the truck's location. Ambient temperature in Cheyenne is 45°F (7°C). The insulated trailer will maintain temperature for approximately 12–16 hours before the frozen product begins to thaw. Your customer is Neptune's Table Restaurant Group (key account, $1.6M annual), and this shipment supplies their New England restaurants for the upcoming weekend seafood promotion.",
+        "available_data": {
+          "carrier": "Pacific Freight Lines",
+          "bol_number": "PFL-94200",
+          "origin": "Seattle, WA",
+          "destination": "Boston, MA",
+          "product": "Frozen Alaskan king crab",
+          "weight_lbs": 40000,
+          "product_value_usd": 285000,
+          "required_temp_f": -10,
+          "breakdown_location": "Near Cheyenne, WY",
+          "ambient_temp_f": 45,
+          "estimated_temp_hold_hours": "12–16 hours",
+          "repair_eta_hours": "6–8 hours",
+          "remaining_transit_hours": 72,
+          "customer": "Neptune's Table Restaurant Group",
+          "customer_tier": "key account",
+          "customer_annual_revenue_usd": 1600000,
+          "customer_need": "Weekend seafood promotion across New England restaurants"
+        }
+      },
+      "task": "Develop an immediate response plan, assess the temperature risk timeline, determine if the product can be saved, and create contingency plans for the customer's weekend promotion.",
+      "evaluation_criteria": [
+        {
+          "criterion": "temperature_risk_timeline",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Calculates that the 6–8 hour repair window falls within the 12–16 hour thermal buffer, giving a 4–10 hour safety margin — tight but viable IF the repair is successful. However, frozen king crab must stay below 0°F for quality — even if the core stays frozen, surface thawing above 0°F degrades product quality. Demands real-time temperature monitoring during the breakdown (Sensitech or trailer-mounted data logger readings every 30 minutes).",
+            "fail": "Simply notes there's enough time for repair without analyzing the quality degradation risk at intermediate temperatures. Does not request ongoing temperature monitoring. Does not understand the difference between 'still frozen' and 'quality maintained.'"
+          }
+        },
+        {
+          "criterion": "immediate_response",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Parallel actions: (1) Confirm the mobile technician dispatch and get a firm ETA, (2) Identify the nearest cold storage facility in Cheyenne as a backup if repair fails — transfer product before thaw threshold, (3) Have Pacific locate a replacement reefer trailer in the Cheyenne area for a potential transload, (4) Instruct driver to keep trailer doors sealed and minimize any opening. Notes this is Level 5 severity: $285,000 value, perishable product, key account.",
+            "fail": "Only waits for the repair with no backup plan. Does not identify nearby cold storage. Does not consider transload to a replacement trailer. Does not instruct the driver on door management."
+          }
+        },
+        {
+          "criterion": "carrier_accountability",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Documents the breakdown for a potential claim: requests Pacific's pre-trip inspection records for the reefer unit, maintenance history, and the technician's diagnostic report after repair. If the compressor failure is due to inadequate maintenance, carrier liability is strong. If the unit was recently serviced and this is a genuine mechanical failure, the carrier still has a duty of care — their response time and actions matter for liability.",
+            "fail": "Does not request maintenance records. Assumes the carrier is automatically liable or automatically not liable. Does not document the breakdown for claims purposes."
+          }
+        },
+        {
+          "criterion": "customer_contingency",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Proactively contacts Neptune's Table with a status update and realistic scenarios: (1) Best case — repair successful, product arrives on time with quality verified, (2) Backup — transload in Cheyenne adds 4–6 hours but product quality maintained, (3) Worst case — product compromised, immediately sources replacement king crab from distributors in the Boston area or New England seafood markets. Calculates that replacement sourcing at retail prices for 40,000 lbs will cost significantly more, but losing the weekend promotion for a $1.6M account is worse.",
+            "fail": "Does not contact the customer proactively. Does not explore replacement sourcing in the destination market. Only presents one scenario (optimistic or pessimistic) without contingency planning."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-017",
+      "name": "Misdelivery of controlled pharmaceutical to wrong facility",
+      "difficulty": "hard",
+      "category": "loss-full",
+      "context": {
+        "situation": "Heartland Express delivered a shipment of Schedule III controlled substances (prescription pain management medication, 50 cases, $52,000 value) to 'MedPoint Clinic — South Campus' at 4200 Industrial Blvd instead of the correct destination 'MedPoint Clinic — North Campus' at 8100 Healthcare Parkway. Both are in Kansas City, MO. The South Campus location signed for the delivery 4 hours ago. The North Campus pharmacist just called because their inventory system shows the shipment as delivered but they don't have it. You've confirmed with Heartland that the driver went to the wrong MedPoint location. The South Campus says they put the boxes in their receiving area but haven't opened them. DEA Chain of Custody regulations require controlled substances to be tracked at every transfer point.",
+        "available_data": {
+          "carrier": "Heartland Express",
+          "bol_number": "HE-77403",
+          "product": "Schedule III controlled substances (prescription pain management medication)",
+          "cases": 50,
+          "product_value_usd": 52000,
+          "correct_destination": "MedPoint Clinic — North Campus, 8100 Healthcare Parkway, Kansas City, MO",
+          "actual_delivery": "MedPoint Clinic — South Campus, 4200 Industrial Blvd, Kansas City, MO",
+          "time_since_misdelivery_hours": 4,
+          "south_campus_status": "Boxes in receiving area, unopened",
+          "regulatory_context": "DEA Chain of Custody for Schedule III controlled substances",
+          "customer": "MedPoint Clinic North Campus",
+          "pharmacist_notification": "Inventory shows delivered but product not received"
+        }
+      },
+      "task": "Develop an urgent recovery plan that addresses the DEA chain-of-custody requirements, the physical product recovery, liability allocation, and regulatory reporting obligations.",
+      "evaluation_criteria": [
+        {
+          "criterion": "regulatory_urgency",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Immediately recognizes this as a regulatory emergency, not just a logistics error. DEA Chain of Custody for Schedule III substances means every transfer must be documented. The South Campus is not the authorized recipient on the DEA order form (222 form or CSOS equivalent). This is an unauthorized transfer of controlled substances — even though it was accidental. Notifies compliance/regulatory team immediately per the 'within 30 minutes' escalation trigger for regulated products. The South Campus must NOT open the boxes or integrate the product.",
+            "fail": "Treats this as a routine misdelivery. Does not recognize the DEA chain-of-custody implications. Suggests the South Campus can simply 'send the boxes over' to North Campus via taxi or internal van."
+          }
+        },
+        {
+          "criterion": "recovery_plan",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "The product must be recovered by a DEA-authorized carrier — not just anyone with a van. Heartland Express must send a driver back to South Campus to pick up the freight and redeliver to North Campus, maintaining the chain of custody on the carrier's BOL. The POD at South Campus should be voided or amended to show 'misdelivery — product returned to carrier.' The North Campus must receive fresh delivery documentation. All of this must happen today — controlled substances sitting at an unauthorized location overnight compounds the regulatory risk.",
+            "fail": "Suggests having South Campus transfer the product to North Campus directly (violates chain of custody). Waits until tomorrow for recovery. Does not void or amend the South Campus POD. Uses a non-authorized party to transport the controlled substances."
+          }
+        },
+        {
+          "criterion": "liability_and_reporting",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Heartland Express bears full liability for the misdelivery. Documents the incident for a potential DEA audit trail. Consults with compliance on whether a DEA loss/theft report (Form 106) is required — in this case, the product is accounted for (at the wrong location, but intact and unopened), so a Form 106 is likely not required, but the internal audit trail must be thorough. The $52,000 value and controlled substance status trigger the >$10,000 escalation protocol plus the regulatory notification.",
+            "fail": "Does not consider DEA reporting obligations. Does not document the chain-of-custody break. Does not hold Heartland liable. Does not follow the >$10,000 escalation protocol."
+          }
+        },
+        {
+          "criterion": "preventive_measures",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Identifies the root cause: two MedPoint locations in the same city with similar names. Recommends: (1) Adding explicit delivery instructions on all controlled substance BOLs ('DELIVER ONLY TO: North Campus, 8100 Healthcare Parkway — DO NOT deliver to South Campus'), (2) Requiring signature from a named pharmacist at destination, (3) Geofencing delivery confirmation for controlled substances, (4) Reviewing Heartland's driver instruction process for multi-location customers.",
+            "fail": "Does not analyze root cause. Does not implement preventive measures. Does not address the multi-location confusion risk for future shipments."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-018",
+      "name": "Hurricane threatening Gulf Coast distribution center with in-transit freight",
+      "difficulty": "hard",
+      "category": "delay-weather",
+      "context": {
+        "situation": "A Category 3 hurricane is projected to make landfall near your Houston, TX distribution center in 72 hours. You have 14 inbound shipments currently in transit to Houston (combined value: $1.2M), including 3 reefer loads of perishable food products. 8 of the 14 shipments are within 24 hours of delivery. The DC has begun evacuation preparation. Your carriers include Pacific Freight Lines (4 loads), BlueWave Shipping (3 loads), Heartland Express (4 loads), and Continental Cargo (3 loads). Your operations VP wants a decision framework by end of day for which loads to divert, hold, and attempt to deliver before the DC closes. The DC plans to suspend receiving operations in 48 hours. Insurance requires all inventory decisions to be documented before the storm for any force majeure claims.",
+        "available_data": {
+          "event": "Category 3 hurricane, landfall in 72 hours",
+          "dc_location": "Houston, TX",
+          "dc_closure": "Receiving suspended in 48 hours",
+          "total_inbound_shipments": 14,
+          "combined_value_usd": 1200000,
+          "reefer_loads": 3,
+          "shipments_within_24hrs": 8,
+          "carriers": {
+            "Pacific Freight Lines": 4,
+            "BlueWave Shipping": 3,
+            "Heartland Express": 4,
+            "Continental Cargo": 3
+          },
+          "perishable_loads": [
+            {"carrier": "Pacific Freight Lines", "product": "Fresh produce", "value_usd": 65000, "eta_hours": 18},
+            {"carrier": "BlueWave Shipping", "product": "Dairy products", "value_usd": 48000, "eta_hours": 22},
+            {"carrier": "Heartland Express", "product": "Frozen seafood", "value_usd": 92000, "eta_hours": 36}
+          ],
+          "high_value_loads": [
+            {"carrier": "Continental Cargo", "product": "Medical devices", "value_usd": 210000, "eta_hours": 30},
+            {"carrier": "Heartland Express", "product": "Industrial electronics", "value_usd": 175000, "eta_hours": 12}
+          ],
+          "insurance_requirement": "Document all inventory decisions pre-storm for force majeure claims"
+        }
+      },
+      "task": "Create a prioritized decision framework for all 14 shipments, with specific divert/hold/deliver recommendations for the perishable and high-value loads, identify alternative DCs, and address the insurance documentation requirements.",
+      "evaluation_criteria": [
+        {
+          "criterion": "triage_framework",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Creates a clear triage matrix using ETA vs DC closure timeline: (1) Shipments arriving within 24 hours (8 loads) — attempt delivery before DC closes, prioritize by value and perishability, (2) Shipments arriving 24–48 hours (within closure window but risky) — case-by-case based on storm track updates and DC readiness, (3) Shipments arriving 48+ hours — divert immediately, they cannot make the DC before closure. Prioritizes the 3 reefer loads within the first 2 tiers because perishable goods have a compounding loss if delayed further.",
+            "fail": "Tries to deliver all 14 shipments regardless of timing. Diverts everything without considering that 8 are within 24 hours and can be received safely. Does not create a framework — makes ad hoc decisions on each load."
+          }
+        },
+        {
+          "criterion": "specific_load_recommendations",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Makes specific calls on the named loads: (1) Industrial electronics ($175K, 12hr ETA) — deliver immediately, highest value that can arrive safely, (2) Fresh produce ($65K, 18hr ETA) — deliver, within window, perishable cannot be held, (3) Dairy ($48K, 22hr ETA) — deliver, tight but achievable before 48hr closure, (4) Medical devices ($210K, 30hr ETA) — borderline, decision depends on Wednesday storm track update; identify alternate DC now, (5) Frozen seafood ($92K, 36hr ETA) — divert to alternate DC (Dallas or San Antonio), cannot make the 48hr window with margin. Documents the reasoning for each decision per insurance requirements.",
+            "fail": "Does not make load-specific recommendations. Groups all shipments without considering individual ETAs and values. Does not factor perishability into the triage. Does not document decision rationale."
+          }
+        },
+        {
+          "criterion": "alternate_dc_planning",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies alternate DCs — Dallas, San Antonio, or a 3PL cold storage facility for the reefer loads. Confirms cold storage availability at alternates before diverting reefer freight. Notes that diverting to an alternate DC incurs redelivery costs but protects the product. Coordinates with all 4 carriers simultaneously to reroute diverted loads. Ensures alternate DCs have receiving capacity and dock appointments.",
+            "fail": "Mentions diverting without identifying specific alternate locations. Does not verify cold storage availability for perishable diverts. Does not coordinate with carriers on rerouting logistics."
+          }
+        },
+        {
+          "criterion": "insurance_documentation",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Creates a pre-storm decision log documenting: (1) Each shipment's status, ETA, and decision (deliver/divert/hold) with rationale, (2) The storm forecast data used to make decisions (NHC track, intensity), (3) Communications with carriers (timestamped), (4) Any inventory already in the DC that needs protective measures. Notes that this documentation is critical for force majeure claims — decisions made after the storm are harder to support than documented pre-storm planning.",
+            "fail": "Does not create documentation for insurance purposes. Does not timestamp decisions. Does not reference the storm forecast data. Does not address existing DC inventory protection."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-019",
+      "name": "Broker insolvency discovered mid-shipment with freight on the road",
+      "difficulty": "hard",
+      "category": "carrier-dispute",
+      "context": {
+        "situation": "You receive a call from a truck driver who says he's hauling your load of automotive parts ($67,000 value) from Detroit, MI to Phoenix, AZ. He says the broker who hired him, 'Midwest Logistics Brokers,' just went dark — their phones are disconnected and their website is down. He found your shipping contact info on the BOL. The driver works for 'Heartland Independent Trucking' (a small owner-operator). He's currently in Oklahoma City and says he hasn't been paid his advance for this load. He's threatening to hold the freight at a storage facility until someone pays him. Your customer, Southwest Auto Group, needs the parts by Friday — it's now Tuesday. You originally booked this load through Midwest Logistics Brokers at $3,800; the driver says he was offered $2,200.",
+        "available_data": {
+          "original_broker": "Midwest Logistics Brokers (phones disconnected, website down)",
+          "actual_carrier": "Heartland Independent Trucking (owner-operator)",
+          "product": "Automotive parts",
+          "product_value_usd": 67000,
+          "origin": "Detroit, MI",
+          "destination": "Phoenix, AZ",
+          "driver_location": "Oklahoma City, OK",
+          "booked_rate_usd": 3800,
+          "driver_offered_rate_usd": 2200,
+          "driver_paid": false,
+          "driver_threat": "Will hold freight at storage facility",
+          "customer": "Southwest Auto Group",
+          "customer_delivery_need": "Friday (3 days from now)",
+          "current_day": "Tuesday"
+        }
+      },
+      "task": "Navigate this broker insolvency situation: address the driver's lien threat, secure the freight, ensure delivery to the customer, and manage the financial and legal implications.",
+      "evaluation_criteria": [
+        {
+          "criterion": "immediate_freight_security",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Recognizes that the driver/carrier has a possessory lien right on the freight until they're paid for services rendered. This is not theft — it's a legal right. The immediate priority is preventing the freight from going to a storage facility where recovery becomes expensive and slow. Opens direct negotiation with the driver: offer to pay the driver's $2,200 rate directly (or a reasonable rate for the remaining OKC-to-Phoenix leg) in exchange for completing delivery. This is cheaper than the alternative (storage, legal recovery, customer loss). Gets the driver's MC number and verifies Heartland Independent Trucking's authority via FMCSA before sending any money.",
+            "fail": "Threatens the driver with legal action (will cause him to dump the freight at a storage yard). Refuses to pay the driver anything because 'we already paid the broker' (you haven't — Midwest is dark). Calls the police to force the driver to deliver (this is not theft, it's a lien dispute)."
+          }
+        },
+        {
+          "criterion": "customer_delivery_assurance",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "If the direct-pay negotiation works, confirms the driver can deliver to Phoenix by Friday (OKC to Phoenix is ~14 hours of driving, 2 days with HOS, achievable by Thursday). Monitors the load with check-in calls since there's no broker tracking portal. If the driver refuses to continue, arranges an emergency transload in OKC to a new carrier for the remaining 900 miles. Updates Southwest Auto Group on the situation without alarming them — frames it as a 'carrier change mid-route, delivery on track.'",
+            "fail": "Does not address the customer's Friday deadline. Does not calculate whether the driver can make the delivery in time. Does not have a backup plan if the driver refuses. Does not communicate with the customer."
+          }
+        },
+        {
+          "criterion": "financial_and_legal_response",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Understands the financial structure: (1) You owe Midwest $3,800 — but they're insolvent and you haven't paid yet, so do NOT pay them, (2) The driver is owed $2,200 by Midwest but Midwest won't pay, (3) If you pay the driver directly ($2,200), you've secured your freight for less than the broker's rate, (4) File a claim against Midwest's surety bond (brokers are required to have a $75,000 bond) to recover any losses. Notes that the broker's bond information is available via FMCSA. Also checks if Midwest had carrier cargo insurance that covers your load.",
+            "fail": "Pays the broker despite them being dark (money lost). Does not know about the broker's surety bond. Does not verify the broker's insurance. Pays the driver the full $3,800 instead of the $2,200 he's owed."
+          }
+        },
+        {
+          "criterion": "future_risk_mitigation",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Reviews all other active loads booked through Midwest Logistics Brokers immediately — there may be more freight at risk. Implements broker vetting improvements: check broker financial health indicators, require minimum time in business, verify bond status before booking. Considers using carrier-direct or vetted brokers only for high-value loads.",
+            "fail": "Only addresses this single load. Does not check for other Midwest-brokered shipments at risk. Does not review broker vetting procedures."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-020",
+      "name": "Contamination claim on food-grade LTL shipment",
+      "difficulty": "medium",
+      "category": "damage-concealed",
+      "context": {
+        "situation": "Your food manufacturing customer, Golden Harvest Foods, reports that a shipment of 6 pallets of organic honey (4,800 jars, $38,400 value) arrived at their Raleigh, NC facility via Summit LTL with a strong chemical odor. The honey jars are sealed, but the outer corrugated cases and pallet wrap smell of industrial solvent. Golden Harvest's QA team has quarantined the shipment and is refusing to put it into their food-grade warehouse. They suspect cross-contamination from incompatible freight on the same LTL trailer. Summit LTL's manifest shows that the trailer also carried 2 pallets of industrial adhesive products for another consignee. The adhesive products have a strong solvent odor. Golden Harvest wants a full replacement and is threatening to report the incident to the FDA as a food safety violation.",
+        "available_data": {
+          "carrier": "Summit LTL",
+          "pro_number": "SL-330215",
+          "product": "Organic honey (sealed jars)",
+          "quantity": "4,800 jars (6 pallets)",
+          "product_value_usd": 38400,
+          "contamination_type": "Chemical odor (industrial solvent) on outer packaging",
+          "jars_sealed": true,
+          "trailer_co_freight": "2 pallets of industrial adhesive products (strong solvent odor)",
+          "customer": "Golden Harvest Foods (food manufacturer)",
+          "customer_concern": "Cross-contamination from LTL co-loading",
+          "customer_threat": "FDA food safety report",
+          "qa_status": "Shipment quarantined outside food-grade warehouse"
+        }
+      },
+      "task": "Assess the contamination claim, determine the actual product risk vs. packaging contamination, develop a carrier claim strategy, and address the customer's FDA threat.",
+      "evaluation_criteria": [
+        {
+          "criterion": "contamination_assessment",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Distinguishes between outer packaging contamination and actual product contamination. The honey jars are sealed — the odor is on the corrugated cases and pallet wrap, not on the product itself. However, for a food manufacturer with food-grade warehouse requirements, even packaging contamination is a legitimate concern — they cannot introduce solvent-contaminated packaging into their facility. Recommends independent lab testing of both the packaging and a sample of sealed jars to determine if any solvent compounds migrated through the packaging to the jars.",
+            "fail": "Either declares the product fully contaminated without testing, or dismisses the concern because the jars are sealed. Does not understand that food-grade warehouse requirements prohibit contaminated packaging. Does not suggest lab testing."
+          }
+        },
+        {
+          "criterion": "carrier_liability",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Summit LTL is liable for co-loading food products with chemical products that have strong odors. LTL carriers are responsible for proper freight compatibility on their trailers. Industrial adhesives should never be on the same trailer as food products. This is a clear carrier negligence claim. Files a claim for the full $38,400 plus testing costs. Notes this is in the >$10,000 bracket — VP awareness, dedicated handler.",
+            "fail": "Suggests the shipper should have specified 'food-grade only' trailer (while a good practice, it doesn't absolve the carrier of their co-loading responsibility). Assigns shared liability. Does not recognize the carrier's duty to segregate incompatible freight."
+          }
+        },
+        {
+          "criterion": "product_disposition",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Does NOT destroy the product before testing and before the carrier has an opportunity to inspect. If lab tests show the sealed jars are uncontaminated, the product can be repackaged in new cases — the claim then covers repackaging costs rather than full replacement. If tests show migration, the full load is a loss. Either way, the contaminated outer packaging must be retained as evidence for the claim.",
+            "fail": "Destroys the product immediately without testing or carrier inspection. Disposes of the packaging evidence. Does not consider repackaging as a middle-ground outcome."
+          }
+        },
+        {
+          "criterion": "fda_threat_management",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Takes the FDA threat seriously but manages it proportionally. If the jars are sealed and lab tests show no product contamination, an FDA report is premature and could harm Golden Harvest's own regulatory standing (they would be reporting contaminated product in their supply chain). Counsels Golden Harvest to wait for test results before filing with FDA. However, if lab results show contamination, an FDA report may be mandatory under FSMA (Food Safety Modernization Act). Does not dismiss or minimize the customer's concern — validates their QA quarantine decision.",
+            "fail": "Either panics and agrees the customer should immediately report to FDA without test results, or dismisses the FDA threat entirely. Does not understand the FSMA reporting implications. Invalidates the customer's quarantine decision."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-021",
+      "name": "Rapid triage of 8 simultaneous exceptions during peak season storm",
+      "difficulty": "hard",
+      "category": "delay-weather",
+      "context": {
+        "situation": "It's December 18th — peak holiday shipping season. A major winter storm has just paralyzed the Northeast US. You come into the office to find 8 active exceptions that all hit overnight. You have one analyst and yourself to handle them all. The exceptions are: (1) Continental Cargo FTL of children's toys ($22,000) stuck in Pennsylvania — customer's retail stores need them for weekend sales, (2) Heartland Express reefer of insulin ($180,000) delayed 6 hours outside Albany, NY — hospital supply, (3) Summit LTL with industrial fasteners ($3,200) delayed 2 days in New Jersey — standard customer, no rush, (4) BlueWave Shipping parcel of luxury watches ($95,000) showing 'delivery exception' in Connecticut — high-value, theft risk, (5) Pacific Freight Lines FTL of Christmas trees ($8,500) stopped in Massachusetts — perishable, 5-day shelf life remaining, (6) Redline Parcel with medical supplies ($12,000) for a surgery center — needed by Friday, (7) Apex Drayage container of auto parts ($45,000) delayed at port in Newark — customer's assembly line, (8) Northern Intermodal with furniture ($28,000) delayed in transit — customer wedding delivery for Saturday.",
+        "available_data": {
+          "date": "December 18",
+          "weather_event": "Major winter storm paralyzing Northeast US",
+          "staff_available": "1 analyst + yourself",
+          "exceptions": [
+            {"id": 1, "carrier": "Continental Cargo", "product": "Children's toys", "value_usd": 22000, "mode": "FTL", "location": "Pennsylvania", "customer_need": "Weekend retail sales", "urgency": "high"},
+            {"id": 2, "carrier": "Heartland Express", "product": "Insulin", "value_usd": 180000, "mode": "Reefer FTL", "location": "Outside Albany, NY", "delay_hours": 6, "customer_need": "Hospital supply", "urgency": "critical"},
+            {"id": 3, "carrier": "Summit LTL", "product": "Industrial fasteners", "value_usd": 3200, "mode": "LTL", "location": "New Jersey", "delay_days": 2, "customer_need": "Standard, no rush", "urgency": "low"},
+            {"id": 4, "carrier": "BlueWave Shipping", "product": "Luxury watches", "value_usd": 95000, "mode": "Parcel", "location": "Connecticut", "status": "Delivery exception", "urgency": "high"},
+            {"id": 5, "carrier": "Pacific Freight Lines", "product": "Christmas trees", "value_usd": 8500, "mode": "FTL", "location": "Massachusetts", "shelf_life_remaining_days": 5, "urgency": "medium"},
+            {"id": 6, "carrier": "Redline Parcel", "product": "Medical supplies", "value_usd": 12000, "mode": "Parcel", "location": "Northeast", "customer_need": "Surgery center, needed by Friday", "urgency": "high"},
+            {"id": 7, "carrier": "Apex Drayage", "product": "Auto parts", "value_usd": 45000, "mode": "Container", "location": "Port of Newark", "customer_need": "Assembly line supply", "urgency": "high"},
+            {"id": 8, "carrier": "Northern Intermodal", "product": "Furniture", "value_usd": 28000, "mode": "Intermodal", "location": "In transit", "customer_need": "Wedding delivery Saturday", "urgency": "medium"}
+          ]
+        }
+      },
+      "task": "Prioritize these 8 exceptions using the correct framework, assign them between yourself and your analyst, and provide a brief action plan for each in priority order.",
+      "evaluation_criteria": [
+        {
+          "criterion": "priority_ranking",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Applies the priority sequencing framework correctly: (1) Insulin ($180K, hospital supply, temperature-controlled pharma) — FIRST, always, safety/regulatory, (2) Medical supplies ($12K, surgery center by Friday) — patient care risk, (3) Luxury watches ($95K, 'delivery exception' = potential theft/loss of high-value parcel) — highest financial risk after pharma, security concern, (4) Auto parts ($45K, assembly line) — production shutdown risk at the customer, (5) Children's toys ($22K, weekend retail) — high financial impact, time-sensitive but not life-safety, (6) Wedding furniture ($28K, Saturday delivery) — time-definite, customer event, (7) Christmas trees ($8,500, perishable) — lower value but perishable clock ticking, (8) Industrial fasteners ($3,200, no rush) — standard, low priority. Key: insulin and medical supplies are non-negotiably first and second due to safety/regulatory priority.",
+            "fail": "Ranks by dollar value alone (putting watches first). Does not apply safety/regulatory priority to put pharma first. Ranks the $3,200 fasteners anywhere above 7th. Puts furniture or toys above medical shipments."
+          }
+        },
+        {
+          "criterion": "workload_distribution",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Takes the top 4 (insulin, medical supplies, watches, auto parts) personally — these are the highest-severity, highest-judgment items. Assigns the analyst the bottom 4 (toys, furniture, Christmas trees, fasteners) with clear instructions for each. Notes that the analyst should escalate immediately if any of their 4 develop new complications. Uses the 'industrial fasteners' as the lowest-touch item — a quick status check and customer update is sufficient.",
+            "fail": "Splits work randomly or alphabetically. Assigns critical pharma or high-value items to the junior analyst. Does not provide guidance to the analyst. Tries to handle all 8 personally."
+          }
+        },
+        {
+          "criterion": "action_plans",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Provides a brief but specific action plan for each: (1) Insulin — verify reefer temperature status, contact Heartland for ETA, notify hospital and source local replacement if delay extends beyond 12 hours, (2) Medical supplies — contact Redline, assess if deliverable by Friday, identify backup surgical supply distributor, (3) Watches — investigate 'delivery exception' immediately (theft? misdelivery? access point issue?), verify package security, (4) Auto parts — check Newark port status, weather impact on drayage, assess if assembly line can wait 24–48 hours or needs air freight alternative, (5–8) Proportionate actions for lower-priority items.",
+            "fail": "Provides the same generic action ('call the carrier') for all 8. Does not tailor actions to the specific risks of each shipment. Does not consider replacement sourcing for time-critical items."
+          }
+        },
+        {
+          "criterion": "storm_context_awareness",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "Recognizes that this is a weather event affecting all carriers simultaneously — carrier response times will be slower, alternative capacity is extremely limited (peak season + storm), and some delays are simply unavoidable. Does not waste time demanding immediate resolution for items that physically cannot move until roads clear. Focuses energy on items where alternative action (replacement sourcing, rerouting around the storm) is possible.",
+            "fail": "Treats each exception as if the carrier can immediately resolve it. Does not account for system-wide capacity constraints during peak + storm. Spends equal effort on all 8 regardless of actionability."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-022",
+      "name": "Consignee claims excessive shortage but BOL and weight match",
+      "difficulty": "medium",
+      "category": "shortage",
+      "context": {
+        "situation": "Your consignee in Phoenix, AZ — Pinnacle Distribution (mid-tier, $220K annual) — claims they received only 180 of the 240 cartons listed on the BOL from a Continental Cargo LTL shipment. That's a 60-carton shortage ($18,000 at $300 per carton of small kitchen appliances). However, Continental's delivery receipt shows the driver counted 240 cartons off the truck, and the total weight at delivery (7,180 lbs) matches the origin weight on the BOL (7,200 lbs, within normal scale variance). The consignee's dock supervisor signed the POD as '240 ctns rcvd' but Pinnacle's warehouse manager is now claiming the count was wrong because several cartons turned out to be empty when opened for put-away. This is the 3rd shortage claim from Pinnacle in the past 4 months, and the previous two (for $2,400 and $3,800) were settled quickly by Continental.",
+        "available_data": {
+          "carrier": "Continental Cargo",
+          "pro_number": "CC-119740",
+          "bol_number": "KA-2025-2089",
+          "origin": "Los Angeles, CA",
+          "destination": "Phoenix, AZ",
+          "product": "Small kitchen appliances",
+          "cartons_on_bol": 240,
+          "cartons_claimed_received": 180,
+          "claimed_shortage": 60,
+          "per_carton_value_usd": 300,
+          "claimed_shortage_value_usd": 18000,
+          "origin_weight_lbs": 7200,
+          "delivery_weight_lbs": 7180,
+          "pod_notation": "240 ctns rcvd (signed by dock supervisor)",
+          "consignee_claim": "Several cartons were empty when opened",
+          "customer": "Pinnacle Distribution",
+          "customer_tier": "mid-tier",
+          "customer_annual_revenue_usd": 220000,
+          "previous_claims": [
+            {"amount_usd": 2400, "months_ago": 4, "resolution": "Settled by carrier"},
+            {"amount_usd": 3800, "months_ago": 2, "resolution": "Settled by carrier"}
+          ]
+        }
+      },
+      "task": "Analyze the conflicting evidence, assess the legitimacy of the shortage claim, address the pattern of claims from this consignee, and recommend a course of action.",
+      "evaluation_criteria": [
+        {
+          "criterion": "evidence_analysis",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Identifies the key contradictions: (1) POD signed for 240 cartons — the consignee's own employee confirmed the count, (2) Weight matches within 20 lbs (normal scale variance for 7,200 lbs) — 60 missing cartons of kitchen appliances would weigh approximately 1,800 lbs, and the weight would NOT match if 60 cartons were truly missing, (3) The new claim of 'empty cartons' is different from a shortage — empty cartons are a shipper-side packing issue, not a carrier transit loss. The weight evidence strongly suggests 240 full cartons were delivered.",
+            "fail": "Accepts the shortage claim at face value without analyzing the weight evidence. Does not notice that 60 missing cartons would create a massive weight discrepancy. Does not question the 'empty cartons' narrative."
+          }
+        },
+        {
+          "criterion": "pattern_recognition",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Flags the pattern: 3 shortage claims in 4 months from the same consignee location. Previous claims ($2,400 and $3,800) were settled quickly — this incentivizes continued claims. The current $18,000 claim is a significant escalation. This matches the 'systematic shortages' fraud indicator: consistent shortages across multiple shipments from the same consignee. Recommends halting standard processing and notifying compliance per the fraud investigation protocol.",
+            "fail": "Treats each claim independently. Does not connect the pattern. Does not flag potential fraud. Settles the claim to maintain the customer relationship."
+          }
+        },
+        {
+          "criterion": "investigation_approach",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Requests: (1) Pinnacle's warehouse receiving records and security camera footage of the unloading, (2) Photos of the allegedly empty cartons — are they truly empty or were they pilfered after receipt? (3) The origin shipper's packing records confirming 240 full cartons were packed and weighed, (4) Continental's origin terminal photos/records showing all freight was loaded. Challenges the consignee's claim professionally but firmly — the signed POD and weight evidence puts the burden on Pinnacle to prove their claim.",
+            "fail": "Does not request security footage or warehouse records from the consignee. Accepts the claim without investigation. Does not contact the origin shipper to verify packing."
+          }
+        },
+        {
+          "criterion": "recommended_action",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "Denies the claim pending investigation, citing the signed POD (240 ctns rcvd) and matching weight as evidence of full delivery. Informs Pinnacle that the pattern of claims has triggered an audit. If Pinnacle's investigation shows internal pilferage at their facility, this is their loss — not a carrier claim. Considers whether Pinnacle should remain a customer given the potential fraud pattern.",
+            "fail": "Pays the $18,000 claim to avoid conflict. Does not challenge the signed POD. Does not consider the customer relationship impact of repeated suspect claims."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-023",
+      "name": "International ocean container with seal discrepancy at port",
+      "difficulty": "medium",
+      "category": "cross-border",
+      "context": {
+        "situation": "A 40-foot ocean container of consumer electronics (LED televisions, 400 units, $240,000 value) arrived at the Port of Los Angeles from Shenzhen, China via Meridian Ocean Lines. Your customs broker reports that the seal number on the physical container (MOLU-8842197) does not match the seal number on the bill of lading (MOLU-8842179). The container was last sealed at the origin port in Shenzhen. The discrepancy was caught during CBP inspection. CBP has placed a hold on the container pending investigation. Your customer, MegaMart Electronics (enterprise-tier, $4.8M annual), has these TVs committed to a nationwide promotional event starting in 10 days, and they need 5 days for distribution to stores.",
+        "available_data": {
+          "carrier": "Meridian Ocean Lines (ocean)",
+          "container_number": "MRLU-4402819",
+          "bol_number": "MEOL-SZ-24410",
+          "origin": "Shenzhen, China",
+          "destination_port": "Port of Los Angeles",
+          "final_destination": "MegaMart distribution center, Riverside, CA",
+          "product": "LED televisions",
+          "units": 400,
+          "product_value_usd": 240000,
+          "physical_seal": "MOLU-8842197",
+          "bol_seal": "MOLU-8842179",
+          "seal_discrepancy": "Last 2 digits differ (97 vs 79 — possible transposition)",
+          "cbp_status": "Hold pending investigation",
+          "customer": "MegaMart Electronics",
+          "customer_tier": "enterprise",
+          "customer_annual_revenue_usd": 4800000,
+          "customer_need": "Promotional event in 10 days, 5 days needed for store distribution",
+          "effective_delivery_deadline": "5 days from now"
+        }
+      },
+      "task": "Assess whether this is a documentation error or a security breach, develop a resolution strategy with CBP and the ocean carrier, and manage the customer timeline.",
+      "evaluation_criteria": [
+        {
+          "criterion": "seal_discrepancy_analysis",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Notes that the discrepancy is MOLU-8842197 vs MOLU-8842179 — a transposition of the last two digits (97 vs 79), which is consistent with a data entry error at origin rather than seal tampering. If the seal were broken and replaced, the seal number would be completely different, not a near-match. However, this must be verified — requests the origin port's seal application records and the steamship line's seal log to confirm which number was actually applied. Does not dismiss the discrepancy even though it's likely a typo.",
+            "fail": "Assumes it's definitely a security breach and the container was opened. Or dismisses it as 'just a typo' without verification. Does not analyze the nature of the discrepancy (near-match transposition vs completely different number)."
+          }
+        },
+        {
+          "criterion": "cbp_resolution_strategy",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Works through the customs broker to: (1) Submit a corrected bill of lading or amendment to the ocean carrier with the correct seal number, (2) Provide the origin port's seal application documentation to CBP showing which seal was actually applied, (3) Request a CBP examination of the container — if the contents match the manifest and there's no evidence of tampering, this supports the data entry error theory, (4) If COGSA survey is required, arrange one promptly. Notes that CBP holds can take 5–15 business days to resolve under normal processing, so expedited review needs to be requested.",
+            "fail": "Waits passively for CBP to resolve the hold. Does not proactively submit corrected documentation. Does not request expedited review. Does not work with the origin port for seal verification."
+          }
+        },
+        {
+          "criterion": "customer_timeline_management",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "With a 5-day effective delivery deadline and CBP holds potentially taking 5–15 days, this is extremely tight. Communicates urgency to the customs broker for expedited CBP processing. Simultaneously explores: (1) Can MegaMart delay the promotional event start? (2) Can partial inventory from other sources cover the initial promotion while this container clears? (3) Notifies MegaMart proactively that there's a port hold with a realistic timeline range. At $240K and an enterprise customer, this is Level 4+ requiring VP-level engagement.",
+            "fail": "Tells the customer delivery is on track when it may not be. Does not explore alternative sourcing or timeline adjustment. Does not proactively communicate the risk. Underestimates the severity."
+          }
+        },
+        {
+          "criterion": "liability_allocation",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "If confirmed as a data entry error at origin, the liability for the delay falls on whoever prepared the bill of lading (shipper or their freight forwarder, not the ocean carrier unless the carrier transposed the number). Storage/demurrage charges at the port during the hold should be allocated to the party responsible for the documentation error. The ocean carrier has per-package liability limits under COGSA ($500/package) unless higher value was declared.",
+            "fail": "Blames the ocean carrier for a documentation error they may not have caused. Does not consider who actually prepared the bill of lading. Does not address demurrage charges during the hold."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-024",
+      "name": "Multiple partial deliveries against single BOL with running count discrepancy",
+      "difficulty": "medium",
+      "category": "shortage",
+      "context": {
+        "situation": "A large LTL shipment of 48 pallets of building materials was shipped via BlueWave Shipping from your Charlotte, NC facility to a construction site in Tampa, FL. Due to trailer capacity, BlueWave split the shipment across 3 deliveries: Delivery 1 received 18 pallets (Monday), Delivery 2 received 16 pallets (Wednesday), and Delivery 3 received 11 pallets (Friday). That's 45 of 48 pallets — 3 pallets short. Your Tampa site supervisor filed a shortage claim after Delivery 2 (claiming 14 pallets short at that point — 34 received of 48). BlueWave is now citing the premature claim as evidence that your team 'can't count' and is pushing back on the final 3-pallet shortage. Each pallet of building materials is valued at $1,600 (shortage value: $4,800). The Tampa construction project has a Monday deadline.",
+        "available_data": {
+          "carrier": "BlueWave Shipping",
+          "bol_number": "BW-71440",
+          "origin": "Charlotte, NC",
+          "destination": "Tampa, FL (construction site)",
+          "total_pallets_on_bol": 48,
+          "deliveries": [
+            {"number": 1, "date": "Monday", "pallets": 18},
+            {"number": 2, "date": "Wednesday", "pallets": 16},
+            {"number": 3, "date": "Friday", "pallets": 11}
+          ],
+          "total_received": 45,
+          "actual_shortage": 3,
+          "per_pallet_value_usd": 1600,
+          "shortage_value_usd": 4800,
+          "premature_claim_filed": "After Delivery 2 (claimed 14 short)",
+          "carrier_response": "Citing premature claim as evidence of consignee counting errors",
+          "product": "Building materials",
+          "construction_deadline": "Monday"
+        }
+      },
+      "task": "Resolve the carrier dispute, address the premature claim issue, confirm the actual shortage, and ensure the construction deadline is met.",
+      "evaluation_criteria": [
+        {
+          "criterion": "premature_claim_handling",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Acknowledges that the premature claim was a mistake — the Tampa supervisor should not have filed a shortage claim before all partial deliveries were complete. This is exactly the scenario described in the edge case: 'Don't file shortage claim until all partials are reconciled — carriers will use premature claims as evidence of shipper error.' Withdraws the premature claim and files a clean claim based on the final reconciled count (48 shipped, 45 received, 3 short).",
+            "fail": "Defends the premature claim instead of withdrawing it. Does not recognize this as a best-practice violation. Lets the premature claim weaken the position on the legitimate 3-pallet shortage."
+          }
+        },
+        {
+          "criterion": "shortage_substantiation",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Documents the final tally with signed delivery receipts from all 3 deliveries (18 + 16 + 11 = 45). Cross-references with the original BOL showing 48 pallets at origin. Weight reconciliation: 48 pallets at ~400 lbs each = ~19,200 lbs origin; 45 pallets = ~18,000 lbs; 3-pallet shortage = ~1,200 lbs missing, which should show on weight records. Provides this clean, reconciled evidence to BlueWave, separating it from the premature claim.",
+            "fail": "Cannot provide a clean reconciliation. Mixes up the premature claim numbers with the actual shortage. Does not use weight records to corroborate the pallet count. Presents the claim in a way that lets BlueWave continue citing the premature filing."
+          }
+        },
+        {
+          "criterion": "carrier_dispute_resolution",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Addresses BlueWave's pushback directly: 'We acknowledge the premature claim was filed in error and have withdrawn it. The final reconciled count across all 3 deliveries is 45 of 48 pallets. Here are the signed delivery receipts for each partial. Please locate the remaining 3 pallets.' Tone is professional and fact-based, not defensive about the premature claim. At $4,800, this is standard claims process zone — expects resolution within 30 days.",
+            "fail": "Gets into a back-and-forth argument about the premature claim. Does not withdraw it. Escalates to senior management over a $4,800 dispute. Gets defensive rather than presenting clean evidence."
+          }
+        },
+        {
+          "criterion": "construction_deadline",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "With the Monday deadline and 3 pallets of building materials still missing on Friday, does not wait for BlueWave to trace the pallets. Sources replacement materials locally in the Tampa area for same-day or Saturday delivery. The $4,800 replacement cost is manageable vs. construction delay penalties. Includes the replacement expedite cost in the carrier claim.",
+            "fail": "Waits for BlueWave to find the 3 pallets over the weekend. Does not source replacement materials. Misses the Monday construction deadline."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-025",
+      "name": "Air freight damage claim with Montreal Convention weight-based limits",
+      "difficulty": "medium",
+      "category": "damage-visible",
+      "context": {
+        "situation": "A shipment of prototype medical imaging equipment (1 crate, 180 kg, value $320,000) was damaged during air freight handling at Chicago O'Hare. The crate was shipped via GlobalAir Cargo from Frankfurt, Germany to your facility in Minneapolis, MN. Upon arrival, the crate shows severe crush damage on one corner — the prototype inside has a cracked housing and displaced internal sensors. The air waybill (AWB) does not have a declared value — you used the standard air waybill without special declaration of value. Your R&D team says the prototype is a one-of-a-kind unit that took 6 months to build. Under the Montreal Convention, the carrier's liability for cargo damage is limited to 22 SDR (Special Drawing Rights) per kilogram unless a higher value was declared at shipping. Current SDR rate is approximately $1.35 USD per SDR.",
+        "available_data": {
+          "carrier": "GlobalAir Cargo",
+          "awb_number": "020-4419-8823",
+          "origin": "Frankfurt, Germany",
+          "destination": "Minneapolis, MN (via O'Hare transfer)",
+          "product": "Prototype medical imaging equipment",
+          "weight_kg": 180,
+          "actual_value_usd": 320000,
+          "declared_value_on_awb": "None (standard AWB, no special declaration)",
+          "damage_description": "Severe crush damage — cracked housing, displaced internal sensors",
+          "montreal_convention_limit": "22 SDR per kilogram",
+          "sdr_to_usd_rate": 1.35,
+          "max_carrier_liability_usd": 5346,
+          "damage_location": "Chicago O'Hare (handling)",
+          "prototype_build_time": "6 months",
+          "prototype_uniqueness": "One-of-a-kind unit"
+        }
+      },
+      "task": "Calculate the carrier's liability limit under the Montreal Convention, explain the coverage gap, recommend how to maximize recovery, and identify the process failure that led to this exposure.",
+      "evaluation_criteria": [
+        {
+          "criterion": "liability_calculation",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Correctly calculates: 180 kg × 22 SDR/kg = 3,960 SDR × $1.35/SDR = $5,346 USD maximum carrier liability. This means the carrier's exposure is $5,346 on a $320,000 item — a 98.3% gap. Notes the strict 14-day notice requirement for damage claims under Montreal Convention — the claim must be filed in writing within 14 days of delivery.",
+            "fail": "Cannot calculate the SDR-based liability limit. Uses Carmack Amendment instead of Montreal Convention (this is international air, not domestic surface). Gets the filing deadline wrong (e.g., uses the 9-month Carmack timeline)."
+          }
+        },
+        {
+          "criterion": "recovery_maximization",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies recovery options: (1) File the carrier claim for the $5,346 maximum — it's not much but it's owed, (2) Check if the shipment was covered by your company's cargo insurance or an all-risk inland marine policy — this is where the bulk of recovery should come from, (3) Investigate whether GlobalAir's handling was so negligent it constitutes 'willful misconduct' — under Montreal Convention Art. 22(5), the liability cap is lifted if the carrier's actions were reckless with knowledge that damage would probably result. O'Hare handling damage may qualify if there's evidence of grossly improper handling, (4) Check if the Frankfurt shipper purchased additional coverage.",
+            "fail": "Accepts the $5,346 limit without exploring other recovery paths. Does not mention cargo insurance. Does not know about the willful misconduct exception to Montreal Convention limits. Does not file the carrier claim because the amount seems small."
+          }
+        },
+        {
+          "criterion": "process_failure_identification",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies the root process failure: a $320,000 one-of-a-kind prototype was shipped on a standard air waybill without a declared value. This is a shipping error, not a carrier error. The declared value should have been at least $320,000 on the AWB, with the corresponding additional premium paid. Recommends implementing a policy: all shipments above $50,000 must have declared value on the AWB and be flagged for review before shipping. Also notes that a one-of-a-kind prototype should have had specialized packaging and handling services.",
+            "fail": "Blames the carrier entirely without recognizing the shipper's failure to declare value. Does not recommend process improvements. Does not address the declared value requirement for high-value air freight."
+          }
+        },
+        {
+          "criterion": "prototype_specific_considerations",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Recognizes that a one-of-a-kind prototype cannot simply be 'replaced' at market value — the 6-month build time, R&D labor, and uniqueness mean the actual loss far exceeds the $320,000 material value. For insurance and claim purposes, the replacement value should include rebuild costs (labor, materials, time). Advises the R&D team to document the prototype specifications and build cost for the insurance claim. Also explores whether any damaged components can be salvaged and reused in a rebuild.",
+            "fail": "Treats the prototype like a commodity product that can be reordered. Does not consider the rebuild time and R&D cost as part of the loss. Does not advise on documenting the full replacement cost."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-026",
+      "name": "Simultaneous claims from shipper and consignee on same shipment",
+      "difficulty": "medium",
+      "category": "carrier-dispute",
+      "context": {
+        "situation": "A confusing situation has developed on a Pacific Freight Lines LTL shipment of industrial pumps. The shipper (FlowTech Manufacturing in Cleveland, OH) filed a damage claim for $22,000, stating the 4 pumps were damaged in transit. Simultaneously, the consignee (Gulf Coast Industrial in Houston, TX) filed a separate shortage claim for $11,000, stating they only received 2 of the 4 pumps. Both claims are against Pacific Freight Lines on the same PRO# (PFL-55102). Pacific's claims department has rejected both claims, stating that conflicting claims from two parties on the same shipment indicate shipper/consignee collusion or error. The POD shows 4 units delivered with a notation 'packaging damaged on 2 units.' Gulf Coast says they only received 2 good units and 2 empty crates.",
+        "available_data": {
+          "carrier": "Pacific Freight Lines",
+          "pro_number": "PFL-55102",
+          "bol_number": "FT-2025-0937",
+          "origin": "Cleveland, OH (FlowTech Manufacturing)",
+          "destination": "Houston, TX (Gulf Coast Industrial)",
+          "product": "Industrial pumps",
+          "units_shipped": 4,
+          "unit_value_usd": 5500,
+          "total_shipment_value_usd": 22000,
+          "shipper_claim": "Damage claim for $22,000 — all 4 pumps damaged",
+          "consignee_claim": "Shortage claim for $11,000 — only 2 of 4 pumps received",
+          "pod_notation": "4 units delivered, packaging damaged on 2 units",
+          "consignee_detail": "Received 2 good units and 2 empty crates",
+          "carrier_response": "Rejected both claims — conflicting claims suggest collusion or error"
+        }
+      },
+      "task": "Untangle the conflicting claims, determine what likely happened, identify who should be filing what claim, and develop a unified resolution strategy.",
+      "evaluation_criteria": [
+        {
+          "criterion": "claim_reconciliation",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Pieces together the likely scenario: 4 pumps shipped in 4 crates, 2 units arrived intact, 2 crates arrived but are empty (pumps pilfered or fell out during transit due to packaging damage). The POD notation '4 units delivered, packaging damaged on 2 units' is consistent with the driver counting 4 crates without verifying contents. Gulf Coast's claim is more accurate — they received 2 good pumps and 2 empty crates. FlowTech's $22,000 full-damage claim is incorrect; the actual loss is $11,000 (2 missing pumps). There is no collusion — there's miscommunication between shipper and consignee about what happened.",
+            "fail": "Cannot reconcile the claims. Assumes collusion. Accepts both claims at face value without noting they're contradictory. Does not identify the likely scenario of pilferage or product falling from damaged packaging."
+          }
+        },
+        {
+          "criterion": "claim_consolidation",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Only one claim should be filed — either by the shipper (who has title and the BOL relationship) or the consignee (who received the freight), depending on the FOB terms and who bears the risk of loss. Consolidates into a single claim for $11,000 (2 missing pumps) plus any damage to the 2 received units if packaging damage caused any impairment. Withdraws the incorrect/duplicate claim.",
+            "fail": "Maintains both claims. Does not identify that only one party should file. Does not adjust the claim amount from the incorrect $22,000. Does not consider FOB terms for determining the claiming party."
+          }
+        },
+        {
+          "criterion": "carrier_response_strategy",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Addresses Pacific's 'collusion' rejection: presents the reconciled facts showing this is a packaging damage + pilferage situation, not collusion. A single consolidated claim with the correct facts and POD notation supporting packaging damage removes Pacific's basis for rejection. Requests Pacific investigate the terminal handling — 2 pumps falling from damaged crates at a cross-dock is a significant handling failure.",
+            "fail": "Accepts Pacific's rejection. Does not challenge the collusion characterization. Does not use the POD notation as evidence supporting the claim."
+          }
+        },
+        {
+          "criterion": "communication_coordination",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Gets FlowTech and Gulf Coast aligned on the facts before re-approaching Pacific. This requires a 3-way conversation to establish: what was shipped, what was received, and what the actual loss is. Ensures only one party files the consolidated claim to avoid further confusion.",
+            "fail": "Does not coordinate between shipper and consignee. Lets both parties continue filing independently. Does not facilitate a fact-finding discussion."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-027",
+      "name": "Carrier performance review trigger — 5th exception in 30 days",
+      "difficulty": "easy",
+      "category": "carrier-dispute",
+      "context": {
+        "situation": "Apex Drayage has just generated its 5th exception in 30 days across your shipments. The exceptions: (1) 2-day delay on an LTL to Nashville ($6,200 value), (2) minor damage on a pallet of auto parts ($1,800 damage), (3) missed appointment window at a consignee dock ($350 detention charge to you), (4) incorrect BOL paperwork requiring amendment ($0 direct cost, 4 hours of admin time), and (5) today — a shortage of 3 cartons on a delivery to Memphis ($900 value). Total direct cost across all 5: approximately $9,250. Apex handles about 40 shipments per month for you at approximately $160,000 in monthly freight spend. Your contract with Apex is month-to-month. Your procurement team says Apex's rates are 8–12% below the next-cheapest alternative.",
+        "available_data": {
+          "carrier": "Apex Drayage",
+          "review_period": "Last 30 days",
+          "total_exceptions": 5,
+          "exceptions": [
+            {"type": "Delay", "cost_usd": 0, "product_value_usd": 6200, "detail": "2-day delay, LTL to Nashville"},
+            {"type": "Damage", "cost_usd": 1800, "detail": "Minor pallet damage, auto parts"},
+            {"type": "Missed appointment", "cost_usd": 350, "detail": "Missed dock window, detention charge"},
+            {"type": "Documentation error", "cost_usd": 0, "detail": "Incorrect BOL, 4 hours admin time"},
+            {"type": "Shortage", "cost_usd": 900, "detail": "3 cartons short on Memphis delivery"}
+          ],
+          "total_direct_cost_usd": 9250,
+          "monthly_shipments": 40,
+          "monthly_freight_spend_usd": 160000,
+          "contract_type": "Month-to-month",
+          "rate_advantage": "8–12% below next-cheapest alternative",
+          "exception_threshold": "3+ exceptions in 30 days triggers carrier performance review"
+        }
+      },
+      "task": "Conduct the carrier performance review analysis, determine whether to continue, reduce, or terminate the Apex relationship, and develop a corrective action plan.",
+      "evaluation_criteria": [
+        {
+          "criterion": "performance_analysis",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Calculates the exception rate: 5 exceptions out of ~40 shipments = 12.5% exception rate, well above the 'red flag' threshold of >4% (>40 per 1,000). Computes the total cost including soft costs: $9,250 direct + estimated admin time (4 hours for BOL error × $50/hr = $200, plus claims processing time for each incident ≈ $750–$1,000 total) ≈ $10,000–$10,500 actual cost. Compares this to the rate advantage: 8–12% of $160K = $12,800–$19,200 monthly savings. The math still favors Apex — but barely, and the trend matters.",
+            "fail": "Does not calculate the exception rate. Does not include soft costs. Does not compare exception costs to the rate advantage. Makes a decision without doing the financial analysis."
+          }
+        },
+        {
+          "criterion": "root_cause_assessment",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Analyzes the 5 exceptions for patterns: are they from the same terminal, driver, or lane? If the exceptions are random and varied (different types, different routes), this suggests systemic operational issues. If concentrated (e.g., all through one terminal), it's a localized problem that's easier to fix. Notes that the variety of exception types (delay, damage, missed appointment, documentation, shortage) suggests broader operational quality issues rather than a single point of failure.",
+            "fail": "Does not look for patterns within the exceptions. Treats all 5 as equivalent. Does not distinguish between systemic and localized issues."
+          }
+        },
+        {
+          "criterion": "corrective_action_plan",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Does NOT immediately terminate — the rate advantage is real and alternatives are more expensive. Instead: (1) Formal meeting with Apex account manager presenting the exception data, (2) Requires a written corrective action plan from Apex within 14 days, (3) Sets a 60-day probation period with measurable targets (exception rate below 5%, zero documentation errors), (4) Reduces volume on high-value or time-sensitive lanes while maintaining lower-risk freight, (5) Simultaneously qualifies backup carriers so you have alternatives if the probation fails.",
+            "fail": "Terminates Apex immediately over 5 exceptions without considering the rate advantage. Or continues the relationship unchanged with no corrective action. Does not set measurable improvement targets. Does not qualify backup carriers."
+          }
+        },
+        {
+          "criterion": "escalation_appropriateness",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "Follows the escalation protocol: 3+ exceptions in 30 days triggers carrier performance review with procurement. Involves procurement in the review because they own the rate relationship and contract. Does not over-escalate to VP level — the total cost ($9,250) and exception types are serious but not crisis-level. This is a Manager-level (Level 3) review.",
+            "fail": "Does not involve procurement. Escalates to VP over what is a standard carrier performance issue. Does not follow the escalation protocol."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-028",
+      "name": "Concealed damage with expired claims filing window discovered during inventory audit",
+      "difficulty": "easy",
+      "category": "damage-concealed",
+      "context": {
+        "situation": "During a routine warehouse inventory audit, your team discovers that 24 units of high-end espresso machines received 7 months ago from Redline Parcel are defective — the internal water pumps are cracked, likely from vibration damage during transit. The shipment was received in April, it's now November. The POD was signed clean. Each unit is valued at $580 (total damage: $13,920). The machines have been sitting in inventory because the customer's order was delayed. Under 49 USC § 14706, the filing deadline for domestic surface claims is 9 months from delivery date. You have approximately 2 months remaining to file, but the 5-day concealed damage notification window passed 7 months ago.",
+        "available_data": {
+          "carrier": "Redline Parcel",
+          "pro_number": "RP-881204",
+          "delivery_date": "April (approximately 7 months ago)",
+          "discovery_date": "November (current month)",
+          "product": "High-end espresso machines",
+          "units_damaged": 24,
+          "unit_value_usd": 580,
+          "total_damage_usd": 13920,
+          "damage_type": "Cracked internal water pumps — likely vibration damage",
+          "pod_notation": "Signed clean",
+          "concealed_damage_window": "Expired (5 days from delivery — 7 months ago)",
+          "carmack_filing_deadline": "9 months from delivery (approximately 2 months remaining)",
+          "inventory_storage": "Machines sitting in warehouse since April"
+        }
+      },
+      "task": "Assess the viability of a claim given the missed concealed damage notification window, determine the best strategy for recovery, and identify process improvements to prevent this situation.",
+      "evaluation_criteria": [
+        {
+          "criterion": "legal_viability_assessment",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Correctly distinguishes between the 5-day concealed damage notification (industry practice/carrier tariff requirement, not a statutory bar) and the 9-month Carmack Amendment filing deadline (statutory). The missed 5-day window weakens the claim but does not automatically bar it — the 9-month statutory deadline is what matters legally. The claim can still be filed, but the carrier will use the late notification aggressively as a defense. Notes the 2-month remaining window and files immediately.",
+            "fail": "Believes the missed 5-day window means the claim cannot be filed. Or believes the claim is straightforward and the 5-day window is irrelevant. Does not distinguish between the notification window and the statutory filing deadline."
+          }
+        },
+        {
+          "criterion": "evidence_strategy",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Builds the strongest possible case despite the late discovery: (1) Vibration damage to internal water pumps is consistent with transit — this is not wear-and-tear or misuse, (2) Machines have been in climate-controlled warehouse storage since delivery — controlled conditions eliminate post-delivery damage arguments, (3) Obtains manufacturer's QC records showing units passed testing before shipment, (4) Gets an independent assessment confirming the damage pattern is consistent with transit vibration, not storage. Acknowledges this is an uphill claim and sets expectations for partial recovery at best.",
+            "fail": "Files the claim with only the damage photos and no supporting evidence. Does not address why the damage wasn't discovered for 7 months. Does not obtain manufacturer QC records. Over-promises on recovery likelihood."
+          }
+        },
+        {
+          "criterion": "recovery_expectations",
+          "weight": 0.15,
+          "rubric": {
+            "pass": "Sets realistic expectations: with the missed 5-day notification, the carrier will push back hard. At $13,920 this is in the >$10,000 bracket, but the weakened claim position means accepting a settlement of 50–70% may be the best achievable outcome. The claim is still worth filing because even 50% of $13,920 = $6,960, well above the admin cost of claims processing.",
+            "fail": "Expects full recovery despite the weakened position. Or doesn't file because the claim is imperfect. Does not calculate the ROI of filing an imperfect claim."
+          }
+        },
+        {
+          "criterion": "process_improvement",
+          "weight": 0.25,
+          "rubric": {
+            "pass": "Identifies the root cause: 7-month gap between receiving and inspecting is a warehouse process failure. Recommends: (1) Mandatory quality inspection within 3 business days of receipt for all inbound shipments, (2) Priority inspection for sensitive products (electronics, machinery with moving parts), (3) Receiving SOP update: open and inspect a sample of cartons at delivery, not just count pallets, (4) Flagging system for long-inventory items that haven't been inspected.",
+            "fail": "Does not identify the receiving/inspection gap as a process failure. Does not recommend any procedural changes. Blames the warehouse team without addressing systemic issues."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-029",
+      "name": "Peak surcharge dispute escalated to contract renegotiation",
+      "difficulty": "easy",
+      "category": "carrier-dispute",
+      "context": {
+        "situation": "It's early January, and you're reviewing Q4 invoices from Heartland Express. You discover they applied a 'Holiday Peak Surcharge' of $350 per shipment to 28 out of your 45 November-December FTL shipments. Total surcharge amount: $9,800. Your 1-year contract with Heartland (signed in March, expires next March) includes a fuel surcharge table and a general rate increase mechanism but does NOT include any provision for seasonal or peak surcharges. Heartland's account manager says the surcharge was communicated via a 'general rate advisory' email sent to all customers on October 15. You checked — the email went to your accounts payable inbox, not to your transportation or procurement team. Your contract spends approximately $55,000/month with Heartland.",
+        "available_data": {
+          "carrier": "Heartland Express",
+          "dispute_period": "November–December (Q4)",
+          "surcharge_per_shipment_usd": 350,
+          "affected_shipments": 28,
+          "total_shipments_in_period": 45,
+          "total_surcharge_usd": 9800,
+          "contract_term": "1-year (March to March)",
+          "contract_peak_surcharge_provision": "None — not in contract",
+          "surcharge_communication": "General rate advisory email to all customers, October 15",
+          "email_recipient": "Accounts payable inbox (not transportation/procurement)",
+          "monthly_spend_usd": 55000,
+          "annual_spend_usd": 660000
+        }
+      },
+      "task": "Develop a dispute strategy for the $9,800 surcharge, determine your contractual standing, and decide how to handle this within the broader carrier relationship.",
+      "evaluation_criteria": [
+        {
+          "criterion": "contractual_analysis",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Your position is strong: the contract does not include a peak surcharge provision. A unilateral 'general rate advisory' email does not amend a signed contract. The surcharge was not agreed to, and Heartland cannot retroactively add terms not in the contract. Disputes the full $9,800. References the specific contract section that defines the rate structure and notes the absence of any peak surcharge mechanism.",
+            "fail": "Accepts the surcharge because 'everyone does peak surcharges.' Does not reference the contract terms. Treats the email advisory as a valid contract amendment. Pays the surcharge."
+          }
+        },
+        {
+          "criterion": "dispute_execution",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Formally disputes the $9,800 in writing to Heartland's billing department with a copy to the account manager. Withholds the surcharge amount from the next invoice payment (pays the line-haul and legitimate accessorials, deducts the $9,800). Provides specific references to contract terms. Requests written acknowledgment that the surcharge is removed.",
+            "fail": "Only complains verbally. Pays the full invoice including the surcharge while 'working it out.' Does not put the dispute in writing. Does not withhold the disputed amount."
+          }
+        },
+        {
+          "criterion": "relationship_calibration",
+          "weight": 0.35,
+          "rubric": {
+            "pass": "Firm on the contract but not adversarial — Heartland is a $660K/year carrier relationship. Acknowledges that peak season capacity costs are real and offers to discuss adding a peak surcharge mechanism to the contract renewal in March with agreed-upon terms, triggers, and caps. This gives Heartland a path forward while protecting your current-year budget. Suggests the rate advisory should go to the transportation team, not AP, for future communications.",
+            "fail": "Threatens to leave Heartland over $9,800. Burns the relationship during peak season. Or caves entirely and pays to preserve the relationship. Does not offer a constructive path for the contract renewal."
+          }
+        }
+      ]
+    },
+    {
+      "id": "LEM-030",
+      "name": "High-value electronics with 'delivery exception' and suspected theft at final mile",
+      "difficulty": "hard",
+      "category": "loss-full",
+      "context": {
+        "situation": "A parcel shipment of 50 units of latest-generation smartphones ($1,200 each, $60,000 total) shipped via BlueWave Shipping from your distribution center in Louisville, KY to a retail store in Miami, FL shows a tracking status of 'delivery exception — business closed' from Saturday at 2:15 PM. The retail store, TechZone Miami (key account, $1.1M annual), was open until 6 PM on Saturday and their security cameras show no delivery attempt. BlueWave's GPS records show the delivery vehicle was at the store's address for 12 seconds before driving away. On Monday morning, the package status updated to 'delivered — left at side door' at 7:45 AM, but the store doesn't have a side door. The store manager found no package. BlueWave's local terminal says the driver confirmed delivery with a photo — but the photo shows a package at a residential doorstep that doesn't match the store's commercial property.",
+        "available_data": {
+          "carrier": "BlueWave Shipping",
+          "tracking_number": "BW-1Z-442897-US",
+          "origin": "Louisville, KY distribution center",
+          "destination": "TechZone Miami retail store, FL",
+          "product": "Latest-generation smartphones",
+          "units": 50,
+          "unit_value_usd": 1200,
+          "total_value_usd": 60000,
+          "saturday_tracking": "Delivery exception — business closed at 2:15 PM",
+          "store_hours_saturday": "Open until 6:00 PM",
+          "store_security_camera": "No delivery attempt on Saturday",
+          "gps_data": "Delivery vehicle at address for 12 seconds Saturday",
+          "monday_tracking": "Delivered — left at side door at 7:45 AM",
+          "store_physical": "No side door exists",
+          "delivery_photo": "Shows residential doorstep — does not match store property",
+          "customer": "TechZone Miami",
+          "customer_tier": "key account",
+          "customer_annual_revenue_usd": 1100000
+        }
+      },
+      "task": "Analyze the theft indicators, develop a recovery and investigation strategy, determine the appropriate escalation path, and manage the customer impact.",
+      "evaluation_criteria": [
+        {
+          "criterion": "theft_indicator_analysis",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Identifies the mounting theft evidence: (1) Saturday 'business closed' scan is false — store was open and security cameras confirm no attempt, (2) GPS shows only 12 seconds at the address — not enough time for a delivery attempt, (3) Monday 'delivered at side door' — the store has no side door, (4) Delivery photo shows a residential property, not the commercial store. This is a textbook address manipulation / driver theft scenario for high-value electronics. The driver likely diverted the package to a residential address. This triggers the fraud indicators protocol: notify compliance, halt standard processing.",
+            "fail": "Treats this as a routine delivery exception. Accepts any of the driver's scans as legitimate. Does not recognize the theft indicators. Suggests re-attempting delivery."
+          }
+        },
+        {
+          "criterion": "investigation_and_recovery",
+          "weight": 0.30,
+          "rubric": {
+            "pass": "Immediate actions: (1) File a police report in Miami for theft of $60,000 in merchandise, (2) Demand BlueWave's full GPS trail for the delivery vehicle on Saturday AND Monday — the residential address in the delivery photo is likely where the phones went, (3) Demand the unredacted delivery photo with EXIF data (location, timestamp), (4) Request identification of the specific driver for both Saturday and Monday events, (5) Contact BlueWave's security/loss prevention department, not just the claims team. The $60,000 value and theft indicators make this a law enforcement matter, not just a carrier claim.",
+            "fail": "Files a standard missing package claim. Does not involve law enforcement. Does not request GPS data or driver identification. Does not escalate to BlueWave's security department."
+          }
+        },
+        {
+          "criterion": "escalation_path",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "This is Level 5: $60,000 value + fraud indicators = immediate VP notification, compliance notification, and halt of standard processing. Files under both cargo insurance and the carrier claim. Notes that BlueWave's standard parcel liability may be limited (often $100 without declared value) — checks the declared value on the shipping label. If declared value is $60,000, BlueWave is liable for the full amount. If no declared value, recovery may be limited to the declared amount.",
+            "fail": "Does not check the declared value on the parcel shipment. Assumes full carrier liability without verifying. Does not involve VP or compliance. Treats as a standard claim."
+          }
+        },
+        {
+          "criterion": "customer_management",
+          "weight": 0.20,
+          "rubric": {
+            "pass": "Ships replacement 50 smartphones to TechZone Miami immediately via a different carrier with signature-required delivery. Absorbs the cost while pursuing recovery. Does not share the theft investigation details with the customer — tells them 'the shipment was lost and we're replacing it.' TechZone is a $1.1M account; the $60,000 replacement cost is the cost of keeping the relationship while the investigation proceeds.",
+            "fail": "Makes TechZone wait for the investigation to resolve before shipping replacement product. Shares the theft details, creating panic. Does not ship replacement product. Suggests TechZone file their own claim."
+          }
+        }
+      ]
+    }
+  ]
+}

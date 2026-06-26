@@ -1,35 +1,460 @@
 ---
-name: "project-docs-generator"
-description: "智能分析代码库并生成定制化文档系统。当用户需要：(1) 为新项目创建文档 (2) 补全现有项目文档 (3) 生成技术文档目录结构 (4) 创建架构设计文档 (5) 编写API文档或开发指南时触发此技能。支持任意技术栈和项目结构（纯前端、纯后端、全栈、微服务、monorepo、库/SDK等），自动识别项目特点并生成..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-docs-generator"
-sourceUrl: "https://clawhub.ai/skills/project-docs-generator"
+name: project-docs-generator
+description: |
+  智能分析代码库并生成定制化文档系统。当用户需要：(1) 为新项目创建文档 (2) 补全现有项目文档 (3) 生成技术文档目录结构 (4) 创建架构设计文档 (5) 编写API文档或开发指南时触发此技能。支持任意技术栈和项目结构（纯前端、纯后端、全栈、微服务、monorepo、库/SDK等），自动识别项目特点并生成最适合的文档体系。
 ---
 
-# project-docs-generator
+# 项目文档生成器
 
-> 智能分析代码库并生成定制化文档系统。当用户需要：(1) 为新项目创建文档 (2) 补全现有项目文档 (3) 生成技术文档目录结构 (4) 创建架构设计文档 (5) 编写API文档或开发指南时触发此技能。支持任意技术栈和项目结构（纯前端、纯后端、全栈、微服务、monorepo、库/SDK等），自动识别项目特点并生成...
+> 智能分析任意代码库，生成定制化文档系统
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-docs-generator`
-- **Source URL:** [https://clawhub.ai/skills/project-docs-generator](https://clawhub.ai/skills/project-docs-generator)
+---
 
-## Overview
+## 核心理念
 
+**不预设固定结构** —— 每个项目都有其独特性，文档结构应该适配项目，而非让项目适配模板。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/project-docs-generator
+**智能探索优先** —— 先深度理解项目，再决定文档结构。
+
+**按需网络检索** —— 遇到不熟悉的框架或需要确认最佳实践时，主动搜索学习。
+
+---
+
+## 文档生成流程
+
+### Phase 1: 项目探索 (智能分析)
+
+**目标**: 深度理解项目架构、技术栈、模块组织
+
+#### 1.1 扫描项目根目录
+
 ```
+识别配置文件:
+├── package.json → Node.js/前端
+├── pom.xml / build.gradle → Java
+├── requirements.txt / pyproject.toml → Python
+├── Cargo.toml → Rust
+├── go.mod → Go
+├── Gemfile → Ruby
+└── composer.json → PHP
+
+判断项目类型:
+├── 纯前端 (Vue/React/Angular)
+├── 纯后端 (API服务)
+├── 全栈 (前后端分离)
+├── 库/SDK
+├── CLI工具
+├── 微服务集群
+└── Monorepo
+```
+
+#### 1.2 探索目录结构
+
+```
+找出源码目录:
+├── src/, lib/, app/, core/, internal/, packages/, modules/
+
+理解模块划分:
+├── 按功能? (user/, order/, payment/)
+├── 按层? (controller/, service/, repository/)
+├── 按领域? (DDD风格)
+└── 混合? (需仔细分析)
+
+识别特殊目录:
+├── config/, settings/ → 配置
+├── scripts/, tools/ → 工具脚本
+├── docs/ → 现有文档
+├── tests/, spec/, __tests__/ → 测试
+└── migrations/, db/ → 数据库迁移
+```
+
+#### 1.3 技术栈识别
+
+```
+解析依赖文件:
+├── 提取框架和版本 (Spring Boot 3.4, Vue 3.5...)
+├── 识别数据库
+├── 识别中间件
+└── 记录工具库
+
+生成技术清单:
+| 类别 | 技术 | 版本 | 用途 |
+```
+
+#### 1.4 智能网络检索 (按需)
+
+**何时需要检索**:
+```
+✅ 遇到不熟悉的框架
+   → 搜索: "[框架名] official documentation"
+   → 搜索: "[框架名] architecture overview"
+
+✅ 不确定目录结构最佳实践
+   → 搜索: "[框架名] project structure best practices"
+   → 搜索: "[语言] clean architecture"
+
+✅ 需要理解设计理念
+   → 搜索: "[框架名] design principles"
+   → 搜索: "[技术] patterns and practices"
+```
+
+**检索原则**:
+- 优先官方文档
+- 参考权威博客
+- 避免过时信息
+
+#### 1.5 提取核心信息
+
+```
+- 入口文件
+- 核心模块及其职责
+- 数据流向 (请求 → 处理 → 响应)
+- 模块间依赖关系
+- 关键配置项
+- 认证/授权机制 (如有)
+```
+
+---
+
+### Phase 2: 文档结构设计 (定制化)
+
+**目标**: 根据项目特点设计最适合的文档结构
+
+#### 2.1 设计原则
+
+```
+1. 匹配项目复杂度
+   ├── 小型项目 → 精简结构 (README + 核心文档)
+   ├── 中型项目 → 标准结构 (快速开始 + 架构 + 模块)
+   └── 大型项目 → 完整结构 (多层级 + 领域划分)
+
+2. 适配项目类型
+   ├── 纯前端 → 组件 + 页面 + 状态 + 路由
+   ├── 纯后端 → 配置 + 服务 + 数据 + API
+   ├── 全栈 → 前端 + 后端 + 交互流程
+   ├── 微服务 → 各服务 + 通信 + 部署
+   └── 库/SDK → 安装 + API + 示例 + 贡献
+
+3. 反映实际模块
+   ├── 按项目实际模块命名
+   ├── 文档层级与代码层级对应
+   └── 不强行套用模板目录名
+
+4. 考虑读者需求
+   ├── 新手 → 快速开始必须清晰
+   ├── 开发者 → 模块详解和API必须完整
+   └── 架构师 → 架构决策和设计必须深入
+```
+
+#### 2.2 灵活结构示例
+
+**小型 CLI 工具**:
+```
+docs/
+├── README.md (包含快速开始)
+├── installation.md
+├── usage.md
+└── api-reference.md
+```
+
+**中型 Spring Boot 项目**:
+```
+docs/
+├── README.md
+├── getting-started/
+├── architecture/
+├── modules/          # 按实际模块命名: user/, order/, payment/
+├── api/
+└── configuration/
+```
+
+**大型微服务系统**:
+```
+docs/
+├── README.md
+├── overview/
+├── services/         # 各微服务独立文档
+│   ├── user-service/
+│   ├── order-service/
+│   └── ...
+├── infrastructure/
+├── decisions/        # ADR 架构决策记录
+└── runbooks/
+```
+
+**Monorepo 项目**:
+```
+docs/
+├── README.md
+├── overview/
+├── packages/
+│   ├── web-app/
+│   ├── admin-panel/
+│   └── shared-components/
+├── tooling/
+└── contributing/
+```
+
+---
+
+### Phase 3: 文档内容生成
+
+**目标**: 为每个文档填充高质量内容
+
+#### 3.1 必备文档类型
+
+| 文档类型 | 适用场景 | 必含内容 |
+|----------|----------|----------|
+| **README/概览** | 所有项目 | 一句话定位、核心功能、快速演示 |
+| **快速开始** | 所有项目 | 环境要求、安装步骤、运行验证 |
+| **架构设计** | 中大型项目 | 架构图、分层说明、核心决策 |
+| **模块文档** | 多模块项目 | 职责、核心类/函数、使用示例 |
+| **API文档** | 后端/库项目 | 端点、参数、响应、示例 |
+| **流程文档** | 业务系统 | 流程图、阶段说明、异常处理 |
+| **技术选型** | 复杂项目 | 对比表格、选择理由、使用经验 |
+
+#### 3.2 内容质量标准
+
+```
+项目概览: 新人 5 分钟理解项目价值
+快速开始: 30 分钟内能运行起来
+架构设计: 架构师 10 分钟把握全局
+模块文档: 开发者能直接上手开发
+API文档: 可直接用于接口对接
+流程文档: 理解业务逻辑全貌
+```
+
+---
+
+### Phase 4: 图表可视化
+
+**目标**: 用图表增强文档可读性
+
+| 场景 | 推荐图表 | 示例 |
+|------|----------|------|
+| 系统架构 | 组件图/分层图 | PlantUML `package` |
+| 交互流程 | 序列图 | PlantUML `participant` |
+| 数据模型 | ER图 | PlantUML `entity` |
+| 状态变化 | 状态图 | PlantUML `stateDiagram` |
+| 模块关系 | 依赖图 | PlantUML/Mermaid |
+| 目录结构 | 树形图 | 纯文本 |
+
+**PlantUML 复杂度控制** ⭐ 重要：
+
+```
+每个图表限制：
+├── 总元素数 ≤ 25（推荐 ≤ 20）
+├── 代码行数 ≤ 60（推荐 ≤ 50）
+└── 节点数量 ≤ 20（推荐 ≤ 15）
+
+复杂图表拆分策略：
+├── 按层级拆分：概览图 + 各层详图
+├── 按阶段拆分：分阶段流程图
+└── 按模块拆分：模块概览 + 模块详图
+```
+
+**语法校验**：
+
+```bash
+# 使用校验脚本检查所有图表
+python3 scripts/validate_plantuml.py ./docs --verbose
+```
+
+**详细指南**：参见 [diagram-patterns.md](references/diagram-patterns.md)
+
+```plantuml
+@startuml
+title [图表标题]
+[定义参与者/组件]
+[定义关系]
+@enduml
+```
+
+---
+
+## 执行检查清单
+
+### 探索阶段
+- [ ] 识别项目类型和主要语言
+- [ ] 扫描目录结构，理解模块划分方式
+- [ ] 检测技术栈（框架、数据库、中间件）
+- [ ] 对不熟悉的框架进行网络检索
+- [ ] 识别入口文件和启动流程
+- [ ] 理解模块间依赖和调用关系
+
+### 设计阶段
+- [ ] 根据项目复杂度确定文档层级
+- [ ] 根据项目类型调整文档重点
+- [ ] 文档结构与实际代码结构对应
+- [ ] 设计合理的阅读路径
+
+### 生成阶段
+- [ ] 生成文档导航 README.md
+- [ ] 为每个文档添加适当内容
+- [ ] 添加可视化图表
+- [ ] 确保代码示例准确
+- [ ] 检查文档间交叉引用
+
+### 质量验证
+- [ ] PlantUML 语法正确（使用 validate_plantuml.py）
+- [ ] 每个图表元素数 ≤ 25
+- [ ] 复杂图表已拆分为多个小图
+- [ ] 代码示例可运行
+- [ ] 术语使用一致
+- [ ] 链接路径有效
+
+---
+
+## 常见项目类型处理策略
+
+### 纯前端项目 (Vue/React/Angular)
+
+**探索重点**:
+```
+- 组件组织方式 (按功能/按页面/原子设计)
+- 状态管理方案 (Pinia/Vuex/Redux/Zustand)
+- 路由结构
+- API 调用层封装
+- 样式方案 (CSS-in-JS/Tailwind/SCSS)
+```
+
+**建议文档重点**:
+```
+├── 组件体系
+├── 页面路由
+├── 状态管理
+├── API 集成
+└── 构建部署
+```
+
+### 纯后端项目 (Spring Boot/Django/Express)
+
+**探索重点**:
+```
+- 分层架构 (Controller-Service-Repository/MVC)
+- 数据模型和表结构
+- API 端点设计
+- 中间件集成 (缓存/消息队列/搜索)
+- 认证授权机制
+```
+
+**建议文档重点**:
+```
+├── 架构分层
+├── 数据模型
+├── API 参考
+├── 业务服务
+└── 配置说明
+```
+
+### 全栈项目
+
+**探索重点**:
+```
+- 前后端通信方式 (REST/GraphQL/WebSocket)
+- 认证授权流程
+- 数据流和状态同步
+- 部署架构
+```
+
+**建议文档重点**:
+```
+├── 整体架构
+├── 前端模块
+├── 后端模块
+├── 交互流程 (重点!)
+└── 部署方案
+```
+
+### 微服务架构
+
+**探索重点**:
+```
+- 服务划分依据
+- 服务间通信 (HTTP/gRPC/消息队列)
+- 数据一致性方案
+- 服务发现和注册
+- 监控和日志
+```
+
+**建议文档重点**:
+```
+├── 服务地图
+├── 各服务独立文档
+├── 通信机制
+├── 基础设施
+└── ADR 决策记录
+```
+
+### Monorepo 项目
+
+**探索重点**:
+```
+- 包/项目之间的关系
+- 共享代码和工具
+- 构建和发布流程
+- 依赖管理策略
+```
+
+**建议文档重点**:
+```
+├── 整体结构
+├── 各包独立文档
+├── 共享工具
+└── 开发工作流
+```
+
+### 库/SDK 项目
+
+**探索重点**:
+```
+- 核心功能和设计理念
+- API 设计模式
+- 示例代码
+- 版本兼容性
+```
+
+**建议文档重点**:
+```
+├── 安装指南
+├── 快速示例
+├── API 参考
+├── 高级用法
+└── 贡献指南
+```
+
+---
+
+## 网络检索指南
+
+**何时需要检索**:
+
+```
+1. 不熟悉的框架
+   搜索: "[框架名] official documentation"
+   搜索: "[框架名] architecture best practices"
+   目的: 理解核心概念和推荐用法
+
+2. 技术选型原因
+   搜索: "[技术A] vs [技术B] comparison"
+   搜索: "[技术] pros and cons"
+   目的: 补充选型背景
+
+3. 目录结构确认
+   搜索: "[框架名] project structure"
+   搜索: "[语言] clean architecture folder structure"
+   目的: 确认文档结构是否合理
+
+4. 设计模式参考
+   搜索: "[领域] design patterns"
+   搜索: "[技术] common patterns"
+   目的: 确保文档符合行业惯例
+```
+
+---
+
+## 相关参考
+
+- [技术栈检测方法](references/tech-detection.md)
+- [PlantUML 图表模式](references/diagram-patterns.md) - 包含复杂度控制和拆分策略
+- [validate_plantuml.py](scripts/validate_plantuml.py) - PlantUML 语法校验工具

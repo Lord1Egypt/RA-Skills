@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "skill": "resend-cli",
+    "version": "3.0.0"
+  },
+  "errors": [
+    {
+      "signal": "auth_error",
+      "applies_to": [
+        "all"
+      ],
+      "likely_causes": [
+        "No API key resolved from flag, env, or config",
+        "Wrong --profile selected",
+        "Profile does not exist",
+        "CLI not authenticated in the intended account"
+      ],
+      "first_checks": [
+        "resend --json -q doctor",
+        "Check RESEND_API_KEY",
+        "Check --profile / RESEND_PROFILE"
+      ]
+    },
+    {
+      "signal": "missing_body",
+      "applies_to": [
+        "emails send",
+        "templates create",
+        "broadcasts create"
+      ],
+      "likely_causes": [
+        "No --text, --html, or --html-file provided",
+        "HTML file path is wrong or unreadable"
+      ],
+      "first_checks": [
+        "Provide one of the required body flags",
+        "Prefer --html-file for large content"
+      ]
+    },
+    {
+      "signal": "batch_error",
+      "applies_to": [
+        "emails batch"
+      ],
+      "likely_causes": [
+        "Input file is not valid JSON",
+        "Input is not a JSON array",
+        "More than 100 emails",
+        "Per-email attachments present",
+        "Per-email scheduled_at present"
+      ],
+      "first_checks": [
+        "python3 scripts/resend_cli.py lint-batch <path>",
+        "Chunk to <=100 items",
+        "Remove attachments and scheduled_at"
+      ]
+    },
+    {
+      "signal": "403 / 1010",
+      "applies_to": [
+        "emails send",
+        "emails batch",
+        "broadcasts create",
+        "raw REST fallback"
+      ],
+      "likely_causes": [
+        "Exact from-domain mismatch",
+        "Using resend.dev outside testing rules",
+        "Wrong account / wrong key",
+        "If using raw REST fallback: missing User-Agent"
+      ],
+      "first_checks": [
+        "Check verified domain and exact from address",
+        "Check account/profile",
+        "If not using the CLI, add User-Agent"
+      ]
+    },
+    {
+      "signal": "invalid_limit",
+      "applies_to": [
+        "list commands"
+      ],
+      "likely_causes": [
+        "--limit outside 1-100"
+      ],
+      "first_checks": [
+        "Use an integer between 1 and 100"
+      ]
+    },
+    {
+      "signal": "create_error / update_error / send_error",
+      "applies_to": [
+        "many"
+      ],
+      "likely_causes": [
+        "Underlying Resend API rejected the request",
+        "Wrong resource IDs",
+        "Invalid domain or subscription model state"
+      ],
+      "first_checks": [
+        "Re-run with the same deterministic flags",
+        "Inspect parsed JSON error payload",
+        "Verify IDs and prerequisite resources"
+      ]
+    },
+    {
+      "signal": "poll_error",
+      "applies_to": [
+        "emails receiving listen"
+      ],
+      "likely_causes": [
+        "Repeated receiving API failures",
+        "Bad auth or wrong account",
+        "Receiving not enabled"
+      ],
+      "first_checks": [
+        "Run resend --json -q doctor",
+        "Check receiving-capable domain setup",
+        "Check account/profile"
+      ]
+    },
+    {
+      "signal": "webhook verification failure",
+      "applies_to": [
+        "webhooks"
+      ],
+      "likely_causes": [
+        "Parsed JSON used instead of raw body",
+        "Wrong signing secret",
+        "Svix headers not preserved",
+        "Replay or duplicate event handling missing"
+      ],
+      "first_checks": [
+        "Verify raw body",
+        "Use svix-id, svix-timestamp, svix-signature",
+        "Dedupe on svix-id"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "current": "qwen3.5-plus",
+  "autoImageRouting": true,
+  "imageRoutingModel": "gemini-2.0-flash",
+  "models": {
+    "qwen3.5-plus": {
+      "alias": ["qwen", "千问", "通义千问", "qwen3.5"],
+      "provider": "bailian",
+      "modelId": "qwen3.5-plus",
+      "supportsImages": true,
+      "supportsReasoning": true,
+      "contextWindow": 1000000,
+      "maxTokens": 65536,
+      "description": "阿里云 Qwen3.5 Plus（当前）"
+    },
+    "gemini-2.0-flash": {
+      "alias": ["gemini", "google gemini", "谷歌 gemini", "flash"],
+      "provider": "google",
+      "modelId": "gemini-2.0-flash",
+      "supportsImages": true,
+      "supportsReasoning": false,
+      "contextWindow": 1048576,
+      "maxTokens": 8192,
+      "description": "Google Gemini 2.0 Flash"
+    },
+    "claude-3-5-sonnet": {
+      "alias": ["claude", "claude sonnet"],
+      "provider": "anthropic",
+      "modelId": "claude-3-5-sonnet-20241022",
+      "supportsImages": true,
+      "supportsReasoning": false,
+      "contextWindow": 200000,
+      "maxTokens": 8192,
+      "description": "Anthropic Claude 3.5 Sonnet"
+    },
+    "gpt-4o": {
+      "alias": ["gpt4o", "gpt-4", "openai gpt"],
+      "provider": "openai",
+      "modelId": "gpt-4o",
+      "supportsImages": true,
+      "supportsReasoning": false,
+      "contextWindow": 128000,
+      "maxTokens": 16384,
+      "description": "OpenAI GPT-4o"
+    }
+  }
+}

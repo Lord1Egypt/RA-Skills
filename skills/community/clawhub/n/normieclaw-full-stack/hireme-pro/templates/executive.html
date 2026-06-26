@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; line-height: 1.5; padding: 40px 48px; max-width: 850px; margin: 0 auto; }
+  .header { border-bottom: 3px solid #111; padding-bottom: 16px; margin-bottom: 24px; }
+  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; color: #111; margin-bottom: 4px; }
+  .title-line { font-size: 16px; font-weight: 400; color: #555; margin-bottom: 8px; }
+  .contact { font-size: 13px; color: #666; }
+  .contact span { margin-right: 16px; }
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #111; margin-bottom: 12px; }
+  .summary { font-size: 15px; color: #333; line-height: 1.7; font-style: italic; }
+  .experience-entry { margin-bottom: 18px; }
+  .entry-header { margin-bottom: 6px; }
+  .entry-header h3 { font-size: 17px; font-weight: 700; color: #111; }
+  .company { font-size: 14px; color: #444; }
+  .dates { font-size: 13px; color: #888; float: right; margin-top: 2px; }
+  ul { margin: 4px 0 0 20px; }
+  li { font-size: 14px; margin-bottom: 5px; color: #333; }
+  .education-entry { margin-bottom: 10px; }
+  .education-entry h3 { font-size: 15px; font-weight: 600; }
+  .institution { font-size: 14px; color: #555; }
+  .skills-section { font-size: 14px; color: #333; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>{{name}}</h1>
+    <div class="contact">
+      <span>{{contact.email}}</span>
+      <span>{{contact.phone}}</span>
+      <span>{{contact.location}}</span>
+      <span>{{contact.linkedin}}</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Executive Summary</div>
+    <p class="summary">{{summary}}</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Professional Experience</div>
+    {{experience_section}}
+  </div>
+
+  <div class="section">
+    <div class="section-title">Education</div>
+    {{education_section}}
+  </div>
+
+  <div class="section">
+    <div class="section-title">Core Competencies</div>
+    <p class="skills-section">{{skills_list}}</p>
+  </div>
+</body>
+</html>

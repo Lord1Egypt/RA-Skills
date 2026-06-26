@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fix-jwt-refresh",
+    "description": "Fix JWT token expiry — tokens expire after 1h and the frontend doesn't silently refresh. Add refresh token logic to the auth middleware so users aren't kicked out mid-session.",
+    "role": "coder",
+    "successCriteria": [
+      "Tokens refresh automatically before expiry",
+      "No more 401 errors on active sessions",
+      "TypeScript compiles clean"
+    ]
+  },
+  {
+    "id": "settings-page",
+    "description": "Build the Admin Settings page at /app/settings — branch management, email templates, branding config. Use existing page patterns from BranchManagementPage as a reference.",
+    "role": "coder",
+    "successCriteria": [
+      "Page renders at /app/settings",
+      "Branch settings can be saved",
+      "TypeScript compiles clean"
+    ]
+  },
+  {
+    "id": "ar-dashboard-tests",
+    "description": "Write Playwright E2E tests for the AR Dashboard page — test that the dashboard loads, shows correct aging buckets, and the export button works.",
+    "role": "tester",
+    "successCriteria": [
+      "Tests written and passing",
+      "Covers happy path + empty state",
+      "Follows existing test patterns"
+    ]
+  }
+]

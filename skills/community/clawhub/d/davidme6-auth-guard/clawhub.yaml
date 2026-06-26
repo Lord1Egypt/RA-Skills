@@ -1,0 +1,78 @@
+name: auth-guard
+version: 1.0.0
+description: 授权保护技能 - 所有外部 API 操作必须经过用户明确授权。确保没有任何自动化可以擅自使用你的授权。
+author: your-human
+homepage: https://github.com/your-username/auth-guard-skill
+repository: https://github.com/your-username/auth-guard-skill
+license: MIT
+tags:
+  - security
+  - authorization
+  - protection
+  - audit
+  - oauth
+  - permissions
+
+requirements:
+  - python >= 3.8
+  - requests
+
+env:
+  - name: AUTH_GUARD_ENABLED
+    description: 启用授权保护
+    required: false
+    default: "true"
+  
+  - name: AUTH_GUARD_MODE
+    description: 运行模式 (STRICT|WHITELIST|AUDIT)
+    required: false
+    default: "STRICT"
+  
+  - name: AUTH_GUARD_TIMEOUT
+    description: 授权请求超时时间（秒）
+    required: false
+    default: "300"
+
+files:
+  - auth_guard.py
+  - cli.py
+  - config.example.json
+  - whitelist.example.json
+  - README.md
+  - SKILL.md
+
+entry: auth_guard.py
+cli: cli.py
+
+examples:
+  - name: 请求授权
+    code: |
+      from auth_guard import AuthGuard
+      guard = AuthGuard()
+      result = guard.request_authorization(
+          service="google-mail",
+          action="messages.send",
+          params={"to": "test@example.com"},
+          reason="发送测试邮件"
+      )
+      print(result)
+
+  - name: 命令行批准请求
+    code: |
+      python cli.py approve req_abc123
+
+  - name: 查看审计日志
+    code: |
+      python cli.py audit --today --limit 10
+
+changelog:
+  - version: 1.0.0
+    date: 2026-03-15
+    changes:
+      - 初始版本发布
+      - 核心授权保护功能
+      - 三种运行模式（STRICT/WHITELIST/AUDIT）
+      - 完整审计日志系统
+      - 飞书通知集成
+      - 命令行工具
+      - 白名单/黑名单配置

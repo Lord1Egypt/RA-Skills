@@ -1,0 +1,10 @@
+{
+  "includeGcpStatus": true,
+  "includeGithubStatus": true,
+  "includeKubernetesGithubIssues": true,
+  "gcpLookbackDays": 365,
+  "maxGcpIncidents": 6,
+  "githubIssuesLimit": 6,
+  "useFixtureWhenEmpty": true,
+  "fixturePath": "examples/kubewatch_incidents.json"
+}

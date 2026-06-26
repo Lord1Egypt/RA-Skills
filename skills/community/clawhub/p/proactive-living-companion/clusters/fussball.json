@@ -1,0 +1,104 @@
+{
+  "cluster_id": "fussball",
+  "interest_key": "Fuß§ball & Ligen",
+  "description": "Top 6 Fußball-Ligen — Kura matched aktive Ligen automatisch",
+  "active_leagues": [
+    {
+      "id": "champions_league",
+      "name": "Champions League",
+      "country": "EU",
+      "priority": 10,
+      "search_queries": {
+        "matchday": "Champions League Ergebnisse heute Tore Highlights",
+        "preview": "Champions League nächste Runde Spielplan Aufstellung",
+        "news": "Champions League News Transfer Verletzungen aktuell",
+        "table": "Champions League Tabelle Gruppenphase KO-Runde"
+      }
+    },
+    {
+      "id": "bundesliga",
+      "name": "Bundesliga",
+      "country": "DE",
+      "priority": 9,
+      "search_queries": {
+        "matchday": "Bundesliga Ergebnisse Spieltag Tore Highlights heute",
+        "preview": "Bundesliga nächster Spieltag Vorschau Aufstellungen",
+        "news": "Bundesliga News Transfer Verletzungen aktuell",
+        "table": "Bundesliga Tabelle aktuell Spieltag"
+      }
+    },
+    {
+      "id": "premier_league",
+      "name": "Premier League",
+      "country": "GB",
+      "priority": 9,
+      "search_queries": {
+        "matchday": "Premier League results goals highlights today",
+        "preview": "Premier League next gameweek fixtures lineups",
+        "news": "Premier League news transfers injuries latest",
+        "table": "Premier League table standings current"
+      }
+    },
+    {
+      "id": "la_liga",
+      "name": "La Liga",
+      "country": "ES",
+      "priority": 8,
+      "search_queries": {
+        "matchday": "La Liga resultados goles highlights jornada hoy",
+        "preview": "La Liga próxima jornada partidos alineaciones",
+        "news": "La Liga noticias fichajes lesiones actualidad",
+        "table": "La Liga clasificación jornada actual"
+      }
+    },
+    {
+      "id": "serie_a",
+      "name": "Serie A",
+      "country": "IT",
+      "priority": 7,
+      "search_queries": {
+        "matchday": "Serie A risultati gol highlights giornata oggi",
+        "preview": "Serie A prossima giornata partite formazioni",
+        "news": "Serie A notizie calciomercato infortuni aggiornamenti",
+        "table": "Serie A classifica giornata attuale"
+      }
+    },
+    {
+      "id": "ligue_1",
+      "name": "Ligue 1",
+      "country": "FR",
+      "priority": 6,
+      "search_queries": {
+        "matchday": "Ligue 1 résultats buts highlights journée aujourd'hui",
+        "preview": "Ligue 1 prochaine journée matchs compositions",
+        "news": "Ligue 1 actualités transferts blessures",
+        "table": "Ligue 1 classement journée actuelle"
+      }
+    }
+  ],
+  "ping_behavior": {
+    "mode": "multi_league",
+    "max_leagues_per_ping": 3,
+    "search_required": true,
+    "context_modes": {
+      "matchday_weekend": {
+        "trigger": "Samstag oder Sonntag",
+        "queries": ["matchday", "table"],
+        "format": "Ergebnisse kompakt + Top-Torschützen + Tabellenplatz — max 4 Ligen"
+      },
+      "preview_thursday": {
+        "trigger": "Donnerstag oder Freitag",
+        "queries": ["preview"],
+        "format": "Nächster Spieltag — Topspiel + Aufstellungen wenn verfügbar"
+      },
+      "weekday_news": {
+        "trigger": "Montag bis Mittwoch",
+        "queries": ["news"],
+        "format": "Transfer-News + Verletzungs-Updates — kurz und knackig"
+      }
+    },
+    "highlights_hint": "Wenn Highlights verfügbar → YouTube-Link oder kurze Beschreibung Tore/Szenen",
+    "xg_hint": "Bei Topspiel xG (Expected Goals) erwähnen wenn verfügbar — Fans lieben Kontext",
+    "never": "Niemals einzeln pingen — immer mehrere Ligen bündeln. Keine langen Texte."
+  }
+}

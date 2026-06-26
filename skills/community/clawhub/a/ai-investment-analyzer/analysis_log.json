@@ -1,0 +1,13 @@
+[
+  {
+    "asset": "AAPL",
+    "assetType": "stock",
+    "currentPrice": "180.25",
+    "trend": "上涨趋势",
+    "riskLevel": "中等",
+    "recommendation": "建议买入",
+    "roi": "预计年回报率12-18%",
+    "analysisTime": "2026-04-01T13:48:22.981Z",
+    "confidenceLevel": 75
+  }
+]

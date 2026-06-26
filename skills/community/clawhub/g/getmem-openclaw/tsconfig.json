@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
+    "lib": ["ES2022"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "paths": {
+      "openclaw/plugin-sdk/plugin-entry": [
+        "/usr/lib/node_modules/openclaw/dist/plugin-sdk/src/plugin-sdk/plugin-entry.d.ts"
+      ],
+      "openclaw/plugin-sdk/hook-runtime": [
+        "/usr/lib/node_modules/openclaw/dist/plugin-sdk/src/plugin-sdk/hook-runtime.d.ts"
+      ],
+      "openclaw/plugin-sdk/zod": [
+        "/usr/lib/node_modules/openclaw/dist/plugin-sdk/src/plugin-sdk/zod.d.ts"
+      ]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

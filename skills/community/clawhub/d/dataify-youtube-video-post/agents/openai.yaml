@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify YouTube Video Post"
+  short_description: "Choose a mode for YouTube video post collection"
+  icon_small: "./assets/dataify-youtube-video-post-small.svg"
+  icon_large: "./assets/dataify-youtube-video-post-large.svg"
+  default_prompt: "Use $dataify-youtube-video-post to choose a YouTube video post collection mode, submit a Builder task through Dataify, and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

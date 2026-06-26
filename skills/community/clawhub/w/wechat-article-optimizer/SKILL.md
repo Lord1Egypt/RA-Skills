@@ -1,35 +1,101 @@
 ---
-name: "Wechat Article Optimizer"
-description: "微信公众号文章优化，标题生成、封面建议、排版优化、发布时间推荐。适合自媒体运营、内容创作者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-article-optimizer"
-sourceUrl: "https://clawhub.ai/skills/wechat-article-optimizer"
+name: wechat-article-optimizer
+version: 1.0.0
+description: 微信公众号文章优化，标题生成、封面建议、排版优化、发布时间推荐。适合自媒体运营、内容创作者。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📝",
+        "requires": { "bins": ["node"] },
+        "install": [],
+      },
+  }
 ---
 
-# Wechat Article Optimizer
+# 公众号文章优化技能
 
-> 微信公众号文章优化，标题生成、封面建议、排版优化、发布时间推荐。适合自媒体运营、内容创作者。
+优化微信公众号文章，生成爆款标题、推荐封面、优化排版、建议发布时间。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-article-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/wechat-article-optimizer](https://clawhub.ai/skills/wechat-article-optimizer)
+## 功能
 
-## Overview
+1. **标题生成**: 生成 10+ 个吸睛标题，提高打开率
+2. **封面建议**: 推荐合适的封面图和尺寸
+3. **排版优化**: 优化文章排版，提高阅读体验
+4. **发布时间**: 基于粉丝活跃时间推荐发布时机
+5. **摘要生成**: 自动生成文章摘要
+6. **关键词优化**: 优化 SEO 关键词，提高搜索排名
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-article-optimizer
 ```
+帮我优化这篇文章的标题：[粘贴文章内容]
+```
+
+```
+推荐一个合适的封面图
+```
+
+```
+优化这篇文章的排版
+```
+
+```
+什么时候发布阅读最高
+```
+
+## 输出示例
+
+```
+📝 公众号文章优化
+
+📋 原文标题：如何选择合适的理财产品
+📊 文章类型：理财科普
+📈 目标读者：25-35 岁职场人士
+
+🎯 爆款标题方案（10 个）：
+1. 月薪 1 万，我靠理财 3 年存下 50 万（故事型）
+2. 理财 10 年，这 5 个坑我劝你别踩（避坑型）
+3. 30 岁前一定要知道的理财真相（年龄焦虑）
+4. 银行不会告诉你的理财秘密（揭秘型）
+5. 普通人理财，做到这 3 点就够了（简单直接）
+6. 我为什么劝你一定要学会理财（观点型）
+7. 理财小白入门指南，看这篇就够了（教程型）
+8. 月薪 5000 如何理财？亲测有效的方法（实操型）
+9. 理财 5 年，我的血泪经验总结（经验型）
+10. 2026 年最值得关注的 5 个理财渠道（时效型）
+
+🖼️ 封面建议：
+- 尺寸：900x383 像素（2.35:1）
+- 类型：数据图表 + 大字标题
+- 配色：蓝色系（专业感）
+- 文字：「3 年存 50 万」突出数字
+
+📄 排版优化：
+- 段落间距：1.75 倍行距
+- 字号：15px（正文）、17px（小标题）
+- 颜色：主色#333、强调色#007AFF
+- 配图：每 300 字配 1 张图
+- 重点：加粗 + 背景色标注
+
+⏰ 发布时间建议：
+- 最佳：工作日 20:30-21:30
+- 次佳：工作日 12:00-13:00
+- 避免：周末上午、工作日上午
+
+📈 预期效果：
+- 打开率：8-12%（行业平均 5%）
+- 读完率：40-50%
+- 转发率：3-5%
+```
+
+## 变现模式
+
+- 免费：每日 3 次优化
+- 付费 (¥49/月)：无限优化 + 数据分析 + 竞品对比
+- 付费 (¥99/月)：+ 定制模板 + 批量处理
+
+---
+
+**声明**: 效果因账号粉丝和内容质量而异。

@@ -1,0 +1,16 @@
+{
+  "sessions_dir": "~/.openclaw/agents/main/sessions",
+  "workspace_dir": "~/.openclaw/workspace",
+  "discord_webhook": "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
+  "discord_user_id": "YOUR_DISCORD_USER_ID",
+  "channel_names": {
+    "channel:YOUR_CHANNEL_ID_1": "#general",
+    "channel:YOUR_CHANNEL_ID_2": "#posting",
+    "main": "heartbeat"
+  },
+  "zombie_min_age_hours": 24,
+  "zombie_min_size_mb": 1,
+  "alert_high_cost": 50,
+  "alert_low_cost": 10,
+  "timezone_offset_hours": -6
+}

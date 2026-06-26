@@ -1,35 +1,96 @@
 ---
-name: "Korean Business Email"
-description: "한국 기업 문화에 맞게 전문적이고 공손한 어투로 신규 문의, 제안서, 보고서, 감사·사과 이메일을 작성합니다."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/korean-business-email"
-sourceUrl: "https://clawhub.ai/skills/korean-business-email"
+name: korean-business-email
+description: 한국 비즈니스 이메일을 작성합니다. 다음 경우에 사용: (1) 업무联系的 이메일 필요한 경우, (2) 클라이언트/동료에게 메일が必要な 경우, (3) 제안서나 보고서 메일が必要な 경우, (4) 한국 비즈니스 맥락에 맞는 전문적인文体が 필요한 경우. 한국🇰🇷 기업 문화에 맞는 적절한 어투와 포맷으로 이메일을 작성합니다.
 ---
 
-# Korean Business Email
+# 🇰🇷 한국 비즈니스 이메일 템플릿
 
-> 한국 기업 문화에 맞게 전문적이고 공손한 어투로 신규 문의, 제안서, 보고서, 감사·사과 이메일을 작성합니다.
+## 개요
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/korean-business-email`
-- **Source URL:** [https://clawhub.ai/skills/korean-business-email](https://clawhub.ai/skills/korean-business-email)
+한국 기업 문화에 맞는 전문적인 비즈니스 이메일을 작성합니다.場合에 따라 올바른 어투와 형식을 사용하여 효과적인 커뮤니케이션を実現합니다.
 
-## Overview
+## 이메일 유형
 
+### 1. 🇰🇷初견적 문의 (+문의)
+**용도:** 신규 고객/거래처에게 첫메일
+**어투:** 공손하고 briefly
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/korean-business-email
+**结构调整:**
 ```
+제목: [회사명] regarding [상품/서비스명] 문의
+
+안녕하십니까. [회사명] [담당자명] 과장님,
+
+[간단한 자기 소개]
+
+[문의 내용 - 핵심만]
+
+关联 문의를 드리면 확인해 주세요.
+
+감사합니다.
+[이름/직책]
+```
+
+### 2. 💼 제안서/견적서 메일
+**용도:** 클라이언트에게 제안 내용 전달
+**어투:** 전문적이고 확신 있는
+
+```
+제목: [프로젝트명] 제안서 - [날짜]
+
+안녕하십니까. [담당자명] 님,
+
+먼저 [프로젝트명] 관련하여 제안서를 드리게 되어 기쁘게 생각합니다.
+
+
+---
+
+### 3. 📊 보고서/회고 메일
+**용도:** 업무 진행 상황/alarm 보고
+**어투:** 간결하고 명확하게
+
+```
+제목: [프로젝트명] 진행 상황 보고 - [날짜]
+
+
+1. 완료 사항
+- [ ]
+
+2. 진행 중
+- [ ]
+```
+
+3.问题和对策
+- [ ] → [ ]
+```
+
+### 4. 🎫 감사/사과 메일
+**용도:** 감사 인사 또는 문제 발생 시
+**어투:** 진정 어린
+
+```
+제안: [ ]에 대한 감사 인사
+
+
+```
+
+---
+
+## 🇰🇷 한국 기업 문화 포인트
+
+### ✅ 올바른 예
+- "검토해 주세요" → "확인해 주세요"
+- "알려주신다" → "알려주신 내용에 감사드립니다"
+- "해 주세요" → "부탁드립니다"
+
+### ❌ 피해야 할 것
+- 너무 짧은 이메일 (2문장 이하)
+- "~임다" 체 (공식 문서에서 피하기)
+- "~해도 돼요?" ( hierarchie 무시)
+- 이모지 과사용 (핵심 업무 이메일)
+
+## 핵심 원칙
+1. **핵심 먼저**: 제목과 첫 문단에 핵심 내용
+2. **명확한 CTA**: " чего 기대하는지" 기재
+3. **공손한 어투**: 높임말 원칙
+4. **간결함**: 핵심만 전달 ( 長话缩短)

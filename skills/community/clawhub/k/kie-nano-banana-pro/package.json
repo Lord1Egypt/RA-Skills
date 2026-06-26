@@ -1,0 +1,19 @@
+{
+  "name": "kie-nano-banana-pro-skill",
+  "version": "1.0.0",
+  "description": "Kie AI Nano Banana Pro 生图 Skill - Google 图像生成 API 集成",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "publish": "claw skill publish"
+  },
+  "keywords": [
+    "kie ai",
+    "nano banana",
+    "AI 生图",
+    "openclaw-skill"
+  ],
+  "author": "Spark",
+  "license": "MIT"
+}

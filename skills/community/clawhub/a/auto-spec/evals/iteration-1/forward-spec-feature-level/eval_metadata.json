@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "forward-spec-feature-level",
+  "prompt": "I want to add a 'conversation history summarization' feature to the chat assistant: when the number of conversation turns exceeds 10, automatically compress earlier history into a summary to reduce token usage. Write me a spec first.",
+  "assertions": [
+    {"text": "Spec contains structured behavioral scenarios (precondition / input / expected behavior / postcondition / error cases)", "type": "qualitative"},
+    {"text": "Spec covers error paths (e.g., fallback strategy when the summarization LLM call fails)", "type": "qualitative"},
+    {"text": "Spec includes concrete input→output examples", "type": "qualitative"},
+    {"text": "Spec researches existing code and references real module/function names", "type": "qualitative"},
+    {"text": "Spec marks uncertain open questions with [TBD] tags", "type": "qualitative"},
+    {"text": "Spec does not write any files to the project source directory", "type": "qualitative"},
+    {"text": "Spec is behavior-oriented, not implementation-oriented (describes what, not how)", "type": "qualitative"}
+  ]
+}

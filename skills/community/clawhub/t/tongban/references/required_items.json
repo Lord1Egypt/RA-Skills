@@ -1,0 +1,175 @@
+[
+  {
+    "name": "子系统",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "户外招牌设置审批",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "康复辅助器具社区租赁补贴申请",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "内地居民婚姻登记-结婚登记",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "律师事务所设立许可优化(企业云端)",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "社会救助一件事-签章接口优化",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "对遗体运出本市的批准",
+    "official_status": "matched",
+    "matched_department": "市民政局",
+    "matched_role": "个人",
+    "matched_item": "对遗体运出本市的批准",
+    "matched_subitem": "对遗体运出本市的批准",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/check/SH00SH2000110010000"
+  },
+  {
+    "name": "遗体运回本市证明开具",
+    "official_status": "matched",
+    "matched_department": "市民政局",
+    "matched_role": "个人",
+    "matched_item": "开具遗体运回本市证明",
+    "matched_subitem": "开具遗体运回本市证明",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/check/SH00SH2312010016000"
+  },
+  {
+    "name": "遗体运回本市证明开具 退回补正",
+    "official_status": "needs_verification",
+    "notes": "Likely workflow state for 遗体运回本市证明开具, but this exact name was not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "2026年统一高考外语科目考试（1 月份）成绩查询",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "港澳台居民居住证补换领",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "随申办时光列车专线（历年账单聚合专区）",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "出生一件事",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "公民身后一件事",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "阶梯水电气一户多人口办理一件事",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "社会救助一件事",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "户籍人户分离人员居住登记受理",
+    "official_status": "matched",
+    "matched_department": "市公安局",
+    "matched_role": "个人",
+    "matched_item": "户籍人户分离人员居住登记",
+    "matched_subitem": "户籍人户分离人员居住登记受理",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/check/SH00SH2312009035000"
+  },
+  {
+    "name": "就业困难人员申请",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "就业困难人员退出申请",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "申请大龄领金人员缴纳养老保险费补贴",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "职业技能证书查询",
+    "official_status": "matched",
+    "matched_department": "市人力资源社会保障局",
+    "matched_role": "个人/法人",
+    "matched_item": "职业技能证书查询",
+    "matched_subitem": "职业技能证书查询",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/check/SH00SH2312014129000"
+  },
+  {
+    "name": "医保金",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found as an exact item in the current municipal item-list API snapshot. Related department likely includes 市医保局 depending on context."
+  },
+  {
+    "name": "就业失业登记",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "医师执业注册（设区的市级许可权限）",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "医师注册",
+    "official_status": "matched",
+    "matched_department": "市卫生健康委（市中医药管理局、市疾控局）",
+    "matched_role": "个人",
+    "matched_item": "人体器官移植执业医师注册",
+    "matched_subitem": "人体器官移植执业医师注册",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/check/SH00SH2000123007000"
+  },
+  {
+    "name": "公积金",
+    "official_status": "matched",
+    "matched_department": "市住房城乡建设管理委",
+    "matched_role": "个人/法人",
+    "matched_item": "多项住房公积金相关事项",
+    "matched_subitem": "See service_items.jsonl for exact 公积金 matches.",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/naturalPerson/department"
+  },
+  {
+    "name": "机动车报废注销“一件事”",
+    "official_status": "needs_verification",
+    "notes": "User-specified required item name; not found in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "未知事项",
+    "official_status": "needs_verification",
+    "notes": "Placeholder-like user-specified required item name; no official match in the current municipal item-list API snapshot."
+  },
+  {
+    "name": "违法视频举报",
+    "official_status": "matched",
+    "matched_department": "市公安局",
+    "matched_role": "个人",
+    "matched_item": "交通违法视频举报",
+    "matched_subitem": "交通违法视频举报",
+    "guide_url": "https://zwdt.sh.gov.cn/govPortals/bsfw/check/SH00SH2312009057000"
+  }
+]

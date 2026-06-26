@@ -1,0 +1,115 @@
+{
+  "title": "AANA File Operation Review",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "operation_type",
+    "target_scope",
+    "authorization_status",
+    "recommended_action"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation_type": {
+      "type": "string",
+      "enum": [
+        "delete",
+        "move",
+        "rename",
+        "overwrite",
+        "publish",
+        "upload",
+        "export",
+        "bulk_edit",
+        "cleanup",
+        "unknown"
+      ]
+    },
+    "target_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "risk_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "generated_output",
+          "user_authored",
+          "source_code",
+          "document",
+          "media",
+          "credential",
+          "personal",
+          "legal",
+          "health",
+          "financial",
+          "published_asset",
+          "shared_folder",
+          "outside_workspace",
+          "recursive",
+          "globbed",
+          "bulk",
+          "unknown"
+        ]
+      }
+    },
+    "authorization_status": {
+      "type": "string",
+      "enum": [
+        "authorized",
+        "unclear",
+        "unauthorized",
+        "not_needed"
+      ]
+    },
+    "reversibility_status": {
+      "type": "string",
+      "enum": [
+        "reversible",
+        "backup_available",
+        "dry_run_available",
+        "diff_available",
+        "irreversible",
+        "unknown"
+      ]
+    },
+    "scope_status": {
+      "type": "string",
+      "enum": [
+        "exact_paths",
+        "bounded_folder",
+        "too_broad",
+        "outside_workspace",
+        "unclear"
+      ]
+    },
+    "safeguards_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "accept",
+        "revise",
+        "ask",
+        "defer",
+        "refuse"
+      ]
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

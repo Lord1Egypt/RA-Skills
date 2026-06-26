@@ -1,0 +1,108 @@
+{
+  "default_stage": "chatgpt_paper_deep_reading_skill_source",
+  "rules": [
+    {
+      "path": ".",
+      "kind": "directory",
+      "purpose": "Deep-read workspace root.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "inputs",
+      "kind": "directory",
+      "purpose": "Uploaded paper sources, review context, and upstream metadata.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "inputs/papers",
+      "kind": "directory",
+      "purpose": "Authoritative paper sources for the deep-read batch.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "inputs/review_context",
+      "kind": "directory",
+      "purpose": "Peer-review and rebuttal context used during the deep read.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "reports/per_paper",
+      "kind": "directory",
+      "purpose": "Per-paper authoritative report folders.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "reports/stage_delivery_handoff.md",
+      "kind": "file",
+      "purpose": "Authoritative delivery note describing batch completeness, directory meanings, valid versus unresolved artifacts, and the next-stage handoff contract.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "metadata/delivery_bundle_manifest.json",
+      "kind": "file",
+      "purpose": "Machine-readable restart contract describing which artifacts a fresh downstream session should read first.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "metadata/focus_specs",
+      "kind": "directory",
+      "purpose": "Per-paper focus specs used as graph-ready scratchpads before the final report.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "staging"
+    },
+    {
+      "path": "metadata/query_spec.json",
+      "kind": "file",
+      "purpose": "Machine-readable batch-level deep-read input and output contract.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "metadata/routing_status.json",
+      "kind": "file",
+      "purpose": "Routing state for the current deep-read workspace.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "metadata/project_directory_annotations.json",
+      "kind": "file",
+      "purpose": "Editable enrichment rules for dynamic directory indexing.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "reports/project_directory_index.md",
+      "kind": "file",
+      "purpose": "Human-facing directory map for routing and downstream graph building.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    },
+    {
+      "path": "metadata/project_directory_index.json",
+      "kind": "file",
+      "purpose": "Machine-readable directory map for routing and downstream graph building.",
+      "generated_by_stage": "chatgpt_paper_deep_reading_skill_source",
+      "status": "active"
+    }
+  ],
+  "status_overrides": [
+    {
+      "glob": "**/__pycache__/**",
+      "status": "obsolete_or_ignored",
+      "notes": "Python cache."
+    },
+    {
+      "glob": "**/*.pyc",
+      "status": "obsolete_or_ignored",
+      "notes": "Python bytecode cache."
+    }
+  ]
+}

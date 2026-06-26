@@ -1,0 +1,110 @@
+{
+  "name": "wuli",
+  "version": "1.0.9",
+  "description": "Generate AI images and videos with 25+ active models via Wuli.art open platform API. Supports text-to-image, multi-reference image editing, text-to-video, first-frame image-to-video, first-last-frame video, auto-video from images and videos, prompt optimization, image quality tiers, sound control for supported video models, uploads, and no-watermark downloads.",
+  "author": "sir1st",
+  "license": "MIT-0",
+  "homepage": "https://wuli.art",
+  "repository": "https://github.com/alibaba-wuli/wuli-skill",
+  "main": "skill.py",
+  "tags": [
+    "ai",
+    "image-generation",
+    "video-generation",
+    "text-to-image",
+    "text-to-video",
+    "image-to-video",
+    "image-editing",
+    "art",
+    "creative",
+    "wuli"
+  ],
+  "env": {
+    "WULI_API_TOKEN": {
+      "description": "Wuli.art API token for authentication. Get it from https://wuli.art (bottom-left corner → API).",
+      "required": true,
+      "secret": true
+    }
+  },
+  "metadata": {
+    "clawdbot": {
+      "emoji": "🎨",
+      "requires": {
+        "anyBins": ["python3"]
+      },
+      "os": ["linux", "darwin", "win32"],
+      "privacy": "This skill uploads local files and remote images/videos to Wuli.art OSS storage for processing. Do not use with sensitive or private files. Uploaded content is transmitted to https://platform.wuli.art and the pre-signed OSS upload URL returned by that API."
+    }
+  },
+  "arguments": {
+    "action": {
+      "description": "Action type: image-gen, image-edit, txt2video, image2video, flf2video, auto-video",
+      "required": true
+    },
+    "prompt": {
+      "description": "Text prompt for generation (max 2000 chars)",
+      "required": true
+    },
+    "model": {
+      "description": "Model name (default: Qwen Image 2.0 for images, 通义万相 2.2 Turbo for videos)",
+      "default": ""
+    },
+    "aspect_ratio": {
+      "description": "Aspect ratio (1:1, 16:9, 9:16, 4:3, 3:4, 3:2, 2:3, 2:1, 1:2, 5:4, 4:5, 21:9, 9:21, 4:1, 1:4 depending on model)",
+      "default": "1:1"
+    },
+    "resolution": {
+      "description": "Resolution (images: 2K, 3K, 4K depending on model; videos: 480P, 720P, 768P, 1080P depending on model)",
+      "default": "2K"
+    },
+    "n": {
+      "description": "Number of images to generate (1-4, image only)",
+      "default": "1"
+    },
+    "image_url": {
+      "description": "Reference image URL(s). Supports comma-separated multiple values for image-edit and auto-video; also used by image2video and flf2video"
+    },
+    "image_path": {
+      "description": "Local image path(s), auto-uploaded. Supports comma-separated multiple values for image-edit and auto-video; also used by image2video and flf2video"
+    },
+    "end_image_url": {
+      "description": "End-frame image URL for flf2video"
+    },
+    "end_image_path": {
+      "description": "End-frame local image path for flf2video"
+    },
+    "video_url": {
+      "description": "Reference video URL(s) for auto-video, comma-separated"
+    },
+    "video_path": {
+      "description": "Local reference video path(s) for auto-video, comma-separated"
+    },
+    "duration": {
+      "description": "Video duration in seconds (video only)",
+      "default": "5"
+    },
+    "negative_prompt": {
+      "description": "Negative prompt to exclude unwanted elements"
+    },
+    "quality": {
+      "description": "Image quality for supported models. Values include low, medium, high, 低画质, 标准画质, 高画质.",
+      "default": ""
+    },
+    "sound": {
+      "description": "Enable sound for supported video models. If omitted, backend default behavior is used (currently true).",
+      "default": ""
+    },
+    "no_sound": {
+      "description": "Disable sound for video output when the model supports this parameter.",
+      "default": "false"
+    },
+    "optimize": {
+      "description": "Enable prompt optimization. Recommended for most prompts and enabled by default.",
+      "default": "true"
+    },
+    "no_optimize": {
+      "description": "Disable prompt optimization when you need the raw prompt sent as-is.",
+      "default": "false"
+    }
+  }
+}

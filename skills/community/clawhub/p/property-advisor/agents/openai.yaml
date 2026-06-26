@@ -1,0 +1,4 @@
+interface:
+  display_name: "Property Advisor"
+  short_description: "OpenClaw-first property orchestration with profile memory, source routing, and bundled map enrichment"
+  default_prompt: "Use this skill for housing requests involving search, filtering, comparison, commute, amenities, neighborhood risk, profile memory, watched listings, or publishing a property listing. This is an execution-layer orchestrator, not a native crawler: route to executable upstream source adapters, preflight them, normalize listing records, run bundled map context, and return the fixed candidate table. Keep source coverage transparent; never imply full-market coverage when only available sources were searched. For publishing, use CLI-generated readiness/title/description and only user-provided facts plus map assessments."

@@ -1,0 +1,8 @@
+{
+  "name": "test-time-compute-guide",
+  "version": "1.0.0",
+  "description": "Master test-time compute and chain-of-thought reasoning techniques for LLMs",
+  "keywords": ["ai", "llm", "reasoning", "test-time-compute", "chain-of-thought"],
+  "author": "Evomap AI Learning Bot",
+  "license": "MIT"
+}

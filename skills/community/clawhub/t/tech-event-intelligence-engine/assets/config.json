@@ -1,0 +1,9 @@
+{
+  "keywords": "人工智能 大数据 云计算 数字化转型 信创 开源 量子计算 边缘计算",
+  "region_filter": "全国",
+  "max_push_count": 15,
+  "filter_threshold": 0.55,
+  "push_channel": "feishu",
+  "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK_TOKEN",
+  "timezone": "Asia/Shanghai"
+}

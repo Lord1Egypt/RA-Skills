@@ -1,0 +1,44 @@
+{
+  "skill_name": "core-data",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this Core Data staged migration plan for an iOS 26 app: the team creates NSLightweightMigrationStage([\"ModelV1\", \"ModelV2\"]), constructs NSManagedObjectModelReference(named: \"ModelV2\", in: .main), and expects NSStagedMigrationManager to run without wiring it into the persistent store description. Give concise corrected guidance with Swift where useful.",
+      "expected_output": "A review that corrects staged migration checksum usage, NSManagedObjectModelReference initializer requirements, and store-description wiring.",
+      "files": [],
+      "assertions": [
+        "States that NSLightweightMigrationStage takes version checksums, not human-readable model names.",
+        "Uses NSManagedObjectModelReference(name:in:versionChecksum:) or an equivalent initializer with a versionChecksum.",
+        "Includes source and destination model references for an NSCustomMigrationStage.",
+        "Shows or describes setting NSPersistentStoreStagedMigrationManagerOptionKey before loading the persistent stores."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this Core Data multi-target sync plan: a widget and app share a SQLite store, batch inserts and deletes run on background contexts, the viewContext never merges SQL-level changes, no persistent history token is stored, and objects are passed directly to detached tasks. Explain what to fix.",
+      "expected_output": "A review that fixes batch-operation merging, persistent history tracking, token storage, and object/thread boundaries.",
+      "files": [],
+      "assertions": [
+        "Explains that batch inserts, updates, and deletes bypass normal managed-object context change tracking and must be merged or consumed through persistent history.",
+        "Recommends enabling NSPersistentHistoryTrackingKey for multi-target or multi-process stores.",
+        "Recommends observing NSPersistentStoreRemoteChange notifications when remote-change delivery is needed.",
+        "States that each target or consumer should persist its own persistent history token.",
+        "States that NSManagedObject instances must not cross context or thread boundaries; pass NSManagedObjectID and re-fetch.",
+        "Mentions that batch delete bypasses validation beyond basic delete rules and is incompatible with the Deny delete rule."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A team asks for a Core Data plan, but the real request is to run Core Data and SwiftData side by side against the same existing SQLite store and then migrate new screens to @Model. How should the agent route the work and what high-level boundary guidance should it give?",
+      "expected_output": "A boundary answer that identifies Core Data + SwiftData coexistence/migration as SwiftData-owned while giving only high-level handoff guidance.",
+      "files": [],
+      "assertions": [
+        "States that Core Data + SwiftData coexistence or migration should use the swiftdata skill.",
+        "Avoids turning the Core Data skill into a full SwiftData migration guide.",
+        "Gives high-level boundary guidance such as matching store URL, entity names, property names, and schema.",
+        "Mentions using @Attribute(originalName:) or equivalent rename mapping for renamed properties.",
+        "Preserves standalone Core Data guidance for apps that have not adopted SwiftData."
+      ]
+    }
+  ]
+}

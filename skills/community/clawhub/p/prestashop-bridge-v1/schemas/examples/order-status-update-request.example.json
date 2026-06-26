@@ -1,0 +1,6 @@
+{
+  "order_id": 456,
+  "new_status": "shipped",
+  "notify_customer": true,
+  "tracking_number": "TRK123456"
+}

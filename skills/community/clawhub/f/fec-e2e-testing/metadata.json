@@ -1,0 +1,63 @@
+{
+  "id": "fec-e2e-testing",
+  "name": "E2E 测试规范",
+  "category": "testing",
+  "tags": [
+    "playwright",
+    "cypress",
+    "e2e",
+    "visual-regression",
+    "ci",
+    "pom"
+  ],
+  "summary": "Frontend Craft skill for E2E 测试规范.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "testing",
+    "playwright",
+    "cypress",
+    "e2e",
+    "visual-regression",
+    "ci",
+    "pom"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when creating, maintaining, debugging, or reviewing real-browser end-to-end tests with Playwright or Cypress, including Page Object models, CI artifacts, traces, flaky tests, cross-page visual regression, and critical user journeys such as login, payment, permissions, or CRUD. For layer planning or tests close to UI components, choose the matching testing workflow first; Chinese triggers include E2E, 端到端测试, Playwright, Cypress.",
+  "source": "skills/fec-e2e-testing",
+  "references": [
+    "references/e2e-ci-reporting.md",
+    "references/e2e-special-scenarios.md",
+    "references/e2e-visual-regression.md",
+    "references/playwright-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-testing-strategy",
+      "fec-component-testing",
+      "fec-storybook-component-doc",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use a testing strategy workflow before deciding the coverage layer.",
+      "Use a component testing workflow for unit, component, and light integration tests close to UI code.",
+      "Use a validation workflow when existing project checks are failing."
+    ],
+    "capabilityTags": [
+      "testing",
+      "e2e",
+      "browser-automation"
+    ]
+  }
+}

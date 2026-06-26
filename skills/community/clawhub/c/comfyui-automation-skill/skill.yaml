@@ -1,0 +1,43 @@
+name: comfyui_automation_skill
+display_name: ComfyUI Automation Skill
+description: Automates ComfyUI workflows execution with material collection and status monitoring
+version: 1.0.0
+author: OpenClaw
+tags:
+  - comfyui
+  - automation
+  - workflow
+
+# Skill entry point
+execution:
+  type: python
+  main: comfyui_automation.py
+
+# Dependencies
+dependencies:
+  - python>=3.6
+  - requests
+
+# Permissions
+permissions:
+  - network
+
+# Skill settings
+settings:
+  api_key:
+    type: string
+    description: "RunningHub API密钥"
+    required: true
+    sensitive: true
+  timeout:
+    type: number
+    description: "任务超时时间（秒）"
+    default: 300
+  retry_attempts:
+    type: number
+    description: "API调用重试次数"
+    default: 3
+  retry_interval:
+    type: number
+    description: "重试间隔时间（秒）"
+    default: 2

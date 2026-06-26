@@ -1,0 +1,45 @@
+type: architecture
+title: 火一五 SaaS 系统架构
+direction: TB
+
+groups:
+  - id: frontend
+    label: 前端层
+    children: [web, mobile, admin]
+  - id: gateway
+    label: 网关层
+    children: [api_gw]
+  - id: backend
+    label: 业务层
+    children: [svc_user, svc_order, svc_content, svc_ai]
+  - id: data
+    label: 数据层
+    children: [pg, redis, minio]
+
+nodes:
+  - { id: web,         label: Web 门户, shape: rect }
+  - { id: mobile,      label: H5 / 小程序, shape: rect }
+  - { id: admin,       label: 管理后台, shape: rect }
+  - { id: api_gw,      label: API 网关\n(Nginx + Auth), shape: hexagon }
+  - { id: svc_user,    label: 用户服务 }
+  - { id: svc_order,   label: 订单服务 }
+  - { id: svc_content, label: 内容服务 }
+  - { id: svc_ai,      label: AI 服务\n(龙虾 OpenClaw) }
+  - { id: pg,          label: PostgreSQL, shape: cylinder }
+  - { id: redis,       label: Redis, shape: cylinder }
+  - { id: minio,       label: 对象存储 MinIO, shape: cylinder }
+
+edges:
+  - [web, api_gw]
+  - [mobile, api_gw]
+  - [admin, api_gw]
+  - [api_gw, svc_user]
+  - [api_gw, svc_order]
+  - [api_gw, svc_content]
+  - [api_gw, svc_ai]
+  - [svc_user, pg]
+  - [svc_order, pg]
+  - [svc_order, redis]
+  - [svc_content, pg]
+  - [svc_content, minio]
+  - [svc_ai, redis]

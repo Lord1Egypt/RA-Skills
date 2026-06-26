@@ -1,0 +1,19 @@
+{
+  "name": "Ad set - example",
+  "campaign_id": "<campaign_id>",
+  "status": "PAUSED",
+  "daily_budget": 5000,
+  "billing_event": "IMPRESSIONS",
+  "optimization_goal": "LINK_CLICKS",
+  "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+  "start_time": "2026-03-15T08:00:00-0700",
+  "targeting": {
+    "geo_locations": {
+      "countries": [
+        "US"
+      ]
+    },
+    "age_min": 18,
+    "age_max": 65
+  }
+}

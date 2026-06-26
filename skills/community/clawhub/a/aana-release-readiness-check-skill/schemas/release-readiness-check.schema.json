@@ -1,0 +1,23 @@
+{
+  "title": "AANA Release Readiness Check",
+  "type": "object",
+  "required": ["release_target", "evidence_status", "docs_status", "artifact_status", "approval_status", "recommended_action"],
+  "properties": {
+    "release_target": {"type": "string", "enum": ["tag", "release", "package", "deployment_note", "marketplace_listing"]},
+    "evidence_status": {"type": "string", "enum": ["sufficient", "partial", "missing", "failing", "unknown"]},
+    "docs_status": {"type": "string", "enum": ["ready", "missing", "stale", "incomplete"]},
+    "artifact_status": {"type": "string", "enum": ["ready", "missing", "mismatched", "unverified"]},
+    "approval_status": {"type": "string", "enum": ["approved", "required", "unclear", "denied"]},
+    "release_risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["public_release", "breaking_change", "missing_tests", "stale_docs", "artifact_mismatch", "unsupported_claim", "no_rollback", "secret_or_large_file", "unknown"]
+      }
+    },
+    "blocker_reason": {"type": "string"},
+    "safe_alternative": {"type": "string"},
+    "recommended_action": {"type": "string", "enum": ["proceed", "revise", "retrieve", "request_approval", "route_to_review", "block"]}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+# 科技新闻每日推送技能 v5.4 依赖
+
+# Cloudflare 绕过（必需）
+cloudscraper>=1.2.71
+
+# 可选：邮件解析
+# beautifulsoup4>=4.12.0

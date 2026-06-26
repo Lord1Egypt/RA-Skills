@@ -1,0 +1,121 @@
+<!-- AI提示词生成组件 -->
+<div class="win-ai-prompt">
+    <!-- API Key 未配置提示 -->
+    <div class="win-info-box" id="ai-no-key" style="display: none; background: #fef3c7; border-color: #fcd34d;">
+        <p style="margin: 0; color: #92400e;" data-i18n="aiPrompt.noKeyWarning">⚠️ 未配置大模型 API 请先到后端设置您使用的大模型。</p>
+        <a class="win-btn win-btn-secondary" style="margin-top: 20px;float: left;float: right;background: #000;color: #fff;padding-left: 30px;padding-right: 30px;
+        text-decoration: none;" href="/set.html" target="_blank" data-i18n="aiPrompt.goSettings">去设置</a>
+    </div>
+    
+    <div id="ai-form">
+        <div class="win-form-group">
+            <label data-i18n="aiPrompt.label">描述你想要的图片</label>
+            <textarea id="ai-prompt-input" style="height:200px;" data-i18n-placeholder="aiPrompt.placeholder" placeholder="你是一个影视编剧，根据水浒传武松打虎的故事，严格按照故事发展的顺序，生成9张用于视频创作的首尾帧图片，每个片段大概6-10秒。按图1...图9顺序输出，以及输出图片生成的风格prompt。">你是一个影视编剧，根据水浒传武松打虎的故事，严格按照故事发展的顺序，生成9张用于视频创作的首尾帧图片，每个片段大概6-10秒。按图1...图9顺序输出，以及输出图片生成的风格prompt。</textarea>
+            <span class="hint" data-i18n="aiPrompt.hint">请将你的详细要求喂给AI，帮你生成详细的图片生成内容。</span>
+        </div>
+        
+        <div class="win-footer" style="border-top: none; padding: 0; margin-top: 16px;">
+            <button class="win-btn win-btn-secondary" onclick="winClose('ai-prompt')" data-i18n="aiPrompt.cancel">取消</button>
+            <button class="win-btn win-btn-primary" id="ai-generate-btn" data-i18n="aiPrompt.generate">✨ 生成提示词</button>
+        </div>
+    </div>
+    
+    <!-- 生成结果 -->
+    <div id="ai-result" style="display: none;">
+        <div class="win-form-group">
+            <label data-i18n="aiPrompt.resultLabel">生成的提示词</label>
+            <textarea id="ai-result-text" rows="6" readonly style="background: var(--bg-hover, #f3f4f6);"></textarea>
+        </div>
+        <div class="win-footer" style="border-top: none; padding: 0;">
+            <button class="win-btn win-btn-secondary" onclick="$('#ai-result').hide(); $('#ai-form').show();" data-i18n="aiPrompt.regenerate">重新生成</button>
+            <button class="win-btn win-btn-primary" id="ai-use-btn" data-i18n="aiPrompt.usePrompt">使用此提示词</button>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    // 检查是否配置了 API Key
+    const modelApiKey = localStorage.getItem('banana_model_api_key');
+    if (!modelApiKey) {
+        $('#ai-no-key').show();
+        $('#ai-form').hide();
+        return;
+    }
+    
+    // 生成提示词
+    $('#ai-generate-btn').on('click', function() {
+        const input = $('#ai-prompt-input').val().trim();
+        if (!input) {
+            alert(t('aiPrompt.inputRequired'));
+            return;
+        }
+        
+        // 从 localStorage 获取 API Key
+        const modelApiKey = localStorage.getItem('banana_model_api_key');
+        if (!modelApiKey) {
+            alert(t('aiPrompt.noApiKey'));
+            return;
+        }
+        
+        const $btn = $(this);
+        $btn.prop('disabled', true).text(t('aiPrompt.generating'));
+        
+        $.ajax({
+            url: '/api/generate-prompt',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 
+                input: input,
+                api_key: modelApiKey
+            }),
+            success: function(res) {
+                if (res.success && res.prompt) {
+                    $('#ai-result-text').val(res.prompt);
+                    $('#ai-form').hide();
+                    $('#ai-result').show();
+                    
+                    // 自动填充到编辑器
+                    const editorInput = document.getElementById('editor-input');
+                    if (editorInput) {
+                        editorInput.textContent = res.prompt;
+                        // 保存到 localStorage
+                        localStorage.setItem('banana_pending_prompt', res.prompt);
+                    }
+                    
+                    // 自动关闭窗口
+                    setTimeout(function() {
+                        winClose('ai-prompt');
+                    }, 500);
+                } else {
+                    alert(t('aiPrompt.generateFailed') + ': ' + (res.error || t('aiPrompt.unknownError')));
+                }
+            },
+            error: function(xhr) {
+                const res = xhr.responseJSON || {};
+                if (res.needConfig) {
+                    alert(res.error + '\n\n请前往设置页面配置 LLM URL 和模型');
+                } else {
+                    alert(t('aiPrompt.generateFailed') + ': ' + (res.error || t('aiPrompt.networkError')));
+                }
+            },
+            complete: function() {
+                $btn.prop('disabled', false).text(t('aiPrompt.generate'));
+            }
+        });
+    });
+    
+    // 使用提示词
+    $('#ai-use-btn').on('click', function() {
+        const prompt = $('#ai-result-text').val();
+        if (prompt) {
+            // 设置到编辑器
+            const editorInput = document.getElementById('editor-input');
+            if (editorInput) {
+                editorInput.textContent = prompt;
+            }
+        }
+        winClose('ai-prompt');
+    });
+})();
+</script>

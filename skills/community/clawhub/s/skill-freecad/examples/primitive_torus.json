@@ -1,0 +1,9 @@
+{
+  "operation": "create_primitive",
+  "parameters": {
+    "type": "torus",
+    "radius1": 40,
+    "radius2": 10,
+    "name": "MyTorus"
+  }
+}

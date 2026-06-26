@@ -1,0 +1,47 @@
+
+============================================================
+📊 SKILL EVALUATION REPORT — vdv-morgana
+============================================================
+Path: skills/vdv-morgana/SKILL.md
+Score: 65/100 🟠 NEEDS_WORK
+------------------------------------------------------------
+STRUCTURE       18/20 [92m██████████████████░░[0m 90%
+CLARITY         18/20 [92m██████████████████░░[0m 90%
+COMPLETENESS     8/20 [91m████████░░░░░░░░░░░░[0m 40%
+CONSISTENCY      9/20 [91m█████████░░░░░░░░░░░[0m 45%
+FUNCTIONALITY   12/20 [93m████████████░░░░░░░░[0m 60%
+------------------------------------------------------------
+DETAILS:
+  STRUCTURE:
+    ✅ Header complet
+    ✅ Sections: 3/3
+    ✅ Formatting: 5/5
+    ⚠️ Meta: 3/5
+  CLARITY:
+    ✅ Description présente
+    ✅ Commandes/exemples: 12
+    ✅ Exemples présents
+    ⚠️ Quelques contraintes: 1
+  COMPLETENESS:
+    ❌ Outils non documentés
+    ❌ Prérequis non documentés
+    ⚠️ Erreurs partielles: 1
+    ⚠️ Cas limites partiels: 1
+  CONSISTENCY:
+    ✅ Cluster alignment: 4
+    ⚠️ Style: 2/5
+    ✅ Naming: 4/5
+    ⚠️ Integration partielle: 1
+  FUNCTIONALITY:
+    ❌ Commandes problèmes: 0/5
+    ✅ Résultats documentés
+------------------------------------------------------------
+RECOMMENDATIONS:
+  • [COMPLETENESS] Score bas (40%)
+  •   → ❌ Outils non documentés
+  •   → ❌ Prérequis non documentés
+  • [CONSISTENCY] Score bas (45%)
+  • [FUNCTIONALITY] Score bas (60%)
+  •   → ❌ Commandes problèmes: 0/5
+============================================================
+STATUS: ❌ NEEDS WORK (score < 50%)

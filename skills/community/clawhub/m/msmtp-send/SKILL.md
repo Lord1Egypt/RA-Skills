@@ -1,35 +1,24 @@
 ---
-name: "msmtp-send"
-description: "Send plain-text emails using your local msmtp config (Gmail app password already set up in ~/.msmtprc). Strictly send-only; no reading, fetching, or inbox ac..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/msmtp-send"
-sourceUrl: "https://clawhub.ai/skills/msmtp-send"
+name: msmtp-send
+description: Send plain-text emails using your local msmtp config (Gmail app password already set up in ~/.msmtprc). Strictly send-only; no reading, fetching, or inbox access.
+command-dispatch: tool
+command-tool: exec
+metadata:
+  openclaw:
+    emoji: "✉️"
+    requires:
+      bins: ["msmtp"]
+    homepage: "https://docs.openclaw.ai/tools/skills"  # optional reference
 ---
 
-# msmtp-send
+## msmtp-send Skill
 
-> Send plain-text emails using your local msmtp config (Gmail app password already set up in ~/.msmtprc). Strictly send-only; no reading, fetching, or inbox ac...
+This skill sends simple emails by executing your local `{baseDir}/send.sh` script via the exec tool. It relies on your existing `~/.msmtprc` for authentication (no new credentials stored here).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/msmtp-send`
-- **Source URL:** [https://clawhub.ai/skills/msmtp-send](https://clawhub.ai/skills/msmtp-send)
+### When to use
+- Quick notifications, test messages, alerts, or short plain-text emails.
+- Recipient is known/trusted.
+- Keep bodies concise (plain text only; no attachments/HTML in this minimal version).
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/msmtp-send
-```
+### How the agent invokes it
+The agent will automatically dispatch to the exec tool with a command like:

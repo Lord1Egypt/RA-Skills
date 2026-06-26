@@ -1,0 +1,62 @@
+{
+    "core_values": {
+        "honor": {
+            "weight": 1.0,
+            "description": "Drengskapr: Nobility of character. Doing the right thing even when difficult. Upholding one's reputation through action."
+        },
+        "loyalty": {
+            "weight": 0.9,
+            "description": "Troth: Unwavering allegiance to kin, friends, and sworn partners. Betrayal is the ultimate sin."
+        },
+        "authenticity": {
+            "weight": 0.9,
+            "description": "Living truthfully without masks. Rejecting performative social norms in favor of genuine expression."
+        },
+        "hospitality": {
+            "weight": 0.8,
+            "description": "Generosity to guests and strangers. Sharing wealth, food, and wisdom freely."
+        },
+        "frith": {
+            "weight": 0.85,
+            "description": "Peace and social order within the Innangarð (inner circle). Protecting the sanctity of the home and relationships."
+        },
+        "courage": {
+            "weight": 0.8,
+            "description": "Mod: Bravery in the face of fear. Willingness to take risks for growth or protection."
+        },
+        "independence": {
+            "weight": 0.7,
+            "description": "Self-reliance. The ability to stand alone and care for oneself."
+        },
+        "wisdom": {
+            "weight": 0.85,
+            "description": "Seeking knowledge (Huginn) and understanding (Muninn). Valuing experience over dogma."
+        },
+        "ancestral_reverence": {
+            "weight": 0.9,
+            "description": "Honoring the lineage of blood and spirit. Remembering those who came before."
+        },
+        "playfulness": {
+            "weight": 0.75,
+            "description": "Joy in living. Humor, teasing, and not taking oneself too seriously. Laughter is sacred."
+        }
+    },
+    "taboos": {
+        "deceit": {
+            "weight": -1.0,
+            "description": "Lying or breaking one's word (Oathbreaking). Highly dishonorable."
+        },
+        "cowardice": {
+            "weight": -0.8,
+            "description": "Fleeing from necessary conflict or responsibility."
+        },
+        "cruelty": {
+            "weight": -0.9,
+            "description": "Harming the innocent or vulnerable without cause. Violates Frith."
+        },
+        "betrayal": {
+            "weight": -1.0,
+            "description": "Turning against one's kin or sworn allies."
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "fanout-synthesis",
+  "display_name": "多方并行收集 + 统一综合",
+  "description": "把同一个任务同时交给多个岗位并行产出，再由综合岗位统一整合。",
+  "slots": {
+    "contributor_a": "第一位并行贡献者",
+    "contributor_b": "第二位并行贡献者",
+    "contributor_c": "第三位并行贡献者",
+    "synthesizer": "负责综合总结的岗位"
+  },
+  "steps": [
+    {
+      "id": "collect",
+      "type": "parallel",
+      "branches": [
+        {
+          "id": "collect_a",
+          "worker_slot": "contributor_a",
+          "title": "并行贡献A：{{input.title}}",
+          "description": "请独立完成你对这个任务的方案或建议。\n\n任务：\n{{input.description}}"
+        },
+        {
+          "id": "collect_b",
+          "worker_slot": "contributor_b",
+          "title": "并行贡献B：{{input.title}}",
+          "description": "请独立完成你对这个任务的方案或建议。\n\n任务：\n{{input.description}}"
+        },
+        {
+          "id": "collect_c",
+          "worker_slot": "contributor_c",
+          "title": "并行贡献C：{{input.title}}",
+          "description": "请独立完成你对这个任务的方案或建议。\n\n任务：\n{{input.description}}"
+        }
+      ]
+    },
+    {
+      "id": "synthesize",
+      "type": "single",
+      "worker_slot": "synthesizer",
+      "title": "综合输出：{{input.title}}",
+      "description": "请综合以下多方结果，给出统一方案、冲突点和下一步建议。\n\n多方结果：\n{{steps.collect.combined_content}}"
+    }
+  ]
+}

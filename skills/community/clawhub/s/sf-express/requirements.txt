@@ -1,0 +1,4 @@
+cryptography==46.0.5
+qrcode==8.2
+pillow==12.1.0
+python-dateutil==2.9.0.post0

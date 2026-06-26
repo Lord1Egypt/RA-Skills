@@ -1,0 +1,22 @@
+{
+  "name": "technical-business-strategy-analysis",
+  "version": "1.0.0",
+  "description": "专业级商业战略分析：从市场规模估算到可执行洞察的完整工作流",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "business-strategy",
+    "market-analysis",
+    "TAM-SAM-SOM",
+    "SWOT",
+    "openclaw"
+  ],
+  "author": "Vincent",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

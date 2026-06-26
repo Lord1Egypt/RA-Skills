@@ -1,0 +1,37 @@
+{
+  "name": "zouroboros-bench",
+  "version": "1.0.0",
+  "description": "Benchmark harness for AI memory systems with repeatable LongMemEval, LoCoMo, and ConvoMem-style evaluation runs and reporting",
+  "type": "module",
+  "bin": {
+    "zouroboros-bench": "./dist/scripts/run-all.js",
+    "zouroboros-bench-report": "./dist/scripts/report.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "benchmark",
+    "memory",
+    "ai",
+    "longmemeval",
+    "locomo",
+    "zouroboros",
+    "openclaw"
+  ],
+  "author": "AlaricHQ",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^9.4.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "peerDependencies": {
+    "zouroboros-memory": "^4.0.0"
+  }
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Shader Helper"
+  short_description: "Write, debug, and prototype practical GLSL and WebGL shaders."
+  default_prompt: "Use $shader to build, adapt, debug, or prototype a practical shader, especially for GLSL, WebGL, Three.js ShaderMaterial, React Three Fiber, ShaderToy-style effects, or a quick browser demo."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,92 @@
+# Scraping Configuration
+
+# Global settings
+global:
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  request_delay_seconds: 2
+  retry_limit: 3
+  retry_delay_seconds: 5
+  timeout_seconds: 30
+  proxy:
+    enabled: false
+    url: ""  # e.g., "http://proxy:8080"
+
+pricing:
+  methods:
+    - type: "css_selector"
+      description: "Direct CSS selectors for standard pricing pages"
+    - type: "api_endpoint"
+      description: "Check for hidden JSON pricing APIs"
+    - type: "playwright"
+      description: "Headless browser for JS-rendered pages"
+    - type: "screenshot"
+      description: "Take screenshot for manual review (fallback)"
+
+  selectors:
+    per_competitor:
+      CompetitorA:
+        method: "css_selector"
+        plans_container: "div.pricing-grid"
+        plan_card: "div.pricing-card"
+        plan_name: "h3.plan-name"
+        price_monthly: "span.monthly-price"
+        price_annual: "span.annual-price"
+        features: "ul.features li"
+        free_trial: "div.trial-badge"
+      CompetitorB:
+        method: "playwright"
+        wait_for: "#pricing-section"
+        plans_container: ".pricing-table"
+        plan_card: ".pricing-tier"
+        plan_name: ".tier-name"
+        price_monthly: ".price-amount"
+        price_annual: null  # Only shows monthly
+        features: ".tier-features li"
+      CompetitorC:
+        method: "api_endpoint"
+        url: "https://competitor-c.co.za/api/public/pricing"
+        headers:
+          Accept: "application/json"
+        response_mapping:
+          plans: "$.data.plans[*]"
+          name: "$.name"
+          price: "$.price.monthly"
+          features: "$.features[*].name"
+
+social:
+  twitter:
+    method: "api"  # Uses Twitter API v2
+    max_tweets_per_check: 50
+    lookback_hours: 24
+    metrics: [tweet_count, retweets, likes, replies, impressions]
+
+  linkedin:
+    method: "playwright"  # LinkedIn blocks most scraping
+    max_posts_per_check: 20
+    lookback_hours: 24
+    metrics: [post_count, reactions, comments, shares]
+
+reviews:
+  hellopeter:
+    method: "playwright"
+    max_reviews_per_check: 100
+    sort: "newest"
+
+  g2:
+    method: "api"
+    api_key: ""  # G2 requires API key
+    max_reviews_per_check: 100
+
+  google_reviews:
+    method: "playwright"
+    max_reviews_per_check: 50
+
+product_changes:
+  diff_method: "hash_based"  # Compares MD5 hash of rendered HTML
+  ignore_selectors:
+    - "script"
+    - "style"
+    - "img"
+    - "footer"
+    - "nav"
+  sensitivity: "medium"  # Options: low, medium, high

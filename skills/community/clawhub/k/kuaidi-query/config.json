@@ -1,0 +1,8 @@
+{
+  "track123": {
+    "app_key": "120cb954891a4d9aa1418c7012225afb",
+    "api_secret": "120cb954891a4d9aa1418c7012225afb"
+  },
+  "cache_duration": 3600000,
+  "debug": false
+}

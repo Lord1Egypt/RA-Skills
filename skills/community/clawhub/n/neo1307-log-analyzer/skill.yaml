@@ -1,0 +1,9 @@
+name: log-analyzer
+version: 1.0.0
+description: Reads a log file, groups WARN/ERROR/CRITICAL lines, and produces a summary report.
+author: neo1307
+tags:
+  - logs
+  - analysis
+  - diagnostics
+entrypoint: index.js

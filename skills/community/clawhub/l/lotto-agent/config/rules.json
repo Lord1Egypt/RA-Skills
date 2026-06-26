@@ -1,0 +1,160 @@
+﻿{
+  "lotteries": {
+    "ssq": {
+      "name": "双色球",
+      "aliases": ["双色球", "ssq"],
+      "price": 2,
+      "default_play_type": "standard",
+      "sections": [
+        {"key": "red", "label": "红球", "min": 1, "max": 33, "count": 6, "unique": true, "sort": true, "digits": 2},
+        {"key": "blue", "label": "蓝球", "min": 1, "max": 16, "count": 1, "unique": true, "sort": true, "digits": 2}
+      ]
+    },
+    "dlt": {
+      "name": "大乐透",
+      "aliases": ["大乐透", "dlt"],
+      "price": 2,
+      "additional_price": 1,
+      "default_additional": false,
+      "default_play_type": "standard",
+      "sections": [
+        {"key": "front", "label": "前区", "min": 1, "max": 35, "count": 5, "unique": true, "sort": true, "digits": 2},
+        {"key": "back", "label": "后区", "min": 1, "max": 12, "count": 2, "unique": true, "sort": true, "digits": 2}
+      ]
+    },
+    "qxc": {
+      "name": "七星彩",
+      "aliases": ["七星彩", "qxc"],
+      "price": 2,
+      "default_play_type": "standard",
+      "sections": [
+        {"key": "digits", "label": "号码", "min": 0, "max": 9, "count": 7, "unique": false, "sort": false, "digits": 1}
+      ]
+    },
+    "qlc": {
+      "name": "七乐彩",
+      "aliases": ["七乐彩", "qlc"],
+      "price": 2,
+      "default_play_type": "standard",
+      "sections": [
+        {"key": "basic", "label": "基本号", "min": 1, "max": 30, "count": 7, "unique": true, "sort": true, "digits": 2}
+      ],
+      "draw_sections": [
+        {"key": "basic", "label": "基本号", "count": 7, "digits": 2},
+        {"key": "special", "label": "特别号", "count": 1, "digits": 2}
+      ]
+    },
+    "fc3d": {
+      "name": "福彩3D",
+      "aliases": ["福彩3D", "福彩3d", "3D", "3d", "fc3d"],
+      "price": 2,
+      "default_play_type": "single",
+      "play_types": ["single", "group3", "group6"],
+      "sections": [
+        {"key": "digits", "label": "号码", "min": 0, "max": 9, "count": 3, "unique": false, "sort": false, "digits": 1}
+      ]
+    },
+    "pl3": {
+      "name": "排列三",
+      "aliases": ["排列三", "排列3", "pl3"],
+      "price": 2,
+      "default_play_type": "single",
+      "play_types": ["single", "group3", "group6"],
+      "sections": [
+        {"key": "digits", "label": "号码", "min": 0, "max": 9, "count": 3, "unique": false, "sort": false, "digits": 1}
+      ]
+    },
+    "pl5": {
+      "name": "排列五",
+      "aliases": ["排列五", "排列5", "pl5"],
+      "price": 2,
+      "default_play_type": "standard",
+      "sections": [
+        {"key": "digits", "label": "号码", "min": 0, "max": 9, "count": 5, "unique": false, "sort": false, "digits": 1}
+      ]
+    },
+    "kl8": {
+      "name": "快乐8",
+      "aliases": ["快乐8", "快乐八", "k8", "kl8"],
+      "price": 2,
+      "default_play_type": "10",
+      "play_types": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "section_count_from_play_type": true,
+      "sections": [
+        {"key": "nums", "label": "号码", "min": 1, "max": 80, "count": 10, "unique": true, "sort": true, "digits": 2}
+      ]
+    }
+  },
+  "prize_rules": {
+    "dlt_pool_threshold": 800000000,
+    "dlt_pool_amounts": {
+      "under": {
+        "三等奖": 5000,
+        "四等奖": 300,
+        "五等奖": 150,
+        "六等奖": 15,
+        "七等奖": 5
+      },
+      "at_or_over": {
+        "三等奖": 6666,
+        "四等奖": 380,
+        "五等奖": 200,
+        "六等奖": 18,
+        "七等奖": 7
+      }
+    },
+    "ssq": [
+      {"level": "一等奖", "float": true, "when": {"red": 6, "blue": 1}},
+      {"level": "二等奖", "float": true, "when": {"red": 6, "blue": 0}},
+      {"level": "三等奖", "amount": 3000, "when": {"red": 5, "blue": 1}},
+      {"level": "四等奖", "amount": 200, "any": [{"red": 5, "blue": 0}, {"red": 4, "blue": 1}]},
+      {"level": "五等奖", "amount": 10, "any": [{"red": 4, "blue": 0}, {"red": 3, "blue": 1}]},
+      {"level": "六等奖", "amount": 5, "any": [{"red": 0, "blue": 1}, {"red": 1, "blue": 1}, {"red": 2, "blue": 1}]},
+      {"level": "福运奖", "amount": 5, "when": {"red": 3, "blue": 0}}
+    ],
+    "dlt": [
+      {"level": "一等奖", "float": true, "additional_rate": 0.8, "when": {"front": 5, "back": 2}},
+      {"level": "二等奖", "float": true, "additional_rate": 0.8, "when": {"front": 5, "back": 1}},
+      {"level": "三等奖", "amount": 5000, "any": [{"front": 5, "back": 0}, {"front": 4, "back": 2}]},
+      {"level": "四等奖", "amount": 300, "when": {"front": 4, "back": 1}},
+      {"level": "五等奖", "amount": 150, "any": [{"front": 4, "back": 0}, {"front": 3, "back": 2}]},
+      {"level": "六等奖", "amount": 15, "any": [{"front": 3, "back": 1}, {"front": 2, "back": 2}]},
+      {"level": "七等奖", "amount": 5, "any": [{"front": 3, "back": 0}, {"front": 2, "back": 1}, {"front": 1, "back": 2}, {"front": 0, "back": 2}]}
+    ],
+    "qlc": [
+      {"level": "一等奖", "float": true, "when": {"basic": 7, "special": 0}},
+      {"level": "二等奖", "float": true, "when": {"basic": 6, "special": 1}},
+      {"level": "三等奖", "float": true, "when": {"basic": 6, "special": 0}},
+      {"level": "四等奖", "amount": 200, "when": {"basic": 5, "special": 1}},
+      {"level": "五等奖", "amount": 50, "when": {"basic": 5, "special": 0}},
+      {"level": "六等奖", "amount": 10, "when": {"basic": 4, "special": 1}},
+      {"level": "七等奖", "amount": 5, "when": {"basic": 4, "special": 0}}
+    ],
+    "qxc": [
+      {"level": "一等奖", "float": true, "when": {"main": 6, "tail": 1}},
+      {"level": "二等奖", "float": true, "when": {"main": 6, "tail": 0}},
+      {"level": "三等奖", "amount": 3000, "when": {"main": 5, "tail": 1}},
+      {"level": "四等奖", "amount": 500, "any": [{"main": 5, "tail": 0}, {"main": 4, "tail": 1}]},
+      {"level": "五等奖", "amount": 30, "any": [{"main": 4, "tail": 0}, {"main": 3, "tail": 1}]},
+      {"level": "六等奖", "amount": 5, "any": [{"main": 3, "tail": 0}, {"tail": 1}]}
+    ],
+    "digit3": {
+      "single": {"level": "直选", "amount": 1040},
+      "group3": {"level": "组三", "amount": 346},
+      "group6": {"level": "组六", "amount": 173}
+    },
+    "pl5": {"level": "一等奖", "amount": 100000},
+    "kl8": {
+      "1": {"1": 4.5},
+      "2": {"2": 19},
+      "3": {"3": 52, "2": 3},
+      "4": {"4": 93, "3": 5, "2": 3},
+      "5": {"5": 1000, "4": 20, "3": 3},
+      "6": {"6": 2880, "5": 30, "4": 10, "3": 3},
+      "7": {"7": 8500, "6": 300, "5": 30, "4": 4, "0": 2},
+      "8": {"8": 50000, "7": 800, "6": 80, "5": 10, "4": 3, "0": 2},
+      "9": {"9": {"float": true, "level": "选九一等奖"}, "8": 2000, "7": 225, "6": 22, "5": 5, "4": 3, "0": 2},
+      "10": {"10": {"float": true, "level": "选十一等奖"}, "9": 8000, "8": 720, "7": 80, "6": 5, "5": 3, "0": 2}
+    }
+  }
+}

@@ -1,0 +1,9 @@
+name: emoPAD-universe
+description: |
+  emoPAD Universe - 情绪宇宙技能
+  
+  帮助用户在情绪 PAD（Pleasure-Arousal-Dominance）坐标系中定位情绪，
+  并提供 emoNebula 功能：持续实时监测情绪 PAD，每隔 5 分钟生成并发送情绪星云图。
+version: 2.0.0
+author: emowave
+license: MIT

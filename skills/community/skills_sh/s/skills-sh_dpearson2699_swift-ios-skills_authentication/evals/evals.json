@@ -1,0 +1,48 @@
+{
+  "skill_name": "authentication",
+  "evals": [
+    {
+      "id": 0,
+      "name": "passkey-registration-and-signin",
+      "prompt": "We're adding passwordless sign-in to our iOS app for accounts on example.com. The server can mint WebAuthn challenges, and product wants passkeys first, a physical security key fallback, and inline suggestions in the username field. What should the implementation checklist and core AuthenticationServices flow look like?",
+      "expected_output": "A passkey implementation checklist that covers associated domains, platform passkey registration/assertion, AutoFill-assisted requests, physical security key boundaries, and server-side verification.",
+      "files": [],
+      "expectations": [
+        "Names the Associated Domains requirement with the `webcredentials:` service for the relying-party domain.",
+        "Uses `ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier:)` for platform passkeys and distinguishes registration from assertion requests.",
+        "States that registration and assertion challenges come from the relying-party server and that passkey results must be verified server-side before issuing a session.",
+        "Mentions `performAutoFillAssistedRequests()` with a username text field using `.username` for inline passkey suggestions.",
+        "Uses `ASAuthorizationSecurityKeyPublicKeyCredentialProvider` only for physical security key fallback, not as the default platform passkey provider."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "sign-in-with-apple-oauth-review",
+      "prompt": "Review this iOS login plan before implementation: Sign in with Apple for new accounts, saved password suggestions for returning users, GitHub OAuth, cached account profile data, local Face ID re-auth before account deletion, and token storage. What are the must-have AuthenticationServices and LocalAuthentication checks?",
+      "expected_output": "A review checklist that covers Sign in with Apple setup, credential handling, existing account flows, OAuth session presentation, biometric re-auth boundaries, and secure token storage.",
+      "files": [],
+      "expectations": [
+        "Requires the Sign in with Apple capability plus `ASAuthorizationControllerPresentationContextProviding` for authorization UI.",
+        "Explains that `email` and `fullName` must be cached during first authorization and handled as optional later.",
+        "Requires Apple ID credential state checks with `getCredentialState(forUserID:completion:)` and handling credential revocation notifications.",
+        "Sends `identityToken` and `authorizationCode` to the server for validation instead of trusting them only on device.",
+        "Uses `ASWebAuthenticationSession` for GitHub OAuth, avoids `WKWebView`, and returns a real active presentation anchor.",
+        "Stores secrets in Keychain and treats `LAContext.evaluatePolicy` as local re-authentication rather than standalone proof for releasing stored secrets."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "security-boundary-routing",
+      "prompt": "A team asks the authentication skill to design the whole account security layer: Sign in with Apple, passkeys, refresh-token storage, CryptoKit encryption, certificate pinning, biometric unlock, and OWASP MASVS mapping. Give a concise scope review that says what this skill should cover and what belongs in sibling security work.",
+      "expected_output": "A boundary-aware scope review that keeps AuthenticationServices auth flows in scope while routing deep Keychain, CryptoKit, certificate trust, and compliance work to the security skill.",
+      "files": [],
+      "expectations": [
+        "Keeps Sign in with Apple, passkeys, Password AutoFill, ASAuthorizationController flows, ASWebAuthenticationSession OAuth, and local biometric re-authentication in the authentication skill scope.",
+        "Routes detailed Keychain architecture, CryptoKit encryption, Secure Enclave, certificate pinning, and OWASP MASVS mapping to the sibling security skill instead of expanding the authentication answer into those domains.",
+        "Still states that auth tokens and secrets should be stored in Keychain, not UserDefaults, files, or Core Data.",
+        "Warns that `LAContext.evaluatePolicy` alone should not release stored secrets and that Keychain access control is the right handoff for protected token/key reads.",
+        "Does not claim that the authentication skill owns backend WebAuthn relying-party implementation beyond requiring server challenges and server verification."
+      ]
+    }
+  ]
+}

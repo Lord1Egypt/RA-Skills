@@ -1,0 +1,32 @@
+{
+  "name": "skill-installer",
+  "version": "1.0.0",
+  "description": "直接从 ClawHub 下载 zip 包安装技能，绕过 API 速率限制",
+  "main": "install.cjs",
+  "scripts": {
+    "install": "node install.cjs install",
+    "search": "node install.cjs search",
+    "batch": "node install.cjs install-batch"
+  },
+  "keywords": [
+    "clawhub",
+    "installer",
+    "skill",
+    "batch-install",
+    "rate-limit",
+    "openclaw"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-installer"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skill-installer/issues"
+  },
+  "homepage": "https://github.com/openclaw/skill-installer#readme"
+}

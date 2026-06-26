@@ -1,0 +1,25 @@
+{
+  "name": "360-web-search",
+  "version": "1.2.0",
+  "description": "Real-time Chinese web search powered by 360's search engine API. Purpose-built for LLMs and AI Agents.",
+  "homepage": "https://ai.360.com/platform",
+  "env": {
+    "SEARCH_360_API_KEY": {
+      "description": "360 Search API key. Get yours at https://ai.360.com/platform — Open Platform → API Key Management. New users receive ¥50 free credit on registration.",
+      "required": true,
+      "value": ""
+    }
+  },
+  "settings": {
+    "default_plan": "aiso-pro",
+    "default_count": 5,
+    "default_fresh_day": 7,
+    "plans": {
+      "aiso-pro": "Smart Search PRO — ¥18/1,000 queries (default)",
+      "aiso-max": "Smart Search MAX — ¥30/1,000 queries (deep research)",
+      "aisearch": "AI Search — ¥30/1,000 queries",
+      "aiso-news": "News Smart Search — ¥12/1,000 queries (news & current events)",
+      "image-search": "Image Search — ¥12/1,000 queries"
+    }
+  }
+}

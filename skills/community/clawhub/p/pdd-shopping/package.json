@@ -1,0 +1,21 @@
+{
+  "name": "pdd-shopping",
+  "version": "2.2.0",
+  "description": "Pinduoduo shopping assistant. Input a product name or PDD link; evaluate 百亿补贴, 拼团 rules, seller risk, visible price, review signals, refund caveats, and whether the low price is worth it. Safe boundary: no login, no order submission, no payment.",
+  "main": "SKILL.md",
+  "keywords": [
+    "pdd",
+    "pinduoduo",
+    "拼多多",
+    "shopping",
+    "group-buy",
+    "ecommerce",
+    "openclaw-skill"
+  ],
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-community/pdd-shopping.git"
+  }
+}

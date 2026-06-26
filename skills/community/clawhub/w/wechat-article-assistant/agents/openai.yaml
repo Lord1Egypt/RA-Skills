@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Article Assistant"
+  short_description: "支持公众号登录、账号管理、文章同步、详情导出与代理配置"
+  default_prompt: "Use $wechat-article-assistant to log into a WeChat official account, manage sync targets, or fetch article details."

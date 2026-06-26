@@ -1,0 +1,89 @@
+{
+  "skill_name": "ibm-rsad-copilot",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm starting a new FTM interface for outbound SWIFT MT103 payments. The sending bank submits payments via MQ, FTM processes them, and delivers to the SWIFT network. I need to design this in RSAD. What artifacts do I need to produce and what should the FSM look like?",
+      "expected_output": "Complete design guidance including: the 7 required RSAD artifacts, a detailed FSM with states/transitions/events (including PMP_Alert states with Constraints), SP/Channel configuration details, and the sequence of RSAD steps to follow. Should reference Pattern 9.1, include standard events like E_MpInMappingComplete, and mention SQL export.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "mentions-7-artifacts",
+          "description": "Lists the standard RSAD design artifacts (use case, sequence, FSM, SP/channel config, deployment, SQL export)"
+        },
+        {
+          "id": "fsm-has-pmp-alert",
+          "description": "FSM design includes PMP_Alert states with Constraints tagged values (Cancel/Resubmit)"
+        },
+        {
+          "id": "references-pattern-91",
+          "description": "References FTM Pattern 9.1 (Outbound Message/File) as the applicable pattern"
+        },
+        {
+          "id": "uses-standard-events",
+          "description": "Uses standard FTM events: E_MpInMappingComplete and/or E_MpInMappingAborted"
+        },
+        {
+          "id": "mentions-sql-export",
+          "description": "Mentions exporting SQL configuration scripts from the RSAD model"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I have a JIRA ticket: 'Add timeout handling to the CHAPS outbound transaction FSM. If the transaction is in WAITING_FOR_ACK state for more than 2 hours, raise an operator alert.' How do I implement this in RSAD?",
+      "expected_output": "Step-by-step RSAD instructions including: add Heartbeat transition with Object Filter on timeout, add TIMEOUT_ALERT state with PMP_Alert stereotype and Constraints, export updated FSM SQL, commit to version control.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "heartbeat-event",
+          "description": "References E_Heartbeat event for timeout detection"
+        },
+        {
+          "id": "object-filter-timeout",
+          "description": "Mentions Object Filter / guard condition on timeout field (e.g., timeout < NOW() or CURRENT TIMESTAMP)"
+        },
+        {
+          "id": "pmp-alert-stereotype",
+          "description": "Instructs applying PMP_Alert stereotype to the new timeout alert state"
+        },
+        {
+          "id": "constraints-tagged-value",
+          "description": "Mentions adding Constraints tagged value (Cancel, Continue) to the alert state"
+        },
+        {
+          "id": "sql-export-step",
+          "description": "Includes step to re-export/regenerate SQL config from updated RSAD model"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're implementing an ISO 20022 pacs.008 inbound payment flow. I need to choose a mapping technology and document the field mapping from pacs.008 to ISF. The source message has Cdtr, Dbtr, CdtTrfTxInf/IntrBkSttlmAmt elements. What should I do in RSAD and what mapping technology should I use?",
+      "expected_output": "Mapping technology recommendation (ESQL), field-level mapping table, ESQL patterns for ISF, mapper naming convention (MapInPacs008), and how to document in RSAD Channel config and sequence diagram.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "recommends-esql",
+          "description": "Recommends ESQL as the mapping technology for ISO 20022 XML-to-ISF transformation"
+        },
+        {
+          "id": "isf-namespace",
+          "description": "References the ISF namespace (http://www.ibm.com/xmlns/prod/ftm/isf/v3)"
+        },
+        {
+          "id": "mapper-naming-convention",
+          "description": "Mentions mapper naming convention (e.g., MapInPacs008)"
+        },
+        {
+          "id": "currency-as-attribute",
+          "description": "Notes that currency/amount must be set as an XML attribute in ESQL (.(XMLNSC.Attribute)Currency pattern or similar)"
+        },
+        {
+          "id": "channel-config",
+          "description": "Mentions documenting the mapper subflow name in the RSAD Channel configuration"
+        }
+      ]
+    }
+  ]
+}

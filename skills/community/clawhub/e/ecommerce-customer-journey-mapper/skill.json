@@ -1,0 +1,13 @@
+{
+  "name": "E-commerce Customer Journey Mapper",
+  "slug": "ecommerce-customer-journey-mapper",
+  "version": "1.0.0",
+  "description": "Maps ecommerce customer journey stages and outputs friction analysis plus prioritized action briefs using built-in heuristics.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": ["ecommerce", "customer-journey", "conversion", "funnel", "shopify", "dtc"],
+  "trigger_keywords": ["customer journey", "journey map", "conversion drop-off", "checkout friction", "retention audit"],
+  "language": "en",
+  "outputs": "markdown",
+  "requires_api": false,
+  "readiness": "stable"
+}

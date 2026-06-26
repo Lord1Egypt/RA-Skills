@@ -1,0 +1,101 @@
+{
+  "name": "室内设计提示词模板库",
+  "version": "1.0.0",
+  "description": "室内设计效果图生成提示词模板，用于 GrsAI 等图生图工具",
+  "quality_enhancer": "sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography, studio lighting, high contrast, high resolution image",
+  "templates": {
+    "现代简约": {
+      "description": "简洁线条，功能至上，大片留白",
+      "prompt": "现代简约风格室内设计效果图，简洁线条，功能至上，大片留白，白墙，浅色木地板，无主灯设计，悬浮式吊顶，明亮通透，自然采光，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["浅色木地板", "白色乳胶漆", "玻璃", "金属"]
+    },
+    "中古风": {
+      "description": "1960s风格，温暖木质，优雅弧线",
+      "prompt": "mid-century modern style, 中古风室内设计，1960年代风格，温暖木质色调，优雅弧线造型，复古家具，柔和配色，木地板，经典设计灯具，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["原木", "黄铜", "皮革", "玻璃"]
+    },
+    "法式奶油": {
+      "description": "浪漫法式，温暖米色，精致线条",
+      "prompt": "法式奶油风格室内设计，浪漫温馨，温暖米色色调，精致石膏线条，弧形门洞，雕花装饰，木地板，质感布艺，柔和灯光，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["米色涂料", "石膏线条", "实木地板", "丝绒"]
+    },
+    "日式极简": {
+      "description": "日式禅意，自然木质，大量留白",
+      "prompt": "日式极简风格室内设计，禅意氛围，自然木质，大量留白，榻榻米元素，低矮家具，纸拉门，自然采光，竹编装饰，温馨舒适，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["原木", "榻榻米", "纸", "竹"]
+    },
+    "意式轻奢": {
+      "description": "精致意式，金属质感，高级大理石",
+      "prompt": "意式轻奢风格室内设计，精致优雅，金属质感，黄铜点缀，高级大理石，皮革沙发，嵌入式灯光，质感涂料，奢华精致，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["大理石", "黄铜", "皮革", "丝绒"]
+    },
+    "北欧原木": {
+      "description": "清新北欧，原木自然，柔软布艺",
+      "prompt": "北欧原木风格室内设计，清新自然，原木家具，柔软布艺，明亮色彩，棉麻材质，绿植点缀，温暖灯光，舒适宜居，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["原木", "棉麻", "藤编", "绿植"]
+    },
+    "新中式": {
+      "description": "现代中式，传统元素，诗意禅意",
+      "prompt": "新中式风格室内设计，现代中式风格，传承传统元素，水墨画装饰，实木家具，诗意禅意，屏风隔断，温暖灯光，典雅大气，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["实木", "宣纸", "水墨", "陶瓷"]
+    },
+    "工业风": {
+      "description": "粗犷工业，裸露管线，复古金属",
+      "prompt": "工业风格室内设计，粗犷质感，裸露管线，红砖墙，复古金属，黄铜灯具，皮质家具，工业风吊灯，个性独特，真实比例，sharp edges, crisp lines, ultra detailed, photorealistic, professional interior photography",
+      "materials": ["红砖", "金属", "皮革", "水泥"]
+    }
+  },
+  "common_settings": {
+    "camera": "eye-level view, realistic proportions",
+    "lighting": "natural daylight, soft ambient lighting",
+    "quality": "high quality, 8K, detailed, sharp edges, crisp lines, photorealistic, professional interior photography, studio lighting, high contrast"
+  },
+  "room_templates": {
+    "客厅": {
+      "elements": ["沙发", "茶几", "电视柜", "地毯", "窗帘"],
+      "description": "客厅效果图"
+    },
+    "餐厅": {
+      "elements": ["餐桌", "餐椅", "餐边柜", "吊灯"],
+      "description": "餐厅效果图"
+    },
+    "主卧": {
+      "elements": ["床", "床头柜", "衣柜", "梳妆台"],
+      "description": "主卧室效果图"
+    },
+    "次卧": {
+      "elements": ["床", "书桌", "衣柜"],
+      "description": "次卧室效果图"
+    },
+    "厨房": {
+      "elements": ["橱柜", "操作台", "抽油烟机"],
+      "description": "厨房效果图"
+    },
+    "卫生间": {
+      "elements": ["洗手台", "马桶", "淋浴房", "浴室柜"],
+      "description": "卫生间效果图"
+    }
+  },
+  "material_templates": {
+    "地面": {
+      "浅灰亮光砖800*800": "浅灰色亮光瓷砖地面，800*800mm规格，瓷砖纹理，高光反射，sharp edges, crisp tile lines",
+      "原木地板": "原木色实木地板，温润木纹，哑光质感",
+      "大理石地板": "白色大理石地板，天然纹理，质感高端"
+    },
+    "墙面": {
+      "乳胶漆": "白色乳胶漆墙面，简洁干净",
+      "木饰面": "木饰面墙面，温暖自然",
+      "墙布": "质感墙布，柔软触感"
+    },
+    "柜体": {
+      "原木免漆板": "原木色免漆板柜体，自然质感",
+      "暖灰PET": "浅色暖灰色PET门板，哑光质感，现代时尚",
+      "烤漆": "白色烤漆门板，光洁亮丽"
+    },
+    "吊顶": {
+      "无主灯悬浮": "无主灯设计，悬浮式外反灯槽吊顶，间接照明",
+      "平顶无主灯": "简约平顶设计，无主灯，干净利落",
+      "双眼皮吊顶": "双眼皮吊顶，层次分明"
+    }
+  }
+}

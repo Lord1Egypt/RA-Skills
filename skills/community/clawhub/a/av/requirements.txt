@@ -1,0 +1,11 @@
+# Audio and video processing libraries
+pydub
+moviepy
+opencv-python
+
+# Text-to-speech
+gTTS
+
+# General utilities
+requests
+ Pillow

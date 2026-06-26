@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>行前准备 - {{TRIP_TITLE}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="page-header">
+      <h1>行前准备</h1>
+      <p>出发前需要准备的物品清单</p>
+    </div>
+
+    <div class="container">
+      <!-- CATEGORY_START -->
+      <div class="prepare-card animate-in" style="animation-delay: {{ANIMATION_DELAY}}">
+        <span class="category-tag">{{CATEGORY_NAME}}</span>
+        <div class="checklist">
+          <!-- CHECKLIST_ITEM_START -->
+          <label class="check-item">
+            <input type="checkbox" data-id="{{ITEM_ID}}">
+            <span class="check-box"></span>
+            <span class="check-text">{{ITEM_TEXT}}</span>
+          </label>
+          <!-- CHECKLIST_ITEM_END -->
+        </div>
+      </div>
+      <!-- CATEGORY_END -->
+
+      <div class="progress-card animate-in" style="animation-delay: 0.3s">
+        <div class="progress-header">
+          <span>准备进度</span>
+          <span class="progress-count">0/{{TOTAL_ITEMS}}</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>renderTabbar('prepare');</script>
+</body>
+</html>

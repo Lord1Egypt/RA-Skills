@@ -1,0 +1,32 @@
+{
+  "name": "示例材料配置",
+  "version": "1.0.0",
+  "description": "示例配置文件，展示材料库结构（不含真实价格）",
+  "materials": [
+    {
+      "id": "AL6061",
+      "name": "铝合金6061",
+      "name_en": "Aluminum 6061",
+      "density": 2.7,
+      "difficulty_coefficient": 1.0,
+      "note": "示例数据，实际价格请配置商业版"
+    },
+    {
+      "id": "SS304",
+      "name": "不锈钢304",
+      "name_en": "Stainless Steel 304",
+      "density": 7.93,
+      "difficulty_coefficient": 1.3,
+      "note": "示例数据，实际价格请配置商业版"
+    }
+  ],
+  "surface_treatments": [
+    {
+      "id": "ANODIZE",
+      "name": "阳极氧化",
+      "name_en": "Anodizing",
+      "cost_coefficient": 0.15,
+      "note": "示例数据"
+    }
+  ]
+}

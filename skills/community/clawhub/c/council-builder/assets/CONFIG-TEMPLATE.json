@@ -1,0 +1,7 @@
+{
+  "agent_name": "{{AGENT_NAME}}",
+  "setup_complete": false,
+  "preferences": {},
+  "api_keys_ref": [],
+  "custom_settings": {}
+}

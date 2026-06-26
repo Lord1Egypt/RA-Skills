@@ -1,0 +1,44 @@
+name: wps-office-automation
+version: 1.1.0
+description: WPS Office automation skill for document, spreadsheet, presentation and PDF processing
+author: ClawHub Developer
+license: MIT
+homepage: https://github.com/clawhub/office-tool
+repository: https://github.com/clawhub/office-tool.git
+category: office-automation
+tags:
+  - wps
+  - office
+  - automation
+  - document-processing
+  - spreadsheet
+  - presentation
+  - pdf
+  - productivity
+trigger_phrases:
+  - "generate document"
+  - "polish document"
+  - "review contract"
+  - "clean data"
+  - "analyze data"
+  - "generate chart"
+  - "generate ppt outline"
+  - "create presentation"
+  - "convert pdf"
+  - "extract pdf"
+  - "merge pdf"
+  - "split pdf"
+  - "create office document"
+  - "process spreadsheet"
+  - "make presentation"
+entry_point: main.py
+min_python_version: "3.9"
+max_execution_time: 300
+icon: 📄
+compatibility:
+  - python3.9
+  - python3.10
+  - python3.11
+  - python3.12
+required_permissions:
+  - file-system

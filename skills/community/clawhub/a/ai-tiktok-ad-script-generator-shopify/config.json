@@ -1,0 +1,150 @@
+{
+  "skill_id": "ai-tiktok-ad-script-generator-shopify",
+  "version": "1.1.0",
+  "input_schema": {
+    "fields": [
+      {
+        "id": "product_name",
+        "label": "Product Name",
+        "type": "text",
+        "placeholder": "e.g., GlowSerum Pro Vitamin C Face Serum",
+        "required": true,
+        "max_length": 100
+      },
+      {
+        "id": "product_description",
+        "label": "Product Description",
+        "type": "textarea",
+        "placeholder": "e.g., A lightweight daily Vitamin C serum that brightens skin and reduces fine lines in 4 weeks.",
+        "required": true,
+        "max_length": 500
+      },
+      {
+        "id": "target_audience",
+        "label": "Target Audience",
+        "type": "text",
+        "placeholder": "e.g., Women aged 25-40 who struggle with uneven skin tone",
+        "required": true,
+        "max_length": 200
+      },
+      {
+        "id": "key_benefits",
+        "label": "Key Benefits (up to 3, comma-separated)",
+        "type": "text",
+        "placeholder": "e.g., Fades dark spots in 2 weeks, Lightweight & non-greasy, Dermatologist tested",
+        "required": true,
+        "max_length": 300
+      },
+      {
+        "id": "pain_points",
+        "label": "Core Pain Point",
+        "type": "text",
+        "placeholder": "e.g., Dull, uneven skin tone that makes them feel less confident without makeup",
+        "required": true,
+        "max_length": 200
+      },
+      {
+        "id": "price",
+        "label": "Product Price",
+        "type": "text",
+        "placeholder": "e.g., $34.99",
+        "required": true,
+        "max_length": 20
+      },
+      {
+        "id": "offer",
+        "label": "Current Offer / Promotion (optional)",
+        "type": "text",
+        "placeholder": "e.g., 25% OFF for first-time buyers | Free shipping on orders over $40",
+        "required": false,
+        "max_length": 150
+      },
+      {
+        "id": "brand_tone",
+        "label": "Brand Tone",
+        "type": "select",
+        "required": true,
+        "default": "Relatable",
+        "options": [
+          { "value": "Energetic", "label": "Energetic" },
+          { "value": "Relatable", "label": "Relatable" },
+          { "value": "Aspirational", "label": "Aspirational" },
+          { "value": "Educational", "label": "Educational" },
+          { "value": "Humorous", "label": "Humorous" },
+          { "value": "Authoritative", "label": "Authoritative" }
+        ]
+      },
+      {
+        "id": "platform_format",
+        "label": "Ad Format",
+        "type": "select",
+        "required": true,
+        "default": "In-Feed Ad",
+        "options": [
+          { "value": "In-Feed Ad", "label": "In-Feed Ad" },
+          { "value": "TopView", "label": "TopView" },
+          { "value": "Spark Ad / UGC Boost", "label": "Spark Ad / UGC Boost" }
+        ]
+      },
+      {
+        "id": "script_count",
+        "label": "Number of Script Variations",
+        "type": "number",
+        "required": true,
+        "default": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "reali_tea_mode",
+        "label": "Reali-TEA Mode",
+        "type": "toggle",
+        "required": false,
+        "default": false,
+        "help_text": "Turn ON to generate scripts with intentional human imperfections: natural speech fillers, mid-sentence pivots, accidental-looking product reveals, and lo-fi production notes. Makes ads feel unscripted and organic. Ideal for UGC creators and Spark Ads.",
+        "when_on": {
+          "unlocks": ["reali_tea_intensity"]
+        }
+      },
+      {
+        "id": "reali_tea_intensity",
+        "label": "Reali-TEA Intensity",
+        "type": "select",
+        "required": false,
+        "default": "Medium",
+        "depends_on": "reali_tea_mode",
+        "help_text": "How raw should the imperfections feel?",
+        "options": [
+          {
+            "value": "Low",
+            "label": "Low — Subtle human touches (good for aspirational or educational brands)"
+          },
+          {
+            "value": "Medium",
+            "label": "Medium — Clearly UGC-native, recommended starting point"
+          },
+          {
+            "value": "High",
+            "label": "High — Raw, chaotic, almost-too-real (Gen Z, humor, novelty products)"
+          }
+        ]
+      }
+    ]
+  },
+  "output_schema": {
+    "sections": [
+      { "id": "hook_bank", "label": "Hook Bank" },
+      { "id": "main_scripts", "label": "Main Ad Scripts" },
+      { "id": "ugc_version", "label": "UGC Script" },
+      { "id": "cta_library", "label": "CTA Library" },
+      { "id": "ab_testing", "label": "A/B Testing Roadmap" },
+      { "id": "production_notes", "label": "Production Notes" }
+    ],
+    "format": "markdown"
+  },
+  "model_settings": {
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 4000,
+    "temperature": 0.8
+  }
+}

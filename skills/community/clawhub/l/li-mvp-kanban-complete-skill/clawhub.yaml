@@ -1,0 +1,374 @@
+name: LI-mvp-kanban-complete-skill
+version: "0.0.2"
+description: |
+  中文：MVP 看板系统 - 完整的任务管理技能，包含 Docker 镜像和源代码
+  English: MVP Kanban Board - Complete task management skill with Docker image and source code
+author: 北京老李
+license: MIT
+homepage: https://github.com/your-username/mvp-kanban
+
+# 类型：完整应用技能
+type: application
+
+# Docker 镜像配置
+docker:
+  build:
+    context: docker
+    dockerfile: Dockerfile
+  image: mvp-kanban:latest
+  tag: v0.0.1
+  ports:
+    - "9999:5000"
+  volumes:
+    - kanban-data:/app/data
+  environment:
+    - FLASK_ENV=production
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/api/health')"]
+    interval: 30s
+    timeout: 10s
+    retries: 3
+    start_period: 10s
+
+# MCP 配置
+mcp:
+  enabled: true
+  config: mcp.json
+  tools: 21
+  tool_categories:
+    - name: 任务管理
+      count: 7
+      tools:
+        - list_projects
+        - get_project_details
+        - add_project
+        - update_project_status
+        - update_project_full
+        - move_project
+        - delete_project
+    - name: 泳道管理
+      count: 5
+      tools:
+        - list_lanes
+        - add_lane
+        - update_lane
+        - delete_lane
+        - get_lane_details
+    - name: 批量操作
+      count: 3
+      tools:
+        - batch_create_projects
+        - batch_update_projects
+        - batch_delete_projects
+    - name: AI 功能
+      count: 4
+      tools:
+        - analyze_board
+        - search_similar_projects
+        - nlp_command
+        - llm_search
+    - name: 辅助功能
+      count: 2
+      tools:
+        - get_board_metrics
+        - get_project_history
+
+# 文档
+documentation:
+  - SKILL.md
+  - README.md
+  - docs/API.md
+  - docs/WEB_UI_GUIDE.md
+  - docs/USAGE_METHODS.md
+  - docs/QUICK_TEST.md
+
+# 标签
+tags:
+  - kanban
+  - task-management
+  - project-management
+  - mcp
+  - ai
+  - devops
+  - productivity
+  - complete-application
+
+# 分类
+category: productivity
+
+# 兼容性
+compatibility:
+  openclaw: ">=1.0.0"
+  python: ">=3.12"
+  docker: ">=20.10"
+
+# 安装钩子
+hooks:
+  pre_install: |
+    echo "🔍 检查 Docker..."
+    if ! command -v docker &> /dev/null; then
+      echo "❌ Docker 未安装，请先安装 Docker"
+      exit 1
+    fi
+    echo "✅ Docker 已安装"
+
+  post_install: |
+    echo "✅ MVP Kanban Skill 安装完成!"
+    echo ""
+    echo "📦 构建 Docker 镜像..."
+    cd docker
+    docker build -t mvp-kanban:latest .
+    cd ..
+    
+    echo ""
+    echo "🚀 启动服务..."
+    docker-compose up -d
+    
+    echo ""
+    echo "🌐 访问：http://localhost:9999"
+    echo "📖 文档：cat SKILL.md"
+    echo ""
+    echo "⏳ 等待服务启动..."
+    sleep 5
+    
+    echo ""
+    echo "✅ 服务已启动！"
+    curl -s http://localhost:9999/api/health | python3 -m json.tool || echo "⚠️ 服务正在启动，请稍后访问"
+
+  pre_uninstall: |
+    echo "⚠️ 停止服务..."
+    docker-compose down || true
+    docker stop mvp-kanban || true
+    docker rm mvp-kanban || true
+    echo "✅ 服务已停止"
+
+  post_uninstall: |
+    echo "⚠️ 数据卷保留：kanban-data"
+    echo "如需删除数据卷：docker volume rm kanban-data"
+
+# 配置项
+config:
+  port:
+    type: integer
+    default: 9999
+    description: Web 界面端口
+    env: PORT
+  data_volume:
+    type: string
+    default: kanban-data
+    description: 数据卷名称
+  workers:
+    type: integer
+    default: 1
+    description: Gunicorn worker 数量
+  threads:
+    type: integer
+    default: 4
+    description: Gunicorn 线程数
+
+# 服务管理
+services:
+  - name: kanban
+    type: docker-compose
+    config: docker/docker-compose.yml
+    auto_start: true
+    auto_restart: unless-stopped
+
+# 快捷命令
+commands:
+  start:
+    description: 启动服务
+    command: docker-compose up -d
+    cwd: docker
+    
+  stop:
+    description: 停止服务
+    command: docker-compose down
+    cwd: docker
+    
+  restart:
+    description: 重启服务
+    command: docker-compose restart
+    cwd: docker
+    
+  logs:
+    description: 查看日志
+    command: docker-compose logs -f
+    cwd: docker
+    
+  status:
+    description: 查看状态
+    command: docker-compose ps
+    cwd: docker
+    
+  health:
+    description: 健康检查
+    command: curl -s http://localhost:9999/api/health | python3 -m json.tool
+    
+  backup:
+    description: 备份数据
+    command: |
+      echo "备份数据库..."
+      docker run --rm -v kanban-data:/source -v $(pwd):/backup alpine tar czf /backup/kanban-backup-$(date +%Y%m%d).tar.gz /source
+      echo "✅ 备份完成"
+    
+  restore:
+    description: 恢复数据
+    command: |
+      echo "恢复数据库..."
+      docker run --rm -v kanban-data:/target -v $(pwd):/backup alpine tar xzf /backup/kanban-backup.tar.gz -C /target
+      echo "✅ 恢复完成"
+
+# 截图（可选）
+screenshots:
+  - url: https://example.com/screenshot1.png
+    description: Web 界面 - 看板视图
+  - url: https://example.com/screenshot2.png
+    description: Web 界面 - 编辑任务
+  - url: https://example.com/screenshot3.png
+    description: MCP 工具调用
+
+# 更新日志
+changelog:
+  v3.0.0:
+    date: 2026-03-21
+    changes:
+      - "🎉 完整应用技能 - 包含 Docker 镜像和源代码"
+      - "✅ 完整的增删改查功能"
+      - "🎨 Web 界面优化 - 双击编辑、拖拽移动"
+      - "🤖 MCP 工具增加到 21 个"
+      - "🧠 AI 分析功能 - 瓶颈识别、风险预警"
+      - "🔍 向量搜索 - 语义级任务搜索"
+      - "📦 一体化打包 - 安装即可用"
+  v2.0.0:
+    date: 2026-03-21
+    changes:
+      - "泳道支持"
+      - "拖拽交互"
+  v1.0.0:
+    date: 2026-03-18
+    changes:
+      - "初始版本"
+
+# 依赖检查
+requirements:
+  - name: Docker
+    command: docker --version
+    min_version: 0.0.1
+  - name: Docker Compose
+    command: docker-compose --version
+    min_version: 0.0.1
+  - name: Python (可选，用于开发)
+    command: python3 --version
+    min_version: 0.0.1
+    optional: true
+
+# 环境变量
+env:
+  FLASK_ENV: production
+  PYTHONPATH: /app
+  DATABASE_PATH: /app/data/kanban.db
+
+# 持久化数据
+persistence:
+  volumes:
+    - name: kanban-data
+      path: /app/data
+      description: SQLite 数据库和数据文件
+  backup_recommended: true
+
+# 安全配置
+security:
+  ports:
+    - port: 9999
+      protocol: tcp
+      description: Web 界面
+  firewall:
+    recommended: true
+    rules:
+      - port: 9999
+        protocol: tcp
+        action: allow
+
+# 性能配置
+performance:
+  memory_limit: 512M
+  cpu_limit: 1.0
+  recommended_resources:
+    memory: 256M
+    cpu: 0.5
+
+# 监控配置
+monitoring:
+  healthcheck:
+    enabled: true
+    endpoint: /api/health
+    interval: 30s
+  metrics:
+    enabled: true
+    endpoint: /api/metrics
+
+# 通知配置
+notifications:
+  enabled: false
+  channels:
+    - feishu
+    - dingtalk
+  events:
+    - task_created
+    - task_updated
+    - task_deleted
+
+# 集成示例
+integrations:
+  github:
+    enabled: false
+    description: GitHub Actions 自动创建任务
+  jenkins:
+    enabled: false
+    description: Jenkins 流水线集成
+  ci_cd:
+    enabled: false
+    description: CI/CD 集成示例
+
+# 常见问题
+faq:
+  - question: 如何修改端口？
+    answer: |
+      编辑 docker/docker-compose.yml，修改 ports 配置：
+      ```yaml
+      ports:
+        - "8080:5000"  # 改为 8080
+      ```
+      然后重启：docker-compose restart
+
+  - question: 数据在哪里？
+    answer: |
+      数据存储在 Docker 卷 kanban-data 中
+      位置：/var/lib/docker/volumes/kanban-data
+      数据库文件：kanban.db
+
+  - question: 如何备份数据？
+    answer: |
+      使用快捷命令：
+      ```bash
+      clawhub run mvp-kanban backup
+      ```
+      或手动备份：
+      ```bash
+      docker run --rm -v kanban-data:/source -v $(pwd):/backup alpine tar czf /backup/kanban-backup.tar.gz /source
+      ```
+
+  - question: 忘记密码怎么办？
+    answer: |
+      当前版本无需密码，所有操作都通过 Web 界面或 API 进行。
+      未来版本会添加用户认证功能。
+
+  - question: 支持多用户吗？
+    answer: |
+      当前版本为单用户设计。
+      多用户功能在开发中，预计 v4.0 发布。
+
+---
+
+**安装完成即可使用！**

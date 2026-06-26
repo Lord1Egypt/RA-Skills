@@ -1,0 +1,44 @@
+{
+  "skill_name": "cryptokit",
+  "evals": [
+    {
+      "id": 1,
+      "name": "hpke-recipient-encryption",
+      "prompt": "I need to encrypt a payload in an iOS app for a recipient public key. Please outline the CryptoKit approach and include the Swift details that prevent the common ECDH/HKDF/AES-GCM mistakes.",
+      "expected_output": "Recommends HPKE on iOS 17+, shows stateful Sender/Recipient usage, sends encapsulatedKey with ciphertext, uses AAD correctly, and avoids a manual ECDH+HKDF+AEAD protocol unless HPKE is unavailable.",
+      "files": [],
+      "assertions": [
+        "Recommends HPKE instead of hand-rolled ECDH+HKDF+AEAD for recipient public-key encryption when iOS 17+ is available.",
+        "Shows or states that HPKE.Sender and HPKE.Recipient are stateful and must be var when sealing or opening.",
+        "States that sender.encapsulatedKey must be transmitted alongside the ciphertext.",
+        "Mentions AAD/metadata authentication and same-order open semantics for multi-message HPKE."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "post-quantum-workflow",
+      "prompt": "We are targeting iOS 26 and want quantum-secure CryptoKit for a document sharing flow. What APIs should we use for key exchange and signatures, and what availability or Secure Enclave caveats matter?",
+      "expected_output": "Covers X-Wing HPKE, ML-KEM, ML-DSA, iOS 26 availability, Secure Enclave ML-KEM/ML-DSA variants on supported hardware, and key/signature size tradeoffs.",
+      "files": [],
+      "assertions": [
+        "Names XWingMLKEM768X25519 or the .XWingMLKEM768X25519_SHA256_AES_GCM_256 HPKE ciphersuite for hybrid quantum-secure public-key encryption.",
+        "Names MLKEM768 or MLKEM1024 for key encapsulation and MLDSA65 or MLDSA87 for signatures.",
+        "States that SHA-3/post-quantum CryptoKit APIs require iOS 26+ availability checks unless the deployment target is iOS 26+.",
+        "Correctly distinguishes classical Secure Enclave P256 support from iOS 26 SecureEnclave.MLKEM and SecureEnclave.MLDSA variants."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "storage-boundary",
+      "prompt": "Please review this design: generate a CryptoKit SymmetricKey, save its bytes in UserDefaults, then use AES-GCM for local file encryption. Should the CryptoKit skill own the whole fix?",
+      "expected_output": "Flags UserDefaults key storage as wrong, keeps CryptoKit focused on AES-GCM/nonce/AAD/key material handling, and routes durable secret storage/access-control policy to Keychain or the swift-security domain.",
+      "files": [],
+      "assertions": [
+        "Rejects storing symmetric key material in UserDefaults or normal files.",
+        "Keeps CryptoKit guidance focused on AES-GCM, nonce reuse avoidance, AAD, and key material handling.",
+        "Routes durable key storage, Keychain queries, biometric/passcode access control, and broader credential lifecycle to Keychain/swift-security guidance.",
+        "Mentions encryption export compliance or App Store encryption declaration when app-level encryption is relevant."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+name: search_web
+description: Search the internet using SearXNG
+version: 1.0.0
+
+functions:
+  - name: search_web
+    description: Search the web and return results
+    entry: tools/search_web.py
+    parameters:
+      type: object
+      properties:
+        query:
+          type: string
+      required:
+        - query

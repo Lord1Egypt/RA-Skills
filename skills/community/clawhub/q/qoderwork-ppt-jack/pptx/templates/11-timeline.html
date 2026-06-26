@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Timeline</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #FFFFFF;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block {
+      position: absolute;
+      left: 80px;
+      top: 100px;
+      width: 1680px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .title-block [data-slot="title"] {
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.25;
+      color: #000000;
+    }
+    .title-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.4;
+      color: #666666;
+    }
+    .timeline-row {
+      position: absolute;
+      left: 80px;
+      top: 380px;
+      width: 1760px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    .timeline-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-right: 48px;
+    }
+    .timeline-step:last-child { padding-right: 0; }
+    .step-number {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #73CD94;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 32px;
+      color: #000000;
+      flex-shrink: 0;
+    }
+    .step-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      gap: 0;
+    }
+    .step-connector {
+      height: 3px;
+      background-color: #73CD94;
+      flex: 1;
+      min-width: 40px;
+    }
+    .step-content {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .step-content [data-slot$="Heading"] {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .step-content [data-slot$="Copy"] {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.43;
+      color: #4D4D4D;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="timeline">
+    <div class="title-block">
+      <h1 data-slot="title">I am a main title</h1>
+      <p data-slot="subtitle">If the title is English, I am the subtitle; if the title is Chinese, I am the English translation</p>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-step">
+        <div class="step-header">
+          <div class="step-number" data-slot="step1Number">01</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <h2 data-slot="step1Heading">Step one heading</h2>
+          <p data-slot="step1Copy">Description of the first step in the process, about 2 to 4 lines of text.</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-header">
+          <div class="step-number" data-slot="step2Number">02</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <h2 data-slot="step2Heading">Step two heading</h2>
+          <p data-slot="step2Copy">Description of the second step in the process, about 2 to 4 lines of text.</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-header">
+          <div class="step-number" data-slot="step3Number">03</div>
+        </div>
+        <div class="step-content">
+          <h2 data-slot="step3Heading">Step three heading</h2>
+          <p data-slot="step3Copy">Description of the third step in the process, about 2 to 4 lines of text.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

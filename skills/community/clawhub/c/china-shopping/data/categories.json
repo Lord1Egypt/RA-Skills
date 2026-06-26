@@ -1,0 +1,184 @@
+{
+  "categories": {
+    "electronics": {
+      "name": "电子产品",
+      "description": "手机、电脑、数码产品等",
+      "icon": "📱",
+      "websites": [
+        {
+          "id": "jd",
+          "name": "京东",
+          "url": "https://www.jd.com",
+          "reason": "正品保障，物流速度快，售后服务好",
+          "rank": 1,
+          "tags": ["正品", "物流快", "售后好"]
+        },
+        {
+          "id": "tmall",
+          "name": "天猫",
+          "url": "https://www.tmall.com",
+          "reason": "品牌官方旗舰店，品质有保障",
+          "rank": 2,
+          "tags": ["官方", "品牌", "品质"]
+        },
+        {
+          "id": "suning",
+          "name": "苏宁易购",
+          "url": "https://www.suning.com",
+          "reason": "家电数码专业平台，线下门店多",
+          "rank": 3,
+          "tags": ["专业", "家电", "线下"]
+        },
+        {
+          "id": "mi",
+          "name": "小米商城",
+          "url": "https://www.mi.com",
+          "reason": "小米生态链产品，性价比高",
+          "rank": 4,
+          "tags": ["小米", "生态链", "性价比"]
+        }
+      ],
+      "shopping_tips": [
+        "购买电子产品建议选择官方旗舰店或自营平台",
+        "注意查看商品评价和售后服务政策",
+        "比价时注意配置和套餐差异",
+        "关注电商节促销活动（618、双11等）"
+      ]
+    },
+    "clothing": {
+      "name": "服装服饰",
+      "description": "衣服、鞋子、箱包等",
+      "icon": "👕",
+      "websites": [
+        {
+          "id": "taobao",
+          "name": "淘宝",
+          "url": "https://www.taobao.com",
+          "reason": "商品种类最全，价格实惠",
+          "rank": 1,
+          "tags": ["种类全", "价格低", "C2C"]
+        },
+        {
+          "id": "tmall",
+          "name": "天猫",
+          "url": "https://www.tmall.com",
+          "reason": "品牌服装官方店，品质较好",
+          "rank": 2,
+          "tags": ["品牌", "品质", "官方"]
+        },
+        {
+          "id": "vip",
+          "name": "唯品会",
+          "url": "https://www.vip.com",
+          "reason": "品牌服装折扣平台，性价比高",
+          "rank": 3,
+          "tags": ["折扣", "品牌", "性价比"]
+        },
+        {
+          "id": "jd",
+          "name": "京东",
+          "url": "https://www.jd.com",
+          "reason": "基本款服装，物流速度快",
+          "rank": 4,
+          "tags": ["基本款", "物流快", "自营"]
+        }
+      ],
+      "shopping_tips": [
+        "购买服装时注意查看尺码表和买家秀",
+        "关注材质成分和洗涤说明",
+        "品牌服装建议选择官方旗舰店",
+        "退换货政策对服装购买很重要"
+      ]
+    },
+    "groceries": {
+      "name": "食品杂货",
+      "description": "零食、生鲜、粮油等",
+      "icon": "🛒",
+      "websites": [
+        {
+          "id": "jddj",
+          "name": "京东到家",
+          "url": "https://daojia.jd.com",
+          "reason": "生鲜食品快速配送，1小时达",
+          "rank": 1,
+          "tags": ["生鲜", "快速", "配送"]
+        },
+        {
+          "id": "tmall_supermarket",
+          "name": "天猫超市",
+          "url": "https://chaoshi.tmall.com",
+          "reason": "商品种类丰富，次日达",
+          "rank": 2,
+          "tags": ["种类多", "超市", "次日达"]
+        },
+        {
+          "id": "yhd",
+          "name": "1号店",
+          "url": "https://www.yhd.com",
+          "reason": "食品杂货专业平台，品质好",
+          "rank": 3,
+          "tags": ["专业", "食品", "品质"]
+        },
+        {
+          "id": "missfresh",
+          "name": "每日优鲜",
+          "url": "https://www.missfresh.cn",
+          "reason": "新鲜果蔬，社区配送",
+          "rank": 4,
+          "tags": ["新鲜", "果蔬", "社区"]
+        }
+      ],
+      "shopping_tips": [
+        "生鲜食品注意查看生产日期和保质期",
+        "关注配送时间和保鲜措施",
+        "粮油等重物选择配送方便的平台",
+        "注意食品储存条件和食用建议"
+      ]
+    },
+    "beauty": {
+      "name": "美妆护肤",
+      "description": "化妆品、护肤品、香水等",
+      "icon": "💄",
+      "websites": [
+        {
+          "id": "tmall_global",
+          "name": "天猫国际",
+          "url": "https://www.tmall.hk",
+          "reason": "进口化妆品官方渠道，保真",
+          "rank": 1,
+          "tags": ["进口", "官方", "保真"]
+        },
+        {
+          "id": "jd_beauty",
+          "name": "京东美妆",
+          "url": "https://beauty.jd.com",
+          "reason": "正品保障，物流快，经常有活动",
+          "rank": 2,
+          "tags": ["正品", "物流快", "活动多"]
+        },
+        {
+          "id": "xiaohongshu",
+          "name": "小红书",
+          "url": "https://www.xiaohongshu.com",
+          "reason": "用户分享真实体验，社区氛围好",
+          "rank": 3,
+          "tags": ["社区", "分享", "真实"]
+        },
+        {
+          "id": "kaola",
+          "name": "网易考拉",
+          "url": "https://www.kaola.com",
+          "reason": "进口美妆专业平台，价格优势",
+          "rank": 4,
+          "tags": ["进口", "专业", "价格优"]
+        }
+      ],
+      "shopping_tips": [
+        "美妆产品注意查看成分和适用肤质",
+        "首次使用建议先做皮肤测试",
+        "关注产品的生产批号和保质期",
+        "正品验证很重要，选择可信平台"
+      ]
+    }
+  }
+}

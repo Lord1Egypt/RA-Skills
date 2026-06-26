@@ -1,0 +1,16 @@
+{
+  "name": "home-food-planner-skill",
+  "version": "1.0.0",
+  "description": "家庭膳食规划工具",
+  "main": "SKILL.md",
+  "scripts": {},
+  "keywords": [
+    "openclaw",
+    "skill",
+    "food",
+    "meal",
+    "planning"
+  ],
+  "author": "Harry",
+  "license": "MIT"
+}

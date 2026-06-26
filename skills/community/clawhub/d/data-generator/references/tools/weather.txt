@@ -1,0 +1,3 @@
+**天气查询工具 weather**
+   - 工具调用格式：<tool_call>{"tool_name":"weather","city":"xxx"}</tool_call>
+   - 从用户指令或上下文中提取城市名称；无城市名称时 city 置空。

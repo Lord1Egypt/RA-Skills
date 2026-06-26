@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tencent Doc Update Watcher"
+  short_description: "Privacy-first Tencent Docs update monitor and diff reports."
+  default_prompt: "Use $tencent-doc-update-watch to re-crawl Tencent Docs links, compare against the latest snapshot, and generate an update report."

@@ -1,35 +1,36 @@
 ---
-name: "Figma"
-description: "Interact with Figma files to read structure, export layers as images, and retrieve comments using the Figma REST API with authentication."
-category: "software-development"
-source: "ClawHub"
-tags: [api, design, figma]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kai-tw-figma"
-sourceUrl: "https://clawhub.ai/skills/kai-tw-figma"
+name: figma
+description: Interact with the Figma REST API to read files, export layers/components as images, and retrieve comments. Use when the user needs information from Figma designs or wants to export assets for development. Triggers include "read figma file", "export figma layer", or "check figma comments".
+metadata:
+  openclaw:
+    emoji: 📐
+    requires:
+      env:
+        - FIGMA_TOKEN
 ---
 
-# Figma
+# Figma Skill
 
-> Interact with Figma files to read structure, export layers as images, and retrieve comments using the Figma REST API with authentication.
+This skill allows the agent to interact with Figma files via the REST API.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kai-tw-figma`
-- **Source URL:** [https://clawhub.ai/skills/kai-tw-figma](https://clawhub.ai/skills/kai-tw-figma)
+## Setup
 
-## Overview
+Requires a Figma Personal Access Token (PAT).
+Environment Variable: `FIGMA_TOKEN`
 
+## Procedures
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kai-tw-figma
-```
+### 1. Read File Structure
+To understand the contents of a Figma file (pages, frames, layers):
+`python scripts/figma_tool.py get-file <file_key>`
+
+### 2. Export Images
+To export specific layers/components as images:
+`python scripts/figma_tool.py export <file_key> --ids <id1>,<id2> --format <png|jpg|svg|pdf> --scale <1|2|3|4>`
+
+### 3. Check Comments
+To list recent comments on a file:
+`python scripts/figma_tool.py get-comments <file_key>`
+
+## References
+- [Figma API Documentation](https://www.figma.com/developers/api)

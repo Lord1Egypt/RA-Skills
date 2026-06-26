@@ -1,0 +1,34 @@
+{
+  "name": "openclaw-civic-skill",
+  "version": "1.0.0",
+  "description": "Connect any LLM to Civic MCP tools",
+  "type": "module",
+  "main": "civic-tool-runner.ts",
+  "scripts": {
+    "start": "tsx civic-tool-runner.ts",
+    "list": "tsx civic-tool-runner.ts --list",
+    "search": "tsx civic-tool-runner.ts --search",
+    "call": "tsx civic-tool-runner.ts --call"
+  },
+  "keywords": [
+    "mcp",
+    "civic",
+    "claude",
+    "llm",
+    "tools",
+    "api"
+  ],
+  "author": "Civic",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "tsx": "^4.19.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,35 +1,47 @@
 ---
-name: "Changelog Generator Zh"
-description: "Changelog生成 / 版本日志自动生成 / 发布说明自动撰写 / Release Notes generator。根据Git提交记录、功能列表或代码变更，自动生成结构清晰的版本更新日志。适用于技术负责人/研发经理整理发版改动、产品经理撰写版本说明、运维工程师记录系统升级历史。支持按功能分类（新增/修复/优化..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/changelog-generator-zh"
-sourceUrl: "https://clawhub.ai/skills/changelog-generator-zh"
+name: changelog-generator-zh
+description: >
+  Changelog生成 / 版本日志自动生成 / 发布说明自动撰写 / Release Notes generator。根据Git提交记录、功能列表或代码变更，自动生成结构清晰的版本更新日志。适用于技术负责人/研发经理整理发版改动、产品经理撰写版本说明、运维工程师记录系统升级历史。支持按功能分类（新增/修复/优化/破坏性变更），兼容Keep a Changelog格式标准。常见搜索触发词：版本更新怎么写、自动生成发布说明、Git提交转日志、版本记录怎么整理、发版前改动汇总、产品迭代文档模板、破坏性变更怎么标注。
+tags: [changelog, release-notes, 版本日志, 发布说明, 自动生成, git提交, 版本管理, 产品迭代, 发版文档, 开发文档]
 ---
 
-# Changelog Generator Zh
+# Changelog / 版本更新日志生成器
 
-> Changelog生成 / 版本日志自动生成 / 发布说明自动撰写 / Release Notes generator。根据Git提交记录、功能列表或代码变更，自动生成结构清晰的版本更新日志。适用于技术负责人/研发经理整理发版改动、产品经理撰写版本说明、运维工程师记录系统升级历史。支持按功能分类（新增/修复/优化...
+根据 Git 提交记录或功能变更列表，自动生成结构化的版本更新日志与发布说明，适合开发团队、产品经理在迭代发版时快速整理改动内容。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/changelog-generator-zh`
-- **Source URL:** [https://clawhub.ai/skills/changelog-generator-zh](https://clawhub.ai/skills/changelog-generator-zh)
+## Tools Required
+- create_docx
+- md_to_docx
 
-## Overview
+## Usage
+- "帮我把这些 git commit 整理成一份 v2.3.0 的更新日志"
+- "我们这次版本新增了用户权限管理、修复了导出崩溃的 bug，帮我写一份发版说明"
+- "把以下代码改动总结成 Changelog 条目，按新增/修复/优化分类"
 
+## Examples
+输入：
+```
+feat: 新增批量导入用户功能
+fix: 修复报表导出时偶发崩溃问题
+perf: 优化首页加载速度，减少 40% 请求时间
+chore: 升级依赖库至最新版本
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/changelog-generator-zh
+输出：
+```markdown
+# Changelog
+
+## [v2.3.0] - 2025-07-14
+
+### ✨ 新增功能
+- 支持批量导入用户，提升运营效率
+
+### 🐛 问题修复
+- 修复报表导出时偶发崩溃的问题
+
+### ⚡ 性能优化
+- 首页加载速度提升，接口请求时间减少约 40%
+
+### 🔧 其他变更
+- 升级第三方依赖库至最新稳定版本
 ```

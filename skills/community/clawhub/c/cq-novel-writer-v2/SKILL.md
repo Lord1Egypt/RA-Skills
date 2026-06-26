@@ -1,35 +1,112 @@
 ---
-name: "Novel Writer"
-description: "长篇小说持续创作技能。重生穿越文写作专用。自动读取故事总纲、前文、范本，确保章节连贯风格一致。内置记忆系统维护人物关系和剧情连续性。适用：写网文、写小说、写重生穿越文、每日定期写章节。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cq-novel-writer-v2"
-sourceUrl: "https://clawhub.ai/skills/cq-novel-writer-v2"
+name: cq-novel-writer
+description: 长篇小说持续创作技能。重生穿越文写作专用。自动读取故事总纲、前文、范本，确保章节连贯风格一致。内置记忆系统维护人物关系和剧情连续性。适用：写网文、写小说、写重生穿越文、每日定期写章节。
 ---
 
-# Novel Writer
+# Novel Writer - 重生穿越小说写作技能
 
-> 长篇小说持续创作技能。重生穿越文写作专用。自动读取故事总纲、前文、范本，确保章节连贯风格一致。内置记忆系统维护人物关系和剧情连续性。适用：写网文、写小说、写重生穿越文、每日定期写章节。
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cq-novel-writer-v2`
-- **Source URL:** [https://clawhub.ai/skills/cq-novel-writer-v2](https://clawhub.ai/skills/cq-novel-writer-v2)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cq-novel-writer-v2
 ```
+1. 读取故事总纲 → 了解当前进度
+2. 读取前1章 → 确保连贯
+3. 读取范本1-2段 → 学习风格
+4. 写新章节（4000-5000字）
+5. 更新记忆文件
+6. 更新故事总纲
+```
+
+---
+
+## 记忆系统（必读！）
+
+每次写新章节前**必须读取**以下文件：
+
+| 文件 | 内容 | 何时读 |
+|------|------|--------|
+| `故事总纲.md` | 当前进度、人物、伏笔 | 每次 |
+| `人物关系.md` | 所有角色状态 | 每次 |
+| `剧情线.md` | 已发生的关键情节 | 每次 |
+| `设定.md` | 世界观、能力规则 | 需要时 |
+
+### 记忆文件写入时机
+
+| 事件 | 写入文件 |
+|------|----------|
+| 新角色出场 | `人物关系.md` |
+| 角色状态变化 | `人物关系.md` |
+| 关键情节 | `剧情线.md` |
+| 新设定/规则 | `设定.md` |
+| 穿帮/错误 | `错误记录.md` |
+
+---
+
+## 章节模板
+
+```markdown
+# 第X章 [标题]
+
+> **本章概要**：
+> **爽点**：
+> **钩子**：
+
+---
+
+（正文4000-5000字）
+
+---
+
+（本章完）
+```
+
+---
+
+## 写作规范
+
+### 人物设定
+- 男主：善良正义、有分寸、不滥情
+- 能力展示：村里展医术，回城后展命理道术
+- 能力来源：川西小山村道观传承（掩护）
+
+### 爽点节奏
+```
+每1-2章：小打脸/小收获
+每3-5章：中打脸/阶段收获
+每8-12章：大高潮
+```
+
+### 禁忌
+- ❌ 不要写灵力/功法（1978年没有）
+- ❌ 不要连续两章无爽点
+- ❌ 不要让已死角色复活
+- ❌ 不要忘记埋过的伏笔
+
+---
+
+## 工作目录
+
+```
+~/.openclaw/workspace/novel/
+├── 故事总纲.md      # 总进度
+├── 人物关系.md      # 角色状态
+├── 剧情线.md       # 关键情节
+├── 设定.md         # 世界观
+├── 错误记录.md     # 穿帮记录
+└── 重生78之道门神医-第X章.txt
+```
+
+---
+
+## 自动写作Cron
+
+每1小时自动执行：
+```bash
+写1章 → 更新记忆 → 更新总纲 → 复制到桌面
+```
+
+---
+
+## 参考
+
+- 范本：~/Desktop/重生78.txt（已下载）
+- 我们的小说：重生78之道门神医系列

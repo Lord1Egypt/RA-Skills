@@ -1,0 +1,19 @@
+{
+  "name": "example-hackernews-ai",
+  "description": "Example: Monitor HN for AI-related posts using LLM matching",
+  "urls": [
+    {
+      "url": "https://news.ycombinator.com/",
+      "label": "Hacker News Front Page"
+    }
+  ],
+  "match": {
+    "type": "llm",
+    "value": "页面中是否有与AI、大模型、GPT、Claude、LLM、机器学习相关的重要新闻或讨论？排除评论区闲聊。"
+  },
+  "interval": 7200,
+  "state": "active",
+  "enabled": false,
+  "_llm_match_how_it_works": "Cron agent runs 'fetch --event example-hackernews-ai', reads the extracted text, and uses its own LLM to decide if content matches. No external API call needed — the agent IS the LLM.",
+  "_comment": "Set enabled=true to activate."
+}

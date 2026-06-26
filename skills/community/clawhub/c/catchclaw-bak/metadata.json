@@ -1,0 +1,66 @@
+{
+  "name": "agentar-cli",
+  "version": "3.5.5",
+  "description": "Standalone CLI for searching, listing, installing, and exporting agentars.",
+  "api_base_url": "https://catchclaw.me",
+  "required_binaries": [
+    "node"
+  ],
+  "metadata": {
+    "openclaw": {
+      "emoji": "📦",
+      "homepage": "https://github.com/OpenAgentar/catchclaw",
+      "requires": {
+        "bins": [
+          "node"
+        ],
+        "env": [
+          "AGENTAR_API_BASE_URL",
+          "AGENTAR_HOME"
+        ],
+        "config": [
+          "~/.agentar",
+          "~/.openclaw/workspace",
+          "~/.openclaw/agentar-workspaces",
+          "~/agentar-exports"
+        ]
+      }
+    }
+  },
+  "config_paths": [
+    {
+      "path": "~/.agentar",
+      "access": "read_write"
+    },
+    {
+      "path": "~/.openclaw/workspace",
+      "access": "read_write"
+    },
+    {
+      "path": "~/.openclaw/agentar-workspaces",
+      "access": "read_write"
+    },
+    {
+      "path": "~/agentar-exports",
+      "access": "read_write"
+    }
+  ],
+  "env_vars": [
+    {
+      "name": "AGENTAR_API_BASE_URL",
+      "required": false,
+      "description": "Override the default API base URL (https://catchclaw.me)"
+    },
+    {
+      "name": "AGENTAR_HOME",
+      "required": false,
+      "description": "Override the default CLI config directory (~/.agentar)"
+    }
+  ],
+  "credentials": {
+    "optional": true,
+    "description": "API key for agentars that require backend authentication",
+    "path": "skills/.credentials",
+    "written_by": "install command when user passes --api-key"
+  }
+}

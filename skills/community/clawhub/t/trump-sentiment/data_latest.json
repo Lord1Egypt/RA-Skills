@@ -1,0 +1,74 @@
+[
+  {
+    "title": "X search Trump Iran deal",
+    "desc": "X live search returned no results for Trump Iran deal keywords — X error",
+    "url": "x.com/search?q=trump+iran+deal",
+    "source": "X Search",
+    "score": 0,
+    "category": "quiet",
+    "timestamp": "2026-04-18T20:03Z"
+  },
+  {
+    "title": "X search Iran ceasefire",
+    "desc": "X live search returned no results for Iran ceasefire keywords — X error",
+    "url": "x.com/search?q=iran+ceasefire",
+    "source": "X Search",
+    "score": 0,
+    "category": "quiet",
+    "timestamp": "2026-04-18T20:03Z"
+  },
+  {
+    "title": "X search Iran war",
+    "desc": "X live search returned no results for Iran war keywords — X error",
+    "url": "x.com/search?q=iran+war",
+    "source": "X Search",
+    "score": 0,
+    "category": "quiet",
+    "timestamp": "2026-04-18T20:03Z"
+  },
+  {
+    "title": "WatcherGuru US Iran nuclear talks critical juncture",
+    "desc": "Reports on US-Iran nuclear talks at critical juncture — 1h ago CST",
+    "url": "x.com/WatcherGuru",
+    "source": "WatcherGuru",
+    "score": 1,
+    "category": "other",
+    "timestamp": "2026-04-18T19:03Z"
+  },
+  {
+    "title": "WatcherGuru Iran enriching uranium at 84% purity",
+    "desc": "Iran reportedly enriching uranium at 84pct purity at Fordow facility near Qom — 18h ago CST",
+    "url": "x.com/WatcherGuru",
+    "source": "WatcherGuru",
+    "score": 3,
+    "category": "other",
+    "timestamp": "2026-04-18T02:03Z"
+  },
+  {
+    "title": "WatcherGuru ceasefire violations Middle East tensions",
+    "desc": "Reports of ceasefire violations and escalating Middle East tensions — 11-12h ago CST",
+    "url": "x.com/WatcherGuru",
+    "source": "WatcherGuru",
+    "score": 2,
+    "category": "commodity",
+    "timestamp": "2026-04-18T08:03Z"
+  },
+  {
+    "title": "KobeissiLetter timeline error",
+    "desc": "No visible recent tweets — timeline returned error",
+    "url": "x.com/KobeissiLetter",
+    "source": "KobeissiLetter",
+    "score": 0,
+    "category": "quiet",
+    "timestamp": "2026-04-18T20:03Z"
+  },
+  {
+    "title": "zerohedge protected account",
+    "desc": "Account tweets are protected — cannot access",
+    "url": "x.com/zerohedge",
+    "source": "zerohedge",
+    "score": 0,
+    "category": "quiet",
+    "timestamp": "2026-04-18T20:03Z"
+  }
+]

@@ -1,0 +1,67 @@
+
+# A股日报生成器配置
+version: "1.0"
+
+# 输出配置
+output:
+  base_dir: "/Users/yibiao/Desktop/openclaw_doc/财经日报"
+  morning_subdir: "morning"
+  evening_subdir: "evening"
+
+# 数据源配置
+data_sources:
+  # 优先级1：AKShare
+  akshare:
+    enabled: true
+    cache_ttl: 3600  # 缓存1小时
+
+  # 优先级2：tushare-skills
+  tushare:
+    enabled: true
+    path: "../../tushare-skills/tushare"
+    cache_ttl: 3600
+
+  # 优先级3：mx-data
+  mx_data:
+    enabled: true
+    api_key_env: "MX_APIKEY"
+
+  # 优先级4：新浪财经API
+  sina:
+    enabled: true
+    cache_ttl: 1800  # 缓存30分钟
+
+# 自选股配置
+watchlist:
+  path: "config/watchlist.yaml"
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "logs/report_generator.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# 发布配置
+publish:
+  # 飞书文档配置
+  feishu_doc:
+    enabled: true
+    folder_token: ""  # 飞书文件夹token（可选）
+
+  # PDF转换配置
+  pdf:
+    enabled: false  # 默认关闭（wkhtmltopdf需单独安装）
+    output_dir: "reports/pdf"
+    engine: "wkhtmltopdf"  # 或 "weasyprint"
+
+  # 飞书消息推送
+  feishu_message:
+    enabled: false  # 默认关闭，避免误发
+    target_chat_id: "ou_4e28c025ac8a3beb1bf10621a9ddeb86"
+    message_template: |
+      📊 {mode}已生成！
+      📅 日期：{date}
+      📄 飞书文档：{doc_url}
+      📑 PDF文件：{pdf_path}
+

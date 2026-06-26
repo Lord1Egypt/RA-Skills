@@ -1,0 +1,13 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_designer_get_module_list",
+		"description": "Query the module list set for the current application in the low-code platform.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				
+			}
+		}
+	}
+}

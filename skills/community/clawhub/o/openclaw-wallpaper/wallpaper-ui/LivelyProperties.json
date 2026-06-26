@@ -1,0 +1,20 @@
+{
+    "apiUrl": {
+        "type": "textbox",
+        "text": "API 地址",
+        "value": "http://127.0.0.1:8765/chat",
+        "help": "OpenClaw 壁纸通信 API 地址"
+    },
+    "sessionKey": {
+        "type": "textbox",
+        "text": "会话ID",
+        "value": "wallpaper-main",
+        "help": "用于保持对话上下文的会话标识"
+    },
+    "userName": {
+        "type": "textbox",
+        "text": "你的名字",
+        "value": "User",
+        "help": "显示在对话中的名字"
+    }
+}

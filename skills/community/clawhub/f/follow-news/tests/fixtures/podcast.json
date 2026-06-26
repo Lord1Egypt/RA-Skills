@@ -1,0 +1,45 @@
+{
+  "generated": "2026-05-14T00:00:00+00:00",
+  "source_type": "podcast",
+  "total_sources": 1,
+  "total_articles": 2,
+  "sources": [
+    {
+      "source_id": "training-data-podcast",
+      "source_type": "podcast",
+      "name": "Training Data",
+      "url": "https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8",
+      "priority": true,
+      "topics": ["llm", "ai-agent"],
+      "platform": "youtube",
+      "status": "ok",
+      "attempts": 1,
+      "count": 2,
+      "articles": [
+        {
+          "title": "Waymo Autonomy",
+          "link": "https://www.youtube.com/watch?v=abc123",
+          "date": "2026-05-14T00:00:00+00:00",
+          "guid": "youtube:abc123",
+          "topics": ["llm", "ai-agent"],
+          "show_name": "Training Data",
+          "platform": "youtube",
+          "duration_seconds": 3600,
+          "transcript_status": "ok",
+          "transcript": "Speaker 1 | 00:00 - 00:05 Autonomy is a product problem."
+        },
+        {
+          "title": "Podcast Without Transcript",
+          "link": "https://www.youtube.com/watch?v=def456",
+          "date": "2026-05-14T00:00:00+00:00",
+          "guid": "youtube:def456",
+          "topics": ["frontier-tech"],
+          "show_name": "Training Data",
+          "platform": "youtube",
+          "transcript_status": "missing",
+          "transcript_error": "No subtitle track found"
+        }
+      ]
+    }
+  ]
+}

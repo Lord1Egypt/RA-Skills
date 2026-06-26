@@ -1,0 +1,15 @@
+# OpenClaw Trading Assistant
+# 交易辅助决策系统
+
+# Core Dependencies / 核心依赖
+pandas>=2.0.0
+numpy>=1.24.0
+requests>=2.31.0
+python-dateutil>=2.8.2
+python-dotenv>=1.0.0  # Environment variable loading
+
+# Optional Dependencies (Development) / 可选依赖 (开发用)
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.0.0
+# flake8>=6.0.0

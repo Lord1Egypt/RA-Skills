@@ -1,0 +1,133 @@
+{
+  "ticker": "300347.SZ",
+  "market": "CN",
+  "valuation_model": "steady_state_single_stage",
+  "requested_valuation_model": "steady_state_single_stage",
+  "effective_valuation_model": "steady_state_single_stage",
+  "degraded": false,
+  "degradation_reasons": [],
+  "currency": "CNY",
+  "as_of_date": "2026-04-14",
+  "tax": {
+    "effective_tax_rate": 0.1975238824869139,
+    "effective_tax_rate_source": "akshare:tax_rate",
+    "marginal_tax_rate": 0.25,
+    "marginal_tax_rate_source": "market_default"
+  },
+  "wacc_inputs": {
+    "risk_free_rate": 0.025,
+    "risk_free_rate_source": "market_default_cn",
+    "equity_risk_premium": 0.06,
+    "equity_risk_premium_source": "market_default",
+    "beta": 1.5279662821920361,
+    "beta_source": "baostock_price_regression:sh.000300",
+    "cost_of_equity": 0.11667797693152215,
+    "pre_tax_cost_of_debt": 0.04813826848966028,
+    "pre_tax_cost_of_debt_source": "akshare:interest_expense_over_total_debt",
+    "wacc": 0.1136554831003471
+  },
+  "capital_structure": {
+    "equity_weight": 0.9624881041745897,
+    "debt_weight": 0.037511895825410285,
+    "source": "akshare_baostock:market_value_using_total_debt"
+  },
+  "fcff": {
+    "anchor": 1179493839.0077107,
+    "anchor_method": "cfo_plus_after_tax_interest_minus_capex",
+    "selected_path": "cfo",
+    "anchor_ebiat_path": 996601402.3732998,
+    "anchor_cfo_path": 1179493839.0077107,
+    "ebiat_path_available": true,
+    "cfo_path_available": true,
+    "after_tax_interest": 275778170.9477107,
+    "after_tax_interest_source": "interest_paid",
+    "reconciliation_gap": 182892436.63441086,
+    "reconciliation_gap_pct": 0.15506010339848433,
+    "anchor_mode": "latest",
+    "anchor_observation_count": 1,
+    "delta_nwc_source": "op_nwc_delta",
+    "last_report_period": "2025-12-31"
+  },
+  "valuation": {
+    "enterprise_value": 14522403184.50688,
+    "equity_value": 14418660089.44688,
+    "per_share_value": 16.745904597714414,
+    "terminal_growth_rate": 0.03,
+    "terminal_growth_rate_effective": 0.03,
+    "present_value_stage1": 0.0,
+    "present_value_stage2": null,
+    "present_value_terminal": 14522403184.50688,
+    "terminal_value": 14522403184.50688,
+    "terminal_value_share": 1.0,
+    "explicit_forecast_years": 0,
+    "stage1_years": null,
+    "stage2_years": null,
+    "stage2_decay_mode": null
+  },
+  "market_implied_growth": {
+    "enabled": true,
+    "success": true,
+    "valuation_model": "steady_state_single_stage",
+    "solved_field": "growth_rate",
+    "solved_value": 0.08862177146940542,
+    "solver_used": "closed_form",
+    "lower_bound": -0.5,
+    "upper_bound": 0.5,
+    "iterations": 0,
+    "residual": 0.0,
+    "market_price": 59.45,
+    "market_enterprise_value": 51291741767.56,
+    "base_case_per_share_value": 16.745904597714414,
+    "base_case_enterprise_value": 14522403184.50688,
+    "message": "Market-implied growth solved successfully."
+  },
+  "diagnostics": [
+    "provider_normalization:akshare_baostock:A",
+    "provider_cache_refresh:akshare_baostock",
+    "tax_rate_paths_are_separated",
+    "fcff_path_selector_preferred_cfo",
+    "fcff_path_selected:cfo",
+    "valuation_model_steady_state_single_stage"
+  ],
+  "warnings": [
+    "fcff_reconciliation_gap_pct_above_0.10"
+  ],
+  "market_inputs": {
+    "enterprise_value_market": 51291741767.56,
+    "enterprise_value_market_source": "derived_from_market_price_shares_out_and_net_debt",
+    "equity_value_market": 51187998672.5,
+    "market_price": 59.45,
+    "market_price_source": "market_inputs.market_price",
+    "shares_out": 861026050.0,
+    "shares_out_source": "fundamentals.shares_out",
+    "net_debt": 103743095.05999994,
+    "net_debt_source": "fundamentals.net_debt"
+  },
+  "sensitivity": {
+    "metric": "per_share_value",
+    "metric_label": "Per Share Value",
+    "base_wacc": 0.113655,
+    "base_terminal_growth_rate": 0.03,
+    "base_metric_value": 16.745904597714414,
+    "market_price": 59.45,
+    "wacc_axis": {
+      "min": 0.093655,
+      "max": 0.133655,
+      "points": 5
+    },
+    "terminal_growth_axis": {
+      "min": 0.02,
+      "max": 0.04,
+      "points": 5
+    },
+    "diagnostics": [
+      "sensitivity_heatmap:wacc_x_terminal_growth",
+      "sensitivity_metric:per_share_value"
+    ],
+    "warnings": []
+  },
+  "artifacts": {
+    "sensitivity_heatmap_path": "examples/300347.sz_market_implied_growth_single_stage.output.sensitivity.png",
+    "sensitivity_heatmap_svg_path": "examples/300347.sz_market_implied_growth_single_stage.output.sensitivity.svg"
+  }
+}

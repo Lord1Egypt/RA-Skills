@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/tcm-constitution-tracker.json",
+  "title": "TCMConstitutionTracker",
+  "description": "中医体质辨识与养生管理的数据结构定义",
+  "type": "object",
+  "properties": {
+    "constitution_tracking": {
+      "type": "object",
+      "properties": {
+        "user_profile": {
+          "type": "object",
+          "properties": {
+            "age": { "type": "integer" },
+            "gender": { "type": "string", "enum": ["male", "female"] },
+            "assessment_count": { "type": "integer" }
+          }
+        },
+        "latest_assessment": {
+          "type": "object",
+          "properties": {
+            "date": { "type": "string", "format": "date" },
+            "primary_type": {
+              "type": "string",
+              "enum": ["peaceful", "qi_deficiency", "yang_deficiency", "yin_deficiency", "phlegm_dampness", "damp_heat", "blood_stasis", "qi_stagnation", "special_constitution"]
+            },
+            "secondary_types": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "scores": {
+              "type": "object",
+              "properties": {
+                "peaceful": { "type": "number", "minimum": 0, "maximum": 100 },
+                "qi_deficiency": { "type": "number", "minimum": 0, "maximum": 100 },
+                "yang_deficiency": { "type": "number", "minimum": 0, "maximum": 100 },
+                "yin_deficiency": { "type": "number", "minimum": 0, "maximum": 100 },
+                "phlegm_dampness": { "type": "number", "minimum": 0, "maximum": 100 },
+                "damp_heat": { "type": "number", "minimum": 0, "maximum": 100 },
+                "blood_stasis": { "type": "number", "minimum": 0, "maximum": 100 },
+                "qi_stagnation": { "type": "number", "minimum": 0, "maximum": 100 },
+                "special_constitution": { "type": "number", "minimum": 0, "maximum": 100 }
+              }
+            }
+          }
+        },
+        "assessment_history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "date": { "type": "string", "format": "date" },
+              "primary_type": { "type": "string" },
+              "secondary_types": { "type": "array", "items": { "type": "string" } },
+              "scores": { "type": "object" }
+            }
+          }
+        },
+        "trend_analysis": {
+          "type": "object",
+          "properties": {
+            "improvement_trend": { "type": "string", "enum": ["improving", "stable", "worsening"] },
+            "months_since_first": { "type": "integer" },
+            "last_primary_score_change": { "type": "number" }
+          }
+        }
+      }
+    },
+    "wellness_plan": {
+      "type": "object",
+      "properties": {
+        "dietary_recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "constitution_type": { "type": "string" },
+              "foods_to_eat": { "type": "array", "items": { "type": "string" } },
+              "foods_to_avoid": { "type": "array", "items": { "type": "string" } },
+              "recipes": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        },
+        "exercise_recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "constitution_type": { "type": "string" },
+              "recommended_exercises": { "type": "array", "items": { "type": "string" } },
+              "frequency": { "type": "string" },
+              "duration_minutes": { "type": "number" },
+              "intensity": { "type": "string" },
+              "precautions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "acupoint_recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "constitution_type": { "type": "string" },
+              "acupoints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "location": { "type": "string" },
+                    "method": { "type": "string" },
+                    "duration_minutes": { "type": "number" },
+                    "frequency": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "herbal_references": {
+          "type": "object",
+          "properties": {
+            "constitution_formulas": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "formula_name": { "type": "string" },
+                  "source": { "type": "string" },
+                  "ingredients": { "type": "array", "items": { "type": "string" } },
+                  "indications": { "type": "string" },
+                  "contra_indications": { "type": "array", "items": { "type": "string" } },
+                  "warnings": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            }
+          }
+        },
+        "lifestyle_recommendations": {
+          "type": "object",
+          "properties": {
+            "sleep_schedule": { "type": "string" },
+            "stress_management": { "type": "array", "items": { "type": "string" } },
+            "seasonal_adjustments": {
+              "type": "object",
+              "properties": {
+                "spring": { "type": "array", "items": { "type": "string" } },
+                "summer": { "type": "array", "items": { "type": "string" } },
+                "autumn": { "type": "array", "items": { "type": "string" } },
+                "winter": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "questionnaire_progress": {
+      "type": "object",
+      "properties": {
+        "is_active": { "type": "boolean" },
+        "current_question": { "type": "integer" },
+        "answers": { "type": "array", "items": { "type": "object" } },
+        "started_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

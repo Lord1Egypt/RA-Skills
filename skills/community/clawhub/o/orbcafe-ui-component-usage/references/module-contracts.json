@@ -1,0 +1,69 @@
+{
+  "modules": [
+    {
+      "name": "StdReport",
+      "mode": "hook-first",
+      "public_entries": ["CStandardPage", "CTable", "CSmartFilter", "CLayoutManager", "CVariantManager", "useStandardReport"],
+      "preferred_pattern": "useStandardReport + CStandardPage mode=\"integrated\"",
+      "public_hooks": ["useStandardReport"],
+      "canonical_examples": [
+        "examples/app/_components/StdReportExampleClient.tsx",
+        "examples/app/std-report/page.tsx"
+      ],
+      "minimal_state": ["metadata.id/id/appId", "filters", "pagination", "rows", "total"],
+      "verify": ["filter applies", "page changes", "variant/layout persists", "quick actions fire"],
+      "common_failure_modes": ["missing identity", "no npm run build in file dependency flow", "wrong import path"]
+    },
+    {
+      "name": "GraphDetailAgent",
+      "mode": "mixed",
+      "public_entries": ["CGraphReport", "useGraphReport", "CDetailInfoPage", "useDetailInfo", "CCustomizeAgent"],
+      "preferred_pattern": "graph/detail hook-first, agent settings component-first",
+      "public_hooks": ["useGraphReport", "useGraphChartData", "useGoogleMapEmbedUrl", "useAmapEmbedUrl", "useGraphInteraction", "useDetailInfo"],
+      "canonical_examples": ["examples/app/detail-info/[id]/DetailInfoExampleClient.tsx"],
+      "minimal_state": ["graph open/model/tableContent", "detail sections/tabs/query", "settings value/template ids"],
+      "verify": ["graph interaction works", "detail search hits fields", "AI fallback returns", "settings save fully applies"],
+      "common_failure_modes": ["controlled graph props missing", "detail AI fallback not wired", "settings partially persisted"]
+    },
+    {
+      "name": "LayoutNavigation",
+      "mode": "hook-first",
+      "public_entries": ["CAppPageLayout", "CAppHeader", "usePageLayout", "NavigationIsland", "TreeMenu", "useNavigationIsland", "CPageTransition"],
+      "preferred_pattern": "examples/app/layout.tsx + providers.tsx shell first",
+      "public_hooks": ["usePageLayout", "useNavigationIsland"],
+      "canonical_examples": ["examples/app/layout.tsx", "examples/app/providers.tsx"],
+      "minimal_state": ["menu data", "user/menu actions", "locale/theme mounted safety"],
+      "verify": ["nav works", "locale switches", "user menu works", "no hydration mismatch"],
+      "common_failure_modes": ["unsafe usePathname on first render", "provider stack missing", "wrong client/server boundary"]
+    },
+    {
+      "name": "PivotAINav",
+      "mode": "hook-first",
+      "public_entries": ["CPivotTable", "usePivotTable", "CAINavProvider", "useAINav", "useVoiceInput"],
+      "preferred_pattern": "controlled pivot persistence + provider-based voice wrapper",
+      "public_hooks": ["usePivotTable", "useVoiceInput", "useAINav"],
+      "canonical_examples": ["examples/app/_components/PivotTableExampleClient.tsx", "examples/app/_components/AINavExampleClient.tsx"],
+      "minimal_state": ["pivot rows/columns/measures/presets", "AINav recording/submission state"],
+      "verify": ["drag/drop layout changes", "aggregation changes", "presets persist", "voice submit callback fires"],
+      "common_failure_modes": ["uncontrolled pivot when persistence is needed", "missing onVoiceSubmit", "localStorage in wrong render phase"]
+    },
+    {
+      "name": "AgentUI",
+      "mode": "component-first",
+      "public_entries": ["AgentPanel", "StdChat", "CopilotChat", "ChatMessage", "AgentUICardHooks"],
+      "preferred_pattern": "AgentPanel/StdChat for embedded chat, CopilotChat inside custom floating shell",
+      "public_hooks": [],
+      "canonical_examples": ["examples/app/chat/ChatExampleClient.tsx", "examples/app/copilot/CopilotExampleClient.tsx"],
+      "minimal_state": ["messages", "isResponding", "assistant isStreaming", "copilot isOpen/corner/panelSize/panelPosition"],
+      "verify": ["user send appends", "assistant streams", "streaming flag clears", "card hooks emit", "copilot shell interactions work"],
+      "common_failure_modes": ["treating CopilotChat as full floating system", "forgetting streaming lifecycle", "coupling to internal renderers", "resize observer overwriting shell state"]
+    }
+  ],
+  "shared_rules": [
+    "Import only from orbcafe-ui",
+    "Prefer canonical examples before inventing new composition",
+    "Use hook README only when public hooks exist",
+    "If no public hook exists, use public component plus callbacks",
+    "Every delivery should include chosen module, paste-ready import, minimal state, verify checklist, and troubleshooting checklist"
+  ]
+}

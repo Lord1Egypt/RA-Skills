@@ -1,0 +1,282 @@
+{
+  "14": {
+    "inputs": {
+      "ckpt_name": "Illustrious/anime/ikastrious_v200.safetensors",
+      "weight_dtype": "default",
+      "compute_dtype": "default",
+      "patch_cublaslinear": true,
+      "sage_attention": "auto",
+      "enable_fp16_accumulation": true
+    },
+    "class_type": "CheckpointLoaderKJ",
+    "_meta": {
+      "title": "CheckpointLoaderKJ"
+    }
+  },
+  "15": {
+    "inputs": {
+      "seed": ["28", 3],
+      "steps": ["33", 0],
+      "cfg": ["32", 0],
+      "sampler_name": "res_multistep",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": ["14", 0],
+      "positive": ["17", 0],
+      "negative": ["18", 0],
+      "latent_image": ["16", 0]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "16": {
+    "inputs": {
+      "ratio_selected": "3:4 [896x1152 portrait]",
+      "batch_size": 1
+    },
+    "class_type": "Empty Latent Ratio Select SDXL",
+    "_meta": {
+      "title": "Empty Latent Ratio Select SDXL (Mikey)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "text": "",
+      "clip": ["14", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "18": {
+    "inputs": {
+      "text": "bad quality, worst quality, bad anatomy, low quality,",
+      "clip": ["14", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
+  "19": {
+    "inputs": {
+      "samples": ["15", 0],
+      "vae": ["14", 2]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "20": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "with_workflow": false,
+      "metadata_extra": ["21", 0],
+      "image": ["30", 0]
+    },
+    "class_type": "Save image with extra metadata [Crystools]",
+    "_meta": {
+      "title": "🪛 Save image with extra metadata"
+    }
+  },
+  "21": {
+    "inputs": {
+      "text": "\n \"Title\": \"\",\n \"Description\": \"\",\n \"Author\": \"CmfRMT\",\n \"Software\": \"ComfyUI\",\n \"Category\": \"StableDiffusion\",\n \"Keywords\": [\n \"\"\n ],\n \"Copyrights\": \"\"\n"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "22": {
+    "inputs": {
+      "upscale_by": ["27", 0],
+      "seed": ["28", 3],
+      "steps": ["33", 0],
+      "cfg": ["32", 0],
+      "sampler_name": "res_multistep",
+      "scheduler": "karras",
+      "denoise": 0.5,
+      "mode_type": "Linear",
+      "tile_width": ["25", 0],
+      "tile_height": ["26", 0],
+      "mask_blur": 8,
+      "tile_padding": 32,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 1,
+      "seam_fix_width": 64,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": false,
+      "tiled_decode": false,
+      "batch_size": 1,
+      "image": ["19", 0],
+      "model": ["14", 0],
+      "positive": ["17", 0],
+      "negative": ["18", 0],
+      "vae": ["14", 2],
+      "upscale_model": ["23", 0]
+    },
+    "class_type": "UltimateSDUpscale",
+    "_meta": {
+      "title": "Ultimate SD Upscale"
+    }
+  },
+  "23": {
+    "inputs": {
+      "model_name": "4x-AnimeSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "24": {
+    "inputs": {
+      "image": ["19", 0]
+    },
+    "class_type": "GetImageSize",
+    "_meta": {
+      "title": "Get Image Size"
+    }
+  },
+  "25": {
+    "inputs": {
+      "expression": "a*b",
+      "a": ["24", 0],
+      "b": ["27", 0]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Math Expression 🐍"
+    }
+  },
+  "26": {
+    "inputs": {
+      "expression": "a*b",
+      "a": ["24", 1],
+      "b": ["27", 0]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Math Expression 🐍"
+    }
+  },
+  "27": {
+    "inputs": {
+      "value": 1.5
+    },
+    "class_type": "FloatConstant",
+    "_meta": {
+      "title": "UPSCALE By"
+    }
+  },
+  "28": {
+    "inputs": {
+      "seed": 984559063235368
+    },
+    "class_type": "Seed",
+    "_meta": {
+      "title": "Seed"
+    }
+  },
+  "29": {
+    "inputs": {
+      "rgthree_comparer": {
+        "images": [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_vvkek_00031_.png&type=temp&subfolder=&rand=0.9181522617139417"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_vvkek_00032_.png&type=temp&subfolder=&rand=0.9513444099792554"
+          }
+        ]
+      },
+      "image_a": ["30", 0],
+      "image_b": ["19", 0]
+    },
+    "class_type": "Image Comparer (rgthree)",
+    "_meta": {
+      "title": "Image Comparer (rgthree)"
+    }
+  },
+  "30": {
+    "inputs": {
+      "guide_size": 2048,
+      "guide_size_for": true,
+      "max_size": 2048,
+      "seed": ["28", 3],
+      "steps": ["33", 0],
+      "cfg": ["32", 0],
+      "sampler_name": "res_multistep",
+      "scheduler": "karras",
+      "denoise": 0.5,
+      "feather": 5,
+      "noise_mask": true,
+      "force_inpaint": true,
+      "bbox_threshold": 0.5,
+      "bbox_dilation": 10,
+      "bbox_crop_factor": 3,
+      "sam_detection_hint": "center-1",
+      "sam_dilation": 0,
+      "sam_threshold": 0.93,
+      "sam_bbox_expansion": 0,
+      "sam_mask_hint_threshold": 0.7,
+      "sam_mask_hint_use_negative": "False",
+      "drop_size": 10,
+      "wildcard": "",
+      "cycle": 1,
+      "inpaint_model": false,
+      "noise_mask_feather": 20,
+      "tiled_encode": false,
+      "tiled_decode": false,
+      "image": ["22", 0],
+      "model": ["14", 0],
+      "clip": ["14", 1],
+      "vae": ["14", 2],
+      "positive": ["17", 0],
+      "negative": ["18", 0],
+      "bbox_detector": ["31", 0],
+      "segm_detector_opt": ["31", 1]
+    },
+    "class_type": "FaceDetailer",
+    "_meta": {
+      "title": "FaceDetailer"
+    }
+  },
+  "31": {
+    "inputs": {
+      "model_name": "segm/Anzhc Face seg 768MS v2 y8n.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "32": {
+    "inputs": {
+      "value": 5
+    },
+    "class_type": "FloatConstant",
+    "_meta": {
+      "title": "CFG"
+    }
+  },
+  "33": {
+    "inputs": {
+      "value": 20
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "STEPS"
+    }
+  }
+}

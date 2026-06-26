@@ -1,0 +1,19 @@
+{
+  "name": "temp-heartbeat-skill",
+  "version": "1.0.0",
+  "description": "Temp Heartbeat Skill - 临时心跳任务管理器",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "publish": "claw skill publish"
+  },
+  "keywords": [
+    "heartbeat",
+    "temp",
+    "reminder",
+    "openclaw-skill"
+  ],
+  "author": "Spark",
+  "license": "MIT"
+}

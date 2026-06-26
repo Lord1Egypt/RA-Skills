@@ -1,0 +1,7 @@
+interface:
+  display_name: "Excel/WPS Table Diagnosis"
+  short_description: "Inspect table structure first, then suggest practical Excel/WPS formulas and cleanup workflows."
+  default_prompt: "Use $excel-wps-table-diagnosis to inspect this table and suggest a practical Excel/WPS-friendly way to clean, match, summarize, or troubleshoot it."
+
+policy:
+  allow_implicit_invocation: true

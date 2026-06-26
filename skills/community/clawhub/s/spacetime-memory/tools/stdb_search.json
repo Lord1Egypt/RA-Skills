@@ -1,0 +1,15 @@
+{
+  "name": "stdb_search",
+  "description": "Search local SpacetimeDB memories.",
+  "command": "node ~/.openclaw/workspace/skills/spacetime-memory/tools/stdb_search.js",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "The string query to search for."
+      }
+    },
+    "required": ["query"]
+  }
+}

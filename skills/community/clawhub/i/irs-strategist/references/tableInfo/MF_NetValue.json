@@ -1,0 +1,181 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "基金内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "基金内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到基金的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "NV",
+        "columnChiName": "净资产值",
+        "columnType": "decimal(18,4)",
+        "isNullable": 1,
+        "remark": "净资产值(NV)：当基金为人民币份额时，货币单位为人民币(元)；当基金为美元份额时，货币单位为美元。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "2.25",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UnitNV",
+        "columnChiName": "单位净值",
+        "columnType": "decimal(20,8)",
+        "isNullable": 1,
+        "remark": "单位净值(UnitNV)：当基金为人民币份额时，货币单位为人民币(元)；当基金为美元份额时，货币单位为美元。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "AccumulatedUnitNV",
+        "columnChiName": "单位累计净值",
+        "columnType": "decimal(20,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "DailyProfit",
+        "columnChiName": "每万份基金单位当日收益(元)",
+        "columnType": "decimal(20,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "7.96"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "LatestWeeklyYield",
+        "columnChiName": "最近7日折算年收益率",
+        "columnType": "decimal(18,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "7.94"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "InvolvedDays",
+        "columnChiName": "涉及天数",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "7.96"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "NVDailyGrowthRate",
+        "columnChiName": "开放式基金单位基金净值日增长率",
+        "columnType": "decimal(18,10)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "91.92"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "XGRQ",
+        "columnChiName": "更新日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "NVWeeklyGrowthRate",
+        "columnChiName": "单位基金净值周增长率",
+        "columnType": "decimal(18,10)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "0.02"
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "DiscountRatio",
+        "columnChiName": "基金升贴水率",
+        "columnType": "decimal(18,10)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": false,
+        "tableVersion": null,
+        "valueRate": "5.07"
+    }
+]

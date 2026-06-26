@@ -1,0 +1,300 @@
+curl --request GET \
+	--url 'https://tradingview-data1.p.rapidapi.com/api/news/economic?lang=en' \
+	--header 'x-rapidapi-host: tradingview-data1.p.rapidapi.com' \
+	--header 'x-rapidapi-key: YOUR_RAPIDAPI_KEY'
+
+  {
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "tag:reuters.com,2026:newsml_L1N3ZY09D:0",
+        "title": "China’s exports turbocharge into 2026 after record-breaking year",
+        "published": 1773130219,
+        "urgency": 2,
+        "permission": "headline",
+        "storyPath": "/news/reuters.com,2026:newsml_L1N3ZY09D:0-china-s-exports-turbocharge-into-2026-after-record-breaking-year/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "DJN_DN20260310001744:0",
+        "title": "German Exports Fell in January — Update",
+        "published": 1773129900,
+        "urgency": 2,
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:DEBOT",
+            "logoid": "country/DE"
+          }
+        ],
+        "storyPath": "/news/DJN_DN20260310001744:0-german-exports-fell-in-january-update/",
+        "provider": {
+          "id": "dow-jones",
+          "name": "Dow Jones Newswires",
+          "logo_id": "dow-jones-newswires"
+        }
+      },
+      {
+        "id": "tag:reuters.com,2026:newsml_APN7VGUSO:0",
+        "title": "Czech CPI at 1.4% y/y in February, confirms flash estimate",
+        "published": 1773129798,
+        "urgency": 2,
+        "permission": "headline",
+        "storyPath": "/news/reuters.com,2026:newsml_APN7VGUSO:0-czech-cpi-at-1-4-y-y-in-february-confirms-flash-estimate/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "DJN_DN20260310001662:0",
+        "title": "Gold Rises on Softer Dollar, Easing Inflation Concerns — Market Talk",
+        "published": 1773129540,
+        "urgency": 2,
+        "permission": "provider",
+        "relatedSymbols": [
+          {
+            "symbol": "TVC:GOLD",
+            "logoid": "metal/gold"
+          }
+        ],
+        "storyPath": "/news/DJN_DN20260310001662:0/",
+        "provider": {
+          "id": "dow-jones",
+          "name": "Dow Jones Newswires",
+          "logo_id": "dow-jones-newswires"
+        }
+      },
+      {
+        "id": "tag:reuters.com,2026:newsml_L4N3ZY0H7:0",
+        "title": "India’s equity mutual fund inflows rise after 2-month lull on earnings, US trade deal",
+        "published": 1773129407,
+        "urgency": 2,
+        "permission": "headline",
+        "relatedSymbols": [
+          {
+            "symbol": "BSE:SENSEX",
+            "logoid": "indices/bse-sensex"
+          },
+          {
+            "symbol": "NSE:NIFTY",
+            "logoid": "indices/nifty-50"
+          },
+          {
+            "symbol": "NSE:CNXSMALLCAP",
+            "logoid": "indices/nifty-midcap"
+          },
+          {
+            "symbol": "NSE:CNXMIDCAP",
+            "logoid": "indices/nifty-midcap"
+          }
+        ],
+        "storyPath": "/news/reuters.com,2026:newsml_L4N3ZY0H7:0-india-s-equity-mutual-fund-inflows-rise-after-2-month-lull-on-earnings-us-trade-deal/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "te_news:532176:0",
+        "title": "Sweden Monthly GDP Contracts at Faster Pace",
+        "published": 1773128898,
+        "urgency": 2,
+        "link": "https://tradingeconomics.com/sweden/monthly-gdp-mom",
+        "permission": "preview",
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:SEMGDPMM",
+            "logoid": "country/SE"
+          }
+        ],
+        "storyPath": "/news/te_news:532176:0-sweden-monthly-gdp-contracts-at-faster-pace/",
+        "provider": {
+          "id": "trading-economics",
+          "name": "Trading Economics",
+          "logo_id": "te"
+        }
+      },
+      {
+        "id": "tag:reuters.com,2026:newsml_S8N3X705J:0",
+        "title": "French trade balance -1.84 bln euros in January",
+        "published": 1773128700,
+        "urgency": 2,
+        "permission": "headline",
+        "storyPath": "/news/reuters.com,2026:newsml_S8N3X705J:0-french-trade-balance-1-84-bln-euros-in-january/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "tag:reuters.com,2026:newsml_L8N3ZY06W:0",
+        "title": "South African rand trims loss after Trump remarks, traders await GDP data",
+        "published": 1773128669,
+        "urgency": 2,
+        "permission": "headline",
+        "relatedSymbols": [
+          {
+            "symbol": "FX_IDC:USDZAR",
+            "currency-logoid": "country/ZA",
+            "base-currency-logoid": "country/US"
+          },
+          {
+            "symbol": "FX:USDZAR",
+            "currency-logoid": "country/ZA",
+            "base-currency-logoid": "country/US"
+          },
+          {
+            "symbol": "JSE:J200",
+            "logoid": "country/ZA"
+          }
+        ],
+        "storyPath": "/news/reuters.com,2026:newsml_L8N3ZY06W:0-south-african-rand-trims-loss-after-trump-remarks-traders-await-gdp-data/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "tag:reuters.com,2026:newsml_S8N3WE01B:0",
+        "title": "Investors see 50-50 chance of Bank of England rate cut this year",
+        "published": 1773128151,
+        "urgency": 2,
+        "permission": "headline",
+        "storyPath": "/news/reuters.com,2026:newsml_S8N3WE01B:0-investors-see-50-50-chance-of-bank-of-england-rate-cut-this-year/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "te_news:532168:0",
+        "title": "German Exports Fall More than Expected",
+        "published": 1773127995,
+        "urgency": 2,
+        "link": "https://tradingeconomics.com/germany/exports",
+        "permission": "preview",
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:DEEXP",
+            "logoid": "country/DE"
+          }
+        ],
+        "storyPath": "/news/te_news:532168:0-german-exports-fall-more-than-expected/",
+        "provider": {
+          "id": "trading-economics",
+          "name": "Trading Economics",
+          "logo_id": "te"
+        }
+      },
+      {
+        "id": "te_news:532167:0",
+        "title": "Lithuania Trade Deficit Widens in January",
+        "published": 1773127979,
+        "urgency": 2,
+        "link": "https://tradingeconomics.com/lithuania/balance-of-trade",
+        "permission": "preview",
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:LTBOT",
+            "logoid": "country/LT"
+          }
+        ],
+        "storyPath": "/news/te_news:532167:0-lithuania-trade-deficit-widens-in-january/",
+        "provider": {
+          "id": "trading-economics",
+          "name": "Trading Economics",
+          "logo_id": "te"
+        }
+      },
+      {
+        "id": "te_news:532165:0",
+        "title": "Sweden New Orders Fall for 1st Time in 8 Months",
+        "published": 1773127812,
+        "urgency": 2,
+        "link": "https://tradingeconomics.com/sweden/new-orders",
+        "permission": "preview",
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:SENO",
+            "logoid": "country/SE"
+          }
+        ],
+        "storyPath": "/news/te_news:532165:0-sweden-new-orders-fall-for-1st-time-in-8-months/",
+        "provider": {
+          "id": "trading-economics",
+          "name": "Trading Economics",
+          "logo_id": "te"
+        }
+      },
+      {
+        "id": "tag:reuters.com,2026:newsml_S8N3XH029:0",
+        "title": "Hungary's February inflation slows to 1.4% y/y, below forecast -stats",
+        "published": 1773127800,
+        "urgency": 2,
+        "permission": "headline",
+        "storyPath": "/news/reuters.com,2026:newsml_S8N3XH029:0-hungary-s-february-inflation-slows-to-1-4-y-y-below-forecast-stats/",
+        "provider": {
+          "id": "reuters",
+          "name": "Reuters",
+          "logo_id": "reuters"
+        }
+      },
+      {
+        "id": "te_news:532164:0",
+        "title": "TTF Prices Retreat",
+        "published": 1773127792,
+        "urgency": 2,
+        "link": "https://tradingeconomics.com/commodity/eu-natural-gas",
+        "permission": "preview",
+        "relatedSymbols": [
+          {
+            "symbol": "NYMEX:NG1!",
+            "logoid": "natural-gas"
+          }
+        ],
+        "storyPath": "/news/te_news:532164:0-ttf-prices-retreat/",
+        "provider": {
+          "id": "trading-economics",
+          "name": "Trading Economics",
+          "logo_id": "te"
+        }
+      },
+      {
+        "id": "te_news:532163:0",
+        "title": "German Trade Surplus Exceeds Expectations",
+        "published": 1773127584,
+        "urgency": 2,
+        "link": "https://tradingeconomics.com/germany/balance-of-trade",
+        "permission": "preview",
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:DEBOT",
+            "logoid": "country/DE"
+          }
+        ],
+        "storyPath": "/news/te_news:532163:0-german-trade-surplus-exceeds-expectations/",
+        "provider": {
+          "id": "trading-economics",
+          "name": "Trading Economics",
+          "logo_id": "te"
+        }
+      },
+      {
+        "id": "DJN_DN20260310001409:0",
+        "title": "German Exports Fell in January",
+        "published": 1773127560,
+        "urgency": 2,
+        "relatedSymbols": [
+          {
+            "symbol": "ECONOMICS:DEBOT",
+            "logoid": "country/DE"

@@ -1,0 +1,38 @@
+{
+  "name": "okcomputers",
+  "version": "2.2.0",
+  "description": "AI agent toolkit for OK Computers + Ring Gates + Net Protocol onchain storage on Base",
+  "main": "okcomputer.js",
+  "bin": {
+    "okcomputer": "./okcomputer.js",
+    "ring-gate": "./ring-gate.js",
+    "medina": "./medina.js",
+    "net-protocol": "./net-protocol.js"
+  },
+  "scripts": {
+    "start": "node okcomputer.js",
+    "test": "node test-ring-gate.js"
+  },
+  "dependencies": {
+    "ethers": "^6.0.0"
+  },
+  "credentials": {
+    "BANKR_API_KEY": {
+      "description": "Bankr API key for signing and submitting onchain transactions. Required for all write operations (posting messages, setting pages, sending emails). Read operations do not require this key.",
+      "required": false
+    }
+  },
+  "externalServices": {
+    "okc-relay.vercel.app": {
+      "description": "Self-hosted JSONP relay for loading Net Protocol content into OK Computer iframe sandboxes. Source: github.com/Potdealer/ok-computers. Only used by net-loader.html template, not by the core library.",
+      "required": false
+    },
+    "api.bankr.bot": {
+      "description": "Bankr transaction submission API. Standard service used by all Bankr-integrated agents for signing and submitting Base transactions.",
+      "required": false
+    }
+  },
+  "keywords": ["okcomputers", "nft", "base", "onchain", "ai-agent", "social-network", "ring-gates", "protocol", "sharding", "net-protocol", "onchain-storage"],
+  "author": "potdealer + olliebot",
+  "license": "MIT-0"
+}

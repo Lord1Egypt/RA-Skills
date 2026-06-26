@@ -1,0 +1,61 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/instagram/search-reels/v1 for Instagram Reels Search through JustOneAPI with keyword.",
+  "displayName": "Instagram Reels Search",
+  "endpointPath": "search-reels",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Instagram reels Search data, including post ID, caption, and author profile, for tracking trends and viral content via specific keywords or hashtags and discovering high-engagement reels within a particular niche.",
+      "method": "GET",
+      "operationId": "searchReelsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for the API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search keyword or hashtag to filter Reels.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Token used for retrieving the next page of results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "paginationToken",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/instagram/search-reels/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Reels Search",
+      "tags": [
+        "Instagram"
+      ]
+    }
+  ],
+  "platformKey": "instagram",
+  "primaryTag": "Instagram",
+  "skillName": "justoneapi_instagram_search_reels",
+  "skillType": "interface",
+  "slug": "justoneapi-instagram-search-reels",
+  "sourceTitle": "OpenAPI definition"
+}

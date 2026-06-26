@@ -1,0 +1,28 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-x": {
+      "baseUrl": "http://127.0.0.1:8765/mcp",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "allowedTools": [
+        "getUsersMe",
+        "getUsersByUsername",
+        "getUsersById",
+        "getPostsById",
+        "getPostsByIds",
+        "getUsersPosts",
+        "searchPostsRecent",
+        "createPosts",
+        "deletePosts"
+      ],
+      "refresh": {
+        "tokenEndpoint": "https://api.x.com/2/oauth2/token",
+        "clientIdEnv": "MAVERICK_X_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_X_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_basic",
+        "scope": "tweet.read tweet.write users.read offline.access"
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "doubao-video-creator",
+  "version": "2.1.0",
+  "description": "豆包视频创作助手 - 使用火山引擎豆包 AI 模型，将想法转化为专业视频",
+  "main": "doubao_video_creator.py",
+  "author": "卡妹",
+  "license": "MIT",
+  "keywords": ["video", "ai", "doubao", "seedance", "video-creation"]
+}

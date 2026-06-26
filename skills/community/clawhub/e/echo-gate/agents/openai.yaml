@@ -1,0 +1,3 @@
+display_name: Echo Gate
+short_description: Control layer for agent tools: keys, calls, receipts, and paid-tool readiness.
+default_prompt: Use Echo Gate to register or call local-first agent tools through the BuiltByEcho gateway with API-key permissions, local receipts, approval policies, secret protection, and spend limits.

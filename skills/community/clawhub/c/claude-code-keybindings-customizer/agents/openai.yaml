@@ -1,0 +1,4 @@
+interface:
+  display_name: "Keybindings Customizer"
+  short_description: "Safely edit Claude keybinding config"
+  default_prompt: "Update my Claude Code keybindings without clobbering the existing file."

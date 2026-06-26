@@ -1,0 +1,72 @@
+{
+  "id": "openclaw_game_center",
+  "name": "OpenClaw Game Center",
+  "description": "OpenClaw multi-game platform with AI strategy, cross-game leaderboard, replay and analytics.",
+  "version": "1.0.0",
+  "author": "kfwolf",
+  "type": "game",
+  "main": "main.py",
+  "command": "ocgame",
+  "enabled": true,
+  "commands": [
+    {
+      "name": "list",
+      "description": "列出所有可用游戏"
+    },
+    {
+      "name": "start",
+      "description": "启动指定游戏",
+      "params": [
+        {
+          "name": "game",
+          "type": "string",
+          "required": true,
+          "description": "游戏名称，例如 gomoku"
+        }
+      ]
+    },
+    {
+      "name": "rank",
+      "description": "查看游戏排行榜"
+    },
+    {
+      "name": "watch",
+      "description": "打开观战界面"
+    },
+    {
+      "name": "help",
+      "description": "查看帮助说明"
+    }
+  ],
+  "web": {
+    "enable": true,
+    "index": "/",
+    "port": 80
+  },
+  "dependencies": {
+    "flask": "3.0.0",
+    "requests": "2.31.0"
+  },
+  "features": [
+    "支持五子棋Bot对战",
+    "全球排行榜系统",
+    "详细的游戏数据分析",
+    "智能AI策略配置",
+    "实时观战功能",
+    "跨设备支持"
+  ],
+  "first_time_setup": [
+    "执行 ocgame start gomoku 自动注册账号",
+    "系统会自动生成用户配置文件",
+    "注册完成后自动启动游戏",
+    "在浏览器中查看排行榜和回放"
+  ],
+  "server_info": {
+    "game_server": "https://www.ocgame.top",
+    "leaderboard": "https://www.ocgame.top"
+  },
+  "heartbeat": {
+    "schedule": "every 4h",
+    "command": "start gomoku"
+  }
+}

@@ -1,0 +1,3512 @@
+[
+  {
+    "prompt": "best ai customer support software",
+    "category": "saas",
+    "subcategory": "support",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "intercom",
+      "zendesk",
+      "freshdesk"
+    ],
+    "notes": "Commercial SaaS shortlist query"
+  },
+  {
+    "prompt": "best ai crm for startups",
+    "category": "saas",
+    "subcategory": "crm",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "attio",
+      "salesforce"
+    ],
+    "notes": "Startup software selection query"
+  },
+  {
+    "prompt": "best ai automation platform for small teams",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Strong ops-buying intent"
+  },
+  {
+    "prompt": "affordable ai workflow software",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Price-sensitive SaaS search"
+  },
+  {
+    "prompt": "best ai tools for operations teams",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "asana"
+    ],
+    "notes": "Broad operations software query"
+  },
+  {
+    "prompt": "best ai software for startups",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "intercom"
+    ],
+    "notes": "Wide top-of-funnel SaaS query"
+  },
+  {
+    "prompt": "ai software stack for startups",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "zapier"
+    ],
+    "notes": "Stack-building research intent"
+  },
+  {
+    "prompt": "best ai productivity suite for teams",
+    "category": "saas",
+    "subcategory": "productivity",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "clickup",
+      "asana"
+    ],
+    "notes": "Team productivity angle"
+  },
+  {
+    "prompt": "best ai task automation software",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Automation intent"
+  },
+  {
+    "prompt": "best ai back office software",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "airtable",
+      "notion",
+      "zapier"
+    ],
+    "notes": "Operational tooling query"
+  },
+  {
+    "prompt": "best ai operations software for startups",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "airtable",
+      "zapier"
+    ],
+    "notes": "Startup ops buying intent"
+  },
+  {
+    "prompt": "best affordable ai software for small business",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "cost",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "zapier",
+      "zoho"
+    ],
+    "notes": "Budget-conscious buyers"
+  },
+  {
+    "prompt": "best ai software for remote teams",
+    "category": "saas",
+    "subcategory": "collaboration",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "slack",
+      "notion",
+      "clickup"
+    ],
+    "notes": "Remote work angle"
+  },
+  {
+    "prompt": "best ai software for lean teams",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "airtable",
+      "zapier"
+    ],
+    "notes": "Lean-team positioning opportunity"
+  },
+  {
+    "prompt": "best ai software for internal ops",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "airtable"
+    ],
+    "notes": "Internal efficiency use case"
+  },
+  {
+    "prompt": "best ai workflow tool for founders",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Founder/operator persona"
+  },
+  {
+    "prompt": "best ai software to automate repetitive work",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "uibakery"
+    ],
+    "notes": "Pain-led prompt"
+  },
+  {
+    "prompt": "best ai tools for business process automation",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "BPA search intent"
+  },
+  {
+    "prompt": "ai software for startup operations",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "airtable",
+      "zapier"
+    ],
+    "notes": "Ops-focused SaaS term"
+  },
+  {
+    "prompt": "best ai workflow assistant for businesses",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "notion"
+    ],
+    "notes": "Assistant framing"
+  },
+  {
+    "prompt": "best ai platform for team workflows",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Workflow platform shortlist"
+  },
+  {
+    "prompt": "best no code ai automation software",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "No-code audience"
+  },
+  {
+    "prompt": "best simple ai software for small teams",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "clickup",
+      "zapier"
+    ],
+    "notes": "Simplicity-led search"
+  },
+  {
+    "prompt": "best ai software for service businesses",
+    "category": "saas",
+    "subcategory": "service",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "intercom",
+      "zendesk"
+    ],
+    "notes": "Service-business angle"
+  },
+  {
+    "prompt": "best ai operations platform for smb",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "hubspot"
+    ],
+    "notes": "SMB buyer intent"
+  },
+  {
+    "prompt": "best ai platform for startup teams",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "hubspot"
+    ],
+    "notes": "Startup team category term"
+  },
+  {
+    "prompt": "best team ai assistant software",
+    "category": "saas",
+    "subcategory": "assistant",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Assistant framing"
+  },
+  {
+    "prompt": "best ai assistant for small teams",
+    "category": "saas",
+    "subcategory": "assistant",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "High-signal team assistant query"
+  },
+  {
+    "prompt": "cheapest ai software for startups",
+    "category": "saas",
+    "subcategory": "cost",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "notion ai",
+      "zapier"
+    ],
+    "notes": "Cost-sensitive query"
+  },
+  {
+    "prompt": "ai saas tools for founders",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "zapier"
+    ],
+    "notes": "Founder listicle intent"
+  },
+  {
+    "prompt": "best business ai tools 2026",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Annual roundup query"
+  },
+  {
+    "prompt": "best ai growth tools for startups",
+    "category": "saas",
+    "subcategory": "growth",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "clearbit",
+      "apollo"
+    ],
+    "notes": "Growth tooling angle"
+  },
+  {
+    "prompt": "best ai software for startup teams 2026",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "zapier"
+    ],
+    "notes": "Time-bound discovery query"
+  },
+  {
+    "prompt": "best ai tools for founders 2026",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Founder roundup term"
+  },
+  {
+    "prompt": "best ai software to save startup time",
+    "category": "saas",
+    "subcategory": "productivity",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "notion",
+      "clickup"
+    ],
+    "notes": "Pain-oriented search"
+  },
+  {
+    "prompt": "best ai automation software without coding",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Low-friction buyer intent"
+  },
+  {
+    "prompt": "best ai software for internal tools",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "retool",
+      "airtable",
+      "n8n"
+    ],
+    "notes": "Internal tools angle"
+  },
+  {
+    "prompt": "best ai ops stack for startups",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "airtable"
+    ],
+    "notes": "Stack framing"
+  },
+  {
+    "prompt": "best ai software for small ops teams",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "notion",
+      "airtable"
+    ],
+    "notes": "Ops niche term"
+  },
+  {
+    "prompt": "best ai software for startup workflows",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Workflow-led prompt"
+  },
+  {
+    "prompt": "best ai agent platform",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "langchain",
+      "openai",
+      "crewai"
+    ],
+    "notes": "Category-defining prompt"
+  },
+  {
+    "prompt": "best ai browser agent",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "openai operator",
+      "stagehand"
+    ],
+    "notes": "Browser-agent category term"
+  },
+  {
+    "prompt": "best ai workflow assistant",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Workflow assistant intent"
+  },
+  {
+    "prompt": "best ai automation agent",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "make",
+      "crewai"
+    ],
+    "notes": "Agent automation search"
+  },
+  {
+    "prompt": "best ai tool for repetitive tasks",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Pain-led commercial term"
+  },
+  {
+    "prompt": "best ai tool for web tasks",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "operator"
+    ],
+    "notes": "Web automation angle"
+  },
+  {
+    "prompt": "best ai assistant for workflows",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Workflow productivity category"
+  },
+  {
+    "prompt": "best ai agent for startups",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "crewai",
+      "langgraph",
+      "openai"
+    ],
+    "notes": "Startup persona + agents"
+  },
+  {
+    "prompt": "best ai tools for automation",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Broad high-volume term"
+  },
+  {
+    "prompt": "best ai platform for browser automation",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "stagehand"
+    ],
+    "notes": "Product comparison query"
+  },
+  {
+    "prompt": "best ai web automation tool",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "uibakery"
+    ],
+    "notes": "Web automation intent"
+  },
+  {
+    "prompt": "best ai copilot for operations",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Copilot framing"
+  },
+  {
+    "prompt": "best ai assistant for operations teams",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Operations niche"
+  },
+  {
+    "prompt": "best ai assistant for business workflows",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Business workflow intent"
+  },
+  {
+    "prompt": "best ai automation tool for browser tasks",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "stagehand",
+      "openai operator"
+    ],
+    "notes": "Browser-specific value"
+  },
+  {
+    "prompt": "best ai agent for web workflows",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator",
+      "stagehand"
+    ],
+    "notes": "Browser workflow prompt"
+  },
+  {
+    "prompt": "best ai tool for ops automation",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Ops automation buyer intent"
+  },
+  {
+    "prompt": "best ai assistant for startup ops",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Startup ops angle"
+  },
+  {
+    "prompt": "best ai platform for task automation",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Task automation query"
+  },
+  {
+    "prompt": "best ai agents for business automation",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "crewai",
+      "langgraph",
+      "n8n"
+    ],
+    "notes": "Business automation framing"
+  },
+  {
+    "prompt": "best ai product for repetitive browser work",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator",
+      "playwright"
+    ],
+    "notes": "Specific pain point"
+  },
+  {
+    "prompt": "best ai software for browser workflows",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "stagehand",
+      "playwright"
+    ],
+    "notes": "Workflow use case"
+  },
+  {
+    "prompt": "best ai browser automation tools 2026",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator",
+      "stagehand"
+    ],
+    "notes": "Annual roundup term"
+  },
+  {
+    "prompt": "best ai copilots for startup teams",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Team assistant category"
+  },
+  {
+    "prompt": "best ai automation agents 2026",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "crewai",
+      "langgraph",
+      "openai"
+    ],
+    "notes": "Annual agent discovery query"
+  },
+  {
+    "prompt": "best ai tool for ai search monitoring",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "peec ai"
+    ],
+    "notes": "Adjacent category opportunity"
+  },
+  {
+    "prompt": "best geo optimization tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "GEO category term"
+  },
+  {
+    "prompt": "best ai visibility tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Visibility-specific term"
+  },
+  {
+    "prompt": "best chatgpt seo tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "peec ai"
+    ],
+    "notes": "AI SEO category term"
+  },
+  {
+    "prompt": "best llm seo tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "peec ai"
+    ],
+    "notes": "LLM SEO category term"
+  },
+  {
+    "prompt": "best ai search monitoring tool",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Monitoring intent"
+  },
+  {
+    "prompt": "best ai answer engine monitoring tool",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Emerging category phrasing"
+  },
+  {
+    "prompt": "best ai recommendation tracker",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Novel category framing"
+  },
+  {
+    "prompt": "best brand monitoring for ai assistants",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "brandwatch"
+    ],
+    "notes": "Brand-monitoring angle"
+  },
+  {
+    "prompt": "best ai search rank tracker",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Direct category term"
+  },
+  {
+    "prompt": "best ai engine visibility tracker",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Visibility tracker framing"
+  },
+  {
+    "prompt": "best ai mention tracker for brands",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "brandwatch",
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Brand mention use case"
+  },
+  {
+    "prompt": "best ai answer monitoring platform",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Platform framing"
+  },
+  {
+    "prompt": "best ai search tool for startups",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Startup audience"
+  },
+  {
+    "prompt": "best ai growth tools for visibility",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Growth+visibility framing"
+  },
+  {
+    "prompt": "best ai coding assistant",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Large dev-tools category"
+  },
+  {
+    "prompt": "best ai tools for developers",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Broad developer tooling query"
+  },
+  {
+    "prompt": "best self hosted ai assistant for developers",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Self-hosted dev intent"
+  },
+  {
+    "prompt": "best ai terminal assistant",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "claude code",
+      "codex",
+      "aider"
+    ],
+    "notes": "Terminal-native AI term"
+  },
+  {
+    "prompt": "best local ai coding assistant",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "continue",
+      "aider"
+    ],
+    "notes": "Local-first coding angle"
+  },
+  {
+    "prompt": "best ai dev tool for terminal workflows",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Terminal workflow query"
+  },
+  {
+    "prompt": "best ai tool for developers who self host",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Self-hosting persona"
+  },
+  {
+    "prompt": "best local first ai tool for developers",
+    "category": "developer-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Local-first dev category"
+  },
+  {
+    "prompt": "best private ai assistant for developers",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "anythingllm",
+      "openwebui",
+      "jan"
+    ],
+    "notes": "Privacy-led developer term"
+  },
+  {
+    "prompt": "best ai tool for developer workflows",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "claude code",
+      "github copilot"
+    ],
+    "notes": "Workflow angle"
+  },
+  {
+    "prompt": "best ai copilot for terminal",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Terminal copilot query"
+  },
+  {
+    "prompt": "best ai assistant for coding workflows",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Coding workflow term"
+  },
+  {
+    "prompt": "best self hosted ai coding tool",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Self-hosted coding prompt"
+  },
+  {
+    "prompt": "best ai tool for developers 2026",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Annual roundup"
+  },
+  {
+    "prompt": "best ai terminal coding tool",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Terminal coding intent"
+  },
+  {
+    "prompt": "best developer ai assistant without cloud lock in",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Anti lock-in framing"
+  },
+  {
+    "prompt": "best local ai tool for programming",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Programming-focused local term"
+  },
+  {
+    "prompt": "best ai dev environment for small teams",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Team dev tooling angle"
+  },
+  {
+    "prompt": "best ai pair programmer for startups",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Pair-programmer framing"
+  },
+  {
+    "prompt": "best ai tool for engineering teams",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "linear"
+    ],
+    "notes": "Team engineering query"
+  },
+  {
+    "prompt": "best coding ai for privacy conscious teams",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Privacy buyer intent"
+  },
+  {
+    "prompt": "best self hosted developer ai stack",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "continue"
+    ],
+    "notes": "Stack-building term"
+  },
+  {
+    "prompt": "best ai code assistant with local models",
+    "category": "developer-tools",
+    "subcategory": "local-models",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "ollama"
+    ],
+    "notes": "Local models angle"
+  },
+  {
+    "prompt": "best local llm tool for developers",
+    "category": "developer-tools",
+    "subcategory": "local-models",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "ollama",
+      "continue",
+      "aider"
+    ],
+    "notes": "LLM-local developer term"
+  },
+  {
+    "prompt": "best self hosted ai chat for developers",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "lobechat"
+    ],
+    "notes": "Chat use case"
+  },
+  {
+    "prompt": "best private ai coding environment",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "cursor",
+      "aider"
+    ],
+    "notes": "Private environment angle"
+  },
+  {
+    "prompt": "best ai tool for developer automation",
+    "category": "developer-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "github actions",
+      "n8n",
+      "claude code"
+    ],
+    "notes": "Automation within dev workflows"
+  },
+  {
+    "prompt": "best ai assistant for devops workflows",
+    "category": "developer-tools",
+    "subcategory": "devops",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "github copilot",
+      "cursor",
+      "claude code"
+    ],
+    "notes": "DevOps subcategory"
+  },
+  {
+    "prompt": "best ai assistant for local development",
+    "category": "developer-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Local development angle"
+  },
+  {
+    "prompt": "best ai coding stack for startups",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Stack framing"
+  },
+  {
+    "prompt": "best ai command line assistant",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Command-line angle"
+  },
+  {
+    "prompt": "best ai terminal app for developers",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "App framing"
+  },
+  {
+    "prompt": "best ai coding tools with bring your own key",
+    "category": "developer-tools",
+    "subcategory": "byok",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "BYOK angle"
+  },
+  {
+    "prompt": "best open source ai developer assistant",
+    "category": "developer-tools",
+    "subcategory": "open-source",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Open-source preference"
+  },
+  {
+    "prompt": "best open source ai coding assistant",
+    "category": "developer-tools",
+    "subcategory": "open-source",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Open-source coding term"
+  },
+  {
+    "prompt": "best ai tool for developer productivity",
+    "category": "developer-tools",
+    "subcategory": "productivity",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "notion ai"
+    ],
+    "notes": "Productivity framing"
+  },
+  {
+    "prompt": "best self hosted ai workflow for developers",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "continue",
+      "aider"
+    ],
+    "notes": "Workflow framing"
+  },
+  {
+    "prompt": "best local first coding assistant 2026",
+    "category": "developer-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Time-bound query"
+  },
+  {
+    "prompt": "best private coding copilot",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Copilot framing with privacy"
+  },
+  {
+    "prompt": "best ai developer tool without vendor lock in",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Vendor-lock-in pain point"
+  },
+  {
+    "prompt": "best openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Core ClawLite term"
+  },
+  {
+    "prompt": "easiest openclaw installer",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "High-intent install query"
+  },
+  {
+    "prompt": "openclaw for beginners",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Beginner education term"
+  },
+  {
+    "prompt": "secure openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "security",
+    "intent": "trust",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "Security-driven comparison"
+  },
+  {
+    "prompt": "openclaw web ui",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "openclaw"
+    ],
+    "notes": "UI-focused query"
+  },
+  {
+    "prompt": "openclaw without terminal",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Friction reduction search"
+  },
+  {
+    "prompt": "one click openclaw installer",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "One-click install positioning"
+  },
+  {
+    "prompt": "simple openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Simplification angle"
+  },
+  {
+    "prompt": "best openclaw setup for small teams",
+    "category": "openclaw-ecosystem",
+    "subcategory": "teams",
+    "intent": "setup",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Team deployment intent"
+  },
+  {
+    "prompt": "best openclaw deployment option",
+    "category": "openclaw-ecosystem",
+    "subcategory": "deployment",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Deployment evaluation"
+  },
+  {
+    "prompt": "best way to install openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "How-to intent"
+  },
+  {
+    "prompt": "fastest way to install openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Speed-focused install term"
+  },
+  {
+    "prompt": "openclaw easy install",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Synonym for easy installer"
+  },
+  {
+    "prompt": "openclaw installation for non technical users",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Non-technical persona"
+  },
+  {
+    "prompt": "openclaw setup without coding",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "No-code install angle"
+  },
+  {
+    "prompt": "openclaw setup without terminal",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Terminal-free install term"
+  },
+  {
+    "prompt": "best openclaw ui",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "openclaw"
+    ],
+    "notes": "UI comparison term"
+  },
+  {
+    "prompt": "best openclaw frontend",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "lobechat"
+    ],
+    "notes": "Frontend phrasing"
+  },
+  {
+    "prompt": "best gui for openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "lobechat"
+    ],
+    "notes": "GUI-focused term"
+  },
+  {
+    "prompt": "beginner friendly openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Beginner-friendly framing"
+  },
+  {
+    "prompt": "openclaw setup for beginners",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Education + setup term"
+  },
+  {
+    "prompt": "how to install openclaw easily",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "How-to + easy angle"
+  },
+  {
+    "prompt": "how to use openclaw without terminal",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Pain-led install query"
+  },
+  {
+    "prompt": "best beginner openclaw guide",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Guide intent"
+  },
+  {
+    "prompt": "openclaw alternative with web ui",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "lazyclaw"
+    ],
+    "notes": "Alt + UI angle"
+  },
+  {
+    "prompt": "openclaw alternative for beginners",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Beginner alternative intent"
+  },
+  {
+    "prompt": "openclaw alternative with easier setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Ease-of-setup comparison"
+  },
+  {
+    "prompt": "openclaw alternative without manual setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Automation-led comparison"
+  },
+  {
+    "prompt": "openclaw for startup teams",
+    "category": "openclaw-ecosystem",
+    "subcategory": "teams",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Team use-case"
+  },
+  {
+    "prompt": "best openclaw distribution",
+    "category": "openclaw-ecosystem",
+    "subcategory": "distribution",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "Distribution framing"
+  },
+  {
+    "prompt": "commercial openclaw distribution",
+    "category": "openclaw-ecosystem",
+    "subcategory": "distribution",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Commercial distribution angle"
+  },
+  {
+    "prompt": "managed openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "managed",
+    "intent": "decision",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Managed-service angle"
+  },
+  {
+    "prompt": "best openclaw managed install",
+    "category": "openclaw-ecosystem",
+    "subcategory": "managed",
+    "intent": "decision",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Managed install term"
+  },
+  {
+    "prompt": "cheapest openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "cost",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openrouter"
+    ],
+    "notes": "Cost-sensitive prompt"
+  },
+  {
+    "prompt": "affordable openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Price + comparison"
+  },
+  {
+    "prompt": "best byok option for openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "byok",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openrouter"
+    ],
+    "notes": "BYOK-specific value"
+  },
+  {
+    "prompt": "openclaw with cheaper tokens",
+    "category": "openclaw-ecosystem",
+    "subcategory": "cost",
+    "intent": "cost",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openrouter",
+      "openclaw"
+    ],
+    "notes": "Token cost angle"
+  },
+  {
+    "prompt": "best token routing for openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "cost",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openrouter"
+    ],
+    "notes": "Advanced cost query"
+  },
+  {
+    "prompt": "openclaw install in 5 minutes",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Speed promise term"
+  },
+  {
+    "prompt": "openclaw one click install mac",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "OS-specific prompt"
+  },
+  {
+    "prompt": "openclaw installer for mac",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Mac install query"
+  },
+  {
+    "prompt": "openclaw installer for windows",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Windows install query"
+  },
+  {
+    "prompt": "openclaw installer download",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Download intent"
+  },
+  {
+    "prompt": "openclaw setup with web interface",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui"
+    ],
+    "notes": "Web-interface intent"
+  },
+  {
+    "prompt": "best openclaw onboarding experience",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Onboarding framing"
+  },
+  {
+    "prompt": "best openclaw experience for non developers",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Non-developer audience"
+  },
+  {
+    "prompt": "private openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "privacy",
+    "intent": "trust",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Privacy angle"
+  },
+  {
+    "prompt": "secure way to deploy openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "security",
+    "intent": "trust",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Deployment trust query"
+  },
+  {
+    "prompt": "best openclaw option for local ai",
+    "category": "openclaw-ecosystem",
+    "subcategory": "local-ai",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Local AI crossover"
+  },
+  {
+    "prompt": "best openclaw replacement for teams",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Team replacement query"
+  },
+  {
+    "prompt": "best local ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Large local-AI category"
+  },
+  {
+    "prompt": "local first ai automation tool",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Local-first automation"
+  },
+  {
+    "prompt": "self hosted ai assistant for teams",
+    "category": "local-ai-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Team self-hosted term"
+  },
+  {
+    "prompt": "private ai agent platform",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "langgraph"
+    ],
+    "notes": "Privacy + agents"
+  },
+  {
+    "prompt": "local ai browser automation",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "openwebui"
+    ],
+    "notes": "Local browser automation"
+  },
+  {
+    "prompt": "best self hosted ai tool",
+    "category": "local-ai-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Broad self-hosted term"
+  },
+  {
+    "prompt": "best private ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Privacy term"
+  },
+  {
+    "prompt": "best local first ai tool",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "continue",
+      "aider"
+    ],
+    "notes": "Local-first category"
+  },
+  {
+    "prompt": "best local llm app for teams",
+    "category": "local-ai-tools",
+    "subcategory": "local-models",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Team local-LLM prompt"
+  },
+  {
+    "prompt": "best local ai tool for workflows",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Workflow angle"
+  },
+  {
+    "prompt": "best self hosted ai workflow tool",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Workflow buyer intent"
+  },
+  {
+    "prompt": "best self hosted ai assistant 2026",
+    "category": "local-ai-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Annual roundup"
+  },
+  {
+    "prompt": "best private ai software for startups",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Startup privacy angle"
+  },
+  {
+    "prompt": "best local ai platform for startups",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Startup local-AI query"
+  },
+  {
+    "prompt": "best local ai stack for teams",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "ollama"
+    ],
+    "notes": "Stack framing"
+  },
+  {
+    "prompt": "best local ai app without cloud lock in",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "jan",
+      "anythingllm"
+    ],
+    "notes": "Lock-in pain point"
+  },
+  {
+    "prompt": "best local ai app for browser workflows",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "openwebui"
+    ],
+    "notes": "Browser workflow crossover"
+  },
+  {
+    "prompt": "best self hosted browser automation ai",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright"
+    ],
+    "notes": "Self-hosted browser automation"
+  },
+  {
+    "prompt": "best local ai tool for operations",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Ops use case"
+  },
+  {
+    "prompt": "best private ai workflow assistant",
+    "category": "local-ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Privacy + assistant framing"
+  },
+  {
+    "prompt": "best ai tool with local deployment",
+    "category": "local-ai-tools",
+    "subcategory": "deployment",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Deployment-specific term"
+  },
+  {
+    "prompt": "best bring your own key ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "byok",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "BYOK crossover"
+  },
+  {
+    "prompt": "best local ai assistant for small teams",
+    "category": "local-ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Small-team audience"
+  },
+  {
+    "prompt": "best self hosted ai setup for beginners",
+    "category": "local-ai-tools",
+    "subcategory": "beginners",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Beginner local-AI setup"
+  },
+  {
+    "prompt": "best private local ai platform",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Privacy-led category term"
+  },
+  {
+    "prompt": "best on premise ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "deployment",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "On-prem positioning"
+  },
+  {
+    "prompt": "best on premise ai workflow tool",
+    "category": "local-ai-tools",
+    "subcategory": "deployment",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui"
+    ],
+    "notes": "On-prem workflow use case"
+  },
+  {
+    "prompt": "best local ai product for smb",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "SMB local-AI angle"
+  },
+  {
+    "prompt": "best private ai browser agent",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator"
+    ],
+    "notes": "Privacy browser-agent term"
+  },
+  {
+    "prompt": "best secure local ai tool",
+    "category": "local-ai-tools",
+    "subcategory": "security",
+    "intent": "trust",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Trust-focused query"
+  }
+]

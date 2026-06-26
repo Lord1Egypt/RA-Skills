@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use Maskrun"
+  short_description: "Run shell commands through maskrun"
+  default_prompt: "Use $use-maskrun before running shell commands that may print environment secrets."

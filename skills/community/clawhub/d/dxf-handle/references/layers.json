@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {"layerName": "JS_客厅区域框线", "description": "客厅"},
+    {"layerName": "JS_主卧区域框线", "description": "主卧"},
+    {"layerName": "JS_次卧区域框线", "description": "次卧"},
+    {"layerName": "JS_客卧1区域框线", "description": "客卧1"},
+    {"layerName": "JS_客卧2区域框线", "description": "客卧2"},
+    {"layerName": "JS_南阳台区域框线", "description": "南阳台"},
+    {"layerName": "JS_北阳台区域框线", "description": "北阳台"},
+    {"layerName": "JS_厨房区域框线", "description": "厨房"},
+    {"layerName": "JS_公卫区域框线", "description": "公卫"},
+    {"layerName": "JS_内卫区域框线", "description": "内卫"}
+  ]
+}

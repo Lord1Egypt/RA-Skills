@@ -1,0 +1,65 @@
+{
+  "ibm.com": {
+    "emails": [
+      "infodenmark@ibm.com",
+      "info@hr.ibm.com",
+      "info@si.ibm.com",
+      "infofinland@ibm.com",
+      "info.finland@ibm.com",
+      "infosweden@ibm.com",
+      "infolt@lt.ibm.com",
+      "infonorway@ibm.com",
+      "info@ro.ibm.com",
+      "infolv@lv.ibm.com",
+      "support@rs.ibm.com",
+      "support@mibbint.com",
+      "gsc@at.ibm.com",
+      "cc@tr.ibm.com",
+      "ibmenquire@ie.ibm.com",
+      "spoc@lv.ibm.com",
+      "lopezordonez@es.ibm.com",
+      "tss@eg.ibm.com",
+      "ibm@ee.ibm.com",
+      "ibm%20support%20(hardware%20&%20software)%20toll%20free:%20%f0%9f%93%9e%208776178387%20%20(at&t:%2001426801)%20alternate%20number:%20%f0%9f%93%9e%20+44%2023%209228%209261%20emergency%20phones:%20%f0%9f%93%9e%20+20%2010%20246%2072222,%20+20%2010%20246%2073333%20task%20id%20(monitored%2024/7):tss@eg.ibm.com",
+      "ibm.luxembourg.sarl@be.ibm.com",
+      "ibm_directo@pt.ibm.com",
+      "ibmoffice@rs.ibm.com",
+      "ibm_customer_support_bulgaria@bg.ibm.com",
+      "szerviz@hu.ibm.com",
+      "podpora@si.ibm.com",
+      "cok@pl.ibm.com",
+      "blueline@be.ibm.com",
+      "servis@cz.ibm.com",
+      "croatia.control.center@hr.ibm.com",
+      "menarrc@eg.ibm.com",
+      "servlt@lt.ibm.com",
+      "romania.hardware@ro.ibm.com",
+      "ibmdiro@ch.ibm.com",
+      "6557@il.ibm.com",
+      "rossoft@ro.ibm.com",
+      "uaserv@ua.ibm.com",
+      "control-center-pk@ibm.com",
+      "ibm.office@ua.ibm.com",
+      "complaints@fscl.org.nz",
+      "xxx@ccc.com",
+      "domainabuse@cscglobal.com"
+    ],
+    "timestamp": "2026-03-09T21:45:10.928219",
+    "count": 42
+  },
+  "geeksforgeeks.org": {
+    "emails": [
+      "feedback@geeksforgeeks.org",
+      "abuse@publicdomainregistry.com"
+    ],
+    "timestamp": "2026-03-09T21:45:27.065724",
+    "count": 2
+  },
+  "coursera.org": {
+    "emails": [
+      "abuse@godaddy.com"
+    ],
+    "timestamp": "2026-03-09T21:45:48.666534",
+    "count": 1
+  }
+}

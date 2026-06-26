@@ -1,0 +1,40 @@
+{
+  "name": "resume-rocket",
+  "version": "0.1.0",
+  "description": "AI resume rewriter with JD matching and optional Boss auto-apply",
+  "entry": "main.py",
+  "runtime": "python",
+  "commands": {
+    "rewrite": {
+      "description": "改写简历以匹配目标 JD",
+      "args": {
+        "resume": { "type": "path", "required": true, "description": "简历文件路径 (PDF/DOCX/MD/TXT)" },
+        "jd": { "type": "string", "required": true, "description": "JD 链接或纯文本" },
+        "output": { "type": "path", "required": false, "default": "./output", "description": "输出目录" },
+        "tier": { "type": "string", "required": false, "default": "free", "enum": ["free", "single", "monthly", "pro"], "description": "服务档位" }
+      }
+    },
+    "match-score": {
+      "description": "只算匹配度不改写",
+      "args": {
+        "resume": { "type": "path", "required": true },
+        "jd": { "type": "string", "required": true }
+      }
+    },
+    "auto-apply": {
+      "description": "[Pro 专属] 批量 JD 定制 + 自动投递",
+      "args": {
+        "jd-list": { "type": "path", "required": true, "description": "JD URL 列表文件，一行一个" },
+        "resume-base": { "type": "path", "required": true },
+        "daily-limit": { "type": "number", "required": false, "default": 50 }
+      }
+    }
+  },
+  "config": {
+    "llm-provider": { "type": "string", "default": "alibaba", "enum": ["alibaba", "deepseek", "zhipu", "openai"] },
+    "llm-model": { "type": "string", "default": "qwen-plus" },
+    "llm-key": { "type": "secret", "required": true },
+    "license-key": { "type": "secret", "required": false, "description": "付费用户激活码" }
+  },
+  "pricing_server": "https://api.resume-rocket.openclaw.dev/license/verify"
+}

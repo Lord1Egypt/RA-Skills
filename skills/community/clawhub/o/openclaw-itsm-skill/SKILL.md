@@ -1,35 +1,316 @@
 ---
-name: "Openclaw Itsm Skill"
-description: "分析嘉为蓝鲸 ITSM 工单数据，提供新工单处理建议、趋势报表、高频问题识别及 SLA 超时风险监控，支持多流程字段自动映射。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-itsm-skill"
-sourceUrl: "https://clawhub.ai/skills/openclaw-itsm-skill"
+name: itsm-ticket-analyzer
+description: 嘉为蓝鲸 ITSM 工单分析技能。支持多流程工单数据读取、字段智能映射、新工单处理建议、趋势分析、高频问题识别、SLA 监控。Use when: 需要分析 ITSM 工单数据、为新工单提供处理建议、生成工单日报/周报、识别高频问题、监控 SLA 超时风险。支持不同流程的工单（字段自动适配）。
 ---
 
-# Openclaw Itsm Skill
+# 嘉为蓝鲸 ITSM 工单分析技能
 
-> 分析嘉为蓝鲸 ITSM 工单数据，提供新工单处理建议、趋势报表、高频问题识别及 SLA 超时风险监控，支持多流程字段自动映射。
+## 何时使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-itsm-skill`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-itsm-skill](https://clawhub.ai/skills/openclaw-itsm-skill)
+✅ **使用此技能当：**
+- 需要分析嘉为蓝鲸 ITSM 工单数据
+- 为新收到的工单提供处理建议
+- 生成工单日报/周报/月报
+- 识别高频问题/重复问题
+- 监控 SLA 超时风险
+- 工单分类/自动路由建议
+- **不同流程的工单分析**（字段自动适配）
 
-## Overview
+❌ **不使用此技能当：**
+- 需要直接操作 ITSM 系统（创建/关闭工单）→ 需要 API 集成
+- 实时工单通知 → 需要 Webhook 集成
 
+## 数据输入方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 方式 1：CSV/Excel 导出（推荐）
+
+从嘉为蓝鲸 ITSM 导出工单数据：
+
 ```bash
-hermes skills install clawhub/openclaw-itsm-skill
+# 在蓝鲸 ITSM 后台：工单管理 → 导出 → 选择字段
 ```
+
+**⚠️ 重要：不同流程的工单字段可能不同**
+
+技能会自动识别和映射字段，你只需要导出包含以下**基础字段**即可：
+
+| 嘉为蓝鲸标准字段 | 说明 | 必填 |
+|------------------|------|------|
+| 单号 | 工单唯一标识 | ✅ |
+| 标题 | 工单标题/摘要 | ✅ |
+| 服务目录 | 一级分类（如：IT 服务） | ✅ |
+| 服务 | 二级分类（如：网络服务） | ✅ |
+| 服务类型 | 三级分类（如：VPN 问题） | ✅ |
+| 状态 | 工单状态（待处理/处理中/已解决） | ✅ |
+| 当前步骤 | 流程节点名称 | ✅ |
+| 当前处理人 | 当前负责人 | ✅ |
+| 创建人 | 提单人 | ✅ |
+| 提单时间 | 创建时间 | ✅ |
+| 结束时间 | 解决/关闭时间 | ❌ |
+| 挂起时间 | 暂停时间 | ❌ |
+| 恢复时间 | 恢复处理时间 | ❌ |
+| 流程版本 | 流程模板版本 | ❌ |
+
+**可选字段**（如有则提供更详细分析）：
+- 优先级（P0/P1/P2/P3）
+- SLA 截止时间
+- 工单描述/详细内容
+- 解决方案/处理记录
+
+### 方式 2：不同流程的工单混合分析
+
+技能支持**混合分析**不同流程的工单：
+- 事件管理流程
+- 请求管理流程
+- 变更管理流程
+- 问题管理流程
+
+```bash
+# 导出时可以选择多个流程的工单
+# 技能会自动识别"服务目录/服务/服务类型"进行分类
+```
+
+## 核心功能
+
+### 1. 字段智能映射
+
+自动识别嘉为蓝鲸标准字段，支持不同流程的工单：
+
+```python
+# 自动映射示例
+字段映射 = {
+    "单号": "ticket_id",
+    "标题": "title",
+    "服务目录": "service_catalog",      # 一级分类
+    "服务": "service",                  # 二级分类
+    "服务类型": "service_type",         # 三级分类
+    "状态": "status",
+    "当前步骤": "current_step",
+    "当前处理人": "assignee",
+    "创建人": "requester",
+    "提单时间": "created_at",
+    "结束时间": "resolved_at",
+    "挂起时间": "suspended_at",
+    "恢复时间": "resumed_at",
+    "流程版本": "process_version"
+}
+```
+
+### 2. 新工单处理建议
+
+当有新工单时，自动分析并给出建议：
+
+```bash
+# 读取新工单数据
+python scripts/analyze_ticket.py --input /path/to/new_ticket.csv
+
+# 输出示例：
+# - 工单类型：网络问题
+# - 建议分类：基础设施组
+# - 相似历史工单：3 个
+# - 推荐解决方案：检查交换机配置...
+# - 预计处理时长：2 小时
+```
+
+### 3. 深度分析（完整报告）
+
+**处理人工作量统计**：
+- 处理人分布（工单数/占比）
+- 每个处理人的工单列表
+- 工作量对比
+
+**响应时间分析**：
+- 已解决工单：平均响应时间、最快/最慢
+- 未解决工单：平均等待时间、最长等待
+- Top 5 最慢工单列表
+
+**问题分类统计**：
+- 自动关键词分类（登录问题、服务宕机、监控告警等）
+- 分类占比统计
+- 重复问题识别
+
+```bash
+# 生成深度分析报告
+python scripts/deep_analysis.py --input /path/to/tickets.xlsx
+```
+
+### 4. 工单趋势分析（支持多流程）
+
+生成日报/周报/月报，**按服务目录/服务/服务类型分层分析**：
+
+```bash
+# 生成日报
+python scripts/trend_analysis.py --input /path/to/tickets.csv --period daily
+
+# 生成周报（按服务分类）
+python scripts/trend_analysis.py --input /path/to/tickets.csv --period weekly --group-by service
+```
+
+**分析指标：**
+- 工单总量趋势
+- 平均响应时间（提单时间 → 首次处理）
+- 平均解决时间（提单时间 → 结束时间）
+- 一次解决率
+- SLA 达标率
+- **按服务目录/服务/服务类型分布**
+- 按流程节点分布
+- 处理人工作量
+- 挂起率分析
+
+### 5. 高频问题识别（按服务类型聚类）
+
+识别重复问题，帮助建立知识库：
+
+```bash
+python scripts/cluster_issues.py --input /path/to/tickets.csv --threshold 0.8
+```
+
+**输出：**
+- 高频问题 Top 10（按服务类型分组）
+- 问题聚类分组
+- 推荐知识库文章
+- 重复提单识别
+
+### 6. SLA 监控（考虑挂起时间）
+
+监控即将超时/已超时的工单，**自动扣除挂起时间**：
+
+```bash
+python scripts/sla_monitor.py --input /path/to/tickets.csv --warning-hours 4
+```
+
+**输出：**
+- 即将超时工单列表（<4 小时）
+- 已超时工单列表
+- 超时原因分析（处理慢/挂起久/其他）
+- 实际处理时长 vs SLA 承诺
+
+## 脚本说明
+
+| 脚本 | 功能 | 输入 | 输出 |
+|------|------|------|------|
+| `analyze_ticket.py` | 单工单分析 | CSV/JSON | 处理建议 |
+| `trend_analysis.py` | 趋势分析 | CSV | Markdown 报告 |
+| `cluster_issues.py` | 问题聚类 | CSV | 聚类结果 |
+| `sla_monitor.py` | SLA 监控 | CSV | 预警列表 |
+
+## 配置说明
+
+### 环境变量（可选）
+
+```bash
+# 嘉为蓝鲸 ITSM API 配置
+export BK_ITSM_API_URL="https://<your-domain>/api/v1/itsm"
+export BK_ITSM_API_KEY="your-api-key"
+
+# 企业微信推送（可选）
+export WEBHOOK_URL="https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx"
+```
+
+### 配置文件
+
+编辑 `references/config.json` 自定义：
+
+```json
+{
+  "ticket_types": {
+    "网络问题": "基础设施组",
+    "服务器问题": "系统运维组",
+    "应用故障": "应用支持组",
+    "权限申请": "安全组"
+  },
+  "sla_hours": {
+    "P0": 1,
+    "P1": 4,
+    "P2": 24,
+    "P3": 72
+  }
+}
+```
+
+## 使用示例
+
+### 示例 1：分析新工单
+
+```
+用户：分析这个新工单，给出处理建议
+[上传工单 CSV]
+
+→ 自动调用 analyze_ticket.py
+→ 输出：工单类型、建议分类、相似工单、解决方案
+```
+
+### 示例 2：生成工单日报
+
+```
+用户：生成昨天的工单日报
+
+→ 自动调用 trend_analysis.py --period daily
+→ 输出：Markdown 格式日报，可推送到企业微信
+```
+
+### 示例 3：识别高频问题
+
+```
+用户：最近有哪些高频问题？
+
+→ 自动调用 cluster_issues.py
+→ 输出：Top 10 高频问题 + 聚类分组
+```
+
+### 示例 4：SLA 预警
+
+```
+用户：有哪些工单快超时了？
+
+→ 自动调用 sla_monitor.py
+→ 输出：即将超时工单列表 + 处理建议
+```
+
+## 输出模板
+
+### 工单日报模板
+
+```markdown
+## 📊 ITSM 工单日报
+
+**日期**: 2026-03-11
+
+### 核心指标
+- 新增工单：**15 个** (↑2 个)
+- 已解决：**12 个** (80%)
+- 平均响应时间：**25 分钟** (↓5 分钟)
+- SLA 达标率：**93%**
+
+### 工单类型分布
+1. 网络问题：5 个
+2. 服务器问题：4 个
+3. 应用故障：3 个
+4. 权限申请：3 个
+
+### 高频问题 Top 3
+1. VPN 连接失败 (3 次)
+2. 邮箱无法登录 (2 次)
+3. 打印机无法连接 (2 次)
+
+### 即将超时预警
+- 工单 #12345：剩余 2 小时 (P1)
+- 工单 #12346：剩余 3 小时 (P2)
+```
+
+## 参考资料
+
+- **嘉为蓝鲸文档**: `references/blueking-api.md`
+- **工单分类规则**: `references/ticket-classification.md`
+- **SLA 策略**: `references/sla-policy.md`
+
+## 企业微信推送
+
+和新闻推送一样，可以配置定时推送：
+
+```bash
+# 每天早上 9 点推送昨天的工单日报
+cron: 0 9 * * *
+```
+
+推送配置参考 `references/webhook-config.md`。

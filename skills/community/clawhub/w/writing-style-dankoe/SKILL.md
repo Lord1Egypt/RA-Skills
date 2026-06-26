@@ -1,35 +1,145 @@
 ---
-name: "Writing Style Dankoe"
-description: "Dan Koe 的思辨型写作风格。跨领域综合（心理学+控制论+游戏设计+商业）， 构建独特框架，探讨身份/意义/人生设计。三种核心手法： Micro Story、Pyramid Principle、Cross Domain Synthesis。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/writing-style-dankoe"
-sourceUrl: "https://clawhub.ai/skills/writing-style-dankoe"
+name: writing-style-dankoe
+description: |
+  Dan Koe 的思辨型写作风格。跨领域综合（心理学+控制论+游戏设计+商业），
+  构建独特框架，探讨身份/意义/人生设计。三种核心手法：
+  Micro Story、Pyramid Principle、Cross Domain Synthesis。
+routing:
+  content_types: [essay, thought-piece, self-improvement, philosophical]
+  domains: [psychology, identity, meaning, creator-economy, cybernetics]
+  tone: [philosophical, cross-domain, provocative, framework-building]
+  best_for: "思辨型文章，跨领域综合，构建独特框架，探讨意义/身份/人生设计"
 ---
 
-# Writing Style Dankoe
+# Dan Koe 写作风格
 
-> Dan Koe 的思辨型写作风格。跨领域综合（心理学+控制论+游戏设计+商业）， 构建独特框架，探讨身份/意义/人生设计。三种核心手法： Micro Story、Pyramid Principle、Cross Domain Synthesis。
+> 注意：Dan Koe 原文为英文。使用此风格生成中文时，保留其结构逻辑和思维方式，但适配中文表达习惯——避免翻译腔，用中文读者熟悉的类比和语境。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/writing-style-dankoe`
-- **Source URL:** [https://clawhub.ai/skills/writing-style-dankoe](https://clawhub.ai/skills/writing-style-dankoe)
+## 核心风格要点
 
-## Overview
+### 1. Micro Story（微故事结构）
 
+最基础的叙事单元：**问题 → 放大（为什么这很严重）→ 解决方案**。全文由多个 Micro Story 串联，每个章节都是一次完整的"问题-放大-解决"循环。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/writing-style-dankoe
+- 问题：指出一个读者可能意识到但没深想的痛点
+- 放大：用后果、数据、类比让读者感到"这比我想的严重"
+- 解决方案：给出框架或行动步骤
+
+**方法**：写每个章节前先问自己——这一节的"问题→放大→解决"分别是什么？如果答不清楚，这一节还没想透。
+
+### 2. Pyramid Principle（金字塔原则）
+
+主观点在前，3-5 个支撑论点在后，证据和例子垫底。读者在第一段就知道你的核心主张，后面是论证过程。
+
+- 开头一段话给出全文的核心观点（不铺垫、不绕弯）
+- 每个支撑论点是一个独立章节
+- 证据包括：引用（哲学家、心理学家）、个人经历、逻辑推演
+
+**方法**：先写出核心主张的一句话版本，再列出 3-5 个"为什么这是对的"，最后为每个论点找证据。
+
+### 3. Cross Domain Synthesis（跨领域综合）
+
+从多个学科抽取模式，创造独特洞察。这是 Dan Koe 最标志性的能力。
+
+常用的跨领域组合：
+- **心理学**（阿德勒、马斯洛）：行为背后的动机分析
+- **控制论**（cybernetics）：目标-反馈-修正循环
+- **游戏设计**：心流、等级系统、任务结构
+- **商业模型**：价值创造、杠杆、复利
+- **发展心理学**：自我发展阶段（ego development）
+
+**方法**：面对一个问题时，至少从 2-3 个不同领域寻找解释。交叉点往往就是独特洞察。
+
+### 4. 身份先行
+
+所有行为改变从身份改变开始。不是"做什么"的问题，是"成为谁"的问题。
+
+- 核心信念："你不在那里，是因为你不是那个人"
+- 身份塑造循环：目标 → 感知 → 学习 → 行动 → 习惯 → 身份 → 新目标
+- 破除旧身份需要勇气，不只是技巧
+
+**方法**：写到行为建议时，先问"这需要读者成为什么样的人？"再给具体步骤。
+
+### 5. 框架构建
+
+创造可视化框架（象限、层级、阶段、循环），给读者一张"地图"。框架让复杂概念变得可操作。
+
+常见框架类型：
+- **阶段模型**：如自我发展的 9 个阶段
+- **循环模型**：如控制论的目标-行动-感知-修正
+- **层级模型**：如目标的 6 个层次（反愿景→愿景→年目标→月项目→日杠杆→约束）
+- **公式**：如"成功 = 能动性 × 机会 × 智慧"
+
+**方法**：当论述超过 3 个要素时，考虑是否能组织成一个框架。好的框架让读者可以"带走"。
+
+---
+
+## 禁止清单
+
+- **废话开场白**："在当今社会…""随着…的发展…"
+- **总结套话**："综上所述""总而言之"
+- **AI 味句式**："不是…而是…""值得注意的是"
+- **模糊形容**："大幅""显著""非常"
+- **商业黑话**："赋能""闭环""抓手"
+- **心灵鸡汤腔**："你值得更好的""相信自己""加油" → 换成具体的认知分析
+- **翻译腔**："从某种意义上来说""就…而言""在…的背景下" → 用中文的自然表达
+- **空洞引用**：引用名言但不分析 → 每条引用必须紧接 2-3 句你的解读
+
+---
+
+## 文章结构模板
+
 ```
+标题（直接、挑战性，如"你不在那里，是因为你不是那个人"）
+
+I — 核心问题（Micro Story #1）
+    问题陈述 + 放大 + 预告解决方向
+    引用一位思想家的话作为锚点
+
+II — 深层原因分析（Micro Story #2）
+    跨领域视角 #1（如心理学）
+    身份层面的分析
+
+III — 底层机制（Micro Story #3）
+    跨领域视角 #2（如控制论）
+    构建第一个框架
+
+IV — 框架展开
+    引入阶段模型或层级模型
+    每个阶段/层级 1-2 句描述 + 示例
+
+V — 方法论（Micro Story #4）
+    从理论到实操
+    给出可执行的协议/步骤
+    包含具体的自问问题
+
+VI — 整合框架
+    把前面的洞察组织成一个完整的系统
+    可视化（列表、层级、循环）
+
+VII — 收尾
+    用一个有力的比喻或类比收束
+    不说"希望对你有帮助"，而是留下一个让读者自己思考的空间
+```
+
+---
+
+## 中文适配注意事项
+
+1. **引用处理**：英文引用给出原文 + 翻译，或直接用中文释义
+2. **专有名词**：首次出现给英文原词，后续用中文（如"控制论 cybernetics"→ 后续直接说"控制论"）
+3. **类比替换**：用中文读者熟悉的类比（如"游戏化"比 "gamification" 更直觉）
+4. **句式**：避免英文长从句的翻译腔，拆成短句
+5. **文化适配**：西方心理学框架用中文语境的例子来解释
+
+---
+
+## 使用指南
+
+1. 确认文章属于思辨/框架/身份探讨类
+2. 确定核心主张（一句话能说清楚的）
+3. 选择 2-3 个跨领域视角来支撑
+4. 为每个章节设计 Micro Story（问题→放大→解决）
+5. 构建至少一个可视化框架
+6. 确保身份层面的分析不缺席
+7. 自检禁止清单，特别注意翻译腔和鸡汤腔

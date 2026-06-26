@@ -1,0 +1,564 @@
+{
+  "decision_trees": [
+    {
+      "id": "war_or_peace",
+      "name": "War or Peace",
+      "name_zh": "战争还是和平",
+      "trigger": "major_escalation",
+      "context": "After major incident, choose strategic direction",
+      
+      "root": {
+        "id": "root",
+        "prompt": "Tensions are at breaking point. Regional war is imminent. What is your strategy?",
+        "prompt_zh": "紧张局势到达临界点。地区战争一触即发。你的战略是？",
+        
+        "options": [
+          {
+            "id": "total_war",
+            "label": "Pursue total military victory",
+            "label_zh": "追求全面军事胜利",
+            "requirements": {
+              "military_power": 80,
+              "public_support": 60
+            },
+            "consequences": {
+              "war_intensity": 100,
+              "casualties": "extreme",
+              "economic_cost": "catastrophic",
+              "duration": "long",
+              "outcome_options": ["total_victory", "stalemate", "defeat"]
+            },
+            "next": "total_war_path"
+          },
+          {
+            "id": "limited_war",
+            "label": "Limited war with clear objectives",
+            "label_zh": "有限战争，明确目标",
+            "requirements": {
+              "military_power": 60,
+              "diplomatic_capital": 40
+            },
+            "consequences": {
+              "war_intensity": 60,
+              "casualties": "high",
+              "economic_cost": "severe",
+              "duration": "medium",
+              "outcome_options": ["limited_victory", "negotiated_settlement"]
+            },
+            "next": "limited_war_path"
+          },
+          {
+            "id": "deterrence",
+            "label": "Deterrence through strength, avoid war",
+            "label_zh": "以实力威慑，避免战争",
+            "requirements": {
+              "military_power": 70,
+              "diplomatic_capital": 50
+            },
+            "consequences": {
+              "war_intensity": 20,
+              "casualties": "low",
+              "economic_cost": "moderate",
+              "duration": "ongoing",
+              "outcome_options": ["cold_war", "eventual_deescalation"]
+            },
+            "next": "deterrence_path"
+          },
+          {
+            "id": "negotiation",
+            "label": "Immediate negotiations, de-escalate",
+            "label_zh": "立即谈判，降级冲突",
+            "requirements": {
+              "diplomatic_capital": 60
+            },
+            "consequences": {
+              "war_intensity": 5,
+              "casualties": "minimal",
+              "economic_cost": "low",
+              "duration": "short",
+              "outcome_options": ["peace_treaty", "temporary_ceasefire", "perceived_weakness"]
+            },
+            "next": "negotiation_path"
+          }
+        ]
+      }
+    },
+    
+    {
+      "id": "civilian_casualties_dilemma",
+      "name": "Civilian Casualties Dilemma",
+      "name_zh": "平民伤亡困境",
+      "trigger": "military_target_in_civilian_area",
+      
+      "root": {
+        "id": "root",
+        "prompt": "Intel confirms high-value military target in dense civilian area. Estimated 50-100 civilian casualties if struck. Target will move in 6 hours.",
+        "prompt_zh": "情报确认高价值军事目标位于密集平民区。打击将导致50-100平民伤亡。目标将在6小时后转移。",
+        
+        "options": [
+          {
+            "id": "strike_now",
+            "label": "Strike now - military necessity",
+            "label_zh": "立即打击 - 军事必要性",
+            "consequences": {
+              "military_effectiveness": 100,
+              "civilian_casualties": 75,
+              "international_condemnation": 80,
+              "war_crimes_accusation": true,
+              "domestic_support": "mixed"
+            }
+          },
+          {
+            "id": "precision_strike",
+            "label": "Wait for precision opportunity",
+            "label_zh": "等待精确打击机会",
+            "consequences": {
+              "military_effectiveness": 60,
+              "civilian_casualties": 10,
+              "international_condemnation": 20,
+              "target_escape_risk": 40,
+              "delay": "12-24 hours"
+            }
+          },
+          {
+            "id": "warning_first",
+            "label": "Issue warning, allow civilian evacuation",
+            "label_zh": "发出警告，允许平民撤离",
+            "consequences": {
+              "military_effectiveness": 20,
+              "civilian_casualties": 5,
+              "international_condemnation": 10,
+              "target_escape_probability": 90,
+              "humanitarian_credit": 30
+            }
+          },
+          {
+            "id": "abort",
+            "label": "Abort - unacceptable civilian risk",
+            "label_zh": "中止 - 平民风险不可接受",
+            "consequences": {
+              "military_effectiveness": 0,
+              "civilian_casualties": 0,
+              "international_condemnation": 0,
+              "domestic_criticism": 60,
+              "enemy_emboldened": true
+            }
+          }
+        ]
+      }
+    },
+    
+    {
+      "id": "proxy_war_management",
+      "name": "Proxy War Management",
+      "name_zh": "代理人战争管理",
+      "trigger": "proxy_militia_request",
+      
+      "root": {
+        "id": "root",
+        "prompt": "Local militia offers to fight for you. They have questionable human rights record but strong anti-enemy sentiment. Support them?",
+        "prompt_zh": "当地民兵组织愿意为你作战。他们人权记录可疑，但反敌情绪强烈。支持他们吗？",
+        
+        "options": [
+          {
+            "id": "full_support",
+            "label": "Full support - weapons, training, funding",
+            "label_zh": "全力支持 - 武器、训练、资金",
+            "consequences": {
+              "proxy_effectiveness": 80,
+              "deniability": 20,
+              "war_crimes_liability": "high",
+              "blowback_risk": 60,
+              "cost": "moderate"
+            }
+          },
+          {
+            "id": "limited_support",
+            "label": "Limited support - intelligence and money only",
+            "label_zh": "有限支持 - 仅提供情报和资金",
+            "consequences": {
+              "proxy_effectiveness": 50,
+              "deniability": 60,
+              "war_crimes_liability": "medium",
+              "blowback_risk": 30,
+              "cost": "low"
+            }
+          },
+          {
+            "id": "conditional_support",
+            "label": "Conditional support - demand human rights compliance",
+            "label_zh": "有条件支持 - 要求遵守人权",
+            "consequences": {
+              "proxy_effectiveness": 30,
+              "deniability": 80,
+              "war_crimes_liability": "low",
+              "militia_frustration": "high",
+              "cost": "moderate"
+            }
+          },
+          {
+            "id": "reject",
+            "label": "Reject - too risky",
+            "label_zh": "拒绝 - 风险太高",
+            "consequences": {
+              "proxy_effectiveness": 0,
+              "deniability": 100,
+              "war_crimes_liability": "none",
+              "militia_turns_to_enemy": 40,
+              "missed_opportunity": true
+            }
+          }
+        ]
+      }
+    },
+    
+    {
+      "id": "economic_warfare",
+      "name": "Economic Warfare",
+      "name_zh": "经济战",
+      "trigger": "economic_pressure_option",
+      
+      "root": {
+        "id": "root",
+        "prompt": "You can impose harsh economic sanctions that will cripple the enemy economy but also harm civilians and global markets.",
+        "prompt_zh": "你可以施加严厉经济制裁，削弱敌方经济，但也会伤害平民和全球市场。",
+        
+        "options": [
+          {
+            "id": "total_embargo",
+            "label": "Total embargo - maximum pressure",
+            "label_zh": "全面禁运 - 最大压力",
+            "consequences": {
+              "enemy_economy": -60,
+              "enemy_civilian_suffering": "extreme",
+              "global_economy": -15,
+              "international_support": -40,
+              "enemy_regime_collapse_chance": 30
+            }
+          },
+          {
+            "id": "targeted_sanctions",
+            "label": "Targeted sanctions - military and elite only",
+            "label_zh": "定向制裁 - 仅针对军方和精英",
+            "consequences": {
+              "enemy_economy": -30,
+              "enemy_civilian_suffering": "moderate",
+              "global_economy": -5,
+              "international_support": -10,
+              "effectiveness": "medium"
+            }
+          },
+          {
+            "id": "humanitarian_exception",
+            "label": "Sanctions with humanitarian exceptions",
+            "label_zh": "制裁但有人道豁免",
+            "consequences": {
+              "enemy_economy": -20,
+              "enemy_civilian_suffering": "low",
+              "global_economy": -2,
+              "international_support": 10,
+              "sanctions_circumvention": "high"
+            }
+          },
+          {
+            "id": "no_sanctions",
+            "label": "No sanctions - seek other pressure",
+            "label_zh": "不制裁 - 寻求其他压力手段",
+            "consequences": {
+              "enemy_economy": 0,
+              "enemy_civilian_suffering": "none",
+              "global_economy": 0,
+              "domestic_criticism": "high",
+              "perceived_weakness": true
+            }
+          }
+        ]
+      }
+    },
+    
+    {
+      "id": "intelligence_ethics",
+      "name": "Intelligence Ethics",
+      "name_zh": "情报伦理",
+      "trigger": "captured_enemy_operative",
+      
+      "root": {
+        "id": "root",
+        "prompt": "You captured enemy intelligence officer. He knows about imminent attack that could kill hundreds. Interrogation methods?",
+        "prompt_zh": "你抓获敌方情报官员。他知道即将发生的攻击可能造成数百人死亡。审讯方式？",
+        
+        "options": [
+          {
+            "id": "enhanced_interrogation",
+            "label": "Enhanced interrogation (torture)",
+            "label_zh": "强化审讯（酷刑）",
+            "consequences": {
+              "intelligence_gained": 80,
+              "reliability": 40,
+              "war_crimes": true,
+              "international_condemnation": 90,
+              "attack_prevented_chance": 70
+            }
+          },
+          {
+            "id": "standard_interrogation",
+            "label": "Standard interrogation techniques",
+            "label_zh": "标准审讯技术",
+            "consequences": {
+              "intelligence_gained": 50,
+              "reliability": 70,
+              "war_crimes": false,
+              "international_condemnation": 0,
+              "attack_prevented_chance": 40,
+              "time_needed": "48 hours"
+            }
+          },
+          {
+            "id": "negotiation",
+            "label": "Negotiate - offer reduced sentence",
+            "label_zh": "谈判 - 提供减刑",
+            "consequences": {
+              "intelligence_gained": 60,
+              "reliability": 80,
+              "war_crimes": false,
+              "domestic_criticism": 30,
+              "attack_prevented_chance": 50,
+              "precedent_set": "prisoner_exchange"
+            }
+          },
+          {
+            "id": "legal_process",
+            "label": "Follow legal process, no shortcuts",
+            "label_zh": "遵循法律程序，不走捷径",
+            "consequences": {
+              "intelligence_gained": 20,
+              "reliability": 90,
+              "war_crimes": false,
+              "international_support": 20,
+              "attack_prevented_chance": 15,
+              "time_needed": "weeks"
+            }
+          }
+        ]
+      }
+    },
+
+    {
+      "id": "csar_pilot_rescue",
+      "name": "Combat Search and Rescue",
+      "name_zh": "战斗搜索与营救",
+      "trigger": "pilot_down_behind_enemy_lines",
+
+      "root": {
+        "id": "root",
+        "prompt": "WA F-15E 'Vega' shot down 85km behind MR lines. Pilot alive, evading. SA-400 SAM still active. MR patrols closing. Sandstorm in 5 hours. You have transport planes, A-10s, helicopters, an Osprey, and PS SOF on standby. What's the plan?",
+        "prompt_zh": "西盟F-15E「织女星」在山岳共和国防线后85公里处被击落。飞行员存活，正在躲避。SA-400防空导弹仍活跃。巡逻队正在逼近。5小时后沙尘暴。你有运输机、A-10、直升机、鱼鹰和凤凰国特种部队待命。你的计划？",
+
+        "options": [
+          {
+            "id": "overwhelming_force",
+            "label": "Overwhelming force — full air armada with A-10 escort and dual helo extraction",
+            "label_zh": "压倒性兵力——A-10护航的完整空中舰队和双直升机提取",
+            "requirements": {
+              "air_superiority": 70,
+              "available_aircraft": 8
+            },
+            "consequences": {
+              "success_rate": 80,
+              "casualties_risk": "high",
+              "escalation": "+extreme",
+              "aircraft_at_risk": 10,
+              "time": "3 hours",
+              "mr_sam_engagement": "guaranteed",
+              "political_fallout": "significant — undeniable act of war deep in MR territory"
+            },
+            "next": "overwhelming_force_execution"
+          },
+          {
+            "id": "surgical_night_op",
+            "label": "Surgical night op — single Osprey, nap-of-earth, Reaper overwatch",
+            "label_zh": "外科手术式夜间行动——单架鱼鹰超低空，死神无人机监视",
+            "requirements": {
+              "special_ops_capability": 60
+            },
+            "consequences": {
+              "success_rate": 55,
+              "casualties_risk": "medium",
+              "escalation": "+low",
+              "deniability": "moderate",
+              "time": "8 hours (wait for dark)",
+              "pilot_capture_risk": "high (long wait)"
+            },
+            "next": "surgical_night_execution"
+          },
+          {
+            "id": "multi_stage_relay",
+            "label": "Relay extraction — C-130 paradrops PJs, they walk Vega to helo pickup point near border",
+            "label_zh": "接力提取——C-130空投伞降救援队，徒步带飞行员到边境直升机接应点",
+            "requirements": {
+              "pararescue_available": true,
+              "vega_mobile": true
+            },
+            "consequences": {
+              "success_rate": 50,
+              "casualties_risk": "medium",
+              "escalation": "+low",
+              "time": "10-14 hours",
+              "ground_evasion_km": 20,
+              "weather_dependency": "high"
+            },
+            "next": "relay_extraction_execution"
+          },
+          {
+            "id": "ps_falcon_ground",
+            "label": "PS Falcon Unit cross-border ground raid — technicals + MRAPs from border",
+            "label_zh": "凤凰国猎鹰部队越境突袭——武装皮卡+防地雷车从边境出发",
+            "requirements": {
+              "ps_alliance_strength": 70,
+              "border_proximity": true
+            },
+            "consequences": {
+              "success_rate": 45,
+              "casualties_risk": "extreme",
+              "escalation": "+extreme",
+              "ps_wa_alliance": "+25",
+              "time": "5-6 hours",
+              "ps_political_cost": "severe — sovereign territory violation",
+              "if_captured": "international_incident"
+            },
+            "next": "falcon_ground_raid"
+          }
+        ]
+      },
+
+      "branches": {
+        "overwhelming_force_execution": {
+          "prompt": "A-10s engage SA-400 battery. Wild Weasels fire HARMs. Helos are inbound. But MR scrambles 2 fighter jets from Mountain City. One A-10 takes AAA hits.",
+          "options": [
+            {
+              "id": "press_attack",
+              "label": "Press the attack — mission first, deal with fighters",
+              "consequences": {
+                "air_battle": true,
+                "a10_at_risk": true,
+                "f16_intercept_fighters": true,
+                "mission_delay": "none",
+                "total_engagement": "escalatory"
+              }
+            },
+            {
+              "id": "abort_damaged",
+              "label": "Recall damaged A-10, redistribute CAS to remaining aircraft",
+              "consequences": {
+                "a10_saved": true,
+                "cas_reduced": true,
+                "helo_more_vulnerable": true,
+                "mission_continues": true
+              }
+            },
+            {
+              "id": "a10_ditch_switch_small",
+              "label": "Damaged A-10 can't return — divert to friendly strip or pilot ejects and MC-12 picks up on highway",
+              "consequences": {
+                "a10_pilot_choice": "eject_or_deadstick",
+                "if_eject": "two_rescues_now",
+                "if_deadstick": "risky_landing_25pct_success",
+                "mc12_highway_landing": "unconventional_but_possible"
+              }
+            }
+          ]
+        },
+
+        "aircraft_cant_return": {
+          "prompt": "Extraction helo is damaged. It cannot make the return flight. You need an alternative.",
+          "options": [
+            {
+              "id": "switch_to_osprey",
+              "label": "Osprey meets at rally point — transfers passengers, helo abandoned",
+              "consequences": {
+                "helo_abandoned": true,
+                "equipment_cost": "$35M",
+                "personnel_safe": true,
+                "sensitive_tech_destroyed": "thermite_charges"
+              }
+            },
+            {
+              "id": "switch_to_small_plane",
+              "label": "MC-12W lands on flat terrain — squeeze pilot into light aircraft",
+              "consequences": {
+                "unconventional": true,
+                "mc12_overloaded": "marginal",
+                "runway_improvised": "dry_lakebed",
+                "success_rate": 65
+              }
+            },
+            {
+              "id": "abandon_all_aircraft_walk",
+              "label": "Everyone abandons aircraft — destroy sensitive equipment, walk to border",
+              "consequences": {
+                "all_aircraft_lost": true,
+                "ground_evasion": "30km",
+                "survival_scenario": true,
+                "ps_sends_pickup_trucks": true,
+                "dramatic_tension": "maximum"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  
+  "consequence_matrix": {
+    "reputation_effects": {
+      "war_crimes_accusation": {
+        "international_support": -50,
+        "un_sanctions_risk": 70,
+        "ally_support": -30,
+        "domestic_nationalism": 20
+      },
+      "humanitarian_conduct": {
+        "international_support": 30,
+        "un_sanctions_risk": -20,
+        "ally_support": 20,
+        "domestic_frustration": 10
+      }
+    },
+    
+    "escalation_spiral": {
+      "minor_incident": {
+        "war_risk": 10,
+        "diplomatic_resolution": 80
+      },
+      "major_strike": {
+        "war_risk": 50,
+        "diplomatic_resolution": 40
+      },
+      "civilian_massacre": {
+        "war_risk": 90,
+        "diplomatic_resolution": 5,
+        "regime_change_calls": 80
+      }
+    },
+    
+    "economic_impact": {
+      "limited_war": {
+        "gdp_growth": -2,
+        "unemployment": 3,
+        "inflation": 5,
+        "oil_prices": 15
+      },
+      "total_war": {
+        "gdp_growth": -10,
+        "unemployment": 15,
+        "inflation": 20,
+        "oil_prices": 50
+      },
+      "sanctions": {
+        "target_gdp": -30,
+        "global_gdp": -3,
+        "oil_prices": 12
+      }
+    }
+  }
+}

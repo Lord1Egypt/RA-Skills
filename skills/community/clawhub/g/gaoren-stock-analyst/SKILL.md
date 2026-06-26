@@ -1,35 +1,161 @@
 ---
-name: "股票全面分析v3"
-description: "股票全面分析 v3.0 - 港股/美股/A股 + 富途数据源 + 技术指标(RSI/MACD) + 多源新闻 + 财报分析 + 7大板块报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gaoren-stock-analyst"
-sourceUrl: "https://clawhub.ai/skills/gaoren-stock-analyst"
+name: stock-analyst
+description: 股票全面分析 v3.0 - 港股/美股/A股 + 富途数据源 + 技术指标(RSI/MACD) + 多源新闻 + 财报分析 + 7大板块报告
+emoji: "📊"
+author: 
+  name: gaoren36-arch
+  github: gaoren36
+tags:
+  - stock
+  - finance
+  - hk-stock
+  - us-stock
+  - a-stock
+  - 港股
+  - 美股
+  - A股
+  - 富途
+  - RSI
+  - MACD
+  - 财报
+  - 新闻
+triggers:
+  - "分析股票"
+  - "股票分析"
+  - "全面分析"
+  - "港股"
+  - "财报"
+user-invocable: true
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+      os:
+        - win32
+        - darwin
+        - linux
+    capabilities:
+      - browser
+    version: "3.0.0"
 ---
 
-# 股票全面分析v3
+# Stock Analyst v3.0 - 股票全面分析系统
 
-> 股票全面分析 v3.0 - 港股/美股/A股 + 富途数据源 + 技术指标(RSI/MACD) + 多源新闻 + 财报分析 + 7大板块报告
+## 简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gaoren-stock-analyst`
-- **Source URL:** [https://clawhub.ai/skills/gaoren-stock-analyst](https://clawhub.ai/skills/gaoren-stock-analyst)
+专业股票分析系统，支持港股、美股和A股全面分析。
 
-## Overview
+## 数据源
 
+| 市场 | 主要数据源 | 备用 |
+|------|------------|------|
+| 港股 | 富途牛牛 (浏览器) | 腾讯财经 |
+| 美股 | Finnhub API | 富途 |
+| A股 | 腾讯财经API | - |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gaoren-stock-analyst
+## 新闻来源 (多源)
+
+1. **富途新闻** - 实时个股新闻
+2. **6551科技新闻** - 市场热点
+3. **财经门户** - 综合财经资讯
+
+## 功能特性
+
+### 1. 实时行情
+- 价格、涨跌幅
+- 总市值、市盈率
+- 52周高低点
+- 资金流向
+
+### 2. 技术指标
+- RSI(14) - 相对强弱指标
+- MACD - 指数平滑异同移动平均线
+- MA(5/10/20) - 移动平均线
+- 支撑/阻力位分析
+
+### 3. 财报分析
+- P/E (市盈率) 估值
+- P/B (市净率) 估值
+- ROE (净资产收益率)
+- 毛利率、净利率
+- 资产负债率
+- 估值评分 (低估/合理/高估)
+
+### 4. 新闻分析 (多源)
+- 实时新闻抓取
+- 情绪分析 (利好/利空/中性)
+- 热点追踪
+
+### 5. 综合报告 (7大板块)
+1. 基本信息
+2. 实时行情
+3. 技术指标
+4. 同类公司对比
+5. 行业背景
+6. 新闻分析
+7. 综合判断与操作建议
+
+## 支持的股票
+
+### 港股
+03998 波司登 | 01833 平安好医生 | 06060 众安在线 | 00700 腾讯 | 09988 阿里巴巴
+
+### 美股
+JD 京东 | BABA 阿里巴巴 | TSLA 特斯拉 | AAPL 苹果 | NVDA 英伟达
+
+### A股
+601857 中国石油 | 600519 贵州茅台 | 300750 宁德时代 | 002594 比亚迪
+
+## 使用方式
+
 ```
+分析 03998
+查一下波司登
+分析港股 01833
+```
+
+## 报告示例
+
+```
+=================================================================
+  股票全面分析报告 - 03998
+=================================================================
+
+1️⃣ 基本信息
+股票名称: 波司登国际控股有限公司
+股票代码: 03998
+市场: 港股
+
+2️⃣ 实时行情
+当前价格: HK$4.13
+涨跌幅: +0.98%
+市盈率: 12.33
+
+3️⃣ 技术指标
+RSI(14): 58.5
+MACD: 0.0234
+MA5: 4.12
+
+4️⃣ 同类公司对比
+(见富途)
+
+5️⃣ 行业背景
+羽绒服行业龙头
+
+6️⃣ 新闻分析
+情绪: 利好
+近期3条利好
+
+7️⃣ 综合判断
+评分: 72/100
+评级: 建议买入
+
+=================================================================
+```
+
+## 版本历史
+
+- v3.0.0: 多源新闻 + 财报分析 + 7大板块报告
+- v2.1.0: 富途数据源
+- v1.0.0: 初始版本

@@ -1,0 +1,21 @@
+{
+  "name": "ocas-elephas",
+  "version": "2.3.0",
+  "description": "Elephas: long-term knowledge graph (Chronicle) maintenance. Ingests structured signals from system journals, resolves entity identity, promotes confirmed facts, and generates inferences. Trigger phrases: 'what does Chronicle know about', 'query the knowledge graph', 'ingest journals', 'consolidate', 'resolve entity', 'Chronicle status', 'update elephas'. Use when querying world knowledge, ingesting signals, running consolidation, resolving entity duplicates, or promoting candidates to confirmed facts.",
+  "author": "Indigo Karasu",
+  "email": "mx.indigo.karasu@gmail.com",
+  "platform_dependencies_note": "Python examples in references/ are illustrative. Dependencies (real_ladybug) are provided by the OpenClaw platform runtime.",
+  "filesystem": {
+    "read": [
+      "~/openclaw/data/ocas-elephas/",
+      "~/openclaw/journals/ocas-elephas/",
+      "~/openclaw/db/ocas-elephas/",
+      "~/openclaw/journals/*/"
+    ],
+    "write": [
+      "~/openclaw/data/ocas-elephas/",
+      "~/openclaw/journals/ocas-elephas/",
+      "~/openclaw/db/ocas-elephas/"
+    ]
+  }
+}

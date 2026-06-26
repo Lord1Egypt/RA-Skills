@@ -1,0 +1,36 @@
+{
+  "id": "10",
+  "name": "低空经济与空天",
+  "category": "先进制造业",
+  "keywords": [
+    "低空经济",
+    "无人机",
+    "eVTOL",
+    "通用航空",
+    "卫星",
+    "火箭",
+    "航空航天"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🚀",
+    "maxDescriptionLength": 200
+  }
+}

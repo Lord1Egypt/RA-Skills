@@ -1,0 +1,225 @@
+"""
+MT940 to BIPV5 映射配置文件
+定义MT940格式字段到BIPV5系统字段的映射关系
+"""
+
+{
+  "source_format": "MT940",
+  "source_format_version": "Citi SWIFT MT940",
+  "target_system": "BIPV5",
+  "target_sheet_name": "银行流水处理",
+  "template_file": "YYBIPV5_banktransaction.xlsx",
+  "data_start_row": 10,
+  "header_row_en": 4,
+  "header_row_cn": 6,
+
+  "field_mappings": [
+    {
+      "target_field": "id",
+      "source_field": null,
+      "transform": "static_empty",
+      "description": "手工码留空"
+    },
+    {
+      "target_field": "accentity_code",
+      "source_field": null,
+      "transform": "user_provided",
+      "default_value": null,
+      "description": "账户使用组织编码，需用户指定"
+    },
+    {
+      "target_field": "bankaccount_account",
+      "source_field": "account_number",
+      "transform": "direct",
+      "description": "银行账号，来自MT940 Tag 25"
+    },
+    {
+      "target_field": "bankNumber_name",
+      "source_field": null,
+      "transform": "lookup_bank",
+      "lookup_source": "account_number",
+      "default_value": null,
+      "description": "银行名称，可通过映射表或用户输入提供"
+    },
+    {
+      "target_field": "bank_seq_no",
+      "source_field": "reference_number",
+      "transform": "bank_seq_no_auto",
+      "description": "本方交易流水号，来自MT940 Tag 61子字段7或Tag 86参考，无则自动生成"
+    },
+    {
+      "target_field": "tran_date",
+      "source_field": "value_date",
+      "transform": "date_format",
+      "input_format": "YYMMDD",
+      "output_format": "YYYY-MM-DD",
+      "description": "交易日期，来自MT940 Tag 61子字段1"
+    },
+    {
+      "target_field": "tran_time",
+      "source_field": null,
+      "transform": "static",
+      "default_value": "00:00:00",
+      "description": "交易时间，MT940不包含具体时间"
+    },
+    {
+      "target_field": "dc_flag",
+      "source_field": "dc_indicator",
+      "transform": "map",
+      "mapping": {
+        "C": "C",
+        "D": "D",
+        "RC": "C",
+        "RD": "D"
+      },
+      "description": "借贷标识，MT940中C=贷方(收入)，D=借方(支出)"
+    },
+    {
+      "target_field": "debitamount",
+      "source_field": "amount",
+      "transform": "conditional",
+      "condition_field": "dc_indicator",
+      "condition_values": ["D", "RD"],
+      "description": "支出金额，仅当借贷标识为D时填写"
+    },
+    {
+      "target_field": "creditamount",
+      "source_field": "amount",
+      "transform": "conditional",
+      "condition_field": "dc_indicator",
+      "condition_values": ["C", "RC"],
+      "description": "收入金额，仅当借贷标识为C时填写"
+    },
+    {
+      "target_field": "currency_name",
+      "source_field": "currency_code",
+      "transform": "map_currency",
+      "description": "币种，将币种编码转换为中文名称"
+    },
+    {
+      "target_field": "tran_amt",
+      "source_field": null,
+      "transform": "static_empty",
+      "description": "金额留空"
+    },
+    {
+      "target_field": "to_acct_no",
+      "source_field": "counterparty_account",
+      "transform": "direct",
+      "description": "对方账号，从Tag 86的/AC/或/AB/代码中提取"
+    },
+    {
+      "target_field": "to_acct_name",
+      "source_field": "counterparty_name",
+      "transform": "direct",
+      "description": "对方户名，从Tag 86的/BE/或/BO/代码中提取"
+    },
+    {
+      "target_field": "to_acct_bank_name",
+      "source_field": "counterparty_bank",
+      "transform": "direct",
+      "description": "对方银行名称，从Tag 86的/AB/系列代码中提取"
+    },
+    {
+      "target_field": "use_name",
+      "source_field": null,
+      "transform": "extract_from_remark",
+      "description": "用途，从交易摘要中推断"
+    },
+    {
+      "target_field": "remark",
+      "source_field": "transaction_description",
+      "transform": "direct",
+      "description": "摘要，来自MT940 Tag 61子字段9或Tag 86的/PY/内容"
+    },
+    {
+      "target_field": "remark01",
+      "source_field": "reference_for_account_owner",
+      "transform": "direct",
+      "description": "附言，来自MT940 Tag 61子字段7"
+    },
+    {
+      "target_field": "acct_bal",
+      "source_field": "closing_balance",
+      "transform": "direct",
+      "description": "余额，来自MT940 Tag 62F，每条记录填写当日余额"
+    },
+    {
+      "target_field": "thirdserialno",
+      "source_field": "reference_number",
+      "transform": "direct",
+      "description": "第三方交易流水号"
+    },
+    {
+      "target_field": "unique_no",
+      "source_field": "auto_generated",
+      "transform": "hash",
+      "source_fields": ["account_number", "value_date", "reference_number", "amount"],
+      "description": "唯一标识号，基于关键字段生成MD5"
+    },
+    {
+      "target_field": "expenseItem_name",
+      "source_field": null,
+      "transform": "map_entry_reason",
+      "mapping_source": "entry_reason_code",
+      "description": "费用项目，根据Entry Reason映射"
+    },
+    {
+      "target_field": "detailReceiptRelationCode",
+      "source_field": null,
+      "transform": "static",
+      "default_value": "",
+      "description": "明细收据关联单据号"
+    },
+    {
+      "target_field": "originbankseqno",
+      "source_field": null,
+      "transform": "static",
+      "default_value": "",
+      "description": "原银行交易流水号"
+    },
+    {
+      "target_field": "confirmstatus",
+      "source_field": null,
+      "transform": "static",
+      "default_value": "未确认",
+      "description": "账户使用组织确认状态"
+    }
+  ],
+
+  "required_fields": [
+    "bankaccount_account",
+    "bank_seq_no",
+    "tran_date",
+    "currency_name"
+  ],
+
+  "header_matching": {
+    "use_cosine_similarity": true,
+    "threshold": 0.75,
+    "fallback_similarity": 0.6,
+    "field_aliases": {
+      "bankaccount_account": ["银行账号", "账号", "账户号码", "Account Number"],
+      "bank_seq_no": ["流水号", "交易流水号", "本方流水号", "Bank Seq"],
+      "tran_date": ["交易日期", "交易时间", "发生日期", "Transaction Date"],
+      "dc_flag": ["借贷", "借贷标识", "收支方向", "DC Flag"],
+      "debitamount": ["支出", "支出金额", "借方金额", "Debit Amount"],
+      "creditamount": ["收入", "收入金额", "贷方金额", "Credit Amount"],
+      "currency_name": ["币种", "货币", "Currency"],
+      "tran_amt": ["金额", "交易金额", "发生金额", "Amount"],
+      "to_acct_no": ["对方账号", "对方账户", "交易对手账号"],
+      "to_acct_name": ["对方户名", "对方名称", "交易对手名称"],
+      "remark": ["摘要", "用途", "备注", "交易摘要", "Remark"]
+    }
+  },
+
+  "validation_rules": {
+    "date_range": {
+      "min_date": "2000-01-01",
+      "max_date": "2099-12-31"
+    },
+    "amount_precision": 2,
+    "max_amount": 999999999999.99,
+    "currency_format": "ISO 4217 (3 letter code)"
+  }
+}

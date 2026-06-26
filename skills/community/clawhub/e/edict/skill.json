@@ -1,0 +1,44 @@
+{
+  "name": "edict",
+  "version": "1.0.0",
+  "description": "🏛️ 三省六部制 · OpenClaw Multi-Agent Orchestration System",
+  "author": "cft0808",
+  "license": "MIT",
+  "keywords": [
+    "multi-agent",
+    "orchestration",
+    "dashboard",
+    "audit",
+    "workflow",
+    "governance"
+  ],
+  "homepage": "https://github.com/cft0808/edict",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cft0808/edict.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cft0808/edict/issues"
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "dependencies": [
+      "pyyaml>=5.4",
+      "requests>=2.25",
+      "flask>=2.0",
+      "prometheus-client>=0.12"
+    ]
+  },
+  "openclaw": {
+    "min_version": "2026.3.24",
+    "skills": [
+      "agent-browser",
+      "api-gateway"
+    ]
+  },
+  "entry_points": {
+    "console_scripts": [
+      "edict=edict.cli:main"
+    ]
+  }
+}

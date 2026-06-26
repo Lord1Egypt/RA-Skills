@@ -1,35 +1,57 @@
 ---
-name: "使用火山引擎豆包模型生成图片。  通过火山引擎豆包图片生成 API 创建图片。支持自定义提示词、尺寸、模型等参数。  ## 环境变量 - VOLCENGINE_IMAGE_API_KEY - 豆包 API Key（必填）  ## 使用方式 生图：一只可爱的小猫  ## 支持的尺寸 1024x1024, 1280x720, 720x1280, 1024x768, 768x1024"
-description: "使用火山引擎豆包模型生成图片。通过火山引擎豆包图片生成 API 创建图片。支持自定义提示词、尺寸、模型等参数。使用方式：生图：一只可爱的小猫。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doubao-image"
-sourceUrl: "https://clawhub.ai/skills/doubao-image"
+name: doubao-image
+description: 使用火山引擎豆包模型生成图片。通过火山引擎豆包图片生成 API 创建图片。支持自定义提示词、尺寸、模型等参数。使用方式：生图：一只可爱的小猫。
 ---
 
-# 使用火山引擎豆包模型生成图片。  通过火山引擎豆包图片生成 API 创建图片。支持自定义提示词、尺寸、模型等参数。  ## 环境变量 - VOLCENGINE_IMAGE_API_KEY - 豆包 API Key（必填）  ## 使用方式 生图：一只可爱的小猫  ## 支持的尺寸 1024x1024, 1280x720, 720x1280, 1024x768, 768x1024
+# doubao-image - 豆包图片生成
 
-> 使用火山引擎豆包模型生成图片。通过火山引擎豆包图片生成 API 创建图片。支持自定义提示词、尺寸、模型等参数。使用方式：生图：一只可爱的小猫。
+使用火山引擎豆包模型生成图片。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doubao-image`
-- **Source URL:** [https://clawhub.ai/skills/doubao-image](https://clawhub.ai/skills/doubao-image)
+## 简介
 
-## Overview
+通过火山引擎豆包图片生成 API 创建图片。支持自定义提示词、尺寸、模型等参数。
 
+## 环境变量
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/doubao-image
+- `VOLCENGINE_IMAGE_API_KEY` - 豆包 API Key（必填）
+
+**获取方式**：
+1. 登录火山引擎控制台 https://console.volces.com/
+2. 进入「应用与插件」或「API Key 管理」
+3. 创建或复制 API Key
+
+## 使用方式
+
 ```
+生图：一只可爱的小猫
+```
+
+### 可选参数
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| 尺寸 | 图片尺寸 | 1024x1024 |
+| 模型 | 使用的模型 | doubao-seedream-4-0-250828 |
+| 数量 | 生成数量 | 1 |
+
+### 支持的尺寸
+
+- 1024x1024 (默认)
+- 1280x720
+- 720x1280
+- 1024x768
+- 768x1024
+
+## 输出
+
+图片自动保存到 `downloads/images/` 目录。
+
+## 重要说明
+
+- **每个用户需要自己的 API Key**：使用时从环境变量 `VOLCENGINE_IMAGE_API_KEY` 读取
+- 环境变量需要在系统或终端中预先配置
+
+## 错误处理
+
+- 如果环境变量未设置，会提示用户设置
+- 如果 API 返回错误，会显示具体错误信息

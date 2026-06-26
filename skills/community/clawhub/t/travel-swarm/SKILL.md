@@ -1,35 +1,41 @@
----
-name: "Travel Swarm"
-description: "Integrated travel planner combining FlyAI ticket prices, Gaode and Tencent map POI, Meituan food recommendations, and fallback McDonald's options."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/travel-swarm"
-sourceUrl: "https://clawhub.ai/skills/travel-swarm"
----
+# openclaw-travel-swarm-v8
 
-# Travel Swarm
+多MCP集成智能旅行规划系统 - FlyAI+高德+腾讯+美团+麦当劳
 
-> Integrated travel planner combining FlyAI ticket prices, Gaode and Tencent map POI, Meituan food recommendations, and fallback McDonald's options.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/travel-swarm`
-- **Source URL:** [https://clawhub.ai/skills/travel-swarm](https://clawhub.ai/skills/travel-swarm)
+- FlyAI真实票价查询（飞猪实时数据）
+- 高德vs腾讯POI验证
+- 美团美食推荐
+- 麦当劳兜底方案
+- 地图截图生成
 
-## Overview
+## 使用
 
+触发口令：
+- 旅行规划
+- 旅游攻略
+- 订票
+- 美食推荐
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装
+
 ```bash
-hermes skills install clawhub/travel-swarm
+clawhub install openclaw-travel-swarm-v8
 ```
+
+## 配置
+
+需要配置以下API密钥：
+- FLYAI_API_KEY
+- GAODE_API_KEY
+- TENCENT_MAP_KEY（可选）
+- MEITUAN_API_KEY（可选）
+
+## 作者
+
+海狸 🦫
+
+## 许可证
+
+MIT

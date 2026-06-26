@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google News"
+  short_description: "Search Google News"
+  default_prompt: "Use $dataify-google-news to run a search query."

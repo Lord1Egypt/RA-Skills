@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accounting & Finance System Research"
+  short_description: "Research and solve accounting system how-to questions"
+  default_prompt: "Use $accounting-finance-system-research to ask clarifying questions, research system guidance, and produce a DOCX memo or Q&A answer."

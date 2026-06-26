@@ -1,35 +1,77 @@
----
-name: "web-searxng"
-description: "提供基于SearXNG的隐私保护搜索引擎，支持快速无追踪的网页搜索和结果聚合。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-searxng"
-sourceUrl: "https://clawhub.ai/skills/web-searxng"
+# Skill: searxng
+
+**Description**: 基于 SearXNG 的隐私保护搜索引擎工具。提供快速、无追踪的 Web 搜索能力，**自动发现 Docker 服务端端口**，**智能识别搜索模式**。
+
+**Capabilities**: 网页搜索、结果聚合、隐私保护查询、自动 Docker 端口发现、智能模式检测（股票分析 vs 通用搜索）。
+
+**Usage**: 直接通过搜索指令调用，如“使用 searxng 搜索...”。该技能可作为网络搜索的有效补充，用于需要更高隐私保护的查询场景。
+
 ---
 
-# web-searxng
+## 智能模式检测功能
 
-> 提供基于SearXNG的隐私保护搜索引擎，支持快速无追踪的网页搜索和结果聚合。
+该技能会自动检测搜索查询类型，并提供相应的输出格式：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-searxng`
-- **Source URL:** [https://clawhub.ai/skills/web-searxng](https://clawhub.ai/skills/web-searxng)
+### 1. 股票分析模式
+- 当查询包含股票相关关键词（股票、股价、行情、大盘等）或 6 位股票代码时，自动切换到股票分析模式
+- 输出专业的股票分析报告，包含：
+  - 基本信息（股票名称、代码、价格、成交量）
+  - 行情分析
+  - 最新资讯分析
+  - 技术指标（阻力位、支撑位）
+  - 操作建议
 
-## Overview
+### 2. 通用搜索模式
+- 当查询为一般搜索内容时，自动使用通用搜索模式
+- 输出标准搜索结果，包含：
+  - 搜索结果列表
+  - 标题、来源链接、摘要
+  - 最多显示 20 条结果
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-searxng
-```
+## 自动端口发现功能
+
+该技能会自动尝试以下方式发现 SearXNG 服务：
+
+1. **环境变量**：检查 `SEARXNG_URL` 环境变量
+2. **Docker 容器**：自动检测运行中的 SearXNG Docker 容器及其端口映射
+3. **常见端口**：尝试常见的 SearXNG 端口（32768, 8080, 8888, 9000, 8000）
+4. **默认端口**：回退到默认端口 32768
+
+这样，即使您的 SearXNG Docker 容器使用不同的端口映射，该技能也能自动找到正确的地址。
+
+---
+
+## 搜索示例
+
+### 股票分析模式示例
+- `使用 searxng 搜索本立科技最新股票行情`
+- `使用 searxng 搜索 301065 股票价格`
+- `使用 searxng 搜索 A股大盘走势`
+
+### 通用搜索模式示例
+- `使用 searxng 搜索人工智能最新发展`
+- `使用 searxng 搜索 Python 最佳实践`
+- `使用 searxng 搜索 2026 年科技趋势`
+
+---
+
+## 技术特点
+
+- **隐私保护**：通过 SearXNG 进行无追踪搜索
+- **智能结果**：自动分析和聚类搜索结果
+- **缓存优化**：本地缓存提高响应速度
+- **自动发现**：智能检测 SearXNG 服务地址
+- **智能模式**：自动识别搜索类型，提供相应输出格式
+- **错误处理**：当 SearXNG 不可用时提供备用搜索链接
+
+---
+
+## 依赖要求
+
+- Python 3.8+
+- aiohttp
+- aiofiles
+- httpx (用于服务检测)
+- Docker (可选，用于容器检测)

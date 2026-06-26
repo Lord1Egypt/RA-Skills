@@ -1,0 +1,33 @@
+{
+  "hisTimetable": [
+    {
+      "head": [
+        {
+          "list_total_count": 3
+        },
+        {
+          "RESULT": {
+            "CODE": "INFO-000",
+            "MESSAGE": "정상 처리되었습니다."
+          }
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "PERIO": "2",
+          "ITRT_CNTNT": "음악"
+        },
+        {
+          "PERIO": "1",
+          "ITRT_CNTNT": "국어Ⅰ"
+        },
+        {
+          "PERIO": "3",
+          "ITRT_CNTNT": "생명과학 및 실험Ⅰ"
+        }
+      ]
+    }
+  ]
+}

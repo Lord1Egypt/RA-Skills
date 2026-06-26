@@ -1,0 +1,20 @@
+{
+    "name": "strain-identification-blast",
+    "version": "1.0.0",
+    "description": "菌种鉴定自动化：解析测序SEQ/FASTA文件 → NCBI BLAST比对 → 钉钉表格数据 → 自动生成Word鉴定报告",
+    "author": "custom",
+    "main": "main.py",
+    "trigger": "text",
+    "params": [
+        {
+            "name": "file_path",
+            "type": "string",
+            "description": "测序文件路径(seq/fasta)"
+        },
+        {
+            "name": "report_template",
+            "type": "string",
+            "description": "Word报告模板路径"
+        }
+    ]
+}

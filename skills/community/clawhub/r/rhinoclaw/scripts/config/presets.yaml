@@ -1,0 +1,37 @@
+# Named presets - quick access to common configurations
+presets:
+  standard_900:
+    description: "Standard Innentür 900mm"
+    template: rahmentuer_ud4
+    params:
+      Lichtbreite: 900
+      Lichthoehe: 2100
+
+  standard_800:
+    description: "Standard Innentür 800mm"
+    template: rahmentuer_ud4
+    params:
+      Lichtbreite: 800
+      Lichthoehe: 2100
+
+  brandschutz_t30:
+    description: "Brandschutztür T30 (EI30)"
+    template: rahmentuer_ud5
+    params:
+      Lichtbreite: 900
+      Lichthoehe: 2100
+
+  nasszelle_750:
+    description: "Nasszelltür 750mm (WC/Bad)"
+    template: rahmentuer_ud4
+    params:
+      Lichtbreite: 750
+      Lichthoehe: 2000
+
+  aussentuer_schwelle:
+    description: "Aussentür mit Schwelle"
+    template: rahmentuer_schwelle
+    params:
+      Lichtbreite: 1000
+      Lichthoehe: 2100
+      Schwellenhoehe: 20

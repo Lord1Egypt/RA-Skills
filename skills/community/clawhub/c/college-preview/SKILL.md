@@ -1,35 +1,99 @@
 ---
-name: "College Exam Sprint"
-description: "面向大学课程期末复习的 OpenClaw 助学 skill，支持首次建档、20 天总计划、每日任务、当日小测、进度反馈与动态调整；适配计算机网络、数据结构、高等数学等课程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/college-preview"
-sourceUrl: "https://clawhub.ai/skills/college-preview"
+name: OpenClaw 助学——大学课程 20 天期末冲刺
+slug: exam-sprint-skill
+version: 2.0.0
+description: 面向大学课程期末复习的 OpenClaw 助学 skill，支持首次建档、20 天总计划、每日任务、当日小测、进度反馈与动态调整；适配计算机网络、数据结构、高等数学等课程。
+metadata: {"clawdbot":{"emoji":"📘","requires":{"bins":[]},"os":["linux","darwin","win32"]}}
 ---
 
-# College Exam Sprint
+## 这个 skill 是做什么的
 
-> 面向大学课程期末复习的 OpenClaw 助学 skill，支持首次建档、20 天总计划、每日任务、当日小测、进度反馈与动态调整；适配计算机网络、数据结构、高等数学等课程。
+这是一个面向大学课程期末冲刺场景的助学 skill。它的目标不是一次性回答某道题，而是围绕一次明确的考试周期，把考试信息、课程资料、复习计划、每日任务、当日测试和进度调整组织成一个连续项目。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/college-preview`
-- **Source URL:** [https://clawhub.ai/skills/college-preview](https://clawhub.ai/skills/college-preview)
+它适用于常见高校课程的期末复习场景，例如《计算机网络》《数据结构》《操作系统》《高等数学》等。系统应先识别课程类型、考试要求、资料结构和用户当前薄弱点，再按统一流程生成计划、讲解、测试与调整。文档中的《计算机网络》只作为展示性示例，不限制本 skill 的实际适用范围。
 
-## Overview
+## 什么时候使用
 
+当用户需要完成以下任务时使用本 skill：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/college-preview
+1. 首次录入课程名称、考试时间、题型、教材、课件、笔记和每天可用时间；
+2. 生成 20 天总计划和第 1 天任务；
+3. 在后续每天通过“开始今天任务”进入当日学习流程；
+4. 在学习过程中请求讲解、例题、提示、总结或错因分析；
+5. 生成“今天的小测”或“阶段模拟题”；
+6. 提交完成情况，让系统更新进度并对未来几天做局部调整。
+
+## 推荐工作区结构
+
+所有数据建议存放在 `~/study_university_sprint/`：
+
+```text
+~/study_university_sprint/
+├── 01_考试信息/
+│   ├── 考试安排.md
+│   ├── 课程清单.md
+│   ├── 每日复习时间.md
+│   └── 目标分数.md
+├── 02_输入材料/
+│   ├── 教材/
+│   ├── 课件PPT/
+│   ├── 课堂笔记/
+│   ├── 教师重点/
+│   └── 参考习题与往年题/
+├── 03_进度记录/
+│   ├── 第01天记录.md
+│   ├── ...
+│   └── 每周总结.md
+├── 04_中间结果/
+│   ├── 总体计划/
+│   ├── 每日任务/
+│   ├── 知识点总结/
+│   ├── 习题与小测/
+│   └── 反馈报告/
+├── 05_最终输出/
+│   ├── 最终20天计划.md
+│   ├── 最终重点清单.md
+│   ├── 易错点总结.md
+│   ├── 模拟测试题.md
+│   └── 考前3天速记版.md
+└── 06_归档区/
+    └── 备份笔记/
 ```
+
+## 模块调用逻辑
+
+### 1. 首次建档
+当用户第一次输入课程、考试时间、资料、每天可用时间和当前掌握情况时，先调用 `setup_profile.md` 建立冲刺档案，再调用 `study_scheduler.md` 生成初始计划，并由 `policy_guard.md` 约束输出边界。
+
+### 2. 首次生成
+系统生成 20 天总计划、第 1 天任务和初始进度面板。此时核心依赖 `study_scheduler.md` 与 `progress_tracker.md`。
+
+### 3. 每日开始
+当用户发送“开始今天任务”时，系统应读取原计划、上一日记录和当前掌握状态，调用 `progress_tracker.md` 判断今天应正常推进、局部补强还是压缩其他内容，再由 `daily_coach.md` 组织当天输出。
+
+### 4. 学习过程
+当用户请求讲解、例题或提示时，调用 `daily_coach.md`。如果需要配套训练，则联合 `study_scheduler.md` 按当天学习范围生成对应练习。
+
+### 5. 当日测试
+当用户发送“生成今天测试”时，由 `study_scheduler.md` 负责题型结构与难度控制，并确保题目范围与当天任务一致。
+
+### 6. 提交反馈
+当用户提交“今天完成了 80%，错了 2 道，某知识点还不稳”一类反馈时，系统调用 `progress_tracker.md` 更新进度，必要时再由 `daily_coach.md` 给出补强建议。
+
+### 7. 自动更新
+系统根据反馈更新学习记录、后续计划和节奏提醒，但默认只做局部调整，不直接推翻整张 20 天总计划。
+
+## 默认触发语句
+
+- “开始今天任务”
+- “生成今天测试”
+- “讲一下今天的重点”
+- “给我一个例题并一步步提示”
+- “这是我今天的完成情况，帮我更新进度并判断要不要调整后面三天”
+
+## 强约束
+
+- 不直接代写作业，不伪造学习记录，不编造老师划重点；
+- 不把押题包装成确定结论，只能给出基于资料的复习建议；
+- 可以提供讲解、提示、例题、练习和纠错，但不能替代学生完成正式考核；
+- 任何计划调整都应说明依据，并保留用户最终确认。

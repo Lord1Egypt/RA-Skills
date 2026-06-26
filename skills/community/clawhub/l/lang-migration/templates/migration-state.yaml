@@ -1,0 +1,89 @@
+# migration-state.yaml
+# ENTRY POINT: Read this file at the start of every session.
+# This file tracks all phase/task state for the migration project.
+
+meta:
+  source_lang: ""           # e.g., python
+  target_lang: ""           # e.g., rust
+  source_dir: ""            # relative path to source project root
+  target_dir: ""            # relative path to translated output
+  lang_pair_module: ""      # e.g., python-rust → references/lang-pairs/python-rust.md
+  project_name: ""          # name of the source project
+  source_version: ""        # git tag or commit hash of source (for reproducibility)
+  created_at: ""
+  last_updated: ""
+  operator_notes: ""        # any human notes about this migration
+
+phases:
+  P0_bootstrap:     TODO     # TODO | IN_PROGRESS | DONE
+  P1_asset_scan:    TODO
+  P2_ecosystem_map: TODO
+  P3_ipo_analysis:  TODO
+  P4_translation:   TODO
+  P5_verification:  TODO
+
+current_task:
+  phase: ""
+  item_id: ""               # e.g., "numpy.float64" or "src/core/entropy.py::calculate_entropy"
+  status: ""                # TODO | IN_PROGRESS | DONE | BLOCKED
+  block_reason: ""
+  human_input_required: ""  # exact question for the human when status=BLOCKED
+  resumed_from_block: false # set true when human has provided input and task resumes
+
+stats:
+  assets_total: 0
+  assets_done: 0
+  assets_blocked: 0
+  ecosystem_entries_total: 0
+  ecosystem_entries_done: 0
+  ecosystem_entries_blocked: 0
+  functions_total: 0
+  functions_translated: 0
+  functions_blocked: 0
+  verification_passed: 0
+  verification_failed: 0
+
+phase_gates:
+  PGR_0:
+    status: TODO           # TODO | IN_PROGRESS | PASSED
+    iteration_count: 0     # how many audit loops ran
+    findings_resolved: 0   # cumulative findings fixed
+    passed_at: ""          # ISO timestamp when zero findings achieved
+    last_report: ""        # one-line summary of final audit
+  PGR_1:
+    status: TODO
+    iteration_count: 0
+    findings_resolved: 0
+    passed_at: ""
+    last_report: ""
+  PGR_2:
+    status: TODO
+    iteration_count: 0
+    findings_resolved: 0
+    passed_at: ""
+    last_report: ""
+  PGR_3:
+    status: TODO
+    iteration_count: 0
+    findings_resolved: 0
+    passed_at: ""
+    last_report: ""
+  PGR_4:
+    status: TODO
+    iteration_count: 0
+    findings_resolved: 0
+    passed_at: ""
+    last_report: ""
+  PGR_5:
+    status: TODO
+    iteration_count: 0
+    findings_resolved: 0
+    passed_at: ""
+    last_report: ""
+
+decisions_log:
+  # Record all human decisions here for audit trail
+  # - date: ""
+  #   item_id: ""
+  #   decision: ""
+  #   rationale: ""

@@ -1,0 +1,61 @@
+{
+  "name": "Blog Content Pipeline",
+  "description": "Automated blog post creation and publishing",
+  "stages": [
+    {
+      "name": "ideation",
+      "tool": "ai-brainstorm",
+      "config": {
+        "count": 5
+      }
+    },
+    {
+      "name": "outline",
+      "tool": "ai-outliner",
+      "config": {
+        "depth": 3
+      }
+    },
+    {
+      "name": "writing",
+      "tool": "ai-writer",
+      "config": {
+        "tone": "professional"
+      }
+    },
+    {
+      "name": "editing",
+      "tool": "grammar-check",
+      "config": {}
+    },
+    {
+      "name": "seo",
+      "tool": "seo-optimizer",
+      "config": {
+        "keywords": []
+      }
+    },
+    {
+      "name": "publishing",
+      "tool": "wordpress",
+      "config": {
+        "status": "draft"
+      }
+    },
+    {
+      "name": "distribution",
+      "tool": "social-media",
+      "config": {
+        "platforms": [
+          "twitter",
+          "linkedin"
+        ]
+      }
+    }
+  ],
+  "type": "blog",
+  "id": "test-blog-pipeline",
+  "created": "2026-03-14T03:22:57.078454",
+  "version": "1.0",
+  "enabled": true
+}

@@ -1,0 +1,30 @@
+{
+  "name": "subagent-collaboration",
+  "version": "1.0.0",
+  "description": "多子代理协作分析与构建技能。自动分析 OpenClaw 中多个子代理的能力、使用模式和协作关系，智能推荐协作模式（并行/串行/分层/竞争/会诊/接力），生成协作流程设计和安全配置。",
+  "main": "scripts/generate_workflow.py",
+  "scripts": {
+    "analyze": "python3 scripts/analyze_subagents.py",
+    "generate": "python3 scripts/generate_workflow.py",
+    "check": "python3 scripts/security_check.py"
+  },
+  "keywords": [
+    "subagent",
+    "collaboration",
+    "workflow",
+    "openclaw",
+    "multi-agent",
+    "coordination"
+  ],
+  "author": "TUTU",
+  "license": "MIT",
+  "metadata": {
+    "clawdbot": {
+      "emoji": "🤖",
+      "requires": {
+        "bins": ["python3", "node"]
+      },
+      "primaryEnv": ""
+    }
+  }
+}

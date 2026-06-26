@@ -1,0 +1,39 @@
+### Basic HTTP API tests
+#
+# Usage:
+# 1. Replace the placeholder host and sample identifiers as needed.
+# 2. Export secrets when the endpoint requires authentication.
+# 3. Run the verification script for PASS/FAIL/SKIP output.
+
+@host = https://api.example.test
+@resourceId = sample-123
+@cookie = <set via COOKIE>
+@token = <set via AUTH_TOKEN>
+
+### Case-1 GET positive: resource should be enabled
+# auth = cookie
+# expect.status = 200
+# expect.json_path = data.status
+# expect.equals = enabled
+# output.fields = code,message,data.id,data.status
+GET {{host}}/v1/resources/{{resourceId}}
+Cookie: {{cookie}}
+
+### Case-2 GET unauthenticated: request should require login
+# expect.status = 401
+# expect.contains = login_required
+GET {{host}}/v1/resources/{{resourceId}}
+
+### Case-3 POST positive: create should return success
+# auth = bearer
+# expect.status = 200
+# expect.json_path = code
+# expect.equals = 0
+# output.fields = code,message,data.id
+POST {{host}}/v1/resources
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "sample"
+}

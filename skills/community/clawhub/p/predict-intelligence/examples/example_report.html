@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>US–IRAN CEASEFIRE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #262626;
+    --mid: #525252;
+    --light: #a3a3a3;
+    --faint: #d4d4d4;
+    --hairline: #e5e5e5;
+    --wash: #fafafa;
+    --bg: #ffffff;
+    --green: #16a34a;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--black);
+    font-size: 12px; line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    orphans: 3; widows: 3;
+  }
+  .mono { font-family: 'JetBrains Mono', 'Menlo', monospace; }
+  .brief { max-width: 760px; margin: 0 auto; }
+
+  /* ── Classification ── */
+  .class-bar {
+    background: #000; color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 5px 32px;
+    display: flex; justify-content: space-between;
+  }
+
+  /* ── Header ── */
+  header { padding: 24px 32px 22px; border-bottom: 2px solid #000; }
+  .header-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--light);
+    letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+  header h1 {
+    font-size: 15px; font-weight: 600;
+    color: var(--mid); margin-bottom: 16px;
+    letter-spacing: -0.2px;
+  }
+
+  .verdict-block {
+    padding: 16px 20px; border-left: 4px solid #000; background: var(--wash);
+  }
+  .verdict-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 52px; font-weight: 900;
+    line-height: 1; letter-spacing: -2px;
+  }
+  .verdict-outcome {
+    font-size: 20px; font-weight: 700;
+    line-height: 1.2; margin-top: 4px; letter-spacing: -0.3px;
+  }
+  .verdict-detail {
+    font-size: 12.5px; color: var(--mid);
+    margin-top: 6px; line-height: 1.5;
+  }
+  .verdict-context {
+    font-size: 11.5px; color: var(--mid);
+    margin-top: 10px; line-height: 1.6;
+    padding-top: 10px; border-top: 1px solid var(--hairline);
+  }
+
+  /* ── Sections ── */
+  section { padding: 18px 32px; border-bottom: 1px solid var(--hairline); }
+  section h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--light); margin-bottom: 10px;
+  }
+
+  /* ── Visualization ── */
+  .viz-section {
+    padding: 18px 32px; border-bottom: 1px solid var(--hairline);
+    page-break-inside: avoid;
+  }
+  .viz-wrap {
+    border: 1px solid var(--hairline); background: var(--bg); overflow: hidden;
+  }
+  #region-map { width: 100%; height: 360px; }
+  #entity-graph { width: 100%; height: 320px; }
+
+  /* ── Outcomes ── */
+  .outcome {
+    display: flex; align-items: center; gap: 10px;
+    padding: 5px 0; border-bottom: 1px solid #f5f5f5;
+    page-break-inside: avoid;
+  }
+  .outcome:last-child { border-bottom: none; }
+  .outcome-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px; font-weight: 700;
+    min-width: 50px; text-align: right;
+  }
+  .outcome-bar {
+    width: 90px; height: 4px; background: #f0f0f0;
+    border-radius: 2px; overflow: hidden; flex-shrink: 0;
+  }
+  .outcome-bar-fill { height: 100%; background: var(--black); border-radius: 2px; }
+  .outcome-label { font-size: 12px; color: var(--dark); }
+  .outcome.top .outcome-pct { font-size: 19px; }
+  .outcome.top .outcome-label { font-weight: 600; }
+  .outcome-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px; font-weight: 700;
+    letter-spacing: 1px; padding: 1.5px 5px;
+    border: 1px solid #000; white-space: nowrap;
+  }
+
+  /* ── Key Drivers ── */
+  .drivers-list { list-style: none; }
+  .driver {
+    display: flex; gap: 8px; padding: 6px 0;
+    line-height: 1.5; page-break-inside: avoid;
+    border-bottom: 1px solid #f8f8f8;
+  }
+  .driver:last-child { border-bottom: none; }
+  .driver-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--light);
+    min-width: 16px; padding-top: 1px;
+  }
+  .driver-dir {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    min-width: 14px; padding-top: 0px;
+  }
+  .driver-dir.positive { color: var(--green); }
+  .driver-dir.negative { color: var(--red); }
+  .driver-dir.neutral { color: var(--light); }
+  .driver-text { font-size: 12px; flex: 1; }
+  .driver-text strong { font-weight: 600; }
+  .driver-logic { color: var(--mid); }
+
+  .src-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; color: var(--light);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--faint);
+    margin-left: 3px;
+  }
+  .src-link:hover { color: var(--mid); }
+
+  /* ── Events ── */
+  .events-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .events-table th {
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--light);
+    border-bottom: 1px solid var(--faint);
+    padding: 2px 6px 2px 0;
+  }
+  .events-table td {
+    padding: 6px 6px 6px 0; border-bottom: 1px solid #f5f5f5; vertical-align: top;
+  }
+  .events-table tr { page-break-inside: avoid; }
+  .date-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--mid); width: 56px; white-space: nowrap;
+  }
+  .evt-title { font-weight: 600; }
+  .evt-detail { color: var(--mid); }
+  .impact-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .impact-tag.high { color: var(--black); border-bottom: 1.5px solid #000; }
+  .impact-tag.medium { color: var(--mid); }
+  .impact-tag.low { color: var(--light); }
+
+  /* ── Market Intelligence ── */
+  .market-block {
+    margin-bottom: 14px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--hairline);
+    page-break-inside: avoid;
+  }
+  .market-block:last-child { border-bottom: none; }
+  .market-q { font-weight: 600; font-size: 12px; margin-bottom: 1px; }
+  .market-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; color: var(--light); margin-bottom: 6px;
+  }
+  .market-meta a {
+    color: var(--light); text-decoration: none;
+    border-bottom: 1px dotted var(--faint);
+  }
+  .market-compare { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .market-compare thead th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--light); padding: 2px 8px;
+    text-align: right; border-bottom: 1px solid var(--faint);
+  }
+  .market-compare thead th:first-child { text-align: left; padding-left: 0; }
+  .market-compare td {
+    padding: 4px 8px; text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; border-bottom: 1px solid #f8f8f8;
+  }
+  .market-compare td:first-child {
+    text-align: left; font-family: 'Inter', sans-serif;
+    font-weight: 500; padding-left: 0;
+  }
+  .delta-pos { color: var(--green); font-weight: 600; }
+  .delta-neg { color: var(--red); font-weight: 600; }
+  .delta-zero { color: var(--light); }
+  tr.undervalued { background: #f0fdf4; }
+  tr.undervalued td:first-child::after {
+    content: ' ← UNDERVALUED';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px; font-weight: 700;
+    letter-spacing: 0.5px; color: var(--green); margin-left: 5px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 14px 32px; font-size: 9.5px;
+    color: var(--light); line-height: 1.5;
+  }
+  footer .sources { margin-bottom: 3px; }
+
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+  @media print { .brief { max-width: none; } }
+</style>
+
+
+<script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+
+
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+
+</head>
+
+<body>
+<div class="brief">
+
+  <div class="class-bar">
+    <span>ANYGEN PREDICT INTELLIGENCE ASSESSMENT</span>
+    <span>2026-03-12</span>
+  </div>
+
+  <header>
+    <div class="header-meta">2026-03-12 · MULTI-SOURCE ASSESSMENT</div>
+    <h1>US–IRAN CEASEFIRE</h1>
+    <div class="verdict-block">
+      <div class="verdict-number">34%</div>
+      <div class="verdict-outcome">Ceasefire before Apr 15</div>
+      <div class="verdict-detail">Most likely path: Omani-mediated direct deal between senior US and Iranian officials.</div>
+      
+      <div class="verdict-context">Multiple diplomatic streams have shifted since UNSC Resolution 2891 (Mar 8) established a new inspection framework. Oman hosted the highest-level US-Iran direct contact in 18 months on Mar 5. However, IRGC hardliner opposition and compressed domestic political timelines in both Washington and Tehran create a narrow and fragile window — making the April deadline achievable but far from certain.</div>
+      
+    </div>
+  </header>
+
+  <!-- VISUALIZATION — right after verdict, before analysis -->
+  
+  <section class="viz-section">
+    <h2>Theater Overview</h2>
+    <div class="viz-wrap"><div id="region-map"></div></div>
+  </section>
+  
+
+  
+  <section class="viz-section">
+    <h2>Actor Network</h2>
+    <div class="viz-wrap"><div id="entity-graph"></div></div>
+  </section>
+  
+
+  <!-- PREDICT -->
+  <section>
+    <h2>Predict</h2>
+    
+    <div class="outcome top no-break">
+      <span class="outcome-pct">34.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 34.0%"></div>
+      </div>
+      <span class="outcome-label">Ceasefire before Apr 15</span>
+      <span class="outcome-tag">MOST LIKELY</span>
+    </div>
+    
+    <div class="outcome  no-break">
+      <span class="outcome-pct">28.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 28.0%"></div>
+      </div>
+      <span class="outcome-label">Partial deal by June</span>
+      
+    </div>
+    
+    <div class="outcome  no-break">
+      <span class="outcome-pct">22.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 22.0%"></div>
+      </div>
+      <span class="outcome-label">Regional intermediary deal</span>
+      
+    </div>
+    
+    <div class="outcome  no-break">
+      <span class="outcome-pct">13.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 13.0%"></div>
+      </div>
+      <span class="outcome-label">No agreement in 2026</span>
+      
+    </div>
+    
+    <div class="outcome  no-break">
+      <span class="outcome-pct">3.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 3.0%"></div>
+      </div>
+      <span class="outcome-label">Military escalation</span>
+      
+    </div>
+    
+  </section>
+
+  <!-- KEY DRIVERS -->
+  <section>
+    <h2>Key Drivers</h2>
+    <ol class="drivers-list">
+      
+      <li class="driver">
+        <span class="driver-num">01</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Omani backchannel active</strong> —
+          <span class="driver-logic">Muscat-hosted shuttle diplomacy established a direct senior channel — reduces miscalculation risk and compresses negotiation timeline toward earlier resolution</span>
+          <a class="src-link" href="https://reuters.com/world/middle-east/oman-hosts-rare-us-iran-talks-sources-say-2026-03-06/">[source]</a>
+        </div>
+      </li>
+      
+      <li class="driver">
+        <span class="driver-num">02</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Narrow political window</strong> —
+          <span class="driver-logic">Both US midterm campaign and Iran's presidential transition create urgency — leaders on both sides need a deliverable before domestic constraints harden</span>
+          <a class="src-link" href="https://www.brookings.edu/articles/us-iran-diplomacy-window-closing/">[source]</a>
+        </div>
+      </li>
+      
+      <li class="driver">
+        <span class="driver-num">03</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Sanctions at threshold</strong> —
+          <span class="driver-logic">Iran reserves at $12B with 45% inflation and rial down 30% YoY — economic pain pushes Tehran's SNSC toward concessions to secure sanctions relief</span>
+          <a class="src-link" href="https://www.iiss.org/online-analysis/2026/03/iran-economic-pressure-diplomacy/">[source]</a>
+        </div>
+      </li>
+      
+      <li class="driver">
+        <span class="driver-num">04</span>
+        <span class="driver-dir negative">↓</span>
+        <div class="driver-text">
+          <strong>IRGC hardliners blocking</strong> —
+          <span class="driver-logic">IRGC controls proxy networks and key economic assets threatened by any deal — their opposition to concessions is the single largest risk of negotiation collapse</span>
+          <a class="src-link" href="https://www.csis.org/analysis/irgc-veto-power-iran-diplomacy">[source]</a>
+        </div>
+      </li>
+      
+      <li class="driver">
+        <span class="driver-num">05</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Regional normalization cover</strong> —
+          <span class="driver-logic">Saudi-Iran détente and Abraham Accords expansion give both sides political cover to frame bilateral talks as part of broader regional stabilization, lowering domestic backlash risk</span>
+          <a class="src-link" href="https://www.aljazeera.com/news/2026/2/21/saudi-iran-economic-commission-meets-for-first-time">[source]</a>
+        </div>
+      </li>
+      
+    </ol>
+  </section>
+
+  <!-- WATCH LIST -->
+  <section>
+    <h2>Watch List</h2>
+    <table class="events-table">
+      <thead><tr>
+        <th>Date</th><th>Trigger</th><th style="width:44px"></th>
+      </tr></thead>
+      <tbody>
+        
+        <tr>
+          <td class="date-col">Apr 3</td>
+          <td>
+            <span class="evt-title">UNSC sanctions renewal vote</span>
+            <span class="evt-detail">If renewed → maintains economic pressure on Tehran, ↑ ceasefire incentive by ~10%</span>
+          </td>
+          <td><span class="impact-tag high">HIGH</span></td>
+        </tr>
+        
+        <tr>
+          <td class="date-col">Late Mar</td>
+          <td>
+            <span class="evt-title">Muscat follow-up round</span>
+            <span class="evt-detail">If senior officials attend → signals commitment, ↑ deal probability; if cancelled → ↓ sharply</span>
+          </td>
+          <td><span class="impact-tag high">HIGH</span></td>
+        </tr>
+        
+        <tr>
+          <td class="date-col">Apr 10</td>
+          <td>
+            <span class="evt-title">Iran presidential debate</span>
+            <span class="evt-detail">If reformist candidates lead polls → ↑ diplomatic flexibility; hardliner surge → ↓</span>
+          </td>
+          <td><span class="impact-tag medium">MEDIUM</span></td>
+        </tr>
+        
+        <tr>
+          <td class="date-col">Apr 15</td>
+          <td>
+            <span class="evt-title">US sanctions waiver expiry</span>
+            <span class="evt-detail">If not extended → escalates pressure, could accelerate or collapse talks</span>
+          </td>
+          <td><span class="impact-tag medium">MEDIUM</span></td>
+        </tr>
+        
+        <tr>
+          <td class="date-col">May 1</td>
+          <td>
+            <span class="evt-title">IAEA quarterly report</span>
+            <span class="evt-detail">If enrichment data shows compliance → ↑ trust for deal; violations → ↓ and possible US escalation</span>
+          </td>
+          <td><span class="impact-tag low">LOW</span></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  <!-- MARKET INTELLIGENCE -->
+  
+  <section class="page-break">
+    <h2>Market Intelligence — Polymarket</h2>
+    
+    <div class="market-block">
+      <div class="market-q">Iran enrichment below 20% by Q2 2026?</div>
+      <div class="market-meta">Vol $1.8M · <a href="https://polymarket.com/event/iran-enrichment-below-20-q2-2026">https://polymarket.com/event/iran-enrichment-below-20-q2-2026</a></div>
+      <table class="market-compare">
+        <thead><tr>
+          <th style="text-align:left">Option</th>
+          <th>Market</th>
+          <th>Our Est.</th>
+          <th>Δ</th>
+        </tr></thead>
+        <tbody>
+          
+          
+            
+            
+              
+              
+            
+          
+            
+            
+          
+          
+          
+          <tr class="undervalued">
+            <td>Yes</td>
+            <td>35.0%</td>
+            <td>42.0%</td>
+            <td class="delta-pos">
+              +7.0%
+            </td>
+          </tr>
+          
+          
+          <tr class="">
+            <td>No</td>
+            <td>65.0%</td>
+            <td>58.0%</td>
+            <td class="delta-neg">
+              -7.0%
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="market-block">
+      <div class="market-q">US x Iran ceasefire by...?</div>
+      <div class="market-meta">Vol $20.9M · <a href="https://polymarket.com/event/us-x-iran-ceasefire-by">https://polymarket.com/event/us-x-iran-ceasefire-by</a></div>
+      <table class="market-compare">
+        <thead><tr>
+          <th style="text-align:left">Option</th>
+          <th>Market</th>
+          <th>Our Est.</th>
+          <th>Δ</th>
+        </tr></thead>
+        <tbody>
+          
+          
+            
+            
+              
+              
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+          
+          
+          <tr class="undervalued">
+            <td>April 30</td>
+            <td>47.5%</td>
+            <td>53.0%</td>
+            <td class="delta-pos">
+              +5.5%
+            </td>
+          </tr>
+          
+          
+          <tr class="">
+            <td>March 31</td>
+            <td>25.5%</td>
+            <td>30.0%</td>
+            <td class="delta-pos">
+              +4.5%
+            </td>
+          </tr>
+          
+          
+          <tr class="">
+            <td>June 30</td>
+            <td>63.5%</td>
+            <td>68.0%</td>
+            <td class="delta-pos">
+              +4.5%
+            </td>
+          </tr>
+          
+          
+          <tr class="">
+            <td>March 15</td>
+            <td>2.4%</td>
+            <td>2.0%</td>
+            <td class="delta-neg">
+              -0.4%
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="market-block">
+      <div class="market-q">Major Persian Gulf military confrontation in 2026?</div>
+      <div class="market-meta">Vol $1.1M · <a href="https://polymarket.com/event/gulf-confrontation-2026">https://polymarket.com/event/gulf-confrontation-2026</a></div>
+      <table class="market-compare">
+        <thead><tr>
+          <th style="text-align:left">Option</th>
+          <th>Market</th>
+          <th>Our Est.</th>
+          <th>Δ</th>
+        </tr></thead>
+        <tbody>
+          
+          
+            
+            
+              
+              
+            
+          
+            
+            
+              
+              
+            
+          
+          
+          
+          <tr class="">
+            <td>Yes</td>
+            <td>18.0%</td>
+            <td>12.0%</td>
+            <td class="delta-neg">
+              -6.0%
+            </td>
+          </tr>
+          
+          
+          <tr class="undervalued">
+            <td>No</td>
+            <td>82.0%</td>
+            <td>88.0%</td>
+            <td class="delta-pos">
+              +6.0%
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+  </section>
+  
+
+  <footer>
+    <div class="sources">Sources: Reuters · Al Jazeera · CSIS · IISS · Brookings · UN News · Polymarket</div>
+    <div>OSINT assessment. Not investment or policy advice. Subject to revision.</div>
+  </footer>
+
+  <div class="class-bar">
+    <span>ANYGEN PREDICT INTELLIGENCE ASSESSMENT</span>
+    <span>ANYGEN PREDICT INTELLIGENCE ASSESSMENT</span>
+  </div>
+
+</div>
+
+<!-- ── D3 Focused Regional Map ── -->
+
+<script>
+(function(){
+  var el = document.getElementById('region-map');
+  var W = el.offsetWidth, H = 360;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  var markers = [{"label": "Tehran", "lat": 35.69, "lon": 51.39, "type": "primary"}, {"label": "Baghdad", "lat": 33.31, "lon": 44.37, "type": "secondary"}, {"label": "Muscat", "lat": 23.59, "lon": 58.38, "type": "secondary"}, {"label": "Bahrain", "lat": 26.22, "lon": 50.59, "type": "secondary"}, {"label": "Strait of Hormuz", "lat": 26.85, "lon": 56.28, "type": "primary"}];
+  var connections = [{"from": [23.59, 58.38], "label": "Mediation channel", "to": [35.69, 51.39], "type": "diplomatic"}, {"from": [35.69, 51.39], "label": "Proxy influence", "to": [33.31, 44.37], "type": "military"}];
+  var hlCodes = ["IR", "IQ", "OM", "SA", "AE"];
+
+  var ISO = {
+    'AF':'004','DZ':'012','AO':'024','AR':'032','AM':'051','AU':'036',
+    'AZ':'031','BH':'048','BD':'050','BY':'112','BR':'076','CA':'124',
+    'CN':'156','CU':'192','EG':'818','ET':'231','FR':'250','GE':'268',
+    'DE':'276','GR':'300','IN':'356','ID':'360','IR':'364','IQ':'368',
+    'IL':'376','IT':'380','JP':'392','JO':'400','KZ':'398','KW':'414',
+    'LB':'422','LY':'434','MY':'458','MX':'484','NG':'566','OM':'512',
+    'PK':'586','PH':'608','PL':'616','QA':'634','RO':'642','RU':'643',
+    'SA':'682','KR':'410','SD':'729','SY':'760','TW':'158','TH':'764',
+    'TR':'792','UA':'804','AE':'784','GB':'826','US':'840','YE':'887'
+  };
+  var hlIds = hlCodes.map(function(c){ return ISO[c]; }).filter(Boolean);
+
+  var pad = 50;
+  var fc = {
+    type: "FeatureCollection",
+    features: markers.map(function(m){
+      return { type:"Feature", geometry:{ type:"Point", coordinates:[m.lon, m.lat] }};
+    })
+  };
+
+  var projection = d3.geoMercator()
+    .fitExtent([[pad, pad],[W-pad, H-pad]], fc);
+
+  var path = d3.geoPath().projection(projection);
+
+  svg.append('rect').attr('width',W).attr('height',H).attr('fill','#fafafa');
+
+  var grat = d3.geoGraticule().step([5,5]);
+  svg.append('path').datum(grat()).attr('d',path)
+    .attr('fill','none').attr('stroke','#f0f0f0').attr('stroke-width',0.4);
+
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+    var countries = topojson.feature(world, world.objects.countries);
+
+    svg.selectAll('.country').data(countries.features).enter().append('path')
+      .attr('d', path)
+      .attr('fill', function(d){
+        return hlIds.includes(String(d.id)) ? '#e8e8e8' : '#f2f2f2';
+      })
+      .attr('stroke', function(d){
+        return hlIds.includes(String(d.id)) ? '#999' : '#ddd';
+      })
+      .attr('stroke-width', function(d){
+        return hlIds.includes(String(d.id)) ? 0.8 : 0.3;
+      });
+
+    svg.append('path')
+      .datum(topojson.mesh(world, world.objects.countries, function(a,b){return a!==b;}))
+      .attr('d', path).attr('fill','none').attr('stroke','#ccc').attr('stroke-width',0.3);
+
+    connections.forEach(function(c){
+      svg.append('path')
+        .datum({type:'LineString', coordinates:[[c.from[1],c.from[0]],[c.to[1],c.to[0]]]})
+        .attr('d', path)
+        .attr('fill','none').attr('stroke','#000')
+        .attr('stroke-width',1.5).attr('stroke-dasharray','8,5').attr('opacity',0.35);
+    });
+
+    markers.forEach(function(m){
+      var pt = projection([m.lon, m.lat]);
+      if(!pt) return;
+      var isPrimary = m.type === 'primary';
+
+      if(isPrimary){
+        [28,18,10].forEach(function(r,i){
+          svg.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',r)
+            .attr('fill','none').attr('stroke','#000')
+            .attr('stroke-width', 0.5).attr('opacity', 0.06*(3-i));
+        });
+      }
+
+      svg.append('circle').attr('cx',pt[0]).attr('cy',pt[1])
+        .attr('r', isPrimary ? 5 : 3.5)
+        .attr('fill', isPrimary ? '#0a0a0a' : '#525252');
+      svg.append('circle').attr('cx',pt[0]).attr('cy',pt[1])
+        .attr('r', isPrimary ? 2 : 1.5).attr('fill','#fff');
+
+      svg.append('text').attr('x',pt[0]).attr('y',pt[1] - (isPrimary?10:7))
+        .text(m.label)
+        .attr('font-size', isPrimary ? 11 : 9.5)
+        .attr('font-weight', isPrimary ? 700 : 500)
+        .attr('text-anchor','middle').attr('font-family','Inter, sans-serif')
+        .attr('fill','#262626');
+    });
+  }).catch(function(){
+    el.innerHTML = '<div style="text-align:center;color:#a3a3a3;padding:80px 0;">Map unavailable</div>';
+  });
+})();
+</script>
+
+
+<!-- ── D3 Entity Graph ── -->
+
+<script>
+(function(){
+  var raw = {"edges": [{"from": "us", "label": "Negotiation", "to": "iran", "type": "diplomatic"}, {"from": "oman", "label": "Channel", "to": "us", "type": "diplomatic"}, {"from": "oman", "label": "Mediation", "to": "iran", "type": "diplomatic"}, {"from": "khamenei", "label": "Authority", "to": "iran", "type": "authority"}, {"from": "irgc", "label": "Military arm", "to": "iran", "type": "military"}, {"from": "saudi", "label": "Regional rival", "to": "iran", "type": "military"}, {"from": "saudi", "label": "Alliance", "to": "us", "type": "diplomatic"}], "legend": {"edge_types": {"authority": "#f59e0b", "diplomatic": "#3b82f6", "economic": "#10b981", "military": "#ef4444"}, "node_types": {"event": "#8b5cf6", "government": "#3b82f6", "organization": "#ef4444", "person": "#f59e0b"}}, "nodes": [{"id": "us", "label": "United States", "type": "government"}, {"id": "iran", "label": "Iran", "type": "government"}, {"id": "khamenei", "label": "Khamenei", "type": "person"}, {"id": "irgc", "label": "IRGC", "type": "organization"}, {"id": "oman", "label": "Oman", "type": "government"}, {"id": "saudi", "label": "Saudi Arabia", "type": "government"}]};
+  var el = document.getElementById('entity-graph');
+  var W = el.offsetWidth, H = 320;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+  var nc = raw.legend.node_types, ec = raw.legend.edge_types;
+
+  var nodes = raw.nodes.map(function(n){ return Object.assign({}, n); });
+  var edges = raw.edges.map(function(e){
+    return { source:e.from, target:e.to, label:e.label, type:e.type };
+  });
+
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).id(function(d){return d.id}).distance(105))
+    .force('charge', d3.forceManyBody().strength(-280))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collision', d3.forceCollide(34));
+  for(var i=0;i<500;i++) sim.tick();
+  sim.stop();
+
+  nodes.forEach(function(n){
+    n.x = Math.max(55, Math.min(W-55, n.x));
+    n.y = Math.max(40, Math.min(H-40, n.y));
+  });
+
+  svg.append('defs').append('marker').attr('id','arw')
+    .attr('viewBox','0 0 10 6').attr('refX',10).attr('refY',3)
+    .attr('markerWidth',7).attr('markerHeight',5).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M 0 0 L 10 3 L 0 6 z').attr('fill','#a3a3a3');
+
+  svg.selectAll('.link').data(edges).enter().append('line')
+    .attr('x1',function(d){return d.source.x}).attr('y1',function(d){return d.source.y})
+    .attr('x2',function(d){return d.target.x}).attr('y2',function(d){return d.target.y})
+    .attr('stroke',function(d){return ec[d.type]||'#d4d4d4'})
+    .attr('stroke-width',1.2).attr('stroke-dasharray','5,3')
+    .attr('marker-end','url(#arw)');
+
+  svg.selectAll('.elbl').data(edges).enter().append('text')
+    .attr('x',function(d){return(d.source.x+d.target.x)/2})
+    .attr('y',function(d){return(d.source.y+d.target.y)/2 - 5})
+    .text(function(d){return d.label})
+    .attr('font-size',8).attr('fill','#a3a3a3').attr('text-anchor','middle')
+    .attr('font-family','JetBrains Mono, monospace');
+
+  var g = svg.selectAll('.node').data(nodes).enter().append('g')
+    .attr('transform',function(d){return 'translate('+d.x+','+d.y+')'});
+  g.append('circle').attr('r',15)
+    .attr('fill','#fff').attr('stroke',function(d){return nc[d.type]||'#000'})
+    .attr('stroke-width',1.5);
+  g.append('circle').attr('r',3)
+    .attr('fill',function(d){return nc[d.type]||'#000'});
+  g.append('text').text(function(d){return d.label})
+    .attr('font-size',9).attr('font-weight',600)
+    .attr('text-anchor','middle').attr('dy',27)
+    .attr('font-family','Inter, sans-serif').attr('fill','#262626');
+})();
+</script>
+
+</body>
+</html>

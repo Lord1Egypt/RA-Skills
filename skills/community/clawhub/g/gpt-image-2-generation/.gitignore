@@ -1,0 +1,14 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Generated images during local testing
+gpt-image-2_*.png
+gpt-image-2_*.jpeg
+gpt-image-2_*.jpg
+gpt-image-2_*.webp
+
+# Local config / secrets (should never be inside the skill anyway)
+config.json
+.env

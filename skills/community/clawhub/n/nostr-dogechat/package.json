@@ -1,0 +1,16 @@
+{
+  "name": "@GreatApe42069/nostr-dogechat",
+  "version": "1.0.0",
+  "description": "Dynamic Nostr-based DogeChat bridge with geohash support.",
+  "main": "dogechat-bridge.js",
+  "dependencies": {
+    "nostr-tools": "^2.7.0",
+    "ngeohash": "^0.6.3",
+    "@noble/hashes": "^1.4.0"
+  },
+  "scripts": {
+    "test": "node dogechat-bridge.js init"
+  },
+  "author": "GreatApe42069",
+  "license": "MIT"
+}

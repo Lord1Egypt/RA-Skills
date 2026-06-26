@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --line: #263043;
+      --accent: #60a5fa;
+      --code-bg: #111827;
+      --code-text: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .page {
+      width: min(950px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    .meta {
+      margin: 4px 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      font-weight: 750;
+      color: #f8fafc;
+    }
+    h2 {
+      margin: 34px 0 16px;
+      font-size: 38px;
+      line-height: 1.35;
+      font-weight: 720;
+      color: #f8fafc;
+    }
+    h3 {
+      margin: 28px 0 14px;
+      font-size: 34px;
+      line-height: 1.4;
+      font-weight: 680;
+      color: #f8fafc;
+    }
+    p, li {
+      font-size: 31px;
+      line-height: 1.9;
+    }
+    p { margin: 0 0 18px; }
+    ul, ol {
+      margin: 0 0 18px;
+      padding-left: 30px;
+    }
+    li { margin: 8px 0; }
+    strong { font-weight: 720; color: #ffffff; }
+    a { color: var(--accent); text-decoration: none; }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 28px 0;
+    }
+    blockquote {
+      margin: 20px 0;
+      padding: 4px 0 4px 18px;
+      border-left: 4px solid #3b82f6;
+      color: #cbd5e1;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto 26px;
+      border-radius: 12px;
+    }
+    .caption {
+      margin: -8px 0 22px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 24px;
+      font-size: 28px;
+      line-height: 1.75;
+      color: #e5e7eb;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #111827;
+      font-weight: 680;
+    }
+    pre {
+      margin: 18px 0 24px;
+      padding: 18px 20px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      font-size: 18px;
+      line-height: 1.65;
+      overflow: hidden;
+    }
+    code {
+      font-family: "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas, monospace;
+      background: #1f2937;
+      color: #e5e7eb;
+      border-radius: 6px;
+      padding: 0.1em 0.3em;
+      font-size: 0.88em;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+      display: block;
+      white-space: inherit;
+      overflow-wrap: inherit;
+      word-break: inherit;
+    }
+    .tip, .note {
+      margin: 20px 0 24px;
+      padding: 16px 18px;
+      background: #111827;
+      border-left: 4px solid #60a5fa;
+      border-radius: 10px;
+      font-size: 28px;
+      line-height: 1.85;
+      color: #dbeafe;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>{{TITLE}}</h1>
+    <div class="meta">{{META}}</div>
+    {{CONTENT}}
+  </main>
+</body>
+</html>

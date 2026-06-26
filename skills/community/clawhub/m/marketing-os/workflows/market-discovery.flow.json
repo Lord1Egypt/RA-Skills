@@ -1,0 +1,134 @@
+{
+    "workflow_id": "market-discovery",
+    "name": "Market Discovery",
+    "description": "End-to-end market analysis workflow: from data collection to strategy generation",
+    "version": "1.0.0",
+    "trigger": {
+        "type": "manual | scheduled",
+        "schedule": "weekly",
+        "cron": "0 9 * * 1"
+    },
+    "steps": [
+        {
+            "step_id": "step_01",
+            "name": "collect_data",
+            "description": "Gather market signals from all available data sources",
+            "handler": "virtual-cmo",
+            "prompt": "prompts/cmo-analysis.txt",
+            "inputs": {
+                "sources": [
+                    "adapters/data-source.adapter.md"
+                ],
+                "memory": [
+                    "memory/market-insights.json"
+                ]
+            },
+            "outputs": {
+                "raw_signals": "object[]"
+            },
+            "timeout": "5m",
+            "retry": {
+                "max_attempts": 3,
+                "backoff": "exponential"
+            }
+        },
+        {
+            "step_id": "step_02",
+            "name": "analyze_market",
+            "description": "Analyze collected signals, classify by type, score by strength",
+            "handler": "virtual-cmo",
+            "prompt": "prompts/cmo-analysis.txt",
+            "inputs": {
+                "raw_signals": "step_01.outputs.raw_signals",
+                "business_context": "configs/system.config.json#business_context"
+            },
+            "outputs": {
+                "analyzed_signals": "object[]"
+            },
+            "depends_on": [
+                "step_01"
+            ]
+        },
+        {
+            "step_id": "step_03",
+            "name": "identify_opportunities",
+            "description": "Cluster signals into opportunity groups, assess each on multiple dimensions",
+            "handler": "virtual-cmo",
+            "prompt": "prompts/cmo-analysis.txt",
+            "inputs": {
+                "analyzed_signals": "step_02.outputs.analyzed_signals"
+            },
+            "outputs": {
+                "opportunities": "object[]"
+            },
+            "depends_on": [
+                "step_02"
+            ]
+        },
+        {
+            "step_id": "step_04",
+            "name": "score_opportunities",
+            "description": "Calculate priority_score for each opportunity using weighted formula",
+            "handler": "virtual-cmo",
+            "prompt": "prompts/cmo-analysis.txt",
+            "inputs": {
+                "opportunities": "step_03.outputs.opportunities"
+            },
+            "outputs": {
+                "scored_opportunities": "object[]"
+            },
+            "scoring_formula": "priority_score = (signal_strength * 0.3) + (market_size * 0.25) + (capability_fit * 0.25) + (urgency * 0.2)",
+            "depends_on": [
+                "step_03"
+            ]
+        },
+        {
+            "step_id": "step_05",
+            "name": "generate_strategy",
+            "description": "Formulate go-to-market strategy for top 3 opportunities",
+            "handler": "virtual-cmo",
+            "prompt": "prompts/cmo-strategy.txt",
+            "inputs": {
+                "scored_opportunities": "step_04.outputs.scored_opportunities",
+                "business_context": "configs/system.config.json#business_context"
+            },
+            "outputs": {
+                "strategy": "schemas/cmo_output.schema.json",
+                "mission_brief": "schemas/cmo_to_operator.schema.json"
+            },
+            "depends_on": [
+                "step_04"
+            ]
+        },
+        {
+            "step_id": "step_06",
+            "name": "persist_results",
+            "description": "Save analysis results to memory for future reference",
+            "handler": "system",
+            "action": "write_memory",
+            "inputs": {
+                "insights": "step_04.outputs.scored_opportunities",
+                "strategy": "step_05.outputs.strategy"
+            },
+            "targets": [
+                "memory/market-insights.json"
+            ],
+            "depends_on": [
+                "step_05"
+            ]
+        }
+    ],
+    "on_error": {
+        "strategy": "halt_and_notify",
+        "notify": "human",
+        "log_to": "logs/execution.log.json"
+    },
+    "on_complete": {
+        "actions": [
+            "log_execution",
+            "notify_human_if_critical_opportunity_found"
+        ],
+        "next_workflow": "campaign-planning.flow.json",
+        "auto_trigger_next": false
+    }
+}

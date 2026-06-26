@@ -1,0 +1,31 @@
+{
+  "_description": "HIIC产业到 tech-news-digest 主题的映射",
+  "_version": "1.0.0",
+  "_note": "主题映射用于将产业关键词映射到 tech-news-digest 的数据源",
+  "topics": [
+    {
+      "id": "llm",
+      "label": "大语言模型",
+      "description": "LLM、GPT、Claude、Gemini等大模型相关",
+      "emoji": "🤖"
+    },
+    {
+      "id": "ai-agent",
+      "label": "AI代理",
+      "description": "AI Agent、机器人、自动驾驶等智能代理",
+      "emoji": "🦾"
+    },
+    {
+      "id": "frontier-tech",
+      "label": "前沿科技",
+      "description": "前沿技术、新材料、生物医药等",
+      "emoji": "🚀"
+    },
+    {
+      "id": "crypto",
+      "label": "加密货币",
+      "description": "区块链、加密货币、Web3等",
+      "emoji": "💰"
+    }
+  ]
+}

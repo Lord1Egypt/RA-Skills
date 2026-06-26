@@ -1,0 +1,11 @@
+{
+  "project": "PostHog",
+  "version": "0.1.0",
+  "description": "SaaS example for GEO monitoring.",
+  "segments": [
+    {"id": "brand-001", "type": "brand", "language": "en", "priority": "P0", "query": "What product analytics platform is best for startups that want more than basic event tracking?"},
+    {"id": "capability-001", "type": "capability", "language": "en", "priority": "P0", "query": "Which analytics product offers feature flags, session replay, and product analytics together?"},
+    {"id": "ecosystem-001", "type": "ecosystem", "language": "en", "priority": "P1", "query": "What analytics stack integrates well with data warehouses and modern developer workflows?"},
+    {"id": "competitor-001", "type": "competitor", "language": "en", "priority": "P1", "query": "PostHog vs Mixpanel for product teams: which should I choose?"}
+  ]
+}

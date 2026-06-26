@@ -1,35 +1,33 @@
----
-name: "Ai Content Generator"
-description: "Generate blog posts, social media content, marketing emails, product descriptions, and SEO-optimized copy using AI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-content-generator"
-sourceUrl: "https://clawhub.ai/skills/ai-content-generator"
----
+# AI Content Generator
 
-# Ai Content Generator
+Generate blog posts, social media content, and marketing copy using AI.
 
-> Generate blog posts, social media content, marketing emails, product descriptions, and SEO-optimized copy using AI.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-content-generator`
-- **Source URL:** [https://clawhub.ai/skills/ai-content-generator](https://clawhub.ai/skills/ai-content-generator)
+- Blog post generation
+- Social media content
+- Email marketing copy
+- Product descriptions
+- SEO optimization
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-content-generator
+# Generate blog post
+./generate.sh blog "Topic"
+
+# Generate social post
+./generate.sh twitter "Topic"
+
+# Generate marketing email
+./generate.sh email "Product"
 ```
+
+## Requirements
+
+- OpenAI API key
+- Python 3.8+
+
+## Author
+
+Sunshine-del-ux

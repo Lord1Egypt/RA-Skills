@@ -1,35 +1,26 @@
 ---
 name: "TED Talks"
 description: "提供全球思想洞察、中英双语字幕及核心观点解析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ted-talks"
-sourceUrl: "https://clawhub.ai/skills/ted-talks"
 ---
 
-# TED Talks
+# TED演讲
 
-> 提供全球思想洞察、中英双语字幕及核心观点解析。
+## 筛选项
+- 学习阶段（K12/考研/职业考证/兴趣）
+- 教学形式（直播课/录播课/1对1/题库）
+- 考核指标（难度等级/通过率/证书含金量）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ted-talks`
-- **Source URL:** [https://clawhub.ai/skills/ted-talks](https://clawhub.ai/skills/ted-talks)
+## 返回字段
+- 学习时长累计/掌握程度分析/错题本同步
+- 名师履历/课程大纲/讲义下载进度
+- 互动问答状态/模考成绩单/学历认证关联
 
-## Overview
+## 示例请求
+- “如何快速使用 TED演讲 处理 [具体场景任务] ？”
+- “TED演讲 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合考试大纲调整、名师教学计划与学习成效定期反馈
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ted-talks
-```
+## 注意事项
+- 付费课程建议先试听后订阅；坚持打卡学习才能获得实质性提升。

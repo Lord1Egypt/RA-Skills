@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "workflow": "precheck_payroll_filing",
+    "prepared_by": "薪酬专员",
+    "date": "2026-05-19",
+    "legal_entity": "上海某科技有限公司",
+    "payroll_month": "2026-04"
+  },
+  "employees": [
+    {
+      "employee_name": "王浩",
+      "employee_id": "E001",
+      "employment_status": "active",
+      "city": "上海",
+      "legal_entity": "上海某科技有限公司",
+      "bank_account": "6222********1234",
+      "id_number": "3101********1234",
+      "tax_declaration": true,
+      "social_insurance_declaration": true,
+      "housing_fund_declaration": true,
+      "salary_taxable_income": 28500,
+      "social_base": 28300,
+      "housing_fund_base": 28700,
+      "special_additional_deduction": 2000
+    },
+    {
+      "employee_name": "李茜",
+      "employee_id": "E002",
+      "employment_status": "active",
+      "city": "上海",
+      "legal_entity": "上海某科技有限公司",
+      "bank_account": "",
+      "id_number": "3101********5678",
+      "tax_declaration": true,
+      "social_insurance_declaration": true,
+      "housing_fund_declaration": true,
+      "salary_taxable_income": 19800,
+      "social_base": 19800,
+      "housing_fund_base": 0,
+      "special_additional_deduction": 0
+    },
+    {
+      "employee_name": "陈航",
+      "employee_id": "E003",
+      "employment_status": "left",
+      "city": "上海",
+      "legal_entity": "上海某科技有限公司",
+      "bank_account": "6217********8888",
+      "id_number": "3101********0001",
+      "tax_declaration": true,
+      "social_insurance_declaration": true,
+      "housing_fund_declaration": false,
+      "salary_taxable_income": 0,
+      "social_base": 23000,
+      "housing_fund_base": 0,
+      "special_additional_deduction": 0
+    },
+    {
+      "employee_name": "赵琳",
+      "employee_id": "E004",
+      "employment_status": "active",
+      "city": "深圳",
+      "legal_entity": "上海某科技有限公司",
+      "bank_account": "6217********9999",
+      "id_number": "",
+      "tax_declaration": true,
+      "social_insurance_declaration": true,
+      "housing_fund_declaration": true,
+      "salary_taxable_income": 32000,
+      "social_base": 38000,
+      "housing_fund_base": 38000,
+      "special_additional_deduction": 1500
+    },
+    {
+      "employee_name": "孙捷",
+      "employee_id": "E005",
+      "employment_status": "active",
+      "city": "上海",
+      "legal_entity": "杭州某科技有限公司",
+      "bank_account": "6217********7777",
+      "id_number": "3301********3456",
+      "tax_declaration": true,
+      "social_insurance_declaration": false,
+      "housing_fund_declaration": true,
+      "salary_taxable_income": 26500,
+      "social_base": 0,
+      "housing_fund_base": 26000,
+      "special_additional_deduction": 1000
+    }
+  ]
+}
+

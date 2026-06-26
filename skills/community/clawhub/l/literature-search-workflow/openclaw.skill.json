@@ -1,0 +1,113 @@
+{
+  "id": "literature-search-workflow",
+  "name": "Literature Search Workflow",
+  "description": "标准化文献搜索工作流，整合 tavily-search、pubmed-database、bgpt-paper-search、openalex-database 等学术搜索技能，提供从查询分析到文献获取的完整文献搜索流程。支持学术论文搜索、量表工具搜索、研究方法搜索、综述文献搜索等多种场景。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "文献搜索",
+      "论文搜索",
+      "查找文献",
+      "search literature",
+      "find papers",
+      "量表搜索",
+      "文献调研"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_search_engine": "tavily-search",
+    "fallback_engines": ["pubmed-database", "bgpt-paper-search", "openalex-database"],
+    "max_results": 10,
+    "search_depth": "advanced",
+    "time_range": "year"
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "查询分析",
+        "description": "意图识别、关键词提取、搜索策略制定",
+        "duration": "1-2 分钟"
+      },
+      {
+        "name": "初步搜索",
+        "description": "使用 tavily-search 进行初步搜索",
+        "duration": "3-5 分钟"
+      },
+      {
+        "name": "深度搜索",
+        "description": "使用专业数据库进行深度搜索",
+        "duration": "5-10 分钟"
+      },
+      {
+        "name": "结果整理",
+        "description": "去重、排序、质量评估",
+        "duration": "3-5 分钟"
+      },
+      {
+        "name": "文献获取",
+        "description": "使用 web_fetch 获取全文内容",
+        "duration": "5-10 分钟"
+      },
+      {
+        "name": "输出报告",
+        "description": "生成结构化文献搜索报告",
+        "duration": "2-3 分钟"
+      }
+    ]
+  },
+
+  "skills": {
+    "required": [
+      "tavily-search",
+      "web_fetch",
+      "citation-management"
+    ],
+    "optional": [
+      "pubmed-database",
+      "bgpt-paper-search",
+      "openalex-database",
+      "research-lookup"
+    ]
+  },
+
+  "scenarios": {
+    "academic_paper": {
+      "description": "学术论文搜索",
+      "engines": ["tavily-search", "pubmed-database", "bgpt-paper-search"],
+      "output": "论文列表 + 引用"
+    },
+    "scale_search": {
+      "description": "量表工具搜索",
+      "engines": ["tavily-search", "pubmed-database"],
+      "output": "量表验证报告"
+    },
+    "review": {
+      "description": "综述文献搜索",
+      "engines": ["tavily-search", "bgpt-paper-search"],
+      "max_results": 50
+    },
+    "methodology": {
+      "description": "研究方法搜索",
+      "engines": ["research-lookup", "tavily-search"],
+      "output": "方法学资源列表"
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "搜索摘要",
+      "关键文献",
+      "来源引用",
+      "DOI 信息",
+      "全文链接",
+      "BibTeX 引用"
+    ]
+  }
+}

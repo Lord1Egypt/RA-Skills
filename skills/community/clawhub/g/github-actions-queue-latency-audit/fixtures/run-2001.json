@@ -1,0 +1,33 @@
+{
+  "databaseId": 2001,
+  "workflowName": "CI",
+  "headBranch": "main",
+  "headSha": "queue2001",
+  "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/2001",
+  "repository": {
+    "nameWithOwner": "flowcreatebot/yf-api-saas"
+  },
+  "jobs": [
+    {
+      "name": "test (ubuntu-latest, python-3.11)",
+      "createdAt": "2026-03-05T10:00:00Z",
+      "startedAt": "2026-03-05T10:00:45Z",
+      "completedAt": "2026-03-05T10:07:45Z",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/2001/job/1"
+    },
+    {
+      "name": "test (ubuntu-latest, python-3.12)",
+      "createdAt": "2026-03-05T10:00:00Z",
+      "startedAt": "2026-03-05T10:06:15Z",
+      "completedAt": "2026-03-05T10:14:15Z",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/2001/job/2"
+    },
+    {
+      "name": "lint / ubuntu-latest",
+      "createdAt": "2026-03-05T10:00:00Z",
+      "startedAt": "2026-03-05T10:00:25Z",
+      "completedAt": "2026-03-05T10:03:00Z",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/2001/job/3"
+    }
+  ]
+}

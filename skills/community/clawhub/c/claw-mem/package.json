@@ -1,0 +1,38 @@
+{
+  "name": "clawmem",
+  "version": "0.0.5",
+  "description": "Lightweight memory management system for OpenClaw with 3-tier retrieval, automatic lifecycle monitoring, advanced search, and bilingual documentation",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test tests/*.test.js",
+    "db:init": "node database/init.js",
+    "worker": "node src/workers/lifecycle-worker.js"
+  },
+  "keywords": [
+    "openclaw",
+    "memory",
+    "clawmem",
+    "token-optimization",
+    "lifecycle-monitoring",
+    "memory-search"
+  ],
+  "author": "PocketAI for Leo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leohuang8688/clawmem.git"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

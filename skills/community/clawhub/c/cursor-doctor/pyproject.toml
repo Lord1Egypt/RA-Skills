@@ -1,0 +1,22 @@
+[project]
+name = "cursor-doctor"
+version = "0.1.0"
+description = "Cursor IDE 故障诊断与修复工具 — 一键诊断 Cursor 报错/崩溃/配置问题"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "httpx>=0.27",
+    "pyyaml>=6.0",
+    "psutil>=5.9",
+]
+
+[project.scripts]
+cursor-doctor = "cursor_doctor.cli:main"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"

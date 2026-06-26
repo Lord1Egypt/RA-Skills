@@ -1,0 +1,4 @@
+interface:
+  display_name: "EverMemory Installer"
+  short_description: "Install, verify, and publish EverMemory plugin + skill"
+  default_prompt: "Install or publish EverMemory for OpenClaw."

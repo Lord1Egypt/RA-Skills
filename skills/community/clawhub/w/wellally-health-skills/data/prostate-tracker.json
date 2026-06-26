@@ -1,0 +1,83 @@
+{
+  "created_at": null,
+  "last_updated": null,
+
+  "prostate_health": {
+    "user_id": null,
+    "age": null,
+    "family_history": {
+      "father": false,
+      "brother": false,
+      "age_at_diagnosis": null
+    },
+
+    "psa_history": [],
+    "psa_velocity": {
+      "change_per_year": null,
+      "threshold": 0.75,
+      "interpretation": null
+    },
+
+    "ipss_score": {
+      "date": null,
+      "incomplete_emptying": null,
+      "frequency": null,
+      "intermittency": null,
+      "urgency": null,
+      "weak_stream": null,
+      "straining": null,
+      "nocturia": null,
+      "total_score": null,
+      "severity": null,
+      "quality_of_life_score": null
+    },
+
+    "prostate_volume": {
+      "date": null,
+      "volume_ml": null,
+      "weight_g": null,
+      "inner_gland_cm": null,
+      "residual_urine_ml": null,
+      "nodule": null,
+      "interpretation": null
+    },
+
+    "dre": {
+      "last_exam": null,
+      "findings": null,
+      "size": null,
+      "texture": null,
+      "nodule": null,
+      "tenderness": null,
+      "notes": null
+    },
+
+    "screening_plan": {
+      "psa_frequency": null,
+      "dre_frequency": null,
+      "next_psa": null,
+      "next_dre": null,
+      "risk_category": null
+    },
+
+    "urinary_symptoms": {
+      "stream_weakness": null,
+      "frequency": null,
+      "nocturia": null,
+      "urgency": null
+    }
+  },
+
+  "statistics": {
+    "total_psa_tests": 0,
+    "last_psa_date": null,
+    "psa_trend": "stable",
+    "ipss_severity": null,
+    "tracking_duration_months": 0
+  },
+
+  "settings": {
+    "reminder_frequency": "annual",
+    "screening_reminder": true
+  }
+}

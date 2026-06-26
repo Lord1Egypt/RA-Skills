@@ -1,0 +1,8 @@
+{
+  "name": "rhetra-taxguard",
+  "version": "1.0.0",
+  "description": "AI tax advisor for trading bots. Silently monitors every trade for wash sales, PDT violations, holding period optimization, and tax-loss harvesting. Daily reports. Works with Alpaca, Crypto.com, Bitget, Polymarket.",
+  "author": "rhetra",
+  "tags": ["trading", "tax", "compliance", "wash-sale", "alpaca", "crypto", "finance", "taxguard"],
+  "category": "finance"
+}

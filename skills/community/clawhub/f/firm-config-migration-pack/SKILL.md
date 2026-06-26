@@ -1,35 +1,56 @@
 ---
-name: "Firm Config Migration Pack"
-description: "Configuration migration and integrity audit pack. Shell env sanitization, plugin integrity, token separation, OTEL redaction, and RPC rate limiting. 5 migrat..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firm-config-migration-pack"
-sourceUrl: "https://clawhub.ai/skills/firm-config-migration-pack"
+name: firm-config-migration-pack
+version: 1.0.0
+description: >
+  Configuration migration and integrity audit pack.
+  Shell env sanitization, plugin integrity, token separation,
+  OTEL redaction, and RPC rate limiting. 5 migration tools.
+author: romainsantoli-web
+license: MIT
+metadata:
+  openclaw:
+    registry: ClawHub
+    requires:
+      - mcp-openclaw-extensions >= 3.0.0
+tags:
+  - config
+  - migration
+  - integrity
+  - otel
+  - security
 ---
 
-# Firm Config Migration Pack
+# firm-config-migration-pack
 
-> Configuration migration and integrity audit pack. Shell env sanitization, plugin integrity, token separation, OTEL redaction, and RPC rate limiting. 5 migrat...
+> ⚠️ Contenu généré par IA — validation humaine requise avant utilisation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firm-config-migration-pack`
-- **Source URL:** [https://clawhub.ai/skills/firm-config-migration-pack](https://clawhub.ai/skills/firm-config-migration-pack)
+## Purpose
 
-## Overview
+Validates configuration migration safety: shell environment sanitization
+(LD_PRELOAD, DYLD_*), plugin integrity via SHA-256 manifest verification,
+token separation enforcement, OpenTelemetry PII redaction, and RPC rate limiting.
 
+## Tools (5)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/firm-config-migration-pack
+| Tool | Description | Severity |
+|------|-------------|----------|
+| `openclaw_shell_env_check` | Shell environment sanitization (LD_*/DYLD_*) | HIGH |
+| `openclaw_plugin_integrity_check` | Plugin SHA-256 manifest drift detection | HIGH |
+| `openclaw_token_separation_check` | Token separation enforcement | HIGH |
+| `openclaw_otel_redaction_check` | OTEL PII redaction validation | MEDIUM |
+| `openclaw_rpc_rate_limit_check` | RPC rate limiting configuration | MEDIUM |
+
+## Usage
+
+```yaml
+skills:
+  - firm-config-migration-pack
+
+# Audit configuration before migration:
+openclaw_shell_env_check config_path=/path/to/config.json
+openclaw_plugin_integrity_check config_path=/path/to/config.json
 ```
+
+## Requirements
+
+- `mcp-openclaw-extensions >= 3.0.0`

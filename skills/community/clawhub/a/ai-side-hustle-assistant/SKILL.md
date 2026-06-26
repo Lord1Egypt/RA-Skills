@@ -1,35 +1,63 @@
 ---
-name: "Ai Side Hustle Assistant"
-description: "AI副业变现助手。帮助用户探索和实现AI副业赚钱的可行路径，包括：技能变现、内容创作、工具分发、自动化服务等。当用户询问副业、赚钱、变现、被动收入时触发。提供实用的副业方向、可操作步骤、平台推荐和避坑指南。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-side-hustle-assistant"
-sourceUrl: "https://clawhub.ai/skills/ai-side-hustle-assistant"
+name: ai-side-hustle-assistant
+version: 1.0.0
+description: AI副业变现助手。帮助用户探索和实现AI副业赚钱的可行路径，包括：技能变现、内容创作、工具分发、自动化服务等。当用户询问副业、赚钱、变现、被动收入时触发。提供实用的副业方向、可操作步骤、平台推荐和避坑指南。
 ---
 
-# Ai Side Hustle Assistant
+# AI副业变现助手
 
-> AI副业变现助手。帮助用户探索和实现AI副业赚钱的可行路径，包括：技能变现、内容创作、工具分发、自动化服务等。当用户询问副业、赚钱、变现、被动收入时触发。提供实用的副业方向、可操作步骤、平台推荐和避坑指南。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-side-hustle-assistant`
-- **Source URL:** [https://clawhub.ai/skills/ai-side-hustle-assistant](https://clawhub.ai/skills/ai-side-hustle-assistant)
+### 1. 变现方向诊断
+根据用户情况，推荐最适合的变现路径：
+- **技能发布**：将AI技能发布到ClawHub等平台
+- **内容创作**：小红书/知乎/公众号内容变现
+- **工具封装**：封装AI能力为工具服务
+- **自动化服务**：提供AI驱动的自动化服务
 
-## Overview
+### 2. 变现路径分析
+对每种变现方式提供：
+- 启动难度（1-5星）
+- 收入潜力
+- 需要的时间投入
+- 关键步骤
+- 避坑提示
 
+### 3. 平台推荐
+| 平台 | 适合方向 | 特点 |
+|------|----------|------|
+| ClawHub | AI技能分发 | 被动收入 |
+| 小红书 | 内容流量 | 粉丝变现 |
+| 知乎 | 专业内容 | 付费咨询 |
+| GitHub | 工具开源 | 赞助/Stars |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-side-hustle-assistant
+### 4. 行动计划
+根据用户目标，制定可执行的周度计划
+
+## 输出格式
+
 ```
+📊 变现诊断
+
+你的情况：XXX
+推荐方向：XXX
+
+💡 方向一：[名称]
+   难度：⭐⭐⭐
+   收入潜力：XXX/月
+   启动步骤：
+   1. XXX
+   2. XXX
+   ⚠️ 注意：XXX
+
+📅 本周行动计划
+Day 1: XXX
+Day 2: XXX
+...
+```
+
+## 重要规则
+- **务实建议**：不画大饼，给可执行的方案
+- **量化目标**：每个建议都要有具体数字
+- **分步执行**：大任务拆成小步骤
+- **定期复盘**：每周检查进度，调整方向

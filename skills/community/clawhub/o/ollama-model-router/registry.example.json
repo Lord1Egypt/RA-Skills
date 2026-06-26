@@ -1,0 +1,70 @@
+{
+  "models": [
+    {
+      "id": "kimi-k2.6",
+      "provider": "ollama",
+      "host": "cloud",
+      "tags": ["reasoning", "analysis", "coding", "general", "creative"],
+      "strengths": ["long-context", "instruction-following", "chinese", "writing"],
+      "weaknesses": ["math", "structured-output"],
+      "max_tokens": 128000,
+      "speed": "medium",
+      "cost_tier": "free"
+    },
+    {
+      "id": "llama3.3-70b",
+      "provider": "ollama",
+      "host": "local",
+      "tags": ["coding", "analysis", "general", "reasoning"],
+      "strengths": ["code-generation", "structured-output", "general-knowledge"],
+      "weaknesses": ["creative-writing", "long-context", "chinese"],
+      "max_tokens": 8192,
+      "speed": "fast",
+      "cost_tier": "free"
+    },
+    {
+      "id": "qwen2.5-coder",
+      "provider": "ollama",
+      "host": "local",
+      "tags": ["coding", "technical"],
+      "strengths": ["code-completion", "bug-fixing", "refactoring", "technical-writing"],
+      "weaknesses": ["general-chat", "creative", "long-context"],
+      "max_tokens": 32768,
+      "speed": "fast",
+      "cost_tier": "free"
+    },
+    {
+      "id": "mistral-nemo",
+      "provider": "ollama",
+      "host": "local",
+      "tags": ["reasoning", "analysis", "general"],
+      "strengths": ["reasoning", "math", "logic", "instruction-following"],
+      "weaknesses": ["long-context", "creative-writing"],
+      "max_tokens": 32768,
+      "speed": "fast",
+      "cost_tier": "free"
+    },
+    {
+      "id": "phi4",
+      "provider": "ollama",
+      "host": "local",
+      "tags": ["coding", "technical", "analysis"],
+      "strengths": ["code-generation", "structured-output", "technical-analysis"],
+      "weaknesses": ["creative", "long-context", "general-chat"],
+      "max_tokens": 16384,
+      "speed": "very-fast",
+      "cost_tier": "free"
+    },
+    {
+      "id": "gemma2-27b",
+      "provider": "ollama",
+      "host": "local",
+      "tags": ["general", "analysis", "coding"],
+      "strengths": ["general-knowledge", "safety", "multilingual"],
+      "weaknesses": ["long-context", "creative"],
+      "max_tokens": 8192,
+      "speed": "fast",
+      "cost_tier": "free"
+    }
+  ]
+}

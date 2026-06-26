@@ -1,0 +1,24 @@
+{
+  "name": "Intuition Development Guide",
+  "slug": "intuition-development-guide",
+  "version": "1.0.0",
+  "description": "Teaches systematic approaches to developing and trusting intuitive judgment over time.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "intuition",
+    "decision-making",
+    "self-trust",
+    "growth"
+  ],
+  "trigger_keywords": [
+    "develop intuition",
+    "trust your gut",
+    "intuition practice",
+    "gut feeling guide",
+    "intuitive decision making"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

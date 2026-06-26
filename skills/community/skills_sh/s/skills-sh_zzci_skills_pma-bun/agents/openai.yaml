@@ -1,0 +1,4 @@
+interface:
+  display_name: "PMA Bun"
+  short_description: "Bun backend baseline for PMA projects"
+  default_prompt: "Use $pma-bun with $pma to plan or implement a Bun backend service."

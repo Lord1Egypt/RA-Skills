@@ -1,0 +1,18 @@
+{
+  "description": "IELTS Reading Review Skill hooks — 复盘触发词自动检测版本更新",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "name": "ielts-skill-version-check",
+        "matcher": "复盘|雅思阅读|阅读错题|IELTS|ielts-reading-review|帮我复盘|错题分析|阅读分析|剑[0-9]|剑桥[0-9]",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CODEBUDDY_SKILL_ROOT:-$HOME/.workbuddy/skills/ielts-reading-review}/hooks/auto-update.sh\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

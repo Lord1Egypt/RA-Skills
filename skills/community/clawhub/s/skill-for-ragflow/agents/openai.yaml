@@ -1,0 +1,4 @@
+interface:
+  display_name: "RAGFlow Skill"
+  short_description: "Operate RAGFlow v0.26.0 deployments via bundled CLI for datasets, documents, retrieval, chat assistants, agents, model providers, and diagnostics."
+  default_prompt: "Use $ragflow-skill to manage RAGFlow deployments: datasets, document uploads and parsing, chunks, retrieval, chat assistants and sessions, agents, model and provider management, system settings, and API diagnostics."

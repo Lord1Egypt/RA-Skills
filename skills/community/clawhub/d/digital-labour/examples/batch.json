@@ -1,0 +1,14 @@
+[
+  {
+    "agent": "sales_outreach",
+    "inputs": {"company": "Stripe", "role": "Head of Engineering"}
+  },
+  {
+    "agent": "seo_content",
+    "inputs": {"keyword": "AI business automation 2026", "content_type": "blog"}
+  },
+  {
+    "agent": "ad_copy",
+    "inputs": {"product": "AI-powered back-office automation", "platform": "google"}
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "name": "zouroboros-memory",
+  "version": "4.0.0",
+  "description": "Durable memory backend for AI agents with hybrid search, episodic memory, cognitive profiles, decay classes, and MCP tools",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "zouroboros-memory": "./dist/cli.js",
+    "zouroboros-memory-mcp": "./dist/mcp-server.js"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "memory",
+    "ai",
+    "mcp",
+    "sqlite",
+    "vector",
+    "zouroboros",
+    "openclaw",
+    "episodic",
+    "hybrid-search",
+    "cognitive"
+  ],
+  "author": "AlaricHQ <https://github.com/AlaricHQ>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlaricHQ/zouroboros-openclaw",
+    "directory": "packages/memory"
+  },
+  "homepage": "https://github.com/AlaricHQ/zouroboros-openclaw/tree/main/packages/memory",
+  "dependencies": {
+    "better-sqlite3": "^9.4.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

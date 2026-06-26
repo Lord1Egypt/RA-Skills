@@ -1,0 +1,332 @@
+# 关系类目标模板
+
+## 终极目标模板
+
+ultimate_goals:
+  - id: "ultimate_relationship_001"
+    title: "集齐九位道侣"
+    description: "找到并成为九位命定之人的道侣，觉醒系统真谛"
+    theme: "relationship"
+    totalPhases: 3
+    phases:
+      - phase: 1
+        name: "初识红尘"
+        description: "找到前三位有缘人"
+      - phase: 2
+        name: "情路漫漫"
+        description: "再得三位佳人芳心"
+      - phase: 3
+        name: "圆满之境"
+        description: "集齐最后三位，达成圆满"
+
+  - id: "ultimate_relationship_002"
+    title: "情定三生"
+    description: "与真爱经历生死考验，成就三生情缘"
+    theme: "relationship"
+    totalPhases: 3
+
+## 阶段目标模板
+
+phase_goals:
+  # 结识目标
+  - id: "phase_meet_npc"
+    title: "结识{npc_name}"
+    description: "与{npc_name}建立初步联系"
+    theme: "relationship"
+    difficulty: 2
+    requirements:
+      - type: "location"
+        target: "npc所在地点"
+      - type: "event"
+        target: "相遇契机"
+    milestones:
+      - "得知{npc_name}的存在"
+      - "找到相遇机会"
+      - "成功搭话"
+    rewards:
+      relationship:
+        target: "npc_id"
+        value: 10
+
+  # 建立信任目标
+  - id: "phase_build_trust"
+    title: "获得{npc_name}的信任"
+    description: "通过一系列互动，让{npc_name}对你敞开心扉"
+    theme: "relationship"
+    difficulty: 4
+    requirements:
+      - type: "relationship"
+        target: "npc_id"
+        minLevel: 30
+      - type: "actions"
+        target: "善意互动"
+        count: 3
+    milestones:
+      - "好感度达到30"
+      - "帮助{npc_name}解决困难"
+      - "好感度达到50"
+      - "获得信任"
+
+  # 心结解开目标
+  - id: "phase_resolve_heartknot"
+    title: "解开{npc_name}的心结"
+    description: "了解并帮助{npc_name}解开心中郁结"
+    theme: "relationship"
+    difficulty: 6
+    requirements:
+      - type: "relationship"
+        target: "npc_id"
+        minLevel: 70
+      - type: "heartknot"
+        target: "npc_heartknot_id"
+    milestones:
+      - "发现心结的存在"
+      - "了解心结详情"
+      - "找到解开心结的方法"
+      - "成功解开心结"
+    rewards:
+      relationship:
+        target: "npc_id"
+        value: 30
+        unlockMax: true
+
+  # 道侣关系目标
+  - id: "phase_become_lovers"
+    title: "与{npc_name}结为道侣"
+    description: "修成正果，成为双修道侣"
+    theme: "relationship"
+    difficulty: 5
+    requirements:
+      - type: "relationship"
+        target: "npc_id"
+        minLevel: 90
+      - type: "heartknot"
+        target: "npc_heartknot_id"
+        status: "resolved"
+      - type: "opportunity"
+        target: "结侣契机"
+    milestones:
+      - "好感度达到90"
+      - "心结已解开"
+      - "找到结侣契机"
+      - "成功结为道侣"
+    rewards:
+      relationship:
+        target: "npc_id"
+        value: 10
+        type: "lover"
+
+  # 挽救关系目标
+  - id: "phase_save_relationship"
+    title: "挽回{npc_name}的信任"
+    description: "因某事导致关系破裂，需要挽回"
+    theme: "relationship"
+    difficulty: 5
+    requirements:
+      - type: "relationship"
+        target: "npc_id"
+        status: "damaged"
+    milestones:
+      - "了解破裂原因"
+      - "寻找弥补方法"
+      - "付出行动"
+      - "重新获得信任"
+
+## 小目标模板
+
+milestones:
+  - id: "milestone_give_gift"
+    title: "送给{npc_name}礼物"
+    description: "赠送一份礼物以表达心意"
+    turnsToComplete: 1
+    requirements:
+      - type: "item"
+        target: "gift_item"
+      - type: "npc_available"
+        target: "npc_id"
+    effects:
+      relationship:
+        target: "npc_id"
+        value: 5
+
+  - id: "milestone_help_npc"
+    title: "帮助{npc_name}"
+    description: "为{npc_name}解决一个困难"
+    turnsToComplete: 3
+    requirements:
+      - type: "quest"
+        target: "npc_help_quest"
+    effects:
+      relationship:
+        target: "npc_id"
+        value: 15
+
+  - id: "milestone_shared_experience"
+    title: "与{npc_name}共同经历"
+    description: "与{npc_name}一起经历某事"
+    turnsToComplete: 2
+    requirements:
+      - type: "npc_available"
+        target: "npc_id"
+    effects:
+      relationship:
+        target: "npc_id"
+        value: 10
+
+  - id: "milestone_learn_secret"
+    title: "了解{npc_name}的秘密"
+    description: "通过某种方式得知{npc_name}隐藏的秘密"
+    turnsToComplete: 3
+    requirements:
+      - type: "relationship"
+        target: "npc_id"
+        minLevel: 50
+    effects:
+      relationship:
+        target: "npc_id"
+        value: 5
+      unlock:
+        target: "npc_secret"
+
+## 心结模板
+
+heart_knots:
+  # 创伤型心结
+  - id: "heartknot_trauma_001"
+    name: "灭门之痛"
+    type: "trauma"
+    description: "家族被灭门的创伤，对仇人充满仇恨"
+    severity: 8
+    symptoms:
+      - "提到家族时会情绪激动"
+      - "对相关话题敏感回避"
+      - "有时会陷入回忆无法自拔"
+    resolution:
+      method: "event"
+      requiredSteps:
+        - "帮助找到部分真相"
+        - "陪伴度过情绪低谷"
+        - "一起面对仇人或放下仇恨"
+    blocksProgressUntil: true
+
+  - id: "heartknot_trauma_002"
+    name: "背叛之伤"
+    type: "trauma"
+    description: "曾经被信任的人背叛，难以再相信他人"
+    severity: 7
+    symptoms:
+      - "难以完全信任他人"
+      - "对亲密关系保持距离"
+      - "有时会突然冷淡"
+    resolution:
+      method: "time"
+      requiredSteps:
+        - "持续展现真诚"
+        - "在关键时刻证明可靠"
+        - "给予足够时间和空间"
+    blocksProgressUntil: true
+
+  # 责任型心结
+  - id: "heartknot_obligation_001"
+    name: "家族重任"
+    type: "obligation"
+    description: "背负着振兴家族的重任，无法放下"
+    severity: 6
+    symptoms:
+      - "将家族利益放在首位"
+      - "对个人幸福感到犹豫"
+      - "提到家族时神情复杂"
+    resolution:
+      method: "quest"
+      requiredSteps:
+        - "了解家族状况"
+        - "帮助解决家族困境"
+        - "证明自己更重要或能共同承担"
+    blocksProgressUntil: true
+
+  - id: "heartknot_obligation_002"
+    name: "宗门使命"
+    type: "obligation"
+    description: "身为宗门核心弟子，有必须完成的使命"
+    severity: 5
+    symptoms:
+      - "宗门事务优先处理"
+      - "对离开宗门感到为难"
+      - "有时需要执行宗门任务"
+    resolution:
+      method: "quest"
+      requiredSteps:
+        - "了解使命详情"
+        - "帮助完成使命"
+        - "或找到使命的替代方案"
+    blocksProgressUntil: true
+
+  # 秘密型心结
+  - id: "heartknot_secret_001"
+    name: "隐秘身世"
+    type: "secret"
+    description: "隐藏着自己的真实身份或来历"
+    severity: 6
+    symptoms:
+      - "对身世话题敏感"
+      - "有时会欲言又止"
+      - "某些行为有不可言说的原因"
+    resolution:
+      method: "dialogue"
+      requiredSteps:
+        - "建立足够信任"
+        - "创造安全的倾诉环境"
+        - "接纳她的真实身份"
+    blocksProgressUntil: true
+
+  - id: "heartknot_secret_002"
+    name: "传承之秘"
+    type: "secret"
+    description: "背负着某个传承的秘密，不能轻易告诉他人"
+    severity: 7
+    symptoms:
+      - "修炼时会独自行动"
+      - "对传承话题谨慎"
+      - "有时会突然需要独处"
+    resolution:
+      method: "event"
+      requiredSteps:
+        - "在关键时刻展示信任"
+        - "帮助完成传承相关任务"
+        - "自然得知秘密后表示理解"
+    blocksProgressUntil: true
+
+  # 过去型心结
+  - id: "heartknot_past_001"
+    name: "前缘未了"
+    type: "past"
+    description: "曾经有一段深刻的感情，未能放下"
+    severity: 5
+    symptoms:
+      - "偶尔会陷入回忆"
+      - "对某些话题敏感"
+      - "心中留有一个位置"
+    resolution:
+      method: "event"
+      requiredSteps:
+        - "了解过去的故事"
+        - "创造新的美好回忆"
+        - "证明现在更重要"
+    blocksProgressUntil: true
+
+  - id: "heartknot_past_002"
+    name: "故人之约"
+    type: "past"
+    description: "与已故之人有一个未完成的约定"
+    severity: 6
+    symptoms:
+      - "在特定日期情绪低落"
+      - "会去某个地方祭奠"
+      - "对约定的事念念不忘"
+    resolution:
+      method: "quest"
+      requiredSteps:
+        - "了解约定内容"
+        - "帮助完成约定"
+        - "陪伴度过情感难关"
+    blocksProgressUntil: true

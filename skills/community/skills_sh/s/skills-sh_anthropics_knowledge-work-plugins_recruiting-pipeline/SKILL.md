@@ -1,35 +1,31 @@
 ---
-name: "recruiting-pipeline"
-description: "Indexed by skills.sh from anthropics/knowledge-work-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/knowledge-work-plugins/recruiting-pipeline"
-sourceUrl: "https://skills.sh/anthropics/knowledge-work-plugins/recruiting-pipeline"
+name: recruiting-pipeline
+description: Track and manage recruiting pipeline stages. Trigger with "recruiting update", "candidate pipeline", "how many candidates", "hiring status", or when the user discusses sourcing, screening, interviewing, or extending offers.
 ---
 
-# recruiting-pipeline
+# Recruiting Pipeline
 
-> Indexed by skills.sh from anthropics/knowledge-work-plugins
+Help manage the recruiting pipeline from sourcing through offer acceptance.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/knowledge-work-plugins/recruiting-pipeline`
-- **Source URL:** [https://skills.sh/anthropics/knowledge-work-plugins/recruiting-pipeline](https://skills.sh/anthropics/knowledge-work-plugins/recruiting-pipeline)
+## Pipeline Stages
 
-## Overview
+| Stage | Description | Key Actions |
+|-------|-------------|-------------|
+| Sourced | Identified and reached out | Personalized outreach |
+| Screen | Phone/video screen | Evaluate basic fit |
+| Interview | On-site or panel interviews | Structured evaluation |
+| Debrief | Team decision | Calibrate feedback |
+| Offer | Extending offer | Comp package, negotiation |
+| Accepted | Offer accepted | Transition to onboarding |
 
+## Metrics to Track
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/knowledge-work-plugins/recruiting-pipeline
-```
+- **Pipeline velocity**: Days per stage
+- **Conversion rates**: Stage-to-stage drop-off
+- **Source effectiveness**: Which channels produce hires
+- **Offer acceptance rate**: Offers extended vs. accepted
+- **Time to fill**: Days from req open to offer accepted
+
+## If ATS Connected
+
+Pull candidate data automatically, update statuses, and track pipeline metrics in real time.

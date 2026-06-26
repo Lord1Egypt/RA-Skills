@@ -1,0 +1,11 @@
+{
+  "name": "social-publisher",
+  "version": "1.0.0",
+  "description": "一键发布内容到多个社交媒体平台（掘金/知乎/微博）",
+  "author": "yang1002378395",
+  "tags": ["social", "publish", "automation", "chinese"],
+  "repository": "https://clawhub.com/yang1002378395-cmyk/social-publisher",
+  "license": "MIT",
+  "price": 0,
+  "currency": "USD"
+}

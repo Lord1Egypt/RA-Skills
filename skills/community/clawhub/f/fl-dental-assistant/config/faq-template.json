@@ -1,0 +1,119 @@
+{
+  "clinic": {
+    "name": "Smile Dental Clinic",
+    "phone": "+1 (555) 123-4567",
+    "email": "contact@smiledentalclinic.com",
+    "website": "https://www.smiledentalclinic.com",
+    "google_review_link": "https://g.page/r/YOUR_GOOGLE_PLACE_ID/review",
+    "default_language": "en",
+    "timezone": "America/New_York",
+    "response_time": "30 minutes during business hours"
+  },
+  "address": {
+    "street": "123 Main Street, Suite 200",
+    "city": "Miami",
+    "state": "FL",
+    "zip": "33101",
+    "country": "US",
+    "google_maps_link": "https://maps.google.com/?q=YOUR_ADDRESS"
+  },
+  "business_hours": {
+    "monday": "8:00 AM - 6:00 PM",
+    "tuesday": "8:00 AM - 6:00 PM",
+    "wednesday": "8:00 AM - 6:00 PM",
+    "thursday": "8:00 AM - 6:00 PM",
+    "friday": "8:00 AM - 5:00 PM",
+    "saturday": "9:00 AM - 2:00 PM",
+    "sunday": "Closed"
+  },
+  "services": [
+    {
+      "name_en": "Cleaning & Checkup",
+      "name_pt": "Limpeza e Revisao",
+      "duration_minutes": 60,
+      "price_range_en": "$75 - $200",
+      "price_range_pt": "R$150 - R$400"
+    },
+    {
+      "name_en": "Teeth Whitening",
+      "name_pt": "Clareamento Dental",
+      "duration_minutes": 90,
+      "price_range_en": "$300 - $800",
+      "price_range_pt": "R$600 - R$1.600"
+    },
+    {
+      "name_en": "Orthodontics Consultation",
+      "name_pt": "Consulta Ortodontia",
+      "duration_minutes": 45,
+      "price_range_en": "$50 - $150 (consultation)",
+      "price_range_pt": "R$100 - R$300 (consulta)"
+    },
+    {
+      "name_en": "Dental Implant Consultation",
+      "name_pt": "Consulta Implante Dentario",
+      "duration_minutes": 60,
+      "price_range_en": "$100 - $250 (consultation)",
+      "price_range_pt": "R$200 - R$500 (consulta)"
+    },
+    {
+      "name_en": "Root Canal",
+      "name_pt": "Tratamento de Canal",
+      "duration_minutes": 90,
+      "price_range_en": "$700 - $1,500",
+      "price_range_pt": "R$800 - R$2.000"
+    },
+    {
+      "name_en": "Dental Crown",
+      "name_pt": "Coroa Dentaria",
+      "duration_minutes": 60,
+      "price_range_en": "$800 - $1,700",
+      "price_range_pt": "R$1.000 - R$3.000"
+    },
+    {
+      "name_en": "Tooth Extraction",
+      "name_pt": "Extracao de Dente",
+      "duration_minutes": 45,
+      "price_range_en": "$150 - $650",
+      "price_range_pt": "R$200 - R$800"
+    },
+    {
+      "name_en": "Emergency Visit",
+      "name_pt": "Consulta de Emergencia",
+      "duration_minutes": 30,
+      "price_range_en": "$100 - $300",
+      "price_range_pt": "R$150 - R$500"
+    }
+  ],
+  "insurance_accepted": [
+    "Delta Dental",
+    "Cigna Dental",
+    "MetLife Dental",
+    "Aetna Dental",
+    "United Healthcare Dental",
+    "Guardian Dental",
+    "Humana Dental",
+    "Self-pay / Cash accepted"
+  ],
+  "parking_info": {
+    "en": "Free parking available in the building's garage. Enter from Oak Street. Validated for 2 hours.",
+    "pt": "Estacionamento gratuito na garagem do predio. Entrada pela Rua Oak. Validado por 2 horas."
+  },
+  "emergency": {
+    "number": "+1 (555) 123-9999",
+    "available": "24/7",
+    "note_en": "For life-threatening emergencies, call 911",
+    "note_pt": "Para emergencias com risco de vida, ligue 192 (SAMU)"
+  },
+  "google_calendar": {
+    "credentials_path": "./config/google-calendar-credentials.json",
+    "calendar_id": "YOUR_CALENDAR_ID@group.calendar.google.com"
+  },
+  "staff_alert": {
+    "method": "whatsapp",
+    "numbers": [
+      "+1 (555) 000-0001"
+    ],
+    "email_fallback": "staff@smiledentalclinic.com"
+  },
+  "customization_notes": "Edit this file to match your clinic. All fields with 'YOUR_' prefix need to be replaced. Pricing, hours, and insurance can be updated anytime without restarting the bot."
+}

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Meeting Cost</title>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #141418;
+    --surface-2: #1c1c22;
+    --text: #f0f0f2;
+    --text-muted: #8e8e93;
+    --text-dim: #5a5a5e;
+    --accent: #ff453a;
+    --accent-dim: rgba(255,69,58,0.12);
+    --green: #30d158;
+    --gold: #c8a44e;
+    --radius: 16px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    min-height: 100vh;
+  }
+  .container { max-width:480px; margin:0 auto; padding:20px 16px 80px; }
+
+  .header { text-align:center; padding:20px 0 8px; }
+  .header h1 { font-size:28px; font-weight:700; }
+  .header .sub { font-size:14px; color:var(--text-muted); margin-top:4px; }
+
+  /* Cost display */
+  .cost-display {
+    text-align:center; padding:40px 0 32px;
+  }
+  .cost-amount {
+    font-size:64px; font-weight:200; letter-spacing:-3px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    transition: color 0.3s;
+  }
+  .cost-amount.running { color: var(--accent); }
+  .cost-label { font-size:14px; color:var(--text-dim); margin-top:8px; }
+  .cost-elapsed {
+    font-size:20px; color:var(--text-muted); margin-top:4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Rate display */
+  .rate-bar {
+    display:flex; justify-content:center; gap:24px;
+    padding:12px 0 32px;
+  }
+  .rate-item { text-align:center; }
+  .rate-value { font-size:15px; font-weight:600; color:var(--gold); }
+  .rate-label { font-size:11px; color:var(--text-dim); margin-top:2px; }
+
+  /* Inputs */
+  .inputs {
+    background:var(--surface); border-radius:var(--radius); padding:20px;
+    margin-bottom:24px;
+  }
+  .input-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0; border-bottom:1px solid var(--surface-2);
+  }
+  .input-row:last-child { border-bottom:none; }
+  .input-label { font-size:15px; color:var(--text-muted); }
+  .input-control { display:flex; align-items:center; gap:12px; }
+  .input-control button {
+    width:36px; height:36px; border-radius:10px; border:1px solid var(--surface-2);
+    background:var(--surface-2); color:var(--text); font-size:18px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .input-control button:active { background:var(--accent-dim); }
+  .input-control span {
+    font-size:18px; font-weight:600; min-width:40px; text-align:center;
+  }
+  .input-control input {
+    width:80px; background:var(--surface-2); border:1px solid var(--surface-2);
+    border-radius:10px; padding:8px 12px; font-size:16px; color:var(--text);
+    text-align:center; font-family:inherit; outline:none;
+  }
+  .input-control input:focus { border-color:var(--gold); }
+
+  /* Controls */
+  .controls { display:flex; gap:12px; margin-bottom:24px; }
+  .btn {
+    flex:1; border:none; border-radius:14px; padding:16px;
+    font-size:17px; font-weight:600; cursor:pointer; font-family:inherit;
+  }
+  .btn:active { opacity:0.7; }
+  .btn-start { background:var(--green); color:#000; }
+  .btn-start.running { background:var(--accent); color:#fff; }
+  .btn-reset { background:var(--surface); color:var(--text-muted); border:1px solid var(--surface-2); }
+
+  /* History */
+  .history { background:var(--surface); border-radius:var(--radius); padding:16px 20px; }
+  .history-title { font-size:13px; font-weight:600; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .history-row {
+    display:flex; justify-content:space-between; padding:10px 0;
+    border-bottom:1px solid var(--surface-2); font-size:14px;
+  }
+  .history-row:last-child { border-bottom:none; }
+  .history-row .cost { font-weight:600; color:var(--accent); }
+  .history-row .details { color:var(--text-muted); }
+  .history-empty { text-align:center; padding:12px; font-size:14px; color:var(--text-dim); }
+  .clear-btn {
+    margin-top:12px; width:100%; padding:10px; background:none;
+    border:1px solid var(--surface-2); border-radius:10px; color:var(--text-dim);
+    font-size:13px; cursor:pointer; font-family:inherit;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>💸 Meeting Cost</h1>
+    <div class="sub">Real-time meeting expense calculator</div>
+  </div>
+
+  <div class="cost-display">
+    <div class="cost-amount" id="costDisplay">$0.00</div>
+    <div class="cost-label">Total meeting cost</div>
+    <div class="cost-elapsed" id="elapsedDisplay">00:00:00</div>
+  </div>
+
+  <div class="rate-bar">
+    <div class="rate-item">
+      <div class="rate-value" id="perMinute">$0.00</div>
+      <div class="rate-label">per minute</div>
+    </div>
+    <div class="rate-item">
+      <div class="rate-value" id="perHour">$0.00</div>
+      <div class="rate-label">per hour</div>
+    </div>
+  </div>
+
+  <div class="inputs">
+    <div class="input-row">
+      <span class="input-label">Attendees</span>
+      <div class="input-control">
+        <button onclick="adjustAttendees(-1)">−</button>
+        <span id="attendeeCount">4</span>
+        <button onclick="adjustAttendees(1)">+</button>
+      </div>
+    </div>
+    <div class="input-row">
+      <span class="input-label">Avg hourly rate ($)</span>
+      <div class="input-control">
+        <input type="number" id="hourlyRate" value="75" min="10" max="1000" step="5"
+          oninput="updateRates()">
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-start" id="startBtn" onclick="toggleMeeting()">Start Meeting</button>
+    <button class="btn btn-reset" onclick="resetMeeting()">Reset</button>
+  </div>
+
+  <div class="history">
+    <div class="history-title">Past Meetings</div>
+    <div id="historyList"></div>
+    <button class="clear-btn" onclick="clearHistory()">Clear History</button>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'openpot_meeting_cost';
+let attendees = 4;
+let hourlyRate = 75;
+let running = false;
+let startTime = null;
+let elapsed = 0;
+let interval = null;
+let meetings = [];
+
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (d) {
+      if (d.attendees) attendees = d.attendees;
+      if (d.hourlyRate) hourlyRate = d.hourlyRate;
+      if (d.meetings) meetings = d.meetings;
+    }
+  } catch(e) {}
+  document.getElementById('attendeeCount').textContent = attendees;
+  document.getElementById('hourlyRate').value = hourlyRate;
+  updateRates();
+  renderHistory();
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ attendees, hourlyRate, meetings }));
+}
+
+function adjustAttendees(delta) {
+  if (running) return;
+  attendees = Math.max(1, Math.min(50, attendees + delta));
+  document.getElementById('attendeeCount').textContent = attendees;
+  updateRates();
+  save();
+}
+
+function updateRates() {
+  hourlyRate = parseFloat(document.getElementById('hourlyRate').value) || 75;
+  const totalPerHour = attendees * hourlyRate;
+  const totalPerMin = totalPerHour / 60;
+  document.getElementById('perHour').textContent = '$' + totalPerHour.toFixed(0);
+  document.getElementById('perMinute').textContent = '$' + totalPerMin.toFixed(2);
+  save();
+}
+
+function toggleMeeting() {
+  if (running) {
+    clearInterval(interval);
+    running = false;
+    document.getElementById('startBtn').textContent = 'Resume';
+    document.getElementById('startBtn').classList.remove('running');
+
+    // Save to history
+    const cost = calculateCost();
+    if (elapsed > 10) {
+      meetings.unshift({
+        date: new Date().toISOString(),
+        attendees: attendees,
+        rate: hourlyRate,
+        seconds: elapsed,
+        cost: cost
+      });
+      if (meetings.length > 20) meetings = meetings.slice(0, 20);
+      save();
+      renderHistory();
+    }
+  } else {
+    running = true;
+    if (!startTime) startTime = Date.now() - (elapsed * 1000);
+    document.getElementById('startBtn').textContent = 'End Meeting';
+    document.getElementById('startBtn').classList.add('running');
+    interval = setInterval(updateCost, 100);
+  }
+}
+
+function resetMeeting() {
+  clearInterval(interval);
+  running = false;
+  elapsed = 0;
+  startTime = null;
+  document.getElementById('startBtn').textContent = 'Start Meeting';
+  document.getElementById('startBtn').classList.remove('running');
+  document.getElementById('costDisplay').textContent = '$0.00';
+  document.getElementById('costDisplay').classList.remove('running');
+  document.getElementById('elapsedDisplay').textContent = '00:00:00';
+}
+
+function calculateCost() {
+  const hours = elapsed / 3600;
+  return attendees * hourlyRate * hours;
+}
+
+function updateCost() {
+  elapsed = (Date.now() - startTime) / 1000;
+  const cost = calculateCost();
+
+  document.getElementById('costDisplay').textContent = '$' + cost.toFixed(2);
+  document.getElementById('costDisplay').classList.add('running');
+
+  const h = Math.floor(elapsed / 3600);
+  const m = Math.floor((elapsed % 3600) / 60);
+  const s = Math.floor(elapsed % 60);
+  document.getElementById('elapsedDisplay').textContent =
+    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+}
+
+function renderHistory() {
+  const list = document.getElementById('historyList');
+  if (meetings.length === 0) {
+    list.innerHTML = '<div class="history-empty">No meetings recorded yet</div>';
+    return;
+  }
+  list.innerHTML = meetings.slice(0, 10).map(m => {
+    const d = new Date(m.date);
+    const mins = Math.round(m.seconds / 60);
+    const label = d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+    return `<div class="history-row">
+      <span class="details">${label} · ${m.attendees} people · ${mins} min</span>
+      <span class="cost">$${m.cost.toFixed(2)}</span>
+    </div>`;
+  }).join('');
+}
+
+function clearHistory() {
+  if (confirm('Clear meeting history?')) {
+    meetings = [];
+    save();
+    renderHistory();
+  }
+}
+
+load();
+</script>
+</body>
+</html>

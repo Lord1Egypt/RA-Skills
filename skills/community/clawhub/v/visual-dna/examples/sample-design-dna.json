@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "name": "Operator Console",
+    "description": "A practical example profile for a restrained operations dashboard.",
+    "source_references": [
+      "example://operator-console"
+    ],
+    "created_at": "2026-05-21"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "complementary",
+      "primary": {
+        "hex": "#1f2937",
+        "role": "navigation, headings, and main text"
+      },
+      "secondary": {
+        "hex": "#0f766e",
+        "role": "status accents and selected controls"
+      },
+      "accent": {
+        "hex": "#f59e0b",
+        "role": "warnings and important attention markers"
+      },
+      "neutral": {
+        "scale": ["#f8fafc", "#e5e7eb", "#94a3b8", "#475569", "#111827"],
+        "usage": "backgrounds, borders, subdued labels, and text"
+      },
+      "semantic": {
+        "success": "#16a34a",
+        "warning": "#d97706",
+        "error": "#dc2626",
+        "info": "#2563eb"
+      },
+      "surface": {
+        "background": "#f8fafc",
+        "card": "#ffffff",
+        "elevated": "#ffffff"
+      },
+      "contrast_strategy": "dark-on-light dominant"
+    },
+    "typography": {
+      "type_scale": {
+        "display": {"size": "40px", "weight": 700, "line_height": "1.05", "tracking": "0"},
+        "heading_1": {"size": "30px", "weight": 700, "line_height": "1.15", "tracking": "0"},
+        "heading_2": {"size": "22px", "weight": 650, "line_height": "1.25", "tracking": "0"},
+        "heading_3": {"size": "18px", "weight": 650, "line_height": "1.3", "tracking": "0"},
+        "body": {"size": "15px", "weight": 400, "line_height": "1.55", "tracking": "0"},
+        "body_small": {"size": "13px", "weight": 400, "line_height": "1.45", "tracking": "0"},
+        "caption": {"size": "12px", "weight": 500, "line_height": "1.35", "tracking": "0"},
+        "overline": {"size": "11px", "weight": 650, "line_height": "1.2", "tracking": "0.04em"}
+      },
+      "font_families": {
+        "heading": "Inter, ui-sans-serif, system-ui, sans-serif",
+        "body": "Inter, ui-sans-serif, system-ui, sans-serif",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+      },
+      "font_style_notes": "Quiet, readable, system-adjacent sans serif with no decorative display treatment."
+    },
+    "spacing": {
+      "base_unit": "4px",
+      "scale": ["4px", "8px", "12px", "16px", "24px", "32px", "48px"],
+      "content_density": "compact",
+      "section_rhythm": "Short vertical rhythm for scan-heavy dashboards."
+    },
+    "layout": {
+      "grid_system": "12-column responsive grid",
+      "max_content_width": "1180px",
+      "columns": 12,
+      "gutter": "24px",
+      "breakpoints": {"sm": "640px", "md": "768px", "lg": "1024px", "xl": "1280px"},
+      "alignment_tendency": "strict grid"
+    },
+    "shape": {
+      "border_radius": {"small": "4px", "medium": "6px", "large": "8px", "pill": "999px"},
+      "border_usage": "Subtle one-pixel borders define controls and panels.",
+      "divider_style": "Light neutral rules with low visual weight."
+    },
+    "elevation": {
+      "shadow_style": "Minimal soft shadows only for menus and modals.",
+      "levels": {
+        "low": "0 1px 2px rgba(15, 23, 42, 0.06)",
+        "medium": "0 8px 24px rgba(15, 23, 42, 0.10)",
+        "high": "0 20px 48px rgba(15, 23, 42, 0.16)"
+      },
+      "depth_cues": "Depth comes mostly from borders, spacing, and background changes."
+    },
+    "iconography": {
+      "style": "outline",
+      "stroke_weight": "1.75px",
+      "size_scale": ["16px", "20px", "24px"],
+      "preferred_set": "lucide"
+    },
+    "motion": {
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "duration_scale": {"micro": "120ms", "normal": "180ms", "macro": "260ms"},
+      "entrance_pattern": "Short fade and translate for overlays only.",
+      "exit_pattern": "Fast fade.",
+      "philosophy": "Motion clarifies state, never decorates."
+    },
+    "components": {
+      "button_style": "Compact rectangular buttons with icon-first actions.",
+      "input_style": "Bordered fields with clear focus ring and no heavy fill.",
+      "card_style": "Flat panels with small radius and one-pixel borders.",
+      "navigation_pattern": "Left navigation plus compact top status bar.",
+      "modal_style": "Centered dialog with clear title, body, and action row.",
+      "list_style": "Dense rows with status, owner, and timestamp columns.",
+      "component_notes": "Prefer tables and lists over decorative card grids for operational data."
+    }
+  },
+  "design_style": {
+    "aesthetic": {
+      "mood": "calm, precise, operational",
+      "visual_metaphor": "control room",
+      "era_influence": "modern SaaS",
+      "genre": "developer operations",
+      "personality_traits": ["clear", "serious", "efficient"],
+      "adjectives": ["restrained", "legible", "structured"]
+    },
+    "visual_language": {
+      "complexity": "moderate",
+      "ornamentation": "low",
+      "whitespace_usage": "functional",
+      "visual_weight_distribution": "navigation and tables carry most weight",
+      "focal_strategy": "status and action priority",
+      "contrast_level": "medium-high",
+      "texture_usage": "none"
+    },
+    "composition": {
+      "hierarchy_method": "size, weight, and spacing",
+      "balance_type": "asymmetric",
+      "flow_direction": "left-to-right, top-to-bottom",
+      "grouping_strategy": "sections divided by headings and tables",
+      "negative_space_role": "separates workflows without feeling sparse"
+    },
+    "imagery": {
+      "photo_treatment": "none",
+      "illustration_style": "none",
+      "graphic_elements": "small status glyphs and charts",
+      "pattern_usage": "none",
+      "image_shape": "not applicable"
+    },
+    "interaction_feel": {
+      "feedback_style": "immediate and explicit",
+      "hover_behavior": "subtle border or background change",
+      "transition_personality": "quick and practical",
+      "loading_style": "inline progress or skeleton rows",
+      "microinteraction_density": "low"
+    },
+    "brand_voice_in_ui": {
+      "tone": "direct",
+      "formality": "professional",
+      "cta_style": "verb-first",
+      "empty_state_approach": "state the missing thing and next action",
+      "error_tone": "plain language with recovery path"
+    }
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "subtle",
+      "performance_tier": "lightweight",
+      "fallback_strategy": "all effects can be disabled without losing meaning",
+      "primary_technology": "CSS"
+    },
+    "background_effects": {"enabled": false, "type": "none", "description": "flat surfaces", "technology": "CSS", "params": {}},
+    "particle_systems": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "3d_elements": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "shader_effects": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "scroll_effects": {
+      "parallax": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+      "scroll_triggered_animations": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+      "scroll_morphing": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}}
+    },
+    "text_effects": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "cursor_effects": {"enabled": false, "type": "none", "description": "default pointer", "technology": "browser", "params": {}},
+    "image_effects": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "glassmorphism_neumorphism": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "canvas_drawings": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "svg_animations": {"enabled": false, "type": "none", "description": "not used", "technology": "none", "params": {}},
+    "composite_notes": "The profile intentionally avoids heavy effects because the reference style is operational and task-focused."
+  }
+}

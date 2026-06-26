@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Communication DNA{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tag-pill { @apply px-2 py-0.5 rounded-full text-xs font-medium text-white; }
+        .card { @apply bg-gray-800 rounded-lg p-4 border border-gray-700; }
+        .stat-card { @apply bg-gray-800 rounded-lg p-5 border border-gray-700 text-center; }
+        .metric-bar { @apply h-3 rounded-full; transition: width 0.5s ease; }
+        .nav-link { @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors; }
+        .nav-link.active { @apply bg-gray-700 text-white; }
+    </style>
+</head>
+<body class="h-full bg-gray-900 text-gray-100">
+    <div class="flex h-full">
+        <!-- Sidebar -->
+        <nav class="w-56 bg-gray-800 border-r border-gray-700 flex flex-col shrink-0">
+            <div class="p-4 border-b border-gray-700">
+                <h1 class="text-lg font-bold text-white">🧬 Comm DNA</h1>
+            </div>
+            <div class="flex-1 p-3 space-y-1">
+                <a href="/" class="nav-link {% if active == 'dashboard' %}active{% endif %}">📊 Dashboard</a>
+                <a href="/speakers" class="nav-link {% if active == 'speakers' %}active{% endif %}">👥 Speakers</a>
+                <a href="/transcriptions" class="nav-link {% if active == 'transcriptions' %}active{% endif %}">📝 Transcriptions</a>
+                <a href="/compare" class="nav-link {% if active == 'compare' %}active{% endif %}">⚖️ Compare</a>
+                <a href="/search" class="nav-link {% if active == 'search' %}active{% endif %}">🔍 Search</a>
+                <a href="/integrations" class="nav-link {% if active == 'integrations' %}active{% endif %}">🔗 Integrations</a>
+                <a href="/ingest" class="nav-link {% if active == 'ingest' %}active{% endif %}">📤 Ingest</a>
+            </div>
+        </nav>
+        <!-- Main -->
+        <main class="flex-1 overflow-y-auto p-6">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

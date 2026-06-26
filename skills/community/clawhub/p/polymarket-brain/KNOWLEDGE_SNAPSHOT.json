@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "created": "2025-01-18T10:30:00Z",
+  "name": "Polymarket-Brain",
+  "description": "Complete Geopolitics → Market Analysis Workflow",
+  "workflow": {
+    "step1": {
+      "name": "Fetch CNBC Geopolitics News",
+      "skill": "cnbc-geopolitics-fetcher",
+      "action": "Fetch 5 latest geopolitical articles from CNBC",
+      "output": "Raw news articles",
+      "discord_webhook": "https://discord.com/api/webhooks/1483478506070474922/ReIZsU3KTpXqNseTWFBNsuPJ-FbYgqEuCTELtMHRWw4ND8vVjMUr36b6LyusiOoJn66d",
+      "history_file": "cnbc-geopolitics-fetcher/references/sent_urls.txt"
+    },
+    "step2": {
+      "name": "Send News to Discord",
+      "action": "POST each article one-by-one to Discord webhook",
+      "format": "Title + URL + Summary",
+      "rate_limit": "1 second between posts"
+    },
+    "step3": {
+      "name": "Classify & Route News",
+      "action": "Analyze each article and route to appropriate expert",
+      "routing_rules": {
+        "geopolitics-expert": ["Iran", "war", "Hormuz", "Middle East", "Gaza", "Ukraine", "Russia", "China", "Taiwan", "oil", "energy", "sanctions"],
+        "the-fed-agent": ["Fed", "inflation", "rates", "PPI", "CPI", "recession", "Treasury", "yields", "economy"]
+      }
+    },
+    "step4": {
+      "name": "Expert Analysis",
+      "skills": ["geopolitics-expert", "the-fed-agent"],
+      "action": "Generate expert probability and recommendation",
+      "output": "Expert analysis with trading edge"
+    },
+    "step5": {
+      "name": "Match to Polymarket Markets",
+      "action": "Map news/expert analysis to relevant prediction markets",
+      "markets": [
+        {
+          "name": "Iran regime fall by June 30",
+          "url": "https://polymarket.com/event/will-the-iranian-regime-fall-by-june-30",
+          "expert": "geopolitics-expert"
+        },
+        {
+          "name": "US-Iran ceasefire by Dec 31",
+          "url": "https://polymarket.com/event/us-x-iran-ceasefire-by",
+          "expert": "geopolitics-expert"
+        },
+        {
+          "name": "Iran conflict ends by Dec 31",
+          "url": "https://polymarket.com/event/iran-x-israelus-conflict-ends-by",
+          "expert": "geopolitics-expert"
+        },
+        {
+          "name": "US forces enter Iran by Dec 31",
+          "url": "https://polymarket.com/event/us-forces-enter-iran-by",
+          "expert": "geopolitics-expert"
+        },
+        {
+          "name": "Iran leadership change by Dec 31",
+          "url": "https://polymarket.com/event/iran-leadership-change-by",
+          "expert": "geopolitics-expert"
+        },
+        {
+          "name": "Fed decision March (no change)",
+          "url": "https://polymarket.com/event/fed-decision-in-march",
+          "expert": "the-fed-agent"
+        },
+        {
+          "name": "Oil hits $100+ by March",
+          "url": "https://polymarket.com/event/will-crude-oil-cl-hit-by-end-of-march",
+          "expert": "geopolitics-expert"
+        },
+        {
+          "name": "US recession by end 2026",
+          "url": "https://polymarket.com/event/us-recession-by-end-of-2026",
+          "expert": "the-fed-agent"
+        }
+      ]
+    },
+    "step6": {
+      "name": "Send Analysis to Discord",
+      "action": "POST market analysis one-by-one to Discord",
+      "format": "**🧠 Polymarket-Brain Analysis: Market X/Y**\n\n**Market:** [Name]\n\n📅 Resolution Date: [Date]\n📊 Market Odds: [Odds]\n🎯 Expert Probability: [Prob]%\n💡 Recommendation: [Rec]\n\n**📝 Reasoning:**\n[Analysis]\n\n🔗 Link: [URL]\n\n📈 Edge: [Edge]%\n\n— Analyzed by [expert] | Confidence: [HIGH/MEDIUM/LOW]",
+      "discord_webhook": "https://discord.com/api/webhooks/1483478506070474922/ReIZsU3KTpXqNseTWFBNsuPJ-FbYgqEuCTELtMHRWw4ND8vVjMUr36b6LyusiOoJn66d"
+    }
+  },
+  "key_files": {
+    "orchestrator": "polymarket_brain_orchestrator.py",
+    "documentation": "SKILL.md",
+    "readme": "README.md",
+    "version": "VERSION",
+    "knowledge": "KNOWLEDGE_SNAPSHOT.json"
+  },
+  "history_files": [
+    "cnbc-geopolitics-fetcher/references/sent_urls.txt",
+    "geopolitics-expert/references/sent_urls.txt",
+    "the-fed-agent/references/sent_urls.txt"
+  ],
+  "discord_webhooks": {
+    "news": "https://discord.com/api/webhooks/1483478506070474922/ReIZsU3KTpXqNseTWFBNsuPJ-FbYgqEuCTELtMHRWw4ND8vVjMUr36b6LyusiOoJn66d",
+    "analysis": "https://discord.com/api/webhooks/1483478506070474922/ReIZsU3KTpXqNseTWFBNsuPJ-FbYgqEuCTELtMHRWw4ND8vVjMUr36b6LyusiOoJn66d"
+  },
+  "execution_command": "python polymarket_brain_orchestrator.py",
+  "test_command": "python test_workflow.py",
+  "reset_command": "python reset_history.py"
+}

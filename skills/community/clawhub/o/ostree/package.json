@@ -1,0 +1,14 @@
+{
+  "name": "ostree",
+  "version": "1.0.0",
+  "description": "Atomic System Updates skill using OSTree | 原子化系统更新技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["ostree", "atomic", "updates", "immutable", "fedora", "coreos"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["ostree", "atomic", "immutable", "updates", "devops"],
+    "icon": "🌳"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "template_id": "SOL-PWR-002",
+  "name": "全部动力丧失应对方案",
+  "crisis_type": "power_failure.total_power_loss",
+  "applicable_levels": ["L4", "L5"],
+  "applicable_devices": ["multirotor", "evtol"],
+  "version": "1.0.0",
+  "preconditions": {
+    "remaining_motors": 0,
+    "has_parachute": "optional",
+    "current_altitude_agl": ">5"
+  },
+  "actions": [
+    {
+      "step": 1,
+      "action": "deploy_parachute",
+      "params": {"deploy_if_available": true},
+      "timeout_ms": 1000,
+      "condition": "has_parachute == true",
+      "description": "如配备降落伞，立即弹射展开",
+      "failure_action": "continue"
+    },
+    {
+      "step": 2,
+      "action": "assess_ground_below",
+      "params": {"scan_radius_m": 100},
+      "timeout_ms": 500,
+      "description": "快速评估正下方地面情况（人员、建筑、道路、水域、空地）"
+    },
+    {
+      "step": 3,
+      "action": "steer_to_safest_zone",
+      "params": {"method": "aerodynamic_glide_or_inertia"},
+      "timeout_ms": null,
+      "condition": "altitude > 20 AND has_some_control_authority",
+      "description": "利用剩余高度和空气动力尝试操控坠落方向至最安全区域"
+    },
+    {
+      "step": 4,
+      "action": "broadcast_emergency",
+      "params": {"message": "MAYDAY", "include_location": true, "include_trajectory": true},
+      "timeout_ms": 2000,
+      "description": "向所有可用通道广播紧急信号和预计坠落区域"
+    },
+    {
+      "step": 5,
+      "action": "protect_payload",
+      "params": {"jettison_if_dangerous": true},
+      "timeout_ms": 1000,
+      "condition": "payload_is_hazardous",
+      "description": "如载荷为危险物品（如电池包），在安全区域抛投"
+    },
+    {
+      "step": 6,
+      "action": "impact_preparation",
+      "params": {"cut_battery": true, "record_final_data": true},
+      "timeout_ms": 500,
+      "description": "切断电池连接防止撞击后起火，记录最终飞行数据"
+    }
+  ],
+  "expected_outcome": {
+    "device_status": "严重损伤至报废",
+    "payload_status": "可能受损",
+    "human_risk": "取决于坠落区域选择",
+    "mission_status": "完全失败"
+  },
+  "fallback": null,
+  "historical_success_rate": 0.65,
+  "risk_assessment": {
+    "residual_risks": [
+      "坠落方向控制能力有限",
+      "降落伞可能展开不完全（低空部署时间不足）",
+      "撞击后可能起火（锂电池）",
+      "碎片飞散范围不可控"
+    ],
+    "mitigation": [
+      "选择水面或松软地面作为目标坠落区",
+      "提前切断电池减少起火风险",
+      "广播预警让地面人员撤离"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "token": "",
+  "base_url": "https://safeskill.qianxin.com",
+  "enabled": false,
+  "mode": "md5-query",
+  "note": "默认关闭。下载后如需启用，请填写你自己的奇安信 SafeSkill token，并将 enabled 改为 true。关闭或 token 为空时会跳过远程情报查询，仅执行本地静态扫描。"
+}

@@ -1,0 +1,935 @@
+{
+  "subscriptions": [
+    {
+      "id": "instant-digest",
+      "name": "Instant Digest",
+      "timezone": "Asia/Shanghai",
+      "push_time": "09:00",
+      "time_window_hours": 168,
+      "field_settings": [
+        {
+          "name": "data mining",
+          "limit": 5,
+          "categories": [
+            "cs.LG",
+            "cs.DB",
+            "cs.IR",
+            "cs.SI",
+            "cs.CY",
+            "cs.CE",
+            "cs.DC",
+            "cs.DL",
+            "cs.HC",
+            "cs.SE",
+            "eess.SP",
+            "physics.geo-ph",
+            "cs.AI",
+            "cs.CL",
+            "stat.ML",
+            "physics.soc-ph",
+            "physics.plasm-ph",
+            "math.OC",
+            "econ.TH",
+            "eess.AS",
+            "q-fin.PM",
+            "physics.ed-ph"
+          ],
+          "primary_categories": [
+            "cs.LG",
+            "cs.DB",
+            "cs.IR",
+            "cs.SI",
+            "cs.CY",
+            "cs.CE",
+            "cs.DC",
+            "cs.DL",
+            "cs.HC",
+            "cs.SE",
+            "eess.SP",
+            "physics.geo-ph",
+            "cs.AI",
+            "cs.CL",
+            "stat.ML",
+            "physics.soc-ph",
+            "physics.plasm-ph",
+            "math.OC",
+            "econ.TH",
+            "eess.AS",
+            "q-fin.PM",
+            "physics.ed-ph"
+          ],
+          "keywords": [
+            "data",
+            "mining",
+            "social",
+            "techniques",
+            "mining techniques",
+            "opinion mining",
+            "knowledge",
+            "research",
+            "knowledge management",
+            "comparative opinion mining"
+          ],
+          "exclude_keywords": []
+        }
+      ],
+      "field_profiles": [
+        {
+          "field": "数据挖掘",
+          "canonical_en": "data mining",
+          "keywords": [
+            "data",
+            "mining",
+            "social",
+            "techniques",
+            "mining techniques",
+            "opinion mining",
+            "knowledge",
+            "research",
+            "knowledge management",
+            "comparative opinion mining"
+          ],
+          "venues": [],
+          "categories": [
+            "cs.LG",
+            "cs.DB",
+            "cs.IR",
+            "cs.SI",
+            "cs.CY",
+            "cs.CE",
+            "cs.DC",
+            "cs.DL",
+            "cs.HC",
+            "cs.SE",
+            "eess.SP",
+            "physics.geo-ph",
+            "cs.AI",
+            "cs.CL",
+            "stat.ML",
+            "physics.soc-ph",
+            "physics.plasm-ph",
+            "math.OC",
+            "econ.TH",
+            "eess.AS",
+            "q-fin.PM",
+            "physics.ed-ph"
+          ],
+          "primary_categories": [
+            "cs.LG",
+            "cs.DB",
+            "cs.IR",
+            "cs.SI",
+            "cs.CY",
+            "cs.CE",
+            "cs.DC",
+            "cs.DL",
+            "cs.HC",
+            "cs.SE",
+            "eess.SP",
+            "physics.geo-ph",
+            "cs.AI",
+            "cs.CL",
+            "stat.ML",
+            "physics.soc-ph",
+            "physics.plasm-ph",
+            "math.OC",
+            "econ.TH",
+            "eess.AS",
+            "q-fin.PM",
+            "physics.ed-ph"
+          ],
+          "seed_query_terms": [
+            "data mining",
+            "datas",
+            "minings",
+            "data"
+          ],
+          "seed_category_bias": [
+            "eess.SP",
+            "eess.AS"
+          ],
+          "seed_keywords": [
+            "data",
+            "mining",
+            "social",
+            "techniques",
+            "mining techniques",
+            "opinion mining",
+            "knowledge",
+            "research",
+            "knowledge management",
+            "comparative opinion mining"
+          ],
+          "seed_papers": [
+            {
+              "arxiv_id": "2006.07236",
+              "title_en": "A novel fusion Python application of data mining techniques to evaluate airborne magnetic datasets",
+              "authors": [
+                "John Stephen Kayode",
+                "Yusri Yusup"
+              ],
+              "abstract_en": "A novel fusion python application of data mining techniques (DMT) was designed and implemented to locate, identify, and delineate the subsurface structural pattern (SSP) of source rocks for the features of interest underlain the study area. The techniques of machine learning tools (MLT) helped to define magnetic anomaly source (MAS) rock and the various depths of these subsurface source rock features. The principal objective is to use straightforward DMT to locate magnetic anomaly features of interest that host mineralization. The required geo-referenced radiometric data, which facilitated the delineation of SSP, were sufficiently covered by combining the application of the Oasis Montaj\\c{opyright} 2014 source parameter imaging functions. Relevance basic filtering techniques of data reduction were used to improve the signal-to-noise (S/N) ratio and hence automatically determine depths to the various engrossed features from gridded geo-referenced airborne magnetic datasets before the DMT application was performed. Geological source rock models (GSRM) (i.e., rock contacts, dykes) served as the delineated features based on their structural index (SI) values. The anomalies were perpendicularly oriented, with few inconsequential nonvertical features, and all were generally aligned in NNE-SSW and NE-SW directions. The DMT approach showed that magnetic anomaly patterns (MAP) control the SSP and the ground surface stratigraphy (GSS) on a geological time-scale (GTS) by fusing the subsurface gravitational structural features (SGSF) in the area. The DMT facilitated the determination of depths to these subsurface geological source rock features with a maximum depth of approximately 1.277 km using a 3x3 window size to map the concealed features of interest.",
+              "primary_category": "eess.SP",
+              "categories": [
+                "eess.SP"
+              ],
+              "url": "https://arxiv.org/abs/2006.07236"
+            },
+            {
+              "arxiv_id": "1602.03072",
+              "title_en": "Big Graph Mining: Frameworks and Techniques",
+              "authors": [
+                "Sabeur Aridhi",
+                "Engelbert Mephu Nguifo"
+              ],
+              "abstract_en": "Big graph mining is an important research area and it has attracted considerable attention. It allows to process, analyze, and extract meaningful information from large amounts of graph data. Big graph mining has been highly motivated not only by the tremendously increasing size of graphs but also by its huge number of applications. Such applications include bioinformatics, chemoinformatics and social networks. One of the most challenging tasks in big graph mining is pattern mining in big graphs. This task consists on using data mining algorithms to discover interesting, unexpected and useful patterns in large amounts of graph data. It aims also to provide deeper understanding of graph data. In this context, several graph processing frameworks and scaling data mining/pattern mining techniques have been proposed to deal with very big graphs. This paper gives an overview of existing data mining and graph processing frameworks that deal with very big graphs. Then it presents a survey of current researches in the field of data mining / pattern mining in big graphs and discusses the main research issues related to this field. It also gives a categorization of both distributed data mining and machine learning techniques, graph processing frameworks and large scale pattern mining approaches.",
+              "primary_category": "cs.DC",
+              "categories": [
+                "cs.DC",
+                "cs.DB"
+              ],
+              "url": "https://arxiv.org/abs/1602.03072"
+            },
+            {
+              "arxiv_id": "1712.08941",
+              "title_en": "Comparative Opinion Mining: A Review",
+              "authors": [
+                "Kasturi Dewi Varathan",
+                "Anastasia Giachanou",
+                "Fabio Crestani"
+              ],
+              "abstract_en": "Opinion mining refers to the use of natural language processing, text analysis and computational linguistics to identify and extract subjective information in textual material. Opinion mining, also known as sentiment analysis, has received a lot of attention in recent times, as it provides a number of tools to analyse the public opinion on a number of different topics. Comparative opinion mining is a subfield of opinion mining that deals with identifying and extracting information that is expressed in a comparative form (e.g.~\"paper X is better than the Y\"). Comparative opinion mining plays a very important role when ones tries to evaluate something, as it provides a reference point for the comparison. This paper provides a review of the area of comparative opinion mining. It is the first review that cover specifically this topic as all previous reviews dealt mostly with general opinion mining. This survey covers comparative opinion mining from two different angles. One from perspective of techniques and the other from perspective of comparative opinion elements. It also incorporates preprocessing tools as well as dataset that were used by the past researchers that can be useful to the future researchers in the field of comparative opinion mining.",
+              "primary_category": "cs.IR",
+              "categories": [
+                "cs.IR",
+                "cs.CL"
+              ],
+              "url": "https://arxiv.org/abs/1712.08941"
+            },
+            {
+              "arxiv_id": "1910.08670",
+              "title_en": "Context-Driven Data Mining through Bias Removal and Data Incompleteness Mitigation",
+              "authors": [
+                "Feras A. Batarseh",
+                "Ajay Kulkarni"
+              ],
+              "abstract_en": "The results of data mining endeavors are majorly driven by data quality. Throughout these deployments, serious show-stopper problems are still unresolved, such as: data collection ambiguities, data imbalance, hidden biases in data, the lack of domain information, and data incompleteness. This paper is based on the premise that context can aid in mitigating these issues. In a traditional data science lifecycle, context is not considered. Context-driven Data Science Lifecycle (C-DSL); the main contribution of this paper, is developed to address these challenges. Two case studies (using data-sets from sports events) are developed to test C-DSL. Results from both case studies are evaluated using common data mining metrics such as: coefficient of determination (R2 value) and confusion matrices. The work presented in this paper aims to re-define the lifecycle and introduce tangible improvements to its outcomes.",
+              "primary_category": "cs.LG",
+              "categories": [
+                "cs.LG",
+                "cs.SI",
+                "stat.ML"
+              ],
+              "url": "https://arxiv.org/abs/1910.08670"
+            },
+            {
+              "arxiv_id": "1312.6675",
+              "title_en": "Data Mining on Social Interaction Networks",
+              "authors": [
+                "Martin Atzmueller"
+              ],
+              "abstract_en": "Social media and social networks have already woven themselves into the very fabric of everyday life. This results in a dramatic increase of social data capturing various relations between the users and their associated artifacts, both in online networks and the real world using ubiquitous devices. In this work, we consider social interaction networks from a data mining perspective - also with a special focus on real-world face-to-face contact networks: We combine data mining and social network analysis techniques for examining the networks in order to improve our understanding of the data, the modeled behavior, and its underlying emergent processes. Furthermore, we adapt, extend and apply known predictive data mining algorithms on social interaction networks. Additionally, we present novel methods for descriptive data mining for uncovering and extracting relations and patterns for hypothesis generation and exploration, in order to provide characteristic information about the data and networks. The presented approaches and methods aim at extracting valuable knowledge for enhancing the understanding of the respective data, and for supporting the users of the respective systems. We consider data from several social systems, like the social bookmarking system BibSonomy, the social resource sharing system flickr, and ubiquitous social systems: Specifically, we focus on data from the social conference guidance system Conferator and the social group interaction system MyGroup. This work first gives a short introduction into social interaction networks, before we describe several analysis results in the context of online social networks and real-world face-to-face contact networks. Next, we present predictive data mining methods, i.e., for localization, recommendation and link prediction. After that, we present novel descriptive data mining methods for mining communities and patterns.",
+              "primary_category": "cs.SI",
+              "categories": [
+                "cs.SI",
+                "cs.DB",
+                "physics.soc-ph"
+              ],
+              "url": "https://arxiv.org/abs/1312.6675"
+            },
+            {
+              "arxiv_id": "2403.00769",
+              "title_en": "Text mining in education",
+              "authors": [
+                "R. Ferreira-Mello",
+                "M. Andre",
+                "A. Pinheiro",
+                "E. Costa",
+                "C. Romero"
+              ],
+              "abstract_en": "The explosive growth of online education environments is generating a massive volume of data, specially in text format from forums, chats, social networks, assessments, essays, among others. It produces exciting challenges on how to mine text data in order to find useful knowledge for educational stakeholders. Despite the increasing number of educational applications of text mining published recently, we have not found any paper surveying them. In this line, this work presents a systematic overview of the current status of the Educational Text Mining field. Our final goal is to answer three main research questions: Which are the text mining techniques most used in educational environments? Which are the most used educational resources? And which are the main applications or educational goals? Finally, we outline the conclusions and the more interesting future trends.",
+              "primary_category": "cs.IR",
+              "categories": [
+                "cs.IR",
+                "cs.CY",
+                "cs.LG"
+              ],
+              "url": "https://arxiv.org/abs/2403.00769"
+            },
+            {
+              "arxiv_id": "2001.11324",
+              "title_en": "Proceedings of Symposium on Data Mining Applications 2014",
+              "authors": [
+                "Basit Qureshi",
+                "Yasir Javed"
+              ],
+              "abstract_en": "The Symposium on Data Mining and Applications (SDMA 2014) is aimed to gather researchers and application developers from a wide range of data mining related areas such as statistics, computational intelligence, pattern recognition, databases, Big Data Mining and visualization. SDMA is organized by MEGDAM to advance the state of the art in data mining research field and its various real world applications. The symposium will provide opportunities for technical collaboration among data mining and machine learning researchers around the Saudi Arabia, GCC countries and Middle-East region. Acceptance will be based primarily on originality, significance and quality of contribution.",
+              "primary_category": "cs.DB",
+              "categories": [
+                "cs.DB",
+                "cs.AI"
+              ],
+              "url": "https://arxiv.org/abs/2001.11324"
+            },
+            {
+              "arxiv_id": "0011033",
+              "title_en": "Web Mining Research: A Survey",
+              "authors": [
+                "Raymond Kosala",
+                "Hendrik Blockeel"
+              ],
+              "abstract_en": "With the huge amount of information available online, the World Wide Web is a fertile area for data mining research. The Web mining research is at the cross road of research from several research communities, such as database, information retrieval, and within AI, especially the sub-areas of machine learning and natural language processing. However, there is a lot of confusions when comparing research efforts from different point of views. In this paper, we survey the research in the area of Web mining, point out some confusions regarded the usage of the term Web mining and suggest three Web mining categories. Then we situate some of the research with respect to these three categories. We also explore the connection between the Web mining categories and the related agent paradigm. For the survey, we focus on representation issues, on the process, on the learning algorithm, and on the application of the recent works as the criteria. We conclude the paper with some research issues.",
+              "primary_category": "cs.LG",
+              "categories": [
+                "cs.LG",
+                "cs.DB"
+              ],
+              "url": "https://arxiv.org/abs/0011033"
+            },
+            {
+              "arxiv_id": "1210.2872",
+              "title_en": "Data Mining and Its Applications for Knowledge Management: A Literature Review from 2007 to 2012",
+              "authors": [
+                "Tipawan Silwattananusarn",
+                "Kulthida Tuamsuk"
+              ],
+              "abstract_en": "Data mining is one of the most important steps of the knowledge discovery in databases process and is considered as significant subfield in knowledge management. Research in data mining continues growing in business and in learning organization over coming decades. This review paper explores the applications of data mining techniques which have been developed to support knowledge management process. The journal articles indexed in ScienceDirect Database from 2007 to 2012 are analyzed and classified. The discussion on the findings is divided into 4 topics: (i) knowledge resource; (ii) knowledge types and/or knowledge datasets; (iii) data mining tasks; and (iv) data mining techniques and applications used in knowledge management. The article first briefly describes the definition of data mining and data mining functionality. Then the knowledge management rationale and major knowledge management tools integrated in knowledge management cycle are described. Finally, the applications of data mining techniques in the process of knowledge management are summarized and discussed.",
+              "primary_category": "cs.DB",
+              "categories": [
+                "cs.DB"
+              ],
+              "url": "https://arxiv.org/abs/1210.2872"
+            },
+            {
+              "arxiv_id": "1407.1133",
+              "title_en": "A Synonym Based Approach of Data Mining in Search Engine Optimization",
+              "authors": [
+                "Palvi Arora",
+                "Tarun Bhalla"
+              ],
+              "abstract_en": "In todays era with the rapid growth of information on the web, makes users turn to search engines as a replacement of traditional media. This makes sorting of particular information through billions of webpages and displaying the relevant data makes the task tough for the search engine. Remedy for this is SEO i.e. having a website optimized in such a way that it will display the relevant webpages based on ranking. This is the main reason that makes search engine optimization a prominent position in online world. This paper present a synonym based data mining approach for SEO that makes the task of improving the ranking of the website much easier way and user will get answer to their query easily through any of search engine available in market.",
+              "primary_category": "cs.IR",
+              "categories": [
+                "cs.IR"
+              ],
+              "url": "https://arxiv.org/abs/1407.1133"
+            },
+            {
+              "arxiv_id": "1803.04552",
+              "title_en": "Text Data Mining from the Author's Perspective: Whose Text, Whose Mining, and to Whose Benefit?",
+              "authors": [
+                "Christine L. Borgman"
+              ],
+              "abstract_en": "Given the many technical, social, and policy shifts in access to scholarly content since the early days of text data mining, it is time to expand the conversation about text data mining from concerns of the researcher wishing to mine data to include concerns of researcher-authors about how their data are mined, by whom, for what purposes, and to whose benefits.",
+              "primary_category": "cs.DL",
+              "categories": [
+                "cs.DL"
+              ],
+              "url": "https://arxiv.org/abs/1803.04552"
+            },
+            {
+              "arxiv_id": "1210.3139",
+              "title_en": "A Benchmark to Select Data Mining Based Classification Algorithms For Business Intelligence And Decision Support Systems",
+              "authors": [
+                "Pardeep Kumar",
+                "Nitin",
+                "Vivek Kumar Sehgal",
+                "Durg Singh Chauhan"
+              ],
+              "abstract_en": "DSS serve the management, operations, and planning levels of an organization and help to make decisions, which may be rapidly changing and not easily specified in advance. Data mining has a vital role to extract important information to help in decision making of a decision support system. Integration of data mining and decision support systems (DSS) can lead to the improved performance and can enable the tackling of new types of problems. Artificial Intelligence methods are improving the quality of decision support, and have become embedded in many applications ranges from ant locking automobile brakes to these days interactive search engines. It provides various machine learning techniques to support data mining. The classification is one of the main and valuable tasks of data mining. Several types of classification algorithms have been suggested, tested and compared to determine the future trends based on unseen data. There has been no single algorithm found to be superior over all others for all data sets. The objective of this paper is to compare various classification algorithms that have been frequently used in data mining for decision support systems. Three decision trees based algorithms, one artificial neural network, one statistical, one support vector machines with and without ada boost and one clustering algorithm are tested and compared on four data sets from different domains in terms of predictive accuracy, error rate, classification index, comprehensibility and training time. Experimental results demonstrate that Genetic Algorithm (GA) and support vector machines based algorithms are better in terms of predictive accuracy. SVM without adaboost shall be the first choice in context of speed and predictive accuracy. Adaboost improves the accuracy of SVM but on the cost of large training time.",
+              "primary_category": "cs.DB",
+              "categories": [
+                "cs.DB",
+                "cs.LG"
+              ],
+              "url": "https://arxiv.org/abs/1210.3139"
+            },
+            {
+              "arxiv_id": "1805.04541",
+              "title_en": "Proceedings of the Workshop on Data Mining for Geophysics and Geology",
+              "authors": [
+                "Youzuo Lin",
+                "Weichang Li",
+                "Alipio Jorge",
+                "Rui L. Lopes",
+                "German Larrazabal",
+                "Pablo Guillen"
+              ],
+              "abstract_en": "Modern geosciences have to deal with large quantities and a wide variety of data, including 2-D, 3-D and 4-D seismic surveys, well logs generated by sensors, detailed lithological records, satellite images and meteorological records. These data serve important industries, such as the exploration of mineral deposits and the production of energy (Oil and Gas, Geothermal, Wind, Hydroelectric), are important in the study of the earth crust to reduce the impact of earthquakes, in land use planning, and have a fundamental role in sustainability. The volume of raw data being stored by different earth science archives today makes it impossible to rely on manual examination by scientists. The data volumes resultant of different sources, from terrestrial or aerial to satellite surveys, will reach a terabyte per day by the time all the planned satellites are flown. In particular, the oil industry has been using large quantities of data for quite a long time. Although there are published works in this area since the 70s, these days, the ubiquity of computing and sensor devices enables the collection of higher resolution data in real time, giving a new life to a mature industrial field. Understanding and finding value in this data has an impact on the efficiency of the operations in the oil and gas production chain. Efficiency gains are particularly important since the steep fall in oil prices in 2014, and represent an important opportunity for data mining and data science.",
+              "primary_category": "physics.geo-ph",
+              "categories": [
+                "physics.geo-ph"
+              ],
+              "url": "https://arxiv.org/abs/1805.04541"
+            },
+            {
+              "arxiv_id": "1701.07999",
+              "title_en": "Beyond the EULA: Improving consent for data mining",
+              "authors": [
+                "Luke Hutton",
+                "Tristan Henderson"
+              ],
+              "abstract_en": "Companies and academic researchers may collect, process, and distribute large quantities of personal data without the explicit knowledge or consent of the individuals to whom the data pertains. Existing forms of consent often fail to be appropriately readable and ethical oversight of data mining may not be sufficient. This raises the question of whether existing consent instruments are sufficient, logistically feasible, or even necessary, for data mining. In this chapter, we review the data collection and mining landscape, including commercial and academic activities, and the relevant data protection concerns, to determine the types of consent instruments used. Using three case studies, we use the new paradigm of human-data interaction to examine whether these existing approaches are appropriate. We then introduce an approach to consent that has been empirically demonstrated to improve on the state of the art and deliver meaningful consent. Finally, we propose some best practices for data collectors to ensure their data mining activities do not violate the expectations of the people to whom the data relate.",
+              "primary_category": "cs.CY",
+              "categories": [
+                "cs.CY"
+              ],
+              "url": "https://arxiv.org/abs/1701.07999"
+            },
+            {
+              "arxiv_id": "1205.1125",
+              "title_en": "Application Of Data Mining In Bioinformatics",
+              "authors": [
+                "Khalid Raza"
+              ],
+              "abstract_en": "This article highlights some of the basic concepts of bioinformatics and data mining. The major research areas of bioinformatics are highlighted. The application of data mining in the domain of bioinformatics is explained. It also highlights some of the current challenges and opportunities of data mining in bioinformatics.",
+              "primary_category": "cs.CE",
+              "categories": [
+                "cs.CE",
+                "cs.DB"
+              ],
+              "url": "https://arxiv.org/abs/1205.1125"
+            },
+            {
+              "arxiv_id": "1806.05897",
+              "title_en": "Mining Rank Data",
+              "authors": [
+                "Sascha Henzgen",
+                "Eyke Hüllermeier"
+              ],
+              "abstract_en": "The problem of frequent pattern mining has been studied quite extensively for various types of data, including sets, sequences, and graphs. Somewhat surprisingly, another important type of data, namely rank data, has received very little attention in data mining so far. In this paper, we therefore addresses the problem of mining rank data, that is, data in the form of rankings (total orders) of an underlying set of items. More specifically, two types of patterns are considered, namely frequent rankings and dependencies between such rankings in the form of association rules. Algorithms for mining frequent rankings and frequent closed rankings are proposed and tested experimentally, using both synthetic and real data.",
+              "primary_category": "cs.LG",
+              "categories": [
+                "cs.LG",
+                "stat.ML"
+              ],
+              "url": "https://arxiv.org/abs/1806.05897"
+            },
+            {
+              "arxiv_id": "1607.00607",
+              "title_en": "Business Process Mining",
+              "authors": [
+                "Asef Pourmasoumi",
+                "Ebrahim Bagheri"
+              ],
+              "abstract_en": "One of the most valuable assets of an organization is its organizational data. The analysis and mining of this potential hidden treasure can lead to much added-value for the organization. Process mining is an emerging area that can be useful in helping organizations understand the status quo, check for compliance and plan for improving their processes. The aim of process mining is to extract knowledge from event logs of today's organizational information systems. Process mining includes three main types: discovering process models from event logs, conformance checking and organizational mining. In this paper, we briefly introduce process mining and review some of its most important techniques. Also, we investigate some of the applications of process mining in industry and present some of the most important challenges that are faced in this area.",
+              "primary_category": "cs.SE",
+              "categories": [
+                "cs.SE"
+              ],
+              "url": "https://arxiv.org/abs/1607.00607"
+            },
+            {
+              "arxiv_id": "2402.07956",
+              "title_en": "Educational data mining and learning analytics: An updated survey",
+              "authors": [
+                "C. Romero",
+                "S. Ventura"
+              ],
+              "abstract_en": "This survey is an updated and improved version of the previous one published in 2013 in this journal with the title data mining in education. It reviews in a comprehensible and very general way how Educational Data Mining and Learning Analytics have been applied over educational data. In the last decade, this research area has evolved enormously and a wide range of related terms are now used in the bibliography such as Academic Analytics, Institutional Analytics, Teaching Analytics, Data-Driven Education, Data-Driven Decision-Making in Education, Big Data in Education, and Educational Data Science. This paper provides the current state of the art by reviewing the main publications, the key milestones, the knowledge discovery cycle, the main educational environments, the specific tools, the free available datasets, the most used methods, the main objectives, and the future trends in this research area.",
+              "primary_category": "cs.HC",
+              "categories": [
+                "cs.HC",
+                "cs.AI"
+              ],
+              "url": "https://arxiv.org/abs/2402.07956"
+            },
+            {
+              "arxiv_id": "1504.01934",
+              "title_en": "Data Mining for Prediction of Human Performance Capability in the Software-Industry",
+              "authors": [
+                "Gaurav Singh Thakur",
+                "Anubhav Gupta",
+                "Sangita Gupta"
+              ],
+              "abstract_en": "The recruitment of new personnel is one of the most essential business processes which affect the quality of human capital within any company. It is highly essential for the companies to ensure the recruitment of right talent to maintain a competitive edge over the others in the market. However IT companies often face a problem while recruiting new people for their ongoing projects due to lack of a proper framework that defines a criteria for the selection process. In this paper we aim to develop a framework that would allow any project manager to take the right decision for selecting new talent by correlating performance parameters with the other domain-specific attributes of the candidates. Also, another important motivation behind this project is to check the validity of the selection procedure often followed by various big companies in both public and private sectors which focus only on academic scores, GPA/grades of students from colleges and other academic backgrounds. We test if such a decision will produce optimal results in the industry or is there a need for change that offers a more holistic approach to recruitment of new talent in the software companies. The scope of this work extends beyond the IT domain and a similar procedure can be adopted to develop a recruitment framework in other fields as well. Data-mining techniques provide useful information from the historical projects depending on which the hiring-manager can make decisions for recruiting high-quality workforce. This study aims to bridge this hiatus by developing a data-mining framework based on an ensemble-learning technique to refocus on the criteria for personnel selection. The results from this research clearly demonstrated that there is a need to refocus on the selection-criteria for quality objectives.",
+              "primary_category": "cs.LG",
+              "categories": [
+                "cs.LG"
+              ],
+              "url": "https://arxiv.org/abs/1504.01934"
+            },
+            {
+              "arxiv_id": "1312.4617",
+              "title_en": "A Survey of Data Mining Techniques for Social Media Analysis",
+              "authors": [
+                "Mariam Adedoyin-Olowe",
+                "Mohamed Medhat Gaber",
+                "Frederic Stahl"
+              ],
+              "abstract_en": "Social network has gained remarkable attention in the last decade. Accessing social network sites such as Twitter, Facebook LinkedIn and Google+ through the internet and the web 2.0 technologies has become more affordable. People are becoming more interested in and relying on social network for information, news and opinion of other users on diverse subject matters. The heavy reliance on social network sites causes them to generate massive data characterised by three computational issues namely; size, noise and dynamism. These issues often make social network data very complex to analyse manually, resulting in the pertinent use of computational means of analysing them. Data mining provides a wide range of techniques for detecting useful knowledge from massive datasets like trends, patterns and rules [44]. Data mining techniques are used for information retrieval, statistical modelling and machine learning. These techniques employ data pre-processing, data analysis, and data interpretation processes in the course of data analysis. This survey discusses different data mining techniques used in mining diverse aspects of the social network over decades going from the historical techniques to the up-to-date models, including our novel technique named TRCM. All the techniques covered in this survey are listed in the Table.1 including the tools employed as well as names of their authors.",
+              "primary_category": "cs.SI",
+              "categories": [
+                "cs.SI",
+                "cs.CL"
+              ],
+              "url": "https://arxiv.org/abs/1312.4617"
+            }
+          ],
+          "seed_doc_md": "output/seed_corpus/docs/data_mining.md",
+          "seed_embedding_json": "output/seed_corpus/embeddings/data_mining.json",
+          "source": "heuristic"
+        }
+      ],
+      "query_strategy": "category_keyword_union",
+      "require_primary_category": true,
+      "category_expand_mode": "balanced",
+      "embedding_filter": {
+        "enabled": true,
+        "model": "BAAI/bge-m3",
+        "threshold": 0.58,
+        "top_k": 120
+      },
+      "agent_rerank": {
+        "enabled": true,
+        "model": "BAAI/bge-reranker-v2-m3",
+        "top_k": 40
+      },
+      "insight_mode": "pdf",
+      "insight_lang": "zh",
+      "insight_min_chars": 300,
+      "insight_embed_model": "BAAI/bge-m3",
+      "insight_paragraph_min_chars": 500,
+      "insight_pdf_max_pages": 20,
+      "insight_pdf_timeout_sec": 35,
+      "highlight": {
+        "title_keywords": [
+          "data",
+          "mining",
+          "social",
+          "techniques",
+          "mining techniques"
+        ],
+        "authors": [],
+        "venues": []
+      }
+    }
+  ],
+  "meta": {
+    "openai_enabled": false,
+    "agent_profiles_enabled": false,
+    "taxonomy_loaded": true,
+    "taxonomy_entry_count": 155,
+    "global_venue_hints": [],
+    "seed_docs_dir": "output/seed_corpus/docs",
+    "seed_embeddings_dir": "output/seed_corpus/embeddings",
+    "fields": [
+      {
+        "field": "数据挖掘",
+        "field_context": "",
+        "canonical_en": "data mining",
+        "source": "heuristic",
+        "categories": [
+          "cs.LG",
+          "cs.DB",
+          "cs.IR",
+          "cs.SI",
+          "cs.CY",
+          "cs.CE",
+          "cs.DC",
+          "cs.DL",
+          "cs.HC",
+          "cs.SE",
+          "eess.SP",
+          "physics.geo-ph",
+          "cs.AI",
+          "cs.CL",
+          "stat.ML",
+          "physics.soc-ph",
+          "physics.plasm-ph",
+          "math.OC",
+          "econ.TH",
+          "eess.AS",
+          "q-fin.PM",
+          "physics.ed-ph"
+        ],
+        "primary_categories": [
+          "cs.LG",
+          "cs.DB",
+          "cs.IR",
+          "cs.SI",
+          "cs.CY",
+          "cs.CE",
+          "cs.DC",
+          "cs.DL",
+          "cs.HC",
+          "cs.SE",
+          "eess.SP",
+          "physics.geo-ph",
+          "cs.AI",
+          "cs.CL",
+          "stat.ML",
+          "physics.soc-ph",
+          "physics.plasm-ph",
+          "math.OC",
+          "econ.TH",
+          "eess.AS",
+          "q-fin.PM",
+          "physics.ed-ph"
+        ],
+        "keywords": [
+          "data",
+          "mining",
+          "social",
+          "techniques",
+          "mining techniques",
+          "opinion mining",
+          "knowledge",
+          "research",
+          "knowledge management",
+          "comparative opinion mining"
+        ],
+        "venues": [],
+        "seed_query_terms": [
+          "data mining",
+          "datas",
+          "minings",
+          "data"
+        ],
+        "seed_paper_count": 20,
+        "seed_prior_categories": [
+          "cs.LG",
+          "cs.DB",
+          "cs.IR",
+          "cs.SI",
+          "cs.CY",
+          "cs.CE",
+          "cs.DC",
+          "cs.DL",
+          "cs.HC",
+          "cs.SE",
+          "eess.SP",
+          "physics.geo-ph",
+          "cs.AI",
+          "cs.CL",
+          "stat.ML",
+          "physics.soc-ph"
+        ],
+        "seed_category_bias": [
+          "eess.SP",
+          "eess.AS"
+        ],
+        "seed_keywords": [
+          "data",
+          "mining",
+          "social",
+          "techniques",
+          "mining techniques",
+          "opinion mining",
+          "knowledge",
+          "research",
+          "knowledge management",
+          "comparative opinion mining"
+        ],
+        "seed_papers": [
+          {
+            "arxiv_id": "2006.07236",
+            "title_en": "A novel fusion Python application of data mining techniques to evaluate airborne magnetic datasets",
+            "authors": [
+              "John Stephen Kayode",
+              "Yusri Yusup"
+            ],
+            "abstract_en": "A novel fusion python application of data mining techniques (DMT) was designed and implemented to locate, identify, and delineate the subsurface structural pattern (SSP) of source rocks for the features of interest underlain the study area. The techniques of machine learning tools (MLT) helped to define magnetic anomaly source (MAS) rock and the various depths of these subsurface source rock features. The principal objective is to use straightforward DMT to locate magnetic anomaly features of interest that host mineralization. The required geo-referenced radiometric data, which facilitated the delineation of SSP, were sufficiently covered by combining the application of the Oasis Montaj\\c{opyright} 2014 source parameter imaging functions. Relevance basic filtering techniques of data reduction were used to improve the signal-to-noise (S/N) ratio and hence automatically determine depths to the various engrossed features from gridded geo-referenced airborne magnetic datasets before the DMT application was performed. Geological source rock models (GSRM) (i.e., rock contacts, dykes) served as the delineated features based on their structural index (SI) values. The anomalies were perpendicularly oriented, with few inconsequential nonvertical features, and all were generally aligned in NNE-SSW and NE-SW directions. The DMT approach showed that magnetic anomaly patterns (MAP) control the SSP and the ground surface stratigraphy (GSS) on a geological time-scale (GTS) by fusing the subsurface gravitational structural features (SGSF) in the area. The DMT facilitated the determination of depths to these subsurface geological source rock features with a maximum depth of approximately 1.277 km using a 3x3 window size to map the concealed features of interest.",
+            "primary_category": "eess.SP",
+            "categories": [
+              "eess.SP"
+            ],
+            "url": "https://arxiv.org/abs/2006.07236"
+          },
+          {
+            "arxiv_id": "1602.03072",
+            "title_en": "Big Graph Mining: Frameworks and Techniques",
+            "authors": [
+              "Sabeur Aridhi",
+              "Engelbert Mephu Nguifo"
+            ],
+            "abstract_en": "Big graph mining is an important research area and it has attracted considerable attention. It allows to process, analyze, and extract meaningful information from large amounts of graph data. Big graph mining has been highly motivated not only by the tremendously increasing size of graphs but also by its huge number of applications. Such applications include bioinformatics, chemoinformatics and social networks. One of the most challenging tasks in big graph mining is pattern mining in big graphs. This task consists on using data mining algorithms to discover interesting, unexpected and useful patterns in large amounts of graph data. It aims also to provide deeper understanding of graph data. In this context, several graph processing frameworks and scaling data mining/pattern mining techniques have been proposed to deal with very big graphs. This paper gives an overview of existing data mining and graph processing frameworks that deal with very big graphs. Then it presents a survey of current researches in the field of data mining / pattern mining in big graphs and discusses the main research issues related to this field. It also gives a categorization of both distributed data mining and machine learning techniques, graph processing frameworks and large scale pattern mining approaches.",
+            "primary_category": "cs.DC",
+            "categories": [
+              "cs.DC",
+              "cs.DB"
+            ],
+            "url": "https://arxiv.org/abs/1602.03072"
+          },
+          {
+            "arxiv_id": "1712.08941",
+            "title_en": "Comparative Opinion Mining: A Review",
+            "authors": [
+              "Kasturi Dewi Varathan",
+              "Anastasia Giachanou",
+              "Fabio Crestani"
+            ],
+            "abstract_en": "Opinion mining refers to the use of natural language processing, text analysis and computational linguistics to identify and extract subjective information in textual material. Opinion mining, also known as sentiment analysis, has received a lot of attention in recent times, as it provides a number of tools to analyse the public opinion on a number of different topics. Comparative opinion mining is a subfield of opinion mining that deals with identifying and extracting information that is expressed in a comparative form (e.g.~\"paper X is better than the Y\"). Comparative opinion mining plays a very important role when ones tries to evaluate something, as it provides a reference point for the comparison. This paper provides a review of the area of comparative opinion mining. It is the first review that cover specifically this topic as all previous reviews dealt mostly with general opinion mining. This survey covers comparative opinion mining from two different angles. One from perspective of techniques and the other from perspective of comparative opinion elements. It also incorporates preprocessing tools as well as dataset that were used by the past researchers that can be useful to the future researchers in the field of comparative opinion mining.",
+            "primary_category": "cs.IR",
+            "categories": [
+              "cs.IR",
+              "cs.CL"
+            ],
+            "url": "https://arxiv.org/abs/1712.08941"
+          },
+          {
+            "arxiv_id": "1910.08670",
+            "title_en": "Context-Driven Data Mining through Bias Removal and Data Incompleteness Mitigation",
+            "authors": [
+              "Feras A. Batarseh",
+              "Ajay Kulkarni"
+            ],
+            "abstract_en": "The results of data mining endeavors are majorly driven by data quality. Throughout these deployments, serious show-stopper problems are still unresolved, such as: data collection ambiguities, data imbalance, hidden biases in data, the lack of domain information, and data incompleteness. This paper is based on the premise that context can aid in mitigating these issues. In a traditional data science lifecycle, context is not considered. Context-driven Data Science Lifecycle (C-DSL); the main contribution of this paper, is developed to address these challenges. Two case studies (using data-sets from sports events) are developed to test C-DSL. Results from both case studies are evaluated using common data mining metrics such as: coefficient of determination (R2 value) and confusion matrices. The work presented in this paper aims to re-define the lifecycle and introduce tangible improvements to its outcomes.",
+            "primary_category": "cs.LG",
+            "categories": [
+              "cs.LG",
+              "cs.SI",
+              "stat.ML"
+            ],
+            "url": "https://arxiv.org/abs/1910.08670"
+          },
+          {
+            "arxiv_id": "1312.6675",
+            "title_en": "Data Mining on Social Interaction Networks",
+            "authors": [
+              "Martin Atzmueller"
+            ],
+            "abstract_en": "Social media and social networks have already woven themselves into the very fabric of everyday life. This results in a dramatic increase of social data capturing various relations between the users and their associated artifacts, both in online networks and the real world using ubiquitous devices. In this work, we consider social interaction networks from a data mining perspective - also with a special focus on real-world face-to-face contact networks: We combine data mining and social network analysis techniques for examining the networks in order to improve our understanding of the data, the modeled behavior, and its underlying emergent processes. Furthermore, we adapt, extend and apply known predictive data mining algorithms on social interaction networks. Additionally, we present novel methods for descriptive data mining for uncovering and extracting relations and patterns for hypothesis generation and exploration, in order to provide characteristic information about the data and networks. The presented approaches and methods aim at extracting valuable knowledge for enhancing the understanding of the respective data, and for supporting the users of the respective systems. We consider data from several social systems, like the social bookmarking system BibSonomy, the social resource sharing system flickr, and ubiquitous social systems: Specifically, we focus on data from the social conference guidance system Conferator and the social group interaction system MyGroup. This work first gives a short introduction into social interaction networks, before we describe several analysis results in the context of online social networks and real-world face-to-face contact networks. Next, we present predictive data mining methods, i.e., for localization, recommendation and link prediction. After that, we present novel descriptive data mining methods for mining communities and patterns.",
+            "primary_category": "cs.SI",
+            "categories": [
+              "cs.SI",
+              "cs.DB",
+              "physics.soc-ph"
+            ],
+            "url": "https://arxiv.org/abs/1312.6675"
+          },
+          {
+            "arxiv_id": "2403.00769",
+            "title_en": "Text mining in education",
+            "authors": [
+              "R. Ferreira-Mello",
+              "M. Andre",
+              "A. Pinheiro",
+              "E. Costa",
+              "C. Romero"
+            ],
+            "abstract_en": "The explosive growth of online education environments is generating a massive volume of data, specially in text format from forums, chats, social networks, assessments, essays, among others. It produces exciting challenges on how to mine text data in order to find useful knowledge for educational stakeholders. Despite the increasing number of educational applications of text mining published recently, we have not found any paper surveying them. In this line, this work presents a systematic overview of the current status of the Educational Text Mining field. Our final goal is to answer three main research questions: Which are the text mining techniques most used in educational environments? Which are the most used educational resources? And which are the main applications or educational goals? Finally, we outline the conclusions and the more interesting future trends.",
+            "primary_category": "cs.IR",
+            "categories": [
+              "cs.IR",
+              "cs.CY",
+              "cs.LG"
+            ],
+            "url": "https://arxiv.org/abs/2403.00769"
+          },
+          {
+            "arxiv_id": "2001.11324",
+            "title_en": "Proceedings of Symposium on Data Mining Applications 2014",
+            "authors": [
+              "Basit Qureshi",
+              "Yasir Javed"
+            ],
+            "abstract_en": "The Symposium on Data Mining and Applications (SDMA 2014) is aimed to gather researchers and application developers from a wide range of data mining related areas such as statistics, computational intelligence, pattern recognition, databases, Big Data Mining and visualization. SDMA is organized by MEGDAM to advance the state of the art in data mining research field and its various real world applications. The symposium will provide opportunities for technical collaboration among data mining and machine learning researchers around the Saudi Arabia, GCC countries and Middle-East region. Acceptance will be based primarily on originality, significance and quality of contribution.",
+            "primary_category": "cs.DB",
+            "categories": [
+              "cs.DB",
+              "cs.AI"
+            ],
+            "url": "https://arxiv.org/abs/2001.11324"
+          },
+          {
+            "arxiv_id": "0011033",
+            "title_en": "Web Mining Research: A Survey",
+            "authors": [
+              "Raymond Kosala",
+              "Hendrik Blockeel"
+            ],
+            "abstract_en": "With the huge amount of information available online, the World Wide Web is a fertile area for data mining research. The Web mining research is at the cross road of research from several research communities, such as database, information retrieval, and within AI, especially the sub-areas of machine learning and natural language processing. However, there is a lot of confusions when comparing research efforts from different point of views. In this paper, we survey the research in the area of Web mining, point out some confusions regarded the usage of the term Web mining and suggest three Web mining categories. Then we situate some of the research with respect to these three categories. We also explore the connection between the Web mining categories and the related agent paradigm. For the survey, we focus on representation issues, on the process, on the learning algorithm, and on the application of the recent works as the criteria. We conclude the paper with some research issues.",
+            "primary_category": "cs.LG",
+            "categories": [
+              "cs.LG",
+              "cs.DB"
+            ],
+            "url": "https://arxiv.org/abs/0011033"
+          },
+          {
+            "arxiv_id": "1210.2872",
+            "title_en": "Data Mining and Its Applications for Knowledge Management: A Literature Review from 2007 to 2012",
+            "authors": [
+              "Tipawan Silwattananusarn",
+              "Kulthida Tuamsuk"
+            ],
+            "abstract_en": "Data mining is one of the most important steps of the knowledge discovery in databases process and is considered as significant subfield in knowledge management. Research in data mining continues growing in business and in learning organization over coming decades. This review paper explores the applications of data mining techniques which have been developed to support knowledge management process. The journal articles indexed in ScienceDirect Database from 2007 to 2012 are analyzed and classified. The discussion on the findings is divided into 4 topics: (i) knowledge resource; (ii) knowledge types and/or knowledge datasets; (iii) data mining tasks; and (iv) data mining techniques and applications used in knowledge management. The article first briefly describes the definition of data mining and data mining functionality. Then the knowledge management rationale and major knowledge management tools integrated in knowledge management cycle are described. Finally, the applications of data mining techniques in the process of knowledge management are summarized and discussed.",
+            "primary_category": "cs.DB",
+            "categories": [
+              "cs.DB"
+            ],
+            "url": "https://arxiv.org/abs/1210.2872"
+          },
+          {
+            "arxiv_id": "1407.1133",
+            "title_en": "A Synonym Based Approach of Data Mining in Search Engine Optimization",
+            "authors": [
+              "Palvi Arora",
+              "Tarun Bhalla"
+            ],
+            "abstract_en": "In todays era with the rapid growth of information on the web, makes users turn to search engines as a replacement of traditional media. This makes sorting of particular information through billions of webpages and displaying the relevant data makes the task tough for the search engine. Remedy for this is SEO i.e. having a website optimized in such a way that it will display the relevant webpages based on ranking. This is the main reason that makes search engine optimization a prominent position in online world. This paper present a synonym based data mining approach for SEO that makes the task of improving the ranking of the website much easier way and user will get answer to their query easily through any of search engine available in market.",
+            "primary_category": "cs.IR",
+            "categories": [
+              "cs.IR"
+            ],
+            "url": "https://arxiv.org/abs/1407.1133"
+          },
+          {
+            "arxiv_id": "1803.04552",
+            "title_en": "Text Data Mining from the Author's Perspective: Whose Text, Whose Mining, and to Whose Benefit?",
+            "authors": [
+              "Christine L. Borgman"
+            ],
+            "abstract_en": "Given the many technical, social, and policy shifts in access to scholarly content since the early days of text data mining, it is time to expand the conversation about text data mining from concerns of the researcher wishing to mine data to include concerns of researcher-authors about how their data are mined, by whom, for what purposes, and to whose benefits.",
+            "primary_category": "cs.DL",
+            "categories": [
+              "cs.DL"
+            ],
+            "url": "https://arxiv.org/abs/1803.04552"
+          },
+          {
+            "arxiv_id": "1210.3139",
+            "title_en": "A Benchmark to Select Data Mining Based Classification Algorithms For Business Intelligence And Decision Support Systems",
+            "authors": [
+              "Pardeep Kumar",
+              "Nitin",
+              "Vivek Kumar Sehgal",
+              "Durg Singh Chauhan"
+            ],
+            "abstract_en": "DSS serve the management, operations, and planning levels of an organization and help to make decisions, which may be rapidly changing and not easily specified in advance. Data mining has a vital role to extract important information to help in decision making of a decision support system. Integration of data mining and decision support systems (DSS) can lead to the improved performance and can enable the tackling of new types of problems. Artificial Intelligence methods are improving the quality of decision support, and have become embedded in many applications ranges from ant locking automobile brakes to these days interactive search engines. It provides various machine learning techniques to support data mining. The classification is one of the main and valuable tasks of data mining. Several types of classification algorithms have been suggested, tested and compared to determine the future trends based on unseen data. There has been no single algorithm found to be superior over all others for all data sets. The objective of this paper is to compare various classification algorithms that have been frequently used in data mining for decision support systems. Three decision trees based algorithms, one artificial neural network, one statistical, one support vector machines with and without ada boost and one clustering algorithm are tested and compared on four data sets from different domains in terms of predictive accuracy, error rate, classification index, comprehensibility and training time. Experimental results demonstrate that Genetic Algorithm (GA) and support vector machines based algorithms are better in terms of predictive accuracy. SVM without adaboost shall be the first choice in context of speed and predictive accuracy. Adaboost improves the accuracy of SVM but on the cost of large training time.",
+            "primary_category": "cs.DB",
+            "categories": [
+              "cs.DB",
+              "cs.LG"
+            ],
+            "url": "https://arxiv.org/abs/1210.3139"
+          },
+          {
+            "arxiv_id": "1805.04541",
+            "title_en": "Proceedings of the Workshop on Data Mining for Geophysics and Geology",
+            "authors": [
+              "Youzuo Lin",
+              "Weichang Li",
+              "Alipio Jorge",
+              "Rui L. Lopes",
+              "German Larrazabal",
+              "Pablo Guillen"
+            ],
+            "abstract_en": "Modern geosciences have to deal with large quantities and a wide variety of data, including 2-D, 3-D and 4-D seismic surveys, well logs generated by sensors, detailed lithological records, satellite images and meteorological records. These data serve important industries, such as the exploration of mineral deposits and the production of energy (Oil and Gas, Geothermal, Wind, Hydroelectric), are important in the study of the earth crust to reduce the impact of earthquakes, in land use planning, and have a fundamental role in sustainability. The volume of raw data being stored by different earth science archives today makes it impossible to rely on manual examination by scientists. The data volumes resultant of different sources, from terrestrial or aerial to satellite surveys, will reach a terabyte per day by the time all the planned satellites are flown. In particular, the oil industry has been using large quantities of data for quite a long time. Although there are published works in this area since the 70s, these days, the ubiquity of computing and sensor devices enables the collection of higher resolution data in real time, giving a new life to a mature industrial field. Understanding and finding value in this data has an impact on the efficiency of the operations in the oil and gas production chain. Efficiency gains are particularly important since the steep fall in oil prices in 2014, and represent an important opportunity for data mining and data science.",
+            "primary_category": "physics.geo-ph",
+            "categories": [
+              "physics.geo-ph"
+            ],
+            "url": "https://arxiv.org/abs/1805.04541"
+          },
+          {
+            "arxiv_id": "1701.07999",
+            "title_en": "Beyond the EULA: Improving consent for data mining",
+            "authors": [
+              "Luke Hutton",
+              "Tristan Henderson"
+            ],
+            "abstract_en": "Companies and academic researchers may collect, process, and distribute large quantities of personal data without the explicit knowledge or consent of the individuals to whom the data pertains. Existing forms of consent often fail to be appropriately readable and ethical oversight of data mining may not be sufficient. This raises the question of whether existing consent instruments are sufficient, logistically feasible, or even necessary, for data mining. In this chapter, we review the data collection and mining landscape, including commercial and academic activities, and the relevant data protection concerns, to determine the types of consent instruments used. Using three case studies, we use the new paradigm of human-data interaction to examine whether these existing approaches are appropriate. We then introduce an approach to consent that has been empirically demonstrated to improve on the state of the art and deliver meaningful consent. Finally, we propose some best practices for data collectors to ensure their data mining activities do not violate the expectations of the people to whom the data relate.",
+            "primary_category": "cs.CY",
+            "categories": [
+              "cs.CY"
+            ],
+            "url": "https://arxiv.org/abs/1701.07999"
+          },
+          {
+            "arxiv_id": "1205.1125",
+            "title_en": "Application Of Data Mining In Bioinformatics",
+            "authors": [
+              "Khalid Raza"
+            ],
+            "abstract_en": "This article highlights some of the basic concepts of bioinformatics and data mining. The major research areas of bioinformatics are highlighted. The application of data mining in the domain of bioinformatics is explained. It also highlights some of the current challenges and opportunities of data mining in bioinformatics.",
+            "primary_category": "cs.CE",
+            "categories": [
+              "cs.CE",
+              "cs.DB"
+            ],
+            "url": "https://arxiv.org/abs/1205.1125"
+          },
+          {
+            "arxiv_id": "1806.05897",
+            "title_en": "Mining Rank Data",
+            "authors": [
+              "Sascha Henzgen",
+              "Eyke Hüllermeier"
+            ],
+            "abstract_en": "The problem of frequent pattern mining has been studied quite extensively for various types of data, including sets, sequences, and graphs. Somewhat surprisingly, another important type of data, namely rank data, has received very little attention in data mining so far. In this paper, we therefore addresses the problem of mining rank data, that is, data in the form of rankings (total orders) of an underlying set of items. More specifically, two types of patterns are considered, namely frequent rankings and dependencies between such rankings in the form of association rules. Algorithms for mining frequent rankings and frequent closed rankings are proposed and tested experimentally, using both synthetic and real data.",
+            "primary_category": "cs.LG",
+            "categories": [
+              "cs.LG",
+              "stat.ML"
+            ],
+            "url": "https://arxiv.org/abs/1806.05897"
+          },
+          {
+            "arxiv_id": "1607.00607",
+            "title_en": "Business Process Mining",
+            "authors": [
+              "Asef Pourmasoumi",
+              "Ebrahim Bagheri"
+            ],
+            "abstract_en": "One of the most valuable assets of an organization is its organizational data. The analysis and mining of this potential hidden treasure can lead to much added-value for the organization. Process mining is an emerging area that can be useful in helping organizations understand the status quo, check for compliance and plan for improving their processes. The aim of process mining is to extract knowledge from event logs of today's organizational information systems. Process mining includes three main types: discovering process models from event logs, conformance checking and organizational mining. In this paper, we briefly introduce process mining and review some of its most important techniques. Also, we investigate some of the applications of process mining in industry and present some of the most important challenges that are faced in this area.",
+            "primary_category": "cs.SE",
+            "categories": [
+              "cs.SE"
+            ],
+            "url": "https://arxiv.org/abs/1607.00607"
+          },
+          {
+            "arxiv_id": "2402.07956",
+            "title_en": "Educational data mining and learning analytics: An updated survey",
+            "authors": [
+              "C. Romero",
+              "S. Ventura"
+            ],
+            "abstract_en": "This survey is an updated and improved version of the previous one published in 2013 in this journal with the title data mining in education. It reviews in a comprehensible and very general way how Educational Data Mining and Learning Analytics have been applied over educational data. In the last decade, this research area has evolved enormously and a wide range of related terms are now used in the bibliography such as Academic Analytics, Institutional Analytics, Teaching Analytics, Data-Driven Education, Data-Driven Decision-Making in Education, Big Data in Education, and Educational Data Science. This paper provides the current state of the art by reviewing the main publications, the key milestones, the knowledge discovery cycle, the main educational environments, the specific tools, the free available datasets, the most used methods, the main objectives, and the future trends in this research area.",
+            "primary_category": "cs.HC",
+            "categories": [
+              "cs.HC",
+              "cs.AI"
+            ],
+            "url": "https://arxiv.org/abs/2402.07956"
+          },
+          {
+            "arxiv_id": "1504.01934",
+            "title_en": "Data Mining for Prediction of Human Performance Capability in the Software-Industry",
+            "authors": [
+              "Gaurav Singh Thakur",
+              "Anubhav Gupta",
+              "Sangita Gupta"
+            ],
+            "abstract_en": "The recruitment of new personnel is one of the most essential business processes which affect the quality of human capital within any company. It is highly essential for the companies to ensure the recruitment of right talent to maintain a competitive edge over the others in the market. However IT companies often face a problem while recruiting new people for their ongoing projects due to lack of a proper framework that defines a criteria for the selection process. In this paper we aim to develop a framework that would allow any project manager to take the right decision for selecting new talent by correlating performance parameters with the other domain-specific attributes of the candidates. Also, another important motivation behind this project is to check the validity of the selection procedure often followed by various big companies in both public and private sectors which focus only on academic scores, GPA/grades of students from colleges and other academic backgrounds. We test if such a decision will produce optimal results in the industry or is there a need for change that offers a more holistic approach to recruitment of new talent in the software companies. The scope of this work extends beyond the IT domain and a similar procedure can be adopted to develop a recruitment framework in other fields as well. Data-mining techniques provide useful information from the historical projects depending on which the hiring-manager can make decisions for recruiting high-quality workforce. This study aims to bridge this hiatus by developing a data-mining framework based on an ensemble-learning technique to refocus on the criteria for personnel selection. The results from this research clearly demonstrated that there is a need to refocus on the selection-criteria for quality objectives.",
+            "primary_category": "cs.LG",
+            "categories": [
+              "cs.LG"
+            ],
+            "url": "https://arxiv.org/abs/1504.01934"
+          },
+          {
+            "arxiv_id": "1312.4617",
+            "title_en": "A Survey of Data Mining Techniques for Social Media Analysis",
+            "authors": [
+              "Mariam Adedoyin-Olowe",
+              "Mohamed Medhat Gaber",
+              "Frederic Stahl"
+            ],
+            "abstract_en": "Social network has gained remarkable attention in the last decade. Accessing social network sites such as Twitter, Facebook LinkedIn and Google+ through the internet and the web 2.0 technologies has become more affordable. People are becoming more interested in and relying on social network for information, news and opinion of other users on diverse subject matters. The heavy reliance on social network sites causes them to generate massive data characterised by three computational issues namely; size, noise and dynamism. These issues often make social network data very complex to analyse manually, resulting in the pertinent use of computational means of analysing them. Data mining provides a wide range of techniques for detecting useful knowledge from massive datasets like trends, patterns and rules [44]. Data mining techniques are used for information retrieval, statistical modelling and machine learning. These techniques employ data pre-processing, data analysis, and data interpretation processes in the course of data analysis. This survey discusses different data mining techniques used in mining diverse aspects of the social network over decades going from the historical techniques to the up-to-date models, including our novel technique named TRCM. All the techniques covered in this survey are listed in the Table.1 including the tools employed as well as names of their authors.",
+            "primary_category": "cs.SI",
+            "categories": [
+              "cs.SI",
+              "cs.CL"
+            ],
+            "url": "https://arxiv.org/abs/1312.4617"
+          }
+        ],
+        "seed_doc_md": "output/seed_corpus/docs/data_mining.md",
+        "seed_embedding_json": "output/seed_corpus/embeddings/data_mining.json"
+      }
+    ]
+  }
+}

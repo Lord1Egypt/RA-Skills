@@ -1,0 +1,29 @@
+{
+  "_comment": "Blank observation template. Fill in the fields and pass to orchestrator.py with --observation.",
+  "observation_id": "obs-xxxxxxxxxx",
+  "goal": "Describe the goal this observation is measured against",
+  "cycle": 1,
+  "source_type": "manual",
+  "mode": "standalone",
+  "observed_at": "2025-01-01T00:00:00+00:00",
+  "metrics": {
+    "passed": 0,
+    "failed": 0,
+    "total": 0,
+    "pass_rate": 0.0,
+    "duration_ms": 0
+  },
+  "health_score": null,
+  "failures": [
+    {
+      "description": "Describe the failure",
+      "input": {},
+      "expected": {},
+      "actual": {},
+      "source": "manual"
+    }
+  ],
+  "edge_cases": [],
+  "raw_input": {},
+  "regression_tests": []
+}

@@ -1,0 +1,26 @@
+{
+  "name": "openclaw-interaction-bridge",
+  "version": "1.6.3",
+  "description": "Bridge OpenClaw agent state directly to snarling display via HTTP API, with notification support",
+  "main": "index.ts",
+  "type": "module",
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24-beta.2"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.32.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.4.5",
+      "pluginSdkVersion": "2026.4.5"
+    }
+  }
+}

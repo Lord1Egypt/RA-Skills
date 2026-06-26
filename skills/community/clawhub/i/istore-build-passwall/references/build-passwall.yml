@@ -1,0 +1,468 @@
+name: Build PassWall for iStoreOS
+
+# 修复版本：2025-08-30 20:45，解决安装过程中丢失登录状态问题
+# 修复版本：2026-05-08，移除公网源 fallback，避免 shadowsocks-libev/dns2socks 等包在官方源缺失导致安装失败
+# 修复版本：2026-05-08 08:40，从 SourceForge 补齐 GitHub zip 中缺失的 arch-specific 包（dns2socks、microsocks、shadowsocks-libev 等）
+
+on:
+ workflow_dispatch:
+   inputs:
+     target_arch:
+       description: '目标架构'
+       required: true
+       default: 'x86_64'
+       type: choice
+       options:
+         - x86_64
+         - aarch64_cortex-a53
+         - aarch64_generic
+     sdk_version:
+       description: 'SDK 版本标记（用于文件名和标签）'
+       required: true
+       default: '22.03.7'
+     openssl_tag:
+       description: 'OpenSSL 标记（用于标签）'
+       required: true
+       default: 'libopenssl_1.1'
+     build_option:
+       description: '构建选项'
+       required: true
+       default: 'standard'
+       type: choice
+       options:
+         - minimal
+         - standard
+         - full
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: 构建 PassWall 安装包
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 获取日期
+        id: date
+        run: echo "date=$(date)" >> "$GITHUB_OUTPUT"
+
+      - name: 准备环境
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y makeself unzip curl jq
+          rm -rf artifact/installer
+          mkdir -p passwall-ipk artifact/installer staging
+
+      - name: 下载 PassWall 包并解析版本
+        id: fetch
+        run: |
+          set -e
+          curl_gh() { curl -fsSL -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$@"; }
+          # 架构映射
+          case "${{ inputs.target_arch }}" in
+            x86_64) ARCH_MAP="x86_64" ;;
+            aarch64_cortex-a53) ARCH_MAP="aarch64_cortex-a53" ;;
+            *) ARCH_MAP="aarch64_generic" ;;
+          esac
+          echo "ARCH_MAP=$ARCH_MAP" >> "$GITHUB_ENV"
+
+          # 分别从两个仓库获取信息
+          # openwrt-passwall2 的 zip 包（包含所有依赖）
+          PW2_LATEST=$(curl_gh "https://api.github.com/repos/Openwrt-Passwall/openwrt-passwall2/releases/latest" | jq -r .tag_name || true)
+          [ -z "$PW2_LATEST" ] || [ "$PW2_LATEST" = "null" ] && PW2_LATEST="26.5.1-1"
+          # openwrt-passwall 的最新版本（luci-app-passwall 主包）
+          PKG_LATEST=$(curl_gh "https://api.github.com/repos/Openwrt-Passwall/openwrt-passwall/releases/latest" | jq -r .tag_name || true)
+          [ -z "$PKG_LATEST" ] || [ "$PKG_LATEST" = "null" ] && PKG_LATEST="26.5.3-1"
+          echo "PW2_LATEST=$PW2_LATEST" >> "$GITHUB_ENV"
+          echo "PKG_LATEST=$PKG_LATEST" >> "$GITHUB_ENV"
+          echo "version=$PKG_LATEST" >> "$GITHUB_OUTPUT"
+          echo "使用 openwrt-passwall2 ($PW2_LATEST) 下载依赖包，openwrt-passwall ($PKG_LATEST) 下载主程序"
+
+          # 从 openwrt-passwall2 下载 zip（包含所有依赖）
+          set +e
+          URL1="https://github.com/Openwrt-Passwall/openwrt-passwall2/releases/download/$PW2_LATEST/passwall_packages_ipk_${ARCH_MAP}.zip"
+          URL2="https://github.com/Openwrt-Passwall/openwrt-passwall2/releases/download/$PW2_LATEST/passwall_packages_ipk.zip"
+          echo "尝试下载依赖包: $URL1"
+          curl -fL "$URL1" -o passwall-ipk/passwall_packages.zip || curl -fL "$URL2" -o passwall-ipk/passwall_packages.zip
+          RC=$?
+          set -e
+          if [ $RC -ne 0 ] || [ ! -s passwall-ipk/passwall_packages.zip ]; then
+            echo "下载失败: 未找到 PassWall 依赖包"
+            exit 1
+          fi
+
+          echo "下载成功，解压中..."
+          unzip -o passwall-ipk/passwall_packages.zip -d passwall-ipk/
+          rm -f passwall-ipk/passwall_packages.zip
+
+          # ============================================================
+          # 【关键修复】SourceForge 的 passwall_packages/ 里有 dns2socks、
+          # microsocks、shadowsocks-libev 等 Arch-specific 依赖包，
+          # GitHub zip 里没有这些。从 SourceForge 补齐缺失的包。
+          # ============================================================
+          SF_BASE="https://sourceforge.net/projects/openwrt-passwall-build/files/releases/packages-22.03"
+          SF_ARCH_DIR="${SF_BASE}/${ARCH_MAP}/passwall_packages"
+          echo "从 SourceForge 补齐缺失依赖: $SF_ARCH_DIR"
+          
+          # 检查 depends 目录下缺哪些关键包
+          fetch_sf() {
+            local pkg="$1"
+            local dest="passwall-ipk/$pkg"
+            # 已存在则跳过
+            [ -s "$dest" ] && { echo "已存在: $pkg"; return 0; }
+            local url="${SF_ARCH_DIR}/$pkg"
+            echo "下载: $url"
+            curl -fL "$url" -o "$dest" 2>/dev/null && echo "成功: $pkg" || { echo "跳过: $pkg ($url not found)"; rm -f "$dest"; }
+          }
+          
+          # 补齐 GitHub zip 中没有的 Arch-specific 包（dns2socks microsocks shadowsocks-libev 等）
+          fetch_sf "dns2socks_2.1-2_${ARCH_MAP}.ipk"
+          fetch_sf "microsocks_1.0.5-2_${ARCH_MAP}.ipk"
+          fetch_sf "shadowsocks-libev-ss-local_3.3.5-13_${ARCH_MAP}.ipk"
+          fetch_sf "shadowsocks-libev-ss-redir_3.3.5-13_${ARCH_MAP}.ipk"
+          fetch_sf "shadowsocks-libev-ss-server_3.3.5-13_${ARCH_MAP}.ipk"
+          fetch_sf "shadowsocks-libev-ss-tunnel_3.3.5-13_${ARCH_MAP}.ipk"
+          fetch_sf "ipt2socks_1.1.4-3_${ARCH_MAP}.ipk"
+          fetch_sf "xray-core_26.5.3-1_${ARCH_MAP}.ipk"
+
+          echo "SourceForge 补齐完成"
+
+          echo "已解压文件："
+          ls -lh passwall-ipk | sed -n '1,200p'
+
+          # 从 openwrt-passwall API 获取精确的文件名
+          APP_URL=$(curl_gh "https://api.github.com/repos/Openwrt-Passwall/openwrt-passwall/releases/tags/$PKG_LATEST" | jq -r '.assets[] | select(.name | test("luci-app-passwall_")) | select(.name | test("passwall2") | not) | .browser_download_url' | head -n1)
+          I18N_URL=$(curl_gh "https://api.github.com/repos/Openwrt-Passwall/openwrt-passwall/releases/tags/$PKG_LATEST" | jq -r '.assets[] | select(.name | test("luci-i18n-passwall-zh-cn")) | select(.name | test("passwall2") | not) | .browser_download_url' | head -n1)
+          [ -z "$APP_URL" ] || [ "$APP_URL" = "null" ] && { echo "获取主程序URL失败"; exit 1; }
+          [ -z "$I18N_URL" ] || [ "$I18N_URL" = "null" ] && { echo "获取语言包URL失败"; exit 1; }
+          echo "下载主程序: $APP_URL"
+          curl -fL "$APP_URL" -o passwall-ipk/luci-app-passwall.ipk && echo "主程序下载成功"
+          echo "下载中文语言包: $I18N_URL"
+          curl -fL "$I18N_URL" -o passwall-ipk/luci-i18n-passwall-zh-cn.ipk && echo "语言包下载成功"
+
+          echo "主程序和语言包下载完成"
+
+      - name: 校验并定位 luci 顶层包
+        id: locate
+        run: |
+          set -e
+          PKG_LATEST="${PKG_LATEST:?need version}"
+
+          # 直接检查已知文件名（fetch 步骤已下载到固定名称）
+          if [ -f "passwall-ipk/luci-app-passwall.ipk" ]; then
+            APP_PKG="passwall-ipk/luci-app-passwall.ipk"
+            echo "找到主程序: $APP_PKG"
+          fi
+          if [ -f "passwall-ipk/luci-i18n-passwall-zh-cn.ipk" ]; then
+            I18N_PKG="passwall-ipk/luci-i18n-passwall-zh-cn.ipk"
+            echo "找到语言包: $I18N_PKG"
+          fi
+
+          # 若缺失，通过 API 补齐
+          if [ -z "$APP_PKG" ] || [ -z "$I18N_PKG" ]; then
+            echo "通过 API 补齐缺失的包..."
+            curl_gh() { curl -fsSL -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "$@"; }
+
+            fetch_pkg() {
+              repo="$1"; tag="$2"; namepat="$3"; dest="$4"
+              local url
+              url="$(curl_gh "https://api.github.com/repos/$repo/releases/tags/$tag" | jq -r '.assets[] | select(.name | test("'$namepat'") and (.name | test("passwall2") | not)) | .browser_download_url' 2>/dev/null | head -n1)"
+              [ -n "$url" ] && [ "$url" != "null" ] && echo "下载: $url" && curl -fL "$url" -o "$dest"
+            }
+
+            [ -z "$APP_PKG" ] && fetch_pkg "Openwrt-Passwall/openwrt-passwall" "$PKG_LATEST" "luci-app-passwall_" "passwall-ipk/luci-app-passwall.ipk"
+            [ -z "$I18N_PKG" ] && fetch_pkg "Openwrt-Passwall/openwrt-passwall" "$PKG_LATEST" "luci-i18n-passwall-zh-cn" "passwall-ipk/luci-i18n-passwall-zh-cn.ipk"
+            [ -z "$APP_PKG" ] && fetch_pkg "Openwrt-Passwall/openwrt-passwall" "latest" "luci-app-passwall_" "passwall-ipk/luci-app-passwall.ipk"
+            [ -z "$I18N_PKG" ] && fetch_pkg "Openwrt-Passwall/openwrt-passwall" "latest" "luci-i18n-passwall-zh-cn" "passwall-ipk/luci-i18n-passwall-zh-cn.ipk"
+          fi
+
+          # 最终验证
+          [ -z "$APP_PKG" ] && { echo "错误: 未找到 luci-app-passwall 顶层包"; ls passwall-ipk/; exit 1; }
+          [ -z "$I18N_PKG" ] && echo "警告: 未找到 zh-cn 语言包"
+          if [ -z "$APP_PKG" ]; then
+            echo "错误: 未找到 luci-app-passwall 顶层包"
+            find passwall-ipk -maxdepth 2 -type f -name '*.ipk' -print
+            exit 1
+          fi
+          if [ -z "$I18N_PKG" ]; then
+            echo "警告: 未找到 zh-cn 语言包"
+          fi
+
+          echo "APP_PKG_PATH=$APP_PKG" >> "$GITHUB_ENV"
+          echo "I18N_PKG_PATH=$I18N_PKG" >> "$GITHUB_ENV"
+          echo "app_path=$APP_PKG" >> "$GITHUB_OUTPUT"
+          echo "i18n_path=$I18N_PKG" >> "$GITHUB_OUTPUT"
+          echo "定位结果："
+          ls -lh "$APP_PKG" "${I18N_PKG:-/dev/null}" 2>/dev/null || true
+
+      - name: 解析 luci-app-passwall 版本号（用于命名）
+        id: parsever
+        run: |
+          set -e
+          APP_PATH="${APP_PKG_PATH:-${{ steps.locate.outputs.app_path }}}"
+          if [ -n "$APP_PATH" ]; then
+            BASE="$(basename "$APP_PATH")"
+            # 放宽正则：从任意前缀中提取 luci-app-passwall_XXX 的 XXX
+            APPVER="$(echo "$BASE" | sed -E 's/^.*luci-app-passwall_([^_]+).*\.ipk$/\1/')"
+          fi
+          if [ -z "${APPVER:-}" ] || [ "$APPVER" = "$BASE" ]; then
+            LV="${{ steps.fetch.outputs.version }}"; APPVER="${LV%%-*}"
+          fi
+          echo "appver=$APPVER" >> "$GITHUB_OUTPUT"
+          echo "APP_VERSION=$APPVER" >> "$GITHUB_ENV"
+
+      - name: 构建 Makeself 安装包（完全对齐样例结构/逻辑）
+        run: |
+          set -e
+          ARCH_MAP="${ARCH_MAP:-${{ inputs.target_arch }}}"
+          PKG_LATEST="${PKG_LATEST:-${{ steps.fetch.outputs.version }}}"
+          APP_VERSION="${APP_VERSION:-${{ steps.parsever.outputs.appver }}}"
+          SDK_VERSION="${{ inputs.sdk_version }}"
+          OPENSSL_TAG="${{ inputs.openssl_tag }}"
+          APP_PKG_PATH="${APP_PKG_PATH:-${{ steps.locate.outputs.app_path }}}"
+          I18N_PKG_PATH="${I18N_PKG_PATH:-${{ steps.locate.outputs.i18n_path }}}"
+
+          echo "将打包的顶层包："
+          ls -lh "$APP_PKG_PATH" "$I18N_PKG_PATH"
+
+          STAGING_ROOT="staging"
+          STAGING_DIR="$STAGING_ROOT/$ARCH_MAP"
+          DEP_DIR="$STAGING_DIR/depends"
+          rm -rf "$STAGING_DIR"
+          mkdir -p "$DEP_DIR"
+
+          # 复制为固定文件名，避免通配匹配
+          APP_BASE="$(basename "$APP_PKG_PATH")"
+          I18N_BASE="$(basename "$I18N_PKG_PATH")"
+          cp -f "$APP_PKG_PATH" "$STAGING_DIR/$APP_BASE"
+          cp -f "$APP_PKG_PATH" "$STAGING_DIR/luci-app-passwall.ipk" # 固定名称
+          cp -f "$I18N_PKG_PATH" "$STAGING_DIR/$I18N_BASE"
+          cp -f "$I18N_PKG_PATH" "$STAGING_DIR/luci-i18n-passwall-zh-cn.ipk" # 固定名称
+
+          # 其余 ipk 全部放入 depends
+          while IFS= read -r -d '' f; do
+            b="$(basename "$f")"
+            if [ "$b" != "$APP_BASE" ] && [ "$b" != "$I18N_BASE" ]; then
+              cp -f "$f" "$DEP_DIR/$b"
+            fi
+          done < <(find passwall-ipk -type f -name '*.ipk' -print0)
+
+          echo "打包目录预览："
+          find "$STAGING_DIR" -maxdepth 2 -type f -print | sed -n '1,200p'
+
+          # 生成安装脚本（使用固定文件名，不再通配）
+          cat > "$STAGING_DIR/install.sh" <<'INSTALL_SCRIPT_EOF'
+          #!/bin/sh
+          set -e
+
+          # 检查并安装 PassWall 必需依赖
+          check_passwall_deps() {
+            echo "检查 PassWall 必需依赖..."
+
+            # iptables 透明代理模块
+            local iptables_deps="iptables-mod-tproxy iptables-mod-socket iptables-mod-iprange iptables-mod-conntrack-extra"
+            local kernel_deps="kmod-ipt-tproxy kmod-ipt-socket kmod-ipt-iprange kmod-ipt-conntrack-extra"
+
+            for dep in $iptables_deps $kernel_deps; do
+              if ! opkg list-installed | grep -q "^$dep "; then
+                echo "安装缺失依赖: $dep"
+                opkg install "$dep" 2>/dev/null || echo "警告: 无法安装 $dep，可能需要手动处理"
+              fi
+            done
+
+            # 其他常用依赖
+            local other_deps="ip-full ipset iptables-mod-extra iptables-mod-filter"
+            for dep in $other_deps; do
+              if ! opkg list-installed | grep -q "^$dep "; then
+                echo "安装推荐依赖: $dep"
+                opkg install "$dep" 2>/dev/null || true
+              fi
+            done
+          }
+
+          # 温和地刷新 LuCI 缓存（不重启服务，避免丢失登录状态）
+          refresh_luci() {
+            # 清理缓存文件
+            rm -f /tmp/luci-indexcache 2>/dev/null || true
+            rm -rf /tmp/luci-modulecache/* 2>/dev/null || true
+
+            # 优先使用 luci-reload（如果可用）
+            if command -v luci-reload >/dev/null 2>&1; then
+              echo "使用 luci-reload 刷新 LuCI..."
+              luci-reload 2>/dev/null || true
+            else
+              # 使用 Lua 直接重建索引（兼容不同版本函数名）
+              if command -v lua >/dev/null 2>&1; then
+                echo "使用 Lua 重建 LuCI 索引..."
+                lua -e 'local ok,d=pcall(require,"luci.dispatcher"); if ok and d then if d.rebuild_index then d.rebuild_index() elseif d.createindex then d.createindex() end end' 2>/dev/null || true
+              fi
+
+              # 温和地重载 HTTP 服务（不重启）
+              if [ -x /etc/init.d/uhttpd ]; then
+                echo "重载 uhttpd..."
+                /etc/init.d/uhttpd reload 2>/dev/null || true
+              fi
+              if [ -x /etc/init.d/nginx ]; then
+                echo "重载 nginx..."
+                /etc/init.d/nginx reload 2>/dev/null || true
+              fi
+            fi
+
+            # 确保文件系统同步
+            sync
+          }
+
+          # 使用固定文件名，不再通配
+          APP_PKG="luci-app-passwall.ipk"
+          I18N_PKG="luci-i18n-passwall-zh-cn.ipk"
+
+          if [ ! -f "$APP_PKG" ]; then
+            echo "错误: 缺少 $APP_PKG"
+            ls -l
+            exit 1
+          fi
+
+          # 安装前轻度刷新
+          refresh_luci
+
+          if ! opkg update; then
+            echo "更新软件源列表错误，请检查路由器网络以及软件源。"
+            exit 1
+          fi
+
+          # 安装基础依赖（容错）
+          echo "安装基础依赖..."
+          opkg install luci-compat luci-lib-jsonc libuci-lua 2>/dev/null || true
+
+          # 检查并安装 PassWall 必需依赖
+          check_passwall_deps
+
+          # ============================================================
+          # 【核心修改】只安装本地 depends/ 目录下的 .ipk 文件
+          # 不再从公网 opkg 源拉取 shadowsocks-libev / dns2socks 等 PassWall 相关包
+          # （这些包都在本地 depends/ 里，OpenWrt 官方源没有）
+          # ============================================================
+          if [ -d depends ] && ls depends/*.ipk >/dev/null 2>&1; then
+            echo "安装本地依赖包（仅本地 .ipk，不依赖公网源）..."
+            set +e
+            opkg install depends/*.ipk
+            OPKG_RC=$?
+            set -e
+            if [ $OPKG_RC -ne 0 ]; then
+              echo "依赖包安装失败（退出码: $OPKG_RC），请检查是否缺少内核模块或其他系统依赖。"
+              exit 1
+            fi
+          fi
+
+          # 始终强制重装，避免版本判断带来的不确定性
+          echo "安装 PassWall 主程序..."
+          opkg install "$APP_PKG" --force-reinstall || exit 1
+
+          # 安装中文语言包（仅本地文件）
+          if [ -f "$I18N_PKG" ]; then
+            echo "安装中文语言包: $I18N_PKG"
+            opkg install "$I18N_PKG" || true
+          else
+            echo "未发现本地中文语言包，跳过安装"
+          fi
+
+          # 启用并启动服务
+          if [ -x /etc/init.d/passwall ]; then
+            echo "启用 PassWall 服务..."
+            /etc/init.d/passwall enable 2>/dev/null || true
+            /etc/init.d/passwall start 2>/dev/null || true
+          fi
+
+          # 重载防火墙（不重启）
+          if [ -x /etc/init.d/firewall ]; then
+            echo "重载防火墙规则..."
+            /etc/init.d/firewall reload 2>/dev/null || true
+          fi
+
+          # 安装后轻度刷新
+          refresh_luci
+
+          # 验证依赖安装情况
+          echo "验证关键依赖..."
+          missing_deps=""
+          for dep in iptables-mod-tproxy iptables-mod-socket iptables-mod-iprange; do
+            if ! opkg list-installed | grep -q "^$dep "; then
+              missing_deps="$missing_deps $dep"
+            fi
+          done
+
+          if [ -n "$missing_deps" ]; then
+            echo "警告: 以下依赖未安装，可能影响透明代理功能:$missing_deps"
+            echo "请手动执行: opkg install$missing_deps"
+          fi
+
+          # 验证安装结果
+          if [ -f /usr/lib/lua/luci/controller/passwall.lua ] || ls /usr/lib/lua/luci/controller/passwall/*.lua >/dev/null 2>&1; then
+            echo "✓ 安装完成！请在 LuCI 界面 服务→PassWall 查看。"
+            echo " 如果菜单未显示，请刷新浏览器或重新登录 LuCI。"
+            if [ -z "$missing_deps" ]; then
+              echo " 所有必需依赖已正确安装。"
+            fi
+            exit 0
+          else
+            echo "! 警告：未检测到 PassWall 控制器文件，可能需刷新浏览器或重新登录 LuCI。"
+            exit 0
+          fi
+          INSTALL_SCRIPT_EOF
+          chmod +x "$STAGING_DIR/install.sh"
+
+          OUTPUT="PassWall_${APP_VERSION}_${ARCH_MAP}_all_sdk_${SDK_VERSION}.run"
+          LABEL="PassWall_${APP_VERSION}_with_sdk_${SDK_VERSION}_${OPENSSL_TAG}"
+          makeself --gzip --nox11 "$STAGING_DIR" "$OUTPUT" "$LABEL" ./install.sh
+
+          echo "PassWall(luci-app)版本: $APP_VERSION" > version.txt
+          echo "上游Release Tag: $PKG_LATEST" >> version.txt
+          echo "SDK版本: $SDK_VERSION" >> version.txt
+          echo "OpenSSL标记: $OPENSSL_TAG" >> version.txt
+          echo "构建时间: ${{ steps.date.outputs.date }}" >> version.txt
+          echo "目标架构: ${{ inputs.target_arch }}" >> version.txt
+          echo "GitHub Actions运行ID: ${{ github.run_id }}" >> version.txt
+          echo "构建选项: ${{ inputs.build_option }}" >> version.txt
+
+          rm -rf artifact/installer/*
+          mv -f "$OUTPUT" artifact/installer/
+          mv -f version.txt artifact/installer/
+          echo "构建产物："
+          ls -lh artifact/installer/
+
+      - name: 上传安装程序
+        uses: actions/upload-artifact@v4
+        with:
+          name: PassWall_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_all_sdk_${{ inputs.sdk_version }}
+          path: ./artifact/installer/
+
+      - name: 创建发布
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: passwall-${{ inputs.target_arch }}-${{ steps.parsever.outputs.appver }}-${{ github.run_id }}
+          name: PassWall ${{ steps.parsever.outputs.appver }} for iStoreOS (${{ inputs.target_arch }})
+          files: |
+            artifact/installer/PassWall_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_all_sdk_${{ inputs.sdk_version }}.run
+            artifact/installer/version.txt
+          body: |
+            ## PassWall ${{ steps.parsever.outputs.appver }} for iStoreOS - ${{ inputs.target_arch }}
+
+            PassWall(luci-app)版本: ${{ steps.parsever.outputs.appver }}
+            上游Release Tag: ${{ steps.fetch.outputs.version }}
+            SDK版本: ${{ inputs.sdk_version }}
+            OpenSSL标记: ${{ inputs.openssl_tag }}
+            构建时间: ${{ steps.date.outputs.date }}
+            目标架构: ${{ inputs.target_arch }}
+            GitHub Actions运行ID: ${{ github.run_id }}
+            构建选项: ${{ inputs.build_option }}
+
+            ### 安装方法
+
+            1. 下载 `PassWall_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_all_sdk_${{ inputs.sdk_version }}.run` 到路由器
+            2. 执行 `chmod +x PassWall_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_all_sdk_${{ inputs.sdk_version }}.run && ./PassWall_${{ steps.parsever.outputs.appver }}_${{ inputs.target_arch }}_all_sdk_${{ inputs.sdk_version }}.run`
+            3. 完成后，在LuCI界面中访问 服务→PassWall

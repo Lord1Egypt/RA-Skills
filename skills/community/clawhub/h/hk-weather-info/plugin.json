@@ -1,0 +1,23 @@
+{
+  "name": "hk-weather-info",
+  "version": "1.0.0",
+  "description": "Hong Kong weather information — current conditions, forecasts, warnings, and alerts from HKO.",
+  "author": "Steven Ho",
+  "license": "MIT",
+  "github": "https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-weather-info",
+  "entry": "SKILL.md",
+  "tools": [
+    {
+      "name": "get_current_weather",
+      "description": "Get current weather conditions for a HK district"
+    },
+    {
+      "name": "get_forecast",
+      "description": "Get weather forecast for upcoming days"
+    },
+    {
+      "name": "get_warnings",
+      "description": "Get active weather warnings and signals"
+    }
+  ]
+}

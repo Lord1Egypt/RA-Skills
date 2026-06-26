@@ -1,0 +1,533 @@
+# Arabic locale for Kiwi Voice Assistant
+
+# Voice system prompt
+system:
+  voice_prompt: |
+    أنتِ Kiwi، مساعدة صوتية. أنتِ متصلة بـ OpenClaw ويمكنكِ تنفيذ أي مهمة: عمليات الملفات، البرمجة، المتصفح، الطرفية، البحث، إدارة النظام — كل شيء متاح.
+
+    قواعد الوضع الصوتي:
+    1. أجيبي بإيجاز لكن بشكل كامل. الإجابة الكاملة أفضل من الناقصة.
+    2. كوني ودودة وعاطفية
+    3. إذا كان عليكِ تنفيذ مهمة — نفّذيها فوراً، لا تقولي أبداً أنكِ لا تستطيعين. أبلغي عن النتيجة بإيجاز.
+    4. لا ترفضي التنفيذ أبداً. يمكنكِ فعل أي شيء عبر OpenClaw.
+    5. إذا لم تكوني متأكدة من التفاصيل — اطلبي التوضيح
+
+    السياق: المستخدم يتحدث صوتياً، والرد سيُنطق عبر TTS.
+
+# User-facing spoken responses
+responses:
+  greeting: "مرحباً! أنا Kiwi. قل 'Kiwi' وأمرك عندما تكون مستعداً."
+  service_started: "بدأت الخدمة!"
+  instruction: "قل 'Kiwi، مرحباً!' للبدء"
+  error_timeout: "استغرق الرد وقتاً طويلاً. أعد المحاولة من فضلك."
+  error_no_response: "لم أتمكن من الحصول على رد. أعد المحاولة من فضلك."
+  error_send_failed: "عذراً، لم أستطع إرسال الرسالة."
+  error_retry_failed: "لم أتمكن من الحصول على رد. حاول مرة أخرى."
+  error_stream_stalled: "توقف الرد. أعد المحاولة من فضلك."
+  shutting_down: "جارٍ الإغلاق..."
+  context_cleared: "تم مسح السياق. بدأتُ محادثة جديدة."
+  calibrating: "جارٍ معايرة التعرف على الصوت."
+  approval_accepted: "تمت الموافقة. جارٍ تنفيذ طلب {requester}."
+  approval_denied: "حسناً، تم رفض طلب {requester}."
+  telegram_approved: "تأكيد من Telegram. جارٍ تنفيذ طلب {requester}."
+  telegram_denied: "تم رفض طلب {requester} عبر Telegram."
+  heard: "سمعتُ: {command}"
+  thinking: "أفكّر..."
+  cancel_received: "تم استلام أمر الإلغاء!"
+  stopped: "توقفتُ."
+  nothing_to_stop: "لا يوجد شيء لإيقافه."
+  unknown_speaker: "شخص مجهول"
+  continuing_execution: "أتابع التنفيذ"
+  owner_registered: "تم. حفظتُ صوت المالك: {name}."
+  owner_register_failed: "لم أتمكن من حفظ الملف الشخصي. قل عبارة أطول وحاول مرة أخرى."
+  owner_already_registered: "المالك مسجّل بالفعل. هو فقط يمكنه تغيير الملف الصوتي."
+  owner_reregistration_attempt: "محاولة إعادة تسجيل المالك من {speaker}: '{command}'"
+  profiles_unavailable: "وحدة الملفات الشخصية غير متاحة حالياً."
+  cannot_identify: "لا أستطيع تحديد المتحدث الآن."
+  voice_list_unavailable: "قائمة الأصوات غير متاحة."
+  only_owner_can_add: "المالك فقط يمكنه إضافة أشخاص جدد."
+  say_name_prompt: "قل اسماً بعد العبارة: تذكّرني باسم ..."
+  voice_remembered: "حفظتُ الصوت: {name}."
+  voice_save_failed: "لم أتمكن من حفظ الصوت. أحتاج عبارة أوضح."
+  approval_prompt_voice_and_telegram: "قل: موافق. أو أكّد في Telegram."
+  approval_prompt_voice: "قل: موافق أو ارفض."
+  approval_prompt_telegram: "يرجى التأكيد في Telegram."
+  approval_prompt_register: "سجّل صوت المالك: Kiwi، أنا المالك."
+  approval_request: "{owner}، {speaker} يسأل: {command}. {hint}"
+  ha_command_sent: "تم إرسال الأمر إلى المنزل الذكي."
+  ha_response: "{response}"
+  ha_not_configured: "تكامل المنزل الذكي غير مُعدّ."
+  ha_connection_error: "لا أستطيع الاتصال بالمنزل الذكي."
+  ha_no_response: "المنزل الذكي لم يستجب."
+  exec_approval_request: "يريد الوكيل تنفيذ أمر: {command}. هل أسمح؟"
+  exec_approved: "تمت الموافقة. جاري تنفيذ الأمر."
+  exec_denied: "مرفوض. تم حظر الأمر."
+  exec_timeout: "لا استجابة. تم رفض الأمر للأمان."
+
+# Status announcer fallback messages
+status:
+  thinking: "أفكّر في الإجابة..."
+  processing: "جارٍ معالجة الطلب، انتظر قليلاً..."
+  working: "ما زلتُ أعمل، ستكون النتيجة جاهزة قريباً..."
+  continuing: "أتابع، يستغرق الأمر بعض الوقت..."
+  almost_done: "أوشكتُ على الانتهاء..."
+
+# Voice security messages
+security:
+  safe: "أمر آمن"
+  warning: "أمر يتطلب الانتباه"
+  dangerous: "أمر خطير!"
+  critical: "أمر حرج!"
+  unknown_level: "مستوى خطورة غير معروف"
+  telegram_confirm: "هل تؤكد التنفيذ؟"
+  telegram_approved: "تمت الموافقة!"
+  telegram_denied: "تم الرفض"
+  approve_button: "موافق"
+  deny_button: "رفض"
+  telegram_request_title: "*Kiwi - طلب موافقة*"
+  telegram_speaker_label: "*المتحدث:*"
+  telegram_command_label: "*الأمر:*"
+  telegram_security_title: "*Kiwi — الأمان*"
+  awaiting_approval: "في انتظار الموافقة عبر Telegram..."
+
+# Speaker identification responses
+speakers:
+  self_response: "هذه أنا، Kiwi!"
+  owner_response: "هذا أنت، {name}! (ثقة {confidence})"
+  blocked_response: "هذا صوت محظور"
+  known_response: "هذا {name} (ثقة {confidence})"
+  unknown_response: "لا أتعرف على هذا الصوت"
+  blocked_display: "محظور"
+  calibration_phrase: "مرحباً، أنا Kiwi. هذه عبارة اختبار للمعايرة."
+
+# Speaker manager access control messages
+speaker_access:
+  unknown_voice: "صوت مجهول"
+  voice_blocked: "الصوت محظور"
+  voice_blacklisted: "الصوت في القائمة السوداء"
+  self_echo: "هذه Kiwi (صدى)"
+  allowed: "مسموح"
+
+# Wake word configuration
+wake_word:
+  keyword: "kiwi"
+  whisper_prompt: "Kiwi"
+  typos:
+    "kivi": "kiwi"
+    "kiui": "kiwi"
+    "kiwee": "kiwi"
+    "keewee": "kiwi"
+    "kiwe": "kiwi"
+    "kwi": "kiwi"
+    "iwi": "kiwi"
+    "كيوي": "kiwi"
+  fuzzy_blacklist:
+    - "كي"
+    - "key"
+    - "kid"
+    - "kit"
+    - "kin"
+    - "kim"
+    - "kick"
+
+# Whisper hallucination filtering
+hallucinations:
+  phrases:
+    - "شكراً للمشاهدة"
+    - "اشتركوا في القناة"
+    - "لا تنسوا الاشتراك"
+    - "اعملوا لايك"
+    - "لايك واشتراك"
+    - "ترجمة"
+    - "المترجم"
+    - "المحرر"
+    - "المخرج"
+    - "كاتب السيناريو"
+    - "إلى اللقاء"
+    - "نراكم في الحلقة القادمة"
+    - "اكتبوا في التعليقات"
+    - "فعّلوا جرس الإشعارات"
+    - "Thank you for watching"
+    - "Please subscribe"
+    - "amara.org"
+    - "srt subs"
+  phantom_phrases:
+    - "محرر الترجمة"
+    - "اشتركوا في قناتنا"
+    - "اووووو"
+    - "ترجمة"
+    - "مكالمة هاتفية"
+    - "رنين"
+  phantom_patterns:
+    - "^ام+[م]*$"
+    - "^مم+[م]*$"
+    - "^آ+[آ]*$"
+    - "^kiwi[.\\s]*kiwi[.\\s]*kiwi"
+    - "^(kiwi[.\\s]*){2,}$"
+
+# Text processing rules
+text_processing:
+  abbreviations:
+    "إلخ": "إلى آخره"
+    "مثلاً": "على سبيل المثال"
+    "أي": "بمعنى"
+    "تقريباً": "بشكل تقريبي"
+    "د.": "دكتور"
+  incomplete_endings:
+    - "و"
+    - "لكن"
+    - "أو"
+    - "لأن"
+    - "إذا"
+    - "في"
+    - "على"
+    - "من"
+    - "إلى"
+    - "عن"
+    - "مع"
+    - "بين"
+    - "حول"
+    - "خلال"
+    - "بعد"
+    - "قبل"
+    - "فوق"
+    - "تحت"
+    - "عند"
+    - "ثم"
+    - "لذلك"
+    - "هل"
+    - "ما"
+    - "كيف"
+    - "أين"
+    - "متى"
+    - "الذي"
+    - "التي"
+    - "لن"
+    - "لم"
+    - "لا"
+    - "بدون"
+    - "رغم"
+    - "حتى"
+    - "كأن"
+  incomplete_patterns:
+    - "أريد"
+    - "أحتاج"
+    - "أخبرني"
+    - "أرني"
+    - "اشرح لي"
+    - "ساعدني"
+    - "من فضلك"
+    - "سأقوم بـ"
+    - "هيا"
+    - "قل لي"
+    - "أعطني"
+  complete_patterns:
+    - "شيء"
+    - "أي شيء"
+    - "كل شيء"
+    - "لا شيء"
+    - "نكتة"
+    - "قصة"
+    - "حكاية"
+    - "الوقت"
+    - "التاريخ"
+    - "الطقس"
+    - "من فضلك"
+  emotion_keywords:
+    urgent:
+      - "عاجل"
+      - "بسرعة"
+      - "مهم"
+      - "فوراً"
+    sad:
+      - "حزين"
+      - "سيئ"
+      - "فظيع"
+      - "مريع"
+    happy:
+      - "رائع"
+      - "ممتاز"
+      - "عظيم"
+      - "واو"
+      - "مذهل"
+    quiet:
+      - "بهدوء"
+      - "سر"
+      - "همس"
+    funny:
+      - "نكتة"
+      - "مضحك"
+      - "أضحكني"
+    curious:
+      - "أخبرني"
+      - "اشرح"
+      - "ما هو"
+  response_keywords:
+    apologetic:
+      - "آسف"
+      - "للأسف"
+      - "لا أستطيع"
+    enthusiastic:
+      - "!"
+      - "رائع"
+      - "ممتاز"
+      - "عظيم"
+
+# Dangerous command patterns (regexes)
+security_patterns:
+  critical:
+    - "احذف\\s+(كل|جميع)\\s+(الملفات|المجلدات)"
+    - "(امسح|احذف)\\s+(كل|جميع)"
+    - "delete\\s+(all|every|files?|folders?|directory|directories)"
+    - "rm\\s+(-rf|/r|/f|rf)"
+    - "format\\s+[a-zA-Z]:"
+    - "(أغلق|أطفئ)\\s+(الكمبيوتر|الحاسوب|النظام)"
+    - "shutdown\\s+(-h|-s|/s|/h|now)"
+    - "restart|reboot"
+    - "turn\\s+off\\s+(computer|pc|system)"
+    - "(أرسل|أظهر|أعطني)\\s+(كلمة المرور|كلمة السر|المفتاح|التوكن|السر)"
+    - "send\\s+(password|passwords|key|token|secret|secrets)"
+    - "show\\s+(password|key|token)"
+    - "tell\\s+(password|passwords|code|pin)"
+  dangerous:
+    - "sudo\\s+"
+    - "chmod\\s+777|chmod\\s+-R"
+    - "systemctl\\s+(stop|disable|kill)"
+    - "net\\s+stop"
+    - "install\\s+(unknown|untrusted)"
+    - "download\\s+(executable|virus|trojan)"
+  warning:
+    - "(غيّر|عدّل)\\s+(الإعدادات|التكوين)"
+    - "change\\s+(settings?|config)"
+    - "configure\\s+(system|server|nginx|apache)"
+    - "open\\s+(ports?|port)"
+    - "close\\s+(ports?|port|firewall)"
+    - "ping\\s+-t"
+    - "(انقل|حرّك)\\s+(ملف|مجلد)"
+    - "move\\s+(file|folder)"
+    - "copy"
+
+# Dangerous command examples
+dangerous_commands:
+  critical:
+    - "احذف كل الملفات"
+    - "delete all files"
+    - "format c:"
+    - "shutdown now"
+    - "sudo rm -rf"
+    - "أرسل كلمة المرور"
+    - "أغلق الكمبيوتر"
+  dangerous:
+    - "sudo "
+    - "chmod 777"
+    - "systemctl stop"
+  warning:
+    - "غيّر الإعدادات"
+    - "change settings"
+    - "افتح المنافذ"
+    - "انقل الملف"
+
+# Owner voice control commands
+owner_commands:
+  block_last:
+    - "قائمة سوداء"
+    - "احظر"
+    - "حظر"
+  unblock_last:
+    - "ألغِ الحظر"
+    - "أزل من القائمة السوداء"
+    - "فك الحظر"
+  add_friend:
+    - "تذكّرني باسم"
+    - "هذا صديقي"
+    - "تذكّر"
+  forget_speaker:
+    - "انسَ هذا الصوت"
+    - "احذف الملف الشخصي"
+  identify:
+    - "من يتحدث"
+    - "من هذا"
+  list_voices:
+    - "ما الأصوات"
+    - "قائمة الأصوات"
+
+# Owner control regex patterns
+owner_control_patterns:
+  block_last: "قائمة سوداء|احظر.*صوت|حظر.*صوت|blacklist|block.*voice"
+  unblock_last: "ألغِ.*حظر|أزل.*قائمة سوداء|فك.*حظر|unblock|remove.*blacklist"
+  add_friend: "تذكّر.*باسم|هذا.*صديق|تذكّر.*صوت|أضف.*صديق|remember.*as"
+  forget_speaker: "انسَ.*صوت|احذف.*ملف|أزل.*صديق|forget.*voice"
+  identify: "من.*يتحدث|من.*هذا|تعرّف.*صوت|who.*speaking"
+  list_voices: "ما.*أصوات|قائمة.*أصوات|أظهر.*أصوات|list.*voices"
+
+# Name extraction patterns
+name_patterns:
+  patterns:
+    - "اسمي\\s+(\\S+)"
+    - "نادني\\s+(\\S+)"
+    - "باسم\\s+(\\S+)"
+    - "صديقي\\s+(\\S+)"
+    - "my name is\\s+(\\w+)"
+    - "call me\\s+(\\w+)"
+  filter_words:
+    - "أنت"
+    - "أنا"
+    - "هو"
+    - "هي"
+    - "من"
+    - "ماذا"
+    - "هذا"
+    - "هذه"
+
+# Special command keywords
+commands:
+  calibrate:
+    - "معايرة"
+    - "إعادة معايرة"
+    - "تحديث الملف الشخصي"
+  reset_context:
+    - "إعادة تعيين السياق"
+    - "محادثة جديدة"
+    - "انسَ"
+    - "إعادة تعيين موجه النظام"
+  stop:
+    - "توقف"
+    - "إلغاء"
+    - "كفى"
+    - "قف"
+    - "اسكت"
+  register_owner:
+    - "تذكّر صوتي"
+    - "سجّل صوتي"
+    - "أنا المالك"
+  approval_yes:
+    - "موافق"
+    - "تأكيد"
+    - "اسمح"
+    - "نفّذ"
+    - "نعم نفّذ"
+    - "تفضّل"
+  approval_no:
+    - "ارفض"
+    - "رفض"
+    - "لا تنفّذ"
+    - "لا"
+    - "امنع"
+    - "إلغاء الموافقة"
+  safe_markers:
+    - "نكتة"
+    - "قصة"
+    - "حكاية"
+    - "دردشة"
+    - "كيف حالك"
+    - "غنّ"
+    - "كم الساعة"
+    - "الوقت"
+    - "التاريخ"
+    - "يوم الأسبوع"
+    - "الطقس"
+    - "الأخبار"
+    - "أخبرني"
+    - "اشرح"
+    - "من هو"
+    - "ما هو"
+  task_markers:
+    - "نفّذ"
+    - "شغّل"
+    - "افتح"
+    - "أغلق"
+    - "احذف"
+    - "أنشئ"
+    - "اضبط"
+    - "حمّل"
+    - "ثبّت"
+    - "أرسل"
+    - "اكتب"
+    - "غيّر"
+    - "انقل"
+    - "ابحث"
+    - "فتّش"
+    - "تحقّق"
+    - "اذهب إلى"
+    - "أمر"
+    - "طرفية"
+    - "شل"
+  ha_trigger_patterns:
+    - "المنزل الذكي"
+    - "منزل ذكي"
+    - "smart home"
+    - "شغّل"
+    - "أطفئ"
+    - "أشعل"
+    - "إضاءة"
+    - "ضوء"
+    - "أضواء"
+    - "مصباح"
+    - "سطوع"
+    - "ترموستات"
+    - "درجة الحرارة"
+    - "مكيف"
+    - "تدفئة"
+    - "مروحة"
+    - "تلفزيون"
+    - "تلفاز"
+    - "ستائر"
+    - "قفل"
+    - "كراج"
+    - "مكنسة"
+    - "مرطب"
+    - "مقبس"
+    - "غرفة المعيشة"
+    - "غرفة النوم"
+    - "المطبخ"
+    - "الحمام"
+    - "الممر"
+  ha_strip_prefixes:
+    - "المنزل الذكي "
+    - "منزل ذكي "
+    - "smart home "
+
+# OpenClaw CLI error messages
+cli_errors:
+  empty_response: "عذراً، لم أحصل على رد."
+  processing_error: "عذراً، حدث خطأ أثناء معالجة الطلب."
+  timeout: "عذراً، استغرق الرد وقتاً طويلاً."
+  generic_error: "خطأ: {error}"
+  rate_limit: "عذراً، الخدمة غير متاحة مؤقتاً (تجاوز الحد). حاول لاحقاً."
+
+# OpenClaw WebSocket error and activity messages
+ws_errors:
+  connection_lost: "عذراً، انقطع الاتصال بـ OpenClaw. أعد طلبك من فضلك."
+  send_failed: "خطأ: لم أتمكن من إرسال الرسالة عبر WebSocket"
+  no_response: "عذراً، لم أحصل على رد."
+  timeout: "عذراً، استغرق الرد وقتاً طويلاً."
+  request_aborted: "تم إلغاء الطلب. أعد المحاولة من فضلك."
+
+# Tool activity descriptions (spoken to user during long operations)
+tool_activity:
+  tool_error: "الأداة أعادت خطأ، أتحقق من السبب."
+  opening_folder: "أفتح مجلد المشروع."
+  browsing_structure: "أتصفح بنية المشروع وأبحث عن الملفات."
+  analyzing_file: "أحلل الملف {path}."
+  reading_code: "أقرأ وأحلل الكود."
+  searching_code: "أبحث عن الكود المطلوب."
+  running_tests: "أتحقق من الكود وأشغّل الاختبارات."
+  editing_code: "أجري تعديلات على الكود."
+  checking_repo: "أتحقق من تغييرات المستودع."
+  project_steps: "أنفّذ خطوات المشروع."
+  running_command: "أشغّل أمراً في الطرفية."
+  reading_files: "أقرأ ملفات المشروع."
+  searching_info: "أبحث عن معلومات في الكود."
+  continuing_work: "أتابع العمل على المهمة."
+  planning: "أخطط لخطوات الحل."
+  error_checking: "حدث خطأ، أتحقق مما حصل."
+
+# Tool error classification messages
+tool_errors:
+  browser_not_connected: "إضافة متصفح OpenClaw غير متصلة. افتح الإضافة على التبويب النشط."
+  tool_unavailable: "الأداة {name} غير متاحة حالياً."
+  timeout: "استغرق الطلب وقتاً طويلاً. حاول مرة أخرى."
+  rate_limit: "طلبات كثيرة جداً. انتظر لحظة وحاول مرة أخرى."
+  auth_error: "خطأ في التفويض. تحقق من إعدادات الاتصال."
+  generic_error: "خطأ: {error}"
+  default_tool_name: "الخدمة"

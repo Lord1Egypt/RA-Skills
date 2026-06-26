@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2024-12-20",
+  "disclaimer": "Visa policies may change. Verify with official sources before travel.",
+  
+  "visa_free_15_days": {
+    "name": "15-Day Visa-Free",
+    "description": "Single entry, max 15 days stay",
+    "valid_from": "2024-11-30",
+    "valid_until": "2025-12-31",
+    "max_stay_days": 15,
+    "countries": [
+      {"code": "FR", "name": "France"},
+      {"code": "DE", "name": "Germany"},
+      {"code": "IT", "name": "Italy"},
+      {"code": "NL", "name": "Netherlands"},
+      {"code": "ES", "name": "Spain"},
+      {"code": "MY", "name": "Malaysia"},
+      {"code": "SG", "name": "Singapore"},
+      {"code": "TH", "name": "Thailand"},
+      {"code": "JP", "name": "Japan"},
+      {"code": "KR", "name": "South Korea"},
+      {"code": "AU", "name": "Australia"},
+      {"code": "NZ", "name": "New Zealand"},
+      {"code": "PL", "name": "Poland"},
+      {"code": "CH", "name": "Switzerland"},
+      {"code": "IE", "name": "Ireland"},
+      {"code": "AT", "name": "Austria"},
+      {"code": "BE", "name": "Belgium"},
+      {"code": "HU", "name": "Hungary"},
+      {"code": "GR", "name": "Greece"},
+      {"code": "PT", "name": "Portugal"},
+      {"code": "NO", "name": "Norway"},
+      {"code": "FI", "name": "Finland"},
+      {"code": "DK", "name": "Denmark"},
+      {"code": "SE", "name": "Sweden"},
+      {"code": "CZ", "name": "Czech Republic"},
+      {"code": "SK", "name": "Slovakia"},
+      {"code": "SI", "name": "Slovenia"},
+      {"code": "LU", "name": "Luxembourg"},
+      {"code": "MT", "name": "Malta"},
+      {"code": "IS", "name": "Iceland"},
+      {"code": "AD", "name": "Andorra"},
+      {"code": "MC", "name": "Monaco"},
+      {"code": "LI", "name": "Liechtenstein"},
+      {"code": "SM", "name": "San Marino"},
+      {"code": "BG", "name": "Bulgaria"},
+      {"code": "RO", "name": "Romania"},
+      {"code": "HR", "name": "Croatia"},
+      {"code": "ME", "name": "Montenegro"},
+      {"code": "MK", "name": "North Macedonia"},
+      {"code": "AL", "name": "Albania"},
+      {"code": "BA", "name": "Bosnia and Herzegovina"},
+      {"code": "RS", "name": "Serbia"},
+      {"code": "BY", "name": "Belarus"}
+    ]
+  },
+
+  "transit_144h": {
+    "name": "144-Hour Transit Visa-Free",
+    "description": "Transit through China to third country/region",
+    "max_stay_hours": 144,
+    "requirements": [
+      "Valid international travel document",
+      "Confirmed onward ticket to third country/region within 144 hours",
+      "Enter and exit through same port"
+    ],
+    "applicable_ports": [
+      "Beijing Capital International Airport",
+      "Beijing Daxing International Airport",
+      "Shanghai Pudong International Airport",
+      "Shanghai Hongqiao International Airport",
+      "Guangzhou Baiyun International Airport",
+      "Chengdu Tianfu International Airport",
+      "Xi'an Xianyang International Airport",
+      "Xiamen Gaoqi International Airport",
+      "Kunming Changshui International Airport",
+      "Hangzhou Xiaoshan International Airport",
+      "Nanjing Lukou International Airport",
+      "Shenzhen Bao'an International Airport"
+    ],
+    "countries": [
+      "Austria", "Belgium", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary",
+      "Iceland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Slovakia",
+      "Slovenia", "Spain", "Sweden", "Switzerland", "Monaco", "Russia", "United Kingdom", "Ireland", "Cyprus", "Bulgaria",
+      "Romania", "Ukraine", "Serbia", "Croatia", "Bosnia and Herzegovina", "Montenegro", "North Macedonia", "Albania", "Belarus",
+      "United States", "Canada", "Brazil", "Mexico", "Argentina", "Chile", "Australia", "New Zealand", "South Korea", "Japan",
+      "Singapore", "Brunei", "United Arab Emirates", "Qatar"
+    ]
+  },
+
+  "visa_required": {
+    "name": "Visa Required",
+    "description": "Apply in advance at Chinese embassy/consulate",
+    "processing_time": "4-7 business days",
+    "visa_types": [
+      {
+        "type": "L",
+        "name": "Tourist Visa",
+        "validity": "3 months",
+        "max_stay": "30 days",
+        "requirements": ["Passport", "Photo", "Application form", "Itinerary", "Hotel booking", "Round-trip flight"]
+      }
+    ]
+  },
+
+  "hainan_visa_free": {
+    "name": "Hainan 59-Country Visa-Free",
+    "max_stay_days": 30,
+    "note": "Restricted to Hainan Province only"
+  }
+}

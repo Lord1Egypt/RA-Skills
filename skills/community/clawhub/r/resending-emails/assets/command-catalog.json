@@ -1,0 +1,1601 @@
+{
+  "meta": {
+    "skill": "resend-cli",
+    "version": "3.0.0",
+    "cli_version": "1.4.1",
+    "last_reviewed": "2026-03-14",
+    "detail_levels": {
+      "source_inspected": "The exact command implementation or raw source file was inspected.",
+      "readme_confirmed": "The behaviour is directly documented in the official README/changelog.",
+      "tree_confirmed": "The command exists in the public CLI tree, but this skill did not inspect every option in source."
+    }
+  },
+  "resource_index": {
+    "api-keys": [
+      "api-keys create",
+      "api-keys delete",
+      "api-keys list"
+    ],
+    "auth": [
+      "auth list",
+      "auth remove",
+      "auth rename",
+      "auth switch"
+    ],
+    "broadcasts": [
+      "broadcasts create",
+      "broadcasts delete",
+      "broadcasts get",
+      "broadcasts list",
+      "broadcasts send",
+      "broadcasts update"
+    ],
+    "contact-properties": [
+      "contact-properties create",
+      "contact-properties delete",
+      "contact-properties get",
+      "contact-properties list",
+      "contact-properties update"
+    ],
+    "contacts": [
+      "contacts add-segment",
+      "contacts create",
+      "contacts delete",
+      "contacts get",
+      "contacts list",
+      "contacts remove-segment",
+      "contacts update",
+      "contacts update-topics"
+    ],
+    "domains": [
+      "domains create",
+      "domains delete",
+      "domains get",
+      "domains list",
+      "domains update",
+      "domains verify"
+    ],
+    "emails": [
+      "emails batch",
+      "emails cancel",
+      "emails get",
+      "emails list",
+      "emails send",
+      "emails update"
+    ],
+    "emails receiving": [
+      "emails receiving attachment",
+      "emails receiving attachments",
+      "emails receiving forward",
+      "emails receiving get",
+      "emails receiving list",
+      "emails receiving listen"
+    ],
+    "root": [
+      "doctor",
+      "login",
+      "logout",
+      "whoami"
+    ],
+    "segments": [
+      "segments create",
+      "segments delete",
+      "segments get",
+      "segments list"
+    ],
+    "templates": [
+      "templates create",
+      "templates delete",
+      "templates duplicate",
+      "templates get",
+      "templates list",
+      "templates publish",
+      "templates update"
+    ],
+    "topics": [
+      "topics create",
+      "topics delete",
+      "topics get",
+      "topics list",
+      "topics update"
+    ],
+    "webhooks": [
+      "webhooks create",
+      "webhooks delete",
+      "webhooks get",
+      "webhooks list",
+      "webhooks listen",
+      "webhooks update"
+    ]
+  },
+  "commands": [
+    {
+      "name": "doctor",
+      "resource": "root",
+      "category": "diagnostics",
+      "detail_level": "readme_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--json",
+        "-q"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "ok": true,
+          "checks": [
+            {
+              "name": "CLI Version",
+              "status": "pass"
+            }
+          ]
+        }
+      },
+      "notes": [
+        "Best first command when auth or environment is unclear.",
+        "Checks CLI version, API key resolution, domains, and AI-agent detection."
+      ]
+    },
+    {
+      "name": "login",
+      "resource": "root",
+      "category": "auth",
+      "detail_level": "readme_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--key",
+        "--json",
+        "-q"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "success": true,
+          "config_path": "~/.config/resend/credentials.json"
+        }
+      },
+      "notes": [
+        "Use mostly for human bootstrap.",
+        "In non-interactive mode, --key is required."
+      ]
+    },
+    {
+      "name": "auth switch",
+      "resource": "auth",
+      "category": "auth",
+      "detail_level": "readme_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "text_or_json"
+      },
+      "notes": [
+        "Prefer explicit --profile on live mutations for agents."
+      ]
+    },
+    {
+      "name": "auth list",
+      "resource": "auth",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists stored profiles."
+      ]
+    },
+    {
+      "name": "auth rename",
+      "resource": "auth",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Use carefully in shared automation setups."
+      ]
+    },
+    {
+      "name": "auth remove",
+      "resource": "auth",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Removes one stored profile."
+      ]
+    },
+    {
+      "name": "logout",
+      "resource": "root",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Clears stored credentials."
+      ]
+    },
+    {
+      "name": "whoami",
+      "resource": "root",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Useful for fast account identity checks if installed CLI exposes it as expected."
+      ]
+    },
+    {
+      "name": "emails send",
+      "resource": "emails",
+      "category": "transactional",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--from",
+        "--to",
+        "--subject",
+        "one of --text|--html|--html-file"
+      ],
+      "high_value_optional": [
+        "--cc",
+        "--bcc",
+        "--reply-to",
+        "--scheduled-at",
+        "--attachment",
+        "--headers",
+        "--tags",
+        "--idempotency-key"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "id": "email-id"
+        }
+      },
+      "notes": [
+        "For agents, pass all required flags explicitly.",
+        "Current flag surface does not show a direct hosted-template send path."
+      ]
+    },
+    {
+      "name": "emails batch",
+      "resource": "emails",
+      "category": "transactional",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--file"
+      ],
+      "high_value_optional": [
+        "--idempotency-key",
+        "--batch-validation strict|permissive"
+      ],
+      "returns": {
+        "kind": "list_or_partial",
+        "shape_hint": [
+          {
+            "id": "email-id"
+          }
+        ]
+      },
+      "notes": [
+        "Hard limit 100 emails per request.",
+        "Unsupported per-email fields: attachments, scheduled_at."
+      ]
+    },
+    {
+      "name": "emails list",
+      "resource": "emails",
+      "category": "transactional",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list",
+        "shape_hint": {
+          "object": "list",
+          "has_more": false,
+          "data": []
+        }
+      },
+      "notes": [
+        "List sent email summaries. Use emails get for full details."
+      ]
+    },
+    {
+      "name": "emails get",
+      "resource": "emails",
+      "category": "transactional",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<email-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "email",
+          "id": "email-id"
+        }
+      },
+      "notes": [
+        "Good verification step after send/update."
+      ]
+    },
+    {
+      "name": "emails update",
+      "resource": "emails",
+      "category": "transactional",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<email-id>",
+        "--scheduled-at"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "email",
+          "id": "email-id"
+        }
+      },
+      "notes": [
+        "Updates scheduled transactional email timing."
+      ]
+    },
+    {
+      "name": "emails cancel",
+      "resource": "emails",
+      "category": "transactional",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<email-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "email",
+          "id": "email-id"
+        }
+      },
+      "notes": [
+        "Cancels a scheduled email."
+      ]
+    },
+    {
+      "name": "emails receiving list",
+      "resource": "emails receiving",
+      "category": "inbound",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists received emails. Requires receiving to be enabled on the domain."
+      ]
+    },
+    {
+      "name": "emails receiving get",
+      "resource": "emails receiving",
+      "category": "inbound",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<received-email-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches full inbound email data, including raw download URL and body fields."
+      ]
+    },
+    {
+      "name": "emails receiving attachments",
+      "resource": "emails receiving",
+      "category": "inbound",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<received-email-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists inbound attachment metadata and download URLs."
+      ]
+    },
+    {
+      "name": "emails receiving attachment",
+      "resource": "emails receiving",
+      "category": "inbound",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<received-email-id>",
+        "<attachment-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one inbound attachment record."
+      ]
+    },
+    {
+      "name": "emails receiving forward",
+      "resource": "emails receiving",
+      "category": "inbound",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<received-email-id>",
+        "--to",
+        "--from"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Forwards an inbound email; this is different from replying in-thread."
+      ]
+    },
+    {
+      "name": "emails receiving listen",
+      "resource": "emails receiving",
+      "category": "inbound",
+      "detail_level": "source_inspected",
+      "bounded": false,
+      "streaming": true,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--interval",
+        "--json"
+      ],
+      "returns": {
+        "kind": "ndjson_stream"
+      },
+      "notes": [
+        "Long-running poller.",
+        "JSON mode emits one JSON object per line.",
+        "Exits after 5 consecutive API failures."
+      ]
+    },
+    {
+      "name": "domains create",
+      "resource": "domains",
+      "category": "domains",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--name"
+      ],
+      "high_value_optional": [
+        "--region",
+        "--tls",
+        "--sending",
+        "--receiving"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "domain",
+          "records": []
+        }
+      },
+      "notes": [
+        "Returns DNS records to configure externally."
+      ]
+    },
+    {
+      "name": "domains list",
+      "resource": "domains",
+      "category": "domains",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Useful for checking status across multiple domains."
+      ]
+    },
+    {
+      "name": "domains get",
+      "resource": "domains",
+      "category": "domains",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<domain-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Use after verification attempts to poll current status."
+      ]
+    },
+    {
+      "name": "domains update",
+      "resource": "domains",
+      "category": "domains",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<domain-id>",
+        "one of --tls|--open-tracking|--no-open-tracking|--click-tracking|--no-click-tracking"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Updates TLS and tracking settings.",
+        "Does not currently expose a sending/receiving capability toggle in the inspected source."
+      ]
+    },
+    {
+      "name": "domains verify",
+      "resource": "domains",
+      "category": "domains",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<domain-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Verification is async; follow with domains get."
+      ]
+    },
+    {
+      "name": "domains delete",
+      "resource": "domains",
+      "category": "domains",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<domain-id>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Non-interactive usage should include --yes."
+      ]
+    },
+    {
+      "name": "webhooks create",
+      "resource": "webhooks",
+      "category": "webhooks",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--endpoint",
+        "--events"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "webhook",
+          "id": "webhook-id",
+          "signing_secret": "..."
+        }
+      },
+      "notes": [
+        "Save the signing secret immediately; it is shown once."
+      ]
+    },
+    {
+      "name": "webhooks list",
+      "resource": "webhooks",
+      "category": "webhooks",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists registered webhooks."
+      ]
+    },
+    {
+      "name": "webhooks get",
+      "resource": "webhooks",
+      "category": "webhooks",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<webhook-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one webhook."
+      ]
+    },
+    {
+      "name": "webhooks update",
+      "resource": "webhooks",
+      "category": "webhooks",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<webhook-id>",
+        "at least one of --endpoint|--events|--status"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "--events replaces the full event list; it is not additive."
+      ]
+    },
+    {
+      "name": "webhooks delete",
+      "resource": "webhooks",
+      "category": "webhooks",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<webhook-id>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a webhook."
+      ]
+    },
+    {
+      "name": "webhooks listen",
+      "resource": "webhooks",
+      "category": "webhooks",
+      "detail_level": "source_inspected",
+      "bounded": false,
+      "streaming": true,
+      "destructive": false,
+      "required": [
+        "--url"
+      ],
+      "high_value_optional": [
+        "--forward-to",
+        "--events",
+        "--port",
+        "--json"
+      ],
+      "returns": {
+        "kind": "ndjson_stream"
+      },
+      "notes": [
+        "Starts local server and creates a temporary webhook.",
+        "Deletes the temporary webhook on clean exit.",
+        "JSON mode emits one JSON object per event."
+      ]
+    },
+    {
+      "name": "api-keys create",
+      "resource": "api-keys",
+      "category": "auth",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--name"
+      ],
+      "high_value_optional": [
+        "--permission",
+        "--domain-id"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "id": "api-key-id",
+          "token": "re_xxx"
+        }
+      },
+      "notes": [
+        "Token is returned once only."
+      ]
+    },
+    {
+      "name": "api-keys list",
+      "resource": "api-keys",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists API keys or summaries thereof."
+      ]
+    },
+    {
+      "name": "api-keys delete",
+      "resource": "api-keys",
+      "category": "auth",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<api-key-id>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes an API key."
+      ]
+    },
+    {
+      "name": "contacts create",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--email"
+      ],
+      "high_value_optional": [
+        "--first-name",
+        "--last-name",
+        "--unsubscribed",
+        "--properties",
+        "--segment-id"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "contact",
+          "id": "contact-id"
+        }
+      },
+      "notes": [
+        "Properties are passed as a JSON string.",
+        "first-name/last-name map to standard properties."
+      ]
+    },
+    {
+      "name": "contacts list",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists contacts."
+      ]
+    },
+    {
+      "name": "contacts get",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<contact-id-or-email>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one contact."
+      ]
+    },
+    {
+      "name": "contacts update",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<contact-id-or-email>"
+      ],
+      "high_value_optional": [
+        "--properties",
+        "--unsubscribed",
+        "--segment-id",
+        "--topic-id"
+      ],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Use with care; inspect local help for exact flags."
+      ]
+    },
+    {
+      "name": "contacts delete",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<contact-id-or-email>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a contact."
+      ]
+    },
+    {
+      "name": "contacts add-segment",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Adds a contact to a segment."
+      ]
+    },
+    {
+      "name": "contacts remove-segment",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Removes a contact from a segment."
+      ]
+    },
+    {
+      "name": "contacts update-topics",
+      "resource": "contacts",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Updates topic subscriptions for a contact."
+      ]
+    },
+    {
+      "name": "contact-properties create",
+      "resource": "contact-properties",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Creates a custom contact property."
+      ]
+    },
+    {
+      "name": "contact-properties list",
+      "resource": "contact-properties",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists contact property definitions."
+      ]
+    },
+    {
+      "name": "contact-properties get",
+      "resource": "contact-properties",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one contact property definition."
+      ]
+    },
+    {
+      "name": "contact-properties update",
+      "resource": "contact-properties",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Updates a contact property definition."
+      ]
+    },
+    {
+      "name": "contact-properties delete",
+      "resource": "contact-properties",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a contact property definition."
+      ]
+    },
+    {
+      "name": "topics create",
+      "resource": "topics",
+      "category": "audience",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--name"
+      ],
+      "high_value_optional": [
+        "--description",
+        "--default-subscription opt_in|opt_out"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "id": "topic-id"
+        }
+      },
+      "notes": [
+        "Topics control recipient-facing preference categories."
+      ]
+    },
+    {
+      "name": "topics list",
+      "resource": "topics",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists topics."
+      ]
+    },
+    {
+      "name": "topics get",
+      "resource": "topics",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<topic-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one topic."
+      ]
+    },
+    {
+      "name": "topics update",
+      "resource": "topics",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<topic-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Updates a topic."
+      ]
+    },
+    {
+      "name": "topics delete",
+      "resource": "topics",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<topic-id>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a topic."
+      ]
+    },
+    {
+      "name": "segments create",
+      "resource": "segments",
+      "category": "audience",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--name"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "segment",
+          "id": "segment-id",
+          "name": "..."
+        }
+      },
+      "notes": [
+        "Segments are sender-controlled targeting groups. Prefer them over deprecated audiences."
+      ]
+    },
+    {
+      "name": "segments list",
+      "resource": "segments",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists segments."
+      ]
+    },
+    {
+      "name": "segments get",
+      "resource": "segments",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<segment-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one segment."
+      ]
+    },
+    {
+      "name": "segments delete",
+      "resource": "segments",
+      "category": "audience",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<segment-id>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a segment."
+      ]
+    },
+    {
+      "name": "broadcasts create",
+      "resource": "broadcasts",
+      "category": "campaigns",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--from",
+        "--subject",
+        "--segment-id",
+        "one of --html|--html-file|--text"
+      ],
+      "high_value_optional": [
+        "--name",
+        "--reply-to",
+        "--preview-text",
+        "--topic-id",
+        "--send",
+        "--scheduled-at"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "id": "broadcast-id"
+        }
+      },
+      "notes": [
+        "Creates a draft unless --send is given.",
+        "Supports natural-language scheduling when paired with --send."
+      ]
+    },
+    {
+      "name": "broadcasts list",
+      "resource": "broadcasts",
+      "category": "campaigns",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists broadcast summaries."
+      ]
+    },
+    {
+      "name": "broadcasts get",
+      "resource": "broadcasts",
+      "category": "campaigns",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<broadcast-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches full broadcast details."
+      ]
+    },
+    {
+      "name": "broadcasts update",
+      "resource": "broadcasts",
+      "category": "campaigns",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<broadcast-id>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Updates a draft broadcast."
+      ]
+    },
+    {
+      "name": "broadcasts send",
+      "resource": "broadcasts",
+      "category": "campaigns",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<broadcast-id>"
+      ],
+      "high_value_optional": [
+        "--scheduled-at"
+      ],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Only API/CLI-created drafts can be sent this way.",
+        "Supports natural-language scheduling."
+      ]
+    },
+    {
+      "name": "broadcasts delete",
+      "resource": "broadcasts",
+      "category": "campaigns",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<broadcast-id>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a broadcast."
+      ]
+    },
+    {
+      "name": "templates create",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "--name",
+        "one of --html|--html-file"
+      ],
+      "high_value_optional": [
+        "--subject",
+        "--text",
+        "--from",
+        "--reply-to",
+        "--alias",
+        "--var"
+      ],
+      "returns": {
+        "kind": "object",
+        "shape_hint": {
+          "object": "template",
+          "id": "template-id"
+        }
+      },
+      "notes": [
+        "Creates a draft template."
+      ]
+    },
+    {
+      "name": "templates list",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [],
+      "high_value_optional": [
+        "--limit",
+        "--after",
+        "--before"
+      ],
+      "returns": {
+        "kind": "list"
+      },
+      "notes": [
+        "Lists templates."
+      ]
+    },
+    {
+      "name": "templates get",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<template-id-or-alias>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Fetches one template."
+      ]
+    },
+    {
+      "name": "templates update",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<template-id-or-alias>"
+      ],
+      "high_value_optional": [
+        "--subject",
+        "--html",
+        "--html-file",
+        "--var"
+      ],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Updates a draft or draft portion of a template."
+      ]
+    },
+    {
+      "name": "templates publish",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<template-id-or-alias>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Publishes a draft template or re-publishes with latest draft changes."
+      ]
+    },
+    {
+      "name": "templates duplicate",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "source_inspected",
+      "bounded": true,
+      "streaming": false,
+      "destructive": false,
+      "required": [
+        "<template-id-or-alias>"
+      ],
+      "high_value_optional": [],
+      "returns": {
+        "kind": "object"
+      },
+      "notes": [
+        "Creates a new draft copy."
+      ]
+    },
+    {
+      "name": "templates delete",
+      "resource": "templates",
+      "category": "templates",
+      "detail_level": "tree_confirmed",
+      "bounded": true,
+      "streaming": false,
+      "destructive": true,
+      "required": [
+        "<template-id-or-alias>"
+      ],
+      "high_value_optional": [
+        "--yes"
+      ],
+      "returns": {
+        "kind": "object_or_text"
+      },
+      "notes": [
+        "Deletes a template."
+      ]
+    }
+  ]
+}

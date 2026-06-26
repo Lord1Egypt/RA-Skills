@@ -1,0 +1,59 @@
+{
+  "skill_name": "ontology-clawra",
+  "version": "3.3",
+  "evals": [
+    {
+      "id": 1,
+      "name": "auto_learn_trigger",
+      "prompt": "用户说：'好的，我确认你说的方案是对的'\n\n场景：刚才进行了一个推理（建议采购RTZ-80调压箱），用户确认了这个推理结果。\n\n请执行：自动将这个推理结果抽取到本体，并升级置信度",
+      "expected_output": "应该自动执行：1. 识别推理结果中的实体 2. 写入graph.jsonl 3. 升级ASSUMED→CONFIRMED 4. 反馈用户'已学习到本体'",
+      "assertions": [
+        {"check": "entity_extracted", "expected": true},
+        {"check": "confidence_upgraded", "expected": "CONFIRMED"},
+        {"check": "user_feedback_given", "expected": true}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ontology_lookup_failure_handling",
+      "prompt": "用户问：'帮我选一个适合500户小区的燃气调压箱'\n\n场景：本体中没有500户小区的调压箱选型数据",
+      "expected_output": "应该：1. 检查本体无数据 2. 标注UNKNOWN 3. 主动建议用户'是否要补充本体数据'",
+      "assertions": [
+        {"check": "ontology_checked", "expected": true},
+        {"check": "unknown_labeled", "expected": true},
+        {"check": "suggestion_given", "expected": true}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "confidence_labeling",
+      "prompt": "用户问：'一般家庭燃气用量是多少？'\n\n场景：本体中没有确切数据，需要基于常识推理",
+      "expected_output": "应该：1. 标注置信度为ASSUMED 2. 声明'以下为外部知识推理' 3. 列出假设条件",
+      "assertions": [
+        {"check": "assumed_labeled", "expected": true},
+        {"check": "source_declared", "expected": true},
+        {"check": "assumptions_listed", "expected": true}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "reasoning_with_ontology",
+      "prompt": "用户问：'我在做AI创业，目标垂直领域Agent，本体论如何帮助？'\n\n场景：本体中有相关数据（红海规避法则、垂直领域策略）",
+      "expected_output": "应该：1. check_ontology()查询本体 2. 使用CONFIRMED数据 3. 直接推理出结果",
+      "assertions": [
+        {"check": "ontology_queried", "expected": true},
+        {"check": "confirmed_data_used", "expected": true},
+        {"check": "direct_reasoning", "expected": true}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "skill_trigger_keywords",
+      "prompt": "用户说：'帮我推理一下这个选型问题'",
+      "expected_output": "应该触发ontology-clawra技能（关键词：推理、选型）",
+      "assertions": [
+        {"check": "skill_triggered", "expected": true}
+      ]
+    }
+  ]
+}

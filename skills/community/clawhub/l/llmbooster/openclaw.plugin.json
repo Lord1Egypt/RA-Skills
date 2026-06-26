@@ -1,0 +1,15 @@
+{
+  "name": "llmbooster",
+  "version": "1.0.0",
+  "description": "Multi-step thinking pipeline to boost LLM output quality",
+  "entry": "booster.py",
+  "commands": [
+    {
+      "name": "booster",
+      "description": "Control LLMBooster skill",
+      "subcommands": ["enable", "disable", "status", "depth", "help"]
+    }
+  ],
+  "config_schema": "config.schema.json",
+  "prompts_dir": "prompts/"
+}

@@ -1,0 +1,56 @@
+﻿{
+  "simulation_type": "thermal_coupled",
+  "name": "thermal_coupled_template",
+  "description": "Topic-neutral thermal or multiphysics coupling template. Configure stack, thermal properties, heat sources, and boundary conditions before running.",
+  "requires_configuration": true,
+  "model_path": "<CONFIGURE_INPUT_MODEL_PATH_IF_COUPLED>",
+  "device_stack": {
+    "name": "<CONFIGURE_DEVICE_OR_SAMPLE_NAME>",
+    "dimension": "<CONFIGURE_DIMENSION_1D_2D_OR_3D>",
+    "device_width_nm": "<CONFIGURE_DEVICE_WIDTH_NM>",
+    "layers": [
+      {
+        "name": "<LAYER_1_NAME>",
+        "material": "<LAYER_1_MATERIAL>",
+        "thickness_nm": "<CONFIGURE_LAYER_1_THICKNESS_NM>"
+      },
+      {
+        "name": "<LAYER_2_NAME>",
+        "material": "<LAYER_2_MATERIAL>",
+        "thickness_nm": "<CONFIGURE_LAYER_2_THICKNESS_NM>"
+      },
+      {
+        "name": "<LAYER_3_NAME>",
+        "material": "<LAYER_3_MATERIAL>",
+        "thickness_nm": "<CONFIGURE_LAYER_3_THICKNESS_NM>"
+      }
+    ]
+  },
+  "thermal_properties": {
+    "<LAYER_1_MATERIAL>": {
+      "thermal_conductivity_W_per_mK": "<CONFIGURE_LAYER_1_THERMAL_CONDUCTIVITY>",
+      "density_kg_per_m3": "<CONFIGURE_LAYER_1_DENSITY>",
+      "heat_capacity_J_per_kgK": "<CONFIGURE_LAYER_1_HEAT_CAPACITY>"
+    },
+    "<LAYER_2_MATERIAL>": {
+      "thermal_conductivity_W_per_mK": "<CONFIGURE_LAYER_2_THERMAL_CONDUCTIVITY>",
+      "density_kg_per_m3": "<CONFIGURE_LAYER_2_DENSITY>",
+      "heat_capacity_J_per_kgK": "<CONFIGURE_LAYER_2_HEAT_CAPACITY>"
+    }
+  },
+  "thermal_boundaries": {
+    "ambient_temperature_K": "<CONFIGURE_AMBIENT_TEMPERATURE_K>",
+    "top": "<CONFIGURE_TOP_BOUNDARY_CONDITION>",
+    "bottom": "<CONFIGURE_BOTTOM_BOUNDARY_CONDITION>",
+    "sides": "<CONFIGURE_SIDE_BOUNDARY_CONDITION>"
+  },
+  "heat_sources": {
+    "optical_absorption": "<CONFIGURE_TRUE_FALSE>",
+    "joule_heating": "<CONFIGURE_TRUE_FALSE>",
+    "other_sources": "<CONFIGURE_IF_RELEVANT>"
+  },
+  "temperature_coefficients": "<CONFIGURE_TEMPERATURE_DEPENDENT_MODELS>",
+  "coupling_mode": "<CONFIGURE_COUPLING_MODE>",
+  "bias_range": "<CONFIGURE_BIAS_RANGE_IF_RELEVANT>",
+  "output_dir": "output/thermal_configured_project"
+}

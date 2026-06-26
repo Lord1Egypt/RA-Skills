@@ -1,35 +1,32 @@
----
-name: "China Stock Smallcap"
+﻿---
+name: china-stock-smallcap
 description: "小市值选股（纯 OpenClaw 公开源版）：基于东财公开行情做小市值近似筛选。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-stock-smallcap"
-sourceUrl: "https://clawhub.ai/skills/china-stock-smallcap"
+version: 2.0.0
+metadata:
+  openclaw:
+    requires:
+      anyBins:
+        - python3
+        - python
 ---
 
-# China Stock Smallcap
+# A 股小市值选股（公开源）
 
-> 小市值选股（纯 OpenClaw 公开源版）：基于东财公开行情做小市值近似筛选。
+## 工具
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-stock-smallcap`
-- **Source URL:** [https://clawhub.ai/skills/china-stock-smallcap](https://clawhub.ai/skills/china-stock-smallcap)
+- `exec`：运行 `{baseDir}/scripts/a_share_public_selector.py`
+- `web_search`、`web_fetch`：补充资讯
 
-## Overview
+## 调用
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/china-stock-smallcap
+python3 "{baseDir}/scripts/a_share_public_selector.py" smallcap 10
 ```
+
+返回 JSON 字段：`ok`、`strategy_type`、`stocks`、`message`。
+
+## 说明
+
+- 本技能不依赖 `WENCAI_COOKIE`、不依赖 python-tools。
+- 该策略是公开源近似版本，不等价问财公式。
+- 输出仅供参考，不构成投资建议。

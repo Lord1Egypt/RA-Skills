@@ -1,0 +1,54 @@
+{
+  "domain": "清算托管域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "clearing.md",
+  "key_terms": [
+    {"term": "清算", "definition": "交易日结束后对成交数据进行轧差计算、费用计算和交收指令生成"},
+    {"term": "交收", "definition": "清算完成后执行资金和证券的实际划转(A股T+1)"},
+    {"term": "轧差", "definition": "将多笔交易合并计算净额，减少实际资金和证券划转量"},
+    {"term": "资金冻结", "definition": "委托提交时按委托金额+预估费用冻结可用资金"},
+    {"term": "对账", "definition": "将本方数据与交易所/中登/银行数据进行比对核实"},
+    {"term": "零股", "definition": "不足一手(100股)的股份，A股允许零股卖出不允许零股买入"},
+    {"term": "托管", "definition": "由独立第三方保管产品资产并监督投资行为"},
+    {"term": "估值", "definition": "对产品持仓资产按公允价值计算市值"},
+    {"term": "中国结算(中登)", "definition": "中国证券登记结算有限公司，负责证券登记和结算"},
+    {"term": "港股通", "definition": "内地投资者通过沪深港通机制买卖港股，T+2交收"},
+    {"term": "资金头寸", "definition": "券商各账户的资金余额和流动性状况"},
+    {"term": "手工调账", "definition": "经审批后对账务进行人工调整，需双人复核"}
+  ],
+  "core_entities": [
+    {"name": "清算批次", "description": "每个交易日的清算任务批次"},
+    {"name": "资金冻结记录", "description": "委托对应的资金冻结/解冻记录"},
+    {"name": "交收指令", "description": "清算计算后生成的资金和证券划转指令"},
+    {"name": "零股记录", "description": "送股/配股等产生的不足一手的持仓"},
+    {"name": "托管账户", "description": "产品资产的托管账户"},
+    {"name": "估值记录", "description": "产品每日估值计算结果"},
+    {"name": "对账记录", "description": "与各方数据比对的结果"},
+    {"name": "异常记录", "description": "清算过程中发现的异常事项"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "收盘后执行清算", "description": "必须在收盘后执行，防止数据不完整"},
+    {"rule": "清算结果人工复核", "description": "清算结果必须经过人工复核确认"},
+    {"rule": "已完成清算不可回滚", "description": "已交收的资金和证券无法自动回滚"},
+    {"rule": "手工调账双人复核", "description": "所有手工调账必须申请人≠确认人"},
+    {"rule": "A股T+1交收", "description": "A股当日成交次日完成交收"},
+    {"rule": "港股通T+2交收", "description": "港股通交易T+2日完成交收"},
+    {"rule": "零股仅允许卖出", "description": "A股不允许买入不足100股，仅允许卖出零股"},
+    {"rule": "托管人不得自行划拨", "description": "未经管理人指令不得操作托管资产"},
+    {"rule": "估值未对账不得发布", "description": "净值必须经过对账确认后才能发布"},
+    {"rule": "日终账户不得透支", "description": "日终必须确保所有账户头寸≥0"}
+  ],
+  "common_missing_items": [
+    {"item": "清算数据不平处理", "description": "交易所数据与柜台数据不一致时的对账和修正"},
+    {"item": "交收部分失败隔离", "description": "批量交收中部分账户资金不足的隔离处理"},
+    {"item": "并发冻结原子性", "description": "同一账户多笔委托并发冻结的原子性保证"},
+    {"item": "日终对账一致性", "description": "冻结总额+可用余额=总余额的一致性校验"},
+    {"item": "多市场交收周期差异", "description": "A股T+1和港股通T+2不可混用同一交收批次"},
+    {"item": "港股通汇率异常处理", "description": "参考汇率获取失败时的降级策略"},
+    {"item": "清算断点恢复", "description": "清算过程中系统宕机后的断点续传机制"},
+    {"item": "异常处理升级机制", "description": "异常超2小时自动升级至上级处理"},
+    {"item": "零股送股自动检测", "description": "送股后零股的自动检测和标记"},
+    {"item": "投资监督实时性", "description": "托管人对投资比例超限的实时检测和警告"}
+  ]
+}

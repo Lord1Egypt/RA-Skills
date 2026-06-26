@@ -1,0 +1,33 @@
+{
+  "skill": {
+    "name": "ai-market-analyst",
+    "display_name": "全球金融市场AI分析师",
+    "version": "1.0.0",
+    "author": "ai-gaoqian",
+    "emoji": "📊",
+    "price": 0.50,
+    "currency": "CNY",
+    "payment_protocol": "支付宝AI收",
+    "endpoint": "http://8.145.54.67:3000/skill/market-analysis",
+    "settlement": "0费率实时到账"
+  },
+  "capabilities": {
+    "regions": ["global", "US", "CN", "EU", "JP", "KR"],
+    "sectors": ["AI/ML", "新能源", "半导体", "生物科技", "金融科技", "SaaS", "量子计算"],
+    "metrics": ["trend", "confidence", "growth_rate", "volatility", "volume"],
+    "update_frequency": "实时"
+  },
+  "payment_flow": {
+    "step_1_response": 402,
+    "step_1_header": "alipay_* short link",
+    "step_2_confirm": "POST /pay-confirm",
+    "step_3_call": "GET /skill/xxx with alipay-token header",
+    "fee_rate": "0% (个人开发者优惠)"
+  },
+  "pricing": {
+    "per_call": 0.50,
+    "bulk_discounts": null,
+    "subscription": null,
+    "settlement_cycle": "实时"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "zh-CN": {
+    "team-leader": "团队负责人",
+    "product-manager": "产品经理",
+    "tech-architect": "技术架构师",
+    "backend-engineer": "后端工程师",
+    "frontend-engineer": "前端工程师",
+    "fullstack-engineer": "全栈工程师",
+    "qa-engineer": "测试工程师",
+    "ux-designer": "交互设计师"
+  },
+  "en": {
+    "team-leader": "Team Leader",
+    "product-manager": "Product Manager",
+    "tech-architect": "Technical Architect",
+    "backend-engineer": "Backend Engineer",
+    "frontend-engineer": "Frontend Engineer",
+    "fullstack-engineer": "Fullstack Engineer",
+    "qa-engineer": "QA Engineer",
+    "ux-designer": "UX Designer"
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "style": {
+      "text_size": {
+        "normal_v2": {
+          "default": "normal",
+          "pc": "normal",
+          "mobile": "heading"
+        }
+      }
+    }
+  },
+  "body": {
+    "direction": "horizontal",
+    "horizontal_spacing": "8px",
+    "vertical_spacing": "8px",
+    "horizontal_align": "left",
+    "vertical_align": "top",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "stretch",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "elements": [
+              {
+                "tag": "img",
+                "img_key": "${poster_img_key}",
+                "preview": true,
+                "scale_type": "fit_horizontal",
+                "corner_radius": "8px"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 2,
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>📖 剧集简介</font>**\n${overview}",
+                "text_align": "left",
+                "text_size": "normal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "column_set",
+        "horizontal_spacing": "12px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "background_style": "blue-50",
+            "padding": "12px 12px 12px 12px",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>⭐ 评分</font>**"
+              },
+              {
+                "tag": "markdown",
+                "content": "${rating}"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "background_style": "blue-50",
+            "padding": "12px 12px 12px 12px",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>📅 首播</font>**"
+              },
+              {
+                "tag": "markdown",
+                "content": "${first_air_date}"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "background_style": "blue-50",
+            "padding": "12px 12px 12px 12px",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>📡 状态</font>**"
+              },
+              {
+                "tag": "markdown",
+                "content": "${status}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "column_set",
+        "horizontal_spacing": "12px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "background_style": "blue-50",
+            "padding": "12px 12px 12px 12px",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>📺 季/集</font>**"
+              },
+              {
+                "tag": "markdown",
+                "content": "${seasons_episodes}"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "background_style": "blue-50",
+            "padding": "12px 12px 12px 12px",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>⏱️ 单集时长</font>**"
+              },
+              {
+                "tag": "markdown",
+                "content": "${episode_runtime}"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "background_style": "blue-50",
+            "padding": "12px 12px 12px 12px",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**<font color='blue-600'>🌍 国家/地区</font>**"
+              },
+              {
+                "tag": "markdown",
+                "content": "${country}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "**<font color='blue-600'>🎭 类型</font>**\n${genres}"
+      },
+      {
+        "tag": "markdown",
+        "content": "**<font color='blue-600'>🎬 主创</font>**：${creator}\n**<font color='blue-600'>👥 主演</font>**\n${cast}",
+        "text_size": "normal_v2"
+      },
+      {
+        "tag": "markdown",
+        "content": "**💬 \"${tagline}\"**",
+        "text_size": "normal_v2"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "查看详情"
+        },
+        "type": "default",
+        "width": "default",
+        "size": "medium",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "${detail_url}",
+            "pc_url": "",
+            "ios_url": "",
+            "android_url": ""
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "${subscribe_button_text}"
+        },
+        "type": "primary",
+        "width": "default",
+        "size": "medium",
+        "disabled": "${subscribe_disabled}",
+        "behaviors": [
+          {
+            "type": "callback",
+            "value": {
+              "action": "subscribe",
+              "media_type": "${media_type}",
+              "tmdb_id": "${tmdb_id}",
+              "title": "${title}",
+              "card_key": "${card_key}"
+            }
+          }
+        ],
+        "margin": "0px 0px 0px 0px"
+      }
+    ]
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "📺 《${title}》剧集介绍"
+    },
+    "template": "blue",
+    "padding": "12px 16px 12px 16px"
+  }
+}

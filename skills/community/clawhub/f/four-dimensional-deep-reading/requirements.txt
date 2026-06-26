@@ -1,0 +1,18 @@
+# Optional dependencies for file parsing
+# Install only if you need to parse local files
+
+# PDF parsing (alternative: use PyPDF2 which is pure Python)
+pdfplumber>=0.10.0
+
+# EPUB parsing
+ebooklib>=0.18
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# ====================
+# Export Utilities (v1.8.0+)
+# ====================
+# Anki export: No additional dependencies needed
+# Obsidian export: No additional dependencies needed
+# Notion export (optional, for Notion integration)
+notion-client>=2.0.0

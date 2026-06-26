@@ -1,0 +1,29 @@
+{
+  "name": "openclaw-skill-who-is-undercover",
+  "version": "1.1.0",
+  "description": "Who is Undercover game skill for OpenClaw with multiplayer support",
+  "main": "multiplayer_index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "game",
+    "undercover",
+    "party-game",
+    "multiplayer"
+  ],
+  "author": "龙5",
+  "license": "MIT",
+  "openclaw": {
+    "skill": {
+      "name": "who-is-undercover",
+      "category": "games",
+      "entryPoint": "multiplayer_index.js",
+      "metadataFile": "SKILL.md",
+      "supportsOneClickInstall": true,
+      "clawhubCompatible": true
+    }
+  }
+}

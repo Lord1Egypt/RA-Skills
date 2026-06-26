@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "AirPods Pro",
+      "url": "https://amazon.com/...",
+      "platform": "Amazon",
+      "history": [
+        {
+          "price": 199.99,
+          "date": "2026-03-06T08:52:15.822374"
+        }
+      ],
+      "target_price": null,
+      "alert": false
+    }
+  ]
+}

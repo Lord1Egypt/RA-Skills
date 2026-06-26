@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.2",
+  "paper_id": "<paper_id>",
+  "purpose": "Ranked research-direction seeds derived from a source-aware deep reading.",
+  "source_confidence": {
+    "reading_mode": "<LaTeX-primary | PDF-primary | mixed>",
+    "latex_available": false,
+    "pdf_available": false,
+    "supplementary_available": false,
+    "openreview_available": false,
+    "successor_search_performed": false,
+    "confidence_notes": "<what source limitations affect direction confidence>"
+  },
+  "direction_seeds": [
+    {
+      "seed_id": "D1",
+      "title": "<short direction title>",
+      "seed_type": "<assumption_violation | unavailable_mechanism | proxy_mismatch | evidence_gap | tiny_example | successor_paper_gap | reviewer_objection | negative_result | cross_domain_transfer>",
+      "trigger_interpretation_type": "<evidence-backed interpretation | plausible inference | speculation>",
+      "paper_anchor_claim_ids": ["C21.1", "C23.1"],
+      "trigger_evidence_summary": "<which paper claim, figure, formula, limitation, review, or successor signal triggered the seed>",
+      "hidden_assumption_or_gap": "<the assumption, missing mechanism, proxy mismatch, or evidence gap>",
+      "research_question": "<falsifiable research question>",
+      "hypothesis": "<what may be true>",
+      "proposed_mechanism": "<candidate mechanism or experimental intervention>",
+      "minimum_viable_experiment": {
+        "setup": "<smallest dataset, benchmark, synthetic case, proof case, or reproduction setup>",
+        "intervention": "<one change to test>",
+        "comparison": "<baseline, ablation, or prior method>",
+        "metric_or_decision_rule": "<what result decides the question>",
+        "expected_supporting_result": "<what would support the hypothesis>"
+      },
+      "negative_result_interpretation": "<what a failure would teach>",
+      "killer_objection": "<strongest reason this direction may be weak>",
+      "killer_result": "<smallest result that would make the direction compelling>",
+      "first_week_plan": [
+        "<step 1>",
+        "<step 2>",
+        "<step 3>"
+      ],
+      "score": {
+        "novelty": 0,
+        "significance": 0,
+        "testability": 0,
+        "feasibility": 0,
+        "evidence_anchor": 0,
+        "risk_adjusted_value": 0,
+        "overall": 0,
+        "rationale": "<short reason for the ranking>"
+      },
+      "risk_level": "<low | medium | high>",
+      "expected_value": "<low | medium | high>",
+      "confidence": "<low | medium | high>"
+    }
+  ],
+  "ranking_notes": "<why the top seeds were ranked this way>",
+  "search_limitations": "<what was not searched or verified>"
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stay-Alive"
+  short_description: "Agent life-loop reflection and action planning"
+  default_prompt: "Use $stay-alive to run a dry-run life-loop reflection for an agent."
+policy:
+  allow_implicit_invocation: true

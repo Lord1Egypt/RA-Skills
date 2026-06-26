@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx nationalize"
-description: "Nationalize MCP — nationality prediction from first name (nationalize.io, free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-nationalize"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-nationalize"
+name: pipeworx-nationalize
+description: Nationalize MCP — nationality prediction from first name (nationalize.io, free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/nationalize
 ---
 
-# Pipeworx nationalize
+# pipeworx-nationalize
 
-> Nationalize MCP — nationality prediction from first name (nationalize.io, free, no auth)
+Nationalize MCP — nationality prediction from first name (nationalize.io, free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-nationalize`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-nationalize](https://clawhub.ai/skills/pipeworx-nationalize)
+## Tools
 
-## Overview
+- `predict_nationality`
+- `batch_predict`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-nationalize
+```json
+{
+  "mcpServers": {
+    "pipeworx-nationalize": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/nationalize/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/nationalize](https://pipeworx.io/packs/nationalize)

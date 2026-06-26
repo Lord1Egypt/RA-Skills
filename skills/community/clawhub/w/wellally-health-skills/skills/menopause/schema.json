@@ -1,0 +1,287 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/menopause-tracker.json",
+  "title": "MenopauseTracker",
+  "description": "更年期管理数据结构",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "menopause_tracking": {
+      "type": "object",
+      "properties": {
+        "menopause_id": {
+          "type": "string",
+          "description": "更年期记录ID"
+        },
+        "stage": {
+          "type": "string",
+          "enum": ["perimenopausal", "menopausal", "postmenopausal"],
+          "description": "更年期阶段"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 40,
+          "maximum": 65,
+          "description": "年龄"
+        },
+        "last_menstrual_period": {
+          "type": "string",
+          "format": "date",
+          "description": "末次月经日期"
+        },
+        "months_since_lmp": {
+          "type": "integer",
+          "description": "距离末次月经的月数"
+        },
+        "irregular_periods": {
+          "type": "boolean",
+          "description": "周期不规律"
+        },
+        "period_frequency": {
+          "type": "string",
+          "description": "周期频率描述"
+        },
+        "symptoms": {
+          "type": "object",
+          "properties": {
+            "hot_flashes": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "frequency": {"type": "string"},
+                "frequency_count": {"type": "integer"},
+                "severity": {"type": "string"},
+                "severity_level": {"type": "integer"},
+                "impact_on_life": {"type": "string"},
+                "impact_level": {"type": "integer"},
+                "triggers": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "relief_methods": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "score": {"type": "integer"},
+                "last_updated": {"type": "string", "format": "date-time"}
+              }
+            },
+            "night_sweats": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "frequency": {"type": "string"},
+                "severity": {"type": "string"},
+                "impact_on_sleep": {"type": "string"}
+              }
+            },
+            "sleep_issues": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "frequency": {"type": "string"},
+                "type": {"type": "string"},
+                "sleep_quality": {"type": "string"},
+                "sleep_duration_hours": {"type": "number"},
+                "score": {"type": "integer"}
+              }
+            },
+            "mood_changes": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "symptoms": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "severity": {"type": "string"},
+                "impact": {"type": "string"},
+                "score": {"type": "integer"}
+              }
+            },
+            "vaginal_dryness": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"}
+              }
+            },
+            "joint_pain": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "locations": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "symptom_history": {
+          "type": "array",
+          "items": {"type": "object"}
+        },
+        "hrt": {
+          "type": "object",
+          "properties": {
+            "on_treatment": {"type": "boolean"},
+            "considering": {"type": "boolean"},
+            "medication": {"type": ["string", "null"]},
+            "type": {
+              "type": ["string", "null"],
+              "enum": ["estrogen_only", "estrogen_plus_progesterone", "vaginal_estrogen", null]
+            },
+            "dose": {"type": ["string", "null"]},
+            "route": {
+              "type": ["string", "null"],
+              "enum": ["oral", "patch", "gel", "vaginal", null]
+            },
+            "frequency": {"type": ["string", "null"]},
+            "start_date": {"type": ["string", "null"], "format": "date"},
+            "duration_months": {"type": ["integer", "null"]},
+            "effectiveness": {"type": ["string", "null"]},
+            "effectiveness_rating": {"type": ["integer", "null"]},
+            "effectiveness_notes": {"type": ["string", "null"]},
+            "side_effects": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "side_effects_severity": {"type": ["string", "null"]},
+            "quality_of_life_improvement": {"type": ["string", "null"]},
+            "notes": {"type": "string"},
+            "prescribing_doctor": {"type": "string"}
+          }
+        },
+        "bone_density": {
+          "type": "object",
+          "properties": {
+            "last_check": {"type": ["string", "null"], "format": "date"},
+            "t_score": {"type": ["number", "null"]},
+            "z_score": {"type": ["number", "null"]},
+            "diagnosis": {
+              "type": ["string", "null"],
+              "enum": ["normal", "osteopenia", "osteoporosis", null]
+            },
+            "diagnosis_category": {
+              "type": ["string", "null"],
+              "enum": ["normal_bone_mass", "low_bone_mass", "osteoporosis", null]
+            },
+            "fracture_risk": {
+              "type": ["string", "null"],
+              "enum": ["low", "moderate", "high", null]
+            },
+            "fracture_risk_level": {"type": ["integer", "null"]},
+            "next_check_due": {"type": ["string", "null"], "format": "date"},
+            "check_interval_years": {"type": ["integer", "null"]},
+            "calcium_intake": {
+              "type": "object",
+              "properties": {
+                "dietary": {"type": "string"},
+                "supplement": {"type": "string"},
+                "total_daily_mg": {"type": "number"},
+                "adherence": {"type": "string"}
+              }
+            },
+            "vitamin_d": {
+              "type": "object",
+              "properties": {
+                "supplement": {"type": "string"},
+                "level": {"type": ["number", "null"]},
+                "adherence": {"type": "string"}
+              }
+            },
+            "weight_bearing_exercise": {"type": ["string", "null"]},
+            "fall_risk_factors": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "notes": {"type": "string"},
+            "history": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {"type": "string", "format": "date"},
+                  "t_score": {"type": "number"},
+                  "diagnosis": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "cardiovascular_risk": {
+          "type": "object",
+          "properties": {
+            "last_assessment": {"type": ["string", "null"], "format": "date"},
+            "blood_pressure": {"type": ["string", "null"]},
+            "systolic": {"type": ["integer", "null"]},
+            "diastolic": {"type": ["integer", "null"]},
+            "bp_classification": {"type": ["string", "null"]},
+            "lipids": {"type": "object"},
+            "blood_sugar": {"type": "object"},
+            "risk_level": {
+              "type": ["string", "null"],
+              "enum": ["low", "moderate", "high", null]
+            },
+            "risk_factors": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "modifiable_factors": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "lifestyle": {
+          "type": "object",
+          "properties": {
+            "exercise": {"type": "object"},
+            "diet": {"type": "object"},
+            "stress_management": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "sleep_habits": {"type": ["string", "null"]}
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "created_at": {"type": "string", "format": "date-time"},
+            "last_updated": {"type": "string", "format": "date-time"}
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "tracking_duration_months": {"type": "integer"},
+        "total_symptom_records": {"type": "integer"},
+        "symptom_trend": {"type": "string"},
+        "hrt_use": {"type": "boolean"},
+        "bone_density_tests": {"type": "integer"}
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "reminder_frequency": {"type": "string"},
+        "symptom_tracking_frequency": {"type": "string"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated"]
+}

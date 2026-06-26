@@ -1,0 +1,1666 @@
+[
+  {
+    "order": 1,
+    "key": "111-111",
+    "lines": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第一卦",
+      "shortName": "乾",
+      "fullName": "乾为天",
+      "keywords": "至刚至强",
+      "summary": "为君之道"
+    },
+    "en": {
+      "orderLabel": "The First Hexagram",
+      "shortName": "Qian",
+      "fullName": "Heaven",
+      "keywords": "Ultimate Strength",
+      "summary": "The Way of the Ruler"
+    }
+  },
+  {
+    "order": 2,
+    "key": "000-000",
+    "lines": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第二卦",
+      "shortName": "坤",
+      "fullName": "坤为地",
+      "keywords": "至柔至顺",
+      "summary": "为臣之道"
+    },
+    "en": {
+      "orderLabel": "The Second Hexagram",
+      "shortName": "Kun",
+      "fullName": "Earth",
+      "keywords": "Ultimate Devotion",
+      "summary": "The Way of the Minister"
+    }
+  },
+  {
+    "order": 3,
+    "key": "010-100",
+    "lines": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第三卦",
+      "shortName": "屯",
+      "fullName": "水雷屯",
+      "keywords": "阴阳交动",
+      "summary": "万物始生"
+    },
+    "en": {
+      "orderLabel": "The Third Hexagram",
+      "shortName": "Zhun",
+      "fullName": "Water over Thunder",
+      "keywords": "Chaos and Motion",
+      "summary": "The Birth of All Things"
+    }
+  },
+  {
+    "order": 4,
+    "key": "001-010",
+    "lines": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第四卦",
+      "shortName": "蒙",
+      "fullName": "山水蒙",
+      "keywords": "启蒙教育",
+      "summary": "童蒙求我"
+    },
+    "en": {
+      "orderLabel": "The Fourth Hexagram",
+      "shortName": "Meng",
+      "fullName": "Mountain over Water",
+      "keywords": "Enlightenment",
+      "summary": "The Student Seeks the Master"
+    }
+  },
+  {
+    "order": 5,
+    "key": "010-111",
+    "lines": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第五卦",
+      "shortName": "需",
+      "fullName": "水天需",
+      "keywords": "凶险在前",
+      "summary": "君子等待"
+    },
+    "en": {
+      "orderLabel": "The Fifth Hexagram",
+      "shortName": "Xu",
+      "fullName": "Water over Heaven",
+      "keywords": "Danger Ahead",
+      "summary": "The Noble One Waits"
+    }
+  },
+  {
+    "order": 6,
+    "key": "111-010",
+    "lines": [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第六卦",
+      "shortName": "讼",
+      "fullName": "天水讼",
+      "keywords": "争诉争讼",
+      "summary": "中吉终凶"
+    },
+    "en": {
+      "orderLabel": "The Sixth Hexagram",
+      "shortName": "Song",
+      "fullName": "Heaven over Water",
+      "keywords": "Conflict",
+      "summary": "Good Start, Bad End"
+    }
+  },
+  {
+    "order": 7,
+    "key": "000-010",
+    "lines": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第七卦",
+      "shortName": "师",
+      "fullName": "地水师",
+      "keywords": "军队战争",
+      "summary": "以正为要"
+    },
+    "en": {
+      "orderLabel": "The Seventh Hexagram",
+      "shortName": "Shi",
+      "fullName": "Earth over Water",
+      "keywords": "The Army",
+      "summary": "Justice is Key"
+    }
+  },
+  {
+    "order": 8,
+    "key": "010-000",
+    "lines": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第八卦",
+      "shortName": "比",
+      "fullName": "水地比",
+      "keywords": "择善依附",
+      "summary": "迟则凶险"
+    },
+    "en": {
+      "orderLabel": "The Eighth Hexagram",
+      "shortName": "Bi",
+      "fullName": "Water over Earth",
+      "keywords": "Union",
+      "summary": "Delay Brings Doom"
+    }
+  },
+  {
+    "order": 9,
+    "key": "011-111",
+    "lines": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第九卦",
+      "shortName": "小畜",
+      "fullName": "风天小畜",
+      "keywords": "小阻小畜",
+      "summary": "阴止阳也"
+    },
+    "en": {
+      "orderLabel": "The Ninth Hexagram",
+      "shortName": "Xiao Chu",
+      "fullName": "Wind over Heaven",
+      "keywords": "Minor Restraint",
+      "summary": "The Yin Checks the Yang"
+    }
+  },
+  {
+    "order": 10,
+    "key": "111-110",
+    "lines": [
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第十卦",
+      "shortName": "履",
+      "fullName": "天泽履",
+      "keywords": "践行履职",
+      "summary": "如履薄冰"
+    },
+    "en": {
+      "orderLabel": "The Tenth Hexagram",
+      "shortName": "Lu",
+      "fullName": "Heaven over Lake",
+      "keywords": "Conduct",
+      "summary": "Treading on Thin Ice"
+    }
+  },
+  {
+    "order": 11,
+    "key": "000-111",
+    "lines": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第十一卦",
+      "shortName": "泰",
+      "fullName": "地天泰",
+      "keywords": "万物亨通",
+      "summary": "安泰吉祥"
+    },
+    "en": {
+      "orderLabel": "The Eleventh Hexagram",
+      "shortName": "Tai",
+      "fullName": "Earth over Heaven",
+      "keywords": "Harmony",
+      "summary": "Peace and Prosperity"
+    }
+  },
+  {
+    "order": 12,
+    "key": "111-000",
+    "lines": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第十二卦",
+      "shortName": "否",
+      "fullName": "天地否",
+      "keywords": "天地不交",
+      "summary": "闭塞黑暗"
+    },
+    "en": {
+      "orderLabel": "The Twelfth Hexagram",
+      "shortName": "Pi",
+      "fullName": "Heaven over Earth",
+      "keywords": "Stagnation",
+      "summary": "Darkness and Blockage"
+    }
+  },
+  {
+    "order": 13,
+    "key": "111-101",
+    "lines": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第十三卦",
+      "shortName": "同人",
+      "fullName": "天火同人",
+      "keywords": "天下大同",
+      "summary": "利涉大川"
+    },
+    "en": {
+      "orderLabel": "The Thirteenth Hexagram",
+      "shortName": "Tong Ren",
+      "fullName": "Heaven over Fire",
+      "keywords": "Fellowship",
+      "summary": "Crossing the Great River"
+    }
+  },
+  {
+    "order": 14,
+    "key": "101-111",
+    "lines": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第十四卦",
+      "shortName": "大有",
+      "fullName": "火天大有",
+      "keywords": "阳光普照",
+      "summary": "天下富有"
+    },
+    "en": {
+      "orderLabel": "The Fourteenth Hexagram",
+      "shortName": "Da You",
+      "fullName": "Fire over Heaven",
+      "keywords": "Great Possession",
+      "summary": "Abundance for All"
+    }
+  },
+  {
+    "order": 15,
+    "key": "000-001",
+    "lines": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第十五卦",
+      "shortName": "谦",
+      "fullName": "地山谦",
+      "keywords": "谦虚美德",
+      "summary": "君子有终"
+    },
+    "en": {
+      "orderLabel": "The Fifteenth Hexagram",
+      "shortName": "Qian",
+      "fullName": "Earth over Mountain",
+      "keywords": "Modesty",
+      "summary": "The Noble One Prevails"
+    }
+  },
+  {
+    "order": 16,
+    "key": "100-000",
+    "lines": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第十六卦",
+      "shortName": "豫",
+      "fullName": "雷地豫",
+      "keywords": "顺时而动",
+      "summary": "喜悦安乐"
+    },
+    "en": {
+      "orderLabel": "The Sixteenth Hexagram",
+      "shortName": "Yu",
+      "fullName": "Thunder over Earth",
+      "keywords": "Enthusiasm",
+      "summary": "Joy and Delight"
+    }
+  },
+  {
+    "order": 17,
+    "key": "110-100",
+    "lines": [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第十七卦",
+      "shortName": "随",
+      "fullName": "泽雷随",
+      "keywords": "追随伟人",
+      "summary": "随和众人"
+    },
+    "en": {
+      "orderLabel": "The Seventeenth Hexagram",
+      "shortName": "Sui",
+      "fullName": "Lake over Thunder",
+      "keywords": "Following",
+      "summary": "Harmony with the Crowd"
+    }
+  },
+  {
+    "order": 18,
+    "key": "001-011",
+    "lines": [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第十八卦",
+      "shortName": "蛊",
+      "fullName": "山风蛊",
+      "keywords": "革除腐败",
+      "summary": "除旧布新"
+    },
+    "en": {
+      "orderLabel": "The Eighteenth Hexagram",
+      "shortName": "Gu",
+      "fullName": "Mountain over Wind",
+      "keywords": "Decay",
+      "summary": "Renewal and Repair"
+    }
+  },
+  {
+    "order": 19,
+    "key": "000-110",
+    "lines": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第十九卦",
+      "shortName": "临",
+      "fullName": "地泽临",
+      "keywords": "居高临下",
+      "summary": "监督教化"
+    },
+    "en": {
+      "orderLabel": "The Nineteenth Hexagram",
+      "shortName": "Lin",
+      "fullName": "Earth over Lake",
+      "keywords": "Oversight",
+      "summary": "Supervision and Teaching"
+    }
+  },
+  {
+    "order": 20,
+    "key": "011-000",
+    "lines": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十卦",
+      "shortName": "观",
+      "fullName": "风地观",
+      "keywords": "展示威严",
+      "summary": "仰观盛德"
+    },
+    "en": {
+      "orderLabel": "The Twentieth Hexagram",
+      "shortName": "Guan",
+      "fullName": "Wind over Earth",
+      "keywords": "Contemplation",
+      "summary": "Beholding Great Virtue"
+    }
+  },
+  {
+    "order": 21,
+    "key": "101-100",
+    "lines": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十一卦",
+      "shortName": "噬嗑",
+      "fullName": "火雷噬嗑",
+      "keywords": "刑罚咬合",
+      "summary": "用狱规则"
+    },
+    "en": {
+      "orderLabel": "The Twenty-First Hexagram",
+      "shortName": "Shi He",
+      "fullName": "Fire over Thunder",
+      "keywords": "Biting Through",
+      "summary": "The Rule of Law"
+    }
+  },
+  {
+    "order": 22,
+    "key": "001-101",
+    "lines": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十二卦",
+      "shortName": "贲",
+      "fullName": "山火贲",
+      "keywords": "装饰外表",
+      "summary": "美化形象"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Second Hexagram",
+      "shortName": "Bi",
+      "fullName": "Mountain over Fire",
+      "keywords": "Grace",
+      "summary": "Adorning the Image"
+    }
+  },
+  {
+    "order": 23,
+    "key": "001-000",
+    "lines": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十三卦",
+      "shortName": "剥",
+      "fullName": "山地剥",
+      "keywords": "蚕食剥落",
+      "summary": "君子道消"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Third Hexagram",
+      "shortName": "Bo",
+      "fullName": "Mountain over Earth",
+      "keywords": "Splitting Apart",
+      "summary": "The Noble Path Fades"
+    }
+  },
+  {
+    "order": 24,
+    "key": "000-100",
+    "lines": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第二十四卦",
+      "shortName": "复",
+      "fullName": "地雷复",
+      "keywords": "回复返复",
+      "summary": "复归复来"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Fourth Hexagram",
+      "shortName": "Fu",
+      "fullName": "Earth over Thunder",
+      "keywords": "Return",
+      "summary": "Turning Back to the Source"
+    }
+  },
+  {
+    "order": 25,
+    "key": "111-100",
+    "lines": [
+      1,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十五卦",
+      "shortName": "无妄",
+      "fullName": "天雷无妄",
+      "keywords": "毫不虚伪",
+      "summary": "本该如此"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Fifth Hexagram",
+      "shortName": "Wu Wang",
+      "fullName": "Heaven over Thunder",
+      "keywords": "Innocence",
+      "summary": "The Natural Order"
+    }
+  },
+  {
+    "order": 26,
+    "key": "001-111",
+    "lines": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十六卦",
+      "shortName": "大畜",
+      "fullName": "山天大畜",
+      "keywords": "大止大畜",
+      "summary": "大有作为"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Sixth Hexagram",
+      "shortName": "Da Chu",
+      "fullName": "Mountain over Heaven",
+      "keywords": "Great Restraint",
+      "summary": "Great Achievement"
+    }
+  },
+  {
+    "order": 27,
+    "key": "001-100",
+    "lines": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第二十七卦",
+      "shortName": "颐",
+      "fullName": "山雷颐",
+      "keywords": "养人被养",
+      "summary": "正当则吉"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Seventh Hexagram",
+      "shortName": "Yi",
+      "fullName": "Mountain over Thunder",
+      "keywords": "Nourishment",
+      "summary": "Righteousness Brings Luck"
+    }
+  },
+  {
+    "order": 28,
+    "key": "110-011",
+    "lines": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第二十八卦",
+      "shortName": "大过",
+      "fullName": "泽风大过",
+      "keywords": "大的过度",
+      "summary": "非常行动"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Eighth Hexagram",
+      "shortName": "Da Guo",
+      "fullName": "Lake over Wind",
+      "keywords": "Great Excess",
+      "summary": "Extraordinary Action"
+    }
+  },
+  {
+    "order": 29,
+    "key": "010-010",
+    "lines": [
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第二十九卦",
+      "shortName": "坎",
+      "fullName": "水为坎",
+      "keywords": "处处陷阱",
+      "summary": "重重艰险"
+    },
+    "en": {
+      "orderLabel": "The Twenty-Ninth Hexagram",
+      "shortName": "Kan",
+      "fullName": "Water",
+      "keywords": "The Abyss",
+      "summary": "Layer upon Layer of Danger"
+    }
+  },
+  {
+    "order": 30,
+    "key": "101-101",
+    "lines": [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第三十卦",
+      "shortName": "离",
+      "fullName": "火为离",
+      "keywords": "附着依附",
+      "summary": "光明文明"
+    },
+    "en": {
+      "orderLabel": "The Thirtieth Hexagram",
+      "shortName": "Li",
+      "fullName": "Fire",
+      "keywords": "Clinging",
+      "summary": "Light and Civilization"
+    }
+  },
+  {
+    "order": 31,
+    "key": "110-001",
+    "lines": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第三十一卦",
+      "shortName": "咸",
+      "fullName": "泽山咸",
+      "keywords": "男女之道",
+      "summary": "无心之感"
+    },
+    "en": {
+      "orderLabel": "The Thirty-First Hexagram",
+      "shortName": "Xian",
+      "fullName": "Lake over Mountain",
+      "keywords": "Attraction",
+      "summary": "Feeling without Intent"
+    }
+  },
+  {
+    "order": 32,
+    "key": "100-011",
+    "lines": [
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第三十二卦",
+      "shortName": "恒",
+      "fullName": "雷风恒",
+      "keywords": "夫妇之道",
+      "summary": "恒久恒长"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Second Hexagram",
+      "shortName": "Heng",
+      "fullName": "Thunder over Wind",
+      "keywords": "Constancy",
+      "summary": "Enduring and Lasting"
+    }
+  },
+  {
+    "order": 33,
+    "key": "111-001",
+    "lines": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第三十三卦",
+      "shortName": "遁",
+      "fullName": "天山遁",
+      "keywords": "退避三舍",
+      "summary": "隐遁世外"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Third Hexagram",
+      "shortName": "Dun",
+      "fullName": "Heaven over Mountain",
+      "keywords": "Retreat",
+      "summary": "Withdrawing from the World"
+    }
+  },
+  {
+    "order": 34,
+    "key": "100-111",
+    "lines": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第三十四卦",
+      "shortName": "大壮",
+      "fullName": "雷天大壮",
+      "keywords": "阳盛阴衰",
+      "summary": "壮大隆盛"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Fourth Hexagram",
+      "shortName": "Da Zhuang",
+      "fullName": "Thunder over Heaven",
+      "keywords": "Great Power",
+      "summary": "Strength and Vigor"
+    }
+  },
+  {
+    "order": 35,
+    "key": "101-000",
+    "lines": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第三十五卦",
+      "shortName": "晋",
+      "fullName": "火地晋",
+      "keywords": "前进晋升",
+      "summary": "飞黄腾达"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Fifth Hexagram",
+      "shortName": "Jin",
+      "fullName": "Fire over Earth",
+      "keywords": "Progress",
+      "summary": "Rising to Glory"
+    }
+  },
+  {
+    "order": 36,
+    "key": "000-101",
+    "lines": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第三十六卦",
+      "shortName": "明夷",
+      "fullName": "地火明夷",
+      "keywords": "光明负伤",
+      "summary": "韬光养晦"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Sixth Hexagram",
+      "shortName": "Ming Yi",
+      "fullName": "Earth over Fire",
+      "keywords": "Darkened Light",
+      "summary": "Hiding One's Brilliance"
+    }
+  },
+  {
+    "order": 37,
+    "key": "011-101",
+    "lines": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第三十七卦",
+      "shortName": "家人",
+      "fullName": "风火家人",
+      "keywords": "家庭伦理",
+      "summary": "道德之本"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Seventh Hexagram",
+      "shortName": "Jia Ren",
+      "fullName": "Wind over Fire",
+      "keywords": "The Family",
+      "summary": "The Root of Virtue"
+    }
+  },
+  {
+    "order": 38,
+    "key": "101-110",
+    "lines": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第三十八卦",
+      "shortName": "睽",
+      "fullName": "火泽睽",
+      "keywords": "离合之道",
+      "summary": "同异之变"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Eighth Hexagram",
+      "shortName": "Kui",
+      "fullName": "Fire over Lake",
+      "keywords": "Opposition",
+      "summary": "Unity in Diversity"
+    }
+  },
+  {
+    "order": 39,
+    "key": "010-001",
+    "lines": [
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第三十九卦",
+      "shortName": "蹇",
+      "fullName": "水山蹇",
+      "keywords": "跛脚而行",
+      "summary": "困难重重"
+    },
+    "en": {
+      "orderLabel": "The Thirty-Ninth Hexagram",
+      "shortName": "Jian",
+      "fullName": "Water over Mountain",
+      "keywords": "Limping",
+      "summary": "Obstacles Everywhere"
+    }
+  },
+  {
+    "order": 40,
+    "key": "100-010",
+    "lines": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十卦",
+      "shortName": "解",
+      "fullName": "雷水解",
+      "keywords": "化解和解",
+      "summary": "解除困难"
+    },
+    "en": {
+      "orderLabel": "The Fortieth Hexagram",
+      "shortName": "Xie",
+      "fullName": "Thunder over Water",
+      "keywords": "Deliverance",
+      "summary": "Resolving Difficulties"
+    }
+  },
+  {
+    "order": 41,
+    "key": "001-110",
+    "lines": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第四十一卦",
+      "shortName": "损",
+      "fullName": "山泽损",
+      "keywords": "减损之道",
+      "summary": "损下益上"
+    },
+    "en": {
+      "orderLabel": "The Forty-First Hexagram",
+      "shortName": "Sun",
+      "fullName": "Mountain over Lake",
+      "keywords": "Decrease",
+      "summary": "Sacrificing the Lower"
+    }
+  },
+  {
+    "order": 42,
+    "key": "011-100",
+    "lines": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第四十二卦",
+      "shortName": "益",
+      "fullName": "风雷益",
+      "keywords": "增益之道",
+      "summary": "损上益下"
+    },
+    "en": {
+      "orderLabel": "The Forty-Second Hexagram",
+      "shortName": "Yi",
+      "fullName": "Wind over Thunder",
+      "keywords": "Increase",
+      "summary": "Benefiting the Lower"
+    }
+  },
+  {
+    "order": 43,
+    "key": "110-111",
+    "lines": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十三卦",
+      "shortName": "夬",
+      "fullName": "泽天夬",
+      "keywords": "断绝决裂",
+      "summary": "刚决柔也"
+    },
+    "en": {
+      "orderLabel": "The Forty-Third Hexagram",
+      "shortName": "Guai",
+      "fullName": "Lake over Heaven",
+      "keywords": "Breakthrough",
+      "summary": "The Firm Cuts the Yielding"
+    }
+  },
+  {
+    "order": 44,
+    "key": "111-011",
+    "lines": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第四十四卦",
+      "shortName": "姤",
+      "fullName": "天风姤",
+      "keywords": "邂逅相遇",
+      "summary": "柔遇刚也"
+    },
+    "en": {
+      "orderLabel": "The Forty-Fourth Hexagram",
+      "shortName": "Gou",
+      "fullName": "Heaven over Wind",
+      "keywords": "Encountering",
+      "summary": "The Yielding Meets the Firm"
+    }
+  },
+  {
+    "order": 45,
+    "key": "110-000",
+    "lines": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十五卦",
+      "shortName": "萃",
+      "fullName": "泽地萃",
+      "keywords": "聚集荟萃",
+      "summary": "无往不利"
+    },
+    "en": {
+      "orderLabel": "The Forty-Fifth Hexagram",
+      "shortName": "Cui",
+      "fullName": "Lake over Earth",
+      "keywords": "Gathering",
+      "summary": "Success in All Directions"
+    }
+  },
+  {
+    "order": 46,
+    "key": "000-011",
+    "lines": [
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十六卦",
+      "shortName": "升",
+      "fullName": "地风升",
+      "keywords": "积极向上",
+      "summary": "步步高升"
+    },
+    "en": {
+      "orderLabel": "The Forty-Sixth Hexagram",
+      "shortName": "Sheng",
+      "fullName": "Earth over Wind",
+      "keywords": "Pushing Up",
+      "summary": "Rising Step by Step"
+    }
+  },
+  {
+    "order": 47,
+    "key": "110-010",
+    "lines": [
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十七卦",
+      "shortName": "困",
+      "fullName": "泽水困",
+      "keywords": "深陷穷困",
+      "summary": "隐忍为要"
+    },
+    "en": {
+      "orderLabel": "The Forty-Seventh Hexagram",
+      "shortName": "Kun",
+      "fullName": "Lake over Water",
+      "keywords": "Oppression",
+      "summary": "Endurance is Key"
+    }
+  },
+  {
+    "order": 48,
+    "key": "010-011",
+    "lines": [
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十八卦",
+      "shortName": "井",
+      "fullName": "水风井",
+      "keywords": "水井养人",
+      "summary": "养贤用贤"
+    },
+    "en": {
+      "orderLabel": "The Forty-Eighth Hexagram",
+      "shortName": "Jing",
+      "fullName": "Water over Wind",
+      "keywords": "The Well",
+      "summary": "Nourishing the Worthy"
+    }
+  },
+  {
+    "order": 49,
+    "key": "110-101",
+    "lines": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第四十九卦",
+      "shortName": "革",
+      "fullName": "泽火革",
+      "keywords": "盛衰之际",
+      "summary": "改革变革"
+    },
+    "en": {
+      "orderLabel": "The Forty-Ninth Hexagram",
+      "shortName": "Ge",
+      "fullName": "Lake over Fire",
+      "keywords": "Revolution",
+      "summary": "Reform and Change"
+    }
+  },
+  {
+    "order": 50,
+    "key": "101-011",
+    "lines": [
+      0,
+      1,
+      1,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第五十卦",
+      "shortName": "鼎",
+      "fullName": "火风鼎",
+      "keywords": "养贤用贤",
+      "summary": "除旧布新"
+    },
+    "en": {
+      "orderLabel": "The Fiftieth Hexagram",
+      "shortName": "Ding",
+      "fullName": "Fire over Wind",
+      "keywords": "The Cauldron",
+      "summary": "Renewal and Stability"
+    }
+  },
+  {
+    "order": 51,
+    "key": "100-100",
+    "lines": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第五十一卦",
+      "shortName": "震",
+      "fullName": "震为雷",
+      "keywords": "震动戒惧",
+      "summary": "时刻反省"
+    },
+    "en": {
+      "orderLabel": "The Fifty-First Hexagram",
+      "shortName": "Zhen",
+      "fullName": "Thunder",
+      "keywords": "Shock",
+      "summary": "Vigilance and Reflection"
+    }
+  },
+  {
+    "order": 52,
+    "key": "001-001",
+    "lines": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第五十二卦",
+      "shortName": "艮",
+      "fullName": "艮为山",
+      "keywords": "阻止停止",
+      "summary": "止所当止"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Second Hexagram",
+      "shortName": "Gen",
+      "fullName": "Mountain",
+      "keywords": "Keeping Still",
+      "summary": "Stopping at the Right Time"
+    }
+  },
+  {
+    "order": 53,
+    "key": "011-001",
+    "lines": [
+      0,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第五十三卦",
+      "shortName": "渐",
+      "fullName": "风山渐",
+      "keywords": "循序渐进",
+      "summary": "遵循节律"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Third Hexagram",
+      "shortName": "Jian",
+      "fullName": "Wind over Mountain",
+      "keywords": "Gradual Progress",
+      "summary": "Following the Rhythm"
+    }
+  },
+  {
+    "order": 54,
+    "key": "100-110",
+    "lines": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第五十四卦",
+      "shortName": "归妹",
+      "fullName": "雷泽归妹",
+      "keywords": "少女出嫁",
+      "summary": "归宿各异"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Fourth Hexagram",
+      "shortName": "Gui Mei",
+      "fullName": "Thunder over Lake",
+      "keywords": "The Marriageable Maiden",
+      "summary": "Different Destinies"
+    }
+  },
+  {
+    "order": 55,
+    "key": "100-101",
+    "lines": [
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第五十五卦",
+      "shortName": "丰",
+      "fullName": "雷火丰",
+      "keywords": "盛极防衰",
+      "summary": "守成不易"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Fifth Hexagram",
+      "shortName": "Feng",
+      "fullName": "Thunder over Fire",
+      "keywords": "Abundance",
+      "summary": "Guarding Success"
+    }
+  },
+  {
+    "order": 56,
+    "key": "101-001",
+    "lines": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第五十六卦",
+      "shortName": "旅",
+      "fullName": "火山旅",
+      "keywords": "居无定所",
+      "summary": "颠沛流离"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Sixth Hexagram",
+      "shortName": "Lu",
+      "fullName": "Fire over Mountain",
+      "keywords": "The Wanderer",
+      "summary": "Drifting and Wandering"
+    }
+  },
+  {
+    "order": 57,
+    "key": "011-011",
+    "lines": [
+      0,
+      1,
+      1,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第五十七卦",
+      "shortName": "巽",
+      "fullName": "巽为风",
+      "keywords": "申命行事",
+      "summary": "君命难违"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Seventh Hexagram",
+      "shortName": "Xun",
+      "fullName": "Wind",
+      "keywords": "The Gentle",
+      "summary": "Following the Decree"
+    }
+  },
+  {
+    "order": 58,
+    "key": "110-110",
+    "lines": [
+      1,
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第五十八卦",
+      "shortName": "兑",
+      "fullName": "兑为泽",
+      "keywords": "和悦喜悦",
+      "summary": "取悦之道"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Eighth Hexagram",
+      "shortName": "Dui",
+      "fullName": "Lake",
+      "keywords": "Joy",
+      "summary": "The Way of Pleasing"
+    }
+  },
+  {
+    "order": 59,
+    "key": "011-010",
+    "lines": [
+      0,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第五十九卦",
+      "shortName": "涣",
+      "fullName": "风水涣",
+      "keywords": "涣之所用",
+      "summary": "利涉大川"
+    },
+    "en": {
+      "orderLabel": "The Fifty-Ninth Hexagram",
+      "shortName": "Huan",
+      "fullName": "Wind over Water",
+      "keywords": "Dispersion",
+      "summary": "Crossing the Great River"
+    }
+  },
+  {
+    "order": 60,
+    "key": "010-110",
+    "lines": [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第六十卦",
+      "shortName": "节",
+      "fullName": "水泽节",
+      "keywords": "约束欲望",
+      "summary": "适度节制"
+    },
+    "en": {
+      "orderLabel": "The Sixtieth Hexagram",
+      "shortName": "Jie",
+      "fullName": "Water over Lake",
+      "keywords": "Moderation",
+      "summary": "Restraint and Limits"
+    }
+  },
+  {
+    "order": 61,
+    "key": "011-110",
+    "lines": [
+      1,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第六十一卦",
+      "shortName": "中孚",
+      "fullName": "风泽中孚",
+      "keywords": "修德立命",
+      "summary": "诚信为本"
+    },
+    "en": {
+      "orderLabel": "The Sixty-First Hexagram",
+      "shortName": "Zhong Fu",
+      "fullName": "Wind over Lake",
+      "keywords": "Inner Truth",
+      "summary": "Sincerity is Fundamental"
+    }
+  },
+  {
+    "order": 62,
+    "key": "100-001",
+    "lines": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第六十二卦",
+      "shortName": "小过",
+      "fullName": "雷山小过",
+      "keywords": "凡事勿过",
+      "summary": "过犹不及"
+    },
+    "en": {
+      "orderLabel": "The Sixty-Second Hexagram",
+      "shortName": "Xiao Guo",
+      "fullName": "Thunder over Mountain",
+      "keywords": "Small Excess",
+      "summary": "Too Much is Too Little"
+    }
+  },
+  {
+    "order": 63,
+    "key": "010-101",
+    "lines": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "zh": {
+      "orderLabel": "第六十三卦",
+      "shortName": "既济",
+      "fullName": "水火既济",
+      "keywords": "一切大成",
+      "summary": "初吉终乱"
+    },
+    "en": {
+      "orderLabel": "The Sixty-Third Hexagram",
+      "shortName": "Ji Ji",
+      "fullName": "Water over Fire",
+      "keywords": "Completion",
+      "summary": "Order turns to Chaos"
+    }
+  },
+  {
+    "order": 64,
+    "key": "101-010",
+    "lines": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "zh": {
+      "orderLabel": "第六十四卦",
+      "shortName": "未济",
+      "fullName": "火水未济",
+      "keywords": "终则必始",
+      "summary": "变化无穷"
+    },
+    "en": {
+      "orderLabel": "The Sixty-Fourth Hexagram",
+      "shortName": "Wei Ji",
+      "fullName": "Fire over Water",
+      "keywords": "Not Yet Completed",
+      "summary": "Infinite Change"
+    }
+  }
+]

@@ -1,0 +1,195 @@
+id: chinese_xiuhe_studio_wedding
+name_zh: 中式棚拍秀禾婚纱照
+name_en: Chinese Studio Xiuhe Wedding
+internal_group: 婚纱照工作室
+category: chinese_traditional_wedding
+status: draft
+
+summary: >
+  以中式影棚与秀禾婚礼服装为核心视觉语言的高端中式婚纱照套系。
+  强调东方审美中的秩序感、仪式感、喜庆感与克制典雅，
+  适合输出具有精品中式婚礼样片气质、端庄情绪与服饰细节表现力的成组作品。
+
+use_cases:
+  - 中式婚礼婚纱照概念样片
+  - 秀禾服情侣写真
+  - AI中式婚纱照棚拍套系打样
+  - 婚礼海报与相册候选图
+
+subject_profile:
+  ethnicity: 中国年轻情侣
+  age_range: 25-30
+  identity_rules:
+    - 保留上传人物的真实五官特征
+    - 不要明显网红脸化
+    - 不要改变基础脸型和年龄感
+    - 保持情侣双方在多张图中的一致性
+
+wardrobe:
+  bride:
+    makeup: 精致东方婚礼妆，强调端庄与通透肤感
+    hair: 中式低盘发或传统盘发，搭配凤冠或中式金饰头饰
+    expression_style:
+      - 端庄
+      - 含蓄喜悦
+      - 柔和自然
+    dress: 红金色刺绣秀禾服
+    veil: 无西式头纱，使用中式头饰体系
+  groom:
+    hair_policy: 保持原图发型，整体利落正式
+    expression_style:
+      - 稳重
+      - 温和
+      - 克制含笑
+    suit: 红金色中式男款礼服，与新娘秀禾服配套
+    shirt: 中式内搭领口结构
+    bow_tie: 无领结，采用中式礼服完整造型
+
+props:
+  fan:
+    description: 小型中式团扇或绣面折扇
+  marriage_document:
+    description: 传统婚书或红色卷轴式喜庆文书
+  table_setting:
+    description: 中式案几、小型茶盏、少量红绸点缀
+
+location:
+  country: 中国
+  province: 中式影棚空间
+  city: 室内棚拍场景
+  spot: 中式婚礼布景影棚
+  foreground: 案几、红绸、服装下摆与少量礼仪道具
+  midground: 人物主体、团扇或婚书等核心动作元素
+  background: 深红或暖米色背景层、中式屏风、木质框景与克制的喜字元素
+
+time_and_light:
+  time: 室内棚拍时段
+  effect: 柔和暖光下的中式礼仪肖像氛围
+  lighting:
+    - 柔和主棚灯
+    - 前侧主光塑造面部与服装纹样
+    - 背景层次光增强空间秩序感
+  color_temperature: 4300K
+  tone:
+    - 温暖
+    - 庄重
+    - 喜庆
+    - 典雅克制
+
+camera_language:
+  camera_body: Canon EOS R5
+  lens: 85mm f/1.8 prime lens
+  composition:
+    orientation: vertical
+    method: balanced formal portrait composition
+    default_subject_position: 对称式或轻微偏轴构图，强调秩序与稳定
+  image_style:
+    - subject tack sharp
+    - controlled studio depth of field
+    - rich embroidery detail
+    - soft but sculpted light
+    - ultra detailed
+    - 8k
+    - realistic skin texture
+    - elegant red and gold fabric rendering
+
+mood_keywords:
+  - 庄重
+  - 喜庆
+  - 东方美学
+  - 仪式感
+  - 典雅克制
+  - 高级中式样片感
+
+global_constraints:
+  - 保持人物比例自然
+  - 保持秀禾刺绣、凤冠头饰与中式礼服结构完整
+  - 保持动作克制得体，不要西式夸张摆拍
+  - 保持高级中式棚拍质感，不要婚庆舞台感与廉价影楼感
+  - 面部皮肤真实，不要塑料磨皮
+  - 避免过度艳俗、过饱和红色与杂乱金饰
+  - 强调人物情绪、服饰细节与中式礼仪氛围共同成立
+
+base_prompt: >
+  中国年轻情侣中式婚纱照，25-30岁，真实自然的中国面孔，新娘妆容精致端庄，
+  中式低盘发或传统盘发，佩戴凤冠或中式金饰头饰；新郎保持原图发型与基础五官特征，
+  整体利落正式。新娘穿红金色刺绣秀禾服，新郎穿与之匹配的红金色中式男款礼服，
+  服装纹样精致、结构完整、具有高端中式婚礼样片质感。场景为高级中式影棚，
+  采用深红或暖米色背景层、中式屏风、木质框景、少量喜字元素与中式案几，
+  带有团扇、婚书、茶盏、红绸等克制点缀。整体氛围庄重、喜庆、典雅、具有仪式感。
+  摄影风格为高端中式棚拍婚纱摄影，Canon EOS R5，全画幅，85mm prime lens, f/1.8，
+  soft studio key light，gentle front-side lighting，layered background light，4300K warm tone，
+  controlled studio depth of field，subject tack sharp，rich embroidery detail，ultra detailed, 8k,
+  realistic skin texture, elegant red and gold fabric rendering. 要求人物情绪含蓄喜悦，姿态克制端庄，
+  避免夸张摆拍、避免廉价舞台婚庆感、避免塑料修图感，保持高级中式婚礼肖像质感。
+
+negative_prompt: >
+  lowres, blurry face, asymmetrical eyes, distorted hands, extra fingers, broken wrists, warped embroidery,
+  deformed headdress, messy gold ornament, cheap banquet backdrop, stage-light look, over-saturated red,
+  plastic skin, stiff western pose, vulgar expression, duplicated person, mismatched gaze,
+  low-detail fabric, broken sleeve structure, cartoon style, incorrect body ratio, messy background clutter
+
+frames:
+  - id: formal_portrait
+    name: 正式双人主肖像
+    purpose: 用于建立整套中式婚礼样片的主视觉气质
+    prompt: >
+      在统一人物设定、服装、棚拍场景与摄影风格基础上，拍摄一张正式双人中式婚纱主肖像。
+      情侣并肩端正站立，姿态稳定克制，新娘双手自然交叠于身前，新郎姿态守护式站立。
+      强调秀禾服纹样、头饰细节、人物神态与中式背景层次，画面庄重大气，适合作为中式婚礼主海报。
+
+  - id: full_body_symmetry
+    name: 对称式并肩全身照
+    purpose: 用于突出服装完整结构与秩序感构图
+    prompt: >
+      拍摄一张对称式并肩全身婚纱照。情侣站在中式屏风或木质框景前，
+      构图稳定、视觉中心清晰，完整呈现新娘秀禾服下摆、新郎中式礼服轮廓与整体配色关系。
+      强调高级棚拍秩序感，避免过度装饰与背景杂乱。
+
+  - id: bride_fan_portrait
+    name: 新娘持团扇半身照
+    purpose: 用于突出新娘造型、头饰与中式温婉气质
+    prompt: >
+      拍摄一张以新娘为视觉中心的半身婚纱照。新娘手持小型中式团扇，姿态端庄，
+      微微侧身或轻微回眸，表情含蓄柔和。重点刻画凤冠头饰、妆容、秀禾刺绣与团扇细节，
+      整体典雅、精致、具有东方新娘肖像感。
+
+  - id: groom_guardian
+    name: 新郎守护式站姿照
+    purpose: 用于表现新郎稳定、正式的中式婚礼气质
+    prompt: >
+      拍摄一张以新郎守护感为核心的婚纱照。新郎站姿挺括自然，位于新娘身侧或后侧半步，
+      神态温和稳重，新娘轻微侧向镜头或低头含笑。强调男款礼服结构、情侣关系感与中式礼仪氛围，
+      画面克制而有情绪张力。
+
+  - id: eye_contact_pair
+    name: 双人对视互动照
+    purpose: 用于表现含蓄喜悦与真实关系感
+    prompt: >
+      拍摄一张双人对视互动婚纱照。情侣距离亲近但不过分贴合，新娘微微抬眼看向新郎，
+      新郎温和含笑回应，动作克制自然。构图偏中景，突出面部神态、上半身服装纹样与东方礼仪美感，
+      营造含蓄而温暖的喜庆氛围。
+
+  - id: seated_ritual
+    name: 端坐仪式感肖像
+    purpose: 用于增强中式礼仪感与画面稳定性
+    prompt: >
+      拍摄一张端坐式中式婚礼肖像。新人端坐于中式案几或椅凳前后位置，
+      姿态端正，双手动作得体，新娘可轻持婚书或团扇。重点表现服装下摆、袖口结构、
+      案几道具与背景中式层次，整体沉稳、典雅、富有仪式感。
+
+  - id: screen_turn
+    name: 屏风前回眸照
+    purpose: 用于丰富构图与东方叙事气质
+    prompt: >
+      拍摄一张屏风前回眸式婚纱照。新娘或情侣位于中式屏风与木质框景前，
+      人物微微侧身回眸，动作轻柔克制。强调服装线条、头饰轮廓与背景结构秩序，
+      画面带有东方美学中的含蓄叙事感。
+
+  - id: closeup_cover
+    name: 封面级近景特写
+    purpose: 用于封面、海报与相册高质感收束图
+    prompt: >
+      拍摄一张封面感近景中式婚礼肖像。情侣靠近站立或半身入镜，表情平静、喜悦、克制，
+      重点刻画真实肤质、眼神、唇妆、凤冠头饰细节、秀禾刺绣纹样与暖色棚灯下的面部立体感。
+      背景虚化为深红与暖金色层次，整体精致、端庄、具有高端中式杂志封面感。

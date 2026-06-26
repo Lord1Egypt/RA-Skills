@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-tailwind-design-system",
+  "version": "2.5.0",
+  "description": "Use when designing, implementing, or reviewing Tailwind CSS design systems, token mapping, theme extension, utility class governance, component variants, dark mode, responsive utilities, safelists, or maintainable class composition; Chinese triggers include Tailwind, 设计 Token, 组件变体, 暗色模式, class 管理.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-tailwind-design-system"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "tailwind",
+    "design-system",
+    "tokens",
+    "variants",
+    "dark-mode"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

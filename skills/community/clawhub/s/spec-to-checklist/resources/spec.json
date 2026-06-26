@@ -1,0 +1,37 @@
+{
+  "slug": "spec-to-checklist",
+  "title": "规格到清单转换器",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "把 PRD、接口文档或需求规格拆成验收、联调、测试和上线清单。",
+  "inputHint": "PRD、接口文档、范围说明",
+  "sections": [
+    "验收清单",
+    "测试清单",
+    "联调清单",
+    "上线前检查",
+    "边界条件",
+    "未决问题"
+  ],
+  "useCases": [
+    "需求评审",
+    "测试准备",
+    "上线准备"
+  ],
+  "positiveExamples": [
+    "把这份 PRD 变成验收清单",
+    "根据接口文档生成联调 checklist"
+  ],
+  "negativeExamples": [
+    "不要替代真实测试执行",
+    "不要伪造通过结果"
+  ],
+  "risk": "适合把文字规格转成执行清单。",
+  "tags": [
+    "spec",
+    "checklist",
+    "acceptance",
+    "qa"
+  ]
+}

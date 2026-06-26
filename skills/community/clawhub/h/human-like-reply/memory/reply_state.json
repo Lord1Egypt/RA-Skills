@@ -1,0 +1,12 @@
+{
+  "conversations": {
+    "test-session-1": {
+      "rounds": 2,
+      "last_message_time": "2026-03-10T16:25:04.599512",
+      "last_used_greeting": true,
+      "current_topic": "搞定了吗？",
+      "greeting_count": 2
+    }
+  },
+  "last_update": "2026-03-10T14:32:41.447507"
+}

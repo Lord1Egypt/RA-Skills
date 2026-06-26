@@ -1,35 +1,42 @@
 ---
-name: "persona-team-lead"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-team-lead"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-team-lead"
+name: persona-team-lead
+description: "Lead a team — run standups, coordinate tasks, and communicate."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
+        - gws-gmail
+        - gws-chat
+        - gws-drive
+        - gws-sheets
 ---
 
-# persona-team-lead
+# Team Lead
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-calendar`, `gws-gmail`, `gws-chat`, `gws-drive`, `gws-sheets`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-team-lead`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-team-lead](https://skills.sh/googleworkspace/cli/persona-team-lead)
+Lead a team — run standups, coordinate tasks, and communicate.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +standup-report`
+- `gws workflow +meeting-prep`
+- `gws workflow +weekly-digest`
+- `gws workflow +email-to-task`
 
+## Instructions
+- Run daily standups with `gws workflow +standup-report` — share output in team Chat.
+- Prepare for 1:1s with `gws workflow +meeting-prep`.
+- Get weekly snapshots with `gws workflow +weekly-digest`.
+- Delegate email action items with `gws workflow +email-to-task`.
+- Track team OKRs in a shared Sheet with `gws sheets +append`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-team-lead
-```
+## Tips
+- Use `gws calendar +agenda --week --format table` for weekly team calendar views.
+- Pipe standup reports to Chat with `gws chat spaces messages create`.
+- Use `--sanitize` for any operations involving sensitive team data.
+

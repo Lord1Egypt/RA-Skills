@@ -1,35 +1,94 @@
 ---
-name: "Korean Side Hustle Generator"
-description: "한국 현실에 맞춰 초기 투자 10만원 이하, 주 10시간 이하로 월 30-200만원 수익 가능한 구체적 부업 아이디어와 실행 계획을 제공합니다."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/korean-side-hustle-generator"
-sourceUrl: "https://clawhub.ai/skills/korean-side-hustle-generator"
+name: korean-side-hustle-generator
+version: 1.0.0
+description: 한국 현실에 맞는 수익형 사이드 허들을 생성합니다. 다음 경우에 사용: (1) 부업 아이디어가 필요한 경우, (2) 월 50-200만원 дополнительный доход 방법을 찾고 싶은 경우, (3) 평일/주말 시간에 따른 수익 모델을 원하는 경우, (4) 초기 투자 없이 시작 가능한 부업을 찾아야 하는 경우. 주제: 고소득 아르바이트, 재능 판매, 디지털 상품, 플랫폼 수익화 등 한국 맥락에 최적화된 실질적인 아이디어와 실행 계획을 제공합니다.
 ---
 
-# Korean Side Hustle Generator
+# 🇰🇷 한국 사이드 허들 생성기
 
-> 한국 현실에 맞춰 초기 투자 10만원 이하, 주 10시간 이하로 월 30-200만원 수익 가능한 구체적 부업 아이디어와 실행 계획을 제공합니다.
+## 개요
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/korean-side-hustle-generator`
-- **Source URL:** [https://clawhub.ai/skills/korean-side-hustle-generator](https://clawhub.ai/skills/korean-side-hustle-generator)
+이 스킬은 한국 현실에 맞는 실행 가능한 부업/사이드 허들을 생성합니다. 단순한 아이디어 나열이 아니라, 구체적인 수익 모델, 시작 방법, 예상 수입을 포함합니다.
 
-## Overview
+## 사용 방법
 
+사용자가 요청하면:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/korean-side-hustle-generator
+1. **시간的类型**을 파악 (평일 저녁/주말만/자유시간)
+2. **技能/관심사** 파악
+3. **투자 가능 금액** 확인 (0원~50만원)
+4. **목표 수입** 확인 (월 30만원~200만원)
+
+然后生成:
+- 3-5개의 구체적인 부업 옵션
+- 각 옵션별: 필요 기술, 시작 방법, 수익 모델, 시간 투자 대비 수익률
+
+## 사이드 허들 유형
+
+### 类型 1: 고소득 아르바이트 (즉일 현금)
+
 ```
+예시:
+- 번역/교정 (한→영, 영→한): 시간당 3-5만원
+-婚礼司仪: 시간당 5-10만원
+- 온라인 튜터링: 시간당 2-4만원
+```
+
+### 类型 2: 디지털 상품 (수동 수입)
+
+```
+예시:
+- 노트/템플릿 판매 (Canva, Gumroad)
+- YouTube/RTikTok Shorts 수익화
+- PDF 가이드북 판매
+```
+
+### 类型 3: 재능 판매 (마켓플레이스)
+
+```
+예시:
+- 디자인 (로고, 배너): 5-30만원/건
+-動画 편집: 10-50만원/건
+- 프로그래밍/자동화: 시간당 5-15만원
+```
+
+### 类型 4: 플랫폼 활용
+
+```
+예시:
+- 직구 리셀 (카톡 쇼핑하기, 무신사)
+- 중고 거래 + 리퍼브 (잇다, 번개장터)
+- 프리랜서 플랫폼 (번개카피, 원티드)
+```
+
+## 출력 포맷
+
+```markdown
+## [부업명]
+
+**예상 수입:** 월 50-100만원
+**필요 기술:** [기술]
+**시작 난이도:** ⭐⭐ (상대적으로 쉬움)
+**투자 비용:** 0-5만원
+**시간 투자:** 주 5-10시간
+
+### 실행 단계
+1. [첫 번째 단계]
+2. [두 번째 단계]
+3. [세 번째 단계]
+
+### 수익 모델
+- [수익 경로 1]
+- [수익 경로 2]
+
+### 시작 시 주의사항
+- [주의점 1]
+- [주의점 2]
+```
+
+## 원칙
+
+1. **구체성**: "디자인 한다" X → "카카오톡 채널용 배너 3개 패키지로 15만원에 판매" O
+2. **한국 현실**: 해외 사례보다 한국 플랫폼/마켓 기반
+3. **실행 가능성**: 초기 투자 10만원 이하, 2주内有 수익 확인 가능한 것만 추천
+4. **시간 대비 수익**: 주 10시간 이하投入으로 월 50만원 이상 가능한 것优先

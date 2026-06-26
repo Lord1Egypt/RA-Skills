@@ -1,0 +1,487 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Default module",
+    "description": "",
+    "version": "1.0.0",
+    "x-download-time": "2026-03-31T10:34:38.292Z"
+  },
+  "paths": {
+    "/api/v1/anchor/voice_list": {
+      "$ref": "/paths/_api_v1_anchor_voice_list.json",
+      "get": {
+        "summary": "List Public TTS Options"
+      }
+    },
+    "/api/v1/userVoice/completedRecord": {
+      "$ref": "/paths/_api_v1_userVoice_completedRecord.json",
+      "get": {
+        "summary": "List Voice Clone Options"
+      }
+    },
+    "/api/v1/userVoice/training": {
+      "$ref": "/paths/_api_v1_userVoice_training.json",
+      "post": {
+        "summary": "Train TTS Model of The User's Voice (Voice Clone)"
+      }
+    },
+    "/api/v1/userVoice/trainingRecord": {
+      "$ref": "/paths/_api_v1_userVoice_trainingRecord.json",
+      "get": {
+        "summary": "List Ongoing Voice Clone Tasks"
+      }
+    },
+    "/api/v1/video/send_tts": {
+      "$ref": "/paths/_api_v1_video_send_tts.json",
+      "post": {
+        "summary": "Generate TTS Audio (Text-to-Speech)"
+      }
+    },
+    "/api/v1/userVoice/{_id}": {
+      "$ref": "/paths/_api_v1_userVoice_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details of a Voice"
+      },
+      "delete": {
+        "summary": "Delete a User Voice"
+      }
+    },
+    "/api/v1/video/generate": {
+      "$ref": "/paths/_api_v1_video_generate.json",
+      "post": {
+        "summary": "Generate AI Avatar Videos"
+      }
+    },
+    "/api/v1/video/awsList": {
+      "$ref": "/paths/_api_v1_video_awsList.json",
+      "get": {
+        "summary": "List of Result Videos"
+      }
+    },
+    "/api/v1/anchor/character_list": {
+      "$ref": "/paths/_api_v1_anchor_character_list.json",
+      "get": {
+        "summary": "List One or All Avatars"
+      }
+    },
+    "/api/v1/video/awsResult": {
+      "$ref": "/paths/_api_v1_video_awsResult.json",
+      "post": {
+        "summary": "Obtain the Status of One Avatar Video Task"
+      }
+    },
+    "/api/v1/video/{_id}": {
+      "$ref": "/paths/_api_v1_video_%7B_id%7D.json",
+      "delete": {
+        "summary": "Delete or Cancel a Video"
+      }
+    },
+    "/api/v1/video/lang_classify": {
+      "$ref": "/paths/_api_v1_video_lang_classify.json",
+      "post": {
+        "summary": "Auto Language Detect"
+      }
+    },
+    "/api/v1/video/auto-public-pool": {
+      "$ref": "/paths/_api_v1_video_auto-public-pool.json",
+      "post": {
+        "summary": "Auto Swith to Public Computing Pool"
+      }
+    },
+    "/api/v1/userVideoTwin/startTraining": {
+      "$ref": "/paths/_api_v1_userVideoTwin_startTraining.json",
+      "post": {
+        "summary": "Create A Custom Avatar by a Video or an Image"
+      }
+    },
+    "/api/v1/userVideoTwin/continueTranining": {
+      "$ref": "/paths/_api_v1_userVideoTwin_continueTranining.json",
+      "post": {
+        "summary": "Train a Personalized Lip-sync Model (Optional) a.k.a. Continue Training 💠"
+      }
+    },
+    "/api/v1/userVideoTwin/remove": {
+      "$ref": "/paths/_api_v1_userVideoTwin_remove.json",
+      "post": {
+        "summary": "Remove A Customized Avatar"
+      }
+    },
+    "/api/v1/userVideoTwin/records": {
+      "$ref": "/paths/_api_v1_userVideoTwin_records.json",
+      "get": {
+        "summary": "Get Status of All Tasks"
+      }
+    },
+    "/api/v1/userVideoTwin/traniningRecords": {
+      "$ref": "/paths/_api_v1_userVideoTwin_traniningRecords.json",
+      "get": {
+        "summary": "Get All Ongoing \"Training\" Tasks"
+      }
+    },
+    "/api/v1/userVideoTwin/{_id}": {
+      "$ref": "/paths/_api_v1_userVideoTwin_%7B_id%7D.json",
+      "get": {
+        "summary": "Status of One Task"
+      }
+    },
+    "/api/v1/userVideoTwin/addVoiceClone": {
+      "$ref": "/paths/_api_v1_userVideoTwin_addVoiceClone.json",
+      "post": {
+        "summary": "Clone Voice from a Video"
+      }
+    },
+    "/api/v1/custom_back/allBackground": {
+      "$ref": "/paths/_api_v1_custom_back_allBackground.json",
+      "post": {
+        "summary": "Obtain the List of Background Images"
+      }
+    },
+    "/api/v1/custom_back/add": {
+      "$ref": "/paths/_api_v1_custom_back_add.json",
+      "post": {
+        "summary": "Add Custom Background Image"
+      }
+    },
+    "/api/v1/custom_back/del": {
+      "$ref": "/paths/_api_v1_custom_back_del.json",
+      "post": {
+        "summary": "Delete Custom Image"
+      }
+    },
+    "/api/v1/userFaceSwapImage/add": {
+      "$ref": "/paths/_api_v1_userFaceSwapImage_add.json",
+      "post": {
+        "summary": "Add Face Swap Image"
+      }
+    },
+    "/api/v1/userFaceSwapImage/records": {
+      "$ref": "/paths/_api_v1_userFaceSwapImage_records.json",
+      "get": {
+        "summary": "Get Records of Face Swap Images"
+      }
+    },
+    "/api/v1/userFaceSwapImage/{_id}": {
+      "$ref": "/paths/_api_v1_userFaceSwapImage_%7B_id%7D.json",
+      "delete": {
+        "summary": "Delete User Face Swap Image"
+      }
+    },
+    "/api/v1/userFaceSwapPreview/add": {
+      "$ref": "/paths/_api_v1_userFaceSwapPreview_add.json",
+      "post": {
+        "summary": "Add User Face Swap Preview"
+      }
+    },
+    "/api/v1/userFaceSwapPreview/status": {
+      "$ref": "/paths/_api_v1_userFaceSwapPreview_status.json",
+      "get": {
+        "summary": "Get Status of Face Swap Preview Process"
+      }
+    },
+    "/api/v1/userFaceSwapTask/add": {
+      "$ref": "/paths/_api_v1_userFaceSwapTask_add.json",
+      "post": {
+        "summary": "Start a Face Swap Task"
+      }
+    },
+    "/api/v1/userFaceSwapTask/status": {
+      "$ref": "/paths/_api_v1_userFaceSwapTask_status.json",
+      "get": {
+        "summary": "Get Status of Face Swap Task"
+      }
+    },
+    "/api/v1/userFaceSwapTask/records": {
+      "$ref": "/paths/_api_v1_userFaceSwapTask_records.json",
+      "get": {
+        "summary": "Get Face Swap Task Records"
+      }
+    },
+    "/api/v1/userFaceSwapTask/{_id}": {
+      "$ref": "/paths/_api_v1_userFaceSwapTask_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details of Face Swap"
+      },
+      "delete": {
+        "summary": "Delete Record"
+      }
+    },
+    "/api/v1/userDubbing/startDubbing": {
+      "$ref": "/paths/_api_v1_userDubbing_startDubbing.json",
+      "post": {
+        "summary": "Start dubbing"
+      }
+    },
+    "/api/v1/userDubbing/allRecords": {
+      "$ref": "/paths/_api_v1_userDubbing_allRecords.json",
+      "get": {
+        "summary": "List Dubbing Tasks"
+      }
+    },
+    "/api/v1/userDubbing/allProcessing": {
+      "$ref": "/paths/_api_v1_userDubbing_allProcessing.json",
+      "get": {
+        "summary": "List All Processing Dubbing Tasks"
+      }
+    },
+    "/api/v1/userDubbing/{_id}": {
+      "$ref": "/paths/_api_v1_userDubbing_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details"
+      },
+      "delete": {
+        "summary": "Delete Record"
+      }
+    },
+    "/api/v1/userImage2Video/start": {
+      "$ref": "/paths/_api_v1_userImage2Video_start.json",
+      "post": {
+        "summary": "Start Image-to-Video"
+      }
+    },
+    "/api/v1/userImage2Video/{_id}": {
+      "$ref": "/paths/_api_v1_userImage2Video_%7B_id%7D.json",
+      "get": {
+        "summary": "Check Status of One Task"
+      },
+      "delete": {
+        "summary": "Delete Record"
+      }
+    },
+    "/api/v1/userImage2Video/allRecords": {
+      "$ref": "/paths/_api_v1_userImage2Video_allRecords.json",
+      "get": {
+        "summary": "List Status of All Tasks"
+      }
+    },
+    "/api/v1/userCaptionRemoval/start": {
+      "$ref": "/paths/_api_v1_userCaptionRemoval_start.json",
+      "post": {
+        "summary": "Start Caption Removal"
+      }
+    },
+    "/api/v1/userCaptionRemoval/allRecords": {
+      "$ref": "/paths/_api_v1_userCaptionRemoval_allRecords.json",
+      "get": {
+        "summary": "Get Records of All Tasks"
+      }
+    },
+    "/api/v1/userCaptionRemoval/allProcessing": {
+      "$ref": "/paths/_api_v1_userCaptionRemoval_allProcessing.json",
+      "get": {
+        "summary": "Get Status of All Tasks in Processing"
+      }
+    },
+    "/api/v1/userCaptionRemoval/{_id}": {
+      "$ref": "/paths/_api_v1_userCaptionRemoval_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details of One Task"
+      },
+      "delete": {
+        "summary": "Delete a Task"
+      }
+    },
+    "/api/v1/user/add": {
+      "$ref": "/paths/_api_v1_user_add.json",
+      "post": {
+        "summary": "Add a User"
+      }
+    },
+    "/api/v1/user/remainingCoins": {
+      "$ref": "/paths/_api_v1_user_remainingCoins.json",
+      "get": {
+        "summary": "Get User Remaining Credits"
+      }
+    },
+    "/api/v1/anchor/language_list": {
+      "$ref": "/paths/_api_v1_anchor_language_list.json",
+      "post": {
+        "summary": "List Available Languages"
+      }
+    },
+    "/api/v1/tos/transferToStorage": {
+      "$ref": "/paths/_api_v1_tos_transferToStorage.json",
+      "post": {
+        "summary": "Save URL to A2E's storage"
+      }
+    },
+    "/api/v1/watermark/start": {
+      "$ref": "/paths/_api_v1_watermark_start.json",
+      "post": {
+        "summary": "Add Watermark to Video or Image"
+      }
+    },
+    "/api/v1/r2/get_upload_presigned_url": {
+      "$ref": "/paths/_api_v1_r2_get_upload_presigned_url.json",
+      "post": {
+        "summary": "Get R2 Upload Presigned URL"
+      }
+    },
+    "/api/v1/userText2image/start": {
+      "$ref": "/paths/_api_v1_userText2image_start.json",
+      "post": {
+        "summary": "Start Text-to-Image"
+      }
+    },
+    "/api/v1/userText2image/allRecords": {
+      "$ref": "/paths/_api_v1_userText2image_allRecords.json",
+      "get": {
+        "summary": "List Tasks of Text-to-Image Tasks"
+      }
+    },
+    "/api/v1/userText2image/{_id}": {
+      "$ref": "/paths/_api_v1_userText2image_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details of One Task"
+      },
+      "delete": {
+        "summary": "Delete Record"
+      }
+    },
+    "/api/v1/userText2image/quickAddAvatar": {
+      "$ref": "/paths/_api_v1_userText2image_quickAddAvatar.json",
+      "post": {
+        "summary": "Quick Add Avarar"
+      }
+    },
+    "/api/v1/userNanoBanana/start": {
+      "$ref": "/paths/_api_v1_userNanoBanana_start.json",
+      "post": {
+        "summary": "Start a text-to-image or image-editing task"
+      }
+    },
+    "/api/v1/userNanoBanana/detail/{_id}": {
+      "$ref": "/paths/_api_v1_userNanoBanana_detail_%7B_id%7D.json",
+      "get": {
+        "summary": "Query the detail of one task"
+      }
+    },
+    "/api/v1/userNanoBanana/allRecords": {
+      "$ref": "/paths/_api_v1_userNanoBanana_allRecords.json",
+      "get": {
+        "summary": "List all records"
+      }
+    },
+    "/api/v1/userNanoBanana/delete/{_id}": {
+      "$ref": "/paths/_api_v1_userNanoBanana_delete_%7B_id%7D.json",
+      "delete": {
+        "summary": "Delete a record"
+      }
+    },
+    "/api/v1/talkingPhoto/start": {
+      "$ref": "/paths/_api_v1_talkingPhoto_start.json",
+      "post": {
+        "summary": "Start a Task"
+      }
+    },
+    "/api/v1/talkingPhoto/allRecords": {
+      "$ref": "/paths/_api_v1_talkingPhoto_allRecords.json",
+      "get": {
+        "summary": "List Tasks"
+      }
+    },
+    "/api/v1/talkingPhoto/{_id}": {
+      "$ref": "/paths/_api_v1_talkingPhoto_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Task Detail"
+      },
+      "delete": {
+        "summary": "Delete Task"
+      }
+    },
+    "/api/v1/talkingVideo/start": {
+      "$ref": "/paths/_api_v1_talkingVideo_start.json",
+      "post": {
+        "summary": "Start a Task"
+      }
+    },
+    "/api/v1/talkingVideo/{_id}": {
+      "$ref": "/paths/_api_v1_talkingVideo_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Task Detail"
+      },
+      "delete": {
+        "summary": "Delete Task"
+      }
+    },
+    "/api/v1/talkingVideo/allRecords": {
+      "$ref": "/paths/_api_v1_talkingVideo_allRecords.json",
+      "get": {
+        "summary": "List Tasks"
+      }
+    },
+    "/api/v1/virtualTryOn/start": {
+      "$ref": "/paths/_api_v1_virtualTryOn_start.json",
+      "post": {
+        "summary": "Start Virtual Try-On"
+      }
+    },
+    "/api/v1/virtualTryOn/allRecords": {
+      "$ref": "/paths/_api_v1_virtualTryOn_allRecords.json",
+      "get": {
+        "summary": "List Tasks of Virtual Try-On"
+      }
+    },
+    "/api/v1/virtualTryOn/{_id}": {
+      "$ref": "/paths/_api_v1_virtualTryOn_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details of One Task"
+      },
+      "delete": {
+        "summary": "Delete Record"
+      }
+    },
+    "/api/v1/motionTransfer/start": {
+      "$ref": "/paths/_api_v1_motionTransfer_start.json",
+      "post": {
+        "summary": "Start Video to Video"
+      }
+    },
+    "/api/v1/motionTransfer/allRecords": {
+      "$ref": "/paths/_api_v1_motionTransfer_allRecords.json",
+      "get": {
+        "summary": "List Tasks of Video to Video"
+      }
+    },
+    "/api/v1/motionTransfer/{_id}": {
+      "$ref": "/paths/_api_v1_motionTransfer_%7B_id%7D.json",
+      "get": {
+        "summary": "Get Details of One Task"
+      },
+      "delete": {
+        "summary": "Delete Record"
+      }
+    },
+    "/api/v1/productAvatar/start": {
+      "$ref": "/paths/_api_v1_productAvatar_start.json",
+      "post": {
+        "summary": "Start Product Avatar"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "$ref": "/components/schemas/index.json"
+    },
+    "responses": {
+      "$ref": "/components/responses/index.json"
+    },
+    "securitySchemes": {
+      "$ref": "/components/securitySchemes/index.json"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://video.a2e.ai",
+      "description": "Global Server"
+    },
+    {
+      "url": "https://video.a2e.com.cn",
+      "description": "China Server"
+    }
+  ],
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

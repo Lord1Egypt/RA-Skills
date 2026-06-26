@@ -1,35 +1,62 @@
 ---
-name: "Pipeworx agify"
-description: "Agify MCP — age prediction from first name (agify.io, free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-agify"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-agify"
+name: pipeworx-agify
+description: Agify MCP — age prediction from first name (agify.io, free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "⚡"
+    homepage: https://pipeworx.io/packs/agify
 ---
 
 # Pipeworx agify
 
-> Agify MCP — age prediction from first name (agify.io, free, no auth)
+Agify MCP — age prediction from first name (agify.io, free, no auth)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-agify`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-agify](https://clawhub.ai/skills/pipeworx-agify)
+Free, no API key required. Part of the [Pipeworx](https://pipeworx.io) open MCP gateway.
 
-## Overview
+## When to Use
+
+Use this skill when the user asks about agify data or needs to query agify information.
+
+## Available Tools
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+## How to Call
+
+The Pipeworx gateway speaks JSON-RPC 2.0 over HTTP POST.
+
+### List available tools
 ```bash
-hermes skills install clawhub/pipeworx-agify
+curl -s -X POST https://gateway.pipeworx.io/agify/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
 ```
+
+### Call a tool
+```bash
+curl -s -X POST https://gateway.pipeworx.io/agify/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"TOOL_NAME","arguments":{"param":"value"}}}'
+```
+
+### MCP Client Config
+```json
+{
+  "mcpServers": {
+    "pipeworx-agify": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/agify/mcp"]
+    }
+  }
+}
+```
+
+## Notes
+
+- No authentication required
+- Free for all users
+- Rate limited for anonymous users (sign up at pipeworx.io for higher limits)
+- Returns JSON-RPC 2.0 responses

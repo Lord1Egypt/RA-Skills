@@ -1,0 +1,26 @@
+{
+  "databaseId": 3001,
+  "workflowName": "CI",
+  "headBranch": "main",
+  "repository": {"nameWithOwner": "example/api"},
+  "url": "https://github.com/example/api/actions/runs/3001",
+  "jobs": [
+    {
+      "name": "test",
+      "url": "https://github.com/example/api/actions/runs/3001/job/1",
+      "steps": [
+        {"name": "Setup Python", "conclusion": "success"},
+        {"name": "Install deps", "conclusion": "success"},
+        {"name": "Run tests", "conclusion": "failure"}
+      ]
+    },
+    {
+      "name": "lint",
+      "url": "https://github.com/example/api/actions/runs/3001/job/2",
+      "steps": [
+        {"name": "Install deps", "conclusion": "success"},
+        {"name": "Run lint", "conclusion": "success"}
+      ]
+    }
+  ]
+}

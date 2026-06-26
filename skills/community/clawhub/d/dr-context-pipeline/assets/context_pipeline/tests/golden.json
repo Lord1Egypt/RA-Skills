@@ -1,0 +1,56 @@
+[
+  {
+    "id": "discord_dm_only",
+    "user_message": "Can you reply in #general?",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": ["memory/always_on.md", "memory/topics/discord-rules.md"],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "ops",
+        "must_follow_contains": ["Discord DM-only"],
+        "unknowns_count_max": 2
+      }
+    }
+  },
+  {
+    "id": "briefing_missed",
+    "user_message": "I didn’t receive today’s briefing again",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": ["memory/automation.md", "memory/topics/openclaw-ops.md"],
+        "max_daily_log_snippets": 3
+      },
+      "context_pack": {
+        "task_type": "ops"
+      }
+    }
+  },
+  {
+    "id": "doc_review_mode",
+    "user_message": "Review this customer-facing doc paragraph and tell me what claims need validation",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": ["memory/topics/doc-review-mode.md"],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "doc_review"
+      }
+    }
+  },
+  {
+    "id": "memory_pipeline_question",
+    "user_message": "How does our retrieval + compression memory pipeline work?",
+    "expect": {
+      "retrieval": {
+        "must_include_paths": ["memory/always_on.md"],
+        "max_daily_log_snippets": 0
+      },
+      "context_pack": {
+        "task_type": "planning"
+      }
+    }
+  }
+]

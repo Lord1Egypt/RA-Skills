@@ -1,0 +1,35 @@
+{
+  "name": "主力行为指标",
+  "endpoint": "POST /indicator/getPriceMarketList",
+  "description": "获取BTC或ETH在特定时间范围内的，因主力动作可能影响到价格趋势的特色指标数据",
+  "credits_cost": 1,
+  "needToken": true,
+  "use_case": "适用于对BTC和ETH的价格大趋势判断参考，适用于识别主力行为对价格的影响和整体价格趋势走向判断",
+  "update_frequency": "实时更新",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "startTime": { "type": "long", "req": false, "desc": "开始时间（毫秒时间戳）" },
+    "endTime": { "type": "long", "req": true, "desc": "结束时间（毫秒时间戳）" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "date": { "type": "long", "actualType": "long", "desc": "时间（毫秒时间戳）" },
+    "priceMarketType": { "type": "integer", "actualType": "integer", "desc": "价格趋势（1：上涨，2：下跌）" }
+  },
+  "enums": {
+    "priceMarketType": {
+      "1": "上涨",
+      "2": "下跌"
+    }
+  },
+  "example": {
+    "req": { "vsTokenId": 1, "startTime": 1770825600000, "endTime": 1773417600000 },
+    "res": {
+      "code": 200,
+      "data": [
+        { "vsTokenId": "1", "symbol": "BTC", "date": 1773158400000, "priceMarketType": 1 }
+      ]
+    }
+  }
+}

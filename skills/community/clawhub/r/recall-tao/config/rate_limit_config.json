@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "enabled": true,
+  "limits": {
+    "perMinute": {
+      "max": 5,
+      "windowMs": 60000,
+      "description": "每分钟最大回复数"
+    },
+    "perHour": {
+      "max": 50,
+      "windowMs": 3600000,
+      "description": "每小时最大回复数"
+    },
+    "perDay": {
+      "max": 500,
+      "windowMs": 86400000,
+      "description": "每天最大回复数"
+    }
+  },
+  "strategy": {
+    "onLimitReached": "pause", 
+    "pauseDurationMs": 60000,
+    "notifyOnLimit": true
+  },
+  "randomDelay": {
+    "enabled": true,
+    "minMs": 3000,
+    "maxMs": 10000,
+    "description": "随机延迟，模拟真人行为"
+  },
+  "burstProtection": {
+    "enabled": true,
+    "maxConsecutive": 3,
+    "cooldownMs": 30000,
+    "description": "连续快速回复保护"
+  },
+  "lastUpdated": null
+}

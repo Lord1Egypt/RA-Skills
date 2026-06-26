@@ -1,0 +1,42 @@
+{
+  "weekdays": ["Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota", "Nedelja"],
+
+  "note_title":      "GTR3 Zdravstveni dnevnik",
+  "callout_title":   "Automatski generisano",
+  "callout_body":    "Ova beleška je automatski kreirana iz podataka Amazfit GTR3 putem HCGateway-a.",
+
+  "summary_heading": "Pregled",
+  "col_metric":      "Metrika",
+  "col_value":       "Vrednost",
+  "row_steps":       "Koraci",
+  "row_distance":    "Rastojanje",
+  "row_sleep_dur":   "Trajanje sna",
+  "row_resting_hr":  "Puls u miru",
+  "row_spo2":        "SpO2 (pros.)",
+
+  "sleep_heading":   "San",
+  "sleep_period":    "Period",
+  "sleep_duration":  "Trajanje",
+  "sleep_no_data":   "Nema podataka o snu za ovaj datum.",
+  "col_stage":       "Faza",
+  "col_minutes":     "Minuti",
+  "stage_deep":      "Duboki",
+  "stage_rem":       "REM",
+  "stage_light":     "Lagani",
+  "stage_awake":     "Budan",
+
+  "hr_heading":      "Srčani ritam",
+  "hr_avg":          "Pros.",
+  "hr_resting":      "Puls u miru",
+
+  "spo2_heading":    "SpO2",
+  "spo2_avg":        "Prosečna saturacija kiseonikom",
+
+  "nav_yesterday":   "Juče",
+  "nav_tomorrow":    "Sutra",
+
+  "fm_weekday_key":  "dan",
+  "fm_source":       "HCGateway / Amazfit GTR3",
+  "tag_health":      "zdravlje",
+  "tag_auto":        "auto-generisano"
+}

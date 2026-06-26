@@ -1,0 +1,72 @@
+# system-healthcheck 配置文件
+
+# ============== 国际化 ==============
+i18n:
+  # 自动检测系统语言（推荐）
+  auto_detect: true
+  
+  # 手动指定语言（覆盖自动检测）
+  # locale: zh-CN
+  
+  # 回退语言（当指定语言缺失时）
+  fallback: en
+
+# ============== 检查阈值 ==============
+thresholds:
+  disk_warning: 80      # 磁盘警告阈值 (%)
+  disk_critical: 95     # 磁盘临界阈值 (%)
+  memory_warning_mb: 500  # 内存警告 (可用 MB)
+  log_size_mb: 100      # 日志大小警告 (MB)
+
+# ============== L1 快速检查 ==============
+l1:
+  enabled: true
+  timeout_ms: 200       # 超时 (毫秒)
+  critical_files:       # 关键文件清单
+    - SOUL.md
+    - IDENTITY.md
+    - AGENTS.md
+    - TOOLS.md
+    - MEMORY.md
+
+# ============== L2 小时级检查 ==============
+l2:
+  enabled: true
+  interval_minutes: 60  # 检查间隔 (分钟)
+  timeout_seconds: 5    # 超时 (秒)
+
+# ============== L3 日级审计 ==============
+l3:
+  enabled: true
+  schedule: "0 8 * * *"  # Crontab 格式：每日 08:00
+  timeout_seconds: 60   # 超时 (秒)
+  retention_days: 30    # 报告保留天数
+
+# ============== 心跳机制 ==============
+heartbeat:
+  enabled: true
+  work_hours_start: 9   # 工作开始时间 (24 小时制)
+  work_hours_end: 18    # 工作结束时间
+  quiet_on_ok: true     # 全部正常时静默输出
+
+# ============== 路径配置 ==============
+paths:
+  # 工作目录（默认自动检测）
+  # workspace: /home/admin/.openclaw/workspace
+  
+  # 日志目录
+  # logs: /home/admin/.openclaw/workspace/logs
+  
+  # 报告目录
+  # reports: /home/admin/.openclaw/workspace/reports
+
+# ============== 输出配置 ==============
+output:
+  # 控制台输出
+  console: true
+  
+  # JSON 格式输出（用于脚本集成）
+  # json: false
+  
+  # 彩色输出（依赖 rich 库）
+  colorful: true

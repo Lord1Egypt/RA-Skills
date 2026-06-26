@@ -1,0 +1,133 @@
+{
+  "version": "3.6.0",
+  "updated": "2026-04-16",
+
+  "description": "黑名单配置 - 危险内容检测规则",
+
+  "centralized_references": {
+    "threat_patterns": "threat_patterns.json - 中央威胁模式库",
+    "behavior_classification": "behavior_classification.json - 操作分类"
+  },
+
+  "group_rules": {
+    "description": "群聊场景下不能泄露的内容（按等级限制）",
+    "cannot_leak": [
+      "工作区文件具体内容",
+      "MEMORY.md中的详细记录",
+      "TOOLS.md中的环境配置",
+      "技能文件的具体内容",
+      "安全规则的具体实现",
+      "主人ID和配置信息"
+    ],
+    "cannot_do_refs": [
+      "dangerous-delete-permission",
+      "dangerous-all-files"
+    ],
+    "cannot_do": [
+      "删除、修改权限等危险操作",
+      "文件具体内容的读取",
+      "文件具体内容的写入",
+      "技能文件的查看",
+      "技能文件的修改"
+    ]
+  },
+
+  "entries": [
+    {
+      "id": "bl-001",
+      "name": "恶意域名检测",
+      "ref": "threat_patterns.json → D01",
+      "conditions_ref": ["D01"],
+      "match_mode": "ANY",
+      "risk_level": "高",
+      "reason": "已知恶意域名",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-002",
+      "name": "危险系统命令",
+      "ref": "threat_patterns.json → K02",
+      "conditions_ref": ["K02"],
+      "match_mode": "ANY",
+      "risk_level": "高",
+      "reason": "危险系统命令",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-003",
+      "name": "危险数据库操作",
+      "ref": "threat_patterns.json → K03",
+      "conditions_ref": ["K03"],
+      "match_mode": "ANY",
+      "risk_level": "高",
+      "reason": "危险数据库操作",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-004",
+      "name": "XSS攻击特征",
+      "ref": "threat_patterns.json → K04",
+      "conditions_ref": ["K04"],
+      "match_mode": "ANY",
+      "risk_level": "中",
+      "reason": "XSS攻击特征",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-005",
+      "name": "数据库导出/凭证泄露",
+      "ref": "threat_patterns.json → K05",
+      "conditions_ref": ["K05"],
+      "match_mode": "ANY",
+      "risk_level": "高",
+      "reason": "数据库导出/凭证泄露",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-006",
+      "name": "社工攻击话术",
+      "ref": "threat_patterns.json → K06",
+      "conditions_ref": ["K06"],
+      "match_mode": "ANY",
+      "risk_level": "高",
+      "reason": "社会工程学攻击话术",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-007",
+      "name": "内网可疑IP",
+      "ref": "threat_patterns.json → I01",
+      "conditions_ref": ["I01"],
+      "match_mode": "ANY",
+      "risk_level": "中",
+      "reason": "可疑内网IP",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-100",
+      "name": "系统工作区目录保护",
+      "ref": "threat_patterns.json → P01",
+      "conditions_ref": ["P01"],
+      "match_mode": "NOT_IN",
+      "risk_level": "高",
+      "reason": "系统默认工作区目录，需按等级保护",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "bl-101",
+      "name": "敏感信息关键词",
+      "ref": "threat_patterns.json → K01",
+      "conditions_ref": ["K01"],
+      "match_mode": "ANY",
+      "risk_level": "高",
+      "reason": "敏感信息关键词（密码/证件/银行卡等）",
+      "created_at": "2026-04-16T00:00:00"
+    }
+  ],
+
+  "notes": {
+    "如何添加新条目": "在threat_patterns.json中定义模式，在entries中引用",
+    "ref格式": "引用ID格式：K01(关键词)/D01(域名)/I01(IP)/P01(路径)",
+    "兼容模式": "保留conditions字段用于直接匹配，支持渐进迁移"
+  }
+}

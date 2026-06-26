@@ -1,0 +1,6 @@
+{
+  "last_delivery_date": null,
+  "total_deliveries": 0,
+  "recent_koans": [],
+  "_note": "Tracks recent deliveries to avoid repetition. LLM generates koans dynamically, so no fixed total count."
+}

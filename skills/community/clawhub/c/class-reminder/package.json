@@ -1,0 +1,8 @@
+{
+  "name": "class-reminder",
+  "version": "1.0.0",
+  "description": "课程提醒助手 - 解析教师课表，自动推送每日/每周课程提醒",
+  "author": "",
+  "license": "MIT",
+  "keywords": ["课程", "提醒", "教师", "课表", "schedule", "reminder"]
+}

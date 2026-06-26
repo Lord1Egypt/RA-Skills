@@ -1,35 +1,14 @@
 ---
-name: "AxonFlow Governance Policies"
-description: "DEPRECATED — use @axonflow/governance-policies instead. This personal copy is no longer maintained."
-category: "security"
-source: "ClawHub"
-tags: [audit, compliance, governance, openclaw, pii, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/axonflow-governance-policies"
-sourceUrl: "https://clawhub.ai/skills/axonflow-governance-policies"
+name: axonflow-governance-policies
+description: DEPRECATED — use @axonflow/governance-policies instead. This personal copy is no longer maintained.
+homepage: https://clawhub.ai/axonflow/governance-policies
+tags: deprecated, security, governance
 ---
 
-# AxonFlow Governance Policies
+# DEPRECATED
 
-> DEPRECATED — use @axonflow/governance-policies instead. This personal copy is no longer maintained.
+This skill has moved to the official AxonFlow organization on ClawHub:
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/axonflow-governance-policies`
-- **Source URL:** [https://clawhub.ai/skills/axonflow-governance-policies](https://clawhub.ai/skills/axonflow-governance-policies)
+**Use [@axonflow/governance-policies](https://clawhub.ai/axonflow/governance-policies) instead.**
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/axonflow-governance-policies
-```
+This personal copy (`saurabhjain1592/axonflow-governance-policies`) is no longer updated.

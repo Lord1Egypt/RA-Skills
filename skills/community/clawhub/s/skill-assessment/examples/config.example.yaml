@@ -1,0 +1,132 @@
+# skill-assessment 配置示例
+# 复制此文件到 skill-assessment/config.yaml 并修改
+
+# 权重配置 (总和应为 1.0)
+weights:
+  documentation: 0.30    # 文档完整性权重
+  code_quality: 0.40     # 代码规范性权重
+  config_friendly: 0.20  # 配置友好度权重
+  maintenance: 0.10      # 维护活跃度权重
+
+# 自定义检查项（根据需求调整）
+checks:
+  documentation:
+    required_sections:
+      - name
+      - description
+      - triggers
+      - usage
+      - installation
+      - configuration
+      # 可以根据需要添加更多必填章节
+  
+  code_quality:
+    # 安全检查敏感度：high, medium, low
+    security_level: "medium"
+    
+    # 排除的文件模式
+    exclude_patterns:
+      - "*.log"
+      - "*.tmp"
+      - "*.bak"
+  
+  config_friendly:
+    # 是否要求必须有配置文件示例
+    require_example_config: true
+    
+  maintenance:
+    # "近期更新"的时间阈值（天）
+    recent_threshold: 90
+    
+    # "活跃维护"的时间阈值（天）
+    active_threshold: 180
+
+# 输出配置
+output:
+  # 输出格式：markdown, json, text
+  format: "markdown"
+  
+  # 是否保存详细报告
+  save_report: true
+  
+  # 报告保存目录
+  report_dir: "./reports"
+  
+  # 最多显示的问题数量
+  max_issues_to_show: 15
+  
+  # 是否使用颜色输出（控制台）
+  use_colors: true
+
+# 性能配置
+performance:
+  # 单个检查超时时间（秒）
+  timeout_seconds: 30
+  
+  # 总评估最长时间（秒）
+  max_total_time: 120
+  
+  # 并行检查数量
+  parallel_checks: 2
+
+# 自定义安全检查规则
+security:
+  custom_patterns:
+    # 添加自定义的安全检查模式
+    - pattern: "eval\\s*\\(.*\\$"
+      description: "动态代码执行风险"
+      severity: "high"
+      
+    - pattern: "system\\s*\\(.*\\$"
+      description: "系统命令注入风险"
+      severity: "high"
+
+# 技能特定配置
+# 可以为特定技能设置例外或特殊规则
+skill_exceptions:
+  skill-creator:
+    # 为 skill-creator 技能设置特殊规则
+    ignore_issues:
+      - "硬编码路径"  # 忽略特定的问题类型
+    
+    # 调整权重
+    adjusted_weights:
+      documentation: 0.35
+      code_quality: 0.35
+
+# 报告模板自定义
+templates:
+  # 自定义报告头部
+  header: |
+    # 技能质量评估报告
+    **生成时间**: {{ timestamp }}
+    **评估工具**: skill-assessment v{{ version }}
+    
+  # 自定义报告尾部
+  footer: |
+    ---
+    *本报告由 skill-assessment 自动生成，仅供参考。*
+    *如有疑问，请联系技能维护者。*
+
+# 批量评估配置
+batch:
+  # 批量评估时跳过的技能
+  skip_skills:
+    - "skill-assessment"  # 跳过自身评估
+    
+  # 批量评估输出格式
+  output_format: "summary"  # summary, detailed, json
+  
+  # 是否生成对比报告
+  generate_comparison: true
+  
+# 调试配置
+debug:
+  # 是否启用详细日志
+  verbose: false
+  
+  # 是否保存中间结果
+  save_intermediate: false
+  
+  # 中间结果保存目录
+  intermediate_dir: "./debug"

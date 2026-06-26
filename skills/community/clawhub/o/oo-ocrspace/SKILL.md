@@ -1,35 +1,79 @@
 ---
-name: "OCR.space"
-description: "OCR.space (ocr.space). Use this skill for ANY OCR.space request — searching and reading data. Whenever a task involves OCR.space, use this skill instead of c..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-ocrspace"
-sourceUrl: "https://clawhub.ai/skills/oo-ocrspace"
+name: oo-ocrspace
+description: "OCR.space (ocr.space). Use this skill for ANY OCR.space request — searching and reading data. Whenever a task involves OCR.space, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "OCR.space"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["ocrspace"]
+  icon: "https://static.oomol.com/logo/third-party/ocrspace.svg"
 ---
 
 # OCR.space
 
-> OCR.space (ocr.space). Use this skill for ANY OCR.space request — searching and reading data. Whenever a task involves OCR.space, use this skill instead of c...
+Operate **OCR.space** through your OOMOL-connected account. This skill calls the `ocrspace` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-ocrspace`
-- **Source URL:** [https://clawhub.ai/skills/oo-ocrspace](https://clawhub.ai/skills/oo-ocrspace)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected OCR.space. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-ocrspace
+oo connector schema "ocrspace" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "ocrspace" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `extract_text` — Extract text from a public image or uploaded Base64 file by calling OCR.space and returning normalized page results.
+- `get_conversion_stats` — Fetch OCR.space conversion statistics for the current month or the previous month.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change OCR.space state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — OCR.space is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=ocrspace
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- OCR.space homepage: https://ocr.space

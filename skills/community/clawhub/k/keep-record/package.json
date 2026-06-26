@@ -1,0 +1,45 @@
+{
+  "name": "@keepclaw/keep-record",
+  "version": "1.5.8",
+  "description": "Keep 健康记录 Skill - 饮食/运动/体重/围度/生理期/睡眠的多模态记录",
+  "keywords": [
+    "keep",
+    "health",
+    "diet",
+    "exercise",
+    "mcp",
+    "skill",
+    "record"
+  ],
+  "license": "MIT",
+  "author": "Keep",
+  "homepage": "https://gitlab.gotokeep.com/keepagent/npm-skills/-/tree/main/packages/keep-record",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.gotokeep.com/keepagent/npm-skills.git",
+    "directory": "packages/keep-record"
+  },
+  "bugs": {
+    "url": "https://gitlab.gotokeep.com/keepagent/npm-skills/-/issues"
+  },
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "bin": {
+    "keep-record-unlink": "./bin/keep-record-unlink.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@keepclaw/skill-sdk": "0.6.2"
+  },
+  "files": [
+    "SKILL.md",
+    "references/",
+    "scripts/",
+    "bin/",
+    "_meta.json"
+  ]
+}

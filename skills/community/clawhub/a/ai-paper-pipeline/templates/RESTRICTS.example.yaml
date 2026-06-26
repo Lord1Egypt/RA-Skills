@@ -1,0 +1,16 @@
+quality_threshold: 8
+min_references: 30
+min_experiment_rounds: 10
+paper_word_target: [5000, 6500]
+page_limit_main_body: 9
+requirements:
+  - no_fabrication
+  - methodology_evidence_consistency
+  - strong_baselines
+  - ablations_required
+  - numpy_2x_compatible
+red_lines:
+  - fake_results
+  - fake_citations
+  - unsupported_claims
+  - environment_issues_as_contribution

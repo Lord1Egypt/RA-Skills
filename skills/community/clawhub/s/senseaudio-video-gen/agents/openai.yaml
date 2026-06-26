@@ -1,0 +1,4 @@
+interface:
+  display_name: "SenseAudio Video Gen"
+  short_description: "Create local HTML videos with AudioClaw planning and SenseAudio media"
+  default_prompt: "Create a short HTML-authored video from a brief, website, or GitHub/Markdown source using AudioClaw LLM planning, SenseAudio narration or music when configured, registered assets, audits, and a local MP4 render"

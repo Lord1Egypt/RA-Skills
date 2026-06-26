@@ -1,0 +1,158 @@
+[
+  {
+    "id": "NT01",
+    "name": "frp 检测",
+    "patterns": [
+      "\\bfrpc\\s+(start|reload)",
+      "\\bfrps\\s+-c",
+      "\\bfrpc\\.ini\\b",
+      "\\bfrps\\.ini\\b",
+      "server_addr\\s*="
+    ],
+    "risk": "HIGH",
+    "description": "检测 frp 内网穿透工具",
+    "action": "BLOCK",
+    "enterprise_action": "BLOCK",
+    "personal_action": "CONFIRM",
+    "optimized": true
+  },
+  {
+    "id": "NT02",
+    "name": "ngrok 检测",
+    "patterns": [
+      "\\bngrok\\s+(http|tcp|tls)",
+      "\\bngrok\\.yml\\b",
+      "\\bauthtoken\\s+",
+      "\\./ngrok\\s+http"
+    ],
+    "risk": "HIGH",
+    "description": "检测 ngrok 内网穿透工具",
+    "action": "BLOCK",
+    "enterprise_action": "BLOCK",
+    "personal_action": "CONFIRM",
+    "optimized": true
+  },
+  {
+    "id": "NT03",
+    "name": "Cloudflare Tunnel 检测",
+    "patterns": [
+      "\\bcloudflared\\s+tunnel",
+      "\\bcloudflared\\s+access",
+      "tunnel\\s+--url"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测 Cloudflare 隧道工具",
+    "action": "WARN",
+    "enterprise_action": "WARN",
+    "personal_action": "INFO",
+    "optimized": true
+  },
+  {
+    "id": "NT04",
+    "name": "Tailscale 检测",
+    "patterns": [
+      "\\btailscale\\s+up",
+      "\\btailscale\\s+connect",
+      "\\btailscaled\\b"
+    ],
+    "risk": "LOW",
+    "description": "检测 Tailscale VPN",
+    "action": "INFO",
+    "enterprise_action": "INFO",
+    "personal_action": "INFO",
+    "optimized": true
+  },
+  {
+    "id": "NT05",
+    "name": "ZeroTier 检测",
+    "patterns": [
+      "\\bzerotier-cli\\s+join",
+      "\\bzerotier-one\\b",
+      "\\bzerotier-id\\b"
+    ],
+    "risk": "LOW",
+    "description": "检测 ZeroTier P2P VPN",
+    "action": "INFO",
+    "enterprise_action": "INFO",
+    "personal_action": "INFO",
+    "optimized": true
+  },
+  {
+    "id": "NT06",
+    "name": "nps/npc 检测",
+    "patterns": [
+      "\\bnps\\s+-config",
+      "\\bnpc\\s+-server",
+      "\\bnps\\.conf\\b",
+      "vkey\\s*="
+    ],
+    "risk": "HIGH",
+    "description": "检测 nps 内网穿透代理",
+    "action": "BLOCK",
+    "enterprise_action": "BLOCK",
+    "personal_action": "CONFIRM",
+    "optimized": true
+  },
+  {
+    "id": "NT07",
+    "name": "reGeorg/reDuh 检测",
+    "patterns": [
+      "\\breGeorg\\b",
+      "\\breDuh\\b",
+      "tunnel\\.(aspx|php|jsp)",
+      "\\breGeorgSocksProxy\\b"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测渗透测试工具 reGeorg",
+    "action": "BLOCK",
+    "enterprise_action": "BLOCK",
+    "personal_action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "NT08",
+    "name": "EarthWorm 检测",
+    "patterns": [
+      "\\bew\\s+-[sdfglrve]",
+      "\\bew\\.exe\\b"
+    ],
+    "risk": "CRITICAL",
+    "description": "检测内网穿透神器 EarthWorm",
+    "action": "BLOCK",
+    "enterprise_action": "BLOCK",
+    "personal_action": "BLOCK",
+    "optimized": true
+  },
+  {
+    "id": "NT09",
+    "name": "Termux SSH 检测",
+    "patterns": [
+      "\\btermux-setup-storage\\b",
+      "pkg\\s+install\\s+openssh",
+      "\\bsshd\\s+start",
+      "\\bssh\\s+-[RLD]"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测 Termux 配合 SSH 穿透",
+    "action": "WARN",
+    "enterprise_action": "BLOCK",
+    "personal_action": "CONFIRM",
+    "optimized": true
+  },
+  {
+    "id": "NT10",
+    "name": "代理工具检测",
+    "patterns": [
+      "\\bproxychains\\b",
+      "socks[45]\\s+\\d+\\.\\d+\\.\\d+\\.\\d+",
+      "\\bhttp_proxy\\s*=",
+      "\\bshadowsocks\\b"
+    ],
+    "risk": "MEDIUM",
+    "description": "检测通用代理工具",
+    "action": "WARN",
+    "enterprise_action": "WARN",
+    "personal_action": "INFO",
+    "optimized": true
+  }
+]

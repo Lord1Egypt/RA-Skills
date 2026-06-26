@@ -1,0 +1,116 @@
+{
+  "name": "vibe-coding-cn",
+  "version": "4.1.0",
+  "slug": "vibe-coding-cn",
+  "displayName": "Vibe Coding CN",
+  "description": "AI 团队协作，自动生成完整项目。5 Agent + SPEC.md + Agent 投票审批 + 需求追溯",
+  "author": "红曼为帆",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/vibe-coding-cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/vibe-coding-cn.git"
+  },
+  "keywords": [
+    "vibe-coding",
+    "openclaw",
+    "skill",
+    "ai",
+    "code-generation",
+    "multi-agent",
+    "spec-first",
+    "chinese"
+  ],
+  "categories": [
+    "development",
+    "productivity",
+    "ai-assistant"
+  ],
+  "emoji": "🎨",
+  "platform": "openclaw",
+  "minOpenClawVersion": "2026.2.0",
+  "entry": "index.js",
+  "main": "SKILL.md",
+  "readme": "README.md",
+  "files": [
+    "index.js",
+    "executors/",
+    "SKILL.md",
+    "README.md",
+    "package.json"
+  ],
+  "requires": {
+    "bins": ["node"],
+    "nodeVersion": ">=18.0.0"
+  },
+  "os": ["linux", "darwin", "win32"],
+  "capabilities": [
+    "sessions_spawn",
+    "file_read",
+    "file_write",
+    "exec"
+  ],
+  "permissions": {
+    "filesystem": "workspace",
+    "network": false
+  },
+  "features": [
+    "5 Agent 团队协作",
+    "SPEC.md 自动生成",
+    "Agent 投票审批",
+    "版本管理",
+    "增量更新",
+    "需求追溯矩阵",
+    "质量门禁"
+  ],
+  "usage": {
+    "basic": "用 vibe-coding 做一个个税计算器",
+    "advanced": "用 vibe-coding 做个客户管理系统，mode: v4.1"
+  },
+  "examples": [
+    {
+      "title": "快速原型",
+      "command": "用 vibe-coding 做个打字游戏",
+      "mode": "v3"
+    },
+    {
+      "title": "增强协作",
+      "command": "用 vibe-coding 做个个税计算器，mode: v4",
+      "mode": "v4"
+    },
+    {
+      "title": "SPEC.md + 投票",
+      "command": "用 vibe-coding 做个客户管理系统，mode: v4.1",
+      "mode": "v4.1"
+    }
+  ],
+  "changelog": {
+    "4.1.0": [
+      "新增 SPEC.md 自动生成",
+      "新增 Agent 投票审批机制",
+      "自动决策，无需用户等待",
+      "3 Agent 专业评审（Architect + Developer + Tester）"
+    ],
+    "4.0.0": [
+      "新增迭代优化机制",
+      "新增并行评审",
+      "新增并行执行",
+      "新增投票机制"
+    ],
+    "3.0.0": [
+      "OpenClaw LLM 集成",
+      "版本管理系统",
+      "增量更新功能",
+      "文件保存功能"
+    ]
+  },
+  "screenshots": [],
+  "badges": [
+    "https://img.shields.io/badge/version-4.1.0-blue.svg",
+    "https://img.shields.io/badge/OpenClaw-Skill-green.svg",
+    "https://img.shields.io/badge/license-MIT-blue.svg"
+  ],
+  "installSize": "~50KB",
+  "downloads": 0,
+  "publishedAt": "2026-04-06T20:57:00.000Z"
+}

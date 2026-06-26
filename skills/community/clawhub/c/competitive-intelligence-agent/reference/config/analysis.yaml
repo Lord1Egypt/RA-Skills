@@ -1,0 +1,113 @@
+# Analysis Configuration
+
+# Pricing Analysis
+pricing_analysis:
+  comparison_method: "feature_matching"  # Options: feature_matching, tier_name, price_range
+  currency: "ZAR"
+  generate_suggestions: true
+
+  prompt: |
+    Compare {{our_pricing}} to {{competitor_pricing}} for {{competitor_name}}.
+
+    Our pricing:
+    {{our_pricing}}
+
+    Competitor pricing:
+    {{competitor_pricing}}
+
+    Analyze:
+    1. Price comparison by tier (where are we higher/lower?)
+    2. Feature gaps at each price point
+    3. Value proposition differences
+    4. Recommended adjustments (specific prices or features to change)
+    5. Overall market positioning observation
+
+    Output as structured analysis with specific numbers and actionable recommendations.
+
+# Sentiment Analysis
+sentiment_analysis:
+  model: "default"  # Uses local NLP classifier
+  categories:
+    - positive
+    - negative
+    - neutral
+  extract_topics: true
+  topic_count: 5
+
+  prompt: |
+    Analyze the sentiment of these {{platform}} reviews for {{competitor_name}}:
+
+    {{reviews}}
+
+    For each review, classify as: positive, negative, or neutral.
+    Then summarize:
+    - Overall sentiment score (0-1, where 1 is most positive)
+    - Top 3 praise themes (what people love)
+    - Top 3 complaint themes (what people hate)
+    - Any mentions of {{our_company_name}} (direct comparisons)
+    - Key opportunities for us (competitor weaknesses)
+
+# Product Gap Analysis
+product_gap_analysis:
+  compare_features: true
+  feature_source: "pricing_pages_and_docs"
+  generate_roadmap_suggestions: true
+
+  prompt: |
+    Compare the product offerings of {{our_company_name}} vs {{competitor_name}}.
+
+    Our features: {{our_features}}
+    Competitor features: {{competitor_features}}
+
+    Identify:
+    1. Features only we have (our moat)
+    2. Features only they have (their moat)
+    3. Features we both have (table stakes)
+    4. Potential features to build (gap opportunities)
+    5. Features to sunset (no longer competitive)
+
+    Rank gap opportunities by impact (High/Medium/Low).
+
+# Trend Analysis
+trend_analysis:
+  lookback_weeks: 4
+  metrics_to_track:
+    - follower_growth
+    - engagement_rate
+    - sentiment_trend
+    - price_movement
+    - review_volume
+
+  prompt: |
+    Analyze 4-week trends for {{competitor_name}}:
+
+    Historical data:
+    {{trend_data}}
+
+    Identify:
+    1. Significant trends (upward or downward)
+    2. Correlations (e.g., price drop → review change)
+    3. Anomalous events or spikes
+    4. Competitive implications for {{our_company_name}}
+    5. Predicted next moves
+
+# Weekly Summary
+weekly_summary_prompt: |
+  You are a competitive intelligence analyst. Generate a concise weekly briefing.
+
+  Context: {{our_company_name}} vs {{competitors}}
+
+  Data for this week:
+  {{weekly_data}}
+
+  Generate a structured briefing with:
+  1. Executive Summary (3 key bullets)
+  2. Pricing Changes (what moved, by how much)
+  3. Social Media Highlights (sentiment shifts, viral posts)
+  4. Review Changes (rating shifts, complaint/praise themes)
+  5. Product/Feature Launches (what's new)
+  6. News (funding, hiring, leadership)
+  7. Recommendations (top 3 actionable items)
+
+  Format as clean markdown with emoji headers. Keep it under 1500 words.
+  Recommendations must be specific and actionable — not generic advice.

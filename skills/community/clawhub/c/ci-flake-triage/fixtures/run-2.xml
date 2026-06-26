@@ -1,0 +1,8 @@
+<testsuite name="pytest-rerun" tests="4" failures="1" errors="0" skipped="0">
+  <testcase classname="tests.test_api" name="test_quote_happy_path" time="0.10" />
+  <testcase classname="tests.test_api" name="test_rate_limit" time="0.42" />
+  <testcase classname="tests.test_jobs" name="test_worker_retry" time="1.80">
+    <failure message="TimeoutError">job timed out again</failure>
+  </testcase>
+  <testcase classname="tests.test_jobs" name="test_scheduler_tick" time="0.39" />
+</testsuite>

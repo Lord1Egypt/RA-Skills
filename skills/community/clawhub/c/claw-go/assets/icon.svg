@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="虾游记 icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ef"/>
+      <stop offset="100%" stop-color="#ffe0c7"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff4a3d"/>
+      <stop offset="100%" stop-color="#d80012"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="190" fill="#111"/>
+  <g transform="translate(74 84)">
+    <ellipse cx="118" cy="210" rx="78" ry="62" fill="url(#shell)" stroke="#111" stroke-width="12"/>
+    <ellipse cx="164" cy="160" rx="62" ry="52" fill="url(#shell)" stroke="#111" stroke-width="12"/>
+    <path d="M206 144c55-48 112-70 144-54 22 11 20 42-3 61-30 24-83 27-141 14z" fill="url(#shell)" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M256 123c33-29 66-43 87-36 13 4 13 20 0 30-18 14-47 18-81 13z" fill="#fff" opacity=".9"/>
+    <path d="M176 84 164 18" stroke="#111" stroke-width="12" stroke-linecap="round"/>
+    <path d="M204 90 226 24" stroke="#111" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="146" cy="146" r="8" fill="#111"/>
+    <circle cx="184" cy="140" r="8" fill="#111"/>
+    <path d="M132 174c22 26 59 28 86 4" fill="none" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+    <path d="M72 246c-36 14-58 37-60 63 26-2 52-18 72-41" fill="url(#shell)" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M146 268c-16 21-20 46-10 72 22-10 37-31 41-58" fill="url(#shell)" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M214 268c18 20 26 44 22 72-24-7-43-28-51-55" fill="url(#shell)" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M114 192c30-11 65-10 99 0" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".85"/>
+  </g>
+  <g transform="translate(212 344)">
+    <rect x="-88" y="-30" width="176" height="64" rx="28" fill="#fff" stroke="#111" stroke-width="12"/>
+    <text x="0" y="18" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif" font-size="40" font-weight="900" fill="#d80012">虾游记</text>
+  </g>
+</svg>

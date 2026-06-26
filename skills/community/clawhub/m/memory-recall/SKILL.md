@@ -1,35 +1,80 @@
 ---
-name: "Memory Recall"
-description: "精准检索历史记忆，调取某天、某项目、某条对话记录。支持按日期、按关键词、按类型检索。用于用户说查找、找回、某天、某次、之前说过等场景。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, memory, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-recall"
-sourceUrl: "https://clawhub.ai/skills/memory-recall"
+name: memory-recall
+description: 精准检索历史记忆，调取某天、某项目、某条对话记录。支持按日期、按关键词、按类型检索。用于用户说查找、找回、某天、某次、之前说过等场景。
 ---
 
-# Memory Recall
+# 记忆智能检索回溯系统
 
-> 精准检索历史记忆，调取某天、某项目、某条对话记录。支持按日期、按关键词、按类型检索。用于用户说查找、找回、某天、某次、之前说过等场景。
+精准找回任何历史记忆：某天说了什么、某件事的结论是什么、某个项目当时的决策。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-recall`
-- **Source URL:** [https://clawhub.ai/skills/memory-recall](https://clawhub.ai/skills/memory-recall)
+## 检索方式
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-recall
+### 1. 按日期检索
 ```
+找到5月1日的所有对话记录
+查看上周的所有日记
+```
+
+### 2. 按关键词检索
+```
+查找关于"数据库选型"的所有记忆
+找回提到"小M"的所有记录
+```
+
+### 3. 按类型检索
+```
+找到所有决策记录
+查看所有未解决的问题
+列出所有项目
+```
+
+### 4. 自然语言检索
+```
+我们上次讨论部署方案是什么时候？
+上次提到 xx 是在什么场景下？
+这个项目的技术选型结论是什么？
+```
+
+## 工作原理
+
+```
+用户查询
+  ├── 解析：用户想找什么？
+  ├── 搜索：MEMORY.md（精确） + memory/*.md（日记）
+  ├── 过滤：按日期/关键词/类型
+  ├── 排序：最新最相关优先
+  └── 呈现：来源 + 内容 + 时间
+```
+
+## 检索策略
+
+| 查询类型 | 优先搜索 |
+|---------|---------|
+| 偏好类 | MEMORY.md |
+| 决策类 | MEMORY.md + 最新日记 |
+| 事件类 | memory/YYYY-MM-DD.md |
+| 项目类 | MEMORY.md 项目章节 |
+| 人物类 | MEMORY.md 联系人章节 |
+
+## 输出格式
+
+检索结果统一呈现：
+```
+📅 2026-05-01 | 来源：MEMORY.md
+找到的结论：当时决定用 PostgreSQL 而非 MongoSQL
+原因：团队更熟悉 PG，事务支持更好
+
+📅 2026-05-01 | 来源：memory/2026-05-01.md
+对话片段：用户提到"我们的支付模块需要支持分布式事务"
+```
+
+## 与永久记忆系统的关系
+
+- 永久记忆系统：写入记忆
+- 本技能：从记忆中召回
+
+两者配合 = 写入 + 召回 + 形成闭环。
+
+## 安装
+
+本技能无需额外配置，直接启用即可。

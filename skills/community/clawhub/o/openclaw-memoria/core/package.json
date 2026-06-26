@@ -1,0 +1,35 @@
+{
+  "name": "@primo-studio/memoria-core",
+  "version": "0.1.0",
+  "description": "Standalone multi-layer cognitive memory engine — works with or without OpenClaw",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": "./index.js"
+  },
+  "keywords": [
+    "memory",
+    "cognitive",
+    "ai",
+    "llm",
+    "rag",
+    "vector-search",
+    "knowledge-graph",
+    "embedding",
+    "sqlite"
+  ],
+  "author": "Primo Studio",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/primo-studio/memoria-core"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0"
+  },
+  "peerDependencies": {},
+  "engines": {
+    "node": ">=20"
+  }
+}

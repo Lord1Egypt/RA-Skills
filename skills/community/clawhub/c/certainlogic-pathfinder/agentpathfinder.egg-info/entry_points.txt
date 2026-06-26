@@ -1,0 +1,3 @@
+[console_scripts]
+agentpathfinder = agentpathfinder.__main__:main
+pf = agentpathfinder.__main__:main

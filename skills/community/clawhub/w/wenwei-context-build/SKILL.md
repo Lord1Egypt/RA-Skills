@@ -1,35 +1,72 @@
 ---
-name: "梳理功能点"
-description: "从指定入口文件出发，递归追踪代码调用链，梳理模块的技术实现细节（代码结构、依赖关系、接口定义、核心逻辑），生成结构化的代码知识库文档供 AI 阅读。当用户要求梳理功能点、分析代码结构、生成代码上下文文档、追踪调用链、理解模块实现细节、或需要从入口文件开始递归分析代码依赖关系时使用此技能。适用于前端（组件树、Hoo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wenwei-context-build"
-sourceUrl: "https://clawhub.ai/skills/wenwei-context-build"
+name: wenwei-context-build
+description: 从指定入口文件出发，递归追踪代码调用链，梳理模块的技术实现细节（代码结构、依赖关系、接口定义、核心逻辑），生成结构化的代码知识库文档供 AI 阅读。当用户要求梳理功能点、分析代码结构、生成代码上下文文档、追踪调用链、理解模块实现细节、或需要从入口文件开始递归分析代码依赖关系时使用此技能。适用于前端（组件树、Hooks、Store、API 模块）和后端（Controller-Service-Repository 分层架构）代码分析场景。
 ---
 
-# 梳理功能点
+# Role: 代码知识库生成器
 
-> 从指定入口文件出发，递归追踪代码调用链，梳理模块的技术实现细节（代码结构、依赖关系、接口定义、核心逻辑），生成结构化的代码知识库文档供 AI 阅读。当用户要求梳理功能点、分析代码结构、生成代码上下文文档、追踪调用链、理解模块实现细节、或需要从入口文件开始递归分析代码依赖关系时使用此技能。适用于前端（组件树、Hoo...
+**目标**：从入口文件梳理**技术实现细节**（代码结构、调用链、类型），生成供AI阅读的上下文文档。拒绝业务描述，聚焦“代码实现”。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wenwei-context-build`
-- **Source URL:** [https://clawhub.ai/skills/wenwei-context-build](https://clawhub.ai/skills/wenwei-context-build)
+## 核心流程
 
-## Overview
+1.  **识别元数据**：
+    *   分析入口文件：类型（前端/后端/全栈）、路径、技术栈（框架/库）、导出/导入依赖。
+2.  **递归追踪**：
+    *   **前端**：子组件 > Hooks > API模块 > Store > 路由。
+    *   **后端**：Controller > Service > Repository > Entity/DTO > 配置。
+3.  **跨端关联检查 (关键)**：
+    *   尝试匹配 `API调用` <-> `后端接口`。
+    *   **异常中断逻辑**：若发现关联代码不在当前空间，**立即暂停**并询问用户。用户确认后，在文档中统一标记为 `[⚠️ 关联代码不在当前工作空间]` 并继续。
+4.  **结构化提取**：
+    *   **通用**：签名、类/接口定义、核心逻辑片段（<20行，用 `//...` 缩略）、调用关系链。
+    *   **特有**：FE（Props/State/生命周期）；BE（路由/SQL/事务）。
 
+## 输出原则
+*   **定位精确**：必须包含 `文件路径` + `函数名/行号`。
+*   **代码规范**：核心逻辑必须附带代码块，禁止臆造缺失代码。
+*   **格式**：默认对话输出，仅当要求时生成 `.md`。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wenwei-context-build
+## 输出模板 (动态适配)
+
+请严格按照以下 Markdown 结构输出：
+
+```markdown
+# [模块名称] 代码知识库
+
+## 1. 模块元信息
+| 属性 | 内容 |
+|---|---|
+| 入口文件 | `路径` |
+| 类型/栈 | [前端/后端/混合] - [技术栈详情] |
+| 职责 | [简述] |
+
+### 文件清单
+*   列出关键文件路径及其职责（Controller, Service, Vue组件, Store等）。
+
+## 2. 代码结构
+*   **层级/架构**：使用缩进文本展示组件树或分层调用关系。
+*   **核心类型**：提取关键 Interface/Entity/DTO 定义代码。
+
+## 3. 关键实现 (核心)
+### [功能点名称]
+*   **位置**：`文件路径` > `方法名` (Line X-Y)
+*   **调用链**：`A(args) -> B(args) -> C [⚠️ 若缺失则标记]`
+*   **核心代码**：
+    ```[lang]
+    // 聚焦核心逻辑，省略样板代码
+    ```
+
+## 4. 上下文详情 (根据类型选择)
+*   **若是前端**：
+    *   **API清单**：| 方法 | 路径 | 参数 | 响应 | 后端实现状态 |
+    *   **状态管理**：Store 核心 State/Action 定义。
+*   **若是后端**：
+    *   **接口定义**：| 方法 | 路由 | DTO | 响应 | 前端调用状态 |
+    *   **数据库**：表结构(SQL)、关键查询(Mapper/Repo)。
+*   **若是全栈**：
+    *   **接口映射表**：| 接口名 | 前端调用位置 | 后端实现位置 |
+
+## 5. 依赖与备注
+*   **文件依赖树**：展示 import 关系。
+*   **开发备注**：特殊Hack、技术债务、待确认项（标记 `[待确认]`）。
 ```

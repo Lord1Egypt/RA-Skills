@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN" data-composition-variables='[
+  {"id":"title","type":"string","label":"Title","default":"SenseAudio Video Gen"},
+  {"id":"subtitle","type":"string","label":"Subtitle","default":"HTML composition, SenseAudio media, local render."},
+  {"id":"accent","type":"color","label":"Accent","default":"#6d5dfc"}
+]'>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SenseAudio Video Gen</title>
+  <style>
+    :root { --accent: #6d5dfc; --sf-time: 0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f8f8f5; color: #111; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; overflow: hidden; }
+    [data-composition-id="main"] { width: 1280px; height: 720px; position: relative; overflow: hidden; background: radial-gradient(circle at 20% 10%, #ffffff 0, #f5f0ff 28%, #f8f8f5 58%); }
+    .grain { position: absolute; inset: 0; opacity: .18; background-image: linear-gradient(115deg, rgba(0,0,0,.04), transparent 35%), radial-gradient(circle at 85% 20%, rgba(109,93,252,.22), transparent 28%); }
+    .stage { position: absolute; inset: 56px; display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 34px; align-items: center; }
+    .copy { display: flex; flex-direction: column; gap: 24px; }
+    .eyebrow { font-size: 19px; letter-spacing: .16em; text-transform: uppercase; color: #5d55c8; font-weight: 800; }
+    h1 { margin: 0; font-size: 76px; line-height: .95; letter-spacing: -.055em; max-width: 560px; }
+    p { margin: 0; color: #555; font-size: 26px; line-height: 1.35; max-width: 560px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill { padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,.8); border: 1px solid rgba(17,17,17,.08); font-weight: 700; color: #333; }
+    .browser { border-radius: 34px; background: rgba(255,255,255,.86); box-shadow: 0 35px 90px rgba(38, 33, 82, .20); border: 1px solid rgba(17,17,17,.08); overflow: hidden; transform: perspective(1200px) rotateY(-5deg) rotateX(2deg); }
+    .bar { height: 56px; display: flex; gap: 10px; align-items: center; padding: 0 22px; border-bottom: 1px solid #eceaf2; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; }
+    .dot:nth-child(1) { background: #ff6257; } .dot:nth-child(2) { background: #ffbd2e; } .dot:nth-child(3) { background: #28c840; }
+    .ui { padding: 26px; display: grid; gap: 18px; }
+    .search { height: 48px; border-radius: 16px; background: #f4f4f4; display: flex; align-items: center; padding: 0 18px; color: #888; font-size: 18px; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { min-height: 120px; border-radius: 22px; background: linear-gradient(135deg, #fff, #f6f4ff); border: 1px solid rgba(17,17,17,.07); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+    .avatar { width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, var(--accent), #111); }
+    .name { font-size: 22px; font-weight: 850; }
+    .meta { color: #777; font-size: 15px; }
+    .scene-label { position: absolute; right: 62px; bottom: 48px; color: #777; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div data-composition-id="main" data-start="0" data-duration="6" data-width="1280" data-height="720">
+    <div class="grain"></div>
+    <main class="stage">
+      <section class="copy">
+        <div class="eyebrow">SenseAudio Studio</div>
+        <h1 id="title">HTML videos, powered by SenseAudio.</h1>
+        <p id="subtitle">Author the frame in HTML. Generate voices, captions, images, and AI video references through SenseAudio.</p>
+        <div class="pills">
+          <span class="pill">TTS</span><span class="pill">ASR</span><span class="pill">Images</span><span class="pill">Video tasks</span>
+        </div>
+      </section>
+      <section class="browser">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="ui">
+          <div class="search">Search voice, scene, caption...</div>
+          <div class="cards">
+            <div class="card"><div class="avatar"></div><div><div class="name">温柔御姐</div><div class="meta">voice · narration</div></div></div>
+            <div class="card"><div class="avatar"></div><div><div class="name">可靠青叔</div><div class="meta">clone · promo</div></div></div>
+            <div class="card"><div class="avatar"></div><div><div class="name">Caption JSON</div><div class="meta">word timestamps</div></div></div>
+            <div class="card"><div class="avatar"></div><div><div class="name">Seedance clip</div><div class="meta">reference video</div></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="scene-label">data-composition-id="main"</div>
+  </div>
+  <script src="./senseframe-runtime.js"></script>
+  <script>
+    function lerp(a, b, p) { return a + (b - a) * p; }
+    window.renderFrame = function (t) {
+      var p = Math.min(1, Math.max(0, t / 6));
+      document.querySelector(".browser").style.transform =
+        "perspective(1200px) rotateY(" + lerp(-9, -2, p) + "deg) rotateX(2deg) translateY(" + lerp(24, 0, p) + "px)";
+      document.querySelector(".copy").style.transform = "translateY(" + lerp(22, 0, p) + "px)";
+      document.querySelector(".copy").style.opacity = String(lerp(.72, 1, p));
+    };
+  </script>
+</body>
+</html>

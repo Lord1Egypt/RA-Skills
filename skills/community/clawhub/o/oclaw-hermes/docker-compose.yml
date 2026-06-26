@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # Hermes Agent 服务
+  hermes:
+    image: nousresearch/hermes:latest
+    container_name: oclaw-hermes-core
+    ports:
+      - "8080:8080"
+    volumes:
+      - ~/.hermes:/root/.hermes
+      - ./skills:/root/.hermes/skills
+    environment:
+      - HERMES_MODEL_PROVIDER=${HERMES_MODEL_PROVIDER:-openrouter}
+      - HERMES_MODEL=${HERMES_MODEL:-anthropic/claude-3.7-sonnet}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    restart: unless-stopped
+    networks:
+      - oclaw-hermes-network
+
+  # DeerFlow 服务
+  deerflow:
+    image: bytedance/deerflow:latest
+    container_name: oclaw-hermes-deerflow
+    ports:
+      - "2026:2026"
+      - "8001:8001"
+    environment:
+      - DEERFLOW_URL=http://localhost:2026
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - deerflow-data:/app/data
+    restart: unless-stopped
+    networks:
+      - oclaw-hermes-network
+
+  # mflow 记忆流服务
+  mflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.mflow
+    container_name: oclaw-hermes-mflow
+    volumes:
+      - ~/.oclaw-hermes:/data
+      - ~/.hermes/memories:/hermes-memories
+    environment:
+      - MFLOW_DB_PATH=/data/mflow.db
+      - DEERFLOW_URL=http://deerflow:2026
+    depends_on:
+      - deerflow
+    restart: unless-stopped
+    networks:
+      - oclaw-hermes-network
+
+  # 桥接服务
+  bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile.bridge
+    container_name: oclaw-hermes-bridge
+    ports:
+      - "9090:9090"
+    volumes:
+      - ~/.openclaw:/root/.openclaw
+      - ~/.hermes:/root/.hermes
+      - ./scripts:/app/scripts
+    environment:
+      - OPENCLAW_TOKEN=${OPENCLAW_TOKEN}
+      - HERMES_ENDPOINT=http://hermes:8080
+      - DEERFLOW_URL=http://deerflow:2026
+    depends_on:
+      - hermes
+      - deerflow
+      - mflow
+    restart: unless-stopped
+    networks:
+      - oclaw-hermes-network
+
+volumes:
+  deerflow-data:
+
+networks:
+  oclaw-hermes-network:
+    driver: bridge

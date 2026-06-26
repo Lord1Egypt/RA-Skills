@@ -1,0 +1,192 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "TradingDay",
+        "columnChiName": "交易日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "Market",
+        "columnChiName": "市场",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "市场(Market)与(CT_SystemConst)表中的DM字段关联，令LB = 1328 AND DM IN (1000,1001,1003)，得到市场的具体描述：1000-深沪交易所，1001-上海证券交易所，1003-深圳证券交易所。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "OpeningBalance",
+        "columnChiName": "期初余额(亿元)",
+        "columnType": "decimal(12,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.97"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "Seven",
+        "columnChiName": "7天(亿元)",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.47"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Fourteen",
+        "columnChiName": "14天(亿元)",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.5"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "Twentyeight",
+        "columnChiName": "28天(亿元)",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "8.81"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "Ninetyone",
+        "columnChiName": "91天(亿元)",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "19.91"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "Onehundredeightytwo",
+        "columnChiName": "182天(亿元)",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "28.43"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "Subtotal",
+        "columnChiName": "小计(亿元)",
+        "columnType": "decimal(10,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "49.05"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "Repayment",
+        "columnChiName": "偿还金额(亿元)",
+        "columnType": "decimal(12,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "63.78"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "EndingBalance",
+        "columnChiName": "期末余额(亿元)",
+        "columnType": "decimal(12,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.97"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "MktRefinancing",
+        "columnChiName": "市场化转融资",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "remark": "市场化转融资(亿元)(MktRefinancing)=竞价成交(CompetitiveBidding)+再借成交(RelendingBidding)",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "13.4",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "CompetitiveBidding",
+        "columnChiName": "竞价成交",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "1.83"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "RelendingBidding",
+        "columnChiName": "再借成交",
+        "columnType": "decimal(19,4)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "13.33"
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 17,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

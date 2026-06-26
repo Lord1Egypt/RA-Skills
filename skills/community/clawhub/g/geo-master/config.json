@@ -1,0 +1,71 @@
+{
+  "platforms": {
+    "deepseek": {
+      "enabled": false,
+      "weight": 1.0,
+      "url": "https://chat.deepseek.com",
+      "note": "需登录才能使用，无头浏览器无法绕过登录墙"
+    },
+    "kimi": {
+      "enabled": true,
+      "weight": 1.0,
+      "url": "https://kimi.moonshot.cn"
+    },
+    "xinhuo": {
+      "enabled": true,
+      "weight": 0.9,
+      "url": "https://xinghuo.xfyun.cn/chat",
+      "note": "2026-04-16 简单刀：/chat重定向到/desk，选择器改为textarea"
+    },
+    "yiyan": {
+      "enabled": true,
+      "weight": 0.9,
+      "url": "https://yiyan.baidu.com",
+      "note": "2026-04-16 简单刀：选择器改为div[contenteditable='true']"
+    },
+    "zhipu": {
+      "enabled": true,
+      "weight": 0.8,
+      "url": "https://www.zhipuai.cn"
+    },
+    "xunfei": {
+      "enabled": false,
+      "weight": 0.7,
+      "url": "https://xinghuo.xfyun.cn/chat",
+      "note": "与xinhuo同一平台，已禁用避免重复检测"
+    },
+    "qianwen": {
+      "enabled": false,
+      "weight": 0.8,
+      "url": "https://qianwen.aliyun.com",
+      "note": "需登录跳转，无头浏览器无法进入聊天界面"
+    },
+    "doubao": {
+      "enabled": false,
+      "weight": 0.8,
+      "url": "https://www.doubao.com"
+    },
+    "mita": {
+      "enabled": false,
+      "weight": 0.6,
+      "url": "https://mita.com"
+    },
+    "hunyuan": {
+      "enabled": false,
+      "weight": 0.7,
+      "url": "https://hunyuan.tencent.com"
+    }
+  },
+  "report": {
+    "push_to_feishu": true,
+    "feishu_webhook": "",
+    "language": "zh-CN"
+  },
+  "scoring": {
+    "base_score": 10,
+    "occurrence_weight": 2,
+    "snippet_weight": 5,
+    "max_occurrence_score": 20,
+    "max_snippet_score": 10
+  }
+}

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Industry Quarterly — Q1 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Theme: newspaper ── */
+    :root {
+      --primary: #C0392B; --primary-light: #FDF0EE; --accent: #C0392B;
+      --bg: #F8F4EE; --surface: #EDE8E0; --text: #1A1A1A; --text-muted: #7A7A7A;
+      --border: #D4CFC8; --success: #27AE60; --warning: #E67E22; --danger: #C0392B;
+      --font-sans: system-ui, sans-serif;
+      --font-serif: Georgia, 'Times New Roman', serif; --radius: 0;
+    }
+    body { font-family: var(--font-serif); color: var(--text); background: var(--bg); margin: 0; line-height: 1.65; }
+    h1 { font-size: 2.2rem; font-weight: 900; color: var(--text); margin-bottom: .4rem; letter-spacing: -.03em; line-height: 1.15; font-family: var(--font-serif); }
+    h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-top: 0; margin-bottom: .75rem; font-family: var(--font-serif); border-top: 2px solid var(--text); padding-top: .4rem; }
+    h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-top: .9rem; font-family: var(--font-serif); }
+    p { margin: .5rem 0; font-size: .93rem; } a { color: var(--primary); }
+    strong { font-weight: 700; } em { font-style: italic; color: var(--text-muted); }
+    blockquote { border-left: 3px solid var(--primary); margin: 1rem 0; padding: .5rem 1rem; font-style: italic; color: var(--text-muted); font-size: .95rem; }
+
+    /* Two-column text in wide sections */
+    @media (min-width: 800px) {
+      section[data-section] p + p { columns: 2; column-gap: 2rem; }
+    }
+
+    /* ── Shared Components ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .82rem; margin-top: -.3rem; margin-bottom: 1.5rem; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .06em; }
+
+    /* Masthead */
+    .masthead { border-top: 4px solid var(--text); border-bottom: 2px solid var(--text); padding: .75rem 0; margin-bottom: 1.5rem; display: flex; align-items: baseline; justify-content: space-between; }
+    .masthead-name { font-size: 1rem; font-weight: 900; letter-spacing: -.01em; font-family: var(--font-serif); }
+    .masthead-meta { font-size: .75rem; color: var(--text-muted); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .05em; }
+
+    /* KPI — newspaper serif style */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .75rem; margin: 1rem 0; }
+    .kpi-card { background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--text); border-radius: 0; padding: .85rem .75rem; text-align: center; }
+    .kpi-label { font-size: .65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; font-family: var(--font-sans); }
+    .kpi-value { font-size: 1.8rem; font-weight: 800; color: var(--primary); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; font-family: var(--font-serif); }
+    .kpi-trend { font-size: .8rem; margin-top: .2rem; font-family: var(--font-sans); }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .88rem; font-family: var(--font-sans); }
+    .report-table th { background: var(--text); color: var(--bg); padding: .6rem .9rem; text-align: left; font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+    .report-table td { padding: .5rem .9rem; border-bottom: 1px solid var(--border); }
+    .report-table tr:nth-child(even) td { background: var(--surface); }
+
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .85rem 1rem; margin: .75rem 0; border-left: 4px solid; align-items: flex-start; background: var(--surface); }
+    .callout--note    { border-color: #2980B9; }
+    .callout--tip     { border-color: var(--success); }
+    .callout--warning { border-color: var(--warning); }
+    .callout--danger  { border-color: var(--danger); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .9rem; font-family: var(--font-sans); }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-date { font-size: .75rem; color: var(--text-muted); margin-bottom: .1rem; font-weight: 700; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .04em; }
+    .timeline-content { color: var(--text); line-height: 1.6; font-size: .9rem; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border: 1px solid var(--border); overflow: hidden; }
+    .code-title { background: var(--surface); padding: .3rem 1rem; font-size: .75rem; color: var(--text-muted); font-family: monospace; border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; background: var(--text); color: var(--bg); padding: 1rem; font-size: .83rem; }
+
+    /* List */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; font-size: .9rem; }
+    .styled-list li { margin-bottom: .2rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+
+    /* Divider rule between sections */
+    section[data-section] { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    section[data-section]:last-of-type { border-bottom: none; }
+
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── TOC ── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 2px solid var(--text); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+      font-family: var(--font-sans);
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.12); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin: 0 0 .75rem; font-weight: 700; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; margin-bottom: 1px; transition: all .18s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--text); color: var(--bg); border: none;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px var(--primary); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--text); color: var(--bg); border: none; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 700; opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 10001; font-family: var(--font-sans); }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); cursor: text; }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 Print / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 Save PNG (Desktop)</button>
+    <button class="export-item" id="export-png-mobile">📱 Save PNG (Mobile)</button>
+    <button class="export-item" id="export-im-share">💬 IM Image</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="Export">↓ Export</button>
+
+
+  <script type="application/json" id="report-summary">
+  {
+    "title": "AI Industry Quarterly — Q1 2026",
+    "author": "Industry Analysis Desk",
+    "date": "2026-03-16",
+    "abstract": "Enterprise AI adoption reaches 68%, open-source models close the gap with proprietary systems, and agentic AI pipelines emerge as the year's defining trend.",
+    "sections": ["Key Numbers", "Enterprise Adoption", "Open Source vs. Proprietary", "Agentic AI Pipelines", "Market Outlook"],
+    "kpis": [
+      {"label": "Enterprise Adoption", "value": "68%", "trend": "↑22%"},
+      {"label": "Open-Source Gap", "value": "≤5%", "trend": "↓ narrowing"},
+      {"label": "Agentic Pilots", "value": "41%", "trend": "↑ new"},
+      {"label": "AI Spend Growth", "value": "38%", "trend": "YoY"}
+    ]
+  }
+  </script>
+
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="Contents" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="Table of Contents">
+    <h4>In This Issue</h4>
+    <a href="#section-key-numbers" data-section="Key Numbers">Key Numbers</a>
+    <a href="#section-enterprise-adoption" data-section="Enterprise Adoption">Enterprise Adoption</a>
+    <a href="#section-open-source" data-section="Open Source vs. Proprietary">Open Source vs. Proprietary</a>
+    <a href="#section-agentic" data-section="Agentic AI Pipelines">Agentic AI Pipelines</a>
+    <a href="#section-outlook" data-section="Market Outlook">Market Outlook</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <div class="masthead">
+        <span class="masthead-name">AI Industry Quarterly</span>
+        <span class="masthead-meta">Vol. 8 · Q1 2026 · Industry Analysis Desk</span>
+      </div>
+
+      <h1>Enterprise AI Hits Inflection Point as Agentic Systems Take Hold</h1>
+      <p class="report-meta">Published March 16, 2026 · Industry Analysis Desk</p>
+
+      <section data-section="Key Numbers" data-summary="Four headline metrics: enterprise adoption rate, open-source benchmark gap, agentic pilot share, and AI spend growth.">
+        <h2 id="section-key-numbers">Key Numbers</h2>
+        <div data-component="kpi" class="kpi-grid fade-in-up">
+          <div class="kpi-card">
+            <div class="kpi-label">Enterprise Adoption</div>
+            <div class="kpi-value" data-target-value="68" data-suffix="%">68%</div>
+            <div class="kpi-trend kpi-trend--up">↑ 22% YoY</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Open-Source Gap</div>
+            <div class="kpi-value">≤5%</div>
+            <div class="kpi-trend kpi-trend--neutral">↓ narrowing</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Agentic Pilots</div>
+            <div class="kpi-value" data-target-value="41" data-suffix="%">41%</div>
+            <div class="kpi-trend kpi-trend--up">↑ new category</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">AI Spend Growth</div>
+            <div class="kpi-value" data-target-value="38" data-suffix="%">38%</div>
+            <div class="kpi-trend kpi-trend--up">↑ YoY</div>
+          </div>
+        </div>
+      </section>
+
+      <section data-section="Enterprise Adoption" data-summary="Enterprise AI adoption reaches 68% in Q1 2026, led by finance and technology sectors; resistance concentrated in mid-market.">
+        <h2 id="section-enterprise-adoption">Enterprise Adoption</h2>
+        <p>Enterprise AI adoption reached 68% in Q1 2026, a 22-point increase year-over-year and the steepest single-quarter rise since 2023. The acceleration is driven by three converging forces: model cost reductions of roughly 80% since 2023, the emergence of reliable agentic frameworks, and board-level mandates in response to competitive pressure.</p>
+        <p>Finance and technology sectors lead at 84% and 79% adoption respectively. The largest remaining resistance is in mid-market companies (250–1,000 employees), where procurement cycles and security review processes continue to slow deployment.</p>
+        <div data-component="chart" data-type="bar" data-raw='{"labels":["Finance","Technology","Healthcare","Retail","Manufacturing","Mid-Market"],"datasets":[{"label":"Adoption Rate (%)","data":[84,79,61,57,52,38]}]}' class="fade-in-up">
+          <canvas id="chart-adoption" height="110"></canvas>
+          <script>
+            new Chart(document.getElementById('chart-adoption'), {
+              type: 'bar',
+              data: {
+                labels: ['Finance','Technology','Healthcare','Retail','Manufacturing','Mid-Market'],
+                datasets: [{ label: 'Adoption Rate (%)', data: [84,79,61,57,52,38], backgroundColor: '#C0392B', borderRadius: 0 }]
+              },
+              options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                  y: { beginAtZero: true, max: 100, grid: { color: '#D4CFC8' }, ticks: { color: '#7A7A7A', font: { family: 'system-ui' } } },
+                  x: { grid: { display: false }, ticks: { color: '#7A7A7A', font: { family: 'system-ui', size: 11 } } }
+                }
+              }
+            });
+          </script>
+        </div>
+        <div data-component="callout" class="callout callout--note fade-in-up">
+          <span class="callout-icon">📊</span>
+          <div class="callout-body"><em>Survey methodology:</em> 1,400 decision-makers across 18 countries. Margin of error ±3.1%. Fieldwork conducted February 2026.</div>
+        </div>
+      </section>
+
+      <section data-section="Open Source vs. Proprietary" data-summary="Open-source models now score within 5% of proprietary counterparts on standard benchmarks, reshaping enterprise procurement decisions.">
+        <h2 id="section-open-source">Open Source vs. Proprietary</h2>
+        <p>The benchmark gap between leading open-source models and proprietary frontier systems has narrowed to under 5 percentage points on standard evaluations — a threshold that procurement teams widely cite as the tipping point for internal deployment. The shift is prompting enterprises to reconsider lock-in risk alongside raw capability.</p>
+        <div data-component="table" class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr><th>Model Category</th><th>MMLU</th><th>HumanEval</th><th>Cost / 1M Tokens</th><th>Deployment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Proprietary Frontier</td><td>91.2%</td><td>88.4%</td><td>$15–30</td><td>API only</td></tr>
+              <tr><td>Open-Source Frontier</td><td>87.8%</td><td>85.1%</td><td>$0–2</td><td>Self-hosted / API</td></tr>
+              <tr><td>Open-Source Efficient</td><td>79.4%</td><td>74.6%</td><td>$0–0.5</td><td>Self-hosted</td></tr>
+              <tr><td>Legacy Proprietary</td><td>72.1%</td><td>65.3%</td><td>$5–10</td><td>API only</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Three enterprises interviewed for this issue cited total-cost-of-ownership models as the decisive factor — at scale, self-hosted open-source models delivered 60–75% cost reductions against API pricing, offsetting infrastructure and operational overhead within 12–18 months.</p>
+      </section>
+
+      <section data-section="Agentic AI Pipelines" data-summary="41% of enterprises are running agentic AI pilots; early production deployments show 3-to-6x productivity multipliers in document-intensive workflows.">
+        <h2 id="section-agentic">Agentic AI Pipelines</h2>
+        <p>Agentic AI — systems where models plan, use tools, and execute multi-step workflows autonomously — moved from research curiosity to enterprise pilot in Q4 2025 and is now the fastest-growing deployment pattern. 41% of surveyed enterprises report active pilots; 12% have reached production.</p>
+        <div data-component="timeline" class="timeline fade-in-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024 Q2 — Research Phase</div>
+            <div class="timeline-content">ReAct and tool-use patterns demonstrated in academic settings. Enterprise interest minimal.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025 Q1 — Framework Maturity</div>
+            <div class="timeline-content">LangGraph, AutoGen, and crew-based frameworks reach stability. First enterprise pilots in legal and financial document review.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025 Q4 — Pilot Surge</div>
+            <div class="timeline-content">Agentic pilots reach 31% of enterprises. Code generation, research synthesis, and customer support automation dominate use cases.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background: var(--primary);"></div>
+            <div class="timeline-date">2026 Q1 — Production Emergence</div>
+            <div class="timeline-content">41% pilot rate; 12% in production. Early production data shows 3–6× productivity multipliers in document-intensive workflows.</div>
+          </div>
+        </div>
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">✦</span>
+          <div class="callout-body"><strong>Editor's note:</strong> The 3–6× productivity figures come from self-reported enterprise data and have not been independently verified. Treat as indicative until longitudinal studies are available.</div>
+        </div>
+      </section>
+
+      <section data-section="Market Outlook" data-summary="AI infrastructure spend projected to grow 38% YoY; three structural trends expected to shape the next 12 months.">
+        <h2 id="section-outlook">Market Outlook</h2>
+        <p>Enterprise AI infrastructure spend is projected to grow 38% year-over-year through Q4 2026, driven primarily by inference infrastructure, orchestration tooling, and evaluation frameworks. Three structural trends are expected to define the next 12 months.</p>
+        <div data-component="table" class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr><th>Trend</th><th>Timeframe</th><th>Impact</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Inference cost parity</td><td>H2 2026</td><td>Commoditizes API pricing; accelerates self-hosted adoption</td></tr>
+              <tr><td>Agent-to-agent protocols</td><td>2026–2027</td><td>Standardized inter-agent communication enables modular AI pipelines</td></tr>
+              <tr><td>Evaluation as infrastructure</td><td>Now</td><td>Enterprises treating eval frameworks as critical as CI/CD</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div data-component="callout" class="callout callout--warning fade-in-up">
+          <span class="callout-icon">⚠</span>
+          <div class="callout-body">Governance and compliance frameworks lag deployment velocity. Enterprises in regulated industries report an average 7-month gap between pilot completion and production sign-off due to unresolved audit trail requirements.</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // Auto-reveal in headless/screenshot environments
+    if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+    if (!document.body.classList.contains('no-animations')) {
+      const fadeObserver = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+        }),
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+      const kpiObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = parseFloat(el.dataset.targetValue);
+          if (isNaN(target)) return;
+          const suffix = el.dataset.suffix || '';
+          const isFloat = String(target).includes('.');
+          const decimals = isFloat ? String(target).split('.')[1].length : 0;
+          let startTime = null;
+          const duration = 1200;
+          const animate = ts => {
+            if (!startTime) startTime = ts;
+            const progress = Math.min((ts - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = isFloat ? (ease * target).toFixed(decimals) : Math.floor(ease * target).toLocaleString();
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = (isFloat ? target.toFixed(decimals) : target.toLocaleString()) + suffix;
+          };
+          requestAnimationFrame(animate);
+          kpiObserver.unobserve(el);
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.kpi-value[data-target-value]').forEach(el => kpiObserver.observe(el));
+    }
+
+    const tocBtn = document.getElementById('toc-toggle-btn');
+    const tocSidebar = document.getElementById('toc-sidebar');
+    if (tocBtn && tocSidebar) {
+      let locked = false, closeTimer;
+      function openToc() { clearTimeout(closeTimer); tocSidebar.classList.add('open'); tocBtn.setAttribute('aria-expanded', 'true'); }
+      function scheduleClose() {
+        closeTimer = setTimeout(() => {
+          if (!locked) { tocSidebar.classList.remove('open'); tocBtn.setAttribute('aria-expanded', 'false'); }
+        }, 150);
+      }
+      tocBtn.addEventListener('mouseenter', openToc);
+      tocSidebar.addEventListener('mouseenter', openToc);
+      tocBtn.addEventListener('mouseleave', scheduleClose);
+      tocSidebar.addEventListener('mouseleave', scheduleClose);
+      tocBtn.addEventListener('click', () => {
+        locked = !locked;
+        tocBtn.classList.toggle('locked', locked);
+        if (locked) openToc(); else scheduleClose();
+      });
+      document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => {
+        if (!locked) scheduleClose();
+      }));
+    }
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = e.target.dataset.section;
+        const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+        if (link) link.classList.toggle('active', e.isIntersecting);
+      });
+    }, { rootMargin: '-10% 0px -60% 0px' });
+    document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+  </script>
+
+  <script>
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

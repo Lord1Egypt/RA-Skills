@@ -1,0 +1,7 @@
+{
+  "name": "scheme-generation-design-writing",
+  "version": "1.0.1",
+  "description": "概念方案生成与设计说明撰写技能，支持历史项目匹配、本地设计稿解析、Figma设计稿自动解析，快速生成专业设计文档",
+  "author": "shaco",
+  "license": "MIT"
+}

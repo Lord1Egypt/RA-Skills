@@ -1,0 +1,31 @@
+{
+  "name": "yumfu",
+  "version": "1.7.11",
+  "description": "Multi-World MUD with Dynamic Daily Evolution + Sengoku Chaos - Wuxia, Harry Potter, LOTR & more | 多世界MUD + 每日世界演进 + 战国乱世",
+  "keywords": [
+    "game",
+    "mud",
+    "rpg",
+    "wuxia",
+    "harry-potter",
+    "warrior-cats",
+    "text-adventure",
+    "multiplayer",
+    "ai-art",
+    "daily-evolution",
+    "dynamic-world",
+    "中文",
+    "武侠",
+    "笑傲江湖"
+  ],
+  "author": "Tommy Yan <thriller.yan@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumyumtum/yumfu.git"
+  },
+  "homepage": "https://github.com/yumyumtum/yumfu#readme",
+  "bugs": {
+    "url": "https://github.com/yumyumtum/yumfu/issues"
+  }
+}

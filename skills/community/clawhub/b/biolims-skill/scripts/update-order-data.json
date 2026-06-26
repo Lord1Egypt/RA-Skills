@@ -1,0 +1,63 @@
+{
+  "order": {
+    "id": "DD2603030000003",
+    "name": "TEST_USER",
+    "gender": "1",
+    "age": 14,
+    "birthDate": "2020-05-25",
+    "nation": "Han",
+    "bedNo": "Bed 039",
+    "phone": "00000000000",
+    "medicalNumber": "A003-5001",
+    "crmDoctorName": "TEST_DOCTOR",
+    "inspectionDepartmentName": "TEST_HOSPITAL",
+    "provinceName": "TEST_PROVINCE",
+    "diagnosis": "Tumor enlargement",
+    "samplingDate": "2026-03-03",
+    "samplingLocation": "2026-03-03 15:58",
+    "idCard": "000000000000000000",
+    "email": "test@example.com",
+    "zipCode": "000000",
+    "note": "0003",
+    "family": "TEST_FAMILY",
+    "familyPhone": "00000000000",
+    "familySite": "TEST_ADDRESS",
+    "productId": "CP2603030001",
+    "productName": "NGS Testing",
+    "nativePlace": "TEST_PLACE",
+    "disease": "Tumor enlargement"
+  },
+  "sampleOrderItem": [
+    {
+      "slideCode": "A03030001",
+      "sampleTypeId": "T241025001",
+      "sampleType": "Whole blood",
+      "productId": "CP2603030001",
+      "productName": "NGS Testing",
+      "customFieldValue": "[{\"Remark\":\"\"}]"
+    },
+    {
+      "slideCode": "A03030002",
+      "sampleTypeId": "T241025001",
+      "sampleType": "Whole blood",
+      "productId": "CP2603030001",
+      "productName": "NGS Testing",
+      "customFieldValue": "[{\"Remark\":\"\"}]"
+    },
+    {
+      "slideCode": "A03030003",
+      "sampleTypeId": "T250121001",
+      "sampleType": "Peripheral blood",
+      "productId": "CP2603030001",
+      "productName": "NGS Testing",
+      "customFieldValue": "[{\"Remark\":\"\"}]"
+    }
+  ],
+  "crmConsumeRmarkets": [
+    {
+      "fee": 3500.00,
+      "feeWay": "Bank Transfer",
+      "isFee": "1"
+    }
+  ]
+}

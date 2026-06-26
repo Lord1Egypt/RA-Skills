@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Semantic Search - 项目总结</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.7; padding: 40px 20px; }
+  .container { max-width: 960px; margin: 0 auto; }
+  
+  h1 { font-size: 2.2em; text-align: center; margin-bottom: 8px; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .subtitle { text-align: center; color: #94a3b8; font-size: 1.1em; margin-bottom: 48px; }
+  
+  .card { background: #1e293b; border-radius: 16px; padding: 32px; margin-bottom: 28px; border: 1px solid #334155; }
+  .card h2 { font-size: 1.4em; margin-bottom: 16px; color: #60a5fa; }
+  .card h3 { font-size: 1.1em; margin: 20px 0 10px; color: #a78bfa; }
+  
+  .one-liner { text-align: center; font-size: 1.3em; color: #fbbf24; padding: 20px; background: #1e293b; border-radius: 16px; margin-bottom: 28px; border: 1px solid #334155; }
+  
+  /* Flow diagram */
+  .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+  .flow-step { background: #334155; border-radius: 12px; padding: 14px 20px; text-align: center; min-width: 140px; font-size: 0.95em; }
+  .flow-step .icon { font-size: 1.8em; display: block; margin-bottom: 6px; }
+  .flow-arrow { font-size: 1.5em; color: #60a5fa; }
+  
+  /* Example */
+  .example-box { background: #0f172a; border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid #475569; }
+  .example-box .cmd { color: #34d399; font-family: "Fira Code", "Cascadia Code", monospace; font-size: 0.9em; margin: 8px 0; }
+  .example-box .output { color: #94a3b8; font-family: "Fira Code", "Cascadia Code", monospace; font-size: 0.85em; white-space: pre-wrap; margin: 8px 0; padding: 12px; background: #1a1a2e; border-radius: 8px; }
+  .example-box .label { color: #fbbf24; font-weight: 600; margin-top: 16px; }
+  
+  /* Comparison */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .compare-item { background: #0f172a; border-radius: 12px; padding: 20px; border: 1px solid #475569; }
+  .compare-item.bad { border-color: #ef4444; }
+  .compare-item.good { border-color: #34d399; }
+  .compare-item .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.8em; margin-bottom: 10px; }
+  .compare-item.bad .tag { background: #7f1d1d; color: #fca5a5; }
+  .compare-item.good .tag { background: #064e3b; color: #6ee7b7; }
+  
+  /* Tech stack */
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+  .pill { background: #334155; border-radius: 20px; padding: 6px 16px; font-size: 0.9em; }
+  
+  /* Key numbers */
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+  .metric { text-align: center; background: #0f172a; border-radius: 12px; padding: 20px; border: 1px solid #475569; }
+  .metric .num { font-size: 2em; font-weight: 700; color: #60a5fa; }
+  .metric .desc { color: #94a3b8; font-size: 0.85em; margin-top: 4px; }
+
+  .footer { text-align: center; color: #475569; margin-top: 40px; font-size: 0.85em; }
+  a { color: #60a5fa; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .compare, .metrics { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🔍 Memory Semantic Search</h1>
+<p class="subtitle">把 Markdown 笔记变成能理解语义的搜索引擎</p>
+
+<div class="one-liner">💡 一句话：用 Embedding API + SQLite，让你的 Markdown 支持语义搜索</div>
+
+<!-- 解决什么问题 -->
+<div class="card">
+  <h2>❓ 解决了什么痛点？</h2>
+  <p style="margin-bottom:16px;">
+    你有很多 Markdown 笔记（比如 MEMORY.md、项目文档），但传统的 Ctrl+F 只能搜<strong>字面关键字</strong>。如果你想找"怎么部署项目"，但笔记里写的是"deployed to Zeabur"，就搜不到。
+  </p>
+  <p>
+    这个 Skill 把笔记内容变成向量，实现<strong>语义搜索</strong>——就算用词不同，只要意思相近，就能搜出来。
+  </p>
+</div>
+
+<!-- 实际运行示例（会议讲解重点） -->
+<div class="card">
+  <h2>📋 实际运行示例</h2>
+  
+  <h3>步骤一：建索引（只需执行一次）</h3>
+  <div class="example-box">
+    <p class="cmd">$ python3 scripts/index.py ~/.openclaw/workspace</p>
+    <div class="output">Workspace: /home/tony/.openclaw/workspace
+Found 5 markdown files (MEMORY.md, SOUL.md, ...)
+Total chunks: 15
+  Embedded 10/15 chunks  ← 第1批：10个chunk调API
+  Embedded 15/15 chunks  ← 第2批：剩下的5个
+Done. Total indexed chunks: 15</div>
+    <p style="color:#94a3b8; margin-top:12px; font-size:0.9em;">
+      ✅ 这一步扫描所有 .md 文件，切成小块，调用 embedding API 把每块变成向量，存入 SQLite。文件改了会自动增量更新。
+    </p>
+  </div>
+
+  <h3>步骤二：语义搜索</h3>
+  <div class="example-box">
+    <p class="cmd">$ python3 scripts/search.py "Claw Arena 部署在哪里"</p>
+    <div class="output">--- Result 1 (score: 0.6655) ---
+File: MEMORY.md (lines 29-81)
+Claw Arena 从 API key 模式重构为 Skill + API 架构，
+部署到 Zeabur，Hong Kong region...
+
+--- Result 2 (score: 0.647) ---
+File: MEMORY.md (lines 1-39)
+2026-02-10: Claw Arena 重构完成，部署到 Zeabur，
+Skill 发布到 ClawHub...</div>
+    <p style="color:#94a3b8; margin-top:12px; font-size:0.9em;">
+      👆 笔记里写的是"部署到 Zeabur"，搜的是"部署在哪里"——<strong>措辞不同但语义匹配</strong>，score 0.67。语义搜索的核心能力。
+    </p>
+  </div>
+</div>
+
+<!-- 工作流程 -->
+<div class="card">
+  <h2>⚙️ 工作流程</h2>
+  
+  <div class="flow">
+    <div class="flow-step"><span class="icon">📄</span>扫描 .md 文件</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><span class="icon">✂️</span>切块 (chunk)</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><span class="icon">🤖</span>Embedding API<br><small>文本 → 向量</small></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><span class="icon">💾</span>存入 SQLite</div>
+  </div>
+
+  <div style="text-align:center; margin:16px 0; color:#94a3b8; font-size:1.2em;">↓ 搜索时 ↓</div>
+
+  <div class="flow">
+    <div class="flow-step"><span class="icon">💬</span>用户提问</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><span class="icon">🤖</span>问题 → 向量</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><span class="icon">📐</span>余弦相似度<br><small>本地计算</small></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><span class="icon">🎯</span>Top-K 结果</div>
+  </div>
+</div>
+
+<!-- 余弦相似度解释 -->
+<div class="card">
+  <h2>📐 余弦相似度：如何判断"意思像不像"？</h2>
+  
+  <h3>🌍 直观理解（30秒）</h3>
+  <div class="example-box">
+    <div class="output">
+  向量 = 指向语义空间的箭头
+
+  "部署项目"     → 箭头指向 东北方向
+  "deploy app"  → 箭头也指向 东北方向
+  "中午吃什么"   → 箭头指向 西南方向
+    </div>
+    <p style="color:#94a3b8; margin-top:12px;">
+      余弦相似度就是算两个箭头夹角：夹角越小（方向越近），相似度越高；夹角越大，越不相关。
+    </p>
+  </div>
+
+  <h3>🔢 数学公式</h3>
+  <div class="example-box">
+    <p class="label">两个向量 A 和 B（例如都是 1024 维）</p>
+    <div class="output">
+  相似度 = (A·B) / (|A| × |B|)
+         = (A₁×B₁ + A₂×B₂ + ... + A₁₀₂₄×B₁₀₂₄) 
+           / (A的长度 × B的长度)
+    </div>
+    <p class="label">结果范围：-1 ~ 1</p>
+    <div class="output">
+  -1  → 完全相反方向（意思相反）
+   0  → 互相垂直（毫无关系）
+   1  → 方向完全一致（意思几乎一样）
+    </div>
+  </div>
+
+  <h3>🔄 本 Skill 的计算过程</h3>
+  <div class="example-box">
+    <div class="output">
+  1. 查询 "Claw Arena 部署在哪里" → Q_vec (1024维)
+  2. 从 SQLite 读取所有 chunk 向量 C₁, C₂, ...
+  3. for each C:
+        score = cosine(Q_vec, C)
+  4. 按 score 从高到低排序，取 top-5
+    </div>
+  </div>
+
+  <h3>⚡ 为什么合适？</h3>
+  <p style="color:#94a3b8; margin:16px 0;">
+    • <strong>轻量</strong>：不需要训练，直接算余弦<br>
+    • <strong>高效</strong>：SQLite 里存的向量，本地直接算，不调 API<br>
+    • <strong>语义友好</strong>：embedding 后的向量天然把意思相近的句子聚在一起
+  </p>
+</div>
+
+<!-- 技术栈 -->
+<div class="card">
+  <h2>🛠 技术栈</h2>
+  <div class="tech-pills">
+    <span class="pill">🐍 Python 3（纯 stdlib）</span>
+    <span class="pill">💾 SQLite（向量存储）</span>
+    <span class="pill">🔗 OpenAI 兼容 Embedding API</span>
+    <span class="pill">📐 余弦相似度</span>
+  </div>
+  <p style="color:#94a3b8; margin-top:12px;">
+    零外部依赖，不需要 pip install。API 兼容 OpenAI / 讯飞 / Gemini / Ollama 等。
+  </p>
+</div>
+
+<!-- 关键数据 -->
+<div class="card">
+  <h2>📊 实测数据</h2>
+  <div class="metrics">
+    <div class="metric">
+      <div class="num">15</div>
+      <div class="desc">索引 chunks<br>(5 个 md 文件)</div>
+    </div>
+    <div class="metric">
+      <div class="num">0.67</div>
+      <div class="desc">最高相似度 score<br>(语义精准命中)</div>
+    </div>
+    <div class="metric">
+      <div class="num">&lt;2s</div>
+      <div class="desc">单次搜索耗时<br>(1 次 API 调用)</div>
+    </div>
+  </div>
+  <p style="color:#94a3b8; font-size:0.9em; margin-top:12px;">
+    💡 即使扩展到 1000+ chunks，搜索依然是"1 次 API 调用 + 本地向量计算"，速度不变，成本仅一次 embedding。
+  </p>
+</div>
+
+<!-- 核心代码结构 -->
+<div class="card">
+  <h2>📁 项目结构</h2>
+  <div class="example-box">
+    <div class="output">memory-semantic-search/
+├── SKILL.md          # Skill 描述和使用说明
+├── README.md         # 项目文档（含安装、使用、环境变量）
+├── .gitignore        # 排除敏感数据和临时文件
+└── scripts/
+    ├── index.py      # 索引：扫描 → 切块 → embedding → 存储
+    └── search.py     # 搜索：查询 → embedding → 相似度计算 → 排序</div>
+  </div>
+  <p style="color:#94a3b8; margin-top:12px;">
+    ⚠️ SQLite 数据库文件（*.sqlite）和 __pycache__ 已加入 .gitignore，不会上传敏感数据。
+  </p>
+</div>
+
+<div class="footer">
+  GitHub: <a href="https://github.com/toller892/memory-semantic-search" target="_blank">toller892/memory-semantic-search</a>
+</div>
+
+</div>
+</body>
+</html>

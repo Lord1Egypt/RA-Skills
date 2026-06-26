@@ -1,0 +1,40 @@
+{
+  "skill_name": "adaptive-socratic-questioning",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "science_university_level",
+      "prompt": "I'm teaching a materials science class at the university level. A student answered the question 'Why does decreasing particle size improve battery rate performance?' with 'Because lithium ions diffuse faster'. Generate follow-up questions to deepen their understanding.",
+      "expected_output": "A JSON response with 4-6 follow-up questions that progress from explaining the diffusion mechanism to exploring counterexamples and creative applications. Questions should use university-level terminology appropriate for materials science. Should identify the misconception about treating 'faster diffusion' as a complete explanation. Should include teacher guidance on when to pause for reflection.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "math_elementary_level",
+      "prompt": "I'm working with elementary students on addition. When I asked 'Why do we need to carry in addition?', a student answered 'Because it's too big for the ones column'. Create questioning sequence to help them understand place value.",
+      "expected_output": "A JSON response with 3-5 follow-up questions using simple, concrete language appropriate for elementary students. Questions should explain what happens to extra ones and why we group into tens. Should flag the common misconception about carrying being a rule rather than about place value. Teacher guidance should mention using physical manipulatives like blocks.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "eval_name": "literature_high_school_level",
+      "prompt": "In my high school English class, I asked students about the theme of Romeo and Juliet. One student said 'It's about two teenagers who fall in love and die because their families hate each other'. Help me guide this student to deeper literary analysis.",
+      "expected_output": "A JSON response with 4-6 questions that move from plot summary to thematic analysis. Questions should explore fate vs. free will, the role of the feud, symbolism, and the play's relevance. Should use high school-appropriate literary analysis terminology. Teacher guidance should suggest connecting to students' own experiences of family or social conflict.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "eval_name": "physics_mixed_level",
+      "prompt": "I'm teaching physics to a mixed group of students from middle school to high school. I asked 'Why do objects fall down?' and got the answer 'Because of gravity'. Generate questions that work for this mixed-level group.",
+      "expected_output": "A JSON response with 3-5 questions that are accessible to middle schoolers but have extension challenges for high schoolers. Should explore what gravity is, how it works, and maybe touch on Newton's laws or Einstein's relativity as extensions. Questions should include scaffolding hints for struggling students and challenge questions for advanced ones. Teacher guidance should mention grouping students by level or using differentiated instruction.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "eval_name": "chemistry_wrong_answer_case",
+      "prompt": "In a general chemistry class, I asked 'Why do some substances dissolve in water while others don't?' A student answered 'Because the ones that dissolve are lighter'. This is incorrect. Use questioning to guide them toward the correct understanding without just telling them they're wrong.",
+      "expected_output": "A JSON response with 3-4 questions that probe the student's thinking without immediately correcting them. Questions should lead them to discover that molecular polarity, not weight, determines solubility. Should identify the misconception about weight being the determining factor. Teacher guidance should emphasize using questioning to help students self-correct. Questions should start with 'How did you arrive at that answer?' type probes.",
+      "files": []
+    }
+  ]
+}

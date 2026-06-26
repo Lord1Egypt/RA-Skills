@@ -1,0 +1,19 @@
+{
+  "slug": "product-description-writer-skill",
+  "name": "Product Description Writer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "business",
+    "openclaw",
+    "product-description-writer",
+    "templates"
+  ],
+  "category": "Business & Product",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-27",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

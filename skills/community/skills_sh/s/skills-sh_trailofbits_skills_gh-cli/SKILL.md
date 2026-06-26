@@ -1,35 +1,37 @@
 ---
-name: "gh-cli"
-description: "Indexed by skills.sh from trailofbits/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "trailofbits"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/trailofbits/skills/gh-cli"
-sourceUrl: "https://skills.sh/trailofbits/skills/gh-cli"
+name: gh-cli
+description: Enforces authenticated gh CLI workflows over unauthenticated curl/WebFetch patterns. Use when working with GitHub URLs, API access, pull requests, or issues.
 ---
 
 # gh-cli
 
-> Indexed by skills.sh from trailofbits/skills
+## When to Use
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** trailofbits
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/trailofbits/skills/gh-cli`
-- **Source URL:** [https://skills.sh/trailofbits/skills/gh-cli](https://skills.sh/trailofbits/skills/gh-cli)
+- Working with GitHub repositories, pull requests, issues, releases, or raw file URLs.
+- You need authenticated access to private repositories or higher API rate limits.
+- You are about to use `curl`, `wget`, or unauthenticated web fetches against GitHub.
 
-## Overview
+## When NOT to Use
 
+- The target is not GitHub.
+- Plain local git operations already solve the task.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/trailofbits/skills/gh-cli
+## Guidance
+
+Prefer the authenticated `gh` CLI over raw HTTP fetches for GitHub content. In particular:
+
+- Prefer `gh repo view`, `gh pr view`, `gh pr list`, `gh issue view`, and `gh api` over unauthenticated `curl` or `wget`.
+- Prefer cloning a repository and reading files locally over fetching `raw.githubusercontent.com` blobs directly.
+- Avoid using GitHub API `/contents/` endpoints as a substitute for cloning and reading repository files.
+
+Examples:
+
+```sh
+gh repo view owner/repo
+gh pr view 123 --repo owner/repo
+gh api repos/owner/repo/pulls
 ```
+
+For the hook implementation, see:
+- `plugins/gh-cli/README.md`
+- `plugins/gh-cli/hooks/`

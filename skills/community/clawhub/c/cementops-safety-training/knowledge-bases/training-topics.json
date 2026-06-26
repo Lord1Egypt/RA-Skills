@@ -1,0 +1,290 @@
+{
+  "metadata": {
+    "skill": "cementops-safety-training",
+    "domain": "Required and Recommended Training Topics by Area",
+    "version": "1.0.0",
+    "last_updated": "2026-04-01"
+  },
+  "training_areas": {
+    "general": {
+      "description": "Topics applicable to all plant areas and all employees",
+      "topics": [
+        {
+          "topic": "Lockout/Tagout (LOTO)",
+          "regulation_ref": "30 CFR 56.12016",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Energy isolation procedures, authorized vs affected employees, group LOTO, verification of zero energy state, lock removal protocols",
+          "applicable_roles": ["all maintenance", "all operations", "contractors"]
+        },
+        {
+          "topic": "Confined Space Entry",
+          "regulation_ref": "30 CFR 56.5002",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Permit-required confined space identification, atmospheric testing (O2, LEL, CO, H2S), ventilation requirements, attendant duties, rescue plan, entry/exit procedures",
+          "applicable_roles": ["maintenance", "operations", "process engineering"]
+        },
+        {
+          "topic": "Fall Protection",
+          "regulation_ref": "30 CFR 56.15005",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Fall hazard identification, guardrail systems, personal fall arrest systems, harness inspection, anchor point selection, travel restraint vs fall arrest, rescue planning",
+          "applicable_roles": ["all personnel working at heights above 6 feet"]
+        },
+        {
+          "topic": "Fire Prevention and Suppression",
+          "regulation_ref": "30 CFR 56.4100 series",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Fire triangle, hot work permits, fire extinguisher types and use (PASS method), flammable material storage, conveyor belt fire prevention, kiln area fire hazards",
+          "applicable_roles": ["all employees"]
+        },
+        {
+          "topic": "First Aid and CPR",
+          "regulation_ref": "30 CFR 56.18010",
+          "priority": "mandatory",
+          "frequency": "Initial + biennial recertification",
+          "content_summary": "Basic first aid, CPR/AED use, bleeding control, shock treatment, burn treatment, heat illness response, when to call emergency services",
+          "applicable_roles": ["minimum one certified person per shift"]
+        },
+        {
+          "topic": "Emergency Evacuation",
+          "regulation_ref": "30 CFR 46.5(b)(3)",
+          "priority": "mandatory",
+          "frequency": "Initial + annual drill",
+          "content_summary": "Alarm types and meanings, evacuation routes by area, rally points, headcount procedures, shelter-in-place vs evacuation criteria, communication chain",
+          "applicable_roles": ["all employees"]
+        }
+      ]
+    },
+    "quarry": {
+      "description": "Topics specific to quarry, crushing, and raw material extraction operations",
+      "topics": [
+        {
+          "topic": "Highwall Safety",
+          "regulation_ref": "30 CFR 56.3130",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Highwall inspection before each shift, bench stability assessment, safe distances from edges, loose material hazards, scaling procedures, restricted zones during blasting",
+          "applicable_roles": ["quarry operators", "drill operators", "blasters", "surveyors"]
+        },
+        {
+          "topic": "Mobile Equipment Operation",
+          "regulation_ref": "30 CFR 56.14100 series",
+          "priority": "mandatory",
+          "frequency": "Initial task training + annual refresher",
+          "content_summary": "Pre-shift inspection, seatbelt use, berms and dump points, haul road rules, blind spot awareness, backing procedures, load securement, equipment-specific controls",
+          "applicable_roles": ["haul truck operators", "loader operators", "dozer operators", "water truck operators"]
+        },
+        {
+          "topic": "Blasting Area Procedures",
+          "regulation_ref": "30 CFR 56.6000 series",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher (blast crew: specialized certification)",
+          "content_summary": "Blast zone clearance procedures, guard posting, warning signals and timing, misfires, flyrock protection, blast area re-entry, pre-blast and post-blast inspections",
+          "applicable_roles": ["blasters (licensed)", "quarry personnel", "security/gate personnel"]
+        },
+        {
+          "topic": "Dust and Noise Exposure",
+          "regulation_ref": "30 CFR 56.5001 (dust), 30 CFR 56.5050 (noise)",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Respirable dust sources and silica content, dust suppression systems, personal dust monitoring, noise exposure limits (90 dBA TWA), hearing conservation program, audiometric testing, proper use of hearing protection",
+          "applicable_roles": ["all quarry personnel"]
+        }
+      ]
+    },
+    "crushing_screening": {
+      "description": "Topics specific to primary, secondary, and tertiary crushing and screening operations",
+      "topics": [
+        {
+          "topic": "Nip Points and Pinch Points",
+          "regulation_ref": "30 CFR 56.14107",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Identification of nip points on crushers, screens, and conveyors; proper guarding verification; body positioning; never reach into operating equipment; LOTO before clearing",
+          "applicable_roles": ["crusher operators", "maintenance personnel"]
+        },
+        {
+          "topic": "Machine Guarding",
+          "regulation_ref": "30 CFR 56.14112",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Guard types (fixed, interlocked, adjustable), guard inspection, reporting missing or damaged guards, guard removal only under LOTO, guard replacement before restart",
+          "applicable_roles": ["all crushing area personnel"]
+        },
+        {
+          "topic": "Blockage Clearing Procedures",
+          "regulation_ref": "30 CFR 56.14105",
+          "priority": "mandatory",
+          "frequency": "Task training per equipment type",
+          "content_summary": "LOTO before entry, approved tools and methods, bridging hazards in hoppers, never enter crusher cavity without full isolation, communication with control room, spotter requirements",
+          "applicable_roles": ["crusher operators", "maintenance"]
+        },
+        {
+          "topic": "Dust Suppression Systems",
+          "regulation_ref": "30 CFR 56.5001",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Water spray systems at transfer points, bag filter operation and maintenance, enclosure integrity checks, personal dust monitoring, respiratory protection when systems are down",
+          "applicable_roles": ["crushing operators", "maintenance"]
+        }
+      ]
+    },
+    "grinding": {
+      "description": "Topics specific to raw mill and finish mill (cement mill) grinding operations",
+      "topics": [
+        {
+          "topic": "Mill Entry Procedures",
+          "regulation_ref": "30 CFR 56.5002 (confined space)",
+          "priority": "mandatory",
+          "frequency": "Task training + annual refresher",
+          "content_summary": "Full LOTO of mill drive, auxiliary drive, and feed systems; atmospheric testing; ventilation; body harness for vertical mills; communication protocol; hot surface cooling time; grinding media shifting hazards",
+          "applicable_roles": ["mill operators", "maintenance", "refractory crew"]
+        },
+        {
+          "topic": "Grinding Media Handling",
+          "regulation_ref": "30 CFR 56.16002 (material handling)",
+          "priority": "mandatory",
+          "frequency": "Task training",
+          "content_summary": "Charging media safely, mechanical aids for heavy balls/cylpebs, overhead crane use during charging, exclusion zone during media addition, noise protection, pinch points at mill inlet",
+          "applicable_roles": ["mill operators", "maintenance"]
+        },
+        {
+          "topic": "Hot Surface Awareness",
+          "regulation_ref": "30 CFR 56.4101",
+          "priority": "mandatory",
+          "frequency": "Initial + refresher",
+          "content_summary": "Surface temperatures on mills, separators, and ducts can exceed 300F; burn prevention; required PPE (heat-resistant gloves); cooling time after shutdown; hot surface signage",
+          "applicable_roles": ["all grinding area personnel"]
+        }
+      ]
+    },
+    "kiln_area": {
+      "description": "Topics specific to preheater, calciner, rotary kiln, and clinker cooler operations",
+      "topics": [
+        {
+          "topic": "Hot Surface and Thermal Burn Prevention",
+          "regulation_ref": "30 CFR 56.4101",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Kiln shell temperatures up to 700F, preheater tower surfaces, cooler grate areas; required approach distances; heat-resistant PPE; no exposed skin policy in kiln area; burn treatment procedures",
+          "applicable_roles": ["all kiln area personnel"]
+        },
+        {
+          "topic": "Rotating Equipment Hazards",
+          "regulation_ref": "30 CFR 56.14107",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Kiln rotation hazards, tire and roller pinch points, thrust roller area restrictions, drive guard integrity, kiln turning gear procedures, no loose clothing policy",
+          "applicable_roles": ["kiln operators", "kiln maintenance"]
+        },
+        {
+          "topic": "Gas Hazards (CO and SO2)",
+          "regulation_ref": "30 CFR 56.5001",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Carbon monoxide generation during kiln upset, SO2 from raw material sulfur content, fixed gas monitors and alarm levels (CO: 50 ppm TWA, SO2: 5 ppm TWA), portable gas detector use, evacuation triggers, preheater tower atmospheric hazards",
+          "applicable_roles": ["all kiln area personnel"]
+        },
+        {
+          "topic": "Refractory Safety",
+          "regulation_ref": "30 CFR 56.5002, 56.15005",
+          "priority": "mandatory",
+          "frequency": "Task training before each shutdown campaign",
+          "content_summary": "Brick and castable hazards, silica dust from refractory demolition, fall protection on scaffolding inside kiln, LOTO of kiln drive and auxiliary, heat exposure limits, hydration burns from castable, chrome-containing refractory handling",
+          "applicable_roles": ["refractory contractors", "kiln maintenance", "safety oversight"]
+        }
+      ]
+    },
+    "material_handling": {
+      "description": "Topics specific to conveyors, silos, hoppers, and bulk material transport",
+      "topics": [
+        {
+          "topic": "Conveyor Safety",
+          "regulation_ref": "30 CFR 56.14107, 56.14112",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Nip points at head, tail, and bend pulleys; belt tracking hazards; emergency pull cord inspection and testing; walkway clearances; no riding on conveyors; startup warning procedures; crossing conveyors only at designated crossovers",
+          "applicable_roles": ["all plant personnel"]
+        },
+        {
+          "topic": "Silo Entry Prohibition and Safety",
+          "regulation_ref": "30 CFR 56.16002",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Never enter a silo with material unless full confined space and engulfment protections are in place; bridging and rat-holing hazards; vibrator and air cannon safe use; silo level monitoring; no standing on material surface",
+          "applicable_roles": ["all operations and maintenance personnel"]
+        },
+        {
+          "topic": "Conveyor Belt Fire Prevention",
+          "regulation_ref": "30 CFR 56.4100 series",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Belt friction as ignition source, belt slip detection, hot material on belt, fire suppression systems at transfer points, belt fire rated specifications, housekeeping around conveyor galleries",
+          "applicable_roles": ["conveyor operators", "maintenance"]
+        }
+      ]
+    },
+    "electrical": {
+      "description": "Topics specific to electrical work and electrical safety in plant operations",
+      "topics": [
+        {
+          "topic": "Arc Flash Awareness",
+          "regulation_ref": "30 CFR 56.12004, NFPA 70E",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Arc flash hazard analysis labels, approach boundaries (flash protection, limited, restricted, prohibited), required arc-rated PPE by incident energy level, de-energize before work policy, emergency response to arc flash injuries",
+          "applicable_roles": ["electricians", "electrical engineers", "operations near MCC rooms"]
+        },
+        {
+          "topic": "LOTO for Electrical Systems",
+          "regulation_ref": "30 CFR 56.12016",
+          "priority": "mandatory",
+          "frequency": "Task training + annual refresher",
+          "content_summary": "Electrical-specific LOTO steps, verifying zero voltage with rated meter, stored energy (capacitors), multiple feed isolation, temporary grounding for high voltage, permit system for energized work",
+          "applicable_roles": ["qualified electrical workers"]
+        },
+        {
+          "topic": "Qualified vs Unqualified Person",
+          "regulation_ref": "30 CFR 56.12017",
+          "priority": "mandatory",
+          "frequency": "Initial",
+          "content_summary": "Definition of qualified person for electrical work, work restrictions for unqualified persons, approach distances by voltage level, when to call a qualified electrician, reporting electrical hazards (exposed wires, damaged cords, missing covers)",
+          "applicable_roles": ["all employees (awareness), electricians (qualified person training)"]
+        }
+      ]
+    },
+    "packing_shipping": {
+      "description": "Topics specific to cement packing, palletizing, loading, and shipping operations",
+      "topics": [
+        {
+          "topic": "Vehicle Traffic Management",
+          "regulation_ref": "30 CFR 56.9100 series",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Truck routing and speed limits in loading area, pedestrian exclusion zones during loading, spotter use for backing, wheel chocking during loading, driver must remain in cab or designated safe area, high-visibility vest requirement",
+          "applicable_roles": ["shipping personnel", "truck drivers", "forklift operators"]
+        },
+        {
+          "topic": "Manual Handling and Ergonomics",
+          "regulation_ref": "30 CFR 56.20011",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Proper lifting techniques, 50-lb single-person lift limit guideline, mechanical aids available, bag stacking height limits, repetitive motion injury prevention, stretching program, reporting musculoskeletal symptoms early",
+          "applicable_roles": ["packing line operators", "warehouse personnel"]
+        },
+        {
+          "topic": "Cement Dust Exposure in Packing",
+          "regulation_ref": "30 CFR 56.5001",
+          "priority": "mandatory",
+          "frequency": "Initial + annual refresher",
+          "content_summary": "Cement dust as respiratory and skin irritant, hexavalent chromium in some cements, dust collection system operation, bag filling station ventilation, respiratory protection selection, dermatitis prevention (gloves, barrier cream, washing)",
+          "applicable_roles": ["packing line operators", "bag loader operators", "warehouse personnel"]
+        }
+      ]
+    }
+  }
+}

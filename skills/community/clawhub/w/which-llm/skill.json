@@ -1,0 +1,131 @@
+{
+  "schema": "which-llm/skill/v1",
+  "id": "decision-economic-optimizer",
+  "name": "Decision Economic Optimizer",
+  "version": "0.1.0",
+  "description": "Deterministic decision-ranking API with HTTP 402 payments and outcome credits.",
+  "homepage": "https://which-llm.com",
+  "updated_at": "2026-02-11T13:45:00Z",
+  "primary_credential": "WALLET_CREDENTIALS",
+  "sensitivity": "high",
+  "install_mechanism": "instruction_only",
+  "writes_to_disk_on_install": false,
+  "downloads_code_on_install": false,
+  "security_notice": "This skill is API-focused. It describes how to call the Which-LLM endpoints and interpret HTTP responses. For paid requests, the AI bot needs access to a crypto wallet so payment can be satisfied by the host or client.",
+  "disableModelInvocation": false,
+  "invocation_model": {
+    "always_on": false,
+    "trigger": "on_demand",
+    "approval_model": "per_request_user_approval_required",
+    "description": "This skill is invoked on demand to call the Which-LLM API and process JSON responses. It does not run continuously.",
+    "approval_policy": {
+      "declared_default": "per_request_approval_required",
+      "host_enforcement_guarantee": "external_or_unknown",
+      "host_enforcement_note": "Outbound API approval behavior depends on the host agent or runtime configuration."
+    }
+  },
+  "scope_limitations": {
+    "modifies_other_skills": false,
+    "modifies_system_settings": false,
+    "accesses_other_skill_data": false,
+    "description": "This skill only interacts with the Which-LLM HTTP API. It does not modify other skills or system settings."
+  },
+  "credentials": {
+    "required": true,
+    "primary_credential_type": "WALLET_CREDENTIALS",
+    "sensitivity": "high",
+    "autonomous_capabilities": [
+      "call_https_json_endpoints",
+      "retry_requests_after_external_payment"
+    ],
+    "description": "This skill requires the AI bot to have access to a crypto wallet for paid requests. The skill itself remains focused on calling the API and handling responses."
+  },
+  "service": {
+    "paths": {
+      "home": "/",
+      "capabilities": "/capabilities",
+      "pricing": "/pricing",
+      "status": "/status",
+      "payment_addresses": "/docs/payment-addresses",
+      "well_known_agent": "/.well-known/agent.json"
+    }
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/decision/optimize",
+      "paid": true,
+      "summary": "Suggest a recommended LLM model under cost/quality constraints and return a fallback plan."
+    },
+    {
+      "method": "POST",
+      "path": "/decision/outcome",
+      "paid": false,
+      "summary": "Report what happened after executing a decision; if the original decision was verified, returns a credit token (typically 50% refund) for use on next request."
+    }
+  ],
+  "payment": {
+    "model": "http_402",
+    "asset": "USDC",
+    "supported_chains": [
+      "eip155:8453",
+      "eip155:1",
+      "eip155:42161",
+      "eip155:10",
+      "eip155:43114"
+    ],
+    "verification_policy": {
+      "required": true,
+      "method": "external",
+      "verification_sources": [
+        "https://which-llm.com/.well-known/payment-address.txt",
+        "https://which-llm.com/.well-known/agent.json",
+        "https://which-llm.com/docs/payment-addresses",
+        "ENS: which-llm.eth (payment-address TXT record)"
+      ],
+      "verification_note": "Verify the payment address across multiple publication channels before sending funds. Do not trust any single source, including this skill file.",
+      "channel_independence_note": "The listed publication channels may still share operational control and are not a full substitute for a separate cryptographic trust anchor. `/.well-known/agent.json` adds another retrieval path, not a separate trust operator."
+    },
+    "proof_headers": {
+      "chain": "X-Payment-Chain",
+      "tx_hash": "X-Payment-Tx",
+      "payer": "X-Payer",
+      "amount": "X-Payment-Amount",
+      "asset": "X-Payment-Asset"
+    },
+    "security_note": "A caller may receive HTTP 402 and later retry with payment proof headers. For paid requests, the AI bot needs access to a crypto wallet."
+  },
+  "credits": {
+    "description": "Outcome reporting can issue credits that reduce the cost of later paid calls.",
+    "typical_refund_rate": "50%",
+    "effective_cost_with_credits": "~0.005 USDC per request (after first request)",
+    "issue": {
+      "endpoint": {
+        "method": "POST",
+        "path": "/decision/outcome"
+      },
+      "token_field": "refund_credit.credit_token",
+      "description": "Report a decision outcome to earn a credit token."
+    },
+    "redeem": {
+      "header": "X-Credit-Token",
+      "effect": "Reduces required_amount on the next paid call",
+      "usage": "Include a previous credit token to discount the next optimization request."
+    },
+    "optimization_strategy": {
+      "description": "Report outcomes and reuse credits on later requests.",
+      "wallet_funding_example": {
+        "without_credits": "$5 USDC + $3 gas = 500 requests",
+        "with_credits": "$5 USDC + $3 gas = ~999 requests (all except first use 50% discount)"
+      },
+      "note": "Credits can materially reduce total spend when reused consistently."
+    },
+    "credit_lifecycle": {
+      "decay": "50% decay after 30 days",
+      "expiration": "90 days from issuance",
+      "single_use": true,
+      "payer_bound": "Credit tokens are bound to the original payer address"
+    }
+  }
+}
+

@@ -1,35 +1,28 @@
 ---
-name: "Wangwei Mkdir"
-description: "echo ni shuo de hua"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wangwei-mkdir"
-sourceUrl: "https://clawhub.ai/skills/wangwei-mkdir"
+name: wangwei-mkdir
+description: echo ni shuo de hua 
 ---
 
-# Wangwei Mkdir
+# Cron Backup
 
-> echo ni shuo de hua
+auto echo ni shuo de hua
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wangwei-mkdir`
-- **Source URL:** [https://clawhub.ai/skills/wangwei-mkdir](https://clawhub.ai/skills/wangwei-mkdir)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### One-Time echo
 ```bash
-hermes skills install clawhub/wangwei-mkdir
+# Backup a directory with timestamp./scripts/mkdir.sh  abcd
+./scripts/mkdir.sh  abcd
+```
+
+### One-Time echo
+```bash
+# Backup a directory with timestamp./scripts/mkdir.sh  abcd
+./scripts/mkdir1.sh  abcd
+```
+
+### One-Time echo
+```bash
+# Backup a directory with timestamp./scripts/mkdir.sh  abcd
+./scripts/mkdir2.sh  abcd
 ```

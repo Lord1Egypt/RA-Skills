@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx mathjs"
-description: "Math.js MCP — wraps the mathjs.org API (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-mathjs"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-mathjs"
+name: pipeworx-mathjs
+description: Math.js MCP — wraps the mathjs.org API (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/mathjs
 ---
 
-# Pipeworx mathjs
+# pipeworx-mathjs
 
-> Math.js MCP — wraps the mathjs.org API (free, no auth)
+Math.js MCP — wraps the mathjs.org API (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-mathjs`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-mathjs](https://clawhub.ai/skills/pipeworx-mathjs)
+## Tools
 
-## Overview
+- `evaluate`
+- `convert_units`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-mathjs
+```json
+{
+  "mcpServers": {
+    "pipeworx-mathjs": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/mathjs/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/mathjs](https://pipeworx.io/packs/mathjs)

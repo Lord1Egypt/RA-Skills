@@ -1,0 +1,93 @@
+name: doc-collaboration-watcher
+version: 1.0.0
+description: 协作文档实时监控技能 - 监控 Markdown 文档变更，自动通知所有相关子代理和沟通通道
+author: Eva (李伊娃)
+email: lewis.touchtech@gmail.com
+license: MIT
+
+# 技能类型
+type: automation
+category: collaboration
+
+# 依赖
+dependencies:
+  - python3
+  - watchdog>=6.0.0
+
+# 权限
+permissions:
+  - file:read
+  - file:write
+  - message:send
+  - exec:python
+
+# 入口
+entry:
+  type: python
+  script: bin/doc-watcher.py
+  venv: venvs/doc-watcher
+
+# 配置
+config:
+  workspace: ~/.openclaw/workspace
+  docs_dir: docs
+  log_dir: logs
+  watch_pattern: "*.md"
+  notification:
+    auto_channels: true  # ✅ 自动读取 OpenClaw 配置的通道
+    channels: []         # 留空（自动填充）
+    response_timeout_minutes: 5
+    evaluation_timeout_minutes: 30
+
+# 命令
+commands:
+  - name: start
+    description: 启动文档监控
+    action: exec
+    command: python3 bin/doc-watcher.py
+    
+  - name: stop
+    description: 停止文档监控
+    action: exec
+    command: pkill -f doc-watcher.py
+    
+  - name: status
+    description: 查看监控状态
+    action: exec
+    command: pgrep -f doc-watcher.py
+
+# 标签
+tags:
+  - collaboration
+  - document
+  - monitoring
+  - real-time
+  - notification
+  - multi-agent
+
+# 兼容性
+compatibility:
+  openclaw_version: ">=2026.4.0"
+  python_version: ">=3.10"
+  os:
+    - macOS
+    - Linux
+
+# 文档
+documentation:
+  readme: README.md
+  skill_doc: SKILL.md
+  examples: examples/
+  contributing: CONTRIBUTING.md
+
+# 发布
+publish:
+  public: true
+  featured: false
+  clawhub: true
+
+# 集成
+integration:
+  openclaw_memory:
+    enabled: true
+    store_events: true

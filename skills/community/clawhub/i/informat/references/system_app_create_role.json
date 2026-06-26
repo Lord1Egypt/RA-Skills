@@ -1,0 +1,32 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_create_role",
+    "description": "Create a new custom role under the current application. 【Create application role】Used for permission control and function authorization. The role ID and name must be unique within the application and must not use system reserved role identifiers.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role unique identifier (unique within the application). Must use camelCase naming, only support English letters and numbers, must not contain underscores or special characters, and must not use system reserved identifiers (such as: admin). Examples: dataManager, orderViewer, workflowApprover.",
+          "minLength": 2,
+          "maxLength": 50,
+          "pattern": "^(?!admin$)[a-z][A-Za-z0-9]{1,49}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Role name (unique within the application, used for interface display). Must not use system reserved names (such as: Admin). Examples: Data Management Role, Order Viewing Role.",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^(?!Admin$).+$"
+        },
+        "remark": {
+          "type": "string",
+          "description": "Role description, used to describe the responsibilities and usage scenarios of the role.",
+          "maxLength": 200
+        }
+      },
+      "required": ["id", "name"]
+    }
+  }
+}

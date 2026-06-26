@@ -1,0 +1,19 @@
+[project]
+name = "token-economy-intel"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.86.0",
+    "httpx>=0.28.1",
+    "keyring>=25.0.0",
+    "mcp>=1.26.0",
+    "pydantic>=2.12.5",
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.0.0",
+    "python-dotenv>=1.2.2",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

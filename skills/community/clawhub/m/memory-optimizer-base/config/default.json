@@ -1,0 +1,38 @@
+{
+  "memory": {
+    "base_path": "~/.openclaw/workspace",
+    "private_root": "memory/private",
+    "public_root": "memory/public",
+    "medium_term_retention_days": 1,
+    "auto_summarize": true,
+    "require_upload_confirm": true,
+    "default_agent_id": "default"
+  },
+  "summarizer": {
+    "template": "---\nagent: {agent}\ndate: {date}\ngenerated: {generated}\nkeywords: {keywords}\nsessions: {sessions}\n---\n\n## 📌 基本信息\n- **Agent**: {agent}\n- **日期**: {date}\n- **生成时间**: {generated}\n\n## 🗂️ 今日工作内容\n{activities}\n\n## 🧠 学习收获\n{learnings}\n\n## 🎯 关键决策\n{decisions}\n\n## 📋 待办事项\n{todos}\n\n## 📝 其他备注\n{notes}\n\n---\n*以上内容由记忆优化器自动生成*",
+    "max_length": 2000,
+    "include_sessions": true,
+    "extract_keywords": true
+  },
+  "upload": {
+    "auto_publish": false,
+    "min_approval_score": 0.7,
+    "format": "markdown",
+    "backup_private": true,
+    "filename_template": "{agent}-{date}-{title}.md",
+    "require_upload_confirm": false
+  },
+  "search": {
+    "public_first": true,
+    "min_relevance": 0.5,
+    "max_public_results": 5,
+    "include_private": true,
+    "max_private_results": 3,
+    "weight_public": 1.2,
+    "weight_private": 1.0
+  },
+  "logging": {
+    "level": "info",
+    "file": "~/.openclaw/logs/memory_optimizer.log"
+  }
+}

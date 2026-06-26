@@ -1,0 +1,55 @@
+{
+    "meta": {
+        "name": "股票交易监控系统配置",
+        "version": "3.0.0",
+        "updated": "2026-06-02",
+        "description": "股价实时监控与自动预警系统"
+    },
+    "driver": {
+        "type": "clawdbot_internal_cron",
+        "cron_job_name": "股票监控-盘中检查(10分钟)",
+        "cron_expr": "*/10 9-15 * * 1-5",
+        "timezone": "Asia/Shanghai",
+        "session_target": "isolated",
+        "delivery_channel": "xiaoyi",
+        "delivery_target": "a8e375e7f66f49c7acc59a2f58839552"
+    },
+    "trading_hours": {
+        "morning": "09:30-11:30",
+        "afternoon": "13:00-15:00",
+        "note": "盘中每10分钟检查一次，非交易时段自动跳过"
+    },
+    "only_once": true,
+    "rules": {
+        "alert_once_per_day": true,
+        "no_alert_silent": true,
+        "alert_pushes_immediately": true,
+        "price_log_auto_record": true
+    },
+    "stocks": [
+        {
+            "code": "688599",
+            "name": "天合光能",
+            "price_high": 17,
+            "price_low": 15,
+            "rise_pct": 99,
+            "fall_pct": -99
+        },
+        {
+            "code": "600000",
+            "name": "浦发银行",
+            "price_high": 10,
+            "price_low": 8,
+            "rise_pct": 99,
+            "fall_pct": -99
+        },
+        {
+            "code": "000785",
+            "name": "居然智家",
+            "price_high": 2.6,
+            "price_low": 2.25,
+            "rise_pct": 99,
+            "fall_pct": -99
+        }
+    ]
+}

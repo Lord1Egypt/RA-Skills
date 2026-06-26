@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_schedule_run_once",
+    "description": "Immediately trigger the specified scheduled task to execute once (does not affect the scheduling rules).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Scheduled task ID"
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

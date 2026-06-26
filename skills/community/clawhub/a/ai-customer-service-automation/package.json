@@ -1,0 +1,15 @@
+{
+  "name": "ai-customer-service-automation",
+  "version": "1.0.0",
+  "description": "AI 客服自动化 - 7x24小时智能客服，自动回复、工单分配、满意度跟踪",
+  "main": "index.js",
+  "keywords": [
+    "ai",
+    "customer-service",
+    "automation",
+    "openclaw",
+    "chatbot"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

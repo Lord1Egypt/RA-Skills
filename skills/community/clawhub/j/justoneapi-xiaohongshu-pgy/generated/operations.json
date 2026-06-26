@@ -1,0 +1,1466 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Analyze Xiaohongshu Creator Marketplace (Pugongying) workflows with JustOneAPI, including creator Profile, data Summary, and follower Growth History across 24 operations.",
+  "displayName": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Core Metrics data, including engagement and content metrics, for benchmarking, vetting, and campaign planning.",
+      "method": "GET",
+      "operationId": "apiPgyKolDataCoreDataV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAILY_NOTE",
+          "description": "Business type.\n\nAvailable Values:\n- `DAILY_NOTE`: Daily notes\n- `COOPERATE_NOTE`: Cooperative notes",
+          "enumValues": [
+            "DAILY_NOTE",
+            "COOPERATE_NOTE"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "PHOTO_TEXT_AND_VIDEO",
+          "description": "Type of note.\n\nAvailable Values:\n- `PHOTO_TEXT_AND_VIDEO`: Photo and Video\n- `PHOTO_TEXT`: Photo and Text\n- `VIDEO`: Video only",
+          "enumValues": [
+            "PHOTO_TEXT_AND_VIDEO",
+            "PHOTO_TEXT",
+            "VIDEO"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAY_30",
+          "description": "Time range for data.\n\nAvailable Values:\n- `DAY_30`: Last 30 days\n- `DAY_90`: Last 90 days",
+          "enumValues": [
+            "DAY_30",
+            "DAY_90"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Advertisement filter.\n\nAvailable Values:\n- `ALL`: All notes\n- `ORGANIC_ONLY`: Organic notes only",
+          "enumValues": [
+            "ALL",
+            "ORGANIC_ONLY"
+          ],
+          "location": "query",
+          "name": "advertiseSwitch",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/pgy/kol/data/core_data/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Core Metrics",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Search data, including filters, returning profile, and audience, for discovery, comparison, and shortlist building.",
+      "method": "GET",
+      "operationId": "apiSolarCooperatorBloggerV2V1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "NICKNAME",
+          "description": "Search criteria type.\n\nAvailable Values:\n- `NICKNAME`: Search by nickname\n- `NOTE`: Search by note content",
+          "enumValues": [
+            "NICKNAME",
+            "NOTE"
+          ],
+          "location": "query",
+          "name": "searchType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Minimum number of fans.",
+          "enumValues": [],
+          "location": "query",
+          "name": "fansNumberLower",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Maximum number of fans.",
+          "enumValues": [],
+          "location": "query",
+          "name": "fansNumberUpper",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Target fans age group.\n\nAvailable Values:\n- `ALL`: All ages\n- `LT_18`: Under 18\n- `AGE_18_24`: 18 to 24\n- `AGE_25_34`: 25 to 34\n- `AGE_35_44`: 35 to 44\n- `GT_44`: Above 44",
+          "enumValues": [
+            "ALL",
+            "LT_18",
+            "AGE_18_24",
+            "AGE_25_34",
+            "AGE_35_44",
+            "GT_44"
+          ],
+          "location": "query",
+          "name": "fansAge",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Target fans gender.\n\nAvailable Values:\n- `ALL`: All genders\n- `MALE_HIGH`: Mainly Male\n- `FE_MALE_HIGH`: Mainly Female",
+          "enumValues": [
+            "ALL",
+            "MALE_HIGH",
+            "FE_MALE_HIGH"
+          ],
+          "location": "query",
+          "name": "fansGender",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "KOL's gender.\n\nAvailable Values:\n- `ALL`: All genders\n- `MALE`: Male\n- `FEMALE`: Female",
+          "enumValues": [
+            "ALL",
+            "MALE",
+            "FEMALE"
+          ],
+          "location": "query",
+          "name": "gender",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Content categories, separated by commas.",
+          "enumValues": [],
+          "location": "query",
+          "name": "contentTag",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/cooperator/blogger/v2/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Search",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Profile data, including audience and pricing data, for influencer vetting, benchmark analysis, and campaign planning.",
+      "method": "GET",
+      "operationId": "apiSolarCooperatorUserBloggerUserIdV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Blogger's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/cooperator/user/blogger/userId/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Profile",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower Growth History data, including historical points, trend signals, and growth metrics, for trend tracking, audience analysis, and creator performance monitoring.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataUserIdFansOverallNewHistoryV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAY_30",
+          "description": "Time range for data.\n\nAvailable Values:\n- `DAY_30`: Last 30 days\n- `DAY_90`: Last 90 days",
+          "enumValues": [
+            "DAY_30",
+            "DAY_90"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "FANS_TOTAL",
+          "description": "Type of growth data.\n\nAvailable Values:\n- `FANS_TOTAL`: Total fans\n- `FANS_INCREASE`: New fans increase",
+          "enumValues": [
+            "FANS_TOTAL",
+            "FANS_INCREASE"
+          ],
+          "location": "query",
+          "name": "increaseType",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/data/userId/fans_overall_new_history/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Growth History",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower distribution data, including audience demographics, interests, and distribution metrics, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataUserIdFansProfileV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/data/userId/fans_profile/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Distribution",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) cost Effectiveness Analysis data, including pricing, reach, and engagement efficiency indicators, for campaign evaluation.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV2CostEffectiveV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV2/costEffective/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Cost Effectiveness Analysis",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Content Tags data, including topic labels that describe publishing themes and content focus, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV2KolContentTagsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV2/kolContentTags/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Content Tags",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Feature Tags data, including platform tags, category labels, and classification signals, for segmentation, discovery, and creator classification.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV2KolFeatureTagsV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV2/kolFeatureTags/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Feature Tags",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) user Published Notes data, including note metadata and engagement signals, for creator monitoring and campaign research.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV2NotesDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Advertisement filter.\n\nAvailable Values:\n- `ALL`: All notes\n- `ORGANIC_ONLY`: Organic notes only",
+          "enumValues": [
+            "ALL",
+            "ORGANIC_ONLY"
+          ],
+          "location": "query",
+          "name": "advertiseSwitch",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "LATEST",
+          "description": "Sorting order.\n\nAvailable Values:\n- `LATEST`: Latest\n- `MOST_READ`: Most read\n- `MOST_INTERACT`: Most interactions",
+          "enumValues": [
+            "LATEST",
+            "MOST_READ",
+            "MOST_INTERACT"
+          ],
+          "location": "query",
+          "name": "orderType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Type of note.\n\nAvailable Values:\n- `ALL`: All types\n- `COOPERATION`: Cooperation notes\n- `PHOTO_TEXT`: Photo and Text\n- `VIDEO`: Video only",
+          "enumValues": [
+            "ALL",
+            "COOPERATION",
+            "PHOTO_TEXT",
+            "VIDEO"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "NO",
+          "description": "Whether from third-party platform.\n\nAvailable Values:\n- `NO`: No\n- `YES`: Yes",
+          "enumValues": [
+            "NO",
+            "YES"
+          ],
+          "location": "query",
+          "name": "isThirdPlatform",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pageNumber",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV2/notesDetail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "User Published Notes",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) Summary data, including activity, engagement, and audience growth, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV3DataSummaryV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAILY_NOTE",
+          "description": "Business type.\n\nAvailable Values:\n- `DAILY_NOTE`: Daily notes\n- `COOPERATE_NOTE`: Cooperative notes",
+          "enumValues": [
+            "DAILY_NOTE",
+            "COOPERATE_NOTE"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV3/dataSummary/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Data Summary",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower Summary data, including growth and engagement metrics, for audience analysis and creator benchmarking.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV3FansSummaryV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV3/fansSummary/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Summary",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) note performance metrics data, including core metrics, trend signals, and performance indicators, for content efficiency analysis, creator benchmarking, and campaign planning.",
+      "method": "GET",
+      "operationId": "apiSolarKolDataV3NotesRateV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAILY_NOTE",
+          "description": "Business type.\n\nAvailable Values:\n- `DAILY_NOTE`: Daily notes\n- `COOPERATE_NOTE`: Cooperative notes",
+          "enumValues": [
+            "DAILY_NOTE",
+            "COOPERATE_NOTE"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "PHOTO_TEXT_AND_VIDEO",
+          "description": "Type of note.\n\nAvailable Values:\n- `PHOTO_TEXT_AND_VIDEO`: Photo and Video\n- `PHOTO_TEXT`: Photo and Text\n- `VIDEO`: Video only",
+          "enumValues": [
+            "PHOTO_TEXT_AND_VIDEO",
+            "PHOTO_TEXT",
+            "VIDEO"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "DAY_30",
+          "description": "Time range for data.\n\nAvailable Values:\n- `DAY_30`: Last 30 days\n- `DAY_90`: Last 90 days",
+          "enumValues": [
+            "DAY_30",
+            "DAY_90"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "ALL",
+          "description": "Advertisement filter.\n\nAvailable Values:\n- `ALL`: All notes\n- `ORGANIC_ONLY`: Organic notes only",
+          "enumValues": [
+            "ALL",
+            "ORGANIC_ONLY"
+          ],
+          "location": "query",
+          "name": "advertiseSwitch",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/dataV3/notesRate/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Performance Metrics",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) similar Creators data, including audience signals, for creator discovery, benchmarking, and shortlist building.",
+      "method": "GET",
+      "operationId": "apiSolarKolGetSimilarKolV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL's user ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "userId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "pageNum",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/kol/get_similar_kol/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Similar Creators",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) note Details data, including media and engagement signals, for content analysis, archiving, and campaign review.",
+      "method": "GET",
+      "operationId": "apiSolarNoteNoteIdDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Note's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/api/solar/note/noteId/detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Core Metrics data, including engagement and content metrics, for benchmarking, vetting, and campaign planning.",
+      "method": "GET",
+      "operationId": "getKolDataCoreV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Business type.\n\nAvailable Values:\n- `_0`: Normal notes\n- `_1`: Cooperation notes",
+          "enumValues": [
+            "_0",
+            "_1"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_3",
+          "description": "Note type.\n\nAvailable Values:\n- `_1`: Photo and Text\n- `_2`: Video\n- `_3`: Photo and Video",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_3"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_1",
+          "description": "Date type.\n\nAvailable Values:\n- `_1`: Last 30 days\n- `_2`: Last 90 days",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_1",
+          "description": "Ad filter.\n\nAvailable Values:\n- `_1`: Full traffic (All notes)\n- `_0`: Natural traffic (Organic notes)",
+          "enumValues": [
+            "_1",
+            "_0"
+          ],
+          "location": "query",
+          "name": "adSwitch",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-core-data/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Core Metrics",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) cost Effectiveness Analysis data, including pricing, reach, and engagement efficiency indicators, for campaign evaluation.",
+      "method": "GET",
+      "operationId": "getKolCostEffectiveV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-cost-effective/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Cost Effectiveness Analysis",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) summary data, including activity, engagement, and audience growth, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "getKolDataSummaryV2",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Business type.\n\nAvailable Values:\n- `_0`: Normal notes\n- `_1`: Cooperation notes",
+          "enumValues": [
+            "_0",
+            "_1"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-data-summary/v2",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Data Summary",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower distribution data, including audience demographics, interests, and distribution metrics, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "getKolFansPortraitV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-fans-portrait/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Distribution",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower summary data, including core metrics, trend signals, and performance indicators, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "getKolFansSummaryV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-fans-summary/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Summary",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) follower growth history data, including historical audience changes over time, for creator evaluation, campaign planning, and creator benchmarking.",
+      "method": "GET",
+      "operationId": "getKolFansTrendV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Date type.\n\nAvailable Values:\n- `_1`: Last 30 days\n- `_2`: Last 60 days",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Increase type.\n\nAvailable Values:\n- `_1`: Total fans\n- `_2`: New fans increase",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "increaseType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-fans-trend/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Follower Growth History",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Profile data, including audience and pricing data, for influencer vetting, benchmark analysis, and campaign planning.",
+      "method": "GET",
+      "operationId": "getXiaohongshuPgyKolInfoV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-info/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Profile",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) creator Note List data, including content metadata, publish time, and engagement indicators, for content analysis.",
+      "method": "GET",
+      "operationId": "getKolNoteListV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Ad filter.\n\nAvailable Values:\n- `_1`: Full traffic (All notes)\n- `_0`: Natural traffic (Organic notes)",
+          "enumValues": [
+            "_1",
+            "_0"
+          ],
+          "location": "query",
+          "name": "adSwitch",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Sorting order.\n\nAvailable Values:\n- `_1`: Latest\n- `_2`: Most read\n- `_3`: Most interactions",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_3"
+          ],
+          "location": "query",
+          "name": "orderType",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_4",
+          "description": "Note type.\n\nAvailable Values:\n- `_1`: Photo and Text notes\n- `_2`: Video notes\n- `_3`: Cooperation notes\n- `_4`: All types",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_3",
+            "_4"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-note-list/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Note List",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) note performance metrics data, including core metrics, trend signals, and performance indicators, for content efficiency analysis, creator benchmarking, and campaign planning.",
+      "method": "GET",
+      "operationId": "getKolNoteRateV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_1",
+          "description": "Date type.\n\nAvailable Values:\n- `_1`: Last 30 days\n- `_2`: Last 90 days",
+          "enumValues": [
+            "_1",
+            "_2"
+          ],
+          "location": "query",
+          "name": "dateType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_3",
+          "description": "Note type.\n\nAvailable Values:\n- `_1`: Photo and Text\n- `_2`: Video\n- `_3`: Photo and Video",
+          "enumValues": [
+            "_1",
+            "_2",
+            "_3"
+          ],
+          "location": "query",
+          "name": "noteType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_1",
+          "description": "Ad filter.\n\nAvailable Values:\n- `_1`: Full traffic (All notes)\n- `_0`: Natural traffic (Organic notes)",
+          "enumValues": [
+            "_1",
+            "_0"
+          ],
+          "location": "query",
+          "name": "adSwitch",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "_0",
+          "description": "Business type.\n\nAvailable Values:\n- `_0`: Normal notes\n- `_1`: Cooperation notes",
+          "enumValues": [
+            "_0",
+            "_1"
+          ],
+          "location": "query",
+          "name": "business",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-kol-note-rate/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Performance Metrics",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    },
+    {
+      "description": "Get Xiaohongshu Creator Marketplace (Pugongying) note Details data, including media and engagement signals, for content analysis, archiving, and campaign review.",
+      "method": "GET",
+      "operationId": "getXiaohongshuPgyNoteDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Note ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "noteId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": false,
+          "description": "Enable cache.",
+          "enumValues": [],
+          "location": "query",
+          "name": "acceptCache",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/xiaohongshu-pgy/get-note-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Note Details",
+      "tags": [
+        "Xiaohongshu Creator Marketplace (Pugongying)"
+      ]
+    }
+  ],
+  "platformKey": "xiaohongshu-pgy",
+  "primaryTag": "Xiaohongshu Creator Marketplace (Pugongying)",
+  "skillName": "justoneapi_xiaohongshu_pgy",
+  "slug": "justoneapi-xiaohongshu-pgy",
+  "sourceTitle": "OpenAPI definition"
+}

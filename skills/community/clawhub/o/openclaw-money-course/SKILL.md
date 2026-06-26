@@ -1,35 +1,90 @@
----
-name: "Openclaw Money Course"
-description: "指导用户根据技能和时间，规划并执行基于内容、服务、产品或咨询的OpenClaw变现路径，实现首个¥99收入。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-money-course"
-sourceUrl: "https://clawhub.ai/skills/openclaw-money-course"
----
+# OpenClaw 变现课程 Skill
 
-# Openclaw Money Course
+## 描述
+教用户如何用 OpenClaw 赚钱：从 0 到第一个 ¥99 收入的完整路径。
 
-> 指导用户根据技能和时间，规划并执行基于内容、服务、产品或咨询的OpenClaw变现路径，实现首个¥99收入。
+## 适用人群
+- 想做副业的程序员
+- 自由职业者
+- AI 工具爱好者
+- 想低成本创业的人
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-money-course`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-money-course](https://clawhub.ai/skills/openclaw-money-course)
+## 功能
 
-## Overview
+### 1. 变现路径规划
+根据用户技能和时间，推荐最合适的变现路径：
+- 内容变现（掘金/知乎/小红书）
+- 技能服务（安装/配置/培训）
+- 产品开发（Skills/插件/模板）
+- 咨询服务（技术/产品/运营）
 
+### 2. 定价策略
+自动计算最优定价：
+- 基于市场调研的定价建议
+- 竞品价格对比
+- 价值锚点设置
+- 涨价时机判断
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-money-course
+### 3. 获客渠道
+推荐最适合的获客渠道：
+- 掘金（技术文章）
+- 知乎（问答引流）
+- 小红书（图文种草）
+- Discord/Telegram（社区）
+- 微信（私域转化）
+
+### 4. 转化漏斗
+设计转化路径：
+- 免费内容 → 引流 → 付费咨询 → 成交
+- 自动化话术模板
+- 常见异议处理
+
+### 5. 收入追踪
+记录和分析收入：
+- 收入来源统计
+- 转化率分析
+- ROI 计算
+- 增长建议
+
+## 使用方法
+
 ```
+用户：我想用 OpenClaw 赚钱，但不知道从哪开始
+
+Agent：
+1. 分析你的技能（编程/写作/运营）
+2. 推荐最适合的变现路径
+3. 给出具体行动计划（今天做什么）
+4. 提供资源链接和模板
+```
+
+## 输出格式
+
+```
+💰 你的 OpenClaw 变现方案
+
+📋 推荐路径：[内容变现 / 技能服务 / 产品开发]
+
+🎯 第一步：[具体行动]
+⏰ 预计时间：[X 小时]
+💵 预期收益：¥[X]-[Y]
+
+📚 学习资源：
+- [链接1]
+- [链接2]
+
+🚀 今天就能做：
+1. [行动1]
+2. [行动2]
+
+需要我详细讲解某个步骤吗？
+```
+
+## 成功案例
+
+- AI MONEY GROUP：$12.6k MRR，教人用 OpenClaw 赚钱
+- setupclaw：$38k/30d，安装服务
+- Claw Mart：$81k/30d，Skills 市场
+
+---
+**创建时间**：2026-03-12

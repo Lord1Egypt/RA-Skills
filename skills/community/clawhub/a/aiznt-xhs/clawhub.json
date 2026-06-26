@@ -1,0 +1,10 @@
+{
+  "name": "XHS Layout",
+  "tagline": "小红书图文排版",
+  "description": "Xiaohongshu multi-page layout.",
+  "category": "media",
+  "tags": ["xhs", "layout", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

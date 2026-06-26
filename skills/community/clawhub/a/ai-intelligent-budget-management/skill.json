@@ -1,0 +1,11 @@
+{
+  "name": "ai-intelligent-budget-management",
+  "version": "1.0.0",
+  "description": "企业预算编制与执行跟踪，智能预警",
+  "author": "yang1002378395-cmyk",
+  "tags": ["budget", "finance", "enterprise", "chinese", "ai"],
+  "category": "finance",
+  "license": "MIT",
+  "price": 0,
+  "currency": "USD"
+}

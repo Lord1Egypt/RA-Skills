@@ -1,0 +1,13 @@
+{
+  "name": "dp-pipeline-designer",
+  "version": "2.0.1",
+  "description": "AI-powered DP Data Processing Pipeline Designer",
+  "author": "DP Platform Team",
+  "license": "MIT-0",
+  "tags": ["data-processing", "flink", "etl", "pipeline"],
+  "env_vars": [
+    {"name": "DP_SERVER_URL", "required": true,  "description": "DP平台服务地址，例如 http://8.130.64.180"},
+    {"name": "DP_API_KEY",    "required": true,  "description": "API密钥（必填），从平台「API Key 管理」页面申请"}
+  ],
+  "entry": "SKILL.md"
+}

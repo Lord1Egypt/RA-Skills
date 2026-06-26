@@ -1,0 +1,15 @@
+name: image-watermark
+version: 1.0.0
+description: 图片批量加水印 - 输入图片文件+水印文字，自动添加水印并返回处理后的图片（支持平铺/居中/右下角三种模式）
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/image-watermark
+license: MIT-0
+tags:
+  - utility
+  - image
+  - watermark
+category: utility
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md

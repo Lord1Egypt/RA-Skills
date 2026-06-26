@@ -1,35 +1,89 @@
 ---
-name: "Nm Attune Project Specification"
-description: "Transforms project briefs into testable specifications with user stories and acceptance criteria. Use after brainstorming, before planning"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-attune-project-specification"
-sourceUrl: "https://clawhub.ai/skills/nm-attune-project-specification"
+name: project-specification
+description: |
+  Transforms project briefs into testable specifications with user stories and acceptance criteria. Use after brainstorming, before planning
+version: 1.9.8
+triggers:
+  - specification
+  - requirements
+  - acceptance-criteria
+  - spec-driven-development
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/attune", "emoji": "\ud83e\udd9e"}}
+source: claude-night-market
+source_plugin: attune
 ---
 
-# Nm Attune Project Specification
-
-> Transforms project briefs into testable specifications with user stories and acceptance criteria. Use after brainstorming, before planning
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-attune-project-specification`
-- **Source URL:** [https://clawhub.ai/skills/nm-attune-project-specification](https://clawhub.ai/skills/nm-attune-project-specification)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-attune-project-specification
-```
+## Delegation
+
+For detailed specification writing workflows, this skill delegates to `spec-kit:spec-writing` as the canonical implementation. Use this skill for quick specification needs; use spec-kit for comprehensive specification documents.
+
+## When To Use
+
+- After brainstorming phase completes
+- Have project brief but need detailed requirements
+- Need testable acceptance criteria for implementation
+- Planning validation and testing strategy
+- Translating business requirements into technical specs
+- Defining scope boundaries and out-of-scope items
+
+## When NOT To Use
+
+- Still exploring problem space (use `Skill(attune:project-brainstorming)` instead)
+- Already have detailed specification (use `Skill(attune:project-planning)` instead)
+- Refining existing implementation (use code review skills)
+- Making strategic decisions (use `Skill(attune:war-room)` for complex choices)
+
+## Integration
+
+**With spec-kit**:
+- Delegates to `Skill(spec-kit:spec-writing)` for methodology
+- Uses spec-kit templates and validation
+- Enables clarification workflow
+
+**Without spec-kit**:
+- Standalone specification framework
+- Requirement templates
+- Acceptance criteria patterns
+
+## Post-Completion: Workflow Continuation (REQUIRED)
+
+**Automatic Trigger**: After Quality Checks pass and `docs/specification.md` is saved, MUST auto-invoke the next phase.
+
+**When continuation is invoked**:
+1. Verify `docs/specification.md` exists and is non-empty
+2. Display checkpoint message to user:
+   ```
+   Specification complete. Saved to docs/specification.md.
+   Proceeding to planning phase...
+   ```
+3. Invoke next phase:
+   ```
+   Skill(attune:project-planning)
+   ```
+
+**Bypass Conditions** (ONLY skip continuation if ANY true):
+- `--standalone` flag was provided by the user
+- `docs/specification.md` does not exist or is empty (phase failed)
+- User explicitly requests to stop after specification
+
+**Do NOT prompt the user for confirmation** — this is a lightweight checkpoint, not an interactive gate. The user can always interrupt if needed.
+
+## Related Skills
+
+- `Skill(spec-kit:spec-writing)` - Spec-kit methodology (if available)
+- `Skill(attune:project-brainstorming)` - Previous phase
+- `Skill(attune:project-planning)` - **AUTO-INVOKED** next phase after specification
+- `Skill(attune:mission-orchestrator)` - Full lifecycle orchestration
+
+## Related Commands
+
+- `/attune:specify` - Invoke this skill
+- `/attune:specify --clarify` - Run clarification workflow
+- `/attune:blueprint` - Next step in workflow
+
+## Examples
+
+See `/attune:specify` command documentation for complete examples.

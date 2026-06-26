@@ -1,35 +1,77 @@
 ---
-name: "Learning Method Coach"
-description: "Generate evidence-based learning plans using retrieval and spaced practice"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/learning-method-coach"
-sourceUrl: "https://clawhub.ai/skills/learning-method-coach"
+name: learning-method-coach
+description: Generate evidence-based learning plans using retrieval and spaced practice
+metadata: {"clawdbot":{"emoji":"🧠","requires":{"bins":[],"env":[]}}}
 ---
 
 # Learning Method Coach
 
-> Generate evidence-based learning plans using retrieval and spaced practice
+基于学习科学，为用户生成可执行的学习方案，而不是空泛建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/learning-method-coach`
-- **Source URL:** [https://clawhub.ai/skills/learning-method-coach](https://clawhub.ai/skills/learning-method-coach)
+## 适用场景
 
-## Overview
+- 学一门新技能
+- 备考、系统学习、长期进修
+- 学了很多却记不住
+- 反复看资料但不会用
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/learning-method-coach
-```
+根据用户的学习目标、时间预算和当前难点，生成：
+1. 学习拆分
+2. 检索练习
+3. 间隔复习
+4. 自测与复盘
+
+## Prompt 指引
+
+- 先明确学习目标和输出目标
+- 拒绝只给“多看几遍”这类建议
+- 主动检索优先于重复阅读
+- 设计间隔重复与交错练习
+- 以“能解释、能应用、能教人”为完成标准
+
+## 输入
+
+- 学习目标
+- 学习周期
+- 每周可投入时间
+- 当前水平
+- 当前主要问题
+
+## 输出
+
+- 学习阶段拆分
+- 每周安排
+- 检索练习方式
+- 间隔重复安排
+- 复盘方式与完成标准
+
+## 输出模板
+
+- 学习目标：`<目标>`
+- 阶段拆分：`<模块 1/2/3>`
+- 每周安排：`<学习 + 自测 + 复盘>`
+- 检索练习：`<如何主动回忆>`
+- 间隔安排：`<何时复习>`
+- 完成标准：`<能否解释/应用/教别人>`
+
+## 示例交互
+
+**用户**：我想系统学心理学，但总是读完就忘。
+
+**Skill**：
+你的问题不是“读得不够多”，而是缺少检索和应用。
+建议把学习拆成 4 个模块：基础概念、主要流派、关键实验、现实应用。
+每周安排：
+- 2 次输入：阅读/听课
+- 2 次检索：不看资料写出核心概念
+- 1 次输出：用自己的话解释给别人
+- 1 次复盘：记录哪些概念只是“眼熟”而不是真的会用
+完成标准不是“看完一本书”，而是你能不用资料解释 5 个关键概念并举例应用。
+
+## 注意事项
+
+- 不代替专业教学诊断
+- 不只做资源罗列
+- 避免输出过于宏大、无法执行的学习计划

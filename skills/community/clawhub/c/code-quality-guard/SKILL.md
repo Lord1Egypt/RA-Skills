@@ -1,35 +1,23 @@
 ---
-name: "Code Quality Guard"
-description: "Professional pre-deployment code review and quality enforcement. Ensures imports are valid, tags are closed, and logic follows best practices before announci..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-quality-guard"
-sourceUrl: "https://clawhub.ai/skills/code-quality-guard"
+name: code-quality-guard
+description: Professional pre-deployment code review and quality enforcement. Ensures imports are valid, tags are closed, and logic follows best practices before announcing a build is live.
 ---
 
 # Code Quality Guard
 
-> Professional pre-deployment code review and quality enforcement. Ensures imports are valid, tags are closed, and logic follows best practices before announci...
+Ship cleaner code, faster. Never let a missing import break your production again.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-quality-guard`
-- **Source URL:** [https://clawhub.ai/skills/code-quality-guard](https://clawhub.ai/skills/code-quality-guard)
+## Checklist
 
-## Overview
+1. **Import Sweep**: Check every component used against the import block.
+2. **Tag Verification**: Ensure all JSX/HTML tags are balanced.
+3. **Environment Audit**: Verify required env vars and ports.
+4. **Log Review**: Scan for debug prints and secrets.
 
+## Usage
+Run as a pre-build hook to catch "ReferenceErrors" before the human sees them.
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/code-quality-guard
+clawhub install code-quality-guard
 ```

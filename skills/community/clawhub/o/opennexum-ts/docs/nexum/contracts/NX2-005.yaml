@@ -1,0 +1,46 @@
+id: NX2-005
+name: "SKILL.md + README + Contract Schema 文档"
+type: coding
+created_at: "2026-03-29T09:00:00Z"
+
+scope:
+  files:
+    - SKILL.md
+    - README.md
+    - references/contract-schema.md
+    - references/orchestrator-guide.md
+  boundaries:
+    - packages/
+    - nexum/
+  conflicts_with: []
+
+deliverables:
+  - "SKILL.md：ClawHub 兼容的 skill 描述文件，包含：name(opennexum-ts)、description、metadata(version/author/requires)、触发场景、Quick Start（nexum init + 编排流程说明）、安装要求（Node 20+, pnpm, openclaw）"
+  - "README.md：完整使用文档，包含：项目介绍、安装（pnpm install && pnpm build）、环境变量配置（TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID）、工作流程图（nexum init → spawn → sessions_spawn → track → heartbeat → eval → complete）、Contract YAML 示例、命令参考（init/spawn/track/eval/complete/status）"
+  - "references/contract-schema.md：Contract YAML 完整字段文档（id/name/type/scope/deliverables/eval_strategy/generator/evaluator/max_iterations/depends_on），与 @nexum/core 的 Contract 类型对齐"
+  - "references/orchestrator-guide.md：AI 编排者工作流程文档，说明每个步骤的工具调用方式（sessions_spawn 参数、streamLogPath 保存、heartbeat 轮询逻辑）"
+
+eval_strategy:
+  type: review
+  criteria:
+    - id: C1
+      desc: "SKILL.md 符合 ClawHub skill 格式（包含 YAML frontmatter 和正文）"
+      method: "review: 检查 frontmatter 字段完整性"
+      threshold: pass
+    - id: C2
+      desc: "README.md 包含完整的安装、配置、工作流程和命令参考"
+      method: "review: 检查各章节完整性"
+      threshold: pass
+    - id: C3
+      desc: "contract-schema.md 文档中的字段与 packages/core/src/types.ts 的 Contract interface 一致"
+      method: "review: 对比字段列表"
+      threshold: pass
+    - id: C4
+      desc: "orchestrator-guide.md 包含 sessions_spawn 调用示例和 heartbeat 轮询说明"
+      method: "review: 检查文档内容"
+      threshold: pass
+
+generator: cc-frontend
+evaluator: eval
+max_iterations: 3
+depends_on: [NX2-003, NX2-004]

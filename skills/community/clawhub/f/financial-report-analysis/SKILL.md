@@ -1,35 +1,133 @@
 ---
-name: "financial-report-analysis"
-description: "上市公司财务报表智能分析 - 自动解析资产负债表、利润表、现金流量表，生成专业财务分析报告"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [AI, automation, chinese, pro, productivity, analysis, finance, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/financial-report-analysis"
-sourceUrl: "https://clawhub.ai/skills/financial-report-analysis"
+name: financial-report-analysis
+description: 上市公司财务报表智能分析 - 自动解析资产负债表、利润表、现金流量表，生成专业财务分析报告
+version: 1.0.0
+license: MIT
 ---
 
-# financial-report-analysis
+# 财报分析
 
-> 上市公司财务报表智能分析 - 自动解析资产负债表、利润表、现金流量表，生成专业财务分析报告
+专业级上市公司财务报表分析工具，支持A股、港股、美股上市公司财务数据解析与评估。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/financial-report-analysis`
-- **Source URL:** [https://clawhub.ai/skills/financial-report-analysis](https://clawhub.ai/skills/financial-report-analysis)
+## 功能特性
 
-## Overview
+- 📊 **三大报表分析**: 资产负债表、利润表、现金流量表全面解析
+- 📈 **财务指标计算**: ROE、ROA、毛利率、净利率、资产负债率等20+指标
+- ⚠️ **风险识别**: 自动识别财务风险点，提供风险等级评估
+- 📋 **报告生成**: 一键生成专业分析报告，支持多种格式导出
+- 🔍 **对比分析**: 支持多公司财务数据对比
+- 📅 **趋势分析**: 多年度财务趋势追踪
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/financial-report-analysis
+# 单公司分析
+分析 贵州茅台 2025年年报
+
+# 指定报告期
+分析 腾讯控股 2024年三季报
+
+# 对比分析
+对比分析 比亚迪 和 蔚来 2025年财报
+
+# 行业分析
+分析白酒行业龙头企业财报对比
+
+# 趋势分析
+分析 贵州茅台 近5年盈利趋势
 ```
+
+## 配置要求
+
+### 必需配置
+无特殊配置要求，开箱即用。
+
+### 可选配置
+如需更实时数据，可配置以下API密钥：
+
+```json
+{
+  "skills": {
+    "entries": {
+      "financial-report-analysis": {
+        "config": {
+          "data_source": "eastmoney",
+          "cache_enabled": true
+        }
+      }
+    }
+  }
+}
+```
+
+## 数据来源
+
+- **A股**: 东方财富、同花顺、Wind
+- **港股**: 港交所、东方财富
+- **美股**: SEC EDGAR、Yahoo Finance
+
+## 输出示例
+
+```
+========================================
+           财务分析报告
+========================================
+
+【公司信息】
+  公司名称: 贵州茅台
+  股票代码: 600519
+  所属行业: 白酒
+  报告期: 2025年年报
+
+【财务指标】
+  盈利能力:
+    - ROE(净资产收益率): 32.50%
+    - ROA(总资产收益率): 27.37%
+    - 毛利率: 89.66%
+    - 净利率: 53.79%
+
+  偿债能力:
+    - 资产负债率: 15.79%
+    - 流动比率: 4.74
+    - 速动比率: 4.74
+
+  运营能力:
+    - 总资产周转率: 0.51
+
+  现金流:
+    - 经营现金流/净利润: 1.09
+
+【风险提示】
+  - [低] 偿债风险: 资产负债率低，偿债能力强
+  - [低] 现金流风险: 经营现金流充裕，利润质量高
+
+【投资建议】
+  综合评分: 95分
+  评级: 优秀
+  建议: 公司财务状况优秀，盈利能力强，现金流健康
+
+========================================
+免责声明: 本报告仅供参考，不构成投资建议
+========================================
+```
+
+## 注意事项
+
+1. 财务数据仅供参考，不构成投资建议
+2. 数据可能存在延迟，请以官方披露为准
+3. 分析结果受数据质量和模型限制
+4. 建议结合行业研究和实地调研
+
+## 更新日志
+
+### v1.0.0 (2026-04-01)
+- 初始版本发布
+- 支持A股、港股、美股财报分析
+- 实现核心财务指标计算
+- 支持报告自动生成
+
+---
+
+**开发者**: 盈指量杭州科技有限公司  
+**定价**: ¥99/次 或 ¥299/月订阅  
+**收款**: USDC (Polygon: 0x3DbFf9E97b10a10d4A2079B4273473da7e6F4120) | 微信支付

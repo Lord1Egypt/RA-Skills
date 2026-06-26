@@ -1,35 +1,142 @@
----
-name: "Continuous Evolution"
-description: "Automatically records experience, analyzes skill gaps, updates capability scores, and generates priority tasks to ensure continuous improvement after each task."
-category: "other"
-source: "ClawHub"
-tags: [auto-optimized]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/continuous-evolution"
-sourceUrl: "https://clawhub.ai/skills/continuous-evolution"
+# 🔄 持续进化系统
+
+## 核心理念
+
+**每一次任务执行，都是进化的机会！**
+
 ---
 
-# Continuous Evolution
+## 🎯 进化机制
 
-> Automatically records experience, analyzes skill gaps, updates capability scores, and generates priority tasks to ensure continuous improvement after each task.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/continuous-evolution`
-- **Source URL:** [https://clawhub.ai/skills/continuous-evolution](https://clawhub.ai/skills/continuous-evolution)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/continuous-evolution
+### 1. 经验记录 (每次任务后)
 ```
+任务完成
+    ↓
+记录执行经验
+    ↓
+分析成功/失败原因
+    ↓
+归档到经验库
+```
+
+### 2. 能力缺口分析 (自动)
+```
+检查任务类型
+    ↓
+识别能力不足
+    ↓
+记录到缺口清单
+    ↓
+生成进化任务
+```
+
+### 3. 能力评估更新 (实时)
+```
+收集审计评分
+    ↓
+计算平均分
+    ↓
+更新能力等级
+    ↓
+可视化展示
+```
+
+### 4. 自动进化任务 (低分触发)
+```
+审计评分 < 70
+    ↓
+自动生成进化任务
+    ↓
+加入任务队列
+    ↓
+优先执行
+```
+
+---
+
+## 📊 能力评估模型
+
+### 评分等级
+
+| 平均分 | 等级 | 说明 |
+|--------|------|------|
+| ≥80 | Advanced | 高级 AI 工程师 |
+| 60-79 | Intermediate | 中级 AI 工程师 |
+| <60 | Basic | 初级 AI 工程师 |
+
+### 评估维度
+
+```
+任务理解能力 (权重 20%)
+市场调研能力 (权重 15%)
+自主学习能 力 (权重 15%)
+执行能力 (权重 20%)
+代码能力 (权重 10%)
+数据分析能力 (权重 10%)
+报告生成能力 (权重 10%)
+```
+
+---
+
+## 📁 输出文件
+
+| 文件 | 说明 |
+|------|------|
+| `memory/evolution/experience-YYYY-MM-DD.md` | 每日经验记录 |
+| `memory/evolution/gaps-YYYY-MM-DD.md` | 能力缺口清单 |
+| `memory/evolution/capability-assessment.json` | 能力评估 |
+| `tasks/queue/P1_evol-*.json` | 进化任务 |
+
+---
+
+## 🔄 工作流程
+
+```
+任务执行完成
+    ↓
+质量审计 (评分)
+    ↓
+持续进化模块
+├─ 记录经验 ✅
+├─ 分析缺口 ✅
+├─ 更新评估 ✅
+└─ 生成进化任务 (如需要) ✅
+    ↓
+进化任务加入队列
+    ↓
+下一轮迭代执行
+    ↓
+能力持续提升
+```
+
+---
+
+## 📈 进化追踪
+
+### 经验积累
+- 每日经验记录
+- 成功案例归档
+- 失败教训总结
+
+### 能力提升
+- 实时能力评估
+- 能力曲线可视化
+- 等级晋升追踪
+
+### 进化任务
+- 自动生成
+- 优先级 P1
+- 针对性增强
+
+---
+
+## 🫡 总裁，这样就能：
+
+1. **每次任务都进化** - 不是阶段性，是持续的
+2. **自动发现不足** - 低分自动触发进化任务
+3. **能力可视化** - 实时看到能力提升
+4. **经验不丢失** - 所有经验都记录归档
+
+---
+
+**持续进化系统已集成！** 🫡

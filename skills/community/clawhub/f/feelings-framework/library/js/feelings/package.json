@@ -1,0 +1,37 @@
+{
+  "name": "feelings-framework",
+  "version": "1.0.0",
+  "description": "A general-purpose AI agent feelings engine",
+  "type": "module",
+  "main": "core.js",
+  "exports": {
+    ".": {
+      "import": "./core.js",
+      "types": "./core.d.ts"
+    }
+  },
+  "types": "core.d.ts",
+  "files": [
+    "core.js",
+    "core.d.ts"
+  ],
+  "scripts": {
+    "test": "node --experimental-vm-modules test_core.js",
+    "build:types": "tsc library/js/feelings/core.js --declaration --emitDeclarationOnly --outDir library/js/feelings"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "feelings",
+    "emotion",
+    "mood",
+    "feelings-engine"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

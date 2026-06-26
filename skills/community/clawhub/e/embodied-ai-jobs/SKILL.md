@@ -1,35 +1,178 @@
 ---
-name: "具身智能就业资讯追踪"
+name: "embodied-ai-jobs"
 description: "具身智能就业资讯追踪。每周自动搜集具身智能领域的实习和就业机会，包括软件、硬件、算法、产品等岗位。适用于：每周就业资讯、具身智能岗位、招聘汇总、实习信息、具身智能公司招聘、机器人公司职位。当用户需要获取具身智能行业招聘信息、追踪具身智能企业招聘动态、整理实习就业资讯时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/embodied-ai-jobs"
-sourceUrl: "https://clawhub.ai/skills/embodied-ai-jobs"
 ---
 
 # 具身智能就业资讯追踪
 
-> 具身智能就业资讯追踪。每周自动搜集具身智能领域的实习和就业机会，包括软件、硬件、算法、产品等岗位。适用于：每周就业资讯、具身智能岗位、招聘汇总、实习信息、具身智能公司招聘、机器人公司职位。当用户需要获取具身智能行业招聘信息、追踪具身智能企业招聘动态、整理实习就业资讯时使用此技能。
+定期搜集、整理并输出具身智能领域的实习和就业资讯报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/embodied-ai-jobs`
-- **Source URL:** [https://clawhub.ai/skills/embodied-ai-jobs](https://clawhub.ai/skills/embodied-ai-jobs)
+## 技能概述
 
-## Overview
+本技能每周自动运行，从多个可靠来源搜集具身智能相关岗位信息，整理成结构化的资讯报告。
 
+## 信息来源
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/embodied-ai-jobs
+### 一、具身智能公司（按领域分类）
+
+#### 🏭 具身智能整机/机器人公司
+| 公司名称 | 官网招聘 | 微信公众号 |
+|---------|---------|-----------|
+| 宇树科技 (Unitree) | unitree.com/careers | 宇树科技 |
+| 傅利叶智能 | fourier.cn | 傅利叶智能 |
+| 智元机器人 | zhiyuan-robot.com | 智元机器人 |
+| 星动纪元 | stardom.ai | 星动纪元 |
+| 松延传动 | - | 松延传动 |
+| 星海图 | - | 星海图 |
+| 逐际动力 | limxtech.com | 逐际动力 |
+| 银河通用 | - | 银河通用 |
+|Figure AI | figure.ai | - |
+| 1X Technologies | 1x.tech | - |
+| Boston Dynamics | bostondynamics.com | - |
+| 特斯拉 (Tesla) | tesla.com/careers | 特斯拉 |
+
+#### 🤖 具身智能算法/软件公司
+| 公司名称 | 官网招聘 | 备注 |
+|---------|---------|-----|
+| 地平线机器人 | horizon-robotics.com | AI芯片+算法 |
+| 旷视科技 | megvii.com | 视觉算法 |
+| 商汤科技 | sensetime.com | AI算法 |
+| 思腾合力 | - | AI算力 |
+| 云从科技 | cloudwalk.com | 视觉AI |
+| 第四范式 | 4paradigm.com | AI平台 |
+
+#### 🏛️ 实验室/研究机构
+| 机构名称 | 类型 | 官网 |
+|---------|------|------|
+| 上海人工智能实验室 | 科研机构 |ORIA.Shanghai |
+| 北京通用人工智能研究院 | 科研机构 | - |
+| 清华大学 LCG Group | 高校实验室 | - |
+| 上海交通大学 MPC Lab | 高校实验室 | - |
+| 中科院自动化所 | 高校实验室 | - |
+| 斯坦福 NLP Group | 高校实验室 | - |
+| CMU Robotics Institute | 高校实验室 | - |
+
+### 二、招聘平台
+- **实习平台**：牛客网、实习僧、拉勾招聘、智联招聘
+- **社招平台**：Boss直聘、拉勾网、猎聘网
+- **学术招聘**：Academic positions、LinkedIn
+
+### 三、公众号矩阵
+- 公司官方公众号（见上方列表）
+- 具身智能机器人、机器人技术与应用等垂直媒体
+
+## 工作流程
+
+### Phase 1: 信息搜集
+
+1. **读取公司列表**：加载 `references/companies.md` 获取具身智能公司名单
+2. **按优先级搜集**：
+   - 第一优先：访问各公司官网招聘页
+   - 第二优先：搜索招聘平台关键词
+   - 第三优先：微信公众号文章
+
+3. **关键词策略**：
+   ```
+   具身智能 OR 人形机器人 OR robotics OR 机械臂 OR 灵巧手
+   + 招聘 OR 实习 OR 加入我们 OR careers
+   + 算法 OR 软件 OR 硬件 OR 产品 OR 运营
+   ```
+
+### Phase 2: 信息整理
+
+按以下维度分类整理：
+
+| 类别 | 细分岗位 |
+|------|---------|
+| 🤖 算法岗 | 运动控制、视觉感知、SLAM、规划导航、强化学习、模仿学习 |
+| 💻 软件岗 | 嵌入式、ROS/ROS2、仿真环境、软件开发 |
+| ⚙️ 硬件岗 | 机械设计、电子电气、结构工程 |
+| 📦 产品岗 | 产品经理、项目管理、技术支持 |
+| 🔬 研究岗 | 实习生、研究员、博士后 |
+
+### Phase 3: 报告生成
+
+生成结构化报告，保存到 `c:\Users\DELL\WorkBuddy\Claw\embodied-ai-jobs\`
+
+#### 报告命名规范
 ```
+具身智能就业资讯_YYYYMMDD.md
+具身智能就业资讯_YYYYMMDD.html
+```
+
+#### 报告结构
+```markdown
+# 具身智能就业资讯 | YYYY-MM-DD
+
+> 本期共收录 N 条信息 | 数据来源：XX个平台 | 统计周期：XX
+
+## 📊 概览统计
+
+| 类别 | 数量 |
+|------|------|
+| 算法岗 | X |
+| 软件岗 | X |
+| 硬件岗 | X |
+| 产品岗 | X |
+| 研究岗 | X |
+
+## 🤖 算法岗
+
+### [公司名] 岗位名称
+- **来源**：[平台名称]
+- **链接**：[URL]
+- **要求**：[关键要求摘要]
+- **截止**：[截止日期，如有]
+- **发布时间**：[YYYY-MM-DD]
+
+... (其他岗位类别)
+
+## 📌 本周重点推荐
+
+## 🔗 快速跳转
+```
+
+## 输出格式
+
+### Markdown 格式（主格式）
+- 保留完整链接
+- 结构化清晰
+- 便于后续编辑
+
+### HTML 格式（可选）
+- 可视化展示
+- 便于分享
+- 使用 `assets/report_template.html` 模板
+
+## 自动化配置
+
+建议创建每周自动化任务：
+
+```toml
+# 自动化配置示例
+scheduleType = "recurring"
+rrule = "FREQ=WEEKLY;BYDAY=FR;BYHOUR=18;BYMINUTE=0"
+name = "具身智能就业资讯"
+prompt = "执行 embodied-ai-jobs skill，搜集本周具身智能就业资讯，生成报告保存到 workspace，并简要总结本周重点岗位。"
+status = "ACTIVE"
+cwds = "c:/Users/DELL/WorkBuddy/Claw"
+```
+
+## 质量标准
+
+1. **时效性**：优先最新发布的信息
+2. **准确性**：核实链接有效性
+3. **完整性**：覆盖主要具身智能公司
+4. **可操作性**：提供直达链接
+
+## 踩坑记录
+
+- 更新公司列表时，同步更新 references/companies.md
+- 微信文章链接可能失效，建议同时保留公众号名称作为备查
+- 部分公司只有内推渠道，可通过牛客网等第三方平台获取
+
+## 相关文件
+
+- `references/companies.md` - 具身智能公司完整名单
+- `references/platforms.md` - 招聘平台列表
+- `assets/report_template.html` - HTML报告模板

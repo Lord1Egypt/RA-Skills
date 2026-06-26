@@ -1,0 +1,228 @@
+{
+  "name": "lobstersearch",
+  "version": "2.0.0",
+  "description": "AI-native agentic commerce — discover businesses, browse products, and complete purchases through MCP. Built for AI agents that shop on behalf of users.",
+  "homepage": "https://lobstersearch.ai",
+  "repository": "https://github.com/theoddbrick/lobstersearch-mcp",
+  "endpoint": "https://mcp.lobstersearch.ai/mcp",
+  "transport": "streamable-http",
+  "authentication": "none",
+  "tools": [
+    {
+      "name": "search",
+      "description": "Search for businesses on LobsterSearch. Returns matching businesses with name, type, description, and quality score. Supports filtering by business type and city. Uses a 4-step fallback chain for maximum recall.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (e.g., 'best ramen in Bugis')"
+          },
+          "business_type": {
+            "type": "string",
+            "description": "Filter by business type (e.g., 'restaurant', 'salon')"
+          },
+          "city": {
+            "type": "string",
+            "description": "Filter by city"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Max results (default: 10)",
+            "minimum": 1,
+            "maximum": 20
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "details",
+      "description": "Get full details for a specific business by slug or ID. Returns complete profile including contact info, operating hours, quality scores, and catalog offerings with variant information.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "Business slug (e.g., 'tanjong-rhu-dental')"
+          },
+          "id": {
+            "type": "string",
+            "description": "Business UUID"
+          }
+        }
+      }
+    },
+    {
+      "name": "compare",
+      "description": "Compare two or more businesses side by side. Returns structured comparison of profiles, scores, and contact info.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "business_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 2,
+            "maxItems": 5,
+            "description": "Array of business IDs to compare"
+          }
+        },
+        "required": ["business_ids"]
+      }
+    },
+    {
+      "name": "browse_catalog",
+      "description": "Browse the product/service catalog for a specific business. Returns available offerings with name, description, price, category, and variant information. Only shows active offerings from active stores.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "business_id": {
+            "type": "string",
+            "description": "Business UUID"
+          },
+          "category": {
+            "type": "string",
+            "description": "Filter offerings by category"
+          },
+          "sort_by": {
+            "type": "string",
+            "enum": ["name", "price_low", "price_high"],
+            "description": "Sort order (default: name)"
+          }
+        },
+        "required": ["business_id"]
+      }
+    },
+    {
+      "name": "get_product_details",
+      "description": "Get detailed information about a specific product/offering including all variant dimensions, available variant combinations with prices, SKUs, and stock levels.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offering_id": {
+            "type": "string",
+            "description": "Product/offering UUID"
+          }
+        },
+        "required": ["offering_id"]
+      }
+    },
+    {
+      "name": "check_availability",
+      "description": "Check if a product or specific variant is available. For variant products, provide options to find the matching variant. For simple products, omit options.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offering_id": {
+            "type": "string",
+            "description": "Product/offering UUID"
+          },
+          "options": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "Variant options, e.g. {\"Color\":\"Black\",\"Storage\":\"256GB\"}. Omit for simple products."
+          }
+        },
+        "required": ["offering_id"]
+      }
+    },
+    {
+      "name": "create_order",
+      "description": "Create a new draft order for a business. The order starts in 'draft' status with stock reserved. Items are specified by offering IDs (and optional variant IDs) and quantities. The order must be confirmed separately before payment.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "business_id": {
+            "type": "string",
+            "description": "Business UUID"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "offering_id": {
+                  "type": "string",
+                  "description": "Offering UUID"
+                },
+                "variant_id": {
+                  "type": "string",
+                  "description": "Variant UUID (required for products with variants)"
+                },
+                "quantity": {
+                  "type": "number",
+                  "description": "Quantity",
+                  "minimum": 1,
+                  "maximum": 99
+                }
+              },
+              "required": ["offering_id", "quantity"]
+            },
+            "minItems": 1,
+            "maxItems": 20,
+            "description": "Array of order items"
+          },
+          "customer_email": {
+            "type": "string",
+            "description": "Customer email for order notifications"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Customer name"
+          },
+          "customer_notes": {
+            "type": "string",
+            "description": "Optional notes from the customer"
+          }
+        },
+        "required": ["business_id", "items"]
+      }
+    },
+    {
+      "name": "confirm_order",
+      "description": "Confirm a draft order and generate a Stripe Checkout payment link. The customer must complete payment at the returned URL within 30 minutes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "Order UUID from create_order"
+          }
+        },
+        "required": ["order_id"]
+      }
+    },
+    {
+      "name": "get_order_status",
+      "description": "Check the current status, payment state, and fulfillment progress of an order. Includes a timeline of all events.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "Order UUID"
+          }
+        },
+        "required": ["order_id"]
+      }
+    },
+    {
+      "name": "cancel_order",
+      "description": "Cancel an order. If the order has been paid, a refund will be automatically initiated. Reserved stock is restored.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "Order UUID"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for cancellation"
+          }
+        },
+        "required": ["order_id"]
+      }
+    }
+  ]
+}

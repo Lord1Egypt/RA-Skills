@@ -1,0 +1,38 @@
+{
+  "name": "wechat-article-reader",
+  "version": "1.0.0",
+  "description": "读取微信公众号文章链接，提取关键信息并生成摘要",
+  "author": "OpenClaw Community",
+  "entry": "main.py",
+  "type": "processor",
+  "triggers": [
+    {
+      "type": "url",
+      "pattern": "mp.weixin.qq.com",
+      "description": "检测到微信公众号链接时自动触发"
+    },
+    {
+      "type": "keyword",
+      "keywords": ["读取", "总结", "摘要", "公众号"],
+      "description": "包含相关关键词时触发"
+    }
+  ],
+  "dependencies": [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    "fake-useragent>=1.4.0"
+  ],
+  "config": {
+    "timeout": 30,
+    "max_retries": 3,
+    "user_agent_rotation": true,
+    "summary_max_length": 500
+  },
+  "permissions": [
+    "network:read",
+    "network:http"
+  ],
+  "platforms": ["feishu", "telegram", "discord", "web"],
+  "categories": ["content-processing", "social-media"]
+}

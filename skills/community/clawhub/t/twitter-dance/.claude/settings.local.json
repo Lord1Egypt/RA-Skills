@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/get-my-info.js)",
+      "Bash(node -e \":*)",
+      "Bash(node scripts/test-notifications.js)"
+    ]
+  }
+}

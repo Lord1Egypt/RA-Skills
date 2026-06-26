@@ -1,0 +1,57 @@
+<!--
+  Layout: toc
+  目录页 — 全文章节概览
+  Agent 根据实际章节数增减 toc-item，通常 3-6 个
+-->
+<section class="slide slide--toc" data-slide="{{N}}">
+  <h2 class="toc-heading">{{目录标题，如"目录"或"内容概览"}}</h2>
+  <div class="toc-list">
+    <div class="toc-item">
+      <span class="toc-number">01</span>
+      <span class="toc-text">{{章节标题}}</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-number">02</span>
+      <span class="toc-text">{{章节标题}}</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-number">03</span>
+      <span class="toc-text">{{章节标题}}</span>
+    </div>
+    <!-- Agent 根据实际章节数增减 -->
+  </div>
+</section>
+
+<style>
+.slide--toc {
+  justify-content: center;
+}
+.slide--toc .toc-heading {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-lg);
+}
+.slide--toc .toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+.slide--toc .toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-speed) var(--transition-easing);
+}
+.slide--toc .toc-number {
+  font-size: var(--font-size-subheading);
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 2.5em;
+  opacity: 0.5;
+}
+.slide--toc .toc-text {
+  font-size: var(--font-size-subheading);
+  font-weight: 500;
+}
+</style>

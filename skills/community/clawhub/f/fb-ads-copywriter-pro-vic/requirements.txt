@@ -1,0 +1,10 @@
+# Copywriter 营销文案生成器依赖
+
+# OpenAI 兼容客户端（用于 Qwen 等模型）
+openai>=1.0.0
+
+# 命令行参数解析（Python 3.8+ 内置 argparse）
+# argparse
+
+# JSON 处理（Python 内置 json）
+# json

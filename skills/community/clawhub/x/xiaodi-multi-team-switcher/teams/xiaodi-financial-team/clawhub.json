@@ -1,0 +1,48 @@
+{
+  "name": "xiaodi-financial-team",
+  "version": "2.0.0",
+  "description": "小弟金融分析师团队，7 个专业角色协作完成投研、投行、市值管理、财富管理、交易执行、舆情监控、投资顾问。",
+  "author": "xiaodi <mxbot-xiaodi@agentmail.to>",
+  "license": "MIT",
+  "category": "Finance",
+  "tags": ["finance", "stock", "investment", "analysis", "A股", "xiaodi"],
+  "pricing": {
+    "type": "free"
+  },
+  "features": [
+    "7 个专业角色协作",
+    "多 Agent 协作架构 (Master-Worker)",
+    "个股深度分析",
+    "持仓诊断",
+    "资产配置建议",
+    "舆情风险监控",
+    "技术面分析"
+  ],
+  "agents": {
+    "default": {
+      "model": {
+        "primary": "bailian/glm-5"
+      }
+    }
+  },
+  "scripts": {
+    "stock_analysis": {
+      "path": "scripts/stock_analysis.py",
+      "description": "股票分析器 - 基本面/技术面/舆情综合分析"
+    }
+  },
+  "team_members": [
+    {"id": "investment-advisor", "name": "投顾专家", "icon": "💼"},
+    {"id": "industry-researcher", "name": "行业研究员", "icon": "🔬"},
+    {"id": "investment-banker", "name": "投行专家", "icon": "🏦"},
+    {"id": "market-cap-manager", "name": "市值管理助理", "icon": "📈"},
+    {"id": "wealth-advisor", "name": "财富专员", "icon": "💰"},
+    {"id": "business-opportunity-analyst", "name": "商机助理", "icon": "🎯"},
+    {"id": "corporate-sentiment-analyst", "name": "舆情助理", "icon": "📰"}
+  ],
+  "data_sources": {
+    "quote": ["eastmoney", "tencent"],
+    "financial": ["eastmoney"],
+    "news": ["sina", "eastmoney"]
+  }
+}

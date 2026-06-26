@@ -1,35 +1,24 @@
 ---
-name: "API Health Monitor"
-description: "Parses recent OpenClaw session logs for LLM API errors and returns a structured health report."
-category: "health"
-source: "ClawHub"
-tags: [debug, health, monitoring, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-health-monitor"
-sourceUrl: "https://clawhub.ai/skills/api-health-monitor"
+name: api-health-monitor
+description: Parses recent OpenClaw session logs for LLM API errors and returns a structured health report.
 ---
 
-# API Health Monitor
+# api-health-monitor
 
-> Parses recent OpenClaw session logs for LLM API errors and returns a structured health report.
+Scans `~/.openclaw/agents/main/sessions/` for recent LLM API error patterns (500 errors, token failures, cooldowns, service_busy) and produces a JSON health report.
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-health-monitor`
-- **Source URL:** [https://clawhub.ai/skills/api-health-monitor](https://clawhub.ai/skills/api-health-monitor)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-health-monitor
+```js
+const { checkApiHealth } = require('./skills/api-health-monitor');
+const report = await checkApiHealth();
+// { healthy: bool, errors: [...], recommendation: string }
 ```
+
+## Report Shape
+
+| Field | Type | Description |
+|---|---|---|
+| `healthy` | boolean | `true` if no errors found |
+| `errors` | array | `[{ type, message, count, lastSeen }]` |
+| `recommendation` | string | Suggested action based on findings |

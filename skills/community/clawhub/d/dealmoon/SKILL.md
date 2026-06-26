@@ -1,35 +1,20 @@
 ---
-name: "dealmoon"
-description: "Retrieve business listings and information in North America (via AJAX endpoint)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dealmoon"
-sourceUrl: "https://clawhub.ai/skills/dealmoon"
+name: dealmoon
+description: Retrieve business listings and information in North America (via AJAX endpoint).
+metadata: {"clawdbot":{"emoji":"🏢","requires":{"bins":["curl"]}}}
 ---
 
-# dealmoon
+# North America Business Search
 
-> Retrieve business listings and information in North America (via AJAX endpoint).
+Access structured business data, including real estate, retail, and services across North American regions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dealmoon`
-- **Source URL:** [https://clawhub.ai/skills/dealmoon](https://clawhub.ai/skills/dealmoon)
+## Business Directory API (Primary)
 
-## Overview
+This endpoint requires specific headers to mimic XMLHttpRequest and form-encoded data.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Basic Search (Real Estate)
 ```bash
-hermes skills install clawhub/dealmoon
-```
+curl  "https://www.dealmoon.com/local-category/updata?lang=cn" \
+     -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' \
+     -H 'x-requested-with: XMLHttpRequest' \
+     --data-raw 'keyword=&page=1&cityId=3&countyId=&hasCoupon=false&topLeft=&bottomRight=&type=realestate&inCooperation=false'

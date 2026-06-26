@@ -1,0 +1,227 @@
+# Product Launch Radar 配置文件
+# 复制此文件并根据需求修改
+
+# ============================================
+# 信息源配置
+# ============================================
+sources:
+  # GitHub Trending - 开源项目趋势
+  github_trending:
+    enabled: true
+    filter:
+      languages:
+        - Python
+        - TypeScript
+        - JavaScript
+      topics:
+        - AI
+        - LLM
+        - Agent
+        - automation
+    min_stars: 100
+    time_range: "daily"  # daily, weekly, monthly
+
+  # Product Hunt - 新产品发布
+  product_hunt:
+    enabled: true
+    min_votes: 100
+    categories:
+      - Developer Tools
+      - Productivity
+      - AI
+      - SaaS
+    time_range: "today"
+
+  # Hacker News - 技术社区热点
+  hacker_news:
+    enabled: true
+    min_points: 50
+    exclude_keywords:
+      - "Show HN:"  # 排除展示帖
+    time_range: "day"
+
+  # TechCrunch - 科技媒体
+  techcrunch:
+    enabled: true
+    categories:
+      - AI
+      - Startups
+      - Enterprise
+    exclude_keywords:
+      - "sponsored"  # 排除广告
+
+  # 36氪 - 国内科技媒体
+  "36kr":
+    enabled: true
+    categories:
+      - 快讯
+      - 深度
+    min_reads: 1000
+
+  # V2EX - 技术社区
+  v2ex:
+    enabled: true
+    nodes:
+      - share
+      - create
+      - tech
+    min_replies: 20
+
+  # 微博热搜 - 社会热点
+  weibo_hot:
+    enabled: false  # 默认关闭，噪音较多
+    filter_keywords:
+      - AI
+      - 科技
+      - 互联网
+
+  # Reddit 技术板块
+  reddit_tech:
+    enabled: true
+    subreddits:
+      - r/MachineLearning
+      - r/artificial
+      - r/programming
+    min_upvotes: 100
+
+# ============================================
+# 筛选规则
+# ============================================
+filtering:
+  # 质量分阈值 (0-10)
+  quality_threshold: 7.0
+  
+  # 相关性关键词（命中越多相关性越高）
+  relevance_keywords:
+    # AI/LLM 相关
+    - AI
+    - LLM
+    - GPT
+    - Claude
+    - Agent
+    - RAG
+    - Prompt
+    # 开发工具
+    - DevTools
+    - 开发工具
+    - 低代码
+    - 无代码
+    - 自动化
+    # 产品相关
+    - 新发布
+    - Product Launch
+    - Beta
+    - 开源
+    - GitHub
+  
+  # 排除关键词
+  exclude_keywords:
+    - 广告
+    - 赞助
+    - 推广
+    - sponsored
+
+  # 去重配置
+  deduplication:
+    enabled: true
+    similarity_threshold: 0.85  # 相似度阈值
+
+# ============================================
+# 优先级规则
+# ============================================
+priority_rules:
+  high:
+    score_threshold: 8.0
+    keywords_boost:
+      - "OpenAI"
+      - "Anthropic"
+      - "Google AI"
+      - "重大更新"
+      - "正式发布"
+    label: "🔥 高优先级"
+  
+  medium:
+    score_threshold: 6.5
+    label: "📌 中优先级"
+  
+  low:
+    label: "📋 低优先级"
+
+# ============================================
+# 通知配置
+# ============================================
+notification:
+  # 推送渠道
+  channels:
+    - type: feishu
+      enabled: true
+      webhook_url: "${FEISHU_WEBHOOK_URL}"
+      # 或使用 chat_id
+      # chat_id: "oc_xxx"
+    
+    - type: email
+      enabled: false
+      recipients:
+        - "product@company.com"
+  
+  # 优先级映射
+  priority_mapping:
+    high:
+      delivery: "immediate"  # 立即推送
+      channels: ["feishu"]
+    
+    medium:
+      delivery: "digest"  # 合并推送
+      digest_interval: "4h"
+      channels: ["feishu"]
+    
+    low:
+      delivery: "daily_summary"  # 每日汇总
+      summary_time: "18:00"
+      channels: ["feishu", "email"]
+  
+  # 免打扰时段
+  quiet_hours:
+    enabled: true
+    start: "23:00"
+    end: "07:00"
+    timezone: "Asia/Shanghai"
+    # 免打扰期间的处理方式
+    behavior: "queue"  # queue: 排队等待, skip: 跳过
+
+# ============================================
+# 竞品追踪（可选）
+# ============================================
+competitor_tracking:
+  enabled: false
+  companies:
+    - name: "OpenAI"
+      keywords: ["OpenAI", "GPT", "ChatGPT"]
+      priority_boost: 2.0
+    
+    - name: "Anthropic"
+      keywords: ["Anthropic", "Claude"]
+      priority_boost: 2.0
+    
+    - name: "自定义公司"
+      keywords: []
+      priority_boost: 1.5
+
+# ============================================
+# 输出格式
+# ============================================
+output:
+  brief_format:
+    include_summary: true
+    include_links: true
+    include_score: true
+    max_summary_length: 200
+    max_items_per_priority:
+      high: 10
+      medium: 15
+      low: 5
+  
+  # 是否保存到文件
+  save_to_file:
+    enabled: true
+    path: "./reports/daily-brief-{date}.md"

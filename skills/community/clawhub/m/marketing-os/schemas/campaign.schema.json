@@ -1,0 +1,163 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "marketing-os/schemas/campaign.schema.json",
+    "title": "Campaign Record",
+    "description": "Full campaign record including metadata, tasks, budget, and performance tracking",
+    "type": "object",
+    "required": [
+        "campaign_id",
+        "name",
+        "mission_id",
+        "status",
+        "tasks",
+        "target_metrics",
+        "created_at"
+    ],
+    "properties": {
+        "campaign_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique campaign identifier"
+        },
+        "name": {
+            "type": "string",
+            "description": "Descriptive campaign name"
+        },
+        "mission_id": {
+            "type": "string",
+            "description": "Reference to the CMO mission that initiated this campaign"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "planning",
+                "active",
+                "paused",
+                "completed",
+                "failed",
+                "cancelled"
+            ],
+            "description": "Current campaign status"
+        },
+        "objective": {
+            "type": "string",
+            "description": "What this campaign aims to achieve"
+        },
+        "target_audience": {
+            "type": "string",
+            "description": "Primary audience segment"
+        },
+        "channels": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Marketing channels used"
+        },
+        "tasks": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Array of task_ids belonging to this campaign"
+        },
+        "start_date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "end_date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "budget_allocated": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Total budget allocated"
+        },
+        "budget_spent": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Budget spent so far"
+        },
+        "target_metrics": {
+            "type": "object",
+            "description": "KPI targets set by CMO strategy",
+            "properties": {
+                "primary_kpi": {
+                    "type": "object",
+                    "properties": {
+                        "metric": {
+                            "type": "string"
+                        },
+                        "target": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "metric",
+                        "target"
+                    ]
+                },
+                "secondary_kpis": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "metric": {
+                                "type": "string"
+                            },
+                            "target": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "metric",
+                            "target"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "primary_kpi"
+            ]
+        },
+        "actual_metrics": {
+            "type": "object",
+            "description": "Actual performance metrics collected during execution",
+            "additionalProperties": true
+        },
+        "learnings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Key insights from this campaign"
+        },
+        "feedback_ids": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "References to feedback reports generated for this campaign"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Tags for categorization and search"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "completed_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

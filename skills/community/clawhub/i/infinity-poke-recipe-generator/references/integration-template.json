@@ -1,0 +1,11 @@
+{
+  "name": "<Integration Template Name>",
+  "serverUrl": "<https://.../mcp or TODO>",
+  "authType": "None",
+  "shortDescription": "<Brief summary shown in list>",
+  "description": "<What this MCP integration enables in the recipe>",
+  "notes": [
+    "If test connection fails, verify server URL or use active tunnel URL.",
+    "If auth is required, update authType and secrets flow before publish."
+  ]
+}

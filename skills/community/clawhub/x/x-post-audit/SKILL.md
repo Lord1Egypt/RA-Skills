@@ -1,35 +1,46 @@
 ---
-name: "X Post Audit"
-description: "Audit X drafts before publishing. Use when scoring hooks, clarity, dwell, replies, repost value, profile-click potential, follow potential, and negative-feed..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/x-post-audit"
-sourceUrl: "https://clawhub.ai/skills/x-post-audit"
+name: x-post-audit
+description: Audit X drafts before publishing. Use when scoring hooks, clarity, dwell, replies, repost value, profile-click potential, follow potential, and negative-feedback risk.
 ---
 
 # X Post Audit
 
-> Audit X drafts before publishing. Use when scoring hooks, clarity, dwell, replies, repost value, profile-click potential, follow potential, and negative-feed...
+Use this before publishing important posts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/x-post-audit`
-- **Source URL:** [https://clawhub.ai/skills/x-post-audit](https://clawhub.ai/skills/x-post-audit)
+## Score 1-5
 
-## Overview
+- **Audience clarity**: who cares?
+- **Hook strength**: does line one stop the right person?
+- **Dwell potential**: will people pause or save?
+- **Reply potential**: is there a natural response?
+- **Repost value**: does sharing make the reader look smart/useful?
+- **Profile-click potential**: does the author seem worth checking out?
+- **Follow potential**: does the post imply future value?
+- **Negative-feedback risk**: bait, slop, misleading claim, repetition, hostility.
 
+## Fixes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/x-post-audit
-```
+Apply the smallest useful fix:
+
+- sharpen the first line
+- narrow the audience
+- add a concrete example
+- add a payoff
+- cut filler
+- make the CTA specific
+- remove bait
+
+## Output
+
+Return:
+
+- **Scores**
+- **Main weakness**
+- **Rewritten post**
+- **2 variants** for different signals
+- **Predicted signal**
+- **Do not publish if** risk remains
+
+## Operating Principle
+
+Treat the public X algorithm as a signal map, not a cheat code. Optimize for posts and replies that earn useful positive actions (dwell, replies, reposts, shares, profile clicks, follows) while avoiding negative actions (not interested, mute, block, report, fast skips).

@@ -1,0 +1,8 @@
+{
+  "name": "secretary-core",
+  "version": "3.0.0",
+  "author": "pengong101",
+  "license": "MIT",
+  "description": "智能助理核心技能 v3.0.0 - 20 轮上下文/情感识别/预测建议",
+  "updated": "2026-03-18"
+}

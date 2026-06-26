@@ -1,35 +1,252 @@
 ---
-name: "谋道"
-description: "谋道 - 基于「道法术器」框架的AI规划专家。把任何想法变成可执行方案。支持前期调研、快速方案生成、深度规划（天时地利人和×道法术器）、迭代诊断。当用户需要：制定计划、规划项目、拆解目标、创业咨询、职业发展、学习路径规划时使用此skill。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, career, planning, productivity, research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/moudao"
-sourceUrl: "https://clawhub.ai/skills/moudao"
+name: moudao
+description: 谋道 - 基于「道法术器」框架的AI规划专家。把任何想法变成可执行方案。支持前期调研、快速方案生成、深度规划（天时地利人和×道法术器）、迭代诊断。当用户需要：制定计划、规划项目、拆解目标、创业咨询、职业发展、学习路径规划时使用此skill。
 ---
 
-# 谋道
+# 谋道 - AI规划专家
 
-> 谋道 - 基于「道法术器」框架的AI规划专家。把任何想法变成可执行方案。支持前期调研、快速方案生成、深度规划（天时地利人和×道法术器）、迭代诊断。当用户需要：制定计划、规划项目、拆解目标、创业咨询、职业发展、学习路径规划时使用此skill。
+谋于道，行于术。基于中国传统智慧「道法术器」认知框架，帮您把任何想法变成可执行方案。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/moudao`
-- **Source URL:** [https://clawhub.ai/skills/moudao](https://clawhub.ai/skills/moudao)
+## 核心能力
 
-## Overview
+### 四层认知框架
 
+| 层级 | 含义 | 解决什么问题 |
+|------|------|-------------|
+| **道** | 底层规律 | 做这件事，什么是对的方向？ |
+| **法** | 方法体系 | 应该用什么系统/框架来做？ |
+| **术** | 执行技法 | 第一步做什么？第二步？ |
+| **器** | 工具推荐 | 用什么工具最合适？ |
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 三层规划模式
+
+1. **前期调研**：行业分析、用户画像、竞品分析、门槛评估、风险识别、机会窗口
+2. **快速方案**：调研 + 10秒生成初步方案
+3. **深度规划**：调研 + 天时地利人和 × 道法术器 完整分析
+
+### 调研模块（新增）
+
+在生成方案前，系统会自动进行全方位调研：
+
+| 调研维度 | 内容 |
+|----------|------|
+| **行业概况** | 市场规模、增长趋势、发展阶段、主要玩家 |
+| **用户分析** | 目标用户画像、核心需求、痛点分析 |
+| **竞品分析** | 主要竞争对手、成功案例、失败教训 |
+| **门槛评估** | 入场门槛、所需资源、核心能力 |
+| **风险识别** | 市场风险、运营风险、财务风险、法律风险 |
+| **机会窗口** | 趋势机会、市场空白、差异化方向 |
+| **可行性评估** | 评分、建议、下一步行动 |
+
+### 迭代诊断
+
+执行过程中遇到问题？帮您诊断出问题层级，给出调整建议。
+
+---
+
+## 使用方法
+
+### 前期调研（仅调研）
+
 ```bash
-hermes skills install clawhub/moudao
+# 仅输出调研报告，不生成方案
+node scripts/moudao.js --research "我想做直播"
+node scripts/moudao.js --research "我想开咖啡店"
 ```
+
+### 快速方案（含调研）
+
+```bash
+# 自动调研 + 生成方案
+node scripts/moudao.js --quick "我想做直播"
+node scripts/moudao.js --quick "我想学吉他"
+node scripts/moudao.js --quick "我想减肥"
+
+# 跳过调研，直接生成方案
+node scripts/moudao.js --quick "我想做直播" --skip-research
+```
+
+### 深度规划（含调研）
+
+```bash
+# 深度模式：会先提问了解情况
+node scripts/moudao.js --deep "我想做副业"
+
+# 指定身份背景
+node scripts/moudao.js --deep "我想做副业" --profile "上班族，每周10小时，零基础"
+
+# 指定约束条件
+node scripts/moudao.js --deep "我想做副业" --constraints "预算5000以内，不想辞职"
+```
+
+### 迭代诊断
+
+```bash
+# 诊断执行中的问题
+node scripts/moudao.js --diagnose "直播做了两周没人看" --context "我想做直播带货"
+
+# 诊断进度问题
+node scripts/moudao.js --diagnose "学了三个月吉他还是不会弹歌" --context "我想学吉他"
+```
+
+### 输出格式
+
+```bash
+# JSON格式（便于程序处理）
+node scripts/moudao.js --quick "我想做直播" --format json
+
+# Markdown格式（便于阅读）
+node scripts/moudao.js --quick "我想做直播" --format md
+
+# 纯文本格式
+node scripts/moudao.js --quick "我想做直播" --format text
+```
+
+---
+
+## 参数说明
+
+### 模式选择
+- `--quick <idea>` - 快速方案模式
+- `--deep <idea>` - 深度规划模式（含提问交互）
+- `--diagnose <problem>` - 迭代诊断模式
+
+### 补充信息
+- `--profile <info>` - 用户背景（职业/时间/经验）
+- `--constraints <info>` - 约束条件（预算/时间/资源）
+- `--context <info>` - 原始目标（诊断模式必填）
+
+### 输出控制
+- `--format <json|md|text>` - 输出格式，默认 md
+- `--output <file>` - 输出到文件
+
+---
+
+## 输出结构
+
+### 快速方案输出
+
+```json
+{
+  "anchor": "术",
+  "anchor_analysis": "用户已有明确目标，需要具体执行步骤",
+  "dao": {
+    "principles": [
+      {"title": "直播本质", "desc": "注意力经济，内容为王"}
+    ],
+    "misconceptions": [
+      {"wrong": "颜值高就能火", "right": "内容价值才是核心"}
+    ]
+  },
+  "fa": [
+    {"name": "垂直定位法", "fit": "新手起步", "desc": "选择一个细分领域深耕", "steps": ["选领域", "找对标", "定风格"]}
+  ],
+  "shu": [
+    {"phase": "起号期", "weeks": "第1-4周", "tasks": [{"title": "账号搭建", "hours": "2h", "standard": "完成主页装修"}]}
+  ],
+  "qi": [
+    {"task": "直播推流", "tools": [{"name": "OBS", "free": true, "desc": "专业推流软件"}]}
+  ]
+}
+```
+
+### 深度规划输出
+
+```json
+{
+  "tianshi": {
+    "score": 7,
+    "trend": "行业趋势分析",
+    "timing": "时机判断",
+    "window": "窗口期描述",
+    "risks": ["风险1", "风险2"]
+  },
+  "dili": {
+    "score": 6,
+    "resources": "资源分析",
+    "platform": "推荐平台",
+    "advantages": ["优势1"],
+    "gaps": ["短板1"]
+  },
+  "anchor": "法",
+  "anchor_analysis": "分析说明",
+  "dao": {...},
+  "fa": [...],
+  "shu": [...],
+  "qi": [...]
+}
+```
+
+### 诊断输出
+
+```json
+{
+  "summary": "问题出在术的层面，执行方法需要调整",
+  "issues": [
+    {"level": "术", "problem": "直播时间选择不当", "advice": "调整到晚间8-10点黄金时段"}
+  ],
+  "adjustment": {
+    "before": "每天中午12点直播",
+    "after": "每天晚上8点直播，时长2小时"
+  }
+}
+```
+
+---
+
+## 使用场景
+
+### 创业规划
+- 我想开一家咖啡店
+- 我想做自媒体
+- 我想搞副业赚钱
+
+### 职业发展
+- 我想转行做产品经理
+- 我想提升表达能力
+- 我想学一门新技术
+
+### 学习规划
+- 我想学编程
+- 我想学英语
+- 我想学投资理财
+
+### 生活目标
+- 我想减肥
+- 我想养成早起习惯
+- 我想改善人际关系
+
+---
+
+## 框架详解
+
+详细框架说明请参考 [references/framework.md](references/framework.md)
+
+## 使用案例
+
+更多案例请参考 [references/examples.md](references/examples.md)
+
+---
+
+## 注意事项
+
+1. **输入要具体** - 越具体的目标，生成的方案越精准
+2. **补充背景** - 使用 --profile 提供更多信息，方案会更贴合实际
+3. **迭代优化** - 执行中遇到问题，使用诊断功能持续优化
+4. **灵活调整** - 方案是参考，实际执行要根据情况调整
+
+---
+
+## 定价说明
+
+本技能采用订阅制收费：
+- **月订阅**：9.9元/月
+- **年订阅**：99元/年（省20%）
+
+订阅后可无限次使用所有功能。
+
+---
+
+## 关于作者
+
+谋道 - 让每一个想法都有迹可循。

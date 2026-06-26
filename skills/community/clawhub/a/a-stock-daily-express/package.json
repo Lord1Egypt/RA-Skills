@@ -1,0 +1,10 @@
+{
+  "name": "a-stock-daily-express",
+  "version": "1.0.0",
+  "description": "📈 A股每日快报自动生成 - 自动获取行情统计，一键生成小红书/公众号文章",
+  "main": "scripts/daily-generator.js",
+  "keywords": ["stock", "a-share", "daily", "express", "news", "xiaohongshu", "wechat", "finance"],
+  "author": "rudagebil11-jpg",
+  "license": "MIT",
+  "type": "commonjs"
+}

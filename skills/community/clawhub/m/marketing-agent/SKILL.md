@@ -1,35 +1,76 @@
----
-name: "Marketing Agent"
-description: "Automatisiert Content erstellen, posten und Engagement tracken für PawArtis, Trading Signale und Freelance Services auf TikTok, Instagram, Telegram und Website."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/marketing-agent"
-sourceUrl: "https://clawhub.ai/skills/marketing-agent"
----
+<objective>
+Automatisches Marketing für unsere Projekte: PawArtis App, Trading Signale, Freelance Services. Erstellt Content, plant Posts, tracket Engagement.
+</objective>
 
-# Marketing Agent
+<principles>
+## Marketing-Fokus
 
-> Automatisiert Content erstellen, posten und Engagement tracken für PawArtis, Trading Signale und Freelance Services auf TikTok, Instagram, Telegram und Website.
+### Kanäle
+- TikTok/Instagram (kurze Videos)
+- Telegram (Signale, Updates)
+- Website/Blog (SEO Content)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/marketing-agent`
-- **Source URL:** [https://clawhub.ai/skills/marketing-agent](https://clawhub.ai/skills/marketing-agent)
+### Content-Typen
+- Trading Signals (Charts, Erklärungen)
+- App-Demos (PawArtis)
+- Freelance Angebote (Website Showcase)
 
-## Overview
+### Automatisierung
+- Content planen (Wochen ahead)
+- Post-Schedule erstellen
+- Engagement tracken
+</principles>
 
+<process>
+## Marketing-Routine
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/marketing-agent
-```
+<step>
+<action>Content Plan erstellen</action>
+<details>
+- Was diese Woche posten?
+- Welche Topics?
+- Wie viele Posts pro Kanal?
+</details>
+</step>
+
+<step>
+<action>Content erstellen</action>
+<details>
+- Shorts/Scripts schreiben
+- Captions für Insta
+- Signal-Posts formatieren
+</details>
+</step>
+
+<step>
+<action>Post vorbereiten</action>
+<details>
+- Hashtags recherchieren
+- Timing optimieren
+- Link in Bio ready
+</details>
+</step>
+
+<step>
+<action>Tracken</action>
+<details>
+- Views/Engagement zählen
+- Was funktioniert?
+- Nächste Woche anpassen
+</details>
+</step>
+</process>
+
+<triggers>
+- Täglich (Content planen)
+- Vor jedem Trade-Signal
+- Nach App-Major Updates
+- Wöchentlich (Analytics)
+</triggers>
+
+<success_criteria>
+- X Posts/Woche
+- Trading Channel Growth
+- Freelance Lead Generation
+- App Downloads
+</success_criteria>

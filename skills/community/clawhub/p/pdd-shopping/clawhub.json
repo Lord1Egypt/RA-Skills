@@ -1,0 +1,15 @@
+{
+  "name": "pdd-shopping",
+  "version": "2.2.0",
+  "description": "Pinduoduo shopping assistant. Input a product name or PDD link; evaluate 百亿补贴, 拼团 rules, seller risk, visible price, review signals, refund caveats, and whether the low price is worth it. Safe boundary: no login, no order submission, no payment.",
+  "keywords": [
+    "pdd",
+    "pinduoduo",
+    "拼多多",
+    "shopping",
+    "group-buy"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/pdd-shopping"
+}

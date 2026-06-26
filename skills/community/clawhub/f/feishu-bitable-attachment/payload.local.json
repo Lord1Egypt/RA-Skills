@@ -1,0 +1,13 @@
+{
+  "target": {
+    "app_token": "bascxxxxxxxxxxxxx",
+    "table_id": "tblxxxxxxxxxx",
+    "record_id": "recxxxxxxxxxx",
+    "field_name": "附件"
+  },
+  "source": {
+    "type": "local",
+    "ref": "/tmp/report.pdf"
+  },
+  "append": true
+}

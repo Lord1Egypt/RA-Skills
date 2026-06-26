@@ -1,35 +1,81 @@
 ---
-name: "Douyin Analyzer"
-description: "内容分析模块。对转录文本进行语义分段、提取要点、生成总结。由 agent 直接完成，不依赖脚本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-analyzer"
-sourceUrl: "https://clawhub.ai/skills/douyin-analyzer"
+name: douyin-analyzer
+description: 内容分析模块。对转录文本进行语义分段、提取要点、生成总结。由 agent 直接完成，不依赖脚本。
 ---
 
-# Douyin Analyzer
+# Douyin Analyzer - 内容分析模块
 
-> 内容分析模块。对转录文本进行语义分段、提取要点、生成总结。由 agent 直接完成，不依赖脚本。
+## 职责
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/douyin-analyzer](https://clawhub.ai/skills/douyin-analyzer)
+- 输入：Whisper 转录的原始文本
+- 输出：结构化的转录稿（分段、修正、要点提取）
+- 由 agent（LLM）直接完成，不需要脚本
 
-## Overview
+## 分析步骤
 
+agent 拿到转录文本后，按以下顺序处理：
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 修复转录错误
+- 修复明显的语音识别错误（如"知固减锁"→"知识库检索"）
+- 修复专有名词（如"曼学ai"→"慢学AI"）
+- 保留原意，不改变内容
+
+### 2. 去除口语化表达
+- 去除语气词（"嗯"、"啊"、"这个"、"那个"）
+- 去除重复啰嗦
+- 转为书面语，但保持自然
+
+### 3. 语义分段
+- 按主题/话题分段
+- 每段加小标题
+- 保持逻辑连贯
+
+### 4. 提取核心要点
+- 列出关键观点
+- 标注重要结论
+
+### 5. 生成标签
+- 提取 3-5 个主题标签
+
+## 输出格式
+
+```markdown
+# {视频标题}
+
+**作者**: {作者名}
+**链接**: {原链接}
+**转录时间**: {日期}
+
+---
+
+## 完整转录稿
+
+### 一、{第一段主题}
+
+{内容}
+
+### 二、{第二段主题}
+
+{内容}
+
+---
+
+## 核心要点
+
+- 要点1
+- 要点2
+
+---
+
+## 标签
+
+#标签1 #标签2
+```
+
+## 备用脚本
+
+`scripts/analyzer.py` 提供基础文本清理功能，当前未使用。
+
 ```bash
-hermes skills install clawhub/douyin-analyzer
+python scripts/analyzer.py /path/to/transcript.txt
 ```

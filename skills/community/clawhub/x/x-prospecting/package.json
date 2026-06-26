@@ -1,0 +1,22 @@
+{
+  "name": "@modelfitai/x-prospecting",
+  "version": "1.0.0",
+  "description": "Search X (Twitter) for buying-intent leads via Brave Search — no X API key required. Score prospects and generate DM sequences.",
+  "keywords": ["openclaw", "skill", "twitter", "x", "lead-gen", "prospecting", "brave-search"],
+  "author": "ModelFitAI <skills@modelfitai.com>",
+  "license": "MIT",
+  "homepage": "https://modelfitai.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelfitai/openclaw-skills"
+  },
+  "main": "x-prospecting.js",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "openclaw": {
+    "skill": true,
+    "requires": {
+      "env": ["BRAVE_API_KEY"]
+    }
+  }
+}

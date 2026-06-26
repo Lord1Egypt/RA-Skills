@@ -1,0 +1,16 @@
+{
+  "name": "@lpq6/pdf-vision",
+  "version": "1.0.0",
+  "description": "Extract text content from image-based/scanned PDFs using multiple vision APIs with automatic fallback",
+  "main": "scripts/pdf_vision.py",
+  "scripts": {
+    "test": "python3 scripts/pdf_vision.py --help"
+  },
+  "keywords": ["openclaw", "skill", "pdf", "vision", "ocr", "scanned-pdf", "image-pdf"],
+  "author": "lpq6",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lpq6/pdf-vision.git"
+  }
+}

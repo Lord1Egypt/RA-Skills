@@ -1,0 +1,59 @@
+{
+  "name": "aana-support-reply-guardrail",
+  "slug": "aana-support-reply-guardrail",
+  "version": "0.1.0",
+  "type": "instruction_only_skill",
+  "description": "AANA-grounded customer support reply guardrail instructions for checking invented facts, refund promises, policy overclaims, and private data.",
+  "entrypoint": "SKILL.md",
+  "bundled_code": false,
+  "installs_dependencies": false,
+  "executes_commands": false,
+  "writes_files": false,
+  "writes_event_files": false,
+  "persists_memory": false,
+  "requires_user_approval_for_refund_or_credit_promises": true,
+  "requires_user_approval_for_policy_exceptions": true,
+  "requires_user_approval_for_private_data_disclosure": true,
+  "data_handling": {
+    "prefer_redacted_summaries": true,
+    "store_payloads_by_default": false,
+    "requires_redaction": true,
+    "forbidden_payload_content": [
+      "raw account records",
+      "full payment numbers",
+      "API keys",
+      "bearer tokens",
+      "passwords",
+      "private ticket history",
+      "private messages",
+      "health records",
+      "legal records",
+      "unrelated customer data"
+    ]
+  },
+  "support_reply_boundary": {
+    "must_not_invent_account_facts": true,
+    "must_not_promise_refunds_without_authorization": true,
+    "must_not_overclaim_policy": true,
+    "must_minimize_private_data": true,
+    "must_ask_or_defer_when_evidence_is_missing": true,
+    "must_distinguish_customer_provided_facts_from_verified_records": true,
+    "must_require_review_for_high_impact_support_outcomes": true,
+    "may_not_expose_internal_notes_without_approval": true
+  },
+  "aana_boundary": {
+    "checker_bundled": false,
+    "checker_required": false,
+    "allowed_checker_interfaces": [
+      "approved host tool configured by the user or administrator",
+      "approved in-memory API connector configured by the user or administrator",
+      "manual review"
+    ]
+  },
+  "schemas": [
+    "schemas/support-reply-review.schema.json"
+  ],
+  "examples": [
+    "examples/redacted-support-reply-review.json"
+  ]
+}

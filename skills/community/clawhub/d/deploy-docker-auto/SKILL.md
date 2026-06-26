@@ -1,35 +1,87 @@
 ---
-name: "deploy-docker-auto"
-description: "在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deploy-docker-auto"
-sourceUrl: "https://clawhub.ai/skills/deploy-docker-auto"
+name: deploy-docker-auto
+description: 用于在需要将 TPAIP 项目新版本自动化部署到 Linux 服务器时使用。例如：完成功能开发并合并到主分支后；需要将修复的补丁快速推送到生产环境时；或定期执行 CI/CD 流水线中的部署环节时。
 ---
 
-# deploy-docker-auto
-
-> 在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deploy-docker-auto`
-- **Source URL:** [https://clawhub.ai/skills/deploy-docker-auto](https://clawhub.ai/skills/deploy-docker-auto)
+# TPAIP 项目 Docker 自动化部署
 
 ## Overview
 
+本技能提供了一套标准化的自动化流程，用于将 TPAIP（技象人工智能平台）项目的代码构建为 Docker 镜像，并安全地部署到指定的远程 Linux 服务器上，最后验证服务健康状态。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deploy-docker-auto
-```
+## When to Use
+
+- 开发完成，需要将新功能部署到测试或生产环境。
+- 修复线上 Bug 后，需要进行热更新部署。
+- 作为自动化 CI/CD 流水线中的部署环节。
+
+## When NOT to Use
+
+- 首次进行服务器环境初始化（如安装 Docker、配置网络）。请先使用服务器初始化技能。
+- 部署非 TPAIP 项目或其他技术栈（如纯静态网站）的项目。
+- 需要进行复杂的、包含数据库迁移或数据回滚的灰度发布时。本技能侧重于“一键替换”式部署。
+
+## The Process
+
+### Step 1: 准备部署配置与环境检查
+
+1.  **确认部署信息**：向用户确认或获取以下信息（不要自行编造）：
+    - `项目根目录路径`：本地 TPAIP 项目代码的位置。
+    - `Dockerfile 路径`：通常位于项目根目录，但需确认。
+    - `镜像仓库地址`：例如 `registry.techphant.cn/tpaip/tpaip-server`。
+    - `镜像标签`：通常使用 Git 提交哈希或版本号，如 `v1.2.3` 或 `git-abc123`。
+    - `目标服务器 SSH 连接信息`：IP/域名、端口、用户名、密钥路径。
+    - `服务器上的项目部署目录`：例如 `/opt/tpaip`。
+    - `容器运行参数`：需要映射的端口、环境变量文件（`.env`）路径、数据卷挂载点。
+2.  **检查本地环境**：
+    - 检查本地 Docker 服务是否运行：`docker --version`。
+    - 检查是否已登录到目标镜像仓库：`docker info | grep Username`。
+    - **如果检查失败**：停下来告知用户具体问题（如 Docker 未启动），并提供解决建议或等待用户处理。
+
+### Step 2: 构建与推送 Docker 镜像
+
+1.  **构建镜像**：
+    - 进入项目根目录：`cd <项目根目录路径>`。
+    - 执行构建命令：`docker build -t <镜像仓库地址>:<镜像标签> -f <Dockerfile路径> .`。
+    - **如果构建失败**：分析 `docker build` 的输出日志，将错误信息（如依赖安装失败、编译错误）反馈给用户，并停止流程。
+2.  **推送镜像**：
+    - 执行推送命令：`docker push <镜像仓库地址>:<镜像标签>`。
+    - **如果推送失败**：检查网络连接和仓库认证，提示用户重新登录或检查权限。
+
+### Step 3: 远程服务器部署
+
+1.  **连接服务器并准备**：
+    - 使用 SSH 连接到目标服务器。
+    - 进入部署目录：`cd <服务器部署目录>`。
+    - （可选）备份当前运行中的容器日志或配置文件。
+2.  **拉取并运行新容器**：
+    - 拉取新镜像：`docker pull <镜像仓库地址>:<镜像标签>`。
+    - 停止并移除旧容器（如果存在）：`docker stop tpaip-server && docker rm tpaip-server`。
+    - 运行新容器。根据用户提供的参数组装命令，例如：
+      ```bash
+      docker run -d \
+        --name tpaip-server \
+        --restart unless-stopped \
+        -p 8080:8080 \
+        --env-file .env \
+        -v ./data:/app/data \
+        <镜像仓库地址>:<镜像标签>
+      ```
+    - **如果运行失败**：检查 `docker run` 的错误信息（如端口冲突、环境变量文件缺失），报告给用户。
+
+### Step 4: 服务健康检查与验证
+
+1.  **基础容器状态检查**：
+    - 检查容器是否处于运行状态：`docker ps | grep tpaip-server`。
+    - 查看容器近期日志，排查启动错误：`docker logs --tail 50 tpaip-server`。
+2.  **应用层健康检查**：
+    - 如果服务提供了健康检查接口（如 `/health`），使用 `curl` 调用该接口，验证返回状态码是否为 `200` 且内容包含 `"status": "UP"`。
+    - **如果健康检查失败**：将详细的错误响应和日志摘要提供给用户，并询问是否回滚到上一个版本。
+
+## 质量检查点
+
+- [ ] 在 Step 1 中，所有必要的部署配置（镜像标签、服务器信息等）均已明确获取，而非猜测。
+- [ ] 在 Step 2 中，`docker build` 和 `docker push` 命令执行成功，无错误输出。
+- [ ] 在 Step 3 中，新容器成功启动，且 `docker ps` 显示其状态为 `Up`。
+- [ ] 在 Step 4 中，应用层健康检查接口返回成功响应（状态码200，内容健康）。
+- [ ] 部署后，通过浏览器或客户端能正常访问 TPAIP 服务的核心功能。

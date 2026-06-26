@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>幻灯片模板 - 结束页</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1920px;
+            height: 1080px;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 装饰元素 */
+        .decor-circle-1 {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            right: -200px;
+            top: -250px;
+            background: radial-gradient(circle, rgba(0,102,255,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .decor-circle-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            left: -200px;
+            bottom: -200px;
+            background: radial-gradient(circle, rgba(0,204,102,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .decor-circle-3 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            right: 300px;
+            bottom: 100px;
+            background: radial-gradient(circle, rgba(255,153,0,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        /* 粒子效果 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        /* 主内容区 */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+        
+        /* 图标 */
+        .icon-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, #0066ff, #00cc66, #ff9900);
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 70px rgba(0,102,255,0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .icon-wrapper i {
+            font-size: 70px;
+            color: white;
+        }
+        
+        /* 主标题 */
+        .main-title {
+            font-size: 64px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 6px;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+        }
+        
+        /* 副标题 */
+        .subtitle {
+            font-size: 36px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        /* 联系方式/品牌 */
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .brand-line {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0,102,255,0.6), transparent);
+        }
+        
+        .brand-text {
+            font-size: 20px;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .brand-text i {
+            color: #00cc66;
+        }
+        
+        /* 底部信息 */
+        .footer {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-text {
+            font-size: 16px;
+            color: rgba(255,255,255,0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="decor-circle-1"></div>
+    <div class="decor-circle-2"></div>
+    <div class="decor-circle-3"></div>
+    
+    <!-- 粒子 -->
+    <div class="particles">
+        <span class="particle" style="left: 20%; top: 30%;"></span>
+        <span class="particle" style="left: 70%; top: 20%;"></span>
+        <span class="particle" style="left: 40%; top: 70%;"></span>
+        <span class="particle" style="left: 80%; top: 60%;"></span>
+        <span class="particle" style="left: 15%; top: 80%;"></span>
+        <span class="particle" style="left: 90%; top: 40%;"></span>
+    </div>
+    
+    <div class="content">
+        <div class="icon-wrapper">
+            <i class="fas fa-handshake"></i>
+        </div>
+        <h1 class="main-title">期待与你继续合作！</h1>
+        <p class="subtitle">一起创造更多可能</p>
+        
+        <div class="brand">
+            <div class="brand-line"></div>
+            <div class="brand-text">
+                <i class="fas fa-robot"></i>
+                <span>SenseNova 6.7 Flash-Lite · 商汤科技</span>
+            </div>
+            <div class="brand-line"></div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span class="footer-text">2026年5月 · 工作效果展示</span>
+    </div>
+</body>
+</html>

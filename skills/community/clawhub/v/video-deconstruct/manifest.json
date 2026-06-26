@@ -1,0 +1,73 @@
+{
+  "name": "video-deconstruct",
+  "version": "2.0.0",
+  "displayName": "短视频爆款拆解（叙事式）",
+  "description": "把抖音/小红书短视频拆成「故事+心理学」式爆款拆解：选题/一句话总结/内容描述/视频结构(开头-中间-结尾)/事件推进/落幕文案/受众启示/核心爆点 + 节奏/BGM 辅助。给运营写脚本做分镜直接当弹药。",
+  "author": "立瑄 @ StepFun",
+  "license": "CC BY-SA 4.0",
+  "framework": "StepClaw",
+  "tags": ["video", "短视频", "抖音", "小红书", "爆款拆解", "运营", "stepfun", "stepclaw", "vision", "asr"],
+  "runtime": "python3.10+",
+  "entry": "scripts/analyze.py",
+  "env": ["STEP_API_KEY"],
+  "systemDeps": ["ffmpeg"],
+  "pythonDeps": ["openai>=1.0", "jinja2>=3.0", "httpx>=0.24"],
+  "models": {
+    "vision": "step-1o-turbo-vision",
+    "asr": "stepaudio-2.5-asr",
+    "text": "step-3.5-flash"
+  },
+  "inputs": [
+    {
+      "name": "video",
+      "type": "path",
+      "description": "本地 mp4 文件路径",
+      "required": true
+    },
+    {
+      "name": "--with-asr",
+      "type": "flag",
+      "description": "启用 stepaudio-2.5-asr 抽对白文本作为视觉模型的辅助上下文",
+      "required": false
+    },
+    {
+      "name": "--comments-file",
+      "type": "path",
+      "description": "(v2 占位) 评论 txt 文件",
+      "required": false
+    },
+    {
+      "name": "--keep-upload",
+      "type": "flag",
+      "description": "分析完后保留云端文件",
+      "required": false
+    },
+    {
+      "name": "--output-dir",
+      "type": "path",
+      "description": "报告输出目录",
+      "required": false,
+      "default": "./output"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "output/{video_stem}-report.md",
+      "description": "渲染好的爆款拆解 markdown 报告"
+    },
+    {
+      "path": "output/{video_stem}-analysis.json",
+      "description": "原始 JSON 分析结果"
+    }
+  ],
+  "triggers": [
+    "拆解视频",
+    "分析这条视频",
+    "帮我看这段抖音",
+    "短视频结构",
+    "卡点在哪",
+    "这条爆款怎么火的",
+    "视频拆解",
+    "爆款拆解"
+  ]
+}

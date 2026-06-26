@@ -1,0 +1,218 @@
+{
+  "jurisdictions": [
+    {
+      "name": "United States",
+      "code": "US",
+      "system": "Common Law",
+      "courts": ["Supreme Court", "Federal Circuit Courts", "District Courts"],
+      "case_law_databases": [
+        {"name": "Google Scholar Case Law", "url": "https://scholar.google.com/", "coverage": "Federal + State"},
+        {"name": "CourtListener", "url": "https://www.courtlistener.com/", "coverage": "Federal + State, free"},
+        {"name": "Justia", "url": "https://www.justia.com/", "coverage": "Federal + State, summaries"},
+        {"name": "PACER", "url": "https://pacer.uscourts.gov/", "coverage": "Federal dockets, paywalled"}
+      ],
+      "statutes": ["US Code (USC)", "Code of Federal Regulations (CFR)", "Uniform Commercial Code (UCC)"],
+      "key_regulators": ["SEC", "FTC", "FCC", "FDA", "DOJ", "EPA", "CFPB"]
+    },
+    {
+      "name": "European Union",
+      "code": "EU",
+      "system": "Civil Law / Supranational",
+      "courts": ["Court of Justice of the EU (CJEU)", "General Court"],
+      "case_law_databases": [
+        {"name": "EUR-Lex", "url": "https://eur-lex.europa.eu/", "coverage": "EU legislation + case law, free"},
+        {"name": "CURIA", "url": "https://curia.europa.eu/", "coverage": "CJEU judgments, free"}
+      ],
+      "statutes": ["TFEU", "TEU", "EU Charter of Fundamental Rights", "GDPR", "DSA", "DMA", "AI Act", "CBAM"],
+      "key_regulators": ["European Commission", "ECB", "EDPB", "EMA", "EUIPO"]
+    },
+    {
+      "name": "United Kingdom",
+      "code": "UK",
+      "system": "Common Law",
+      "courts": ["Supreme Court", "Court of Appeal", "High Court"],
+      "case_law_databases": [
+        {"name": "BAILII", "url": "https://www.bailii.org/", "coverage": "UK + Ireland, free"},
+        {"name": "UK Supreme Court", "url": "https://www.supremecourt.uk/", "coverage": "Decided cases, free"}
+      ],
+      "statutes": ["UK Public General Acts", "UK Statutory Instruments", "Retained EU Law"],
+      "key_regulators": ["FCA", "CMA", "ICO", "Ofcom", "HMRC"]
+    },
+    {
+      "name": "China",
+      "code": "CN",
+      "system": "Socialist Law / Civil Law",
+      "courts": ["Supreme People's Court", "Higher People's Courts", "Intermediate Courts"],
+      "case_law_databases": [
+        {"name": "China Judgments Online", "url": "https://wenshu.court.gov.cn/", "coverage": "Official judgments, Chinese"},
+        {"name": "PKULaw", "url": "https://www.pkulaw.com/", "coverage": "Comprehensive, Chinese/English"},
+        {"name": "China Law Translate", "url": "https://www.chinalawtranslate.com/", "coverage": "Key laws in English"}
+      ],
+      "statutes": ["Civil Code (民法典)", "Criminal Law", "Company Law", "PIPL (个人信息保护法)", "Data Security Law", "Anti-Monopoly Law", "Foreign Investment Law"],
+      "key_regulators": ["SAMR", "CAC", "MOFCOM", "CSRC", "NDRC", "SAIC"]
+    },
+    {
+      "name": "Japan",
+      "code": "JP",
+      "system": "Civil Law",
+      "courts": ["Supreme Court", "High Courts", "District Courts"],
+      "case_law_databases": [
+        {"name": "Japanese Law Translation", "url": "https://www.japaneselawtranslation.go.jp/", "coverage": "Statutes in English, free"},
+        {"name": "Courts in Japan", "url": "https://www.courts.go.jp/", "coverage": "Judgments, Japanese"}
+      ],
+      "statutes": ["Civil Code", "Commercial Code", "Companies Act", "APPI (Act on Protection of Personal Information)", "Anti-Monopoly Act"],
+      "key_regulators": ["FSA", "JFTC", "METI", "PPC"]
+    },
+    {
+      "name": "India",
+      "code": "IN",
+      "system": "Common Law",
+      "courts": ["Supreme Court", "High Courts", "District Courts"],
+      "case_law_databases": [
+        {"name": "Indian Kanoon", "url": "https://indiankanoon.org/", "coverage": "Comprehensive, free"},
+        {"name": "SCC Online", "url": "https://www.scconline.com/", "coverage": "Premium case law"},
+        {"name": "Supreme Court of India", "url": "https://main.sci.gov.in/", "coverage": "Official judgments"}
+      ],
+      "statutes": ["Constitution", "Indian Penal Code", "Companies Act 2013", "Digital Personal Data Protection Act 2023", "Competition Act"],
+      "key_regulators": ["SEBI", "CCI", "RBI", "TRAI", "MCA"]
+    },
+    {
+      "name": "Singapore",
+      "code": "SG",
+      "system": "Common Law",
+      "courts": ["Supreme Court", "State Courts"],
+      "case_law_databases": [
+        {"name": "Singapore Law Watch", "url": "https://www.singaporelawwatch.sg/", "coverage": "Judgments + legislation, free"},
+        {"name": "Judiciary SG", "url": "https://www.judiciary.gov.sg/", "coverage": "Official court judgments"}
+      ],
+      "statutes": ["Singapore Statutes Online", "Companies Act", "PDPA (Personal Data Protection Act)", "Competition Act"],
+      "key_regulators": ["MAS", "CCCS", "PDPC", "ACRA", "IMDA"]
+    },
+    {
+      "name": "Australia",
+      "code": "AU",
+      "system": "Common Law",
+      "courts": ["High Court", "Federal Court", "State Supreme Courts"],
+      "case_law_databases": [
+        {"name": "AustLII", "url": "https://www.austlii.edu.au/", "coverage": "Comprehensive, free"},
+        {"name": "Federal Court of Australia", "url": "https://www.fedcourt.gov.au/", "coverage": "Federal judgments"}
+      ],
+      "statutes": ["Commonwealth Consolidated Acts", "Corporations Act 2001", "Privacy Act 1988", "Competition and Consumer Act 2010"],
+      "key_regulators": ["ASIC", "ACCC", "OAIC", "APRA", "ATO"]
+    },
+    {
+      "name": "United Arab Emirates",
+      "code": "AE",
+      "system": "Civil Law / Islamic Law",
+      "courts": ["Federal Supreme Court", "DIFC Courts", "ADGM Courts"],
+      "case_law_databases": [
+        {"name": "DIFC Courts", "url": "https://www.difccourts.ae/", "coverage": "DIFC judgments, English"},
+        {"name": "ADGM Courts", "url": "https://www.adgm.com/", "coverage": "ADGM judgments, English"}
+      ],
+      "statutes": ["UAE Civil Code", "Commercial Companies Law", "Personal Data Protection Law (PDPL)", "DIFC Laws", "ADGM Regulations"],
+      "key_regulators": ["SCA", "CBUAE", "DIFC", "ADGM", "TDRA"]
+    }
+  ],
+  "legal_domains": [
+    {
+      "id": "contract_law",
+      "name": "Contract Law",
+      "global_applicability": "HIGH",
+      "key_principles": ["Offer & Acceptance", "Consideration (Common Law) / Cause (Civil Law)", "Intention to Create Legal Relations", "Capacity", "Legality", "Privity of Contract", "Force Majeure", "Frustration / Impossibility"],
+      "cisg_applicability": "UN Convention on Contracts for the International Sale of Goods (CISG) — 97 contracting states"
+    },
+    {
+      "id": "corporate_governance",
+      "name": "Corporate Law & Governance",
+      "global_applicability": "HIGH",
+      "key_principles": ["Limited Liability", "Piercing the Corporate Veil", "Fiduciary Duties", "Derivative Actions", "M&A Framework", "Securities Regulation"],
+      "entity_types": ["LLC (US)", "GmbH (DE)", "Ltd (UK)", "K.K. (JP)", "有限公司 (CN)", "Pte Ltd (SG)"]
+    },
+    {
+      "id": "intellectual_property",
+      "name": "Intellectual Property",
+      "global_applicability": "HIGH",
+      "sub_domains": [
+        {"type": "Patent", "treaty": "Patent Cooperation Treaty (PCT)", "duration": "20 years"},
+        {"type": "Trademark", "treaty": "Madrid Protocol", "duration": "10 years, renewable"},
+        {"type": "Copyright", "treaty": "Berne Convention", "duration": "Life + 50-70 years"},
+        {"type": "Trade Secret", "treaty": "TRIPS Agreement", "duration": "Indefinite (while secret)"}
+      ]
+    },
+    {
+      "id": "data_privacy",
+      "name": "Data Privacy & Protection",
+      "global_applicability": "CRITICAL",
+      "major_regimes": [
+        {"jurisdiction": "EU/EEA", "law": "GDPR", "scope": "Extraterritorial", "max_fine": "€20M or 4% global turnover"},
+        {"jurisdiction": "California", "law": "CCPA/CPRA", "scope": "CA residents' data", "max_fine": "$7,500 per intentional violation"},
+        {"jurisdiction": "China", "law": "PIPL", "scope": "Extraterritorial", "max_fine": "¥50M or 5% annual revenue"},
+        {"jurisdiction": "Brazil", "law": "LGPD", "scope": "Extraterritorial", "max_fine": "2% revenue (max R$50M)"},
+        {"jurisdiction": "India", "law": "DPDP Act 2023", "scope": "Extraterritorial", "max_fine": "₹250 crore"},
+        {"jurisdiction": "Japan", "law": "APPI", "scope": "Domestic + cross-border transfer", "max_fine": "¥100M"},
+        {"jurisdiction": "South Korea", "law": "PIPA", "scope": "Strictest in Asia", "max_fine": "5% revenue"},
+        {"jurisdiction": "Singapore", "law": "PDPA", "scope": "Domestic", "max_fine": "S$1M"}
+      ]
+    },
+    {
+      "id": "employment_labor",
+      "name": "Employment & Labor Law",
+      "global_applicability": "HIGH",
+      "key_topics": ["Wrongful Termination", "Discrimination", "Non-Compete Enforceability", "Minimum Wage", "Working Hours", "Remote Work", "Gig Worker Classification", "Whistleblower Protection"]
+    },
+    {
+      "id": "international_trade",
+      "name": "International Trade & Sanctions",
+      "global_applicability": "HIGH",
+      "frameworks": ["WTO Agreements", "FTA networks", "Export Controls (EAR/ITAR)", "Customs Classification (HS Codes)", "Anti-Dumping", "Countervailing Duties"],
+      "sanctions_regimes": ["OFAC (US)", "EU Consolidated List", "UN Security Council", "OFSI (UK)", "DFAT (AU)"]
+    },
+    {
+      "id": "tax_law",
+      "name": "International Tax",
+      "global_applicability": "HIGH",
+      "frameworks": ["OECD BEPS 2.0 (Pillar 1 & 2)", "Double Tax Treaties", "Transfer Pricing", "Permanent Establishment", "CFC Rules", "VAT/GST regimes", "Withholding Tax"]
+    },
+    {
+      "id": "dispute_resolution",
+      "name": "Dispute Resolution & Arbitration",
+      "global_applicability": "HIGH",
+      "venues": [
+        {"name": "ICC (Paris)", "url": "https://iccwbo.org/"},
+        {"name": "SIAC (Singapore)", "url": "https://siac.org.sg/"},
+        {"name": "HKIAC (Hong Kong)", "url": "https://www.hkiac.org/"},
+        {"name": "LCIA (London)", "url": "https://www.lcia.org/"},
+        {"name": "SCC (Stockholm)", "url": "https://sccarbitrationinstitute.se/"},
+        {"name": "DIAC (Dubai)", "url": "https://www.diac.com/"}
+      ],
+      "treaties": ["New York Convention (172 states)", "Singapore Convention on Mediation"]
+    },
+    {
+      "id": "competition_antitrust",
+      "name": "Competition / Antitrust",
+      "global_applicability": "HIGH",
+      "merger_thresholds_by_jurisdiction": [
+        {"jurisdiction": "US", "agency": "FTC/DOJ", "threshold": "HSR Act thresholds (≈$119.5M in 2026)"},
+        {"jurisdiction": "EU", "agency": "DG Comp", "threshold": "Combined worldwide €2.5B + EU €100M turnover"},
+        {"jurisdiction": "CN", "agency": "SAMR", "threshold": "Global ¥12B + China ¥800M turnover"},
+        {"jurisdiction": "UK", "agency": "CMA", "threshold": "UK turnover £70M+ or share of supply 25%+"}
+      ]
+    },
+    {
+      "id": "crypto_blockchain",
+      "name": "Crypto / Digital Assets Law",
+      "global_applicability": "EMERGING",
+      "frameworks": ["MiCA (EU)", "Travel Rule (FATF)", "SEC guidance (US)", "VASP licensing (HK/SG/Dubai)", "MiCA Stablecoin Rules", "DeFi legal uncertainty"]
+    }
+  ],
+  "legal_research_databases": [
+    {"name": "WorldLII", "url": "https://www.worldlii.org/", "coverage": "Global, free aggregator of 1,800+ databases across 123 jurisdictions"},
+    {"name": "UN Treaty Collection", "url": "https://treaties.un.org/", "coverage": "All UN treaties, status and parties"},
+    {"name": "WIPO Lex", "url": "https://www.wipo.int/wipolex/", "coverage": "IP laws from 200+ jurisdictions"},
+    {"name": "NATLEX (ILO)", "url": "https://www.ilo.org/dyn/natlex/", "coverage": "Labor laws from 196 countries"},
+    {"name": "World Bank Doing Business", "url": "https://archive.doingbusiness.org/", "coverage": "Regulatory comparison across 190 economies"},
+    {"name": "Lexology", "url": "https://www.lexology.com/", "coverage": "Global legal updates, practitioner articles"},
+    {"name": "Mondaq", "url": "https://www.mondaq.com/", "coverage": "Multi-jurisdiction legal insights"}
+  ],
+  "disclaimer": "IMPORTANT: All outputs from this skill are LEGAL INFORMATION, not legal advice. Users must consult qualified local counsel for jurisdiction-specific binding decisions. Cite sources with dates; flag any legal content older than 6 months as potentially outdated."
+}

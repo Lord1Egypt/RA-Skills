@@ -1,0 +1,42 @@
+{
+  "name": "daily-news-brief",
+  "version": "1.0.0",
+  "description": "每日定时抓取、处理和推送新闻资讯的 skill",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts start",
+    "run": "ts-node index.ts run",
+    "test": "ts-node index.ts test",
+    "config": "ts-node index.ts config",
+    "build": "tsc",
+    "dev": "ts-node --watch index.ts"
+  },
+  "keywords": [
+    "news",
+    "daily-brief",
+    "robot",
+    "real-estate",
+    "ai",
+    "telegram"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0",
+    "node-cron": "^3.0.3",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-repo/daily-news-brief.git"
+  }
+}

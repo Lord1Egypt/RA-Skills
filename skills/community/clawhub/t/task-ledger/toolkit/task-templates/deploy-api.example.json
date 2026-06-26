@@ -1,0 +1,69 @@
+{
+  "taskId": "deploy-api-20260307-1231",
+  "title": "部署 API 服务",
+  "goal": "完成部署并确认健康检查通过",
+  "status": "running",
+  "priority": "high",
+  "createdAt": "2026-03-07T12:31:00+08:00",
+  "startedAt": "2026-03-07T12:32:00+08:00",
+  "updatedAt": "2026-03-07T12:39:00+08:00",
+  "completedAt": null,
+  "lastVerifiedAt": "2026-03-07T12:39:00+08:00",
+  "ownerSession": "main",
+  "owner": "main",
+  "assignedAgent": null,
+  "executionMode": "background-process",
+  "idempotent": false,
+  "canResume": true,
+  "retryCount": 0,
+  "maxRetries": 2,
+  "stage": "healthcheck",
+  "stages": [
+    { "id": "prepare", "status": "done" },
+    { "id": "pull_code", "status": "done" },
+    { "id": "install_deps", "status": "done" },
+    { "id": "build", "status": "done" },
+    { "id": "restart_service", "status": "done" },
+    { "id": "healthcheck", "status": "running" },
+    { "id": "report", "status": "todo" }
+  ],
+  "dependsOn": [],
+  "blockedBy": [],
+  "blockedReason": null,
+  "nextAction": "Run final healthcheck and then report the deployment result",
+  "resumeHint": "Verify the deployed service is actually serving before reporting success.",
+  "decisionNotes": "Service restart and healthcheck are separate so reporting cannot happen from stale assumptions.",
+  "workingSummary": "Build and restart completed; final healthcheck is still in progress.",
+  "artifacts": {
+    "logPath": "logs/deploy-api-20260307-1231.log",
+    "outputDir": "outputs/deploy-api-20260307-1231",
+    "files": []
+  },
+  "process": {
+    "sessionId": "example-process-session",
+    "pid": 12345
+  },
+  "subtask": {
+    "sessionKey": null,
+    "agentId": null
+  },
+  "cron": {
+    "jobId": null,
+    "schedule": null,
+    "nextRunAt": null
+  },
+  "rollback": {
+    "available": true,
+    "strategy": "Restore the previous release artifact and restart the service",
+    "status": "available",
+    "artifacts": []
+  },
+  "notifications": {
+    "notifiedStart": false,
+    "notifiedCompletion": false,
+    "notifiedRecovery": false
+  },
+  "events": [],
+  "result": null,
+  "error": null
+}

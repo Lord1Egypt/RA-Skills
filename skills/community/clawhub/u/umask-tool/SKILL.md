@@ -1,35 +1,25 @@
 ---
-name: "Umask Tool"
-description: "Set or display file creation permission mask. Use for controlling default file permissions on new files and directories."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/umask-tool"
-sourceUrl: "https://clawhub.ai/skills/umask-tool"
+name: umask-tool
+description: Set or display file creation permission mask. Use for controlling default file permissions on new files and directories.
 ---
+# Umask - Permission Mask Utility
 
-# Umask Tool
+Set the file mode creation mask which determines default permissions for newly created files and directories. The mask subtracts permissions from the default 666 (files) or 777 (directories).
 
-> Set or display file creation permission mask. Use for controlling default file permissions on new files and directories.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/umask-tool`
-- **Source URL:** [https://clawhub.ai/skills/umask-tool](https://clawhub.ai/skills/umask-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/umask-tool
+umask-tool [options] [mask]
+```
+
+## Examples
+
+```bash
+# Show current mask
+umask-tool
+
+# Set restrictive mask (files: 600, dirs: 700)
+umask-tool 077
+
+# Set permissive mask (files: 644, dirs: 755)
+umask-tool 022
 ```

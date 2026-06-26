@@ -1,0 +1,39 @@
+# Materialize v0.55
+## v0.55.0
+
+#### SQL
+
+* Add `SET schema` and `SHOW schema` as aliases to `SET search_path` and `SELECT
+  current_schema`, respectively. From this release, the following sequence of
+  commands provide the same functionality:
+
+  ```mzsql
+  materialize=> SET schema = finance;
+  SET
+  materialize=> SHOW schema;
+   schema
+  ---------
+   finance
+  (1 row)
+  ```
+
+  ```mzsql
+   materialize=> SET search_path = finance, public;
+   SET
+   materialize=> SELECT current_schema;
+    current_schema
+   ----------------
+    finance
+   (1 row)
+  ```
+
+* Improve and extend the base implementation of **Role-based
+  access control** (RBAC):
+
+  * Add support for the [`REASSIGN OWNED`](/sql/reassign-owned/) command, which
+    allows reassigning the ownership of objects owned by one or more roles to a
+    different role.
+
+  It's important to note that role-based access control (RBAC) is **disabled by
+  default**. You must [contact us](https://materialize.com/contact/) to enable
+  this feature in your Materialize region.

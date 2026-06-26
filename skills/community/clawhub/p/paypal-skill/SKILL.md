@@ -1,35 +1,49 @@
 ---
-name: "Paypal"
-description: "整理PayPal官网公开的产品说明、费率规则、服务边界及帮助信息，不涉及账户操作或交易执行。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paypal-skill"
-sourceUrl: "https://clawhub.ai/skills/paypal-skill"
+name: paypal
+description: 注册“PayPal”技能；用于金融服务公开页面、产品说明、费率规则与帮助信息整理。
+homepage: `https://www.paypal.com/`
+metadata: {"clawdbot":{"emoji":"💰"}}
 ---
 
-# Paypal
+# PayPal
 
-> 整理PayPal官网公开的产品说明、费率规则、服务边界及帮助信息，不涉及账户操作或交易执行。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paypal-skill`
-- **Source URL:** [https://clawhub.ai/skills/paypal-skill](https://clawhub.ai/skills/paypal-skill)
+- 面向公开官网、产品页、费率页、帮助中心与公告页的信息整理
+- 不提供账户登录、转账代操作、投资建议、交易执行或权限绕过能力
+- 仅处理公开可见的产品说明、费率规则、功能边界与公告信息
 
-## Overview
+关键入口
 
+- 主页：https://www.paypal.com/
+- 产品与费率：公开产品页、费率说明、服务条款入口
+- 帮助与公告：帮助中心、风险提示、公告与安全中心入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/paypal-skill
-```
+常见任务
+
+- 账户功能、支付能力、转账场景与费率整理
+- 产品类型、服务边界、使用条件与地区限制汇总
+- 风险提示、公告、客服入口与帮助信息提取
+
+数据字段
+
+- 产品名称、功能范围、费率说明、适用地区、链接
+- 账户能力、限制条件、帮助页、公告页链接
+- 风险提示、条款入口、安全中心与申诉渠道
+
+自动化要点
+
+- 金融信息时效性强，输出时标明页面日期与适用地区
+- 不得把公开说明整理误写成投资、借贷或税务建议
+- 不处理登录态账户、余额、实名信息、银行卡或私密交易数据
+
+示例流程
+
+- 功能整理：访问 PayPal 产品页 → 提取账户与支付能力 → 输出摘要
+- 费率汇总：进入费率与条款页 → 提取收费结构与限制 → 输出表格
+- 安全帮助：访问帮助中心与公告页 → 提取风控与申诉入口 → 输出清单
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

@@ -1,0 +1,25 @@
+{
+  "skill_id": "skill-evolve-pro",
+  "version": "1.0.1",
+  "epoch": 1,
+  "round": 1,
+  "edit_budget": 6,
+  "last_update": "2026-06-03T15:21:51.572300",
+  "trajectory_stats": {
+    "total": 2,
+    "hard_success": 0,
+    "hard_fail": 2,
+    "soft_fail": 0
+  },
+  "edit_history": [
+    {
+      "round": 1,
+      "applied": 2,
+      "rejected": 2,
+      "edits_count": 4,
+      "gate_passed": false,
+      "timestamp": "2026-06-03T15:21:51.571307"
+    }
+  ],
+  "slow_update_region": null
+}

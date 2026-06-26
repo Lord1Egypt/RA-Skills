@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-03-19T19:00:15.433Z",
+  "grids": [
+    {
+      "name": "btc",
+      "symbol": "BTCUSDT",
+      "trend": "STRONG_BUY",
+      "rsi": 38.8239377903819,
+      "macd": {
+        "macdLine": -612.3926115408249,
+        "signalLine": -687.5776020824453,
+        "histogram": 75.18499054162044
+      },
+      "bollinger": {
+        "upperBand": 71439.44528425953,
+        "middleBand": 70222.60150000002,
+        "lowerBand": 69005.7577157405,
+        "currentPrice": 69832.71,
+        "std": 608.4218921297551
+      },
+      "price": 69832.71
+    },
+    {
+      "name": "sol",
+      "symbol": "SOLUSDT",
+      "trend": "STRONG_SELL",
+      "rsi": 36.962602994665346,
+      "macd": {
+        "macdLine": -0.8516697573690379,
+        "signalLine": -0.8414518130895166,
+        "histogram": -0.010217944279521385
+      },
+      "bollinger": {
+        "upperBand": 91.11032108603843,
+        "middleBand": 89.18700000000001,
+        "lowerBand": 87.2636789139616,
+        "currentPrice": 88.16,
+        "std": 0.9616605430192093
+      },
+      "price": 88.16
+    },
+    {
+      "name": "eth",
+      "symbol": "ETHUSDT",
+      "trend": "STRONG_SELL",
+      "rsi": 32.93453604637999,
+      "macd": {
+        "macdLine": -29.17347581223703,
+        "signalLine": -28.84274655267106,
+        "histogram": -0.3307292595659703
+      },
+      "bollinger": {
+        "upperBand": 2224.0580219954863,
+        "middleBand": 2161.0734999999995,
+        "lowerBand": 2098.0889780045127,
+        "currentPrice": 2125.2,
+        "std": 31.49226099774351
+      },
+      "price": 2125.2
+    }
+  ]
+}

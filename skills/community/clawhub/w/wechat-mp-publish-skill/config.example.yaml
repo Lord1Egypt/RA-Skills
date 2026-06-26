@@ -1,0 +1,86 @@
+# 微信公众号配置示例
+# 复制此文件为 config.yaml 并填入真实的 API Key
+
+wechat:
+  appid: "你的公众号 AppID"
+  appsecret: "你的公众号 AppSecret"
+  name: "你的公众号名称"
+  api_base: "https://api.weixin.qq.com/cgi-bin"
+  token_cache_file: ".token_cache"
+
+# 图片生成配置
+image:
+  # ========== 配图策略配置 ==========
+  # 优先级列表（按顺序尝试，免费额度优先）
+  provider_priority:
+    - "unsplash"          # 1. Unsplash 真实照片（免费，无限）
+    - "tongyi-wanxiang"   # 2. 通义万相（免费额度可配置）
+    - "baidu-yige"        # 3. 文心一格（免费额度可配置）
+    - "dall-e-3"          # 4. DALL-E 3（付费，$0.04/张）
+    - "placeholder"       # 5. 占位图（降级方案）
+  
+  auto_switch: true       # 自动切换
+  max_retries: 2          # 最大重试次数
+  
+  # ========== 各图片源详细配置 ==========
+  providers:
+    # --- Unsplash 配置 ---
+    unsplash:
+      enabled: true  # ON=true, OFF=false
+      access_key: "your-unsplash-access-key-here"
+      orientation: "landscape"
+      per_page: 5
+      monthly_limit: null  # null=无限制
+    
+    # --- 通义万相配置 ---
+    tongyi-wanxiang:
+      enabled: true  # ON=true, OFF=false
+      api_key: "sk-your-dashscope-api-key-here"
+      api_url: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"
+      model: "wanx-v1"
+      size: "1024*1024"
+      style: "<auto>"
+      num_images: 1
+      monthly_limit: 100  # 每月免费额度（可配置，例如：100, 200, 300）
+    
+    # --- 文心一格配置 ---
+    baidu-yige:
+      enabled: true  # ON=true, OFF=false
+      api_key: "your-baidu-api-key-here"
+      secret_key: "your-baidu-secret-key-here"
+      api_url: "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/text2image/sd_xl"
+      size: "1024,1024"
+      style: "Base"
+      monthly_limit: 100  # 每月免费额度（可配置）
+    
+    # --- DALL-E 3 配置 ---
+    dall-e-3:
+      enabled: true  # ON=true, OFF=false
+      api_key: "sk-your-dalle-api-key-here"
+      model: "dall-e-3"
+      size: "1024x1024"
+      quality: "standard"
+      api_url: "https://api.openai.com/v1/images/generations"
+      monthly_limit: null  # null=无限制（付费）
+    
+    # --- 占位图配置 ---
+    placeholder:
+      enabled: true  # 始终启用（降级方案）
+      monthly_limit: null  # 无限制
+  
+  # ========== 免费额度重置配置 ==========
+  free_quota:
+    reset_day: 1  # 每月几号重置计数器
+  
+  # ========== 输出配置 ==========
+  output_width: 900
+  output_height: 383
+  output_format: "JPEG"
+  output_quality: 85
+  
+  # ========== 配图数量配置 ==========
+  max_images: 2  # 最多插入几张配图（不含封面）
+  min_words_per_image: 1500  # 最少多少字配一张图
+  
+  # ========== 配图风格 ==========
+  style: "photorealistic"

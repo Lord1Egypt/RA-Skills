@@ -1,0 +1,37 @@
+{
+  "slug": "ai-workflow-red-team-lite",
+  "title": "AI 工作流轻量红队师",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "structured_brief",
+  "summary": "对 AI 自动化流程做轻量红队演练，聚焦误用路径、边界失败和数据泄露风险。",
+  "inputHint": "流程说明、输入输出、权限边界",
+  "sections": [
+    "攻击面摘要",
+    "误用路径",
+    "边界失败",
+    "数据风险",
+    "缓解建议",
+    "演练清单"
+  ],
+  "useCases": [
+    "工作流审查",
+    "上线前质控",
+    "安全演练"
+  ],
+  "positiveExamples": [
+    "帮我轻量 red-team 一下这个 AI 工作流",
+    "聚焦误用路径和边界失败"
+  ],
+  "negativeExamples": [
+    "不要输出可直接滥用的攻击脚本",
+    "不要帮助破坏系统"
+  ],
+  "risk": "只做防御性分析，不提供破坏性步骤。",
+  "tags": [
+    "red-team",
+    "ai",
+    "workflow",
+    "security"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "ctrip-hotel-search",
+  "version": "1.0.0",
+  "description": "携程酒店自动搜索 Skill",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/test-search.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "keywords": [
+    "ctrip",
+    "hotel",
+    "search",
+    "automation",
+    "travel"
+  ],
+  "author": "Wangwang",
+  "license": "MIT"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "周易本经占筮"
+  short_description: "汲取百家之长，打磨成更完整的《周易》系统 | A more complete I Ching system distilled from the best of the field"
+  default_prompt: "Use $zhouyi-benjing-oracle to cast a Zhouyi hexagram or look up hexagram source text, cite the original judgment or line text first, and then explain it in plain Chinese."

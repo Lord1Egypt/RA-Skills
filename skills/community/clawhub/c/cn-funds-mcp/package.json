@@ -1,0 +1,40 @@
+{
+  "name": "cn-funds-mcp",
+  "version": "0.1.0",
+  "description": "China fund & stock data MCP server, free API, no API key required (基金/股票数据 MCP 服务，免费接口，无需配置 API Key)",
+  "author": "smallke <smallkes@qq.com> (https://github.com/smallke)",
+  "homepage": "https://github.com/smallke",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "fund",
+    "stock",
+    "china",
+    "a-share",
+    "eastmoney",
+    "finance",
+    "investment",
+    "portfolio",
+    "net-value",
+    "capital-flow",
+    "northbound",
+    "free-api",
+    "no-api-key",
+    "基金",
+    "股票",
+    "A股",
+    "东方财富"
+  ],
+  "type": "module",
+  "bin": {
+    "cn-funds-mcp": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "inspect": "npx @modelcontextprotocol/inspector node src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

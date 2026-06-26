@@ -1,35 +1,18 @@
----
-name: "Cn Prefix Tool"
-description: "Add a specified prefix to each line of a given text using a Python standard library script."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-prefix-tool"
-sourceUrl: "https://clawhub.ai/skills/cn-prefix-tool"
----
+# cn-prefix-tool
 
-# Cn Prefix Tool
+文本前缀添加工具。为每行添加指定前缀。
 
-> Add a specified prefix to each line of a given text using a Python standard library script.
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-prefix-tool`
-- **Source URL:** [https://clawhub.ai/skills/cn-prefix-tool](https://clawhub.ai/skills/cn-prefix-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-prefix-tool
+python3 scripts/add_prefix.py --text "第一行\n第二行" --prefix "- "
+python3 scripts/add_prefix.py --text "第一行\n第二行" --prefix "  "
 ```
+
+纯Python标准库。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

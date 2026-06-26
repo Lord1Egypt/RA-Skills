@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI News Intelligence Pipeline"
+  short_description: "Capture AI news frequently or generate scheduled Excel and Word briefs"
+  default_prompt: "Use $ai-news-pipeline to run report generation only in the current workspace for the reporting window from yesterday 00:00 to today 08:00. Build the cumulative domestic Excel report, build the cumulative international Excel report with AI title, AI summary, and impact score, then generate the merged Word brief."

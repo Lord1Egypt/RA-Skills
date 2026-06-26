@@ -1,0 +1,38 @@
+{
+  "name": "观点交锋",
+  "description": "明确的观点对立，激烈的辩论，适合有争议性的话题",
+  "segment_count": {
+    "min": 4,
+    "max": 6
+  },
+  "dynamic_mode_preference": ["debate", "challenge"],
+  "emotional_arc": [0.4, 0.6, 0.8, 0.7, 0.5],
+  "persona_interaction": {
+    "default_chemistry": "辩论对手",
+    "role_distribution": "A和B分别代表对立观点",
+    "interaction_frequency": "极高"
+  },
+  "content_characteristics": {
+    "data_density": "中",
+    "storytelling_ratio": "中",
+    "debate_intensity": "高"
+  },
+  "segment_guidelines": {
+    "setup": {
+      "dynamic_mode": "debate",
+      "emotional_tone": "tense",
+      "key_elements": ["明确立场", "亮出核心论点", "设定战场"]
+    },
+    "confrontation": {
+      "dynamic_mode": "debate",
+      "emotional_tone": "tense",
+      "key_elements": ["攻防交替", "反驳对方论据", "坚持己方立场"]
+    },
+    "resolution": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "reflective",
+      "key_elements": ["承认复杂性", "找出共识", "保留分歧"]
+    }
+  },
+  "special_instructions": "必须有明确的观点对立，必须有攻防过程，避免和稀泥"
+}

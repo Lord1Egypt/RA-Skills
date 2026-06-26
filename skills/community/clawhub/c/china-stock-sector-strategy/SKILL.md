@@ -1,35 +1,32 @@
----
-name: "China Stock Sector Strategy"
+﻿---
+name: china-stock-sector-strategy
 description: "板块策略分析（纯 OpenClaw 公开源版）：基于东财公开行业/概念板块快照。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/china-stock-sector-strategy"
-sourceUrl: "https://clawhub.ai/skills/china-stock-sector-strategy"
+version: 2.0.0
+metadata:
+  openclaw:
+    requires:
+      anyBins:
+        - python3
+        - python
 ---
 
-# China Stock Sector Strategy
+# A 股板块策略（公开源）
 
-> 板块策略分析（纯 OpenClaw 公开源版）：基于东财公开行业/概念板块快照。
+## 工具
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/china-stock-sector-strategy`
-- **Source URL:** [https://clawhub.ai/skills/china-stock-sector-strategy](https://clawhub.ai/skills/china-stock-sector-strategy)
+- `exec`：运行 `{baseDir}/scripts/sector_strategy_public.py`
+- `web_search`、`web_fetch`：补充资讯
 
-## Overview
+## 调用
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/china-stock-sector-strategy
+python3 "{baseDir}/scripts/sector_strategy_public.py" 1D
 ```
+
+返回 JSON 字段：`ok`、`payload`、`sectors_count`、`concepts_count`。
+
+## 说明
+
+- 本技能不依赖 `WENCAI_COOKIE`、不依赖 python-tools。
+- 北向资金在公开接口里不稳定，脚本会返回限制说明。
+- 输出仅供参考，不构成投资建议。

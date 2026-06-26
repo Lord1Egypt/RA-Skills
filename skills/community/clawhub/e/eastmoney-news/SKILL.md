@@ -1,35 +1,29 @@
----
-name: "Eastmoney News"
-description: "Provides real-time A-share market and financial news from Eastmoney based on user queries like market trends and stock updates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eastmoney-news"
-sourceUrl: "https://clawhub.ai/skills/eastmoney-news"
----
+# eastmoney-news
 
-# Eastmoney News
+东方财富秒想新闻搜索。使用此skill获取A股、财经新闻。
 
-> Provides real-time A-share market and financial news from Eastmoney based on user queries like market trends and stock updates.
+## When to use
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eastmoney-news`
-- **Source URL:** [https://clawhub.ai/skills/eastmoney-news](https://clawhub.ai/skills/eastmoney-news)
+- 用户询问今日A股市场走势
+- 用户需要财经新闻资讯
+- 用户说"看看今天有什么新闻"
 
-## Overview
+## API
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/eastmoney-news
+curl -X POST "https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search" \
+  -H "Content-Type: application/json" \
+  -H "apikey: mkt_o2fBS-Dkbt11c7vSNnlXjESgfybI8EXzzzX2XkOQVuE" \
+  -d '{"query":"<搜索关键词>","variables":0}'
 ```
+
+## 常用查询
+
+- 今日A股市场 -> "今日A股市场新闻"
+- 大盘走势 -> "A股大盘走势"
+- 板块轮动 -> "A股板块轮动"
+- 个股新闻 -> "XXX股票新闻"
+
+## 输出格式
+
+解析返回的JSON，提取title、content、date、source，以可读格式呈现给用户。

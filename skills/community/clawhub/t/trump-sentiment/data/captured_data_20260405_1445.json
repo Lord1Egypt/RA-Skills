@@ -1,0 +1,83 @@
+{
+  "run_timestamp": "2026-04-05T06:45:00Z",
+  "run_cst": "2026-04-05 14:45 CST",
+  "trigger": "cron_forced",
+  "data_source": "Bing News + CNN live + curl",
+  "iran_crisis_day": 34,
+  "timeline": [
+    {
+      "time_cst": "04-05 06:46",
+      "source": "CNN",
+      "type": "military",
+      "content": "F-15飞行员被美军救出伊朗——Trump发帖称其'safe and sound'，行动动用数十架飞机"
+    },
+    {
+      "time_cst": "04-05 ~09:00 (approx)",
+      "source": "Yahoo/NYP",
+      "type": "ultimatum",
+      "content": "Trump发出48小时最后通牒——要求伊朗重新开放霍尔木兹海峡，否则达成协议"
+    },
+    {
+      "time_cst": "04-05 ~10:00 (approx)",
+      "source": "Trump Truth Social",
+      "type": "clarification",
+      "content": "Trump澄清：给伊朗一周时间（48小时被误解为'一周'），强调外交优先"
+    },
+    {
+      "time_cst": "04-05 ~14:00 (approx)",
+      "source": "NDTV/IndianExpress",
+      "type": "iran_response",
+      "content": "伊朗拒绝Trump最后通牒——称要求'不平衡(balanced)'，鲁哈尼/哈梅内伊强烈谴责"
+    },
+    {
+      "time_cst": "04-05 ~19:00 (approx)",
+      "source": "Firstpost/Moneycontrol",
+      "type": "iran_response",
+      "content": "伊朗警告：美以将面临'持久的悔恨(lasting regret)'——CNN报道伊朗领导层声明"
+    },
+    {
+      "time_cst": "04-05 ~19:00 (approx)",
+      "source": "CNN",
+      "type": "oil_market",
+      "content": "第34天中东冲突——油价飙升，能源市场持续承压"
+    }
+  ],
+  "key_events": [
+    {
+      "event": "F-15飞行员营救",
+      "importance": "high",
+      "detail": "美国特种部队深入伊朗境内营救，显示军事行动升级",
+      "trump_narrative": "Trump积极宣传此次营救，展示军事实力"
+    },
+    {
+      "event": "48小时通牒争议",
+      "importance": "high",
+      "detail": "Trump发ultimatum后数小时澄清是'一周'，引发通讯混乱质疑",
+      "market_impact": "Nasdaq -2.3%, SPX -1.5%"
+    },
+    {
+      "event": "伊朗拒绝并威胁",
+      "importance": "high",
+      "detail": "哈梅内伊/伊朗领导层拒绝谈判条件，警告美以将面临持久后果"
+    },
+    {
+      "event": "霍尔木兹海峡封锁持续",
+      "importance": "critical",
+      "detail": "封锁进入第34天，油价飙升，全球能源供应链紧张"
+    }
+  ],
+  "market_impact": {
+    "nasdaq": "-2.3% (Nasdaq触发阈值)",
+    "sp500": "-1.5%",
+    "oil": "飙升(surge)——霍尔木兹封锁影响",
+    "note": "数据来自Bing News摘要，具体数值待实时行情验证"
+  },
+  "sentiment": {
+    "trump_tone": "鹰派+混乱",
+    "iran_tone": "强硬拒绝",
+    "market_tone": "恐慌抛售",
+    "overall": "高度紧张——双方无让步迹象"
+  },
+  "x_status": "X.com 无法访问(VPN限制)，未能获取实时X推文数据",
+  "note": "时间均为CST(UTC+8)。部分时间根据新闻顺序推算。X数据缺失为核心局限。"
+}

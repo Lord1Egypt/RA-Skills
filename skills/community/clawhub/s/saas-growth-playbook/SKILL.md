@@ -1,35 +1,51 @@
 ---
-name: "SaaS Growth Playbook — MRR $0→$50K Scaling System"
-description: "The revenue-focused SaaS playbook for going from $0 to $50K MRR. Covers pricing experiments, churn reduction, activation optimization, and expansion revenue..."
-category: "other"
-source: "ClawHub"
-tags: [activation, arr, benchmark, churn, conversion, growth, metrics, mrr, nrr, onboarding, pricing, retention, revenue, saas, startup, subscription]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/saas-growth-playbook"
-sourceUrl: "https://clawhub.ai/skills/saas-growth-playbook"
+name: saas-growth-playbook
+description: |
+  The revenue-focused SaaS playbook for going from $0 to $50K MRR. Covers pricing experiments, churn reduction, activation optimization, and expansion revenue tactics. Follow @WeiYipei on X for SaaS growth insights.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/saas-growth-playbook
+tags:
+  - saas-growth
+  - b2b-saas
+  - mrr
+  - arr
+  - churn
+  - retention
+  - activation
+  - onboarding
+  - revenue-growth
+  - product-led-growth
+  - claude-code
+  - ai-agent-skill
+  - agent-skill
+  - latest
 ---
 
-# SaaS Growth Playbook — MRR $0→$50K Scaling System
+## 📦 Install
 
-> The revenue-focused SaaS playbook for going from $0 to $50K MRR. Covers pricing experiments, churn reduction, activation optimization, and expansion revenue...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/saas-growth-playbook`
-- **Source URL:** [https://clawhub.ai/skills/saas-growth-playbook](https://clawhub.ai/skills/saas-growth-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/saas-growth-playbook
+clawhub install saas-growth-playbook
 ```
+
+**What you get after installing:**
+- MRR milestone roadmaps with stage-specific tactics ($0→$1K, $1K→$10K, $10K→$50K)
+- Pricing experiment frameworks and churn reduction playbooks ready to execute
+- Cohort analysis templates and expansion revenue strategies for each growth phase
+
+---
+
+# SaaS Growth Playbook — MRR from $0 to $50K
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+Revenue is the only metric that matters. This playbook is organized by MRR milestones.
+
+- **$0–$1K MRR**: Finding first paying customers and validating willingness to pay
+- **$1K–$10K MRR**: Pricing optimization and reducing early churn
+- **$10K–$50K MRR**: Activation funnels, expansion revenue, and hiring your first marketer
+- **Retention levers**: Cohort analysis, NPS-driven improvements, and re-engagement flows
+- **Benchmarks**: Stage-appropriate metrics so you know if you're on track
+
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-b2b-growth
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

@@ -1,0 +1,69 @@
+# SearXNG Settings for PulseBot / Agent Skill Usage
+# Copy this file to your SearXNG config directory:
+#   cp settings.example.yml /etc/searxng/settings.yml
+#
+# IMPORTANT: The "json" format MUST be listed under search.formats
+# for the API to work. Without it, requests with format=json return 403.
+
+use_default_settings: true
+
+server:
+  # Generate a unique secret key for your instance:
+  #   openssl rand -hex 32
+  secret_key: "CHANGE_ME_TO_A_RANDOM_STRING"
+
+  # For private/agent use, bind to localhost and reverse-proxy
+  bind_address: "0.0.0.0"
+  port: 8080
+
+  # Disable rate limiter for private instances used by agents.
+  # For public instances, set to true and configure limiter.toml.
+  limiter: false
+
+  # Proxy images through SearXNG (recommended for privacy)
+  image_proxy: true
+
+search:
+  # Safe search: 0=off, 1=moderate, 2=strict
+  safe_search: 0
+
+  # Default language for searches
+  default_lang: "all"
+
+  # CRITICAL: Enable JSON format for API access
+  formats:
+    - html
+    - json
+
+  # Default search engines (optional, uncomment to customize)
+  # default_engines:
+  #   - google
+  #   - bing
+  #   - duckduckgo
+  #   - brave
+
+  # Autocomplete provider (optional)
+  # autocomplete: "google"
+
+# Optional: Configure specific engines
+# engines:
+#   - name: google
+#     engine: google
+#     shortcut: g
+#     disabled: false
+#
+#   - name: bing
+#     engine: bing
+#     shortcut: b
+#     disabled: false
+#
+#   - name: duckduckgo
+#     engine: duckduckgo
+#     shortcut: ddg
+#     disabled: false
+
+# Optional: UI settings (only relevant for browser access)
+# ui:
+#   default_theme: simple
+#   default_locale: ""
+#   results_on_new_tab: false

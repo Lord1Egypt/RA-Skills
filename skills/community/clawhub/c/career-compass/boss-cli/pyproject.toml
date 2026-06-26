@@ -1,0 +1,57 @@
+[project]
+name = "kabi-boss-cli"
+version = "0.3.6"
+description = "A CLI for Boss Zhipin (BOSS直聘) — search jobs, chat with bosses from the terminal"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+keywords = ["boss", "zhipin", "cli", "terminal", "job", "recruitment"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "httpx>=0.27",
+    "browser-cookie3>=0.19",
+    "qrcode>=7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.11.0",
+]
+yaml = [
+    "pyyaml>=6.0",
+]
+browser = [
+    "camoufox>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/barry/career-compass"
+Repository = "https://github.com/barry/career-compass"
+
+[project.scripts]
+boss = "boss_cli.cli:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["boss_cli"]
+
+[tool.pytest.ini_options]
+markers = [
+    "smoke: end-to-end tests requiring live cookies (deselect with '-m \"not smoke\"')",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 140

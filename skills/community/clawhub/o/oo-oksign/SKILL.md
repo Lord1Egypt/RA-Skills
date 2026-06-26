@@ -1,35 +1,82 @@
 ---
-name: "OKSign"
-description: "OKSign (oksign.be). Use this skill for ANY OKSign request — searching and reading data. Whenever a task involves OKSign, use this skill instead of calling th..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-oksign"
-sourceUrl: "https://clawhub.ai/skills/oo-oksign"
+name: oo-oksign
+description: "OKSign (oksign.be). Use this skill for ANY OKSign request — searching and reading data. Whenever a task involves OKSign, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "OKSign"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["oksign"]
+  icon: "https://static.oomol.com/logo/third-party/oksign.png"
 ---
 
 # OKSign
 
-> OKSign (oksign.be). Use this skill for ANY OKSign request — searching and reading data. Whenever a task involves OKSign, use this skill instead of calling th...
+Operate **OKSign** through your OOMOL-connected account. This skill calls the `oksign` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-oksign`
-- **Source URL:** [https://clawhub.ai/skills/oo-oksign](https://clawhub.ai/skills/oo-oksign)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected OKSign. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-oksign
+oo connector schema "oksign" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "oksign" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `get_credits` — Get OKSign credits balance, expiry, and account storage details.
+- `get_document_metadata` — Get OKSign metadata v2 for a signed document by signed_docid.
+- `get_linked_document` — Resolve the corresponding source_docid and signed_docid pair for an OKSign document identifier.
+- `list_active_documents` — List active OKSign documents visible in the current account.
+- `list_users` — List the users configured in the current OKSign account.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change OKSign state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — OKSign is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=oksign
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- OKSign homepage: https://www.oksign.be/en/

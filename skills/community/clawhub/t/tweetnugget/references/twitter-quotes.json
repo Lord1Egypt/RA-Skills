@@ -1,0 +1,78 @@
+{
+  "name": "Twitter Wisdom",
+  "description": "Curated quotes sourced from Twitter/X",
+  "quotes": [
+    {
+      "text": "The best time to plant a tree was 20 years ago. The second best time is now.",
+      "author": "@naval",
+      "category": "Mindset",
+      "tags": ["wisdom", "action"]
+    },
+    {
+      "text": "You are not a drop in the ocean. You are the entire ocean in a drop.",
+      "author": "@RumiQuotes",
+      "category": "Philosophy",
+      "tags": ["philosophy", "identity"]
+    },
+    {
+      "text": "Compound interest is the eighth wonder of the world. He who understands it, earns it. He who doesn't, pays it.",
+      "author": "@naval",
+      "category": "Mindset",
+      "tags": ["finance", "wisdom"]
+    },
+    {
+      "text": "The impediment to action advances action. What stands in the way becomes the way.",
+      "author": "@RyanHoliday",
+      "category": "Philosophy",
+      "tags": ["stoicism", "resilience"]
+    },
+    {
+      "text": "Build things, tell people, be nice. That's all you need to know.",
+      "author": "@dickc",
+      "category": "Building",
+      "tags": ["building", "simplicity"]
+    },
+    {
+      "text": "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work.",
+      "author": "@elonmusk",
+      "category": "Career",
+      "tags": ["work", "satisfaction"]
+    },
+    {
+      "text": "Innovation distinguishes between a leader and a follower.",
+      "author": "@elonmusk",
+      "category": "Leadership",
+      "tags": ["innovation", "leadership"]
+    },
+    {
+      "text": "The only way to do great work is to love what you do.",
+      "author": "@timoreilly",
+      "category": "Career",
+      "tags": ["work", "passion"]
+    },
+    {
+      "text": "Simplicity is the ultimate sophistication.",
+      "author": "@stewartbutterfield",
+      "category": "Building",
+      "tags": ["design", "simplicity"]
+    },
+    {
+      "text": "First, solve the problem. Then, write the code.",
+      "author": "@johnrobinson",
+      "category": "AI & Tech",
+      "tags": ["programming", "wisdom"]
+    },
+    {
+      "text": "The most dangerous phrase in the language is: We've always done it this way.",
+      "author": "@Grady_Booch",
+      "category": "Leadership",
+      "tags": ["innovation", "change"]
+    },
+    {
+      "text": "Talk is cheap. Show me the code.",
+      "author": "@linus__torvalds",
+      "category": "AI & Tech",
+      "tags": ["programming", "action"]
+    }
+  ]
+}

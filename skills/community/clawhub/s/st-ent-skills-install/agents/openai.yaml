@@ -1,0 +1,4 @@
+interface:
+  display_name: "699pic MCP Install"
+  short_description: "Install and audit the 699pic enterprise MCP server"
+  default_prompt: "Use $st-ent-mcp-install to audit, install, and project-register the 699pic enterprise MCP server."

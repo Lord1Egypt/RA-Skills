@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "updated": "2026-03-20T19:00:00Z",
+  "observations": 47,
+  "traits": {
+    "communication_style": {
+      "value": "direct-minimal",
+      "confidence": 0.85,
+      "observations": 23,
+      "last_updated": "2026-03-20T18:00:00Z"
+    },
+    "decision_speed": {
+      "value": "fast-intuitive",
+      "confidence": 0.72,
+      "observations": 11,
+      "last_updated": "2026-03-20T17:00:00Z"
+    },
+    "detail_preference": {
+      "value": "sparse-bullets-over-paragraphs",
+      "confidence": 0.68,
+      "observations": 15,
+      "last_updated": "2026-03-20T16:00:00Z"
+    },
+    "autonomy_preference": {
+      "value": "high-auto-low-ask",
+      "confidence": 0.55,
+      "observations": 8,
+      "last_updated": "2026-03-20T15:00:00Z"
+    },
+    "correction_pattern": {
+      "value": "removes-hedging-and-filler",
+      "confidence": 0.78,
+      "observations": 18,
+      "last_updated": "2026-03-20T18:30:00Z"
+    },
+    "engagement_trigger": {
+      "value": "problems-and-novelty",
+      "confidence": 0.61,
+      "observations": 9,
+      "last_updated": "2026-03-20T14:00:00Z"
+    },
+    "disengagement_trigger": {
+      "value": "status-updates-and-routine-reports",
+      "confidence": 0.53,
+      "observations": 7,
+      "last_updated": "2026-03-20T12:00:00Z"
+    },
+    "work_rhythm": {
+      "value": "sprint-builder-intense-bursts-then-detach",
+      "confidence": 0.44,
+      "observations": 5,
+      "last_updated": "2026-03-19T20:00:00Z"
+    },
+    "active_hours": {
+      "value": "0500-1000-primary-1800-2200-secondary",
+      "confidence": 0.70,
+      "observations": 14,
+      "last_updated": "2026-03-20T10:00:00Z"
+    },
+    "rejection_pattern": {
+      "value": "hard-fast-no-negotiation",
+      "confidence": 0.38,
+      "observations": 4,
+      "last_updated": "2026-03-18T15:00:00Z"
+    }
+  },
+  "predictions": {
+    "total": 34,
+    "correct": 27,
+    "accuracy": 0.79
+  },
+  "corrections_log": [
+    {
+      "date": "2026-03-20",
+      "what": "removed_hedging",
+      "signal": "operator prefers absolute statements over hedged ones",
+      "weight": 5
+    },
+    {
+      "date": "2026-03-19",
+      "what": "shortened_response",
+      "signal": "operator wanted 2 sentences, agent gave 5",
+      "weight": 5
+    },
+    {
+      "date": "2026-03-18",
+      "what": "ignored_status_update",
+      "signal": "operator did not engage with routine progress report",
+      "weight": 1
+    }
+  ],
+  "decay_rate": 0.05
+}

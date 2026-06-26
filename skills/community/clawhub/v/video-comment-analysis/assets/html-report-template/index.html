@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{REPORT_TITLE}}</title>
+  <style>
+    :root{
+      --bg:#f6efe8;
+      --paper:#fffaf5;
+      --ink:#2d241f;
+      --muted:#78695f;
+      --line:rgba(84,61,47,.12);
+      --accent:#8b5d40;
+      --accent2:#b98563;
+      --good:#69785c;
+      --risk:#b26a60;
+      --soft:#efe3d6;
+      --shadow:0 20px 60px rgba(73,53,40,.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(180deg,#fbf7f2,#efe4d8)}
+    .wrap{max-width:1240px;margin:0 auto;padding:32px 22px 90px}
+    .hero,.section{background:rgba(255,250,245,.94);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow)}
+    .hero{padding:42px 38px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:999px;background:radial-gradient(circle,rgba(185,133,99,.22),rgba(185,133,99,0));pointer-events:none}
+    .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:700}
+    h1{margin:12px 0 12px;font-size:clamp(38px,5vw,64px);line-height:1.02;letter-spacing:-.03em}
+    h2{margin:0 0 12px;font-size:30px;letter-spacing:-.02em}
+    h3{margin:0 0 10px;font-size:18px}
+    p,li{font-size:15px;line-height:1.85;color:#4f433c}
+    .lead{max-width:820px;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .chip{padding:9px 13px;border-radius:999px;background:#f5ebe0;border:1px solid rgba(84,61,47,.08);font-size:13px;color:#5f5148}
+    .grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(4,1fr);margin-top:18px}.two{grid-template-columns:1.08fr .92fr}.three{grid-template-columns:repeat(3,1fr)}
+    .stat,.panel,.card,.quote{background:var(--paper);border:1px solid rgba(84,61,47,.10);border-radius:22px}
+    .stat{padding:20px}.panel{padding:20px}.card{padding:18px}.quote{padding:18px}
+    .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}.v{margin-top:8px;font-size:34px;line-height:1.08;letter-spacing:-.03em}.s{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.75}
+    .section{padding:28px;margin-top:20px}.sub{margin:0 0 18px;color:var(--muted);font-size:14px}
+    .bars{display:grid;gap:12px}.bar{display:grid;grid-template-columns:150px 1fr 52px;gap:12px;align-items:center}.track{height:12px;border-radius:999px;background:#eee2d6;overflow:hidden}.fill{height:100%;border-radius:999px;background:var(--accent)}.val{font-size:13px;color:var(--muted)}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}.goodbox,.riskbox{padding:18px;border-radius:22px}.goodbox{background:linear-gradient(180deg,rgba(105,120,92,.12),rgba(105,120,92,.04));border:1px solid rgba(105,120,92,.18)}.riskbox{background:linear-gradient(180deg,rgba(178,106,96,.14),rgba(178,106,96,.05));border:1px solid rgba(178,106,96,.18)}
+    .metric{display:grid;gap:10px}.metric-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;font-size:14px}.metric-line{grid-column:1/-1;height:8px;border-radius:999px;background:rgba(255,255,255,.6);overflow:hidden}.metric-line span{display:block;height:100%;border-radius:999px}
+    .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.quote small{display:block;margin-top:10px;color:var(--muted);font-size:12px}
+    .footer{margin-top:18px;padding-top:16px;border-top:1px dashed rgba(84,61,47,.16);color:var(--muted);font-size:13px;line-height:1.8}
+    @media (max-width: 980px){.stats,.two,.three,.compare,.quotes{grid-template-columns:1fr}.bar{grid-template-columns:120px 1fr 44px}.hero{padding:30px 24px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Video Comment Analysis</div>
+      <h1>{{REPORT_TITLE}}</h1>
+      <p class="lead">{{ONE_LINE_CONCLUSION}}</p>
+      <div class="chips">
+        <span class="chip">平台：{{PLATFORM}}</span>
+        <span class="chip">评论总量：{{TOTAL_COMMENT_COUNT}}</span>
+        <span class="chip">有效主评论：{{EFFECTIVE_MAIN_COMMENT_COUNT}}</span>
+        <span class="chip">展开回复：{{EXPANDED_REPLY_THREADS}}</span>
+      </div>
+    </section>
+
+    <section class="grid stats">
+      <div class="stat"><div class="k">购买意向</div><div class="v">{{PURCHASE_INTENT_LEVEL}}</div><div class="s">{{PURCHASE_INTENT_NOTE}}</div></div>
+      <div class="stat"><div class="k">主要卖点</div><div class="v">{{TOP_SELLING_POINT}}</div><div class="s">{{TOP_SELLING_POINT_NOTE}}</div></div>
+      <div class="stat"><div class="k">最大阻力</div><div class="v">{{TOP_BLOCKER}}</div><div class="s">{{TOP_BLOCKER_NOTE}}</div></div>
+      <div class="stat"><div class="k">卖家判断</div><div class="v">{{OVERALL_JUDGMENT}}</div><div class="s">{{OVERALL_JUDGMENT_NOTE}}</div></div>
+    </section>
+
+    <section class="section">
+      <h2>评论主题分布</h2>
+      <p class="sub">{{THEME_DISTRIBUTION_NOTE}}</p>
+      <div class="bars">{{THEME_BARS}}</div>
+    </section>
+
+    <section class="section">
+      <h2>用户关注点分析</h2>
+      <p class="sub">{{CONCERN_ANALYSIS_NOTE}}</p>
+      <div class="bars">{{CONCERN_BARS}}</div>
+    </section>
+
+    <section class="section">
+      <h2>购买意向分析</h2>
+      <div class="grid three">{{PURCHASE_INTENT_BLOCKS}}</div>
+    </section>
+
+    <section class="section">
+      <h2>成交驱动因素 vs 影响转化因素</h2>
+      <div class="compare">
+        <div class="goodbox">
+          <h3>成交驱动因素</h3>
+          <div class="metric">{{DRIVER_ROWS}}</div>
+        </div>
+        <div class="riskbox">
+          <h3>影响转化因素</h3>
+          <div class="metric">{{BLOCKER_ROWS}}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>优化建议</h2>
+      <div class="grid three">{{OPTIMIZATION_BLOCKS}}</div>
+    </section>
+
+    <section class="section">
+      <h2>代表性评论证据</h2>
+      <div class="quotes">{{EVIDENCE_QUOTES}}</div>
+      <div class="footer">
+        {{METHOD_NOTE}}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

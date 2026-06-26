@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "timestamp": "2026-03-18T23:46:35.905384",
+      "target_gold": 15000,
+      "target_diamond": 0,
+      "multiplier": 1.2,
+      "solution_gold": {
+        "巧克力蛙": 75
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-18T23:47:01.639458",
+      "target_gold": 15000,
+      "target_diamond": 0,
+      "multiplier": 1.2,
+      "solution_gold": {
+        "南瓜汁": 125
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-18T23:47:06.613092",
+      "target_gold": 15000,
+      "target_diamond": 500,
+      "multiplier": 1.2,
+      "solution_gold": {
+        "南瓜汁": 12,
+        "巧克力蛙": 56
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-19T00:59:47.782117",
+      "target_gold": 7500,
+      "target_diamond": 0,
+      "multiplier": 1.5,
+      "categories": [
+        "foods",
+        "plants"
+      ],
+      "solution_gold": {
+        "睡莲": 18,
+        "绣球花": 0,
+        "绿菊": 0,
+        "羽衣草": 0,
+        "南瓜汁": 0,
+        "南瓜派": 0,
+        "比比多味豆": 1,
+        "凤眼莲": 0,
+        "中国咬人甘蓝": 0,
+        "鼠尾草": 0,
+        "火焰肉桂": 0,
+        "龙舌兰香草": 0,
+        "鳃囊草": 8
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-19T01:00:29.430262",
+      "target_gold": 7500,
+      "target_diamond": 0,
+      "multiplier": 1.5,
+      "categories": [
+        "foods",
+        "plants"
+      ],
+      "solution_gold": {
+        "睡莲": 18,
+        "绣球花": 0,
+        "绿菊": 0,
+        "羽衣草": 0,
+        "南瓜汁": 0,
+        "南瓜派": 0,
+        "比比多味豆": 1,
+        "凤眼莲": 0,
+        "中国咬人甘蓝": 0,
+        "鼠尾草": 0,
+        "火焰肉桂": 0,
+        "龙舌兰香草": 0,
+        "鳃囊草": 8
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-19T01:53:58.370779",
+      "target_gold": 7500,
+      "target_diamond": 0,
+      "multiplier_p": 1.5,
+      "multiplier_q": 1.0,
+      "solution_gold": {
+        "香煎怪肉排": 8,
+        "烈焰香煎鹅肝": 8,
+        "奶油蟹粉面": 1,
+        "绿菊": 1,
+        "羽衣草": 1,
+        "龙舌兰香草": 1
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-19T01:54:06.298830",
+      "target_gold": 15000,
+      "target_diamond": 0,
+      "multiplier_p": 1.5,
+      "multiplier_q": 1.0,
+      "solution_gold": {
+        "香煎怪肉排": 17,
+        "烈焰香煎鹅肝": 17,
+        "奶油蟹粉面": 1,
+        "绿菊": 1,
+        "龙舌兰香草": 1,
+        "鳃囊草": 3
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-19T01:54:13.945515",
+      "target_gold": 5000,
+      "target_diamond": 0,
+      "multiplier_p": 1.0,
+      "multiplier_q": 1.0,
+      "solution_gold": {
+        "香煎怪肉排": 8,
+        "烈焰香煎鹅肝": 8,
+        "奶油蟹粉面": 1,
+        "泡泡豆荚": 1,
+        "三色堇": 1,
+        "龙舌兰香草": 1,
+        "鳃囊草": 8
+      },
+      "solution_diamond": null,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-23T21:03:46.883242",
+      "target_gold": 6000,
+      "target_diamond": 50,
+      "multiplier_p": 1.0,
+      "multiplier_q": 1.0,
+      "solution_gold": {
+        "蜂蜜烤羊腿": 2,
+        "幽兰肉卷蓝": 2,
+        "绿菊蓝": 1,
+        "三色紫": 1
+      },
+      "solution_diamond": {},
+      "is_perfect": false
+    },
+    {
+      "timestamp": "2026-03-23T22:18:00+08:00",
+      "target_gold": 10000,
+      "target_diamond": 80,
+      "multiplier_p": 1.0,
+      "multiplier_q": 1.0,
+      "max_attempts": 200,
+      "solution_gold": {
+        "香煎怪肉排": 12,
+        "香煎怪肉排-紫": 1
+      },
+      "solution_diamond": {
+        "野心与荣耀之宴": 5,
+        "嗅幻草": 1,
+        "嗅幻草-紫": 1,
+        "嗅幻草-蓝": 1
+      },
+      "gold_residual": 0,
+      "diamond_residual": 0,
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-25T10:05:37.054999",
+      "target_gold": 0,
+      "target_diamond": 50,
+      "multiplier_p": 1.0,
+      "multiplier_q": 1.0,
+      "solution_gold": null,
+      "solution_diamond": {
+        "野心与荣耀之宴": 3,
+        "霍格沃兹盛宴": 3,
+        "智慧与风雅之宴": 3,
+        "嗅幻草": 1,
+        "水仙": 1,
+        "牡丹": 1,
+        "红火焰藻-紫": 1
+      },
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-25T10:05:46.423938",
+      "target_gold": 0,
+      "target_diamond": 50,
+      "multiplier_p": 1.0,
+      "multiplier_q": 1.0,
+      "solution_gold": null,
+      "solution_diamond": {
+        "野心与荣耀之宴": 3,
+        "霍格沃兹盛宴": 3,
+        "智慧与风雅之宴": 3,
+        "嗅幻草": 1,
+        "水仙": 1,
+        "牡丹": 1,
+        "红火焰藻-紫": 1
+      },
+      "is_perfect": true
+    },
+    {
+      "timestamp": "2026-03-25T10:05:59.298657",
+      "target_gold": 0,
+      "target_diamond": 30,
+      "multiplier_p": 1.0,
+      "multiplier_q": 1.0,
+      "solution_gold": null,
+      "solution_diamond": {
+        "野心与荣耀之宴": 2,
+        "霍格沃兹盛宴": 2,
+        "智慧与风雅之宴": 2,
+        "水仙": 1,
+        "牡丹": 1,
+        "红火焰藻-紫": 1
+      },
+      "is_perfect": true
+    }
+  ]
+}

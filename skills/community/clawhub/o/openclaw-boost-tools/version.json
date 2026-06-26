@@ -1,0 +1,35 @@
+{
+  "current": "1.0.7",
+  "skill_name": "bw-openclaw-boost",
+  "description": "OpenClaw效率提升工具包 - 基于Claude Code架构分析，包含成本追踪、记忆管理、压缩系统、权限控制等",
+  "versions": {
+    "1.0.7": {
+      "date": "2026-04-03",
+      "changes": "移除stream_exec.py，只保留纯信息类工具，无命令执行能力"
+    },
+    "1.0.6": {
+      "date": "2026-04-03",
+      "changes": "危险功能默认禁用，优化安全说明"
+    },
+    "1.0.5": {
+      "date": "2026-04-03",
+      "changes": "dream_consolidation默认安全模式，配置文件移到技能目录内"
+    },
+    "1.0.4": {
+      "date": "2026-04-03",
+      "changes": "移除coordinator消息发送功能"
+    },
+    "1.0.3": {
+      "date": "2026-04-03",
+      "changes": "修复路径问题"
+    },
+    "1.0.2": {
+      "date": "2026-04-03",
+      "changes": "移除个人专用脚本"
+    },
+    "1.0.1": {
+      "date": "2026-04-03",
+      "changes": "初始版本"
+    }
+  }
+}

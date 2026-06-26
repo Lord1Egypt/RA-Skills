@@ -1,35 +1,45 @@
----
-name: "Pipeworx ai-briefing"
-description: "Provides daily updates and searchable insights on AI tools, models, servers, APIs, SDKs, frameworks, and industry news."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-ai-briefing"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-ai-briefing"
----
+# Ai Briefing
 
-# Pipeworx ai-briefing
+AI Briefing MCP — Keep AI models current on industry developments
 
-> Provides daily updates and searchable insights on AI tools, models, servers, APIs, SDKs, frameworks, and industry news.
+## get_briefing
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-ai-briefing`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-ai-briefing](https://clawhub.ai/skills/pipeworx-ai-briefing)
+Get today's AI tools briefing — new MCP servers, APIs, SDKs, frameworks from the last 24 hours. Retu
 
-## Overview
+## search_developments
 
+Search for new tools, APIs, MCP servers, and frameworks by keyword (e.g., 'vector databases', 'Claud
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-ai-briefing
+## get_recent
+
+Get recent tool releases filtered by category (e.g., 'mcp', 'agent_framework', 'open_source') or sou
+
+## get_model_landscape
+
+Get recent AI model releases — which providers shipped what, when, and their key capabilities. Retur
+
+## get_timeline
+
+Get a chronological timeline of AI developments between two dates. Returns events ordered by date wi
+
+## get_ai_toolbelt
+
+Get the latest available tools — Claude Code features, MCP servers, SDK updates, CLI tools, integrat
+
+## get_ai_news
+
+Get AI industry news — model releases, funding, acquisitions, policy changes, benchmarks. Returns ne
+
+## what_happened
+
+Ask natural language questions about recent tools and developments (e.g., 'any new MCP servers this 
+
+```json
+{
+  "mcpServers": {
+    "ai-briefing": {
+      "url": "https://gateway.pipeworx.io/ai-briefing/mcp"
+    }
+  }
+}
 ```

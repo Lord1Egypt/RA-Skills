@@ -1,0 +1,5 @@
+interface:
+  display_name: "Michael Polanyi"
+  short_description: "Ground generic advice into practitioner judgment"
+  brand_color: "#8B5E3C"
+  default_prompt: "Use $michael-polanyi when the answer is technically correct but generic, thin, abstract, or not battle-tested, and rewrite it into grounded practitioner judgment with practical signals, trade-offs, boundaries, and one concrete next step."

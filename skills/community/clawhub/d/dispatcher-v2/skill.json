@@ -1,0 +1,22 @@
+{
+  "name": "dispatcher-v2",
+  "version": "1.0.0",
+  "description": "OpenClaw 三层架构分离主调度员，纯调度不执行，所有工作派给子代理，独立验证通过才能汇报完成。解决「声称完成但实际未执行」知行分离问题。Three-layer dispatcher: main agent only schedules, all work delegated to sub-agents, independent verification required before claiming completion.",
+  "author": "Sora",
+  "homepage": "https://github.com/openclaw",
+  "keywords": [
+    "dispatcher",
+    "三层架构",
+    "three-layer",
+    "sub-agents",
+    "verification",
+    "scheduler",
+    "task-delegation",
+    "execution-verification",
+    "multi-agent",
+    "agent-swarm",
+    "pure-scheduler",
+    "知行分离",
+    "progress-tracking"
+  ]
+}

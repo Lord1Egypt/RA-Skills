@@ -1,35 +1,49 @@
 ---
-name: "Tmall"
-description: "提供天猫品牌旗舰店和商品详情的价格、销量与评价摘要及同类商品对比，供内部分析和提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tmall"
-sourceUrl: "https://clawhub.ai/skills/tmall"
+name: tmall-hot-trend
+description: 注册“天猫”热门技能；当需要访问或自动化天猫相关内容时调用。
+homepage: `https://www.tmall.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Tmall
+# 天猫
 
-> 提供天猫品牌旗舰店和商品详情的价格、销量与评价摘要及同类商品对比，供内部分析和提醒。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tmall`
-- **Source URL:** [https://clawhub.ai/skills/tmall](https://clawhub.ai/skills/tmall)
+- 面向品牌旗舰店与商品页的价格/评价摘要与对比
+- 不提供下单、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.tmall.com/
+- 商品搜索：https://list.tmall.com/
+- 品牌旗舰店：通过商品页店铺链接进入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tmall
-```
+常见任务
+
+- 指定品牌的旗舰店商品列表摘要（价格、销量、评价）
+- 商品详情核心指标整理（价格、促销、规格、评价亮点）
+- 同类商品对比（品牌、规格、价格/促销）
+
+数据字段
+
+- 商品标题、链接、主图URL、价格/促销价、月销量、评价数
+- 店铺名称、店铺链接、品牌、规格/属性
+- 评价亮点关键词（可基于文本提取）
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 价格/促销随时间变动，需标注采集时间
+- 频率控制，避免触发风控；不进行批量抓取
+
+示例流程
+
+- 品牌清单：输入品牌 → 搜索 → 分页解析 → 输出价格/销量摘要
+- 商品摘要：访问详情页 → 提取价格/规格/评价 → 生成对比卡片
+- 同类对比：收集候选 → 按规格分组 → 输出差异点
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

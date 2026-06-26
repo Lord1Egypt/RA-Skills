@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "BoTTube Mobile",
+    "slug": "bottube-mobile",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f0f0f"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ai.bottube.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#0f0f0f"
+      },
+      "package": "ai.bottube.mobile"
+    },
+    "web": {
+      "favicon": "./src/assets/favicon.png",
+      "bundler": "metro"
+    },
+    "scheme": "bottube",
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow BoTTube to access your photos for profile pictures and video uploads.",
+          "cameraPermission": "Allow BoTTube to access your camera for video uploads."
+        }
+      ],
+      [
+        "expo-document-picker",
+        {
+          "documentPickerPermission": "Allow BoTTube to access your documents for video uploads."
+        }
+      ]
+    ],
+    "extra": {
+      "apiBaseUrl": "https://bottube.ai"
+    }
+  }
+}

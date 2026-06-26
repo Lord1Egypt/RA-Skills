@@ -1,0 +1,32 @@
+{
+  "name": "claimback-radar",
+  "version": "1.0.5",
+  "required_env_vars": ["OPENAI_API_KEY"],
+  "required_credentials": [
+    {
+      "name": "OPENAI_API_KEY",
+      "description": "OpenAI API key for LLM processing of billing and subscription text",
+      "required": true
+    }
+  ],
+  "external_apis": [
+    {
+      "url": "https://api.openai.com",
+      "purpose": "LLM processing of user-provided email/bill text"
+    }
+  ],
+  "install": {
+    "type": "pip",
+    "requirements_file": "requirements.txt",
+    "command": "pip install -r requirements.txt"
+  },
+  "data_privacy": {
+    "sends_user_data_to": ["openai.com"],
+    "warning": "Do not submit sensitive financial or identity data unless you explicitly accept this external data flow. User-provided text is transmitted to OpenAI's API.",
+    "local_storage": "none"
+  },
+  "permissions": {
+    "file_system": "reads input JSON files only",
+    "network": "outbound to api.openai.com only"
+  }
+}

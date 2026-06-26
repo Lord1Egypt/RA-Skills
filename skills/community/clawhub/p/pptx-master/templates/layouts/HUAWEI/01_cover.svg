@@ -1,0 +1,16 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- 全屏背景层 -->
+  <rect x="0" y="0" width="1280" height="720" fill="#F8F9FA"/>
+  <!-- 顶部华为红品牌线 -->
+  <rect x="0" y="0" width="1280" height="6" fill="#E60012"/>
+  <!-- 右上角直角装饰（参考图样式） -->
+  <path d="M880 220 H960 M960 220 V300" stroke="#E60012" stroke-width="2" fill="none"/>
+  <!-- 主标题占位符 -->
+  <text x="100" y="240" font-family="HarmonyOS Sans,微软雅黑,Arial,sans-serif" font-size="48" font-weight="bold" fill="#1A1A1A">{{TITLE}}</text>
+  <!-- 副标题占位符 -->
+  <text x="100" y="320" font-family="HarmonyOS Sans,微软雅黑,Arial,sans-serif" font-size="36" font-weight="bold" fill="#333333">{{SUBTITLE}}</text>
+  <!-- 底部品牌栏 -->
+  <rect x="0" y="660" width="1280" height="60" fill="#F5F5F5"/>
+  <!-- 页脚信息占位符 -->
+  <text x="1180" y="698" font-family="HarmonyOS Sans,微软雅黑,Arial,sans-serif" font-size="18" fill="#666666" text-anchor="end">{{AUTHOR}}</text>
+</svg>

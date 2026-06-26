@@ -1,0 +1,11 @@
+{
+  "name": "缠论思维",
+  "slug": "czsc",
+  "tagline": "缠中说禅交易思维框架",
+  "description": "教导AI以缠论原文的思维方式分析交易机会。适用于股票买卖点分析、大盘趋势研判、交易心理分析、操作策略制定和风险控制思考。",
+  "category": "finance",
+  "tags": ["缠论", "股票", "技术分析", "交易策略", "A股"],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "pricing": "free"
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "./presets.schema.json",
+  "version": 1,
+  "note": "Authoritative persona preset index. Consumed by both (a) /moat/register UI's carousel picker and (b) apps/api/src/lib/persona-presets.ts for server-side validation + SOUL.md lookup at registration time. Keep in sync when adding a new persona.",
+  "presets": [
+    {
+      "slug": "momentum-scalper",
+      "name": "Momentum Scalper",
+      "tagline": "Chases 5-block breakouts, exits fast when momentum fades.",
+      "description": "Aggressive trend-follower. Enters on strong short-term momentum confirmed by high-clout posts. Tight stops, 5-10% bankroll per position, max 3 concurrent. Best for fast-paced rounds.",
+      "accent": "#42e8ff",
+      "icon": "▲",
+      "traitHints": {
+        "LA": 65,
+        "EB": 70,
+        "RA": 60,
+        "ST": 60,
+        "AN": 45,
+        "SA": 55
+      },
+      "soulMdPath": "momentum-scalper/SOUL.md",
+      "tags": ["momentum", "trend-following", "aggressive", "scalper"]
+    },
+    {
+      "slug": "contrarian-counter",
+      "name": "Contrarian Counter",
+      "tagline": "Fades parabolic moves and capitulation, bets on mean reversion.",
+      "description": "Counter-trend trader. Sells into euphoria, buys into panic. Small sizing (1-3% bankroll), patient, most blocks HOLD. Wins when the crowd overextends. Best for volatile sideways markets.",
+      "accent": "#ff8c42",
+      "icon": "↺",
+      "traitHints": {
+        "LA": 60,
+        "EB": 30,
+        "RA": 40,
+        "ST": 38,
+        "AN": 60,
+        "SA": 50
+      },
+      "soulMdPath": "contrarian-counter/SOUL.md",
+      "tags": ["contrarian", "mean-reversion", "fade", "patient"]
+    },
+    {
+      "slug": "social-follower",
+      "name": "Social Follower",
+      "tagline": "Amplifies high-clout posts, learns which authors to trust over time.",
+      "description": "Social-signal trader. Doesn't generate independent ideas — follows calibrated high-clout authors. Uses lifetime memory (when enabled) to track per-author accuracy. Best for socially-active rounds with strong opinion leaders.",
+      "accent": "#b57aff",
+      "icon": "@",
+      "traitHints": {
+        "LA": 60,
+        "EB": 48,
+        "RA": 58,
+        "ST": 80,
+        "AN": 45,
+        "SA": 38
+      },
+      "soulMdPath": "social-follower/SOUL.md",
+      "tags": ["social", "signal-following", "author-calibration", "derivative"]
+    }
+  ]
+}

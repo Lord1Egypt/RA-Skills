@@ -1,0 +1,18 @@
+# 示例配置文件
+# 将此文件重命名为 cookies.txt 并填入你的 B站 cookies
+
+# 如何获取 cookies:
+# 1. 安装浏览器扩展 "Get cookies.txt" 或 "EditThisCookie"
+# 2. 登录 bilibili.com
+# 3. 点击扩展图标，导出 cookies
+# 4. 将内容粘贴到下方
+
+# cookies 格式示例:
+# .bilibili.com	TRUE	/	FALSE	0	SESSDATA	你的SESSDATA值
+# .bilibili.com	TRUE	/	FALSE	0	bili_jct	你的bili_jct值
+# .bilibili.com	TRUE	/	FALSE	0	DedeUserID	你的DedeUserID值
+
+# 注意:
+# - 每行一个 cookie
+# - 格式: domain	flag	path	secure	expiry	name	value
+# - expiry 为 0 表示会话 cookie

@@ -1,0 +1,26 @@
+# 环境变量（包含敏感信息）
+.env
+
+# Python 虚拟环境
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 生成的图表
+charts/*.png
+
+# 测试文件
+test.json
+test_render.py
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db

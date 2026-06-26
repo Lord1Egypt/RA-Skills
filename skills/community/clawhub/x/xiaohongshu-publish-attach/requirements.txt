@@ -1,0 +1,3 @@
+selenium>=4.15.0; python_version >= '3.7'
+selenium>=3.141.0,<4.0.0; python_version < '3.7'
+# Optional (publish fallback on VNC): pip3 install pyautogui

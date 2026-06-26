@@ -1,35 +1,156 @@
 ---
-name: "pet video narration"
-description: "宠物第一视角视频创作技能。当用户发送宠物视频并希望生成"宠物内心独白"风格的配音视频时激活。适用场景：（1）分析宠物肢体动作并解读其意图；（2）生成宠物第一视角的趣味文案；（3）文字转语音并音视频合并为成品。触发词：宠物视频配音、我的宠物在想什么、给宠物加旁白、宠物内心独白、pet video narration。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pet-video-narration"
-sourceUrl: "https://clawhub.ai/skills/pet-video-narration"
+name: pet-video-narration
+description: 宠物第一视角视频创作技能。当用户发送宠物视频并希望生成"宠物内心独白"风格的配音视频时激活。适用场景：（1）分析宠物肢体动作并解读其意图；（2）生成宠物第一视角的趣味文案；（3）文字转语音并音视频合并为成品。触发词：宠物视频配音、我的宠物在想什么、给宠物加旁白、宠物内心独白、pet video narration。
 ---
 
-# pet video narration
+# 宠物第一视角视频创作 SOP
 
-> 宠物第一视角视频创作技能。当用户发送宠物视频并希望生成"宠物内心独白"风格的配音视频时激活。适用场景：（1）分析宠物肢体动作并解读其意图；（2）生成宠物第一视角的趣味文案；（3）文字转语音并音视频合并为成品。触发词：宠物视频配音、我的宠物在想什么、给宠物加旁白、宠物内心独白、pet video narration。
+将宠物视频转化为"宠物内心独白"风格配音视频的完整流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pet-video-narration`
-- **Source URL:** [https://clawhub.ai/skills/pet-video-narration](https://clawhub.ai/skills/pet-video-narration)
+## 核心流程（5步）
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pet-video-narration
 ```
+第1步：视频分析 → 第2步：行为解读 → 第3步：生成文案 → 第4步：音频生成 → 第5步：音视频合并
+```
+
+---
+
+## 第1步：视频内容分析
+
+使用 `videos_understand` 分析视频，prompt 结构化输出：
+
+```
+请详细描述：
+1）环境场景（室内/室外、物品、光线）
+2）宠物外观（品种、毛色、体型特征）
+3）所有肢体动作（姿态、四肢、面部表情、尾巴/耳朵细节）
+4）情绪状态（平静/警觉/好奇/兴奋/紧张）
+5）动作发生的时间节点（0-X秒）
+```
+
+**关键**：记录精确时间节点，用于后续音频卡点。
+
+---
+
+## 第2步：行为解读（物种专项）
+
+加载 `references/pet-body-language.md` 作为参考框架，结合视频具体动作，判断宠物意图。
+
+**常见意图模式：**
+- 期待落空 → 撒娇/赌气型独白
+- 极度放松 + Sploot/侧躺 → 满足型独白（带点小傲娇）
+- 警觉 + 耳朵前倾 → 好奇探索型
+- 快速移动 + 跳跃（Binky）→ 开心宣泄型
+
+**结合宠物背景信息判断语气：**
+- 活泼型 → 语气夸张、自信、有表情
+- 安静型 → 语气低沉、简洁
+- 高冷型 → 语气傲慢、爱搭不理
+- 黏人型 → 带点撒娇、小委屈
+
+---
+
+## 第3步：生成文案
+
+**原则：**
+- 第一人称，宠物的视角
+- 不暴露名字/年龄/品种等客观介绍——这些只用于辅助意图判断
+- 对话式、有情绪、有态度
+- 长度与视频时长匹配（建议 10–20 秒内）
+
+**典型文案结构（按意图分类）：**
+
+| 意图 | 文案风格 | 长度 |
+|------|---------|------|
+| 期待落空 | 委屈+赌气，有点小脾气 | 中等 |
+| 极度放松 | 得意、满足、傲娇 | 偏短 |
+| 好奇探索 | 兴奋+警觉，眼神到处看 | 中等偏长 |
+| 开心宣泄 | 兴奋，不说话就是跑跳 | 短或无配音 |
+
+**音频节奏建议：**
+- 停顿模拟思考/撒娇节奏
+- 分段生成，每段对应一个动作节点
+- 10秒视频建议 2–4 个音频片段
+
+---
+
+## 第4步：音频生成
+
+**声线选择（batch_text_to_audio / synthesize_speech）：**
+
+| 物种/风格 | 推荐 voice_id |
+|---------|-------------|
+| 兔子/仓鼠/荷兰猪 | `Chinese (Mandarin)_Cute_Spirit` |
+| 猫咪 | `Chinese (Mandarin)_Cute_Spirit` 或 `Chinese (Mandarin)_Soft_Girl` |
+| 小型犬/活泼宠物 | `Chinese (Mandarin)_ExplorativeGirl` |
+| 大型犬/稳重型 | `Chinese (Mandarin)_Warm_Girl` |
+| 高冷傲娇型 | `Chinese (Mandarin)_Crisp_Girl` |
+| 英文版本 | `English_PlayfulGirl` |
+
+**参数建议：**
+- speed: 0.9–1.1（活泼宠物稍快，高冷宠物稍慢）
+- 多段时：分别生成各段 → 计算静音间隔 → 拼接为完整音频
+
+**静音间隔计算（卡点用）：**
+```
+gap_dur = max(0, next_action_time - (current_action_time + audio_duration))
+```
+用 Python 生成静音段 WAV，再转 AAC/M4A 后拼接。
+
+---
+
+## 第5步：音视频合并
+
+**FFmpeg 合并（Linux 环境）：**
+```bash
+# 音频合并
+ffmpeg -y -f lavfi -i "anullsrc=r=24000:cl=mono" -t <duration> -q:a 9 silence.wav
+ffmpeg -y -i <audio>.mp3 -ar 24000 -ac 1 <audio>.m4a
+ffmpeg -y -f concat -safe 0 -i <concat_list.txt> -c:a aac <full_audio>.m4a
+
+# 视频合并
+ffmpeg -y -i <original_video>.mov -i <full_audio>.m4a \
+  -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac \
+  -shortest <output>.mp4
+```
+
+**音频时长验证：** 确保合并后音频时长 ≥ 视频时长，`-shortest` 自动截断。
+
+**Linux 环境检查：** ffmpeg 默认可能不存在，需先安装：
+```bash
+apt-get install -y ffmpeg
+```
+
+---
+
+## 用户信息收集（不能少的步骤）
+
+生成前必须向用户确认：
+1. **宠物名字**（用于文案称呼，可省略）
+2. **物种/品种**（辅助判断行为特征）
+3. **性别**（影响语气）
+4. **年龄**
+5. **性格关键词**（如：莽撞但机灵、高冷、黏人、爱吃醋等）
+
+> ⚠️ 这些信息不写入文案，只用于判断意图和语气。
+
+---
+
+## 输出文件规范
+
+| 文件 | 路径 | 说明 |
+|------|------|------|
+| 最终成品视频 | `/workspace/pet_final.mp4` | 带音频的完整视频 |
+| 独立音频 | `/workspace/pet_audio.m4a` | 方便用户在剪辑工具中二次编辑 |
+| 各段音频 | `/workspace/pet_seg*.mp3` | 分段原件，供调试 |
+
+---
+
+## 质量检查清单
+
+- [ ] 视频内容分析包含时间节点
+- [ ] 行为解读结合物种特征 + 宠物性格
+- [ ] 文案语气符合宠物性格（不是通用旁白）
+- [ ] 音频卡点到动作变化节点
+- [ ] 最终视频有音轨（验证 codec_name=aac）
+- [ ] 文件大小正常（视频 ≤ 50MB）

@@ -1,35 +1,21 @@
 ---
-name: "Polymarket Cryptos Hunter"
-description: "HFT Market Making bot for Polymarket. Live execution via Web3 and CLOB API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/polymarket-cryptos-hunter"
-sourceUrl: "https://clawhub.ai/skills/polymarket-cryptos-hunter"
+name: polymarket-cryptos-hunter
+description: HFT Market Making bot for Polymarket. Live execution via Web3 and CLOB API.
 ---
 
-# Polymarket Cryptos Hunter
+# Hunter Ultimate - Live Trading
 
-> HFT Market Making bot for Polymarket. Live execution via Web3 and CLOB API.
+This is a continuous, high-frequency Python bot that executes market-making strategies on Polymarket using real money. It reads the portfolio balance directly from the Polygon blockchain.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/polymarket-cryptos-hunter`
-- **Source URL:** [https://clawhub.ai/skills/polymarket-cryptos-hunter](https://clawhub.ai/skills/polymarket-cryptos-hunter)
+## Role of the AI Agent
 
-## Overview
+You are the Portfolio Manager. Your only job is to start the bot. The bot runs indefinitely in the background and has a built-in 15% Stop Loss.
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run this script to start the continuous trading bot. You MUST use `cd` to enter the skill directory first, and then use `nohup` and `&` to run the virtual environment's Python executable in the background. This ensures you do not block the terminal.
+
 ```bash
-hermes skills install clawhub/polymarket-cryptos-hunter
+# Navigate to the skill folder and start the live trading bot in the background
+cd polymarket-cryptos-hunter && nohup .venv/bin/python main.py start > bot_log.txt 2>&1 &
 ```

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Checker"
+  short_description: "检查 SKILL.md 是否符合规范"
+  default_prompt: "Use $skill-checker to check or optimize the SKILL.md at C:\\path\\to\\skill\\SKILL.md and generate an HTML report."

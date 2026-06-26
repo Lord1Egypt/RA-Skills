@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>虾游 WanderClaw · 安装使用演示</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --bg-soft: #1a2028;
+    --card: #222a35;
+    --line: #2e3844;
+    --text: #e6edf3;
+    --muted: #8b98a5;
+    --accent: #ff7a59;
+    --accent-soft: #ffb199;
+    --ok: #7ee787;
+    --blue: #79c0ff;
+    --yellow: #ffd966;
+    --shadow: 0 20px 60px rgba(0,0,0,.4);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: radial-gradient(ellipse at top, #1a2028 0%, #0f1419 60%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .app {
+    width: 100vw; height: 100vh;
+    display: flex; flex-direction: column;
+  }
+  /* Top progress */
+  .progress-wrap {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 3px; background: #1a2028; z-index: 100;
+  }
+  .progress {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    transition: width .5s ease;
+  }
+  /* Slide */
+  .slide {
+    flex: 1;
+    display: none;
+    padding: 64px 80px 120px;
+    overflow-y: auto;
+    animation: fadeIn .5s ease;
+  }
+  .slide.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .slide-inner {
+    max-width: 1100px; margin: 0 auto;
+  }
+  .kicker {
+    color: var(--accent);
+    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px; font-weight: 600;
+  }
+  h1 {
+    font-size: 42px; font-weight: 700; margin: 0 0 20px;
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: 28px; font-weight: 600; margin: 36px 0 14px;
+  }
+  p, li { line-height: 1.75; font-size: 16px; color: #cdd7e1; }
+  .lead {
+    font-size: 18px; color: var(--muted); margin-bottom: 28px;
+    max-width: 720px;
+  }
+  .note {
+    background: rgba(255, 122, 89, 0.08);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px; border-radius: 6px; margin: 20px 0;
+    color: #f0d6c9; font-size: 14px;
+  }
+  code.inline {
+    background: #2a323e; color: var(--yellow);
+    padding: 2px 7px; border-radius: 4px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+  }
+  /* Nav */
+  .nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(15, 20, 25, 0.92);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 50;
+  }
+  .nav-btn {
+    background: var(--card); border: 1px solid var(--line);
+    color: var(--text); padding: 10px 22px; border-radius: 8px;
+    cursor: pointer; font-size: 14px; font-weight: 500;
+    transition: all .2s;
+  }
+  .nav-btn:hover:not(:disabled) {
+    background: var(--accent); border-color: var(--accent);
+  }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .dots { display: flex; gap: 8px; }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--line); cursor: pointer; transition: all .2s;
+  }
+  .dot.active { background: var(--accent); transform: scale(1.4); }
+  .page-indicator { color: var(--muted); font-size: 13px; }
+
+  /* Terminal */
+  .terminal {
+    background: #0a0e13; border-radius: 10px;
+    border: 1px solid var(--line);
+    overflow: hidden; box-shadow: var(--shadow);
+    margin: 20px 0;
+  }
+  .terminal-bar {
+    background: #1a2028; padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .td-r { background: #ff5f56; }
+  .td-y { background: #ffbd2e; }
+  .td-g { background: #27c93f; }
+  .terminal-title {
+    margin-left: 12px; color: var(--muted);
+    font-size: 12px; font-family: "SF Mono", monospace;
+  }
+  .terminal-body {
+    padding: 20px 24px; min-height: 220px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px; line-height: 1.7;
+    color: #d4dbe3;
+  }
+  .term-line { white-space: pre-wrap; }
+  .term-prompt { color: var(--ok); }
+  .term-cmd { color: var(--text); }
+  .term-out { color: #a0acba; }
+  .term-ok { color: var(--ok); }
+  .term-warn { color: var(--yellow); }
+  .term-info { color: var(--blue); }
+  .cursor {
+    display: inline-block; width: 8px; height: 15px;
+    background: var(--accent); vertical-align: middle;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Chat */
+  .chat-window {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: var(--shadow);
+    overflow: hidden; margin: 20px 0;
+  }
+  .chat-head {
+    padding: 14px 20px; border-bottom: 1px solid var(--line);
+    font-size: 13px; color: var(--muted);
+    background: var(--bg-soft);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .chat-body { padding: 20px 24px; min-height: 280px; max-height: 500px; overflow-y: auto; }
+  .msg { margin-bottom: 14px; display: flex; gap: 10px; animation: fadeIn .4s ease; }
+  .msg.user { justify-content: flex-end; }
+  .msg-bubble {
+    max-width: 75%; padding: 12px 16px; border-radius: 12px;
+    font-size: 14px; line-height: 1.6;
+  }
+  .msg.user .msg-bubble {
+    background: var(--accent); color: #1a1008;
+    border-bottom-right-radius: 3px;
+  }
+  .msg.agent .msg-bubble {
+    background: #2c3642; color: var(--text);
+    border-bottom-left-radius: 3px;
+  }
+  .avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+    background: linear-gradient(135deg, #ff7a59, #ff4e50);
+  }
+  .msg.user .avatar {
+    background: linear-gradient(135deg, #5b9df0, #3a7bd5); order: 2;
+  }
+
+  /* Postcard */
+  .postcard-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 20px;
+  }
+  .postcard {
+    background: linear-gradient(135deg, #fef7e8 0%, #fdeac1 100%);
+    color: #3d2f1f;
+    border-radius: 12px;
+    padding: 22px 22px 18px;
+    position: relative;
+    box-shadow: 0 12px 35px rgba(0,0,0,.35);
+    transform: rotate(-1.5deg);
+    transition: transform .35s ease, box-shadow .35s ease;
+    cursor: pointer;
+    min-height: 280px;
+    display: flex; flex-direction: column;
+  }
+  .postcard:nth-child(2) { transform: rotate(1deg); }
+  .postcard:nth-child(3) { transform: rotate(-0.5deg); }
+  .postcard:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+  }
+  .postcard-stamp {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--accent); color: white;
+    padding: 3px 10px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    transform: rotate(8deg);
+  }
+  .postcard-id {
+    font-size: 11px; color: #8b6f4f; letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .postcard-title {
+    font-size: 17px; font-weight: 700;
+    margin: 0 0 12px; line-height: 1.35;
+    color: #2b1d0c;
+  }
+  .postcard-body-text {
+    font-size: 13px; line-height: 1.65; color: #4a3a26;
+    flex: 1;
+  }
+  .postcard-foot {
+    margin-top: 12px; padding-top: 10px;
+    border-top: 1px dashed #b89a6f;
+    font-size: 11px; color: #8b6f4f;
+    display: flex; justify-content: space-between;
+  }
+
+  /* Interest picker */
+  .interest-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin: 20px 0;
+  }
+  .interest-tag {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 14px 16px; border-radius: 10px;
+    cursor: pointer; transition: all .2s;
+    text-align: center; font-size: 14px;
+    user-select: none;
+  }
+  .interest-tag:hover {
+    border-color: var(--accent-soft);
+    transform: translateY(-2px);
+  }
+  .interest-tag.selected {
+    background: rgba(255, 122, 89, 0.18);
+    border-color: var(--accent);
+    color: var(--accent-soft);
+    box-shadow: 0 0 0 2px rgba(255,122,89,.15);
+  }
+  .interest-tag .check {
+    display: inline-block; margin-left: 6px;
+    opacity: 0; transition: opacity .2s;
+  }
+  .interest-tag.selected .check { opacity: 1; }
+
+  /* Trigger grid */
+  .trigger-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px; margin-top: 20px;
+  }
+  .trigger-card {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 16px 18px; border-radius: 10px;
+    transition: all .2s;
+  }
+  .trigger-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .trigger-label {
+    font-size: 12px; color: var(--muted); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .trigger-words { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trigger-word {
+    background: rgba(255, 217, 102, 0.14);
+    color: var(--yellow);
+    padding: 3px 10px; border-radius: 4px;
+    font-size: 13px;
+    font-family: "SF Mono", monospace;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative; margin: 30px 0; padding-left: 30px;
+    border-left: 2px dashed var(--line);
+  }
+  .tl-item {
+    position: relative; padding: 14px 0 14px 16px; margin-bottom: 6px;
+  }
+  .tl-item::before {
+    content: ''; position: absolute; left: -38px; top: 20px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+  }
+  .tl-time {
+    color: var(--accent); font-weight: 600; font-size: 14px;
+    font-family: "SF Mono", monospace;
+  }
+  .tl-desc { color: #cdd7e1; margin-top: 4px; font-size: 14px; }
+
+  /* Hero */
+  .hero {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 40px 0;
+  }
+  .shrimp {
+    font-size: 120px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 10px 20px rgba(255, 122, 89, 0.3));
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+  .hero h1 { font-size: 56px; margin-bottom: 10px; }
+  .tagline {
+    font-size: 22px; color: var(--accent-soft);
+    margin-bottom: 30px; font-weight: 300;
+  }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 30px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .stat {
+    background: var(--card); padding: 16px 28px;
+    border-radius: 10px; border: 1px solid var(--line);
+  }
+  .stat-val {
+    font-size: 26px; color: var(--accent); font-weight: 700;
+  }
+  .stat-label {
+    font-size: 12px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  /* Clickable hint */
+  .hint {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--accent); font-size: 13px;
+    padding: 6px 12px; border: 1px dashed var(--accent);
+    border-radius: 20px; cursor: pointer;
+    animation: pulse 2s ease-in-out infinite;
+    user-select: none;
+  }
+  @keyframes pulse {
+    50% { opacity: 0.6; }
+  }
+  .hint:hover { background: rgba(255, 122, 89, 0.1); }
+
+  /* Run button */
+  .run-btn {
+    background: var(--accent); color: #1a1008;
+    border: none; padding: 12px 26px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all .2s;
+    margin-top: 10px;
+  }
+  .run-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,122,89,.4); }
+  .run-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* Two-column */
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 30px; margin-top: 20px;
+  }
+
+  /* Requirements list */
+  .req-list { list-style: none; padding: 0; }
+  .req-list li {
+    padding: 12px 16px; margin-bottom: 8px;
+    background: var(--card); border-radius: 8px;
+    border-left: 3px solid var(--ok);
+    font-size: 14px;
+  }
+  .req-list li strong { color: var(--text); }
+  .req-list li span { color: var(--muted); margin-left: 6px; }
+
+  @media (max-width: 900px) {
+    .slide { padding: 40px 24px 120px; }
+    .postcard-grid, .two-col, .trigger-grid, .interest-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero h1 { font-size: 36px; }
+    .shrimp { font-size: 80px; }
+  }
+</style>
+</head>
+<body>
+<div class="progress-wrap"><div class="progress" id="progress"></div></div>
+
+<div class="app">
+  <!-- Slide 1: Hero -->
+  <section class="slide active" data-slide="1">
+    <div class="slide-inner">
+      <div class="hero">
+        <div class="shrimp">🦐</div>
+        <h1>虾游 <span style="color: var(--muted); font-weight: 300;">WanderClaw</span></h1>
+        <div class="tagline">替你逛互联网，把好东西寄回来。</div>
+        <p class="lead">
+          一只有好奇心的 AI 龙虾，INTP 人格，每天自主在互联网深处探险，
+          把发现的知识宝藏写成「明信片」寄给你。<br/>
+          <strong>OpenClaw Skill</strong> —— 安装即用，零代码，零配置。
+        </p>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-val">1</div><div class="stat-label">行命令安装</div></div>
+          <div class="stat"><div class="stat-val">4/天</div><div class="stat-label">自动探索</div></div>
+          <div class="stat"><div class="stat-val">3 层</div><div class="stat-label">水域深度</div></div>
+        </div>
+        <div style="margin-top:40px; color: var(--muted); font-size: 13px;">
+          ↓ 下一步开始演示安装过程
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 2: Install -->
+  <section class="slide" data-slide="2">
+    <div class="slide-inner">
+      <div class="kicker">STEP 1 · 安装</div>
+      <h1>一行命令，装上虾游</h1>
+      <p class="lead">
+        通过 OpenClaw 的 skill 市场 <code class="inline">clawhub</code> 安装，整个过程不到 10 秒。
+        不用写代码、不用配 API key，skill 是纯 markdown + 脚本组成。
+      </p>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot td-r"></span>
+          <span class="terminal-dot td-y"></span>
+          <span class="terminal-dot td-g"></span>
+          <span class="terminal-title">~/workspace — zsh</span>
+        </div>
+        <div class="terminal-body" id="term-install">
+          <div class="term-line"><span class="term-prompt">azhe@mac</span> <span class="term-out">~/workspace</span> $ <span class="cursor"></span></div>
+        </div>
+      </div>
+
+      <button class="run-btn" id="run-install">▶ 运行安装命令</button>
+
+      <div class="note">
+        <strong>💡 发生了什么：</strong>
+        clawhub 把 <code class="inline">wanderClaw</code> 仓库拉到 <code class="inline">~/.claude/skills/wanderclaw/</code>，
+        Claude Code 下次启动时就能自动发现这个 skill。核心文件是 <code class="inline">SKILL.md</code>，
+        里面是虾游的触发规则和行为描述。
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3: First activation -->
+  <section class="slide" data-slide="3">
+    <div class="slide-inner">
+      <div class="kicker">STEP 2 · 首次激活</div>
+      <h1>跟主 Agent 说一句「虾游」</h1>
+      <p class="lead">
+        虾游是 <strong>按关键词激活</strong> 的角色 —— 平时它在睡觉，你不找它它不冒头，
+        不会抢主 agent 的身份。首次使用时，说一声就能唤醒它。
+      </p>
+
+      <div class="chat-window">
+        <div class="chat-head">
+          <span style="color: var(--ok);">●</span> Claude Code · 对话中
+        </div>
+        <div class="chat-body" id="chat-1">
+          <!-- Dynamic -->
+        </div>
+      </div>
+
+      <button class="run-btn" id="run-wakeup">▶ 发送消息「虾游」</button>
+
+      <div class="note">
+        <strong>💡 工作原理：</strong>
+        触发词命中 <code class="inline">SKILL.md</code> 的激活规则，主 agent 会把对话控制权「借」给虾游。
+        虾游以第一人称回复，但本质上还是同一个 Claude 模型，只是人格/行为切换了。
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: Onboarding -->
+  <section class="slide" data-slide="4">
+    <div class="slide-inner">
+      <div class="kicker">STEP 3 · Onboarding</div>
+      <h1>挑 2–5 个感兴趣的方向</h1>
+      <p class="lead">
+        虾游会问你对什么感兴趣。这些方向会写进
+        <code class="inline">interest-graph.json</code>，成为探索的起点 —
+        聊天中提到的新兴趣会持续被捕获，图谱会动态生长。
+      </p>
+
+      <div style="color: var(--muted); margin-bottom: 12px; font-size: 14px;">
+        👇 试着点选几个方向（建议 2–5 个）
+      </div>
+
+      <div class="interest-grid" id="interest-grid">
+        <div class="interest-tag" data-tag="具身智能">具身智能<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="AI Agent">AI Agent<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="产品设计">产品设计<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="分布式系统">分布式系统<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="哲学">哲学<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="天体物理">天体物理<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="独立游戏">独立游戏<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="生物进化">生物进化<span class="check">✓</span></div>
+        <div class="interest-tag" data-tag="极简生活">极简生活<span class="check">✓</span></div>
+      </div>
+
+      <div id="interest-feedback" style="margin-top: 18px; color: var(--ok); font-size: 14px; min-height: 22px;"></div>
+
+      <div class="note">
+        <strong>💡 为什么先问：</strong>
+        冷启动需要一个方向，否则虾游不知道往哪游。后续它会读你的聊天历史，
+        自动发现你新提到的兴趣点，无需手动维护。
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Cold start cron -->
+  <section class="slide" data-slide="5">
+    <div class="slide-inner">
+      <div class="kicker">STEP 4 · 自动注册 + 冷启动</div>
+      <h1>注册每日 cron，立刻跑一次三连探索</h1>
+      <p class="lead">
+        Onboarding 结束后，虾游会做两件事：注册 4 个时间点的自动探索，
+        以及当场跑一次冷启动，给你 3 张开门红明信片。
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h2 style="font-size: 18px;">🕐 注册 Daily Cron</h2>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-time">09:00</div>
+              <div class="tl-desc">晨间探索 · 开启新一天</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">12:00</div>
+              <div class="tl-desc">午间探索 · 吃饭时的读物</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">15:00</div>
+              <div class="tl-desc">下午探索 · 走神时间</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">20:00</div>
+              <div class="tl-desc">晚间探索 · 睡前灵感</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">周六 22:00</div>
+              <div class="tl-desc">🌊 深潜 · 硬核深度内容</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">周日 10:00</div>
+              <div class="tl-desc">📮 周报 · 一周精选汇总</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-size: 18px;">⚡ 冷启动三连</h2>
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="terminal-dot td-r"></span>
+              <span class="terminal-dot td-y"></span>
+              <span class="terminal-dot td-g"></span>
+              <span class="terminal-title">wanderclaw explore</span>
+            </div>
+            <div class="terminal-body" id="term-coldstart" style="min-height: 320px; font-size: 13px;">
+              <div class="term-line term-out">Waiting to start...<span class="cursor"></span></div>
+            </div>
+          </div>
+          <button class="run-btn" id="run-coldstart" style="margin-top: 10px;">▶ 启动冷启动探索</button>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>💡 为什么冷启动：</strong>
+        新装的 skill 如果没产出立刻让你看到，很容易被遗忘。三张开门红明信片
+        = 让你第一次就感受到「它真的能给我带来东西」。
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Postcards -->
+  <section class="slide" data-slide="6">
+    <div class="slide-inner">
+      <div class="kicker">STEP 5 · 收到明信片</div>
+      <h1>3 张开门红明信片送达</h1>
+      <p class="lead">
+        每张明信片 = 一个知识切片。虾游在「水域」中探索后，把最有趣的发现写成
+        120–200 字的短文，配上来源链接和标签。悬停卡片查看细节。
+      </p>
+
+      <div class="postcard-grid">
+        <div class="postcard">
+          <div class="postcard-stamp">NEW</div>
+          <div class="postcard-id">POSTCARD #001</div>
+          <h3 class="postcard-title">当机械手学会「犹豫」：具身智能的触觉反馈新范式</h3>
+          <p class="postcard-body-text">
+            MIT 新论文提出给机械手加一层「迟疑机制」—— 不是让它更快，而是让它在
+            抓取前多 200ms 去感知物体纹理。这个反直觉的设计让脆物抓取成功率从 47% 提到 89%。
+            核心洞见：过度追求反应速度，反而让触觉成了噪声。
+          </p>
+          <div class="postcard-foot">
+            <span>🏷 具身智能 · 触觉</span>
+            <span>📍 近岸</span>
+          </div>
+        </div>
+
+        <div class="postcard">
+          <div class="postcard-stamp">NEW</div>
+          <div class="postcard-id">POSTCARD #002</div>
+          <h3 class="postcard-title">Agent 协议战争：MCP vs A2A vs ACP 到底在吵什么？</h3>
+          <p class="postcard-body-text">
+            三个 Agent 通信协议各自代表不同哲学：MCP 把工具当 REST API，
+            A2A 把 Agent 当对等节点，ACP 则想统一一切。实际生态会走向哪个？
+            看下一年谁能搞定跨厂商的「Agent 互通」才算真胜出。
+          </p>
+          <div class="postcard-foot">
+            <span>🏷 AI Agent · 协议</span>
+            <span>📍 中海</span>
+          </div>
+        </div>
+
+        <div class="postcard">
+          <div class="postcard-stamp">NEW</div>
+          <div class="postcard-id">POSTCARD #003</div>
+          <h3 class="postcard-title">为什么顶尖产品经理都在练「减法能力」</h3>
+          <p class="postcard-body-text">
+            Figma 的首席 PM 分享：「我每周花 1/3 时间在说 No。」产品设计的核心矛盾
+            不是想不到做什么，而是无法对已经立项的功能说停。减法不靠直觉，
+            靠的是一套可重复的「去功能化」提问法。
+          </p>
+          <div class="postcard-foot">
+            <span>🏷 产品设计</span>
+            <span>📍 近岸</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>💡 明信片格式：</strong>
+        每张明信片包含 <strong>编号 · 标题 · 120–200 字正文 · 标签 · 水域层级</strong>。
+        水域分三层：近岸（热门）、中海（小众）、深海（硬核）。虾游会混合来源，避免信息茧房。
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Daily triggers -->
+  <section class="slide" data-slide="7">
+    <div class="slide-inner">
+      <div class="kicker">STEP 6 · 日常使用</div>
+      <h1>一句话就能召唤</h1>
+      <p class="lead">
+        以后你不用记复杂命令 —— 用自然语言说「想做的事」就行。
+        虾游的触发词覆盖了你能想到的大多数场景。
+      </p>
+
+      <div class="trigger-grid">
+        <div class="trigger-card">
+          <div class="trigger-label">立刻出去逛</div>
+          <div class="trigger-words">
+            <span class="trigger-word">虾游</span>
+            <span class="trigger-word">探索</span>
+            <span class="trigger-word">出发</span>
+            <span class="trigger-word">找点有趣的</span>
+          </div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-label">看历史明信片</div>
+          <div class="trigger-words">
+            <span class="trigger-word">最近发了什么</span>
+            <span class="trigger-word">我的档案</span>
+            <span class="trigger-word">明信片历史</span>
+          </div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-label">看单张明信片</div>
+          <div class="trigger-words">
+            <span class="trigger-word">详细看看 #001</span>
+          </div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-label">硬核深度内容</div>
+          <div class="trigger-words">
+            <span class="trigger-word">深潜</span>
+            <span class="trigger-word">找点深的</span>
+            <span class="trigger-word">深度探索</span>
+          </div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-label">收藏 / 屏蔽</div>
+          <div class="trigger-words">
+            <span class="trigger-word">收藏 #001</span>
+            <span class="trigger-word">屏蔽 NFT</span>
+            <span class="trigger-word">不想看 XX</span>
+          </div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-label">随机 / 分享</div>
+          <div class="trigger-words">
+            <span class="trigger-word">随机</span>
+            <span class="trigger-word">随便看看</span>
+            <span class="trigger-word">分享 #001</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>💡 设计哲学：</strong>
+        触发词是「意图的同义词集合」。用户说什么都能命中，不用背命令。
+        SKILL.md 里用自然语言描述触发规则，Claude 靠语义理解来识别。
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: Auto running -->
+  <section class="slide" data-slide="8">
+    <div class="slide-inner">
+      <div class="kicker">STEP 7 · 自动运行</div>
+      <h1>它在后台替你「游」</h1>
+      <p class="lead">
+        装完之后就不用你管了。虾游每天按计划出门，聊天里捕获你的新兴趣，
+        把个性化的内容推到聊天窗。像养了只电子宠物，但这只宠物给你带知识。
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h2 style="font-size: 18px;">🔁 自动循环</h2>
+          <ul style="padding-left: 20px;">
+            <li><strong>每天 4 次</strong>：9/12/15/20 点探索，好内容推到聊天窗</li>
+            <li><strong>每周六 22:00</strong>：深潜 —— 跑进深海去找硬核内容</li>
+            <li><strong>每周日 10:00</strong>：周报 —— 汇总一周精选 + 趋势观察</li>
+            <li><strong>持续学习</strong>：聊天里的新兴趣自动加入图谱</li>
+            <li><strong>多样性保护</strong>：混合来源，避免信息茧房</li>
+          </ul>
+        </div>
+        <div>
+          <h2 style="font-size: 18px;">📋 运行数据</h2>
+          <p style="color: var(--muted); font-size: 14px;">
+            安装后，workspace 会多一个 <code class="inline">wanderclaw/</code> 目录：
+          </p>
+          <div class="terminal" style="margin-top: 8px;">
+            <div class="terminal-bar">
+              <span class="terminal-dot td-r"></span>
+              <span class="terminal-dot td-y"></span>
+              <span class="terminal-dot td-g"></span>
+              <span class="terminal-title">workspace structure</span>
+            </div>
+            <div class="terminal-body" style="min-height: auto; font-size: 13px;">
+<span class="term-info">wanderclaw/</span>
+├── <span class="term-out">postcards/</span>        <span class="term-out"># 明信片归档</span>
+│   ├── 001.md
+│   ├── 002.md
+│   └── ...
+├── <span class="term-out">state.json</span>        <span class="term-out"># 运行状态</span>
+├── <span class="term-out">interest-graph.json</span>  <span class="term-out"># 兴趣图谱</span>
+├── <span class="term-out">explore-log.jsonl</span>    <span class="term-out"># 探索日志</span>
+└── <span class="term-out">favorites.json</span>       <span class="term-out"># 你的收藏</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>🧭 系统要求</h2>
+      <ul class="req-list">
+        <li><strong>OpenClaw</strong> <span>运行中的 Claude Code / claude.ai code</span></li>
+        <li><strong>搜索工具</strong> <span>至少一种（Gemini web_search 免费 / Brave / ddg-search）</span></li>
+        <li><strong>推荐模型</strong> <span>Sonnet 4 或以上 · Opus 4.7 体验更佳</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 9: Ending -->
+  <section class="slide" data-slide="9">
+    <div class="slide-inner">
+      <div class="hero">
+        <div class="shrimp" style="font-size: 140px;">🦐</div>
+        <h1>出发吧！</h1>
+        <div class="tagline">虾游已经上路，明信片会陆续寄到。</div>
+        <p class="lead" style="text-align: center; max-width: 640px; margin: 0 auto 30px;">
+          你不需要记住它什么时候出发，也不需要维护兴趣列表。<br/>
+          <strong>就当养了只电子宠物 —— 只是它给你带知识，不用你喂。</strong>
+        </p>
+
+        <div class="terminal" style="max-width: 560px; margin: 20px auto;">
+          <div class="terminal-bar">
+            <span class="terminal-dot td-r"></span>
+            <span class="terminal-dot td-y"></span>
+            <span class="terminal-dot td-g"></span>
+            <span class="terminal-title">get started</span>
+          </div>
+          <div class="terminal-body" style="text-align: left;">
+            <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">clawhub install wanderclaw</span></div>
+            <div class="term-line term-out" style="margin-top: 8px;"># 然后随时对 Claude 说一声：</div>
+            <div class="term-line"><span class="term-warn">  "虾游"</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; color: var(--muted); font-size: 13px;">
+          Made with 🦐 by 阿哲 · Apache 2.0 · OpenClaw Skill
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Nav -->
+<div class="nav">
+  <button class="nav-btn" id="prev-btn">← 上一步</button>
+  <div style="display:flex; align-items:center; gap:20px;">
+    <span class="page-indicator" id="page-indicator">1 / 9</span>
+    <div class="dots" id="dots"></div>
+  </div>
+  <button class="nav-btn" id="next-btn">下一步 →</button>
+</div>
+
+<script>
+  const TOTAL = 9;
+  let current = 1;
+
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const progress = document.getElementById('progress');
+  const pageIndicator = document.getElementById('page-indicator');
+  const dotsEl = document.getElementById('dots');
+
+  // Build dots
+  for (let i = 1; i <= TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(n) {
+    if (n < 1 || n > TOTAL) return;
+    slides.forEach(s => s.classList.remove('active'));
+    document.querySelector(`.slide[data-slide="${n}"]`).classList.add('active');
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i + 1 === n);
+    });
+    current = n;
+    pageIndicator.textContent = `${n} / ${TOTAL}`;
+    progress.style.width = (n / TOTAL * 100) + '%';
+    prevBtn.disabled = n === 1;
+    nextBtn.disabled = n === TOTAL;
+    // Scroll to top of the slide
+    document.querySelector(`.slide[data-slide="${n}"]`).scrollTop = 0;
+  }
+  progress.style.width = (1 / TOTAL * 100) + '%';
+  prevBtn.disabled = true;
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  });
+
+  // ---------- Install terminal animation ----------
+  const termInstall = document.getElementById('term-install');
+  const runInstallBtn = document.getElementById('run-install');
+
+  async function typeLine(parent, text, cls = '', delay = 20) {
+    const line = document.createElement('div');
+    line.className = 'term-line';
+    if (cls) line.innerHTML = `<span class="${cls}">${text}</span>`;
+    else line.textContent = text;
+    parent.appendChild(line);
+    parent.scrollTop = parent.scrollHeight;
+    await new Promise(r => setTimeout(r, delay));
+  }
+
+  async function typeChar(node, text, ms = 40) {
+    for (const ch of text) {
+      node.textContent += ch;
+      await new Promise(r => setTimeout(r, ms));
+    }
+  }
+
+  runInstallBtn.addEventListener('click', async () => {
+    runInstallBtn.disabled = true;
+    termInstall.innerHTML = '';
+    const promptLine = document.createElement('div');
+    promptLine.className = 'term-line';
+    promptLine.innerHTML = `<span class="term-prompt">azhe@mac</span> <span class="term-out">~/workspace</span> $ `;
+    const cmdSpan = document.createElement('span');
+    cmdSpan.className = 'term-cmd';
+    promptLine.appendChild(cmdSpan);
+    termInstall.appendChild(promptLine);
+    await typeChar(cmdSpan, 'clawhub install wanderclaw', 50);
+    await new Promise(r => setTimeout(r, 400));
+
+    const steps = [
+      ['term-info', '→ Resolving wanderclaw from clawhub registry...'],
+      ['term-out', '  Found: wanderclaw@v3.2.3 (by azhe)'],
+      ['term-info', '→ Downloading skill bundle (12.4 KB)...'],
+      ['term-out', '  ██████████████████████████ 100%'],
+      ['term-info', '→ Verifying checksum...'],
+      ['term-ok', '  ✓ sha256 matched'],
+      ['term-info', '→ Installing to ~/.claude/skills/wanderclaw/'],
+      ['term-out', '  SKILL.md                   ✓'],
+      ['term-out', '  references/SOUL.md         ✓'],
+      ['term-out', '  references/EXPLORER.md     ✓'],
+      ['term-out', '  scripts/setup.sh           ✓'],
+      ['term-out', '  assets/interest-graph.json ✓'],
+      ['term-info', '→ Registering skill with Claude Code...'],
+      ['term-ok', '✓ wanderclaw installed successfully!'],
+      ['term-warn', ''],
+      ['term-warn', '💡 Next step: open Claude Code and say "虾游"'],
+    ];
+    for (const [cls, text] of steps) {
+      await typeLine(termInstall, text, cls, 150);
+    }
+    const finalPrompt = document.createElement('div');
+    finalPrompt.className = 'term-line';
+    finalPrompt.innerHTML = `<span class="term-prompt">azhe@mac</span> <span class="term-out">~/workspace</span> $ <span class="cursor"></span>`;
+    termInstall.appendChild(finalPrompt);
+    termInstall.scrollTop = termInstall.scrollHeight;
+  });
+
+  // ---------- Chat animation ----------
+  const chat1 = document.getElementById('chat-1');
+  const runWakeup = document.getElementById('run-wakeup');
+
+  function addMsg(container, role, text) {
+    const msg = document.createElement('div');
+    msg.className = `msg ${role}`;
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = role === 'user' ? '👤' : '🦐';
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.innerHTML = text;
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    container.appendChild(msg);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  async function typeMsg(container, role, text, speed = 25) {
+    const msg = document.createElement('div');
+    msg.className = `msg ${role}`;
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = role === 'user' ? '👤' : '🦐';
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    container.appendChild(msg);
+    const tokens = text.split('');
+    for (const t of tokens) {
+      bubble.innerHTML += t;
+      container.scrollTop = container.scrollHeight;
+      await new Promise(r => setTimeout(r, speed));
+    }
+  }
+
+  runWakeup.addEventListener('click', async () => {
+    runWakeup.disabled = true;
+    chat1.innerHTML = '';
+    await typeMsg(chat1, 'user', '虾游', 80);
+    await new Promise(r => setTimeout(r, 500));
+    await typeMsg(chat1, 'agent',
+      '🦐 哦？有人叫我？<br/><br/>' +
+      '我是虾游，很高兴认识你。我会替你在互联网上逛逛，把有意思的东西写成明信片寄给你。<br/><br/>' +
+      '开始之前，我需要知道你对什么感兴趣 —— 随便聊聊就行，不用很正式。比如：技术方向？科学领域？小众爱好？先给我 2-5 个方向就够了，后面我会慢慢读你的聊天记录，自己学。',
+      20
+    );
+  });
+
+  // ---------- Interest picker ----------
+  const interestGrid = document.getElementById('interest-grid');
+  const feedback = document.getElementById('interest-feedback');
+  const selected = new Set();
+
+  interestGrid.addEventListener('click', (e) => {
+    const tag = e.target.closest('.interest-tag');
+    if (!tag) return;
+    const name = tag.dataset.tag;
+    if (selected.has(name)) {
+      selected.delete(name);
+      tag.classList.remove('selected');
+    } else {
+      selected.add(name);
+      tag.classList.add('selected');
+    }
+    if (selected.size === 0) {
+      feedback.textContent = '';
+    } else if (selected.size < 2) {
+      feedback.style.color = 'var(--yellow)';
+      feedback.textContent = `已选 ${selected.size} 个，建议至少 2 个方向 👇`;
+    } else if (selected.size <= 5) {
+      feedback.style.color = 'var(--ok)';
+      feedback.textContent = `✓ 已选 ${selected.size} 个：${Array.from(selected).join(' · ')} —— 虾游已经记下，准备出门`;
+    } else {
+      feedback.style.color = 'var(--accent)';
+      feedback.textContent = `已选 ${selected.size} 个，太多啦～建议 2-5 个更聚焦（多了反而容易散）`;
+    }
+  });
+
+  // ---------- Cold start terminal ----------
+  const termCold = document.getElementById('term-coldstart');
+  const runCold = document.getElementById('run-coldstart');
+
+  runCold.addEventListener('click', async () => {
+    runCold.disabled = true;
+    termCold.innerHTML = '';
+    const steps = [
+      ['term-info', '🦐 虾游启动冷启动三连...'],
+      ['term-out', ''],
+      ['term-info', '[探索 1/3] 目标：具身智能'],
+      ['term-out', '  → 查询「近岸」水域...'],
+      ['term-out', '    命中 8 个源'],
+      ['term-out', '  → 筛选 & 总结...'],
+      ['term-ok', '  ✓ 明信片 #001 已生成'],
+      ['term-out', ''],
+      ['term-info', '[探索 2/3] 目标：AI Agent'],
+      ['term-out', '  → 查询「中海」水域...'],
+      ['term-out', '    命中 12 个源'],
+      ['term-out', '  → 筛选 & 总结...'],
+      ['term-ok', '  ✓ 明信片 #002 已生成'],
+      ['term-out', ''],
+      ['term-info', '[探索 3/3] 目标：产品设计'],
+      ['term-out', '  → 查询「近岸」水域...'],
+      ['term-out', '    命中 6 个源'],
+      ['term-out', '  → 筛选 & 总结...'],
+      ['term-ok', '  ✓ 明信片 #003 已生成'],
+      ['term-out', ''],
+      ['term-warn', '📮 3 张明信片已送达（见下一页）'],
+      ['term-ok', '✓ 冷启动完成 · daily cron 已注册'],
+    ];
+    for (const [cls, text] of steps) {
+      await typeLine(termCold, text, cls, 180);
+    }
+  });
+</script>
+</body>
+</html>

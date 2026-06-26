@@ -1,0 +1,91 @@
+{
+  "version": "1.0",
+  "_comment": "Exemple de clients.json — deux fiches : une minimale (créée à l'instant), une complète (validée et enrichie). En production, ne mettez JAMAIS de champs _comment.",
+  "clients": [
+    {
+      "_comment": "Fiche minimale créée par l'utilisateur — seulement slug + raisonSociale + signaux requis.",
+      "slug": "beta-corp",
+      "raisonSociale": "Beta Corp",
+      "formeJuridique": null,
+      "siren": null,
+      "siret": null,
+      "tvaIntra": null,
+      "naf": null,
+      "statut": "active",
+      "source": "user",
+      "aValider": false,
+      "confiance": 1.0,
+      "dateCreationFiche": "2026-05-27T14:23:11Z",
+      "auteurCreation": "user",
+      "dateValidation": "2026-05-27T14:23:11Z",
+      "auteurValidation": "user",
+      "dateArchivage": null,
+      "purgeNonPasseAvant": null,
+      "domains": ["beta-corp.fr"],
+      "contacts": [
+        {
+          "nom": "Jean Martin",
+          "role": "Gérant",
+          "email": "jean@beta-corp.fr",
+          "telephone": null,
+          "principal": true
+        }
+      ],
+      "adresse": null,
+      "exerciceCloture": "12-31",
+      "regimeTVA": null,
+      "ibanFavori": null,
+      "id": "b1a2c3d4-e5f6-4789-90ab-cdef12345678",
+      "schemaVersion": 1
+    },
+    {
+      "_comment": "Fiche complète — validée et enrichie. Reflète l'état après plusieurs `update` et un lookup INSEE.",
+      "slug": "acme-sa",
+      "raisonSociale": "ACME SA",
+      "formeJuridique": "SAS",
+      "siren": "380129866",
+      "siret": "38012986600015",
+      "tvaIntra": "FR38380129866",
+      "naf": "6201Z",
+      "statut": "active",
+      "source": "auto",
+      "aValider": false,
+      "confiance": 1.0,
+      "dateCreationFiche": "2026-04-15T09:12:00Z",
+      "auteurCreation": "organisation-documents",
+      "dateValidation": "2026-04-15T09:45:00Z",
+      "auteurValidation": "user",
+      "dateArchivage": null,
+      "purgeNonPasseAvant": null,
+      "domains": ["acme.fr", "acme-corp.com"],
+      "contacts": [
+        {
+          "nom": "Marie Dupont",
+          "role": "Directrice financière",
+          "email": "marie.dupont@acme.fr",
+          "telephone": "+33612345678",
+          "principal": true
+        },
+        {
+          "nom": "Paul Bernard",
+          "role": "Comptable interne",
+          "email": "comptabilite@acme.fr",
+          "telephone": null,
+          "principal": false
+        }
+      ],
+      "adresse": {
+        "ligne1": "12 rue de la Paix",
+        "ligne2": null,
+        "codePostal": "75002",
+        "ville": "Paris",
+        "pays": "FR"
+      },
+      "exerciceCloture": "12-31",
+      "regimeTVA": "reel-normal",
+      "ibanFavori": "FR7630006000011234567890189",
+      "id": "a1b2c3d4-e5f6-4789-90ab-cdef12345678",
+      "schemaVersion": 1
+    }
+  ]
+}

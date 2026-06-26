@@ -1,0 +1,19 @@
+{
+  "slug": "islamic-reminder-planner-skill",
+  "name": "Islamic Reminder Planner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "faith",
+    "islamic-reminder-planner",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Faith & Lifestyle",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-14",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

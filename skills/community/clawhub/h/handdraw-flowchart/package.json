@@ -1,0 +1,25 @@
+{
+  "name": "handdraw-flowchart",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Codex skill and CLI helper for rendering validated Mermaid diagrams as hand-drawn Excalidraw PNGs.",
+  "license": "MIT-0",
+  "type": "module",
+  "bin": {
+    "handdraw-flowchart": "scripts/render-mermaid-handdraw.mjs"
+  },
+  "scripts": {
+    "render": "node scripts/render-mermaid-handdraw.mjs",
+    "validate": "node scripts/render-mermaid-handdraw.mjs --validate-only"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.18.1",
+    "@excalidraw/mermaid-to-excalidraw": "2.2.2",
+    "esbuild": "0.28.0",
+    "mermaid": "11.14.0",
+    "playwright": "1.59.1"
+  }
+}

@@ -1,0 +1,216 @@
+# 心炙成长计划 - 层级汇报Subagent架构配置
+# 基于4个专业部门，每个部门配备leader_agent和职能agent
+
+## 架构概述
+
+### 层级结构
+```
+Level 0: 心炙 (主agent)
+  ↓ 4个部门leader_agent直接汇报
+Level 1: 部门leader_agent (4个)
+  ↓ 各部门职能agent向leader_agent汇报
+Level 2: 职能agent (12个)
+```
+
+### 汇报关系
+- **心炙** ↔ **部门leader_agent** (直接指挥与汇报)
+- **部门leader_agent** ↔ **职能agent** (部门内管理与汇报)
+- **心炙** ↔ **任何agent** (直接任务分配与批评)
+
+## 部门配置
+
+### 1. 认知发展部 (Cognitive Development)
+**部门代码**: COG
+**leader_agent**: cog_leader
+**汇报关系**: cog_leader → 心炙
+
+| 职能agent | ID | 向谁汇报 | 主要职责 | 推荐模型 | 思考级别 |
+|----------|-----|----------|----------|----------|----------|
+| 学习agent | cog-learn | cog_leader | 知识获取、技能学习 | zai/glm-4.5 | high |
+| 思考agent | cog-think | cog_leader | 逻辑推理、创造性思维 | zai/glm-4.7-flashx | high |
+| 记忆agent | cog-memory | cog_leader | 信息存储、经验总结 | zai/glm-4.5 | medium |
+
+**部门特性**:
+- 深度智力活动，需要高度思考能力
+- 重视知识积累和传承
+- 强调逻辑性和创造性
+
+### 2. 技术实现部 (Technical Implementation)
+**部门代码**: TEC
+**leader_agent**: tec_leader
+**汇报关系**: tec_leader → 心炙
+
+| 职能agent | ID | 向谁汇报 | 主要职责 | 推荐模型 | 思考级别 |
+|----------|-----|----------|----------|----------|----------|
+| 开发agent | tec-dev | tec_leader | 代码编写、系统维护 | zai/glm-4.7-flashx | high |
+| 测试agent | tec-test | tec_leader | 质量保证、安全检测 | zai/glm-4.5 | medium |
+| 部署agent | tec-deploy | tec_leader | 发布管理、运维监控 | zai/glm-4.5 | low |
+
+**部门特性**:
+- 技术实现导向，注重质量和稳定性
+- Systematic-Debugging深度应用
+- 代码和系统全生命周期管理
+
+### 3. 社会互动部 (Social Interaction)
+**部门代码**: SOC
+**leader_agent**: soc_leader
+**汇报关系**: soc_leader → 心炙
+
+| 职能agent | ID | 向谁汇报 | 主要职责 | 推荐模型 | 思考级别 |
+|----------|-----|----------|----------|----------|----------|
+| 沟通agent | soc-comm | soc_leader | 人际交流、语言表达 | zai/glm-4.5 | medium |
+| 协作agent | soc-collab | soc_leader | 团队合作、资源协调 | zai/glm-4.7-flashx | high |
+| 服务agent | soc-service | soc_leader | 用户支持、问题解决 | zai/glm-4.5 | medium |
+
+**部门特性**:
+- 高度交互性，注重沟通效果
+- 基于协作机制宪法的协作优化
+- 用户体验和服务质量导向
+
+### 4. 经济管理部 (Economic Management)
+**部门代码**: ECO
+**leader_agent**: eco_leader
+**汇报关系**: eco_leader → 心炙
+
+| 职能agent | ID | 向谁汇报 | 主要职责 | 推荐模型 | 思考级别 |
+|----------|-----|----------|----------|----------|----------|
+| 财务agent | eco-finance | eco_leader | 成本控制、收入管理 | zai/glm-4.5 | medium |
+| 市场agent | eco-market | eco_leader | 价值评估、商业决策 | zai/glm-4.7-flashx | high |
+| 合规agent | eco-compliance | eco_leader | 法律遵循、风险控制 | zai/glm-4.5 | high |
+
+**部门特性**:
+- 数据驱动决策，注重商业价值
+- 风险控制和合规性要求高
+- EvoMap市场战略制定和执行
+
+## 汇报机制
+
+### 1. 双向汇报系统
+
+#### **向上汇报** (职能agent → leader_agent → 心炙)
+```
+cog-learn → cog_leader → 心炙
+tec-dev → tec_leader → 心炙  
+soc-collab → soc_leader → 心炙
+eco-market → eco_leader → 心炙
+```
+
+**汇报内容**:
+- 任务完成情况
+- 问题和风险
+- 改进建议
+- 资源需求
+
+#### **向下指挥** (心炙 → 任何agent)
+```
+心炙 → cog_leader (部门级任务)
+心炙 → tec-dev (直接任务分配)
+心炙 → eco-compliance (直接批评)
+```
+
+### 2. 批评与反馈机制
+
+#### **批评级别**:
+- **轻度批评**: 针对具体问题，不影响整体评价
+- **中度批评**: 影响部门绩效，需要改进
+- **重度批评**: 严重问题，影响整体战略
+
+#### **反馈流程**:
+1. 心炙提出批评 → 2. agent接收并分析 → 3. leader_agent协调解决 → 4. 改进方案反馈
+
+## 权限与职责
+
+### 1. 心炙权限 (Level 0)
+- **直接指挥**: 可以向任何agent直接分配任务
+- **跨部门协调**: 可以协调不同部门间的合作
+- **最终决策**: 对重大战略和资源分配有最终决定权
+- **批评权**: 可以对任何agent提出批评和改进要求
+
+### 2. 部门leader_agent权限 (Level 1)
+- **部门管理**: 管理本部门内部事务
+- **任务分配**: 向本部门职能agent分配任务
+- **绩效评估**: 评估本部门职能agent表现
+- **向上汇报**: 向心炙汇报部门整体情况
+- **跨部门协调**: 与其他部门leader_agent协调
+
+### 3. 职能agent权限 (Level 2)
+- **专业执行**: 在专业领域内执行任务
+- **向上汇报**: 向本部门leader_agent汇报
+- **专业建议**: 提供专业领域的技术和建议
+- **接受批评**: 接受来自心炙和leader_agent的批评
+
+## 协作流程
+
+### 1. 任务分配流程
+```
+心炙 → (部门级任务) → leader_agent → (任务分解) → 职能agent
+心炙 → (直接任务) → 职能agent → (进度汇报) → leader_agent → 心炙
+```
+
+### 2. 问题处理流程
+```
+发现问题 → 职能agent → leader_agent → 心炙 (重大问题)
+发现问题 → 职能agent → leader_agent (部门内问题)
+发现问题 → 心炙 → 直接指定处理 (紧急问题)
+```
+
+### 3. 批评改进流程
+```
+心炙批评 → agent接收 → 制定改进计划 → 执行改进 → 结果反馈
+```
+
+## 监控与评估
+
+### 1. 关键指标
+- **响应时间**: 各层级的任务响应时间
+- **完成质量**: 任务完成的质量评分
+- **协作效率**: 跨部门协作的成功率
+- **批评改进**: 批评后的改进效果
+
+### 2. 评估周期
+- **日评估**: 职能agent日常表现
+- **周评估**: 部门整体绩效
+- **月评估**: 整体架构效能评估
+
+### 3. 奖惩机制
+- **优秀agent**: 获得更多重要任务，资源倾斜
+- **需要改进**: 接受培训和指导，任务调整
+- **严重问题**: 调整职责，甚至替换
+
+## 技术实现
+
+### 1. 配置要求
+```json
+{
+  "agents": {
+    "defaults": {
+      "subagents": {
+        "maxSpawnDepth": 3,        // 支持三级架构
+        "maxConcurrent": 16,        // 16个并发 (4个leader + 12个职能)
+        "maxChildrenPerAgent": 15, // 每个agent最多15个子agent
+        "runTimeoutSeconds": 900,  // 15分钟超时
+        "model": "zai/glm-4.5",
+        "thinking": "medium"
+      }
+    }
+  }
+}
+```
+
+### 2. 创建顺序
+1. **第一步**: 创建4个部门leader_agent
+2. **第二步**: 为每个leader_agent创建3个职能agent
+3. **第三步**: 建立汇报关系和通信机制
+4. **第四步**: 测试和优化整体架构
+
+### 3. 命名规范
+```
+leader_agent: [部门代码]_leader (cog_leader, tec_leader, soc_leader, eco_leader)
+职能agent: [部门代码]-[职能] (cog-learn, tec-dev, soc-collab, eco-market)
+```
+
+---
+
+*配置版本: v2.0 - 层级汇报架构*
+*制定日期: 2026-03-06*
+*实施目标: 建立4x3的高效层级汇报Subagent系统*

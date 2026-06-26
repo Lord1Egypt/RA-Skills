@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <title>费曼虾 · 契约</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#fff;--fg:#000;--muted:#666;--border:#e0e0e0}
+    body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;overflow-x:hidden}
+    .main{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;gap:2rem;padding:2rem;max-width:1200px;margin:0 auto}
+    .left{display:flex;flex-direction:column;justify-content:center;gap:1.5rem}
+    .label{font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.2em;color:var(--muted)}
+    .hero{font-size:1rem;color:var(--muted);line-height:1.6}
+    .goal{font-size:2rem;font-weight:800;letter-spacing:-.02em;text-transform:uppercase;line-height:1.2}
+    .bar{display:flex;align-items:center;gap:.5rem;font-family:ui-monospace,monospace;font-size:.875rem}
+    .bar-track{flex:1;height:4px;background:var(--border);overflow:hidden}
+    .bar-fill{height:100%;background:var(--fg);transition:width .3s}
+    .specs{display:grid;grid-template-columns:100px 1fr;gap:.25rem .5rem;font-size:.8125rem}
+    .spec-k{font-family:ui-monospace,monospace;color:var(--muted)}
+    .demo-badge{display:inline-block;font-family:ui-monospace,monospace;font-size:.68rem;letter-spacing:.14em;border:1px solid var(--fg);padding:.08rem .35rem;vertical-align:middle}
+    .quick{border-top:1px solid var(--border);padding-top:.75rem}
+    .quick .k{font-family:ui-monospace,monospace;font-size:.75rem;letter-spacing:.12em;color:var(--muted);margin-bottom:.35rem}
+    .quick .v{font-size:.85rem;line-height:1.5;color:var(--fg)}
+    .details-btn{cursor:pointer;font-size:.8125rem;color:var(--muted);margin-top:1rem;transition:opacity .2s}
+    .details-btn:hover{opacity:.7}
+    .right{display:flex;align-items:center;justify-content:center;font-size:6rem}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;font-size:1.5rem;cursor:pointer;color:var(--muted);transition:opacity .2s}
+    .nav:hover{opacity:.7}
+    .overlay-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.08);z-index:9;opacity:0;pointer-events:none;transition:opacity .3s}
+    .overlay-backdrop.open{opacity:1;pointer-events:auto}
+    .overlay{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--bg);z-index:10;transform:translateX(100%);transition:transform .5s ease-out;overflow-y:auto;padding:2rem;border-left:1px solid var(--border)}
+    .overlay.open{transform:translateX(0)}
+    .overlay h2{font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin:1.5rem 0 .5rem;border-bottom:1px solid var(--border);padding-bottom:.25rem}
+    .overlay h2:first-of-type{margin-top:0}
+    .overlay .close{cursor:pointer;font-size:.8125rem;color:var(--muted);margin-bottom:1rem;transition:opacity .2s}
+    .overlay .close:hover{opacity:.7}
+    .clause{display:flex;justify-content:space-between;align-items:baseline;font-size:.875rem;padding:.25rem 0}
+    .clause.mastered{color:var(--fg)}
+    .clause.in_progress{font-weight:600}
+    .clause.pending{color:var(--muted)}
+    .clause .meta{font-size:.75rem;color:var(--muted);margin-left:.5rem}
+    .resource{font-size:.875rem;padding:.25rem 0}
+    .resource a{color:var(--fg);text-decoration:none}
+    .resource a:hover{text-decoration:underline}
+    .conv{font-size:.8125rem;color:var(--muted);margin:.5rem 0;line-height:1.5}
+    .empty{text-align:center;padding:4rem 2rem;color:var(--muted)}
+    .err{color:var(--muted);font-size:.875rem}
+    @media(max-width:768px){.main{grid-template-columns:1fr}.right{font-size:4rem}}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="empty">加载中…</div>
+  </div>
+
+  <script>
+(function(){
+  const API_CANDIDATES = [
+    'http://localhost:18789/api/feynman',
+    'http://localhost:18790/api/feynman'
+  ];
+
+  let apiBase = null;
+  let contracts = [];
+  let idx = 0;
+  let loadError = null;
+  let apiCandidatesReachable = [];
+  let heroById = {};
+  let lobsterMood = 'curious';
+  let detailById = {};
+
+  function pad(n){return String(n).padStart(2,'0')}
+  function fmtDate(s){if(!s)return'';const d=new Date(s);return d.toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'})}
+  function daysLeft(d){return Math.ceil((new Date(d)-Date.now())/864e5)}
+  function daysSince(d){return Math.ceil((Date.now()-new Date(d))/864e5)}
+  function esc(s){return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
+  function shortMd(text,max=360){
+    const t=String(text||'').replace(/\r/g,'').trim();
+    if(!t)return '';
+    return esc(t.length>max?t.slice(0,max)+'...':t).replaceAll('\n','<br>');
+  }
+  function apiPort(base){
+    const m=String(base||'').match(/:(\d+)\//);
+    return m?m[1]:'-';
+  }
+
+  function fallbackHeroText(c){
+    const m = c.clauses.filter(x=>x.status==='mastered').length;
+    const t = c.clauses.length;
+    const left = daysLeft(c.deadline);
+    if(c.status==='completed')return `契约完成。${daysSince(c.created_at)} 天前你说要${c.goal}，现在你做到了。`;
+    if(left<0)return `已逾期 ${Math.abs(left)} 天。还差 ${t-m} 个概念。`;
+    if(t-m<=2)return `还差最后 ${t-m} 个概念。`;
+    if(c.reward)return `Day ${daysSince(c.created_at)}。你已经教会龙虾 ${m} 个概念。距离那杯咖啡还有 ${t-m} 个。`;
+    return `Day ${daysSince(c.created_at)}。你已经教会龙虾 ${m} 个概念了。`;
+  }
+
+  function render(){
+    const app = document.getElementById('app');
+    if(loadError){
+      app.innerHTML=`<div class="empty">
+        <p class="err" style="font-size:1rem;margin-bottom:1rem">⚠️ 无法连接真实数据 API</p>
+        <p class="err">${loadError}</p>
+        <p class="err" style="margin-top:1.5rem;font-size:.875rem">
+          <strong>方式一（推荐）</strong>：先启动 OpenClaw Gateway，再刷新此页<br>
+          <code style="display:block;margin-top:.5rem;background:var(--border);padding:.5rem;font-size:.75rem">openclaw gateway</code>
+        </p>
+        <p class="err" style="margin-top:1rem;font-size:.875rem">
+          <strong>方式二</strong>：运行面板启动脚本，它会自动启用本地桥接器（18790）
+        </p>
+      </div>`;
+      return;
+    }
+    if(!contracts.length){
+      app.innerHTML='<div class="empty">还没有契约，去跟龙虾签一份吧。<br><small>在 IM 里说「我在做 XXX 项目」开始</small></div>';
+      return;
+    }
+    const c = contracts[idx];
+    const m = c.clauses.filter(x=>x.status==='mastered').length;
+    const t = c.clauses.length;
+    const hero = heroById[c.id] || fallbackHeroText(c);
+    const detail = detailById[c.id] || {conversations:[], memory:'', profile:''};
+    const moodEmoji = lobsterMood==='happy'?'🦞✨':lobsterMood==='anxious'?'🦞💭':lobsterMood==='celebrating'?'🦞🎉':'🦞';
+    const mastered = (c.clauses||[]).filter(x=>x.status==='mastered').length;
+    const inProgress = (c.clauses||[]).filter(x=>x.status==='in_progress').length;
+    const pending = (c.clauses||[]).filter(x=>x.status==='pending').length;
+    const latestConv = (detail.conversations||[])[0];
+    const demoTag = c.__demo ? '<span class="demo-badge">DEMO</span>' : '';
+
+    app.innerHTML=`
+<div class="main">
+  <div class="left">
+    <span class="label">契约 ${pad(idx+1)} / ${pad(contracts.length)} ${demoTag}</span>
+    <p class="hero">${hero}</p>
+    <h1 class="goal">${c.goal.toUpperCase()}</h1>
+    <div class="bar"><span>${m} / ${t}</span><div class="bar-track"><div class="bar-fill" style="width:${t?m/t*100:0}%"></div></div></div>
+    <div class="specs">
+      <span class="spec-k">DEADLINE</span><span>${fmtDate(c.deadline)}${c.status==='active'?'（还剩 '+daysLeft(c.deadline)+' 天）':''}</span>
+      <span class="spec-k">GOAL</span><span>${c.motivation||'-'}</span>
+      <span class="spec-k">REWARD</span><span>${c.reward||'-'}</span>
+    </div>
+    <div class="quick">
+      <div class="k">学习进展</div>
+      <div class="v">已掌握 ${mastered} · 进行中 ${inProgress} · 待学习 ${pending}</div>
+    </div>
+    <div class="quick">
+      <div class="k">最近费曼对话</div>
+      <div class="v">${latestConv?`${esc(latestConv.concept||'未知概念')} · ${esc(latestConv.result||'')}`:'暂无（点击 Details 加载全部）'}</div>
+    </div>
+    <div class="quick">
+      <div class="k">项目记忆 / 用户画像</div>
+      <div class="v">${detail.memory||detail.profile?'已加载摘要':'暂无（点击 Details 查看）'}</div>
+    </div>
+    <span class="details-btn" id="detailsBtn">Details +</span>
+    <div class="nav">
+      <span id="prev">←</span>
+      <span id="next">→</span>
+    </div>
+  </div>
+  <div class="right">${moodEmoji}</div>
+</div>
+<div class="overlay-backdrop" id="backdrop"></div>
+<div class="overlay" id="overlay">
+  <span class="close" id="close">Close -</span>
+  <h2>契约</h2>
+  <p><strong>${c.goal}</strong> ${demoTag} · 契约 ${pad(idx+1)} / ${pad(contracts.length)}</p>
+  <p class="specs" style="margin-top:.5rem"><span class="spec-k">DEADLINE</span><span>${fmtDate(c.deadline)}</span><span class="spec-k">GOAL</span><span>${c.motivation||'-'}</span><span class="spec-k">REWARD</span><span>${c.reward||'-'}</span></p>
+  ${(c.supervisors||[]).length?`<p><span class="spec-k">SUPERVISOR</span> ${c.supervisors.map(s=>s.agent_name).join(' · ')}</p>`:''}
+  <h2>进度</h2>
+  ${(c.clauses||[]).map(cl=>`<div class="clause ${cl.status}">${cl.status==='mastered'?'☑':cl.status==='in_progress'?'◐':'☐'} ${cl.concept}${cl.added_reason?' <span class="meta">新增：'+cl.added_reason+'</span>':''}${cl.mastered_at?' <span class="meta">'+fmtDate(cl.mastered_at)+' mastered</span>':cl.status==='in_progress'&&cl.attempts?' <span class="meta">尝试 '+cl.attempts+' 次</span>':''}</div>`).join('')}
+  <p style="font-size:.75rem;color:var(--muted);margin-top:.5rem">${m} / ${t}</p>
+  <h2>学习资料</h2>
+  ${(c.resources||[]).length?c.resources.map(r=>`<div class="resource">◉ ${r.url?`<a href="${r.url}" target="_blank">${r.title}</a>`:r.title} ${r.url||r.path||''}</div>`).join(''):'<p class="conv">暂无</p>'}
+  <h2>费曼对话</h2>
+  ${detail.conversations.length?detail.conversations.map(conv=>`<div class="conv"><strong>${fmtDate(conv.timestamp)} · ${esc(conv.concept||'未知概念')} · ${esc(conv.result||'')}</strong><br>${(conv.messages||[]).slice(-2).map(m=>`${m.role==='lobster'?'🦞':'👤'} ${esc(m.content||'')}`).join('<br>')}</div>`).join(''):'<p class="conv">暂无可用对话数据（真实数据源返回为空）</p>'}
+  <h2>项目记忆</h2>
+  ${detail.memory?`<p class="conv">${shortMd(detail.memory,420)}</p>`:'<p class="conv">暂无 contract-memory 内容</p>'}
+  <h2>用户画像</h2>
+  ${detail.profile?`<p class="conv">${shortMd(detail.profile,320)}</p>`:'<p class="conv">暂无 USER_PROFILE 内容</p>'}
+  <h2>连接信息</h2>
+  <p class="conv">本页面端口：<code>19380</code><br>数据接口：当前 <code>${apiPort(apiBase)}</code>（优先 <code>18789</code> 网关，否则 <code>18790</code> 本地桥接）</p>
+</div>`;
+
+    function openPanel(){document.getElementById('backdrop').classList.add('open');document.getElementById('overlay').classList.add('open')}
+    function closePanel(){document.getElementById('backdrop').classList.remove('open');document.getElementById('overlay').classList.remove('open')}
+    document.getElementById('detailsBtn').onclick=()=>{loadDetails(c.id).then(openPanel).catch(openPanel)};
+    document.getElementById('close').onclick=closePanel;
+    document.getElementById('backdrop').onclick=closePanel;
+    document.getElementById('prev').onclick=()=>{if(idx>0){idx--;refreshHeaderData().then(render)}};
+    document.getElementById('next').onclick=()=>{if(idx<contracts.length-1){idx++;refreshHeaderData().then(render)}};
+    document.onkeydown=e=>{if(e.key==='ArrowLeft'&&idx>0){idx--;refreshHeaderData().then(render)}else if(e.key==='ArrowRight'&&idx<contracts.length-1){idx++;refreshHeaderData().then(render)}};
+  }
+
+  async function fetchJson(path, bases){
+    const targets = (bases&&bases.length?bases:[apiBase, ...API_CANDIDATES.filter(b=>b!==apiBase)]).filter(Boolean);
+    let lastErr = 'API 未连接';
+    for(const base of targets){
+      try{
+        const r = await fetch(base+path);
+        if(!r.ok) throw new Error(`HTTP ${r.status}: ${path}`);
+        if(base!==apiBase) apiBase = base;
+        return r.json();
+      }catch(e){
+        lastErr = e.message || String(e);
+      }
+    }
+    throw new Error(lastErr);
+  }
+
+  async function connectApi(){
+    let lastErr = '';
+    let best = null;
+    const reachable = [];
+    for(const base of API_CANDIDATES){
+      try{
+        const r = await fetch(base+'/contracts');
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        const payload = await r.json();
+        const total = Number(payload.total || (payload.contracts||[]).length || 0);
+        reachable.push({base, payload, total});
+        if(!best || total > best.total) best = {base, payload, total};
+      }catch(e){
+        lastErr = e.message || String(e);
+      }
+    }
+    if(best){
+      apiCandidatesReachable = reachable.map(x=>x.base);
+      apiBase = best.base;
+      return best.payload;
+    }
+    throw new Error(lastErr || '无可用 API');
+  }
+
+  async function refreshHeaderData(){
+    const current = contracts[idx];
+    if(!current) return;
+    try{
+      const [hero, lobster] = await Promise.all([
+        fetchJson('/hero?contract_id='+encodeURIComponent(current.id), apiCandidatesReachable),
+        fetchJson('/lobster', apiCandidatesReachable)
+      ]);
+      if(hero&&hero.hero&&hero.hero.text) heroById[current.id] = hero.hero.text;
+      if(lobster&&lobster.lobster&&lobster.lobster.mood) lobsterMood = lobster.lobster.mood;
+      await loadDetails(current.id);
+    }catch(_e){
+      // keep graceful fallback without fake data
+    }
+  }
+
+  async function loadDetails(contractId){
+    if(detailById[contractId]) return detailById[contractId];
+    const [convRes, memoryRes, profileRes] = await Promise.allSettled([
+      fetchJson('/contracts/'+encodeURIComponent(contractId)+'/conversations?limit=5', apiCandidatesReachable),
+      fetchJson('/contracts/'+encodeURIComponent(contractId)+'/memory', apiCandidatesReachable),
+      fetchJson('/profile', apiCandidatesReachable)
+    ]);
+    const conversations = convRes.status==='fulfilled' ? (convRes.value.conversations||[]) : [];
+    const memory = memoryRes.status==='fulfilled' && memoryRes.value.memory ? (memoryRes.value.memory.markdown||'') : '';
+    const profile = profileRes.status==='fulfilled' && profileRes.value.profile ? (profileRes.value.profile.markdown||'') : '';
+    detailById[contractId] = {conversations, memory, profile};
+    return detailById[contractId];
+  }
+
+  async function load(d){
+    loadError=null;
+    contracts=(d.contracts||[]).filter(x=>x.status==='active'||x.status==='completed');
+    idx=0;
+    await refreshHeaderData();
+    render();
+  }
+
+  connectApi()
+    .then(load)
+    .catch(e=>{
+      const msg = e.message || String(e);
+      loadError = `18789/18790 都不可用。错误：${msg}`;
+      render();
+    });
+})();
+  </script>
+</body>
+</html>

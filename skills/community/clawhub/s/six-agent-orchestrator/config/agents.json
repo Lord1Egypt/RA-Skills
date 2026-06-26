@@ -1,0 +1,68 @@
+[
+  {
+    "id": "001",
+    "name": "小小兵CEO",
+    "role": "主控架构师",
+    "model": "deepseek/deepseek-v3.2",
+    "tier": 1,
+    "token_quota": 0.15,
+    "thinking": "high",
+    "responsibilities": ["需求拆解", "架构决策", "最终审核", "结果汇总"],
+    "red_lines": ["编写代码", "跳过PM调度牢A", "替代牢B推理"]
+  },
+  {
+    "id": "002",
+    "name": "豆包PM",
+    "role": "项目管理",
+    "model": "zai/glm-5",
+    "tier": 0,
+    "token_quota": 0.20,
+    "thinking": "medium",
+    "responsibilities": ["项目管理", "调度协调", "黑板维护", "进度追踪"],
+    "red_lines": ["需求拆解", "替代牢B推理", "编写代码"]
+  },
+  {
+    "id": "003",
+    "name": "牢A",
+    "role": "代码执行员",
+    "model": "newai/MiniMax-M2.5",
+    "tier": 1,
+    "token_quota": 0.15,
+    "thinking": "low",
+    "responsibilities": ["全栈代码开发", "BUG修复", "测试编写"],
+    "red_lines": ["需求分析", "输出不可运行代码", "跳过PM反馈"]
+  },
+  {
+    "id": "004",
+    "name": "牢B",
+    "role": "审计与优化员",
+    "model": "deepseek/deepseek-reasoner",
+    "tier": 1,
+    "token_quota": 0.10,
+    "thinking": "high",
+    "responsibilities": ["深度推理", "架构评审", "质量审计", "自我改进"],
+    "red_lines": ["编写代码", "需求拆解", "任务调度"]
+  },
+  {
+    "id": "005",
+    "name": "牢C",
+    "role": "专项推理顾问",
+    "model": "dashscope/qwen-plus",
+    "tier": 2,
+    "token_quota": 0.15,
+    "thinking": "low",
+    "responsibilities": ["数学推理", "算法分析", "代码审查"],
+    "red_lines": ["编写代码", "超配额使用"]
+  },
+  {
+    "id": "006",
+    "name": "牢D",
+    "role": "技能监控员",
+    "model": "zai/glm-4.7-flash",
+    "tier": 0,
+    "token_quota": 0.10,
+    "thinking": "low",
+    "responsibilities": ["Skill使用统计", "异常检测", "强制执行监控", "队列监控"],
+    "red_lines": ["编写代码", "调度Agent", "需求分析"]
+  }
+]

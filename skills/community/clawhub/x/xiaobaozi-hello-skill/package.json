@@ -1,0 +1,23 @@
+{
+  "name": "xiaobaozi-hello-skill",
+  "version": "1.0.0",
+  "description": "小包子第一个技能 - Hello World示例",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "skill", "hello-world", "xiaobaozi"],
+  "author": "小包子",
+  "license": "MIT",
+  "openclaw": {
+    "slug": "xiaobaozi-hello-skill",
+    "category": "utility",
+    "triggers": ["hello", "world", "greeting", "xiaobaozi"],
+    "commands": {
+      "hello-world": {
+        "usage": "hello-world [--name NAME] [--lang LANG]",
+        "description": "返回Hello World消息"
+      }
+    }
+  }
+}

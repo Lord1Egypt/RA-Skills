@@ -1,0 +1,6 @@
+{
+  "channel_id": "<your-discord-channel-id>",
+  "guild_id": "",
+  "review_channel": "email-review",
+  "timeout_minutes": 30
+}

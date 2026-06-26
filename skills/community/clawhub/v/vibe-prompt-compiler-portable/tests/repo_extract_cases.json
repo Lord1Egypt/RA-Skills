@@ -1,0 +1,25 @@
+[
+  {
+    "name": "extract_basic_repo_rules",
+    "repo_root": "/Users/tenghuiliu/.openclaw/workspace/skills/vibe-prompt-compiler-portable/tests/test_repo/rules",
+    "checks": {
+      "must_rules_contains": [
+        "Respect AGENTS.md instructions for touched files.",
+        "Keep changes consistent with the existing codebase.",
+        "Update documentation when the change affects usage or behavior.",
+        "Prefer existing repository lint/format scripts when validating changes."
+      ],
+      "must_not_rules_contains": [
+        "Do not modify unrelated files.",
+        "Do not add dependencies unless necessary and justified."
+      ],
+      "validation_rules_contains": [
+        "Describe or run the narrowest relevant validation for the change.",
+        "Prefer existing repository test scripts before inventing custom validation commands."
+      ],
+      "scope_guardrails_contains": [
+        "Prefer the smallest change that solves the root problem."
+      ]
+    }
+  }
+]

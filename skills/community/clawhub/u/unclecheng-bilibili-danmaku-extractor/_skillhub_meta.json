@@ -1,0 +1,7 @@
+{
+  "name": "bilibili-danmaku-extractor",
+  "version": "1.0.0",
+  "description": "B站视频弹幕提取工具",
+  "tags": ["bilibili", "danmaku", "extractor"],
+  "author": "WorkBuddy"
+}

@@ -1,35 +1,22 @@
 ---
-name: "openclaw-gitbak"
-description: "Backup/restore OpenClaw config and workspace via git."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-gitbak"
-sourceUrl: "https://clawhub.ai/skills/openclaw-gitbak"
+name: openclaw-gitbak
+description: Backup/restore OpenClaw config and workspace via git.
 ---
 
-# openclaw-gitbak
+# OpenClaw Git Backup/Restore
 
-> Backup/restore OpenClaw config and workspace via git.
+Scripts: `~/.openclaw/skills/openclaw-gitbak/scripts/`
+Config: edit `~/.openclaw/skills/openclaw-gitbak/scripts/config.sh`
+Format: `BACKUP_ITEMS["key"]="local_path:repo_name:description"`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-gitbak`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-gitbak](https://clawhub.ai/skills/openclaw-gitbak)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+# Usage
 ```bash
-hermes skills install clawhub/openclaw-gitbak
+bash ~/.openclaw/skills/openclaw-gitbak/scripts/restore.sh cfg
+bash ~/.openclaw/skills/openclaw-gitbak/scripts/restore.sh workspace
+bash ~/.openclaw/skills/openclaw-gitbak/scripts/restore.sh all
+
+bash ~/.openclaw/skills/openclaw-gitbak/scripts/backup.sh cfg
+bash ~/.openclaw/skills/openclaw-gitbak/scripts/backup.sh workspace
+bash ~/.openclaw/skills/openclaw-gitbak/scripts/backup.sh all
+
 ```

@@ -1,0 +1,42 @@
+project:
+  linux_repo: /data/src/linux
+  docs_repo: /data/src/linux-riscv-docs
+  kvm_lore_url: https://yhbt.net/lore/kvm/
+
+agents:
+  scout:
+    runtime: acp
+    agentId: claude-code
+    model: hanbbq/gpt-5.3-codex
+  planner:
+    runtime: acp
+    agentId: claude-code
+    model: hanbbq/gpt-5.3-codex
+  implementer:
+    runtime: acp
+    agentId: codex
+    model: hanbbq/gpt-5.3-codex
+  verifier:
+    runtime: acp
+    agentId: codex
+    model: hanbbq/gpt-5.3-codex
+
+policy:
+  max_parallel_issues: 3
+  max_fix_iterations: 8
+  require_human_gate:
+    - gate_gap_triage
+    - gate_plan_review
+    - gate_patch_send
+
+issue:
+  repo: zcxGGmu/linux-riscv-docs
+  assignee: zcxGGmu
+  labels_default: ["riscv", "kvm-gap"]
+
+mailing:
+  target_lists:
+    - kvm@vger.kernel.org
+    - linux-riscv@lists.infradead.org
+  dry_run: true
+  use_b4: true

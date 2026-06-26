@@ -1,0 +1,50 @@
+# ─── Reusable Deploy Sub-Pipeline ──────────────────────────────────────
+#
+# Deploys a given artifact to a target environment.
+# Includes a safety gate for production.
+#
+# Standalone:  squid run squid-pipeline/examples/sub-deploy.yaml \
+#                --args-json '{"artifact":"app-prod.tar.gz","env":"staging"}'
+# As sub-step: See squid-pipeline/examples/orchestrator.yaml
+
+name: deploy
+description: Deploy artifact to target environment
+
+args:
+  artifact:
+    required: true
+    description: Build artifact to deploy
+  env:
+    default: staging
+    description: Target environment
+
+steps:
+  - id: pre-check
+    type: run
+    description: Verify deployment target is healthy
+    run: echo '{"healthy":true,"current_version":"1.2.3"}'
+    retry:
+      maxAttempts: 3
+      backoff: exponential
+
+  - id: prod-gate
+    type: gate
+    description: Require approval for production deploys
+    gate:
+      prompt: "Deploy ${args.artifact} to ${args.env}? Current version: ${pre-check.json.current_version}"
+      preview: $pre-check.json
+    when: $args.env == "prod"
+
+  - id: push
+    type: run
+    description: Push artifact to environment
+    run: echo '{"deployed":true,"artifact":"${args.artifact}","env":"${args.env}","version":"1.3.0"}'
+    retry:
+      maxAttempts: 3
+      backoff: exponential-jitter
+
+  - id: verify
+    type: run
+    description: Smoke test the deployment
+    run: echo '{"status":"healthy","response_time_ms":45}'
+    retry: 2

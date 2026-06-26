@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "skills": [
+    {
+      "name": "netfluid",
+      "version": "7.0.3",
+      "description": "Payment integration skill for fiat and crypto transfers using Netfluid API",
+      "author": {
+        "name": "Netfluid",
+        "website": "https://netfluid.io"
+      },
+      "homepage": "https://netfluid.io",
+      "license": "MIT",
+      "tags": ["payments", "banking", "crypto"]
+    }
+  ]
+}

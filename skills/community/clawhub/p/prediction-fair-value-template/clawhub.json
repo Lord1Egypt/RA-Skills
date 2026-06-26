@@ -1,0 +1,60 @@
+{
+  "emoji": "📈",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Your Simmer SDK API key from simmer.markets/dashboard."
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Optional. Only needed for external-wallet self-custody trading on supported venues."
+    },
+    {
+      "name": "MARKET_QUERY",
+      "required": false,
+      "description": "Keyword query used to discover markets. Default: bitcoin."
+    },
+    {
+      "name": "FAIR_PROBABILITY",
+      "required": false,
+      "description": "Your estimated YES probability from 0 to 1. Default: 0.60."
+    },
+    {
+      "name": "MIN_EDGE",
+      "required": false,
+      "description": "Minimum edge required before placing a trade. Default: 0.05."
+    },
+    {
+      "name": "MAX_MARKETS",
+      "required": false,
+      "description": "Maximum number of markets to inspect each run. Default: 5."
+    },
+    {
+      "name": "MAX_SLIPPAGE_PCT",
+      "required": false,
+      "description": "Skip trades when estimated slippage exceeds this threshold. Default: 0.15."
+    },
+    {
+      "name": "TRADING_VENUE",
+      "required": false,
+      "description": "Trading venue to read and trade on. Supported values in this template: sim or polymarket. Default: sim."
+    },
+    {
+      "name": "SIMMER_ENABLE_LIVE",
+      "required": false,
+      "description": "Set to true to permit live trading in automation. Default: false."
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trade_skill.py"
+  }
+}

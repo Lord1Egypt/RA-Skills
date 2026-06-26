@@ -1,0 +1,3 @@
+interface:
+  display_name: "OpenClaw Astro Blog"
+  short_description: "Publish Astro Koharu blog posts with AI tags and categories"

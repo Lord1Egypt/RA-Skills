@@ -1,0 +1,46 @@
+{
+  "stage_name": "chatgpt_paper_deep_reading_skill_source",
+  "resume_from_bundle_only_supported": true,
+  "workspace_root": "",
+  "delivery_bundle_zip": "",
+  "status_artifacts": [
+    "metadata/routing_status.json",
+    "reports/stage_delivery_handoff.md"
+  ],
+  "directory_description_artifacts": [
+    "metadata/project_directory_index.json",
+    "reports/project_directory_index.md"
+  ],
+  "authoritative_handoff_artifacts": [
+    "metadata/query_spec.json",
+    "metadata/paper_batch_manifest.json",
+    "metadata/delivery_bundle_manifest.json",
+    "metadata/routing_status.json",
+    "metadata/project_directory_index.json",
+    "reports/stage_delivery_handoff.md",
+    "reports/project_directory_index.md"
+  ],
+  "next_stage": {
+    "optional_downstream_note": "Only route to graph mining, presentation, or another downstream workflow when the user explicitly asks.",
+    "possible_user_inputs_for_next_stage": [
+      "使用这个skill，根据状态，告知下一步应该问什么。",
+      "使用这个skill，根据状态，执行第1步：生成多张连续的卡通图，展示背景、旧方法缺陷、论文问题和灵感来源。",
+      "使用这个skill，根据状态，执行第2步：生成多张连续的卡通图，展示算法整体流程与各模块解释。"
+    ],
+    "next_stage_should_read_first": [
+      "metadata/delivery_bundle_manifest.json",
+      "metadata/routing_status.json",
+      "metadata/project_directory_index.json",
+      "reports/stage_delivery_handoff.md"
+    ]
+  },
+  "notes": [
+    "v1.2.0 adds deep explanation, reproducibility, and multi-image cartoon continuity guardrails; optional teaching sidecars remain derivatives and do not replace the authoritative report."
+  ],
+  "optional_derivative_artifacts": [
+    "generated/teaching/<paper-slug>/teaching_outline_cn.md",
+    "generated/teaching/<paper-slug>/slide_blueprint_cn.json",
+    "generated/teaching/<paper-slug>/qa_bank_cn.json",
+    "generated/teaching/<paper-slug>/role_play_discussion_pack_cn.md"
+  ]
+}

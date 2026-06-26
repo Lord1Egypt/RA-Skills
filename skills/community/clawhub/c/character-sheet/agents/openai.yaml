@@ -1,0 +1,4 @@
+interface:
+  display_name: "角色三视图"
+  short_description: "生成角色正面/侧面/背面三视图，附带配色板与细节拆解"
+  default_prompt: "请描述你想设计的角色，我会生成完整的三视图和配色方案。"

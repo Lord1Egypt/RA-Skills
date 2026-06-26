@@ -1,0 +1,49 @@
+{
+  "name": "feishu-doc-todo",
+  "displayName": "📅 飞书文档待办自动识别",
+  "version": "1.0.0",
+  "description": "自动识别飞书文档中的待办表格（时间节点 + 里程碑 + 负责人），解析模糊时间，批量创建飞书日历日程并设置 deadline 提醒。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://clawhub.com/skills/feishu-doc-todo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/feishu-doc-todo"
+  },
+  "keywords": [
+    "feishu",
+    "todo",
+    "calendar",
+    "deadline",
+    "待办",
+    "日历",
+    "提醒"
+  ],
+  "engines": {
+    "openclaw": ">=2026.3.13"
+  },
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "config": {
+    "defaultReminderMinutes": 1440,
+    "fuzzyTimeRules": {
+      "月底": "last_day_of_month",
+      "月初": "first_day_of_month",
+      "月份": "15th_of_month",
+      "下周": "+7_days",
+      "下周初": "+7_days_first_day",
+      "下月底": "next_month_last_day"
+    }
+  },
+  "triggers": [
+    "创建日历",
+    "设置日程",
+    "待办提醒",
+    "deadline 提醒",
+    "飞书文档待办",
+    "文档待办转日历"
+  ],
+  "changelog": "## v1.0.0 (2026-03-29)\n\n- ✅ 初始版本\n- ✅ 支持读取飞书文档内容\n- ✅ 支持识别待办表格（时间节点 + 里程碑 + 负责人）\n- ✅ 支持解析模糊时间（下周/3 月底/4 月份等）\n- ✅ 支持批量创建飞书日历日程\n- ✅ 支持 deadline 提醒（提前 1 天/7 天可配置）"
+}

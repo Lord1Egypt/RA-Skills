@@ -1,0 +1,64 @@
+{
+  "name": "社媒情绪",
+  "endpoint": "POST /social-sentiment/getCoinSocialSentiment",
+  "description": "提供单个代币的市场情绪指标数据，包括看涨、看跌、中立的观点比例和观点内容",
+  "credits_cost": 1,
+  "needToken": true,
+  "use_case": "适用于对代币的市场情绪综合分析，适用于结合资金流向分析市场情绪与价格走势的关系，适用于判断市场多空情绪倾向",
+  "notes": "自然语言输入市场情绪时可调用此接口，并同时调用实时资金数据接口来提供分析",
+  "update_frequency": "定时更新（基于社交媒体数据采集）",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "数据更新时间" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "bullishRatio": { "type": "number", "actualType": "number", "desc": "看涨情绪比例" },
+    "neutralRatio": { "type": "number", "actualType": "number", "desc": "中性情绪比例" },
+    "bearishRatio": { "type": "number", "actualType": "number", "desc": "看跌情绪比例" },
+    "bearishContents": {
+      "type": "array",
+      "desc": "看跌内容列表",
+      "item": {
+        "english": { "type": "string", "actualType": "string", "desc": "英文内容" },
+        "updateTime": { "type": "long", "actualType": "long", "desc": "内容更新时间" }
+      }
+    },
+    "neutralContents": {
+      "type": "array",
+      "desc": "中性内容列表",
+      "item": {
+        "english": { "type": "string", "actualType": "string", "desc": "英文内容" },
+        "updateTime": { "type": "long", "actualType": "long", "desc": "内容更新时间" }
+      }
+    },
+    "bullishContents": {
+      "type": "array",
+      "desc": "看涨内容列表",
+      "item": {
+        "english": { "type": "string", "actualType": "string", "desc": "英文内容" },
+        "updateTime": { "type": "long", "actualType": "long", "desc": "内容更新时间" }
+      }
+    }
+  },
+  "example": {
+    "req": { "vsTokenId": 1 },
+    "res": {
+      "code": 200,
+      "data": {
+        "updateTime": 1773315931000,
+        "vsTokenId": "1",
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "bullishRatio": 0.41,
+        "neutralRatio": 0.49,
+        "bearishRatio": 0.10,
+        "bearishContents": [{ "english": "$BTC faces conflicting narratives...", "updateTime": 1773316047000 }],
+        "neutralContents": [{ "english": "Whales and institutional actors...", "updateTime": 1773316047000 }],
+        "bullishContents": [{ "english": "$BTC shows strong bullish conviction...", "updateTime": 1773316047000 }]
+      }
+    }
+  }
+}

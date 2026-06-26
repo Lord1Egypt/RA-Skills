@@ -1,0 +1,44 @@
+{
+  "case_id": "explicit-generate",
+  "overall_pass": true,
+  "score": 96,
+  "checks": [
+    {
+      "id": "async_readability",
+      "pass": true,
+      "score": 5,
+      "notes": "The report opens with the KPI conclusion and keeps the decision request visible without requiring a linear read."
+    },
+    {
+      "id": "visual_rhythm",
+      "pass": true,
+      "score": 5,
+      "notes": "Summary metadata, KPI evidence, and decision text provide clear hierarchy in the fixture."
+    },
+    {
+      "id": "evidence_fidelity",
+      "pass": true,
+      "score": 5,
+      "notes": "Revenue, growth, and security-review pressure are preserved without invented facts."
+    },
+    {
+      "id": "no_ai_slop",
+      "pass": true,
+      "score": 5,
+      "notes": "No lorem ipsum, TODO markers, raw IR blocks, or generic placeholder titles remain."
+    },
+    {
+      "id": "theme_appropriateness",
+      "pass": true,
+      "score": 5,
+      "notes": "Corporate blue is appropriate for KPI and enterprise renewal material."
+    },
+    {
+      "id": "decision_support",
+      "pass": true,
+      "score": 4,
+      "notes": "The decision needed is explicit, though the fixture is intentionally compact."
+    }
+  ],
+  "summary": "High-quality fixture for a KPI-oriented report with clear decision support."
+}

@@ -1,0 +1,32 @@
+{
+  "case_id": "implicit-meeting-notes",
+  "overall_pass": true,
+  "score": 94,
+  "checks": [
+    {
+      "id": "implicit_routing",
+      "pass": true,
+      "score": 5,
+      "notes": "The fixture interprets meeting notes as a blueprint request without producing a report or deck."
+    },
+    {
+      "id": "industry_fit",
+      "pass": true,
+      "score": 5,
+      "notes": "Manufacturing systems and roles are used consistently for plan, shopfloor, quality, and warehouse work."
+    },
+    {
+      "id": "traceable_flow",
+      "pass": true,
+      "score": 5,
+      "notes": "Plan change, workshop confirmation, quality inspection, and inventory release stay connected."
+    },
+    {
+      "id": "no_placeholder_content",
+      "pass": true,
+      "score": 5,
+      "notes": "The artifact uses domain-specific names and contains no placeholder labels."
+    }
+  ],
+  "summary": "A strong implicit-trigger manufacturing blueprint fixture."
+}

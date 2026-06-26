@@ -1,0 +1,13 @@
+{
+  "targets": {
+    "gold": 15000,
+    "diamond": 500
+  },
+  "multiplier": 1.2,
+  "price_overrides": {
+    "gold": {
+      "南瓜汁": 130
+    },
+    "diamond": {}
+  }
+}

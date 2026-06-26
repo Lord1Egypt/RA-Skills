@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "markdown-to-docx-with-frontmatter",
+  "prompt": "Convert markdown with YAML front matter to .docx with report style, including header/footer/TOC",
+  "assertions": [
+    {"name": "output_file_exists", "description": "Generated .docx file exists"},
+    {"name": "valid_docx", "description": "Output is a valid .docx file"},
+    {"name": "core_properties_title", "description": "title core property matches front matter"},
+    {"name": "core_properties_author", "description": "author core property matches front matter"},
+    {"name": "header_present", "description": "Document has header text"},
+    {"name": "toc_field_present", "description": "TOC field code is present in document"},
+    {"name": "callout_rendered", "description": "Blockquote rendered as callout/info box"},
+    {"name": "lists_rendered", "description": "Bullet and numbered lists are present"}
+  ]
+}

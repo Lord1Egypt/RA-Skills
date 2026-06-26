@@ -1,35 +1,51 @@
 ---
-name: "angular-best-practices-spartan"
-description: "Indexed by skills.sh from alfredoperez/angular-best-practices"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "alfredoperez"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/alfredoperez/angular-best-practices/angular-best-practices-spartan"
-sourceUrl: "https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices-spartan"
+name: angular-best-practices-spartan
+description: >-
+  Spartan UI (shadcn for Angular) best practices. Covers Brain/Helm architecture,
+  Tailwind integration, and accessible headless components.
+  Activates when working with @spartan-ng/brain and @spartan-ng/ui.
+  Do not use for Angular Material, PrimeNG, or other component libraries.
+  Install alongside angular-best-practices for full coverage.
+license: MIT
+metadata:
+  author: alfredoperez
+  version: "1.2.0"
+tags: [angular, spartan, headless-ui, tailwind]
+globs:
+  - "**/*.ts"
+  - "**/*.component.ts"
+  - "**/*.html"
 ---
 
-# angular-best-practices-spartan
+# Angular Spartan UI Best Practices
 
-> Indexed by skills.sh from alfredoperez/angular-best-practices
+Spartan UI rules for headless components with Brain (behavior) and Helm (styling). Use with the core
+[angular-best-practices](https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices)
+skill for comprehensive Angular coverage.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** alfredoperez
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/alfredoperez/angular-best-practices/angular-best-practices-spartan`
-- **Source URL:** [https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices-spartan](https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices-spartan)
+## Links
 
-## Overview
+- [Core Skill: angular-best-practices](https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices)
+- [Browse All Skills](https://skills.sh/alfredoperez/angular-best-practices)
+- [GitHub Repository](https://github.com/alfredoperez/angular-best-practices)
 
+## When to Apply
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/alfredoperez/angular-best-practices/angular-best-practices-spartan
-```
+- Adding Spartan Brain directives for accessible behavior
+- Styling components with Helm and Tailwind CSS
+- Building dialogs, tabs, menus, or accordions with Spartan primitives
+
+## Rules
+
+| Rule | Impact | Description |
+|------|--------|-------------|
+| Configure Tailwind with Spartan Helm | MEDIUM | Consistent utility-first styling via hlm directives |
+| Use Spartan Brain for Accessible Behavior | MEDIUM | WCAG-compliant ARIA, keyboard nav, and focus management |
+| Use Spartan UI Headless Components | MEDIUM | Full styling control with built-in accessibility |
+
+## Install
+
+Install from [skills.sh/alfredoperez/angular-best-practices](https://skills.sh/alfredoperez/angular-best-practices):
+
+- Core skill: [angular-best-practices](https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices)
+- This add-on: [angular-best-practices-spartan](https://skills.sh/alfredoperez/angular-best-practices/angular-best-practices-spartan)

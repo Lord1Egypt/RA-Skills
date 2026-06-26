@@ -1,0 +1,15 @@
+id: risk_sentinel
+display_name: Risk Sentinel
+display_name_zh: 风险哨兵
+enabled: true
+markets: [us, hk, cn]
+audience_locale: zh-CN
+narrative_tone: defensive
+terminology_profile: mixed
+ensemble_weight: 1.1
+overlay:
+  conviction_scale: 0.88
+  conviction_bias: -4
+  risk_flag_penalty_per: 2
+  signal_cap_max: BUY
+  high_rsi_penalty_extra: 5

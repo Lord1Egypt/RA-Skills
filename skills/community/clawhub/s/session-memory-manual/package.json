@@ -1,0 +1,12 @@
+{
+  "name": "session-memory-sync",
+  "version": "0.5.6",
+  "description": "跨 Session 记忆查找与同步机制，完全手动触发",
+  "author": "郭泉 (Dr. Guo)",
+  "license": "MIT-0",
+  "keywords": ["memory", "session", "sync", "search", "manual", "explicit"],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests for manual-trigger mode\""
+  }
+}

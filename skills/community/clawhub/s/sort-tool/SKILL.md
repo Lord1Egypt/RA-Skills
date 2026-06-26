@@ -1,35 +1,35 @@
 ---
-name: "Sort Tool"
-description: "Sort lines of text files alphabetically or numerically. Use for data preparation, list organization, and output formatting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sort-tool"
-sourceUrl: "https://clawhub.ai/skills/sort-tool"
+name: sort-tool
+description: Sort lines of text files alphabetically or numerically. Use for data preparation, list organization, and output formatting.
 ---
 
-# Sort Tool
+# Line Sorting Utility
 
-> Sort lines of text files alphabetically or numerically. Use for data preparation, list organization, and output formatting.
+Arrange text file lines in specified order with support for numeric, month-name, and reverse sorting. Handles large files efficiently.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sort-tool`
-- **Source URL:** [https://clawhub.ai/skills/sort-tool](https://clawhub.ai/skills/sort-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/sort-tool
+sort-tool [options] [file...]
+```
+
+## Options
+
+- `-n`: Numeric sort
+- `-r`: Reverse order
+- `-u`: Unique lines (remove duplicates)
+- `-k N`: Sort by column N
+- `-t SEP`: Use SEP as field separator
+
+## Examples
+
+```bash
+# Alphabetical sort
+sort-tool names.txt
+
+# Numeric sort
+sort-tool -n numbers.txt
+
+# Sort by column 2
+sort-tool -k 2 -t ',' data.csv
 ```

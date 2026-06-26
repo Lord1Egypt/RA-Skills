@@ -1,0 +1,8 @@
+# Agent 自动更新配置
+# 默认开启，每次启动时检查远程更新
+
+enabled: true              # 是否启用自动更新（默认开启）
+check_on_startup: true     # 启动时检查更新
+remote: origin             # 远程仓库名称
+branch: main               # 跟踪的分支
+silent: false              # 是否静默模式（false 会输出更新信息）

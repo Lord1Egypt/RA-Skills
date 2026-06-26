@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP 看板系统 v3.0 - 完整功能版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; }
+        
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .header .version { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8em; display: inline-block; margin-top: 10px; }
+        
+        .container { max-width: 1800px; margin: 0 auto; padding: 30px; }
+        
+        .toolbar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9em; font-weight: bold; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; transform: translateY(-2px); }
+        .btn-secondary { background: white; color: #667eea; border: 2px solid #667eea; }
+        .btn-secondary:hover { background: #667eea; color: white; }
+        .btn-danger { background: #e53e3e; color: white; }
+        .btn-danger:hover { background: #c53030; }
+        .btn-success { background: #38a169; color: white; }
+        .btn-success:hover { background: #2f855a; }
+        
+        .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .metric-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
+        .metric-value { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .metric-label { color: #666; margin-top: 8px; font-size: 0.95em; }
+        
+        .lane-section { margin-bottom: 40px; }
+        .lane-header { display: flex; align-items: center; gap: 10px; padding: 15px 20px; background: white; border-radius: 12px 12px 0 0; border-left: 5px solid; }
+        .lane-header .lane-name { flex: 1; font-weight: bold; font-size: 1.1em; }
+        .lane-actions { display: flex; gap: 5px; }
+        .lane-actions .btn { padding: 6px 12px; font-size: 0.8em; }
+        
+        .kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: #e8ecf1; border-radius: 0 0 12px 12px; overflow: hidden; }
+        .kanban-column { padding: 15px; min-height: 300px; }
+        .column-header { font-size: 0.95em; font-weight: bold; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center; background: #cbd5e0; color: #4a5568; }
+        
+        .task-card { background: white; border-radius: 8px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); cursor: pointer; transition: all 0.2s; border-left: 4px solid; position: relative; }
+        .task-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+        .task-card.dragging { opacity: 0.5; transform: scale(1.02); }
+        
+        .task-name { font-weight: bold; font-size: 1em; margin-bottom: 10px; color: #2d3436; }
+        .task-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8em; color: #636e72; margin-bottom: 8px; }
+        .task-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s; }
+        .task-card:hover .task-actions { opacity: 1; }
+        .task-actions .btn { padding: 4px 8px; font-size: 0.7em; }
+        
+        .priority-badge { padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; }
+        .priority-high { background: #fed7d7; color: #c53030; }
+        .priority-medium { background: #feebc8; color: #c05621; }
+        .priority-low { background: #c6f6d5; color: #276749; }
+        
+        .kanban-column.drag-over { background: #d0d7e0; border: 2px dashed #667eea; border-radius: 8px; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h2 { font-size: 1.5em; color: #2d3436; }
+        .modal-close { background: none; border: none; font-size: 1.5em; cursor: pointer; color: #666; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #4a5568; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1em; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #667eea; }
+        .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 30px; }
+        
+        .footer { text-align: center; padding: 30px; color: #666; border-top: 1px solid #eee; margin-top: 40px; }
+        
+        .add-task-btn { width: 100%; padding: 12px; border: 2px dashed #cbd5e0; border-radius: 8px; background: transparent; color: #666; cursor: pointer; font-size: 0.95em; transition: all 0.2s; }
+        .add-task-btn:hover { border-color: #667eea; color: #667eea; background: #f7fafc; }
+        
+        @media (max-width: 1200px) { .kanban-board { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 MVP 看板系统</h1>
+        <p>v3.0 - 完整功能版 | 支持任务增删改</p>
+        <span class="version">v3.0.0</span>
+    </div>
+    
+    <div class="container">
+        <div class="toolbar">
+            <button class="btn btn-primary" onclick="openAddTaskModal()">➕ 添加任务</button>
+            <button class="btn btn-success" onclick="openAddLaneModal()">➕ 添加泳道</button>
+            <button class="btn btn-secondary" onclick="loadData()">🔄 刷新</button>
+            <button class="btn btn-secondary" onclick="toggleView()">👁️ 切换视图</button>
+        </div>
+        
+        <div class="metrics" id="metrics"></div>
+        
+        <div id="lanes-container"></div>
+    </div>
+    
+    <div class="footer">
+        <p>MVP Kanban Board v3.0 | 最后更新：<span id="last-update">-</span></p>
+    </div>
+    
+    <!-- 添加/编辑任务模态框 -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="task-modal-title">添加任务</h2>
+                <button class="modal-close" onclick="closeTaskModal()">&times;</button>
+            </div>
+            <form id="task-form" onsubmit="saveTask(event)">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label>任务名称 *</label>
+                    <input type="text" id="task-name" required placeholder="输入任务名称">
+                </div>
+                <div class="form-group">
+                    <label>泳道</label>
+                    <select id="task-lane"></select>
+                </div>
+                <div class="form-group">
+                    <label>状态</label>
+                    <select id="task-status">
+                        <option value="todo">📋 待办</option>
+                        <option value="in_progress">🔄 进行中</option>
+                        <option value="done">✅ 已完成</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>优先级</label>
+                    <select id="task-priority">
+                        <option value="low">🟢 低</option>
+                        <option value="medium" selected>🟡 中</option>
+                        <option value="high">🔴 高</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>负责人</label>
+                    <input type="text" id="task-assignee" placeholder="输入负责人姓名">
+                </div>
+                <div class="form-group">
+                    <label>任务数</label>
+                    <input type="number" id="task-tasks" value="0" min="0">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-danger" id="delete-task-btn" onclick="deleteTask()" style="display:none;">🗑️ 删除</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeTaskModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">💾 保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 添加泳道模态框 -->
+    <div class="modal" id="lane-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>添加泳道</h2>
+                <button class="modal-close" onclick="closeLaneModal()">&times;</button>
+            </div>
+            <form id="lane-form" onsubmit="saveLane(event)">
+                <div class="form-group">
+                    <label>泳道 ID *</label>
+                    <input type="text" id="lane-id" required placeholder="如：testing">
+                </div>
+                <div class="form-group">
+                    <label>泳道名称 *</label>
+                    <input type="text" id="lane-name" required placeholder="如：测试">
+                </div>
+                <div class="form-group">
+                    <label>颜色</label>
+                    <input type="color" id="lane-color" value="#667eea">
+                </div>
+                <div class="form-group">
+                    <label>图标</label>
+                    <input type="text" id="lane-icon" placeholder="如：🧪" value="📌">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeLaneModal()">取消</button>
+                    <button type="submit" class="btn btn-success">➕ 添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let kanbanData = null;
+        let currentView = 'lanes';
+        
+        async function loadData() {
+            try {
+                const response = await fetch('/api/kanban');
+                kanbanData = await response.json();
+                renderMetrics();
+                renderLaneLegend();
+                renderBoard();
+                updateLaneSelect();
+                document.getElementById('last-update').textContent = new Date().toLocaleString('zh-CN');
+            } catch (error) {
+                console.error('加载失败:', error);
+                alert('加载数据失败，请刷新页面重试');
+            }
+        }
+        
+        function renderMetrics() {
+            document.getElementById('metrics').innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-value">${kanbanData.metrics.total_projects}</div>
+                    <div class="metric-label">总任务数</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" style="color: #00b894">${kanbanData.metrics.completed}</div>
+                    <div class="metric-label">已完成</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" style="color: #0984e3">${kanbanData.metrics.in_progress}</div>
+                    <div class="metric-label">进行中</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" style="color: #fdcb6e">${kanbanData.metrics.todo}</div>
+                    <div class="metric-label">待办</div>
+                </div>
+            `;
+        }
+        
+        function renderLaneLegend() {
+            // 泳道图例已集成到泳道头部
+        }
+        
+        function renderBoard() {
+            const container = document.getElementById('lanes-container');
+            
+            if (currentView === 'lanes') {
+                container.innerHTML = kanbanData.lanes.map(lane => {
+                    const laneProjects = kanbanData.projects.filter(p => p.lane === lane.id);
+                    return `
+                        <div class="lane-section">
+                            <div class="lane-header" style="border-left-color: ${lane.color}; background: ${lane.color}15;">
+                                <span class="lane-icon">${lane.icon}</span>
+                                <span class="lane-name">${lane.name}</span>
+                                <span style="opacity: 0.7; font-size: 0.9em;">${laneProjects.length} 个任务</span>
+                                <div class="lane-actions">
+                                    <button class="btn btn-secondary" onclick="openAddTaskModal('${lane.id}')">➕ 任务</button>
+                                    <button class="btn btn-danger" onclick="deleteLane('${lane.id}')" ${laneProjects.length > 0 ? 'disabled style="opacity:0.5"' : ''}>🗑️</button>
+                                </div>
+                            </div>
+                            <div class="kanban-board">
+                                <div class="kanban-column" data-lane="${lane.id}" data-status="todo">
+                                    <div class="column-header">📋 待办</div>
+                                    ${renderTasks(laneProjects.filter(p => p.status === 'todo'), lane.color)}
+                                    <button class="add-task-btn" onclick="openAddTaskModal('${lane.id}', 'todo')">+ 添加任务</button>
+                                </div>
+                                <div class="kanban-column" data-lane="${lane.id}" data-status="in_progress">
+                                    <div class="column-header">🔄 进行中</div>
+                                    ${renderTasks(laneProjects.filter(p => p.status === 'in_progress'), lane.color)}
+                                    <button class="add-task-btn" onclick="openAddTaskModal('${lane.id}', 'in_progress')">+ 添加任务</button>
+                                </div>
+                                <div class="kanban-column" data-lane="${lane.id}" data-status="done">
+                                    <div class="column-header">✅ 已完成</div>
+                                    ${renderTasks(laneProjects.filter(p => p.status === 'done'), lane.color)}
+                                    <button class="add-task-btn" onclick="openAddTaskModal('${lane.id}', 'done')">+ 添加任务</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                container.innerHTML = `
+                    <div class="lane-section">
+                        <div class="kanban-board">
+                            <div class="kanban-column" data-status="todo" data-lane="mixed">
+                                <div class="column-header">📋 待办</div>
+                                ${renderTasks(kanbanData.projects.filter(p => p.status === 'todo'))}
+                                <button class="add-task-btn" onclick="openAddTaskModal(null, 'todo')">+ 添加任务</button>
+                            </div>
+                            <div class="kanban-column" data-status="in_progress" data-lane="mixed">
+                                <div class="column-header">🔄 进行中</div>
+                                ${renderTasks(kanbanData.projects.filter(p => p.status === 'in_progress'))}
+                                <button class="add-task-btn" onclick="openAddTaskModal(null, 'in_progress')">+ 添加任务</button>
+                            </div>
+                            <div class="kanban-column" data-status="done" data-lane="mixed">
+                                <div class="column-header">✅ 已完成</div>
+                                ${renderTasks(kanbanData.projects.filter(p => p.status === 'done'))}
+                                <button class="add-task-btn" onclick="openAddTaskModal(null, 'done')">+ 添加任务</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            initDragAndDrop();
+        }
+        
+        function renderTasks(tasks, defaultColor = '#667eea') {
+            return tasks.map(task => `
+                <div class="task-card lane-${task.lane}" 
+                     draggable="true" 
+                     data-task-id="${task.id}" 
+                     data-status="${task.status}" 
+                     data-lane="${task.lane}"
+                     style="border-left-color: ${getLaneColor(task.lane)}"
+                     ondblclick="openEditTaskModal(${task.id})">
+                    <div class="task-actions">
+                        <button class="btn btn-secondary" onclick="event.stopPropagation(); openEditTaskModal(${task.id})">✏️</button>
+                        <button class="btn btn-danger" onclick="event.stopPropagation(); deleteTaskById(${task.id})">🗑️</button>
+                    </div>
+                    <div class="task-name">${task.name}</div>
+                    <div class="task-meta">
+                        <span class="assignee">
+                            ${task.assignee ? '👤 ' + task.assignee : '👤 未分配'}
+                        </span>
+                        <span class="priority-badge priority-${task.priority}">${getPriorityText(task.priority)}</span>
+                    </div>
+                    <div class="task-meta">
+                        <span>📝 ${task.completed || 0}/${task.tasks || 0}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function getLaneColor(laneId) {
+            const lane = kanbanData.lanes.find(l => l.id === laneId);
+            return lane ? lane.color : '#667eea';
+        }
+        
+        function getPriorityText(priority) {
+            const map = { 'high': '🔴 高', 'medium': '🟡 中', 'low': '🟢 低' };
+            return map[priority] || priority;
+        }
+        
+        function updateLaneSelect() {
+            const select = document.getElementById('task-lane');
+            select.innerHTML = kanbanData.lanes.map(lane => 
+                `<option value="${lane.id}">${lane.icon} ${lane.name}</option>`
+            ).join('');
+        }
+        
+        // 模态框函数
+        function openAddTaskModal(lane = null, status = 'todo') {
+            document.getElementById('task-modal-title').textContent = '添加任务';
+            document.getElementById('task-id').value = '';
+            document.getElementById('task-name').value = '';
+            document.getElementById('task-assignee').value = '';
+            document.getElementById('task-tasks').value = '0';
+            document.getElementById('delete-task-btn').style.display = 'none';
+            
+            if (lane) {
+                document.getElementById('task-lane').value = lane;
+            }
+            document.getElementById('task-status').value = status;
+            
+            document.getElementById('task-modal').classList.add('show');
+        }
+        
+        function openEditTaskModal(taskId) {
+            const task = kanbanData.projects.find(p => p.id === taskId);
+            if (!task) return;
+            
+            document.getElementById('task-modal-title').textContent = '编辑任务';
+            document.getElementById('task-id').value = task.id;
+            document.getElementById('task-name').value = task.name;
+            document.getElementById('task-lane').value = task.lane;
+            document.getElementById('task-status').value = task.status;
+            document.getElementById('task-priority').value = task.priority;
+            document.getElementById('task-assignee').value = task.assignee || '';
+            document.getElementById('task-tasks').value = task.tasks || 0;
+            document.getElementById('delete-task-btn').style.display = 'block';
+            
+            document.getElementById('task-modal').classList.add('show');
+        }
+        
+        function closeTaskModal() {
+            document.getElementById('task-modal').classList.remove('show');
+        }
+        
+        function openAddLaneModal() {
+            document.getElementById('lane-id').value = '';
+            document.getElementById('lane-name').value = '';
+            document.getElementById('lane-color').value = '#667eea';
+            document.getElementById('lane-icon').value = '📌';
+            document.getElementById('lane-modal').classList.add('show');
+        }
+        
+        function closeLaneModal() {
+            document.getElementById('lane-modal').classList.remove('show');
+        }
+        
+        // 保存任务
+        async function saveTask(event) {
+            event.preventDefault();
+            
+            const taskId = document.getElementById('task-id').value;
+            const taskData = {
+                name: document.getElementById('task-name').value,
+                lane: document.getElementById('task-lane').value,
+                status: document.getElementById('task-status').value,
+                priority: document.getElementById('task-priority').value,
+                assignee: document.getElementById('task-assignee').value,
+                tasks: parseInt(document.getElementById('task-tasks').value) || 0
+            };
+            
+            try {
+                if (taskId) {
+                    // 更新任务
+                    const response = await fetch(`/api/projects/${taskId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(taskData)
+                    });
+                    if (!response.ok) throw new Error('更新失败');
+                } else {
+                    // 创建任务
+                    const response = await fetch('/api/projects', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(taskData)
+                    });
+                    if (!response.ok) throw new Error('创建失败');
+                }
+                
+                closeTaskModal();
+                loadData();
+            } catch (error) {
+                console.error('保存失败:', error);
+                alert('保存失败：' + error.message);
+            }
+        }
+        
+        // 删除任务
+        async function deleteTask() {
+            const taskId = document.getElementById('task-id').value;
+            if (!taskId) return;
+            
+            if (!confirm('确定要删除这个任务吗？')) return;
+            
+            try {
+                const response = await fetch(`/api/projects/${taskId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) throw new Error('删除失败');
+                
+                closeTaskModal();
+                loadData();
+            } catch (error) {
+                console.error('删除失败:', error);
+                alert('删除失败：' + error.message);
+            }
+        }
+        
+        async function deleteTaskById(taskId) {
+            if (!confirm('确定要删除这个任务吗？')) return;
+            
+            try {
+                const response = await fetch(`/api/projects/${taskId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) throw new Error('删除失败');
+                
+                loadData();
+            } catch (error) {
+                console.error('删除失败:', error);
+                alert('删除失败：' + error.message);
+            }
+        }
+        
+        // 保存泳道
+        async function saveLane(event) {
+            event.preventDefault();
+            
+            const laneData = {
+                id: document.getElementById('lane-id').value,
+                name: document.getElementById('lane-name').value,
+                color: document.getElementById('lane-color').value,
+                icon: document.getElementById('lane-icon').value
+            };
+            
+            try {
+                const response = await fetch('/api/lanes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(laneData)
+                });
+                if (!response.ok) throw new Error('创建失败');
+                
+                closeLaneModal();
+                loadData();
+            } catch (error) {
+                console.error('创建失败:', error);
+                alert('创建失败：' + error.message);
+            }
+        }
+        
+        // 删除泳道
+        async function deleteLane(laneId) {
+            const lane = kanbanData.lanes.find(l => l.id === laneId);
+            const laneProjects = kanbanData.projects.filter(p => p.lane === laneId);
+            
+            if (laneProjects.length > 0) {
+                alert(`无法删除泳道 "${lane.name}"，还有 ${laneProjects.length} 个任务在该泳道中`);
+                return;
+            }
+            
+            if (!confirm(`确定要删除泳道 "${lane.name}" 吗？`)) return;
+            
+            try {
+                const response = await fetch(`/api/lanes/${laneId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) throw new Error('删除失败');
+                
+                loadData();
+            } catch (error) {
+                console.error('删除失败:', error);
+                alert('删除失败：' + error.message);
+            }
+        }
+        
+        // 拖拽功能
+        let draggedCard = null;
+        
+        function handleDragStart(e) {
+            draggedCard = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            document.querySelectorAll('.kanban-column').forEach(col => {
+                col.classList.remove('drag-over');
+            });
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            this.classList.add('drag-over');
+        }
+        
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+        
+        async function handleDrop(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            const taskId = parseInt(draggedCard.dataset.taskId);
+            const newStatus = this.dataset.status;
+            const newLane = this.dataset.lane || draggedCard.dataset.lane;
+            const oldStatus = draggedCard.dataset.status;
+            const oldLane = draggedCard.dataset.lane;
+            
+            if (newStatus === oldStatus && newLane === oldLane) return;
+            
+            try {
+                const response = await fetch(`/api/projects/${taskId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus, lane: newLane })
+                });
+                
+                if (!response.ok) throw new Error('更新失败');
+                
+                loadData();
+            } catch (error) {
+                console.error('拖拽更新失败:', error);
+                alert('更新失败：' + error.message);
+                loadData();
+            }
+        }
+        
+        function initDragAndDrop() {
+            document.querySelectorAll('.task-card').forEach(card => {
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragend', handleDragEnd);
+            });
+            
+            document.querySelectorAll('.kanban-column').forEach(column => {
+                column.addEventListener('dragover', handleDragOver);
+                column.addEventListener('dragleave', handleDragLeave);
+                column.addEventListener('drop', handleDrop);
+            });
+        }
+        
+        function toggleView() {
+            currentView = currentView === 'lanes' ? 'status' : 'lanes';
+            renderBoard();
+        }
+        
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+            }
+        }
+        
+        // 初始加载
+        loadData();
+    </script>
+</body>
+</html>

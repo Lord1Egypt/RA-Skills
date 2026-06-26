@@ -1,0 +1,24 @@
+name: deepknow-currency
+version: 0.1.8
+description: Validation/beta CNY exchange-rate skill for 知汇 InkRate by Beijing Kuanke Evolution Technology Co., Ltd. at https://rate.feedai.cn; supports USD/EUR/JPY/GBP with free quote/convert plus paid alert/forecast services via JD clawtip A2A, and mobile JD login, payment password, bank verification, or risk checks may be required.
+author: yuhu
+category: finance
+tags:
+  - finance
+  - exchange-rate
+  - cny
+  - convert
+  - alerts
+  - forecast
+  - jd-clawtip
+  - a2a
+  - usd
+  - eur
+  - jpy
+  - gbp
+intentExamples:
+  - 查询 USD/CNY 最新汇率
+  - 计算 100 美元可以兑换多少人民币
+  - 设置美元兑人民币提醒
+  - 查询美元兑人民币未来三天涨跌概率
+  - 激活一个汇率提醒订单

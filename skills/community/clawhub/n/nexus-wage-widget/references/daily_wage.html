@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>工作日薪看板 - Pro</title>
+    <link rel="preconnect" href="https://fonts.loli.net">
+    <link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+    <link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            --glass-opacity: 0.4;
+            --glass-blur: 24px;
+            --font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'Source Code Pro', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+
+            /* 主题 1: 极客暗夜 (默认) */
+            --bg-grad: linear-gradient(145deg, #0c0d14 0%, #111827 35%, #0f172a 65%, #1a1040 100%);
+            --glass-bg: rgba(30, 32, 48, var(--glass-opacity));
+            --glass-border: rgba(255, 255, 255, 0.07);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            --text-main: #f0f0f5;
+            --text-sub: #8888a0;
+            --accent-money: #34d399;
+            --accent-money-soft: rgba(52, 211, 153, 0.15);
+            --accent-focus: #a78bfa;
+            --accent-other: #60a5fa;
+            --panel-bg: rgba(255, 255, 255, 0.03);
+            --panel-hover: rgba(255, 255, 255, 0.06);
+            --ambient-1: rgba(99, 102, 241, 0.25);
+            --ambient-2: rgba(168, 85, 247, 0.18);
+            --ambient-3: rgba(52, 211, 153, 0.1);
+            --progress-shimmer: rgba(255, 255, 255, 0.3);
+            --shadow-soft: rgba(0, 0, 0, 0.25);
+            --shadow-strong: rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="hermes"] {
+            --bg-grad: linear-gradient(145deg, #92400e 0%, #b45309 30%, #d97706 70%, #92400e 100%);
+            --glass-bg: rgba(60, 20, 0, var(--glass-opacity));
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-highlight: rgba(255, 255, 255, 0.2);
+            --text-main: #fffbeb;
+            --text-sub: #fde68a;
+            --accent-money: #fbbf24;
+            --accent-money-soft: rgba(251, 191, 36, 0.15);
+            --accent-focus: #f87171;
+            --accent-other: #fb923c;
+            --panel-bg: rgba(255, 255, 255, 0.06);
+            --panel-hover: rgba(255, 255, 255, 0.1);
+            --ambient-1: rgba(251, 191, 36, 0.25);
+            --ambient-2: rgba(239, 68, 68, 0.18);
+            --ambient-3: rgba(255, 255, 255, 0.08);
+            --progress-shimmer: rgba(255, 255, 255, 0.35);
+            --shadow-soft: rgba(80, 30, 0, 0.3);
+            --shadow-strong: rgba(60, 15, 0, 0.5);
+        }
+
+        [data-theme="girly"] {
+            --bg-grad: linear-gradient(145deg, #fda4af 0%, #fecdd3 35%, #fce7f3 70%, #fbcfe8 100%);
+            --glass-bg: rgba(255, 255, 255, calc(var(--glass-opacity) * 0.85));
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-highlight: rgba(255, 255, 255, 0.7);
+            --text-main: #4c1d2e;
+            --text-sub: #9f5070;
+            --accent-money: #e11d48;
+            --accent-money-soft: rgba(225, 29, 72, 0.1);
+            --accent-focus: #db2777;
+            --accent-other: #f472b6;
+            --panel-bg: rgba(255, 255, 255, 0.35);
+            --panel-hover: rgba(255, 255, 255, 0.55);
+            --ambient-1: rgba(244, 114, 182, 0.3);
+            --ambient-2: rgba(251, 113, 133, 0.2);
+            --ambient-3: rgba(255, 255, 255, 0.4);
+            --progress-shimmer: rgba(255, 255, 255, 0.5);
+            --shadow-soft: rgba(200, 100, 140, 0.15);
+            --shadow-strong: rgba(180, 70, 120, 0.2);
+        }
+
+        [data-theme="business"] {
+            --bg-grad: linear-gradient(145deg, #0a0a0a 0%, #111111 40%, #0d0d0d 70%, #000000 100%);
+            --glass-bg: rgba(20, 20, 20, calc(var(--glass-opacity) * 0.9));
+            --glass-border: rgba(212, 175, 55, 0.12);
+            --glass-highlight: rgba(212, 175, 55, 0.2);
+            --text-main: #f5f5f0;
+            --text-sub: #8a8475;
+            --accent-money: #d4af37;
+            --accent-money-soft: rgba(212, 175, 55, 0.12);
+            --accent-focus: #c9a84c;
+            --accent-other: #d4af37;
+            --panel-bg: rgba(212, 175, 55, 0.04);
+            --panel-hover: rgba(212, 175, 55, 0.08);
+            --ambient-1: rgba(212, 175, 55, 0.12);
+            --ambient-2: rgba(180, 149, 47, 0.08);
+            --ambient-3: rgba(255, 255, 255, 0.03);
+            --progress-shimmer: rgba(255, 255, 255, 0.25);
+            --shadow-soft: rgba(0, 0, 0, 0.4);
+            --shadow-strong: rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="zen"] {
+            --bg-grad: linear-gradient(145deg, #dbeafe 0%, #e0e7ff 35%, #ede9fe 65%, #d1fae5 100%);
+            --glass-bg: rgba(255, 255, 255, calc(var(--glass-opacity) * 0.9));
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-highlight: rgba(255, 255, 255, 0.8);
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --accent-money: #059669;
+            --accent-money-soft: rgba(5, 150, 105, 0.08);
+            --accent-focus: #0d9488;
+            --accent-other: #2563eb;
+            --panel-bg: rgba(255, 255, 255, 0.4);
+            --panel-hover: rgba(255, 255, 255, 0.6);
+            --ambient-1: rgba(5, 150, 105, 0.15);
+            --ambient-2: rgba(37, 99, 235, 0.1);
+            --ambient-3: rgba(255, 255, 255, 0.5);
+            --progress-shimmer: rgba(255, 255, 255, 0.6);
+            --shadow-soft: rgba(0, 50, 100, 0.08);
+            --shadow-strong: rgba(0, 50, 100, 0.12);
+        }
+
+        [data-theme="light"] {
+            --bg-grad: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
+            --glass-bg: rgba(255, 255, 255, calc(var(--glass-opacity) * 0.95));
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-highlight: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-sub: #94a3b8;
+            --accent-money: #0f172a;
+            --accent-money-soft: rgba(15, 23, 42, 0.06);
+            --accent-focus: #334155;
+            --accent-other: #475569;
+            --panel-bg: rgba(0, 0, 0, 0.02);
+            --panel-hover: rgba(0, 0, 0, 0.04);
+            --ambient-1: rgba(148, 163, 184, 0.2);
+            --ambient-2: rgba(203, 213, 225, 0.15);
+            --ambient-3: rgba(255, 255, 255, 0.8);
+            --progress-shimmer: rgba(255, 255, 255, 0.7);
+            --shadow-soft: rgba(0, 0, 0, 0.06);
+            --shadow-strong: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="cyber"] {
+            --bg-grad: linear-gradient(145deg, #050510 0%, #0a0a2e 35%, #170b3b 65%, #0d0520 100%);
+            --glass-bg: rgba(10, 10, 30, calc(var(--glass-opacity) * 0.95));
+            --glass-border: rgba(0, 255, 255, 0.15);
+            --glass-highlight: rgba(0, 255, 255, 0.25);
+            --text-main: #e0f2fe;
+            --text-sub: #7c8fba;
+            --accent-money: #00ffd5;
+            --accent-money-soft: rgba(0, 255, 213, 0.1);
+            --accent-focus: #f0abfc;
+            --accent-other: #38bdf8;
+            --panel-bg: rgba(0, 255, 255, 0.03);
+            --panel-hover: rgba(0, 255, 255, 0.07);
+            --ambient-1: rgba(0, 255, 213, 0.18);
+            --ambient-2: rgba(240, 171, 252, 0.12);
+            --ambient-3: rgba(56, 189, 248, 0.08);
+            --progress-shimmer: rgba(0, 255, 255, 0.4);
+            --shadow-soft: rgba(0, 0, 30, 0.4);
+            --shadow-strong: rgba(0, 0, 20, 0.6);
+        }
+
+        /* ==================== Animations ==================== */
+        @keyframes breathe {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        @keyframes breathe2 {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.08); }
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-money); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 5px transparent; }
+        }
+        @keyframes colon-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+        @keyframes money-glow {
+            0%, 100% { filter: drop-shadow(0 0 8px transparent); }
+            50% { filter: drop-shadow(0 0 12px var(--accent-money-soft)); }
+        }
+        @keyframes float-btn {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 0 transparent; }
+            50% { box-shadow: 0 6px 28px rgba(0,0,0,0.2), 0 0 0 3px var(--glass-highlight); }
+        }
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2px); }
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* ==================== Base Reset ==================== */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0; padding: 24px; min-height: 100vh; width: 100vw;
+            background: var(--bg-grad); display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-family); color: var(--text-main); overflow-x: hidden;
+            transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ==================== Ambient Lights ==================== */
+        .ambient-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: -1; overflow: hidden;
+        }
+        .ambient-light {
+            position: absolute; border-radius: 50%;
+            filter: blur(100px);
+            transition: background 0.8s ease;
+        }
+        .ambient-light:nth-child(1) {
+            width: 45vw; height: 45vw; min-width: 350px; min-height: 350px;
+            background: var(--ambient-1); top: -15%; left: -12%;
+            animation: breathe 8s ease-in-out infinite;
+        }
+        .ambient-light:nth-child(2) {
+            width: 35vw; height: 35vw; min-width: 250px; min-height: 250px;
+            background: var(--ambient-2); bottom: -12%; right: -5%;
+            animation: breathe2 10s ease-in-out infinite 2s;
+        }
+        .ambient-light:nth-child(3) {
+            width: 25vw; height: 25vw; min-width: 180px; min-height: 180px;
+            background: var(--ambient-3); top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: breathe 12s ease-in-out infinite 4s;
+        }
+
+        /* ==================== SVG Icons ==================== */
+        svg.lucide { width: 18px; height: 18px; flex-shrink: 0; }
+        .flex-icon-text { display: flex; align-items: center; gap: 8px; }
+
+        /* ==================== Glass Card ==================== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 28px; padding: 28px; width: 100%;
+            position: relative; overflow: hidden;
+            box-shadow:
+                0 1px 2px rgba(0,0,0,0.04),
+                0 4px 8px var(--shadow-soft),
+                0 16px 40px var(--shadow-soft),
+                inset 0 1px 0 var(--glass-highlight);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* Top edge highlight */
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: 20px; right: 20px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+            pointer-events: none;
+        }
+
+        .widget-hidden { display: none !important; opacity: 0; transform: scale(0.95); }
+
+        /* ==================== Panels ==================== */
+        .w-panel {
+            background: var(--panel-bg);
+            border-radius: 20px; padding: 18px;
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative; overflow: hidden;
+            border: 1px solid transparent;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .w-panel:hover {
+            background: var(--panel-hover);
+            border-color: var(--glass-border);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--shadow-soft);
+        }
+
+        .panel-focus {
+            cursor: pointer; position: relative;
+            border: 1px solid var(--glass-border);
+        }
+        .panel-focus:hover {
+            filter: brightness(1.1);
+            border-color: var(--accent-focus);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1), inset 0 0 0 1px var(--accent-focus);
+        }
+
+        /* ==================== Time Display ==================== */
+        .time-text {
+            font-family: var(--font-mono);
+            font-size: clamp(36px, 5.5vw, 48px);
+            font-weight: 600;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+        .time-text .colon {
+            animation: colon-blink 2s ease-in-out infinite;
+            display: inline-block;
+            margin: 0 1px;
+        }
+        .time-sub {
+            font-size: 13px; color: var(--text-sub); margin-top: 8px;
+            font-weight: 400; letter-spacing: 0.5px;
+        }
+
+        /* ==================== Money Display ==================== */
+        .money-title {
+            font-size: 13px; color: var(--text-sub);
+            font-weight: 500; letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .money-value {
+            font-family: var(--font-mono);
+            font-size: clamp(40px, 6.5vw, 52px);
+            font-weight: 700; color: var(--accent-money);
+            margin-top: 6px; line-height: 1.1;
+            animation: money-glow 4s ease-in-out infinite;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.5px;
+        }
+        .money-value .prefix {
+            font-size: clamp(20px, 3vw, 26px);
+            margin-right: 4px;
+            font-weight: 500;
+            opacity: 0.8;
+            vertical-align: baseline;
+        }
+        .money-value .cents {
+            font-size: clamp(22px, 3.5vw, 30px);
+            font-weight: 500;
+            opacity: 0.65;
+        }
+
+        /* ==================== Progress Bar ==================== */
+
+        .progress-bar-bg {
+            height: 6px; background: rgba(128,128,128,0.12);
+            border-radius: 3px; position: relative; overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%; width: 0%; border-radius: 3px;
+            transition: width 1s linear;
+            position: relative;
+            background: linear-gradient(90deg, var(--accent-other), var(--accent-money));
+            box-shadow: 0 0 12px var(--accent-money-soft);
+        }
+        /* Shimmer overlay */
+        .progress-bar-fill::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, var(--progress-shimmer), transparent);
+            animation: shimmer 2.5s ease-in-out infinite;
+            border-radius: 3px;
+        }
+
+        /* ==================== Wide Widget Layout ==================== */
+        .widget-wide {
+            max-width: 740px;
+            display: grid;
+            grid-template-columns: 210px 1fr 148px;
+            grid-template-rows: 1fr 1fr;
+            gap: 14px;
+        }
+        .w-time-area { grid-column: 1 / 2; grid-row: 1 / 3; }
+        .w-money-area { grid-column: 2 / 3; grid-row: 1 / 2; }
+        .w-weather-area { grid-column: 3 / 4; grid-row: 1 / 2; }
+        .w-cal-area { grid-column: 3 / 4; grid-row: 2 / 3; }
+        .w-progress-area {
+            grid-column: 2 / 3; grid-row: 2 / 3;
+            flex-direction: row; align-items: center; gap: 18px;
+        }
+
+        /* ==================== Weather & Payday Vertical Layout ==================== */
+        .weather-layout, .payday-layout {
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 100%; gap: 6px; text-align: center;
+        }
+        .weather-icon-big {
+            width: 42px; height: 42px;
+            color: var(--accent-other);
+            opacity: 0.85;
+        }
+        .weather-temp {
+            font-size: 14px; font-weight: 600;
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+        }
+        .payday-label {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 13px; color: var(--text-sub);
+            font-weight: 500;
+        }
+        .payday-label svg { width: 16px; height: 16px; opacity: 0.7; }
+        .payday-count {
+            font-family: var(--font-mono);
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+        .payday-count .unit {
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 500;
+            color: var(--text-sub);
+            margin-left: 2px;
+        }
+
+        /* ==================== Progress Header ==================== */
+        .progress-header-v {
+            display: flex; flex-direction: column; gap: 4px;
+            margin-bottom: 14px;
+        }
+        .progress-header-v .work-status {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; font-weight: 600; color: var(--text-main);
+            flex-shrink: 0;
+        }
+        .progress-dot {
+            display: inline-block; width: 8px; height: 8px;
+            background: var(--accent-money); border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+            box-shadow: 0 0 8px var(--accent-money);
+            flex-shrink: 0;
+        }
+        .progress-header-v .work-time {
+            font-family: var(--font-mono);
+            font-size: 12px; color: var(--text-sub);
+            letter-spacing: 0.5px;
+        }
+
+        /* ==================== Pomodoro / Focus Active ==================== */
+        .panel-focus.pom-active {
+            border-color: var(--accent-focus) !important;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1), inset 0 0 0 1px var(--accent-focus), 0 0 30px rgba(167, 139, 250, 0.15);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 900px) {
+            body { padding: 8px; }
+            .widget-wide {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                padding: 16px;
+                border-radius: 18px;
+                gap: 8px;
+            }
+            .w-time-area { grid-column: 1 / 3; grid-row: auto; min-height: 78px; }
+            .w-money-area { grid-column: 1 / 3; grid-row: auto; min-height: 90px; }
+            .w-progress-area {
+                grid-column: 1 / 3; grid-row: auto;
+                flex-direction: column; align-items: stretch; gap: 12px;
+            }
+            .w-progress-area .panel-focus {
+                width: 100% !important;
+                padding: 14px 18px;
+                flex-direction: row; justify-content: space-between; align-items: center;
+            }
+            .w-progress-area .panel-focus > div:last-child { margin-top: 0 !important; }
+            .w-weather-area {
+                grid-column: 1 / 2; grid-row: auto;
+                min-height: 80px;
+            }
+            .w-cal-area {
+                grid-column: 2 / 3; grid-row: auto;
+                min-height: 80px;
+            }
+            .progress-header-v {
+                flex-direction: row; align-items: center; gap: 10px;
+                white-space: nowrap;
+            }
+            .time-text { font-size: 32px !important; }
+            .money-value { font-size: 32px !important; }
+            .weather-icon-big { width: 28px; height: 28px; }
+            .payday-count { font-size: 24px; }
+            .settings-float-btn { bottom: 20px; right: 20px; width: 46px; height: 46px; border-radius: 14px; }
+            .settings-float-btn svg { width: 18px; height: 18px; }
+        }
+
+        /* ==================== Square Widget ==================== */
+        .widget-square {
+            max-width: 340px; display: flex; flex-direction: column;
+            gap: 22px; position: relative; padding: 32px;
+        }
+        .sq-money-title { font-size: 13px; color: var(--text-sub); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .sq-money-value {
+            font-family: var(--font-mono);
+            font-size: clamp(46px, 9vw, 60px);
+            font-weight: 700; margin: 6px 0;
+            color: var(--accent-money);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.5px;
+            animation: money-glow 4s ease-in-out infinite;
+        }
+        .sq-money-value .prefix { font-size: clamp(22px, 4.5vw, 30px); font-weight: 500; opacity: 0.8; margin-right: 4px; }
+        .sq-money-value .cents { font-size: clamp(26px, 5vw, 34px); font-weight: 500; opacity: 0.65; }
+
+        .sq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+        .sq-btn {
+            background: var(--panel-bg); padding: 22px 0; border-radius: 18px;
+            text-align: center; font-size: 13px; color: var(--text-sub);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            border: 1px solid transparent;
+            font-weight: 400; letter-spacing: 0.5px;
+        }
+        .sq-btn:hover {
+            background: var(--panel-hover);
+            border-color: var(--glass-border);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--shadow-soft);
+        }
+        .sq-btn strong {
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: var(--text-main); margin-bottom: 6px;
+            font-family: var(--font-mono); font-weight: 600;
+        }
+
+        /* ==================== Settings Button ==================== */
+        .settings-float-btn {
+            position: fixed; bottom: 32px; right: 32px;
+            width: 50px; height: 50px; border-radius: 16px;
+            background: var(--glass-bg); backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--text-sub); z-index: 90;
+            animation: float-btn 4s ease-in-out infinite;
+        }
+        .settings-float-btn:hover {
+            color: var(--text-main);
+            transform: rotate(90deg) scale(1.08);
+            animation: none;
+            box-shadow: 0 8px 32px var(--shadow-strong);
+        }
+        .settings-float-btn svg {
+            margin: 0 !important; display: block; position: absolute;
+            width: 20px; height: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== Modal ==================== */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .settings-modal {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px; padding: 36px;
+            width: 90%; max-width: 440px;
+            transform: translateY(40px) scale(0.94);
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--text-main); box-sizing: border-box;
+            max-height: 90vh; overflow-y: auto;
+            box-shadow: 0 24px 64px var(--shadow-strong),
+                        inset 0 1px 0 var(--glass-highlight);
+        }
+        .modal-overlay.active .settings-modal { transform: translateY(0) scale(1); }
+
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 28px; padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .modal-header h3 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: 0.3px; }
+        .modal-header button {
+            background: var(--panel-bg); border: 1px solid var(--glass-border);
+            color: var(--text-sub); cursor: pointer;
+            padding: 8px; border-radius: 12px;
+            transition: all 0.25s ease;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-header button:hover {
+            color: var(--text-main); background: var(--panel-hover);
+            transform: scale(1.05);
+        }
+        .modal-header button svg { width: 16px; height: 16px; }
+
+        .setting-group { margin-bottom: 18px; }
+        .setting-group label {
+            display: flex; justify-content: space-between;
+            font-size: 12px; color: var(--text-sub); margin-bottom: 10px;
+            font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .setting-group label span {
+            color: var(--accent-other);
+            font-family: var(--font-mono); font-weight: 600;
+            text-transform: none;
+        }
+
+        .setting-group input[type="number"],
+        .setting-group input[type="time"],
+        .setting-group select {
+            width: 100%; background: var(--panel-hover);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main); padding: 12px 14px;
+            border-radius: 14px; outline: none; box-sizing: border-box;
+            font-family: var(--font-mono); font-size: 14px;
+            transition: all 0.3s ease;
+            -webkit-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+        .setting-group select option {
+            background: #1e2030; color: #f0f0f5;
+            padding: 8px 12px; font-size: 14px;
+        }
+        [data-theme="hermes"] .setting-group select option { background: #3c1400; color: #fffbeb; }
+        [data-theme="business"] .setting-group select option { background: #141414; color: #f5f5f0; }
+        [data-theme="cyber"] .setting-group select option { background: #0a0a1e; color: #e0f2fe; }
+        [data-theme="girly"] .setting-group select option { background: #fff0f3; color: #4c1d2e; }
+        [data-theme="zen"] .setting-group select option { background: #f0f4ff; color: #1e293b; }
+        [data-theme="light"] .setting-group select option { background: #ffffff; color: #0f172a; }
+        .setting-group input:focus,
+        .setting-group select:focus {
+            border-color: var(--accent-other);
+            background: var(--panel-hover);
+            box-shadow: 0 0 0 3px var(--accent-money-soft);
+        }
+
+        input[type=range] {
+            -webkit-appearance: none; width: 100%; background: transparent;
+            margin-top: 4px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 20px; width: 20px;
+            border-radius: 50%; background: var(--accent-other);
+            cursor: pointer; margin-top: -8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 0 0 3px var(--accent-money-soft);
+            transition: all 0.2s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 0 5px var(--accent-money-soft);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer;
+            background: rgba(128,128,128,0.2); border-radius: 2px;
+        }
+
+        .row-group { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .save-btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, var(--accent-other), var(--accent-money));
+            color: white; border: none; border-radius: 14px;
+            cursor: pointer; margin-top: 16px;
+            font-weight: 600; font-size: 14px;
+            letter-spacing: 1px; text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px var(--shadow-soft);
+            font-family: var(--font-family);
+        }
+        .save-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-strong);
+        }
+        .save-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ==================== Utility ==================== */
+        .text-muted { color: var(--text-sub); }
+        .font-mono { font-family: var(--font-mono); }
+        .fw-500 { font-weight: 500; }
+        .fw-600 { font-weight: 600; }
+
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient background lights -->
+    <div class="ambient-container">
+        <div class="ambient-light"></div>
+        <div class="ambient-light"></div>
+        <div class="ambient-light"></div>
+    </div>
+
+    <div class="glass-card widget-wide" id="widget-wide">
+        <div class="w-panel w-time-area">
+            <div class="time-text" id="w-time">--<span class="colon">:</span>--</div>
+            <div class="time-sub flex-icon-text" id="w-date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                载入中
+            </div>
+        </div>
+
+        <div class="w-panel panel-money w-money-area">
+            <div class="money-title flex-icon-text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+                今日已赚
+            </div>
+            <div class="money-value"><span class="prefix">¥</span><span id="w-money">0.00</span></div>
+        </div>
+
+        <div class="w-panel w-progress-area">
+            <div class="w-panel panel-focus" id="focus-wide" onclick="Pom.toggle()" style="width: 112px; min-width: 112px; padding: 12px; box-sizing: border-box; justify-content: center;">
+                <div id="focus-title-w" style="font-size: 14px; font-weight: 600; line-height: 1.3;">
+                    <span class="flex-icon-text">
+                        <svg id="focus-ico-w" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                        专注时刻
+                    </span>
+                </div>
+                <div id="focus-sub-w" style="font-size: 12px; color: var(--text-sub); margin-top: 6px; letter-spacing: 0.3px; padding-left: 26px;">点击开始</div>
+            </div>
+            <div style="flex: 1; width: 100%;">
+                <div class="progress-header-v">
+                    <div class="work-status"><span class="progress-dot"></span>工作中</div>
+                    <div class="work-time" id="w-time-range">09:00 - 18:00</div>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="w-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-panel panel-weather w-weather-area">
+            <div class="weather-layout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="weather-icon-big"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                <span class="weather-temp">16°C-23°C</span>
+            </div>
+        </div>
+
+        <div class="w-panel panel-cal w-cal-area">
+            <div class="payday-layout">
+                <div class="payday-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    发薪
+                </div>
+                <div class="payday-count"><span id="w-payday">--</span><span class="unit">天</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card widget-square widget-hidden" id="widget-square">
+        <div>
+            <div class="sq-money-title flex-icon-text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+                今日已赚
+            </div>
+            <div class="sq-money-value"><span class="prefix">¥</span><span id="s-money">0.00</span></div>
+        </div>
+
+        <div class="sq-grid">
+            <div class="sq-btn">
+                <strong id="s-payday">--</strong>
+                <span>发薪</span>
+            </div>
+            <div class="sq-btn panel-focus" id="focus-sq" onclick="Pom.toggle()">
+                <strong id="focus-ico-s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg></strong>
+                <span id="focus-sub-s">专注</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 12px;">
+            <div class="progress-header" style="margin-bottom: 10px;">
+                <span class="font-mono" id="s-start-time" style="font-size: 12px;">09:00</span>
+                <span class="font-mono" id="s-end-time" style="font-size: 12px;">18:00</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="s-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-float-btn" id="btn-open-modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="settings-modal">
+            <div class="modal-header">
+                <h3 class="flex-icon-text">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-horizontal"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg>
+                    偏好设置
+                </h3>
+                <button id="btn-close-modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+                </button>
+            </div>
+
+            <div class="row-group">
+                <div class="setting-group">
+                    <label>展示组件</label>
+                    <select id="inp-widget-type">
+                        <option value="wide">横向宽版</option>
+                        <option value="square">方形液态</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>视觉主题</label>
+                    <select id="inp-theme">
+                        <option value="dark">极客暗夜</option>
+                        <option value="light">极简白昼</option>
+                        <option value="hermes">爱马仕橙</option>
+                        <option value="business">总裁黑金</option>
+                        <option value="girly">烂漫少女</option>
+                        <option value="zen">东方木漏</option>
+                        <option value="cyber">赛博霓虹</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row-group">
+                <div class="setting-group">
+                    <label>月薪 (¥)</label>
+                    <input type="number" id="inp-salary" value="15000">
+                </div>
+                <div class="setting-group">
+                    <label>发薪日 (号)</label>
+                    <input type="number" id="inp-payday" min="1" max="31" value="15">
+                </div>
+            </div>
+
+            <div class="row-group">
+                <div class="setting-group">
+                    <label>上班时间</label>
+                    <input type="time" id="inp-start" value="09:00">
+                </div>
+                <div class="setting-group">
+                    <label>下班时间</label>
+                    <input type="time" id="inp-end" value="18:00">
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label>背景透明度 <span id="val-opacity">0.4</span></label>
+                <input type="range" id="inp-opacity" min="0" max="1" step="0.05" value="0.4">
+            </div>
+            <div class="setting-group">
+                <label>材质模糊度 <span id="val-blur">24px</span></label>
+                <input type="range" id="inp-blur" min="0" max="60" step="1" value="24">
+            </div>
+
+            <button class="save-btn" id="btn-save">应用更改</button>
+        </div>
+    </div>
+
+    <script>
+        const Config = {
+            theme: localStorage.getItem('widget_theme') || 'dark',
+            widgetType: localStorage.getItem('widget_type') || 'wide',
+            salary: parseFloat(localStorage.getItem('widget_salary')) || 15000,
+            startTime: localStorage.getItem('widget_start') || '09:00',
+            endTime: localStorage.getItem('widget_end') || '18:00',
+            payday: parseInt(localStorage.getItem('widget_payday')) || 15,
+            glassOpacity: parseFloat(localStorage.getItem('widget_opacity')) || 0.4,
+            glassBlur: parseInt(localStorage.getItem('widget_blur')) || 24,
+
+            getDailyData() {
+                const workDaysPerMonth = 21.75;
+                const dailySalary = this.salary / workDaysPerMonth;
+                const startParts = this.startTime.split(':');
+                const endParts = this.endTime.split(':');
+
+                const startSec = parseInt(startParts[0]) * 3600 + parseInt(startParts[1]) * 60;
+                const endSec = parseInt(endParts[0]) * 3600 + parseInt(endParts[1]) * 60;
+                const totalWorkSec = endSec - startSec;
+                const salaryPerSec = dailySalary / totalWorkSec;
+
+                return { dailySalary, startSec, endSec, totalWorkSec, salaryPerSec };
+            }
+        };
+
+        const UI = {
+            wide: document.getElementById('widget-wide'),
+            square: document.getElementById('widget-square'),
+            wTime: document.getElementById('w-time'),
+            wDate: document.getElementById('w-date'),
+            wMoney: document.getElementById('w-money'),
+            wProgress: document.getElementById('w-progress'),
+            wTimeRange: document.getElementById('w-time-range'),
+            wPayday: document.getElementById('w-payday'),
+            sMoney: document.getElementById('s-money'),
+            sProgress: document.getElementById('s-progress'),
+            sStartTime: document.getElementById('s-start-time'),
+            sEndTime: document.getElementById('s-end-time'),
+            sPayday: document.getElementById('s-payday'),
+            modal: document.getElementById('modal-overlay')
+        };
+
+        function updateWidget() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            UI.wTime.innerHTML = `${hours}<span class="colon">:</span>${mins}`;
+
+            const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const dateHtml = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg> ${days[now.getDay()]} &middot; ${now.getMonth() + 1}月${now.getDate()}日`;
+            UI.wDate.innerHTML = dateHtml;
+
+            const data = Config.getDailyData();
+            const currentSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds() + (now.getMilliseconds() / 1000);
+
+            let earned = 0, progress = 0;
+            if (currentSec <= data.startSec) {
+                earned = 0; progress = 0;
+            } else if (currentSec >= data.endSec) {
+                earned = data.dailySalary; progress = 100;
+            } else {
+                const workedSec = currentSec - data.startSec;
+                earned = workedSec * data.salaryPerSec;
+                progress = (workedSec / data.totalWorkSec) * 100;
+            }
+
+            const moneyStr = earned.toFixed(2);
+            UI.wMoney.innerText = moneyStr;
+            UI.sMoney.innerText = moneyStr;
+            UI.wProgress.style.width = `${progress}%`;
+            UI.sProgress.style.width = `${progress}%`;
+
+            let targetDate = new Date(now.getFullYear(), now.getMonth(), Config.payday);
+            if (now.getDate() > Config.payday) {
+                targetDate = new Date(now.getFullYear(), now.getMonth() + 1, Config.payday);
+            }
+            const diffDays = Math.ceil(Math.abs(targetDate - now) / (1000 * 60 * 60 * 24));
+            UI.wPayday.innerText = diffDays;
+            UI.sPayday.innerText = diffDays + '天';
+        }
+
+        function initStaticUI() {
+            document.documentElement.setAttribute('data-theme', Config.theme);
+            document.getElementById('inp-theme').value = Config.theme;
+            document.getElementById('inp-widget-type').value = Config.widgetType;
+            document.getElementById('inp-salary').value = Config.salary;
+            document.getElementById('inp-start').value = Config.startTime;
+            document.getElementById('inp-end').value = Config.endTime;
+            document.getElementById('inp-payday').value = Config.payday;
+            document.getElementById('inp-opacity').value = Config.glassOpacity;
+            document.getElementById('inp-blur').value = Config.glassBlur;
+
+            UI.wTimeRange.innerText = `${Config.startTime} - ${Config.endTime}`;
+            UI.sStartTime.innerText = Config.startTime;
+            UI.sEndTime.innerText = Config.endTime;
+            document.getElementById('val-opacity').innerText = Config.glassOpacity;
+            document.getElementById('val-blur').innerText = `${Config.glassBlur}px`;
+
+            if (Config.widgetType === 'wide') {
+                UI.wide.classList.remove('widget-hidden');
+                UI.square.classList.add('widget-hidden');
+            } else {
+                UI.wide.classList.add('widget-hidden');
+                UI.square.classList.remove('widget-hidden');
+            }
+
+            applyGlassStyle(Config.glassOpacity, Config.glassBlur);
+        }
+
+        function applyGlassStyle(opacity, blur) {
+            document.documentElement.style.setProperty('--glass-opacity', opacity);
+            document.documentElement.style.setProperty('--glass-blur', `${blur}px`);
+        }
+
+        // Modal controls
+        document.getElementById('btn-open-modal').addEventListener('click', () => {
+            UI.modal.classList.add('active');
+        });
+        document.getElementById('btn-close-modal').addEventListener('click', () => {
+            UI.modal.classList.remove('active');
+        });
+        UI.modal.addEventListener('click', (e) => {
+            if (e.target === UI.modal) UI.modal.classList.remove('active');
+        });
+
+        // Live theme preview
+        document.getElementById('inp-theme').addEventListener('change', (e) => {
+            document.documentElement.setAttribute('data-theme', e.target.value);
+        });
+
+        document.getElementById('inp-opacity').addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('val-opacity').innerText = val;
+            applyGlassStyle(val, document.getElementById('inp-blur').value);
+        });
+
+        document.getElementById('inp-blur').addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('val-blur').innerText = `${val}px`;
+            applyGlassStyle(document.getElementById('inp-opacity').value, val);
+        });
+
+        document.getElementById('btn-save').addEventListener('click', () => {
+            Config.theme = document.getElementById('inp-theme').value;
+            Config.widgetType = document.getElementById('inp-widget-type').value;
+            Config.salary = document.getElementById('inp-salary').value;
+            Config.startTime = document.getElementById('inp-start').value;
+            Config.endTime = document.getElementById('inp-end').value;
+            Config.payday = document.getElementById('inp-payday').value;
+            Config.glassOpacity = document.getElementById('inp-opacity').value;
+            Config.glassBlur = document.getElementById('inp-blur').value;
+
+            localStorage.setItem('widget_theme', Config.theme);
+            localStorage.setItem('widget_type', Config.widgetType);
+            localStorage.setItem('widget_salary', Config.salary);
+            localStorage.setItem('widget_start', Config.startTime);
+            localStorage.setItem('widget_end', Config.endTime);
+            localStorage.setItem('widget_payday', Config.payday);
+            localStorage.setItem('widget_opacity', Config.glassOpacity);
+            localStorage.setItem('widget_blur', Config.glassBlur);
+
+            initStaticUI();
+            updateWidget();
+            UI.modal.classList.remove('active');
+        });
+
+        /* ==================== Pomodoro Timer ==================== */
+        var Pom = (function() {
+            var active = false, timer = null, end = 0;
+            var DURATION = 25 * 60 * 1000;
+
+            function formatTime(ms) {
+                var s = Math.max(0, Math.ceil(ms / 1000));
+                var m = Math.floor(s / 60);
+                var sec = s % 60;
+                return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+            }
+
+            function updateDisplay(remaining) {
+                var str = formatTime(remaining);
+                var subW = document.getElementById('focus-sub-w');
+                var subS = document.getElementById('focus-sub-s');
+                if (subW) subW.innerHTML = str;
+                if (subS) subS.innerHTML = str;
+            }
+
+            function tick() {
+                var remaining = end - Date.now();
+                if (remaining <= 0) {
+                    clearInterval(timer); timer = null;
+                    active = false;
+                    setVisual(false);
+                    done();
+                    return;
+                }
+                updateDisplay(remaining);
+            }
+
+            function done() {
+                var lbl = '专注时间到！';
+                if (window.Notification && Notification.permission === 'granted') {
+                    new Notification('番茄钟', { body: lbl });
+                } else if (window.Notification && Notification.permission !== 'denied') {
+                    Notification.requestPermission();
+                }
+                var c = 0;
+                var flash = setInterval(function() {
+                    document.title = (c % 2 === 0) ? '🔔 ' + lbl : '⏱ 工作日薪看板 - Pro';
+                    c++;
+                    if (c > 9) { clearInterval(flash); document.title = '⏱ 工作日薪看板 - Pro'; }
+                }, 500);
+            }
+
+            function setVisual(v) {
+                var els = document.querySelectorAll('.panel-focus');
+                for (var i = 0; i < els.length; i++) {
+                    if (v) els[i].classList.add('pom-active');
+                    else els[i].classList.remove('pom-active');
+                }
+
+                var titleW = document.getElementById('focus-title-w');
+                if (titleW) {
+                    titleW.style.fontSize = (v && window.innerWidth > 900) ? '12px' : '14px';
+                }
+
+                var subW = document.getElementById('focus-sub-w');
+                if (subW) {
+                    if (v) {
+                        subW.innerHTML = '25:00';
+                        subW.style.cssText = 'font-size: 24px; font-weight: 700; color: var(--accent-focus); font-family: var(--font-mono); letter-spacing: 1px; padding-left: 0; margin-top: 6px;';
+                    } else {
+                        subW.style.cssText = 'font-size: 12px; color: var(--text-sub); margin-top: 6px; letter-spacing: 0.3px; padding-left: 26px;';
+                        subW.innerHTML = '点击开始';
+                    }
+                }
+
+                var subS = document.getElementById('focus-sub-s');
+                if (subS) {
+                    subS.innerHTML = v ? '25:00' : '专注';
+                    subS.style.fontSize = v ? '32px' : '';
+                }
+
+                var ico = document.getElementById('focus-ico-s');
+                if (ico) {
+                    ico.innerHTML = v
+                        ? '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'
+                        : '<polygon points="6 3 20 12 6 21 6 3"/>';
+                }
+
+                var icoW = document.getElementById('focus-ico-w');
+                if (icoW) {
+                    icoW.innerHTML = v
+                        ? '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'
+                        : '<polygon points="6 3 20 12 6 21 6 3"/>';
+                }
+            }
+
+            return {
+                toggle: function() {
+                    if (timer) {
+                        clearInterval(timer); timer = null;
+                        active = false;
+                        setVisual(false);
+                    } else {
+                        end = Date.now() + DURATION;
+                        active = true;
+                        setVisual(true);
+                        updateDisplay(DURATION);
+                        timer = setInterval(tick, 200);
+                    }
+                }
+            };
+        })();
+
+        initStaticUI();
+        function loop() {
+            updateWidget();
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    </script>
+</body>
+</html>

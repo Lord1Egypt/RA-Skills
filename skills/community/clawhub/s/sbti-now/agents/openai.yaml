@@ -1,0 +1,4 @@
+interface:
+  display_name: "SBTI Now"
+  short_description: "Run the self-contained SBTI personality test"
+  default_prompt: "Run the bundled, self-contained SBTI personality test. Prefer the local Python script and bundled JSON data in this skill; if script execution is unavailable, use the manual workflow to ask questions, score the 15 dimensions, and summarize the user's result, score, vector, and nearby personality types."

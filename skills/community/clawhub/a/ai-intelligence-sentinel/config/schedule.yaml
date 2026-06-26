@@ -1,0 +1,51 @@
+# AI前沿哨兵 - 调度配置
+# 配置定时采集任务
+
+schedule:
+  # 晨报设置
+  morning:
+    enabled: true
+    time: "08:00"  # 24小时制
+    # 选择包含的信息源
+    include_sources:
+      - github
+      - arxiv
+      - hackernews
+    # 生成报告
+    generate_report: true
+    report_type: "morning"
+    # 通知设置
+    notify: false
+    
+  # 晚报设置
+  evening:
+    enabled: true
+    time: "20:00"  # 24小时制
+    # 晚报包含所有信息源
+    include_sources:
+      - github
+      - arxiv
+      - hackernews
+      - twitter
+      - blogs
+    generate_report: true
+    report_type: "evening"
+    notify: false
+
+  # 自定义定时任务
+  custom:
+    - name: "每周AI论文精选"
+      enabled: false
+      cron: "0 9 * * 1"  # 每周一早上9点
+      sources:
+        - arxiv
+      generate_report: true
+      report_type: "weekly"
+
+# 采集频率限制
+# 避免过度请求
+limits:
+  # 同一信息源最小采集间隔(分钟)
+  min_interval: 30
+  # 每日最大采集次数
+  max_daily_runs: 10

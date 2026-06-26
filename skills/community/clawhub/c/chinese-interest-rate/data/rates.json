@@ -1,0 +1,35 @@
+{
+  "updateDate": "",
+  "depositRates": {
+    "1year": "",
+    "3year": "",
+    "5year": ""
+  },
+  "LPR": {
+    "1year": "",
+    "5yearPlus": ""
+  },
+  "bondYields": {
+    "1year": "",
+    "3year": "",
+    "10year": ""
+  },
+  "SHIBOR": {
+    "ON": "",
+    "1W": "",
+    "1M": "",
+    "3M": ""
+  },
+  "mortgageLPR": {
+    "5yearPlus": ""
+  },
+  "OMO": {
+    "repo7d": "",
+    "repo14d": "",
+    "MLF1Y": ""
+  },
+  "RRR": {
+    "large": "",
+    "small": ""
+  }
+}

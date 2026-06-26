@@ -1,0 +1,37 @@
+{
+  "slug": "meeting-risk-radar",
+  "title": "会议风险雷达",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "会前识别高风险议题、模糊责任、缺失材料和可能失控的讨论点。",
+  "inputHint": "会议主题、参会人、预期决策",
+  "sections": [
+    "会前风险",
+    "缺失材料",
+    "责任模糊点",
+    "建议改议程",
+    "必须提前确认的问题",
+    "失控预案"
+  ],
+  "useCases": [
+    "会前检查",
+    "主持准备",
+    "风险预警"
+  ],
+  "positiveExamples": [
+    "帮我检查这个会议有哪些风险",
+    "会前需要补哪些材料"
+  ],
+  "negativeExamples": [
+    "不要用来分析私密录音",
+    "不要替代正式风险审查"
+  ],
+  "risk": "适合会前准备，不负责会议纪要。",
+  "tags": [
+    "meeting-risk",
+    "preflight",
+    "facilitation",
+    "governance"
+  ]
+}

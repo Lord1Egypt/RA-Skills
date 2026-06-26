@@ -1,0 +1,251 @@
+{
+  "sources": [
+    {
+      "name": "游戏陀螺",
+      "type": "rss",
+      "url": "https://www.youxituoluo.com/feed",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "游戏行业深度报道、出海"
+    },
+    {
+      "name": "机核 GCores",
+      "type": "rss",
+      "url": "https://www.gcores.com/rss",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "游戏文化与独立游戏"
+    },
+    {
+      "name": "触乐",
+      "type": "rss",
+      "url": "https://www.chuapp.com/feed",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "游戏深度长文"
+    },
+    {
+      "name": "GamesIndustry.biz",
+      "type": "rss",
+      "url": "https://www.gamesindustry.biz/feed",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "全球游戏行业商业新闻"
+    },
+    {
+      "name": "Game Developer",
+      "type": "rss",
+      "url": "https://www.gamedeveloper.com/rss.xml",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "游戏开发深度（原Gamasutra）",
+      "status": "broken_403"
+    },
+    {
+      "name": "GameLook",
+      "type": "rss",
+      "url": "https://www.gamelook.com.cn/feed",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "国内游戏行业深度报道（替代 Game Developer）"
+    },
+    {
+      "name": "GamesBeat",
+      "type": "rss",
+      "url": "https://venturebeat.com/category/games/feed/",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "游戏×科技/AI 交叉、投融资"
+    },
+    {
+      "name": "80 Level",
+      "type": "rss",
+      "url": "https://80.lv/feed/",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "游戏美术/技术向"
+    },
+    {
+      "name": "PocketGamer.biz",
+      "type": "rss",
+      "url": "https://www.pocketgamer.biz/feed/",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "手游行业",
+      "status": "broken_404"
+    },
+    {
+      "name": "游戏葡萄",
+      "type": "rss",
+      "url": "https://youxiputao.com/feed",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "游戏行业分析（替代 PocketGamer）"
+    },
+    {
+      "name": "Game World Observer",
+      "type": "rss",
+      "url": "https://gameworldobserver.com/feed",
+      "layer": 1,
+      "tier": "T2",
+      "region": "intl",
+      "focus": "手游数据、市场"
+    },
+    {
+      "name": "IGN",
+      "type": "rss",
+      "url": "https://feeds.feedburner.com/ign/all",
+      "layer": 1,
+      "tier": "T2",
+      "region": "intl",
+      "focus": "大众游戏新闻"
+    },
+    {
+      "name": "Unity Blog",
+      "type": "rss",
+      "url": "https://blog.unity.com/feed",
+      "layer": 1,
+      "tier": "T1",
+      "region": "intl",
+      "focus": "Unity 引擎官方（AI功能第一手）"
+    },
+    {
+      "name": "Unreal Engine Blog",
+      "type": "rss",
+      "url": "https://www.unrealengine.com/en-US/feed",
+      "layer": 1,
+      "tier": "T1",
+      "region": "intl",
+      "focus": "Unreal 引擎官方",
+      "status": "broken_403"
+    },
+    {
+      "name": "竞核",
+      "type": "rss",
+      "url": "https://www.coreengine.cn/feed",
+      "layer": 1,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "游戏×科技深度（替代 Unreal Blog）"
+    },
+    {
+      "name": "NVIDIA Blog",
+      "type": "rss",
+      "url": "https://blogs.nvidia.com/feed/",
+      "layer": 1,
+      "tier": "T1",
+      "region": "intl",
+      "focus": "GPU/AI 游戏技术（DLSS、ACE）"
+    },
+    {
+      "name": "DeepMind Blog",
+      "type": "rss",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "layer": 1,
+      "tier": "T1",
+      "region": "intl",
+      "focus": "游戏AI研究（AlphaGo系列）"
+    },
+    {
+      "name": "Google Developers Blog",
+      "type": "rss",
+      "url": "https://developers.googleblog.com/feeds/posts/default",
+      "layer": 2,
+      "tier": "T2",
+      "region": "intl",
+      "focus": "Google AI（通用，需关键词过滤）"
+    },
+    {
+      "name": "36Kr",
+      "type": "rss",
+      "url": "https://36kr.com/feed",
+      "layer": 2,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "科技创业、投融资（含游戏AI）"
+    },
+    {
+      "name": "IT之家",
+      "type": "rss",
+      "url": "https://www.ithome.com/rss/",
+      "layer": 2,
+      "tier": "T2",
+      "region": "cn",
+      "focus": "科技快讯（量大，关键词过滤）"
+    },
+    {
+      "name": "机器之心",
+      "type": "rss",
+      "url": "https://www.jiqizhixin.com/rss",
+      "layer": 2,
+      "tier": "T1.5",
+      "region": "cn",
+      "focus": "AI技术媒体头部（偶尔深度游戏AI）"
+    },
+    {
+      "name": "量子位",
+      "type": "rss",
+      "url": "https://www.qbitai.com/feed",
+      "layer": 2,
+      "tier": "T2",
+      "region": "cn",
+      "focus": "AI资讯（游戏AI融资常报）"
+    },
+    {
+      "name": "TechCrunch",
+      "type": "rss",
+      "url": "https://techcrunch.com/feed/",
+      "layer": 2,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "创业融资（Inworld等首发这里）"
+    },
+    {
+      "name": "The Verge",
+      "type": "rss",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "layer": 2,
+      "tier": "T2",
+      "region": "intl",
+      "focus": "大众科技+AI+游戏"
+    },
+    {
+      "name": "VentureBeat AI",
+      "type": "rss",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "layer": 2,
+      "tier": "T1.5",
+      "region": "intl",
+      "focus": "AI行业深度（与GamesBeat同源）"
+    },
+    {
+      "name": "Ars Technica Gaming",
+      "type": "rss",
+      "url": "https://feeds.arstechnica.com/arstechnica/gaming",
+      "layer": 2,
+      "tier": "T2",
+      "region": "intl",
+      "focus": "技术深度+游戏"
+    },
+    {
+      "name": "AI HOT (游戏相关)",
+      "type": "api",
+      "url": "https://aihot.virxact.com/api/public/items",
+      "queries": ["游戏", "game", "gaming", "NPC", "Unity AI", "Unreal AI", "Inworld", "游戏引擎"],
+      "layer": 3,
+      "tier": "T2",
+      "region": "cn",
+      "focus": "AI资讯中游戏相关条目（补充层）"
+    }
+  ]
+}

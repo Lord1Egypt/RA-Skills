@@ -1,0 +1,56 @@
+name: yiwu-trade
+version: 2.1.0
+license: MIT-0
+type: openclaw-skill
+description: "义乌.Skill - 深度蒸馏义乌30年外贸实战经验，小商品出海、1039合规、供应链组货、全域获客全链路技能"
+emoji: "🌏"
+homepage: https://xiaping.coze.site/skill/yiwu-trade
+
+# Publisher Info
+publisher:
+  name: "M-A3"
+  website: https://openclaw.ai
+  contact: support@openclaw.ai
+
+# Required Credentials
+required_env:
+  - COZE_API_KEY
+primary_env: COZE_API_KEY
+
+# External APIs
+apis:
+  - name: Coze API
+    domain: api.coze.cn
+    purpose: "扣子平台API调用，用于Agent推理和内容生成"
+    auth:
+      type: Bearer Token
+      env_var: COZE_API_KEY
+
+# Category & Tags
+category: 外贸实战
+tags:
+  - 小商品出海
+  - 市场采购贸易
+  - 外贸合规
+  - 供应链组货
+  - 全域获客
+  - 义新欧物流
+  - 支付结算
+  - 财务税务
+  - 数据决策
+  - 1039
+  - 义乌
+
+triggers:
+  - "义乌.Skill"
+  - "义乌外贸"
+  - "1039市场采购"
+  - "小商品出海"
+  - "义乌选品"
+  - "义新欧"
+  - "跨境支付"
+  - "外贸财务"
+  - "汇率管理"
+  - "数据分析"
+  - "外贸起盘"
+  - "义乌模式"

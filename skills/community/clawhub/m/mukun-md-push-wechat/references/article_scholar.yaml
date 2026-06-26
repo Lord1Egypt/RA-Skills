@@ -1,0 +1,27 @@
+# 文章模式 — 紫绿清韵样式（白底 + 紫色胶囊框 H2 + 翠绿 H3 + 首行缩进）
+# 适用场景：深度技术随笔、研究笔记、学术化博客、思辨型长文
+# 触发词：清韵 / 紫绿 / 紫绿清韵 / 紫胶囊 / 紫色胶囊 / 紫框 / 双色 / 双色对比 / 技术博客 / 深度技术 / 研究笔记 / 思辨 / 学术 / 学者 / 码上菩提
+style:
+    article:
+        bg: "#ffffff"
+        text: "#333333"
+        accent: "#9b59b6"            # H2 主色 — 学术紫
+        hero_bg: "#ffffff"
+        hero_title_color: "#1a1a1a"  # 大标题黑色，原生公众号感
+        bold: "#333333"
+        rule: "#eeeeee"
+        caption: "#888888"
+        title_font_size: "22px"
+        text_font_size: "15px"
+        h2_font_size: "17px"
+        h3_color: "#2e7d32"          # H3 翠绿色（双色对比关键）
+        p_indent: "2em"              # 正文首行缩进 2em（学术体特征）
+        hero_style: "minimal"        # 封面极简模式：去顶条 / 去 SCHOLAR NOTE 标签
+        h2_style: "framed_pill"      # H2 = 浅紫底 + 紫文字 + 紫左粗边 + 圆角胶囊框
+        h2_frame_bg: "#f8f0fb"
+        h2_frame_border: "#9b59b6"
+        h2_frame_border_width: "5px"
+        h2_frame_radius: "4px"
+        cover_label: ""
+        footer: ""
+        ending_lines: []

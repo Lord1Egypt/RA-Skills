@@ -1,0 +1,30 @@
+{
+  "name": "github-hosts-cn",
+  "version": "1.0.0",
+  "description": "Safe GitHub hosts updater for Chinese users - preserves non-GitHub entries",
+  "main": "update.js",
+  "bin": {
+    "gh-hosts-cn": "./update.js"
+  },
+  "scripts": {
+    "update": "node update.js",
+    "preview": "node update.js --preview",
+    "restore": "node update.js --restore",
+    "status": "node update.js --status"
+  },
+  "keywords": [
+    "github",
+    "hosts",
+    "dns",
+    "china",
+    "network",
+    "safe-update",
+    "backup",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw Agent",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

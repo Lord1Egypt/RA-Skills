@@ -1,0 +1,7 @@
+# claw-security-suite dependencies
+# All dependencies are part of standard Python
+# No extra packages required beyond what OpenClaw already installs
+
+# Optional: if you need to install manually
+# dataclasses is built-in since Python 3.7+
+# re, os, hashlib, json are all standard library

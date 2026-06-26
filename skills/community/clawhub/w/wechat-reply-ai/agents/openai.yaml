@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信自动回复工具"
+  short_description: "Windows 本地微信 OCR 读取、消息发送与自动代回 skill"
+  default_prompt: "使用 $wechat-auto-reply-toolkit 处理 Windows 本地微信聊天读取、生成回复并发送消息。"

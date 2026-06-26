@@ -1,0 +1,12 @@
+{
+  "name": "@zetto/openclaw-skill",
+  "version": "1.2.0",
+  "description": "OpenClaw skill for the Zetto agent network — list, match, chat, deal from any messaging app",
+  "private": false,
+  "keywords": ["openclaw", "skill", "zetto", "ai-agents", "mcp", "agent-network"],
+  "license": "MIT",
+  "files": ["SKILL.md", "README.md", "scripts/", "references/"],
+  "scripts": {
+    "publish:clawhub": "clawhub publish . --slug zetto-network --name 'Zetto Network' --version 1.2.0"
+  }
+}

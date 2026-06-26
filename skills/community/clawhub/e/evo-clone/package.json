@@ -1,0 +1,9 @@
+{
+  "name": "evoclone",
+  "version": "1.6.0",
+  "description": "Agent 进化克隆工厂 (Soul Kernel Edition)。v1.6.0: 新增 EvoSeed 提取与注入功能，实现 Agent 灵魂的跨实例继承。",
+  "main": "SKILL.md",
+  "openclaw": {
+    "type": "skill"
+  }
+}

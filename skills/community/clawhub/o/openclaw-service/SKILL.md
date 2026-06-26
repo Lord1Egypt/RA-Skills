@@ -1,35 +1,112 @@
 ---
-name: "OpenClaw 技术服务"
-description: "Simon's OpenClaw technical service offering - AI assistant customization, automation, deployment and consulting."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, customization, deployment, service]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-service"
-sourceUrl: "https://clawhub.ai/skills/openclaw-service"
+name: openclaw-service
+description: Simon's OpenClaw technical service offering - AI assistant customization, automation, deployment and consulting.
 ---
 
-# OpenClaw 技术服务
+# 🤖 OpenClaw 技术服务
 
-> Simon's OpenClaw technical service offering - AI assistant customization, automation, deployment and consulting.
+**提供方**: Simon（西蒙）
+**定位**: 专注 AI 助手定制、自动化流程、企业私有部署
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-service`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-service](https://clawhub.ai/skills/openclaw-service)
+---
 
-## Overview
+## 📦 服务项目
 
+### 1. OpenClaw 部署与配置 ⭐⭐⭐⭐⭐
+**适用**: 想搭建自己的 AI 助手但不懂技术
+**内容**:
+- 云服务器环境配置
+- OpenClaw 安装部署
+- 飞书/微信/Telegram 接入
+- 定时任务配置
+- 基础使用培训
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-service
-```
+**交付**: 1-3个工作日完成，可选视频指导
+
+| 套餐 | 价格 | 说明 |
+|-----|------|------|
+| 基础版 | ¥399 | 仅部署 + 1渠道接入 |
+| 标准版 | ¥799 | 部署 + 3渠道接入 + 基础培训 |
+| 定制版 | ¥1499 | 全流程定制 + 深度培训 + 30天答疑 |
+
+---
+
+### 2. 业务流程自动化 ⭐⭐⭐⭐⭐
+**适用**: 有重复性工作想自动化
+**内容**:
+- 需求分析与方案设计
+- 自动化脚本开发
+- 定时任务配置
+- 使用文档交付
+
+**按项目收费**: ¥500-3000/项目
+
+---
+
+### 3. 企业知识库搭建 ⭐⭐⭐⭐
+**适用**: 企业内部文档多、查找不便
+**内容**:
+- 知识库架构设计
+- 飞书/Notion 对接
+- AI 问答机器人部署
+- 持续维护
+
+**报价**: ¥2000-10000（视规模）
+
+---
+
+### 4. AI 助手定制开发 ⭐⭐⭐⭐⭐
+**适用**: 有特定场景需求，需要深度定制
+**内容**:
+- 场景需求分析
+- Prompt 工程优化
+- 工具链集成
+- 上线测试与调优
+
+**按工时计费**: ¥200/小时 起
+
+---
+
+### 5. 技术咨询 ⭐⭐⭐
+**适用**: 遇到技术问题需要指导
+**内容**:
+- 架构设计建议
+- 代码 review
+- 问题排查
+- 方案评估
+
+**按次咨询**: ¥99-499/次
+
+---
+
+## 💡 为什么选我？
+
+- ✅ 7×24 运行，无需人工值守
+- ✅ 深度集成飞书、微信等国内平台
+- ✅ 可对接私有 AI 模型（支持本地部署）
+- ✅ 有现成解决方案，交付快
+- ✅ 持续优化，不断学习新技能
+
+---
+
+## 📞 联系方式
+
+**飞书**: 直接私信 Simon
+**微信/Telegram**: 私信详谈
+
+**备注**: 小项目可先付50%，验收通过后付尾款
+
+---
+
+## 🛠️ 已实现案例
+
+以下功能已在我自己的 OpenClaw 上运行：
+- 每日自动早报生成与推送（07:00 发送至飞书）
+- 盈利案例自动分析（02:00 / 04:00 更新）
+- 定时任务自动化执行
+- 飞书消息推送
+- 多渠道接入（飞书/微信/Telegram）
+
+---
+
+*如需服务，直接私信联系！*

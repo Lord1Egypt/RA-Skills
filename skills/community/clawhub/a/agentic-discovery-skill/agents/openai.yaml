@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Discovery Skill"
+  short_description: "Scope agentic workflow discovery"
+  default_prompt: "Use $agentic-discovery-skill to choose and draft the right discovery artifact for an agentic development opportunity."
+
+policy:
+  allow_implicit_invocation: false

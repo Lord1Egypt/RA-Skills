@@ -1,0 +1,77 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_api_create_define",
+		"description": "Create a new API definition",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "API's name"
+				},
+				"path": {
+					"type": "string",
+					"description": "API's access path (excluding appId)"
+				},
+				"method": {
+					"type": "string",
+					"description": "HTTP method, such as GET, POST, empty value means no restriction."
+				},
+				"view": {
+					"type": "string",
+					"description": "Return value type. Can only be filled with one of the following values:\njson、text、file、redirect"
+				},
+				"invokeType": {
+					"type": "string",
+					"description": "Call type. Currently can only be filled: script"
+				},
+				"apiDesc": {
+					"type": "string",
+					"description": "API description"
+				},
+				"beforeScriptId": {
+					"type": "string",
+					"description": "Pre-processing script ID. 【Emphasis】Not the ID of the script directory, nor the name of the script, but the ID of the script file."
+				},
+				"beforeScriptFunc": {
+					"type": "string",
+					"description": "Pre-processing script function name"
+				},
+				"scriptId": {
+					"type": "string",
+					"description": "Script ID (when invokeType=script). 【Emphasis】Not the ID of the script directory, nor the name of the script, but the ID of the script file."
+				},
+				"scriptFunc": {
+					"type": "string",
+					"description": "Script function name"
+				},
+				"afterScriptId": {
+					"type": "string",
+					"description": "Post-processing script ID. 【Emphasis】Not the ID of the script directory, nor the name of the script, but the ID of the script file."
+				},
+				"afterScriptFunc": {
+					"type": "string",
+					"description": "Post-processing script function name"
+				},
+				"errorScriptId": {
+					"type": "string",
+					"description": "Exception handling script ID. 【Emphasis】Not the ID of the script directory, but the ID of the script file."
+				},
+				"errorScriptFunc": {
+					"type": "string",
+					"description": "Exception handling script function name"
+				}
+			},
+			"required": [
+				"name",
+				"path",
+				"view",
+				"invokeType",
+				"scriptId",
+				"scriptFunc"
+			],
+			"additionalProperties": false
+		}
+	}
+}

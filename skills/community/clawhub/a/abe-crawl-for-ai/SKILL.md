@@ -1,35 +1,46 @@
 ---
-name: "crawl-for-ai"
-description: "Web scraping via SkillBoss API Hub. Use for fetching full page content with JavaScript rendering. Handles complex pages with dynamic content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/abe-crawl-for-ai"
-sourceUrl: "https://clawhub.ai/skills/abe-crawl-for-ai"
+name: crawl-for-ai
+description: Web scraping via SkillBoss API Hub. Use for fetching full page content with JavaScript rendering. Handles complex pages with dynamic content.
+version: 1.0.1
+author: Ania
+requiresEnv:
+  - SKILLBOSS_API_KEY
+metadata:
+  clawdbot:
+    emoji: "🕷️"
+    requires:
+      bins: ["node"]
 ---
 
-# crawl-for-ai
+# Web Scraper via SkillBoss API Hub
 
-> Web scraping via SkillBoss API Hub. Use for fetching full page content with JavaScript rendering. Handles complex pages with dynamic content.
+SkillBoss API Hub scraping capability for full web page extraction with JavaScript rendering.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/abe-crawl-for-ai`
-- **Source URL:** [https://clawhub.ai/skills/abe-crawl-for-ai](https://clawhub.ai/skills/abe-crawl-for-ai)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/abe-crawl-for-ai
+# Via script
+node {baseDir}/scripts/crawl4ai.js "url"
+node {baseDir}/scripts/crawl4ai.js "url" --json
 ```
+
+**Script options:**
+- `--json` — Full JSON response
+
+**Output:** Clean markdown from the page.
+
+## Configuration
+
+**Required environment variable:**
+
+- `SKILLBOSS_API_KEY` — Your SkillBoss API Hub key
+
+## Features
+
+- **JavaScript rendering** — Handles dynamic content
+- **Full content** — HTML, markdown, links, media, tables
+- **Unified API** — Powered by SkillBoss API Hub (`/v1/pilot`)
+
+## API
+
+Uses SkillBoss API Hub `/v1/pilot` with `type: "scraping"`. Result is returned at `data.result`.

@@ -1,0 +1,16 @@
+{
+  "last_run_date": null,
+  "alerts_sent": [],
+  "data_quality_flags": [],
+  "results_calendar": [],
+  "surveillance_check": {
+    "last_checked": null,
+    "next_due": null,
+    "active_entries": []
+  },
+  "watch_list_for_followup": [],
+  "guidance_tracker": {},
+  "promoter_holding_history": {},
+  "institutional_holding_history": {},
+  "management_credibility": {}
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "usa-vs-iran-war-monitor-skill",
+  "name": "USA vs Iran War Monitor Skill",
+  "version": "0.1.0",
+  "tags": [
+    "openclaw",
+    "usa-iran",
+    "war-monitor",
+    "osint",
+    "safety"
+  ],
+  "category": "News & Safety",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-03",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

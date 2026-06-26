@@ -1,0 +1,400 @@
+{
+  "tickers": {
+    "0700.HK": {
+      "name": "Tencent Holdings",
+      "a_share": null,
+      "sector": "Technology",
+      "market_cap_usd_b": 450
+    },
+    "9988.HK": {
+      "name": "Alibaba Group",
+      "a_share": "688988.SH",
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 220
+    },
+    "3690.HK": {
+      "name": "Meituan",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 120
+    },
+    "1810.HK": {
+      "name": "Xiaomi Corp",
+      "a_share": "688981.SH",
+      "sector": "Technology",
+      "market_cap_usd_b": 90
+    },
+    "1211.HK": {
+      "name": "BYD Co Ltd",
+      "a_share": "002594.SZ",
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 85
+    },
+    "0388.HK": {
+      "name": "Hong Kong Exchanges and Clearing",
+      "a_share": null,
+      "sector": "Financial Services",
+      "market_cap_usd_b": 60
+    },
+    "0005.HK": {
+      "name": "HSBC Holdings",
+      "a_share": null,
+      "sector": "Financial Services",
+      "market_cap_usd_b": 155
+    },
+    "1299.HK": {
+      "name": "AIA Group",
+      "a_share": null,
+      "sector": "Financial Services",
+      "market_cap_usd_b": 80
+    },
+    "2318.HK": {
+      "name": "Ping An Insurance",
+      "a_share": "601318.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 100
+    },
+    "1024.HK": {
+      "name": "Kuaishou Technology",
+      "a_share": null,
+      "sector": "Technology",
+      "market_cap_usd_b": 55
+    },
+    "2015.HK": {
+      "name": "Li Auto",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 35
+    },
+    "9868.HK": {
+      "name": "XPeng Inc",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 12
+    },
+    "9866.HK": {
+      "name": "NIO Inc",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 10
+    },
+    "9999.HK": {
+      "name": "NetEase Inc",
+      "a_share": "688008.SH",
+      "sector": "Technology",
+      "market_cap_usd_b": 65
+    },
+    "2319.HK": {
+      "name": "China Mengniu Dairy",
+      "a_share": null,
+      "sector": "Consumer Defensive",
+      "market_cap_usd_b": 12
+    },
+    "2020.HK": {
+      "name": "ANTA Sports Products",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 35
+    },
+    "2331.HK": {
+      "name": "Li Ning Co Ltd",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 10
+    },
+    "0175.HK": {
+      "name": "Geely Automobile Holdings",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 15
+    },
+    "0981.HK": {
+      "name": "SMIC",
+      "a_share": "688981.SH",
+      "sector": "Technology",
+      "market_cap_usd_b": 85
+    },
+    "1876.HK": {
+      "name": "Budweiser Brewing APAC",
+      "a_share": null,
+      "sector": "Consumer Defensive",
+      "market_cap_usd_b": 30
+    },
+    "1929.HK": {
+      "name": "Chow Tai Fook Jewellery",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 15
+    },
+    "0017.HK": {
+      "name": "New World Development",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 8
+    },
+    "0012.HK": {
+      "name": "Henderson Land Development",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 18
+    },
+    "0823.HK": {
+      "name": "Link REIT",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 16
+    },
+    "0883.HK": {
+      "name": "CNOOC",
+      "a_share": "600938.SH",
+      "sector": "Energy",
+      "market_cap_usd_b": 95
+    },
+    "0857.HK": {
+      "name": "PetroChina",
+      "a_share": "601857.SH",
+      "sector": "Energy",
+      "market_cap_usd_b": 180
+    },
+    "0386.HK": {
+      "name": "Sinopec",
+      "a_share": "600028.SH",
+      "sector": "Energy",
+      "market_cap_usd_b": 95
+    },
+    "0941.HK": {
+      "name": "China Mobile",
+      "a_share": "600941.SH",
+      "sector": "Communication Services",
+      "market_cap_usd_b": 200
+    },
+    "0762.HK": {
+      "name": "China Unicom",
+      "a_share": "600050.SH",
+      "sector": "Communication Services",
+      "market_cap_usd_b": 35
+    },
+    "0728.HK": {
+      "name": "China Telecom",
+      "a_share": "601728.SH",
+      "sector": "Communication Services",
+      "market_cap_usd_b": 75
+    },
+    "0939.HK": {
+      "name": "China Construction Bank",
+      "a_share": "601939.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 185
+    },
+    "1398.HK": {
+      "name": "ICBC",
+      "a_share": "601398.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 230
+    },
+    "3988.HK": {
+      "name": "Bank of China",
+      "a_share": "601988.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 145
+    },
+    "1288.HK": {
+      "name": "Agricultural Bank of China",
+      "a_share": "601288.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 175
+    },
+    "1658.HK": {
+      "name": "Postal Savings Bank of China",
+      "a_share": "601658.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 55
+    },
+    "2628.HK": {
+      "name": "China Life Insurance",
+      "a_share": "601628.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 120
+    },
+    "3968.HK": {
+      "name": "China Merchants Bank",
+      "a_share": "600036.SH",
+      "sector": "Financial Services",
+      "market_cap_usd_b": 130
+    },
+    "0011.HK": {
+      "name": "Hang Seng Bank",
+      "a_share": null,
+      "sector": "Financial Services",
+      "market_cap_usd_b": 25
+    },
+    "0027.HK": {
+      "name": "Galaxy Entertainment",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 28
+    },
+    "1928.HK": {
+      "name": "Sands China",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 35
+    },
+    "0968.HK": {
+      "name": "Xinyi Solar Holdings",
+      "a_share": "600586.SH",
+      "sector": "Technology",
+      "market_cap_usd_b": 12
+    },
+    "2382.HK": {
+      "name": "Sunny Optical Technology",
+      "a_share": null,
+      "sector": "Technology",
+      "market_cap_usd_b": 15
+    },
+    "0285.HK": {
+      "name": "BYD Electronic",
+      "a_share": null,
+      "sector": "Technology",
+      "market_cap_usd_b": 12
+    },
+    "1093.HK": {
+      "name": "CSPC Pharmaceutical",
+      "a_share": null,
+      "sector": "Healthcare",
+      "market_cap_usd_b": 14
+    },
+    "3692.HK": {
+      "name": "Hansoh Pharmaceutical",
+      "a_share": null,
+      "sector": "Healthcare",
+      "market_cap_usd_b": 14
+    },
+    "0241.HK": {
+      "name": "Alibaba Health Information Technology",
+      "a_share": null,
+      "sector": "Healthcare",
+      "market_cap_usd_b": 11
+    },
+    "6618.HK": {
+      "name": "JD Health International",
+      "a_share": null,
+      "sector": "Healthcare",
+      "market_cap_usd_b": 16
+    },
+    "6690.HK": {
+      "name": "Haier Smart Home",
+      "a_share": "600690.SH",
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 25
+    },
+    "9633.HK": {
+      "name": "Nongfu Spring",
+      "a_share": null,
+      "sector": "Consumer Defensive",
+      "market_cap_usd_b": 55
+    },
+    "2313.HK": {
+      "name": "Shenzhou International Group",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 18
+    },
+    "9888.HK": {
+      "name": "Baidu Inc",
+      "a_share": "688114.SH",
+      "sector": "Technology",
+      "market_cap_usd_b": 35
+    },
+    "06160.HK": {
+      "name": "BeiGene Ltd",
+      "a_share": "688235.SH",
+      "sector": "Healthcare",
+      "market_cap_usd_b": 28
+    },
+    "1177.HK": {
+      "name": "Sino Biopharmaceutical",
+      "a_share": null,
+      "sector": "Healthcare",
+      "market_cap_usd_b": 15
+    },
+    "6862.HK": {
+      "name": "Haidilao International Holding",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 16
+    },
+    "9922.HK": {
+      "name": "Jiumaojiu International Holdings",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 3
+    },
+    "1044.HK": {
+      "name": "Hengan International Group",
+      "a_share": null,
+      "sector": "Consumer Defensive",
+      "market_cap_usd_b": 7
+    },
+    "0688.HK": {
+      "name": "China Overseas Land & Investment",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 20
+    },
+    "1109.HK": {
+      "name": "China Resources Land",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 28
+    },
+    "0016.HK": {
+      "name": "Sun Hung Kai Properties",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 35
+    },
+    "1113.HK": {
+      "name": "CK Asset Holdings",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 22
+    },
+    "1997.HK": {
+      "name": "Wharf Real Estate Investment",
+      "a_share": null,
+      "sector": "Real Estate",
+      "market_cap_usd_b": 15
+    },
+    "0020.HK": {
+      "name": "SenseTime Group",
+      "a_share": null,
+      "sector": "Technology",
+      "market_cap_usd_b": 8
+    },
+    "0788.HK": {
+      "name": "China Tower Corp",
+      "a_share": null,
+      "sector": "Communication Services",
+      "market_cap_usd_b": 30
+    },
+    "0388.HK": {
+      "name": "Hong Kong Exchanges and Clearing",
+      "a_share": null,
+      "sector": "Financial Services",
+      "market_cap_usd_b": 60
+    },
+    "0881.HK": {
+      "name": "Zhongsheng Group Holdings",
+      "a_share": null,
+      "sector": "Consumer Cyclical",
+      "market_cap_usd_b": 6
+    },
+    "1801.HK": {
+      "name": "JM Global Holding",
+      "a_share": null,
+      "sector": "Financial Services",
+      "market_cap_usd_b": 2
+    }
+  }
+}

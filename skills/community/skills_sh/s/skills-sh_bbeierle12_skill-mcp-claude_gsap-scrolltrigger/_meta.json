@@ -1,0 +1,19 @@
+{
+  "name": "gsap-scrolltrigger",
+  "description": "Scroll-based animations using GSAP ScrollTrigger plugin including pinning, scrubbing, snap points, and parallax effects. Use when creating scroll-driven animations, sticky sections, progress indicators, or parallax scrolling experiences.",
+  "tags": [
+    "animation",
+    "javascript",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [
+    "gsap-fundamentals"
+  ],
+  "enhances": [],
+  "last_reviewed_at": "2026-06-18",
+  "review_score": 60,
+  "relevance_tier": "B"
+}

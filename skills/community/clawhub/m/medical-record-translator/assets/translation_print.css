@@ -1,0 +1,101 @@
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm;
+
+  @bottom-center {
+    color: #5f6b7a;
+    content: "Page " counter(page) " / " counter(pages);
+    font-size: 9pt;
+  }
+}
+
+:root {
+  color: #16202a;
+  font-family: "Noto Sans CJK SC", "PingFang SC", "Source Han Sans SC", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+}
+
+.translation-document {
+  width: 100%;
+}
+
+.document-header {
+  border-bottom: 1px solid #d5dce3;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+}
+
+.document-title {
+  font-size: 18pt;
+  font-weight: 700;
+  margin: 0;
+}
+
+.document-source {
+  color: #5f6b7a;
+  font-size: 9pt;
+  margin-top: 6px;
+}
+
+main {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #10263f;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 18pt;
+}
+
+h2 {
+  font-size: 14pt;
+  margin-top: 22px;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+p,
+li {
+  margin: 0 0 8px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 10px 0 16px;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ccd6e0;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #eef3f8;
+  font-weight: 700;
+}
+
+mark {
+  background: #fff0b3;
+  color: inherit;
+  padding: 0 2px;
+}

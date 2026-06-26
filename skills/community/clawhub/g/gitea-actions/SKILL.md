@@ -1,35 +1,44 @@
----
-name: "Gitea Actions"
-description: "Trigger workflows, list runs, and get status for Gitea/Forgejo Actions workflows using owner, repo, and workflow details via API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gitea-actions"
-sourceUrl: "https://clawhub.ai/skills/gitea-actions"
----
-
 # Gitea Actions
 
-> Trigger workflows, list runs, and get status for Gitea/Forgejo Actions workflows using owner, repo, and workflow details via API.
+Trigger and query Gitea/Forgejo Actions workflows.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gitea-actions`
-- **Source URL:** [https://clawhub.ai/skills/gitea-actions](https://clawhub.ai/skills/gitea-actions)
+## Environment Variables
 
-## Overview
+- `GITEA_URL` - Gitea API URL (e.g., `http://8.137.50.76:10000`)
+- `GITEA_TOKEN` - Gitea API token
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gitea-actions
+node -e "
+const gitea = require('~/.openclaw/skills/gitea-actions/index.js');
+
+// Trigger workflow
+gitea({ action: 'dispatch', owner: 'gg', repo: 'web3-mini-game', workflow: 'deploy-vercel.yml', ref: 'master' })
+
+// List runs
+gitea({ action: 'runs', owner: 'gg', repo: 'web3-mini-game' })
+
+// Get run status
+gitea({ action: 'run', owner: 'gg', repo: 'web3-mini-game', runId: 123 })
+"
 ```
+
+## Actions
+
+| Action | Description |
+|--------|-------------|
+| dispatch | Trigger a workflow dispatch |
+| runs | List workflow runs |
+| run | Get single run status |
+
+## Inputs
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| action | string | ✅ | dispatch, runs, or run |
+| owner | string | ✅ | Repository owner |
+| repo | string | ✅ | Repository name |
+| workflow | string | ❌ | Workflow file (for dispatch/runs) |
+| ref | string | ❌ | Git ref (default: master) |
+| runId | number | ❌ | Run ID (for run action) |

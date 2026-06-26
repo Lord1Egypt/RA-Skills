@@ -1,0 +1,12 @@
+columns:
+  - Backlog
+  - Next
+  - Doing
+  - Waiting
+  - Blocked
+  - Done
+priority_levels:
+  - P0
+  - P1
+  - P2
+  - P3

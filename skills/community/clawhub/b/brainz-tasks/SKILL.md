@@ -1,35 +1,56 @@
 ---
-name: "Tasks"
+name: tasks
 description: "Manage Todoist tasks using the `todoist` CLI. Add, list, and complete tasks from the command line."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/brainz-tasks"
-sourceUrl: "https://clawhub.ai/skills/brainz-tasks"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "✅",
+        "requires": { "bins": ["todoist"] },
+        "install":
+          [
+            {
+              "id": "pip",
+              "kind": "pip",
+              "package": "todoist-api-python",
+              "bins": ["todoist"],
+              "label": "Install Todoist API (pip)",
+            },
+          ],
+      },
+  }
 ---
 
-# Tasks
+# Tasks Skill
 
-> Manage Todoist tasks using the `todoist` CLI. Add, list, and complete tasks from the command line.
+Wraps Todoist / Microsoft To-Do APIs to add, list, and complete tasks. Requires `TODOIST_API_TOKEN` or `MSGRAPH_TOKEN` env var.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/brainz-tasks`
-- **Source URL:** [https://clawhub.ai/skills/brainz-tasks](https://clawhub.ai/skills/brainz-tasks)
+## Listing Tasks
 
-## Overview
+Show all pending tasks:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/brainz-tasks
+todoist list
+```
+
+## Adding Tasks
+
+Create a new task with an optional due date:
+
+```bash
+todoist add "Review PR #42" --due "2026-02-05"
+```
+
+## Completing Tasks
+
+Mark a task as done:
+
+```bash
+todoist complete <task_id>
+```
+
+## Install
+
+```bash
+pip install todoist-api-python
 ```

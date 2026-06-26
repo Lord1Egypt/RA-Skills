@@ -1,35 +1,220 @@
 ---
-name: "Magnetic Circuit Calculator"
-description: "电机磁路计算助手 | 基于等效磁路法计算气隙磁通、磁密分布、永磁体工作点、漏磁系数。适用于电机设计初期快速估算和Maxwell仿真对比验证。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/magnetic-circuit-calculator"
-sourceUrl: "https://clawhub.ai/skills/magnetic-circuit-calculator"
+name: magnetic-circuit-calculator
+description: 电机磁路计算助手 | 基于等效磁路法计算气隙磁通、磁密分布、永磁体工作点、漏磁系数。适用于电机设计初期快速估算和Maxwell仿真对比验证。
 ---
 
-# Magnetic Circuit Calculator
+# 电机磁路计算助手
 
-> 电机磁路计算助手 | 基于等效磁路法计算气隙磁通、磁密分布、永磁体工作点、漏磁系数。适用于电机设计初期快速估算和Maxwell仿真对比验证。
+基于等效磁路法（Magnetic Equivalent Circuit, MEC），对永磁电机进行快速磁路计算，输出气隙磁通、磁密、永磁体工作点等关键参数。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/magnetic-circuit-calculator`
-- **Source URL:** [https://clawhub.ai/skills/magnetic-circuit-calculator](https://clawhub.ai/skills/magnetic-circuit-calculator)
+## 适用场景
 
-## Overview
+- 电机设计初期快速估算（替代耗时 FEA）
+- Maxwell 静磁场仿真前的参数预验证
+- 极槽配合方案比选
+- 漏磁系数快速评估
+- 设计方案合理性判断
 
+## 计算输入参数
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/magnetic-circuit-calculator
+| 参数 | 符号 | 单位 | 示例 |
+|------|------|------|------|
+| 极数 | 2p | - | 8 |
+| 槽数 | Q | - | 36 |
+| 相数 | m | - | 3 |
+| 铁心长度 | L | mm | 60 |
+| 气隙长度 | δ | mm | 0.5 |
+| 定子内径 | Di | mm | 54 |
+| 永磁体厚度 | hm | mm | 3 |
+| 永磁体剩磁 | Br | T | 1.25 |
+| 永磁体矫顽力 | Hc | kA/m | 955 |
+| 永磁体宽度 | bm | mm | 沿弧长 |
+| 轭部磁路长度 | lc | mm | 视结构而定 |
+
+## 核心计算模块
+
+### 1. 极距计算
+
 ```
+极距 τ = π × Di / (2p)
+示例：Di=54mm, 2p=8 → τ = π×54/8 ≈ 21.2mm
+```
+
+### 2. 每极每相槽数
+
+```
+q = Q / (2p × m)
+分数槽：q = Q/(2p×m) = a/b（最简分数）
+```
+
+### 3. 气隙磁通密度（估算）
+
+**方法A：经验公式**
+
+```
+Bg = σ × (Br × Am × Hc) / (δ × Ae)
+其中：
+  σ = 漏磁系数（1.1~1.4），初次估算取 1.2
+  Am = 永磁体截面积 = bm × L（mm²）
+  Ae = 气隙截面积 = τ × L（mm²）
+  δ = 气隙长度（mm）
+```
+
+**方法B：磁动势法（更精确）**
+
+```
+F_total = F_pm - F_gap - F_core
+F_pm = Hc × hm（永磁体提供的磁动势）
+F_gap = Bg/μ0 × δ（气隙所需磁动势）
+F_core = H_cu × lc（轭部铁损磁动势）
+
+迭代求解：Bg = μ0 × (F_pm - F_core) / δ
+```
+
+### 4. 永磁体工作点（开路）
+
+```
+工作点坐标：(Bm, Hm)
+Bm = Φm / Am = σ × Bg × (Ae/Am)
+Hm = (Hc × hm - F_core) / hm
+退磁曲线位置：Hm 应位于第二象限
+
+判断标准：
+  Bm/Br > 0.6 → 工作点合理
+  Bm/Br < 0.5 → 存在退磁风险
+```
+
+### 5. 漏磁系数 σ
+
+```
+σ = Φm / Φg = (Φg + Φσ) / Φg
+典型值：
+  表贴式 PMSM：σ = 1.10 ~ 1.25
+  内嵌式 PMSM：σ = 1.20 ~ 1.40
+  磁阻电机：σ = 1.30 ~ 1.60
+```
+
+### 6. 反电动势常数 Ke
+
+```
+Ke = (4.44 × f × Nph × Kw × Φg) / n_s
+或：
+Ke = (2 × π × Nph × Kw × Φg) / 60
+
+其中：
+  Nph = 每相串联匝数
+  Kw = 绕组系数
+  Φg = 每极气隙磁通（Wb）
+  f = 频率（Hz）
+```
+
+### 7. 同步电抗（估算）
+
+```
+Xd = 2 × f × μ0 × (Nph)² × τ × L / (δ × π × p)
+Xq ≈ Xd（隐极机）
+Xq > Xd（凸极机，表贴式差距小，内嵌式差距大）
+```
+
+## 计算输出格式
+
+```
+===== 磁路计算结果 =====
+【基本参数】
+极距 τ = XX mm
+每极每相槽数 q = XX
+绕组系数 Kw = XX
+
+【气隙磁场】
+气隙磁密 Bg = XX T
+每极气隙磁通 Φg = XX mWb
+
+【永磁体工作点】
+永磁体截面积 Am = XX mm²
+气隙截面积 Ae = XX mm²
+漏磁系数 σ = XX
+工作点 Bm/Br = XX%
+工作点 Bm = XX T，Hm = XX kA/m
+
+【性能估算】
+反电动势常数 Ke = XX V/(rad/s)
+转矩常数 Kt = XX Nm/A
+
+【结论】
+工作点状态：[正常/偏低/有退磁风险]
+建议：[继续优化/调整hm/更换磁钢牌号]
+```
+
+## 典型设计案例
+
+### 案例：8极36槽表贴式 PMSM
+
+**输入参数**
+
+```
+极数 2p = 8
+槽数 Q = 36
+铁心长度 L = 60mm
+气隙长度 δ = 0.5mm
+定子内径 Di = 54mm
+永磁体厚度 hm = 3mm（N42SH，Br=1.25T）
+永磁体宽度 bm = 17mm（弧长）
+```
+
+**计算过程**
+
+```
+τ = π×54/8 = 21.2mm
+q = 36/(8×3) = 1.5（分数槽）
+Ae = 21.2×60 = 1272mm²
+Am = 17×60 = 1020mm²
+Ae/Am = 0.802
+
+假设 σ=1.2：
+Bg = 1.2 × 1.25 × 1020 / (0.5 × 1272) = 0.76T
+
+开路校验（忽略铁心压降）：
+Bm = 0.76 × 1.2 × 0.802 = 0.73T
+Bm/Br = 58.4% → 偏低，建议增加 hm 至 4mm 重新计算
+```
+
+## 设计问题诊断
+
+| 现象 | 原因 | 调整方向 |
+|------|------|----------|
+| Bg 偏低 | hm 太小、Br 不足 | 增加 hm 或选更高 Br 牌号 |
+| Bg 过高 | hm 太大 | 可能导致磁钢浪费，适当减小 |
+| Bm/Br < 50% | 存在退磁风险 | 增加 hm、减小气隙、换高矫顽力牌号 |
+| σ 过大 | 漏磁严重 | 优化磁钢布局、增加隔磁桥宽度 |
+| Ke 偏低 | 匝数不够、磁通偏低 | 增加匝数或提高 Bg |
+
+## 参考资源
+
+- `scripts/mec_calculator.py` - 磁路计算脚本（基础版）
+- `scripts/mec_calculator_v2.py` - **磁路计算脚本 v2（增强版，支持迭代求解、永磁体库、hm扫描、极槽方案对比）**
+- `references/steel_pm_materials.md` - **硅钢片和永磁体牌号参数库**（快速查阅）
+
+### 快速使用
+
+```bash
+# 交互模式（引导输入参数）
+python scripts/mec_calculator_v2.py
+
+# 命令行模式（直接计算）
+python scripts/mec_calculator_v2.py --poles 8 --Q 36 --L 60 --delta 0.5 --Di 54 --hm 3
+
+# 永磁体厚度扫描分析
+python scripts/mec_calculator_v2.py --poles 8 --Q 36 --sweep_hm
+
+# 极槽配合方案对比
+python scripts/mec_calculator_v2.py --poles 8 --L 60 --compare_slots
+```
+
+> **注意**：计算基于线性磁路假设（忽略铁心饱和），结果为初估参考。高精度设计请用 Maxwell 静磁场仿真验证。
+
+## 注意事项
+
+- 本计算基于线性磁路假设，忽略铁心饱和，适合初步估算
+- 高精度结果需用 Maxwell 静磁场仿真验证
+- 内嵌式电机需考虑 d/q 轴磁路不对称
+- 分数槽集中绕组漏磁系数通常较大

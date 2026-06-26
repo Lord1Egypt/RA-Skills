@@ -1,0 +1,288 @@
+{
+  "name": "bee-visitor-recent",
+  "description": "Structured analytics based on the latest visitor data from the Bee Website Builder platform.",
+  "version": "2.0.3",
+  "input": {
+    "type": "object",
+    "properties": {
+      "api_key": {
+        "type": "string",
+        "description": "API_KEY is the secure credential used for API authentication. It identifies the caller and controls interface access permissions. Please obtain it from the developer platform at https://open.tradew.com before use."
+      },
+      "pagination": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "current_page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "description": "Current page number, starting from 1. Pagination must follow the server-returned `pagination.has_next_page` and `pagination.next_page`. Do not infer pages from `total_page` or manually increment `current_page`. When `has_next_page=true`, `next_page` must be used as the next request page number. When `has_next_page=false`, pagination requests must stop."
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 10,
+            "minimum": 10,
+            "maximum": 50,
+            "description": "Items per page, range 10-50"
+          }
+        },
+        "required": [
+          "current_page",
+          "page_size"
+        ]
+      }
+    },
+    "required": [
+      "api_key"
+    ]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [ "object", "null" ],
+        "description": "Returned result, which may be `null` on failure",
+        "properties": {
+          "pagination": {
+            "type": "object",
+            "description": "Pagination result",
+            "properties": {
+              "current_page": {
+                "type": "integer",
+                "description": "Current page number"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Items per page"
+              },
+              "total_page": {
+                "type": "integer",
+                "description": "Total number of pages"
+              },
+              "total_count": {
+                "type": "integer",
+                "description": "Total number of records"
+              },
+              "has_next_page": {
+                "type": "boolean",
+                "description": "Whether a next page exists"
+              },
+              "next_page": {
+                "type": [ "integer", "null" ],
+                "description": "Next page number, or `null` if there is no next page"
+              }
+            },
+            "required": [
+              "current_page",
+              "page_size",
+              "total_page",
+              "total_count",
+              "has_next_page",
+              "next_page"
+            ]
+          },
+          "list": {
+            "type": "array",
+            "description": "Visitor data list",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ip": {
+                  "type": "string",
+                  "description": "Visitor IP (IPv4 / IPv6)"
+                },
+                "country_code": {
+                  "type": "string",
+                  "description": "Country code (ISO 3166-1)"
+                },
+                "page_views": {
+                  "type": "integer",
+                  "description": "Page view count"
+                },
+                "first_visit": {
+                  "type": "object",
+                  "description": "First visit record",
+                  "properties": {
+                    "page": {
+                      "type": "object",
+                      "description": "First visited page information",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "Page ID"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Page name"
+                        },
+                        "code": {
+                          "type": "string",
+                          "description": "Page identifier"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "code"
+                      ]
+                    },
+                    "screen": {
+                      "type": "object",
+                      "description": "Screen resolution",
+                      "properties": {
+                        "width": {
+                          "type": "integer",
+                          "description": "Screen width"
+                        },
+                        "height": {
+                          "type": "integer",
+                          "description": "Screen height"
+                        }
+                      },
+                      "required": [
+                        "width",
+                        "height"
+                      ]
+                    },
+                    "visit_time": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "First visit time (ISO 8601)"
+                    },
+                    "referer": {
+                      "type": "string",
+                      "description": "Referrer URL"
+                    },
+                    "current_url": {
+                      "type": "string",
+                      "description": "Current visit URL"
+                    },
+                    "user_agent": {
+                      "type": "string",
+                      "description": "Browser User-Agent"
+                    }
+                  },
+                  "required": [
+                    "page",
+                    "screen",
+                    "visit_time",
+                    "referer",
+                    "current_url",
+                    "user_agent"
+                  ]
+                },
+                "recent_visits": {
+                  "type": "array",
+                  "description": "Recent visit records (up to 50 entries)",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "page": {
+                        "type": "object",
+                        "description": "Page information",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "Page ID"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Page name"
+                          },
+                          "code": {
+                            "type": "string",
+                            "description": "Page identifier"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "code"
+                        ]
+                      },
+                      "screen": {
+                        "type": "object",
+                        "description": "Screen resolution",
+                        "properties": {
+                          "width": {
+                            "type": "integer",
+                            "description": "Width"
+                          },
+                          "height": {
+                            "type": "integer",
+                            "description": "Height"
+                          }
+                        },
+                        "required": [
+                          "width",
+                          "height"
+                        ]
+                      },
+                      "visit_time": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Visit time (ISO 8601)"
+                      },
+                      "referer": {
+                        "type": "string",
+                        "description": "Referrer URL"
+                      },
+                      "current_url": {
+                        "type": "string",
+                        "description": "Current URL"
+                      },
+                      "user_agent": {
+                        "type": "string",
+                        "description": "Browser User-Agent"
+                      }
+                    },
+                    "required": [
+                      "page",
+                      "screen",
+                      "visit_time",
+                      "referer",
+                      "current_url",
+                      "user_agent"
+                    ]
+                  }
+                },
+                "first_visit_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "First visit time"
+                },
+                "last_visit_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Last visit time"
+                }
+              },
+              "required": [
+                "ip",
+                "country_code",
+                "page_views",
+                "first_visit",
+                "recent_visits",
+                "first_visit_time",
+                "last_visit_time"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  }
+}

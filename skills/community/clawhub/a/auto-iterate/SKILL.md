@@ -1,35 +1,128 @@
 ---
-name: "Auto Iterate"
-description: "自主迭代优化任务。当用户要求自动优化、迭代实验、持续改进某个指标，或说"自动迭代"、"auto iterate"、"帮我跑优化实验"、"overnight experiment"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-iterate"
-sourceUrl: "https://clawhub.ai/skills/auto-iterate"
+name: auto-iterate
+description: 自主迭代优化任务。当用户要求自动优化、迭代实验、持续改进某个指标，或说"自动迭代"、"auto iterate"、"帮我跑优化实验"、"overnight experiment"时使用。
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Agent
 ---
 
-# Auto Iterate
+# 自主迭代优化
 
-> 自主迭代优化任务。当用户要求自动优化、迭代实验、持续改进某个指标，或说"自动迭代"、"auto iterate"、"帮我跑优化实验"、"overnight experiment"时使用。
+你是一个自主迭代优化 Agent。你的任务是在一个**修改 → 运行 → 评估 → 保留/回滚**的循环中，持续优化用户指定的指标。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-iterate`
-- **Source URL:** [https://clawhub.ai/skills/auto-iterate](https://clawhub.ai/skills/auto-iterate)
+## 与 Ralph Loop / /loop 的区别
 
-## Overview
+| 维度 | auto-iterate | Ralph Loop (社区插件) | /loop (官方内置) |
+|------|-------------|----------------------|-----------------|
+| **定位** | 指标驱动的优化循环 | 任务完成驱动的自主循环 | 定时轮询/监控 |
+| **终止条件** | 用户中断或连续 N 次无改进 | 输出约定的完成词（如 "DONE"） | 时间到期（最长 3 天） |
+| **决策逻辑** | 量化指标比较 → keep/discard/crash | 检查任务是否完成 | 无决策，单纯重复执行 |
+| **版本控制** | 内置 git commit/reset 回滚机制 | 无内置版本管理 | 无 |
+| **结果追踪** | results.tsv 记录每轮指标 | 依赖 git diff 查看变化 | 无 |
+| **适用场景** | ML 调参、性能优化、Prompt 优化 | 大型重构、迁移、长任务 | 部署监控、CI 轮询 |
+| **调度方式** | 连续运行（实验完立刻下一轮） | 连续运行 | cron 定时（如每 5 分钟） |
 
+**核心差异**: auto-iterate 是**有目标函数的优化**（每轮有量化评判标准并自动回滚），Ralph Loop 是**任务导向的自动化**（重复执行直到完成），/loop 是**简单的定时重复**。三者互补而非替代。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 启动配置
+
+与用户确认以下参数（用 `$ARGUMENTS` 获取用户输入）：
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| **目标文件** | 你唯一可修改的文件 | `train.py` |
+| **运行命令** | 执行实验的 shell 命令 | `uv run train.py` |
+| **指标名称** | 从输出中提取的指标 | `val_bpb` |
+| **指标方向** | `lower`（越低越好）或 `higher`（越高越好） | `lower` |
+| **提取方式** | 从日志提取指标的 grep 模式 | `^val_bpb:` |
+| **时间预算** | 每轮实验的最大时长（秒） | `300` |
+| **超时上限** | 超过此时长强制 kill（秒） | `600` |
+| **只读文件** | 需要阅读但不可修改的上下文文件 | `prepare.py, README.md` |
+
+如果用户未指定某些参数，使用合理默认值并告知用户。
+
+## Setup 流程
+
+1. **创建分支**: 基于当前分支创建 `auto-iterate/<tag>`，tag 基于日期（如 `mar21`）
+2. **阅读上下文**: 读取目标文件和只读文件，充分理解代码
+3. **初始化 results.tsv**:
+   ```
+   commit	metric	status	description
+   ```
+4. **运行 baseline**: 不做任何修改，执行运行命令，记录初始指标值
+5. **确认**: 向用户展示 baseline 结果，确认后开始循环
+
+## 实验循环
+
+**无限循环，直到用户中断：**
+
+### Step 1 — 构思
+- 基于已有结果和代码理解，提出一个实验假设
+- 优先尝试高收益、低风险的修改
+- 如果连续 3 次未改进，尝试更激进的变化
+
+### Step 2 — 修改
+- 仅修改目标文件
+- git commit，message 简述实验内容
+
+### Step 3 — 运行
 ```bash
-hermes skills install clawhub/auto-iterate
+<运行命令> > run.log 2>&1
 ```
+- 重定向所有输出到 `run.log`，避免污染上下文
+- 如果超过超时上限，kill 进程并标记为 crash
+
+### Step 4 — 评估
+```bash
+grep "<提取模式>" run.log
+```
+- 如果 grep 无输出 → crash，运行 `tail -50 run.log` 诊断
+- 解析指标值，与当前最优值比较
+
+### Step 5 — 决策
+
+**Keep**（指标改进）:
+- 保留 commit，更新最优值
+- 记录到 results.tsv
+
+**Discard**（指标未改进或变差）:
+- `git reset --hard HEAD~1` 回到上一个状态
+- 记录到 results.tsv
+
+**Crash**（运行失败）:
+- 如果是简单 bug（typo、import 遗漏）→ 修复并重试（最多 2 次）
+- 如果是根本性问题 → 回滚，记录 crash，继续下一个实验
+
+### Step 6 — 记录
+
+追加一行到 `results.tsv`（不提交到 git）：
+```
+<commit_hash>	<metric_value>	<keep|discard|crash>	<实验描述>
+```
+
+### Step 7 — 回到 Step 1
+
+## 策略指南
+
+### 修改策略
+- **先小后大**: 从微调参数开始，逐步尝试架构变化
+- **一次一变量**: 每次实验只改一个方面，方便归因
+- **简洁优先**: 同等效果下，更简洁的代码优先保留
+- **组合尝试**: 多次独立改进后，尝试组合已验证的改进
+
+### 卡住时的策略
+- 重新阅读目标文件和只读文件，寻找新角度
+- 回顾 results.tsv，分析什么类型的修改有效
+- 尝试更激进的变化（如替换整个模块）
+- 尝试反直觉的修改（如删除看似必要的代码）
+
+### 绝不停止
+- 一旦循环开始，不要暂停询问用户是否继续
+- 用户可能不在电脑前（如过夜运行）
+- 预期吞吐量：如每轮 5 分钟，则每小时约 12 次实验，8 小时约 100 次
+- 如果想法用尽，重新审视代码，think harder
+
+## 注意事项
+
+- `results.tsv` 不提交到 git，保持 untracked
+- 只修改目标文件，不碰其他文件
+- 运行日志始终重定向到 `run.log`，避免上下文膨胀
+- 如果指标完全没有改善空间（连续 10 次 discard），考虑通知用户

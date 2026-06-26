@@ -1,0 +1,33 @@
+{
+  "name": "java-api-lin-skill",
+  "version": "1.0.0",
+  "description": "调用 JavaSkillController 接口：execute/execute-v2/health，供 OpenClaw/OpenLaw 执行业务与健康检查。后端基地址仅通过环境变量 JAVA_API_URL 配置，不包含任何第三方默认地址。",
+  "type": "http",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "parameters": {
+    "action": {
+      "type": "string",
+      "description": "操作类型：query/submit 等，对应 SkillExecuteRequest.action"
+    },
+    "userId": {
+      "type": "number",
+      "description": "用户 ID，对应 SkillExecuteRequest.userId"
+    },
+    "extra": {
+      "type": "object",
+      "description": "扩展参数，对应 SkillExecuteRequest.extra，可选"
+    }
+  },
+  "triggers": [
+    "调用Java接口",
+    "执行技能",
+    "查询用户",
+    "提交数据",
+    "调用 openLaw 接口",
+    "执行法律相关操作"
+  ],
+  "enabled": true
+}

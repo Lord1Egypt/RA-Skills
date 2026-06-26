@@ -1,0 +1,29 @@
+{
+  "name": "visual-explainer",
+  "version": "0.5.1-openclaw.1",
+  "description": "Generate beautiful, self-contained HTML pages that visually explain systems, code changes, plans, and data. Includes Mermaid diagrams, CSS design patterns, and magazine-quality slide deck support for OpenClaw workflows.",
+  "author": "nicobailon (OpenClaw adaptation by Tommy)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicobailon/visual-explainer"
+  },
+  "keywords": [
+    "visualization",
+    "diagram",
+    "mermaid",
+    "html",
+    "slides",
+    "diff-review",
+    "plan-review",
+    "project-recap",
+    "openclaw-skill"
+  ],
+  "openclaw": {
+    "minVersion": "2026.2.0",
+    "defaultOutputDir": "~/.openclaw/workspace/diagrams"
+  },
+  "setup": {
+    "postInstall": "Use prompts/*.md as workflow templates. Write outputs to ~/.openclaw/workspace/diagrams, then open with `open` (macOS) or `xdg-open` (Linux)."
+  }
+}

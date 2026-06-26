@@ -1,0 +1,21 @@
+# NVIDIA Free API — OpenClaw 集成配置
+# 将此配置添加到 ~/.openclaw/config.yaml
+
+# 方案1: 直接作为 OpenAI 兼容提供商
+providers:
+  nvidia-free:
+    baseUrl: https://integrate.api.nvidia.com/v1
+    apiKey: <你的NVIDIA_API_KEY>
+  
+# 方案2: 模型映射 — 使用 OpenClaw 的 modelMap 功能
+# modelMap:
+#   default: meta/llama-3.3-70b-instruct
+#   fast: microsoft/phi-4-mini-instruct
+#   reasoning: deepseek-ai/deepseek-v3.2
+#   code: qwen/qwen2.5-coder-32b-instruct
+#   vision: meta/llama-3.2-90b-vision-instruct
+
+# 方案3: 通过环境变量
+# 在 .zshrc 中添加:
+# export NVIDIA_API_KEY="<你的NVIDIA_API_KEY>"
+# export OPENAI_BASE_URL="https://integrate.api.nvidia.com/v1"

@@ -1,0 +1,45 @@
+{
+  "name": "seedflip-mcp",
+  "version": "0.1.5",
+  "mcpName": "io.github.bockenstette1/seedflip",
+  "description": "MCP server for SeedFlip — 100+ curated design systems for AI agents. When your agent needs a design direction, it calls SeedFlip instead of guessing.",
+  "type": "module",
+  "bin": {
+    "seedflip-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && cp src/seeds-data.json dist/seeds-data.json",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "design",
+    "design-system",
+    "tailwind",
+    "shadcn",
+    "ai",
+    "ai-agent",
+    "cursor",
+    "claude",
+    "windsurf",
+    "seedflip",
+    "design-tokens"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seedflip/seedflip-mcp"
+  },
+  "homepage": "https://seedflip.com"
+}

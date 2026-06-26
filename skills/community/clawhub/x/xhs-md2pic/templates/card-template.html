@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  XHS Card Template
+
+  Base recommendation:
+  - CARD_WIDTH: 375
+  - CARD_HEIGHT: 500
+  - EXPORT_SCALE: 3 (handled by browser deviceScaleFactor)
+
+  Template variables (replaced at build time):
+  - {{FONT_CSS}}          — resolved font-family stack
+  - {{CARD_WIDTH}}        — card width in CSS px
+  - {{CARD_HEIGHT}}       — card height in CSS px
+  - {{PAGE_GAP}}          — vertical gap between cards in CSS px
+  - {{BG_COLOR}}          — card background hex
+  - {{TEXT_COLOR}}        — body text hex
+  - {{HEADING_COLOR}}     — heading color hex
+  - {{STRONG_COLOR}}      — bold text color hex
+  - {{BLOCKQUOTE_BORDER}} — blockquote left border hex
+  - {{CODE_BG}}           — code/pre background hex
+  - {{ACCENT}}            — accent color (same as heading)
+  - {{BG_IMAGE_URL}}      — AI background image URL or data URI
+  - {{BG_OPACITY}}        — background art opacity (0.08-0.18)
+  - {{PADDING}}           — card inner padding in px
+  - {{CARDS_HTML}}        — rendered card divs
+-->
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: {{FONT_CSS}};
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Stabilize screenshot result across environments */
+*, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+}
+
+.render-root {
+    width: {{CARD_WIDTH}}px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: {{PAGE_GAP}}px;
+}
+
+.xhs-card {
+    width: {{CARD_WIDTH}}px;
+    height: {{CARD_HEIGHT}}px;
+    padding: {{PADDING}}px;
+    font-size: 14.5px;
+    line-height: 1.75;
+    border-radius: 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ── Cover block ── */
+.cover-block {
+    padding-bottom: 12px;
+    border-bottom: 2px solid {{ACCENT}}20;
+}
+.cover-title {
+    line-height: 1.2;
+    margin: 0 0 12px 0;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+.cover-author {
+    font-size: 13px;
+    margin: 0 0 6px 0;
+    opacity: 0.55;
+}
+.cover-desc {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.75;
+    line-height: 1.55;
+}
+
+/* ── Card inner ── */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Prose content styling ── */
+.prose-content {
+    flex: 1;
+    overflow: hidden;
+}
+.prose-content h1 {
+    font-size: 1.45em;
+    font-weight: 700;
+    margin: 0.1em 0 0.5em 0;
+    line-height: 1.25;
+    color: {{HEADING_COLOR}};
+}
+.prose-content h2 {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin: 0.7em 0 0.35em 0;
+    line-height: 1.3;
+    color: {{HEADING_COLOR}};
+}
+.prose-content h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0.6em 0 0.3em 0;
+    line-height: 1.35;
+    color: {{HEADING_COLOR}};
+}
+.prose-content p {
+    margin: 0 0 0.65em 0;
+    line-height: 1.8;
+}
+.prose-content strong {
+    color: {{STRONG_COLOR}};
+    font-weight: 600;
+}
+.prose-content em {
+    font-style: italic;
+}
+.prose-content ul, .prose-content ol {
+    margin: 0.3em 0 0.65em 0;
+    padding-left: 1.3em;
+}
+.prose-content li {
+    margin-bottom: 0.25em;
+    line-height: 1.7;
+}
+.prose-content blockquote {
+    border-left: 3px solid {{BLOCKQUOTE_BORDER}};
+    margin: 0.5em 0;
+    padding: 0.5em 0.9em;
+    font-style: normal;
+    background: {{CODE_BG}}30;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95em;
+}
+.prose-content blockquote p {
+    margin: 0;
+}
+.prose-content code {
+    background: {{CODE_BG}};
+    padding: 0.12em 0.3em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: 'Menlo', 'Consolas', 'Noto Sans Mono CJK SC', monospace;
+}
+.prose-content pre {
+    background: {{CODE_BG}};
+    padding: 0.75em;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0.5em 0;
+    font-size: 0.8em;
+    line-height: 1.5;
+}
+.prose-content pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+}
+.prose-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+    font-size: 0.85em;
+}
+.prose-content th, .prose-content td {
+    border: 1px solid {{BLOCKQUOTE_BORDER}};
+    padding: 0.35em 0.55em;
+    text-align: left;
+}
+.prose-content th {
+    font-weight: 600;
+    background: {{CODE_BG}};
+}
+.prose-content mark {
+    background: #fff3b0;
+    padding: 0.1em 0.2em;
+    border-radius: 2px;
+}
+.prose-content hr {
+    border: none;
+    border-top: 1px solid {{BLOCKQUOTE_BORDER}};
+    margin: 0.8em 0;
+}
+.prose-content a {
+    color: {{HEADING_COLOR}};
+    text-decoration: underline;
+}
+.prose-content img {
+    max-width: 100%;
+    border-radius: 6px;
+    margin: 0.4em 0;
+}
+
+/* ── XHS hashtags ── */
+.xhs-tags-line {
+    margin: 0.5em 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.xhs-hashtag {
+    display: inline-block;
+    background: {{ACCENT}}15;
+    color: {{ACCENT}};
+    font-size: 0.85em;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+/* ── Page number ── */
+.page-number {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 11px;
+    opacity: 0.3;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ── First/last child margin reset ── */
+.prose-content > *:first-child {
+    margin-top: 0 !important;
+}
+.prose-content > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ── Highlight.js / Pygments overrides ── */
+.highlight pre {
+    background: {{CODE_BG}} !important;
+    padding: 0.8em;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 0.6em 0;
+}
+</style>
+</head>
+<body>
+
+<div class="render-root">
+  <!-- Rendered card nodes injected by renderer -->
+  {{CARDS_HTML}}
+</div>
+
+<script>
+// Signal to browser screenshot pipeline that fonts are ready.
+document.fonts.ready.then(() => {
+    document.body.setAttribute('data-fonts-loaded', 'true');
+});
+</script>
+</body>
+</html>

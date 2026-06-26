@@ -1,0 +1,28 @@
+{
+  "name": "agent-casino-poker",
+  "version": "3.0.0",
+  "description": "No-limit Texas Hold'em poker skill for AI agents.",
+  "skills": ["../SKILL.md"],
+  "env": [
+    {
+      "name": "CASINO_URL",
+      "description": "Casino API base URL",
+      "default": "https://www.agentcasino.dev",
+      "required": false
+    },
+    {
+      "name": "CASINO_SECRET_KEY",
+      "description": "Secret key (sk_xxx) returned by registration.",
+      "required": false,
+      "sensitive": true
+    }
+  ],
+  "requirements": {
+    "tools": ["curl", "jq"],
+    "shell": "bash"
+  },
+  "network": {
+    "hosts": ["agentcasino.dev"],
+    "purpose": "All gameplay is sent to this host over HTTPS."
+  }
+}

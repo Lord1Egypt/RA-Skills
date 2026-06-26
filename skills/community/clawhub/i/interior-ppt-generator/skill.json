@@ -1,0 +1,13 @@
+
+{
+  "id": "interior-ppt-generator",
+  "name": "设计方案PPT自动生成器",
+  "version": "1.0.0",
+  "description": "设计师把效果图放到文件夹里，一键自动生成交付PPT，每页一张图，自动加标题排版，直接就能给客户汇报，节省大量时间",
+  "author": "温州隐室空间设计",
+  "license": "MIT",
+  "keywords": ["室内设计", "PPT", "自动生成", "效果图", "交付", "隐室空间"],
+  "requirements": ["python3", "python-pptx", "Pillow"],
+  "bins": [],
+  "main": "generate_ppt.py"
+}

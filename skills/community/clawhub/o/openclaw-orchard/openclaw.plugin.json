@@ -1,0 +1,149 @@
+{
+  "id": "orchard",
+  "name": "OrchardOS",
+  "description": "Persistent SQLite-backed task board with queue runner and dashboard. Autonomously spawns subagent sessions to execute tasks — requires operator.write scope. Includes an optional loopback-only local UI proxy server (enabled by config) that forwards the browser's bearer token to the gateway; prefer 127.0.0.1 and widen bindAddress only intentionally.",
+  "version": "0.2.5-rc.2",
+  "author": "leo",
+  "readme": "./README.md",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "dbPath": {
+        "type": "string",
+        "description": "Path to the SQLite database file"
+      },
+      "debug": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "verbose": { "type": "boolean" },
+          "logOnly": { "type": "boolean" },
+          "dryRun": { "type": "boolean" },
+          "disableAllSpawns": { "type": "boolean" },
+          "disableExecutorSpawns": { "type": "boolean" },
+          "disableQaSpawns": { "type": "boolean" },
+          "disableArchitectSpawns": { "type": "boolean" },
+          "preserveSessions": { "type": "boolean" },
+          "circuitBreaker": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "failureThreshold": { "type": "number" },
+              "cooldownMs": { "type": "number" }
+            }
+          }
+        }
+      },
+      "limits": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "maxConcurrentExecutors": { "type": "number" },
+          "maxTasksPerHour": { "type": "number" },
+          "maxSubagentsPerProject": { "type": "number" },
+          "cooldownOnFailureMs": { "type": "number" },
+          "respectOpenClawSubagentLimit": { "type": "boolean" }
+        }
+      },
+      "roles": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "architect": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "model": { "type": "string" },
+              "wakeEvery": { "type": "string" },
+              "wakeOnEmptyQueue": { "type": "boolean" },
+              "completionTemperature": { "type": "number" }
+            }
+          },
+          "executor": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "model": { "type": "string" },
+              "timeoutSeconds": { "type": "number" },
+              "retryLimit": { "type": "number" }
+            }
+          },
+          "qa": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "model": { "type": "string" },
+              "autoApproveOnRetry": { "type": "boolean" },
+              "autoApproveThreshold": { "type": "number" }
+            }
+          },
+          "reporter": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "channel": { "type": "string" },
+              "channelId": { "type": "string" },
+              "reportEvery": { "type": "string" }
+            }
+          }
+        }
+      },
+      "allowModelOverride": {
+        "type": "boolean",
+        "description": "Allow users to override the executor model from the dashboard (default: false)"
+      },
+      "queueIntervalMs": {
+        "type": "number",
+        "description": "Queue runner poll interval in milliseconds (default: 300000)"
+      },
+      "stalledSessionIdleMs": {
+        "type": "number",
+        "description": "Milliseconds with no activity before a running session is marked stalled (default: 900000)"
+      },
+      "orphanedSessionGraceMs": {
+        "type": "number",
+        "description": "Grace period in ms after parent task finishes before orphan detection fires (default: 120000)"
+      },
+      "spreadTasksOverPeriod": {
+        "type": "boolean",
+        "description": "Spread task dispatch evenly across the queue interval instead of bursting"
+      },
+      "minNextDelayMs": {
+        "type": "number",
+        "description": "Minimum delay between task dispatches when spreadTasksOverPeriod is enabled (default: 5000)"
+      },
+      "contextInjection": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Knowledge base + context injection config",
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "provider": { "type": "string" },
+          "model": { "type": "string" },
+          "apiKey": { "type": "string" },
+          "topK": { "type": "number" },
+          "minScore": { "type": "number" },
+          "autoExtract": { "type": "boolean" }
+        }
+      },
+      "uiServer": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Standalone UI server config",
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "port": { "type": "number", "description": "Port for standalone UI server (default: 18790)" },
+          "bindAddress": { "type": "string", "description": "Bind address for the local auth-forwarding UI proxy (default: 127.0.0.1). Non-loopback binds are refused unless allowUnsafeBind is also true." },
+          "allowUnsafeBind": { "type": "boolean", "description": "Explicit opt-in required to bind the auth-forwarding UI proxy on a non-loopback address. Leave false unless you intentionally want LAN exposure and understand the risk." }
+        }
+      }
+    }
+  }
+}

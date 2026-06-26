@@ -1,0 +1,37 @@
+{
+  "Id": "",
+  "GameId": "",
+  "EntryKey": "behaviourtree://{UUID_FILE}",
+  "ContentType": "x-mod/behaviourtree",
+  "Content": "",
+  "Usage": 0,
+  "UsePublish": 1,
+  "UseService": 0,
+  "CoreVersion": "{CORE_VERSION}",
+  "StudioVersion": "0.1.0.0",
+  "DynamicLoading": 0,
+  "ContentProto": {
+    "Use": "Json",
+    "Json": {
+      "id": "behaviourtree://{UUID_FILE}",
+      "name": "{NAME}",
+      "RootNode": {
+        "startNodeId": "{UUID_ROOT}",
+        "nodePosition": { "x": 0.0, "y": 0.0 }
+      },
+      "Blackboard": {
+        "Variables": []
+      },
+      "Nodes": [
+        {
+          "nodeId": "{UUID_ROOT}",
+          "nodeName": "SequenceNode",
+          "definitionId": "SequenceNode",
+          "btNodeType": 1,
+          "nodeParentId": "",
+          "nodePosition": { "x": 0.0, "y": -200.0 }
+        }
+      ]
+    }
+  }
+}

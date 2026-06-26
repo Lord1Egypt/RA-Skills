@@ -1,0 +1,37 @@
+{
+  "name": "aqara-open-api-cli",
+  "version": "1.0.0",
+  "description": "Node.js CLI for Aqara Open Platform devices, spaces, automations, and trait catalog workflows.",
+  "main": "bin/aqara-open-api.js",
+  "bin": {
+    "aqara": "./bin/aqara-open-api.js"
+  },
+  "scripts": {
+    "test": "node ./bin/aqara-open-api.js help",
+    "doctor": "node ./bin/aqara-open-api.js doctor --json"
+  },
+  "keywords": [
+    "aqara",
+    "aqara-open-api",
+    "aqara-cli",
+    "smart-home",
+    "iot"
+  ],
+  "files": [
+    "bin",
+    "lib",
+    "assets",
+    "references",
+    "scripts",
+    "README-CLAWHUB.md",
+    "SKILL.md",
+    "device",
+    "space",
+    "automation"
+  ],
+  "author": "aqara",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

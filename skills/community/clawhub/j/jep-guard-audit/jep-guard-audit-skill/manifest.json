@@ -1,0 +1,28 @@
+{
+  "name": "jep-guard-audit",
+  "version": "1.0.0",
+  "description": "JEP-Guard Audit Skill — Strict JEP-04/JAC-01 Compliant Audit Chain with Friendly API Layer",
+  "author": "Cognitive Emergence Lab <yuqiang@humanjudgment.org>",
+  "license": "MIT",
+  "protocol": "JEP",
+  "entrypoint": "skill.api:app",
+  "host_targets": [
+    "mcp",
+    "api",
+    "python"
+  ],
+  "dependencies": [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.5.0"
+  ],
+  "tags": [
+    "jep",
+    "jac",
+    "audit",
+    "compliance",
+    "ai-act",
+    "guard",
+    "accountability"
+  ]
+}

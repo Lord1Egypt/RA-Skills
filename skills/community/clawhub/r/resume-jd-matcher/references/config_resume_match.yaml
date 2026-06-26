@@ -1,0 +1,139 @@
+# 简历 JD 匹配 V2.0 配置文件
+# V2.0 更新内容 (2026-04-03):
+# - 新增双模式支持：subagent / api
+# - subagent 模式：使用 OpenClaw 大模型，无需配置 API
+# - api 模式：使用外部 API，需配置 API Key
+# 更新时间：2026-04-03
+
+# ========== 运行模式 ==========
+# "subagent" - OpenClaw skill 模式（无需 API 配置，推荐使用）
+# "api" - 独立脚本模式（需要配置下方 API）
+mode: "subagent"
+
+# ========== API 配置（仅当 mode="api" 时需要） ==========
+api:
+  # 当前使用的供应商（从下方 api_providers 中选择）
+  # 可选：tencent, cmhk, alibaba, baidu, deepseek, moonshot
+  active_provider: "tencent"  # 使用腾讯 Hunyuan-T1
+  
+  # 通用参数
+  max_tokens: 3000
+  timeout: 120
+  
+  # 多供应商配置（可添加多个）
+  api_providers:
+    # 中国移动大模型 - Qwen3 235B
+    cmhk:
+      name: "中国移动大模型"
+      api_key: "Bearer YmQzNDQwYzYtNWZjMS00ZDNhLWFmZGQtYjc1MTUyZTg1YjJl"
+      api_url: "https://opensseapi.cmhk.com/CMHK-LMMP-PRD_Qwen3_235B/CMHK-LMMP-PRD/v1/chat/completions"
+      model: "Qwen3-235B"
+      description: "中国移动 Qwen3 235B 模型（使用 reasoning_content 字段）"
+      custom_headers:
+        x-gateway-apikey: "${api_key}"
+      use_reasoning_content: true  # 使用 reasoning_content 字段
+    
+    # 腾讯 - Hunyuan-T1
+    tencent:
+      name: "腾讯"
+      api_key: "sk-sp-sq7Y7eo9L0vgFpuESFLq5YsQB8qumjDnwOPeciB9v3F0BSKv"
+      api_url: "https://api.lkeap.cloud.tencent.com/coding/anthropic/v1/messages"
+      model: "hunyuan-t1"
+      description: "腾讯 Hunyuan-T1，适合长文本分析"
+    
+    # 阿里 - 通义千问
+    alibaba:
+      name: "阿里"
+      api_key: "sk-sp-3e0faf520b904151914a663bdbc884f7"
+      api_url: "https://coding.dashscope.aliyuncs.com/v1"
+      model: "qwen3.5-plus"
+      description: "阿里通义千问 3.5 Plus，性价比高"
+    
+    # 百度 - 文心一言
+    baidu:
+      name: "百度"
+      api_key: "YOUR_BAIDU_API_KEY"
+      api_url: "https://qianfan.baidubce.com/v2/chat/completions"
+      model: "ernie-4.0-turbo"
+      description: "百度文心一言，中文理解强"
+    
+    # DeepSeek - 深度求索
+    deepseek:
+      name: "DeepSeek"
+      api_key: "YOUR_DEEPSEEK_API_KEY"
+      api_url: "https://api.deepseek.com/v1/chat/completions"
+      model: "deepseek-chat"
+      description: "DeepSeek-V3，开源模型，成本低"
+    
+    # 月之暗面 - Kimi
+    moonshot:
+      name: "月之暗面"
+      api_key: "YOUR_MOONSHOT_API_KEY"
+      api_url: "https://api.moonshot.cn/v1/chat/completions"
+      model: "moonshot-v1-8k"
+      description: "Kimi，长上下文支持好"
+
+# ========== 路径配置 ==========
+paths:
+  jd_folder: "C:\\ResumeJD\\JD"
+  jl_folder: "C:\\ResumeJD\\JL"
+  output_folder: "C:\\ResumeJD\\JG"
+  input_file: "AI_Resume_Records.csv"
+
+# ========== 简历配置 ==========
+resume:
+  max_chars: 0  # 0 表示不限制字符数，发送完整简历给 AI 分析
+
+# ========== 输出格式配置 ==========
+output:
+  filename_pattern: "AI_Resume_All_{timestamp}.xlsx"  # {timestamp} 会替换为生成时间
+  
+  # Excel 格式
+  columns:
+    - name: "应聘者名称"
+      width: 20
+    - name: "应聘岗位"
+      width: 20
+    - name: "岗位任职要求"
+      width: 70
+    - name: "AI 分析结果"
+      width: 80
+    - name: "处理时间"
+      width: 15
+  
+  # 颜色配置
+  colors:
+    header_fill: "4472C4"
+    header_font: "FFFFFF"
+    row_color_1: "E6F3FF"  # 浅蓝
+    row_color_2: "E6FFE6"  # 浅绿
+  
+  # 字体
+  font: "微软雅黑"
+  
+  # 行高计算
+  row_height:
+    chars_per_line: 35
+    line_height: 15
+    min_height: 20
+    max_height: 400
+
+# ========== 匹配规则配置 ==========
+matching:
+  # 岗位匹配规则
+  rules:
+    - keywords: ["investment", "投资", "infrastructure"]
+      jd_name: "Overseas Infrastructure Investment Associate"
+    - keywords: ["合规", "compliance"]
+      jd_names: ["合规岗（境内）", "合规岗（境外）"]
+    - folder_name: "合规岗"
+      jd_names: ["合规岗（境内）", "合规岗（境外）"]
+
+# ========== AI 评价类型 ==========
+evaluation_types:
+  - 完全匹配
+  - 高度匹配
+  - 匹配
+  - 部分匹配
+  - 不匹配
+  - 无相关信息

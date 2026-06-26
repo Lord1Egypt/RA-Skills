@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+linux_command_guard/__init__.py
+linux_command_guard/checker.py
+linux_command_guard/cli.py
+linux_command_guard/parser.py
+linux_command_guard/policy.py
+linux_command_guard_elite.egg-info/PKG-INFO
+linux_command_guard_elite.egg-info/SOURCES.txt
+linux_command_guard_elite.egg-info/dependency_links.txt
+linux_command_guard_elite.egg-info/entry_points.txt
+linux_command_guard_elite.egg-info/top_level.txt
+tests/test_checker.py

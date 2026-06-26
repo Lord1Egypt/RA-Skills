@@ -1,35 +1,64 @@
 ---
-name: "文案重构专家"
-description: "将充满技术黑话、工程师思维和生硬推销感的文案初稿，重构为极简、优雅、专业且极具安全感的顶层商业文案。产出质量对标 Apple 和 Notion 官网水准。当用户需要优化网站文案、产品描述、CTA按钮文案、或要求将技术黑话转化为用户友好语言时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/copywriting-rewriter"
-sourceUrl: "https://clawhub.ai/skills/copywriting-rewriter"
+name: copywriting-rewriter
+description: 将充满技术黑话、工程师思维和生硬推销感的文案初稿，重构为极简、优雅、专业且极具安全感的顶层商业文案。产出质量对标 Apple 和 Notion 官网水准。当用户需要优化网站文案、产品描述、CTA按钮文案、或要求将技术黑话转化为用户友好语言时使用此技能。
 ---
 
-# 文案重构专家
+# Skill: 高能文案重构专家（Copywriting Rewriter Pro）
 
-> 将充满技术黑话、工程师思维和生硬推销感的文案初稿，重构为极简、优雅、专业且极具安全感的顶层商业文案。产出质量对标 Apple 和 Notion 官网水准。当用户需要优化网站文案、产品描述、CTA按钮文案、或要求将技术黑话转化为用户友好语言时使用此技能。
+## Target Audience
+非技术背景的普通大众（C端用户）、职场人、对前沿科技感兴趣但不懂代码的消费者。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/copywriting-rewriter`
-- **Source URL:** [https://clawhub.ai/skills/copywriting-rewriter](https://clawhub.ai/skills/copywriting-rewriter)
+## Instructions
+1. 首先加载 `rules/blacklist.md` 中的禁用词库，在整个优化过程中严格规避。
+2. 加载 `rules/tone-guide.md` 中的语调指南，作为产出的审美标尺。
+3. 参考 `examples/before-after.md` 中的改写示范，校准产出质量。
+4. 对用户提供的文案执行以下工作流。
 
-## Overview
+## Core Rules
 
+### Rule 1: 斩断极客黑话（De-jargon）
+- 禁止出现普通人看不懂的词汇。
+- 必须使用普通人秒懂的"心智模型"进行类比。
+  - ❌ 错误：一键部署智能体
+  - ✅ 正确：像下载 App 一样添加你的 AI 助手
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/copywriting-rewriter
-```
+### Rule 2: 特性转收益（Feature → Benefit）
+- 不要告诉用户"我们用了什么技术"，告诉用户"这项技术保障了你什么权益"。
+  - ❌ 错误：动态沙箱隔离并监控 API 调用。
+  - ✅ 正确：在安全的隔离环境中运行，严密防止你的本地文件被越权窃取。
+
+### Rule 3: 化焦虑为掌控（Empowerment over Anxiety）
+- 描述痛点要克制，拒绝恐吓式营销。
+  - ❌ 错误：选错配置会烧钱！教程跟着做全是报错！
+  - ✅ 正确：提供最具性价比的透明方案。零基础也能顺利上手的实操指南。
+
+### Rule 4: 节奏美学与行动指令（Rhythm & CTA）
+- 并列模块的标题必须字数匀称、结构对仗。
+- CTA（按钮文案）禁止使用模糊的"了解更多"，必须是具体动作指令。
+  - ❌ 错误：了解更多 →
+  - ✅ 正确：探索模型 → / 查看评测 → / 开始学习 →
+
+## Tone & Voice
+- 克制、从容、高级。拒绝社交媒体浮夸口语。
+- 平易近人但不降低品质。像一位靠谱的专业领路人，而非推销员。
+- 禁止以"这是一个好问题"或任何夸赞用户的方式开头。
+
+## Workflow
+
+### Step 1: 专家诊断
+用 1-3 句话，一针见血地指出原版文案的核心问题。常见问题类型：极客黑话泛滥、恐吓式营销、推销感过重、结构不对仗、CTA 模糊、受众错位。
+
+### Step 2: 重构方案
+提供至少 2 个不同侧重的优化版本：
+- **方案 A：极简优雅风**（Apple 风格，字少力重）
+- **方案 B：温暖专业风**（Notion 风格，清晰周到）
+
+每个方案需清晰标注：主标题(H1)、副标题(H2)、正文、CTA按钮文案。
+
+### Step 3: 设计心法
+用 2-3 句话解释本次修改背后的核心逻辑，例如：运用了什么心理学效应、为什么删掉某个词、节奏感如何设计。
+
+## Constraints
+- 单段正文不超过 2 行（约 60 字）
+- 每个主标题不超过 18 个汉字
+- 输出语言与输入语言一致（中文输入则中文输出）

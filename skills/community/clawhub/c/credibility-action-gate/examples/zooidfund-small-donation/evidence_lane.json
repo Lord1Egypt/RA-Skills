@@ -1,0 +1,28 @@
+{
+  "lane_type": "evidence",
+  "status": "completed",
+  "confidence": "medium",
+  "findings": [
+    {
+      "code": "IDENTITY_OR_LINKAGE_UNVERIFIED",
+      "severity": "medium",
+      "summary": "The campaign record supports a plausible need, but claimant linkage is only partial."
+    }
+  ],
+  "positives": [
+    {
+      "code": "CLAIM_SPECIFIC_DOCUMENT_PRESENT",
+      "summary": "The record includes a claim-specific document and dated campaign text."
+    }
+  ],
+  "decision": {
+    "supports_core_claim": "partial",
+    "supports_requested_action_size": "partial",
+    "claimant_linkage": "partial",
+    "repeat_or_top_up_support": "none"
+  },
+  "limitations": [
+    "Document authenticity was not independently verified.",
+    "The record does not provide a fresh marginal reason for a repeat or top-up action."
+  ]
+}

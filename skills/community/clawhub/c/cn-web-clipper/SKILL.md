@@ -1,35 +1,32 @@
 ---
-name: "Cn Web Clipper"
-description: "网页剪藏工具。发送网页链接，提取正文内容保存为本地Markdown文件。"
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, clipper, productivity, scraper, web]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-web-clipper"
-sourceUrl: "https://clawhub.ai/skills/cn-web-clipper"
+slug: cn-web-clipper
+name: 网页剪藏工具
+version: "1.0.0"
+author: 千策
 ---
 
-# Cn Web Clipper
+# 网页剪藏
 
-> 网页剪藏工具。发送网页链接，提取正文内容保存为本地Markdown文件。
+发送网页链接，提取正文保存为Markdown。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-web-clipper`
-- **Source URL:** [https://clawhub.ai/skills/cn-web-clipper](https://clawhub.ai/skills/cn-web-clipper)
+## 功能
+- 网页正文提取
+- 本地Markdown保存
+- 标题/作者/日期识别
+- 批量URL处理
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 用法
 ```bash
-hermes skills install clawhub/cn-web-clipper
+python3 scripts/clip_webpage.py <URL>
+python3 scripts/clip_webpage.py <URL> --dir <保存目录>
 ```
+
+## 依赖
+- Python 3.7+
+- requests, beautifulsoup4
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

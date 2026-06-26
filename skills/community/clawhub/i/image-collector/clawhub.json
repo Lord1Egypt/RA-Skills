@@ -1,0 +1,21 @@
+{
+  "name": "image-collector",
+  "version": "1.0.0",
+  "description": "AI 科技日报图片采集工具，从官方来源自动采集新闻配图，支持水印检测、质量检查和关联性验证",
+  "author": "九万",
+  "license": "MIT",
+  "keywords": ["image", "collector", "wechat", "article", "图片采集"],
+  "repository": "https://github.com/openclaw/skills",
+  "main": "scripts/collect_images.py",
+  "scripts": {
+    "check-deps": "bash scripts/check-deps.sh",
+    "collect": "python3 scripts/collect_images.py"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "Pillow": "*",
+    "requests": "*"
+  },
+  "category": "media",
+  "tags": ["图片处理", "内容采集", "微信公众号"]
+}

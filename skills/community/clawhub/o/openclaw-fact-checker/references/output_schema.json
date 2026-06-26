@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fact-Check Report",
+  "type": "object",
+  "required": ["input_language", "input_modality"],
+  "properties": {
+    "input_language": {
+      "type": "string",
+      "description": "ISO 639-1 language code of the detected input language (e.g., en, zh, es, fr, ar)"
+    },
+    "input_modality": {
+      "type": "string",
+      "enum": ["text", "image", "video"],
+      "description": "Detected input modality"
+    },
+    "overall_verdict": {
+      "type": "string",
+      "enum": ["TRUE", "FALSE", "PARTIALLY_TRUE", "UNVERIFIED", "MISLEADING", "AUTHENTIC", "MANIPULATED", "AI_GENERATED", "OUT_OF_CONTEXT", "DEEPFAKE_SUSPECTED"],
+      "description": "Aggregate verdict across all verified claims or media analysis (only when explicitly requested)"
+    },
+    "overall_confidence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_claims": { "type": "integer" },
+        "claims_verified": { "type": "integer" },
+        "claims_skipped": { "type": "integer" },
+        "claims_matched": { "type": "integer" }
+      }
+    },
+    "matched_claims": {
+      "type": "array",
+      "description": "Claims found in existing fact-check databases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "existing_verdict": { "type": "string" },
+          "source": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "verified_claims": {
+      "type": "array",
+      "description": "Claims verified through evidence search",
+      "items": {
+        "type": "object",
+        "required": ["id", "text", "verdict", "confidence"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^claim_\\d{3}$" },
+          "text": { "type": "string" },
+          "verdict": {
+            "type": "string",
+            "enum": ["TRUE", "FALSE", "PARTIALLY_TRUE", "UNVERIFIED", "MISLEADING"]
+          },
+          "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "explanation": { "type": "string" },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "skipped_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "media_analysis": {
+      "type": "object",
+      "description": "Image or video verification results (only when input_modality is image or video)",
+      "properties": {
+        "visual_verdict": {
+          "type": "string",
+          "enum": ["AUTHENTIC", "MANIPULATED", "AI_GENERATED", "OUT_OF_CONTEXT", "DEEPFAKE_SUSPECTED", "UNVERIFIED"]
+        },
+        "visual_confidence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "description": { "type": "string" },
+        "source_attribution": {
+          "type": "object",
+          "description": "Who published it and how it originated",
+          "properties": {
+            "published_by": { "type": "string" },
+            "content_origin": {
+              "type": "string",
+              "enum": ["real_photograph", "real_footage", "ai_generated", "deepfake", "edited", "unknown"]
+            },
+            "propagation": { "type": "string" },
+            "analysis_method": { "type": "string" }
+          }
+        },
+        "visual_analysis": { "type": "string" },
+        "reverse_search": { "type": "string" },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "available": { "type": "boolean" },
+            "camera": { "type": "string" },
+            "software": { "type": "string" },
+            "date": { "type": "string" },
+            "gps": { "type": "string" },
+            "notes": { "type": "string" }
+          }
+        },
+        "c2pa": {
+          "type": "object",
+          "properties": {
+            "available": { "type": "boolean" },
+            "signer": { "type": "string" },
+            "ai_disclosed": { "type": "boolean" },
+            "notes": { "type": "string" }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "transcript_claims": {
+          "type": "array",
+          "description": "Claims extracted from video audio transcript (video modality only)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "pattern": "^claim_\\d{3}$" },
+              "text": { "type": "string" },
+              "verdict": {
+                "type": "string",
+                "enum": ["TRUE", "FALSE", "PARTIALLY_TRUE", "UNVERIFIED", "MISLEADING"]
+              },
+              "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+              "explanation": { "type": "string" },
+              "sources": {
+                "type": "array",
+                "items": { "type": "string", "format": "uri" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "x-engagement",
+  "version": "1.3.0",
+  "description": "Growth-oriented X engagement skill for SurfAgent, covering founder-style replies, community participation, audience-building loops, and proof-aware engagement execution.",
+  "author": "MoonstoneLabs",
+  "keywords": ["x", "twitter", "engagement", "growth", "surfagent", "browser", "automation", "founder", "build-in-public"],
+  "files": ["SKILL.md"]
+}

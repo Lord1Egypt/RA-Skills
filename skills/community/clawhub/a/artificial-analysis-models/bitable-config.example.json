@@ -1,0 +1,7 @@
+{
+  "app_token": "在此填入多维表格 app_token（首次创建后保存）",
+  "table_id": "在此填入数据表 table_id",
+  "app_name": "AI 模型信息库（Artificial Analysis）",
+  "table_name": "LLM 模型一览",
+  "folder_token": ""
+}

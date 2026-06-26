@@ -1,0 +1,67 @@
+{
+  "rep_id": "rep-agent-memory-corruption-2026-02-28-001",
+  "title": "Agent Memory Corruption Incident & Recovery",
+  "timestamp": "2026-02-28T14:23:17Z",
+  "agent_id": "claude-codex-main-001",
+  "session_id": "session-8827a1b3-4cb6-44ee-aa11-4026a99663b6",
+  "incident_type": "memory_corruption",
+  "severity": "high",
+  "status": "resolved",
+  "artifacts": [
+    {
+      "id": "artifact-001",
+      "name": "decision_rejection_log",
+      "type": "log",
+      "description": "Log of decisions rejected due to corrupted context state",
+      "timestamp": "2026-02-28T14:15:00Z"
+    },
+    {
+      "id": "artifact-002",
+      "name": "error_recovery_log",
+      "type": "log",
+      "description": "Detailed error and recovery attempts during corruption incident",
+      "timestamp": "2026-02-28T14:18:45Z"
+    },
+    {
+      "id": "artifact-003",
+      "name": "memory_reconstruction_audit",
+      "type": "audit",
+      "description": "Audit trail of memory state reconstruction process",
+      "timestamp": "2026-02-28T14:22:30Z"
+    },
+    {
+      "id": "artifact-004",
+      "name": "agent_heartbeat_record",
+      "type": "heartbeat",
+      "description": "Agent heartbeat records showing anomaly detection and recovery",
+      "timestamp": "2026-02-28T14:23:00Z"
+    },
+    {
+      "id": "artifact-005",
+      "name": "context_snapshot",
+      "type": "snapshot",
+      "description": "Pre and post-recovery context state snapshots",
+      "timestamp": "2026-02-28T14:23:15Z"
+    }
+  ],
+  "recovery_summary": {
+    "detection_time": "2026-02-28T14:15:00Z",
+    "recovery_completion": "2026-02-28T14:22:45Z",
+    "total_downtime": "7 minutes 45 seconds",
+    "data_loss": "partial",
+    "actions_taken": [
+      "Detected context hash mismatch indicating memory corruption",
+      "Isolated corrupted session state",
+      "Initiated memory reconstruction from last valid checkpoint",
+      "Validated reconstructed state via semantic checksum",
+      "Resumed normal operations"
+    ]
+  },
+  "root_cause": "Vector database connection timeout during checkpoint write caused incomplete memory state persistence, leading to context fragmentation on subsequent session resume",
+  "lessons_learned": [
+    "Implement checkpoint write atomicity with rollback capability",
+    "Add periodic context hash validation during long-running tasks",
+    "Enhance heartbeat anomaly detection for memory integrity"
+  ],
+  "version": "1.0.0"
+}

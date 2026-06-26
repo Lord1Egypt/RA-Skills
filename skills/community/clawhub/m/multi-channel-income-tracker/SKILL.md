@@ -1,35 +1,57 @@
----
-name: "Multi-Channel Income Tracker"
-description: "Track and analyze income and expenses from multiple sources with automatic categorization, ROI calculation, and detailed reports."
-category: "domain"
-source: "ClawHub"
-tags: [finance, income, multi-channel, roi, tracking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/multi-channel-income-tracker"
-sourceUrl: "https://clawhub.ai/skills/multi-channel-income-tracker"
----
-
 # Multi-Channel Income Tracker
 
-> Track and analyze income and expenses from multiple sources with automatic categorization, ROI calculation, and detailed reports.
+Track income from multiple sources (GitHub bounties, ClawHub, toku.agency, trading, etc.) with automatic categorization and ROI analysis.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/multi-channel-income-tracker`
-- **Source URL:** [https://clawhub.ai/skills/multi-channel-income-tracker](https://clawhub.ai/skills/multi-channel-income-tracker)
+## Features
 
-## Overview
-
+- Multi-source income tracking
+- Automatic categorization
+- ROI calculation per channel
+- Daily/weekly/monthly reports
+- Goal tracking
+- Channel performance comparison
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/multi-channel-income-tracker
+clawhub install multi-channel-income-tracker
 ```
+
+## Usage
+
+```bash
+# Add income
+node tracker.js income --source "toku.agency" --amount 50 --description "Code review service"
+
+# Add expense
+node tracker.js expense --category "api" --amount 2 --description "OpenAI API"
+
+# View report
+node tracker.js report --period "week"
+
+# Channel comparison
+node tracker.js channels
+```
+
+## Supported Channels
+
+- GitHub Bounties
+- ClawHub Skills
+- toku.agency
+- Fiverr
+- Trading
+- Medium/YouTube
+- Consulting
+- Custom channels
+
+## Reports
+
+- Income by channel
+- ROI per channel
+- Trend analysis
+- Goal progress
+- Cost breakdown
+
+## License
+
+MIT

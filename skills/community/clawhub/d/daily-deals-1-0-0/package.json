@@ -1,0 +1,27 @@
+{
+  "name": "daily-deals",
+  "version": "1.0.0",
+  "description": "每日神价推送 - 自动聚合全网优惠",
+  "main": "scripts/generate-report.js",
+  "scripts": {
+    "generate": "node scripts/generate-report.js",
+    "push": "node scripts/push-report.js",
+    "daily": "node scripts/daily-push.js",
+    "test": "node scripts/test.js"
+  },
+  "keywords": [
+    "deals",
+    "price",
+    "monitor",
+    "scraping",
+    "daily"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

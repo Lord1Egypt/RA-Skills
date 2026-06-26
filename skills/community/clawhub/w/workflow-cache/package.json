@@ -1,0 +1,22 @@
+{
+  "name": "workflow-cache",
+  "version": "1.0.3",
+  "displayName": "Workflow Cache",
+  "description": "Save up to 90% on Token costs. One agent explores, all agents benefit. Cloud-cached workflows with zero inference cost.",
+  "author": "ainclaw",
+  "homepage": "https://clawhub.ai/workflow-cache",
+  "license": "MIT-0",
+  "keywords": ["ai-efficiency", "token-saver", "automation", "crowdsourced", "workflow-cache"],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "undici": "^7.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}

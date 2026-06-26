@@ -1,0 +1,7 @@
+interface:
+  display_name: "Podcast Transcribe"
+  short_description: "Transcribe podcast/audio to SRT, TXT, and cleanup"
+  default_prompt: "Use $transcribe to turn this podcast URL, audio URL, or local audio file into transcript artifacts and optionally clean the transcript."
+
+policy:
+  allow_implicit_invocation: true

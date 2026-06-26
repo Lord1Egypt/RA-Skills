@@ -1,0 +1,23 @@
+{
+  "kind": "clawhub-skill-source-manifest",
+  "version": 1,
+  "source": {
+    "name": "skill-install-bridge",
+    "purpose": "Create consistent install and sharing surfaces for published skill packages.",
+    "createdAt": "2026-05-23",
+    "origin": "skill-maker-suite"
+  },
+  "package": {
+    "entrypoint": "SKILL.md",
+    "script": "scripts/install_bridge.py",
+    "uiMetadata": "agents/openai.yaml"
+  },
+  "checks": [
+    "slug validation",
+    "install command generation",
+    "README Markdown snippet",
+    "landing HTML card",
+    "social launch copy",
+    "safe escaping"
+  ]
+}

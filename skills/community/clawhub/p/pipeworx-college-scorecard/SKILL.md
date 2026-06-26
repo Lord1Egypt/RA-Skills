@@ -1,35 +1,21 @@
----
-name: "Pipeworx college-scorecard"
-description: "Search US colleges by name or get detailed information including tuition and admission rates using the US Department of Education College Scorecard API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-college-scorecard"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-college-scorecard"
----
+# College Scorecard
 
-# Pipeworx college-scorecard
+College Scorecard MCP — US Department of Education College Scorecard API
 
-> Search US colleges by name or get detailed information including tuition and admission rates using the US Department of Education College Scorecard API.
+## search_schools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-college-scorecard`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-college-scorecard](https://clawhub.ai/skills/pipeworx-college-scorecard)
+Search US colleges and universities by name. Returns school name, location, tuition, admission rate,
 
-## Overview
+## get_school
 
+Get detailed info for a specific college by its College Scorecard ID. Returns tuition, admission rat
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-college-scorecard
+```json
+{
+  "mcpServers": {
+    "college-scorecard": {
+      "url": "https://gateway.pipeworx.io/college-scorecard/mcp"
+    }
+  }
+}
 ```

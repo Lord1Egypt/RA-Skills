@@ -1,35 +1,57 @@
 ---
-name: "deep-interview"
-description: "Indexed by skills.sh from devbrother2024/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "devbrother2024"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/devbrother2024/skills/deep-interview"
-sourceUrl: "https://skills.sh/devbrother2024/skills/deep-interview"
+name: deep-interview
+description: |
+  모호한 요청을 소크라테스식 질문으로 인터뷰해 실행 가능한 요구사항으로 정리한다.
+  사용자가 deep-interview, 심층 인터뷰, 요구사항 명확화, 생각 정리를 요청하거나 목표, 범위, 제약, 완료 기준이 흐릿할 때 사용한다.
+  요청이 이미 구체적이거나 단순 오타, 작은 설정 변경, 테스트 보강처럼 물을 가치가 낮은 작업에는 사용하지 않는다.
+argument-hint: "<rough request>"
 ---
 
-# deep-interview
+# Deep Interview
 
-> Indexed by skills.sh from devbrother2024/skills
+모호한 요청을 바로 실행하지 말고, 명확한 요구사항으로 정리한다.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** devbrother2024
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/devbrother2024/skills/deep-interview`
-- **Source URL:** [https://skills.sh/devbrother2024/skills/deep-interview](https://skills.sh/devbrother2024/skills/deep-interview)
+핵심은 질문을 많이 하는 것이 아니라, 가장 큰 불확실성 하나를 골라 한 번에 하나씩 푸는 것이다.
 
-## Overview
+소크라테스식으로 묻는다. 답을 대신 정하기보다 사용자의 암묵적 가정, 선택지, 판단 기준이 드러나게 질문한다.
 
+## 질문 축
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/devbrother2024/skills/deep-interview
+아래 순서로 가장 불명확한 축 하나를 고른다:
+
+- 목표
+- 범위와 제외 범위
+- 제약
+- 완료 기준
+- 기존 맥락과 영향 범위
+
+코드베이스를 보면 답할 수 있는 질문은 사용자에게 묻지 말고 직접 확인한다.
+
+## 진행 방식
+
+질문은 한 번에 하나만 한다. 질문마다 현재 이해, 막힌 결정, 추천 답안을 짧게 제시한다.
+
+질문 형식:
+
+```md
+현재 이해: {요청을 한 문장으로 요약}
+막힌 결정: {가장 중요한 불확실성}
+추천 답안: {있으면 제시}
+질문: {한 가지 질문}
 ```
+
+답변을 받으면 결정된 내용을 짧게 갱신하고, 아직 중요한 불확실성이 남았을 때만 다음 질문을 한다.
+
+선택지가 도움이 되면 2-3개만 제시하고, 항상 자유 입력을 허용한다.
+
+## 종료 기준
+
+다음이 정리되면 멈춘다:
+
+- 달성하려는 목표
+- 포함 범위와 제외 범위
+- 지켜야 할 제약
+- 완료 판단 기준
+- 아직 남은 열린 질문
+
+마지막에는 전체 대화록이 아니라 결정사항과 열린 질문만 요약한다.

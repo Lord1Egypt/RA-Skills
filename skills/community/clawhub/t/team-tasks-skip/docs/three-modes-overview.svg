@@ -1,0 +1,293 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <marker id="aw" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#fff9"/>
+    </marker>
+    <marker id="ab" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#60a5fa"/>
+    </marker>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#34d399"/>
+    </marker>
+    <marker id="ap" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#c084fc"/>
+    </marker>
+    <marker id="ao" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#fbbf24"/>
+    </marker>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#f87171"/>
+    </marker>
+    <filter id="gl">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="sh">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#00000055"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1100" height="780" fill="url(#bg)" rx="14"/>
+
+  <!-- 大标题 -->
+  <text x="550" y="42" text-anchor="middle" fill="white" font-size="22" font-weight="bold">🏗️  Team Tasks — 三种多 Agent 协作模式</text>
+  <line x1="60" y1="58" x2="1040" y2="58" stroke="#ffffff18" stroke-width="1"/>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- Mode A: Linear 线性流水线                      -->
+  <!-- ════════════════════════════════════════════ -->
+  <rect x="40" y="72" width="1020" height="195" rx="12" fill="#60a5fa08" stroke="#60a5fa33" stroke-width="1"/>
+  <rect x="40" y="72" width="260" height="30" rx="12" fill="#60a5fa22"/>
+  <text x="58" y="92" fill="#60a5fa" font-size="15" font-weight="bold">Mode A · 线性流水线 (Linear)</text>
+
+  <!-- 说明 -->
+  <text x="58" y="122" fill="#94a3b8" font-size="12">Agent 按固定顺序逐个执行，前一个完成后自动推进到下一个</text>
+
+  <!-- 流水线节点 -->
+  <!-- AGI -->
+  <rect x="70" y="142" width="100" height="46" rx="8" fill="#f4364c18" stroke="#f4364c88" stroke-width="1.2"/>
+  <text x="120" y="163" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold">🧠 AGI</text>
+  <text x="120" y="178" text-anchor="middle" fill="#f8717199" font-size="9">调度中心</text>
+
+  <line x1="170" y1="165" x2="218" y2="165" stroke="#fff6" stroke-width="1.3" marker-end="url(#aw)"/>
+
+  <!-- Stage 1 -->
+  <rect x="224" y="140" width="150" height="50" rx="10" fill="#60a5fa12" stroke="#60a5fa" stroke-width="1.3" filter="url(#sh)"/>
+  <text x="299" y="161" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="bold">🔧 code-agent</text>
+  <text x="299" y="178" text-anchor="middle" fill="#60a5fa99" font-size="10">① 编写代码</text>
+
+  <line x1="374" y1="165" x2="422" y2="165" stroke="#60a5fa" stroke-width="1.8" marker-end="url(#ab)"/>
+  <text x="398" y="157" text-anchor="middle" fill="#60a5fa99" font-size="9">done</text>
+
+  <!-- Stage 2 -->
+  <rect x="428" y="140" width="150" height="50" rx="10" fill="#34d39912" stroke="#34d399" stroke-width="1.3" filter="url(#sh)"/>
+  <text x="503" y="161" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold">🧪 test-agent</text>
+  <text x="503" y="178" text-anchor="middle" fill="#34d39999" font-size="10">② 编写测试</text>
+
+  <line x1="578" y1="165" x2="626" y2="165" stroke="#34d399" stroke-width="1.8" marker-end="url(#ag)"/>
+  <text x="602" y="157" text-anchor="middle" fill="#34d39999" font-size="9">done</text>
+
+  <!-- Stage 3 -->
+  <rect x="632" y="140" width="150" height="50" rx="10" fill="#c084fc12" stroke="#c084fc" stroke-width="1.3" filter="url(#sh)"/>
+  <text x="707" y="161" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold">📝 docs-agent</text>
+  <text x="707" y="178" text-anchor="middle" fill="#c084fc99" font-size="10">③ 编写文档</text>
+
+  <line x1="782" y1="165" x2="830" y2="165" stroke="#c084fc" stroke-width="1.8" marker-end="url(#ap)"/>
+  <text x="806" y="157" text-anchor="middle" fill="#c084fc99" font-size="9">done</text>
+
+  <!-- Stage 4 -->
+  <rect x="836" y="140" width="150" height="50" rx="10" fill="#fbbf2412" stroke="#fbbf24" stroke-width="1.3" filter="url(#sh)"/>
+  <text x="911" y="161" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold">🚨 monitor-bot</text>
+  <text x="911" y="178" text-anchor="middle" fill="#fbbf2499" font-size="10">④ 安全审查</text>
+
+  <!-- 完成标志 -->
+  <line x1="986" y1="165" x2="1020" y2="165" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#ao)"/>
+  <text x="1035" y="170" text-anchor="middle" fill="#22c55e" font-size="16">✅</text>
+
+  <!-- 关键特征标签 -->
+  <rect x="70" y="204" width="70" height="20" rx="4" fill="#60a5fa22"/>
+  <text x="105" y="218" text-anchor="middle" fill="#60a5fa" font-size="10">顺序执行</text>
+  <rect x="150" y="204" width="70" height="20" rx="4" fill="#60a5fa22"/>
+  <text x="185" y="218" text-anchor="middle" fill="#60a5fa" font-size="10">自动推进</text>
+  <rect x="230" y="204" width="90" height="20" rx="4" fill="#60a5fa22"/>
+  <text x="275" y="218" text-anchor="middle" fill="#60a5fa" font-size="10">一次一个 Agent</text>
+
+  <!-- 适用场景 -->
+  <text x="580" y="218" fill="#64748b" font-size="10">适用: Bug 修复、简单功能、标准化流程</text>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- Mode B: DAG 依赖图                            -->
+  <!-- ════════════════════════════════════════════ -->
+  <rect x="40" y="280" width="1020" height="220" rx="12" fill="#34d39908" stroke="#34d39933" stroke-width="1"/>
+  <rect x="40" y="280" width="300" height="30" rx="12" fill="#34d39922"/>
+  <text x="58" y="300" fill="#34d399" font-size="15" font-weight="bold">Mode B · 依赖图并行 (DAG)</text>
+
+  <text x="58" y="328" fill="#94a3b8" font-size="12">任务声明依赖关系，依赖满足后可并行派发多个 Agent</text>
+
+  <!-- AGI -->
+  <rect x="70" y="348" width="90" height="42" rx="8" fill="#f4364c18" stroke="#f4364c88" stroke-width="1.2"/>
+  <text x="115" y="366" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold">🧠 AGI</text>
+  <text x="115" y="381" text-anchor="middle" fill="#f8717199" font-size="9">调度中心</text>
+
+  <!-- Wave 1: 并行 -->
+  <line x1="160" y1="362" x2="208" y2="352" stroke="#fff6" stroke-width="1.2" marker-end="url(#aw)"/>
+  <line x1="160" y1="376" x2="208" y2="386" stroke="#fff6" stroke-width="1.2" marker-end="url(#aw)"/>
+
+  <rect x="214" y="338" width="120" height="36" rx="8" fill="#c084fc12" stroke="#c084fc" stroke-width="1.2"/>
+  <text x="274" y="357" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="bold">📝 设计 API</text>
+  <text x="274" y="370" text-anchor="middle" fill="#c084fc88" font-size="9">docs-agent</text>
+
+  <rect x="214" y="382" width="120" height="36" rx="8" fill="#60a5fa12" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="274" y="401" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold">🔧 搭建骨架</text>
+  <text x="274" y="414" text-anchor="middle" fill="#60a5fa88" font-size="9">code-agent</text>
+
+  <!-- 并行标记 -->
+  <rect x="190" y="344" width="16" height="68" rx="3" fill="none" stroke="#22c55e55" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="198" y="383" text-anchor="middle" fill="#22c55e" font-size="8" transform="rotate(-90 198 383)">并行</text>
+
+  <!-- Wave 2: 依赖汇聚 -->
+  <line x1="334" y1="356" x2="398" y2="370" stroke="#c084fc88" stroke-width="1.2" marker-end="url(#ap)"/>
+  <line x1="334" y1="400" x2="398" y2="376" stroke="#60a5fa88" stroke-width="1.2" marker-end="url(#ab)"/>
+
+  <!-- 同时 设计→测试 分支 -->
+  <line x1="334" y1="356" x2="398" y2="430" stroke="#c084fc55" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <rect x="404" y="354" width="130" height="36" rx="8" fill="#60a5fa12" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="469" y="373" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="bold">🔧 实现功能</text>
+  <text x="469" y="386" text-anchor="middle" fill="#60a5fa88" font-size="9">code-agent</text>
+
+  <rect x="404" y="416" width="130" height="36" rx="8" fill="#34d39912" stroke="#34d399" stroke-width="1.2"/>
+  <text x="469" y="435" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold">🧪 编写测试</text>
+  <text x="469" y="448" text-anchor="middle" fill="#34d39988" font-size="9">test-agent</text>
+
+  <!-- 并行标记 -->
+  <rect x="384" y="360" width="16" height="86" rx="3" fill="none" stroke="#22c55e55" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="392" y="408" text-anchor="middle" fill="#22c55e" font-size="8" transform="rotate(-90 392 408)">并行</text>
+
+  <!-- Wave 3: 汇聚 -->
+  <line x1="534" y1="372" x2="598" y2="380" stroke="#60a5fa88" stroke-width="1.2" marker-end="url(#ab)"/>
+  <line x1="534" y1="434" x2="598" y2="388" stroke="#34d39988" stroke-width="1.2" marker-end="url(#ag)"/>
+  <line x1="534" y1="372" x2="598" y2="440" stroke="#60a5fa55" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <rect x="604" y="364" width="130" height="36" rx="8" fill="#34d39912" stroke="#34d399" stroke-width="1.2"/>
+  <text x="669" y="383" text-anchor="middle" fill="#34d399" font-size="11" font-weight="bold">🧪 运行测试</text>
+  <text x="669" y="396" text-anchor="middle" fill="#34d39988" font-size="9">test-agent</text>
+
+  <rect x="604" y="424" width="130" height="36" rx="8" fill="#c084fc12" stroke="#c084fc" stroke-width="1.2"/>
+  <text x="669" y="443" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="bold">📝 编写文档</text>
+  <text x="669" y="456" text-anchor="middle" fill="#c084fc88" font-size="9">docs-agent</text>
+
+  <!-- 并行标记 -->
+  <rect x="584" y="370" width="16" height="84" rx="3" fill="none" stroke="#22c55e55" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="592" y="417" text-anchor="middle" fill="#22c55e" font-size="8" transform="rotate(-90 592 417)">并行</text>
+
+  <!-- Wave 4: 最终 -->
+  <line x1="734" y1="382" x2="808" y2="404" stroke="#34d39988" stroke-width="1.2" marker-end="url(#ag)"/>
+  <line x1="734" y1="442" x2="808" y2="412" stroke="#c084fc88" stroke-width="1.2" marker-end="url(#ap)"/>
+
+  <rect x="814" y="390" width="130" height="36" rx="8" fill="#fbbf2412" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="879" y="409" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="bold">🚨 最终审查</text>
+  <text x="879" y="422" text-anchor="middle" fill="#fbbf2488" font-size="9">monitor-bot</text>
+
+  <line x1="944" y1="408" x2="978" y2="408" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#ao)"/>
+  <text x="993" y="413" text-anchor="middle" fill="#22c55e" font-size="16">✅</text>
+
+  <!-- 关键特征标签 -->
+  <rect x="70" y="468" width="70" height="20" rx="4" fill="#34d39922"/>
+  <text x="105" y="482" text-anchor="middle" fill="#34d399" font-size="10">并行派发</text>
+  <rect x="150" y="468" width="70" height="20" rx="4" fill="#34d39922"/>
+  <text x="185" y="482" text-anchor="middle" fill="#34d399" font-size="10">依赖驱动</text>
+  <rect x="230" y="468" width="70" height="20" rx="4" fill="#34d39922"/>
+  <text x="265" y="482" text-anchor="middle" fill="#34d399" font-size="10">环检测</text>
+  <rect x="310" y="468" width="90" height="20" rx="4" fill="#34d39922"/>
+  <text x="355" y="482" text-anchor="middle" fill="#34d399" font-size="10">自动解除阻塞</text>
+
+  <text x="580" y="482" fill="#64748b" font-size="10">适用: 大型功能开发、多分支并行、Spec 驱动开发</text>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- Mode C: Debate 辩论                           -->
+  <!-- ════════════════════════════════════════════ -->
+  <rect x="40" y="510" width="1020" height="210" rx="12" fill="#c084fc08" stroke="#c084fc33" stroke-width="1"/>
+  <rect x="40" y="510" width="260" height="30" rx="12" fill="#c084fc22"/>
+  <text x="58" y="530" fill="#c084fc" font-size="15" font-weight="bold">Mode C · 多 Agent 辩论 (Debate)</text>
+
+  <text x="58" y="558" fill="#94a3b8" font-size="12">同一问题多个 Agent 独立作答 → 交叉评审 → 综合最终决策</text>
+
+  <!-- AGI -->
+  <rect x="70" y="575" width="90" height="42" rx="8" fill="#f4364c18" stroke="#f4364c88" stroke-width="1.2"/>
+  <text x="115" y="593" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold">🧠 AGI</text>
+  <text x="115" y="608" text-anchor="middle" fill="#f8717199" font-size="9">主持人</text>
+
+  <!-- 问题发出 -->
+  <line x1="160" y1="588" x2="208" y2="575" stroke="#fff6" stroke-width="1.2" marker-end="url(#aw)"/>
+  <line x1="160" y1="596" x2="208" y2="596" stroke="#fff6" stroke-width="1.2" marker-end="url(#aw)"/>
+  <line x1="160" y1="604" x2="208" y2="618" stroke="#fff6" stroke-width="1.2" marker-end="url(#aw)"/>
+
+  <!-- R1: 初始立场 -->
+  <text x="280" y="556" text-anchor="middle" fill="#60a5fa99" font-size="10" font-weight="bold">Round 1 · 初始立场</text>
+
+  <rect x="214" y="562" width="130" height="30" rx="7" fill="#60a5fa12" stroke="#60a5fa" stroke-width="1"/>
+  <text x="279" y="581" text-anchor="middle" fill="#60a5fa" font-size="11">🔧 Agent A 立场</text>
+
+  <rect x="214" y="596" width="130" height="30" rx="7" fill="#34d39912" stroke="#34d399" stroke-width="1"/>
+  <text x="279" y="615" text-anchor="middle" fill="#34d399" font-size="11">🧪 Agent B 立场</text>
+
+  <rect x="214" y="630" width="130" height="30" rx="7" fill="#fbbf2412" stroke="#fbbf24" stroke-width="1"/>
+  <text x="279" y="649" text-anchor="middle" fill="#fbbf24" font-size="11">🚨 Agent C 立场</text>
+
+  <!-- 箭头 R1 → R2 -->
+  <line x1="344" y1="577" x2="415" y2="577" stroke="#60a5fa55" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ab)"/>
+  <line x1="344" y1="611" x2="415" y2="611" stroke="#34d39955" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ag)"/>
+  <line x1="344" y1="645" x2="415" y2="645" stroke="#fbbf2455" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ao)"/>
+
+  <!-- R2: 交叉评审 -->
+  <text x="490" y="556" text-anchor="middle" fill="#34d39999" font-size="10" font-weight="bold">Round 2 · 交叉评审</text>
+
+  <rect x="421" y="562" width="138" height="30" rx="7" fill="#60a5fa0c" stroke="#60a5fa88" stroke-width="1"/>
+  <text x="490" y="576" text-anchor="middle" fill="#60a5fa" font-size="10">A 评审 B,C</text>
+  <text x="490" y="588" text-anchor="middle" fill="#60a5fa66" font-size="8">看到其他人的立场</text>
+
+  <rect x="421" y="596" width="138" height="30" rx="7" fill="#34d3990c" stroke="#34d39988" stroke-width="1"/>
+  <text x="490" y="610" text-anchor="middle" fill="#34d399" font-size="10">B 评审 A,C</text>
+  <text x="490" y="622" text-anchor="middle" fill="#34d39966" font-size="8">同意/反驳/补充</text>
+
+  <rect x="421" y="630" width="138" height="30" rx="7" fill="#fbbf240c" stroke="#fbbf2488" stroke-width="1"/>
+  <text x="490" y="644" text-anchor="middle" fill="#fbbf24" font-size="10">C 评审 A,B</text>
+  <text x="490" y="656" text-anchor="middle" fill="#fbbf2466" font-size="8">修正自身观点</text>
+
+  <!-- 交叉连线 -->
+  <path d="M440 592 L440 596" stroke="#60a5fa33" stroke-width="0.8"/>
+  <path d="M540 592 L540 596" stroke="#34d39933" stroke-width="0.8"/>
+  <path d="M440 626 L440 630" stroke="#34d39933" stroke-width="0.8"/>
+
+  <!-- 箭头 R2 → 综合 -->
+  <line x1="559" y1="577" x2="640" y2="596" stroke="#60a5fa44" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="559" y1="611" x2="640" y2="600" stroke="#34d39944" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="559" y1="645" x2="640" y2="604" stroke="#fbbf2444" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 综合 -->
+  <text x="710" y="566" text-anchor="middle" fill="#c084fc99" font-size="10" font-weight="bold">综合决策</text>
+
+  <rect x="646" y="578" width="128" height="48" rx="10" fill="#c084fc15" stroke="#c084fc" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="710" y="599" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="bold" filter="url(#gl)">🧠 综合分析</text>
+  <text x="710" y="616" text-anchor="middle" fill="#c084fcaa" font-size="10">解决分歧 · 合并观点</text>
+
+  <!-- 最终输出 -->
+  <line x1="774" y1="602" x2="820" y2="602" stroke="#c084fc" stroke-width="1.8" marker-end="url(#ap)"/>
+
+  <rect x="826" y="580" width="150" height="44" rx="10" fill="#22c55e12" stroke="#22c55e88" stroke-width="1.3"/>
+  <text x="901" y="600" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="bold">✅ 最终建议</text>
+  <text x="901" y="616" text-anchor="middle" fill="#22c55e99" font-size="10">综合最强论点</text>
+
+  <!-- 关键特征标签 -->
+  <rect x="70" y="680" width="80" height="20" rx="4" fill="#c084fc22"/>
+  <text x="110" y="694" text-anchor="middle" fill="#c084fc" font-size="10">独立作答</text>
+  <rect x="160" y="680" width="80" height="20" rx="4" fill="#c084fc22"/>
+  <text x="200" y="694" text-anchor="middle" fill="#c084fc" font-size="10">交叉评审</text>
+  <rect x="250" y="680" width="80" height="20" rx="4" fill="#c084fc22"/>
+  <text x="290" y="694" text-anchor="middle" fill="#c084fc" font-size="10">综合决策</text>
+  <rect x="340" y="680" width="90" height="20" rx="4" fill="#c084fc22"/>
+  <text x="385" y="694" text-anchor="middle" fill="#c084fc" font-size="10">竞争性假设</text>
+
+  <text x="580" y="694" fill="#64748b" font-size="10">适用: 代码审查、架构决策、安全评估、竞争分析</text>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 底部: 共性说明                                 -->
+  <!-- ════════════════════════════════════════════ -->
+  <line x1="60" y1="730" x2="1040" y2="730" stroke="#ffffff12" stroke-width="1"/>
+
+  <circle cx="120" cy="755" r="6" fill="#f87171"/>
+  <text x="134" y="759" fill="#94a3b8" font-size="11">AGI 中心化调度 — 所有 Agent 之间不直接通信</text>
+
+  <circle cx="530" cy="755" r="6" fill="#60a5fa"/>
+  <text x="544" y="759" fill="#94a3b8" font-size="11">JSON 状态文件驱动 — 无外部依赖</text>
+
+  <circle cx="830" cy="755" r="6" fill="#34d399"/>
+  <text x="844" y="759" fill="#94a3b8" font-size="11">Python 3.12+ · stdlib only</text>
+
+</svg>

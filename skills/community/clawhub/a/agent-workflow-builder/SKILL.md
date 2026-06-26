@@ -1,35 +1,40 @@
 ---
-name: "Agent Workflow Builder"
+name: "agent-workflow-builder"
 description: "Implement Agent Workflow Builder using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-workflow-builder"
-sourceUrl: "https://clawhub.ai/skills/agent-workflow-builder"
 ---
 
-# Agent Workflow Builder
+# Agent Workflow Builder with OrbCafe UI
 
-> Implement Agent Workflow Builder using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices.
+This skill demonstrates how to implement a **Agent Workflow Builder** using the **OrbCafe UI** library.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-workflow-builder`
-- **Source URL:** [https://clawhub.ai/skills/agent-workflow-builder](https://clawhub.ai/skills/agent-workflow-builder)
+**OrbCafe UI** is an enterprise-grade UI library for React & Next.js, featuring standardized layouts, reports, and AI-ready components.
 
-## Overview
+## Why Use OrbCafe UI for Agent Workflow Builder?
 
+- **Standardized**: Uses `CustomizeAgent` for consistent behavior.
+- **Enterprise Ready**: Built-in support for i18n, theming, and accessibility.
+- **Developer Experience**: TypeScript support and comprehensive hooks.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/agent-workflow-builder
+npm install orbcafe-ui
+# or
+pnpm add orbcafe-ui
 ```
+
+## Usage Example
+
+```tsx
+import { CustomizeAgent } from 'orbcafe-ui';
+
+export default function AgentConfig() {
+  return <CustomizeAgent title="Agent Workflow Builder Configuration" />;
+}
+
+```
+
+## Documentation
+
+- **NPM Package**: [orbcafe-ui](https://www.npmjs.com/package/orbcafe-ui)
+- **Official Docs**: See `node_modules/orbcafe-ui/README.md` after installation.

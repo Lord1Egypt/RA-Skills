@@ -1,0 +1,45 @@
+{
+  "slug": "last-minute-travel-doc-pack",
+  "name": "Last-Minute Travel Doc Pack",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Builds a destination-ready travel document packet and print/download checklist for urgent trips without storing private ID numbers.",
+  "author": "OpenClaw Skill Builder",
+  "license": "MIT-0",
+  "document_only": true,
+  "promptOnly": true,
+  "runtime": "none",
+  "execution": "noExec",
+  "category": "Travel / Urgent Admin Logistics",
+  "target_user": "Travelers who are leaving soon and need papers sorted quickly and safely.",
+  "tags": [
+    "travel-documents",
+    "last-minute-travel",
+    "admin-logistics",
+    "packing-checklist",
+    "document-organization"
+  ],
+  "trigger_keywords": [
+    "last-minute travel documents",
+    "travel doc packet",
+    "what should I print for my trip",
+    "organize travel papers",
+    "passport visa checklist"
+  ],
+  "use_cases": [
+    "Preparing urgent travel papers",
+    "Sorting documents by traveler",
+    "Creating print and offline download checklists",
+    "Tracking missing documents before departure"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

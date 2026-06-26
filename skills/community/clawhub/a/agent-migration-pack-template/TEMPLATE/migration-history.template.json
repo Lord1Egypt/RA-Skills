@@ -1,0 +1,97 @@
+{
+  "template_version": "v1.0.5",
+  "file_type": "migration-history",
+  "sensitivity": "public",
+  "description": "迁移历史记录 - 记录Agent的迁移履历，方便追溯和管理",
+  "time_estimate": "2-3分钟",
+  "boundary_notes": {
+    "should_include": [
+      "每次迁移的时间、原因、目标环境",
+      "迁移过程中的重要变更",
+      "版本升级记录",
+      "数据完整性验证结果"
+    ],
+    "should_not_include": [
+      "Agent的日常运营记录（放入memory）",
+      "敏感的业务决策细节（放入memory/business）",
+      "具体的密码和密钥信息"
+    ]
+  },
+
+  "migration_log": {
+    "description": "迁移历史列表，按时间倒序排列",
+    "value": [
+      {
+        "migration_id": "mig-001",
+        "timestamp": "2026-04-13T15:48:00+08:00",
+        "from_version": "1.0.4",
+        "to_version": "1.0.5",
+        "migration_type": "upgrade",
+        "reason": "增加SESSION-STATE状态迁移支持，优化填写体验",
+        "changes": [
+          "新增SESSION-STATE.md模板",
+          "新增MIGRATION-HISTORY.md模板",
+          "增加交互式引导功能",
+          "统一时间戳为RFC3339格式"
+        ],
+        "status": "success",
+        "validator": "migrate.py validate",
+        "checksum": "待生成"
+      }
+    ],
+    "example": [
+      {
+        "migration_id": "mig-001",
+        "timestamp": "2026-04-13T15:48:00+08:00",
+        "from_version": "1.0.4",
+        "to_version": "1.0.5",
+        "migration_type": "upgrade",
+        "reason": "增加SESSION-STATE状态迁移支持",
+        "changes": [
+          "新增SESSION-STATE.md模板",
+          "统一时间戳格式"
+        ],
+        "status": "success"
+      },
+      {
+        "migration_id": "mig-002",
+        "timestamp": "2026-04-10T10:00:00+08:00",
+        "from_version": "1.0.3",
+        "to_version": "1.0.4",
+        "migration_type": "upgrade",
+        "reason": "增加多Agent协作支持",
+        "changes": [
+          "新增relations模板",
+          "优化skills模板"
+        ],
+        "status": "success"
+      }
+    ]
+  },
+
+  "version_compatibility": {
+    "description": "版本兼容性矩阵",
+    "value": [
+      {
+        "from": "1.0.0",
+        "to": "1.0.5",
+        "compatible": true,
+        "notes": "完全向后兼容"
+      },
+      {
+        "from": "1.0.3",
+        "to": "1.0.5",
+        "compatible": true,
+        "notes": "直接升级即可"
+      }
+    ]
+  },
+
+  "rollback_guide": {
+    "description": "回滚指南",
+    "value": {
+      "enabled": false,
+      "notes": "v1.0.5暂不支持自动回滚，如需回滚请使用之前的ZIP备份"
+    }
+  }
+}

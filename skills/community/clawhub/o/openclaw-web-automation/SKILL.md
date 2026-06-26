@@ -1,35 +1,47 @@
 ---
-name: "Openclaw Web Automation"
-description: "Automates web interactions for public site checks or authenticated flows with credential references and optional iMessage notifications."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-web-automation"
-sourceUrl: "https://clawhub.ai/skills/openclaw-web-automation"
+name: openclaw-web-automation-basic
+description: Use this skill when the user wants quick, no-credential browser automation against public websites (summaries, keyword checks, simple page facts). Runs the local OpenClaw Automation Kit query path and returns structured results.
 ---
 
-# Openclaw Web Automation
+# OpenClaw Web Automation (No Credentials)
 
-> Automates web interactions for public site checks or authenticated flows with credential references and optional iMessage notifications.
+This skill is the fastest path for public-site automation tasks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-web-automation`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-web-automation](https://clawhub.ai/skills/openclaw-web-automation)
+Use this for requests like:
+- "Summarize https://www.yahoo.com"
+- "Check whether https://example.com mentions pricing"
+- "Count mentions of 'news' on a public page"
 
-## Overview
+Do not use this skill for login-required tasks. Use award/login flows instead.
 
+## Preconditions
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Repository is available locally.
+- Python environment is installed (`pip install -e .`).
+- No credentials are required for this skill.
+
+## Command to run
+
+From repo root:
+
 ```bash
-hermes skills install clawhub/openclaw-web-automation
+python skills/openclaw-web-automation-basic/scripts/run_query.py --query "<user request>"
 ```
+
+The script routes to `examples/public_page_check` and returns JSON.
+
+## Output handling
+
+- Return a concise summary to the user:
+  - page title
+  - keyword
+  - keyword count
+  - 1-3 highlights
+- If the query has no URL, default to `https://www.yahoo.com`.
+- If parsing fails, ask the user for a URL and what text to check.
+
+## Safety
+
+- Public websites only.
+- No credential collection.
+- No anti-bot bypass guidance.

@@ -1,0 +1,12 @@
+{
+  "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_WEBHOOK_KEY",
+  "default_chat_id": "wrkSFfCgAAQlZW8O0_sparticlem3Dkq8nQ",
+  "timeout": 10,
+  "retry_times": 3,
+  "notification_settings": {
+    "enable_daily_report": true,
+    "enable_monthly_report": true,
+    "daily_report_time": "10:00",
+    "monthly_report_day": 1
+  }
+}

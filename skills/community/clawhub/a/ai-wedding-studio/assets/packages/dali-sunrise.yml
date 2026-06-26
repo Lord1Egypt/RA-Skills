@@ -1,0 +1,198 @@
+id: dali_sunrise_wedding
+name_zh: 大理苍山日照金山婚纱照
+name_en: Dali Sunrise Wedding
+internal_group: 婚纱照工作室
+category: outdoor_wedding
+status: draft
+
+summary: >
+  以中国云南大理苍山日出日照金山景观为核心背景的高端户外婚纱照套系。
+  强调清晨金色轮廓光、山间云雾、自然草坡与情侣间真实亲密互动，
+  适合输出具有高级电影感、自然纪实感与主海报气质的组图。
+
+use_cases:
+  - 婚纱照概念样片
+  - 情侣写真高级组图
+  - AI婚纱照套系打样
+  - 婚礼海报视觉预览
+
+subject_profile:
+  ethnicity: 中国年轻情侣
+  age_range: 25-30
+  identity_rules:
+    - 保留上传人物的真实五官特征
+    - 不要明显网红脸化
+    - 不要改变基础脸型和年龄感
+    - 保持情侣双方在多张图中的一致性
+
+wardrobe:
+  bride:
+    makeup: 精致自然婚礼妆
+    hair: 长波浪卷发
+    expression_style:
+      - 明亮
+      - 幸福
+      - 柔和自然
+    dress: 无肩带白色蕾丝蓬蓬婚纱
+    veil: 长款刺绣头纱
+  groom:
+    hair_policy: 保持原图发型
+    expression_style:
+      - 温柔
+      - 稳重
+      - 自然含笑
+    suit: 黑色定制西装
+    shirt: 白色衬衫
+    bow_tie: 黑色领结
+
+props:
+  bouquet:
+    description: 15朵浅粉色玫瑰搭配绿叶组成的手捧花
+
+location:
+  country: 中国
+  province: 云南
+  city: 大理
+  spot: 苍山
+  foreground: 枯黄色自然草坡
+  midground: 山间云雾
+  background: 苍山山体与澄澈蓝天
+
+time_and_light:
+  time: 日出黄金时段
+  effect: 日照金山
+  lighting:
+    - 柔和逆光
+    - 金色轮廓光
+    - 阴影柔和
+  color_temperature: 5500K
+  tone:
+    - 温暖
+    - 通透
+    - 高级
+    - 电影感
+
+camera_language:
+  camera_body: Canon EOS R5
+  lens: 85mm f/1.8 prime lens
+  composition:
+    orientation: vertical
+    method: rule of thirds
+    default_subject_position: 画面右侧三分之一附近
+  image_style:
+    - subject tack sharp
+    - shallow depth of field
+    - creamy bokeh background
+    - subtle 35mm film grain
+    - ultra detailed
+    - 8k
+    - realistic skin texture
+    - elegant fabric detail
+
+mood_keywords:
+  - 浪漫
+  - 真实幸福
+  - 高级
+  - 通透
+  - 自然亲密
+  - 电影感
+
+global_constraints:
+  - 保持人物比例自然
+  - 保持婚纱结构、蕾丝与头纱刺绣完整
+  - 保持情侣互动自然，不要僵硬摆拍
+  - 保持高级婚纱摄影质感，不要廉价旅拍感
+  - 面部皮肤真实，不要塑料磨皮
+  - 避免姿势油腻、夸张、低俗
+  - 强调人物情绪与环境氛围共同成立
+
+base_prompt: >
+  中国年轻情侣婚纱照，25-30岁，真实自然的中国面孔，新娘妆容精致，长波浪卷发；
+  新郎保持原图发型与基础五官特征。新娘穿无肩带白色蕾丝蓬蓬婚纱，搭配长款刺绣头纱；
+  新郎穿黑色定制西装、白色衬衫、黑色领结。手捧花为15朵浅粉色玫瑰搭配绿叶。
+  拍摄地点为中国云南大理苍山，日出时分，山峰被温暖金色晨光照亮，形成日照金山效果，
+  山间云雾缭绕，天空澄澈湛蓝，前景为自然起伏的枯黄色草坡。整体氛围浪漫、真实、通透、电影感。
+  摄影风格为高端户外婚纱摄影，Canon EOS R5，全画幅，85mm prime lens, f/1.8，
+  golden hour backlight，柔和逆光勾勒人物轮廓，5500K warm tone，soft shadow，
+  shallow depth of field，background creamy bokeh，subject tack sharp，vertical composition，
+  rule of thirds，ultra detailed, 8k, realistic skin texture, elegant fabric detail, subtle 35mm film grain.
+  要求人物互动自然亲昵，情绪真实幸福，眼神柔和，避免摆拍僵硬，避免过度修容与塑料皮肤，
+  保持高级感与真实感。
+
+negative_prompt: >
+  lowres, blurry face, asymmetrical eyes, distorted hands, extra fingers, fused arms, broken bouquet,
+  deformed wedding dress, bad veil structure, unrealistic anatomy, stiff pose, awkward expression,
+  over-retouched skin, heavy makeup, duplicated person, mismatched gaze, bad perspective,
+  warped background, oversaturated colors, fake smile, cheap travel-photo look, cartoon style,
+  low-detail fabric, incorrect body ratio
+
+frames:
+  - id: wide_master
+    name: 远景环境主片
+    purpose: 用于主海报与整套场景定调
+    prompt: >
+      在统一人物设定、服装、场景与摄影风格基础上，拍摄一张远景全身婚纱照。
+      情侣站在苍山草坡右侧三分之一位置，完整呈现人物与大理苍山日照金山背景。
+      新娘轻轻提起头纱边缘，新郎手持手捧花微微侧身看向新娘，风吹动头纱和裙摆。
+      强调山体金色晨光、云雾层次和开阔自然环境，人物比例协调，画面浪漫大气，
+      适合作为婚纱照主视觉海报。
+
+  - id: mid_gaze
+    name: 中景对望照
+    purpose: 用于表现情侣关系感与情绪交流
+    prompt: >
+      拍摄一张中景竖版婚纱照，画面聚焦情侣上半身到膝部。
+      新娘微笑望向新郎，新郎温柔凝视新娘，二人距离亲近但自然不过分贴合。
+      头纱在侧后方被晨风吹起，柔和逆光勾勒面部与肩部轮廓，
+      背景保留苍山和云雾虚化层次，突出情感交流与高级感。
+
+  - id: bride_motion
+    name: 新娘主导动作照
+    purpose: 用于突出婚纱与新娘动态美感
+    prompt: >
+      拍摄一张以新娘为视觉中心的婚纱照。新娘站在前方略偏右，单手轻撩头纱，笑容灿烂明亮；
+      新郎站在她身后半步位置，目光温柔注视她。镜头略低机位，突出婚纱裙摆层次、
+      头纱动态和晨光穿透薄纱的质感，画面轻盈浪漫。
+
+  - id: bouquet_interaction
+    name: 递花互动照
+    purpose: 用于表现互动细节与亲密氛围
+    prompt: >
+      拍摄一张自然互动婚纱照。新郎手持浅粉色玫瑰手捧花递向新娘，新娘伸手去接，
+      二人眼神交汇、笑意自然。构图偏近景，突出手捧花、手部动作、面部神态和衣料细节，
+      背景保持柔焦散景，营造真实抓拍感。
+
+  - id: intimate_closeup
+    name: 贴近特写情绪照
+    purpose: 用于相册内页的高情绪密度特写
+    prompt: >
+      拍摄一张近景特写婚纱照，情侣面部距离很近，额头轻轻靠近但不接触，眼神温柔，
+      表情克制而幸福。镜头重点刻画真实肤质、睫毛、唇妆、发丝、头纱刺绣和逆光轮廓，
+      背景完全虚化，只留下金色晨光氛围，整体高级、细腻、适合相册内页特写。
+
+  - id: walking_candid
+    name: 动态行走抓拍照
+    purpose: 用于制造纪实感与自然流动感
+    prompt: >
+      拍摄一张动态抓拍风格婚纱照。情侣在枯黄草坡上并肩缓慢行走，
+      新娘一手扶婚纱裙摆，一手轻触头纱，新郎转头看向新娘微笑。
+      头纱与裙摆随风飘动，动作自然，有瞬间纪实感。画面保留适度运动张力，
+      但人物面部依然清晰，背景是晨光下的苍山与云雾。
+
+  - id: back_view_turn
+    name: 背影回头照
+    purpose: 用于丰富构图层次与叙事感
+    prompt: >
+      拍摄一张背影回头式婚纱照。情侣面向苍山远景站立，新娘站在外侧，
+      头纱和裙摆在风中展开，两人微微回头看向镜头。
+      重点表现人物背影线条、婚纱拖尾、环境纵深和日照金山效果，
+      构图简洁大气，富有故事感。
+
+  - id: cover_portrait
+    name: 封面级半身主肖像
+    purpose: 用于封面、海报与高质感主视觉
+    prompt: >
+      拍摄一张封面感半身婚纱肖像。情侣靠近站立，新娘轻微侧脸，新郎站在一旁自然贴近，
+      二人共同看向镜头，表情平静而幸福。光线强调面部立体感与柔和高光，
+      头纱刺绣、蕾丝纹理、西装质感清晰，背景虚化成金蓝色晨光散景，
+      整体精致、克制、具有高级杂志封面感。

@@ -1,35 +1,76 @@
 ---
-name: "抖音爬虫V2"
-description: "爬取抖音爆款视频和文案数据。当用户用自然语言说"搜索一下XX视频"、"帮我搜抖音XX"、"抖音上找XX"等意图时，自动提取关键词并执行搜索。也支持获取热榜。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dy-scraper-v2"
-sourceUrl: "https://clawhub.ai/skills/dy-scraper-v2"
+name: douyin-scraper
+description: 爬取抖音爆款视频和文案数据。当用户用自然语言说"搜索一下XX视频"、"帮我搜抖音XX"、"抖音上找XX"等意图时，自动提取关键词并执行搜索。也支持获取热榜。
 ---
 
-# 抖音爬虫V2
+# 抖音爆款爬虫 Skill
 
-> 爬取抖音爆款视频和文案数据。当用户用自然语言说"搜索一下XX视频"、"帮我搜抖音XX"、"抖音上找XX"等意图时，自动提取关键词并执行搜索。也支持获取热榜。
+## 何时触发
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dy-scraper-v2`
-- **Source URL:** [https://clawhub.ai/skills/dy-scraper-v2](https://clawhub.ai/skills/dy-scraper-v2)
+当用户的消息包含以下意图时，使用本 skill：
 
-## Overview
+- **搜索视频**：「搜索一下海鲜视频」「帮我搜抖音上的美食」「抖音搜小龙虾」「找一下XX相关的视频」
+- **获取热榜**：「抖音热榜」「看看抖音热门」「今天抖音什么火」
+- **关键词提取**：从自然语言中提取核心搜索词
 
+## 关键词提取规则
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 去掉「搜索一下」「帮我搜」「找一下」「抖音上」等意图词
+2. 去掉「视频」「相关」「的」等冗余词
+3. 保留核心名词/短语作为 keyword
+4. 示例：
+   - 「搜索一下海鲜视频」→ `海鲜`
+   - 「帮我搜抖音上卖海鲜的」→ `卖海鲜`
+   - 「找一下小龙虾做法」→ `小龙虾做法`
+
+## 搜索流程
+
+### Step 1: 运行脚本
+
 ```bash
-hermes skills install clawhub/dy-scraper-v2
+cd /root/.openclaw/workspace/douyin-scraper && python scripts/scraper.py search --keyword "<关键词>" --limit 10
 ```
+
+### Step 2: 检查结果
+
+- 如果输出包含 `✅ 获取到` → 真实数据，直接展示给用户
+- 如果输出包含 `示例数据` → Playwright 被抖音反爬拦截，进入 Step 3
+
+### Step 3: web_search 降级（重要！）
+
+当脚本返回 mock 数据时，**必须**使用 `web_search` 工具作为降级方案：
+
+```
+web_search: query="site:douyin.com <关键词>" count=10
+```
+
+从搜索结果中提取：
+- `title` → 视频标题
+- `url` → 视频链接（必须是 douyin.com 域名）
+- `description` → 视频描述/摘要
+
+然后以统一格式展示给用户。
+
+### Step 4: 展示结果
+
+无论数据来源，统一按以下格式展示：
+
+```
+🔍 抖音搜索：<关键词>
+共找到 N 条结果
+
+1. **视频标题**
+   作者: xxx | 👍 点赞数 | 🔗 链接
+
+2. ...
+```
+
+## 热榜流程
+
+同理，先运行脚本，失败则用 `web_search: query="抖音热榜"` 降级。
+
+## 注意事项
+
+- Playwright + Chromium 已预装，但抖音有反爬机制，headless 模式大概率被拦截
+- web_search 降级是主要可用路径，务必执行
+- 仅供学习研究使用

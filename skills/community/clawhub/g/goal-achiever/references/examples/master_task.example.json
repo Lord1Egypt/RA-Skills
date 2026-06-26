@@ -1,0 +1,27 @@
+{
+  "trigger_time": "2026-01-01T09:00:00",
+  "trigger_source": "user_message",
+  "runtime_goal_web": "Twitter",
+  "runtime_core_goal": "获取 AI 相关热点，撰写内容并发布",
+  "runtime_core_flow": null,
+  "context_source": {
+    "goal_web_from": "user_input",
+    "core_goal_from": "user_input"
+  },
+  "branch_context": {
+    "last_batch_seq": null,
+    "next_batch_seq": "001",
+    "next_batch_guidance": {},
+    "carry_over_tasks": [],
+    "blacklist": [],
+    "meta_optimization": {
+      "prompt_iteration_seq": "000",
+      "batches_since_last_opt": 0
+    }
+  },
+  "auto_run": {
+    "total": 1,
+    "remaining": 1,
+    "current_run": 1
+  }
+}

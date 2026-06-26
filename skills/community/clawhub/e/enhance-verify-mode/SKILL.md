@@ -1,35 +1,69 @@
 ---
-name: "验证模式 (Verify Mode)"
+name: verify-mode
 description: "验证模式 — 检查工作成果、运行测试、验证假设。借鉴 Claude Code 的 Verification Agent。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enhance-verify-mode"
-sourceUrl: "https://clawhub.ai/skills/enhance-verify-mode"
+homepage: https://github.com/jobzhao15/openclaw-enhance
+metadata: { "openclaw": { "emoji": "✅", "requires": { "bins": [] } } }
 ---
 
 # 验证模式 (Verify Mode)
 
-> 验证模式 — 检查工作成果、运行测试、验证假设。借鉴 Claude Code 的 Verification Agent。
+系统性地验证工作成果或假设。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enhance-verify-mode`
-- **Source URL:** [https://clawhub.ai/skills/enhance-verify-mode](https://clawhub.ai/skills/enhance-verify-mode)
+## 使用时机
 
-## Overview
+✅ **使用此技能当：**
+- 完成一段代码修改后需要验证
+- "帮我检查一下这个改动有没有问题"
+- 需要运行测试并分析结果
+- 验证一个假设或排查一个 bug
 
+❌ **不要使用当：**
+- 只是普通的代码 review（直接 review 即可）
+- 改动很小且显而易见正确
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enhance-verify-mode
+## 验证流程
+
+### 1. 确定验证目标
+- 要验证什么？（功能正确性 / 性能 / 安全 / 兼容性）
+- 成功标准是什么？
+- 已知的风险点？
+
+### 2. 静态检查
+- 读改动的代码，检查逻辑正确性
+- 检查边界条件和错误处理
+- 检查是否引入了安全漏洞（注入、XSS 等）
+- 检查是否破坏了已有接口或行为
+
+### 3. 动态验证
+- 运行已有的测试套件
+- 如果没有测试，手动构造测试场景
+- 检查构建是否通过
+- 如果有 linter/formatter，运行一下
+
+### 4. 输出验证报告
+
 ```
+## 验证报告
+
+### 验证对象
+[简要描述被验证的改动/假设]
+
+### 检查清单
+- [x] 逻辑正确性: 通过/发现问题
+- [x] 边界条件: ...
+- [x] 测试结果: X pass / Y fail
+- [x] 构建状态: 通过/失败
+- [ ] 安全检查: ...
+
+### 发现的问题
+1. [问题描述 + 严重程度 + 建议修复方式]
+
+### 结论
+✅ 验证通过 / ⚠️ 有待修复的问题 / ❌ 验证失败
+```
+
+## 核心原则
+- **全面但聚焦** — 覆盖主要风险点，但不要检查无关的东西
+- **给出证据** — "测试 X 通过了"、"第 42 行可能有空指针"，不要泛泛地说"看起来没问题"
+- **区分严重程度** — 阻塞性问题 vs 建议性改进
+- **可操作** — 发现问题就给出具体修复建议

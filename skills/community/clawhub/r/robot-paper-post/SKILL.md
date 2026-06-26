@@ -1,35 +1,171 @@
 ---
-name: "robot-paper-post"
-description: "深度拆解机器人/具身智能论文并生成技术推文；默认使用零额外安装的插图工作流，从 arXiv HTML 与项目页提取可直接插入文章的图片和图注"
-category: "other"
-source: "ClawHub"
-tags: [embodied-ai, paper, paper-analysis, robotics, screenshot, wechat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/robot-paper-post"
-sourceUrl: "https://clawhub.ai/skills/robot-paper-post"
+name: robot-paper-post
+description: 深度拆解机器人/具身智能论文并生成技术推文；默认使用零额外安装的插图工作流，从 arXiv HTML 与项目页提取可直接插入文章的图片和图注
 ---
 
-# robot-paper-post
+# 机器人论文推文撰写 Skill
 
-> 深度拆解机器人/具身智能论文并生成技术推文；默认使用零额外安装的插图工作流，从 arXiv HTML 与项目页提取可直接插入文章的图片和图注
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/robot-paper-post`
-- **Source URL:** [https://clawhub.ai/skills/robot-paper-post](https://clawhub.ai/skills/robot-paper-post)
+将机器人/具身智能论文转成适合公众号发布的技术推文，并把配图流程做成默认可复现能力。
 
-## Overview
+核心要求：
+- 多源检索：整合论文、代码、项目主页、演示视频
+- 核心拆解：提取问题定义、方法设计、实验数字、局限性
+- 技术溯源：梳理研究团队与相关工作的脉络
+- 深度撰写：生成结构化、硬核、可读的推文
+- 插图落地：把合适图片放到对应段落，不把“待插图占位符”留给用户手动收尾
 
+## 何时使用
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/robot-paper-post
+在以下场景触发：
+- 用户给出机器人/具身智能论文标题、arXiv ID、项目主页或论文链接，并要求写推文、技术解读、公众号文章
+- 用户希望补配图、补资源导航、补技术脉络
+- 用户希望把这套流程沉淀成稳定可复用的写作工作流
+
+## 默认工作流
+
+### 步骤 1：收集核心资源
+
+执行以下动作：
+1. 搜索并确认论文摘要页、HTML 正文页、PDF、代码仓库、项目主页、公开视频
+2. 记录作者、机构、论文标题、任务场景、方法缩写、核心实验基准
+3. 优先读取以下资源：
+   - arXiv 摘要页：确认问题定义与作者自述贡献
+   - arXiv HTML：提取 figure、表格、图注、实验数字
+   - GitHub / 项目主页：补充演示、图示、对外表述口径
+
+输出：完整资源清单 + 论文核心信息摘要
+
+### 步骤 2：执行零额外安装的插图流程
+
+遵循以下原则：
+1. 默认不要依赖 Node.js、Playwright、Chromium 之类需要额外安装的环境
+2. 不要假设 skill 安装阶段会自动执行 npm install；安装 skill 时通常只会安装文件本身
+3. 对于 arXiv 论文，优先使用 HTML 页面里的官方 figure 图片 URL 或下载这些官方图片
+4. 只有在“必须截整页截图 / GIF / canvas 内容”时，才把浏览器自动化当作可选增强方案，而不是硬依赖
+
+#### 2.1 首选路径：直接提取 arXiv figure
+
+优先采用以下方法之一：
+- 使用 `scripts/extract_arxiv_figures.ps1` 提取 figure 的编号、图注、原图 URL，并按需下载到本地
+- 或使用内置网页抓取能力，直接从 arXiv HTML 中提取 figure 的图片链接与图注
+
+Windows 下的推荐命令：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/extract_arxiv_figures.ps1 -ArxivId 2603.16666 -OutputDir .\paper_imgs -Download
 ```
+
+脚本会输出：
+- `paper_imgs/figures.json`：结构化 figure 清单
+- `paper_imgs/arxiv_fig_*.png`：下载到本地的论文图片（若启用 `-Download`）
+
+#### 2.2 首选插图策略
+
+按以下优先级选图：
+1. 问题设定 / 范式对比图
+2. 模型总体架构图
+3. 主结果图或关键结果表
+4. 真实世界实验图或项目页演示图
+5. 延迟、消融、效率图（仅在文章确实讨论这部分时插入）
+
+默认只插 3 到 5 张图，避免图多压过正文。
+
+#### 2.3 插图放置规则
+
+将图片插到最匹配的段落：
+- “为什么之前方法不行”后：放范式对比图
+- “模型怎么设计”后：放架构图
+- “实验结果”段内：放主结果图或表
+- “真实机器人/视频演示”段内：放真实世界图
+- “工程价值/速度/消融”段内：放延迟图或消融图
+
+插图格式：
+
+```markdown
+![Figure 1：简短图名](https://arxiv.org/html/2603.16666v1/x1.png)
+
+*图 1：用 1 到 2 句话解释这张图为什么值得看，以及它对应正文哪一段。*
+```
+
+#### 2.4 远程图与本地图的选择规则
+
+按以下规则决定：
+- 若用户只要求文章可直接预览：优先使用 arXiv 官方远程图片 URL，最快、最稳定、最接近可复现
+- 若用户要求离线交付、打包素材、发公众号后台：下载到文章目录并改为相对路径引用
+- 若项目主页没有独立原图链接，只能整页截图：把浏览器截图视为可选增强，不阻塞文章交付
+
+### 步骤 3：提炼论文信息
+
+执行以下分析：
+1. 提炼研究问题、方法动机、核心创新点
+2. 提取关键数字：成功率、推理延迟、泛化表现、硬件配置
+3. 区分“作者主张”和“可以被证据支撑的事实”
+4. 记录局限性与适用边界
+5. 标注最值得进正文的 3 到 5 个 figure
+
+必要时读取：
+- `references/paper-structure.md`
+- `references/tech-terms-glossary.md`
+- `references/research-teams.md`
+- `references/classic-papers.md`
+- `references/image-insertion-workflow.md`
+
+### 步骤 4：撰写公众号推文
+
+按照以下结构输出：
+1. 生成 3 个可选标题
+2. 写导语：先讲问题冲突，再讲为什么这篇工作值得看
+3. 写术语科普：只解释文章真正用到的术语，不堆术语表
+4. 写核心突破：按“痛点 → 方案 → 效果”展开
+5. 写实验表现：分仿真、基准、真实世界、速度/消融几个层次
+6. 写技术溯源：交代该工作回应了什么前作或代表性范式
+7. 写资源直达：论文、项目页、代码、视频
+
+如需快速起稿，读取 `assets/post-template.md`。
+
+### 步骤 5：把图片真正插入文章
+
+执行以下动作：
+1. 清点正文中的插图占位符或适合插图的小节
+2. 为每一张图补齐简短标题与解释性图注
+3. 若已经有本地图片，使用相对路径引用
+4. 若只有官方远程图片，直接使用官方 URL
+5. 将原来的“建议插图”或“占位说明”改写成真实插图，避免留下待办痕迹
+
+### 步骤 6：最终校验
+
+检查以下事项：
+- 所有实验数字与原文一致
+- 图与文一一对应，没有错位
+- 图注不是复读 caption，而是解释“为什么这张图重要”
+- 文章节奏自然，不像研究笔记堆砌
+- 资源链接完整有效
+- 若代码未公开，明确写出 `Code Coming Soon`
+
+## 关键经验
+
+默认采用“零额外安装插图路径”。
+
+原因：
+- skill 安装通常不会自动跑 npm install
+- Node.js + Playwright + Chromium 的环境容易导致安装阶段不可复现
+- 对于绝大多数 arXiv 论文，直接提取官方 figure URL 已经足够复现高质量图文文章
+- 浏览器截图只适合做增强，不适合做默认硬依赖
+
+## 资源索引
+
+- 推文结构模板：`references/paper-structure.md`
+- 技术术语库：`references/tech-terms-glossary.md`
+- 研究团队索引：`references/research-teams.md`
+- 经典论文索引：`references/classic-papers.md`
+- 配图工作流说明：`references/image-insertion-workflow.md`
+- 推文模板：`assets/post-template.md`
+- arXiv figure 提取脚本：`scripts/extract_arxiv_figures.ps1`
+
+## 注意事项
+
+- 只在需要时读取参考文件，避免把大段无关内容塞进上下文
+- 默认以“完成可发布的图文稿”为目标，而不是只给半成品提纲
+- 如已有浏览器自动化能力，可用来补整页截图；如没有，不要因此卡住交付

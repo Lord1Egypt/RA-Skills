@@ -1,35 +1,42 @@
 ---
-name: "微信公众号文章处理器"
-description: "微信公众号文章处理工具 - 自动抓取、结构化整理、保存到飞书文档。触发词：处理公众号文章、微信文章转飞书、公众号链接"
-category: "other"
-source: "ClawHub"
-tags: [article, feishu, wechat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-article-processor"
-sourceUrl: "https://clawhub.ai/skills/wechat-article-processor"
+name: wechat-article-processor
+description: 微信公众号文章处理工具 - 自动抓取、结构化整理、保存到飞书文档。触发词：处理公众号文章、微信文章转飞书、公众号链接
+author: Jarvis
+metadata:
+  openclaw:
+    emoji: 📱
+    tags: [wechat, feishu, article, processor]
 ---
 
-# 微信公众号文章处理器
+# 微信公众号文章处理工具
 
-> 微信公众号文章处理工具 - 自动抓取、结构化整理、保存到飞书文档。触发词：处理公众号文章、微信文章转飞书、公众号链接
+当用户发送微信公众号文章链接时，自动完成：
+1. 用浏览器抓取文章全文
+2. 结构化整理（标题、作者、时间、正文、来源（网址））
+3. 创建飞书云文档
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-article-processor`
-- **Source URL:** [https://clawhub.ai/skills/wechat-article-processor](https://clawhub.ai/skills/wechat-article-processor)
+## 工作流程
 
-## Overview
+1. **抓取**：browser 工具打开链接获取完整内容
+2. **提取**：解析标题、作者、发布时间、正文、来源（网址）
+3. **整理**：格式化为 Markdown，**必须进行结构化处理**：
+   - 添加文章元信息（作者、发布时间、来源）
+   - 提取关键要点/核心观点作为摘要
+   - 核心内容或者经典言论要引用原文
+   - 使用多级标题划分文章结构
+   - 重要段落可适当精简或提取关键句
+4. **保存**：feishu_create_doc 创建飞书文档
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-article-processor
+用户发送公众号链接时自动触发：
 ```
+用户：https://mp.weixin.qq.com/s/xxx
+→ 自动抓取 → 整理 → 存飞书 → 返回链接
+```
+
+## 注意事项
+
+- 微信文章可能需要登录才能访问完整内容
+- 如遇验证码，告知用户手动复制
+- 需要飞书授权

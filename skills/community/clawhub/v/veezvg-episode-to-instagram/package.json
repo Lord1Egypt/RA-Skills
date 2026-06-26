@@ -1,0 +1,19 @@
+{
+  "name": "episode-to-instagram",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for turning long-form video episodes into Instagram carousel posts and Reel drafts.",
+  "private": true,
+  "scripts": {
+    "check": "node --check scripts/capture-instagram-preview.js && node --check scripts/post-to-instagram.js && node --check scripts/prepare-instagram-video-draft.js && node --check scripts/generate-carousel.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "instagram",
+    "automation"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^3.2.3"
+  }
+}

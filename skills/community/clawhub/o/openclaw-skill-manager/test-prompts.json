@@ -1,0 +1,29 @@
+{
+  "test_prompts": [
+    {
+      "id": 1,
+      "name": "查询所有技能",
+      "prompt": "/skill list",
+      "expected": "展示系统内置、全局、主脑、专才四个空间的技能列表，以表格形式呈现，包含技能名称、状态和简洁中文用途描述",
+      "type": "happy_path"
+    },
+    {
+      "id": 2,
+      "name": "安装技能到指定空间",
+      "prompt": "/skill install darwin-skill --space main",
+      "expected": "执行安装流程，根据技能名称判断所属空间（darwin-skill 属于主脑空间），使用 clawhub install 命令安装到正确路径",
+      "type": "happy_path"
+    },
+    {
+      "id": 3,
+      "name": "模糊场景 - 搜索技能",
+      "prompt": "/skill search stock",
+      "expected": "在所有技能空间中搜索包含 'stock' 关键词的技能，返回匹配结果列表，包含技能名称、所在空间和用途",
+      "type": "ambiguous"
+    }
+  ],
+  "notes": {
+    "design_rationale": "覆盖 skill-manager 最核心的三个功能：查询列表、安装技能、搜索技能。包含典型场景和稍复杂的搜索场景。",
+    "coverage": ["动态Agent发现", "多空间架构", "技能查询", "技能安装", "技能搜索"]
+  }
+}

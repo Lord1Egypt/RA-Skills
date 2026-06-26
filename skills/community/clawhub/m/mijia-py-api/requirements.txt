@@ -1,0 +1,9 @@
+# Python 依赖 / Python Dependencies
+# 安装命令 / Install: pip install -r requirements.txt
+
+mijiaAPI>=3.0.0
+pillow
+pycryptodome
+qrcode
+requests
+tzlocal

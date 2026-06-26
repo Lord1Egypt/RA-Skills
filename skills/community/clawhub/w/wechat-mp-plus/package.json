@@ -1,0 +1,8 @@
+{
+  "name": "wechat-mp-publisher",
+  "version": "1.0.0",
+  "description": "微信公众号自动化管理 OpenClaw Skill - 草稿发布、菜单管理、自动回复、Markdown排版",
+  "author": "huuuwnnn-droid",
+  "license": "MIT",
+  "keywords": ["wechat", "mp", "公众号", "openclaw", "skill"]
+}

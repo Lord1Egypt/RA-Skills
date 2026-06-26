@@ -1,0 +1,75 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+403 ForbiddenOperationDenie
+d.Customization
+NotSupportedOperation is
+denied because
+the specified
+version of the
+FoundationMod
+el is not
+configured for
+the specified
+type of
+customization.基础模型的版本
+不支持该训练方
+法，不支持该操
+作。
+403 ForbiddenOperationDenie
+d.ServiceNotOpe
+nOperation is
+denied because
+the model
+service is
+unavailable,
+please go to the
+Volcano Ark
+console
+activation
+management
+page to activate
+the
+corresponding
+model service, or
+submit a work
+order to contact
+us.模型服务不可
+用，不支持该操
+作。请前往火山
+方舟控制台激活
+模型服务，或提
+交工单联系我
+们。
+403 ForbiddenOperationDenie
+d.ServiceOverdu
+eOperation is
+denied because
+your account
+balance is
+overdue, please
+go to the Volc
+Trading Center
+to recharge in
+order to
+continue using
+the service.您的账单已逾
+期，不支持该操
+作。请前往火山
+费用中心充值。
+403 ForbiddenAccountOverdue
+ErrorThe request
+failed because
+your account has
+an overdue
+balance. Request
+ID:当前账号欠费
+（余额<0），如
+需继续调用，请
+前往 火山引擎费
+用中心
+  进行
+充值，详细操作API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 462/485

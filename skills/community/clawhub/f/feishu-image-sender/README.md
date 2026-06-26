@@ -1,0 +1,125 @@
+# Feishu Image Sender Skill
+
+## 📸 飞书图片发送工具
+
+这个 skill 用于在飞书中发送图片消息，并处理相关的权限和文件管理。
+
+## 🚀 快速开始
+
+### 1. 确保飞书权限已授权
+
+如果遇到权限错误，请访问飞书开放平台授权所需的权限。
+
+### 2. 准备图片文件
+
+将图片文件放到 workspace 目录：
+
+```bash
+~/.openclaw/workspace/
+```
+
+### 3. 发送图片
+
+在 OpenClaw 中使用 `message` 工具发送：
+
+```javascript
+message({
+  action: "send",
+  channel: "feishu",
+  message: "图片说明文字",
+  media: "/path/to/workspace/test.png"
+})
+```
+
+## 📂 文件结构
+
+```
+feishu-image-sender/
+├── SKILL.md         # Skill 详细文档
+├── README.md        # 本文件
+└── send-image.sh    # 辅助脚本（检查图片文件）
+```
+
+## 🛠️ 使用辅助脚本
+
+### 检查图片文件
+
+```bash
+cd ~/.openclaw/workspace/skills/feishu-image-sender
+./send-image.sh test.png "这是测试图片"
+```
+
+脚本会：
+- ✅ 检查文件是否存在
+- ✅ 验证文件格式
+- ✅ 生成发送指令
+
+## 📋 支持的图片格式
+
+- PNG
+- JPG / JPEG
+- GIF
+- WebP
+
+## ⚠️ 常见问题
+
+### 权限错误
+
+**错误信息：** `permission-error`
+
+**解决方法：**
+1. 访问权限授权链接
+2. 让管理员授权
+3. 重试发送
+
+### 文件不存在
+
+**错误信息：** `图片文件不存在`
+
+**解决方法：**
+1. 检查文件路径是否正确
+2. 确保文件在 workspace 目录
+3. 使用 `find` 命令查找文件
+
+### 格式不支持
+
+**错误信息：** `不支持的图片格式`
+
+**解决方法：**
+1. 转换图片格式（使用 ffmpeg 或 ImageMagick）
+2. 使用支持的格式重新发送
+
+## 💡 使用技巧
+
+### 批量发送图片
+
+```javascript
+const images = ["test1.png", "test2.png", "test3.png"];
+
+for (const img of images) {
+  message({
+    action: "send",
+    channel: "feishu",
+    message: `发送图片：${img}`,
+    media: `/path/to/workspace/${img}`
+  });
+}
+```
+
+### 查找所有图片
+
+```bash
+find ~/.openclaw/workspace -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.webp" \)
+```
+
+## 📝 维护记录
+
+- **2026-02-19**: 创建 skill，固化飞书图片发送流程
+  - 创建 SKILL.md 详细文档
+  - 创建 send-image.sh 辅助脚本
+  - 创建 README.md 使用说明
+
+## 🔗 相关资源
+
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [飞书开放平台](https://open.feishu.cn)

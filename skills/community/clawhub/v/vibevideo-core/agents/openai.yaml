@@ -1,0 +1,16 @@
+interface:
+  display_name: "VibeVideoIO AI Script to Video"
+  short_description: "Create AI videos and handle Studio login/project management."
+  default_prompt: >-
+    Use $vibevideoio-ai-script-to-video when the user wants to create or generate an
+    AI video, turn a prompt/script/story into a video, paste a screenplay and ask
+    to make it into a video, log into Studio, or manage Studio projects. Common
+    triggers include requests like "帮我创作一个视频", "帮我做个视频", "生成视频",
+    "把这个剧本做成 AI 视频", "我现在有个剧本，想把它做成 AI 视频", "create a
+    video", "make me a video", "generate a video from this script", "turn this
+    script into a video", "log into bollo.video", and "log into vibevideo.io".
+    Unless the user explicitly specifies a site, use bollo.video for Chinese
+    requests and vibevideo.io for English requests.
+
+policy:
+  allow_implicit_invocation: true

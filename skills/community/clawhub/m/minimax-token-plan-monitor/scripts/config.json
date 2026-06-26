@@ -1,0 +1,6 @@
+{
+  "alertThreshold": {
+    "fiveHourPercent": 80,
+    "weekPercent": 80
+  }
+}

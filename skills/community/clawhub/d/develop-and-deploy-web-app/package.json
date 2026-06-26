@@ -1,0 +1,10 @@
+{
+  "name": "develop-and-deploy-web-app",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "npm run test:fast && npm run test:full",
+    "test:fast": "node --test --test-concurrency=1 tests/fast/*.test.js",
+    "test:full": "node --test --test-concurrency=1 tests/full/*.test.js"
+  }
+}

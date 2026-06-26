@@ -1,0 +1,8 @@
+{
+  "name": "wip-repo-permissions-hook",
+  "version": "1.0.0",
+  "description": "Blocks repos from going public without a -private counterpart. Protects internal plans, todos, and dev context from exposure.",
+  "lifecycle": {
+    "before_tool_use": "./guard.mjs"
+  }
+}

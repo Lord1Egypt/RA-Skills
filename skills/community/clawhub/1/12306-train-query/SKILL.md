@@ -1,35 +1,46 @@
 ---
-name: "12306 Train Query"
-description: "查询12306火车票余票信息。当用户询问火车票、查询余票、购买火车票、查火车、火车出行等相关问题时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/12306-train-query"
-sourceUrl: "https://clawhub.ai/skills/12306-train-query"
+name: 12306-train-query
+description: 查询12306火车票余票信息。当用户询问火车票、查询余票、购买火车票、查火车、火车出行等相关问题时使用此技能。
 ---
 
-# 12306 Train Query
+# 12306火车票查询
 
-> 查询12306火车票余票信息。当用户询问火车票、查询余票、购买火车票、查火车、火车出行等相关问题时使用此技能。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/12306-train-query`
-- **Source URL:** [https://clawhub.ai/skills/12306-train-query](https://clawhub.ai/skills/12306-train-query)
+- 查询任意两站之间的火车票余票
+- 支持日期选择
+- 显示车次、出发/到达时间、历时、余票信息
 
-## Overview
+## 使用方法
 
+运行脚本查询火车票：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/12306-train-query
+node scripts/train_query.js [出发站] [到达站] [日期]
 ```
+
+### 参数说明
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| 出发站 | 出发城市/车站名 | 长沙、北京、上海 |
+| 到达站 | 到达城市/车站名 | 北京、深圳、广州 |
+| 日期 | 查询日期 (YYYY-MM-DD) | 2026-03-16 |
+
+### 示例
+
+```bash
+# 查询明天长沙到北京的火车票
+node scripts/train_query.js 长沙 北京 2026-03-16
+
+# 查询今天上海到深圳的火车票
+node scripts/train_query.js 上海 深圳 2026-03-15
+```
+
+## 输出格式
+
+脚本会输出：
+- 车次类型 (G高铁/D动车/Z直达/T特快/K快速)
+- 出发/到达站
+- 发车时间、到达时间、历时
+- 余票信息 (商务座、特等座、一等座、二等座、硬卧、软卧等)

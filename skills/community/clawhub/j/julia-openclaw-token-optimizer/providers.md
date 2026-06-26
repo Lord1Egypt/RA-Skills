@@ -1,0 +1,1 @@
+# LLM Providers Price Sheet\n\nUpdate via web_search.\n\nGrok: $X/M in, $Y/M out\nClaude: ...\n\nAPI Endpoints:\n- OpenAI: https://openai.com/api/pricing\n- xAI: https://x.ai/pricing

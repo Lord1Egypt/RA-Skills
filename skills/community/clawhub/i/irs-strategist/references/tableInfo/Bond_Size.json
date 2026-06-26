@@ -1,0 +1,181 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "MainCode",
+        "columnChiName": "债券统一代码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "债券统一代码（MainCode）：与“债券代码对照表（Bond_Code）”中的“统一内部编码（MainCode）”关联，得到债券的交易代码、债券简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "InforSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "74.1"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "TotalSize",
+        "columnChiName": "总规模(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "ExchangeAndIBSize",
+        "columnChiName": "1、交易所及银行间规模(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.75"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "ExchangeSize",
+        "columnChiName": "#交易所规模(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "23.94"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "IBSize",
+        "columnChiName": "#银行间规模(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "70.43"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "OTCSize",
+        "columnChiName": "2、柜台规模(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.16"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "OtherSize",
+        "columnChiName": "3、其他规模(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.22"
+    },
+    {
+        "columnOrderId": 12,
+        "columnName": "CurrentSizeChange",
+        "columnChiName": "本次规模增减(百万元)",
+        "columnType": "decimal(19,8)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "57.42"
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "AlterationRemark",
+        "columnChiName": "变动原因说明",
+        "columnType": "varchar(500)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "AlterationType",
+        "columnChiName": "变动原因类别",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "变动原因类别(AlterationType)与(CT_SystemConst)表中的DM字段关联，令LB = 1426，得到变动原因类别的具体描述：10-债券发行，20-债券增发，21-债券合并上市，22-增发债券合并上市，23-债券回售，25-债券赎回，26-债券随买，27-债券随卖，30-债券调换，40-财政部购回，50-转债转股，60-债券兑付，70-债券分期兑付，80-债券置换，90-债务回购，100-违约和解，999-其他。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

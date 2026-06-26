@@ -1,0 +1,345 @@
+{
+  "name": "Dental AI — 04 No-Show Follow-Up",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 19 * * 1-6"
+            }
+          ]
+        }
+      },
+      "name": "Daily at 7PM (After Clinic Hours)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "n4-cron"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Appointments",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n4-read",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst today = now.toISOString().split('T')[0];\nconst items = $input.all();\nconst noShows = [];\n\nfor (const item of items) {\n  const appt = item.json;\n  const apptDate = new Date(appt.appointment_date);\n  const apptDay = appt.appointment_date?.split('T')[0] || '';\n\n  // Find today's confirmed appointments where showed_up is empty or 'no'\n  if (apptDay === today && appt.status === 'confirmed' && (!appt.showed_up || appt.showed_up === 'no' || appt.showed_up === '')) {\n    // Only if appointment time has passed\n    if (apptDate < now) {\n      noShows.push({\n        json: {\n          ...appt,\n          follow_up_type: 'no_show',\n          sms_message: `Hi ${appt.patient_name}, we noticed you missed your ${appt.service_type} appointment today. We hope everything is okay! Would you like to reschedule? Reply YES to rebook or call us at ${$env.DENTAL_CLINIC_PHONE || 'the clinic'}. We look forward to hearing from you.`,\n          follow_up_at: now.toISOString()\n        }\n      });\n    }\n  }\n}\n\nif (noShows.length === 0) {\n  return [{ json: { no_noshows: true, count: 0 } }];\n}\n\nreturn noShows;"
+      },
+      "name": "Find No-Shows",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        400
+      ],
+      "id": "n4-find"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-noshows",
+              "leftValue": "={{ $json.no_noshows }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Any No-Shows?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        900,
+        400
+      ],
+      "id": "n4-if"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.patient_phone }}",
+        "body": "={{ $json.sms_message }}"
+      },
+      "name": "Send Follow-Up SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        300
+      ],
+      "id": "n4-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "appointment_id": "={{ $json.appointment_id }}",
+            "status": "no_show",
+            "showed_up": "no",
+            "follow_up_sent": "yes",
+            "follow_up_at": "={{ $json.follow_up_at }}"
+          },
+          "matchingColumns": [
+            "appointment_id"
+          ],
+          "schema": [
+            {
+              "id": "appointment_id",
+              "displayName": "appointment_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Mark as No-Show",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1140,
+        480
+      ],
+      "id": "n4-update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ assistantId: $env.VAPI_NOSHOW_ASSISTANT_ID, customer: { number: $json.patient_phone, name: $json.patient_name }, metadata: { appointment_id: $json.appointment_id, service_type: $json.service_type, original_date: $json.appointment_date, follow_up_type: 'no_show' } }) }}",
+        "options": {}
+      },
+      "name": "Follow-Up Call (Vapi)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        300
+      ],
+      "id": "n4-vapi"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_STAFF_EMAIL}}",
+        "subject": "=No-Show Report: {{ $json.patient_name }} — {{ $json.service_type }}",
+        "html": "=<h2>No-Show Alert</h2><p><strong>{{ $json.patient_name }}</strong> did not show up for their <strong>{{ $json.service_type }}</strong> appointment scheduled for <strong>{{ $json.appointment_date }}</strong>.</p><p>Phone: {{ $json.patient_phone }}</p><p>Follow-up SMS and call have been initiated automatically.</p><p>The available slot can be filled from the waitlist if applicable.</p>",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Notify Staff of No-Show",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1380,
+        480
+      ],
+      "id": "n4-notify",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/dental-ai/cancel-appointment",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ action: 'fill_from_waitlist', appointment_date: $json.appointment_date, appointment_end: $json.appointment_end, service_type: $json.service_type, freed_by: 'no_show', original_patient: $json.patient_name }) }}",
+        "options": {}
+      },
+      "name": "Trigger Waitlist Fill",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        660
+      ],
+      "id": "n4-waitlist"
+    },
+    {
+      "parameters": {},
+      "name": "No No-Shows Today",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        660
+      ],
+      "id": "n4-noop"
+    }
+  ],
+  "connections": {
+    "Daily at 7PM (After Clinic Hours)": {
+      "main": [
+        [
+          {
+            "node": "Get Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Appointments": {
+      "main": [
+        [
+          {
+            "node": "Find No-Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find No-Shows": {
+      "main": [
+        [
+          {
+            "node": "Any No-Shows?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any No-Shows?": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-Up SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mark as No-Show",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No No-Shows Today",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Follow-Up SMS": {
+      "main": [
+        [
+          {
+            "node": "Follow-Up Call (Vapi)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark as No-Show": {
+      "main": [
+        [
+          {
+            "node": "Notify Staff of No-Show",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Trigger Waitlist Fill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

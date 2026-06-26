@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 知识仓库</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Microsoft YaHei', sans-serif;
+    background: #0f0f1a; color: #e0e0e0;
+    min-height: 100vh; font-size: 18px;
+  }
+
+  /* ─── 顶部 ─── */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 30px 20px 20px; text-align: center;
+    border-bottom: 1px solid #2a2a4a;
+  }
+  .header h1 { font-size: 32px; color: #fff; }
+  .header p { color: #888; font-size: 15px; margin-top: 6px; }
+
+  /* ─── Tab 导航 ─── */
+  .tabs {
+    display: flex; max-width: 900px; margin: 0 auto;
+    border-bottom: 1px solid #2a2a4a; padding: 0 20px;
+  }
+  .tab-btn {
+    padding: 14px 28px; font-size: 16px; cursor: pointer;
+    background: transparent; border: none; color: #666;
+    border-bottom: 3px solid transparent; transition: all 0.2s;
+  }
+  .tab-btn:hover { color: #aaa; }
+  .tab-btn.active { color: #6c5ce7; border-bottom-color: #6c5ce7; }
+
+  /* ─── 搜索 tab ─── */
+  #tab-search .search-box {
+    max-width: 900px; margin: 24px auto 0; padding: 0 20px;
+  }
+  #tab-search .search-box form {
+    display: flex; gap: 10px;
+    background: #1e1e36; border: 1px solid #3a3a5a;
+    border-radius: 12px; padding: 6px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  #tab-search .search-box input {
+    flex: 1; border: none; background: transparent;
+    padding: 16px 20px; font-size: 20px; color: #fff; outline: none;
+  }
+  #tab-search .search-box input::placeholder { color: #555; }
+  #tab-search .search-box button {
+    background: #6c5ce7; color: #fff; border: none;
+    border-radius: 8px; padding: 14px 32px; font-size: 18px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  #tab-search .search-box button:hover { background: #7c6cf7; }
+  #tab-search .filters {
+    max-width: 900px; margin: 14px auto 0; padding: 0 20px;
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  #tab-search .filters label {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 15px; color: #888; cursor: pointer;
+  }
+  #tab-search .filters input[type=radio] { accent-color: #6c5ce7; }
+
+  /* ─── 搜索结果卡片 ─── */
+  .results { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+  .result-card {
+    background: #1a1a2e; border: 1px solid #2a2a4a;
+    border-radius: 10px; padding: 20px; margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .result-card:hover { border-color: #6c5ce7; }
+  .result-meta { font-size: 14px; color: #666; margin-bottom: 10px; }
+  .result-meta .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    font-size: 13px; margin-right: 6px;
+  }
+  .tag-bilibili { background: #1a3a4a; color: #5bc0eb; }
+  .tag-note { background: #2a3a1a; color: #8bc34a; }
+  .tag-wechat { background: #3a2a1a; color: #ff9800; }
+  .tag-other { background: #2a2a2a; color: #aaa; }
+  .result-title { font-size: 17px; color: #fff; margin-bottom: 6px; }
+  .result-title a { color: #6c5ce7; text-decoration: none; }
+  .result-title a:hover { text-decoration: underline; }
+  .result-text { font-size: 15px; color: #999; line-height: 1.7; }
+  .result-text em { color: #ffd700; font-style: normal; }
+  .result-score { font-size: 13px; color: #555; margin-top: 6px; }
+
+  /* ─── Tab 容器 ─── */
+  .tab-content { display: none; max-width: 900px; margin: 20px auto; padding: 0 20px; }
+  .tab-content.active { display: block; }
+
+  /* ─── 管理 tab ─── */
+  .stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: #1a1a2e; border: 1px solid #2a2a4a;
+    border-radius: 10px; padding: 20px; text-align: center;
+  }
+  .stat-card .num { font-size: 36px; color: #6c5ce7; font-weight: bold; }
+  .stat-card .label { font-size: 14px; color: #888; margin-top: 4px; }
+
+  .file-list { margin-top: 16px; }
+  .file-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; background: #1a1a2e;
+    border: 1px solid #2a2a4a; border-radius: 8px;
+    margin-bottom: 8px; font-size: 15px;
+  }
+  .file-row .source-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 12px; flex-shrink: 0;
+  }
+  .file-row .fname { flex: 1; color: #ccc; word-break: break-all; }
+  .file-row .fsize { color: #666; font-size: 13px; flex-shrink: 0; }
+  .file-row .indexed { color: #4caf50; font-size: 13px; flex-shrink: 0; }
+  .file-row .not-indexed { color: #ff5722; font-size: 13px; flex-shrink: 0; }
+
+  /* ─── 设置 tab ─── */
+  .setting-group {
+    background: #1a1a2e; border: 1px solid #2a2a4a;
+    border-radius: 10px; padding: 20px; margin-bottom: 16px;
+  }
+  .setting-group h3 { font-size: 18px; color: #fff; margin-bottom: 12px; }
+  .setting-group label { display: block; margin-bottom: 8px; font-size: 15px; color: #aaa; }
+  .setting-group input[type=text] {
+    width: 100%; padding: 12px 14px; font-size: 16px;
+    background: #0f0f1a; border: 1px solid #3a3a5a;
+    border-radius: 8px; color: #fff; outline: none;
+  }
+  .setting-group input[type=text]:focus { border-color: #6c5ce7; }
+
+  .src-list { margin: 12px 0; }
+  .src-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; background: #0f0f1a;
+    border: 1px solid #2a2a4a; border-radius: 6px;
+    margin-bottom: 6px; font-size: 15px;
+  }
+  .src-item .name { flex: 1; color: #ccc; }
+  .src-item .remove-link {
+    background: none; border: none; color: #666; cursor: pointer;
+    font-size: 13px; padding: 4px 8px; text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .src-item .remove-link:hover { color: #e74c3c; }
+  .add-src-row {
+    display: flex; gap: 8px; margin-top: 8px;
+  }
+  .add-src-row input { flex: 1; }
+  .add-src-row button {
+    padding: 10px 20px; background: #4caf50; color: #fff;
+    border: none; border-radius: 8px; cursor: pointer; font-size: 15px;
+  }
+
+  .btn {
+    padding: 12px 28px; border: none; border-radius: 8px;
+    font-size: 16px; cursor: pointer; transition: 0.2s;
+  }
+  .btn-primary { background: #6c5ce7; color: #fff; }
+  .btn-primary:hover { background: #7c6cf7; }
+  .btn-success { background: #4caf50; color: #fff; }
+  .btn-success:hover { background: #5cbf60; }
+  .btn-danger { background: #e74c3c; color: #fff; }
+  .btn-danger:hover { background: #f75c4c; }
+
+  .toast {
+    position: fixed; top: 20px; right: 20px;
+    padding: 14px 24px; border-radius: 8px; font-size: 15px;
+    z-index: 999; transition: opacity 0.3s;
+  }
+  .toast.success { background: #4caf50; color: #fff; }
+  .toast.error { background: #e74c3c; color: #fff; }
+  .toast.info { background: #333; color: #e0e0e0; }
+
+  .loading { text-align: center; padding: 40px; color: #666; font-size: 16px; }
+  .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  .status-dot.online { background: #4caf50; }
+  .status-dot.offline { background: #e74c3c; }
+
+  /* ── Folder Browser Modal ── */
+  .modal-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; }
+  .modal-backdrop.active { display:flex; }
+  .modal-box { background:#12122a; border:1px solid #3a3a5a; border-radius:10px; width:540px; max-width:90vw; max-height:70vh; display:flex; flex-direction:column; overflow:hidden; }
+  .modal-header { padding:14px 18px; border-bottom:1px solid #3a3a5a; font-size:16px; font-weight:700; display:flex; justify-content:space-between; align-items:center; }
+  .modal-header button { background:none; border:none; color:#999; font-size:20px; cursor:pointer; }
+  .modal-path { padding:8px 18px; font-size:12px; color:#888; border-bottom:1px solid #1a1a35; word-break:break-all; }
+  .modal-body { flex:1; overflow-y:auto; padding:8px 12px; }
+  .modal-footer { padding:12px 18px; border-top:1px solid #3a3a5a; display:flex; gap:8px; justify-content:flex-end; }
+  .fb-item { padding:8px 12px; border-radius:4px; cursor:pointer; font-size:14px; color:#ccc; transition:background 0.15s; }
+  .fb-item:hover { background:#2a2a4a; color:#fff; }
+  .fb-empty { padding:16px; text-align:center; color:#666; font-size:14px; }
+</style>
+</head>
+<body>
+
+<!-- 顶部 -->
+<div class="header">
+  <h1>📖 知识仓库</h1>
+  <p>搜索与管理你的资料</p>
+</div>
+
+<!-- Tab 导航 -->
+<div class="tabs" id="tabNav">
+  <button class="tab-btn active" data-tab="search">🔍 搜索</button>
+  <button class="tab-btn" data-tab="manage">📊 管理</button>
+  <button class="tab-btn" data-tab="settings">⚙️ 设置</button>
+</div>
+
+<!-- =============== 搜索 Tab =============== -->
+<div id="tab-search" class="tab-content active">
+  <div class="search-box">
+    <form id="searchForm">
+      <input type="text" id="query" placeholder="输入问题，例如「红烧肉怎么做」「Docker 部署流程」" autofocus>
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+  <div style="text-align:center;font-size:13px;color:#555;padding:4px 0 12px;">💡 用自然语言描述你想找的内容，越具体越准</div>
+  <div class="filters" id="filters">
+    <label class="active"><input type="radio" name="source" value="" checked> 全部</label>
+    <label><input type="radio" name="source" value="bilibili"> 📹 B站</label>
+    <label><input type="radio" name="source" value="note"> 📚 笔记</label>
+    <label><input type="radio" name="source" value="wechat"> 📱 公众号</label>
+    <span style="color:#666;margin:0 8px;">|</span>
+    <input type="text" id="authorFilter" placeholder="按作者筛选（可选）" style="padding:6px 12px;font-size:14px;background:#1e1e36;border:1px solid #3a3a5a;border-radius:6px;color:#ccc;outline:none;width:180px;">
+  </div>
+  <div id="results" class="results"></div>
+  <div id="searchStats" class="stats" style="text-align:center;font-size:14px;color:#444;padding:20px;"></div>
+</div>
+
+<!-- =============== 管理 Tab =============== -->
+<div id="tab-manage" class="tab-content">
+  <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="btn btn-success" id="btnReindex" onclick="reindex()">🔄 重新索引</button>
+  </div>
+  <div id="statsArea" class="loading">加载中...</div>
+  <div id="indexStatus"></div>
+  <div id="fileListArea"></div>
+</div>
+
+<!-- =============== 设置 Tab =============== -->
+<div id="tab-settings" class="tab-content">
+  <div class="setting-group">
+    <h3>📂 知识仓库路径</h3>
+    <label>文件存放在哪个目录？</label>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="knowledgeDir" placeholder="~/workspace/knowledge" style="flex:1;padding:10px 14px;font-size:15px;background:#0f0f1a;border:1px solid #3a3a5a;border-radius:6px;color:#fff;outline:none;">
+      <button onclick="openFolderBrowser()" style="padding:10px 16px;font-size:15px;background:#3a3a5a;border:1px solid #5a5a8a;border-radius:6px;color:#fff;cursor:pointer;white-space:nowrap;">📂 选择</button>
+    </div>
+    <p style="font-size:13px;color:#666;margin-top:6px;">修改后需要重新索引才能生效</p>
+  </div>
+
+  <div class="setting-group">
+    <h3>📁 扫描子目录</h3>
+    <label>索引脚本会扫描这些子目录下的 .txt / .md 文件</label>
+    <div id="sourceList" class="src-list"></div>
+    <div class="add-src-row">
+      <input type="text" id="newSrc" placeholder="输入新目录名，例如 pdf-notes" style="flex:1;padding:10px 14px;font-size:15px;background:#0f0f1a;border:1px solid #3a3a5a;border-radius:6px;color:#fff;outline:none;">
+      <button onclick="addSource()">+ 添加</button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <h3>🧠 Ollama 状态</h3>
+    <div id="ollamaStatus"><span class="loading">检测中...</span></div>
+  </div>
+
+  <div class="setting-group">
+    <h3>💾 保存</h3>
+    <button class="btn btn-primary" onclick="saveSettings()">保存设置</button>
+    <span id="saveMsg" style="margin-left:12px;font-size:14px;color:#4caf50;"></span>
+  </div>
+</div>
+
+<script>
+// ─── Tab 切换（事件委托） ───
+document.getElementById('tabNav').addEventListener('click', function(e) {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  const name = btn.getAttribute('data-tab');
+  if (!name) return;
+
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  const content = document.getElementById('tab-' + name);
+  if (content) content.classList.add('active');
+
+  if (name === 'manage') loadStats();
+  if (name === 'settings') loadSettings();
+});
+
+// ─── 搜索 ───
+const form = document.getElementById('searchForm');
+const queryInput = document.getElementById('query');
+const resultsDiv = document.getElementById('results');
+const searchStats = document.getElementById('searchStats');
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('q')) queryInput.value = params.get('q');
+const src = params.get('source');
+if (src) document.querySelectorAll('input[name="source"]').forEach(r => { if (r.value === src) r.checked = true; });
+const auth = params.get('author');
+if (auth) document.getElementById('authorFilter').value = auth;
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const q = queryInput.value.trim();
+  if (!q) return;
+  const source = document.querySelector('input[name="source"]:checked')?.value || '';
+  const author = document.getElementById('authorFilter')?.value.trim() || '';
+
+  const url = new URL(window.location);
+  url.searchParams.set('q', q);
+  if (source) url.searchParams.set('source', source); else url.searchParams.delete('source');
+  if (author) url.searchParams.set('author', author); else url.searchParams.delete('author');
+  window.history.replaceState({}, '', url);
+
+  resultsDiv.innerHTML = '<div class="loading">搜索中...</div>';
+  searchStats.textContent = '';
+
+  try {
+    const resp = await fetch('/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: q, source: source, author: author, top: 10 })
+    });
+    const data = await resp.json();
+    renderSearch(data);
+  } catch (err) {
+    resultsDiv.innerHTML = '<div class="loading" style="color:#e74c3c;">❌ 搜索失败，请确认服务正在运行</div>';
+  }
+});
+
+function renderSearch(data) {
+  if (data.error) { resultsDiv.innerHTML = '<div class="loading" style="color:#e74c3c;">❌ ' + data.error + '</div>'; return; }
+  if (!data.results || data.results.length === 0) {
+    resultsDiv.innerHTML = '<div class="loading">😴 没有找到相关结果<br><small style="color:#555;">试试换个说法，或加更多关键词</small></div>'; searchStats.textContent = ''; return;
+  }
+  const labels = { bilibili:'B站', note:'笔记', wechat:'公众号', other:'其他' };
+  const icons = { bilibili:'📹', note:'📚', wechat:'📱', other:'📄' };
+  let html = '';
+  data.results.forEach(r => {
+    const st = r.source_type || 'other';
+    const sl = r.source_label || labels[st] || st;
+    html += '<div class="result-card">';
+    html += '<div class="result-meta"><span class="tag tag-' + st + '">' + (icons[st]||'📁') + ' ' + sl + '</span>';
+    if (r.author) html += ' 👤 ' + esc(r.author);
+    if (r.date) html += ' 📅 ' + esc(r.date);
+    html += '</div>';
+    const title = esc(r.title || '');
+    if (r.bvid) html += '<div class="result-title">📹 <a href="https://www.bilibili.com/video/' + esc(r.bvid) + '/" target="_blank">' + title + '</a></div>';
+    else html += '<div class="result-title">' + title + '</div>';
+    const text = esc(r.text.length > 400 ? Array.from(r.text).slice(0,400).join('') + '...' : r.text);
+    html += '<div class="result-text">' + highlight(text, queryInput.value) + '</div>';
+    html += '<div class="result-score">相关度: ' + (r.score * 100).toFixed(0) + '%</div></div>';
+  });
+  resultsDiv.innerHTML = html;
+  searchStats.textContent = '📊 共 ' + data.results.length + ' 条结果';
+}
+
+function esc(s) {
+  const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+}
+function highlight(text, query) {
+  const words = query.split(/[\s,，。、]+/).filter(w => w.length > 1);
+  let r = esc(text);
+  words.forEach(w => { r = r.replace(new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi'), '<em>$1</em>'); });
+  return r;
+}
+
+// 自动搜索（页面加载时如果 URL 有参数）
+try {
+  if (form && queryInput && queryInput.value) {
+    form.dispatchEvent(new Event('submit'));
+  }
+} catch(e) { /* 页面载入时若有错误不阻塞后续交互 */ }
+
+// ─── 管理 ───
+async function loadStats() {
+  const statsArea = document.getElementById('statsArea');
+  const fileListArea = document.getElementById('fileListArea');
+  const indexStatus = document.getElementById('indexStatus');
+  statsArea.innerHTML = '<div class="loading">加载中...</div>';
+
+  try {
+    const resp = await fetch('/api/stats');
+    const data = await resp.json();
+    if (data.error) { statsArea.innerHTML = '<div class="loading" style="color:#e74c3c;">❌ ' + data.error + '</div>'; return; }
+
+    // 统计卡片
+    const totalSources = Object.keys(data.index?.source_stats || {}).length;
+    statsArea.innerHTML = '<div class="stat-grid">' +
+      '<div class="stat-card"><div class="num">' + (data.index?.total_chunks || 0) + '</div><div class="label">📄 索引段落</div></div>' +
+      '<div class="stat-card"><div class="num">' + totalSources + '</div><div class="label">📂 来源类别</div></div>' +
+      '<div class="stat-card"><div class="num">' + (data.files?.length || 0) + '</div><div class="label">📁 知识库文件</div></div>' +
+      '</div>';
+
+    if (data.index?.source_stats) {
+      let shtml = '<div style="margin-bottom:16px;font-size:14px;color:#888;">各来源：';
+      for (const [k,v] of Object.entries(data.index.source_stats)) {
+        shtml += ' <span style="margin-right:12px;">' + k + ': ' + v + '段</span>';
+      }
+      shtml += '</div>';
+      statsArea.innerHTML += shtml;
+    }
+
+    // Ollama 状态
+    const ollama = data.ollama || {};
+    const dotClass = ollama.online ? 'online' : 'offline';
+    const embModel = (data.embed_model?.current) || '未知';
+    const dotLabel = ollama.online ? (ollama.embed_ready ? '✅ 在线（' + embModel + ' 就绪）' : '⚠️ 在线但未下载向量模型（' + embModel + '）') : '❌ 离线';
+    indexStatus.innerHTML = '<div style="font-size:14px;color:#888;margin-bottom:16px;"><span class="status-dot ' + dotClass + '"></span> Ollama: ' + dotLabel + '</div>';
+
+    // 文件列表
+    const files = data.files || [];
+    if (files.length === 0) {
+      fileListArea.innerHTML = '<div class="loading">暂无文件，去"设置"添加目录</div>';
+      return;
+    }
+    const indexedNames = new Set(data.indexed_files || []);
+    let flist = '<div class="file-list" style="margin-top:8px;">';
+    files.forEach(f => {
+      const baseDir = f.dir || '根目录';
+      const isIndexed = indexedNames.has(f.name) || indexedNames.has(f.path);
+      flist += '<div class="file-row">';
+      flist += '<span class="source-tag tag-' + (f.dir || 'other') + '" style="background:#1a3a4a;color:#5bc0eb;">' + esc(baseDir) + '</span>';
+      flist += '<span class="fname">' + esc(f.name) + '</span>';
+      flist += '<span class="fsize">' + (f.size > 1024 ? (f.size/1024).toFixed(1)+'KB' : f.size+'B') + '</span>';
+      flist += isIndexed ? '<span class="indexed">✅ 已索引</span>' : '<span class="not-indexed">⏳ 未索引</span>';
+      flist += '</div>';
+    });
+    flist += '</div>';
+    fileListArea.innerHTML = flist;
+
+  } catch (err) {
+    statsArea.innerHTML = '<div class="loading" style="color:#e74c3c;">❌ 加载失败</div>';
+  }
+}
+
+async function reindex() {
+  const btn = document.getElementById('btnReindex');
+  btn.disabled = true;
+  btn.textContent = '⏳ 索引中...';
+  document.getElementById('indexStatus').innerHTML = '<div class="loading">正在重新索引，请稍候...</div>';
+
+  try {
+    const resp = await fetch('/api/reindex', { method: 'POST' });
+    const data = await resp.json();
+    if (data.ok) {
+      toast('✅ 索引完成！共 ' + (data.chunks || '?') + ' 个段落', 'success');
+      loadStats();
+    } else {
+      toast('❌ 索引失败：' + (data.error || data.stderr || '未知错误'), 'error');
+    }
+  } catch (err) {
+    toast('❌ 请求失败：' + err.message, 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = '🔄 重新索引';
+}
+
+// ─── 文件夹浏览 ───
+let folderBrowserVisible = false;
+let folderBrowserPath = '/home/administrator';
+
+async function openFolderBrowser() {
+  if (!folderBrowserVisible) {
+    folderBrowserPath = document.getElementById('knowledgeDir').value || '/home/administrator';
+  }
+  folderBrowserVisible = true;
+  await loadFolderBrowser(folderBrowserPath);
+  document.getElementById('folderModal').classList.add('active');
+}
+
+function closeFolderBrowser() {
+  folderBrowserVisible = false;
+  document.getElementById('folderModal').classList.remove('active');
+}
+
+async function loadFolderBrowser(dir) {
+  const resp = await fetch('/api/browse?path=' + encodeURIComponent(dir));
+  const data = await resp.json();
+  folderBrowserPath = data.current;
+  const list = document.getElementById('folderList');
+  const cur = document.getElementById('folderCurrent');
+  cur.textContent = data.current;
+  let h = '';
+  for (const e of data.entries) {
+    const safeName = e.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const safePath = e.path.replace(/'/g, "\\'");
+    h += "<div class='fb-item' onclick=\"loadFolderBrowser('" + safePath + "')\">📁 " + safeName + "</div>";
+  }
+  if (!h) h = '<div class="fb-empty">📭 此目录下没有子文件夹</div>';
+  list.innerHTML = h;
+}
+
+function selectFolder() {
+  document.getElementById('knowledgeDir').value = folderBrowserPath;
+  closeFolderBrowser();
+}
+
+// ─── 设置 ───
+let currentConfig = {};
+
+async function loadSettings() {
+  try {
+    const resp = await fetch('/api/config');
+    currentConfig = await resp.json();
+    document.getElementById('knowledgeDir').value = currentConfig.knowledge_dir || '';
+    renderSourceList(currentConfig.sources || []);
+    loadOllamaStatus();
+  } catch (err) {
+    document.getElementById('sourceList').innerHTML = '<div class="loading">❌ 加载失败</div>';
+  }
+}
+
+function renderSourceList(sources) {
+  const div = document.getElementById('sourceList');
+  if (sources.length === 0) { div.innerHTML = '<div style="color:#555;font-size:15px;">暂无目录</div>'; return; }
+  div.innerHTML = sources.map((s, i) =>
+    '<div class="src-item"><span class="name">📁 ' + esc(s) + '</span><button class="remove-link" onclick="confirmRemove(' + i + ')">移除</button></div>'
+  ).join('');
+}
+
+function addSource() {
+  const input = document.getElementById('newSrc');
+  const name = input.value.trim();
+  if (!name) { toast('⚠️ 请先输入目录名', 'info'); return; }
+  currentConfig.sources = currentConfig.sources || [];
+  if (currentConfig.sources.includes(name)) { toast('⚠️ 已存在', 'info'); return; }
+  currentConfig.sources.push(name);
+  renderSourceList(currentConfig.sources);
+  input.value = '';
+  saveSources();
+}
+
+function confirmRemove(i) {
+  const name = currentConfig.sources[i];
+  if (confirm('确定要移除以 "' + name + '" 为来源的目录吗？\n你可以后续重新添加。')) {
+    removeSource(i);
+  }
+}
+
+function removeSource(i) {
+  currentConfig.sources.splice(i, 1);
+  renderSourceList(currentConfig.sources);
+  saveSources();
+}
+
+async function saveSources() {
+  try {
+    const resp = await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(currentConfig)
+    });
+    const data = await resp.json();
+    if (data.ok) {
+      document.getElementById('saveMsg').textContent = '✅ 已保存';
+      setTimeout(() => document.getElementById('saveMsg').textContent = '', 2000);
+    }
+  } catch (err) {
+    toast('❌ 保存失败：' + err.message, 'error');
+  }
+}
+
+async function saveSettings() {
+  const dir = document.getElementById('knowledgeDir').value.trim();
+  currentConfig.knowledge_dir = dir || '~/workspace/knowledge';
+  try {
+    const resp = await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(currentConfig)
+    });
+    const data = await resp.json();
+    if (data.ok) {
+      document.getElementById('saveMsg').textContent = '✅ 已保存（需要重新索引生效）';
+      setTimeout(() => document.getElementById('saveMsg').textContent = '', 4000);
+    } else {
+      toast('❌ 保存失败', 'error');
+    }
+  } catch (err) {
+    toast('❌ 保存失败：' + err.message, 'error');
+  }
+}
+
+async function loadOllamaStatus() {
+  try {
+    const resp = await fetch('/api/status');
+    const data = await resp.json();
+    const dot = data.online ? 'online' : 'offline';
+    const label = data.online ? (data.embed_ready ? '✅ 在线，' + (data.embed_model || 'embedding') + ' 就绪' : '⚠️ 在线，但未下载 ' + (data.embed_model || 'embedding') + ' 模型') : '❌ 离线';
+    const models = data.models ? '<div style="font-size:13px;color:#666;margin-top:6px;">已安装模型: ' + data.models.join(', ') + '</div>' : '';
+    document.getElementById('ollamaStatus').innerHTML = '<span><span class="status-dot ' + dot + '"></span> ' + label + '</span>' + models;
+  } catch (err) {
+    document.getElementById('ollamaStatus').innerHTML = '<span class="status-dot offline"></span> ❌ 无法连接';
+  }
+}
+
+// ─── Toast ───
+function toast(msg, type) {
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3000);
+}
+
+// 自动加载管理/设置
+</script>
+
+<div class="modal-backdrop" id="folderModal" onclick="if(event.target===this)closeFolderBrowser()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>📁 选择文件夹</span>
+      <button onclick="closeFolderBrowser()">&times;</button>
+    </div>
+    <div class="modal-path" id="folderCurrent">/</div>
+    <div class="modal-body" id="folderList"></div>
+    <div class="modal-footer">
+      <button onclick="loadFolderBrowser(folderBrowserPath.replace(/\/[^/]*$/,'')||'/')" style="padding:8px 16px;border:1px solid #3a3a5a;background:transparent;color:#aaa;border-radius:6px;cursor:pointer;">⬆ 上级目录</button>
+      <button onclick="selectFolder()" style="padding:8px 20px;background:#4caf50;color:#fff;border:none;border-radius:6px;cursor:pointer;">✅ 选择此文件夹</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,35 +1,38 @@
 ---
-name: "Mortgage Rate Monitor"
-description: "Concise daily weather briefing for OpenClaw."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, finance, interest-rates, market-monitoring, mortgage]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mortgage-rate-monitor"
-sourceUrl: "https://clawhub.ai/skills/mortgage-rate-monitor"
+name: weather-brief
+slug: weather-brief
+version: 0.2.0
+description: Concise daily weather briefing for OpenClaw.
+author: OpenClaw Labs
+license: MIT
+entrypoint: hooks/prepare.sh
+hooks:
+  prepare: hooks/prepare.sh
+  validate: hooks/validate.sh
+assets:
+  - assets/prompt.txt
+  - assets/icons/weather-brief.txt
+examples:
+  - examples/request.json
+tags:
+  - weather
+  - local
+  - briefing
+publish:
+  registry: local
+  visibility: private
 ---
 
-# Mortgage Rate Monitor
+# Weather Brief
 
-> Concise daily weather briefing for OpenClaw.
+The Weather Brief skill generates a compact spoken forecast based on a city name
+and preferred unit system.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mortgage-rate-monitor`
-- **Source URL:** [https://clawhub.ai/skills/mortgage-rate-monitor](https://clawhub.ai/skills/mortgage-rate-monitor)
+## Inputs
 
-## Overview
+- `city`: Target city, for example `Portland`
+- `units`: `metric` or `imperial`
 
+## Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mortgage-rate-monitor
-```
+A short text response suitable for voice playback.

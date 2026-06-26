@@ -1,0 +1,41 @@
+{
+  "name": "agent-task-queue",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for multi-agent task queue management with priority, dependencies, retries, and execution tracking.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "examples"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "test": "node --import tsx --test tests/**/*.test.ts",
+    "check": "npm run build && npm run test"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "task-queue",
+    "scheduler",
+    "multi-agent"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.9.0",
+    "redis": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

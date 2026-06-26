@@ -1,0 +1,88 @@
+name: qweather-china
+version: 1.2.2
+description: "基于中国气象局数据的完整天气服务，通过和风天气API提供实时天气、天气预报、生活指数、空气质量等全方位天气信息。专为中国用户优化，数据更准确，功能更全面。"
+author: uni-huang
+homepage: https://dev.qweather.com/
+license: MIT-0
+
+metadata:
+  openclaw:
+    emoji: "🇨🇳"
+    requires:
+      bins: ["python3", "curl"]
+      # 必需环境变量 - JWT认证所需
+      env:
+        required:
+          - name: QWEATHER_API_HOST
+            description: "和风天气API主机地址 (如: p54up4xhmm.re.qweatherapi.com)"
+            example: "your-api-host.re.qweatherapi.com"
+          - name: QWEATHER_PROJECT_ID
+            description: "和风天气项目ID (JWT sub字段)"
+            example: "YOUR_PROJECT_ID"
+          - name: QWEATHER_CREDENTIALS_ID
+            description: "和风天气凭据ID (JWT kid字段)"
+            example: "YOUR_CREDENTIALS_ID"
+          - name: QWEATHER_PRIVATE_KEY_PATH
+            description: "私钥文件路径，建议使用 ~/.config/qweather/private.pem"
+            example: "~/.config/qweather/private.pem"
+        optional:
+          - name: QWEATHER_DEFAULT_LOCATION
+            description: "默认查询城市"
+            example: "beijing"
+          - name: QWEATHER_CACHE_DIR
+            description: "缓存目录"
+            example: "~/.cache/qweather"
+
+# 安装说明
+install:
+  spec: "instruction-with-scripts"
+  scripts:
+    - install.sh
+    - install.bat
+  steps:
+    - name: "Install Python dependencies"
+      description: "安装必要的Python包"
+      command: "pip3 install pyjwt>=2.0.0 cryptography>=3.0 requests>=2.25"
+    - name: "Create config directory"
+      description: "创建配置目录存放私钥"
+      command: "mkdir -p ~/.config/qweather && chmod 700 ~/.config/qweather"
+    - name: "Setup cache directory"
+      description: "创建缓存目录"
+      command: "mkdir -p ~/.cache/qweather"
+  pre_install_note: |
+    ⚠️ 安装前请确保：
+    1. 已在和风天气官网注册并创建项目 https://dev.qweather.com/
+    2. 已下载JWT认证私钥文件
+    3. 将私钥复制到 ~/.config/qweather/private.pem 并设置权限 chmod 600
+
+# 权限声明
+permissions:
+  filesystem:
+    read:
+      - path: "~/.config/qweather/config.json"
+        purpose: "读取QWeather配置"
+      - path: "~/.config/qweather/private.pem"
+        purpose: "JWT签名私钥 (仅用于和风天气API认证)"
+      - path: "~/.cache/qweather/"
+        purpose: "读取缓存数据"
+    write:
+      - path: "~/.cache/qweather/"
+        purpose: "写入缓存数据"
+  network:
+    endpoints:
+      - host: "*.qweatherapi.com"
+        purpose: "和风天气API请求"
+        protocol: ["https"]
+
+runtime:
+  command: "python3 qweather.py"
+  always: false
+  model_invocation: true
+
+security:
+  risk_level: "low"
+  notes:
+    - "技能仅访问和风天气API，不向其他第三方发送数据"
+    - "私钥仅用于JWT签名，不上传到任何地方"
+    - "所有网络请求均通过HTTPS加密"
+    - "缓存数据仅存储在本地"

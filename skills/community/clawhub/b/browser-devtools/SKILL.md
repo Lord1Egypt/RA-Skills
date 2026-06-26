@@ -1,35 +1,48 @@
 ---
-name: "Browser Devtools"
+version: "2.0.0"
+name: Chromedeveditor
 description: "Chrome Dev Editor is a developer tool for building apps on the Chrome platform - Chrome Apps and Web browser-devtools."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browser-devtools"
-sourceUrl: "https://clawhub.ai/skills/browser-devtools"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
-# Browser Devtools
+# Chromedeveditor
 
-> Chrome Dev Editor is a developer tool for building apps on the Chrome platform - Chrome Apps and Web browser-devtools.
+Chrome Dev Editor is a developer tool for building apps on the Chrome platform - Chrome Apps and Web Apps, in JavaScript or Dart. (NO LONGER IN ACTIVE DEVELOPMENT) ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browser-devtools`
-- **Source URL:** [https://clawhub.ai/skills/browser-devtools](https://clawhub.ai/skills/browser-devtools)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from googlearchive/browser-devtools
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `browser-devtools <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/browser-devtools
+# Show help
+browser-devtools help
+
+# Run
+browser-devtools run
 ```
+
+- Run `browser-devtools help` for all commands
+
+## Output
+
+Results go to stdout. Save with `browser-devtools run > output.txt`.
+
+## Output
+
+Results go to stdout. Save with `browser-devtools run > output.txt`.

@@ -1,35 +1,32 @@
 ---
-name: "Doc Factory"
-description: "문서 생성 후 디스코드 채널 간 양방향 링크로 전달하는 프로세스. 펭귄공장(지휘 채널)에서 문서 생성 지시가 오면 대상 채널에 문서 업로드 + 펭귄공장 링크, 펭귄공장에 완료 알림 + 대상 채널 링크를 남긴다. "문서 만들어줘", "PDF 만들어줘", "견적서 만들어줘", "리스트..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doc-factory"
-sourceUrl: "https://clawhub.ai/skills/doc-factory"
+name: doc-factory
+description: 문서 생성 후 디스코드 채널 간 양방향 링크로 전달하는 프로세스. 펭귄공장(지휘 채널)에서 문서 생성 지시가 오면 대상 채널에 문서 업로드 + 펭귄공장 링크, 펭귄공장에 완료 알림 + 대상 채널 링크를 남긴다. "문서 만들어줘", "PDF 만들어줘", "견적서 만들어줘", "리스트 정리해줘" 등 문서 생성·전달 요청 시 사용.
 ---
 
-# Doc Factory
+# Doc Factory — 문서 생성 프로세스
 
-> 문서 생성 후 디스코드 채널 간 양방향 링크로 전달하는 프로세스. 펭귄공장(지휘 채널)에서 문서 생성 지시가 오면 대상 채널에 문서 업로드 + 펭귄공장 링크, 펭귄공장에 완료 알림 + 대상 채널 링크를 남긴다. "문서 만들어줘", "PDF 만들어줘", "견적서 만들어줘", "리스트...
+## 프로세스
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doc-factory`
-- **Source URL:** [https://clawhub.ai/skills/doc-factory](https://clawhub.ai/skills/doc-factory)
+펭귄공장(`1486250338338996325`)에서 지시가 들어오면:
 
-## Overview
+1. **문서 생성** — HTML → Chrome headless PDF (여백 좁게, `--no-margins`)
+2. **대상 채널에 업로드** — 문서 파일 + 본문에 `<#1486250338338996325>` (펭귄공장) 링크 포함
+3. **펭귄공장에 완료 알림** — `<#대상채널>` 링크 포함하여 바로 이동 가능하게
 
+## 핵심 규칙
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **양방향 링크 필수**: 대상 채널 → 펭귄공장, 펭귄공장 → 대상 채널
+- 대상 채널 메시지 예: `📋 문서 제목\n💬 피드백은 <#1486250338338996325>에서!`
+- 펭귄공장 메시지 예: `<#대상채널>에 문서 올렸어! 확인하고 피드백 줘 🐧`
+
+## PDF 생성 팁
+
 ```bash
-hermes skills install clawhub/doc-factory
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --headless --disable-gpu --print-to-pdf="output.pdf" \
+  --no-margins --print-to-pdf-no-header input.html
 ```
+
+- 여백: 좁게 (`@page { margin: 15mm 10mm; }` HTML 내부 제어)
+- 헤더별 구분: 테이블 또는 섹션으로 시각적 분리
+- 파일명: `MUFI-{문서종류}-{날짜}.pdf`

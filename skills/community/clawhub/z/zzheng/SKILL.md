@@ -1,35 +1,46 @@
----
-name: "zzheng"
-description: "自动抓取当天法律热点，结合法律知识生成个人及企业两篇原创微信公众号文章，支持一键复制发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zzheng"
-sourceUrl: "https://clawhub.ai/skills/zzheng"
----
+# zzheng - 法律公众号文章生成器
 
-# zzheng
+## 简介
+专为法律工作者设计的微信公众号文章自动生成工具，优先抓取实时热点法律新闻，结合法律知识生成原创文章。
 
-> 自动抓取当天法律热点，结合法律知识生成个人及企业两篇原创微信公众号文章，支持一键复制发布。
+## 功能特点
+- **实时热点优先**：优先从微博热搜、百度热搜、知乎、腾讯新闻等抓取当日法律相关热点
+- **话题自动分类**：劳动用工、消费维权、婚姻家庭、知识产权、企业合规等
+- **个人企业独立**：个人篇和企业篇各自独立，互不关联
+- **系列连续性**：预设话题库按进度循环，保证内容连贯
+- **一键生成**：每次生成两篇文章，可直接复制到公众号
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zzheng`
-- **Source URL:** [https://clawhub.ai/skills/zzheng](https://clawhub.ai/skills/zzheng)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+直接运行脚本即可生成当日文章：
 ```bash
-hermes skills install clawhub/zzheng
+python generate_articles.py
 ```
+
+## 依赖要求
+- Python 3.7+
+- requests
+- beautifulsoup4
+
+安装依赖：
+```bash
+pip install requests beautifulsoup4
+```
+
+## 配置说明
+- **文章保存目录**：`D:\其它工具\文章\`（可在脚本中修改）
+- **进度文件**：自动保存在文章目录下（v4_personal.json, v4_enterprise.json）
+
+## 文章输出
+每次运行生成两篇文章：
+- 个人篇：法律知识_YYYY-MM-DD_个人篇.txt
+- 企业篇：法律知识_YYYY-MM-DD_企业篇.txt
+
+## 文章结构
+- 📢 今日热点话题引入
+- 📍 典型案例解读
+- 📋 法律知识科普
+- 💡 实用建议
+- ✨ 结语
+
+## 作者
+zzheng

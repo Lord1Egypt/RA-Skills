@@ -1,0 +1,8 @@
+{
+  "task_id": "20260405-001",
+  "description": "写一个交互式网页 wars-timeline.html，展示人类历史上的重大战争时间线：1. 时间线可视化（横轴为时间，纵轴为战争规模/死亡人数）2. 包含至少15场著名战争（如：希波战争、十字军东征、蒙古征服、一战、二战等）3. 每场战争显示：名称、时间、死亡人数 4. 交互：鼠标悬停显示详情，点击可展开 5. 视觉风格：暗色系（太空/军事感），红色标注战争，绿色标注和平 6. 使用纯 HTML/CSS/JS 实现，无需外部依赖 7. 保存到 /Users/qztcm09/.openclaw/workspace/tmp/codex/wars-timeline.html",
+  "status": "done",
+  "summary": "已创建交互式页面 [wars-timeline.html](/Users/qztcm09/.openclaw/workspace/tmp/codex/wars-timeline.html)。  页面包含 16 场著名战争，使用纯 HTML/CSS/JS 实现了横轴时间、纵轴伤亡规模的时间线，可悬停查看摘要、点击展开右侧详情；整体为暗色太空",
+  "started_at": "2026-04-04T16:06:30+08:00",
+  "finished_at": "2026-04-04T16:09:26+08:00"
+}

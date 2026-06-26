@@ -1,35 +1,135 @@
 ---
-name: "人物关系管理"
-description: "人物关系与平台昵称管理器。当需要给某人发消息、但不知道对方在某平台的昵称时触发。自动查询记忆，如果没有记录则询问用户并记忆。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/person-relation-manager"
-sourceUrl: "https://clawhub.ai/skills/person-relation-manager"
+name: person-relation-manager
+description: 人物关系与平台昵称管理器。当需要给某人发消息、但不知道对方在某平台的昵称时触发。自动查询记忆，如果没有记录则询问用户并记忆。
 ---
 
 # 人物关系管理
 
-> 人物关系与平台昵称管理器。当需要给某人发消息、但不知道对方在某平台的昵称时触发。自动查询记忆，如果没有记录则询问用户并记忆。
+## 人物档案结构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/person-relation-manager`
-- **Source URL:** [https://clawhub.ai/skills/person-relation-manager](https://clawhub.ai/skills/person-relation-manager)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/person-relation-manager
 ```
+┌─ 真名（身份证/正式名字）
+│   ├─ 性别（男/女）
+│   ├─ 昵称1、昵称2...（多个平时叫的名字）
+│   ├─ 平台1昵称
+│   ├─ 平台2昵称
+│   └─ 备注（职业、关系、兴趣等）
+```
+
+**示例：**
+| 真名 | 性别 | 昵称 | 抖音 | 微信 |
+|------|------|------|------|------|
+| 张三 | 男 | 小张、老张 | 张三方 | 微信号A |
+| 李梅 | 女 | 小梅、梅花 | 梅花开了 | 梅梅姐 |
+
+---
+
+## 查询流程
+
+### Step 1: 查询记忆
+
+使用 `memory_recall` 搜索：
+- `人名 性别 平台`："张三 男 抖音"
+- `真名 昵称`："张三 小张"
+- `平台 昵称`："抖音 张三方"
+
+### Step 2: 判断结果
+
+**有记录** → 返回该平台的昵称
+
+**无记录** → 进入学习流程
+
+---
+
+## 学习流程（无记录时）
+
+### Step 1: 询问用户
+
+向用户询问：
+> "请问这个人：
+> - 真名叫什么？
+> - 性别是？
+> - 有哪些昵称（怎么称呼）？
+> - 在抖音上叫什么？
+> - 在微信上叫什么？
+> - 还有其他信息吗（职业、关系等）？"
+
+### Step 2: 获取信息后存入记忆
+
+使用 `memory_store` 存入：
+```
+人物档案：XXX，性别X，昵称有XXX、XXX，抖音叫XXX，微信叫XXX，备注：XXX
+```
+
+### Step 3: 返回结果
+
+告知用户已记忆，下次可直接使用。
+
+---
+
+## 记忆格式规范
+
+存储时使用统一格式：
+
+```
+人物档案：真名，性别X，昵称有昵称1、昵称2，平台叫XXX，备注：XXX
+```
+
+**必填字段：** 真名、性别
+**可选字段：** 昵称、各平台昵称、备注
+
+---
+
+## 性别规范
+
+- 男（先生/帅哥/小哥）
+- 女（女士/美女/小姐姐）
+
+---
+
+## 平台名称规范
+
+| 平台 | 存储字段 |
+|------|---------|
+| 抖音 | 抖音叫XXX |
+| 微信 | 微信叫XXX |
+| Telegram | Telegram叫XXX |
+| iMessage | iMessage联系方式XXX |
+| WhatsApp | WhatsApp叫XXX |
+| 邮件 | 邮箱XXX |
+
+---
+
+## 主动触发条件
+
+收到以下类型任务时，自动先调用此 skill：
+
+- "给 XX 发消息"
+- "给 XX 发私信"
+- "联系 XX"
+- "在 XX 平台找 XX"
+- "给 XX 的微信发"
+- "给 XX 发抖音"
+
+**执行顺序：**
+1. 调用 `person-relation-manager` 查询昵称
+2. 拿到平台昵称后再执行具体发送 skill
+
+---
+
+## 注意事项
+
+- 查询时使用真名、任一昵称、平台名组合搜索
+- **必须记录性别**
+- 同一人物在不同平台的昵称可能完全不同
+- 昵称可以有很多个，记忆时用顿号分隔
+- 备注信息有助于识别身份和关系
+
+---
+
+## 相关 Skills
+
+发送消息时配合使用：
+- `douyin-send-message`：抖音私信发送
+- `imsg`：iMessage 发送
+- `telegram-send`：Telegram 发送

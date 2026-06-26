@@ -1,35 +1,28 @@
----
-name: "Context Memoize Cache"
-description: "Caches user-specified context fragments in a file to avoid redundant processing and enable reuse across sessions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-memoize-cache"
-sourceUrl: "https://clawhub.ai/skills/context-memoize-cache"
----
+# Context Memoize Skill
 
-# Context Memoize Cache
+Caches frequently used context fragments to reduce redundant processing.
 
-> Caches user-specified context fragments in a file to avoid redundant processing and enable reuse across sessions.
+## Trigger
+When user says "缓存这个上下文" or "memoize this context" - save the current context for reuse.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-memoize-cache`
-- **Source URL:** [https://clawhub.ai/skills/context-memoize-cache](https://clawhub.ai/skills/context-memoize-cache)
+## Implementation
+Use a simple file-based cache:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/context-memoize-cache
+# Save context fragment
+echo "$CONTENT" >> ~/.openclaw/context-cache/fragments.md
+
+# List cached fragments  
+ls ~/.openclaw/context-cache/
+
+# Clear cache
+rm -rf ~/.openclaw/context-cache/
+```
+
+## Integration
+This skill can be called from AGENTS.md Session Startup to pre-load cached context:
+```bash
+if [ -f ~/.openclaw/context-cache/fragments.md ]; then
+  cat ~/.openclaw/context-cache/fragments.md
+fi
 ```

@@ -1,35 +1,21 @@
----
-name: "tasktodolist"
-description: "Manage multiple independent to-do lists with commands to add, list, complete, remove, clear tasks, and manage task lists by name."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tasktodolist"
-sourceUrl: "https://clawhub.ai/skills/tasktodolist"
----
+# tasktodolist Skill
 
-# tasktodolist
+## 描述
+一个简单的待办事项管理 Skill，支持以下操作。**可以通过 `-t, --task <name>` 参数来指定不同的任务名称，从而维护多个互相独立的待办列表。**
+- `tasktodolist --task <name> add <内容>`
+- `tasktodolist --task <name> list`
+- `tasktodolist --task <name> done <序号>`
+- `tasktodolist --task <name> rm <序号>`
+- `tasktodolist --task <name> clear`
+- `tasktodolist tasks list`（列出所有任务列表）
+- `tasktodolist tasks rm <名称>`（删除指定的任务列表）
 
-> Manage multiple independent to-do lists with commands to add, list, complete, remove, clear tasks, and manage task lists by name.
+## 使用方法
+在终端运行 `tasktodolist [全局参数] <子命令> [参数]`。数据保存在用户家目录下的 `~/.tasktodolist/<task_name>_tasktodolist.json`，如果未指定任务名称，默认使用 `~/.tasktodolist/default_tasktodolist.json`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tasktodolist`
-- **Source URL:** [https://clawhub.ai/skills/tasktodolist](https://clawhub.ai/skills/tasktodolist)
+## 安装
+- **本地依赖**: `npm install`
+- **全局安装 (推荐)**: 在该项目目录下运行 `npm install -g .`。安装后，你可以直接在任何地方运行 `tasktodolist` 命令。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tasktodolist
-```
+## 依赖
+`commander`（CLI 框架）

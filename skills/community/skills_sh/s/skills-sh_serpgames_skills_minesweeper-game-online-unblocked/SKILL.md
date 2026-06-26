@@ -1,35 +1,95 @@
 ---
-name: "minesweeper-game-online-unblocked"
-description: "Indexed by skills.sh from serpgames/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "serpgames"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/serpgames/skills/minesweeper-game-online-unblocked"
-sourceUrl: "https://skills.sh/serpgames/skills/minesweeper-game-online-unblocked"
+name: minesweeper-game-online-unblocked
+description: "Play Minesweeper online free unblocked on SERP Games."
 ---
 
-# minesweeper-game-online-unblocked
+# Play Minesweeper Game Online - Free Unblocked
 
-> Indexed by skills.sh from serpgames/skills
+[![START GAME](https://raw.githubusercontent.com/serpgames/minesweeper-game/refs/heads/main/start-game.gif)](https://games.serp.co/games/minesweeper/)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** serpgames
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/serpgames/skills/minesweeper-game-online-unblocked`
-- **Source URL:** [https://skills.sh/serpgames/skills/minesweeper-game-online-unblocked](https://skills.sh/serpgames/skills/minesweeper-game-online-unblocked)
+Play Minesweeper online free in your browser on SERP Games. This Minesweeper game is a free unblocked puzzle game where you can start playing from the direct browser page. Use the canonical play link to launch the game with no download or install.
 
-## Overview
+## Minesweeper Game Overview
 
+Minesweeper is a puzzle game with simple browser controls and quick access from SERP Games. Minesweeper is a free online browser game you can play directly in your browser. The game is designed for fast sessions, repeat attempts, and easy sharing through the official play page.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/serpgames/skills/minesweeper-game-online-unblocked
-```
+This page is the README landing page for the Minesweeper browser game on SERP Games. Follow the play link below to launch the canonical free unblocked Minesweeper page.
+
+## Game Details
+
+| Feature | Details |
+| --- | --- |
+| Game | Minesweeper |
+| Genre | puzzle game |
+| Category | Puzzle |
+| Tags | Puzzle |
+| Platform | Browser |
+| Download required | No |
+| Primary controls | Keyboard, mouse, or touch controls, depending on the game |
+| Play page | https://games.serp.co/games/minesweeper/ |
+
+## How to Play Minesweeper
+
+- Open the canonical Minesweeper play page on SERP Games.
+- Start the browser game with no download or install.
+- Use the listed controls to play the game.
+- Replay to improve your score, timing, or route.
+
+## Controls
+
+- Keyboard, mouse, or touch controls, depending on the game
+
+## Tips for Minesweeper
+
+- Start with a short practice run to learn the timing.
+- Keep the game page bookmarked for quick access.
+- Use full-screen mode if the game supports it.
+- Try again quickly after each mistake to build consistency.
+
+## Why Play on SERP Games?
+
+- Play Minesweeper online from a direct browser page.
+- No download, launcher, or install is required.
+- The game page is built for quick access to free unblocked browser games.
+- SERP Games keeps the canonical play URL in one easy-to-share place.
+
+## Similar Games
+
+- [Level Devil](https://github.com/serpgames/level-devil-game)
+- [Traffic Escape](https://github.com/serpgames/traffic-escape-game)
+- [Crossy Road](https://github.com/serpgames/crossy-road-game)
+- [Tunnel Rush](https://github.com/serpgames/tunnel-rush-game)
+
+## Play Now
+
+Start here: [Play Minesweeper online free unblocked](https://games.serp.co/games/minesweeper/).
+
+## Support and Project Links
+
+- [Minesweeper on SERP Games](https://games.serp.co/games/minesweeper/)
+
+## FAQ
+
+### Is Minesweeper free to play?
+
+Yes. You can play Minesweeper for free on SERP Games.
+
+### Can I play Minesweeper unblocked?
+
+Yes. Use the SERP Games play page to launch the free unblocked Minesweeper game in your browser.
+
+### What are the controls for Minesweeper?
+
+Keyboard, mouse, or touch controls, depending on the game.
+
+### Do I need to download anything?
+
+No. Minesweeper runs in the browser, so you do not need to download or install anything.
+
+### What kind of game is Minesweeper?
+
+Minesweeper is a puzzle game in the Puzzle category.
+
+### Where should I play Minesweeper?
+
+Use the canonical SERP Games page: https://games.serp.co/games/minesweeper/.

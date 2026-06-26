@@ -1,0 +1,41 @@
+{
+  "defaults": {
+    "chat": "claude-sonnet-4",
+    "image": "GPT-Image-1",
+    "video": "Veo-3",
+    "audio": "ElevenLabs"
+  },
+  "models": {
+    "chat": [
+      "claude-sonnet-4",
+      "claude-opus-4.5",
+      "claude-haiku-4.5",
+      "GPT-5.2",
+      "Gemini-3-Pro",
+      "Grok-4",
+      "Llama-3.1-405B",
+      "deepseek-r1"
+    ],
+    "image": [
+      "GPT-Image-1",
+      "Imagen-4",
+      "Flux-Kontext",
+      "Seedream-3.0",
+      "dall-e-3"
+    ],
+    "video": [
+      "Veo-3",
+      "Runway-Gen-4-Turbo",
+      "Kling-2.1"
+    ],
+    "audio": [
+      "ElevenLabs",
+      "Lyria"
+    ]
+  },
+  "chat_options": {
+    "stream": true,
+    "max_tokens": null,
+    "temperature": null
+  }
+}

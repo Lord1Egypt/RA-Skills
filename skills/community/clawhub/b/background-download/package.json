@@ -1,0 +1,13 @@
+
+{
+  "name": "background-download",
+  "version": "1.0.0",
+  "description": "Asynchronous background download with retry, status tracking via Ontology, notifications to original channel. Supports resume on broken connections.",
+  "main": "scripts/download.py",
+  "author": "hp <hansponddg@139.com>",
+  "license": "MIT",
+  "keywords": ["download", "background", "async", "resume", "ontology", "notification"],
+  "openclaw": {
+    "skillType": "skill"
+  }
+}

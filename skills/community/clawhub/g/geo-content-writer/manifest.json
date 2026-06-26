@@ -1,0 +1,62 @@
+{
+  "name": "geo-content-writer",
+  "version": "0.7.3",
+  "display_name": "GEO Content Writer",
+  "description": "A fanout-backlog-first GEO writing workflow that turns Dageno prompt opportunities into backlog rows and then into publish-ready articles.",
+  "author": {
+    "name": "GEO-SEO",
+    "website": "https://github.com/GEO-SEO/geo-content-writer"
+  },
+  "tags": [
+    "dageno",
+    "seo",
+    "geo",
+    "content-opportunity",
+    "content-strategy",
+    "response-gap",
+    "prompt-fanout",
+    "fanout-backlog",
+    "citation-intelligence",
+    "content-briefs",
+    "wordpress-publishing"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GEO-SEO/geo-content-writer"
+  },
+  "integrations": {
+    "dageno_api": {
+      "required_env_vars": [
+        "DAGENO_API_KEY"
+      ],
+      "recommended_access": "project-scoped API key"
+    },
+    "seo_metrics_api": {
+      "optional_env_vars": [
+        "SEO_METRICS_API_URL",
+        "SEO_METRICS_API_KEY"
+      ],
+      "recommended_provider": "any approved search volume and keyword difficulty API"
+    },
+    "citation_page_fetch": {
+      "optional_env_vars": [
+        "JINA_API_KEY",
+        "FIRECRAWL_API_KEY"
+      ],
+      "recommended_provider": "Jina or Firecrawl"
+    },
+    "serp_retrieval": {
+      "optional_env_vars": [
+        "SERPAPI_API_KEY"
+      ],
+      "recommended_provider": "approved SERP API or user-provided export"
+    }
+  },
+  "metadata": {
+    "skill_type": "fanout-backlog-workflow",
+    "network_access": "optional",
+    "minimum_permissions": "Dageno API access required; citation crawling and WordPress publishing are optional but recommended connectors.",
+    "data_access_policy": "This skill discovers prompt opportunities, extracts real fanout, stores fanout backlog locally, and drafts articles from selected backlog items. Do not use guessed fanout and do not write directly from topic labels."
+  }
+}

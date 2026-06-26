@@ -1,35 +1,46 @@
 ---
-name: "liuyao-xueer"
-description: "雪儿六爻占卜技能。当用户提到「六爻」「占卜」「起卦」「解卦」「易经」「问卦」时激活。打开一个古风水墨界面，由玄猫雪儿为用户摇卦、解卦，支持接入大模型进行精准六爻解读。"
-category: "other"
-source: "ClawHub"
-tags: [divination, fortune, hexagram, iching]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liuyao-xueer"
-sourceUrl: "https://clawhub.ai/skills/liuyao-xueer"
+name: liuyao-xueer
+description: 雪儿六爻占卜技能。当用户提到「六爻」「占卜」「起卦」「解卦」「易经」「问卦」时激活。打开一个古风水墨界面，由玄猫雪儿为用户摇卦、解卦，支持接入大模型进行精准六爻解读。
 ---
 
-# liuyao-xueer
+# 雪儿六爻占卜技能
 
-> 雪儿六爻占卜技能。当用户提到「六爻」「占卜」「起卦」「解卦」「易经」「问卦」时激活。打开一个古风水墨界面，由玄猫雪儿为用户摇卦、解卦，支持接入大模型进行精准六爻解读。
+## 激活时机
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liuyao-xueer`
-- **Source URL:** [https://clawhub.ai/skills/liuyao-xueer](https://clawhub.ai/skills/liuyao-xueer)
+用户提到以下关键词时激活：
+- 六爻、占卜、起卦、解卦、易经、问卦、卜卦、卦象
 
-## Overview
+## 使用方式
 
+1. 将 `assets/` 目录下的所有文件复制到同一文件夹
+2. 用浏览器打开 `assets/index.html`
+3. 用户在页面中：
+   - 填写所问之事
+   - 点击「摇卦」六次（每次摇一爻）
+   - 六爻摇完后自动展示卦象并调用大模型解读
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/liuyao-xueer
-```
+## 功能特色
+
+- 古风水墨界面，雪儿玄猫形象
+- 水墨枫叶翻转动效（正面彩色/反面灰色区分阴阳）
+- 开场书法手写动效
+- 云雾流动背景
+- 六爻轨迹记录
+- 支持接入 OpenAI / DeepSeek / Claude 等大模型流式解卦
+- 离线模式下提供基础卦义
+
+## 大模型配置
+
+页面内展开「大模型配置」填入：
+- API Key
+- 接口地址（默认 OpenAI，可替换 DeepSeek 等）
+- 模型名称
+
+## 文件说明
+
+| 文件 | 说明 |
+|------|------|
+| `assets/index.html` | 主页面（含全部逻辑） |
+| `assets/maple_front.png` | 枫叶正面（水墨彩色，透明背景） |
+| `assets/maple_back.png` | 枫叶背面（灰度，透明背景） |
+| `assets/雪儿头像.jpg` | 雪儿头像图 |

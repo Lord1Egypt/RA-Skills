@@ -1,0 +1,20 @@
+{
+  "name": "s2-pet-guardian-agent",
+  "slug": "s2-pet-guardian-agent",
+  "version": "1.2.1",
+  "description": "S2 宠物守护者智能体。完全遵从零信任架构，基于 14 维空间感知进行因果推演，仅支持公钥验签，不碰触任何私钥。",
+  "main": "core/s2_pet_guardian_agent.py",
+  "author": "Space2.world (Miles Xiang)",
+  "license": "S2-CLA",
+  "scripts": {
+    "install": "pip install -r requirements.txt",
+    "start": "python core/s2_pet_guardian_agent.py"
+  },
+  "dependencies": {
+    "python": ">=3.9",
+    "cryptography": ">=41.0.0"
+  },
+  "directories": {
+    "s2_bas_governance": "Required for persisting pet time-series records (pets/*) and reading PKI public keys ONLY (keys/*public*.pem)."
+  }
+}

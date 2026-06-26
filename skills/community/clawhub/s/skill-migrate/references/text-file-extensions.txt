@@ -1,0 +1,26 @@
+# 允许的文件扩展名白名单
+
+> 来源：OpenClaw `packages/schema/src/textFiles.ts` (TEXT_FILE_EXTENSIONS)
+> 以下为 ClawHub 发布时接受的文本文件扩展名
+
+## 编程语言源码
+.py, .js, .ts, .jsx, .tsx, .rb, .go, .rs, .java, .kt, .c, .cpp, .h, .hpp, .cs, .php, .swift, .scala, .sh, .bash, .zsh, .fish, .ps1, .psm1, .psd1, .bat, .cmd, .lua, .r, .R, .pl, .pm, .m, .mm
+
+## Web 前端
+.html, .htm, .css, .scss, .sass, .less, .vue, .svelte
+
+## 数据/配置
+.json, .yaml, .yml, .toml, .xml, .csv, .tsv, .ini, .cfg, .conf, .env, .properties
+
+## 文档/标记
+.md, .markdown, .mdx, .rst, .txt, .adoc, .org, .tex, .wiki
+
+## 模板/其他
+.sql, .graphql, .proto, .dockerfile, .makefile, .cmake, .gradle, .pip, .gemspec, .dockerignore, .gitignore, .editorconfig, .eslintrc, .prettierrc, .babelrc
+
+## 图形（文本格式）
+.svg
+
+## 注意事项
+- .png, .jpg, .jpeg, .gif, .bmp, .ico, .webp, .tiff, .mp4, .mp3, .pdf, .zip, .tar, .gz 等二进制文件 **不在白名单中**
+- 如需引用图片，使用 SVG 或在 description 中提供外部链接

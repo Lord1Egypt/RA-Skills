@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx nutrition"
-description: "Nutrition MCP — wraps Open Food Facts API (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-nutrition"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-nutrition"
+name: pipeworx-nutrition
+description: Nutrition MCP — wraps Open Food Facts API (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/nutrition
 ---
 
-# Pipeworx nutrition
+# pipeworx-nutrition
 
-> Nutrition MCP — wraps Open Food Facts API (free, no auth)
+Nutrition MCP — wraps Open Food Facts API (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-nutrition`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-nutrition](https://clawhub.ai/skills/pipeworx-nutrition)
+## Tools
 
-## Overview
+- `search_products`
+- `get_product`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-nutrition
+```json
+{
+  "mcpServers": {
+    "pipeworx-nutrition": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/nutrition/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/nutrition](https://pipeworx.io/packs/nutrition)

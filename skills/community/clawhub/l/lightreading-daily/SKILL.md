@@ -1,35 +1,316 @@
----
-name: "科技新闻每日推送"
-description: "每天11点自动抓取LightReading和TechCrunch最新科技新闻，AI翻译摘要后推送到企业微信，保证双站点内容覆盖。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lightreading-daily"
-sourceUrl: "https://clawhub.ai/skills/lightreading-daily"
----
+# 科技新闻每日推送技能 v5.9.1
 
-# 科技新闻每日推送
+自动抓取 LightReading 和 TechCrunch 科技新闻网站文章，AI 翻译生成中文摘要并自动推送到企业微信。
 
-> 每天11点自动抓取LightReading和TechCrunch最新科技新闻，AI翻译摘要后推送到企业微信，保证双站点内容覆盖。
+## 技能描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lightreading-daily`
-- **Source URL:** [https://clawhub.ai/skills/lightreading-daily](https://clawhub.ai/skills/lightreading-daily)
+每天上午 11 点自动抓取 LightReading（电信网络）和 TechCrunch（科技创业）最新新闻，智能选择文章（确保两个网站都有代表），提取文章要点，由 AI 翻译成中文后推送到企业微信。全流程自动化，无需手动修改代码。
 
-## Overview
+## 功能特点
 
+- **多网站支持**: LightReading（电信）+ TechCrunch（科技创业）
+- **Cloudflare 绕过**: 使用 cloudscraper 库绕过网站反爬虫保护
+- **智能抓取**: 从网页全文提取 20-30 段有效内容
+- **智能筛选**: 优先 Iain Morris 文章，确保两个网站都有代表
+- **AI 翻译**: 由 AI 助手直接翻译英文内容，无需外部翻译 API
+- **定时推送**: 每天上午 11 点自动推送到企业微信
+- **纯中文推送**: 只推送中文翻译版，不推送英文原文
+- **全自动化**: 内容从文件动态读取，每天自动更新，无需修改代码
+- **双网站保证**: 每次推送至少包含 LightReading 和 TechCrunch 各 1 篇
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 推送格式
+
+### 合并推送（默认）
+- **重点推荐**（1 篇）：优先 Iain Morris 文章（LightReading），4 个要点
+- **其他精选**（3 篇）：
+  - 至少 1 篇 TechCrunch ✅
+  - 至少 1 篇 LightReading ✅
+  - 每篇 4 个要点
+
+### 单独推送（可选）
+- **LightReading**：1 篇重点推荐 + 3 篇其他精选
+- **TechCrunch**：3 篇精选文章
+
+## 使用方法
+
+### 1. 安装依赖
+
 ```bash
-hermes skills install clawhub/lightreading-daily
+pip install cloudscraper
 ```
+
+### 2. 配置企业微信 Webhook
+
+编辑推送脚本文件：
+
+```python
+WEBHOOK_URL = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY_HERE"
+```
+
+### 3. 手动测试推送
+
+```bash
+cd skills/tech-news-daily
+
+# 合并推送（推荐）：LightReading + TechCrunch
+python push_combined.py
+
+# 单独推送（备用）
+python push_wechat.py  # 仅 LightReading
+```
+
+### 4. 定时任务
+
+Cron 任务配置：
+- **任务名称**: 科技新闻每日推送 (Skill)
+- **任务 ID**: `260be0fa-ab1b-4c73-a2fe-bed9e722cc7d`
+- **执行时间**: 每天上午 11:00（Asia/Shanghai 时区）
+- **任务流程**: 自动完成抓取 → 翻译 → 推送
+
+## 文件结构
+
+```
+tech-news-daily/
+├── SKILL.md                  # 技能说明文档
+├── README.md                 # 使用说明
+├── push_combined.py          # 合并推送（LightReading + TechCrunch）✅ 主脚本
+├── push_wechat.py            # LightReading 单独推送（备用）
+├── push_chinese.py           # 读取 today_cn.txt 推送（备用）
+├── ai_translate.py           # AI 翻译助手
+├── parse_email.py            # 邮件内容解析（备用）
+├── email_webhook.py          # 邮件 Webhook 服务器（备用）
+├── requirements.txt          # Python 依赖
+├── combined_en.txt           # 合并推送英文（每天自动生成）
+├── combined_cn.txt           # 合并推送中文（每天自动生成）
+├── today_en.txt              # LightReading 英文（每天自动生成）
+├── today_cn.txt              # LightReading 中文（每天自动生成）
+├── techcrunch_en.txt         # TechCrunch 英文（每天自动生成）
+├── techcrunch_cn.txt         # TechCrunch 中文（每天自动生成）
+└── pushed_history.json       # 推送历史记录（自动生成）
+```
+
+## 依赖要求
+
+- Python 3.8+
+- `cloudscraper>=1.2.71` - 绕过 Cloudflare 反爬虫
+
+## 技术实现
+
+1. **cloudscraper** 绕过 Cloudflare 保护
+2. **RSS Feed** 获取最新文章列表
+3. **网页全文抓取** 根据 URL 抓取完整文章内容（多种方式）
+4. **正则提取** 网页段落内容（200-5000 字符）
+5. **智能过滤** 排除广告、footer、无关内容
+6. **AI 总结** 由 AI 助手阅读英文全文后总结成中文要点（不是翻译）
+7. **文件存储** 英文和中文分别保存到文件，动态读取
+8. **去重逻辑** 避免重复推送相同文章
+9. **智能选择** 重点推荐优先 Iain Morris 文章
+10. **内容验证** 英文内容不足 200 字符时自动更换文章
+11. **RSS 补充** 网页内容不足时自动使用 RSS 描述补充
+12. **标准化验证** 推送前检查清单（作者、时间、来源、要点）
+13. **自动化抓取** 自动获取作者信息，不凭印象编写
+14. **作者提取** 多种正则表达式（JSON-LD、Meta、Author class、By 开头），过滤无效信息
+
+## v4.0 多网站支持
+
+- ✅ 新增 TechCrunch 网站支持
+- ✅ LightReading + TechCrunch 双源推送
+- ✅ 统一的推送格式和 Webhook 配置
+- ✅ 内容从文件动态读取（today_cn.txt）
+- ✅ 移除硬编码中文内容
+- ✅ 每天自动更新，无需修改代码
+
+## 自动化流程（v5.3）
+
+```
+每天上午 11 点自动触发 Cron 任务（10 分钟超时）
+       ↓
+┌──────────────────────────┐
+│ 【第 1 步】运行脚本        │
+│ - 抓取 LightReading RSS   │
+│ - 抓取 TechCrunch RSS     │
+│ - 抓取网页全文            │
+│ - ✅ 验证内容 ≥ 200 字符   │
+│ - ✅ 不足则自动更换文章   │
+│ - 确保所有文章都有充足内容│
+│ - 保存英文文件            │
+└──────────────────────────┘
+       ↓
+┌──────────────────────────┐
+│ 【第 2 步】AI 总结          │
+│ - 读取 combined_en.txt    │
+│ - 阅读英文全文，理解内容  │
+│ - 总结成 2-4 个中文要点    │
+│ - 不是翻译，是总结        │
+│ - 更新 combined_cn.txt    │
+└──────────────────────────┘
+       ↓
+┌──────────────────────────┐
+│ 【第 3 步】推送            │
+│ - ✅ 检查占位符           │
+│ - 有占位符 → 跳过         │
+│ - 无占位符 → 推送         │
+└──────────────────────────┘
+```
+
+## 注意事项
+
+1. LightReading 和 TechCrunch 都有 Cloudflare 保护，必须使用 cloudscraper
+2. 企业微信 Webhook 需要预先在企业微信中配置机器人
+3. 推送时间为 Asia/Shanghai 时区
+4. 每天上午 11 点检查并推送
+5. 如果网页抓取失败，会自动重试（最多 3 次，每次间隔 5 秒）
+6. 超时时间设置为 60 秒，适应慢速网络
+7. AI 翻译模式无需任何 API 密钥配置
+8. AI 翻译模式无需任何 API 密钥配置
+9. `combined_en.txt`、`today_en.txt`、`techcrunch_en.txt` 自动更新
+10. AI 翻译后分别保存到 `combined_cn.txt`、`today_cn.txt`、`techcrunch_cn.txt`
+
+## 版本历史
+
+- **v5.9.1** (2026-04-15): 推送流程修复
+  - ✅ 修复脚本逻辑：没有中文文件时不推送，等待 AI 翻译
+  - ✅ 确保完整流程：抓取 → 保存英文 → AI 翻译 → 推送
+  - ✅ 移除快速推送模式，保证推送质量
+  - ✅ 定时任务配置更新，支持完整自动化流程
+
+- **v5.9** (2026-04-11): 作者抓取改进
+  - ✅ 多种正则表达式提取作者（JSON-LD、Meta、Author class、By 开头）
+  - ✅ 过滤无效作者信息（邮箱、超长字符串）
+  - ✅ TechCrunch 作者抓取修复
+  - ✅ LightReading 作者抓取修复
+  - ✅ 确保作者信息准确可靠
+
+- **v5.8** (2026-04-11): 中英文同步修复
+  - ✅ 保存英文后自动删除旧中文文件
+  - ✅ 强制 AI 重新翻译最新内容
+  - ✅ 推送前检查中文文件时间戳
+  - ✅ 确保中英文实时同步
+
+- **v5.7** (2026-04-11): 作者抓取修复
+  - ✅ TechCrunch RSS 命名空间修复
+  - ✅ LightReading 网页作者提取
+  - ✅ 作者信息自动更新到文章数据
+  - ✅ 确保推送内容作者准确
+
+- **v5.6** (2026-04-11): 标准化验证流程
+  - ✅ 推送前检查清单（作者、时间、来源、要点）
+  - ✅ 自动化抓取作者信息
+  - ✅ 要点逐句对照原文验证
+  - ✅ 不编造原文没有的信息
+  - ✅ 推送前预览供人工验证
+
+- **v5.5** (2026-04-11): 改进全文抓取
+  - ✅ 降低抓取阈值（30→20 字符）
+  - ✅ 多种方式抓取（段落+article+div）
+  - ✅ RSS 描述自动补充网页内容不足
+  - ✅ 增加长度限制（3000→5000 字符）
+  - ✅ 去重处理，移除重复句子
+
+- **v5.4** (2026-04-11): 确保 4 篇文章
+  - ✅ 必须总结全部 4 篇文章（1 篇重点 + 3 篇其他）
+  - ✅ 不能遗漏其他精选
+  - ✅ 内容不足时从 RSS 描述补充
+
+- **v5.3** (2026-04-11): 内容不足更换文章
+  - ✅ 英文内容不足 200 字符时，自动更换新文章
+  - ✅ 不再说明"信息有限"
+  - ✅ 确保推送的文章都有充足内容
+
+- **v5.2** (2026-04-11): AI 总结（非翻译）
+  - ✅ AI 阅读英文全文后总结成中文要点
+  - ✅ 不是逐句翻译，是理解后总结
+  - ✅ 总结 2-4 个要点，每点 2-3 句话
+  - ✅ 基于英文内容，不编造信息
+
+- **v5.1** (2026-04-11): 三大要求
+  - ✅ 有占位符不推送
+  - ✅ 内容少于 3 点重新选文章
+  - ✅ 从英文直接总结中文要点
+  - ✅ 不编造信息
+
+- **v5.0** (2026-04-11): AI 翻译规范
+  - ✅ AI 翻译严格基于英文原文
+  - ✅ 不编造原文没有的信息
+  - ✅ 有几点翻译几点，不强求 4 个要点
+  - ✅ 内容不足时说明"信息有限"
+
+- **v4.9** (2026-04-11): 测试验证
+  - ✅ 完整流程测试通过（抓取 → 翻译 → 推送）
+  - ✅ 网络故障时使用现有英文文件
+  - ✅ 确保推送不中断
+  - ✅ Cron 任务配置验证
+
+- **v4.8** (2026-04-11): Cron 明确指令
+  - ✅ Cron 任务包含明确的三步指令
+  - ✅ AI 在同一个 agentTurn 中完成抓取 + 翻译 + 推送
+  - ✅ 不再依赖脚本内调用 AI
+  - ✅ 确保每次执行都翻译最新英文
+
+- **v4.7** (2026-04-11): 完整自动化
+  - ✅ Cron 任务完整执行（抓取 → AI 翻译 → 推送）
+  - ✅ AI 自动翻译最新英文，无需人工干预
+  - ✅ 中英文实时同步，不再忘记翻译
+  - ✅ 超时时间延长到 10 分钟
+
+- **v4.6** (2026-04-11): Cron 自动翻译
+  - ✅ Cron 任务包含完整流程（抓取 → 翻译 → 推送）
+  - ✅ AI 每次自动翻译最新英文内容
+  - ✅ 不再依赖人工干预
+  - ✅ 确保中英文实时同步
+
+- **v4.5** (2026-04-11): 全文抓取 + 智能选择
+  - ✅ 自动抓取网页全文（非仅 RSS 描述）
+  - ✅ AI 根据全文翻译中文要点
+  - ✅ 重点推荐优先 Iain Morris 文章
+  - ✅ 无 Iain Morris 时显示提示
+
+- **v4.4** (2026-04-11): 三文件生成
+  - ✅ 生成 combined_en.txt（合并英文）
+  - ✅ 生成 today_en.txt（LightReading 单独英文）
+  - ✅ 生成 techcrunch_en.txt（TechCrunch 单独英文）
+  - ✅ AI 可分别翻译三个文件
+
+- **v4.3** (2026-04-11): 推送验证
+  - ✅ 检查中文翻译是否完成（无占位符）
+  - ✅ 翻译未完成时跳过推送
+  - ✅ 避免推送带 [AI 翻译] 或 [待翻译] 的内容
+
+- **v4.2** (2026-04-11): 双网站保证
+  - ✅ 确保每次推送至少包含两个网站各 1 篇
+  - ✅ 其他精选：至少 1 篇 TechCrunch + 1 篇 LightReading
+  - ✅ 智能选择逻辑优化
+
+- **v4.1** (2026-04-11): 合并推送
+  - ✅ 新增 push_combined.py 合并推送脚本
+  - ✅ 重点推荐优先选择 Iain Morris 文章
+  - ✅ 其他精选从两个网站混合选择
+  - ✅ 生成 combined_en.txt 和 combined_cn.txt
+
+- **v4.0** (2026-04-11): 多网站支持
+  - ✅ 新增 TechCrunch 网站支持
+  - ✅ LightReading + TechCrunch 双源推送
+  - ✅ 统一的推送格式和 Webhook 配置
+
+- **v3.2** (2026-04-11): 增加推送频率
+  - ✅ 推送频率从每天 1 次改为每 3 小时一次
+  - ✅ 每天自动检查新文章（8 次/天）
+  - ✅ 增加重试机制（最多 3 次）
+  - ✅ 超时时间增加到 60 秒
+
+- **v3.1** (2026-04-11): 全自动化流程
+  - ✅ 内容从文件动态读取（today_cn.txt）
+  - ✅ 移除硬编码中文内容
+  - ✅ 新增 ai_translate.py 翻译助手
+
+- **v3.0** (2026-04-11): AI 翻译模式
+  - ✅ 移除百度翻译 API 依赖
+  - ✅ 由 AI 助手直接翻译并推送
+
+## 作者
+
+OpenClaw Skills
+
+## 许可证
+
+MIT License

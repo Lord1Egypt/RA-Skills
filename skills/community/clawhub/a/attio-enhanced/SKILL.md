@@ -1,35 +1,56 @@
----
-name: "Attio Enhanced CRM"
-description: "Improved Attio CRM integration with batch record creation, error handling, field mapping, and support for companies, people, and deals."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/attio-enhanced"
-sourceUrl: "https://clawhub.ai/skills/attio-enhanced"
----
+# Enhanced Attio Skill
 
-# Attio Enhanced CRM
+Enhanced Attio CRM API skill with batch operations.
 
-> Improved Attio CRM integration with batch record creation, error handling, field mapping, and support for companies, people, and deals.
+## ⚠️ Required Setup
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/attio-enhanced`
-- **Source URL:** [https://clawhub.ai/skills/attio-enhanced](https://clawhub.ai/skills/attio-enhanced)
+This skill requires Attio credentials. You must set these environment variables before use:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/attio-enhanced
+export ATTIO_API_KEY=your_api_key
+export ATTIO_WORKSPACE_ID=your_workspace_id
 ```
+
+Get API key from: https://app.attio.com/settings/api
+
+Find workspace ID in your Attio URL: `app.attio.com/[workspace-id]/...`
+
+## Features
+
+- **Batch Operations**: Bulk create/update records
+- **Retry Logic**: Exponential backoff for rate limits
+- **Smart Field Mapping**: Auto-transforms fields to Attio format
+- **Company & Person Support**: Create companies, people, deals
+
+## Usage
+
+### Python
+
+```python
+import os
+os.environ['ATTIO_API_KEY'] = 'your_key'
+os.environ['ATTIO_WORKSPACE_ID'] = 'your_workspace'
+
+from lib.attio_enhanced import AttioEnhancedClient
+
+async with AttioEnhancedClient() as client:
+    # Create companies
+    await client.batch_create_records('companies', [{'name': 'Gameye'}])
+    
+    # Create people
+    await client.batch_create_records('people', [
+        {'name': ['John Doe'], 'email_addresses': ['john@example.com']}
+    ])
+```
+
+### CLI Test
+
+```bash
+python3 -c "from lib.attio_enhanced import AttioEnhancedClient; print('OK')"
+```
+
+## Field Mapping
+
+- `first_name` + `last_name` → Attio name format
+- `email` → email_addresses
+- Org → companies

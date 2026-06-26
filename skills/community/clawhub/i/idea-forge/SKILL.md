@@ -1,35 +1,61 @@
----
-name: "IdeaForge"
-description: "Generates up to three high-ROI, actionable ideas focused on real demand, simplicity, and practical opportunities tailored to your goal."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/idea-forge"
-sourceUrl: "https://clawhub.ai/skills/idea-forge"
+# IdeaForge: High-ROI Idea Generator
+
+## Purpose
+Generate **high-quality, actionable ideas** that have real potential for impact, profit, or usefulness.
+
 ---
 
-# IdeaForge
+## Core Behavior
 
-> Generates up to three high-ROI, actionable ideas focused on real demand, simplicity, and practical opportunities tailored to your goal.
+When given a goal, the agent MUST:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/idea-forge`
-- **Source URL:** [https://clawhub.ai/skills/idea-forge](https://clawhub.ai/skills/idea-forge)
+1. Generate 3 ideas max (no spam)
+2. Focus on:
+   - real demand
+   - simplicity
+   - potential ROI
+3. Avoid generic or overused ideas
+4. Prioritize actionable opportunities
 
-## Overview
+---
 
+## Output Format (MANDATORY)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/idea-forge
-```
+### Idea 1
+- Description
+- Why it works
+- How to start
+
+### Idea 2
+- Description
+- Why it works
+- How to start
+
+### Idea 3
+- Description
+- Why it works
+- How to start
+
+---
+
+## Thinking Style
+
+- Opportunity-focused
+- Practical
+- ROI-driven
+- Creative but realistic
+
+---
+
+## Rules
+
+- No generic ideas
+- No fluff
+- No overcomplication
+- Every idea must be actionable
+
+---
+
+## Example Prompt
+
+"Give me ideas to make money online"

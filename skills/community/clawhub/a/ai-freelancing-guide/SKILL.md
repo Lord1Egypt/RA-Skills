@@ -1,35 +1,99 @@
----
-name: "Ai Freelancing Guide"
-description: "Provides a complete guide to AI freelancing including niche analysis, pricing, client acquisition, proposal templates, and delivery workflows."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-freelancing-guide"
-sourceUrl: "https://clawhub.ai/skills/ai-freelancing-guide"
----
+# AI Freelancing Guide - AI 接单实战指南
 
-# Ai Freelancing Guide
+用 OpenClaw + AI Agent 接单赚钱的完整指南，包含：选赛道、定价、客户获取、交付流程。
 
-> Provides a complete guide to AI freelancing including niche analysis, pricing, client acquisition, proposal templates, and delivery workflows.
+## 使用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-freelancing-guide`
-- **Source URL:** [https://clawhub.ai/skills/ai-freelancing-guide](https://clawhub.ai/skills/ai-freelancing-guide)
+- 想用 AI 技能接单赚钱
+- 不知道选什么赛道
+- 不懂如何定价
+- 找不到客户
 
-## Overview
+## 功能
 
+1. **赛道分析** — 分析不同领域的客单价、竞争度、AI 替代率
+2. **定价计算** — 根据项目复杂度和市场价自动推荐报价
+3. **平台推荐** — 根据你的技能匹配最佳接单平台
+4. **作品集生成** — 快速生成示例项目展示给客户
+5. **提案模板** — 生成专业的接单提案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-freelancing-guide
+## 快速开始
+
+### 1. 分析你的赛道
+
 ```
+我擅长：Python + 数据分析 + 自动化
+经验：1 年
+目标：月入 $500
+```
+
+Agent 会分析并推荐最适合的接单方向。
+
+### 2. 生成报价
+
+```
+项目：爬取电商网站数据 + 生成报告
+工期：3 天
+复杂度：中等
+```
+
+Agent 会给出推荐报价：$150-300
+
+### 3. 生成提案
+
+```
+客户需求：需要一个自动化脚本，每天抓取竞品价格并发邮件通知
+我的优势：熟悉爬虫 + 有类似项目经验
+```
+
+Agent 会生成专业的提案文本。
+
+## 定价策略
+
+| 项目类型 | 入门价 | 中级价 | 高级价 |
+|----------|--------|--------|--------|
+| 自动化脚本 | $50-100 | $100-300 | $300-500 |
+| 数据分析 | $100-200 | $200-500 | $500-1000 |
+| API 集成 | $100-300 | $300-800 | $800-2000 |
+| 网站开发 | $200-500 | $500-1500 | $1500-5000 |
+
+## 接单平台推荐
+
+### 国际（美金）
+
+- **Upwork** — 最成熟，客户质量高
+- **Fiverr** — 固定价格，适合小单
+- **Toptal** — 高端客户，门槛高
+
+### 国内（人民币）
+
+- **程序员客栈** — 技术外包
+- **码市** — 项目众包
+- **猪八戒** — 综合外包
+
+## 成功案例
+
+### 案例 1：自动化报告生成
+- 客户：电商公司
+- 需求：每日销售数据自动汇总发邮件
+- 报价：$200
+- 工期：2 天
+- AI 辅助：90%
+
+### 案例 2：竞品价格监控
+- 客户：跨境电商
+- 需求：监控 5 个竞品网站价格变化
+- 报价：$350
+- 工期：3 天
+- AI 辅助：85%
+
+## 注意事项
+
+1. **先收定金** — 至少 30% 预付款
+2. **明确需求** — 用文档确认，避免扯皮
+3. **分批交付** — 大项目分阶段，降低风险
+4. **保留案例** — 每个项目留作作品集
+
+## 更新日志
+
+- 2026-03-13：初始版本

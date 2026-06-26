@@ -1,35 +1,45 @@
 ---
-name: "Aliyun Qwen Rerank"
-description: "Use when reranking search candidates is needed with Alibaba Cloud Model Studio rerank models, including hybrid retrieval, top-k refinement, and multilingual..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun-qwen-rerank"
-sourceUrl: "https://clawhub.ai/skills/aliyun-qwen-rerank"
+name: aliyun-qwen-rerank
+description: Use when reranking search candidates is needed with Alibaba Cloud Model Studio rerank models, including hybrid retrieval, top-k refinement, and multilingual relevance sorting.
+version: 1.0.0
 ---
 
-# Aliyun Qwen Rerank
+Category: provider
 
-> Use when reranking search candidates is needed with Alibaba Cloud Model Studio rerank models, including hybrid retrieval, top-k refinement, and multilingual...
+# Model Studio Rerank
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun-qwen-rerank`
-- **Source URL:** [https://clawhub.ai/skills/aliyun-qwen-rerank](https://clawhub.ai/skills/aliyun-qwen-rerank)
+## Validation
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/aliyun-qwen-rerank
+mkdir -p output/aliyun-qwen-rerank
+python -m py_compile skills/ai/search/aliyun-qwen-rerank/scripts/prepare_rerank_request.py && echo "py_compile_ok" > output/aliyun-qwen-rerank/validate.txt
 ```
+
+Pass criteria: command exits 0 and `output/aliyun-qwen-rerank/validate.txt` is generated.
+
+## Critical model names
+
+Use one of these exact model strings:
+- `gte-rerank-v2`
+- `gte-rerank`
+- `gte-multilingual-rerank`
+- `qwen3-reranker-8b`
+- `qwen3-reranker-4b`
+- `qwen3-reranker-0.6b`
+
+## Quick start
+
+```bash
+python skills/ai/search/aliyun-qwen-rerank/scripts/prepare_rerank_request.py \
+  --query "cloud vector database" \
+  --output output/aliyun-qwen-rerank/request.json
+```
+
+## Notes
+
+- Use after embedding/vector retrieval to reorder candidates.
+- Prefer multilingual rerankers when query/document languages differ.
+
+## References
+
+- `references/sources.md`

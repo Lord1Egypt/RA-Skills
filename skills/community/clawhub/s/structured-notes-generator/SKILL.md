@@ -1,35 +1,34 @@
 ---
-name: "结构化笔记生成器"
+name: structured-notes-generator
 description: "description: 将主题、课堂 PDF 或转录稿转化为结构化学习笔记，包含关键概念、定义、示例、大纲和复习问题。 ---"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/structured-notes-generator"
-sourceUrl: "https://clawhub.ai/skills/structured-notes-generator"
 ---
 
+---
 # 结构化笔记生成器
-
-> description: 将主题、课堂 PDF 或转录稿转化为结构化学习笔记，包含关键概念、定义、示例、大纲和复习问题。 ---
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/structured-notes-generator`
-- **Source URL:** [https://clawhub.ai/skills/structured-notes-generator](https://clawhub.ai/skills/structured-notes-generator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/structured-notes-generator
-```
+## 概览
+把任何教育类内容转成干净、分层、可直接学习的笔记。提取核心内容，按主题模块组织，并加入有助于记忆的元素。
+**关键词**：笔记、学习、提炼、概念、定义、大纲、复习
+## 特性
+- 自动提取关键概念和定义
+- 按主题与子主题分层组织
+- 加入示例和类比
+- 在末尾生成复习问题
+- 生成主题可视化大纲（概念关系图）
+## 输出格式
+- 主题标题
+- 总体大纲（目录）
+- 按子主题组织的模块：概念 → 定义 → 示例
+- 概念之间的关联
+- 复习问题（3-5 个）
+## 指令
+- 分析完整源内容
+- 识别主要概念和次要概念
+- 按从总体到具体的逻辑层级组织
+- 为每个复杂概念加入一个实用示例或类比
+- 生成覆盖重点内容的复习问题
+- 如果有公式或数值数据，用单独模块突出显示
+## 约束
+- 不要编造源内容中不存在的信息
+- 不要为了简单而损失技术准确性
+- 对需要更多上下文的概念标记为 [需要扩展]
+- 除非主题确实需要更多篇幅，笔记控制在 500-1500 字

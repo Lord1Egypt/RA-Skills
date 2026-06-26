@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(swamp --version:*)",
+      "Bash(swamp auth:*)",
+      "Bash(swamp extension:*)"
+    ]
+  }
+}

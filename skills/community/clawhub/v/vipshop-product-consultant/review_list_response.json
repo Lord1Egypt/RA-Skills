@@ -1,0 +1,909 @@
+{
+  "code": 1,
+  "data": [
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "广东",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "短款，配高腰裤可以不露肚子，舒适百搭的款",
+        "extensionFlags": {
+          "bump": "false",
+          "highQualityTag": "1",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "舒适百搭的款",
+            "length": "6",
+            "offset": "14"
+          }
+        ],
+        "imageCount": 2,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": true,
+              "qualityValue": 2
+            },
+            "imageId": 2298084373590705605,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/12/17/128/b11b8ab9a02d262b81a43.8351.jpg",
+            "xyPosistion": ""
+          },
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": true,
+              "qualityValue": 2
+            },
+            "imageId": 2298084373590705606,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/12/17/143/2fd90a51d99054992fe74.9027.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1765927130000,
+        "repType": "0",
+        "reputationId": "2298084371418056439",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-12-17",
+        "usefulCount": 3
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "奶白色",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741897160,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/79/729d5bde-97b0-4593-88d4-ed0295a37d45_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741897160",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "L",
+        "skuId": 376691009459679234,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/65/fe24c229-a92d-4ab2-946e-b092ca8b80fb.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "https://h2.appsimg.com/b.appsimg.com/upload/mst/2023/12/28/140/4dd821b18940bcabf90164ec09b5c3bf.png",
+        "gender": "FEMALE",
+        "memberLvl": "D2",
+        "talentLevelId": 0,
+        "userIdentity": "NDk1OTAzMjE0",
+        "vips": "1"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "黑龙江",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "穿的舒服，大小正好！",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "穿的舒服",
+            "length": "4",
+            "offset": "0"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": true,
+              "qualityValue": 3
+            },
+            "imageId": 2280636207224330350,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/11/03/173/735402aa8fa9481c37262.4224.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "isAnonymous": "YES",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1762147145000,
+        "repType": "0",
+        "reputationId": "2280636206989460770",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-11-03",
+        "usefulCount": 3
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "黑色",
+        "discountTips": "3.5折",
+        "goodsId": 6921300264294873032,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/110/37ec4ebe-5245-42a5-a625-6305cacaa698_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921300264294873032",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "XL",
+        "skuId": 376691009459679363,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/37/d277d802-679a-448b-91e8-7f9ad2f8f225.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "http://b.appsimg.com/upload/mcp/2017/09/21/41/150598456087.png",
+        "gender": "FEMALE",
+        "memberLvl": "D1",
+        "stature": "168cm/80kg",
+        "talentLevelId": 0,
+        "userIdentity": "Mjc4Mjg3Mzg0",
+        "vips": "0"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "宁夏",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "运动卫衣收到了，大小合适，穿上刚好，质量不错的，下次还会继续回购",
+        "extensionFlags": {
+          "bump": "false",
+          "highQualityTag": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "质量不错的",
+            "length": "5",
+            "offset": "18"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": true,
+              "qualityValue": 2
+            },
+            "imageId": 311263468,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/03/10/196/b94ee9c52ae043a2fd410.4821.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "impressesTagList": [
+          {
+            "tagId": 2925,
+            "tagValue": "尺码适中"
+          },
+          {
+            "tagId": 4242,
+            "tagValue": "面料舒适"
+          }
+        ],
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1741613545000,
+        "repType": "0",
+        "reputationId": "719670299",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-03-10",
+        "usefulCount": 10
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "奶白色",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741897160,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/79/729d5bde-97b0-4593-88d4-ed0295a37d45_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741897160",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "M",
+        "skuId": 376691009459679234,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/65/fe24c229-a92d-4ab2-946e-b092ca8b80fb.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "https://h2.appsimg.com/b.appsimg.com/upload/mst/2023/12/28/140/4dd821b18940bcabf90164ec09b5c3bf.png",
+        "gender": "FEMALE",
+        "memberLvl": "D2",
+        "talentLevelId": 0,
+        "userIdentity": "MjQ0MTM3MjAy",
+        "vips": "0"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "内蒙古",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "这件衣服穿着即好看又舒服质量嘎嘎的超级喜欢",
+        "extensionFlags": {
+          "bump": "false",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": true,
+              "qualityValue": 1
+            },
+            "imageId": 2292799262280390498,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/12/06/50/0f0cdc7857fcb4214a281.7347.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1764992879000,
+        "repType": "0",
+        "reputationId": "2292799266009128222",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-12-06",
+        "usefulCount": 3
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "豆绿色",
+        "discountTips": "3.5折",
+        "goodsId": 6921300264294807496,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/9/91760692-45c5-49d8-b5bc-5baf305bd684_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921300264294807496",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "2XL",
+        "skuId": 376691009459679340,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/128/abdc1405-d231-4f0c-94d6-91e70d8d08d4.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "https://h2.appsimg.com/b.appsimg.com/upload/mst/2023/12/28/7/cd6e279c64da30fcf9a48f8691c860a0.png",
+        "gender": "UNKNOWN",
+        "memberLvl": "D1",
+        "talentLevelId": 0,
+        "userIdentity": "NTEwNjAwNjI1",
+        "vips": "0"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "四川",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "很喜欢！很很合身！！！",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "很很合身",
+            "length": "4",
+            "offset": "4"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": false,
+              "qualityValue": 2
+            },
+            "imageId": 2317704524980035173,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2026/02/14/187/5d05ba68cf07b18d8d70b.9002.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "isAnonymous": "YES",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1771083219000,
+        "repType": "0",
+        "reputationId": "2317704524682241761",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2026-02-14",
+        "usefulCount": 0
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "奶白色",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741897160,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/79/729d5bde-97b0-4593-88d4-ed0295a37d45_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741897160",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "XL",
+        "skuId": 376691009459679234,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/65/fe24c229-a92d-4ab2-946e-b092ca8b80fb.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "****是缘",
+        "authorUid": 0,
+        "avatarUrl": "http://b.appsimg.com/upload/mcp/2017/09/21/41/150598456087.png",
+        "gender": "FEMALE",
+        "memberLvl": "D2",
+        "talentLevelId": 0,
+        "userIdentity": "MjA0ODk4ODk5",
+        "vips": "1"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "云南",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "卫衣质量很好，宝贝很喜欢，一直都在唯品会购买生活用品包括电器还有全家所有吃的用的",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "宝贝很喜欢",
+            "length": "5",
+            "offset": "7"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": false,
+              "qualityValue": 2
+            },
+            "imageId": 2283875238301146805,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/11/23/77/93e8a7b204ff2094fe9a7.8504.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "isAnonymous": "YES",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1763888979000,
+        "repType": "0",
+        "reputationId": "2285825608380322321",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-11-23",
+        "usefulCount": 1
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "奶白色",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741897160,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/79/729d5bde-97b0-4593-88d4-ed0295a37d45_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741897160",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "XL",
+        "skuId": 376691009459679234,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/65/fe24c229-a92d-4ab2-946e-b092ca8b80fb.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "********jr",
+        "authorUid": 0,
+        "avatarUrl": "http://b.appsimg.com/upload/mcp/2017/09/21/195/150598438091.png",
+        "gender": "FEMALE",
+        "memberLvl": "D2",
+        "talentLevelId": 0,
+        "userIdentity": "MjM4NjY3MDMw",
+        "vips": "1"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "新疆",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "衣服已收到了，质量很好，款式新颖好看，面料柔软舒服，上身效果棒棒哒，厚薄刚好",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "面料柔软舒服",
+            "length": "6",
+            "offset": "19"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": false,
+              "qualityValue": 0
+            },
+            "imageId": 2280634621546727227,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/10/31/82/d73247e403066cfcd75b4.8564.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1761882710000,
+        "repType": "0",
+        "reputationId": "2280634619298580830",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-10-31",
+        "usefulCount": 3
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "浅花灰",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741761992,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/33/e063a765-df74-4ced-99fd-c98f9e455c27_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741761992",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "2XL",
+        "skuId": 376691009459679275,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/83/eaefbaed-7c2a-4cc1-b6d7-fe565c8091cc.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "https://h2.appsimg.com/b.appsimg.com/upload/mst/2023/12/28/140/4dd821b18940bcabf90164ec09b5c3bf.png",
+        "gender": "FEMALE",
+        "memberLvl": "D2",
+        "talentLevelId": 0,
+        "userIdentity": "MzczOTY0NTI2",
+        "vips": "1"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "陕西",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "喜欢，穿上很舒服，以后还会回购",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "穿上很舒服",
+            "length": "5",
+            "offset": "3"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": false,
+              "qualityValue": 2
+            },
+            "imageId": 322235112,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/05/14/62/08f15d4c0470fb0f4f19f.8500.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "impressesTagList": [
+          {
+            "tagId": 2925,
+            "tagValue": "尺码适中"
+          },
+          {
+            "tagId": 4242,
+            "tagValue": "面料柔软"
+          }
+        ],
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1747185059000,
+        "repType": "0",
+        "reputationId": "733443610",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-05-14",
+        "usefulCount": 2
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "奶白色",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741897160,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/79/729d5bde-97b0-4593-88d4-ed0295a37d45_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741897160",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "M",
+        "skuId": 376691009459679234,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/65/fe24c229-a92d-4ab2-946e-b092ca8b80fb.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "https://h2.appsimg.com/b.appsimg.com/upload/mst/2023/12/28/140/4dd821b18940bcabf90164ec09b5c3bf.png",
+        "gender": "FEMALE",
+        "memberLvl": "D2",
+        "stature": "175cm/75kg",
+        "talentLevelId": 0,
+        "userIdentity": "NDk4MzI2NDI=",
+        "vips": "1"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "湖北",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": false,
+              "qualityValue": 0
+            },
+            "imageId": 316237765,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/04/10/136/2327b7edd7ee0d62825b1.3302.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "impressesTagList": [
+          {
+            "tagId": 2925,
+            "tagValue": "尺码适中"
+          },
+          {
+            "tagId": 4242,
+            "tagValue": "面料舒适"
+          }
+        ],
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1744240853000,
+        "repType": "0",
+        "reputationId": "725885137",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "tagInfos": [
+          {
+            "tagContent": "上身效果不错，满意",
+            "tagId": 2868,
+            "tagName": "上身效果",
+            "tagType": "1"
+          }
+        ],
+        "timeDesc": "2025-04-10",
+        "usefulCount": 3
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "奶白色",
+        "discountTips": "3.5折",
+        "goodsId": 6921304218741897160,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/79/729d5bde-97b0-4593-88d4-ed0295a37d45_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921304218741897160",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "L",
+        "skuId": 376691009459679234,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/65/fe24c229-a92d-4ab2-946e-b092ca8b80fb.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "***会员",
+        "authorUid": 0,
+        "avatarUrl": "https://h2.appsimg.com/b.appsimg.com/upload/mst/2021/05/20/12/3f6d96131fd462118c191c644ca0e3dd.png",
+        "gender": "FEMALE",
+        "memberLvl": "D1",
+        "stature": "158cm/60kg",
+        "talentLevelId": 0,
+        "userIdentity": "MjEzMTc2MzE2",
+        "vips": "0"
+      },
+      "showDiv": false
+    },
+    {
+      "pointVal": 0,
+      "reputation": {
+        "address": "湖南",
+        "allowShareFlag": "1",
+        "bump": "false",
+        "cacheIndex": "cache_01_18_reputation_376691009459675139_1710615368_全部-按默认排序_1_10_null",
+        "content": "这款卫衣很棒、面料很好、做工很好没有线头，很洋气  物廉价美值得购买",
+        "extensionFlags": {
+          "bump": "false",
+          "repeatCus": "1",
+          "realShotImg": "1"
+        },
+        "hasVideo": false,
+        "highlightList": [
+          {
+            "content": "这款卫衣很棒",
+            "length": "6",
+            "offset": "0"
+          }
+        ],
+        "imageCount": 1,
+        "imageList": [
+          {
+            "factorInfo": {
+              "isDetailPic": false,
+              "isModelPic": false,
+              "qualityValue": 2
+            },
+            "imageId": 315174563,
+            "url": "http://h2.appsimg.com/g.vpimg1.com/upload/ugc/p/55/2025/04/03/121/ec55bd2126e0f95bdb4a5.5489.jpg",
+            "xyPosistion": ""
+          }
+        ],
+        "imageType": 0,
+        "imgRelevance": "1",
+        "impresses": "",
+        "impressesTagList": [
+          {
+            "tagId": 2925,
+            "tagValue": "尺码适中"
+          }
+        ],
+        "isAnonymous": "NO",
+        "isCommentConvert": false,
+        "isEssence": "NO",
+        "isTop": "NO",
+        "isUseful": false,
+        "nlpClass": "P",
+        "nlpScore": 70,
+        "postTime": 1743642546000,
+        "repType": "0",
+        "reputationId": "724563851",
+        "satisfiedStatus": "VERY_SATISFIED",
+        "showDetail": false,
+        "timeDesc": "2025-04-03",
+        "usefulCount": 5
+      },
+      "reputationProduct": {
+        "brandName": "雪中飞",
+        "brandSn": 10025706,
+        "cat3Id": 390557,
+        "colorInfo": "黑色",
+        "discountTips": "3.5折",
+        "goodsId": 6921300264294873032,
+        "goodsImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/110/37ec4ebe-5245-42a5-a625-6305cacaa698_420_531.jpg",
+        "goodsName": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "highPointVal": 0,
+        "marketPrice": "369",
+        "midStr": "6921300264294873032",
+        "scheduleId": 1710615368,
+        "scheduleName": "唯品会好货精选",
+        "size": "M",
+        "skuId": 376691009459679363,
+        "spuId": 376691009459675139,
+        "spuIdStr": "376691009459675139",
+        "squareImage": "http://a.appsimg.com/upload/merchandise/pdcvis/2025/02/05/37/d277d802-679a-448b-91e8-7f9ad2f8f225.jpg",
+        "titleNoBrand": "【重磅卫衣】运动休闲女式春季复古学院风潮牌宽松慵懒立领外套",
+        "vipShopPrice": "129"
+      },
+      "reputationUser": {
+        "authorName": "*冰",
+        "authorUid": 0,
+        "avatarUrl": "http://h2.appsimg.com/upic.vimage1.com/upload/xupload/2024/04/16/170/xup_1821963474.jpg?status=1",
+        "gender": "UNKNOWN",
+        "memberLvl": "D2",
+        "talentLevelId": 0,
+        "userIdentity": "NTg3OTI1MDE3",
+        "vips": "0"
+      },
+      "showDiv": false
+    }
+  ],
+  "msg": "success"
+}

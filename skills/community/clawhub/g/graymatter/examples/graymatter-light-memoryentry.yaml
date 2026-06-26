@@ -1,0 +1,66 @@
+openapi: 3.0.1
+info:
+  title: GrayMatter Light
+  version: 0.1.0
+paths:
+  /MemoryEntry:
+    post:
+      summary: Create memory entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryEntry'
+      responses:
+        '200':
+          description: OK
+  /MemoryEntry/query:
+    post:
+      summary: Query memory entries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                max_results:
+                  type: integer
+      responses:
+        '200':
+          description: OK
+  /MemoryEntry/{id}:
+    get:
+      summary: Get memory entry by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    MemoryEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+        text:
+          type: string
+        sourceChannel:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time

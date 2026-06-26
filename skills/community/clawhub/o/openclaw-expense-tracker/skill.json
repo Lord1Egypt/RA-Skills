@@ -1,0 +1,14 @@
+{
+  "name": "openclaw-expense-tracker",
+  "version": "1.0.0"
+  "description": "智能记账本 - 基于 OpenClaw 的个人财务管理助手",
+  "author": "Your Name",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@openclaw/sdk": "^2026.3.2"
+  }
+}

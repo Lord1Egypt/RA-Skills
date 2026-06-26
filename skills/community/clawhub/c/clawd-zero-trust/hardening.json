@@ -1,0 +1,50 @@
+{
+  "version": "1.3.2",
+  "plugins": {
+    "allow": [
+      "google-antigravity-auth",
+      "telegram",
+      "openclaw-agentsandbox",
+      "openclaw-mcp-adapter",
+      "openclaw-memory-max",
+      "secureclaw"
+    ]
+  },
+  "tools": {
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "telegram": [
+          412148291
+        ]
+      }
+    },
+    "exec": {
+      "host": "gateway",
+      "security": "full",
+      "ask": "off"
+    },
+    "byProvider": {
+      "google-antigravity/gemini-3-flash": {
+        "profile": "coding",
+        "allow": [
+          "web_search",
+          "web_fetch",
+          "message",
+          "session_status"
+        ]
+      }
+    }
+  },
+  "gateway": {
+    "bind": "loopback"
+  },
+  "plp": {
+    "mode": "graceful",
+    "bootstrap": {
+      "auto_plan_first": true,
+      "intent_required": true,
+      "authorization_required": true
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "harness-dev-standards",
+  "displayName": "Harness Engineering 开发规范体系",
+  "description": "基于 Harness Engineering 理念 + 企业级全AI研发实践的完整开发质量保障体系。包含 6 道质量门禁、自动修复策略库、标准化文件结构、内置检查脚本，确保每次交付的代码质量。",
+  "version": "1.0.2",
+  "author": "ai-acheng",
+  "license": "MIT",
+  "homepage": "https://github.com/AI-aCheng/harness-dev-standards",
+  "keywords": [
+    "harness",
+    "engineering",
+    "standards",
+    "quality-gates",
+    "code-review",
+    "devops",
+    "ci-cd",
+    "typescript",
+    "nextjs"
+  ]
+}

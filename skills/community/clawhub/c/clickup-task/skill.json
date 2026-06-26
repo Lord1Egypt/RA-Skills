@@ -1,0 +1,13 @@
+{
+  "name": "clickup-task",
+  "displayName": "ClickUp Task Creator",
+  "description": "Create tasks in Vision Play ClickUp lists.",
+  "command": "task",
+  "type": "shell",
+  "entry": "/usr/local/bin/clickup_create_task.sh",
+  "args": [
+    "{{arg1}}",
+    "{{arg2}}",
+    "{{arg3}}"
+  ]
+}

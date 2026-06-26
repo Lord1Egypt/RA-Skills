@@ -1,0 +1,86 @@
+[
+  {
+    "flag": "honeypot",
+    "severity": "CRITICAL",
+    "description": "Cannot sell tokens after buying",
+    "userImpact": "Total loss of funds",
+    "action": "Do NOT buy. Warn user immediately."
+  },
+  {
+    "flag": "hidden_mint",
+    "severity": "CRITICAL",
+    "description": "Owner can mint unlimited tokens",
+    "userImpact": "Infinite dilution, price dump to zero",
+    "action": "Avoid. Owner can devalue all holdings instantly."
+  },
+  {
+    "flag": "blacklist",
+    "severity": "HIGH",
+    "description": "Owner can block specific addresses from selling",
+    "userImpact": "Selective rug pull — you may be unable to sell",
+    "action": "High risk. Owner can freeze your tokens."
+  },
+  {
+    "flag": "proxy_contract",
+    "severity": "HIGH",
+    "description": "Contract logic can be changed at any time via upgradeable proxy",
+    "userImpact": "Rules can change without notice — any function could be modified",
+    "action": "Verify the proxy admin. If not renounced or behind timelock, treat as risky."
+  },
+  {
+    "flag": "high_sell_tax",
+    "severity": "HIGH",
+    "description": "Sell tax exceeds 10%",
+    "userImpact": "Significant loss on every sell transaction",
+    "action": "Warn user of the exact tax percentage before buying."
+  },
+  {
+    "flag": "ownership_not_renounced",
+    "severity": "MEDIUM",
+    "description": "Contract owner retains admin privileges",
+    "userImpact": "Owner could change fees, pause trading, or modify contract behavior",
+    "action": "Not automatically bad (many legit projects retain ownership), but note it."
+  },
+  {
+    "flag": "liquidity_unlocked",
+    "severity": "MEDIUM",
+    "description": "Liquidity pool tokens are not locked",
+    "userImpact": "Deployer can remove liquidity at any time (rug pull)",
+    "action": "Check if LP is locked on a locker like PinkLock or Team.Finance."
+  },
+  {
+    "flag": "high_buy_tax",
+    "severity": "LOW",
+    "description": "Buy tax exceeds 5%",
+    "userImpact": "Minor cost on entry",
+    "action": "Inform user of the buy tax percentage."
+  },
+  {
+    "flag": "no_source_code",
+    "severity": "LOW",
+    "description": "Contract source code not verified on block explorer",
+    "userImpact": "Cannot independently audit the contract",
+    "action": "Note that the contract is unverified. Not a deal-breaker alone but adds uncertainty."
+  },
+  {
+    "flag": "transfer_pause",
+    "severity": "HIGH",
+    "description": "Owner can pause all token transfers",
+    "userImpact": "Trading can be halted at any time",
+    "action": "High risk unless it's a well-known project with legitimate pause mechanisms."
+  },
+  {
+    "flag": "external_call",
+    "severity": "MEDIUM",
+    "description": "Contract makes external calls to untrusted addresses",
+    "userImpact": "Behavior can change based on external contract state",
+    "action": "Check what external contracts are called and whether they are verified."
+  },
+  {
+    "flag": "self_destruct",
+    "severity": "CRITICAL",
+    "description": "Contract contains selfdestruct opcode",
+    "userImpact": "Contract can be permanently destroyed, making tokens worthless",
+    "action": "Avoid. Contract can disappear entirely."
+  }
+]

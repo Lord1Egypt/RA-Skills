@@ -1,0 +1,16 @@
+id: dialogue_exposition
+name: 对白说明感
+description: 检查对白中的解释腔、总结腔和信息搬运感，避免角色像解说员。
+severity: warning
+scope: dialogue
+type: keywords
+threshold: 1
+message: "对白里出现明显解释或总结连接词，检查是否在替作者说明，而不是让角色真正说话。"
+keywords:
+  - 也就是说
+  - 换句话说
+  - 总而言之
+  - 原因在于
+  - 这是因为
+  - 正如你所知道的
+  - 值得注意的是

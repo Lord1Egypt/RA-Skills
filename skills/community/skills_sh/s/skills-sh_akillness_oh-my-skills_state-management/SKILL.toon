@@ -1,0 +1,24 @@
+N:state-management
+D:Choose the smallest viable React/fullstack state owner before comparing libraries. Use when deciding whether a request is local UI state, shared-subtree/Context state, URL or form state, server-state cache ownership, or leftover client workflow state that may justify Zustand / Redux Toolkit / Jotai.
+G:state-management react context zustand redux-toolkit jotai tanstack-query server-state client-state url-state form-state react-router optimistic-updates
+U[5]:
+  Pick one primary state packet before naming any tool
+  Separate URL/form/server/client-workflow ownership cleanly
+  Compare stores only after non-store packets are removed
+  Call out the tempting wrong owner explicitly
+  Produce a short ownership brief with route-outs
+S[7]{n,action}:
+  1,Pick one primary packet
+  2,Choose the smallest owner
+  3,Run the anti-pattern check
+  4,Compare client-store options only if a client-workflow packet remains
+  5,Name mixed architectures directly
+  6,Route adjacent work out immediately
+  7,Produce one ownership brief
+R[6]:
+  react-best-practices
+  api-design
+  debugging
+  ui-component-patterns
+  design-system
+  responsive-design

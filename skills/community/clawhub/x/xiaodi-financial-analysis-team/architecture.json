@@ -1,0 +1,249 @@
+{
+  "version": "2.0.0",
+  "architecture": {
+    "pattern": "master-worker",
+    "description": "投顾专家作为协调者，分发任务给专业角色"
+  },
+  "coordinator": {
+    "id": "investment-advisor",
+    "name": "投顾专家",
+    "role": "综合服务、统筹协调",
+    "responsibilities": [
+      "理解用户投资需求",
+      "分解分析任务",
+      "分发给专业角色",
+      "整合分析报告",
+      "投资建议输出"
+    ],
+    "tools": {
+      "allowlist": [
+        "read", "write", "web_search", "web_fetch",
+        "memory_search", "memory_get", "message"
+      ]
+    }
+  },
+  "agents": {
+    "industry-researcher": {
+      "name": "行业研究员",
+      "role": "产业链分析、机会挖掘",
+      "icon": "🔬",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "read", "write"]
+      },
+      "capabilities": [
+        "行业竞争格局分析",
+        "产业链研究",
+        "公司基本面研究",
+        "成长性分析"
+      ],
+      "system_prompt": "agents/industry-researcher/system-prompt.md"
+    },
+    "investment-banker": {
+      "name": "投行专家",
+      "role": "并购重组、IPO辅导",
+      "icon": "🏦",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "read", "write"]
+      },
+      "capabilities": [
+        "并购重组分析",
+        "IPO估值",
+        "资本运作建议",
+        "投行项目评估"
+      ],
+      "system_prompt": "agents/investment-banker/system-prompt.md"
+    },
+    "market-cap-manager": {
+      "name": "市值管理助理",
+      "role": "IR策略、资本运作",
+      "icon": "📈",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "read", "write"]
+      },
+      "capabilities": [
+        "投资者关系策略",
+        "市值管理方案",
+        "股权激励设计",
+        "资本运作规划"
+      ],
+      "system_prompt": "agents/market-cap-manager/system-prompt.md"
+    },
+    "wealth-advisor": {
+      "name": "财富专员",
+      "role": "资产配置、基金筛选",
+      "icon": "💰",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "read", "write"]
+      },
+      "capabilities": [
+        "资产配置方案",
+        "基金筛选推荐",
+        "财富规划",
+        "风险评估"
+      ],
+      "system_prompt": "agents/wealth-advisor/system-prompt.md"
+    },
+    "business-opportunity-analyst": {
+      "name": "商机助理",
+      "role": "交易信号、买卖时机",
+      "icon": "🎯",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "read", "write", "exec"]
+      },
+      "capabilities": [
+        "技术分析",
+        "量化信号",
+        "买卖时机判断",
+        "止盈止损策略"
+      ],
+      "scripts": ["stock_analysis.py"],
+      "system_prompt": "agents/business-opportunity-analyst/system-prompt.md"
+    },
+    "corporate-sentiment-analyst": {
+      "name": "舆情助理",
+      "role": "舆情监测、风险预警",
+      "icon": "📰",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "read", "write"]
+      },
+      "capabilities": [
+        "新闻舆情监控",
+        "社交媒体情绪分析",
+        "风险预警",
+        "事件驱动分析"
+      ],
+      "system_prompt": "agents/corporate-sentiment-analyst/system-prompt.md"
+    }
+  },
+  "workflows": {
+    "stock_analysis": {
+      "name": "个股分析流程",
+      "steps": [
+        {
+          "id": "fundamental",
+          "agent": "industry-researcher",
+          "action": "analyze_fundamental"
+        },
+        {
+          "id": "technical",
+          "agent": "business-opportunity-analyst",
+          "parallel": true,
+          "action": "analyze_technical"
+        },
+        {
+          "id": "sentiment",
+          "agent": "corporate-sentiment-analyst",
+          "parallel": true,
+          "action": "analyze_sentiment"
+        },
+        {
+          "id": "valuation",
+          "agent": "investment-banker",
+          "action": "analyze_valuation"
+        },
+        {
+          "id": "report",
+          "agent": "investment-advisor",
+          "action": "generate_report"
+        }
+      ]
+    },
+    "portfolio_diagnosis": {
+      "name": "持仓诊断流程",
+      "steps": [
+        {
+          "id": "get_quotes",
+          "agent": "business-opportunity-analyst",
+          "action": "get_realtime_quotes"
+        },
+        {
+          "id": "risk_assessment",
+          "agent": "wealth-advisor",
+          "action": "assess_risk"
+        },
+        {
+          "id": "stock_diagnosis",
+          "agent": "industry-researcher",
+          "parallel": true,
+          "action": "diagnose_stocks"
+        },
+        {
+          "id": "report",
+          "agent": "investment-advisor",
+          "action": "generate_diagnosis_report"
+        }
+      ]
+    },
+    "asset_allocation": {
+      "name": "资产配置流程",
+      "steps": [
+        {
+          "id": "market_analysis",
+          "agent": "industry-researcher",
+          "action": "analyze_market"
+        },
+        {
+          "id": "opportunity_screen",
+          "agent": "business-opportunity-analyst",
+          "action": "screen_opportunities"
+        },
+        {
+          "id": "allocation_design",
+          "agent": "wealth-advisor",
+          "action": "design_allocation"
+        },
+        {
+          "id": "review",
+          "agent": "investment-advisor",
+          "action": "review_allocation"
+        }
+      ]
+    }
+  },
+  "data_sources": {
+    "quote": {
+      "eastmoney": "东方财富行情接口",
+      "tencent": "腾讯财经行情接口"
+    },
+    "financial": {
+      "eastmoney": "东方财富财务数据"
+    },
+    "news": {
+      "sina": "新浪财经新闻",
+      "eastmoney": "东方财富资讯"
+    },
+    "research": {
+      "eastmoney": "东方财富研报中心"
+    }
+  },
+  "risk_management": {
+    "disclaimer": "本团队提供的分析报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。",
+    "max_position_pct": 30,
+    "stop_loss_pct": 8,
+    "take_profit_pct": 20
+  },
+  "settings": {
+    "default_market": "A股",
+    "risk_level": "moderate",
+    "analysis_depth": "standard",
+    "report_format": "markdown"
+  }
+}

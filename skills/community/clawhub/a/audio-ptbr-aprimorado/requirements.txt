@@ -1,0 +1,31 @@
+# Audio PT Auto-Reply - Python Dependencies
+# PINNED versions for reproducibility
+
+# Core ML & Audio (heavy dependencies - make optional)
+torch==2.1.2
+torchaudio==2.1.2
+transformers==4.36.2
+
+# Optional: Claude API for intelligent responses
+anthropic>=0.19.0
+
+# Utilities
+numpy==1.24.3
+
+# Performance & Monitoring
+tqdm==4.66.1          # Progress bars for model loading
+
+# Development/Testing (optional, not in prod install)
+# pytest==7.4.3
+# black==23.12.0
+
+# Installation groups:
+# 
+# Production (minimal):
+#   pip install -e ".[core]"
+#
+# Full (with Claude):
+#   pip install -e ".[full]"
+#
+# Development:
+#   pip install -e ".[dev]"

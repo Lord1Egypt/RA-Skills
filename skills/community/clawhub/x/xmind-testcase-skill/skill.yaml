@@ -1,0 +1,66 @@
+name: generate_xmind_testcase
+description: 根据需求生成XMind测试用例脑图
+
+input_schema:
+  type: object
+  properties:
+    requirement:
+      type: string
+      description: 需求描述
+
+output_schema:
+  type: object
+  properties:
+    file:
+      type: string
+      description: 生成的xmind文件
+
+steps:
+
+  - name: generate_cases
+    type: llm
+    prompt: |
+      你是一名资深测试工程师。
+
+      根据需求生成测试用例结构。
+
+      规则：
+      1 按模块划分
+      2 每个模块包含测试点
+      3 每个测试点包含测试用例
+      4 每个用例包含：
+         - 用例名称
+         - 前置条件
+         - 步骤
+         - 预期结果
+         - 优先级
+
+      输出JSON：
+
+      {
+        "模块":[
+          {
+            "测试点":"",
+            "cases":[
+              {
+                "用例名称":"",
+                "前置条件":"",
+                "步骤":[],
+                "预期结果":"",
+                "优先级":""
+              }
+            ]
+          }
+        ]
+      }
+
+      需求：
+      {{requirement}}
+
+    output: testcase_json
+
+  - name: build_xmind
+    type: python
+    entry: generator.py
+    input:
+      data: "{{testcase_json}}"

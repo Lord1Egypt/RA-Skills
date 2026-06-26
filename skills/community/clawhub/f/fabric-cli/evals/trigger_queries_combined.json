@@ -1,0 +1,106 @@
+[
+  {
+    "query": "search my Fabric for notes about the tomography segmentation plan",
+    "should_trigger": true
+  },
+  {
+    "query": "save this link to Fabric and tag it reading: https://example.com/paper",
+    "should_trigger": true
+  },
+  {
+    "query": "use Fabric as memory for this coding task and save a handoff at the end",
+    "should_trigger": true
+  },
+  {
+    "query": "upload ~/Downloads/proposal.pdf to my Fabric Work/Reports folder",
+    "should_trigger": true
+  },
+  {
+    "query": "list my Fabric tasks and mark the PR review one done",
+    "should_trigger": true
+  },
+  {
+    "query": "install the Fabric.so CLI and log in",
+    "should_trigger": true
+  },
+  {
+    "query": "run fabric ask over my project-atlas notes",
+    "should_trigger": true
+  },
+  {
+    "query": "generate zsh completion for the fabric command",
+    "should_trigger": true
+  },
+  {
+    "query": "use fab to list Microsoft Fabric lakehouses",
+    "should_trigger": false
+  },
+  {
+    "query": "create a Power BI semantic model using Microsoft Fabric CLI",
+    "should_trigger": false
+  },
+  {
+    "query": "what fabric should I use for a summer shirt?",
+    "should_trigger": false
+  },
+  {
+    "query": "search this local folder for meeting notes with ripgrep",
+    "should_trigger": false
+  },
+  {
+    "query": "write a Python script that uploads CSV rows into Postgres",
+    "should_trigger": false
+  },
+  {
+    "query": "summarise the attached PDF and do not save anything anywhere",
+    "should_trigger": false
+  },
+  {
+    "query": "my fabric command says auth failed when I try to search my library",
+    "should_trigger": true
+  },
+  {
+    "query": "create a Fabric note tagged agent-memory with the final decisions",
+    "should_trigger": true
+  },
+  {
+    "query": "browse Inbox/Reports in Fabric from the terminal",
+    "should_trigger": true
+  },
+  {
+    "query": "switch Fabric to the research workspace and upload this PDF",
+    "should_trigger": true
+  },
+  {
+    "query": "ask my Fabric assistant what I saved about project-atlas",
+    "should_trigger": true
+  },
+  {
+    "query": "check my Fabric subscription quotas from the CLI",
+    "should_trigger": true
+  },
+  {
+    "query": "Use the fabric --pattern summarize command from Daniel Miessler's project",
+    "should_trigger": false
+  },
+  {
+    "query": "Which fabric has the best drape for dressmaking?",
+    "should_trigger": false
+  },
+  {
+    "query": "Debug a Microsoft Fabric notebook that fails in OneLake",
+    "should_trigger": false
+  },
+  {
+    "query": "Make me a CLI cheat sheet for git",
+    "should_trigger": false
+  },
+  {
+    "query": "save this in Notion as a project memory",
+    "should_trigger": false
+  },
+  {
+    "query": "what does the word fabric mean in distributed systems?",
+    "should_trigger": false
+  }
+]

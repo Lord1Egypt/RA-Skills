@@ -1,0 +1,91 @@
+{
+  "version": "0.1.0",
+  "name": "dingtalk",
+  "description": "DingTalk (钉钉) integration - Send messages, create groups, and automate DingTalk workflows",
+  "instructions": "instructions.md",
+  "tools": {
+    "auto_preload": false,
+    "entries": [
+      {
+        "name": "dingtalk_send_message",
+        "description": "Send a text or markdown message to a DingTalk user",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "type": "string",
+              "description": "The user ID to send message to"
+            },
+            "message": {
+              "type": "string",
+              "description": "Message content"
+            },
+            "msg_type": {
+              "type": "string",
+              "enum": ["text", "markdown"],
+              "description": "Message type, text or markdown"
+            }
+          },
+          "required": ["user_id", "message"]
+        }
+      },
+      {
+        "name": "dingtalk_create_chat",
+        "description": "Create a new DingTalk group chat",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Chat group name"
+            },
+            "user_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "User IDs to add to the chat"
+            }
+          },
+          "required": ["name"]
+        }
+      },
+      {
+        "name": "dingtalk_list_chats",
+        "description": "List all accessible DingTalk chats",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "dingtalk_get_token",
+        "description": "Get DingTalk access token",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ]
+  },
+  "env": [
+    {
+      "name": "DINGTALK_APP_ID",
+      "description": "DingTalk App ID from developer console",
+      "required": true
+    },
+    {
+      "name": "DINGTALK_APP_SECRET",
+      "description": "DingTalk App Secret",
+      "required": true
+    },
+    {
+      "name": "DINGTALK_AGENT_ID",
+      "description": "DingTalk Agent ID",
+      "required": false
+    }
+  ],
+  "tags": ["productivity", "integration", "messaging", "chinese"],
+  "author": "lukaizj",
+  "homepage": "https://github.com/lukaizj/dingtalk-integration-skill"
+}

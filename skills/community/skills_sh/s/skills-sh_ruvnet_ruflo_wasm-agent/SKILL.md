@@ -1,35 +1,31 @@
 ---
-name: "wasm-agent"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/wasm-agent"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/wasm-agent"
+name: wasm-agent
+description: Create and manage sandboxed WASM agents for isolated code execution
+argument-hint: "<create|list|prompt|terminate> [options]"
+allowed-tools: mcp__claude-flow__wasm_agent_create mcp__claude-flow__wasm_agent_list mcp__claude-flow__wasm_agent_prompt mcp__claude-flow__wasm_agent_tool mcp__claude-flow__wasm_agent_files mcp__claude-flow__wasm_agent_export mcp__claude-flow__wasm_agent_terminate Bash
 ---
 
-# wasm-agent
+# WASM Agent
 
-> Indexed by skills.sh from ruvnet/ruflo
+Create sandboxed agents that run in WebAssembly for safe, isolated execution.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/wasm-agent`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/wasm-agent](https://skills.sh/ruvnet/ruflo/wasm-agent)
+## When to use
 
-## Overview
+When you need to run untrusted code, experiment with agent configurations, or create portable agents that run anywhere WASM is supported.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/wasm-agent
-```
+1. **Create agent** — call `mcp__claude-flow__wasm_agent_create` with agent configuration
+2. **Send prompt** — call `mcp__claude-flow__wasm_agent_prompt` to interact with the agent
+3. **Use tools** — call `mcp__claude-flow__wasm_agent_tool` to give the agent access to specific tools
+4. **Manage files** — call `mcp__claude-flow__wasm_agent_files` to read/write files in the sandbox
+5. **Export** — call `mcp__claude-flow__wasm_agent_export` to package the agent for sharing
+6. **List agents** — call `mcp__claude-flow__wasm_agent_list` to see all running WASM agents
+7. **Terminate** — call `mcp__claude-flow__wasm_agent_terminate` to stop an agent
+
+## Benefits
+
+- Full sandbox isolation — agents cannot access the host filesystem
+- Portable — export and run on any WASM runtime
+- Reproducible — same behavior across platforms
+- Safe — no risk of system damage from agent actions

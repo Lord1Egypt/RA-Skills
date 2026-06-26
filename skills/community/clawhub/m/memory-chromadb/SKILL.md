@@ -1,35 +1,24 @@
----
-name: "Memory ChromaDB"
-description: "Integrates ChromaDB with Ollama embeddings for long-term memory and auto-recalls relevant context to enhance conversations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-chromadb"
-sourceUrl: "https://clawhub.ai/skills/memory-chromadb"
----
+# ChromaDB Memory
 
-# Memory ChromaDB
+ChromaDB long-term memory with Ollama embeddings. Auto-recall injects relevant context before each turn.
 
-> Integrates ChromaDB with Ollama embeddings for long-term memory and auto-recalls relevant context to enhance conversations.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-chromadb`
-- **Source URL:** [https://clawhub.ai/skills/memory-chromadb](https://clawhub.ai/skills/memory-chromadb)
+- ChromaDB vector database integration
+- Ollama embedding support
+- Auto-recall relevant memories
+- Configurable collection names
 
-## Overview
+## Config
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-chromadb
+```json
+{
+  "chromaUrl": "http://localhost:8100",
+  "collectionName": "longterm_memory",
+  "ollamaUrl": "http://localhost:11434",
+  "embeddingModel": "nomic-embed-text",
+  "autoRecall": true,
+  "autoRecallResults": 3,
+  "minScore": 0.5
+}
 ```

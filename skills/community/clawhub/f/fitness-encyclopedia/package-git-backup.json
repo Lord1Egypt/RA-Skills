@@ -1,0 +1,46 @@
+{
+  "name": "fitness-encyclopedia",
+  "version": "1.0.0",
+  "description": "Fitness Encyclopedia - Personalized training plans, nutrition calculation, strength prediction, joint assessment, and comprehensive fitness knowledge",
+  "main": "index.js",
+  "scripts": {
+    "calculate-nutrition": "python scripts/calculate_nutrition.py",
+    "predict-strength": "python scripts/predict_strength.py"
+  },
+  "keywords": [
+    "fitness",
+    "health",
+    "nutrition",
+    "training",
+    "workout",
+    "exercise",
+    "strength",
+    "muscle",
+    "weight-loss",
+    "muscle-gain",
+    "diet",
+    "gym",
+    "personal-trainer",
+    "fitness-plan"
+  ],
+  "author": "Emily Yang <ywxaswd@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ywxaswd-stack/fitness-encyclopedia.git"
+  },
+  "homepage": "https://github.com/ywxaswd-stack/fitness-encyclopedia#readme",
+  "bugs": {
+    "url": "https://github.com/ywxaswd-stack/fitness-encyclopedia/issues"
+  },
+  "openclaw": {
+    "name": "Fitness Encyclopedia",
+    "description": "Personalized training plans, nutrition calculation, strength prediction, joint assessment, and comprehensive fitness knowledge",
+    "trigger": "fitness, workout, training, gym, exercise, weight-loss, muscle-gain, fat-loss, bodybuilding, fitness-plan, personal-trainer",
+    "emoji": "💪",
+    "category": "health",
+    "requires": {
+      "bins": ["python3"]
+    }
+  }
+}

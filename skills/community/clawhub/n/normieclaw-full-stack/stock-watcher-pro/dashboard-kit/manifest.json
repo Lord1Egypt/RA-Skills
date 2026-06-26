@@ -1,0 +1,39 @@
+{
+  "skill_id": "stock-watcher",
+  "display_name": "Stock Watcher Pro",
+  "description": "Investment portfolio tracker with market briefings, SEC filing analysis, and thesis tracking.",
+  "icon": "TrendingUp",
+  "accent_color": "#14b8a6",
+  "sidebar": {
+    "route": "/stocks",
+    "label": "Stocks",
+    "icon": "TrendingUp",
+    "children": [
+      { "label": "Portfolio", "route": "/stocks" },
+      { "label": "Briefings", "route": "/stocks/briefings", "icon": "FileText" },
+      { "label": "Intel Feed", "route": "/stocks/intel", "icon": "Rss" },
+      { "label": "Thesis Tracker", "route": "/stocks/thesis", "icon": "Target" },
+      { "label": "Source Health", "route": "/stocks/sources", "icon": "Activity" }
+    ]
+  },
+  "database": {
+    "prefix": "sw",
+    "tables": [
+      { "name": "sw_portfolios", "description": "Investment portfolios", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID","references":"auth.users(id)"},{"name":"name","type":"TEXT"},{"name":"description","type":"TEXT"},{"name":"is_default","type":"BOOLEAN","default":false},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sw_portfolios_user","columns":["user_id"]}] },
+      { "name": "sw_holdings", "description": "Portfolio holdings/positions", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"portfolio_id","type":"UUID","references":"sw_portfolios(id)"},{"name":"ticker","type":"TEXT"},{"name":"company_name","type":"TEXT"},{"name":"shares","type":"NUMERIC(12,4)"},{"name":"avg_cost_cents","type":"INTEGER"},{"name":"thesis","type":"TEXT"},{"name":"sector","type":"TEXT"},{"name":"added_date","type":"DATE"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sw_holdings_portfolio","columns":["portfolio_id"]},{"name":"idx_sw_holdings_ticker","columns":["ticker"]}] },
+      { "name": "sw_briefings", "description": "Market briefings", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"date","type":"DATE"},{"name":"type","type":"TEXT","default":"daily"},{"name":"content_md","type":"TEXT"},{"name":"market_sentiment","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sw_briefings_user_date","columns":["user_id","date DESC"]}] },
+      { "name": "sw_filing_summaries", "description": "SEC filing AI summaries", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"ticker","type":"TEXT"},{"name":"form_type","type":"TEXT"},{"name":"filing_date","type":"DATE"},{"name":"ai_summary","type":"TEXT"},{"name":"impact_score","type":"INTEGER"},{"name":"filing_url","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sw_filing_summaries_ticker","columns":["user_id","ticker","filing_date DESC"]}] },
+      { "name": "sw_news_links", "description": "Curated news links", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"ticker","type":"TEXT"},{"name":"title","type":"TEXT"},{"name":"source","type":"TEXT"},{"name":"url","type":"TEXT"},{"name":"ai_summary","type":"TEXT"},{"name":"sentiment","type":"TEXT"},{"name":"published_at","type":"TIMESTAMPTZ"},{"name":"created_at","type":"TIMESTAMPTZ"}], "indexes": [{"name":"idx_sw_news_links_ticker","columns":["user_id","ticker","created_at DESC"]}] },
+      { "name": "sw_source_network", "description": "Data source health tracking", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"ticker","type":"TEXT"},{"name":"source_name","type":"TEXT"},{"name":"feed_url","type":"TEXT"},{"name":"health_status","type":"TEXT","default":"healthy"},{"name":"last_checked_at","type":"TIMESTAMPTZ"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] },
+      { "name": "sw_thesis_tracking", "description": "Investment thesis tracking", "columns": [{"name":"id","type":"UUID","primary_key":true},{"name":"user_id","type":"UUID"},{"name":"ticker","type":"TEXT"},{"name":"thesis_state","type":"TEXT","default":"active"},{"name":"original_thesis","type":"TEXT"},{"name":"catalyst_noted","type":"TEXT"},{"name":"price_at_entry_cents","type":"INTEGER"},{"name":"price_at_time_cents","type":"INTEGER"},{"name":"notes","type":"TEXT"},{"name":"created_at","type":"TIMESTAMPTZ"},{"name":"updated_at","type":"TIMESTAMPTZ"}], "indexes": [] }
+    ]
+  },
+  "widgets": [
+    { "id": "portfolio-summary", "type": "chart", "title": "Portfolio Overview", "description": "Holdings summary with performance", "size": "2x1" }
+  ],
+  "settings": [
+    { "key": "default_portfolio", "label": "Default Portfolio", "type": "text", "default": "" },
+    { "key": "briefing_time", "label": "Daily Briefing Time", "type": "text", "default": "06:00" }
+  ],
+  "sync": { "mode": "json", "source_files": ["stock-watcher-pro/data/"] }
+}

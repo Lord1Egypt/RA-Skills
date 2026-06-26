@@ -1,35 +1,34 @@
 ---
-name: "Openclaw Pii Anonymizer Latest"
-description: "Automation skill for Openclaw Pii Anonymizer Latest."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-pii-anonymizer-latest"
-sourceUrl: "https://clawhub.ai/skills/openclaw-pii-anonymizer-latest"
----
+name: openclaw-pii-anonymizer
+description: Privacy pipeline for OpenClaw: Scrubs PII (names/emails/paths/IPs) with Ollama before external models (Grok/OpenRouter). Host/VM compatible. Use for memory_search, tool calls, HEARTBEAT.md sanitization.
+metadata:
+  openclaw:
+    requires: { bins: [jq, curl], env: [OLLAMA_URL] }
+    install:
+      - { id: jq, kind: apt, package: jq }
+      - { id: curl, kind: apt, package: curl }
+homepage: https://github.com/solmas/openclaw-pii-anonymizer
+user-invocable: false
 
-# Openclaw Pii Anonymizer Latest
+# OpenClaw PII Anonymizer
 
-> Automation skill for Openclaw Pii Anonymizer Latest.
+**Protects MEMORY.md/workspace from leaks**: Pipes prompts through Ollama (phi3:mini) → [PERSON]/[PATH]/[EMAIL].
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-pii-anonymizer-latest`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-pii-anonymizer-latest](https://clawhub.ai/skills/openclaw-pii-anonymizer-latest)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-pii-anonymizer-latest
+## Usage
 ```
+./privacy-anonymize.sh "Seth at /home/derenger email@example.com"
+→ "[PERSON] at [PATH] [EMAIL]"
+```
+
+## Integration
+- **HEARTBEAT.md**: `Task: ./privacy-anonymize.sh "$(memory_get MEMORY.md)"`
+- **Cron**: Sanitize before web_search/exec.
+- **OLLAMA_URL**: `localhost:11434` (VM) or `10.0.2.2:11434` (host).
+
+## Install Ollama Model
+```
+ollama pull phi3:mini
+```
+
+## Files
+- `privacy-anonymize.sh`: Core script.

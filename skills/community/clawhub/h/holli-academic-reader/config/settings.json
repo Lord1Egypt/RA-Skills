@@ -1,0 +1,17 @@
+{
+  "name": "academic-reader",
+  "description": "学术阅读助手配置",
+  "recommendedModel": "codex/claude-sonnet-4-20250514",
+  "fallbackModel": "minimax/MiniMax-M2.5",
+  "parameters": {
+    "temperature": 0.7,
+    "maxTokens": 4000
+  },
+  "systemPrompt": "你是一个学术阅读助手，使用工程控制论的方法论帮助用户阅读和理解技术书籍。你的回复应该结构化、深入，并且鼓励批判性思考。",
+  "features": [
+    "章节分析",
+    "深度反思",
+    "执行计划生成",
+    "快速摘要"
+  ]
+}

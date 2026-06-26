@@ -1,0 +1,309 @@
+{
+  "name": "eComm AI — 09 CRM & Sheet Logger",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/crm-log",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Logger Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-crm-log",
+      "id": "a5d37ebf-20b8-4b8e-bcdb-fef0ae04754d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize incoming data from various workflows\nconst body = $input.first().json.body || $input.first().json;\n\nconst record = {\n  order_id: body.order_id || '',\n  customer_phone: body.customer_phone || body.phone || '',\n  customer_name: body.customer_name || body.name || '',\n  customer_email: body.customer_email || body.email || '',\n  event_type: body.event_type || body.call_type || body.type || 'unknown',\n  status: body.status || body.outcome || '',\n  summary: body.summary || body.message || '',\n  source: body.source || 'voice_agent',\n  call_id: body.call_id || '',\n  duration: body.duration || 0,\n  total_amount: body.total_amount || 0,\n  currency: body.currency || 'USD',\n  platform: body.platform || '',\n  timestamp: body.timestamp || new Date().toISOString()\n};\n\nreturn [{ json: record }];"
+      },
+      "name": "Normalize Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "aaf20d04-b2ed-4a42-97b9-d0475c53f8d5"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Master Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "event_type": "={{ $json.event_type }}",
+            "status": "={{ $json.status }}",
+            "summary": "={{ $json.summary }}",
+            "source": "={{ $json.source }}",
+            "call_id": "={{ $json.call_id }}",
+            "duration": "={{ $json.duration }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Append Call Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        300
+      ],
+      "id": "7a25d025-78e3-4b1a-9403-44a21da1fa4d",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CUSTOMERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Customers",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "customer_phone": "={{ $json.customer_phone }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "customer_email": "={{ $json.customer_email }}",
+            "last_order_id": "={{ $json.order_id }}",
+            "last_interaction": "={{ $json.event_type }}",
+            "last_contact": "={{ $json.timestamp }}",
+            "total_orders": "={{ ($json.total_amount > 0) ? 1 : 0 }}",
+            "platform": "={{ $json.platform }}"
+          },
+          "matchingColumns": [
+            "customer_phone"
+          ],
+          "schema": [
+            {
+              "id": "customer_phone",
+              "displayName": "customer_phone",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Upsert Customer",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        500
+      ],
+      "id": "6c4afb33-3325-4012-a200-09693cafdafd",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "001a4b6f-cb6b-453e-b2fb-0a238d5bdd18",
+              "leftValue": "={{$env.HUBSPOT_API_KEY}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isNotEmpty"
+              }
+            }
+          ]
+        }
+      },
+      "name": "HubSpot Enabled?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        400
+      ],
+      "id": "9380d162-addd-4435-89bf-9cf16e60802d"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  properties: {\n    phone: $json.customer_phone,\n    firstname: $json.customer_name.split(' ')[0] || '',\n    lastname: $json.customer_name.split(' ').slice(1).join(' ') || '',\n    email: $json.customer_email,\n    ecomm_last_order: $json.order_id,\n    ecomm_last_interaction: $json.event_type,\n    ecomm_platform: $json.platform\n  }\n}) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.HUBSPOT_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "name": "Sync to HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        300
+      ],
+      "id": "323831ed-c7ef-4a2e-a46b-d7b61bab024d"
+    },
+    {
+      "parameters": {},
+      "name": "HubSpot Disabled",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        500
+      ],
+      "id": "71a36013-1c4f-4dee-bf97-db431a748ce8"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', logged: true }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        400
+      ],
+      "id": "381d3d73-fcb2-4bfc-9e42-d6ef61b3b952"
+    }
+  ],
+  "connections": {
+    "Logger Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Data": {
+      "main": [
+        [
+          {
+            "node": "Append Call Log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upsert Customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Call Log": {
+      "main": [
+        [
+          {
+            "node": "HubSpot Enabled?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot Enabled?": {
+      "main": [
+        [
+          {
+            "node": "Sync to HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot Disabled",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sync to HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot Disabled": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

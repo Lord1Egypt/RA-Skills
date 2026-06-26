@@ -1,0 +1,64 @@
+{
+  "name": "qqbot-persona",
+  "version": "1.0.0",
+  "description": "QQ 机器人多角色人设管理技能。支持按私聊/群聊/OpenID 定制独立人设，与 OpenClaw 默认人设完全分离。内置 12 个特色人设模板。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "qqbot",
+    "persona",
+    "role",
+    "character",
+    "hook",
+    "multi-role",
+    "anime",
+    "古风",
+    "傲娇",
+    "侦探"
+  ],
+  "category": "qqbot",
+  "repository": "https://github.com/openclaw/openclaw",
+  "homepage": "https://docs.openclaw.ai",
+  "main": "hooks/handler.js",
+  "files": [],
+  "scripts": {
+    "postinstall": "echo '🎭 qqbot-persona installed! Copy personas.json.example to personas.json and configure your personas.'"
+  },
+  "config": {
+    "hookName": "qqbot-persona",
+    "hookPath": "hooks/handler.js",
+    "configPath": "personas.json",
+    "configExample": "personas.json.example"
+  },
+  "changelog": {
+    "1.0.0": [
+      "Initial release",
+      "Support channel-based persona switching (direct/group)",
+      "Support OpenID-specific personas",
+      "Independent from OpenClaw default SOUL.md",
+      "12 pre-built persona templates: 通用助手、私聊助手、群聊助手、夜逸 (赛博诗人)、专属管家、技术助手、樱奈 (元气动漫少女)、凌风 (高冷学霸)、墨渊 (古风智者)、傲娇大小姐、温柔妈妈、夜明 (推理侦探)"
+    ]
+  },
+  "features": [
+    "渠道隔离：私聊/群聊独立人设",
+    "OpenID 精准匹配：特定用户/群组专属人设",
+    "高优先级注入：覆盖 OpenClaw 默认人设",
+    "热切换：修改配置即时生效",
+    "详细日志：便于调试",
+    "12 个精选人设模板开箱即用"
+  ],
+  "personas": {
+    "default": "通用助手 - 友好专业的默认助手",
+    "direct": "私聊助手 - 贴心的一对一服务",
+    "group": "群聊助手 - 活跃群体互动",
+    "night-poet": "夜逸 - 冷漠的赛博诗人",
+    "vip-user": "专属管家 - 专业忠诚的私人管家",
+    "tech-helper": "技术助手 - 严谨的技术专家",
+    "anime-girl": "樱奈 - 元气满满的动漫少女",
+    "cool-guy": "凌风 - 话少高效的高冷学霸",
+    "ancient-sage": "墨渊 - 温文尔雅的古风智者",
+    "tsundere": "傲娇大小姐 - 口嫌体正直的可爱少女",
+    "mom": "温柔妈妈 - 无微不至的关怀",
+    "detective": "夜明 - 逻辑至上的推理侦探"
+  }
+}

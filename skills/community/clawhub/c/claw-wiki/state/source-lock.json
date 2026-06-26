@@ -1,0 +1,12 @@
+{
+  "repo_url": "https://github.com/openclaw/openclaw",
+  "source_type": "git_clone",
+  "source_path": null,
+  "tracked_ref": "main",
+  "resolved_commit": "9914b48c578262ded2b2318493fd7e2fc46dd8ed",
+  "docs_subdir": "docs",
+  "synced_at": "2026-03-08T18:49:10.934929+00:00",
+  "mode": "tracking",
+  "keep_assets": true,
+  "previous_manifest_present": true
+}

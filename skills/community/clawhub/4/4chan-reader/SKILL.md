@@ -1,35 +1,28 @@
 ---
-name: "4chan-reader"
-description: "Browse 4chan boards and extract thread discussions into structured text files. Use when you need to fetch catalog information or specific thread content (including post text and file metadata) from 4chan boards like /a/, /vg/, /v/, etc."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/4chan-reader"
-sourceUrl: "https://clawhub.ai/skills/4chan-reader"
+name: 4chan-reader
+description: Browse 4chan boards and extract thread discussions into structured text files. Use when you need to fetch catalog information or specific thread content (including post text and file metadata) from 4chan boards like /a/, /vg/, /v/, etc.
 ---
 
-# 4chan-reader
+# 4chan Reader
 
-> Browse 4chan boards and extract thread discussions into structured text files. Use when you need to fetch catalog information or specific thread content (including post text and file metadata) from 4chan boards like /a/, /vg/, /v/, etc.
+This skill allows you to catalog and extract threads from 4chan boards into structured text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/4chan-reader`
-- **Source URL:** [https://clawhub.ai/skills/4chan-reader](https://clawhub.ai/skills/4chan-reader)
+## Workflows
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. View Board Catalog
+To see active threads and their reply counts on a board:
 ```bash
-hermes skills install clawhub/4chan-reader
+python3 scripts/chan_extractor.py catalog <board>
 ```
+Output format: `ThreadID|PostCount|TeaserText`
+
+### 2. Extract Thread Content
+To read a specific thread and optionally save it:
+```bash
+python3 scripts/chan_extractor.py thread <board> <thread_id> [output_root_dir] [word_limit]
+```
+- `output_root_dir` (optional): If provided, saves content to `<output_root_dir>/<board>_<timestamp>/<thread_id>.txt`.
+- `word_limit` (optional): Limits each line of post text to the specified number of words.
+
+## Details
+- **Scripts**: Uses [chan_extractor.py](scripts/chan_extractor.py) for all operations.

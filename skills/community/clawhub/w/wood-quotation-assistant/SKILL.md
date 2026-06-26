@@ -1,35 +1,147 @@
 ---
-name: "木工厂报价助手"
-description: "木工厂报价助手。自动匹配阶梯价格、计算损耗率、生成报价明细表（工艺成本/损耗/总成本/报价金额）。支持图纸尺寸提取、多格式导出。触发关键词：算报价、图纸报价、工艺核算、生成报价表、木作报价、板材成本核算。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wood-quotation-assistant"
-sourceUrl: "https://clawhub.ai/skills/wood-quotation-assistant"
+name: wood-quotation-assistant
+description: 木工厂报价助手。自动匹配阶梯价格、计算损耗率、生成报价明细表（工艺成本/损耗/总成本/报价金额）。支持图纸尺寸提取、多格式导出。触发关键词：算报价、图纸报价、工艺核算、生成报价表、木作报价、板材成本核算。
 ---
 
 # 木工厂报价助手
 
-> 木工厂报价助手。自动匹配阶梯价格、计算损耗率、生成报价明细表（工艺成本/损耗/总成本/报价金额）。支持图纸尺寸提取、多格式导出。触发关键词：算报价、图纸报价、工艺核算、生成报价表、木作报价、板材成本核算。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wood-quotation-assistant`
-- **Source URL:** [https://clawhub.ai/skills/wood-quotation-assistant](https://clawhub.ai/skills/wood-quotation-assistant)
+木作/家具行业专属报价工具，支持：
+- 阶梯价格自动匹配
+- 损耗率精确计算
+- 批量折扣智能生效
+- 多格式图纸解析
+- 报价明细双输出（对话表格 + Excel）
 
-## Overview
+**适用于**：木工厂、家具厂、展柜制作、定制木作商家
 
+## 核算流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wood-quotation-assistant
 ```
+图纸输入 → 图纸解析 → 工艺拆解 → 成本核算
+                                      ↓
+报价输出 ← 汇总计算 ← 损耗计算 ← 匹配采购
+```
+
+## 使用方式
+
+### 1. 图纸输入
+
+支持格式：
+- **CAD/PDF 图纸**：优先适配，可直接解析尺寸、工艺要求
+- **图片 + 文字描述**：兼容客户拍照/手绘图纸场景（JPG/PNG）
+
+### 2. 报价生成
+
+1. 解析图纸，提取尺寸、工艺要求
+2. 按核算模板拆解工艺分项
+3. 匹配材料单价、损耗率
+4. 计算各项成本、损耗、总成本
+5. 生成报价金额
+
+### 3. 输出格式
+
+- **主输出**：对话中结构化表格展示
+- **附加输出**：一键导出 Excel 文件（.xlsx）
+
+## 数据配置
+
+### 材料价格（阶梯价格）
+
+修改 `scripts/calculate_cost.py` 中的 `MATERIAL_PRICES`：
+
+```python
+MATERIAL_PRICES = {
+    "桦木板材(18mm)": {"1-49张": 220, "50-99张": 205, "100张以上": 190},
+    "E1级颗粒板(18mm)": {"1-99张": 85, "100-199张": 80, "200张以上": 75},
+    "水性清漆(5L)": {"1-19桶": 180, "20-49桶": 170, "50桶以上": 160},
+    "冷轧钢铰链": {"1-499个": 8.5, "500-999个": 8, "1000个以上": 7.5}
+}
+```
+
+### 损耗率
+
+修改 `scripts/calculate_cost.py` 中的 `LOSS_RATES`：
+
+```python
+LOSS_RATES = {
+    "桦木板材": 0.06,
+    "E1级颗粒板": 0.03,
+    "水性清漆": 0.01,
+    "冷轧钢铰链": 0.01
+}
+```
+
+### 工艺单价
+
+修改 `scripts/calculate_cost.py` 中的 `PROCESS_PRICES`：
+
+```python
+PROCESS_PRICES = {
+    "切割": 5,
+    "封边": 3,
+    "喷漆": 25,
+    "烤漆": 40,
+    "贴皮": 15,
+    "CNC": 30,
+    "雕刻": 35,
+    "打磨": 8,
+    "组装": 20,
+}
+```
+
+### 利润率
+
+修改 `scripts/calculate_cost.py` 中的 `PROFIT_MARGIN`：
+
+```python
+PROFIT_MARGIN = 1.30  # 1.30 = 30% 利润率
+```
+
+### 模式切换
+
+修改 `scripts/calculate_cost.py` 中的 `RUN_MODE`：
+
+```python
+RUN_MODE = "INTERNAL"  # 内部版：使用真实采购数据
+RUN_MODE = "EXTERNAL"  # 公开版：隐藏核心数据
+```
+
+## 触发关键词
+
+- 算报价
+- 图纸报价
+- 工艺核算
+- 生成报价表
+- 木作报价
+- 板材成本核算
+
+## 触发示例
+
+- "算一下这个图纸的报价"
+- "帮我核算这个木作的成本"
+- "生成板材成本报价表"
+- "这个柜子的工艺报价是多少"
+
+## 技能资源
+
+### scripts/
+- `parse_drawing.py` — 图纸解析脚本（CAD/PDF/图片）
+- `calculate_cost.py` — 成本核算脚本
+- `export_quotation.py` — Excel 导出脚本
+
+### references/
+- `quotation_logic.md` — 核算逻辑说明
+- `material_codes.md` — 材料编码对照表
+
+### data/
+- `purchase_cost_data.md` — 采购数据配置参考
+- `wood_quotation_template.md` — 核算模板说明
+
+## 注意事项
+
+1. 首次使用请根据实际情况配置材料单价、损耗率、利润率
+2. 批量采购建议调整阶梯价格档位以匹配真实供应商政策
+3. Excel 导出格式可自定义调整 `export_quotation.py`
+4. 图纸解析依赖尺寸标注，建议配合文字描述提高准确率

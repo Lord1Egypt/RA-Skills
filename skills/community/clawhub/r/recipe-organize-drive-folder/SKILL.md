@@ -1,35 +1,28 @@
 ---
-name: "Recipe Organize Drive Folder"
+name: recipe-organize-drive-folder
 description: "Create a Google Drive folder structure and move files into the right locations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-organize-drive-folder"
-sourceUrl: "https://clawhub.ai/skills/recipe-organize-drive-folder"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
 ---
 
-# Recipe Organize Drive Folder
+# Organize Files into Google Drive Folders
 
-> Create a Google Drive folder structure and move files into the right locations.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-organize-drive-folder`
-- **Source URL:** [https://clawhub.ai/skills/recipe-organize-drive-folder](https://clawhub.ai/skills/recipe-organize-drive-folder)
+Create a Google Drive folder structure and move files into the right locations.
 
-## Overview
+## Steps
 
+1. Create a project folder: `gws drive files create --json '{"name": "Q2 Project", "mimeType": "application/vnd.google-apps.folder"}'`
+2. Create sub-folders: `gws drive files create --json '{"name": "Documents", "mimeType": "application/vnd.google-apps.folder", "parents": ["PARENT_FOLDER_ID"]}'`
+3. Move existing files into folder: `gws drive files update --params '{"fileId": "FILE_ID", "addParents": "FOLDER_ID", "removeParents": "OLD_PARENT_ID"}'`
+4. Verify structure: `gws drive files list --params '{"q": "FOLDER_ID in parents"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-organize-drive-folder
-```

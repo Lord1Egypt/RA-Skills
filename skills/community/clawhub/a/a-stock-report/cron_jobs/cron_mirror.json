@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "purpose": "生产 cron 任务的人类可读镜像（不被任何代码读取）",
+    "mirror_of": "~/.hermes/cron/jobs.json",
+    "version": "3.3.2",
+    "history": "v3.0~v3.1.3 期间以 3 个独立文件存在（close_summary/intraday/ipo_report），v3.1.4 合井为单文件以便强制一致。",
+    "see_also": "cron_jobs/README.md"
+  },
+  "tasks": {
+    "close_summary": {
+      "name": "A股收盘小结",
+      "schedule": "30 7 * * 1-5",
+      "repeat": "forever",
+      "deliver": "local",
+      "prompt": "source /workspace/.env && python3 /root/.hermes/skills/A-stock-report/scripts/send_close_summary.py",
+      "_meta": {
+        "type": "independent_script",
+        "skill_version": "v3.2.6",
+        "description": "周一至五 15:30 北京时间触发，akshare 拉收盘数据，生成收盘小结推送到 local 通道",
+        "depends_on": [
+          "send_close_summary.py"
+        ]
+      }
+    },
+    "intraday": {
+      "name": "A股盘中预警",
+      "schedule": "*/5 9,10,11,13,14 * * 1-5",
+      "repeat": "forever",
+      "deliver": "local",
+      "prompt": "source /workspace/.env && python3 /root/.hermes/skills/A-stock-report/scripts/send_intraday_alert.py 2>&1",
+      "_meta": {
+        "type": "independent_script",
+        "skill_version": "v3.2.6",
+        "description": "周一至五交易时段每 5 分钟一次（9/10/11/13/14 点整点过 5 分），腾讯财经 qt.gtimg.cn 拉 6 大指数实时涨跌幅，任一指数 ±2% 触发预警；同指数同档位每天只推一次（状态文件去重）。v3.2.5 起改为纯 bash prompt（与收盘小结/IPO 周报同款），不再触发 LLM 思考，context 占用从每天 ~50-150 KB 降至 ~1 KB。",
+        "depends_on": [
+          "send_intraday_alert.py"
+        ],
+        "migrated_from": "templates/intraday.json（v3.1.3 归档清理：模板是 LLM 驱动型设计，但实际 cron 早已是独立脚本模式，模板从未被生产加载）",
+        "thresholds": {
+          "implemented": "1 个：6 大指数涨跌幅 ±2%",
+          "designed_but_unimplemented": [
+            "IF 当月连续涨幅 > 1.5%（期货升水）",
+            "主力净流入 > 200亿元（北向/主力）",
+            "炸板率 > 40%（短线情绪）"
+          ],
+          "data_source": "腾讯财经 qt.gtimg.cn（脚本内硬编码）"
+        },
+        "note": "templates/intraday.json 已删除；本档案（cron_jobs/intraday.json）是该任务在 v3.0 架构下的真实配置中心。LLM dispatcher 中 intraday 任务同步移除。"
+      }
+    },
+    "ipo_report": {
+      "name": "A股IPO周报",
+      "schedule": "0 2 * * 6",
+      "repeat": "forever",
+      "deliver": "local",
+      "prompt": "source /workspace/.env && python3 /root/.hermes/skills/A-stock-report/scripts/send_ipo_report.py",
+      "_meta": {
+        "type": "independent_script",
+        "skill_version": "v3.2.6",
+        "description": "周六 10:00 北京时间触发，akshare 拉 6 个 IPO 数据接口，生成 IPO 周报推送到 local 通道",
+        "depends_on": [
+          "send_ipo_report.py"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "cron-job-guardian",
+  "title": "定时任务守门人",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "pattern_audit",
+  "summary": "检查 cron 或 timer 配置中的频率、幂等、重试、日志与并发风险。",
+  "inputHint": "cron 文件、脚本目录或任务说明",
+  "sections": [
+    "发现的任务",
+    "频率风险",
+    "幂等风险",
+    "日志与告警",
+    "建议修改",
+    "验证步骤"
+  ],
+  "useCases": [
+    "任务审计",
+    "运维检查",
+    "自动化质量"
+  ],
+  "positiveExamples": [
+    "检查这些 cron 任务是否有风险",
+    "找重试和并发问题"
+  ],
+  "negativeExamples": [
+    "不要直接启停生产任务",
+    "不要替代真正监控"
+  ],
+  "risk": "只做静态审计，不触发定时任务。",
+  "tags": [
+    "cron",
+    "timer",
+    "ops",
+    "audit"
+  ]
+}

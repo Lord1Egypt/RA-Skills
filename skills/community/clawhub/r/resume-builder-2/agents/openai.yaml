@@ -1,0 +1,3 @@
+display_name: Resume Builder
+short_description: Build and tailor premium white-collar resumes, then render the final result to PDF with Typst.
+default_prompt: Build a premium white-collar resume from my real experience, tailor it to my target role if I provide a JD, and render the final result to PDF with Typst.

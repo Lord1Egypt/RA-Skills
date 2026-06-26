@@ -1,35 +1,97 @@
 ---
-name: "Live Commerce Agent"
-description: "直播带货全流程运营支持。从选品排品、脚本策划、主播培训、数据分析到粉丝运营，打造高效直播间，提升GMV和转化率，适合电商团队和MCN机构。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/live-commerce-agent"
-sourceUrl: "https://clawhub.ai/skills/live-commerce-agent"
+name: 直播运营Agent
+slug: live-commerce-agent
+description: 直播带货全流程运营支持。从选品排品、脚本策划、主播培训、数据分析到粉丝运营，打造高效直播间，提升GMV和转化率，适合电商团队和MCN机构。
+tags:
+  - 直播带货
+  - 电商运营
+  - 粉丝运营
+  - 数据分析
+  - 脚本策划
 ---
 
-# Live Commerce Agent
+# 直播运营Agent
 
-> 直播带货全流程运营支持。从选品排品、脚本策划、主播培训、数据分析到粉丝运营，打造高效直播间，提升GMV和转化率，适合电商团队和MCN机构。
+## 记忆点
+**直播全流程运营，GMV提升利器**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/live-commerce-agent`
-- **Source URL:** [https://clawhub.ai/skills/live-commerce-agent](https://clawhub.ai/skills/live-commerce-agent)
+## 核心功能
 
-## Overview
+### 1. 直播策划
+- 选品排品策略
+- 直播脚本撰写
+- 话术模板设计
+- 活动玩法策划
 
+### 2. 主播培训
+- 产品话术训练
+- 互动技巧指导
+- 促单话术模板
+- 应急处理方案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/live-commerce-agent
+### 3. 数据分析
+- 实时数据监控
+- 转化漏斗分析
+- 粉丝画像分析
+- ROI效果评估
+
+### 4. 粉丝运营
+- 私域引流策略
+- 粉丝互动方案
+- 复购激励计划
+- 社群运营支持
+
+## 直播全流程
+
 ```
+预热期 → 开播期 → 高潮期 → 收尾期 → 复盘期
+  ↓        ↓        ↓        ↓        ↓
+引流     留人     促单     引流私域   优化迭代
+```
+
+## 关键指标
+
+| 指标 | 优秀值 | 良好值 |
+|-----|-------|-------|
+| 在线人数峰值 | >10000 | >3000 |
+| 观看时长 | >8分钟 | >5分钟 |
+| 转化率 | >8% | >5% |
+| 客单价 | >150元 | >100元 |
+| ROI | >1:3 | >1:2 |
+
+## 话术模板
+
+```markdown
+## 开场话术
+欢迎[昵称]进入直播间！
+今天给大家带来XX专场，全网最低价+限时赠品！
+
+## 产品介绍
+这款[产品名]，市面价XX元，
+今天直播间专属价XX元！
+[核心卖点1/2/3]
+
+## 促单话术
+只剩XX单！倒计时10秒！
+今天下单额外赠送XX，价值XX元！
+
+## 催单话术
+想要的扣1，主播给大家上链接！
+不要犹豫，错过恢复原价！
+```
+
+## 数据分析维度
+
+1. **流量指标**：观看人数/在线峰值/新增粉丝
+2. **互动指标**：评论数/点赞数/分享数
+3. **转化指标**：下单人数/转化率/客单价
+4. **留存指标**：观看时长/跳出率
+
+## 选品策略
+
+| 类型 | 占比 | 作用 |
+|-----|-----|-----|
+| 引流款 | 20% | 吸引流量 |
+| 主推款 | 40% | 冲GMV |
+| 利润款 | 30% | 赚利润 |
+| 形象款 | 10% | 提调性 |

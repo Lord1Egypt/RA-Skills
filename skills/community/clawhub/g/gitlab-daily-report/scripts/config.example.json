@@ -1,0 +1,15 @@
+{
+  "gitlab_url": "https://gitlab.yourcompany.com",
+  "gitlab_token": "glpat-xxxxxxxxxxxx",
+
+  "repositories": [
+    "namespace/project1",
+    "namespace/project2"
+  ],
+
+  "feishu_webhooks": [
+    "https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  ],
+
+  "timezone_offset": 8
+}

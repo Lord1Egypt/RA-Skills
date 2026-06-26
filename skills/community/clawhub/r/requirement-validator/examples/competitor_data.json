@@ -1,0 +1,21 @@
+{
+  "competitors": [
+    {
+      "name": "竞品A",
+      "has_feature": true,
+      "feature_quality": "high",
+      "user_rating": 4.5
+    },
+    {
+      "name": "竞品B",
+      "has_feature": true,
+      "feature_quality": "medium",
+      "user_rating": 3.8
+    },
+    {
+      "name": "竞品C",
+      "has_feature": false
+    }
+  ],
+  "update_time": "2026-04-08"
+}

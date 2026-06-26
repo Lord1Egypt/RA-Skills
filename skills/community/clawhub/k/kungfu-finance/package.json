@@ -1,0 +1,30 @@
+{
+  "name": "kungfu_finance",
+  "version": "0.4.1",
+  "displayName": "\u529f\u592b\u8d22\u7ecf",
+  "description": "Deterministic mainland China A-share skill for stock snapshots, finance analysis, price-level lookup, sector analysis, indicator charts, subscription (自选) with anomaly reports, health/config flows, plus first-stage bucket, strategy, researcher, and bayesian monitor flows.",
+  "private": false,
+  "author": "kungfu-trader",
+  "keywords": [
+    "a-share",
+    "china-stock",
+    "A\u80a1",
+    "stock-analysis",
+    "finance-analysis",
+    "sector-analysis",
+    "\u8d22\u52a1\u5206\u6790",
+    "\u677f\u5757\u5206\u6790",
+    "quant",
+    "shanghai",
+    "shenzhen"
+  ],
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=22.24.0"
+  },
+  "scripts": {
+    "check": "find scripts -name '*.mjs' -print0 | xargs -0 -n1 node --check",
+    "test": "node --test tests/http_client.test.mjs tests/product_routes.test.mjs tests/runtime.test.mjs tests/cli.test.mjs tests/bucket_flow.test.mjs tests/strategy_flow.test.mjs tests/researcher_products.test.mjs tests/researcher_flow.test.mjs tests/bayesian_monitor_products.test.mjs tests/bayesian_monitor_flow.test.mjs tests/stock_research_flow.test.mjs tests/sector_research_flow.test.mjs tests/research_hardening_contract.test.mjs tests/research_search_runtime.test.mjs tests/research_asset_parity.test.mjs tests/research_release_parity_contract.test.mjs"
+  }
+}

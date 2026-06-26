@@ -1,0 +1,30 @@
+{
+  "name": "layered-memory-sys",
+  "version": "2.4.1",
+  "description": "分层记忆系统 - 完整记忆中间件",
+  "type": "module",
+  "main": "src/index.mjs",
+  "scripts": {
+    "init": "node src/index.mjs init",
+    "test": "node scripts/test-v2.mjs",
+    "start": "node scripts/start-api.mjs",
+    "migrate": "node src/index.mjs migrate"
+  },
+  "dependencies": {
+    "sql.js": "^1.12.0",
+    "ws": "^8.18.0"
+  },
+  "optionalDependencies": {
+    "nodejieba": "^3.4.0",
+    "@xenova/transformers": "^2.17.0"
+  },
+  "keywords": [
+    "memory",
+    "ai",
+    "agent",
+    "sqlite",
+    "embedding",
+    "openclaw"
+  ],
+  "license": "MIT"
+}

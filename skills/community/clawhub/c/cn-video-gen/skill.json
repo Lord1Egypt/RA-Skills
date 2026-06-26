@@ -1,0 +1,7 @@
+{
+  "name": "cn-video-gen",
+  "version": "1.0.0",
+  "description": "国产AI视频生成技能。支持通义万相（Wan2.6文生视频/图生视频）和可灵（Kling V2）。适合分镜师项目、创意视频制作、图生视频等场景。当用户要求生成视频、将图片生成动态视频、或基于分镜描述生成视频片段时触发。",
+  "author": "Xiaolongxia_MaoNB",
+  "license": "MIT"
+}

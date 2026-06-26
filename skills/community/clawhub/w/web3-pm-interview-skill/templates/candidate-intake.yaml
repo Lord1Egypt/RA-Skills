@@ -1,0 +1,24 @@
+candidate:
+  alias:
+  current_role:
+  years_experience:
+  target_level: # enum: [PM, Senior PM, Lead, Director]
+  target_company:
+  target_role:
+  target_jd:
+  interview_stage: # enum: [HR, Hiring Manager, Cross-functional, Product Case, Final, Bar Raiser, Offer]
+  time_left: # examples: 1 day, 3 days, 7 days, 30 days
+  top_3_projects:
+    - name:
+      role:
+      scope:
+      result:
+      relevance_to_target_role:
+  web3_experience: # enum: [None, Beginner, User, Builder, Native]
+  technical_depth: # enum: [Low, Medium, High]
+  management_experience: # enum: [None, Small Team, Multi-team, Director-level]
+  founder_experience: # enum: [None, Past Founder, Current Founder]
+  english_level: # enum: [Basic, Conversational, Fluent, Native]
+  strongest_edge:
+  biggest_risk:
+  specific_questions:

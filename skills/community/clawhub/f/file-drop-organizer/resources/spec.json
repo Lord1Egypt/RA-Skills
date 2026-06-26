@@ -1,0 +1,37 @@
+{
+  "slug": "file-drop-organizer",
+  "title": "落地文件整理师",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "directory_audit",
+  "summary": "整理下载目录或临时资料目录，先给分类方案、命名建议和移动预案，再决定是否执行。",
+  "inputHint": "目录路径",
+  "sections": [
+    "目录概览",
+    "建议分类",
+    "重名与重复风险",
+    "命名建议",
+    "移动预案",
+    "人工确认项"
+  ],
+  "useCases": [
+    "下载目录整理",
+    "资料归档",
+    "个人工作台治理"
+  ],
+  "positiveExamples": [
+    "帮我整理下载文件夹但先别动文件",
+    "给我移动预案"
+  ],
+  "negativeExamples": [
+    "不要直接删除文件",
+    "不要修改系统目录"
+  ],
+  "risk": "默认只做 dry-run 风格分析。",
+  "tags": [
+    "files",
+    "organize",
+    "downloads",
+    "productivity"
+  ]
+}

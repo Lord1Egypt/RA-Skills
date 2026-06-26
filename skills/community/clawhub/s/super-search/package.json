@@ -1,0 +1,8 @@
+{
+  "name": "super-search",
+  "version": "2.0.0",
+  "description": "Smart search with complete content formatted for WhatsApp",
+  "author": "Seth",
+  "keywords": ["search", "tavily", "brave", "whatsapp", "aggregated"],
+  "homepage": "https://github.com/seth/super-search"
+}

@@ -1,0 +1,98 @@
+# Xtranslate 全局配置文件
+# 版本: 3.0
+
+# ============================================
+# 基础配置
+# ============================================
+VERSION=V3.0
+SOURCE_LANG=auto
+TARGET_LANG=zh-CN
+TARGETS_FILE=targets.txt
+OUTPUT_PATH_CONFIG=output_path.txt
+PDF_TO_DOCX_TMP=tmp
+
+# ============================================
+# 翻译引擎设置
+# ============================================
+# 可选: cloud (DeepSeek), ollama (本地), python (内置)
+TRANSLATE_ENGINE=ollama
+CURRENT_CLOUD_MODEL=DeepSeek (V3/R1)
+
+# ============================================
+# 云模型配置
+# ============================================
+# DeepSeek (V3/R1)
+CLOUD_MODEL_DEEPSEEK_BASE_URL=https://api.deepseek.com
+CLOUD_MODEL_DEEPSEEK_MODEL=deepseek-chat
+CLOUD_MODEL_DEEPSEEK_ENV_KEY=DEEPSEEK_API_KEY
+
+# GPT-4o
+CLOUD_MODEL_GPT4O_BASE_URL=https://api.openai.com/v1
+CLOUD_MODEL_GPT4O_MODEL=gpt-4o
+CLOUD_MODEL_GPT4O_ENV_KEY=OPENAI_API_KEY
+
+# Claude 3.5 Sonnet
+CLOUD_MODEL_CLAUDE_BASE_URL=https://api.anthropic.com/v1
+CLOUD_MODEL_CLAUDE_MODEL=claude-3-5-sonnet-20240620
+CLOUD_MODEL_CLAUDE_ENV_KEY=ANTHROPIC_API_KEY
+
+# SiliconFlow (Qwen2.5)
+CLOUD_MODEL_SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
+CLOUD_MODEL_SILICONFLOW_MODEL=deepseek-ai/DeepSeek-V3
+CLOUD_MODEL_SILICONFLOW_ENV_KEY=SILICONFLOW_API_KEY
+
+# 自定义 (OpenAI 兼容)
+CLOUD_MODEL_CUSTOM_BASE_URL=
+CLOUD_MODEL_CUSTOM_MODEL=
+CLOUD_MODEL_CUSTOM_ENV_KEY=CUSTOM_API_KEY
+
+# ============================================
+# 其他配置
+# ============================================
+OLLAMA_MODEL=qwen3:1.7b
+SAVE_IN_SOURCE_DIR=True
+VERBOSE_OUTPUT=False
+AUTO_FORMAT_LAYOUT=True
+
+# ============================================
+# 翻译批次配置 - cloud
+# ============================================
+BATCH_CLOUD_MAX_LEN=15000
+BATCH_CLOUD_MAX_COUNT=200
+BATCH_CLOUD_CONCURRENT=2
+BATCH_CLOUD_MAX_TOKENS=16384
+BATCH_CLOUD_ADAPTIVE=False
+
+# ============================================
+# 翻译批次配置 - ollama
+# ============================================
+BATCH_OLLAMA_MAX_LEN=1000
+BATCH_OLLAMA_MAX_COUNT=1
+BATCH_OLLAMA_CONCURRENT=1
+BATCH_OLLAMA_MAX_TOKENS=1000
+
+# ============================================
+# 翻译批次配置 - python
+# ============================================
+BATCH_PYTHON_MAX_LEN=1
+BATCH_PYTHON_MAX_COUNT=1
+BATCH_PYTHON_CONCURRENT=1
+BATCH_PYTHON_MAX_TOKENS=100
+
+# ============================================
+# 智能批次优化设置
+# ============================================
+BATCH_OPTIMIZATION_ENABLED=True
+BATCH_OPTIMIZATION_AUTO_ADJUST=True
+BATCH_OPTIMIZATION_SMALL_FILE_THRESHOLD=50
+BATCH_OPTIMIZATION_LARGE_FILE_THRESHOLD=500
+BATCH_OPTIMIZATION_PROGRESS_INTERVAL=10
+
+# ============================================
+# 环境变量说明
+# ============================================
+# DEEPSEEK_API_KEY     - DeepSeek API 密钥
+# OPENAI_API_KEY       - OpenAI API 密钥
+# ANTHROPIC_API_KEY    - Anthropic API 密钥
+# SILICONFLOW_API_KEY  - SiliconFlow API 密钥
+# CUSTOM_API_KEY       - 自定义模型 API 密钥

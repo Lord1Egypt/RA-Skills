@@ -1,0 +1,43 @@
+{
+  "name": "mindstudio-generate-text-block-prompting-skill",
+  "display_name": "MindStudio Generate Text Block Prompting Skill",
+  "version": "1.0.0",
+  "description": "Write, review, or improve prompts for MindStudio Generate Text blocks — whether the output is plain text or structured JSON. Use this skill whenever someone asks to write a MindStudio prompt, configure a Generate Text block, set up JSON output schema, use variables in a prompt, add conditional logic to a prompt, or access JSON data with dot notation inside a MindStudio workflow.",
+  "author": "Sol",
+  "tags": [
+    "mindstudio",
+    "prompt-engineering",
+    "generate-text",
+    "json",
+    "workflow",
+    "automation",
+    "ai-agents"
+  ],
+  "trigger_phrases": [
+    "write a prompt for my generate text block",
+    "help me write a mindstudio prompt",
+    "I need a prompt for my mindstudio workflow",
+    "write a json prompt for mindstudio",
+    "how do I use variables in my prompt",
+    "set up json output for generate text block",
+    "write a prompt that outputs json",
+    "I need a sample output for mindstudio",
+    "help me with conditional logic in my prompt",
+    "how do I access json data in my prompt",
+    "write me a mindstudio generate text prompt"
+  ],
+  "files": {
+    "skill": "SKILL.md",
+    "readme": "README.md",
+    "examples": "EXAMPLES.md"
+  },
+  "output_types": [
+    "text",
+    "json"
+  ],
+  "compatible_platforms": [
+    "MindStudio"
+  ],
+  "created": "2026-03-29",
+  "updated": "2026-03-29"
+}

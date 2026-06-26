@@ -1,0 +1,244 @@
+---
+# Pagerunner Skill for Claude Code
+# Real Chrome browser automation for AI agents
+
+name: pagerunner-skill
+slug: pagerunner
+version: "1.3.1"
+description: "Real Chrome automation for Claude — authenticated sessions, sealed secrets, site intelligence, and video recording"
+
+long_description: |
+  Pagerunner gives Claude, Cursor, Windsurf, and any MCP client native control over your real Chrome browser.
+
+  Works with your existing login sessions, cookies, and browser history already loaded. Designed for 4 ICPs:
+  - Solo Developer: Close the dev loop (edit code → see result in browser)
+  - Power User: Autonomous phone-triggered tasks (WhatsApp → agent works → screenshot back)
+  - Security-Conscious: Sensitive data automation with PII anonymization + audit trails
+  - Server-Side: Persistent headless automation with multi-agent coordination via KV store
+
+  Features: Real authenticated browser, PII tokenization, sealed-secret trust boundary (v0.7), session checkpoints + auto-reattach (v0.6), site adapters for direct API calls (v0.5), network + console capture, video recording with auto-zoom + cursor tracking (v0.8), encrypted state, audit logging, domain allowlisting, stealth mode.
+
+category: "Browser Automation"
+keywords:
+  - browser-automation
+  - MCP
+  - Chrome
+  - AI-agents
+  - authentication
+  - form-filling
+  - web-scraping
+  - PII-protection
+  - sealed-secrets
+  - site-intelligence
+  - video-recording
+  - session-checkpoints
+  - multi-agent
+  - agent-automation
+
+icps:
+  - name: "Solo Developer"
+    description: "Edit code → see result in real browser → iterate without manual verification"
+    use_case: "Frontend development with immediate visual feedback"
+    example: |
+      const sessionId = await open_session({ profile: "personal" });
+      const [tab] = await list_tabs(sessionId);
+      await navigate(sessionId, tab.target_id, "http://localhost:3000");
+      await screenshot(sessionId, tab.target_id);
+      await close_session(sessionId);
+    documentation_path: "SKILL.md#-solo-developer"
+
+  - name: "Power User"
+    description: "Get browser tasks done from your phone while laptop runs unattended"
+    use_case: "Autonomous mobile-triggered tasks, agent profile isolation, persistent sessions"
+    example: |
+      pagerunner open-session agent-work
+      pagerunner restore-snapshot <session> <tab> https://jira.mycompany.com
+      # Agent is logged in. Now do work: navigate, get_content, fill forms
+    documentation_path: "SKILL.md#-power-user"
+
+  - name: "Security-Conscious"
+    description: "Automate sensitive workflows without PII reaching the LLM"
+    use_case: "Regulated industries, confidential data, compliance-required anonymization"
+    example: |
+      open_session({
+        profile: "agent",
+        anonymize: true  // PII stripped before reaching Claude
+      });
+      const content = await get_content(sessionId, tabId);
+      // john@company.com → [EMAIL:a3f9b2]
+    documentation_path: "SKILL.md#-security-conscious"
+
+  - name: "Server-Side / Infrastructure"
+    description: "Persistent headless automation with multi-agent coordination"
+    use_case: "Scheduled cron jobs, daemon-based automation, agents sharing state"
+    example: |
+      pagerunner daemon &  # Run once, holds DB lock
+
+      // Agent A: collect data
+      await kv_set("pipeline", "pricing_data", JSON.stringify(results));
+
+      // Agent B: continue where A left off
+      const data = JSON.parse(await kv_get("pipeline", "pricing_data"));
+    documentation_path: "SKILL.md#-server-side--infrastructure"
+
+documentation:
+  - title: "Quick Start Guide"
+    path: "SKILL.md"
+    description: "ICP quick starts, common gotchas, form-filling workflow with error recovery"
+
+  - title: "Workflow Patterns"
+    path: "PATTERNS.md"
+    description: "11 patterns: frontend dev loop, authentication persistence, form filling, scrolling, multi-step workflows"
+
+  - title: "Complete Reference"
+    path: "REFERENCE.md"
+    description: "All 44 Pagerunner MCP tools with parameters, return types, and examples"
+
+  - title: "Security & Privacy"
+    path: "SECURITY.md"
+    description: "PII anonymization, sealed-secret trust boundary, credential scrubbing, anonymization gap detection, audit logging, encryption, domain allowlisting, SSRF protection"
+
+  - title: "Hallucination Prevention"
+    path: "HALLUCINATION_PREVENTION.md"
+    description: "Why arrays cause hallucinations + how to structure responses for accuracy"
+
+  - title: "Full ICP Workflows"
+    path: "EXAMPLES.md"
+    description: "4 complete end-to-end examples, multi-agent patterns, real-world scenarios"
+
+  - title: "Advanced Topics"
+    path: "ADVANCED.md"
+    description: "Multi-agent coordination, daemon lifecycle, session persistence, auto-recovery (v0.7), retention tuning, performance optimization, snapshot strategies"
+
+  - title: "Video Recording Guide"
+    path: "RECORDING.md"
+    description: "Director's guide to creating great videos (v0.8): scenario playbook for bug repros / feature demos / onboarding tutorials, cursor choreography, marker scripting, zoom tuning, render options, auto-record mode"
+
+  - title: "Troubleshooting"
+    path: "DEBUGGING.md"
+    description: "Common issues and solutions: timing, selectors, fill vs type, TOTP, network"
+
+author: "Stas"
+repository: "https://github.com/Enreign/pagerunner-skill"
+homepage: "https://github.com/Enreign/pagerunner-skill"
+license: "MIT"
+license_url: "https://github.com/Enreign/pagerunner-skill/blob/main/LICENSE"
+
+installation:
+  - label: "Step 1: Install Pagerunner (macOS)"
+    command: "brew tap enreign/pagerunner && brew install pagerunner"
+
+  - label: "Step 2: Register with Claude Code"
+    command: 'claude mcp add pagerunner "$(which pagerunner)" mcp'
+
+  - label: "Step 3: Configure Chrome profiles (optional)"
+    command: "pagerunner init"
+
+requirements:
+  - "Chrome browser (uses real profiles with existing sessions)"
+  - "Claude Code, Cursor, Windsurf, or any MCP-compatible client"
+  - "macOS, Linux, or Windows with Pagerunner binary installed"
+
+supports:
+  - clients:
+      - "Claude Code"
+      - "Cursor"
+      - "Windsurf"
+      - "Cline"
+      - "Any MCP-compatible client"
+  - tools:
+      - "open_session / attach_session / close_session"
+      - "list_tabs / new_tab / close_tab"
+      - "navigate / wait_for / get_content / screenshot / evaluate"
+      - "click / type_text / fill / select / scroll"
+      - "save_snapshot / restore_snapshot (encrypted auth state)"
+      - "save_session_checkpoint / restore_session_checkpoint (full tab state)"
+      - "kv_set / kv_get / kv_list / kv_delete / kv_clear"
+      - "extract_secret / use_secret / list_secrets / delete_secret (sealed trust boundary)"
+      - "get_network_log / get_console_log"
+      - "get_site_knowledge / register_adapter / call_site_api / generate_adapter"
+      - "start_recording / stop_recording / add_marker / render_recording"
+      - "notify (macOS menu bar)"
+      - "~44 MCP tools total"
+
+compared_to:
+  - tool: "agent-browser"
+    advantage: "MCP-native, PII anonymization, security-first"
+
+  - tool: "Playwright MCP"
+    advantage: "Real authenticated workflows, multi-agent coordination, audit trails"
+
+  - tool: "Chrome DevTools MCP"
+    advantage: "Automation-first (not debugging), agent-independent execution"
+
+quick_facts:
+  - "~44 MCP tools for complete browser automation"
+  - "4 ideal customer profiles with specific use cases"
+  - "PII anonymization with local ONNX NER (never leaves your machine)"
+  - "Sealed-secret trust boundary — tokens extracted from pages never reach the LLM"
+  - "Credential scrubbing — 7+ provider patterns (OpenAI, AWS, Stripe, GitLab, Slack, Vault, HF) + entropy gap detection"
+  - "Site intelligence — learned JS adapters + auth token vault for direct API calls with browser credentials"
+  - "Session checkpoints — full tab state survives daemon restart, Chrome crash, and sleep/wake"
+  - "Video recording — MP4 with auto-zoom, cursor tracking, markers, Screen Studio-quality rendering (ffmpeg)"
+  - "Encrypted AES-256-GCM state for snapshots and KV store"
+  - "Audit logging for compliance (every action recorded, AnonymizationGap events on residual PII)"
+  - "Domain allowlisting for per-session containment"
+  - "Stealth mode to hide automation signals"
+  - "Multi-agent coordination via persistent KV store"
+
+tags_detailed:
+  - automation
+  - browser
+  - Chrome
+  - agent
+  - MCP
+  - security
+  - PII-protection
+  - multi-agent
+  - headless
+  - authentication
+  - web-scraping
+  - form-filling
+  - compliance
+  - Claude
+
+metadata:
+  maturity: "stable"
+  supported_models:
+    - "claude-opus-4-6"
+    - "claude-sonnet-4-6"
+    - "claude-haiku-4-5"
+  min_claude_code_version: "0.1.0"
+  estimated_setup_time_minutes: 10
+  documentation_completeness: "comprehensive"
+
+examples:
+  - title: "Screenshot your local frontend"
+    language: "javascript"
+    code: |
+      const sessionId = await open_session({ profile: "personal" });
+      const [tab] = await list_tabs(sessionId);
+      await navigate(sessionId, tab.target_id, "http://localhost:3000");
+      await screenshot(sessionId, tab.target_id);
+      await close_session(sessionId);
+
+  - title: "Fill a form with error recovery"
+    language: "javascript"
+    code: |
+      await navigate(sessionId, tabId, "https://example.com/form");
+      await wait_for(sessionId, tabId, selector: ".submit-btn", ms: 5000);
+      await fill(sessionId, tabId, "input[name='email']", "user@example.com");
+      await fill(sessionId, tabId, "input[name='password']", "secret");
+      await click(sessionId, tabId, ".submit-btn");
+      await wait_for(sessionId, tabId, selector: ".success-message", ms: 5000);
+
+  - title: "Anonymous data extraction"
+    language: "javascript"
+    code: |
+      const sessionId = await open_session({
+        profile: "agent",
+        anonymize: true
+      });
+      const content = await get_content(sessionId, tabId);
+      // Sensitive emails/phones/cards are tokenized
+      // Work with tokens, Pagerunner de-tokenizes on form fills

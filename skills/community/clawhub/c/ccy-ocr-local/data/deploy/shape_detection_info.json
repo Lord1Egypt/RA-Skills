@@ -1,0 +1,6 @@
+{
+  "name": "shape_detection",
+  "type": "opencv",
+  "model_path": "data/models/shape_detection.pb",
+  "deployed": true
+}

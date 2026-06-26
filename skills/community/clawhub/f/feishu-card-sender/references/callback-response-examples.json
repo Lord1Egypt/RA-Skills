@@ -1,0 +1,29 @@
+{
+  "processing": {
+    "toast": {"type": "info", "content": "处理中..."},
+    "card": {
+      "type": "raw",
+      "data": {
+        "_note": "原卡片JSON，按钮改为处理中+disabled=true"
+      }
+    }
+  },
+  "success": {
+    "toast": {"type": "success", "content": "订阅成功"},
+    "card": {
+      "type": "raw",
+      "data": {
+        "_note": "原卡片JSON，按钮改为✅已订阅+disabled=true"
+      }
+    }
+  },
+  "failed": {
+    "toast": {"type": "error", "content": "订阅失败，可重试"},
+    "card": {
+      "type": "raw",
+      "data": {
+        "_note": "原卡片JSON，按钮改为订阅失败，重试+disabled=false"
+      }
+    }
+  }
+}

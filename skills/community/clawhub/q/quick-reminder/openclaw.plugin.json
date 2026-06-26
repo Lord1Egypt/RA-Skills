@@ -1,0 +1,11 @@
+{
+  "name": "quick-reminder",
+  "version": "0.1.0",
+  "description": "Skill sencilla que crea recordatorios basados en mensajes naturales (español/inglés) y envía avisos por Telegram o consola.",
+  "main": "index.js",
+  "keywords": ["reminder","recordatorio","cron","telegram","chatbot"],
+  "openclaw": {
+    "hooks": ["input"],
+    "author": "lnl87"
+  }
+}

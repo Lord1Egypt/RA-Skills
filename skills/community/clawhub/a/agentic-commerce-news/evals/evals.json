@@ -1,0 +1,23 @@
+{
+  "skill_name": "agentic-commerce-news",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Show me the most noteworthy startups in agentic commerce lately, especially the ones endorsed by prominent VCs and founders.",
+      "expected_output": "Structured briefing with 10+ startups that have VC/institutional endorsement, classified by layer. Each item includes name, positioning, funding, endorsement, key capabilities, and a source link, followed by a summary table and trend takeaways.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm building an agentic commerce product and need inspiration. What startups are VCs and AI leaders talking about in the checkout and payment infrastructure space?",
+      "expected_output": "Focused report on checkout execution and payment infrastructure layer startups, with detailed cards for companies like Rye, Firmly, Nekuda, Skyfire, Basis Theory etc., including VC backing and endorsement sources.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Which AI shopping startups raised funding recently? Pull together a summary for me.",
+      "expected_output": "Funding-focused roundup ordered by amount or date. Each item includes funding details, investors, product positioning, and a source link, ending with a trend summary.",
+      "files": []
+    }
+  ]
+}

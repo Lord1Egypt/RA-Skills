@@ -1,0 +1,26 @@
+verdict: pass
+system_errors: []
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "packages/spawn/src/spawn.ts:40-55 构造 openclaw 参数，包含 `--runtime acp`、`--agent`、`--mode`、`--label`；packages/spawn/src/__tests__/spawn.test.ts:42-107 通过 mock execa 断言完整参数数组为 `['sessions','spawn','--runtime','acp','--agent','codex','--mode','run','--cwd',projectDir,'--label','nx-002-codex','--task-file',promptPath]`；`pnpm test`（cwd=packages/spawn）通过，相关用例为 `spawnAcpSession constructs the expected openclaw command...`。"
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: "packages/spawn/src/status.ts:28-47 调用 `openclaw sessions list --json`，从 JSON 中定位指定 session 并返回解析后的状态；packages/spawn/src/__tests__/spawn.test.ts:117-156 mock 三组 execa 返回，分别断言 `getSessionStatus('session-done') === 'done'`、`getSessionStatus('session-running') === 'running'`、`getSessionStatus('missing') === 'unknown'`，并校验调用参数为 `['sessions','list','--json']`；`pnpm test`（cwd=packages/spawn）该用例通过。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "packages/spawn/src/status.ts:50-74 在轮询中计算 `deadline`，若状态始终未完成且 `Date.now() >= deadline`，抛出 `TimeoutError`；packages/spawn/src/__tests__/spawn.test.ts:159-177 mock execa 始终返回 running，并断言 `pollUntilDone('session-running', { timeoutMs: 30, intervalMs: 5 })` 以 `instanceof TimeoutError` 拒绝；`pnpm test`（cwd=packages/spawn）该超时用例通过。"
+        detail: null
+        score: null
+      - id: C4
+        result: pass
+        evidence: "packages/spawn/package.json:14-17 定义了本包的 `build` 与 `test` 脚本。我在 `packages/spawn` 目录执行 `pnpm build`，命令退出码为 0；执行 `pnpm test`，输出为 `pass 3`、`fail 0`，三条测试全部通过，包括 spawn、status 解析与 timeout 场景。"
+        detail: null
+        score: null
+feedback: ""

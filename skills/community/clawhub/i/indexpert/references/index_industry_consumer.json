@@ -1,0 +1,266 @@
+{
+  "category": "行业主题",
+  "sub_category": "消费产业",
+  "description": "理财通行业主题-消费产业指数名单",
+  "count": 43,
+  "indices": [
+    {
+      "code": "000036.SH",
+      "name": "上证主要消费行业指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000036"
+    },
+    {
+      "code": "000069.SH",
+      "name": "上证消费80指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000069"
+    },
+    {
+      "code": "000806.CSI",
+      "name": "中证消费服务领先指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000806"
+    },
+    {
+      "code": "000807.CSI",
+      "name": "中证申万食品饮料指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000807"
+    },
+    {
+      "code": "000815.CSI",
+      "name": "中证细分食品饮料产业主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000815"
+    },
+    {
+      "code": "000932.SH",
+      "name": "中证主要消费指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000932"
+    },
+    {
+      "code": "000949.CSI",
+      "name": "中证农业主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000949"
+    },
+    {
+      "code": "000989.SH",
+      "name": "中证全指可选消费指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000989"
+    },
+    {
+      "code": "399361.SZ",
+      "name": "国证在线消费指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399361"
+    },
+    {
+      "code": "399364.SZ",
+      "name": "国证消费100指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399364"
+    },
+    {
+      "code": "399365.SZ",
+      "name": "国证粮食产业指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399365"
+    },
+    {
+      "code": "399396.SZ",
+      "name": "国证食品指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399396"
+    },
+    {
+      "code": "399814.SZ",
+      "name": "中证大农业指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399814"
+    },
+    {
+      "code": "399987.SZ",
+      "name": "中证酒指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399987"
+    },
+    {
+      "code": "399996.SZ",
+      "name": "中证智能家居指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399996"
+    },
+    {
+      "code": "399997.SZ",
+      "name": "中证白酒指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399997"
+    },
+    {
+      "code": "719895.MI",
+      "name": "MSCI中国A股人民币消费指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=719895"
+    },
+    {
+      "code": "930633.CSI",
+      "name": "中证旅游主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930633"
+    },
+    {
+      "code": "930648.CSI",
+      "name": "中证智能消费主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930648"
+    },
+    {
+      "code": "930653.CSI",
+      "name": "中证食品饮料指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930653"
+    },
+    {
+      "code": "930662.CSI",
+      "name": "中证现代农业主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930662"
+    },
+    {
+      "code": "930697.CSI",
+      "name": "中证全指家用电器指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930697"
+    },
+    {
+      "code": "930707.CSI",
+      "name": "中证畜牧养殖指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930707"
+    },
+    {
+      "code": "930910.CSI",
+      "name": "中证全指农牧渔指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930910"
+    },
+    {
+      "code": "931021.CSI",
+      "name": "中证家电龙头指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931021"
+    },
+    {
+      "code": "931027.CSI",
+      "name": "中证港股通大消费主题指数(HKD)",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931027"
+    },
+    {
+      "code": "931068.CSI",
+      "name": "中证消费龙头指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931068"
+    },
+    {
+      "code": "931139.CSI",
+      "name": "中证消费50指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931139"
+    },
+    {
+      "code": "931241.CSI",
+      "name": "中证家居家电指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931241"
+    },
+    {
+      "code": "931357.CSI",
+      "name": "中证沪港深优选消费50指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931357"
+    },
+    {
+      "code": "931403.CSI",
+      "name": "中证新华社民族品牌工程指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931403"
+    },
+    {
+      "code": "931404.CSI",
+      "name": "中证沪港深品牌消费50指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931404"
+    },
+    {
+      "code": "931454.CSI",
+      "name": "中证港股通消费主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931454"
+    },
+    {
+      "code": "931480.CSI",
+      "name": "中证线上消费主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931480"
+    },
+    {
+      "code": "931481.CSI",
+      "name": "中证沪港深线上消费主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931481"
+    },
+    {
+      "code": "931646.CSI",
+      "name": "中证沪港深新消费指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931646"
+    },
+    {
+      "code": "931663.CSI",
+      "name": "中证沪港深消费龙头指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931663"
+    },
+    {
+      "code": "931778.CSI",
+      "name": "中证农牧主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931778"
+    },
+    {
+      "code": "980028.CNI",
+      "name": "国证龙头家电指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=980028"
+    },
+    {
+      "code": "987024.CNI",
+      "name": "国证港股通消费主题指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=987024"
+    },
+    {
+      "code": "989006.CNI",
+      "name": "新华沪港深新兴消费品牌指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=989006"
+    },
+    {
+      "code": "h30094.CSI",
+      "name": "中证主要消费红利指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30094"
+    },
+    {
+      "code": "HSCGSI.HI",
+      "name": "恒生消费指数",
+      "sub_category": "消费产业",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCGSI"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "s2-soul-anchor-vault",
+  "version": "1.1.1",
+  "description": "S2 Smart Agent Vault. Integrates local spatial coordinate verification and AES encryption. Secures agent state data conceptually bound to a specific location hash, ensuring privacy and safe hibernation without destructive operations.",
+  "main": "core/s2_holographic_vault.py",
+  "author": "Space2.world (Miles Xiang)",
+  "license": "S2-CLA",
+  "openclaw": {
+    "capabilities": [
+      "local_encryption",
+      "spatial_coordinate_validation",
+      "s2_slip_identity_registry",
+      "secure_quarantine"
+    ]
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "cryptography": ">=3.4"
+  }
+}

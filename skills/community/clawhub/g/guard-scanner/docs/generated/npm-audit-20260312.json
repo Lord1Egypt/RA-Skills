@@ -1,0 +1,96 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@buape/carbon": {
+      "name": "@buape/carbon",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@hono/node-server"
+      ],
+      "effects": [
+        "openclaw"
+      ],
+      "range": "<=0.0.0-beta-20260306233624 || >=0.6.0",
+      "nodes": [
+        "node_modules/@buape/carbon"
+      ],
+      "fixAvailable": {
+        "name": "openclaw",
+        "version": "0.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@hono/node-server": {
+      "name": "@hono/node-server",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1114170,
+          "name": "@hono/node-server",
+          "dependency": "@hono/node-server",
+          "title": "@hono/node-server has authorization bypass for protected static paths via encoded slashes in Serve Static Middleware",
+          "url": "https://github.com/advisories/GHSA-wc8c-qw6v-h7f6",
+          "severity": "high",
+          "cwe": [
+            "CWE-863"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          },
+          "range": "<1.19.10"
+        }
+      ],
+      "effects": [
+        "@buape/carbon"
+      ],
+      "range": "<1.19.10",
+      "nodes": [
+        "node_modules/@hono/node-server"
+      ],
+      "fixAvailable": {
+        "name": "openclaw",
+        "version": "0.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "openclaw": {
+      "name": "openclaw",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@buape/carbon"
+      ],
+      "effects": [],
+      "range": ">=2026.1.29-beta.1",
+      "nodes": [
+        "node_modules/openclaw"
+      ],
+      "fixAvailable": {
+        "name": "openclaw",
+        "version": "0.0.1",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 3,
+      "critical": 0,
+      "total": 3
+    },
+    "dependencies": {
+      "prod": 2,
+      "dev": 741,
+      "optional": 109,
+      "peer": 126,
+      "peerOptional": 0,
+      "total": 742
+    }
+  }
+}

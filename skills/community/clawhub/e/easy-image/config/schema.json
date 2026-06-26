@@ -1,0 +1,45 @@
+{
+  "platforms": {
+    "type": "enum",
+    "description": "Supported image generation platforms",
+    "values": [
+      {"id": "jiekou", "name": "Jiekou AI", "region": "cn"},
+      {"id": "novita", "name": "Novita", "region": "global"},
+      {"id": "ppio", "name": "PPIO", "region": "cn"},
+      {"id": "openrouter", "name": "OpenRouter", "region": "global"},
+      {"id": "wavespeed", "name": "WaveSpeed", "region": "global"},
+      {"id": "google", "name": "Google Imagen", "region": "global"}
+    ],
+    "default": "jiekou"
+  },
+  "scenes": {
+    "type": "enum",
+    "description": "Supported scene types",
+    "values": [
+      {"id": "ppt-slides", "name": "PPT Slides"},
+      {"id": "marketing-poster", "name": "Marketing Poster"},
+      {"id": "product-photo", "name": "Product Photo"},
+      {"id": "scene-photo", "name": "Scene Photo"},
+      {"id": "report-illustration", "name": "Report Illustration"},
+      {"id": "social-media-grid", "name": "Social Media Grid"},
+      {"id": "avatar", "name": "Avatar"},
+      {"id": "badge-id", "name": "Badge/ID"},
+      {"id": "emoji-sticker", "name": "Emoji/Sticker"},
+      {"id": "intro-graphic", "name": "Intro Graphic"},
+      {"id": "flowchart", "name": "Flowchart"},
+      {"id": "ui-prototype", "name": "UI Prototype"}
+    ]
+  },
+  "aspect_ratios": {
+    "type": "enum",
+    "description": "Supported aspect ratios",
+    "values": [
+      {"id": "1:1", "name": "Square"},
+      {"id": "3:4", "name": "Portrait 3:4"},
+      {"id": "4:3", "name": "Landscape 4:3"},
+      {"id": "9:16", "name": "Portrait 9:16"},
+      {"id": "16:9", "name": "Landscape 16:9"},
+      {"id": "2.35:1", "name": "Ultra-wide 2.35:1"}
+    ]
+  }
+}

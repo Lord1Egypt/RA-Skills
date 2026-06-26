@@ -1,0 +1,176 @@
+﻿# 护肤AI技能配置 - 安全修复版 (v1.0.3)
+# 100%本地运行，无网络依赖，路径安全实施
+
+# 插件配置
+plugins:
+  # 皮肤分析插件
+  skin_analyzer:
+    enabled: true
+    mode: "advanced"  # basic, advanced
+    parameters:
+      moisture_weight: 0.25
+      oil_weight: 0.20
+      elasticity_weight: 0.15
+      pores_weight: 0.15
+      redness_weight: 0.10
+      pigmentation_weight: 0.10
+      wrinkles_weight: 0.05
+  
+  # 高级分析插件
+  advanced_analyzer:
+    enabled: true
+    available_modes:
+      - "3d_analysis"
+      - "multimodal"
+      - "comprehensive"
+      - "intelligent"
+    default_mode: "comprehensive"
+  
+  # 推荐引擎插件
+  recommendation_engine:
+    enabled: true
+    database_path: "data/products.db"
+    algorithm: "hybrid"  # content_based, collaborative, hybrid
+    max_recommendations: 5
+  
+  # 世界模型插件（本地版本）
+  world_model_integrator:
+    enabled: false  # 禁用外部模型集成
+    model: "local"  # 仅使用本地模型
+    temperature: 0.7
+    max_tokens: 1000
+
+# 输出配置
+output:
+  default_format: "markdown"  # json, text, markdown
+  include_timestamp: true
+  include_confidence: true
+  beautify: true
+  
+  # Markdown输出配置
+  markdown:
+    include_header: true
+    include_toc: true
+    theme: "github"  # github, vue, dark
+  
+  # JSON输出配置
+  json:
+    indent: 2
+    sort_keys: true
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl: 3600  # 缓存时间（秒）
+  max_size: 100  # 最大缓存条目数
+  storage: "memory"  # memory, redis, file
+
+# 性能配置
+performance:
+  # 异步处理
+  async_enabled: true
+  max_workers: 4
+  
+  # 批处理
+  batch_processing: true
+  batch_size: 10
+  
+  # 资源限制
+  memory_limit_mb: 512
+  cpu_limit_percent: 80
+
+# 安全配置 - v1.0.3安全修复增强
+security:
+  # 网络访问声明（与代码一致）
+  network_access: false      # 明确声明：无网络访问
+  local_only: true           # 明确声明：100%本地运行
+  privacy_friendly: true     # 明确声明：隐私友好
+  
+  # 路径安全限制（解决文档声明与代码不一致问题）
+  path_restriction:
+    enabled: true            # 启用路径限制
+    allowed_dirs:            # 允许访问的目录列表
+      - "."                  # 技能根目录
+      - "./data"             # 数据目录
+      - "./models"           # 模型目录（如果存在）
+      - "./config"           # 配置目录
+      - "./logs"             # 日志目录
+    max_file_size_mb: 50     # 最大文件大小限制（MB）
+    allowed_file_types:      # 允许的文件类型
+      - ".jpg"
+      - ".jpeg"
+      - ".png"
+      - ".gif"
+      - ".bmp"
+      - ".tiff"
+      - ".webp"
+  
+  # 输入验证
+  input_validation: true
+  max_input_length: 10000
+  
+  # 输出清理
+  output_sanitization: true
+  strip_html: true
+  escape_special_chars: true
+  
+  # API安全
+  rate_limit: 100  # 每分钟请求数
+  api_key_required: false
+  
+  # 数据保护
+  encrypt_sensitive_data: true
+  log_sensitive_data: false
+  
+  # URL拒绝（确保100%本地）
+  reject_urls: true          # 拒绝所有URL输入
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/skincare_ai.log"
+  max_size: 10485760  # 10MB
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 组件特定日志
+  components:
+    api: "INFO"
+    plugins: "INFO"
+    cache: "WARNING"
+    security: "INFO"
+
+# 集成配置
+integrations:
+  # OpenClaw集成
+  openclaw:
+    enabled: true
+    skill_name: "skincare-ai"
+    version: "1.0.4"
+    
+  # 数据库集成
+  database:
+    enabled: false
+    type: "sqlite"  # sqlite, mysql, postgresql
+    path: "data/skincare.db"
+
+# 开发配置
+development:
+  debug: false
+  mock_mode: false
+  profiling: false
+  hot_reload: false
+
+# 本地化配置
+localization:
+  default_language: "zh-CN"
+  supported_languages:
+    - "zh-CN"
+    - "en-US"
+  auto_detect: true
+
+# 更新配置
+updates:
+  auto_check: false  # 禁用自动更新检查
+  check_interval: 0  # 不检查更新
+  channel: "none"    # 无更新通道

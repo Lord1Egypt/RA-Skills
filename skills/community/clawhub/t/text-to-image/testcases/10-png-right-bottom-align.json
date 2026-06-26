@@ -1,0 +1,12 @@
+{
+  "text": "Right Bottom Align",
+  "width": 720,
+  "height": 320,
+  "format": "png",
+  "background": "#f0f5ff",
+  "default_color": "#1f1f1f",
+  "padding": 30,
+  "align": "right",
+  "valign": "bottom",
+  "font_size": 40
+}

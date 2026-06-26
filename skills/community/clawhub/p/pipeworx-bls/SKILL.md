@@ -1,35 +1,29 @@
----
-name: "Pipeworx bls"
-description: "Access and search Bureau of Labor Statistics economic data series, fetch historical or latest employment, inflation, wages, productivity, and housing data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-bls"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-bls"
----
+# Bls
 
-# Pipeworx bls
+BLS MCP — Bureau of Labor Statistics public data API (v2)
 
-> Access and search Bureau of Labor Statistics economic data series, fetch historical or latest employment, inflation, wages, productivity, and housing data.
+## bls_get_series
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-bls`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-bls](https://clawhub.ai/skills/pipeworx-bls)
+Fetch historical time series data for employment, inflation, wages, productivity, or housing. Return
 
-## Overview
+## bls_search
 
+Search BLS economic data series by keyword. Returns matching series IDs and titles. Use bls_get_seri
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-bls
+## bls_latest
+
+Get the most recent data point for a BLS series. Returns latest value and date. Use when you need cu
+
+## bls_popular_series
+
+Browse popular BLS series by category: employment, inflation, wages, housing, productivity. Returns 
+
+```json
+{
+  "mcpServers": {
+    "bls": {
+      "url": "https://gateway.pipeworx.io/bls/mcp"
+    }
+  }
+}
 ```

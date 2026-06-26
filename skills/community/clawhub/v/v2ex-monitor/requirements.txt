@@ -1,0 +1,4 @@
+urllib3
+mcp
+pydantic
+requests

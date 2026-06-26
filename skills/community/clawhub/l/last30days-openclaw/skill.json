@@ -1,0 +1,39 @@
+{
+  "name": "last30days-openclaw",
+  "version": "2.9.1-openclaw.1",
+  "description": "OpenClaw adaptation of @mvanhorn's last30days research skill. Researches last-30-day signals across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, and web; includes watchlists, briefings, and historical query workflows.",
+  "author": "Original: @mvanhorn | OpenClaw adaptation: Tommy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/riclewis/last30days-openclaw"
+  },
+  "upstream": {
+    "name": "last30days-skill",
+    "author": "@mvanhorn",
+    "url": "https://github.com/mvanhorn/last30days-skill",
+    "license": "MIT"
+  },
+  "keywords": [
+    "research",
+    "trends",
+    "reddit",
+    "x",
+    "youtube",
+    "tiktok",
+    "instagram",
+    "hackernews",
+    "polymarket",
+    "watchlist",
+    "briefing",
+    "openclaw"
+  ],
+  "openclaw": {
+    "minVersion": "2026.2.0",
+    "workspaceDataDir": "~/.openclaw/workspace/data/last30days",
+    "secretsFile": "~/.openclaw/workspace/.secrets/last30days.env"
+  },
+  "setup": {
+    "postInstall": "Run scripts/setup_openclaw_env.sh, add API keys to ~/.openclaw/workspace/.secrets/last30days.env, then verify with: python3 scripts/last30days.py --diagnose"
+  }
+}

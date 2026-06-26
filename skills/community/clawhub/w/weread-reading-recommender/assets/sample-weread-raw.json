@@ -1,0 +1,113 @@
+{
+  "exported_at": "2026-03-19T16:00:00Z",
+  "source": "weread-local-cookie",
+  "summary": {
+    "total_books": 3,
+    "finished_books": 1,
+    "reading_books": 1,
+    "unread_books": 1,
+    "notebook_books": 2
+  },
+  "shelf_sync": {
+    "books": [
+      {
+        "bookId": "book_1",
+        "title": "纳瓦尔宝典",
+        "author": "埃里克·乔根森",
+        "translator": "",
+        "finishReading": 1,
+        "paid": 1,
+        "price": 0,
+        "publishTime": "2021-01-01",
+        "categories": [{"title": "创业"}, {"title": "思维"}]
+      },
+      {
+        "bookId": "book_2",
+        "title": "金字塔原理",
+        "author": "芭芭拉·明托",
+        "translator": "",
+        "finishReading": 0,
+        "paid": 1,
+        "price": 0,
+        "publishTime": "2019-01-01",
+        "categories": [{"title": "写作"}, {"title": "思维"}]
+      },
+      {
+        "bookId": "CB_book_3",
+        "title": "The Psychology of Money",
+        "author": "Morgan Housel",
+        "translator": "",
+        "finishReading": 0,
+        "paid": 0,
+        "price": 0,
+        "publishTime": "2020-01-01",
+        "categories": [{"title": "投资"}, {"title": "认知"}]
+      }
+    ],
+    "bookProgress": [
+      {
+        "bookId": "book_1",
+        "progress": 100,
+        "readingTime": 28800,
+        "updateTime": 1773916800
+      },
+      {
+        "bookId": "book_2",
+        "progress": 42,
+        "readingTime": 10800,
+        "updateTime": 1774003200
+      },
+      {
+        "bookId": "CB_book_3",
+        "progress": 0,
+        "readingTime": 0,
+        "updateTime": 0
+      }
+    ],
+    "archive": [
+      {
+        "archiveId": 1,
+        "name": "方法论",
+        "bookIds": ["book_1", "book_2"]
+      },
+      {
+        "archiveId": 2,
+        "name": "金融",
+        "bookIds": ["CB_book_3"]
+      }
+    ]
+  },
+  "notebook": {
+    "books": [
+      {
+        "bookId": "book_1",
+        "noteCount": 5,
+        "bookmarkCount": 18,
+        "reviewCount": 2
+      },
+      {
+        "bookId": "book_2",
+        "noteCount": 2,
+        "bookmarkCount": 4,
+        "reviewCount": 0
+      }
+    ]
+  },
+  "book_info": {
+    "book_1": {
+      "intro": "一本关于财富、杠杆和人生选择的现代格言集。",
+      "newRating": 9200,
+      "publisher": "中信出版社"
+    },
+    "book_2": {
+      "intro": "结构化表达与思考训练经典。",
+      "newRating": 8900,
+      "publisher": "南海出版公司"
+    },
+    "CB_book_3": {
+      "intro": "Timeless lessons on wealth, greed, and happiness.",
+      "newRating": 9100,
+      "publisher": "Harriman House"
+    }
+  }
+}

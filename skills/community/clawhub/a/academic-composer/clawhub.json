@@ -1,0 +1,12 @@
+{
+  "name": "academic-composer",
+  "tagline": "Research sources, build evidence-mapped outlines, and produce fully cited academic essays",
+  "description": "Academic Composer is an academic writing assistant for research and learning purposes. It searches Semantic Scholar for peer-reviewed sources, helps curate a structured Source List, generates evidence-mapped outlines (each paragraph tied to specific sources), expands outlines into complete essays with properly formatted in-text citations and reference lists (APA 7th, MLA 9th, or Chicago 17th), and optionally runs local writing style analysis using bundled quantitative scoring (MDD, TTR, stylistic pattern detection). Note: essay generation and rewriting use the agent's LLM, which may be a remote model provider; local analysis scripts (measure.py, pipeline.py) do not transmit essay content externally. Intended use: personal research drafts, study aids, and learning how to structure evidence-based academic arguments. NOT for submitting AI-generated work as one's own or any form of academic dishonesty.",
+  "category": "education",
+  "tags": ["writing", "education", "research", "citations", "academic", "APA", "MLA", "Chicago", "essay"],
+  "version": "1.0.3",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/kevin0818-lxd/academic-composer/issues",
+  "homepage": "https://github.com/kevin0818-lxd/academic-composer"
+}

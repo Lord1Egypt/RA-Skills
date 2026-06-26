@@ -1,0 +1,8 @@
+purpose: 描述机器人需要协助完成的主要任务。
+domain: 描述工作领域或行业。
+usage_frequency: 描述机器人的使用频率。
+language: zh
+notes:
+  - 可选的额外约束
+  - 偏好的回答风格
+  - 重要的评估关注点

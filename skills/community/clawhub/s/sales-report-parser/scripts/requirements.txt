@@ -1,0 +1,7 @@
+cnocr
+langchain-openai
+langchain-core
+pandas
+openpyxl
+pillow
+pydantic

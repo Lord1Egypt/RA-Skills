@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作步骤收集器</title>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #1a1a1a; margin-bottom: 30px; }
+        
+        .step-item { border: 1px solid #e8e8e8; border-radius: 8px; padding: 20px; margin-bottom: 20px; position: relative; transition: all 0.3s; }
+        .step-item:hover { border-color: #1890ff; box-shadow: 0 2px 8px rgba(24,144,255,0.1); }
+        .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .step-number { font-weight: bold; font-size: 1.1rem; color: #1890ff; }
+        .remove-btn { color: #ff4d4f; cursor: pointer; border: none; background: none; font-size: 0.9rem; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; color: #333; }
+        textarea { width: 100%; padding: 10px; border: 1px solid #d9d9d9; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px; }
+        
+        .image-upload-area { border: 2px dashed #d9d9d9; border-radius: 4px; padding: 15px; text-align: center; background: #fafafa; cursor: pointer; margin-top: 10px; transition: border-color 0.3s; }
+        .image-upload-area:hover { border-color: #1890ff; }
+        .image-previews { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .image-preview-item { position: relative; width: 100px; height: 100px; border: 1px solid #eee; border-radius: 4px; overflow: visible; }
+        .image-preview-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+        .image-preview-item .remove-img { 
+            position: absolute; 
+            top: -8px; 
+            right: -8px; 
+            width: 20px; 
+            height: 20px; 
+            line-height: 20px; 
+            text-align: center; 
+            background: #ff4d4f; 
+            color: white; 
+            border: none; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 12px; 
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            padding: 0;
+            z-index: 5;
+        }
+        .image-preview-item .remove-img:hover { background: #ff7875; }
+
+        .actions { display: flex; justify-content: space-between; margin-top: 30px; gap: 15px; }
+        .add-step-btn { flex: 1; padding: 12px; background: white; border: 1px dashed #1890ff; color: #1890ff; border-radius: 4px; cursor: pointer; font-size: 1rem; transition: all 0.3s; }
+        .add-step-btn:hover { background: #e6f7ff; }
+        .save-all-btn { flex: 2; padding: 12px; background: #07c160; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: background 0.3s; }
+        .save-all-btn:hover { background: #06ae56; }
+        
+        .loading { display: none; text-align: center; color: #1890ff; margin-top: 15px; font-weight: bold; }
+        
+        .cover-section { border: 2px dashed #d9d9d9; border-radius: 8px; padding: 20px; margin-bottom: 30px; background: #fafafa; text-align: center; cursor: pointer; }
+        .cover-section:hover { border-color: #1890ff; }
+        .cover-preview-container { position: relative; display: inline-block; margin-top: 10px; max-width: 100%; }
+        .cover-preview { max-width: 100%; max-height: 200px; border-radius: 4px; display: none; }
+        .remove-cover-btn { 
+            display: none; 
+            position: absolute; 
+            top: -10px; 
+            right: -10px; 
+            width: 24px; 
+            height: 24px; 
+            line-height: 24px; 
+            text-align: center; 
+            background: #ff4d4f; 
+            color: white; 
+            border: none; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            font-size: 14px; 
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .remove-cover-btn:hover { background: #ff7875; }
+        .cover-title { font-weight: bold; margin-bottom: 10px; color: #333; display: block; }
+        .cover-requirements { font-size: 0.85rem; color: #888; margin-top: -5px; margin-bottom: 10px; }
+
+        /* Custom Modal Styles */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 90%; max-width: 400px; text-align: center; }
+        .modal-title { font-size: 1.2rem; font-weight: bold; color: #1a1a1a; margin-bottom: 15px; }
+        .modal-message { font-size: 1rem; color: #555; margin-bottom: 25px; }
+        .modal-buttons { display: flex; justify-content: center; gap: 15px; }
+        .modal-btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; min-width: 100px; transition: background 0.3s; }
+        .modal-btn.confirm { background: #07c160; color: white; }
+        .modal-btn.confirm:hover { background: #06ae56; }
+        .modal-btn.cancel { background: #f0f2f5; color: #555; border: 1px solid #d9d9d9; }
+        .modal-btn.cancel:hover { background: #e8e8e8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>教程步骤编辑</h1>
+        
+        <div class="cover-section" onclick="document.getElementById('coverInput').click()">
+            <div>
+                <span class="cover-title">点击上传头图 (必传)</span>
+                <div class="cover-requirements">
+                    最佳尺寸 900×500 像素 (2:1 比例) | 文件大小 ≤ 5MB | 格式 jpg、jpeg、png
+                </div>
+            </div>
+            <input type="file" id="coverInput" style="display: none" accept="image/*" onchange="handleCoverUpload(event)">
+            <div class="cover-preview-container">
+                <img id="coverPreview" class="cover-preview">
+                <button id="removeCoverBtn" class="remove-cover-btn" onclick="removeCover(event)">✕</button>
+            </div>
+        </div>
+
+        <div id="stepsContainer">
+            <!-- 步骤项会在这里动态生成 -->
+        </div>
+        
+        <div class="actions">
+            <button class="add-step-btn" id="addStepBtn">+ 添加步骤</button>
+            <button class="save-all-btn" id="saveAllBtn">保存全部信息</button>
+        </div>
+        <div class="loading" id="loadingText">正在保存中，请稍候...</div>
+    </div>
+
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <p id="modalMessage" class="modal-message"></p>
+            <div id="modalButtons" class="modal-buttons">
+                <button id="modalConfirmBtn" class="modal-btn confirm">确认</button>
+                <button id="modalCancelBtn" class="modal-btn cancel">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let steps = [];
+        const stepsContainer = document.getElementById('stepsContainer');
+        const addStepBtn = document.getElementById('addStepBtn');
+        const saveAllBtn = document.getElementById('saveAllBtn');
+        const loadingText = document.getElementById('loadingText');
+        let coverImageFile = null;
+
+        // Custom Modal Logic
+        const modal = document.getElementById('customModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+        const modalCancelBtn = document.getElementById('modalCancelBtn');
+        let confirmCallback = null;
+
+        function showModal(title, message, isConfirm = false) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'flex';
+            
+            if (isConfirm) {
+                modalCancelBtn.style.display = 'inline-block';
+                return new Promise((resolve) => {
+                    confirmCallback = resolve;
+                });
+            } else {
+                modalCancelBtn.style.display = 'none';
+                modalConfirmBtn.textContent = '好的';
+            }
+        }
+
+        function hideModal() {
+            modal.style.display = 'none';
+            modalConfirmBtn.textContent = '确认';
+        }
+
+        modalConfirmBtn.addEventListener('click', () => {
+            if (confirmCallback) {
+                confirmCallback(true);
+                confirmCallback = null;
+            }
+            hideModal();
+        });
+
+        modalCancelBtn.addEventListener('click', () => {
+            if (confirmCallback) {
+                confirmCallback(false);
+                confirmCallback = null;
+            }
+            hideModal();
+        });
+
+        // 初始化第一个步骤
+        addStep();
+
+        function handleCoverUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                coverImageFile = file;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.getElementById('coverPreview');
+                    const removeBtn = document.getElementById('removeCoverBtn');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    removeBtn.style.display = 'block';
+                    document.querySelector('.cover-title').style.display = 'none';
+                    document.querySelector('.cover-requirements').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeCover(event) {
+            if (event) event.stopPropagation();
+            coverImageFile = null;
+            document.getElementById('coverInput').value = '';
+            const preview = document.getElementById('coverPreview');
+            const removeBtn = document.getElementById('removeCoverBtn');
+            preview.src = '';
+            preview.style.display = 'none';
+            removeBtn.style.display = 'none';
+            document.querySelector('.cover-title').style.display = 'block';
+            document.querySelector('.cover-requirements').style.display = 'block';
+        }
+
+        function addStep() {
+            const stepId = Date.now();
+            const stepIndex = steps.length + 1;
+            
+            const stepElement = document.createElement('div');
+            stepElement.className = 'step-item';
+            stepElement.id = `step-${stepId}`;
+            stepElement.innerHTML = `
+                <div class="step-header">
+                    <span class="step-number">步骤 ${stepIndex}</span>
+                    <button class="remove-btn" onclick="removeStep(${stepId})">删除</button>
+                </div>
+                <div class="form-group">
+                    <label>描述</label>
+                    <textarea class="description-input" maxlength="20" placeholder="请简要说明该步骤的操作流程(20字以内)"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>图片 (至少一张)</label>
+                    <div class="image-upload-area" onclick="document.getElementById('file-${stepId}').click()">
+                        点击或拖拽图片到此处上传
+                    </div>
+                    <input type="file" id="file-${stepId}" style="display: none" multiple accept="image/*" onchange="handleImageUpload(event, ${stepId})">
+                    <div class="image-previews" id="previews-${stepId}"></div>
+                </div>
+            `;
+            
+            stepsContainer.appendChild(stepElement);
+            steps.push({ id: stepId, description: '', images: [] });
+            updateStepNumbers();
+        }
+
+        function removeStep(id) {
+            if (steps.length <= 1) {
+                showModal('操作无效', '至少需要保留一个步骤');
+                return;
+            }
+            const index = steps.findIndex(s => s.id === id);
+            if (index > -1) {
+                steps.splice(index, 1);
+                document.getElementById(`step-${id}`).remove();
+                updateStepNumbers();
+            }
+        }
+
+        function updateStepNumbers() {
+            const numbers = document.querySelectorAll('.step-number');
+            numbers.forEach((el, i) => {
+                el.textContent = `步骤 ${i + 1}`;
+            });
+        }
+
+        function handleImageUpload(event, stepId) {
+            const files = Array.from(event.target.files);
+            const step = steps.find(s => s.id === stepId);
+            const previewContainer = document.getElementById(`previews-${stepId}`);
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'image-preview-item';
+                    previewItem.innerHTML = `
+                        <img src="${e.target.result}">
+                        <button class="remove-img" onclick="removeImage(${stepId}, '${file.name}', this)">✕</button>
+                    `;
+                    previewContainer.appendChild(previewItem);
+                };
+                reader.readAsDataURL(file);
+                
+                // 存储文件对象和原始名称
+                step.images.push(file);
+            });
+        }
+
+        function removeImage(stepId, fileName, btnElement) {
+            const step = steps.find(s => s.id === stepId);
+            const index = step.images.findIndex(img => img.name === fileName);
+            if (index > -1) {
+                step.images.splice(index, 1);
+                btnElement.parentElement.remove();
+            }
+        }
+
+        addStepBtn.addEventListener('click', addStep);
+
+        saveAllBtn.addEventListener('click', async () => {
+            const isConfirmed = await showModal('确认操作', '您确定要保存全部信息吗？', true);
+            if (!isConfirmed) {
+                return;
+            }
+
+            // 验证头图
+            if (!coverImageFile) {
+                showModal('提示', '请上传教程头图');
+                // 滚动到顶部方便用户查看
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // 验证步骤
+            for (let i = 0; i < steps.length; i++) {
+                const stepEl = document.getElementById(`step-${steps[i].id}`);
+                const desc = stepEl.querySelector('.description-input').value.trim();
+                if (!desc) {
+                    showModal('提示', `请填写步骤 ${i + 1} 的描述`);
+                    return;
+                }
+                if (desc.length > 20) {
+                    showModal('提示', `步骤 ${i + 1} 的描述长度不能超过 20 个字`);
+                    return;
+                }
+                if (steps[i].images.length === 0) {
+                    showModal('提示', `请至少为步骤 ${i + 1} 上传一张图片`);
+                    return;
+                }
+                steps[i].description = desc;
+            }
+
+            const formData = new FormData();
+            const stepsData = steps.map((s, index) => ({
+                stepNumber: index + 1,
+                description: s.description,
+                images: s.images.map(img => img.name)
+            }));
+
+            formData.append('steps', JSON.stringify(stepsData));
+            
+            // 添加头图
+            if (coverImageFile) {
+                formData.append('coverImage', coverImageFile);
+            }
+
+            // 添加所有图片文件
+            steps.forEach(s => {
+                s.images.forEach(file => {
+                    formData.append('stepImages', file);
+                });
+            });
+
+            try {
+                saveAllBtn.disabled = true;
+                loadingText.style.display = 'block';
+                
+                const response = await fetch('/api/save-steps', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showModal('成功', '全部信息保存成功！目录名：' + result.dirName);
+                } else {
+                    showModal('失败', '保存失败：' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showModal('错误', '网络错误，请稍后重试');
+            } finally {
+                saveAllBtn.disabled = false;
+                loadingText.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

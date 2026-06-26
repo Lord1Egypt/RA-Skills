@@ -1,0 +1,7 @@
+interface:
+  display_name: "TradingView Market Data"
+  short_description: "Fetch free OHLCV data, live prices, indicators, and analysis for any TradingView symbol"
+  brand_color: "#2962FF"
+
+policy:
+  allow_implicit_invocation: true

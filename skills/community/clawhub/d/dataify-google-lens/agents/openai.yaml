@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Lens"
+  short_description: "Search by image using Google Lens"
+  default_prompt: "Use $dataify-google-lens to run a search query."

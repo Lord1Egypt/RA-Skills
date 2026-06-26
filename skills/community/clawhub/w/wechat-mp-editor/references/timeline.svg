@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" style="font-family: 'Noto Sans CJK SC', 'PingFang SC', system-ui, sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fcfaf8"/>
+      <stop offset="100%" stop-color="#f9f6f2"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="700" height="460" fill="url(#bg)" rx="8"/>
+
+  <text x="350" y="32" text-anchor="middle" font-size="16" fill="#1a1a2e" font-weight="700" letter-spacing="3">AI 能力跃迁与范式转移</text>
+
+  <!-- ===== Timeline line ===== -->
+  <line x1="90" y1="160" x2="610" y2="160" stroke="#d4a574" stroke-width="2" opacity="0.4"/>
+
+  <!-- ===== Node 1 ===== -->
+  <circle cx="120" cy="160" r="10" fill="#1a1a2e"/>
+  <text x="120" y="164" text-anchor="middle" font-size="8" fill="#fff" font-weight="600">1</text>
+  <text x="120" y="188" text-anchor="middle" font-size="11" fill="#999">2022 末</text>
+  <text x="120" y="206" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="600">ChatGPT 时刻</text>
+
+  <!-- Bar -->
+  <text x="120" y="130" text-anchor="middle" font-size="10" fill="#bbb">基础对话</text>
+  <rect x="55" y="136" width="130" height="6" rx="3" fill="#eee"/>
+  <rect x="55" y="136" width="40" height="6" rx="3" fill="#1a1a2e" opacity="0.35"/>
+
+  <!-- People role -->
+  <rect x="55" y="224" width="130" height="34" rx="6" fill="#1a1a2e" opacity="0.04"/>
+  <text x="120" y="238" text-anchor="middle" font-size="10" fill="#999">人的角色：教 AI 怎么回答</text>
+  <text x="120" y="252" text-anchor="middle" font-size="9" fill="#bbb">提示词工程 · Few-shot · CoT</text>
+
+  <!-- ===== Arrow 1→2 ===== -->
+  <text x="190" y="164" text-anchor="middle" font-size="14" fill="#d4a574" opacity="0.4">→</text>
+
+  <!-- ===== Node 2 ===== -->
+  <circle cx="230" cy="160" r="10" fill="#1a1a2e"/>
+  <text x="230" y="164" text-anchor="middle" font-size="8" fill="#fff" font-weight="600">2</text>
+  <text x="230" y="188" text-anchor="middle" font-size="11" fill="#999">2025 初</text>
+  <text x="230" y="206" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="600">DeepSeek 时刻</text>
+
+  <text x="230" y="130" text-anchor="middle" font-size="10" fill="#bbb">推理 + 低成本</text>
+  <rect x="165" y="136" width="130" height="6" rx="3" fill="#eee"/>
+  <rect x="165" y="136" width="70" height="6" rx="3" fill="#1a1a2e" opacity="0.5"/>
+
+  <rect x="165" y="224" width="130" height="34" rx="6" fill="#1a1a2e" opacity="0.04"/>
+  <text x="230" y="238" text-anchor="middle" font-size="10" fill="#999">人的角色：帮 AI 拓宽视野</text>
+  <text x="230" y="252" text-anchor="middle" font-size="9" fill="#bbb">上下文 · Token · 分块策略</text>
+
+  <!-- ===== Arrow 2→3 ===== -->
+  <text x="300" y="164" text-anchor="middle" font-size="14" fill="#d4a574" opacity="0.4">→</text>
+
+  <!-- ===== Node 3 ===== -->
+  <circle cx="340" cy="160" r="12" fill="#d4a574"/>
+  <text x="340" y="164" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">3</text>
+  <text x="340" y="188" text-anchor="middle" font-size="11" fill="#d4a574">现在</text>
+  <text x="340" y="206" text-anchor="middle" font-size="13" fill="#d4a574" font-weight="700">能力达标</text>
+
+  <text x="340" y="130" text-anchor="middle" font-size="10" fill="#d4a574">百万窗口 · 强推理</text>
+  <rect x="275" y="136" width="130" height="6" rx="3" fill="#eee"/>
+  <rect x="275" y="136" width="120" height="6" rx="3" fill="#d4a574"/>
+
+  <rect x="275" y="224" width="130" height="34" rx="6" fill="#d4a574" opacity="0.08"/>
+  <text x="340" y="238" text-anchor="middle" font-size="10" fill="#d4a574" opacity="0.8">人的角色：决定让它干什么</text>
+  <text x="340" y="252" text-anchor="middle" font-size="9" fill="#d4a574" opacity="0.6">定义问题 · 判断对错</text>
+
+  <!-- ===== Threshold dashed line ===== -->
+  <line x1="420" y1="70" x2="420" y2="290" stroke="#d4a574" stroke-width="2" stroke-dasharray="5,4" opacity="0.3"/>
+  <text x="428" y="78" font-size="9" fill="#d4a574" opacity="0.5">能力达标</text>
+
+  <!-- ===== Right side: Application layer ===== -->
+  <text x="440" y="100" font-size="10" fill="#1a1a2e" font-weight="500">能力达标后的变化</text>
+
+  <rect x="440" y="108" width="230" height="32" rx="6" fill="#d4a574" opacity="0.1"/>
+  <circle cx="452" cy="124" r="4" fill="#d4a574"/>
+  <text x="464" y="128" font-size="11" fill="#1a1a2e">模型能力达标 → 应用层加速</text>
+
+  <rect x="440" y="148" width="230" height="32" rx="6" fill="#1a1a2e" opacity="0.04"/>
+  <circle cx="452" cy="164" r="4" fill="#1a1a2e" opacity="0.4"/>
+  <text x="464" y="168" font-size="11" fill="#1a1a2e" opacity="0.7">Agent · Skill · MCP · Harness</text>
+
+  <rect x="440" y="188" width="230" height="32" rx="6" fill="#1a1a2e" opacity="0.04"/>
+  <circle cx="452" cy="204" r="4" fill="#1a1a2e" opacity="0.4"/>
+  <text x="464" y="208" font-size="11" fill="#1a1a2e" opacity="0.7">技能市场（GPT Store · Skills · Coze）</text>
+
+  <rect x="440" y="228" width="230" height="32" rx="6" fill="#1a1a2e" opacity="0.04"/>
+  <circle cx="452" cy="244" r="4" fill="#1a1a2e" opacity="0.4"/>
+  <text x="464" y="248" font-size="11" fill="#1a1a2e" opacity="0.7">AI 平台变成工具箱</text>
+
+  <!-- ===== Bottom: paradigm shift ===== -->
+  <line x1="80" y1="310" x2="620" y2="310" stroke="#d4a574" stroke-width="1" opacity="0.3"/>
+
+  <text x="100" y="295" font-size="10" fill="#bbb">退场</text>
+  <text x="100" y="309" font-size="9" fill="#ccc">提示词工程</text>
+  <text x="100" y="322" font-size="9" fill="#ccc">手动压缩上下文</text>
+  <text x="100" y="335" font-size="9" fill="#ccc">花式 prompt 模板</text>
+
+  <polygon points="350,303 360,310 350,317" fill="#d4a574" opacity="0.4"/>
+
+  <text x="540" y="295" font-size="10" fill="#d4a574">上场</text>
+  <text x="540" y="309" font-size="9" fill="#d4a574" opacity="0.8">领域专业知识</text>
+  <text x="540" y="322" font-size="9" fill="#d4a574" opacity="0.8">判断力和审美</text>
+  <text x="540" y="335" font-size="9" fill="#d4a574" opacity="0.8">提出好问题的能力</text>
+
+  <!-- Bottom subtitle -->
+  <text x="350" y="385" text-anchor="middle" font-size="11" fill="#1a1a2e" opacity="0.5" font-weight="500">提示词工程在退场，领域专业在上场</text>
+
+</svg>

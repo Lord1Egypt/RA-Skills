@@ -1,35 +1,567 @@
 ---
-name: "Startup 0 to 1 Workflow"
-description: "Complete startup workflow from 0 to 1, integrating founder, business-model-canvas, market-research-reports, competitive-analysis, business-plan, pitch-deck-v..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/startup-0-to-1-workflow"
-sourceUrl: "https://clawhub.ai/skills/startup-0-to-1-workflow"
+name: startup-0-to-1-workflow
+description: Complete startup workflow from 0 to 1, integrating founder, business-model-canvas, market-research-reports, competitive-analysis, business-plan, pitch-deck-visuals and other skills. Provides 6-stage entrepreneurial process from idea validation to fundraising.
+license: MIT License
+metadata:
+    skill-author: academic-assistant
+    version: 1.0.0
+    created: 2026-03-14
 ---
 
 # Startup 0 to 1 Workflow
 
-> Complete startup workflow from 0 to 1, integrating founder, business-model-canvas, market-research-reports, competitive-analysis, business-plan, pitch-deck-v...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/startup-0-to-1-workflow`
-- **Source URL:** [https://clawhub.ai/skills/startup-0-to-1-workflow](https://clawhub.ai/skills/startup-0-to-1-workflow)
-
 ## Overview
 
+从 0 到 1 创业完整工作流，整合多个创业技能，提供从创意验证到融资路演的完整流程。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/startup-0-to-1-workflow
+## 6 Workflow Stages
+
+### 1. 创意验证 (2-4 周)
+- 问题验证
+- 用户访谈
+- MVP 设计
+
+**使用技能**: founder, business-model-canvas
+
+**关键问题**:
+- 问题是否真实存在？
+- 用户是否愿意付费？
+- 市场是否足够大？
+
+**交付物**:
+- 问题验证报告
+- 用户访谈记录 (20+)
+- 商业模式画布
+- MVP 设计方案
+
+---
+
+### 2. 市场调研 (2-3 周)
+- 市场规模
+- 竞争格局
+- 市场趋势
+
+**使用技能**: market-research-reports, competitive-analysis
+
+**关键问题**:
+- TAM/SAM/SOM 是多少？
+- 主要竞争对手是谁？
+- 市场趋势如何？
+
+**交付物**:
+- 市场调研报告 (50+ 页)
+- 竞争对手分析
+- 市场定位策略
+
+---
+
+### 3. 商业规划 (2-3 周)
+- 商业计划书
+- 财务预测
+- 运营计划
+
+**使用技能**: business-plan, business-model-canvas
+
+**关键问题**:
+- 商业模式是否可行？
+- 单位经济是否健康？
+- 财务预测是否合理？
+
+**交付物**:
+- 商业计划书
+- 财务预测 (3 年)
+- 运营计划
+
+---
+
+### 4. 产品开发 (4-8 周)
+- MVP 开发
+- 用户测试
+- 迭代优化
+
+**使用技能**: startup
+
+**关键问题**:
+- MVP 是否解决核心问题？
+- 用户留存率如何？
+- 40% 用户会非常失望吗？
+
+**交付物**:
+- MVP 产品
+- 用户测试报告
+- 产品迭代计划
+
+---
+
+### 5. 产品市场匹配 (4-12 周)
+- PMF 验证
+- 增长指标
+- 用户反馈
+
+**使用技能**: founder, founder-coach
+
+**关键问题**:
+- 40% 用户非常失望？
+- 用户留存率达标？
+- 自然增长是否可持续？
+
+**交付物**:
+- PMF 验证报告
+- 增长指标仪表板
+- 用户反馈分析
+
+---
+
+### 6. 融资路演 (4-8 周)
+- 融资材料
+- 投资者对接
+- 路演准备
+
+**使用技能**: pitch-deck-visuals, business-plan
+
+**关键问题**:
+- 融资金额是否合理？
+- 资金使用计划是否清晰？
+- 投资者是否匹配？
+
+**交付物**:
+- 融资路演 PPT (12 页)
+- 财务模型
+- 投资者名单
+
+---
+
+## Startup Stages
+
+### 创意阶段 (Idea)
+
+**焦点**: 问题验证
+
+**关键指标**:
+- 用户访谈数 (目标：20+)
+- 问题验证度 (目标：80%+)
+
+**持续时间**: 2-4 周
+
+**优先级**: 学习速度
+
+**核心任务**:
+- [ ] 完成 20+ 用户访谈
+- [ ] 验证问题真实性
+- [ ] 完成商业模式画布
+- [ ] 设计 MVP 方案
+
+---
+
+### Pre-PMF (产品市场匹配前)
+
+**焦点**: PMF 验证
+
+**关键指标**:
+- 留存率 (目标：月留存>40%)
+- 40% 阈值 (目标：40%+ 用户非常失望)
+- 用户反馈 (目标：正面>负面)
+
+**持续时间**: 3-6 个月
+
+**优先级**: 学习速度
+
+**核心任务**:
+- [ ] 开发 MVP
+- [ ] 获取前 100 个用户
+- [ ] 每周用户访谈
+- [ ] 快速迭代产品
+
+**核心原则**:
 ```
+- 在构建之前先与用户交谈
+- 问题验证先于解决方案验证
+- MVP 意味着小到尴尬
+- 学习速度胜过产品质量
+```
+
+---
+
+### PMF (产品市场匹配)
+
+**焦点**: 增长验证
+
+**关键指标**:
+- 月增长率 (目标：>20%)
+- LTV/CAC (目标：>3)
+- 推荐率 (目标：NPS>50)
+
+**持续时间**: 2-3 个月
+
+**优先级**: 增长效率
+
+**核心任务**:
+- [ ] 验证 PMF (Sean Ellis Test)
+- [ ] 优化获客渠道
+- [ ] 建立增长模型
+- [ ] 准备融资材料
+
+**PMF 测量**:
+```
+Sean Ellis Test:
+"如果这个产品明天消失了，你会有什么感觉？"
+- 非常失望 (目标：40%+)
+- 有点失望
+- 不失望
+
+40% 阈值 = PMF 达成
+```
+
+---
+
+### Post-PMF (产品市场匹配后)
+
+**焦点**: 规模化
+
+**关键指标**:
+- 收入增长 (目标：月增长>15%)
+- 市场份额 (目标：细分市场前 3)
+- 团队效率 (目标：人均产出增长)
+
+**持续时间**: 6-12 个月
+
+**优先级**: 规模化效率
+
+**核心任务**:
+- [ ] 规模化获客
+- [ ] 团队建设
+- [ ] 流程优化
+- [ ] A/B 轮融资
+
+**核心原则**:
+```
+- 优先规模化
+- 拒绝任何不能高效增长的事情
+- 建立可重复的销售流程
+- 投资团队建设
+```
+
+---
+
+### 规模化阶段 (Scaling)
+
+**焦点**: 市场扩张
+
+**关键指标**:
+- 市场份额 (目标：细分市场第一)
+- 利润率 (目标：>20%)
+- 组织效率 (目标：持续增长)
+
+**持续时间**: 12+ 个月
+
+**优先级**: 可持续增长
+
+**核心任务**:
+- [ ] 市场扩张
+- [ ] 产品线扩展
+- [ ] 组织建设
+- [ ] C 轮 + 融资
+
+---
+
+## Core Frameworks
+
+### 精益创业 (Lean Startup)
+
+**核心循环**: 构建 - 测量 - 学习
+
+**关键概念**: MVP + 快速迭代
+
+**应用阶段**: 创意阶段、Pre-PMF
+
+```
+构建 (Build):
+- 开发 MVP
+- 最小功能集
+- 快速上线
+
+测量 (Measure):
+- 收集用户数据
+- 关键指标跟踪
+- 用户反馈
+
+学习 (Learn):
+- 数据分析
+- 洞察提取
+- 决策调整
+
+重复循环...
+```
+
+---
+
+### 商业模式画布 (Business Model Canvas)
+
+**模块**: 9+1 块
+
+**关键概念**: 价值创造 + 价值捕获
+
+**应用阶段**: 创意阶段、商业规划
+
+```
+1. 客户细分
+2. 价值主张
+3. 渠道
+4. 客户关系
+5. 收入来源
+6. 关键资源
+7. 关键活动
+8. 关键合作伙伴
+9. 成本结构
++1. 时间与精力 (独奏者)
+```
+
+---
+
+### 4Ps 框架 (Getting Unstuck)
+
+**元素**: Persona, Problem, Promise, Product
+
+**关键概念**: 摆脱困境
+
+**应用阶段**: Pre-PMF、PMF
+
+```
+Persona:
+- 谁从你的洞察中受益最多？
+- 具体定义目标客户
+
+Problem:
+- 这是否紧急且重要？
+- 问题痛苦程度
+
+Promise:
+- 你的独特价值主张是什么？
+- 与竞争对手的差异化
+
+Product:
+- 你的解决方案是否兑现承诺？
+- 产品 - 市场匹配度
+```
+
+---
+
+### PMF 测量 (Sean Ellis Test)
+
+**指标**: 40% 用户非常失望
+
+**调查问题**: "如果这个产品明天消失了，你会有什么感觉？"
+
+**应用阶段**: PMF 验证
+
+```
+回答选项:
+- 非常失望 (目标：40%+)
+- 有点失望
+- 不失望
+
+解读:
+- 40%+: PMF 达成，可以规模化
+- 30-40%: 接近 PMF，继续优化
+- <30%: 未达 PMF，需要重新定位
+```
+
+---
+
+## Usage
+
+### 基本使用
+
+```bash
+# 完整创业流程
+python startup_0_to_1_workflow.py --stage idea
+
+# 阶段评估
+python startup_0_to_1_workflow.py --action assess --stage pre-pmf
+
+# 任务清单
+python startup_0_to_1_workflow.py --action tasks --stage pmf
+
+# 指标跟踪
+python startup_0_to_1_workflow.py --action metrics --stage post-pmf
+```
+
+---
+
+### 阶段感知决策
+
+**Pre-PMF 决策原则**:
+```
+- 优先学习速度
+- 拒绝任何不能加速验证的事情
+- 只关注三个问题:
+  1. 用户会回来吗？
+  2. 如果消失了他们会失望吗？
+  3. 他们会告诉别人吗？
+```
+
+**Post-PMF 决策原则**:
+```
+- 优先规模化
+- 拒绝任何不能高效增长的事情
+- 建立可重复的流程
+- 投资团队建设
+```
+
+---
+
+## Common Traps
+
+### Pre-PMF 常见陷阱
+
+```
+⚠️ 留存率有问题时还在构建功能
+⚠️ 在创始人不堪重负前就招聘
+⚠️ 在产品市场匹配前优化收入
+⚠️ 在销售流程可重复前规模化销售
+⚠️ 在分销有效前在品牌上花钱
+```
+
+### Post-PMF 常见陷阱
+
+```
+⚠️ 增长过快导致质量下降
+⚠️ 忽视单位经济
+⚠️ 团队建设跟不上业务增长
+⚠️ 忽视现金流管理
+⚠️ 过早多元化
+```
+
+---
+
+## Decision Routing
+
+### 决策类型
+
+```
+可逆决策 → 快速决定 (几小时内)
+不可逆决策 → 建模场景分析
+跨职能决策 → 综合相关建议
+不明确所有权 → 询问负责人
+```
+
+### 资源约束原则
+
+```
+- 始终考虑创始人时间成本，不仅是金钱成本
+- 优先高杠杆活动而非彻底但慢的方法
+- 在昂贵方案前先建议简陋替代方案
+- 默认手动优先，痛苦时再自动化
+```
+
+---
+
+## Output Format
+
+### 阶段评估报告
+
+```markdown
+# 创业阶段评估报告
+
+## 当前阶段
+- 阶段：Pre-PMF
+- 进入时间：2026-01-15
+- 已持续时间：8 周
+
+## 关键指标
+| 指标 | 当前值 | 目标值 | 状态 |
+|------|--------|--------|------|
+| 用户留存率 | 35% | 40% | 🟡 |
+| 40% 阈值 | 32% | 40% | 🟡 |
+| 月增长率 | 25% | 20% | ✅ |
+
+## 阶段任务
+- [x] 完成 MVP 开发
+- [x] 获取前 100 个用户
+- [ ] 达到 40% PMF 阈值
+- [ ] 优化留存率
+
+## 风险预警
+- ⚠️ 留存率未达标，需要优化
+- ⚠️ PMF 阈值接近，继续验证
+
+## 下一步建议
+1. 优化产品核心功能
+2. 增加用户访谈频率
+3. 准备融资材料初稿
+```
+
+---
+
+## Best Practices
+
+### 最佳实践
+
+1. **用户第一**
+   - 在构建之前先与用户交谈
+   - 每周至少 5 次用户访谈
+   - 用户反馈驱动迭代
+
+2. **快速迭代**
+   - MVP 意味着小到尴尬
+   - 学习速度胜过产品质量
+   - 每周至少一次迭代
+
+3. **数据驱动**
+   - 定义关键指标
+   - 每日跟踪
+   - 基于数据决策
+
+4. **专注聚焦**
+   - 一个北极星指标
+   - 2-3 个支持指标
+   - 拒绝分心
+
+---
+
+### 避免错误
+
+1. **产品问题**
+   - ❌ 构建功能时留存率有问题
+   - ✅ 先解决留存再添加功能
+
+2. **招聘问题**
+   - ❌ 在创始人不堪重负前就招聘
+   - ✅ 创始人先做一遍再招聘
+
+3. **收入问题**
+   - ❌ 在产品市场匹配前优化收入
+   - ✅ 先验证 PMF 再优化收入
+
+4. **融资问题**
+   - ❌ 在势头不好时融资
+   - ✅ 在势头好时融资
+
+---
+
+## References
+
+### 推荐阅读
+
+- 《精益创业》- Eric Ries
+- 《从 0 到 1》- Peter Thiel
+- 《商业模式新生代》- Alexander Osterwalder
+- 《跨越鸿沟》- Geoffrey Moore
+
+### 核心框架
+
+- Lean Startup (构建 - 测量 - 学习)
+- Business Model Canvas (9+1 模块)
+- 4Ps Framework (Persona/Problem/Promise/Product)
+- Sean Ellis Test (PMF 测量)
+
+---
+
+**技能版本**: v1.0.0  
+**创建时间**: 2026-03-14  
+**维护者**: academic-assistant  
+**下次更新**: 功能改进时
+
+---
+
+*从 0 到 1，完整创业流程！*🚀✨

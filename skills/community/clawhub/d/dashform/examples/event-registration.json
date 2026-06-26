@@ -1,0 +1,76 @@
+{
+  "name": "Tech Conference 2024 Registration",
+  "type": "structured",
+  "description": "Registration form for annual tech conference with session selection",
+  "tone": "professional and welcoming",
+  "welcomeScreen": {
+    "title": "Welcome to Tech Conference 2024",
+    "message": "Join us for three days of innovation, networking, and learning. Register now to secure your spot!",
+    "callToActionText": "Register Now"
+  },
+  "questions": [
+    {
+      "key": "full_name",
+      "type": "open-ended",
+      "description": "Full Name",
+      "required": true
+    },
+    {
+      "key": "email",
+      "type": "open-ended",
+      "description": "Email Address",
+      "required": true
+    },
+    {
+      "key": "company",
+      "type": "open-ended",
+      "description": "Company/Organization",
+      "required": true
+    },
+    {
+      "key": "job_title",
+      "type": "open-ended",
+      "description": "Job Title",
+      "required": true
+    },
+    {
+      "key": "ticket_type",
+      "type": "single-choice",
+      "description": "Select your ticket type",
+      "required": true,
+      "options": ["Full Conference Pass ($499)", "Single Day Pass ($199)", "Virtual Attendance ($99)", "Student/Academic ($149)"]
+    },
+    {
+      "key": "sessions_interested",
+      "type": "multiple-choice",
+      "description": "Which tracks are you most interested in?",
+      "required": true,
+      "options": ["AI & Machine Learning", "Cloud Architecture", "DevOps & Infrastructure", "Frontend Development", "Security & Privacy", "Product Management"]
+    },
+    {
+      "key": "dietary_restrictions",
+      "type": "multiple-choice",
+      "description": "Do you have any dietary restrictions?",
+      "required": false,
+      "options": ["Vegetarian", "Vegan", "Gluten-free", "Dairy-free", "Nut allergy", "No restrictions"]
+    },
+    {
+      "key": "networking_interests",
+      "type": "open-ended",
+      "description": "What are you hoping to get out of this conference?",
+      "required": false
+    }
+  ],
+  "endScreen": {
+    "title": "Registration Complete!",
+    "message": "Thank you for registering! You'll receive a confirmation email with your ticket and event details within 24 hours.",
+    "callToActionText": "View Event Schedule",
+    "callToActionUrl": "https://techconf2024.example.com/schedule"
+  },
+  "theme": {
+    "colorBackground": "#1a202c",
+    "colorForeground": "#ffffff",
+    "colorPrimary": "#f56565",
+    "fontFamily": "sans"
+  }
+}

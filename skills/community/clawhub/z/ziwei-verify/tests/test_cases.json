@@ -1,0 +1,193 @@
+# 测试案例集
+
+## 案例1：高置信度自动校正
+```json
+{
+  "case_id": "TC001",
+  "description": "命宫空宫，±1时辰后置信度显著提升",
+  "input": {
+    "trace_id": "test-001",
+    "skill_name": "ziwei",
+    "execution_time": 1.2,
+    "timestamp": "2024-01-01T12:00:00Z",
+    "status": "SUCCESS",
+    "confidence": 0.35,
+    "data": {
+      "birth_info": {
+        "gender": "M",
+        "birth_dt": "1993-04-01T14:00:00+08:00",
+        "location": "北京"
+      },
+      "chart_data": {"simulated": true}
+    },
+    "verification_points": [
+      {
+        "field": "命宫主星",
+        "description": "命宫为空宫，主星落陷",
+        "impact": "high",
+        "suggestions": ["考虑生时校正", "检查出生时间"],
+        "related_fields": ["命宫", "身宫"]
+      },
+      {
+        "field": "迁移宫",
+        "description": "迁移宫化忌",
+        "impact": "medium",
+        "suggestions": ["调整出行方向"],
+        "related_fields": ["迁移宫"]
+      }
+    ],
+    "errors": [],
+    "warnings": [],
+    "metadata": {"cache_key": "test:19930401M"}
+  },
+  "expected": {
+    "status": "CALIBRATION_DONE",
+    "confidence_min": 0.7,
+    "verification_points_high_impact_max": 0,
+    "shift_hours_in": [-2, 2]
+  }
+}
+```
+
+## 案例2：低置信度无法校正
+```json
+{
+  "case_id": "TC002",
+  "description": "所有候选置信度均低于阈值",
+  "input": {
+    "trace_id": "test-002",
+    "skill_name": "ziwei",
+    "execution_time": 1.0,
+    "timestamp": "2024-01-01T12:00:00Z",
+    "status": "SUCCESS",
+    "confidence": 0.2,
+    "data": {
+      "birth_info": {
+        "gender": "F",
+        "birth_dt": "1995-08-15T09:30:00+08:00",
+        "location": "上海"
+      },
+      "chart_data": {}
+    },
+    "verification_points": [
+      {
+        "field": "命宫",
+        "description": "命宫主星不确定",
+        "impact": "high",
+        "suggestions": ["重新校准时间"],
+        "related_fields": []
+      }
+    ],
+    "errors": [],
+    "warnings": []
+  },
+  "expected": {
+    "status": "LOW_CONFIDENCE",
+    "confidence_max": 0.5,
+    "candidates_count": 4
+  }
+}
+```
+
+## 案例3：交互模式候选展示
+```json
+{
+  "case_id": "TC003",
+  "description": "交互模式返回候选列表",
+  "input": {
+    "trace_id": "test-003",
+    "skill_name": "ziwei",
+    "execution_time": 0.8,
+    "timestamp": "2024-01-01T12:00:00Z",
+    "status": "SUCCESS",
+    "confidence": 0.45,
+    "data": {
+      "birth_info": {
+        "gender": "M",
+        "birth_dt": "1990-12-25T23:00:00+08:00",
+        "location": "广州"
+      },
+      "chart_data": {}
+    },
+    "verification_points": [
+      {
+        "field": "命宫",
+        "description": "命宫主星不确定",
+        "impact": "high",
+        "suggestions": ["校正生时"],
+        "related_fields": []
+      }
+    ],
+    "errors": [],
+    "warnings": []
+  },
+  "parameters": {
+    "interactive": true
+  },
+  "expected": {
+    "status": "NEED_VERIFICATION",
+    "candidates_count": 4,
+    "has_comparison_table": true,
+    "interactive_required": true
+  }
+}
+```
+
+## 案例4：无效输入
+```json
+{
+  "case_id": "TC004",
+  "description": "输入数据包缺少 verification_points",
+  "input": {
+    "trace_id": "test-004",
+    "skill_name": "ziwei",
+    "execution_time": 1.0,
+    "timestamp": "2024-01-01T12:00:00Z",
+    "status": "SUCCESS",
+    "confidence": 0.8,
+    "data": {},
+    "errors": [],
+    "warnings": []
+  },
+  "expected": {
+    "status": "INVALID_INPUT",
+    "error_contains": "verification_points"
+  }
+}
+```
+
+## 案例5：边界测试 - ±2时辰
+```json
+{
+  "case_id": "TC005",
+  "description": "max_shifts=2 时生成 4 个候选（-4h, -2h, +2h, +4h）",
+  "input": {
+    "trace_id": "test-005",
+    "skill_name": "ziwei",
+    "execution_time": 1.0,
+    "timestamp": "2024-01-01T12:00:00Z",
+    "status": "SUCCESS",
+    "confidence": 0.4,
+    "data": {
+      "birth_info": {
+        "gender": "F",
+        "birth_dt": "1998-06-10T12:00:00+08:00",
+        "location": "成都"
+      },
+      "chart_data": {}
+    },
+    "verification_points": [
+      {"field": "测试字段", "description": "测试", "impact": "medium", "suggestions": []}
+    ],
+    "errors": [],
+    "warnings": []
+  },
+  "parameters": {
+    "max_shifts": 2
+  },
+  "expected": {
+    "candidates_count": 4,
+    "shifts": [-4, -2, 2, 4]
+  }
+}
+```

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔方网表 - 列表页示例</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 20px; }
+    .config { background: #f5f5f5; padding: 12px; margin-bottom: 16px; border-radius: 6px; font-size: 13px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #333; color: #fff; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .loading, .error { padding: 20px; text-align: center; }
+    .error { color: #c00; }
+    .pagination { margin-top: 16px; display: flex; gap: 8px; align-items: center; }
+    .pagination button { padding: 8px 16px; cursor: pointer; }
+    .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h1>魔方网表 - 列表页示例</h1>
+
+  <!-- 步骤 0: 配置区 - 替换为实际空间 ID 和表单 ID -->
+  <div class="config">
+    <strong>配置说明</strong>：请将 YOUR_SPACE_ID、YOUR_FORM_ID 替换为实际值。本地 mock 时设置 apiBase，同域部署时 apiBase 设为 ''。
+  </div>
+
+  <div id="content">
+    <div class="loading" id="loading">加载中...</div>
+    <div class="error" id="error" style="display:none;"></div>
+    <table id="table" style="display:none;">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="pagination" id="pagination" style="display:none;"></div>
+  </div>
+
+  <script>
+    // ========== 配置区 ==========
+    const CONFIG = {
+      apiBase: '',
+      spaceId: 'YOUR_SPACE_ID',
+      formId: 'YOUR_FORM_ID',
+      pageSize: 10
+    };
+
+    // 展示列：按需修改，key 为字段 name，value 为表头 label
+    // 注意：API 返回的 key 是 name，不能用 label 作为 key
+    const DISPLAY_COLUMNS = [
+      { name: 'id', label: '序号' },
+      { name: 'mingcheng', label: '名称' },
+      { name: 'jine', label: '金额' }
+    ];
+
+    // ========== 步骤 1: 构建 API 路径（apiBase 为空时为同域相对路径） ==========
+    function getRecordsUrl(start, limit) {
+      const path = `/magicflu/service/s/jsonv2/${CONFIG.spaceId}/forms/${CONFIG.formId}/records/entry`;
+      const params = new URLSearchParams({ start: String(start), limit: String(limit) });
+      const origin = CONFIG.apiBase ? CONFIG.apiBase.replace(/\/$/, '') : '';
+      return `${origin}${path}?${params}`;
+    }
+
+    // ========== 步骤 2: 获取记录列表 ==========
+    async function fetchRecords(page = 0) {
+      const start = page * CONFIG.pageSize;
+      const url = getRecordsUrl(start, CONFIG.pageSize);
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (!data.entry) throw new Error('响应格式异常');
+        return { entry: data.entry, totalCount: data.totalCount ?? 0 };
+      } catch (e) {
+        throw new Error('加载失败，请检查网络或空间/表单 ID 是否正确。' + (e.message ? ' ' + e.message : ''));
+      }
+    }
+
+    // ========== 步骤 3: 渲染表格 ==========
+    function renderTable(entry) {
+      const thead = document.getElementById('thead');
+      const tbody = document.getElementById('tbody');
+
+      thead.innerHTML = '<tr>' + DISPLAY_COLUMNS.map(c => `<th>${c.label}</th>`).join('') + '</tr>';
+      tbody.innerHTML = entry.map(row =>
+        '<tr>' + DISPLAY_COLUMNS.map(c => {
+          let val = row[c.name];
+          if (val && typeof val === 'object' && val.content) val = val.content;
+          return `<td>${val ?? '-'}</td>`;
+        }).join('') + '</tr>'
+      ).join('');
+    }
+
+    // ========== 步骤 4: 渲染分页 ==========
+    function renderPagination(totalCount, currentPage) {
+      const totalPages = Math.ceil(totalCount / CONFIG.pageSize) || 1;
+      const div = document.getElementById('pagination');
+      div.innerHTML = `
+        <button id="prev" ${currentPage <= 0 ? 'disabled' : ''}>上一页</button>
+        <span>第 ${currentPage + 1} / ${totalPages} 页，共 ${totalCount} 条</span>
+        <button id="next" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+      `;
+      div.style.display = 'flex';
+
+      div.querySelector('#prev')?.addEventListener('click', () => loadPage(currentPage - 1));
+      div.querySelector('#next')?.addEventListener('click', () => loadPage(currentPage + 1));
+    }
+
+    // ========== 步骤 5: 加载指定页 ==========
+    async function loadPage(page = 0) {
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const table = document.getElementById('table');
+      const pagination = document.getElementById('pagination');
+
+      loading.style.display = 'block';
+      error.style.display = 'none';
+      table.style.display = 'none';
+      pagination.style.display = 'none';
+
+      try {
+        const { entry, totalCount } = await fetchRecords(page);
+        renderTable(entry);
+        renderPagination(totalCount, page);
+        table.style.display = 'table';
+      } catch (e) {
+        error.textContent = e.message;
+        error.style.display = 'block';
+      } finally {
+        loading.style.display = 'none';
+      }
+    }
+
+    // ========== 初始化 ==========
+    loadPage(0);
+  </script>
+</body>
+</html>

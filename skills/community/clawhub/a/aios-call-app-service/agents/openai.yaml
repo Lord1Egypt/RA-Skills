@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIOS App Service"
+  short_description: "Read ontology first, then invoke AIOS app services"
+  default_prompt: "Use $aios-call-app-service to read /var/aios/data/ontology, invoke AIOS application interfaces, and continue from live results."
+
+policy:
+  allow_implicit_invocation: true

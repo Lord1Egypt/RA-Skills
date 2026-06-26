@@ -1,35 +1,49 @@
----
-name: "Hk LeETF"
-description: "Analyzes Hong Kong leveraged ETFs by evaluating holdings, price deviation, liquidity risks, and provides rebalancing timing, arbitrage opportunities, and ris..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hk-leetf"
-sourceUrl: "https://clawhub.ai/skills/hk-leetf"
----
+# HK_LEETF_Trading 港股杠杆 ETF 分析技能
 
-# Hk LeETF
+> PAI HK_LEETF_Trading 项目的分析决策技能
+> @version 1.0.0
 
-> Analyzes Hong Kong leveraged ETFs by evaluating holdings, price deviation, liquidity risks, and provides rebalancing timing, arbitrage opportunities, and ris...
+## 🎯 目标
+- 分析港股杠杆 ETF 的持仓和走势
+- 识别调仓窗口和套利机会
+- 生成调仓建议和风险提示
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hk-leetf`
-- **Source URL:** [https://clawhub.ai/skills/hk-leetf](https://clawhub.ai/skills/hk-leetf)
+## 📋 核心流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hk-leetf
+### 1. 数据获取
 ```
+- 获取 ETF 持仓数据
+- 获取成分股实时行情
+- 获取 ETF 净值 (NAV) 数据
+- 获取资金流向数据
+```
+
+### 2. 分析维度
+```
+- 持仓偏离度分析
+- 溢价/折价率计算
+- 调仓影响评估
+- 流动性风险评估
+```
+
+### 3. 决策输出
+```
+- 调仓时机建议
+- 套利机会识别
+- 风险等级评估
+- 仓位调整建议
+```
+
+## 🔧 工具
+- 港股行情 API
+- ETF 持仓数据源
+- 净值计算工具
+
+## 📊 成功标准
+- 准确识别调仓窗口
+- 溢价率计算误差 < 0.5%
+- 及时提示大额申赎风险
+
+## 📁 相关文件
+- `/Users/zst/clawd/HK_LEETF_README.md` - 项目说明
+- `/Users/zst/clawd/memory/hk_leETF/` - 分析日志

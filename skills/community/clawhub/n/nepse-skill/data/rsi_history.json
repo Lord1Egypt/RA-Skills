@@ -1,0 +1,18 @@
+{
+  "SKHL": [
+    {
+      "date": "2026-04-15",
+      "rsi": null,
+      "price": 1252.4,
+      "was_crossover": null
+    }
+  ],
+  "HFIN": [
+    {
+      "date": "2026-04-15",
+      "rsi": null,
+      "price": 906.6,
+      "was_crossover": null
+    }
+  ]
+}

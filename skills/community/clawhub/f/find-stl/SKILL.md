@@ -1,35 +1,37 @@
 ---
-name: "Find Stl"
-description: "Search and download ready-to-print 3D model files (STL/3MF/ZIP) for a concept or specific part by querying Printables (first). Use when an agent needs to find an existing model, capture license/attribution, download the source files, and output a local folder + manifest for qu…"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/find-stl"
-sourceUrl: "https://clawhub.ai/skills/find-stl"
+name: find-stl
+description: Search and download ready-to-print 3D model files (STL/3MF/ZIP) for a concept or specific part by querying Printables (first). Use when an agent needs to find an existing model, capture license/attribution, download the source files, and output a local folder + manifest for quoting/printing.
 ---
 
-# Find Stl
+# find-stl
 
-> Search and download ready-to-print 3D model files (STL/3MF/ZIP) for a concept or specific part by querying Printables (first). Use when an agent needs to find an existing model, capture license/attribution, download the source files, and output a local folder + manifest for qu…
+This skill provides a deterministic pipeline:
+- search Printables for models
+- select a candidate
+- download model files
+- write a `manifest.json` (source URL, author, license id, files, hashes)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/find-stl`
-- **Source URL:** [https://clawhub.ai/skills/find-stl](https://clawhub.ai/skills/find-stl)
+## Quick start
 
-## Overview
+### Search
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/find-stl
+python3 scripts/find_stl.py search "iphone 15 pro dock" --limit 10
 ```
+
+### Fetch
+
+```bash
+python3 scripts/find_stl.py fetch 1059554 --outdir out/models
+```
+
+By default, fetch downloads **all model files** (a ZIP pack) when available.
+
+## Notes
+
+- Printables download links are time-limited; this script resolves them via Printables GraphQL (`getDownloadLink`).
+- Always preserve license + attribution in the manifest.
+
+## Resources
+
+- `scripts/find_stl.py`

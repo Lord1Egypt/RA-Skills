@@ -1,0 +1,67 @@
+{
+  "leagues": [
+    {
+      "id": "pl",
+      "name": "英超",
+      "country": "英格兰",
+      "active": true,
+      "match_times": ["21:30", "00:30", "03:00"]
+    },
+    {
+      "id": "la_liga",
+      "name": "西甲",
+      "country": "西班牙",
+      "active": true,
+      "match_times": ["20:00", "22:15", "01:30", "03:45"]
+    },
+    {
+      "id": "serie_a",
+      "name": "意甲",
+      "country": "意大利",
+      "active": true,
+      "match_times": ["01:30", "03:45"]
+    },
+    {
+      "id": "bundesliga",
+      "name": "德甲",
+      "country": "德国",
+      "active": true,
+      "match_times": ["01:30", "03:30"]
+    },
+    {
+      "id": "ligue_1",
+      "name": "法甲",
+      "country": "法国",
+      "active": true,
+      "match_times": ["03:00"]
+    },
+    {
+      "id": "csl",
+      "name": "中超",
+      "country": "中国",
+      "active": true,
+      "match_times": ["15:30", "19:35"]
+    }
+  ],
+  "betting": {
+    "initial_capital": 1000,
+    "monthly_target": 1000,
+    "reset_threshold": 2000,
+    "max_single_bet": 100,
+    "max_daily_bets": 2,
+    "min_odds": 1.5,
+    "max_odds": 5.0
+  },
+  "risk": {
+    "green_threshold": 40,
+    "yellow_threshold": 70,
+    "max_risk_score": 70
+  },
+  "model": {
+    "odds_weight": 0.30,
+    "form_weight": 0.25,
+    "h2h_weight": 0.20,
+    "home_advantage": 0.15,
+    "weather_weight": 0.10
+  }
+}

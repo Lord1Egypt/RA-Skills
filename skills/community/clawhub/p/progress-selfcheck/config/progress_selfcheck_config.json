@@ -1,0 +1,34 @@
+{
+  "workdir": "${HOME}/.openclaw/workspace",
+  "cron_store": "${HOME}/.openclaw/cron/jobs.json",
+  "output_dir": "${workdir}/output",
+  "memory_dir": "${workdir}/memory",
+
+  "feishu": {
+    "enabled": true,
+    "account": "main",
+    "target": "user:ou_xxx_replace_me"
+  },
+
+  "webchat": {
+    "enabled": true,
+    "mode": "pull",
+    "latest_artifact": "${output_dir}/progress_selfcheck_latest.md"
+  },
+
+  "stale_minutes": 5,
+  "max_reactivate_per_run": 2,
+
+  "display_limits": {
+    "running": 6,
+    "recent": 8,
+    "alerts": 6,
+    "unfinished": 5,
+    "eligible": 5,
+    "done_today": 3
+  },
+
+  "done_display": {
+    "today_only": true
+  }
+}

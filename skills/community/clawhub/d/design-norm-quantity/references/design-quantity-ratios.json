@@ -1,0 +1,148 @@
+{
+  "version": "1.0",
+  "title": "房屋建筑与机电安装工程量配比数据库",
+  "source": "基于GB50010、GB50003、GB50210及广东省建设工程计价依据",
+  "data": {
+    "reinforcement_ratios": {
+      "title": "钢筋含量配比（kg/m³混凝土）",
+      "unit": "kg/m³",
+      "categories": [
+        {
+          "structure_type": "框架结构",
+          "grades": [
+            {"grade": "三级", "low": 80, "median": 95, "high": 110, "scenario": "普通办公楼、商铺"},
+            {"grade": "二级", "low": 95, "median": 110, "high": 130, "scenario": "重要公共建筑"},
+            {"grade": "一级", "low": 110, "median": 130, "high": 150, "scenario": "重大工程"}
+          ]
+        },
+        {
+          "structure_type": "框架-剪力墙",
+          "grades": [
+            {"grade": "三级", "low": 100, "median": 120, "high": 140, "scenario": "住宅、公寓"},
+            {"grade": "二级", "low": 115, "median": 135, "high": 160, "scenario": "高层住宅"},
+            {"grade": "一级", "low": 130, "median": 150, "high": 175, "scenario": "超高层"}
+          ]
+        },
+        {
+          "structure_type": "剪力墙结构",
+          "grades": [
+            {"grade": "三级", "low": 120, "median": 140, "high": 165, "scenario": "住宅"},
+            {"grade": "二级", "low": 140, "median": 160, "high": 185, "scenario": "高层住宅"},
+            {"grade": "一级", "low": 155, "median": 180, "high": 210, "scenario": "超高层"}
+          ]
+        },
+        {
+          "structure_type": "框架-核心筒",
+          "grades": [
+            {"grade": "二级", "low": 145, "median": 170, "high": 200, "scenario": "高层/超高层写字楼"},
+            {"grade": "一级", "low": 165, "median": 190, "high": 225, "scenario": "地标建筑"}
+          ]
+        }
+      ],
+      "adjustment_factors": {
+        "basement_full": 1.2,
+        "transfer_floor": 1.3,
+        "roof_structure": 1.15,
+        "beam_column_node": 1.1
+      }
+    },
+    "formwork_ratios": {
+      "title": "模板含量配比（m²/m³混凝土）",
+      "unit": "m²/m³",
+      "components": [
+        {"type": "柱", "low": 8.0, "median": 9.5, "high": 12.0, "note": "含柱头柱脚"},
+        {"type": "墙（剪力墙）", "low": 4.5, "median": 6.0, "high": 8.0, "note": "含洞口扣除"},
+        {"type": "梁", "low": 10.0, "median": 12.0, "high": 15.0, "note": "含梁侧梁底"},
+        {"type": "板", "low": 9.0, "median": 11.0, "high": 14.0, "note": "含板缝"},
+        {"type": "楼梯", "low": 12.0, "median": 15.0, "high": 20.0, "note": "投影面积系数"},
+        {"type": "基础（筏板）", "low": 1.2, "median": 1.5, "high": 2.0, "note": "含防水保护层"},
+        {"type": "基础（独立）", "low": 2.0, "median": 2.5, "high": 3.5, "note": "含垫层"}
+      ]
+    },
+    "concrete_ratios": {
+      "title": "混凝土含量配比（m³/㎡建筑面积）",
+      "unit": "m³/㎡",
+      "categories": [
+        {"type": "住宅（高层剪力墙）", "low": 0.38, "median": 0.45, "high": 0.55},
+        {"type": "住宅（高层框架）", "low": 0.32, "median": 0.38, "high": 0.45},
+        {"type": "办公楼（高层框架）", "low": 0.35, "median": 0.42, "high": 0.50},
+        {"type": "商业综合体", "low": 0.40, "median": 0.48, "high": 0.58},
+        {"type": "医院", "low": 0.42, "median": 0.50, "high": 0.60},
+        {"type": "学校", "low": 0.32, "median": 0.38, "high": 0.45},
+        {"type": "地下室（整体）", "low": 1.20, "median": 1.50, "high": 1.80, "note": "m³/㎡地下室面积"}
+      ]
+    },
+    "masonry_ratios": {
+      "title": "砌体含量配比（m³/㎡建筑面积）",
+      "unit": "m³/㎡",
+      "categories": [
+        {"type": "住宅（剪力墙）", "low": 0.05, "median": 0.08, "high": 0.12},
+        {"type": "住宅（框架）", "low": 0.20, "median": 0.25, "high": 0.35},
+        {"type": "办公楼", "low": 0.25, "median": 0.32, "high": 0.40},
+        {"type": "酒店", "low": 0.22, "median": 0.28, "high": 0.35},
+        {"type": "教学楼", "low": 0.28, "median": 0.35, "high": 0.45}
+      ]
+    },
+    "electrical_ratios": {
+      "title": "电气安装工程量配比",
+      "categories": [
+        {
+          "building_type": "住宅（高层）",
+          "low_voltage": {"low": 3.0, "median": 3.5, "high": 4.0, "unit": "m/m²"},
+          "lighting": {"low": 7.0, "median": 8.0, "high": 10.0, "unit": "m/m²"},
+          "control_cable": {"low": 0.4, "median": 0.5, "high": 0.7, "unit": "m/m²"}
+        },
+        {
+          "building_type": "办公楼",
+          "low_voltage": {"low": 3.5, "median": 4.0, "high": 5.0, "unit": "m/m²"},
+          "lighting": {"low": 9.0, "median": 10.0, "high": 12.0, "unit": "m/m²"},
+          "control_cable": {"low": 0.8, "median": 1.0, "high": 1.5, "unit": "m/m²"}
+        },
+        {
+          "building_type": "商业综合体",
+          "low_voltage": {"low": 4.0, "median": 4.5, "high": 5.5, "unit": "m/m²"},
+          "lighting": {"low": 10.0, "median": 12.0, "high": 15.0, "unit": "m/m²"},
+          "control_cable": {"low": 1.2, "median": 1.5, "high": 2.0, "unit": "m/m²"}
+        },
+        {
+          "building_type": "医院",
+          "low_voltage": {"low": 4.5, "median": 5.0, "high": 6.0, "unit": "m/m²"},
+          "lighting": {"low": 10.0, "median": 11.0, "high": 13.0, "unit": "m/m²"},
+          "control_cable": {"low": 1.5, "median": 2.0, "high": 2.5, "unit": "m/m²"}
+        },
+        {
+          "building_type": "学校",
+          "low_voltage": {"low": 3.0, "median": 3.5, "high": 4.5, "unit": "m/m²"},
+          "lighting": {"low": 8.0, "median": 9.0, "high": 11.0, "unit": "m/m²"},
+          "control_cable": {"low": 0.6, "median": 0.8, "high": 1.0, "unit": "m/m²"}
+        }
+      ]
+    },
+    "plumbing_ratios": {
+      "title": "给排水安装工程量配比",
+      "unit": "m/m²建筑面积",
+      "categories": [
+        {"building_type": "住宅（高层）", "supply": {"low": 2.0, "median": 2.5, "high": 3.0}, "drainage": {"low": 1.5, "median": 2.0, "high": 2.5}, "rainwater": {"low": 0.6, "median": 0.8, "high": 1.0}, "fire": {"low": 1.0, "median": 1.2, "high": 1.5}},
+        {"building_type": "办公楼", "supply": {"low": 1.5, "median": 2.0, "high": 2.5}, "drainage": {"low": 1.2, "median": 1.5, "high": 2.0}, "rainwater": {"low": 0.5, "median": 0.6, "high": 0.8}, "fire": {"low": 0.8, "median": 1.0, "high": 1.3}},
+        {"building_type": "商业综合体", "supply": {"low": 2.2, "median": 2.8, "high": 3.5}, "drainage": {"low": 1.8, "median": 2.2, "high": 2.8}, "rainwater": {"low": 0.8, "median": 1.0, "high": 1.3}, "fire": {"low": 1.2, "median": 1.5, "high": 2.0}},
+        {"building_type": "医院", "supply": {"low": 3.0, "median": 3.5, "high": 4.5}, "drainage": {"low": 2.5, "median": 3.0, "high": 3.8}, "rainwater": {"low": 0.6, "median": 0.8, "high": 1.0}, "fire": {"low": 1.5, "median": 2.0, "high": 2.5}}
+      ]
+    },
+    "hvac_ratios": {
+      "title": "通风空调工程量配比",
+      "unit": "m/m²建筑面积",
+      "categories": [
+        {"building_type": "办公楼", "low": 1.5, "median": 2.0, "high": 2.8, "system": "全空气/风机盘管"},
+        {"building_type": "商业综合体", "low": 2.0, "median": 2.8, "high": 3.5, "system": "全空气系统"},
+        {"building_type": "医院", "low": 2.5, "median": 3.2, "high": 4.0, "system": "净化空调"},
+        {"building_type": "酒店", "low": 1.8, "median": 2.5, "high": 3.2, "system": "风机盘管+新风"},
+        {"building_type": "工业厂房", "low": 1.0, "median": 1.5, "high": 2.0, "system": "通风/恒温恒湿"}
+      ]
+    },
+    "verification_rules": {
+      "reinforcement_concrete_ratio": {"min": 80, "max": 225, "unit": "kg/m³", "description": "钢筋与混凝土比值"},
+      "formwork_concrete_ratio": {"min": 8, "max": 25, "unit": "m²/m³", "description": "模板与混凝土比值"},
+      "concrete_per_area": {"min": 0.35, "max": 0.60, "unit": "m³/㎡地上", "description": "混凝土单方含量"}
+    }
+  }
+}

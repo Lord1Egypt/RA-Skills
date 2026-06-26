@@ -1,0 +1,29 @@
+# paper-lark-report configuration
+# Fill in your values before running.
+
+# ============================================================================
+# FEISHU WIKI
+# ============================================================================
+feishu_space_id: ""          # Wiki space ID (integer)
+feishu_parent_node: ""       # Parent node token
+feishu_root: ""              # Root node token
+
+# ============================================================================
+# RESEARCH DIRECTION
+# ============================================================================
+# The LLM scorer uses this to evaluate paper relevance.
+# Keep it specific and concise for best retrieval precision.
+research_direction: ""       # e.g. "multi-agent LLM orchestration"
+
+# ============================================================================
+# LIMITS
+# ============================================================================
+max_search_results: 20      # Max papers to fetch from arXiv per run
+max_daily_papers: 3           # Max selected papers per daily report
+arxiv_paper_max_days: 7       # Max age of papers (days)
+
+# ============================================================================
+# SCHEDULE
+# ============================================================================
+daily_cron: "0 6 * * 1-5"    # Mon-Fri (UTC 6:00 = BJT 14:00)
+weekly_cron: "0 6 * * 0"     # Sunday (UTC 6:00 = BJT 14:00)

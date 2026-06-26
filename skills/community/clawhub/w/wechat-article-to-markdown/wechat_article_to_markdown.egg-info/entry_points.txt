@@ -1,0 +1,2 @@
+[console_scripts]
+wechat-article-to-markdown = wechat_article_to_markdown:main

@@ -1,0 +1,7 @@
+{
+  "title": "这里改标题",
+  "content": "这里改正文内容。建议先发仅自己可见测试排版。",
+  "images": ["/images/demo.png"],
+  "visibility": "仅自己可见",
+  "tags": ["OpenClaw", "测试"]
+}

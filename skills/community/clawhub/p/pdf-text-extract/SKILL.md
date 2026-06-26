@@ -1,35 +1,19 @@
----
-name: "Pdf Text Extract"
-description: "Extract clean, readable text from any PDF using PyPDF2 via command line for easy processing, summarizing, or archiving."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdf-text-extract"
-sourceUrl: "https://clawhub.ai/skills/pdf-text-extract"
----
+# PDF Text Extract
 
-# Pdf Text Extract
+Extract clean, readable text from any PDF file directly from the command line. This tool uses PyPDF2 to parse and output text in reading order—perfect for converting reports, articles, or forms into plain text for processing, summarizing, or archiving.
 
-> Extract clean, readable text from any PDF using PyPDF2 via command line for easy processing, summarizing, or archiving.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdf-text-extract`
-- **Source URL:** [https://clawhub.ai/skills/pdf-text-extract](https://clawhub.ai/skills/pdf-text-extract)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pdf-text-extract
+Extract text to terminal:
 ```
+python pdf_text_extract.py document.pdf
+```
+
+Extract text to a file:
+```
+python pdf_text_extract.py document.pdf -o output.txt
+```
+
+## Price
+
+$2.50

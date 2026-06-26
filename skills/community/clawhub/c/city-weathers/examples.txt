@@ -1,0 +1,35 @@
+用户：北京今天天气
+AI调用：
+{
+  "name": "get_weather",
+  "params": {
+    "city": "北京",
+    "date": "today"
+  }
+}
+
+返回结果：
+{
+  "city": "北京",
+  "date": "today",
+  "condition": "晴",
+  "temp_min": 3,
+  "temp_max": 15,
+  "humidity": 32,
+  "wind": "北风 2级",
+  "precip": 0,
+  "feels_like": 1,
+  "advice": "早晚较冷，建议穿卫衣+外套"
+}
+
+=====================================
+
+用户：上海明天会下雨吗
+AI调用：
+{
+  "name": "get_weather",
+  "params": {
+    "city": "上海",
+    "date": "tomorrow"
+  }
+}

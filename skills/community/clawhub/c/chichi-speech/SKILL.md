@@ -1,35 +1,61 @@
 ---
-name: "chichi-speech (local text-to-speech service with Qwen3-TTS model)"
-description: "A RESTful service for high-quality text-to-speech using Qwen3 and specialized voice cloning. Optimized for reusing a specific voice prompt to avoid re-computation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chichi-speech"
-sourceUrl: "https://clawhub.ai/skills/chichi-speech"
+name: chichi-speech
+description: A RESTful service for high-quality text-to-speech using Qwen3 and specialized voice cloning. Optimized for reusing a specific voice prompt to avoid re-computation.
 ---
 
-# chichi-speech (local text-to-speech service with Qwen3-TTS model)
+# Chichi Speech Service
 
-> A RESTful service for high-quality text-to-speech using Qwen3 and specialized voice cloning. Optimized for reusing a specific voice prompt to avoid re-computation.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chichi-speech`
-- **Source URL:** [https://clawhub.ai/skills/chichi-speech](https://clawhub.ai/skills/chichi-speech)
-
-## Overview
-
+This skill provides a FastAPI-based REST service for Qwen3 TTS, specifically configured for reusing a high-quality reference audio prompt for efficient and consistent voice cloning. This service is packaged as an installable CLI.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+Prerequisites: `python >= 3.10`.
+
 ```bash
-hermes skills install clawhub/chichi-speech
+pip install -e .
 ```
+
+## Usage
+
+### 1. Start the Service
+
+The service runs on port **9090** by default.
+
+```bash
+# Start the server (runs in foreground, use & for background or a separate terminal)
+# Optional: Uudate to your own reference audio and text for voice cloning
+chichi-speech --port 9090 --host 127.0.0.1 --ref-audio "https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen3-TTS-Repo/clone_2.wav" --ref-text "Okay. Yeah. I resent you. I love you. I respect you. But you know what? You blew it! And thanks to you."
+```
+
+### 2. Verify Service is Running
+Check the health/docs:
+```bash
+curl http://localhost:9090/docs
+```
+
+### 3. Generate Speech
+
+Use cURL:
+```bash
+curl -X POST "http://localhost:9090/synthesize" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "text": "Nice to meet you",
+           "language": "English"
+         }' \
+     --output output/nice_to_meet.wav
+```
+
+## Functionality
+
+-   **Endpoint**: `POST /synthesize`
+-   **Default Port**: 9090
+-   **Voice Cloning**: Uses a pre-computed voice prompt from reference files to ensure the cloned voice is consistent and generation is fast.
+
+## Requirements
+
+-   Python 3.10+
+-   `qwen-tts` (Qwen3 model library)
+-   Access to a reference audio file for voice cloning.
+    -   By default, it uses public sample audio from Qwen3.
+    -   **CRITICAL**: You can provide your own reference audio using the `--ref-audio` and `--ref-text` flags.

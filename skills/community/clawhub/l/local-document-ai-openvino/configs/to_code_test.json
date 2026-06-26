@@ -1,0 +1,8 @@
+{
+  "mode": "to-code",
+  "file": "./test_inputs/openvino_notebook_architecture.png",
+  "out": "./artifacts/tocode_html_manifest_test",
+  "target": "html-css",
+  "title": "OpenVINO Notebook Diagram",
+  "debug": false
+}

@@ -1,0 +1,28 @@
+{
+  "name": "ab-agents-memory",
+  "version": "1.0.0",
+  "description": "🧠 Long-term memory system for OpenClaw agents. Manages entities, context, and knowledge base with Obsidian integration.",
+  "keywords": [
+    "openclaw",
+    "memory",
+    "agents",
+    "obsidian",
+    "knowledge-base",
+    "ab-agents"
+  ],
+  "homepage": "https://github.com/ab-agents/memory",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ab-agents/memory"
+  },
+  "author": "AB-Agents",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://clawhub.com"
+  },
+  "clawhub": {
+    "slug": "AB-Agents-Memory",
+    "name": "AB Agents Memory",
+    "version": "1.0.0"
+  }
+}

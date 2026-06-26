@@ -1,0 +1,33 @@
+{
+  "name": "polaris-news",
+  "description": "Get real-time verified news intelligence from The Polaris Report. 160+ sources, 18 verticals, bias scored, confidence rated.",
+  "version": "1.0.4",
+  "author": "The Polaris Report",
+  "homepage": "https://thepolarisreport.com/agents",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "news",
+      "description": "Get the latest verified news briefs",
+      "usage": "/news [category] [limit]",
+      "examples": ["/news", "/news crypto 5", "/news ai_ml 3"]
+    },
+    {
+      "name": "brief",
+      "description": "Generate an intelligence brief on any topic",
+      "usage": "/brief [topic]",
+      "examples": ["/brief impact of AI on healthcare", "/brief bitcoin ETF inflows"]
+    },
+    {
+      "name": "search",
+      "description": "Search verified news",
+      "usage": "/search [query]",
+      "examples": ["/search semiconductor export controls"]
+    },
+    {
+      "name": "trending",
+      "description": "See what's trending right now",
+      "usage": "/trending"
+    }
+  ]
+}

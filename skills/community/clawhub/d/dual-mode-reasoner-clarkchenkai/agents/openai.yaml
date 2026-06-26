@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dual-Mode Reasoner"
+  short_description: "Switch between quick and deliberate reasoning by risk."
+  default_prompt: "Use $dual-mode-reasoner to choose the right reasoning depth for this task and expose assumptions if deliberate mode is required."
+
+policy:
+  allow_implicit_invocation: true

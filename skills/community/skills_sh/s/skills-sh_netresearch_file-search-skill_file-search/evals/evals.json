@@ -1,0 +1,426 @@
+{
+  "skill_name": "file-search",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "find-todo-comments",
+      "prompt": "Find all TODO comments in this codebase. Give me a count per file and show the top files with the most TODOs.",
+      "expected_output": "Uses rg with -c flag to count TODO occurrences per file, sorted by count.",
+      "files": [],
+      "assertions": [
+        "Uses rg (ripgrep), not grep — rg respects .gitignore automatically",
+        "Uses -c flag for per-file counts rather than full-line output (reduces token consumption)",
+        "Sorts or presents results by frequency",
+        "Avoids multi-stage grep|sed|sort|uniq pipelines — rg -c handles counting natively"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "search-function-definition",
+      "prompt": "Search for the definition of a function called 'processEvent' in this Go codebase. I need to find where it's defined, not where it's called.",
+      "expected_output": "Uses rg with Go function definition pattern or sg with structural AST search to find func processEvent.",
+      "files": [],
+      "assertions": [
+        "Uses rg with -t go or sg --lang go (not find or grep)",
+        "Pattern targets function definitions (func keyword), not calls",
+        "Limits search to Go files only",
+        "Command is syntactically valid"
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "find-files-by-extension",
+      "prompt": "Find all TypeScript test files (*.test.ts and *.spec.ts) that were modified in the last week.",
+      "expected_output": "Uses fd with glob patterns and time filters to locate recent test files.",
+      "files": [],
+      "assertions": [
+        "Uses fd (not find or ls -R)",
+        "Filters by .test.ts and .spec.ts using -g glob patterns (NOT -e, which only matches the final extension)",
+        "Uses --changed-within flag for time-based filtering",
+        "Command is syntactically valid"
+      ]
+    },
+    {
+      "id": 4,
+      "eval_name": "search-pdf-documents",
+      "prompt": "Search all PDF files in the docs/ directory for mentions of 'quarterly revenue'.",
+      "expected_output": "Uses rga in a single command to search inside PDFs — replaces multi-line pdftotext+grep loops.",
+      "files": [],
+      "assertions": [
+        "Uses a single rga command (not for-loop+pdftotext+grep pipelines)",
+        "Targets the docs/ directory specifically",
+        "Does not attempt manual PDF text extraction (no pdftotext, no python scripts, no bash loops)",
+        "Command is concise — no shell loops or multi-step extraction"
+      ]
+    },
+    {
+      "id": 5,
+      "eval_name": "structural-search-empty-catch",
+      "prompt": "Find all empty catch blocks in this JavaScript/TypeScript codebase. I want to find places where exceptions are silently swallowed.",
+      "expected_output": "Uses sg (ast-grep) with a structural pattern to find empty catch blocks, or rg with multiline flag.",
+      "files": [],
+      "assertions": [
+        "Uses sg --lang js/ts or rg -U for multiline matching (not grep -Pzo which is fragile and macOS-incompatible)",
+        "Pattern targets catch blocks with empty or minimal bodies",
+        "Specifies JavaScript or TypeScript language filter",
+        "Command works reliably (sg AST is immune to whitespace/formatting variations; grep -Pzo often fails)"
+      ]
+    },
+    {
+      "id": 6,
+      "eval_name": "codebase-size-analysis",
+      "prompt": "Give me an overview of this codebase: how many lines of code per language, and which language dominates?",
+      "expected_output": "Uses tokei or scc to produce a language breakdown with line counts in a single command.",
+      "files": [],
+      "assertions": [
+        "Uses tokei or scc (not cloc or wc -l) — single command vs multi-step find|wc|sort pipeline",
+        "Does not manually count lines with shell commands (wc -l gives no language breakdown)",
+        "Output includes per-language breakdown with code/comments/blanks separation",
+        "Requires only 1 tool call (not 3+ for find+wc+sort or pip install+radon+manual formula)"
+      ]
+    },
+    {
+      "id": 7,
+      "eval_name": "security-scan-hardcoded-secrets",
+      "prompt": "Scan this codebase for hardcoded passwords, API keys, and secrets. Exclude lock files and markdown.",
+      "expected_output": "Uses rg with case-insensitive patterns for common secret indicators, excluding lock files and docs.",
+      "files": [],
+      "assertions": [
+        "Uses rg (not grep) for the search — rg respects .gitignore by default, avoiding false positives in vendored code",
+        "Uses -i flag or case-insensitive pattern for password/secret/key/token",
+        "Excludes lock files (-g '!*.lock' or similar)",
+        "Excludes markdown or documentation files"
+      ]
+    },
+    {
+      "id": 8,
+      "eval_name": "progressive-refinement-strategy",
+      "prompt": "I need to find all uses of the 'requests' library in this large Python project, but there might be thousands of matches. How should I approach this?",
+      "expected_output": "Demonstrates progressive refinement: count first with rg -c, then narrow scope, then view with context.",
+      "files": [],
+      "assertions": [
+        "Starts with counting matches (rg -c) before viewing full results — avoids flooding context with thousands of lines",
+        "Uses -t py to limit to Python files",
+        "Suggests narrowing by directory or pattern if count is high",
+        "Does not dump all results into context — count-first prevents token waste on thousands of matches"
+      ]
+    },
+    {
+      "id": 9,
+      "eval_name": "find-and-search-combination",
+      "prompt": "Find all Go test files and verify each one actually contains test functions.",
+      "expected_output": "Combines fd to find test files with rg to verify they contain test functions.",
+      "files": [],
+      "assertions": [
+        "Uses fd to find test files (by name pattern like *_test.go or -e go)",
+        "Uses rg or sg to verify test files contain 'func Test' functions",
+        "Pipes or combines fd output with rg/sg (-X flag or xargs)",
+        "Commands are syntactically valid"
+      ]
+    },
+    {
+      "id": 10,
+      "eval_name": "structural-refactor-preview",
+      "prompt": "I want to replace all console.log calls with logger.info in this JavaScript project. Can you show me what would change without actually modifying files?",
+      "expected_output": "Uses sg with --pattern and --rewrite for structural replacement preview, or rg with -r for text preview.",
+      "files": [],
+      "assertions": [
+        "Uses sg --rewrite or rg -r/--passthru — not grep+sed pipe (sg catches structural variants grep misses)",
+        "Does not modify files (preview only, no --update-all or in-place flags)",
+        "Specifies --lang js/ts or -t js for JavaScript targeting",
+        "Single command shows replacements (vs grep|sed pipe = 2 subprocesses + no structural awareness)"
+      ]
+    },
+    {
+      "id": 11,
+      "eval_name": "complexity-analysis",
+      "prompt": "I need a complexity analysis of this codebase with COCOMO cost estimates. Which files are the most complex?",
+      "expected_output": "Uses scc with --wide flag for complexity metrics and COCOMO estimates.",
+      "files": [],
+      "assertions": [
+        "Uses scc (not tokei, which lacks complexity metrics) — 1 command replaces pip install + radon + manual COCOMO formula",
+        "Uses --wide, --by-file, or --sort complexity to show complexity/COCOMO data",
+        "Does not use cloc, wc -l, or manual COCOMO calculations",
+        "Single tool call produces complexity + cost estimate (vs 3+ tool calls without skill)"
+      ]
+    },
+    {
+      "id": 12,
+      "eval_name": "exclude-noise-directories",
+      "prompt": "Search for 'useState' across this React project but exclude node_modules, dist, build, and coverage directories.",
+      "expected_output": "Uses rg with glob exclusion patterns to skip noise directories.",
+      "files": [],
+      "assertions": [
+        "Uses rg (not grep) for the search",
+        "Excludes node_modules with -g '!node_modules/' or equivalent",
+        "Excludes at least dist and build directories",
+        "Uses -t js, -t ts, or glob patterns for frontend file types"
+      ]
+    },
+    {
+      "id": 13,
+      "eval_name": "search-archive-contents",
+      "prompt": "Search inside all .tar.gz backup files in /backups/ for configuration entries containing 'database_host'.",
+      "expected_output": "Uses rga to search inside compressed archives for the pattern.",
+      "files": [],
+      "assertions": [
+        "Uses rga (not rg) — 1 command vs for-loop+tar -xzf+grep pipeline",
+        "Targets the /backups/ directory",
+        "Searches for 'database_host' pattern",
+        "Does not attempt manual tar extraction (no tar -xzf, no for loops)"
+      ]
+    },
+    {
+      "id": 14,
+      "eval_name": "find-large-files",
+      "prompt": "Find all JavaScript files larger than 500KB in this project. These might be bundled or minified files we should investigate.",
+      "expected_output": "Uses fd with size filter and extension filter to find large JS files.",
+      "files": [],
+      "assertions": [
+        "Uses fd (not find or ls) for file discovery",
+        "Uses -S or --size flag with +500k or equivalent size threshold",
+        "Filters by -e js for JavaScript files",
+        "Command is syntactically valid"
+      ]
+    },
+    {
+      "id": 15,
+      "eval_name": "extract-import-dependencies",
+      "prompt": "List all unique Python package imports in this project. I want to know which external libraries we depend on.",
+      "expected_output": "Uses rg with capture groups and replacement to extract import names, piped through sort -u.",
+      "files": [],
+      "assertions": [
+        "Uses rg with -o flag to output only matches",
+        "Uses capture group with -r to extract package names",
+        "Uses --no-filename to clean output",
+        "Pipes through sort -u or equivalent for deduplication"
+      ]
+    },
+    {
+      "id": 16,
+      "eval_name": "json-output-for-processing",
+      "prompt": "I need to programmatically process all function definitions in this Python project. Give me machine-readable output I can feed into a script.",
+      "expected_output": "Uses rg --json or sg --json to produce structured, machine-readable output.",
+      "files": [],
+      "assertions": [
+        "Uses --json flag on rg or sg for machine-readable output",
+        "Targets Python files with -t py or --lang py",
+        "Pattern matches function definitions (def keyword)",
+        "Output format is JSON, not plain text piped through jq"
+      ]
+    },
+    {
+      "id": 17,
+      "eval_name": "context-gathering-for-refactor",
+      "prompt": "I need to add rate limiting to our API endpoints. Help me get started.",
+      "expected_output": "Before implementing, uses search tools to find existing API endpoint definitions, middleware patterns, and any existing rate limiting code.",
+      "files": [],
+      "assertions": [
+        "Uses rg or sg to locate API route/endpoint definitions before writing code",
+        "Searches for existing middleware or decorator patterns in the codebase",
+        "Uses file-type filtering (-t or --lang) appropriate to the project language",
+        "Does not start implementing without first understanding the existing code structure"
+      ]
+    },
+    {
+      "id": 18,
+      "eval_name": "context-gathering-for-bugfix",
+      "prompt": "Users are reporting that login sometimes fails silently. Can you investigate?",
+      "expected_output": "Uses search tools to find authentication/login code, error handling patterns, and logging around auth flows.",
+      "files": [],
+      "assertions": [
+        "Uses rg or sg to find login/auth-related code (not just reading random files)",
+        "Searches for error handling patterns near authentication code",
+        "Searches for logging or error suppression patterns (empty catch, silent failures)",
+        "Uses targeted searches rather than reading entire files sequentially"
+      ]
+    },
+    {
+      "id": 19,
+      "eval_name": "context-gathering-for-upgrade",
+      "prompt": "We need to upgrade this project from Express 4 to Express 5. What would be affected?",
+      "expected_output": "Uses search tools to find Express-specific patterns, middleware usage, and deprecated API calls across the codebase.",
+      "files": [],
+      "assertions": [
+        "Uses rg to find Express import/require statements and usage patterns",
+        "Searches for middleware patterns (app.use, router.use) to assess scope",
+        "Uses tokei or scc to understand codebase size before planning the upgrade",
+        "Searches broadly across the project, not just a single file"
+      ]
+    },
+    {
+      "id": 20,
+      "eval_name": "codebase-orientation",
+      "prompt": "I just joined this project. Help me understand how it's structured and what technologies it uses.",
+      "expected_output": "Uses tokei/scc for language breakdown, fd to find key files (configs, entry points), and rg to identify frameworks and patterns.",
+      "files": [],
+      "assertions": [
+        "Uses tokei or scc to get a language/size overview of the codebase",
+        "Uses fd to find configuration files, entry points, or project manifests",
+        "Uses rg or fd to identify frameworks, dependencies, or tech-debt hotspots",
+        "Provides a structured multi-step orientation rather than dumping raw output"
+      ]
+    },
+    {
+      "id": 21,
+      "eval_name": "impact-analysis-before-change",
+      "prompt": "I want to rename the 'UserProfile' class. How many places would be affected?",
+      "expected_output": "Uses rg to count all references to UserProfile across the codebase, broken down by usage type.",
+      "files": [],
+      "assertions": [
+        "Uses rg (not grep) to find all references to UserProfile",
+        "Uses -c or -l to assess impact scope (file count or match count) before changing anything",
+        "Counts or lists affected files across the codebase to understand blast radius",
+        "Does not start renaming without first understanding the impact"
+      ]
+    },
+    {
+      "id": 22,
+      "eval_name": "handoff-to-remote-issue-context",
+      "prompt": "The code has a comment saying '// Workaround for PROJ-1234, remove after fix ships'. What's the status of that issue? Should we remove the workaround?",
+      "expected_output": "Recognizes that PROJ-1234 is an issue tracker reference. Uses local search to find the workaround code, then hands off to issue tracker (Jira, GitHub Issues) to check status rather than guessing.",
+      "files": [],
+      "assertions": [
+        "Uses rg to find the workaround code and comment in the codebase",
+        "Recognizes PROJ-1234 as an external issue tracker reference",
+        "Attempts to check the issue status via an appropriate tool (gh, Jira API, or asks the user)",
+        "Does not guess the issue status based solely on the code comment"
+      ]
+    },
+    {
+      "id": 23,
+      "eval_name": "handoff-to-remote-pr-context",
+      "prompt": "Why was the retry logic in src/client.py changed last month? The current implementation seems wrong.",
+      "expected_output": "Uses local search and git log to find the change, then checks PR/MR context for the rationale rather than guessing why it was changed.",
+      "files": [],
+      "assertions": [
+        "Uses rg to find the retry logic in src/client.py",
+        "Uses git log or git blame to identify the commit that changed it",
+        "Checks commit messages for rationale, and if PR/issue refs are found, follows up with gh/glab",
+        "Does not fabricate a rationale — seeks evidence from commit history or linked PRs"
+      ]
+    },
+    {
+      "id": 24,
+      "eval_name": "large-codebase-efficient-search",
+      "prompt": "This monorepo has 200,000 files across 50 services. Find all places where we call the deprecated 'sendEmail' function, but only in the billing service under services/billing/.",
+      "expected_output": "Uses rg with directory scoping and file-type filters. Does NOT search the entire repo.",
+      "files": [],
+      "assertions": [
+        "Uses rg (not grep) — rg is parallel and respects .gitignore, critical at 200K files",
+        "Scopes search to services/billing/ directory, does not search from root",
+        "Uses -t or -g flags to limit to relevant source file types",
+        "Does not pipe find/grep combinations that would scan the entire repo"
+      ]
+    },
+    {
+      "id": 25,
+      "eval_name": "gitignore-awareness",
+      "prompt": "Search for 'API_KEY' across this Node.js project. Make sure you don't get flooded with results from dependencies.",
+      "expected_output": "Uses rg which respects .gitignore by default, automatically excluding node_modules. May also add explicit exclusions.",
+      "files": [],
+      "assertions": [
+        "Uses rg (not grep) — rg automatically skips .gitignore'd paths like node_modules",
+        "Does not need manual --exclude-dir=node_modules (rg handles this by default)",
+        "Uses -t js or -t ts to further scope to source files",
+        "Command is concise — no long find|xargs|grep pipelines"
+      ]
+    },
+    {
+      "id": 26,
+      "eval_name": "php-empty-catch-blocks",
+      "prompt": "Find all empty catch blocks in this PHP codebase. I want to find places where exceptions are silently swallowed.",
+      "expected_output": "Uses sg (ast-grep) with --lang php and a structural pattern targeting empty catch blocks.",
+      "files": [],
+      "assertions": [
+        "Uses sg (ast-grep), not grep or rg — structural matching handles whitespace/formatting variations that regex cannot",
+        "Specifies --lang php for PHP language targeting",
+        "Pattern targets catch blocks with empty bodies, e.g. 'catch ($EXCEPTION) { }' or similar structural pattern",
+        "Command is syntactically valid and would produce meaningful results on a PHP codebase"
+      ],
+      "model_notes": "Smaller models may default to rg -U multiline regex instead of sg. The skill's ast-grep-patterns.md reference must be loaded to know --lang php is supported and to pick the right pattern syntax."
+    },
+    {
+      "id": 27,
+      "eval_name": "php-class-definitions",
+      "prompt": "List all class definitions in this PHP project, including those that extend a base class or implement an interface.",
+      "expected_output": "Uses sg (ast-grep) with --lang php and structural patterns for class declarations with optional inheritance.",
+      "files": [],
+      "assertions": [
+        "Uses sg (ast-grep) with --lang php, not grep/rg — AST search captures all class variants (plain, extends, implements) structurally",
+        "Specifies --lang php for PHP language targeting",
+        "Pattern covers class definitions, e.g. 'class $NAME { $$$ }' or broader patterns for extends/implements",
+        "Does not rely on fragile regex that would miss multi-line class declarations or unusual formatting"
+      ]
+    },
+    {
+      "id": 28,
+      "eval_name": "python-decorated-functions",
+      "prompt": "Find all decorated functions in this Python project. I want to see which decorators are being used and on which functions.",
+      "expected_output": "Uses sg (ast-grep) with --lang py and a structural pattern for decorated function definitions.",
+      "files": [],
+      "assertions": [
+        "Uses sg (ast-grep), not grep or rg — structural matching captures decorator+function pairs as a unit, regardless of decorator complexity",
+        "Specifies --lang py for Python language targeting",
+        "Pattern captures decorated functions, e.g. '@$DECORATOR def $NAME($$$): $$$' or equivalent structural pattern",
+        "Command is syntactically valid and handles single-line and multi-line decorators"
+      ],
+      "model_notes": "Smaller models may attempt rg '@\\w+' which finds decorator lines but misses the associated function. The skill's ast-grep-patterns.md shows the correct multi-line pattern with newline between decorator and def."
+    },
+    {
+      "id": 29,
+      "eval_name": "python-bare-except",
+      "prompt": "Find all bare except blocks in this Python codebase — places where 'except:' is used without specifying an exception type. These catch SystemExit and KeyboardInterrupt which is usually a bug.",
+      "expected_output": "Uses sg (ast-grep) with --lang py and a structural pattern for bare except clauses.",
+      "files": [],
+      "assertions": [
+        "Uses sg (ast-grep) with --lang py, not rg — AST matching distinguishes bare 'except:' from 'except SomeError:' structurally",
+        "Specifies --lang py for Python language targeting",
+        "Pattern targets bare except blocks: 'try: $$$ except: $$$' or equivalent without an exception type",
+        "Does not use regex that would false-positive on 'except Exception:' or 'except ValueError:'"
+      ],
+      "model_notes": "Smaller models often suggest rg 'except:' which also matches 'except Exception:' lines. The skill's ast-grep pattern 'try:\\n    $$$\\nexcept:\\n    $$$' is structurally precise and avoids false positives."
+    },
+    {
+      "id": 30,
+      "eval_name": "go-unwrapped-errors",
+      "prompt": "Find all places in this Go codebase where errors are returned without wrapping — 'return err' instead of 'return fmt.Errorf(\"...: %w\", err)'. These lose context about where the error originated.",
+      "expected_output": "Uses sg (ast-grep) with --lang go and a structural pattern for bare error returns without wrapping.",
+      "files": [],
+      "assertions": [
+        "Uses sg (ast-grep) with --lang go, not rg — structural pattern 'if $ERR != nil { return $ERR }' matches the exact unwrapped-error idiom",
+        "Specifies --lang go for Go language targeting",
+        "Pattern targets the unwrapped error return pattern: 'if $ERR != nil { return $ERR }' or similar",
+        "Does not false-positive on properly wrapped errors using fmt.Errorf with %w"
+      ],
+      "model_notes": "Smaller models may suggest rg 'return err' which matches variable names like 'return errorCode' and misses multi-return patterns like 'return nil, err'. The sg pattern is structurally precise."
+    },
+    {
+      "id": 31,
+      "eval_name": "multi-tool-php-import-size",
+      "prompt": "Find all PHP files that import the 'GuzzleHttp\\Client' class, then check if any of those files are larger than 10KB. Large files using HTTP clients might need refactoring.",
+      "expected_output": "Combines rg to find import statements with fd -S for size filtering, or uses a pipeline approach.",
+      "files": [],
+      "assertions": [
+        "Uses rg to find 'use GuzzleHttp\\Client' or equivalent import pattern in PHP files",
+        "Uses fd with -S or --size flag to check file sizes against the 10KB threshold",
+        "Combines the tools in a pipeline or sequential approach (e.g., rg -l | xargs fd -S, or fd -S + rg)",
+        "Targets PHP files specifically with -t php or -e php"
+      ]
+    },
+    {
+      "id": 32,
+      "eval_name": "multi-tool-tokei-then-search",
+      "prompt": "Get a language breakdown of this project, then search the dominant language for any functions marked as deprecated (via comments or annotations).",
+      "expected_output": "Uses tokei or scc for language stats first, then rg or sg with appropriate language filter for deprecated markers.",
+      "files": [],
+      "assertions": [
+        "Uses tokei or scc as the first step to determine the dominant language",
+        "Uses rg or sg as the second step to search for deprecated markers (@deprecated, @Deprecated, #[deprecated], etc.)",
+        "Applies language-specific file type filter (-t or --lang) based on the tokei/scc output",
+        "Executes as a deliberate two-step workflow rather than guessing the dominant language"
+      ],
+      "model_notes": "Smaller models may skip the tokei step and guess the dominant language, or search all languages. The skill teaches the count-first-then-drill-down pattern explicitly."
+    }
+  ]
+}

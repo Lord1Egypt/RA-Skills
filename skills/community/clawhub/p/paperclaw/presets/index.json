@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "presets": [
+    {
+      "id": "speech_audio",
+      "name": "Speech & Audio",
+      "name_zh": "语音与音频",
+      "description": "Speech recognition, synthesis, audio processing, and speech LLMs",
+      "description_zh": "语音识别、语音合成、音频处理、语音大模型",
+      "file": "presets/speech_audio.json"
+    },
+    {
+      "id": "nlp",
+      "name": "NLP & LLM",
+      "name_zh": "自然语言处理与大模型",
+      "description": "Natural Language Processing, Large Language Models, and Text Mining",
+      "description_zh": "自然语言处理、大语言模型、文本挖掘",
+      "file": "presets/nlp.json"
+    },
+    {
+      "id": "computer_vision",
+      "name": "Computer Vision",
+      "name_zh": "计算机视觉",
+      "description": "Computer vision, image processing, video analysis, and multimodal learning",
+      "description_zh": "计算机视觉、图像处理、视频分析、多模态学习",
+      "file": "presets/computer_vision.json"
+    },
+    {
+      "id": "general_ai",
+      "name": "General AI/ML",
+      "name_zh": "通用人工智能",
+      "description": "Broad AI/ML research covering multiple domains",
+      "description_zh": "涵盖多领域的通用人工智能研究",
+      "file": "presets/general_ai.json"
+    }
+  ]
+}

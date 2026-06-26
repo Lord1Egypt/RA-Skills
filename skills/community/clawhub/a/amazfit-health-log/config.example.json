@@ -1,0 +1,9 @@
+{
+  "base_url": "http://YOUR_SERVER_IP_OR_HOSTNAME:6644",
+  "username": "YOUR_USERNAME",
+  "password": "YOUR_PASSWORD",
+  "language": "en",
+  "timezone": "Europe/Berlin",
+  "vault_path": "/path/to/your/obsidian/vault",
+  "log_dir": "30 Bereiche/Gesundheit/Logs/GTR3"
+}

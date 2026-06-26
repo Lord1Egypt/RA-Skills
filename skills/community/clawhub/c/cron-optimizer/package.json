@@ -1,0 +1,10 @@
+{
+  "name": "cron-optimizer",
+  "version": "1.0.0",
+  "description": "Optimizes system cron jobs by removing stale, disabled, or redundant entries to reduce exec noise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "dependencies": {}
+}

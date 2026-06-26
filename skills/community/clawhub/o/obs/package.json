@@ -1,0 +1,14 @@
+{
+  "name": "obs",
+  "version": "1.0.1",
+  "description": "Open Build Service (OBS) management skill | OBS 构建系统管理技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["obs", "open-build-service", "opensuse", "packaging", "rpm", "build-system"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["obs", "opensuse", "packaging", "build-system", "rpm"],
+    "icon": "📦"
+  }
+}

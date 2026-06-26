@@ -1,0 +1,21 @@
+{# ── 语言学习专用 ── #}
+{% if vocabulary_list %}
+<div class="section">
+    <h3 class="section-title">📖 核心词汇</h3>
+    <div class="content-block">
+        {% for item in vocabulary_list %}
+        <div style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #e0e0e0;">
+            {% if item.word %}
+            <strong>{{ item.word }}</strong>
+            {% endif %}
+            {% if item.meaning %}
+            ：{{ item.meaning }}
+            {% endif %}
+            {% if item.example %}
+            <br><span style="color: #666; font-size: 9pt;">例: {{ item.example }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

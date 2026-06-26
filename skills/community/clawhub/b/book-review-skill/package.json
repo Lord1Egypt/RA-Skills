@@ -1,0 +1,43 @@
+{
+  "name": "openclaw-skill-book-review",
+  "version": "1.1.1",
+  "description": "Expand user-provided reading notes into structured book reviews using local templates only",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && esbuild src/index.ts --bundle --platform=node --outfile=dist/bundle.js",
+    "dev": "tsc --watch",
+    "test": "node dist/index.js",
+    "prepublishOnly": "npm run build && npm test",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "book-review",
+    "reading",
+    "local",
+    "templates"
+  ],
+  "author": "Digital Partners Team (珍珠, 贝尔, 哈利, 喜羊羊)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/openclaw-skill-book-review.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harrylabs0913/openclaw-skill-book-review/issues"
+  },
+  "homepage": "https://github.com/harrylabs0913/openclaw-skill-book-review#readme",
+  "dependencies": {
+    "openclaw": "^2026.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "esbuild": "^0.19.8",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

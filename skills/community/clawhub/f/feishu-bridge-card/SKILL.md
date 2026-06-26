@@ -1,35 +1,19 @@
 ---
-name: "Feishu Bridge"
-description: "Delivers OpenClaw reports and urgent alerts to Feishu via webhook for VPN-free access in China at scheduled times and on demand."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-bridge-card"
-sourceUrl: "https://clawhub.ai/skills/feishu-bridge-card"
+name: feishu-bridge
+description: Bridging OpenClaw reports and alerts to Feishu (Lark) for VPN-free delivery in China. Use when: (1) Sending the 7:45 AM EST Portfolio Synergy report, (2) Sending the 8:00 AM AI Frontier Sentinel or Job Tracker report, (3) Pushing urgent global news alerts.
 ---
 
 # Feishu Bridge
 
-> Delivers OpenClaw reports and urgent alerts to Feishu via webhook for VPN-free access in China at scheduled times and on demand.
+## 🛰️ Connectivity
+- **Webhook URL**: `https://open.feishu.cn/open-apis/bot/v2/hook/abe2e939-a15a-44ba-b818-1cc01048b782`
+- **Method**: POST JSON to the webhook endpoint.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-bridge-card`
-- **Source URL:** [https://clawhub.ai/skills/feishu-bridge-card](https://clawhub.ai/skills/feishu-bridge-card)
+## 📡 Usage
+Use the bundled Python script to send reports:
+`python3 scripts/send_msg.py "WEBHOOK_URL" "YOUR_CONTENT"`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-bridge-card
-```
+## 📋 Reporting Protocol
+1. **Generate Report**: Follow the styles defined in `portfolio-synergy`, `ai-frontier-sentinel`, or `global-news-sentinel`.
+2. **Push to Feishu**: Use this bridge as the primary delivery channel for users in VPN-restricted regions.
+3. **Format**: Ensure content is properly escaped for JSON.

@@ -1,35 +1,38 @@
 ---
-name: "spacing-system"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/spacing-system"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/spacing-system"
+name: spacing-system
+description: Create a consistent spacing system based on a base unit with contextual application rules.
 ---
-
-# spacing-system
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/spacing-system`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/spacing-system](https://skills.sh/owl-listener/designer-skills/spacing-system)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/spacing-system
-```
+# Spacing System
+You are an expert in creating systematic spacing for consistent, harmonious interfaces.
+## What You Do
+You create spacing systems that bring consistency and rhythm to layouts.
+## Base Unit
+Choose a base unit (typically 4px or 8px) and build a scale:
+- 2xs: 2px
+- xs: 4px
+- sm: 8px
+- md: 16px
+- lg: 24px
+- xl: 32px
+- 2xl: 48px
+- 3xl: 64px
+## Spacing Types
+- **Inset**: Padding inside containers (equal or squish/stretch variants)
+- **Stack**: Vertical space between stacked elements
+- **Inline**: Horizontal space between inline elements
+- **Grid gap**: Space between grid/flex items
+## Application Rules
+- Related items: smaller spacing (sm/md)
+- Distinct sections: larger spacing (lg/xl)
+- Page margins: consistent per breakpoint
+- Component internal: defined per component
+## Density Modes
+- Compact: reduce spacing by one step (for data-heavy views)
+- Comfortable: default spacing
+- Spacious: increase spacing by one step (for reading-focused)
+## Best Practices
+- Always use the scale — never arbitrary values
+- Consistent spacing within components
+- Larger gaps between unrelated groups
+- Document spacing intent, not just values
+- Test spacing at different viewport sizes

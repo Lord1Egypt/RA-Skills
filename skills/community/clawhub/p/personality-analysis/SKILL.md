@@ -1,35 +1,108 @@
 ---
-name: "my skill"
-description: "从聊天记录中深度分析人物性格、说话风格和心理画像，输出结构化分析报告。当用户要求分析某人的聊天记录、说话风格、性格特征、心理画像时使用此 skill。典型触发："分析一下这个人"、"分析聊天记录"、"提取说话风格"、"人物画像分析"、"帮我分析一下TA"、"分析形象"。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personality-analysis"
-sourceUrl: "https://clawhub.ai/skills/personality-analysis"
+name: personality-analyzer
+description: >
+   从聊天记录中深度分析人物性格、说话风格和心理画像，输出结构化分析报告。当用户要求分析某人的聊天记录、说话风格、性格特征、心理画像时使用此 skill。典型触发："分析一下这个人"、"分析聊天记录"、"提取说话风格"、"人物画像分析"、"帮我分析一下TA"、"分析形象"。
 ---
 
-# my skill
+# 人物心理分析器
 
-> 从聊天记录中深度分析人物性格、说话风格和心理画像，输出结构化分析报告。当用户要求分析某人的聊天记录、说话风格、性格特征、心理画像时使用此 skill。典型触发："分析一下这个人"、"分析聊天记录"、"提取说话风格"、"人物画像分析"、"帮我分析一下TA"、"分析形象"。
+从聊天记录中深度分析人物性格、说话风格和心理画像。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personality-analysis`
-- **Source URL:** [https://clawhub.ai/skills/personality-analysis](https://clawhub.ai/skills/personality-analysis)
+---
 
-## Overview
+## 支持的输入方式
+
+1. **直接粘贴文本** — 
+2. **截图/图片** — 使用 `autoglm-image-recognition` 识别文字后分析
+3. **文本文件** — `.txt` / `.csv` / `.json` 格式的聊天记录导出
+
+---
+## 执行流程
+
+### Phase 1：输入处理
+
+根据输入类型选择处理方式：
+
+- **文本粘贴** → 直接进入分析
+- **图片** → 调用 `autoglm-image-recognition` 提取文字；若为本地文件需先通过 `autoglm-file-upload` 上传获取 URL
+- **文件** → 用 `read` 读取内容
+
+从聊天记录中分离目标人物的发言（排除对方发言、系统消息等），仅分析目标人物的语言。
+
+> 若聊天记录涉及多人对话，先通过上下文判断目标发言者；若无法判断，直接询问用户。
+
+---
+### Phase 2：多维度分析
+
+分析前，先读取 `references/analysis-framework.md` 获取详细评分标准。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personality-analysis
-```
+#### 维度 A：HEXACO 核心人格评估
+
+评估 HEXACO 六大维度（标注 高/中/低 倾向）：
+1. **H - 诚实-谦逊性 (Honesty-Humility)**：真诚度、对物质/权力的态度、是否谦逊。
+2. **E - 情绪性 (Emotionality)**：对压力的焦虑、寻求情感支持的依赖性、是否多愁善感（低分代表坚韧与独立）。
+3. **X - 外向性 (eXtraversion)**：社交大胆、发言意愿、生命活力。
+4. **A - 宜人性 (Agreeableness)**：宽容度、温和度、对冒犯的反应（不轻易发怒/记仇）。
+5. **C - 尽责性 (Conscientiousness)**：组织性、对细节的关注、行事的谨慎程度。
+6. **O - 经验开放性 (Openness to Experience)**：好奇心、创造力、对非传统观点的接受度。
+
+#### 维度 B：MBTI 人格推断
+基于文本证据推断最可能的 MBTI 类型，给出：
+- 最可能的类型（如 ENFP-T）
+- 各维度的判断依据（E/I, S/N, T/F, J/P）
+- 置信度（高/中/低）
+- 次可能的类型
+
+### 维度 C：人格结构
+- **3–5 个核心性格标签**（必须多样，禁止同质化，如不得连续给出"温柔 + 体贴 + 善解人意"）
+- **反常识发现**（★ 必填）：1 条"大多数人第一眼看不出来的"深层特质
+- **潜在矛盾**（★ 必填）：1 条"表面矛盾、实则可共存"的特质
+- **暗面评估**：结合 H（诚实谦逊）和 A（宜人性）得分，评估是否存在自恋、马基雅维利主义或操控倾向
+
+
+#### 维度 D：价值观分析
+- 最重视的价值观（排名前三）
+- 价值冲突信号（矛盾点）
+- 决策偏好（理性导向 vs 感性导向）
+- 对金钱、时间、人际关系、自我成长、恋爱的态度
+
+#### 维度 E：喜好与厌恶
+- 明确表达喜欢的事物/活动/话题
+- 明确表达不喜欢/回避的事物
+- 允许从文本中猜测此人喜欢或者不喜欢的事物
+
+#### 维度 F：深度心理需求
+- 核心需求（安全感、认同感、掌控感、自由、连接等）
+- 未被满足的需求信号
+- 防御机制（否认、幽默、转移话题、合理化等）
+- 内在动机
+
+#### 维度 G：情绪分析
+- 情绪波动范围（稳定/中等/剧烈）
+- 常见情绪状态（快乐、焦虑、平静、愤怒等）
+- 情绪触发因素
+- 压力指数评估（1-10 分）
+- 情绪表达方式（直接表达/压抑/间接表达）
+
+#### 维度 H：情感需求
+- 亲密关系模式（依恋类型倾向）
+- 对陪伴/独立的需求平衡
+- 沟通需求（倾诉型 vs 独处消化型）
+- 被理解的方式（语言确认/行动支持/空间给予）
+
+---
+ 
+### 阶段 3：生成输出
+ 
+**步骤 1**：读取 `references/report-template.md`，必须生成模板格式中的所有内容，严格按模板生成 Markdown 报告。
+ 
+**步骤 2**：使用`md2pdf`，按 pdf skill 规范将 Markdown 报告转换为 PDF 文件并交付给用户。
+
+
+---
+ 
+## 分析原则
+ 
+- **尊重隐私**：不在输出中暴露具体个人信息，除非用户明确要求
+- **深度优先**：宁可在某个维度深入挖掘，也不要每项浅尝辄止

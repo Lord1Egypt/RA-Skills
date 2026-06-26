@@ -1,0 +1,376 @@
+{
+  "$schema": "https://skilhub.tencent.com/schemas/skill-manifest/v2.json",
+  "manifest_version": "2.0",
+  "skill": {
+    "id": "com.xiaoapensieve.cultural-naming-art",
+    "name": "Cultural Naming & AI Art Creation",
+    "display_name": {
+      "en": "Cultural Naming & AI Art Creation — Chinese Name, Poetry & Ink Art",
+      "zh-CN": "中文起名与AI艺术创作 — 外国游客的中国文化身份套餐"
+    },
+    "version": "2.0.0",
+    "description": {
+      "en": "Transform a foreign name into a complete Chinese cultural identity. Generates semantically rich Chinese names, classical Tang/Song poetry (Jueju & Lüshi) embedding the name, traditional seal carving art (篆刻), ink-wash Shanshui landscape paintings, and ancient Chinese portrait avatars. Compatible with GPT-4o, Claude-3.5, and DALL·E 3 / Stable Diffusion XL.",
+      "zh-CN": "将外国名字转化为完整的中国文化身份。生成语义丰富的中文名字、嵌入名字的唐宋风格古诗词（七言绝句/律诗）、传统篆刻印章、水墨山水画以及古风人物头像。兼容 GPT-4o、Claude-3.5 及 DALL·E 3 / Stable Diffusion XL。"
+    },
+    "author": {
+      "name": "XiaoAIPensieve",
+      "email": "dev@xiaoapensieve.ai",
+      "url": "https://github.com/XiaoAIPensieve/cultural-naming-art"
+    },
+    "category": "culture",
+    "subcategories": ["naming", "poetry", "art", "chinese-culture", "ai-image-generation", "china-travel"],
+    "tags": ["chinese-name", "naming", "poetry", "jueju", "lushi", "seal-carving", "shanshui", "ink-painting", "ancient-portrait", "hanzi", "pinyin", "chinese-art", "ai-art", "china-travel", "cultural-immersion"],
+    "license": "MIT",
+    "repository": "https://github.com/XiaoAIPensieve/cultural-naming-art",
+    "homepage": "https://skilhub.cloud.tencent.com/skills/cultural-naming-art",
+    "icon": "assets/icon-512.png"
+  },
+  "runtime": {
+    "environment": "tencent-cloud",
+    "region": "ap-guangzhou",
+    "supported_models": [
+      {
+        "provider": "anthropic",
+        "model": "claude-3-5-sonnet-20241022",
+        "min_context_window": 8000,
+        "preferred": true,
+        "use_for": ["name_generation", "poetry_generation", "cultural_explanation"]
+      },
+      {
+        "provider": "openai",
+        "model": "gpt-4o",
+        "min_context_window": 8000,
+        "preferred": true,
+        "use_for": ["name_generation", "poetry_generation", "prompt_engineering"]
+      },
+      {
+        "provider": "openai",
+        "model": "dall-e-3",
+        "min_context_window": 0,
+        "preferred": true,
+        "use_for": ["seal_carving", "shanshui_landscape", "portrait_avatar"],
+        "quality": "hd"
+      },
+      {
+        "provider": "stability_ai",
+        "model": "stable-diffusion-xl-1024-v1-0",
+        "min_context_window": 0,
+        "preferred": false,
+        "use_for": ["shanshui_landscape", "portrait_avatar"]
+      }
+    ],
+    "max_turns": 50,
+    "session_memory": true,
+    "session_memory_keys": [
+      "user_original_name",
+      "user_chinese_name",
+      "user_chinese_name_pinyin",
+      "chosen_theme",
+      "gender_preference",
+      "generated_poem_jueju",
+      "generated_poem_lushi",
+      "art_outputs",
+      "preferred_language",
+      "dynasty_aesthetic"
+    ]
+  },
+  "permissions": [
+    {
+      "name": "image_generation",
+      "description": "Generate seal carving, Shanshui landscape, and portrait avatar images using DALL·E 3 or Stable Diffusion XL.",
+      "required": true,
+      "scope": "session"
+    },
+    {
+      "name": "internet_access",
+      "description": "Fetch real-time data for cultural references and historical accuracy verification.",
+      "required": false,
+      "scope": "session"
+    }
+  ],
+  "modules": [
+    {
+      "id": "name_generation",
+      "name": "Chinese Name Generation",
+      "description": "Generate 3 semantically rich Chinese name options from a foreign name using phonetic-semantic fusion algorithm.",
+      "trigger_intents": [
+        "request_chinese_name",
+        "semantic_naming",
+        "phonetic_name_conversion"
+      ],
+      "entry_phrases": {
+        "en": [
+          "give me a Chinese name",
+          "what's my name in Chinese",
+          "translate my name to Chinese",
+          "meaningful Chinese name",
+          "Chinese characters for my name",
+          "I want a Chinese name",
+          "name me in Chinese"
+        ],
+        "zh-CN": [
+          "给我取个中文名",
+          "帮我起中文名",
+          "我的中文名字",
+          "用中文名字"
+        ]
+      },
+      "features": {
+        "name_options_count": 3,
+        "include_etymology": true,
+        "include_literary_reference": true,
+        "include_pinyin": true,
+        "include_vibe_tags": true,
+        "taboo_character_filter": true,
+        "themes_available": ["nature", "strength", "wisdom", "beauty", "freedom", "passion"]
+      }
+    },
+    {
+      "id": "poetry_jueju",
+      "name": "Jueju Poem Generation (七言绝句)",
+      "description": "Generate a 4-line, 7-character-per-line classical Tang Dynasty Jueju poem embedding the user's Chinese name.",
+      "trigger_intents": [
+        "generate_jueju",
+        "classical_poem",
+        "tang_poetry",
+        "short_poem"
+      ],
+      "entry_phrases": {
+        "en": [
+          "write a Chinese poem with my name",
+          "create a Jueju poem",
+          "generate Tang poetry",
+          "classical Chinese poem",
+          "七言绝句"
+        ],
+        "zh-CN": [
+          "写一首古诗",
+          "生成七言绝句",
+          "用我的名字写诗"
+        ]
+      },
+      "features": {
+        "format": "7-char-4-line",
+        "include_pinyin": true,
+        "include_translation": true,
+        "include_cultural_note": true,
+        "style_options": ["豪放", "婉约"],
+        "name_embedded_in": "line_1_or_2"
+      }
+    },
+    {
+      "id": "poetry_lushi",
+      "name": "Lüshi Poem Generation (七言律诗)",
+      "description": "Generate an 8-line, 7-character-per-line classical Lüshi poem with mandatory antithetical couplets (对仗联).",
+      "trigger_intents": [
+        "generate_lushi",
+        "regulated_verse",
+        "long_poem",
+        "antithetical_couplets"
+      ],
+      "entry_phrases": {
+        "en": [
+          "write a Lüshi poem",
+          "generate 8-line poem",
+          "antithetical couplet poem",
+          "律诗"
+        ],
+        "zh-CN": [
+          "生成律诗",
+          "七言律诗",
+          "对仗联"
+        ]
+      },
+      "features": {
+        "format": "7-char-8-line",
+        "include_antithetical_couplets": true,
+        "couplet_pairs": [3, 4, 5, 6],
+        "include_pinyin": true,
+        "include_translation": true,
+        "include_annotations": true
+      }
+    },
+    {
+      "id": "seal_carving",
+      "name": "Seal Carving Art (篆刻印章)",
+      "description": "Generate a high-fidelity image prompt for traditional Chinese seal carving art in small seal script (小篆) or bronze script (金文).",
+      "trigger_intents": [
+        "create_seal_art",
+        "seal_carving",
+        "name_stamp",
+        "篆刻",
+        "traditional_chop"
+      ],
+      "entry_phrases": {
+        "en": [
+          "create a seal with my name",
+          "make a Chinese seal",
+          "seal carving art",
+          "name stamp",
+          "篆刻印章"
+        ],
+        "zh-CN": [
+          "刻章",
+          "篆刻印章",
+          "用我的名字做印章"
+        ]
+      },
+      "features": {
+        "script_options": ["小篆", "金文", "大篆"],
+        "carving_types": ["阳刻", "阴刻", "朱白相间"],
+        "materials": ["寿山石", "青田石", "昌化石"],
+        "generate_image": true,
+        "image_aspect_ratio": "1:1"
+      }
+    },
+    {
+      "id": "shanshui_landscape",
+      "name": "Shanshui Landscape Painting (水墨山水)",
+      "description": "Generate a traditional Chinese ink-wash landscape painting inspired by the user's poem and theme, in Song/Tang/Ming dynasty style.",
+      "trigger_intents": [
+        "generate_shanshui",
+        "ink_wash_landscape",
+        "mountain_painting",
+        "山水画",
+        "水墨画"
+      ],
+      "entry_phrases": {
+        "en": [
+          "generate a Shanshui painting",
+          "ink wash landscape",
+          "Chinese mountain painting",
+          "山水画"
+        ],
+        "zh-CN": [
+          "山水画",
+          "水墨山水",
+          "中国画"
+        ]
+      },
+      "features": {
+        "dynasty_styles": ["Song", "Tang", "Ming", "Modern"],
+        "theme_driven": true,
+        "include_poem_calligraphy": true,
+        "include_name_seal": true,
+        "generate_image": true,
+        "image_aspect_ratio": "2:3",
+        "cun_methods_available": ["披麻皴", "斧劈皴", "雨点皴", "荷叶皴", "折带皴", "解索皴"]
+      }
+    },
+    {
+      "id": "portrait_avatar",
+      "name": "Ancient Portrait Avatar (古风人物头像)",
+      "description": "Generate an ancient Chinese portrait avatar in the user's preferred dynasty aesthetic, with their Chinese name as calligraphy.",
+      "trigger_intents": [
+        "generate_portrait",
+        "ancient_avatar",
+        "ancient_style_portrait",
+        "古风头像",
+        "古风人物"
+      ],
+      "entry_phrases": {
+        "en": [
+          "create an ancient Chinese portrait",
+          "Chinese avatar",
+          "古风头像",
+          "ancient portrait avatar"
+        ],
+        "zh-CN": [
+          "古风头像",
+          "古装人物",
+          "古风插画"
+        ]
+      },
+      "features": {
+        "dynasty_aesthetics": ["Tang", "Song", "Ming", "Qing"],
+        "theme_to_dynasty_mapping": {
+          "nature": "Song",
+          "strength": "Tang",
+          "wisdom": "Song",
+          "beauty": "Tang",
+          "freedom": "Ming",
+          "passion": "Tang"
+        },
+        "include_name_calligraphy": true,
+        "generate_image": true,
+        "image_aspect_ratio": "1:1"
+      }
+    },
+    {
+      "id": "full_package",
+      "name": "Complete Cultural Identity Package",
+      "description": "Generate the complete Chinese cultural identity: name + Jueju + Lüshi + seal + landscape + portrait avatar.",
+      "trigger_intents": [
+        "full_package",
+        "complete_identity",
+        "everything",
+        "all_art"
+      ],
+      "entry_phrases": {
+        "en": [
+          "give me the full package",
+          "I want everything",
+          "complete Chinese identity",
+          "name poem and art all of it"
+        ],
+        "zh-CN": [
+          "全套",
+          "全部都要",
+          "完整文化套餐",
+          "名字诗歌印章都要"
+        ]
+      },
+      "features": {
+        "auto_chain": ["name_generation", "poetry_jueju", "poetry_lushi", "seal_carving", "shanshui_landscape", "portrait_avatar"],
+        "ordered_presentation": true
+      }
+    }
+  ],
+  "localization": {
+    "default_language": "en",
+    "supported_languages": ["en", "zh-CN", "zh-TW", "fr", "de", "es", "ja", "ko"],
+    "auto_detect": true
+  },
+  "safety": {
+    "privacy_policy": "https://github.com/XiaoAIPensieve/cultural-naming-art/blob/main/PRIVACY.md",
+    "data_collection": "none",
+    "pii_handling": "session_only_no_persistence",
+    "prohibited_actions": [
+      "collect_passport_numbers",
+      "persist_user_name",
+      "share_data_third_party"
+    ],
+    "content_safety": {
+      "cultural_sensitivity": "high",
+      "taboo_character_filter": true,
+      "taboo_character_count": 200,
+      "prohibited_content": [
+        "death-adjacent_characters_in_names",
+        "mock_trivialize_chinese_culture",
+        "real_historical_figures_as_portrait_subjects"
+      ]
+    }
+  },
+  "screenshots": [
+    "assets/screenshots/name-options-display.png",
+    "assets/screenshots/jueju-poem-display.png",
+    "assets/screenshots/seal-carving-art.png",
+    "assets/screenshots/shanshui-painting.png",
+    "assets/screenshots/portrait-avatar.png"
+  ],
+  "changelog": [
+    {
+      "version": "2.0.0",
+      "date": "2026-05-17",
+      "notes": [
+        "Initial release",
+        "6 modules: Name Generation, Jueju, Lüshi, Seal Carving, Shanshui, Portrait Avatar",
+        "6 themes: Nature, Strength, Wisdom, Beauty, Freedom, Passion",
+        "4 dynasty styles: Song, Tang, Ming, Modern",
+        "200+ taboo character filter",
+        "Full Python SDK with prompts.py library"
+      ]
+    }
+  ]
+}

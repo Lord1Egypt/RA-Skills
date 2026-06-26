@@ -1,0 +1,97 @@
+{
+  "name": "Go",
+  "version": "1.21+",
+  "priority": 70,
+
+  "rules": {
+    "errorHandling": {
+      "explicit": {
+        "enabled": true,
+        "message": "必须显式处理 error，不允许忽略"
+      },
+      "earlyReturn": {
+        "enabled": true,
+        "message": "错误优先返回，减少嵌套"
+      },
+      "wrap": {
+        "enabled": true,
+        "message": "使用 fmt.Errorf 或 errors.Wrap 包装错误，保留上下文"
+      }
+    },
+
+    "naming": {
+      "variables": "camelCase",
+      "exportedVariables": "PascalCase",
+      "functions": "camelCase",
+      "exportedFunctions": "PascalCase",
+      "interfaces": "PascalCase，通常以 -er 结尾（如 Reader, Writer）",
+      "packages": "小写单词，无下划线",
+      "constants": "camelCase 或 PascalCase（导出时）"
+    },
+
+    "structure": {
+      "interfaceDesign": {
+        "singleResponsibility": true,
+        "message": "接口应单一职责，通常 1-2 个方法"
+      },
+      "structFields": {
+        "order": "按字段大小排序，优化内存对齐"
+      },
+      "packageOrganization": {
+        "cmd": "可执行程序入口",
+        "internal": "私有包，不可被外部导入",
+        "pkg": "公开包，可被外部导入"
+      }
+    },
+
+    "concurrency": {
+      "goroutines": {
+        "enabled": true,
+        "message": "启动 goroutine 时必须考虑如何退出"
+      },
+      "channels": {
+        "enabled": true,
+        "message": "明确 channel 的所有权和关闭责任"
+      },
+      "context": {
+        "enabled": true,
+        "message": "长时间运行的操作必须支持 context 取消"
+      }
+    },
+
+    "bestPractices": {
+      "defer": {
+        "enabled": true,
+        "message": "资源清理使用 defer，确保在函数返回前执行"
+      },
+      "zeroValues": {
+        "enabled": true,
+        "message": "利用零值初始化，避免显式初始化为零值"
+      },
+      "avoidUnused": {
+        "enabled": true,
+        "message": "使用 _ 忽略不需要的返回值"
+      }
+    }
+  },
+
+  "promptTemplates": [
+    "必须显式处理所有 error，不允许忽略",
+    "错误优先返回，减少嵌套层级",
+    "使用 fmt.Errorf 包装错误，保留上下文",
+    "变量使用 camelCase，导出使用 PascalCase",
+    "接口应单一职责，通常 1-2 个方法",
+    "长时间运行的操作必须支持 context 取消"
+  ],
+
+  "examples": {
+    "good": [
+      "func GetUser(id int64) (*User, error) {\n    user, err := db.FindUser(id)\n    if err != nil {\n        return nil, fmt.Errorf(\"failed to find user %d: %w\", id, err)\n    }\n    return user, nil\n}",
+      "type Reader interface {\n    Read(p []byte) (n int, err error)\n}"
+    ],
+    "bad": [
+      "user, _ := db.FindUser(id)  // 忽略错误",
+      "if err != nil {\n    if err2 := doSomething(); err2 != nil {\n        // 嵌套过深\n    }\n}"
+    ]
+  }
+}

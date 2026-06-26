@@ -1,0 +1,20 @@
+{
+  "name": "hotel",
+  "version": "1.0.0",
+  "description": "Local-first hotel decision engine for trip stays, hotel comparison, shortlist creation, booking readiness, and accommodation planning.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/add_trip.py",
+    "scripts/add_hotel.py",
+    "scripts/compare_hotels.py",
+    "scripts/shortlist.py",
+    "scripts/book_ready.py",
+    "scripts/save_preference.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/scoring.py",
+    "references/philosophy.md"
+  ]
+}

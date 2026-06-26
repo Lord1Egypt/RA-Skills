@@ -1,0 +1,27 @@
+{
+  "name": "research-method-advisor",
+  "version": "1.1.0",
+  "title": "研究方法决策助手",
+  "description": "像决策树一样，根据研究特征自动推荐合适的统计检验方法（t检验、方差分析、相关、回归等），并提供样本量/功效估算、量表信效度分析方法选择（Cronbach α、EFA/CFA、AVE/HTMT）、中介/调节效应模型选择（Bootstrap、PROCESS模型）。含前提假设提示与 Python 函数。适用于实验心理学与社会科学定量研究。",
+  "author": "@zhan599",
+  "license": "MIT",
+  "keywords": [
+    "研究方法",
+    "统计检验",
+    "决策辅助",
+    "实验设计",
+    "假设检验",
+    "方差分析",
+    "信度效度",
+    "中介调节",
+    "样本量",
+    "心理学"
+  ],
+  "icon": "git-branch",
+  "category": "research",
+  "homepage": "https://github.com/zhan599/research-method-advisor",
+  "requirements": {
+    "python": ">=3.8"
+  },
+  "dependencies": []
+}

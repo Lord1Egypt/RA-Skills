@@ -1,0 +1,133 @@
+{
+  "target": {
+    "skill_name": "XDesign",
+    "comparison_mode": "single-skill",
+    "variants": ["with_skill"]
+  },
+  "initial_judgement": {
+    "skill_type": "delivery_effect",
+    "recommended_primary_direction": "delivery_effect",
+    "recommended_secondary_direction": null,
+    "reasoning": "XDesign 是落地效果型 skill，核心价值是让 AI 按专业设计流程产出高质量设计产物。用户要求从 AI SKILL PM 和专业设计师双视角评估。"
+  },
+  "confirmed_plan": {
+    "primary_direction": {
+      "id": "dual_perspective_review",
+      "label": "双视角评审（AI SKILL PM + 专业设计师）",
+      "weight": 1.0
+    },
+    "secondary_direction": null,
+    "perspectives": [
+      {
+        "id": "ai_skill_pm",
+        "label": "AI SKILL 产品经理视角",
+        "dimensions": [
+          {
+            "id": "trigger_accuracy",
+            "label": "触发准确性",
+            "weight": 0.15,
+            "notes": "description 是否能精准覆盖设计类任务、排除非设计类任务"
+          },
+          {
+            "id": "structure_quality",
+            "label": "结构工程质量",
+            "weight": 0.2,
+            "notes": "主 body 是否精简、层级分工是否清晰、资源下沉是否合理"
+          },
+          {
+            "id": "resource_utilization",
+            "label": "资源利用效率",
+            "weight": 0.15,
+            "notes": "references/assets/scripts 的拆分是否合理、体量是否值得、是否有冗余"
+          },
+          {
+            "id": "user_journey_design",
+            "label": "用户旅程设计",
+            "weight": 0.25,
+            "notes": "从模糊需求到最终交付的流程是否完整、提问策略是否合理、错误恢复是否健壮"
+          },
+          {
+            "id": "scalability_maintainability",
+            "label": "可扩展性与可维护性",
+            "weight": 0.15,
+            "notes": "新增品牌、新增输出类型、适配新环境是否容易"
+          },
+          {
+            "id": "value_density",
+            "label": "价值密度",
+            "weight": 0.1,
+            "notes": "skill 体量与实际带来的价值是否匹配，是否存在水字数"
+          }
+        ]
+      },
+      {
+        "id": "professional_designer",
+        "label": "专业设计师视角",
+        "dimensions": [
+          {
+            "id": "design_process_professionalism",
+            "label": "设计流程专业度",
+            "weight": 0.25,
+            "notes": "PPAF 循环、Design System First、Wireframe Before Hi-Fi 是否符合真实设计实践"
+          },
+          {
+            "id": "design_token_quality",
+            "label": "设计令牌质量",
+            "weight": 0.2,
+            "notes": "58 个品牌 DESIGN.md 的色彩/字体/阴影/组件规范是否专业、可执行"
+          },
+          {
+            "id": "anti_pattern_awareness",
+            "label": "反模式意识",
+            "weight": 0.15,
+            "notes": "AI slop 识别、常见坑规避、质量自检清单是否覆盖真实设计痛点"
+          },
+          {
+            "id": "visual_output_ceiling",
+            "label": "视觉输出天花板",
+            "weight": 0.2,
+            "notes": "skill 指导下的产出能达到什么水平、是否明显优于无 skill"
+          },
+          {
+            "id": "iteration_design_sense",
+            "label": "迭代设计感",
+            "weight": 0.1,
+            "notes": "3 版本策略、Tweaks 调参、设计变体策略是否合理"
+          },
+          {
+            "id": "design_reasoning_depth",
+            "label": "设计推理深度",
+            "weight": 0.1,
+            "notes": "Design Reasoning 部分是否能产出有深度的设计解释"
+          }
+        ]
+      }
+    ],
+    "out_of_scope": [
+      "trigger_automation_testing",
+      "actual_html_rendering_quality",
+      "pptx_export_accuracy",
+      "cross_platform_compatibility"
+    ],
+    "case_plan": {
+      "sample_types": [
+        "模糊品牌参考需求",
+        "中等明确多页面需求",
+        "迭代修改场景"
+      ],
+      "sample_count": 3,
+      "blind_review": false
+    },
+    "report_requirements": {
+      "must_include": [
+        "总判断（双视角综合）",
+        "AI SKILL PM 视角分维度评分与证据",
+        "专业设计师视角分维度评分与证据",
+        "核心优势列表",
+        "核心问题列表",
+        "改进建议优先级排序",
+        "适用场景与不适用场景"
+      ]
+    }
+  }
+}

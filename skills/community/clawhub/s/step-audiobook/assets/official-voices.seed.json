@@ -1,0 +1,80 @@
+{
+  "version": "1",
+  "source": "bundled-seed",
+  "model": "step-tts-2",
+  "seeded_from": "legacy audiobook preset snapshot",
+  "voices": [
+    {
+      "asset_id": "male_narrator",
+      "voice_id": "boyinnansheng",
+      "display_name": "男性旁白音色",
+      "description": "男性旁白音色，沉稳专业",
+      "tags": ["male", "narrator", "professional", "旁白"],
+      "recommended_scenes": ["旁白", "叙述"],
+      "stable_instruction": "沉稳、专业的男声，语速适中，发音清晰"
+    },
+    {
+      "asset_id": "female_narrator",
+      "voice_id": "wenjingxuejie",
+      "display_name": "女性旁白音色",
+      "description": "女性旁白音色，温柔亲切",
+      "tags": ["female", "narrator", "gentle", "旁白"],
+      "recommended_scenes": ["旁白", "温柔叙述", "细腻内心"],
+      "stable_instruction": "柔和、亲切的女声，语速平缓"
+    },
+    {
+      "asset_id": "male_young",
+      "voice_id": "zixinnansheng",
+      "display_name": "年轻男性声音",
+      "description": "年轻男性声音，活力四射",
+      "tags": ["male", "young", "energetic", "年轻男性"],
+      "recommended_scenes": ["青年男性", "轻松对白", "活力角色"],
+      "stable_instruction": "年轻、有活力的男声，语气轻松"
+    },
+    {
+      "asset_id": "female_young",
+      "voice_id": "qingchunshaonv",
+      "display_name": "年轻女性声音",
+      "description": "年轻女性声音，甜美活泼",
+      "tags": ["female", "young", "sweet", "年轻女性"],
+      "recommended_scenes": ["少女角色", "轻快对白", "青春角色"],
+      "stable_instruction": "甜美、活泼的女声，语调轻快"
+    },
+    {
+      "asset_id": "male_deep",
+      "voice_id": "shenchennanyin",
+      "display_name": "低沉男声",
+      "description": "低沉男声，威严有力",
+      "tags": ["male", "deep", "authoritative", "低沉"],
+      "recommended_scenes": ["威严男性", "命令", "压迫感"],
+      "stable_instruction": "低沉、威严的男声，发音有力"
+    },
+    {
+      "asset_id": "female_mature",
+      "voice_id": "wenroushunv",
+      "display_name": "成熟女性声音",
+      "description": "成熟女性声音，知性优雅",
+      "tags": ["female", "mature", "elegant", "成熟女性"],
+      "recommended_scenes": ["知性女性", "从容对白", "成熟角色"],
+      "stable_instruction": "成熟、知性的女声，语气优雅"
+    },
+    {
+      "asset_id": "comedy",
+      "voice_id": "yuanqinansheng",
+      "display_name": "喜剧风格男声",
+      "description": "喜剧风格，幽默夸张",
+      "tags": ["comedy", "expressive", "喜剧"],
+      "recommended_scenes": ["喜剧对白", "夸张角色", "轻松桥段"],
+      "stable_instruction": "夸张、幽默的语调，富有表现力"
+    },
+    {
+      "asset_id": "suspense",
+      "voice_id": "cixingnansheng",
+      "display_name": "悬疑风格男声",
+      "description": "悬疑风格，紧张神秘",
+      "tags": ["suspense", "mystery", "悬疑"],
+      "recommended_scenes": ["悬疑旁白", "神秘场景", "低沉对白"],
+      "stable_instruction": "低沉、神秘的声音，营造紧张氛围"
+    }
+  ]
+}

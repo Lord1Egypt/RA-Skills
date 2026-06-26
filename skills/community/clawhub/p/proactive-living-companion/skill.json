@@ -1,0 +1,42 @@
+{
+  "name": "proactive-companion",
+  "version": "1.0.49",
+  "author": "Kura (proaktiv-skill)",
+  "description": "PROAKTIV v1.0.46 — An autonomous, self-improving buddy system for OpenClaw. Install ONLY via Telegram. Requires SOUL.md routing rules (install.sh patches automatically). Schedules autonomous interest-based pings, learns your topics, and delivers them directly to your Telegram chat.",
+  "category": "lifestyle",
+  "tags": [
+    "companion",
+    "proactive",
+    "self-improving",
+    "interest-graph",
+    "buddy",
+    "cron",
+    "automation"
+  ],
+  "requires": {
+    "bins": [
+      "python3",
+      "openclaw"
+    ],
+    "env": [
+      "OPENCLAW_TELEGRAM_NR"
+    ],
+    "cron": true,
+    "filesystem": true,
+    "telegram": true
+  },
+  "permissions": {
+    "cron": "*/30 * * * *",
+    "filesystem": "/data/.openclaw/skills/proaktiv/",
+    "telegram": "direct"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/Wewillsee86/proaktiv-skill",
+  "keywords": [
+    "openclaw",
+    "buddy",
+    "proactive-agent",
+    "self-improving",
+    "interest-tracking"
+  ]
+}

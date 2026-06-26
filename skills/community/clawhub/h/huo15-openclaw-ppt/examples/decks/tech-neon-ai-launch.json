@@ -1,0 +1,104 @@
+{
+  "year": "2026",
+  "slides": [
+    {
+      "type": "hero_cover",
+      "eyebrow": "INTRODUCING",
+      "title": "Synapse AI.",
+      "subtitle": "重新定义人机协作。",
+      "footnote": "Synapse Labs · 2026.04",
+      "build": "1337"
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "title": "Performance",
+      "subtitle": "性能"
+    },
+    {
+      "type": "big_stat",
+      "caption": "INFERENCE LATENCY",
+      "value": "42ms",
+      "unit": "p99 尾延迟",
+      "footnote": "基于 10B 参数模型 · A100 推理",
+      "accent": true
+    },
+    {
+      "type": "kpi_triple",
+      "title": "关键指标",
+      "en_sub": "Key Metrics",
+      "items": [
+        {"value": "10B", "label": "参数规模", "caption": "开源可商用"},
+        {"value": "256k", "label": "上下文窗口", "caption": "长文本首选"},
+        {"value": "99.97%", "label": "服务可用性", "caption": "SLA 保障"}
+      ]
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "title": "Developer Experience",
+      "subtitle": "5 行接入"
+    },
+    {
+      "type": "code_block",
+      "title": "Quickstart",
+      "en_sub": "5 LINES OF CODE",
+      "filename": "app.py",
+      "language": "python",
+      "code": "from synapse import Client\n\nclient = Client(api_key=\"sk-...\")\n\nresponse = client.chat(\n    model=\"synapse-ultra\",\n    messages=[{\"role\": \"user\", \"content\": \"Hello!\"}]\n)\n\nprint(response.content)",
+      "highlight_lines": [6],
+      "caption": "pip install synapse-ai · 官方 Python SDK"
+    },
+    {
+      "type": "compare_columns",
+      "title": "对比传统方案",
+      "en_sub": "Synapse vs Legacy",
+      "emphasize": "right",
+      "left": {
+        "label": "LEGACY",
+        "title": "传统 LLM 方案",
+        "items": [
+          "部署需要 8×A100",
+          "上下文 32k 天花板",
+          "闭源黑盒",
+          "p99 > 800ms"
+        ]
+      },
+      "right": {
+        "label": "SYNAPSE",
+        "title": "Synapse AI",
+        "items": [
+          "单张 A100 可跑",
+          "原生 256k 上下文",
+          "开源权重 · 可商用",
+          "p99 < 50ms"
+        ]
+      }
+    },
+    {
+      "type": "quote_card",
+      "quote": "这是我们测过最好的中文推理模型，稳定性和速度都超出预期。",
+      "author": "Alex Chen",
+      "role": "字节跳动 · Tech Lead"
+    },
+    {
+      "type": "content_list",
+      "title": "四大核心能力",
+      "en_sub": "Core Capabilities",
+      "numbered": true,
+      "items": [
+        {"label": "长文本推理", "desc": "256k 上下文无衰减"},
+        {"label": "Tool Use 原生", "desc": "函数调用 f1 > 0.95"},
+        {"label": "多模态融合", "desc": "图文音视频统一 tokenizer"},
+        {"label": "私有化部署", "desc": "一条命令起服务"}
+      ]
+    },
+    {
+      "type": "call_to_action",
+      "title": "Start building.",
+      "subtitle": "免费额度每月 100k tokens，开箱即用。",
+      "cta": "synapse.ai/signup",
+      "footnote": "Synapse Labs · Cupertino · 2026"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "company": "Anthropic",
+  "last_updated": "2026-04-07",
+  "plans": [
+    {
+      "name": "Claude Haiku 4.5",
+      "type": "usage",
+      "price": 0,
+      "period": "per-token",
+      "users": null,
+      "api_access": false,
+      "price_per_1m_input": 1.0,
+      "price_per_1m_output": 5.0,
+      "features": [
+        "Fast response",
+        "128K context",
+        "Prompt caching",
+        "Batch API"
+      ]
+    },
+    {
+      "name": "Claude Sonnet 4.6",
+      "type": "usage",
+      "price": 0,
+      "period": "per-token",
+      "users": null,
+      "api_access": false,
+      "price_per_1m_input": 3.0,
+      "price_per_1m_output": 15.0,
+      "features": [
+        "Balanced intelligence",
+        "1M context",
+        "Extended thinking",
+        "Prompt caching",
+        "Batch API"
+      ]
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "usage",
+      "price": 0,
+      "period": "per-token",
+      "users": null,
+      "api_access": false,
+      "price_per_1m_input": 5.0,
+      "price_per_1m_output": 25.0,
+      "features": [
+        "Maximum capability",
+        "1M context",
+        "Extended thinking",
+        "Prompt caching",
+        "Batch API",
+        "Complex reasoning"
+      ]
+    },
+    {
+      "name": "Claude Pro",
+      "type": "subscription",
+      "price": 20.0,
+      "period": "monthly",
+      "users": 1,
+      "api_access": true,
+      "price_per_1m_input": null,
+      "price_per_1m_output": null,
+      "features": [
+        "Unlimited messages",
+        "Sonnet 4.6 + Opus 4.6",
+        "Priority access",
+        "Desktop + Web + Terminal"
+      ]
+    },
+    {
+      "name": "Claude Max 5x",
+      "type": "subscription",
+      "price": 100.0,
+      "period": "monthly",
+      "users": 1,
+      "api_access": true,
+      "price_per_1m_input": null,
+      "price_per_1m_output": null,
+      "features": [
+        "5x Pro usage",
+        "Priority during peak",
+        "All models"
+      ]
+    },
+    {
+      "name": "Claude Max 20x",
+      "type": "subscription",
+      "price": 200.0,
+      "period": "monthly",
+      "users": 1,
+      "api_access": true,
+      "price_per_1m_input": null,
+      "price_per_1m_output": null,
+      "features": [
+        "20x Pro usage",
+        "Top priority",
+        "All models"
+      ]
+    }
+  ],
+  "enterprise": true,
+  "free_tier": true,
+  "sources": [
+    "https://www.anthropic.com/pricing",
+    "https://www.metacto.com/blogs/anthropic-api-pricing"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "task_1775534609650_reiu",
+  "title": "Gateway健康检查",
+  "description": "检查Gateway状态、端口可用性、备份执行",
+  "source": "scheduled",
+  "assignedTo": "CEO",
+  "status": "inbox",
+  "priority": "P0",
+  "intent": "scheduled",
+  "subtasks": [],
+  "createdAt": "2026-04-07T04:03:29.650Z",
+  "updatedAt": "2026-04-11T08:10:00.366Z",
+  "stateChangedAt": "2026-04-07T04:03:29.650Z",
+  "createdBy": "sensen",
+  "result": null,
+  "error": null,
+  "timeoutCount": 2,
+  "alerts": [
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6006分钟",
+      "at": "2026-04-11T08:09:59.354Z"
+    },
+    {
+      "type": "timeout",
+      "message": "inbox状态已超过6007分钟",
+      "at": "2026-04-11T08:10:00.366Z"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "feishu-task-control",
+  "version": "1.0.1",
+  "description": "Control spawned Feishu background tasks with concise natural-language or slash-command workflows.",
+  "author": "Dawei",
+  "metadata": {
+    "tags": [
+      "feishu",
+      "task-control",
+      "subagents",
+      "cancel",
+      "status"
+    ],
+    "categories": [
+      "Productivity",
+      "Automation"
+    ]
+  }
+}

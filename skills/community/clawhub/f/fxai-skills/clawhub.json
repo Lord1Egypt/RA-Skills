@@ -1,0 +1,12 @@
+{
+  "name": "FXAI Skills（FXAI）",
+  "tagline": "BSC 创建代币、USDT 买卖；需要 MCP PRIVATE_KEY；可上传 token 元数据到 Flap API",
+  "description": "创建 V5 代币（USDT/BNB 池子可选，0税或税收四档分配）；支持 USDT/BNB 买入与卖出（按数量或比例）。说「FXAI」触发。依赖 BNB Chain MCP，且 MCP env 中必须配置 PRIVATE_KEY。上传 token 元数据时会将本地图片与简介、官网等信息发送到 Flap API。",
+  "category": "development",
+  "tags": ["bnb-chain", "bsc", "token", "usdt", "defi", "mcp", "flap"],
+  "version": "1.0.3",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/flapxai/fxai/issues",
+  "homepage": "https://github.com/flapxai/fxai"
+}

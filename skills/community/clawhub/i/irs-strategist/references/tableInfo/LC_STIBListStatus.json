@@ -1,0 +1,107 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "InnerCode",
+        "columnChiName": "内部编码",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "内部编码（InnerCode）：与“证券主表（SecuMain）”中的“证券内部编码（InnerCode）”关联，得到科创板上市公司的交易代码、简称等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ChangeDate",
+        "columnChiName": "变更日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "ChangeType",
+        "columnChiName": "变更类型",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "变更类型(ChangeType)与(CT_SystemConst)表中的DM字段关联，令LB = 1184，得到变更类型的具体描述：1-上市，2-暂停上市，3-恢复上市，4-终止上市，5-摘牌，6-退市整理期，7-三板转板待上市，8-三板转板上市失败，9-其它，11-开放日常申购，12-开放日常赎回，13-暂停日常申购(前端)，14-暂停日常赎回，15-恢复日常申购(前端)，16-恢复日常赎回，17-开放定期定投，18-暂停定期定投，19-恢复定期定投，20-基金合同失效，31-限制大额申购，32-恢复大额申购，33-限制大额转换转入，34-恢复大额转换转入，35-限制大额定投，36-恢复大额定投，37-限制大额赎回，39-限制大额转换转出，40-恢复大额转换转出，41-开放份额配对转换，42-暂停份额配对转换，43-恢复份额配对转换，51-开放转换转入业务，52-暂停转换转入业务，53-恢复转换转入业务，54-开放转换转出业务，55-暂停转换转出业务，56-恢复转换转出业务，57-暂停大额转换转入业务，58-恢复大额转换转入业务，59-暂停大额转换转出业务，60-恢复大额转换转出业务，61-开放前端转换转入，62-暂停前端转换转入，63-恢复前端转换转入，64-开放后端转换转入，65-暂停后端转换转入，66-恢复后端转换转入，67-开放当日回转交易，68-暂停当日回转交易，69-恢复当日回转交易，70-清算，71-暂停基金运作，72-恢复基金运作，73-最后运作，80-开放场内拆分，81-暂停场内拆分，82-恢复场内拆分，90-开放转托管业务，91-暂停转托管业务，92-恢复转托管业务，100-开放集合申购业务，101-暂停集合申购业务，102-恢复集合申购业务，110-开通基金通平台转让，111-终止基金通平台转让，120-开放认购，121-暂停认购，130-限制大额认购，131-恢复大额认购。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "IfEffected",
+        "columnChiName": "是否有效",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "是否有效(IfEffected)与(CT_SystemConst)表中的DM字段关联，令LB = 999 and DM in (1,2)，得到是否有效的具体描述：1-是，2-否。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "Statement",
+        "columnChiName": "变更说明",
+        "columnType": "varchar(400)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "0.67"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "InsertTime",
+        "columnChiName": "发布时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "UpdateTime",
+        "columnChiName": "修改时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

@@ -1,0 +1,23 @@
+name: research-paper-figure-skill-factory
+version: "1.0.1"
+summary: >-
+  Research-paper figure Skill Factory for building evidence-backed specialized
+  figure-making skills, with a mandatory candidate-image bridge in generated
+  skills after multi-option text decisions.
+important_rules:
+  - First trigger must be STARTUP_PLAN_ONLY and show S0/B1-B9/P1-P9 before analysis.
+  - B1-B9 are the Skill Builder layer; P1-P9 are the Figure Production layer used by generated specialized skills.
+  - Generated specialized skills must include P4 TEXT_ONLY visual candidate-board setup, P5 IMAGE_ONLY candidate-board generation, and P6 TEXT_ONLY candidate review/selection.
+  - After any multi-option text reply in a generated skill, the first recommended next prompt must ask the user to generate/display multiple candidate images or schematic boards, normally 6.
+  - Generated skills must not move directly from 4-6 text candidates, layout/style-axis setup, or prompt alternatives to final prompt/final image/caption unless the user explicitly skips image candidates.
+  - Default generated figure-making skills to 6 text candidates and 6 image candidates unless the user explicitly requests another count.
+  - Every TEXT_ONLY reply must show 当前执行计划, 默认推荐, 当前状态与产物, all steps plus current position, current-turn outputs, cumulative outputs, and final 下一步你可以这样问.
+  - Always include the unknown-next prompt `请使用**<当前skill名称>**，根据当前状态，提供下一步提问建议。`.
+  - Literature acquisition must be legal/open/user-authorized only.
+  - If local PDFs, a paper index, or retrieval manifest already exist, B3 must enumerate the full relevant candidate set and B4 must process all accessible relevant PDFs as far as feasible.
+  - Record corpus coverage counts, skipped reasons, and label/multi-label coverage; representative rendered pages are audit aids only.
+  - ChatGPT web must use Create image through ChatGPT Images 2.0 for image generation.
+  - Codex candidate boards, draft candidates, and final visuals must use `$imagegen` first; if unavailable, use ChatGPT Images 2.0 API or another approved image-generation API.
+  - Never use SVG, Mermaid, TikZ, Graphviz, HTML/CSS, canvas, matplotlib, or code-rendered files as visual outputs or fallbacks.
+  - The first/startup response of this factory or any generated figure-making skill must be text-only and must not include images, even when the first user message asks to generate images.
+  - Image-generation responses must be image-only: no prose, no state footer, no captions.

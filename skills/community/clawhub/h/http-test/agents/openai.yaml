@@ -1,0 +1,7 @@
+interface:
+  display_name: "HTTP API Test Runner"
+  short_description: "Generate repeatable API tests, templates, and reports"
+  default_prompt: "Use $http-api-test-runner to create runnable .http cases, a verification script, and a readable PASS/FAIL report for HTTP API endpoint testing."
+
+policy:
+  allow_implicit_invocation: true

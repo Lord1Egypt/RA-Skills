@@ -1,35 +1,107 @@
 ---
-name: "Multimodal Extract Attributes"
-description: "利用多模态AI分析商品主图，提取视觉特征和提示词。当用户提到分析产品图片、从商品图中提取视觉属性、识别产品Listing中的颜色/形状/材质/风格、反推图片提示词、批量视觉特征提取、将产品图信息转化为结构化数据、视觉属性统计、基于图片的商品分类、main image analysis, image feature..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-multimodal-extract-attributes"
-sourceUrl: "https://clawhub.ai/skills/linkfox-multimodal-extract-attributes"
+name: linkfox-multimodal-extract-attributes
+description: 利用多模态AI分析商品主图，提取视觉特征和提示词。当用户提到分析产品图片、从商品图中提取视觉属性、识别产品Listing中的颜色/形状/材质/风格、反推图片提示词、批量视觉特征提取、将产品图信息转化为结构化数据、视觉属性统计、基于图片的商品分类、main image analysis, image feature extraction, visual attribute recognition, product image analysis, image classification, batch image analysis时触发此技能。即使用户未明确提及"图片分析"，只要其需求涉及从商品主图或附图中提取结构化信息，也应触发此技能。
 ---
 
-# Multimodal Extract Attributes
+# Product Main Image Prompt Extractor
 
-> 利用多模态AI分析商品主图，提取视觉特征和提示词。当用户提到分析产品图片、从商品图中提取视觉属性、识别产品Listing中的颜色/形状/材质/风格、反推图片提示词、批量视觉特征提取、将产品图信息转化为结构化数据、视觉属性统计、基于图片的商品分类、main image analysis, image feature...
+This skill guides you on how to extract visual features and prompts from product main images using multimodal AI, helping e-commerce sellers turn unstructured image data into structured, actionable insights.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-multimodal-extract-attributes`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-multimodal-extract-attributes](https://clawhub.ai/skills/linkfox-multimodal-extract-attributes)
+## Core Concepts
 
-## Overview
+This tool performs deep visual analysis on product main images (and optionally additional images) from a product list. It uses a multimodal AI model to identify specific visual dimensions based on a natural language instruction, such as color, shape, style, material, or specific selling-point elements.
+
+**How it works**: You provide a list of products (with image URLs) and a natural language prompt describing what to extract. The tool automatically iterates over all products, analyzes each image, and returns structured attribute data (`attributeName` + `attributeValue`) appended to each product record.
+
+**Row expansion**: When extracting multiple dimensions in a single request (e.g., both color and shape), each original product row is duplicated per dimension, resulting in one row per product per attribute.
+
+## Parameter Guide
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| productImageAnalysisPrompt | Yes | Natural language instruction describing what visual information to extract from the images. Be specific about the dimensions you want (color, material, shape, style, pendant type, etc.). |
+| analyzeAdditionalImages | No | Whether to also analyze additional product images beyond the main image. Defaults to `false`. |
+| refResultData | No | Reference data from a previous step, containing the product list to analyze. Must be a JSON string with a `products` array. |
+| userInput | No | Supplementary user input for additional context. |
+
+### Writing Effective Prompts
+
+1. **Be dimension-specific**: Clearly state what visual attribute(s) to extract. "Extract the dominant color of each product" is better than "Analyze the images."
+2. **One or few dimensions per call**: For cleaner results, focus on one or two dimensions at a time.
+3. **Use concrete terms**: "Identify the pendant/charm shape on the product" is clearer than "Look at the decorations."
+4. **No need to specify individual products**: The tool automatically iterates over all products in the input list.
+5. **Data flow dependency**: The tool requires upstream product data. It cannot reference "products from the previous conversation round" -- the data must be explicitly provided via the current step's input or resource references.
+
+### Prompt Examples
+
+| Goal | Example Prompt |
+|------|---------------|
+| Extract dominant color | "Analyze each product's main image and extract the primary color of the product" |
+| Identify material | "From each product's main image, identify the apparent material (plastic, metal, wood, fabric, etc.)" |
+| Classify pendant shape | "Analyze each product's main image and identify the shape of the pendant/charm (round, heart, star, etc.)" |
+| Detect style | "Extract the overall style of each product from its main image (minimalist, vintage, bohemian, industrial, etc.)" |
+| Reverse-engineer image prompt | "Based on the main image, infer the likely AI-generation prompt or visual description that could reproduce this image" |
+| Multi-dimension extraction | "From each main image, extract both the dominant color and the overall product shape" |
+
+## API Usage
+
+This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/multimodal_extract_attributes.py` directly to run analyses.
+
+## Response Structure
+
+The response enriches the original product list with extracted attributes:
+
+- **products**: An array of product records, each augmented with `attributeName` (the dimension extracted, e.g., "color") and `attributeValue` (the extracted value, e.g., "red"). One record per product per attribute dimension.
+- **attributeGroups**: Products grouped by attribute name and value for easy comparison. Each group includes the attribute value, the count of products, and the list of ASINs.
+- **columns**: Column definitions for rendering the result table.
+- **costToken**: Total tokens consumed by the multimodal AI model.
+
+## Display Rules
+
+1. **Present data in tables**: Show extracted attributes in clear, well-formatted tables with product identifiers (ASIN, title) alongside the extracted attribute values.
+2. **Highlight distribution**: When attribute groups are returned, summarize the distribution (e.g., "60% of products are red, 25% blue, 15% green") to give the user a quick overview.
+3. **Row expansion notice**: If multiple dimensions were extracted, inform the user that each product appears once per dimension in the results.
+4. **Error handling**: When analysis fails, explain the reason based on the response message and suggest adjustments (e.g., ensuring the product list contains valid image URLs).
+5. **Data dependency reminder**: If the user tries to reference products from a previous conversation round without explicit data flow, remind them that the product data must come from an upstream step in the current pipeline.
+6. **No subjective advice**: Present the extracted visual features factually. Let the user draw their own business conclusions.
+## Important Limitations
+
+- **Requires product data input**: The tool cannot operate without a `products` array containing image URLs. It depends on upstream data from a prior step.
+- **No fuzzy references**: Cannot analyze "products from the last conversation" -- data must be explicitly piped in via `refResultData` or resource references.
+- **Row multiplication**: Extracting N dimensions from M products produces up to M x N rows in the output.
+- **Image accessibility**: Product image URLs must be publicly accessible for the analysis to succeed.
+
+## User Expression & Scenario Quick Reference
+
+**Applicable** -- Visual feature extraction and image analysis for product listings:
+
+| User Says | Scenario |
+|-----------|----------|
+| "What colors are these products" | Dominant color extraction |
+| "Analyze the product images", "Look at the main photos" | General visual feature extraction |
+| "What material does it look like" | Material identification |
+| "What shapes/styles are popular" | Shape or style classification |
+| "Reverse the image prompt", "What prompt made this image" | Image prompt reverse-engineering |
+| "Group products by visual appearance" | Visual attribute grouping & statistics |
+| "Extract features from the product photos" | Structured attribute extraction |
+
+**Not applicable** -- Needs beyond image-based visual analysis:
+
+- Text-based product data queries (use appropriate data query tools)
+- Listing copywriting or review analysis
+- Price or sales data analysis
+- Tasks that do not involve product images
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/linkfox-multimodal-extract-attributes
-```
+**Feedback:**
+
+Auto-detect and report feedback via the Feedback API when any of the following apply:
+1. The functionality or purpose described in this skill does not match actual behavior
+2. The skill's results do not match the user's intent
+3. The user expresses dissatisfaction or praise about this skill
+4. Anything you believe could be improved
+
+Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
+---
+*For more high-quality, professional cross-border e-commerce skills, set [LinkFox Skills](https://skill.linkfox.com/).*

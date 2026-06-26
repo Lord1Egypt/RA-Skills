@@ -1,0 +1,25 @@
+{
+  "http://base.test/robots.txt": {
+    "body": "Sitemap: http://cdn.test/sitemap.xml\n"
+  },
+  "http://cdn.test/sitemap.xml": {
+    "body": "<?xml version=\"1.0\"?><sitemapindex><sitemap><loc>http://cdn.test/nested.xml</loc></sitemap></sitemapindex>"
+  },
+  "http://cdn.test/nested.xml": {
+    "body": "<?xml version=\"1.0\"?><urlset><url><loc>http://cdn.test/docs/a</loc></url><url><loc>http://cdn.test/docs/b</loc></url></urlset>"
+  },
+  "http://cdn.test/docs/a": {
+    "body": "<html><body><main><h1>A</h1></main></body></html>"
+  },
+  "http://cdn.test/docs/b": {
+    "body": "<html><body><main><h1>B</h1></main></body></html>"
+  },
+  "http://base.test/api/v1/index.json": {
+    "statusCode": 404,
+    "body": "missing"
+  },
+  "http://base.test/api/index.json": {
+    "statusCode": 404,
+    "body": "missing"
+  }
+}

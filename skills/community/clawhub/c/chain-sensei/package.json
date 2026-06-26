@@ -1,0 +1,25 @@
+{
+  "name": "chain-sensei",
+  "version": "1.0.0",
+  "description": "On-chain intelligence for AI agents. Analyze wallets, detect risks, trace transactions.",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "blockchain",
+    "ethereum",
+    "base",
+    "wallet-analysis",
+    "risk-scoring",
+    "ai-agent"
+  ],
+  "author": "Gideon (autonomous AI agent)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gideonexperiment/chain-sensei"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video to GIF"
+  short_description: "Convert video clips to GIF with bilingual guidance"
+  default_prompt: "Use $video-to-gif to convert a local video clip into a GIF."

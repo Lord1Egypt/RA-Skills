@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Comparison</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #FFFFFF;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block {
+      position: absolute;
+      left: 80px;
+      top: 100px;
+      width: 1680px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .title-block [data-slot="title"] {
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.25;
+      color: #000000;
+    }
+    .title-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.4;
+      color: #666666;
+    }
+    .comparison-row {
+      position: absolute;
+      left: 80px;
+      top: 304px;
+      width: 1760px;
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      height: 676px;
+      align-items: stretch;
+    }
+    .comparison-col {
+      flex: 1;
+      border-radius: 16px;
+      padding: 48px 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .col-left {
+      background-color: #E8F8EB;
+    }
+    .col-right {
+      background-color: #F1F1F1;
+    }
+    .col-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 36px;
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+      margin-bottom: 36px;
+      flex-shrink: 0;
+    }
+    .col-left .col-header { border-bottom-color: rgba(0,0,0,0.1); }
+    .col-header [data-slot$="Label"] {
+      font-weight: 600;
+      font-size: 44px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .col-items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      flex: 1;
+    }
+    .col-items [data-slot$="Item1"],
+    .col-items [data-slot$="Item2"],
+    .col-items [data-slot$="Item3"],
+    .col-items [data-slot$="Item4"] {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.43;
+      color: #4D4D4D;
+      padding-left: 24px;
+      position: relative;
+    }
+    .col-items [data-slot$="Item1"]::before,
+    .col-items [data-slot$="Item2"]::before,
+    .col-items [data-slot$="Item3"]::before,
+    .col-items [data-slot$="Item4"]::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #73CD94;
+    }
+    .col-right .col-items [data-slot$="Item1"]::before,
+    .col-right .col-items [data-slot$="Item2"]::before,
+    .col-right .col-items [data-slot$="Item3"]::before,
+    .col-right .col-items [data-slot$="Item4"]::before {
+      background-color: #999999;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="comparison">
+    <div class="title-block">
+      <h1 data-slot="title">I am a main title</h1>
+      <p data-slot="subtitle">If the title is English, I am the subtitle; if the title is Chinese, I am the English translation</p>
+    </div>
+    <div class="comparison-row">
+      <div class="comparison-col col-left">
+        <div class="col-header">
+          <h2 data-slot="leftLabel">Option A</h2>
+        </div>
+        <div class="col-items">
+          <p data-slot="leftItem1">First point of comparison for option A</p>
+          <p data-slot="leftItem2">Second point of comparison for option A</p>
+          <p data-slot="leftItem3">Third point of comparison for option A</p>
+          <p data-slot="leftItem4">Fourth point of comparison for option A</p>
+        </div>
+      </div>
+      <div class="comparison-col col-right">
+        <div class="col-header">
+          <h2 data-slot="rightLabel">Option B</h2>
+        </div>
+        <div class="col-items">
+          <p data-slot="rightItem1">First point of comparison for option B</p>
+          <p data-slot="rightItem2">Second point of comparison for option B</p>
+          <p data-slot="rightItem3">Third point of comparison for option B</p>
+          <p data-slot="rightItem4">Fourth point of comparison for option B</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

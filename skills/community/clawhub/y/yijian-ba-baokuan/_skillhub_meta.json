@@ -1,0 +1,1 @@
+{"name": "content-rewriter", "display_name": "一键扒爆款", "version": "0.6.0-beta", "description": "爆款内容改写引擎。从视频链接提取文案 → AI分析爆款要素 → 改写为可发布的平台文案。支持抖音(稳定)/B站(API提取)/小红书(需Cookie)。", "author": "花大叔/O5-7/ 龙渊工坊", "category": "内容创作", "tags": ["爆款改写", "文案提取", "内容运营", "自媒体", "短视频"], "agent_created": true}

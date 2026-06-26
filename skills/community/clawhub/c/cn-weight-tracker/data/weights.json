@@ -1,0 +1,12 @@
+{
+  "height": 175.0,
+  "unit": "kg",
+  "target": 70.0,
+  "records": [
+    {
+      "date": "2026-04-15",
+      "weight": 73.9,
+      "unit": "kg"
+    }
+  ]
+}

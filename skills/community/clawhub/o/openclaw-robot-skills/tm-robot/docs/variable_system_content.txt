@@ -1,0 +1,556 @@
+
+=== Page 144 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+144 
+ 
+When the process enters the Listen Node, it stays in the Listen Node until it triggers and leaves 
+with the exit condition. 
+ 
+Pass: 
+Executes ScriptExit() or item stopped 
+Fail: 
+1. 
+Connection Timeout 
+2. 
+Data Timeout  
+3. 
+Before the Socket Server been established successfully, the flow process has 
+entered the Listen Node 
+ 
+The commands received by the listen node will be executed in order. If the command is not valid, 
+an error message will be returned carrying the line number with errors. If the command is valid, it 
+will be executed. 
+ 
+The commands can be divided into two categories. The first category is commands which can be 
+accomplished in instance, like assigning variable value. The second category is commands that 
+need to be executed in sequence, like motion commands and IO value assignment. The second 
+category command will be placed in the queue and executed in order. Refer to the manual 
+Expression Editor and Listen Node for details on commands and communication format.
+
+
+=== Page 145 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+145 
+10. Logic Programming 
+ Overview 
+This Chapter will introduce the logic nodes commonly used in TMflow programming, explain its basic 
+features and use methods, and let users understand how to let robots understand instructions and 
+commands and determine the next motion. In the area of logic programming, the most important aspect 
+is the application of variables. In TMflow, variables are mainly divided into two categories: Global 
+Variables and Local Variables, therefore, this chapter will introduce variables first and explain how to 
+assign them. It then covers basic explanations and examples of how the logic nodes are paired with 
+these variables. 
+ 
+ Variable System 
+ Local Variables 
+Local Variables can only be called in a single project, and their effective range is only within the 
+project that created these variables. Variables are created through the Variable tab, at the top of 
+the TMflow interface. In this page, a single variable or array variable can be declared and 
+assigned a value. According to the different data formats, TMflow provides six types of variables: 
+int, float, string, double, bool, and byte. The meaning of the variables is shown in the table 
+below. If no value is assigned, a string initial value of empty, and the remaining variables default 
+to 0. The newly added local variables will appear in the project's variable system, and begin with 
+"var_" to represent local variables in the variable system. Users can use dropdown to filter 
+available variables in the list, and sort variables in the list with the buttons of reverse alphabetical, 
+alphabetical, or chronological. Click the Batch Delete button to select multiple variables to delete. 
+The exclamation mark denotes unused in the flow. 
+ 
+ 
+Figure 149: Variable System 
+ 
+
+
+=== Page 146 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+146 
+Type 
+Type Description 
+Saved Data 
+string 
+String 
+Structure composed of characters, such as 
+"TMflow" 
+(double quotes must be added to enclose the 
+string) 
+int 
+Integer 
+−231~231 −1 
+float 
+Floating point number (decimal) 
+10−37~1038 
+(Effective digit 6~7 digits) 
+double 
+Double-precision floating-point 
+number 
+10−307~10308 
+(Effective digit 15~16 digits) 
+bool 
+Boolean 
+True, False 
+byte 
+Byte 
+−27~27 −1 
+Table 8: Variable Data Types 
+ 
+After clicking the newly added variable, the declaration of a variable can be performed. For 
+example, the integer type variable TM_Robot=0 can be declared. 
+ 
+In addition to declaring a single variable, variable arrays can also be declared. The array 
+declaration method is to set the name of the array variable and the size of the array. The default 
+size is 0. As an array with size 10 and name Array is declared, the Array {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} 
+can be obtained. If users want to obtain the first value of the array, Array[0] can be called in calling 
+the array SET Node. 
+ 
+To edit a variable or an array, select the item and click the pencil icon. For variables or arrays, the 
+data type is not editable, and for arrays, the array size is not editable, either. Users can edit 
+variables or arrays with naming staring with var_ only. 
+ 
+ 
+IMPORTANT: 
+The number of first element of the array is 0. 
+ 
+ Global Variables 
+The Global Variables can be accessed by clicking Global Variable in Robot Setting. 
+Global Variable values can be accessed or changed in different projects.  
+ 
+
+
+=== Page 147 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+147 
+ 
+Figure 150: Global Variable Setting 
+ 
+As shown in the figure below, an integer type Global Variable is declared as a. The newly 
+added Global Variable will appear in the project's variable list, and it will be represented as a 
+Global Variable starting with "g_".  
+ 
+ 
+Figure 151: Global Variables after Project Is Run 
+ 
+If, for example, users create a global variable with a name of ‘a’, this will be displayed by 
+TMflow as “g_a”, indicating that it is a global variable. The global variable “g_a” defaults to a 
+value of zero. If the SET node increments the value of “g_a” by one each time it is executed, 
+after running the project 66 times the value of “g_a” will be 66. At this point, any other project 
+that accesses “g_a” will get the value 66 for the variable. 
+ 
+
+
+=== Page 148 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+148 
+ 
+IMPORTANT: 
+Global variables will not be re-initialized when the system shuts down. They will retain their 
+value. 
+ 
+ Logic Nodes 
+ 
+ 
+Note: 
+Due to the limited I/O status refresh rate of the system, Safety I/O status reading is designed for 
+monitoring mainly. Conditional statements in logical nodes such as If Node and Gateway Node 
+involving in Safety I/O statuses are not recommended, otherwise the project may not execute 
+as users expected. 
+ 
+ Start Node 
+In this node, users can view and set the initial state of the current project such as the initial project 
+running speed in Manual mode (the initial project running speed in Manual Mode is fixed at 5% by 
+default). Also, users can reset the states of DO and AO at the beginning of the project to initialize 
+DO and AO before the project starts. Check Enable continuous motion to prevent the IO writing 
+from interrupting the robot moving along the path of points for a smooth process of moving. 
+Enable continuous motion is unchecked by default. Check Enable busy loop optimization to 
+keep from intensive uses of CPU due to the busy loops. 
+ 
+ 
+Note: 
+More than 20 threads of execution will overload the system. There is no way to reduce the 
+loading even if checked Enable busy loop optimization. 
+ 
+ SET Node 
+This node can set the states of IO, and change the type and value of variables. When passing 
+through this node, all parameters in the node will be changed to the set result. 
+ 
+
+
+=== Page 149 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+149 
+ 
+Figure 152: SET Node 
+ 
+In the application of variables, the SET Node can add and subtract variables, associate with the 
+IF Node to select the path, or interrupt the infinite path of the project. As shown below, set an 
+integer type of variable count=0. Each time it passes through the SET Node, the count value is 
+incremented by 1. Users can use Display to show the number of times the project has been run. 
+ 
+ 
+Figure 153: Variable Count 
+ 
+Syntax 
+Meaning 
+a+= b 
+a = a + b 
+a−= b 
+a = a −b 
+a ∗= b 
+a = a ∗b 
+a/= b 
+a = a/b 
+a = b 
+Specifies the value of a is b 
+Table 9: SET Syntax List 
+ 
+
+
+=== Page 150 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+150 
+ 
+NOTE: 
+Point, Base, TCP, VPoint, IO, Robot, and FTSensor in the flows are now parameterized, 
+and users can write variables as parameters to the objects and read from the parameters 
+for calculations or applications with their types, Name/IDs, and attributes. For more details, 
+Refer to the manual of Expression Editor and Listen Node. 
+ 
+ 
+Figure 154: Expression Editor Parameters (1/2) 
+ 
+ 
+NOTE: 
+1. 
+Using parameterized objects is the same as using user defined variables. 
+Parameterized objects can be used without declarations to get or modify point data 
+through the syntax in the project operations and make the robot move with more 
+flexibility. The expression comes with three parts: item, index, and attribute. 
+2. 
+A base index is added to the base parameters to act as the choice of the bases, eg. 
+Base[“(base name) ”,(base index) ].value[ ]. The default value is 0 if there is no 
+number assigned to base index. 
+3. 
+Writing to the bases parameters is added with the same syntax as shown above. Only 
+the value is writable, and other properties are read only. 
+ 
+If there are multiple equations in Expression Editor, users can click on the equation to move, 
+and use the triangles to move the equation up and down for the process sequence. 
+ 
+
+
+=== Page 151 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+151 
+ 
+Figure 155: Expression Editor Parameters (2/2) 
+ 
+In the box below, the existing variables can be selected and used for calculation. 
+ 
+ 
+Figure 156: Add Expression 
+ 
+The SET Node can also set the Analog IO such as enabling Analog IO while passing through 
+the SET Node and giving the external device a specific voltage until a different node stops the 
+output voltage. 
+
+
+=== Page 152 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+152 
+ 
+Figure 157: Analog I/O Setting 
+ 
+ IF Node 
+In real robot operations, different conditions may result from many factors. For example, job 
+failure, success, and communication errors may occur in various function nodes. These results 
+will return the corresponding variable values. Users can use the IF node to handle these 
+conditions according to different variables. The IF node can judge or compare the state of IO, the 
+state of a Variable, and judge the state of Compliance as well as take the Yes or No path 
+according to whether the condition of the judgment is reached. Click the field next to Node Name 
+to change the name of the node. 
+ 
+ 
+Figure 158: IF Node 
+ 
+Operator 
+Description 
+<  
+Less than 
+>  
+More than 
+
+
+=== Page 153 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+153 
+== 
+Equal to 
+<= 
+Less than or Equal to 
+>= 
+More than or Equal to 
+!= 
+Not Equal to 
+Table 10: If Judgment Operators 
+ 
+In the judgment of stop criteria, as shown in the figure below, the variables obtained from the 
+result in this project are used to program the following flow. 
+ 
+ 
+Figure 159: IF Node Stop Criteria Setting 
+ 
+ WaitFor Node 
+The main function of the WaitFor Node is to hold the project, and continue to run after the set 
+conditions are met. It can be set according to IO, Time, Variables and other conditions to judge 
+whether to resume the run. 
+ 
+ Gateway Node 
+The Gateway node is a conditional judgment formula which is similar to IF Node. Instead of 
+output as YES or NO (IF Node), the Gateway node has a corresponding number of sub-nodes 
+called CASE. When the project flow reaches a Gateway node, CASE would be judged from the 
+list in Case Settings with a top-down approach. Users can use the arrows up and down to 
+reorder the cases. If any condition is met, the project flow would continue from the output of that 
+CASE sub-node, and the judgment of the rest of the CASEs are skipped.  
+ 
+
+
+=== Page 154 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+154 
+ 
+Figure 160: Gateway Node Judges Five Conditions 
+ 
+As shown above, there are 4 conditioned CASEs (and 1 Default case) which is relevant to using 
+4 IF Nodes as shown in the figure below. From the view point of simplicity, Gateway nodes can 
+simplify the layout and increase visibility of the flow. 
+ 
+ 
+Figure 161: IF Node Judges Four Conditions 
+ 
+ 
+NOTE: 
+If no conditions are matched, the project flow would remain deadlocked at the Gateway 
+node. Therefore, it is necessary to have a default case so that the project flow can 
+continue which is practical by leaving the last case sub-node with no condition 
+ 
+ M-Decision Node 
+The M-Decision node comes with respective numbers of sub-nodes called CASE similar to 
+Gateway Node. When the project flow reaches a M-Decision node, the flow pauses and prompts 
+users to decide the CASE condition. Once decided, the project flow would continue from the 
+output of that CASE sub-node. 
+ 
+ 
+NOTE: 
+ 
+When the flow reaches the M-Decision node: 
+1. 
+Users cannot change the project speed. 
+2. 
+The message box prompts users making decisions in the view page, and 
+only those who get control of the system can make decisions. 
+
+
+=== Page 155 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+155 
+ 
+M-Decision node is applicable to the main project flow, subflow, and thread.  
+ 
+ Process  
+ Process Nodes 
+Flow nodes are mainly divided into four major categories: Pause, Stop, Goto, and Warp. The 
+function of the Pause node is the same as the pause on the Robot Stick. If the project is running, 
+and passes the Pause node, the project is paused. The Robot Stick can be used to override the 
+Pause, so the project continues to run. Users can use voice function in a Pause node. The robot 
+will read out the content when reaches the node. 
+ 
+The function of the Stop Node is the same as the Stop Button on the Robot Stick, as shown in 
+the figure below. If the project is running, and passes the Stop Node, the project is ended. No 
+node can be connected after Stop. If a Stop node does not exist in the flow, the project will not 
+end automatically. It is necessary to press the Stop Button on the Robot Stick to end the 
+project. 
+ 
+ 
+Figure 162: Stop Node Ends Project 
+ 
+The Goto Node provides users with unconditional transfer in the TMflow. When passing through 
+this Node, it will directly transfer to the set target Node, as shown in the figure, to use the Goto 
+Node. If the condition of the judgment formula is met, the next step transfers to P1 directly. 
+Although the application of Goto can be achieved using the connection method, the complexity of 
+the line will reduce the readability of the flow. The Goto Node will display the connection path only 
+when the node is clicked, and the path of the connection will be displayed and indicated by red 
+lines. 
+ 
+
+
+=== Page 156 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+156 
+ 
+Figure 163: Goto Node Flow Transfer 
+ 
+ 
+Figure 164: Goto Node Connection 
+ 
+The Warp Node transfers control the flow to another project and proceeds to run the target 
+project. Nodes in the original project that occur after the Warp are not executed. The parameters 
+of Variables, Base, and Tools will not pass to another project. If users want to transfer Variables 
+between two projects, Global Variables can be used. As shown in the figure, when the TMflow 
+of project runs beyond the Warp Node, the execution is transferred to another project. 
+ 
+ 
+Figure 165: Warp Node Transfers to another Project 
+ 
+Since the Warp node applies to transfer the flow between projects, the time consumed to warp 
+between projects varies from the mechanism for the initiations and the terminations of the 
+projects. To run the Warp node at its best efficiency, mind each of the following as listed: 
+ 
+1. 
+No warning while the project is running. 
+2. 
+Do not insert the dongle key. 
+3. 
+Operate in Auto Mode. 
+
+
+=== Page 157 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+157 
+4. 
+The warp target speeds up after running for the second time. 
+ 
+ 
+NOTE: 
+Users can use variables of type string to store project names to warp. 
+ 
+ Subflow Node 
+When the number of Nodes in the flow becomes large, certain blocks of the project may be used 
+repeatedly. If the Nodes in these repeated blocks need to be modified, it may cause 
+inconsistencies in the parameters; therefore, the Subflow Node of TMflow can be used. This 
+Node will create a new page, and share the Variables, Tool parameters, Bases with the original 
+page. The concept of modularization created with this method allows users to simplify the project 
+editing flow, and improves the readability of the flow. During flow programming, it is 
+recommended to use Subflow to simplify the whole flow, as shown in the figure, in this project the 
+nodes running the same action only need to be programmed once. 
+ 
+ 
+Figure 166: Subflow Node Modularization Concept 
+ 
+The Subflow Node can be dragged into the flow from the node menu. If the current project does 
+not have any Subflow pages, a new page will be added automatically. If the current project 
+already has Subflow pages, a query box will pop up, asking whether to create a new page. In 
+addition, users can click 
+ at the top left of the project editing page to add a new Subflow 
+page, and connect the Subflow in the field of Select Subflow of the Subflow Node. If this page 
+needs to be deleted, click the Edit icon of the Start Node in the Subflow page to delete. 
+ 
+
+
+=== Page 158 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+158 
+ 
+Figure 167: Menu to Create Subpages 
+ 
+ 
+Figure 168: Select a subflow in the subflow node (1/2) 
+ 
+Users can click 
+ next the field of Select Subflow to switch the tab of the flow editing page to 
+the selected subflow in the background. 
+ 
+
+
+=== Page 159 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+159 
+ 
+Figure 169: Select a subflow in the subflow node (2/2) 
+ 
+ Thread 
+TMflow provides the function of Thread, allowing state monitoring and data acquisition to be 
+independent from the robot. Click the query box popped up on the top left of the flow tab to add a 
+Thread page. 
+ 
+ 
+Figure 170: Thread 
+ 
+Inside the Thread page, only these actions can be added to the Project Editing Page: the logic 
+to judge, and the value of the node to display. No motion node is available in the Thread page. 
+There are two types of thread pages, the Thread Page, and the Non-pause Thread Page. When 
+the project is paused, the Thread Page is also paused at the same time, and the Non-pause 
+Thread Page does not pause so that users can still read data or update variables in the 
+Non-pause Thread Page. To delete the page, click the Edit icon of the Start node in the 
+subpage to delete. 
+11. Vision Node 
+
+
+=== Page 160 ===
+ 
+ 
+Software Manual TMflow 
+Software Version: 1.88 
+160 
+The Vision Node provides the creation of a plane with fixed-point type, servo type, and object type as well 
+as a variety of AOI identification functions. The display of a Vision Node in flow, in the most complicated 
+situation, each affiliate icon is shown in the figure below: The Base icon on the right side is for which Base is 
+to record the Vision node of this Vision Job, and the Base icon on the left side is for which Base is to be 
+generated by this Vision Job. 
+ 
+Figure 171: Vision Node 
+ 
+TM Robot records the relative relationship of objects by recording the points on different Vision Bases. If 
+the environment changes, the robot can be compensated by coordinate transformation without re-teaching 
+the robot's point positions. The position, as shown in the following figure, records the point P1 on the Vision 
+Base to complete the task of pick, and performs the placement operation at the fixed position P2. 
+ 
+ 
+Figure 172: Vision Node Flow 
+ 
+ 

@@ -1,0 +1,22 @@
+{
+  "name": "Bobiverse Replicate",
+  "tagline": "Explicit Bobiverse replication with a guarded runner and lineage tracking",
+  "description": "Bobiverse-themed purposeful replication for OpenClaw. Replication runs only on explicit operator command with concrete mission need, a dry-run preview, and a one-time nonce-backed confirmation token. The guarded runner validates workspace boundaries, rejects symlinks, stages clone creation transactionally, and audits dry-run and execute attempts. Execute-mode replication defaults to a 24-hour cadence unless explicitly overridden with reason.\n\nIncludes the Bob Johansson (Book 1) workspace templates, lineage docs, the guarded replicate skill, and its supporting scripts in one bundle so ClawHub installs can bootstrap a Bob workspace without a separate repo clone.\n\nFor a generic version without the sci-fi theming, see the Agent Replicate skill on ClawHub.",
+  "category": "creative",
+  "tags": ["bobiverse", "personality", "multi-agent", "sci-fi", "workspace-management", "agent-setup"],
+  "version": "1.2.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/TheAmericanMaker/bobiverse-openclaw/issues",
+  "homepage": "https://github.com/TheAmericanMaker/bobiverse-openclaw",
+  "requires_operator_approval": true,
+  "permissions": ["filesystem:agent-workspace", "cli:openclaw"],
+  "security": {
+    "sandboxed": true,
+    "scope": "agent-workspace-only",
+    "network": false,
+    "human_in_the_loop": true,
+    "explicit_trigger_only": true,
+    "default_mode": "dry-run"
+  }
+}

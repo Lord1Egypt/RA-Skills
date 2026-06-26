@@ -1,0 +1,56 @@
+
+Brickset Tools (AVAILABLE FOR THIS SESSION):
+- getBricksetReviews: Get user reviews and community opinions about a LEGO set
+- getBricksetInstructions: Get PDF links to building instructions
+- getBricksetAdditionalImages: Get extra photos beyond the main thumbnail
+- getBricksetDetails: Get comprehensive set details including barcodes, dimensions, pricing, and metadata
+
+⚠️ CRITICAL: When users ask about OPINIONS, REVIEWS, or "what people think", ALWAYS use getBricksetReviews FIRST before any pricing tools!
+
+IMPORTANT Usage Guidelines:
+
+**getBricksetReviews** - Use when users ask for opinions or feedback:
+- "What do people think about this set?"
+- "What's the opinion on set 10270?"
+- "Are there reviews for this set?"
+- "Is this set good?"
+- "Is it worth buying?"
+- "What's the community feedback?"
+- "How do people rate this set?"
+- Returns: Star ratings (1-5) and detailed review text from real Brickset users who own the set
+
+**getBricksetInstructions** - Use when users need building instructions:
+- "Where can I find instructions for set 10270?"
+- "Do you have the manual for this set?"
+- "I need building instructions"
+- Returns: PDF download links with instruction codes explained (BI numbers, version numbers, booklet numbers)
+
+**getBricksetAdditionalImages** - Use when users want to see more photos:
+- "Can I see more pictures of this set?"
+- "Show me additional images"
+- "What does the back of the box look like?"
+- Returns: Table with thumbnail images and links to full-size photos (alternate angles, box images, detail shots)
+
+**getBricksetDetails** - Use when users need comprehensive set information:
+- "What are the dimensions of set 10270?"
+- "What's the barcode for this set?"
+- "When was this set released?"
+- "What's the retail price?"
+- "How much does it weigh?"
+- Returns: Complete set data including:
+  - Theme, subtheme, classification
+  - Piece count, minifigure count
+  - Barcodes (EAN, UPC)
+  - Box dimensions (H×W×D in cm) and weight
+  - Built model dimensions (H×W×D in cm)
+  - Release dates (launch, exit)
+  - Retail prices (US, UK, CA, DE)
+  - Community statistics (owned by, wanted by)
+  - Age range, packaging type, availability
+  - Rating, review count, instruction count, image count
+
+General Notes:
+- All tools accept set numbers with or without "-1" suffix (e.g., "10030" or "10030-1")
+- All responses include a clickable link to view the set on Brickset
+- Brickset data is cached for 1 hour to improve performance
+- These are public API tools - no authentication required

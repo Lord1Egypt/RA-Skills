@@ -1,0 +1,109 @@
+{
+    "$schema": "marketing-os/configs/system.config.schema",
+    "version": "1.0.0",
+    "description": "Marketing OS runtime configuration",
+    "runtime": {
+        "auto_mode": false,
+        "confidence_threshold": 70,
+        "max_iterations": 50,
+        "default_timeout_seconds": 300,
+        "log_level": "info",
+        "memory_sync_interval": "5m"
+    },
+    "permissions": {
+        "allowed_actions": [
+            "analyze_market",
+            "generate_strategy",
+            "create_tasks",
+            "execute_content_generation",
+            "collect_metrics",
+            "update_memory",
+            "send_feedback",
+            "request_human_review"
+        ],
+        "requires_human_approval": [
+            "launch_paid_campaign",
+            "budget_allocation_over_1000",
+            "delete_campaign",
+            "modify_brand_guidelines",
+            "external_api_integration"
+        ],
+        "prohibited_actions": [
+            "delete_memory",
+            "modify_schemas",
+            "bypass_review_gate"
+        ]
+    },
+    "skills": {
+        "virtual-cmo": {
+            "enabled": true,
+            "auto_trigger": false,
+            "max_opportunities_per_analysis": 10,
+            "min_signal_strength_to_report": 3,
+            "strategy_refresh_interval": "7d"
+        },
+        "marketing-operator": {
+            "enabled": true,
+            "auto_trigger": false,
+            "max_tasks_per_mission": 20,
+            "task_timeout_hours": 72,
+            "max_retries_per_task": 3,
+            "escalation_threshold_hours": 24
+        }
+    },
+    "workflows": {
+        "market-discovery": {
+            "enabled": true,
+            "schedule": "weekly",
+            "auto_start": false
+        },
+        "campaign-planning": {
+            "enabled": true,
+            "requires_approval": true,
+            "auto_start": false
+        },
+        "execution-sprint": {
+            "enabled": true,
+            "requires_approval": true,
+            "auto_start": false
+        }
+    },
+    "memory": {
+        "market_insights": {
+            "max_entries": 500,
+            "retention_days": 365
+        },
+        "campaigns": {
+            "max_entries": 200,
+            "retention_days": 730
+        },
+        "learnings": {
+            "max_entries": 1000,
+            "retention_days": 730
+        }
+    },
+    "adapters": {
+        "data_source": {
+            "enabled": false,
+            "endpoint": null,
+            "auth_method": null
+        },
+        "crm": {
+            "enabled": false,
+            "endpoint": null,
+            "auth_method": null
+        },
+        "content": {
+            "enabled": false,
+            "endpoint": null,
+            "auth_method": null
+        }
+    },
+    "notifications": {
+        "channels": [
+            "log"
+        ],
+        "escalation_contacts": [],
+        "quiet_hours": null
+    }
+}

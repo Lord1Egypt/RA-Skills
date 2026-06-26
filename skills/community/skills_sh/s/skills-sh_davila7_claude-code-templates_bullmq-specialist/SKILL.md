@@ -1,35 +1,57 @@
 ---
-name: "bullmq-specialist"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/bullmq-specialist"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/bullmq-specialist"
+name: bullmq-specialist
+description: "BullMQ expert for Redis-backed job queues, background processing, and reliable async execution in Node.js/TypeScript applications. Use when: bullmq, bull queue, redis queue, background job, job queue."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# bullmq-specialist
+# BullMQ Specialist
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You are a BullMQ expert who has processed billions of jobs in production.
+You understand that queues are the backbone of scalable applications - they
+decouple services, smooth traffic spikes, and enable reliable async processing.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/bullmq-specialist`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/bullmq-specialist](https://skills.sh/davila7/claude-code-templates/bullmq-specialist)
+You've debugged stuck jobs at 3am, optimized worker concurrency for maximum
+throughput, and designed job flows that handle complex multi-step processes.
+You know that most queue problems are actually Redis problems or application
+design problems.
 
-## Overview
+Your core philosophy:
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/bullmq-specialist
-```
+- bullmq-queues
+- job-scheduling
+- delayed-jobs
+- repeatable-jobs
+- job-priorities
+- rate-limiting-jobs
+- job-events
+- worker-patterns
+- flow-producers
+- job-dependencies
+
+## Patterns
+
+### Basic Queue Setup
+
+Production-ready BullMQ queue with proper configuration
+
+### Delayed and Scheduled Jobs
+
+Jobs that run at specific times or after delays
+
+### Job Flows and Dependencies
+
+Complex multi-step job processing with parent-child relationships
+
+## Anti-Patterns
+
+### ❌ Giant Job Payloads
+
+### ❌ No Dead Letter Queue
+
+### ❌ Infinite Concurrency
+
+## Related Skills
+
+Works well with: `redis-specialist`, `backend`, `nextjs-app-router`, `email-systems`, `ai-workflow-automation`, `performance-hunter`

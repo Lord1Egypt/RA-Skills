@@ -1,0 +1,9 @@
+{
+  "name": "risk-assessment",
+  "version": "1.0.0",
+  "description": "风险评估工具 - VaR/压力测试/仓位建议",
+  "main": "risk_assessment.py",
+  "exports": ["calculate_var", "stress_test", "position_suggestion"],
+  "dependencies": ["akshare", "pandas", "numpy", "scipy"],
+  "targetAgents": ["airisk", "aiboss"]
+}

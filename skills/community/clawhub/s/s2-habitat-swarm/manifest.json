@@ -1,0 +1,10 @@
+{
+  "name": "s2-habitat-swarm",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "Phase 4 of S2-SP-OS. Implements the Da Xiang Standard Unit theory. Defines 2x2m primitive grids, establishes cross-room agent polling, and enforces a strict chain of command where all hardware AI agents report exclusively to the Embodied Digital Avatar.",
+  "tags": ["Smart Home", "Swarm", "Spatial Computing", "Topology", "Delegation"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

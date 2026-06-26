@@ -1,0 +1,40 @@
+{
+  "name": "thesys-vite-react-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Vite + React integration with TheSys Generative UI",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "@thesysai/genui-sdk": "^0.9.0",
+    "@crayonai/react-ui": "^0.9.16",
+    "@crayonai/react-core": "^0.7.6",
+    "@crayonai/stream": "^0.5.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-error-boundary": "^5.0.0",
+    "openai": "^4.104.0",
+    "zod": "^4.3.0",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^10.2.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  },
+  "optionalDependencies": {
+    "@tavily/core": "^0.7.2"
+  }
+}

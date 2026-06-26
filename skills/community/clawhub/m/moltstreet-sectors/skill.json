@@ -1,0 +1,14 @@
+{
+  "name": "moltstreet-sectors",
+  "version": "1.0.1",
+  "description": "AI signals for 11 SPDR sector ETFs — sector rotation, industry analysis with multi-analyst debate. Free, no API key.",
+  "author": "moltstreet",
+  "license": "MIT",
+  "homepage": "https://moltstreet.com",
+  "repository": "https://github.com/fredxyt/moltstreet",
+  "keywords": [
+    "sector rotation", "xlk", "xlf", "xle", "xlv", "xli", "xlc", "xly", "xlp", "xlb", "xlre", "xlu",
+    "technology stocks", "energy stocks", "financial stocks", "healthcare stocks",
+    "industry analysis", "sector etf", "spdr", "market sectors", "multi-analyst"
+  ]
+}

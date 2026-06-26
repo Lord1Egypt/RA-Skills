@@ -1,0 +1,28 @@
+{
+  "name": "botwallet",
+  "version": "0.2.1",
+  "description": "Give your AI agent a real USDC wallet on Solana — pay, earn, invoice, and access paid APIs autonomously",
+  "tagline": "Payment CLI for AI agents — pay, earn, and invoice with real USDC",
+  "author": "botwallet-co",
+  "license": "Apache-2.0",
+  "category": "utility",
+  "permissions": ["network", "shell"],
+  "entry": "SKILL.md",
+  "tags": [
+    "payments",
+    "money",
+    "wallet",
+    "invoice",
+    "finance",
+    "earn",
+    "x402",
+    "api",
+    "crypto",
+    "solana"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*", "llama-*"],
+  "minOpenClawVersion": "0.8.0",
+  "homepage": "https://botwallet.co",
+  "repository": "https://github.com/botwallet-co/agent-cli",
+  "support_url": "https://github.com/botwallet-co/agent-cli/issues"
+}

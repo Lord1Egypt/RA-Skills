@@ -1,35 +1,27 @@
 ---
-name: "Ps Tool"
-description: "Display information about active processes. Use for monitoring running programs, checking resource usage, and system diagnostics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ps-tool"
-sourceUrl: "https://clawhub.ai/skills/ps-tool"
+name: ps-tool
+description: Display information about active processes. Use for monitoring running programs, checking resource usage, and system diagnostics.
 ---
+# PS - Process Status Viewer
 
-# Ps Tool
+Show snapshot of current processes with PID, CPU usage, memory consumption, and status. Essential for system monitoring and process management.
 
-> Display information about active processes. Use for monitoring running programs, checking resource usage, and system diagnostics.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ps-tool`
-- **Source URL:** [https://clawhub.ai/skills/ps-tool](https://clawhub.ai/skills/ps-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/ps-tool
+ps-tool [options]
+```
+
+## Common Options
+
+- `aux`: Detailed view of all processes
+- `-ef`: Full-format listing
+- `-u user`: Filter by user
+- `--sort=-%mem`: Sort by memory usage
+
+## Examples
+
+```bash
+ps-tool aux
+ps-tool -ef
+ps-tool -u root
 ```

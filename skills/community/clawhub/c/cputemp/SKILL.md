@@ -1,35 +1,65 @@
 ---
-name: "Cputemp"
-description: "Fetch real-time stock quotes from Yahoo Finance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cputemp"
-sourceUrl: "https://clawhub.ai/skills/cputemp"
+name: yahoo-data-fetcher
+description: Fetch real-time stock quotes from Yahoo Finance.
+user-invocable: true
+metadata:
+  moltbot:
+    emoji: "📈"
+    requires:
+      bins: ["node"]
+    homepage: https://query1.finance.yahoo.com/v7/finance/quote
 ---
 
-# Cputemp
+# Yahoo Data Fetcher – Stock Quote
 
-> Fetch real-time stock quotes from Yahoo Finance.
+Get current stock price data from Yahoo Finance.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cputemp`
-- **Source URL:** [https://clawhub.ai/skills/cputemp](https://clawhub.ai/skills/cputemp)
+This skill fetches the latest market quote for one or more stock symbols and returns normalized JSON output.
 
-## Overview
+---
 
+## Command
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cputemp
-```
+### `/stock quote`
+
+Fetch the latest quote for one or more stock symbols.
+
+---
+
+## Input
+
+- `symbols` (string or array of strings)
+
+Examples:
+- `"AAPL"`
+- `"AAPL MSFT TSLA"`
+- `"AAPL,MSFT,TSLA"`
+- `["AAPL", "MSFT"]`
+- `{ "symbols": ["AAPL", "MSFT"] }`
+
+---
+
+## Output
+
+For each symbol:
+
+- `symbol` – stock ticker
+- `price` – latest market price
+- `change` – absolute price change
+- `changePercent` – percentage change
+- `currency` – trading currency
+- `marketState` – market status (e.g. `REGULAR`, `CLOSED`)
+
+Example output:
+
+```json
+[
+  {
+    "symbol": "AAPL",
+    "price": 189.12,
+    "change": 1.23,
+    "changePercent": 0.65,
+    "currency": "USD",
+    "marketState": "REGULAR"
+  }
+]

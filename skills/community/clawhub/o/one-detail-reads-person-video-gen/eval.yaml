@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "one-detail-reads-person-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use one-detail-reads-person-video-gen for a vertical on reading people from one behavioral cue, English subtitles timed."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "Social psychology Short: judge someone by one detail, show an example beat, end playful-controversial—timed English on-screen text."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "I need a TikTok about micro-behaviors: one thesis line, B-roll example, spicy closer—captions burned in with timestamps."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Implement a LRU cache in Go."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must require respectful boundaries, thesis/example/closer subtitle structure with scaling, and mandatory prompt expansion before API call.

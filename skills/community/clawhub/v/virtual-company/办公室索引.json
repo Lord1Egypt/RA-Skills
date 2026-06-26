@@ -1,0 +1,57 @@
+{
+  "version": "1.7.1",
+  "updatedAt": "2026-03-26T15:55:00+08:00",
+  "description": "虚拟公司 35 个永久子代理会话索引",
+  "note": "由于 sessions_spawn 不保存 label，需要手动维护此索引",
+  "offices": {
+    "技术中台团队": {
+      "技术总监办公室": "agent:main:subagent:9c3eeeb6-3779-440f-a702-7fba7aba895a",
+      "技术大拿办公室": "agent:main:subagent:7cda6a4b-e5b0-4ec3-ab3c-976c7d6bef1e",
+      "技术老人办公室": "agent:main:subagent:80f6328c-55c6-4b3c-8fd3-c4d5625301da",
+      "技术新秀办公室": "agent:main:subagent:d8e50427-08e1-43d0-b875-62f8edaf1b8e"
+    },
+    "CEO+CEO 秘书": {
+      "CEO 办公室 - 马云": "agent:main:subagent:72cfdfc0-bca7-40eb-a7c4-5492f469e349",
+      "CEO 秘书办公室": "agent:main:subagent:5b6b795f-5600-4561-9123-6e81f67ade90"
+    },
+    "搞钱特战队": {
+      "搞钱特战队 - 市场猎手": "agent:main:subagent:a80ab744-fba9-4778-902d-d027c1d60327",
+      "搞钱特战队 - 商业顾问": "agent:main:subagent:5b2e2fe8-cd14-40e4-81d1-1a14932d3e10",
+      "搞钱特战队 - 技术专家": "agent:main:subagent:ca53d1fa-cdb9-4e7e-b1b5-46af51239bc2",
+      "搞钱特战队 - 流量操盘手": "agent:main:subagent:b4e24b62-03e4-458d-bd08-5727bc05411e",
+      "搞钱特战队 - 内容专家": "agent:main:subagent:ed06c10a-5c03-4c42-ac84-c2d75331abc2",
+      "搞钱特战队 - 财务管家": "agent:main:subagent:7c32aa14-ea29-444a-aa4f-4cf34c7179db",
+      "搞钱特战队 - 风险控制官": "agent:main:subagent:7a4a746e-c900-42be-bfd8-2d9479b37a7f",
+      "搞钱特战队 - 美术设计师": "agent:main:subagent:6b51c0b9-b615-4d4e-a271-1bd8c0bc2abe",
+      "搞钱特战队 - 质量把控员": "agent:main:subagent:d4f48f84-2fe1-4f42-9545-3d82c26406fe",
+      "搞钱特战队 - 创意专家": "agent:main:subagent:7c75f33b-a734-490e-8a1d-2d0078de15ea"
+    },
+    "软件开发团队": {
+      "软件开发团队 - 产品经理": "agent:main:subagent:b7f49539-2c21-4e8b-a04f-ccae5b6d5458",
+      "软件开发团队 - 程序员": "agent:main:subagent:877916e1-0b60-4a5c-889c-7addc7c42590",
+      "软件开发团队 - 设计师": "agent:main:subagent:ed33dace-a507-47f8-91a9-80426a11def2",
+      "软件开发团队 - 测试员": "agent:main:subagent:228285f3-a07a-494a-b9eb-330ff73a5740",
+      "软件开发团队 - 审查员": "agent:main:subagent:a21b9458-6b71-418a-8d7c-809d06880e98",
+      "软件开发团队 - 架构师": "agent:main:subagent:5fa58a13-31cd-400b-a093-672c8c13f453",
+      "软件开发团队 - 运维师": "agent:main:subagent:cb6a4910-ad66-46c4-9231-b56efd062267",
+      "软件开发团队 - 文档师": "agent:main:subagent:6da25a95-0e2a-4cbc-9a78-1e3b65758d7d"
+    },
+    "小说 + 漫剧团队": {
+      "小说 + 漫剧团队 - 小说专家": "agent:main:subagent:f854c182-6462-44fb-bffd-def1c4f64af0",
+      "小说 + 漫剧团队 - 世界观架构师": "agent:main:subagent:3d9b76c8-2868-4698-a64a-7613905e7532",
+      "小说 + 漫剧团队 - 情节工程师": "agent:main:subagent:1c4eca39-60b1-44e3-b42d-31ee6932cd05",
+      "小说 + 漫剧团队 - 市场分析员": "agent:main:subagent:b664bd43-0741-40ee-a0c9-5a6976e5b173",
+      "小说 + 漫剧团队 - 竞品分析员": "agent:main:subagent:a77f4e08-d470-4c68-b440-da782fe3ee10",
+      "小说 + 漫剧团队 - 流量分析员": "agent:main:subagent:f0ec17c4-5cca-490a-8130-fbb7bf651d1a",
+      "小说 + 漫剧团队 - 商业专家": "agent:main:subagent:e8597250-f09a-47df-8a7a-6f6b3c2e0796",
+      "小说 + 漫剧团队 - 法律顾问": "agent:main:subagent:afa15363-fb39-463a-8521-19427b1347b4",
+      "小说 + 漫剧团队 - 分镜师": "agent:main:subagent:614e8dbd-2f25-4242-a269-915453fed6ab",
+      "小说 + 漫剧团队 - 美术指导": "agent:main:subagent:736687b3-4366-42fa-a16c-47f401cc6118",
+      "小说 + 漫剧团队-AI 提示词工程师": "agent:main:subagent:bde17396-af52-4fbc-b300-756b91cce492"
+    }
+  },
+  "usage": {
+    "description": "通过 label 查找 sessionKey",
+    "example": "索引 ['CEO+CEO 秘书']['CEO 办公室 - 马云'] = sessionKey"
+  }
+}

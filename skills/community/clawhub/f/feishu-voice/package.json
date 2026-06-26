@@ -1,0 +1,16 @@
+{
+  "name": "feishu-voice",
+  "version": "1.1.1",
+  "description": "飞书语音消息发送技能。将文本转换为语音并发送到飞书，支持 TTS 生成、格式转换、语速调整、时长读取、文件上传和消息发送",
+  "keywords": ["feishu", "voice", "tts", "audio", "messaging", "chinese", "coze"],
+  "author": "franklu0819-lang",
+  "license": "MIT",
+  "openclaw": {
+    "requires": {
+      "bins": ["ffmpeg", "ffprobe", "jq"],
+      "env": ["FEISHU_APP_ID", "FEISHU_APP_SECRET", "COZE_API_KEY"],
+      "optional_env": ["FEISHU_RECEIVER", "FEISHU_APP_ID_B", "FEISHU_APP_SECRET_B", "FEISHU_RECEIVER_B", "OPENCLAW_WORKSPACE"],
+      "skills": ["coze-tts"]
+    }
+  }
+}

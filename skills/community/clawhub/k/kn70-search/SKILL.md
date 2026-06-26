@@ -1,35 +1,25 @@
 ---
-name: "Search"
-description: "Search the web using multiple engines (Tavily, multi-search-engine, or SearXNG)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kn70-search"
-sourceUrl: "https://clawhub.ai/skills/kn70-search"
+name: search
+description: Search the web using multiple engines (Tavily, multi-search-engine, or SearXNG)
 ---
 
-# Search
+Provides tools for web search using Tavily (AI-optimized), multi-search-engine (17 engines without API key), or SearXNG (self-hosted).
 
-> Search the web using multiple engines (Tavily, multi-search-engine, or SearXNG)
+**Usage**:
+```typescript
+// Use Tavily (recommended)
+search_web({ query: "AI news", engine: "tavily", max_results: 10 })
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kn70-search`
-- **Source URL:** [https://clawhub.ai/skills/kn70-search](https://clawhub.ai/skills/kn70-search)
+// Use multi-search-engine (no API key needed)
+search_web({ query: "AI news", engine: "multi", max_results: 10 })
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/kn70-search
+// Use SearXNG (Windows Docker Desktop required)
+search_web({ query: "AI news", engine: "searxng", max_results: 10 })
 ```
+
+**Engine Comparison**:
+| Engine | Speed | Quality | Cost | Notes |
+|--------|-------|---------|------|-------|
+| tavily | ⚡ Fast | ⭐⭐⭐⭐⭐ | Free (dev) | AI-optimized, includes snippets |
+| multi | ⚡ Fast | ⭐⭐⭐⭐ | Free | 17 engines (Baidu, Bing, Google, etc.) |
+| searxng | 🐌 Medium | ⭐⭐⭐⭐⭐ | Free | Self-hosted, requires Docker Desktop |

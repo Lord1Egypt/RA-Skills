@@ -1,0 +1,94 @@
+{
+    "description": "Patient transfer between units - ADT^A02",
+    "messageType": "ADT^A02",
+    "eventCode": "A02",
+    "hl7": {
+        "raw": "MSH|^~\\&|HEXAFLUX|CHU_PARIS|TARGET|DEST|20260123090000||ADT^A02^ADT_A02|MSG002|P|2.5\rEVN|A02|20260123090000|||USER002\rPID|1||PAT12345^^^CHU_PARIS^PI||DUPONT^JEAN^^M.||19750315|M\rPV1|1|I|CHU_PARIS^NEURO^LIT_102^CHU_PARIS||||PR_DURAND^DURAND^PAUL|||NEURO||||||||||VIS20260122001\rPV2||||||||||||||||||||||CHU_PARIS^CARDIO^LIT_001^CHU_PARIS",
+        "segments": {
+            "MSH": {
+                "sendingApplication": "HEXAFLUX",
+                "sendingFacility": "CHU_PARIS",
+                "receivingApplication": "TARGET",
+                "receivingFacility": "DEST",
+                "dateTime": "20260123090000",
+                "messageType": "ADT^A02^ADT_A02",
+                "messageControlId": "MSG002",
+                "processingId": "P",
+                "versionId": "2.5"
+            },
+            "EVN": {
+                "eventTypeCode": "A02",
+                "recordedDateTime": "20260123090000",
+                "operatorId": "USER002"
+            },
+            "PID": {
+                "setId": "1",
+                "patientId": "PAT12345^^^CHU_PARIS^PI",
+                "patientName": "DUPONT^JEAN^^M.",
+                "birthDate": "19750315",
+                "sex": "M"
+            },
+            "PV1": {
+                "setId": "1",
+                "patientClass": "I",
+                "assignedLocation": "CHU_PARIS^NEURO^LIT_102^CHU_PARIS",
+                "attendingDoctor": "PR_DURAND^DURAND^PAUL",
+                "hospitalService": "NEURO",
+                "visitNumber": "VIS20260122001"
+            },
+            "PV2": {
+                "priorPatientLocation": "CHU_PARIS^CARDIO^LIT_001^CHU_PARIS"
+            }
+        }
+    },
+    "explanation": {
+        "purpose": "Patient transfer between units",
+        "patient": {
+            "id": "PAT12345",
+            "name": "JEAN DUPONT",
+            "birthDate": "15/03/1975",
+            "sex": "Male"
+        },
+        "transfer": {
+            "visitNumber": "VIS20260122001",
+            "transferDateTime": "23/01/2026 09:00:00",
+            "fromLocation": "CHU_PARIS, Cardiology, Bed LIT_001",
+            "toLocation": "CHU_PARIS, Neurology, Bed LIT_102",
+            "newAttendingPhysician": "Dr. DURAND PAUL"
+        },
+        "event": {
+            "code": "A02",
+            "name": "Transfer a Patient",
+            "timestamp": "23/01/2026 09:00:00",
+            "operator": "USER002"
+        }
+    },
+    "validation": {
+        "requiredSegments": {
+            "MSH": true,
+            "EVN": true,
+            "PID": true,
+            "PV1": true,
+            "PV2": true
+        },
+        "requiredFields": {
+            "MSH-3": true,
+            "MSH-4": true,
+            "MSH-7": true,
+            "MSH-9": true,
+            "MSH-10": true,
+            "MSH-12": true,
+            "EVN-1": true,
+            "EVN-2": true,
+            "PID-3": true,
+            "PID-5": true,
+            "PID-7": true,
+            "PID-8": true,
+            "PV1-2": true,
+            "PV1-3": true,
+            "PV1-19": true,
+            "PV2-1": true
+        },
+        "iheCompliant": true
+    }
+}

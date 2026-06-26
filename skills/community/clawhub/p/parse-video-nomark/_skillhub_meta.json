@@ -1,0 +1,11 @@
+{
+  "name": "parse-video",
+  "version": "1.0.0",
+  "author": "qiushuihanjing",
+  "source": "gitee",
+  "gitee": "https://gitee.com/qiushuihanjing/parse-video-nomark",
+  "description": "跨平台视频去水印解析工具，支持 20+ 平台",
+  "download_url": "https://gitee.com/qiushuihanjing/parse-video-nomark/raw/master/dist/",
+  "platforms": ["darwin-arm64", "darwin-amd64", "win64"],
+  "installedAt": 1744997400000
+}

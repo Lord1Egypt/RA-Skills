@@ -1,35 +1,225 @@
 ---
-name: "Xiaomi MiMo TTS"
-description: "使用小米 MiMo TTS (mimo-v2-tts) 生成语音。 支持多种音色、风格控制、情感标签和方言。 需要 MIMO_API_KEY。"
-category: "other"
-source: "ClawHub"
-tags: [mimo, tts, xiaomi]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaomi-mimo-tts"
-sourceUrl: "https://clawhub.ai/skills/xiaomi-mimo-tts"
+name: xiaomi-mimo-tts
+description: |
+  使用小米 MiMo TTS (mimo-v2-tts) 生成语音。
+  支持多种音色、风格控制、情感标签和方言。
+  需要 MIMO_API_KEY。
 ---
 
-# Xiaomi MiMo TTS
+# Xiaoma MiMo TTS
 
-> 使用小米 MiMo TTS (mimo-v2-tts) 生成语音。 支持多种音色、风格控制、情感标签和方言。 需要 MIMO_API_KEY。
+## 📁 目录结构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaomi-mimo-tts`
-- **Source URL:** [https://clawhub.ai/skills/xiaomi-mimo-tts](https://clawhub.ai/skills/xiaomi-mimo-tts)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaomi-mimo-tts
 ```
+scripts/
+├── mimo-tts.sh           # 基础版本统一入口
+├── mimo-tts-smart.sh     # 智能版本统一入口
+├── base/                 # 基础版本实现
+│   ├── mimo-tts.sh       # Shell 基础版
+│   ├── mimo_tts.js       # NodeJS 基础版
+│   └── mimo_tts.py       # Python 基础版
+├── smart/                # 智能版本实现
+│   ├── mimo_tts_smart.js    # NodeJS 智能版
+│   ├── mimo_tts_smart.py    # Python 智能版
+│   └── mimo_tts_smart.sh    # Shell 智能版
+├── utils/                # 工具脚本
+│   └── test.sh           # 测试脚本
+└── examples/             # 示例脚本
+    └── demo.sh           # 演示脚本
+```
+
+## ✨ 核心能力
+
+**根据对话场景，智能选择最合适的语音风格！**
+
+作为 Agent，你应该主动理解对话内容，选择合适的：
+- **情感**：开心、悲伤、紧张、愤怒、惊讶、温柔...
+- **方言**：东北话、四川话、台湾腔、粤语...
+- **效果**：悄悄话、夹子音、唱歌...
+- **语速**：快、慢、正常
+
+## 使用方式
+
+### 基础用法
+```bash
+./scripts/mimo-tts.sh "文本" [输出文件]
+```
+
+### 带风格标签
+```bash
+# 在文本前加 <style> 标签
+"<style>开心</style>今天真是太棒了！"
+"<style>东北话</style>老铁，咋整啊？"
+"<style>悄悄话</style>这是秘密哦..."
+```
+
+### 可用风格
+
+| 类型 | 示例 |
+|-----|------|
+| 情感 | 开心、悲伤、紧张、愤怒、惊讶、温柔 |
+| 方言 | 东北话、四川话、台湾腔、粤语、河南话 |
+| 效果 | 悄悄话、夹子音、唱歌 |
+| 语速 | 变快、变慢 |
+
+### 情感标签（细粒度控制）
+
+在文本中使用 `()` 添加情感：
+```
+"（紧张，深呼吸）呼……冷静，冷静"
+"（咳嗽）咳咳，不好意思"
+"（沉默片刻）……然后呢？"
+```
+
+## Agent 职责
+
+**你应该主动判断对话场景，选择合适的风格！**
+
+### 判断原则
+
+1. **默认使用普通话**，除非用户明显使用方言或有特别要求
+2. **根据内容选择情感**：
+   - 好消息 → 开心
+   - 坏消息/安慰 → 温柔、悲伤
+   - 紧急情况 → 紧张、急促
+   - 正式通知 → 严肃
+3. **根据场景选择效果**：
+   - 私密内容 → 悄悄话
+   - 朗读诗词 → 温柔、慢
+   - 讲故事 → 根据角色变化
+
+### 示例
+
+用户说："给我读首李白的诗"
+→ 判断：诗词应温柔、舒缓
+→ 生成：`"<style>温柔</style>床前明月光..."`
+
+用户说："用东北话给我讲个笑话"
+→ 判断：明确要求方言
+→ 生成：`"<style>东北话</style>那个啥..."`
+
+用户说："宝宝晚安"
+→ 判断：亲密、温柔场景
+→ 生成：`"<style>温柔</style>晚安，好梦哦～"`
+
+## 可用语音
+
+| 语音 | 参数 |
+|-----|------|
+| 默认 | `mimo_default` |
+| 中文女声 | `default_zh` |
+| 英文女声 | `default_eh` |
+
+## 智能模式（说明与使用建议）
+
+本项目提供“智能模式”（位于 scripts/mimo-tts-smart.sh 与 scripts/smart/ 下），它使用轻量的启发式与关键词检测来自动为文本选择合适的风格、方言与情感。该模式设计用于快速试验与交互式体验，而非对每种语境都保证高精度。
+
+建议与行为：
+- 默认不在自动化流水线中启用智能模式。将其视为可选的便捷工具，需由 agent 或用户显式调用。
+- 若对输出准确性有较高要求，请在输入文本最前面使用 `<style>...</style>` 明确指定风格与方言。
+- 智能模式适合快速原型、演示与人机协作场景；不适合替代人工细致调整或用于对准确性敏感的生产流程。
+
+调用示例：
+
+```bash
+# 显式启用智能模式（agent 或用户调用）
+./scripts/mimo-tts-smart.sh "宝宝晚安，爱你哦～" output.ogg
+
+# 若要手动覆盖智能判断，直接在文本前使用 style 标签
+./scripts/mimo-tts.sh "<style>温柔</style>床前明月光..." out.ogg
+```
+
+## 使用方式
+
+### 基础用法
+```bash
+./scripts/mimo-tts.sh "文本" [输出文件]
+```
+
+### 带风格标签
+```bash
+# 在文本前加 <style> 标签
+"<style>开心</style>今天真是太棒了！"
+"<style>东北话</style>老铁，咋整啊？"
+"<style>悄悄话</style>这是秘密哦..."
+```
+
+### 可用风格
+
+| 类型 | 示例 |
+|-----|------|
+| 情感 | 开心、悲伤、紧张、愤怒、惊讶、温柔 |
+| 方言 | 东北话、四川话、台湾腔、粤语、河南话 |
+| 效果 | 悄悄话、夹子音、唱歌 |
+| 语速 | 变快、变慢 |
+
+### 情感标签（细粒度控制）
+
+在文本中使用 `()` 添加情感：
+```
+"（紧张，深呼吸）呼……冷静，冷静"
+"（咳嗽）咳咳，不好意思"
+"（沉默片刻）……然后呢？"
+```
+
+## Agent 职责
+
+**你应该主动判断对话场景，选择合适的风格！**
+
+### 判断原则
+
+1. **默认使用普通话**，除非用户明显使用方言或有特别要求
+2. **根据内容选择情感**：
+   - 好消息 → 开心
+   - 坏消息/安慰 → 温柔、悲伤
+   - 紧急情况 → 紧张、急促
+   - 正式通知 → 严肃
+3. **根据场景选择效果**：
+   - 私密内容 → 悄悄话
+   - 朗读诗词 → 温柔、慢
+   - 讲故事 → 根据角色变化
+
+### 示例
+
+用户说："给我读首李白的诗"
+→ 判断：诗词应温柔、舒缓
+→ 生成：`"<style>温柔</style>床前明月光..."`
+
+用户说："用东北话给我讲个笑话"
+→ 判断：明确要求方言
+→ 生成：`"<style>东北话</style>那个啥..."`
+
+用户说："宝宝晚安"
+→ 判断：亲密、温柔场景
+→ 生成：`"<style>温柔</style>晚安，好梦哦～"`
+
+## 可用语音
+
+| 语音 | 参数 |
+|-----|------|
+| 默认 | `mimo_default` |
+| 中文女声 | `default_zh` |
+| 英文女声 | `default_eh` |
+
+## 🤖 智能版本 (多语言支持)
+
+我们提供了多种智能脚本实现，可以自动分析文本内容并选择合适的风格：
+
+### 🎯 实现支持
+
+| 版本 | 文件 | 特点 |
+|------|------|------|
+| **统一入口** | `mimo-tts-smart.sh` | 自动选择最佳实现，优先NodeJS→Python→Shell |
+| **NodeJS 版** | `mimo_tts_smart.js` | 功能最完善，智能分析最准确 |
+| **Python 版** | `mimo_tts_smart.py` | 功能完整，备用方案 |
+| **Shell 版** | `mimo_tts_smart.sh` | 简化版，兼容性好 |
+
+### 功能特点
+
+**自动分析**：
+- 检测情感关键词（开心、悲伤、紧张、愤怒、惊讶、温柔）
+- 识别方言特征（东北话、四川话、台湾腔、粤语）
+- 判断特殊效果（悄悄话、夹子音、唱歌）
+- 检测诗词格式（多行短句自动识别）
+
+#

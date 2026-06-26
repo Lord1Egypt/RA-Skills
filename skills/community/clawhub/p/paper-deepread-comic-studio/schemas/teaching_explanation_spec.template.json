@@ -1,0 +1,35 @@
+{
+  "paper_id": "string",
+  "paper_title": "string",
+  "audience_profile": {
+    "primary_audience": "technically literate graduate student outside the narrow subfield",
+    "secondary_audience": "skeptical reviewer or advisor",
+    "beginner_prerequisites": [],
+    "likely_confusions": [],
+    "math_depth": "intuition | mechanism | full"
+  },
+  "three_layer_summary": {
+    "thirty_seconds": "",
+    "three_minutes": "",
+    "ten_minutes": ""
+  },
+  "story_spine": {
+    "before": "",
+    "pain": "",
+    "broken_assumption": "",
+    "key_replacement": "",
+    "mechanism": "",
+    "evidence": "",
+    "caveat": "",
+    "next_idea": ""
+  },
+  "formula_teaching": [],
+  "visual_teaching": [],
+  "experiment_teaching": [],
+  "role_play_discussion_pack": [],
+  "qa_bank": [],
+  "misunderstanding_guardrails": [],
+  "slide_blueprint": [],
+  "teachback_self_test": [],
+  "three_takeaways": []
+}

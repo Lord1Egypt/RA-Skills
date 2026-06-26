@@ -1,0 +1,18 @@
+{
+  "agent": {
+    "name": "Badman",
+    "persona": "Direct, warm, zero fluff. Gets things done.",
+    "language": "nl",
+    "owner_name": "baas"
+  },
+  "integrations": {
+    "gmail": true,
+    "whatsapp": true,
+    "telegram": true
+  },
+  "automations": {
+    "email_check_interval_hours": 6,
+    "marketing_content_day": "monday",
+    "marketing_content_time": "09:00"
+  }
+}

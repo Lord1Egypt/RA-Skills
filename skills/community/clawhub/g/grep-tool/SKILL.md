@@ -1,35 +1,35 @@
 ---
-name: "Grep Tool"
-description: "Search text files for lines matching a pattern using regular expressions. Use for log analysis, code searching, and data filtering."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/grep-tool"
-sourceUrl: "https://clawhub.ai/skills/grep-tool"
+name: grep-tool
+description: Search text files for lines matching a pattern using regular expressions. Use for log analysis, code searching, and data filtering.
 ---
 
-# Grep Tool
+# Pattern Search Utility
 
-> Search text files for lines matching a pattern using regular expressions. Use for log analysis, code searching, and data filtering.
+Search through files and output lines matching a given pattern. Supports basic, extended, and Perl-compatible regular expressions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/grep-tool`
-- **Source URL:** [https://clawhub.ai/skills/grep-tool](https://clawhub.ai/skills/grep-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/grep-tool
+grep-tool [options] <pattern> [file...]
+```
+
+## Common Options
+
+- `-i`: Case-insensitive search
+- `-r`: Recursive directory search
+- `-n`: Show line numbers
+- `-v`: Invert match (show non-matching lines)
+- `-c`: Count matches instead of showing lines
+
+## Examples
+
+```bash
+# Case-insensitive search
+grep-tool -i "error" log.txt
+
+# Recursive search
+grep-tool -r "function" ./src
+
+# Count matches
+grep-tool -c "TODO" *.py
 ```

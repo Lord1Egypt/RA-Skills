@@ -1,0 +1,55 @@
+{
+  "btc": {
+    "symbol": "BTCUSDT",
+    "gridNum": 30,
+    "priceMin": 65000,
+    "priceMax": 77000,
+    "amount": 50,
+    "maxPosition": 500,
+    "sellOrders": 8,
+    "buyOrders": 7,
+    "notes": "比特币龙头，稳健配置，当前价~71,440 USDT"
+  },
+  "sol": {
+    "symbol": "SOLUSDT",
+    "gridNum": 50,
+    "priceMin": 75,
+    "priceMax": 95,
+    "amount": 15,
+    "maxPosition": 400,
+    "sellOrders": 8,
+    "buyOrders": 7,
+    "notes": "高波动首选，量化交易最佳"
+  },
+  "eth": {
+    "symbol": "ETHUSDT",
+    "gridNum": 30,
+    "priceMin": 1800,
+    "priceMax": 2700,
+    "amount": 4,
+    "maxPosition": 150,
+    "sellOrders": 10,
+    "buyOrders": 10,
+    "notes": "稳健选择，流动性好"
+  },
+  "avax": {
+    "symbol": "AVAXUSDT",
+    "gridNum": 40,
+    "priceMin": 7,
+    "priceMax": 14,
+    "amount": 20,
+    "maxPosition": 300,
+    "sellOrders": 8,
+    "buyOrders": 7,
+    "notes": "新兴公链龙头，高波动，当前价~9.6 USDT"
+  },
+  "optimization": {
+    "date": "2026-03-10",
+    "goal": "BTC+ 高波动组合",
+    "changes": [
+      "新增：BTC (龙头配置，当前价~71,440 USDT)",
+      "保留：SOL (高波动)、ETH (稳健)、AVAX (高波动)"
+    ],
+    "strategy": "BTC+SOL+ETH+AVAX 组合，预期收益 1.5-2.5%/天"
+  }
+}

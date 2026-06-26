@@ -1,35 +1,32 @@
----
-name: "研究生学习与科研计划制定助手"
-description: "根据研究生不同阶段目标，制定分阶段学习与科研计划，优化时间管理，跟踪进度，平衡科研与学业任务。"
-category: "other"
-source: "ClawHub"
-tags: [literature, postgraduate, study]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/graduate-plan-helper"
-sourceUrl: "https://clawhub.ai/skills/graduate-plan-helper"
----
-
 # 研究生学习与科研计划制定助手
+## 功能简介
+专为研究生打造，根据不同阶段（研一课程、研二科研、研三毕业）的目标与任务，制定可执行的学习、科研与论文写作计划，帮助合理分配时间，避免拖延与任务堆积。
 
-> 根据研究生不同阶段目标，制定分阶段学习与科研计划，优化时间管理，跟踪进度，平衡科研与学业任务。
+## 核心能力
+1.  **阶段化计划制定**
+    - 研一课程学习计划：结合课程难度与考核要求，制定每周预习、复习与作业安排
+    - 研二科研推进计划：按文献调研、实验设计、数据采集、结果分析拆分阶段性目标
+    - 研三毕业冲刺计划：按开题、中期、初稿修改、查重、答辩拆解关键节点任务
+2.  **时间管理与任务拆分**
+    - 将大目标拆解为可执行的周任务、日任务，降低执行难度
+    - 结合课程、科研、实习等多重任务，优化时间分配优先级
+    - 识别拖延高发环节，给出具体的时间管理建议
+3.  **进度追踪与调整**
+    - 生成可直接使用的计划模板，记录每日/每周完成情况
+    - 根据实际执行情况，动态调整后续任务安排，避免计划与实际脱节
+    - 识别任务滞后风险，给出补救方案与时间调整建议
+4.  **科研与学业平衡辅助**
+    - 协调课程学习与科研实验的时间冲突，制定高效并行方案
+    - 平衡论文写作与求职、实习的时间分配，减少毕业焦虑
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/graduate-plan-helper`
-- **Source URL:** [https://clawhub.ai/skills/graduate-plan-helper](https://clawhub.ai/skills/graduate-plan-helper)
+## 适用场景
+- 新学期/新研段的整体学习规划
+- 毕业论文全流程时间节点安排
+- 科研项目阶段性任务拆分与追踪
+- 应对多任务并行的时间管理难题
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/graduate-plan-helper
-```
+## 指令示例
+- "帮我制定一份研一上学期的课程学习与文献阅读计划"
+- "按开题到答辩的时间节点，给我排一份毕业论文进度表"
+- "帮我把这篇论文的写作任务拆分成每周的具体目标"
+- "我的实验进度滞后了，帮我调整接下来的计划"

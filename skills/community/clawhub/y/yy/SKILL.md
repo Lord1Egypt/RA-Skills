@@ -1,35 +1,49 @@
 ---
-name: "Yy"
-description: "提供YY直播平台公开页面的直播分类、活动信息、主播规则和帮助说明的整理与汇总服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yy"
-sourceUrl: "https://clawhub.ai/skills/yy"
+name: yy
+description: 注册“YY 直播”技能；用于直播平台公开页面、主播规则、活动信息与帮助说明整理。
+homepage: `https://www.yy.com/`
+metadata: {"clawdbot":{"emoji":"📺"}}
 ---
 
-# Yy
+# YY 直播
 
-> 提供YY直播平台公开页面的直播分类、活动信息、主播规则和帮助说明的整理与汇总服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yy`
-- **Source URL:** [https://clawhub.ai/skills/yy](https://clawhub.ai/skills/yy)
+- 面向公开官网、活动页、主播中心、规则页与帮助中心的信息整理
+- 不提供代播、刷量、礼物套利、账号接管、风控规避或外挂能力
+- 仅处理公开可见的直播分类、活动、主播规则与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.yy.com/
+- 主播与活动：主播中心、活动页、赛事页、分类页入口
+- 规则与帮助：直播规范、处罚公告、帮助中心、安全中心入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yy
-```
+常见任务
+
+- 直播分类、活动入口、主播支持与公开规则整理
+- 平台活动、赛事直播、主播成长规则与帮助信息汇总
+- 违规处罚、账号安全、礼物与权益说明提取
+
+数据字段
+
+- 直播分类、活动入口、主播规则、链接
+- 处罚说明、帮助页、安全中心、FAQ 链接
+- 赛事页、主播中心、活动周期、权益说明
+
+自动化要点
+
+- 直播平台活动频繁变动，输出时标注时间与来源
+- 不得输出刷量、作弊、诱导交易或规避风控建议
+- 不处理主播后台、收益数据、私信或用户隐私数据
+
+示例流程
+
+- 活动整理：访问 YY 活动页 → 提取时间与参与条件 → 输出表格
+- 规则汇总：访问主播规则与处罚页 → 提取重点限制 → 输出清单
+- 帮助目录：进入帮助中心 → 输出安全、直播、权益相关入口
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

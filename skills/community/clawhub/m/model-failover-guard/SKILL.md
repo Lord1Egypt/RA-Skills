@@ -1,35 +1,52 @@
----
-name: "Model Failover Guard"
-description: "Automatically monitors model health and switches between primary and fallback models to maintain stability and recover when possible."
-category: "other"
-source: "ClawHub"
-tags: [auto-switch, failover, model]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/model-failover-guard"
-sourceUrl: "https://clawhub.ai/skills/model-failover-guard"
----
+# OpenClaw Model Failover Guard
 
-# Model Failover Guard
+Automatic model failover + failback guard for OpenClaw.
 
-> Automatically monitors model health and switches between primary and fallback models to maintain stability and recover when possible.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/model-failover-guard`
-- **Source URL:** [https://clawhub.ai/skills/model-failover-guard](https://clawhub.ai/skills/model-failover-guard)
+When your primary model becomes unstable, this guard can switch to an available fallback model automatically, then switch back to the primary after stability is restored.
 
-## Overview
+## Features
 
+- Monitor model health on an interval
+- If primary fails N times consecutively → failover
+- Fallback is selected from **all configured models**
+- Supports preferred fallback provider
+- After fallback is stable for N checks → try failback
+- If failback test fails → revert to fallback immediately
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Install
+
 ```bash
-hermes skills install clawhub/model-failover-guard
+npx skills add BovmantH/openclaw-model-failover-guard --skill model-failover-guard
 ```
+
+## Usage
+
+```bash
+# Run once
+python3 skills/model-failover-guard/scripts/failover.py once
+
+# Run as daemon
+python3 skills/model-failover-guard/scripts/failover.py loop
+```
+
+## Configuration
+
+Copy `skills/model-failover-guard/config.example.json` to `config.json` and adjust settings.
+
+| Key | Description |
+|-----|-------------|
+| `primaryModel` | Primary model to monitor |
+| `failThreshold` | Consecutive failures before failover |
+| `recoverThreshold` | Stable checks before failback |
+| `checkIntervalSec` | Health check interval (seconds) |
+
+## Author
+
+- Owner: BovmantH
+- Version: 1.0.0
+
+## License
+
+MIT

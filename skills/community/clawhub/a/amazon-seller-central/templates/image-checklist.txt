@@ -1,0 +1,276 @@
+# Amazon Product Image Checklist
+
+Ensure your product images meet Amazon requirements and maximize conversion.
+
+## Technical Requirements
+
+### Image Specifications
+- **Format**: JPEG (preferred), TIFF, PNG, GIF
+- **Size**: Minimum 1000 x 1000 pixels (recommended: 2000 x 2000)
+- **Color Mode**: sRGB
+- **File Size**: Maximum 10MB per image
+- **Aspect Ratio**: 1:1 (square) preferred
+
+### File Naming
+```
+SKU_01_Main.jpg
+SKU_02_Infographic.jpg
+SKU_03_Lifestyle.jpg
+SKU_04_Detail.jpg
+SKU_05_Scale.jpg
+SKU_06_Packaging.jpg
+SKU_07_Label.jpg
+```
+
+## Required Images
+
+### 1. Main Image (Critical - Required)
+**Purpose**: Primary display image, search results, thumbnail
+
+**Requirements:**
+- [ ] Pure white background (RGB 255, 255, 255)
+- [ ] Product fills 85% or more of frame
+- [ ] No text, logos, watermarks, or overlays
+- [ ] No props, accessories, or multiple products
+- [ ] Professional photography (no mockups)
+- [ ] Entire product visible
+- [ ] Accurate color representation
+
+**Best Practices:**
+- Use professional lighting
+- Show product at slight angle (not flat)
+- For apparel: Use ghost mannequin or model
+- For multi-packs: Show quantity clearly
+
+**Common Mistakes:**
+- ❌ Off-white or gray background
+- ❌ Product too small in frame
+- ❌ Reflections or shadows on background
+- ❌ Visible mannequin or hanger
+- ❌ Collage or multiple angles in one image
+
+### 2. Infographic Image (Highly Recommended)
+**Purpose**: Highlight key features and benefits visually
+
+**Elements to Include:**
+- [ ] Product name/brand
+- [ ] Key features (3-5 points)
+- [ ] Icons or graphics
+- [ ] Specifications (size, weight, material)
+- [ ] Certifications or awards
+- [ ] Comparison data
+
+**Design Tips:**
+- Use brand colors
+- Keep text minimal and readable
+- Icons should be simple and clear
+- Include measurements/dimensions
+- Show before/after (if applicable and compliant)
+
+### 3. Lifestyle Image (Highly Recommended)
+**Purpose**: Show product in use, create emotional connection
+
+**Requirements:**
+- [ ] Real-world context
+- [ ] Product naturally integrated
+- [ ] Good lighting and composition
+- [ ] Model release (if using people)
+- [ ] Appropriate setting for product
+
+**Examples by Category:**
+- **Kitchen**: Product on counter, in use during cooking
+- **Electronics**: Being used in office or home setting
+- **Clothing**: Model wearing in appropriate setting
+- **Sports**: Product in action or gym environment
+- **Baby**: Safe, appropriate family setting
+
+### 4. Detail/Feature Close-up (Recommended)
+**Purpose**: Show important details, texture, quality
+
+**What to Show:**
+- [ ] Material texture
+- [ ] Stitching or craftsmanship
+- [ ] Important buttons/controls
+- [ ] Brand logo or label
+- [ ] Special features
+- [ ] Build quality
+
+### 5. Scale/Size Reference (Recommended)
+**Purpose**: Help customers understand actual size
+
+**Methods:**
+- [ ] Next to common object (coin, phone, hand)
+- [ ] Measurement overlay
+- [ ] Comparison to similar products
+- [ ] Person holding/using product
+- [ ] Multiple size options shown
+
+**Best Practices:**
+- Use universally recognized objects
+- Include actual measurements
+- Show multiple angles if needed
+- Be honest about size (don't deceive)
+
+### 6. Packaging/Contents (Recommended)
+**Purpose**: Show what customer receives
+
+**Include:**
+- [ ] Box/packaging design
+- [ ] All included accessories
+- [ ] Instruction manual
+- [ ] Warranty card
+- [ ] Any bonus items
+- [ ] Unboxing experience
+
+### 7. Label/Instructions Image (Category Dependent)
+**Purpose**: Show ingredients, specifications, usage instructions
+
+**Important for:**
+- Supplements (ingredient list required)
+- Food (nutrition facts)
+- Electronics (specs, warnings)
+- Chemicals (safety warnings)
+- Children's products (age labels)
+
+**Requirements:**
+- [ ] Text must be legible
+- [ ] Show entire label
+- [ ] Include all sides if needed
+- [ ] Compliance information visible
+
+## Category-Specific Requirements
+
+### Apparel & Accessories
+- [ ] Main: Flat lay or model (ghost mannequin preferred)
+- [ ] Alternative angles (back, side)
+- [ ] Detail: Fabric texture, stitching
+- [ ] Size chart image
+- [ ] Model wearing (diverse models recommended)
+
+### Electronics
+- [ ] Main: Product front view
+- [ ] Ports/connections close-up
+- [ ] Size comparison
+- [ ] Packaging contents
+- [ ] In-use scenario
+- [ ] Specifications callout
+
+### Home & Kitchen
+- [ ] Main: Product on white background
+- [ ] In-use/kitchen setting
+- [ ] Size reference
+- [ ] Detail of material
+- [ ] Packaging
+- [ ] Care instructions label
+
+### Supplements & Health
+- [ ] Main: Bottle on white background
+- [ ] Supplement Facts panel
+- [ ] Ingredients breakdown
+- [ ] Usage instructions
+- [ ] Certifications (cGMP, organic, etc.)
+- [ ] Lifestyle (healthy living)
+
+### Beauty & Personal Care
+- [ ] Main: Product packaging
+- [ ] Texture/swatches
+- [ ] Application demonstration
+- [ ] Before/After (if compliant)
+- [ ] Ingredients list
+- [ ] Size reference
+
+## Mobile Optimization
+
+Remember: 70%+ of shoppers view on mobile
+
+### Mobile Best Practices:
+- [ ] Main product clearly visible on small screen
+- [ ] Text on infographics large enough to read
+- [ ] Zoom capability works (high resolution)
+- [ ] Swipe-friendly image sequence
+- [ ] No tiny details that require desktop viewing
+
+## Image Order Strategy
+
+### Recommended Sequence:
+1. **Main** - White background, hero shot
+2. **Infographic** - Key features at a glance
+3. **Lifestyle** - Product in use
+4. **Detail** - Close-up of quality/features
+5. **Scale** - Size reference
+6. **Packaging** - What they receive
+7. **Label/Specs** - Technical details
+
+### A/B Testing Images:
+- Test different main images
+- Try lifestyle vs. infographic as #2
+- Monitor click-through and conversion rates
+- Use Amazon's Manage Your Experiments (brands only)
+
+## Common Rejection Reasons
+
+### Main Image Issues:
+- Background not pure white
+- Product has props/accessories
+- Text or watermarks visible
+- Image quality too low
+- Product not fully visible
+
+### All Images:
+- Incorrect file format
+- File size too large
+- Image resolution too low
+- Contains contact information
+- Offensive or inappropriate content
+- Copyright violations
+
+## Tools & Resources
+
+### Photography
+- **DSLR/Mirrorless**: Canon, Nikon, Sony
+- **Smartphone**: iPhone 12+, Samsung S21+
+- **Lighting**: Softboxes or natural light
+- **Background**: White sweep or lightbox
+
+### Editing Software
+- **Adobe Photoshop**: Professional editing
+- **Adobe Lightroom**: Color correction
+- **Canva**: Simple graphics and text
+- **GIMP**: Free alternative to Photoshop
+- **Remove.bg**: Automatic background removal
+
+### Mobile Apps
+- **Snapseed**: Mobile editing
+- **VSCO**: Filters and adjustments
+- **Adobe Lightroom Mobile**: Professional mobile editing
+
+### Amazon Tools
+- **Amazon Seller App**: Upload images from mobile
+- **Image Quality Dashboard**: Check image issues
+
+## Pre-Upload Checklist
+
+Before uploading to Seller Central:
+
+- [ ] All images meet technical requirements
+- [ ] Main image has pure white background
+- [ ] No spelling errors on infographics
+- [ ] Colors are accurate (not oversaturated)
+- [ ] Images are high resolution
+- [ ] File names are descriptive
+- [ ] Images tell complete product story
+- [ ] Mobile preview looks good
+
+## Post-Upload Monitoring
+
+After images are live:
+- [ ] Check how they appear on desktop
+- [ ] Check how they appear on mobile
+- [ ] Verify zoom function works
+- [ ] Monitor image click rates
+- [ ] Watch for customer questions about visuals
+- [ ] A/B test different main images
+
+---
+
+*Last updated: March 2026. Amazon requirements subject to change.*

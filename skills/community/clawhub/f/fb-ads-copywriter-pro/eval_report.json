@@ -1,0 +1,15 @@
+{
+  "skill_name": "fb-ads-copywriter-pro",
+  "description_score": 0,
+  "trigger_rate": 0.0,
+  "keyword_density": 0.0,
+  "scenario_coverage": 0,
+  "suggestions": [
+    "🔴 描述質量較低，建議重寫",
+    "🔴 觸發率低，添加更多觸發詞變體",
+    "💡 擴充 description，添加 Use when 場景",
+    "💡 添加關鍵詞：create, build, skill, when, use",
+    "💡 添加 'Use when: (1)... (2)...'",
+    "💡 添加 'Triggers: \"中文\", \"English\"'"
+  ]
+}

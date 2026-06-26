@@ -1,0 +1,17 @@
+name: "Polymarket Sniper Bot"
+description: "Autonomous momentum-based trading agent for Polymarket crypto markets."
+version: "1.0.0"
+
+# OpenClaw agent configuration for scheduling background tasks.
+# Each task defines a name, a cron-style schedule, and a command to run.
+
+tasks:
+  - name: "bot:heartbeat"
+    schedule: "*/1 * * * *"
+    command: "python3 polymarket.py heartbeat"
+    description: "Update database with bot liveness status every minute."
+
+  - name: "bot:scan"
+    schedule: "*/5 * * * *"
+    command: "python3 polymarket.py scan"
+    description: "Perform momentum scan and execute trades every 5 minutes."

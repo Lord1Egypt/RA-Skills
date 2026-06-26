@@ -1,0 +1,7 @@
+interface:
+  display_name: "Design Research Scout"
+  short_description: "Turn fuzzy briefs into stable research outputs and approved-site inspiration links for design teams."
+  default_prompt: "Use $design-research-scout to first check whether this design brief is clear enough, ask a few high-impact clarification questions if needed, then continue into a stable pre-design research pack with requirement analysis, research questions, 3 distinct directions, and default inspiration references or source links from Behance, Zcool, Huaban, and Xiaohongshu unless the user explicitly says analysis only."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,43 @@
+{
+  "name": "Debug Information Detection",
+  "category": "debug_info",
+  "description": "检测调试信息泄露",
+  "severity": "medium",
+  "patterns": [
+    {
+      "id": "console_debug",
+      "pattern": "(?:console\\.(?:debug|log|info)|print_r|var_dump|print_r)\\(",
+      "weight": 0.5,
+      "severity": "medium",
+      "description": "调试输出"
+    },
+    {
+      "id": "stack_trace",
+      "pattern": "(?:stack[_-]?trace|traceback|getTrace|printStackTrace)",
+      "weight": 0.7,
+      "severity": "high",
+      "description": "堆栈跟踪泄露"
+    },
+    {
+      "id": "error_disclosure",
+      "pattern": "(?:error_reporting|E_ALL|DEBUG|TRACEBACK)",
+      "weight": 0.6,
+      "severity": "medium",
+      "description": "错误报告开启"
+    },
+    {
+      "id": "debug_mode",
+      "pattern": "(?:debug[:=]|DEBUG_MODE|isDebug|devMode)\\s*[:=]\\s*(?:true|1|yes)",
+      "weight": 0.7,
+      "severity": "high",
+      "description": "调试模式开启"
+    },
+    {
+      "id": "verbose_error",
+      "pattern": "(?:verbose|verbosity|detailed_errors?)\\s*[:=]\\s*(?:true|1|high)",
+      "weight": 0.5,
+      "severity": "medium",
+      "description": "详细错误信息"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ftp-client-skill",
+  "version": "1.0.0",
+  "description": "FTP/FTPS client skill for OpenClaw",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "basic-ftp": "^5.0.5"
+  }
+}

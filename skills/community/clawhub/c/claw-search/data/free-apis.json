@@ -1,0 +1,215 @@
+{
+  "apis": [
+    {
+      "name": "OpenWeatherMap",
+      "url": "https://openweathermap.org/api",
+      "description": "免费天气API",
+      "category": "weather",
+      "tags": ["天气", "weather", "forecast"]
+    },
+    {
+      "name": "JSONPlaceholder",
+      "url": "https://jsonplaceholder.typicode.com",
+      "description": "免费的REST API测试接口",
+      "category": "test",
+      "tags": ["测试", "test", "mock", "fake"]
+    },
+    {
+      "name": "PokeAPI",
+      "url": "https://pokeapi.co",
+      "description": "口袋妖怪数据API",
+      "category": "gaming",
+      "tags": ["游戏", "pokemon", "gaming"]
+    },
+    {
+      "name": "TheMealDB",
+      "url": "https://www.themealdb.com/api.php",
+      "description": "免费美食菜谱API",
+      "category": "food",
+      "tags": ["美食", "菜谱", "food", "recipe", " cooking"]
+    },
+    {
+      "name": "CatAPI",
+      "url": "https://thecatapi.com",
+      "description": "免费猫咪图片API",
+      "category": "images",
+      "tags": ["猫", "猫图片", "cat", "image"]
+    },
+    {
+      "name": "DogAPI",
+      "url": "https://dog.ceo/api",
+      "description": "免费狗狗图片API",
+      "category": "images",
+      "tags": ["狗", "狗图片", "dog", "image"]
+    },
+    {
+      "name": "Random User Generator",
+      "url": "https://randomuser.me/api",
+      "description": "生成随机用户数据",
+      "category": "test",
+      "tags": ["用户", "user", "mock", "fake"]
+    },
+    {
+      "name": "Unsplash API",
+      "url": "https://unsplash.com/developers",
+      "description": "免费图片API",
+      "category": "images",
+      "tags": ["图片", "image", "photo"]
+    },
+    {
+      "name": "CoinGecko",
+      "url": "https://www.coingecko.com/en/api",
+      "description": "免费加密货币API",
+      "category": "finance",
+      "tags": ["加密货币", "比特币", "crypto", "bitcoin", "price"]
+    },
+    {
+      "name": "ExchangeRate-API",
+      "url": "https://www.exchangerate-api.com",
+      "description": "免费汇率API",
+      "category": "finance",
+      "tags": ["汇率", "currency", "exchange"]
+    },
+    {
+      "name": "NewsAPI",
+      "url": "https://newsapi.org",
+      "description": "免费新闻API",
+      "category": "news",
+      "tags": ["新闻", "news"]
+    },
+    {
+      "name": "OmdbAPI",
+      "url": "https://www.omdbapi.com",
+      "description": "电影信息API",
+      "category": "entertainment",
+      "tags": ["电影", "movie", "film"]
+    },
+    {
+      "name": "SpaceX API",
+      "url": "https://github.com/r-spacex/SpaceX-API",
+      "description": "SpaceX 火箭发射数据API",
+      "category": "space",
+      "tags": ["航天", "火箭", "space", "rocket", "NASA"]
+    },
+    {
+      "name": "COVID-19 API",
+      "url": "https://covid19api.com",
+      "description": "新冠疫情数据API",
+      "category": "health",
+      "tags": ["疫情", "covid", "coronavirus", "health"]
+    },
+    {
+      "name": "Harry Potter API",
+      "url": "https://hp-api.onrender.com",
+      "description": "哈利波特角色API",
+      "category": "entertainment",
+      "tags": ["哈利波特", "harry potter", "wizard"]
+    },
+    {
+      "name": "Rick and Morty API",
+      "url": "https://rickandmortyapi.com",
+      "description": "瑞克和莫蒂动画API",
+      "category": "entertainment",
+      "tags": ["瑞克莫蒂", "rick morty", "cartoon"]
+    },
+    {
+      "name": "Star Wars API",
+      "url": "https://swapi.dev",
+      "description": "星球大战API",
+      "category": "entertainment",
+      "tags": ["星球大战", "star wars", "jedi"]
+    },
+    {
+      "name": "Numbers API",
+      "url": "http://numbersapi.com",
+      "description": "数字趣味事实API",
+      "category": "fun",
+      "tags": ["数字", "fact", "trivia"]
+    },
+    {
+      "name": "Agify.io",
+      "url": "https://agify.io",
+      "description": "根据名字预测年龄API",
+      "category": "tools",
+      "tags": ["年龄", "age", "预测"]
+    },
+    {
+      "name": "Genderize.io",
+      "url": "https://genderize.io",
+      "description": "根据名字预测性别API",
+      "category": "tools",
+      "tags": ["性别", "gender", "名字"]
+    },
+    {
+      "name": "Nationalize.io",
+      "url": "https://nationalize.io",
+      "description": "根据名字预测国籍API",
+      "category": "tools",
+      "tags": ["国籍", "nationality", "名字"]
+    },
+    {
+      "name": "IP地址查询",
+      "url": "http://ip-api.com",
+      "description": "免费IP地理定位API",
+      "category": "tools",
+      "tags": ["IP", "地理位置", "ip", "location"]
+    },
+    {
+      "name": "QR Code API",
+      "url": "https://goqr.me/api",
+      "description": "免费二维码生成API",
+      "category": "tools",
+      "tags": ["二维码", "qrcode", "生成"]
+    },
+    {
+      "name": "ShortURL API",
+      "url": "https://url-shortener-service-apis.p.rapidapi.com",
+      "description": "短链接API",
+      "category": "tools",
+      "tags": ["短链接", "shorturl", "缩短"]
+    },
+    {
+      "name": "JokeAPI",
+      "url": "https://v2.jokeapi.dev",
+      "description": "免费笑话API",
+      "category": "fun",
+      "tags": ["笑话", "joke", "funny"]
+    },
+    {
+      "name": "Advice Slip",
+      "url": "https://api.adviceslip.com",
+      "description": "免费建议API",
+      "category": "fun",
+      "tags": ["建议", "advice", "tip"]
+    },
+    {
+      "name": "Dog Facts API",
+      "url": "https://dogapi.ninja",
+      "description": "狗狗知识API",
+      "category": "fun",
+      "tags": ["狗", "dog", "fact"]
+    },
+    {
+      "name": "xkcd",
+      "url": "https://xkcd.com/json.html",
+      "description": "xkcd漫画API",
+      "category": "comics",
+      "tags": ["漫画", "comic", "xkcd"]
+    },
+    {
+      "name": "Public Holidays API",
+      "url": "https://date.nager.at/api/v3",
+      "description": "全球节假日API",
+      "category": "tools",
+      "tags": ["节假日", "holiday", "calendar"]
+    },
+    {
+      "name": "Universities List",
+      "url": "http://universities.hipolabs.com",
+      "description": "全球大学列表API",
+      "category": "education",
+      "tags": ["大学", "university", "school"]
+    }
+  ],
+  "lastUpdated": "2026-03-15"
+}

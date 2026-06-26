@@ -1,0 +1,25 @@
+{
+  "weibo_hot_search": {
+    "mode": "bundled",
+    "command": "node {skill_dir}/vendor/weibo-hot-trend/scripts/weibo.js 20",
+    "timeout_sec": 60,
+    "limit": 20
+  },
+  "image_generation": {
+    "enabled": true,
+    "mode": "direct_prompt",
+    "priority": [
+      "direct_prompt",
+      "prompt_only"
+    ],
+    "size": "1024x1792",
+    "count": 1,
+    "requirement_text": "画面与文案同主题；允许人物、互动和故事动作；允许在图中加入简洁中文标题/短句；避免无关风景空镜头；不要添加外部品牌logo或平台水印。",
+    "timeout_sec": 180,
+    "local_command": "",
+    "api_url": ""
+  },
+  "archive": {
+    "output_root": "./outputs"
+  }
+}

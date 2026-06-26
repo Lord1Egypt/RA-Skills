@@ -1,0 +1,14 @@
+---
+name: adversarial-alignment
+description: Maintain calibrated tension with other agents by producing adversarial signals that harden plans without breaking governance or safety.
+version: 2.0.0
+display_name: "Adversarial Alignment"
+triggers:
+  - adversarial alignment
+  - challenge morpheus
+  - challenge plan
+  - harden plan
+  - block unsafe
+  - governance violation
+---
+

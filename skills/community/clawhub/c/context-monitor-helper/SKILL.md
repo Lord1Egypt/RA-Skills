@@ -1,35 +1,89 @@
----
-name: "Context Monitor Helper"
-description: "实时监控会话上下文Token使用率，回复底部显示百分比和进度条，超过阈值时提醒清理或开启新会话。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-monitor-helper"
-sourceUrl: "https://clawhub.ai/skills/context-monitor-helper"
----
+# context-monitor - 上下文使用率监控
 
-# Context Monitor Helper
+实时监控会话上下文使用率，在每次回复底部显示占用百分比，超过阈值时主动提醒用户清理上下文。
 
-> 实时监控会话上下文Token使用率，回复底部显示百分比和进度条，超过阈值时提醒清理或开启新会话。
+## 🚀 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-monitor-helper`
-- **Source URL:** [https://clawhub.ai/skills/context-monitor-helper](https://clawhub.ai/skills/context-monitor-helper)
+- **实时显示**：每次回复自动附加上下文使用百分比
+- **进度条可视化**：直观的进度条展示使用率
+- **智能预警**：超过 70% 时提醒使用 `/new` 或 `/compact`
+- **多模型支持**：自动识别不同模型的上下文窗口大小
+- **零配置**：安装即用，无需额外设置
 
-## Overview
+## 📦 安装
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/context-monitor-helper
+claw skill install context-monitor
 ```
+
+## 💡 使用场景
+
+| 场景 | 说明 |
+|------|------|
+| **长对话管理** | 避免上下文超限导致遗忘早期内容 |
+| **多轮调试** | 监控 Token 消耗，优化对话策略 |
+| **成本控制** | 了解每次对话的 Token 使用情况 |
+| **主动清理** | 在达到限制前及时使用 `/new` 或 `/compact` |
+
+## 🎯 输出示例
+
+```
+[你的回复内容]
+
+---
+📊 上下文使用：45% ▓▓▓▓▓▓▓▓░░░░░░░░░ (4500/10000 tokens)
+```
+
+**超过 70% 时：**
+```
+[你的回复内容]
+
+---
+⚠️ 上下文使用：78% ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ (7800/10000 tokens)
+💡 建议：使用 /new 开启新会话 或 /compact 压缩上下文
+```
+
+## ⚙️ 配置选项
+
+| 配置项 | 默认值 | 说明 |
+|--------|--------|------|
+| `warningThreshold` | 70 | 警告阈值（百分比） |
+| `criticalThreshold` | 90 | 严重警告阈值（百分比） |
+| `showProgressBar` | true | 是否显示进度条 |
+| `showTokenCount` | true | 是否显示具体 Token 数 |
+
+## 🔧 命令
+
+| 命令 | 说明 |
+|------|------|
+| `/new` | 开启全新会话（清空上下文） |
+| `/compact` | 压缩上下文（保留核心信息） |
+| `/context` | 手动查看当前上下文状态 |
+
+## 📝 注意事项
+
+1. **Token 计算**：基于实际消息内容估算，可能存在±5% 误差
+2. **模型差异**：不同模型上下文窗口不同，自动识别
+3. **性能影响**：每次回复增加约 10-20ms 处理时间
+4. **隐私安全**：不存储任何对话内容，仅实时计算
+
+## 🐛 常见问题
+
+**Q: 为什么显示的 Token 数和平台统计不一致？**
+A: 本 Skill 使用估算算法，实际 Token 数以平台为准。误差通常在±5% 内。
+
+**Q: 可以关闭上下文显示吗？**
+A: 可以，使用 `/context off` 临时关闭，`/context on` 重新开启。
+
+**Q: 支持哪些模型？**
+A: 支持所有 OpenClaw 集成的模型，自动识别上下文窗口大小。
+
+## 📄 许可证
+
+MIT License
+
+## 🔗 相关链接
+
+- [GitHub 仓库](https://github.com/rfdiosuao/openclaw-skills/tree/main/context-monitor)
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [ClawHub](https://clawhub.ai)

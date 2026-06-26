@@ -1,0 +1,4 @@
+interface:
+  display_name: "APAG Article Rewriter"
+  short_description: "用 APAG 框架重写文章，强化钩子、论证与行动感"
+  default_prompt: "使用 $article-rewriter 把这篇草稿改写成更有钩子、更有结构、更有行动感的版本。"

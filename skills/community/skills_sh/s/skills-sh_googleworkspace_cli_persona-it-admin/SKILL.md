@@ -1,35 +1,34 @@
 ---
-name: "persona-it-admin"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-it-admin"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-it-admin"
+name: persona-it-admin
+description: "Administer IT — monitor security and configure Workspace."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
+        - gws-drive
+        - gws-calendar
 ---
 
-# persona-it-admin
+# IT Administrator
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-gmail`, `gws-drive`, `gws-calendar`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-it-admin`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-it-admin](https://skills.sh/googleworkspace/cli/persona-it-admin)
+Administer IT — monitor security and configure Workspace.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +standup-report`
 
+## Instructions
+- Start the day with `gws workflow +standup-report` to review any pending IT requests.
+- Monitor suspicious login activity and review audit logs.
+- Configure Drive sharing policies to enforce organizational security.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-it-admin
-```
+## Tips
+- Always use `--dry-run` before bulk operations.
+- Review `gws auth status` regularly to verify service account permissions.
+

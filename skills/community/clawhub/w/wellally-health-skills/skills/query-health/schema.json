@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/medical-record-query.json",
+  "title": "MedicalRecordQuery",
+  "description": "医疗记录查询的数据结构定义",
+  "type": "object",
+  "properties": {
+    "query_type": {
+      "type": "string",
+      "enum": ["all", "biochemical", "imaging", "recent", "date", "abnormal"],
+      "description": "查询类型"
+    },
+    "query_value": {
+      "type": "string",
+      "description": "查询参数值"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["biochemical", "imaging"]
+          },
+          "date": {"type": "string", "format": "date"},
+          "file_path": {"type": "string"},
+          "summary": {"type": "string"}
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_records": {"type": "integer"},
+        "biochemical_count": {"type": "integer"},
+        "imaging_count": {"type": "integer"},
+        "abnormal_count": {"type": "integer"},
+        "date_range": {
+          "type": "object",
+          "properties": {
+            "start": {"type": "string", "format": "date"},
+            "end": {"type": "string", "format": "date"}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "info-research-report",
+  "version": "1.0.0",
+  "description": "信息调研报告自动化工作流",
+  "main": "run.py",
+  "author": "zafer",
+  "dependencies": {}
+}

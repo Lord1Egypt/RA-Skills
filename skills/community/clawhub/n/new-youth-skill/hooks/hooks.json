@@ -1,0 +1,11 @@
+{
+  "hooks": [
+    {
+      "id": "session-start",
+      "name": "Session Start Hook",
+      "description": "在新会话开始时注入新青年思想",
+      "trigger": "session_start",
+      "entry": "session-start"
+    }
+  ]
+}

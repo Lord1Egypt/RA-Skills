@@ -1,35 +1,241 @@
----
-name: "Context Booster"
-description: "Use this skill when managing long-context conversations and tasks. Provides intelligent compression, key extraction, context enhancement, memory retrieval, a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-booster"
-sourceUrl: "https://clawhub.ai/skills/context-booster"
+# context-booster - 上下文增强器
+
+**版本**：v0.1.0  
+**定位**：L1 增强层 - ECC 式上下文管理，解决 AI 记忆限制
+
 ---
 
-# Context Booster
+## 📖 技能说明
 
-> Use this skill when managing long-context conversations and tasks. Provides intelligent compression, key extraction, context enhancement, memory retrieval, a...
+context-booster 是一个上下文增强引擎，能够：
+1. **捕获执行上下文** - 记录技能执行前后的完整上下文
+2. **压缩记忆** - 智能压缩历史对话，保留关键信息
+3. **语义检索** - 基于语义检索相关上下文
+4. **注入上下文** - 在执行前注入相关上下文
+5. **状态持久化** - SQLite 存储，支持跨会话持久化
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-booster`
-- **Source URL:** [https://clawhub.ai/skills/context-booster](https://clawhub.ai/skills/context-booster)
+**核心价值**：
+- 解决 AI 上下文窗口限制
+- 保持长对话的连贯性
+- 提升复杂任务的执行效果
 
-## Overview
+---
 
+## 🎯 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/context-booster
+| 场景 | 示例 |
+|------|------|
+| **长对话** | 「继续我们昨天讨论的技能进化方案」 |
+| **复杂任务** | 「帮我完成这个多步骤的研究任务」 |
+| **跨会话** | 「继续上次未完成的技能创建」 |
+| **上下文丢失** | 「我刚才说的需求是什么？」 |
+
+---
+
+## 🚀 使用方法
+
+### 方式 1：直接调用
+
 ```
+请增强当前上下文：
+[任务描述]
+```
+
+### 方式 2：检索上下文
+
+```
+检索相关上下文：
+[关键词或主题]
+```
+
+### 方式 3：压缩记忆
+
+```
+压缩过去 24 小时的对话记忆
+```
+
+---
+
+## 📋 核心功能
+
+### 1. 上下文捕获
+
+```javascript
+// 捕获执行上下文
+const context = await captureContext({
+  sessionId: 'session-123',
+  skillId: 'first-principle-analyzer',
+  input: userInput,
+  ecosystemState: getEcosystemState()
+});
+```
+
+### 2. 记忆压缩
+
+```javascript
+// 压缩历史对话
+const compressed = await compressMemory({
+  timeRange: 'last-24-hours',
+  retentionRate: 0.3,  // 保留 30% 关键信息
+  method: 'semantic'   // 语义压缩
+});
+```
+
+### 3. 语义检索
+
+```javascript
+// 检索相关上下文
+const related = await retrieveContext('技能进化', {
+  limit: 5,
+  minRelevance: 0.7
+});
+```
+
+### 4. 上下文注入
+
+```javascript
+// 注入到执行环境
+await injectContext(executionId, related, {
+  priority: 'high',
+  format: 'structured'
+});
+```
+
+---
+
+## 🔧 技术架构
+
+### ECC 模式应用
+
+基于 ECC 的上下文管理模式：
+1. **执行前捕获** - SessionStart Hook
+2. **执行后总结** - SessionStop Hook
+3. **SQLite 存储** - 持久化状态
+4. **语义索引** - 快速检索
+
+### 数据结构
+
+```typescript
+interface ContextRecord {
+  id: string;
+  sessionId: string;
+  skillId?: string;
+  
+  // 输入/输出
+  input: any;
+  output?: any;
+  
+  // 压缩后的摘要
+  summary: string;
+  keywords: string[];
+  
+  // 语义向量（用于检索）
+  embedding?: number[];
+  
+  // 时间
+  createdAt: Date;
+  expiresAt?: Date;
+  
+  // 元数据
+  importance: number;  // 重要性 0-1
+  accessCount: number; // 访问次数
+}
+```
+
+---
+
+## 📊 效果评估
+
+### 评估维度
+
+| 维度 | 说明 | 目标 |
+|------|------|------|
+| **压缩率** | 原始大小/压缩后大小 | ≥3:1 |
+| **检索准确率** | 检索结果相关性 | ≥85% |
+| **响应时间** | 检索 + 注入时间 | <500ms |
+| **上下文完整度** | 关键信息保留率 | ≥90% |
+
+### 使用示例
+
+```markdown
+# 上下文增强效果报告
+
+## 压缩效果
+- 原始对话：10,000 tokens
+- 压缩后：3,000 tokens
+- 压缩率：3.3:1 ✓
+
+## 检索效果
+- 查询："技能进化"
+- 检索结果：5 条
+- 相关率：100% ✓
+
+## 执行效果
+- 响应时间：320ms ✓
+- 关键信息保留：95% ✓
+```
+
+---
+
+## ⚠️ 使用注意
+
+### 何时使用
+- ✅ 长对话需要保持连贯性
+- ✅ 复杂任务需要多步骤上下文
+- ✅ 跨会话继续未完成任务
+- ✅ 上下文窗口即将耗尽
+
+### 何时不使用
+- ❌ 短对话（<10 轮）
+- ❌ 简单任务（单步骤）
+- ❌ 敏感信息（需特殊处理）
+
+---
+
+## 📚 版本演进
+
+### 当前版本：v0.1.0
+- 基础上下文捕获
+- 记忆压缩（语义）
+- 语义检索
+- SQLite 存储
+
+### 下一版本：v0.2.0 (规划中)
+- 自动过期清理
+- 多会话关联
+- 上下文可视化
+
+---
+
+**创建时间**：2026-03-30  
+**创建者**：王的奴隶 · 严谨专业版  
+**版本**：v0.1.0  
+**状态**：初始版本
+
+---
+
+## 💰 购买与授权
+
+**本技能版本**：v0.1.0（基础版）
+
+**授权类型**：
+- **个人版**：$49.9（永久使用，个人非商业用途）
+- **商业版**：$149.9（永久使用，商业用途）
+- **企业版**：$499.9（永久使用 + 定制支持）
+
+**购买后获得**：
+- ✅ 技能完整源码
+- ✅ 使用文档
+- ✅ 1 年免费更新
+- ✅ 邮件支持
+
+**联系方式**：
+- 📧 邮箱：support@cloud-shrimp.com
+- 💬 微信：CloudShrimpSupport（备注：技能名称）
+
+---
+
+**技能版本**：v0.1.0  
+**创建时间**：2026-03-30  
+**维护者**：王的奴隶 · 严谨专业版  
+**授权**：商业许可（购买后）

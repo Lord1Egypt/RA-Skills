@@ -1,0 +1,54 @@
+{
+  "name": "agentic-liquid-wireless-manager",
+  "version": "1.0.0",
+  "description": "AI-powered wireless network intelligence using SAC-LTC for agentic AI systems. Autonomous Wi-Fi/hotspot management with RF explainability, presence detection, and navigation guidance.",
+  "main": "sac_ltc_agent.py",
+  "scripts": {
+    "test": "python3 sac_ltc_agent.py --test",
+    "init": "python3 sac_ltc_agent.py --init-weights",
+    "train": "python3 train_sac_ltc.py --episodes 2000",
+    "train:fast": "python3 train_sac_ltc.py --episodes 500",
+    "eval": "python3 train_sac_ltc.py --eval",
+    "setup": "pip install torch numpy && python3 sac_ltc_agent.py --init-weights && python3 sac_ltc_agent.py --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Danielfoojunwei/Agentic-Liquid-Wireless-Manager.git"
+  },
+  "keywords": [
+    "wireless",
+    "wifi",
+    "network-optimization",
+    "sac",
+    "liquid-time-constant",
+    "ltc",
+    "kan",
+    "reinforcement-learning",
+    "agentic-ai",
+    "rf-sensing",
+    "presence-detection",
+    "hotspot",
+    "5g",
+    "4g",
+    "channel-congestion",
+    "interference-detection",
+    "cross-platform",
+    "explainable-ai",
+    "itu-r",
+    "3gpp"
+  ],
+  "author": "Daniel Foo Jun Wei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Danielfoojunwei/Agentic-Liquid-Wireless-Manager/issues"
+  },
+  "homepage": "https://github.com/Danielfoojunwei/Agentic-Liquid-Wireless-Manager#readme",
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {},
+  "pythonDependencies": {
+    "torch": ">=2.0.0",
+    "numpy": ">=1.24.0"
+  }
+}

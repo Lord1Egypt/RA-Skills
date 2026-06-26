@@ -1,0 +1,61 @@
+{
+  "errorPatterns": [
+    {
+      "pattern": "ERROR|CRITICAL|FATAL",
+      "type": "error",
+      "severity": "high",
+      "description": "严重错误"
+    },
+    {
+      "pattern": "timeout|timed out",
+      "type": "timeout",
+      "severity": "medium",
+      "description": "超时错误"
+    },
+    {
+      "pattern": "failed|failure|fail",
+      "type": "failure",
+      "severity": "high",
+      "description": "失败错误"
+    }
+  ],
+  "warningPatterns": [
+    {
+      "pattern": "WARN|WARNING",
+      "type": "warning",
+      "severity": "medium",
+      "description": "警告"
+    },
+    {
+      "pattern": "slow|performance",
+      "type": "performance",
+      "severity": "low",
+      "description": "性能警告"
+    }
+  ],
+  "logSources": [
+    {
+      "name": "openclaw-cron",
+      "path": "/Users/xufan65/.openclaw/logs/*.log",
+      "enabled": true,
+      "description": "OpenClaw 定时任务日志"
+    },
+    {
+      "name": "system",
+      "path": "/var/log/system.log",
+      "enabled": false,
+      "description": "系统日志（暂未启用）"
+    }
+  ],
+  "reportSchedule": {
+    "daily": "22:00",
+    "weekly": "sunday 22:00",
+    "monthly": "last-day 22:00"
+  },
+  "notifications": {
+    "onError": true,
+    "onWarning": false,
+    "channel": "discord",
+    "to": "channel:1478698808631361647"
+  }
+}

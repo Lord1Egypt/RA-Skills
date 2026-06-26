@@ -1,35 +1,191 @@
 ---
-name: "Skill"
-description: "grazy provides real-time Graz city info via CLI: public transport, weather, air quality, news, events, and POI search without API keys needed."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/grazy"
-sourceUrl: "https://clawhub.ai/skills/grazy"
+name: grazy
+description: grazy - Your Grazer Command Line Companion. Verwende für alle Graz-bezogenen Infos: Öffi, Wetter, News, Luftqualität, POI-Suche, Events
+metadata:
+  {
+    "openclaw":
+      {
+        "requires":
+          {
+            "bins": ["grazy"],
+            "npmPackages": ["@grazy/cli"],
+          },
+        "install":
+          [
+            {
+              "id": "node",
+              "kind": "node",
+              "package": "@grazy/cli",
+              "label": "Install grazy CLI (npm)",
+              "description": "Installiert die grazy CLI global: npm install -g @grazy/cli"
+            },
+          ],
+        "homepage": "https://github.com/thomyg/grazy",
+        "repository": "https://github.com/thomyg/grazy",
+        "author": "Thomas Gölles (@thomyg)",
+        "keywords": ["grazy", "graz", "austria", "public-transport", "weather", "events", "cli"]
+      }
+  }
 ---
 
-# Skill
+# grazy Skill
 
-> grazy provides real-time Graz city info via CLI: public transport, weather, air quality, news, events, and POI search without API keys needed.
+Dieser Skill ermöglicht den Zugriff auf die grazy CLI für Grazer Stadt-Informationen.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/grazy`
-- **Source URL:** [https://clawhub.ai/skills/grazy](https://clawhub.ai/skills/grazy)
+## ⚠️ WICHTIG FÜR AGENTS
 
-## Overview
+**Der Agent soll bei Unsicherheit IMMER zuerst `grazy help` aufrufen um alle Möglichkeiten zu sehen!**
 
+```bash
+# IMMER zuerst help aufrufen wenn du unsicher bist!
+grazy help
+
+# Oder für spezifische Commands:
+grazy events --category help
+grazy events --when help
+grazy poi help
+```
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+Die CLI ist bereits global installiert: `npm install -g @grazy/cli`
+
+Oder alternativ mit npx (sandbox):
 ```bash
-hermes skills install clawhub/grazy
+npx @grazy/cli events
 ```
+
+## Source & Verification
+
+- **NPM Package:** https://www.npmjs.com/package/@grazy/cli
+- **GitHub Repo:** https://github.com/thomyg/grazy
+- **Autor:** Thomas Gölles (@thomyg)
+
+## Commands
+
+### 🚇 Öffentlicher Verkehr
+```
+grazy departures <stop>     # Echtzeit-Abfahrten
+grazy search <name>          # Haltestelle suchen
+grazy route <von> <nach>    # Route planen
+```
+
+### 🌤️ Wetter & Luftqualität
+```
+grazy weather                # Aktuelles Wetter
+grazy weather --days 7       # 7-Tage Forecast
+grazy air                   # Luftqualität (AQI, PM2.5, PM10)
+```
+
+### 📰 News
+```
+grazy news                   # Alle News (ORF + Kleine Zeitung)
+grazy news --source orf     # Nur ORF
+grazy news --source kleine  # Nur Kleine Zeitung
+grazy news --source sport   # Nur Sport
+```
+
+### 📅 Events
+```
+grazy events                 # Alle Events (kultur.graz.at)
+grazy events --category musik          # Nur Musik
+grazy events --category theater        # Theater & Tanz
+grazy events --category ausstellungen  # Ausstellungen
+grazy events --category kabarett       # Kabarett
+grazy events --category kinder         # Kinder & Jugend
+grazy events --category lesungen       # Lesungen & Vorträge
+grazy events --category fuehrungen      # Führungen
+grazy events --category film           # Film & Neue Medien
+
+grazy events --when heute      # Heute
+grazy events --when morgen     # Morgen
+grazy events --when woche     # Diese Woche
+grazy events --when wochenende # Wochenende (Sa/So)
+grazy events --when monat      # Diesen Monat
+
+grazy events --category help   # Alle Kategorien anzeigen
+grazy events --when help      # Alle Zeitfilter anzeigen
+
+# Kombiniert:
+grazy events -c musik -w wochenende
+grazy events -c theater -w woche
+```
+
+### 🔍 POI-Suche
+```
+grazy poi <type>            # POI-Typ suchen
+grazy poi help              # Alle verfügbaren Typen anzeigen
+```
+
+**Verfügbare POI-Typen:** restaurant, cafe, bar, fast_food, pub, cinema, theatre, museum, library, pharmacy, hospital, doctors, parking, fuel, atm, bank, playground
+
+### 📋 Sonstiges
+```
+grazy status                # API-Status prüfen
+grazy help                  # Hilfe anzeigen
+```
+
+## Bekannte Haltestellen (für Öffi)
+
+- `Jakomini` → Jakominiplatz
+- `FH Joanneum` / `FH` → FH Joanneum
+- `Hauptbahnhof` / `Bahnhof` → Graz Hauptbahnhof
+- `Stadion` → Merkur Arena
+- `LKH` / `Med Uni` → LKH Med Uni
+
+## Nutzung als Assistant - WICHTIG
+
+### ⚡ Erster Schritt: IMMER help aufrufen!
+
+```bash
+# Bei ANY Unsicherheit - zuerst help!
+grazy help
+
+# Für Events:
+grazy events --category help
+grazy events --when help
+
+# Für POI:
+grazy poi help
+```
+
+### Dann Commands nutzen
+
+```bash
+# Events
+grazy events --limit 10
+grazy events --category musik
+grazy events --when wochenende
+grazy events -c theater -w wochenende
+
+# Wetter
+grazy weather
+
+# Öffi
+grazy departures "Jakomini"
+grazy departures "FH Joanneum"
+
+# News
+grazy news --limit 5
+
+# Luft
+grazy air
+
+# POI
+grazy poi restaurant --limit 10
+grazy poi cafe --limit 5
+grazy poi pharmacy
+```
+
+## Output-Format
+
+- **●** = Echtzeit-Daten verfügbar
+- **+Xmin** = Verspätung
+- AQI: 0-50 Gut, 51-100 Moderat, >100 Ungesund
+
+## Wichtig
+
+- **Immer English Commands verwenden** (departures, weather, news, poi, events, etc.)
+- **BEI UNSICHERHEIT: grazy help aufrufen!**
+- grazy ist keyless (keine API-Keys nötig)
+- Daten kommen von: EFA, Open-Meteo, ORF RSS, OpenStreetMap, kultur.graz.at RSS

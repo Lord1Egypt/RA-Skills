@@ -1,35 +1,27 @@
 ---
-name: "WeChat Article Reader"
-description: "Read WeChat official account articles. Use the built-in browser tool to open the page and extract body text. Always append ?scene=1 to the URL."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-mp-reader"
-sourceUrl: "https://clawhub.ai/skills/wechat-mp-reader"
+name: wechat-mp-reader
+description: Read WeChat official account articles. Use the built-in browser tool to open the page and extract body text. Always append ?scene=1 to the URL.
 ---
-
 # WeChat Article Reader
 
-> Read WeChat official account articles. Use the built-in browser tool to open the page and extract body text. Always append ?scene=1 to the URL.
+## URL Normalization
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-mp-reader`
-- **Source URL:** [https://clawhub.ai/skills/wechat-mp-reader](https://clawhub.ai/skills/wechat-mp-reader)
+**Critical**: The URL must end with `?scene=1` (not `&scene=1`), otherwise a CAPTCHA will be triggered.
 
-## Overview
+Rules:
+- No query params → append `?scene=1`
+- Has existing `?` params → parse and rewrite query to include `scene=1`
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-mp-reader
-```
+1. Open the page with `browser open "<url>?scene=1"`
+2. Wait for content with `browser wait "#js_content" --load networkidle`
+3. Extract body text with `browser evaluate --fn "() => document.querySelector('#js_content')?.innerText || document.querySelector('.rich_media_content')?.innerText || document.body.innerText"`
+4. Return plain text content
+5. Close the tab with `browser close <tabId>`
+
+## Troubleshooting
+
+- CAPTCHA → verify the URL has `?scene=1`
+- Empty content → page may not have fully loaded, retry `browser wait`
+- Deleted article → the page will display a notice

@@ -1,35 +1,227 @@
 ---
-name: "Sop Bom Report"
-description: "SOP与BOM对比校对，生成独立校对报告。支持单个SOP与多个BOM合并校对。从SOP提取物料信息（含页码、序号），与BOM对比，生成包含三个表格的报告：有差异物料（并排对比）、SOP独有物料、BOM独有物料。差异用红色标注，重复物料编码用黄色标注。保留SOP中所有重复物料条目不合并，逐条与BOM对比校对。自动清..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sop-bom-report"
-sourceUrl: "https://clawhub.ai/skills/sop-bom-report"
+name: sop-bom-report
+version: 1.4.3
+description: SOP与BOM对比校对，生成独立校对报告。支持单个SOP与多个BOM合并校对。从SOP提取物料信息（含页码、序号），与BOM对比，生成包含三个表格的报告：有差异物料（并排对比）、SOP独有物料、BOM独有物料。差异用红色标注，重复物料编码用黄色标注。保留SOP中所有重复物料条目不合并，逐条与BOM对比校对。自动清理临时文件和旧报告缓存。跨平台兼容（Linux/Mac/Windows）。支持多种SOP格式（标准格式、AR列格式、共享字符串格式）。智能检测位号和数量列，自动调整报告格式。列宽自适应内容长度，行距优化显示更清晰。
+requires:
+  python: ">=3.8"
+  dependencies:
+    - openpyxl (可选，用于读取数值类型数据)
 ---
 
-# Sop Bom Report
+# SOP-BOM 校对报告生成器
 
-> SOP与BOM对比校对，生成独立校对报告。支持单个SOP与多个BOM合并校对。从SOP提取物料信息（含页码、序号），与BOM对比，生成包含三个表格的报告：有差异物料（并排对比）、SOP独有物料、BOM独有物料。差异用红色标注，重复物料编码用黄色标注。保留SOP中所有重复物料条目不合并，逐条与BOM对比校对。自动清...
+## 系统要求
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sop-bom-report`
-- **Source URL:** [https://clawhub.ai/skills/sop-bom-report](https://clawhub.ai/skills/sop-bom-report)
+- **Python**: 3.8 或更高版本
+- **依赖库**: 
+  - 标准库：无额外安装
+  - 可选：`openpyxl`（用于读取数值类型的数量数据）
+    ```bash
+    pip install openpyxl
+    ```
+- **平台**: Linux / macOS / Windows
+- **内存**: 建议 512MB 以上
 
-## Overview
+## 功能说明
 
+1. **解析 SOP 文件**：提取物料信息（页码、序号、物料编码、名称规格、位号、数量）
+2. **解析 BOM 文件**：提取物料信息（项次、物料编码、名称、规格、位号、数量）
+3. **多 BOM 合并**：支持多个 BOM 文件合并后一起校对
+4. **对比校对**：以物料编码为基准，对比名称规格、位号、数量
+5. **生成校对报告**：独立 xlsx 文件，包含三个表格
+6. **自动清理缓存**：每次生成报告后自动清理临时文件和旧报告
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+### 单个 BOM 校对
 ```bash
-hermes skills install clawhub/sop-bom-report
+python sop_bom_report.py bom.xlsx --sop sop.xlsx
+```
+
+### 多个 BOM 合并校对
+```bash
+# 多个 BOM 文件会合并后一起与 SOP 对比
+python sop_bom_report.py bom1.xlsx bom2.xlsx bom3.xlsx --sop sop.xlsx
+```
+
+### 指定输出目录
+```bash
+python sop_bom_report.py bom.xlsx --sop sop.xlsx -d ./reports
+```
+
+### 详细输出（调试模式）
+```bash
+python sop_bom_report.py bom.xlsx --sop sop.xlsx -v
+```
+
+## 缓存清理策略
+
+### 自动清理
+每次生成报告后自动执行：
+- **临时目录**：清理系统临时目录下的 `sop_extract_*`、`bom_extract_*`、`report_*`
+- **旧报告**：
+  - 保留最近 20 份报告
+  - 删除超过 7 天的报告
+  - 日志输出清理统计
+
+### 手动清理
+如需手动清理，可执行：
+```bash
+# Linux/Mac
+rm -rf /tmp/sop_extract_* /tmp/bom_extract_* /tmp/report_*
+
+# Windows (PowerShell)
+Remove-Item -Path "$env:TEMP\sop_extract_*" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:TEMP\bom_extract_*" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:TEMP\report_*" -Force -ErrorAction SilentlyContinue
+```
+
+## 输出报告结构
+
+### 表格1：有差异的物料（并排对比）
+
+| 页码 | 序号 | 物料编码 | 名称规格 | 位号 | 数量 | | 项次 | 物料编码 | 名称 | 规格 | 位号 | 数量 |
+|------|------|----------|----------|------|------|---|------|----------|------|------|------|------|
+| SOP数据 | | | | | | | BOM数据 | | | | | |
+
+**颜色标注**：
+- 🔴 红色：差异内容（名称规格/位号/数量）
+- 🟡 黄色：重复物料编码（同一物料编码在SOP中出现多次）
+
+### 表格2：SOP 独有物料
+
+SOP 中有但 BOM 中没有的物料，显示完整 SOP 数据（页码、序号、物料编码、名称规格、位号、数量）。
+
+### 表格3：BOM 独有物料
+
+BOM 中有但 SOP 中没有的物料，显示完整 BOM 数据（项次、物料编码、名称、规格、位号、数量）。
+
+## 文件格式
+
+### SOP 文件（作业指导书）
+
+**三级提取策略**：
+
+#### 1. 标准格式（优先）
+当 SOP 文件符合标准格式时，使用以下列提取：
+
+| 列 | 字段 | 说明 |
+|----|------|------|
+| BF | 页码 | 格式："第X页，共Y页" |
+| AN | 序号 | 范围 1-20 |
+| AQ | 物料编码 | 格式：XXXXX-XXX-XXX |
+| AX | 名称规格 | 名称和规格合在一起 |
+| BI | 位号 | 物料位置信息 |
+| BO | 数量 | 物料数量（优先使用 openpyxl 读取数值） |
+
+#### 2. 兼容格式（后备）
+当标准格式提取不到物料时，自动启用多列兼容模式：
+
+| 列 | 字段 | 说明 |
+|----|------|------|
+| AQ/AR/AX/AN/BU/BF | 物料编码 | 自动扫描多列查找（按优先级） |
+| AX/AQ/AR/AN/BU/BF | 名称规格 | 自动检测（排除物料编码本身） |
+| BI/BJ/BK | 位号 | 自动检测 |
+| BO/BP/BN/BQ | 数量 | 自动检测（优先使用 openpyxl 读取数值） |
+
+**特殊格式支持**：
+- **AR 列物料编码**：部分 SOP 格式中物料编码在 AR 列
+- **共享字符串提取**：当物料编码不在标准列时，从共享字符串中直接提取
+- **数值数量读取**：使用 openpyxl 的 `data_only=True` 模式读取实际显示的数值
+
+#### 3. 共享字符串直接提取（最后后备）
+当以上格式都无法提取时，直接从 Excel 共享字符串中提取物料编码：
+- 匹配格式：`^\d{5}-\d{3}-\d{3}$`
+- 名称规格：取物料编码相邻的下一个字符串
+
+### BOM 文件
+
+**自动识别两种 BOM 格式**：
+
+#### 格式一（新格式）
+| 列 | 字段 | 说明 |
+|----|------|------|
+| F | 项次 | 物料序号 |
+| G | 物料编码 | 格式：XXXXX-XXX-XXX |
+| H | 名称 | 物料名称 |
+| I | 规格 | 规格型号 |
+| K | 用量分子 | 用于计算数量 |
+| L | 用量分母 | 用于计算数量 |
+| M | 备注 | 包含位号信息 |
+
+#### 格式二（旧格式）
+| 列 | 字段 | 说明 |
+|----|------|------|
+| H | 项次 | 物料序号 |
+| I | 物料编码 | 格式：XXXXX-XXX-XXX |
+| J | 名称 | 物料名称 |
+| K | 规格 | 规格型号 |
+| N | 用量分子 | 用于计算数量 |
+| O | 用量分母 | 用于计算数量 |
+| P | 备注 | 包含位号信息 |
+
+**智能检测**：脚本会自动检测 BOM 文件使用哪种格式，优先检测新格式（G列物料编码）。
+
+**数量计算**：实际用量 = 分子 ÷ 分母，分母为空或0时默认为1
+
+## 校对逻辑
+
+### 对比规则
+
+1. **物料编码匹配**：以物料编码为基准进行匹配
+2. **名称规格对比**：BOM 名称+规格 拼接后与 SOP 名称规格对比
+3. **位号对比**：忽略格式差异（空格、标点符号、顺序）
+4. **数量对比**：直接数值对比
+
+### 忽略差异
+
+对比时自动忽略：
+- 全角/半角差异
+- 标点符号差异
+- 空格差异
+- 换行符差异
+
+### 重复物料处理
+
+- 同一物料编码在 SOP 中出现多次时，视为重复物料
+- 重复物料编码用黄色标记
+- 每条记录单独与 BOM 校对
+
+## 输出文件
+
+- **文件名格式**：`{订单编号}_校对报告.xlsx`
+- **订单编号**：从 SOP 文件名开头提取（格式：数字-数字-数字）
+- **示例**：SOP 文件名为 `15214-100-008 VV12548主板PCBA作业指导书-V04.xlsx`，输出文件名为 `15214-100-008_校对报告.xlsx`
+
+## 触发场景
+
+用户发送 BOM 和 SOP 文件要求对比校对时触发。
+
+## 故障排除
+
+### 常见问题
+
+1. **Python 版本错误**
+   ```
+   错误: 需要 Python 3.8 或更高版本
+   ```
+   解决：升级 Python 到 3.8+
+
+2. **临时目录权限错误**
+   ```
+   PermissionError: [Errno 13] Permission denied
+   ```
+   解决：检查临时目录权限，或设置 `TEMP` 环境变量
+
+3. **文件编码错误**
+   ```
+   UnicodeDecodeError
+   ```
+   解决：确保文件为 UTF-8 编码
+
+### 调试模式
+
+运行时添加 `-v` 参数查看详细日志：
+```bash
+python sop_bom_report.py bom.xlsx --sop sop.xlsx -v
 ```

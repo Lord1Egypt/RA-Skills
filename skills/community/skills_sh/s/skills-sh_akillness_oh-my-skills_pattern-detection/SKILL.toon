@@ -1,0 +1,13 @@
+N:pattern-detection
+D:Route repeated pattern, rule, and anomaly work into one detection packet before suggesting tools or fixes. Use when the user needs reusable scans, suspicious repeated shapes, grouped outlier candidates, or first-pass anomaly triage across code, logs/events, telemetry, and metric tables.
+G:patterns anomalies outliers structural-search telemetry detection routing
+U[4]:
+  **Code scanning**: Repeated risky code-shape hunting and rule drafts
+  **Log/event clustering**: Group noisy signatures before root-cause triage
+  **Metric anomaly triage**: Flag suspicious windows and cohorts before analysis
+  **Route-outs**: Hand diagnosis, reporting, remediation, and alert ops to adjacent skills
+S[4]{n,action}:
+  1,text-prefilter packet
+  2,structural-code-rule packet
+  3,log-event-pattern packet
+  4,metric-anomaly packet

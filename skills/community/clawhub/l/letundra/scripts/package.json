@@ -1,0 +1,26 @@
+{
+  "name": "letundra-scripts",
+  "version": "1.0.0",
+  "description": "Letundra news parser using Yandex XML feed (no external dependencies)",
+  "main": "letundra_yandex.js",
+  "bin": {
+    "letundra": "./letundra_yandex.js"
+  },
+  "scripts": {
+    "test": "node letundra_yandex.js test",
+    "news": "node letundra_yandex.js news",
+    "news:md": "node letundra_yandex.js news:markdown",
+    "news:rss": "node letundra_yandex.js news:rss"
+  },
+  "keywords": [
+    "letundra",
+    "news",
+    "parser",
+    "travel"
+  ],
+  "author": "Letundra Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

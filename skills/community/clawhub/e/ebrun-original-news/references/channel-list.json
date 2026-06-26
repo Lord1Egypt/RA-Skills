@@ -1,0 +1,71 @@
+{
+  "base_url": "https://www.ebrun.com/",
+  "channels": {
+    "推荐": {
+      "id": "tuijian",
+      "sub_channels": {
+        "最新": "_index/ClaudeCode/SkillJson/information_recommend.json"
+      }
+    },
+    "未来零售": {
+      "id": "weilai-lingshou",
+      "aliases": ["零售", "电商零售"],
+      "sub_channels": {
+        "最新": "_index/ClaudeCode/SkillJson/information_channel_50.json",
+        "淘宝天猫": "_index/ClaudeCode/SkillJson/information_channel_55.json",
+        "抖音": "_index/ClaudeCode/SkillJson/information_channel_56.json",
+        "京东": "_index/ClaudeCode/SkillJson/information_channel_57.json",
+        "视频号": "_index/ClaudeCode/SkillJson/information_channel_60.json",
+        "美团": "_index/ClaudeCode/SkillJson/information_channel_61.json",
+        "快手": "_index/ClaudeCode/SkillJson/information_channel_59.json",
+        "拼多多": "_index/ClaudeCode/SkillJson/information_channel_58.json",
+        "小红书": "_index/ClaudeCode/SkillJson/information_channel_62.json"
+      }
+    },
+    "跨境电商": {
+      "id": "kuajing-dianshang",
+      "aliases": ["跨境", "跨境新闻"],
+      "sub_channels": {
+        "最新": "_index/ClaudeCode/SkillJson/information_channel_51.json",
+        "亚马逊": "_index/ClaudeCode/SkillJson/information_channel_68.json",
+        "阿里国际": "_index/ClaudeCode/SkillJson/information_channel_84.json",
+        "TikTok": "_index/ClaudeCode/SkillJson/information_channel_65.json",
+        "Temu": "_index/ClaudeCode/SkillJson/information_channel_67.json",
+        "SHEIN": "_index/ClaudeCode/SkillJson/information_channel_66.json"
+      }
+    },
+    "产业互联网": {
+      "id": "chanye-hulianwang",
+      "aliases": ["产业", "产业新闻"],
+      "sub_channels": {
+        "最新": "_index/ClaudeCode/SkillJson/information_channel_52.json",
+        "B2B": "_index/ClaudeCode/SkillJson/information_channel_77.json",
+        "产业科技": "_index/ClaudeCode/SkillJson/information_channel_74.json",
+        "数据要素": "_index/ClaudeCode/SkillJson/information_channel_78.json",
+        "产业出海": "_index/ClaudeCode/SkillJson/information_channel_75.json",
+        "数智供应链": "_index/ClaudeCode/SkillJson/information_channel_79.json",
+        "数智化采购": "_index/ClaudeCode/SkillJson/information_channel_73.json"
+      }
+    },
+    "品牌": {
+      "id": "pinpai",
+      "aliases": ["品牌新闻"],
+      "sub_channels": {
+        "最新": "_index/ClaudeCode/SkillJson/information_channel_87.json",
+        "新竞争力品牌": "_index/ClaudeCode/SkillJson/information_channel_89.json",
+        "品牌全球化": "_index/ClaudeCode/SkillJson/information_channel_90.json"
+      }
+    },
+    "AI": {
+      "id": "ai",
+      "aliases": ["人工智能", "ai新闻"],
+      "sub_channels": {
+        "最新": "_index/ClaudeCode/SkillJson/information_channel_88.json"
+      }
+    }
+  },
+  "notes": {
+    "api_format": "{base_url}{channel_path}.json",
+    "update_instruction": ""
+  }
+}

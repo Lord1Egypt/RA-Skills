@@ -1,0 +1,123 @@
+{
+  "name": "@guava-parity/guard-scanner",
+  "version": "16.0.2",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "description": "Agent Skill Security Scanner - ASI Sanctuary Enforcer (v16)",
+  "openclaw": {
+    "extensions": [
+      "./dist/openclaw-plugin.mjs"
+    ]
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    },
+    "./plugin": {
+      "types": "./dist/openclaw-plugin.d.ts",
+      "import": "./dist/openclaw-plugin.mjs",
+      "require": "./dist/openclaw-plugin.cjs",
+      "default": "./dist/openclaw-plugin.mjs"
+    },
+    "./mcp": {
+      "types": "./dist/mcp-server.d.ts",
+      "import": "./dist/mcp-server.mjs",
+      "require": "./dist/mcp-server.cjs",
+      "default": "./dist/mcp-server.mjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "./dist/cli.cjs",
+    "./dist/openclaw-plugin.mjs",
+    "./dist/openclaw-plugin.cjs"
+  ],
+  "bin": {
+    "guard-scanner": "guard-scanner"
+  },
+  "scripts": {
+    "build": "tsup --config tsup.config.ts",
+    "build:plugin": "npm run build",
+    "benchmark": "tsx scripts/benchmark.ts --write-ledgers",
+    "check:upstream": "tsx scripts/check-openclaw-upstream.ts",
+    "check:tarball": "tsx scripts/validate-tarball.ts",
+    "scan": "tsx src/cli.ts",
+    "lint": "tsx scripts/lint.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "release:gate": "npm run build && npm run benchmark && tsx scripts/generate-capabilities.ts && tsx scripts/release-gate.ts && tsx scripts/validate-tarball.ts",
+    "test": "npm run build && npm run benchmark && tsx scripts/generate-capabilities.ts && tsx scripts/verify-capabilities.ts && tsx scripts/test-quality-gate.ts && vitest run",
+    "test:core": "vitest run tests/scanner.test.ts tests/patterns.test.ts",
+    "test:contracts": "npm run build:plugin && tsx scripts/release-gate.ts && vitest run tests/finding-schema.test.ts tests/mcp.test.ts tests/e2e-mcp.test.ts tests/openclaw-plugin-compat.test.ts tests/stale-claims.test.ts tests/openclaw-upstream-check.test.ts",
+    "test:corpus": "tsx scripts/corpus-metrics.ts --check",
+    "test:perf": "tsx scripts/perf-regression.ts",
+    "test:quality": "tsx scripts/test-quality-gate.ts",
+    "test:rust-parity": "tsx scripts/rust-parity.ts",
+    "sbom": "tsx scripts/generate-sbom.ts",
+    "sync:readme": "tsx scripts/generate-capabilities.ts && tsx scripts/generate-readme-metrics.ts && tsx scripts/generate-readme-stats.ts",
+    "prepack": "npm run build:plugin && npm run release:gate"
+  },
+  "keywords": [
+    "security",
+    "scanner",
+    "ai-agent",
+    "skill-scanner",
+    "prompt-injection",
+    "openclaw",
+    "mcp",
+    "sarif",
+    "compaction-persistence",
+    "threat-signatures",
+    "owasp",
+    "discovery",
+    "daemon",
+    "typescript"
+  ],
+  "author": "Guava & Dee",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koatora20/guard-scanner.git"
+  },
+  "homepage": "https://github.com/koatora20/guard-scanner",
+  "files": [
+    "dist/",
+    "hooks/",
+    "docs/",
+    "guard-scanner",
+    "openclaw-plugin.mts",
+    "openclaw.plugin.json",
+    "SKILL.md",
+    "SECURITY.md",
+    "README.md",
+    "README_ja.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^4.1.0",
+    "openclaw": "2026.3.13",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.0"
+  },
+  "dependencies": {
+    "ws": "^8.19.0"
+  }
+}

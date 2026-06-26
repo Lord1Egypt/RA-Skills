@@ -1,0 +1,30 @@
+{
+  "name": "agent-firewall",
+  "version": "1.0.0",
+  "description": "Real-time input/output filtering for agent communications. Block prompt injection, data exfiltration, and unauthorized commands before they reach the model.",
+  "author": "arhadnane",
+  "license": "MIT",
+  "emoji": "🧱",
+  "category": "blue-team",
+  "capabilities": [
+    "input-filtering",
+    "output-filtering",
+    "prompt-injection-defense",
+    "data-exfiltration-prevention",
+    "secret-redaction",
+    "pii-redaction"
+  ],
+  "filterTypes": [
+    "injection-patterns",
+    "unicode-sanitizer",
+    "encoding-detector",
+    "role-confusion",
+    "rate-limiter",
+    "size-limiter",
+    "secret-scanner",
+    "pii-redactor",
+    "path-scrubber",
+    "url-checker",
+    "consistency-check"
+  ]
+}

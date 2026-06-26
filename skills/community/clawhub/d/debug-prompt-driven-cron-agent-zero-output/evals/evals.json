@@ -1,0 +1,49 @@
+{
+  "skill_name": "debug-prompt-driven-cron-agent-zero-output",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我排查一个 cron 任务：`/Users/can4hou6joeng4/.openclaw/cron/jobs.json` 里 job 名叫 `obsidian-discord-guild-daily-review-final`，昨天 05:00 Asia/Shanghai 跑完显示 success，但 Obsidian 产物 `/Users/can4hou6joeng4/Documents/Obsidian/Second Brain/01-Daily/2026-03-13.md` 里写的是“当日未检索到符合筛选条件的 Discord 发言、@提及或回复记录”，分类统计也全是 0。我的怀疑不是分类错了，而是上游 Discord 样本根本没捞到。请你按“先确认是不是纯 prompt 驱动、再确认有没有固定源码、再判断断点在检索还是分类”的顺序给我排查，并指出最可能的漏扫点。",
+      "expectations": [
+        "应先检查 jobs.json 中该任务的 payload.kind 是否为 `agentTurn`，并明确指出这是 prompt 驱动任务还是固定脚本任务",
+        "应建议或执行在 `/Users/can4hou6joeng4/.openclaw/workspace`、`/Users/can4hou6joeng4/.openclaw`、`/Users/can4hou6joeng4/Documents/code/Ours` 中检索任务名、job id、`thread starter`、`message_reference`、`mentions`、`dispatch` 等关键词，确认是否存在独立源码/skill/模板实现",
+        "应把产物中的“未检索到样本”识别为上游检索为空的证据，而不是泛泛地怀疑分类逻辑",
+        "应给出可验证的高风险断点，如主频道未扫、thread starter 漏计、reply/mention 判定缺失、Snowflake 用数值比较而非字符串比较、Asia/Shanghai 时间窗边界问题"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我这边有点诡异：`/Users/can4hou6joeng4/.openclaw/cron/runs/c6e92d09-5ff6-4079-b839-a9c4fe6d2e10.jsonl` 里面最新一条是 `status: \"ok\"`，model 是 `gpt-5.4`，provider `local-router`，看起来没 crash；但日报 `Daily Sync Digest - 2026-03-13.md` 里“代表性线程 - 无”，然后说“昨日 Discord 在目标用户与关联互动口径下无有效样本”。实际上我知道 `#dispatch` 下面那天至少有 5 个 thread，比如 `1481844448030621867` 和 `1481833902929739776`。你别只告诉我“检查日志”，我想知道这更像是 prompt job 没固定检索实现，还是有实现但筛选条件把数据全过滤掉了。",
+      "expectations": [
+        "应明确说明 `status: \"ok\"` 只能证明任务成功结束，不能证明检索覆盖正确，不能把 run 成功等同于数据正确",
+        "应利用“产物措辞 + 已知 thread 存在”做对照，判断更可能是上游漏扫而非下游分类归零",
+        "应提醒检查 run 记录里是否缺少读取了哪些消息、扫了哪些线程、是否包含主频道与 thread 的诊断信息，并把这作为证据链的一部分",
+        "应给出“prompt 驱动任务可能没有固定源码、采样方式由模型临场决定”的判断路径，而不是直接假设有一段 JS/TS 在稳定执行"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "想让你帮我做一次偏取证式排查。任务口径写的是：只处理 guild `1478785964896817267`，只采 `1478785297784373490` 本人发言 + @他/回复他，时间窗是“昨日 00:00:00~23:59:59（Asia/Shanghai）”。但我怀疑真正问题是机械实现没固定：比如根本没规定必须先扫 parent channel 再扫 thread，也没规定 reply 用 `message_reference.message_id` 还是 `referenced_message.author.id` 判定。请你根据这些信息，帮我区分‘口径写得清楚’和‘实现链路被 prompt 临场决定’这两件事，并给出最小修复建议，最好能落到应该增加哪些明确约束。",
+      "expectations": [
+        "应把“业务口径声明”和“可执行级实现约束”拆开分析，指出配置里即使写明了用户、guild、时间窗，也可能没有固定 API/分页/线程扫描策略",
+        "应列出缺失的机械约束示例，如必须扫主频道和 thread、是否纳入 thread starter、reply/mention 的精确定义、author.id 需按字符串比较、是否分页与 limit 策略",
+        "应给出最小修复建议，而且建议应具体可执行，例如在任务配置或实现中显式固定采样步骤和判定规则",
+        "应避免只给抽象建议，至少要能让人据此补充 prompt 或改成固定脚本"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "有个 daily review 任务跑通了但全 0，可能是我自己 prompt 写烂了… 也可能是时区/ID 比较翻车。场景是 Discord + Obsidian，文件在 `/Users/can4hou6joeng4/Documents/Obsidian/Second Brain/00-Inbox/Daily Sync Digest - 2026-03-13.md`。里面说没检索到样本，但我印象里 2026-03-13 晚上（上海时区）明明有人 @ 过目标用户。顺手提一下，目标用户 ID 是 Snowflake 风格的 `1478785297784373490`。你能不能按 edge case 帮我查：比如 Asia/Shanghai 昨日窗口算错、UTC 跨天、Snowflake 被当 number 比较精度丢失、只扫 replies 没扫 mentions 这种？我不需要泛泛 checklist，我需要你告诉我最该先验证哪几个点以及为什么。",
+      "expectations": [
+        "应优先聚焦与“结果全 0但已知有数据”强相关的 edge case，而不是给通用排障清单",
+        "应明确点出 Snowflake 这类大整数 ID 需要按字符串比较，不能默认安全地按 number 处理",
+        "应把 Asia/Shanghai 昨日时间窗、UTC 跨天、主频道/线程/mentions/replies 覆盖缺失列为优先验证项，并说明每项为什么会导致‘成功执行但无样本’",
+        "应基于现有证据判断最可能的前几个断点，而不是停留在‘都有可能’"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

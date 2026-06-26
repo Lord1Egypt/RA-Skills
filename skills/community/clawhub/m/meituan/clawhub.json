@@ -1,0 +1,23 @@
+{
+  "name": "meituan",
+  "version": "2.2.0",
+  "description": "美团公开决策助手 - 用可见商家、费用、优惠、时效和评论风险判断这一单该不该点",
+  "keywords": [
+    "meituan",
+    "美团",
+    "waimai",
+    "外卖",
+    "local-life",
+    "food-delivery",
+    "takeout",
+    "delivery",
+    "coupon",
+    "threshold",
+    "refund",
+    "decision",
+    "public-data",
+    "no-login"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

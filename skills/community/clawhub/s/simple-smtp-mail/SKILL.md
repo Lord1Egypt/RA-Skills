@@ -1,35 +1,105 @@
----
-name: "Simple SMTP Mailer"
-description: "Send emails via SMTP using the msmtp command-line tool configured in ~/.msmtp/config for authentication and server settings."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/simple-smtp-mail"
-sourceUrl: "https://clawhub.ai/skills/simple-smtp-mail"
----
+# Simple SMTP Mail
 
-# Simple SMTP Mailer
+Send emails via SMTP using `msmtp` command-line tool.
 
-> Send emails via SMTP using the msmtp command-line tool configured in ~/.msmtp/config for authentication and server settings.
+## Configuration
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/simple-smtp-mail`
-- **Source URL:** [https://clawhub.ai/skills/simple-smtp-mail](https://clawhub.ai/skills/simple-smtp-mail)
+Create a configuration file at `~/.msmtp/config` with the following format:
 
-## Overview
+```
+account default
+host <SMTP_SERVER>
+port <PORT>
+tls on
+tls_starttls off
+auth on
+user <EMAIL_ADDRESS>
+password <PASSWORD>
+from <EMAIL_ADDRESS>
+```
 
+### Common SMTP Settings
+
+**Gmail:**
+- SMTP Server: `smtp.gmail.com`
+- Port: `465` (SSL) or `587` (TLS)
+- Note: Use App Password, not your regular password
+
+**QQ Mail:**
+- SMTP Server: `smtp.qq.com`
+- Port: `465`
+
+**Outlook/Hotmail:**
+- SMTP Server: `smtp.office365.com`
+- Port: `587`
+
+**163.com:**
+- SMTP Server: `smtp.163.com`
+- Port: `465`
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
+### 1. Install msmtp
+
+**macOS:**
 ```bash
-hermes skills install clawhub/simple-smtp-mail
+brew install msmtp
 ```
+
+**Linux (Debian/Ubuntu):**
+```bash
+sudo apt install msmtp
+```
+
+**Linux (Fedora/RHEL):**
+```bash
+sudo dnf install msmtp
+```
+
+### 2. Configure SMTP
+
+Edit `~/.msmtp/config`:
+```bash
+nano ~/.msmtp/config
+```
+
+### 3. Set Permissions
+```bash
+chmod 600 ~/.msmtp/config
+```
+
+## Sending Email
+
+### Basic Email
+```bash
+echo "Body text" | msmtp recipient@example.com
+```
+
+### With Subject
+```bash
+echo -e "Subject: Your Subject\n\nBody text" | msmtp recipient@example.com
+```
+
+### With Subject and From Header
+```bash
+echo -e "Subject: Your Subject\nFrom: your@email.com\n\nBody text" | msmtp recipient@example.com
+```
+
+### HTML Content
+```bash
+echo -e "Subject: Your Subject\nContent-Type: text/html; charset=UTF-8\n\n<html>...</html>" | msmtp recipient@example.com
+```
+
+## Testing
+
+Check if SMTP server is reachable:
+```bash
+msmtp --file=~/.msmtp/config --serverinfo
+```
+
+## Troubleshooting
+
+- **"Account not found"**: Check your config file path with `--file` flag
+- **"Authentication failed"**: Verify username and password (or App Password)
+- **"Connection refused"**: Check port number and firewall settings
+- **"TLS certificate error"**: Try `tls_certcheck off` in config (not recommended for production)

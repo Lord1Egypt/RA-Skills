@@ -1,0 +1,184 @@
+#!/usr/bin/env pwsh
+<#
+安全记忆写入工具 - PowerShell版本（简化版）
+如果Python可用，推荐使用Python版本（safe-writer.py）
+#>
+
+param(
+    [Parameter(Mandatory=$true, Position=0)]
+    [string]$Content,
+    
+    [Parameter(Mandatory=$false)]
+    [string]$TaskId,
+    
+    [Parameter(Mandatory=$false)]
+    [string]$Step,
+    
+    [Parameter(Mandatory=$false)]
+    [string[]]$Files
+)
+
+# 尝试使用Python版本（如果可用）
+function Use-PythonVersion {
+    # 使用 $PSScriptRoot 获取脚本目录
+    if (-not $PSScriptRoot) {
+        return $false
+    }
+    
+    $pythonScript = Join-Path $PSScriptRoot "safe-writer.py"
+    
+    if (-not (Test-Path $pythonScript)) {
+        return $false
+    }
+    
+    # 构建参数列表
+    $argsList = @("`"$Content`"")
+    if ($TaskId) {
+        $argsList += "--task-id"
+        $argsList += "`"$TaskId`""
+    }
+    if ($Step) {
+        $argsList += "--step"
+        $argsList += "`"$Step`""
+    }
+    if ($Files -and $Files.Count -gt 0) {
+        $argsList += "--files"
+        $argsList += ($Files -join ",")
+    }
+    
+    # 尝试使用python命令
+    try {
+        Write-Host "[INFO] Trying Python version..."
+        & python $pythonScript @argsList 2>&1 | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "[INFO] Python version succeeded"
+            exit 0
+        }
+    } catch {
+        # python命令失败，尝试py命令
+        try {
+            Write-Host "[INFO] Trying py launcher..."
+            & py $pythonScript @argsList 2>&1 | Out-Null
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "[INFO] Py launcher succeeded"
+                exit 0
+            }
+        } catch {
+            # 两种方式都失败
+            Write-Host "[INFO] Python not available, falling back to PowerShell"
+        }
+    }
+    
+    return $false
+}
+
+# 尝试使用Python版本
+if (Use-PythonVersion) {
+    exit 0
+}
+
+Write-Host "[INFO] Using PowerShell version (basic functionality)"
+
+# 查找workspace目录（简化逻辑）
+$workspaceRoot = $null
+
+# 常见workspace位置（按优先级排序）
+$potentialPaths = @(
+    "$env:APPDATA\winclaw\.openclaw\workspace",
+    "$env:LOCALAPPDATA\winclaw\.openclaw\workspace",
+    "$HOME\.openclaw\workspace",
+    "$env:USERPROFILE\.openclaw\workspace"
+)
+
+foreach ($path in $potentialPaths) {
+    if (Test-Path $path) {
+        $workspaceRoot = $path
+        break
+    }
+}
+
+if (-not $workspaceRoot) {
+    Write-Host "[ERROR] Cannot find workspace directory"
+    Write-Host "[INFO] Checked locations:"
+    foreach ($path in $potentialPaths) {
+        Write-Host "  - $path"
+    }
+    exit 1
+}
+
+$MemoryDir = Join-Path $workspaceRoot "memory"
+$MemoryFile = Join-Path $workspaceRoot "MEMORY.md"
+$OutputDir = Join-Path $workspaceRoot "output"
+
+# 基本功能实现（仅保存到每日记忆文件）
+function Write-DailyMemory($Content, $TaskId, $Step) {
+    $today = Get-Date -Format "yyyy-MM-dd"
+    $todayFile = Join-Path $MemoryDir "$today.md"
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    
+    $header = "## [$timestamp]"
+    if ($TaskId) { $header += " #$TaskId" }
+    if ($Step) { $header += " @$Step" }
+    
+    $formattedContent = "$header`n$Content`n`n---`n"
+    
+    try {
+        if (-not (Test-Path $MemoryDir)) {
+            New-Item -ItemType Directory -Path $MemoryDir -Force | Out-Null
+        }
+        
+        # 追加到文件
+        $formattedContent | Out-File $todayFile -Encoding UTF8 -Append
+        
+        Write-Host "[OK] Daily memory saved to $today.md"
+        return $true
+    } catch {
+        Write-Host "[ERROR] Failed to write daily memory: $_"
+        return $false
+    }
+}
+
+function Update-TaskMetadata($TaskId, $Step, $MemorySnippet) {
+    if (-not $TaskId) { return $true }
+    
+    $taskOutputDir = Join-Path $OutputDir $TaskId
+    if (-not (Test-Path $taskOutputDir)) {
+        Write-Host "[WARN] Task directory not found: $TaskId"
+        return $false
+    }
+    
+    $metaFile = Join-Path $taskOutputDir ".task-meta.json"
+    
+    $metadata = @{
+        task_id = $TaskId
+        last_active = Get-Date -Format "yyyy-MM-ddTHH:mm:ss"
+    }
+    if ($Step) { $metadata.current_step = $Step }
+    
+    try {
+        $jsonContent = $metadata | ConvertTo-Json
+        $jsonContent | Out-File $metaFile -Encoding UTF8 -Force
+        Write-Host "[OK] Task metadata updated"
+        return $true
+    } catch {
+        Write-Host "[WARN] Failed to update task metadata"
+        return $false
+    }
+}
+
+# 执行写入
+try {
+    $success1 = Write-DailyMemory -Content $Content -TaskId $TaskId -Step $Step
+    $success2 = Update-TaskMetadata -TaskId $TaskId -Step $Step -MemorySnippet $Content
+    
+    if ($success1 -or $success2) {
+        Write-Host "[OK] Memory saved ($([int]$success1 + [int]$success2)/2)"
+        exit 0
+    } else {
+        Write-Host "[ERROR] Memory save failed"
+        exit 1
+    }
+} catch {
+    Write-Host "[ERROR] Execution error: $_"
+    exit 1
+}

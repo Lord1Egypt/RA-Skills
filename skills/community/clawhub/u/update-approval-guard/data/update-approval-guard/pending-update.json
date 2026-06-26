@@ -1,0 +1,116 @@
+{
+  "createdAt": "2026-03-19T00:00:00+08:00",
+  "expiresAt": "2026-03-20T00:00:00+08:00",
+  "status": "pending_confirmation",
+  "summary": "发现 2 个 skill 可更新：self-improving-agent (3.0.4 → 3.0.5)、Skill-Creator (0.1.0 → 1.0.0)。OpenClaw 已是最新版本 (2026.3.13)。",
+  "openclaw": {
+    "current": "2026.3.13",
+    "latest": "2026.3.13",
+    "hasUpdate": false
+  },
+  "skills": {
+    "checked": [
+      {
+        "name": "self-improving-agent",
+        "current": "3.0.4",
+        "latest": "3.0.5",
+        "hasUpdate": true
+      },
+      {
+        "name": "Skill-Creator",
+        "current": "0.1.0",
+        "latest": "1.0.0",
+        "hasUpdate": true
+      },
+      {
+        "name": "proactive-agent",
+        "current": "3.1.0",
+        "latest": "3.1.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "skill-vetter",
+        "current": "1.0.0",
+        "latest": "1.0.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "gog",
+        "current": "1.0.0",
+        "latest": "1.0.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "github",
+        "current": "1.0.0",
+        "latest": "1.0.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "summarize",
+        "current": "1.0.0",
+        "latest": "1.0.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "find-skills",
+        "current": "0.1.0",
+        "latest": "0.1.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "Elite-Longterm-Memory",
+        "current": "1.2.3",
+        "latest": "1.2.3",
+        "hasUpdate": false
+      },
+      {
+        "name": "SuperDesign",
+        "current": "1.0.0",
+        "latest": "1.0.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "memory-setup",
+        "current": "1.0.0",
+        "latest": "0.1.0",
+        "hasUpdate": false,
+        "note": "本地版本高于远程，无需更新"
+      },
+      {
+        "name": "tech-news-digest",
+        "current": "3.15.0",
+        "latest": "3.15.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "translate-cli",
+        "current": "0.2.0",
+        "latest": "0.2.0",
+        "hasUpdate": false
+      },
+      {
+        "name": "tavily-search",
+        "current": "1.0.0",
+        "latest": "unknown",
+        "hasUpdate": false,
+        "note": "无法从 ClawHub 获取版本信息"
+      }
+    ],
+    "hasUpdates": 2,
+    "updateList": [
+      {
+        "name": "self-improving-agent",
+        "from": "3.0.4",
+        "to": "3.0.5"
+      },
+      {
+        "name": "Skill-Creator",
+        "from": "0.1.0",
+        "to": "1.0.0"
+      }
+    ]
+  },
+  "approved": false,
+  "notes": "在执行任何更新前需要用户确认。更新命令：\n1. clawhub update self-improving-agent --version 3.0.5\n2. clawhub update Skill-Creator --version 1.0.0\n或使用 clawhub update --all 更新全部。"
+}

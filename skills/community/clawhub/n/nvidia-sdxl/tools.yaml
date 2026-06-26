@@ -1,0 +1,4 @@
+# tools.yaml
+tools:
+  - name: generate_image
+    entrypoint: ./index.py

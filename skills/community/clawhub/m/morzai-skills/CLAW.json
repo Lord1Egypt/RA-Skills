@@ -1,0 +1,70 @@
+{
+  "name": "morzai-skills",
+  "version": "1.0.0",
+  "author": "Morzai AI Team",
+  "description": "Unified AI E-commerce Content Suite. The root skill routes intent via api/commands.json into either single-task garment workflows or the composite ecommerce product-kit workflow.",
+  "license": "MIT",
+  "entry": "SKILL.md",
+  "tags": [
+    "e-commerce",
+    "listing-sets",
+    "amazon-fba",
+    "fashion-tech",
+    "recolor",
+    "retouch",
+    "ironing",
+    "ghost-mannequin",
+    "lifestyle-images",
+    "hero-image",
+    "marketing-poster"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "permissions": ["network", "filesystem"],
+  "triggers": {
+    "keywords": [
+      "morzai", "amazon listing set", "shopify images", "temu listing", "shein visual",
+      "p1 hero image", "listing package", "ecommerce product kit", "marketing poster",
+      "recolor", "change clothing color", "match color", "apparel color",
+      "ghost mannequin", "remove mannequin", "retouch clothes", "background cleanup",
+      "iron clothes", "remove wrinkles", "smooth garment edges", "lint removal",
+      "pet hair removal", "blemish removal", "morzai", "clothes adjustment",
+      "white background", "product image", "ecommerce main image",
+      "电商套图", "亚马逊主图", "商品详情图", "衣服换色", "假模消除", "去褶皱", "熨烫", "白底图"
+    ]
+  },
+  "config": {
+    "MORZAI_API_KEY": {
+      "type": "string",
+      "description": "API key used by the existing single-function garment workflows.",
+      "required": false
+    },
+    "MORZAI_GATEWAY_URL": {
+      "type": "string",
+      "description": "The base URL for the remote MCP server. Default is https://api.lumo.me/mcp/v1",
+      "required": false
+    },
+    "MORZAI_CLI_PATH": {
+      "type": "string",
+      "description": "Optional absolute path to the morzai CLI binary when it is not available on PATH.",
+      "required": false
+    }
+  },
+  "skills": {
+    "apparel-recolor": {
+      "entry": "skills/apparel-recolor/SKILL.md",
+      "status": "active"
+    },
+    "garment-retouch": {
+      "entry": "skills/garment-retouch/SKILL.md",
+      "status": "active"
+    },
+    "clothing-adjustment": {
+      "entry": "skills/clothing-adjustment/SKILL.md",
+      "status": "active"
+    },
+    "morzai-ecommerce-product-kit": {
+      "entry": "skills/ecommerce-product-kit/SKILL.md",
+      "status": "active"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+# ─── Iterative Refinement Pipeline ─────────────────────────────────────
+#
+# Demonstrates the `restart` directive: an agent writes code, a reviewer
+# scores it, and if the score is below threshold the pipeline jumps back
+# to the writing step — up to maxRestarts times.
+#
+# Usage:
+#   squid run squid-pipeline/examples/iterative-refinement.yaml \
+#     --args-json '{"task": "implement a rate limiter", "threshold": 80}'
+
+name: iterative-refinement
+description: Write code, review, refine until quality threshold is met
+version: "1.0"
+
+args:
+  task:
+    description: What to implement
+    required: true
+  threshold:
+    default: 80
+    description: Minimum quality score (0-100) to accept
+  max_iterations:
+    default: 3
+    description: Maximum refinement cycles
+
+steps:
+  # ─── Step 1: Write Code ─────────────────────────────────
+  - id: write
+    type: spawn
+    description: AI agent writes or refines the code
+    spawn:
+      task: |
+        Implement: ${args.task}
+
+        If there is prior review feedback, incorporate it:
+        ${review.json.feedback}
+
+        Output JSON: { "code": "...", "explanation": "..." }
+      model: claude-sonnet-4-6
+      timeout: 300
+
+  # ─── Step 2: Review ────────────────────────────────────
+  - id: review
+    type: spawn
+    description: AI reviewer scores the code
+    spawn:
+      task: |
+        Review this implementation of: ${args.task}
+
+        Code: ${write.json.code}
+
+        Score it 0-100 on correctness, readability, and edge cases.
+        Output JSON: { "score": number, "feedback": "...", "issues": [...] }
+      model: claude-sonnet-4-6
+      thinking: high
+      timeout: 180
+
+  # ─── Step 3: Decide ────────────────────────────────────
+  # If score < threshold, jump back to "write" so the agent can
+  # incorporate the review feedback. Stops after max_iterations.
+  - id: decide
+    type: transform
+    description: Check if quality threshold is met
+    transform: '{"score":${review.json.score},"accepted":${review.json.score} >= ${args.threshold}}'
+    restart:
+      step: write
+      when: $review.json.score < $args.threshold
+      maxRestarts: 3
+
+  # ─── Step 4: Gate ──────────────────────────────────────
+  - id: approve
+    type: gate
+    description: Human reviews the final code
+    gate:
+      prompt: |
+        Code for '${args.task}' scored ${review.json.score}/100.
+        Feedback: ${review.json.feedback}
+        Approve to commit.
+      preview: $write.json
+
+  # ─── Step 5: Commit ────────────────────────────────────
+  - id: commit
+    type: run
+    description: Apply the code
+    run: echo "Code accepted with score ${review.json.score}"
+    when: $approve.approved

@@ -1,0 +1,134 @@
+{
+  "name": "ultra-memory",
+  "version": "4.3.1",
+  "description": "超长会话记忆系统 — RRF多路融合+本地Cross-Encoder精排+Weibull衰减+三层记忆分级，支持所有LLM平台",
+  "keywords": [
+    "ai",
+    "memory",
+    "long-context",
+    "claude",
+    "openclaw",
+    "mcp",
+    "llm",
+    "session-memory",
+    "semantic-search",
+    "ultra-memory",
+    "agent-memory",
+    "context-window",
+    "mem0-alternative",
+    "openai",
+    "gemini",
+    "qwen",
+    "rrf",
+    "cross-encoder",
+    "weibull-decay",
+    "memory-tier",
+    "privacy-first",
+    "importance-scoring",
+    "access-frequency",
+    "semantic-dedup",
+    "auto-capture"
+  ],
+  "homepage": "https://github.com/nanjingya/ultra-memory",
+  "bugs": {
+    "url": "https://github.com/nanjingya/ultra-memory/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "NanJingYa",
+    "url": "https://github.com/nanjingya"
+  },
+  "contributors": [
+    {
+      "name": "NanJingYa",
+      "url": "https://github.com/nanjingya"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanjingya/ultra-memory.git"
+  },
+  "bin": {
+    "ultra-memory": "scripts/mcp-server.js",
+    "ultra-memory-init": "scripts/init.py",
+    "ultra-memory-log": "scripts/log_op.py",
+    "ultra-memory-recall": "scripts/recall.py",
+    "ultra-memory-summarize": "scripts/summarize.py",
+    "ultra-memory-restore": "scripts/restore.py",
+    "ultra-memory-knowledge": "scripts/log_knowledge.py",
+    "ultra-memory-extract-facts": "scripts/extract_facts.py",
+    "ultra-memory-evolve": "scripts/evolve_profile.py",
+    "ultra-memory-manage": "scripts/manage.py",
+    "ultra-memory-hook": "scripts/hook_capture.py"
+  },
+  "scripts": {
+    "test": "python3 -m unittest tests.test_core -v && python3 test_e2e.py",
+    "start": "node scripts/mcp-server.js",
+    "server": "python3 platform/server.py"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  },
+  "optionalDependencies": {
+    "pdfminer.six": "*",
+    "pytesseract": "*",
+    "whisper": "*",
+    "python-docx": "*"
+  },
+  "peerDependencies": {
+    "langchain": ">=0.1.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "files": [
+    "scripts/",
+    "scripts/multimodal/",
+    "platform/",
+    "integrations/",
+    ".claude/settings.json",
+    "SKILL.md",
+    "README.md",
+    "CLAWHUB.md"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "claudeskills": {
+    "format": "1.0",
+    "trigger": {
+      "zh": [
+        "记住",
+        "别忘了",
+        "上次",
+        "回忆",
+        "记忆",
+        "不要忘记",
+        "记录",
+        "跨会话",
+        "继续昨天"
+      ],
+      "en": [
+        "remember",
+        "don't forget",
+        "what did we",
+        "recall",
+        "memory",
+        "log this",
+        "context lost",
+        "keep track"
+      ]
+    },
+    "layer": {
+      "1": "ops.jsonl — 操作日志层（append-only）",
+      "2": "summary.md — 会话摘要层（里程碑压缩）",
+      "3": "semantic/ — 跨会话语义层（知识库+实体索引）",
+      "4": "entities.jsonl — 结构化实体索引（7类实体）",
+      "5": "tfidf_cache.json — 向量语义层（TF-IDF/sentence-transformers）",
+      "6": "evolution/ — 自我进化层（事实提取+矛盾检测+遗忘）"
+    }
+  }
+}

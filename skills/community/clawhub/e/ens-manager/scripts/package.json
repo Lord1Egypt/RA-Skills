@@ -1,0 +1,9 @@
+{
+  "name": "ens-manager-scripts",
+  "version": "1.1.0",
+  "description": "ENS management scripts - register names, create subdomains, publish IPFS",
+  "dependencies": {
+    "viem": "^1.20.0",
+    "content-hash": "^2.5.2"
+  }
+}

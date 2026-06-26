@@ -1,35 +1,40 @@
 ---
-name: "WhatsApp Group Admin"
-description: "Group administration utilities - info, stats, invite link parsing, and creation templates"
-category: "other"
-source: "ClawHub"
-tags: [admin, baileys, groups, offline, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-group-admin"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-group-admin"
+name: whatsapp-group-admin
+description: Group administration utilities - info, stats, invite link parsing, and creation templates
 ---
 
-# WhatsApp Group Admin
+# WhatsApp Group Admin Skill
 
-> Group administration utilities - info, stats, invite link parsing, and creation templates
+Administrative functions for WhatsApp groups.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-group-admin`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-group-admin](https://clawhub.ai/skills/whatsapp-group-admin)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-group-admin
 ```
+exec({ cmd: "node <skill_dir>/scripts/admin.js COMMAND [ARGS]" })
+```
+
+## Commands
+
+### Group Info
+```
+exec({ cmd: "node <skill_dir>/scripts/admin.js info \"groupId@g.us\"" })
+```
+
+### List Groups with Stats
+```
+exec({ cmd: "node <skill_dir>/scripts/admin.js list" })
+```
+
+### Group Creation Template
+```
+exec({ cmd: "node <skill_dir>/scripts/admin.js create-template \"Group Name\"" })
+```
+
+### Parse Invite Link
+```
+exec({ cmd: "node <skill_dir>/scripts/admin.js parse-link \"https://chat.whatsapp.com/ABC123\"" })
+```
+
+## Note
+
+Modification functions (create, remove, promote) require an active WhatsApp connection.

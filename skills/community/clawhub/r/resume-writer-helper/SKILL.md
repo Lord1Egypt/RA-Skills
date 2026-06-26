@@ -1,35 +1,18 @@
----
-name: "应届毕业生简历撰写优化助手"
-description: "帮助应届毕业生搭建简历结构，润色校园经历，优化自我介绍，针对岗位定制简历内容，提高求职竞争力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-writer-helper"
-sourceUrl: "https://clawhub.ai/skills/resume-writer-helper"
----
-
 # 应届毕业生简历撰写优化助手
+## 功能简介
+面向应届生、毕业求职学生，零基础辅助简历撰写、内容润色、岗位适配修改，解决应届生没工作经历、简历空洞、不会优化的问题。
 
-> 帮助应届毕业生搭建简历结构，润色校园经历，优化自我介绍，针对岗位定制简历内容，提高求职竞争力。
+## 核心能力
+1. 简历框架搭建：根据应聘岗位（文职/运营/技术/行政等）生成专属简历结构
+2. 校园经历润色：把社团、实习、课程作业、毕业设计改成职场化简历话术
+3. 优缺点、自我介绍优化：贴合招聘HR阅读习惯，规避踩坑话术
+4. 岗位定制修改：输入目标岗位，针对性调整简历侧重点
+5. 简历避坑指导：指出简历常见错误（空话太多、排版杂乱、描述笼统）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-writer-helper`
-- **Source URL:** [https://clawhub.ai/skills/resume-writer-helper](https://clawhub.ai/skills/resume-writer-helper)
+## 使用场景
+应届毕业生初次写简历、实习简历修改、校招简历优化、简历自我介绍改写
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-writer-helper
-```
+## 使用示例
+1.帮我结合电商运营岗位，改写我的社团销售经历
+2.我没有实习经历，怎么填充简历内容
+3.优化我的简历自我评价

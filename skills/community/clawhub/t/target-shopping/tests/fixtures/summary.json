@@ -1,0 +1,216 @@
+{
+  "data": {
+    "product_summaries": [
+      {
+        "__typename": "ProductSummary",
+        "tcin": "89827259",
+        "desirability_cues": [
+          {
+            "code": "bestseller",
+            "display": "Bestseller",
+            "long_description": "Based on sales and guest views of this item within the last 30 days."
+          }
+        ],
+        "ornaments": [
+          {
+            "ornament": "bestseller",
+            "display": "Bestseller",
+            "long_description": "Based on sales and guest views of this item within the last 30 days.",
+            "ornament_type": "guest",
+            "template_type": "dark_marker_with_trophy"
+          },
+          {
+            "ornament": "low_returns",
+            "display": "Kept by most",
+            "ornament_type": "enterprise",
+            "template_type": "green_heart_with_bold_text",
+            "metadata": "{\"experiments\":[{\"factor\":\"low_returns_ornament\",\"value\":\"treatment_2\",\"default\":false}]}"
+          },
+          {
+            "ornament": "low_returns_thumbs_up",
+            "display": "Rarely Returned",
+            "ornament_type": "enterprise",
+            "template_type": "thumbs_up_with_bold_text",
+            "metadata": "{\"experiments\":[{\"factor\":\"low_returns_ornament\",\"value\":\"treatment_1\",\"default\":false}]}"
+          },
+          {
+            "ornament": "top_specs",
+            "display": "No active noise canceling;Wired;USB-C",
+            "ornament_type": "product",
+            "template_type": "top_spec_text",
+            "metadata": "{\"experiments\":[{\"factor\":\"top_spec_ornament\",\"value\":\"treatment_1\",\"default\":false}]}"
+          },
+          {
+            "ornament": "top_specs_with_pills",
+            "display": "No active noise canceling;Wired;USB-C",
+            "ornament_type": "product",
+            "template_type": "top_spec_pills",
+            "metadata": "{\"experiments\":[{\"factor\":\"top_spec_ornament\",\"value\":\"treatment_2\",\"default\":false}]}"
+          }
+        ],
+        "item": {
+          "relationship_type_code": "SA",
+          "product_classification": {
+            "item_type": {
+              "name": "Headphones",
+              "type": "59911919"
+            }
+          },
+          "product_description": {
+            "title": "Apple EarPods (USB-C)"
+          },
+          "enrichment": {
+            "buy_url": "https://www.target.com/p/apple-earpods-usb-c/-/A-89827259"
+          },
+          "fulfillment": {},
+          "merchandise_classification": {
+            "class_id": 0,
+            "department_id": 57
+          },
+          "eligibility_rules": {}
+        },
+        "fulfillment": {
+          "product_id": "89827259",
+          "is_out_of_stock_in_all_store_locations": false,
+          "sold_out": false,
+          "shipping_options": {
+            "availability_status": "IN_STOCK",
+            "loyalty_availability_status": "IN_STOCK",
+            "services": [
+              {
+                "cutoff": "2026-04-24T20:00:00Z",
+                "shipping_method_id": "STANDARD",
+                "min_delivery_date": "2026-04-25",
+                "max_delivery_date": "2026-04-25",
+                "is_two_day_shipping": true,
+                "is_base_shipping_method": true
+              }
+            ]
+          },
+          "store_options": [
+            {
+              "search_response_store_type": "PRIMARY",
+              "location_available_to_promise_quantity": 0.0,
+              "pre_order_location_available_to_promise_quantity": 0.0,
+              "location_id": "2281",
+              "store": {
+                "location_name": "San Jose Central"
+              },
+              "order_pickup": {
+                "availability_status": "OUT_OF_STOCK"
+              },
+              "ship_to_store": {
+                "availability_status": "UNAVAILABLE"
+              },
+              "in_store_only": {
+                "availability_status": "OUT_OF_STOCK"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "ProductSummary",
+        "tcin": "94783927",
+        "ornaments": [
+          {
+            "ornament": "top_specs",
+            "display": "No active noise canceling;USB-C;5.2 oz",
+            "ornament_type": "product",
+            "template_type": "top_spec_text",
+            "metadata": "{\"experiments\":[{\"factor\":\"top_spec_ornament\",\"value\":\"treatment_1\",\"default\":false}]}"
+          },
+          {
+            "ornament": "top_specs_with_pills",
+            "display": "No active noise canceling;USB-C;5.2 oz",
+            "ornament_type": "product",
+            "template_type": "top_spec_pills",
+            "metadata": "{\"experiments\":[{\"factor\":\"top_spec_ornament\",\"value\":\"treatment_2\",\"default\":false}]}"
+          }
+        ],
+        "item": {
+          "relationship_type_code": "VC",
+          "product_classification": {
+            "item_type": {
+              "name": "Headphones",
+              "type": "59911919"
+            }
+          },
+          "product_description": {
+            "title": "Refurbished Sony WHCH520 Bluetooth Wireless Headphones with Microphone White - Target Certified Refurbished"
+          },
+          "enrichment": {
+            "buy_url": "https://www.target.com/p/refurbished-sony-whch520-bluetooth-wireless-headphones-with-microphone-white-target-certified-refurbished/-/A-94783927"
+          },
+          "fulfillment": {},
+          "merchandise_classification": {
+            "class_id": 7,
+            "department_id": 8
+          }
+        },
+        "parent": {
+          "__typename": "ParentProductSummary",
+          "tcin": "94919826",
+          "item": {
+            "relationship_type_code": "VAP",
+            "product_classification": {
+              "item_type": {
+                "name": "Headphones",
+                "type": "59911919"
+              }
+            },
+            "product_description": {
+              "title": "Refurbished Sony WHCH520 Bluetooth Wireless Headphones with Microphone - Target Certified Refurbished"
+            },
+            "enrichment": {
+              "buy_url": "https://www.target.com/p/refurbished-sony-whch520-bluetooth-wireless-headphones-with-microphone-target-certified-refurbished/-/A-94919826"
+            },
+            "merchandise_classification": {
+              "class_id": 7,
+              "department_id": 8
+            }
+          }
+        },
+        "fulfillment": {
+          "product_id": "94783927",
+          "is_out_of_stock_in_all_store_locations": true,
+          "sold_out": false,
+          "shipping_options": {
+            "availability_status": "IN_STOCK",
+            "loyalty_availability_status": "IN_STOCK",
+            "services": [
+              {
+                "cutoff": "2026-04-27T17:00:00Z",
+                "shipping_method_id": "STANDARD",
+                "min_delivery_date": "2026-04-29",
+                "max_delivery_date": "2026-04-29",
+                "is_two_day_shipping": true,
+                "is_base_shipping_method": true
+              }
+            ]
+          },
+          "store_options": [
+            {
+              "search_response_store_type": "PRIMARY",
+              "location_available_to_promise_quantity": 0.0,
+              "pre_order_location_available_to_promise_quantity": 0.0,
+              "location_id": "2281",
+              "store": {
+                "location_name": "San Jose Central"
+              },
+              "order_pickup": {
+                "availability_status": "UNAVAILABLE"
+              },
+              "ship_to_store": {
+                "availability_status": "UNAVAILABLE"
+              },
+              "in_store_only": {
+                "availability_status": "NOT_SOLD_IN_STORE"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

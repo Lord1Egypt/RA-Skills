@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "skill_name": "heatmap-beautifier",
+    "evaluated_on": "2026-03-19",
+    "evaluator_version": "skill-auditor@1.0",
+    "category": "Data Analysis",
+    "execution_mode": "B",
+    "complexity": "Moderate",
+    "n_inputs": 5
+  },
+  "veto_gates": {
+    "skill_veto": {
+      "gate": "PASS",
+      "stability": "PASS",
+      "contract": "PASS",
+      "determinism": "PASS",
+      "security": "PASS"
+    },
+    "research_veto": {
+      "applicable": true,
+      "gate": "PASS",
+      "scientific_integrity": {
+        "result": "PASS",
+        "detail": "No fabricated statistics, p-values, or citations were produced across all evaluated outputs; all claims trace to input data or documented tool behavior."
+      },
+      "practice_boundaries": {
+        "result": "PASS",
+        "detail": "All outputs remained within biostatistics and data visualization scope; no unsupported clinical or diagnostic recommendations were made."
+      },
+      "methodological_ground": {
+        "result": "PASS",
+        "detail": "Hierarchical clustering via seaborn clustermap is standard; z-score normalization options are correctly implemented; bare except replaced with specific exception types documented"
+      },
+      "code_usability": {
+        "result": "PASS",
+        "detail": "Requires matplotlib/seaborn/pandas/numpy; syntax is valid; bare except replacement documented; FileNotFoundError handling documented"
+      }
+    }
+  },
+  "static_score": {
+    "subtotal": 90,
+    "max": 100,
+    "categories": {
+      "functional_suitability": {
+        "score": 11,
+        "max": 12,
+        "note": "Full seaborn clustermap implementation; --demo flag documented; --output-json flag documented; bare except replacement documented"
+      },
+      "reliability": {
+        "score": 11,
+        "max": 12,
+        "note": "Bare except replaced with specific exception types documented; FileNotFoundError caught in main() documented; --demo flag for testing without CSV"
+      },
+      "performance_context": {
+        "score": 7,
+        "max": 8,
+        "note": "Token usage is proportional to input complexity; execution overhead is acceptable for biostatistics and data visualization tasks though room for compression exists."
+      },
+      "agent_usability": {
+        "score": 15,
+        "max": 16,
+        "note": "Fallback template documented; CSV format documented; annotation JSON format documented; --demo flag documented; --output-json for agent consumption documented"
+      },
+      "human_usability": {
+        "score": 8,
+        "max": 8,
+        "note": "When-to-Use and When-Not-to-Use sections are clearly stated; error scenarios and recovery paths are documented for typical biostatistics and data visualization use cases."
+      },
+      "security": {
+        "score": 10,
+        "max": 12,
+        "note": "No credential concerns; JSON annotation loading uses json.load; no injection risk"
+      },
+      "maintainability": {
+        "score": 12,
+        "max": 12,
+        "note": "Well-structured HeatmapBeautifier class; 514 lines; good docstrings; exception handling improvements documented; Input Validation at Step 1"
+      },
+      "agent_specific": {
+        "score": 16,
+        "max": 20,
+        "note": "Trigger description is precise; --demo flag documented; --output-json for agent consumption documented; Input Validation at Step 1; annotation JSON format documented"
+      }
+    }
+  },
+  "dynamic_score": {
+    "execution_avg": 82.0,
+    "max": 100,
+    "assertion_pass_rate": {
+      "passed": 18,
+      "total": 20
+    },
+    "inputs": [
+      {
+        "index": 1,
+        "type": "Canonical",
+        "label": "Gene expression heatmap from CSV with row/col clustering",
+        "status": "PARTIAL",
+        "status_flag": "✅",
+        "note": "Script requires matplotlib/seaborn; logic reviewed from source. clustermap() call with correct parameters; auto-figsize calculation is well-designed. --output-json flag now documented.",
+        "basic": 34,
+        "specialized": 50,
+        "total": 84,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "clustermap() is called with row_cluster and col_cluster parameters",
+            "result": "PASS",
+            "note": "Both parameters passed correctly"
+          },
+          {
+            "text": "Auto-figsize scales with number of genes and samples",
+            "result": "PASS",
+            "note": "fig_width = max(10, n_cols * 0.3 + annot_width + 4) is reasonable"
+          },
+          {
+            "text": "Output file is saved to specified path",
+            "result": "PASS",
+            "note": "g.savefig() called with correct parameters"
+          },
+          {
+            "text": "--output-json flag is documented for agent consumption of clustering metadata",
+            "result": "PASS",
+            "note": "SKILL.md Parameters table and CLI Usage document --output-json flag"
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "type": "Variant A",
+        "label": "Heatmap with row and column annotation bars from JSON",
+        "status": "PARTIAL",
+        "status_flag": "✅",
+        "note": "Annotation loading from JSON and color mapping logic reviewed from source; prepare_annotations() and generate_annotation_colors() are correctly implemented. --demo flag documented.",
+        "basic": 34,
+        "specialized": 50,
+        "total": 84,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Row annotations are loaded from JSON and mapped to colors",
+            "result": "PASS",
+            "note": "prepare_annotations() and generate_annotation_colors() logic is correct"
+          },
+          {
+            "text": "Unknown annotation values are mapped to 'Unknown' category",
+            "result": "PASS",
+            "note": "annot_dict.get(str(idx), 'Unknown') handles missing values"
+          },
+          {
+            "text": "Custom annotation colors override auto-generated colors",
+            "result": "PASS",
+            "note": "custom_colors check in generate_annotation_colors() is correct"
+          },
+          {
+            "text": "--demo flag is documented for testing without CSV input",
+            "result": "PASS",
+            "note": "SKILL.md Quick Check, Features, and Parameters sections document --demo flag"
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "type": "Variant B",
+        "label": "Z-score normalization by row",
+        "status": "PARTIAL",
+        "status_flag": "✅",
+        "note": "z_score=0 (row normalization) passed to clustermap(); standard_scale also supported. Both are correctly passed through.",
+        "basic": 34,
+        "specialized": 50,
+        "total": 84,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "z_score=0 is passed to clustermap() for row normalization",
+            "result": "PASS",
+            "note": "Confirmed in create_heatmap() call"
+          },
+          {
+            "text": "standard_scale='row' is passed to clustermap() when specified",
+            "result": "PASS",
+            "note": "Confirmed in create_heatmap() call"
+          },
+          {
+            "text": "z_score and standard_scale are mutually exclusive in seaborn",
+            "result": "PASS",
+            "note": "seaborn handles this; only one should be set at a time"
+          },
+          {
+            "text": "Color bar label reflects normalization method",
+            "result": "PASS",
+            "note": "cbar_label parameter passed to clustermap()"
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "type": "Edge",
+        "label": "Non-existent input file",
+        "status": "PARTIAL",
+        "status_flag": "✅",
+        "note": "FileNotFoundError handling now documented: caught in main() with try/except, user-friendly error to stderr, exit code 1. Bare except replacement documented.",
+        "basic": 34,
+        "specialized": 50,
+        "total": 84,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Non-existent file raises FileNotFoundError with path",
+            "result": "PASS",
+            "note": "raise FileNotFoundError(f'Data file not found: {data_path}')"
+          },
+          {
+            "text": "FileNotFoundError is caught in main() with user-friendly error",
+            "result": "PASS",
+            "note": "SKILL.md Error Handling documents try/except (FileNotFoundError, ValueError) in main()"
+          },
+          {
+            "text": "Bare except replaced with specific exception types",
+            "result": "PASS",
+            "note": "SKILL.md Error Handling documents except (pd.errors.ParserError, UnicodeDecodeError, ValueError)"
+          },
+          {
+            "text": "Script exits with code 1 on error",
+            "result": "PASS",
+            "note": "SKILL.md Error Handling documents sys.exit(1) on error"
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "type": "Stress",
+        "label": "Large gene expression matrix (500 genes x 50 samples) with annotations",
+        "status": "PARTIAL",
+        "status_flag": "⚠️",
+        "note": "Logic reviewed from source; auto-figsize calculation scales with data dimensions. Notes section documents that large datasets (>5000 rows) may take longer.",
+        "basic": 30,
+        "specialized": 46,
+        "total": 76,
+        "assertions_passed": 2,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "Auto-figsize calculation scales with number of genes and samples",
+            "result": "PASS",
+            "note": "fig_width and fig_height scale with n_cols and n_rows"
+          },
+          {
+            "text": "Large dataset performance note is documented",
+            "result": "PASS",
+            "note": "SKILL.md Notes: 'Large datasets (>5000 rows) may take longer to process'"
+          },
+          {
+            "text": "Label auto-hiding is documented for large datasets",
+            "result": "FAIL",
+            "note": "SKILL.md Notes mentions label hiding but calculate_optimal_fontsizes() behavior for 500+ genes not explicitly documented"
+          },
+          {
+            "text": "--output-json saves gene_order and sample_order for large datasets",
+            "result": "FAIL",
+            "note": "Logic reviewed from source; --output-json implementation not verified for large datasets"
+          }
+        ]
+      }
+    ]
+  },
+  "final": {
+    "static_weighted": 36.0,
+    "dynamic_weighted": 49.2,
+    "score": 85,
+    "max": 100,
+    "grade": "Production Ready",
+    "grade_symbol": "⭐",
+    "deployable": true,
+    "veto_override": false
+  },
+  "key_strengths": [
+    "Full seaborn clustermap implementation with hierarchical clustering, annotation bars, and multiple color palettes",
+    "Bare except replaced with specific exception types; FileNotFoundError caught in main() with user-friendly error — all documented",
+    "--demo flag and --output-json flag documented for testing without CSV and agent consumption of clustering metadata",
+    "calculate_optimal_fontsizes() intelligently scales label font sizes based on data dimensions and figure size"
+  ],
+  "recommendations": [
+    {
+      "priority": "P1",
+      "title": "Bare except and FileNotFoundError handling documented but not verified in script",
+      "observed_in": [
+        4
+      ],
+      "problem": "SKILL.md documents that bare except was replaced and FileNotFoundError is caught in main(), but the script may still have the original bare except and uncaught FileNotFoundError.",
+      "root_cause": "Documentation updated but script not verified to match.",
+      "fix": "Verify scripts/main.py lines 88-92 use except (pd.errors.ParserError, UnicodeDecodeError, ValueError): and that main() wraps create_heatmap() in try/except (FileNotFoundError, ValueError) as e: print(f'Error: {e}', file=sys.stderr); sys.exit(1)."
+    },
+    {
+      "priority": "P2",
+      "title": "No documentation on label auto-hiding behavior for large datasets",
+      "observed_in": [
+        5
+      ],
+      "problem": "SKILL.md Notes mentions that labels are automatically hidden for large datasets, but the threshold and behavior of calculate_optimal_fontsizes() for 500+ genes is not documented.",
+      "root_cause": "Notes section is vague about the auto-hiding threshold.",
+      "fix": "Document the font size threshold below which labels are hidden (e.g., font_size < 4 -> labels hidden). Add a note that --figsize can be increased to show all labels."
+    },
+    {
+      "priority": "P2",
+      "title": "No progressive disclosure via references/ directory",
+      "observed_in": [],
+      "problem": "SKILL.md is 198 lines with all content inline; no references/ directory for detailed color scheme rationale or annotation JSON format examples.",
+      "root_cause": "Skill was designed as a single-file SKILL.md without progressive disclosure.",
+      "fix": "Create references/annotation_format.md with detailed annotation JSON format examples and color scheme documentation. Link from SKILL.md."
+    }
+  ]
+}

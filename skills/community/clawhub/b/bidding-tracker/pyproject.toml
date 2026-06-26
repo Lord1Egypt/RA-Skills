@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bidding-tracker"
+version = "0.1.0"
+description = "招投标商机全周期追踪工具"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pypdf>=4.0",
+    "python-docx>=1.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+bidding-tracker = "bidding_tracker.skill:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bidding_tracker*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

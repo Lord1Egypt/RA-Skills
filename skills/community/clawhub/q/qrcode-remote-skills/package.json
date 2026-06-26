@@ -1,0 +1,12 @@
+{
+  "name": "qrcode-remote-skills",
+  "version": "1.0.0",
+  "description": "QR Code generation & decoding scripts (Node.js fallback)",
+  "dependencies": {
+    "qrcode": "^1.5.0",
+    "qr-scanner-wechat": "^0.1.0",
+    "sharp": "^0.33.0",
+    "xlsx": "^0.18.0",
+    "archiver": "^7.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "alibaba-shopping",
+  "version": "2.1.0",
+  "description": "Alibaba ecosystem shopping assistant. Input a buying need or product link; choose between Taobao, Tmall, and 1688, compare platform fit, seller trust, visible price, MOQ, returns, and authenticity risk. Safe boundary: no login, no order submission, no payment.",
+  "keywords": [
+    "alibaba",
+    "taobao",
+    "tmall",
+    "1688",
+    "shopping",
+    "e-commerce"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/alibaba-shopping"
+}

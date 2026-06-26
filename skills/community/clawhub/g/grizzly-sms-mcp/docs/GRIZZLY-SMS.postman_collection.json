@@ -1,0 +1,902 @@
+{
+	"info": {
+		"_postman_id": "ed51dbd4-c588-47ac-a61c-6ba27b776e9f",
+		"name": "GRIZZLY-SMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15603002"
+	},
+	"item": [
+		{
+			"name": "available quantity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getNumbersStatus",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getNumbersStatus"
+						},
+						{
+							"key": "country",
+							"value": "$country",
+							"disabled": true
+						},
+						{
+							"key": "operator",
+							"value": "mts",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getNumbersStatus",
+							"protocol": "https",
+							"host": [
+								"api",
+								"grizzlysms",
+								"com"
+							],
+							"path": [
+								"stubs",
+								"handler_api.php"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{GRIZZLY_SMS_API_KEY}}"
+								},
+								{
+									"key": "action",
+									"value": "getNumbersStatus"
+								},
+								{
+									"key": "country",
+									"value": "$country",
+									"disabled": true
+								},
+								{
+									"key": "operator",
+									"value": "mts",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 07 Aug 2025 20:26:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY always"
+						},
+						{
+							"key": "content-security-policy",
+							"value": "frame-ancestors 'self'"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15724800; includeSubDomains"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "96b982e75cd5542c-TLL"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"aww\": \"4758\",\n  \"awv\": \"6950\",\n  \"baa\": \"4823\",\n  \"bii\": \"4787\",\n  \"agj\": \"5571\",\n  \"aor\": \"3699\",\n  \"agl\": \"4793\",\n  \"ya\": \"5184\",\n  \"aow\": \"4837\",\n  \"bah\": \"4072\",\n  \"pz\": \"3353\",\n  \"hw\": \"957\",\n  \"baq\": \"4793\",\n  \"apd\": \"4794\",\n  \"qf\": \"4837\",\n  \"yq\": \"4857\",\n  \"yr\": \"4826\",\n  \"ahb\": \"4989\",\n  \"bay\": \"4668\",\n  \"ie\": \"4903\",\n  \"ig\": \"2\",\n  \"yw\": \"3545\",\n  \"qq\": \"4030\",\n  \"ij\": \"2989\",\n  \"im\": \"5053\",\n  \"qv\": \"4830\",\n  \"ip\": \"4825\",\n  \"za\": \"4993\",\n  \"qx\": \"3733\",\n  \"bjr\": \"4008\",\n  \"am\": \"4232\",\n  \"bju\": \"4008\",\n  \"bbl\": \"4857\",\n  \"zh\": \"4518\",\n  \"aq\": \"4552\",\n  \"ahx\": \"4826\",\n  \"zk\": \"4670\",\n  \"bsd\": \"4793\",\n  \"re\": \"2549\",\n  \"bbu\": \"4857\",\n  \"zo\": \"4944\",\n  \"aqd\": \"4541\",\n  \"zz\": \"4858\",\n  \"rr\": \"4702\",\n  \"bss\": \"3836\",\n  \"jn\": \"4794\",\n  \"aqt\": \"3727\",\n  \"bsx\": \"4793\",\n  \"ry\": \"4858\",\n  \"jq\": \"2242\",\n  \"bsz\": \"4007\",\n  \"bl\": \"5129\",\n  \"bks\": \"4008\",\n  \"bo\": \"2830\",\n  \"ait\": \"4857\",\n  \"aiv\": \"3669\",\n  \"bkz\": \"4792\",\n  \"bw\": \"3744\",\n  \"bz\": \"3404\",\n  \"kc\": \"4668\",\n  \"ajd\": \"4354\",\n  \"ble\": \"4008\",\n  \"sn\": \"5062\",\n  \"kf\": \"4826\",\n  \"bts\": \"4008\",\n  \"abd\": \"4833\",\n  \"abc\": \"4825\",\n  \"abe\": \"5124\",\n  \"btv\": \"4008\",\n  \"kt\": \"5075\",\n  \"blr\": \"5048\",\n  \"btz\": \"4793\",\n  \"cn\": \"4226\",\n  \"abk\": \"4856\",\n  \"abn\": \"3723\",\n  \"tc\": \"4756\",\n  \"blx\": \"3976\",\n  \"abq\": \"4793\",\n  \"tg\": \"498\",\n  \"ti\": \"3979\",\n  \"lc\": \"4678\",\n  \"tn\": \"4155\",\n  \"lf\": \"3307\",\n  \"akd\": \"4794\",\n  \"li\": \"4299\",\n  \"ts\": \"2286\",\n  \"df\": \"4855\",\n  \"tw\": \"4250\",\n  \"tx\": \"4567\",\n  \"dh\": \"3885\",\n  \"beh\": \"4040\",\n  \"asv\": \"4825\",\n  \"do\": \"4887\",\n  \"acl\": \"4825\",\n  \"dp\": \"4680\",\n  \"ua\": \"4034\",\n  \"ub\": \"4087\",\n  \"dr\": \"4420\",\n  \"lz\": \"4907\",\n  \"ds\": \"4434\",\n  \"bet\": \"3906\",\n  \"bex\": \"4793\",\n  \"mb\": \"0\",\n  \"uk\": \"4442\",\n  \"ul\": \"4924\",\n  \"acx\": \"4825\",\n  \"me\": \"5008\",\n  \"acz\": \"4792\",\n  \"mj\": \"4474\",\n  \"ada\": \"4939\",\n  \"mm\": \"3154\",\n  \"mo\": \"5035\",\n  \"alo\": \"4836\",\n  \"bfh\": \"4038\",\n  \"mt\": \"4324\",\n  \"et\": \"5100\",\n  \"bfr\": \"4857\",\n  \"adt\": \"4607\",\n  \"ew\": \"5111\",\n  \"vi\": \"4522\",\n  \"vk\": \"4312\",\n  \"vm\": \"4652\",\n  \"nf\": \"5022\",\n  \"vp\": \"4853\",\n  \"boh\": \"4793\",\n  \"fb\": \"2852\",\n  \"bgb\": \"4040\",\n  \"aup\": \"6098\",\n  \"fd\": \"4348\",\n  \"bwv\": \"3228\",\n  \"vz\": \"4193\",\n  \"bgj\": \"4857\",\n  \"bor\": \"4007\",\n  \"nv\": \"4350\",\n  \"wa\": \"828\",\n  \"wb\": \"786\",\n  \"nz\": \"4740\",\n  \"fs\": \"4907\",\n  \"fu\": \"5072\",\n  \"fx\": \"4958\",\n  \"avj\": \"4825\",\n  \"oi\": \"2202\",\n  \"ok\": \"2773\",\n  \"ws\": \"0\",\n  \"bhg\": \"4760\",\n  \"wx\": \"3796\",\n  \"bpn\": \"4008\",\n  \"bpp\": \"4793\",\n  \"anq\": \"4793\",\n  \"ot\": \"3819\",\n  \"go\": \"0\",\n  \"gp\": \"4087\",\n  \"ox\": \"4908\",\n  \"bhq\": \"4793\",\n  \"bpy\": \"4793\",\n  \"awb\": \"4857\",\n  \"bpz\": \"4008\",\n  \"gx\": \"4583\",\n  \"bhy\": \"4825\",\n  \"xk\": \"4691\",\n  \"afy\": \"4826\",\n  \"bqc\": \"4008\",\n  \"xo\": \"4856\",\n  \"xr\": \"4978\",\n  \"aoi\": \"3695\",\n  \"pm\": \"2238\",\n  \"xv\": \"4875\",\n  \"agd\": \"4786\",\n  \"aol\": \"2952\"\n}"
+				}
+			]
+		},
+		{
+			"name": "balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getBalance",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getBalance"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getBalance",
+							"protocol": "https",
+							"host": [
+								"api",
+								"grizzlysms",
+								"com"
+							],
+							"path": [
+								"stubs",
+								"handler_api.php"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{GRIZZLY_SMS_API_KEY}}"
+								},
+								{
+									"key": "action",
+									"value": "getBalance"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 07 Aug 2025 20:29:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY always"
+						},
+						{
+							"key": "content-security-policy",
+							"value": "frame-ancestors 'self'"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15724800; includeSubDomains"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "96b98743992f32d6-TLL"
+						}
+					],
+					"cookie": [],
+					"body": "ACCESS_BALANCE:17.154"
+				}
+			]
+		},
+		{
+			"name": "Request number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getNumber&service=go&forward=0&country=33&maxPrice=maxPrice&activationType=0&language=",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getNumber"
+						},
+						{
+							"key": "service",
+							"value": "go"
+						},
+						{
+							"key": "forward",
+							"value": "0"
+						},
+						{
+							"key": "operator",
+							"value": "$operator",
+							"disabled": true
+						},
+						{
+							"key": "ref",
+							"value": "$ref",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "33",
+							"description": "6,33 for google"
+						},
+						{
+							"key": "phoneException",
+							"value": "$phoneException",
+							"disabled": true
+						},
+						{
+							"key": "maxPrice",
+							"value": "maxPrice"
+						},
+						{
+							"key": "useCashBack",
+							"value": "$useCashBack",
+							"disabled": true
+						},
+						{
+							"key": "activationType",
+							"value": "0"
+						},
+						{
+							"key": "language",
+							"value": ""
+						},
+						{
+							"key": "userId",
+							"value": "$userId",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getNumber&service=go&forward=0&country=6&maxPrice=maxPrice&activationType=0&language=",
+							"protocol": "https",
+							"host": [
+								"api",
+								"grizzlysms",
+								"com"
+							],
+							"path": [
+								"stubs",
+								"handler_api.php"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{GRIZZLY_SMS_API_KEY}}"
+								},
+								{
+									"key": "action",
+									"value": "getNumber"
+								},
+								{
+									"key": "service",
+									"value": "go"
+								},
+								{
+									"key": "forward",
+									"value": "0"
+								},
+								{
+									"key": "operator",
+									"value": "$operator",
+									"disabled": true
+								},
+								{
+									"key": "ref",
+									"value": "$ref",
+									"disabled": true
+								},
+								{
+									"key": "country",
+									"value": "6"
+								},
+								{
+									"key": "phoneException",
+									"value": "$phoneException",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "maxPrice"
+								},
+								{
+									"key": "useCashBack",
+									"value": "$useCashBack",
+									"disabled": true
+								},
+								{
+									"key": "activationType",
+									"value": "0"
+								},
+								{
+									"key": "language",
+									"value": ""
+								},
+								{
+									"key": "userId",
+									"value": "$userId",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 07 Aug 2025 20:39:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY always"
+						},
+						{
+							"key": "content-security-policy",
+							"value": "frame-ancestors 'self'"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15724800; includeSubDomains"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "96b994d82804543a-TLL"
+						}
+					],
+					"cookie": [],
+					"body": "ACCESS_NUMBER:3936040355:6285872391152"
+				}
+			]
+		},
+		{
+			"name": "Operators",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getOperators",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getOperators"
+						},
+						{
+							"key": "country",
+							"value": "$country",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getOperators",
+							"protocol": "https",
+							"host": [
+								"api",
+								"grizzlysms",
+								"com"
+							],
+							"path": [
+								"stubs",
+								"handler_api.php"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{GRIZZLY_SMS_API_KEY}}"
+								},
+								{
+									"key": "action",
+									"value": "getOperators"
+								},
+								{
+									"key": "country",
+									"value": "$country",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 07 Aug 2025 20:35:38 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY always"
+						},
+						{
+							"key": "content-security-policy",
+							"value": "frame-ancestors 'self'"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15724800; includeSubDomains"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "96b98fc7ddaa5439-TLL"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"status\": \"success\",\n    \"countryOperators\": {\n        \"0\": [\n            \"beeline\",\n            \"megafon\",\n            \"mts\",\n            \"sber\",\n            \"tele2\",\n            \"rostelecom\",\n            \"aiva\",\n            \"yota\",\n            \"simsim\",\n            \"ttk\",\n            \"center2m\",\n            \"mtt\",\n            \"motiv\",\n            \"tinkoff\",\n            \"ezmobile\",\n            \"winmobile\",\n            \"lycamobile\",\n            \"matrix\",\n            \"danycom\",\n            \"mtt_virtual\",\n            \"gazprombank_mobile\",\n            \"vtb_mobile\",\n            \"mcn\",\n            \"aquafon\",\n            \"mir_telecom\",\n            \"a_mobile\"\n        ],\n        \"1\": [\n            \"life\",\n            \"mts\",\n            \"kyivstar\",\n            \"utel\",\n            \"vodafone\",\n            \"intertelecom\",\n            \"lycamobile\",\n            \"3mob\"\n        ],\n        \"2\": [\n            \"tele2\",\n            \"beeline\",\n            \"activ\",\n            \"altel\",\n            \"kcell\",\n            \"forte_mobile\"\n        ],\n        \"3\": [\n            \"unicom\",\n            \"chinamobile\",\n            \"china_unicom\"\n        ],\n        \"4\": [\n            \"tm\",\n            \"globe_telecom\",\n            \"smart\",\n            \"dito\"\n        ],\n        \"5\": [\n            \"telenor\",\n            \"ooredoo\",\n            \"mytel\",\n            \"mpt\"\n        ],\n        \"6\": [\n            \"indosat\",\n            \"telkomsel\",\n            \"axis\",\n            \"three\",\n            \"smartfren\",\n            \"byu\"\n        ],\n        \"7\": [\n            \"u_mobile\",\n            \"hotlink\",\n            \"digi\",\n            \"celcom\",\n            \"yoodo\",\n            \"xox\",\n            \"tune_talk\",\n            \"yes\",\n            \"unifi\"\n        ],\n        \"8\": [\n            \"econet\",\n            \"orange\",\n            \"safaricom\",\n            \"airtel\",\n            \"telkom\"\n        ],\n        \"9\": [\n            \"tigo\",\n            \"vodacom\",\n            \"airtel\",\n            \"ttcl\",\n            \"halotel\"\n        ],\n        \"10\": [\n            \"viettel\",\n            \"vinaphone\",\n            \"mobifone\",\n            \"vietnamobile\",\n            \"itelecom\",\n            \"wintel\"\n        ],\n        \"11\": [\n            \"beeline\",\n            \"o!\",\n            \"megacom\"\n        ],\n        \"13\": [\n            \"orange\",\n            \"pelephone\",\n            \"019mobile\",\n            \"golan_telecom\",\n            \"home_cellular\",\n            \"hot_mobile\",\n            \"rami_levy\",\n            \"jawwal\",\n            \"ooredoo\"\n        ],\n        \"14\": [\n            \"unicom\",\n            \"three\",\n            \"chinamobile\",\n            \"csl_mobile\",\n            \"imc\",\n            \"smartone\",\n            \"lucky_sim\"\n        ],\n        \"15\": [\n            \"orange\",\n            \"play\",\n            \"klucz\",\n            \"tmobile\",\n            \"plus\",\n            \"lycamobile\",\n            \"aero2\",\n            \"netia\",\n            \"e_telko\",\n            \"nju\",\n            \"a2_mobile\",\n            \"heyah\",\n            \"red_bull_mobile\",\n            \"plush\",\n            \"virgin\"\n        ],\n        \"16\": [\n            \"ezmobile\",\n            \"o2\",\n            \"ee\",\n            \"lebara\",\n            \"talk_telecom\",\n            \"cmlink\",\n            \"tmobile\",\n            \"lycamobile\",\n            \"three\",\n            \"vodafone\",\n            \"vectone\",\n            \"orange\",\n            \"teleena\",\n            \"giffgaff\",\n            \"tata_communications\",\n            \"airtel\",\n            \"tesco\"\n        ],\n        \"17\": [\n            \"orange\"\n        ],\n        \"18\": [\n            \"vodacom\",\n            \"orange\",\n            \"africel\",\n            \"airtel\"\n        ],\n        \"19\": [\n            \"glomobile\",\n            \"etisalat\",\n            \"mtn\",\n            \"airtel\",\n            \"mobile_9\"\n        ],\n        \"20\": [\n            \"3macao\"\n        ],\n        \"21\": [\n            \"orange\",\n            \"etisalat\",\n            \"vodafone\"\n        ],\n        \"22\": [\n            \"airtel\",\n            \"vodafone\"\n        ],\n        \"23\": [\n            \"lycamobile\",\n            \"48mobile\",\n            \"tesco\",\n            \"cablenet\",\n            \"vodafone\",\n            \"eir\"\n        ],\n        \"24\": [\n            \"metfone\",\n            \"smart\",\n            \"cellcard\"\n        ],\n        \"25\": [\n            \"unitel\",\n            \"telekom\",\n            \"tplus\",\n            \"etl\"\n        ],\n        \"26\": [\n            \"natcom\"\n        ],\n        \"27\": [\n            \"mtn\",\n            \"orange\",\n            \"moov\"\n        ],\n        \"28\": [\n            \"comium\",\n            \"qcell\",\n            \"gamcel\",\n            \"africel\"\n        ],\n        \"29\": [\n            \"mts\",\n            \"mobtel\",\n            \"vip\",\n            \"a1\",\n            \"globaltel\",\n            \"yettel\"\n        ],\n        \"30\": [\n            \"sabafon\",\n            \"mtn\",\n            \"yemen_mobile\"\n        ],\n        \"31\": [\n            \"vodacom\",\n            \"telkom\",\n            \"mtn\",\n            \"lycamobile\",\n            \"cell_c\"\n        ],\n        \"32\": [\n            \"orange\",\n            \"telekom\",\n            \"vodafone\",\n            \"digi\",\n            \"lycamobile\",\n            \"my_avon\",\n            \"runex_telecom\",\n            \"benefito_mobile\"\n        ],\n        \"33\": [\n            \"claro\",\n            \"movistar\",\n            \"tigo\",\n            \"virgin\",\n            \"wom\",\n            \"exito\",\n            \"etb\",\n            \"links_field\"\n        ],\n        \"34\": [\n            \"super\",\n            \"elisa\",\n            \"tele2\",\n            \"goodline\",\n            \"topconnect\"\n        ],\n        \"35\": [\n            \"azerfon\",\n            \"humans\",\n            \"azercell\"\n        ],\n        \"36\": [\n            \"cellular\",\n            \"lucky\",\n            \"rogers\",\n            \"telus\",\n            \"fido\",\n            \"chatrmobile\"\n        ],\n        \"37\": [\n            \"inwi\",\n            \"itissalat\",\n            \"orange\",\n            \"iam\"\n        ],\n        \"38\": [\n            \"airtel\",\n            \"mtn\",\n            \"millicom\",\n            \"vodafone\",\n            \"glomobile\"\n        ],\n        \"39\": [\n            \"movistar\",\n            \"claro\",\n            \"personal\",\n            \"tuenti\"\n        ],\n        \"40\": [\n            \"ucell\",\n            \"mts\",\n            \"uzmobile\",\n            \"mobiuz\",\n            \"beeline\",\n            \"humans\"\n        ],\n        \"41\": [\n            \"orange\",\n            \"mtn\",\n            \"nexttel\"\n        ],\n        \"42\": [\n            \"airtel\",\n            \"tigo\",\n            \"salam\"\n        ],\n        \"43\": [\n            \"vodafone\",\n            \"ortel_mobile\",\n            \"lycamobile\",\n            \"o2\",\n            \"lebara\",\n            \"fonic\",\n            \"telekom\"\n        ],\n        \"44\": [\n            \"tele2\",\n            \"telia\",\n            \"bite\"\n        ],\n        \"45\": [\n            \"tmobile\",\n            \"tele2\",\n            \"a1\",\n            \"tomato\",\n            \"telemach\",\n            \"bonbon\"\n        ],\n        \"46\": [\n            \"tele2\",\n            \"comviq\",\n            \"lycamobile\",\n            \"telenor\",\n            \"vectone\",\n            \"telia\",\n            \"vodafone\",\n            \"three\",\n            \"netmore\"\n        ],\n        \"47\": [\n            \"korek\",\n            \"asiacell\",\n            \"zain\"\n        ],\n        \"48\": [\n            \"lebara\",\n            \"lycamobile\",\n            \"l_mobi\",\n            \"vodafone\",\n            \"tmobile\",\n            \"kpn\",\n            \"odido\"\n        ],\n        \"49\": [\n            \"tele2\",\n            \"lmt\",\n            \"bite\",\n            \"xomobile\"\n        ],\n        \"50\": [\n            \"orange\",\n            \"tmobile\",\n            \"three\",\n            \"telering\",\n            \"a1\",\n            \"eety\",\n            \"hot_mobile\",\n            \"lidl\",\n            \"yesss\",\n            \"lycamobile\",\n            \"wowww\",\n            \"magenta\",\n            \"georg\"\n        ],\n        \"51\": [\n            \"mts\",\n            \"mdc\",\n            \"best\",\n            \"life\"\n        ],\n        \"52\": [\n            \"truemove\",\n            \"ais\",\n            \"dtac\",\n            \"my\",\n            \"cat_mobile\"\n        ],\n        \"53\": [\n            \"digitel\"\n        ],\n        \"54\": [\n            \"telcel\"\n        ],\n        \"55\": [\n            \"chunghwa\",\n            \"fareast\"\n        ],\n        \"56\": [\n            \"lycamobile\",\n            \"lebara\",\n            \"you_mobile\",\n            \"orange\",\n            \"movistar\",\n            \"vodafone\",\n            \"altecom\",\n            \"euskaltel\",\n            \"yoigo\",\n            \"llamaya\",\n            \"tmobile\",\n            \"cube_movil\",\n            \"masmovil\",\n            \"finetwork\"\n        ],\n        \"57\": [\n            \"aptel\",\n            \"hamrah_e_aval\",\n            \"irancell\",\n            \"rightel\",\n            \"samantel\",\n            \"azartel\",\n            \"shatel\",\n            \"taliya\",\n            \"mtn\",\n            \"tci\"\n        ],\n        \"58\": [\n            \"djezzy\",\n            \"mobilis\",\n            \"ooredoo\"\n        ],\n        \"59\": [\n            \"a1\",\n            \"telekom\",\n            \"telemach\"\n        ],\n        \"60\": [\n            \"grameenphone\",\n            \"airtel\"\n        ],\n        \"61\": [\n            \"orange\",\n            \"expresso\",\n            \"free\"\n        ],\n        \"62\": [\n            \"turk_telekom\",\n            \"turkcell\",\n            \"vodafone\"\n        ],\n        \"63\": [\n            \"tmobile\",\n            \"o2\",\n            \"vodafone\",\n            \"kaktus\"\n        ],\n        \"64\": [\n            \"airtel\",\n            \"etisalat\",\n            \"sltmobitel\",\n            \"dialog\",\n            \"hutch\"\n        ],\n        \"65\": [\n            \"movistar\"\n        ],\n        \"66\": [\n            \"telenor\",\n            \"zong\",\n            \"ufone\",\n            \"ptcl\",\n            \"jazz\",\n            \"sco\"\n        ],\n        \"67\": [\n            \"vodafone\",\n            \"2degree\",\n            \"one_nz\",\n            \"skinny\",\n            \"warehouse\",\n            \"spark\"\n        ],\n        \"68\": [\n            \"mtn\",\n            \"cellcom\",\n            \"orange\",\n            \"sotelgui\",\n            \"telecel\"\n        ],\n        \"69\": [\n            \"telecel\",\n            \"malitel\",\n            \"orange\"\n        ],\n        \"71\": [\n            \"mtn\",\n            \"safaricom\"\n        ],\n        \"72\": [\n            \"beeline\"\n        ],\n        \"73\": [\n            \"algartelecom\",\n            \"claro\",\n            \"tim\",\n            \"oi\",\n            \"vivo\",\n            \"correios_celular\",\n            \"nlt\",\n            \"arqia\",\n            \"cellular\",\n            \"links_field\",\n            \"surf\"\n        ],\n        \"74\": [\n            \"salaam\"\n        ],\n        \"75\": [\n            \"airtel\",\n            \"lycamobile\",\n            \"mtn\",\n            \"orange\",\n            \"k2_telecom\",\n            \"smile\",\n            \"smart\",\n            \"uganda_telecom\"\n        ],\n        \"76\": [\n            \"unitel\",\n            \"africel\"\n        ],\n        \"77\": [\n            \"vectone\",\n            \"epic\",\n            \"cyta\",\n            \"primetel\",\n            \"lemontel\",\n            \"cablenet\",\n            \"vodafone\"\n        ],\n        \"78\": [\n            \"lycamobile\",\n            \"sfr\",\n            \"lebara\",\n            \"vectone\",\n            \"syma_mobile\",\n            \"orange\",\n            \"bouygues\",\n            \"free\",\n            \"kena_mobile\"\n        ],\n        \"80\": [\n            \"vodacom\",\n            \"tmcel\"\n        ],\n        \"82\": [\n            \"orange\",\n            \"bandwidth\",\n            \"proximus\",\n            \"infrabel\",\n            \"base\",\n            \"nethys\",\n            \"vectone\",\n            \"lycamobile\"\n        ],\n        \"83\": [\n            \"vivacom\",\n            \"a1\",\n            \"telenor\",\n            \"yettel\"\n        ],\n        \"84\": [\n            \"yettel\",\n            \"tmobile\",\n            \"vodafone\"\n        ],\n        \"85\": [\n            \"orange\",\n            \"moldcell\",\n            \"unite\",\n            \"idc\"\n        ],\n        \"86\": [\n            \"lycamobile\",\n            \"kena_mobile\",\n            \"wind\",\n            \"vodafone\",\n            \"tim\",\n            \"ho\",\n            \"optima\",\n            \"digi\",\n            \"syma_mobile\",\n            \"nt_mobile\",\n            \"iliad\",\n            \"plintron\"\n        ],\n        \"87\": [\n            \"claro\",\n            \"personal\"\n        ],\n        \"88\": [\n            \"claro\"\n        ],\n        \"89\": [\n            \"ooredoo\",\n            \"orange\",\n            \"tunicell\"\n        ],\n        \"90\": [\n            \"movistar\"\n        ],\n        \"91\": [\n            \"telkomcel\",\n            \"telemor\",\n            \"timor_telecom\"\n        ],\n        \"92\": [\n            \"tigo\",\n            \"viva\"\n        ],\n        \"94\": [\n            \"claro\",\n            \"tigo\",\n            \"movistar\"\n        ],\n        \"95\": [\n            \"du\"\n        ],\n        \"96\": [\n            \"econet\"\n        ],\n        \"98\": [\n            \"mtn\",\n            \"zain\",\n            \"sudani_one\"\n        ],\n        \"99\": [\n            \"moov\"\n        ],\n        \"101\": [\n            \"claro\",\n            \"digi\",\n            \"tigo\",\n            \"movistar\",\n            \"red\"\n        ],\n        \"103\": [\n            \"digi\"\n        ],\n        \"105\": [\n            \"cnt_mobile\",\n            \"tuenti\",\n            \"claro\",\n            \"movistar\"\n        ],\n        \"108\": [\n            \"a1\",\n            \"hej\",\n            \"bh_telecom\"\n        ],\n        \"109\": [\n            \"claro\",\n            \"altice\",\n            \"viva\"\n        ],\n        \"110\": [\n            \"mtn\"\n        ],\n        \"112\": [\n            \"masmovil\"\n        ],\n        \"113\": [\n            \"cubacel\"\n        ],\n        \"114\": [\n            \"chinguitel\",\n            \"mattel\",\n            \"mauritel\"\n        ],\n        \"115\": [\n            \"africel\",\n            \"airtel\",\n            \"qcell\"\n        ],\n        \"116\": [\n            \"orange\",\n            \"zain\",\n            \"umniah\",\n            \"xpress\"\n        ],\n        \"117\": [\n            \"vodafone\",\n            \"lycamobile\",\n            \"nos\",\n            \"lebara\"\n        ],\n        \"119\": [\n            \"africel\",\n            \"viettel\",\n            \"telecel\",\n            \"econet\",\n            \"lacell\"\n        ],\n        \"120\": [\n            \"airtel\",\n            \"mtn\"\n        ],\n        \"123\": [\n            \"orange\",\n            \"mascom\",\n            \"be_mobile\"\n        ],\n        \"128\": [\n            \"geocell\",\n            \"hamrah_e_aval\",\n            \"magticom\",\n            \"beeline\"\n        ],\n        \"129\": [\n            \"cosmote\",\n            \"vodafone\",\n            \"q_telecom\",\n            \"ose\",\n            \"wind\"\n        ],\n        \"135\": [\n            \"cellcom\",\n            \"comium\",\n            \"libercell\",\n            \"libtelco\",\n            \"lonestar\"\n        ],\n        \"140\": [\n            \"airtel\",\n            \"mtn\"\n        ],\n        \"141\": [\n            \"o2\",\n            \"orange\"\n        ],\n        \"143\": [\n            \"indigo\",\n            \"megafon\"\n        ],\n        \"147\": [\n            \"mtn\",\n            \"airtel\",\n            \"zamtel\"\n        ],\n        \"148\": [\n            \"vivo\",\n            \"viva\",\n            \"team\"\n        ],\n        \"150\": [\n            \"airtel\"\n        ],\n        \"151\": [\n            \"claro\",\n            \"movistar\",\n            \"entel\",\n            \"wom\",\n            \"vodafone\"\n        ],\n        \"152\": [\n            \"telecel\",\n            \"onatel\",\n            \"airtel\"\n        ],\n        \"153\": [\n            \"ogero\",\n            \"alfa\",\n            \"touch\"\n        ],\n        \"155\": [\n            \"vodafone\",\n            \"telekom\"\n        ],\n        \"156\": [\n            \"claro\",\n            \"antel\"\n        ],\n        \"163\": [\n            \"dna\",\n            \"telia\",\n            \"elisa\"\n        ],\n        \"165\": [\n            \"tiptop\",\n            \"tango\",\n            \"orange\"\n        ],\n        \"172\": [\n            \"lycamobile\",\n            \"lebara\",\n            \"telenor\"\n        ],\n        \"173\": [\n            \"lebara\",\n            \"lycamobile\",\n            \"lidl\"\n        ],\n        \"174\": [\n            \"telia\",\n            \"my_call\",\n            \"lycamobile\"\n        ],\n        \"175\": [\n            \"optus\",\n            \"vodafone\",\n            \"telstra\",\n            \"lebara\",\n            \"pivotel\",\n            \"travelsim\"\n        ],\n        \"177\": [\n            \"zain\",\n            \"mtn\",\n            \"digitel\"\n        ],\n        \"182\": [\n            \"rakuten_mobile\",\n            \"docomo\"\n        ],\n        \"183\": [\n            \"vip\",\n            \"a1\",\n            \"telekom\",\n            \"lycamobile\"\n        ],\n        \"187\": [\n            \"tmobile\",\n            \"lycamobile\",\n            \"at_t\",\n            \"moabits\",\n            \"joltmobile\",\n            \"mint_mobile\",\n            \"us_mobile\",\n            \"textnow\",\n            \"boost_mobile\",\n            \"ultra_mobile\",\n            \"hello_mobile\",\n            \"h2o_wireless\",\n            \"physic\",\n            \"cricket_wireless\",\n            \"smartone\",\n            \"verizon\"\n        ],\n        \"189\": [\n            \"vodafone\"\n        ],\n        \"196\": [\n            \"maxx\",\n            \"starhub\",\n            \"singtel\",\n            \"simba\",\n            \"m1\"\n        ],\n        \"199\": [\n            \"epic\",\n            \"go\",\n            \"melita\"\n        ],\n        \"201\": [\n            \"gibtele\"\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Request top countries by service",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getTopCountriesByServiceRank&service=go",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getTopCountriesByServiceRank"
+						},
+						{
+							"key": "service",
+							"value": "go"
+						},
+						{
+							"key": "freePrice",
+							"value": "$freePrice",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getTopCountriesByServiceRank&service=go",
+							"protocol": "https",
+							"host": [
+								"api",
+								"grizzlysms",
+								"com"
+							],
+							"path": [
+								"stubs",
+								"handler_api.php"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{GRIZZLY_SMS_API_KEY}}"
+								},
+								{
+									"key": "action",
+									"value": "getTopCountriesByServiceRank"
+								},
+								{
+									"key": "service",
+									"value": "go"
+								},
+								{
+									"key": "freePrice",
+									"value": "$freePrice",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 07 Aug 2025 20:37:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "DENY always"
+						},
+						{
+							"key": "content-security-policy",
+							"value": "frame-ancestors 'self'"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15724800; includeSubDomains"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "96b99311b8e95434-TLL"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"0\": {\n        \"retail_price\": 0.2,\n        \"country\": 6,\n        \"price\": 0.105,\n        \"count\": 4393\n    },\n    \"1\": {\n        \"retail_price\": 0.3075,\n        \"country\": 33,\n        \"price\": 0.205,\n        \"count\": 4861\n    },\n    \"2\": {\n        \"retail_price\": 0.315,\n        \"country\": 73,\n        \"price\": 0.21,\n        \"count\": 0\n    },\n    \"3\": {\n        \"retail_price\": 0.3,\n        \"country\": 16,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"4\": {\n        \"retail_price\": 0.24,\n        \"country\": 52,\n        \"price\": 0.16,\n        \"count\": 4456\n    },\n    \"5\": {\n        \"retail_price\": 0.255,\n        \"country\": 151,\n        \"price\": 0.17,\n        \"count\": 437\n    },\n    \"6\": {\n        \"retail_price\": 0.225,\n        \"country\": 39,\n        \"price\": 0.15,\n        \"count\": 68\n    },\n    \"7\": {\n        \"retail_price\": 0.39,\n        \"country\": 48,\n        \"price\": 0.26,\n        \"count\": 0\n    },\n    \"8\": {\n        \"retail_price\": 0.2,\n        \"country\": 4,\n        \"price\": 0.05,\n        \"count\": 2631\n    },\n    \"9\": {\n        \"retail_price\": 0.7455,\n        \"country\": 56,\n        \"price\": 0.497,\n        \"count\": 2231\n    },\n    \"10\": {\n        \"retail_price\": 0.4655,\n        \"country\": 108,\n        \"price\": 0.3103,\n        \"count\": 236\n    },\n    \"11\": {\n        \"retail_price\": 0.375,\n        \"country\": 46,\n        \"price\": 0.25,\n        \"count\": 0\n    },\n    \"12\": {\n        \"retail_price\": 0.2,\n        \"country\": 32,\n        \"price\": 0.1,\n        \"count\": 0\n    },\n    \"13\": {\n        \"retail_price\": 0.3,\n        \"country\": 115,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"14\": {\n        \"retail_price\": 0.81,\n        \"country\": 43,\n        \"price\": 0.54,\n        \"count\": 10\n    },\n    \"15\": {\n        \"retail_price\": 0.2625,\n        \"country\": 62,\n        \"price\": 0.175,\n        \"count\": 0\n    },\n    \"16\": {\n        \"retail_price\": 0.39,\n        \"country\": 15,\n        \"price\": 0.26,\n        \"count\": 0\n    },\n    \"17\": {\n        \"retail_price\": 0.375,\n        \"country\": 117,\n        \"price\": 0.25,\n        \"count\": 0\n    },\n    \"18\": {\n        \"retail_price\": 0.3,\n        \"country\": 187,\n        \"price\": 0.2,\n        \"count\": 32841\n    },\n    \"19\": {\n        \"retail_price\": 0.2,\n        \"country\": 8,\n        \"price\": 0.075,\n        \"count\": 0\n    },\n    \"20\": {\n        \"retail_price\": 0.3,\n        \"country\": 34,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"21\": {\n        \"retail_price\": 0.2475,\n        \"country\": 41,\n        \"price\": 0.165,\n        \"count\": 50\n    },\n    \"22\": {\n        \"retail_price\": 0.375,\n        \"country\": 129,\n        \"price\": 0.25,\n        \"count\": 0\n    },\n    \"23\": {\n        \"retail_price\": 0.3,\n        \"country\": 76,\n        \"price\": 0.2,\n        \"count\": 555\n    },\n    \"24\": {\n        \"retail_price\": 0.2,\n        \"country\": 14,\n        \"price\": 0.1,\n        \"count\": 53720\n    },\n    \"25\": {\n        \"retail_price\": 0.825,\n        \"country\": 78,\n        \"price\": 0.55,\n        \"count\": 4459\n    },\n    \"26\": {\n        \"retail_price\": 0.2,\n        \"country\": 0,\n        \"price\": 0.025,\n        \"count\": 49552\n    },\n    \"27\": {\n        \"retail_price\": 0.2,\n        \"country\": 7,\n        \"price\": 0.05,\n        \"count\": 513\n    },\n    \"28\": {\n        \"retail_price\": 0.45,\n        \"country\": 1,\n        \"price\": 0.3,\n        \"count\": 41\n    },\n    \"29\": {\n        \"retail_price\": 1.8,\n        \"country\": 175,\n        \"price\": 1.2,\n        \"count\": 21160\n    },\n    \"30\": {\n        \"retail_price\": 0.225,\n        \"country\": 85,\n        \"price\": 0.15,\n        \"count\": 365\n    },\n    \"31\": {\n        \"retail_price\": 0.285,\n        \"country\": 88,\n        \"price\": 0.19,\n        \"count\": 0\n    },\n    \"32\": {\n        \"retail_price\": 0.375,\n        \"country\": 63,\n        \"price\": 0.25,\n        \"count\": 0\n    },\n    \"33\": {\n        \"retail_price\": 0.6,\n        \"country\": 86,\n        \"price\": 0.4,\n        \"count\": 31881\n    },\n    \"34\": {\n        \"retail_price\": 0.375,\n        \"country\": 49,\n        \"price\": 0.25,\n        \"count\": 51\n    },\n    \"35\": {\n        \"retail_price\": 0.3,\n        \"country\": 13,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"36\": {\n        \"retail_price\": 0.45,\n        \"country\": 172,\n        \"price\": 0.3,\n        \"count\": 662\n    },\n    \"37\": {\n        \"retail_price\": 0.3,\n        \"country\": 22,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"38\": {\n        \"retail_price\": 0.225,\n        \"country\": 18,\n        \"price\": 0.15,\n        \"count\": 194\n    },\n    \"39\": {\n        \"retail_price\": 0.225,\n        \"country\": 36,\n        \"price\": 0.15,\n        \"count\": 53092\n    },\n    \"40\": {\n        \"retail_price\": 0.675,\n        \"country\": 67,\n        \"price\": 0.45,\n        \"count\": 372\n    },\n    \"41\": {\n        \"retail_price\": 0.9,\n        \"country\": 163,\n        \"price\": 0.6,\n        \"count\": 75\n    },\n    \"42\": {\n        \"retail_price\": 0.45,\n        \"country\": 59,\n        \"price\": 0.3,\n        \"count\": 10693\n    },\n    \"43\": {\n        \"retail_price\": 0.3,\n        \"country\": 54,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"44\": {\n        \"retail_price\": 0.3,\n        \"country\": 81,\n        \"price\": 0.2,\n        \"count\": 438\n    },\n    \"45\": {\n        \"retail_price\": 0.3,\n        \"country\": 128,\n        \"price\": 0.2,\n        \"count\": 461\n    },\n    \"46\": {\n        \"retail_price\": 0.2,\n        \"country\": 31,\n        \"price\": 0.083,\n        \"count\": 6942\n    },\n    \"47\": {\n        \"retail_price\": 0.225,\n        \"country\": 71,\n        \"price\": 0.15,\n        \"count\": 101\n    },\n    \"48\": {\n        \"retail_price\": 0.2,\n        \"country\": 45,\n        \"price\": 0.1,\n        \"count\": 1\n    },\n    \"49\": {\n        \"retail_price\": 0.45,\n        \"country\": 44,\n        \"price\": 0.3,\n        \"count\": 1\n    },\n    \"50\": {\n        \"retail_price\": 0.375,\n        \"country\": 77,\n        \"price\": 0.25,\n        \"count\": 155\n    },\n    \"51\": {\n        \"retail_price\": 0.2,\n        \"country\": 2,\n        \"price\": 0.05,\n        \"count\": 1212\n    },\n    \"52\": {\n        \"retail_price\": 3.75,\n        \"country\": 182,\n        \"price\": 2.5,\n        \"count\": 606\n    },\n    \"53\": {\n        \"retail_price\": 0.2625,\n        \"country\": 3,\n        \"price\": 0.175,\n        \"count\": 4\n    },\n    \"54\": {\n        \"retail_price\": 0.225,\n        \"country\": 10,\n        \"price\": 0.15,\n        \"count\": 860\n    },\n    \"55\": {\n        \"retail_price\": 0.375,\n        \"country\": 23,\n        \"price\": 0.25,\n        \"count\": 279\n    },\n    \"56\": {\n        \"retail_price\": 0.75,\n        \"country\": 50,\n        \"price\": 0.5,\n        \"count\": 8466\n    },\n    \"57\": {\n        \"retail_price\": 2.25,\n        \"country\": 196,\n        \"price\": 1.5,\n        \"count\": 862\n    },\n    \"58\": {\n        \"retail_price\": 0.675,\n        \"country\": 84,\n        \"price\": 0.45,\n        \"count\": 376\n    },\n    \"59\": {\n        \"retail_price\": 0.225,\n        \"country\": 24,\n        \"price\": 0.15,\n        \"count\": 774\n    },\n    \"60\": {\n        \"retail_price\": 0.42,\n        \"country\": 95,\n        \"price\": 0.28,\n        \"count\": 485\n    },\n    \"61\": {\n        \"retail_price\": 0.2475,\n        \"country\": 53,\n        \"price\": 0.165,\n        \"count\": 517\n    },\n    \"62\": {\n        \"retail_price\": 0.3,\n        \"country\": 83,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"63\": {\n        \"retail_price\": 0.225,\n        \"country\": 38,\n        \"price\": 0.15,\n        \"count\": 927\n    },\n    \"64\": {\n        \"retail_price\": 0.2,\n        \"country\": 9,\n        \"price\": 0.1,\n        \"count\": 0\n    },\n    \"65\": {\n        \"retail_price\": 0.2,\n        \"country\": 60,\n        \"price\": 0.12,\n        \"count\": 1602\n    },\n    \"66\": {\n        \"retail_price\": 0.225,\n        \"country\": 19,\n        \"price\": 0.15,\n        \"count\": 528\n    },\n    \"67\": {\n        \"retail_price\": 0.2,\n        \"country\": 109,\n        \"price\": 0.1,\n        \"count\": 163\n    },\n    \"68\": {\n        \"retail_price\": 0.225,\n        \"country\": 80,\n        \"price\": 0.15,\n        \"count\": 49\n    },\n    \"69\": {\n        \"retail_price\": 0.2,\n        \"country\": 66,\n        \"price\": 0.1,\n        \"count\": 0\n    },\n    \"70\": {\n        \"retail_price\": 0.39,\n        \"country\": 173,\n        \"price\": 0.26,\n        \"count\": 101\n    },\n    \"71\": {\n        \"retail_price\": 0.3,\n        \"country\": 135,\n        \"price\": 0.2,\n        \"count\": 531\n    },\n    \"72\": {\n        \"retail_price\": 1.05,\n        \"country\": 141,\n        \"price\": 0.7,\n        \"count\": 285\n    },\n    \"73\": {\n        \"retail_price\": 0.2,\n        \"country\": 64,\n        \"price\": 0.1,\n        \"count\": 0\n    },\n    \"74\": {\n        \"retail_price\": 0.225,\n        \"country\": 21,\n        \"price\": 0.15,\n        \"count\": 990\n    },\n    \"75\": {\n        \"retail_price\": 0.2,\n        \"country\": 123,\n        \"price\": 0.125,\n        \"count\": 656\n    },\n    \"76\": {\n        \"retail_price\": 0.75,\n        \"country\": 82,\n        \"price\": 0.5,\n        \"count\": 150\n    },\n    \"77\": {\n        \"retail_price\": 0.2,\n        \"country\": 11,\n        \"price\": 0.13,\n        \"count\": 206\n    },\n    \"78\": {\n        \"retail_price\": 0.525,\n        \"country\": 97,\n        \"price\": 0.35,\n        \"count\": 250\n    },\n    \"79\": {\n        \"retail_price\": 0.3,\n        \"country\": 168,\n        \"price\": 0.2,\n        \"count\": 58\n    },\n    \"80\": {\n        \"retail_price\": 0.2,\n        \"country\": 25,\n        \"price\": 0.125,\n        \"count\": 682\n    },\n    \"81\": {\n        \"retail_price\": 0.3,\n        \"country\": 185,\n        \"price\": 0.2,\n        \"count\": 166\n    },\n    \"82\": {\n        \"retail_price\": 0.225,\n        \"country\": 158,\n        \"price\": 0.15,\n        \"count\": 987\n    },\n    \"83\": {\n        \"retail_price\": 0.3581,\n        \"country\": 113,\n        \"price\": 0.2387,\n        \"count\": 581\n    },\n    \"84\": {\n        \"retail_price\": 0.3581,\n        \"country\": 100,\n        \"price\": 0.2387,\n        \"count\": 479\n    },\n    \"85\": {\n        \"retail_price\": 0.3,\n        \"country\": 47,\n        \"price\": 0.2,\n        \"count\": 329\n    },\n    \"86\": {\n        \"retail_price\": 0.315,\n        \"country\": 179,\n        \"price\": 0.21,\n        \"count\": 114\n    },\n    \"87\": {\n        \"retail_price\": 0.3,\n        \"country\": 140,\n        \"price\": 0.2,\n        \"count\": 486\n    },\n    \"88\": {\n        \"retail_price\": 0.2,\n        \"country\": 65,\n        \"price\": 0.1,\n        \"count\": 110\n    },\n    \"89\": {\n        \"retail_price\": 0.2,\n        \"country\": 96,\n        \"price\": 0.04,\n        \"count\": 0\n    },\n    \"90\": {\n        \"retail_price\": 0.2,\n        \"country\": 37,\n        \"price\": 0.1,\n        \"count\": 12987\n    },\n    \"91\": {\n        \"retail_price\": 0.39,\n        \"country\": 155,\n        \"price\": 0.26,\n        \"count\": 471\n    },\n    \"92\": {\n        \"retail_price\": 0.3,\n        \"country\": 92,\n        \"price\": 0.2,\n        \"count\": 583\n    },\n    \"93\": {\n        \"retail_price\": 0.3,\n        \"country\": 156,\n        \"price\": 0.2,\n        \"count\": 436\n    },\n    \"94\": {\n        \"retail_price\": 0.3,\n        \"country\": 51,\n        \"price\": 0.2,\n        \"count\": 85\n    },\n    \"95\": {\n        \"retail_price\": 0.3161,\n        \"country\": 161,\n        \"price\": 0.2107,\n        \"count\": 448\n    },\n    \"96\": {\n        \"retail_price\": 0.3161,\n        \"country\": 147,\n        \"price\": 0.2107,\n        \"count\": 724\n    },\n    \"97\": {\n        \"retail_price\": 15,\n        \"country\": 55,\n        \"price\": 10,\n        \"count\": 6\n    },\n    \"98\": {\n        \"retail_price\": 0.2,\n        \"country\": 94,\n        \"price\": 0.075,\n        \"count\": 0\n    },\n    \"99\": {\n        \"retail_price\": 0.3161,\n        \"country\": 139,\n        \"price\": 0.2107,\n        \"count\": 250\n    },\n    \"100\": {\n        \"retail_price\": 0.3161,\n        \"country\": 27,\n        \"price\": 0.2107,\n        \"count\": 922\n    },\n    \"101\": {\n        \"retail_price\": 0.36,\n        \"country\": 99,\n        \"price\": 0.24,\n        \"count\": 10530\n    },\n    \"102\": {\n        \"retail_price\": 0.3,\n        \"country\": 177,\n        \"price\": 0.2,\n        \"count\": 0\n    },\n    \"103\": {\n        \"retail_price\": 0.3,\n        \"country\": 26,\n        \"price\": 0.2,\n        \"count\": 744\n    },\n    \"104\": {\n        \"retail_price\": 0.3161,\n        \"country\": 130,\n        \"price\": 0.2107,\n        \"count\": 221\n    },\n    \"105\": {\n        \"retail_price\": 0.3161,\n        \"country\": 124,\n        \"price\": 0.2107,\n        \"count\": 296\n    },\n    \"106\": {\n        \"retail_price\": 0.2,\n        \"country\": 40,\n        \"price\": 0.065,\n        \"count\": 50\n    },\n    \"107\": {\n        \"retail_price\": 0.3,\n        \"country\": 126,\n        \"price\": 0.2,\n        \"count\": 25\n    },\n    \"108\": {\n        \"retail_price\": 0.225,\n        \"country\": 58,\n        \"price\": 0.15,\n        \"count\": 547\n    },\n    \"109\": {\n        \"retail_price\": 0.3161,\n        \"country\": 93,\n        \"price\": 0.2107,\n        \"count\": 357\n    },\n    \"110\": {\n        \"retail_price\": 0.39,\n        \"country\": 174,\n        \"price\": 0.26,\n        \"count\": 661\n    },\n    \"111\": {\n        \"retail_price\": 0.285,\n        \"country\": 106,\n        \"price\": 0.19,\n        \"count\": 250\n    },\n    \"112\": {\n        \"retail_price\": 0.39,\n        \"country\": 132,\n        \"price\": 0.26,\n        \"count\": 473\n    },\n    \"113\": {\n        \"retail_price\": 0.3161,\n        \"country\": 169,\n        \"price\": 0.2107,\n        \"count\": 54\n    },\n    \"114\": {\n        \"retail_price\": 0.2,\n        \"country\": 35,\n        \"price\": 0.05,\n        \"count\": 0\n    },\n    \"115\": {\n        \"retail_price\": 0.33,\n        \"country\": 166,\n        \"price\": 0.22,\n        \"count\": 34\n    },\n    \"116\": {\n        \"retail_price\": 0.3413,\n        \"country\": 70,\n        \"price\": 0.2275,\n        \"count\": 517\n    },\n    \"117\": {\n        \"retail_price\": 0.33,\n        \"country\": 121,\n        \"price\": 0.22,\n        \"count\": 390\n    },\n    \"118\": {\n        \"retail_price\": 0.3,\n        \"country\": 167,\n        \"price\": 0.2,\n        \"count\": 434\n    },\n    \"119\": {\n        \"retail_price\": 0.294,\n        \"country\": 87,\n        \"price\": 0.196,\n        \"count\": 422\n    },\n    \"120\": {\n        \"retail_price\": 0.3,\n        \"country\": 148,\n        \"price\": 0.2,\n        \"count\": 447\n    },\n    \"121\": {\n        \"retail_price\": 0.285,\n        \"country\": 146,\n        \"price\": 0.19,\n        \"count\": 56\n    },\n    \"122\": {\n        \"retail_price\": 0.375,\n        \"country\": 29,\n        \"price\": 0.25,\n        \"count\": 732\n    },\n    \"123\": {\n        \"retail_price\": 0.3581,\n        \"country\": 103,\n        \"price\": 0.2387,\n        \"count\": 353\n    },\n    \"124\": {\n        \"retail_price\": 0.378,\n        \"country\": 30,\n        \"price\": 0.252,\n        \"count\": 250\n    },\n    \"125\": {\n        \"retail_price\": 0.3161,\n        \"country\": 131,\n        \"price\": 0.2107,\n        \"count\": 450\n    },\n    \"126\": {\n        \"retail_price\": 0.3401,\n        \"country\": 142,\n        \"price\": 0.2267,\n        \"count\": 0\n    },\n    \"127\": {\n        \"retail_price\": 0.3401,\n        \"country\": 127,\n        \"price\": 0.2267,\n        \"count\": 422\n    },\n    \"128\": {\n        \"retail_price\": 0.225,\n        \"country\": 204,\n        \"price\": 0.15,\n        \"count\": 1000\n    },\n    \"129\": {\n        \"retail_price\": 0.33,\n        \"country\": 112,\n        \"price\": 0.22,\n        \"count\": 350\n    },\n    \"130\": {\n        \"retail_price\": 0.3165,\n        \"country\": 160,\n        \"price\": 0.211,\n        \"count\": 162\n    },\n    \"131\": {\n        \"retail_price\": 0.285,\n        \"country\": 189,\n        \"price\": 0.19,\n        \"count\": 150\n    },\n    \"132\": {\n        \"retail_price\": 0.3581,\n        \"country\": 101,\n        \"price\": 0.2387,\n        \"count\": 414\n    },\n    \"133\": {\n        \"retail_price\": 0.33,\n        \"country\": 150,\n        \"price\": 0.22,\n        \"count\": 543\n    },\n    \"134\": {\n        \"retail_price\": 0.3581,\n        \"country\": 107,\n        \"price\": 0.2387,\n        \"count\": 10475\n    },\n    \"135\": {\n        \"retail_price\": 0.315,\n        \"country\": 42,\n        \"price\": 0.21,\n        \"count\": 419\n    },\n    \"136\": {\n        \"retail_price\": 3.75,\n        \"country\": 165,\n        \"price\": 2.5,\n        \"count\": 418\n    },\n    \"137\": {\n        \"retail_price\": 0.45,\n        \"country\": 136,\n        \"price\": 0.3,\n        \"count\": 429\n    },\n    \"138\": {\n        \"retail_price\": 0.3,\n        \"country\": 178,\n        \"price\": 0.2,\n        \"count\": 150\n    },\n    \"139\": {\n        \"retail_price\": 0.2,\n        \"country\": 5,\n        \"price\": 0.075,\n        \"count\": 0\n    },\n    \"140\": {\n        \"retail_price\": 0.3,\n        \"country\": 184,\n        \"price\": 0.2,\n        \"count\": 200\n    },\n    \"141\": {\n        \"retail_price\": 0.33,\n        \"country\": 188,\n        \"price\": 0.22,\n        \"count\": 4\n    },\n    \"142\": {\n        \"retail_price\": 0.285,\n        \"country\": 114,\n        \"price\": 0.19,\n        \"count\": 438\n    },\n    \"143\": {\n        \"retail_price\": 0.33,\n        \"country\": 72,\n        \"price\": 0.22,\n        \"count\": 13257\n    },\n    \"144\": {\n        \"retail_price\": 0.3581,\n        \"country\": 89,\n        \"price\": 0.2387,\n        \"count\": 424\n    },\n    \"145\": {\n        \"retail_price\": 0.33,\n        \"country\": 125,\n        \"price\": 0.22,\n        \"count\": 515\n    },\n    \"146\": {\n        \"retail_price\": 0.33,\n        \"country\": 152,\n        \"price\": 0.22,\n        \"count\": 10754\n    },\n    \"147\": {\n        \"retail_price\": 0.45,\n        \"country\": 28,\n        \"price\": 0.3,\n        \"count\": 658\n    },\n    \"148\": {\n        \"retail_price\": 0.3,\n        \"country\": 186,\n        \"price\": 0.2,\n        \"count\": 249\n    },\n    \"149\": {\n        \"retail_price\": 0.33,\n        \"country\": 102,\n        \"price\": 0.22,\n        \"count\": 578\n    },\n    \"150\": {\n        \"retail_price\": 0.33,\n        \"country\": 153,\n        \"price\": 0.22,\n        \"count\": 10505\n    },\n    \"151\": {\n        \"retail_price\": 0.39,\n        \"country\": 183,\n        \"price\": 0.26,\n        \"count\": 103\n    },\n    \"152\": {\n        \"retail_price\": 0.3,\n        \"country\": 143,\n        \"price\": 0.2,\n        \"count\": 250\n    },\n    \"153\": {\n        \"retail_price\": 0.225,\n        \"country\": 75,\n        \"price\": 0.15,\n        \"count\": 382\n    },\n    \"154\": {\n        \"retail_price\": 0.2625,\n        \"country\": 137,\n        \"price\": 0.175,\n        \"count\": 418\n    },\n    \"155\": {\n        \"retail_price\": 0.3,\n        \"country\": 61,\n        \"price\": 0.2,\n        \"count\": 10513\n    },\n    \"156\": {\n        \"retail_price\": 0.3581,\n        \"country\": 79,\n        \"price\": 0.2387,\n        \"count\": 538\n    },\n    \"157\": {\n        \"retail_price\": 0.3581,\n        \"country\": 116,\n        \"price\": 0.2387,\n        \"count\": 470\n    },\n    \"158\": {\n        \"retail_price\": 0.3581,\n        \"country\": 134,\n        \"price\": 0.2387,\n        \"count\": 250\n    },\n    \"159\": {\n        \"retail_price\": 0.2,\n        \"country\": 91,\n        \"price\": 0.1,\n        \"count\": 0\n    },\n    \"160\": {\n        \"retail_price\": 0.3161,\n        \"country\": 119,\n        \"price\": 0.2107,\n        \"count\": 548\n    },\n    \"161\": {\n        \"retail_price\": 0.378,\n        \"country\": 69,\n        \"price\": 0.252,\n        \"count\": 473\n    },\n    \"162\": {\n        \"retail_price\": 0.3165,\n        \"country\": 164,\n        \"price\": 0.211,\n        \"count\": 170\n    },\n    \"163\": {\n        \"retail_price\": 0.3161,\n        \"country\": 104,\n        \"price\": 0.2107,\n        \"count\": 250\n    },\n    \"164\": {\n        \"retail_price\": 0.3,\n        \"country\": 154,\n        \"price\": 0.2,\n        \"count\": 404\n    },\n    \"165\": {\n        \"retail_price\": 0.3581,\n        \"country\": 145,\n        \"price\": 0.2387,\n        \"count\": 505\n    },\n    \"166\": {\n        \"retail_price\": 0.9,\n        \"country\": 199,\n        \"price\": 0.6,\n        \"count\": 0\n    },\n    \"167\": {\n        \"retail_price\": 0.3,\n        \"country\": 90,\n        \"price\": 0.2,\n        \"count\": 465\n    },\n    \"168\": {\n        \"retail_price\": 0.3161,\n        \"country\": 149,\n        \"price\": 0.2107,\n        \"count\": 527\n    },\n    \"169\": {\n        \"retail_price\": 0.4115,\n        \"country\": 171,\n        \"price\": 0.2743,\n        \"count\": 134\n    },\n    \"170\": {\n        \"retail_price\": 0.3161,\n        \"country\": 138,\n        \"price\": 0.2107,\n        \"count\": 446\n    },\n    \"171\": {\n        \"retail_price\": 0.2741,\n        \"country\": 98,\n        \"price\": 0.1827,\n        \"count\": 49\n    },\n    \"172\": {\n        \"retail_price\": 0.3581,\n        \"country\": 111,\n        \"price\": 0.2387,\n        \"count\": 859\n    },\n    \"173\": {\n        \"retail_price\": 0.3581,\n        \"country\": 133,\n        \"price\": 0.2387,\n        \"count\": 2382\n    },\n    \"174\": {\n        \"retail_price\": 0.3161,\n        \"country\": 162,\n        \"price\": 0.2107,\n        \"count\": 164\n    },\n    \"175\": {\n        \"retail_price\": 0.3,\n        \"country\": 17,\n        \"price\": 0.2,\n        \"count\": 10705\n    },\n    \"176\": {\n        \"retail_price\": 0.3,\n        \"country\": 159,\n        \"price\": 0.2,\n        \"count\": 451\n    },\n    \"177\": {\n        \"retail_price\": 0.3161,\n        \"country\": 118,\n        \"price\": 0.2107,\n        \"count\": 178\n    },\n    \"178\": {\n        \"retail_price\": 0.2,\n        \"country\": 20,\n        \"price\": 0.075,\n        \"count\": 0\n    },\n    \"179\": {\n        \"retail_price\": 0.3201,\n        \"country\": 181,\n        \"price\": 0.2134,\n        \"count\": 22\n    },\n    \"180\": {\n        \"retail_price\": 0.375,\n        \"country\": 57,\n        \"price\": 0.25,\n        \"count\": 542\n    },\n    \"181\": {\n        \"retail_price\": 0.285,\n        \"country\": 176,\n        \"price\": 0.19,\n        \"count\": 321\n    },\n    \"182\": {\n        \"retail_price\": 0.3,\n        \"country\": 74,\n        \"price\": 0.2,\n        \"count\": 609\n    },\n    \"183\": {\n        \"retail_price\": 0.4875,\n        \"country\": 144,\n        \"price\": 0.325,\n        \"count\": 200\n    },\n    \"184\": {\n        \"retail_price\": 0.33,\n        \"country\": 122,\n        \"price\": 0.22,\n        \"count\": 422\n    },\n    \"185\": {\n        \"retail_price\": 0.3,\n        \"country\": 157,\n        \"price\": 0.2,\n        \"count\": 10331\n    },\n    \"186\": {\n        \"retail_price\": 0.2,\n        \"country\": 203,\n        \"price\": 0.1,\n        \"count\": 0\n    },\n    \"187\": {\n        \"retail_price\": 0.3161,\n        \"country\": 120,\n        \"price\": 0.2107,\n        \"count\": 630\n    },\n    \"188\": {\n        \"retail_price\": 0.3581,\n        \"country\": 105,\n        \"price\": 0.2387,\n        \"count\": 413\n    },\n    \"189\": {\n        \"retail_price\": 0.3,\n        \"country\": 68,\n        \"price\": 0.2,\n        \"count\": 430\n    },\n    \"190\": {\n        \"retail_price\": 0.3581,\n        \"country\": 110,\n        \"price\": 0.2387,\n        \"count\": 383\n    },\n    \"191\": {\n        \"retail_price\": 7.125,\n        \"country\": 201,\n        \"price\": 4.75,\n        \"count\": 37\n    },\n    \"192\": {\n        \"retail_price\": 0.33,\n        \"country\": 170,\n        \"price\": 0.22,\n        \"count\": 114\n    },\n    \"193\": {\n        \"retail_price\": 0.3,\n        \"country\": 180,\n        \"price\": 0.2,\n        \"count\": 114\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "active activations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getActiveActivations",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getActiveActivations"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change of activation status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=setStatus&status=6&id=$id",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "setStatus",
+							"description": "3 - request one more code (for free)\n\n6 - finish the activation *\n\n8 - report the fact that the number has been already used and cancel the activation"
+						},
+						{
+							"key": "status",
+							"value": "6"
+						},
+						{
+							"key": "id",
+							"value": "$id"
+						},
+						{
+							"key": "forward",
+							"value": "$forward",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get activation status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getStatus&id=3936051180",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getStatus"
+						},
+						{
+							"key": "id",
+							"value": "3936051180"
+						}
+					]
+				},
+				"description": "StartFragment\n\n**Parameters:**\n\n$api_key - API key\n\n$id - Activation ID\n\n**ANSWER:**\n\nSTATUS_WAIT_CODE - waiting for SMS\n\nSTATUS_WAIT_RETRY: 'past, unmatched code' - waiting for code clarification\n\nSTATUS_CANCEL- the activation is canceled or completed\n\nSTATUS_OK: 'activation code' - code received\n\n**POSSIBLE MISTAKES:**\n\nNO_ACTIVATION - activation id does not exist\n\nERROR_SQL - sql-server error\n\nBAD_KEY - invalid API key\n\nBAD_ACTION - incorrect action\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "Get activation history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.grizzlysms.com/stubs/handler_api.php?api_key={{GRIZZLY_SMS_API_KEY}}&action=getHistory&start=1723063870&end=1754599872&offset=0&limit=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"grizzlysms",
+						"com"
+					],
+					"path": [
+						"stubs",
+						"handler_api.php"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{GRIZZLY_SMS_API_KEY}}"
+						},
+						{
+							"key": "action",
+							"value": "getHistory"
+						},
+						{
+							"key": "start",
+							"value": "1723063870"
+						},
+						{
+							"key": "end",
+							"value": "1754599872"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "GRIZZLY_SMS_API_KEY",
+			"value": "07ef00fff491edc280fAd4be487d74b8",
+			"type": "default"
+		}
+	]
+}

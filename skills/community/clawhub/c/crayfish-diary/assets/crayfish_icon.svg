@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+    <linearGradient id="clawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f87171"/>
+      <stop offset="100%" style="stop-color:#ef4444"/>
+    </linearGradient>
+    <linearGradient id="shellGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fca5a5"/>
+      <stop offset="100%" style="stop-color:#f87171"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <circle cx="256" cy="256" r="240" fill="#fef2f2"/>
+  
+  <!-- 身体主体 -->
+  <ellipse cx="256" cy="280" rx="85" ry="120" fill="url(#bodyGrad)"/>
+  
+  <!-- 身体纹理线条 -->
+  <path d="M200 220 Q256 230 312 220" fill="none" stroke="#b91c1c" stroke-width="3" opacity="0.5"/>
+  <path d="M195 260 Q256 275 317 260" fill="none" stroke="#b91c1c" stroke-width="3" opacity="0.5"/>
+  <path d="M195 300 Q256 315 317 300" fill="none" stroke="#b91c1c" stroke-width="3" opacity="0.5"/>
+  <path d="M200 340 Q256 355 312 340" fill="none" stroke="#b91c1c" stroke-width="3" opacity="0.5"/>
+  
+  <!-- 尾巴扇叶 -->
+  <ellipse cx="220" cy="390" rx="30" ry="50" fill="url(#clawGrad)" transform="rotate(-20, 220, 390)"/>
+  <ellipse cx="256" cy="400" rx="25" ry="55" fill="url(#bodyGrad)"/>
+  <ellipse cx="292" cy="390" rx="30" ry="50" fill="url(#clawGrad)" transform="rotate(20, 292, 390)"/>
+  
+  <!-- 左大钳子 -->
+  <g transform="translate(120, 200)">
+    <!-- 钳子臂 -->
+    <ellipse cx="30" cy="40" rx="35" ry="25" fill="url(#clawGrad)" transform="rotate(-30, 30, 40)"/>
+    <!-- 钳子上半 -->
+    <path d="M60 20 Q90 5 95 25 Q85 35 60 35 Z" fill="url(#clawGrad)"/>
+    <!-- 钳子下半 -->
+    <path d="M60 35 Q85 40 95 35 Q90 55 60 50 Z" fill="url(#bodyGrad)"/>
+    <!-- 钳子牙齿 -->
+    <circle cx="75" cy="30" r="4" fill="#fca5a5"/>
+    <circle cx="82" cy="32" r="3" fill="#fca5a5"/>
+  </g>
+  
+  <!-- 右大钳子 -->
+  <g transform="translate(392, 200)">
+    <!-- 钳子臂 -->
+    <ellipse cx="-30" cy="40" rx="35" ry="25" fill="url(#clawGrad)" transform="rotate(30, -30, 40)"/>
+    <!-- 钳子上半 -->
+    <path d="M-60 20 Q-90 5 -95 25 Q-85 35 -60 35 Z" fill="url(#clawGrad)"/>
+    <!-- 钳子下半 -->
+    <path d="M-60 35 Q-85 40 -95 35 Q-90 55 -60 50 Z" fill="url(#bodyGrad)"/>
+    <!-- 钳子牙齿 -->
+    <circle cx="-75" cy="30" r="4" fill="#fca5a5"/>
+    <circle cx="-82" cy="32" r="3" fill="#fca5a5"/>
+  </g>
+  
+  <!-- 头部 -->
+  <ellipse cx="256" cy="175" rx="70" ry="55" fill="url(#bodyGrad)"/>
+  
+  <!-- 额剑 (中间尖刺) -->
+  <path d="M256 130 L256 90 L252 95 L256 130 L260 95 Z" fill="url(#clawGrad)"/>
+  
+  <!-- 眼睛 - 左 -->
+  <circle cx="220" cy="155" r="22" fill="#fff"/>
+  <circle cx="218" cy="153" r="12" fill="#1e293b"/>
+  <circle cx="214" cy="150" r="4" fill="#fff"/>
+  
+  <!-- 眼睛 - 右 -->
+  <circle cx="292" cy="155" r="22" fill="#fff"/>
+  <circle cx="294" cy="153" r="12" fill="#1e293b"/>
+  <circle cx="298" cy="150" r="4" fill="#fff"/>
+  
+  <!-- 触须 - 左 -->
+  <path d="M180 170 Q130 140 100 100" fill="none" stroke="#b91c1c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M185 180 Q120 160 80 130" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- 触须 - 右 -->
+  <path d="M332 170 Q382 140 412 100" fill="none" stroke="#b91c1c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M327 180 Q392 160 432 130" fill="none" stroke="#b91c1c" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- 小腿 -->
+  <path d="M210 300 Q180 320 160 340" fill="none" stroke="url(#clawGrad)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M302 300 Q332 320 352 340" fill="none" stroke="url(#clawGrad)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M215 320 Q185 345 170 370" fill="none" stroke="url(#clawGrad)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M297 320 Q327 345 342 370" fill="none" stroke="url(#clawGrad)" stroke-width="8" stroke-linecap="round"/>
+</svg>

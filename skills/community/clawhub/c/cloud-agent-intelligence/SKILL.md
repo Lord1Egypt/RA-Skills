@@ -1,35 +1,168 @@
----
-name: "Cloud Agent Intelligence"
-description: "提供全球云厂商智能体动态监控、竞品深度分析、情报查询及定制对比报告的手动触发接口。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloud-agent-intelligence"
-sourceUrl: "https://clawhub.ai/skills/cloud-agent-intelligence"
+# cloud-agent-intelligence【自研系统技能】
+
+**版本**：v0.1.0  
+**定位**：云虾情报分析助手 - 监控全球云厂商智能体动态
+
 ---
 
-# Cloud Agent Intelligence
+## 📖 技能说明
 
-> 提供全球云厂商智能体动态监控、竞品深度分析、情报查询及定制对比报告的手动触发接口。
+这是「全球云虾情报系统」的手动调用接口，让你可以：
+- 立即触发竞品分析（不等待每日 Cron）
+- 深度分析特定云厂商
+- 查询竞品动态
+- 生成对比报告
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloud-agent-intelligence`
-- **Source URL:** [https://clawhub.ai/skills/cloud-agent-intelligence](https://clawhub.ai/skills/cloud-agent-intelligence)
+**对应的系统**：全球云虾情报系统（Cron 任务自动运行）
 
-## Overview
+---
 
+## 🎯 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cloud-agent-intelligence
+| 场景 | 示例 |
+|------|------|
+| 立即监控竞品 | 「立即监控腾讯云的动态」 |
+| 深度分析 | 「深度分析 DeerFlow 的架构」 |
+| 生成报告 | 「生成竞品对比报告」 |
+| 查询情报 | 「DeerFlow 有多少技能？」 |
+
+---
+
+## 🚀 使用方法
+
+### 1. 立即监控竞品
+
 ```
+立即监控 [云厂商] 的动态
+
+示例：
+- 立即监控腾讯云的动态
+- 立即监控字节火山引擎的更新
+- 立即监控 AWS 的新功能
+```
+
+### 2. 深度分析
+
+```
+深度分析 [竞品名称] 的 [分析维度]
+
+示例：
+- 深度分析 DeerFlow 的技能设计
+- 深度分析 Copilot 的编排模式
+- 深度分析 GPTs 的定制能力
+```
+
+### 3. 生成报告
+
+```
+生成 [时间范围] 的竞品对比报告
+
+示例：
+- 生成今日的竞品动态报告
+- 生成本周的竞品分析报告
+- 生成竞品的技能对比报告
+```
+
+### 4. 查询情报
+
+```
+查询 [竞品名称] 的 [信息类型]
+
+示例：
+- 查询 DeerFlow 有多少技能
+- 查询 Copilot 的定价策略
+- 查询各云厂商的技能数量对比
+```
+
+---
+
+## 📋 核心功能
+
+1. **竞品监控**
+   - 腾讯云智能体
+   - 华为云盘古
+   - 字节火山引擎
+   - AWS/Azure/Google
+
+2. **深度分析**
+   - 技能设计分析
+   - 架构模式分析
+   - 定价策略分析
+
+3. **对比报告**
+   - 技能数量对比
+   - 功能对比
+   - 好用程度排名
+
+4. **情报查询**
+   - 竞品信息查询
+   - 历史动态查询
+   - 趋势分析
+
+---
+
+## 📊 监控的云厂商
+
+| 厂商 | 智能体名称 | 监控状态 |
+|------|------------|----------|
+| 阿里云 | 云虾（我们） | ✅ 自我监控 |
+| 腾讯云 | 腾讯云智能体 | ✅ 已监控 |
+| 华为云 | 盘古大模型智能体 | ✅ 已监控 |
+| 字节火山引擎 | 扣子/Doubao | ✅ 已监控 |
+| AWS | Amazon Q | 📋 规划中 |
+| Azure | Copilot | 📋 规划中 |
+| Google | Gemini | 📋 规划中 |
+
+---
+
+## 🔗 与 Cron 任务的关系
+
+**Cron 任务**（自动运行）：
+- 每日情报监控（09:00）
+- 每周深度调研（周六 15:00）
+
+**本技能**（手动调用）：
+- 立即触发监控
+- 深度分析特定竞品
+- 生成定制报告
+
+---
+
+**创建时间**：2026-03-27 22:03  
+**维护者**：王的奴隶 · 严谨专业版  
+**标签**：#自研系统 #竞品分析 #情报监控
+
+---
+
+## 💰 购买与授权
+
+**本技能版本**：v0.1.0
+
+**授权类型**：
+- **个人版**：$29.9（永久使用，个人非商业用途）
+- **商业版**：$99.9（永久使用，商业用途）
+
+**购买后获得**：
+- ✅ 技能完整源码
+- ✅ 使用文档
+- ✅ 1 年免费更新
+- ✅ 邮件支持
+
+**购买方式**：
+1. 访问 ClawHub 技能页面
+2. 选择授权类型
+3. 支付（支付宝/微信/PayPal）
+4. 自动获得授权码
+
+**联系方式**：
+- 📧 邮箱：support@cloud-shrimp.com
+- 💬 微信：CloudShrimpSupport（备注：技能名称）
+
+**企业定制**：
+- 请联系：business@cloud-shrimp.com
+
+---
+
+**技能版本**：v0.1.0  
+**创建时间**：2026-03-27  
+**维护者**：王的奴隶 · 严谨专业版

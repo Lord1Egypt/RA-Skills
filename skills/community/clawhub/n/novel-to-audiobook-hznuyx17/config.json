@@ -1,0 +1,20 @@
+{
+    "_说明": "小说转有声书 Skill 配置文件",
+
+    "deepseek_api_key": "",
+    "minimax_api_key": "",
+
+    "deepseek_model": "deepseek-v4-flash",
+
+    "tts_model": "speech-2.8-hd",
+    "music_model": "music-2.6-free",
+
+    "narration_voice": "female-shaonv",
+    "default_male_voice": "male-qingnian",
+    "default_female_voice": "female-shaonv",
+
+    "chapter_intro_voice": "female-shaonv",
+
+    "output_path": "E:/qwenpaw/Novel/有声书输出",
+    "bg_music_volume": 0.15
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DPP Pipeline"
+  short_description: "Create a single-product placement video from local assets"
+  default_prompt: "Use $dpp-pipeline to turn a local source video and one product image into a single-product placement video."

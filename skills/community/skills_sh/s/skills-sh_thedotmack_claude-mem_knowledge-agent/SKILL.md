@@ -1,35 +1,80 @@
 ---
-name: "knowledge-agent"
-description: "Indexed by skills.sh from thedotmack/claude-mem"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "thedotmack"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/thedotmack/claude-mem/knowledge-agent"
-sourceUrl: "https://skills.sh/thedotmack/claude-mem/knowledge-agent"
+name: knowledge-agent
+description: Build and query AI-powered knowledge bases from claude-mem observations. Use when users want to create focused "brains" from their observation history, ask questions about past work patterns, or compile expertise on specific topics.
 ---
 
-# knowledge-agent
+# Knowledge Agent
 
-> Indexed by skills.sh from thedotmack/claude-mem
+Build and query AI-powered knowledge bases from claude-mem observations.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** thedotmack
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/thedotmack/claude-mem/knowledge-agent`
-- **Source URL:** [https://skills.sh/thedotmack/claude-mem/knowledge-agent](https://skills.sh/thedotmack/claude-mem/knowledge-agent)
+## What Are Knowledge Agents?
 
-## Overview
+Knowledge agents are filtered corpora of observations compiled into a conversational AI session. Build a corpus from your observation history, prime it (loads the knowledge into an AI session), then ask it questions conversationally.
 
+Think of them as custom "brains": "everything about hooks", "all decisions from the last month", "all bugfixes for the worker service".
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/thedotmack/claude-mem/knowledge-agent
+## Workflow
+
+### Step 1: Build a corpus
+
+```text
+build_corpus name="hooks-expertise" description="Everything about the hooks lifecycle" project="claude-mem" concepts="hooks" limit=500
 ```
+
+Filter options:
+- `project` — filter by project name
+- `types` — comma-separated: decision, bugfix, feature, refactor, discovery, change
+- `concepts` — comma-separated concept tags
+- `files` — comma-separated file paths (prefix match)
+- `query` — semantic search query
+- `dateStart` / `dateEnd` — ISO date range
+- `limit` — max observations (default 500)
+
+### Step 2: Prime the corpus
+
+```text
+prime_corpus name="hooks-expertise"
+```
+
+This creates an AI session loaded with all the corpus knowledge. Takes a moment for large corpora.
+
+### Step 3: Query
+
+```text
+query_corpus name="hooks-expertise" question="What are the 5 lifecycle hooks and when does each fire?"
+```
+
+The knowledge agent answers from its corpus. Follow-up questions maintain context.
+
+### Step 4: List corpora
+
+```text
+list_corpora
+```
+
+Shows all corpora with stats and priming status.
+
+## Tips
+
+- **Focused corpora work best** — "hooks architecture" beats "everything ever"
+- **Prime once, query many times** — the session persists across queries
+- **Reprime for fresh context** — if the conversation drifts, reprime to reset
+- **Rebuild to update** — when new observations are added, rebuild then reprime
+
+## Maintenance
+
+### Rebuild a corpus (refresh with new observations)
+
+```text
+rebuild_corpus name="hooks-expertise"
+```
+
+After rebuilding, reprime to load the updated knowledge:
+
+### Reprime (fresh session)
+
+```text
+reprime_corpus name="hooks-expertise"
+```
+
+Clears prior Q&A context and reloads the corpus into a new session.

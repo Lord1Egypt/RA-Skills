@@ -1,35 +1,34 @@
 ---
-name: "tmall-price-scraper"
-description: "抓取天猫（Tmall）商品页面的实时价格、优惠信息及规格详情。适用于需要获取电商商品价格、监控价格变动或对比不同规格价格的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tmall-price-scraper"
-sourceUrl: "https://clawhub.ai/skills/tmall-price-scraper"
+name: tmall-price-scraper
+description: 抓取天猫（Tmall）商品页面的实时价格、优惠信息及规格详情。适用于需要获取电商商品价格、监控价格变动或对比不同规格价格的场景。
 ---
 
-# tmall-price-scraper
+# Tmall Price Scraper
 
-> 抓取天猫（Tmall）商品页面的实时价格、优惠信息及规格详情。适用于需要获取电商商品价格、监控价格变动或对比不同规格价格的场景。
+本 Skill 用于从天猫商品详情页中提取关键的价格和规格信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tmall-price-scraper`
-- **Source URL:** [https://clawhub.ai/skills/tmall-price-scraper](https://clawhub.ai/skills/tmall-price-scraper)
+## 使用指南
 
-## Overview
+1. **输入要求**：需要提供一个有效的天猫商品链接（URL）。
+2. **登录处理**：天猫页面通常有登录限制。如果遇到登录页面，请使用 `message` 工具引导用户进行扫码登录或手动登录。
+3. **信息提取**：
+   - **商品名称**：提取页面的主标题。
+   - **价格**：提取“券后价”或“促销价”以及“原价”。
+   - **优惠**：提取满减、券、淘金币抵扣等信息。
+   - **规格**：提取所有可选的规格（如净含量、颜色、套餐等）及其对应的价格（如果点击后价格有变动）。
+   - **销量/人气**：提取已售数量、加购人数等。
 
+## 核心流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tmall-price-scraper
-```
+1. **导航**：使用 `browser_navigate` 访问商品链接。
+2. **检查登录**：如果页面跳转到 `login.taobao.com`，提示用户登录。
+3. **等待加载**：确保页面内容（尤其是价格部分）加载完成。
+4. **提取数据**：
+   - 优先从 Markdown 提取中寻找价格关键字。
+   - 如果 Markdown 不完整，使用 `browser_view` 查看截图并结合元素索引定位价格。
+5. **格式化输出**：将提取到的信息以表格形式呈现给用户。
+
+## 注意事项
+
+- 天猫页面的 DOM 结构可能会变动，提取时应具备容错性，寻找包含“￥”或“价格”字样的元素。
+- 不同规格（SKU）的价格可能不同，必要时需模拟点击不同规格以获取准确价格。

@@ -1,0 +1,33 @@
+{
+  "name": "coding-plan-assistant",
+  "version": "1.0.0",
+  "description": "管理各种编程助手（Coding Plan）的注册、购买和凭据配置流程",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "check-status": "node scripts/check-status.js",
+    "rotate-key": "node scripts/rotate-key.js",
+    "compare-pricing": "node scripts/compare-pricing.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "coding",
+    "assistant",
+    "api-key",
+    "credential-management"
+  ],
+  "author": "OpenClaw Skills",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/openclaw/issues"
+  },
+  "homepage": "https://docs.openclaw.ai/skills/coding-plan-assistant"
+}

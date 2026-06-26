@@ -1,0 +1,8 @@
+{
+  "name": "rakuten-shop-analysis-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/run.test.mjs"
+  }
+}

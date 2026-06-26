@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>{{title}}</title>
+<style>
+body { 
+  width: 1080px; 
+  min-height: 1754px; 
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 60px;
+  font-family: "Microsoft YaHei", "PingFang SC", "KaiTi", serif;
+  color: #333;
+  box-sizing: border-box;
+}
+.top-badge { 
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff; 
+  padding: 16px 48px; 
+  border-radius: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 60px;
+  box-shadow: 0 8px 30px rgba(192,57,43,0.3);
+}
+.lucky-char { 
+  font-size: 420px; 
+  line-height: 1;
+  color: #c0392b;
+  font-weight: 900;
+  text-shadow: 0 10px 50px rgba(192,57,43,0.2);
+  margin: 20px 0;
+}
+.date { font-size: 32px; color: #666; margin-bottom: 50px; }
+.info-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 50px;
+  width: 100%;
+  max-width: 880px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+.info-row { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  border-bottom: 1px dashed #ddd;
+  font-size: 30px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { color: #888; font-size: 26px; }
+.info-value { color: #333; font-weight: bold; }
+.advice {
+  margin-top: 50px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: #fff;
+  padding: 35px 50px;
+  border-radius: 20px;
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  max-width: 880px;
+}
+</style>
+</head>
+<body>
+  <div class="top-badge">{{badge}}</div>
+  <div class="lucky-char">{{lucky_char}}</div>
+  <div class="date">{{date}}</div>
+  <div class="info-box">
+    <div class="info-row">
+      <span class="info-label">宜</span>
+      <span class="info-value">{{yi}}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">忌</span>
+      <span class="info-value">{{ji}}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">财神方位</span>
+      <span class="info-value">{{caishen}}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">吉时</span>
+      <span class="info-value">{{jishi}}</span>
+    </div>
+  </div>
+  <div class="advice">{{advice}}</div>
+</body>
+</html>

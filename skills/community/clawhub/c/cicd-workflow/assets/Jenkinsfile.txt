@@ -1,0 +1,546 @@
+// Jenkins Pipeline for Java + Vue Projects
+// 支持：代码检查 → 单元测试 → 构建打包 → 镜像构建 → 部署 K8s → 通知反馈
+// 触发方式：手动触发 / Git webhook / 定时触发
+
+pipeline {
+    agent any
+    
+    environment {
+        // 镜像仓库配置
+        DOCKER_REGISTRY = 'your-registry.com'
+        DOCKER_NAMESPACE = 'your-namespace'
+        DOCKER_CREDENTIALS_ID = 'docker-registry-credentials'
+        
+        // 项目配置
+        JAVA_PROJECT_NAME = 'java-backend'
+        VUE_PROJECT_NAME = 'vue-frontend'
+        
+        // K8s 配置
+        K8S_NAMESPACE = 'production'
+        KUBE_CONFIG_ID = 'kubeconfig'
+        
+        // 版本标签
+        IMAGE_TAG = "${BUILD_NUMBER}-${GIT_COMMIT?.take(7) ?: 'unknown'}"
+        
+        // 通知配置
+        WEBHOOK_URL_ID = 'webhook-url'
+        
+        // 静态资源安全扫描配置
+        STATIC_SCAN_ENABLED = 'true'
+    }
+    
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 30, unit: 'MINUTES')
+        disableConcurrentBuilds()
+        timestamps()
+    }
+    
+    triggers {
+        // 手动触发（默认）
+        // 如需自动触发，取消下面注释：
+        // pollSCM('H/5 * * * *')  // 每5分钟检查一次
+        // githubPush()  // GitHub webhook 触发
+        // gitlab(triggerOnPush: true, triggerOnMergeRequest: true)
+    }
+    
+    stages {
+        // ==================== 准备阶段 ====================
+        stage('Prepare') {
+            steps {
+                script {
+                    echo "🔧 Build Preparation"
+                    echo "Image Tag: ${env.IMAGE_TAG}"
+                    echo "Git Commit: ${env.GIT_COMMIT}"
+                    echo "Branch: ${env.GIT_BRANCH}"
+                    
+                    // 检查必要目录存在
+                    sh '''
+                        [ -d "backend" ] || echo "⚠️ Warning: backend directory not found"
+                        [ -d "frontend" ] || echo "⚠️ Warning: frontend directory not found"
+                    '''
+                }
+            }
+        }
+        
+        // ==================== 代码检查阶段 ====================
+        stage('Lint') {
+            parallel {
+                stage('Lint Java') {
+                    when {
+                        anyOf {
+                            changeset "backend/**"
+                            expression { return !fileExists('frontend') }
+                        }
+                    }
+                    agent {
+                        docker {
+                            image 'maven:3.9-eclipse-temurin-17-alpine'
+                            args '-v maven-repo:/root/.m2 -e MAVEN_OPTS="-Xmx512m"'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('backend') {
+                            sh 'mvn spotbugs:check pmd:check checkstyle:check -q -f pom.xml || true'
+                        }
+                    }
+                    post {
+                        always {
+                            // 使用通用的记录方式，不依赖特定插件
+                            recordIssues(
+                                enabledForFailure: true,
+                                tools: [
+                                    spotBugs(pattern: 'backend/target/spotbugsXml.xml'),
+                                    pmdParser(pattern: 'backend/target/pmd.xml'),
+                                    checkStyle(pattern: 'backend/target/checkstyle-result.xml')
+                                ]
+                            )
+                        }
+                    }
+                }
+                stage('Lint Vue') {
+                    when {
+                        anyOf {
+                            changeset "frontend/**"
+                            expression { return !fileExists('backend') }
+                        }
+                    }
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-v node-modules:/app/node_modules -e NODE_OPTIONS="--max-old-space-size=512"'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('frontend') {
+                            sh 'npm ci --prefer-offline --no-audit'
+                            sh 'npm run lint -- --max-warnings=50 || true'
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ==================== 单元测试阶段 ====================
+        stage('Test') {
+            parallel {
+                stage('Test Java') {
+                    when {
+                        anyOf {
+                            changeset "backend/**"
+                            expression { return !fileExists('frontend') }
+                        }
+                    }
+                    agent {
+                        docker {
+                            image 'maven:3.9-eclipse-temurin-17-alpine'
+                            args '-v maven-repo:/root/.m2 -e MAVEN_OPTS="-Xmx1024m"'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('backend') {
+                            sh 'mvn clean test -q'
+                        }
+                    }
+                    post {
+                        always {
+                            // 使用标准 JUnit 插件（大多数 Jenkins 都安装）
+                            junit(
+                                testResults: 'backend/target/surefire-reports/*.xml',
+                                allowEmptyResults: true,
+                                skipPublishingChecks: true
+                            )
+                            
+                            // JaCoCo 覆盖率（如已安装插件）
+                            script {
+                                try {
+                                    jacoco(
+                                        execPattern: 'backend/target/jacoco.exec',
+                                        classPattern: 'backend/target/classes',
+                                        sourcePattern: 'backend/src/main/java',
+                                        minimumLineCoverage: '60',
+                                        maximumLineCoverage: '90'
+                                    )
+                                } catch (err) {
+                                    echo "⚠️ JaCoCo plugin not available: ${err.message}"
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('Test Vue') {
+                    when {
+                        anyOf {
+                            changeset "frontend/**"
+                            expression { return !fileExists('backend') }
+                        }
+                    }
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-v node-modules:/app/node_modules -e NODE_OPTIONS="--max-old-space-size=1024"'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('frontend') {
+                            sh 'npm ci --prefer-offline --no-audit'
+                            sh 'npm run test:unit -- --coverage --reporter=junit --outputFile=junit.xml || true'
+                        }
+                    }
+                    post {
+                        always {
+                            junit(
+                                testResults: 'frontend/junit.xml',
+                                allowEmptyResults: true,
+                                skipPublishingChecks: true
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ==================== 构建打包阶段 ====================
+        stage('Build') {
+            parallel {
+                stage('Build Java') {
+                    when {
+                        anyOf {
+                            changeset "backend/**"
+                            expression { return !fileExists('frontend') }
+                        }
+                    }
+                    agent {
+                        docker {
+                            image 'maven:3.9-eclipse-temurin-17-alpine'
+                            args '-v maven-repo:/root/.m2 -e MAVEN_OPTS="-Xmx1024m"'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('backend') {
+                            sh 'mvn clean package -DskipTests -q'
+                            sh "mkdir -p artifacts && cp target/*.jar artifacts/${JAVA_PROJECT_NAME}.jar"
+                            
+                            // 静态资源安全检查：确保没有源码泄露
+                            sh '''
+                                echo "🔍 Checking Java artifacts for source files..."
+                                if jar tf artifacts/*.jar | grep -E "\\.(vue|config\\.js|config\\.ts)$"; then
+                                    echo "❌ Error: Source files found in JAR!"
+                                    exit 1
+                                fi
+                                echo "✅ Java artifact check passed"
+                            '''
+                        }
+                    }
+                    post {
+                        success {
+                            archiveArtifacts(
+                                artifacts: "artifacts/${JAVA_PROJECT_NAME}.jar",
+                                fingerprint: true,
+                                allowEmptyArchive: false
+                            )
+                        }
+                    }
+                }
+                stage('Build Vue') {
+                    when {
+                        anyOf {
+                            changeset "frontend/**"
+                            expression { return !fileExists('backend') }
+                        }
+                    }
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            args '-v node-modules:/app/node_modules -e NODE_OPTIONS="--max-old-space-size=1024"'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('frontend') {
+                            sh 'npm ci --prefer-offline --no-audit'
+                            sh 'npm run build'
+                            sh "mkdir -p artifacts && cp -r dist artifacts/${VUE_PROJECT_NAME}"
+                            
+                            // 静态资源安全检查：确保 dist 目录没有源码和配置文件
+                            sh '''
+                                echo "🔍 Scanning dist folder for source/config files..."
+                                VIOLATIONS=$(find artifacts/${VUE_PROJECT_NAME} -type f \
+                                    -name "*.vue" -o \
+                                    -name "*.config.js" -o \
+                                    -name "*.config.ts" -o \
+                                    -name "*.config.mjs" -o \
+                                    -name "*.config.cjs" -o \
+                                    -name "*.config.json" -o \
+                                    -name "vite.config.*" -o \
+                                    -name "*.map" 2>/dev/null || true)
+                                
+                                if [ -n "$VIOLATIONS" ]; then
+                                    echo "❌ Security violation found:"
+                                    echo "$VIOLATIONS"
+                                    echo "Removing violation files..."
+                                    echo "$VIOLATIONS" | xargs rm -f
+                                fi
+                                
+                                echo "✅ Vue build check passed"
+                                echo "📦 Final artifact contents:"
+                                find artifacts/${VUE_PROJECT_NAME} -type f | head -20
+                            '''
+                        }
+                    }
+                    post {
+                        success {
+                            archiveArtifacts(
+                                artifacts: "artifacts/${VUE_PROJECT_NAME}/**/*",
+                                fingerprint: true,
+                                allowEmptyArchive: false
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ==================== 安全扫描阶段 ====================
+        stage('Security Scan') {
+            when {
+                expression { env.STATIC_SCAN_ENABLED == 'true' }
+            }
+            parallel {
+                stage('Scan Java Image') {
+                    when {
+                        expression { fileExists('backend/Dockerfile') }
+                    }
+                    steps {
+                        script {
+                            try {
+                                // 使用 Trivy 扫描（如已安装）
+                                sh '''
+                                    if command -v trivy >/dev/null 2>&1; then
+                                        echo "🔍 Scanning Java Dockerfile..."
+                                        trivy filesystem --severity HIGH,CRITICAL backend/ || true
+                                    else
+                                        echo "⚠️ Trivy not installed, skipping scan"
+                                    fi
+                                '''
+                            } catch (err) {
+                                echo "⚠️ Security scan warning: ${err.message}"
+                            }
+                        }
+                    }
+                }
+                stage('Scan Vue Image') {
+                    when {
+                        expression { fileExists('frontend/Dockerfile') }
+                    }
+                    steps {
+                        script {
+                            try {
+                                sh '''
+                                    if command -v trivy >/dev/null 2>&1; then
+                                        echo "🔍 Scanning Vue Dockerfile..."
+                                        trivy filesystem --severity HIGH,CRITICAL frontend/ || true
+                                    else
+                                        echo "⚠️ Trivy not installed, skipping scan"
+                                    fi
+                                '''
+                            } catch (err) {
+                                echo "⚠️ Security scan warning: ${err.message}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ==================== 镜像构建阶段 ====================
+        stage('Dockerize') {
+            parallel {
+                stage('Dockerize Java') {
+                    when {
+                        expression { fileExists('backend/Dockerfile') }
+                    }
+                    steps {
+                        script {
+                            docker.withRegistry("https://${DOCKER_REGISTRY}", "${DOCKER_CREDENTIALS_ID}") {
+                                def javaImage = docker.build(
+                                    "${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${JAVA_PROJECT_NAME}:${IMAGE_TAG}",
+                                    "-f backend/Dockerfile backend/"
+                                )
+                                javaImage.push()
+                                
+                                // 仅在 main/master 分支推送 latest
+                                if (env.GIT_BRANCH == 'main' || env.GIT_BRANCH == 'master') {
+                                    javaImage.push('latest')
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('Dockerize Vue') {
+                    when {
+                        expression { fileExists('frontend/Dockerfile') }
+                    }
+                    steps {
+                        script {
+                            docker.withRegistry("https://${DOCKER_REGISTRY}", "${DOCKER_CREDENTIALS_ID}") {
+                                def vueImage = docker.build(
+                                    "${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${VUE_PROJECT_NAME}:${IMAGE_TAG}",
+                                    "-f frontend/Dockerfile frontend/"
+                                )
+                                vueImage.push()
+                                
+                                // 仅在 main/master 分支推送 latest
+                                if (env.GIT_BRANCH == 'main' || env.GIT_BRANCH == 'master') {
+                                    vueImage.push('latest')
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // ==================== K8s 部署阶段 ====================
+        stage('Deploy to K8s') {
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                    expression { params.FORCE_DEPLOY == true }
+                }
+            }
+            steps {
+                script {
+                    withCredentials([file(credentialsId: "${KUBE_CONFIG_ID}", variable: 'KUBECONFIG')]) {
+                        sh """
+                            # 验证 kubectl 连接
+                            kubectl cluster-info
+                            
+                            # 部署 Java 服务
+                            if kubectl get deployment ${JAVA_PROJECT_NAME} -n ${K8S_NAMESPACE} >/dev/null 2>&1; then
+                                echo "🚀 Updating Java deployment..."
+                                kubectl set image deployment/${JAVA_PROJECT_NAME} \
+                                    ${JAVA_PROJECT_NAME}=${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${JAVA_PROJECT_NAME}:${IMAGE_TAG} \
+                                    -n ${K8S_NAMESPACE}
+                                kubectl rollout status deployment/${JAVA_PROJECT_NAME} -n ${K8S_NAMESPACE} --timeout=300s
+                            else
+                                echo "⚠️ Java deployment not found, skipping"
+                            fi
+                            
+                            # 部署 Vue 服务
+                            if kubectl get deployment ${VUE_PROJECT_NAME} -n ${K8S_NAMESPACE} >/dev/null 2>&1; then
+                                echo "🚀 Updating Vue deployment..."
+                                kubectl set image deployment/${VUE_PROJECT_NAME} \
+                                    ${VUE_PROJECT_NAME}=${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${VUE_PROJECT_NAME}:${IMAGE_TAG} \
+                                    -n ${K8S_NAMESPACE}
+                                kubectl rollout status deployment/${VUE_PROJECT_NAME} -n ${K8S_NAMESPACE} --timeout=300s
+                            else
+                                echo "⚠️ Vue deployment not found, skipping"
+                            fi
+                            
+                            # 验证部署状态
+                            echo "📋 Deployment status:"
+                            kubectl get pods -n ${K8S_NAMESPACE} -l app=${JAVA_PROJECT_NAME} -o wide || true
+                            kubectl get pods -n ${K8S_NAMESPACE} -l app=${VUE_PROJECT_NAME} -o wide || true
+                        """
+                    }
+                }
+            }
+        }
+    }
+    
+    // ==================== 通知反馈阶段 ====================
+    post {
+        always {
+            script {
+                // 清理工作区（可选）
+                // cleanWs()
+            }
+        }
+        success {
+            script {
+                sendNotification('✅ 部署成功', 'good')
+            }
+        }
+        failure {
+            script {
+                sendNotification('❌ 部署失败', 'danger')
+            }
+        }
+        unstable {
+            script {
+                sendNotification('⚠️ 部署不稳定（测试未通过）', 'warning')
+            }
+        }
+        aborted {
+            script {
+                sendNotification('🛑 构建已取消', '#808080')
+            }
+        }
+    }
+}
+
+// ==================== 辅助函数 ====================
+
+/**
+ * 发送通知到飞书/钉钉/Slack
+ */
+def sendNotification(String status, String color) {
+    script {
+        try {
+            withCredentials([string(credentialsId: env.WEBHOOK_URL_ID, variable: 'WEBHOOK_URL')]) {
+                def message = """
+                {
+                    "msg_type": "interactive",
+                    "card": {
+                        "config": {"wide_screen_mode": true},
+                        "header": {
+                            "title": {
+                                "tag": "plain_text",
+                                "content": "${status}"
+                            },
+                            "template": "${color == 'good' ? 'green' : color == 'danger' ? 'red' : 'orange'}"
+                        },
+                        "elements": [
+                            {
+                                "tag": "div",
+                                "text": {
+                                    "tag": "lark_md",
+                                    "content": "**项目：** ${env.JOB_NAME}\\n**构建：** #${env.BUILD_NUMBER}\\n**版本：** ${env.IMAGE_TAG}\\n**提交：** ${env.GIT_COMMIT?.take(7) ?: 'N/A'}\\n**分支：** ${env.GIT_BRANCH ?: 'N/A'}\\n**构建人：** ${env.BUILD_USER ?: 'System'}"
+                                }
+                            },
+                            {
+                                "tag": "action",
+                                "actions": [
+                                    {
+                                        "tag": "button",
+                                        "text": {"tag": "plain_text", "content": "查看详情"},
+                                        "url": "${env.BUILD_URL}",
+                                        "type": "primary"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+                """
+                
+                httpRequest(
+                    httpMode: 'POST',
+                    contentType: 'APPLICATION_JSON',
+                    url: env.WEBHOOK_URL,
+                    requestBody: message,
+                    validResponseCodes: '200:299'
+                )
+            }
+        } catch (err) {
+            echo "⚠️ Failed to send notification: ${err.message}"
+        }
+    }
+}

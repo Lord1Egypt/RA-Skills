@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-04-25",
+  "description": "用户自定义模型视觉能力覆盖表。优先级高于内置表 knowledge/model_vision_capability.json。",
+  "models": {}
+}

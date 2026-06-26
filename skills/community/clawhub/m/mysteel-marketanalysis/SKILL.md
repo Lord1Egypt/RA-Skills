@@ -1,35 +1,110 @@
 ---
-name: "Mysteel_MarketAnalysis"
-description: "大宗商品市场分析服务；当用户需要钢铁、有色、能源化工、炉料等品类的市场分析、行情跟踪或供需解读时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mysteel-marketanalysis"
-sourceUrl: "https://clawhub.ai/skills/mysteel-marketanalysis"
+name: Mysteel_MarketAnalysis
+description: 大宗商品市场分析服务；当用户需要钢铁、有色、能源化工、炉料等品类的市场分析、行情跟踪或供需解读时使用
+dependency:
+  python:
+    - requests==2.31.0
 ---
 
-# Mysteel_MarketAnalysis
+# 大宗商品分析解读
 
-> 大宗商品市场分析服务；当用户需要钢铁、有色、能源化工、炉料等品类的市场分析、行情跟踪或供需解读时使用
+## 任务目标
+- 本 Skill 用于：通过钢联内部分析接口，获取大宗商品市场的专业分析报告
+- 能力包含：钢铁、有色、能源化工、炉料及相关产业链的价格分析、供需解读、库存跟踪等
+- 触发条件：当用户提出"分析XX市场"、"XX价格走势"、"供需情况如何"等分析需求时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mysteel-marketanalysis`
-- **Source URL:** [https://clawhub.ai/skills/mysteel-marketanalysis](https://clawhub.ai/skills/mysteel-marketanalysis)
+## 前置准备
+- 凭证配置：需要配置钢联API密钥
+  - 获取方式：联系钢联内部获取 api_key
+  - 配置方式：在 `references/api_key.md` 文件中配置（将 `YOUR_API_KEY_HERE` 替换为实际的API密钥）
 
-## Overview
+## 操作步骤
+- 标准流程：
+  1. **检查API密钥配置（必需步骤）**
+     - 读取与SKILL.md同级目录下的 `references/api_key.md` 文件
+     - 如果文件不存在、API密钥为占位符（`YOUR_API_KEY_HERE`）或为空：
+       - **立即终止整个流程**
+       - **提示用户输入API密钥**，明确告知如何配置
+       - **严禁跳过此步骤或通过其他方式回答用户问题**
+     - **注意：此步骤失败时，整个Skill执行立即终止，不执行任何后续操作**
+     - **重要：密钥文件路径固定为SKILL.md同级目录下的 references/api_key.md，请勿使用其他路径**
+  
+  2. **理解分析需求**
+     - 仅在API密钥验证通过后执行
+     - 智能体解析用户的大宗商品分析需求
+     - 识别分析对象（品类、市场、时间段）
+     - 提取关注维度（价格、供需、库存、情绪等）
+  
+  3. **构建查询语句**
+     - 根据需求特点构建结构化查询问题
+     - 例如："上海建筑钢材市场分析"、"螺纹钢价格走势及供需情况"
+     - 智能体可根据上下文优化查询表述
+  
+  4. **调用分析接口**
+     **必须** 使用以下完整参数调用 exec 工具，不要省略任何字段，尤其是 yieldMs 和 timeout：
+     ```json
+		{
+		  "tool": "exec",
+		  "command": "python3 scripts/analyze.py --query \"<你的查询问题>\"",
+		  "yieldMs": 150000,
+		  "timeout": 300,
+		  "background": false
+		}
+     ```
+     - 执行脚本，获取钢联分析结果
+     - 接口响应时间约90秒，请耐心等待
+     - 返回格式为Markdown结构化分析报告
+  
+  5. **深度解读与扩充输出**
+     - **充分理解**接口返回的Markdown格式分析报告的完整内容和逻辑结构
+     - **保留原文核心数据和分析框架**，不进行删减或简化
+     - **扩充内容**：在原有报告基础上：
+       - 补充更详细的背景信息和行业背景
+       - 增加数据背后的逻辑分析和因果关系解读
+       - 添加多维度的视角和交叉验证
+       - 扩展风险因素的深度分析
+       - 补充实操建议和策略指引
+     - **输出目标**：提供一篇比原报告更加饱满、全面、有深度的分析结果
+     - 确保输出内容完整性强，信息密度高，满足用户深度分析需求
 
+- 异常处理：
+  - **当API密钥校验失败（文件不存在、占位符、为空）**：
+    - **立即终止整个流程**
+    - **明确提示用户输入API密钥**，提供配置指引
+    - **绝对禁止跳过校验或通过其他途径回答用户问题**
+  - **当接口返回Token校验失败（code=400）**：
+    - **立即终止整个流程**
+    - **提示用户API密钥无效，需要更换正确的密钥**
+    - 引导用户更新 `references/api_key.md` 文件中的密钥
+  - **当接口返回系统内部异常（code=401等其他错误）**：
+    - 脚本会自动重试一次
+    - 如果重试仍失败，提示用户稍后重试
+  - 当接口超时：建议用户稍后重试或简化查询范围
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mysteel-marketanalysis
-```
+## 资源索引
+- 必要脚本：见 [scripts/analyze.py](scripts/analyze.py)（用途与参数：调用钢联内部分析接口，接收query参数，返回Markdown格式分析结果）
+- API密钥配置：见 [references/api_key.md](references/api_key.md)（用途：存储钢联API密钥，第一行注释，第二行为实际密钥）
+
+## 注意事项
+- 该接口为钢联内部服务，调用需要有效凭证
+- **API密钥校验是硬性前置条件，验证失败时必须终止流程，严禁绕过**
+- **Token校验失败（code=400）表示密钥无效，需要用户更换正确的API密钥**
+- **系统内部异常（code=401等）会自动重试一次，无需用户干预**
+- **严禁在API密钥缺失或无效的情况下使用智能体的通用知识回答用户问题**
+- 接口响应时间较长（约90秒），请合理安排调用时机
+- 查询问题越具体，返回的分析结果越精准
+- 智能体会根据分析结果提供专业的业务解读和风险提示
+
+## 使用示例
+- 示例1：市场概况分析
+  - 用户提问："上海建筑钢材市场最近怎么样？"
+  - 执行方式：检查密钥 → 验证通过 → 构建查询 → 调用脚本 → 解读结果
+  - 异常情况：检查密钥 → 验证失败 → 提示输入 → 终止流程
+  
+- 示例2：价格趋势分析
+  - 用户提问："螺纹钢最近的价格走势如何？"
+  - 执行方式：检查密钥 → 验证通过 → 构建查询 → 调用脚本 → 输出趋势解读
+  
+- 示例3：供需关系分析
+  - 用户提问："现在螺纹钢供需情况怎么样？"
+  - 执行方式：检查密钥 → 验证通过 → 构建查询 → 调用脚本 → 提供供需解读

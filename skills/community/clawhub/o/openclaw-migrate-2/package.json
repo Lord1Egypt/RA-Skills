@@ -1,0 +1,11 @@
+{
+  "name": "agent-migrate",
+  "version": "1.0.0",
+  "description": "OpenClaw Agent cross-platform migration tool",
+  "keywords": ["openclaw", "agent", "migrate", "backup", "deploy"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/agent-migrate.git"
+  }
+}

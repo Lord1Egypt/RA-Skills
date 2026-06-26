@@ -1,35 +1,91 @@
 ---
-name: "周末去哪儿"
-description: "周末去哪儿2天1夜说走就走方案助手。输入出发城市和本周末日期，一次性生成3个"说走就走"的周末方案，每个包含目的地+航班/高铁+酒店+精选景点+总价估算。当用户提到"周末去哪"、"周末出游"、"2天1夜"、"说走就走"、"周末旅行"、"这周末出去玩"、"短途游"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flyai-weekend-trip"
-sourceUrl: "https://clawhub.ai/skills/flyai-weekend-trip"
+name: flyai-weekend-trip
+description: 周末去哪儿2天1夜说走就走方案助手。输入出发城市和本周末日期，一次性生成3个"说走就走"的周末方案，每个包含目的地+航班/高铁+酒店+精选景点+总价估算。当用户提到"周末去哪"、"周末出游"、"2天1夜"、"说走就走"、"周末旅行"、"这周末出去玩"、"短途游"时使用。
 ---
 
-# 周末去哪儿
+# 周末去哪儿 - 2天1夜说走就走方案
 
-> 周末去哪儿2天1夜说走就走方案助手。输入出发城市和本周末日期，一次性生成3个"说走就走"的周末方案，每个包含目的地+航班/高铁+酒店+精选景点+总价估算。当用户提到"周末去哪"、"周末出游"、"2天1夜"、"说走就走"、"周末旅行"、"这周末出去玩"、"短途游"时使用。
+周末快速出游方案规划师，帮助用户从"想出去"到"订好出发"快速决策周末短途旅行。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flyai-weekend-trip`
-- **Source URL:** [https://clawhub.ai/skills/flyai-weekend-trip](https://clawhub.ai/skills/flyai-weekend-trip)
+## FlyAI 能力
 
-## Overview
+> 完整命令参考见 reference 目录
+
+**主要使用**：`keyword-search`、`search-flight`、`search-train`、`search-hotel`、`search-poi`
+- 一次性输出3个打包方案
+- 每个方案包含：目的地 + 往返交通 + 酒店推荐 + 3个必玩景点 + 总价估算
+- 用户选中即可一键预订
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flyai-weekend-trip
-```
+## 用户画像读取（双模式）
+
+启动时读取用户历史偏好，减少重复询问。
+
+> 详见 [reference/user-profile-storage.md](reference/user-profile-storage.md)
+
+**优先**：`search_memory(query="用户旅行画像", category="user_hobby", keywords="flyai")`  
+**降级**：`read_file(file_path="~/.flyai/user-profile.md")`
+
+
+## 工作流程
+
+> 详细步骤见 [reference/workflow.md](reference/workflow.md)
+
+**核心阶段：**
+1. 信息收集 - 通过 `ask_user_question` 收集出发城市、日期、预算、偏好
+2. 目的地搜索 - 调用 `keyword-search` 确定候选目的地
+3. 并行查询 - 对每个候选目的地调用 `search-flight`/`search-train`、`search-hotel`、`search-poi`
+4. 方案生成 - 整合为3个差异化打包方案（远近/价格/风格各不同）
+5. 预约提醒 - 检查景点预约要求，标注⚠️并推荐替代
+
+
+## 现实约束与失败处理
+
+| 情况 | 处理方式 |
+|-----|---------|
+| 周末航班太贵或售罄 | 补充高铁/自驾方案 |
+| 预算内找不到合适方案 | 放宽预算或缩短距离推荐周边自驾 |
+| 偏好太模糊 | 用 keyword-search 做发散推荐，再追问细化 |
+| 某目的地酒店满房 | 标注"住宿紧张⚠️"，推荐邻近区域或替代目的地 |
+| 景点需提前预约 | 检查是否来得及，来不及的标注⚠️并推荐替代 |
+| FlyAI 返回空结果 | 尝试调整搜索条件或推荐其他目的地 |
+
+## 偏好标签对应的目的地推荐逻辑
+
+| 偏好 | 推荐方向 | 示例目的地 |
+|-----|---------|----------|
+| 看海 🏖 | 海滨城市 | 舟山、厦门、青岛、三亚 |
+| 古镇 🏘 | 江南水乡、历史名镇 | 乌镇、西塘、周庄、凤凰 |
+| 亲子 👨‍👩‍👧 | 主题乐园、自然探索 | 上海迪士尼、长隆、海洋馆 |
+| 躺平 😴 | 度假村、温泉 | 莫干山、千岛湖、安吉 |
+| 美食 🍜 | 美食之都 | 成都、重庆、广州、西安 |
+
+## 输出质量标准
+
+1. **信息完整**：每个方案必须包含交通+住宿+景点+价格
+2. **价格准确**：基于 FlyAI 实时搜索结果
+3. **差异化**：3个方案要有明显区别（如远近、价格、风格）
+4. **可执行**：提供预订链接，用户选中即可行动
+5. **有温度**：用emoji和口语化表达，让方案更有吸引力
+
+## 示例对话
+
+**用户：** 这周末想出去玩，杭州出发
+
+**AI：** 好的！让我帮你规划周末说走就走方案 🎒
+首先确认一下：
+1. 本周六日是4月5-6日，对吗？
+2. 预算大概多少？（1000/1500/2000以内/不限）
+3. 有什么偏好吗？看海/古镇/亲子/躺平/美食
+
+**用户：** 预算2000，想看海
+
+**AI：** 收到！杭州出发，本周六日（4月5-6日），2天1晚，预算2000以内，想看海 🏖
+正在搜索最佳方案...
+[调用 FlyAI 搜索 → 生成3个打包方案 → 输出格式化结果]
+
+## 用户偏好保存（双模式）
+
+发现新偏好时提示保存。详见 [reference/user-profile-storage.md](reference/user-profile-storage.md)
+
+**保存流程**：发现偏好 → 提示确认 → Qoder用update_memory / 非Qoder更新本地文件

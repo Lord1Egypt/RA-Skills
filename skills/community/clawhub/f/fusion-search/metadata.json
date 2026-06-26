@@ -1,0 +1,20 @@
+{
+  "name": "fusion-search",
+  "version": "1.0.0",
+  "description": "16-engine fusion search with Playwright stealth and intelligent routing",
+  "tags": [
+    "search",
+    "web",
+    "anti-crawl",
+    "multilingual"
+  ],
+  "author": "qianliyan + xiaoxiao",
+  "license": "MIT-0",
+  "created": "2026-05-16",
+  "python": ">=3.8",
+  "dependencies": [
+    "playwright"
+  ],
+  "entry": "scripts/fusion_search.py",
+  "type": "skill"
+}

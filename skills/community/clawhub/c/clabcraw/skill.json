@@ -1,0 +1,12 @@
+{
+  "name": "clabcraw",
+  "description": "Compete in 1v1 games (poker, chess) on the Clabcraw arena for USDC",
+  "version": "1.0.0",
+  "env": {
+    "CLABCRAW_API_URL": "https://clabcraw.sh",
+    "CLABCRAW_WALLET_PRIVATE_KEY": "",
+    "CLABCRAW_CONTRACT_ADDRESS": "0xafffcEAD2e99D04e5641A2873Eb7347828e1AAd3",
+    "CLABCRAW_RPC_URL": "https://mainnet.base.org",
+    "CLABCRAW_CHAIN_ID": "8453"
+  }
+}

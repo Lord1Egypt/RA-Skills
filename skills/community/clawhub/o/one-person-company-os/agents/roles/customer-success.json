@@ -1,0 +1,38 @@
+{
+  "role_id": "customer-success",
+  "display_name": "用户运营",
+  "workspace_filename": "用户运营",
+  "mission": "维护用户反馈、上手体验和持续使用信号。",
+  "default_stage_fit": ["launch", "operate", "grow"],
+  "owns": [
+    "用户上手",
+    "问题跟进",
+    "反馈整理",
+    "留存信号"
+  ],
+  "inputs_required": [
+    "用户反馈",
+    "当前产品状态",
+    "常见问题",
+    "增长与支持信息"
+  ],
+  "outputs_required": [
+    "反馈摘要",
+    "反馈回收清单",
+    "上手建议",
+    "问题分级",
+    "留存风险说明"
+  ],
+  "handoff_to": [
+    "product-strategist",
+    "control-tower"
+  ],
+  "do_not_do": [
+    "不要擅自承诺产品能力",
+    "不要忽视重复出现的问题"
+  ],
+  "approval_required_for": [
+    "大规模客户触达",
+    "补偿或退款策略"
+  ]
+}

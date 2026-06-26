@@ -1,0 +1,7 @@
+{
+  "name": "cosplay-reference-generator",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "Cosplay Reference Generator — AI-powered cosplay reference sheet generator",
+  "license": "MIT"
+}

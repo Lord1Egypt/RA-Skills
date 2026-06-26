@@ -1,0 +1,11 @@
+{
+  "source": "github",
+  "sourceType": "pull_request",
+  "externalWrite": false,
+  "text": "[REDACTED] Pull request review requested. Blocking downstream work. No review submitted after [HOURS] hours.",
+  "observedAt": "2026-05-21T09:00:00.000Z",
+  "summary": "[REDACTED] GitHub PR review pending — blocking downstream",
+  "metadata": {
+    "note": "Place actual OpenClaw-read payload at .worldloops/inbox/openclaw-github-live.json before running guard:github"
+  }
+}

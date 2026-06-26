@@ -1,35 +1,74 @@
 ---
-name: "intimate-ch03-attraction"
-description: "在对话中辅助学习"亲密关系/Intimate Relationships"第 3 章"吸引力"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章吸引力概念（reward 奖赏、proximity 临近、mere expos..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/intimate-ch03-attraction"
-sourceUrl: "https://clawhub.ai/skills/intimate-ch03-attraction"
+name: intimate-ch03-attraction
+description: 在对话中辅助学习"亲密关系/Intimate Relationships"第 3 章"吸引力"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章吸引力概念（reward 奖赏、proximity 临近、mere exposure effect 曝光效应、physical attractiveness 长相吸引力、matching 匹配、reciprocity 礼尚往来、similarity 相似性、complementarity 互补性、reactance 心理抗拒、Romeo and Juliet effect 罗密欧与朱丽叶效应、mate value 适配价值、ideal partner 理想伴侣）时使用。使用渐进式披露，按需读取 references/ 下的细节，把课本知识自然引入学习对话
 ---
 
-# intimate-ch03-attraction
+# 《亲密关系》第 3 章吸引力学习助手
 
-> 在对话中辅助学习"亲密关系/Intimate Relationships"第 3 章"吸引力"。基于 Rowland S. Miller《Intimate Relationships》教材第 6 版。当用户讨论、提问、复习或尝试应用本章吸引力概念（reward 奖赏、proximity 临近、mere expos...
+## 何时启用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/intimate-ch03-attraction`
-- **Source URL:** [https://clawhub.ai/skills/intimate-ch03-attraction](https://clawhub.ai/skills/intimate-ch03-attraction)
+当用户出现以下信号时使用本 skill：
 
-## Overview
+- 询问人际吸引、友谊或恋爱关系最初怎样形成
+- 讨论临近、熟识、曝光效应、远距离关系或为什么会喜欢身边的人
+- 询问外貌吸引力、"美的就是好的"、身材比例、脸部平均化、对称性或进化解释
+- 想辨析匹配、适配价值、喜欢那些喜欢我们的人、选择性故作清高
+- 提到相似性、"异性相吸"、互补性、刺激-价值观-角色理论或致命吸引
+- 讨论心理抗拒、父母反对恋爱、罗密欧与朱丽叶效应或打烊效应
+- 复习 Miller《Intimate Relationships》第 3 章、做读书笔记或准备考试
 
+不要一启动就把整章因素全部展开。先判断用户是在问"吸引力来源"、"外貌"、"互惠/匹配"、"相似性"、"障碍"还是"理想伴侣标准"。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/intimate-ch03-attraction
-```
+## 渐进式披露总原则
+
+1. **先问后讲**。除非用户明确要求总览，先用 1-2 句话确认 Ta 想要概念定义、研究例子、理论框架、应用到恋爱场景，还是考试辨析。
+2. **最小必要信息**。每轮先给 3-6 句可独立理解的回答；用户追问时再展开研究、数字或文化/进化解释。
+3. **用课本例子锚定**。优先调用 MIT 学生公寓、课堂曝光效应、HurryDate 速配、Bernstein 电影座位、Newcomb 住宿研究、罗密欧与朱丽叶效应、打烊效应、Ted 与 Betty 思考题等课本例子。
+4. **层层下钻不反向展开**。用户只问临近时，不主动铺开外貌、相似性和理想伴侣；用户问具体研究时再读取对应 reference。
+5. **中文回答，术语首次给英文**。首次出现写作"曝光效应（mere exposure effect）"这类形式；之后可只用中文。
+
+## 核心骨架
+
+一句话主旨：吸引力的基础是奖赏，能直接或间接带来愉悦、利益、接纳、确定性或繁殖优势的人更容易吸引我们。
+
+主要影响因素骨架：
+1. **临近与熟识**：身边的人更容易相遇、交往成本更低，重复接触通常增加喜欢。
+2. **长相吸引力**：外貌强烈影响第一印象和初始选择，但其标准同时受进化线索与文化环境塑造。
+3. **礼尚往来与匹配**：我们喜欢喜欢我们的人，也会追求更可能接纳自己的、适配价值相当的对象。
+4. **相似性**：年龄、背景、态度、价值观和性格的相像通常有吸引力；"异性相吸"多半是误读。
+5. **障碍与理想标准**：自由受限可能引发心理抗拒；选择长期伴侣时，热情、忠诚、吸引力、活力、地位和资源的权重会变化。
+
+关键对比：
+- **熟识不是无限加分**：重复接触通常增加喜欢，但过度接触或讨厌邻居会放大厌烦。
+- **外貌重要不等于外貌万能**：它强烈影响初始吸引，但长期关系还依赖热情、忠诚、相似和角色相容。
+- **相似性不是互补性**：大多数吸引来自相像；互补性主要在支配/顺从等具体行为上有限成立。
+
+## 引入细节时去读哪个文件
+
+按需读取，不要预先全部加载：
+
+| 用户问题 / 场景 | 读取 |
+|---|---|
+| 术语定义、英文原词、易混概念 | `references/key-terms.md` |
+| 奖赏模型、平衡理论、心理抗拒、刺激-价值观-角色理论 | `references/models.md` |
+| 临近、方便、远距离、熟识、曝光效应 | `references/proximity-and-exposure.md` |
+| 外貌吸引力、美的就是好的、脸、身材、气味、进化与文化 | `references/physical-attractiveness.md` |
+| 互惠、匹配、适配价值、选择性故作清高 | `references/reciprocity-and-matching.md` |
+| 相似性、相异相吸、互补性、致命吸引 | `references/similarity-and-complementarity.md` |
+| 经典研究、研究者姓名、年份、课本数字 | `references/research.md` |
+| 想用课本原例解释抽象概念 | `references/examples.md` |
+| 判断题、常见误读、应用边界 | `references/common-misconceptions.md` |
+
+## 教学风格建议
+
+- **苏格拉底式**：用户给出恋爱场景时，先让 Ta 判断是哪类奖赏在起作用，再追问是否涉及临近、外貌、互惠、相似或障碍。
+- **易混概念辨析**：重点区分 proximity/exposure、matching/mate value、actual similarity/perceived similarity、similarity/complementarity、reactance/ordinary preference。
+- **例子锚点**：解释抽象概念时优先落到一个课本研究；不要编造新的实验或数据。
+- **先短后深**：先给一句定义和一个课本例子，只有在用户追问时才展开进化、文化、性别差异或统计数字。
+- **避免价值评判**：本章描述吸引力机制，不把任何偏好包装成道德建议或恋爱处方。
+
+## 范围边界
+
+- 本 skill 仅覆盖第 3 章"吸引力"：奖赏、临近、熟识、外貌、互惠、匹配、相似性、障碍和理想伴侣。
+- 如果用户问第 4 章社会认知、第 5 章沟通、第 9 章性爱、第 11 章冲突等内容，只在第 3 章框架内给出钩子，如"这涉及后续章节的认知偏差/沟通/性关系"，不要展开后续章节理论。
+- 不虚构研究引用、研究年份、实验名称或数据。reference 中只使用 `text00010.html` 明确给出的姓名、年份、研究项目和数字；不确定时直接说明需要查看原书或后续章节。

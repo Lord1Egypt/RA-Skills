@@ -1,35 +1,27 @@
 ---
-name: "recipe-send-team-announcement"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-send-team-announcement"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-send-team-announcement"
+name: recipe-send-team-announcement
+description: "Send a team announcement via both Gmail and a Google Chat space."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "communication"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
+        - gws-chat
 ---
 
-# recipe-send-team-announcement
+# Announce via Gmail and Google Chat
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`, `gws-chat`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-send-team-announcement`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-send-team-announcement](https://skills.sh/googleworkspace/cli/recipe-send-team-announcement)
+Send a team announcement via both Gmail and a Google Chat space.
 
-## Overview
+## Steps
 
+1. Send email: `gws gmail +send --to team@company.com --subject 'Important Update' --body 'Please review the attached policy changes.'`
+2. Post in Chat: `gws chat +send --space spaces/TEAM_SPACE --text '📢 Important Update: Please check your email for policy changes.'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-send-team-announcement
-```

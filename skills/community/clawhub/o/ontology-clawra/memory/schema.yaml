@@ -1,0 +1,42 @@
+# ontology-clawra Schema v3.5
+
+types:
+  Person:
+    required: [name]
+    properties:
+      name: string
+      role: string
+      goals: list
+      preferences: map
+      capabilities: list
+
+  Concept:
+    required: [name, definition]
+    properties:
+      name: string
+      definition: string
+      domain: string
+
+  Law:
+    required: [name, domain, statement]
+    properties:
+      name: string
+      domain: string
+      statement: string
+      conditions: list
+      effects: list
+
+  Rule:
+    required: [name, condition, action]
+    properties:
+      name: string
+      condition: string
+      action: string
+      weight: float
+      enabled: boolean
+
+links:
+  works_on: { from: [Person], to: [Project, Task] }
+  triggers: { from: [Rule], to: [Decision] }
+  relates_to: { from: [Any], to: [Any] }
+  is_a: { from: [Concept], to: [Concept] }

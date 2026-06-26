@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_automatic_create_group",
+    "description": "Create automation group. Before creating, call the tool `_query_app_define_designer` whose returned automaticList contains automation group list and automation list, no need to create duplicate groups",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Automation group name."
+        }
+      },
+      "required": ["name"]
+    }
+  }
+}

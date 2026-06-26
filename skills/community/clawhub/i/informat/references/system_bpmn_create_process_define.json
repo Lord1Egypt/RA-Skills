@@ -1,0 +1,26 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_bpmn_create_process_define",
+    "description": "Create workflow process definition.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+		"key": {"type": "string", 	
+				"description": "Workflow module ID. Must start with a letter, first letter lowercase, can only contain letters, numbers, or underscores, camelCase naming is recommended, length no more than 20.",
+		        "pattern": "^[A-Za-z][A-Za-z0-9_]{0,19}$",
+		        "maxLength": 20
+		},
+        "name": { "type": "string"},
+		"moduleId": { "type": "string", "description": "Workflow module ID"},
+		"enable": { "type": "boolean", "default": true },
+        "roleList": {"type": "array",  "items": { "type": "string" }, "description": "Allow the following application role members to initiate this workflow, can be empty by default, allowing all members in the application to initiate processes"},
+        "canComment": { "type": "boolean", "default": true, "description": "Whether to allow comments"},
+        "canDeleteComment": { "type": "boolean", "default": true, "description": "Whether to allow deleting comments"},
+        "enableNotification": { "type": "boolean", "default": true , "description": "Whether to enable node transfer notification"},
+        "enableRecordBindMultiInstances": { "type": "boolean", "default": false , "description": "Whether to allow data table records to bind multiple workflow instances"}
+      },
+      "required": ["key", "name", "moduleId", "enable", "canComment", "canDeleteComment", "enableNotification", "enableRecordBindMultiInstances"]
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "generated": "2026-02-27T12:04:12+00:00",
+  "input_sources": {
+    "rss_articles": 3,
+    "twitter_articles": 1,
+    "web_articles": 1,
+    "github_articles": 1,
+    "trending_repositories": 1,
+    "reddit_posts": 1,
+    "podcast_episodes": 1,
+    "total_input": 9
+  },
+  "processing": {
+    "deduplication_applied": true,
+    "multi_source_merging": true,
+    "previous_digest_penalty": false,
+    "quality_scoring": true
+  },
+  "output_stats": {
+    "total_articles": 9,
+    "topics_count": 5,
+    "topic_distribution": {
+      "llm": 3,
+      "ai-agent": 2,
+      "kol": 1,
+      "podcast": 1,
+      "frontier-tech": 2
+    }
+  },
+  "topics": {
+    "llm": {
+      "count": 3,
+      "articles": [
+        {
+          "title": "OpenAI ships structured agent evaluation suite",
+          "link": "https://openai.com/research/agent-evals",
+          "date": "2026-02-27T08:00:00+00:00",
+          "topics": ["llm", "ai-agent"],
+          "source_type": "rss",
+          "source_name": "OpenAI Blog",
+          "source_id": "openai-rss",
+          "quality_score": 18,
+          "multi_source": true,
+          "source_count": 3,
+          "all_sources": ["OpenAI Blog", "Hacker News", "r/OpenAI"],
+          "primary_topic": "llm",
+          "snippet": "OpenAI published a new suite for evaluating agent reliability across tool use and long-horizon tasks.",
+          "chat_summary": "OpenAI 发布了一套面向 Agent 可靠性的结构化评测，用来覆盖工具调用和长周期任务等场景。这个条目同时来自 OpenAI Blog、Hacker News 和 r/OpenAI，说明它既有官方信息源，也引发了开发者社区关注。"
+        },
+        {
+          "title": "Claude Code adds repository-wide planning mode",
+          "link": "https://www.anthropic.com/news/claude-code-planning",
+          "date": "2026-02-27T07:30:00+00:00",
+          "topics": ["llm"],
+          "source_type": "web",
+          "source_name": "Anthropic News",
+          "source_id": "web-anthropic",
+          "quality_score": 12,
+          "multi_source": false,
+          "primary_topic": "llm",
+          "snippet": "The new mode helps developers review multi-file plans before code changes.",
+          "chat_summary": "Anthropic 为 Claude Code 增加了仓库级 planning mode，让开发者在真正改代码前先审阅跨文件计划。这个变化更偏向工程工作流治理，适合需要控制大规模代码修改风险的团队关注。"
+        },
+        {
+          "title": "Low scoring model rumor should not render",
+          "link": "https://example.com/low-score",
+          "date": "2026-02-27T06:00:00+00:00",
+          "topics": ["llm"],
+          "source_type": "web",
+          "source_name": "Example",
+          "source_id": "example-low",
+          "quality_score": 4,
+          "multi_source": false,
+          "primary_topic": "llm",
+          "snippet": "This item is below the minimum score threshold."
+        }
+      ]
+    },
+    "ai-agent": {
+      "count": 2,
+      "articles": [
+        {
+          "title": "LangGraph releases durable multi-agent workflows",
+          "link": "https://blog.langchain.dev/durable-multi-agent-workflows",
+          "date": "2026-02-27T05:45:00+00:00",
+          "topics": ["ai-agent"],
+          "source_type": "rss",
+          "source_name": "LangChain Blog",
+          "source_id": "langchain-blog",
+          "quality_score": 14,
+          "multi_source": false,
+          "primary_topic": "ai-agent",
+          "snippet": "LangGraph adds checkpoints and resumable orchestration for production agents.",
+          "chat_summary": "LangGraph 新增 checkpoint 和可恢复编排能力，目标是让多 Agent 工作流更适合生产环境。它解决的是长任务中断、恢复和状态管理问题，属于 Agent 工程化基础设施的一部分。"
+        },
+        {
+          "title": "SWE-agent benchmark report",
+          "link": "https://x.com/swebench/status/1234567890",
+          "date": "2026-02-27T05:00:00+00:00",
+          "topics": ["ai-agent", "kol"],
+          "source_type": "twitter",
+          "source_name": "SWE-bench",
+          "source_id": "twitter-swebench",
+          "quality_score": 11,
+          "multi_source": false,
+          "primary_topic": "ai-agent",
+          "display_name": "SWE-bench",
+          "handle": "swebench",
+          "metrics": {
+            "impression_count": 12500,
+            "reply_count": 45,
+            "retweet_count": 230,
+            "like_count": 1800
+          },
+          "summary": "Shared a benchmark report on repository-level coding agents.",
+          "chat_summary": "SWE-bench 分享了一份关于仓库级 coding agent 的 benchmark report，重点是评估 Agent 在真实代码库中的修复能力。该条目只基于账号名称、原始摘要和链接，不额外推断账号背景或行业地位。"
+        }
+      ]
+    },
+    "kol": {
+      "count": 1,
+      "articles": [
+        {
+          "title": "Simon Willison explains practical prompt injection defenses",
+          "link": "https://simonwillison.net/2026/Feb/27/prompt-injection-defenses/",
+          "date": "2026-02-27T04:00:00+00:00",
+          "topics": ["kol"],
+          "source_type": "rss",
+          "source_name": "Simon Willison",
+          "source_id": "simonwillison-rss",
+          "quality_score": 13,
+          "multi_source": false,
+          "primary_topic": "kol",
+          "author": "Simon Willison",
+          "is_blog_pick": true,
+          "full_text": "Prompt injection defenses work best when systems minimize authority in retrieved content, isolate tool execution, and expose clear audit trails for users.",
+          "chat_summary": "Simon Willison 讨论了 prompt injection 的实际防护策略，核心是降低检索内容权限、隔离工具执行，并向用户暴露清晰审计线索。文章适合正在构建 RAG、Agent 或工具调用系统的开发者参考。"
+        }
+      ]
+    },
+    "podcast": {
+      "count": 1,
+      "articles": [
+        {
+          "title": "Why agents need product taste",
+          "link": "https://www.youtube.com/watch?v=agenttaste",
+          "date": "2026-02-27T03:00:00+00:00",
+          "topics": ["podcast"],
+          "source_type": "podcast",
+          "source_name": "Training Data",
+          "source_id": "training-data-podcast",
+          "quality_score": 15,
+          "multi_source": false,
+          "primary_topic": "podcast",
+          "show_name": "Training Data",
+          "transcript_status": "ok",
+          "transcript": "Host | 00:00 - 00:05 Taste is the difference between a tool that demos well and a tool that gets used every morning.",
+          "snippet": "A conversation about product taste, evaluation loops, and agent reliability.",
+          "chat_summary": "这期 Training Data 播客围绕 product taste、evaluation loops 和 Agent reliability 展开。Transcript 中提到，taste 是一个工具从 demo 好看走向每天被使用的关键差异。"
+        }
+      ]
+    },
+    "frontier-tech": {
+      "count": 2,
+      "articles": [
+        {
+          "title": "vLLM ships v1.0 scheduler improvements",
+          "link": "https://github.com/vllm-project/vllm/releases/tag/v1.0.0",
+          "date": "2026-02-27T02:00:00+00:00",
+          "topics": ["frontier-tech"],
+          "source_type": "github",
+          "source_name": "vllm-project/vllm",
+          "source_id": "github-vllm",
+          "quality_score": 10,
+          "multi_source": false,
+          "primary_topic": "frontier-tech",
+          "repo": "vllm-project/vllm",
+          "tag_name": "v1.0.0",
+          "summary": "The release improves scheduler fairness and production serving stability.",
+          "chat_summary": "vLLM v1.0.0 改进了 scheduler fairness 和生产 serving 稳定性。对依赖 vLLM 部署推理服务的团队来说，这类调度层变化会直接影响吞吐、公平性和线上可靠性。"
+        },
+        {
+          "title": "browser-use/web-ui",
+          "link": "https://github.com/browser-use/web-ui",
+          "date": "2026-02-27T01:00:00+00:00",
+          "topics": ["frontier-tech"],
+          "source_type": "github_trending",
+          "source_name": "GitHub Trending",
+          "source_id": "github-trending",
+          "quality_score": 9,
+          "multi_source": false,
+          "primary_topic": "frontier-tech",
+          "repo": "browser-use/web-ui",
+          "stars": 1234,
+          "daily_stars_est": 76,
+          "language": "TypeScript",
+          "description": "Run browser agents from a local web UI.",
+          "chat_summary": "browser-use/web-ui 是一个 TypeScript 项目，用本地 Web UI 运行 browser agents。它在 GitHub Trending 中增长到 1.2K stars，并估算有 76 stars/day 的新增速度。"
+        }
+      ]
+    }
+  }
+}

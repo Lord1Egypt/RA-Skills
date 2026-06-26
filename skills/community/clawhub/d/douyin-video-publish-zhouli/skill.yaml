@@ -1,0 +1,26 @@
+name: douyin-video-publish
+version: 1.0.0
+description: 抖音视频发布。使用浏览器自动化在抖音创作者平台发布视频。当用户说"发布视频到抖音"、"发抖音"时使用此技能。
+author: clawd
+homepage: https://clawhub.com/skills/douyin-video-publish
+
+triggers:
+  - 发布抖音
+  - 发抖音
+  - 抖音发布
+  - 发布视频到抖音
+  - 抖音上传
+  - douyin publish
+
+features:
+  - 自动上传视频
+  - 自动填写标题
+  - 添加话题标签
+  - 设置封面
+  - 添加位置
+  - 发布验证
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

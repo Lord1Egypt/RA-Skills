@@ -1,0 +1,44 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      iclick-auto:
+        specifier: ^1.0.5
+        version: 1.0.5
+      ws:
+        specifier: ^8.19.0
+        version: 8.19.0
+
+packages:
+
+  iclick-auto@1.0.5:
+    resolution: {integrity: sha512-Wc8/AWuXVU+6Cwg42f8q2hwcvfpS2mB/4+avdnQa0+IubtZ/dQodFyxO91cmtB1AAz0r55sk/fCZTmg1opkpqg==}
+
+  ws@8.19.0:
+    resolution: {integrity: sha512-blAT2mjOEIi0ZzruJfIhb3nps74PRWTCz1IjglWEEpQl5XS/UNama6u2/rjFkDDouqr4L67ry+1aGIALViWjDg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+snapshots:
+
+  iclick-auto@1.0.5:
+    dependencies:
+      ws: 8.19.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  ws@8.19.0: {}

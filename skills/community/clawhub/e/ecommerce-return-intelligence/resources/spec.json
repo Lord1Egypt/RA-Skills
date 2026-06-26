@@ -1,0 +1,37 @@
+{
+  "slug": "ecommerce-return-intelligence",
+  "title": "电商退货洞察器",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "csv_audit",
+  "summary": "分析退货原因并区分产品问题、预期错配、物流问题和描述问题。",
+  "inputHint": "退货记录 CSV、原因文本、商品信息",
+  "sections": [
+    "退货概览",
+    "原因分类",
+    "高发问题",
+    "可优化项",
+    "需复核样本",
+    "后续动作"
+  ],
+  "useCases": [
+    "退货分析",
+    "运营优化",
+    "商品改进"
+  ],
+  "positiveExamples": [
+    "分析这批退货原因",
+    "区分产品问题和预期错配"
+  ],
+  "negativeExamples": [
+    "不要伪造订单数据",
+    "不要替代客服系统"
+  ],
+  "risk": "只做本地分析。",
+  "tags": [
+    "ecommerce",
+    "returns",
+    "analysis",
+    "ops"
+  ]
+}

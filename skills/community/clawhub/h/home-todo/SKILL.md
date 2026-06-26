@@ -1,35 +1,50 @@
 ---
-name: "Home Todo"
-description: "检查并提醒用户回家后需要处理的事项。当用户通过Dashboard（webchat）发任何消息时，自动检查待办文件并提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/home-todo"
-sourceUrl: "https://clawhub.ai/skills/home-todo"
+name: home-todo
+description: 检查并提醒用户回家后需要处理的事项。当用户通过Dashboard（webchat）发任何消息时，自动检查待办文件并提醒。
 ---
 
 # Home Todo
 
-> 检查并提醒用户回家后需要处理的事项。当用户通过Dashboard（webchat）发任何消息时，自动检查待办文件并提醒。
+检查并提醒用户回家后需要处理的事项。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/home-todo`
-- **Source URL:** [https://clawhub.ai/skills/home-todo](https://clawhub.ai/skills/home-todo)
+## 场景
 
-## Overview
+用户回到家，打开 Dashboard 时，自动提醒需要处理的事项。
 
+## 待办文件位置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/home-todo
 ```
+~/.openclaw/workspace/.home-todos.md
+```
+
+## 触发条件
+
+用户通过 Dashboard（webchat）发任何消息时，自动触发。
+
+## 执行步骤
+
+1. 读取待办文件
+2. 解析待办事项（排除已完成的）
+3. 在回复末尾添加提醒
+
+## 提醒格式
+
+```
+---
+
+🏠 回家待办：
+
+1. [ ] 换床单
+2. [ ] 浇花
+3. [ ] 整理衣柜
+```
+
+## 记录方式
+
+用户在**任何渠道**（飞书、iMessage等）说"回家要干xxx"，就记录到待办文件。
+
+## 注意事项
+
+- 用 `[ ]` 表示未完成
+- 用户勾选完成后可以删除
+- 每次 Dashboard 消息都自动检查

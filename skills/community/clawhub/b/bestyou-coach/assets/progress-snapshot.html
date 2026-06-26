@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestYou Progress Snapshot</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .domain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .domain-card {
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .domain-card .domain-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .domain-card .domain-name {
+    font-size: 12px;
+    color: #aaa;
+    text-transform: capitalize;
+  }
+  .domain-card .domain-score {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .mini-bar {
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .mini-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+  .insight-list { margin-bottom: 28px; }
+  .insight-item {
+    padding: 14px;
+    margin-bottom: 8px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+  }
+  .insight-item .insight-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .insight-item h4 { font-size: 13px; font-weight: 600; color: #fff; }
+  .insight-item p { font-size: 12px; color: #777; line-height: 1.5; }
+  .rec-item {
+    padding: 14px;
+    margin-bottom: 8px;
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+  }
+  .rec-item h4 { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .rec-item p { font-size: 12px; color: #777; line-height: 1.5; margin-bottom: 10px; }
+  .rec-steps { list-style: none; }
+  .rec-steps li {
+    font-size: 12px;
+    color: #aaa;
+    padding: 4px 0 4px 16px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .rec-steps li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #4ade80;
+  }
+  .cross-domain {
+    padding: 16px;
+    background: #141414;
+    border: 1px solid #2a2a1a;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .cross-domain h4 { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .cross-domain .domains-involved {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 Progress Snapshot</h1>
+  <div class="subtitle">Saturday, March 14, 2026</div>
+</div>
+
+<div class="domain-grid">
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">😴 Sleep</span>
+      <span class="domain-score text-positive">79</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:79%;background:#4ade80"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">❤️ Cardiac</span>
+      <span class="domain-score text-neutral">48</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:48%;background:#facc15"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🧘 Stress</span>
+      <span class="domain-score text-positive">100</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:100%;background:#4ade80"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🥗 Nutrition</span>
+      <span class="domain-score text-neutral">60</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:60%;background:#facc15"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">💧 Hydration</span>
+      <span class="domain-score text-negative">11</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:11%;background:#f87171"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🏋️ Fitness</span>
+      <span class="domain-score text-neutral">40</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:40%;background:#facc15"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">💪 Strength</span>
+      <span class="domain-score text-negative">30</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:30%;background:#f87171"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🏃 Cardio</span>
+      <span class="domain-score text-neutral">61</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:61%;background:#facc15"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🤸 Mobility</span>
+      <span class="domain-score text-negative">0</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:0%;background:#f87171"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🫁 Respiratory</span>
+      <span class="domain-score text-positive">95</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:95%;background:#4ade80"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">🧠 Mental</span>
+      <span class="domain-score text-negative">5</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:5%;background:#f87171"></div></div>
+  </div>
+  <div class="domain-card">
+    <div class="domain-header">
+      <span class="domain-name">⚖️ Body Comp</span>
+      <span class="domain-score text-neutral">50</span>
+    </div>
+    <div class="mini-bar"><div class="mini-bar-fill" style="width:50%;background:#facc15"></div></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔴 Top Insights</h2>
+  <div class="insight-list">
+    <div class="insight-item">
+      <div class="insight-head">
+        <h4>Severe Hydration Deficit</h4>
+        <span class="badge badge-red">High</span>
+      </div>
+      <p>Yesterday's fluid intake was 16 oz, representing 11% of the 140 oz daily goal. This level of dehydration impairs cognitive function and impedes recovery.</p>
+    </div>
+    <div class="insight-item">
+      <div class="insight-head">
+        <h4>Deep Sleep Impairment</h4>
+        <span class="badge badge-red">High</span>
+      </div>
+      <p>Deep sleep registered 5.6% (25 minutes), significantly below the 13% threshold. A 'First-Cycle Compression' pattern was detected.</p>
+    </div>
+    <div class="insight-item">
+      <div class="insight-head">
+        <h4>Logging Consistency Needs Improvement</h4>
+        <span class="badge badge-red">High</span>
+      </div>
+      <p>Logging consistency was 66.66%. Insufficient data capture prevents accurate nutritional assessment.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>✅ Top Recommendations</h2>
+  <div class="rec-item">
+    <h4>💧 Initiate Morning Hydration</h4>
+    <p>Starting the day with adequate fluid intake addresses overnight dehydration and prepares the body for daily demands.</p>
+    <ul class="rec-steps">
+      <li>Consume 16-20 oz of water within 30 minutes of waking</li>
+      <li>Ensure a water bottle is present at your workspace</li>
+      <li>Aim for 16 oz of fluid intake before 2 PM</li>
+    </ul>
+  </div>
+  <div class="rec-item">
+    <h4>😴 Optimize Deep Sleep Environment</h4>
+    <p>Deep sleep is highly sensitive to core body temperature and environmental stimuli.</p>
+    <ul class="rec-steps">
+      <li>Set bedroom temperature to 65-68°F (18-20°C)</li>
+      <li>Ensure complete darkness with blackout curtains or eye mask</li>
+      <li>Minimize noise with earplugs or white noise machine</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔗 Cross-Domain Patterns</h2>
+  <div class="cross-domain">
+    <h4>Hydration Deficit Suppresses Recovery</h4>
+    <div class="domains-involved">
+      <span class="badge badge-blue">Hydration</span>
+      <span class="badge badge-purple">Sleep</span>
+      <span class="badge badge-green">Nutrition</span>
+    </div>
+    <p class="text-muted" style="line-height:1.5;">Critically low fluid intake is the primary systemic stressor, directly impeding physiological recovery and suppressing deep sleep.</p>
+  </div>
+</div>
+
+<div class="footer">BestYou × OpenClaw</div>
+</body>
+</html>

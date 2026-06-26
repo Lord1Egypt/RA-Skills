@@ -1,0 +1,4 @@
+OPSEC Scan: token-compressor
+Date: 2026-02-24T00:08:11.167Z
+
+FLAG: token-compressor.js — "127\.0\.0\.1" (1x) — Samples: 127.0.0.1

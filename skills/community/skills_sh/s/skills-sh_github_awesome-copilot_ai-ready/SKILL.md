@@ -1,35 +1,27 @@
 ---
-name: "ai-ready"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/ai-ready"
-sourceUrl: "https://skills.sh/github/awesome-copilot/ai-ready"
+name: ai-ready
+description: 'Make any repo AI-ready — analyzes your codebase and generates AGENTS.md, copilot-instructions.md, CI workflows, issue templates, and more. Mines your PR review patterns and creates files customized to your stack. USE THIS SKILL when the user asks to "make this repo ai-ready", "set up AI config", or "prepare this repo for AI contributions".'
 ---
 
-# ai-ready
+# AI Ready
 
-> Indexed by skills.sh from github/awesome-copilot
+This skill helps the user install the latest [ai-ready](https://github.com/johnpapa/ai-ready) skill by [John Papa](https://github.com/johnpapa).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/ai-ready`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/ai-ready](https://skills.sh/github/awesome-copilot/ai-ready)
+*Why?*: The full ai-ready skill is ~600 lines of detailed instructions that evolve frequently. This wrapper keeps it discoverable here while the source of truth stays in [johnpapa/ai-ready](https://github.com/johnpapa/ai-ready) — always up to date.
 
-## Overview
+## Steps
 
+1. Tell the user to add the skill by running this command inside Copilot CLI:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/ai-ready
-```
+   ```
+   /skills add johnpapa/ai-ready
+   ```
+
+   This downloads the latest version of the skill to their personal skills directory. Re-running the command updates to the latest version.
+
+2. Remind the user to review the skill before loading it. They can inspect it with:
+   ```bash
+   head -20 ~/.copilot/skills/ai-ready/SKILL.md
+   ```
+3. After the user confirms they've reviewed and installed it, tell them to reload skills with `/skills reload` and then say `make this repo ai-ready`.
+4. Do **not** run the command on the user's behalf. The user must run it themselves.

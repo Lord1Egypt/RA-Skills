@@ -1,0 +1,94 @@
+{
+  "name": "genealogy-agent",
+  "description": "Extracts family history from raw text, builds a local knowledge graph, generates Mermaid trees, and exports to Obsidian format.",
+  "version": "1.1.0",
+  "author": "flobo3",
+  "tools": [
+    {
+      "name": "extract_family_data",
+      "description": "Extracts structured family data (people, dates, relationships) from raw text using an LLM.",
+      "command": "uv run scripts/extract.py \"{{text}}\"",
+      "parameters": {
+        "text": {
+          "type": "string",
+          "description": "Raw text containing family history"
+        }
+      }
+    },
+    {
+      "name": "build_family_graph",
+      "description": "Saves extracted family data into a local JSONL ontology graph.",
+      "command": "uv run scripts/build_graph.py \"{{input_file}}\" \"{{output_file}}\"",
+      "parameters": {
+        "input_file": {
+          "type": "string",
+          "description": "Path to the JSON file with extracted data"
+        },
+        "output_file": {
+          "type": "string",
+          "description": "Path to save the JSONL graph (default: family_graph.jsonl)"
+        }
+      }
+    },
+    {
+      "name": "generate_mermaid_tree",
+      "description": "Generates a Mermaid diagram from extracted family data.",
+      "command": "uv run scripts/generate_mermaid.py \"{{input_file}}\" \"{{output_file}}\"",
+      "parameters": {
+        "input_file": {
+          "type": "string",
+          "description": "Path to the JSON file with extracted data"
+        },
+        "output_file": {
+          "type": "string",
+          "description": "Path to save the Mermaid diagram (default: family_tree.md)"
+        }
+      }
+    },
+    {
+      "name": "generate_obsidian_vault",
+      "description": "Generates an Obsidian-formatted vault (Markdown files with YAML frontmatter) from extracted family data.",
+      "command": "uv run scripts/generate_obsidian.py \"{{input_file}}\" \"{{output_dir}}\"",
+      "parameters": {
+        "input_file": {
+          "type": "string",
+          "description": "Path to the JSON file with extracted data"
+        },
+        "output_dir": {
+          "type": "string",
+          "description": "Directory to save the Obsidian markdown files"
+        }
+      }
+    },
+    {
+      "name": "research_ancestor",
+      "description": "Autonomously researches an ancestor using web search (DuckDuckGo) and LLM extraction to find new facts (death dates, military service, obituaries).",
+      "command": "uv run scripts/research.py \"{{input_file}}\" \"{{person_id}}\"",
+      "parameters": {
+        "input_file": {
+          "type": "string",
+          "description": "Path to the JSON file with extracted data"
+        },
+        "person_id": {
+          "type": "string",
+          "description": "ID of the person to research (e.g., 'ivan_ivanov')"
+        }
+      }
+    },
+    {
+      "name": "export_gedcom",
+      "description": "Exports extracted family data to a standard GEDCOM (.ged) file for use in MyHeritage, FamilySearch, etc.",
+      "command": "uv run scripts/export_gedcom.py \"{{input_file}}\" \"{{output_file}}\"",
+      "parameters": {
+        "input_file": {
+          "type": "string",
+          "description": "Path to the JSON file with extracted data"
+        },
+        "output_file": {
+          "type": "string",
+          "description": "Path to save the GEDCOM file (default: family_tree.ged)"
+        }
+      }
+    }
+  ]
+}

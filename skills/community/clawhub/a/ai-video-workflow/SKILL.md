@@ -1,35 +1,75 @@
 ---
-name: "AI视频完整制作工作流"
-description: "AI视频完整制作工作流技能。适用于： 1. 用户要求"制作AI视频"、"做AI视频"、"AI视频创作" 2. 用户提到"视频工作流"、"视频制作流程" 3. 用户需要AI视频制作的系统化指导 核心：七步流程 + 打磨检查贯穿每步 + 提示词模板"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-video-workflow"
-sourceUrl: "https://clawhub.ai/skills/ai-video-workflow"
+name: ai-video-workflow
+description: |
+  AI视频完整制作工作流技能。适用于：
+  1. 用户要求"制作AI视频"、"做AI视频"、"AI视频创作"
+  2. 用户提到"视频工作流"、"视频制作流程"
+  3. 用户需要AI视频制作的系统化指导
+  
+  核心：七步流程 + 打磨检查贯穿每步 + 提示词模板
 ---
 
-# AI视频完整制作工作流
+# AI视频制作工作流
 
-> AI视频完整制作工作流技能。适用于： 1. 用户要求"制作AI视频"、"做AI视频"、"AI视频创作" 2. 用户提到"视频工作流"、"视频制作流程" 3. 用户需要AI视频制作的系统化指导 核心：七步流程 + 打磨检查贯穿每步 + 提示词模板
+> 版本：v5.0 精简版
+> 基于：v4.2 完整版
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-video-workflow`
-- **Source URL:** [https://clawhub.ai/skills/ai-video-workflow](https://clawhub.ai/skills/ai-video-workflow)
+## 触发场景
 
-## Overview
+当用户有以下需求时自动执行：
+- "帮我制作一个AI视频"
+- "怎么做AI视频"
+- "从剧本开始制作视频"
+- "AI视频工作流"
 
+## 核心架构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-video-workflow
-```
+| 角色 | 功能 |
+|------|------|
+| **导演** | 审美准入，设计叙事，掌控情绪，决策风格 |
+| **技术制片** | 提供提示词模板、监控进度、执行生成 |
+
+## 七步制作流程
+
+| 步骤 | 内容 | 输出 |
+|------|------|------|
+| 1 | 剧本/想法分析 | 主题确定 |
+| 2 | 风格设计 | 视觉风格文档 |
+| 3 | 分镜设计 | 分镜脚本（景别/角度/运镜/台词） |
+| 4 | 生图 | 关键帧图片 |
+| 5 | 图生视频 | AI生成视频片段 |
+| 6 | 剪辑 | 剪映Pro剪辑成片 |
+| 7 | 配音/音效 | 完整作品 |
+
+## 导演四维度
+
+1. **视听语言**：焦距塑造空间，光影叙事心理
+2. **导演公式**：角色基准图 + 分镜脚本
+3. **美学风格**：参考经典（胡金铨/塔可夫斯基等）
+4. **剪辑思维**：Match Cut / 节奏控制
+
+## 提示词模板
+
+见 `references/提示词设计指南.md`
+
+## 风格设计
+
+见 `references/风格设计指南.md`
+
+## 导演思维公式
+
+见 `references/导演思维公式.md`
+
+## 一致性保障
+
+见 `references/一致性指南.md`
+
+## 声音设计
+
+见 `references/声音设计指南.md`
+
+## 详细指南
+
+完整的制作指南、教学案例、模板库存放在：
+- `references/` 目录下各专项指南
+- `思维导图.md` 完整知识导图

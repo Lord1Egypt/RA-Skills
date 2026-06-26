@@ -1,0 +1,18 @@
+{
+  "name": "opik-reporter",
+  "version": "1.0.0",
+  "description": "Opik observability reporter - fetches traces, analyzes usage, costs, and errors, then sends reports to Discord",
+  "main": "scripts/reporter.cjs",
+  "scripts": {
+    "report": "node scripts/reporter.cjs"
+  },
+  "keywords": [
+    "opik",
+    "observability",
+    "tracing",
+    "cost-analysis",
+    "discord"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT"
+}

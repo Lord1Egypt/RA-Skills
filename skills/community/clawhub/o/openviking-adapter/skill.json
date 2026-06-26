@@ -1,0 +1,40 @@
+{
+  "name": "openviking-adapter",
+  "version": "1.0.0",
+  "description": "OpenViking 记忆系统适配器 - 分层加载优化，Token 降低 83%",
+  "author": "partner",
+  "license": "MIT",
+  "keywords": ["memory", "openviking", "optimization", "token", "adapter"],
+  "price": {
+    "amount": "0.5",
+    "currency": "USDT",
+    "type": "per_call"
+  },
+  "entry": "server.py",
+  "mcp": {
+    "type": "stdio",
+    "command": ["python3", "server.py"]
+  },
+  "tools": [
+    {
+      "name": "generate_l0_soul",
+      "description": "生成 L0 灵魂摘要层 (100 token) - 核心身份和目标"
+    },
+    {
+      "name": "generate_l1_overview",
+      "description": "生成 L1 记忆概述层 (2000 token) - 重要决策和长期记忆"
+    },
+    {
+      "name": "search_relevant_memories",
+      "description": "智能搜索相关记忆，按需加载 L2 详情"
+    },
+    {
+      "name": "optimize_memory_loading",
+      "description": "执行完整的 OpenViking 记忆优化流程"
+    },
+    {
+      "name": "analyze_token_usage",
+      "description": "分析当前记忆系统的 Token 使用情况"
+    }
+  ]
+}

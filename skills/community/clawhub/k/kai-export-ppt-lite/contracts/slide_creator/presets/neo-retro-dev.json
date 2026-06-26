@@ -1,0 +1,110 @@
+{
+  "producer": "slide-creator",
+  "contract_id": "slide-creator/neo-retro-dev",
+  "preset": "Neo-Retro Dev",
+  "family": "opinionated-handmade-dev",
+  "contract_version": "1.0.0",
+  "producer_version_range": ">=2.18.0 <3.0.0",
+  "producer_version_tested": "2.18.0",
+  "contract_source_version": "slide-creator@b9fb3d1e569b",
+  "upstream_commit": "b9fb3d1e569ba6dc3129fec20f65885a48a0e3fa",
+  "generated_at": "2026-04-25",
+  "source_refs": [
+    "references/neo-retro-dev.md",
+    "references/html-template.md"
+  ],
+  "demo_refs": [
+    "demos/neo-retro-dev-zh.html",
+    "demos/neo-retro-dev-en.html"
+  ],
+  "source_snapshot_refs": [
+    "source_snapshot/references/neo-retro-dev.md",
+    "source_snapshot/references/html-template.md"
+  ],
+  "demo_snapshot_refs": [
+    "source_snapshot/demos/neo-retro-dev-zh.html",
+    "source_snapshot/demos/neo-retro-dev-en.html"
+  ],
+  "runtime_chrome_selectors": [
+    ".progress-bar",
+    ".nav-dots",
+    ".edit-hotzone",
+    ".edit-toggle",
+    "#notes-panel",
+    "#present-btn",
+    "#present-counter"
+  ],
+  "decorative_layers": [],
+  "component_selectors": {
+    "stat_card": [
+      ".metric-block",
+      ".metric-checks",
+      ".metric-num",
+      ".metric-num-pink",
+      ".stat",
+      ".stat-label",
+      ".stat-row",
+      ".stat-value"
+    ]
+  },
+  "component_slot_models": {
+    "stat_card": {
+      "layout": "vertical_card",
+      "slots": [
+        "metric",
+        "label",
+        "body"
+      ],
+      "metric_single_line": true,
+      "bottom_anchor_last_slot": false
+    }
+  },
+  "layout_variations": [],
+  "text_expectations": {
+    "tabular_numbers": false
+  },
+  "typography": {},
+  "line_break_contract": {},
+  "producer_detection": {
+    "body_attrs": {
+      "data-preset": "Neo Retro Dev",
+      "data-export-progress": "true|false"
+    },
+    "meta_generator_contains": "kai-slide-creator",
+    "watermark_contains": "By kai-slide-creator v"
+  },
+  "observed_component_classes": [
+    "arch-title",
+    "ba-panel",
+    "badge",
+    "badge-cyan",
+    "badge-cyan-bg",
+    "badge-pink",
+    "badge-row",
+    "badge-yellow-bg",
+    "body-text",
+    "card-top",
+    "cards-grid",
+    "close-badge",
+    "cmd-block-wrap",
+    "cmd-cyan",
+    "cmd-green",
+    "cmd-pink",
+    "cmd-table",
+    "feat-card",
+    "layer-label",
+    "metric-block",
+    "metric-checks",
+    "metric-num",
+    "metric-num-pink",
+    "metrics-grid",
+    "pill",
+    "px-label",
+    "slide-num-label",
+    "stat",
+    "stat-label",
+    "stat-row",
+    "stat-value",
+    "title-block"
+  ]
+}

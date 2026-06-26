@@ -1,0 +1,67 @@
+{
+  "dashboard_metadata": {
+    "id": "s2_vis_elderly_chronos_v1",
+    "name": "S2 零隐私老人健康时空看板 (Elderly Chronos Dashboard)",
+    "version": "1.0.0",
+    "theme": "dark_neo_medical"
+  },
+  "global_state": {
+    "default_did": "${ELDERLY_DID}",
+    "refresh_interval_ms": 2000
+  },
+  "layout": {
+    "header": {
+      "components": [
+        {
+          "type": "Title",
+          "text": "🛡️ 长者空间数字健康中枢 - ${elderly_name}"
+        },
+        {
+          "type": "HealthAlertBadge",
+          "data_source": "api/v1/elderly/${ELDERLY_DID}/status",
+          "display_format": "当前状态: 🚨 跌倒熔断警报已触发 | 门禁: 已解锁 (Fail-Open)"
+        }
+      ]
+    },
+    "grid_modules": [
+      {
+        "id": "module_a_gait_trend",
+        "title": "步态衰弱指标长效监测 (Gait Decline Trend)",
+        "type": "DualAxisLineChart",
+        "grid_position": {"x": 0, "y": 0, "w": 6, "h": 4},
+        "data_source": "api/v1/elderly/${ELDERLY_DID}/metrics/gait",
+        "series": [
+          {"name": "平均步速 (m/s)", "field": "velocity", "color": "#00BCD4", "yAxisIndex": 0},
+          {"name": "平均步幅 (m)", "field": "stride_length", "color": "#FFC107", "yAxisIndex": 1}
+        ]
+      },
+      {
+        "id": "module_b_multimodal_confidence",
+        "title": "多模态跌倒置信度交叉矩阵 (Fusion Confidence)",
+        "type": "BarChart",
+        "grid_position": {"x": 6, "y": 0, "w": 6, "h": 4},
+        "data_source": "api/v1/elderly/${ELDERLY_DID}/metrics/fall_fusion",
+        "series": [
+          {"name": "雷达姿态急坠", "field": "mmwave_weight", "color": "#E91E63", "stack": "total"},
+          {"name": "声学钝器撞击", "field": "acoustic_weight", "color": "#9C27B0", "stack": "total"},
+          {"name": "地板压力面积", "field": "pressure_weight", "color": "#FF9800", "stack": "total"}
+        ]
+      },
+      {
+        "id": "module_c_sleep_radar",
+        "title": "无感体征雷达 (睡眠/离床监测)",
+        "type": "Heatmap",
+        "grid_position": {"x": 0, "y": 4, "w": 6, "h": 4},
+        "data_source": "api/v1/elderly/${ELDERLY_DID}/metrics/sleep_restlessness"
+      },
+      {
+        "id": "module_d_adl_logs",
+        "title": "🧠 大模型 ADL (日常生活行为) 语义日志",
+        "type": "ScrollingList",
+        "grid_position": {"x": 6, "y": 4, "w": 6, "h": 4},
+        "data_source": "api/v1/elderly/${ELDERLY_DID}/logs/semantic",
+        "item_template": "<span class='time'>[{timestamp}]</span> <span class='level-{urgency}'>[{category}]</span> {adl_content}"
+      }
+    ]
+  }
+}

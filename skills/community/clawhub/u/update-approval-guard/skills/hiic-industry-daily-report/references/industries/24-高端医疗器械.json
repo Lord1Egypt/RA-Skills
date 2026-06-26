@@ -1,0 +1,35 @@
+{
+  "id": "24",
+  "name": "高端医疗器械",
+  "category": "未来产业",
+  "keywords": [
+    "高端医疗器械",
+    "医疗设备",
+    "影像设备",
+    "手术机器人",
+    "IVD",
+    "高端耗材"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🏥",
+    "maxDescriptionLength": 200
+  }
+}

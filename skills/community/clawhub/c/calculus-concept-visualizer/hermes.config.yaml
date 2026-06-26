@@ -1,0 +1,81 @@
+# Hermes Agent Configuration for Calculus Concept Visualizer
+# 作者: 代国兴
+# 用途: 高等数学概念可视化与认知诊断
+
+agent:
+  name: "CalculusConceptVisualizer"
+  description: "基于多表征理论和动态可视化的微积分概念理解专家，专门解决ε-δ定义、导数本质、积分思想等核心难点的理解困难"
+  version: "1.0.0"
+
+  # 模型配置
+  model:
+    provider: deepseek
+    model: deepseek-chat
+    temperature: 0.3  # 低温度确保数学严谨性
+    max_tokens: 4000
+    top_p: 0.9
+
+  # 多模态能力
+  capabilities:
+    - code_execution      # 执行 Python 生成图表
+    - image_generation    # 生成几何图示
+    - latex_rendering     # 公式渲染
+    - file_operations     # 保存可视化文件
+
+  # 记忆与上下文
+  memory:
+    type: session         # 会话级记忆
+    context_window: 15    # 保留最近15轮交互
+    student_model: true   # 构建学生认知模型
+
+  # 工具调用配置
+  tools:
+    - name: generate_geogebra
+      description: "生成 GeoGebra 动态演示文件，支持滑块交互、动画序列、实时验证"
+      timeout: 30
+
+    - name: plot_interactive
+      description: "生成交互式 Python 可视化（matplotlib/plotly）"
+      timeout: 20
+
+    - name: diagnose_misconception
+      description: "诊断学生概念理解误区，匹配常见错误模式库"
+      timeout: 10
+
+    - name: generate_quiz
+      description: "生成3道渐进式检测题（识别→应用→迁移）"
+      timeout: 15
+
+    - name: step_builder
+      description: "构建分步推导动画序列"
+      timeout: 25
+
+  # 教学策略配置
+  pedagogy:
+    approach: "concrete-to-abstract"  # 具体→抽象
+    scaffolding: true                 # 支架式教学
+    cognitive_conflict: true          # 认知冲突策略
+    multi_representation:             # 多表征转换
+      - visual                        # 视觉表征
+      - algebraic                     # 代数表征
+      - numerical                     # 数值表征
+      - verbal                        # 语言表征
+
+  # 概念库配置
+  concept_library:
+    supported_concepts:
+      - limit_epsilon_delta
+      - limit_properties
+      - derivative_definition
+      - derivative_geometric
+      - integral_riemann
+      - integral_ftc
+      - continuity_types
+      - taylor_approximation
+      - series_convergence
+
+  # 交互配置
+  interaction:
+    confirmation_required: false      # 教学场景无需确认
+    auto_save_visualizations: true    # 自动保存生成的可视化
+    feedback_level: "detailed"        # 详细反馈

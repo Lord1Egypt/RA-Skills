@@ -1,0 +1,28 @@
+name: polymarket-movers
+version: "0.1.0"
+description: 获取 Polymarket 活跃市场中变动绝对值最大的 3 个异动话题
+runtime:
+  language: python
+  entrypoint: python main.py
+  http:
+    port: 8000
+    path: /invoke
+permissions:
+  - network
+inputs:
+  - name: charge_id
+    type: string
+    required: false
+billing:
+  provider: skillpay
+  price:
+    amount: "0.01"
+    currency: USDT
+  flow: synchronous
+  confirm: required
+env:
+  required:
+    - SKILLPAY_API_KEY
+  optional:
+    - SKILLPAY_API_BASE
+    - SKILLPAY_WEB_BASE

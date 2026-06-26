@@ -1,0 +1,23 @@
+{
+  "Domain": "www.{{DOMAIN}}",
+  "ServiceType": "web",
+  "ServiceRegion": "chinese_mainland",
+  "OriginProtocol": "https",
+  "Origin": [
+    {
+      "OriginAction": {
+        "OriginLines": [
+          {
+            "OriginType": "primary",
+            "InstanceType": "tos",
+            "Address": "{{BUCKET}}.tos-{{REGION}}.volces.com",
+            "HttpPort": "80",
+            "HttpsPort": "443",
+            "Weight": "100",
+            "OriginHost": "www.{{DOMAIN}}"
+          }
+        ]
+      }
+    }
+  ]
+}

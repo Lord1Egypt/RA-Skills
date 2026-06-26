@@ -1,0 +1,19 @@
+{
+  "name": "earthquake-monitor",
+  "version": "1.1.1",
+  "description": "Real-time earthquake monitoring v1.1.1 - CENC/CWA/JMA data, multi-language alerts (zh/en/ja), pinyin location matching, secure webhook storage, optimized cache",
+  "author": {
+    "name": "fungjcode",
+    "github": "https://github.com/fungjcode"
+  },
+  "keywords": ["earthquake", "seismic", "CENC", "JMA", "CWA", "monitor", "alert", "中国地震", "日本地震", "台湾地震", "预警", "i18n"],
+  "homepage": "https://github.com/fungjcode/earthquake-monitor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fungjcode/earthquake-monitor.git"
+  },
+  "readme": "SKILL.md",
+  "requires": {
+    "node": ">=18.0.0"
+  }
+}

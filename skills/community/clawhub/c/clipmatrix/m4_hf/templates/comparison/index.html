@@ -1,0 +1,401 @@
+<!doctype html>
+<!-- Comparison v4 — System fonts, structural differentiation, rich animations -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  
+  :root {
+    --china: #C53030; --china-bg: rgba(197,48,48,0.18);
+    --other: #64748B; --other-bg: rgba(100,116,139,0.15);
+    --gold: #D4A853; --gold-glow: rgba(212,168,83,0.3);
+    --font-sans: 'Helvetica Neue','Arial',sans-serif;
+    --font-serif: 'Georgia','Times New Roman',serif;
+  }
+  
+  .scene-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  
+  #vignette {
+    position: absolute; inset: 0; pointer-events: none; z-index: 5;
+    background: radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.65) 92%);
+  }
+  
+  /* ═══ Split zone: China (left) vs Other (right) ═══ */
+  .split-left {
+    position: absolute; top: 0; left: 0; width: 50%; height: 100%;
+    z-index: 10; pointer-events: none;
+    background: linear-gradient(180deg, rgba(197,48,48,0.28) 0%, rgba(197,48,48,0.06) 60%, transparent 100%);
+  }
+  .split-right {
+    position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+    z-index: 10; pointer-events: none;
+    background: linear-gradient(180deg, rgba(100,116,139,0.2) 0%, rgba(100,116,139,0.03) 60%, transparent 100%);
+  }
+  .split-line {
+    position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+    width: 2px; height: 70%; z-index: 12;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.5) 15%, rgba(255,255,255,0.5) 85%, transparent);
+    opacity: 0;
+  }
+  
+  /* ═══ VS Header ═══ */
+  .vs-header {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    z-index: 20; opacity: 0; text-align: center;
+  }
+  .cn-label {
+    font-family: var(--font-serif); font-weight: 700; font-style: italic;
+    color: var(--china);
+    text-shadow: 0 0 30px rgba(197,48,48,0.35), 2px 2px 0 #000;
+    letter-spacing: 0.04em; 
+    display: block; line-height: 1.1;
+  }
+  .vs-divider {
+    font-family: var(--font-sans); font-weight: 900;
+    color: #FFF;
+    text-shadow: 0 0 25px rgba(255,255,255,0.5);
+    display: block; margin: 8px 0;
+    letter-spacing: 0.15em;
+  }
+  .ot-label {
+    font-family: var(--font-sans); font-weight: 700;
+    color: var(--other);
+    text-shadow: 1px 1px 0 #000;
+    letter-spacing: 0.06em;
+    display: block; line-height: 1.1;
+  }
+  
+  /* ═══ Stat card ═══ */
+  .stat-card {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    z-index: 20; opacity: 0;
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 18px 30px;
+  }
+  .stat-col { text-align: center; }
+  .stat-num {
+    font-family: var(--font-sans); font-weight: 900; display: block; line-height: 1;
+  }
+  .stat-num.cn { color: var(--gold); text-shadow: 0 0 20px var(--gold-glow); }
+  .stat-num.ot { color: var(--other); }
+  .stat-tag {
+    font-family: var(--font-sans); font-weight: 600; font-size: 12px;
+    color: rgba(255,255,255,0.4); display: block; margin-top: 4px;
+    letter-spacing: 0.12em;
+  }
+  .stat-vs {
+    font-family: var(--font-serif); font-weight: 700; font-style: italic;
+    font-size: 22px; color: rgba(255,255,255,0.3);
+  }
+  
+  /* ═══ Punch line bar ═══ */
+  .punch-bar {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    z-index: 20; opacity: 0;
+    background: rgba(0,0,0,0.55);
+    border-left: 4px solid var(--gold);
+    padding: 14px 24px;
+    width: 82%;
+  }
+  .punch-text {
+    font-family: var(--font-sans); font-weight: 700;
+    color: #FFF;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    line-height: 1.4;
+  }
+  .punch-text .gold { color: var(--gold); }
+  .punch-text .red { color: var(--china); }
+  
+  /* Badge */
+  .badge {
+    position: absolute; top: 50px; right: 36px; z-index: 22;
+    font-family: var(--font-sans); font-weight: 600; font-size: 13px;
+    color: rgba(255,255,255,0.2); letter-spacing: 0.2em; opacity: 0;
+  }
+  
+  /* Progress */
+  #pwrap { position: absolute; top: 8px; left: 30px; right: 30px; height: 3px; z-index: 50; }
+  #pbar { width: 100%; height: 100%; background: linear-gradient(90deg, var(--china), var(--gold)); transform-origin: left; transform: scaleX(0); border-radius: 2px; opacity: 0.7; }
+  
+  #dots { position: absolute; top: 18px; right: 30px; display: flex; gap: 6px; z-index: 50; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  .dot.on { background: var(--gold); box-shadow: 0 0 10px var(--gold-glow); }
+  
+  /* CTA */
+  #cta {
+    position: absolute; top: 86%; left: 50%;
+    transform: translate(-50%, -50%); z-index: 25; opacity: 0;
+  }
+  .cta-btn {
+    font-family: var(--font-sans); font-weight: 700; font-size: 22px;
+    color: #FFF; background: var(--china);
+    padding: 12px 32px; border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(197,48,48,0.35);
+  }
+  
+  #bbar {
+    position: absolute; top: calc(86% + 40px); left: 50%;
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+    z-index: 25; opacity: 0;
+    background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: 6px;
+  }
+  .b-emoji { font-size: 18px; }
+  .b-domain { font-family: var(--font-sans); font-weight: 600; font-size: 16px; color: #FFF; }
+  .b-follow { font-family: var(--font-sans); font-weight: 700; font-size: 15px; color: var(--gold); border: 1.5px solid var(--gold-glow); padding: 2px 10px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+  <div id="vignette"></div>
+  <div class="split-left"></div>
+  <div class="split-right"></div>
+  <div class="split-line" id="splitLine"></div>
+  <div id="pwrap"><div id="pbar"></div></div>
+  <div id="dots"></div>
+  <div id="layer"></div>
+  
+  <div id="cta"><div class="cta-btn" id="cta-txt">💡 DM us for this itinerary</div></div>
+  <div id="bbar">
+    <span class="b-emoji" id="b-emoji">🐼</span>
+    <span class="b-domain" id="b-site">Panda-Journeys.com</span>
+    <span class="b-follow" id="b-follow">+ Follow 🌏</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  window.__timelines = window.__timelines || {};
+  
+  var dataEl = document.getElementById('hf-data');
+  if (!dataEl) return;
+  var D = JSON.parse(dataEl.textContent.trim());
+  
+  var scenes = D.scenes || [];
+  var cta = D.cta || {};
+  var brand = D.brand || {};
+  var totalDur = D.duration || 10;
+  var root = document.getElementById('root');
+  var isLandscape = (D.width || 1080) > (D.height || 1920);
+  
+  try {
+    if (D.width) root.setAttribute('data-width', D.width);
+    if (D.height) root.setAttribute('data-height', D.height);
+  } catch(e) {}
+  
+  var dots = document.getElementById('dots');
+  scenes.forEach(function(_, i) {
+    var d = document.createElement('span'); d.className = 'dot'; d.id = 'd'+i;
+    dots.appendChild(d);
+  });
+  
+  function getNums(text) {
+    if (!text) return [];
+    var m, nums = [];
+    var re = /\$?\d[\d,\.]*(?:\s*(?:hours?|years?|days?|km|m|min|%|k|thousand|million))?/gi;
+    while ((m = re.exec(text)) !== null) {
+      var raw = m[0].replace(/[$,]/g,''); var n = parseFloat(raw);
+      if (!isNaN(n) && n > 0) nums.push({text:m[0], value:n});
+    }
+    return nums;
+  }
+  
+  var layer = document.getElementById('layer');
+  var trackIdx = 20;
+  var KW_RE = /secret|hidden|best|only|never|free|save|skip|forget|wrong|stop|don't|less|more|half|double|better|worse|cheaper|expensive|luxury|dollars|yuan/gi;
+  
+  scenes.forEach(function(s, i) {
+    var t = s.start, td = s.duration;
+    var headline = s.headline || s.name || '';
+    var subtitle = s.subtitle || '';
+    var nums = getNums(headline);
+    var vsParts = headline.split(/\s+vs\s+/i);
+    var isVS = vsParts.length === 2;
+    
+    // ═══ VS Header ═══
+    if (isVS) {
+      var hdr = document.createElement('div');
+      hdr.className = 'vs-header clip';
+      hdr.id = 'vh'+i;
+      
+      var cnSize = isLandscape ? 64 : 56;
+      var otSize = isLandscape ? 52 : 44;
+      var vsSize = isLandscape ? 32 : 28;
+      
+      hdr.innerHTML = 
+        '<span class="cn-label" style="font-size:' + cnSize + 'px">' + vsParts[0] + '</span>' +
+        '<span class="vs-divider" style="font-size:' + vsSize + 'px">VS</span>' +
+        '<span class="ot-label" style="font-size:' + otSize + 'px">' + vsParts[1] + '</span>';
+      hdr.style.top = (isLandscape ? 26 : 24) + '%';
+      hdr.setAttribute('data-start', t);
+      hdr.setAttribute('data-duration', td);
+      hdr.setAttribute('data-track-index', trackIdx++);
+      layer.appendChild(hdr);
+    } else {
+      var hdr = document.createElement('div');
+      hdr.className = 'vs-header clip';
+      hdr.id = 'vh'+i;
+      var hSize = isLandscape ? 54 : 48;
+      hdr.innerHTML = '<span class="cn-label" style="font-size:' + hSize + 'px">' + headline + '</span>';
+      hdr.style.top = (isLandscape ? 28 : 26) + '%';
+      hdr.setAttribute('data-start', t);
+      hdr.setAttribute('data-duration', td);
+      hdr.setAttribute('data-track-index', trackIdx++);
+      layer.appendChild(hdr);
+    }
+    
+    // ═══ Stat Card ═══
+    if (nums.length >= 2) {
+      var card = document.createElement('div');
+      card.className = 'stat-card clip';
+      card.id = 'nc'+i;
+      
+      var cnNum = nums[0].text, otNum = nums[1].text;
+      var ns = isLandscape ? 52 : 58;
+      var ns2 = isLandscape ? 42 : 48;
+      
+      card.innerHTML = 
+        '<div class="stat-col"><span class="stat-num cn" style="font-size:' + ns + 'px">' + cnNum + '</span><span class="stat-tag">CHINA</span></div>' +
+        '<span class="stat-vs">vs</span>' +
+        '<div class="stat-col"><span class="stat-num ot" style="font-size:' + ns2 + 'px">' + otNum + '</span><span class="stat-tag">OTHER</span></div>';
+      
+      card._cnVal = nums[0].value;
+      card._otVal = nums[1].value;
+      card._cnText = cnNum;
+      card._otText = otNum;
+      
+      card.style.top = (isLandscape ? 48 : 44) + '%';
+      card.setAttribute('data-start', t);
+      card.setAttribute('data-duration', td);
+      card.setAttribute('data-track-index', trackIdx++);
+      layer.appendChild(card);
+    }
+    
+    // ═══ Punch line ═══
+    if (subtitle) {
+      var pb = document.createElement('div');
+      pb.className = 'punch-bar clip';
+      pb.id = 'pb'+i;
+      
+      var txt = subtitle.replace(KW_RE, function(m) { return '<span class="red">'+m+'</span>'; });
+      txt = txt.replace(/(\$\d+(?:,\d+)*|¥\d+(?:,\d+)*|\d+\s*dollars|\d+\s*yuan)/gi, '<span class="gold">$1</span>');
+      pb.innerHTML = '<span class="punch-text" style="font-size:' + (isLandscape ? 26 : 30) + 'px">' + txt + '</span>';
+      
+      pb.style.top = (nums.length >= 2 ? (isLandscape ? 65 : 60) : (isLandscape ? 50 : 48)) + '%';
+      pb.setAttribute('data-start', t);
+      pb.setAttribute('data-duration', td);
+      pb.setAttribute('data-track-index', trackIdx++);
+      layer.appendChild(pb);
+    }
+    
+    // Badge
+    var badge = document.createElement('div');
+    badge.className = 'badge clip';
+    badge.id = 'bd'+i; badge.textContent = (i+1) + ' / ' + scenes.length;
+    badge.setAttribute('data-start', t);
+    badge.setAttribute('data-duration', td);
+    badge.setAttribute('data-track-index', trackIdx++);
+    layer.appendChild(badge);
+  });
+  
+  document.getElementById('cta-txt').textContent = cta.text || '💡 DM us for this itinerary';
+  document.getElementById('b-emoji').textContent = brand.emoji || '🐼';
+  document.getElementById('b-site').textContent = brand.domain || 'Panda-Journeys.com';
+  document.getElementById('b-follow').textContent = brand.follow || '+ Follow 🌏';
+  
+  /* ═══ GSAP ═══ */
+  var tl = gsap.timeline({ paused: true });
+  
+  // Split screen background reveal
+  tl.fromTo('#vignette', {opacity:0}, {opacity:1,duration:0.5}, 0);
+  tl.fromTo('#splitLine', {opacity:0}, {opacity:1,duration:0.3}, 0.3);
+  tl.fromTo('#pbar', {scaleX:0}, {scaleX:1,duration:totalDur,ease:'none'}, 0);
+  
+  scenes.forEach(function(s, i) {
+    var t = s.start + 0.05, te = s.start + s.duration;
+    var isLast = (i === scenes.length-1);
+    
+    // ═══ Split line flash ═══
+    tl.fromTo('#splitLine', {opacity:0.4}, {opacity:0.8,duration:0.15}, t);
+    tl.fromTo('#splitLine', {opacity:0.8}, {opacity:0.4,duration:0.3}, t+0.2);
+    
+    // ═══ VS Header: scale pop from center ═══
+    var vh = document.getElementById('vh'+i);
+    if (vh) {
+      tl.fromTo('#vh'+i, {opacity:0,scale:0.75,y:10}, {opacity:1,scale:1,y:0,duration:0.55,ease:'back.out(1.3)'}, t);
+    }
+    
+    // ═══ Stat Card: slide-up + number roll ═══
+    var card = document.getElementById('nc'+i);
+    if (card) {
+      tl.fromTo('#nc'+i, {opacity:0,y:35,scale:0.92}, {opacity:1,y:0,scale:1,duration:0.45,ease:'power3.out'}, t+0.2);
+      
+      // Left-side number count (China)
+      var cnEl = card.querySelector('.stat-num.cn');
+      var cnTag = card.querySelector('.stat-col:first-child .stat-tag');
+      var cnTagHTML = cnTag ? cnTag.outerHTML : '';
+      var cnObj = { v: 0 };
+      tl.to(cnObj, {v:card._cnVal,duration:0.7,ease:'power2.out',
+        onUpdate:function(){
+          var val = Math.round(this.targets()[0].v);
+          cnEl.innerHTML = card._cnText.replace(/\d+/, String(val)) + cnTagHTML;
+        }}, t+0.3);
+      
+      // Right-side number count (Other)
+      var otEl = card.querySelector('.stat-num.ot');
+      var otTag = card.querySelector('.stat-col:last-child .stat-tag');
+      var otTagHTML = otTag ? otTag.outerHTML : '';
+      var otObj = { v: 0 };
+      tl.to(otObj, {v:card._otVal,duration:0.7,ease:'power2.out',
+        onUpdate:function(){
+          var val = Math.round(this.targets()[0].v);
+          otEl.innerHTML = card._otText.replace(/\d+/, String(val)) + otTagHTML;
+        }}, t+0.4);
+      
+      // Elastic pop
+      tl.to('#nc'+i, {scale:1.04,duration:0.1}, t+1.05);
+      tl.to('#nc'+i, {scale:1,duration:0.15,ease:'elastic.out(1,0.4)'}, t+1.15);
+    }
+    
+    // ═══ Punch bar: slide from left with border flash ═══
+    var pb = document.getElementById('pb'+i);
+    if (pb) {
+      tl.fromTo('#pb'+i, {opacity:0,x:-40}, {opacity:1,x:0,duration:0.5,ease:'power3.out'}, t+0.5);
+    }
+    
+    // Badge
+    if (document.getElementById('bd'+i)) {
+      tl.fromTo('#bd'+i, {opacity:0,x:10}, {opacity:1,x:0,duration:0.25}, t);
+    }
+    
+    // ═══ Exit ═══
+    if (!isLast) {
+      tl.to('#vh'+i, {opacity:0,scale:0.9,duration:0.25}, te-0.3);
+      if (card) tl.to('#nc'+i, {opacity:0,y:-15,duration:0.2}, te-0.25);
+      if (pb) tl.to('#pb'+i, {opacity:0,x:30,duration:0.25}, te-0.25);
+      if (document.getElementById('bd'+i)) tl.to('#bd'+i, {opacity:0,duration:0.2}, te-0.25);
+    }
+    
+    if (i>0) tl.set('#d'+(i-1), {background:'rgba(255,255,255,0.2)',boxShadow:'none'}, t);
+    tl.set('#d'+i, {background:'#D4A853',boxShadow:'0 0 10px rgba(212,168,83,0.5)'}, t);
+  });
+  
+  var ct = cta.start || Math.max(0, totalDur - 3.5);
+  tl.fromTo('#cta', {opacity:0,scale:0.85,y:20}, {opacity:1,scale:1,y:0,duration:0.5,ease:'back.out(1.5)'}, ct);
+  tl.fromTo('#bbar', {opacity:0,y:10}, {opacity:1,y:0,duration:0.35,ease:'power3.out'}, ct+0.3);
+  
+  tl.set({}, {}, totalDur);
+  window.__timelines['main'] = tl;
+  window.__hf = { duration: totalDur, seek: function(t) { if(window.__timelines&&window.__timelines['main']) window.__timelines['main'].seek(t); } };
+})();
+</script>
+</body>
+</html>

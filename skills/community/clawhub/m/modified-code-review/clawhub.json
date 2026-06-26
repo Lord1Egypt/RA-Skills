@@ -1,0 +1,12 @@
+{
+  "name": "Modified Code Review (修改代码评审)",
+  "tagline": "评审修改的代码，给出最佳实践、性价比分析与代码评分",
+  "description": "对用户修改的代码（diff/PR）进行评审：正确性、可读性、可维护性、性能、安全、测试等维度；输出最佳实践建议（必须改/建议改/可选）、修改方案性价比、百分制代码评分与等级（A–E）。适用于 code review、审查修改、最佳实践与代码评分需求。",
+  "category": "development",
+  "tags": ["code-review", "pr", "best-practices", "quality", "评审", "代码评分"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

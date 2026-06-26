@@ -1,0 +1,45 @@
+{
+  "skill_name": "acpx-connection-troubleshooting",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我在配置飞书渠道切换到 ACP 后端，但是运行 `acpx claude` 的时候卡在 initialize 阶段不动了。日志里好像提到 gateway.token 缺失，文件路径是 ~/.openclaw/ 下的。",
+      "expectations": [
+        "验证 `~/.openclaw/gateway.token` 文件是否存在",
+        "提供从 `openclaw.json` 提取 token 并创建文件的具体命令",
+        "检查飞书渠道是否在 ACP 支持列表中"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "最近想把企业微信的消息路由到 Claude 处理，但是配置好后一直超时。错误信息显示 'CLI 连不上网关' 或者 '子代理调用失败'。我检查了 openclaw.json 配置好像没问题，是不是哪里漏了？",
+      "expectations": [
+        "识别为 acpx 桥接连接问题（即使用户未明确提及 acpx）",
+        "指出企业微信 (wecom) 可能不在默认支持列表的风险",
+        "建议检查 Gateway 端口 18789 连通性"
+      ],
+      "trigger_confidence": "medium"
+    },
+    {
+      "id": 3,
+      "prompt": "急！acpx 桥接一直超时，是不是 ~/.claude/config.json 里的 apiEndpoint 配错了？我用的是阿里云百炼的 key，但好像它默认要找 Anthropic？报错是认证失败。",
+      "expectations": [
+        "检查 `~/.claude/config.json` 中的 API 端点配置",
+        "解释百炼配置与 Anthropic 配置的兼容性差异",
+        "建议改用 `acpx openclaw` 绕过 CLI 配置或修正端点"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "尝试将飞书机器人绑定到 acpx 后端，启动后日志卡在 [client] initialize。之前用过 echo agent 是正常的。需要检查哪些配置文件？端口 18789 好像也没通。",
+      "expectations": [
+        "分析 `[client] initialize` 卡住的原因（网络或认证）",
+        "指导检查 OpenClaw Gateway 服务状态及 18789 端口",
+        "建议测试 `acpx openclaw exec 'status'` 隔离问题"
+      ],
+      "trigger_confidence": "high"
+    }
+  ]
+}

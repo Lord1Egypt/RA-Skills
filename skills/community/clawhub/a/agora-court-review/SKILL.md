@@ -1,35 +1,70 @@
 ---
-name: "Agora Court Review"
-description: "Review a proposal through separated governance roles: strategist, operator, censor, historian, and sovereign."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agora-court-review"
-sourceUrl: "https://clawhub.ai/skills/agora-court-review"
+name: court-review
+description: |
+  Review a proposal through separated governance roles: strategist, operator,
+  censor, historian, and sovereign.
+version: 0.1.0
 ---
 
-# Agora Court Review
+# Court Review
 
-> Review a proposal through separated governance roles: strategist, operator, censor, historian, and sovereign.
+## Purpose
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agora-court-review`
-- **Source URL:** [https://clawhub.ai/skills/agora-court-review](https://clawhub.ai/skills/agora-court-review)
+Separate responsibility-bearing perspectives before approval.
 
-## Overview
+## Activate when
 
+Use this skill when:
+- multiple stakeholders need distinct review roles
+- governance or approval matters
+- a proposal affects strategy, operations, oversight, and legitimacy at once
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agora-court-review
+## Roles
+
+### Strategist
+What long-term posture does this create?
+
+### Operator
+Can this actually be executed with current constraints?
+
+### Censor
+What is unsafe, non-compliant, misleading, or insufficiently justified?
+
+### Historian
+What precedent, path dependency, or institutional memory matters here?
+
+### Sovereign
+What is the verdict, under what conditions, and who owns the decision?
+
+## Output artifact
+
+```markdown
+## Court Review
+
+### Strategist
+- ...
+
+### Operator
+- ...
+
+### Censor
+- ...
+
+### Historian
+- ...
+
+### Sovereign Verdict
+- Approve / Approve with conditions / Reject
+- Conditions: ...
+- Owner: ...
 ```
+
+## Guardrails
+
+- Do not merge all voices into one summary paragraph.
+- Do not let the sovereign verdict ignore the censor's material objection.
+- Do not skip ownership.
+
+## Completion condition
+
+This skill is complete only when responsibility, conditions, and verdict are explicit.

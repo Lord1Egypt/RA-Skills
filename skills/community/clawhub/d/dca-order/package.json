@@ -1,0 +1,21 @@
+{
+    "name": "@orbs-network/spot-skill",
+    "version": "2.5.5",
+    "description": "Use for gasless non-custodial EVM market, limit, TWAP, stop-loss, take-profit, delayed-start swaps.",
+    "homepage": "https://orbs-network.github.io/spot/",
+    "bugs": {
+        "url": "https://github.com/orbs-network/spot/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/orbs-network/spot.git",
+        "directory": "skill"
+    },
+    "license": "MIT",
+    "author": "danielz@orbs.com",
+    "files": [
+        "*.md",
+        "references",
+        "assets"
+    ]
+}

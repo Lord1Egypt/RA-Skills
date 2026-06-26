@@ -1,35 +1,36 @@
 ---
-name: "Markmap — Build mindmaps with plain text"
-description: "markmap — Render Markdown as interactive SVG mindmaps. Use when users need to convert Markdown documents into mindmaps, generate HTML files via CLI, or navig..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/markmap"
-sourceUrl: "https://clawhub.ai/skills/markmap"
+name: markmap
+description: markmap — Render Markdown as interactive SVG mindmaps. Use when users need to convert Markdown documents into mindmaps, generate HTML files via CLI, or navigate mindmap nodes interactively in the browser.
 ---
 
 # Markmap — Build mindmaps with plain text
 
-> markmap — Render Markdown as interactive SVG mindmaps. Use when users need to convert Markdown documents into mindmaps, generate HTML files via CLI, or navig...
+Markdown → interactive SVG mindmaps. Powered by markdown-it + d3-flextree.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/markmap`
-- **Source URL:** [https://clawhub.ai/skills/markmap](https://clawhub.ai/skills/markmap)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/markmap
+npm install -g markmap-cli
+markmap README.md --open          # Generate interactive HTML mindmap
+markmap README.md --offline       # Offline standalone HTML
 ```
+
+## Core API
+
+```ts
+import { Transformer } from 'markmap-lib';
+import { Markmap } from 'markmap-view';
+const { root } = new Transformer().transform('# Hello\n- World');
+Markmap.create('#mindmap', { zoom: true }, root);
+```
+
+## Reference Files
+
+| File | Coverage |
+|------|----------|
+| references/transform.md | Transformer + Frontmatter + HTML Parser + CDN + Vite Build |
+| references/render.md | Markmap Rendering + deriveOptions + Full HTML Examples |
+| references/cli.md | CLI Commands + Programmatic API + Dev Server Architecture |
+| references/architecture.md | Package Architecture + Markdown→SVG Pipeline + Asset Loading |
+| references/common-api.md | All Options/Node Types + CSS Variables + Hook/Loader |
+| references/plugins.md | 6 Built-in Plugins + Custom Plugins |

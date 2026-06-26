@@ -1,0 +1,1 @@
+Initial release: Complete YouTube to S3 workflow for personal media storage. Features one-command processing, automatic cleanup, S3-compatible storage support, and secure access patterns. Perfect for archiving favorite videos, backing up educational content, or team collaboration.

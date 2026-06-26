@@ -1,0 +1,6 @@
+{
+  "name": "monero-wallet-security",
+  "version": "1.0.0",
+  "description": "Comprehensive guide to Monero wallet security and best practices",
+  "main": "SKILL.md"
+}

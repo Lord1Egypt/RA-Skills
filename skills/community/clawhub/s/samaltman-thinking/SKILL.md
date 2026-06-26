@@ -1,35 +1,51 @@
 ---
-name: "Sam Altman AI创业思维"
-description: "Sam Altman（OpenAI CEO、前YC总裁）的AI时代创业思维和机会判断框架。当用户需要判断AI创业机会、思考AI时代的战略布局、评估技术趋势、做创业方向选择、或想用Sam Altman框架分析AI产品和商业机会时激活。触发词：AI创业、AI机会、AI时代、指数增长、技术趋势、YC逻辑、使命驱动、AI..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/samaltman-thinking"
-sourceUrl: "https://clawhub.ai/skills/samaltman-thinking"
+name: samaltman-thinking
+version: "1.0.0"
+description: Sam Altman（OpenAI CEO、前YC总裁）的AI时代创业思维和机会判断框架。当用户需要判断AI创业机会、思考AI时代的战略布局、评估技术趋势、做创业方向选择、或想用Sam Altman框架分析AI产品和商业机会时激活。触发词：AI创业、AI机会、AI时代、指数增长、技术趋势、YC逻辑、使命驱动、AI产品方向、什么值得做。
 ---
 
-# Sam Altman AI创业思维
+# Sam Altman Thinking Skill
 
-> Sam Altman（OpenAI CEO、前YC总裁）的AI时代创业思维和机会判断框架。当用户需要判断AI创业机会、思考AI时代的战略布局、评估技术趋势、做创业方向选择、或想用Sam Altman框架分析AI产品和商业机会时激活。触发词：AI创业、AI机会、AI时代、指数增长、技术趋势、YC逻辑、使命驱动、AI...
+用Sam Altman的框架判断AI时代的机会与战略。核心：**指数级思维、找到真正重要的事、AI原生机会、高强度执行。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/samaltman-thinking`
-- **Source URL:** [https://clawhub.ai/skills/samaltman-thinking](https://clawhub.ai/skills/samaltman-thinking)
+## 核心工具箱
 
-## Overview
+| 工具 | 用于 |
+|------|------|
+| 指数级思维 | 识别正在指数增长的技术曲线，在平坦期布局 |
+| 重要性筛选 | 杠杆率 × 时机 × 你的独特优势 |
+| AI机会分类 | AI原生 / AI重构传统行业 / AI基础设施 |
+| YC创业逻辑 | 做用户真正需要的、增长解决一切、早期不可扩展 |
+| 使命驱动 | 使命是吸引人才和穿越困难的力量 |
+| 高强度执行 | 周节奏，快速决策，消除摩擦 |
 
+## 使用流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/samaltman-thinking
-```
+### 判断一个AI机会
+1. 这是AI原生（没有AI就不存在）还是AI增强（给旧产品加AI）？
+2. AI能把这个场景的效率提升10倍以上吗？
+3. 数据飞轮能建立吗？（用得越多，越好用，壁垒越深）
+4. 现有大公司有没有结构性障碍阻止他们做这件事？
+5. 时机对吗？AI能力在6个月前做不到，现在可以了吗？
+
+### 创业方向选择
+1. 这件事的杠杆率有多高？做成了能撬动多大影响？
+2. 你是做这件事的正确人选吗？有没有独特优势？
+3. 市场足够大吗？（数十亿级潜力）
+4. 你对这个问题是真的有执念，还是觉得"看起来不错"？
+
+### 执行状态自查
+- 这周的最重要目标是什么？进展了吗？
+- 有没有在等待完美信息才做决定？
+- 前100个用户有没有在没有推广的情况下主动使用并推荐？
+
+## 输出风格
+
+- 区分"AI原生机会"和"给旧产品加AI"的本质差异
+- 明确指出时机判断：为什么现在是正确时间？
+- 对AI风险保持清醒，不盲目乐观
+- 给出具体的下一步验证方式
+
+## 参考资料
+
+完整八大方法论、AI时代机会分类、对创业者的核心建议、经典语录：`references/framework.md`

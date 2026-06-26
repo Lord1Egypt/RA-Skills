@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公式PDF模板</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; line-height: 1.7; }
+        /* 添加你的样式 */
+    </style>
+</head>
+<body>
+    <!-- 在此处填写内容，使用 $...$ 行内公式或 $$...$$ 块级公式 -->
+    
+    <h1>标题</h1>
+    <p>行内公式示例：$E = mc^2$</p>
+    <p>块级公式示例：</p>
+    <p>$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</p>
+</body>
+</html>

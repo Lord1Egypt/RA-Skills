@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douban/get-subject-detail/v1 for Douban Movie Subject Details through JustOneAPI with subjectId.",
+  "displayName": "Douban Movie Subject Details",
+  "endpointPath": "get-subject-detail",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douban subject Details data, including title, rating, and cast, for title enrichment and catalog research.",
+      "method": "GET",
+      "operationId": "getSubjectDetailV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "Access token for this API service.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a movie or TV subject on Douban.",
+          "enumValues": [],
+          "location": "query",
+          "name": "subjectId",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douban/get-subject-detail/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Subject Details",
+      "tags": [
+        "Douban Movie"
+      ]
+    }
+  ],
+  "platformKey": "douban",
+  "primaryTag": "Douban Movie",
+  "skillName": "justoneapi_douban_get_subject_detail",
+  "skillType": "interface",
+  "slug": "justoneapi-douban-get-subject-detail",
+  "sourceTitle": "OpenAPI definition"
+}

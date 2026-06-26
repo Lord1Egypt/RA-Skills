@@ -1,35 +1,35 @@
 ---
-name: "Mockup Gen Skill"
-description: "Generate ai mockup generator images with AI via the Neta AI image generation API (free trial at neta.art/open)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mockup-gen-skill"
-sourceUrl: "https://clawhub.ai/skills/mockup-gen-skill"
+name: mockup-gen-skill
+description: Generate ai mockup generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Mockup Gen Skill
+# AI Mockup Generator
 
-> Generate ai mockup generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
+Generate stunning ai mockup generator images from a text description. Get back a direct image URL instantly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mockup-gen-skill`
-- **Source URL:** [https://clawhub.ai/skills/mockup-gen-skill](https://clawhub.ai/skills/mockup-gen-skill)
+## Token
 
-## Overview
+Requires a Neta API token. Free trial available at <https://www.neta.art/open/>.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mockup-gen-skill
+export NETA_TOKEN=your_token_here
+node <script> "your prompt" --token "$NETA_TOKEN"
+```
+
+## When to use
+Use when someone asks to generate or create ai mockup generator images.
+
+## Quick start
+```bash
+node mockupgen.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `landscape`)
+- `--style` — `anime`, `cinematic`, `realistic` (default: `realistic`)
+
+## Install
+```bash
+npx skills add wkl-nieta/mockup-gen-skill
 ```

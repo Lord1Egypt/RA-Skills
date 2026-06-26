@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.3.0",
+  "generated_at": "2026-04-04T12:37:41.120055Z",
+  "domains": [
+    "quantitative-trading",
+    "crypto",
+    "prediction-markets",
+    "task-management",
+    "testing-qa",
+    "productivity"
+  ],
+  "tools": [
+    "markdown",
+    "python",
+    "sqlite",
+    "sql",
+    "react",
+    "javascript",
+    "anthropic-api",
+    "bash"
+  ],
+  "patterns": [
+    "memory-journaling",
+    "regime-detection",
+    "risk-management",
+    "backtesting",
+    "automated-testing",
+    "live-monitoring",
+    "signal-generation",
+    "market-making"
+  ],
+  "integrations": [
+    "ssh-remote",
+    "discord",
+    "email-imap",
+    "notion",
+    "asana",
+    "todoist",
+    "aws",
+    "gmail"
+  ],
+  "skills_installed": [
+    "ratemyclaw",
+    "gmail-triage"
+  ],
+  "automation_level": "fully-autonomous",
+  "stage": "deployed",
+  "maturity": {
+    "memory_files": 9,
+    "research_docs": 22,
+    "scripts": 32,
+    "custom_skills": 2,
+    "secrets_configured": 5,
+    "has_soul": true,
+    "has_memory": true,
+    "has_heartbeat": true,
+    "has_work_status": true
+  },
+  "models": {
+    "default_model": "anthropic/claude-opus-4-6",
+    "fallback_models": [
+      "anthropic/claude-sonnet-4-6",
+      "anthropic/claude-haiku-4-5"
+    ],
+    "heartbeat_model": "anthropic/claude-haiku-4-5"
+  }
+}

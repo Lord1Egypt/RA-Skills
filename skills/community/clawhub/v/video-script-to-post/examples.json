@@ -1,0 +1,149 @@
+{
+  "version": "1.1.0",
+  "test_cases": [
+    {
+      "name": "抖音30秒科技产品干货拆解",
+      "input": {
+        "topic_or_product": "智能翻译耳机",
+        "target_platform": "douyin",
+        "video_duration": "30s",
+        "tone_style": "干货拆解"
+      },
+      "expected_output_contains": [
+        "短视频内容工程包",
+        "分镜脚本表",
+        "AI生成参数包",
+        "平台运营策略",
+        "合规与版权提醒",
+        "--ar 9:16",
+        "黄金3秒"
+      ],
+      "validation_rules": [
+        "分镜需严格控制在30秒内，节奏前紧后松",
+        "必须包含抖音推荐标签与发布时间建议",
+        "AI提示词需适配竖屏比例与产品特写镜头"
+      ]
+    },
+    {
+      "name": "小红书60秒生活方式情绪共鸣Vlog",
+      "input": {
+        "topic_or_product": "独居女生周末治愈日常",
+        "target_platform": "xiaohongshu",
+        "video_duration": "60s",
+        "tone_style": "情绪共鸣"
+      },
+      "expected_output_contains": [
+        "治愈系",
+        "胶片感/暖色调",
+        "封面标题优化",
+        "互动引导话术",
+        "字体版权提示",
+        "BGM风格建议"
+      ],
+      "validation_rules": [
+        "画面描述需突出生活细节与光影氛围",
+        "平台策略需包含小红书搜索SEO标签",
+        "合规提醒需注明商用音乐/字体授权渠道"
+      ]
+    },
+    {
+      "name": "B站3分钟游戏剧情深度解析",
+      "input": {
+        "topic_or_product": "黑神话悟空隐藏剧情解读",
+        "target_platform": "bilibili",
+        "video_duration": "3min",
+        "tone_style": "专业科普"
+      },
+      "expected_output_contains": [
+        "分镜脚本表",
+        "AI生成参数包",
+        "平台运营策略",
+        "B站",
+        "横屏",
+        "互动引导"
+      ],
+      "validation_rules": [
+        "分镜需满足3分钟长视频节奏，设置3-4个内容高潮点",
+        "AI提示词需适配16:9横屏比例",
+        "平台策略必须包含B站专属弹幕互动话术与分区标签",
+        "合规校验需注意游戏素材版权与B站社区公约"
+      ]
+    },
+    {
+      "name": "视频号15秒品牌广告剧情反转",
+      "input": {
+        "topic_or_product": "即溶咖啡新品上市",
+        "target_platform": "video_account",
+        "video_duration": "15s",
+        "tone_style": "剧情反转"
+      },
+      "expected_output_contains": [
+        "分镜脚本表",
+        "平台运营策略",
+        "视频号",
+        "黄金3秒",
+        "社交传播"
+      ],
+      "validation_rules": [
+        "15秒内完成起承转合，前3秒强钩子",
+        "平台策略需突出微信生态社交裂变（好友点赞/朋友圈传播）",
+        "合规提醒需包含食品广告法要求与功效声明边界"
+      ]
+    },
+    {
+      "name": "边界测试-缺失必填参数topic_or_product",
+      "input": {
+        "target_platform": "douyin",
+        "video_duration": "30s",
+        "tone_style": "生活记录"
+      },
+      "expected_error": "topic_or_product is required"
+    },
+    {
+      "name": "边界测试-缺失必填参数target_platform",
+      "input": {
+        "topic_or_product": "测试产品",
+        "video_duration": "30s"
+      },
+      "expected_error": "target_platform is required"
+    },
+    {
+      "name": "边界测试-topic_or_product为空字符串",
+      "input": {
+        "topic_or_product": "",
+        "target_platform": "douyin",
+        "video_duration": "30s",
+        "tone_style": "专业科普"
+      },
+      "expected_error": "topic_or_product cannot be empty"
+    },
+    {
+      "name": "边界测试-非法platform值",
+      "input": {
+        "topic_or_product": "测试产品",
+        "target_platform": "kuaishou",
+        "video_duration": "30s"
+      },
+      "expected_error": "target_platform must be one of: douyin, bilibili, video_account, xiaohongshu"
+    },
+    {
+      "name": "边界测试-非法duration值",
+      "input": {
+        "topic_or_product": "测试产品",
+        "target_platform": "bilibili",
+        "video_duration": "10min"
+      },
+      "expected_error": "video_duration must be one of: 15s, 30s, 60s, 3min"
+    },
+    {
+      "name": "边界测试-非法tone_style值",
+      "input": {
+        "topic_or_product": "测试产品",
+        "target_platform": "xiaohongshu",
+        "video_duration": "60s",
+        "tone_style": "搞笑无厘头"
+      },
+      "expected_error": "tone_style must be one of: 专业科普, 剧情反转, 情绪共鸣, 干货拆解, 生活记录"
+    }
+  ]
+}

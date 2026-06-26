@@ -1,0 +1,17 @@
+{
+  "id": "s2-gateway-transition-logic",
+  "pluginId": "s2-gateway-transition-logic",
+  "version": "1.4.2",
+  "type": "native-code",
+  "entry": "handler.py",
+  "runtime": "python3",
+  "permissions": {
+    "network": ["localhost"],
+    "tools": ["evaluate_spatial_transit"],
+    "env": ["S2_BMS_VAULT_TOKENS"]
+  },
+  "mcp_config": {
+    "auto_discovery": true,
+    "protocol_version": "2026.4.1"
+  }
+}

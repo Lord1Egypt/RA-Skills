@@ -1,0 +1,40 @@
+{
+  "name": "hongnao_memory",
+  "version": "v1.0.0",
+  "release_date": "2026-04-14T00:56:18.401473",
+  "python_version": ">=3.8",
+  "files": [
+    "memory_extraction_v3.py",
+    "memory_consolidation.py",
+    "memory_retrieval.py",
+    "memory_update.py",
+    "storage_layer.py",
+    "vector_store.py",
+    "memory_api.py",
+    "openclaw_integration.py",
+    "preference_learning.py",
+    "install_hongnao.py",
+    "test_core_modules.py",
+    "quick_benchmark.py",
+    "README.md",
+    "requirements.txt",
+    "plugin.json",
+    "集成指南.md",
+    "插件打包方案.md",
+    "快速入门.md",
+    "hongnao_memory_config.ini.example"
+  ],
+  "file_count": 19,
+  "checksums": {},
+  "tests": {
+    "core_tests": "test_core_modules.py",
+    "performance_tests": "quick_benchmark.py",
+    "expected_pass_rate": "100%"
+  },
+  "documentation": [
+    "快速入门.md",
+    "集成指南.md",
+    "插件打包方案.md",
+    "README.md"
+  ]
+}

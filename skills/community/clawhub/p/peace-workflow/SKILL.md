@@ -1,35 +1,154 @@
 ---
-name: "Peace Workflow"
-description: "和平之种 HTML 游戏的评审迭代工作流。自动发送文件、启动评审团评审、根据评审改进代码、生成新版本。触发词：peace workflow、和平工作流、HTML评审迭代、代码评审流程、自动迭代改进。使用场景：(1) 需要对 HTML 文件进行评审改进 (2) 需要启动多轮迭代优化 (3) 需要发送文件并获取评审反馈。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/peace-workflow"
-sourceUrl: "https://clawhub.ai/skills/peace-workflow"
+name: peace-workflow
+description: 和平之种 HTML 游戏的评审迭代工作流。自动发送文件、启动评审团评审、根据评审改进代码、生成新版本。触发词：peace workflow、和平工作流、HTML评审迭代、代码评审流程、自动迭代改进。使用场景：(1) 需要对 HTML 文件进行评审改进 (2) 需要启动多轮迭代优化 (3) 需要发送文件并获取评审反馈。
 ---
 
-# Peace Workflow
+# Peace Workflow - 评审迭代工作流
 
-> 和平之种 HTML 游戏的评审迭代工作流。自动发送文件、启动评审团评审、根据评审改进代码、生成新版本。触发词：peace workflow、和平工作流、HTML评审迭代、代码评审流程、自动迭代改进。使用场景：(1) 需要对 HTML 文件进行评审改进 (2) 需要启动多轮迭代优化 (3) 需要发送文件并获取评审反馈。
+自动化 HTML 文件的评审、改进和交付流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/peace-workflow`
-- **Source URL:** [https://clawhub.ai/skills/peace-workflow](https://clawhub.ai/skills/peace-workflow)
+## 工作流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/peace-workflow
 ```
+发送文件 → 启动评审 → 分析反馈 → 改进代码 → 生成新版本 → 发送结果
+```
+
+## 执行步骤
+
+### Step 1: 发送当前版本
+
+将用户指定的 HTML 文件发送到对话中：
+
+```
+使用 message 工具发送文件
+- channel: feishu
+- action: send
+- filePath: 用户指定的文件路径
+- message: 简短说明
+```
+
+### Step 2: 启动评审团
+
+调用 jury-review 技能进行多维度评审：
+
+**前端/UI 项目核心评审团：**
+```
+            【美术官】🎨
+               ↓
+【体验官】👁️ ─── 代码 ─── 【性能官】⚡
+               ↓
+            【兼容官】🔧
+```
+
+**前端项目极端评审官推荐：**
+| 评审官 | 挑战维度 | 推荐理由 |
+|--------|----------|----------|
+| 🔥 纵火官 | 破坏性测试 | 前端需要抵抗极端用户操作 |
+| 🧟 僵尸官 | 资源极限 | 移动端内存有限 |
+| 🌪️ 风暴官 | 高压负载 | 动画/交互堆积可能导致卡顿 |
+
+**默认全部加入极端评审官。**
+
+### Step 3: 分析评审反馈
+
+根据评审结果，重点关注：
+
+**性能官重点关注：**
+- DOM 操作频率
+- 事件监听器数量
+- 内存泄漏风险
+- 对象池/复用机制
+
+**体验官重点关注：**
+- 交互反馈（视觉/触觉/听觉）
+- 加载状态
+- 错误处理
+- 无障碍访问
+
+**兼容官重点关注：**
+- 移动端适配
+- iOS Safari 特殊处理
+- safe-area 适配
+- 触屏事件优化
+
+**安全官重点关注：**
+- XSS 防护
+- 输入验证
+- 外部资源加载
+
+### Step 4: 改进代码
+
+根据评审反馈实施改进：
+
+**常见改进模式：**
+
+1. **性能优化**
+   - 添加对象池复用 DOM 元素
+   - 限制最大节点数
+   - 使用 requestAnimationFrame
+   - 防抖/节流处理
+
+2. **体验增强**
+   - 震动反馈 (`navigator.vibrate`)
+   - 加载动画
+   - 渐进式增强
+
+3. **兼容性修复**
+   - iOS safe-area CSS 变量
+   - 触屏事件 passive 处理
+   - backdrop-filter 前缀
+
+4. **稳定性保障**
+   - 空值检查
+   - 异常捕获
+   - 资源清理
+
+### Step 5: 生成新版本
+
+创建新文件，版本号递增：
+
+```
+peace_2.html → peace_3.html → peace_4.html ...
+```
+
+文件头部添加版本说明注释：
+```html
+<!-- 
+  Version: X.X
+  Changes: [改进要点列表]
+  Review Score: [评审得分]
+-->
+```
+
+### Step 6: 发送结果
+
+使用 message 工具发送新版本文件，附带改进说明。
+
+## 配置参数
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `max_iterations` | 3 | 最大迭代次数 |
+| `accept_threshold` | 80 | 接受阈值 |
+| `version_prefix` | peace | 文件名前缀 |
+
+## 示例用法
+
+```
+用户: 把 peace_2.html 发送给我并启动评审，把结果写到 peace_3.html
+
+Agent 执行:
+1. 发送 peace_2.html
+2. 启动评审团评审
+3. 分析反馈（得分 73.2）
+4. 实施改进（对象池、防抖、震动、safe-area）
+5. 生成 peace_3.html
+6. 发送 peace_3.html 并说明改进要点
+```
+
+## 注意事项
+
+- 评审得分 < 80 时建议继续迭代
+- 每轮迭代应有明确改进目标
+- 保持代码可读性和注释清晰
+- 记录版本变更历史

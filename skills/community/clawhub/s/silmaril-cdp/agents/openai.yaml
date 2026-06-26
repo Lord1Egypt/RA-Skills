@@ -1,0 +1,4 @@
+interface:
+  display_name: "Silmaril CDP"
+  short_description: "Drive Chrome pages with the local Silmaril toolkit"
+  default_prompt: "Use $silmaril-cdp to inspect, automate, or patch a page through silmaril.cmd."

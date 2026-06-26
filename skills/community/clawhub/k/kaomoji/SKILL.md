@@ -1,35 +1,43 @@
 ---
-name: "Kaomoji Manager"
-description: "Light kaomoji selector based on context tags."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/kaomoji"
-sourceUrl: "https://clawhub.ai/skills/kaomoji"
+name: kaomoji
+description: Light kaomoji selector based on context tags.
 ---
 
-# Kaomoji Manager
+# Kaomoji
 
-> Light kaomoji selector based on context tags.
+A fast and simple tool to select or store kaomojis.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/kaomoji`
-- **Source URL:** [https://clawhub.ai/skills/kaomoji](https://clawhub.ai/skills/kaomoji)
+## Pick a kaomoji
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/kaomoji
+python pick_kaomoji.py <tag1> <tag2> ...
 ```
+
+Example:
+```bash
+python pick_kaomoji.py encouragement positive
+```
+
+Example output: `(๑•̀ㅂ•́)و✧`
+
+## List all kaomojis
+
+```bash
+python list_kaomojis.py
+```
+
+Save a new kaomoji
+
+### Save a new kaomoji
+
+Add a new kaomoji with metadata.
+
+```bash
+python save_kaomoji.py "<kaomoji>" "<meaning>" "<usage_tags>" "<tone_tags>"
+```
+
+Example:
+```bash
+python save_kaomoji.py "(๑•̀ㅂ•́)و✧" "cheering, encouragement, energetic" "encouragement,celebrating progress,casual chat,greeting" "positive,playful,cute"
+```
+

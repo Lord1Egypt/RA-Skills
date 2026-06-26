@@ -1,0 +1,35 @@
+{
+  "name": "cat-selfie",
+  "version": "1.0.0",
+  "description": "🐱📸 猫咪自拍生成器 - 使用 doubao-seedream-5.0 模型生成精美的猫咪自拍，支持 8 种场景随机或指定选择",
+  "author": "喵秘 (Miaomi)",
+  "license": "MIT",
+  "keywords": [
+    "cat",
+    "selfie",
+    "image-generation",
+    "volcengine",
+    "doubao-seedream",
+    "猫咪",
+    "自拍",
+    "图像生成"
+  ],
+  "main": "scripts/selfie.js",
+  "scripts": {
+    "generate": "node scripts/selfie.js",
+    "test": "node scripts/selfie.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "cat-selfie"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "config": {
+    "scenes": 8,
+    "model": "doubao-seedream-5-0-260128",
+    "outputDir": "~/.openclaw/workspace/images"
+  }
+}

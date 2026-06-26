@@ -1,35 +1,41 @@
 ---
-name: "animation-micro-interaction-pack"
-description: "Indexed by skills.sh from patricio0312rev/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "patricio0312rev"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/patricio0312rev/skills/animation-micro-interaction-pack"
-sourceUrl: "https://skills.sh/patricio0312rev/skills/animation-micro-interaction-pack"
+name: animation-micro-interaction-pack
+description: Provides reusable interaction patterns and motion presets that make UI feel polished. Includes hover effects, transitions, entrance animations, gesture feedback, and reduced-motion support. Use when adding "animations", "transitions", "micro-interactions", or "motion design".
 ---
 
-# animation-micro-interaction-pack
+# Animation & Micro-interaction Pack
 
-> Indexed by skills.sh from patricio0312rev/skills
+Create polished, performant animations and micro-interactions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** patricio0312rev
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/patricio0312rev/skills/animation-micro-interaction-pack`
-- **Source URL:** [https://skills.sh/patricio0312rev/skills/animation-micro-interaction-pack](https://skills.sh/patricio0312rev/skills/animation-micro-interaction-pack)
+## Animation Patterns
 
-## Overview
+**Hover Effects**: Scale, lift (translateY), glow (box-shadow), color shifts
+**Entrance**: Fade-in, slide-in, zoom-in with stagger for lists
+**Exit**: Fade-out, slide-out, scale-out
+**Loading**: Pulse, skeleton waves, progress bars
+**Gestures**: Ripple on click, drag feedback, swipe indicators
 
+## Tailwind Animations
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/patricio0312rev/skills/animation-micro-interaction-pack
+```css
+/* tailwind.config.js */
+animation: {
+  'fade-in': 'fadeIn 0.5s ease-out',
+  'slide-up': 'slideUp 0.3s ease-out',
+  'scale-in': 'scaleIn 0.2s ease-out',
+}
 ```
+
+## Framer Motion Examples
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.3 }}
+/>
+```
+
+## Best Practices
+
+Use 200-300ms for micro-interactions, respect prefers-reduced-motion, animate transform/opacity for performance, add easing functions, stagger list items, provide hover/active states.

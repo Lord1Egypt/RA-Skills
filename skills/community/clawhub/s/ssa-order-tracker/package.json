@@ -1,0 +1,22 @@
+{
+  "name": "order-tracker-skill",
+  "version": "1.0.0",
+  "description": "Order tracking and management skill for Farreach Electronic",
+  "main": "scripts/update-order-status.js",
+  "scripts": {
+    "update-status": "node scripts/update-order-status.js",
+    "notify": "node scripts/send-order-notification.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "nodemailer": "^7.0.13"
+  },
+  "keywords": [
+    "order",
+    "tracking",
+    "management",
+    "skill"
+  ],
+  "author": "Farreach Electronic",
+  "license": "MIT"
+}

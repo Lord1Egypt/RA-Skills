@@ -1,0 +1,12 @@
+{
+  "version": "0.6.0",
+  "last_updated": "2026-03-06",
+  "base_url": "https://vivago.ai/api/gw",
+  "_architecture_notes": {
+    "level_1": "一级功能（大功能划分）",
+    "level_2": "二级端口（具体API端点配置）",
+    "naming": "display_name 与 Vivago 网站模型名称对齐",
+    "endpoint_version": "相同端点 + 不同 version = 不同模型名称",
+    "extensibility": "未来可扩展的一级功能包括: keyframe_to_video, template_to_video"
+  }
+}

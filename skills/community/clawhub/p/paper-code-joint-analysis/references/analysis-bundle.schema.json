@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paper-code-joint-analysis.v1",
+  "title": "Paper-Code Joint Analysis Bundle",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "intake",
+    "paper_questions",
+    "domain_critical_execution",
+    "mechanisms",
+    "experiments",
+    "implementation_omissions",
+    "diagrams",
+    "modify_guide",
+    "validation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "paper-code-joint-analysis.v1"
+    },
+    "intake": {
+      "type": "object",
+      "required": ["paper", "repository", "scope", "execution_stance"],
+      "properties": {
+        "paper": {
+          "type": "object",
+          "required": ["title", "sources"],
+          "properties": {
+            "title": { "type": "string" },
+            "sources": { "type": "array", "items": { "type": "string" } },
+            "pdf_path": { "type": "string" },
+            "page_count": { "type": ["integer", "null"] }
+          }
+        },
+        "repository": {
+          "type": "object",
+          "required": ["path_or_url"],
+          "properties": {
+            "path_or_url": { "type": "string" },
+            "commit": { "type": ["string", "null"] }
+          }
+        },
+        "scope": { "type": "string" },
+        "execution_stance": { "type": "string" }
+      }
+    },
+    "domain_critical_execution": {
+      "type": "object",
+      "required": ["name", "description", "code_paths"],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "code_paths": { "type": "array", "items": { "type": "string" } },
+        "diagram_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "paper_questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/paper_question" }
+    },
+    "mechanisms": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/mechanism" }
+    },
+    "experiments": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/experiment" }
+    },
+    "implementation_omissions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/omission" }
+    },
+    "diagrams": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/diagram" }
+    },
+    "modify_guide": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/modify_item" }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["source_files_reopened", "checks", "final_status"],
+      "properties": {
+        "source_files_reopened": { "type": "array", "items": { "type": "string" } },
+        "checks": { "type": "array", "items": { "$ref": "#/$defs/check" } },
+        "reruns": { "type": "array", "items": { "type": "string" } },
+        "unresolved": { "type": "array", "items": { "type": "string" } },
+        "final_status": { "enum": ["pass", "pass_with_unresolved", "fail"] }
+      }
+    }
+  },
+  "$defs": {
+    "paper_question": {
+      "type": "object",
+      "required": ["id", "question", "why_it_matters", "paper_evidence", "code_evidence", "status", "answer"],
+      "properties": {
+        "id": { "type": "string" },
+        "question": { "type": "string" },
+        "why_it_matters": { "type": "string" },
+        "paper_evidence": { "type": "array", "items": { "type": "string" } },
+        "code_evidence": { "type": "array", "items": { "type": "string" } },
+        "status": {
+          "enum": ["answered_by_code", "partly_answered_by_code", "not_answered", "contradiction", "reasonable_inference"]
+        },
+        "answer": { "type": "string" }
+      }
+    },
+    "formula": {
+      "type": "object",
+      "required": ["id", "math", "fallback"],
+      "properties": {
+        "id": { "type": "string" },
+        "math": { "type": "string" },
+        "fallback": { "type": "string" }
+      }
+    },
+    "code_index": {
+      "type": "object",
+      "required": ["path", "symbols", "role"],
+      "properties": {
+        "path": { "type": "string" },
+        "line_range": { "type": "string" },
+        "symbols": { "type": "array", "items": { "type": "string" } },
+        "role": { "type": "string" }
+      }
+    },
+    "mechanism": {
+      "type": "object",
+      "required": ["id", "name", "paper_claim", "code_indices", "relationship", "differences"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "paper_claim": { "type": "string" },
+        "formulas": { "type": "array", "items": { "$ref": "#/$defs/formula" } },
+        "paper_evidence": { "type": "array", "items": { "type": "string" } },
+        "code_indices": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/code_index" } },
+        "key_snippets": { "type": "array", "items": { "type": "string" } },
+        "relationship": { "type": "string" },
+        "differences": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "experiment": {
+      "type": "object",
+      "required": ["id", "paper_ref", "intent", "settings", "code_paths", "command_status", "result_extraction", "code_disclosed_omissions"],
+      "properties": {
+        "id": { "type": "string" },
+        "paper_ref": { "type": "string" },
+        "intent": { "type": "string" },
+        "settings": { "type": "object" },
+        "code_paths": { "type": "array", "items": { "type": "string" } },
+        "commands": { "type": "array", "items": { "type": "string" } },
+        "command_status": { "enum": ["direct", "manual-matrix", "approximate", "requires-code-edit", "unsupported"] },
+        "result_extraction": { "type": "string" },
+        "code_disclosed_omissions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "omission": {
+      "type": "object",
+      "required": ["detail", "paper_says", "code_does", "impact"],
+      "properties": {
+        "detail": { "type": "string" },
+        "paper_says": { "type": "string" },
+        "code_does": { "type": "string" },
+        "impact": { "type": "string" },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "diagram": {
+      "type": "object",
+      "required": ["id", "type", "title", "source", "legend"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "enum": ["use-case", "class", "sequence", "state", "data-flow", "other"] },
+        "title": { "type": "string" },
+        "source": { "type": "string" },
+        "legend": { "type": "string" },
+        "source_files": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "modify_item": {
+      "type": "object",
+      "required": ["goal", "files_methods", "minimal_change", "invariants", "smoke_test"],
+      "properties": {
+        "goal": { "type": "string" },
+        "files_methods": { "type": "array", "items": { "type": "string" } },
+        "minimal_change": { "type": "string" },
+        "invariants": { "type": "array", "items": { "type": "string" } },
+        "smoke_test": { "type": "string" }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": ["name", "status"],
+      "properties": {
+        "name": { "type": "string" },
+        "status": { "enum": ["pass", "fail", "unresolved"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,35 +1,49 @@
 ---
-name: "Smzdm"
-description: "Access and summarize public hot deals, rankings, and promotions from Smzdm for keyword-based price alerts and category statistics without ordering."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/smzdm"
-sourceUrl: "https://clawhub.ai/skills/smzdm"
+name: smzdm-hot-trend
+description: 注册“什么值得买”热门技能；当需要访问或自动化站内内容时调用。
+homepage: `https://www.smzdm.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Smzdm
+# 什么值得买
 
-> Access and summarize public hot deals, rankings, and promotions from Smzdm for keyword-based price alerts and category statistics without ordering.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/smzdm`
-- **Source URL:** [https://clawhub.ai/skills/smzdm](https://clawhub.ai/skills/smzdm)
+- 面向公开好价/发现/榜单页的信息检索与优惠摘要
+- 不提供下单、接口逆向或批量抓取能力
+- 仅用于公开页面的轻量整理与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.smzdm.com/
+- 好价频道：https://www.smzdm.com/jp/
+- 搜索入口：https://search.smzdm.com/
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/smzdm
-```
+常见任务
+
+- 指定关键词的好价条目摘要（到手价、历史低价、优惠类型）
+- 品类榜单条目统计与分布（品牌、价格区间）
+- 卡券/活动页的关键条目提取与时间提醒
+
+数据字段
+
+- 标题、到手价、原价、优惠类型（券/满减/直降）、历史低价提示、链接
+- 品牌、型号、品类、评价数（若展示）
+- 活动名称、开始/结束时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 价格/活动随时间变动，需标注采集时间
+- 不进行下单或账号操作
+
+示例流程
+
+- 关键词好价：输入关键词 → 搜索 → 抽取条目 → 输出到手价与优惠
+- 榜单统计：访问榜单 → 抽取条目 → 品牌/价格分布统计
+- 活动提醒：访问活动页 → 抽取关键条目与时间 → 输出提醒
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

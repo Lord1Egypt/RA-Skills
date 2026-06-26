@@ -1,35 +1,53 @@
 ---
-name: "Nsfc Writing Guide"
-description: "Provides guidance and collaboration support for writing National Natural Science Foundation of China (NSFC) grant proposals following standardized phases and..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nsfc-writing-guide"
-sourceUrl: "https://clawhub.ai/skills/nsfc-writing-guide"
+name: nsfc-writing-guide
+description: [已整合] NSFC 撰写指南已整合到 nsfc 统一入口技能
+argument-hint: "[章节] [内容要点]"
 ---
 
-# Nsfc Writing Guide
+# ⚠️ 已整合 - 请使用 nsfc 统一入口
 
-> Provides guidance and collaboration support for writing National Natural Science Foundation of China (NSFC) grant proposals following standardized phases and...
+> **本技能保留用于向后兼容，功能已整合到 `nsfc` 统一入口技能**
+>
+> **推荐使用：** `nsfc write [章节] [主题]` 或直接使用本技能（自动转发）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nsfc-writing-guide`
-- **Source URL:** [https://clawhub.ai/skills/nsfc-writing-guide](https://clawhub.ai/skills/nsfc-writing-guide)
+---
 
-## Overview
+# NSFC Writing Guide（兼容层）
 
+NSFC 基金申请书协作撰写指南 - 采用人机协作模式撰写国家自然科学基金申请书。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nsfc-writing-guide
+## 迁移指南
+
+**新用法：**
 ```
+nsfc write 立项依据 振动台控制
+nsfc write 研究内容 RTHS
+nsfc write 摘要 面上项目
+nsfc outline 面上项目 振动控制
+```
+
+**旧用法（仍然可用）：**
+```
+write 立项依据 振动台控制
+outline 面上项目 振动控制
+```
+
+## 协作原则
+- **先理解后写作**：所有修改前必须充分理解用户意图
+- **逐步推进**：将申请书分解为可管理的小任务
+- **持续反馈**：每个阶段完成后向用户确认
+- **版本控制**：重要修改前创建备份
+- **进度可见**：使用任务跟踪工具
+
+## 质量保证原则
+- **文献零编造**：所有引用必须通过检索验证
+- **方法有据**：所有算法、方法必须引用文献支持
+- **术语准确**：使用领域标准术语和规范表达
+
+## 6 阶段写作流程
+1. 立项依据 ⭐⭐⭐
+2. 研究内容与目标 ⭐⭐⭐
+3. 研究方案 ⭐⭐
+4. 特色与创新 ⭐⭐⭐
+5. 研究基础 ⭐⭐
+6. 形式审查 ⭐

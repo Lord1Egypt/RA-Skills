@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roundtable AI — 配色方案预览</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace; }
+  
+  .header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background: #1a1b26;
+    color: #c0caf5;
+  }
+  .header h1 { font-size: 28px; font-weight: 600; letter-spacing: 2px; }
+  .header p { color: #565f89; margin-top: 8px; font-size: 14px; }
+
+  .scheme { padding: 40px 20px; }
+  .scheme h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .scheme h2 .badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .scheme-tokyo { background: #1a1b26; color: #c0caf5; }
+  .scheme-tokyo h2 .badge { background: #7aa2f7; color: #1a1b26; }
+
+  .scheme-dracula { background: #282a36; color: #f8f8f2; }
+  .scheme-dracula h2 .badge { background: #bd93f9; color: #282a36; }
+
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch-color { height: 64px; }
+  .swatch-info { padding: 10px 12px; font-size: 12px; line-height: 1.6; }
+  .swatch-name { font-weight: 600; font-size: 13px; }
+  .swatch-hex { opacity: 0.7; }
+
+  .section-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 24px 0 12px;
+    opacity: 0.6;
+  }
+
+  .terminal-demo {
+    background: #0d0e14;
+    border-radius: 10px;
+    padding: 24px;
+    margin: 24px auto;
+    max-width: 640px;
+    font-size: 14px;
+    line-height: 1.8;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .terminal-demo .prompt { opacity: 0.5; }
+  .terminal-demo .cmd { color: #7aa2f7; }
+  .terminal-demo .success { color: #9ece6a; }
+  .terminal-demo .warn { color: #e0af68; }
+  .terminal-demo .error { color: #f7768e; }
+  .terminal-demo .info { color: #7dcfff; }
+  .terminal-demo .special { color: #bb9af7; }
+
+  .dracula-terminal-demo {
+    background: #1e1f29;
+    border-radius: 10px;
+    padding: 24px;
+    margin: 24px auto;
+    max-width: 640px;
+    font-size: 14px;
+    line-height: 1.8;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .dracula-terminal-demo .prompt { opacity: 0.5; }
+  .dracula-terminal-demo .cmd { color: #bd93f9; }
+  .dracula-terminal-demo .success { color: #50fa7b; }
+  .dracula-terminal-demo .warn { color: #f1fa8c; }
+  .dracula-terminal-demo .error { color: #ff5555; }
+  .dracula-terminal-demo .info { color: #8be9fd; }
+  .dracula-terminal-demo .special { color: #ff79c6; }
+
+  .agents-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .agent-tag {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .convergence-bar {
+    height: 8px;
+    border-radius: 4px;
+    margin: 12px 0 4px;
+  }
+  .convergence-label { font-size: 11px; opacity: 0.5; }
+
+  .footer {
+    text-align: center;
+    padding: 40px;
+    background: #1a1b26;
+    color: #565f89;
+    font-size: 12px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ROUNDTABLE AI</h1>
+  <p>Color Palette — AI Agent 协作基础设施</p>
+</div>
+
+<!-- ════════ Tokyo Night ════════ -->
+<div class="scheme scheme-tokyo">
+  <h2>方案一：Tokyo Night <span class="badge">推荐 ✅</span></h2>
+
+  <div class="section-title">Backgrounds</div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a1b26"></div>
+      <div class="swatch-info"><div class="swatch-name">Night BG</div><div class="swatch-hex">#1a1b26</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#24283b"></div>
+      <div class="swatch-info"><div class="swatch-name">Storm BG</div><div class="swatch-hex">#24283b</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#292e42"></div>
+      <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#292e42</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Text</div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#c0caf5"></div>
+      <div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#c0caf5</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#a9b1d6"></div>
+      <div class="swatch-info"><div class="swatch-name">Secondary</div><div class="swatch-hex">#a9b1d6</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#565f89"></div>
+      <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#565f89</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Accent</div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#7aa2f7"></div>
+      <div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#7aa2f7</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#7dcfff"></div>
+      <div class="swatch-info"><div class="swatch-name">Cyan</div><div class="swatch-hex">#7dcfff</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#9ece6a"></div>
+      <div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#9ece6a</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e0af68"></div>
+      <div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#e0af68</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f7768e"></div>
+      <div class="swatch-info"><div class="swatch-name">Red</div><div class="swatch-hex">#f7768e</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#bb9af7"></div>
+      <div class="swatch-info"><div class="swatch-name">Purple</div><div class="swatch-hex">#bb9af7</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Roundtable Agent Colors</div>
+  <div class="agents-row">
+    <span class="agent-tag" style="background:#7aa2f7;color:#1a1b26">Agent A · 冷静理性</span>
+    <span class="agent-tag" style="background:#bb9af7;color:#1a1b26">Agent B · 创意发散</span>
+    <span class="agent-tag" style="background:#7dcfff;color:#1a1b26">Agent C · 技术视角</span>
+    <span class="agent-tag" style="background:#9ece6a;color:#1a1b26">Agent D · 务实落地</span>
+  </div>
+
+  <div class="section-title">Convergence Bar</div>
+  <div class="convergence-bar" style="background:linear-gradient(to right, #7aa2f7, #bb9af7, #9ece6a)"></div>
+  <div class="convergence-label">Low Convergence → High Consensus</div>
+
+  <div class="section-title">Terminal Simulation</div>
+  <div class="terminal-demo">
+    <div><span class="prompt">roundtable&gt; </span><span class="cmd">start --agents 4 --topic "API design"</span></div>
+    <div><span class="info">ℹ Agent A (Analyst):</span> REST endpoints should follow OpenAPI 3.1 spec</div>
+    <div><span class="special">◆ Agent B (Creative):</span> What about gRPC for internal calls?</div>
+    <div><span class="success">✓ Consensus:</span> Use REST externally, gRPC internally</div>
+    <div><span class="warn">⚠ Agent C:</span> Need to consider backward compatibility</div>
+    <div><span class="error">✗ Conflict:</span> Versioning strategy not agreed</div>
+    <div><span class="prompt">roundtable&gt; </span><span class="cmd">converge --score</span></div>
+    <div><span class="success">█████████░</span> 78% consensus reached</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ════════ Dracula Night ════════ -->
+<div class="scheme scheme-dracula">
+  <h2>方案二：Dracula Night <span class="badge">备选</span></h2>
+
+  <div class="section-title">Backgrounds</div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#282a36"></div>
+      <div class="swatch-info"><div class="swatch-name">Dark BG</div><div class="swatch-hex">#282a36</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#343746"></div>
+      <div class="swatch-info"><div class="swatch-name">Panel BG</div><div class="swatch-hex">#343746</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#44475a"></div>
+      <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#44475a</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Text</div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f8f8f2"></div>
+      <div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#f8f8f2</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#bfbfbf"></div>
+      <div class="swatch-info"><div class="swatch-name">Secondary</div><div class="swatch-hex">#bfbfbf</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6272a4"></div>
+      <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#6272a4</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Accent</div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#bd93f9"></div>
+      <div class="swatch-info"><div class="swatch-name">Purple</div><div class="swatch-hex">#bd93f9</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#8be9fd"></div>
+      <div class="swatch-info"><div class="swatch-name">Cyan</div><div class="swatch-hex">#8be9fd</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#50fa7b"></div>
+      <div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#50fa7b</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f1fa8c"></div>
+      <div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#f1fa8c</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ff5555"></div>
+      <div class="swatch-info"><div class="swatch-name">Red</div><div class="swatch-hex">#ff5555</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ff79c6"></div>
+      <div class="swatch-info"><div class="swatch-name">Pink</div><div class="swatch-hex">#ff79c6</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ffb86c"></div>
+      <div class="swatch-info"><div class="swatch-name">Orange</div><div class="swatch-hex">#ffb86c</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Terminal Simulation</div>
+  <div class="dracula-terminal-demo">
+    <div><span class="prompt">roundtable&gt; </span><span class="cmd">start --agents 4 --topic "API design"</span></div>
+    <div><span class="info">ℹ Agent A (Analyst):</span> REST endpoints should follow OpenAPI 3.1 spec</div>
+    <div><span class="special">◆ Agent B (Creative):</span> What about gRPC for internal calls?</div>
+    <div><span class="success">✓ Consensus:</span> Use REST externally, gRPC internally</div>
+    <div><span class="warn">⚠ Agent C:</span> Need to consider backward compatibility</div>
+    <div><span class="error">✗ Conflict:</span> Versioning strategy not agreed</div>
+    <div><span class="prompt">roundtable&gt; </span><span class="cmd">converge --score</span></div>
+    <div><span class="success">█████████░</span> 78% consensus reached</div>
+  </div>
+</div>
+
+<div class="footer">
+  Roundtable AI — Color Palette v1.0 | Designed by 像素姐 🎨 | 2026-05-21
+</div>
+
+</body>
+</html>

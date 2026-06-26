@@ -1,0 +1,19 @@
+{
+  "identity": [
+    {"what": "Side Project Alpha", "why": "자율적으로 시스템을 설계하고 실행", "dir": [0.7, 0.6, 0.8], "w": 8, "cl": "identity", "status": "core"},
+    {"what": "Research Paper Published", "why": "깊이 있는 연구로 성과를 냈다", "dir": [0.4, 0.9, 0.5], "w": 7, "cl": "identity", "status": "evidence"},
+    {"what": "Team Architecture Design", "why": "처음부터 끝까지 내 손으로", "dir": [0.8, 0.7, 0.4], "w": 9, "cl": "identity", "status": "core"}
+  ],
+  "opportunities": [
+    {"what": "Company A — Role X", "why": "High autonomy, small team", "dir": [0.8, 0.6, 0.7], "w": 8, "cl": "hot", "status": "Applied ✅", "match": 0.92},
+    {"what": "Company B — Role Y", "why": "Big brand, structured", "dir": [-0.2, 0.7, 0.4], "w": 6, "cl": "tension", "status": "Considering", "match": 0.55},
+    {"what": "Company C — Role Z", "why": "Innovation-focused", "dir": [0.6, 0.5, 0.9], "w": 7, "cl": "warm", "status": "Not applied", "match": 0.80}
+  ],
+  "H": {"dir": [0.6, 0.6, 0.6], "mag": 0.70},
+  "oneLiner": "Your compass direction goes here",
+  "clusters": [
+    {"name": "AUTONOMY", "m": 0.75, "color": "#00c8ff"},
+    {"name": "DEPTH", "m": 0.70, "color": "#a855f7"},
+    {"name": "INNOVATION", "m": 0.80, "color": "#00ff88"}
+  ]
+}

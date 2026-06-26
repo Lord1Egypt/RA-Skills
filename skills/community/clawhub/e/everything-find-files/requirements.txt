@@ -1,0 +1,3 @@
+# Everything 文件搜索技能依赖
+# 本技能仅使用 Python 标准库，无需额外安装依赖
+# 依赖的标准库：ctypes, datetime, struct, os, base64

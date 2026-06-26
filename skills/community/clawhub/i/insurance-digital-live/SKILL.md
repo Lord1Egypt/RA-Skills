@@ -1,35 +1,352 @@
 ---
-name: "Insurance Digital Live"
-description: "AI assistant for China insurance live streaming that generates compliant scripts, explains products, engages audiences, and optimizes sales conversion."
-category: "domain"
-source: "ClawHub"
-tags: [banking, dianjin, finance, insurance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/insurance-digital-live"
-sourceUrl: "https://clawhub.ai/skills/insurance-digital-live"
+name: Insurance Digital Live Streaming Assistant
+slug: insurance-digital-live
+description: AI-powered insurance digital live streaming assistant — covers live script design, product explanation, audience interaction, compliance communication, and sales conversion optimization for insurance sales. Built for China insurance companies and agents. Keywords: insurance live streaming, insurance sales, digital marketing, insurance content, live selling, insurance promotion, 保险直播, 保险带货, 保险营销, 直播话术, 保险顾问, 数字人直播, 直播带货, 保险抖音直播, 保险视频号, 直播脚本, 话术优化.
+version: "5.0.0"
 ---
 
-# Insurance Digital Live
-
-> AI assistant for China insurance live streaming that generates compliant scripts, explains products, engages audiences, and optimizes sales conversion.
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/insurance-digital-live`
-- **Source URL:** [https://clawhub.ai/skills/insurance-digital-live](https://clawhub.ai/skills/insurance-digital-live)
-
-## Overview
+# Insurance Digital Live Streaming Assistant / 保险数字人直播助手
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/insurance-digital-live
+### 保险监管最新动态 [2026-05-25更新]
+
+| 动态类型 | 内容摘要 | 影响范围 |
+|---------|---------|---------|
+| 保险监管 | 2026年4月：产品分级告知要求，直播销售必须明确产品风险等级(P1-P5) | 数字直播合规话术模板需全面更新 |
+| 保险监管 | 人身险演示利率下调(4.2%→3.5%)，直播话术需标注'非保证收益' | 数字直播合规话术模板需全面更新 |
+| 保险监管 | 全程双录要求适用于所有线上销售渠道 | 数字直播合规话术模板需全面更新 |
+
+> **数据截止**: 2026-05-25 | 来源：国家金融监督管理总局、安永Q1分析、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
+
+> **English:** AI-powered insurance live streaming assistant — covers live scripts, product explanation, audience interaction, and sales conversion for insurance sales.
+>
+> **中文:** 保险数字人直播助手——覆盖直播话术、产品讲解、观众互动、合规沟通、销售转化。
+
+---
+
+## Industry Pain Points / 行业痛点
+
+| Pain Point / 痛点 | Impact / 影响 | Solution / 本Skill解决方案 |
+|------------------|-------------|------------------------|
+| **保险专业性强** | 讲解复杂难懂 | 产品讲解模板 |
+| **合规要求严** | 直播违规风险大 | 合规话术清单 |
+| **信任建立难** | 保险被误解很深 | 信任建立话术 |
+| **转化周期长** | 直播后转化率低 | 私域引流策略 |
+
+---
+
+## Trigger Keywords / 触发关键词
+
+**English Triggers:** insurance live streaming, insurance sales, digital marketing, insurance content, live selling, insurance promotion
+
+**中文触发词（优先）：** 保险直播 / 保险带货 / 保险营销 / 直播话术 / 保险顾问 / 保险科普 / 保险知识 / 保险配置 / 家庭保障 / 保险咨询 / 保险代理人 / 保险经纪 / 保险获客 / 直播引流
+
+---
+
+## Core Capabilities / 核心能力
+
+### 1. Live Script Templates / 直播话术模板
+
+```python
+LIVE_STREAM_TEMPLATES = {
+    "保险科普开场": {
+        "duration": "3-5分钟",
+        "structure": """
+        【开场自我介绍】（0-30秒）
+        "大家好，我是保险顾问{姓名}，
+        今天想和大家聊聊一个很多人都关心的话题：
+        家庭风险保障到底怎么配置？
+        
+        这个问题看起来很简单，
+        但其实90%的人都配置错了！"
+        
+        【痛点引入】（30秒-1分钟）
+        "大家有没有想过这些问题：
+        - 看病花了30万，医保只报了10万怎么办？
+        - 万一发生意外，家庭收入中断怎么办？
+        - 孩子教育金、自己的养老金，存够了吗？
+        
+        如果你有这些担忧，今天的直播一定要认真看完！"
+        
+        【话题预告】（1-2分钟）
+        "今天我会分享：
+        1. 家庭保障配置的3大原则
+        2. 不同收入水平的配置方案
+        3. 常见误区和避坑指南
+        
+        记得点关注，直播结束后还有专属福利哦！"
+        """
+    },
+    
+    "产品讲解话术": {
+        "product_type": "重疾险",
+        "script": """
+        【痛点引入】
+        "大家知道吗？重大疾病的平均治疗费用是30-50万，
+        但很多人的医保只能覆盖一部分。
+        
+        而且患病期间，不仅没有收入，
+        还要支付康复费用、营养费用...
+        这些医保都不管！"
+        
+        【产品介绍】
+        "所以今天给大家推荐这款{产品名}：
+        
+        ✨【保障全面】
+        - 覆盖{疾病数量}种重疾
+        - {轻症数量}种轻症
+        - 保费豁免：确诊即免后续保费
+        
+        ✨【保额充足】
+        - 基础保额{基础保额}万
+        - 重疾额外赔{额外比例}%
+        
+        ✨【服务贴心】
+        - {服务内容}
+        - {增值服务}"
+        
+        【价格锚定】
+        "可能有人觉得贵，
+        但算下来每天只需要{每日保费}元，
+        不到一顿饭钱，就能换来{保额}万保障。
+        
+        想想看，万一发生风险，
+        这笔钱是不是能救命？"
+        
+        【合规提醒】
+        "当然，投保前一定要认真阅读健康告知，
+        如实告知自己的身体情况。
+        具体的保障条款以保险合同为准。
+        有什么问题可以在评论区留言！"
+        """
+    }
+}
 ```
+
+### 2. Compliance Guidelines / 合规指南
+
+```markdown
+## 保险直播合规要点
+
+### 必须包含的表述
+
+| 类型 | 表述 |
+|-----|------|
+| **风险提示** | "投资有风险，保险保障请详阅条款" |
+| **费用说明** | "保费以实际投保页面为准" |
+| **等待期说明** | "产品有等待期，具体以条款为准" |
+| **健康告知** | "投保前请认真阅读健康告知，如实告知" |
+| **犹豫期** | "产品有犹豫期，15天内可退保" |
+| **除外责任** | "某些情况下不予赔付，详见条款" |
+
+### 禁止表述清单
+
+| 禁止 | 替代表述 |
+|-----|---------|
+| "什么都赔" | "符合条款约定的保障范围即可赔付" |
+| "比银行利息高" | "保险主要提供风险保障" |
+| "存钱送保障" | "储蓄型保险兼顾保障和储蓄功能" |
+| "保证续保到XX岁" | "条款约定的续保条件" |
+| "确诊即赔" | "达到条款约定的疾病定义即可申请理赔" |
+| "小公司不可靠" | "所有保险公司都受银保监会监管" |
+```
+
+### 话术合规检查
+
+```python
+COMPLIANCE_CHECK = {
+    "check_items": [
+        {"keyword": "什么都赔", "risk": "高", "action": "替换为具体保障范围描述"},
+        {"keyword": "保证", "risk": "中", "action": "确认是否有条款依据"},
+        {"keyword": "确诊即赔", "risk": "高", "action": "改为'符合条款疾病定义赔付'"},
+        {"keyword": "收益高于存款", "risk": "高", "action": "强调保障功能，弱化收益"},
+        {"keyword": "公司背景", "risk": "中", "action": "仅陈述客观事实，不得贬低同业"}
+    ]
+}
+```
+
+### 3. Audience Engagement / 观众互动
+
+```python
+ENGAGEMENT_TEMPLATES = {
+    "回答问题": {
+        "通用类": """
+        "这位朋友问：{问题}
+        
+        这个问题很好，我来解答一下：
+        {回答}
+        
+        如果还有疑问，欢迎继续提问！"
+        """,
+        
+        "价格类": """
+        "这位朋友关心价格问题。
+        
+        保费是根据年龄、保额、保障期限等因素来计算的。
+        您可以告诉我您的年龄，我帮您算一下大概的保费？"
+        """,
+        
+        "对比类": """
+        "这位朋友问和XX产品对比。
+        
+        不同产品有不同的特点，适合不同的人群。
+        主要看您的需求：
+        - 如果您更看重{特点1}，可以选择{产品A}
+        - 如果您更看重{特点2}，可以选择{产品B}
+        
+        不知道自己适合哪款？评论区扣'1'，我帮您分析！"
+        """
+    },
+    
+    "引导关注": {
+        "话术": """
+        "觉得今天的内容有用的话，
+        点个关注不迷路！
+        
+        关注后可以：
+        ✅ 第一时间收到保险知识
+        ✅ 获取专属保险配置方案
+        ✅ 参与直播专属活动
+        
+        评论区扣'666'，告诉你一个好消息！"
+        """
+    }
+}
+```
+
+### 4. Sales Conversion / 销售转化
+
+```python
+CONVERSION_STRATEGIES = {
+    "限时优惠": {
+        "设计": """
+        【限时优惠话术】
+        "今天直播间的专属福利来了！
+        
+        只要在{时间段}内投保，
+        可以享受：
+        🎁 保费折扣{比例}%
+        🎁 赠送增值服务（价值{金额}元）
+        🎁 专属核保宽松政策
+        
+        名额仅限{数量}位，
+        先到先得！"
+        """,
+        "紧迫感营造": [
+            "倒计时：距离优惠结束还有X分钟",
+            "数量限制：已有名额被抢",
+            "身份限定：仅直播间粉丝专享"
+        ]
+    },
+    
+    "私域引流": {
+        "引流路径": """
+        直播间 → 评论区 → 私信 → 企微/社群 → 1v1服务
+        """,
+        "话术": """
+        "今天时间有限，没办法一一回答大家的问题。
+        
+        感兴趣的宝宝们，
+        点击评论区置顶链接，
+        添加我的企业微信，
+        我拉您进专属服务群，
+        享受：
+        ✅ 1对1保险规划
+        ✅ 产品详细对比表
+        ✅ 专属优惠第一手通知
+        
+        记得备注'保险直播'哦！"
+        """
+    }
+}
+```
+
+---
+
+## Disclaimer
+
+This skill provides insurance live streaming tools for educational purposes. All insurance sales activities must comply with applicable insurance regulations and advertising requirements.
+
+---
+
+## 附录G：阿里点金(Dianjin)融合精华 — 社媒营销与客户关怀话术
+
+### G.1 核心工作流程（Dianjin融合版）
+
+#### 步骤1：客户关怀话术生成
+| 场景类型 | 话术要点 | 输出成果 |
+|---------|---------|---------|
+| **节日关怀** | 节日祝福、情感连接、软性提醒 | 节日关怀话术文案 |
+| **生日关怀** | 生日祝福、年龄里程碑、保障提醒 | 生日关怀话术文案 |
+| **事件驱动** | 人生事件、保障需求触发 | 事件驱动关怀话术文案 |
+| **日常维护** | 日常问候、价值分享、关系维护 | 日常维护话术文案 |
+
+#### 步骤2：市场事件解读
+| 事件类型 | 解读要点 | 客户沟通要点 |
+|---------|---------|---------|
+| **市场波动** | 原因分析、影响评估、应对策略 | 安抚情绪、长期视角、配置调整建议 |
+| **政策变化** | 政策解读、影响分析、机会识别 | 政策红利、配置方向、产品推荐 |
+| **行业热点** | 热点分析、投资机会、风险提示 | 热点关联、投资机会、适当性提醒 |
+
+#### 步骤3：社媒内容创作
+- **朋友圈内容**：专业+生活平衡、价值输出、互动引导
+- **小红书/抖音**：短视频脚本、图文笔记、话题标签
+- **微信公众号**：深度文章、行业分析、客户教育
+
+#### 步骤4：效果追踪与优化
+- **互动指标**：点赞/评论/转发/私信咨询量
+- **转化指标**：咨询量、约访量、成交率
+- **优化迭代**：内容优化、发布时间优化、互动策略优化
+
+---
+
+### G.2 风险评分机制（Dianjin精髓）
+
+| 风险维度 | 评分指标 | 权重 | 风险阈值 |
+|---------|---------|------|---------|
+| 合规风险 | 话术合规性、披露完整性 | 30% | 话术违规或披露不完整 |
+| 声誉风险 | 内容专业性、客户反馈 | 25% | 内容不专业或客户负面反馈 |
+| 销售风险 | 销售适当性、客户需求匹配 | 20% | 销售不当或需求不匹配 |
+| 隐私风险 | 客户信息保护、发布合规 | 15% | 客户信息泄露或发布违规 |
+| 竞争风险 | 竞品对比合规性、商业机密 | 10% | 竞品对比违规或商业机密泄露 |
+
+**综合风险等级**：
+- 低风险（0-20分）：内容合规，正常发布
+- 中风险（21-40分）：内容基本合规，关注合规细节
+- 高风险（41-60分）：内容存在合规风险，修改后发布
+- 极高风险（61-80分）：内容严重违规，禁止发布并上报合规
+
+---
+
+### G.3 合规约束（Dianjin精髓）
+
+1. **不适用边界**：本技能不适用于法律建议、投资咨询，此类需求需转交法律或投资专业人士
+2. **禁止承诺**：不使用"一定涨""guaranteed return"等承诺性表述
+3. **禁止替代决策**：仅输出内容建议，最终发布决策由合规审核人员出具
+4. **数据溯源**：市场数据、政策依据必须标注来源和日期
+5. **隐私保护**：客户信息、互动记录必须保密
+6. **客观中立**：内容不得误导客户，须客观呈现风险与机会
+
+---
+
+### G.4 测试用例（Dianjin精髓）
+
+| 用例ID | 输入场景 | 预期输出 | 验证点 |
+|--------|---------|---------|---------|
+| TC001 | 市场大跌5%，客户焦虑，需安抚并解读 | 合规话术：安抚情绪+长期视角+配置建议，无承诺性表述 | 话术合规、情绪安抚到位 |
+| TC002 | 客户生日，45岁，需生日关怀话术 | 合规话术：生日祝福+年龄里程碑+保障提醒，无销售 push | 话术温暖、适当提醒 |
+| TC003 | 朋友圈发布产品推荐，需合规审核 | 极高风险（70分），话术含"一定涨"违规表述，禁止发布 | 合规风险识别准确 |
+
+---
+
+### G.5 关联技能（Dianjin精髓）
+
+- **保险代理人**（`insurance-agent-trainer`）：提供客户画像、保障缺口分析、计划书生成
+- **保险理赔专家**（`insurance-claims-intelligence`）：提供理赔材料分析、责任认定、欺诈检测
+- **财富管理投顾**（`finance-ai-strategy`）：提供策略日报、板块配置、投资建议
+
+---
+
+*融合来源：阿里点金(Dianjin) wealth-copilot/L2-2_outreach*
+*融合时间：2026-05-31*

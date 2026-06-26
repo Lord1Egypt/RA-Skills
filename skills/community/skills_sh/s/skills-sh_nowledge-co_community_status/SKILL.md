@@ -1,35 +1,32 @@
 ---
-name: "status"
-description: "Indexed by skills.sh from nowledge-co/community"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nowledge-co"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nowledge-co/community/status"
-sourceUrl: "https://skills.sh/nowledge-co/community/status"
+name: status
+description: Check whether Nowledge Mem is reachable and working. Trigger when memory commands fail, the user asks about Mem status, or during first-time setup.
 ---
 
-# status
+Quick health check: is Nowledge Mem running, reachable, and configured correctly?
 
-> Indexed by skills.sh from nowledge-co/community
+## Command
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nowledge-co
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nowledge-co/community/status`
-- **Source URL:** [https://skills.sh/nowledge-co/community/status](https://skills.sh/nowledge-co/community/status)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/nowledge-co/community/status
+nmem --json status
 ```
+
+## Interpretation
+
+- If healthy, report briefly (mode, server version, memory count) and continue.
+- If unreachable, suggest checking:
+  1. **Local mode**: Is the Nowledge Mem desktop app running?
+  2. **Remote mode**: Is `~/.nowledge-mem/config.json` configured correctly?
+  3. **Auth errors**: Is the API key valid?
+
+## When to use
+
+- Memory commands are returning errors.
+- User asks "is Mem working?" or similar.
+- First time using Nowledge Mem in a new environment.
+- After changing configuration.
+
+## Links
+
+- [Getting started](https://mem.nowledge.co/docs)
+- [Remote access setup](https://mem.nowledge.co/docs/remote-access)

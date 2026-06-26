@@ -1,0 +1,8 @@
+# Core — Edge TTS (online, free)
+edge-tts>=6.1.0
+
+# Qwen TTS (local MLX model) — only needed for `make tts-qwen` / `make pipeline-qwen`
+# Install these in your conda/venv environment:
+# mlx-audio>=0.2.0
+# soundfile>=0.12.0
+# numpy>=1.24.0

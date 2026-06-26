@@ -1,0 +1,457 @@
+{
+  "name": "ai-restaurant",
+  "display_name": "智慧餐饮",
+  "description": "通过自然语言交互实现餐厅查询、点餐、订桌、外卖、排队等全流程餐饮服务",
+  "version": "0.1.0",
+  "author": "AI Restaurant Team",
+  "maintainer": "dawangda",
+  "contact": {
+    "email": "contact@ai-restaurant.cloud"
+  },
+  "license": "PROPRIETARY",
+  "private": true,
+  "visibility": "private",
+  "category": "餐饮服务",
+  "access_control": {
+    "type": "invite_only",
+    "allowed_channels": ["feishu", "wechat", "qq"]
+  },
+  "security": {
+    "tls_required": true,
+    "auth_method": "ip_whitelist",
+    "data_retention": "30_days",
+    "privacy_policy": "https://clawhub.ai/dawangda/ai-restaurant/privacy",
+    "note": "生产环境使用 HTTPS/TLS 加密传输。独立域名 www.airesistant.com，Let's Encrypt SSL 证书。用户数据（手机号、地址、订单）仅用于订单处理，不存储超过 30 天。"
+  },
+  "keywords": [
+    "餐厅",
+    "点餐",
+    "订桌",
+    "外卖",
+    "排队",
+    "菜单",
+    "餐饮",
+    "美食",
+    "预订",
+    "会员"
+  ],
+  "mcp_server": {
+    "transport": "streamable-http",
+    "url": "https://132.33.3.231/mcp",
+    "config": {
+      "timeout": 30000,
+      "retry": 3
+    },
+    "security_note": "生产环境使用 HTTPS/TLS 加密传输。独立域名 www.airesistant.com，Let's Encrypt SSL 证书。"
+  },
+  "tools": [
+    {
+      "name": "get_restaurant_info",
+      "display_name": "餐厅基本信息",
+      "description": "查询餐厅基本信息，包括地址、营业时间、电话、Wi-Fi 等。无需参数，直接返回当前餐厅的完整信息。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": {
+            "type": "string",
+            "description": "餐厅 ID，从上下文自动获取"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_menu",
+      "display_name": "获取菜单",
+      "description": "获取餐厅菜单。可按类别筛选（如饺子、凉菜、热菜、饮品），不传参数返回全部菜单。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": {
+            "type": "string",
+            "description": "餐厅 ID"
+          },
+          "category": {
+            "type": "string",
+            "description": "菜品类别，如'饺子'、'凉菜'、'热菜'、'饮品'",
+            "enum": ["饺子", "凉菜", "热菜", "烧烤", "饮品", "全部"]
+          }
+        },
+        "required": ["restaurant_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_menu_item_detail",
+      "display_name": "菜品详情",
+      "description": "获取单个菜品的详细信息，包括食材、口味、热量、过敏原、制作方式等。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "menu_item_id": {
+            "type": "string",
+            "description": "菜品 ID"
+          }
+        },
+        "required": ["menu_item_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "create_order",
+      "display_name": "创建订单",
+      "description": "创建堂食或自提订单。需要菜品列表、用餐方式、备注信息。返回订单号、预计等待时间和取餐码。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": {
+            "type": "string",
+            "description": "餐厅 ID"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "用户 ID"
+          },
+          "items": {
+            "type": "array",
+            "description": "菜品列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "menu_item_id": { "type": "string" },
+                "name": { "type": "string" },
+                "quantity": { "type": "integer" },
+                "price": { "type": "number" },
+                "notes": { "type": "string" }
+              },
+              "required": ["menu_item_id", "quantity"]
+            }
+          },
+          "order_type": {
+            "type": "string",
+            "description": "订单类型",
+            "enum": ["dine_in", "takeout", "delivery"]
+          },
+          "notes": {
+            "type": "string",
+            "description": "备注，如'不加香菜'、'少盐'"
+          },
+          "table_number": {
+            "type": "string",
+            "description": "桌号（堂食订单）"
+          }
+        },
+        "required": ["restaurant_id", "user_id", "items", "order_type"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "create_delivery_order",
+      "display_name": "创建外卖订单",
+      "description": "创建外卖配送订单。除菜品外，还需要配送地址、联系电话、配送时间。返回订单号、配送费、预计送达时间。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "menu_item_id": { "type": "string" },
+                "quantity": { "type": "integer" },
+                "notes": { "type": "string" }
+              },
+              "required": ["menu_item_id", "quantity"]
+            }
+          },
+          "delivery_address": {
+            "type": "string",
+            "description": "配送地址"
+          },
+          "contact_phone": {
+            "type": "string",
+            "description": "联系电话"
+          },
+          "delivery_time": {
+            "type": "string",
+            "description": "配送时间，如'尽快'或'2026-04-16 19:00'"
+          }
+        },
+        "required": ["restaurant_id", "user_id", "items", "delivery_address", "contact_phone"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "query_order",
+      "display_name": "查询订单",
+      "description": "查询订单状态和详情。返回订单号、菜品列表、状态、制作进度、预计时间等。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "订单号"
+          }
+        },
+        "required": ["order_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "cancel_order",
+      "display_name": "取消订单",
+      "description": "取消未制作的订单。已制作的订单不可取消。返回取消结果和退款信息。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "订单号"
+          },
+          "reason": {
+            "type": "string",
+            "description": "取消原因"
+          }
+        },
+        "required": ["order_id"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "reserve_table",
+      "display_name": "预订座位",
+      "description": "预订餐厅座位。需要时间、人数、位置偏好、联系方式。返回预订成功信息和订单号。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "reservation_time": {
+            "type": "string",
+            "description": "预订时间，格式：YYYY-MM-DD HH:mm"
+          },
+          "party_size": {
+            "type": "integer",
+            "description": "用餐人数"
+          },
+          "table_type": {
+            "type": "string",
+            "description": "位置类型",
+            "enum": ["hall", "private_room", "window", "any"]
+          },
+          "contact_name": {
+            "type": "string",
+            "description": "联系人姓名"
+          },
+          "contact_phone": {
+            "type": "string",
+            "description": "联系电话"
+          },
+          "notes": {
+            "type": "string",
+            "description": "备注"
+          }
+        },
+        "required": ["restaurant_id", "user_id", "reservation_time", "party_size", "contact_phone"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "take_queue_number",
+      "display_name": "排队取号",
+      "description": "在线排队取号。返回排队号码、前方等待桌数、预计等待时间。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "party_size": {
+            "type": "integer",
+            "description": "用餐人数"
+          }
+        },
+        "required": ["restaurant_id", "user_id", "party_size"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "query_queue_status",
+      "display_name": "查询排队状态",
+      "description": "查询当前排队状态，包括排队号码、前方等待桌数、预计时间。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "queue_id": {
+            "type": "string",
+            "description": "排队订单 ID"
+          }
+        },
+        "required": ["queue_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_member_info",
+      "display_name": "会员信息",
+      "description": "查询会员信息，包括等级、积分、优惠券、消费记录。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "用户 ID"
+          }
+        },
+        "required": ["user_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "submit_feedback",
+      "display_name": "提交反馈",
+      "description": "提交评价或反馈。包括评分、评价内容、图片（可选）。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "订单号（可选，关联订单评价）"
+          },
+          "rating": {
+            "type": "integer",
+            "description": "评分，1-5 星",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "content": {
+            "type": "string",
+            "description": "评价内容"
+          },
+          "type": {
+            "type": "string",
+            "description": "反馈类型",
+            "enum": ["review", "complaint", "suggestion"]
+          }
+        },
+        "required": ["rating", "content"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "recommend_dishes",
+      "display_name": "菜品推荐",
+      "description": "基于用户偏好和历史订单推荐菜品。可指定人数、口味偏好、价格范围。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "restaurant_id": { "type": "string" },
+          "user_id": { "type": "string" },
+          "party_size": {
+            "type": "integer",
+            "description": "用餐人数"
+          },
+          "preferences": {
+            "type": "array",
+            "description": "口味偏好",
+            "items": { "type": "string" }
+          },
+          "price_range": {
+            "type": "string",
+            "description": "价格范围",
+            "enum": ["low", "medium", "high", "any"]
+          }
+        },
+        "required": ["restaurant_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "brand_prompt": {
+    "system_instruction": "你是餐厅的 AI 服务助手。用自然、亲切、像朋友一样的语气和用户对话。不要使用机器人式的套话。回答具体信息时必须调用 MCP 工具获取实时数据，不得编造。用户提到点餐、订桌、排队等操作时，信息不完整要主动追问，一次只问一个问题。操作前必须和用户确认。",
+    "tone": {
+      "personality": "warm_and_friendly",
+      "avoid": ["营销套话", "生硬回复", "机器人语气", "过度承诺"]
+    }
+  },
+  "channels": {
+    "supported": ["feishu", "wechat", "qq", "telegram"],
+    "default": "feishu",
+    "feishu": {
+      "bot_name": "智慧餐饮",
+      "install_url": "https://clawhub.ai/dawangda/ai-restaurant?channel=feishu"
+    }
+  },
+  "install": {
+    "method": "qr_code",
+    "clawhub_url": "https://clawhub.ai/dawangda/ai-restaurant",
+    "feishu_qr": "https://clawhub.ai/dawangda/ai-restaurant?channel=feishu&auto_install=1"
+  }
+}

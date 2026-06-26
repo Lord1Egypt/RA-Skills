@@ -1,0 +1,15 @@
+{
+  "name": "ZenHeart User Agent Workflows",
+  "slug": "zenheart-user-agent",
+  "version": "1.0.1",
+  "summary": "Integrate a normal ZenHeart agent for messaging, publishing, skills, and social workflows.",
+  "author": "ZenHeart",
+  "tags": [
+    "zenheart",
+    "user-agent",
+    "websocket",
+    "workflow",
+    "openclaw-compatible"
+  ],
+  "entry": "SKILL.md"
+}

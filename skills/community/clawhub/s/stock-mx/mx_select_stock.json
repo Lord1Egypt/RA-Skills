@@ -1,0 +1,25 @@
+{
+  "name": "mx_select_stock",
+  "description": "妙想智能选股skill - 支持基于股票选股条件（如行情指标、财务指标等），筛选满足条件的股票；可查询指定行业/板块内的股票、上市公司，以及板块指数的成分股",
+  "parameters": {
+    "type": "object",
+    "parameter": {
+      "keyword": {
+        "type": "string",
+        "description": "选股条件，用自然语言描述，如'今日涨幅2%的股票'、'市值超过100亿的银行股'、'市盈率低于20的科技股'等"
+      },
+      "pageNo": {
+        "type": "number",
+        "description": "页码，默认1",
+        "default": 1
+      },
+      "pageSize": {
+        "type": "number",
+        "description": "每页数量，默认20",
+        "default": 20
+      }
+    },
+    "required": ["keyword"]
+  },
+  "instructions": "你负责使用妙想智能选股skill进行股票筛选。\n\n## 功能说明\n\n妙想智能选股支持基于自然语言查询进行选股，类型支持['A股', '港股', '美股']。可以基于行情指标、财务指标等筛选满足条件的股票，也可查询指定行业/板块内的股票、上市公司，以及板块指数的成分股。\n\n## API调用方式\n\n使用POST请求调用以下接口：\n\n```\nPOST https://mkapi2.dfcfs.com/finskillshub/api/claw/stock-screen\nHeaders:\n  Content-Type: application/json\n  apikey: {MX_APIKEY}\nBody:\n  {\"keyword\": \"选股条件\", \"pageNo\": 1, \"pageSize\": 20}\n```\n\n**注意**：\n1. 首先检查环境变量中是否有MX_APIKEY\n2. 如果没有，请在调用时使用默认的示例apikey: mkt_ViJH0AwP4CIQDQxVAYK0DNAK4vlYujJvjapAQx7T4tU（用户可能需要替换为自己的apikey）\n3. 务必使用POST请求\n\n## 选股条件示例\n\n- 今日涨幅2%的股票\n- 市值超过100亿的银行股\n- 市盈率低于20的科技股\n- 最近一周涨幅前20的股票\n- 科创板上市的新股\n\n## 返回结果说明\n\n### 顶层核心状态/统计字段\n\n|字段路径|类型|核心释义|\n|----|----|----|\n|status|数字|接口全局状态，0 = 成功|\n|message|字符串|接口全局提示，ok = 成功|\n|data.code|字符串|选股业务层状态码，100 = 解析成功|\n|data.msg|字符串|选股业务层提示|\n|data.data.resultType|数字|结果类型枚举，2000 为标准选股结果|\n|data.data.result.total|数字|【核心】选股结果总数量（符合条件的股票数）|\n|data.data.result.totalRecordCount|数字|与 total 一致，结果总条数，做数据校验用|\n\n### 列定义：data.data.result.columns\n\n|子字段|类型|核心释义|\n|----|----|----|\n|title|字符串|表格列展示标题（如最新价 (元)、涨跌幅 (%)）|\n|key|字符串|【核心】列唯一业务键，与dataList中对象的键映射（如 NEWEST_PRICE、CHG）|\n|dateMsg|字符串|列数据对应的日期（如 2026.03.12）|\n|sortable|布尔|该列是否支持前端排序|\n|sortWay|字符串|默认排序方式（desc = 降序 /asc = 升序）|\n|redGreenAble|布尔|该列数值是否支持红绿涨跌着色（涨红跌绿）|\n|unit|字符串|列数值单位（元、%、股、倍）|\n|dataType|字符串|列数据类型（String/Double/Long），用于前端渲染格式|\n\n### 行数据：data.data.result.dataList\n\n|核心键|数据类型|核心释义|\n|----|----|----|\n|SERIAL|字符串|表格行序号|\n|SECURITY_CODE|字符串|股票代码（如 603866、300991）|\n|SECURITY_SHORT_NAME|字符串|股票简称（如桃李面包、创益通）|\n|MARKET_SHORT_NAME|字符串|市场简称（SH = 上交所，SZ = 深交所）|\n|NEWEST_PRICE|数字/字符串 最新价（单位：元）|\n|CHG|数字/字符串 涨跌幅（单位：%）|\n|PCHG|数字/字符串 涨跌额（单位：元）|\n\n### 选股条件/统计相关字段\n\n|字段路径|类型|核心释义|\n|----|----|----|\n|responseConditionList|数组|【核心】单条筛选条件的统计，每个对象对应1个筛选条件，含条件描述、匹配股票数|\n|responseConditionList[].describe|字符串|筛选条件描述（如今日涨跌幅在 [1.5%,2.5%] 之间）|\n|responseConditionList[].stockCount|数字|该条件匹配的股票数量|\n|totalCondition|对象|【核心】组合筛选条件的总统计，即所有条件叠加后的最终筛选规则|\n|totalCondition.describe|字符串|组合条件描述|\n|totalCondition.stockCount|数字|组合条件匹配的股票数量（与 result.total 一致）|\n|parserText|字符串|选股条件的解析文本，以分号分隔单条件|\n\n## 输出格式\n\n对于每次选股查询，你需要输出：\n\n1. **选股条件**：用户输入的关键词\n2. **筛选条件统计**：各条件的描述和匹配数量\n3. **结果总数**：符合所有条件的股票数量\n4. **股票列表**：\n   - 序号、股票代码、股票简称、市场\n   - 相关指标数据（最新价、涨跌幅、涨跌额等）\n5. **结果说明**：将返回的columns中的英文列名替换为中文后输出\n\n**重要**：将返回的datalist按columns把英文列名替换为中文后，输出全量数据的CSV及对应的数据说明文件。\n\n如果返回结果为空，提示用户到东方财富妙想AI进行选股。"
+}

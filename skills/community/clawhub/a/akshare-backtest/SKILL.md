@@ -1,35 +1,143 @@
 ---
-name: "Akshare Backtest"
-description: "A股量化策略回测工具。基于 AkShare 获取历史行情数据，模拟执行强势股轮动策略。 支持自定义初始资金、回测周期、止盈止损参数。输出收益曲线、买卖记录、月度统计。 适用于验证"涨停基因+均线多头+量价配合"等短线策略的历史表现。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/akshare-backtest"
-sourceUrl: "https://clawhub.ai/skills/akshare-backtest"
+name: akshare_backtest
+description: >
+  A股量化策略回测工具。基于 AkShare 获取历史行情数据，模拟执行强势股轮动策略。
+  支持自定义初始资金、回测周期、止盈止损参数。输出收益曲线、买卖记录、月度统计。
+  适用于验证"涨停基因+均线多头+量价配合"等短线策略的历史表现。
+metadata:
+  {
+    "openclaw": {
+      "install": [
+        {
+          "id": "pip-deps",
+          "kind": "python",
+          "package": "akshare",
+          "label": "Install AkShare"
+        },
+        {
+          "id": "pip-deps",
+          "kind": "python",
+          "package": "pandas",
+          "label": "Install Pandas"
+        },
+        {
+          "id": "pip-deps",
+          "kind": "python",
+          "package": "numpy",
+          "label": "Install NumPy"
+        }
+      ]
+    }
+  }
 ---
 
-# Akshare Backtest
+# A股量化策略回测 (AkShare Backtest)
 
-> A股量化策略回测工具。基于 AkShare 获取历史行情数据，模拟执行强势股轮动策略。 支持自定义初始资金、回测周期、止盈止损参数。输出收益曲线、买卖记录、月度统计。 适用于验证"涨停基因+均线多头+量价配合"等短线策略的历史表现。
+基于 AkShare 免费行情数据，实现 A股量化策略的历史回测。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/akshare-backtest`
-- **Source URL:** [https://clawhub.ai/skills/akshare-backtest](https://clawhub.ai/skills/akshare-backtest)
+## 策略说明
 
-## Overview
+### 默认策略：强势股轮动
 
+| 条件 | 说明 |
+|------|------|
+| 涨停基因 | 近5日有涨停，或单日涨幅>7% |
+| 均线多头 | 5日均线>10日均线>20日均线 |
+| 量价配合 | 今日成交量 > 5日均量 × 1.2 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 买卖规则
+
+| 触发条件 | 操作 |
+|----------|------|
+| +5% | 卖出 1/3 |
+| +8% | 再卖出 1/3（剩余1/3继续持有） |
+| +10%以上 | 尾盘不涨停则全部清仓 |
+| -3% | 无条件止损 |
+| 持仓满3天 | 第3天尾盘强制平仓 |
+
+### 仓位管理
+
+- 初始资金：默认 5 万（可配置）
+- 单票仓位：20%-35%
+- 同时持仓：最多 3 只
+- 每日保留 30% 现金
+
+## 安装依赖
+
 ```bash
-hermes skills install clawhub/akshare-backtest
+pip install akshare pandas numpy
 ```
+
+## 使用方法
+
+### 命令行调用
+
+```bash
+python {baseDir}/scripts/backtest.py --capital 50000 --start 20240101 --end 20240630
+```
+
+### 参数说明
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--capital` | 初始资金（元） | 50000 |
+| `--start` | 开始日期（YYYYMMDD） | 20240101 |
+| `--end` | 结束日期（YYYYMMDD） | 当前日期 |
+| `--output` | 输出目录 | miaoxiang/backtest |
+| `--query` | 自然语言参数 | 暂不支持 |
+
+### 示例
+
+```bash
+# 回测2024年全年
+python scripts/backtest.py --capital 100000 --start 20240101 --end 20241231
+
+# 回测2024下半年
+python scripts/backtest.py --start 20240701 --end 20241231
+```
+
+## 输出文件
+
+| 文件 | 说明 |
+|------|------|
+| `daily_values.csv` | 每日净值曲线（日期、现金、持仓市值、总净值、收益率） |
+| `trades.csv` | 全部买卖记录（日期、股票、买卖价、数量、收益率、原因） |
+
+## 结果解读
+
+回测脚本会输出：
+
+```
+========== 回测结果 ==========
+初始资金:     50,000
+最终净值:     58,234
+总收益率:     +16.47%
+年化收益率:   +32.18%
+最大回撤:     -12.35%
+交易次数:     45
+卖出次数:     42
+胜率:         58.5%
+==============================
+```
+
+### 关键指标
+
+- **总收益率**：回测期间累计收益
+- **年化收益率**：折算为年化收益（按250交易日/年）
+- **最大回撤**：从峰值到谷底的最大跌幅
+- **胜率**：盈利交易 / 总卖出次数
+
+## 风险提示
+
+1. **历史不代表未来**：回测结果仅供参考，不构成投资建议
+2. **滑点成本**：实际交易会有滑点，回测可能偏乐观
+3. **流动性风险**：小盘股可能无法按回测价格买入
+4. **手续费**：未计入佣金和印花税（建议手动扣除）
+
+## 扩展方向
+
+- 接入实时行情实现模拟交易
+- 添加大盘择时（沪深300均线过滤）
+- 多策略组合轮动
+- 优化止盈止损参数
+- 接入实盘券商API

@@ -1,0 +1,29 @@
+{
+  "situation_type": "Responding to a rejection of our claim",
+  "responding_to_letters": "SO Letter ref. ABC/2025/123 dated 1 May 2026",
+  "other_side_position": "SO asserts that resequencing of works to accommodate other contractors is the Contractor's risk under Clause 13.2 (Other Contractors) and rejects the EOT notice of 15 April 2026. SO seeks confirmation that no time/cost claim will follow.",
+  "trigger_event": "Contractor was unable to commence Zone B works on planned date due to another contractor's late completion of preceding works. EOT notice issued 15 April 2026 within the contractual notice period. SO acknowledged receipt 17 April 2026 but did not respond on entitlement until 1 May 2026.",
+
+  "in_scope": "Disagreement with characterisation of Clause 13.2; reservation of rights on cost; confirmation that detailed particulars will follow",
+  "out_of_scope": "Quantification of cost (records still being collated); specific zones beyond Zone B; naming the other contractor",
+  "future_claims_to_preserve": "Prolongation cost claim; disruption claim if records support it; any further EOT arising from the same cause",
+
+  "primary_argument": "The delay arises from an act of the Employer (failure to coordinate other contractors and a subsequent SO instruction), not from a risk allocated to the Contractor under Clause 13.2.",
+  "fallback_argument": "Even if Clause 13.2 applied in ordinary terms, the specific facts (length of delay, cause attributable to Employer's instructions to the other contractor) take this case outside the clause's ordinary scope.",
+  "clauses_to_avoid": "Implied term of cooperation (express clause routes are stronger; raising implied terms would weaken the position); frustration / impossibility (disproportionate to the facts)",
+
+  "chosen_argument_type": "Textual Interpretation (primary); Factual Distinction (fallback)",
+  "argument_notes": "Clause 13.2 allocates risk for delays caused by other contractors engaged by the Employer in the ordinary course. The wording does not extend to delays caused by the Employer's own subsequent instructions varying another contractor's sequence. Fallback: the resequencing was directed by the SO's instruction dated 10 March 2026, properly characterised as an Employer's act under the EOT clause.",
+
+  "state_precisely": "Clause references; EOT notice date (15 April 2026); SO instruction date (10 March 2026)",
+  "keep_general": "Operational impact on Zone B sequencing; resource redeployment effort",
+  "defer_items": "Quantum of prolongation cost; detailed delay analysis (TIA / Windows); identification of specific resources affected",
+
+  "chosen_pattern": "Risk Allocation Rebuttal",
+  "architecture_notes": "1. Acknowledge SO's letter and the ordinary application of Clause 13.2. 2. Distinguish the present facts (SO instruction, not ordinary course). 3. Apply the EOT clause (Employer's act). 4. Confirm detailed particulars and quantum to follow. 5. Reserve rights expressly. 6. Close cooperatively.",
+
+  "counter_arguments": "SO may rely on the absence of a contemporaneous record characterising the 10 March instruction as a formal variation. SO may argue the Contractor failed to mitigate by not redeploying resources earlier.",
+  "weak_points": "Records of resource redeployment cost are incomplete. The programme update reflecting the impact was issued late.",
+  "timing_risks": "21-day response window is tight; substantive response must precede full quantification. Limitation period for formal claim begins to run on receipt of SO determination.",
+  "response_deadline": "21 days from receipt of SO letter (approx. 22 May 2026)"
+}

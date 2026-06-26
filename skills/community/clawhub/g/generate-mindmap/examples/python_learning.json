@@ -1,0 +1,55 @@
+{
+  "central": "Python 学习路径",
+  "branches": [
+    {
+      "label": "基础语法",
+      "color": "#4A90D9",
+      "children": [
+        {"label": "数据类型", "children": ["int/float", "str", "list/tuple", "dict/set"]},
+        {"label": "控制流", "children": ["if/elif/else", "for/while", "break/continue"]},
+        {"label": "函数", "children": ["定义与调用", "参数类型", "lambda", "装饰器"]},
+        "模块与包"
+      ]
+    },
+    {
+      "label": "面向对象",
+      "color": "#27AE60",
+      "children": [
+        {"label": "类与对象", "children": ["属性", "方法", "__init__"]},
+        {"label": "继承", "children": ["单继承", "多继承", "super()"]},
+        "封装与多态",
+        "魔术方法"
+      ]
+    },
+    {
+      "label": "常用库",
+      "color": "#E86C3A",
+      "children": [
+        {"label": "数据处理", "children": ["NumPy", "Pandas", "Polars"]},
+        {"label": "可视化", "children": ["Matplotlib", "Seaborn", "Plotly"]},
+        {"label": "Web 框架", "children": ["FastAPI", "Django", "Flask"]},
+        {"label": "AI/ML", "children": ["PyTorch", "scikit-learn", "transformers"]}
+      ]
+    },
+    {
+      "label": "工程实践",
+      "color": "#9B59B6",
+      "children": [
+        {"label": "项目管理", "children": ["虚拟环境", "依赖管理", "pyproject.toml"]},
+        {"label": "代码质量", "children": ["类型注解", "linting", "格式化"]},
+        {"label": "测试", "children": ["pytest", "unittest", "mock"]},
+        "CI/CD"
+      ]
+    },
+    {
+      "label": "进阶专题",
+      "color": "#00BCD4",
+      "children": [
+        {"label": "并发编程", "children": ["多线程", "多进程", "asyncio"]},
+        {"label": "性能优化", "children": ["Cython", "numba", "profiling"]},
+        "元编程",
+        "设计模式"
+      ]
+    }
+  ]
+}

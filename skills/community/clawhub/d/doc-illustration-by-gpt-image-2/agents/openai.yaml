@@ -1,0 +1,6 @@
+interface:
+  display_name: "Doc Illustration"
+  short_description: "Generate technical doc illustrations"
+  default_prompt: "Use $doc-illustration to create a polished technical illustration for this document."
+policy:
+  allow_implicit_invocation: true

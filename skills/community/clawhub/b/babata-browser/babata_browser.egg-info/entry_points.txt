@@ -1,0 +1,2 @@
+[console_scripts]
+babata-browser = scripts.babata_browser:main_cli

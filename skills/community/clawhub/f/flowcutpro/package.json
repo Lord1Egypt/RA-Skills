@@ -1,0 +1,13 @@
+{
+  "name": "flowcutpro",
+  "version": "1.0.0",
+  "description": "AI cinematic video production powered by Google Veo 3. Turn any concept into a stitched multi-shot video with one command. LLM plans shots, Veo 3 renders, ffmpeg stitches.",
+  "author": "flowverse",
+  "tags": ["video", "veo3", "cinematic", "reels", "tiktok", "content", "production", "ai-video"],
+  "main": "SKILL.md",
+  "scripts": {
+    "generate": "python3 scripts/flowcutpro.py"
+  },
+  "keywords": ["video generation", "veo3", "cinematic", "reels", "tiktok", "hotel", "commercial"],
+  "license": "MIT"
+}

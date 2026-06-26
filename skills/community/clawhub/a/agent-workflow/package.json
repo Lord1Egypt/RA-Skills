@@ -1,0 +1,26 @@
+{
+  "name": "@kangyishuai/agent-workflow",
+  "version": "1.1.0",
+  "description": "A structured workflow plugin for OpenClaw agents \u2014 brainstorm, plan, execute, verify, and deliver with persistent state and multi-project support.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "keywords": [
+    "workflow",
+    "planning",
+    "execution",
+    "agent",
+    "productivity"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.48"
+  },
+  "devDependencies": {
+    "openclaw": "^2026.3.24",
+    "typescript": "^6.0.2"
+  }
+}

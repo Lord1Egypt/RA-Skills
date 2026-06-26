@@ -1,0 +1,22 @@
+{
+  "rules": [
+    {
+      "id": "rule_001",
+      "name": "欧洲航线特价预警",
+      "enabled": true,
+      "pol": ["SHANGHAI", "NINGBO", "YANTIAN"],
+      "pod": ["LONDON GATEWAY", "BREMERHAVEN", "WILHELMSHAVEN", "GOTHENBURG", "ANTWERP", "LE HAVRE", "ROTTERDAM", "HAMBURG", "GDANSK"],
+      "carriers": ["MSK", "HPL"],
+      "thresholds": {
+        "20GP": 1400,
+        "40GP": 2400,
+        "40HQ": 2400
+      },
+      "valid_period": {
+        "start": "2026-03-30",
+        "end": "2026-04-05"
+      },
+      "description": "欧洲主要港口运价低于阈值时预警"
+    }
+  ]
+}

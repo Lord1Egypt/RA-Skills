@@ -1,0 +1,4 @@
+interface:
+  display_name: "Browser Proof"
+  short_description: "Capture browser QA and debugging evidence as a reusable bundle with steps, artifacts, and a report"
+  default_prompt: "Use $browser-proof to initialize a browser-proof session, append evidence-backed steps, check the bundle, and render a markdown report I can share. For Chrome extension reviews, record the exact ZIP or unpacked extension path, manifest version, Chrome version, action clicked, selected text or input source, API availability, and observed result."

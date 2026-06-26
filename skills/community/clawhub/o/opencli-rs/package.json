@@ -1,0 +1,39 @@
+{
+  "name": "openclaw-skill-opencli",
+  "version": "1.0.0",
+  "description": "OpenCLI integration skill for OpenClaw - Universal CLI Hub for websites and desktop apps",
+  "main": "SKILL.md",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "opencli",
+    "automation",
+    "cli",
+    "ai-agent",
+    "browser-automation",
+    "desktop-automation"
+  ],
+  "author": "OpenClaw Skill Creator",
+  "license": "MIT",
+  "dependencies": {
+    "@jackwener/opencli": "latest"
+  },
+  "scripts": {
+    "install": "./install.sh",
+    "test": "./examples/basic-usage.sh",
+    "collect": "./examples/collect-hot-content.sh",
+    "cursor": "./examples/automate-cursor.sh",
+    "download": "./examples/download-content.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.sh",
+    "examples/",
+    "config/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jackwener/opencli.git"
+  }
+}

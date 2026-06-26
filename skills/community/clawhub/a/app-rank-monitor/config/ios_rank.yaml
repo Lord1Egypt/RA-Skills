@@ -1,0 +1,45 @@
+# iOS 榜单监控配置
+
+# 钉钉机器人 Webhook
+dingtalk_webhook: "https://oapi.dingtalk.com/robot/send?access_token=0aed7282c0f514c096d8b000647a8896d0ef491d57fc682dfdefdf47d5d0d760"
+
+# 榜单配置
+rankings:
+  # iOS 免费榜（v2 API - 中国区）
+  - type: "top-free"
+    name: "iOS 免费榜"
+    report_name: "📱 iOS 免费榜"
+    limit: 100
+    api_version: "v2"
+  
+  # iOS 付费榜（v2 API - 中国区）
+  - type: "top-paid"
+    name: "iOS 付费榜"
+    report_name: "💰 iOS 付费榜"
+    limit: 100
+    api_version: "v2"
+  
+  # iOS 新上架应用（v1 API - 中国区 iTunes）
+  # ⚠️ 注意：必须使用 v1 API，v2 API 不支持新上架榜
+  - type: "newapplications"
+    name: "iOS 新上架应用"
+    report_name: "🆕 iOS 新上架应用"
+    limit: 100
+    api_version: "v1"
+
+# 常用 Genre ID 参考（如需按分类爬取）
+# 6014 - 商务
+# 6015 - 工具
+# 6016 - 娱乐
+# 6017 - 财务
+# 6018 - 游戏
+# 6020 - 教育
+# 6021 - 图形与设计
+# 6022 - 健康与健身
+# 6023 - 新闻
+# 6024 - 摄影与录像
+# 6026 - 音乐
+# 6027 - 导航
+# 6028 - 社交
+# 6029 - 体育
+# 6030 - 旅游

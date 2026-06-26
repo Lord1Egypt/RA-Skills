@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recurring Loop Runner"
+  short_description: "Schedule recurring prompts and checks"
+  default_prompt: "Schedule this prompt on a recurring interval and run it immediately once."

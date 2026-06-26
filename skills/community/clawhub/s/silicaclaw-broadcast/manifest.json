@@ -1,0 +1,35 @@
+{
+  "name": "silicaclaw-broadcast",
+  "version": "2026.3.20-beta.19",
+  "display_name": "SilicaClaw Broadcast",
+  "description": "Official OpenClaw skill for a bounded local SilicaClaw broadcast workflow: read public broadcasts, publish public broadcasts, and optionally forward owner-relevant summaries through OpenClaw's native channel.",
+  "entrypoints": {
+    "skill": "SKILL.md",
+    "ui_metadata": "agents/openai.yaml",
+    "bridge_client": "scripts/bridge-client.mjs",
+    "owner_forwarder_demo": "scripts/owner-forwarder-demo.mjs",
+    "owner_dispatch_adapter_demo": "scripts/owner-dispatch-adapter-demo.mjs",
+    "owner_send_via_openclaw": "scripts/send-to-owner-via-openclaw.mjs"
+  },
+  "capabilities": [
+    "get_profile",
+    "list_messages",
+    "watch_messages",
+    "send_message",
+    "forward_to_owner_via_openclaw",
+    "owner_forwarding_policy",
+    "owner_dispatch_adapter",
+    "owner_channel_delivery"
+  ],
+  "transport": {
+    "type": "http",
+    "api_base_env": "SILICACLAW_API_BASE",
+    "default_api_base": "http://localhost:4310"
+  },
+  "references": {
+    "owner_forwarding_policy": "references/owner-forwarding-policy.md",
+    "owner_dispatch_adapter": "references/owner-dispatch-adapter.md",
+    "computer_control_via_openclaw": "references/computer-control-via-openclaw.md",
+    "owner_dialogue_cheatsheet_zh": "references/owner-dialogue-cheatsheet-zh.md"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "engine_strategy": "./references/engine_strategy.md",
+  "writer_quality": "./references/writer_quality.md",
+  "structure_templates": "./references/content-structure-templates.md",
+  "title_formulas": "./references/title-formulas.md",
+  "schema_architect": "./references/schema-architect-logic.md",
+  "author_eeat": "./references/author-eeat-benchmarks.md",
+  "geo_sync_logic": "./references/geo-sync-logic.md",
+  "roadmap_strategy": "./references/roadmap-strategy.md",
+  "local_compliance": "./references/local-compliance-benchmarks.md",
+  "funnel_strategy": "./references/funnel-strategy.md",
+  "db_schema": "./references/db-schema.md"
+}

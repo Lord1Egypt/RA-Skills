@@ -1,0 +1,14 @@
+{
+  "name": "mkisofs",
+  "version": "1.0.1",
+  "description": "ISO Image Creation skill | ISO 镜像创建技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["mkisofs", "iso", "xorriso", "bootable", "image"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["iso", "mkisofs", "xorriso", "bootable", "media"],
+    "icon": "💿"
+  }
+}

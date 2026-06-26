@@ -1,0 +1,27 @@
+{
+  "skill_name": "analyst-report-pressure-test",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Pressure test this. [attaches sell-side downgrade report PDF for consumer staples issuer]",
+      "expected_output": "An interactive HTML report with 5 argument sections, Chart.js charts, amber/cyan source attribution, provenance hyperlinks to deepKPI URLs, and a 2-paragraph synthesis. Should identify the issuer CIK, use fiscal quarters ending Jun 30, and pull segment-level data before consolidated.",
+      "files": ["/sessions/[REDACTED]/mnt/uploads/[REDACTED]-sell-side-downgrade-report.pdf"],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "prompt": "I uploaded a sell-side note on a major restaurant chain. Can you critically analyze the key arguments and pull actual SEC data to support or challenge them?",
+      "expected_output": "Should recognize this as a pressure-test request even without the exact phrase. Should resolve the chain's CIK, pull restaurant-level KPIs (store count, comparable sales, AUV), segment data, and produce the standard HTML report with Revelata branding.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "prompt": "Pressure test this report on a social/tech platform company. [attaches analyst report PDF]",
+      "expected_output": "Should resolve the company's CIK, recognize the tech/social media context, pull ARPU, DAU, revenue by geography, and ad-related KPIs. HTML report with appropriate charts for user growth and monetization trends.",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}
+

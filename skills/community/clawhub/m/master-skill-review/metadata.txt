@@ -1,0 +1,7 @@
+Suggested ClawHub summary:
+A high-permission meta-skill for auditing and improving OpenClaw skills. Local/release name: master-skill-review. It checks whether a skill is too verbose, whether mechanical steps should be scripted, whether token usage can be reduced, and whether defaults vs confirmation boundaries are clear.
+
+Suggested notes:
+- Typical owner: master
+- Permission level: high / local skill-editing access
+- Safe default: back up first, then modify, then show evidence

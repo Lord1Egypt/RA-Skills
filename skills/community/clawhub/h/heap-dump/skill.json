@@ -1,0 +1,14 @@
+{
+  "name": "Heap Dump & Profiler",
+  "description": "内存快照分析（v8 heap snapshot）+ 性能分析（perf_hooks）",
+  "version": "1.0.1",
+  "identifier": "heap-dump",
+  "category": "diagnostics",
+  "tags": [
+    "memory",
+    "profiling",
+    "heap",
+    "performance"
+  ],
+  "author": "c32"
+}

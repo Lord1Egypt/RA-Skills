@@ -1,0 +1,37 @@
+{
+  "slug": "partner-enable-kit",
+  "title": "伙伴赋能包组装师",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "为渠道或合作伙伴生成 enablement 包，按伙伴类型拆分版本与 FAQ。",
+  "inputHint": "伙伴类型、产品范围、目标场景",
+  "sections": [
+    "伙伴画像",
+    "必备资料",
+    "FAQ",
+    "常见阻塞",
+    "版本差异",
+    "更新节奏"
+  ],
+  "useCases": [
+    "伙伴培训",
+    "渠道支持",
+    "销售 enablement"
+  ],
+  "positiveExamples": [
+    "为渠道伙伴做一套 enablement 包",
+    "按伙伴类型拆版本"
+  ],
+  "negativeExamples": [
+    "不要公开内部敏感政策",
+    "不要替代正式合作协议"
+  ],
+  "risk": "输出以资料包结构和文案为主。",
+  "tags": [
+    "partner",
+    "enablement",
+    "channel",
+    "training"
+  ]
+}

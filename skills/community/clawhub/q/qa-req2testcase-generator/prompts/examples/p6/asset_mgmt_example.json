@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.3.0",
+  "requirement_id": "REQ-ASSET-001",
+  "testcases": [
+    {
+      "id": "TC-001",
+      "source_test_point": "TP-001",
+      "fields": {
+        "project": "集团资管系统",
+        "case_type": "测试用例",
+        "case_id": "TC-001",
+        "requirement": "REQ-ASSET-001",
+        "priority": "P0",
+        "title": "公募基金正常申购主流程",
+        "menu_path": "资管/组合管理",
+        "preconditions": "1. 基金经理账号已登录资管系统，具有组合管理查看权限；2. 预置3个测试组合（含股票型/债券型/混合型各1个），通过组合创建接口初始化；3. 资管系统处于正常运行状态",
+        "steps": "1. 投资者登录基金交易客户端\n2. 进入基金产品列表，选择「易方达蓝筹精选」\n3. 输入申购金额 10000 元，确认申购\n4. 系统校验金额合法性并冻结资金\n5. T+1 日系统按 T 日净值确认份额",
+        "expected_results": "1. 登录成功，进入基金交易主页\n2. 产品详情页显示基金名称、净值、费率等信息\n3. 弹出申购确认页，显示金额 10000 元、费率 1.5%、预估费用 150 元\n4. 提示'申购提交成功'，可用余额减少 10000 元，冻结金额增加 10000 元\n5. 持仓新增「易方达蓝筹精选」，确认份额 = (10000 - 150) / 2.5000 = 3940.00 份",
+        "is_smoke": "是",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "正向验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "资管",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-002",
+      "source_test_point": "TP-002",
+      "fields": {
+        "project": "集团资管系统",
+        "case_type": "测试用例",
+        "case_id": "TC-002",
+        "requirement": "REQ-ASSET-001",
+        "priority": "P0",
+        "title": "申购费率分档-50万以下按1.5%",
+        "menu_path": "资管/组合管理",
+        "preconditions": "1. 基金经理账号已登录资管系统，具有组合调仓权限；2. 预置1个测试组合，持仓股票代码600001，持仓数量10000股，通过组合创建接口初始化；3. 资管系统处于交易时段",
+        "steps": "1. 投资者登录基金交易客户端\n2. 选择基金产品，输入申购金额 100000 元\n3. 确认申购，查看费率和费用明细",
+        "expected_results": "1. 登录成功\n2. 申购确认页显示费率 1.5%\n3. 申购费用 = 100000 × 1.5% = 1500 元，实际申购净额 = 98500 元",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "分支验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "资管",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-003",
+      "source_test_point": "TP-002",
+      "fields": {
+        "project": "集团资管系统",
+        "case_type": "测试用例",
+        "case_id": "TC-003",
+        "requirement": "REQ-ASSET-001",
+        "priority": "P0",
+        "title": "申购费率分档-50万以上按1.0%",
+        "menu_path": "资管/组合管理",
+        "preconditions": "1. 风控审核账号已登录资管系统，具有调仓审核权限；2. 预置1条待审核调仓申请（由基金经理账号提交），通过调仓申请接口创建；3. 资管系统处于正常运行状态",
+        "steps": "1. 投资者登录基金交易客户端\n2. 选择基金产品，输入申购金额 600000 元\n3. 确认申购，查看费率和费用明细",
+        "expected_results": "1. 登录成功\n2. 申购确认页显示费率 1.0%\n3. 申购费用 = 600000 × 1.0% = 6000 元，实际申购净额 = 594000 元",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "分支验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "资管",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-004",
+      "source_test_point": "TP-003",
+      "fields": {
+        "project": "集团资管系统",
+        "case_type": "测试用例",
+        "case_id": "TC-004",
+        "requirement": "REQ-ASSET-001",
+        "priority": "P1",
+        "title": "申购金额低于最低限额被拒绝",
+        "menu_path": "资管/组合管理",
+        "preconditions": "1. 基金经理账号已登录资管系统，具有组合管理权限；2. 预置1个测试组合，通过组合创建接口初始化；3. 资管系统处于正常运行状态",
+        "steps": "1. 投资者登录基金交易客户端\n2. 选择基金产品，输入申购金额 500 元\n3. 点击确认申购",
+        "expected_results": "1. 登录成功\n2. 输入金额 500 元\n3. 系统提示'申购金额不得低于 1000 元'，申购请求被拒绝",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "边界验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "资管",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-005",
+      "source_test_point": "TP-004",
+      "fields": {
+        "project": "集团资管系统",
+        "case_type": "测试用例",
+        "case_id": "TC-005",
+        "requirement": "REQ-ASSET-001",
+        "priority": "P1",
+        "title": "申购金额非1000整数倍被拒绝",
+        "menu_path": "资管/组合管理",
+        "preconditions": "1. 使用无组合管理权限的测试账号登录（通过权限管理后台配置）；2. 系统处于正常运行状态；3. 确认该账号在权限系统中未分配组合管理权限",
+        "steps": "1. 投资者登录基金交易客户端\n2. 选择基金产品，输入申购金额 1500 元\n3. 点击确认申购",
+        "expected_results": "1. 登录成功\n2. 输入金额 1500 元\n3. 系统提示'申购金额需按 1000 元递增'，申购请求被拒绝",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "边界验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "资管",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    }
+  ],
+  "statistics": {
+    "total": 5,
+    "smoke_count": 1,
+    "smoke_ratio": 0.2,
+    "by_priority": {
+      "P0": 3,
+      "P1": 2,
+      "P2": 0,
+      "P3": 0
+    }
+  }
+}

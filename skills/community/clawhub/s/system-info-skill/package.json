@@ -1,0 +1,19 @@
+{
+  "name": "system-info",
+  "version": "1.0.0",
+  "description": "快速查询系统信息(CPU、内存、磁盘等),跨平台支持",
+  "keywords": [
+    "system",
+    "info",
+    "cpu",
+    "memory",
+    "disk",
+    "cross-platform"
+  ],
+  "author": "刘锦涛",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "system"
+  }
+}

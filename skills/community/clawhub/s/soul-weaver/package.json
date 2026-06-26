@@ -1,0 +1,43 @@
+{
+  "name": "soul-weaver",
+  "version": "1.0.0",
+  "description": "AI Soul Weaver - 12 Curated Celebrity Templates + Custom Generation. Generate OpenClaw agent configurations through dialog or select from 12 world-famous tech & business leaders.",
+  "main": "index.js",
+  "keywords": [
+    "openclaw",
+    "soul-weaver",
+    "ai",
+    "agent",
+    "configuration",
+    "template",
+    "generator"
+  ],
+  "author": "AI Soul Weaver Team",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anomalyco/ai-soul-weaver"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint .",
+    "build": "node build.js"
+  },
+  "clawhub": {
+    "name": "openclaw-soul-weaver",
+    "version": "1.0.0",
+    "category": "productivity",
+    "permissions": [
+      "network",
+      "filesystem"
+    ]
+  }
+}

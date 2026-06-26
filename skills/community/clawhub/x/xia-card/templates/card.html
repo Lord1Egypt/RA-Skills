@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虾名片 — AgentCard</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --brand: #e8552e;
+      --brand-deep: #c9431f;
+      --brand-light: #fef2ee;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --bg-page: #f4f5f7;
+      --radius-lg: 20px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .card-hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+      padding: 40px 24px 36px;
+      text-align: center;
+    }
+    .card-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0; right: 0;
+      height: 20px;
+      background: #fff;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 30px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .card-hero h1 {
+      font-size: 22px; font-weight: 700; color: #fff;
+      line-height: 1.3; margin-bottom: 4px;
+    }
+    .card-hero .hero-title {
+      font-size: 13px; color: rgba(255,255,255,0.75);
+      font-weight: 400;
+    }
+    .card-body { padding: 20px 24px 8px; text-align: center; }
+    .one-liner {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      justify-content: center;
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 12px;
+      background: var(--brand-light);
+      color: var(--brand-deep);
+      border-radius: 14px;
+      font-size: 12px; font-weight: 500;
+    }
+    .chip-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--brand);
+    }
+    .card-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 16px 24px;
+    }
+    .contact-list { padding: 0 16px; display: flex; flex-direction: column; gap: 6px; }
+    .contact-btn {
+      display: flex; align-items: center; gap: 12px; width: 100%;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border: none; border-radius: 12px;
+      cursor: pointer; font-family: inherit; font-size: 14px;
+      color: var(--text-primary); text-align: left;
+      transition: background 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .contact-btn:hover { background: #f1f5f9; }
+    .contact-btn:active { background: #e8ecf1; transform: scale(0.98); }
+    .contact-btn:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: #fff; border: 1px solid #e2e8f0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .contact-info { flex: 1; min-width: 0; }
+    .contact-label { font-weight: 600; font-size: 13px; display: block; }
+    .contact-hint { font-size: 11px; color: var(--text-muted); display: block; margin-top: 1px; }
+    .contact-arrow { color: #cbd5e1; font-size: 18px; flex-shrink: 0; }
+    .contact-btn.copied { background: #f0fdf4; }
+    .contact-btn.copied .contact-hint { color: #16a34a; }
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px 40px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .card-footer {
+      padding: 16px 24px 20px;
+      text-align: center;
+    }
+    .card-footer .agent-line {
+      font-size: 11px; color: var(--text-muted);
+      display: flex; align-items: center; justify-content: center; gap: 3px;
+    }
+    .card-footer .protocol {
+      margin-top: 4px;
+      font-family: "SF Mono", Monaco, Menlo, monospace;
+      font-size: 10px; color: #d1d5db;
+    }
+    .card-footer .updated-at {
+      font-size: 10px; color: #d1d5db; margin-top: 2px;
+    }
+    .error-banner {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: #fff;
+      color: #991b1b;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+    }
+    @media (max-width: 375px) {
+      body { padding: 12px 8px; }
+      .card { border-radius: 16px; }
+      .card-hero { padding: 32px 20px 28px; }
+      .card-hero::after { height: 16px; border-radius: 16px 16px 0 0; }
+      .card-hero h1 { font-size: 20px; }
+      .card-body { padding: 16px 20px 4px; }
+      .contact-list { padding: 0 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-banner" id="errorBanner"></div>
+
+  <main class="card" role="main" id="cardRoot"></main>
+
+  <script>
+    var isFileProtocol = location.protocol === 'file:';
+    var dataBase = isFileProtocol ? '' : '../data/';
+
+    function showError(msg) {
+      var b = document.getElementById('errorBanner');
+      b.textContent = msg; b.style.display = 'block';
+      setTimeout(function() { b.style.display = 'none'; }, 5000);
+    }
+
+    function escapeHtml(text) {
+      var d = document.createElement('div');
+      d.textContent = text;
+      return d.innerHTML;
+    }
+
+    async function loadData(filename) {
+      try {
+        var resp = await fetch(dataBase + filename);
+        if (!resp.ok) throw new Error('' + resp.status);
+        return await resp.json();
+      } catch (e) {
+        if (isFileProtocol) {
+          showError('file:// 协议无法读取本地文件。请在 templates/ 目录下运行: python3 -m http.server 8080');
+        } else {
+          showError('加载数据失败: ' + e.message);
+        }
+        return null;
+      }
+    }
+
+    var CHANNEL_META = {
+      wechat:   { icon: '💬', label: '微信',  action: 'copy' },
+      email:    { icon: '📧', label: '邮箱',  action: 'mailto' },
+      feishu:   { icon: '🐝', label: '飞书',  action: 'copy' },
+      phone:    { icon: '📱', label: '电话',  action: 'tel' },
+      twitter:  { icon: '🐦', label: 'Twitter / X', action: 'link' },
+      linkedin: { icon: '💼', label: 'LinkedIn', action: 'link' },
+      github:   { icon: '🐙', label: 'GitHub', action: 'link' },
+      website:  { icon: '🌐', label: '网站',  action: 'link' },
+      weibo:    { icon: '📢', label: '微博',  action: 'link' }
+    };
+    var CHANNEL_ORDER = ['wechat', 'email', 'feishu', 'phone'];
+
+    function getMeta(key) { return CHANNEL_META[key] || { icon: '🔗', label: key, action: 'copy' }; }
+    function getHint(action) {
+      switch (action) {
+        case 'mailto': return '发送邮件';
+        case 'tel': return '拨打电话';
+        case 'link': return '访问链接';
+        default: return '点击复制';
+      }
+    }
+
+    function handleContact(btn) {
+      var channel = btn.getAttribute('data-channel');
+      var value = btn.getAttribute('data-value');
+      var meta = getMeta(channel);
+      var hint = btn.querySelector('.contact-hint');
+      switch (meta.action) {
+        case 'mailto': window.location.href = 'mailto:' + value; return;
+        case 'tel': window.location.href = 'tel:' + value; return;
+        case 'link':
+          var url = value.indexOf('://') === -1 ? 'https://' + value : value;
+          window.open(url, '_blank', 'noopener'); return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(function() { showCopied(btn, hint); });
+      } else {
+        var ta = document.createElement('textarea'); ta.value = value;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        showCopied(btn, hint);
+      }
+    }
+
+    function showCopied(btn, hint) {
+      var orig = hint.textContent;
+      btn.classList.add('copied'); hint.textContent = '✓ 已复制';
+      setTimeout(function() { btn.classList.remove('copied'); hint.textContent = orig; }, 1800);
+    }
+
+    function renderCard(profile) {
+      var root = document.getElementById('cardRoot');
+      if (!profile || !profile.owner || !profile.owner.name) {
+        root.innerHTML = '<div class="empty-state">还没有名片数据。<br>请先在 Agent 中说"生成我的名片"。</div>';
+        return;
+      }
+
+      var o = profile.owner;
+      var links = o.links || profile.links || {};
+      var focus = profile.current_focus || [];
+
+      // JSON-LD
+      var jsonLd = { '@context': 'https://schema.org', '@type': 'Person', name: o.name, jobTitle: o.title || '', description: o.one_liner || '' };
+      var sameAs = [];
+      if (links.email) sameAs.push('mailto:' + links.email);
+      if (links.feishu) sameAs.push('feishu://' + links.feishu);
+      if (links.wechat) sameAs.push('wechat://' + links.wechat);
+      if (sameAs.length) jsonLd.sameAs = sameAs;
+      var ld = document.createElement('script');
+      ld.type = 'application/ld+json'; ld.id = 'json-ld';
+      ld.textContent = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script');
+      document.head.appendChild(ld);
+
+      // Build HTML
+      var html = '';
+
+      // Hero
+      html += '<div class="card-hero">';
+      html += '<div class="avatar" aria-hidden="true">' + escapeHtml(o.name.charAt(0)) + '</div>';
+      html += '<h1>' + escapeHtml(o.name) + '</h1>';
+      if (o.title) html += '<div class="hero-title">' + escapeHtml(o.title) + '</div>';
+      html += '</div>';
+
+      // Body
+      html += '<div class="card-body">';
+      if (o.one_liner) html += '<div class="one-liner">' + escapeHtml(o.one_liner) + '</div>';
+      if (focus.length > 0) {
+        html += '<div class="chips">';
+        focus.forEach(function(item) {
+          html += '<span class="chip"><span class="chip-dot"></span>' + escapeHtml(item) + '</span>';
+        });
+        html += '</div>';
+      }
+      html += '</div>';
+
+      // Contacts
+      var keys = Object.keys(links);
+      if (keys.length > 0) {
+        var ordered = CHANNEL_ORDER.filter(function(k) { return links[k]; });
+        var extra = keys.filter(function(k) { return CHANNEL_ORDER.indexOf(k) === -1; });
+        var allKeys = ordered.concat(extra);
+        html += '<div class="card-divider"></div><div class="contact-list">';
+        allKeys.forEach(function(key) {
+          var meta = getMeta(key);
+          html += '<button class="contact-btn" data-channel="' + escapeHtml(key) +
+            '" data-value="' + escapeHtml(links[key]) +
+            '" onclick="handleContact(this)" aria-label="' + escapeHtml(meta.label) + '">' +
+            '<span class="contact-icon">' + meta.icon + '</span>' +
+            '<span class="contact-info"><span class="contact-label">' + escapeHtml(meta.label) +
+            '</span><span class="contact-hint">' + getHint(meta.action) +
+            '</span></span><span class="contact-arrow">›</span></button>';
+        });
+        html += '</div>';
+      }
+
+      // Footer
+      html += '<div class="card-divider"></div><div class="card-footer">';
+      html += '<div class="agent-line">🦐 ';
+      html += (o.agent_name ? '由 ' + escapeHtml(o.agent_name) + ' 的 Agent 维护' : '由 Agent 维护');
+      html += '</div>';
+      if (profile.updated_at) html += '<div class="updated-at">更新于 ' + escapeHtml(profile.updated_at) + '</div>';
+      if (profile.agent_card_protocol) {
+        html += '<div class="protocol">' + escapeHtml(profile.agent_card_protocol) + '</div>';
+      } else if (profile.config && profile.config.server && profile.config.server.user_id) {
+        html += '<div class="protocol">agent-card://' + escapeHtml(profile.config.server.user_id) + '</div>';
+      }
+      html += '</div>';
+
+      root.innerHTML = html;
+    }
+
+    async function init() {
+      var profile = await loadData('profile.json');
+      if (!profile) {
+        profile = {
+          version: "1.0",
+          owner: {
+            name: "虾名片用户",
+            agent_name: "",
+            title: "点击编辑你的名片",
+            one_liner: "在 Agent 中说「生成我的名片」来创建你的专属名片"
+          },
+          current_focus: [],
+          links: {},
+          updated_at: ""
+        };
+      }
+      renderCard(profile);
+    }
+
+    init();
+  </script>
+</body>
+</html>

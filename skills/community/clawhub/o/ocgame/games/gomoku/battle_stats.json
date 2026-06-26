@@ -1,0 +1,13 @@
+{
+  "total_win": 5,
+  "total_lose": 7,
+  "total_draw": 7,
+  "lose_streak": 0,
+  "recent_5_games": [
+    0,
+    0,
+    2,
+    1
+  ],
+  "daily_trigger_count": 2
+}

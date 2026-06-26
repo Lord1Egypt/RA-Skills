@@ -1,35 +1,41 @@
----
-name: "室内设计师小红书文案助手"
-description: "为本地室内设计师定制小红书内容，自动生成选题、标题、正文与本地化标签，提升个人IP吸引力和获客效果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/interior-xiaohongshu-copywriter"
-sourceUrl: "https://clawhub.ai/skills/interior-xiaohongshu-copywriter"
----
-
 # 室内设计师小红书文案助手
 
-> 为本地室内设计师定制小红书内容，自动生成选题、标题、正文与本地化标签，提升个人IP吸引力和获客效果。
+## 描述
+专为本地室内设计师打造的小红书内容助手，自动生成符合本地获客定位的选题、标题、正文文案，贴合设计师IP调性。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/interior-xiaohongshu-copywriter`
-- **Source URL:** [https://clawhub.ai/skills/interior-xiaohongshu-copywriter](https://clawhub.ai/skills/interior-xiaohongshu-copywriter)
+## 功能
+- 选题推荐：结合当下热点+本地需求，推荐日更选题
+- 文案生成：根据选题生成完整正文，符合小红书调性
+- 标题优化：给你写5个备选标题，选点击率最高的
+- 标签推荐：自动生成适合本地设计师的标签组合
 
-## Overview
+## 作者
+老冷 @ 温州隐室空间设计
 
+## 分类
+内容创作 / 设计师自媒体
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/interior-xiaohongshu-copywriter
+## 触发词
+- 小红书文案
+- 设计师文案
+- 小红书选题
+- 内容策划
+
+## 依赖
+- 大语言模型（OpenClaw自带）
+
+## 使用方法
+1. 说清楚你的定位：本地设计师/风格/目标客户
+2. 说你想要什么主题：比如「装修避坑」「设计感悟」「案例解析」
+3. 帮你生成标题+文案+标签，直接复制粘贴发布
+
+## 优势
+- 贴合设计师个人IP，不生硬
+- 本地化标签，更容易获本地客
+- 日更压力小，两分钟搞定一篇
+
+## 示例
+```
+用户：帮我想一篇温州本地别墅设计的小红书文案
+助手：生成标题+正文+标签...
 ```

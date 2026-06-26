@@ -1,35 +1,43 @@
 ---
-name: "fal-lip-sync"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/fal-lip-sync"
-sourceUrl: "https://skills.sh/nexu-io/open-design/fal-lip-sync"
+name: fal-lip-sync
+description: |
+  Create talking head videos and lip sync audio to video via fal.ai. Useful for explainer avatars, multilingual dubbing previews, and social cuts.
+triggers:
+  - "lip sync"
+  - "talking head"
+  - "audio to video"
+  - "avatar video"
+  - "fal lipsync"
+od:
+  mode: video
+  category: video-generation
+  upstream: "https://github.com/fal-ai-community/skills"
 ---
 
 # fal-lip-sync
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the fal.ai community team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/fal-lip-sync`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/fal-lip-sync](https://skills.sh/nexu-io/open-design/fal-lip-sync)
+## What it does
 
-## Overview
+Create talking head videos and lip sync audio to video via fal.ai. Useful for explainer avatars, multilingual dubbing previews, and social cuts.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/fal-ai-community/skills
+- Category: `video-generation`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/fal-lip-sync
+# Inspect the upstream README for exact paths
+open https://github.com/fal-ai-community/skills
 ```
+
+Then ask the agent to invoke this skill by name (`fal-lip-sync`) or with
+one of the trigger phrases listed in this skill's frontmatter.

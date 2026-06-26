@@ -1,0 +1,204 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "EndDate",
+        "columnChiName": "截止日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "InfoPublDate",
+        "columnChiName": "信息发布日期",
+        "columnType": "datetime",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "InfoSource",
+        "columnChiName": "信息来源",
+        "columnType": "varchar(100)",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "StatPeriod",
+        "columnChiName": "统计区间",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "统计区间（StatPeriod）：与“系统常量表（CT_SystemConst）”中的“代码（DM）”关联，令“LB=1954”，得到数据的具体统计区间：210-当季及累计。\n",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 6,
+        "columnChiName": "产品数量",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "UnionPlanN",
+        "columnChiName": "1.集合计划(只)",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "93.75"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "PrivatePlanN",
+        "columnChiName": "2.定向资管计划(只)",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "93.75"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "SpecificPlanN",
+        "columnChiName": "3.专项资管计划(只)",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "81.25"
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "DirInvestFundN",
+        "columnChiName": "4.直投子公司的直投基金(只)",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "62.5"
+    },
+    {
+        "columnOrderId": 11,
+        "columnName": "TotalProductN",
+        "columnChiName": "合计-产品数量(只)",
+        "columnType": "int",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 12,
+        "columnChiName": "资产规模",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 13,
+        "columnName": "UnionPlanS",
+        "columnChiName": "1.集合计划(亿元)",
+        "columnType": "decimal(10,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "93.75"
+    },
+    {
+        "columnOrderId": 14,
+        "columnName": "PrivatePlanS",
+        "columnChiName": "2.定向资管计划(亿元)",
+        "columnType": "decimal(10,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "93.75"
+    },
+    {
+        "columnOrderId": 15,
+        "columnName": "SpecificPlanS",
+        "columnChiName": "3.专项资管计划(亿元)",
+        "columnType": "decimal(10,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "81.25"
+    },
+    {
+        "columnOrderId": 16,
+        "columnName": "DirInvestFundS",
+        "columnChiName": "4.直投子公司的直投基金(亿元)",
+        "columnType": "decimal(10,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "62.5"
+    },
+    {
+        "columnOrderId": 17,
+        "columnName": "TotalAssetS",
+        "columnChiName": "合计-资产规模(亿元)",
+        "columnType": "decimal(10,2)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "93.75"
+    },
+    {
+        "columnOrderId": 18,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 19,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

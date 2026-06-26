@@ -1,0 +1,66 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/data_sp/check_author_display/v1 for Douyin Creator Marketplace (Xingtu) Creator Visibility Status through JustOneAPI with oAuthorId.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Creator Visibility Status",
+  "endpointPath": "gw/api/data_sp/check_author_display",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) creator Visibility Status data, including availability status, discovery eligibility, and campaign display signals, for creator evaluation, campaign planning, and marketplace research.",
+      "method": "GET",
+      "operationId": "gwApiDataSpCheckAuthorDisplayV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Author's unique ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "oAuthorId",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "SHORT_VIDEO",
+          "description": "Platform type.\n\nAvailable Values:\n- `SHORT_VIDEO`: Short video\n- `LIVE_STREAMING`: Live streaming\n- `PICTURE_TEXT`: Picture and text\n- `SHORT_DRAMA`: Short drama",
+          "enumValues": [
+            "SHORT_VIDEO",
+            "LIVE_STREAMING",
+            "PICTURE_TEXT",
+            "SHORT_DRAMA"
+          ],
+          "location": "query",
+          "name": "platform",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/data_sp/check_author_display/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Visibility Status",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_data_sp_check_author_display",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-data-sp-check-author-display",
+  "sourceTitle": "OpenAPI definition"
+}

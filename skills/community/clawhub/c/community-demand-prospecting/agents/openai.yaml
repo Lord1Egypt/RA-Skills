@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Demand Prospecting"
+  short_description: "Repo audit, market research, positioning, outreach"
+  default_prompt: "Use $community-demand-prospecting to audit my repo, run market and competitor research, choose positioning, find users, and draft safe outreach."

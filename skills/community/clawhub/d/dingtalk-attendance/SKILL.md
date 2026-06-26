@@ -1,35 +1,133 @@
 ---
-name: "Dingtalk Attendance"
-description: "查询和分析钉钉考勤打卡数据。当用户提到打卡、考勤、迟到、早退、旷工、出勤率、谁没打卡、上班情况、DingTalk attendance 等关键词时触发此 skill。即使用户没有明确说"打卡"，只要涉及员工到岗、缺勤、工时相关的问题，也应该使用这个 skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dingtalk-attendance"
-sourceUrl: "https://clawhub.ai/skills/dingtalk-attendance"
+name: dingtalk-attendance
+description: 查询和分析钉钉考勤打卡数据。当用户提到打卡、考勤、迟到、早退、旷工、出勤率、谁没打卡、上班情况、DingTalk attendance 等关键词时触发此 skill。即使用户没有明确说"打卡"，只要涉及员工到岗、缺勤、工时相关的问题，也应该使用这个 skill。
 ---
 
-# Dingtalk Attendance
+# 钉钉考勤打卡查询与分析
 
-> 查询和分析钉钉考勤打卡数据。当用户提到打卡、考勤、迟到、早退、旷工、出勤率、谁没打卡、上班情况、DingTalk attendance 等关键词时触发此 skill。即使用户没有明确说"打卡"，只要涉及员工到岗、缺勤、工时相关的问题，也应该使用这个 skill。
+这个 skill 用于通过钉钉开放平台 API 查询员工的打卡记录，并对结果进行智能分析和汇总。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dingtalk-attendance`
-- **Source URL:** [https://clawhub.ai/skills/dingtalk-attendance](https://clawhub.ai/skills/dingtalk-attendance)
+## 前置条件
 
-## Overview
+运行脚本前，检查以下三个环境变量是否已设置：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dingtalk-attendance
+echo $DINGTALK_APPKEY
+echo $DINGTALK_APPSECRET
+echo $ADMIN_PHONE
 ```
+
+如果任何一个为空，告知用户需要先配置：
+
+> 查询钉钉打卡数据需要以下环境变量，请先设置：
+> - `DINGTALK_APPKEY` — 钉钉企业内部应用的 AppKey
+> - `DINGTALK_APPSECRET` — 钉钉企业内部应用的 AppSecret
+> - `ADMIN_PHONE` — 管理员手机号（用于获取操作人 userId）
+>
+> 你可以通过 `export DINGTALK_APPKEY=xxx` 设置，或者加到 `.env` / shell 配置文件中。
+
+确认三个变量都有值后再继续。
+
+## 时间范围解析
+
+用户会用自然语言描述时间范围。你需要将其转换为脚本要求的格式：`YYYY-MM-DD HH:MM:SS`。
+
+规则：
+- 今天的日期可以通过 `date` 命令获取
+- **开始时间**的时分秒部分用 `00:00:00`
+- **结束时间**的时分秒部分用 `23:59:59`
+- 如果用户只说了一天（如"昨天"、"3月5号"），开始和结束就是同一天
+- "上周"指上周一到上周日
+- "上个月"指上月1号到上月最后一天
+- "这周"指本周一到今天
+- "本月"指本月1号到今天
+
+**示例：**
+- "昨天" → `--start-time "2026-03-07 00:00:00" --end-time "2026-03-07 23:59:59"`
+- "3月3号到5号" → `--start-time "2026-03-03 00:00:00" --end-time "2026-03-05 23:59:59"`
+- "上周" → `--start-time "2026-02-23 00:00:00" --end-time "2026-03-01 23:59:59"`
+
+## 执行查询
+
+脚本路径：`scripts/attendance_query.py`，位于本 skill 所在项目的根目录下。
+
+先确定项目根目录（包含 `pyproject.toml` 和 `scripts/` 目录的那个），然后运行：
+
+```bash
+cd <项目根目录>
+uv run python scripts/attendance_query.py --start-time "YYYY-MM-DD HH:MM:SS" --end-time "YYYY-MM-DD HH:MM:SS"
+```
+
+如果不确定项目根目录在哪，可以用 `find ~ -name "attendance_query.py" -path "*/scripts/*" 2>/dev/null | head -3` 来定位。
+
+脚本会输出打卡异常的员工信息，格式如：
+```
+张三 打卡结果 迟到 出现 2 次
+李四 打卡结果 旷工 出现 1 次
+```
+
+如果没有输出，说明该时间段内所有人打卡正常。
+
+每次 API 查询的结果会自动保存到本地 SQLite 数据库，后续可以直接从本地读取。
+
+## 使用历史记录（避免重复 API 调用）
+
+脚本支持从本地数据库读取之前查询过的打卡记录，这样做对比分析时不需要重新调用钉钉 API。
+
+### 查看已有历史数据
+
+```bash
+uv run python scripts/attendance_query.py --list-history
+```
+
+输出示例：
+```
+日期             异常次数       最后查询时间
+--------------------------------------------------
+2026-03-03     40         2026-03-08 15:00:00
+2026-03-06     36         2026-03-08 15:05:00
+```
+
+### 从历史记录读取
+
+```bash
+uv run python scripts/attendance_query.py --history --start-time "YYYY-MM-DD 00:00:00" --end-time "YYYY-MM-DD 23:59:59"
+```
+
+如果请求范围内有部分日期没有历史数据，脚本会输出警告（可能是从未查询过，也可能是当日全员正常）。
+
+### 查询策略
+
+当用户要求查看或对比打卡数据时，按以下优先级选择查询方式：
+
+1. **先查历史**：用 `--list-history` 看看本地有哪些日期的数据
+2. **本地有的用本地**：如果目标日期在历史记录中，用 `--history` 从本地读取
+3. **本地没有的调 API**：如果目标日期不在历史记录中，不加 `--history` 正常查询（会自动保存）
+4. **跨查询对比**：对比两个时间段时，分别获取数据（能从本地读的从本地读，需要 API 的走 API），然后做分析
+
+## 分析与汇总
+
+拿到脚本输出后，对结果进行有价值的分析。用户真正关心的不是原始数据的罗列，而是"谁有问题、问题有多严重、需要我做什么"。
+
+1. **概览**：总异常人数。如果查询范围是多天，说明每天上下班各一次打卡，旷工2次意味着全天缺勤
+2. **分类统计**：按异常类型（迟到、早退、旷工等）分别统计人数和次数，用表格呈现
+3. **严重程度分级**：多天查询时，按旷工次数从高到低分组（如"全周旷工"、"多日旷工"、"偶发旷工"），帮助用户快速定位最需要关注的人
+4. **重点关注**：标出需要特别注意的情况——比如连续多天全勤缺失、情况恶化的员工、同时存在多种异常的员工
+5. **可能的原因提示**：大面积旷工时提醒核查是否有请假/出差/系统故障；周五异常偏多时提醒确认是否有特殊安排
+6. **趋势分析**：如果当前对话中有之前的查询结果，将本次结果与之前的做对比，发现趋势（比如"和上周相比，迟到人数增加了 3 人"）
+7. **如果全部正常**：简洁告知"该时间段全员打卡正常"即可，不需要展开分析
+
+输出风格：简洁、结构化，用中文。适当使用表格让数据更直观。
+
+## 跨查询分析
+
+用户可能要求对比不同时间段的打卡情况（比如"和上周比怎么样"、"最近一个月的趋势"）。这时：
+
+1. 先用 `--list-history` 查看本地已有哪些数据
+2. 已有的数据用 `--history` 读取，没有的先通过 API 查询
+3. 拿到所有数据后做交叉分析
+
+分析可以包括：
+- 同一员工在不同时段的打卡变化（恢复正常/新增异常/持续异常/情况恶化）
+- 异常类型的分布变化
+- 整体出勤率的趋势

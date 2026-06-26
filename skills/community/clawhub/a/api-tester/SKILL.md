@@ -1,35 +1,48 @@
 ---
-name: "Api Tester"
-description: "Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support. Use for API testing, health checks, or interacting..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-tester"
-sourceUrl: "https://clawhub.ai/skills/api-tester"
+name: api-tester
+description: Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support. Use for API testing, health checks, or interacting with REST services programmatically without relying on curl.
 ---
 
-# Api Tester
+# API Tester
 
-> Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support. Use for API testing, health checks, or interacting...
+A lightweight, dependency-free HTTP client for OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-tester`
-- **Source URL:** [https://clawhub.ai/skills/api-tester](https://clawhub.ai/skills/api-tester)
+## Usage
 
-## Overview
+### Basic GET Request
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-tester
+```javascript
+const api = require('skills/api-tester');
+const result = await api.request('GET', 'https://api.example.com/data');
+console.log(result.status, result.data);
 ```
+
+### POST Request with JSON Body
+
+```javascript
+const api = require('skills/api-tester');
+const payload = { key: 'value' };
+const headers = { 'Authorization': 'Bearer <token>' };
+const result = await api.request('POST', 'https://api.example.com/submit', headers, payload);
+```
+
+### Return Format
+
+The `request` function returns a Promise resolving to:
+
+```javascript
+{
+  status: 200,          // HTTP status code
+  headers: { ... },     // Response headers
+  data: { ... },        // Parsed JSON body (if applicable) or raw string
+  raw: "...",           // Raw response body string
+  error: "..."          // Error message if request failed (network error, timeout)
+}
+```
+
+## Features
+
+- **Zero dependencies**: Uses Node.js built-in `http` and `https` modules.
+- **Auto-JSON**: Automatically stringifies request body and parses response body if Content-Type matches.
+- **Timeout support**: Default 10s timeout, configurable.
+- **Error handling**: Returns structured error object instead of throwing, ensuring safe execution.

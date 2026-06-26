@@ -1,0 +1,44 @@
+{
+  "name": "fast-response-optimizer",
+  "version": "1.0.0",
+  "description": "Response speed optimizer for OpenClaw - implements reply-first-then-process, parallel tool calls, and memory file caching",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "performance",
+    "cache",
+    "parallel",
+    "optimization"
+  ],
+  "author": "opendolph",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opendolph/skills.git",
+    "directory": "fast-response-optimizer"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "bootstrap.js",
+    "scripts/",
+    "locales/"
+  ],
+  "clawSkill": {
+    "name": "fast-response-optimizer",
+    "displayName": {
+      "en": "Fast Response Optimizer",
+      "zh": "响应速度优化器"
+    },
+    "description": {
+      "en": "Optimize response speed from 5-20s to <1s with caching and parallel execution",
+      "zh": "通过缓存和并行执行将响应速度从5-20秒优化到<1秒"
+    },
+    "emoji": "⚡",
+    "category": "performance",
+    "languages": ["en", "zh"]
+  }
+}

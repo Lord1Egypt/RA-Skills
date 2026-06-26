@@ -1,0 +1,17 @@
+{
+  "name": "still-growing",
+  "version": "0.3.6",
+  "title": "Still Growing / 第二代父母",
+  "description": "困在自己没走完的成长里，把孩子当成答案的一代人。核心洞察：孩子有问题，更多的是父母的问题。",
+  "category": "parenting",
+  "tags": [
+    "parenting",
+    "psychology",
+    "emotional-health",
+    "parent-child",
+    "compassion"
+  ],
+  "license": "MIT",
+  "author": "yun520-1",
+  "homepage": "https://github.com/yun520-1/mark-still-growing"
+}

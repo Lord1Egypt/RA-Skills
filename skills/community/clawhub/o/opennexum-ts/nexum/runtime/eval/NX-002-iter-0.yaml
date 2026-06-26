@@ -1,0 +1,29 @@
+verdict: fail
+system_errors: []
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "packages/spawn/src/spawn.ts:30-45 构造了 openclaw sessions spawn 参数，包含 --runtime acp、--agent、--mode、--cwd、--label；packages/spawn/src/__tests__/spawn.test.ts:78-107 使用 mock execa 断言命令名为 openclaw，且参数数组精确包含上述标志与 prompt 参数。"
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: "packages/spawn/src/status.ts:18-35 调用 openclaw sessions list --json，按 sessionKey 查找并返回 normalizeSessionStatus 的结果；packages/spawn/src/__tests__/spawn.test.ts:148-154 断言 session-done -> done、session-running -> running、missing -> unknown，并校验调用参数为 [\"sessions\", \"list\", \"--json\"]。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "packages/spawn/src/status.ts:42-61 在循环中计算 deadline，超时后于第 58 行抛出 TimeoutError；packages/spawn/src/__tests__/spawn.test.ts:170-175 通过 mock execa 持续返回 running，并断言 pollUntilDone(..., { timeoutMs: 30, intervalMs: 5 }) 以 TimeoutError 拒绝。"
+        detail: null
+        score: null
+      - id: C4
+        result: fail
+        evidence: "根目录 package.json:5-7 的 build/test 脚本只过滤 @nexum/core 和 @nexum/prompts；实际运行 `pnpm build` 与 `pnpm test` 的输出也仅执行了这两个包，没有构建或测试 @nexum/spawn。进一步运行 `pnpm --dir packages/spawn build` 失败，报错 `sh: tsc: command not found`；运行 `pnpm --dir packages/spawn test` 失败，3 个测试均因 `ERR_MODULE_NOT_FOUND: Cannot find package 'execa'` 中止。"
+        detail: "文件: package.json:5-7, packages/spawn/package.json:14-23。期望: 按合约执行的 `pnpm build` 与 `pnpm test` 应覆盖本次交付的 @nexum/spawn，并且构建、测试全部通过。实际: 根脚本排除了 @nexum/spawn；单独执行该包的 build/test 时又因缺少可用的 TypeScript/execa 依赖而失败，无法满足“pnpm build 和 pnpm test 均通过”。"
+        score: null
+feedback: |
+  1. 修改根目录 [package.json](/Users/tongyaojin/code/nexum-ts/package.json#L5) 和 [package.json](/Users/tongyaojin/code/nexum-ts/package.json#L6)，把 `@nexum/spawn` 纳入 `pnpm build` / `pnpm test` 的 turbo 过滤范围，避免仓库级验收漏掉本次交付。
+  2. 解决 `packages/spawn` 的可执行依赖问题，使 [packages/spawn/package.json](/Users/tongyaojin/code/nexum-ts/packages/spawn/package.json#L15) 的 `build` 能找到 `tsc`，并让测试运行时可解析 [packages/spawn/package.json](/Users/tongyaojin/code/nexum-ts/packages/spawn/package.json#L19) 声明的 `execa`。
+  3. 修复后重新执行根目录 `pnpm build` 和 `pnpm test`，确认输出中实际包含 `@nexum/spawn` 的 build/test 记录，再提交评估。

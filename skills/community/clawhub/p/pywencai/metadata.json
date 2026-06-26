@@ -1,0 +1,35 @@
+{
+  "name": "pywencai",
+  "version": "1.3.0",
+  "description": "同花顺问财自然语言数据查询工具 - 使用中文自然语言查询A股、指数、基金、港美股、可转债等市场数据。",
+  "author": "BossQuant",
+  "tags": [
+    "金融数据",
+    "问财",
+    "同花顺",
+    "自然语言查询",
+    "A股",
+    "选股",
+    "PyWenCai"
+  ],
+  "repository": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "pywencai>=0.10.0",
+      "pandas>=1.5.0"
+    ]
+  },
+  "openclaw": {
+    "requires": {
+      "bins": [
+        "python3",
+        "node"
+      ],
+      "env": [
+        "WENCAI_COOKIE"
+      ]
+    }
+  }
+}

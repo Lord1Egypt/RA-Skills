@@ -1,35 +1,29 @@
----
-name: "Mio Companion"
-description: "主动学习用户习惯，定时发起聊天，自动识别待办事项并安排时间管理任务。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, chat, companion]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mio-companion"
-sourceUrl: "https://clawhub.ai/skills/mio-companion"
----
+# Mio-Companion 技能
 
-# Mio Companion
+> 主动陪伴学习技能 - 学习用户习惯，主动聊天，自动完成任务
 
-> 主动学习用户习惯，定时发起聊天，自动识别待办事项并安排时间管理任务。
+## 功能
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mio-companion`
-- **Source URL:** [https://clawhub.ai/skills/mio-companion](https://clawhub.ai/skills/mio-companion)
+1. **习惯学习** - 记录用户的作息、偏好、聊天习惯
+2. **主动聊天** - 在空闲时主动发起对话
+3. **任务挖掘** - 从对话中提取待办事项
+4. **时间管理** - 自动安排时间执行任务
 
-## Overview
+## 触发方式
 
+- 心跳触发：每4小时检查一次
+- 定时任务：model-monitor 空闲时
+- 手动触发：用户说"陪我聊天"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mio-companion
-```
+## 依赖
+
+- skill: self-improvement (记录学习)
+- skill: cron (定时任务)
+- 飞书消息发送
+
+## 文件
+
+- `index.js` - 主技能代码
+- `habits.json` - 用户习惯数据
+- `todos.json` - 待办事项
+- `schedule.json` - 时间安排

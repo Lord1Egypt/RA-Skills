@@ -1,35 +1,222 @@
 ---
-name: "饿了么外卖点餐"
-description: "Order food delivery from Ele.me (饿了么) using browser automation. The agent controls a real browser via Playwright MCP to browse restaurants, add items to cart..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eleme-order"
-sourceUrl: "https://clawhub.ai/skills/eleme-order"
+name: eleme-order
+description: Order food delivery from Ele.me (饿了么) using browser automation. The agent controls a real browser via Playwright MCP to browse restaurants, add items to cart, and submit orders. User handles payment manually. Use when user wants to order food, drinks, or groceries from Ele.me.
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🍜",
+        "requires": { "anyBins": ["npx"], "mcpServers": ["playwright"] },
+      },
+  }
 ---
 
-# 饿了么外卖点餐
+# 饿了么外卖点餐（浏览器自动化）
 
-> Order food delivery from Ele.me (饿了么) using browser automation. The agent controls a real browser via Playwright MCP to browse restaurants, add items to cart...
+通过 Playwright MCP 浏览器自动化操控饿了么 H5 页面，帮用户点外卖。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eleme-order`
-- **Source URL:** [https://clawhub.ai/skills/eleme-order](https://clawhub.ai/skills/eleme-order)
+## 核心原则
 
-## Overview
+1. **操作前调用 `browser_snapshot`**，根据 snapshot 中的 ref 值来点击元素
+2. **不要猜测页面状态**，始终以 snapshot 返回的实际内容为准
+3. **尽量自主完成，减少打断用户**（详见下方"自主 vs 确认"规则）
+4. **支付环节绝不代替用户操作**
 
+## 自主 vs 确认规则（非常重要）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eleme-order
+**可以自主操作，不需要问用户的情况：**
+- 用户已明确说了想要什么（如"伯牙绝弦"），直接找到对应商家和商品，一路操作到加购
+- 只有一个匹配的商家（如附近只有一家霸王茶姬），直接进店
+- 规格选择用默认值（除非用户特别提到要大杯/去冰等）
+- 起送价未达到时，自动展示凑单选项（不用先问"要凑单吗"）
+- 点击"重新加载"修复页面错误
+
+**必须停下来问用户的情况：**
+- 有多个匹配的商家，需要用户选择
+- 用户没有明确说想要什么商品
+- 确认订单页（展示地址、商品、金额，等用户说"确认"）
+- 支付环节
+
+**核心思路：用户说了目标，就全力往目标推进，中间不要停。只在有歧义或需要确认金额时才问。**
+
+## 前置条件
+
+需要在 openclaw.json 中配置 Playwright MCP Server：
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "acpx": {
+        "enabled": true,
+        "config": {
+          "mcpServers": {
+            "playwright": {
+              "command": "npx",
+              "args": ["@playwright/mcp@latest"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
 ```
+
+## 详细操作流程
+
+### 第1步：打开饿了么
+
+调用 `browser_navigate`，URL 为 `https://h5.ele.me`
+
+打开后会出现两种情况：
+- **情况A：跳转到登录页**（URL 含 `/login/`）→ 进入第2步
+- **情况B：直接显示首页**（已有登录态）→ 跳到第3步
+
+### 第2步：登录（仅首次需要）
+
+登录页在一个 **iframe** 中，snapshot 中的元素 ref 格式为 `f1eXXX`（注意 f1 前缀表示 iframe 内部）。
+
+具体操作：
+
+1. **勾选同意协议**：找到 snapshot 中的 `checkbox`（ref 类似 `f1e246`），用 `browser_click` 点击它
+2. **输入手机号**：找到 `textbox "请输入手机号"`（ref 类似 `f1e235`），用 `browser_fill_form` 填入用户手机号
+3. **获取验证码**：点击 `link "获取验证码"`（ref 类似 `f1e240`）
+4. **询问用户验证码**：等用户告知短信验证码
+5. **输入验证码**：找到 `textbox "请输入验证码"`（ref 类似 `f1e238`），填入验证码
+6. **点击登录**：点击 `button "同意协议并登录"`（ref 类似 `f1e242`）
+7. **等待跳转**：登录成功后页面自动跳转到首页，调用 `browser_snapshot` 确认
+
+**注意**：ref 值每次可能不同，必须从当前 snapshot 中获取实际的 ref 值。
+
+### 第3步：首页 - 查看商家列表
+
+登录后首页显示"为你推荐附近的商家"。
+
+**常见问题**：首页可能显示"出错了，小宝正在检修中..."，这是定位问题导致的。
+- **解决办法**：在 snapshot 中找到 `generic "重新加载"`，点击它，页面会重新加载商家列表
+
+**正常加载后**，snapshot 中会出现商家列表。
+
+**自主判断逻辑：**
+- 如果用户已说了品牌（如"霸王茶姬"），直接在列表中找到该商家并点击进入，**不需要列出所有商家让用户选**
+- 如果只有一家匹配，直接进入
+- 如果有多家匹配（如"霸王茶姬(A店)"和"霸王茶姬(B店)"），简短列出让用户选
+- 如果用户没说品牌（如"我想点外卖"），才展示商家列表让用户选
+
+### 第4步：进入店铺
+
+点击商家后，页面跳转到店铺详情页。调用 `browser_snapshot` 获取菜单。
+
+**自主判断逻辑：**
+- 如果用户已说了商品名（如"伯牙绝弦"），直接在 snapshot 中找到该商品，**不需要列出整个菜单**，直接点击"选规格"或"加购"
+- 如果找不到该商品，先点击左侧分类切换查看，或说明情况
+- 如果用户没说商品名，才展示菜品列表让用户选
+
+### 第5步：加购商品
+
+商品旁边的按钮有两种：
+- **`button "选规格"`**：需要选择规格（大小杯、温度、甜度等），点击后弹出规格面板
+- **`button "加购"`**：直接加入购物车（无需选规格的商品）
+- **`generic "已售罄"`**：该商品已售完，告知用户
+
+点击"选规格"后，snapshot 中会出现一个 `dialog`，包含：
+- 商品名称和当前已选规格（如 `已选：中杯/茶香款/标准冰/微糖`）
+- 价格
+- 各个规格选项组，每组有多个选项按钮（如规格：中杯/大杯，茶底：花香款/茶香款，温度：热/标准冰/少冰/去冰，甜度：标准糖/少糖/微糖/不另外加糖）
+- 数量选择
+- 底部 `button "加入购物车"`
+
+**操作方式**：
+1. 如果用户没有指定规格偏好，**直接用默认规格点击 `button "加入购物车"`**，不要停下来问用户要不要改规格
+2. 如果用户说了规格偏好（如"大杯""去冰""少糖"），先点击对应选项，再加入购物车
+3. 如果用户要多杯，点击数量旁边的加号按钮
+4. 加购后告知用户已加入的商品和规格（事后通知，而非事前确认）
+
+### 第6步：检查购物车 - 是否达到起送价
+
+加购成功后，页面底部购物车栏会更新。snapshot 中会显示：
+- 商品数量和金额
+- 如果**未达起送价**：显示 `差¥X起送`
+- 如果**已达起送价**：显示 `去结算`
+
+**未达起送价时**：
+1. 底部会有"凑单"按钮（snapshot 中找 `text: 凑单`），点击它
+2. 弹出凑单面板，显示可加购的商品列表和价格
+3. 向用户展示凑单选项，用户选择后加购
+4. 加购后回到步骤6检查是否达到起送价
+
+**如果用户要继续加其他商品**，重复步骤5。
+
+### 第7步：去结算
+
+点击底部的 `去结算` 按钮（注意：不是文字"去结算"而是底部栏中的按钮）。
+
+页面跳转到**确认订单页**，snapshot 中包含：
+- **收货地址**：地址、收件人姓名、电话
+- **配送方式**：立即送出 / 预约配送，预计送达时间
+- **商品列表**：商品名称、规格、数量、小计
+- **费用明细**：打包费、配送费（可能有优惠减免）、平台红包
+- **优惠汇总**：已优惠金额、小计
+- **合计金额**：最终需支付金额
+- 底部：`generic "提交订单"` 按钮
+
+**向用户完整展示**：
+- 收货地址是否正确
+- 商品和规格是否正确
+- 合计金额
+- 预计送达时间
+
+等用户确认后再点击"提交订单"。
+
+### 第8步：支付（用户手动完成）
+
+点击"提交订单"后，页面跳转到支付页面。
+
+**此时必须告知用户**：
+- "订单已提交，请在浏览器中完成支付（输入支付密码/指纹等）"
+- "我无法代替你完成支付操作"
+
+**绝对不要尝试输入支付密码。**
+
+## 常见问题处理
+
+### 页面显示"出错了"
+点击"重新加载"按钮。通常是定位问题导致商家列表加载失败。
+
+### 商品已售罄
+snapshot 中该商品旁会显示 `generic "已售罄"` 而非加购按钮。告知用户并推荐其他商品。
+
+### 页面加载缓慢
+饿了么 H5 页面加载较慢（3-5秒），点击操作后先等一下再 `browser_snapshot`。如果 snapshot 内容没变化，等2秒再试。
+
+### 找不到目标商品
+可以点击左侧菜单分类切换分类查看，或使用顶部搜索功能。搜索框在 snapshot 中通常显示为 `generic "搜索"` 或 `textbox`。
+
+### 地址不正确
+在确认订单页，地址区域是可点击的，点击后可以修改或选择其他收货地址。
+
+## 高效操作示例
+
+**用户说："帮我点一杯霸王茶姬的伯牙绝弦"**
+
+理想流程（尽量减少与用户的对话轮次）：
+
+1. `browser_navigate` → `https://h5.ele.me`
+2. `browser_snapshot` → 看到商家列表，找到"霸王茶姬"
+3. `browser_click` → 点击霸王茶姬（不需要问用户"要选哪家"）
+4. `browser_snapshot` → 看到菜单，找到"伯牙绝弦"
+5. `browser_click` → 点击"选规格"
+6. `browser_snapshot` → 看到规格弹窗，默认规格即可
+7. `browser_click` → 点击"加入购物车"（不需要问用户"默认规格可以吗"）
+8. `browser_snapshot` → 检查是否达到起送价
+9. 如果达到起送价 → 点击"去结算" → `browser_snapshot` → **此时展示订单信息给用户确认**
+10. 用户确认 → 点击"提交订单" → 告知用户手动支付
+
+**关键：步骤3-8之间不需要停下来问用户，一口气完成。只在步骤9展示订单让用户确认。**
+
+**错误示范（太慢）：**
+- ❌ "附近有以下商家：1.霸王茶姬 2.蜜雪冰城 3...."（用户已经说了霸王茶姬，不需要列出）
+- ❌ "霸王茶姬菜单如下：1.伯牙绝弦 2...."（用户已经说了伯牙绝弦，不需要列出）
+- ❌ "默认规格是中杯/茶香款/标准冰/微糖，要修改吗？"（直接用默认，不需要问）
+- ❌ 每一步都 snapshot 两次确认（操作后 snapshot 一次就够了）

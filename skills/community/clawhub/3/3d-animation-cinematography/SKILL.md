@@ -1,35 +1,157 @@
 ---
-name: "3D Animation Cinematography"
-description: "3D动画电影摄影术 — Pixar风格三维动画的 cinematography 专项技能。触发词：3D动画、Pixar、动画质感、三维动画、渲染、材质、体积光、接触阴影、布料物理、皮克斯风格、三维渲染、三维光影、3D render。适用场景：AI生成Pixar风格短剧/短片，从prompt构建到画面验收全流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/3d-animation-cinematography"
-sourceUrl: "https://clawhub.ai/skills/3d-animation-cinematography"
+name: 3d-animation-cinematography
+description: 3D动画电影摄影术 — Pixar风格三维动画的 cinematography 专项技能。触发词：3D动画、Pixar、动画质感、三维动画、渲染、材质、体积光、接触阴影、布料物理、皮克斯风格、三维渲染、三维光影、3D render。适用场景：AI生成Pixar风格短剧/短片，从prompt构建到画面验收全流程。
 ---
 
 # 3D Animation Cinematography
 
-> 3D动画电影摄影术 — Pixar风格三维动画的 cinematography 专项技能。触发词：3D动画、Pixar、动画质感、三维动画、渲染、材质、体积光、接触阴影、布料物理、皮克斯风格、三维渲染、三维光影、3D render。适用场景：AI生成Pixar风格短剧/短片，从prompt构建到画面验收全流程。
+AI 生成三维动画内容（Pixar 风格）的 cinematography 专项技能。覆盖材质标准、光影逻辑、相机运动设计，以及与实拍/超写实短剧的质感差异判断。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/3d-animation-cinematography`
-- **Source URL:** [https://clawhub.ai/skills/3d-animation-cinematography](https://clawhub.ai/skills/3d-animation-cinematography)
+---
 
-## Overview
+## 1. Pixar 3D vs Live-Action 的核心差异
 
+### 1.1 什么是 Pixar 质感
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/3d-animation-cinematography
+Pixar 质感不是"卡通"，而是**写实级别的材质渲染 + 动画特有的夸张幅度控制**。核心特征：
+
+- **Volumetric Lighting 体积光**：光束可见，有尘埃/微粒散射，不是平面的光斑
+- **Contact Shadow 接触阴影**：角色与地面/道具接触处有真实阴影，不是"飘"在场景里
+- **Material Granularity 材质颗粒度统一**：所有物体表面有统一的光线交互质感，皮肤/布料/金属各有真实反射/漫反射特性
+- **Fabric Physics 布料物理**：服装有重力垂坠感，褶皱自然，不是贴图覆盖
+
+### 1.2 Pixar 3D 与 Live-Action 的关键区别
+
+| 维度 | Pixar 3D | Live-Action / 超写实短剧 |
+|------|----------|--------------------------|
+| 皮肤质感 | 写实 pores + texture，无磨皮柔光，但整体是 CG 光泽 | 真实皮肤，带真实毛孔、痣、血管 |
+| 光线质感 | 体积光可见，光束有介质 | 天然环境光，无可见光束 |
+| 阴影 | 接触阴影 + 环境遮蔽（AO） | 真实光学阴影，自然衰减 |
+| 服装 | 有重力垂坠感，褶皱有物理逻辑 | 真实面料，自有垂坠 |
+| 渲染空间 | 统一渲染引擎，一致性好 | 真实环境，曝光/色温可能漂移 |
+| 情感距离 | 动画质感 → 天然疏离感，偏向童话/寓言 | 真实脸孔 → 天然共情，偏向现实 |
+
+### 1.3 创作判断：什么时候选 Pixar 3D
+
+- 仙侠/古风有魔法、超自然元素，需要**可控的光影特效**
+- 需要**跨镜头高度一致性**（角色外观、场景不变）
+- 需要**物理上不可能的相机运动**（穿墙、极速环绕）
+- 需要**风格化的情感距离**（寓言感、童话感）
+
+---
+
+## 2. Material Standards for 3D Rendering
+
+### 2.1 皮肤 Skin
+
+**合格标准：**
+- 写实级别 pores + texture，无磨皮无柔光磨平
+- 有真实的光线透射（sub-surface scattering 近似效果）
+- 眼角、嘴角有细微凹陷阴影
+- 户外场景皮肤有户外光的暖调，室内偏冷
+
+**AI 生成常见错误：**
+- 皮肤过于光滑/磨皮感 → 违反 Pixar 写实毛孔原则
+- 眼神光过于锐利（真实眼睛没有这么强的眼神光）
+- 皮肤和 CG 光泽混合不自然
+- 统一使用"大眼睛+柔光"导致失去角色差异
+
+### 2.2 服装 Fabric
+
+**合格标准：**
+- 有重力垂坠感，裙摆/袖口自然下垂
+- 褶皱有物理逻辑（关节处弯曲、静止时自然堆叠）
+- 面料质感统一（丝绸 vs 棉麻 vs 皮革有明确区分）
+- 接缝、织理可见（非纯色贴图感）
+
+**AI 生成常见错误：**
+- 服装像"贴图覆盖"在角色身上，无体积感
+- 褶皱过于对称/机械（真实褶皱有随机性）
+- 布料无重力感，轻飘飘
+- 古风服装过于"新"，无岁月感/穿着痕迹
+
+### 2.3 环境 Environment
+
+**合格标准：**
+- 体积光可见，有尘埃/微粒散射
+- 物体间接触阴影真实（角色脚下、道具与地面）
+- 空间有纵深感，前中后景有层次
+- 光线色温统一，无局部过曝或欠曝
+
+**AI 生成常见错误：**
+- 物体"飘"在空中，无接触阴影
+- 光线过于平面，无体积感
+- 背景与前景材质颗粒度不一致
+- 室内场景无环境遮蔽（ambient occlusion），物体边缘无阴影
+
+---
+
+## 3. Camera Movement in 3D Animation
+
+### 3.1 3D 动画相机的独特优势
+
+3D 动画的相机是"虚拟相机"，可以执行真实相机**无法实现**的运动：
+
+- **穿墙 Dolly**：相机直接穿过实墙进入场景
+- **极速环绕**：0.5秒完成360°环绕
+- **极端焦距**：极长焦压缩或极短焦广角变形，在实拍中需要大量设备
+- **无设备限制**：不需要摇臂、斯坦尼康，但可以实现同等甚至更复杂的运动
+
+### 3.2 推荐相机运动模式
+
+| 运动类型 | 适用场景 | AI Prompt 关键词 |
+|----------|----------|-----------------|
+| Slow Push-in 缓慢推进 | 情感聚焦、紧张感建立 | slow dolly in, gradual push in |
+| Orbit / 360° Sweep 环绕 | 建立空间关系，展示角色与环境 | slow orbit, 360-degree sweep, revolve around character |
+| Dutch Angle 斜角 | 紧张、失衡、戏剧张力 | dutch angle, tilted frame, canted angle |
+| Rack Focus 焦点切换 | 叙事引导，从一个角色切换到另一个 | rack focus, shift focus, foreground to background |
+| Aerial / Bird's Eye 鸟瞰 | 展示场景全貌，建立宏大感 | bird's eye view, top-down, aerial shot |
+| Low Angle 仰拍 | 突出角色威严、力量感 | low angle, worm's eye view, upward tilt |
+
+### 3.3 运动节奏建议
+
+- **仙侠/古风**：运动偏慢，保持意境感；快切用于战斗/紧张场景
+- **竖屏短剧（9:16）**：多用短焦近景，Z轴纵深运动比横向运动更有效
+- **情绪高潮**：用 Slow Push-in 而非 Zoom（Zoom 是焦距变化，Push-in 是物理运动，质感不同）
+
+---
+
+## 4. Quality Check 质量验收
+
+### 4.1 快速自检清单（每帧必查）
+
 ```
+□ 皮肤有 pores/texture，无磨皮柔光
+□ 服装有重力垂坠感，褶皱物理合理
+□ 接触阴影存在（脚下、道具接触面）
+□ 体积光可见（光束/尘埃散射）
+□ 无物体"飘浮"感
+□ 光线色温统一，无局部过曝
+□ 相机运动符合叙事逻辑（非装饰性运动）
+```
+
+### 4.2 Pixar 质感 vs 超写实短剧感的判断
+
+**Pixar 3D 通过条件：**
+- 整体是 CG 动画质感，不是真实脸孔
+- 光影是"渲染出来的"不是"真实光学"
+- 材质有统一颗粒度
+
+**不合格示例：**
+- 皮肤出现真实磨皮柔光感 → 这是实拍风格，不是 Pixar
+- 眼神光过于锐利/干净 → 真实眼睛没有这种眼神光
+- 光线过于"平"无体积感 → 渲染深度不足
+
+### 4.3 仙侠/古风专项检查
+
+- 服装是否符合朝代/题材（交领/圆领/直裾/曲裾）
+- 发型、头饰是否有历史依据
+- 体积光是否强化了"仙气"氛围
+- 色彩是否偏青灰/水墨（仙侠感）vs 浓烈饱和（武侠感）
+
+---
+
+## Reference Files
+
+- `references/pixar-vs-liveaction.md` — Pixar 3D 与实拍的核心差异详解
+- `references/3d-material-standards.md` — 材质验收标准与常见错误

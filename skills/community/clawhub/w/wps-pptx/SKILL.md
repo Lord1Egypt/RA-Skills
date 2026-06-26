@@ -1,35 +1,55 @@
 ---
-name: "WPS PowerPoint"
-description: "支持创建、读取和编辑.pptx演示文稿文件，包括生成幻灯片、提取内容、修改版式与页面等操作。"
-category: "other"
-source: "ClawHub"
-tags: [pptx, presentation, slides]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wps-pptx"
-sourceUrl: "https://clawhub.ai/skills/wps-pptx"
+name: pptx
+description: "当需要执行操作 PPT/幻灯片 的行为时使用本技能——输入或输出为实际 .pptx，包括：创建或生成幻灯片、演示文稿，读取/解析/提取现有 .pptx 文件中的内容，编辑PPT版式与内容、套用模板与布局等。若仅在叙述中顺带提到 PPT/幻灯片/演示 而未要求产出、读取或修改具体演示文稿文件，则不触发本技能。
 ---
 
-# WPS PowerPoint
-
-> 支持创建、读取和编辑.pptx演示文稿文件，包括生成幻灯片、提取内容、修改版式与页面等操作。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wps-pptx`
-- **Source URL:** [https://clawhub.ai/skills/wps-pptx](https://clawhub.ai/skills/wps-pptx)
+# PPTX 技能
 
 ## Overview
 
+本技能支持 PPT 相关的两类核心操作：**读取**现有 `.pptx` 文件并提取其结构化内容，以及**创建**全新的演示文稿。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wps-pptx
-```
+## Quick Start
+
+在执行任何 PPTX 任务前，先根据用户意图判断任务类型：
+
+| 用户意图                                                              | 任务类型 | 对应流程 |
+| --------------------------------------------------------------------- | -------- | -------- |
+| 打开 / 解析 / 提取现有 PPT 内容                                       | 读取 PPT | Task 1   |
+| 根据内容、搜索到的资料 新建 / 生成 / 制作演示文稿                     | 创建 PPT | Task 2   |
+| 修改PPT内容、增删PPT页面、从用户上传的ppt文件创建ppt、根据模板创建ppt | 编辑PPT  | Task 3   |
+
+---
+
+## Task 1：读取 PPT
+
+**适用场景：** 用户提供现有 `.pptx` 文件，需要提取文字、结构或布局信息，回答用户问题。
+
+### 读取流程
+
+详见 skills/pptx/read_ppt.md
+
+---
+
+## Task 2：创建 PPT
+
+**适用场景：** 从零构建基于 HTML 的演示文稿（PPT）。关键词：'做PPT'、'做演示'、'做幻灯片'、'做汇报'、'制作演示文稿'、'make slides'、'create presentation'
+
+使用 `jupyter_cell_exec` 工具读取 skills/pptx/gen_ppt.md 了解创建 PPT 的详细指南。
+
+---
+
+## Task 3:编辑PPT
+
+适用场景： 用户提供现有 .pptx 文件，需要对其进行内容修改、增删页面、调整顺序等编辑操作。
+使用`jupyter_cell_exec` 读取 skills/pptx/pptxedit.md 了解pptx编辑的详细指南
+
+第 1 步：读取并分析现有 PPT
+
+第 2 步：执行编辑操作
+参考编辑操作指南中列出的编辑操作进行编辑。
+
+第 3 步：保存输出
+将编辑好的pptx文件保存到<OUTPUT_ROOT>/<文档名>.pptx
+
+---

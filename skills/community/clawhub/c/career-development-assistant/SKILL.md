@@ -1,35 +1,122 @@
 ---
-name: "职业发展助手"
-description: "职业教育与职业发展助手。提供热门职业介绍、技能证书考试指南、职业规划建议、职教高考政策解读、实习就业指导。适用于职业院校学生、老师和职场新人进行职业规划。支持家用（知识库）和商用（API扩展）双模式。触发器：用户提出职业/技能/证书/实习/就业/职教相关问题时使用。"
-category: "research"
-source: "ClawHub"
-tags: [career, certificate, education, employment, vocational]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/career-development-assistant"
-sourceUrl: "https://clawhub.ai/skills/career-development-assistant"
+name: career-development-assistant
+description: 职业教育与职业发展助手。提供热门职业介绍、技能证书考试指南、职业规划建议、职教高考政策解读、实习就业指导。适用于职业院校学生、老师和职场新人进行职业规划。支持家用（知识库）和商用（API扩展）双模式。触发器：用户提出职业/技能/证书/实习/就业/职教相关问题时使用。
 ---
 
 # 职业发展助手
 
-> 职业教育与职业发展助手。提供热门职业介绍、技能证书考试指南、职业规划建议、职教高考政策解读、实习就业指导。适用于职业院校学生、老师和职场新人进行职业规划。支持家用（知识库）和商用（API扩展）双模式。触发器：用户提出职业/技能/证书/实习/就业/职教相关问题时使用。
+## 概述
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/career-development-assistant`
-- **Source URL:** [https://clawhub.ai/skills/career-development-assistant](https://clawhub.ai/skills/career-development-assistant)
+本Skill提供职业教育与职业发展全链路支持，涵盖职业介绍、技能证书、职教政策、就业指导。
 
-## Overview
+**两种使用模式：**
+- **家用模式**（默认）：使用内置知识库，零配置，离线可用
+- **商用模式**：配置API端点后可对接实习平台、就业数据、职业测评
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/career-development-assistant
+用户典型提问方式：
+
+> "推荐一下适合我的职业方向"
+> "计算机等级考试怎么报名？"
+> "职教高考和普通高考有什么区别？"
+> "有哪些含金量高的技能证书？"
+
+### 核心处理流程
+
+1. **识别用户身份**：职校学生 / 职场新人 / 职业转换者
+2. **定位问题类型**：职业介绍 / 技能证书 / 职教政策 / 就业指导 / 职业规划
+3. **查询内置知识库** → 返回对应内容
+4. **如有商用API配置** → 可获取实时就业市场数据和实习岗位信息
+5. **回退机制**：API调用失败时自动使用知识库回答
+
+## 核心功能
+
+### 1. 热门职业介绍
+
+参考 `references/careers.md` 中的20-30个热门职业数据库。
+
+**每个职业包含：**
+- 职业简介和工作内容
+- 所需技能和学历要求
+- 对应的技能证书
+- 薪资水平和发展前景
+- 入行建议
+
+### 2. 技能证书指南
+
+参考 `references/certificates.md`。
+
+**覆盖证书类型：**
+- 1+X证书（职业教育改革重点）
+- 职业技能等级认定证书
+- 人社部职业资格证书
+- 行业准入证书（教师、会计、建造师等）
+- IT技能认证（计算机等级考试、软考、华为认证等）
+- 语言类证书（英语、日语、韩语等）
+
+### 3. 职教政策解读
+
+参考 `references/vocational-policy.md`。
+
+**覆盖政策：**
+- 职教高考（职业教育高考）政策
+- 1+X证书制度详解
+- 技能大赛政策
+- 产教融合政策
+- 专升本/专升硕通道
+
+### 4. 就业指导
+
+参考 `references/employment-guide.md`。
+
+**核心内容：**
+- 简历撰写和面试技巧
+- 实习渠道推荐
+- 校企合作模式介绍
+- 就业市场趋势分析
+
+### 5. 职业规划
+
+内置参考框架：
+- 职业性格评估方法（MBTI、霍兰德等）
+- 职业发展路径设计
+- 终身学习规划
+- 职业转型指导
+
+## 家用/商用模式配置
+
+### 家用模式（默认）
+
+无需任何配置，使用内置知识库。
+
+### 商用模式（API扩展）
+
+```yaml
+CAREER_API_URL: "https://your-api-endpoint"
+CAREER_API_KEY: "your-api-key"
 ```
+
+商用模式支持：
+- 实时就业市场数据
+- 实习岗位匹配推荐
+- 在线职业技能测评
+- 招聘信息对接
+
+## 资源文件说明
+
+### references/
+- `careers.md` — 热门职业数据库
+- `certificates.md` — 技能证书指南
+- `vocational-policy.md` — 职教政策知识库
+- `employment-guide.md` — 就业指导参考
+
+### scripts/
+- `career-recommender.py` — 职业推荐引擎
+
+## 安全注意事项
+
+1. **政策数据时效**：职教政策变化较快，标注"最新政策请以官方文件为准"
+2. **薪酬声明**：薪资水平为一般参考，因地区和行业差异较大
+3. **证书信息**：证书考试时间和费用可能有变动，引导用户查询官方渠道
+4. **职业推荐免责**：推荐仅供参考，不构成职业决策依据

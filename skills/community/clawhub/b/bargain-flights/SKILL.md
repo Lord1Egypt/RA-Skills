@@ -1,35 +1,409 @@
 ---
-name: "Flyai / bargain-flights / lowprice / flights / hidden-city / ticketing / search / 捡漏机票 / 聪明买法  / 低价机票"
-description: "帮助用户发现捡漏机票(隐藏城市票价)机会,通过分析联程航线找到比直飞更便宜的到达方案。当用户搜索机票、寻找低价航线、询问省钱买票技巧、或提到捡漏/弃程/隐藏票价时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bargain-flights"
-sourceUrl: "https://clawhub.ai/skills/bargain-flights"
+name: bargain-flights
+description: 帮助用户发现捡漏机票(隐藏城市票价)机会,通过分析联程航线找到比直飞更便宜的到达方案。当用户搜索机票、寻找低价航线、询问省钱买票技巧、或提到捡漏/弃程/隐藏票价时使用此技能。
+metadata:
+  requires:
+    bins:
+      - node
+      - python3
+    npm:
+      - "@fly-ai/flyai-cli"
+  network:
+    - "https://a.feizhu.com"      # 飞猪 API
+    - "https://api.qrserver.com"   # 二维码生成
+  security:
+    cli_audit: "https://www.npmjs.com/package/@fly-ai/flyai-cli"
+    data_privacy: "航班查询数据发送至飞猪服务器,不保留用户查询历史"
 ---
 
-# Flyai / bargain-flights / lowprice / flights / hidden-city / ticketing / search / 捡漏机票 / 聪明买法  / 低价机票
+# 捡漏机票 - 智能搜索,同样目的地花更少的钱
 
-> 帮助用户发现捡漏机票(隐藏城市票价)机会,通过分析联程航线找到比直飞更便宜的到达方案。当用户搜索机票、寻找低价航线、询问省钱买票技巧、或提到捡漏/弃程/隐藏票价时使用此技能。
+## 前置依赖
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bargain-flights`
-- **Source URL:** [https://clawhub.ai/skills/bargain-flights](https://clawhub.ai/skills/bargain-flights)
+本技能依赖 `flyai-cli` 获取实时航班数据。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/bargain-flights
+npm i -g @fly-ai/flyai-cli
+flyai --help  # 验证安装
 ```
+
+### 🔐 安全说明
+
+**flyai CLI 来源**:
+- NPM 包:https://www.npmjs.com/package/@fly-ai/flyai-cli
+- 维护者:FlyAI Team
+- 用途:飞猪航班数据查询
+
+**网络活动**:所有查询发送至飞猪 MCP 服务(`a.feizhu.com`),发送出发地、目的地、日期。不读取本地文件或用户密钥。
+
+## 什么是捡漏机票
+
+捡漏机票,也叫隐藏城市票价(Hidden City Ticketing)。用户搜索 A→B 的直飞机票时,有时购买 A→B→C 的联程票并在 B 下机,反而比直飞更便宜。这不是普通比价--是一种**更聪明的购票策略**。
+
+核心价值主张:**不是找更便宜的票,是找更聪明的买法。**
+
+**限制条件**:
+- 只支持**单程**,不支持往返
+- 只支持一段中转的联程航班(A→B→C,恰好2个航段)
+
+## 捡漏航线发现流程(AI 编排)
+
+### Step 1: 确认用户意图
+
+用户提供出发地和目的地后,确认以下信息:
+
+- 出发城市 / 到达城市
+- 出发日期(单程,捡漏不支持往返)
+- 是否有行李托运需求(影响可行性)
+
+### Step 2: 查询续程城市
+
+使用 `bargain_flights.py` 工具查询该航线有哪些可捡漏的续程城市:
+
+```bash
+python3 scripts/bargain_flights.py --origin "{出发地三字码}" --destination "{目的地三字码}"
+```
+
+- **输入必须是三字代码**(如 BJS、SHE)
+- 中文名称作为兜底(工具会映射到三字码)
+- 输出:`{"data": {"drop_cities": ["HKG", "SEL", ...]}}`
+
+如果没有匹配的航线,返回空列表,告知用户该航线暂无捡漏配置。
+
+### Step 3: 搜索直飞基准价
+
+```bash
+flyai search-flight \
+  --origin "{出发地}" \
+  --destination "{目的地}" \
+  --dep-date {YYYY-MM-DD} \
+  --journey-type 1 \
+  --sort-type 3
+```
+
+从返回 JSON 中提取:
+- `data.itemList[0].ticketPrice` → 直飞最低价(基准价)
+- `data.itemList[0].journeys[0].segments[0]` → 航班号、起降时间、航司
+
+如果直飞无结果,改为 `--journey-type 2` 搜索中转航班作为基准。
+
+### Step 4: 搜索候选捡漏航线
+
+> 详细搜索逻辑、航段验证规则、风险提示等完整流程见 `references/bargain-flights.md`，**操作时必须参考此文件**。
+
+直接搜索出发地 A 到各续程城市 C 的**中转联程**航班（**`--journey-type 2`**，不使用 `--transfer-city`），然后从结果中筛选经过用户目的地 B 的航班。
+
+**为什么用 `--journey-type 2`？**
+捡漏的核心是找 A→B→C 的中转联程票。`--journey-type 1` 只返回直达航班，无法找到经 B 中转的方案。必须用 `--journey-type 2` 才能获取联程中转航班。
+
+**为什么不用 `--transfer-city`？**
+`--transfer-city` 会强制指定中转城市，导致航司按 A→B + B→C 两段分别定价，总价通常比 A→B 直飞还贵。而直接搜 A→C（journey_type=2），航司按 OD（Origin-Destination）整体定价，联程价往往远低于单独购买 A→B 的价格——这才是捡漏机会的来源。
+
+```bash
+# 对每个续程城市 C 发起搜索，搜 A→C 中转联程（journey_type=2，不指定 transfer-city）
+flyai search-flight \
+  --origin "{出发地}" \
+  --destination "{续程城市C}" \
+  --dep-date {YYYY-MM-DD} \
+  --journey-type 2 \
+  --sort-type 3
+```
+
+**从结果中筛选经过目的地 B 的航班：**
+```
+解析返回 JSON：
+├── data.itemList[].journeys[].segments[]
+│   ├── depCityName / arrCityName  → 判断航段是否经过目的地 B
+│   └── 如果某条 journey 的 segments 中存在 arrCityName == "{目的地B}" 的航段
+│       → 说明该联程航班会经过目的地，是候选捡漏方案
+└── data.itemList[].ticketPrice → 联程票价
+```
+
+**⚠️ 关键：必须区分「中转」和「经停」**
+
+目的地 B 出现在航线中有两种形态，只有中转可用于捡漏：
+
+| 类型 | 数据特征 | 能否下机 | 能否捡漏 |
+|------|---------|---------|---------|
+| **中转** | B 是某段 segment 的 `arrCityName`，下一段 segment 从 B 出发，且两段航班号不同 | ✅ 必须下机换乘 | ✅ 可以 |
+| **经停** | B 出现在某段 segment 的 `stopInfos[].cityName` 中，航班号不变 | ❌ 通常不能下机 | ❌ 不可以 |
+
+```
+判断逻辑（伪代码）：
+
+for each item in data.itemList:
+  for i, segment in item.journeys[0].segments:
+    # 情况1：中转 → ✅ 可捡漏
+    if segment.arrCityName == "目的地B":
+      next_segment = segments[i+1]  # 必然存在下一段（因为终点是C）
+      if segment.marketingTransportNo != next_segment.marketingTransportNo:
+        → 不同航班号，真正的中转，旅客必须下机 → 可捡漏 ✅
+      if segment.marketingTransportName != next_segment.marketingTransportName:
+        → 不同航司，100% 需要下机换乘 → 可捡漏 ✅
+
+    # 情况2：经停 → ❌ 不可捡漏
+    if segment.stopInfos is not null:
+      for stop in segment.stopInfos:
+        if stop.cityName == "目的地B":
+          → 仅经停，同一航班号中途落地，旅客通常不能下机 → 排除 ❌
+```
+
+**续程城市选择原则：**
+- 选择与目的地 B 位于同一航司枢纽网络中的远端城市
+- 优先选择比目的地 B 更远/更冷门的城市
+- 关注目的地 B 所在航司的延伸航线
+
+默认续程城市配置见 `data/drop_routes.json`，用户可自定义。
+
+### Step 5: 价格对比与筛选
+
+从每个联程搜索结果中提取价格,与直飞基准价对比:
+
+```
+筛选标准（全部满足才推荐）：
+├── 必须是中转，不能是经停
+├── 联程价格 < 直飞最低价
+├── 省钱幅度 ≥ 15%（低于此值用户感知不明显）
+└── 省钱金额 ≥ ¥200（国内）/ ≥ ¥500（国际）
+
+⚠️ 注意：中转等待时间**不是**筛选条件。捡漏的本质是在目的地 B 下机，第二航段不会乘坐，因此第二航段何时起飞、中转等待多久都无关紧要。
+
+计算公式：
+├── 节省金额 = 直飞最低价 - 联程价格
+└── 节省比例 = 节省金额 / 直飞最低价 × 100%
+```
+
+### Step 6: 生成展示方案
+
+**⚠️ 重要:必须展示所有探索过的方案,让用户看到完整搜索过程。**
+
+展示内容分为两部分:
+
+#### 第一部分:探索过程汇总
+
+用表格形式展示每个续程城市的搜索结果:
+
+```markdown
+### 📊 续程城市探索汇总
+
+| 续程城市 | 经过目的地的航班 | 联程票价 | 与直飞对比 | 能否捡漏 |
+|---------|-----------------|---------|-----------|---------|
+| {城市1} | ✅ 有 / ❌ 无 | ¥{价格} | 便宜¥X / 贵¥X | ✅ 推荐 / ❌ 不符合 |
+| {城市2} | ✅ 有 / ❌ 无 | ¥{价格} | 便宜¥X / 贵¥X | ✅ 推荐 / ❌ 不符合 |
+| {城市3} | ❌ 无 | - | - | - |
+| ... | ... | ... | ... | ... |
+
+**筛选标准**:
+- 联程价格 < 直飞最低价
+- 省钱幅度 ≥ 15%
+- 省钱金额 ≥ ¥200(国内)/ ¥500(国际)
+- 必须是中转(非经停)
+- ⚠️ 不筛选中转等待时间(第二航段不乘坐,等待多久无所谓)
+```
+
+#### 第二部分:捡漏方案详情
+
+仅对符合条件的方案展示详细信息:
+
+```markdown
+### ✅ 捡漏方案推荐
+
+| 行程 | 价格 | 节省 | 第一航段 | 第二航段 |
+|------|------|------|----------|----------|
+| {出发地}→{目的地}→~~{续程城市}~~ | ¥{联程价} | ¥{差价} ({比例}%) | {航班号} {时间} | ~~{航班号}~~ |
+```
+
+**生成二维码并展示链接**:
+
+使用 qrcode.py 生成在线二维码 URL:
+
+```bash
+python3 scripts/qrcode.py --url "{jumpUrl}"
+```
+
+输出示例:`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=...`
+
+**展示方式**:在 markdown 中直接提供一个可点击的链接,点击后跳转打开二维码图片:
+
+```markdown
+📱 [点击查看预订二维码]({二维码图片URL})
+
+> 点击上方链接即可看到二维码,手机扫码后自动跳转到飞猪预订页面
+```
+
+**注意**:脚本直接返回在线二维码 API 的 URL,无需下载图片文件。用户点击链接即可在浏览器中查看二维码。
+
+**⚠️ 重要:二维码必须自动生成并展示,不要询问用户是否需要。**
+- 有捡漏方案时：生成捡漏方案的预订二维码
+- 无捡漏方案时：生成直飞最低价航班的预订二维码
+
+如果没有任何方案符合条件,需明确告知用户,并生成直飞最低价航班的预订二维码:
+
+```markdown
+### 结论
+
+**{出发地}→{目的地} 这条航线暂时没有捡漏机会。**
+
+原因分析:
+- [列出主要原因,如:联程票价高于直飞 / 无经过目的地的联程航班 / 省钱幅度不足等]
+
+### 💡 建议
+直接购买直飞最低价航班:{航班号} ¥{价格} {时间}
+
+📱 [点击查看预订二维码]({二维码图片URL})
+```
+
+**无捡漏时生成二维码流程**:
+
+1. 从 Step 3 直飞搜索结果中提取最低价航班的 `jumpUrl`
+2. 使用 qrcode.py 生成二维码:
+   ```bash
+   python3 scripts/qrcode.py --url "{jumpUrl}"
+   ```
+3. 在建议部分展示二维码链接,方便用户直接扫码预订
+
+## 配置文件
+
+默认配置文件: `data/drop_routes.json`
+
+```json
+[
+  {"o":"BJS", "d":"HKG", "drop":["TYO","SEL","OSA","BKK","SIN"]},
+  {"o":"BJS", "d":"SHA", "drop":["CAN","SZX","CTU","CKG","HGH","KWL"]}
+]
+```
+
+字段说明:
+- `o`: 出发城市三字码
+- `d`: 目的地城市三字码
+- `drop`: 续程城市三字码列表(**顺序即为搜索优先级**)
+
+`bargain_flights.py` 工具只读取此文件,不做任何修改。
+
+## 脚本工具
+
+### 1. 续程城市检索 `scripts/bargain_flights.py`
+
+**纯数据检索工具** - 从 `data/drop_routes.json` 中查找指定航线的续程城市列表。
+不做航班搜索、不做价格对比、不做流程编排。
+
+**输入必须是三字代码**,中文名称作为兜底映射。
+
+```bash
+python3 scripts/bargain_flights.py --origin BJS --destination SHE
+python3 scripts/bargain_flights.py --origin 北京 --destination 沈阳   # 中文兜底
+```
+
+参数说明:
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--origin` | 是 | 出发城市三字码(中文兜底) |
+| `--destination` | 是 | 目的地城市三字码(中文兜底) |
+| `--data-file` | 否 | 自定义配置文件路径 |
+
+**输出**:
+```json
+{
+  "status": 0,
+  "data": {
+    "origin": "BJS",
+    "destination": "SHE",
+    "drop_cities": ["HKG", "SEL"]
+  }
+}
+```
+
+### 2. 二维码生成 `scripts/qrcode.py`
+
+生成二维码图片 URL,方便手机扫码访问预订链接。
+
+```bash
+python3 scripts/qrcode.py --url "{jumpUrl}"
+```
+
+参数说明:
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--url` / `-u` | 是 | 飞猪预订链接 |
+| `--size` / `-s` | 否 | 图片尺寸(像素),默认 300 |
+
+**⚠️ 必须将二维码 URL 作为可点击链接展示给用户,不要只输出路径。**
+
+## 风险提示与合规(必读)
+
+**以下内容必须在用户确认购买前完整告知。**
+
+### 用户必须知道的 3 件事
+
+**1. 后续航段会被取消**
+> 你在目的地下机后,后面没坐的航段会被航空公司自动取消。这是正常的,不影响你已经完成的行程。
+
+**2. 行李不能直挂**
+> 办理登机时,请告知柜台你要在中转城市提取行李(不要办理行李直挂)。如果行李直挂到了终点城市,你将无法取回。
+
+**3. 仅适用于单程**
+> 如果你购买了往返联程票,去程弃掉后半段后,回程可能被航空公司一并取消。建议:去程和回程分开购买。
+
+### 不适用场景
+
+| 场景 | 原因 | 建议 |
+|------|------|------|
+| 目的地仅为经停(非中转) | 同一航班号经停,旅客通常不能下机 | 仅选择中转方案 |
+| 有大件托运行李 | 行李直挂风险高 | 建议直飞 |
+| 往返联程票 | 前半段不乘坐可能导致回程取消 | 分开购票 |
+| 航司常旅客重度用户 | 频繁捡漏可能被航司标记 | 评估后决定 |
+
+### 风险等级标注
+
+```
+🟢 低风险:单程 + 仅手提行李 + 非常旅客会员
+🟡 中风险:有少量托运行李(需手动提取)
+🔴 高风险:往返票 / 大件行李 / 常旅客用户 → 不推荐
+```
+
+### 国际路线特别提醒
+
+**以下内容在国际路线搜索时自动展示。**
+
+| 提醒项 | 说明 |
+|--------|------|
+| **护照要求** | 国际航线需持有有效护照才能购买 |
+| **签证要求** | 需确认目的地国家签证政策,部分国家需要提前办理签证 |
+
+**国际路线判断逻辑**:
+- 出发地或目的地涉及境外城市(含港澳台)时,自动添加护照/签证提醒
+
+## 用户沟通话术
+
+### 功能介绍(首次使用)
+
+> 「捡漏机票」帮你找到普通搜索找不到的低价方案。
+> 原理很简单:有时候买一张飞得更远的联程票,反而比直飞更便宜。
+> 你只需要坐到你的目的地下机就好。
+
+### 方案推荐时
+
+> 我们发现了一个到 [目的地] 的省钱方案,比直飞便宜 [X]%。
+> 你只需要在 [目的地] 正常下机,不用坐后面到 [终点] 的航段。
+
+### 风险告知时
+
+> 温馨提示:
+> 1 办理值机时请选择在 [目的地] 提取行李,不要行李直挂
+> 2 此方案为单程使用,回程请另行购票
+> 3 未乘坐的航段会被自动取消,不影响你的行程
+
+## 常见问题速查
+
+| 用户问题 | 回答要点 |
+|----------|----------|
+| 这合法吗? | 完全合法,你购买了机票并使用了其中的航段 |
+| 航空公司会追究吗? | 偶尔使用不会有问题,但不建议高频使用同一航线 |
+| 能累积里程吗? | 可以累积你实际乘坐航段的里程 |
+| 能选座吗? | 可以正常选座,和普通机票一样 |
+| 需要签证吗? | 只需要目的地城市所在国家的签证 |
+| 能退票吗? | 按照航司退改政策正常退票 |
+
+## References
+
+详细文档见 `references/bargain-flights.md`

@@ -1,0 +1,14 @@
+{
+  "name": "image-gen-low-cost",
+  "version": "1.0.5",
+  "description": "Low-cost AI image generation CLI. Text-to-image and image editing from $0.01/image. Works with any OpenAI-compatible API.",
+  "author": "openclaw-community",
+  "license": "MIT",
+  "keywords": ["image", "generation", "ai", "text-to-image", "image-editing", "cli", "low-cost"],
+  "bin": {
+    "imgen": "./scripts/imgen.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

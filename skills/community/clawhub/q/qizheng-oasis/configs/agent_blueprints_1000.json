@@ -1,0 +1,22 @@
+[
+  {"role": "头部KOC",       "count": 30,  "inf": 2.5, "prob": 0.95, "demand": 2, "mbti": ["ENFJ","ENTP","ENFP"],    "triggers": ["爆款首发","限时特价","稀缺感"],          "barriers": ["品控不稳","物流风险"]},
+  {"role": "腰部KOC",       "count": 70,  "inf": 1.8, "prob": 0.88, "demand": 1, "mbti": ["ENFJ","ESFP","ENTP"],    "triggers": ["真实体验","产品故事","限时抢"],          "barriers": ["担心售后","性价比不够"]},
+  {"role": "素人种草",       "count": 100, "inf": 1.2, "prob": 0.75, "demand": 1, "mbti": ["ESFP","ENFP","ISFJ"],    "triggers": ["好看好吃","性价比","买过都说好"],        "barriers": ["怕不好吃","没吃过"]},
+  {"role": "宝妈精准",       "count": 120, "inf": 1.0, "prob": 0.80, "demand": 2, "mbti": ["ISFJ","ESFJ","INFJ"],    "triggers": ["孩子爱吃","有机安全","护眼营养"],         "barriers": ["怕酸","怕不新鲜","怕农药"]},
+  {"role": "银发精准",       "count": 60,  "inf": 0.7, "prob": 0.65, "demand": 2, "mbti": ["ISTJ","ISFJ","INTJ"],    "triggers": ["养生健康","看得见摸得着","熟人推荐"],     "barriers": ["不会用手机买","怕买不到好的"]},
+  {"role": "白领精准",       "count": 80,  "inf": 0.8, "prob": 0.60, "demand": 1, "mbti": ["INTJ","ISTJ","INFJ"],    "triggers": ["品质生活","方便快捷","营养代餐"],        "barriers": ["没时间做","不知道怎么吃"]},
+  {"role": "羊毛头号",       "count": 60,  "inf": 1.5, "prob": 0.95, "demand": 2, "mbti": ["ESTP","ESFP","ENTP"],    "triggers": ["全网最低","限时特价","必须囤"],           "barriers": ["叠加不够低","需要拉人"]},
+  {"role": "羊毛普通",       "count": 120, "inf": 0.8, "prob": 0.88, "demand": 1, "mbti": ["ESTP","ISTP","ESFP"],    "triggers": ["好价","限时","买来试试"],                "barriers": ["需要拉人才能优惠","买多了浪费"]},
+  {"role": "羊毛比价",       "count": 60,  "inf": 0.6, "prob": 0.70, "demand": 0, "mbti": ["INTJ","INTP","ISTJ"],    "triggers": ["确认全网最低","找到对比优势"],            "barriers": ["超市更便宜","进口更好"]},
+  {"role": "随大流强",       "count": 80,  "inf": 0.9, "prob": 0.75, "demand": 1, "mbti": ["ESFJ","ENFJ","ISFJ"],    "triggers": ["朋友圈晒单","群友都在买","KOC推荐"],      "barriers": ["没人买就放弃","不确定值不值"]},
+  {"role": "随大流弱",       "count": 60,  "inf": 0.4, "prob": 0.40, "demand": 0, "mbti": ["ISFJ","ISTJ","INFJ"],     "triggers": ["刚好需要","正好刷到"],                    "barriers": ["没有社交信号","已买别家"]},
+  {"role": "新客首单",       "count": 80,  "inf": 0.5, "prob": 0.55, "demand": 1, "mbti": ["ENFP","ISFP","ESFP"],     "triggers": ["新用户优惠","尝鲜","朋友推荐"],          "barriers": ["不信任","不知道好不好"]},
+  {"role": "复购满意",       "count": 50,  "inf": 1.5, "prob": 0.92, "demand": 2, "mbti": ["ISFJ","ESFJ","ISTJ"],     "triggers": ["成山出品必买","复购优惠","孩子爱吃"],     "barriers": ["价格比上次贵","口感下降"]},
+  {"role": "复购一般",       "count": 40,  "inf": 0.9, "prob": 0.60, "demand": 1, "mbti": ["ISFJ","ISTJ","ESFP"],      "triggers": ["价格够低就买","有优惠就试"],             "barriers": ["之前体验一般","不一定复购"]},
+  {"role": "观望犹豫",       "count": 50,  "inf": 0.3, "prob": 0.25, "demand": 0, "mbti": ["INTJ","INTP","ISTJ"],     "triggers": ["确认价格见底","有人说值"],               "barriers": ["等等看","还会不会更低"]},
+  {"role": "羊毛只看不买",   "count": 30,  "inf": 0.5, "prob": 0.10, "demand": 0, "mbti": ["INTP","ISTP","ISFP"],    "triggers": ["围观抄作业","等有人买了我再决定"],         "barriers": ["不需要","预算有限"]},
+  {"role": "专业差评型",     "count": 10,  "inf": 0.8, "prob": 0.05, "demand": 0, "mbti": ["INTJ","ENTJ","ESTJ"],      "triggers": ["找到质量问题","有人反馈不好"],           "barriers": ["不想买","就是来挑刺的"]},
+  {"role": "批量采购",       "count": 20,  "inf": 1.2, "prob": 0.85, "demand": 2, "mbti": ["ENTJ","ESTJ","ISTJ"],      "triggers": ["公司团购","走量优惠","给员工发福利"],    "barriers": ["没有对公账户","价格不够低"]},
+  {"role": "冷淡对照组",     "count": 10,  "inf": 0.1, "prob": 0.03, "demand": 0, "mbti": ["INTP","INTJ","ISTP"],      "triggers": ["刚好需要","价格低到离谱"],               "barriers": ["不需要","不感兴趣","对网购生鲜没信心"]},
+  {"role": "刷单占位",       "count": 0,   "inf": 0.0, "prob": 0.00, "demand": 0, "mbti": [],                         "triggers": [],                                     "barriers": []}
+]

@@ -1,35 +1,43 @@
 ---
-name: "泾川天气预报"
+name: jingchuan-weather
 description: "查询甘肃省泾川县7天天气预报，包含日出日落时间。当用户输入'泾川天气'或类似内容时自动触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jingchuan-weather"
-sourceUrl: "https://clawhub.ai/skills/jingchuan-weather"
+metadata:
+  { "openclaw": { "emoji": "🌤️", "triggers": ["泾川天气", "泾川县的天气", "泾川天气预报"] } }
 ---
 
-# 泾川天气预报
+# 泾川天气技能
 
-> 查询甘肃省泾川县7天天气预报，包含日出日落时间。当用户输入'泾川天气'或类似内容时自动触发。
+当用户询问泾川县天气时，自动获取并显示7天天气预报。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jingchuan-weather`
-- **Source URL:** [https://clawhub.ai/skills/jingchuan-weather](https://clawhub.ai/skills/jingchuan-weather)
+## 触发条件
 
-## Overview
+- 用户输入包含"泾川天气"
+- 用户输入包含"泾川县的天气"
+- 用户输入包含"泾川天气预报"
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jingchuan-weather
-```
+1. 获取泾川县未来7天天气预报
+2. 显示每天的天气状况、最高/最低温度、降雨概率
+3. 显示泾川本地日出、日落时间
+4. 提供出行建议
+
+## 数据来源
+
+- 天气数据：Open-Meteo API (免费，无需API Key)
+- 地理位置：甘肃省平凉市泾川县 (纬度: 35.51, 经度: 107.36)
+
+## 使用方式
+
+当用户说"泾川天气"时，执行以下步骤：
+
+1. 调用 Python 脚本获取天气数据
+2. 格式化输出为表格形式
+3. 包含日出日落信息
+4. 提供总结建议
+
+## 注意事项
+
+- 泾川县位于甘肃省东部，属于温带半干旱气候
+- 春季昼夜温差较大，建议带外套
+- 西北地区气候干燥，注意补水

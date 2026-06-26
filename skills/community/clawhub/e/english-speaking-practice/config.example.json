@@ -1,0 +1,20 @@
+{
+  "user": {
+    "name": "你的名字",
+    "learningGoal": "日常英语口语对话"
+  },
+  "data": {
+    "baseDir": "./practice-data"
+  },
+  "push": {
+    "targetUserId": "你的用户ID（如飞书 ou_xxx，微信 xxx@im.wechat）",
+    "channel": "feishu",
+    "enabled": false
+  },
+  "api": {
+    "provider": "custom",
+    "url": "https://your-api-endpoint.com/v1/chat/completions",
+    "apiKey": "your-api-key-here",
+    "model": "your-model"
+  }
+}

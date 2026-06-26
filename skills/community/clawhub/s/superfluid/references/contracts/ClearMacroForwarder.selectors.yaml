@@ -1,0 +1,45 @@
+# ClearMacroForwarder selectors — computed from @sfpro/sdk ABI
+
+functions:
+  eip712Domain():                                             0x84b0196e
+  encodeParams(bytes,(string,address,string,uint256,uint256,uint256)): 0x9c487a21
+  getDigest(address,bytes):                                   0x385062cc
+  getNonce(address,uint192):                                  0x35567e1a
+  getPermit2WitnessStructHash(address,bytes,address):         0xffec2c3c
+  getPermit2WitnessTypeString(address,bytes):                 0x2b906d1c
+  getStructHash(address,bytes):                               0xdf12247d
+  getTypeDefinition(address,bytes):                           0x74bbb827
+  getTypeHash(address,bytes):                                 0x42ca6a5b
+  PERMIT2():                                                  0x6afdd850
+  runMacro(address,bytes,address,bytes):                      0xd3bc881e
+  runPermit2AndMacro((((address,uint256),uint256,uint256),address,bytes32,string,bytes,address,address),address,bytes): 0x33a3928d
+  SELF_PROVIDER():                                            0xdc254546
+
+events:
+  EIP712DomainChanged():                                      0x0a6387c9ea3628b88a633bb4f3b151770f70085117a15f9bf3787cda53f13d31
+  MacroExecuted(address,address,bytes32):                     0x6bb63fa129a737a1686708b0c5ca2f03826fca12b7b6ae39246a0640eddf92e6
+  Permit2UpgradeExecuted(address,address,address,uint256,uint256): 0xd66be664a64963e0940d8e004166aafaf12d3a718c12c9b6994d3ca9d010a8d8
+
+errors:
+  # Forwarder + EIP-712/OZ-infra errors only. The full Superfluid protocol error set
+  # (CFA_*, GDA_*, IDA_*, HOST_*, SF_TOKEN_*, SUPER_TOKEN_*, SUPERFLUID_POOL_*) is merged
+  # into the SDK ABI so viem can decode reverts propagated from the Host and agreements;
+  # those are documented in their own *.selectors.yaml files (ConstantFlowAgreementV1,
+  # GeneralDistributionAgreementV1, InstantDistributionAgreementV1, Superfluid, SuperToken,
+  # SuperfluidPool).
+  ECDSAInvalidSignature():                        0xf645eedf
+  ECDSAInvalidSignatureLength(uint256):           0xfce698f7
+  ECDSAInvalidSignatureS(bytes32):                0xd78bce0c
+  InvalidNonce(address,uint256):                  0xdbc205b1
+  InvalidPayload(string):                         0x031b518f
+  InvalidShortString():                           0xb3512b0c
+  InvalidSignature():                             0x8baa579f
+  MacroContractMismatch(address,address):         0x6fac7acf
+  OutsideValidityWindow(uint256,uint256,uint256): 0xca5d011b
+  ProviderNotAuthorized(string,address):          0x9ad924ce
+  SafeCastOverflowedIntDowncast(uint8,int256):    0x327269a7
+  SafeCastOverflowedIntToUint(int256):            0xa8ce4432
+  SafeCastOverflowedUintDowncast(uint8,uint256):  0x6dfcc650
+  SafeCastOverflowedUintToInt(uint256):           0x24775e06
+  SafeERC20FailedOperation(address):              0x5274afe7
+  StringTooLong(string):                          0x305a27a9

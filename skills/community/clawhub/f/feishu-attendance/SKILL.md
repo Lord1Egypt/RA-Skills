@@ -1,35 +1,34 @@
 ---
-name: "feishu-attendance"
-description: "Monitor Feishu attendance for late, early leave, or absence, notify employees of issues, and send summary reports to admin with holiday-aware checks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-attendance"
-sourceUrl: "https://clawhub.ai/skills/feishu-attendance"
+name: feishu-attendance
+description: Monitor Feishu (Lark) attendance records. Check for late, early leave, or absent employees and report to admin.
+tags: [feishu, lark, attendance, monitor, report]
 ---
 
-# feishu-attendance
+# Feishu Attendance Skill
 
-> Monitor Feishu attendance for late, early leave, or absence, notify employees of issues, and send summary reports to admin with holiday-aware checks.
+Monitor daily attendance, notify employees of abnormalities, and report summary to admin.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-attendance`
-- **Source URL:** [https://clawhub.ai/skills/feishu-attendance](https://clawhub.ai/skills/feishu-attendance)
+## Features
+- **Smart Checks**: Detects Late, Early Leave, and Absence.
+- **Holiday Aware**: Auto-detects holidays/weekends via `timor.tech` API.
+- **Safe Mode**: Disables user notifications if holiday API fails (prevents spam).
+- **Caching**: Caches user list (24h TTL) and holiday data for performance.
+- **Reporting**: Sends rich interactive cards to Admin.
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-attendance
+# Check today's attendance (Default)
+node index.js check
+
+# Check specific date
+node index.js check --date 2023-10-27
+
+# Dry Run (Test mode, no messages sent)
+node index.js check --dry-run
 ```
+
+## Permissions Required
+- `attendance:report:readonly`
+- `contact:user.employee:readonly`
+- `im:message:send_as_bot`

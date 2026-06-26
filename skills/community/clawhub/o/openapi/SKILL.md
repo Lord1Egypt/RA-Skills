@@ -1,35 +1,103 @@
 ---
-name: "Openapi"
+name: "openapi"
+version: "1.0.0"
 description: "Openapi reference tool. Use when working with openapi in devtools contexts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openapi"
-sourceUrl: "https://clawhub.ai/skills/openapi"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [openapi, devtools, dev, reference, cli]
+category: "devtools"
 ---
 
 # Openapi
 
-> Openapi reference tool. Use when working with openapi in devtools contexts.
+Openapi reference tool. Use when working with openapi in devtools contexts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openapi`
-- **Source URL:** [https://clawhub.ai/skills/openapi](https://clawhub.ai/skills/openapi)
+## When to Use
 
-## Overview
+- Working with openapi and need quick reference
+- Looking up devtools standards or best practices for openapi
+- Troubleshooting openapi issues
+- Need a checklist or guide for openapi tasks
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `intro`
+
 ```bash
-hermes skills install clawhub/openapi
+scripts/script.sh intro
 ```
+
+Overview and core concepts
+
+### `quickstart`
+
+```bash
+scripts/script.sh quickstart
+```
+
+Getting started guide
+
+### `patterns`
+
+```bash
+scripts/script.sh patterns
+```
+
+Common patterns and best practices
+
+### `debugging`
+
+```bash
+scripts/script.sh debugging
+```
+
+Debugging and troubleshooting
+
+### `performance`
+
+```bash
+scripts/script.sh performance
+```
+
+Performance optimization tips
+
+### `security`
+
+```bash
+scripts/script.sh security
+```
+
+Security considerations
+
+### `migration`
+
+```bash
+scripts/script.sh migration
+```
+
+Migration and upgrade guide
+
+### `cheatsheet`
+
+```bash
+scripts/script.sh cheatsheet
+```
+
+Quick reference cheat sheet
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

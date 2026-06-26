@@ -1,0 +1,51 @@
+{
+  "profile_id": "ai-code-review",
+  "product_name": "AI Code Review Assistant",
+  "product_one_liner": "An AI agent that reviews pull requests for solo founders.",
+  "target_audience": "Solo technical founders and small engineering teams",
+  "keywords": [
+    "AI code review",
+    "PR review",
+    "developer workflow"
+  ],
+  "scoring_terms": [
+    "code review",
+    "pull request",
+    "bug",
+    "AI agent",
+    "developer workflow"
+  ],
+  "platforms": {
+    "reddit": {
+      "enabled": true,
+      "communities": [
+        "ChatGPT",
+        "SideProject",
+        "indiehackers"
+      ],
+      "seed_urls": [],
+      "excluded_urls": []
+    },
+    "v2ex": {
+      "enabled": true,
+      "communities": [
+        "programmer",
+        "create",
+        "qna"
+      ],
+      "discovery_providers": [
+        "sov2ex",
+        "node_latest",
+        "configured_seed_urls"
+      ],
+      "seed_urls": [],
+      "excluded_urls": []
+    }
+  },
+  "discovery_mode": "research",
+  "max_candidates": 12,
+  "draft": {
+    "generate_publish_intent": true,
+    "require_confirmation_before_public_publish": true
+  }
+}

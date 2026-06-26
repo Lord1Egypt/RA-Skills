@@ -1,0 +1,14 @@
+{
+  "recorder": {
+    "fps": 24,
+    "quality": 80,
+    "outputDir": "./recordings"
+  },
+  "browser": {
+    "headless": false,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

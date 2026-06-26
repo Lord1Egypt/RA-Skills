@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用标题</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 统一 Tailwind 配置（必须保留） -->
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: {
+                        50: '#eff6ff',
+                        100: '#dbeafe',
+                        200: '#bfdbfe',
+                        300: '#93c5fd',
+                        400: '#60a5fa',
+                        500: '#3b82f6',
+                        600: '#2563eb',
+                        700: '#1d4ed8',
+                        800: '#1e40af',
+                        900: '#1e3a8a',
+                    },
+                },
+                animation: {
+                    'fade-in': 'fadeIn 0.3s ease-out',
+                    'slide-up': 'slideUp 0.3s ease-out',
+                    'slide-down': 'slideDown 0.3s ease-out',
+                    'scale-in': 'scaleIn 0.2s ease-out',
+                },
+                keyframes: {
+                    fadeIn: {
+                        '0%': { opacity: '0' },
+                        '100%': { opacity: '1' },
+                    },
+                    slideUp: {
+                        '0%': { opacity: '0', transform: 'translateY(20px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    slideDown: {
+                        '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    scaleIn: {
+                        '0%': { opacity: '0', transform: 'scale(0.95)' },
+                        '100%': { opacity: '1', transform: 'scale(1)' },
+                    },
+                },
+                boxShadow: {
+                    'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                    'soft-lg': '0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 2px 10px -2px rgba(0, 0, 0, 0.04)',
+                    'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
+                },
+            }
+        }
+    }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-smooth { @apply transition-all duration-300 ease-out; }
+            .transition-fast { @apply transition-all duration-150 ease-out; }
+            .glass { @apply bg-white/80 backdrop-blur-md border border-white/20; }
+            .gradient-primary { @apply bg-gradient-to-r from-primary-600 to-primary-500; }
+            .gradient-subtle { @apply bg-gradient-to-br from-gray-50 to-gray-100; }
+            .hover-lift { @apply transition-smooth hover:-translate-y-1 hover:shadow-soft-lg; }
+            .hover-glow { @apply transition-smooth hover:shadow-glow; }
+        }
+    </style>
+    <!-- AiPexBase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/aipexbase-js/dist/aipexbase.umd.min.js"></script>
+</head>
+<body class="bg-gradient-subtle min-h-screen">
+    <!-- 顶部导航（玻璃态） -->
+    <nav class="sticky top-0 z-50 glass border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center shadow-soft">
+                        <span class="text-white font-bold text-sm">A</span>
+                    </div>
+                    <span class="text-xl font-semibold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                        应用名称
+                    </span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <a href="#" class="px-4 py-2 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-smooth">
+                        首页
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区（带入场动画） -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-600 bg-clip-text text-transparent">
+                页面标题
+            </h1>
+            <p class="mt-2 text-gray-500">页面描述文字</p>
+        </div>
+
+        <!-- 卡片示例 -->
+        <div class="bg-white rounded-2xl shadow-soft p-6 hover-lift">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">卡片标题</h3>
+            <p class="text-gray-600">应用内容</p>
+        </div>
+    </main>
+
+    <!-- Toast 容器 -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-3"></div>
+
+    <script>
+        // ===== 初始化客户端 =====
+        // 注意：baseUrl 和 apiKey 需要从 baas-config.json 中读取并替换
+        const client = aipexbase.createClient({
+            baseUrl: '<从 baas-config.json 读取 baseUrl>',
+            apiKey: '<从 baas-config.json 读取 apiKey>'
+        });
+
+        // ===== Toast 提示函数 =====
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const styles = {
+                success: 'bg-green-50 border-green-200 text-green-800',
+                error: 'bg-red-50 border-red-200 text-red-800',
+                warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+                info: 'bg-blue-50 border-blue-200 text-blue-800'
+            };
+            const icons = {
+                success: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>',
+                error: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>',
+                warning: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',
+                info: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'
+            };
+            toast.className = `flex items-center px-4 py-3 rounded-xl border shadow-soft-lg animate-slide-down ${styles[type]}`;
+            toast.innerHTML = `
+                <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">${icons[type]}</svg>
+                <span class="font-medium">${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== 数据库操作示例（必须使用 client.db 模块）=====
+        // 禁止使用 client.from()，必须使用 client.db.from()
+
+        // 列表查询
+        // const res = await client.db.from('表名').list();
+
+        // 带条件查询
+        // const res = await client.db.from('表名').list()
+        //   .eq('status', 'active')
+        //   .order('created_at', 'desc');
+
+        // 分页查询
+        // const res = await client.db.from('表名').page()
+        //   .page(1, 20);
+
+        // 单条查询
+        // const res = await client.db.from('表名').get()
+        //   .eq('id', 'rec_xxx');
+
+        // 插入数据
+        // const res = await client.db.from('表名').insert()
+        //   .values({ name: 'John', age: 25 });
+
+        // 更新数据
+        // const res = await client.db.from('表名').update()
+        //   .set({ status: 'inactive' })
+        //   .eq('id', 'rec_xxx');
+
+        // 删除数据
+        // const res = await client.db.from('表名').delete()
+        //   .eq('id', 'rec_xxx');
+
+        console.log('AiPexBase 客户端已初始化');
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "name": "github-collab",
+  "version": "3.0.0",
+  "description": "GitHub Collaborator Agent - 基于 OpenClaw 的 GitHub 协作系统",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --watch --config jest.config.js",
+    "test:coverage": "jest --coverage --config jest.config.js",
+    "coverage": "nyc npm test",
+    "coverage:open": "nyc report --reporter=html && open coverage/index.html",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:init": "node src/scripts/init-db.js",
+    "db:list": "node src/scripts/update-agent.js list",
+    "db:sync": "node src/scripts/sync-config.js",
+    "db:validate": "node src/scripts/validate-config.js",
+    "config": "node src/scripts/config-cli.js",
+    "config:status": "node src/scripts/config-cli.js status",
+    "config:list": "node src/scripts/config-cli.js list",
+    "config:update": "node src/scripts/config-cli.js update",
+    "config:backup": "node src/scripts/config-cli.js backup",
+    "config:restore": "node src/scripts/config-cli.js restore",
+    "config:export": "node src/scripts/config-cli.js export",
+    "config:import": "node src/scripts/config-cli.js import",
+    "config:cleanup": "node src/scripts/config-cli.js cleanup",
+    "config:summary": "node src/scripts/config-cli.js summary",
+    "task:list": "node src/scripts/config-cli.js task:list",
+    "task:show": "node src/scripts/config-cli.js task:show",
+    "task:assign": "node src/scripts/config-cli.js task:assign",
+    "task:complete": "node src/scripts/config-cli.js task:complete",
+    "task:stats": "node src/scripts/config-cli.js task:stats",
+    "openclaw:example": "node examples/enhanced-controller-example.js",
+    "openclaw:help": "echo 'OpenClaw Native Integration - See OPENCLAW_MIGRATION.md for details'",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "agent",
+    "collaboration",
+    "github",
+    "automation",
+    "task-management"
+  ],
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "commander": "^14.0.0",
+    "dotenv": "^17.0.0",
+    "uuid": "^11.0.5",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "nyc": "^17.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jest": "^28.0.0",
+    "prettier": "^3.3.0",
+    "husky": "^9.1.0",
+    "commitlint": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"],
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/tests/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  }
+}

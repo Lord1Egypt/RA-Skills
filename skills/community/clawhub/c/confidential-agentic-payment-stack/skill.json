@@ -1,0 +1,387 @@
+{
+  "name": "fhe-x402-payment",
+  "version": "1.0.0",
+  "description": "FHE-encrypted x402 payments for OpenClaw agents using Zama canonical wrappers",
+  "network": {
+    "name": "Configurable (Sepolia default, Mainnet supported)",
+    "chainId": "Set via CHAIN env var (default: auto-detect from RPC_URL)"
+  },
+  "commands": {
+    "wrap": {
+      "description": "Wrap USDC into encrypted cUSDC (ERC-7984)",
+      "script": "scripts/wrap.ts",
+      "args": {
+        "amount": {
+          "type": "string",
+          "required": true,
+          "description": "Amount of USDC to wrap (e.g. '2' for 2 USDC)"
+        }
+      }
+    },
+    "pay": {
+      "description": "Send encrypted cUSDC payment to another address via confidentialTransfer",
+      "script": "scripts/pay.ts",
+      "args": {
+        "to": {
+          "type": "string",
+          "required": true,
+          "description": "Recipient Ethereum address"
+        },
+        "amount": {
+          "type": "string",
+          "required": true,
+          "description": "Amount of USDC to pay (e.g. '1' for 1 USDC)"
+        }
+      }
+    },
+    "unwrap": {
+      "description": "Request unwrap of cUSDC back to USDC (step 1 of 2, initiates KMS decryption)",
+      "script": "scripts/unwrap.ts",
+      "args": {
+        "amount": {
+          "type": "string",
+          "required": true,
+          "description": "Amount to unwrap (e.g. '1' for 1 USDC)"
+        }
+      }
+    },
+    "finalize-unwrap": {
+      "description": "Finalize unwrap via publicDecrypt (recommended) or manual proof. Use --handle from the unwrap command output.",
+      "script": "scripts/finalize-unwrap.ts",
+      "args": {
+        "handle": {
+          "type": "string",
+          "required": false,
+          "description": "Encrypted amount handle from the unwrap event (recommended — uses publicDecrypt to get cleartext + proof automatically)"
+        },
+        "requestId": {
+          "type": "string",
+          "required": false,
+          "description": "Legacy: request ID for manual finalization (requires --cleartextAmount and --proof)"
+        },
+        "cleartextAmount": {
+          "type": "string",
+          "required": false,
+          "description": "Legacy: decrypted cleartext amount (uint64) for manual finalization"
+        },
+        "proof": {
+          "type": "string",
+          "required": false,
+          "description": "Legacy: decryption proof bytes for manual finalization"
+        }
+      }
+    },
+    "balance": {
+      "description": "Check wallet USDC balance and encrypted cUSDC handle. With --decrypt, decrypts your own cUSDC balance via Zama KMS. With --of, reads another agent's balance via delegation.",
+      "script": "scripts/balance.ts",
+      "args": {
+        "decrypt": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'true' to decrypt your own cUSDC balance (requires @zama-fhe/sdk)"
+        },
+        "of": {
+          "type": "string",
+          "required": false,
+          "description": "Ethereum address to read balance of (requires prior grant-view from that address)"
+        }
+      }
+    },
+    "info": {
+      "description": "Display wallet address, contract addresses, and network info",
+      "script": "scripts/info.ts",
+      "args": {}
+    },
+    "register-agent": {
+      "description": "Register this wallet as an agent in the on-chain identity registry",
+      "script": "scripts/register-agent.ts",
+      "args": {
+        "uri": {
+          "type": "string",
+          "required": true,
+          "description": "Agent URI (e.g. https://agent.example.com/manifest.json)"
+        }
+      }
+    },
+    "give-feedback": {
+      "description": "Submit reputation feedback for an agent",
+      "script": "scripts/give-feedback.ts",
+      "args": {
+        "agentId": {
+          "type": "string",
+          "required": true,
+          "description": "On-chain agent ID (uint256)"
+        },
+        "score": {
+          "type": "string",
+          "required": true,
+          "description": "Reputation score as int128 (e.g. '80' for positive, '-10' for negative). Typical range: -100 to 100."
+        },
+        "nonce": {
+          "type": "string",
+          "required": true,
+          "description": "bytes32 nonce from a prior payment (used to derive proof-of-payment)"
+        },
+        "tag1": {
+          "type": "string",
+          "required": false,
+          "description": "Optional first tag string"
+        },
+        "tag2": {
+          "type": "string",
+          "required": false,
+          "description": "Optional second tag string"
+        },
+        "endpoint": {
+          "type": "string",
+          "required": false,
+          "description": "Optional endpoint string"
+        },
+        "feedbackURI": {
+          "type": "string",
+          "required": false,
+          "description": "Optional feedback URI"
+        },
+        "feedbackHash": {
+          "type": "string",
+          "required": false,
+          "description": "Optional feedback hash (bytes32, defaults to zero)"
+        }
+      }
+    },
+    "create-job": {
+      "description": "Create a new escrow job on-chain",
+      "script": "scripts/create-job.ts",
+      "args": {
+        "provider": {
+          "type": "string",
+          "required": true,
+          "description": "Ethereum address of the provider (worker) for the job"
+        },
+        "evaluator": {
+          "type": "string",
+          "required": true,
+          "description": "Ethereum address of the evaluator who can approve/reject"
+        },
+        "expiry": {
+          "type": "string",
+          "required": true,
+          "description": "Job expiry in hours from now (e.g. '24' for 24 hours)"
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "description": "Job description or metadata URI"
+        },
+        "hook": {
+          "type": "string",
+          "required": false,
+          "description": "Optional IACPHook contract address for lifecycle callbacks (must be whitelisted on the escrow). Defaults to address(0) (no hook)."
+        }
+      }
+    },
+    "fund-job": {
+      "description": "Fund an existing escrow job with encrypted cUSDC",
+      "script": "scripts/fund-job.ts",
+      "args": {
+        "jobId": {
+          "type": "string",
+          "required": true,
+          "description": "The job ID (bytes32 or uint) to fund"
+        },
+        "amount": {
+          "type": "string",
+          "required": true,
+          "description": "USDC amount to add to the escrow (e.g. '5' for 5 USDC)"
+        }
+      }
+    },
+    "complete-job": {
+      "description": "Approve or reject a job, releasing or refunding escrow funds",
+      "script": "scripts/complete-job.ts",
+      "args": {
+        "jobId": {
+          "type": "string",
+          "required": true,
+          "description": "The job ID (uint256) to complete"
+        },
+        "action": {
+          "type": "string",
+          "required": true,
+          "description": "Must be \"approve\" or \"reject\""
+        },
+        "reason": {
+          "type": "string",
+          "required": false,
+          "description": "Optional reason string (max 31 chars, encoded as bytes32)"
+        }
+      }
+    },
+    "grant-view": {
+      "description": "Grant another address read-only access to your encrypted cUSDC balance via Zama ACL delegation",
+      "script": "scripts/grant-view.ts",
+      "args": {
+        "delegate": {
+          "type": "string",
+          "required": true,
+          "description": "Ethereum address to grant view access to"
+        },
+        "hours": {
+          "type": "string",
+          "required": false,
+          "description": "Delegation duration in hours (default: 24). Ignored if --permanent is set."
+        },
+        "permanent": {
+          "type": "string",
+          "required": false,
+          "description": "Set to 'true' for permanent delegation (never expires)"
+        },
+        "contract": {
+          "type": "string",
+          "required": false,
+          "description": "Contract address to delegate for (default: cUSDC). For amount verification, use the verifier address."
+        }
+      }
+    },
+    "revoke-view": {
+      "description": "Revoke a delegate's read-only access to your encrypted cUSDC balance",
+      "script": "scripts/revoke-view.ts",
+      "args": {
+        "delegate": {
+          "type": "string",
+          "required": true,
+          "description": "Ethereum address to revoke view access from"
+        }
+      }
+    },
+    "view-as": {
+      "description": "Read another agent's encrypted cUSDC balance using delegated decryption (requires prior grant-view from the owner)",
+      "script": "scripts/view-as.ts",
+      "args": {
+        "delegator": {
+          "type": "string",
+          "required": true,
+          "description": "Ethereum address of the balance owner who granted you view access"
+        }
+      }
+    },
+    "research-and-visualize": {
+      "description": "Make 3 chained encrypted API payments for search, LLM analysis, and image generation",
+      "script": "scripts/research-and-visualize.ts",
+      "args": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Research topic to search, analyze, and turn into a visual summary"
+        }
+      }
+    },
+    "review-and-rate": {
+      "description": "Buy a code review via encrypted payment and optionally submit proof-linked feedback",
+      "script": "scripts/review-and-rate.ts",
+      "args": {
+        "code": {
+          "type": "string",
+          "required": true,
+          "description": "Code snippet or source text to review"
+        },
+        "language": {
+          "type": "string",
+          "required": false,
+          "description": "Language label for the reviewer (default: typescript)"
+        },
+        "score": {
+          "type": "string",
+          "required": false,
+          "description": "Feedback score to submit if CODE_REVIEW_AGENT_ID is configured (default: 80)"
+        }
+      }
+    }
+  },
+  "environment": {
+    "WALLET_MODE": {
+      "required": false,
+      "description": "Explicit signer mode: 'user' for local development, 'dfns' for unattended MPC-backed agents, or 'ledger-bridge' for supervised local Ledger approvals. If omitted, the skill preserves backward-compatible DFNS > USER_PRIVATE_KEY fallback."
+    },
+    "DFNS_WALLET_ID": {
+      "required": false,
+      "description": "DFNS MPC wallet ID. Best fit for unattended agent runtimes and production-style automation."
+    },
+    "DFNS_AUTH_TOKEN": {
+      "required": false,
+      "description": "Dfns authentication token (required when DFNS_WALLET_ID is set)"
+    },
+    "DFNS_CREDENTIAL_ID": {
+      "required": false,
+      "description": "Dfns credential ID used for User Action Signing (required when DFNS_WALLET_ID is set)"
+    },
+    "DFNS_CREDENTIAL_PRIVATE_KEY": {
+      "required": false,
+      "description": "Dfns credential private key in PEM format or with \\n escapes (required when DFNS_WALLET_ID is set unless DFNS_PRIVATE_KEY_PATH is used)"
+    },
+    "DFNS_PRIVATE_KEY_PATH": {
+      "required": false,
+      "description": "Optional filesystem path to the Dfns credential private key PEM (alternative to DFNS_CREDENTIAL_PRIVATE_KEY)"
+    },
+    "DFNS_CREDENTIAL_ALGORITHM": {
+      "required": false,
+      "description": "Optional Node crypto.sign algorithm override for the Dfns credential signer"
+    },
+    "DFNS_APP_ID": {
+      "required": false,
+      "description": "Legacy Dfns application ID (optional; kept for backward compatibility)"
+    },
+    "DFNS_API_URL": {
+      "required": false,
+      "description": "Dfns API base URL (default: https://api.dfns.io). The skill uses it to auto-discover the wallet address and signingKey.id from DFNS_WALLET_ID."
+    },
+    "USER_PRIVATE_KEY": {
+      "required": false,
+      "description": "Raw Ethereum private key. Best fit for local development, quick scripts, and simple single-user testing."
+    },
+    "LEDGER_BRIDGE_URL": {
+      "required": false,
+      "description": "Localhost Ledger bridge base URL (default: http://127.0.0.1:4555). Used when WALLET_MODE=ledger-bridge, where OpenClaw stays headless and a local browser UI + Ledger device approve signatures."
+    },
+    "LEDGER_BRIDGE_TOKEN": {
+      "required": false,
+      "description": "Shared secret for the localhost Ledger bridge. The OpenClaw runtime, daemon, and browser approval UI must all use the same value."
+    },
+    "LEDGER_BRIDGE_TIMEOUT_MS": {
+      "required": false,
+      "description": "Approval timeout in milliseconds for supervised Ledger requests (default: 300000). Used when WALLET_MODE=ledger-bridge."
+    },
+    "RPC_URL": {
+      "required": false,
+      "description": "Ethereum RPC URL (default: Sepolia public node)"
+    },
+    "CHAIN": {
+      "required": false,
+      "description": "Chain name: 'mainnet' or 'sepolia'. Auto-detected from RPC_URL if not set."
+    },
+    "CUSDC_ADDRESS": {
+      "required": false,
+      "description": "Zama cUSDC (ERC-7984) address. Defaults: mainnet=0xe978..., sepolia=0x7c5B..."
+    },
+    "USDC_ADDRESS": {
+      "required": false,
+      "description": "Plaintext USDC ERC-20 address (default: Circle canonical for selected chain)"
+    },
+    "VERIFIER_ADDRESS": {
+      "required": false,
+      "description": "X402PaymentVerifier contract address (required for pay)"
+    },
+    "IDENTITY_ADDRESS": {
+      "required": false,
+      "description": "AgentIdentityRegistry address (required for register-agent)"
+    },
+    "REPUTATION_ADDRESS": {
+      "required": false,
+      "description": "AgentReputationRegistry address (required for give-feedback)"
+    },
+    "ESCROW_ADDRESS": {
+      "required": false,
+      "description": "AgenticCommerceProtocol address (required for create-job, fund-job, complete-job)"
+    }
+  }
+}

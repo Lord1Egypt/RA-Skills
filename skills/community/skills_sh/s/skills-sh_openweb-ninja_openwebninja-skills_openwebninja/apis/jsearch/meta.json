@@ -1,0 +1,12 @@
+{
+  "api_id": "jsearch",
+  "portal_api_id": "jsearch",
+  "rapidapi_host": "jsearch.p.rapidapi.com",
+  "rate_limit_per_second": 5,
+  "notes": "Fixed 10 results per page. Response includes num_pages (total pages available). Fetching >10 pages costs 3x credits.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/jsearch.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch",
+  "openwebninja_url": "https://www.openwebninja.com/api/jsearch"
+}

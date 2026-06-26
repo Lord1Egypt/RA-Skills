@@ -1,0 +1,10 @@
+# Three realistic user prompts that should activate edgar-risk-diff
+
+## Prompt 1 — single-ticker year-over-year diff
+What changed in NVIDIA's 10-K risk factors this year? I want to know what new risks they're flagging vs last year and whether AI policy stuff is showing up.
+
+## Prompt 2 — explicit two-year compare
+Compare Tesla's 10-K risk factors between 2022 and 2024. I'm specifically looking for whether the China and supply chain language got harsher or softer.
+
+## Prompt 3 — multi-ticker scan for a morning brief
+Run a 10-K risk-factor scan across AAPL, MSFT, GOOGL, NVDA, META, AMZN. Give me the one-liner per ticker — how much churn each one had, and what the dominant new theme was. I want this as a morning brief.

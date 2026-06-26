@@ -1,0 +1,12 @@
+{
+  "skill_name": "{{skill_name}}",
+  "version": "1.0.0",
+  "enabled": true,
+  "debug": false,
+  "log_level": "INFO",
+  "resources": {
+    "cpu": 2,
+    "memory": 4,
+    "gpu": 0
+  }
+}

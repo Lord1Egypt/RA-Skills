@@ -1,0 +1,15 @@
+{
+  "memorySave": {
+    "enabled": true,
+    "batchSize": 5,
+    "largeTaskThreshold": 10,
+    "continuousBatching": true,
+    "timeoutSeconds": 600,
+    "maxRetries": 3,
+    "refineSchedule": {
+      "type": "weekly",
+      "dayOfWeek": "sunday",
+      "time": "20:00"
+    }
+  }
+}

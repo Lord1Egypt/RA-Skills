@@ -1,0 +1,38 @@
+[
+  {
+    "id": "hello-world",
+    "type": "trivial",
+    "prompt": "Write a simple hello world program in Python. Return only the code, no explanation.",
+    "expected_hint": "print('Hello, World!')"
+  },
+  {
+    "id": "extract-emails",
+    "type": "extraction",
+    "prompt": "Extract all email addresses from this text and return JSON array only: 'Contact ana@example.com, bob.smith@work.co.uk and sales+eu@shop.io today.'",
+    "expected_hint": "Three email addresses"
+  },
+  {
+    "id": "sentiment-classify",
+    "type": "classification",
+    "prompt": "Classify sentiment as one of: positive, neutral, negative. Text: 'The app crashed twice, but support fixed it quickly.' Return one word only.",
+    "expected_hint": "Likely mixed/neutral or negative depending on policy"
+  },
+  {
+    "id": "math-reasoning",
+    "type": "reasoning",
+    "prompt": "If a plan costs 29 EUR/month and gets a 15% discount, what is the discounted monthly price? Return only the final number with 2 decimals.",
+    "expected_hint": "24.65"
+  },
+  {
+    "id": "format-following",
+    "type": "instruction-following",
+    "prompt": "Reply in exactly 3 bullet points summarizing why unit tests matter.",
+    "expected_hint": "Exactly three bullets"
+  },
+  {
+    "id": "translation-mini",
+    "type": "translation",
+    "prompt": "Translate to Portuguese (pt-BR): 'The build finished successfully.' Return plain text only.",
+    "expected_hint": "A tradução curta em pt-BR"
+  }
+]

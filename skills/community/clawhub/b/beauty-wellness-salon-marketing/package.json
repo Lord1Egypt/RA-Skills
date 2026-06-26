@@ -1,0 +1,18 @@
+{
+  "name": "beauty-wellness-salon-marketing",
+  "version": "1.0.0",
+  "description": "ClawHub skill: beauty-wellness-salon-marketing",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "author": "max_0x1",
+  "clawhub": {
+    "skill": true,
+    "category": "marketing",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/01-grand-opening-seasonal-campaign.md"
+  }
+}

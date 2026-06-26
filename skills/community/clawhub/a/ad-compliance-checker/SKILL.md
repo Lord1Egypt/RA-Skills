@@ -1,35 +1,60 @@
 ---
-name: "广告合规性审查工具"
-description: "(组合技能) 对电商素材（图片/视频）进行两阶段的合规性审查：API快筛通用风险，再由AI模型结合专属知识库进行广告法深度分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ad-compliance-checker"
-sourceUrl: "https://clawhub.ai/skills/ad-compliance-checker"
+name: ad-compliance-checker
+description: (组合技能) 对电商素材（图片/视频）进行两阶段的合规性审查：API快筛通用风险，再由AI模型结合专属知识库进行广告法深度分析。
 ---
 
-# 广告合规性审查工具
+# Ad Compliance Checker Skill (组合技能)
 
-> (组合技能) 对电商素材（图片/视频）进行两阶段的合规性审查：API快筛通用风险，再由AI模型结合专属知识库进行广告法深度分析。
+这是一个专为电商素材设计的、包含两个核心阶段的组合技能，旨在提供快速且深入的合规风险排查。它现在明确包含一个用于视频的专用审核流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ad-compliance-checker`
-- **Source URL:** [https://clawhub.ai/skills/ad-compliance-checker](https://clawhub.ai/skills/ad-compliance-checker)
+## 子技能
 
-## Overview
+-   **`video-check`**: 此技能是本工作流的一部分，用于执行视频内容的初步API审查。
 
+## 核心流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ad-compliance-checker
-```
+### **工作流 1: 图片素材审核**
+
+1.  **第一阶段：API 快速筛查 (调用 `api-check` 技能)**
+    *   **目的**：快速过滤掉明确、通用的违规内容。
+    *   **执行**：调用 `api-check` 技能，对素材中的所有文案进行基础风险扫描，并对图片进行图像审核。
+    *   **审查范围**：色情、暴恐、政治敏感、违禁品、辱骂等。
+    *   **结果**：如果发现高风险内容，流程可以提前终止并要求修改。
+
+2.  **第二阶段：AI 广告法深度分析 (逻辑步骤)**
+    *   **目的**：在通过第一阶段后，专门审查特定于广告场景的合规风险。
+    *   **执行**：AI读取 `prompt_template.txt`，并将知识库 (`knowledge_base/`) 和待审内容填充进去。
+    *   **审查重点**：功效宣传、绝对化用语、违规承诺、误导性背书、画面元素风险等。
+    *   **输出**：生成一份包含风险点和具体修改建议的详细报告。
+
+### **工作流 2: 视频素材审核**
+
+1.  **第一步：百度短视频审核 (调用 `video-check` 技能)**
+    *   **目的**：利用百度API对视频内容进行初步的、自动化的合规审查。
+    *   **执行**：调用 `video-check` 子技能，提交视频文件或URL进行分析。
+
+2.  **第二步：AI电商素材深度审核 (逻辑步骤，严格按照步骤)**
+    *   **目的**：针对电商视频的常见违规点进行深度的人工智能审查。
+    *   **执行**：
+        1.  AI读取并使用提示词 `ecommerce_prompt.txt` （在video-check技能目录下）作为其审查指令。
+        2.  AI将根据提示词中列出的规则，对视频内容进行逐一排查。
+    *   **审查重点**:
+        *   内容是否为单图/多图轮播
+        *   是否存在低质量AI元素 (内容一眼假，人物不流畅，背景不真)
+        *   是否存在过度P图，导致视频图片不符合常理
+        *   视频内容是否呈现出截屏录屏特征
+        *   是否包含封建迷信元素 (如出现钱币)
+
+## 使用方法
+
+这是一个**逻辑组合技能**，AI应根据素材类型选择相应的工作流，并按顺序调用所需的能力。
+
+1.  **接收素材** (图片/视频/文本)。
+2.  **选择工作流**:
+    *   **如果素材是视频**:
+        1.  **(调用技能)** 执行 `video-check` 进行初审。
+        2.  **(逻辑步骤)** 如果初审通过，则读取 `ecommerce_prompt.txt` 并执行AI二审。
+    *   **如果素材是文本或图片**:
+        1.  **(调用技能)** 执行 `api-check` 进行快筛。
+        2.  **(逻辑步骤)** 如果快筛通过，则读取 `prompt_template.txt` 和 `knowledge_base/` 的内容，执行AI深度分析。
+3.  **生成最终报告**，汇总所有审查阶段的结果和修改建议。

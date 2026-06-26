@@ -1,35 +1,25 @@
 ---
-name: "Clawteam"
-description: "Use this skill when the user wants to assemble a team for a project by matching people based on skills, roles, and work styles. Triggers on "find a team", "b..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawteam"
-sourceUrl: "https://clawhub.ai/skills/clawteam"
+name: clawteam
+description: Use this skill when the user wants to assemble a team for a project by matching people based on skills, roles, and work styles. Triggers on "find a team", "build a team", "I need a cofounder", "ClawTeam".
+version: 0.1.0
+author: ivanschmidt
+license: MIT
 ---
 
-# Clawteam
+# ClawTeam 🦞🚀
 
-> Use this skill when the user wants to assemble a team for a project by matching people based on skills, roles, and work styles. Triggers on "find a team", "b...
+**Assemble the right team for your project — matched by skills, roles, and work style.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawteam`
-- **Source URL:** [https://clawhub.ai/skills/clawteam](https://clawhub.ai/skills/clawteam)
+ClawTeam analyzes user profiles and finds complementary teammates for startups, side projects, or any collaborative work.
 
-## Overview
+## Status
 
+🚧 **Coming soon.**
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/clawteam
+clawhub install clawteam
 ```
+
+Built on OpenClaw. Your data stays local. Always.

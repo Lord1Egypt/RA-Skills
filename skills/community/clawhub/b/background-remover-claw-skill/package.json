@@ -1,0 +1,16 @@
+{
+  "name": "background-remover-claw-skill",
+  "version": "1.7.0",
+  "type": "module",
+  "description": "Background Remover — AI-powered ai background remover",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

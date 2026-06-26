@@ -1,0 +1,58 @@
+{
+  "title": {
+    "text": "Agent collaboration graph",
+    "left": "center"
+  },
+  "tooltip": {
+    "trigger": "item"
+  },
+  "series": [
+    {
+      "type": "graph",
+      "layout": "force",
+      "roam": true,
+      "label": {
+        "show": true
+      },
+      "force": {
+        "repulsion": 180,
+        "edgeLength": 120
+      },
+      "data": [
+        {
+          "name": "User",
+          "symbolSize": 50
+        },
+        {
+          "name": "Codex",
+          "symbolSize": 70
+        },
+        {
+          "name": "Chart Skill",
+          "symbolSize": 62
+        },
+        {
+          "name": "GitHub",
+          "symbolSize": 42
+        }
+      ],
+      "links": [
+        {
+          "source": "User",
+          "target": "Codex",
+          "value": 1
+        },
+        {
+          "source": "Codex",
+          "target": "Chart Skill",
+          "value": 1
+        },
+        {
+          "source": "Chart Skill",
+          "target": "GitHub",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

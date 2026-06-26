@@ -1,0 +1,110 @@
+[
+  {
+    "method": "orderDeduct",
+    "description": "火车票订单核损【退票（退款）前必调】",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "DEDUCT",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单编号"
+        },
+        "resourceType": {
+          "type": "integer",
+          "description": "资源类型，火车票传2",
+          "default": 2
+        },
+        "refundType": {
+          "type": "integer",
+          "description": "退订类型 1-全额退订 2-部分退订"
+        },
+        "applyType": {
+          "type": "integer",
+          "description": "申请类型，默认1",
+          "default": 1
+        },
+        "reason": {
+          "type": "string",
+          "description": "退订原因"
+        },
+        "reasonType": {
+          "type": "integer",
+          "description": "原因类型"
+        },
+        "deductItemList": {
+          "type": "array",
+          "description": "核损项目列表（必填）",
+          "items": {
+            "type": "object",
+            "properties": {
+              "orderItemNo": {
+                "type": "string",
+                "description": "订单项编号（从订单详情获取，取值 data.trainProductInfos.orderItemNo）"
+              },
+              "passengerIdList": {
+                "type": "array",
+                "description": "需要退订的入住人ID列表（必填）",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            },
+            "required": ["orderItemNo", "passengerIdList"]
+          }
+        }
+      },
+      "required": ["orderBaseId", "resourceType", "refundType", "deductItemList"]
+    }
+  },
+  {
+    "method": "train.refund",
+    "description": "申请火车票退票",
+    "category": "ORDER",
+    "subCategory": "TRAIN",
+    "action": "REFUND",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        },
+        "refundType": {
+          "type": "integer",
+          "description": "退票类型 1-全额退票（全退） 2-部分退票（部分乘客退）"
+        },
+        "orderItemNo": {
+          "type": "string",
+          "description": "订单明细编号"
+        },
+        "memberId": {
+          "type": "string",
+          "description": "会员编号"
+        },
+        "applyType": {
+          "type": "integer",
+          "description": "申请类型，默认1"
+        },
+        "amount": {
+          "type": "number",
+          "description": "退款金额"
+        },
+        "originAmount": {
+          "type": "number",
+          "description": "原金额"
+        },
+        "orderPassengerIds": {
+          "type": "array",
+          "description": "订单使用人id",
+          "items" : {
+            "type" : "long"
+          }
+        }
+      },
+      "required": ["orderBaseId", "orderItemNo", "amount", "originAmount", "orderPassengerIds"]
+    }
+  }
+]

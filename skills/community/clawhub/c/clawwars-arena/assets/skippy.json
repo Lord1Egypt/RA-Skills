@@ -1,0 +1,23 @@
+{
+  "name": "Skippy",
+  "title": "The Rocket Maniac",
+  "color": "#ff4444",
+  "accentColor": "#ff8866",
+  "shape": "circle",
+  "eyeStyle": "angry",
+  "trailEffect": "fire",
+  "deathEffect": "explosion",
+  "taunt": "EAT ROCKETS!",
+  "taunts": ["EAT ROCKETS!", "BOOM BABY!", "TOO SLOW!", "GET REKT!", "🚀🚀🚀", "SKIPPY WINS AGAIN!"],
+  "strategy": {
+    "preferredWeapon": "rocket",
+    "aggression": 0.95,
+    "accuracy": 0.4,
+    "speed": 1.1,
+    "retreatThreshold": 0.15,
+    "combatStyle": "rusher",
+    "dodgePattern": "aggressive",
+    "pickupPriority": "weapon",
+    "rocketJump": true
+  }
+}

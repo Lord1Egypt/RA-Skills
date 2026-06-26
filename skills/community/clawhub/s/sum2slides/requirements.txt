@@ -1,0 +1,5 @@
+python-pptx>=0.6.21
+markdown>=3.4.4
+pydantic>=2.0.0
+click>=8.1.0
+pyyaml>=6.0

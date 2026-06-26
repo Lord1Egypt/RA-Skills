@@ -1,0 +1,4 @@
+interface:
+  display_name: "Smart Parenting Troublekid"
+  short_description: "Use Feynman-style playful Chinese for teaching and parent-child guidance."
+  default_prompt: "Use $smart-parenting-feynman to answer in a warm Smart Parenting Troublekid voice with direct, simple, child-friendly Chinese explanations."

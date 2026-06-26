@@ -1,0 +1,43 @@
+design_name: simple_arbiter
+top_module: simple_arbiter
+description: 2-request fixed-priority arbiter with registered grants
+inputs:
+  - name: clk
+    width: 1
+    desc: main clock
+  - name: rst_n
+    width: 1
+    desc: active-low reset
+  - name: req0
+    width: 1
+    desc: higher-priority request
+  - name: req1
+    width: 1
+    desc: lower-priority request
+outputs:
+  - name: grant0
+    width: 1
+    desc: grant for req0
+  - name: grant1
+    width: 1
+    desc: grant for req1
+clock:
+  name: clk
+  edge: posedge
+reset:
+  name: rst_n
+  active_level: low
+  sync_or_async: async
+functional_requirements:
+  - grant0 when req0 is asserted
+  - grant1 only when req0 is low and req1 is high
+  - outputs are registered
+timing_target: 20
+target_flow: openlane
+verification_targets:
+  - reset behavior
+  - priority behavior
+  - mutually exclusive grants
+assumptions:
+  - single clock domain
+  - no CDC

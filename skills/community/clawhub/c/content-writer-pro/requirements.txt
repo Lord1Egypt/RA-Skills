@@ -1,0 +1,10 @@
+# Content Writer Pro - Requirements
+# 文案生成专家 - 依赖
+
+# Core dependencies
+jinja2>=3.0.0
+pyyaml>=6.0
+
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0

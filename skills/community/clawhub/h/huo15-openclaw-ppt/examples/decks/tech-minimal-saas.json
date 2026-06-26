@@ -1,0 +1,88 @@
+{
+  "year": "2026",
+  "slides": [
+    {
+      "type": "hero_cover",
+      "eyebrow": "DEPLOY BUILD SHIP",
+      "title": "为工程师而生的云。",
+      "subtitle": "git push 一次，全球秒级可用。",
+      "footnote": "Cloud · 2026",
+      "build": "0001"
+    },
+    {
+      "type": "kpi_triple",
+      "title": "真实数据",
+      "en_sub": "Trusted by 80,000+ teams",
+      "items": [
+        {"value": "99.99%", "label": "可用性 SLA", "caption": "四 9 全球 CDN"},
+        {"value": "<50ms", "label": "边缘延迟", "caption": "270+ 节点"},
+        {"value": "12s", "label": "平均部署耗时", "caption": "git push → live"}
+      ]
+    },
+    {
+      "type": "content_list",
+      "title": "为什么工程师喜欢",
+      "en_sub": "WHY DEVELOPERS LOVE IT",
+      "numbered": true,
+      "items": [
+        {"label": "零配置 CI/CD", "desc": "git push 自动 build + deploy"},
+        {"label": "预览环境 by 分支", "desc": "每个 PR 独立域名"},
+        {"label": "边缘函数原生", "desc": "写 JS/TS，全球边缘运行"},
+        {"label": "真正的暗夜模式", "desc": "仪表盘不刺眼"}
+      ]
+    },
+    {
+      "type": "code_block",
+      "title": "一条命令",
+      "en_sub": "ONE COMMAND TO SHIP",
+      "filename": "~/my-app",
+      "language": "shell",
+      "code": "$ git push origin main\n\n→ Detected: Next.js 14\n→ Building... ✓ 8.2s\n→ Deploying to edge...\n→ Live: https://my-app.vercel.app\n\nDeployment completed in 12s",
+      "caption": "没有 YAML，没有 Docker，没有 kubectl。"
+    },
+    {
+      "type": "compare_columns",
+      "title": "对比传统 IaaS",
+      "en_sub": "Traditional vs Modern",
+      "emphasize": "right",
+      "left": {
+        "label": "LEGACY IaaS",
+        "title": "传统云服务",
+        "items": [
+          "配置 YAML 8 小时",
+          "跨区域手动同步",
+          "HTTPS 证书手动续费",
+          "监控需额外搭"
+        ]
+      },
+      "right": {
+        "label": "CLOUD",
+        "title": "Modern Cloud",
+        "items": [
+          "零配置自动部署",
+          "全球边缘自动分发",
+          "证书自动签发续期",
+          "可观测性开箱即用"
+        ]
+      }
+    },
+    {
+      "type": "timeline",
+      "title": "上线轨迹",
+      "en_sub": "From Commit to Live",
+      "events": [
+        {"time": "0s", "label": "git push", "desc": "你敲下回车"},
+        {"time": "2s", "label": "Build 启动", "desc": "构建容器冷启动"},
+        {"time": "10s", "label": "构建完成", "desc": "静态资源 + 函数打包"},
+        {"time": "12s", "label": "边缘生效", "desc": "270+ 节点同步完成"}
+      ]
+    },
+    {
+      "type": "call_to_action",
+      "title": "Deploy now.",
+      "subtitle": "免费 hobby 计划，永久可用。",
+      "cta": "cloud.dev/signup",
+      "footnote": "Cloud · 2026 · Made in SF"
+    }
+  ]
+}

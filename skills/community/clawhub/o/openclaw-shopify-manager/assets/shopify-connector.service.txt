@@ -1,0 +1,17 @@
+[Unit]
+Description=OpenClaw Shopify Manager Connector
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/oc/shopify-runtime
+Environment=SHOPIFY_RUNTIME_ROOT=%h/oc/shopify-runtime
+Environment=SHOPIFY_CONFIG_PATH=%h/oc/shopify-runtime/config.json
+Environment=SHOPIFY_ENV_PATH=%h/oc/shopify-runtime/.env
+ExecStart=/usr/bin/env node %h/oc/shopify-runtime/shopify-connector.mjs run-server
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

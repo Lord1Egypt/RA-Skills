@@ -1,0 +1,13 @@
+# Runtime output
+output/
+
+# macOS
+__MACOSX/
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment (contains secrets)
+.env

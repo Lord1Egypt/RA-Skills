@@ -1,0 +1,43 @@
+{
+  "_comment": "⚠️  安全提示：请删除或替换下方示例凭证为真实密码，切勿使用明文默认值！",
+  "cameras": [
+    {
+      "id": "tplink-001",
+      "brand": "tplink",
+      "model": "TL-IPC44AW-COLOR",
+      "host": "0.0.0.0",
+      "port": 2020,
+      "user": "admin",
+      "pass": "YOUR_TPLINK_PASSWORD",
+      "ptz_token": "PTZTOKEN",
+      "rtsp_port": 554,
+      "rtsp_path": "stream1",
+      "vlc_path": "D:\\tools\\VLC\\vlc.exe",
+      "aliases": ["tplink", "tp摄像头", "TP-Link"],
+      "ptz": {
+        "pan":   { "supported": true,  "range": [-1, 1] },
+        "tilt":  { "supported": true,  "range": [-1, 1] },
+        "zoom":  { "supported": true,  "range": [0, 1], "type": "absolute" }
+      }
+    },
+    {
+      "id": "huawei-001",
+      "brand": "huawei",
+      "model": "D2150-10-I-P",
+      "host": "0.0.0.0",
+      "port": 80,
+      "user": "admin",
+      "pass": "YOUR_HUAWEI_PASSWORD",
+      "rtsp_port": 554,
+      "rtsp_path": "LiveMedia/ch1/Media1",
+      "vlc_path": "D:\\tools\\VLC\\vlc.exe",
+      "aliases": ["华为", "建国路", "华为枪机", "huawei"],
+      "ptz": {
+        "pan":   { "supported": true,  "range": [-1, 1], "note": "枪机固定镜头，物理上不可转动" },
+        "tilt":  { "supported": true,  "range": [-1, 1], "note": "枪机固定镜头，物理上不可转动" },
+        "zoom":  { "supported": true,  "range": [0, 1], "type": "continuous", "note": "枪机固定镜头，物理上不可变倍" }
+      }
+    }
+  ],
+  "default": "tplink-001"
+}

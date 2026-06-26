@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "ai-daily-news",
+      "agentId": "main",
+      "name": "AI行业早报",
+      "enabled": true,
+      "description": "每天早上8:30发送AI行业早报",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是产品方案顾问。请搜索过去24小时内AI行业的重大新闻和热点事件，整理成简洁的摘要格式发给用户。包含：1.核心新闻 2.重要进展 3.趋势分析。然后查询当日黄历（宜忌），最后从毛选中选一句经典语录，结合黄历推荐给用户。格式：\n【毛选经典】\n\"引用原文\" —— 毛泽东",
+        "model": "default",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "wecom",
+        "bestEffort": true
+      },
+      "deleteAfterRun": false
+    }
+  ]
+}

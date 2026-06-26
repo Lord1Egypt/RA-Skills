@@ -1,0 +1,12 @@
+{
+  "version": "v1",
+  "tools": [
+    {"name": "memory_query", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "invalid_request", "retryable": false}]},
+    {"name": "memory_get", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "not_found", "retryable": false}]},
+    {"name": "memory_put", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "unauthorized", "retryable": false}]},
+    {"name": "memory_put_batch", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "partial_failure", "retryable": true}]},
+    {"name": "memory_link", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "invalid_reference", "retryable": false}]},
+    {"name": "memory_health", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "service_unavailable", "retryable": true}]},
+    {"name": "memory_replay_deferred", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}, "errors": [{"code": "replay_queue_empty", "retryable": false}]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "loomlensai",
+  "version": "1.0.1",
+  "description": "Estimate AI prompt cost across 19+ models. Signal Loom AI.",
+  "bin": {
+    "loomlens": "./scripts/loomlens"
+  },
+  "signalloom": {
+    "api": true,
+    "free_tier": "3 estimates/day",
+    "loomtokens_per_estimate": 100
+  }
+}

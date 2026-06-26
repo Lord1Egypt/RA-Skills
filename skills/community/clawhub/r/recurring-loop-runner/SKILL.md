@@ -1,35 +1,45 @@
 ---
-name: "Recurring Loop Runner"
+name: "recurring_loop_runner"
 description: "Use when the user wants a prompt or command to run on a recurring interval, such as checking deploys, polling status, or repeating a slash-command."
-category: "other"
-source: "ClawHub"
-tags: [claude-code, extracted]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recurring-loop-runner"
-sourceUrl: "https://clawhub.ai/skills/recurring-loop-runner"
 ---
+
 
 # Recurring Loop Runner
 
-> Use when the user wants a prompt or command to run on a recurring interval, such as checking deploys, polling status, or repeating a slash-command.
+Use this skill when a task should repeat on a time interval.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recurring-loop-runner`
-- **Source URL:** [https://clawhub.ai/skills/recurring-loop-runner](https://clawhub.ai/skills/recurring-loop-runner)
+## Workflow
+1. Parse the interval from the user request.
+2. Normalize human phrasing into a valid cadence.
+3. Create the recurring schedule.
+4. Confirm the cadence, identifier, and expiry behavior.
+5. Execute the task once immediately so the user gets instant feedback.
 
-## Overview
+## Guardrails
+- Do not trigger for one-off requests.
+- If the cadence is ambiguous or uneven, round and explain the rounding.
+- Make cancellation or update instructions easy to find.
 
+## Example Requests
+- Check the deploy every 15 minutes.
+- Run this slash-command hourly and execute it once now.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recurring-loop-runner
-```
+## Inputs
+- Requested cadence
+- Prompt or command to repeat
+
+## Outputs
+- Scheduled recurring task
+- Immediate first execution
+- Cancellation details
+
+## Success Criteria
+- The interval is parsed correctly.
+- The task is both scheduled and run once immediately.
+- The user knows how to stop it later.
+
+## Non-Goals
+- One-off commands with no repeating behavior
+
+## Source Provenance
+Derived from `src/skills/bundled/loop.ts`.

@@ -1,0 +1,362 @@
+<!doctype html>
+<!-- Swiss Pulse v2 — Kinetic Slam 动态文字风 + Weight Shift + Particle Burst -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  
+  :root { --blue: #3B82F6; --blue-glow: #60A5FA; }
+  
+  .scene-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  
+  #vignette {
+    position: absolute; inset: 0; pointer-events: none; z-index: 5;
+    background: radial-gradient(ellipse at center, transparent 10%, rgba(0,0,20,0.4) 55%, rgba(0,0,0,0.8) 95%);
+  }
+  
+  /* ═══ Kinetic Slam Word ═══ */
+  .kw {
+    font-family: 'Impact','Arial Black',sans-serif; font-weight: 400;
+    text-transform: uppercase; color: #FFF;
+    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000,
+                 0 0 40px rgba(0,0,0,0.5);
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 90%; text-align: center;
+    z-index: 20; opacity: 0;
+    letter-spacing: 0.03em; word-break: keep-all;
+  }
+  .kw.accent { color: var(--blue-glow); text-shadow: 0 0 30px rgba(59,130,246,0.6), 4px 4px 0 #000; }
+  
+  /* ═══ Weight Shift Subtitle ═══ */
+  .ws {
+    font-family: 'Arial',sans-serif;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    z-index: 20; opacity: 0; text-align: center;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.8);
+  }
+  .ws-light { font-weight: 300; color: rgba(255,255,255,0.7); }
+  .ws-bold { font-weight: 700; color: var(--blue-glow); }
+  
+  /* ═══ Scene number badge ═══ */
+  .badge {
+    position: absolute; top: 70px; right: 50px; z-index: 22;
+    font-family: 'Impact','Arial Black',sans-serif; font-size: 18px;
+    color: rgba(255,255,255,0.3); letter-spacing: 0.1em;
+    opacity: 0;
+  }
+  
+  /* Particles */
+  .p {
+    position: absolute; border-radius: 50%; opacity: 0;
+    pointer-events: none; z-index: 25;
+  }
+  
+  /* Progress */
+  #pwrap { position: absolute; top: 10px; left: 30px; right: 30px; height: 2px; z-index: 50; }
+  #pbar { width: 100%; height: 100%; background: var(--blue); transform-origin: left; transform: scaleX(0); }
+  
+  #dots { position: absolute; top: 20px; right: 30px; display: flex; gap: 5px; z-index: 50; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .dot.on { background: var(--blue); box-shadow: 0 0 6px rgba(59,130,246,0.5); }
+  
+  /* CTA */
+  #cta {
+    position: absolute; top: 82%; left: 50%;
+    transform: translate(-50%, -50%); z-index: 25; opacity: 0;
+  }
+  .cta-btn {
+    font-family: 'Arial',sans-serif; font-weight: 700; font-size: 28px;
+    color: #FFF; background: var(--blue);
+    padding: 14px 36px; border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(59,130,246,0.4); white-space: nowrap;
+  }
+  
+  #bbar {
+    position: absolute; top: calc(82% + 46px); left: 50%;
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+    z-index: 25; opacity: 0;
+    background: rgba(0,0,0,0.4); padding: 6px 20px; border-radius: 6px;
+  }
+  .b-emoji { font-size: 22px; }
+  .b-domain { font-family: 'Arial',sans-serif; font-weight: 600; font-size: 20px; color: #FFF; }
+  .b-follow { font-family: 'Arial',sans-serif; font-weight: 700; font-size: 18px; color: var(--blue-glow); border: 1.5px solid rgba(59,130,246,0.5); padding: 3px 14px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+  <div id="vignette"></div>
+  <div id="pwrap"><div id="pbar"></div></div>
+  <div id="dots"></div>
+  <div id="layer"></div>
+  
+  <div id="cta"><div class="cta-btn" id="cta-txt">💡 DM us for this itinerary</div></div>
+  <div id="bbar">
+    <span class="b-emoji" id="b-emoji">🐼</span>
+    <span class="b-domain" id="b-site">Panda-Journeys.com</span>
+    <span class="b-follow" id="b-follow">+ Follow 🌏</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  window.__timelines = window.__timelines || {};
+  
+  var dataEl = document.getElementById('hf-data');
+  if (!dataEl) return;
+  var D = JSON.parse(dataEl.textContent.trim());
+  
+  var scenes = D.scenes || [];
+  var cta = D.cta || {};
+  var brand = D.brand || {};
+  var totalDur = D.duration || 10;
+  var root = document.getElementById('root');
+  var H = D.height || 1920;
+  var W = D.width || 1080;
+  var isLandscape = W > H;
+  
+  try {
+    if (D.width) root.setAttribute('data-width', D.width);
+    if (D.height) root.setAttribute('data-height', D.height);
+  } catch(e) {}
+  
+  // Dots
+  var dots = document.getElementById('dots');
+  scenes.forEach(function(_, i) {
+    var d = document.createElement('span'); d.className = 'dot'; d.id = 'd'+i;
+    dots.appendChild(d);
+  });
+  
+  /* ── Keyword detection ── */
+  var POWER_RE = /secret|hidden|best|only|never|insider|free|save|unlock|must|amazing|stunning|breathtaking|wow|skip|forget|wrong|stop|don't|nobody|everyone|tourists|local|real/gi;
+  function hasKW(text) { return text && POWER_RE.test(text); }
+  
+  /* ── Extract numbers ── */
+  function getNums(text) {
+    if (!text) return [];
+    var m, nums = [];
+    var re = /\$?\d[\d,\.]*\s*(?:hours?|years?|days?|km|m|min|%|k|thousand|million)?/gi;
+    while ((m = re.exec(text)) !== null) {
+      var raw = m[0].replace(/[$,]/g,''); var n = parseFloat(raw);
+      if (!isNaN(n) && n > 0) nums.push({text:m[0], value:n});
+    }
+    return nums;
+  }
+  
+  /* ── Seeded RNG ── */
+  function m32(seed) { return function(){ seed|=0; seed=seed+0x6d2b79f5|0; var t=Math.imul(seed^(seed>>>15),1|seed); t=(t+Math.imul(t^(t>>>7),61|t))^t; return ((t^(t>>>14))>>>0)/4294967296; }; }
+  
+  var PARTICLE_COLORS = ['#3B82F6','#60A5FA','#F59E0B','#34D399','#FFF','#A78BFA','#F472B6','#FBBF24'];
+  var NP = 8;
+  
+  /* ═══ Kinetic Slam directions (alternating) ═══ */
+  var DIRS = [
+    {x:0,y:-80, sx:1.1},   // from top
+    {x:120,y:0, sx:1.05},  // from right
+    {x:-120,y:0, sx:1.05}, // from left
+    {x:0,y:80, sx:1.1},    // from bottom
+    {x:80,y:-40, sx:1.08}, // diagonal
+  ];
+  
+  var layer = document.getElementById('layer');
+  var trackIdx = 20;
+  
+  scenes.forEach(function(s, i) {
+    var t = s.start, td = s.duration;
+    var headline = s.headline || s.name || '';
+    var subtitle = s.subtitle || '';
+    var nums = getNums(headline);
+    var hasPW = hasKW(headline) || hasKW(subtitle);
+    
+    // Split headline into individual words for kinetic slam
+    var words = headline.split(/\s+/).filter(function(w){return w.length>0;});
+    
+    words.forEach(function(word, wi) {
+      var kwEl = document.createElement('div');
+      kwEl.className = 'kw clip';
+      kwEl.id = 'kw'+i+'_'+wi;
+      kwEl.textContent = word;
+      kwEl.setAttribute('data-start', t);
+      kwEl.setAttribute('data-duration', td);
+      kwEl.setAttribute('data-track-index', trackIdx++);
+      
+      // Size: first word biggest, rest smaller
+      var sizes = isLandscape ? [110,94,80,68][wi] || 56 : [100,84,72,60][wi] || 50;
+      var isNumWord = /\d/.test(word);
+      if (nums.length > 0 && isNumWord) { sizes = 130; kwEl.className += ' accent'; kwEl.classList.add('num-roll'); }
+      if (hasKW && wi === 0) kwEl.className += ' accent';
+      kwEl.style.fontSize = sizes + 'px';
+      
+      // Store original text for number roll animation
+      if (isNumWord) {
+        kwEl._fullText = word;
+        kwEl._numMatch = word.match(/\d+/);
+        if (kwEl._numMatch) {
+          kwEl._numVal = parseFloat(kwEl._numMatch[0]);
+          kwEl.textContent = word.replace(/\d+/, '0');
+        }
+      }
+      
+      // Dynamic vertical positions — evenly spaced based on word count
+      var nWords = words.length;
+      var topStart = 30, topEnd = 50, topRange = topEnd - topStart;
+      var topPct = nWords <= 1 ? 42 : topStart + (wi / (nWords - 1)) * topRange;
+      kwEl.style.top = topPct + '%';
+      
+      layer.appendChild(kwEl);
+    });
+    
+    // Subtitle — weight shift style (mix of light and bold)
+    if (subtitle) {
+      var subWords = subtitle.split(/\s+/);
+      var subEl = document.createElement('div');
+      subEl.className = 'ws clip';
+      subEl.id = 'ws'+i;
+      subEl.setAttribute('data-start', t);
+      subEl.setAttribute('data-duration', td);
+      subEl.setAttribute('data-track-index', trackIdx++);
+      
+      // Build with weight shift: alternate light/bold spans
+      var html = '';
+      subWords.forEach(function(sw, si) {
+        var isBold = hasKW(sw) || /\d/.test(sw);
+        html += '<span class="ws-' + (isBold?'bold':'light') + '">'+sw+'</span> ';
+      });
+      subEl.innerHTML = html;
+      subEl.style.fontSize = '34px';
+      subEl.style.top = (isLandscape ? 62 : 66) + '%';
+      layer.appendChild(subEl);
+    }
+    
+    // Scene badge
+    var badge = document.createElement('div');
+    badge.className = 'badge clip';
+    badge.id = 'bd'+i; badge.textContent = (i+1) + ' / ' + scenes.length;
+    badge.setAttribute('data-start', t);
+    badge.setAttribute('data-duration', td);
+    badge.setAttribute('data-track-index', trackIdx++);
+    layer.appendChild(badge);
+    
+    // Particles for power words
+    if (hasPW) {
+      var rng = m32(i*137+99);
+      for (var p = 0; p < NP; p++) {
+        var angle = (p/NP)*Math.PI*2 + rng()*0.5;
+        var dist = 80 + rng()*160;
+        var sz = 3 + rng()*6;
+        var dx = Math.cos(angle)*dist, dy = -Math.sin(angle)*dist - 30;
+        var dot = document.createElement('div');
+        dot.className = 'p clip';
+        dot.id = 'p'+i+'_'+p;
+        dot.style.cssText = 'background:'+PARTICLE_COLORS[p%PARTICLE_COLORS.length]+';width:'+sz+'px;height:'+sz+'px;left:50%;top:40%';
+        dot.setAttribute('data-start', t);
+        dot.setAttribute('data-duration', td);
+        dot.setAttribute('data-track-index', trackIdx++);
+        dot._dx = dx; dot._dy = dy;
+        layer.appendChild(dot);
+      }
+    }
+  });
+  
+  document.getElementById('cta-txt').textContent = cta.text || '💡 DM us for this itinerary';
+  document.getElementById('b-emoji').textContent = brand.emoji || '🐼';
+  document.getElementById('b-site').textContent = brand.domain || 'Panda-Journeys.com';
+  document.getElementById('b-follow').textContent = brand.follow || '+ Follow 🌏';
+  
+  /* ═══ GSAP ═══ */
+  var tl = gsap.timeline({ paused: true });
+  
+  tl.fromTo('#vignette', {opacity:0}, {opacity:1,duration:0.6}, 0);
+  tl.fromTo('#pbar', {scaleX:0}, {scaleX:1,duration:totalDur,ease:'none'}, 0);
+  
+  scenes.forEach(function(s, i) {
+    var t = s.start + 0.05, te = s.start + s.duration;
+    var isLast = (i === scenes.length-1);
+    var headline = s.headline || '';
+    var subtitle = s.subtitle || '';
+    var words = headline.split(/\s+/).filter(function(w){return w.length>0;});
+    var hasPW = hasKW(headline) || hasKW(subtitle);
+    
+    // Badge fade in
+    tl.fromTo('#bd'+i, {opacity:0,x:15}, {opacity:1,x:0,duration:0.3,ease:'power2.out'}, t);
+    
+    // Kinetic Slam — each word enters from different direction
+    words.forEach(function(_, wi) {
+      var d = DIRS[(i + wi) % DIRS.length];
+      var kwEl = document.getElementById('kw'+i+'_'+wi);
+      var entryT = t + 0.1 + wi * 0.15;
+      tl.fromTo('#kw'+i+'_'+wi,
+        {opacity:0,x:d.x,y:d.y,scale:d.sx},
+        {opacity:1,x:0,y:0,scale:1,duration:0.5,ease:'power4.out'}, entryT);
+      
+      // Number roll animation
+      if (kwEl && kwEl.classList.contains('num-roll') && kwEl._numVal) {
+        var targetVal = kwEl._numVal;
+        var targetText = kwEl._fullText;
+        var displayObj = { val: 0 };
+        tl.add(function() {
+          kwEl.textContent = targetText.replace(/\d+/, '0');
+        }, entryT + 0.4);
+        tl.to(displayObj, {
+          val: targetVal,
+          duration: 0.6,
+          ease: 'power2.out',
+          onUpdate: function() {
+            kwEl.textContent = targetText.replace(/\d+/, Math.round(this.targets()[0].val));
+          }
+        }, entryT + 0.4);
+        // Pulse scale on completion
+        tl.to('#kw'+i+'_'+wi, {scale:1.15,duration:0.15,ease:'power2.out'}, entryT + 1.0);
+        tl.to('#kw'+i+'_'+wi, {scale:1,duration:0.2,ease:'elastic.out(1,0.4)'}, entryT + 1.15);
+      }
+    });
+    
+    // Subtitle — weight shift drift
+    if (subtitle) {
+      tl.fromTo('#ws'+i, {opacity:0,y:12}, {opacity:1,y:0,duration:0.45,ease:'power2.out'}, t+0.1+words.length*0.15+0.1);
+    }
+    
+    // Particles
+    if (hasPW) {
+      for (var p = 0; p < NP; p++) {
+        var el = document.getElementById('p'+i+'_'+p);
+        if (!el) continue;
+        tl.set('#p'+i+'_'+p, {x:0,y:0,opacity:0}, t+0.25);
+        tl.to('#p'+i+'_'+p,
+          {x:el._dx,y:el._dy,opacity:1,duration:0.15,ease:'power3.out'}, t+0.25+p*0.018);
+        tl.to('#p'+i+'_'+p,
+          {opacity:0,duration:0.35,ease:'power1.in'}, t+0.4+p*0.018);
+      }
+    }
+    
+    // Exit — fly out in different directions
+    if (!isLast) {
+      words.forEach(function(_, wi) {
+        var d = DIRS[(i+wi+2)%DIRS.length];
+        tl.to('#kw'+i+'_'+wi, {opacity:0,x:d.x*0.6,y:d.y*0.6,duration:0.3,ease:'power2.in'}, te-0.35);
+      });
+      if (subtitle) tl.to('#ws'+i, {opacity:0,y:-10,duration:0.2,ease:'power2.in'}, te-0.25);
+      tl.to('#bd'+i, {opacity:0,duration:0.2}, te-0.25);
+    }
+    
+    if (i>0) tl.set('#d'+(i-1), {background:'rgba(255,255,255,0.3)',boxShadow:'none'}, t);
+    tl.set('#d'+i, {background:'#3B82F6',boxShadow:'0 0 6px rgba(59,130,246,0.5)'}, t);
+  });
+  
+  var ct = cta.start || Math.max(0, totalDur - 4);
+  tl.fromTo('#cta', {opacity:0,scale:0.9,y:20}, {opacity:1,scale:1,y:0,duration:0.5,ease:'back.out(1.4)'}, ct);
+  tl.fromTo('#bbar', {opacity:0,y:10}, {opacity:1,y:0,duration:0.4,ease:'power3.out'}, ct+0.3);
+  
+  tl.set({}, {}, totalDur);
+  window.__timelines['main'] = tl;
+  window.__hf = { duration: totalDur, seek: function(t) { if(window.__timelines&&window.__timelines['main']) window.__timelines['main'].seek(t); } };
+})();
+</script>
+</body>
+</html>

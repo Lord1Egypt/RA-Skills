@@ -1,0 +1,10 @@
+{
+  "name": "baidu-qianfan-search",
+  "version": "1.0.0",
+  "description": "百度千帆搜索API调用技能",
+  "type": "module",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.0"
+  }
+}

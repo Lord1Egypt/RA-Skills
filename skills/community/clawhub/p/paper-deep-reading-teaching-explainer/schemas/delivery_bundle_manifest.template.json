@@ -1,0 +1,41 @@
+{
+  "stage_name": "chatgpt_paper_deep_reading_skill_source",
+  "resume_from_bundle_only_supported": true,
+  "workspace_root": "",
+  "delivery_bundle_zip": "",
+  "status_artifacts": [
+    "metadata/routing_status.json",
+    "reports/stage_delivery_handoff.md"
+  ],
+  "directory_description_artifacts": [
+    "metadata/project_directory_index.json",
+    "reports/project_directory_index.md"
+  ],
+  "authoritative_handoff_artifacts": [
+    "metadata/query_spec.json",
+    "metadata/paper_batch_manifest.json",
+    "metadata/delivery_bundle_manifest.json",
+    "metadata/routing_status.json",
+    "metadata/project_directory_index.json",
+    "reports/stage_delivery_handoff.md",
+    "reports/project_directory_index.md"
+  ],
+  "next_stage": {
+    "recommended_next_skill": "chatgpt_report_innovation_graph_skill_source",
+    "next_stage_should_read_first": [
+      "metadata/delivery_bundle_manifest.json",
+      "metadata/routing_status.json",
+      "metadata/project_directory_index.json",
+      "reports/stage_delivery_handoff.md"
+    ]
+  },
+  "notes": [
+    "v10 adds optional teaching sidecars derived from the authoritative detailed report; sidecars do not replace the report."
+  ],
+  "optional_derivative_artifacts": [
+    "generated/teaching/<paper-slug>/teaching_outline_cn.md",
+    "generated/teaching/<paper-slug>/slide_blueprint_cn.json",
+    "generated/teaching/<paper-slug>/qa_bank_cn.json",
+    "generated/teaching/<paper-slug>/role_play_discussion_pack_cn.md"
+  ]
+}

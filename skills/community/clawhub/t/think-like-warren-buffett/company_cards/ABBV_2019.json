@@ -1,0 +1,46 @@
+{
+  "ticker": "ABBV",
+  "company": "AbbVie Inc.",
+  "analysis_year": 2020,
+  "data_source": "AbbVie FY2019 10-K, AbbVie Q3 2020 10-Q, and Berkshire 2020-09-30 / 2021-12-31 / 2022-12-31 13F-HR",
+  "analyzed_date": "2026-03-26",
+
+  "hard_gates": {
+    "g1_roe_roic": { "value": 0.178, "metric_used": "ROIC", "years_averaged": "2017-2019 (NOPAT / capital-employed proxy because equity was distorted by buybacks and acquisition accounting)", "pass": true },
+    "g2_fcf_to_ni": { "value": 2.08, "fcf": 15327, "net_income": 7381, "pass": true },
+    "g3_leverage": { "metric_used": "Net Debt/EBITDA", "value": 4.52, "pass": false },
+    "g4_revenue_trend": { "description": "Revenue rose from $28.22B in 2017 to $32.75B in 2018 to $33.27B in 2019, and nine-month 2020 revenue of $31.95B was already above the prior-year comparable period. No structural decline was visible at the decision point.", "structural_decline": false, "pass": true },
+    "g5_gross_margin_trend": { "description": "Gross margin improved rather than deteriorated: roughly 75.0% in 2017, 76.4% in 2018, and 77.6% in 2019 based on sales less cost of products sold. There was no two-year erosion.", "declining_2plus_years": false, "pass": true },
+    "g6_earnings_yield": { "value": 0.032, "net_income_m": 7381, "ev_m": 229831, "exemption": null, "pass": false },
+    "g7_moat": { "verdict": "FAIL", "moat_type": "ip", "description": "AbbVie had strong commercial execution, a valuable immunology franchise, and deeper scale after the Allergan deal, but in late 2020 the economics still depended on a patent-bound drug portfolio, looming Humira erosion, and successful pipeline replacement. That is a good pharmaceutical platform, not a simple 10-year Buffett tollbooth.", "pass": false }
+  },
+
+  "special_channel": null,
+
+  "metrics_snapshot": {
+    "sales_2019_usd_m": 33266,
+    "net_income_2019_usd_m": 7882,
+    "operating_cash_flow_2019_usd_m": 13324,
+    "capital_expenditures_2019_usd_m": 552,
+    "cash_2020q3_usd_m": 7890,
+    "debt_2020q3_usd_m": 82336,
+    "ttm_net_income_2020q3_usd_m": 7381,
+    "ttm_operating_cash_flow_2020q3_usd_m": 16009,
+    "ttm_capex_2020q3_usd_m": 682,
+    "implied_price_2020q3_usd": 87.59,
+    "market_value_2020q3_usd_m": 155385,
+    "berkshire_shares_2020q3_m": 21.264,
+    "berkshire_value_2020q3_usd_m": 1862.5
+  },
+
+  "control_groups": [
+    { "ticker": "PFE", "company": "Pfizer Inc.", "year": 2020, "gates_failed": ["g4_revenue_trend", "g7_moat"], "conclusion": "PASS — another large-cap drug platform, but with weaker recent growth and no cleaner decade-long moat than AbbVie." },
+    { "ticker": "GSK", "company": "GlaxoSmithKline plc", "year": 2020, "gates_failed": ["g1_roe_roic", "g4_revenue_trend", "g7_moat"], "conclusion": "PASS — similarly global and diversified, but with softer economics and no clearer structural moat." }
+  ],
+
+  "conclusion": "PASS",
+  "buffett_action": "Berkshire disclosed 21,264,316 AbbVie shares worth about $1.86B at September 30, 2020 via its 13F-HR.",
+  "actual_result": "AbbVie generated solid cash flow and a respectable stock outcome, but Berkshire cut the position to 3,033,561 shares by 2021-12-31 and it no longer appeared in the 2022-12-31 13F. The stake behaved more like a tactical large-pharma basket position than a permanent Buffett-style core holding.",
+  "verdict": "⭐ framework_wins",
+  "key_insight": "A high-cash-flow pharma platform can still be a pass when a megadeal pushes leverage above 4x, the earnings yield is only about 3%, and the moat depends on replacing expiring patents."
+}

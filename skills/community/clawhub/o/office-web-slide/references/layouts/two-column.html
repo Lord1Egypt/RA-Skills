@@ -1,0 +1,56 @@
+<!--
+  Layout: two-column
+  双栏页 — 对比/并列内容
+  Agent 填充左右两栏，可调整比例（默认 1:1）
+-->
+<section class="slide slide--two-column" data-slide="{{N}}">
+  <h2 class="twocol-title">{{页面标题}}</h2>
+  <div class="twocol-grid">
+    <div class="twocol-left">
+      <h3>{{左栏标题}}</h3>
+      <p>{{左栏内容}}</p>
+    </div>
+    <div class="twocol-right">
+      <h3>{{右栏标题}}</h3>
+      <p>{{右栏内容}}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.slide--two-column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+.slide--two-column .twocol-title {
+  font-size: var(--font-size-heading);
+  margin-bottom: var(--spacing-md);
+}
+.slide--two-column .twocol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+  align-self: center;
+  min-height: 0;
+  overflow: hidden;
+}
+.slide--two-column .twocol-left,
+.slide--two-column .twocol-right {
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+.slide--two-column .twocol-grid h3 {
+  font-size: var(--font-size-subheading);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+}
+.slide--two-column .twocol-grid p {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+</style>

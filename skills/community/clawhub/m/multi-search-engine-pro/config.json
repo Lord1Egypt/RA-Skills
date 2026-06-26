@@ -1,0 +1,13 @@
+{
+  "name": "multi-search-engine",
+  "default_engine": "google",
+  "supports_compare": true,
+  "supports_presets": true,
+  "presets": [
+    "balanced",
+    "cn-research",
+    "privacy",
+    "knowledge"
+  ],
+  "engine_catalog": "resources/engine-catalog.json"
+}

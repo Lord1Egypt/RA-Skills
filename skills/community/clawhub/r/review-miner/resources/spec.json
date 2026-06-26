@@ -1,0 +1,37 @@
+{
+  "slug": "review-miner",
+  "title": "评论挖掘工",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "csv_audit",
+  "summary": "从评论、评价和反馈中提炼卖点、痛点、反对意见与应删除的话术。",
+  "inputHint": "评论 CSV、文本列表或工单摘要",
+  "sections": [
+    "高频卖点",
+    "高频痛点",
+    "反对意见",
+    "不该再说的话",
+    "可测试信息",
+    "后续样本需求"
+  ],
+  "useCases": [
+    "卖点提炼",
+    "竞品研究",
+    "客服反馈整理"
+  ],
+  "positiveExamples": [
+    "从这些评论里提炼卖点和痛点",
+    "找出不该继续宣传的点"
+  ],
+  "negativeExamples": [
+    "不要造假好评",
+    "不要泄露用户身份"
+  ],
+  "risk": "建议对原始评论做脱敏处理。",
+  "tags": [
+    "reviews",
+    "voice-of-customer",
+    "marketing",
+    "analysis"
+  ]
+}

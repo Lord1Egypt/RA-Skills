@@ -1,35 +1,44 @@
 ---
-name: "petkit-monitor"
+name: petkit-monitor
 description: "小佩宠物设备监控 - 获取喂食器、猫砂盆、饮水机、净化器状态"
-category: "other"
-source: "ClawHub"
-tags: [cat, feeder, monitor, pet]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/petkit-monitor"
-sourceUrl: "https://clawhub.ai/skills/petkit-monitor"
+version: 1.0.0
 ---
 
-# petkit-monitor
+# 小佩设备监控 Skill
 
-> 小佩宠物设备监控 - 获取喂食器、猫砂盆、饮水机、净化器状态
+获取小佩智能宠物设备的实时状态和数据。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/petkit-monitor`
-- **Source URL:** [https://clawhub.ai/skills/petkit-monitor](https://clawhub.ai/skills/petkit-monitor)
+## 功能
 
-## Overview
+- 获取喂食器状态（余粮、喂养记录）
+- 获取猫砂盆状态（使用次数、清理记录）
+- 获取饮水机状态（水量、过滤状态）
+- 获取净化器状态
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/petkit-monitor
+### 查询所有设备状态
+
 ```
+查询小佩设备状态
+```
+
+### 查询特定设备
+
+```
+查看喂食器状态
+查看猫砂盆状态
+查看饮水机状态
+```
+
+## 配置
+
+需要在 `config.json` 中配置：
+- username: 小佩账号（手机号）
+- password: 小佩密码
+
+## 注意事项
+
+- 需要小佩账号密码登录
+- 登录后会导致手机 App 退出登录（建议使用家庭分享功能）
+- API 为逆向工程，可能随时失效

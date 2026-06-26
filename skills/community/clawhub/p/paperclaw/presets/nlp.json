@@ -1,0 +1,116 @@
+{
+  "id": "nlp",
+  "name": "NLP & LLM",
+  "name_zh": "自然语言处理与大模型",
+  "description": "Natural Language Processing, Large Language Models, and Text Mining",
+  "description_zh": "自然语言处理、大语言模型、文本挖掘",
+  "arxiv_categories": [
+    {
+      "id": "cs.CL",
+      "name": "Computation and Language",
+      "url": "https://arxiv.org/list/cs.CL/recent",
+      "description": "Natural language processing, computational linguistics"
+    },
+    {
+      "id": "cs.LG",
+      "name": "Machine Learning",
+      "url": "https://arxiv.org/list/cs.LG/recent",
+      "description": "Machine learning, statistical learning, deep learning"
+    },
+    {
+      "id": "cs.AI",
+      "name": "Artificial Intelligence",
+      "url": "https://arxiv.org/list/cs.AI/recent",
+      "description": "All areas of AI"
+    }
+  ],
+  "classification": [
+    {
+      "name": "LLM",
+      "labels": {
+        "zh": "大语言模型",
+        "en": "Large Language Models",
+        "ja": "大規模言語モデル"
+      },
+      "keywords": [
+        "llm",
+        "large language model",
+        "gpt",
+        "transformer",
+        "instruction tuning",
+        "alignment",
+        "prompt engineering",
+        "chain-of-thought",
+        "in-context learning",
+        "llama",
+        "bert"
+      ]
+    },
+    {
+      "name": "RAG",
+      "labels": {
+        "zh": "检索增强生成",
+        "en": "Retrieval-Augmented Generation",
+        "ja": "検索拡張生成"
+      },
+      "keywords": [
+        "rag",
+        "retrieval-augmented",
+        "knowledge base",
+        "embedding",
+        "vector database",
+        "semantic search"
+      ]
+    },
+    {
+      "name": "Agents",
+      "labels": {
+        "zh": "智能体",
+        "en": "AI Agents",
+        "ja": "エージェント"
+      },
+      "keywords": [
+        "agent",
+        "multi-agent",
+        "tool use",
+        "function calling",
+        "autonomous",
+        "planning",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "NLP Tasks",
+      "labels": {
+        "zh": "NLP任务",
+        "en": "NLP Tasks",
+        "ja": "NLPタスク"
+      },
+      "keywords": [
+        "named entity recognition",
+        "ner",
+        "sentiment analysis",
+        "text classification",
+        "machine translation",
+        "summarization",
+        "question answering"
+      ]
+    },
+    {
+      "name": "Evaluation",
+      "labels": {
+        "zh": "评测",
+        "en": "Evaluation",
+        "ja": "評価"
+      },
+      "keywords": [
+        "benchmark",
+        "evaluation",
+        "metrics",
+        "dataset",
+        "human evaluation",
+        "automatic evaluation"
+      ]
+    }
+  ]
+}

@@ -1,35 +1,177 @@
 ---
-name: "Huo15 Research Pipeline"
-description: "从想法到论文的全自主研究管道，6阶段，含HITL，输出到Obsidian"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huo15-research-pipeline"
-sourceUrl: "https://clawhub.ai/skills/huo15-research-pipeline"
+name: huo15-research-pipeline
+version: 1.0.2
+aliases:
+  - 火一五研究管道
+  - 火一五论文管道
+  - 自动研究
+description: 从想法到论文的全自主研究管道，6阶段，含HITL，输出到Obsidian
 ---
+# huo15-research-pipeline
 
-# Huo15 Research Pipeline
+> 从想法到论文的全自主研究管道，灵感来自 AutoResearchClaw
 
-> 从想法到论文的全自主研究管道，6阶段，含HITL，输出到Obsidian
+## 元信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huo15-research-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/huo15-research-pipeline](https://clawhub.ai/skills/huo15-research-pipeline)
+- **version**: 1.0.0
+- **trigger**: 研究管道、research pipeline、自动研究、想法到论文、研究 [课题]
+- **author**: huo15
+- **compatibility**: OpenClaw >= 1.0
 
-## Overview
+## 功能概述
 
+将一个研究课题全自动推进至论文产出，涵盖范围定义、文献发现、知识综合、实验设计、结果分析与论文撰写。全程人类在环（HITL），每个 Phase 完成后等待用户确认。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huo15-research-pipeline
+## 核心流程
+
 ```
+用户: "研究 [课题]"
+         │
+         ▼
+  ┌─────────────────┐
+  │  Phase A: 范围定义  │  → 用户确认
+  └────────┬────────┘
+           ▼
+  ┌─────────────────┐
+  │  Phase B: 文献发现  │  → 用户确认
+  └────────┬────────┘
+           ▼
+  ┌─────────────────┐
+  │  Phase C: 知识综合  │  → 用户确认
+  └────────┬────────┘
+           ▼
+  ┌─────────────────┐
+  │  Phase D: 实验设计  │  → 用户确认
+  └────────┬────────┘
+           ▼
+  ┌─────────────────┐
+  │  Phase E: 结果分析  │  → 用户确认
+  └────────┬────────┘
+           ▼
+  ┌─────────────────┐
+  │  Phase F: 论文撰写  │  → 完成
+  └────────┬────────┘
+           ▼
+      输出到 Obsidian
+```
+
+## Phase 详细说明
+
+### Phase A: 研究范围定义
+
+定义研究问题、目标、范围边界和成功标准。
+
+**输出：**
+- 研究问题（1-3 个核心问题）
+- 研究目标（ SMART 格式）
+- 范围边界（ in-scope / out-of-scope）
+- 成功标准
+
+### Phase B: 文献发现与筛选
+
+搜索相关论文、博客、技术报告，筛选高质量来源。
+
+**输出：**
+- 关键词列表
+- 筛选出的文献列表（含标题、摘要、链接）
+- 文献质量评分
+
+### Phase C: 知识综合与假设生成
+
+整合文献发现，生成假设或研究问题。
+
+**输出：**
+- 知识图谱摘要
+- 核心发现列表
+- 假设 / 待验证命题
+
+### Phase D: 实验设计与执行
+
+设计验证假设的实验方案，包括数据、方法和评估指标。
+
+**输出：**
+- 实验设计方案
+- 数据需求
+- 评估指标
+
+### Phase E: 结果分析
+
+分析实验结果，生成洞察。
+
+**输出：**
+- 结果摘要
+- 统计显著性（如适用）
+- 洞察列表
+
+### Phase F: 论文撰写
+
+按学术论文结构输出完整内容。
+
+**输出：**
+- 标题 + 摘要
+- 引言
+- 相关工作
+- 方法
+- 结果
+- 讨论
+- 结论
+- 参考文献
+
+## 使用方式
+
+```
+用户: 研究 大语言模型在代码补全任务中的性能评估
+```
+
+或直接说：
+
+```
+用户: 自动研究 基于强化学习的机器人抓取策略
+```
+
+## 输出位置
+
+所有研究产物保存至：
+
+```
+$HOME/.openclaw/agents/main/agent/kb/raw/research-{课题名}-{日期}/
+```
+
+结构：
+```
+research-{课题}-{日期}/
+├── 00_scope.md        # Phase A 输出
+├── 01_discovery.md    # Phase B 输出
+├── 02_synthesis.md    # Phase C 输出
+├── 03_experiment.md   # Phase D 输出
+├── 04_analysis.md     # Phase E 输出
+├── 05_paper.md        # Phase F 输出（完整论文）
+└── log.txt            # 执行日志
+```
+
+## 人类在环（HITL）
+
+每个 Phase 完成后，脚本会：
+1. 显示该阶段产出摘要
+2. 询问用户：`继续下一步 / 调整参数 / 终止`
+3. 等待用户输入后执行下一阶段
+
+## 调用示例
+
+```bash
+cd ~/.openclaw/workspace/skills/huo15-research-pipeline
+./scripts/research.sh "大语言模型在代码补全任务中的性能评估"
+```
+
+## 依赖
+
+- `openclaw` CLI（用于 LLM 调用）
+- `curl`（用于 Web 搜索）
+- `jq`（用于 JSON 解析）
+- `obsidian-cli`（可选，用于直接写入 Obsidian）
+
+## 注意事项
+
+- 研究过程可能耗时较长，建议在空闲时运行
+- 每个 Phase 的产出都会保存，中断后可从断点继续
+- 论文撰写 Phase 会尽量保持学术规范，可直接提交或进一步编辑

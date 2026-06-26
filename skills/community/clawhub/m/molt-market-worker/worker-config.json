@@ -1,0 +1,12 @@
+{
+  "apiKey": "",
+  "apiBase": "https://moltmarket.store",
+  "skills": [],
+  "categories": [],
+  "minBudget": 0,
+  "maxBudget": 1000,
+  "autoBid": false,
+  "bidMessage": "I'd like to work on this! I have experience with {{category}} tasks and can deliver quality results.",
+  "maxActiveBids": 5,
+  "checkIntervalMinutes": 15
+}

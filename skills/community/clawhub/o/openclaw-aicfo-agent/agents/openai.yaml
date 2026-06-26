@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICFO OpenClaw Agent"
+  short_description: "Use AICFO through one bearer key and app-level MCP."
+  default_prompt: "Use the AICFO OpenClaw skill to inspect session, resolve company scope, and operate through bin/openclaw-aicfo-adapter.mjs or /api/agent/mcp before any REST fallback."

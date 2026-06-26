@@ -1,0 +1,24 @@
+{
+  "name": "living-persona",
+  "description": "Dynamic personality engine — trait propagation + SPARK emotional engine + hysteresis + structural voice injection",
+  "events": ["message:preprocessed"],
+  "metadata": {
+    "openclaw": {
+      "emoji": "✨",
+      "events": ["message:preprocessed"],
+      "requires": { "config": ["workspace.dir"] }
+    }
+  },
+  "config": {
+    "mode": "structural",
+    "hysteresis": {
+      "residualDecay": 0.975,
+      "activeDecay": 0.88,
+      "bleedRate": 0.15
+    },
+    "thresholds": {
+      "minTraitStrength": 0.3,
+      "topNTraits": 2
+    }
+  }
+}

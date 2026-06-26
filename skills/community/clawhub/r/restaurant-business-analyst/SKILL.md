@@ -1,35 +1,114 @@
 ---
-name: "Restaurant Business Analyst"
-description: "餐饮行业商业模式全景分析 Skill。输入餐饮品牌或业态，自动生成"战略+策略+指标"三位一体分析报告。 支持 HTML + PDF 双格式输出，含数据置信度标注。 覆盖快餐/茶饮/火锅/正餐/咖啡/烘焙/卤味/预制菜等8大业态。 触发词：分析[品牌]商业模式、[品牌]战略分析、[业态]案例分析、[品牌]翻台率坪..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/restaurant-business-analyst"
-sourceUrl: "https://clawhub.ai/skills/restaurant-business-analyst"
+name: restaurant-business-analyst
+description: |
+  餐饮行业商业模式全景分析 Skill。输入餐饮品牌或业态，自动生成"战略+策略+指标"三位一体分析报告。
+  支持 HTML + PDF 双格式输出，含数据置信度标注。
+  覆盖快餐/茶饮/火锅/正餐/咖啡/烘焙/卤味/预制菜等8大业态。
+  
+  触发词：分析[品牌]商业模式、[品牌]战略分析、[业态]案例分析、[品牌]翻台率坪效、
+  拆解[品牌]增长策略、[品牌]加盟模式、对比[品牌A]和[品牌B]、[品牌]供应链模式
+version: 1.0.0
+metadata:
+  openclaw:
+    emoji: "🍜"
+    homepage: https://github.com/louiseliu/restaurant-business-analyst
 ---
 
 # Restaurant Business Analyst
 
-> 餐饮行业商业模式全景分析 Skill。输入餐饮品牌或业态，自动生成"战略+策略+指标"三位一体分析报告。 支持 HTML + PDF 双格式输出，含数据置信度标注。 覆盖快餐/茶饮/火锅/正餐/咖啡/烘焙/卤味/预制菜等8大业态。 触发词：分析[品牌]商业模式、[品牌]战略分析、[业态]案例分析、[品牌]翻台率坪...
+为餐饮行业生成"战略+策略+指标"三位一体的商业模式全景报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/restaurant-business-analyst`
-- **Source URL:** [https://clawhub.ai/skills/restaurant-business-analyst](https://clawhub.ai/skills/restaurant-business-analyst)
+---
 
-## Overview
+## Phase 0：确认分析对象
 
+0. **业态确认**：检查品牌是否属于餐饮行业（主营食品/饮品制作销售）。非餐饮品牌告知用户并终止。
+1. **确认受众**：投资人（财务+估值+ESG）/ 创业者（单店模型+选址）/ 高管（战略+组织+出海）/ 综合（默认）
+2. **选定品牌**：用户指定业态则选标杆品牌——快餐(麦当劳/肯德基)、茶饮(蜜雪冰城/喜茶)、火锅(海底捞/呷哺)、正餐(西贝/太二)、咖啡(瑞幸/Manner)、烘焙(鲍师傅/好利来)、卤味(绝味/周黑鸭)、预制菜(锅圈/味知香)
+3. 向用户确认品牌后进入 Phase 1
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/restaurant-business-analyst
-```
+---
+
+## Phase 1：商业模式框架分析（战略层）
+
+**读取** `references/business_model_frameworks.md` 和 `references/analytics_methodology.md` 第一节。
+
+- **1.1 品牌概况**：名称/母公司/成立时间/门店规模/上市状态
+- **1.2 BMC画布**（9要素完整填写）：客户细分、价值主张、渠道通路、客户关系、收入来源、核心资源、关键业务、重要伙伴、成本结构
+- **1.3 模式类型**：经营模式(直营/加盟/混合/供应链型) + 收入模型
+- **1.4 演化阶段**：单店→多店标准化→规模化→品牌化/平台化→生态化
+- **1.5 竞争壁垒**：2-3个核心护城河
+- **1.6 竞品矩阵**（web_search搜索竞品）：3-4家同赛道竞品横向对比表（门店数/客单价/翻台率/模式/差异）
+- **1.7 风险矩阵**：识别前3核心风险（概率/影响/防控），参照框架文件第八节
+- **1.8 组织能力诊断**：人才梯队/培训体系/激励机制/管理幅度 四维评估，判断组织能力是否匹配战略目标（参照框架文件第十节）
+
+---
+
+## Phase 2：近期战略动向（策略层）
+
+**web_search联网搜索**：`[品牌名] 战略 OR 开店 OR 加盟 OR 供应链 OR 出海 2024 OR 2025 OR 2026`
+
+- 整理3-6条近期重要新闻（时间+摘要+来源+关联BMC模块）
+- 战略走向研判：扩张/深化/转型/出海/收缩/防御
+- 主要战略方向（1-2条主线）
+
+---
+
+## Phase 3：核心指标体系（指标层）
+
+**读取** `references/metrics_framework.md` 和 `references/analytics_methodology.md`。
+
+- **3.1 北极星指标**：从收入公式推导，标注当前数据和来源
+- **3.2 驱动指标**（3-5个）：优先公式法拆解，不行则餐饮四维（门店/运营/成本/客户）
+- **3.3 过程指标**：每个驱动指标下2-3个执行层指标
+- **3.4 趋势解读**：WHAT现状→WHY诊断→HOW方向，标注🔴警示或🟢亮点
+- **3.5 单店P&L模型**：月营收→各项成本→门店利润率（≥10%）→投资回报周期（参照方法论第九节）
+- **3.6 成本四费健康度**：食材(≤38%)/人力(≤25%)/租金(≤12%)/能耗(≤8%)/合计(≤75%)，标✅⚠️🔴
+- **3.7 数字化成熟度**：前端/中端/后端/数据决策 四维评级（参照指标文件第七节）
+- **3.8 区域分布**：按城市层级分析门店分布/效率差异/渗透空间（参照指标文件第八节）
+
+---
+
+## Phase 3.5：扩展分析（按需）
+
+根据品牌情况选择性生成：
+
+- **E1 消费者洞察**（建议生成）：四维画像+需求趋势+场景匹配（参照方法论第十一节）
+- **E2 出海分析**（有海外布局时）：市场选择/本地化/关键指标（参照框架文件第十一节）
+- **E3 技术/AI评估**（头部品牌）：AI应用场景盘点+价值量化（参照指标文件第九节）
+- **E4 ESG评估**（上市公司或投资人受众）：E环境/S社会/G治理（参照框架文件第十二节）
+
+---
+
+## Phase 4：生成 HTML 报告
+
+**读取** `references/report_template.md`。
+
+输出路径：`~/Downloads/[品牌名]_餐饮商业模式报告_[YYYYMMDD].html`
+
+HTML规范：背景`#faf8f5`、强调色`#c0392b`、字体PingFang SC、最大900px居中、卡片式布局。
+每个核心数字必须标注置信度（★★★确/★★推/★估），参照 `references/analytics_methodology.md` 第十节。
+包含 `@media print` 样式和"📄 导出 PDF"按钮。
+
+免责声明：本报告基于公开信息整理，仅供参考，不构成投资建议。
+
+---
+
+## Phase 5：输出与展示
+
+1. 保存并用 `open` 打开 HTML
+2. 提示"点击底部【📄 导出 PDF】可保存PDF"
+3. 给出5-8行分析摘要
+4. 列出扩展模块生成情况
+
+---
+
+## 注意事项
+
+- **数据置信度必标**：★★★确(财报)/★★推(行业报告)/★估(基准估算)
+- **不捏造数据**：未知数据标"数据未公开"+行业基准参考
+- **必须联网搜索**：web_search 获取真实新闻，不凭印象编造
+- **区分同店vs总体**：连锁品牌数据口径必须标明
+- **季节性注意**：春节/五一/国庆/暑假为旺季
+- **成本分析必做**：四费分析不可省略
+- **业态确认不可省**：Phase 0 步骤 0 是强制步骤

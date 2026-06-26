@@ -1,0 +1,23 @@
+# Desktop Control Dependencies
+
+# Core dependencies
+Pillow>=9.0.0
+
+# Linux desktop automation
+# Install system packages:
+#   sudo apt-get install scrot xdotool
+#   sudo apt-get install python3-xlib python3-pil.imagetk
+
+# macOS desktop automation
+# Install: brew install cliclick
+
+# Optional: VNC support
+# vncdotool>=1.0.0
+
+# Optional: OCR support
+# pytesseract>=0.3.0
+# pillow>=9.0.0
+
+# Optional: Image matching
+# opencv-python>=4.5.0
+# numpy>=1.20.0

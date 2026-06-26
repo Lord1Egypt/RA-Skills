@@ -1,0 +1,80 @@
+{
+  "name": "human-calendar-md",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "author": "Opy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/21J3phy/opys-calendar.git"
+  },
+  "homepage": "https://github.com/21J3phy/opys-calendar#readme",
+  "openclaw": {
+    "env": {
+      "GOOGLE_CLIENT_ID": {
+        "description": "Google OAuth Client ID",
+        "required": false
+      },
+      "GOOGLE_CLIENT_SECRET": {
+        "description": "Google OAuth Client Secret",
+        "required": false
+      },
+      "GOOGLE_REDIRECT_URI": {
+        "description": "OAuth Redirect URI (e.g. http://localhost:8787/api/google/auth/callback)",
+        "required": false
+      },
+      "APP_BASE_URL": {
+        "description": "Base URL for the frontend UI",
+        "required": false
+      },
+      "CALENDAR_AGENT_SNAPSHOT": {
+        "description": "Absolute path to save agent rolling snapshot",
+        "required": false
+      },
+      "CALENDAR_AGENT_DAYS": {
+        "description": "Historical days to include in snapshot",
+        "required": false
+      }
+    }
+  },
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "node --watch --import tsx server/index.ts",
+    "dev:web": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node --import tsx server/index.ts",
+    "cli": "node --import tsx scripts/calendar-cli.ts"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.17",
+    "@fullcalendar/daygrid": "^6.1.17",
+    "@fullcalendar/interaction": "^6.1.17",
+    "@fullcalendar/react": "^6.1.17",
+    "@fullcalendar/timegrid": "^6.1.17",
+    "commander": "^14.0.1",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.1.0",
+    "gray-matter": "^4.0.3",
+    "nanoid": "^5.1.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "recharts": "^3.7.0",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
+    "playwright": "^1.58.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proof Loop Spec Metadata",
+  "type": "object",
+  "required": [
+    "task_id",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "acceptance_criteria": {
+      "type": "array"
+    }
+  }
+}

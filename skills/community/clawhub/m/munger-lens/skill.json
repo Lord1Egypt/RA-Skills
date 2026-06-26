@@ -1,0 +1,8 @@
+{
+  "name": "munger-lens",
+  "version": "1.0.0",
+  "description": "查理·芒格多元思维模型认知框架 - 逆向思维、能力圈、安全边际等7大核心心智模型",
+  "author": "nvwa-skill-creator",
+  "tags": ["思维模型", "投资", "决策", "认知偏差", "芒格"],
+  "entry": "SKILL.md"
+}

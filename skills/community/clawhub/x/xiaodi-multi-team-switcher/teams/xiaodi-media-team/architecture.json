@@ -1,0 +1,321 @@
+{
+  "version": "2.0.0",
+  "architecture": {
+    "pattern": "master-worker",
+    "description": "多媒体总监作为协调者，分发任务给专业角色"
+  },
+  "coordinator": {
+    "id": "media-director",
+    "name": "多媒体总监",
+    "role": "任务协调与质量把控",
+    "responsibilities": [
+      "理解用户媒体处理需求",
+      "分配任务给专业角色",
+      "质量审核与验收",
+      "输出文件管理"
+    ],
+    "tools": {
+      "allowlist": ["read", "write", "exec", "web_search", "memory_search"]
+    }
+  },
+  "agents": {
+    "video-editor": {
+      "name": "视频剪辑师",
+      "role": "视频剪辑、压缩、转码、特效",
+      "icon": "🎬",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec"]
+      },
+      "capabilities": [
+        "视频压缩（H.264/H.265）",
+        "格式转换",
+        "视频剪辑",
+        "特效添加",
+        "水印处理"
+      ],
+      "scripts": ["video_compress.sh", "video_frame.sh"],
+      "ffmpeg_presets": {
+        "compress": "-c:v libx264 -crf 23 -preset medium",
+        "web": "-c:v libx264 -crf 28 -preset fast -movflags +faststart",
+        "high_quality": "-c:v libx264 -crf 18 -preset slow"
+      }
+    },
+    "video-creator": {
+      "name": "视频创作师",
+      "role": "AI视频生成",
+      "icon": "🎥",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec", "web_search"]
+      },
+      "capabilities": [
+        "AI视频生成",
+        "文生视频",
+        "图生视频"
+      ],
+      "scripts": ["video_gen.sh"],
+      "providers": {
+        "kling": {
+          "name": "可灵AI",
+          "vendor": "快手",
+          "region": "CN",
+          "recommended": true
+        },
+        "runway": {
+          "name": "Runway Gen-3",
+          "vendor": "Runway",
+          "region": "Global"
+        },
+        "pika": {
+          "name": "Pika Labs",
+          "vendor": "Pika",
+          "region": "Global"
+        },
+        "sora": {
+          "name": "OpenAI Sora",
+          "vendor": "OpenAI",
+          "region": "Global"
+        },
+        "jiming": {
+          "name": "即梦AI",
+          "vendor": "字节跳动",
+          "region": "CN"
+        }
+      }
+    },
+    "subtitle-generator": {
+      "name": "字幕生成器",
+      "role": "自动生成字幕、翻译字幕",
+      "icon": "📝",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec"]
+      },
+      "capabilities": [
+        "语音识别转字幕",
+        "多语言翻译",
+        "字幕格式转换",
+        "字幕嵌入视频"
+      ],
+      "scripts": ["subtitle_gen.sh"],
+      "whisper_models": ["tiny", "base", "small", "medium", "large"]
+    },
+    "image-processor": {
+      "name": "图片处理师",
+      "role": "图片压缩、转换、缩放、水印",
+      "icon": "🖼️",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec"]
+      },
+      "capabilities": [
+        "图片压缩",
+        "格式转换",
+        "尺寸调整",
+        "批量处理",
+        "水印添加"
+      ],
+      "scripts": ["image_compress.sh"],
+      "supported_formats": {
+        "input": ["jpg", "jpeg", "png", "gif", "webp", "bmp", "tiff"],
+        "output": ["jpg", "png", "webp", "gif"]
+      }
+    },
+    "ai-artist": {
+      "name": "AI绘图师",
+      "role": "AI生成图片、艺术创作",
+      "icon": "🎨",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec", "web_search"]
+      },
+      "capabilities": [
+        "文生图",
+        "图生图",
+        "风格迁移",
+        "图像修复"
+      ],
+      "providers": {
+        "dalle": "OpenAI DALL-E",
+        "sd": "Stable Diffusion",
+        "midjourney": "Midjourney"
+      }
+    },
+    "audio-processor": {
+      "name": "音频处理师",
+      "role": "音频转码、提取、降噪",
+      "icon": "🎵",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "exec"]
+      },
+      "capabilities": [
+        "音频提取",
+        "格式转换",
+        "音量调节",
+        "音频剪辑"
+      ],
+      "scripts": ["audio_extract.sh"],
+      "supported_formats": {
+        "input": ["mp3", "wav", "aac", "flac", "ogg", "m4a"],
+        "output": ["mp3", "wav", "aac"]
+      }
+    },
+    "quality-checker": {
+      "name": "质量检查员",
+      "role": "文件质量检查、格式验证",
+      "icon": "📊",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "exec"]
+      },
+      "capabilities": [
+        "视频质量检测",
+        "图片质量检测",
+        "音频质量检测",
+        "格式验证"
+      ],
+      "check_tools": ["ffprobe", "identify", "mediainfo"]
+    }
+  },
+  "workflows": {
+    "video_compress": {
+      "name": "视频压缩流程",
+      "steps": [
+        {
+          "id": "check_input",
+          "agent": "quality-checker",
+          "action": "validate_video"
+        },
+        {
+          "id": "compress",
+          "agent": "video-editor",
+          "action": "compress_video"
+        },
+        {
+          "id": "verify_output",
+          "agent": "quality-checker",
+          "action": "verify_output"
+        }
+      ]
+    },
+    "video_create": {
+      "name": "AI视频生成流程",
+      "steps": [
+        {
+          "id": "parse_prompt",
+          "agent": "video-creator",
+          "action": "parse_prompt"
+        },
+        {
+          "id": "generate",
+          "agent": "video-creator",
+          "action": "generate_video"
+        },
+        {
+          "id": "verify",
+          "agent": "quality-checker",
+          "action": "verify_output"
+        }
+      ]
+    },
+    "subtitle_generate": {
+      "name": "字幕生成流程",
+      "steps": [
+        {
+          "id": "extract_audio",
+          "agent": "audio-processor",
+          "action": "extract_audio"
+        },
+        {
+          "id": "generate_subtitle",
+          "agent": "subtitle-generator",
+          "action": "generate_subtitle"
+        },
+        {
+          "id": "embed_subtitle",
+          "agent": "video-editor",
+          "action": "embed_subtitle"
+        }
+      ]
+    },
+    "image_batch": {
+      "name": "图片批量处理流程",
+      "steps": [
+        {
+          "id": "scan_images",
+          "agent": "image-processor",
+          "action": "scan_directory"
+        },
+        {
+          "id": "process_batch",
+          "agent": "image-processor",
+          "parallel": true,
+          "action": "process_batch"
+        },
+        {
+          "id": "verify",
+          "agent": "quality-checker",
+          "action": "verify_batch"
+        }
+      ]
+    },
+    "audio_extract": {
+      "name": "音频提取流程",
+      "steps": [
+        {
+          "id": "extract",
+          "agent": "audio-processor",
+          "action": "extract_audio"
+        },
+        {
+          "id": "verify",
+          "agent": "quality-checker",
+          "action": "verify_audio"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "bins": ["ffmpeg", "ffprobe", "convert", "identify"],
+    "install": [
+      {
+        "id": "ffmpeg",
+        "kind": "apt",
+        "formula": "ffmpeg",
+        "bins": ["ffmpeg", "ffprobe"],
+        "label": "Install ffmpeg"
+      },
+      {
+        "id": "imagemagick",
+        "kind": "apt",
+        "formula": "imagemagick",
+        "bins": ["convert", "identify"],
+        "label": "Install ImageMagick"
+      }
+    ]
+  },
+  "settings": {
+    "max_file_size_mb": 500,
+    "output_dir": "/tmp/xiaodi-media",
+    "cleanup_temp": true,
+    "default_video_codec": "libx264",
+    "default_audio_codec": "aac",
+    "default_image_quality": 85
+  }
+}

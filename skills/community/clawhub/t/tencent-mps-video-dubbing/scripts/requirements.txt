@@ -1,0 +1,23 @@
+# Tencent Cloud MPS 视频译制 Skill — Python dependencies
+#
+# All packages are official open-source libraries.
+# tencentcloud-sdk-python ships frequent updates (often weekly) to support new
+# MPS models / parameters. pip will install the latest version satisfying the
+# constraint; to force an upgrade later, run:
+#     pip install -r scripts/requirements.txt --upgrade
+#
+#   tencentcloud-sdk-python : Tencent Cloud MPS API client (publisher: Tencent Cloud)
+#     repo: https://github.com/TencentCloud/tencentcloud-sdk-python
+#     used by mps_video_dubbing.py / mps_poll_task.py
+#
+#   cos-python-sdk-v5       : Tencent Cloud COS SDK (object storage)
+#     repo: https://github.com/tencentyun/cos-python-sdk-v5
+#     used by mps_cos_upload.py / mps_cos_download.py
+#
+#   python-dotenv           : Load credentials from .env files (used by mps_load_env.py)
+#     repo: https://github.com/theskumar/python-dotenv
+#     used by 1 script (mps_load_env.py) for automatic dotenv loading
+
+tencentcloud-sdk-python>=3.0.1300
+cos-python-sdk-v5>=1.9.30
+python-dotenv>=1.0.0

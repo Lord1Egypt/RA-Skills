@@ -1,0 +1,41 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "使用 大模型进行图像分析、OCR提取、文案创作和多模态对话",
+  "author": "Claude Code",
+  "api": {
+    "base_url": "https://api.",
+    "version": "v1",
+    "authentication": {
+      "type": "Bearer Token",
+      "header": "Authorization",
+      "env_var": ""
+    }
+  },
+  "models": {
+    "": "",
+    "": ""
+  },
+  "features": [
+    "图像分析与理解",
+    "OCR 文字提取",
+    "文案创作",
+    "多模态对话",
+    "文档解析",
+    "智能问答"
+  ],
+  "triggers": [
+    "使用 分析图片",
+    "用 ",
+    "文案创作",
+    "图像理解",
+    "提取图片文字",
+    "分析照片内容",
+    "生成营销文案",
+    "多模态对话"
+  ],
+  "environment": {
+    "required_vars": [""],
+    "optional_vars": ["", "", ""]
+  }
+}

@@ -1,0 +1,65 @@
+# Webnovel 站点配置
+
+site:
+  name: webnovel
+  display_name: Webnovel
+  base_url: https://www.webnovel.com
+  content_type: novel
+
+# URL 模式
+urls:
+  # 书城列表页（爬取入口，旧 ranking 页面已失效）
+  ranking: https://www.webnovel.com/stories/novel
+  category: https://www.webnovel.com/stories/{category_id}
+  # 书籍详情页（新格式：/book/{slug}_{book_id}）
+  book_detail: https://www.webnovel.com/book/{book_id}
+  # 章节目录页（从 HTML 解析章节列表，旧 API 已失效）
+  catalog: https://www.webnovel.com/book/{book_id}/catalog
+
+# 页面选择器（CSS / XPath）
+selectors:
+  # 书城列表页 - 书籍链接（<a> 带封面图，href 含 /book/ 或 /zh/book/）
+  book_list: "ul.clearfix li a.g_thumb::attr(href)"
+  # 书籍详情页
+  book_title: "h1::text"
+  book_author: "address a.c_primary::text"
+  book_category: "a.det-hd-tag span::text"
+  book_summary: "div.j_synopsis p::text"
+  book_cover: "div.det-hd i.g_thumb img::attr(src)"
+  book_status: "span._status::text"
+  # 章节目录页 - 章节链接
+  catalog_chapters: "div.volume-item a[href*='/book/']"
+
+# 字段映射（API JSON → 模型字段）
+field_mapping:
+  # /get-chapters 响应
+  chapters_path: "data.chapterItems"
+  chapter_id_field: "chapterId"
+  chapter_name_field: "chapterName"
+  chapter_index_field: "chapterIndex"
+  chapter_time_field: "createTime"
+  # /getContent 响应
+  content_path: "data.chapterInfo.content"
+  word_count_field: "data.chapterInfo.wordsCount"
+
+# 请求配置
+request:
+  headers:
+    Accept: "application/json, text/plain, */*"
+    Referer: "https://www.webnovel.com/"
+  cookies_required: false
+  # 使用 TLS 指纹伪装绕过 Cloudflare（curl_cffi，无需浏览器）
+  use_impersonate: true
+  # 请求间隔（秒）
+  download_delay: 2.0
+
+# 增量策略
+incremental:
+  # 基于 maxUpdateTime 参数实现增量
+  strategy: max_update_time
+  # 每次爬取记录最大 updateTime，下次只拉新章节
+
+# 调度
+schedule:
+  cron: "0 */6 * * *"
+  enabled: true

@@ -1,0 +1,172 @@
+{
+  "name": "agentshield",
+  "version": "1.0.36",
+  "description": "Privacy-First security audit with 77 local tests (52 live + 25 static). Works with OpenClaw, Hermes Agent, n8n (auto-detected), LangChain, and any AI agent platform. New: --system-prompt flag, PLATFORMS.md guide. Explicit whitelist sanitization + dry-run mode. Ed25519 private keys stay local. All scripts bundled - no external code fetching.",
+  "author": "Kalle-OC (bartelmost)",
+  "license": "MIT",
+  "homepage": "https://github.com/bartelmost/agentshield",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bartelmost/agentshield.git"
+  },
+  "tags": [
+    "security",
+    "audit",
+    "cryptography",
+    "agent-identity",
+    "trust",
+    "certificates",
+    "verified",
+    "bundled",
+    "production-ready",
+    "hermes",
+    "hermes-agent"
+  ],
+  "triggers": [
+    "audit my agent",
+    "get security certificate",
+    "verify agent",
+    "activate agentshield",
+    "security audit",
+    "check agent security"
+  ],
+  "installation": {
+    "method": "bundle",
+    "bundle_structure": "flat",
+    "requires_pip": true,
+    "note": "All scripts are bundled locally. No external code fetching.",
+    "dependencies": {
+      "python": ">=3.8",
+      "packages": [
+        "cryptography>=41.0.0",
+        "requests>=2.31.0"
+      ]
+    }
+  },
+  "scripts": {
+    "install": "pip install -r requirements.txt",
+    "audit": "python initiate_audit.py --auto",
+    "audit-manual": "python initiate_audit.py --name 'MyAgent' --platform n8n",
+    "audit-n8n": "python initiate_audit.py --auto",
+    "audit-dryrun": "python initiate_audit.py --auto --dry-run",
+    "test": "python agentshield_tester.py --config agent_config.json --prompt system_prompt.txt",
+    "verify": "python verify_peer.py",
+    "show-cert": "python show_certificate.py",
+    "handshake": "python handshake.py --target agent_xxxxx"
+  },
+  "files": [
+    "SKILL.md",
+    "HERMES.md",
+    "README.md",
+    "QUICKSTART.md",
+    "INSTALLATION.md",
+    "CHANGELOG.md",
+    "PRIVACY.md",
+    "TESTING.md",
+    "clawhub.json",
+    "requirements.txt",
+    "sandbox_config.yaml",
+    "setup.py",
+    "__init__.py",
+    "initiate_audit.py",
+    "verify_peer.py",
+    "show_certificate.py",
+    "audit_client.py",
+    "verify_bundle.py",
+    "input_sanitizer.py",
+    "output_dlp.py",
+    "tool_sandbox.py",
+    "echoleak_test.py",
+    "secret_scanner.py",
+    "supply_chain_scanner.py",
+    "agentshield_tester.py",
+    "handshake.py",
+    "complete_handshake.py",
+    "agentshield_attack_patterns.json",
+    "agentshield_prompt_examples.txt"
+  ],
+  "privacy": {
+    "data_collection": "none",
+    "bundle_status": "verified",
+    "code_fetching": "none",
+    "api_communication": "Production API (agentshield.live/api) - Heroku-hosted with PostgreSQL backend, operational since 2026-03-26. Audits submitted, certificates signed server-side.",
+    "test_execution": "100% local - attack patterns run locally, only pass/fail scores sent to API",
+    "api_payloads": {
+      "audit_submission": "Agent metadata + test scores (summary counts) + test IDs (e.g. PI-001, SS-003) with pass/fail booleans",
+      "whitelist_fields": "test_id (string), passed (boolean), category (string) - see audit_client.py line 108",
+      "never_sent": "System prompts, attack test inputs (payloads), tool configurations, agent responses, evidence snippets, error messages, file paths",
+      "sanitization": "Explicit whitelist in _sanitize_test_details() - attack payloads/responses/evidence explicitly dropped"
+    },
+    "local_storage": [
+      "~/.openclaw/workspace/.agentshield/agent.key (Ed25519 private key)",
+      "~/.openclaw/workspace/.agentshield/certificate.json (signed certificate)",
+      "~/.openclaw/workspace/.agentshield/config.json (configuration)"
+    ],
+    "private_keys": "Ed25519 private keys generated locally and NEVER leave the user's workspace. Stored with 600 permissions in ~/.openclaw/workspace/.agentshield/agent.key",
+    "credentials": "No API keys or credentials required for installation. Works out of the box with standard pip install.",
+    "install_method": "Standard Python package installation via pip install -r requirements.txt. All dependencies explicit: cryptography>=41.0.0, requests>=2.31.0",
+    "environment_variables": {
+      "read": [
+        "AGENTSHIELD_API",
+        "AGENT_NAME",
+        "OPENCLAW_AGENT_NAME"
+      ],
+      "purpose": "Optional configuration only - API endpoint override and agent name auto-detection",
+      "secrets_scanned": false,
+      "note": "Does NOT scan for tokens (TELEGRAM_TOKEN, DISCORD_TOKEN, etc.)"
+    },
+    "human_in_loop": {
+      "required": true,
+      "checkpoints": [
+        "1. Before reading IDENTITY.md/SOUL.md: Explicit consent prompt",
+        "2. Before generating keys: User confirmation required",
+        "3. Before API submission: User reviews audit summary",
+        "4. --yes flag: \u26a0\ufe0f AUTOMATION ONLY - Use in pre-audited/sandboxed environments",
+        "5. --dry-run flag: Shows exact API payload before real submission"
+      ],
+      "verification": "audit_client.py line 108+: _sanitize_test_details() whitelist. initiate_audit.py line 58+: consent flow. Line 460+: dry-run mode.",
+      "automation_warning": "The --yes flag bypasses ALL consent prompts. Only use in environments where you have already manually audited the code and verified submission sanitization. NOT recommended for production agents with sensitive data. Use --dry-run first to inspect payload."
+    }
+  },
+  "security": {
+    "permissions_required": [
+      "file_read (IDENTITY.md, SOUL.md - with consent only)",
+      "file_write",
+      "network_outbound"
+    ],
+    "sandboxing": "Optional tool sandboxing via sandbox_config.yaml",
+    "secrets_handling": "No API keys required. Private keys stored locally with 600 permissions.",
+    "rate_limiting": "1 audit per hour per IP (enforced server-side)",
+    "scanner_optimization": "v1.0.27: Attack patterns externalized, documentation clarified for transparency"
+  },
+  "compatibility": {
+    "platforms": [
+      "openclaw",
+      "hermes",
+      "n8n",
+      "langchain",
+      "discord",
+      "telegram",
+      "slack",
+      "signal",
+      "whatsapp",
+      "cli",
+      "custom"
+    ],
+    "openclaw_version": ">=0.5.0",
+    "platform_detection": "Auto-detects OpenClaw (IDENTITY.md), Hermes Agent (~/.hermes/ with config.json name extraction), and n8n (~/.n8n/). HERMES_AGENT_NAME env var supported. Manual --name/--platform for all others."
+  },
+  "support": {
+    "documentation": "https://github.com/bartelmost/agentshield",
+    "issues": "https://github.com/bartelmost/agentshield/issues",
+    "contact": "@Kalle-OC on Moltbook"
+  },
+  "verified": {
+    "status": "production_ready",
+    "bundle_integrity": "All scripts bundled locally",
+    "external_fetching": false,
+    "human_in_loop": true,
+    "audit_date": "2026-03-31",
+    "scanner_notes": "v1.0.27 production-ready with full scanner compliance (all v1.0.26 issues resolved)"
+  }
+}

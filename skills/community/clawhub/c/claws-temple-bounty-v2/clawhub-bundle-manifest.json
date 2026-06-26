@@ -1,0 +1,42 @@
+{
+  "generator_files": {
+    "build-clawhub.sh": "510e3d218e67d8f8d9e937c68fe26192c63e763b5cfd6e57362cedb774742c72",
+    "validate_clawhub_bundle.py": "70b21a577bcbe8fe6f09abe41d8ed7d7f9782f304cbacfcf63d7f1553fac09b8"
+  },
+  "skill_version": "0.2.17",
+  "source_files": {
+    "SKILL.md": "117b176c58c15dc6eb3fdc0153d6b39cb0fd48a5cf711aac79982ed40466b415",
+    "agents/openai.yaml": "62aa18cd1a2b6bb619e33d4ff1af17b4f891969e332b798dbdb4931d17f1bbd3",
+    "config/dependency-sources.json": "28e299a8760d0d0de341b630cf03734f6d4eb5fae6d5f94d6d942f28b3287ff4",
+    "config/faction-proposals.json": "dc058f52bab4ce67b2d221ab9b7800161fbfd2805e1c982b43b9e7df76daad3b",
+    "config/faction-proposals.schema.json": "e02d042d3c208c85b71f5bb534a7a06c55cfe501f2b5a3348c72a0714b450de3",
+    "references/brand-lexicon.en.md": "4b278fe9fa7adfc8802dc7f817ad2c588148b714850701977c3cd1546c231d41",
+    "references/brand-lexicon.zh.md": "bd352855d79cad49ee735cb362ad77f587c090f3eebab781bbe2321d4d57a97d",
+    "references/clawhub-runtime-notes.md": "1ed85be8077c0b5b0e8aff9cd6a56a6db87b6dda3fe2f0081e38a6d71ce7c08b",
+    "references/examples/roadmap.en.md": "2d6486ee7dbb939ce458a02c2cf9a44ec260b32d8738b5a05760c97f8477ca63",
+    "references/examples/roadmap.zh.md": "73e52431a21dead3f519828f8aa8629e1462b0f5c0576bc6b3fd4a2357699f0b",
+    "references/examples/task-1-coordinate-card.en.md": "d56c5ca5a86e4f6a3db4371a7943c5477aac6a51e8a120432b3e3bc84c237e4d",
+    "references/examples/task-1-coordinate-card.zh.md": "61c623c9db8816b3f953317f5bc6763ea987e62b05a2f6363156edfeff327d7d",
+    "references/examples/task-2-resonance-partner.en.md": "c8a4d287375772549a3f12413ce8e42b046c2c0dce5a27b2961272a3eed9f810",
+    "references/examples/task-2-resonance-partner.zh.md": "738be7e89b0edd845aa0c248bd06a4c5b78fcefb89033e42a0bf77ede44e92b2",
+    "references/examples/task-3-faction-oath.en.md": "d4ed0c8a24f3a3784903c351be5e90c511b2adc20fea672f2a177b7ac20b1a68",
+    "references/examples/task-3-faction-oath.zh.md": "02ccceb5de1d319dcb8db79af3aaa9f81fa1c14be5d36132302df79d9a7e59da",
+    "references/examples/task-4-curio-board.en.md": "453f00108f4be01e2a8341a38da2af0f8c9155ab3f076f365fea5ccd4301024d",
+    "references/examples/task-4-curio-board.zh.md": "13828e7228b6843685173d3625362d48b71137471e153e44099ed6cdccd2596e",
+    "references/examples/task-5-social-signal.en.md": "d95284be4c4dad767b61fefa9374684c217ef521c61d1c3fd8f3189fba4ec47f",
+    "references/examples/task-5-social-signal.zh.md": "431df0c7ba13adabd269c47c080165113dba24f52a845acce6a8cfb54807c4f8",
+    "references/output-contract.md": "4cb362ba10431251ab98c74209b56a72e2b393618b65fa13183a55193b036b60",
+    "references/task-4-live-rollout.md": "a8cb944682bdfd864aa973e01cfb3f9b2c157eb2229080190977f398cfff41eb",
+    "references/task-flows/task-1-coordinate-card.md": "8ac56af24ebc0561b69900c7e73f4028ee7d1ad39f62ecb61f76558f698f15b5",
+    "references/task-flows/task-2-resonance-partner.md": "cf58b751691efedbe2349baeb6f80bbd1a830e3226cd22b509855baceb94ea21",
+    "references/task-flows/task-3-faction-oath.md": "5f58dcb5d9e1b396cf01b78575cee3e5945173914399e1b6946d784bc537264c",
+    "references/task-flows/task-4-curio-board.md": "93cc2115e7b056db3b21f32a7ad489ee8be9bbea2cfc759f05ddede16ac898ef",
+    "references/task-flows/task-5-social-signal.md": "5c45c0c520dc07a82612eea5062f0dfae69848211fba2b782a21d18f707fa2cb",
+    "references/task-flows/task-roadmap.md": "833e327efd20f398a073a5b3f55139653744b8c4b0369d5318929509eb831dff",
+    "scripts/release-gate.sh": "62c0c6948d923817da082aa85556b0d1c2ba2edc643047fdf8c06075a6a8d597",
+    "scripts/self-heal-local-dependency.sh": "b39cac50e4ecd22e9d54d17b33a82e7faa62cb4658a9b77b668f4dfcc6df3d48",
+    "scripts/smoke-check.sh": "509318ebc84498044a08fcb0a13870dfc54077b6f73d62f12d5292523deb2392",
+    "scripts/task4-live-skill-probe.sh": "24e164bbf86be16bc87c463669270a102d845a365ed5c8ff71f4f7090d549a56",
+    "scripts/test-rollout-gate.sh": "60d7749dd51f95daa24625f6cbe780c1d9d250e52f1d312443a8e58ed753a15d"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "version": "1.0.3",
+  "organization": "AsyrafHussin",
+  "date": "March 2026",
+  "laravelVersion": "13.x",
+  "phpVersion": "8.3+",
+  "abstract": "OWASP Top 10 security audit checklist and secure coding reference for Laravel 13 + React/Inertia.js applications. Dual-purpose: run a full OWASP-mapped security audit with PASS/FAIL/N/A output, or use as a secure coding reference when building features. Covers all 10 OWASP Top 10:2021 categories (A01–A10) plus additional Laravel-specific checks and 6 React/Inertia.js-specific security checks including data-page exposure, dangerouslySetInnerHTML XSS, CSRF in Inertia, and sensitive props in shared state. Auto-detects React + Inertia.js stack and applies extended checks. Each rule includes incorrect vs. correct PHP/TypeScript code examples using Laravel 13 and PHP 8.3+ patterns.",
+  "references": [
+    "https://owasp.org/www-project-top-ten/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html",
+    "https://laravel.com/docs/13.x/authentication",
+    "https://laravel.com/docs/13.x/authorization",
+    "https://laravel.com/docs/13.x/csrf",
+    "https://laravel.com/docs/13.x/encryption",
+    "https://laravel.com/docs/13.x/hashing",
+    "https://laravel.com/docs/13.x/rate-limiting",
+    "https://inertiajs.com",
+    "https://github.com/cure53/DOMPurify"
+  ],
+  "categories": [
+    {
+      "name": "Broken Access Control",
+      "prefix": "sec-access",
+      "impact": "CRITICAL",
+      "owasp": "A01:2021",
+      "description": "Middleware, ownership checks, Gates/Policies, and scoped queries"
+    },
+    {
+      "name": "Cryptographic Failures",
+      "prefix": "sec-crypto",
+      "impact": "CRITICAL",
+      "owasp": "A02:2021",
+      "description": "Password hashing, encrypted Eloquent casts, signed URLs"
+    },
+    {
+      "name": "Injection",
+      "prefix": "sec-injection",
+      "impact": "CRITICAL",
+      "owasp": "A03:2021",
+      "description": "SQL injection, mass assignment, XSS in Blade and React/Inertia"
+    },
+    {
+      "name": "Insecure Design",
+      "prefix": "sec-design",
+      "impact": "HIGH",
+      "owasp": "A04:2021",
+      "description": "Server-side business logic, payment amount validation, admin isolation"
+    },
+    {
+      "name": "Security Misconfiguration",
+      "prefix": "sec-config",
+      "impact": "HIGH",
+      "owasp": "A05:2021",
+      "description": "APP_DEBUG, APP_KEY, security headers, CORS"
+    },
+    {
+      "name": "Vulnerable & Outdated Components",
+      "prefix": "sec-components",
+      "impact": "MEDIUM",
+      "owasp": "A06:2021",
+      "description": "composer audit, npm audit, Laravel version support"
+    },
+    {
+      "name": "Identification & Authentication Failures",
+      "prefix": "sec-auth",
+      "impact": "HIGH",
+      "owasp": "A07:2021",
+      "description": "Throttle middleware, RateLimiter, session regeneration, cookie security"
+    },
+    {
+      "name": "Software & Data Integrity Failures",
+      "prefix": "sec-integrity",
+      "impact": "HIGH",
+      "owasp": "A08:2021",
+      "description": "CSRF protection, deserialization, unserialize prevention"
+    },
+    {
+      "name": "Security Logging & Monitoring Failures",
+      "prefix": "sec-logging",
+      "impact": "MEDIUM",
+      "owasp": "A09:2021",
+      "description": "Login attempts, payment failures, no secrets in logs"
+    },
+    {
+      "name": "Server-Side Request Forgery",
+      "prefix": "sec-ssrf",
+      "impact": "HIGH",
+      "owasp": "A10:2021",
+      "description": "Http::get with user URLs, allowlist validation, internal network blocking"
+    },
+    {
+      "name": "Inertia Data Exposure",
+      "prefix": "sec-inertia",
+      "impact": "HIGH",
+      "owasp": "React/Inertia R2",
+      "description": "data-page attribute exposure, secret props, API Resources"
+    }
+  ],
+  "keyFeatures": [
+    "Full OWASP Top 10 checklist mapped to Laravel 13 patterns",
+    "Auto-detects React + Inertia.js stack for extended checks",
+    "6 React/Inertia.js-specific security checks (R1-R6)",
+    "PASS/FAIL/N/A audit output format with file:line references",
+    "Dual-purpose: audit runner + secure coding reference",
+    "PHP 8.3+ and Laravel 13 code examples",
+    "DOMPurify integration for dangerouslySetInnerHTML",
+    "Inertia data-page exposure detection",
+    "CSP nonce-based Content-Security-Policy guidance"
+  ]
+}

@@ -1,0 +1,43 @@
+name: image-generation
+version: 1.0.0
+description: AI图片生成技能。支持GPT Image、Gemini、FLUX、Imagen等主流模型，提供提示词工程、风格控制和智能编辑。
+author: clawd
+homepage: https://clawhub.com/skills/image-generation
+
+triggers:
+  - 生成图片
+  - AI画图
+  - 图片生成
+  - generate image
+  - image generation
+  - DALL-E
+  - GPT Image
+
+config:
+  OPENAI_API_KEY:
+    type: string
+    required: false
+    secret: true
+    description: OpenAI API密钥（用于GPT Image）
+  GEMINI_API_KEY:
+    type: string
+    required: false
+    secret: true
+    description: Gemini API密钥
+  BFL_API_KEY:
+    type: string
+    required: false
+    secret: true
+    description: Black Forest Labs API密钥（用于FLUX）
+
+features:
+  - 多模型支持（GPT/Gemini/FLUX/Imagen等）
+  - 提示词工程优化
+  - 图片编辑和修改
+  - 风格一致性控制
+  - 模型选择建议
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

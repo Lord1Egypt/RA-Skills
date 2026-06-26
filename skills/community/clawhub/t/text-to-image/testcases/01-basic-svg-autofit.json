@@ -1,0 +1,9 @@
+{
+  "text": "Basic SVG auto fit",
+  "width": 800,
+  "height": 240,
+  "format": "svg",
+  "background": "#ffffff",
+  "default_color": "#222222",
+  "padding": 24
+}

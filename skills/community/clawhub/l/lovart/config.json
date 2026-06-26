@@ -1,0 +1,32 @@
+{
+  "name": "lovart",
+  "version": "1.0.0",
+  "description": "与 Lovart.ai API 集成，生成 AI 设计、图片和视频",
+  "author": "Claude Code",
+  "api": {
+    "base_url": "https://api.lovart.ai",
+    "version": "v1",
+    "authentication": {
+      "type": "Bearer Token",
+      "header": "Authorization",
+      "env_var": "LOVART_API_KEY"
+    }
+  },
+  "endpoints": {
+    "generate": "/design/generate",
+    "status": "/design/{id}"
+  },
+  "triggers": [
+    "使用 Lovart 生成设计",
+    "用 Lovart AI 创建图片",
+    "Lovart 设计",
+    "AI 设计生成",
+    "生成产品图片",
+    "创建营销素材",
+    "AI 视频生成"
+  ],
+  "environment": {
+    "required_vars": ["LOVART_API_KEY"],
+    "optional_vars": []
+  }
+}

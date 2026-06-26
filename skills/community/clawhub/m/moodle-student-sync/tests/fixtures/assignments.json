@@ -1,0 +1,16 @@
+{
+  "courses": [
+    {
+      "id": 18611,
+      "fullname": "Algorithms",
+      "assignments": [
+        {
+          "id": 501,
+          "name": "Homework 1",
+          "duedate": 1743000000
+        }
+      ]
+    }
+  ]
+}
+

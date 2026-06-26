@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/screening-tracker.json",
+  "title": "ScreeningTracker",
+  "description": "妇科癌症筛查追踪的数据结构定义",
+  "type": "object",
+  "properties": {
+    "cervical_cancer": {
+      "type": "object",
+      "description": "宫颈癌筛查记录",
+      "properties": {
+        "last_hpv": { "type": "string", "format": "date" },
+        "hpv_result": {
+          "type": "string",
+          "enum": ["negative", "positive", "not_done"]
+        },
+        "hpv_type": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["16", "18", "31", "33", "35", "39", "45", "51", "52", "56", "58", "59"] }
+        },
+        "hpv_risk_level": {
+          "type": "string",
+          "enum": ["none", "low", "moderate", "high", "very_high"]
+        },
+        "last_tct": { "type": "string", "format": "date" },
+        "tct_result": {
+          "type": "string",
+          "enum": ["NILM", "ASC-US", "ASC-H", "LSIL", "HSIL", "AGC", "Cancer", "not_done"]
+        },
+        "tct_result_full": { "type": "string" },
+        "tct_bethesda_category": { "type": "string" },
+        "last_co_testing": { "type": "string", "format": "date" },
+        "co_testing_result": { "type": "string" },
+        "screening_strategy": {
+          "type": "string",
+          "enum": ["tct_only", "co-testing", "hpv_primary"]
+        },
+        "screening_interval": { "type": "string" },
+        "next_screening": { "type": "string", "format": "date" },
+        "next_screening_type": { "type": "string" },
+        "days_until_next": { "type": "integer" },
+        "abnormal_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "result_id": { "type": "string" },
+              "result_type": { "type": "string" },
+              "hpv_type": { "type": "string" },
+              "date_identified": { "type": "string", "format": "date" },
+              "follow_up": { "type": "string" },
+              "follow_up_status": { "type": "string" },
+              "follow_up_date": { "type": "string", "format": "date" },
+              "resolved": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "tumor_markers": {
+      "type": "object",
+      "description": "肿瘤标志物",
+      "properties": {
+        "CA125": {
+          "type": "object",
+          "properties": {
+            "current_value": { "type": "number" },
+            "reference_range": { "type": "string" },
+            "unit": { "type": "string", "enum": ["U/mL"] },
+            "last_checked": { "type": "string", "format": "date" },
+            "classification": {
+              "type": "string",
+              "enum": ["normal", "elevated", "significantly_elevated"]
+            },
+            "trend": {
+              "type": "string",
+              "enum": ["stable", "rising", "falling"]
+            },
+            "history": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": { "type": "string", "format": "date" },
+                  "value": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "CA19-9": {
+          "type": "object",
+          "properties": {
+            "current_value": { "type": "number" },
+            "reference_range": { "type": "string" },
+            "unit": { "type": "string" },
+            "last_checked": { "type": "string", "format": "date" },
+            "classification": { "type": "string" },
+            "trend": { "type": "string" },
+            "history": { "type": "array", "items": { "type": "object" } }
+          }
+        },
+        "CEA": {
+          "type": "object",
+          "properties": {
+            "current_value": { "type": "number" },
+            "reference_range": { "type": "string" },
+            "unit": { "type": "string", "enum": ["ng/mL"] },
+            "last_checked": { "type": "string", "format": "date" },
+            "classification": { "type": "string" },
+            "history": { "type": "array", "items": { "type": "object" } }
+          }
+        },
+        "AFP": {
+          "type": "object",
+          "properties": {
+            "current_value": { "type": "number" },
+            "reference_range": { "type": "string" },
+            "unit": { "type": "string", "enum": ["ng/mL"] },
+            "last_checked": { "type": "string", "format": "date" },
+            "classification": { "type": "string" },
+            "history": { "type": "array", "items": { "type": "object" } }
+          }
+        }
+      }
+    },
+    "abnormal_result_followup": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "result_id": { "type": "string" },
+          "initial_result": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "hpv_type": { "type": "string" },
+              "tct_result": { "type": "string" },
+              "date_identified": { "type": "string", "format": "date" }
+            }
+          },
+          "follow_up": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "scheduled_date": { "type": "string", "format": "date" },
+              "completed_date": { "type": "string", "format": "date" },
+              "result": { "type": "string" },
+              "biopsy_result": { "type": "string" },
+              "treatment": { "type": "string" },
+              "treatment_date": { "type": "string", "format": "date" }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "resolved", "treated", "lost_to_followup"]
+          },
+          "resolved_date": { "type": "string", "format": "date" },
+          "next_follow_up": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "upcoming_appointments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "appointment_id": { "type": "string" },
+          "type": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "purpose": { "type": "string" },
+          "preparation": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "must-play-recommendations",
+  "version": "1.0.0",
+  "description": "Agent skill for recommending must-play attractions in cities using FlyAI CLI. Focuses on hot, check-in worthy, and high-quality attractions.",
+  "keywords": [
+    "claude-code",
+    "agent-skill",
+    "travel",
+    "attractions",
+    "recommendations",
+    "flyai"
+  ],
+  "author": "travel-agent",
+  "license": "MIT",
+  "engines": {
+    "claude-code": ">=1.0.0"
+  },
+  "skill": {
+    "triggers": [
+      "有什么好玩",
+      "景点推荐",
+      "必去景点",
+      "必玩景点",
+      "旅游推荐",
+      "玩什么",
+      "去哪玩",
+      "5A景区",
+      "名胜古迹"
+    ],
+    "input": {
+      "type": "string",
+      "description": "城市名称",
+      "required": true,
+      "examples": ["北京", "上海", "杭州", "西安", "成都", "三亚"]
+    },
+    "output": {
+      "type": "json",
+      "description": "景点推荐JSON，包含名称、等级、推荐理由、门票费用等"
+    },
+    "capabilities": [
+      "5A级景区搜索",
+      "景点等级筛选",
+      "类别筛选",
+      "门票信息获取",
+      "推荐理由生成"
+    ],
+    "dataSource": [
+      "FlyAI search-poi",
+      "FlyAI keyword-search",
+      "FlyAI ai-search"
+    ],
+    "extensible": {
+      "futureDataSources": [
+        "小红书热门笔记",
+        "大众点评口碑",
+        "携程游记攻略"
+      ],
+      "recommendationRules": 6
+    }
+  }
+}

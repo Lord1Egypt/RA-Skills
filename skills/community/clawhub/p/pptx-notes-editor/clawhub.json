@@ -1,0 +1,23 @@
+{
+  "name": "pptx-notes-editor",
+  "tagline": "Edit, rewrite, and export PowerPoint speaker notes via AI agents",
+  "description": "An agent skill focused exclusively on editing PowerPoint speaker notes. Unlike other PPTX skills that create slides, this skill specializes in modifying, rewriting, and exporting speaker notes. Supports narrative, concise, verbatim, and custom styles. Features automatic slide-to-notes mapping detection, global context reading before writing, and page-by-page interactive confirmation.",
+  "category": "productivity",
+  "tags": ["pptx", "powerpoint", "speaker-notes", "presentation", "automation", "narrative-writing", "export"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/cm8421/pptx-notes-editor/issues",
+  "homepage": "https://github.com/cm8421/pptx-notes-editor",
+  "repository": "https://github.com/cm8421/pptx-notes-editor",
+  "requirements": {
+    "cli_tools": ["unzip", "zip", "grep", "sed"],
+    "platform": ["macOS", "Linux"],
+    "agent": "Any SKILL.md-compatible agent (Claude Code, OpenClaw, etc.)"
+  },
+  "permissions": {
+    "filesystem": "Read/write access to PPTX files in working directory only",
+    "network": "None required",
+    "execution": "Shell commands for PPTX unpack/pack only"
+  }
+}

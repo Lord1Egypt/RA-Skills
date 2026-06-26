@@ -1,0 +1,52 @@
+[
+  {
+    "name": "vague_general_request",
+    "args": [
+      "--request",
+      "帮我优化一下这个东西",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "general",
+      "min_issue_count": 2,
+      "issue_codes": [
+        "vague-request",
+        "general-task-type"
+      ]
+    }
+  },
+  {
+    "name": "well_scoped_backend_request",
+    "args": [
+      "--request",
+      "Implement an API endpoint that validates and submits an event registration form into the database.",
+      "--stack",
+      "FastAPI, PostgreSQL",
+      "--audience",
+      "Operations staff",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "api-backend",
+      "max_issue_count": 1
+    }
+  },
+  {
+    "name": "architecture_request_with_sparse_context",
+    "args": [
+      "--request",
+      "We need a multi-tenant architecture with isolated data and a future migration path.",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "architecture-review",
+      "issue_codes": [
+        "generic-context",
+        "assumption-heavy"
+      ]
+    }
+  }
+]

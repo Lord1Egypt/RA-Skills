@@ -1,35 +1,88 @@
 ---
-name: "AI新闻多平台发布助手"
-description: "每日抓取全球AI新闻，自动深度研究，生成高质量公众号长文并发布至微信和小红书"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/2026-04-19"
-sourceUrl: "https://clawhub.ai/skills/2026-04-19"
+name: AI新闻多平台发布助手
+description: 每日抓取全球AI新闻，自动深度研究，生成高质量公众号长文并发布至微信和小红书
+category: AI
+triggers: 每日AI新闻, AI资讯日报, 公众号自动发布, 小红书自动发布, 内容创作工作流
 ---
 
 # AI新闻多平台发布助手
 
-> 每日抓取全球AI新闻，自动深度研究，生成高质量公众号长文并发布至微信和小红书
+自动化的AI新闻内容工厂，每天从全球AI行业动态中抓取新闻，深度研究热点话题，生成3000-5000字专业公众号文章，并同时发布至微信公众平台与小红书。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/2026-04-19`
-- **Source URL:** [https://clawhub.ai/skills/2026-04-19](https://clawhub.ai/skills/2026-04-19)
+## 技能协同图谱
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/2026-04-19
 ```
+[ai-news-daily]  →  抓取全球AI新闻
+       ↓
+[agent-reach]    →  深度研究热点话题（抓取Twitter/Reddit/YouTube评论）
+       ↓
+[公众号助手]      →  撰写专业深度文章（刘润风格，3000-5000字）
+       ↓
+[nano-banana-pro] →  生成封面配图
+       ↓
+┌──────────────┬──────────────┐
+↓                              ↓
+[wechat-mp-cn]          [xiaohongshu-mcp]
+微信公众平台发布              小红书发布
+```
+
+## 工作流程
+
+### Phase 1: 新闻抓取
+使用 `ai-news-daily` 技能获取当日全球AI行业最新动态，筛选出3-5条最有价值的新闻线索。
+
+### Phase 2: 深度研究
+使用 `agent-reach` 技能对选定的新闻进行深度挖掘：
+- 搜索Twitter/X上的专家评论和讨论
+- 搜索Reddit上的社区反馈
+- 搜索YouTube视频内容
+- 综合多源信息，形成完整的故事脉络
+
+### Phase 3: 文章撰写
+使用 `公众号助手` 生成专业长文：
+- 字数：3000-5000字
+- 风格：参考刘润公众号的专业商业分析风格
+- 结构：背景→事件→分析→观点→结论
+- 自动排版，不过度使用标题标签
+
+### Phase 4: 封面生成
+使用 `nano-banana-pro` 生成封面图：
+- 风格：专业、现代
+- 尺寸：900×383px（公众号封面标准）
+- 主题：与文章核心观点契合
+
+### Phase 5: 多平台发布
+- 微信公众平台：使用 `wechat-mp-cn` 发布文章
+- 小红书：使用 `xiaohongshu-mcp` 发布（精简版+封面图）
+
+## 使用方式
+
+```
+【触发词】
+"今日AI新闻" / "生成今日内容" / "发布公众号" / "更新内容"
+
+【输入】
+用户提供：文章主题方向（可选，默认AI行业热点）
+
+【输出】
+1. 今日AI新闻摘要
+2. 完整公众号文章（Markdown格式）
+3. 封面图片
+4. 已发布的小红书帖子链接
+```
+
+## 适用人群
+
+- 科技类自媒体作者
+- AI行业从业者/研究员
+- 内容创业者
+- 需要每日持续输出内容的个人品牌
+
+## 技术栈
+
+- OpenClaw Agent
+- ai-news-daily: 全球AI新闻抓取
+- agent-reach: 多平台深度研究
+- 公众号助手: 文章撰写与排版
+- nano-banana-pro: 封面图生成
+- wechat-mp-cn / xiaohongshu-mcp: 多平台发布

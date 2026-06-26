@@ -1,35 +1,25 @@
 ---
-name: "Sha1 Tool"
-description: "Compute SHA-1 160-bit cryptographic hash values. Use for file integrity checking and data fingerprinting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sha1-tool"
-sourceUrl: "https://clawhub.ai/skills/sha1-tool"
+name: sha1-tool
+description: Compute SHA-1 160-bit cryptographic hash values. Use for file integrity checking and data fingerprinting.
 ---
+# SHA1 - SHA-1 Hash Calculator
 
-# Sha1 Tool
+Generate SHA-1 hash values for files or piped input. Produces a 160-bit (40 character hexadecimal) hash used for data integrity verification.
 
-> Compute SHA-1 160-bit cryptographic hash values. Use for file integrity checking and data fingerprinting.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sha1-tool`
-- **Source URL:** [https://clawhub.ai/skills/sha1-tool](https://clawhub.ai/skills/sha1-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/sha1-tool
+sha1-tool [options] <file>
+```
+
+## Options
+
+- `-b`: Read in binary mode
+- `-t`: Run a built-in self-test
+
+## Examples
+
+```bash
+sha1-tool document.pdf
+sha1-tool file.txt
+echo "hello" | sha1-tool
 ```

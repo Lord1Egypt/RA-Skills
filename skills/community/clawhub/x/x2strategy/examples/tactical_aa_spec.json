@@ -1,0 +1,175 @@
+{
+  "paper_title": "A Quantitative Approach to Tactical Asset Allocation",
+  "num_detected": 1,
+  "strategies": [
+    {
+      "strategy_name": "Global Tactical Asset Allocation (GTAA) with 10-Month Moving Average Timing",
+      "strategy_type": "technical",
+      "asset_class": [
+        "equity",
+        "bonds",
+        "commodities",
+        "real_estate"
+      ],
+      "description": "A time-series trend-following strategy that uses a simple 10-month moving average crossover rule to tactically allocate between risky assets and cash. For each of five asset classes, the strategy goes long when the month-end price exceeds its 10-month simple moving average, and moves to cash (T-bills) otherwise. The portfolio is equally weighted across assets, with each asset managed independently.",
+      "plan_id": null,
+      "strategy_id": null,
+      "backtest_id": null,
+      "price_data": true,
+      "volume_data": false,
+      "fundamental_data": [],
+      "alternative_data": [],
+      "lookback_period": 210,
+      "data_frequency": "monthly",
+      "data_source": "Global Financial Data (GFD), Morningstar/Dimson Marsh Staunton, Cowles Commission/S&P",
+      "time_period": "1973-2012",
+      "universe_assets": [
+        "S&P 500 Total Return Index",
+        "MSCI EAFE Total Return Index",
+        "US 10-Year Government Bond Total Return Index",
+        "Goldman Sachs Commodity Index (GSCI) Total Return",
+        "NAREIT Index Total Return"
+      ],
+      "universe_selection_criteria": "Five specified total return indices representing major asset classes; no additional filters applied.",
+      "expected_sharpe": 0.63,
+      "expected_return": 0.099,
+      "max_drawdown": -0.072,
+      "expected_performance": {},
+      "indicators": [
+        {
+          "indicator_id": "sma_10_month",
+          "name": "10-Month Simple Moving Average",
+          "category": "technical",
+          "formula": "Calculate the simple moving average of monthly closing prices over the most recent 10 months (including current month). For month t, SMA(t) = (P(t) + P(t-1) + ... + P(t-9)) / 10, where P(t) is the monthly closing price at the end of month t.",
+          "latex": "SMA_{10}(t) = \\frac{1}{10} \\sum_{i=0}^{9} P(t-i)",
+          "inputs": [
+            "monthly_close"
+          ],
+          "parameters": {
+            "window": 10
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "price_sma_crossover_signal",
+          "name": "Price vs. SMA Crossover Signal",
+          "category": "technical",
+          "formula": "Compare the current month's closing price to the 10-month SMA. Generate a binary trading signal: 1 (long) if price > SMA, 0 (cash) if price ≤ SMA. No percentage band filter is applied.",
+          "latex": "Signal(t) = \\begin{cases} 1 & \\text{if } P(t) > SMA_{10}(t) \\\\ 0 & \\text{if } P(t) \\leq SMA_{10}(t) \\end{cases}",
+          "inputs": [
+            "monthly_close",
+            "sma_10_month"
+          ],
+          "parameters": {
+            "threshold": 0
+          },
+          "scope": "time_series",
+          "output_type": "boolean"
+        }
+      ],
+      "logic_pipeline": [
+        {
+          "step_id": "step1",
+          "description": "Calculate 10-month simple moving average for each asset",
+          "function": "arithmetic",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "price_monthly_close"
+          ],
+          "parameters": {
+            "window": 10,
+            "method": "simple"
+          },
+          "expression": "SMA_10(t) = (P(t) + P(t-1) + ... + P(t-9)) / 10, where P is monthly closing price",
+          "output": "sma_10_month",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step2",
+          "description": "Generate crossover signal by comparing current price to 10-month SMA",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "price_monthly_close",
+            "sma_10_month"
+          ],
+          "parameters": {
+            "comparison": "greater_than",
+            "threshold": 0
+          },
+          "expression": "IF price_monthly_close(t) > sma_10_month(t) THEN TRUE ELSE FALSE",
+          "output": "price_sma_crossover_signal",
+          "output_type": "boolean"
+        },
+        {
+          "step_id": "step3",
+          "description": "Convert boolean signal to asset allocation decision for each asset class",
+          "function": "condition",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "price_sma_crossover_signal"
+          ],
+          "parameters": {
+            "true_action": "invest_in_asset",
+            "false_action": "invest_in_cash"
+          },
+          "expression": "IF price_sma_crossover_signal(t) = TRUE THEN allocate 20% to asset_class_i ELSE allocate 20% to cash (90-day T-bills)",
+          "output": "asset_allocation_signal",
+          "output_type": "label"
+        },
+        {
+          "step_id": "step4",
+          "description": "Aggregate independent asset class signals into final portfolio allocation",
+          "function": "custom",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "asset_allocation_signal"
+          ],
+          "parameters": {
+            "equal_weight_per_asset": 0.2,
+            "cash_proxy": "90_day_tbill"
+          },
+          "expression": "Portfolio(t) = Σ(asset_allocation_signal_i(t) for i=1 to 5), where each asset_class_i contributes either 20% to its risky asset or 20% to cash based on its individual signal",
+          "output": "final_portfolio_allocation",
+          "output_type": "scalar"
+        }
+      ],
+      "execution_plan": [
+        {
+          "plan_id": "exec_1",
+          "description": "Monthly rebalancing of GTAA portfolio based on 10-month SMA crossover signals for each asset class",
+          "trigger": {
+            "trigger_type": "time_driven",
+            "frequency": "end_of_month",
+            "signal_lookup": null,
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "final_portfolio_allocation",
+            "logic": "WHEN price_sma_crossover_signal=True: LONG asset; WHEN price_sma_crossover_signal=False: EXIT asset to cash",
+            "default_action": "hold"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": 0.2,
+            "total_exposure": 1.0,
+            "long_short": "long_only"
+          }
+        }
+      ],
+      "risk_management": [
+        "No explicit stop-loss rules",
+        "Position limit per asset: 20% of portfolio (equal weight allocation)",
+        "Maximum risky asset exposure: 100% (when all 5 assets are above SMA)",
+        "Minimum risky asset exposure: 0% (when all 5 assets are below SMA)",
+        "Cash position when asset signal is negative: 90-day Treasury bills"
+      ]
+    }
+  ]
+}

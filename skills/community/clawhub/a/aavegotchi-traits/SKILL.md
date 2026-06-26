@@ -1,35 +1,40 @@
 ---
-name: "Aavegotchi Traits"
-description: "Retrieve Aavegotchi NFT data by gotchi ID or name on Base. Returns traits, wearables, rarity scores, kinship, XP, level, and owner data."
-category: "blockchain"
-source: "ClawHub"
-tags: [aavegotchi, base, defi, nft, web3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aavegotchi-traits"
-sourceUrl: "https://clawhub.ai/skills/aavegotchi-traits"
+name: aavegotchi-traits
+description: Retrieve Aavegotchi NFT data by gotchi ID or name on Base. Returns traits, wearables, rarity scores, kinship, XP, level, and owner data.
 ---
 
 # Aavegotchi Traits
 
-> Retrieve Aavegotchi NFT data by gotchi ID or name on Base. Returns traits, wearables, rarity scores, kinship, XP, level, and owner data.
+Fetch Aavegotchi data on Base by ID or name.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aavegotchi-traits`
-- **Source URL:** [https://clawhub.ai/skills/aavegotchi-traits](https://clawhub.ai/skills/aavegotchi-traits)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/aavegotchi-traits
+cd scripts
+node get-gotchi.js 9638
+node get-gotchi.js aaigotchi
+./gotchi-info.sh 9638
 ```
+
+## What it returns
+
+- Token ID, name, owner, haunt
+- BRS / modified BRS
+- Kinship, XP, level
+- Base + modified traits
+- Equipped wearables with names
+- Collateral, staked amount, last interaction
+- JSON output for automation
+
+## Environment
+
+- `AAVEGOTCHI_RPC_URL` (optional)
+- `AAVEGOTCHI_SUBGRAPH_URL` (optional; default Goldsky Base subgraph)
+- `AAVEGOTCHI_SEARCH_BATCH_SIZE` (optional)
+- `AAVEGOTCHI_RPC_RETRIES` (optional)
+- `AAVEGOTCHI_RPC_RETRY_DELAY_MS` (optional)
+
+## Reliability
+
+- Name lookup uses subgraph first for speed.
+- If subgraph fails, script scans on-chain with RPC retry/backoff to handle rate limits.

@@ -1,0 +1,18 @@
+{
+  "name": "gog-extended",
+  "version": "1.0.0",
+  "description": "Extended Google Workspace CLI reference for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. Includes complete email body retrieval, attachments, and advanced query patterns.",
+  "author": "Ethan Li",
+  "license": "MIT",
+  "keywords": ["gmail", "google", "email", "automation", "gog", "workspace"],
+  "homepage": "https://gogcli.sh",
+  "type": "module",
+  "files": [
+    "SKILL.md",
+    "references/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ethanli/gog-extended"
+  }
+}

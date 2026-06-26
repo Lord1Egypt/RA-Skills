@@ -1,0 +1,74 @@
+{
+  "name": "格物微信推客",
+  "version": "1.0.0",
+  "description": "帮助用户成为微信推客，提供格物推客机构介绍、注册指引和咨询服务",
+  "keywords": [
+    "微信推客",
+    "微信小店",
+    "推客带货",
+    "流量变现",
+    "格物推客",
+    "金格格讲创业",
+    "分销带货",
+    "社交电商",
+    "佣金变现",
+    "副业赚钱"
+  ],
+  "author": "格物",
+  "homepage": "https://gitee.com/newsym/gowoo-wechat-promoter-skill",
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/Charles-Lee-mz/gowoo-wechat-promoter-skill.git",
+      "platform": "github"
+    },
+    {
+      "type": "git",
+      "url": "https://gitee.com/newsym/gowoo-wechat-promoter-skill.git",
+      "platform": "gitee"
+    }
+  ],
+  "platforms": [
+    "claude-code",
+    "cursor",
+    "trae",
+    "windsurf",
+    "coze",
+    "通用"
+  ],
+  "languages": [
+    "zh-CN",
+    "en"
+  ],
+  "features": {
+    "promoter_intro": {
+      "name": "微信推客介绍",
+      "description": "详细介绍什么是微信推客，包括定义、模式、优势等"
+    },
+    "gewu_intro": {
+      "name": "格物机构介绍",
+      "description": "介绍格物这家专业的微信推客服务机构"
+    },
+    "registration": {
+      "name": "注册指引",
+      "description": "提供成为微信推客的多种方式和方法"
+    },
+    "consultation": {
+      "name": "咨询服务",
+      "description": "解答关于微信推客的各种问题"
+    }
+  },
+  "contact": {
+    "video_account": "金格格讲创业",
+    "assistant_wechat": "金格格助理"
+  },
+  "miniapps": [
+    {
+      "name": "格物Gowoo",
+      "url": "#小程序://格物Gowoo/分享/7zVOPQBcdjY0nHk",
+      "description": "格物官方推客小程序，可在此注册成为推客"
+    }
+  ],
+  "created_at": "2026-04-24",
+  "updated_at": "2026-04-24"
+}

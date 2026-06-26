@@ -1,0 +1,7 @@
+{
+  "region": "eu-west-1",
+  "app_version": "3.2.0",
+  "error_codes": ["422", "500"],
+  "pii_count": 6,
+  "pii_types": ["email", "email", "phone", "api_key", "jwt", "ip_address"]
+}

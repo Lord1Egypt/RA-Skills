@@ -1,0 +1,54 @@
+{
+    "results": [
+        {
+            "target": "127.0.0.1",
+            "open_ports": [
+                18789
+            ],
+            "services": [
+                {
+                    "service": "OpenClaw",
+                    "version": "1.2.0",
+                    "url": "http://127.0.0.1:18789",
+                    "port": 18789,
+                    "scheme": "http",
+                    "evidence": "header"
+                }
+            ],
+            "findings": [
+                {
+                    "target": "http://127.0.0.1:18789",
+                    "service": "OpenClaw",
+                    "version": "1.2.0",
+                    "port": 18789,
+                    "scheme": "http",
+                    "evidence": "header",
+                    "tls_verify": null,
+                    "vulnerabilities": [
+                        {
+                            "type": "weak_credentials",
+                            "details": "Default credentials accepted (credentials redacted)",
+                            "severity": "Critical"
+                        },
+                        {
+                            "type": "outdated_version",
+                            "version": "1.2.0",
+                            "cves": [
+                                "CVE-2025-26465"
+                            ],
+                            "severity": "High"
+                        }
+                    ]
+                }
+            ],
+            "local_bindings": {
+                "18789": [
+                    {
+                        "local_address": "0.0.0.0",
+                        "pid": 14232
+                    }
+                ]
+            }
+        }
+    ]
+}

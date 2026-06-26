@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resilience 监控面板</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◆</span>
+      <div>
+        <h1>Resilience</h1>
+        <p class="subtitle">OpenClaw API 错误统计 · 重试策略</p>
+      </div>
+    </div>
+    <div class="controls">
+      <label class="refresh-label">
+        实例
+        <select id="instanceSelect">
+          <option value="all">全部实例（聚合）</option>
+        </select>
+      </label>
+      <label class="refresh-label">
+        自动刷新
+        <select id="refreshInterval">
+          <option value="0">关闭</option>
+          <option value="5000" selected>5 秒</option>
+          <option value="60000">60 秒</option>
+          <option value="300000">5 分钟</option>
+          <option value="3600000">1 小时</option>
+        </select>
+      </label>
+      <button type="button" id="btnRefresh" class="btn primary">立即刷新</button>
+      <span id="lastSync" class="meta">—</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card span-3" id="summaryCards">
+      <h2>概览</h2>
+      <div class="metrics" id="metrics"></div>
+    </section>
+
+    <section class="card span-2">
+      <h2>今日错误分布</h2>
+      <div id="errorChart" class="chart-bars"></div>
+    </section>
+
+    <section class="card span-1">
+      <h2>活跃重试</h2>
+      <ul id="activeRetries" class="list"></ul>
+    </section>
+
+    <section class="card span-2">
+      <h2>模型统计</h2>
+      <div class="table-wrap">
+        <table id="modelTable">
+          <thead>
+            <tr>
+              <th>模型</th>
+              <th>调用</th>
+              <th>失败</th>
+              <th>成功率</th>
+              <th>平均耗时</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card span-1">
+      <h2>最近错误</h2>
+      <ul id="recentErrors" class="list errors"></ul>
+    </section>
+
+    <section class="card span-3">
+      <div class="section-head">
+        <h2>重试策略</h2>
+        <button type="button" id="btnResetStrategies" class="btn ghost">恢复默认</button>
+      </div>
+      <div id="strategies" class="strategies"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

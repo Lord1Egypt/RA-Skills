@@ -1,0 +1,41 @@
+{
+  "name": "m365-unified",
+  "version": "2.0.0",
+  "description": "Unified Microsoft 365 Skill for OpenClaw - Email, SharePoint, OneDrive, Planner with Webhooks",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup-wizard.js",
+    "test": "node scripts/test-connection.js",
+    "test:email": "node scripts/test-email.js",
+    "test:sharepoint": "node scripts/test-sharepoint.js",
+    "test:onedrive": "node scripts/test-onedrive.js",
+    "test:planner": "node scripts/test-planner.js",
+    "webhooks:create": "node scripts/manage-webhooks.js create",
+    "webhooks:list": "node scripts/manage-webhooks.js list",
+    "webhooks:renew": "node scripts/manage-webhooks.js renew",
+    "webhooks:delete": "node scripts/manage-webhooks.js delete"
+  },
+  "keywords": [
+    "microsoft-graph",
+    "m365",
+    "exchange",
+    "sharepoint",
+    "onedrive",
+    "planner",
+    "webhooks",
+    "openclaw",
+    "skill"
+  ],
+  "author": "MerkelDesign / OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "express": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

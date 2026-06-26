@@ -1,0 +1,12 @@
+rules:
+  - condition: "parallelism_potential > 0.8 AND total_data_size > 1e9"
+    mode: "distributed"
+  - condition: "estimated_node_count > 50 AND requires_validation == true"
+    mode: "hybrid"
+  - condition: "otherwise"
+    mode: "centralized"
+
+thresholds:
+  distributed_min_parallelism: 0.8
+  distributed_min_data_gb: 1.0
+  hybrid_min_nodes: 50

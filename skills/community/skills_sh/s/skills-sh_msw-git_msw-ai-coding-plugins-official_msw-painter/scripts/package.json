@@ -1,0 +1,13 @@
+{
+  "name": "msw-painter-render",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Helper that renders SVG/Canvas/HTML code to PNG. For use by the msw-painter skill.",
+  "main": "render.cjs",
+  "scripts": {
+    "smoke": "node render.cjs --type svg --in samples/red-circle.svg --out /tmp/painter-smoke.png --width 128 --height 128"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}

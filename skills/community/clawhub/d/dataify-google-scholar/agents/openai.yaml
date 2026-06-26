@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Scholar"
+  short_description: "Search Google Scholar for academic papers"
+  default_prompt: "Use $dataify-google-scholar to run a search query."

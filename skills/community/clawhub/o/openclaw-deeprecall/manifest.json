@@ -1,0 +1,110 @@
+{
+  "name": "DeepRecall",
+  "version": "1.0.0",
+  "description": "SQLite-based two-tier memory retrieval system for AI agents with self-bootstrapping database and automatic cleanup",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "database",
+    "retrieval",
+    "sqlite",
+    "persistent",
+    "cleanup",
+    "recall"
+  ],
+  "tools": {
+    "search_memory_db": {
+      "description": "Semantic search over L1 structured facts. Returns compact formatted facts: '[YYYY-MM-DD | fact_type | source:file] content...'",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Search string (empty returns latest facts)",
+          "required": false,
+          "default": ""
+        },
+        "limit": {
+          "type": "number",
+          "description": "Maximum number of results",
+          "required": false,
+          "default": 5
+        }
+      },
+      "returns": "string",
+      "implementation": "scripts.memory_retriever.retrieve_l1_facts"
+    },
+    "read_archive_db": {
+      "description": "Retrieve exact raw content from L2 archive. Requires source filename from L1 search result.",
+      "parameters": {
+        "source_file": {
+          "type": "string",
+          "description": "Exact filename as obtained from L1 search result",
+          "required": true
+        }
+      },
+      "returns": "string",
+      "implementation": "scripts.memory_retriever.retrieve_l2_raw"
+    },
+    "cleanup_raw_files": {
+      "description": "Clean up raw .md session files while preserving database. Only affects temporary files, not permanent L1/L2 data.",
+      "parameters": {
+        "retention_days": {
+          "type": "number",
+          "description": "Keep files newer than N days",
+          "required": false,
+          "default": 1
+        },
+        "max_size_kb": {
+          "type": "number",
+          "description": "Maximum total file size in KB",
+          "required": false,
+          "default": 250
+        },
+        "dry_run": {
+          "type": "boolean",
+          "description": "Preview deletions without actually deleting",
+          "required": false,
+          "default": false
+        }
+      },
+      "returns": "object",
+      "implementation": "scripts.memory_retriever.cleanup_raw_files"
+    },
+    "summarize_memory_files": {
+      "description": "Summarize raw memory files using LLM and store structured facts to database. Requires OpenClaw configuration with LLM API provider.",
+      "parameters": {
+        "process_all": {
+          "type": "boolean",
+          "description": "Process all unprocessed memory files",
+          "required": false,
+          "default": false
+        },
+        "process_file": {
+          "type": "string",
+          "description": "Process a specific memory file (relative to memory directory)",
+          "required": false
+        },
+        "no_store_raw": {
+          "type": "boolean",
+          "description": "Do not store raw content to L2 archive",
+          "required": false,
+          "default": false
+        }
+      },
+      "returns": "object",
+      "implementation": "scripts.memory_summarizer.summarize_memory_files"
+    }
+  },
+  "dependencies": [],
+  "requirements": [
+    "python3",
+    "sqlite3",
+    "aiohttp"
+  ],
+  "entry_points": {
+    "cli": "scripts/memory_db_tool.py"
+  },
+  "auto_register": true,
+  "zero_config": true,
+  "self_bootstrapping": true
+}

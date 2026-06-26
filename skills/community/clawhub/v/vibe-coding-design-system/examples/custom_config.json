@@ -1,0 +1,9 @@
+{
+  "philosophy": "Custom design system for my product",
+  "mood": "Professional and modern",
+  "primary_color": "#3B82F6",
+  "background": "#FFFFFF",
+  "accent": "#10B981",
+  "font": "Inter",
+  "code_font": "JetBrains Mono"
+}

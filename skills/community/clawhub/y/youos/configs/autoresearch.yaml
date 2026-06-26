@@ -1,0 +1,11 @@
+composite_weights:
+  pass_rate: 0.5
+  avg_keyword_hit: 0.3
+  avg_confidence: 0.2
+
+# When true, autoresearch weights each golden-eval case by how much real
+# drafts for that case's sender_type cohort get edited (from the draft_events
+# log), so the optimizer prioritizes configs that help where drafting actually
+# struggles. Default false → all cases weighted equally (unchanged behavior).
+# Needs accumulated draft_events with edit-distance outcomes to have any effect.
+draft_quality_weighting: false

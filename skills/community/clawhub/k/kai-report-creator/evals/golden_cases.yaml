@@ -1,0 +1,98 @@
+# Golden case manifest for external skill validators.
+# Existing executable evals remain in evals/cases/ and scripts/run-report-evals.py.
+
+signoff:
+  oa_ticket: pending-local-validation
+  owner_email: owner@example.com
+  content_hash: ""
+  signed_at: 2026-04-29
+
+cases:
+  - id: zh-ai-collaboration
+    type: generation
+    source: evals/cases/zh-ai-collaboration/source.md
+    ir: evals/cases/zh-ai-collaboration/report.report.md
+    expected:
+      lang: zh
+      theme: minimal
+      report_class: narrative
+      components: [callout, timeline, diagram]
+      forbids: [placeholder-kpi, decorative-chart]
+
+  - id: en-ops-weekly
+    type: generation
+    source: evals/cases/en-ops-weekly/source.md
+    ir: evals/cases/en-ops-weekly/report.report.md
+    expected:
+      lang: en
+      theme: corporate-blue
+      report_class: mixed
+      components: [kpi, timeline, callout]
+      forbids: [surrounding-conversation-render]
+
+  - id: zh-quarterly-growth
+    type: generation
+    source: evals/cases/zh-quarterly-growth/source.md
+    ir: evals/cases/zh-quarterly-growth/report.report.md
+    expected:
+      lang: zh
+      theme: corporate-blue
+      report_class: data
+      components: [kpi, chart, table]
+      forbids: [prose-only-data-report]
+
+  - id: guard-broken-chart-schema
+    type: guard
+    source: evals/cases/guard-broken-chart-schema/source.md
+    ir: evals/cases/guard-broken-chart-schema/report.report.md
+    expected:
+      downgrade: chart->table
+      also_checks: [timeline-date-validity]
+
+  - id: guard-narrative-placeholder-kpi
+    type: guard
+    source: evals/cases/guard-narrative-placeholder-kpi/source.md
+    ir: evals/cases/guard-narrative-placeholder-kpi/report.report.md
+    expected:
+      downgrade: kpi->callout
+      report_class: narrative
+
+  - id: context-isolation-zh-ai-collaboration
+    type: context-isolation
+    context: evals/cases/zh-ai-collaboration/noise-context.md
+    expected:
+      isolated_drift_fields: []
+      baseline_drift_fields: [resolved_theme]
+
+  - id: context-isolation-en-ops-weekly
+    type: context-isolation
+    context: evals/cases/en-ops-weekly/noise-context.md
+    expected:
+      isolated_drift_fields: []
+      report_class: mixed
+
+  - id: duplicate-date-guard
+    type: shell-contract
+    source: references/html-shell-template.md
+    expected:
+      forbids: [title-block-header, extra-p-date]
+      owns: [h1, report-meta, report-summary]
+
+  - id: export-shell-complete
+    type: shell-contract
+    source: references/html-shell-template.md
+    expected:
+      required_ids:
+        - export-btn
+        - export-menu
+        - export-print
+        - export-png-desktop
+        - export-png-mobile
+        - export-im-share
+
+  - id: skill-routing-budget
+    type: prompt-budget
+    source: SKILL.md
+    expected:
+      max_lines: 320
+      delegates_to: [references, scripts, tests]

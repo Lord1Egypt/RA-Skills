@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Trend Embed Component</title>
+    <style>
+        :root {
+            --brand: #6666FF;
+            --brand-light: #8888FF;
+            --brand-bg: #F0EFFF;
+            --brand-border: #B3B3FF;
+
+            --price-low: #16A571;
+            --price-low-bg: #F0FAF6;
+            --price-mid: #666666;
+            --price-mid-bg: #F7F7F8;
+            --price-high: #E54D4D;
+            --price-high-bg: #FFF5F5;
+
+            --text-1: #1A1A1A;
+            --text-2: #333333;
+            --text-3: #666666;
+            --text-4: #999999;
+            --text-5: #CCCCCC;
+
+            --bg: #FFFFFF;
+            --white: #FFFFFF;
+            --border: #EEEEEE;
+            --border-light: #F5F5F5;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 999px;
+
+            --font-num: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #F5F5F7;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .demo-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .demo-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .demo-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        /* ===== Price Chart Component ===== */
+        .pchart {
+            margin-top: 12px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+        }
+
+        .pchart__title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+
+        .pchart__title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-1);
+        }
+
+        .pchart__cur-wrap {
+            text-align: right;
+        }
+
+        .pchart__cur-price {
+            font-family: var(--font-num);
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .pchart__currency {
+            font-size: 16px;
+            font-weight: 400;
+            margin-right: 2px;
+            opacity: 0.7;
+        }
+
+        .pchart__cur-change {
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        .pchart__badges {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0 16px;
+            flex-wrap: wrap;
+        }
+
+        .pchart__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .pchart__badge--low { background: var(--price-low-bg); color: var(--price-low); }
+        .pchart__badge--mid { background: var(--price-mid-bg); color: var(--price-mid); }
+        .pchart__badge--high { background: var(--price-high-bg); color: var(--price-high); }
+        .pchart__badge--neutral { background: var(--border-light); color: var(--text-4); }
+
+        .pchart__canvas {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            margin-bottom: 8px;
+            touch-action: none;
+            cursor: crosshair;
+        }
+
+        .pchart__canvas svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pchart__tooltip {
+            position: absolute;
+            top: -6px;
+            transform: translateX(-50%);
+            background: var(--text-1);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: var(--font-num);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: left 0.05s ease;
+        }
+
+        .pchart__tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--text-1);
+        }
+
+        .pchart__crosshair {
+            position: absolute;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: var(--text-5);
+            pointer-events: none;
+            z-index: 5;
+            transition: left 0.05s ease;
+        }
+
+        .pchart__dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--brand);
+            border: 2.5px solid var(--white);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 6;
+            transition: left 0.05s ease, top 0.05s ease;
+        }
+
+        .pchart__y-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 8px 0;
+            pointer-events: none;
+        }
+
+        .pchart__y-label {
+            font-family: var(--font-num);
+            font-size: 10px;
+            color: var(--text-5);
+            line-height: 1;
+        }
+
+        .pchart__footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-4);
+            padding-top: 4px;
+        }
+
+        .pchart__stats {
+            display: flex;
+            gap: 0;
+            margin-top: 14px;
+            border-top: 0.5px solid var(--border);
+        }
+
+        .pchart__stat {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0 4px;
+        }
+
+        .pchart__stat + .pchart__stat {
+            border-left: 0.5px solid var(--border);
+        }
+
+        .pchart__stat-label {
+            font-size: 12px;
+            color: var(--text-4);
+            margin-bottom: 4px;
+        }
+
+        .pchart__stat-val {
+            font-family: var(--font-num);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-1);
+        }
+
+        .pchart__hint {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-4);
+            margin-top: 10px;
+        }
+
+        .pchart__avg-label {
+            position: absolute;
+            right: 4px;
+            transform: translateY(-50%);
+            background: #F0EFFF;
+            color: #6666FF;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: var(--font-num);
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 4;
+            white-space: nowrap;
+        }
+
+        /* Code Block */
+        .code-block {
+            margin-top: 24px;
+            background: #F8F9FA;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #24292F;
+        }
+
+        .code-block code {
+            font-family: inherit;
+        }
+
+        .usage-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .usage-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-1);
+            margin-bottom: 12px;
+        }
+
+        .usage-section ul {
+            padding-left: 20px;
+            color: var(--text-2);
+        }
+
+        .usage-section li {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">价格趋势组件</h1>
+        <p class="demo-subtitle">Price Trend Embeddable Component - 用于 AI 对话中的航班价格展示</p>
+
+        <!-- Price Chart Container -->
+        <div id="price-chart-container"></div>
+
+        <!-- Usage Instructions -->
+        <div class="usage-section">
+            <h3>使用方法</h3>
+            <ul>
+                <li><strong>React 环境</strong>: 导入 <code>PriceTrendEmbed.jsx</code> 组件</li>
+                <li><strong>纯 HTML 环境</strong>: 复制本文件的 JS 逻辑，调用 <code>renderPriceChart()</code></li>
+                <li><strong>数据格式</strong>: 需要 60 天的价格历史数据 <code>[[timestamp, price], ...]</code></li>
+            </ul>
+        </div>
+
+        <div class="code-block">
+            <pre><code>// 数据转换函数
+function convertPriceInsights(priceInsights, searchParams) {
+  const data = priceInsights.priceHistory.map(([ts, price]) => ({
+    date: new Date(ts * 1000).toISOString().split('T')[0],
+    price
+  }));
+  const prices = data.map(d => d.price);
+  return {
+    data,
+    currentPrice: priceInsights.lowestPrice,
+    analysis: {
+      min: Math.min(...prices),
+      max: Math.max(...prices),
+      average: Math.round(prices.reduce((a,b) => a+b) / prices.length),
+      pctDiff: Math.round(((currentPrice - avg) / avg) * 100),
+      level: priceInsights.priceLevel === 'typical' ? 'mid' : priceInsights.priceLevel,
+      trend: calculateTrend(data)
+    }
+  };
+}
+
+// 渲染图表
+renderPriceChart('price-chart-container', chartData);</code></pre>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 格式化日期为 "月/日"
+         */
+        function fmtDateShort(dateStr) {
+            const d = new Date(dateStr);
+            return `${d.getMonth() + 1}/${d.getDate()}`;
+        }
+
+        /**
+         * 格式化日期为 "X 月 X 日"
+         */
+        function fmtDate(dateStr) {
+            const d = new Date(dateStr);
+            return `${d.getMonth() + 1}月${d.getDate()}日`;
+        }
+
+        /**
+         * 计算趋势方向
+         */
+        function calculateTrend(data) {
+            if (data.length < 14) return 'stable';
+            const recent = data.slice(-7).map(d => d.price);
+            const earlier = data.slice(-14, -7).map(d => d.price);
+            const recentAvg = recent.reduce((a, b) => a + b, 0) / 7;
+            const earlierAvg = earlier.reduce((a, b) => a + b, 0) / 7;
+            if (recentAvg < earlierAvg * 0.95) return 'falling';
+            if (recentAvg > earlierAvg * 1.05) return 'rising';
+            return 'stable';
+        }
+
+        /**
+         * 将后端 priceInsights 转换为组件需要的格式
+         */
+        function convertPriceInsights(priceInsights, searchParams) {
+            if (!priceInsights || !Array.isArray(priceInsights.priceHistory) || priceInsights.priceHistory.length === 0) {
+                return null;
+            }
+
+            const data = priceInsights.priceHistory.map(([timestamp, price]) => ({
+                date: new Date(timestamp * 1000).toISOString().split('T')[0],
+                price,
+            }));
+
+            const prices = data.map(d => d.price);
+            const min = Math.min(...prices);
+            const max = Math.max(...prices);
+            const average = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
+            const currentPrice = priceInsights.lowestPrice || prices[prices.length - 1];
+            const pctDiff = Math.round(((currentPrice - average) / average) * 100);
+
+            const levelMap = { low: 'low', typical: 'mid', high: 'high' };
+            const level = levelMap[priceInsights.priceLevel] || 'mid';
+
+            const trend = calculateTrend(data);
+
+            return {
+                data,
+                currentPrice,
+                analysis: { min, max, average, pctDiff, level, trend },
+                destination: { code: searchParams?.destination || 'DST' },
+            };
+        }
+
+        /**
+         * 渲染价格趋势图表
+         * @param {string} containerId - 容器元素 ID
+         * @param {Object} chartData - 图表数据
+         */
+        function renderPriceChart(containerId, chartData) {
+            const { data, currentPrice, analysis, destination } = chartData;
+
+            if (!data || data.length === 0) {
+                document.getElementById(containerId).innerHTML = `
+                    <div class="pchart" style="text-align: center; padding: 40px 16px;">
+                        <p style="color: var(--text-4); font-size: 14px;">暂无价格数据</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const padT = 12, padB = 12;
+            const prices = data.map(d => d.price);
+            const minP = Math.min(...prices);
+            const maxP = Math.max(...prices);
+            const range = maxP - minP || 1;
+
+            // 生成 SVG 路径
+            function generatePath(points) {
+                if (points.length === 0) return '';
+                let d = `M ${points[0].x} ${points[0].y}`;
+                for (let i = 1; i < points.length; i++) {
+                    const p0 = points[i - 1], p1 = points[i];
+                    const cpx = (p0.x + p1.x) / 2;
+                    d += ` C ${cpx} ${p0.y}, ${cpx} ${p1.y}, ${p1.x} ${p1.y}`;
+                }
+                return d;
+            }
+
+            // 计算点坐标
+            const container = document.getElementById(containerId);
+            const width = container.clientWidth || 400;
+            const height = 160;
+            const cW = width;
+            const cH = height - padT - padB;
+
+            const points = data.map((d, i) => ({
+                x: (i / (data.length - 1)) * cW,
+                y: padT + cH - ((d.price - minP) / range) * cH,
+                price: d.price,
+                date: d.date,
+            }));
+
+            const linePath = generatePath(points);
+            const areaPath = linePath + ` L ${points[points.length - 1].x} ${height} L ${points[0].x} ${height} Z`;
+
+            // 计算平均线位置
+            const avgY = padT + cH - ((analysis.average - minP) / range) * cH;
+
+            // 生成渐变 ID
+            const gid = 'g-' + (destination?.code || 'DST') + '-' + Math.random().toString(36).slice(2, 6);
+
+            // 文本映射
+            const levelText = { low: '低于均价', mid: '价格适中', high: '高于均价' };
+            const trendText = { falling: '📉 近期下降', rising: '📈 近期上涨', stable: '➡️ 走势平稳' };
+            const badgeClass = { low: 'pchart__badge--low', mid: 'pchart__badge--mid', high: 'pchart__badge--high' };
+
+            // 渲染 HTML
+            container.innerHTML = `
+                <div class="pchart">
+                    <div class="pchart__title-row">
+                        <div>
+                            <div class="pchart__title">近 60 天价格走势</div>
+                        </div>
+                        <div class="pchart__cur-wrap">
+                            <div class="pchart__cur-price" id="pchart-price" style="color: var(--brand)">
+                                <span class="pchart__currency">¥</span>${currentPrice.toLocaleString()}
+                            </div>
+                            <div class="pchart__cur-change" id="pchart-change" style="color: var(--brand)">
+                                ${analysis.pctDiff > 0 ? '+' : ''}${analysis.pctDiff}% vs 均价
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pchart__badges">
+                        <span class="pchart__badge ${badgeClass[analysis.level]}">
+                            ${analysis.level === 'low' ? '↓' : analysis.level === 'high' ? '↑' : '→'} ${levelText[analysis.level]}
+                        </span>
+                        <span class="pchart__badge pchart__badge--neutral">${trendText[analysis.trend]}</span>
+                    </div>
+
+                    <div class="pchart__canvas" id="pchart-canvas">
+                        <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#6666FF" stop-opacity="0.12"/>
+                                    <stop offset="100%" stop-color="#6666FF" stop-opacity="0.01"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="${areaPath}" fill="url(#${gid})"/>
+                            <line x1="${points[0]?.x || 0}" y1="${avgY}" x2="${points[points.length-1]?.x || width}" y2="${avgY}"
+                                  stroke="#6666FF" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+                            <path d="${linePath}" fill="none" stroke="#6666FF" stroke-width="2.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="${points[points.length-1].x}" cy="${points[points.length-1].y}"
+                                    r="4.5" fill="#6666FF" stroke="white" stroke-width="2.5"/>
+                        </svg>
+
+                        <div class="pchart__avg-label" style="top: ${avgY}px; right: -6px;">
+                            均价 ¥${analysis.average.toLocaleString()}
+                        </div>
+
+                        <div class="pchart__tooltip" id="pchart-tooltip" style="display: none;"></div>
+                        <div class="pchart__crosshair" id="pchart-crosshair" style="display: none;"></div>
+                        <div class="pchart__dot" id="pchart-dot" style="display: none;"></div>
+                    </div>
+
+                    <div class="pchart__footer">
+                        <span>${fmtDateShort(data[0].date)}</span>
+                        <span>${fmtDateShort(data[data.length - 1].date)}</span>
+                    </div>
+
+                    <div class="pchart__stats">
+                        <div class="pchart__stat">
+                            <div class="pchart__stat-label">最低价</div>
+                            <div class="pchart__stat-val">¥${analysis.min.toLocaleString()}</div>
+                        </div>
+                        <div class="pchart__stat">
+                            <div class="pchart__stat-label">平均价</div>
+                            <div class="pchart__stat-val">¥${analysis.average.toLocaleString()}</div>
+                        </div>
+                        <div class="pchart__stat">
+                            <div class="pchart__stat-label">最高价</div>
+                            <div class="pchart__stat-val">¥${analysis.max.toLocaleString()}</div>
+                        </div>
+                    </div>
+
+                    <div class="pchart__hint">👆 滑动查看每日价格</div>
+                </div>
+            `;
+
+            // 交互逻辑
+            const canvas = container.querySelector('#pchart-canvas');
+            const tooltip = container.querySelector('#pchart-tooltip');
+            const crosshair = container.querySelector('#pchart-crosshair');
+            const dot = container.querySelector('#pchart-dot');
+            const priceEl = container.querySelector('#pchart-price');
+            const changeEl = container.querySelector('#pchart-change');
+
+            function interact(clientX) {
+                const rect = canvas.getBoundingClientRect();
+                const x = clientX - rect.left;
+
+                // 找到最近的点
+                let near = points[0], md = Infinity;
+                for (const p of points) {
+                    const d = Math.abs(p.x - x);
+                    if (d < md) { md = d; near = p; }
+                }
+
+                // 更新 UI
+                tooltip.style.display = 'block';
+                tooltip.style.left = Math.max(50, Math.min(width - 50, near.x)) + 'px';
+                tooltip.textContent = `${fmtDateShort(near.date)} · ¥${near.price.toLocaleString()}`;
+
+                crosshair.style.display = 'block';
+                crosshair.style.left = near.x + 'px';
+
+                dot.style.display = 'block';
+                dot.style.left = near.x + 'px';
+                dot.style.top = near.y + 'px';
+
+                priceEl.textContent = `¥${near.price.toLocaleString()}`;
+                changeEl.textContent = fmtDate(near.date);
+                changeEl.style.color = 'var(--text-4)';
+            }
+
+            function resetHover() {
+                tooltip.style.display = 'none';
+                crosshair.style.display = 'none';
+                dot.style.display = 'none';
+
+                priceEl.textContent = `¥${currentPrice.toLocaleString()}`;
+                changeEl.textContent = `${analysis.pctDiff > 0 ? '+' : ''}${analysis.pctDiff}% vs 均价`;
+                changeEl.style.color = 'var(--brand)';
+            }
+
+            // 鼠标事件
+            canvas.addEventListener('mousemove', (e) => interact(e.clientX));
+            canvas.addEventListener('mouseleave', resetHover);
+
+            // 触摸事件
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                interact(e.touches[0].clientX);
+            });
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                interact(e.touches[0].clientX);
+            });
+            canvas.addEventListener('touchend', resetHover);
+        }
+
+        // ===== 真实价格数据（来自 SerpAPI）=====
+        const priceHistoryRaw = [
+          [1769230800, 1325], [1769317200, 1350], [1769403600, 1350], [1769490000, 1798],
+          [1769576400, 1821], [1769662800, 1553], [1769749200, 1553], [1769835600, 1484],
+          [1769922000, 1484], [1770008400, 1379], [1770094800, 1792], [1770181200, 1792],
+          [1770267600, 1647], [1770354000, 1723], [1770440400, 1786], [1770526800, 1792],
+          [1770613200, 1788], [1770699600, 2031], [1770786000, 1439], [1770872400, 1439],
+          [1770958800, 1293], [1771045200, 1439], [1771131600, 1439], [1771218000, 1875],
+          [1771304400, 1712], [1771390800, 1712], [1771477200, 1977], [1771563600, 1977],
+          [1771650000, 1821], [1771736400, 1821], [1771822800, 1784], [1771909200, 1814],
+          [1771995600, 1520], [1772082000, 1803], [1772168400, 1631], [1772254800, 1631],
+          [1772341200, 1942], [1772427600, 1913], [1772514000, 1920], [1772600400, 1887],
+          [1772686800, 1523], [1772773200, 1523], [1772859600, 1953], [1772946000, 1953],
+          [1773028800, 1924], [1773115200, 1919], [1773201600, 2013], [1773288000, 2013],
+          [1773374400, 2014], [1773460800, 1886], [1773547200, 1663], [1773633600, 2022],
+          [1773720000, 1903], [1773806400, 2015], [1773892800, 2153], [1773979200, 2272],
+          [1774065600, 2246], [1774152000, 2272], [1774238400, 1858], [1774324800, 2270],
+          [1774411200, 2275]
+        ];
+
+        // 转换为组件需要的格式
+        const exampleData = {
+            data: priceHistoryRaw.map(([timestamp, price]) => ({
+                date: new Date(timestamp * 1000).toISOString().split('T')[0],
+                price
+            })),
+            currentPrice: 2275,
+            destination: { code: 'TYO' }
+        };
+
+        // 计算统计数据
+        const prices = exampleData.data.map(d => d.price);
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        const average = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
+        const pctDiff = Math.round(((exampleData.currentPrice - average) / average) * 100);
+
+        // 趋势判断（最近 7 天 vs 之前 7 天）
+        const recent7 = prices.slice(-7);
+        const earlier7 = prices.slice(-14, -7);
+        const recentAvg = recent7.reduce((a, b) => a + b, 0) / 7;
+        const earlierAvg = earlier7.reduce((a, b) => a + b, 0) / 7;
+        let trend = 'stable';
+        if (recentAvg < earlierAvg * 0.95) trend = 'falling';
+        else if (recentAvg > earlierAvg * 1.05) trend = 'rising';
+
+        // 价格水位判断
+        const p33 = average * 0.9;
+        const p67 = average * 1.1;
+        let level = 'mid';
+        if (exampleData.currentPrice <= p33) level = 'low';
+        else if (exampleData.currentPrice >= p67) level = 'high';
+
+        exampleData.analysis = { min, max, average, pctDiff, level, trend };
+
+        // 渲染示例图表
+        renderPriceChart('price-chart-container', exampleData);
+    </script>
+</body>
+</html>

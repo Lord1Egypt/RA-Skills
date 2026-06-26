@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Status Schema",
+  "description": "Standardized agent status format",
+  "type": "object",
+  "required": ["agent_id", "agent_type", "status", "last_heartbeat"],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}$",
+      "description": "Agent ID (001-006)"
+    },
+    "agent_type": {
+      "type": "string",
+      "enum": ["小小兵CEO", "豆包PM", "牢A", "牢B", "牢C", "牢D"],
+      "description": "Type of agent"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["idle", "busy", "offline", "error"],
+      "description": "Current agent status"
+    },
+    "current_task": {
+      "type": ["string", "null"],
+      "description": "ID of current task, null if idle"
+    },
+    "task_start_time": {
+      "type": ["number", "null"],
+      "description": "Unix timestamp when current task started"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "List of agent capabilities"
+    },
+    "performance_metrics": {
+      "type": "object",
+      "description": "Agent performance metrics",
+      "properties": {
+        "success_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Task success rate (0.0 to 1.0)"
+        },
+        "avg_completion_time": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Average task completion time in seconds"
+        },
+        "task_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of tasks completed"
+        },
+        "token_efficiency": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Tokens per successful task (lower is better)"
+        }
+      },
+      "additionalProperties": true
+    },
+    "last_heartbeat": {
+      "type": "number",
+      "description": "Unix timestamp of last heartbeat"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional agent metadata",
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "AI model used by this agent"
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["Tier 0", "Tier 1", "Tier 2", "Tier 3"],
+          "description": "Token tier for this agent"
+        },
+        "quota_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of total token budget allocated to this agent"
+        },
+        "auto_downgrade_enabled": {
+          "type": "boolean",
+          "description": "Whether auto-downgrade is enabled for this agent"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

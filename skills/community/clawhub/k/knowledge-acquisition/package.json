@@ -1,0 +1,54 @@
+{
+  "name": "knowledge-acquisition",
+  "version": "2.0.0",
+  "description": "知识获取：接收链接或文本，自动完成内容解析、8大知识分类、Markdown笔记生成、可选飞书云盘归档与通知回传",
+  "keywords": [
+    "bilibili",
+    "content-extraction",
+    "github",
+    "info-organizer",
+    "knowledge-classification",
+    "lark",
+    "puppeteer",
+    "wechat",
+    "xiaohongshu",
+    "zhihu"
+  ],
+  "bugs": {
+    "url": "https://github.com/your-org/happy-dog-info-organizer/issues"
+  },
+  "license": "MIT",
+  "author": "Happy Dog Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/happy-dog-info-organizer.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage --runInBand",
+    "test:integration": "jest integration.test.js --runInBand",
+    "test:watch": "jest --watch",
+    "workflow": "open happy-dog-workflow.html"
+  },
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.20.0",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "index.js"
+    ],
+    "testEnvironment": "node"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

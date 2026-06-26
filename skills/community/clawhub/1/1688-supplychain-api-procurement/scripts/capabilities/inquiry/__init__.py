@@ -1,0 +1,1 @@
+"""Direct inquiry capability."""

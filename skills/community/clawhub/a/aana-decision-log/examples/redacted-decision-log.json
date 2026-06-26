@@ -1,0 +1,33 @@
+{
+  "decision": "revise",
+  "trigger": "Support reply included an unverified refund promise and unnecessary payment detail.",
+  "risk_classes": [
+    "support_reply",
+    "financial",
+    "privacy"
+  ],
+  "checks_performed": [
+    "refund promise check",
+    "private data minimization check",
+    "evidence support check"
+  ],
+  "failed_checks": [
+    "refund approval was not verified",
+    "payment detail was unnecessary"
+  ],
+  "changes_made": [
+    "replaced refund promise with review language",
+    "redacted payment detail"
+  ],
+  "evidence_basis": [
+    "redacted ticket summary"
+  ],
+  "unverified_items": [
+    "refund eligibility",
+    "refund timing"
+  ],
+  "privacy_handling": "Payment detail was summarized as saved payment method.",
+  "final_action": "revised",
+  "residual_risk": "Account system review is still required before confirming eligibility.",
+  "human_review_required": false
+}

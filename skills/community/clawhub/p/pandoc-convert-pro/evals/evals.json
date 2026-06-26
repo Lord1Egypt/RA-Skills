@@ -1,0 +1,23 @@
+{
+  "skill_name": "pandoc-convert",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把 README.md 转成 Word 文档，带目录，如果没有 pandoc 就告诉我怎么装。",
+      "expected_output": "Uses convert.sh for a single Markdown to DOCX conversion, includes --toc, validates pandoc availability, and reports the output path or installation guidance.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "帮我把 thesis.md 转成 PDF，里面有 refs.bib 和 ieee.csl，中文内容比较多。",
+      "expected_output": "Uses convert.sh with --pdf-engine xelatex, --citeproc, --bibliography refs.bib, --csl ieee.csl, and checks referenced files before conversion.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "把 docs 目录里的 markdown 批量转成 html，失败的文件不要影响其它文件，最多重试 2 次，最后给我失败报告。",
+      "expected_output": "Uses batch_convert.py with --to html, --retries 2, tolerant behavior, progress output, and Markdown/JSON report options.",
+      "files": []
+    }
+  ]
+}

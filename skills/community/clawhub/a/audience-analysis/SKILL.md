@@ -1,35 +1,30 @@
 ---
-name: "audience analysis"
-description: "根据历史表现数据分析受众画像、活跃时段、消费习惯。Use when analyzing audience or optimizing content strategy."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/audience-analysis"
-sourceUrl: "https://clawhub.ai/skills/audience-analysis"
+name: audience_analysis
+description: 根据历史表现数据分析受众画像、活跃时段、消费习惯。Use when analyzing audience or optimizing content strategy.
 ---
 
-# audience analysis
+# 受众画像分析
 
-> 根据历史表现数据分析受众画像、活跃时段、消费习惯。Use when analyzing audience or optimizing content strategy.
+## 描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/audience-analysis`
-- **Source URL:** [https://clawhub.ai/skills/audience-analysis](https://clawhub.ai/skills/audience-analysis)
+根据历史表现数据分析受众画像、活跃时段、消费习惯。Use when analyzing audience or optimizing content strategy.
 
-## Overview
+## 触发条件
 
+- 用户需要 受众画像分析 能力时
+- 任务涉及 audience/analyze 时
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/audience-analysis
-```
+## 输入
+
+- `content_ids`: 见 API 文档
+- `user_behavior_data`: 见 API 文档
+- `time_range`: 见 API 文档
+
+## 输出
+
+JSON 格式，包含执行结果或错误信息
+
+## API
+
+- **路径**: `/api/audience/analyze`
+- **方法**: POST

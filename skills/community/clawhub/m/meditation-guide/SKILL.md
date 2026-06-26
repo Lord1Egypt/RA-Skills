@@ -1,35 +1,57 @@
 ---
-name: "Meditation Guide"
+name: "meditation-guide"
+version: "3.0.0"
 description: "Guided meditation with breathing exercises and session tracking. Use when practicing mindfulness."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meditation-guide"
-sourceUrl: "https://clawhub.ai/skills/meditation-guide"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Meditation Guide
+# meditation-guide
 
-> Guided meditation with breathing exercises and session tracking. Use when practicing mindfulness.
+Guided meditation with breathing exercises and session tracking. Use when practicing mindfulness.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meditation-guide`
-- **Source URL:** [https://clawhub.ai/skills/meditation-guide](https://clawhub.ai/skills/meditation-guide)
+## Commands
 
-## Overview
+### `breathe`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/meditation-guide
+scripts/script.sh breathe <pattern>
 ```
+
+### `timer`
+
+```bash
+scripts/script.sh timer <minutes>
+```
+
+### `guide`
+
+```bash
+scripts/script.sh guide <type>
+```
+
+### `history`
+
+```bash
+scripts/script.sh history
+```
+
+### `streak`
+
+```bash
+scripts/script.sh streak
+```
+
+### `start`
+
+```bash
+scripts/script.sh start <minutes>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/meditation-guide/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

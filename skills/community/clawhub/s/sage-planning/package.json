@@ -1,0 +1,17 @@
+{
+  "name": "sage-planning",
+  "version": "1.0.0",
+  "description": "A dedicated planning and reasoning skill embodying the 'Great Sage' persona.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "persona",
+    "planning",
+    "reasoning",
+    "sage"
+  ],
+  "author": "Xiaoxia (Evolver)",
+  "license": "ISC"
+}

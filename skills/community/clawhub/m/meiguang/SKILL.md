@@ -1,35 +1,33 @@
 ---
-name: "美逛返利助手"
-description: "美逛社交电商导购返利工具，聚合多平台优惠券和返利，提供商品推广素材和社群运营支持。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meiguang"
-sourceUrl: "https://clawhub.ai/skills/meiguang"
+name: 美逛返利助手
+description: 美逛社交电商导购返利工具，聚合多平台优惠券和返利，提供商品推广素材和社群运营支持。
+version: 0.1.0
 ---
 
 # 美逛返利助手
 
-> 美逛社交电商导购返利工具，聚合多平台优惠券和返利，提供商品推广素材和社群运营支持。
+美逛社交电商导购返利工具。聚合淘宝、京东、拼多多等多平台优惠券和返利信息，为推广者提供商品选品、推广素材生成和社群运营工具支持。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meiguang`
-- **Source URL:** [https://clawhub.ai/skills/meiguang](https://clawhub.ai/skills/meiguang)
+## 触发词
 
-## Overview
+美逛、美逛返利、meiguang、美逛优惠、美逛推广、美逛佣金
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meiguang
+- **多平台优惠券聚合**：淘宝/京东/拼多多优惠券汇总
+- **推广素材库**：商品推广图文素材一键生成
+- **选品工具**：高佣爆款商品筛选推荐
+- **社群助手**：定时发品、自动转链等社群运营工具
+
+## 输出格式
+
+```
+🛍️ 美逛返利查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+优惠券：[券描述]
+返利比例：[X]%
+预计返利：¥[金额]
 ```

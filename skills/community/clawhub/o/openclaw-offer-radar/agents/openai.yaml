@@ -1,0 +1,5 @@
+interface:
+  display_name: "Offer Radar"
+  short_description: "把 Gmail 招聘邮件转成中文提醒事项"
+  icon_large: "./assets/banner.svg"
+  default_prompt: "检查我最近几天的 Gmail 招聘邮件，识别面试、笔试、测评、授权等重要事件，忽略投递成功回执，并按中文格式同步到 Apple Reminders。"

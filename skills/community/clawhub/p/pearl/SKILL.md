@@ -1,35 +1,130 @@
 ---
-name: "Pearl"
-description: "Stripe for AI agents — one wallet for all paid skills. If you installed a skill that requires Pearl (check its SKILL.md), you MUST set up Pearl first: run no..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pearl"
-sourceUrl: "https://clawhub.ai/skills/pearl"
+name: pearl
+description: "Stripe for AI agents — one wallet for all paid skills. If you installed a skill that requires Pearl (check its SKILL.md), you MUST set up Pearl first: run node {baseDir}/scripts/setup.js to get a login link, send it to the user, then verify with --check. Check balance with node {baseDir}/scripts/balance.js, transactions with node {baseDir}/scripts/transactions.js."
+metadata: {"openclaw":{"emoji":"💎","requires":{"bins":["node"]},"publisher":"Pearl Cash","homepage":"https://pearlcash.ai"}}
 ---
 
-# Pearl
+# Pearl — Payments for AI Agents
 
-> Stripe for AI agents — one wallet for all paid skills. If you installed a skill that requires Pearl (check its SKILL.md), you MUST set up Pearl first: run no...
+Pearl lets AI agents use paid skills — image generation, 3D model creation, or any SaaS an agent might need — while the user stays in full control of spending limits and which services are approved.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pearl`
-- **Source URL:** [https://clawhub.ai/skills/pearl](https://clawhub.ai/skills/pearl)
+Think of it as **Stripe for AI agents**: set up once, and every Pearl-powered skill works without giving your financial information to anyone new. Each skill just asks for your approval through the Pearl dashboard.
 
-## Overview
+## How It Works
 
+1. **One-time setup** — sign in to Pearl once, credentials are saved locally.
+2. **Agent discovers a paid skill** — the skill uses Pearl for billing.
+3. **User approves the charge** — in the Pearl dashboard, with per-charge and daily limits the user controls.
+4. **Agent executes** — the skill runs, Pearl handles payment.
 
-## Installation
-To install this skill, run the following command in your terminal:
+No additional sign-ups, no sharing card details with skill developers, no surprise charges.
+
+## API Host
+
+Balance, transactions, and setup requests go to **https://pearlcash.ai** (the Pearl API). The `run.js` module sends requests to skill-developer-provided URLs, attaching a limited-scope skill token (not the full Pearl token).
+
+## Capabilities
+
+| Script | What it does |
+|---|---|
+| `scripts/balance.js` | Reads wallet balance and spending limits (read-only). Uses the read-only Pearl API token. |
+| `scripts/transactions.js` | Lists recent charges (read-only). Uses the read-only Pearl API token. |
+| `scripts/setup.js` | One-time login flow — creates a session, saves credentials to `~/.pearl/config.json`. |
+| `scripts/run.js` | Exported module used by other Pearl-powered skills to execute paid API calls. Sends the **skill token** (not the full API token) to the skill developer's server. Handles charge-approval flows (HTTP 202) and tracks pending charges locally. |
+
+## Credential Storage
+
+Setup writes two tokens to `~/.pearl/config.json` (file mode `0600`, user-only read/write):
+
+| Key | Sent to | Purpose |
+|---|---|---|
+| `read_token` | Pearl API (`pearlcash.ai`) only | Read-only token (JWT audience `pearl-read`). Can query balance, limits, and transactions. **Cannot** perform any write operations — the API returns 403 for mutating endpoints (changing limits, freezing wallet, approving charges, etc.). Never sent to third-party servers. |
+| `skill_token` | Third-party skill servers (via `run.js`) | Limited-scope token (JWT audience `pearl-skill`). Carries your user ID so skill backends can create charges, but **cannot authenticate against Pearl's API**. If a skill server tries to use it on Pearl endpoints, it is rejected. |
+
+## Quick Check — Is Pearl Already Set Up?
+
+Before running setup, check if `~/.pearl/config.json` already exists:
+
 ```bash
-hermes skills install clawhub/pearl
+node {baseDir}/scripts/balance.js
 ```
+
+If it prints a balance, Pearl is ready — skip setup. If it fails (file not found or auth error), run setup below.
+
+## Setup (one-time)
+
+**Step 1** — Install Node.js dependencies (if not already installed):
+
+```bash
+npm install --prefix {baseDir}
+```
+
+**Step 2** — Run setup:
+
+```bash
+node {baseDir}/scripts/setup.js
+```
+
+This prints a login link. Send it to the user — they can open it on any device (phone, tablet, or the same computer). The link expires after 15 minutes.
+
+**Step 3** — After the user says they logged in, check the session:
+
+```bash
+node {baseDir}/scripts/setup.js --check
+```
+
+If it prints "Still waiting for login", the user hasn't completed login yet — ask them to try again. If it succeeds, credentials are saved to `~/.pearl/config.json` automatically.
+
+**Step 4** — Verify setup worked:
+
+```bash
+node {baseDir}/scripts/balance.js
+```
+
+Do NOT create `~/.pearl/config.json` manually. The file is generated by this setup flow and contains server-issued tokens that cannot be fabricated.
+
+## Usage
+
+Check balance:
+
+```bash
+node {baseDir}/scripts/balance.js
+```
+
+Recent transactions:
+
+```bash
+node {baseDir}/scripts/transactions.js --limit 10
+```
+
+## Security
+
+### Why the skill token is safe to send to third parties
+
+The `skill_token` is **designed to be sent to skill providers** — that is its entire purpose. It is not a secret that needs protecting from skill servers; it is the mechanism by which skill servers identify which user is making a request. Here is exactly what someone holding your skill token can and cannot do:
+
+**Can do:** decode your user ID (`sub` claim) and call Pearl's charge-creation endpoint using their own skill secret (`X-Pearl-Secret`). For developers the user has not yet approved, this only creates a **pending** charge that requires explicit approval in the Pearl dashboard. For developers the user has already approved (one-time approval), charges settle immediately — but still within the user's per-charge and daily spending limits.
+
+**Cannot do (even with the token):**
+- Read your balance, transactions, or any account data — the token's JWT audience is `pearl-skill`, which Pearl's API rejects for all read endpoints.
+- Authenticate as you on Pearl — the API returns 401 for any request using a skill token.
+- Approve developers or manage approvals — only human on the app can do that.
+- Exceed your limits — per-charge and daily spending caps are enforced server-side regardless of what any skill server requests, even for approved developers.
+
+In short: the worst case of a skill token reaching an unintended server is that server learns your Pearl user ID. It cannot create charges without a valid skill secret, and even with one, it cannot bypass your spending limits or gain approval status — only you can approve a developer in the dashboard.
+
+### Transport protections
+
+- **HTTPS-only** — `run.js` rejects non-HTTPS URLs.
+- **No IP addresses** — only domain names are accepted; numeric hosts (IPv4, IPv6, localhost) are blocked.
+- **No redirects** — `run.js` sets `redirect: 'error'`, so the Authorization header is never forwarded to a redirect target. If a skill server responds with a redirect, the request fails.
+
+### Read-only token
+
+The `read_token` stored locally (JWT audience `pearl-read`) is **physically restricted** on the server to read-only operations. Even if a prompt-injected agent attempts to call mutating endpoints (`PUT /wallet/limits`, `POST /wallet/freeze`, `POST /charges/:id/approve`, etc.), the API returns **403 Forbidden**. No full-privilege API token is ever issued to or stored by the skill.
+
+### Other controls
+
+- The read-only token (`read_token` in config) is only sent to `pearlcash.ai` by `balance.js` and `transactions.js`. It never touches third-party servers.
+- Developer approval is a one-time action in the Pearl dashboard. Unapproved developers' charges require explicit approval; approved developers' charges settle automatically within the user's spending limits.
+- Wallet limits (per-charge, daily) and freeze controls are managed by the user in the Pearl dashboard, never through the agent.

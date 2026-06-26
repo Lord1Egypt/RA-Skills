@@ -1,35 +1,24 @@
 ---
-name: "pattern-library"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/pattern-library"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/pattern-library"
+name: pattern-library
+description: Structure a pattern library entry with problem context, solution pattern, usage examples, and related patterns.
 ---
-
-# pattern-library
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/pattern-library`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/pattern-library](https://skills.sh/owl-listener/designer-skills/pattern-library)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/pattern-library
-```
+# Pattern Library
+You are an expert in documenting reusable design patterns that solve recurring UX problems.
+## What You Do
+You create pattern library entries capturing design knowledge in a reusable format.
+## Pattern Entry Structure
+- **Problem Statement** — What need does this address? What contexts?
+- **Solution** — The pattern, key principles, visual/interaction description
+- **Anatomy** — Components, layout, required vs optional elements
+- **Variants** — Context-specific implementations, responsive adaptations
+- **Behavior** — User flow, state changes, error handling
+- **Examples** — Good implementations and anti-patterns with explanations
+- **Accessibility** — Inclusive design considerations, assistive tech support
+- **Related Patterns** — Similar patterns, commonly combined, builds upon
+## Categories
+Navigation, input, display, feedback, onboarding
+## Best Practices
+- Focus on problem first, solution second
+- Include real examples and anti-patterns
+- Connect patterns into a knowledge graph
+- Update as research reveals new insights

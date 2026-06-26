@@ -1,0 +1,129 @@
+# Ghostclaw Stack Patterns — Machine-Readable Rules
+# This YAML defines architectural quality rules for different tech stacks.
+
+node:
+  name: "Node.js / React / TypeScript"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 200
+      condition: greater_than
+      message: "Average file size {value} lines — consider splitting"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 400
+      message: "{count} files >{threshold} lines (ModuleGhosts)"
+    - id: god_components
+      type: file_size
+      threshold: 200
+      applies_to: [".tsx", ".jsx"]
+      message: "Component file >{threshold} LOC indicates God component"
+
+    # Naming conventions
+    - id: service_naming
+      type: naming
+      pattern: ".*[Ss]ervice\\.(ts|tsx|js|jsx)$"
+      message: "Service modules should use *Service naming"
+    - id: repository_naming
+      type: naming
+      pattern: ".*[Rr]epo\\.(ts|tsx|js|jsx)$"
+      message: "Repository modules should use *Repo naming"
+    - id: controller_naming
+      type: naming
+      pattern: ".*[Cc]ontroller\\.(ts|tsx|js|jsx)$"
+      message: "Controller modules should use *Controller naming"
+
+    # Layer structure (based on directory paths)
+    - id: layer_structure
+      type: directory_structure
+      allowed:
+        - "routes/.*"
+        - "controllers/.*"
+        - "services/.*"
+        - "repositories/.*"
+        - "models/.*"
+        - "utils/.*"
+      message: "Unknown top-level directory; follow standard layering"
+
+    # Coupling checks (will be validated against import graph)
+    - id: forbidden_imports
+      type: import_dependency
+      forbidden:
+        - "repositories -> controllers"
+        - "services -> routes"
+        - "controllers -> repositories"
+      message: "Forbidden dependency: {from} → {to} (layer violation)"
+
+    - id: instability_warning
+      type: metric_coupling
+      metric: instability
+      threshold: 0.8
+      condition: greater_than
+      message: "Module {module} is highly unstable (I={value:.2f}) — knows too many others"
+
+  thresholds:
+    large_file_lines: 400
+    acceptable_instability: 0.7
+
+python:
+  name: "Python (Django / FastAPI)"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 180
+      condition: greater_than
+      message: "Average file size {value} lines — thick modules"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 300
+      message: "{count} files >{threshold} lines (ModuleGhosts)"
+    - id: god_models
+      type: file_size
+      threshold: 300
+      applies_to: [".py"]
+      message: "Model file >{threshold} LOC indicates God model"
+
+    # Naming conventions (approximated by file paths)
+    - id: service_naming
+      type: naming
+      pattern: "services/.*\\.py$"
+      message: "Business logic should be in services/ module"
+    - id: view_naming
+      type: naming
+      pattern: "views/.*\\.py$"
+      message: "Views should be in views/ directory"
+    - id: model_naming
+      type: naming
+      pattern: "models/.*\\.py$"
+      message: "Data models should be in models/ directory"
+
+    # Coupling checks
+    - id: forbidden_imports
+      type: import_dependency
+      forbidden:
+        - "views -> models"  # Actually this is allowed, but direct DB access in views is not
+        # We'll refine this with more specific patterns
+      message: "Potential mixing of concerns: {from} → {to}"
+
+    - id: instability_warning
+      type: metric_coupling
+      metric: instability
+      threshold: 0.8
+      condition: greater_than
+      message: "Module {module} is highly unstable (I={value:.2f})"
+
+  thresholds:
+    large_file_lines: 300
+    acceptable_instability: 0.7
+
+go:
+  name: "Go"
+  rules:
+    # Basic checks (heuristic only for now)
+    - id: package_cohesion
+      type: message
+      message: "Go analysis requires deeper AST; see stack-patterns.md for manual review"

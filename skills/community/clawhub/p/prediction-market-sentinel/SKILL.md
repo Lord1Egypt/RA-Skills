@@ -1,35 +1,42 @@
 ---
-name: "Prediction Market Sentinel"
-description: "Monitor Polymarket prediction market wallets and detect new trades in real-time. Use when tracking whale wallets, detecting new positions, or monitoring pred..."
-category: "blockchain"
-source: "ClawHub"
-tags: [crypto, monitoring, polymarket, prediction-market, trading, whale]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prediction-market-sentinel"
-sourceUrl: "https://clawhub.ai/skills/prediction-market-sentinel"
+name: polymarket-monitor
+description: Monitor Polymarket prediction market wallets and detect new trades in real-time. Use when tracking whale wallets, detecting new positions, or monitoring prediction market activity. Supports CLOB API queries, wallet tracking, and trade alerts.
 ---
 
-# Prediction Market Sentinel
+# Polymarket Monitor
 
-> Monitor Polymarket prediction market wallets and detect new trades in real-time. Use when tracking whale wallets, detecting new positions, or monitoring pred...
+Monitor Polymarket whale wallets and detect trading activity.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prediction-market-sentinel`
-- **Source URL:** [https://clawhub.ai/skills/prediction-market-sentinel](https://clawhub.ai/skills/prediction-market-sentinel)
+## Quick Start
 
-## Overview
+Run the monitor script to track a wallet:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/prediction-market-sentinel
+bash scripts/monitor.sh <wallet_address>
 ```
+
+## Features
+
+1. Track any Polymarket wallet by address
+2. Detect new orders via CLOB API
+3. Alert on new positions or large trades
+4. Support multiple wallets simultaneously
+
+## Usage
+
+### Single wallet monitoring
+```bash
+bash scripts/monitor.sh 0x17db3fcd93ba12d38382a0cade24b200185c5f6d
+```
+
+### Configuration
+Set environment variables:
+- `POLL_INTERVAL` - Seconds between checks (default: 600)
+- `ALERT_THRESHOLD` - Minimum trade size to alert (default: 100 USDC)
+
+## How It Works
+
+1. Queries Polymarket CLOB API for wallet orders
+2. Compares with previous state
+3. Alerts on new or changed positions
+4. Logs all activity for analysis

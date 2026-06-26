@@ -1,0 +1,55 @@
+{
+  "name": "order_reader",
+  "version": "1.0.0",
+  "description": "Extracts order summary details from the current page using schema-driven extraction.",
+  "allowedTools": [
+    "browser.extract",
+    "browser.query",
+    "browser.get_dom"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "string"
+      },
+      "rootSelector": {
+        "type": "string"
+      },
+      "fields": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "required": []
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "order_summary": {
+        "type": "object"
+      }
+    }
+  },
+  "notes": "Resolver should map rootSelector/fields based on current marketplace layout.",
+  "examples": [
+    {
+      "input": {
+        "rootSelector": ".order-card",
+        "fields": {
+          "title": ".item-title",
+          "price": ".a-price .a-offscreen"
+        }
+      },
+      "output": {
+        "order_summary": {
+          "title": "Sample",
+          "price": "$12.99"
+        }
+      }
+    }
+  ],
+  "id": "order_reader"
+}

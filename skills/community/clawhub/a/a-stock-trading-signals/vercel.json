@@ -1,0 +1,13 @@
+{
+  "name": "a-stock-signals-api",
+  "version": "1.0.0",
+  "builds": [
+    {"src": "api.py", "use": "@vercel/python"}
+  ],
+  "routes": [
+    {"src": "/(.*)", "dest": "api.py"}
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.9"
+  }
+}

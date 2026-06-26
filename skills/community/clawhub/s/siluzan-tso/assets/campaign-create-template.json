@@ -1,0 +1,154 @@
+{
+  "_meta": {
+    "schema": "campaign-create/v2",
+    "doc": "campaign-create-template.md",
+    "note": "以 _ 开头的键仅作说明，CLI 提交前会剥离；字段名一律 PascalCase，直接对齐后端 CampaignCreationRecord + Campaign 契约",
+    "agentReadOrder": "Agent 建系列前必须先 Read 本 JSON（结构真相源），再 Read campaign-create-template.md（字段说明）；禁止只读 .md 手写 JSON",
+    "agentPitfalls": [
+      "campaign-validate 推荐 --json-out ",
+      "否词只写 campaign.NegativeKeywordsForBatchJob，禁止把 free/jobs/tutorial 等否词抄进 AdGroupsForBatchJob[].KeywordsForBatchJob",
+      "RSA 须同时写 DestinationUrl 与 Finalurl（后端必填 Finalurl；仅有 DestinationUrl 时 validate 可能仍通过）",
+      "SITELINK 须写 AssetFieldType: SITELINK（与 typeV2 一致）",
+      "提交前：ad campaign-validate → 用户确认 → ad campaign-create（勿对 validate 加 --json-out）"
+    ]
+  },
+
+  "account": "REPLACE_mediaCustomerId",
+  "customerName": "REPLACE_mediaAccountName_from_list_accounts",
+  "name": "Search_Brand_US_2026",
+  "url": "https://www.example.com",
+  "locations": ["United States"],
+  "productWords": ["brand", "product"],
+  "googleDataRecordId": null,
+  "draft": false,
+
+  "campaign": {
+    "_comment_budget": "金额字段（Budget / TargetSpend_BidCeilingAmount / TargetCpa_BidingAmount / 各 AdGroup.MaxCPCAmount）以主币种「元」填写，CLI 提交前自动 ×100 转「分」",
+    "Name": "Search_Brand_US_2026",
+    "StatusV2": "Enabled",
+    "ChannelTypeV2": "SEARCH",
+    "BiddingStrategyTypeV2": "TARGET_SPEND",
+    "Budget": 100,
+    "BudgetShared": false,
+    "BudgetId": 0,
+    "BudgetBudgetDeliveryMethodV2": "STANDARD",
+    "TargetSpend_BidCeilingAmount": 1.5,
+    "ManualCpc_EnhancedCpcEnabled": false,
+    "TargetGoogleSearch": true,
+    "TargetSearchNetwork": false,
+    "TargetContentNetwork": false,
+    "TargetPartnerSearchNetwork": false,
+    "PositiveGeoTargetType": 0,
+    "NegativeGeoTargetType": 0,
+    "DSADomainName": "",
+    "DSALanguageCode": "en",
+    "StartTime": "2026-04-01",
+    "EndTime": "2037-12-30",
+    "targetedLocations": [{ "id": "2840", "bidModifier": 0, "bidModifierSpecified": false }],
+    "excludedLocations": [],
+    "excludedIpAddresses": [],
+    "targetedLanguages": [{ "id": 1000 }],
+    "targetedPlatforms": [
+      { "id": 30001, "bidModifier": 0 },
+      { "id": 30002, "bidModifier": 0 },
+      { "id": 30000, "bidModifier": 0 }
+    ],
+
+    "adSchedules": [
+      { "DayOfWeekV2": 2, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 3, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 4, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 5, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 6, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 7, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 },
+      { "DayOfWeekV2": 8, "startHour": 0, "StartMinuteV2": 2, "endHour": 24, "EndMinuteV2": 2 }
+    ],
+
+    "NegativeKeywordsForBatchJob": [
+      { "KeywordText": ["free", "cheap", "download"], "MatchTypeV2": "BROAD", "FinalURL": "" }
+    ],
+
+    "ExtensionsForBatchJob": [
+      {
+        "level": "Campaign",
+        "typeV2": "CALL",
+        "AssetFieldType": "CALL",
+        "Properties": { "ContryCode": "US", "PhoneNumber": "+1 800-555-0100" }
+      },
+      {
+        "typeV2": "SITELINK",
+        "Level": "Campaign",
+        "Properties": {
+          "Text": "About Us",
+          "Line2": "xxx",
+          "Line3": "xxxx",
+          "DestinationUrl": "https://www.example.com/about"
+        }
+      }
+    ],
+
+    "AdGroupsForBatchJob": [
+      {
+        "Name": "Core_Brand_Keywords",
+        "StatusV2": "Enabled",
+        "TypeV2": "SEARCH_STANDARD",
+        "RotationModeV2": "Unspecified",
+        "MaxCPCAmount": 1.5,
+
+        "KeywordsForBatchJob": [
+          {
+            "KeywordText": [
+              "brand name product",
+              "buy brand product online",
+              "brand official store"
+            ],
+            "MatchTypeV2": "BROAD",
+            "FinalURL": "https://www.example.com/products"
+          },
+          {
+            "KeywordText": ["\"brand name product\""],
+            "MatchTypeV2": "PHRASE",
+            "FinalURL": "https://www.example.com/products"
+          },
+          {
+            "KeywordText": ["[brand name product]"],
+            "MatchTypeV2": "EXACT",
+            "FinalURL": "https://www.example.com/products"
+          }
+        ],
+
+        "AdsForBatchJob": [
+          {
+            "_comment_finalurl": "Finalurl 与 DestinationUrl 填相同 URL；勿只写 DestinationUrl（BatchJob 会报 Finalurl 缺失）",
+            "TypeV2": "RESPONSIVE_SEARCH_AD",
+            "DestinationUrl": "https://www.example.com/products",
+            "Finalurl": "https://www.example.com/products",
+            "AdTitle": null,
+            "Path1": "products",
+            "Path2": "brand",
+            "headlinePart1": "Brand Name Official Store",
+            "headlinePart2": "Quality Products You Trust",
+            "headlinePart3": "Shop Direct From Brand",
+            "AddtionalHeadlines": [
+              "Fast Shipping Available",
+              "Certified Product Quality",
+              "Explore The Full Catalog",
+              "Trusted By Global Buyers",
+              "Request A Quote Today",
+              "Professional Grade Products",
+              "Browse Best Sellers Now",
+              "Reliable Supply Partner",
+              "Contact Us For Details"
+            ],
+            "adDescription": "Official products with certified quality. Contact us for pricing.",
+            "adDescription2": "Trusted by partners worldwide. Request a quote or browse the catalog.",
+            "AddtionalAdDescriptions": [
+              "Fast response from our sales team. See specs and certifications on our site.",
+              "Shop the full product line with reliable shipping and support options."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

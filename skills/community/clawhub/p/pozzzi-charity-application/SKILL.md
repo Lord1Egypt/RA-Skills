@@ -1,35 +1,50 @@
 ---
-name: "噗滋慈善 - 申报助手 / pozzzi-charity application-assistant"
-description: "噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成项目申报书草稿，支持腾讯公益99公益日、通用基金会申请和政府购买服务三种格式，内置占位符强制机制防止 AI 编造预算和编号数据。"
-category: "other"
-source: "ClawHub"
-tags: [charity, chinese-nonprofit, ngo, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pozzzi-charity-application"
-sourceUrl: "https://clawhub.ai/skills/pozzzi-charity-application"
+name: application-assistant
+description: 噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成项目申报书草稿，支持腾讯公益99公益日、通用基金会申请和政府购买服务三种格式，内置占位符强制机制防止 AI 编造预算和编号数据。
 ---
 
-# 噗滋慈善 - 申报助手 / pozzzi-charity application-assistant
+# 申报助手
 
-> 噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成项目申报书草稿，支持腾讯公益99公益日、通用基金会申请和政府购买服务三种格式，内置占位符强制机制防止 AI 编造预算和编号数据。
+> ℹ️ **公益开源工具（v0.1.0）**
+>
+> 本 Skill 为噗滋（pozzzi）慈善开源工具集成员，由社区贡献者维护，遵循 MIT License。
+>
+> **使用约束**（用户自负责任）：
+> - 🚫 禁止处理 14 岁以下未成年人个体级数据（《未成年人保护法》第 72-74 条）
+> - 🚫 禁止用于编造法规条文、文件编号、资质证书编号等
+> - 🚫 不适用于公开募捐相关内容生成（建议使用专业工具）
+> - ⚠️ AI 生成内容**必须经人工审核后方可使用**，开发者不对使用结果承担责任
+> - ⚠️ 本工具不构成专业的法律/财务/管理建议
+> - ✅ 用户自带模型 API（混元/DeepSeek/豆包，均已各自备案）
+> - ✅ 噗滋（pozzzi）作为工具提供者，不接触/不存储用户数据
+>
+> 详细法律声明：[LICENSE](https://github.com/kirinspark/pozzzi-charity/blob/main/LICENSE) | [免责声明](https://github.com/kirinspark/pozzzi-charity/blob/main/docs/legal/disclaimer.md)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pozzzi-charity-application`
-- **Source URL:** [https://clawhub.ai/skills/pozzzi-charity-application](https://clawhub.ai/skills/pozzzi-charity-application)
+申报助手是噗滋慈善（pozzzi-charity） Skill 集群中第二核心 Skill，帮助 NGO 撰写项目申报书争取资金支持。
 
-## Overview
+## 支持的申报类型
 
+- **通用申报书** — 最大公约数版，适用于大部分基金会
+- **腾讯公益99公益日** — 国内最大募款窗口，格式标准化
+- **政府购买服务** — 民政/妇联/教育等政府资金申报
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pozzzi-charity-application
-```
+## 核心特性
+
+- **占位符强制机制**（placeholder-enforcer）：AI 不得编造预算金额、证书编号、统计数据
+- **四轮引导式数据收集**：基本信息 → 项目设计 → 预算团队 → 确认补充
+- **多模型适配**：混元（默认免费）/ DeepSeek（逻辑严谨）/ GLM（叙事优质）/ 豆包（温暖语气）
+- **单章节重生成**：不满意某章节可单独重新生成
+
+## 合规要求
+
+- 所有输出经 PII 过滤和免责声明注入（强制不可跳过）
+- 联系人信息不进入模型 API
+- 预算金额必须由用户填写，AI 不生成
+- 需求数据须标注来源，AI 不编造统计数字
+- 日志保留 ≥6 个月，不含 prompt 正文
+
+## 技术依赖
+
+- `model-gateway` — 多模型路由、域名白名单、内置 PII 前置过滤
+- `disclaimer-injector` — AI 声明和免责提示注入
+- `storage-adapter` — 本地数据存储（日志、历史）

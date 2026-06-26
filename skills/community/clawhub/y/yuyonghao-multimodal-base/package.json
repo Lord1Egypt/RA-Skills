@@ -1,0 +1,26 @@
+{
+  "name": "multimodal-base",
+  "version": "0.1.0",
+  "description": "OpenClaw 多模态基础 - 图像理解 + 语音识别 + 语音合成",
+  "main": "src/multimodal-pipeline.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/multimodal-test.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "edge-tts": "^1.0.0",
+    "tesseract.js": "^5.0.0"
+  },
+  "keywords": [
+    "multimodal",
+    "vision",
+    "speech",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,35 +1,101 @@
----
-name: "CMI CPaaS - SMS Sender"
-description: "Send batch SMS messages to up to 100 domestic or international numbers via CloudSMS API with optional custom signature and content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sms-sender"
-sourceUrl: "https://clawhub.ai/skills/sms-sender"
----
+# CloudSMS 群发短信
 
-# CMI CPaaS - SMS Sender
+发送批量短信到多个手机号码，支持国内外号码。
 
-> Send batch SMS messages to up to 100 domestic or international numbers via CloudSMS API with optional custom signature and content.
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sms-sender`
-- **Source URL:** [https://clawhub.ai/skills/sms-sender](https://clawhub.ai/skills/sms-sender)
+通过 CloudSMS 平台 API 发送群发短信，支持：
+- 单个或多个手机号码（最多100个）
+- 自定义短信内容
+- 可选的短信签名
 
-## Overview
+## 使用前提
 
+需要 CloudSMS 平台的 Channel ID 和 Auth Key。如果没有，请联系平台管理员获取。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sms-sender
+## 凭证信息
+
+使用时需要提供以下凭证：
+
+- **Channel ID**: CloudSMS 平台分配的租户标识（Account ID）
+- **Auth Key**: 对应的认证密钥
+
+## 参数说明
+
+- **mobile**: 手机号码，多个号码用英文逗号分隔，需要包含国家码
+  - 格式示例：`+8613800138000` 或 `+8613800138000,+8613900139000`
+  - 单次最多支持 100 个号码
+
+- **content**: 短信内容
+  - 最多 500 字（包含签名）
+  - 不能包含敏感词
+
+- **signature**: 短信签名（选填）
+  - 格式：公司名或品牌名（不需要加【】符号）
+  - 签名必须提前在平台报备，否则会发送失败
+  - 签名会自动添加到短信内容开头
+
+## 使用示例
+
+### 示例 1：发送单条短信
 ```
+给 +8613800138000 发送短信：您的验证码是 123456，5分钟内有效
+```
+
+### 示例 2：群发短信
+```
+群发短信给 +8613800138000,+8613900139000，内容：会议将于明天上午10点在3楼会议室召开
+```
+
+### 示例 3：带签名的短信
+```
+用签名"某某科技"给 +8615622201234 发送：您的订单已发货，请注意查收
+```
+
+## 返回结果
+
+成功时返回：
+- 发送状态：OK
+- 短信 UID（用于追踪）
+- 每个号码的发送详情
+
+失败时返回：
+- 错误描述
+- 操作建议（如需要报备签名、充值等）
+
+## 常见问题
+
+1. **认证失败**：如果提示认证错误，请联系平台管理员确认 Channel ID 和 Auth Key
+2. **签名未报备**：如果提示签名问题，请联系平台管理员报备签名
+3. **余额不足**：请联系平台管理员充值
+
+## 技术信息
+
+- API 地址：https://cpaas-sms.cmidict.com:1820/uips
+- 实现语言：Python 3
+- 依赖：requests
+
+---
+
+## 使用方式
+
+当用户请求发送短信时：
+
+1. 询问并获取 CloudSMS 的 Channel ID 和 Auth Key
+2. 从用户的自然语言中提取：
+   - 手机号码（支持多个，逗号分隔）
+   - 短信内容
+   - 签名（如果提到）
+3. 调用脚本：
+   ```bash
+   python3 scripts/send_bulk_sms.py "<channel_id>" "<auth_key>" "<mobile>" "<content>" ["<signature>"]
+   ```
+4. 解析返回结果并以友好的方式告知用户
+
+## 注意事项
+
+- 手机号必须包含国家码（如 +86）
+- 单次最多发送 100 个号码
+- 短信内容不能超过 500 字
+- 签名需要提前报备
+- 签名会自动添加【】符号并拼接在内容开头

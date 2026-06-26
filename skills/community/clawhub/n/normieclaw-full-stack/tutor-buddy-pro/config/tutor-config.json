@@ -1,0 +1,71 @@
+{
+  "subjects_enabled": [
+    "math",
+    "science",
+    "history",
+    "english",
+    "foreign_language"
+  ],
+  "difficulty_levels": {
+    "math": {
+      "available": ["elementary", "middle_school", "algebra_1", "geometry", "algebra_2", "precalculus", "calculus_ab", "calculus_bc", "statistics"],
+      "default": "algebra_1"
+    },
+    "science": {
+      "available": ["general", "biology", "chemistry", "physics", "ap_biology", "ap_chemistry", "ap_physics"],
+      "default": "general"
+    },
+    "history": {
+      "available": ["general", "us_history", "world_history", "government", "economics", "ap_us_history", "ap_world_history"],
+      "default": "general"
+    },
+    "english": {
+      "available": ["grammar", "reading_comprehension", "essay_writing", "literary_analysis", "ap_english"],
+      "default": "essay_writing"
+    },
+    "foreign_language": {
+      "available": ["spanish", "french", "german", "other"],
+      "default": "spanish"
+    }
+  },
+  "quiz_settings": {
+    "default_question_count": 10,
+    "min_questions": 3,
+    "max_questions": 25,
+    "time_limit_minutes": null,
+    "question_types": ["multiple_choice", "short_answer", "true_false", "show_your_work"],
+    "adaptive_difficulty": true,
+    "streak_threshold_increase": 2,
+    "streak_threshold_decrease": 2
+  },
+  "study_plan_settings": {
+    "default_daily_minutes": 45,
+    "pomodoro_work_minutes": 25,
+    "pomodoro_break_minutes": 5,
+    "spaced_repetition_enabled": true,
+    "review_interval_days": 2
+  },
+  "progress_tracking": {
+    "weekly_summary_enabled": false,
+    "streak_tracking_enabled": true,
+    "achievements_enabled": true
+  },
+  "achievements": [
+    { "id": "first_quiz", "name": "First Steps", "description": "Complete your first quiz", "emoji": "🎯" },
+    { "id": "week_streak", "name": "Study Machine", "description": "Study 7 days in a row", "emoji": "🔥" },
+    { "id": "score_improvement_20pct", "name": "Level Up", "description": "Improve a topic score by 20%+", "emoji": "📈" },
+    { "id": "perfect_quiz", "name": "Flawless", "description": "Score 100% on a quiz", "emoji": "💯" },
+    { "id": "five_subjects", "name": "Renaissance Learner", "description": "Study across 5 different subjects", "emoji": "🌟" },
+    { "id": "hundred_sessions", "name": "Centurion", "description": "Complete 100 tutoring sessions", "emoji": "🏆" }
+  ],
+  "pedagogy": {
+    "socratic_mode_default": true,
+    "hint_levels": 4,
+    "always_show_work": true,
+    "require_student_attempt": true,
+    "celebration_frequency": "every_correct"
+  },
+  "learning_styles": ["visual", "auditory", "reading_writing", "kinesthetic"],
+  "custom_subjects": [],
+  "custom_topics": []
+}

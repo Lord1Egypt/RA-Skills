@@ -1,35 +1,76 @@
 ---
-name: "Silver Daily"
-description: "银发头条（Silver Age Daily）—— 一键生成当日银发经济精选资讯简报。 覆盖：政策解读、银发消费、老年金融、银发科技、医疗健康、银发文娱、居家养老、银发就业八大板块。 每次生成一份带新闻链接、带摘要的 HTML 格式日报，风格简洁大方，适合老年产业从业者、研究者、投资人及关注银发经济的人士阅读。 U..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/silver-daily"
-sourceUrl: "https://clawhub.ai/skills/silver-daily"
+name: silver-daily
+description: >
+  银发头条（Silver Age Daily）—— 一键生成当日银发经济精选资讯简报。
+  覆盖：政策解读、银发消费、老年金融、银发科技、医疗健康、银发文娱、居家养老、银发就业八大板块。
+  每次生成一份带新闻链接、带摘要的 HTML 格式日报，风格简洁大方，适合老年产业从业者、研究者、投资人及关注银发经济的人士阅读。
+  Use when: 用户要生成今日银发经济资讯、查看老龄化相关新闻、生成银发经济日报、每日早报推送。
+  NOT for: 查询个人养老金账户、医疗问诊、具体股票投资建议。
 ---
 
-# Silver Daily
+## When to Run
 
-> 银发头条（Silver Age Daily）—— 一键生成当日银发经济精选资讯简报。 覆盖：政策解读、银发消费、老年金融、银发科技、医疗健康、银发文娱、居家养老、银发就业八大板块。 每次生成一份带新闻链接、带摘要的 HTML 格式日报，风格简洁大方，适合老年产业从业者、研究者、投资人及关注银发经济的人士阅读。 U...
+- 用户主动说"生成银发头条""今日银发日报""银发经济资讯"等
+- 每日定时（建议早上 7:30）通过 cron/heartbeat 触发
+- 用户询问"老龄化最新新闻""银发经济今天有什么新消息"
+- 用户说"帮我出一期银发每日头条"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/silver-daily`
-- **Source URL:** [https://clawhub.ai/skills/silver-daily](https://clawhub.ai/skills/silver-daily)
+---
 
-## Overview
+## Workflow
 
+### 第一步：获取当日新闻
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/silver-daily
+针对以下 **8 个板块**，分别执行 web_search 获取最新资讯（每板块搜索 1 次，取前 3-5 条结果）：
+
+| # | 板块 | 搜索关键词示例 |
+|---|------|----------------|
+| 1 | 🏛️ 政策解读 | `银发经济 政策 养老 [今年] 最新` |
+| 2 | 🛍️ 银发消费 | `老年消费 银发市场 老年用品 新闻` |
+| 3 | 💰 老年金融 | `养老金融 个人养老金 养老理财 保险` |
+| 4 | 🤖 银发科技 | `智慧养老 AI养老 养老机器人 老年科技` |
+| 5 | 🏥 医疗健康 | `老年医疗 医养结合 老年健康 慢病管理` |
+| 6 | 🎭 银发文娱 | `银发旅游 旅居养老 老年教育 老年文化` |
+| 7 | 🏠 居家养老 | `居家养老 适老化改造 社区养老 上门服务` |
+| 8 | 💼 银发就业 | `老有所为 延迟退休 老年就业 银龄行动` |
+
+### 第二步：筛选与整理
+
+- 每板块挑选 **2-4 条**质量最高、最新的新闻
+- 提取：标题、来源、发布时间、新闻链接、100字以内摘要
+- 优先选择：政府官网、央媒、知名财经媒体的内容
+- 标注 1 条当日"头条"（最重要的政策或行业大事）
+
+### 第三步：生成 HTML 报告
+
+调用 `scripts/generate_report.py`，传入整理好的新闻数据，生成当日 HTML 报告：
+
+```
+python scripts/generate_report.py --output output/silver-daily-$(date +%Y%m%d).html
+```
+
+若无法运行脚本，则直接按 `references/html_template.md` 中的模板格式，在对话中输出完整 HTML。
+
+### 第四步：输出结果
+
+- 在对话中展示生成的 HTML 文件路径
+- 输出格式参考 `references/output_format.md`
+- 默认保存到 `output/silver-daily-YYYYMMDD.html`
+
+---
+
+## Output Format
+
+```
+📅 {日期} · 第 {期数} 期
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔥 今日头条：{标题}
+📎 {链接}
+
+📊 数据亮点：
+  · 老年人口：X 亿  · 市场规模：X 万亿
+
+─── 共 8 个板块，{总新闻数} 条资讯 ───
+已生成：output/silver-daily-{YYYYMMDD}.html
 ```

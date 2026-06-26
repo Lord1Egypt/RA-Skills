@@ -1,0 +1,388 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Seek Alliance - Marriage Matching Backend",
+    "description": "Generates Bride & Groom horoscopes then produces a Marriage Compatibility Report",
+    "version": "1.1.0"
+  },
+  "paths": {
+    "/api/search-city": {
+      "get": {
+        "summary": "Search City",
+        "operationId": "search_city_api_search_city_get",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Search"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "India",
+              "title": "Country"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "summary": "Status",
+        "operationId": "status_api_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/seek-alliance": {
+      "post": {
+        "summary": "Seek Alliance",
+        "operationId": "seek_alliance_api_seek_alliance_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AllianceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllianceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/downloads/{filename}": {
+      "get": {
+        "summary": "Download File",
+        "operationId": "download_file_downloads__filename__get",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Filename"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AllianceRequest": {
+        "properties": {
+          "bride": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonData"
+              }
+            ],
+            "description": "Bride (Female) details"
+          },
+          "groom": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonData"
+              }
+            ],
+            "description": "Groom (Male) details"
+          },
+          "language_id": {
+            "type": "string",
+            "title": "Language Id",
+            "description": "1=Tamil 2=English 3=Malayalam 4=Telugu 5=Kannada 6=Hindi",
+            "default": "1"
+          },
+          "chart_type": {
+            "type": "string",
+            "title": "Chart Type",
+            "description": "South Indian or North Indian",
+            "default": "South Indian"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bride",
+          "groom"
+        ],
+        "title": "AllianceRequest"
+      },
+      "AllianceResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "bride_pdf_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bride Pdf Url"
+          },
+          "groom_pdf_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Groom Pdf Url"
+          },
+          "match_pdf_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Pdf Url"
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "AllianceResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PersonData": {
+        "properties": {
+          "person_name": {
+            "type": "string",
+            "title": "Person Name",
+            "description": "Person's full name"
+          },
+          "father_name": {
+            "type": "string",
+            "title": "Father Name",
+            "description": "Father's name"
+          },
+          "mother_name": {
+            "type": "string",
+            "title": "Mother Name",
+            "description": "Mother's name"
+          },
+          "mobile": {
+            "type": "string",
+            "title": "Mobile",
+            "description": "10-digit mobile number"
+          },
+          "dob": {
+            "type": "string",
+            "title": "Dob",
+            "description": "Date of birth in DD/Mon/YYYY format"
+          },
+          "hour": {
+            "type": "string",
+            "title": "Hour",
+            "description": "Birth hour (1-12)"
+          },
+          "minute": {
+            "type": "string",
+            "title": "Minute",
+            "description": "Birth minute (00-59)"
+          },
+          "am_pm": {
+            "type": "string",
+            "title": "Am Pm",
+            "description": "AM or PM"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country",
+            "description": "Country code"
+          },
+          "birth_place": {
+            "type": "string",
+            "title": "Birth Place",
+            "description": "Birth city name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "person_name",
+          "father_name",
+          "mother_name",
+          "mobile",
+          "dob",
+          "hour",
+          "minute",
+          "am_pm",
+          "country",
+          "birth_place"
+        ],
+        "title": "PersonData"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

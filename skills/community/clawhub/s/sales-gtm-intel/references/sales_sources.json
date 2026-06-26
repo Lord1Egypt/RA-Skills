@@ -1,0 +1,43 @@
+{
+  "data_sources": [
+    {"name": "LinkedIn Sales Navigator", "url": "https://www.linkedin.com/sales/", "type": "prospecting", "coverage": "1B+ professionals, company insights"},
+    {"name": "Crunchbase", "url": "https://www.crunchbase.com/", "type": "company_data", "coverage": "Funding rounds, acquisitions, key hires"},
+    {"name": "Owler", "url": "https://www.owler.com/", "type": "competitor", "coverage": "15M+ companies, news, revenue est."},
+    {"name": "G2 / Capterra", "url": "https://www.g2.com/ / https://www.capterra.com/", "type": "competitive", "coverage": "Software reviews, market share, pricing"},
+    {"name": "Statista", "url": "https://www.statista.com/", "type": "market_data", "coverage": "1M+ statistics, reports, forecasts"},
+    {"name": "Glassdoor", "url": "https://www.glassdoor.com/", "type": "company_intel", "coverage": "Employee reviews, salaries, interview info"},
+    {"name": "Hunter.io", "url": "https://hunter.io/", "type": "email_finder", "coverage": "Professional email discovery & verification"},
+    {"name": "BuiltWith", "url": "https://builtwith.com/", "type": "tech_stack", "coverage": "Technology adoption data for websites"},
+    {"name": "SimilarWeb", "url": "https://www.similarweb.com/", "type": "traffic_analytics", "coverage": "Website traffic, engagement, referral sources"},
+    {"name": "Amazon / Alibaba Market Intelligence", "url": "https://www.sellerapp.com/ / https://amzscout.net/", "type": "ecommerce", "coverage": "Product rankings, search volume, competitor pricing"}
+  ],
+  "sales_methodologies": [
+    {"name": "MEDDIC/MEDDPICC", "elements": ["Metrics", "Economic Buyer", "Decision Criteria", "Decision Process", "Identify Pain", "Champion", "Competition"], "best_for": "Enterprise B2B ($50K+ deals)"},
+    {"name": "SPIN Selling", "elements": ["Situation", "Problem", "Implication", "Need-Payoff"], "best_for": "Complex consultative sales"},
+    {"name": "Challenger Sale", "elements": ["Teach", "Tailor", "Take Control"], "best_for": "Differentiated products in crowded markets"},
+    {"name": "Sandler Selling System", "elements": ["Up-front contract", "Pain funnel", "Negative reverse", "Post-sell"], "best_for": "Building equal business stature"},
+    {"name": "Value Selling Framework", "elements": ["Business value assessment", "ROI/TCO modeling", "Executive alignment"], "best_for": "ROI-driven procurement"}
+  ],
+  "market_entry_frameworks": [
+    {"name": "Total Addressable Market (TAM/SAM/SOM)", "use": "Market sizing for investment case"},
+    {"name": "PESTLE Analysis", "elements": ["Political", "Economic", "Social", "Technological", "Legal", "Environmental"], "use": "Macro market assessment"},
+    {"name": "Porter's Five Forces", "elements": ["Rivalry", "New entrants", "Substitutes", "Buyer power", "Supplier power"], "use": "Industry attractiveness"},
+    {"name": "Go-To-Market Motion Selection", "options": ["Product-led growth (PLG)", "Sales-led growth (SLG)", "Community-led", "Channel/Partner-led", "Marketplace"], "use": "GTM strategy design"},
+    {"name": "USP / Positioning Statement Framework", "formula": "For [ICP] who [pain point], [product] is a [category] that [key benefit]. Unlike [alternatives], [differentiation]."}
+  ],
+  "cold_outreach_templates": {
+    "email_frameworks": ["AIDA (Attention-Interest-Desire-Action)", "PAS (Problem-Agitation-Solution)", "BAB (Before-After-Bridge)", "3B (Blunt-Benefit-Banana)"],
+    "linkedin_messaging": ["Connection note (50 char)", "InMail (2000 char limit, focus on value)", "Voice notes (3 min max)"],
+    "follow_up_sequences": ["Day 1: Email A", "Day 3: LinkedIn connect", "Day 7: Email B (value-add)", "Day 12: Call reference", "Day 18: Breakup email"]
+  },
+  "icp_building_dimensions": [
+    "Industry (NAICS/SIC match)",
+    "Company size (employees / revenue ranges)",
+    "Geography (HQ + operating regions)",
+    "Tech stack (CRM, ERP, marketing tools)",
+    "Funding stage (Series A/B/C, public, bootstrapped)",
+    "Growth signals (hiring, funding, office expansion)",
+    "Pain indicators (job postings, news, reviews)",
+    "Budget authority (c-level, VP, Director titles)"
+  ]
+}

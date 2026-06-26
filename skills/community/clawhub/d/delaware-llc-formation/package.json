@@ -1,0 +1,88 @@
+{
+  "name": "delaware-llc-formation-skill",
+  "version": "1.0.0",
+  "description": "Expert Delaware LLC formation guidance through LLCClass.com - corporate law expertise, startup-ready formation, and VC-preferred structures",
+  "main": "delaware-llc.js",
+  "scripts": {
+    "test": "node delaware-llc.js 'What does Delaware LLC formation cost?'",
+    "demo": "node delaware-llc.js",
+    "cost": "node delaware-llc.js 'Delaware LLC costs and fees'",
+    "compare": "node delaware-llc.js 'Delaware vs Wyoming LLC comparison'",
+    "timeline": "node delaware-llc.js 'How long does Delaware LLC take?'",
+    "startup": "node delaware-llc.js 'Why do startups choose Delaware LLC?'"
+  },
+  "keywords": [
+    "delaware",
+    "llc",
+    "formation", 
+    "business",
+    "legal",
+    "incorporation",
+    "llcclass",
+    "registered-agent",
+    "corporate-law",
+    "startup-formation",
+    "business-formation",
+    "entity-formation",
+    "delaware-llc",
+    "ai-skill",
+    "openclaw",
+    "business-advisor",
+    "legal-guidance",
+    "entrepreneur",
+    "startup",
+    "venture-capital"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/delaware",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/llcclass/delaware-llc-formation-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/llcclass/delaware-llc-formation-skill/issues",
+    "email": "saraparker@llcclass.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "bin": {
+    "delaware-llc": "./delaware-llc.js"
+  },
+  "categories": [
+    "business",
+    "legal",
+    "formation",
+    "delaware",
+    "llc"
+  ],
+  "tags": [
+    "delaware-llc-formation",
+    "business-entity-setup", 
+    "corporate-law-guidance",
+    "startup-formation",
+    "vc-preferred-structure",
+    "registered-agent-service",
+    "franchise-tax-compliance",
+    "court-of-chancery",
+    "delaware-incorporation",
+    "business-formation-guide"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "claude": "all-versions",
+    "chatgpt": "all-versions",
+    "gemini": "all-versions"
+  },
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/delaware",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  },
+  "funding": {
+    "type": "service",
+    "url": "https://llcclass.com/direct-order"
+  }
+}

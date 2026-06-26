@@ -1,35 +1,13 @@
 ---
-name: "A.I Ventures Test Gen A.I Agent"
-description: "Analyzes a given URL and automatically generates comprehensive functional, UI, and boundary test cases."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ss-ss"
-sourceUrl: "https://clawhub.ai/skills/ss-ss"
+name: aiventures-test-generator
+version: 1.0.0
+description: Analyzes a given URL and automatically generates comprehensive functional, UI, and boundary test cases.
+author: Kushan Amarasiri
 ---
 
-# A.I Ventures Test Gen A.I Agent
-
-> Analyzes a given URL and automatically generates comprehensive functional, UI, and boundary test cases.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ss-ss`
-- **Source URL:** [https://clawhub.ai/skills/ss-ss](https://clawhub.ai/skills/ss-ss)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ss-ss
-```
+# Execution Instructions
+When instructed to generate test cases for a specific URL, you must:
+1. Execute the command: `node analyze-dom.js <URL>`
+2. Read the JSON output containing the interactive DOM elements.
+3. Use your reasoning capabilities to map out logical user journeys based on the extracted elements.
+4. Output a strictly formatted Markdown Test Plan with Steps to Reproduce, Expected Results, and Edge Cases.

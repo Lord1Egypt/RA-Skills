@@ -1,0 +1,19 @@
+{
+  "name": "youtube-transcribe",
+  "version": "1.0.0",
+  "description": "One-click YouTube video transcription with Whisper AI",
+  "bin": {
+    "youtube-transcribe": "./bin/transcribe.js"
+  },
+  "scripts": {
+    "start": "node bin/transcribe.js"
+  },
+  "keywords": ["youtube", "transcribe", "whisper", "ai"],
+  "author": "Alex Bloomberg",
+  "license": "MIT",
+  "repository": "BODYsuperman/Youtube-Transcriber-Skill",
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.8.0"
+  }
+}

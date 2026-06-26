@@ -1,35 +1,48 @@
 ---
-name: "Qq Mail"
-description: "提供QQ邮箱公开和登录可见邮件列表及标签未读数的主题、发件人、时间等元信息摘要与提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qq-mail"
-sourceUrl: "https://clawhub.ai/skills/qq-mail"
+name: qq-mail-hot-trend
+description: 注册“QQ邮箱”热门技能；当需要访问或自动化QQ邮箱相关内容时调用。
+homepage: `https://mail.qq.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Qq Mail
+# QQ邮箱
 
-> 提供QQ邮箱公开和登录可见邮件列表及标签未读数的主题、发件人、时间等元信息摘要与提醒。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qq-mail`
-- **Source URL:** [https://clawhub.ai/skills/qq-mail](https://clawhub.ai/skills/qq-mail)
+- 面向公开分享页面与个人邮箱中可视的非敏感信息摘要
+- 不提供登录自动化、发件、收件或权限绕过能力
+- 仅用于个人可见页面的邮件列表摘要与提醒
 
-## Overview
+关键入口
 
+- 主页：https://mail.qq.com/
+- 登录入口：个人邮箱登录页
+- 分享页：公开邮件或附件的分享链接
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qq-mail
-```
+常见任务
+
+- 邮件列表的主题/发件人/时间摘要（仅在登录与可视范围内）
+- 指定标签/文件夹的未读统计与提醒
+- 公开分享页的标题与内容摘要
+
+数据字段
+
+- 主题、发件人、接收时间、标签/文件夹、是否未读、来源链接
+- 分享页标题、摘要、附件名称（若公开）
+
+自动化要点
+
+- 邮箱页面需登录且有人机校验，不进行自动化交互
+- 不采集或存储邮件正文与附件内容，仅做元信息摘要
+- 频率控制，尊重邮箱安全策略
+
+示例流程
+
+- 列表摘要：登录后访问列表 → 抽取主题/发件人/时间 → 输出清单
+- 标签统计：进入标签页 → 统计未读 → 输出提醒摘要
+- 分享页摘要：访问分享链接 → 提取标题与摘要 → 输出结果
+
+合规提示
+
+- 遵守邮箱与账户安全规定，不进行邮件收发自动化操作
+- 不存储或输出敏感隐私数据

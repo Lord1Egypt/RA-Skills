@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Envelope Skill"
+  short_description: "Create branded printable envelopes"
+  default_prompt: "Use $agentic-envelope-skill to generate a branded CompleteTech LLC #10 addressed envelope."
+
+policy:
+  allow_implicit_invocation: false

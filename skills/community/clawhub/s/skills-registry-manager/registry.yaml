@@ -1,0 +1,18 @@
+# 订阅注册表
+subscriptions:
+  - name: awesome
+    url: https://raw.githubusercontent.com/gavinyao/awesome-skills/main/registry.yaml
+
+# 本地 skills
+skills:
+  - name: skill-creator
+    description: 创建和改进 Claude Code skills
+    source: npx
+    install: "npx skills add anthropics/skills@skill-creator -y -g"
+    repo: https://github.com/anthropics/skills/tree/main/skills/skill-creator
+
+  - name: find-skills
+    description: 从 skills.sh 生态搜索和安装 skills
+    source: npx
+    install: "npx skills add vercel-labs/skills@find-skills -y -g"
+    repo: https://github.com/vercel-labs/skills/tree/main/skills/find-skills

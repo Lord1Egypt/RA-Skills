@@ -1,35 +1,25 @@
----
-name: "Pipeworx cataas"
-description: "Retrieve random cat images, find cats by specific tags, and list available cat tags using the Pipeworx cataas service."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-cataas"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-cataas"
----
+# Cataas
 
-# Pipeworx cataas
+CATAAS MCP — Cat as a Service (free, no auth)
 
-> Retrieve random cat images, find cats by specific tags, and list available cat tags using the Pipeworx cataas service.
+## random_cat
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-cataas`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-cataas](https://clawhub.ai/skills/pipeworx-cataas)
+Get a random cat image. Returns image URL, cat ID, and associated tags.
 
-## Overview
+## cat_by_tag
 
+Get a random cat image matching a specific tag (e.g., 'orange', 'cute', 'sleepy'). Returns image URL
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-cataas
+## list_tags
+
+List all available cat tags for filtering. Use tag names with cat_by_tag to find cats by appearance 
+
+```json
+{
+  "mcpServers": {
+    "cataas": {
+      "url": "https://gateway.pipeworx.io/cataas/mcp"
+    }
+  }
+}
 ```

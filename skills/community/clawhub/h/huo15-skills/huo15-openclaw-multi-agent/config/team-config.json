@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "teamName": "default",
+  "coordinator": "main",
+  "maxConcurrent": 3,
+  "taskTimeout": 300,
+  "collectTimeout": 600
+}

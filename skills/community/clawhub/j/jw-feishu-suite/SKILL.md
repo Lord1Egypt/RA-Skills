@@ -1,35 +1,96 @@
 ---
-name: "Feishu Suite"
-description: "飞书全功能集成技能 - 消息、文档、日历、任务、多维表格一站式管理。适用于企业协作、工作流自动化、数据管理。觸發詞：飛書、文檔、日程、任務、多維表格、協作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jw-feishu-suite"
-sourceUrl: "https://clawhub.ai/skills/jw-feishu-suite"
+name: Feishu All-in-One
+description: 飞书全功能集成技能 - 消息、文档、日历、任务、多维表格一站式管理。适用于企业协作、工作流自动化、数据管理。觸發詞：飛書、文檔、日程、任務、多維表格、協作。
+version: 1.0.0
+author: 贾维斯
+slug: feishu-all-in-one
 ---
 
-# Feishu Suite
+# Feishu All-in-One
 
-> 飞书全功能集成技能 - 消息、文档、日历、任务、多维表格一站式管理。适用于企业协作、工作流自动化、数据管理。觸發詞：飛書、文檔、日程、任務、多維表格、協作。
+飞书全功能集成技能，一站式管理飞书资源。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jw-feishu-suite`
-- **Source URL:** [https://clawhub.ai/skills/jw-feishu-suite](https://clawhub.ai/skills/jw-feishu-suite)
+## 功能模块
 
-## Overview
+### 1. 消息管理
+- 发送文本消息
+- 发送富文本消息
+- 发送图片/文件
+- 获取群聊列表
+- 查询群成员
 
+### 2. 文档协作
+- 创建云文档
+- 获取文档内容
+- 更新文档内容
+- 文档评论管理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jw-feishu-suite
+### 3. 日历日程
+- 创建日程
+- 查询日程列表
+- 更新日程
+- 回复日程邀请
+
+### 4. 任务管理
+- 创建任务
+- 查询任务列表
+- 更新任务状态
+- 任务评论管理
+
+### 5. 多维表格
+- 创建多维表格
+- 添加记录
+- 查询记录
+- 更新记录
+
+## 使用方式
+
+### 发送消息
 ```
+给 [姓名] 发一条飞书消息：[内容]
+```
+
+### 创建日程
+```
+创建一个日程：[标题]，时间：[时间]，参与人：[姓名]
+```
+
+### 创建任务
+```
+创建任务：[标题]，负责人：[姓名]，截止时间：[时间]
+```
+
+### 文档操作
+```
+在 [文档名] 中添加内容：[内容]
+```
+
+## API权限要求
+
+### 消息权限
+- `im:message:send_as_bot` - 以机器人身份发送消息
+- `im:message` - 消息读取
+- `im:chat:readonly` - 群聊列表
+- `im:chat.members:read` - 群成员
+
+### 文档权限
+- `docx:document` - 文档读写
+- `drive:drive` - 云空间管理
+
+### 日历权限
+- `calendar:calendar` - 日历读写
+- `calendar:calendar:readonly` - 日历只读
+
+### 任务权限
+- `task:task` - 任务管理
+
+### 多维表格权限
+- `bitable:app` - 多维表格应用
+- `bitable:app:readonly` - 多维表格只读
+
+## 注意事项
+
+- 所有操作都需要用户授权
+- 敏感操作会发送授权卡片给用户确认
+- API调用有频率限制（约50次/秒）
+- 文档操作需要文档token（从URL获取）

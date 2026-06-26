@@ -1,35 +1,37 @@
----
-name: "Dual Retrieval"
-description: "Combines M-Flow graph topology and QMD BM25+vector retrieval to merge and rank results for precise multi-hop and semantic search."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dual-retrieval"
-sourceUrl: "https://clawhub.ai/skills/dual-retrieval"
----
+# Dual Retrieval Skill - Phase 4
 
-# Dual Retrieval
+## 描述
+双重检索：M-Flow（图拓扑检索）+ QMD（BM25+向量检索）优势互补。
 
-> Combines M-Flow graph topology and QMD BM25+vector retrieval to merge and rank results for precise multi-hop and semantic search.
+## M-Flow vs QMD 对比
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dual-retrieval`
-- **Source URL:** [https://clawhub.ai/skills/dual-retrieval](https://clawhub.ai/skills/dual-retrieval)
+| 特性 | M-Flow | QMD |
+|------|--------|-----|
+| 检索方式 | 图拓扑 + Bundle Search | BM25 + 向量 + rerank |
+| 适合场景 | 精确问答、多跳推理 | 关键词搜索、语义相似 |
+| 记忆结构 | 四层 Cone Graph | 多 Collection |
+| 优势 | 时间推理、关联推理 | 灵活、已配置 |
 
-## Overview
+## 工作流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dual-retrieval
 ```
+Query → 
+  ├── M-Flow.search() → Episode + Facet + Entity
+  └── QMD search → 文件 + 片段
+      ↓
+结果合并 → 去重 → 排序 → 返回
+```
+
+## 文件结构
+
+```
+dual-retrieval/
+├── SKILL.md
+├── scripts/
+│   ├── __init__.py      # DualRetrievalPipeline
+│   └── test_dual.py     # 测试
+```
+
+## 依赖
+- m-flow-memory skill (MFlowMemory)
+- QMD (qmd tools)

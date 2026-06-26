@@ -1,0 +1,95 @@
+# 连接器配置
+connectors:
+  wechat:
+    name: "微信"
+    enabled: true
+    auth_type: "oauth2"
+    auth_url: "https://open.weixin.qq.com/connect/oauth2/authorize"
+    api_base: "https://api.weixin.qq.com"
+    supported_actions:
+      - send_message
+      - receive_message
+      - send_file
+      - receive_file
+      - get_contacts
+    rate_limit:
+      requests_per_second: 10
+      requests_per_day: 10000
+  
+  dingtalk:
+    name: "钉钉"
+    enabled: true
+    auth_type: "oauth2"
+    auth_url: "https://oapi.dingtalk.com/connect/oauth2/sns_authorize"
+    api_base: "https://oapi.dingtalk.com"
+    supported_actions:
+      - send_message
+      - send_work_notice
+      - create_approval
+      - get_user_info
+      - create_calendar_event
+    rate_limit:
+      requests_per_second: 20
+      requests_per_day: 50000
+  
+  feishu:
+    name: "飞书"
+    enabled: true
+    auth_type: "oauth2"
+    auth_url: "https://open.feishu.cn/open-apis/authen/v1/index"
+    api_base: "https://open.feishu.cn"
+    supported_actions:
+      - send_message
+      - create_document
+      - create_spreadsheet
+      - create_task
+      - send_notification
+    rate_limit:
+      requests_per_second: 15
+      requests_per_day: 30000
+  
+  wps:
+    name: "WPS"
+    enabled: true
+    auth_type: "oauth2"
+    auth_url: "https://open.wps.cn/oauth2/authorize"
+    api_base: "https://open.wps.cn"
+    supported_actions:
+      - create_document
+      - edit_document
+      - create_spreadsheet
+      - create_presentation
+    rate_limit:
+      requests_per_second: 10
+      requests_per_day: 20000
+  
+  tencent_doc:
+    name: "腾讯文档"
+    enabled: true
+    auth_type: "oauth2"
+    auth_url: "https://docs.qq.com/oauth2/authorize"
+    api_base: "https://docs.qq.com/api"
+    supported_actions:
+      - create_document
+      - create_spreadsheet
+      - create_collection
+      - import_file
+    rate_limit:
+      requests_per_second: 10
+      requests_per_day: 20000
+  
+  aliyun_drive:
+    name: "阿里云盘"
+    enabled: true
+    auth_type: "oauth2"
+    auth_url: "https://auth.aliyundrive.com/oauth2/authorize"
+    api_base: "https://openapi.aliyundrive.com"
+    supported_actions:
+      - upload_file
+      - download_file
+      - list_files
+      - create_folder
+      - share_file
+    rate_limit:
+      requests_per_second: 5
+      requests_per_day: 10000

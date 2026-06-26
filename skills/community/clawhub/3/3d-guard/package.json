@@ -1,0 +1,19 @@
+{
+  "name": "3d-guard",
+  "displayName": "3D模型审计技能",
+  "version": "1.0.0",
+  "description": "3D模型审计技能，用于检查STL、OBJ、3MF等3D模型文件的合规性。支持版权检测、政治敏感性分析、尺寸验证、元数据合规性验证等。",
+  "keywords": [
+    "3d-printing",
+    "model-audit",
+    "copyright-check",
+    "compliance",
+    "stl",
+    "obj",
+    "3mf"
+  ],
+  "changelog": "🎉 初始发布：完整的3D模型审计功能，支持多种格式和检测维度",
+  "slug": "3d-guard",
+  "author": "OpenClaw User",
+  "license": "MIT"
+}

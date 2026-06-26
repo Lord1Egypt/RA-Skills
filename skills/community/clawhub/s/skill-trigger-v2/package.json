@@ -1,0 +1,59 @@
+{
+  "name": "skill-trigger-v2",
+  "version": "2.1.3",
+  "description": "智能技能触发器 — 统一阈值 + 优先级仲裁 (🔷 Powered by halfmoon82 🔷)",
+  "author": "halfmoon82",
+  "contributors": [
+    {
+      "name": "halfmoon82",
+      "url": "https://github.com/halfmoon82",
+      "role": "Core Algorithm Architect"
+    }
+  ],
+  "license": "MIT",
+  "copyright": "© 2026 halfmoon82. All rights reserved.",
+  "powered_by": "halfmoon82",
+  "attribution": "🔷 Powered by halfmoon82 🔷",
+  "main": "skill_trigger_v2/__init__.py",
+  "keywords": [
+    "skill",
+    "trigger",
+    "intent-matching",
+    "arbitration"
+  ],
+  "categories": [
+    "ai_agent"
+  ],
+  "level": "L1",
+  "dependencies": {
+    "skill-quick-index": {
+      "version": ">=1.0.0",
+      "required": true,
+      "description": "技能索引服务 (ClawHub: skill-quick-index)"
+    },
+    "semantic-router": {
+      "version": ">=7.7.2",
+      "required": true,
+      "description": "语义路由系统 (ClawHub: semantic-router)"
+    }
+  },
+  "scripts": {
+    "check": "python3 setup/wizard.py check",
+    "verify": "python3 setup/wizard.py verify",
+    "init": "python3 setup/wizard.py init",
+    "fix-deps": "python3 setup/wizard.py fix-deps"
+  },
+  "files": [
+    "skill_trigger_v2/",
+    "setup/",
+    "README.md",
+    "SKILL.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-trigger-v2"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  }
+}

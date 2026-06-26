@@ -1,0 +1,51 @@
+{
+  "name": "openclaw-daily-backup",
+  "version": "1.3.1",
+  "description": "This skill should be used when the user asks for daily backup, scheduled backup, restore, rollback, recovery, or routine protection of core OpenClaw workspace identity and configuration files.",
+  "type": "module",
+  "main": "scripts/backup.mjs",
+  "bin": {
+    "soul-backup": "scripts/backup.mjs",
+    "soul-restore": "scripts/restore.mjs",
+    "soul-list": "scripts/list.mjs",
+    "soul-validate": "scripts/validate.mjs"
+  },
+  "scripts": {
+    "backup": "node scripts/backup.mjs",
+    "restore": "node scripts/restore.mjs",
+    "list": "node scripts/list.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node tests/test.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "daily-backup",
+    "backup",
+    "restore",
+    "recovery",
+    "rollback",
+    "workspace",
+    "soul",
+    "agent",
+    "ai"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/X-RayLuan/soul-backup-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/X-RayLuan/soul-backup-skill/issues"
+  },
+  "homepage": "https://github.com/X-RayLuan/soul-backup-skill#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "scripts/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ]
+}

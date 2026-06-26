@@ -1,0 +1,52 @@
+{
+  "name": "lark",
+  "version": "2.0.1",
+  "description": "Lark digital command center with a coordination diagnosis engine. Orchestrates chat, approvals, meetings, docs, and spreadsheets while minimizing organizational friction.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://github.com/qclawbot/lark-skill",
+  "keywords": [
+    "lark",
+    "command center",
+    "coordination diagnosis",
+    "approval bottleneck",
+    "meeting intelligence",
+    "chat triage",
+    "stakeholder sensitivity"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "coordination_diagnosis": "Diagnose collaboration friction before selecting an action path",
+    "tactical_orchestration": "Choose the best operational layer and action type under real constraints",
+    "handshake_protocol": "Enforce mode selection for operational safety",
+    "red_line_protection": "Suppress high-friction or high-sensitivity actions without confirmation",
+    "context_recovery": "Recover the real decision context across chats, meetings, docs, and sheets"
+  },
+  "triggers": [
+    "initialize lark",
+    "check bottlenecks",
+    "summarize lark noise",
+    "review pending approvals",
+    "meeting summary",
+    "switch lark mode",
+    "why is this project stuck",
+    "find the coordination issue"
+  ],
+  "audience": [
+    "Managers in high-pressure collaborative environments",
+    "Project owners",
+    "Cross-functional operators",
+    "Teams using Lark as a central coordination layer"
+  ],
+  "openclaw": {
+    "primaryEnv": "LARK_APP_ID",
+    "requires": {
+      "env": [
+        "LARK_APP_ID",
+        "LARK_APP_SECRET"
+      ]
+    }
+  }
+}

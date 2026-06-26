@@ -1,0 +1,15 @@
+200IQ Action Plan for {{task_name}}:
+
+1. Optimized Steps:
+{% for step in steps %}
+- {{step}}
+{% endfor %}
+
+2. KPIs:
+- Expected Gain: {{expected_gain}}
+- Cost: {{cost}}
+- Expected ROI: {{roi}}
+
+3. Execution Notes:
+- Use AI prompts from optimized_prompt.txt
+- Delegate sub-tasks to tools/agents

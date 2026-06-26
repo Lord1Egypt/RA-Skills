@@ -1,35 +1,102 @@
----
-name: "Oil Price Monitor"
-description: "监测国内成品油价格调整窗口，提供调价提醒及当前油价查询，助用户合理安排加油时间和预算。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oil-price-monitor"
-sourceUrl: "https://clawhub.ai/skills/oil-price-monitor"
----
+# oil-price-monitor - 国内油价监控 Skill
 
-# Oil Price Monitor
+## 功能
+监测国内成品油价格调整窗口，在调价前提醒用户提前加油。
 
-> 监测国内成品油价格调整窗口，提供调价提醒及当前油价查询，助用户合理安排加油时间和预算。
+## 触发条件
+- 用户询问油价
+- 定时任务（调价窗口前 1-2 天自动监测）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oil-price-monitor`
-- **Source URL:** [https://clawhub.ai/skills/oil-price-monitor](https://clawhub.ai/skills/oil-price-monitor)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oil-price-monitor
+### 1. 手动查询油价
 ```
+查询当前油价情况
+油价什么时候调整
+最近油价涨了吗
+```
+
+### 2. 调用 Tavily 搜索获取最新数据
+```
+tavily_search(query="2026 年国内油价调整时间表 最新油价", count=5)
+```
+
+### 3. 关键信息提取
+从搜索结果中提取：
+- **下次调价时间**：格式为"月日 24 时"
+- **预计涨幅**：元/吨 或 元/升
+- **当前油价**：92 号/95 号汽油价格
+- **调价方向**：上涨/下跌/搁浅
+
+### 4. 调价窗口规律
+国内成品油定价机制：
+- **调整周期**：每 10 个工作日调整一次
+- **全年窗口**：约 26 次（每月 2 次）
+- **触发条件**：国际原油价格变化超过 50 元/吨
+- **调控上下限**：130 美元/桶（上限）、40 美元/桶（下限）
+
+## 2026 年调价窗口时间表
+
+| 月份 | 调价时间 1 | 调价时间 2 |
+|------|-----------|-----------|
+| 1 月 | 1 月 6 日 24 时 | 1 月 20 日 24 时 |
+| 2 月 | 2 月 3 日 24 时 | 2 月 24 日 24 时 |
+| 3 月 | 3 月 9 日 24 时 | 3 月 23 日 24 时 |
+| 4 月 | 4 月 7 日 24 时 | 4 月 21 日 24 时 |
+| 5 月 | 5 月 8 日 24 时 | 5 月 21 日 24 时 |
+| 6 月 | 6 月 4 日 24 时 | 6 月 18 日 24 时 |
+| 7 月 | 7 月 3 日 24 时 | 7 月 17 日 24 时 |
+| 8 月 | 8 月 14 日 24 时 | 8 月 28 日 24 时 |
+| 9 月 | 9 月 11 日 24 时 | 9 月 24 日 24 时 |
+| 10 月 | 10 月 15 日 24 时 | 10 月 29 日 24 时 |
+| 11 月 | 11 月 12 日 24 时 | 11 月 26 日 24 时 |
+| 12 月 | 12 月 10 日 24 时 | 12 月 24 日 24 时 |
+
+## 定时任务配置建议
+
+在 `docs/cron-jobs.md` 中添加：
+```json
+{
+  "name": "油价监控提醒",
+  "cron": "0 9 */2 * *",
+  "description": "每 2 天检查一次油价，在调价窗口前 1 天提醒用户",
+  "agent": "bot_a",
+  "model": "bailian/qwen3.5-plus"
+}
+```
+
+## 回复模板
+
+### 调价前提醒
+```
+⛽ 油价调整提醒
+
+下次调价：{日期} 24 时（{倒计时}天）
+预计涨幅：{涨幅}元/升（{涨幅吨}元/吨）
+调价方向：{上涨/下跌}
+
+建议：{提前加油/观望}
+以 50 升油箱计算，调价后加满将多花/少花约{金额}元
+```
+
+### 当前油价查询
+```
+📊 当前油价（{地区}）
+
+92 号汽油：{价格}元/升
+95 号汽油：{价格}元/升
+0 号柴油：{价格}元/升
+
+下次调价：{日期} 24 时
+```
+
+## 注意事项
+1. 数据来源优先参考官方渠道（发改委、中国日报网）
+2. 涨幅数据需注明是预测值还是已确认
+3. 不同地区油价有差异，说明是参考价
+4. 民营加油站可能有 0.2-0.5 元/升优惠
+
+## 相关文件
+- 技能位置：`skills/oil-price-monitor/SKILL.md`
+- 定时任务：`docs/cron-jobs.md`
+- 用户记忆：`MEMORY.md`（记录用户关注油价）

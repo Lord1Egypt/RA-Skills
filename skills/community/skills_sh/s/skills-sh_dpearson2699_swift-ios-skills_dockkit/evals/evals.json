@@ -1,0 +1,50 @@
+{
+  "skill_name": "dockkit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm building an iOS camera app that should work with a DockKit stand. Sketch the setup and control flow for system tracking, tap-to-track, framing or region-of-interest controls, manual pan/tilt mode, and hardware button events. Include the privacy/setup caveats that matter.",
+      "expected_output": "A DockKit camera-app implementation outline that uses DockAccessoryManager, handles dock/undock, keeps DockKit-specific setup distinct from normal camera privacy, uses current framing and ROI guidance, and handles iOS 17.4+ accessory events with throwing async sequences.",
+      "files": [],
+      "expectations": [
+        "States that DockKit itself has no special entitlement or DockKit-specific Info.plist key while camera capture still needs normal camera privacy such as NSCameraUsageDescription.",
+        "Uses DockAccessoryManager.shared.accessoryStateChanges to obtain a DockAccessory and handle both docked and undocked states.",
+        "Enables or disables system tracking with setSystemTrackingEnabled(_:) and does not claim the setting persists across app lifecycle events.",
+        "Represents .automatic as the documented default framing mode and .center as an explicit mode.",
+        "Uses selectSubject(at:) with normalized unit coordinates and explains that region of interest uses normalized video-frame coordinates.",
+        "Disables system tracking before manual setAngularVelocity or setOrientation control.",
+        "Marks accessoryEvents as iOS 17.4+ and iterates it as a throwing async sequence.",
+        "Does not route the answer into generic Bluetooth pairing, AccessorySetupKit picker, or AVFoundation-only camera setup."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this DockKit custom tracking plan: keep system tracking on, run Vision at 5 fps, create DockAccessory.Observation rectangles in UIKit view coordinates, call track once per second with an optional CVPixelBuffer when convenient, and animate the dock repeatedly in a tight loop until the subject is centered.",
+      "expected_output": "A correction-focused review that disables system tracking before custom tracking, uses normalized lower-left observation coordinates, sends track() data at 10-30 fps, describes the actual image overloads, and separates track() frame-rate limits from animate/setOrientation call-rate limits.",
+      "files": [],
+      "expectations": [
+        "Explains that custom DockAccessory.track calls require disabling system tracking first.",
+        "Corrects the 5 fps or 1 fps cadence to the supported 10-30 fps range for track(_:cameraInformation:).",
+        "Corrects UIKit view coordinates to normalized observation rectangles with DockKit/Vision lower-left origin coordinates.",
+        "Builds DockAccessory.CameraInformation from the active AVCaptureDevice type, position, orientation, intrinsics, and reference dimensions as available.",
+        "States that CVPixelBuffer is supplied through separate image: overloads and is required when those overloads are chosen, not an optional parameter on every track call.",
+        "Warns that animate(motion:) and setOrientation(_:duration:relative:) should not be called more than twice per second.",
+        "Uses .humanFace, .humanBody, or .object observation types appropriately and avoids inventing unsupported observation cases."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want a feature that follows whichever person is speaking, shows the dock battery in my SwiftUI UI, reacts to the dock zoom and shutter buttons, and also pairs a new BLE camera accessory if none is connected. What belongs in DockKit, what availability checks should I use, and what should move to another skill?",
+      "expected_output": "A boundary-aware DockKit answer that uses iOS 18 trackingStates and batteryStates for intelligent tracking and status, iOS 17.4 accessoryEvents for buttons, and routes BLE accessory onboarding to AccessorySetupKit or Core Bluetooth rather than expanding DockKit scope.",
+      "files": [],
+      "expectations": [
+        "Uses trackingStates on iOS 18+ to read trackedSubjects and selectSubjects(_:) for speaker or saliency-driven selection.",
+        "Treats trackingStates as a throwing async sequence and uses person fields such as speakingConfidence, lookingAtCameraConfidence, saliencyRank, rect, and identifier accurately.",
+        "Uses batteryStates on iOS 18+ as a throwing async sequence and reads batteryLevel, chargeState, lowBattery, and name.",
+        "Uses accessoryEvents on iOS 17.4+ as a throwing async sequence for cameraShutter, cameraFlip, cameraZoom(factor:), and custom button events.",
+        "Keeps SwiftUI UI state updates on the main actor or an observable model without blocking camera or DockKit work on the main thread.",
+        "Routes BLE accessory pairing or discovery to AccessorySetupKit/Core Bluetooth rather than presenting DockKit as the pairing framework."
+      ]
+    }
+  ]
+}

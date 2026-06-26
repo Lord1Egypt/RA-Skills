@@ -1,0 +1,677 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-27",
+  "supplements": {
+    "enzymes": {
+      "category": "酶类",
+      "items": [
+        {
+          "id": "digestive-enzymes",
+          "name": "Digestive Enzymes (消化酶)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["消化支持", "营养吸收"],
+          "secondaryBenefits": ["腹胀缓解"],
+          "optimalDose": "随餐服用",
+          "keyEnzymes": [
+            "Amylase (淀粉酶)",
+            "Protease (蛋白酶)",
+            "Lipase (脂肪酶)",
+            "Lactase (乳糖酶)"
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "bromelain",
+          "name": "Bromelain (菠萝蛋白酶)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["抗炎", "消化支持"],
+          "secondaryBenefits": ["运动恢复", "鼻窦炎"],
+          "optimalDose": "500-2000 mg/day",
+          "timing": "空腹（抗炎）或随餐（消化）",
+          "safetyProfile": {
+            "sideEffects": ["腹泻"],
+            "contraindications": ["抗凝血药"]
+          }
+        },
+        {
+          "id": "serrapeptase",
+          "name": "Serrapeptase (沙雷肽酶)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["抗炎", "疼痛缓解"],
+          "secondaryBenefits": ["鼻窦炎"],
+          "optimalDose": "10-60 mg/day (20,000-120,000 SPU)",
+          "timing": "空腹",
+          "safetyProfile": {
+            "sideEffects": ["过敏"],
+            "contraindications": ["抗凝血药"]
+          }
+        },
+        {
+          "id": "lactase",
+          "name": "Lactase (乳糖酶)",
+          "evidenceLevel": 5,
+          "primaryBenefits": ["乳糖不耐受"],
+          "secondaryBenefits": [],
+          "optimalDose": "随乳制品服用",
+          "timing": "随乳制品",
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": []
+          }
+        }
+      ]
+    },
+    "antioxidants": {
+      "category": "抗氧化剂",
+      "items": [
+        {
+          "id": "alpha-lipoic-acid",
+          "name": "Alpha-Lipoic Acid (α-硫辛酸)",
+          "otherNames": ["ALA", "硫辛酸"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["血糖控制", "神经病变"],
+          "secondaryBenefits": ["肝脏健康", "抗氧化"],
+          "optimalDose": "300-600 mg/day",
+          "forms": [
+            {"type": "R-ALA", "bioavailability": 100, "recommended": true},
+            {"type": "混合ALA", "bioavailability": 50, "recommended": false}
+          ],
+          "timing": "空腹",
+          "synergistic": ["乙酰左旋肉碱"],
+          "safetyProfile": {
+            "upperLimit": "1200 mg/day",
+            "sideEffects": ["皮疹", "低血糖"],
+            "contraindications": ["甲状腺药物", "化疗"]
+          }
+        },
+        {
+          "id": "n-acetyl-cysteine",
+          "name": "NAC (N-乙酰半胱氨酸)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["肝脏保护", "谷胱甘肽前体"],
+          "secondaryBenefits": ["呼吸道健康", "免疫支持", "心理健康"],
+          "optimalDose": "600-1800 mg/day",
+          "timing": "空腹",
+          "safetyProfile": {
+            "upperLimit": "1800 mg/day",
+            "sideEffects": ["恶心", "腹泻"],
+            "contraindications": ["哮喘（可能诱发）", "硝酸甘油"]
+          }
+        },
+        {
+          "id": "glutathione",
+          "name": "Glutathione (谷胱甘肽)",
+          "otherNames": ["GSH", "还原型谷胱甘肽"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["抗氧化", "肝脏解毒"],
+          "secondaryBenefits": ["免疫支持"],
+          "optimalDose": "250-500 mg/day",
+          "forms": [
+            {"type": "脂质体谷胱甘肽", "bioavailability": 90, "recommended": true},
+            {"type": "乙酰谷胱甘肽", "bioavailability": 80, "recommended": true},
+            {"type": "普通谷胱甘肽", "bioavailability": 10, "recommended": false}
+          ],
+          "timing": "空腹",
+          "synergistic": ["维生素C", "NAC"],
+          "safetyProfile": {
+            "sideEffects": [],
+            "contraindications": ["哮喘（部分）"]
+          }
+        },
+        {
+          "id": "astaxanthin",
+          "name": "Astaxanthin (虾青素)",
+          "otherNames": ["Haematococcus pluvialis"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["皮肤健康", "眼睛健康"],
+          "secondaryBenefits": ["运动表现", "免疫支持"],
+          "optimalDose": "4-12 mg/day",
+          "forms": [
+            {"type": "天然虾青素", "bioavailability": 100, "recommended": true},
+            {"type": "合成虾青素", "bioavailability": 50, "recommended": false}
+          ],
+          "timing": "随餐（需脂肪）",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "lutein-zeaxanthin",
+          "name": "Lutein + Zeaxanthin (叶黄素+玉米黄质)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["眼睛健康", "黄斑变性预防"],
+          "secondaryBenefits": ["蓝光保护"],
+          "optimalDose": "10-20 mg lutein + 2-4 mg zeaxanthin/day",
+          "timing": "随餐（需脂肪）",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "lycopene",
+          "name": "Lycopene (番茄红素)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["前列腺健康", "心血管健康"],
+          "secondaryBenefits": ["皮肤健康"],
+          "optimalDose": "10-30 mg/day",
+          "forms": [
+            {"type": "番茄红素油", "bioavailability": 80, "recommended": true}
+          ],
+          "timing": "随餐（需脂肪）",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "coenzyme-q10",
+          "name": "CoQ10 (辅酶Q10)",
+          "otherNames": ["Ubiquinone", "Ubiquinol"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["心血管健康", "能量代谢", "他汀副作用"],
+          "secondaryBenefits": ["偏头痛", "运动表现"],
+          "optimalDose": "100-200 mg/day",
+          "therapeuticDose": "300 mg/day",
+          "forms": [
+            {"type": "Ubiquinol (还原型)", "bioavailability": 90, "age": "40+", "recommended": true},
+            {"type": "Ubiquinone (氧化型)", "bioavailability": 50, "age": "<40", "recommended": true}
+          ],
+          "timing": "随餐（需脂肪）",
+          "synergistic": ["Omega-3", "维生素E"],
+          "interactions": {
+            "conflicts": ["华法林"]
+          },
+          "safetyProfile": {
+            "upperLimit": "1200 mg/day",
+            "sideEffects": ["失眠（晚上吃）"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "pycnogenol",
+          "name": "Pycnogenol (碧萝芷)",
+          "otherNames": ["Pine bark extract"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["心血管健康", "认知功能"],
+          "secondaryBenefits": ["皮肤健康", "勃起功能"],
+          "optimalDose": "100-200 mg/day",
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        }
+      ]
+    },
+    "hormones_precursors": {
+      "category": "激素/前体",
+      "items": [
+        {
+          "id": "melatonin",
+          "name": "Melatonin (褪黑素)",
+          "evidenceLevel": 5,
+          "primaryBenefits": ["睡眠质量", "时差调整"],
+          "secondaryBenefits": ["抗氧化", "免疫支持"],
+          "optimalDose": "0.5-3 mg before bed",
+          "timing": "睡前30-60分钟",
+          "notes": "低剂量(0.5mg)可能比高剂量更有效",
+          "safetyProfile": {
+            "upperLimit": "10 mg/day",
+            "sideEffects": ["嗜睡", "头痛", "恶梦"],
+            "contraindications": ["自身免疫病", "怀孕", "癫痫"]
+          }
+        },
+        {
+          "id": "dhea",
+          "name": "DHEA (脱氢表雄酮)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["激素平衡", "抗衰老"],
+          "secondaryBenefits": ["情绪", "性功能"],
+          "optimalDose": "25-50 mg/day",
+          "timing": "早晨",
+          "notes": "需医生处方（部分国家）",
+          "testIndicators": ["DHEA-S"],
+          "safetyProfile": {
+            "upperLimit": "50 mg/day",
+            "sideEffects": ["痤疮", "脱发", "情绪变化"],
+            "contraindications": ["激素敏感癌症", "怀孕", "肝病"]
+          }
+        },
+        {
+          "id": "pregnenolone",
+          "name": "Pregnenolone (孕烯醇酮)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["认知功能", "情绪"],
+          "secondaryBenefits": ["激素前体"],
+          "optimalDose": "10-50 mg/day",
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["失眠", "焦虑"],
+            "contraindications": ["激素敏感癌症"]
+          }
+        },
+        {
+          "id": "7-keto-dhea",
+          "name": "7-Keto DHEA",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["代谢支持", "体重管理"],
+          "secondaryBenefits": ["免疫支持"],
+          "optimalDose": "100-200 mg/day",
+          "timing": "早晨",
+          "notes": "不转化为性激素",
+          "safetyProfile": {
+            "upperLimit": "200 mg/day",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        }
+      ]
+    },
+    "other": {
+      "category": "其他",
+      "items": [
+        {
+          "id": "collagen",
+          "name": "Collagen (胶原蛋白)",
+          "otherNames": ["水解胶原蛋白", "肽类"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["皮肤健康", "关节健康"],
+          "secondaryBenefits": ["骨骼健康", "伤口愈合"],
+          "optimalDose": "2.5-15 g/day",
+          "forms": [
+            {"type": "I型胶原蛋白", "recommended": true, "notes": "皮肤/骨骼"},
+            {"type": "II型胶原蛋白", "recommended": true, "notes": "关节软骨"},
+            {"type": "海洋胶原蛋白", "bioavailability": 150, "recommended": true},
+            {"type": "牛胶原蛋白", "bioavailability": 100, "recommended": true}
+          ],
+          "timing": "空腹或随餐均可",
+          "synergistic": ["维生素C"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "glucosamine",
+          "name": "Glucosamine (氨基葡萄糖)",
+          "otherNames": ["Glucosamine sulfate"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["关节健康"],
+          "secondaryBenefits": ["肠道屏障"],
+          "optimalDose": "1500 mg/day",
+          "forms": [
+            {"type": "硫酸氨基葡萄糖", "bioavailability": 80, "recommended": true},
+            {"type": "盐酸氨基葡萄糖", "bioavailability": 60, "recommended": false}
+          ],
+          "timing": "随餐",
+          "synergistic": ["硫酸软骨素", "MSM"],
+          "testIndicators": ["可能升高血糖（监测）"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["贝类过敏", "糖尿病（监测血糖）"]
+          }
+        },
+        {
+          "id": "chondroitin",
+          "name": "Chondroitin (硫酸软骨素)",
+          "evidenceLevel": 3,
+          "primaryBenefits": ["关节健康"],
+          "secondaryBenefits": [],
+          "optimalDose": "800-1200 mg/day",
+          "timing": "随餐",
+          "synergistic": ["氨基葡萄糖", "MSM"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["胃不适"],
+            "contraindications": ["抗凝血药"]
+          }
+        },
+        {
+          "id": "msm",
+          "name": "MSM (甲基磺酰甲烷)",
+          "otherNames": ["Methylsulfonylmethane"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["关节健康", "抗炎"],
+          "secondaryBenefits": ["皮肤健康", "运动恢复"],
+          "optimalDose": "1500-3000 mg/day",
+          "timing": "随餐",
+          "synergistic": ["氨基葡萄糖", "硫酸软骨素"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹泻"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "hyaluronic-acid",
+          "name": "Hyaluronic Acid (透明质酸)",
+          "otherNames": ["玻尿酸"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["皮肤健康", "关节健康"],
+          "secondaryBenefits": ["眼睛健康"],
+          "optimalDose": "120-200 mg/day",
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "psyllium",
+          "name": "Psyllium (洋车前子壳)",
+          "otherNames": ["Isphagula"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["便秘", "胆固醇"],
+          "secondaryBenefits": ["血糖控制"],
+          "optimalDose": "5-10 g/day",
+          "timing": "随大量水",
+          "interactions": {
+            "spaceApart": ["药物（可能影响吸收）"]
+          },
+          "safetyProfile": {
+            "upperLimit": "30 g/day",
+            "sideEffects": ["腹胀", "气体"],
+            "contraindications": ["肠梗阻", "吞咽困难"]
+          }
+        },
+        {
+          "id": "fiber-blend",
+          "name": "Fiber Blend (纤维复合物)",
+          "evidenceLevel": 4,
+          "primaryBenefits": ["肠道健康", "胆固醇"],
+          "secondaryBenefits": ["血糖控制", "体重管理"],
+          "optimalDose": "5-15 g/day",
+          "forms": [
+            {"type": "可溶性纤维", "sources": ["燕麦", "豆类"]},
+            {"type": "不可溶性纤维", "sources": ["麦麸", "蔬菜"]}
+          ],
+          "timing": "随大量水",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹胀", "气体"],
+            "contraindications": ["肠梗阻"]
+          }
+        },
+        {
+          "id": "betaine-hcl",
+          "name": "Betaine HCl (盐酸甜菜碱)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["胃酸不足", "消化支持"],
+          "secondaryBenefits": [],
+          "optimalDose": "随餐服用，逐渐调整",
+          "timing": "随餐",
+          "notes": "需在指导下使用",
+          "safetyProfile": {
+            "upperLimit": "因人而异",
+            "sideEffects": ["烧心（过量）"],
+            "contraindications": ["胃溃疡", "胃炎"]
+          }
+        },
+        {
+          "id": "ox-bile",
+          "name": "Ox Bile (牛胆汁)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["脂肪消化", "胆囊切除后"],
+          "secondaryBenefits": [],
+          "optimalDose": "125-500 mg with fatty meals",
+          "timing": "随高脂肪餐",
+          "safetyProfile": {
+            "sideEffects": ["腹泻"],
+            "contraindications": ["胆囊正常者"]
+          }
+        },
+        {
+          "id": "phosphatidylserine",
+          "name": "Phosphatidylserine (磷脂酰丝氨酸)",
+          "otherNames": ["PS"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["认知功能", "记忆"],
+          "secondaryBenefits": ["压力缓解", "运动表现"],
+          "optimalDose": "100-300 mg/day",
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "600 mg/day",
+            "sideEffects": ["失眠（晚上吃）"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "phosphatidylcholine",
+          "name": "Phosphatidylcholine (磷脂酰胆碱)",
+          "otherNames": ["PC", "卵磷脂"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["肝脏健康", "细胞膜"],
+          "secondaryBenefits": ["认知功能", "胆碱来源"],
+          "optimalDose": "420-900 mg/day",
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹泻"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "choline",
+          "name": "Choline (胆碱)",
+          "otherNames": ["Alpha-GPC", "CDP-Choline"],
+          "evidenceLevel": 4,
+          "primaryBenefits": ["认知功能", "肝脏健康"],
+          "secondaryBenefits": ["运动表现"],
+          "optimalDose": "250-500 mg/day",
+          "forms": [
+            {"type": "Alpha-GPC", "bioavailability": 95, "brainPenetration": true, "recommended": true},
+            {"type": "CDP-Choline (Citicoline)", "bioavailability": 90, "recommended": true},
+            {"type": "磷脂酰胆碱", "bioavailability": 70, "recommended": true}
+          ],
+          "timing": "早晨或中午",
+          "testIndicators": ["同型半胱氨酸"],
+          "safetyProfile": {
+            "upperLimit": "3500 mg/day",
+            "sideEffects": ["鱼腥味", "腹泻"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "inositol",
+          "name": "Inositol (肌醇)",
+          "otherNames": ["Myo-inositol", "D-chiro-inositol"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["PCOS", "情绪支持"],
+          "secondaryBenefits": ["胰岛素敏感性", "生育"],
+          "optimalDose": "2000-4000 mg/day",
+          "forms": [
+            {"type": "Myo-inositol", "ratio": "40:1", "recommended": true},
+            {"type": "D-chiro-inositol", "ratio": "40:1", "recommended": true}
+          ],
+          "timing": "随餐",
+          "safetyProfile": {
+            "upperLimit": "18000 mg/day",
+            "sideEffects": ["腹泻"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "pqq",
+          "name": "PQQ (吡咯喹啉醌)",
+          "otherNames": ["Pyrroloquinoline quinone"],
+          "evidenceLevel": 2,
+          "primaryBenefits": ["线粒体功能", "认知功能"],
+          "secondaryBenefits": ["心血管健康"],
+          "optimalDose": "10-20 mg/day",
+          "timing": "随餐",
+          "synergistic": ["CoQ10"],
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "nmn",
+          "name": "NMN (烟酰胺单核苷酸)",
+          "otherNames": ["Nicotinamide mononucleotide"],
+          "evidenceLevel": 2,
+          "primaryBenefits": ["抗衰老", "NAD+前体"],
+          "secondaryBenefits": ["能量代谢", "认知功能"],
+          "optimalDose": "250-1000 mg/day",
+          "timing": "早晨",
+          "synergistic": ["白藜芦醇"],
+          "notes": "人体研究有限，动物数据为主",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "nr",
+          "name": "NR (烟酰胺核糖)",
+          "otherNames": ["Nicotinamide riboside", "Niagen"],
+          "evidenceLevel": 2,
+          "primaryBenefits": ["NAD+前体", "抗衰老"],
+          "secondaryBenefits": ["能量代谢"],
+          "optimalDose": "250-500 mg/day",
+          "timing": "早晨",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "spermidine",
+          "name": "Spermidine (亚精胺)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["抗衰老", "自噬激活"],
+          "secondaryBenefits": ["心血管健康"],
+          "optimalDose": "1-10 mg/day",
+          "timing": "随餐",
+          "notes": "人体研究有限",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": [],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "cbd",
+          "name": "CBD (大麻二酚)",
+          "otherNames": ["Cannabidiol", "Hemp extract"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["焦虑缓解", "疼痛", "睡眠"],
+          "secondaryBenefits": ["癫痫", "炎症"],
+          "optimalDose": "10-50 mg/day",
+          "timing": "早晚均可",
+          "forms": [
+            {"type": "全谱CBD", "recommended": true, "entourage": true},
+            {"type": "广谱CBD", "recommended": true, "entourage": true},
+            {"type": "CBD分离物", "recommended": false, "entourage": false}
+          ],
+          "interactions": {
+            "major": ["CYP酶底物（多种药物）"],
+            "notes": "抑制CYP3A4和CYP2C19"
+          },
+          "safetyProfile": {
+            "upperLimit": "1500 mg/day",
+            "sideEffects": ["嗜睡", "口干", "腹泻"],
+            "contraindications": ["怀孕", "肝病"]
+          },
+          "legalNote": "法律地位因地区而异"
+        },
+        {
+          "id": "5-htp",
+          "name": "5-HTP (5-羟基色氨酸)",
+          "otherNames": ["Griffonia simplicifolia"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["情绪支持", "睡眠", "食欲控制"],
+          "secondaryBenefits": ["偏头痛"],
+          "optimalDose": "100-300 mg/day",
+          "timing": "睡前或分次服用",
+          "interactions": {
+            "major": ["SSRIs", "MAOIs", "三环抗抑郁药"],
+            "notes": "5-羟色胺综合征风险"
+          },
+          "safetyProfile": {
+            "upperLimit": "300 mg/day",
+            "sideEffects": ["恶心", "腹泻"],
+            "contraindications": ["抗抑郁药治疗"]
+          }
+        },
+        {
+          "id": "gaba",
+          "name": "GABA (γ-氨基丁酸)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["放松", "睡眠"],
+          "secondaryBenefits": ["焦虑缓解"],
+          "optimalDose": "100-300 mg/day",
+          "timing": "睡前或白天",
+          "notes": "血脑屏障穿透有争议",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["嗜睡"],
+            "contraindications": []
+          }
+        },
+        {
+          "id": "d-ribose",
+          "name": "D-Ribose (D-核糖)",
+          "evidenceLevel": 2,
+          "primaryBenefits": ["能量", "心脏健康"],
+          "secondaryBenefits": ["运动恢复", "纤维肌痛"],
+          "optimalDose": "5-15 g/day",
+          "timing": "随餐或运动前后",
+          "safetyProfile": {
+            "upperLimit": "无明确上限",
+            "sideEffects": ["腹泻", "低血糖"],
+            "contraindications": ["糖尿病"]
+          }
+        },
+        {
+          "id": "tmg",
+          "name": "TMG (三甲基甘氨酸)",
+          "otherNames": ["Betaine anhydrous", "甜菜碱"],
+          "evidenceLevel": 3,
+          "primaryBenefits": ["同型半胱氨酸代谢"],
+          "secondaryBenefits": ["肝脏健康", "运动表现"],
+          "optimalDose": "500-3000 mg/day",
+          "timing": "随餐",
+          "synergistic": ["B6", "B12", "叶酸"],
+          "safetyProfile": {
+            "upperLimit": "6000 mg/day",
+            "sideEffects": ["腹泻", "恶心"],
+            "contraindications": []
+          }
+        }
+      ]
+    }
+  },
+  "statistics": {
+    "totalSupplements": 105,
+    "byCategory": {
+      "vitamins": 13,
+      "minerals": 8,
+      "amino_acids": 10,
+      "fatty_acids": 5,
+      "herbs": 40,
+      "probiotics": 9,
+      "enzymes": 4,
+      "antioxidants": 9,
+      "hormones_precursors": 4,
+      "other": 21
+    }
+  }
+}

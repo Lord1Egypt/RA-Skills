@@ -1,0 +1,146 @@
+{
+  "product_name": "DP14VMM4M, DP14VMM3M",
+  "model_no": "1",
+  "drawing_no": "599-058",
+  "packaging_spec": "BJ0599-0164,BJ0599-0165",
+  "material_code": "599-016",
+  "length_mm": "4000+30-0, 3000+30-0",
+  "mold_info": "",
+  "mold_number": "",
+  "bom": [
+    {
+      "no": "⑧",
+      "part_name": "MODEL",
+      "spec": "60A Yellow(PT123C) TPE (Second)",
+      "quantity": "G"
+    },
+    {
+      "no": "⑦",
+      "part_name": "MODEL",
+      "spec": "92A Black TPE (First)",
+      "quantity": "G"
+    },
+    {
+      "no": "⑥",
+      "part_name": "SHELL",
+      "spec": "DP Shell, Grey ABS",
+      "quantity": "2PCS"
+    },
+    {
+      "no": "⑤",
+      "part_name": "MODEL",
+      "spec": "PE",
+      "quantity": "G"
+    },
+    {
+      "no": "④",
+      "part_name": "FOIL",
+      "spec": "Copper Foil W6*L30MM",
+      "quantity": "2PCS"
+    },
+    {
+      "no": "③",
+      "part_name": "SHIELD",
+      "spec": "Tinplate",
+      "quantity": "2PCS"
+    },
+    {
+      "no": "②",
+      "part_name": "PLUG",
+      "spec": "DP M Connector, Gold Plated",
+      "quantity": "2PCS"
+    },
+    {
+      "no": "①",
+      "part_name": "CABLE",
+      "spec": "DP 1.4 26AWG (1/0.43BC*1P+AL+MY)*5C+1/0.254BC*4C+AL+D1/0.254BC*6C+176#/0.11AL-MG+Black TPE OD=7.5MM",
+      "quantity": "M"
+    }
+  ],
+  "tolerances": [
+    {
+      "range": "0.5-3.0",
+      "hardware": "±0.05",
+      "plastic": "±0.1"
+    },
+    {
+      "range": "3.0-6.0",
+      "hardware": "±0.05",
+      "plastic": "±0.1"
+    },
+    {
+      "range": "6.0-30.0",
+      "hardware": "±0.05",
+      "plastic": "±0.2"
+    },
+    {
+      "range": "≥30",
+      "hardware": "±0.05",
+      "plastic": "±0.3"
+    }
+  ],
+  "test_requirements": {
+    "table": [],
+    "other_tests": [
+      "100% OPEN SHORT MISS WIRE TEST",
+      "CONTACT RESISTANCE:5 OHM MAX",
+      "INSULATION RESISTANCE: 5M OHM MIN",
+      "HI-POT TEST: DC 300V/10ms",
+      "The product is ROHS compliant.",
+      "PASS 8K@60HZ 32.4G eye diagram"
+    ]
+  },
+  "pin_assignment": {
+    "connectors": [
+      "P1",
+      "P2"
+    ],
+    "description": "P1: 1 3 2 4 6 5 7 9 8 10 12 11 13 14 15 17 16 18 19 shell\nP2: 12 10 11 9 7 8 6 4 5 3 1 2 13 14 15 17 16 18 19 shell"
+  },
+  "dimensions": [
+    "19.8±0.5",
+    "11.6±0.3",
+    "11.1±0.3",
+    "23.5±0.5",
+    "50.1±0.5"
+  ],
+  "notes": [
+    "增加客户品名和长度"
+  ],
+  "revision_history": [
+    {
+      "revision": "A1",
+      "date": "2026/03/18",
+      "description": ""
+    },
+    {
+      "revision": "A0",
+      "date": "2026/03/17",
+      "description": ""
+    }
+  ],
+  "company": "珠海福春电子 FARREACH",
+  "drawing_date": "2007.05.03",
+  "drawn_by": "Kenny",
+  "checked_by": "X.J.C",
+  "approved_by": "Lin.",
+  "products": [
+    {
+      "customer_item": "DP14VMM4M",
+      "length_mm": "4000+30-0",
+      "material_code": "BJ0599-0164",
+      "packaging_spec": "BJ0599-0164"
+    },
+    {
+      "customer_item": "DP14VMM3M",
+      "length_mm": "3000+30-0",
+      "material_code": "BJ0599-0165",
+      "packaging_spec": "BJ0599-0165"
+    }
+  ],
+  "extraction_method": "hybrid",
+  "source_file": "a6585047-d41a-4f24-bb76-93b90807c26c.pdf",
+  "pages": 1,
+  "warnings": [],
+  "confidence": 100.0
+}

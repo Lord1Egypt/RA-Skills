@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>周易本经占筮</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="oracle">
+        <header class="masthead">
+          <div>
+            <p class="eyebrow">周易本经 · 六爻取辞 · 易问</p>
+            <h1>周易本经占筮</h1>
+          </div>
+          <div class="bagua-ring" aria-hidden="true">
+            <span>☰</span><span>☱</span><span>☲</span><span>☳</span>
+            <span>☴</span><span>☵</span><span>☶</span><span>☷</span>
+          </div>
+        </header>
+
+        <section class="casting-panel">
+          <label class="question-label" for="question">当下之问</label>
+          <textarea
+            id="question"
+            rows="4"
+            placeholder="例如：我是否应该在这个月推进新的合作？"
+          ></textarea>
+
+          <div class="controls">
+            <div class="mode-switch" role="group" aria-label="起卦方式">
+              <button class="mode-button active" type="button" data-method="coin">三钱</button>
+              <button class="mode-button" type="button" data-method="yarrow">蓍草</button>
+            </div>
+            <button class="cast-button" id="castButton" type="button">
+              <span class="button-icon" aria-hidden="true">◎</span>
+              起卦
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <section class="atlas-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">全体系导航</p>
+            <h2>术数百科</h2>
+          </div>
+          <div class="atlas-search">
+            <input id="catalogSearch" type="search" placeholder="搜索体系、用途或资料要求" />
+          </div>
+        </div>
+        <div class="grade-filter" id="catalogFilters" role="group" aria-label="精度筛选">
+          <button class="filter-button active" type="button" data-grade="all">全部</button>
+          <button class="filter-button" type="button" data-grade="S">S 级</button>
+          <button class="filter-button" type="button" data-grade="B">B 级</button>
+          <button class="filter-button" type="button" data-grade="C">C 级</button>
+        </div>
+        <div id="catalogGrid" class="catalog-grid"></div>
+      </section>
+
+      <section class="library-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">六十四卦</p>
+            <h2>本经卦库</h2>
+          </div>
+          <div class="atlas-search">
+            <input id="hexagramSearch" type="search" placeholder="搜索卦名、卦辞或爻辞" />
+          </div>
+        </div>
+        <div id="hexagramLibrary" class="hexagram-library"></div>
+      </section>
+
+      <section class="result-layout" id="resultLayout" hidden>
+        <section class="hexagram-stage" aria-live="polite">
+          <div class="hexagram-visuals">
+            <div class="hex-block">
+              <p class="block-label">本卦</p>
+              <div class="hexagram" id="primaryHexagram"></div>
+              <h2 id="primaryTitle">-</h2>
+              <p id="primaryTrigrams">-</p>
+            </div>
+            <div class="change-arrow" id="changeArrow">→</div>
+            <div class="hex-block secondary" id="changedBlock">
+              <p class="block-label">变卦</p>
+              <div class="hexagram" id="changedHexagram"></div>
+              <h2 id="changedTitle">-</h2>
+              <p id="changedTrigrams">-</p>
+            </div>
+          </div>
+        </section>
+
+        <aside class="reading-panel">
+          <div class="reading-header">
+            <p class="eyebrow">本经取辞</p>
+            <button class="icon-button" id="copyButton" type="button" title="复制解读">
+              ⧉
+            </button>
+          </div>
+          <div id="readingText" class="reading-text"></div>
+        </aside>
+      </section>
+
+      <section class="detail-grid" id="detailGrid" hidden>
+        <article class="detail-panel">
+          <h3>六爻</h3>
+          <div id="lineList" class="line-list"></div>
+        </article>
+        <article class="detail-panel">
+          <h3>本经线索</h3>
+          <div id="symbolList" class="symbol-list"></div>
+        </article>
+        <article class="detail-panel journal-panel">
+          <div class="panel-title-row">
+            <h3>近占</h3>
+            <button class="icon-button" id="clearJournalButton" type="button" title="清空记录">
+              ×
+            </button>
+          </div>
+          <div id="journalList" class="journal-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./data/zhouyi-benjing.js"></script>
+    <script src="./data/system-catalog.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

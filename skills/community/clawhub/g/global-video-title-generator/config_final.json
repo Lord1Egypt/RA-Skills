@@ -1,0 +1,173 @@
+{
+  "skill": {
+    "name": "video-content-gen",
+    "version": "2.0.0",
+    "description": "Video Content Generator - Affordable tool for YouTube & TikTok creators",
+    "author": "BTC 5",
+    "license": "Commercial",
+    "category": "content-creation",
+    "tags": ["youtube", "tiktok", "video", "content", "affordable", "creator-tools"]
+  },
+  
+  "business_model": {
+    "revenue_target": 5000,
+    "currency": "USD",
+    "pricing_strategy": "low-price-high-volume",
+    "free_tier_enabled": true,
+    "credit_system_enabled": true
+  },
+  
+  "content_types": {
+    "title": {
+      "credits": 1,
+      "description": "SEO-optimized video title",
+      "features": ["seo_scoring", "length_optimization", "platform_specific"]
+    },
+    "description": {
+      "credits": 2,
+      "description": "Complete video description",
+      "features": ["engagement_prompts", "hashtag_suggestions", "formatting"]
+    },
+    "complete": {
+      "credits": 3,
+      "description": "Full video content package",
+      "includes": ["title", "description", "tags", "engagement", "chapters"],
+      "features": ["all_features", "quality_scoring", "batch_support"]
+    }
+  },
+  
+  "pricing": {
+    "free_tier": {
+      "daily_credits": 10,
+      "monthly_value": "$15",
+      "purpose": "user_acquisition",
+      "features": ["basic_generation", "single_platform", "no_batch"],
+      "no_registration": true
+    },
+    
+    "paid_tiers": [
+      {
+        "name": "Starter",
+        "slug": "starter",
+        "price": 4.99,
+        "monthly_credits": 300,
+        "cost_per_credit": 0.0166,
+        "target_users": ["hobby_creators", "students", "beginners"],
+        "value_prop": "Perfect for casual creators",
+        "features": [
+          "seo_optimized_titles",
+          "basic_descriptions",
+          "tag_suggestions",
+          "engagement_prompts"
+        ],
+        "limits": {
+          "max_batch": 3,
+          "api_access": false,
+          "support": "community"
+        }
+      },
+      {
+        "name": "Creator",
+        "slug": "creator",
+        "price": 9.99,
+        "monthly_credits": 800,
+        "cost_per_credit": 0.0125,
+        "target_users": ["professional_creators", "influencers", "small_businesses"],
+        "value_prop": "Best value for serious creators",
+        "features": [
+          "advanced_seo",
+          "professional_descriptions",
+          "chapter_generation",
+          "viral_scoring",
+          "batch_processing"
+        ],
+        "limits": {
+          "max_batch": 10,
+          "api_access": "basic",
+          "support": "email_48h"
+        }
+      },
+      {
+        "name": "Team",
+        "slug": "team",
+        "price": 19.99,
+        "monthly_credits": 2000,
+        "cost_per_credit": 0.0100,
+        "target_users": ["agencies", "marketing_teams", "studios"],
+        "value_prop": "For teams and high-volume creators",
+        "features": [
+          "all_creator_features",
+          "custom_templates",
+          "analytics",
+          "priority_processing",
+          "full_api"
+        ],
+        "limits": {
+          "max_batch": 50,
+          "api_access": "full",
+          "support": "priority_24h"
+        }
+      }
+    ],
+    
+    "revenue_calculation": {
+      "target_monthly_revenue": 5000,
+      "required_paid_users": 675,
+      "expected_distribution": {
+        "starter": {"users": 400, "revenue": 1996},
+        "creator": {"users": 250, "revenue": 2497.5},
+        "team": {"users": 25, "revenue": 499.75}
+      },
+      "total_revenue": 4993.25,
+      "free_users_needed": 31250,
+      "conversion_rate": "2.16%"
+    }
+  },
+  
+  "platforms": {
+    "youtube": {
+      "title_max_length": 100,
+      "description_min_length": 200,
+      "features": ["seo_optimization", "chapter_support", "tag_optimization"],
+      "categories": ["tech", "gaming", "education", "entertainment", "lifestyle"]
+    },
+    "tiktok": {
+      "title_max_length": 150,
+      "description_max_length": 150,
+      "features": ["hashtag_optimization", "viral_scoring", "trend_integration"],
+      "categories": ["comedy", "educational", "fitness", "cooking", "dance"]
+    }
+  },
+  
+  "technical": {
+    "architecture": "modular_python",
+    "dependencies": "none",
+    "deployment": "single_file",
+    "scaling": {
+      "phase_1": {"users": 10000, "cost": 200},
+      "phase_2": {"users": 50000, "cost": 1000},
+      "phase_3": {"users": 200000, "cost": 5000}
+    }
+  },
+  
+  "marketing": {
+    "user_acquisition": {
+      "channels": ["reddit", "youtube_communities", "tiktok_groups", "product_hunt"],
+      "cost_per_user": 0.10,
+      "monthly_budget": 500,
+      "target_users_per_month": 5000
+    },
+    "conversion_funnel": {
+      "free_trial": "10_credits_no_signup",
+      "email_sequence": "3_emails_7_days",
+      "social_proof": "creator_testimonials",
+      "success_stories": "case_studies"
+    }
+  },
+  
+  "roadmap": {
+    "q2_2026": ["launch", "user_feedback", "basic_optimizations"],
+    "q3_2026": ["multi_language", "api_v1", "analytics_dashboard"],
+    "q4_2026": ["instagram_support", "team_features", "marketplace"]
+  }
+}

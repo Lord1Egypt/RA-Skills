@@ -1,0 +1,4 @@
+interface:
+  display_name: "什么值得买"
+  short_description: "单品和品类全网比价，直接判断最低价、性价比和真实折扣"
+  default_prompt: "Use $worth-buying to compare a product or category across platforms, identify the lowest real price, the best value option, and the strongest real discount, then give a direct buy, switch, or wait recommendation in Chinese."

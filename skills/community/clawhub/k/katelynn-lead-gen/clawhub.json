@@ -1,0 +1,84 @@
+{
+  "name": "Katelynn Lead Gen",
+  "slug": "katelynn-lead-gen",
+  "version": "1.0.0",
+  "author": {
+    "name": "gerika.ai",
+    "url": "https://gerika.ai",
+    "gitlab": "https://gitlab.com/gerika-ai"
+  },
+  "description": "Full-cycle lead generation and personalized outreach. Give Katelynn a target customer profile and value prop — she finds matching prospects, researches each one, and writes individually tailored cold emails or LinkedIn messages ready to send.",
+  "short_description": "Find leads + write personalized outreach automatically.",
+  "tags": ["lead-gen", "outreach", "sales", "prospecting", "cold-email", "linkedin", "pipeline"],
+  "category": "Sales & Marketing",
+  "license": "MIT",
+  "repo_url": "https://gitlab.com/gerika-ai/agentic-ai-skills",
+  "source_url": "https://gitlab.com/gerika-ai/agentic-ai-skills/-/tree/main/katelynn-lead-gen",
+  "skill_file": "katelynn-lead-gen.skill",
+  "compatibility": {
+    "platforms": ["claude-code", "cowork"],
+    "min_claude_version": "claude-sonnet-4-6",
+    "requires_tools": ["WebSearch", "WebFetch", "Bash"]
+  },
+  "inputs": [
+    {
+      "name": "icp",
+      "label": "Ideal Customer Profile",
+      "description": "Description of who you're targeting (industry, role, company size, geography, etc.)",
+      "required": true
+    },
+    {
+      "name": "value_prop",
+      "label": "Value Proposition",
+      "description": "What you offer and why your target prospect would care",
+      "required": true
+    },
+    {
+      "name": "outreach_goal",
+      "label": "Outreach Goal",
+      "description": "The one action you want prospects to take (e.g. 'book a 20-min call')",
+      "required": true
+    },
+    {
+      "name": "channel",
+      "label": "Outreach Channel",
+      "description": "Email, LinkedIn DM, or both",
+      "required": false,
+      "default": "Email"
+    },
+    {
+      "name": "volume",
+      "label": "Number of Leads",
+      "description": "How many prospects to find (default: 10, max: 25 per run)",
+      "required": false,
+      "default": 10
+    }
+  ],
+  "outputs": [
+    {
+      "name": "leads_table",
+      "label": "Leads Table",
+      "format": "Markdown table or CSV"
+    },
+    {
+      "name": "message_drafts",
+      "label": "Personalized Message Drafts",
+      "format": "Markdown"
+    },
+    {
+      "name": "summary",
+      "label": "Research Summary & Next Steps",
+      "format": "Markdown"
+    }
+  ],
+  "screenshots": [],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-15",
+      "notes": "Initial release. Full lead discovery + personalized outreach drafting for any ICP and value prop."
+    }
+  ],
+  "featured": false,
+  "open_source": true
+}

@@ -1,0 +1,30 @@
+{
+  "runner": "fixture",
+  "trace_format_version": "normalized-v1",
+  "tool_calls": [],
+  "shell_commands": [
+    "python3 scripts/html_quality_gate.py missing.html",
+    "python3 scripts/html_quality_gate.py missing.html",
+    "python3 scripts/html_quality_gate.py missing.html",
+    "python3 scripts/html_quality_gate.py missing.html"
+  ],
+  "failed_shell_commands": [
+    "python3 scripts/html_quality_gate.py missing.html",
+    "python3 scripts/html_quality_gate.py missing.html",
+    "python3 scripts/html_quality_gate.py missing.html",
+    "python3 scripts/html_quality_gate.py missing.html"
+  ],
+  "read_paths": [],
+  "write_paths": [],
+  "artifact_paths": [],
+  "input_tokens": 90000,
+  "output_tokens": 26000,
+  "wall_ms": 45000,
+  "skill_evidence": {
+    "skill_contract_read": false,
+    "report_flow_observed": false,
+    "guard_observed": false,
+    "html_quality_gate_observed": true
+  },
+  "runner_warnings": []
+}

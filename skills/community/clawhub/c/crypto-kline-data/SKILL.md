@@ -1,35 +1,29 @@
----
-name: "Crypto Kline BTC加密货币K线数据-HuoBi"
-description: "Fetch real-time market data and historical Huobi Kline data for major cryptocurrencies with customizable intervals and record counts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-kline-data"
-sourceUrl: "https://clawhub.ai/skills/crypto-kline-data"
----
+# Huobi K线数据技能
 
-# Crypto Kline BTC加密货币K线数据-HuoBi
+获取火必（Huobi）实时行情和K线历史数据。
 
-> Fetch real-time market data and historical Huobi Kline data for major cryptocurrencies with customizable intervals and record counts.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-kline-data`
-- **Source URL:** [https://clawhub.ai/skills/crypto-kline-data](https://clawhub.ai/skills/crypto-kline-data)
+- 获取历史K线数据（1min/5min/15min/30min/1h/1d/1w/1M）
+- 获取实时行情
+- 支持BTC、ETH等主流币种
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/crypto-kline-data
+# 查询历史K线
+node scripts/huobi-kline.js BTC 1d 30    # BTC日线最近30条
+node scripts/huobi-kline.js ETH 1h 24    # ETH小时线最近24条
+node scripts/huobi-kline.js SOL 15min 100 # SOL 15分钟线最近100条
+
+# 参数说明
+# 第1个参数：交易对 (btcusdt/ethusdt/solusdt等)
+# 第2个参数：周期 (1min/5min/15min/30min/1h/1d/1w/1M)
+# 第3个参数：数量 (默认10，最大2000)
 ```
+
+## 支持的交易对
+
+所有Huobi支持的现货交易对，如：
+- btcusdt, ethusdt, solusdt, bnbusdt
+- dogeusdt, xrpusdt, adausdt, dotusdt

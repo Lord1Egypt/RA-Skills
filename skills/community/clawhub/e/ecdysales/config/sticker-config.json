@@ -1,0 +1,14 @@
+{
+  "reactive": true,
+  "fill": "#F9A825",
+  "stroke": "#FF8F00",
+  "strokeWidth": 4,
+  "textColor": "#424242",
+  "font": "Helvetica-Bold",
+  "fontSize": "auto",
+  "widthRatio": 0.2,
+  "heightRatio": 0.125,
+  "cornerRadius": 20,
+  "padding": 30,
+  "position": "top-right"
+}

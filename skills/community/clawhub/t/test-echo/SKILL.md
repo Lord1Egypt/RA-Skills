@@ -1,35 +1,30 @@
 ---
-name: "Test Echo"
-description: "A test echo skill for testing OpenClaw skill system with parameter passing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/test-echo"
-sourceUrl: "https://clawhub.ai/skills/test-echo"
+name: test-echo
+description: A test echo skill for testing OpenClaw skill system with parameter passing.
 ---
 
-# Test Echo
-
-> A test echo skill for testing OpenClaw skill system with parameter passing.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/test-echo`
-- **Source URL:** [https://clawhub.ai/skills/test-echo](https://clawhub.ai/skills/test-echo)
+# Test Echo Skill
 
 ## Overview
 
+This is a simple test skill that echoes back a greeting with the provided name parameter.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/test-echo
-```
+## When to Use This Skill
+
+Use this skill when:
+- Testing skill parameter passing in OpenClaw
+- Verifying that the skill system is working properly
+- Demonstrating how skills work with input parameters
+
+## Input Parameters
+
+- `name` (string, required): The name to include in the greeting
+
+## Example Usage
+
+User says: "Test the skill with name John"
+Skill returns: "Hello, John! Skill executed successfully"
+
+## Notes
+
+This is a test skill created for demonstration purposes only.

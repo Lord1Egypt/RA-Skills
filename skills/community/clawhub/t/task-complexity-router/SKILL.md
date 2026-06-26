@@ -1,35 +1,105 @@
 ---
-name: "AI Task Router Auto-Route Prompts by Complexity (Local/Cloud)"
+name: "AI Task Router — Auto-Route Prompts by Complexity (Local/Cloud)"
 description: "Regex-based routing sends simple tasks to local AI, medium to mid-tier, complex to premium — saving 60%+ on API costs."
-category: "other"
-source: "ClawHub"
-tags: [auto-routing, complexity-detection, cost-optimization, ollama, smart-dispatch, task-routing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/task-complexity-router"
-sourceUrl: "https://clawhub.ai/skills/task-complexity-router"
+author: "@TheShadowRose"
+version: "1.0.0"
+tags: ["task-routing", "cost-optimization", "complexity-detection", "ollama", "auto-routing", "smart-dispatch"]
+license: "MIT"
 ---
 
-# AI Task Router Auto-Route Prompts by Complexity (Local/Cloud)
+# AI Task Router — Auto-Route Prompts by Complexity (Local/Cloud)
 
-> Regex-based routing sends simple tasks to local AI, medium to mid-tier, complex to premium — saving 60%+ on API costs.
+Regex-based routing sends simple tasks to local AI, medium to mid-tier, complex to premium — saving 60%+ on API costs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/task-complexity-router`
-- **Source URL:** [https://clawhub.ai/skills/task-complexity-router](https://clawhub.ai/skills/task-complexity-router)
+---
 
-## Overview
+Automatically routes prompts to the cheapest model that can handle them.
 
+## How It Works
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/task-complexity-router
+Pattern matching classifies tasks into tiers:
+
+| Task Type | Example | Routed To | Cost |
+|-----------|---------|-----------|------|
+| Simple | "hi", "thanks", "what time is it" | Local (Ollama) | $0 |
+| Moderate | "write an email", "analyze this" | Mid-tier (Sonnet) | $ |
+| Complex | "debug this codebase", "write a chapter" | Premium (Opus) | $$$ |
+
+## Usage
+
+```javascript
+const { TaskRouter } = require('./src/task-router');
+
+const router = new TaskRouter({
+  defaultModel: 'local',
+  escalationModel: 'sonnet',
+  heavyModel: 'opus'
+});
+
+const result = router.route('analyze the sales data from Q3');
+// { model: 'sonnet', reason: 'Analysis task', confidence: 0.8 }
 ```
+
+## Custom Rules
+
+Add your own routing patterns:
+
+```javascript
+router.addRule({
+  name: 'code-review',
+  pattern: /\b(review|refactor|debug|optimize)\b.*\b(code|function|class)\b/i,
+  model: 'opus',
+  reason: 'Code review needs deep reasoning'
+});
+```
+
+## Cost Savings
+
+Typical usage pattern routes ~70% of tasks to free local models, ~25% to mid-tier, and ~5% to premium. With Opus at $15/M tokens vs Ollama at $0, this saves 60-80% on API costs.
+---
+
+## ⚠️ Disclaimer
+
+This software is provided "AS IS", without warranty of any kind, express or implied.
+
+**USE AT YOUR OWN RISK.**
+
+- The author(s) are NOT liable for any damages, losses, or consequences arising from 
+  the use or misuse of this software — including but not limited to financial loss, 
+  data loss, security breaches, business interruption, or any indirect/consequential damages.
+- This software does NOT constitute financial, legal, trading, or professional advice.
+- Users are solely responsible for evaluating whether this software is suitable for 
+  their use case, environment, and risk tolerance.
+- No guarantee is made regarding accuracy, reliability, completeness, or fitness 
+  for any particular purpose.
+- The author(s) are not responsible for how third parties use, modify, or distribute 
+  this software after purchase.
+
+By downloading, installing, or using this software, you acknowledge that you have read 
+this disclaimer and agree to use the software entirely at your own risk.
+
+
+**DATA DISCLAIMER:** This software processes and stores data locally on your system. 
+The author(s) are not responsible for data loss, corruption, or unauthorized access 
+resulting from software bugs, system failures, or user error. Always maintain 
+independent backups of important data. This software does not transmit data externally 
+unless explicitly configured by the user.
+
+---
+
+## Support & Links
+
+| | |
+|---|---|
+| 🐛 **Bug Reports** | TheShadowyRose@proton.me |
+| ☕ **Ko-fi** | [ko-fi.com/theshadowrose](https://ko-fi.com/theshadowrose) |
+| 🛒 **Gumroad** | [shadowyrose.gumroad.com](https://shadowyrose.gumroad.com) |
+| 🐦 **Twitter** | [@TheShadowyRose](https://twitter.com/TheShadowyRose) |
+| 🐙 **GitHub** | [github.com/TheShadowRose](https://github.com/TheShadowRose) |
+| 🧠 **PromptBase** | [promptbase.com/profile/shadowrose](https://promptbase.com/profile/shadowrose) |
+
+*Built with [OpenClaw](https://github.com/openclaw/openclaw) — thank you for making this possible.*
+
+---
+
+🛠️ **Need something custom?** Custom OpenClaw agents & skills starting at $500. If you can describe it, I can build it. → [Hire me on Fiverr](https://www.fiverr.com/s/jjmlZ0v)

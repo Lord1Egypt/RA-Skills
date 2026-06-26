@@ -1,35 +1,50 @@
 ---
-name: "Agent Retro"
-description: "执行每日 Agent 复盘行动（Retro）。读取指定日期（通常是昨天）的所有 session 聊天记录和动作，总结做对/做错的事情、提炼改进点与用户画像，并规范化地更新至 memory 文件及 USER.md、SOUL.md、AGENTS.md 和 MEMORY.md。当用户要求复盘、总结昨天表现时触发此技能。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, memory, reflection, retro]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-retro"
-sourceUrl: "https://clawhub.ai/skills/agent-retro"
+name: agent-retro
+description: 执行每日 Agent 复盘行动（Retro）。读取指定日期（通常是昨天）的所有 session 聊天记录和动作，总结做对/做错的事情、提炼改进点与用户画像，并规范化地更新至 memory 文件及 USER.md、SOUL.md、AGENTS.md 和 MEMORY.md。当用户要求复盘、总结昨天表现时触发此技能。
 ---
 
-# Agent Retro
+# Agent Retro (Agent 复盘行动 SOP)
 
-> 执行每日 Agent 复盘行动（Retro）。读取指定日期（通常是昨天）的所有 session 聊天记录和动作，总结做对/做错的事情、提炼改进点与用户画像，并规范化地更新至 memory 文件及 USER.md、SOUL.md、AGENTS.md 和 MEMORY.md。当用户要求复盘、总结昨天表现时触发此技能。
+本技能定义了 Agent 每日复盘的标准操作程序。执行复盘时，必须严格按照以下步骤进行，**且必须先完成物理落盘操作，再向用户汇报结果**。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-retro`
-- **Source URL:** [https://clawhub.ai/skills/agent-retro](https://clawhub.ai/skills/agent-retro)
+## 执行要求
+- 改动所有文件之前，都需要先备份。
+- 例如改动 `MEMORY.md` 之前，要先复制一份命名为 `MEMORY.md.bak.${yyyyMMddHHmmss}`，作为备份，再进行修改。对 `USER.md`、`SOUL.md`、`AGENTS.md` 等其他核心配置文件的修改同理。
 
-## Overview
+## Step 1: 确定时间与范围
+1. 确定复盘的 Agent ID（默认情况为 `main`）。
+2. 确定目标日期（格式 `YYYY-MM-DD`）。如果用户说“昨天”，请根据当前本地时区准确推算昨天的日期。
+3. **检查复盘锁**：根据目标日期构造锁文件路径（例如目标日期为 2026-02-04，则锁文件为 `memory/AGENT_RETRO_DONE_20260204.md`）。在执行复盘前，必须先检查该文件是否存在。如果存在，说明该日期的复盘已完成，**立即终止复盘**并告知用户。
 
+## Step 2: 收集历史数据
+1. 进入 `~/.openclaw/agents/${agentId}/sessions` 目录。
+2. 读取该目录下所有带有目标日期时间戳的 `.jsonl` 或会话记录。
+3. 提取当天的所有 `user` 指令、`assistant` 回复、工具调用（Tool Calls）及工具结果。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-retro
-```
+## Step 3: 分析与总结
+根据提取的聊天记录，必须且仅限总结以下 6 个维度的内容：
+- **昨日动作**：昨天你做了哪些事情。
+- **做对的事情**：一次完成没有重复对话，或者获得了用户的称赞的事项。
+- **做错的事情**：没有一次完成，陷入重复修正，或者被用户批评的事项。
+- **改进点**：针对做错的事情，提出具体的、可执行的防范改进点（如何保证以后一次做对）。
+- **用户画像**：用户是一个什么样的人（偏好、风格、底线等）。
+- **Agent 画像**：你是一个什么样的 Agent（暴露出的行为倾向或缺陷）。
+
+## Step 4: 记录 Daily Memory
+1. 将 Step 3 的完整总结内容，写入工作区目录下的 `memory/YYYY-MM-DD.md` 文件中。
+2. 如果该文件不存在则创建，如果存在则追加。
+
+## Step 5: 更新核心配置（核心步骤）
+1. **对比更新 MEMORY.md**：提取 Step 3 中的关键结论，与工作区下的 `MEMORY.md` 做对比。新增缺失的结论，修改过时的结论，并将这些变更追加记录到 `memory/YYYY-MM-DD.md` 的末尾。
+2. **更新 USER.md**：使用 Step 3 提炼的“用户画像”信息，修改 `USER.md`，完善上下文。
+3. **更新 SOUL.md**：使用 Step 3 提炼的“Agent 画像”信息，修改 `SOUL.md`，强化核心性格与行为边界。
+4. **更新 AGENTS.md**：使用 Step 3 提炼的“改进点”，修改 `AGENTS.md` 中的工具约束或战术准则，确保教训被固化。
+
+*警告：执行配置更新时，必须使用 `read` 读取原内容，并使用 `edit` 或 `write` 进行真实的物理修改。严禁只在对话中口头承诺修改。*
+
+## Step 6: 写入复盘锁（天级别防重复）
+在上述总结和文件更新完成后，写入复盘锁文件 `memory/AGENT_RETRO_DONE_YYYYMMDD.md`。例如对于 2026-02-04 的复盘，写入一个名为 `AGENT_RETRO_DONE_20260204.md` 的空文件或包含完成时间戳的文件即可，用于标记该日复盘已执行。
+
+## Step 7: 向用户发送复盘报告
+在确认所有文件（1个每日memory + 4个核心配置文件 + 1个复盘锁文件）都已成功更新落盘后，向用户发送复盘概要。
+报告内容应简明扼要，说明发现了什么核心问题、提炼了什么规矩，以及哪些文件已被成功修改。

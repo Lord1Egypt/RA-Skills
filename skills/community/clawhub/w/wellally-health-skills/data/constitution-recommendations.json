@@ -1,0 +1,898 @@
+{
+  "metadata": {
+    "name": "中医体质养生建议库",
+    "version": "1.0",
+    "source": "中医体质学理论及临床实践",
+    "last_updated": "2025-12-31",
+    "description": "包含9种体质的饮食、起居、运动、情志调养及中药调理建议"
+  },
+  "seasonal_adjustments": {
+    "spring": {
+      "principles": ["养阳", "养肝", "舒畅情志"],
+      "general_advice": "春季万物复苏,应顺应生发之气,保持心情舒畅,适当运动"
+    },
+    "summer": {
+      "principles": ["养长", "养心", "清暑热"],
+      "general_advice": "夏季炎热,注意防暑降温,保持心情平和,饮食清淡"
+    },
+    "autumn": {
+      "principles": ["养收", "养肺", "防燥"],
+      "general_advice": "秋季干燥,注意润燥,多吃润肺食物,保持情绪稳定"
+    },
+    "winter": {
+      "principles": ["养藏", "养肾", "保暖"],
+      "general_advice": "冬季寒冷,注意保暖,收藏精气,适当进补"
+    }
+  },
+  "recommendations": {
+    "平和质": {
+      "diet": {
+        "principles": ["饮食均衡", "寒温适中", "营养丰富"],
+        "beneficial_foods": [
+          "五谷杂粮",
+          "新鲜蔬菜水果",
+          "优质蛋白质(鱼、肉、蛋、奶)",
+          "豆制品"
+        ],
+        "avoid_foods": ["偏寒偏燥", "过于辛辣", "过于油腻"],
+        "meal_suggestions": "规律饮食,三餐合理搭配,不偏食,不过饱"
+      },
+      "exercise": {
+        "principles": "适度运动,增强体质",
+        "recommended_exercises": [
+          "快走",
+          "慢跑",
+          "游泳",
+          "球类运动",
+          "太极拳"
+        ],
+        "frequency": "每周3-5次,每次30-60分钟",
+        "intensity": "中等强度,运动后微汗为宜"
+      },
+      "lifestyle": {
+        "sleep": "规律作息,保证7-8小时睡眠",
+        "work_rest": "劳逸结合,避免过度劳累",
+        "environment": "保持环境整洁,空气流通",
+        "clothing": "随气候变化增减衣物"
+      },
+      "emotional": {
+        "principles": "保持心情舒畅,情绪稳定",
+        "strategies": [
+          "培养兴趣爱好",
+          "保持社交活动",
+          "学会调节情绪"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "足三里",
+          "location": "小腿外侧,膝眼下3寸",
+          "function": "健脾和胃,强壮身体",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "三阴交",
+          "location": "内踝尖上3寸,胫骨后缘",
+          "function": "调补肝脾肾",
+          "method": "每日按揉3-5分钟"
+        }
+      ],
+      "herbal_support": {
+        "principles": "平和质一般无需特殊药物调理",
+        "seasonal_adjustment": "可根据季节适当进补,如春季养肝,夏季清心,秋季润肺,冬季补肾"
+      }
+    },
+    "气虚质": {
+      "diet": {
+        "principles": ["补气健脾", "营养丰富", "易于消化"],
+        "beneficial_foods": [
+          "山药",
+          "大枣",
+          "黄芪",
+          "人参",
+          "白术",
+          "茯苓",
+          "甘草",
+          "鸡肉",
+          "牛肉",
+          "鲫鱼",
+          "小米",
+          "糯米"
+        ],
+        "avoid_foods": ["生冷寒凉", "油腻厚味", "辛辣燥热"],
+        "meal_suggestions": "少食多餐,细嚼慢咽,饭后适当休息",
+        "recipes": [
+          "黄芪炖鸡",
+          "山药粥",
+          "红枣茯苓粥",
+          "人参汤"
+        ]
+      },
+      "exercise": {
+        "principles": "温和运动,避免剧烈",
+        "recommended_exercises": [
+          "太极拳",
+          "八段锦",
+          "散步",
+          "气功",
+          "瑜伽"
+        ],
+        "frequency": "每日1-2次,每次20-30分钟",
+        "intensity": "低至中等强度,以不感到过度疲劳为宜",
+        "precautions": ["避免过度运动", "运动后及时休息", "循序渐进"]
+      },
+      "lifestyle": {
+        "sleep": "保证充足睡眠,建议8小时以上",
+        "work_rest": "避免过度劳累,劳逸结合",
+        "environment": "保持环境温暖,避免受风寒",
+        "clothing": "注意保暖,避免受凉"
+      },
+      "emotional": {
+        "principles": "保持心情舒畅,避免过度思虑",
+        "strategies": [
+          "保持积极乐观",
+          "避免过度思虑",
+          "适当参加社交活动",
+          "学会放松"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "足三里",
+          "location": "小腿外侧,膝眼下3寸",
+          "function": "健脾益气,强壮身体",
+          "method": "每日按揉3-5分钟,可艾灸"
+        },
+        {
+          "name": "气海",
+          "location": "肚脐下1.5寸",
+          "function": "培补元气",
+          "method": "每日按揉3-5分钟,可艾灸"
+        },
+        {
+          "name": "关元",
+          "location": "肚脐下3寸",
+          "function": "培元固本",
+          "method": "每日按揉3-5分钟,可艾灸"
+        }
+      ],
+      "herbal_support": {
+        "principles": "补气健脾为主",
+        "formula": {
+          "name": "四君子汤加减",
+          "source": "《太平惠民和剂局方》",
+          "composition": [
+            {"herb": "人参", "dose": "9-15g", "function": "大补元气"},
+            {"herb": "白术", "dose": "9-12g", "function": "健脾益气"},
+            {"herb": "茯苓", "dose": "9-15g", "function": "健脾渗湿"},
+            {"herb": "甘草", "dose": "6-9g", "function": "调和诸药"}
+          ],
+          "modifications": [
+            "气虚重者加黄芪",
+            "脾虚湿盛者加薏苡仁、扁豆",
+            "食少腹胀者加陈皮、砂仁"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 需经专业中医师辨证后使用",
+            "⚠️ 孕妇、儿童、体弱者需医师指导",
+            "⚠️ 服药期间忌食生冷、油腻、辛辣食物",
+            "⚠️ 感冒发烧时暂停服用"
+          ]
+        }
+      }
+    },
+    "阳虚质": {
+      "diet": {
+        "principles": ["温补脾肾", "忌食生冷"],
+        "beneficial_foods": [
+          "羊肉",
+          "狗肉",
+          "牛肉",
+          "鸡肉",
+          "韭菜",
+          "花椒",
+          "生姜",
+          "肉桂",
+          "桂圆",
+          "核桃",
+          "栗子"
+        ],
+        "avoid_foods": ["生冷寒凉", "冰镇饮品", "苦瓜", "黄瓜", "西瓜"],
+        "meal_suggestions": "饮食宜温热,多食温补食物",
+        "recipes": [
+          "当归生姜羊肉汤",
+          "韭菜炒鸡蛋",
+          "桂圆红枣茶",
+          "核桃粥"
+        ]
+      },
+      "exercise": {
+        "principles": "适度运动,促进阳气生发",
+        "recommended_exercises": [
+          "慢跑",
+          "快走",
+          "太极拳",
+          "八段锦",
+          "气功"
+        ],
+        "frequency": "每日1次,每次30-45分钟",
+        "intensity": "中等强度,运动后感到温暖舒适",
+        "precautions": ["避免在寒冷环境中运动", "运动后注意保暖", "不宜过量运动"]
+      },
+      "lifestyle": {
+        "sleep": "保证充足睡眠,早睡晚起",
+        "work_rest": "避免过度劳累,注意休息",
+        "environment": "保持环境温暖干燥",
+        "clothing": "注意保暖,特别是腰腹部和脚部",
+        "special": ["可适当晒太阳", "温水泡脚", "避免长时间待在空调房"]
+      },
+      "emotional": {
+        "principles": "保持心情愉悦,避免过度恐惧",
+        "strategies": [
+          "培养乐观情绪",
+          "多参加积极向上的活动",
+          "避免看恐怖片等刺激性内容"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "关元",
+          "location": "肚脐下3寸",
+          "function": "温补肾阳",
+          "method": "每日按揉3-5分钟,可艾灸10-15分钟"
+        },
+        {
+          "name": "气海",
+          "location": "肚脐下1.5寸",
+          "function": "培补元气",
+          "method": "每日按揉3-5分钟,可艾灸10-15分钟"
+        },
+        {
+          "name": "命门",
+          "location": "第二腰椎棘突下",
+          "function": "温肾壮阳",
+          "method": "每日按揉3-5分钟,可艾灸10-15分钟"
+        },
+        {
+          "name": "足三里",
+          "location": "小腿外侧,膝眼下3寸",
+          "function": "健脾益气",
+          "method": "每日按揉3-5分钟,可艾灸"
+        }
+      ],
+      "herbal_support": {
+        "principles": "温补脾肾为主",
+        "formula": {
+          "name": "金匮肾气丸加减",
+          "source": "《金匮要略》",
+          "composition": [
+            {"herb": "附子", "dose": "3-9g", "function": "温补肾阳"},
+            {"herb": "肉桂", "dose": "3-6g", "function": "温补命门"},
+            {"herb": "熟地黄", "dose": "12-24g", "function": "滋阴填精"},
+            {"herb": "山药", "dose": "12-18g", "function": "健脾补肾"},
+            {"herb": "山茱萸", "dose": "9-12g", "function": "补益肝肾"},
+            {"herb": "茯苓", "dose": "9-15g", "function": "健脾渗湿"},
+            {"herb": "牡丹皮", "dose": "6-9g", "function": "清泻肝火"},
+            {"herb": "泽泻", "dose": "6-9g", "function": "利水渗湿"}
+          ],
+          "modifications": [
+            "阳虚重者加淫羊藿、巴戟天",
+            "脾虚明显者加白术、党参",
+            "腰膝酸软者加杜仲、续断"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 附子有毒,需先煎30-60分钟,必须遵医嘱",
+            "⚠️ 阴虚火旺者禁用",
+            "⚠️ 孕妇禁用",
+            "⚠️ 服药期间忌食生冷"
+          ]
+        }
+      }
+    },
+    "阴虚质": {
+      "diet": {
+        "principles": ["滋阴润燥", "清淡饮食", "忌食辛辣"],
+        "beneficial_foods": [
+          "百合",
+          "银耳",
+          "梨",
+          "西瓜",
+          "冬瓜",
+          "菠菜",
+          "芹菜",
+          "芝麻",
+          "蜂蜜",
+          "鸭肉",
+          "猪肉",
+          "甲鱼",
+          "海参"
+        ],
+        "avoid_foods": ["辛辣燥热", "羊肉", "狗肉", "辣椒", "花椒", "胡椒"],
+        "meal_suggestions": "饮食清淡,多食滋阴润燥食物",
+        "recipes": [
+          "银耳百合汤",
+          "梨汁",
+          "冬瓜汤",
+          "百合粥"
+        ]
+      },
+      "exercise": {
+        "principles": "适度运动,不宜剧烈",
+        "recommended_exercises": [
+          "太极拳",
+          "八段锦",
+          "瑜伽",
+          "散步",
+          "游泳"
+        ],
+        "frequency": "每日1次,每次20-40分钟",
+        "intensity": "低至中等强度,避免过度出汗",
+        "precautions": ["避免剧烈运动", "避免在高温环境下运动", "运动后及时补充水分"]
+      },
+      "lifestyle": {
+        "sleep": "保证充足睡眠,避免熬夜",
+        "work_rest": "避免过度劳累,注意休息",
+        "environment": "保持环境凉爽湿润",
+        "clothing": "穿着宽松透气",
+        "special": ["避免熬夜", "避免长时间使用电子设备", "保持室内适宜湿度"]
+      },
+      "emotional": {
+        "principles": "保持心情平静,避免情绪激动",
+        "strategies": [
+          "学会调节情绪",
+          "避免过度兴奋或愤怒",
+          "培养静心的习惯",
+          "听轻音乐"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "三阴交",
+          "location": "内踝尖上3寸,胫骨后缘",
+          "function": "滋阴补肾",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "太溪",
+          "location": "内踝与跟腱之间的凹陷处",
+          "function": "滋补肾阴",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "涌泉",
+          "location": "足底前1/3处",
+          "function": "滋阴降火",
+          "method": "每日按揉3-5分钟,可擦涌泉100次"
+        }
+      ],
+      "herbal_support": {
+        "principles": "滋阴补肾为主",
+        "formula": {
+          "name": "六味地黄丸加减",
+          "source": "《小儿药证直诀》",
+          "composition": [
+            {"herb": "熟地黄", "dose": "12-24g", "function": "滋阴补肾"},
+            {"herb": "山药", "dose": "12-18g", "function": "健脾补肝肾"},
+            {"herb": "山茱萸", "dose": "9-12g", "function": "补益肝肾"},
+            {"herb": "茯苓", "dose": "9-12g", "function": "健脾渗湿"},
+            {"herb": "牡丹皮", "dose": "6-9g", "function": "清泻肝火"},
+            {"herb": "泽泻", "dose": "6-9g", "function": "利水渗湿"}
+          ],
+          "modifications": [
+            "阴虚火旺者加知母、黄柏",
+            "肺阴虚者加麦冬、百合",
+            "心阴虚者加酸枣仁、柏子仁"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 脾胃虚寒者慎用",
+            "⚠️ 感冒发热时暂停服用",
+            "⚠️ 服药期间忌食辛辣"
+          ]
+        }
+      }
+    },
+    "痰湿质": {
+      "diet": {
+        "principles": ["健脾化痰", "清淡饮食", "控制体重"],
+        "beneficial_foods": [
+          "冬瓜",
+          "赤小豆",
+          "薏苡仁",
+          "茯苓",
+          "白萝卜",
+          "山楂",
+          "海带",
+          "海藻",
+          "陈皮",
+          "荷叶"
+        ],
+        "avoid_foods": ["甜食", "油腻", "煎炸", "生冷", "酒类"],
+        "meal_suggestions": "控制食量,少食多餐,晚餐不宜过饱",
+        "recipes": [
+          "薏苡仁粥",
+          "冬瓜汤",
+          "陈皮茯苓茶",
+          "山楂荷叶茶"
+        ]
+      },
+      "exercise": {
+        "principles": "长期坚持,逐渐加强",
+        "recommended_exercises": [
+          "快走",
+          "慢跑",
+          "游泳",
+          "骑自行车",
+          "有氧运动"
+        ],
+        "frequency": "每日1次,每次45-60分钟",
+        "intensity": "中等强度,以微微出汗为宜",
+        "precautions": ["循序渐进", "持之以恒", "运动后注意保暖"]
+      },
+      "lifestyle": {
+        "sleep": "规律作息,保证充足睡眠",
+        "work_rest": "避免久坐久卧,适当活动",
+        "environment": "保持环境干燥通风",
+        "clothing": "穿着透气宽松",
+        "special": ["控制体重", "避免潮湿环境", "保持大便通畅"]
+      },
+      "emotional": {
+        "principles": "保持心情舒畅,避免过度思虑",
+        "strategies": [
+          "培养兴趣爱好",
+          "保持社交活动",
+          "学会释放压力"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "丰隆",
+          "location": "小腿外侧,外踝尖上8寸",
+          "function": "化痰祛湿",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "中脘",
+          "location": "肚脐上4寸",
+          "function": "健脾和胃,化痰消积",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "足三里",
+          "location": "小腿外侧,膝眼下3寸",
+          "function": "健脾和胃",
+          "method": "每日按揉3-5分钟"
+        }
+      ],
+      "herbal_support": {
+        "principles": "健脾化痰为主",
+        "formula": {
+          "name": "二陈汤加减",
+          "source": "《太平惠民和剂局方》",
+          "composition": [
+            {"herb": "半夏", "dose": "6-12g", "function": "燥湿化痰"},
+            {"herb": "陈皮", "dose": "6-12g", "function": "理气化痰"},
+            {"herb": "茯苓", "dose": "9-15g", "function": "健脾渗湿"},
+            {"herb": "甘草", "dose": "3-6g", "function": "调和诸药"}
+          ],
+          "modifications": [
+            "脾虚明显者加白术、党参",
+            "痰湿化热者加黄芩、瓜蒌",
+            "食积明显者加山楂、神曲"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 半夏有毒,需遵医嘱使用",
+            "⚠️ 阴虚燥咳者慎用",
+            "⚠️ 孕妇慎用"
+          ]
+        }
+      }
+    },
+    "湿热质": {
+      "diet": {
+        "principles": ["清热利湿", "清淡饮食", "忌食辛辣油腻"],
+        "beneficial_foods": [
+          "绿豆",
+          "冬瓜",
+          "苦瓜",
+          "黄瓜",
+          "芹菜",
+          "莲藕",
+          "薏苡仁",
+          "赤小豆",
+          "茯苓",
+          "荷叶"
+        ],
+        "avoid_foods": ["辛辣", "油腻", "甜食", "酒类", "烧烤"],
+        "meal_suggestions": "饮食清淡,多食清热利湿食物",
+        "recipes": [
+          "绿豆汤",
+          "冬瓜薏苡仁汤",
+          "苦瓜炒蛋",
+          "荷叶茶"
+        ]
+      },
+      "exercise": {
+        "principles": "适度运动,清热利湿",
+        "recommended_exercises": [
+          "跑步",
+          "游泳",
+          "球类运动",
+          "有氧运动",
+          "力量训练"
+        ],
+        "frequency": "每周4-6次,每次40-60分钟",
+        "intensity": "中高强度,促进排汗",
+        "precautions": ["及时补充水分", "运动后避免立即吹空调", "避免在高温时段运动"]
+      },
+      "lifestyle": {
+        "sleep": "规律作息,避免熬夜",
+        "work_rest": "劳逸结合,避免过度劳累",
+        "environment": "保持环境凉爽干燥",
+        "clothing": "穿着宽松透气,勤换衣物",
+        "special": ["注意个人卫生", "保持皮肤清洁", "避免潮湿环境"]
+      },
+      "emotional": {
+        "principles": "保持心情平和,避免情绪激动",
+        "strategies": [
+          "学会调节情绪",
+          "避免过度愤怒",
+          "培养冷静的性格"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "曲池",
+          "location": "肘横纹外侧端",
+          "function": "清热解毒",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "阴陵泉",
+          "location": "小腿内侧,胫骨内侧髁下缘凹陷处",
+          "function": "清热利湿",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "丰隆",
+          "location": "小腿外侧,外踝尖上8寸",
+          "function": "化痰利湿",
+          "method": "每日按揉3-5分钟"
+        }
+      ],
+      "herbal_support": {
+        "principles": "清热利湿为主",
+        "formula": {
+          "name": "龙胆泻肝汤加减",
+          "source": "《医方集解》",
+          "composition": [
+            {"herb": "龙胆草", "dose": "6-9g", "function": "清热燥湿"},
+            {"herb": "栀子", "dose": "6-9g", "function": "清热利湿"},
+            {"herb": "黄芩", "dose": "6-9g", "function": "清热燥湿"},
+            {"herb": "柴胡", "dose": "6-9g", "function": "疏肝解郁"},
+            {"herb": "生地黄", "dose": "9-15g", "function": "滋阴清热"},
+            {"herb": "车前子", "dose": "9-15g", "function": "清热利湿"},
+            {"herb": "泽泻", "dose": "6-9g", "function": "利水渗湿"},
+            {"herb": "当归", "dose": "6-9g", "function": "补血活血"}
+          ],
+          "modifications": [
+            "湿重者加茯苓、薏苡仁",
+            "热重者加黄连、黄柏",
+            "肝火旺者加菊花、夏枯草"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 苦寒伤胃,脾胃虚寒者慎用",
+            "⚠️ 不宜长期服用",
+            "⚠️ 孕妇禁用",
+            "⚠️ 服药期间忌食辛辣油腻"
+          ]
+        }
+      }
+    },
+    "血瘀质": {
+      "diet": {
+        "principles": ["活血化瘀", "清淡饮食"],
+        "beneficial_foods": [
+          "山楂",
+          "玫瑰花",
+          "当归",
+          "红花",
+          "桃仁",
+          "黑豆",
+          "黑木耳",
+          "洋葱",
+          "生姜",
+          "醋"
+        ],
+        "avoid_foods": ["寒凉", "油腻", "甜食"],
+        "meal_suggestions": "多食活血化瘀食物",
+        "recipes": [
+          "玫瑰花茶",
+          "山楂粥",
+          "黑木耳汤",
+          "红花茶"
+        ]
+      },
+      "exercise": {
+        "principles": "促进血液循环",
+        "recommended_exercises": [
+          "快走",
+          "慢跑",
+          "游泳",
+          "瑜伽",
+          "太极"
+        ],
+        "frequency": "每日1次,每次30-45分钟",
+        "intensity": "中等强度",
+        "precautions": ["避免久坐", "避免长时间保持同一姿势"]
+      },
+      "lifestyle": {
+        "sleep": "规律作息,保证充足睡眠",
+        "work_rest": "避免过度劳累",
+        "environment": "保持环境温暖",
+        "clothing": "注意保暖,避免受寒",
+        "special": ["避免久坐", "适当活动", "保持情绪舒畅"]
+      },
+      "emotional": {
+        "principles": "保持心情舒畅,避免情绪抑郁",
+        "strategies": [
+          "培养乐观情绪",
+          "多参加社交活动",
+          "学会释放压力"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "血海",
+          "location": "大腿内侧,髌底内侧端上2寸",
+          "function": "活血化瘀",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "合谷",
+          "location": "手背,第一、二掌骨之间",
+          "function": "活血通络",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "三阴交",
+          "location": "内踝尖上3寸,胫骨后缘",
+          "function": "活血调经",
+          "method": "每日按揉3-5分钟"
+        }
+      ],
+      "herbal_support": {
+        "principles": "活血化瘀为主",
+        "formula": {
+          "name": "血府逐瘀汤加减",
+          "source": "《医林改错》",
+          "composition": [
+            {"herb": "桃仁", "dose": "6-12g", "function": "活血化瘀"},
+            {"herb": "红花", "dose": "3-9g", "function": "活血化瘀"},
+            {"herb": "当归", "dose": "6-12g", "function": "补血活血"},
+            {"herb": "生地黄", "dose": "9-15g", "function": "清热凉血"},
+            {"herb": "川芎", "dose": "3-9g", "function": "活血行气"},
+            {"herb": "赤芍", "dose": "6-12g", "function": "清热凉血"},
+            {"herb": "牛膝", "dose": "6-12g", "function": "活血通经"},
+            {"herb": "桔梗", "dose": "3-6g", "function": "载药上行"}
+          ],
+          "modifications": [
+            "气滞明显者加柴胡、香附",
+            "寒凝者加桂枝、细辛",
+            "气虚者加黄芪、党参"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 孕妇禁用",
+            "⚠️ 月经过多者慎用",
+            "⚠️ 有出血倾向者禁用",
+            "⚠️ 体质虚弱者慎用"
+          ]
+        }
+      }
+    },
+    "气郁质": {
+      "diet": {
+        "principles": ["疏肝解郁", "调理情绪"],
+        "beneficial_foods": [
+          "玫瑰花",
+          "菊花",
+          "薄荷",
+          "陈皮",
+          "佛手",
+          "萝卜",
+          "芹菜",
+          "菠菜",
+          "柑橘"
+        ],
+        "avoid_foods": ["寒凉", "油腻", "甜食"],
+        "meal_suggestions": "多食疏肝解郁食物",
+        "recipes": [
+          "玫瑰花茶",
+          "菊花茶",
+          "薄荷茶",
+          "陈皮茶"
+        ]
+      },
+      "exercise": {
+        "principles": "舒畅情志,缓解压力",
+        "recommended_exercises": [
+          "瑜伽",
+          "太极",
+          "散步",
+          "舞蹈",
+          "气功"
+        ],
+        "frequency": "每日1次,每次30-45分钟",
+        "intensity": "低至中等强度",
+        "precautions": ["选择自己喜欢的运动", "保持心情愉悦"]
+      },
+      "lifestyle": {
+        "sleep": "规律作息,保证充足睡眠",
+        "work_rest": "劳逸结合,避免过度劳累",
+        "environment": "保持环境舒适整洁",
+        "clothing": "穿着舒适",
+        "special": ["培养兴趣爱好", "保持社交活动", "学会释放压力"]
+      },
+      "emotional": {
+        "principles": "保持心情舒畅,缓解压力",
+        "strategies": [
+          "学会调节情绪",
+          "培养乐观心态",
+          "多参加社交活动",
+          "寻求心理支持"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "太冲",
+          "location": "足背,第一、二跖骨结合部前方凹陷处",
+          "function": "疏肝解郁",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "内关",
+          "location": "前臂掌侧,腕横纹上2寸",
+          "function": "宁心安神",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "膻中",
+          "location": "前正中线,平第四肋间隙",
+          "function": "宽胸理气",
+          "method": "每日按揉3-5分钟"
+        }
+      ],
+      "herbal_support": {
+        "principles": "疏肝解郁为主",
+        "formula": {
+          "name": "逍遥散加减",
+          "source": "《太平惠民和剂局方》",
+          "composition": [
+            {"herb": "柴胡", "dose": "6-12g", "function": "疏肝解郁"},
+            {"herb": "当归", "dose": "6-12g", "function": "补血活血"},
+            {"herb": "白芍", "dose": "6-12g", "function": "养血柔肝"},
+            {"herb": "白术", "dose": "6-12g", "function": "健脾益气"},
+            {"herb": "茯苓", "dose": "9-15g", "function": "健脾渗湿"},
+            {"herb": "甘草", "dose": "3-6g", "function": "调和诸药"},
+            {"herb": "薄荷", "dose": "3-6g", "function": "疏肝解郁"}
+          ],
+          "modifications": [
+            "肝郁化火者加丹皮、栀子",
+            "脾虚明显者加党参、黄芪",
+            "月经不调者加香附、益母草"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 肝阳上亢者慎用",
+            "⚠️ 月经过多者慎用",
+            "⚠️ 孕妇慎用"
+          ]
+        }
+      }
+    },
+    "特禀质": {
+      "diet": {
+        "principles": ["益气固表", "避免过敏原"],
+        "beneficial_foods": [
+          "黄芪",
+          "白术",
+          "防风",
+          "红枣",
+          "山药",
+          "灵芝",
+          "蜂蜜"
+        ],
+        "avoid_foods": ["已知过敏食物", "海鲜", "辛辣", "发物"],
+        "meal_suggestions": "避免食用已知过敏食物",
+        "recipes": [
+          "黄芪粥",
+          "山药粥",
+          "红枣茶"
+        ]
+      },
+      "exercise": {
+        "principles": "增强体质,提高免疫力",
+        "recommended_exercises": [
+          "散步",
+          "慢跑",
+          "太极拳",
+          "瑜伽"
+        ],
+        "frequency": "每日1次,每次30-45分钟",
+        "intensity": "中等强度",
+        "precautions": ["避免在花粉多的环境中运动", "运动后及时清洁"]
+      },
+      "lifestyle": {
+        "sleep": "规律作息,保证充足睡眠",
+        "work_rest": "避免过度劳累",
+        "environment": "保持环境清洁,避免过敏原",
+        "clothing": "穿着舒适透气",
+        "special": ["避免接触过敏原", "保持室内清洁", "春季注意防护"]
+      },
+      "emotional": {
+        "principles": "保持心情舒畅,避免过度焦虑",
+        "strategies": [
+          "保持积极乐观",
+          "学会调节情绪",
+          "避免过度紧张"
+        ]
+      },
+      "acupoints": [
+        {
+          "name": "足三里",
+          "location": "小腿外侧,膝眼下3寸",
+          "function": "增强免疫力",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "血海",
+          "location": "大腿内侧,髌底内侧端上2寸",
+          "function": "活血祛风",
+          "method": "每日按揉3-5分钟"
+        },
+        {
+          "name": "肺俞",
+          "location": "第三胸椎棘突下,旁开1.5寸",
+          "function": "调理肺气",
+          "method": "每日按揉3-5分钟"
+        }
+      ],
+      "herbal_support": {
+        "principles": "益气固表,祛风抗敏为主",
+        "formula": {
+          "name": "玉屏风散加减",
+          "source": "《医方类聚》",
+          "composition": [
+            {"herb": "黄芪", "dose": "12-30g", "function": "益气固表"},
+            {"herb": "白术", "dose": "6-12g", "function": "健脾益气"},
+            {"herb": "防风", "dose": "3-6g", "function": "祛风解表"}
+          ],
+          "modifications": [
+            "气虚明显者加党参、茯苓",
+            "过敏症状明显者加蝉蜕、地龙",
+            "脾虚湿盛者加陈皮、半夏"
+          ],
+          "usage": "水煎服,日一剂,分早晚两次温服",
+          "precautions": [
+            "⚠️ 仅供中医师参考,不可自行抓药服用",
+            "⚠️ 外感自汗者不宜使用",
+            "⚠️ 阴虚盗汗者慎用",
+            "⚠️ 服药期间避免接触过敏原"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Share Trigger Reviewer"
+  short_description: "Review products for trust and sharing"
+  default_prompt: "Use $product-share-trigger-reviewer to strictly review this new skill, extension, app, or community for first traffic source, trust reason, share moment, free MVP window, stop criteria, and ecosystem fit."

@@ -1,0 +1,15 @@
+Packing List
+Shipper Name:,{{shipper_name}}
+Shipper Address:,{{shipper_address}}
+Consignee Name:,{{consignee_name}}
+Consignee Address:,{{consignee_address}}
+Vessel/Flight No.:,{{vessel_flight}}
+Departure Port:,{{departure_port}}
+Destination Port:,{{destination_port}}
+Date:,{{packing_list_date}}
+
+Item Description,Quantity,Net Weight (KG),Gross Weight (KG),Dimensions (CM),Package No.
+{{product_description}},{{quantity}},{{net_weight}},{{gross_weight}},{{dimensions}},{{package_no}}
+Total Quantity:,{{total_quantity}}
+Total Net Weight:,{{total_net_weight}}
+Total Gross Weight:,{{total_gross_weight}}

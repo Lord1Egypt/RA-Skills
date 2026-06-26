@@ -1,35 +1,32 @@
----
-name: "Base64 Tool"
-description: "Encode or decode strings to and from base64 format upon user request."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/base64-tool"
-sourceUrl: "https://clawhub.ai/skills/base64-tool"
----
+\---
 
-# Base64 Tool
+name: base64\_tool
 
-> Encode or decode strings to and from base64 format upon user request.
+description: Encode or decode base64 strings. Activate when user asks to encode or decode base64.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/base64-tool`
-- **Source URL:** [https://clawhub.ai/skills/base64-tool](https://clawhub.ai/skills/base64-tool)
+tags:
 
-## Overview
+&#x20; - openclaw-extra
+
+\---
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/base64-tool
-```
+
+\# base64\_tool
+
+Encode or decode base64 strings.
+
+
+
+\## Usage
+
+Use this skill when the user asks to encode or decode base64.
+
+
+
+\## Example
+
+User: encode hello to base64
+
+User: decode aGVsbG8=
+

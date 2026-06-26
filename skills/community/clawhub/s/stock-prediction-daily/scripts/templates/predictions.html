@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="card">
+      <h3>预测日期</h3>
+      <p class="muted">选择一个日期查看对应批次的历史预测结果。</p>
+      <div class="date-list">
+        {% for date_item in available_dates %}
+        <a class="date-link {% if date_item == selected_date %}active{% endif %}" href="/predictions?date={{ date_item }}">{{ date_item }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-stack">
+    <section class="grid">
+      <div class="card">
+        <div class="muted">所选日期</div>
+        <div class="metric">{{ selected_date or 'N/A' }}</div>
+      </div>
+      <div class="card">
+        <div class="muted">样本数</div>
+        <div class="metric">{{ rows|length }}</div>
+      </div>
+      <div class="card">
+        <div class="muted">预测上涨</div>
+        <div class="metric metric-up">{{ up_count }}</div>
+      </div>
+      <div class="card">
+        <div class="muted">预测下跌</div>
+        <div class="metric metric-down">{{ down_count }}</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>预测结果</h2>
+      <p class="muted">展示所有历史预测记录。当前时间字段仅保留交易日期，数据频率统一为腾讯财经日线。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              {% for header in headers %}
+              <th>{{ header }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr>
+              {% for header in headers %}
+              <td>
+                {% if header == "预测结果" %}
+                <span class="pill {% if row[header] == '上涨' %}pill-up{% elif row[header] == '下跌' %}pill-down{% else %}pill-neutral{% endif %}">{{ row[header] }}</span>
+                {% else %}
+                {{ row[header] }}
+                {% endif %}
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

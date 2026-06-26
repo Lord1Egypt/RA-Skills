@@ -1,0 +1,61 @@
+{
+  "name": "Final Word Formatting",
+  "steps": [
+    {
+      "stepId": "open_word",
+      "action": {
+        "type": "app",
+        "params": {
+          "generic": {
+            "_0": {
+              "appName": "Microsoft Word",
+              "operation": "launch",
+              "open": "BSc-project-report-FINAL-SUBMISSION.docx"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stepId": "wait_for_word",
+      "action": {
+        "type": "sleep",
+        "params": {
+          "duration": 3000
+        }
+      }
+    },
+    {
+      "stepId": "update_toc",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "option", "u"]
+        }
+      }
+    },
+    {
+      "stepId": "save_document",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "s"]
+        }
+      }
+    },
+    {
+      "stepId": "close_word",
+      "action": {
+        "type": "app",
+        "params": {
+          "generic": {
+            "_0": {
+              "appName": "Microsoft Word",
+              "operation": "quit"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

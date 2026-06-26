@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Emergence PPT Orchestra",
+  "name_for_model": "emergence_ppt_orchestra",
+  "description_for_human": "An iterative, agentic presentation generator that uses Marp for Markdown compilation and the Emergence API for data visualization.",
+  "description_for_model": "Use this skill to orchestrate high-quality slide presentations iteratively. Guide the user through an outline, build slide decks in Marp markdown, call the Emergence API to render diagrams (TikZ, D2, Mermaid), and finally compile the Markdown to PDF or PPTX using the Marp CLI. The skill requires an EMERGENCE_API_KEY to hit the rendering endpoint.",
+  "auth": {
+    "type": "user_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://api.emergence.science/tools/render/openapi.json"
+  },
+  "discovery": {
+    "content_index": "https://emergence.science/content/index.json"
+  }
+}

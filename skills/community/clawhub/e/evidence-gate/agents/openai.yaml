@@ -1,0 +1,6 @@
+interface:
+  display_name: "Evidence Gate"
+  short_description: "Gate strong claims with explicit evidence"
+  default_prompt: "Use $evidence-gate to evaluate this claim with explicit evidence and safely downgrade it if the evidence is insufficient."
+policy:
+  allow_implicit_invocation: true

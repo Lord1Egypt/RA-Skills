@@ -1,0 +1,113 @@
+{
+  "deps": [
+    {
+      "body": "top",
+      "ref": "leg_FR"
+    },
+    {
+      "body": "ear_R",
+      "ref": "top"
+    },
+    {
+      "body": "ear_L",
+      "ref": "top"
+    },
+    {
+      "body": "leg_FR",
+      "ref": "origin"
+    },
+    {
+      "body": "leg_FR (1)",
+      "ref": "leg_FR"
+    },
+    {
+      "body": "leg_FR (2)",
+      "ref": "leg_FR"
+    },
+    {
+      "body": "leg_FR (1) (1)",
+      "ref": "leg_FR"
+    },
+    {
+      "body": "apron_F",
+      "ref": "leg_FR"
+    },
+    {
+      "body": "apron_F (1)",
+      "ref": "leg_FR (2)"
+    },
+    {
+      "body": "BT_apron_F_v22_1",
+      "ref": "apron_F",
+      "replicas": "BT_apron_F_v22_*"
+    },
+    {
+      "body": "outerSlat_F",
+      "ref": "apron_F"
+    },
+    {
+      "body": "outerSlat_B",
+      "ref": "apron_F (1)"
+    },
+    {
+      "body": "innerSlat_F",
+      "ref": "apron_F"
+    },
+    {
+      "body": "innerSlat_B",
+      "ref": "apron_F (1)"
+    },
+    {
+      "body": "sideStretcher_F",
+      "ref": "leg_FR"
+    },
+    {
+      "body": "sideStretcher_F (1)",
+      "ref": "leg_FR (2)"
+    },
+    {
+      "body": "editable_loft_transition_front_right_v22loc_in_side_stretchers",
+      "ref": "sideStretcher_F"
+    },
+    {
+      "body": "editable_loft_transition_front_left_v22loc_in_side_stretchers",
+      "ref": "sideStretcher_F"
+    },
+    {
+      "body": "editable_loft_transition_back_right_v22loc_in_side_stretchers",
+      "ref": "sideStretcher_F (1)"
+    },
+    {
+      "body": "editable_loft_transition_back_left_v22loc_in_side_stretchers",
+      "ref": "sideStretcher_F (1)"
+    },
+    {
+      "body": "dtOut_F_0",
+      "ref": "outerSlat_F"
+    },
+    {
+      "body": "dtIn_F_0",
+      "ref": "innerSlat_F"
+    },
+    {
+      "body": "dtOut_F_0 (1)",
+      "ref": "outerSlat_B"
+    },
+    {
+      "body": "dtIn_F_0 (1)",
+      "ref": "innerSlat_B"
+    },
+    {
+      "body": "ear_R_surface",
+      "ref": "top"
+    },
+    {
+      "body": "ear_L_surface",
+      "ref": "top"
+    },
+    {
+      "body": "axis_marker_R",
+      "ref": "top"
+    }
+  ]
+}

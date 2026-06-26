@@ -1,0 +1,27 @@
+{
+  "get_short_video_list": {
+    "description": "短视频列表返回示例",
+    "example_response": {
+      "code": 0,
+      "data": {
+        "list": [
+          {
+            "videoId": "SV_001",
+            "title": "示例短视频标题",
+            "coverUrl": "https://cdn.example.com/cover.jpg",
+            "authorName": "示例作者",
+            "authorAvatar": "https://cdn.example.com/avatar.jpg",
+            "playCount": 100000,
+            "likeCount": 5000,
+            "duration": 60,
+            "createTime": "2026-04-09T10:00:00Z"
+          }
+        ],
+        "page": 1,
+        "pageSize": 20,
+        "total": 200
+      },
+      "msg": "success"
+    }
+  }
+}

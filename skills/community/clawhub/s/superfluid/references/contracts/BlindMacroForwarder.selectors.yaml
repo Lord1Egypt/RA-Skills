@@ -1,0 +1,24 @@
+# BlindMacroForwarder selectors — computed from @sfpro/sdk ABI
+
+functions:
+  buildBatchOperations(address,bytes): 0xb54bbfa0
+  runMacro(address,bytes):             0x651aeb70
+
+events:
+  MacroExecuted(address,address): 0xb4eecaefdf7bac51720a0b5ebd9f44f9143b9890f3ae48507ebfff6df93b441b
+
+errors:
+  # Forwarder + EIP-712/OZ-infra errors only. The full Superfluid protocol error set
+  # (CFA_*, GDA_*, IDA_*, HOST_*, SF_TOKEN_*, SUPER_TOKEN_*, SUPERFLUID_POOL_*) is merged
+  # into the SDK ABI so viem can decode reverts propagated from the Host and agreements;
+  # those are documented in their own *.selectors.yaml files (ConstantFlowAgreementV1,
+  # GeneralDistributionAgreementV1, InstantDistributionAgreementV1, Superfluid, SuperToken,
+  # SuperfluidPool).
+  ECDSAInvalidSignature():                       0xf645eedf
+  ECDSAInvalidSignatureLength(uint256):          0xfce698f7
+  ECDSAInvalidSignatureS(bytes32):               0xd78bce0c
+  SafeCastOverflowedIntDowncast(uint8,int256):   0x327269a7
+  SafeCastOverflowedIntToUint(int256):           0xa8ce4432
+  SafeCastOverflowedUintDowncast(uint8,uint256): 0x6dfcc650
+  SafeCastOverflowedUintToInt(uint256):          0x24775e06
+  SafeERC20FailedOperation(address):             0x5274afe7

@@ -1,0 +1,44 @@
+{
+  "name": "llm-signal-geo-analyst",
+  "version": "0.1.0",
+  "description": "Draft OpenClaw skill package for LLM Signal GEO analyst workflows.",
+  "entrypoint": "prompts/system.txt",
+  "variables": [
+    {
+      "key": "LLMSIGNAL_BASE_URL",
+      "required": true,
+      "default": "https://www.llmsignal.app"
+    },
+    {
+      "key": "LLMSIGNAL_SITE_ID",
+      "required": true
+    },
+    {
+      "key": "LLMSIGNAL_API_KEY",
+      "required": true,
+      "secret": true
+    }
+  ],
+  "endpoints": [
+    {
+      "name": "plan",
+      "method": "POST",
+      "path": "/api/agent/v1/plan"
+    },
+    {
+      "name": "status",
+      "method": "POST",
+      "path": "/api/agent/v1/status"
+    },
+    {
+      "name": "bootstrap",
+      "method": "POST",
+      "path": "/api/agent/v1/bootstrap"
+    }
+  ],
+  "notes": [
+    "This is a draft package structure and may require field renaming to match your OpenClaw loader.",
+    "Agent API access is available on Growth and Pro plans."
+  ]
+}
+

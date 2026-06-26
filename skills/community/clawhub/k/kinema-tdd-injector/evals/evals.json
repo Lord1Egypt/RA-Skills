@@ -1,0 +1,140 @@
+{
+  "skill_name": "kinema-tdd-injector",
+  "evals": [
+    {
+      "id": 1,
+      "name": "pure-python-backend",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库结构：根目录有 backend/ 包，里面有 app/ 源码根和 pyproject.toml。没有前端代码。",
+      "expected_behavior": [
+        "扫描仓库，识别出仅有 backend（Python）",
+        "无前端时按用户选择 frontend 字段填 false",
+        "渲染时 frontend 相关块全部隐藏",
+        "生成的 CLAUDE.md 不包含 pnpm / vitest / frontend 字样",
+        "包含 tests/testenv-integration/backend/ 阶段（除非用户明确禁用）"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "pure-ts-frontend",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库结构：根目录有 frontend/ 包，里面有 src/ 源码根、package.json 和 pnpm-lock.yaml。没有后端代码。",
+      "expected_behavior": [
+        "扫描仓库，识别出仅有 frontend",
+        "渲染时 backend 相关块全部隐藏",
+        "纯前端可启用 testenv e2e（Playwright，连外部部署的真实后端 + 真实库）；testenv_integration 由用户选择，不强制 false",
+        "生成的 CLAUDE.md 不包含 uv / pyproject 字样",
+        "若启用 testenv，出现 tests/testenv-integration/frontend/ 与 *.spec.ts，且连接配置/库内容由测试系统提供（不硬编码）",
+        "若用户选两阶（testenv_integration=false），则不出现第三阶，且 §1 说明前端仅有 unit + dev-integration"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "monorepo-standard",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库结构：根目录有 backend/（app/ + pyproject.toml）和 frontend/（src/ + package.json + pnpm-lock.yaml）。",
+      "expected_behavior": [
+        "识别出 backend + frontend 两个包",
+        "backend_pkg=backend, frontend_pkg=frontend",
+        "backend_src_root=app, frontend_src_root=src",
+        "frontend_pkg_manager=pnpm",
+        "渲染的 CLAUDE.md 同时包含两栈的规范",
+        "三阶测试体系完整呈现",
+        "前端出现 Playwright e2e 第三阶：tests/testenv-integration/frontend/<journey>.spec.ts，且 §2.6 标注 1:1 对齐豁免"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "monorepo-nonstandard-names",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库结构：根目录有 server/（src/ + pyproject.toml）和 web/（lib/ + package.json + yarn.lock）。",
+      "expected_behavior": [
+        "识别 backend_pkg=server, frontend_pkg=web",
+        "backend_src_root=src, frontend_src_root=lib",
+        "frontend_pkg_manager=yarn",
+        "frontend_lockfile=yarn.lock",
+        "tests/unit/server/ 与 tests/unit/web/ 在 CLAUDE.md 中出现",
+        "不假设标准名 backend/frontend"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "existing-claude-md-merge",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库已有 CLAUDE.md，内容是一段 50 行的项目背景介绍（与测试规范无关）。",
+      "expected_behavior": [
+        "渲染到临时文件 CLAUDE.md.kinema.draft.md",
+        "对比现有 CLAUDE.md，检测无语义冲突（项目背景 vs 测试规范）",
+        "向用户确认追加策略后追加",
+        "保留 marker 注释 <!-- kinema-tdd-injector: injected --> 以支持后续 upgrade",
+        "不覆盖用户已有内容"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "third-party-language-reject",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库结构：根目录有 go.mod、main.go、cmd/、internal/。",
+      "expected_behavior": [
+        "检测到 Go 语言",
+        "直接拒绝，不进入问卷",
+        "告知用户：本 skill 仅支持 Python + TypeScript",
+        "不生成任何文件"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "upgrade-mode",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库已有 CLAUDE.md，文件顶部含 marker <!-- kinema-tdd-injector: injected --> 与上次参数 JSON 块。",
+      "expected_behavior": [
+        "识别 upgrade 模式",
+        "解析旧参数 JSON 作为问卷默认值",
+        "向用户展示'保留旧值还是修改'选项",
+        "渲染后整体替换 marker 区块，而非追加",
+        "保留 marker 外的用户内容"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "test-root-conflict",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库根目录已存在 test/（单数）目录，里面有用户自定义测试。",
+      "expected_behavior": [
+        "检测到 test/ 与 skill 默认的 tests/ 冲突",
+        "向用户确认：是改用现有 test/、迁移到 tests/、还是中止",
+        "若用户选'保留 test/'，模板里的所有 tests/ 路径替换为 test/",
+        "不擅自做文件移动，仅生成规范文件"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "python-standards-injection",
+      "prompt": "为这个仓库生成 CLAUDE.md。仓库结构：根目录有 backend/ 包，里面有 app/ 源码根和 pyproject.toml，没有前端。问卷进行到 Q12「是否注入 Python 编码规范章节」时，用户选「是」。",
+      "expected_behavior": [
+        "问卷中出现 Q12「是否注入 Python 编码规范章节」，且无条件提问（即使没有前端也照样问）",
+        "构造的 params 含 python_standards: true",
+        "渲染的 CLAUDE.md 末尾包含「Python 编码规范」章节",
+        "该章节包含关键字 SecretStr、_secret_string、ruff、pydantic、from_domain、G004",
+        "因仅有后端，该章节编号为「## 11. Python 编码规范」",
+        "若用户在 Q12 选「否」，则 python_standards: false，渲染结果完全不含该章节，且章节号无断档（停在 §10 Commit）"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "testenv-local-permission-and-config-ownership",
+      "prompt": "为这个 monorepo 生成 CLAUDE.md。仓库结构：backend/（app/ + pyproject.toml）+ frontend/（src/ + package.json + pnpm-lock.yaml）。启用 testenv 阶段。问卷 Q13（后端 testenv 本地运行）选「是」，Q14（前端 Playwright e2e 本地运行）选「否」。",
+      "expected_behavior": [
+        "问卷分别提问 Q13（后端 testenv 本地运行）与 Q14（前端 testenv 本地运行），互不绑定",
+        "构造 params 含 testenv_backend_local: true、testenv_frontend_local: false、injector_version 取当前版本",
+        "后端 testenv 块渲染为'允许本地运行 / Agent 在复杂 Plan 任务完成时自动跑一次'，不含'Agent 不得自行执行'",
+        "前端 testenv 块渲染为'用户手动 / 测试系统执行'，含'Agent 不得自行执行'",
+        "§3.3 含配置归属铁律：DB/外部连接配置与库 seed 由测试系统提供，禁止硬编码、禁止依赖开发本地配置",
+        "testenv e2e 触发时机为'复杂 Plan 任务完成时'，且仅在本地许可时自动触发，不进每次提交链",
+        "头部 injector-version 标识符与当前 SKILL.md version 一致"
+      ],
+      "files": []
+    }
+  ]
+}

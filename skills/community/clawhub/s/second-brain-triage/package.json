@@ -1,0 +1,27 @@
+{
+  "name": "second-brain-triage",
+  "version": "1.0.1",
+  "description": "Intelligent information triage system - automatic categorization and priority scoring based on PARA method",
+  "main": "src/index.js",
+  "bin": {
+    "triage": "./scripts/triage.js"
+  },
+  "scripts": {
+    "test": "node test/test.js",
+    "triage": "node scripts/triage.js"
+  },
+  "keywords": [
+    "second-brain",
+    "para",
+    "triage",
+    "productivity",
+    "knowledge-management",
+    "classification",
+    "priority"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

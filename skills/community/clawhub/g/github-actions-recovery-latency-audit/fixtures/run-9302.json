@@ -1,0 +1,12 @@
+{
+  "databaseId": 9302,
+  "workflowName": "Nightly",
+  "event": "schedule",
+  "conclusion": "failure",
+  "headBranch": "develop",
+  "createdAt": "2026-03-05T12:00:00Z",
+  "url": "https://github.com/acme/mobile/actions/runs/9302",
+  "repository": {
+    "nameWithOwner": "acme/mobile"
+  }
+}

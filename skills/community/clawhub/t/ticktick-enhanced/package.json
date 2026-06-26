@@ -1,0 +1,21 @@
+{
+  "name": "ticktick-cli",
+  "version": "0.1.0",
+  "description": "TickTick CLI for task and project management",
+  "type": "module",
+  "scripts": {
+    "ticktick": "bun run scripts/ticktick.ts"
+  },
+  "bin": {
+    "ticktick": "./scripts/ticktick.ts"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "js-yaml": "^4.1.1",
+    "open": "^10.0.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.0"
+  }
+}

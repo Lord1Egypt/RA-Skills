@@ -1,0 +1,36 @@
+{
+  "name": "TypeScript React Patterns",
+  "version": "2.0.0",
+  "description": "Type-safe React with TypeScript. Contains 33 rules across 7 categories covering component typing, hooks, event handling, refs, generics, context, and utility types.",
+  "license": "MIT",
+  "author": {
+    "name": "Agent Skills Contributors",
+    "url": "https://github.com/AsyrafHussin/agent-skills"
+  },
+  "categories": [
+    { "name": "Component Typing", "prefix": "comp", "impact": "CRITICAL", "ruleCount": 8 },
+    { "name": "Hook Typing", "prefix": "hook", "impact": "CRITICAL", "ruleCount": 8 },
+    { "name": "Event Handling", "prefix": "event", "impact": "HIGH", "ruleCount": 4 },
+    { "name": "Ref Typing", "prefix": "ref", "impact": "HIGH", "ruleCount": 3 },
+    { "name": "Generic Components", "prefix": "generic", "impact": "MEDIUM", "ruleCount": 4 },
+    { "name": "Context & State", "prefix": "ctx", "impact": "MEDIUM", "ruleCount": 3 },
+    { "name": "Utility Types", "prefix": "util", "impact": "LOW", "ruleCount": 3 }
+  ],
+  "references": [
+    "https://react-typescript-cheatsheet.netlify.app",
+    "https://react.dev/learn/typescript",
+    "https://www.typescriptlang.org/docs/handbook/"
+  ],
+  "keywords": [
+    "typescript",
+    "react",
+    "typed-components",
+    "hooks",
+    "generics",
+    "events",
+    "refs",
+    "context"
+  ],
+  "rulesTotal": 33,
+  "lastUpdated": "2026-03-14"
+}

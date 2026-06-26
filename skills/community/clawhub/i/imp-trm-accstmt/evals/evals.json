@@ -1,0 +1,415 @@
+{
+  "skill_name": "BIPPI-imp-trm-accstmt",
+  "evals": [
+    {
+      "id": 1,
+      "name": "MT940基础转换",
+      "prompt": "将以下MT940银行对账单文件转换为BIPV5系统的导入模板，输出到当前目录：\n文件内容：\n:20:STMT24010001\n:25:1234567890\n:28C:1/1\n:60F:C240101USD10000,00\n:61:240115C500,00NTRFNONREF//REF001\n/BAI/195/TRANSFER RECEIVED\n:86:/PT/FT/BE/ACME CORP\n:61:240116D200,00NCHQNONREF//REF002\n/BAI/100/PAYMENT\n:62F:C240116USD10300,00\n-",
+      "expected_output": "生成包含银行流水处理工作表的Excel文件，包含正确的字段映射和交易数据",
+      "files": [],
+      "expectations": [
+        "输出文件存在于当前目录，命名为 {原文件名}_BIPV5.xlsx",
+        "包含名为'银行流水处理'的工作表",
+        "包含正确的英文字段名（bankaccount_account, tran_date, dc_flag等）",
+        "包含2条交易记录（贷方500和借方200）"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "批量合并转换-输出位置验证",
+      "prompt": "将test_file/accstmt目录下的所有银行对账单文件批量合并转换为一个BIPV5导入模板，输出到test_file/accstmt目录",
+      "expected_output": "所有对账单合并为一个Excel文件，输出文件位于test_file/accstmt目录",
+      "files": ["test_file/accstmt/CCB_MT940_20180524021442018.TXT"],
+      "expectations": [
+        "输出文件位于输入目录test_file/accstmt/",
+        "输出文件命名为merged_BIPV5.xlsx",
+        "包含多个银行的交易记录",
+        "总记录数大于100条"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "带参数转换",
+      "prompt": "将test_file/accstmt/招商银行明细.xlsx转换为BIPV5模板，指定账户组织编码为ORG_CMB_001，银行名称为招商银行",
+      "expected_output": "生成的Excel中包含指定的组织编码和银行名称",
+      "files": ["test_file/accstmt/招商银行明细.xlsx"],
+      "expectations": [
+        "accentity_code列包含ORG_CMB_001",
+        "bankNumber_name列包含招商银行",
+        "输出文件位于输入文件同目录"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "借贷分离验证",
+      "prompt": "处理test_file/accstmt目录下的MT940文件，验证借贷标识和金额字段正确分离",
+      "expected_output": "贷方金额填写在creditamount字段，借方金额填写在debitamount字段",
+      "files": ["test_file/accstmt/CCB_MT940_20180524021442018.TXT"],
+      "expectations": [
+        "贷方交易记录creditamount字段有值，debitamount字段为空",
+        "借方交易记录debitamount字段有值，creditamount字段为空",
+        "dc_flag字段正确标识C(贷)或D(借)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "多银行Excel格式转换",
+      "prompt": "将test_file/accstmt目录下的兴业银行明细.xls和民生银行明细.xlsx转换为BIPV5格式，合并输出",
+      "expected_output": "正确解析不同银行的Excel格式，生成包含完整数据的Excel文件",
+      "files": [
+        "test_file/accstmt/兴业银行明细.xls",
+        "test_file/accstmt/民生银行明细.xlsx"
+      ],
+      "expectations": [
+        "输出文件包含兴业银行和民生银行的交易记录",
+        "银行账号字段正确填充",
+        "交易日期格式为YYYY-MM-DD",
+        "输出文件位于输入目录"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "PDF-平安银行单文件转换",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "生成BIPV5格式的Excel文件，包含平安银行的9条交易明细",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "输出文件存在于test_file/accstmt/目录，命名以_平安银行_BIPV5.xlsx结尾",
+        "包含名为'银行流水处理'的工作表",
+        "包含平安银行的9条交易记录",
+        "bankaccount_account字段为15200002000062",
+        "交易日期格式为YYYY-MM-DD",
+        "至少一条交易的对方户名包含'河南水利投资集团'或'河南水投资源开发管理集团'"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "PDF-农商行多折行账号处理",
+      "prompt": "将test_file/accstmt/农商行.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "正确处理农商行PDF中折行的对方账号（如 00708041500000605 拆为两行），生成包含至少7条交易记录的Excel",
+      "files": ["test_file/accstmt/农商行.pdf"],
+      "expectations": [
+        "输出文件包含7条交易记录",
+        "本方账号为00708041100000688",
+        "至少一条交易的对方账号正确合并为 00708041500000605（不包含换行）",
+        "至少一条交易的对方户名包含'河南水利投资集团'"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "PDF-恒丰银行列头多行折行",
+      "prompt": "将test_file/accstmt/恒丰.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "恒丰银行PDF的列头被切成多行（如'交易时'+'间' → 交易时间），正确解析为10条交易记录",
+      "files": ["test_file/accstmt/恒丰.pdf"],
+      "expectations": [
+        "输出文件包含10条交易记录",
+        "至少一条交易的日期为20260310",
+        "至少一条交易的对方户名包含'水生态'或'亳都'或'丹江源'或'睢县'等水投子公司",
+        "至少一条交易的对方账号是8-10位数字"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "PDF-浙商银行清单式对账单",
+      "prompt": "将test_file/accstmt/浙商银行.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "正确解析浙商银行清单式对账单（17条交易），包含本方账号4910000010120100550928",
+      "files": ["test_file/accstmt/浙商银行.pdf"],
+      "expectations": [
+        "输出文件包含17条交易记录",
+        "本方账号为4910000010120100550928",
+        "至少一条交易的对方名称为'百瑞信托有限责任公司'或'河南水利投资集团有限公司'",
+        "至少一条交易的金额为负数（如-1,300,000.00表示贷出）"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "PDF-郑州银行多页对账单",
+      "prompt": "将test_file/accstmt/郑州银行.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "正确解析郑州银行多页对账单（2页），生成包含22条交易记录的Excel",
+      "files": ["test_file/accstmt/郑州银行.pdf"],
+      "expectations": [
+        "输出文件包含22条交易记录",
+        "本方账号为999156000800001729",
+        "至少一条交易的对方账号以0120开头（贷款合同号）",
+        "至少一条交易的交易日期在20260301-20260331之间"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "PDF-珠江村镇银行多页对账单",
+      "prompt": "将test_file/accstmt/珠江村镇银行23.10-12 账户明细查询 20231001-20231231.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "正确解析多页PDF对账单，生成约22条交易记录",
+      "files": ["test_file/accstmt/珠江村镇银行23.10-12 账户明细查询 20231001-20231231.pdf"],
+      "expectations": [
+        "输出文件包含20-25条交易记录",
+        "本方账号为60291084000000135",
+        "至少一条交易的日期在20231001-20231231之间"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "PDF-农发行单条对账单",
+      "prompt": "将test_file/accstmt/农发行.pdf 转换为BIPV5系统的导入模板",
+      "expected_output": "正确解析农发行PDF（含1条交易汇总），生成对应记录",
+      "files": ["test_file/accstmt/农发行.pdf"],
+      "expectations": [
+        "输出文件包含至少1条交易记录",
+        "本方账号为20341999900100000553911",
+        "至少一条交易日期为20260321",
+        "至少一条交易金额为159.84"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "PDF批量合并-PDF+MT940混合格式",
+      "prompt": "将test_file/accstmt目录下所有PDF银行对账单（农商行、平安银行、恒丰、浙商银行、郑州银行、珠江村镇银行、农发行）合并转换为一个BIPV5导入模板",
+      "expected_output": "将7个PDF文件合并为一个Excel文件",
+      "files": [
+        "test_file/accstmt/农商行.pdf",
+        "test_file/accstmt/平安银行.pdf",
+        "test_file/accstmt/恒丰.pdf",
+        "test_file/accstmt/浙商银行.pdf",
+        "test_file/accstmt/郑州银行.pdf",
+        "test_file/accstmt/珠江村镇银行23.10-12 账户明细查询 20231001-20231231.pdf",
+        "test_file/accstmt/农发行.pdf"
+      ],
+      "expectations": [
+        "输出文件位于test_file/accstmt/merged_BIPV5.xlsx",
+        "总交易记录数大于80条",
+        "至少包含6个不同的本方账号（说明多个银行都成功解析）",
+        "至少包含一笔来自平安银行的交易和一笔来自农商行的交易"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "PDF-指定银行名和组织编码",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为BIPV5模板，账户组织编码为ORG_PA_001，银行名称为平安银行",
+      "expected_output": "生成的Excel中包含指定的组织编码和银行名称",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "accentity_code列包含ORG_PA_001",
+        "bankNumber_name列包含'平安银行'",
+        "输出文件位于test_file/accstmt/目录"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "PDF-解析质量多维度评估",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为BIPV5系统的导入模板，并评估解析质量",
+      "expected_output": "生成BIPV5格式的Excel，评估各字段填充完整度",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "9条交易记录全部解析成功",
+        "至少8条交易包含对方账号",
+        "至少8条交易包含对方户名",
+        "至少6条交易包含摘要/附言",
+        "至少1条交易包含余额",
+        "所有必填字段（银行账号、流水号、交易日期、币种）100%填充"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "EAS_YXH-平安银行单文件转换",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为金蝶云星瀚(EAS_YXH)系统的标准流水导入模板",
+      "expected_output": "生成符合金蝶云星瀚格式的.xlsx文件，包含sheet1和辅助sheet",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "输出文件存在且为.xlsx格式",
+        "包含sheet1工作表",
+        "第3行为英文字段名（bizdate, currency.number等）",
+        "第4行为中文字段名（带*必填标识）",
+        "第5行开始写入数据",
+        "包含9条交易记录",
+        "本方银行账号15200002000062存在于第3列以后的列",
+        "至少1条交易日期为2026-03-02",
+        "至少1条交易对方户名包含'河南水利投资集团'",
+        "包含dropdown_items_sheet业务类型下拉sheet"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "FINGARD-平安银行单文件转换",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为保融ATS(FINGARD)系统的标准流水导入模板",
+      "expected_output": "生成符合保融ATS格式的.xls文件，包含'离线信息'sheet和'字段说明'sheet",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "输出文件存在且为.xls格式",
+        "包含'离线信息'sheet",
+        "包含'字段说明'sheet",
+        "第1行为表头（组织, 账号, 币种, 交易日期, 交易时间等）",
+        "第2行开始写入数据",
+        "包含9条交易记录",
+        "账号列包含15200002000062",
+        "借方/贷方发生额二选一填充（每行至少有1个非空）"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "NSTC-平安银行单文件转换",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为九恒星司库(NSTC)系统的标准流水导入模板",
+      "expected_output": "生成符合九恒星司库格式的.xls文件，'批量导入银行明细格式'sheet为第一个sheet",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "输出文件存在且为.xls格式",
+        "'批量导入银行明细格式'是第一个sheet",
+        "包含'格式说明'sheet",
+        "包含'币种编码对照'sheet",
+        "第1行为表头（银行单据号, *银行流水号, *业务日期, *账号, *币种(名称)等）",
+        "第2行开始写入数据",
+        "包含9条交易记录",
+        "*业务日期列包含YYYY-MM-DD格式日期",
+        "*账号列包含15200002000062"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "YYNCC-平安银行单文件转换",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为用友NCC(YYNCC)系统的标准流水导入模板",
+      "expected_output": "生成符合用友NCC格式的.xls文件，'数据'sheet包含参数行+表头+数据",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "输出文件存在且为.xls格式",
+        "包含'数据'sheet",
+        "包含'使用说明'sheet",
+        "数据sheet第4行为表头（交易日期, 交易时间, 对方账号等）",
+        "数据sheet第5行开始写入数据",
+        "包含9条交易记录",
+        "本方账号15200002000062出现在数据中",
+        "至少1条交易收款金额为562394.92（贷记）"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "EAS_YXH-指定参数",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为EAS_YXH模板，账户组织编码为ORG_TEST_001",
+      "expected_output": "生成EAS_YXH格式.xlsx，账户组织编码通过map参数传入",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "输出文件存在",
+        "sheet1第3行包含'accountbank.bankaccountnumber'字段",
+        "第5行开始的银行账号列为15200002000062",
+        "至少1条交易日期为2026-03-02"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "4系统批量转换-同一源文件",
+      "prompt": "将test_file/accstmt/平安银行.pdf 分别转换为4个系统（EAS_YXH/FINGARD/NSTC/YYNCC）的模板，输出到不同文件",
+      "expected_output": "生成4个不同格式的输出文件",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "EAS_YXH .xlsx 文件存在",
+        "FINGARD .xls 文件存在",
+        "NSTC .xls 文件存在",
+        "YYNCC .xls 文件存在",
+        "每个文件都包含9条交易记录",
+        "4个文件中银行账号列都正确（15200002000062）"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "FINGARD-样式保留验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为FINGARD模板，确保输出文件保留模板的样式（字体、列宽、辅助sheet）",
+      "expected_output": "输出 .xls 文件，保留模板的样式特征（宋体、列宽、所有辅助 sheet）",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "FINGARD .xls 文件存在",
+        "包含'离线信息'sheet",
+        "包含'字段说明'sheet",
+        "默认行高 = 模板行高 300 (保留模板默认行高)",
+        "字体定义数量 >= 5 (保留模板字体信息)",
+        "至少1条交易银行账号=15200002000062"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "NSTC-样式保留验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为NSTC模板，确保输出保留所有辅助sheet（批量导入银行明细格式、格式说明、币种编码对照）和样式",
+      "expected_output": "输出 .xls 文件，包含'批量导入银行明细格式'作为第一个sheet，保留'格式说明'和'币种编码对照'两个辅助sheet",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "NSTC .xls 文件存在",
+        "'批量导入银行明细格式'是第一个sheet",
+        "包含'格式说明'sheet",
+        "包含'币种编码对照'sheet",
+        "默认行高 = 模板行高 315 (保留模板默认行高)",
+        "至少1条交易账号=15200002000062"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "YYNCC-样式保留验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为YYNCC模板，确保输出保留模板的样式和所有sheet",
+      "expected_output": "输出 .xls 文件，保留'数据'、'使用说明'、'Sheet3'三个sheet",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "YYNCC .xls 文件存在",
+        "包含'数据'sheet",
+        "包含'使用说明'sheet",
+        "数据sheet第4行为表头（交易日期, 交易时间, 对方账号等）",
+        "默认行高 = 模板行高 270 (保留模板默认行高)",
+        "至少1条交易本方账号=15200002000062"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "FINGARD-S列银行流水号验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为FINGARD模板，确保银行流水号在S列（第19列），不是M列（票据号）",
+      "expected_output": "输出 .xls 文件，S列(银行流水号)有流水号值，M列(票据号)为空",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "FINGARD .xls 文件存在",
+        "S列 (col 19) 银行流水号 = 20260302170427 (第1笔交易)",
+        "M列 (col 13) 票据号 为空 (源数据无票据号字段)",
+        "至少1条交易S列(银行流水号)=20260302170427"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "YYNCC-P列交易流水号验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为YYNCC模板，确保银行流水号在P列（第16列），不是O列（对账标识码）",
+      "expected_output": "输出 .xls 文件，P列(交易流水号)有流水号值，O列(对账标识码)为空",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "YYNCC .xls 文件存在",
+        "P列 (col 16) 交易流水号 = 20260302170427 (第1笔交易)",
+        "O列 (col 15) 对账标识码 为空 (源数据无对账标识字段)",
+        "至少1条交易P列(交易流水号)=20260302170427"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "EAS_YXH-本方户名验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为EAS_YXH模板，确保本方户名(accountbank.name)正确使用源文件的户名",
+      "expected_output": "输出 .xlsx 文件，accountbank.name列（第 5 列）的值应为源PDF中的开户人名称",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "EAS_YXH .xlsx 文件存在",
+        "accountbank.name列 = 河南水投资源开发管理集团有限公司",
+        "至少1条交易户名为河南水投资源开发管理集团有限公司"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "YYNCC-本方户名验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为YYNCC模板，确保本方户名(selfname/M列)正确使用源文件的户名",
+      "expected_output": "输出 .xls 文件，本方户名列（M列）的值应为源PDF中的开户人名称",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "YYNCC .xls 文件存在",
+        "至少1条交易本方户名 = 河南水投资源开发管理集团有限公司"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "NSTC-户名验证",
+      "prompt": "将test_file/accstmt/平安银行.pdf 转换为NSTC模板，确保户名(accountname/第6列)正确使用源文件的户名",
+      "expected_output": "输出 .xls 文件，户名列（第6列）的值应为源PDF中的开户人名称",
+      "files": ["test_file/accstmt/平安银行.pdf"],
+      "expectations": [
+        "NSTC .xls 文件存在",
+        "至少1条交易户名为河南水投资源开发管理集团有限公司"
+      ]
+    }
+  ]
+}

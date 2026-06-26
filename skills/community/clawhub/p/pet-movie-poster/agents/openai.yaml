@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pet Movie Poster"
+  short_description: "Turn pet photos into cinematic character posters"
+  default_prompt: "Use $pet-movie-poster to transform my pet photo into a cinematic poster."

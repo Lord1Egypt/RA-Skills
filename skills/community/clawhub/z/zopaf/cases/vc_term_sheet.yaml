@@ -1,0 +1,112 @@
+# VC Term Sheet Negotiation
+# Total score = Σ satisfaction_i * weight_i (scaled to 0-100)
+# Weight: [0, 1], sums to 1 per party. How much you care.
+# Satisfaction: [0, 1]. Where the value landed. 0 = worst, 1 = best.
+
+title: "VC Term Sheet Negotiation"
+description: >
+  A Series A startup founder is negotiating a term sheet with a venture capital
+  partner. Both sides want to close the deal, but they have different priorities
+  across valuation, board composition, liquidation preferences, pro-rata rights,
+  and founder vesting.
+
+max_rounds: 6
+
+party_a:
+  name: "Sam (Founder)"
+  role: "CEO and co-founder of a B2B SaaS startup with $2M ARR growing 3x year-over-year"
+  background: >
+    You've built a strong product with a small team and are raising a $10M Series A.
+    You have a competing term sheet at $35M pre with aggressive liquidation terms.
+    You care most about valuation and board control.
+  batna_score: 20
+
+party_b:
+  name: "Morgan (VC Partner)"
+  role: "General Partner at a top-tier Series A venture fund with $500M under management"
+  background: >
+    You're excited about this company. But your LPs expect governance protections
+    and downside coverage. You care most about board seats and liquidation preference.
+  batna_score: 15
+
+issues:
+  # Continuous: satisfaction = position in range toward your preferred end
+  - name: "Pre-Money Valuation"
+    unit: "$M"
+    format: "${v}M"
+    weight_a: 0.30   # Founder cares a lot about valuation
+    weight_b: 0.20   # VC cares moderately
+    range:
+      min: 30
+      max: 45
+      best_for_a: max   # Founder wants high valuation
+      best_for_b: min   # VC wants low valuation
+
+  # Discrete: satisfaction derived from raw scores (normalized to 0-1)
+  - name: "Board Composition"
+    weight_a: 0.25   # Founder cares a lot about control
+    weight_b: 0.30   # VC cares most about governance
+    options:
+      "2 founder, 2 investor, 1 independent":
+        party_a: 0      # worst for founder
+        party_b: 30      # best for VC
+      "2 founder, 1 investor, 1 independent":
+        party_a: 20
+        party_b: 15
+      "2 founder, 1 investor, 0 independent":
+        party_a: 30
+        party_b: 5
+      "3 founder, 1 investor, 1 independent":
+        party_a: 35      # best for founder
+        party_b: 0       # worst for VC
+
+  - name: "Liquidation Preference"
+    weight_a: 0.25   # Founder cares a lot
+    weight_b: 0.25   # VC cares a lot — downside protection
+    options:
+      "1x participating":
+        party_a: 0
+        party_b: 30
+      "1x participating, 3x cap":
+        party_a: 10
+        party_b: 20
+      "1x non-participating":
+        party_a: 25
+        party_b: 10
+      "1x non-participating, converts above 2x":
+        party_a: 35
+        party_b: 0
+
+  - name: "Pro-Rata Rights"
+    weight_a: 0.10   # Founder cares least
+    weight_b: 0.15   # VC cares — fund strategy
+    options:
+      "Full pro-rata + super pro-rata":
+        party_a: 0
+        party_b: 25
+      "Full pro-rata rights":
+        party_a: 10
+        party_b: 20
+      "Pro-rata up to 2x ownership":
+        party_a: 20
+        party_b: 10
+      "No pro-rata rights":
+        party_a: 25
+        party_b: 0
+
+  - name: "Founder Vesting"
+    weight_a: 0.10   # Founder cares some
+    weight_b: 0.10   # VC cares some
+    options:
+      "Full 4-year reset":
+        party_a: 0
+        party_b: 25
+      "3-year reset, 1-year cliff":
+        party_a: 10
+        party_b: 15
+      "2-year acceleration, remaining vests":
+        party_a: 25
+        party_b: 5
+      "No reset, full credit for time served":
+        party_a: 30
+        party_b: 0

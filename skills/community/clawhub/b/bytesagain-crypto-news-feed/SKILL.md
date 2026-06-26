@@ -1,35 +1,35 @@
 ---
-name: "Crypto News Feed"
+name: "crypto-news-feed"
+version: "3.0.2"
 description: "Reference tool for blockchain and crypto — covers intro, formulas, regulations and more. Quick lookup for Crypto News Feed concepts, best practices, and impl..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bytesagain-crypto-news-feed"
-sourceUrl: "https://clawhub.ai/skills/bytesagain-crypto-news-feed"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [crypto,news,feed, reference]
+category: "blockchain"
 ---
 
 # Crypto News Feed
 
-> Reference tool for blockchain and crypto — covers intro, formulas, regulations and more. Quick lookup for Crypto News Feed concepts, best practices, and impl...
+Reference tool for blockchain and crypto — covers intro, formulas, regulations and more. Quick lookup for Crypto News Feed concepts, best practices, and impl... No API keys or credentials required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bytesagain-crypto-news-feed`
-- **Source URL:** [https://clawhub.ai/skills/bytesagain-crypto-news-feed](https://clawhub.ai/skills/bytesagain-crypto-news-feed)
+## Commands
 
-## Overview
+| Command | Description |
+|---------|-------------|
+| `intro` | intro reference |
+| `formulas` | formulas reference |
+| `regulations` | regulations reference |
+| `risks` | risks reference |
+| `instruments` | instruments reference |
+| `strategies` | strategies reference |
+| `glossary` | glossary reference |
+| `checklist` | checklist reference |
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bytesagain-crypto-news-feed
-```
+All commands output plain-text reference documentation via heredoc. No external API calls, no credentials needed, no network access.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

@@ -1,0 +1,16 @@
+[project]
+name = "milb-email"
+version = "0.1.0"
+description = "军工采购商机邮件发送工具"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "pandas",
+]
+
+[project.scripts]
+milb-email = "milb_email.fetcher:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

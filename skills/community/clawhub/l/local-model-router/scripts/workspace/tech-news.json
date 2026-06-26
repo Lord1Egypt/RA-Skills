@@ -1,0 +1,338 @@
+[
+  {
+    "title": "Why Codex Security Doesn’t Include a SAST Report",
+    "title_cn": "为什么 Codex 安全性不包括 SAST 报告",
+    "link": "https://openai.com/index/why-codex-security-doesnt-include-sast",
+    "summary_cn": "深入探讨为什么 Codex Security 不依赖传统的 SAST，而是使用人工智能驱动的约束推理和验证来发现真正的漏洞，并减少误报。",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "Rakuten fixes issues twice as fast with Codex",
+    "title_cn": "Rakuten 使用 Codex 解决问题的速度提高了一倍",
+    "link": "https://openai.com/index/rakuten",
+    "summary_cn": "Rakuten 使用 OpenAI 的编码代理 Codex 来更快、更安全地交付软件，将 MTTR 降低 50%，自动化 CI/CD 审查，并在几周内交付全栈构建。",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "Designing AI agents to resist prompt injection",
+    "title_cn": "设计人工智能代理以抵抗即时注入",
+    "link": "https://openai.com/index/designing-agents-to-resist-prompt-injection",
+    "summary_cn": "How ChatGPT defends against prompt injection and social engineering by constraining risky actions and protecting sensitive data in agent workflows.",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "Wayfair boosts catalog accuracy and support speed with OpenAI",
+    "title_cn": "Wayfair 通过 OpenAI 提高目录准确性和支持速度",
+    "link": "https://openai.com/index/wayfair",
+    "summary_cn": "Wayfair 使用 OpenAI 模型来改善电子商务支持和产品目录准确性，自动进行票证分类并大规模增强数百万个产品属性。",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "From model to agent: Equipping the Responses API with a computer environment",
+    "title_cn": "从模型到代理：为 Responses API 配备计算机环境",
+    "link": "https://openai.com/index/equip-responses-api-computer-environment",
+    "summary_cn": "OpenAI 如何使用响应 API、shell 工具和托管容器构建代理运行时，以使用文件、工具和状态运行安全、可扩展的代理。",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "Improving instruction hierarchy in frontier LLMs",
+    "title_cn": "Improving instruction hierarchy in frontier LLMs",
+    "link": "https://openai.com/index/instruction-hierarchy-challenge",
+    "summary_cn": "IH-Challenge 训练模型以优先考虑可信指令，改善指令层次结构、安全可操纵性以及对即时注入攻击的抵抗力。",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "New ways to learn math and science in ChatGPT",
+    "title_cn": "在 ChatGPT 中学习数学和科学的新方法",
+    "link": "https://openai.com/index/new-ways-to-learn-math-and-science-in-chatgpt",
+    "summary_cn": "ChatGPT introduces interactive visual explanations for math and science, helping students explore formulas, variables, and concepts in real time.",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "OpenAI to acquire Promptfoo",
+    "title_cn": "OpenAI 收购 Promptfoo",
+    "link": "https://openai.com/index/openai-to-acquire-promptfoo",
+    "summary_cn": "OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems during development.",
+    "source": "OpenAI Blog"
+  },
+  {
+    "title": "How AI is helping improve heart health in rural Australia",
+    "title_cn": "人工智能如何帮助改善澳大利亚农村地区的心脏健康",
+    "link": "https://blog.google/innovation-and-ai/technology/health/google-ai-heart-health-australia/",
+    "summary_cn": "一位医生坐在病人的桌子对面。医生拿着平板电脑和笔。背景是医疗图表效果图。",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "Gemini in Google Sheets just achieved state-of-the-art performance.",
+    "title_cn": "Google Sheets 中的 Gemini 刚刚实现了最先进的性能。",
+    "link": "https://blog.google/products-and-platforms/products/workspace/gemini-google-sheets-state-of-the-art/",
+    "summary_cn": "今天，我们在表格中推出了 Gemini 的新 Beta 版功能，可帮助您创建、组织和编辑整个表格，从基本任务到复杂的数据分析 — 只需德",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "How our open-source AI model SpeciesNet is helping to promote wildlife conservation",
+    "title_cn": "我们的开源人工智能模型 SpeciesNet 如何帮助促进野生动物保护",
+    "link": "https://blog.google/company-news/outreach-and-initiatives/sustainability/speciesnet-open-source-ai-wildlife/",
+    "summary_cn": "SpeciesNet AI 模型识别的动物照片",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "Ask a Techspert: How does AI understand my visual searches?",
+    "title_cn": "询问技术专家：人工智能如何理解我的视觉搜索？",
+    "link": "https://blog.google/company-news/inside-google/googlers/how-google-ai-visual-search-works/",
+    "summary_cn": "带有搜索栏的手机，上面写着“询问任何事情”",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "The latest AI news we announced in February",
+    "title_cn": "我们二月份公布的最新人工智能新闻",
+    "link": "https://blog.google/innovation-and-ai/products/google-ai-updates-february-2026/",
+    "summary_cn": "带有图像的 MP4 轮播，上面写着“Gemini 3.1 Pro”和“Nano Banana 2”",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "Use Canvas in AI Mode to get things done and bring your ideas to life, right in Search.",
+    "title_cn": "在 AI 模式下使用 Canvas 即可在搜索中完成工作并将您的想法变为现实。",
+    "link": "https://blog.google/products-and-platforms/products/search/ai-mode-canvas-writing-coding/",
+    "summary_cn": "AI 模式下的 Canvas 现已向美国所有人开放，此外，它现在还可以帮助您起草文档或构建交互式工具。",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "Create new worlds in Project Genie with these 4 tips",
+    "title_cn": "利用这 4 个技巧在 Project Genie 中创建新世界",
+    "link": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/tips-prompt-writing-project-genie/",
+    "summary_cn": "Project Genie 的屏幕截图，这是一个实验界面，显示了圆形图像网格，其中许多图像似乎是 360 度视图，中间有一个大的黑色地球仪，标记为“创建您自己的”",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "Gemini 3.1 Flash-Lite: Built for intelligence at scale",
+    "title_cn": "Gemini 3.1 Flash-Lite：专为大规模智能而打造",
+    "link": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-lite/",
+    "summary_cn": "Gemini 3.1 Flash Lite 徽标",
+    "source": "Google AI Blog"
+  },
+  {
+    "title": "Systematic debugging for AI agents: Introducing the AgentRx framework",
+    "title_cn": "AI 代理的系统调试：AgentRx 框架简介",
+    "link": "https://www.microsoft.com/en-us/research/blog/systematic-debugging-for-ai-agents-introducing-the-agentrx-framework/",
+    "summary_cn": "随着人工智能代理从简单的聊天机器人过渡到能够管理云事件、导航复杂的 Web 界面以及执行多步骤 API 工作流程的自主系统，出现了一个新的挑战：透明度。当一个人犯了错误时，我们通常可以追踪其逻辑。但是当一个A",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "PlugMem: Transforming raw agent interactions into reusable knowledge",
+    "title_cn": "PlugMem：将原始代理交互转化为可重用知识",
+    "link": "https://www.microsoft.com/en-us/research/blog/from-raw-interaction-to-reusable-knowledge-rethinking-memory-for-ai-agents/",
+    "summary_cn": "这似乎有悖常理：给人工智能代理更多的内存可能会降低它们的效率。随着交互日志的积累，它们会变得越来越大，充满不相关的内容，并且变得越来越难以使用。更多的内存意味着代理必须搜索大量过去的交互才能找到结果",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "Phi-4-reasoning-vision and the lessons of training a multimodal reasoning model",
+    "title_cn": "Phi-4-reasoning-vision 和训练多模态推理模型的教训",
+    "link": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+    "summary_cn": "我们很高兴地宣布推出 Phi-4-reasoning-vision-15B，这是一个 150 亿参数的开放权重多模态推理模型，可通过 Microsoft Foundry（在新选项卡中打开）、HuggingFace（在新选项卡中打开）和 GitHub（在新选项卡中打开）获取。 Phi-4-reasoning-vision-15B 是一个功能广泛的模型，",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "CORPGEN advances AI agents for real work",
+    "title_cn": "CORPGEN 推进人工智能代理的实际工作",
+    "link": "https://www.microsoft.com/en-us/research/blog/corpgen-advances-ai-agents-for-real-work/",
+    "summary_cn": "到了上午，典型的知识型员工已经在处理客户报告、预算电子表格、幻灯片和积压的电子邮件，所有这些都是相互依赖的，并且都需要同时关注。为了使人工智能代理在该环境中真正发挥作用，它们需要以相同的方式进行操作，但是",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "Media Authenticity Methods in Practice: Capabilities, Limitations, and Directions",
+    "title_cn": "实践中的媒体真实性方法：能力、局限性和方向",
+    "link": "https://www.microsoft.com/en-us/research/blog/media-authenticity-methods-in-practice-capabilities-limitations-and-directions/",
+    "summary_cn": "随着合成媒体的发展，验证内容的真实性和来源比以往任何时候都更加重要。我们的最新报告探讨了媒体完整性和身份验证方法、其局限性以及跨图像、音频和视频实现可信来源的实用路径。\n帖子<a href=\"http",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "Project Silica’s advances in glass storage technology",
+    "title_cn": "Project Silica 在玻璃存储技术方面的进步",
+    "link": "https://www.microsoft.com/en-us/research/blog/project-silicas-advances-in-glass-storage-technology/",
+    "summary_cn": "二氧化硅项目引入了在硼硅酸盐玻璃中编码数据的新技术，如《自然》杂志中所述。这些进步降低了介质成本并简化了写入和读取系统，同时支持一万年的数据保存。\n帖子<a href=\"https://www.microsoft.com/en-us/r",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "Rethinking imitation learning with Predictive Inverse Dynamics Models",
+    "title_cn": "使用预测逆动力学模型重新思考模仿学习",
+    "link": "https://www.microsoft.com/en-us/research/blog/rethinking-imitation-learning-with-predictive-inverse-dynamics-models/",
+    "summary_cn": "这项研究着眼于为什么预测逆动态模型在模仿学习中通常优于标准行为克隆。通过对接下来发生的事情进行简单的预测，马存保机构可以减少歧义并从更少的示范中学习。\n帖子<a href=\"https://www.microsoft.com/en-u",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "Paza: Introducing automatic speech recognition benchmarks and models for low resource languages",
+    "title_cn": "Paza：为低资源语言引入自动语音识别基准和模型",
+    "link": "https://www.microsoft.com/en-us/research/blog/paza-introducing-automatic-speech-recognition-benchmarks-and-models-for-low-resource-languages/",
+    "summary_cn": "微软研究院推出了 Paza（一个以人为本的语音管道）和 PazaBench（第一个低资源语言排行榜）。它涵盖 39 种非洲语言和 52 个模型，并在真实环境中与社区进行了测试。 \n帖子<a href=\"https://www.microsoft.com/en-us/research/blog",
+    "source": "Microsoft AI Blog"
+  },
+  {
+    "title": "Where OpenAI’s technology could show up in Iran",
+    "title_cn": "OpenAI 的技术可以在伊朗发挥什么作用",
+    "link": "https://www.technologyreview.com/2026/03/16/1134315/where-openais-technology-could-show-up-in-iran/",
+    "summary_cn": "这个故事最初出现在我们关于人工智能的每周通讯《算法》中。要首先在您的收件箱中收到此类报道，请在此处注册。自 OpenAI 达成一项有争议的协议以允许五角大楼在机密环境中使用其人工智能以来，已经过去了两周多的时间。还有",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "Nurturing agentic AI beyond the toddler stage",
+    "title_cn": "培养幼儿阶段以外的智能人工智能",
+    "link": "https://www.technologyreview.com/2026/03/16/1133979/nurturing-agentic-ai-beyond-the-toddler-stage/",
+    "summary_cn": "幼儿的父母对从婴儿期到成年期的发育里程碑面临很多恐惧。婴儿学会说话或走路所需的月数通常被用作健康的基准，或者是正确诊断潜在健康问题所需的额外测试的指标。",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "The Download: glass chips and “AI-free” logos",
+    "title_cn": "下载：玻璃碎片和“无人工智能”标志",
+    "link": "https://www.technologyreview.com/2026/03/16/1134301/the-download-glass-ai-chips-ai-free-logo/",
+    "summary_cn": "这是今天的《下载》版本，这是我们的平日时事通讯，每天提供技术世界中正在发生的事情。未来的人工智能芯片可能会建立在玻璃上——人造玻璃已有数千年的历史。但它现在已经准备好进入人工智能领域",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "Securing digital assets against future threats",
+    "title_cn": "保护数字资产免受未来威胁",
+    "link": "https://www.technologyreview.com/2026/03/16/1134287/securing-digital-assets-against-future-threats/",
+    "summary_cn": "",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "Why physical AI is becoming manufacturing’s next advantage",
+    "title_cn": "为什么物理人工智能正在成为制造业的下一个优势",
+    "link": "https://www.technologyreview.com/2026/03/13/1134184/why-physical-ai-is-becoming-manufacturings-next-advantage/",
+    "summary_cn": "几十年来，制造商一直追求自动化来提高效率、降低成本和稳定运营。这种方法带来了有意义的成果，但还不够。当今的制造业领导者面临着不同的挑战：如何在劳动力限制、复杂性不断上升以及信息安全的情况下实现增长",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "The Download: how AI is used for military targeting, and the Pentagon’s war on Claude",
+    "title_cn": "下载：人工智能如何用于军事目标，以及五角大楼对克劳德的战争",
+    "link": "https://www.technologyreview.com/2026/03/13/1134278/the-download-defense-official-ai-chatbots-targeting-pentagon-claude-pollute-military-supply-chain/",
+    "summary_cn": "这是今天的《下载》版本，这是我们的平日时事通讯，每天提供技术世界中正在发生的事情。国防部官员揭示了人工智能聊天机器人如何用于目标决策”美国军方可能会使用生成式人工智能系统对目标进行排名",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "Future AI chips could be built on glass",
+    "title_cn": "未来的人工智能芯片可能会建立在玻璃上",
+    "link": "https://www.technologyreview.com/2026/03/13/1134230/future-ai-chips-could-be-built-on-glass/",
+    "summary_cn": "人造玻璃已有数千年的历史。但它现在已准备好进入全球最新、最大数据中心使用的人工智能芯片。今年，一家名为 Absolics 的韩国公司计划开始商业化生产特殊玻璃面板，旨在制造下一代",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "A defense official reveals how AI chatbots could be used for targeting decisions",
+    "title_cn": "一名国防官员揭示了人工智能聊天机器人如何用于目标决策",
+    "link": "https://www.technologyreview.com/2026/03/12/1134243/defense-official-military-use-ai-chatbots-targeting-decisions/",
+    "summary_cn": "据一位知情的国防部官员透露，美国军方可能会使用生成式人工智能系统对目标列表进行排名，并提出首先进行打击的建议（这些建议将由人类审查）。关于军方可能如何使用人工智能聊天机器人的披露是在",
+    "source": "MIT Technology Review"
+  },
+  {
+    "title": "Picsart now allows creators to ‘hire’ AI assistants through agent marketplace",
+    "title_cn": "Picsart 现在允许创作者通过代理市场“雇用”人工智能助手",
+    "link": "https://techcrunch.com/2026/03/16/picsart-now-allows-creators-to-hire-ai-assistants-through-agent-marketplace/",
+    "summary_cn": "Picsart 的人工智能代理市场将推出四个代理，然后每周添加更多代理。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Nvidia’s version of OpenClaw could solve its biggest problem: security",
+    "title_cn": "Nvidia 版本的 OpenClaw 可以解决其最大的问题：安全性",
+    "link": "https://techcrunch.com/2026/03/16/nvidias-version-of-openclaw-could-solve-its-biggest-problem-security/",
+    "summary_cn": "Nvidia 宣布推出一个名为 NemoClaw 的开放式企业 AI 代理平台，该平台是在病毒式传播的 OpenClaw 基础上构建的。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Jensen Huang just put Nvidia’s Blackwell and Vera Rubin sales projections into the $1 trillion stratosphere",
+    "title_cn": "黄仁勋 (Jensen Huang) 刚刚将 Nvidia 的 Blackwell 和 Vera Rubin 的销售预测推至 1 万亿美元",
+    "link": "https://techcrunch.com/2026/03/16/jensen-just-put-nvidias-blackwell-and-vera-rubin-sales-projections-into-the-1-trillion-stratosphere/",
+    "summary_cn": "Nvidia 首席执行官黄仁勋表示，他预计这些芯片的订单价值将达到 1 万亿美元。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Warren presses Pentagon over decision to grant xAI access to classified networks",
+    "title_cn": "沃伦就授予 xAI 访问机密网络的决定向五角大楼施压",
+    "link": "https://techcrunch.com/2026/03/16/warren-presses-pentagon-over-decision-to-grant-xai-access-to-classified-networks/",
+    "summary_cn": "参议员伊丽莎白·沃伦 (Elizabeth Warren) 指出，xAI 备受争议的聊天机器人 Grok 已为用户产生有害输出，并构成潜在的国家安全风险。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Memories AI is building the visual memory layer for wearables and robotics",
+    "title_cn": "Memories AI 正在为可穿戴设备和机器人构建视觉记忆层",
+    "link": "https://techcrunch.com/2026/03/16/memories-ai-is-building-the-visual-memory-layer-for-wearables-and-robotics/",
+    "summary_cn": "Memories.ai 正在构建一个大型视觉记忆模型，可以为物理人工智能索引和检索视频记录的记忆。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Elon Musk’s xAI faces child porn lawsuit from minors Grok allegedly undressed",
+    "title_cn": "埃隆·马斯克 (Elon Musk) 的 xAI 面临未成年人的儿童色情诉讼 Grok 涉嫌脱衣",
+    "link": "https://techcrunch.com/2026/03/16/elon-musks-xai-faces-child-porn-lawsuit-from-minors-grok-allegedly-undressed/",
+    "summary_cn": "这三名原告正在寻求代表任何拥有他们未成年时真实图像并被 Grok 修改为色情内容的人。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Nvidia’s DLSS 5 uses generative AI to boost photorealism in video games, with ambitions beyond gaming",
+    "title_cn": "Nvidia 的 DLSS 5 使用生成式 AI 来增强视频游戏中的照片真实感，其野心不仅仅局限于游戏",
+    "link": "https://techcrunch.com/2026/03/16/nvidias-dlss-5-uses-generative-ai-to-boost-photo-realism-in-video-games-with-ambitions-beyond-gaming/",
+    "summary_cn": "Nvidia 的新 DLSS 5 使用生成式 AI 和结构化图形数据使视频游戏更加逼真。首席执行官黄仁勋表示，这种方法最终可能会推广到其他行业。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "How to watch Jensen Huang’s Nvidia GTC 2026 keynote — and what to expect",
+    "title_cn": "如何观看黄仁勋的 Nvidia GTC 2026 主题演讲 - 以及期待什么",
+    "link": "https://techcrunch.com/2026/03/16/nvidia-gtc-how-to-watch-jensen-huang-2026-keynote/",
+    "summary_cn": "GTC 是 Nvidia 的旗舰年度活动，该芯片制造商通常会在会上宣布新产品、合作伙伴关系以及对计算未来的愿景。黄仁勋的主题演讲将重点关注英伟达在未来计算和人工智能领域的作用。",
+    "source": "TechCrunch AI"
+  },
+  {
+    "title": "Kagi Translate now supports LinkedIn Speak as an output language",
+    "title_cn": "Kagi Translate 现在支持 LinkedIn Speak 作为输出语言",
+    "link": "https://translate.kagi.com/?from=en&to=LinkedIn+speak",
+    "summary_cn": "文章网址：https://translate.kagi.com/?from=en&amp;to=LinkedIn+speak\n评论网址：https://news.ycombinator.com/item?id=47408703\n积分：444\n#",
+    "source": "Hacker News"
+  },
+  {
+    "title": "Monkey Island for Commodore 64 Ground Up",
+    "title_cn": "Commodore 64 Ground Up 的猴岛",
+    "link": "https://pixeldust.se/monkey-island-project",
+    "summary_cn": "文章网址：https://pixeldust.se/monkey-island-project\n评论网址：https://news.ycombinator.com/item?id=47408441\n积分：119\n# 条评论：36",
+    "source": "Hacker News"
+  },
+  {
+    "title": "Jepsen: MariaDB Galera Cluster 12.1.2",
+    "title_cn": "Jepsen：MariaDB Galera 集群 12.1.2",
+    "link": "https://jepsen.io/analyses/mariadb-galera-cluster-12.1.2",
+    "summary_cn": "文章网址：https://jepsen.io/analysiss/mariadb-galera-cluster-12.1.2\n评论网址：https://news.ycombinator.com/item?id=47408360\n积分：69\n#公司",
+    "source": "Hacker News"
+  },
+  {
+    "title": "Every layer of review makes you 10x slower",
+    "title_cn": "每一层审查都会让你慢 10 倍",
+    "link": "https://apenwarr.ca/log/20260316",
+    "summary_cn": "文章网址：https://apenwarr.ca/log/20260316\n评论网址：https://news.ycombinator.com/item?id=47408205\n积分：211\n# 条评论：103",
+    "source": "Hacker News"
+  },
+  {
+    "title": "US SEC preparing to scrap quarterly reporting requirement",
+    "title_cn": "美国证券交易委员会准备取消季度报告要求",
+    "link": "https://www.reuters.com/business/finance/us-sec-preparing-eliminate-quarterly-reporting-requirement-wsj-says-2026-03-16/",
+    "summary_cn": "文章网址：https://www.reuters.com/business/finance/us-sec-preparing-eliminate-quarterly-reporting-requirement-wsj-says-2026-03-16/\n评论网址：<a href",
+    "source": "Hacker News"
+  },
+  {
+    "title": "AnswerThis (YC F25) Is Hiring",
+    "title_cn": "回答这个（YC F25）正在招聘",
+    "link": "https://www.ycombinator.com/companies/answerthis/jobs/CNdatw5-founding-engineering-lead",
+    "summary_cn": "文章网址：https://www.ycombinator.com/companies/answerthis/jobs/CNdatw5-founding-engineering-lead\n评论网址：https://news.ycom",
+    "source": "Hacker News"
+  },
+  {
+    "title": "Beyond has dropped “meat” from its name and expanded its high-protein drink line",
+    "title_cn": "Beyond已经从名字中去掉了“肉”，并扩大了其高蛋白饮料系列",
+    "link": "https://plantbasednews.org/news/alternative-protein/beyond-meat-not-the-moment-rebrand/",
+    "summary_cn": "文章网址：https://plantbasednews.org/news/alternative- Protein/beyond-meat-not-the-moment-rebrand/\n评论网址：https://news.ycom",
+    "source": "Hacker News"
+  },
+  {
+    "title": "Leanstral: Open-source agent for trustworthy coding and formal proof engineering",
+    "title_cn": "Leanstral：用于可信编码和形式化证明工程的开源代理",
+    "link": "https://mistral.ai/news/leanstral",
+    "summary_cn": "精益 4 论文（2021 年）：https://dl.acm.org/doi/10.1007/978-3-030-79876-5_37\n\n评论网址：https://news.ycombinator.com/item?id=47404796\n宝",
+    "source": "Hacker News"
+  }
+]

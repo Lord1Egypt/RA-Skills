@@ -1,0 +1,132 @@
+{
+  "name": "venture-capitalist",
+  "version": "2.0.1",
+  "description": "智能投资分析工具 - AI 驱动的市场规模估算、竞品分析、估值建议和风险评分",
+  "author": "ZhenCap Team",
+  "homepage": "https://www.zhencap.com",
+  "repository": "https://github.com/zhencap/mcp-skill",
+  "license": "MIT",
+  "keywords": [
+    "investment",
+    "analysis",
+    "bp",
+    "business-plan",
+    "market-sizing",
+    "valuation",
+    "vc",
+    "startup",
+    "投资",
+    "分析",
+    "商业计划书",
+    "创业"
+  ],
+  "category": "finance",
+  "apiEndpoint": "https://www.zhencap.com/api/v1",
+  "requiresAuth": false,
+  "freeQuota": {
+    "monthly": 50,
+    "description": "每月 50 次免费分析额度，无需 API 密钥 | 50 free calls per month, no API key required"
+  },
+  "tools": [
+    {
+      "name": "estimate_market_size",
+      "description": "估算市场规模（TAM/SAM/SOM），分析行业增长趋势和市场潜力",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "industry": {
+            "type": "string",
+            "description": "行业名称，例如：人工智能、电商、金融科技"
+          },
+          "geography": {
+            "type": "string",
+            "description": "地理范围，例如：中国、全球、亚太",
+            "default": "中国"
+          },
+          "year": {
+            "type": "integer",
+            "description": "目标年份",
+            "default": 2024
+          }
+        },
+        "required": ["industry"]
+      },
+      "endpoint": "/market-sizing",
+      "method": "POST"
+    },
+    {
+      "name": "analyze_competitors",
+      "description": "分析竞品，识别主要竞争对手，生成竞争格局 SWOT 分析",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string",
+            "description": "公司名称"
+          },
+          "industry": {
+            "type": "string",
+            "description": "所属行业"
+          }
+        },
+        "required": ["company", "industry"]
+      },
+      "endpoint": "/competitor-analysis",
+      "method": "POST"
+    },
+    {
+      "name": "estimate_valuation",
+      "description": "估值建议，基于可比公司法和 DCF 模型提供估值范围",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "revenue": {
+            "type": "number",
+            "description": "年营收（万元）"
+          },
+          "growth_rate": {
+            "type": "number",
+            "description": "年增长率（%）"
+          },
+          "industry": {
+            "type": "string",
+            "description": "所属行业"
+          },
+          "stage": {
+            "type": "string",
+            "enum": ["seed", "angel", "a", "b", "c", "pre-ipo"],
+            "description": "融资阶段"
+          }
+        },
+        "required": ["revenue", "industry", "stage"]
+      },
+      "endpoint": "/valuation-estimate",
+      "method": "POST"
+    },
+    {
+      "name": "score_risk",
+      "description": "风险评分，从市场、团队、技术、财务等维度评估项目风险",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_data": {
+            "type": "object",
+            "description": "公司基本信息",
+            "properties": {
+              "name": {"type": "string"},
+              "industry": {"type": "string"},
+              "stage": {"type": "string"},
+              "team_size": {"type": "integer"}
+            }
+          }
+        },
+        "required": ["company_data"]
+      },
+      "endpoint": "/risk-scoring",
+      "method": "POST"
+    }
+  ],
+  "installation": {
+    "instructions": "访问 https://www.zhencap.com/install 获取详细安装指南"
+  }
+}

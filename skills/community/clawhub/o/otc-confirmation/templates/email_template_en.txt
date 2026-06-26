@@ -1,0 +1,7 @@
+Your one-time confirmation code: {code}
+
+Operation: {operation}
+Session: {session}
+
+Reply with this code in the original chat to authorize.
+This code is single-use and expires after verification.

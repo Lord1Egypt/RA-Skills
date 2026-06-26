@@ -1,0 +1,11 @@
+{
+  "owner": "antaripnandi",
+  "slug": "notebooklm-bypass",
+  "displayName": "NotebookLM Auth Bypass",
+  "latest": {
+    "version": "1.0.6",
+    "publishedAt": 1773169976543,
+    "commit": "https://github.com/openclaw/skills/commit/d62192a59bafdc69f93d8d4c1796a1d82d9369eb"
+  },
+  "history": []
+}

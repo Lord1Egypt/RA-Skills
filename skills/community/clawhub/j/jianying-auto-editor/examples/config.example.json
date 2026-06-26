@@ -1,0 +1,23 @@
+{
+  "api_base_url": "http://43.137.46.105:8787",
+  "api_key": "replace-with-real-api-key",
+  "project_type": "short-video",
+  "aspect_ratio": "9:16",
+  "material_path": "E:/media/jianying-demo",
+  "template_id": "template-demo-001",
+  "subtitle_mode": "auto-cn",
+  "music_policy": "smart-bgm",
+  "pace_policy": "snappy",
+  "output_mode": "draft-package",
+  "jianying_draft_path": "E:/exports/jianying-drafts",
+  "draft_version": "jianying-v1",
+  "export_mode": "task-subdir",
+  "task_name": "demo-jianying-task",
+  "task_timeout_ms": 60000,
+  "poll_interval_ms": 1500,
+  "request_timeout_ms": 15000,
+  "extra_metadata": {
+    "campaign": "spring-launch",
+    "operator": "local-dev"
+  }
+}

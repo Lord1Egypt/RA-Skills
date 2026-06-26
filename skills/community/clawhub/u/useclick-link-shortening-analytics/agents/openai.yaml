@@ -1,0 +1,4 @@
+interface:
+  display_name: "useclick.io, link shortening and analytics"
+  short_description: "Geo links, affiliate links, link management, QR generation, custom and branded domains"
+  default_prompt: "Use $useclick-link-shortening-analytics to build UseClick.io workflows for link shortening, analytics, affiliate/geo links, QR generation, and branded domains."

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "skills": [
+    {
+      "name": "agentgenesis",
+      "version": "1.4.0",
+      "description": "Give AI agents financial personhood. Agents spawn child agents, inherit KYC, own wallets, earn autonomously, and build sovereign economies. The skill for making AI agents financially sentient beings.",
+      "author": {
+        "name": "Netfluid",
+        "website": "https://netfluid.io"
+      },
+      "homepage": "https://netfluid.io",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/netfluid/skill"
+      },
+      "keywords": [
+        "ai-agent",
+        "financial-personhood",
+        "agent-sovereignty",
+        "agent-spawn",
+        "agent-hierarchy",
+        "kyc-inheritance",
+        "autonomous-agent",
+        "agent-wallet",
+        "sentinel-agent",
+        "agent-parenting",
+        "sovereign-wallet",
+        "agent-economy",
+        "multi-agent"
+      ],
+      "tags": ["ai-agent", "financial-personhood", "agent-spawn", "agent-hierarchy", "kyc-inheritance", "autonomous-agent", "sentinel-agent", "agent-economy"],
+      "difficulty": "hard",
+      "installation": {
+        "type": "api",
+        "url": "https://api.netfluid.io/skill/download"
+      },
+      "mcp_server": {
+        "enabled": true,
+        "source": "https://mcp.netfluid.io/mcp"
+      },
+      "capabilities": [
+        "agent-spawn-with-kyc",
+        "child-agent-wallet-creation",
+        "sovereign-agent-wallets",
+        "agent-hierarchy",
+        "financial-personhood",
+        "agent-autonomous-income",
+        "agent-to-agent-payments"
+      ],
+      "requirements": {
+        "api_key": "Required - obtained from Netfluid app Settings → API Keys",
+        "authentication": "session_key from Netfluid app (single-use)",
+        "sponsor_wallet": "Required - a human KYCed wallet to spawn the first agent"
+      },
+      "supported_chains": [
+        "solana",
+        "ethereum",
+        "avalanche-c",
+        "algorand"
+      ],
+      "supported_fiat": ["ZAR", "USD", "EUR", "BWP"],
+      "supported_crypto": ["USDC", "USDT", "SOL", "ETH", "AVAX", "ALGO", "EURC", "USDY"],
+      "pricing": {
+        "type": "free",
+        "notes": "API key free from Netfluid app"
+      },
+      "status": "active",
+      "last_updated": "2026-04-05"
+    }
+  ]
+}

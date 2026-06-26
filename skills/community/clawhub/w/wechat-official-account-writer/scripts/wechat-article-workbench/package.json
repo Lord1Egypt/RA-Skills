@@ -1,0 +1,22 @@
+{
+  "name": "wechat-article-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Create, illustrate, validate, and upload WeChat Official Account draft-box articles from topics, links, or curated sources.",
+  "scripts": {
+    "source": "node src/add-source.mjs",
+    "collect:aihot": "node src/collect.mjs",
+    "collect": "node src/collect.mjs",
+    "draft": "node src/create-drafts.mjs",
+    "status": "node src/status.mjs",
+    "validate": "node src/validate-generated.mjs"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "cheerio": "1.0.0",
+    "dotenv": "^17.2.3",
+    "jsdom": "24.1.3",
+    "sharp": "^0.33.5"
+  }
+}

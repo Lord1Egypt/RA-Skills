@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opendart-cli"
+version = "0.1.0"
+description = "Unofficial Python CLI for Korea FSS DART OpenAPI (disclosures, company info, financials)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Chloe Park", email = "hapark85@gmail.com" }]
+keywords = ["dart", "opendart", "korea", "finance", "fss", "disclosure", "cli"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Financial and Insurance Industry",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pytest-mock>=3.12", "responses>=0.24"]
+
+[project.scripts]
+opendart = "opendart_cli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ChloePark85/opendart-cli"
+Source = "https://github.com/ChloePark85/opendart-cli"
+Issues = "https://github.com/ChloePark85/opendart-cli/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/opendart_cli"]

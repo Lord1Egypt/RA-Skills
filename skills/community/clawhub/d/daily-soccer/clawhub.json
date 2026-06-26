@@ -1,0 +1,16 @@
+{
+  "name": "daily-soccer",
+  "displayName": "Daily Soccer Content Generator",
+  "version": "1.1.0",
+  "description": "Generate 60-90 second TikTok scripts about soccer/football news using free RSS feeds. Covers Premier League, La Liga, Serie A, Champions League, and more.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 1999,
+    "interval": "monthly"
+  },
+  "tags": ["soccer", "football", "tiktok", "content", "sports", "premier-league", "la-liga", "champions-league"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "content-generation"
+}

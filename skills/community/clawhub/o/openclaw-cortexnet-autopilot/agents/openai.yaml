@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Repo Autopilot"
+  short_description: "Autonomous multi-CLI optimization for any GitHub repo (Codex/Claude/Gemini/Open Code) with report-only audit."
+  default_prompt: "Use $openclaw-cortexnet-autopilot to set up and run unattended optimization for any GitHub repo and custom requirement with Codex/Claude/Gemini/Open Code failover and report-only approval."

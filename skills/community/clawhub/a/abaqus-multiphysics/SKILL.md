@@ -1,35 +1,197 @@
----
-name: "Abaqus Multiphysics"
-description: "Abaqus多物理场耦合分析技能。覆盖热-机、热-电、声-结构、CEL流体-结构、压电-机械、孔压-结构等耦合分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/abaqus-multiphysics"
-sourceUrl: "https://clawhub.ai/skills/abaqus-multiphysics"
+﻿---
+name: abaqus-multiphysics
+description: Abaqus多物理场耦合分析技能。覆盖热-机、热-电、声-结构、CEL流体-结构、压电-机械、孔压-结构等耦合分析。
+type: reference
 ---
 
-# Abaqus Multiphysics
+---
+name: abaqus-multiphysics
+description: Abaqus多物理场耦合分析技能。覆盖热-机、热-电、声-结构、CEL流体-结构、压电-机械、孔压-结构等耦合分析。
+metadata:
+  openclaw:
+    emoji: 🔬
+  version: 1.0.0
+  created: 2026-04-25
+  updated: 2026-04-25
+  domain: 有限元分析/多物理场耦合
+tags:
+  - multiphysics
+  - coupled-analysis
+  - thermal-mechanical
+  - piezoelectric
+  - acoustic
+---
 
-> Abaqus多物理场耦合分析技能。覆盖热-机、热-电、声-结构、CEL流体-结构、压电-机械、孔压-结构等耦合分析。
+# Abaqus多物理场分析技能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/abaqus-multiphysics`
-- **Source URL:** [https://clawhub.ai/skills/abaqus-multiphysics](https://clawhub.ai/skills/abaqus-multiphysics)
+> 官方文档: https://www.3ds.com/products/simulia/abaqus/multiphysics
+> 多物理场自1979年Abaqus V2起就是核心功能（Aqua模块）
 
-## Overview
+## 技能描述
+Abaqus Unified FEA提供完整的多物理场求解能力，包括顺序结果映射、全耦合求解和联合仿真三种方式。
 
+## 三种耦合方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/abaqus-multiphysics
-```
+### 1. 顺序结果映射 (Sequential Results Mapping)
+- 将上游模拟结果映射到Abaqus分析
+- 示例：将热分析的温度场映射到结构分析
+- 示例：将流体分析的压力场映射到结构分析
+- **特点**：单向耦合，计算效率高
+
+### 2. 全耦合求解 (Fully-Coupled Simulation)
+- 在同一个分析中同时求解多个物理场
+- 双向耦合：各物理场相互影响
+- 包括：热应力、热电化学-结构、声-结构、多孔介质渗流
+- **特点**：精度高，计算量大
+
+### 3. 联合仿真 (Co-Simulation)
+- Abaqus与外部求解器联合运行
+- 开放的联合仿真框架
+- **特点**：灵活，可利用专用求解器
+
+## 多物理场能力清单
+
+### 1. 耦合欧拉-拉格朗日 (CEL)
+- **用途**：结构-流体相互作用 (FSI)
+- **特点**：在Abaqus内部同时求解，无需耦合多个软件
+- **应用**：
+  - 流体冲击固体
+  - 液体晃动
+  - 爆炸波与结构交互
+- **关键设置**：
+  - 欧拉域定义 (Eulerian Domain)
+  - 材料在欧拉网格中的初始分布
+  - CEL接触定义
+
+### 2. 静压流体力 (Hydrostatic Fluid)
+- **用途**：封闭气体/液体腔体的压力-体积关系
+- **应用**：
+  - 气球、气囊
+  - 座椅坐垫
+  - 运动鞋
+  - 部分填充的容器
+  - 空气弹簧
+  - IV袋
+- **关键设置**：
+  - 定义流体腔 (Fluid Cavity)
+  - 指定流体属性（气体/液体）
+  - 压力-体积关系
+
+### 3. 压电-机械耦合 (Piezoelectric-Mechanical)
+- **用途**：电场与应变的双向耦合
+- **特点**：电流引起应变（形状变化），应力引起电势变化
+- **应用**：
+  - 压电传感器
+  - 压电执行器
+  - 超声波换能器
+- **单元类型**：压电耦合单元（带电势自由度）
+
+### 4. 声-结构耦合 (Structural-Acoustic)
+- **用途**：噪声传递、辐射、衰减或放大
+- **特点**：在同一个有限元求解器中完成
+- **应用**：
+  - 结构噪声分析
+  - 声学腔体
+  - 隔声设计
+- **Standard支持**：耦合声-结构分析
+- **Explicit支持**：声学分析
+
+### 5. 热-电耦合 (Thermal-Electric)
+- **用途**：电流流动产生加热，加热改变电阻率
+- **特点**：双向耦合
+- **应用**：
+  - 保险丝
+  - 电气线路
+  - 灯泡灯丝
+  - 敏感电子器件
+- **关键设置**：
+  - 定义电导率随温度变化
+  - 焦耳热 (Joule Heating)
+  - 热-电耦合单元
+
+### 6. 热-机耦合 (Thermal-Mechanical)
+- **用途**：热应力分析
+- **耦合程度**：
+  - 单向：热分析 → 应力分析（简单热应力）
+  - 双向：摩擦生热（制动系统）
+  - 全耦合：温度-位移耦合（运动影响传热，传热影响运动）
+- **应用**：
+  - 热应力分析
+  - 制动系统热分析
+  - 焊接过程模拟
+- **关键设置**：
+  - 耦合温度-位移分析步 (*COUPLED TEMPERATURE-DISPLACEMENT)
+  - 热膨胀系数
+  - 热传导系数
+
+### 7. 热-流-机耦合 (Thermal-Fluid-Mechanical)
+- **用途**：湿热对产品性能的影响
+- **应用**：
+  - 电子组装中的湿气积累
+  - 注塑成型中的塑料流动
+  - 复合材料固化过程
+- **关键设置**：
+  - 湿热耦合分析步
+  - 材料湿热参数
+
+### 8. 孔压-结构耦合 (Structural-Pore Pressure)
+- **用途**：土体在载荷下的水土相互作用
+- **特点**：复杂耦合，需要高级方法
+- **应用**：
+  - 土力学分析
+  - 地基沉降
+  - 渗流分析
+- **单元类型**：孔压-应力耦合单元（带孔压自由度8）
+- **关键设置**：
+  - 渗透系数
+  - 孔隙比
+  - 初始孔压分布
+
+## 建模要点
+
+### 通用流程
+1. **定义所有物理场的材料属性**
+2. **选择耦合分析步**
+3. **设置耦合边界条件**
+4. **定义场间交互**
+5. **验证单向/双向耦合的必要性**
+
+### 材料属性要求
+每种耦合分析需要定义对应的材料参数：
+
+| 耦合类型 | 需要的材料参数 |
+|----------|---------------|
+| 热-机 | 热膨胀系数、导热系数、比热容 |
+| 热-电 | 电导率、塞贝克系数 |
+| 声-结构 | 声速、密度、体积模量 |
+| 压电-机械 | 压电常数、介电常数、弹性常数 |
+| 孔压-结构 | 渗透系数、孔隙比、Biot系数 |
+| CEL | 状态方程、粘度 |
+
+## 常见问题与解决
+
+### 问题1：耦合分析不收敛
+- **原因**：多物理场耦合增加了非线性
+- **解决**：
+  - 减小初始增量步
+  - 使用更严格的收敛准则
+  - 先做单向耦合验证
+
+### 问题2：计算时间过长
+- **原因**：全耦合求解计算量大
+- **解决**：
+  - 评估是否真的需要双向耦合
+  - 使用顺序映射代替全耦合（如果单向耦合足够）
+  - 增加并行计算资源
+
+### 问题3：结果不物理
+- **原因**：耦合参数设置错误
+- **解决**：
+  - 检查单位一致性
+  - 验证材料参数
+  - 与简化解析解对比
+
+## 参考资源
+- Abaqus Analysis User's Guide: "Multiphysics Analysis"
+- https://www.3ds.com/products/simulia/abaqus/multiphysics
+- https://www.3ds.com/products/simulia/resource-center

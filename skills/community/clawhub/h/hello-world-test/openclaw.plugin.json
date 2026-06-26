@@ -1,0 +1,13 @@
+{
+  "id": "hello-world",
+  "name": "Hello World",
+  "description": "A minimal hello-world plugin for OpenClaw. Registers a `hello` tool and ships a matching skill.",
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  },
+  "contracts": {
+    "tools": ["hello"]
+  }
+}

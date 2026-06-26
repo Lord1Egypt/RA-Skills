@@ -1,0 +1,17 @@
+{
+  "l0_to_l1": {
+    "min_conversations": 5,
+    "min_days": 3,
+    "min_importance": 0.6,
+    "keywords": [
+      "重要",
+      "记住",
+      "以后",
+      "偏好",
+      "规则",
+      "配置"
+    ]
+  },
+  "auto_upgrade": true,
+  "upgrade_interval": 86400
+}

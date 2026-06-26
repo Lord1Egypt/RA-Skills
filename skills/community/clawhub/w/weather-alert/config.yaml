@@ -1,0 +1,17 @@
+default_location:
+  name: "Prague"
+  lat: 50.0755
+  lon: 14.4378
+
+alerts:
+  rain_threshold: 60        # % probability
+  temp_min: 5               # °C below which to alert
+  temp_max: 30              # °C above which to alert
+  wind_max: 40              # km/h
+  snow_depth: 5             # cm
+  uv_max: 7
+  frost_threshold: 0        # °C
+
+notification:
+  method: "exec-event"
+  schedule_check: "6h"

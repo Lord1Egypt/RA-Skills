@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceGateVerdict",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "gate_required",
+    "gate_reason",
+    "candidate_summary",
+    "requirements",
+    "missing_evidence",
+    "conflicting_evidence",
+    "sufficiency_rule",
+    "verdict",
+    "allowed_next_actions",
+    "blocked_next_actions",
+    "fallback_behavior",
+    "suggested_wording",
+    "next_evidence_actions"
+  ],
+  "properties": {
+    "gate_required": {
+      "type": "boolean"
+    },
+    "gate_reason": {
+      "type": "string"
+    },
+    "candidate_summary": {
+      "type": "string"
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description",
+          "mandatory",
+          "acceptable_kinds",
+          "status",
+          "evidence_refs",
+          "notes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "acceptable_kinds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "satisfied",
+              "missing",
+              "conflicting",
+              "not_applicable"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflicting_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sufficiency_rule": {
+      "type": "string"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "SOFT_PASS",
+        "BLOCK",
+        "CONFLICT"
+      ]
+    },
+    "allowed_next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocked_next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fallback_behavior": {
+      "type": "string"
+    },
+    "suggested_wording": {
+      "type": "string"
+    },
+    "next_evidence_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "gate_required": {
+            "const": false
+          }
+        },
+        "required": [
+          "gate_required"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verdict": {
+            "const": "PASS"
+          },
+          "requirements": {
+            "maxItems": 0
+          },
+          "missing_evidence": {
+            "maxItems": 0
+          },
+          "conflicting_evidence": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ]
+}

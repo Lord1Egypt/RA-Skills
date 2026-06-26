@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "grizzly-sms": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-grizzly-sms/dist/index.js"],
+      "env": {
+        "GRIZZLY_SMS_API_KEY": "YOUR_API_KEY_HERE",
+        "GRIZZLY_SMS_BASE_URL": "https://api.grizzlysms.com"
+      }
+    }
+  }
+}

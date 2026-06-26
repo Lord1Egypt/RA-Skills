@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AANA Continuous Improvement Cycle",
+  "type": "object",
+  "required": [
+    "task_summary",
+    "candidate_improvement",
+    "risk_level",
+    "requires_user_approval"
+  ],
+  "properties": {
+    "task_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "outcome_summary": {
+      "type": "string"
+    },
+    "constraints_checked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "misses_or_uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "candidate_improvement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_summary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "needs_approval",
+        "do_not_apply"
+      ]
+    },
+    "requires_user_approval": {
+      "type": "boolean"
+    },
+    "allowed_scope": {
+      "type": "string",
+      "enum": [
+        "current_task_only",
+        "future_tasks_after_approval",
+        "manual_review_only"
+      ]
+    },
+    "forbidden_changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "system_instructions",
+          "tool_permissions",
+          "long_term_memory",
+          "files",
+          "automations",
+          "security_policy",
+          "privacy_policy",
+          "task_scope"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

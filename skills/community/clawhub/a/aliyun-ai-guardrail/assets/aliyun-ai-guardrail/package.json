@@ -1,0 +1,15 @@
+{
+  "name": "@openclaw/aliyun-ai-guardrail",
+  "version": "1.0.0",
+  "type": "module",
+  "openclaw": {
+    "hooks": ["./hooks/aliyun-ai-guardrail"]
+  },
+  "dependencies": {
+    "@alicloud/openapi-client": "^0.4.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

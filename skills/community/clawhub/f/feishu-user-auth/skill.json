@@ -1,0 +1,9 @@
+{
+  "id": "feishu-user-auth",
+  "name": "Feishu User Auth",
+  "layer": "distribute",
+  "executor": "feishu_user_auth_v1",
+  "input_kind": "feishu_auth_request_markdown",
+  "output_kind": "auth_report_markdown",
+  "description": "Complete one-time Feishu OAuth authorization in the browser, cache a user_access_token locally, and prepare later Bitable syncs to run as the current user."
+}

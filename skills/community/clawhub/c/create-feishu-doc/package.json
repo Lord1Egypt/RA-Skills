@@ -1,0 +1,30 @@
+{
+  "name": "create-feishu-doc",
+  "version": "1.0.8",
+  "description": "当用户请求创建飞书文档、生成飞书文档、写入飞书文档或将内容整理到飞书文档中时，必须使用该技能。适用于任何需要生成完整文档的场景，包括但不限于：技术文档、PRD、项目计划、报告、笔记、文章、小说等。",
+  "main": "scripts/create_feishu_doc.py",
+  "scripts": {
+    "test": "python scripts/create_feishu_doc.py"
+  },
+  "keywords": [
+    "feishu",
+    "document",
+    "create",
+    "append",
+    "batch"
+  ],
+  "author": "PMBot",
+  "license": "MIT",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/clawhub/create-feishu-doc"
+  },
+  "homepage": "https://clawhub.com/skills/create-feishu-doc",
+  "bugs": {
+    "url": "https://github.com/openclaw/clawhub/issues"
+  },
+  "engines": {
+    "python": ">=3.6"
+  }
+}

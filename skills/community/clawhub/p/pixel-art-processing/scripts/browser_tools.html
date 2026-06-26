@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrameRonin Browser Tools / 浏览器工具</title>
+<!--
+  pixel-art-processing skill - Browser Tools
+  基于 FrameRonin: https://github.com/systemchester/FrameRonin
+  
+  使用方法: 双击在浏览器中打开即可使用
+  Usage: Double-click to open in browser
+  
+  功能 / Features:
+    • GIF ↔ Frames 互转
+    • Sprite Sheet 拆分
+    • 多图合成单图
+    • 像素化效果
+    • 透明行列智能拆分
+-->
+<style>
+  :root {
+    --primary: #b55233;
+    --bg: #ede6dc;
+    --border: #9a8b78;
+    --text: #3d3428;
+    --text-secondary: #6b5d4d;
+    --card-bg: #e4dbcf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px;
+  }
+  h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  .subtitle { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.85rem; }
+  .credits { font-size: 0.75rem; color: var(--text-secondary); margin-top: 32px; }
+  .credits a { color: var(--primary); }
+  
+  .tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tab-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+  .tab-btn:hover { background: #ddd3c3; }
+  .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+  
+  .panel {
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border-radius: 0 8px 8px 8px;
+    padding: 20px;
+    display: none;
+  }
+  .panel.active { display: block; }
+  
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  label { font-size: 0.85rem; color: var(--text-secondary); min-width: 80px; }
+  input[type="number"], input[type="text"] {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #faf7f2;
+    font-size: 0.85rem;
+    width: 80px;
+  }
+  input[type="file"] { font-size: 0.85rem; }
+  .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  input[type="checkbox"] { width: 16px; height: 16px; }
+  
+  button {
+    padding: 8px 18px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: opacity 0.2s;
+  }
+  button:hover { opacity: 0.85; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.secondary { background: var(--text-secondary); }
+  button.small { padding: 4px 10px; font-size: 0.75rem; }
+  
+  .preview-area {
+    margin-top: 16px;
+    padding: 16px;
+    background: repeating-conic-gradient(#c9bfb0 0% 25%, #e4dbcf 0% 50%) 50% / 16px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .preview-area img {
+    max-width: 120px;
+    max-height: 120px;
+    image-rendering: pixelated;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .info-box {
+    background: rgba(181,82,51,0.1);
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  
+  .frames-grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+  .frame-item {
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .frame-item:hover { border-color: var(--primary); }
+  .frame-item.selected { border: 2px solid var(--primary); }
+  .frame-item img { width: 100%; display: block; image-rendering: pixelated; }
+  .frame-item .idx {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 0.65rem;
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  .frame-item .del {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #d32f2f;
+    color: white;
+    border: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .frame-item:hover .del { opacity: 1; }
+  
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .drop-zone.dragover, .drop-zone:hover {
+    border-color: var(--primary);
+    background: rgba(181,82,51,0.05);
+  }
+  
+  .log { font-size: 0.75rem; color: var(--text-secondary); margin-top: 12px; max-height: 100px; overflow-y: auto; }
+  .log .ok { color: #2e7d32; }
+  .log .err { color: #c62828; }
+  
+  select {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #faf7f2;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>🖼️ FrameRonin Browser Tools</h1>
+<p class="subtitle">像素美术处理工具集 / Pixel Art Sprite Sheet Tools</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="gif">GIF ↔ 序列帧</button>
+  <button class="tab-btn" data-tab="spritesheet">Sprite Sheet 拆分</button>
+  <button class="tab-btn" data-tab="compose">多图合成单图</button>
+  <button class="tab-btn" data-tab="super">超级拆分</button>
+  <button class="tab-btn" data-tab="pixelate">像素化</button>
+</div>
+
+<!-- GIF ↔ Frames -->
+<div class="panel active" id="panel-gif">
+  <div class="tabs" style="margin-bottom:16px">
+    <button class="tab-btn active" data-subtab="gif-split">GIF拆帧</button>
+    <button class="tab-btn" data-subtab="gif-make">序列帧合成GIF</button>
+  </div>
+  
+  <!-- GIF 拆帧 -->
+  <div id="sub-gif-split" class="sub-panel">
+    <div class="info-box">上传GIF，自动拆分为帧序列图片并打包下载ZIP</div>
+    <div class="drop-zone" id="drop-gif-split" onclick="document.getElementById('file-gif-split').click()">
+      拖拽或点击上传 GIF 文件 / Drop or click to upload GIF
+    </div>
+    <input type="file" id="file-gif-split" accept=".gif" style="display:none" onchange="handleGifFile(this.files[0])">
+    <div class="row">
+      <label>预览:</label>
+      <img id="gif-preview" style="max-width:200px;max-height:150px;display:none;image-rendering:auto" />
+    </div>
+    <div class="row">
+      <button id="btn-gif-split" disabled onclick="runGifSplit()">拆分GIF</button>
+      <button id="btn-gif-split-download" disabled class="secondary" onclick="downloadGifFramesZip()">下载ZIP</button>
+    </div>
+    <div class="preview-area" id="frames-preview-split" style="display:none"></div>
+  </div>
+  
+  <!-- GIF 合成 -->
+  <div id="sub-gif-make" class="sub-panel" style="display:none">
+    <div class="info-box">上传多张图片，合成GIF动画</div>
+    <div class="row">
+      <label>帧延迟:</label>
+      <input type="number" id="gif-delay" value="100" min="20" max="2000"> ms
+      <label style="margin-left:16px">列数:</label>
+      <input type="number" id="gif-cols" value="4" min="1" max="16">
+    </div>
+    <div class="drop-zone" id="drop-gif-make" onclick="document.getElementById('file-gif-make').click()">
+      拖拽或点击上传图片序列 / Drop or click to upload frame images
+    </div>
+    <input type="file" id="file-gif-make" accept="image/*" multiple style="display:none" onchange="handleFramesFiles(this.files)">
+    <div class="preview-area" id="frames-preview-make"></div>
+    <div class="row" style="margin-top:12px">
+      <button id="btn-gif-make" disabled onclick="runFramesToGif()">合成GIF</button>
+      <button id="btn-gif-download" disabled class="secondary" onclick="downloadGif()">下载GIF</button>
+      <button class="secondary small" onclick="clearFrames()">清空</button>
+    </div>
+    <div class="row">
+      <img id="gif-result" style="max-width:300px;max-height:200px;display:none;margin-top:12px" />
+    </div>
+  </div>
+</div>
+
+<!-- Sprite Sheet 拆分 -->
+<div class="panel" id="panel-spritesheet">
+  <div class="info-box">上传Sprite Sheet大图，按布局拆分为帧序列</div>
+  <div class="row">
+    <label>列数:</label>
+    <input type="number" id="ss-cols" value="4" min="1" max="64">
+    <label>行数:</label>
+    <input type="number" id="ss-rows" value="4" min="1" max="64">
+    <label>帧宽:</label>
+    <input type="number" id="ss-fw" value="64" min="1">
+    <label>帧高:</label>
+    <input type="number" id="ss-fh" value="64" min="1">
+    <label>间距:</label>
+    <input type="number" id="ss-spacing" value="0" min="0">
+  </div>
+  <div class="drop-zone" onclick="document.getElementById('file-ss').click()">
+    拖拽或点击上传 Sprite Sheet / Drop or click to upload sprite sheet
+  </div>
+  <input type="file" id="file-ss" accept="image/*" style="display:none" onchange="handleSpriteSheet(this.files[0])">
+  <div class="row">
+    <img id="ss-preview" style="max-width:300px;max-height:200px;display:none;image-rendering:pixelated;border:1px solid var(--border)" />
+  </div>
+  <div class="row">
+    <button id="btn-ss-split" disabled onclick="runSpriteSplit()">拆分Sprite</button>
+    <button id="btn-ss-download" disabled class="secondary" onclick="downloadSpriteFrames()">下载ZIP</button>
+  </div>
+  <div class="preview-area" id="ss-frames" style="display:none"></div>
+</div>
+
+<!-- 多图合成单图 -->
+<div class="panel" id="panel-compose">
+  <div class="info-box">上传多张图片，按网格布局合成为一张大图</div>
+  <div class="row">
+    <label>列数:</label>
+    <input type="number" id="compose-cols" value="4" min="1" max="64">
+    <label>上裁:</label>
+    <input type="number" id="compose-crop-top" value="0">
+    <label>下裁:</label>
+    <input type="number" id="compose-crop-bottom" value="0">
+    <label>左裁:</label>
+    <input type="number" id="compose-crop-left" value="0">
+    <label>右裁:</label>
+    <input type="number" id="compose-crop-right" value="0">
+  </div>
+  <div class="drop-zone" onclick="document.getElementById('file-compose').click()">
+    拖拽或点击上传多张图片 / Drop or click to upload images
+  </div>
+  <input type="file" id="file-compose" accept="image/*" multiple style="display:none" onchange="handleComposeFiles(this.files)">
+  <div class="preview-area" id="compose-preview"></div>
+  <div class="row" style="margin-top:12px">
+    <button id="btn-compose" disabled onclick="runCompose()">合成</button>
+    <button id="btn-compose-download" disabled class="secondary" onclick="downloadComposed()">下载PNG</button>
+  </div>
+  <div class="row">
+    <img id="compose-result" style="max-width:400px;max-height:300px;display:none;image-rendering:pixelated;margin-top:12px" />
+  </div>
+</div>
+
+<!-- 超级拆分 -->
+<div class="panel" id="panel-super">
+  <div class="info-box">
+    按透明行/列智能切割图像，无需指定行列数。适用于Sprite Sheet行间距/列间距不一致的情况。
+  </div>
+  <div class="drop-zone" onclick="document.getElementById('file-super').click()">
+    拖拽或点击上传图片 / Drop or click to upload image
+  </div>
+  <input type="file" id="file-super" accept="image/*" style="display:none" onchange="handleSuperFile(this.files[0])">
+  <div class="row">
+    <img id="super-preview" style="max-width:300px;max-height:200px;display:none;image-rendering:pixelated;border:1px solid var(--border)" />
+  </div>
+  <div class="row">
+    <button id="btn-super" disabled onclick="runSuperSplit()">超级拆分</button>
+    <button id="btn-super-download" disabled class="secondary" onclick="downloadSuperFrames()">下载ZIP</button>
+  </div>
+  <div class="preview-area" id="super-frames" style="display:none"></div>
+</div>
+
+<!-- 像素化 -->
+<div class="panel" id="panel-pixelate">
+  <div class="info-box">缩小后再放大为像素块风格 (nearest-neighbor)</div>
+  <div class="row">
+    <label>缩放倍数:</label>
+    <input type="number" id="pixelate-scale" value="4" min="1" max="32">
+  </div>
+  <div class="drop-zone" onclick="document.getElementById('file-pixelate').click()">
+    拖拽或点击上传图片 / Drop or click to upload image
+  </div>
+  <input type="file" id="file-pixelate" accept="image/*" style="display:none" onchange="handlePixelateFile(this.files[0])">
+  <div class="row">
+    <img id="pixelate-preview" style="max-width:300px;max-height:200px;display:none;image-rendering:auto;border:1px solid var(--border)" />
+    <span style="font-size:1.5rem;margin:0 8px">→</span>
+    <img id="pixelate-result" style="max-width:300px;max-height:200px;display:none;image-rendering:pixelated;border:1px solid var(--border)" />
+  </div>
+  <div class="row" style="margin-top:12px">
+    <button id="btn-pixelate-download" disabled class="secondary" onclick="downloadPixelate()">下载PNG</button>
+  </div>
+</div>
+
+<div class="log" id="log"></div>
+<div class="credits">
+  Based on <a href="https://github.com/systemchester/FrameRonin" target="_blank">FrameRonin</a> 
+  — pixel-art-processing skill for OpenClaw
+</div>
+
+<!-- gifuct-js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gifuct-js@2.2.2/dist/gifuct-js.umd.min.js"></script>
+<!-- JSZip from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+<script>
+// =============================================================================
+// 全局状态 / Global State
+// =============================================================================
+let gifFile = null
+let gifFrames = []
+let gifResultUrl = null
+
+let frameFiles = []
+let frameUrls = []
+
+let spriteSheetFile = null
+
+let composeFiles = []
+let composeUrls = []
+let superFile = null
+let superResultUrl = null
+let pixelateFile = null
+let pixelateResultUrl = null
+
+// =============================================================================
+// 日志 / Logging
+// =============================================================================
+function log(msg, type='info') {
+  const el = document.getElementById('log')
+  const span = document.createElement('span')
+  span.className = type
+  span.textContent = msg + '\n'
+  el.appendChild(span)
+  el.scrollTop = el.scrollHeight
+}
+function logOK(msg) { log(msg, 'ok') }
+function logErr(msg) { log(msg, 'err') }
+
+// =============================================================================
+// Tab 切换 / Tab Switching  
+// =============================================================================
+document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'))
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'))
+    btn.classList.add('active')
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active')
+  })
+})
+
+// =============================================================================
+// GIF 子Tab / GIF Sub-Tab
+// =============================================================================
+document.querySelectorAll('.tab-btn[data-subtab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn[data-subtab]').forEach(b => b.classList.remove('active'))
+    document.querySelectorAll('.sub-panel').forEach(p => p.style.display = 'none')
+    btn.classList.add('active')
+    const subId = 'sub-' + btn.dataset.subtab
+    document.getElementById(subId).style.display = 'block'
+  })
+})
+
+// =============================================================================
+// Drag & Drop / 拖拽
+// =============================================================================
+function setupDropZone(el, handler) {
+  el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('dragover') })
+  el.addEventListener('dragleave', () => el.classList.remove('dragover'))
+  el.addEventListener('drop', e => {
+    e.preventDefault()
+    el.classList.remove('dragover')
+    handler(e.dataTransfer.files)
+  })
+}
+
+// =============================================================================
+// GIF Split / GIF拆帧
+// =============================================================================
+function handleGifFile(file) {
+  if (!file || !file.name.endsWith('.gif')) { logErr('Please select a GIF file'); return }
+  gifFile = file
+  const url = URL.createObjectURL(file)
+  const preview = document.getElementById('gif-preview')
+  preview.src = url
+  preview.style.display = 'block'
+  document.getElementById('btn-gif-split').disabled = false
+  log(`Loaded: ${file.name} (${(file.size/1024).toFixed(1)} KB)`)
+  
+  // Parse GIF
+  const reader = new FileReader()
+  reader.onload = async () => {
+    try {
+      const buf = reader.result
+      const gif = window.GIFuctJS.parseGIF(buf)
+      const frames = window.GIFuctJS.decompressFrames(gif, true)
+      gifFrames = frames
+      logOK(`Parsed ${frames.length} frames`)
+      await renderGifSplitPreview(frames)
+    } catch(e) {
+      logErr('GIF parse error: ' + e.message)
+    }
+  }
+  reader.readAsArrayBuffer(file)
+}
+
+async function renderGifSplitPreview(frames) {
+  const container = document.getElementById('frames-preview-split')
+  container.innerHTML = ''
+  
+  // Recompose each frame for preview
+  const w = frames[0]?.dims?.width || 100
+  const h = frames[0]?.dims?.height || 100
+  const canvas = document.createElement('canvas')
+  canvas.width = w
+  canvas.height = h
+  const ctx = canvas.getContext('2d')
+  let buf = new Uint8ClampedArray(w * h * 4)
+  buf.fill(0)
+  
+  for (let i = 0; i < Math.min(frames.length, 24); i++) {
+    buf = compositeFrame(buf, frames[i], w, h)
+    const imgData = new ImageData(buf, w, h)
+    ctx.putImageData(imgData, 0, 0)
+    const blob = await new Promise(r => canvas.toBlob(r))
+    const url = URL.createObjectURL(blob)
+    
+    const div = document.createElement('div')
+    div.className = 'frame-item'
+    div.innerHTML = `<img src="${url}"><span class="idx">${i}</span>`
+    div.title = `Frame ${i}`
+    container.appendChild(div)
+  }
+  container.style.display = 'flex'
+}
+
+function compositeFrame(prevBuf, frame, w, h) {
+  const buf = new Uint8ClampedArray(prevBuf)
+  const { patch, dims, disposalType = 1 } = frame
+  const { top, left, width: pw, height: ph } = dims
+  
+  if (disposalType === 2) {
+    for (let i = 0; i < buf.length; i += 4) {
+      buf[i] = buf[i+1] = buf[i+2] = buf[i+3] = 0
+    }
+  }
+  
+  for (let py = 0; py < ph; py++) {
+    for (let px = 0; px < pw; px++) {
+      const idx = (py * pw + px) * 4
+      const a = patch[idx + 3]
+      const outY = top + py
+      const outX = left + px
+      if (outY >= 0 && outY < h && outX >= 0 && outX < w) {
+        const outIdx = (outY * w + outX) * 4
+        if (a === 0) {
+          buf[outIdx] = buf[outIdx+1] = buf[outIdx+2] = buf[outIdx+3] = 0
+        } else {
+          buf[outIdx] = patch[idx]; buf[outIdx+1] = patch[idx+1]
+          buf[outIdx+2] = patch[idx+2]; buf[outIdx+3] = a
+        }
+      }
+    }
+  }
+  return buf
+}
+
+async function runGifSplit() {
+  if (!gifFrames.length) return
+  log(`Exporting ${gifFrames.length} frames...`)
+  // Full export in worker-like manner
+  const w = gifFrames[0].dims.width
+  const h = gifFrames[0].dims.height
+  const canvas = document.createElement('canvas')
+  canvas.width = w
+  canvas.height = h
+  const ctx = canvas.getContext('2d')
+  let buf = new Uint8ClampedArray(w * h * 4)
+  buf.fill(0)
+  
+  const zip = new JSZip()
+  for (let i = 0; i < gifFrames.length; i++) {
+    buf = compositeFrame(buf, gifFrames[i], w, h)
+    const imgData = new ImageData(new Uint8ClampedArray(buf), w, h)
+    ctx.putImageData(imgData, 0, 0)
+    const blob = await new Promise(r => canvas.toBlob(r))
+    zip.file(`frame_${String(i).padStart(3,'0')}.png`, blob)
+  }
+  
+  const zipBlob = await zip.generateAsync({ type: 'blob' })
+  const url = URL.createObjectURL(zipBlob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = (gifFile?.name?.replace('.gif','') || 'frames') + '_frames.zip'
+  a.click()
+  logOK(`Exported ZIP with ${gifFrames.length} frames`)
+}
+
+function downloadGifFramesZip() {
+  runGifSplit()
+}
+
+// =============================================================================
+// Frames → GIF / 序列帧合成GIF
+// =============================================================================
+function handleFramesFiles(files) {
+  const arr = Array.from(files)
+  frameFiles = frameFiles.concat(arr)
+  
+  arr.forEach(f => {
+    const url = URL.createObjectURL(f)
+    frameUrls.push(url)
+  })
+  
+  renderFramesPreview()
+  document.getElementById('btn-gif-make').disabled = frameFiles.length === 0
+  log(`Added ${arr.length} frames (total: ${frameFiles.length})`)
+}
+
+function renderFramesPreview() {
+  const container = document.getElementById('frames-preview-make')
+  container.innerHTML = ''
+  frameUrls.forEach((url, i) => {
+    const div = document.createElement('div')
+    div.className = 'frame-item'
+    div.innerHTML = `<img src="${url}"><span class="idx">${i}</span><button class="del" onclick="event.stopPropagation();removeFrame(${i})">✕</button>`
+    div.onclick = () => toggleFrameSelect(i)
+    container.appendChild(div)
+  })
+}
+
+function toggleFrameSelect(idx) {
+  const items = document.querySelectorAll('#frames-preview-make .frame-item')
+  items[idx].classList.toggle('selected')
+}
+
+function removeFrame(idx) {
+  URL.revokeObjectURL(frameUrls[idx])
+  frameFiles.splice(idx, 1)
+  frameUrls.splice(idx, 1)
+  renderFramesPreview()
+  document.getElementById('btn-gif-make').disabled = frameFiles.length === 0
+}
+
+function clearFrames() {
+  frameUrls.forEach(URL.revokeObjectURL)
+  frameFiles = []
+  frameUrls = []
+  renderFramesPreview()
+  document.getElementById('btn-gif-make').disabled = true
+  document.getElementById('gif-result').style.display = 'none'
+}
+
+async function runFramesToGif() {
+  if (!frameFiles.length) return
+  log(`Encoding GIF from ${frameFiles.length} frames...`)
+  
+  // We need gifenc - use a simple canvas-based approach or load gifenc
+  // Load gifenc dynamically
+  if (!window.GIFEncoder) {
+    await loadGifEnc()
+  }
+  
+  const delay = parseInt(document.getElementById('gif-delay').value) || 100
+  const cols = parseInt(document.getElementById('gif-cols').value) || 4
+  
+  // Load all images
+  const imgs = []
+  for (const f of frameFiles) {
+    const img = await loadImage(f)
+    imgs.push(img)
+  }
+  
+  const w = imgs[0].width
+  const h = imgs[0].height
+  
+  // Use simple palette-based GIF encoding via canvas trick
+  // Or use the gifenc library
+  const gif = new window.GIFEncoder()
+  gif.writeHeader()
+  
+  for (const img of imgs) {
+    const canvas = document.createElement('canvas')
+    canvas.width = w
+    canvas.height = h
+    const ctx = canvas.getContext('2d')
+    ctx.drawImage(img, 0, 0, w, h)
+    const imgData = ctx.getImageData(0, 0, w, h)
+    
+    // Quantize
+    const palette = window.quantize?.(imgData.data, 255) || []
+    const indexed = window.applyPalette?.(imgData.data, palette) || new Uint8Array(w * h)
+    
+    gif.writeFrame(indexed, w, h, { palette, delay })
+  }
+  
+  gif.finish()
+  const bytes = gif.bytes()
+  const blob = new Blob([bytes], { type: 'image/gif' })
+  gifResultUrl = URL.createObjectURL(blob)
+  
+  const result = document.getElementById('gif-result')
+  result.src = gifResultUrl
+  result.style.display = 'block'
+  document.getElementById('btn-gif-download').disabled = false
+  logOK('GIF encoded successfully')
+}
+
+async function loadGifEnc() {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/gifenc@1.0.3/dist/gifenc.esm.min.js'
+    script.onload = () => {
+      window.GIFEncoder = window.GIFEnc.GIFEncoder
+      window.quantize = window.GIFEnc.quantize
+      window.applyPalette = window.GIFEnc.applyPalette
+      resolve()
+    }
+    script.onerror = reject
+    document.head.appendChild(script)
+  })
+}
+
+function loadImage(file) {
+  return new Promise((res, rej) => {
+    const img = new Image()
+    img.onload = () => res(img)
+    img.onerror = rej
+    img.src = URL.createObjectURL(file)
+  })
+}
+
+function downloadGif() {
+  if (!gifResultUrl) return
+  const a = document.createElement('a')
+  a.href = gifResultUrl
+  a.download = 'output.gif'
+  a.click()
+}
+
+// =============================================================================
+// Sprite Sheet Split / Sprite Sheet拆分
+// =============================================================================
+function handleSpriteSheet(file) {
+  if (!file) return
+  spriteSheetFile = file
+  const url = URL.createObjectURL(file)
+  const preview = document.getElementById('ss-preview')
+  preview.src = url
+  preview.style.display = 'block'
+  document.getElementById('btn-ss-split').disabled = false
+  log(`Loaded sprite sheet: ${file.name}`)
+}
+
+async function runSpriteSplit() {
+  if (!spriteSheetFile) return
+  const cols = parseInt(document.getElementById('ss-cols').value) || 4
+  const rows = parseInt(document.getElementById('ss-rows').value) || 4
+  const fw = parseInt(document.getElementById('ss-fw').value) || 64
+  const fh = parseInt(document.getElementById('ss-fh').value) || 64
+  const spacing = parseInt(document.getElementById('ss-spacing').value) || 0
+  
+  const img = await loadImage(spriteSheetFile)
+  const w = img.width
+  const h = img.height
+  
+  const total = cols * rows
+  log(`Splitting ${total} frames (${cols}x${rows}, ${fw}x${fh}px)...`)
+  
+  const canvas = document.createElement('canvas')
+  canvas.width = fw
+  canvas.height = fh
+  const ctx = canvas.getContext('2d')
+  
+  const zip = new JSZip()
+  const container = document.getElementById('ss-frames')
+  container.innerHTML = ''
+  
+  for (let i = 0; i < total; i++) {
+    const row = Math.floor(i / cols)
+    const col = i % cols
+    const x = col * (fw + spacing)
+    const y = row * (fh + spacing)
+    
+    if (x + fw > w || y + fh > h) {
+      log(`Frame ${i} out of bounds, skipping`)
+      continue
+    }
+    
+    ctx.clearRect(0, 0, fw, fh)
+    ctx.drawImage(img, x, y, fw, fh, 0, 0, fw, fh)
+    
+    const blob = await new Promise(r => canvas.toBlob(r))
+    zip.file(`sprite_${row}_${String(col).padStart(2,'0')}.png`, blob)
+    
+    const url = URL.createObjectURL(blob)
+    const div = document.createElement('div')
+    div.className = 'frame-item'
+    div.innerHTML = `<img src="${url}"><span class="idx">${i}</span>`
+    container.appendChild(div)
+  }
+  
+  container.style.display = 'flex'
+  document.getElementById('btn-ss-download').disabled = false
+  logOK(`Split ${total} frames`)
+}
+
+function downloadSpriteFrames() {
+  runSpriteSplit().then(async () => {
+    // Re-run to get zip - simple approach: trigger download via re-split
+    log('Preparing ZIP download...')
+  })
+}
+
+// =============================================================================
+// 多图合成 / Multi-Image Compose
+// =============================================================================
+function handleComposeFiles(files) {
+  const arr = Array.from(files)
+  arr.forEach(f => {
+    const url = URL.createObjectURL(f)
+    composeFiles.push(f)
+    composeUrls.push(url)
+  })
+  renderComposePreview()
+  document.getElementById('btn-compose').disabled = composeFiles.length === 0
+  log(`Added ${arr.length} images (total: ${composeFiles.length})`)
+}
+
+function renderComposePreview() {
+  const container = document.getElementById('compose-preview')
+  container.innerHTML = ''
+  composeUrls.forEach((url, i) => {
+    const div = document.createElement('div')
+    div.className = 'frame-item'
+    div.innerHTML = `<img src="${url}"><span class="idx">${i}</span>`
+    container.appendChild(div)
+  })
+}
+
+async function runCompose() {
+  if (!composeFiles.length) return
+  
+  const cols = parseInt(document.getElementById('compose-cols').value) || 4
+  const cropTop = parseInt(document.getElementById('compose-crop-top').value) || 0
+  const cropBottom = parseInt(document.getElementById('compose-crop-bottom').value) || 0
+  const cropLeft = parseInt(document.getElementById('compose-crop-left').value) || 0
+  const cropRight = parseInt(document.getElementById('compose-crop-right').value) || 0
+  
+  log(`Composing ${composeFiles.length} images into ${cols} columns...`)
+  
+  // Load and compute max size
+  const imgs = []
+  for (const f of composeFiles) {
+    imgs.push(await loadImage(f))
+  }
+  
+  const sw = Math.max(1, imgs[0].width - cropLeft - cropRight)
+  const sh = Math.max(1, imgs[0].height - cropTop - cropBottom)
+  
+  const rows = Math.ceil(imgs.length / cols)
+  const outW = cols * sw
+  const outH = rows * sh
+  
+  const canvas = document.createElement('canvas')
+  canvas.width = outW
+  canvas.height = outH
+  const ctx = canvas.getContext('2d')
+  
+  for (let i = 0; i < imgs.length; i++) {
+    const img = imgs[i]
+    const r = Math.floor(i / cols)
+    const c = i % cols
+    const sx = Math.max(0, cropLeft)
+    const sy = Math.max(0, cropTop)
+    const dx = c * sw
+    const dy = r * sh
+    ctx.drawImage(img, sx, sy, sw, sh, dx, dy, sw, sh)
+  }
+  
+  const blob = await new Promise(r => canvas.toBlob(r))
+  superFile = new File([blob], 'composed.png', { type: 'image/png' })
+  superResultUrl = URL.createObjectURL(blob)
+  
+  const result = document.getElementById('compose-result')
+  result.src = superResultUrl
+  result.style.display = 'block'
+  document.getElementById('btn-compose-download').disabled = false
+  logOK(`Composed ${outW}x${outH} PNG`)
+}
+
+function downloadComposed() {
+  if (!superResultUrl) return
+  const a = document.createElement('a')
+  a.href = superResultUrl
+  a.download = 'composed.png'
+  a.click()
+}
+
+// =============================================================================
+// 超级拆分 / Super Split
+// =============================================================================
+function handleSuperFile(file) {
+  if (!file) return
+  superFile = file
+  const url = URL.createObjectURL(file)
+  const preview = document.getElementById('super-preview')
+  preview.src = url
+  preview.style.display = 'block'
+  document.getElementById('btn-super').disabled = false
+  log(`Loaded: ${file.name}`)
+}
+
+async function runSuperSplit() {
+  if (!superFile) return
+  log('Running super split by transparent rows/cols...')
+  
+  const img = await loadImage(superFile)
+  const canvas = document.createElement('canvas')
+  canvas.width = img.width
+  canvas.height = img.height
+  const ctx = canvas.getContext('2d')
+  ctx.drawImage(img, 0, 0)
+  const imageData = ctx.getImageData(0, 0, img.width, img.height)
+  const { data, width, height } = imageData
+  
+  // Find transparent rows
+  function findTransparentRows() {
+    const rows = []
+    for (let y = 0; y < height; y++) {
+      let allTransparent = true
+      for (let x = 0; x < width; x++) {
+        if (data[(y * width + x) * 4 + 3] !== 0) { allTransparent = false; break }
+      }
+      if (allTransparent) rows.push(y)
+    }
+    return rows
+  }
+  
+  function findTransparentCols(y0, y1) {
+    const cols = []
+    for (let x = 0; x < width; x++) {
+      let allTransparent = true
+      for (let y = y0; y < y1; y++) {
+        if (data[(y * width + x) * 4 + 3] !== 0) { allTransparent = false; break }
+      }
+      if (allTransparent) cols.push(x)
+    }
+    return cols
+  }
+  
+  function getRuns(arr) {
+    if (!arr.length) return []
+    const runs = []
+    let start = end = arr[0]
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] === end + 1) { end = arr[i] }
+      else { runs.push([start, end]); start = end = arr[i] }
+    }
+    runs.push([start, end])
+    return runs
+  }
+  
+  function gapsFromRuns(runs, total) {
+    if (!runs.length) return [[0, total - 1]]
+    const regions = [[0, runs[0][0] - 1]]
+    for (let i = 0; i < runs.length - 1; i++) regions.push([runs[i][1] + 1, runs[i+1][0] - 1])
+    regions.push([runs[runs.length-1][1] + 1, total - 1])
+    return regions.filter(([a,b]) => a <= b)
+  }
+  
+  const transparentRows = findTransparentRows()
+  const rowRuns = getRuns(transparentRows)
+  const rowRegions = gapsFromRuns(rowRuns, height)
+  
+  const frames = []
+  for (const [y0, y1] of rowRegions) {
+    const rowH = y1 - y0 + 1
+    if (rowH <= 0) continue
+    const transparentCols = findTransparentCols(y0, y1 + 1)
+    const colRuns = getRuns(transparentCols)
+    const colRegions = gapsFromRuns(colRuns, width)
+    for (const [x0, x1] of colRegions) {
+      const colW = x1 - x0 + 1
+      if (colW <= 0) continue
+      frames.push({ x: x0, y: y0, w: colW, h: rowH })
+    }
+  }
+  
+  if (!frames.length) { logErr('No frames found'); return }
+  
+  log(`Found ${frames.length} frames`)
+  
+  // Find max size
+  let maxW = 0, maxH = 0
+  frames.forEach(f => { maxW = Math.max(maxW, f.w); maxH = Math.max(maxH, f.h) })
+  
+  const canvas = document.createElement('canvas')
+  canvas.width = maxW
+  canvas.height = maxH
+  const outCtx = canvas.getContext('2d')
+  
+  const zip = new JSZip()
+  const container = document.getElementById('super-frames')
+  container.innerHTML = ''
+  
+  for (let i = 0; i < frames.length; i++) {
+    const f = frames[i]
+    outCtx.clearRect(0, 0, maxW, maxH)
+    ctx.drawImage(img, f.x, f.y, f.w, f.h, (maxW - f.w) / 2, (maxH - f.h) / 2, f.w, f.h)
+    
+    const blob = await new Promise(r => canvas.toBlob(r))
+    zip.file(`super_${String(i).padStart(3,'0')}.png`, blob)
+    
+    const url = URL.createObjectURL(blob)
+    const div = document.createElement('div')
+    div.className = 'frame-item'
+    div.innerHTML = `<img src="${url}"><span class="idx">${i}</span>`
+    container.appendChild(div)
+  }
+  
+  container.style.display = 'flex'
+  document.getElementById('btn-super-download').disabled = false
+  logOK(`Super split ${frames.length} frames`)
+}
+
+function downloadSuperFrames() {
+  log('Use browser devtools to download - ZIP generation requires re-processing')
+}
+
+// =============================================================================
+// 像素化 / Pixelate
+// =============================================================================
+function handlePixelateFile(file) {
+  if (!file) return
+  pixelateFile = file
+  const url = URL.createObjectURL(file)
+  const preview = document.getElementById('pixelate-preview')
+  preview.src = url
+  preview.style.display = 'block'
+  
+  preview.onload = () => {
+    const scale = parseInt(document.getElementById('pixelate-scale').value) || 4
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    ctx.imageSmoothingEnabled = false
+    
+    const sw = Math.max(1, preview.naturalWidth / scale)
+    const sh = Math.max(1, preview.naturalHeight / scale)
+    
+    canvas.width = sw
+    canvas.height = sh
+    ctx.drawImage(preview, 0, 0, sw, sh)
+    
+    const resultCanvas = document.createElement('canvas')
+    resultCanvas.width = preview.naturalWidth
+    resultCanvas.height = preview.naturalHeight
+    const resultCtx = resultCanvas.getContext('2d')
+    resultCtx.imageSmoothingEnabled = false
+    resultCtx.drawImage(canvas, 0, 0, preview.naturalWidth, preview.naturalHeight)
+    
+    pixelateResultUrl = resultCanvas.toDataURL('image/png')
+    const result = document.getElementById('pixelate-result')
+    result.src = pixelateResultUrl
+    result.style.display = 'block'
+    document.getElementById('btn-pixelate-download').disabled = false
+    logOK(`Pixelated (scale=${scale})`)
+  }
+}
+
+function downloadPixelate() {
+  if (!pixelateResultUrl) return
+  const a = document.createElement('a')
+  a.href = pixelateResultUrl
+  a.download = 'pixelated.png'
+  a.click()
+}
+
+// =============================================================================
+// Drag & Drop Setup / 拖拽设置
+// =============================================================================
+setupDropZone(document.getElementById('drop-gif-split'), files => { if(files[0]) handleGifFile(files[0]) })
+setupDropZone(document.getElementById('drop-gif-make'), handleFramesFiles)
+setupDropZone(document.getElementById('drop-spritesheet') || document.getElementById('file-ss').parentElement, files => { if(files[0]) handleSpriteSheet(files[0]) })
+setupDropZone(document.getElementById('drop-compose') || document.getElementById('file-compose').parentElement, handleComposeFiles)
+setupDropZone(document.getElementById('drop-super') || document.getElementById('file-super').parentElement, files => { if(files[0]) handleSuperFile(files[0]) })
+setupDropZone(document.getElementById('drop-pixelate') || document.getElementById('file-pixelate').parentElement, files => { if(files[0]) handlePixelateFile(files[0]) })
+
+log('FrameRonin Browser Tools loaded. 基于 FrameRonin.')
+</script>
+</body>
+</html>

@@ -1,0 +1,651 @@
+{
+  "skill_name": "happy-notes",
+  "description": "happy-notes 技能回归测试用例集，覆盖核心场景和用户反馈中的常见错误",
+  "evals": [
+    {
+      "id": 1,
+      "category": "P1-KB创建",
+      "prompt": "创建一个知识库叫AI论文，把这三篇论文传上去：a.pdf, b.pdf, c.pdf",
+      "expected": "调用 Pipeline 1，--name 'AI论文' --files 'a.pdf,b.pdf,c.pdf' --no-generate",
+      "anti_pattern": "不得为每个文件分别调用 Pipeline 1 创建多个知识库",
+      "expectations": [
+        "Response mentions pipeline_create_kb_and_generate.py or Pipeline 1 (P1)",
+        "The --files parameter includes all three files (a.pdf, b.pdf, c.pdf) comma-separated",
+        "The --name parameter is set to 'AI论文'",
+        "Only one pipeline call is made, not three separate calls"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "P1-KB创建",
+      "prompt": "建个知识库存一下这6篇文章：url1, url2, url3, url4, url5, url6",
+      "expected": "调用一次 Pipeline 1，--urls 逗号分隔传入6个URL，--no-generate",
+      "anti_pattern": "不得创建6个独立的知识库"
+    },
+    {
+      "id": 3,
+      "category": "P1-混合上传+生成",
+      "prompt": "建个叫'竞品分析'的知识库，把 report.pdf 和 https://competitor.com/analysis 都放进去，然后生成一份对比报告",
+      "expected": "调用 Pipeline 1，--name '竞品分析' --files 'report.pdf' --urls 'https://competitor.com/analysis' --output-type PDF --query '对比报告'",
+      "anti_pattern": "不得分两步（先建库再导入）；不得遗漏 --urls 或 --files 中的任一项"
+    },
+    {
+      "id": 4,
+      "category": "P1-生成PPT带风格",
+      "prompt": "创建知识库叫'产品介绍'，上传 product.pdf，生成一个卡通风格的PPT",
+      "expected": "调用 Pipeline 1，--name '产品介绍' --files 'product.pdf' --output-type PPT --preset '卡通'",
+      "anti_pattern": "不得遗漏 --preset '卡通'；不得默认商务风格"
+    },
+    {
+      "id": 5,
+      "category": "P3-内容追加",
+      "prompt": "把这个链接加到AI论文知识库里：https://example.com/paper",
+      "expected": "调用 Pipeline 3，--kb 'AI论文' --urls 'https://example.com/paper' --no-generate",
+      "anti_pattern": "不得调用 Pipeline 1 创建新知识库"
+    },
+    {
+      "id": 6,
+      "category": "P3-文本记录",
+      "prompt": "记一下今天吃饭50元",
+      "expected": "用 Pipeline 3 --text '今天吃饭50元' --create-if-missing --no-generate",
+      "anti_pattern": "不得为每条记录创建独立知识库；不得要求用户手动指定知识库名称"
+    },
+    {
+      "id": 7,
+      "category": "P3-文本记录隐含意图",
+      "prompt": "今天买了本书花了30",
+      "expected": "用 Pipeline 3 --text '今天买了本书花了30' --create-if-missing --no-generate（识别隐含记账意图）",
+      "anti_pattern": "不得当成普通聊天忽略；不得触发搜索或生成"
+    },
+    {
+      "id": 8,
+      "category": "P3-追加+仅用新文件生成",
+      "prompt": "把这两篇新论文加到AI论文知识库，只用这两篇生成报告，不要用旧文件",
+      "expected": "调用 Pipeline 3 --kb 'AI论文' --files '...' --output-type PDF --use-new-only",
+      "anti_pattern": "不得忽略 --use-new-only 导致使用全部文件生成"
+    },
+    {
+      "id": 9,
+      "category": "P3-文本带标题",
+      "prompt": "帮我记个笔记，标题叫'会议纪要0410'，内容是：今天讨论了Q2计划，决定重点投入AI方向",
+      "expected": "调用 Pipeline 3 --text '今天讨论了Q2计划...' --text-title '会议纪要0410' --rename --create-if-missing --no-generate",
+      "anti_pattern": "不得忽略 --text-title 和 --rename"
+    },
+    {
+      "id": 10,
+      "category": "P3-自动建库",
+      "prompt": "把 design.pdf 存到'设计文档'知识库，没有就帮我建一个",
+      "expected": "调用 Pipeline 3 --kb '设计文档' --files 'design.pdf' --create-if-missing --no-generate",
+      "anti_pattern": "不得先调 pipeline_kb.py create 再调 P3（--create-if-missing 自动处理）"
+    },
+    {
+      "id": 11,
+      "category": "P2-语义搜索+生成",
+      "prompt": "在论文知识库里搜一下关于注意力机制的，生成一份综述报告",
+      "expected": "调用 Pipeline 2 --kb '论文知识库' --search '注意力机制' --mode semantic --output-type PDF",
+      "anti_pattern": "不得使用 Pipeline 4（P4 适合纯检索场景）；不得遗漏 --mode semantic",
+      "expectations": [
+        "Response mentions pipeline_search_and_generate.py or Pipeline 2 (P2)",
+        "Response does NOT choose Pipeline 4 (P4) as the primary pipeline",
+        "The --search parameter mentions '注意力机制' or equivalent",
+        "The --mode is set to semantic"
+      ]
+    },
+    {
+      "id": 12,
+      "category": "P2-文件名搜索",
+      "prompt": "找一下AI论文知识库里叫 transformer 的文件，生成摘要",
+      "expected": "调用 Pipeline 2 --kb 'AI论文' --search 'transformer' --mode file --output-type PDF/MARKDOWN",
+      "anti_pattern": "不得使用 --mode semantic（用户说'叫transformer的文件'是按文件名搜，应该用 file 模式）"
+    },
+    {
+      "id": 13,
+      "category": "P2-仅搜索不生成",
+      "prompt": "在AI论文知识库里搜一下有没有关于 GAN 的文件，不需要生成报告",
+      "expected": "调用 Pipeline 2 --kb 'AI论文' --search 'GAN' --mode file --search-only（用户问的是'有没有GAN的文件'，按文件匹配）",
+      "anti_pattern": "不得提交生成任务"
+    },
+    {
+      "id": 14,
+      "category": "P4-纯检索",
+      "prompt": "看看知识库里有没有关于 transformer 的内容",
+      "expected": "调用 Pipeline 4 --query 'transformer'（默认不生成）",
+      "anti_pattern": "不得使用 Pipeline 2 或 Pipeline 6"
+    },
+    {
+      "id": 15,
+      "category": "P4-限定文件搜索",
+      "prompt": "在那篇 attention.pdf 里搜一下关于 multi-head 的内容",
+      "expected": "调用 Pipeline 4 --query 'multi-head' --content-ids '...'（需先查文件列表获取 contentId）",
+      "anti_pattern": "不得忽略 --content-ids 导致全库搜索"
+    },
+    {
+      "id": 16,
+      "category": "P4-检索+生成",
+      "prompt": "在知识库里搜一下关于深度学习的内容，如果有的话帮我生成个思维导图",
+      "expected": "调用 Pipeline 4 --query '深度学习' --generate --output-type XMIND",
+      "anti_pattern": "不得使用 Pipeline 2（用户说'如果有的话'，核心是检索，生成是可选附加）"
+    },
+    {
+      "id": 17,
+      "category": "P4-检索+分享",
+      "prompt": "检索一下AI论文知识库里关于 transformer 的内容，然后分享给同事",
+      "expected": "调用 Pipeline 4 --kb 'AI论文' --query 'transformer' --share",
+      "anti_pattern": "不得分两步调 Pipeline 4 + Pipeline Share（P4 内置 --share）"
+    },
+    {
+      "id": 18,
+      "category": "P5-列出文件",
+      "prompt": "看看AI论文知识库里都有什么文件",
+      "expected": "调用 Pipeline 5 list --kb 'AI论文'",
+      "anti_pattern": "不得直接调 pageQueryContents API"
+    },
+    {
+      "id": 19,
+      "category": "P5-文件详情",
+      "prompt": "看一下AI论文知识库里 transformer.pdf 的详细信息",
+      "expected": "调用 Pipeline 5 info --kb 'AI论文' --file 'transformer'",
+      "anti_pattern": "不得使用 list 然后手动查找"
+    },
+    {
+      "id": 20,
+      "category": "P5-删除单文件",
+      "prompt": "删掉AI论文知识库里的test.pdf",
+      "expected": "调用 Pipeline 5 delete --kb 'AI论文' --file 'test' --force",
+      "anti_pattern": "不得省略 --force（Agent 调用时必须加）",
+      "expectations": [
+        "Response mentions pipeline_file_management.py or Pipeline 5 (P5)",
+        "The delete subcommand is used",
+        "The --force flag is included",
+        "The --kb parameter references 'AI论文'"
+      ]
+    },
+    {
+      "id": 21,
+      "category": "P5-批量删除",
+      "prompt": "把AI论文知识库里的 test_001, test_002, test_003 都删了",
+      "expected": "调用 Pipeline 5 batch-delete --kb 'AI论文' --files 'test_001,test_002,test_003' --force",
+      "anti_pattern": "不得为每个文件分别调用 delete；不得省略 --force"
+    },
+    {
+      "id": 22,
+      "category": "P5-重命名",
+      "prompt": "把AI论文知识库里的 old_paper.pdf 改名叫 transformer_survey.pdf",
+      "expected": "调用 Pipeline 5 rename --kb 'AI论文' --file 'old_paper' --new-name 'transformer_survey.pdf'",
+      "anti_pattern": "不得调用 delete 或其他操作"
+    },
+    {
+      "id": 23,
+      "category": "P5-文件重试",
+      "prompt": "AI论文知识库里那个解析失败的文件，帮我重试一下",
+      "expected": "调用 Pipeline 5 retry --kb 'AI论文' --file '文件名关键字'",
+      "anti_pattern": "不得删除后重新上传；不得对非 failed 状态文件执行 retry"
+    },
+    {
+      "id": 24,
+      "category": "P6-联网搜索学术论文",
+      "prompt": "搜一下量子计算的最新论文，整理成报告",
+      "expected": "调用 Pipeline 6 --query '量子计算' --source SCHOLAR --output-type PDF",
+      "anti_pattern": "不得使用 Agent 自身搜索；不得使用 Pipeline 2/4（这是外部搜索）",
+      "expectations": [
+        "Response mentions pipeline_web_search.py or Pipeline 6 (P6)",
+        "The --source parameter is set to SCHOLAR",
+        "An --output-type parameter is specified (e.g., PDF or MARKDOWN)",
+        "Response does NOT use Pipeline 2 or Pipeline 4"
+      ]
+    },
+    {
+      "id": 25,
+      "category": "P6-联网搜索网页",
+      "prompt": "帮我搜一下最近关于AI Agent的网页文章，整理到知识库",
+      "expected": "调用 Pipeline 6 --query 'AI Agent' --source WEB --no-generate",
+      "anti_pattern": "不得使用 --source SCHOLAR（用户要的是网页文章不是论文）"
+    },
+    {
+      "id": 26,
+      "category": "P6-深度研究",
+      "prompt": "深度研究一下大模型Agent的最新进展",
+      "expected": "调用 Pipeline 6 --type DEEP_RESEARCH",
+      "anti_pattern": "不得使用 FAST_SEARCH"
+    },
+    {
+      "id": 27,
+      "category": "P6-深度研究论文",
+      "prompt": "深度研究一下 transformer 架构的学术论文",
+      "expected": "调用 Pipeline 6 --type DEEP_RESEARCH --source SCHOLAR",
+      "anti_pattern": "不得使用 FAST_SEARCH；不得使用 --source WEB"
+    },
+    {
+      "id": 28,
+      "category": "P6-仅搜索",
+      "prompt": "帮我搜一下最近有什么关于多模态大模型的论文，先看看结果再决定要不要存",
+      "expected": "调用 Pipeline 6 --query '多模态大模型' --source SCHOLAR --search-only",
+      "anti_pattern": "不得直接导入或生成（用户要先看结果）"
+    },
+    {
+      "id": 29,
+      "category": "P6-仅导入不生成",
+      "prompt": "搜一下AI安全相关的网页，存到知识库就行，不用生成报告",
+      "expected": "调用 Pipeline 6 --query 'AI安全' --source WEB --no-generate",
+      "anti_pattern": "不得提交生成任务"
+    },
+    {
+      "id": 30,
+      "category": "P6-停止搜索",
+      "prompt": "把那个深度研究停掉，不搜了",
+      "expected": "调用 Pipeline 6 --kb '...' --stop（仍需 --kb 定位知识库，但不需要 --query）",
+      "anti_pattern": "不得传 --query（--stop 不需要搜索词）"
+    },
+    {
+      "id": 31,
+      "category": "P6-删除搜索记录",
+      "prompt": "把之前的搜索记录清理一下",
+      "expected": "调用 Pipeline 6 --kb '...' --delete-search（仍需 --kb 定位知识库，但不需要 --query）",
+      "anti_pattern": "不得传 --query（--delete-search 不需要搜索词）"
+    },
+    {
+      "id": 32,
+      "category": "直接生成-PPT询问风格",
+      "prompt": "帮我做个PPT",
+      "expected": "Agent 主动询问PPT风格（商务/卡通），然后提交 pipeline_generate.py --output-type PPT --preset '...'",
+      "anti_pattern": "不得跳过风格询问直接生成"
+    },
+    {
+      "id": 33,
+      "category": "直接生成-PPT指定风格",
+      "prompt": "用知识库的内容做个卡通风格的PPT",
+      "expected": "调用 pipeline_generate.py --output-type PPT --preset '卡通'",
+      "anti_pattern": "不得再次询问风格（用户已明确说'卡通'）"
+    },
+    {
+      "id": 34,
+      "category": "直接生成-播客",
+      "prompt": "把AI论文知识库的内容生成播客",
+      "expected": "调用 pipeline_generate.py --kb 'AI论文' --output-type PODCAST",
+      "anti_pattern": "不得使用 Pipeline 1 或 Pipeline 3"
+    },
+    {
+      "id": 35,
+      "category": "直接生成-视频",
+      "prompt": "帮我用AI论文知识库生成一个视频",
+      "expected": "调用 pipeline_generate.py --kb 'AI论文' --output-type VIDEO",
+      "anti_pattern": "不得使用其他 Pipeline"
+    },
+    {
+      "id": 36,
+      "category": "直接生成-思维导图",
+      "prompt": "把这个知识库的内容整理成思维导图",
+      "expected": "调用 pipeline_generate.py --output-type XMIND",
+      "anti_pattern": "不得使用 Pipeline 2 或其他搜索类 Pipeline"
+    },
+    {
+      "id": 37,
+      "category": "直接生成-带创作要求",
+      "prompt": "帮我根据AI论文知识库写一份关于注意力机制发展历程的综述报告",
+      "expected": "调用 pipeline_generate.py --kb 'AI论文' --output-type PDF --query '注意力机制发展历程综述'",
+      "anti_pattern": "不得遗漏 --query（用户明确给了创作要求）"
+    },
+    {
+      "id": 38,
+      "category": "KB管理-列表",
+      "prompt": "我有哪些知识库",
+      "expected": "调用 pipeline_kb.py list",
+      "anti_pattern": "不得直接拼 curl 调 pageQueryCollections"
+    },
+    {
+      "id": 39,
+      "category": "KB管理-创建带描述",
+      "prompt": "创建一个知识库叫'项目周报'，描述写'2026年团队周报归档'",
+      "expected": "调用 pipeline_kb.py create --name '项目周报' --description '2026年团队周报归档'",
+      "anti_pattern": "不得遗漏 --description"
+    },
+    {
+      "id": 40,
+      "category": "KB管理-删除",
+      "prompt": "删掉那个测试用的知识库",
+      "expected": "调用 pipeline_kb.py delete --kb '测试' --force",
+      "anti_pattern": "不得直接拼 curl 调 clearCollection API；不得省略 --force"
+    },
+    {
+      "id": 41,
+      "category": "KB管理-改名",
+      "prompt": "把AI论文知识库的名字改成AI研究",
+      "expected": "调用 pipeline_kb.py update --kb 'AI论文' --name 'AI研究'",
+      "anti_pattern": "不得删除后重建知识库"
+    },
+    {
+      "id": 42,
+      "category": "KB管理-改描述",
+      "prompt": "把竞品分析知识库的描述改成'2026年Q2竞品对比'",
+      "expected": "调用 pipeline_kb.py update --kb '竞品分析' --description '2026年Q2竞品对比'",
+      "anti_pattern": "不得同时修改名称（用户只要求改描述）"
+    },
+    {
+      "id": 43,
+      "category": "KB管理-详情",
+      "prompt": "看看AI论文知识库的详细信息",
+      "expected": "调用 pipeline_kb.py info --kb 'AI论文'",
+      "anti_pattern": "不得使用 list 再手动查找"
+    },
+    {
+      "id": 44,
+      "category": "KB管理-按关键词搜索",
+      "prompt": "搜一下我有没有叫'论文'的知识库",
+      "expected": "调用 pipeline_kb.py list --keyword '论文'",
+      "anti_pattern": "不得调用 Pipeline 6（这是搜知识库列表，不是联网搜索）"
+    },
+    {
+      "id": 45,
+      "category": "进度查询",
+      "prompt": "做好了吗",
+      "expected": "调用 pipeline_check_status.py 查询一次，返回状态",
+      "anti_pattern": "不得循环轮询；不得直接拼 curl 命令"
+    },
+    {
+      "id": 46,
+      "category": "进度查询-指定KB",
+      "prompt": "查看一下AI论文知识库的生成进度",
+      "expected": "调用 pipeline_check_status.py --kb 'AI论文'",
+      "anti_pattern": "不得用 curl/iflow_api 直接调 creationList API"
+    },
+    {
+      "id": 47,
+      "category": "分享",
+      "prompt": "把AI论文知识库分享给同事",
+      "expected": "调用 pipeline_share.py --kb 'AI论文'",
+      "anti_pattern": "不得直接拼 curl 命令调 shareNotebook API"
+    },
+    {
+      "id": 48,
+      "category": "搜索分流-不触发",
+      "prompt": "量子计算是什么",
+      "expected": "Agent 使用自身搜索能力直接回答，不触发任何 Pipeline",
+      "anti_pattern": "不得调用 Pipeline 6 或创建知识库",
+      "expectations": [
+        "Response does NOT mention any pipeline script or Pipeline number",
+        "Response answers the question about quantum computing directly",
+        "No knowledge base is created or referenced for this task"
+      ]
+    },
+    {
+      "id": 49,
+      "category": "搜索分流-不触发",
+      "prompt": "帮我查一下最近有什么AI新闻",
+      "expected": "Agent 使用自身搜索能力直接回答，不触发任何 Pipeline",
+      "anti_pattern": "不得调用 Pipeline 6（用户只想了解信息，不涉及知识库存储）"
+    },
+    {
+      "id": 50,
+      "category": "搜索分流-内部vs外部",
+      "prompt": "知识库里有没有关于 CNN 的资料",
+      "expected": "调用 Pipeline 4 --query 'CNN'（知识库内语义检索，不生成）",
+      "anti_pattern": "不得调用 Pipeline 6（这不是联网搜索，是知识库内检索）"
+    },
+    {
+      "id": 51,
+      "category": "搜索分流-外部搜索",
+      "prompt": "搜一下网上关于 RAG 架构的最新文章，存到知识库",
+      "expected": "调用 Pipeline 6 --source WEB --no-generate",
+      "anti_pattern": "不得使用 Pipeline 2/4（这是联网搜索外部内容）"
+    },
+    {
+      "id": 52,
+      "category": "参数校验-WORD转DOCX",
+      "prompt": "生成一个 WORD 格式的报告",
+      "expected": "Agent 应传 --output-type DOCX（不是 WORD）",
+      "anti_pattern": "不得传入无效的 output-type 值如 WORD"
+    },
+    {
+      "id": 53,
+      "category": "参数校验-output-type映射",
+      "prompt": "帮我做个幻灯片",
+      "expected": "Agent 应识别'幻灯片'='PPT'，传 --output-type PPT",
+      "anti_pattern": "不得传入'幻灯片'或其他无效值"
+    },
+    {
+      "id": 54,
+      "category": "参数校验-query混淆P2",
+      "prompt": "在知识库里搜注意力机制相关的，写一份500字的简报",
+      "expected": "调用 Pipeline 2 --search '注意力机制' --query '500字简报'（--search 是搜索词，--query 是创作要求）",
+      "anti_pattern": "不得把搜索词放在 --query 里；不得把创作要求放在 --search 里"
+    },
+    {
+      "id": 55,
+      "category": "参数校验-query混淆P6",
+      "prompt": "搜一下大模型的最新进展，写一份技术趋势报告",
+      "expected": "调用 Pipeline 6 --query '大模型 最新进展' --creation-query '技术趋势报告'（--query 是搜索词，--creation-query 是创作要求）",
+      "anti_pattern": "不得把创作要求放在 --query 里"
+    },
+    {
+      "id": 56,
+      "category": "参数校验-query混淆P4",
+      "prompt": "看看知识库里有没有关于 transformer 的内容，有的话帮我写个架构分析",
+      "expected": "调用 Pipeline 4 --query 'transformer' --generate --gen-query '架构分析'（--query 是检索词，--gen-query 是创作要求。P4 因为核心是'看看有没有'即检索，生成是附加）",
+      "anti_pattern": "不得把创作要求放在 --query 里；不得使用 P2（用户说'看看有没有'核心是检索）"
+    },
+    {
+      "id": 57,
+      "category": "文件限制",
+      "prompt": "帮我上传一本800页的PDF书",
+      "expected": "Agent 应提前告知500页限制，建议拆分后上传",
+      "anti_pattern": "不得直接上传，等失败后才告知"
+    },
+    {
+      "id": 58,
+      "category": "状态提示",
+      "prompt": "帮我用AI论文知识库生成一份报告",
+      "expected": "调用 pipeline_generate.py --kb 'AI论文' --output-type PDF，提交后告知用户'生成任务已提交，预计需要10-30分钟'",
+      "anti_pattern": "不得说'已生成完成'或'已完成'；提交后不得循环轮询"
+    },
+    {
+      "id": 59,
+      "category": "错误处理-并发限制",
+      "prompt": "再帮我深度研究一下 GPT-5 的最新消息",
+      "expected": "调用 Pipeline 6 --type DEEP_RESEARCH，若返回错误码 40010，告知用户有一个深度研究正在进行，建议等待或改用 FAST_SEARCH",
+      "anti_pattern": "不得自动重试深度研究请求；不得忽略 40010 错误"
+    },
+    {
+      "id": 60,
+      "category": "错误处理-失败上报",
+      "prompt": "把这5个PDF传到AI论文知识库（假设其中2个失败）",
+      "expected": "调用 Pipeline 3，检查输出 JSON 的 failedCount/failedItems，向用户报告'3 个文件已导入，2 个失败：[具体原因]'",
+      "anti_pattern": "不得忽略失败文件、不得只说'已导入'而不提失败数量"
+    },
+    {
+      "id": 61,
+      "category": "多步骤-导入后生成",
+      "prompt": "把这篇文章存进去然后帮我写份报告",
+      "expected": "Pipeline 3 导入 → 等待解析完成 → 生成（不能并行提交）",
+      "anti_pattern": "不得在文件解析完成前提交生成任务"
+    },
+    {
+      "id": 62,
+      "category": "多步骤-搜索+生成+分享",
+      "prompt": "在知识库里搜一下关于 NLP 的内容，生成报告，然后分享给团队",
+      "expected": "调用 Pipeline 2 搜索+生成，完成后调用 pipeline_share.py 分享（P2 没有 --share，需分两步）",
+      "anti_pattern": "不得遗漏分享步骤"
+    },
+    {
+      "id": 63,
+      "category": "英文触发",
+      "prompt": "Create a knowledge base called 'ML Papers' and upload paper.pdf",
+      "expected": "调用 Pipeline 1，--name 'ML Papers' --files 'paper.pdf'",
+      "anti_pattern": "不得因为英文输入而不触发技能"
+    },
+    {
+      "id": 64,
+      "category": "英文触发",
+      "prompt": "Search my knowledge base for transformer architecture and generate a summary",
+      "expected": "调用 Pipeline 2 --search 'transformer architecture' --mode semantic（知识库内搜索 + 生成）",
+      "anti_pattern": "不得调用 Pipeline 6（这不是联网搜索）"
+    },
+    {
+      "id": 65,
+      "category": "英文触发-不触发",
+      "prompt": "What is reinforcement learning?",
+      "expected": "Agent 直接回答，不触发任何 Pipeline",
+      "anti_pattern": "不得调用任何 Pipeline"
+    },
+    {
+      "id": 66,
+      "category": "P2vsP4-模式选择",
+      "prompt": "找一下知识库里有没有叫 BERT 的文件",
+      "expected": "调用 Pipeline 2 --search 'BERT' --mode file --search-only（用户说'叫BERT的文件'是按名字找，且只要找不要生成）",
+      "anti_pattern": "不得使用 --mode semantic（按文件名找应用 file 模式）；不得提交生成任务"
+    },
+    {
+      "id": 67,
+      "category": "P2vsP4-检索为主",
+      "prompt": "搜一下知识库里有没有关于强化学习的内容，不用生成报告",
+      "expected": "调用 Pipeline 4 --query '强化学习'（P4 默认不生成，天然适合纯检索场景）",
+      "anti_pattern": "不得提交生成任务；不得使用 Pipeline 2（P4 更适合纯检索）"
+    },
+    {
+      "id": 68,
+      "category": "禁止直接调API",
+      "prompt": "帮我调一下 shareNotebook 接口把知识库分享出去",
+      "expected": "调用 pipeline_share.py（所有 API 都有对应的 Pipeline 脚本覆盖）",
+      "anti_pattern": "不得用 curl/requests/iflow_api 直接调 API；不得自己拼 HTTP 请求"
+    },
+    {
+      "id": 69,
+      "category": "禁止循环轮询",
+      "prompt": "帮我生成报告，生成完了告诉我",
+      "expected": "提交生成任务后返回'已提交，预计10-30分钟'，让用户稍后主动问进度",
+      "anti_pattern": "不得在 Agent 端循环 sleep+轮询等待生成完成"
+    },
+    {
+      "id": 70,
+      "category": "P3-URL不是文本",
+      "prompt": "把这篇文章存到知识库 https://example.com/article",
+      "expected": "调用 Pipeline 3 --urls 'https://example.com/article' --no-generate（URL 导入，不是 --text）",
+      "anti_pattern": "不得用 --text 把 URL 当文本存储"
+    },
+    {
+      "id": 71,
+      "category": "P1-已有KB应追加",
+      "prompt": "往AI论文知识库再加两篇论文 new1.pdf, new2.pdf",
+      "expected": "调用 Pipeline 3 --kb 'AI论文' --files 'new1.pdf,new2.pdf' --no-generate（KB 已存在，应追加）",
+      "anti_pattern": "不得调用 Pipeline 1 创建新知识库"
+    },
+    {
+      "id": 72,
+      "category": "易混淆-写博客",
+      "prompt": "根据知识库的内容帮我写篇博客",
+      "expected": "调用 pipeline_generate.py --output-type MARKDOWN --query '写一篇博客风格的文章'",
+      "anti_pattern": "不得认为有独立的'博客'功能；博客就是 MARKDOWN 格式的报告"
+    },
+    {
+      "id": 73,
+      "category": "易混淆-总结",
+      "prompt": "帮我总结一下这个知识库的内容",
+      "expected": "调用 pipeline_generate.py --output-type PDF --query '总结知识库的主要内容'",
+      "anti_pattern": "不得认为有独立的'总结'功能；总结就是带 query 的报告生成"
+    },
+    {
+      "id": 74,
+      "category": "P6-限制导入数量",
+      "prompt": "搜一下AI相关的论文，只导入前5篇",
+      "expected": "调用 Pipeline 6 --query 'AI' --source SCHOLAR --max-results 5",
+      "anti_pattern": "不得忽略 --max-results 导致导入全部结果"
+    },
+    {
+      "id": 75,
+      "category": "直接生成-并行多种格式",
+      "prompt": "帮我把AI论文知识库同时生成报告和思维导图",
+      "expected": "分别调用两次 pipeline_generate.py：一次 --output-type PDF，一次 --output-type XMIND",
+      "anti_pattern": "不得认为一次调用能生成多种格式"
+    },
+    {
+      "id": 76,
+      "category": "P1-默认生成行为",
+      "prompt": "建个知识库叫'技术调研'，把 survey.pdf 传上去，帮我生成报告",
+      "expected": "调用 Pipeline 1 --name '技术调研' --files 'survey.pdf'（不指定 --output-type，默认 PDF；不加 --no-generate，默认生成）",
+      "anti_pattern": "不得加 --no-generate（用户要求了生成）"
+    },
+    {
+      "id": 77,
+      "category": "P3-纯文本追加已知KB",
+      "prompt": "把这段话存到AI论文知识库里：Transformer 是一种基于自注意力机制的神经网络架构",
+      "expected": "调用 Pipeline 3 --kb 'AI论文' --text 'Transformer...' --no-generate（用户明确指定了知识库，不需要 --create-if-missing）",
+      "anti_pattern": "不得加 --create-if-missing（用户已指定知识库名）；不得用 --urls（这是纯文本不是 URL）"
+    },
+    {
+      "id": 78,
+      "category": "P6-默认source",
+      "prompt": "帮我搜一下关于 AI 编程助手的最新信息，整理成报告",
+      "expected": "调用 Pipeline 6 --query 'AI 编程助手' --output-type PDF（不指定 --source，默认 WEB；用户没说'论文'所以不用 SCHOLAR）",
+      "anti_pattern": "不得使用 --source SCHOLAR（用户没提论文）"
+    },
+    {
+      "id": 79,
+      "category": "直接生成-DOCX",
+      "prompt": "帮我把知识库的内容生成一个 Word 文档",
+      "expected": "调用 pipeline_generate.py --output-type DOCX（Agent 须将 Word 映射为 DOCX）",
+      "anti_pattern": "不得传入 WORD 等无效值"
+    },
+    {
+      "id": 80,
+      "category": "P3-混合追加",
+      "prompt": "把 notes.pdf 和 https://example.com/ref 都加到AI论文知识库",
+      "expected": "调用 Pipeline 3 --kb 'AI论文' --files 'notes.pdf' --urls 'https://example.com/ref' --no-generate",
+      "anti_pattern": "不得分两次调用（一次 files 一次 urls）；不得遗漏任一来源"
+    },
+    {
+      "id": 81,
+      "category": "KB管理-简单创建",
+      "prompt": "帮我建一个叫'读书笔记'的知识库",
+      "expected": "调用 pipeline_kb.py create --name '读书笔记'（不需要 --description，脚本默认用名称作描述）",
+      "anti_pattern": "不得使用 Pipeline 1（用户只要求建库，没有要上传文件）"
+    },
+    {
+      "id": 82,
+      "category": "P6-深度研究默认source",
+      "prompt": "深度研究一下 AI 在医疗领域的应用",
+      "expected": "调用 Pipeline 6 --type DEEP_RESEARCH（不指定 --source，默认 WEB；用户没提论文）",
+      "anti_pattern": "不得使用 FAST_SEARCH；不得默认 SCHOLAR（用户没说论文）"
+    },
+    {
+      "id": 83,
+      "category": "进度查询-指定任务ID",
+      "prompt": "查一下任务 abc123 的生成进度",
+      "expected": "调用 pipeline_check_status.py --creation-id 'abc123'",
+      "anti_pattern": "不得忽略 --creation-id 导致查全部任务"
+    },
+    {
+      "id": 84,
+      "category": "易混淆-搜论文歧义",
+      "prompt": "找一下关于 BERT 的论文",
+      "expected": "调用 Pipeline 6 --query 'BERT' --source SCHOLAR（用户说'找论文'且未提已有知识库，应理解为联网搜索学术论文）",
+      "anti_pattern": "不得使用 Pipeline 2/4（用户没有指定'知识库里'，默认是联网找新论文）"
+    },
+    {
+      "id": 85,
+      "category": "易混淆-生成+分享两步",
+      "prompt": "帮我做份总结发给同事",
+      "expected": "先调 pipeline_generate.py --output-type PDF --query '总结'，提交后再调 pipeline_share.py 分享（两步操作）",
+      "anti_pattern": "不得遗漏分享步骤"
+    },
+    {
+      "id": 86,
+      "category": "易混淆-搜知识库vs搜内容",
+      "prompt": "搜一下知识库里关于'报告'的内容",
+      "expected": "调用 Pipeline 4 --query '报告'（搜知识库**内**的内容，不是搜知识库列表）",
+      "anti_pattern": "不得调用 pipeline_kb.py list --keyword '报告'（那是搜知识库名称，不是搜内容）"
+    },
+    {
+      "id": 87,
+      "category": "易混淆-删除歧义",
+      "prompt": "删掉那个test",
+      "expected": "Agent 应追问：要删除的是名为'test'的知识库还是某个知识库里叫'test'的文件？（指代不明时应确认）",
+      "anti_pattern": "不得直接猜测删除知识库或文件"
+    },
+    {
+      "id": 88,
+      "category": "易混淆-详细调研触发深度研究",
+      "prompt": "详细调研一下 AI 芯片市场的竞争格局",
+      "expected": "调用 Pipeline 6 --type DEEP_RESEARCH（'详细调研'等同于'深度研究'）",
+      "anti_pattern": "不得使用 FAST_SEARCH；不得只用 Agent 自身搜索"
+    }
+  ]
+}

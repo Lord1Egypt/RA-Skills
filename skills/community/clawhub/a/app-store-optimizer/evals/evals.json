@@ -1,0 +1,20 @@
+{
+  "skill_name": "aso",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我的健身 App 叫 FitFlow，做 iOS 平台的 HIIT 训练计划，目标用户是 25-40 岁的上班族。上线 3 个月了，每天下载量只有 20-30 个，完全没有增长。我不知道从哪里开始优化。",
+      "expected_output": "应先提取上下文，然后输出诊断摘要 + 建议优先方向 + 等待确认的 checkpoint 消息。checkpoint 中应包含 3-5 个具体的关键词或机会点预览（作为「甜头」），然后等用户确认再展开完整策略。不应一次性生成完整报告。"
+    },
+    {
+      "id": 2,
+      "prompt": "我在做一个任务管理 App 叫 TaskMaster，主要功能是 AI 自动优先排序待办事项。当前 iOS App Store 标题是「TaskMaster - To Do List」，副标题是「Manage your tasks easily」，关键词字段用了「task,todo,list,planner,productivity,organizer,reminder,schedule,manage,app」。帮我优化这些元数据，我的主要竞争对手是 Todoist 和 Things 3。",
+      "expected_output": "直接进入元数据优化环节（用户已提供足够信息），指出现有元数据的具体问题（副标题弱、关键词字段低效），提供重写后的标题/副标题/关键词字段，字符数要精确，并解释选择每个关键词的理由。"
+    },
+    {
+      "id": 3,
+      "prompt": "Duolingo 在语言学习类 App 排名第一，我们的 App LingoSpark 做的是沉浸式场景对话练习，现在分类排名大概 #45，下载量比 Duolingo 少很多。帮我做个竞品分析，找出我们能超越他们的机会点。",
+      "expected_output": "读取 competitive-analysis.md 参考文件，分析 Duolingo 的 ASO 策略（关键词、视觉、评分），识别具体的差异化机会（他们 1 星评论的痛点、关键词空缺、视觉定位空白），给出可操作的追赶策略而非泛泛而谈。"
+    }
+  ]
+}

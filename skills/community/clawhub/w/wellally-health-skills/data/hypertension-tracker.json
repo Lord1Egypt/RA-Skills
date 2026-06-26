@@ -1,0 +1,65 @@
+{
+  "hypertension_management": {
+    "diagnosis_date": null,
+    "classification": null,
+    "risk_category": null,
+
+    "bp_readings": [],
+
+    "average_bp": {
+      "systolic": null,
+      "diastolic": null,
+      "calculation_period": null,
+      "readings_count": 0
+    },
+
+    "blood_pressure_pattern": {
+      "dipping_pattern": null,
+      "daynight_ratio": null,
+      "interpretation": null
+    },
+
+    "target_bp": {
+      "systolic_target": "<130",
+      "diastolic_target": "<80",
+      "achievement_rate": null,
+      "days_at_goal_last_month": 0
+    },
+
+    "medications": [],
+
+    "target_organ_damage": {
+      "left_ventricular_hypertrophy": {
+        "status": "not_assessed",
+        "last_assessment": null,
+        "method": null
+      },
+      "microalbuminuria": {
+        "status": "not_assessed",
+        "uacr": null,
+        "reference": "<30",
+        "date": null
+      },
+      "retinopathy": {
+        "grade": null,
+        "last_exam": null
+      },
+      "arterial_stiffness": {
+        "pwv": null,
+        "reference": "<10",
+        "date": null
+      }
+    },
+
+    "cardiovascular_risk": {
+      "ascvd_score_10yr": null,
+      "risk_level": null,
+      "factors": []
+    },
+
+    "metadata": {
+      "created_at": null,
+      "last_updated": null
+    }
+  }
+}

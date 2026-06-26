@@ -1,0 +1,435 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-03 22:42:05.313665",
+    "version": "2026.2.9",
+    "analyzer_version": "1.0.0"
+  },
+  "summary": {
+    "total_stages": 9,
+    "total_hooks": 27,
+    "extensions": 0,
+    "channels": 0
+  },
+  "architecture": {
+    "version": "2026.2.9",
+    "generated_at": "2026-03-03 22:42:05.237700",
+    "pipeline": {
+      "input_receive": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: input_receive",
+        "hooks": {
+          "pre": {
+            "function": "pre_input_receive",
+            "signature": "async pre_input_receive(context, next) => {...}",
+            "description": "Hook point: pre input_receive"
+          },
+          "post": {
+            "function": "post_input_receive",
+            "signature": "async post_input_receive(context, next) => {...}",
+            "description": "Hook point: post input_receive"
+          },
+          "replace": {
+            "function": "replace_input_receive",
+            "signature": "async replace_input_receive(context, next) => {...}",
+            "description": "Hook point: replace input_receive"
+          }
+        }
+      },
+      "context_gather": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: context_gather",
+        "hooks": {
+          "pre": {
+            "function": "pre_context_gather",
+            "signature": "async pre_context_gather(context, next) => {...}",
+            "description": "Hook point: pre context_gather"
+          },
+          "post": {
+            "function": "post_context_gather",
+            "signature": "async post_context_gather(context, next) => {...}",
+            "description": "Hook point: post context_gather"
+          },
+          "replace": {
+            "function": "replace_context_gather",
+            "signature": "async replace_context_gather(context, next) => {...}",
+            "description": "Hook point: replace context_gather"
+          }
+        }
+      },
+      "memory_retrieve": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: memory_retrieve",
+        "hooks": {
+          "pre": {
+            "function": "pre_memory_retrieve",
+            "signature": "async pre_memory_retrieve(context, next) => {...}",
+            "description": "Hook point: pre memory_retrieve"
+          },
+          "post": {
+            "function": "post_memory_retrieve",
+            "signature": "async post_memory_retrieve(context, next) => {...}",
+            "description": "Hook point: post memory_retrieve"
+          },
+          "replace": {
+            "function": "replace_memory_retrieve",
+            "signature": "async replace_memory_retrieve(context, next) => {...}",
+            "description": "Hook point: replace memory_retrieve"
+          }
+        }
+      },
+      "prompt_assemble": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: prompt_assemble",
+        "hooks": {
+          "pre": {
+            "function": "pre_prompt_assemble",
+            "signature": "async pre_prompt_assemble(context, next) => {...}",
+            "description": "Hook point: pre prompt_assemble"
+          },
+          "post": {
+            "function": "post_prompt_assemble",
+            "signature": "async post_prompt_assemble(context, next) => {...}",
+            "description": "Hook point: post prompt_assemble"
+          },
+          "replace": {
+            "function": "replace_prompt_assemble",
+            "signature": "async replace_prompt_assemble(context, next) => {...}",
+            "description": "Hook point: replace prompt_assemble"
+          }
+        }
+      },
+      "token_check": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: token_check",
+        "hooks": {
+          "pre": {
+            "function": "pre_token_check",
+            "signature": "async pre_token_check(context, next) => {...}",
+            "description": "Hook point: pre token_check"
+          },
+          "post": {
+            "function": "post_token_check",
+            "signature": "async post_token_check(context, next) => {...}",
+            "description": "Hook point: post token_check"
+          },
+          "replace": {
+            "function": "replace_token_check",
+            "signature": "async replace_token_check(context, next) => {...}",
+            "description": "Hook point: replace token_check"
+          }
+        }
+      },
+      "context_compress": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: context_compress",
+        "hooks": {
+          "pre": {
+            "function": "pre_context_compress",
+            "signature": "async pre_context_compress(context, next) => {...}",
+            "description": "Hook point: pre context_compress"
+          },
+          "post": {
+            "function": "post_context_compress",
+            "signature": "async post_context_compress(context, next) => {...}",
+            "description": "Hook point: post context_compress"
+          },
+          "replace": {
+            "function": "replace_context_compress",
+            "signature": "async replace_context_compress(context, next) => {...}",
+            "description": "Hook point: replace context_compress"
+          }
+        }
+      },
+      "llm_submit": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: llm_submit",
+        "hooks": {
+          "pre": {
+            "function": "pre_llm_submit",
+            "signature": "async pre_llm_submit(context, next) => {...}",
+            "description": "Hook point: pre llm_submit"
+          },
+          "post": {
+            "function": "post_llm_submit",
+            "signature": "async post_llm_submit(context, next) => {...}",
+            "description": "Hook point: post llm_submit"
+          },
+          "replace": {
+            "function": "replace_llm_submit",
+            "signature": "async replace_llm_submit(context, next) => {...}",
+            "description": "Hook point: replace llm_submit"
+          }
+        }
+      },
+      "response_process": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: response_process",
+        "hooks": {
+          "pre": {
+            "function": "pre_response_process",
+            "signature": "async pre_response_process(context, next) => {...}",
+            "description": "Hook point: pre response_process"
+          },
+          "post": {
+            "function": "post_response_process",
+            "signature": "async post_response_process(context, next) => {...}",
+            "description": "Hook point: post response_process"
+          },
+          "replace": {
+            "function": "replace_response_process",
+            "signature": "async replace_response_process(context, next) => {...}",
+            "description": "Hook point: replace response_process"
+          }
+        }
+      },
+      "memory_store": {
+        "file": "inferred",
+        "line": 0,
+        "description": "Inferred stage: memory_store",
+        "hooks": {
+          "pre": {
+            "function": "pre_memory_store",
+            "signature": "async pre_memory_store(context, next) => {...}",
+            "description": "Hook point: pre memory_store"
+          },
+          "post": {
+            "function": "post_memory_store",
+            "signature": "async post_memory_store(context, next) => {...}",
+            "description": "Hook point: post memory_store"
+          },
+          "replace": {
+            "function": "replace_memory_store",
+            "signature": "async replace_memory_store(context, next) => {...}",
+            "description": "Hook point: replace memory_store"
+          }
+        }
+      }
+    },
+    "hooks": {
+      "pre.input_receive": {
+        "stage": "input_receive",
+        "type": "pre",
+        "function": "pre_input_receive",
+        "signature": "async pre_input_receive(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.input_receive": {
+        "stage": "input_receive",
+        "type": "post",
+        "function": "post_input_receive",
+        "signature": "async post_input_receive(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.input_receive": {
+        "stage": "input_receive",
+        "type": "replace",
+        "function": "replace_input_receive",
+        "signature": "async replace_input_receive(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.context_gather": {
+        "stage": "context_gather",
+        "type": "pre",
+        "function": "pre_context_gather",
+        "signature": "async pre_context_gather(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.context_gather": {
+        "stage": "context_gather",
+        "type": "post",
+        "function": "post_context_gather",
+        "signature": "async post_context_gather(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.context_gather": {
+        "stage": "context_gather",
+        "type": "replace",
+        "function": "replace_context_gather",
+        "signature": "async replace_context_gather(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.memory_retrieve": {
+        "stage": "memory_retrieve",
+        "type": "pre",
+        "function": "pre_memory_retrieve",
+        "signature": "async pre_memory_retrieve(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.memory_retrieve": {
+        "stage": "memory_retrieve",
+        "type": "post",
+        "function": "post_memory_retrieve",
+        "signature": "async post_memory_retrieve(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.memory_retrieve": {
+        "stage": "memory_retrieve",
+        "type": "replace",
+        "function": "replace_memory_retrieve",
+        "signature": "async replace_memory_retrieve(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.prompt_assemble": {
+        "stage": "prompt_assemble",
+        "type": "pre",
+        "function": "pre_prompt_assemble",
+        "signature": "async pre_prompt_assemble(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.prompt_assemble": {
+        "stage": "prompt_assemble",
+        "type": "post",
+        "function": "post_prompt_assemble",
+        "signature": "async post_prompt_assemble(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.prompt_assemble": {
+        "stage": "prompt_assemble",
+        "type": "replace",
+        "function": "replace_prompt_assemble",
+        "signature": "async replace_prompt_assemble(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.token_check": {
+        "stage": "token_check",
+        "type": "pre",
+        "function": "pre_token_check",
+        "signature": "async pre_token_check(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.token_check": {
+        "stage": "token_check",
+        "type": "post",
+        "function": "post_token_check",
+        "signature": "async post_token_check(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.token_check": {
+        "stage": "token_check",
+        "type": "replace",
+        "function": "replace_token_check",
+        "signature": "async replace_token_check(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.context_compress": {
+        "stage": "context_compress",
+        "type": "pre",
+        "function": "pre_context_compress",
+        "signature": "async pre_context_compress(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.context_compress": {
+        "stage": "context_compress",
+        "type": "post",
+        "function": "post_context_compress",
+        "signature": "async post_context_compress(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.context_compress": {
+        "stage": "context_compress",
+        "type": "replace",
+        "function": "replace_context_compress",
+        "signature": "async replace_context_compress(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.llm_submit": {
+        "stage": "llm_submit",
+        "type": "pre",
+        "function": "pre_llm_submit",
+        "signature": "async pre_llm_submit(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.llm_submit": {
+        "stage": "llm_submit",
+        "type": "post",
+        "function": "post_llm_submit",
+        "signature": "async post_llm_submit(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.llm_submit": {
+        "stage": "llm_submit",
+        "type": "replace",
+        "function": "replace_llm_submit",
+        "signature": "async replace_llm_submit(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.response_process": {
+        "stage": "response_process",
+        "type": "pre",
+        "function": "pre_response_process",
+        "signature": "async pre_response_process(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.response_process": {
+        "stage": "response_process",
+        "type": "post",
+        "function": "post_response_process",
+        "signature": "async post_response_process(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.response_process": {
+        "stage": "response_process",
+        "type": "replace",
+        "function": "replace_response_process",
+        "signature": "async replace_response_process(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "pre.memory_store": {
+        "stage": "memory_store",
+        "type": "pre",
+        "function": "pre_memory_store",
+        "signature": "async pre_memory_store(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "post.memory_store": {
+        "stage": "memory_store",
+        "type": "post",
+        "function": "post_memory_store",
+        "signature": "async post_memory_store(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      },
+      "replace.memory_store": {
+        "stage": "memory_store",
+        "type": "replace",
+        "function": "replace_memory_store",
+        "signature": "async replace_memory_store(context, next) => {...}",
+        "file": "inferred",
+        "line": 0
+      }
+    }
+  }
+}

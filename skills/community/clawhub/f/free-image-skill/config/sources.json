@@ -1,0 +1,38 @@
+{
+  "unsplash": {
+    "name": "Unsplash",
+    "url": "https://unsplash.com",
+    "api_url": "https://api.unsplash.com",
+    "commercial_use": true,
+    "attribution_required": false,
+    "rate_limit": 50,
+    "description": "高质量免费照片，商业用途免费"
+  },
+  "pexels": {
+    "name": "Pexels",
+    "url": "https://www.pexels.com",
+    "api_url": "https://api.pexels.com",
+    "commercial_use": true,
+    "attribution_required": false,
+    "rate_limit": 200,
+    "description": "免费商用照片和视频"
+  },
+  "pixabay": {
+    "name": "Pixabay",
+    "url": "https://pixabay.com",
+    "api_url": "https://pixabay.com/api/",
+    "commercial_use": true,
+    "attribution_required": false,
+    "rate_limit": 5000,
+    "description": "免费照片、矢量图、插画"
+  },
+  "freepik": {
+    "name": "Freepik",
+    "url": "https://www.freepik.com",
+    "api_url": "https://api.freepik.com",
+    "commercial_use": true,
+    "attribution_required": true,
+    "rate_limit": 100,
+    "description": "免费矢量图和PSD（需署名）"
+  }
+}

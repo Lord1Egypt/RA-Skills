@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DevTool Answer Monitor Demo</title>
+  <meta name="description" content="Zero-install viewer for version-controlled LLM monitoring sample runs.">
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Zero-install demo</p>
+        <h1>DevTool Answer Monitor</h1>
+        <p class="dek">Track what LLMs say before users choose your developer tool. This viewer is powered by version-controlled sample runs in the repository.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/veeicwgy/devtool-answer-monitor">Open GitHub</a>
+          <a class="button button-secondary" href="https://github.com/veeicwgy/devtool-answer-monitor/tree/main/benchmark">Read benchmarks</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <p class="panel-label">What this page shows</p>
+        <ul>
+          <li>MinerU baseline vs T+7 vs T+14</li>
+          <li>Sciverse API funnel-stage snapshot</li>
+          <li>Top repair candidates from public sample data</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="controls card">
+      <div class="control-group" id="project-tabs"></div>
+      <div class="control-group" id="run-tabs"></div>
+    </section>
+
+    <section class="headline card" id="headline"></section>
+
+    <section class="metrics-grid" id="metrics-grid"></section>
+
+    <section class="split">
+      <article class="card">
+        <div class="section-header">
+          <h2>Funnel-stage slices</h2>
+          <p id="stage-caption"></p>
+        </div>
+        <div id="stage-list" class="stage-list"></div>
+      </article>
+      <article class="card">
+        <div class="section-header">
+          <h2>Repair backlog</h2>
+          <p>Open, version-controlled sample issues.</p>
+        </div>
+        <div id="repair-list" class="repair-list"></div>
+      </article>
+    </section>
+
+    <section class="footer-card card">
+      <h2>Why this matters</h2>
+      <p>This is not a mock dashboard. It is a static viewer over repository artifacts, so every number you see here can be traced back to a committed summary file.</p>
+      <div class="footer-actions">
+        <a href="https://github.com/veeicwgy/devtool-answer-monitor/blob/main/data/runs/sample-run/summary.json">Open sample summary</a>
+        <a href="https://github.com/veeicwgy/devtool-answer-monitor/blob/main/data/runs/sciverse-sample-run/summary.json">Open Sciverse summary</a>
+      </div>
+    </section>
+  </main>
+  <script src="demo.js" type="module"></script>
+</body>
+</html>

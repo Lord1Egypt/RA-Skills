@@ -1,0 +1,35 @@
+domain_name: data-analysis
+task_types:
+  - root-cause-analysis
+  - dashboard-design
+  - exploratory-analysis
+  - metric-design
+required_slots:
+  - analysis_goal
+  - data_source
+  - time_range
+  - metrics
+optional_slots:
+  - audience
+  - visualization_requirements
+  - tool_preference
+  - output_format
+default_slots:
+  tool_preference:
+    - Python
+    - Pandas
+    - SQL
+clarify_templates:
+  - "你这次最想解释的波动指标是什么？"
+  - "数据范围是近一周、近一月还是近一年？"
+  - "最终是给管理层看结论，还是给运营执行层看明细？"
+rewrite_template: >
+  请以资深数据分析师视角，围绕【{analysis_goal}】，
+  基于【{time_range}】内的【{metrics}】指标，
+  结合【{data_source}】输出结构化分析方案。
+review_checklist:
+  - 分析目标是否明确
+  - 时间范围是否明确
+  - 指标口径是否说明
+  - 输出形式是否明确
+risk_level: low

@@ -1,0 +1,119 @@
+[
+    {
+        "columnOrderId": 1,
+        "columnName": "ID",
+        "columnChiName": "ID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 2,
+        "columnName": "CompanyCode",
+        "columnChiName": "企业编号",
+        "columnType": "int",
+        "isNullable": 0,
+        "remark": "企业编号（CompanyCode）：与“机构基本资料（LC_InstiArchive）”中的“企业编号（CompanyCode）”关联，得到相关企业的具体名称、基本信息等。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0",
+        "remarkNo": "注1"
+    },
+    {
+        "columnOrderId": 3,
+        "columnName": "ListedCode",
+        "columnChiName": "上市公司代码",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "上市公司代码（ListedCode）：与“证券主表（SecuMain）”中的“公司代码（CompanyCode）”关联，得到相应的上市公司的交易代码、证券简称等信息。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.64",
+        "remarkNo": "注2"
+    },
+    {
+        "columnOrderId": 4,
+        "columnName": "ChiName",
+        "columnChiName": "公司中文名称",
+        "columnType": "varchar(100)",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 5,
+        "columnName": "UpdateDate",
+        "columnChiName": "更新日期",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "100.0"
+    },
+    {
+        "columnOrderId": 6,
+        "columnName": "LOGO",
+        "columnChiName": "logo",
+        "columnType": "blob",
+        "isNullable": 1,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "3.96"
+    },
+    {
+        "columnOrderId": 7,
+        "columnName": "PictureURL",
+        "columnChiName": "图片链接",
+        "columnType": "varchar(200)",
+        "isNullable": 1,
+        "remark": "图片链接（PictureURL）：自2023年7月20日停止维护。",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "97.22",
+        "remarkNo": "注3"
+    },
+    {
+        "columnOrderId": 8,
+        "columnName": "PictureType",
+        "columnChiName": "图片格式",
+        "columnType": "int",
+        "isNullable": 1,
+        "remark": "图片格式(PictureType)与(CT_SystemConst)表中的DM字段关联，令LB = 1388，得到图片格式的具体描述：1-JPG，2-BMP，3-GIF，4-SWF，5-JPEG，6-PNG。",
+        "enumerationValue": "MS",
+        "correlationColumn": "DM",
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null,
+        "valueRate": "99.99",
+        "remarkNo": "注4"
+    },
+    {
+        "columnOrderId": 9,
+        "columnName": "UpdateTime",
+        "columnChiName": "更新时间",
+        "columnType": "datetime",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    },
+    {
+        "columnOrderId": 10,
+        "columnName": "JSID",
+        "columnChiName": "JSID",
+        "columnType": "bigint",
+        "isNullable": 0,
+        "slaveFieldId": 0,
+        "isEffective": true,
+        "tableVersion": null
+    }
+]

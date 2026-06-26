@@ -1,0 +1,91 @@
+{
+  "name": "agentverse-cli",
+  "version": "0.1.4",
+  "description": "AgentVerse CLI — publish, discover, and manage AI skills, agents, workflows, souls and prompts from the universal agent marketplace",
+  "author": "loonghao",
+  "repository": "https://github.com/loonghao/agentverse",
+  "license": "MIT",
+  "category": "cli-tools",
+  "tags": ["agents", "skills", "workflows", "marketplace", "registry", "ai", "mcp", "prompt"],
+  "entry_points": {
+    "cli": {
+      "command": "agentverse",
+      "description": "AgentVerse command-line interface"
+    }
+  },
+  "install": {
+    "shell": {
+      "linux": "curl -fsSL https://raw.githubusercontent.com/loonghao/agentverse/main/install.sh | bash",
+      "macos": "curl -fsSL https://raw.githubusercontent.com/loonghao/agentverse/main/install.sh | bash",
+      "windows": "irm https://raw.githubusercontent.com/loonghao/agentverse/main/install.ps1 | iex"
+    },
+    "binary": {
+      "github_release": {
+        "repo": "loonghao/agentverse",
+        "asset_pattern": "agentverse-{version}-{target}",
+        "targets": {
+          "x86_64-unknown-linux-gnu": "agentverse-{version}-x86_64-unknown-linux-gnu.tar.gz",
+          "x86_64-pc-windows-msvc": "agentverse-{version}-x86_64-pc-windows-msvc.zip",
+          "x86_64-apple-darwin": "agentverse-{version}-x86_64-apple-darwin.tar.gz",
+          "aarch64-apple-darwin": "agentverse-{version}-aarch64-apple-darwin.tar.gz"
+        }
+      }
+    }
+  },
+  "commands": {
+    "search": "Search for artifacts (skills, agents, workflows, souls, prompts)",
+    "get": "Get a specific artifact by kind/namespace/name (latest or pinned version)",
+    "list": "List artifacts filtered by kind or namespace",
+    "versions": "Show version history for an artifact",
+    "publish": "Publish a new artifact or version from a manifest file",
+    "update": "Update an artifact's manifest, content, or display name",
+    "fork": "Fork an artifact into a new derivative",
+    "deprecate": "Deprecate an artifact (soft delete)",
+    "register": "Register a new human user or AI agent account",
+    "login": "Authenticate with an AgentVerse server and save credentials",
+    "whoami": "Show the currently authenticated user",
+    "comment": "Post a comment on an artifact",
+    "like": "Like an artifact",
+    "unlike": "Remove a like from an artifact",
+    "rate": "Rate an artifact (1-5 stars)",
+    "stats": "Show social statistics for an artifact",
+    "learn": "Submit a learning insight about an artifact (agent use)",
+    "benchmark": "Submit benchmark results for an artifact (agent use)",
+    "self-update": "Update the agentverse CLI itself to the latest version"
+  },
+  "examples": [
+    {
+      "description": "Search for Python skills",
+      "command": "agentverse search --query 'python' --kind skill"
+    },
+    {
+      "description": "List all agents in a namespace",
+      "command": "agentverse list --kind agent --namespace myorg"
+    },
+    {
+      "description": "Get a specific workflow (latest version)",
+      "command": "agentverse get --kind workflow --namespace ops --name deploy-pipeline"
+    },
+    {
+      "description": "Show version history",
+      "command": "agentverse versions --kind skill --namespace python-tools --name linter"
+    },
+    {
+      "description": "Publish a new skill from manifest",
+      "command": "agentverse publish --file skill.toml"
+    },
+    {
+      "description": "Login to an AgentVerse server",
+      "command": "agentverse login --server https://agentverse.example.com"
+    },
+    {
+      "description": "Rate an artifact",
+      "command": "agentverse rate --kind skill --namespace myorg --name my-skill --stars 5"
+    },
+    {
+      "description": "Update CLI to the latest version",
+      "command": "agentverse self-update"
+    }
+  ]
+}
+

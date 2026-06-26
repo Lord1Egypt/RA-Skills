@@ -1,0 +1,55 @@
+{
+  "template_name": "AI 软件",
+  "description": "AI 软件技术选型评估模板",
+  "evaluation_dimensions": {
+    "模型性能": {
+      "weight": 0.25,
+      "metrics": ["准确率", "召回率", "F1分数", "推理延迟", "吞吐量"],
+      "quantitative": true,
+      "confidence_interval": 0.95
+    },
+    "易用性": {
+      "weight": 0.20,
+      "metrics": ["API友好度", "文档质量", "学习曲线", "社区支持"],
+      "quantitative": false,
+      "notes": "定性分析，基于用户反馈和文档评估"
+    },
+    "可扩展性": {
+      "weight": 0.15,
+      "metrics": ["水平扩展能力", "垂直扩展能力", "分布式训练支持"],
+      "quantitative": true,
+      "confidence_interval": 0.90
+    },
+    "生态系统": {
+      "weight": 0.15,
+      "metrics": ["预训练模型数量", "第三方集成", "工具链完整性"],
+      "quantitative": true,
+      "confidence_interval": 0.85
+    },
+    "成本效益": {
+      "weight": 0.15,
+      "metrics": ["许可费用", "运维成本", "人力成本", "ROI"],
+      "quantitative": true,
+      "confidence_interval": 0.90
+    },
+    "安全性": {
+      "weight": 0.10,
+      "metrics": ["数据隐私保护", "模型安全", "合规认证", "漏洞历史"],
+      "quantitative": true,
+      "confidence_interval": 0.95
+    }
+  },
+  "data_sources": {
+    "benchmark_sites": ["paperswithcode.com", "huggingface.co", "modelscope.cn"],
+    "community_data": ["github.com", "stackoverflow.com", "reddit.com/r/MachineLearning"],
+    "enterprise_blogs": ["aws.amazon.com/blogs/machine-learning", "cloud.google.com/blog/ai-ml", "azure.microsoft.com/en-us/blog/artificial-intelligence"],
+    "job_markets": ["linkedin.com/jobs", "indeed.com", "bosszhipin.com"]
+  },
+  "maturity_indicators": {
+    "github_stars_threshold": 1000,
+    "github_contributors_threshold": 10,
+    "stackoverflow_questions_threshold": 100,
+    "job_postings_threshold": 50,
+    "enterprise_adoption_threshold": 5
+  }
+}

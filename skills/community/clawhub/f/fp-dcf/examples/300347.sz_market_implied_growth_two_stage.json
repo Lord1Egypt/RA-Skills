@@ -1,0 +1,26 @@
+{
+  "ticker": "300347.SZ",
+  "market": "CN",
+  "provider": "akshare_baostock",
+  "statement_frequency": "A",
+  "valuation_model": "two_stage",
+  "market_inputs": {
+    "market_price": 59.45
+  },
+  "market_implied_growth": {
+    "enabled": true
+  },
+  "sensitivity": {
+    "enabled": true
+  },
+  "normalization": {
+    "provider": "akshare_baostock",
+    "use_cache": true,
+    "refresh": false
+  },
+  "assumptions": {
+    "terminal_growth_rate": 0.03,
+    "stage1_growth_rate": 0.12,
+    "stage1_years": 5
+  }
+}

@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="source-map" content="disable"> <!-- 禁用source map以减少控制台警告 -->
+    <title>股票数据下载监控</title>
+
+    <!-- Bootstrap 5 CSS with inline fallback -->
+    <link href="static/bootstrap-5.1.3.min.css" rel="stylesheet" onerror="this.onerror=null; this.href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'; console.log('Bootstrap CSS local failed, switched to CDN');">
+    <!-- Font Awesome with inline fallback -->
+    <link rel="stylesheet" href="static/font-awesome-6.0.0.min.css" id="font-awesome-css" onerror="this.onerror=null; this.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'; console.log('Font Awesome CSS local failed, switched to CDN');">
+    <!-- Favicon with fallback -->
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon" onerror="this.onerror=null; this.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/images/favicon.ico';">
+
+    <!-- Resource fallback script -->
+    <script>
+        // Detect font loading failures and fallback to CDN
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if Font Awesome fonts loaded properly
+            setTimeout(function() {
+                // Test if Font Awesome icons are rendered
+                var testIcon = document.createElement('i');
+                testIcon.className = 'fa fa-check';
+                testIcon.style.cssText = 'position:absolute; left:-9999px; visibility:hidden;';
+                document.body.appendChild(testIcon);
+                
+                // Get computed style
+                var style = window.getComputedStyle(testIcon);
+                var fontFamily = style.fontFamily || '';
+                
+                // If Font Awesome font not detected, switch to CDN
+                if (fontFamily.indexOf('Font Awesome') === -1) {
+                    console.log('Font Awesome fonts not loaded, switching to CDN...');
+                    var faLink = document.getElementById('font-awesome-css');
+                    if (faLink) {
+                        faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+                    }
+                }
+                
+                document.body.removeChild(testIcon);
+            }, 2000); // Wait 2 seconds for fonts to load
+            
+            // Fallback for Bootstrap if local fails
+            var bootstrapLink = document.querySelector('link[href*="bootstrap"]');
+            if (bootstrapLink) {
+                bootstrapLink.onerror = function() {
+                    this.onerror = null;
+                    this.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css';
+                    console.log('Bootstrap CSS failed, switched to CDN');
+                };
+            }
+        });
+    </script>
+
+    <style>
+        /* ========== (纯浅灰指标卡片) ========== */
+        :root {
+            --primary-dark: #1E2A3A;
+            --primary: #2C3E50;
+            --primary-light: #5D6F83;
+            --secondary: #3A7B6D;
+            --success: #388E6F;
+            --warning: #C27D42;
+            --danger: #BC6C5C;
+            --bg-surface: #FFFFFF;
+            --bg-elevated: #F5F7FA;
+            --border-light: #DCE3EC;
+            --text-primary: #1E2A3A;
+            --text-secondary: #475569;
+            --text-muted: #6C7A8E;
+            --glass-bg: rgba(255, 255, 255, 0.82);
+            --glass-border: rgba(220, 227, 236, 0.6);
+            --glass-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            background: linear-gradient(135deg, #F0F4F8 0%, #E6EDF4 100%);
+            font-family: 'Inter', system-ui, 'Segoe UI', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 20px;
+            color: var(--text-primary);
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-elevated);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+
+        .card {
+            border-radius: 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.25s ease;
+            margin-bottom: 2px;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            background: linear-gradient(105deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-bottom: none;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: white;
+            border-radius: 24px 24px 0 0 !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:has(.fa-exclamation-triangle) .card-header {
+            background: linear-gradient(105deg, #9E5445 0%, #BC6C5C 100%);
+        }
+        .card:has(.fa-exclamation-circle) .card-header {
+            background: linear-gradient(105deg, #A5642E 0%, #C27D42 100%);
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            pointer-events: none;
+        }
+
+        .card-body {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ===== 四个指标卡片 - 纯浅灰色,干净统一 ===== */
+        .metric-card {
+            background: #F8F9FC;   /* 柔和浅灰 */
+            border-radius: 22px;
+            padding: 16px 18px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+        }
+
+        /* 悬停时微微加深背景,保持干净 */
+        .metric-card:hover {
+            background: #F1F3F8;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.08);
+        }
+
+        .metric-value {
+            font-size: 1.9rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--primary-dark);
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .metric-small {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        /* 进度条 */
+        .progress {
+            background-color: rgba(0, 0, 0, 0.08);
+            border-radius: 60px;
+            height: 8px;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, var(--secondary) 0%, #6F9F8F 100%);
+            border-radius: 60px;
+        }
+
+        .status-badge {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.7rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .status-idle { background: #4B5A6B; }
+        .status-running { background: var(--secondary); animation: softPulse 2s infinite; }
+        .status-completed { background: var(--success); }
+        .status-error { background: var(--danger); }
+        .status-warning { background: var(--warning); animation: softPulse 1.8s infinite; }
+
+        @keyframes softPulse {
+            0% { opacity: 0.85; box-shadow: 0 0 0 0 rgba(58,123,109,0.2);}
+            70% { opacity: 1; box-shadow: 0 0 0 6px rgba(58,123,109,0);}
+            100% { opacity: 0.85; box-shadow: 0 0 0 0 rgba(58,123,109,0);}
+        }
+
+        .stock-badge {
+            background: rgba(44, 62, 80, 0.1);
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(44, 62, 80, 0.15);
+        }
+
+        .log-entry {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 18px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-left: 4px solid;
+        }
+        .log-error { border-left-color: var(--danger); background: rgba(188, 108, 92, 0.05); }
+        .log-warning { border-left-color: var(--warning); background: rgba(194, 125, 66, 0.05); }
+        .log-time {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .time-prediction-item {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(6px);
+            border-radius: 20px;
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid rgba(220, 227, 236, 0.7);
+        }
+        .time-prediction-item:hover {
+            background: rgba(255,255,255,0.85);
+            transform: translateY(-2px);
+        }
+        .time-prediction-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .time-prediction-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .btn {
+            border-radius: 40px;
+            padding: 6px 20px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: none;
+        }
+        .btn-success {
+            background: linear-gradient(105deg, var(--success), #4C8B72);
+            color: white;
+        }
+        .btn-warning {
+            background: linear-gradient(105deg, var(--warning), #D3925A);
+            color: #1E2A3A;
+        }
+        .btn-danger {
+            background: linear-gradient(105deg, var(--danger), #C68373);
+        }
+        .btn-outline-secondary {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+        .btn-outline-secondary:hover {
+            background: white;
+            border-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .form-select, .form-control, .input-group-text {
+            border-radius: 40px;
+            border: 1px solid var(--border-light);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            padding: 6px 14px;
+        }
+        .form-select:focus, .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.12);
+        }
+        .compact-form-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+        }
+
+        .scrollable-panel {
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .current-time {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .form-switch .form-check-input {
+            width: 2rem;
+            background-color: #CBD5E1;
+        }
+        .form-switch .form-check-input:checked {
+            background-color: var(--secondary);
+        }
+
+        h1.h4 {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 模态框风格 */
+        .custom-modal .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            box-shadow: var(--glass-shadow);
+        }
+        .custom-modal .modal-header {
+            border-bottom: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+        }
+        .custom-modal .modal-body {
+            padding: 1.8rem 1.5rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        .custom-modal .modal-footer {
+            border-top: none;
+            justify-content: center;
+            padding-bottom: 1.5rem;
+        }
+        .custom-modal .btn-ok {
+            background: var(--secondary);
+            border: none;
+            padding: 8px 28px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .custom-modal .btn-ok:hover {
+            background: var(--primary);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-2">
+        <!-- 标题栏 -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <h1 class="h4 mb-1">
+                            <i class="fas fa-chart-line me-2" style="color: #2C3E50;"></i>
+                            stock-qdata 股票数据下载监控
+                        </h1>
+                        <p class="text-muted mb-0" style="font-size: 0.8rem;">实时监控 | 稳定高效 | 专业洞察</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="current-time">
+                            <i class="far fa-clock me-1"></i>
+                            <span id="currentTime">--:--:--</span>
+                        </div>
+
+                        <button class="btn btn-outline-secondary btn-sm" onclick="resetState()">
+                            <i class="fas fa-sync-alt me-1"></i>重置
+                        </button>
+                        <button class="btn btn-outline-info btn-sm" onclick="testConnection()">
+                            <i class="fas fa-wifi me-1"></i>测试连接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下载参数与任务控制 -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-sliders-h me-2"></i>
+                        <span class="fw-semibold">下载参数与任务控制</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-auto">
+                                <label class="compact-form-label">周期</label>
+                                <select class="form-select compact-form-control" id="periodSelect" style="min-width: 120px;">
+                                    <option value="1d">日线</option>
+                                    <option value="30m">30分钟线</option>
+                                    <option value="5m">5分钟线</option>
+                                    <option value="1m">1分钟线</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label class="compact-form-label">下载天数</label>
+                                <div class="input-group" style="width: 160px;">
+                                    <input type="number" class="form-control compact-form-control" id="daysInput" value="500" min="1" max="9999">
+                                    <span class="input-group-text compact-form-control">天</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="batchSizeCheck">
+                                    <label class="form-check-label" style="font-size: 0.8rem;">自定义批次大小</label>
+                                </div>
+                                <input type="number" class="form-control compact-form-control mt-1 d-none" id="batchSizeInput" value="50" min="1" max="1000" style="width: 110px;">
+                            </div>
+                            <div class="col-auto">
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-success" id="startBtn" onclick="startDownload()"><i class="fas fa-play me-1"></i>开始</button>
+                                    <button class="btn btn-warning" id="pauseBtn" onclick="pauseDownload()" disabled><i class="fas fa-pause me-1"></i>暂停</button>
+                                    <button class="btn btn-danger" id="stopBtn" onclick="stopDownload()" disabled><i class="fas fa-stop me-1"></i>停止</button>
+                                </div>
+                            </div>
+                            <div class="col-auto ms-auto">
+                                <span class="text-muted" style="font-size: 0.75rem;"><i class="fas fa-database me-1"></i>默认批次: <span id="defaultBatchSize">50</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下载进度 -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-tachometer-alt me-2"></i>
+                        <span class="fw-semibold">下载进度</span>
+                        <span class="status-badge float-end" id="statusBadge">空闲</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span style="font-weight: 600;">整体进度</span>
+                                <span id="progressPercent" style="font-weight: 700;">0%</span>
+                            </div>
+                            <div class="progress">
+                                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+                            </div>
+                            <div class="text-center text-muted mt-2" id="progressText" style="font-size: 0.8rem;">0 / 0 (0%)</div>
+                            <div class="mt-3 pt-2 border-top d-flex align-items-center">
+                                <span class="text-secondary me-2" style="font-weight: 500;">当前股票:</span>
+                                <span class="stock-badge" id="currentStock">暂无</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下载状态与时间信息(纯浅灰指标卡片) -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        <span class="fw-semibold">下载状态与时间信息</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4 pb-2">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <div class="metric-card">
+                                        <div class="metric-label">已用时间</div>
+                                        <div class="metric-value" id="elapsedTime">00:00</div>
+                                        <div class="metric-small">开始: <span id="startTime">--:--:--</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="metric-card">
+                                        <div class="metric-label">处理数量</div>
+                                        <div class="metric-value" id="processedCount">0/0</div>
+                                        <div class="metric-small">成功: <span id="successCount">0</span> | 剩余: <span id="errorCount">0</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="metric-card">
+                                        <div class="metric-label">下载速度</div>
+                                        <div class="metric-value" id="downloadSpeed">0.00</div>
+                                        <div class="metric-small">支/秒</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="metric-card">
+                                        <div class="metric-label">数据存储地址</div>
+                                        <div class="metric-value" id="dataPath" style="font-size: 1rem;">--</div>
+                                        <div class="metric-small truncate" id="fullPath" title=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="time-prediction-item">
+                                    <div class="time-prediction-label"><i class="far fa-hourglass-half me-1"></i>预计剩余时间</div>
+                                    <div class="time-prediction-value" id="estimatedRemaining">--</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="time-prediction-item">
+                                    <div class="time-prediction-label"><i class="far fa-calendar-check me-1"></i>预计完成时间</div>
+                                    <div class="time-prediction-value" id="estimatedCompletion">--:--:--</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="time-prediction-item">
+                                    <div class="time-prediction-label"><i class="fas fa-sync-alt me-1"></i>最后更新</div>
+                                    <div class="time-prediction-value" id="lastUpdateTime">--:--:--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 日志和错误 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <span class="fw-semibold">错误日志</span>
+                        <span class="badge bg-light text-danger float-end" id="errorBadge">0</span>
+                    </div>
+                    <div class="card-body scrollable-panel" id="errorLogs">
+                        <div class="text-center text-muted py-4">
+                            <i class="far fa-check-circle fa-lg mb-2" style="color:#388E6F;"></i>
+                            <p style="font-size: 0.85rem;">暂无错误</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <span class="fw-semibold">警告日志</span>
+                        <span class="badge bg-light text-warning float-end" id="warningBadge">0</span>
+                    </div>
+                    <div class="card-body scrollable-panel" id="warningLogs">
+                        <div class="text-center text-muted py-4">
+                            <i class="far fa-check-circle fa-lg mb-2" style="color:#388E6F;"></i>
+                            <p style="font-size: 0.85rem;">暂无警告</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 缺失文件弹窗 -->
+    <div class="modal fade custom-modal" id="missingFileModal" tabindex="-1" aria-labelledby="missingFileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title visually-hidden" id="missingFileModalLabel">缺失文件提示</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-file-excel fa-3x mb-3" style="color: var(--warning);"></i>
+                    <p style="font-size: 1.1rem; font-weight: 500;" id="missingFileMessage">缺失文件,请与技术支持联系</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ok" data-bs-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.IO & JS -->
+    <!-- Resource loading with local fallback to CDN -->
+    <script>
+        // Global promise for resource loading - accessible to main script
+        window.resourcesLoaded = new Promise((resolve, reject) => {
+            function loadSocketIO() {
+                return new Promise((resolve, reject) => {
+                    // First try local version
+                    const localScript = document.createElement('script');
+                    localScript.src = 'static/socket.io.min.js';
+                    localScript.onload = resolve;
+                    localScript.onerror = () => {
+                        console.log('Socket.IO local version failed, loading from CDN...');
+                        // Fallback to CDN
+                        const cdnScript = document.createElement('script');
+                        cdnScript.src = 'https://cdn.socket.io/4.5.0/socket.io.min.js';
+                        cdnScript.onload = resolve;
+                        cdnScript.onerror = reject;
+                        document.head.appendChild(cdnScript);
+                    };
+                    document.head.appendChild(localScript);
+                });
+            }
+            
+            function loadBootstrapJS() {
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'static/bootstrap-5.1.3.bundle.min.js';
+                    script.onload = resolve;
+                    script.onerror = () => {
+                        console.log('Bootstrap JS local version failed, loading from CDN...');
+                        const cdnScript = document.createElement('script');
+                        cdnScript.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js';
+                        cdnScript.onload = resolve;
+                        cdnScript.onerror = reject;
+                        document.head.appendChild(cdnScript);
+                    };
+                    document.head.appendChild(script);
+                });
+            }
+            
+            // Start loading when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                Promise.all([loadSocketIO(), loadBootstrapJS()])
+                    .then(() => {
+                        console.log('All JS resources loaded successfully');
+                        resolve();
+                    })
+                    .catch(error => {
+                        console.error('Failed to load required JS resources:', error);
+                        // Still resolve to allow the app to continue (though some features may not work)
+                        resolve();
+                    });
+            });
+        });
+    </script>
+    <script>
+        // ==================== 全局变量 ====================
+        let socket = null;
+        let connectionStatus = 'disconnected';
+        let lastUpdateTime = null;
+        let currentModal = null; // 当前显示的模态框实例
+
+        // 缺失文件弹窗调用接口 - 简化版本
+        function showMissingFileDialog(message) {
+            console.log('🎯 showMissingFileDialog 被调用,消息:', message);
+
+            // 更新消息内容
+            const messageEl = document.getElementById('missingFileMessage');
+            console.log('📝 messageEl:', messageEl);
+            if (messageEl) {
+                messageEl.textContent = message || '文件缺失,请检查文件路径';
+                console.log('✅ 消息已更新:', messageEl.textContent);
+            } else {
+                console.error('❌ 找不到 missingFileMessage 元素');
+            }
+
+            // 显示模态框
+            const modalEl = document.getElementById('missingFileModal');
+            console.log('📱 modalEl:', modalEl);
+            if (modalEl) {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                console.log('🔧 modal 实例:', modal);
+                modal.show();
+                console.log('✅ 模态框显示命令已执行');
+            } else {
+                console.error('❌ 找不到 missingFileModal 元素');
+                // 备用方案
+                alert('错误: ' + (message || '文件缺失'));
+            }
+        }
+
+        // ==================== Socket.IO ====================
+        function initSocket() {
+            console.log('🔧 初始化Socket.IO连接...');
+            
+            // Check if Socket.IO library is loaded
+            if (typeof io === 'undefined') {
+                console.error('❌ Socket.IO library not loaded. Waiting for resources...');
+                // Try again after a delay
+                setTimeout(initSocket, 1000);
+                return;
+            }
+
+            // 尝试连接到 Socket.IO 服务器
+            socket = io({
+                transports: ['websocket', 'polling'],
+                reconnection: true,
+                reconnectionAttempts: 10,  // 增加重试次数
+                reconnectionDelay: 1000,
+                reconnectionDelayMax: 5000,
+                timeout: 60000,  // 连接超时时间(ms)
+                pingTimeout: 60000,  // ping超时时间(ms) - 与后端匹配
+                pingInterval: 25000,  // ping间隔(ms) - 与后端匹配
+                forceNew: false,
+                upgrade: true,
+                rememberUpgrade: true,
+                rejectUnauthorized: false  // 对于本地开发,允许自签名证书
+            });
+
+            // 连接成功
+            socket.on('connect', () => {
+                connectionStatus = 'connected';
+                console.log('✅ Socket.IO已连接,socket.id:', socket.id);
+                // 发送测试消息确认连接正常
+                socket.emit('test_ping', { timestamp: Date.now() });
+            });
+
+            // 连接断开
+            socket.on('disconnect', (reason) => {
+                connectionStatus = 'disconnected';
+                console.log('❌ Socket.IO断开连接,原因:', reason);
+            });
+
+            // 连接错误
+            socket.on('connect_error', (error) => {
+                console.error('❌ Socket.IO连接错误:', error);
+            });
+
+            // 测试响应
+            socket.on('test_pong', (data) => {
+                console.log('📡 收到test_pong响应:', data);
+            });
+
+            // 状态更新事件
+            socket.on('state_update', (data) => {
+                console.log('📡 收到state_update事件,数据类型:', typeof data, '完整数据:', data);
+
+                // 确保数据有效
+                if (!data) {
+                    console.warn('⚠️ state_update 数据为空');
+                    return;
+                }
+
+                // 兼容不同的数据格式
+                let stateData = data;
+                if (data.state) {
+                    stateData = data.state;
+                }
+
+                console.log('📡 处理状态数据,status:', stateData?.status, 'progress:', stateData?.progress);
+
+                // 更新UI
+                if (stateData) {
+                    updateUI(stateData);
+                }
+
+                lastUpdateTime = new Date();
+                updateLastUpdateTime();
+            });
+
+            socket.on('missing_file', (data) => {
+                console.log('🎯 收到缺失文件/错误通知:', data?.message);
+                if (data && data.message) {
+                    showMissingFileDialog(data.message);
+                }
+            });
+        }
+
+        function testConnection() {
+            console.log('🔧 测试Socket.IO连接...');
+
+            if (!socket || !socket.connected) {
+                console.error('❌ Socket.IO未连接,尝试重新连接');
+                initSocket();
+                return;
+            }
+
+            console.log('🔧 Socket.IO连接状态:', {
+                connected: socket.connected,
+                id: socket.id,
+                disconnected: socket.disconnected
+            });
+
+            // 发送测试ping
+            const testData = {
+                test: 'ping',
+                timestamp: Date.now(),
+                browser: navigator.userAgent.substring(0, 100)
+            };
+
+            console.log('🔧 发送test_ping:', testData);
+            socket.emit('test_ping', testData);
+
+            // 同时测试HTTP API
+            fetch('/api/state')
+                .then(r => r.json())
+                .then(data => console.log('🔧 HTTP /api/state 响应:', data))
+                .catch(err => console.error('❌ HTTP /api/state 错误:', err));
+
+            // 测试广播端点
+            fetch('/api/test_broadcast')
+                .then(r => r.json())
+                .then(data => console.log('🔧 HTTP /api/test_broadcast 响应:', data))
+                .catch(err => console.error('❌ HTTP /api/test_broadcast 错误:', err));
+        }
+
+        // 连接状态监控
+        function monitorConnection() {
+            console.log('🔧 开始监控Socket.IO连接状态...');
+
+            // 每30秒检查一次连接状态
+            setInterval(() => {
+                if (socket) {
+                    const now = new Date().toISOString();
+                    const status = {
+                        time: now,
+                        connected: socket.connected,
+                        id: socket.id,
+                        disconnected: socket.disconnected,
+                        connectionStatus: connectionStatus
+                    };
+                    console.log('🔧 Socket.IO连接状态监控:', status);
+
+                    // 如果连接断开但应该连接,尝试重连
+                    if (!socket.connected && connectionStatus !== 'disconnected') {
+                        console.log('🔧 检测到连接异常,尝试重新连接...');
+                        socket.connect();
+                    }
+                }
+            }, 30000); // 每30秒检查一次
+        }
+
+        function updateUI(state) {
+            console.log('🔄 updateUI调用,状态:', state.status, '进度:', state.progress || 0, '已处理:', state.processed || 0, '/', state.total || 0);
+
+            // 安全检查
+            if (!state) {
+                console.error('❌ updateUI: state参数为空');
+                return;
+            }
+
+            const statusMap = { 'idle':'空闲','running':'运行中','completed':'已完成','error':'错误','paused':'已暂停' };
+            const clsMap = { 'idle':'status-idle','running':'status-running','completed':'status-completed','error':'status-error','paused':'status-warning' };
+
+            try {
+                document.getElementById('statusBadge').textContent = statusMap[state.status] || '空闲';
+                document.getElementById('statusBadge').className = `status-badge ${clsMap[state.status] || 'status-idle'}`;
+                let prog = state.progress || 0;
+                document.getElementById('progressPercent').innerText = `${prog}%`;
+                document.getElementById('progressBar').style.width = `${prog}%`;
+                let proc = state.processed || 0, total = state.total || 0;
+                document.getElementById('progressText').innerText = `${proc} / ${total} (${prog}%)`;
+                document.getElementById('currentStock').innerHTML = state.current_stock ? `<span class="stock-badge">${state.current_stock}</span>` : '<span class="text-muted">暂无</span>';
+                document.getElementById('elapsedTime').innerText = state.elapsed_time_str || '00:00';
+                document.getElementById('startTime').innerText = state.start_time_str || '--:--:--';
+                document.getElementById('processedCount').innerText = `${proc}/${total}`;
+                document.getElementById('successCount').innerText = state.success_count || 0;
+                document.getElementById('errorCount').innerText = state.error_count || 0;
+                document.getElementById('downloadSpeed').innerText = state.download_speed ? state.download_speed.toFixed(2) : '0.00';
+                document.getElementById('dataPath').innerText = state.data_path || '未设置';
+                document.getElementById('fullPath').innerText = state.data_path || '';
+                document.getElementById('estimatedRemaining').innerText = state.estimated_remaining_str || '--';
+                document.getElementById('estimatedCompletion').innerText = state.estimated_completion || '--:--:--';
+                document.getElementById('lastUpdateTime').innerText = state.last_update_str || '--:--:--';
+                updateErrorLogs(state.errors || []);
+                updateWarningLogs(state.warnings || []);
+                updateButtonState(state.status);
+
+                console.log('✅ updateUI完成,状态更新为:', state.status);
+            } catch (error) {
+                console.error('❌ updateUI执行出错:', error);
+            }
+        }
+
+        let recentMissingMessages = [];  // 存储最近弹窗的消息,最多3条
+
+        function updateErrorLogs(errors) {
+            let container = document.getElementById('errorLogs'), badge = document.getElementById('errorBadge');
+            badge.innerText = errors.length;
+            if(errors.length===0){
+                container.innerHTML = `<div class="text-center text-muted py-4"><i class="far fa-check-circle fa-lg mb-2" style="color:#388E6F;"></i><p style="font-size:0.85rem;">暂无错误</p></div>`;
+                return;
+            }
+            let html = '';
+            errors.slice(-10).reverse().forEach(e => {
+                html += `<div class="log-entry log-error"><div class="d-flex justify-content-between flex-wrap"><span class="log-time">${e.time||'--:--:--'}</span> ${e.stock?`<span class="stock-badge">${e.stock}</span>`:''}<span class="log-message">${e.message||''}</span></div></div>`;
+
+                // 检测缺失关键词
+                if (e.message && (e.message.includes('缺失') || e.message.includes('不存在'))) {
+                    // 如果这条消息不在最近3条中,则弹窗并记录
+                    if (!recentMissingMessages.includes(e.message)) {
+                        // 添加新消息
+                        recentMissingMessages.push(e.message);
+                        // 保持最多3条
+                        if (recentMissingMessages.length > 3) {
+                            recentMissingMessages.shift();
+                        }
+                        showMissingFileDialog(e.message);
+                    }
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function updateWarningLogs(warnings) {
+            let container = document.getElementById('warningLogs'), badge = document.getElementById('warningBadge');
+            badge.innerText = warnings.length;
+            if(warnings.length===0){ container.innerHTML = `<div class="text-center text-muted py-4"><i class="far fa-check-circle fa-lg mb-2" style="color:#388E6F;"></i><p style="font-size:0.85rem;">暂无警告</p></div>`; return; }
+            let html = '';
+            warnings.slice(-10).reverse().forEach(w => { html += `<div class="log-entry log-warning"><div class="d-flex align-items-center gap-2 flex-wrap"><span class="log-time">${w.time||'--:--:--'}</span> ${w.stock?`<span class="stock-badge">${w.stock}</span>`:''}<span class="log-message">${w.message||''}</span></div></div>`; });
+            container.innerHTML = html;
+        }
+
+        function updateButtonState(status) {
+            let start = document.getElementById('startBtn'), pause = document.getElementById('pauseBtn'), stop = document.getElementById('stopBtn');
+            if(status === 'running'){
+                start.disabled=true; pause.disabled=false; stop.disabled=false;
+                pause.innerHTML='<i class="fas fa-pause me-1"></i>暂停'; pause.className='btn btn-warning'; pause.onclick=pauseDownload;
+            } else if(status === 'paused'){
+                start.disabled=true; pause.disabled=false; stop.disabled=false;
+                pause.innerHTML='<i class="fas fa-play me-1"></i>恢复'; pause.className='btn btn-success'; pause.onclick=resumeDownload;
+            } else {
+                start.disabled=false; pause.disabled=true; stop.disabled=true;
+                pause.innerHTML='<i class="fas fa-pause me-1"></i>暂停'; pause.className='btn btn-warning'; pause.onclick=pauseDownload;
+            }
+        }
+
+
+        function updateLastUpdateTime(){
+            if(!lastUpdateTime) {
+                document.getElementById('lastUpdateTime').innerText = '--:--:--';
+                return;
+            }
+            const diffSeconds = Math.floor((new Date() - lastUpdateTime) / 1000);
+            if(diffSeconds < 60) {
+                document.getElementById('lastUpdateTime').innerText = `${diffSeconds} 秒前`;
+            } else if(diffSeconds < 3600) {
+                document.getElementById('lastUpdateTime').innerText = `${Math.floor(diffSeconds / 60)} 分钟前`;
+            } else {
+                document.getElementById('lastUpdateTime').innerText = `${Math.floor(diffSeconds / 3600)} 小时前`;
+            }
+        }
+        function updateCurrentTime(){ document.getElementById('currentTime').innerText = new Date().toLocaleTimeString(); }
+
+        function startDownload(){
+            console.log('🔧 点击开始按钮');
+            let period=document.getElementById('periodSelect').value, days=parseInt(document.getElementById('daysInput').value);
+            let useCustom=document.getElementById('batchSizeCheck').checked, batchSize=useCustom?parseInt(document.getElementById('batchSizeInput').value):null;
+            console.log(`🔧 参数: period=${period}, days=${days}, useCustom=${useCustom}, batchSize=${batchSize}`);
+            if(isNaN(days)||days<1||days>9999) return alert('有效天数1-9999');
+            if(useCustom&&(isNaN(batchSize)||batchSize<1||batchSize>1000)) return alert('批次大小1-1000');
+            let params={period,days}; if(batchSize) params.batch_size=batchSize;
+            console.log(`🔧 发送请求到 /api/start:`, params);
+            fetch('/api/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(params)})
+                .then(r=>{
+                    console.log(`🔧 收到响应状态: ${r.status} ${r.statusText}`);
+                    return r.json();
+                })
+                .then(d=>{
+                    console.log('🔧 响应数据:', d);
+                    if(d.error) alert('错误:'+d.error);
+                    else alert(d.message||'任务已开始');
+                })
+                .catch(e=>{
+                    console.error('❌ 请求失败:', e);
+                    alert('失败:'+e.message);
+                });
+        }
+        function pauseDownload(){ fetch('/api/pause',{method:'POST'}).then(r=>r.json()).then(d=>{if(d.error) alert('错误:'+d.error); else alert(d.message||'已暂停');}); }
+        function resumeDownload(){ fetch('/api/resume',{method:'POST'}).then(r=>r.json()).then(d=>{if(d.error) alert('错误:'+d.error); else alert(d.message||'已恢复');}); }
+        function stopDownload(){ if(confirm('停止任务?')) fetch('/api/stop',{method:'POST'}).then(r=>r.json()).then(d=>{if(d.error) alert('错误:'+d.error); else alert(d.message||'已停止');}); }
+        function resetState(){ if(confirm('重置所有状态?')) fetch('/api/reset').then(()=>location.reload()); }
+
+        document.addEventListener('DOMContentLoaded',(event)=>{
+            console.log('🔧 DOMContentLoaded 事件触发');
+            
+            // Wait for resources (Socket.IO, Bootstrap JS) to load before initializing
+            window.resourcesLoaded.then(() => {
+                console.log('✅ All resources loaded, initializing application...');
+
+                // 检查是否有 Service Worker 可能导致错误
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        console.log('🔧 已注册的 Service Workers:', registrations.length);
+                        if (registrations.length > 0) {
+                            console.warn('⚠️ 检测到 Service Worker,可能引起消息通道错误');
+                        }
+                    });
+                }
+
+                // 防止事件冒泡导致可能的异步响应错误
+                event.stopPropagation();
+
+                initSocket();
+                
+                // 启动连接状态监控
+                setTimeout(() => monitorConnection(), 5000); // 延迟5秒启动监控
+
+                // 添加 beforeunload 事件监听器，确保不返回 true 导致异步错误
+                window.addEventListener('beforeunload', (event) => {
+                    console.log('🔧 beforeunload 事件触发,清理资源');
+                    // 不要返回任何值,避免异步响应错误
+                    // event.preventDefault(); // 不取消默认行为
+                    // event.returnValue = ''; // 不设置 returnValue
+                }, { capture: false });
+
+                // 定时更新时间显示（不再进行状态轮询，只依赖Socket.IO推送）
+                setInterval(()=>{
+                    updateCurrentTime();
+                }, 5000);
+
+                document.getElementById('batchSizeCheck').addEventListener('change',e=>document.getElementById('batchSizeInput').classList.toggle('d-none',!e.target.checked));
+                fetch('/api/config').then(r=>r.json()).then(cfg=>{
+                    document.getElementById('defaultBatchSize').innerText=cfg.batch_size||50;
+                    document.getElementById('batchSizeInput').value=cfg.batch_size||50;
+                    if(cfg.download_period){ let sel=document.getElementById('periodSelect'); [...sel.options].some(opt=>{if(opt.value===cfg.download_period){opt.selected=true; return true;} return false;});}
+                    if(cfg.download_days) document.getElementById('daysInput').value=cfg.download_days;
+                }).catch(e=>console.warn);
+                updateCurrentTime();
+            }).catch(error => {
+                console.error('❌ Failed to load resources, but continuing anyway:', error);
+                // Try to initialize even if resources failed to load
+                initSocket();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "short-default",
+  "mode": "short",
+  "actions": [
+    "morning_check",
+    "plan_short",
+    "intraday_scan",
+    "batch_kline_file:scripts/watchlist.txt",
+    "after_close_review"
+  ],
+  "note": "可按个人风格调整 actions 顺序。每一步都是 ths-hotkeys.mjs 可执行动作。"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "dream-dance-of-clawra",
+  "version": "1.0.5",
+  "description": "Add dancing and selfie to your OpenClaw agent.",
+  "bin": {
+    "clawra": "./bin/cli.js"
+  },
+  "install": "node ./bin/cli.js --install",
+  "files": [
+    "bin/",
+    "skill/",
+    "templates/",
+    "SKILL.md",
+    "scripts/",
+    "assets/"
+  ],
+  "keywords": [
+    "openclaw",
+    "imagine",
+    "selfie",
+    "dancing",
+    "ai-agent",
+    "messaging"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qidu/dream-of-clawra"
+  },
+  "homepage": "https://github.com/qidu/dream-of-clawra#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}

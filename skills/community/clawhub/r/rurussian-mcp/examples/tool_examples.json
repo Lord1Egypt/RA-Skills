@@ -1,0 +1,196 @@
+{
+  "authenticate": {
+    "request": {
+      "api_key": "YOUR_RURUSSIAN_API_KEY",
+      "user_agent": "ClawHub/1.0"
+    },
+    "response": {
+      "authenticated_for_session": true,
+      "auth_mode": "api_key",
+      "api_key_preview": "ruru********1234",
+      "user_agent": "ClawHub/1.0"
+    }
+  },
+  "parse_sentence": {
+    "request": {
+      "text": "Я читаю интересную книгу."
+    },
+    "response": {
+      "tokens": ["Я", "читаю", "интересную", "книгу", "."],
+      "lemmas": ["я", "читать", "интересный", "книга", "."],
+      "pos": ["PRON", "VERB", "ADJ", "NOUN", "PUNCT"],
+      "morphology": [
+        {"token": "Я", "features": {"case": "nominative", "number": "singular", "gender": "", "tense": "", "person": "first", "aspect": "", "mood": ""}},
+        {"token": "читаю", "features": {"case": "", "number": "singular", "gender": "", "tense": "present", "person": "first", "aspect": "imperfective", "mood": "indicative"}},
+        {"token": "интересную", "features": {"case": "accusative", "number": "singular", "gender": "feminine", "tense": "", "person": "", "aspect": "", "mood": ""}},
+        {"token": "книгу", "features": {"case": "accusative", "number": "singular", "gender": "feminine", "tense": "", "person": "", "aspect": "", "mood": ""}},
+        {"token": ".", "features": {"case": "", "number": "", "gender": "", "tense": "", "person": "", "aspect": "", "mood": ""}}
+      ],
+      "syntax_tree": {
+        "root_index": 1,
+        "edges": [
+          {"head_index": 3, "dependent_index": 2, "relation": "amod"},
+          {"head_index": 1, "dependent_index": 3, "relation": "obj"}
+        ]
+      }
+    }
+  },
+  "generate_examples": {
+    "request": {
+      "word": "читать",
+      "level": "A2",
+      "count": 3,
+      "topic": "study habits"
+    },
+    "response": {
+      "examples": [
+        {"sentence": "Я читаю книгу каждый вечер.", "translation": "I read a book every evening.", "grammar_focus": "verb aspect: imperfective"},
+        {"sentence": "Мы читаем текст на уроке.", "translation": "We read the text in class.", "grammar_focus": "case usage: accusative"},
+        {"sentence": "Она любит читать перед сном.", "translation": "She likes to read before sleep.", "grammar_focus": "basic sentence structure"}
+      ]
+    }
+  },
+  "generate_reading_passage": {
+    "request": {
+      "level": "A2",
+      "topic": "daily routine",
+      "length": "short"
+    },
+    "response": {
+      "title": "Daily Routine (A2)",
+      "text": "Утром Анна встаёт рано. Потом она пьёт чай и читает новости. Вечером она повторяет новые русские слова.",
+      "sentences": [
+        "Утром Анна встаёт рано.",
+        "Потом она пьёт чай и читает новости.",
+        "Вечером она повторяет новые русские слова."
+      ],
+      "estimated_difficulty": 0.36
+    }
+  },
+  "explain_text_for_learner": {
+    "request": {
+      "text": "Я часто хожу в библиотеку, потому что там тихо.",
+      "level": "A2",
+      "native_language": "English"
+    },
+    "response": {
+      "translation": "I often go to the library because it is quiet there.",
+      "grammar_points": [
+        {
+          "name": "verb aspect: imperfective",
+          "explanation": "This text highlights verb aspect: imperfective, explained at a A2 learner-friendly level.",
+          "examples": ["Я часто хожу в библиотеку, потому что там тихо."]
+        }
+      ],
+      "difficult_words": [
+        {"word": "библиотеку", "meaning": "library", "cefr_level": "A2"}
+      ],
+      "sentence_breakdown": [
+        {
+          "sentence": "Я часто хожу в библиотеку, потому что там тихо.",
+          "structure": "subject + predicate + object",
+          "notes": "verb aspect: imperfective, prepositions"
+        }
+      ]
+    }
+  },
+  "create_daily_lesson": {
+    "request": {
+      "level": "A2",
+      "focus": ["verb aspect", "daily routine"],
+      "duration_minutes": 15
+    },
+    "response": {
+      "reading": {
+        "title": "Verb Aspect (A2)",
+        "text": "Сегодня мы говорим о теме 'verb aspect'. Это важная тема для ученика уровня A2. Герой текста читает и повторяет новые слова каждый день.",
+        "sentences": [
+          "Сегодня мы говорим о теме 'verb aspect'.",
+          "Это важная тема для ученика уровня A2.",
+          "Герой текста читает и повторяет новые слова каждый день."
+        ],
+        "estimated_difficulty": 0.42
+      },
+      "vocabulary": ["читает", "слова", "тема"],
+      "grammar_drill": [
+        {"question": "Fill the blank with a correct form related to 'verb aspect': Я ___ русский каждый день.", "answer": "учу", "type": "fill_blank"},
+        {"question": "Translate into Russian using 'читает' when possible: 'This topic is important.'", "answer": "Эта тема важна. (читает)", "type": "translation"},
+        {"question": "Choose the best grammar label for this lesson focus: verb aspect.", "answer": "verb aspect", "type": "mcq"}
+      ],
+      "quiz": [
+        {"question": "What is the main topic of the reading?", "options": ["Verb Aspect (A2)", "Weather", "Travel", "Food"], "correct": "Verb Aspect (A2)"},
+        {"question": "Which item appears in the lesson vocabulary?", "options": ["читает", "bonjour", "hola", "ciao"], "correct": "читает"},
+        {"question": "How many sentences are in the reading block?", "options": ["1", "3", "10", "12"], "correct": "3"}
+      ]
+    }
+  },
+  "create_review_session": {
+    "request": {
+      "known_words": ["читать", "писать"],
+      "weak_points": ["accusative case", "verb aspect"],
+      "difficulty": "adaptive"
+    },
+    "response": {
+      "review_items": [
+        {"type": "vocab", "prompt": "Use the word 'читать' in a simple Russian sentence.", "answer": "Sentence should include 'читать' naturally and correctly."},
+        {"type": "vocab", "prompt": "Use the word 'писать' in a simple Russian sentence.", "answer": "Sentence should include 'писать' naturally and correctly."},
+        {"type": "grammar", "prompt": "Explain or produce one example of: accusative case.", "answer": "Correct response should demonstrate accurate use of accusative case."},
+        {"type": "grammar", "prompt": "Explain or produce one example of: verb aspect.", "answer": "Correct response should demonstrate accurate use of verb aspect."}
+      ]
+    }
+  },
+  "evaluate_user_answer": {
+    "request": {
+      "question": "Я читаю книгу.",
+      "user_answer": "Я читаю книги.",
+      "expected_skill": "case control"
+    },
+    "response": {
+      "is_correct": false,
+      "mistake_type": "case_error",
+      "explanation": "The answer keeps the core meaning but changes noun or adjective case marking.",
+      "score": 0.7
+    }
+  },
+  "simulate_conversation": {
+    "request": {
+      "scenario": "ordering coffee",
+      "level": "A1"
+    },
+    "response": {
+      "dialogue": [
+        {"speaker": "tutor", "text": "Здравствуйте. Давайте разыграем ситуацию: ordering coffee. Как вы начнёте разговор?"},
+        {"speaker": "user", "text": "Здравствуйте. Мне нужна помощь в ситуации: ordering coffee."},
+        {"speaker": "tutor", "text": "Хорошо. Скажите это немного подробнее и используйте одну вежливую просьбу."},
+        {"speaker": "user", "text": "Пожалуйста, помогите мне с темой 'ordering coffee'."}
+      ]
+    }
+  },
+  "get_learning_profile": {
+    "request": {},
+    "response": {
+      "level": "A2",
+      "known_vocab": ["читать", "урок", "слово"],
+      "weak_grammar": ["accusative case"],
+      "review_due": ["verb aspect"],
+      "interest_topics": ["daily routine"]
+    }
+  },
+  "update_learning_progress": {
+    "request": {
+      "activity": "quiz",
+      "score": 0.62,
+      "mistakes": ["verb aspect", "accusative case"]
+    },
+    "response": {
+      "status": "updated"
+    }
+  },
+  "get_next_best_lesson": {
+    "request": {},
+    "response": {
+      "recommended_focus": "verb aspect",
+      "reason": "Pending spaced-review items should be revisited before new material."
+    }
+  }
+}

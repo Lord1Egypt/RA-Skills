@@ -1,0 +1,11 @@
+{
+  "brand": "dark-gold",
+  "theme": "dark-gold",
+  "layout": "data",
+  "title": "关键指标",
+  "metrics": [
+    { "label": "MAU", "value": "120 万", "change": "+15%" },
+    { "label": "营收", "value": "¥580 万", "change": "+22%" },
+    { "label": "NPS", "value": "72", "change": "+8pts" }
+  ]
+}

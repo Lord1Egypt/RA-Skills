@@ -1,0 +1,55 @@
+{
+  "dataset": "/path/to/train.csv",
+  "val_dataset": "/path/to/val.csv",
+  "test_dataset": "/path/to/test.csv",
+  "project_root": "/path/to/pass-forecast",
+  "horizon": 24,
+  "period": 24,
+  "beta": 0.7,
+  "seed": 42,
+  "context": {
+    "python_bin": "python3"
+  },
+  "models": [
+    {
+      "name": "lstnet",
+      "group": "online",
+      "train_cmd": "{python_bin} {project_root}/LSTNet/main.py --data {dataset} --save_dir {model_dir} --horizon {horizon}"
+    },
+    {
+      "name": "patchtst",
+      "group": "online",
+      "train_cmd": "{python_bin} {project_root}/PatchTST/run_longExp.py --is_training 1 --root_path {project_root} --data_path {dataset} --checkpoints {model_dir}"
+    },
+    {
+      "name": "informer",
+      "group": "online",
+      "train_cmd": "{python_bin} {project_root}/PatchTST/Formers/FEDformer/run.py --model Informer --is_training 1 --root_path {project_root} --data_path {dataset} --checkpoints {model_dir}"
+    },
+    {
+      "name": "autoformer",
+      "group": "online",
+      "train_cmd": "{python_bin} {project_root}/PatchTST/Formers/FEDformer/run.py --model Autoformer --is_training 1 --root_path {project_root} --data_path {dataset} --checkpoints {model_dir}"
+    },
+    {
+      "name": "fedformer",
+      "group": "online",
+      "train_cmd": "{python_bin} {project_root}/PatchTST/Formers/FEDformer/run.py --model FEDformer --is_training 1 --root_path {project_root} --data_path {dataset} --checkpoints {model_dir}"
+    },
+    {
+      "name": "tide",
+      "group": "offline",
+      "train_cmd": "{python_bin} {project_root}/tide/train.py --data_path {dataset} --save_dir {model_dir}"
+    },
+    {
+      "name": "prophet",
+      "group": "offline",
+      "train_cmd": "{python_bin} /path/to/your_prophet_train.py --train_csv {dataset} --val_csv {val_dataset} --out_dir {model_dir}"
+    },
+    {
+      "name": "nbeats",
+      "group": "offline",
+      "train_cmd": "{python_bin} /path/to/your_nbeats_train.py --train_csv {dataset} --val_csv {val_dataset} --out_dir {model_dir}"
+    }
+  ]
+}

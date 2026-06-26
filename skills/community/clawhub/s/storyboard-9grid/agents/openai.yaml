@@ -1,0 +1,4 @@
+interface:
+  display_name: "九宫格电影分镜"
+  short_description: "将剧本拆解为九宫格分镜，每格附带Nano Banana Pro生图提示词"
+  default_prompt: "请给我一段剧本或故事大纲，我来拆成九宫格电影分镜。"

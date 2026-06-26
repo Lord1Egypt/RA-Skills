@@ -1,0 +1,60 @@
+{
+  "emoji": "ballot_box_with_ballot",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Your Simmer API key from simmer.markets/dashboard."
+    },
+    {
+      "name": "SEARCH_QUERIES",
+      "required": false,
+      "description": "Comma-separated Kalshi politics search terms."
+    },
+    {
+      "name": "MAX_MARKETS_PER_QUERY",
+      "required": false,
+      "description": "Maximum Kalshi results to inspect per query. Default: 50."
+    },
+    {
+      "name": "MIN_PRICE",
+      "required": false,
+      "description": "Minimum YES price allowed. Default: 0.02."
+    },
+    {
+      "name": "MAX_PRICE",
+      "required": false,
+      "description": "Maximum YES price allowed. Default: 0.98."
+    },
+    {
+      "name": "FAIR_PROBABILITY",
+      "required": false,
+      "description": "Fair YES probability used for edge checks. Default: 0.55."
+    },
+    {
+      "name": "MIN_EDGE",
+      "required": false,
+      "description": "Minimum edge required to print a trade plan. Default: 0.02."
+    },
+    {
+      "name": "MAX_SLIPPAGE_PCT",
+      "required": false,
+      "description": "Skip candidates with excessive slippage. Default: 0.15."
+    },
+    {
+      "name": "RANDOM_SEED",
+      "required": false,
+      "description": "Optional random seed for reproducible candidate selection."
+    }
+  ],
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trade_skill.py"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "essay-humanize-iterator",
+  "tagline": "Iteratively refine essays to reduce AI-detection false positives by aligning style with human-writer norms",
+  "description": "A closed-loop rewriting skill that measures 24 known AI stylistic patterns (Wikipedia Signs of AI writing), syntactic complexity (MDD/ADD via dependency parsing), and semantic density (TTR, content-word ratio), then iteratively refines the essay with targeted feedback until all metrics fall within human-writer baselines (CAWSE/LOCNESS corpus). Designed to minimize unnecessary false positives from oversensitive AI detectors by improving writing naturalness. Outputs the polished essay plus an iteration-by-iteration metrics report.",
+  "category": "development",
+  "tags": ["writing", "education", "corpus-linguistics", "style-editing", "iteration", "writing-quality"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/kevin0818-lxd/essay-humanize-iterator/issues",
+  "homepage": "https://github.com/kevin0818-lxd/essay-humanize-iterator"
+}

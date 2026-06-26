@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Content Manager Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff0000 0%, #ff6b6b 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background: #ff0000;
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .btn-primary {
+            background: #ff0000;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #cc0000;
+        }
+        .topic-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .topic-item:hover {
+            background: #e9ecef;
+        }
+        .difficulty-badge {
+            background: #ffc107;
+            color: #212529;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+        .traffic-badge {
+            background: #28a745;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-white mb-4">📺 YouTube Content Manager Pro</h1>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Generate Topics
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Content Niche</label>
+                            <input type="text" class="form-control" id="niche" placeholder="e.g. personal finance, tech reviews">
+                        </div>
+                        <button class="btn btn-primary w-100 mb-3" id="generateTopicsBtn">
+                            ✨ Generate 30 Topics
+                        </button>
+                        <hr>
+                        <h6>Generated Topics</h6>
+                        <div id="topicList" class="overflow-auto" style="max-height: 400px;">
+                            <div class="text-center text-muted">
+                                Enter niche and generate topics
+                            </div>
+                        </div>
+                        <hr>
+                        <h6>Your Videos</h6>
+                        <div id="videoList" class="list-group">
+                            <div class="list-group-item text-center text-muted">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Content Result
+                    </div>
+                    <div class="card-body" id="result">
+                        <div class="text-center text-muted py-5">
+                            Generate topics and select one to create full content
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load videos
+        function loadVideos() {
+            fetch('/videos')
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById('videoList');
+                    if (data.videos.length === 0) {
+                        list.innerHTML = '<div class="list-group-item text-center text-muted">No videos yet</div>';
+                        return;
+                    }
+                    list.innerHTML = '';
+                    data.videos.forEach(video => {
+                        const item = document.createElement('a');
+                        item.className = 'list-group-item list-group-item-action';
+                        item.href = 'javascript:;';
+                        item.innerHTML = `
+                            <strong>${video.title}</strong><br>
+                            <small>👁️ ${video.views || 0} views | ${new Date(video.created_at).toLocaleDateString()}</small>
+                        `;
+                        item.onclick = () => loadVideo(video.id);
+                        list.appendChild(item);
+                    });
+                });
+        }
+
+        // Load video
+        function loadVideo(id) {
+            fetch(`/video/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    renderVideo(data.video);
+                });
+        }
+
+        // Render video content
+        function renderVideo(video) {
+            const result = document.getElementById('result');
+            result.innerHTML = `
+                <h4>${video.title}</h4>
+                <div class="mb-4 mt-4">
+                    <h5>📝 Full Script</h5>
+                    <div class="p-3 bg-light rounded" style="white-space: pre-wrap;">${video.script}</div>
+                </div>
+                <div class="mb-4">
+                    <h5>🏆 Title Options</h5>
+                    ${JSON.parse(video.titles).map((title, i) => `<p>${i+1}. ${title}</p>`).join('')}
+                </div>
+                <div class="mb-4">
+                    <h5>📄 SEO Description</h5>
+                    <p>${video.description}</p>
+                </div>
+                <div class="mb-4">
+                    <h5>🏷️ Tags</h5>
+                    <p>${video.tags}</p>
+                </div>
+                <div class="mb-4">
+                    <h5>🖼️ Thumbnail Suggestion</h5>
+                    <p>${video.thumbnail}</p>
+                </div>
+                <div class="mt-4 text-end">
+                    <button class="btn btn-success" onclick="exportVideo('${video.id}')">📥 Export All Content</button>
+                </div>
+            `;
+        }
+
+        // Generate topics
+        document.getElementById('generateTopicsBtn').addEventListener('click', function() {
+            const niche = document.getElementById('niche').value;
+            if (!niche) {
+                alert('Please enter content niche');
+                return;
+            }
+            
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = 'Generating...';
+            
+            fetch('/generate_topics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `niche=${encodeURIComponent(niche)}`
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.topics) {
+                    const list = document.getElementById('topicList');
+                    list.innerHTML = '';
+                    data.topics.forEach(topic => {
+                        const item = document.createElement('div');
+                        item.className = 'topic-item';
+                        item.innerHTML = `
+                            <strong>${topic.title}</strong><br>
+                            <small>
+                                <span class="difficulty-badge">Difficulty: ${topic.difficulty}/10</span>
+                                <span class="traffic-badge ms-2">Traffic: ${topic.traffic_potential}/10</span>
+                            </small>
+                        `;
+                        item.onclick = () => generateContent(topic.title);
+                        list.appendChild(item);
+                    });
+                } else {
+                    alert('Failed to generate topics');
+                }
+            })
+            .catch(() => alert('Failed to generate topics, please try again'))
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = '✨ Generate 30 Topics';
+            });
+        });
+
+        // Generate full content from topic
+        function generateContent(topic) {
+            if (!confirm(`Generate full content for topic: "${topic}"?`)) return;
+            
+            fetch('/generate_content', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({topic})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    renderVideo(data.video);
+                    loadVideos();
+                    alert('Content generated successfully!');
+                } else {
+                    alert('Failed to generate content: ' + data.error);
+                }
+            });
+        }
+
+        // Export video content
+        function exportVideo(id) {
+            window.open(`/export/${id}`, '_blank');
+        }
+
+        // Page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVideos();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+2c2
+< name: 生成电商带货直播间全套贴片
+---
+> name: ecommerce-livestream-overlay-generator
+4,6c4,7
+<   直播间装修贴片全自动生成。
+<   根据品牌、商品和活动信息，或直接根据商品图片，自动生成完整直播间视觉套装：
+<   背景图、标题横卡、人物、促销竖卡、桌面商品贴、权益下贴。
+---
+>   电商直播贴片生成器 / 电商直播视觉包装工具。
+>   适用于淘宝直播、抖音直播带货、拼多多直播、快手直播等电商直播场景。
+>   输入品牌、产品、促销信息或产品照片，自动生成完整电商直播视觉包装：
+>   背景、标题栏、主播形象、价格卡、产品货架、福利条、促销贴片。
+7a9,14
+>   E-commerce livestream overlay generator for Taobao, Douyin, PDD, Kuaishou streaming.
+>   Generate background, title banner, host persona, pricing card, product shelf, benefits bar.
+>   Supports green screen removal, auto-composite preview, and packaged delivery.
+> homepage: https://github.com/gaoyuji12138/e-commerce-livestream-overlay-skill
+> user-invocable: true
+> metadata: '{"openclaw":{"emoji":"🎨","primaryEnv":"VOLCENGINE_ARK_API_KEY","requires":{"env":["VOLCENGINE_ARK_API_KEY"],"bins":["python3","pip3"]}}}'
+17a25,32
+> ### API Key 获取
+> 
+> 1. 前往 [火山引擎控制台](https://console.volcengine.com/ark) 注册并登录
+> 2. 在「模型推理」页面开通豆包视觉模型
+> 3. 在控制台凭证页面创建 API Key
+> 
+> > **每个用户需要自己的 API Key**：使用时从环境变量 `VOLCENGINE_ARK_API_KEY` 读取。
+> 
+23c38
+< ## 二、需求确认（正式生成前必须执行）
+---
+> ## 二、数据隐私与透明度
+24a40,59
+> ### 数据流向
+> 
+> | 数据类型 | 发送目标 | 用途 | 是否持久化 |
+> |----------|----------|------|-----------|
+> | 文本 Prompt（品牌/促销文案等） | 火山引擎 API | 图像生成请求 | ❌ 仅传输，不存储 |
+> | 用户产品照片 | 火山引擎 API | 作为图像生成参考输入 | ❌ 仅传输，不存储 |
+> | 生成的图片 | 本地磁盘 | 交付给用户 | ✅ 保存到本地输出目录 |
+> 
+> > **AI 内置视觉能力**：当用户仅提供产品照片未附文字说明时，由 AI Agent 内置视觉能力识别图中商品信息（本地运行），无需额外 API 调用。
+> 
+> **本 Skill 不会做的事：**
+> - ❌ 在本地或远程存储、记录或缓存用户输入数据（文本 Prompt、产品照片）
+> - ❌ 将数据转发到火山引擎以外的任何第三方
+> - ❌ 进行任何购买、支付或金融操作
+> - ❌ 进行任何加密货币或区块链操作
+> 
+> > ⚠️ 用户产品照片和文本 Prompt 会发送至火山引擎 API。上传敏感或专有产品图片前，请阅读[火山引擎隐私政策](https://www.volcengine.com/docs/6369/71845)。API 返回的生成图片会保存到本地输出目录。
+> 
+> ## 三、需求确认（正式生成前必须执行）
+> 
+85c120
+< ## 三、文案自动生成规则
+---
+> ## 四、文案自动生成规则
+104c139
+< ## 四、组件清单与尺寸
+---
+> ## 五、组件清单与尺寸
+117c152
+< ## 五、Prompt 写法标准
+---
+> ## 六、Prompt 写法标准
+274c309
+< ## 六、生图 API
+---
+> ## 七、生图 API
+311c346
+< ## 七、绿幕抠图
+---
+> ## 八、绿幕抠图
+335c370
+< ## 八、合成预览
+---
+> ## 九、合成预览
+418c453
+< ## 九、打包交付
+---
+> ## 十、打包交付

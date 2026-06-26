@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0.3 0.3">
+<defs><style>.c{fill:#000;}.c,.d{stroke-width:0px;}.d{fill:#fff;}</style></defs>
+<circle class="c" cx=".18" cy=".18" r=".11"/>
+<circle class="d" cx=".18" cy=".18" r=".09"/>
+<circle class="c" cx=".18" cy=".18" r=".06"/>
+<circle class="d" cx=".18" cy=".18" r=".04"/>
+<polygon class="d" points=".19 .23 .2 .26 .23 .27 .22 .29 .25 .31 .3 .24 .31 .15 .27 .18 .21 .18 .19 .23"/>
+<path class="c" d="M.26.24l.03-.04h.01v.08h-.02v-.05l-.02.03h0l-.02-.03v.05h-.02v-.08h.01l.03.04Z"/>
+</svg>

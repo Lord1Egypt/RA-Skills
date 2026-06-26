@@ -1,0 +1,32 @@
+{
+  "_comment": "Multi-User Privacy Configuration Template - Role-based access control",
+  "_version": "0.2.0",
+  
+  "users": [
+    {
+      "id": "ou_xxx",
+      "name": "用户昵称",
+      "role": "admin"
+    }
+  ],
+  
+  "privacyMode": "strict",
+  
+  "_privacyModes": {
+    "strict": "严格模式：不提及任何其他账号存在（推荐）",
+    "isolated": "隔离模式：每个用户独立上下文",
+    "relaxed": "宽松模式：可提及有其他用户但不泄露详情"
+  },
+  
+  "_roleDefinitions": {
+    "admin": "管理员 - 可查看完整账号信息，可讨论账号管理",
+    "user": "普通用户 - 启用隐私保护，不泄露其他账号信息"
+  },
+  
+  "_notes": [
+    "基于角色（role）而非具体账号来划分权限",
+    "可以添加多个 admin 或 user",
+    "role: admin - 管理员权限，可查看完整信息",
+    "role: user - 普通用户，启用隐私保护"
+  ]
+}

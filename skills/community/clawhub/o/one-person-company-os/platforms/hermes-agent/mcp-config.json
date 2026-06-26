@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "one-person-company-os": {
+      "command": "python3",
+      "args": [
+        "/absolute/path/to/one-person-company-os/platforms/mcp-server/server.py"
+      ]
+    }
+  }
+}

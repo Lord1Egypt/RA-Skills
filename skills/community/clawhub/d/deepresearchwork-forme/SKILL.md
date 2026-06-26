@@ -1,35 +1,375 @@
 ---
-name: "deepresearchwork forme"
-description: "自动化生成专业产研报告，包含深度数据调研、文档结构优化和Mermaid图表转换成高清图片的完整工作流。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deepresearchwork-forme"
-sourceUrl: "https://clawhub.ai/skills/deepresearchwork-forme"
+name: deepresearchwork-forme
+description: 个人深度产研报告生成器。自动化完成主题深度研究、文档格式优化、图表可视化转换的完整工作流。适用于需要生成专业研究报告的场景。Keywords: 产研报告, 深度研究, 报告生成, 研究报告, 数据分析, 文档美化.
+metadata:
+  openclaw:
+    version: "1.0.0"
+    author: "QClaw"
+    license: "MIT"
+    tags: ["research", "report", "markdown", "mermaid", "automation"]
+    category: "productivity"
+    requires:
+      skills:
+        - deepresearchwork
+        - markdown-formatter
+      tools:
+        - "@mermaid-js/mermaid-cli"
 ---
 
-# deepresearchwork forme
+# Deep Research Work For Me - 个人产研报告生成器
 
-> 自动化生成专业产研报告，包含深度数据调研、文档结构优化和Mermaid图表转换成高清图片的完整工作流。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deepresearchwork-forme`
-- **Source URL:** [https://clawhub.ai/skills/deepresearchwork-forme](https://clawhub.ai/skills/deepresearchwork-forme)
+这是一个自动化的产研报告生成 Skill，整合了深度研究、文档优化和图表可视化三大能力，帮助用户一键生成专业的研究报告。
 
-## Overview
+## 核心功能
 
+### 📊 三阶段自动化工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deepresearchwork-forme
 ```
+┌─────────────────────────────────────────────────────────────────┐
+│                    产研报告生成工作流                             │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  阶段一          阶段二              阶段三                      │
+│  ┌─────────┐    ┌─────────────┐    ┌─────────────────┐         │
+│  │ 深度研究 │ => │ 文档优化    │ => │ 图表可视化      │         │
+│  │         │    │             │    │                 │         │
+│  │ 数据采集 │    │ 格式规范化  │    │ Mermaid→图片    │         │
+│  │ 分析综合 │    │ 结构优化    │    │ 嵌入报告        │         │
+│  │ 报告生成 │    │ 可读性提升  │    │ 最终输出        │         │
+│  └─────────┘    └─────────────┘    └─────────────────┘         │
+│                                                                 │
+│  deepresearchwork  markdown-formatter  mermaid-cli             │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 使用方法
+
+### 基础用法
+
+直接告诉 AI 你要研究的主题：
+
+```
+帮我生成一份关于 [主题] 的深度产研报告
+```
+
+### 示例
+
+```
+帮我生成一份关于 赣锋锂业所在锂电细分领域 的深度产研报告
+
+帮我生成一份关于 AI大模型行业竞争格局 的深度产研报告
+
+帮我生成一份关于 固态电池技术发展现状与趋势 的深度产研报告
+```
+
+---
+
+## 工作流程详解
+
+### 阶段一：深度研究（deepresearchwork）
+
+**目标**：获取全面、准确的研究数据
+
+**执行步骤**：
+
+1. **研究规划**
+   - 明确研究主题和范围
+   - 确定关键研究问题
+   - 制定信息收集策略
+
+2. **信息收集**
+   - 使用 `online-search` 技能进行多维度搜索
+   - 收集公司公告、行业报告、新闻资讯
+   - 整理权威数据来源
+
+3. **分析综合**
+   - 交叉验证多源数据
+   - 识别关键趋势和模式
+   - 提炼核心观点
+
+4. **报告生成**
+   - 按照标准模板生成 Markdown 报告
+   - 包含执行摘要、正文、结论、来源
+   - 使用 Mermaid 图表展示结构化信息
+
+**输出文件**：`{主题}_深度研究报告.md`
+
+---
+
+### 阶段二：文档优化（markdown-formatter）
+
+**目标**：提升文档的专业性和可读性
+
+**执行步骤**：
+
+1. **结构优化**
+   - 添加完整的目录导航
+   - 规范化章节标题层级
+   - 统一分隔线使用
+
+2. **格式规范**
+   - 统一表格格式和对齐方式
+   - 规范化引用格式（中文使用「」）
+   - 清理多余空行
+
+3. **可读性提升**
+   - 适当使用 emoji 增强视觉效果
+   - 使用引用块突出重要信息
+   - 添加免责声明和来源说明
+
+**优化内容**：
+
+| 优化项 | 说明 |
+|--------|------|
+| 目录结构 | 生成完整的章节目录 |
+| 表格格式 | 统一对齐和样式 |
+| 引用格式 | 中文引号规范化 |
+| 层级标识 | 使用 emoji 增强可读性 |
+| 重要提示 | 使用引用块突出关键信息 |
+
+---
+
+### 阶段三：图表可视化（mermaid-cli）
+
+**目标**：将 Mermaid 代码转换为图片，提升兼容性
+
+**执行步骤**：
+
+1. **识别图表**
+   - 提取报告中所有 Mermaid 代码块
+   - 分类存储为 `.mmd` 文件
+
+2. **生成图片**
+   - 使用 `@mermaid-js/mermaid-cli` 工具
+   - 配置合适的尺寸和背景
+   - 生成 PNG 格式图片
+
+3. **更新报告**
+   - 将 Mermaid 代码块替换为图片引用
+   - 确保相对路径正确
+
+**命令示例**：
+
+```bash
+# 生成单个图表
+npx -y @mermaid-js/mermaid-cli -i chart.mmd -o chart.png -b transparent -w 1200
+
+# 批量生成
+for file in *.mmd; do
+  npx -y @mermaid-js/mermaid-cli -i "$file" -o "${file%.mmd}.png" -b transparent -w 1200
+done
+```
+
+**输出结构**：
+
+```
+{工作目录}/
+├── {主题}_深度研究报告.md      # 最终报告
+└── mermaid_charts/              # 图表目录
+    ├── chart1.png
+    ├── chart2.png
+    └── ...
+```
+
+---
+
+## 支持的图表类型
+
+| 图表类型 | Mermaid 语法 | 适用场景 |
+|----------|-------------|----------|
+| 流程图 | `flowchart` | 产业链结构、业务流程 |
+| 思维导图 | `mindmap` | 知识体系、资源分布 |
+| 饼图 | `pie` | 占比分析、营收结构 |
+| 层级图 | `graph TB/BT` | 竞争格局、组织架构 |
+| 时序图 | `sequenceDiagram` | 流程交互、时序分析 |
+
+---
+
+## 配置选项
+
+### 图表生成配置
+
+```json
+{
+  "mermaid": {
+    "width": 1200,
+    "height": 800,
+    "background": "transparent",
+    "theme": "default",
+    "outputFormat": "png"
+  }
+}
+```
+
+### 报告模板配置
+
+```json
+{
+  "report": {
+    "includeTOC": true,
+    "includeDisclaimer": true,
+    "dateFormat": "YYYY-MM-DD",
+    "language": "zh-CN"
+  }
+}
+```
+
+---
+
+## 输出文件说明
+
+### 主报告文件
+
+- **文件名**：`{主题}_深度研究报告.md`
+- **位置**：工作目录根目录
+- **编码**：UTF-8
+
+### 图表目录
+
+- **目录名**：`mermaid_charts/`
+- **位置**：与主报告同级
+- **格式**：PNG（透明背景）
+
+---
+
+## 使用场景
+
+### ✅ 适用场景
+
+- 行业研究报告
+- 公司深度分析
+- 竞争格局研究
+- 技术趋势分析
+- 市场调研报告
+- 投资研究备忘
+
+### ❌ 不适用场景
+
+- 需要实时数据更新的报告
+- 高度定制化的专业报告（如法律文书）
+- 纯数据表格类报告
+
+---
+
+## 质量保证
+
+### 数据可靠性
+
+- 多源交叉验证
+- 标注数据来源
+- 区分事实与观点
+
+### 格式规范性
+
+- 遵循 Markdown 最佳实践
+- 统一的视觉风格
+- 清晰的信息层级
+
+### 图表清晰度
+
+- 合适的尺寸和分辨率
+- 透明背景便于嵌入
+- 统一的配色风格
+
+---
+
+## 依赖说明
+
+### 必需依赖
+
+| 依赖 | 版本 | 用途 |
+|------|------|------|
+| deepresearchwork | latest | 深度研究框架 |
+| markdown-formatter | latest | 文档格式优化 |
+| @mermaid-js/mermaid-cli | ^11.0.0 | 图表转换工具 |
+
+### 自动安装
+
+当执行图表转换时，系统会自动检测并安装 `@mermaid-js/mermaid-cli`：
+
+```bash
+npx -y @mermaid-js/mermaid-cli
+```
+
+---
+
+## 最佳实践
+
+### 主题选择
+
+- 选择明确、具体的研究主题
+- 避免过于宽泛的范围
+- 明确研究的侧重点
+
+### 数据验证
+
+- 优先使用权威数据源
+- 注意数据时效性
+- 标注数据来源和时间
+
+### 报告使用
+
+- 图表目录需与报告保持相对位置
+- 分享时需打包图表目录
+- 导出 PDF 时确保图片正常显示
+
+---
+
+## 故障排除
+
+### 图表生成失败
+
+**原因**：Node.js 版本或 Puppeteer 问题
+
+**解决**：
+```bash
+# 清除缓存重试
+rm -rf node_modules/.cache
+npx -y @mermaid-js/mermaid-cli -i chart.mmd -o chart.png
+```
+
+### 中文显示异常
+
+**原因**：字体问题
+
+**解决**：在 Mermaid 代码中添加字体配置：
+```
+%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'PingFang SC, Microsoft YaHei, sans-serif'}}}%%
+```
+
+### 图片路径错误
+
+**原因**：相对路径不正确
+
+**解决**：确保报告和图表目录在同一层级：
+```
+报告.md
+└── mermaid_charts/
+    └── chart.png
+```
+
+---
+
+## 更新日志
+
+### v1.0.0 (2026-03-29)
+
+- 初始版本发布
+- 集成三阶段工作流
+- 支持 5 种 Mermaid 图表类型
+- 自动化图表转换功能
+
+---
+
+## 反馈与支持
+
+如有问题或建议，请在工作区创建 `ISSUES.md` 文件描述问题。
+
+---
+
+**让研究更高效，让报告更专业。** 📊

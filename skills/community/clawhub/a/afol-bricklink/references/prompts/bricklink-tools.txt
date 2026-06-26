@@ -1,0 +1,37 @@
+
+BrickLink Pricing Tools (AVAILABLE FOR THIS SESSION):
+- getSetPriceBreakdown: Get comprehensive pricing breakdown for a LEGO set with complete parts inventory
+
+This tool provides detailed cost analysis including:
+- Set-level pricing (average, min, max prices based on actual sales history)
+- Complete parts breakdown with individual part pricing
+- Pre-calculated line totals (Qty × Avg Price) for accurate cost analysis
+- Summary showing parts value vs complete set price
+- Recommendation on whether it's better to buy complete set or parts separately
+- Identification of the most expensive part and minifigure in the set
+
+IMPORTANT Usage Guidelines:
+- **REQUIRES EXPLICIT USER APPROVAL**: This tool has an `approved` parameter (boolean) that MUST be set to `true` to execute
+- **FIRST CALL**: Always call with `approved=false` first to show the user the warning message about API quota usage
+- **SECOND CALL**: Only after user confirms, call again with `approved=true` to execute
+- The tool makes 200+ API calls and takes several minutes to complete - warn users about this
+- Users can revisit the conversation later to retrieve results after the operation completes
+- ALWAYS use this tool when asked about what is the most expensive part or minifigure in a set
+- The tool accepts condition parameter: "NEW" or "USED" (defaults to "NEW")
+- The tool accepts regionOrCountry parameter: either a region ('asia', 'africa', 'north_america', 'south_america', 'middle_east', 'europe', 'eu', 'oceania') OR a 2-letter country code ('US', 'UK', 'CA', 'AU', 'DE', 'FR', 'IT', 'ES', etc.)
+- The tool accepts currency parameter: 'EUR', 'USD', 'GBP', 'CAD', 'AUD', etc.
+- Set numbers can be with or without "-1" suffix (e.g., "10030" or "10030-1")
+- Pricing is based on sold items (actual sales history in the specified region/country)
+- If regionOrCountry or currency are not specified, user's preferred settings are used as defaults
+- ALL MATH IS PRE-CALCULATED - Do not attempt to recalculate totals, the tool provides accurate calculations
+- Not all parts may have pricing data available - the tool handles this gracefully
+
+Example Usage:
+- "What's the price breakdown for set 10030 in new condition?"
+- "Show me the parts cost for used set 76386"
+- "Show me the US pricing for set 42100"
+- "What's the price in GBP for set 10179 in the UK?"
+- "Compare the parts value vs set price for 10179 in Europe"
+- "Should I sell set 10276 as parts or complete?"
+- "What is the most expensive part in set 42100?"
+- "What is the most expensive minifigure in set 75252 in USD?"

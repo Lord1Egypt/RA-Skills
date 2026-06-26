@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-17",
+  "description": "来源黑名单 - 危险/未知/高风险来源识别，用于入口安检",
+
+  "risk_levels": {
+    "BLOCK": "直接阻断，来源明确危险",
+    "WARN": "警告确认，需用户确认后才能继续",
+    "REVIEW": "标记审查，降级处理",
+    "ALLOW": "正常放行"
+  },
+
+  "danger_sources": [
+    {
+      "id": "D001",
+      "name": "元宝(未授权)",
+      "source_patterns": ["元宝", "yuanbao", "腾讯元宝", "tencent_yuanbao"],
+      "risk_level": "WARN",
+      "reason": "元宝来源未在可信列表中",
+      "action": "要求用户确认身份后降级放行"
+    },
+    {
+      "id": "D002",
+      "name": "未知小程序",
+      "source_patterns": ["未知小程序", "unknown_miniapp", "未认证小程序"],
+      "risk_level": "WARN",
+      "reason": "来源不明确的小程序",
+      "action": "要求用户确认来源后降级放行"
+    },
+    {
+      "id": "D003",
+      "name": "第三方H5嵌入",
+      "source_patterns": ["iframe", "embed", "第三方H5", "external_embed"],
+      "risk_level": "REVIEW",
+      "reason": "可能被劫持的嵌入来源",
+      "action": "降低权限，只允许对话"
+    }
+  ],
+
+  "suspicious_patterns": [
+    {
+      "pattern": ".*",
+      "type": "空来源",
+      "risk_level": "REVIEW",
+      "reason": "消息来源为空，可能存在伪装",
+      "action": "记录日志，限制权限"
+    }
+  ],
+
+  "default_action": {
+    "risk_level": "ALLOW",
+    "reason": "来源正常"
+  }
+}

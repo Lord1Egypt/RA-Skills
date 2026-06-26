@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-03-09T11:41:57.129Z",
+  "chapter": 17,
+  "gameMode": "coop",
+  "players": [
+    {
+      "id": "ZhangHuanXi",
+      "name": "张欢",
+      "role": "金毛狮王"
+    },
+    {
+      "id": "Lingsimone",
+      "name": "李蒙",
+      "role": "明教教主"
+    }
+  ],
+  "story_summary": "李蒙成为明教教主，张欢被封金毛狮王，携带小猫咪"
+}

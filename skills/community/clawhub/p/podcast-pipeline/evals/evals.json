@@ -1,0 +1,23 @@
+{
+  "skill_name": "podcast-pipeline",
+  "evals": [
+    {
+      "id": 1,
+      "mode": "Interview Prep",
+      "prompt": "I have a guest coming on next Thursday -- his name is Justin Wise, he's a digital marketing guy who works a lot with churches and nonprofits. We're going to talk about social media strategy for ministry. My podcast is called The Ministry Edge.",
+      "expected_output": "A guest research brief on Justin Wise, a 15-20 question interview set organized into warm-up, background, core topic, audience value, and closing sections, and a guest prep email the host can send with recording logistics placeholders, 3-5 focus areas, and a warm professional tone."
+    },
+    {
+      "id": 2,
+      "mode": "Post-Recording",
+      "prompt": "Just finished recording with Sarah Johnson -- she's a church planter who started a congregation in a coffee shop and grew it to 400 people in 3 years. Here's part of the transcript:\n\n[Host]: So take me back to day one. What did that first Sunday actually look like?\n[Sarah]: It was me, my husband, and seven people we'd invited from our neighborhood. We had a card table, a Bluetooth speaker, and a lot of nerves. I preached for about 20 minutes and honestly I wasn't sure anyone would come back.\n[Host]: But they did.\n[Sarah]: They did. And the next week there were twelve. It just kept growing because we were genuinely invested in the neighborhood -- not trying to attract people to a building, but going to where people already were.\n[Host]: What do you think was the biggest mistake you made early on?\n[Sarah]: Trying to look more established than we were. People don't connect with polish. They connect with honesty. The moment I stopped pretending we had it all figured out was the moment things really took off.",
+      "expected_output": "Formatted show notes (400-600 words) with hook paragraph, key topics, guest bio, 2-3 pull quotes, and resources section. Three social posts (teaser, launch, quote). A YouTube description with placeholder timestamps and SEO-friendly opening lines."
+    },
+    {
+      "id": 3,
+      "mode": "Solo Episode",
+      "prompt": "I want to record a solo episode about why most churches are using social media wrong. Main points I want to hit: they post announcements instead of value, they ignore comments and DMs, they're on every platform instead of owning one, and they have no consistent voice or personality. Podcast is The Ministry Edge.",
+      "expected_output": "Five title options across different formats (descriptive, question, contrarian, listicle, SEO). A full episode outline with hook, setup, 3-5 main points with talking points, actionable takeaway, and outro. Pre-recording show notes. Three social posts."
+    }
+  ]
+}

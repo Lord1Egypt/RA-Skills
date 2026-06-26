@@ -1,0 +1,23 @@
+rm -rf /
+rm -rf /*
+rm -rf ~
+rm -rf $HOME
+rm -rf "$HOME"
+--no-preserve-root
+find / -delete
+find / -exec rm
+:(){ :|:& };:
+mkfs
+dd if=/dev/zero
+of=/dev/sd
+of=/dev/nvme
+of=/dev/vd
+wipefs -a
+shred /dev/
+kill -9 -1
+iptables -P INPUT DROP
+nft flush ruleset
+curl | sh
+curl | bash
+wget -qO- | sh
+wget -qO- | bash

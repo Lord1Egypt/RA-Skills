@@ -1,0 +1,11 @@
+{
+  "error_code": "STOCK_INSUFFICIENT",
+  "message": "Stock insuffisant pour la d\u00e9duction demand\u00e9e",
+  "context": {
+    "product_id": 123,
+    "requested_delta": -200,
+    "available_stock": 150
+  },
+  "job_id": "550e8400-e29b-41d4-a716-446655440000",
+  "retryable": false
+}

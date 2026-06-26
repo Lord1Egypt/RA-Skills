@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "source": "盖世汽车/乘联会官方发布",
+    "update_time": "2026-05-15T16:30:00+08:00",
+    "data_period": "2026 年 4 月（最新数据）",
+    "note": "数据来自多渠道交叉验证，标注发布时间"
+  },
+  "rankings": [
+    {
+      "rank": 1,
+      "brand": "理想汽车",
+      "model": "理想 i6",
+      "monthly_sales": 21024,
+      "yoy_growth": "-13.12%",
+      "market_segment": "中型智能 SUV",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 2,
+      "brand": "比亚迪汽车",
+      "model": "方程豹 钛 7",
+      "monthly_sales": 17001,
+      "yoy_growth": "N/A(新车)",
+      "market_segment": "运动型中大型 SUV",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 3,
+      "brand": "蔚来汽车",
+      "model": "蔚来 ES8",
+      "monthly_sales": 13028,
+      "yoy_growth": "+2317%",
+      "market_segment": "高端旗舰 SUV",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 4,
+      "brand": "小米汽车",
+      "model": "小米 YU7",
+      "monthly_sales": 9876,
+      "yoy_growth": "-27.16%",
+      "market_segment": "旗舰级纯电 SUV",
+      "powertrain_type": "BEV"
+    },
+    {
+      "rank": 5,
+      "brand": "广汽埃安新能源",
+      "model": "埃安 Aion i60 EV",
+      "monthly_sales": 8249,
+      "yoy_growth": "+4.52%",
+      "market_segment": "紧凑型纯电 SUV",
+      "powertrain_type": "BEV"
+    }
+  ],
+  "top10_extended": [
+    {
+      "rank": 6,
+      "brand": "赛力斯",
+      "model": "问界 M7",
+      "monthly_sales": 5915,
+      "market_segment": "中大型智能 SUV"
+    },
+    {
+      "rank": 7,
+      "brand": "理想汽车",
+      "model": "理想 L6",
+      "monthly_sales": 5560,
+      "market_segment": "中型智能 SUV"
+    },
+    {
+      "rank": 8,
+      "brand": "比亚迪汽车",
+      "model": "方程豹 豹 5",
+      "monthly_sales": 5511,
+      "market_segment": "越野型 SUV"
+    },
+    {
+      "rank": 9,
+      "brand": "上汽乘用车",
+      "model": "智己 LS6",
+      "monthly_sales": 2741,
+      "market_segment": "中型智能 SUV"
+    },
+    {
+      "rank": 10,
+      "brand": "赛力斯",
+      "model": "问界 M8 REEV",
+      "monthly_sales": 4874,
+      "market_segment": "中大型增程 SUV"
+    }
+  ],
+  "market_insights": {
+    "dominant_brands": ["理想汽车", "比亚迪", "蔚来"],
+    "rising_star": "小米 YU7 (月销突破万辆)",
+    "market_trend": "BEV 持续主导，增程/SUV 仍占主流"
+  }
+}

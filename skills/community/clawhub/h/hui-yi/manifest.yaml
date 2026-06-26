@@ -1,0 +1,94 @@
+name: hui-yi
+version: 1.2.11
+description: >-
+  Manage a file-based cold-memory archive under memory/cold/. Includes an
+  optional, explicitly opt-in local hook: scripts/install_hook.py copies a
+  bundled template into hooks/hui-yi-signal-hook/ and, only when run with
+  --enable, turns the hook on in openclaw.json. The enabled hook listens on
+  message:preprocessed events and writes Session signals back to memory/cold/
+  notes and memory/cold/tags.json. No network access; no credential access.
+required_paths:
+  - path: memory/cold/
+    access: read_write
+    description: Cold memory archive (notes, index.md, tags.json, retrieval-log.md)
+  - path: memory/heartbeat-state.json
+    access: read_write
+    description: Heartbeat state with coldMemory metadata
+  - path: hooks/hui-yi-signal-hook/
+    access: read_write
+    optional: true
+    description: >-
+      Optional hook install target plus its local hook.log. Written only when
+      the user explicitly runs scripts/install_hook.py. Default hook logging
+      stores no message content and only hashed scope identifiers; verbose
+      diagnostics require HUI_YI_HOOK_DEBUG=1.
+  - path: ../openclaw.json
+    access: read_write
+    optional: true
+    description: >-
+      OpenClaw runtime config, one level above the workspace. Modified only
+      when the user explicitly runs scripts/install_hook.py --enable; the two
+      keys set are hooks.internal.enabled and
+      hooks.internal.entries.hui-yi-signal-hook.enabled. The installer prints
+      a disclosure first and refuses to create the file if it does not exist.
+permissions:
+  network: none
+  credentials: none
+  shell: none
+  environment: read_only  # reads OPENCLAW_WORKSPACE_DIR / HUI_YI_HOOK_DEBUG only
+user_warnings:
+  - This skill creates and modifies persistent local files under memory/cold/
+    (notes, index.md, tags.json, retrieval-log.md) and updates
+    memory/heartbeat-state.json during cooling runs.
+  - The optional hook, once installed and enabled, derives session_signals
+    (activation counters and hashed session fingerprints) from real
+    conversations and persists them in memory/cold/ note files and tags.json.
+    Session keys are stored only as truncated sha256 fingerprints.
+  - scripts/install_hook.py --enable modifies openclaw.json after printing a
+    disclosure of the exact keys it sets. Review with --dry-run first.
+  - The hook's local hook.log rotates at 256 KB and by default contains no
+    message bodies and no raw user/chat identifiers.
+  - Reference playbooks may suggest routing non-cold content to MEMORY.md,
+    TOOLS.md, .learnings/, AGENTS.md, or SOUL.md; that routing is guidance
+    executed by the agent at the user's direction. Hui-Yi scripts themselves
+    never write those files.
+creates_files: true
+modifies_files: true
+has_scripts: true
+scripts:
+  - path: core/common.py
+    description: Shared helpers
+  - path: scripts/create.py
+    description: Create a cold memory note
+  - path: scripts/validate.py
+    description: Validate notes and metadata
+  - path: scripts/search.py
+    description: Search metadata and note text
+  - path: scripts/rebuild.py
+    description: Rebuild index.md and tags.json
+  - path: scripts/decay.py
+    description: Light maintenance helper
+  - path: scripts/cool.py
+    description: Cooling and heartbeat stats helper
+  - path: scripts/review.py
+    description: Review, resurface, feedback, and session flows
+  - path: scripts/scheduler.py
+    description: Timed reinforcement selector
+  - path: core/scoring.py
+    description: Shared scoring logic
+  - path: core/feedback_core.py
+    description: Shared feedback and state transition logic
+  - path: core/signal_detect.py
+    description: Detect signal candidates from context
+  - path: core/signal_apply.py
+    description: Apply signal activation to a note
+  - path: core/signal_pipeline.py
+    description: Detect and optionally write signal activations
+  - path: core/signal_contract.py
+    description: Shared signal and hook contract helpers
+  - path: core/openclaw_signal_hook.py
+    description: OpenClaw-facing signal hook adapter
+  - path: core/openclaw_runtime_probe.py
+    description: Workspace-side runtime probe
+  - path: scripts/install_hook.py
+    description: Install bundled Hui-Yi hook template

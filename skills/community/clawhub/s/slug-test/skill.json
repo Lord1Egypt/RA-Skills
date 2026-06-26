@@ -1,0 +1,1 @@
+{"name":"watch-health-bridge","title":"HealthClaw","description":"Stream Apple Health data from iPhone to OpenClaw agent via self-hosted webhook. Enables recovery scores, anomaly detection and health trend analysis.","version":"0.0.1","tags":["health","ios","apple-health"]}

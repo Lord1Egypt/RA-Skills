@@ -1,0 +1,8 @@
+interface:
+  display_name: "CNKI Watch"
+  short_description: "Query CNKI manually or schedule recurring journal/topic watches"
+  default_prompt: "Use $cnki-watch to query CNKI for a journal or research topic, or create a recurring CNKI subscription."
+  brand_color: "#1F5E5B"
+
+policy:
+  allow_implicit_invocation: true

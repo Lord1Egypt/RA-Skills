@@ -1,35 +1,51 @@
 ---
-name: "Ai Intelligent Demand Forecasting"
-description: "需求预测，销售预测 + 补货计划。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, analytics]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-demand-forecast"
-sourceUrl: "https://clawhub.ai/skills/ai-demand-forecast"
+name: ai-intelligent-demand-forecasting
+version: 1.0.0
+description: 需求预测，销售预测 + 补货计划。
+metadata:
+  openclaw:
+    emoji: "🤖"
+    requires:
+      bins: []
 ---
 
-# Ai Intelligent Demand Forecasting
+# AI 智能需求预测系统
 
-> 需求预测，销售预测 + 补货计划。
+## 描述
+需求预测，销售预测 + 补货计划。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-demand-forecast`
-- **Source URL:** [https://clawhub.ai/skills/ai-demand-forecast](https://clawhub.ai/skills/ai-demand-forecast)
+## 功能
+- 销售预测（AI预测）
+- 季节分析（季节因子）
+- 促销影响（促销调整）
+- 补货计划（自动补货）
+- 预测准确率（误差分析）
 
-## Overview
+## 定价
+- 基础版：¥299/月（100 SKU）
+- 专业版：¥1499/月（1000 SKU）
+- 企业版：¥4999/月（无限 SKU）
 
+## 适用场景
+- 销售预测
+- 库存计划
+- 供应链
+- 零售预测
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 技术栈
+- Python + FastAPI
+- 时序预测
+- 机器学习
+- 误差分析
+
+## 安装
 ```bash
-hermes skills install clawhub/ai-demand-forecast
+git clone https://github.com/openclaw-skills/ai-intelligent-demand-forecasting
+cd ai-intelligent-demand-forecasting
+pip install -r requirements.txt
+python app.py
 ```
+
+---
+创建：2026-03-13
+作者：OpenClaw Skills Team

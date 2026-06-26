@@ -1,0 +1,16 @@
+{
+  "cycleStart": "2026-02-07",
+  "averageCycleLength": 30,
+  "ouraToken": "file:~/.config/fertility-tracker/oura-token.txt",
+  "email": {
+    "from": "your-email@gmail.com",
+    "to": "partner@example.com",
+    "pass": "your-gmail-app-password",
+    "service": "gmail"
+  },
+  "alerts": {
+    "hvrThreshold": 45,
+    "tempThreshold": 0.5,
+    "oysterProtocol": true
+  }
+}

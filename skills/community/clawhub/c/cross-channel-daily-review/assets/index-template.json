@@ -1,0 +1,11 @@
+{
+  "records": [],
+  "weekly": [],
+  "monthly": [],
+  "archives": [],
+  "retention": {
+    "daily_keep_current_months": 2,
+    "weekly_keep_months": 12,
+    "monthly_keep_forever": true
+  }
+}

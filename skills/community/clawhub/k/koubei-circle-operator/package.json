@@ -1,0 +1,17 @@
+{
+  "name": "koubei-circle-operator",
+  "version": "1.4.0",
+  "description": "口碑圈商家运营自动化技能",
+  "bin": {
+    "openclaw": "./scripts/openclaw.js",
+    "koubei-package": "./scripts/package.js"
+  },
+  "scripts": {
+    "oc:init": "node scripts/openclaw.js init",
+    "oc:tables": "node scripts/openclaw.js tables",
+    "oc:query": "node scripts/openclaw.js query"
+  },
+  "keywords": ["koubei", "circle", "youzan", "skill", "openclaw"],
+  "author": "",
+  "license": "MIT"
+}

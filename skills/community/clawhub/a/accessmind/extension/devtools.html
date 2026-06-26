@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>AccessMind DevTools</title>
+  <link rel="stylesheet" href="devtools.css">
+</head>
+<body>
+  <div class="devtools-container">
+    <header>
+      <h1>🔍 AccessMind Inspector</h1>
+      <div class="actions">
+        <button id="refresh">Yenile</button>
+        <button id="export">Dışa Aktar</button>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="violations">İhlaller</button>
+      <button class="tab" data-tab="tree">Ağaç</button>
+      <button class="tab" data-tab="keyboard">Klavye</button>
+      <button class="tab" data-tab="visual">Görsel</button>
+    </div>
+
+    <div class="tab-content active" id="violations">
+      <div class="summary">
+        <div class="score">
+          <span class="label">Skor</span>
+          <span class="value" id="score">--</span>
+        </div>
+        <div class="counts">
+          <span class="critical" id="criticalCount">0 Kritik</span>
+          <span class="serious" id="seriousCount">0 Ciddi</span>
+          <span class="moderate" id="moderateCount">0 Orta</span>
+        </div>
+      </div>
+      <div class="violations-list" id="violationsList">
+        <!-- Violations will be populated here -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="tree">
+      <div class="tree-view" id="treeView">
+        <!-- Accessibility tree will be populated here -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="keyboard">
+      <div class="keyboard-stats">
+        <div class="stat">
+          <span class="value" id="focusableCount">--</span>
+          <span class="label">Odaklanılabilir</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="tabCount">--</span>
+          <span class="label">Tab Adımı</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="trapCount">--</span>
+          <span class="label">Focus Trap</span>
+        </div>
+      </div>
+      <div class="keyboard-controls">
+        <button id="startKeyboardTest">Klavye Testi Başlat</button>
+        <button id="highlightFocusables">Odaklanılabilirleri Göster</button>
+      </div>
+      <div class="keyboard-log" id="keyboardLog">
+        <!-- Keyboard navigation log -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="visual">
+      <div class="visual-preview">
+        <img id="screenshot" src="" alt="Screenshot">
+      </div>
+      <div class="visual-controls">
+        <button id="captureScreenshot">Ekran Görüntüsü Al</button>
+        <button id="analyzeWithAI">Qwen3-VL ile Analiz</button>
+      </div>
+      <div class="ai-results" id="aiResults">
+        <!-- AI analysis results -->
+      </div>
+    </div>
+  </div>
+
+  <script src="devtools.js"></script>
+</body>
+</html>

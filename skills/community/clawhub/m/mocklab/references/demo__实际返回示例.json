@@ -1,0 +1,273 @@
+# 此文件展示 Python 代码对每个字段规则的【实际生成结果】
+# 编写 Schema 时，对照此文件确保描述与实际输出一致
+
+## 1.01 获取网关Token
+
+### reqData (GET请求，无reqData)
+
+### 实际返回
+```json
+{
+  "responseCode": "0",
+  "responseMsg": "成功",
+  "accessToken": "A3F8E2C1D4B7E9F6A2C8D1E5F7B4A3C9",
+  "expireTime": 1743568234000
+}
+```
+- accessToken 是 32 位十六进制随机字符串（每次调用不同）
+- expireTime 是当前毫秒时间戳 + 15分钟（固定未来时间）
+- is_ref=true 时：此值会自动存入 state，下次接口可用 state:accessToken 取到
+
+---
+
+## 1.03 授权协议查询
+
+### reqData 内部字段（由 nested:queryAgreement_req 生成）
+```json
+{
+  "productCode": "qyloan",
+  "grantType": "7",
+  "identityCard": "110105199312251248",
+  "mobileNumber": "13800138100",
+  "name": "张伟"
+}
+```
+
+### 实际返回
+```json
+{
+  "responseCode": "000000",
+  "signType": "SM3",
+  "responseMsg": "成功",
+  "data": {
+    "list": [
+      {
+        "sceneCode": "SCENE_001",
+        "forceRead": "1",
+        "forceBottom": "1",
+        "forceDuration": "30",
+        "grantType": "01",
+        "grantName": "个人信息采集",
+        "title": "个人信息授权书",
+        "content": "请确认您的授权信息，同意以上条款并签署。",
+        "basePolicyId": "POLICY_10001",
+        "version": "1.0"
+      }
+    ]
+  }
+}
+```
+- array:agreementItem 默认生成 1 个元素（随机 1-3 个）
+- 实际返回中的 grantType 值是从 enum:01,02,07,08 中随机选一个
+
+---
+
+## 1.04 授权协议提交
+
+### reqData 内部字段（nested:signAgreement_req + array:nodeList_item）
+```json
+{
+  "productCode": "qyloan",
+  "identityCard": "320105198805151327",
+  "mobileNumber": "15900008211",
+  "grantType": "1",
+  "nodeList": [
+    {
+      "grantTypeItem": "7",
+      "startTime": "2026-04-02 14:30:25",
+      "endTime": "2026-04-15 23:59:59",
+      "sceneCode": "SCENE_001"
+    }
+  ]
+}
+```
+
+### 实际返回
+```json
+{
+  "responseCode": "000000",
+  "responseMsg": "成功",
+  "data": {
+    "grantAuthId": "20260402000001"
+  }
+}
+```
+- sequence:grantAuthId 生成日期+6位序号
+- is_ref=true：此 grantAuthId 会被存入 state，后续接口 state:grantAuthId 可取到
+
+---
+
+## 1.05 提交线索信息
+
+### reqData 内部字段（nested:loanApplyCreate_req）
+```json
+{
+  "apply_no": "20260402000002",
+  "cust_name": "李娜",
+  "id_card": "450300199001011234",
+  "mobile": "13600136300",
+  "car_license": "粤B5K8L2",
+  "residence_province_code": "440000",
+  "residence_province": "广东省",
+  "residence_city_code": "440100",
+  "residence_city": "广州市"
+}
+```
+
+### 实际返回
+```json
+{
+  "responseCode": "000000",
+  "responseMsg": "成功",
+  "data": {
+    "out_apply_no": "20260402000003",
+    "apply_no": "20260402000002"
+  }
+}
+```
+- apply_no：来自请求 body 中的值（body:apply_no）
+- out_apply_no：自动生成的序号，每次调用自增
+
+---
+
+## 1.07 断点查询
+
+### reqData 内部字段（nested:queryClueStatus_req）
+```json
+{
+  "mobileNumber": "13700137100",
+  "orderId": "20260402000003",
+  "clueNo": "20260402000003"
+}
+```
+
+### 实际返回
+```json
+{
+  "responseCode": "000000",
+  "responseMsg": "成功",
+  "data": {
+    "status": "13",
+    "url": "https://example.com/page?id=MOCK"
+  }
+}
+```
+- status：从 enum:01,13,20,21 中随机
+- body:orderId 把请求 body 里的 orderId 原样返回
+
+---
+
+## 1.08 还款计划查询
+
+### reqData_plain 内部字段（nested:repaymentPlan_req）
+```json
+{
+  "archivesCode": "20260402000003",
+  "putoutNo": "20260402000004"
+}
+```
+
+### 实际返回（repaymentPlan_resp）
+```json
+{
+  "responseCode": "001",
+  "responseMsg": "成功",
+  "data": {
+    "repaymentNum": "1",
+    "actualRepayDate": "2026-05-01",
+    "payOverdueCorp": 17325.40,
+    "payInte": 547.22,
+    "payOverdueCorpInte": "0",
+    "payIntefine": "0",
+    "payPoundageInte": "0",
+    "poundage": "0",
+    "payOffFlag": "0",
+    "aheadFlag": "0"
+  }
+}
+```
+- amount:5000-20000 → 随机浮点数（保留2位）
+- amount:200-800 → 随机浮点数（保留2位）
+- date:2026-05-01 → 固定日期
+- 所有带 actual 前缀的字段（actualOverdueCorp 等）：rule=skip，不出现在返回中
+
+---
+
+## 1.09 状态回传
+
+### reqData_plain 内部字段（nested:statusPush_req + array:loanItem）
+```json
+{
+  "orderId": "20260402000003",
+  "archivesCode": "20260402000003",
+  "externalStatus": "30008",
+  "loanList": [
+    {
+      "approveRepayLimit": "12",
+      "approveLoanAmt": 72450.00,
+      "approveYearRate": 9.85
+    }
+  ]
+}
+```
+
+### 实际返回
+```json
+{
+  "responseCode": "001",
+  "responseMsg": "成功"
+}
+```
+
+---
+
+## 核心规则速查对照表
+
+| 字段 rule 写法 | Python 代码生成结果 | 示例输出 |
+|---------------|-------------------|---------|
+| `fixed:值` | 固定字符串 | `"grantType": "01"` |
+| `random:6` | 6位纯数字 | `"random": "847293"` |
+| `token:32` | 32位十六进制 | `"accessToken": "A3F8..."` |
+| `phone` | 11位真实号段 | `"mobileNumber": "13800138100"` |
+| `idcard` | 18位合法身份证 | `"identityCard": "110105199312251248"` |
+| `name` | 中文姓名 | `"cust_name": "张伟"` |
+| `plate` | 合规车牌 | `"car_license": "粤B5K8L2"` |
+| `amount:lo-hi` | 指定范围浮点数（2位） | `"payOverdueCorp": 17325.40` |
+| `rate:lo-hi` | 指定范围年利率 | `"approveYearRate": 9.85` |
+| `enum:a,b,c` | 逗号分隔列表随机选一 | `"grantType": "7"` |
+| `sequence:key` | 日期+6位自增序号 | `"out_apply_no": "20260402000003"` |
+| `timestamp:ms` | 当前毫秒时间戳 | `"expireTime": 1743568234000` |
+| `datetime` | 随机日期时间 | `"startTime": "2026-04-02 14:30:25"` |
+| `date:YYYY-MM-DD` | 指定日期 | `"actualRepayDate": "2026-05-01"` |
+| `province:code` | 国标省份代码 | `"residence_province_code": "440000"` |
+| `province:name` | 对应省份名称 | `"residence_province": "广东省"` |
+| `city:province_code` | 该省下随机城市代码 | `"residence_city_code": "440100"` |
+| `city:name` | 对应城市名称 | `"residence_city": "广州市"` |
+| `skip` | 不生成该字段 | （字段不出现） |
+| `nested:SchemaName` | 展开 inner_schemas 字段 | 见各接口 reqData 示例 |
+| `array:SchemaName` | 生成1个元素的数组 | `"list": [{...}]` |
+| `mirror` | 取请求 body 同名字段值 | `"apply_no": "20260402000002"` |
+| `body:xxx.yyy` | 取请求 body 嵌套字段 | `"orderId": "20260402000003"` |
+| `state:xxx` | 取 state 中已存的 ref 值 | `"grantAuthId": "20260402000001"` |
+| `is_ref: true` | 字段生成后存入 state | （自动生效，不出现在返回） |
+
+## 关键行为说明
+
+1. **嵌套字段（reqData/ciphertext）**：
+   - 请求到达时，Python 自动把 reqData 字符串 JSON.parse 合并进 body
+   - 所以 `body:orderId` 能取到 reqData 里的字段
+   - 响应中 sign/ciphertext 等 rule=skip 的字段整行不输出
+
+2. **array 生成数量**：
+   - 默认 1-3 个元素（random.randint(1,3)）
+   - 如需固定数量，可通过配置控制（当前代码行为）
+
+3. **sequence 自增**：
+   - 以 key 为单位分别计数
+   - 格式：YYYYMMDD + 6位序号
+   - 持久化到 state_store.json，重启不丢
+
+4. **state 跨次调用**：
+   - is_ref=true 的字段：生成值 → 存入 state
+   - state:字段名：从 state 取最新值
+   - 服务重启后 state 丢失（state_store.json 存在则恢复）

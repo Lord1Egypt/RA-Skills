@@ -1,35 +1,167 @@
 ---
-name: "早播新闻"
-description: "生成 Zao Live 分享卡片。当用户说"我要听早播"、"播一段新闻"、"来段早播"、"听新闻"等想要收听播客/新闻音频的内容时，使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zaobo-news"
-sourceUrl: "https://clawhub.ai/skills/zaobo-news"
+name: zaobo
+description: 生成 Zao Live 分享卡片。当用户说"我要听早播"、"播一段新闻"、"来段早播"、"听新闻"等想要收听播客/新闻音频的内容时，使用此技能。
+homepage: https://zao.live
+metadata: {"clawdbot":{"emoji":"🦞"}}
 ---
 
-# 早播新闻
+# Zao 早播链接生成器
 
-> 生成 Zao Live 分享卡片。当用户说"我要听早播"、"播一段新闻"、"来段早播"、"听新闻"等想要收听播客/新闻音频的内容时，使用此技能。
+**早播链接生成器**是一个便捷的播客分享工具，为 Zao Live 平台的用户提供即时可访问的早播音频分享链接。通过调用这个技能，用户无需登录平台即可获取最新的早播内容，特别适合在聊天场景中快速分享播客。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zaobo-news`
-- **Source URL:** [https://clawhub.ai/skills/zaobo-news](https://clawhub.ai/skills/zaobo-news)
+## 核心功能
 
-## Overview
+### 🎙️ 即时生成分享链接
+- 自动获取最新的早播节目
+- 生成带有时效性的分享 URL
+- 支持跨平台访问（Web、移动端）
 
+### 📱 多场景适配
+- 社交媒体分享（微信、Telegram、Discord、飞书 等）
+- 聊天机器人集成
+- API 化的调用方式，便于第三方集成
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zaobo-news
+## 技能触发场景
+
+此技能会在以下用户表达时被触发：
+
+### 直接请求类
+- "我要听早播"
+- "来段早播"
+- "播放早播"
+- "我要听新闻"
+
+### 播客相关类
+- "播一段新闻"
+- "来点新闻听听"
+- "有什么新闻"
+- "今日要闻"
+
+### 询问推荐类
+- "推荐个播客"
+- "有什么好听的内容"
+- "来点音频内容"
+
+## API 调用方式
+
+### 端点信息
+
 ```
+GET https://zao.live/zaobo/newshare
+```
+
+### 请求特点
+
+- **无需参数**：开箱即用的 API 设计
+- **无需认证**：完全公开访问
+- **即时响应**：快速返回分享链接
+- **静态资源**：适合缓存和 CDN 加速
+
+### 返回值说明
+
+API 返回完整的 HTTPS 分享链接，格式为：
+
+```
+https://zao.live/share/{随机字符串}
+```
+
+该链接具有以下特性：
+- **唯一性**：每次调用生成不同的分享码
+- **时效性**：链接可能在一定时间后失效
+- **访问统计**：平台可追踪链接访问数据
+
+## 输出格式
+
+技能执行后，向用户展示的内容遵循统一的 Markdown 格式：
+
+```markdown
+[🦞 龙虾请你听早播 🦞](https://zao.live/share/xxxxx)
+```
+
+### 格式设计理念
+
+- **emoji 包裹**：🦞 符号增强视觉识别度
+- **明确文案**："龙虾请你听早播"清晰表达意图
+- **可点击链接**： Markdown 链接格式，跨平台兼容
+- **简洁优雅**：避免冗余信息，聚焦核心功能
+
+## 技术特性
+
+### 响应速度
+- API 响应时间通常 < 200ms
+- 适合高频调用场景
+
+### 可靠性
+- HTTPS 加密传输
+- 高可用服务器部署
+- 自动容错机制
+
+### 扩展性
+- RESTful API 设计
+- 支持 Webhook 集成
+- 可嵌入各类聊天平台
+
+## 使用示例
+
+### 场景 1：Telegram 机器人
+```
+用户: 来段早播
+机器人: [🦞 龙虾请你听早播 🦞](https://zao.live/share/a1b2c3)
+```
+
+### 场景 2：Discord 频道
+```
+用户: 我要听新闻
+Bot: [🦞 龙虾请你听早播 🦞](https://zao.live/share/d4e5f6)
+```
+
+### 场景 3：微信公众号
+```
+用户: 播放早播
+公众号: [🦞 龙虾请你听早播 🦞](https://zao.live/share/g7h8i9)
+```
+
+## 注意事项
+
+### 链接有效期
+- 分享链接可能设置有效期限制
+- 建议用户及时访问，避免链接失效
+
+### 平台兼容性
+- 某些平台可能需要长按链接或复制到浏览器打开
+- 建议在展示时提供明确的操作指引
+
+### 内容更新
+- 每次调用可能获取不同期的早播内容
+- 如需指定特定期数，需要其他 API 支持
+
+### 访问统计
+- 平台可能会记录链接的访问数据
+- 遵守平台的使用条款和隐私政策
+
+## 常见问题
+
+**Q: 链接打不开怎么办？**
+A: 可能是网络问题或链接已过期，可以重新生成一个新的分享链接。
+
+**Q: 可以分享到哪些平台？**
+A: 理论上支持所有支持 Markdown 或链接的平台，包括但不限于微信、Telegram、Discord、Slack 等。
+
+**Q: 链接会过期吗？**
+A: 分享链接可能设置有效期，具体策略由 Zao Live 平台决定。
+
+**Q: 每次获取的内容都一样吗？**
+A: 不一定，每次调用可能返回不同期数的早播内容。
+
+## 关于 Zao Live
+
+Zao Live 是一个专注于播客内容创作和分享的平台，致力于提供优质的音频内容体验。早播是平台的特色栏目，汇集了每日精选的新闻和观点。
+
+- **官方网站**: https://zao.live
+- **核心理念**: 让好声音被更多人听到
+
+---
+
+**技能版本**: 1.0.0
+**最后更新**: 2026-03-13
+**维护者**: Zao Live Team

@@ -1,0 +1,33 @@
+{
+  "name": "omnipermission",
+  "version": "1.0.2",
+  "description": "A security-first plugin that places a Human-in-the-Loop gatekeeper between the AI and high-risk actions.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/youkinetwork/OmniPermission.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "keywords": [
+    "OmniPersona",
+    "Human-in-the-loop",
+    "plugin",
+    "OpenClaw"
+  ],
+  "bugs": {
+    "url": "https://github.com/youkinetwork/OmniPermission/issues"
+  },
+  "homepage": "https://github.com/youkinetwork/OmniPermission#readme",
+  "devDependencies": {
+    "openclaw": "workspace:*"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

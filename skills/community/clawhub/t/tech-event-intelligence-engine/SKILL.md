@@ -1,35 +1,58 @@
 ---
-name: "tech-event-intelligence-engine"
-description: "技术活动情报解析与过滤引擎，支持从原始搜索结果中精准抽取字段、去重、时效校验与相关性打分，输出标准化推送清单"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tech-event-intelligence-engine"
-sourceUrl: "https://clawhub.ai/skills/tech-event-intelligence-engine"
+name: tech_event_intelligence_parser
+version: 1.0.0
+author: AI-Workflows
+license: MIT
+description: 技术活动情报解析与过滤引擎，支持从原始搜索结果中精准抽取字段、去重、时效校验与相关性打分，输出标准化推送清单
+tags:
+  - 技术情报
+  - 活动订阅
+  - 信息抽取
+  - 自动化推送
+  - OpenClaw兼容
+parameters:
+  raw_search_data:
+    type: string
+    required: true
+    description: 搜索引擎返回的原始结果（JSON或Markdown列表，含标题、摘要、链接、抓取时间）
+  config:
+    type: object
+    required: false
+    description: 订阅配置（含时间窗口、地域偏好、最大推送条数、过滤阈值）
+output_format: markdown
+compatibility:
+  - OpenClaw
+  - Dify
+  - Coze
+  - SkillHub
 ---
+# 🔍 技术活动情报解析引擎
 
-# tech-event-intelligence-engine
+## 🎯 核心定位
+将碎片化、多源异构的搜索摘要，转化为结构化、可追溯、低噪音的技术活动情报清单。专为每日定时推送场景设计。
 
-> 技术活动情报解析与过滤引擎，支持从原始搜索结果中精准抽取字段、去重、时效校验与相关性打分，输出标准化推送清单
+## 🔄 工作流指令
+1. **字段抽取**：逐条解析 `raw_search_data`，严格提取以下字段：
+   `活动名称` | `主办单位` | `活动时间(YYYY-MM-DD)` | `举办地点(城市/线上)` | `核心议程/亮点` | `出席企业/专家` | `报名链接` | `费用性质(免费/收费/待确认)`
+2. **时效校验**：跳过 `date < 当前日期` 或日期模糊（如“近期”“敬请期待”）的活动。
+3. **去重逻辑**：以 `名称+时间+地点` 三元组为键，相似度 >0.85 判定重复，保留信息最全版本。
+4. **相关性打分**：按技术匹配度(40%)、主办方权威性(30%)、嘉宾/企业含金量(30%) 计算 0-1 分。低于阈值直接拦截。
+5. **格式输出**：按模板生成 Markdown，严格限制条数，缺失字段标注 `[待核实]`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tech-event-intelligence-engine`
-- **Source URL:** [https://clawhub.ai/skills/tech-event-intelligence-engine](https://clawhub.ai/skills/tech-event-intelligence-engine)
+## 📤 输出模板
+```markdown
+# 📅 技术活动情报日报 | {当前日期}
+━━━━━━━━━━━━━━━━━━━━
 
-## Overview
+### 🔹 [{等级}] {活动名称}
+- 📍 **地点**：{城市/线上} | 🕒 **时间**：{YYYY-MM-DD 或 时间段}
+- 🏢 **主办**：{单位名称} | 💰 **费用**：{免费/收费/待确认}
+- 📌 **亮点**：{1-2句核心议程/议题方向}
+- 👥 **拟出席**：{企业/专家/机构}
+- 🔗 **详情**：{原始链接}
 
+---
+### 🔹 [{等级}] ...
+（重复结构，最多 {max_results} 条）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tech-event-intelligence-engine
-```
+> ⚠️ 说明：本报告由 AI 自动聚合公开信息生成。时间/嘉宾以主办方最终公告为准。点击链接跳转原站报名。

@@ -1,0 +1,6 @@
+{
+  "name": "chart_detection",
+  "type": "opencv",
+  "model_path": "data/models/chart_detection.pb",
+  "deployed": true
+}

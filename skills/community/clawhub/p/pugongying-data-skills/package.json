@@ -1,0 +1,76 @@
+{
+  "name": "pugongying-data-skills",
+  "version": "1.0.1",
+  "description": "蒲公英数据开发工程师Skill套件 - 专为数据开发工程师设计的完整AI Skill生态系统",
+  "author": "蒲公英 (Dandelion)",
+  "license": "MIT",
+  "keywords": [
+    "data-engineering",
+    "data-warehouse",
+    "etl",
+    "sql",
+    "data-quality",
+    "data-modeling",
+    "data-testing",
+    "claude",
+    "openclaw",
+    "skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shixiangyu/pugongying-data-skills"
+  },
+  "homepage": "https://clawhub.com/skills/pugongying-data-skills",
+  "bugs": {
+    "url": "https://github.com/shixiangyu/pugongying-data-skills/issues"
+  },
+  "skill": {
+    "name": "pugongying-data-skills",
+    "description": "蒲公英数据开发工程师Skill套件 - 专为数据开发工程师设计的完整AI Skill生态系统",
+    "trigger": [
+      "数据开发",
+      "数据仓库",
+      "ETL",
+      "SQL优化",
+      "数据质量",
+      "数据建模",
+      "需求分析",
+      "架构设计"
+    ],
+    "category": "data-engineering",
+    "tags": [
+      "data",
+      "engineering",
+      "warehouse",
+      "etl",
+      "sql",
+      "quality",
+      "modeling",
+      "testing"
+    ],
+    "compatibility": {
+      "claude": ">=3.5",
+      "openclaw": ">=0.8.0"
+    },
+    "dependencies": []
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CLAUDE.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "package.json",
+    "skill-connections.yaml",
+    "skill-hub.md",
+    "skill-template.md",
+    "Skill驱动数据系统开发探讨.md",
+    "requirement-analyst/",
+    "architecture-designer/",
+    "modeling-assistant/",
+    "sql-assistant/",
+    "etl-assistant/",
+    "dq-assistant/",
+    "test-engineer/"
+  ]
+}

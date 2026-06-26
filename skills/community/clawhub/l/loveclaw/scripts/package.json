@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "aliyun-sdk": "^1.12.10"
+  }
+}

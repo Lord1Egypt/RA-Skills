@@ -1,0 +1,53 @@
+{
+  "name": "crypto-sniper-bot",
+  "version": "1.2.0",
+  "displayName": "Crypto Sniper Bot",
+  "description": "24/7 automated token sniper for pump.fun and four.meme with take-profit/stop-loss strategies and multi-channel notifications",
+  "author": "zhdryanchang",
+  "category": "Trading & Finance",
+  "tags": ["crypto", "trading", "automation", "pump.fun", "four.meme", "sniper", "defi"],
+  "pricing": {
+    "model": "pay-per-use",
+    "price": 0.001,
+    "currency": "USDT",
+    "provider": "skillpay.me"
+  },
+  "apiKey": "sk_e390b52cb259fc4f4aa1489547a48375d72876acdee75de57101d9e0e833fcb7",
+  "endpoints": [
+    {
+      "path": "/configure",
+      "method": "POST",
+      "description": "Configure wallet and trading strategies"
+    },
+    {
+      "path": "/start",
+      "method": "POST",
+      "description": "Start the sniper bot"
+    },
+    {
+      "path": "/stop",
+      "method": "POST",
+      "description": "Stop the sniper bot"
+    },
+    {
+      "path": "/status",
+      "method": "GET",
+      "description": "Get bot status and current positions"
+    },
+    {
+      "path": "/history",
+      "method": "GET",
+      "description": "Get trading history and P&L"
+    },
+    {
+      "path": "/notifications",
+      "method": "POST",
+      "description": "Configure notification channels"
+    }
+  ],
+  "config": {
+    "monitorInterval": "*/30 * * * * *",
+    "defaultBuyAmount": 0.1,
+    "maxPositions": 10
+  }
+}

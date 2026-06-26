@@ -1,35 +1,33 @@
 ---
-name: "Vercel"
-description: "Deploy and manage Vercel projects, including linking repositories, env vars, and domains."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vercel-deployment"
-sourceUrl: "https://clawhub.ai/skills/vercel-deployment"
+name: vercel
+slug: vercel-deployment
+version: 1.0.0
+description: Deploy and manage Vercel projects, including linking repositories, env vars, and domains.
 ---
 
-# Vercel
+# Vercel — Deploy and Manage Projects
 
-> Deploy and manage Vercel projects, including linking repositories, env vars, and domains.
+## Set Up a New Project
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vercel-deployment`
-- **Source URL:** [https://clawhub.ai/skills/vercel-deployment](https://clawhub.ai/skills/vercel-deployment)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/vercel-deployment
+cd <project-root>   # must be the directory with .git
+npx vercel link      # link to Vercel project
+npx vercel git connect  # connect GitHub repo for auto-deploys
 ```
+
+Run `vercel git connect` from the repo root (where `.git` lives), not a subdirectory.
+
+## Set Environment Variables
+
+**NEVER use `echo`** — it adds a trailing `\n`:
+```bash
+printf 'value' | npx vercel env add VAR_NAME production
+```
+
+## Check Domains
+
+```bash
+cd any-vercel-project && npx vercel domains ls
+```
+
+For the full domain list: see `domains.md` in this folder.

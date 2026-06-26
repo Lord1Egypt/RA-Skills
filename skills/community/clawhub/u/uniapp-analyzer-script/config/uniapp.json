@@ -1,0 +1,91 @@
+{
+  "name": "uniapp-config",
+  "description": "uni-app project specific exclusion configuration",
+  "version": "1.0.0",
+  "extends": "base.json",
+  
+  "project_detection": {
+    "manifest_file": "manifest.json",
+    "key_indicators": [
+      "pages.json",
+      "uni.scss",
+      "main.js",
+      "App.vue"
+    ],
+    "content_patterns": [
+      "\"appid\"",
+      "uni-app",
+      "dcloudio"
+    ]
+  },
+  
+  "exclude": {
+    "directories": [
+      "unpackage",
+      "nativeplugins",
+      "hybrid",
+      "platforms",
+      "cloudfunctions-aliyun",
+      "cloudfunctions-tcb",
+      "cloudfunctions",
+      "uniCloud-aliyun",
+      "uniCloud-tcb",
+      "uniCloud",
+      "wxcomponents",
+      "mycomponents",
+      "swancomponents",
+      "ttcomponents",
+      "kscomponents",
+      "jdcomponents",
+      "xmcomponents",
+      "lhcomponents",
+      "qqcomponents"
+    ],
+    "files": [
+      "uni.scss",
+      "package-lock.json",
+      "yarn.lock",
+      "package.json"
+    ],
+    "patterns": [
+      "**/components/uni-*/**",
+      "**/__snapshots__/**",
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/*.e2e.js",
+      "**/*.e2e.ts"
+    ]
+  },
+  
+  "file_filters": {
+    "include_extensions": [
+      ".vue",
+      ".js",
+      ".ts",
+      ".json",
+      ".scss",
+      ".sass",
+      ".less",
+      ".css",
+      ".md"
+    ]
+  },
+  
+  "analysis_options": {
+    "include_pages": true,
+    "include_components": true,
+    "include_mixins": true,
+    "include_utils": true,
+    "include_static": false
+  },
+  
+  "code_patterns": {
+    "page_pattern": "^pages/",
+    "component_pattern": "^components/",
+    "mixin_pattern": "^mixins/",
+    "util_pattern": "^utils/|common/",
+    "api_pattern": "^api/|apis/|service/|services/"
+  }
+}

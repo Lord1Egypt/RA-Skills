@@ -1,0 +1,148 @@
+{
+  "sod": {
+    "name": "Background Removal",
+    "description": "Extract the main subject from the image background. Suitable for product photos, portraits, logos, pets, and more.",
+    "endpoint": "/openclaw/sod_2c_async",
+    "skill": "designkit-edit-tools",
+    "status": "active",
+    "response_mode": "async",
+    "query_endpoint": "/openclaw/mtlab/query",
+    "required": ["image"],
+    "optional": [],
+    "defaults": {},
+    "body_template": {
+      "parameter": {
+        "rsp_media_type": "url",
+        "nMask": false,
+        "nbox": true,
+        "model_type": 1
+      },
+      "media_info_list": [
+        {
+          "media_data": "{{image}}",
+          "media_profiles": {
+            "media_data_type": "url"
+          }
+        }
+      ],
+      "extra": {}
+    },
+    "ask_if_missing": {
+      "image": "Please provide the image for background removal (local path or URL)."
+    },
+    "triggers": [
+      "remove background",
+      "background removal",
+      "cut out subject",
+      "extract subject",
+      "transparent background",
+      "white background",
+      "product image cutout",
+      "remove background ai",
+      "image background remover",
+      "matting",
+      "cutout"
+    ]
+  },
+  "image_restoration": {
+    "name": "Image Restoration",
+    "description": "Improve image sharpness and clarity. Suitable for blurry product photos, old images, and compressed images.",
+    "endpoint": "/openclaw/image_restoration_async",
+    "skill": "designkit-edit-tools",
+    "status": "active",
+    "response_mode": "async",
+    "query_endpoint": "/openclaw/mtlab/query",
+    "required": ["image"],
+    "optional": [],
+    "defaults": {},
+    "body_template": {
+      "parameter": {
+        "sr_mode": 1,
+        "ir_mode": 4,
+        "rsp_media_type": "url",
+        "max_width": 8000,
+        "max_height": 8000,
+        "sr_num": 4,
+        "save_photo_format": 1
+      },
+      "media_info_list": [
+        {
+          "media_data": "{{image}}",
+          "media_extra": {},
+          "media_profiles": {
+            "media_data_type": "url"
+          }
+        }
+      ],
+      "extra": {}
+    },
+    "ask_if_missing": {
+      "image": "Please provide the image you want to enhance (local path or URL)."
+    },
+    "triggers": [
+      "enhance image",
+      "sharpen image",
+      "restore photo",
+      "restore image",
+      "image enhancement",
+      "super resolution",
+      "fix blurry image",
+      "improve image quality",
+      "repair low quality image",
+      "image restoration",
+      "restore blurry image",
+      "enhance product photo"
+    ]
+  },
+  "ecommerce_product_kit_workflow": {
+    "name": "Ecommerce Product Listing Kit",
+    "description": "Multi-step workflow: product image -> selling points -> platform/market/language/size -> optional style generation (ai_text + k2_query) -> rendering (task_submit + hackathon/query). Run: bash __SKILL_DIR__/scripts/run_ecommerce_kit.sh style_create|style_poll|render_submit|render_poll --input-json '...'. (__SKILL_DIR__ is the repo root.) See skills/designkit-ecommerce-product-kit/SKILL.md.",
+    "skill": "designkit-ecommerce-product-kit",
+    "status": "reserved",
+    "workflow": true,
+    "api_steps": {
+      "create_style_task": {
+        "method": "POST",
+        "url": "https://openclaw-designkit-api.meitu.com/v1/mtlab/ai_text",
+        "note": "Create style recommendation task. Request body can be expanded with curl examples later."
+      },
+      "poll_style_result": {
+        "method": "POST",
+        "url": "https://openclaw-designkit-api.meitu.com/v1/mtlab/k2_query",
+        "note": "Poll style recommendation task result."
+      },
+      "create_render_task": {
+        "method": "POST",
+        "url": "https://openclaw-designkit-api.meitu.com/v1/hackathon/ai_product/task_submit",
+        "note": "Create listing image rendering task. Request body can be expanded with curl examples later."
+      },
+      "poll_render_result": {
+        "method": "POST",
+        "url": "https://openclaw-designkit-api.meitu.com/v1/hackathon/query",
+        "note": "Poll rendering result."
+      }
+    },
+    "endpoint": "",
+    "required": [],
+    "optional": [],
+    "defaults": {},
+    "body_template": {},
+    "ask_if_missing": {},
+    "triggers": [
+      "generate listing image set",
+      "ecommerce image set",
+      "product image set",
+      "listing hero image",
+      "listing detail image",
+      "listing image pack",
+      "Amazon listing",
+      "amazon listing images",
+      "product hero image",
+      "product detail image",
+      "amazon listing pack",
+      "temu listing pack",
+      "launch-ready listing kit",
+      "high-converting style listing set"
+    ]
+  }
+}

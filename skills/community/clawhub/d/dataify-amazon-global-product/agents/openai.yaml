@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify Amazon Global Product"
+  short_description: "Submit Dataify Amazon global product collection tasks"
+  default_prompt: "Use $dataify-amazon-global-product to submit Amazon global product collection tasks through Dataify and return the task_id."
+
+policy:
+  allow_implicit_invocation: true

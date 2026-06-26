@@ -1,35 +1,99 @@
 ---
-name: "trading-log"
-description: "交易日志记录系统——记录所有买卖交易、计算持仓盈亏、自动刷实时行情。When the user mentions buying/selling stocks, recording trades, checking positions, or calculating profit/loss."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/trading-log"
-sourceUrl: "https://clawhub.ai/skills/trading-log"
+name: trading-log
+description: 交易日志记录系统——记录所有买卖交易、计算持仓盈亏、自动刷实时行情。When the user mentions buying/selling stocks, recording trades, checking positions, or calculating profit/loss.
 ---
 
-# trading-log
+# 📝 交易日志系统
 
-> 交易日志记录系统——记录所有买卖交易、计算持仓盈亏、自动刷实时行情。When the user mentions buying/selling stocks, recording trades, checking positions, or calculating profit/loss.
+记录小魔尊的每一笔A股/港股交易，自动计算持仓盈亏，支持实时价格刷新。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/trading-log`
-- **Source URL:** [https://clawhub.ai/skills/trading-log](https://clawhub.ai/skills/trading-log)
+## 核心文件
 
-## Overview
+- `交易日志_持仓记录.json` — 持仓+交易记录主文件（JSON）
+- `scripts/trading_log.py` — 主程序脚本
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 触发条件
+- 用户提到「买入」「卖出」「记录」「建仓」「加仓」「减仓」「清仓」
+- 用户提到「持仓」「盈亏」「浮动盈亏」「已实现」
+- 用户提到「交易记录」「今天买了什么」「账户亏损」
+
+### 执行命令
+
 ```bash
-hermes skills install clawhub/trading-log
+cd ~/Desktop && python3 交易日志.py <命令> [参数]
 ```
+
+## 命令列表
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `买入 代码 价格 数量 原因` | 记录买入 | `买入 600519 1650 100 看好白酒龙头` |
+| `卖出 代码 价格 数量 原因` | 记录卖出 | `卖出 600036 38.5 500 止盈` |
+| `清仓 代码 原因` | 全部卖出 | `清仓 600519 消息面恶化` |
+| `持仓` | 查看持仓（均价） | `持仓` |
+| `持仓 live` | 实时价格+盈亏 | `持仓 live` |
+| `盈亏` | 详细盈亏报表 | `盈亏` |
+| `日志 [N]` | 最近N条交易 | `日志 10` |
+| `修改名称 代码 新名称` | 修改股票名称 | `修改名称 002669 海螺发展` |
+
+## 交易记录格式
+
+**告诉我的标准格式**：
+```
+买入 600519 1650.0 100 看好白酒龙头
+卖出 002669 12.5 500 港股止损
+```
+
+**自动记录内容**：
+- 时间戳（精确到秒）
+- 证券代码（6位）
+- 证券名称
+- 成交价格
+- 成交数量
+- 成交金额
+- 买卖方向
+- 交易原因
+- 账户（可选）
+
+## 盈亏计算逻辑
+
+- **浮动盈亏** = (最新价 - 持仓均价) × 持仓数量
+- **已实现盈亏** = (卖出价 - 买入均价) × 卖出数量（每次卖出时计算）
+- **持仓均价** = 加权平均（多次买入自动计算）
+- **总盈亏** = 浮动盈亏 + 已实现盈亏
+
+## 实时价格获取
+
+腾讯快接口 `https://qt.gtimg.cn/q=sh600519,sz000001,...`
+
+**代码判断**：
+- 6/5开头 → `sh`（沪市，含ETF）
+- 0/1/2/3开头 → `sz`（深市）
+- 8/4开头 → `bj`（北交所）
+- 港股已知列表(2669/3320/9896/9988) → `hk`前缀+去掉前导0
+
+**成功率**：约93/94只（99%），民生5（债券）无实时价格
+
+## 数据文件
+
+```
+~/Desktop/
+├── 交易日志_持仓记录.json   ← 主文件，勿删
+├── 交易日志.py              ← 主程序
+└── 交易日志_导入.py         ← 一次性初始化脚本
+```
+
+## 每日自动Cron
+
+- **时间**：交易日 15:30（A股收盘后）
+- **任务**：刷实时价格 → 计算盈亏 → 存入历史记录
+- 由主Agent的Cron系统触发
+
+## 注意事项
+
+1. 港股价格从腾讯接口实时获取，为港币单位
+2. 民生5（400212，深交所债券）无实时价格，用成本价显示
+3. 每次交易后自动更新持仓均价和已实现盈亏
+4. 交易记录永久保存，不可删除

@@ -1,0 +1,2200 @@
+{
+  "affirmations": [
+    {
+      "id": "aff-001",
+      "text": "Controlo mis pensamientos y respuestas, no los eventos externos.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-002",
+      "text": "Acepto lo que no puedo cambiar y actúo sobre lo que sí puedo.",
+      "category": "aceptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-003",
+      "text": "Soy dueño de mis reacciones, no de los eventos.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-004",
+      "text": "El verdadero poder está en el autocontrol.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-005",
+      "text": "No busco controlar todo para estar en paz.",
+      "category": "aceptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-006",
+      "text": "No busco controlar a otros, solo a mí mismo.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-007",
+      "text": "No busco controlar el río, aprendo a navegar en él.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-008",
+      "text": "No busco controlar el viento, ajusto mis velas.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-009",
+      "text": "No busco controlar las mareas, aprendo a surfear.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-010",
+      "text": "No busco controlar el mundo, solo mi reacción a él.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-011",
+      "text": "No me aferro a lo que no puedo controlar.",
+      "category": "desapego",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-012",
+      "text": "Mi libertad reside en mi capacidad de elegir mi respuesta.",
+      "category": "libertad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-013",
+      "text": "Soy el guardián de mis propios pensamientos.",
+      "category": "vigilancia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-014",
+      "text": "No permito que las circunstancias dicten mi estado interior.",
+      "category": "soberanía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-015",
+      "text": "No permito que las circunstancias definan mi estado de ánimo.",
+      "category": "estabilidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-016",
+      "text": "No permito que las circunstancias roben mi serenidad.",
+      "category": "serenidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-017",
+      "text": "No permito que las tormentas externas agiten mi mar interior.",
+      "category": "calma",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-018",
+      "text": "No permito que las olas externas agiten mi océano interior.",
+      "category": "océano",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-019",
+      "text": "Mi mente es una fortaleza que nadie puede conquistar.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-020",
+      "text": "Mi mente es mi reino, y yo soy su gobernante.",
+      "category": "soberanía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-021",
+      "text": "Mi mente es mi dominio soberano.",
+      "category": "soberanía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-022",
+      "text": "Mi mente es mi reino, gobierno con sabiduría.",
+      "category": "gobierno",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-023",
+      "text": "Elijo mis batallas con sabiduría.",
+      "category": "discernimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-024",
+      "text": "La ira es un veneno que elijo no beber.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-025",
+      "text": "No permito que el ego dirija mis acciones.",
+      "category": "humildad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-026",
+      "text": "No permito que el ego nuble mi juicio.",
+      "category": "juicio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-027",
+      "text": "No permito que el orgullo nuble mi visión.",
+      "category": "visión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-028",
+      "text": "No permito que la vanidad nuble mi propósito.",
+      "category": "propósito",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-029",
+      "text": "No permito que la arrogancia nuble mi humildad.",
+      "category": "humildad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-030",
+      "text": "Practico la atención plena en cada acción.",
+      "category": "mindfulness",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-031",
+      "text": "Practico la atención consciente en cada respiración.",
+      "category": "consciencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-032",
+      "text": "Practico la presencia como mi meditación constante.",
+      "category": "meditación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-033",
+      "text": "Practico la presencia como mi regalo al mundo.",
+      "category": "regalo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-034",
+      "text": "Practico la presencia como mi práctica espiritual.",
+      "category": "espiritual",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-035",
+      "text": "El presente es el único tiempo que realmente existe.",
+      "category": "presente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-036",
+      "text": "No permito que el pasado dicte mi presente.",
+      "category": "liberación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-037",
+      "text": "No permito que el pasado contamine mi presente.",
+      "category": "presente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-038",
+      "text": "No permito que el ayer robe mi hoy.",
+      "category": "presente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-039",
+      "text": "No permito que el futuro robe mi presente.",
+      "category": "presente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-040",
+      "text": "No permito que el tiempo robe mi presencia.",
+      "category": "presencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-041",
+      "text": "Cada obstáculo es una oportunidad para practicar la virtud.",
+      "category": "virtud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-042",
+      "text": "La virtud es el único bien verdadero.",
+      "category": "virtud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-043",
+      "text": "La virtud es mi única posesión verdadera.",
+      "category": "posesión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-044",
+      "text": "La virtud es su propia recompensa.",
+      "category": "virtud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-045",
+      "text": "La virtud es mi única medida de éxito.",
+      "category": "medida",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-046",
+      "text": "La virtud es mi única ambición verdadera.",
+      "category": "ambición",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-047",
+      "text": "La virtud es mi única búsqueda digna.",
+      "category": "búsqueda",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-048",
+      "text": "La virtud es mi única medida de progreso.",
+      "category": "progreso",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-049",
+      "text": "La virtud es mi brújula en tiempos de incertidumbre.",
+      "category": "guía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-050",
+      "text": "La virtud es mi estrella guía en la noche oscura.",
+      "category": "estrella",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-051",
+      "text": "La virtud es mi brújula moral inquebrantable.",
+      "category": "brújula",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-052",
+      "text": "Elijo la acción virtuosa sobre la reacción emocional.",
+      "category": "virtud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-053",
+      "text": "Elijo la acción virtuosa en cada situación.",
+      "category": "situación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-054",
+      "text": "Elijo la acción virtuosa en cada encrucijada.",
+      "category": "encrucijada",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-055",
+      "text": "Elijo la acción correcta sobre la acción fácil.",
+      "category": "corrección",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-056",
+      "text": "Elijo la acción correcta sobre la acción popular.",
+      "category": "popular",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-057",
+      "text": "Mi deber es actuar correctamente, sin importar el resultado.",
+      "category": "deber",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-058",
+      "text": "Mi deber es hacer lo correcto, no lo fácil.",
+      "category": "deber",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-059",
+      "text": "Mis acciones reflejan mis valores, no mis palabras.",
+      "category": "integridad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-060",
+      "text": "Mi carácter se forja en la adversidad.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-061",
+      "text": "Mi carácter se revela en las pequeñas acciones diarias.",
+      "category": "carácter",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-062",
+      "text": "Mi carácter es mi legado más importante.",
+      "category": "legado",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-063",
+      "text": "Mi carácter es mi verdadera riqueza.",
+      "category": "riqueza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-064",
+      "text": "Mi carácter es mi obra maestra en construcción.",
+      "category": "construcción",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-065",
+      "text": "Mi carácter es mi monumento eterno.",
+      "category": "monumento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-066",
+      "text": "Mi carácter es mi escultura en progreso.",
+      "category": "escultura",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-067",
+      "text": "La adversidad revela mi verdadero carácter.",
+      "category": "carácter",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-068",
+      "text": "Soy responsable de mi propia excelencia.",
+      "category": "excelencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-069",
+      "text": "No busco la perfección, busco el progreso.",
+      "category": "progreso",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-070",
+      "text": "No busco la perfección, busco la consistencia.",
+      "category": "consistencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-071",
+      "text": "No busco la aprobación, busco la excelencia.",
+      "category": "excelencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-072",
+      "text": "No busco impresionar, busco mejorar.",
+      "category": "mejora",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-073",
+      "text": "No busco la admiración, busco la integridad.",
+      "category": "integridad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-074",
+      "text": "No busco la gloria, busco la virtud silenciosa.",
+      "category": "gloria",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-075",
+      "text": "Cada momento es una oportunidad para practicar la virtud.",
+      "category": "oportunidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-076",
+      "text": "Cada momento es una oportunidad para ser virtuoso.",
+      "category": "oportunidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-077",
+      "text": "Cada momento es una oportunidad para la excelencia.",
+      "category": "excelencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-078",
+      "text": "Cada momento es una oportunidad para la transformación.",
+      "category": "transformación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-079",
+      "text": "Cada momento es una oportunidad para la sabiduría.",
+      "category": "sabiduría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-080",
+      "text": "Cada momento es sagrado cuando lo vivo conscientemente.",
+      "category": "consciencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-081",
+      "text": "Vivo en el presente, este momento es todo lo que poseo.",
+      "category": "presente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-082",
+      "text": "El presente es el único tiempo que realmente existe.",
+      "category": "presente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-083",
+      "text": "Cada momento es una oportunidad para comenzar de nuevo.",
+      "category": "renovación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-084",
+      "text": "Cada momento es sagrado cuando lo honro con presencia.",
+      "category": "honor",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-085",
+      "text": "Cada día es una oportunidad para mejorar.",
+      "category": "crecimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-086",
+      "text": "Cada día es una oportunidad para vivir filosóficamente.",
+      "category": "filosófico",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-087",
+      "text": "Vivo de acuerdo con la naturaleza y la razón.",
+      "category": "naturaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-088",
+      "text": "Mi propósito es vivir virtuosamente cada día.",
+      "category": "propósito",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-089",
+      "text": "Mi propósito es vivir con integridad absoluta.",
+      "category": "absoluto",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-090",
+      "text": "Mi propósito es vivir en armonía con el universo.",
+      "category": "armonía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-091",
+      "text": "Mi propósito es vivir de acuerdo con la naturaleza.",
+      "category": "naturaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-092",
+      "text": "Mi propósito es vivir con autenticidad radical.",
+      "category": "autenticidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-093",
+      "text": "Mi propósito es vivir con coherencia absoluta.",
+      "category": "coherencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-094",
+      "text": "Mi propósito trasciende las circunstancias temporales.",
+      "category": "propósito",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-095",
+      "text": "Mi propósito trasciende mis limitaciones percibidas.",
+      "category": "trascendencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-096",
+      "text": "Mi propósito es más grande que mis circunstancias.",
+      "category": "grandeza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-097",
+      "text": "No me defino por mis circunstancias.",
+      "category": "identidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-098",
+      "text": "No me defino por lo que me sucede, sino por cómo respondo.",
+      "category": "definición",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-099",
+      "text": "No me defino por mis logros, sino por mi carácter.",
+      "category": "carácter",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-100",
+      "text": "No me defino por mis posesiones, sino por mi esencia.",
+      "category": "esencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-101",
+      "text": "No me defino por el pasado, me creo en el presente.",
+      "category": "creación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-102",
+      "text": "Mi valor no está en lo que poseo, sino en quién soy.",
+      "category": "identidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-103",
+      "text": "No me identifico con mis posesiones materiales.",
+      "category": "desapego",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-104",
+      "text": "No me identifico con lo que tengo, sino con lo que soy.",
+      "category": "ser",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-105",
+      "text": "No me aferro a lo que está destinado a cambiar.",
+      "category": "desapego",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-106",
+      "text": "No me aferro a lo que está destinado a partir.",
+      "category": "soltar",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-107",
+      "text": "No me aferro a lo que no puedo controlar.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-108",
+      "text": "No me aferro a lo que fluye naturalmente.",
+      "category": "flujo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-109",
+      "text": "Acepto la impermanencia de todas las cosas.",
+      "category": "impermanencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-110",
+      "text": "Todo es temporal, incluso mis problemas actuales.",
+      "category": "perspectiva",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-111",
+      "text": "La muerte es natural; vivir bien es mi prioridad.",
+      "category": "mortalidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-112",
+      "text": "La muerte me recuerda vivir plenamente hoy.",
+      "category": "mortalidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-113",
+      "text": "La muerte me enseña a valorar cada momento.",
+      "category": "valoración",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-114",
+      "text": "La muerte me recuerda la preciosidad de la vida.",
+      "category": "preciosidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-115",
+      "text": "La muerte me enseña a vivir con urgencia consciente.",
+      "category": "urgencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-116",
+      "text": "La muerte me recuerda vivir con intención consciente.",
+      "category": "intención",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-117",
+      "text": "No permito que el reloj robe mi eternidad presente.",
+      "category": "eternidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-118",
+      "text": "Mi valor es eterno, no temporal.",
+      "category": "eternidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-119",
+      "text": "Acepto el cambio como la única constante verdadera.",
+      "category": "constante",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-120",
+      "text": "No temo al cambio, es la única constante.",
+      "category": "cambio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-121",
+      "text": "Acepto mis limitaciones y trabajo dentro de ellas.",
+      "category": "realismo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-122",
+      "text": "Acepto la imperfección como parte de la condición humana.",
+      "category": "humanidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-123",
+      "text": "Acepto la imperfección como parte del camino.",
+      "category": "camino",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-124",
+      "text": "Acepto mis errores como maestros valiosos.",
+      "category": "maestros",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-125",
+      "text": "Acepto a las personas como son, no como deseo que sean.",
+      "category": "aceptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-126",
+      "text": "Practico la empatía sin perder mi centro.",
+      "category": "empatía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-127",
+      "text": "Practico la compasión como mi respuesta predeterminada.",
+      "category": "predeterminación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-128",
+      "text": "Elijo la compasión sobre el juicio.",
+      "category": "compasión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-129",
+      "text": "Elijo la compasión sobre la crítica.",
+      "category": "compasión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-130",
+      "text": "Elijo la compasión como mi respuesta automática.",
+      "category": "automático",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-131",
+      "text": "Elijo la compasión como mi fuerza motriz.",
+      "category": "fuerza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-132",
+      "text": "Trato a los demás con justicia y compasión.",
+      "category": "justicia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-133",
+      "text": "No juzgo a otros por sus errores, aprendo de ellos.",
+      "category": "compasión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-134",
+      "text": "No me comparo con otros, solo con quien era ayer.",
+      "category": "crecimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-135",
+      "text": "No permito que las comparaciones roben mi alegría.",
+      "category": "alegría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-136",
+      "text": "No necesito la aprobación de otros para ser yo mismo.",
+      "category": "autenticidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-137",
+      "text": "No necesito que otros entiendan mi camino.",
+      "category": "autonomía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-138",
+      "text": "No necesito que el mundo cambie para estar en paz.",
+      "category": "paz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-139",
+      "text": "No necesito que el mundo me entienda para ser yo.",
+      "category": "ser",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-140",
+      "text": "No necesito validación externa para conocer mi valor.",
+      "category": "autovalidación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-141",
+      "text": "Mi carácter se forja en la adversidad.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-142",
+      "text": "Soy fuerte no por evitar el dolor, sino por atravesarlo.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-143",
+      "text": "La verdadera fortaleza es la gentileza bajo presión.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-144",
+      "text": "Mi fortaleza se mide por mi capacidad de mantener la calma.",
+      "category": "calma",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-145",
+      "text": "Mi fortaleza se manifiesta en mi gentileza.",
+      "category": "gentileza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-146",
+      "text": "Mi fortaleza se expresa en mi capacidad de perdonar.",
+      "category": "perdón",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-147",
+      "text": "Mi fortaleza se mide por mi capacidad de perdonar.",
+      "category": "perdón",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-148",
+      "text": "Mi fortaleza se revela en mi capacidad de adaptarme.",
+      "category": "adaptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-149",
+      "text": "Mi fortaleza interior es inquebrantable.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-150",
+      "text": "Mi fortaleza interior crece con cada desafío.",
+      "category": "crecimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-151",
+      "text": "Mi fortaleza interior es mi refugio constante.",
+      "category": "refugio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-152",
+      "text": "Mi fortaleza interior es mi hogar permanente.",
+      "category": "hogar",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-153",
+      "text": "Mi fortaleza interior es mi ancla en la tormenta.",
+      "category": "ancla",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-154",
+      "text": "Cultivo la fortaleza interior cada día.",
+      "category": "fortaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-155",
+      "text": "La adversidad no me debilita, me fortalece.",
+      "category": "resiliencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-156",
+      "text": "La adversidad es mi maestra más efectiva.",
+      "category": "adversidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-157",
+      "text": "La adversidad es mi gimnasio espiritual.",
+      "category": "gimnasio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-158",
+      "text": "La adversidad es mi escuela de sabiduría.",
+      "category": "escuela",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-159",
+      "text": "La adversidad es mi universidad de la vida.",
+      "category": "universidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-160",
+      "text": "La adversidad revela mi verdadera naturaleza.",
+      "category": "revelación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-161",
+      "text": "Transformo los obstáculos en oportunidades de crecimiento.",
+      "category": "resiliencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-162",
+      "text": "Cada obstáculo es un maestro disfrazado.",
+      "category": "enseñanza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-163",
+      "text": "Cada obstáculo es una oportunidad disfrazada de problema.",
+      "category": "disfraz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-164",
+      "text": "Cada desafío es una invitación a crecer.",
+      "category": "crecimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-165",
+      "text": "Cada desafío es una invitación a la excelencia.",
+      "category": "invitación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-166",
+      "text": "Cada desafío es una oportunidad para demostrar mi carácter.",
+      "category": "carácter",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-167",
+      "text": "Encuentro oportunidades donde otros ven problemas.",
+      "category": "optimismo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-168",
+      "text": "Aprendo tanto de los fracasos como de los éxitos.",
+      "category": "crecimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-169",
+      "text": "Cada experiencia es una lección disfrazada.",
+      "category": "aprendizaje",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-170",
+      "text": "No busco escapar de la realidad, la enfrento.",
+      "category": "valentía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-171",
+      "text": "No busco escapar del dolor, lo atravieso con dignidad.",
+      "category": "dignidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-172",
+      "text": "No busco evitar la vida, busco vivirla plenamente.",
+      "category": "plenitud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-173",
+      "text": "No busco evitar el dolor, busco comprenderlo.",
+      "category": "comprensión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-174",
+      "text": "No busco evitar el dolor, busco comprenderlo profundamente.",
+      "category": "profundidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-175",
+      "text": "No busco evitar el sufrimiento, busco comprenderlo.",
+      "category": "comprensión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-176",
+      "text": "El sufrimiento es inevitable, pero la miseria es opcional.",
+      "category": "perspectiva",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-177",
+      "text": "Enfrento mis miedos con coraje y razón.",
+      "category": "coraje",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-178",
+      "text": "No permito que el miedo dicte mis decisiones.",
+      "category": "coraje",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-179",
+      "text": "No permito que el miedo limite mi potencial.",
+      "category": "potencial",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-180",
+      "text": "No permito que el miedo paralice mi acción.",
+      "category": "acción",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-181",
+      "text": "Mi paz interior no depende de circunstancias externas.",
+      "category": "serenidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-182",
+      "text": "La tranquilidad viene de dentro, no de las circunstancias.",
+      "category": "serenidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-183",
+      "text": "Mi paz interior es independiente del caos externo.",
+      "category": "paz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-184",
+      "text": "Mi paz interior es independiente del mundo exterior.",
+      "category": "independencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-185",
+      "text": "Mi paz interior es mi prioridad absoluta.",
+      "category": "paz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-186",
+      "text": "Mi paz interior es mi mayor tesoro.",
+      "category": "paz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-187",
+      "text": "Mi paz interior es mi mayor logro.",
+      "category": "logro",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-188",
+      "text": "Mi paz interior es mi mayor victoria.",
+      "category": "victoria",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-189",
+      "text": "Mi paz interior es mi obra de arte.",
+      "category": "arte",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-190",
+      "text": "Mi paz interior es mi contribución al mundo.",
+      "category": "contribución",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-191",
+      "text": "Mi paz interior es mi revolución silenciosa.",
+      "category": "revolución",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-192",
+      "text": "Mi paz interior es mi legado al futuro.",
+      "category": "futuro",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-193",
+      "text": "Mi paz interior es mi contribución silenciosa al mundo.",
+      "category": "silencioso",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-194",
+      "text": "Mi paz mental es mi mayor logro diario.",
+      "category": "diario",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-195",
+      "text": "La verdadera riqueza es la paz mental.",
+      "category": "paz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-196",
+      "text": "Mi tranquilidad es mi mayor tesoro.",
+      "category": "tranquilidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-197",
+      "text": "Mi tranquilidad no depende de que todo salga bien.",
+      "category": "tranquilidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-198",
+      "text": "Mi tranquilidad no requiere condiciones perfectas.",
+      "category": "incondicional",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-199",
+      "text": "Mi tranquilidad es el resultado de mi práctica diaria.",
+      "category": "práctica",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-200",
+      "text": "Mi tranquilidad es el fruto de mi práctica constante.",
+      "category": "fruto",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-201",
+      "text": "Mi tranquilidad es el resultado de mi elección consciente.",
+      "category": "elección",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-202",
+      "text": "Mi tranquilidad es mi fortaleza invisible.",
+      "category": "invisibilidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-203",
+      "text": "Mi tranquilidad es mi fortaleza silenciosa.",
+      "category": "silencio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-204",
+      "text": "No permito que las circunstancias roben mi serenidad.",
+      "category": "serenidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-205",
+      "text": "Practico la ecuanimidad ante el éxito y el fracaso.",
+      "category": "ecuanimidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-206",
+      "text": "Practico la ecuanimidad ante el placer y el dolor.",
+      "category": "ecuanimidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-207",
+      "text": "Practico la ecuanimidad ante la alabanza y la crítica.",
+      "category": "imparcialidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-208",
+      "text": "Practico la ecuanimidad ante todas las experiencias.",
+      "category": "experiencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-209",
+      "text": "Practico la ecuanimidad ante el caos y el orden.",
+      "category": "orden",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-210",
+      "text": "Practico la ecuanimidad como mi estado natural.",
+      "category": "naturalidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-211",
+      "text": "Elijo la razón sobre las emociones destructivas.",
+      "category": "razón",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-212",
+      "text": "Elijo la razón como mi guía constante.",
+      "category": "razón",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-213",
+      "text": "Elijo la razón como mi ancla en la tormenta.",
+      "category": "ancla",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-214",
+      "text": "Elijo la razón como mi luz en la oscuridad.",
+      "category": "luz",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-215",
+      "text": "Elijo la razón como mi luz en la confusión.",
+      "category": "confusión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-216",
+      "text": "Elijo la razón como mi fundamento inquebrantable.",
+      "category": "fundamento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-217",
+      "text": "Examino mis juicios antes de aceptarlos como verdad.",
+      "category": "razón",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-218",
+      "text": "La sabiduría está en reconocer lo que no sé.",
+      "category": "sabiduría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-219",
+      "text": "La sabiduría es saber qué ignorar.",
+      "category": "sabiduría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-220",
+      "text": "La sabiduría es mi compañera constante.",
+      "category": "compañía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-221",
+      "text": "La sabiduría es mi tesoro más preciado.",
+      "category": "tesoro",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-222",
+      "text": "La sabiduría es mi herencia más valiosa.",
+      "category": "herencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-223",
+      "text": "La sabiduría viene de la reflexión constante.",
+      "category": "reflexión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-224",
+      "text": "La sabiduría es aplicar el conocimiento con virtud.",
+      "category": "aplicación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-225",
+      "text": "La sabiduría es mi brújula en tiempos de incertidumbre.",
+      "category": "guía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-226",
+      "text": "Elijo la sabiduría sobre la inteligencia.",
+      "category": "sabiduría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-227",
+      "text": "Elijo la sabiduría práctica sobre el conocimiento teórico.",
+      "category": "práctica",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-228",
+      "text": "Elijo la sabiduría vivida sobre la sabiduría leída.",
+      "category": "vivencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-229",
+      "text": "Elijo la sabiduría encarnada sobre el conocimiento abstracto.",
+      "category": "encarnación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-230",
+      "text": "Elijo la sabiduría práctica como mi guía diaria.",
+      "category": "guía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-231",
+      "text": "La fortuna es inestable; mi sabiduría es permanente.",
+      "category": "sabiduría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-232",
+      "text": "La verdadera educación es el autoconocimiento.",
+      "category": "autoconocimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-233",
+      "text": "La verdadera educación es el dominio de uno mismo.",
+      "category": "dominio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-234",
+      "text": "La verdadera educación es la transformación del carácter.",
+      "category": "transformación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-235",
+      "text": "La verdadera educación es la refinación del carácter.",
+      "category": "refinación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-236",
+      "text": "La verdadera educación es la práctica diaria de la virtud.",
+      "category": "educación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-237",
+      "text": "Mi mente es mi herramienta más poderosa.",
+      "category": "mente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-238",
+      "text": "Mi mente es mi herramienta más refinada.",
+      "category": "refinamiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-239",
+      "text": "Mi mente es mi aliada, no mi enemiga.",
+      "category": "alianza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-240",
+      "text": "Mi mente es mi templo, la mantengo pura.",
+      "category": "pureza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-241",
+      "text": "Mi mente es mi santuario que protejo cuidadosamente.",
+      "category": "protección",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-242",
+      "text": "Mi mente es mi palacio interior.",
+      "category": "palacio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-243",
+      "text": "Mi mente es mi templo sagrado.",
+      "category": "templo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-244",
+      "text": "Mi mente es mi santuario sagrado.",
+      "category": "sagrado",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-245",
+      "text": "Mi mente es mi santuario inviolable.",
+      "category": "inviolable",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-246",
+      "text": "Mi mente es mi jardín, cultivo pensamientos virtuosos.",
+      "category": "jardín",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-247",
+      "text": "Mi mente es mi jardín que cultivo con cuidado.",
+      "category": "cultivo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-248",
+      "text": "Mi mente es mi laboratorio de virtud.",
+      "category": "laboratorio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-249",
+      "text": "Elijo la claridad sobre la confusión.",
+      "category": "claridad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-250",
+      "text": "Elijo la claridad mental sobre la confusión emocional.",
+      "category": "claridad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-251",
+      "text": "Trato a los demás con justicia y compasión.",
+      "category": "justicia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-252",
+      "text": "Practico la justicia en cada interacción.",
+      "category": "justicia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-253",
+      "text": "Practico la justicia sin esperar recompensa.",
+      "category": "justicia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-254",
+      "text": "Practico la justicia sin esperar reciprocidad.",
+      "category": "reciprocidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-255",
+      "text": "Practico la justicia como un principio inquebrantable.",
+      "category": "principio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-256",
+      "text": "Practico la justicia como mi naturaleza esencial.",
+      "category": "naturaleza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-257",
+      "text": "Practico la justicia como mi respiración moral.",
+      "category": "moral",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-258",
+      "text": "Contribuyo al bien común con mis acciones.",
+      "category": "servicio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-259",
+      "text": "Soy parte de algo mayor que yo mismo.",
+      "category": "conexión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-260",
+      "text": "Mi paz interior es mi contribución al mundo.",
+      "category": "contribución",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-261",
+      "text": "Mi tranquilidad es mi mayor contribución.",
+      "category": "contribución",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-262",
+      "text": "La humildad es el fundamento de todas las virtudes.",
+      "category": "humildad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-263",
+      "text": "Practico la moderación en todas las cosas.",
+      "category": "moderación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-264",
+      "text": "Practico la moderación para mantener el equilibrio.",
+      "category": "equilibrio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-265",
+      "text": "Practico la moderación en el deseo y la aversión.",
+      "category": "moderación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-266",
+      "text": "Practico la moderación como un acto de sabiduría.",
+      "category": "acto",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-267",
+      "text": "Practico la moderación como expresión de sabiduría.",
+      "category": "expresión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-268",
+      "text": "Practico la moderación como mi estilo de vida.",
+      "category": "estilo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-269",
+      "text": "Practico la moderación como mi camino medio.",
+      "category": "medio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-270",
+      "text": "No necesito más de lo esencial para ser feliz.",
+      "category": "simplicidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-271",
+      "text": "La riqueza verdadera es no desear más de lo que tengo.",
+      "category": "contentamiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-272",
+      "text": "La verdadera riqueza es no necesitar nada.",
+      "category": "contentamiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-273",
+      "text": "La verdadera riqueza es la ausencia de necesidad.",
+      "category": "riqueza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-274",
+      "text": "La verdadera riqueza es la libertad interior.",
+      "category": "libertad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-275",
+      "text": "La verdadera riqueza es la paz interior.",
+      "category": "interior",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-276",
+      "text": "La verdadera riqueza es la autosuficiencia emocional.",
+      "category": "autosuficiencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-277",
+      "text": "Mi palabra es mi compromiso más sagrado.",
+      "category": "honor",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-278",
+      "text": "La verdad es mi norte, aunque sea incómoda.",
+      "category": "verdad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-279",
+      "text": "La verdad es más importante que la comodidad.",
+      "category": "verdad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-280",
+      "text": "La verdad es mi compromiso inquebrantable.",
+      "category": "compromiso",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-281",
+      "text": "La simplicidad trae libertad.",
+      "category": "simplicidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-282",
+      "text": "La simplicidad es la máxima sofisticación.",
+      "category": "simplicidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-283",
+      "text": "La simplicidad libera mi mente del desorden.",
+      "category": "simplicidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-284",
+      "text": "La simplicidad es mi refugio del caos.",
+      "category": "refugio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-285",
+      "text": "La simplicidad es mi camino hacia la claridad.",
+      "category": "claridad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-286",
+      "text": "La simplicidad es mi camino hacia la grandeza.",
+      "category": "grandeza",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-287",
+      "text": "No necesito más de lo esencial para ser feliz.",
+      "category": "simplicidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-288",
+      "text": "No me aferro a lo que está destinado a cambiar.",
+      "category": "desapego",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-289",
+      "text": "No me aferro a lo que está destinado a partir.",
+      "category": "soltar",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-290",
+      "text": "No me aferro a lo que no puedo controlar.",
+      "category": "control",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-291",
+      "text": "No me aferro a lo que fluye naturalmente.",
+      "category": "flujo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-292",
+      "text": "No me identifico con mis posesiones materiales.",
+      "category": "desapego",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-293",
+      "text": "No me identifico con lo que tengo, sino con lo que soy.",
+      "category": "ser",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-294",
+      "text": "No me defino por mis posesiones, sino por mi esencia.",
+      "category": "esencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-295",
+      "text": "Mi valor no está en lo que poseo, sino en quién soy.",
+      "category": "identidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-296",
+      "text": "La verdadera libertad es la ausencia de deseos innecesarios.",
+      "category": "libertad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-297",
+      "text": "La verdadera libertad es la ausencia de apegos.",
+      "category": "apego",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-298",
+      "text": "La verdadera libertad es la independencia de opinión.",
+      "category": "libertad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-299",
+      "text": "La verdadera libertad es la independencia mental.",
+      "category": "independencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-300",
+      "text": "La verdadera libertad es la independencia emocional.",
+      "category": "independencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-301",
+      "text": "No busco la aprobación externa para validar mi camino.",
+      "category": "autonomía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-302",
+      "text": "La opinión de otros no define mi valor.",
+      "category": "autoestima",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-303",
+      "text": "No permito que las opiniones ajenas me perturben.",
+      "category": "independencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-304",
+      "text": "No permito que las opiniones me desvíen de mi camino.",
+      "category": "determinación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-305",
+      "text": "No permito que las expectativas ajenas definan mi vida.",
+      "category": "definición",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-306",
+      "text": "No permito que las expectativas limiten mi potencial.",
+      "category": "potencial",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-307",
+      "text": "No busco la aprobación, busco la excelencia.",
+      "category": "excelencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-308",
+      "text": "No necesito la aprobación de otros para ser yo mismo.",
+      "category": "autenticidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-309",
+      "text": "No necesito validación externa para conocer mi valor.",
+      "category": "autovalidación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-310",
+      "text": "No necesito que otros entiendan mi camino.",
+      "category": "autonomía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-311",
+      "text": "Practico la gratitud por lo que tengo ahora.",
+      "category": "gratitud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-312",
+      "text": "La gratitud transforma lo que tengo en suficiente.",
+      "category": "gratitud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-313",
+      "text": "Practico la gratitud incluso en tiempos difíciles.",
+      "category": "gratitud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-314",
+      "text": "Practico la gratitud como un estado de ser.",
+      "category": "gratitud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-315",
+      "text": "Practico la gratitud como mi filosofía de vida.",
+      "category": "filosofía",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-316",
+      "text": "Practico la gratitud como mi lenguaje universal.",
+      "category": "lenguaje",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-317",
+      "text": "Practico la gratitud como mi estado permanente.",
+      "category": "permanente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-318",
+      "text": "Practico la gratitud como mi oración diaria.",
+      "category": "oración",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-319",
+      "text": "Practico la gratitud por cada respiración.",
+      "category": "respiración",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-320",
+      "text": "Practico la gratitud por lo simple y lo complejo.",
+      "category": "totalidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-321",
+      "text": "Practico la gratitud por lo visible y lo invisible.",
+      "category": "invisible",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-322",
+      "text": "Practico la gratitud por las lecciones disfrazadas de problemas.",
+      "category": "gratitud",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-323",
+      "text": "Todo es temporal, incluso mis problemas actuales.",
+      "category": "perspectiva",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-324",
+      "text": "El sufrimiento es inevitable, pero la miseria es opcional.",
+      "category": "perspectiva",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-325",
+      "text": "Acepto la impermanencia de todas las cosas.",
+      "category": "impermanencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-326",
+      "text": "Acepto el cambio como la única constante verdadera.",
+      "category": "constante",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-327",
+      "text": "No temo al cambio, es la única constante.",
+      "category": "cambio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-328",
+      "text": "Acepto mis limitaciones y trabajo dentro de ellas.",
+      "category": "realismo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-329",
+      "text": "Acepto la imperfección como parte de la condición humana.",
+      "category": "humanidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-330",
+      "text": "Acepto la imperfección como parte del camino.",
+      "category": "camino",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-331",
+      "text": "Acepto mis errores como maestros valiosos.",
+      "category": "maestros",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-332",
+      "text": "Acepto a las personas como son, no como deseo que sean.",
+      "category": "aceptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-333",
+      "text": "Practico la aceptación radical de la realidad.",
+      "category": "aceptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-334",
+      "text": "Practico la aceptación sin resignación.",
+      "category": "aceptación",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-335",
+      "text": "Practico la aceptación como un acto de poder.",
+      "category": "poder",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-336",
+      "text": "Practico la aceptación como mi superpoder secreto.",
+      "category": "secreto",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-337",
+      "text": "No me comparo con otros, solo con quien era ayer.",
+      "category": "crecimiento",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-338",
+      "text": "No permito que las comparaciones roben mi alegría.",
+      "category": "alegría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-339",
+      "text": "Encuentro oportunidades donde otros ven problemas.",
+      "category": "optimismo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-340",
+      "text": "Cada experiencia es una lección disfrazada.",
+      "category": "aprendizaje",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-341",
+      "text": "La disciplina es el puente entre mis metas y logros.",
+      "category": "disciplina",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-342",
+      "text": "La disciplina es mi camino hacia la libertad.",
+      "category": "camino",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-343",
+      "text": "La disciplina es mi puente hacia la libertad.",
+      "category": "puente",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-344",
+      "text": "La disciplina es mi expresión de autorespeto.",
+      "category": "respeto",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-345",
+      "text": "La disciplina es mi expresión de sabiduría práctica.",
+      "category": "expresión",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-346",
+      "text": "Practico la autodisciplina como un acto de amor propio.",
+      "category": "autodisciplina",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-347",
+      "text": "Practico la autodisciplina como un acto de libertad.",
+      "category": "libertad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-348",
+      "text": "Practico la autodisciplina como un regalo para mi futuro yo.",
+      "category": "futuro",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-349",
+      "text": "Practico la autodisciplina con amor y compasión.",
+      "category": "amor",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-350",
+      "text": "Practico la autodisciplina con alegría.",
+      "category": "alegría",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-351",
+      "text": "Practico la autodisciplina con paciencia infinita.",
+      "category": "infinito",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-352",
+      "text": "Practico la autodisciplina sin rigidez.",
+      "category": "flexibilidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-353",
+      "text": "Practico la autodisciplina como mi meditación activa.",
+      "category": "activo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-354",
+      "text": "La paciencia es la compañera de la sabiduría.",
+      "category": "paciencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-355",
+      "text": "La paciencia es mi respuesta al caos.",
+      "category": "paciencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-356",
+      "text": "La paciencia es mi respuesta al mundo acelerado.",
+      "category": "respuesta",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-357",
+      "text": "La paciencia es mi respuesta al mundo impaciente.",
+      "category": "respuesta",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-358",
+      "text": "La paciencia es mi fortaleza silenciosa.",
+      "category": "silencio",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-359",
+      "text": "La paciencia y el tiempo son mis aliados.",
+      "category": "tiempo",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-360",
+      "text": "Cultivo la paciencia como un jardín interior.",
+      "category": "paciencia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-361",
+      "text": "La constancia es más valiosa que la intensidad.",
+      "category": "constancia",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-362",
+      "text": "Mi integridad no es negociable.",
+      "category": "integridad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-363",
+      "text": "Mi integridad es mi identidad verdadera.",
+      "category": "identidad",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-364",
+      "text": "Mi integridad es mi legado viviente.",
+      "category": "legado",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-365",
+      "text": "Mi integridad es mi firma en el universo.",
+      "category": "firma",
+      "created_at": "2024-01-01T00:00:00"
+    },
+    {
+      "id": "aff-366",
+      "text": "Cada día es una oportunidad para vivir filosóficamente.",
+      "category": "filosófico",
+      "created_at": "2024-01-01T00:00:00"
+    }
+  ]
+}

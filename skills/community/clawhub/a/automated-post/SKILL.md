@@ -1,35 +1,155 @@
+# SKILL.md - 袭人图文发布自动化技能
+
+## 技能名称
+`automated_post` - 袭人图文发布自动化
+
+## 技能描述
+袭人通过调度黛玉（文案）和惜春（配图）完成图文帖子发布的完整自动化流程。支持两种模式：确认模式和自动化模式。
+
+## 两种模式
+
+### 模式1：确认模式（每步确认）
+每执行一步都要等非哥确认后再执行下一步。
+
+### 模式2：自动化模式（中间不确认，最终确认）
+中间过程自动执行，只在最终发布前让非哥确认文案和图片。
+
 ---
-name: "Automated Post"
-description: "通过调度文案与配图代理，实现图文帖子发布的确认或自动化两种全流程操作与归档管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/automated-post"
-sourceUrl: "https://clawhub.ai/skills/automated-post"
----
 
-# Automated Post
+## 执行流程
 
-> 通过调度文案与配图代理，实现图文帖子发布的确认或自动化两种全流程操作与归档管理。
+### 步骤1：制定方案
+收到非哥的主题后，制定执行方案，列出步骤和负责人（袭人、黛玉、惜春）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/automated-post`
-- **Source URL:** [https://clawhub.ai/skills/automated-post](https://clawhub.ai/skills/automated-post)
+### 步骤2：执行方案
+根据选择的模式执行：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/automated-post
+#### 确认模式流程：
 ```
+第1步：黛玉写文案 → 非哥确认
+第2步：提取关键词 → 非哥确认
+第3步：惜春生成图片 → 非哥确认
+第4步：发布到网站
+```
+
+#### 自动化模式流程：
+```
+第1步：黛玉写文案（自动执行）
+第2步：提取关键词（自动执行）
+第3步：惜春生成图片（自动执行）
+→ 返回中间结果给非哥
+非哥确认后：
+第4步：发布到网站
+```
+
+---
+
+## Agent启动命令
+
+### 启动黛玉写文案
+```bash
+openclaw agent --agent daiyu --message "<主题和要求>" --timeout 120
+```
+
+### 启动惜春生成图片
+```bash
+openclaw agent --agent xichun --message "<图片提示词>" --timeout 180
+```
+
+### 发布到网站
+```bash
+cd ~/.openclaw/workspace/skills/post_to_website
+node post_skill.js "<作者>" "<文案>" "<标签>" "<图片路径>"
+```
+
+---
+
+## 时间记录规范
+
+每次执行必须记录时间：
+
+| 步骤 | 内容 | 开始时间 | 结束时间 | 耗时 |
+|------|------|----------|----------|------|
+| 开始 | 收到主题 | HH:MM:SS | - | - |
+| 第1步 | 黛玉写文案 | HH:MM:SS | HH:MM:SS | X秒 |
+| 第2步 | 提取关键词 | HH:MM:SS | HH:MM:SS | X秒 |
+| 第3步 | 惜春生成图片 | HH:MM:SS | HH:MM:SS | X秒 |
+| 完成 | 等待非哥确认 | HH:MM:SS | - | - |
+
+**注意**：
+- 即使某步骤耗时0秒也要记录
+- 计算实际工作耗时（不含等待确认时间）
+- 每次发布后汇总时间给非哥
+
+---
+
+## 袭人卡通形象固定提示词
+
+生成袭人卡通形象时使用：
+```
+可爱卡通形象的女孩，古典中国风汉服打扮，大眼睛甜美笑容，活泼可爱
+```
+
+---
+
+## 图片路径规范
+
+惜春生成的图片保存在：
+```
+~/.openclaw/workspace-xichun/skills/hima_painter/images/
+```
+
+---
+
+## 素材归档（飞书文档）
+
+每次发布后自动归档到飞书文档。
+
+### 归档规则
+- **每天一个文档**：文档名称格式 `YYYY-MM-DD 鸿蒙智行发帖记录`
+- **第一篇帖子**：创建当天新文档
+- **后续帖子**：追加到已有文档
+
+### 实现方式
+使用 feishu_doc 工具：
+1. 查询当天是否有对应日期的文档
+2. 如果没有，用 feishu_doc create 创建新文档
+3. 如果有，用 feishu_doc append 追加内容
+4. 用 feishu_doc upload_image 上传图片
+
+### 脚本工具
+```bash
+# 追加内容到当天文档
+node ~/.openclaw/workspace/skills/feishu-send-image/scripts/append_doc.js <文档token> <内容>
+
+# 上传图片到文档
+feishu_doc action=upload_image doc_token=<文档token> file_path=<图片路径>
+```
+
+### 需要权限
+- docs:document:create
+- docx:document
+- docs:document.media:upload
+
+---
+
+## 使用示例
+
+### 示例1：确认模式
+```
+非哥：袭人上学记
+袭人：制定方案 → 确认模式
+第1步完成 → 非哥确认 → 第2步 → ...
+```
+
+### 示例2：自动化模式
+```
+非哥：袭人放学回家
+袭人：制定方案 → 自动化模式
+执行第1-3步 → 返回结果 → 非哥确认 → 发布
+```
+
+---
+
+*技能创建时间：2026-03-16*
+*作者：袭人*

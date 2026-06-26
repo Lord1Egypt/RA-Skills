@@ -1,35 +1,47 @@
 ---
-name: "meeting-notes"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/meeting-notes"
-sourceUrl: "https://skills.sh/nexu-io/open-design/meeting-notes"
+name: meeting-notes
+description: |
+  Meeting notes page — title bar with attendees, agenda checklist, decisions
+  block, action items table with owners + dates, and a "next meeting" footer.
+  Use when the brief mentions "meeting notes", "minutes", "1:1 notes",
+  "all-hands recap", or "会议纪要".
+triggers:
+  - "meeting notes"
+  - "minutes"
+  - "1:1 notes"
+  - "all-hands recap"
+  - "会议纪要"
+od:
+  mode: prototype
+  platform: desktop
+  scenario: operations
+  preview:
+    type: html
+    entry: index.html
+  design_system:
+    requires: true
+    sections: [color, typography, layout, components]
+  example_prompt: "Write up notes from a 60-minute Growth squad weekly — agenda, decisions, action items with owners, next meeting."
 ---
 
-# meeting-notes
+# Meeting Notes Skill
 
-> Indexed by skills.sh from nexu-io/open-design
+Produce a single-screen meeting notes page.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/meeting-notes`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/meeting-notes](https://skills.sh/nexu-io/open-design/meeting-notes)
+## Workflow
 
-## Overview
+1. Read DESIGN.md.
+2. Layout:
+   - Header: meeting title, date, time, location/Zoom, attendees row.
+   - Agenda checklist (4–6 items).
+   - Decisions panel — bulleted list with strong styling.
+   - Action items table with owner, due date, status.
+   - "Open questions" + "next meeting" footer.
+3. Subdued colour palette, clear hierarchy.
 
+## Output contract
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/nexu-io/open-design/meeting-notes
+```
+<artifact identifier="notes-name" type="text/html" title="Meeting Notes">
+<!doctype html>...</artifact>
 ```

@@ -1,35 +1,127 @@
 ---
-name: "多科学透视"
-description: "多科学透视 — 用多个学科的视角透视任意想法，发现"未知的未知"。 将一段想法、对话或笔记，通过多个学科视角进行深度透视分析，拓展认知边界。 **当以下情况时使用此 Skill**： (1) 用户分享了一段对话、笔记或想法，希望多维度分析 (2) 用户说"多科学透视"、"多维分析"、"跨学科分析" (3) 用户想..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/duoke-xue-tou-shi"
-sourceUrl: "https://clawhub.ai/skills/duoke-xue-tou-shi"
+name: 多科学透视
+description: |
+  多科学透视 — 用多个学科的视角透视任意想法，发现"未知的未知"。
+
+  将一段想法、对话或笔记，通过多个学科视角进行深度透视分析，拓展认知边界。
+
+  **当以下情况时使用此 Skill**：
+  (1) 用户分享了一段对话、笔记或想法，希望多维度分析
+  (2) 用户说"多科学透视"、"多维分析"、"跨学科分析"
+  (3) 用户想要头脑风暴，寻找创意的多种可能性
+  (4) 用户准备写深度文章，需要多角度切入点和随机性启发
+  (5) 用户想从跨学科视角重新审视一段内容
 ---
 
-# 多科学透视
+# 多科学透视 Skill
 
-> 多科学透视 — 用多个学科的视角透视任意想法，发现"未知的未知"。 将一段想法、对话或笔记，通过多个学科视角进行深度透视分析，拓展认知边界。 **当以下情况时使用此 Skill**： (1) 用户分享了一段对话、笔记或想法，希望多维度分析 (2) 用户说"多科学透视"、"多维分析"、"跨学科分析" (3) 用户想...
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/duoke-xue-tou-shi`
-- **Source URL:** [https://clawhub.ai/skills/duoke-xue-tou-shi](https://clawhub.ai/skills/duoke-xue-tou-shi)
+就像光线通过棱镜会折射出七彩光谱，一个想法通过多科学透视会折射出多维认知视角：
 
-## Overview
+- 🌈 **随机性启发**：像棱镜一样，不可预测地折射出意想不到的视角
+- 🔷 **发现未知的未知**：看到从未想过的连接和可能性
+- 💎 **拓展认知边界**：突破单一学科的思维局限
+- ✨ **开启头脑风暴**：为创意和写作提供多元化的起点
+- 🌐 **融合中西方智慧**：结合现代学科与中国传统文化视角
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/duoke-xue-tou-shi
+## 适用场景
+
+- 有一段笔记/灵感/对话记录，想要打破思维定式
+- 需要头脑风暴，寻找创意的多种可能性
+- 想发现"未知的未知"，拓展认知边界
+- 准备写深度文章，需要随机性启发和多角度切入点
+- 进行教育内容创作，需要跨学科的惊喜连接
+
+---
+
+## 分析维度
+
+多科学透视从以下维度对内容进行折射分析：
+
+1. **认知心理学** — 抽象思维、元认知、隐喻理解、认知发展规律
+2. **历史哲学** — 时代精神、文明周期、重大历史转折、经典思想实验
+3. **教育学** — 苏格拉丁式提问、深度学习、因材施教、学习动机
+4. **系统思维** — 多维分析、视角转换、反馈循环、涌现效应
+5. **语言学** — 语义网络、话语分析、隐喻结构、表达模式
+6. **中国传统文化** — 古典智慧、儒家/道家/佛家思想、历史典故
+
+---
+
+## 输出结构
+
+每次分析输出以下五个模块：
+
+### 💎 核心洞察（Key Insights）
+- 提取内容中的"金句"或"Aha 时刻"
+- 识别最有力、最值得深挖的核心观点
+
+### 🌈 认知光谱分析（Cognitive Spectrum）
+- 从 4-6 个维度展开深度分析
+- 每个维度包含：维度名称 → 分析内容 → 理论依据 → 具体启示
+
+### 🔷 意外连接与故事（Unexpected Connections）
+- 发现与内容相关的历史事件、科学实验、哲学思想实验
+- 连接经典典故（中国+西方）
+- 找出意想不到的关联，激发新思考
+
+### ✍️ 多维写作光谱（Writing Directions）
+- 提供 3-5 个差异化的写作切入点
+- 每个方向包含：切入角度 → 建议标题方向 → 核心论点方向
+
+### 💡 深度探索问题（Deep Questions）
+- 3-5 个引发持续思考的问题
+- 帮助用户进一步深挖内容的本质
+
+---
+
+## 使用方式
+
+用户可以直接粘贴内容进行分析，或提供文件路径让 AI 读取。
+
+**分析格式**：
 ```
+📝 **待分析内容**：
+[用户粘贴的文字/对话/笔记]
+
+🔮 **多科学透视分析**
+[完整分析结果]
+```
+
+---
+
+## 参考文档
+
+各维度的详细分析框架和方法论：
+
+| 维度 | 文档 |
+|------|------|
+| 认知心理学 | [references/cognitive-psychology.md](references/cognitive-psychology.md) |
+| 历史哲学 | [references/history-philosophy.md](references/history-philosophy.md) |
+| 教育学 | [references/education.md](references/education.md) |
+| 系统思维 | [references/systems-thinking.md](references/systems-thinking.md) |
+| 中国传统文化 | [references/chinese-wisdom.md](references/chinese-wisdom.md) |
+| 意外连接案例库 | [references/connections.md](references/connections.md) |
+
+---
+
+## 设计原则
+
+1. **跨学科**：不局限单一视角，主动连接不同学科
+2. **有深度**：不浮于表面，挖掘理论依据
+3. **有惊喜**：主动寻找意想不到的连接
+4. **接地气**：每个分析都要有可操作的实践建议
+5. **促行动**：最终目标是激发用户的下一步思考或行动
+
+---
+
+## 来源说明
+
+本 Skill 源自 @木妈（@AI家庭教育实践者）开源的 [思维棱镜](https://github.com/vickysy/thought-prism-skill) 项目，遵循原项目许可证（个人使用免费，商业使用请联系作者）。
+
+在原项目基础上，我们做了一些调整：
+- 适配 OpenClaw Skill 格式
+- 调整了部分分析维度和提问框架
+- 扩充了意外连接案例库

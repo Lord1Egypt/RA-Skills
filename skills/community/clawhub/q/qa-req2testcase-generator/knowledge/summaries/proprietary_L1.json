@@ -1,0 +1,48 @@
+{
+  "domain": "自营域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "proprietary.md",
+  "key_terms": [
+    {"term": "自营投资", "definition": "券商以自有资金进行证券投资的业务，受严格监管约束"},
+    {"term": "投资委员会(投委会)", "definition": "券商内部最高投资决策机构，审批重大投资决策"},
+    {"term": "VaR(在险价值)", "definition": "在给定置信水平和持有期下组合可能的最大损失"},
+    {"term": "止损线", "definition": "个股-8%、组合-5%、年度-10%的亏损触发线"},
+    {"term": "交易组合(Trading Book)", "definition": "按资产类别或策略划分的独立投资组合"},
+    {"term": "防火墙制度", "definition": "自营与投行、研究所之间的信息隔离制度"},
+    {"term": "前中后台分离", "definition": "投资决策(前台)、风控(中台)、清算(后台)职能分离"},
+    {"term": "量化交易", "definition": "基于数学模型和算法的系统化交易策略"},
+    {"term": "集中度控制", "definition": "单票≤5%、行业≤20%、发行人≤10%的持仓比例限制"},
+    {"term": "内幕交易防控", "definition": "内幕信息知情人登记、限制交易名单、交易监控"},
+    {"term": "关联交易", "definition": "自营与资管、投行等业务之间的交易，需审批和披露"},
+    {"term": "举牌线", "definition": "持有单一上市公司股票达到总股本5%需披露"}
+  ],
+  "core_entities": [
+    {"name": "投资决策", "description": "从研究建议到授权执行的投资决策流程"},
+    {"name": "交易组合", "description": "按策略划分的独立投资组合(股票/债券/基金/衍生品)"},
+    {"name": "风控指标", "description": "VaR、集中度、止损线等风控监控指标"},
+    {"name": "授权指令", "description": "投委会或投资经理授权的交易执行指令"},
+    {"name": "交易策略", "description": "量化策略、套利策略、对冲策略等"},
+    {"name": "禁止名单", "description": "因内幕信息等原因禁止交易的标的清单"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "权益类规模限制", "description": "自营权益类证券及衍生品规模不超过净资本100%"},
+    {"rule": "固收类规模限制", "description": "自营固收类证券规模不超过净资本500%"},
+    {"rule": "举牌线", "description": "持有单一上市公司股票不超过总股本5%"},
+    {"rule": "前中后台分离", "description": "投资决策与交易执行必须分离"},
+    {"rule": "防火墙制度", "description": "自营与投行、研究所信息隔离"},
+    {"rule": "内幕交易禁止", "description": "涉及内幕信息的标的禁止交易"},
+    {"rule": "关联交易审批", "description": "关联交易需经合规部门审批"},
+    {"rule": "事前风控审查", "description": "所有自营交易必须经过事前风控审查"}
+  ],
+  "common_missing_items": [
+    {"item": "授权过期自动失效", "description": "投资授权有时效性(通常T+3)，过期需重新申请"},
+    {"item": "执行前二次风控校验", "description": "审批通过后、执行前风控指标可能已变化"},
+    {"item": "被动超限宽限期", "description": "市场波动导致集中度被动超限的5个交易日调整期"},
+    {"item": "跨组合合并风控", "description": "多个组合合计持有同一标的的合并风控计算"},
+    {"item": "量化策略熔断机制", "description": "单策略单日交易量上限和异常交易自动暂停"},
+    {"item": "止损无法执行场景", "description": "跌停/停牌导致无法卖出时的风险敞口处理"},
+    {"item": "组合间关联交易检测", "description": "不同自营组合之间对倒交易的检测"},
+    {"item": "禁止名单实时更新", "description": "内幕信息标的需及时加入禁止名单"}
+  ]
+}

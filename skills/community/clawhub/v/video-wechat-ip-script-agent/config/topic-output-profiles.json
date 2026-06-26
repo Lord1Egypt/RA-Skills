@@ -1,0 +1,11 @@
+{
+  "default_topics": {
+    "name": "标准选题输出",
+    "fields": [
+      "title",
+      "category",
+      "angle",
+      "targetAudience"
+    ]
+  }
+}

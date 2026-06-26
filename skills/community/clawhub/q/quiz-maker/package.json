@@ -1,0 +1,21 @@
+{
+  "name": "quiz-maker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "adm-zip": "^0.5.17",
+    "better-sqlite3": "^12.9.0",
+    "express": "^5.2.1",
+    "mammoth": "^1.12.0",
+    "multer": "^2.1.1",
+    "qrcode": "^1.5.4",
+    "uuid": "^14.0.0"
+  }
+}

@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Dataify Github Builder"
+  short_description: "Prepare Dataify builder calls for github.com"
+  default_prompt: "Use $dataify-github-repository-by-repo-url to prepare a Dataify builder curl request."

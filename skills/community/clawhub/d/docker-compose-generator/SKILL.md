@@ -1,35 +1,34 @@
 ---
-name: "Docker Compose Generator"
-description: "生成 Docker Compose 配置，支持 MySQL, PostgreSQL, Redis, MongoDB, Elasticsearch 等常用服务。"
-category: "devops"
-source: "ClawHub"
-tags: [devops, docker, docker-compose, generator]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/docker-compose-generator"
-sourceUrl: "https://clawhub.ai/skills/docker-compose-generator"
+name: docker-compose-generator
+description: 生成 Docker Compose 配置，支持 MySQL, PostgreSQL, Redis, MongoDB, Elasticsearch 等常用服务。
+metadata: {"clawdbot":{"emoji":"🐙","requires":{},"primaryEnv":""}}
 ---
 
 # Docker Compose Generator
 
-> 生成 Docker Compose 配置，支持 MySQL, PostgreSQL, Redis, MongoDB, Elasticsearch 等常用服务。
+生成 Docker Compose 配置，快速搭建开发环境。
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/docker-compose-generator`
-- **Source URL:** [https://clawhub.ai/skills/docker-compose-generator](https://clawhub.ai/skills/docker-compose-generator)
+## 支持的服务
 
-## Overview
+- MySQL
+- PostgreSQL
+- Redis
+- MongoDB
+- Elasticsearch
+- RabbitMQ
+- Nginx
+- Node.js
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/docker-compose-generator
+docker-compose-generator --db mysql --cache redis
+docker-compose-generator full-stack
 ```
+
+## 功能
+
+- 一键生成 docker-compose.yml
+- 网络配置
+- 数据持久化
+- 环境变量模板

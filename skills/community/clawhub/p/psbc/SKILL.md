@@ -1,35 +1,49 @@
 ---
-name: "Psbc"
-description: "提供邮储银行公开产品、账单和公告的关键信息摘要，不涉及账号登录或资金操作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psbc"
-sourceUrl: "https://clawhub.ai/skills/psbc"
+name: psbc-hot-trend
+description: 注册“邮储银行”热门技能；当需要访问或自动化邮储银行相关内容时调用。
+homepage: `https://www.psbc.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Psbc
+# 邮储银行
 
-> 提供邮储银行公开产品、账单和公告的关键信息摘要，不涉及账号登录或资金操作。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psbc`
-- **Source URL:** [https://clawhub.ai/skills/psbc](https://clawhub.ai/skills/psbc)
+- 面向公开产品页与个人网银中可视的非敏感信息摘要
+- 不提供登录自动化、转账、支付或权限绕过能力
+- 仅用于个人可见页面的合规信息整理
 
-## Overview
+关键入口
 
+- 主页：https://www.psbc.com/
+- 网银登录：个人网银入口
+- 产品与公告页：官网频道入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psbc
-```
+常见任务
+
+- 银行卡/理财产品页面的要点摘要（期限、收益、风险等级）
+- 个人账单概览与收支趋势（仅在登录与可视范围内）
+- 服务公告与活动信息整理
+
+数据字段
+
+- 产品名称、期限、收益方式、风险等级、链接
+- 账单周期、收支项、趋势摘要、来源链接
+- 公告标题、发布时间、影响范围、链接
+
+自动化要点
+
+- 网银页面需登录且有人机校验，不进行自动化交互
+- 不采集或存储卡号、身份证号等敏感信息
+- 频率控制，尊重银行安全策略
+
+示例流程
+
+- 产品摘要：访问产品页 → 抽取期限/收益/风险 → 输出要点
+- 账单概览：登录网银 → 访问账单页 → 提取周期与收支项
+- 公告整理：访问公告页 → 抽取条目 → 输出影响范围与链接
+
+合规提示
+
+- 遵守银行与账户安全规定，不进行任何资金操作
+- 不存储或输出敏感凭据与隐私数据

@@ -1,0 +1,52 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 180
+  threshold: 0.8
+
+cases:
+  - id: explicit-trigger-clawhub-publish
+    prompt: |
+      Use the clawhub-publish skill to prepare this local skill for its first ClawHub release and generate the exact publish command.
+    expect:
+      should_trigger: true
+
+  - id: implicit-trigger-release-audit
+    prompt: |
+      I need to validate a local OpenClaw skill, confirm the slug and version inputs, and draft the clawhub publish command before release.
+    expect:
+      should_trigger: true
+
+  - id: negative-trigger-seo-only
+    prompt: |
+      Rewrite this skill description so it ranks better on ClawHub search results, but do not prepare any publish command.
+    expect:
+      should_trigger: false
+
+  - id: structure-check
+    prompt: |
+      Verify that this skill package includes the required publish helper files.
+    expect:
+      files_exist:
+        - SKILL.md
+        - scripts/check_publish_ready.py
+        - references/publish-flow.md
+        - references/release-checklist.md
+
+  - id: command-preview-docs
+    prompt: |
+      Confirm that the documentation includes both the local checker command and the final clawhub publish command.
+    expect:
+      body_contains:
+        - "python3 {baseDir}/scripts/check_publish_ready.py /path/to/skill"
+        - "clawhub publish /path/to/skill --slug my-skill"
+        - "--display-name \"My Skill\""
+        - "--version 1.0.0"
+
+  - id: release-safety-guidance
+    prompt: |
+      Confirm that the skill tells the assistant not to publish silently and to distinguish local verification from ClawHub-side verification.
+    expect:
+      body_contains:
+        - "Do not run `clawhub publish` until the user confirms the release inputs."
+        - "This skill helps generate and review the release command; it should not silently publish."

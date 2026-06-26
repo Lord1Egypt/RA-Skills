@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tai-alpha-stock"
+version = "1.33.1"
+description = "Tai Alpha stock analysis skill — collect, backtest, score"
+readme = "setup/README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "yfinance>=0.2.40",
+    "vectorbt>=0.26.0",
+    "scikit-learn>=1.3.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-timeout>=2.3",
+    "black>=24.0",
+    "flake8>=7.0",
+    "isort>=5.13",
+]
+
+[project.scripts]
+tai-alpha-analyze = "tai_alpha.script_entrypoints:analyze_cli"
+tai-alpha-batch = "tai_alpha.script_entrypoints:batch_cli"
+tai-alpha-cron = "tai_alpha.script_entrypoints:cron_cli"
+tai-alpha-custom = "tai_alpha.script_entrypoints:custom_cli"
+tai-alpha-ml = "tai_alpha.script_entrypoints:ml_cli"
+tai-alpha-multi-backtest = "tai_alpha.script_entrypoints:multi_backtest_cli"
+tai-alpha-collect = "tai_alpha.collect:main"
+tai-alpha-backtest = "tai_alpha.backtest_engine:main"
+tai-alpha-score = "tai_alpha.score_engine:main"
+tai-alpha-report = "tai_alpha.report_text:main"
+tai-alpha-alerts = "tai_alpha.alerts_store:main"
+tai-alpha-portfolio = "tai_alpha.portfolio_sim:main"
+tai-alpha-sector = "tai_alpha.sector_analysis:main"
+tai-alpha-dividends = "tai_alpha.dividends:main"
+tai-alpha-hot-scanner = "tai_alpha.hot_scanner:main"
+
+[tool.setuptools.packages.find]
+include = ["tai_alpha*"]
+
+[tool.setuptools.package-data]
+tai_alpha = ["config/**/*.yaml", "config/**/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 300
+markers = [
+    "live: requires network and yfinance (nightly/release)",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+line_length = 88

@@ -1,0 +1,7 @@
+{
+  "proxy": "http://127.0.0.1:7890",
+  "output_dir": "/path/to/asmr_downloads",
+  "default_vbr": "q3",
+  "default_bitrate": "128k",
+  "qq_target": ""
+}

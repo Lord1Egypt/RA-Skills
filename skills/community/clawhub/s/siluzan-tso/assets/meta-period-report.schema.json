@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "siluzan-tso/meta-period-report.schema.json",
+  "title": "MetaPeriodReport",
+  "description": "Meta/Facebook 周期分析报告 JSON（对齐 Excel 五 Sheet + 总数据叙事；供 facebook-analysis render 注入 HTML）",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "报告元信息（账户、周期、归因）",
+      "properties": {
+        "accountName": { "type": "string" },
+        "accountId": { "type": "string" },
+        "periodLabel": { "type": "string", "description": "如 2026年4月" },
+        "startDate": { "type": "string", "format": "date" },
+        "endDate": { "type": "string", "format": "date" },
+        "resultType": { "type": "string", "description": "成效类型，如 Meta 潜在客户" },
+        "attributionSetting": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "mode": { "type": "string", "description": "如 深度分析模式（可选）" }
+      }
+    },
+    "kpis": {
+      "type": "object",
+      "description": "账户级 KPI（Sheet1 首行）；可省略，由 snapshot overview 合并",
+      "properties": {
+        "spend": { "type": "number" },
+        "results": { "type": "number" },
+        "costPerResult": { "type": "number" },
+        "reach": { "type": "number" },
+        "impressions": { "type": "number" },
+        "frequency": { "type": "number" },
+        "currency": { "type": "string", "default": "USD" }
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "description": "Sheet1 总数据叙事块（Excel 模板必含）",
+      "properties": {
+        "overall": {
+          "type": "string",
+          "description": "整体表现：1 段话，含花费/线索/CPL/覆盖/展示/频次"
+        },
+        "regional": {
+          "type": "array",
+          "description": "区域报告：按广告组逐段分析",
+          "items": {
+            "type": "object",
+            "required": ["adGroupName", "text"],
+            "properties": {
+              "adGroupName": { "type": "string" },
+              "campaignName": { "type": "string" },
+              "text": { "type": "string" }
+            }
+          }
+        },
+        "country": {
+          "type": "string",
+          "description": "国家报告：1 段跨国 CPL 对比"
+        },
+        "recommendations": {
+          "type": "array",
+          "description": "优化建议固定 4 条；每条 content ≥150 字且引用当次数据（见 meta-period-report-rules.md）",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["title", "content"],
+            "properties": {
+              "title": {
+                "type": "string",
+                "enum": ["简化表单问题", "区域调整", "预算重构", "素材建议"]
+              },
+              "content": {
+                "type": "string",
+                "description": "≥150 字；严重问题以「强烈建议：」开头，其余以「推荐优化：」开头"
+              }
+            }
+          }
+        }
+      }
+    },
+    "supplementaryRecommendations": {
+      "type": "array",
+      "description": "7 维数据驱动补充建议（预算/平台/地域/受众/创意/频次/接口限制）；每条 suggestion ≥60 字",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["dimension", "issue", "suggestion"],
+        "properties": {
+          "dimension": { "type": "string" },
+          "issue": { "type": "string" },
+          "suggestion": { "type": "string" }
+        }
+      }
+    },
+    "priorityPlan": {
+      "type": "object",
+      "description": "高/中/低优先级改进计划（对齐网站诊断 PriorityPlan）",
+      "properties": {
+        "high": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "medium": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "low": { "type": "array", "items": { "type": "string" }, "minItems": 2 }
+      }
+    },
+    "tables": {
+      "type": "object",
+      "description": "Sheet2～5 表格数据；可省略，由 --snapshot-dir 合并",
+      "properties": {
+        "adSets": { "$ref": "#/$defs/metricRows" },
+        "platform": { "$ref": "#/$defs/metricRows" },
+        "countries": { "$ref": "#/$defs/metricRows" },
+        "audiences": { "$ref": "#/$defs/audienceRows" },
+        "audienceTop": { "$ref": "#/$defs/audienceRankRows" },
+        "audienceBottom": { "$ref": "#/$defs/audienceRankRows" }
+      }
+    },
+    "charts": {
+      "type": "object",
+      "properties": {
+        "platform": { "$ref": "#/$defs/platformChart" },
+        "country": { "$ref": "#/$defs/labelCplChart" },
+        "audience": { "$ref": "#/$defs/audienceChart" },
+        "funnel": {
+          "type": "object",
+          "properties": {
+            "reach": { "type": "number" },
+            "results": { "type": "number" }
+          }
+        }
+      }
+    },
+    "executiveSummary": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 3,
+      "description": "HTML 默认交付必填：3～5 段执行摘要，每段 ≥80 字；可深化 narrative.overall"
+    },
+    "healthDiagnosis": {
+      "type": "object",
+      "description": "HTML 默认交付必填：四问卡片 + 红绿灯表（Excel 不含）",
+      "properties": {
+        "lifecyclePhase": { "enum": ["test-market", "find-winner", "scale"] },
+        "lifecycleVerdict": { "type": "string" },
+        "fourQuestions": { "type": "array" },
+        "scorecard": { "type": "array" }
+      }
+    },
+    "sections": {
+      "type": "object",
+      "description": "各维度深度解读 insight（HTML 扩展，可选）"
+    },
+    "abTests": { "type": "array" },
+    "actionChecklist": { "type": "object" }
+  },
+  "$defs": {
+    "metricRow": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "reach": { "type": "number" },
+        "impressions": { "type": "number" },
+        "frequency": { "type": "number" },
+        "results": { "type": "number" },
+        "spend": { "type": "number" },
+        "costPerResult": { "type": "number" }
+      }
+    },
+    "metricRows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/metricRow" }
+    },
+    "audienceRow": {
+      "type": "object",
+      "properties": {
+        "age": { "type": "string" },
+        "gender": { "type": "string" },
+        "reach": { "type": "number" },
+        "impressions": { "type": "number" },
+        "frequency": { "type": "number" },
+        "results": { "type": "number" },
+        "spend": { "type": "number" },
+        "costPerResult": { "type": "number" }
+      }
+    },
+    "audienceRows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/audienceRow" }
+    },
+    "audienceRankRows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "spend": { "type": "number" },
+          "results": { "type": "number" },
+          "costPerResult": { "type": "number" },
+          "frequency": { "type": "number" }
+        }
+      }
+    },
+    "platformChart": {
+      "type": "object",
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "cpl": { "type": "array", "items": { "type": "number" } },
+        "spend": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "labelCplChart": {
+      "type": "object",
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "cpl": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "audienceChart": {
+      "type": "object",
+      "properties": {
+        "labels": { "type": "array", "items": { "type": "string" } },
+        "cpl": { "type": "array", "items": { "type": "number" } },
+        "leads": { "type": "array", "items": { "type": "number" } }
+      }
+    }
+  }
+}

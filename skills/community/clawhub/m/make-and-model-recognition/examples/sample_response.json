@@ -1,0 +1,161 @@
+{
+  "status": 200,
+  "data": {
+    "combinations": [
+      {
+        "roadUsers": [
+          {
+            "box": {
+              "position": {
+                "topLeftCol": 0,
+                "topLeftRow": 0,
+                "bottomRightCol": 120,
+                "bottomRightRow": 80,
+                "score": 0.9
+              },
+              "occlusion": 0.1
+            },
+            "plates": [
+              {
+                "position": {
+                  "topLeftCol": 20,
+                  "topLeftRow": 50,
+                  "topRightCol": 80,
+                  "topRightRow": 50,
+                  "bottomRightCol": 80,
+                  "bottomRightRow": 65,
+                  "bottomLeftCol": 20,
+                  "bottomLeftRow": 65,
+                  "score": 0.8
+                },
+                "text": {
+                  "value": "SMALL123",
+                  "score": 0.91
+                },
+                "unreadable": 0.02
+              }
+            ],
+            "mmr": {
+              "make": {
+                "value": "Compact",
+                "id": 1,
+                "score": 0.7
+              },
+              "input": {
+                "box": {
+                  "topLeftCol": 0,
+                  "topLeftRow": 0,
+                  "bottomRightCol": 120,
+                  "bottomRightRow": 80
+                }
+              }
+            }
+          },
+          {
+            "box": {
+              "position": {
+                "topLeftCol": 100,
+                "topLeftRow": 20,
+                "bottomRightCol": 420,
+                "bottomRightRow": 220,
+                "score": 1.0
+              },
+              "occlusion": 0.3
+            },
+            "plates": [
+              {
+                "position": {
+                  "topLeftCol": 250,
+                  "topLeftRow": 170,
+                  "topRightCol": 330,
+                  "topRightRow": 170,
+                  "bottomRightCol": 330,
+                  "bottomRightRow": 192,
+                  "bottomLeftCol": 250,
+                  "bottomLeftRow": 192,
+                  "score": 0.95
+                },
+                "text": {
+                  "value": "BIG1234",
+                  "score": 0.98
+                },
+                "type": {
+                  "value": "F",
+                  "score": 0.99
+                },
+                "dimension": {
+                  "width": 520,
+                  "height": 110,
+                  "score": 0.99
+                },
+                "unreadable": 0.0
+              },
+              {
+                "position": {
+                  "topLeftCol": 180,
+                  "topLeftRow": 120,
+                  "topRightCol": 235,
+                  "topRightRow": 120,
+                  "bottomRightCol": 235,
+                  "bottomRightRow": 136,
+                  "bottomLeftCol": 180,
+                  "bottomLeftRow": 136,
+                  "score": 0.72
+                },
+                "text": {
+                  "value": "AUX5678",
+                  "score": 0.87
+                },
+                "unreadable": 0.1
+              }
+            ],
+            "mmr": {
+              "category": {
+                "value": "HVT",
+                "id": 4,
+                "score": 0.99
+              },
+              "make": {
+                "value": "Iveco",
+                "id": 50,
+                "score": 0.99
+              },
+              "model": {
+                "value": "S-Way",
+                "id": 5371,
+                "score": 0.99
+              },
+              "input": {
+                "box": {
+                  "topLeftCol": 100,
+                  "topLeftRow": 20,
+                  "bottomRightCol": 420,
+                  "bottomRightRow": 220
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "engines": [
+      {
+        "task": "DETECTION",
+        "moduleId": 803,
+        "moduleVersion": "803-generic.gen-none-v7.9"
+      },
+      {
+        "task": "OCR",
+        "moduleId": 801,
+        "moduleVersion": "801-generic.gen-gen-v7.18"
+      },
+      {
+        "task": "MMR",
+        "moduleName": "box-module.dat",
+        "moduleVersion": "20251203"
+      }
+    ]
+  },
+  "cost": 2,
+  "credit": "1027281"
+}

@@ -1,0 +1,342 @@
+/* Friday Budgeting Pro — minimal UI stylesheet */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --border: #d1d1d6;
+  --text: #1c1c1e;
+  --muted: #6e6e73;
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --danger: #ff3b30;
+  --success: #34c759;
+  --warning: #ff9f0a;
+  --radius: 10px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────── */
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+nav a, nav .btn-link {
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+nav a.active {
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+main {
+  max-width: 860px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.card + .card {
+  margin-top: 16px;
+}
+
+.card-narrow {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Typography ───────────────────────────────────────────────────────── */
+
+h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+h2 { font-size: 18px; font-weight: 600; margin: 24px 0 12px; }
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: "SF Mono", ui-monospace, monospace;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* ── Forms ────────────────────────────────────────────────────────────── */
+
+form { display: flex; flex-direction: column; gap: 12px; }
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.15s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-block;
+  padding: 9px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover { background: var(--accent-hover); color: #fff; text-decoration: none; }
+
+.btn-secondary {
+  display: inline-block;
+  padding: 9px 20px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover { background: #e8e8ed; text-decoration: none; }
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ── Alerts ───────────────────────────────────────────────────────────── */
+
+.alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.alert-error   { background: #fff2f1; border: 1px solid #ffccc7; color: #c0392b; }
+.alert-success { background: #f0fff4; border: 1px solid #b7f5c7; color: #1a7f37; }
+
+/* ── Steps (setup wizard) ─────────────────────────────────────────────── */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.step {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.step.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.step.done {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+
+.sep { color: var(--muted); }
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+
+section { margin-top: 24px; }
+section + section { padding-top: 24px; border-top: 1px solid var(--border); }
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+/* ── Badges ───────────────────────────────────────────────────────────── */
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-expense { background: #fff2f1; color: #c0392b; }
+.badge-income  { background: #f0fff4; color: #1a7f37; }
+
+/* ── Ledger block ─────────────────────────────────────────────────────── */
+
+.ledger-block {
+  margin-top: 16px;
+}
+
+/* ── Classification Rules table (#172) ───────────────────────────────── */
+
+.rule-disabled td {
+  color: var(--muted);
+  opacity: 0.65;
+}
+
+.badge-default { background: #eef2ff; color: #3730a3; }
+
+/* ── Ledger income/expense totals (#166) ─────────────────────────────── */
+
+.ledger-totals-row {
+  display: flex;
+  gap: 2em;
+  padding: 0.6em 0 0.4em 0;
+  margin-top: 0.5em;
+  border-top: 2px solid #e0e0e0;
+  font-size: 0.95em;
+}
+
+.ledger-totals-row .total-label {
+  color: #555;
+  margin-right: 0.25em;
+}
+
+.ledger-totals-row .total-value {
+  font-weight: 600;
+}
+
+.net-positive {
+  color: #16a34a;
+}
+
+.net-negative {
+  color: #dc2626;
+}
+
+.net-zero {
+  color: #555;
+}

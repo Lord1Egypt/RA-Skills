@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380">
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="860" height="380" fill="#f8fafc"/>
+  
+  <text x="430" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#1e293b">&#x67B6;&#x6784;&#x56FE;&#x6807;&#x9898;</text>
+  
+  <rect x="30" y="45" width="800" height="65" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="50" y="66" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#b45309">&#x5C42;&#x7EA7; A</text>
+  <g font-family="system-ui, sans-serif" font-size="11" fill="#92400e">
+    <rect x="40" y="75" width="188" height="28" rx="4" fill="#fde68a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="134" y="93" text-anchor="middle">&#x6A21;&#x5757; 1</text>
+    <rect x="238" y="75" width="188" height="28" rx="4" fill="#fde68a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="332" y="93" text-anchor="middle">&#x6A21;&#x5757; 2</text>
+    <rect x="436" y="75" width="188" height="28" rx="4" fill="#fde68a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="530" y="93" text-anchor="middle">&#x6A21;&#x5757; 3</text>
+    <rect x="634" y="75" width="188" height="28" rx="4" fill="#fde68a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="728" y="93" text-anchor="middle">&#x6A21;&#x5757; 4</text>
+  </g>
+  
+  <rect x="30" y="120" width="800" height="65" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="50" y="141" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1d4ed8">&#x5C42;&#x7EA7; B</text>
+  <g font-family="system-ui, sans-serif" font-size="11" fill="#1e40af">
+    <rect x="40" y="150" width="188" height="28" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1"/>
+    <text x="134" y="168" text-anchor="middle">&#x6A21;&#x5757; 1</text>
+    <rect x="238" y="150" width="188" height="28" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1"/>
+    <text x="332" y="168" text-anchor="middle">&#x6A21;&#x5757; 2</text>
+    <rect x="436" y="150" width="188" height="28" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1"/>
+    <text x="530" y="168" text-anchor="middle">&#x6A21;&#x5757; 3</text>
+    <rect x="634" y="150" width="188" height="28" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1"/>
+    <text x="728" y="168" text-anchor="middle">&#x6A21;&#x5757; 4</text>
+  </g>
+  
+  <rect x="30" y="195" width="800" height="65" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1"/>
+  <text x="50" y="216" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#15803d">&#x5C42;&#x7EA7; C</text>
+  <g font-family="system-ui, sans-serif" font-size="11" fill="#166534">
+    <rect x="40" y="225" width="188" height="28" rx="4" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <text x="134" y="243" text-anchor="middle">&#x6A21;&#x5757; 1</text>
+    <rect x="238" y="225" width="188" height="28" rx="4" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <text x="332" y="243" text-anchor="middle">&#x6A21;&#x5757; 2</text>
+    <rect x="436" y="225" width="188" height="28" rx="4" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <text x="530" y="243" text-anchor="middle">&#x6A21;&#x5757; 3</text>
+    <rect x="634" y="225" width="188" height="28" rx="4" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <text x="728" y="243" text-anchor="middle">&#x6A21;&#x5757; 4</text>
+  </g>
+  
+  <rect x="30" y="270" width="800" height="65" rx="8" fill="#f3e8ff" stroke="#a855f7" stroke-width="1"/>
+  <text x="50" y="291" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7e22ce">&#x5C42;&#x7EA7; D</text>
+  <g font-family="system-ui, sans-serif" font-size="11" fill="#7e22ce">
+    <rect x="40" y="300" width="188" height="28" rx="4" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+    <text x="134" y="318" text-anchor="middle">&#x6A21;&#x5757; 1</text>
+    <rect x="238" y="300" width="188" height="28" rx="4" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+    <text x="332" y="318" text-anchor="middle">&#x6A21;&#x5757; 2</text>
+    <rect x="436" y="300" width="188" height="28" rx="4" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+    <text x="530" y="318" text-anchor="middle">&#x6A21;&#x5757; 3</text>
+    <rect x="634" y="300" width="188" height="28" rx="4" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+    <text x="728" y="318" text-anchor="middle">&#x6A21;&#x5757; 4</text>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "05-01",
+    "topic": "files",
+    "difficulty": "easy",
+    "question": "Write a program that creates a file called `hello.txt` containing the text `\"Hello, file!\"` and then reads it back and prints the contents.",
+    "hint": "Open the file twice: once with mode 'w' to write, once with mode 'r' to read."
+  },
+  {
+    "id": "05-02",
+    "topic": "files",
+    "difficulty": "medium",
+    "question": "Write a program that writes the numbers 1 through 5 to a file (one per line), then reads the file back and prints the sum of those numbers.",
+    "hint": "Use str() when writing integers to a file. Use int() and strip() when reading them back."
+  },
+  {
+    "id": "05-03",
+    "topic": "files",
+    "difficulty": "medium",
+    "question": "Write a program that writes three lines to a file using append mode (`\"a\"`) in three separate `with` blocks. Then read the file and print how many lines it contains.",
+    "hint": "Each open with 'a' adds to the end without overwriting. Use readlines() to get a list of lines."
+  },
+  {
+    "id": "05-04",
+    "topic": "files",
+    "difficulty": "hard",
+    "question": "Write a program that writes a CSV-style file with a header `name,score` and three rows of data. Then read it back, skip the header, and print the name of the learner with the highest score.",
+    "hint": "Use split(',') to parse each line. Convert the score to int() before comparing."
+  }
+]

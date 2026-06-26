@@ -1,0 +1,37 @@
+name: design-inspiration-collector
+description: |
+  双平台设计灵感收集技能。当用户需要设计参考、UI灵感、视觉创意时触发。
+  用户提出设计方向（如"医疗App"、"移动端UI"、"金融Dashboard"等），技能负责：
+  (1) Dribbble 使用 Tavily 搜索官方搜索/标签页，过滤个人作品集
+  (2) Pinterest 直接构造大搜索 URL（用户日常搜索体验，含顶部筛选标签）
+  (3) 整理内容并附上链接
+  (4) 输出 Markdown 文档，命名为"关键词+日期时间"格式
+  (5) 推荐其他相关方向（不带链接）
+version: 2.1.0
+author: "benson126"
+category: productivity
+tags:
+  - design
+  - ui
+  - ux
+  - inspiration
+  - dribbble
+  - pinterest
+emoji: 🎨
+triggers:
+  - 找灵感
+  - 收集灵感
+  - 设计参考
+  - UI参考
+  - 视觉灵感
+  - 设计趋势
+  - Dribbble
+  - Pinterest
+requirements:
+  env:
+    - TAVILY_API_KEY
+  tools:
+    - tavily-python
+dependencies:
+  pip:
+    - tavily-python

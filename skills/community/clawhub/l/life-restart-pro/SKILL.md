@@ -1,35 +1,110 @@
 ---
-name: "life-restart-pro"
-description: "输入出生城市 / 家庭条件，重开你的人生！AI 生成完整一生剧情，随机事件、天赋、关键转折、多结局（打工人/富豪/网红/隐士等）。支持中英文双语，刷屏神器，离谱结局等你来测！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/life-restart-pro"
-sourceUrl: "https://clawhub.ai/skills/life-restart-pro"
+name: 人生重开模拟器 Pro (Life Restart Pro)
+description: 输入出生城市 / 家庭条件，重开你的人生！AI 生成完整一生剧情，随机事件、天赋、关键转折、多结局（打工人/富豪/网红/隐士等）。支持中英文双语，刷屏神器，离谱结局等你来测！
+version: 1.0.0
+tags: ["fun", "simulation", "life", "restart", "人生重开", "simulator", "humor"]
+user-invocable: true
 ---
 
-# life-restart-pro
+# 人生重开模拟器 Pro (Life Restart Pro)
 
-> 输入出生城市 / 家庭条件，重开你的人生！AI 生成完整一生剧情，随机事件、天赋、关键转折、多结局（打工人/富豪/网红/隐士等）。支持中英文双语，刷屏神器，离谱结局等你来测！
+## 何时触发这个 Skill
+- 用户说类似“帮我重开人生”“人生重开模拟器”“Life restart”“重开一次”“模拟我的人生”“如果我出生在XX会怎样”等时激活。
+- 支持中英混用：自动检测主要语言（中文优先）。
+  - 输入中文（如“出生上海，中产家庭”）→ 输出中文剧情
+  - 输入英文（如"Born in New York, poor family"）→ 输出英文剧情
+- 可指定参数："加随机事件""要离谱点""多结局""只看结局"等，龙虾会相应调整。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/life-restart-pro`
-- **Source URL:** [https://clawhub.ai/skills/life-restart-pro](https://clawhub.ai/skills/life-restart-pro)
+## 核心玩法 & 输出结构（严格遵守这个格式，让输出整洁刷屏友好）
+1. **开局信息**：复述用户输入（出生城市、家庭条件、性别可选等），随机分配天赋（3-5个，数值0-10）。
+   示例：
+   天赋抽取：
+   - 颜值：7
+   - 智商：9
+   - 家境：4
+   - 运气：2
+   - 情商：6
+   - 隐藏天赋：文艺细胞 +3（随机触发）
 
-## Overview
+2. **人生阶段剧情**（分段，每段3-8年一跳，共5-8段）：
+   - 童年（0-12岁）
+   - 青少年（13-18岁）
+   - 青年（19-30岁）
+   - 中年（31-50岁）
+   - 晚年（51+岁）
+   每段描述关键事件、选择后果、随机惊喜（中彩票、车祸、创业暴富、出轨离婚、意外成名、隐居山林等）。
+   用生动、幽默、带梗的语言（中文版用网络语，英文版用 meme/slang）。
 
+3. **最终结局**：一句话总结人生类型 + 评分（幸福度/财富/影响力 0-100）
+   示例结局分类：
+   - 顶级富豪（财富100+）
+   - 普通打工人（幸福中规中矩）
+   - 网红/明星（影响力爆表）
+   - 隐士/躺平（自由但穷）
+   - 悲剧收场（早逝/破产/孤独）
+   - 传奇一生（多重转折）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/life-restart-pro
-```
+4. **额外趣味**（随机出现1-2个）：
+   - 隐藏彩蛋/成就（如“中了双色球”“被马斯克挖走”“成了抽象网红”）
+   - 建议：“想重开？输入‘再来一次’或改条件重启！”
+
+## 随机事件 & 规则（龙虾内部逻辑，必须遵守）
+- 基于输入条件随机生成：
+  - 出生城市：影响机会（北京/上海 → 高起点；小县城 → 难翻身但有逆袭梗）
+  - 家庭条件：穷/中产/富豪 → 影响初始属性 & 事件概率
+- 随机事件概率（提示词引导）：
+  - 正向：中彩票（低概率）、创业成功、出国留学、偶遇贵人、意外成名
+  - 负向：破产、车祸、重病、失业、感情失败
+  - 中性：结婚生子、换工作、移民、隐居
+- 保持平衡：不是纯欧皇/非酋，80%合理 + 20%离谱惊喜
+- 幽默但不恶意：结局带自嘲/解压感，避免过于黑暗
+
+## 示例对话（中英双版）
+
+**中文输入**：
+用户：出生广州，中产家庭，男
+龙虾：
+【人生重开 Pro - 第X局】
+出生：广州，中产家庭，男性
+
+天赋：颜值8 / 智商7 / 家境6 / 运气5 / 情商9 / 隐藏：吃货天赋
+
+0-12岁：童年无忧，广州美食吃到飞起，体型+10但快乐+20
+13-18岁：高考超常发挥，考上985，但谈了个早恋分手心碎
+19-30岁：互联网大厂卷王 → 跳槽创业 → 赶上风口卖公司套现5000w
+31-50岁：财务自由，环游世界，中年危机时离婚又闪婚
+51+岁：隐居三亚，海边养老，儿孙满堂
+
+结局：中产逆袭型富豪
+幸福度：85 | 财富：92 | 影响力：60
+彩蛋：60岁时中了双色球二等奖，又多了一套海景房！
+
+**英文输入**：
+用户：Born in Tokyo, wealthy family
+龙虾：
+【Life Restart Pro - Round X】
+Born: Tokyo, wealthy family
+
+Talents: Looks 9 / IQ 8 / Wealth 10 / Luck 4 / EQ 7 / Hidden: Tech Prodigy
+
+0-12: Spoiled rich kid, private tutors, travels the world
+13-18: Top university, starts coding side project
+19-30: Joins startup → becomes CTO → IPO millionaire
+31-50: Divorce drama, founds new unicorn company
+51+: Retires to countryside, becomes quiet philosopher
+
+Ending: Tech Billionaire Legend
+Happiness: 78 | Wealth: 98 | Influence: 95
+Easter Egg: At 45, accidentally invents viral app, memes forever.
+
+## 所需工具/权限
+- 无需外部工具，纯提示词生成（随机性靠 LLM）。
+- 可选：如果用户允许文件工具，能存“重开存档”。
+
+## 边界处理
+- 输入太简短：友好问“出生城市和家庭条件呢？要不要指定性别/其他属性？”
+- 想重开：说“再来一次”“重开”“restart” → 重新生成一局
+- 离谱度调节：用户说“更现实”“更欧皇”“更抽象” → 调整随机强度
+
+重开愉快，人生苦短，AI 先帮你试错！🌀😂
+欢迎分享你的离谱结局～

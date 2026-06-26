@@ -1,0 +1,1171 @@
+Title: FWC26 Match Schedule_v17_10042026.ai
+
+URL Source: http://digitalhub.fifa.com/asset/4b5d4417-3343-4732-9cdf-14b6662af407/FWC26-Match-Schedule_English.pdf
+
+Number of Pages: 1
+
+Markdown Content:
+CZE 
+
+v
+
+RSA 
+
+A
+
+25 12:00 
+
+TUR 
+
+v
+
+PAR KOR 
+
+v
+
+CZE 
+
+A
+
+2 22:00 
+
+AUS 
+
+v
+
+TUR 
+
+D
+
+6 00:00 
+
+NED 
+
+v
+
+SWE 
+
+F
+
+35 13:00 
+
+POR 
+
+v
+
+COD 
+
+K
+
+23 13:00 
+
+COL 
+
+v
+
+COD 
+
+K
+
+48 22:00 
+
+FRA 
+
+v
+
+IRQ 
+
+I
+
+42 17:00 
+
+SEN 
+
+v
+
+IRQ 
+
+I
+
+62 15:00 
+
+JPN 
+
+v
+
+SWE 
+
+F
+
+57 19:00 
+
+CAN 
+
+v
+
+BIH 
+
+B
+
+3 15:00 
+
+SUI 
+
+v
+
+BIH 
+
+B
+
+26 15:00 
+
+USA 
+
+v
+
+PAR 
+
+D
+
+4 21:00 
+
+BRA 
+
+v
+
+MAR 
+
+C
+
+7 18:00 
+
+HAI 
+
+v
+
+SCO 
+
+C
+
+5 21:00 
+
+QAT 
+
+v
+
+SUI 
+
+B
+
+8 15:00 
+
+GER 
+
+v
+
+CUW 
+
+E
+
+10 13:00 
+
+NED 
+
+v
+
+JPN 
+
+F
+
+11 16:00 
+
+CIV 
+
+v
+
+ECU 
+
+E
+
+9 19:00 
+
+KSA 
+
+v
+
+URU 
+
+H
+
+13 18:00 
+
+ESP 
+
+v
+
+CPV 
+
+H
+
+14 12:00 
+
+AUT 
+
+v
+
+JOR 
+
+J
+
+20 00:00 
+
+ARG 
+
+v
+
+ALG 
+
+J
+
+19 21:00 
+
+FRA 
+
+v
+
+SEN 
+
+I
+
+17 15:00 
+
+GHA 
+
+v
+
+PAN 
+
+L
+
+21 19:00 
+
+ENG 
+
+v
+
+CRO 
+
+L
+
+22 16:00 
+
+UZB 
+
+v
+
+COL 
+
+K
+
+24 22:00 
+
+CAN 
+
+v
+
+QAT 
+
+B
+
+27 18:00 
+
+MEX 
+
+v
+
+KOR 
+
+A
+
+28 21:00 
+
+BRA 
+
+v
+
+HAI 
+
+C
+
+29 20:30 
+
+SCO 
+
+v
+
+MAR 
+
+C
+
+30 18:00 
+
+USA 
+
+v
+
+AUS 
+
+D
+
+32 15:00 
+
+TUN 
+
+v
+
+JPN 
+
+F
+
+36 00:00 
+
+ECU 
+
+v
+
+CUW 
+
+E
+
+34 20:00 
+
+GER 
+
+v
+
+CIV 
+
+E
+
+33 16:00 
+
+NOR 
+
+v
+
+SEN 
+
+I
+
+41 20:00 
+
+ENG 
+
+v
+
+GHA 
+
+L
+
+45 16:00 
+
+PAN 
+
+v
+
+CRO 
+
+L
+
+46 19:00 
+
+URU 
+
+v
+
+CPV 
+
+H
+
+37 18:00 
+
+ESP 
+
+v
+
+KSA 
+
+H
+
+38 12:00 
+
+ARG 
+
+v
+
+AUT 
+
+J
+
+43 13:00 
+
+BEL 
+
+v
+
+IRN 
+
+G
+
+39 15:00 
+
+NZL 
+
+v
+
+EGY 
+
+G
+
+40 21:00 
+
+JOR 
+
+v
+
+ALG 
+
+J
+
+44 23:00 
+
+SUI 
+
+v
+
+CAN 
+
+B
+
+51 15:00 
+
+RSA 
+
+v
+
+KOR 
+
+A
+
+54 21:00 
+
+POR 
+
+v
+
+UZB 
+
+K
+
+47 13:00 
+
+MAR 
+
+v
+
+HAI 
+
+C
+
+50 18:00 
+
+SCO 
+
+v
+
+BRA 
+
+C
+
+49 18:00 
+
+ECU 
+
+v
+
+GER 
+
+E
+
+56 16:00 
+
+CUW 
+
+v
+
+CIV 
+
+E
+
+55 16:00 
+
+TUN 
+
+v
+
+NED 
+
+F
+
+58 19:00 
+
+PAR 
+
+v
+
+AUS 
+
+D
+
+60 22:00 
+
+NZL 
+
+v
+
+BEL 
+
+G
+
+64 23:00 
+
+CPV 
+
+v
+
+KSA 
+
+H
+
+65 20:00 
+
+URU 
+
+v
+
+ESP 
+
+H
+
+66 20:00 
+
+NOR 
+
+v
+
+FRA 
+
+I
+
+61 15:00 
+
+PAN 
+
+v
+
+ENG 
+
+L
+
+67 17:00 
+
+CRO 
+
+v
+
+GHA 
+
+L
+
+68 17:00 
+
+COL 
+
+v
+
+POR 
+
+K
+
+71 19:30 
+
+ALG 
+
+v
+
+AUT 
+
+J
+
+69 22:00 
+
+JOR 
+
+v
+
+ARG 
+
+J
+
+70 22:00 
+
+EGY 
+
+v
+
+IRN 
+
+G
+
+63 23:00 
+
+2A 
+
+v
+
+2B 
+
+73 15:00 
+
+1F 
+
+v
+
+2C 
+
+75 21:00 
+
+1C 
+
+v
+
+2F 
+
+76 13:00 
+
+2E 
+
+v
+
+2I 
+
+78 13:00 
+
+1J 
+
+v
+
+2H 
+
+86 18:00 
+
+2K 
+
+v
+
+2L 
+
+83 19:00 
+
+W74 
+
+v
+
+W77 
+
+89 17:00 
+
+W86 
+
+v
+
+W88 
+
+95 12:00 
+
+W83 
+
+v
+
+W84 
+
+93 15:00 
+
+W73 
+
+v
+
+W75 
+
+90 13:00 
+
+W79 
+
+v
+
+W80 
+
+92 20:00 
+
+W93 
+
+v
+
+W94 
+
+98 15:00 
+
+W95 
+
+v
+
+W96 
+
+100 21:00 
+
+W89 
+
+v
+
+W90 
+
+97 16:00 
+
+W81 
+
+v
+
+W82 
+
+94 20:00 
+
+W85 
+
+v
+
+W87 
+
+96 16:00 
+
+W76 
+
+v
+
+W78 
+
+91 16:00 
+
+2D 
+
+v
+
+2G 
+
+88 14:00 
+
+1K 
+
+v
+
+3
+
+DEIJL 
+
+87 21:30 
+
+1A 
+
+v
+
+3
+
+CEFHI 
+
+79 21:00 
+
+1D 
+
+v
+
+3
+
+BEFIJ 
+
+81 20:00 
+
+1G 
+
+v
+
+3
+
+AEHIJ 
+
+82 16:00 
+
+1B 
+
+v
+
+3
+
+EFGIJ 
+
+85 23:00 
+
+1L 
+
+v
+
+3
+
+EHIJK 
+
+80 12:00 
+
+1E 
+
+v
+
+3
+
+ABCDF 
+
+74 16:30 
+
+1I 
+
+v
+
+3
+
+CDFGH 
+
+77 17:00 
+
+1H 
+
+v
+
+2J 
+
+84 15:00 
+
+ET-2 ET-2 ET-2 ET-1 ET-1 ET-1 ET-3 ET-3 ET-3 ET-3 
+
+MEX 
+
+v
+
+RSA 
+
+A
+
+1 15:00 
+
+CZE 
+
+v
+
+MEX 
+
+A
+
+53 21:00 
+
+D
+
+31 23:00 
+
+SWE 
+
+v
+
+TUN 
+
+F
+
+12 22:00 
+
+I
+
+18 18:00 
+
+TUR 
+
+v
+
+USA 
+
+D
+
+59 22:00 
+
+BIH 
+
+v
+
+QAT 
+
+B
+
+52 15:00 
+
+W97 
+
+v
+
+W98 
+
+101 15:00 
+
+W99 
+
+v
+
+W100 
+
+102 15:00 
+
+W91 
+
+v
+
+W92 
+
+99 17:00 
+
+K
+
+72 19:30 
+
+BEL 
+
+v
+
+EGY 
+
+G
+
+16 15:00 
+
+IRN 
+
+v
+
+NZL 
+
+G
+
+15 21:00 103 17:00 104 15:00 
+
+COD 
+
+v
+
+UZB IRQ 
+
+v
+
+NOR 
+
+> 10 April 2026  © FIFA
+> R E S T  D A Y S R E S T  D A Y S R E S T  D A Y
+> WESTERN REGION CENTRAL REGION EASTERN REGION
+
+VANCOUVER SEATTLE LOS ANGELES GUADALAJARA MEXICO CITY MONTERREY HOUSTON DALLAS ATLANTA TORONTO BOSTON SAN FRANCISCO BAY AREA KANSAS CITY MIAMI NEW YORK NEW JERSEY 
+
+GROUP STAGE ROUND OF 32 QUARTER-FINALS SEMI-FINALS 
+
+> Sunday
+> 28 June
+> Monday
+> 29 June
+> Tuesday
+> 30 June
+> Wednesday
+> 1 July
+> Thursday
+> 2 July
+> Friday
+> 3 July
+
+ROUND OF 16 
+
+> Saturday
+> 4 July
+> Sunday
+> 5 July
+> Monday
+> 6 July
+> Tuesday
+> 7 July
+> Thursday
+> 9 July
+> Friday
+> 10 July
+> Saturday
+> 11 July
+> Tuesday
+> 14 July
+> Wednesday
+> 15 July
+> Saturday
+> 18 July
+> Sunday
+> 19 July
+> Thursday
+> 11 June
+> Friday
+> 12 June
+> Saturday
+> 13 June
+> Sunday
+> 14 June
+> Monday
+> 15 June
+> Tuesday
+> 16 June
+> Wednesday
+> 17 June
+> Thursday
+> 18 June
+> Friday
+> 19 June
+> Saturday
+> 20 June
+> Sunday
+> 21 June
+> Monday
+> 22 June
+> Tuesday
+> 23 June
+> Wednesday
+> 24 June
+> Thursday
+> 25 June
+> Friday
+> 26 June
+> Saturday
+> 27 June
+> Wednesday
+> 8 July
+> Sunday
+> 12 July
+> Monday
+> 13 July
+> Thursday
+> 16 July
+> Friday
+> 17 July
+> Subject to change  W = Winner
+
+PHILADELPHIA 
+
+FINAL BRONZE FINAL 
+
+GROUP A 
+
+MEXICO (MEX) SOUTH AFRICA (RSA) KOREA REPUBLIC (KOR) 
+
+CZECHIA (CZE) 
+
+GROUP G 
+
+BELGIUM (BEL) EGYPT (EGY) 
+
+IR IRAN (IRN) 
+
+NEW ZEALAND (NZL) 
+
+GROUP B 
+
+CANADA (CAN) 
+
+BOSNIA & HERZEGOVINA (BIH) 
+
+QATAR (QAT) 
+
+SWITZERLAND (SUI) 
+
+GROUP H 
+
+SPAIN (ESP) 
+
+CABO VERDE (CPV) SAUDI ARABIA (KSA) URUGUAY (URU) 
+
+GROUP C 
+
+BRAZIL (BRA) 
+
+MOROCCO (MAR) HAITI (HAI) 
+
+SCOTLAND (SCO) 
+
+GROUP I 
+
+FRANCE (FRA) 
+
+SENEGAL (SEN) 
+
+IRAQ (IRQ) 
+
+NORWAY (NOR) 
+
+GROUP D 
+
+USA (USA) PARAGUAY (PAR) AUSTRALIA (AUS) 
+
+TÜRKIYE (TUR) 
+
+GROUP J 
+
+ARGENTINA (ARG) 
+
+ALGERIA (ALG) AUSTRIA (AUT) 
+
+JORDAN (JOR) 
+
+GROUP E 
+
+GERMANY (GER) CURAÇAO (CUW) CÔTE D’IVOIRE (CIV) ECUADOR (ECU) 
+
+GROUP K 
+
+PORTUGAL (POR) 
+
+CONGO DR (COD) 
+
+UZBEKISTAN (UZB) COLOMBIA (COL) 
+
+GROUP F 
+
+NETHERLANDS (NED) 
+
+JAPAN (JPN) 
+
+SWEDEN (SWE) 
+
+TUNISIA (TUN) 
+
+GROUP L 
+
+ENGLAND (ENG) 
+
+CROATIA (CRO) GHANA (GHA) PANAMA (PAN) 
+
+All times are Eastern Time (ET). 
+
+# MATCH SCHEDULE 
+
+BRONZE FINAL FINAL

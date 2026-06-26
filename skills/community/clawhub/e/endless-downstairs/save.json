@@ -1,0 +1,48 @@
+{
+  "floor_index": 12,
+  "floor_list": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25"
+  ],
+  "items": [],
+  "abilities": [],
+  "sanity": 70,
+  "sanity_max": 100,
+  "debuffs": [],
+  "triggered_events": [
+    "language_select"
+  ],
+  "choice_history": [
+    "[13F] English"
+  ],
+  "floor_history": [],
+  "pending_event_id": null,
+  "current_event_id": "start_1",
+  "game_over": false,
+  "phase": 1,
+  "knock_count": 1,
+  "language": "en"
+}

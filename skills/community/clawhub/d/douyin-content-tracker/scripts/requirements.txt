@@ -1,0 +1,16 @@
+# 采集
+playwright
+yt-dlp
+
+# 数据处理
+pandas
+jieba
+
+# 音频提取（ffmpeg wrapper，用于获取 ffmpeg 可执行文件）
+imageio-ffmpeg
+
+# 语音识别
+openai-whisper
+
+# 其他
+python-dotenv

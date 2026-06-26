@@ -1,0 +1,1 @@
+错误：GDBus.Error:org.freedesktop.DBus.Error.UnknownObject: No such object path '/'

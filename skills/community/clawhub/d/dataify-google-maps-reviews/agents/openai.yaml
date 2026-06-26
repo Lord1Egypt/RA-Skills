@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Maps Reviews"
+  short_description: "Collect Google Maps reviews through Dataify."
+  default_prompt: "Use $dataify-google-maps-reviews to collect Google Maps reviews by URL."

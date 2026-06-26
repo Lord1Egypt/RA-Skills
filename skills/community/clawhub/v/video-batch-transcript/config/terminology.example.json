@@ -1,0 +1,51 @@
+{
+  "说明": "自定义术语表 - 将常见的变体统一为标准术语",
+  "格式": {
+    "标准术语": ["变体 1", "变体 2", "变体 3"]
+  },
+  
+  "机器学习": ["机器学习", "ML", "Machine Learning", "machine learning"],
+  "深度学习": ["深度学习", "DL", "Deep Learning", "deep learning"],
+  "神经网络": ["神经网络", "NN", "Neural Network", "neural network"],
+  "卷积神经网络": ["卷积神经网络", "CNN", "ConvNet"],
+  "循环神经网络": ["循环神经网络", "RNN", "Recurrent Neural Network"],
+  "Transformer": ["Transformer", "transformer", "transformer 模型"],
+  "注意力机制": ["注意力机制", "Attention", "attention mechanism"],
+  "自注意力": ["自注意力", "Self-Attention", "self attention"],
+  
+  "CUDA": ["CUDA", "cuda", "CUDA 核心"],
+  "GPU": ["GPU", "gpu", "显卡", "图形处理器"],
+  "CPU": ["CPU", "cpu", "中央处理器", "处理器"],
+  "张量": ["张量", "Tensor", "tensor"],
+  "矩阵": ["矩阵", "Matrix", "matrix"],
+  
+  "Python": ["Python", "python", "Python 语言"],
+  "JavaScript": ["JavaScript", "javascript", "JS", "js"],
+  "TypeScript": ["TypeScript", "typescript", "TS", "ts"],
+  "API": ["API", "api", "Api", "应用程序接口"],
+  "SDK": ["SDK", "sdk", "软件开发工具包"],
+  
+  "GitHub": ["GitHub", "github", "Github"],
+  "Git": ["Git", "git"],
+  "Docker": ["Docker", "docker"],
+  "Kubernetes": ["Kubernetes", "kubernetes", "K8s", "k8s"],
+  
+  "数据库": ["数据库", "Database", "database"],
+  "MySQL": ["MySQL", "mysql"],
+  "PostgreSQL": ["PostgreSQL", "postgresql", "Postgres"],
+  "MongoDB": ["MongoDB", "mongodb"],
+  "Redis": ["Redis", "redis"],
+  
+  "前端": ["前端", "Frontend", "front-end"],
+  "后端": ["后端", "Backend", "back-end"],
+  "全栈": ["全栈", "Full Stack", "fullstack"],
+  
+  "人工智能": ["人工智能", "AI", "Artificial Intelligence"],
+  "大语言模型": ["大语言模型", "LLM", "Large Language Model"],
+  "生成式 AI": ["生成式 AI", "Generative AI", "AIGC"],
+  
+  "云计算": ["云计算", "Cloud Computing", "云服务"],
+  "服务器": ["服务器", "Server", "server"],
+  "容器": ["容器", "Container", "container"],
+  "微服务": ["微服务", "Microservice", "microservices"]
+}

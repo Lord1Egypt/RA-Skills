@@ -1,0 +1,25 @@
+{
+  "name": "@reivo/openclaw-skill",
+  "version": "0.4.4",
+  "description": "Track AI agent costs, set budget limits, and auto-detect runaway loops. Smart routing reduces costs 40-60%.",
+  "main": "setup.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "test": "node test/formatter.test.js && node test/dashboard-client.test.js"
+  },
+  "dependencies": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tazsat0512/reivo.git",
+    "directory": "skills/reivo"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-costs",
+    "budget",
+    "guardrails",
+    "loop-detection",
+    "llm-proxy"
+  ]
+}

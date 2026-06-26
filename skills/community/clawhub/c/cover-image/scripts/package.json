@@ -1,0 +1,9 @@
+{
+  "name": "cover-image-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Utilities for cover-image",
+  "scripts": {
+    "test": "npx -y bun test"
+  }
+}

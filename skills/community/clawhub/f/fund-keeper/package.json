@@ -1,0 +1,35 @@
+{
+  "name": "fund-keeper",
+  "version": "2.7.0",
+  "description": "国内场外基金智能顾问 - 实时估值、买卖建议、收益可视化、贵金属投资",
+  "author": "皮儿",
+  "license": "MIT",
+  "keywords": [
+    "fund",
+    "investment",
+    "gold",
+    "silver",
+    "china-stock",
+    "financial"
+  ],
+  "main": "fund_keeper.py",
+  "scripts": {
+    "start": "python fund_keeper.py portfolio"
+  },
+  "dependencies": {
+    "requests": ">=2.25.0",
+    "pandas": ">=1.3.0"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "openclaw": {
+    "skillType": "cli",
+    "commands": {
+      "fund": "python fund_keeper.py"
+    },
+    "permissions": [
+      "network"
+    ]
+  }
+}

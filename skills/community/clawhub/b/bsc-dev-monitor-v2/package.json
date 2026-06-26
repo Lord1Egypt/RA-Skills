@@ -1,0 +1,29 @@
+{
+  "name": "bsc-dev-monitor",
+  "version": "1.0.0",
+  "description": "BSC Dev Wallet Monitor - Monitor token transfers from developer addresses on BSC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js test",
+    "deploy": "node auto-deploy.js"
+  },
+  "keywords": [
+    "bsc",
+    "monitor",
+    "trading",
+    "crypto",
+    "defi",
+    "follow-trader"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

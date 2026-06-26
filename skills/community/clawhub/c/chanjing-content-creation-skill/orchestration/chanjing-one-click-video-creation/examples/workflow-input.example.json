@@ -1,0 +1,75 @@
+{
+  "topic": "可选：内容层追溯用；run_render 不读取。例如：防晒",
+  "video_plan": {
+    "scene_count": 5,
+    "core_angle": "可选：策划元数据；run_render 不读取。例如：SPF/PA 认知 + 用量 + 补涂与硬防晒",
+    "style": "科普种草",
+    "platform": "抖音/视频号等竖屏信息流",
+    "target_audience": "18–35 岁都市通勤族",
+    "tone": "亲切、克制、可执行",
+    "success_metrics_note": "完播与收藏可后续在宿主侧打点，本 JSON 不落指标"
+  },
+  "full_script": "（开场）防晒做不对，晒黑又伤皮。选对指数与用量，紫外线才挡得住。出门前挤满一枚硬币，别心疼。户外两小时记得补涂，帽子也不能少。坚持防晒，皮肤会给你回报。",
+  "audio_man": "每次任务据语义选型：list_voices 的 id，宜与同条形象的 audio_man_id 一致",
+  "person_id": "每次任务据语义与 video_plan：list_figures 所选来源行的 person_id",
+  "figure_type": "whole_body",
+  "speed": 1,
+  "pitch": 1,
+  "ai_video_duration_sec": 10,
+  "model_code": "Doubao-Seedance-1.0-pro",
+  "max_retry_per_step": 2,
+  "subtitle_required": false,
+  "subtitle_color": null,
+  "subtitle_stroke_color": null,
+  "subtitle_stroke_width": null,
+  "scenes": [
+    {
+      "scene_id": 1,
+      "beat": "开场钩子",
+      "voiceover": "（开场）防晒做不对，晒黑又伤皮。",
+      "use_avatar": true,
+      "subtitle": "防晒做不对，晒黑又伤皮。",
+      "planning": {}
+    },
+    {
+      "scene_id": 2,
+      "beat": "知识点｜选品",
+      "voiceover": "选对指数与用量，紫外线才挡得住。",
+      "use_avatar": false,
+      "ref_prompt": "Contemporary urban China, bright bathroom vanity in morning light, locked tripod medium shot. Generic sunscreen tubes and pump bottles on a tray, caps closed, labels blurred unreadable, no logos. Soft sidelight, clean tiles, vertical 9:16. East Asian young adult woman's hands only at frame edge adjusting a bottle, slow subtle motion. Focus on objects and environment. No readable text, no on-screen captions, no before-after split. Calm documentary product B-roll.",
+      "subtitle": "选对指数与用量，紫外线才挡得住。",
+      "planning": {
+        "shot_type": "静物 + 手部点缀",
+        "negative_prompt_hint": "避免可读商标、说明书特写、分屏教程 UI"
+      }
+    },
+    {
+      "scene_id": 3,
+      "beat": "用量示范（口播）",
+      "voiceover": "出门前挤满一枚硬币，别心疼。",
+      "use_avatar": true,
+      "subtitle": "出门前挤满一枚硬币，别心疼。",
+      "planning": {}
+    },
+    {
+      "scene_id": 4,
+      "beat": "场景｜户外补涂",
+      "voiceover": "户外两小时记得补涂，帽子也不能少。",
+      "use_avatar": false,
+      "ref_prompt": "Contemporary Chinese city park promenade, sunny summer, wide tripod shot. East Asian young woman from behind wearing wide-brim hat and light long sleeves, holding a small plain sunscreen tube without readable label, walking slowly in tree shade. Dappled light, relaxed pace, vertical 9:16. No readable text, no logos, no split-screen tutorial. Calm lifestyle B-roll, very subtle slow push-in.",
+      "subtitle": "户外两小时记得补涂，帽子也不能少。",
+      "planning": {
+        "shot_type": "环境人像（背影/中景）",
+        "negative_prompt_hint": "避免人脸大特写、夸张表情、文字贴纸"
+      }
+    },
+    {
+      "scene_id": 5,
+      "beat": "收尾强化",
+      "voiceover": "坚持防晒，皮肤会给你回报。",
+      "use_avatar": true,
+      "subtitle": "（结尾）坚持防晒，皮肤会给你回报。",
+      "planning": {}
+    }
+  ]
+}

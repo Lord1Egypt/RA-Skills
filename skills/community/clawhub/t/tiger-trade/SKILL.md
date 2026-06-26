@@ -1,35 +1,75 @@
 ---
-name: "Tiger Trade"
-description: "Execute US and HK stock trades via Tiger Brokers API. Use when user wants to buy or sell stocks, manage investment portfolio, place orders for US ETFs or HK..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/tiger-trade"
-sourceUrl: "https://clawhub.ai/skills/tiger-trade"
+name: tiger-trade
+description: Execute US and HK stock trades via Tiger Brokers API. Use when user wants to buy or sell stocks, manage investment portfolio, place orders for US ETFs or HK stocks, or check account balance. Requires tiger-config.json with tiger_id account and private_key_pk8.
 ---
 
 # Tiger Trade
 
-> Execute US and HK stock trades via Tiger Brokers API. Use when user wants to buy or sell stocks, manage investment portfolio, place orders for US ETFs or HK...
+Execute trades via Tiger Brokers API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/tiger-trade`
-- **Source URL:** [https://clawhub.ai/skills/tiger-trade](https://clawhub.ai/skills/tiger-trade)
+## Setup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/tiger-trade
+Create config file at `~/.tiger-config.json `:
+```json
+{
+  "tiger_id": "your_tiger_id",
+  "account": "your_account",
+  "private_key_pk8": "your_private_key"
+}
 ```
+
+## Check Stock Prices
+
+Use Tiger Broker website to get current prices:
+
+```
+https://www.itiger.com/hant/stock/02800
+https://www.itiger.com/hant/stock/AAPL
+```
+
+Replace the stock code (02800 or AAPL) with any stock 
+
+## Quick Trade
+
+```python
+import json
+from tigeropen.tiger_open_config import TigerOpenClientConfig
+from tigeropen.trade.trade_client import TradeClient
+from tigeropen.trade.request.model import PlaceModifyOrderParams
+from tigeropen.common.consts import OrderType
+
+with open('~/.tiger-config.json', 'r') as f:
+    config = json.load(f)
+
+client_config = TigerOpenClientConfig()
+client_config.tiger_id = config['tiger_id']
+client_config.account = config['account']
+client_config.private_key = config['private_key_pk8']
+client_config.sandbox = False
+
+client = TradeClient(client_config)
+
+# Place stock order
+contracts = client.get_contracts(['02800'])
+if contracts:
+    order_params = PlaceModifyOrderParams()
+    order_params.account = config['account']
+    order_params.contract = contracts[0]
+    order_params.action = 'BUY'
+    order_params.order_type = OrderType.LMT.value
+    order_params.limit_price = 26.80  # Get from itiger.com
+    order_params.quantity = 10000
+    
+    result = client.place_order(order_params)
+    print(result)
+```
+
+## Order Types
+
+- `LMT` = Limit order
+- `MKT` = Market order
+
+## Actions
+
+- `BUY` - 买入
+- `SELL` - 卖出

@@ -1,0 +1,14 @@
+{
+  "id": "wechat-formatter",
+  "name": "WeChat Formatter",
+  "layer": "visual",
+  "executor": "wechat_formatter_v1",
+  "input_kind": "article_markdown",
+  "output_kind": "wechat_html",
+  "description": "Convert the article Markdown into simple WeChat-compatible HTML and optionally consume a sibling writing-pack sidecar for summary, quote, share-copy, and CTA blocks.",
+  "workbench": {
+    "id": "wechat-studio",
+    "role": "optional_manual_assist",
+    "notes": "Use wechat-studio when you need preview, style tuning, HTML inspection, or draft push."
+  }
+}

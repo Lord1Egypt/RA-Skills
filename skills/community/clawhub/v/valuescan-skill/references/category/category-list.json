@@ -1,0 +1,45 @@
+{
+  "name": "板块资金列表",
+  "endpoint": "POST /trade/categories/getTradeList",
+  "description": "提供所有板块类别在不同时间窗口下的实时资金积累数据",
+  "credits_cost": 3,
+  "needToken": false,
+  "use_case": "适用于板块轮动的资金积累数据监控，适用于发现热门板块或资金异动板块，适用于行业/板块级别的资金流向分析",
+  "update_frequency": "实时更新",
+  "params": {
+    "tradeType": { "type": "integer", "req": true, "desc": "交易类型（1:现货，2:合约）" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间（毫秒时间戳）" },
+    "tradeType": { "type": "integer", "actualType": "integer", "desc": "交易类型（1:现货，2:合约）" },
+    "tag": { "type": "string", "actualType": "string", "desc": "板块名称" },
+    "tagsSimplified": { "type": "string", "actualType": "string", "desc": "板块名称(中文)" },
+    "categoriesTradeDataList": {
+      "type": "array",
+      "desc": "板块资金数据列表",
+      "item": {
+        "timeRange": { "type": "string", "actualType": "string", "desc": "时间范围" },
+        "timeParticleEnum": { "type": "integer", "actualType": "integer", "desc": "统计时间粒度" },
+        "tradeInflow": { "type": "number", "actualType": "number", "desc": "交易净流入金额 (USD)" }
+      }
+    }
+  },
+  "field_meta": {
+    "tag": { "meaning": "板块英文标识", "advice": "用于后续查询板块下代币列表的参数" },
+    "tagsSimplified": { "meaning": "板块中文名称", "advice": "用于展示给用户选择" },
+    "categoriesTradeDataList": { "meaning": "板块资金数据", "advice": "该板块在不同时间粒度的资金净流入数据" }
+  },
+  "enums": {
+    "tradeType": { "1": "现货", "2": "合约" }
+  },
+  "example": {
+    "req": { "tradeType": 1 },
+    "res": {
+      "code": 200,
+      "data": [
+        { "updateTime": 1773298200000, "tradeType": 1, "tag": "Metaverse", "tagsSimplified": "元宇宙", "categoriesTradeDataList": [{ "timeRange": "m5", "timeParticleEnum": 5, "tradeInflow": -167 }] },
+        { "updateTime": 1773298200000, "tradeType": 1, "tag": "Payments", "tagsSimplified": "Payments", "categoriesTradeDataList": [{ "timeRange": "m5", "timeParticleEnum": 5, "tradeInflow": 34939 }] }
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "timestamp": "2026-03-07T08:52:44.156Z",
+  "sector": "化工",
+  "description": "基础化工",
+  "total_stocks": 442,
+  "top_gainers": [
+    {
+      "code": "301373",
+      "name": "凌玮科技",
+      "price": 66.6,
+      "change_pct": 14.37,
+      "change_amt": 8.37,
+      "volume_ratio": 172348,
+      "turnover": 1095895741.7,
+      "amplitude": 17.41,
+      "high": 67.99,
+      "low": 57.85
+    },
+    {
+      "code": "301220",
+      "name": "亚香股份",
+      "price": 40.38,
+      "change_pct": 13.78,
+      "change_amt": 4.89,
+      "volume_ratio": 88518,
+      "turnover": 348839728.62,
+      "amplitude": 18.34,
+      "high": 42,
+      "low": 35.49
+    },
+    {
+      "code": "300927",
+      "name": "江天化学",
+      "price": 34.9,
+      "change_pct": 13.13,
+      "change_amt": 4.05,
+      "volume_ratio": 193510,
+      "turnover": 655504866.3,
+      "amplitude": 18.09,
+      "high": 36.2,
+      "low": 30.62
+    },
+    {
+      "code": "688087",
+      "name": "英科再生",
+      "price": 43.65,
+      "change_pct": 12.27,
+      "change_amt": 4.77,
+      "volume_ratio": 85480,
+      "turnover": 353058479,
+      "amplitude": 16.49,
+      "high": 44.11,
+      "low": 37.7
+    },
+    {
+      "code": "920159",
+      "name": "农大科技",
+      "price": 47.25,
+      "change_pct": 11.44,
+      "change_amt": 4.85,
+      "volume_ratio": 49516,
+      "turnover": 222773813.87,
+      "amplitude": 16.01,
+      "high": 48.17,
+      "low": 41.38
+    },
+    {
+      "code": "300641",
+      "name": "正丹股份",
+      "price": 20.38,
+      "change_pct": 10.88,
+      "change_amt": 2,
+      "volume_ratio": 287239,
+      "turnover": 568492427.67,
+      "amplitude": 13.93,
+      "high": 20.84,
+      "low": 18.28
+    },
+    {
+      "code": "600319",
+      "name": "亚星化学",
+      "price": 8.86,
+      "change_pct": 10.06,
+      "change_amt": 0.81,
+      "volume_ratio": 119533,
+      "turnover": 102570876,
+      "amplitude": 10.93,
+      "high": 8.86,
+      "low": 7.98
+    },
+    {
+      "code": "002637",
+      "name": "赞宇科技",
+      "price": 14.58,
+      "change_pct": 10.04,
+      "change_amt": 1.33,
+      "volume_ratio": 118172,
+      "turnover": 164788563.06,
+      "amplitude": 11.32,
+      "high": 14.58,
+      "low": 13.08
+    },
+    {
+      "code": "600227",
+      "name": "赤天化",
+      "price": 3.29,
+      "change_pct": 10.03,
+      "change_amt": 0.3,
+      "volume_ratio": 1776888,
+      "turnover": 559736011,
+      "amplitude": 12.71,
+      "high": 3.29,
+      "low": 2.91
+    },
+    {
+      "code": "002648",
+      "name": "卫星化学",
+      "price": 26.91,
+      "change_pct": 10.02,
+      "change_amt": 2.45,
+      "volume_ratio": 1044806,
+      "turnover": 2718043745.69,
+      "amplitude": 10.67,
+      "high": 26.91,
+      "low": 24.3
+    }
+  ],
+  "top_losers": [
+    {
+      "code": "301565",
+      "name": "中仑新材",
+      "price": 23.72,
+      "change_pct": -6.17,
+      "change_amt": -1.56
+    },
+    {
+      "code": "300072",
+      "name": "海新能科",
+      "price": 5.54,
+      "change_pct": -5.78,
+      "change_amt": -0.34
+    },
+    {
+      "code": "920675",
+      "name": "秉扬科技",
+      "price": 12.39,
+      "change_pct": -5.35,
+      "change_amt": -0.7
+    },
+    {
+      "code": "603938",
+      "name": "三孚股份",
+      "price": 28.28,
+      "change_pct": -5.04,
+      "change_amt": -1.5
+    },
+    {
+      "code": "920694",
+      "name": "中裕科技",
+      "price": 20.13,
+      "change_pct": -4.14,
+      "change_amt": -0.87
+    }
+  ]
+}

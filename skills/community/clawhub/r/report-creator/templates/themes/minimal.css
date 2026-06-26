@@ -1,0 +1,14 @@
+/* Theme: minimal — Academic · Research */
+:root {
+  --primary: #111827; --primary-light: #F3F4F6; --accent: #6B7280;
+  --bg: #FFFFFF; --surface: #F9FAFB; --text: #374151; --text-muted: #9CA3AF;
+  --border: #E5E7EB; --success: #065F46; --warning: #92400E; --danger: #991B1B;
+  --font-sans: 'Georgia', 'Noto Serif SC', serif;
+  --font-mono: 'Courier New', monospace; --radius: 4px;
+}
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.6; font-variant-numeric: lining-nums tabular-nums; }
+h1 { font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: -.02em; margin-bottom: 1.5rem; }
+h2 { font-size: 1.35rem; font-weight: 700; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: .4rem; margin-top: 1.75rem; }
+h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-top: 1.1rem; }
+p { margin: .6rem 0; } a { color: var(--primary); text-decoration: underline; }
+strong { font-weight: 700; } blockquote { border-left: 2px solid var(--border); margin: .75rem 0; padding: .5rem 1.25rem; font-style: italic; color: var(--text-muted); }

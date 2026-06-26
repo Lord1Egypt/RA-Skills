@@ -1,0 +1,42 @@
+# 模型配置
+models:
+  llm:
+    name: "Qwen2.5-3B-Instruct"
+    path: "./models/llm/qwen2.5-3b"
+    device: "auto"  # auto/cpu/cuda/mps
+    max_memory: "0.3"  # 最大内存占用 30%
+    temperature: 0.7
+    max_tokens: 2048
+    context_window: 8192
+  
+  embedding:
+    name: "BGE-M3"
+    path: "./models/embedding/bge-m3"
+    vector_dim: 1024
+    max_seq_length: 8192
+    batch_size: 8
+  
+  ocr:
+    name: "PaddleOCR-v4"
+    path: "./models/ocr/paddleocr-v4"
+    lang: ["ch", "en"]
+    det_db_thresh: 0.3
+    det_db_box_thresh: 0.5
+    rec_batch_num: 6
+
+# 设备适配
+device_adaptation:
+  low_memory:  # <= 8GB
+    llm_quantization: "int8"
+    embedding_batch_size: 4
+    ocr_gpu: false
+  
+  medium_memory:  # 8-16GB
+    llm_quantization: "int8"
+    embedding_batch_size: 8
+    ocr_gpu: true
+  
+  high_memory:  # > 16GB
+    llm_quantization: "fp16"
+    embedding_batch_size: 16
+    ocr_gpu: true

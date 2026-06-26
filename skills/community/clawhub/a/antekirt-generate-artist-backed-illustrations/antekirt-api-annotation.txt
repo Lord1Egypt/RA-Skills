@@ -1,0 +1,71 @@
+Antekirt API Annotation (Implementation Notes)
+==============================================
+
+Purpose
+- Build commercially viable and fair content flows with explicit artist selection and attribution-ready model usage.
+
+Key API concepts
+- Artists: verified creators whose style is used for generation.
+- Models: trained style variants (if exposed in your workflow).
+- Generations: async jobs returning image/svg/video outputs.
+- Credits: account currency consumed per operation.
+
+Authentication
+- Header: x-api-key: <API_KEY>
+- API key is required on every request.
+
+Endpoints used in current skill
+1) GET /api/v1/artists
+   - Used for artist picker and search.
+   - UI output includes: name, id, thumbnail URL fallback chain.
+
+2) POST /api/v1/generations/image
+   - Body: { artistId, prompt }
+   - Cost: 3 credits
+   - Returns accepted/processing + generation id
+
+3) GET /api/v1/generations/:id
+   - Poll every ~3 seconds
+   - Stop when status is completed/failed
+
+4) POST /api/v1/generations/svg
+   - Body: { generationId, imageIndex }
+   - Cost: 5 credits
+
+5) POST /api/v1/generations/video
+   - Body: { generationId, imageIndex, prompt, duration, fps, resolution, aspectRatio, cameraFixed }
+   - Cost: 25 credits
+
+Status handling
+- processing
+- processing_svg
+- processing_video
+- completed
+- failed
+
+Fair/commercial safeguards (recommended)
+- Always require explicit artist selection (pick/name/id).
+- Keep generation metadata (artistId, prompt, generationId) for audit trail.
+- Check account balance before high-cost operations (especially video).
+- Handle failed jobs transparently; do not silently re-submit with different artist.
+- Keep user-visible attribution in downstream product UI when possible.
+
+Error handling
+- 401: invalid/missing API key
+- 402: insufficient credits
+- 404: invalid ids
+- 400: malformed request or bad params
+- 500: provider/server issue
+
+Current CLI coverage
+- artists
+- image
+- svg
+- video
+
+Future improvements
+- Single pipeline command (image -> svg -> video)
+- Optional JSON mode for easy automation
+- Credits preflight command (/account/me)
+- Save generation manifest as JSON file for compliance logs
+

@@ -1,0 +1,69 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="48" y1="34" x2="1220" y2="612" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EEE4"/>
+      <stop offset="0.45" stop-color="#E4EEE7"/>
+      <stop offset="1" stop-color="#D9E6F5"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="836" y1="124" x2="1184" y2="468" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D2238"/>
+      <stop offset="1" stop-color="#1A4C5E"/>
+    </linearGradient>
+    <filter id="shadow" x="808" y="96" width="428" height="394" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="10" dy="12"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.04 0 0 0 0 0.09 0 0 0 0 0.15 0 0 0 0.16 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" rx="28" fill="url(#bg)"/>
+  <circle cx="1116" cy="96" r="134" fill="#E8D9BE"/>
+  <circle cx="168" cy="548" r="188" fill="#D2DBD0"/>
+  <circle cx="1054" cy="546" r="154" fill="#CAD8ED"/>
+
+  <rect x="70" y="56" width="198" height="36" rx="18" fill="#0D2238"/>
+  <text x="94" y="79" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">VISUAL GEO ENGINE</text>
+
+  <text x="70" y="162" fill="#0B1F33" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="700">
+    <tspan x="70" dy="0">Turn product inputs into</tspan>
+    <tspan x="70" dy="74">publish-ready assets</tspan>
+  </text>
+
+  <text x="72" y="318" fill="#23445A" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">
+    <tspan x="72" dy="0">AI-generated visuals, localized product content,</tspan>
+    <tspan x="72" dy="42">and commerce publishing in one workflow.</tspan>
+  </text>
+
+  <g filter="url(#shadow)">
+    <rect x="850" y="132" width="342" height="320" rx="28" fill="url(#panel)"/>
+  </g>
+
+  <text x="882" y="176" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Asset Engine</text>
+
+  <rect x="882" y="198" width="278" height="42" rx="14" fill="#F3B562"/>
+  <text x="910" y="224" fill="#102A43" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Prompt -> Visual -> Publish</text>
+
+  <rect x="882" y="258" width="278" height="54" rx="18" fill="#F8FAFC" fill-opacity="0.08" stroke="#F8FAFC" stroke-opacity="0.16"/>
+  <text x="906" y="280" fill="#9DC8D0" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600">Visual Stack</text>
+  <text x="906" y="298" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Hero + Lifestyle</text>
+  <text x="1096" y="298" fill="#B7D9B5" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Ready</text>
+
+  <rect x="882" y="326" width="278" height="54" rx="18" fill="#F8FAFC" fill-opacity="0.08" stroke="#F8FAFC" stroke-opacity="0.16"/>
+  <text x="906" y="348" fill="#9DC8D0" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600">Commerce Layer</text>
+  <text x="906" y="366" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Shopify + Woo</text>
+
+  <rect x="882" y="398" width="278" height="12" rx="6" fill="#173042"/>
+  <rect x="882" y="398" width="96" height="12" rx="6" fill="#F3B562"/>
+  <rect x="988" y="398" width="90" height="12" rx="6" fill="#7CC6A6"/>
+  <rect x="1088" y="398" width="72" height="12" rx="6" fill="#5A86B7"/>
+  <text x="882" y="434" fill="#DCE6EA" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="500">GEO</text>
+  <text x="952" y="434" fill="#DCE6EA" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="500">Visuals</text>
+  <text x="1048" y="434" fill="#DCE6EA" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="500">Publish</text>
+
+  <text x="70" y="560" fill="#0B1F33" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">From product opportunity to commerce-ready creative output.</text>
+</svg>

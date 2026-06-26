@@ -1,35 +1,25 @@
----
-name: "Pipeworx carbon-interface"
-description: "Estimate CO2 emissions from electricity use, flights, or vehicle travel using the Pipeworx Carbon Interface API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-carbon-interface"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-carbon-interface"
----
+# Carbon Interface
 
-# Pipeworx carbon-interface
+Carbon Interface MCP — Carbon Interface API (v1)
 
-> Estimate CO2 emissions from electricity use, flights, or vehicle travel using the Pipeworx Carbon Interface API.
+## estimate_electricity
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-carbon-interface`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-carbon-interface](https://clawhub.ai/skills/pipeworx-carbon-interface)
+Estimate CO2 emissions from electricity usage. Returns carbon emissions in grams, kg, and metric ton
 
-## Overview
+## estimate_flight
 
+Estimate CO2 emissions from a flight. Provide number of passengers and flight legs (departure/arriva
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-carbon-interface
+## estimate_vehicle
+
+Estimate CO2 emissions from driving a vehicle. Provide distance and a vehicle model ID (from Carbon 
+
+```json
+{
+  "mcpServers": {
+    "carbon-interface": {
+      "url": "https://gateway.pipeworx.io/carbon-interface/mcp"
+    }
+  }
+}
 ```

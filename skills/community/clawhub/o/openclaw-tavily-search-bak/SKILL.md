@@ -1,35 +1,48 @@
 ---
-name: "Openclaw Tavily Search.Bak"
-description: "Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-tavily-search-bak"
-sourceUrl: "https://clawhub.ai/skills/openclaw-tavily-search-bak"
+name: tavily-search
+description: "Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable or undesired. Returns a small set of relevant results (title, url, snippet) and can optionally include short answer summaries."
 ---
 
-# Openclaw Tavily Search.Bak
+# Tavily Search
 
-> Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable...
+Use the bundled script to search the web with Tavily.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-tavily-search-bak`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-tavily-search-bak](https://clawhub.ai/skills/openclaw-tavily-search-bak)
+## Requirements
 
-## Overview
+- Provide API key via either:
+  - environment variable: `TAVILY_API_KEY`, or
+  - `~/.openclaw/.env` line: `TAVILY_API_KEY=...`
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run from the OpenClaw workspace:
+
 ```bash
-hermes skills install clawhub/openclaw-tavily-search-bak
+# raw JSON (default)
+python3 {baseDir}/scripts/tavily_search.py --query "..." --max-results 5
+
+# include short answer (if available)
+python3 {baseDir}/scripts/tavily_search.py --query "..." --max-results 5 --include-answer
+
+# stable schema (closer to web_search): {query, results:[{title,url,snippet}], answer?}
+python3 {baseDir}/scripts/tavily_search.py --query "..." --max-results 5 --format brave
+
+# human-readable Markdown list
+python3 {baseDir}/scripts/tavily_search.py --query "..." --max-results 5 --format md
 ```
+
+## Output
+
+### raw (default)
+- JSON: `query`, optional `answer`, `results: [{title,url,content}]`
+
+### brave
+- JSON: `query`, optional `answer`, `results: [{title,url,snippet}]`
+
+### md
+- A compact Markdown list with title/url/snippet.
+
+## Notes
+
+- Keep `max-results` small by default (3–5) to reduce token/reading load.
+- Prefer returning URLs + snippets; fetch full pages only when needed.

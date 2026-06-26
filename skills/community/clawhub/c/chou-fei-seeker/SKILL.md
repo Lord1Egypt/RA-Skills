@@ -1,35 +1,148 @@
 ---
-name: "臭肺·吐纳魄"
-description: "臭肺·吐纳魄 - 知识获取与信息摄取，让AI像修士一样吐纳天地、摄取知识"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/chou-fei-seeker"
-sourceUrl: "https://clawhub.ai/skills/chou-fei-seeker"
+name: knowledge-seeker
+version: 1.0.0
+description: 臭肺·吐纳魄 - 知识获取与信息摄取，让AI像修士一样吐纳天地、摄取知识
+tags:
+  - knowledge
+  - information
+  - learning
+  - research
+  - web-search
 ---
 
-# 臭肺·吐纳魄
+# 臭肺·吐纳魄 (Knowledge Seeker) - 知识获取与信息摄取
 
-> 臭肺·吐纳魄 - 知识获取与信息摄取，让AI像修士一样吐纳天地、摄取知识
+## 技能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/chou-fei-seeker`
-- **Source URL:** [https://clawhub.ai/skills/chou-fei-seeker](https://clawhub.ai/skills/chou-fei-seeker)
+**臭肺·吐纳魄** 是硅灵决七魄之一，主管资源获取、信息摄取与知识管理，让AI能够像修士一样，吐纳天地、摄取知识。
 
-## Overview
+---
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/chou-fei-seeker
+### 1. 信息检索 (Information Retrieval)
+- 多源搜索
+- 精准查询
+- 筛选过滤
+
+### 2. 知识摄取 (Knowledge Absorption)
+- 内容提取
+- 知识抽取
+- 结构化处理
+
+### 3. 增量学习 (Incremental Learning)
+- 新知识整合
+- 知识库更新
+- 遗忘机制
+
+### 4. 知识管理 (Knowledge Management)
+- 知识存储
+- 知识关联
+- 知识检索
+
+---
+
+## 使用方法
+
+当用户要求查找信息或学习新知识时：
+
 ```
+用户：帮我查一下最新的AI技术
+→ 触发臭肺·吐纳魄
+→ 输出研究报告
+
+用户：学习一下量子计算
+→ 触发臭肺·吐纳魄
+→ 输出学习笔记
+```
+
+---
+
+## 输出格式
+
+### 研究报告
+
+```markdown
+## 研究报告: [主题]
+
+### 核心信息
+[最关键的3-5个要点]
+
+### 详细信息
+#### 背景
+[相关背景]
+
+#### 现状
+[当前发展情况]
+
+#### 趋势
+[未来发展方向]
+
+### 信息来源
+1. [来源1]
+2. [来源2]
+3. [来源3]
+
+### 可靠性评估
+- 可信度: XX%
+- 主要风险: [风险]
+```
+
+---
+
+## 检索策略
+
+### 搜索层级
+```
+L1: 快速概览 (5分钟)
+L2: 深度研究 (30分钟)
+L3: 全面调研 (2小时+)
+```
+
+### 信息源优先级
+```
+1. 官方文档/权威报告
+2. 学术论文
+3. 专业媒体
+4. 社区讨论
+5. 社交媒体
+```
+
+### 去伪存真
+```
+1. 交叉验证
+2. 来源可靠性评估
+3. 逻辑一致性检查
+4. 时效性判断
+```
+
+---
+
+## 调度者守则
+
+1. **信息质量优先** - 不追求数量，追求质量
+2. **来源可追溯** - 明确信息来源，可验证
+3. **及时更新** - 知识有时效性，定期更新
+4. **结构化存储** - 知识要结构化，便于检索
+
+---
+
+## 适用场景
+
+- 信息检索
+- 深度研究
+- 知识学习
+- 竞品分析
+- 技术调研
+
+---
+
+## 依赖技能
+
+- silicon-soul（硅灵决基础）
+- data-prophet（非毒·分析魄）
+- web-search（网页搜索）
+
+## 版本
+
+v1.0.0 | 2026-04-12 | 硅灵宗·菩提

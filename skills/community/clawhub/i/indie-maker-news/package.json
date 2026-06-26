@@ -1,0 +1,16 @@
+{
+  "name": "indie-maker-news",
+  "version": "1.0.4",
+  "description": "独行者 Daily - 变现雷达。10个数据源（含华尔街见闻），真正提供一人公司变现参考新闻。",
+  "author": "aiboss",
+  "license": "MIT",
+  "keywords": [
+    "变现",
+    "创业",
+    "副业",
+    "一人公司",
+    "华尔街见闻",
+    "财经",
+    "10个数据源"
+  ]
+}

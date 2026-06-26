@@ -1,0 +1,8 @@
+{
+  "grafana_url": "http://127.0.0.1:3000",
+  "api_key": "",
+  "dashboard_uid": "",
+  "panel_ids": [],
+  "screenshot_dir": "./screenshots",
+  "output_dir": "./reports"
+}

@@ -1,0 +1,19 @@
+# sql-master 依赖
+# SQL 查询、数据获取智能体 - SQL 生成 / 执行 / 数据获取 / 可视化 / Pipeline 编排
+
+pandas>=1.5.0
+numpy>=1.21.0
+
+# ── 数据库连接执行层 ──────────────────────────────────────────────────────────
+sqlalchemy>=1.4.0          # SQL 执行引擎（支持 MySQL/PG/SQL Server/ClickHouse 等）
+pymysql>=1.0.0             # MySQL 驱动
+psycopg2-binary>=2.9.0      # PostgreSQL 驱动
+
+# ── 文件数据获取层 ───────────────────────────────────────────────────────────
+openpyxl>=3.0.0           # Excel (xlsx/xlsm) 读写
+xlrd>=2.0.0               # Excel (xls) 读取
+python-dotenv>=0.21.0     # .env 环境变量配置
+
+# ── AI 洞察 & 统计（sql-report-generator 联动）────────────────────────────────────
+scipy>=1.9.0              # 统计检验（t-test 等）
+

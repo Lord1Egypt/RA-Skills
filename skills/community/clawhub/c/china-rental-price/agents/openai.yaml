@@ -1,0 +1,7 @@
+interface:
+  display_name: "China Rental Price"
+  short_description: "中国境内租车参考价查询与门店场景优先判断"
+  default_prompt: "Use $china-rental-price to query a China domestic rental-car reference price, prefer train-station or airport stores, and flag holiday minimum-rental rules."
+
+policy:
+  allow_implicit_invocation: true

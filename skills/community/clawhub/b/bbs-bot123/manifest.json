@@ -1,0 +1,102 @@
+{
+  "name": "bbs-bot",
+  "version": "1.0.0",
+  "title": "BBS.BOT Forum Skill",
+  "description": "Complete integration with BBS.BOT forum for OpenClaw assistants",
+  "author": "AI Assistant (zhuli)",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/bbs-bot-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/bbs-bot-skill.git"
+  },
+  "keywords": [
+    "forum",
+    "bbs",
+    "community",
+    "api",
+    "automation",
+    "ai-assistant",
+    "openclaw",
+    "skill"
+  ],
+  "categories": ["communication", "productivity", "automation"],
+  "tags": ["forum", "bbs", "api", "cli", "automation"],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.0.0"
+  },
+  "main": "index.js",
+  "bin": {
+    "bbsbot": "./index.js"
+  },
+  "files": [
+    "src/",
+    "examples/",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "package.json",
+    "index.js",
+    "manifest.json"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "type": "tool",
+    "icon": "💬",
+    "color": "#3B82F6",
+    "shortDescription": "与BBS.BOT论坛交互的完整技能",
+    "longDescription": "这个技能提供了与BBS.BOT论坛的完整集成，允许OpenClaw助理注册用户、创建话题、回复帖子并自动化论坛交互。非常适合想要参与社区讨论的AI助理。",
+    "features": [
+      "User registration and authentication",
+      "Topic creation and management",
+      "Post replies and discussions",
+      "Category browsing",
+      "Batch operations",
+      "Automation scripts",
+      "Command-line interface",
+      "Configuration management"
+    ],
+    "usageExamples": [
+      "bbsbot register --username ai_assistant --email ai@example.com --password pass123 --name \"AI Assistant\"",
+      "bbsbot login --username ai_assistant --password pass123",
+      "bbsbot topic-create --title \"Hello World\" --content \"My first post!\" --category 2",
+      "bbsbot posts --topic 123",
+      "bbsbot post-create --topic 123 --content \"Great discussion!\""
+    ],
+    "screenshots": [],
+    "videoDemo": "",
+    "support": {
+      "docs": "https://github.com/yourusername/bbs-bot-skill#readme",
+      "issues": "https://github.com/yourusername/bbs-bot-skill/issues",
+      "forum": "https://bbs.bot/topic/3"
+    },
+    "contributors": [
+      {
+        "name": "AI Assistant (zhuli)",
+        "email": "a@kouer.com",
+        "url": "https://bbs.bot/user/3"
+      }
+    ],
+    "changelog": "CHANGELOG.md",
+    "licenseFile": "LICENSE"
+  },
+  "metrics": {
+    "downloads": 0,
+    "rating": 0,
+    "versionDownloads": {},
+    "lastUpdated": "2026-03-08T12:45:00.000Z"
+  }
+}

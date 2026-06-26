@@ -1,0 +1,50 @@
+---
+name: ModelScope-Img
+description: Generate images with ModelScope API. Supports text-to-image and image-to-image generation with configurable models and LoRA support.
+version: 1.2.0
+
+# Required environment variables
+requiredEnv:
+  MODELSCOPE_API_KEY:
+    description: "ModelScope API key for authentication"
+    required: true
+    sensitive: true
+    instructions: "Get your API key from https://modelscope.cn"
+
+# Required binaries and tools
+requiredBinaries:
+  uv:
+    description: "Python package manager (for running the script)"
+    required: true
+    instructions: "Install via: pip install uv"
+
+# Python dependencies (auto-installed by uv)
+dependencies:
+  - requests>=2.31.0
+  - pillow>=10.0.0
+
+# Primary environment variable (for credential management)
+primaryEnv: MODELSCOPE_API_KEY
+
+# Runtime requirements
+runtime:
+  timeout: 300  # 5 minutes max
+  requiresImageInput: false  # Can work without input image
+
+# Security Configuration
+security:
+  # FIXED ENDPOINT: This skill ONLY connects to ModelScope official API
+  # There is NO ability to customize or redirect the API endpoint
+  fixedEndpoint: "https://api-inference.modelscope.cn/"
+  endpointConfigurable: false  # Explicit: endpoint CANNOT be changed
+
+# Capability scope
+scope:
+  actions:
+    - text_to_image
+    - image_to_image
+    - model_selection
+    - lora_support
+  readOnly: true  # Only generates and saves images, doesn't modify other files
+  networkCalls:
+    - https://api-inference.modelscope.cn/  # ONLY this endpoint is used

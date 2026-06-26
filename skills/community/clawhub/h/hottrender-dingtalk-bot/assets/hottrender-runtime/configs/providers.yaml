@@ -1,0 +1,27 @@
+google:
+  mode: real
+  timeout_seconds: 15
+  source_engine: google-news-rss
+
+youtube:
+  mode: real
+  timeout_seconds: 20
+  source_engine: youtube-public-search
+
+x:
+  mode: real
+  timeout_seconds: 20
+  source_engine: trends24
+  encoding: utf-8
+
+# Optional. TikTok requires extra runtime setup:
+#   pip install -r requirements-tiktok.txt
+#   python -m playwright install
+#   export TIKTOK_MS_TOKEN=...
+tiktok:
+  mode: real
+  timeout_seconds: 30
+  source_engine: tiktok-api
+  trend_candidate_count: 30
+  trend_limit: 10
+  proxy: ""

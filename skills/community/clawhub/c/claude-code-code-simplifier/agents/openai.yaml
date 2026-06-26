@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Simplifier"
+  short_description: "Review and simplify changed code"
+  default_prompt: "Inspect the changed files for duplication, awkward abstractions, and inefficiencies, then fix what you find."

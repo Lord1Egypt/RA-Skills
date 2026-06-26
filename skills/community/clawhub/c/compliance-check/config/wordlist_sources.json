@@ -1,0 +1,42 @@
+[
+  {
+    "name": "同步-英文违禁",
+    "url": "https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en",
+    "enabled": true
+  },
+  {
+    "name": "同步-中文违禁LDNOOBW",
+    "url": "https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/zh",
+    "enabled": true
+  },
+  {
+    "name": "同步-广告类型",
+    "url": "https://raw.githubusercontent.com/konsheng/Sensitive-lexicon/main/Vocabulary/广告类型.txt",
+    "enabled": true
+  },
+  {
+    "name": "同步-补充词库",
+    "url": "https://raw.githubusercontent.com/konsheng/Sensitive-lexicon/main/Vocabulary/补充词库.txt",
+    "enabled": true
+  },
+  {
+    "name": "同步-色情类型",
+    "url": "https://raw.githubusercontent.com/konsheng/Sensitive-lexicon/main/Vocabulary/色情类型.txt",
+    "enabled": true
+  },
+  {
+    "name": "同步-反动词库",
+    "url": "https://raw.githubusercontent.com/konsheng/Sensitive-lexicon/main/Vocabulary/反动词库.txt",
+    "enabled": true
+  },
+  {
+    "name": "同步-暴恐词库",
+    "url": "https://raw.githubusercontent.com/konsheng/Sensitive-lexicon/main/Vocabulary/暴恐词库.txt",
+    "enabled": true
+  },
+  {
+    "name": "同步-其他词库",
+    "url": "https://raw.githubusercontent.com/konsheng/Sensitive-lexicon/main/Vocabulary/其他词库.txt",
+    "enabled": true
+  }
+]

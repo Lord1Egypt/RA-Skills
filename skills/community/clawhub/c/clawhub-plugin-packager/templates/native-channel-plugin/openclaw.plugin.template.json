@@ -1,0 +1,19 @@
+{
+  "id": "{{PLUGIN_ID}}",
+  "name": "{{DISPLAY_NAME}}",
+  "description": "{{SUMMARY}}",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "port": {
+        "type": "number",
+        "description": "Channel listener port."
+      },
+      "path": {
+        "type": "string",
+        "description": "Inbound route or webhook path."
+      }
+    },
+    "additionalProperties": false
+  }
+}

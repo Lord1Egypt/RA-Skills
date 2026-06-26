@@ -1,0 +1,48 @@
+{
+  "name": "ap-classroom-skill",
+  "version": "2.0.0",
+  "description": "AP Classroom 作业自动化 skill - 支持所有 AP 学科",
+  "main": "index.js",
+  "scripts": {
+    "check": "node check-browser-status.js",
+    "courses": "node list-courses.js",
+    "select": "node select-course.js",
+    "homework": "node check-homework.js",
+    "open": "node open-assignment.js",
+    "questions": "node get-questions.js",
+    "answer": "node answer-question.js",
+    "next": "node next-question.js",
+    "submit": "node submit-quiz.js",
+    "start": "start.bat",
+    "ui": "powershell -NoExit -ExecutionPolicy Bypass -File task-manager.ps1"
+  },
+  "keywords": [
+    "ap-classroom",
+    "college-board",
+    "homework",
+    "automation",
+    "ap-courses",
+    "playwright"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "win32"
+  ],
+  "devDependencies": {},
+  "config": {
+    "port": 9223,
+    "browser": "chrome",
+    "timeout": 30000
+  }
+}

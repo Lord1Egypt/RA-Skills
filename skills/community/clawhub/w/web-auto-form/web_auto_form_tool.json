@@ -1,0 +1,247 @@
+{
+  "name": "web_auto_form",
+  "description": "Automates real-browser interactions for form filling, submission, and data extraction. Supports sequential atomic operations with conditional branching, structured extraction, PII redaction, and self-healing selectors. Trigger when the user requests web form automation, auto-registration, data entry, sign-up, or any multi-step browser interaction task.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "description": "The starting URL to navigate to before executing steps. Must be a valid HTTPS or HTTP URL (HTTP triggers a security warning)."
+      },
+      "data": {
+        "type": "object",
+        "description": "Data object for parameterized execution. Use {{key}} template variables in any string field (value, selector, selector_fallbacks, file_name, description). Supports dot notation for nested keys, e.g. {{user.name}}. Template variables in selectors are restricted to attribute-value positions to prevent injection.",
+        "additionalProperties": true
+      },
+      "consent_statement": {
+        "type": "string",
+        "description": "Required declaration of automation purpose. Logged before execution. In non-headless mode, displayed and confirmed before proceeding."
+      },
+      "steps": {
+        "type": "array",
+        "description": "Ordered list of atomic browser operations to execute sequentially.",
+        "minItems": 1,
+        "maxItems": 50,
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "navigate",
+                "fill",
+                "select",
+                "check",
+                "click",
+                "upload",
+                "wait",
+                "scroll",
+                "extract",
+                "press_key",
+                "handle_dialog",
+                "if",
+                "assert"
+              ],
+              "description": "The browser action to perform."
+            },
+            "selector": {
+              "type": "string",
+              "description": "Element locator. Supports CSS selectors, XPath (prefix with //), #id, [name='value'], [placeholder='text'], or [data-testid='value']. Supports {{template}} variables (restricted to attribute-value positions, e.g. [name='{{field_name}}']). Required for fill/select/check/click/upload/extract/assert actions."
+            },
+            "selector_type": {
+              "type": "string",
+              "enum": ["css", "xpath", "id", "name", "placeholder", "data-testid"],
+              "default": "css",
+              "description": "Type of selector provided. Auto-detected if omitted."
+            },
+            "selector_fallbacks": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Backup selectors tried in order when the primary selector fails. Fallbacks are tried sequentially; the first match wins. Only when ALL selectors (primary + all fallbacks) fail does the optional logic apply. Supports {{template}} variables."
+            },
+            "value": {
+              "type": "string",
+              "description": "Value payload. Supports {{template}} vars from the data object. For fill: text to type. For select: option text or value. For check: 'true'/'false'. For navigate: URL. For press_key: key name (Enter, Tab, Escape). For handle_dialog: 'accept'/'dismiss'. For scroll: 'up'/'down'/pixel count. For upload: local path, https:// URL, data: URI, or file: URL. For wait type=timeout: milliseconds as string (e.g. '3000'). For wait type=function: JavaScript expression. Ignored for click/extract/assert."
+            },
+            "file_name": {
+              "type": "string",
+              "description": "Override the file name presented to the upload endpoint. Useful when value is a URL or data: URI. Supports {{template}} vars. When value is a remote URL, this also renames the downloaded temp file; extension mismatch with MIME type triggers a warning but does not block upload."
+            },
+            "timeout_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 60000,
+              "default": 5000,
+              "description": "Max wait in ms for the element to appear. 0 = no wait."
+            },
+            "type": {
+              "type": "string",
+              "enum": ["element", "navigation", "timeout", "function"],
+              "default": "element",
+              "description": "Wait subtype. 'element' = wait for selector to appear. 'navigation' = wait for page URL change or load event. 'timeout' = unconditional sleep (value must be milliseconds as string). 'function' = poll until JS expression in value returns truthy."
+            },
+            "state": {
+              "type": "string",
+              "enum": ["exist", "not_exist", "visible", "hidden", "enabled", "disabled", "checked"],
+              "default": "exist",
+              "description": "For assert action: the expected state of the element matched by selector. For if condition: the state to check (mutually exclusive with operator/expected_value)."
+            },
+            "operator": {
+              "type": "string",
+              "enum": ["eq", "ne", "contains", "matches_regex"],
+              "description": "For if condition: comparison operator against expected_value. Mutually exclusive with state — if both are provided, operator takes precedence."
+            },
+            "expected_value": {
+              "type": "string",
+              "description": "For if condition: the expected value to compare against, using operator. Compared against the attribute specified in condition.attribute (default: textContent)."
+            },
+            "on_fail": {
+              "type": "string",
+              "enum": ["abort", "continue", "retry"],
+              "default": "abort",
+              "description": "For assert action: what to do when assertion fails. 'retry' = re-execute this assert step up to max_retries times with step_delay_ms between attempts; if still failing, fall back to abort. Output records retry count."
+            },
+            "max_retries": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "Step-level retry override. When set, overrides options.max_retries for this step only."
+            },
+            "retry_on": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["NETWORK_ERROR", "TIMEOUT", "NAVIGATION_FAILED"] },
+              "description": "Step-level retry-on override. When set, overrides options.retry_on for this step only."
+            },
+            "optional": {
+              "type": "boolean",
+              "default": false,
+              "description": "If true, skip this step without error when ALL selectors (primary + fallbacks) fail to match within timeout. The fallback chain is always exhausted before optional logic triggers."
+            },
+            "on_skip": {
+              "type": "string",
+              "enum": ["log", "abort", "set_default"],
+              "default": "log",
+              "description": "Behavior when an optional step is skipped. 'log' = record warning and continue. 'abort' = halt execution. 'set_default' = use value field as fallback content."
+            },
+            "screenshot": {
+              "type": "boolean",
+              "default": false,
+              "description": "Capture a screenshot after this individual step. Useful for debugging."
+            },
+            "description": {
+              "type": "string",
+              "description": "Human-readable label for this step. Supports {{template}} variables."
+            },
+            "condition": {
+              "type": "object",
+              "description": "For 'if' action: condition to evaluate. Use state-based checks (exist/visible/checked etc.) OR value-based comparisons (operator + expected_value), not both.",
+              "properties": {
+                "selector": { "type": "string", "description": "Selector for the element to evaluate. Supports {{template}} variables." },
+                "attribute": { "type": "string", "default": "textContent", "description": "Attribute to read for comparison. Use 'checked' for checkboxes, 'value' for inputs, 'textContent' for visible text, or any HTML attribute name." },
+                "state": { "type": "string", "enum": ["exist", "not_exist", "visible", "hidden", "checked"], "default": "exist", "description": "State-based check. Mutually exclusive with operator/expected_value." },
+                "operator": { "type": "string", "enum": ["eq", "ne", "contains", "matches_regex"], "description": "Comparison operator. Mutually exclusive with state." },
+                "expected_value": { "type": "string", "description": "Expected value for comparison." }
+              },
+              "required": ["selector"]
+            },
+            "then": {
+              "type": "array",
+              "description": "For 'if' action: steps to execute when condition evaluates to true.",
+              "items": { "$ref": "#/properties/steps/items" }
+            },
+            "else": {
+              "type": "array",
+              "description": "For 'if' action: steps to execute when condition evaluates to false.",
+              "items": { "$ref": "#/properties/steps/items" }
+            }
+          },
+          "required": ["action"],
+          "allOf": [
+            {
+              "if": { "properties": { "action": { "enum": ["fill", "select", "check", "click", "upload", "extract", "assert"] } } },
+              "then": { "required": ["selector"] }
+            },
+            {
+              "if": { "properties": { "action": { "const": "navigate" } } },
+              "then": { "required": ["value"] }
+            },
+            {
+              "if": { "properties": { "action": { "const": "if" } } },
+              "then": { "required": ["condition", "then"] }
+            },
+            {
+              "if": { "properties": { "action": { "const": "assert" } } },
+              "then": { "required": ["selector", "state"] }
+            },
+            {
+              "if": { "properties": { "action": { "const": "wait" }, "type": { "const": "timeout" } } },
+              "then": { "required": ["value"], "properties": { "value": { "pattern": "^[0-9]+$" } } }
+            },
+            {
+              "if": { "properties": { "action": { "const": "wait" }, "type": { "const": "function" } } },
+              "then": { "required": ["value"] }
+            }
+          ]
+        }
+      },
+      "extract_schema": {
+        "type": "object",
+        "description": "Structured extraction schema applied after all steps complete.",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Field name in the output result." },
+                "selector": { "type": "string", "description": "CSS/XPath selector for the element. Supports {{template}} variables." },
+                "attribute": {
+                  "type": "string",
+                  "default": "text",
+                  "description": "What to extract: 'text', 'innerHTML', 'value', or any HTML attribute name."
+                },
+                "redact": {
+                  "type": "boolean",
+                  "description": "Per-field PII redaction override. When set, overrides options.redact_pii for this field only. Use false for non-PII fields like application_id to preserve raw values even when global redaction is on."
+                }
+              },
+              "required": ["name", "selector"]
+            }
+          },
+          "screenshot": {
+            "type": "boolean",
+            "default": false,
+            "description": "Capture a full-page screenshot after all steps."
+          }
+        }
+      },
+      "options": {
+        "type": "object",
+        "description": "Global execution options.",
+        "properties": {
+          "headless": { "type": "boolean", "default": true, "description": "Run browser in headless mode." },
+          "viewport_width": { "type": "integer", "default": 1280, "description": "Browser viewport width in pixels." },
+          "viewport_height": { "type": "integer", "default": 800, "description": "Browser viewport height in pixels." },
+          "user_agent": { "type": "string", "description": "Custom User-Agent string." },
+          "locale": { "type": "string", "default": "en-US", "description": "Browser locale." },
+          "step_delay_ms": { "type": "integer", "default": 500, "minimum": 100, "maximum": 10000, "description": "Mandatory delay inserted between each step to stabilize DOM state and avoid triggering anti-bot detection." },
+          "max_retries": { "type": "integer", "default": 1, "minimum": 1, "maximum": 5, "description": "Default max retries per step. Can be overridden per-step via step.max_retries." },
+          "retry_on": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["NETWORK_ERROR", "TIMEOUT", "NAVIGATION_FAILED"] },
+            "default": ["NETWORK_ERROR"],
+            "description": "Default error types eligible for automatic retry. Can be overridden per-step via step.retry_on."
+          },
+          "sandbox": { "type": "boolean", "default": true, "description": "Force browser sandbox mode to prevent malicious page escape." },
+          "redact_pii": { "type": "boolean", "default": true, "description": "Global PII redaction switch. Applies to BOTH log output (value fields printed as <redacted>) AND extracted text (phone/email/ID replaced with ***). Can be overridden per-field via extract_schema.fields[].redact." },
+          "debug": { "type": "boolean", "default": false, "description": "When true: save page HTML and screenshot after each step, output full Playwright logs, keep browser open after completion." },
+          "debug_output_path": { "type": "string", "default": "./web_auto_form_debug_<timestamp>/", "description": "Directory for debug artifacts (HTML snapshots, screenshots, Playwright logs). Created automatically if it does not exist." },
+          "keep_open": { "type": "boolean", "default": false, "description": "Do not close browser after completion. Useful for manual inspection in debug mode." },
+          "upload_enforce_extension": { "type": "boolean", "default": false, "description": "When true, block upload if file_name extension does not match the detected MIME type. When false (default), warn but allow." },
+          "diagnose_on_failure": { "type": "boolean", "default": true, "description": "When true (default), automatically capture a screenshot and visible form elements when a step fails. Included inline in the results JSON so AI Agents can self-repair selector strategies without re-running." }
+        }
+      }
+    },
+    "required": ["url", "steps", "consent_statement"]
+  }
+}

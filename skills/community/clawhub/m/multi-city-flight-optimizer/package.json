@@ -1,0 +1,1 @@
+{"name":"huangbin-huang--multi-city-flight-optimizer","version":"0.1.0","description":"多目的地跨城比价航线优化助手，自动收集出行约束（出发地、假期时间窗、候选城市），一键比价筛出最优往返城市组合（更便宜+更少中转/更短飞行），输出Top3方案并给出可玩性建议。触发词：跨城比价、航线优化、机票比价、多城市飞、往返组合、机票怎么买最便宜、帮我搜机票、去程回程怎么选。","publishConfig":{"registry":"https://contextlab.alibaba-inc.com/skill"}}

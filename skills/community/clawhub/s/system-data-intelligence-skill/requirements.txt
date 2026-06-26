@@ -1,0 +1,20 @@
+# Core data processing
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+statsmodels>=0.14.0
+
+# Excel/document parsing
+openpyxl>=3.1.0
+python-docx>=1.0.0
+chardet>=5.0.0
+
+# Visualization
+plotly>=5.18.0
+matplotlib>=3.7.0
+kaleido>=0.2.1
+
+# Platform-specific (install as needed)
+# Windows: pip install pywin32>=306
+# macOS:   pip install xlwings>=0.30.0
+# Legacy:  pip install xlrd>=2.0.0

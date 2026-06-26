@@ -1,0 +1,48 @@
+{
+  "name": "map",
+  "version": "1.0.0",
+  "description": "Turn complex business goals into navigable strategic maps. Identify milestones, resource nodes, risk points, bottlenecks, and route logic.",
+  "author": "agenticio",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "map",
+    "strategy map",
+    "milestones",
+    "bottlenecks",
+    "dependencies",
+    "business planning",
+    "route logic",
+    "strategic navigation"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "strategic_mapping": "Turn complex goals into navigable route logic",
+    "dependency_analysis": "Identify dependencies, bottlenecks, and sequencing",
+    "milestone_design": "Define milestone order and what each unlocks",
+    "route_recommendation": "Recommend the strongest path under current constraints"
+  },
+  "triggers": [
+    "strategy map",
+    "map this goal",
+    "milestones and risks",
+    "how do I get from here to there",
+    "business roadmap",
+    "dependency mapping",
+    "bottleneck analysis",
+    "strategic path"
+  ],
+  "audience": [
+    "Founders",
+    "Operators",
+    "Strategists",
+    "Teams planning complex initiatives",
+    "Decision-makers navigating multi-stage goals"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

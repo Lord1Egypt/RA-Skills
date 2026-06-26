@@ -1,0 +1,6 @@
+interface:
+  display_name: "Unitree Hermes Colab"
+  short_description: "Safety-gated Unitree Hermes Colab workflow"
+  default_prompt: "Use $unitree-hermes-colab to create or review a safe Unitree Hermes Colab lab."
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,96 @@
 ---
-name: "Zip"
+name: zip
+version: "3.0.1"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+license: MIT-0
+tags: [zip, tool, utility]
 description: "Compress, extract, list, and encrypt ZIP archives in batch. Use when archiving files, extracting packages, listing contents, encrypting backups, or batching."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zip"
-sourceUrl: "https://clawhub.ai/skills/zip"
 ---
 
-# Zip
+# zip
 
-> Compress, extract, list, and encrypt ZIP archives in batch. Use when archiving files, extracting packages, listing contents, encrypting backups, or batching.
+ZIP archive tool.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zip`
-- **Source URL:** [https://clawhub.ai/skills/zip](https://clawhub.ai/skills/zip)
+## Commands
 
-## Overview
+### `create`
 
+Create ZIP archive
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/zip
+scripts/script.sh create <archive.zip> <files...>
 ```
+
+### `extract`
+
+Extract archive
+
+```bash
+scripts/script.sh extract <archive.zip> [dir]
+```
+
+### `list`
+
+List contents
+
+```bash
+scripts/script.sh list <archive.zip>
+```
+
+### `add`
+
+Add files to archive
+
+```bash
+scripts/script.sh add <archive.zip> <files...>
+```
+
+### `password`
+
+Create encrypted ZIP
+
+```bash
+scripts/script.sh password <archive> <pass> <files...>
+```
+
+### `info`
+
+Archive metadata
+
+```bash
+scripts/script.sh info <archive.zip>
+```
+
+### `test`
+
+Test integrity
+
+```bash
+scripts/script.sh test <archive.zip>
+```
+
+### `find`
+
+Search for files
+
+```bash
+scripts/script.sh find <archive.zip> <pattern>
+```
+
+### `diff`
+
+Compare two archives
+
+```bash
+scripts/script.sh diff <a1.zip> <a2.zip>
+```
+
+## Requirements
+
+- bash 4.0+
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

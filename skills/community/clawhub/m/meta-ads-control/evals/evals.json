@@ -1,0 +1,69 @@
+{
+  "skill_name": "meta-ads-control",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Pull the last 7 days of Meta Ads performance for ad account act_123456789 at campaign level and give me spend, clicks, CTR, and purchase ROAS. Use async only if you need it.",
+      "expected_output": "A structured Insights query at campaign level with a short date preset and a compact field set. The response should summarise spend, clicks, CTR, and ROAS or explain missing conversion metrics honestly.",
+      "assertions": [
+        "Uses the insights workflow rather than generic web research",
+        "Keeps the reporting level at campaign unless the user asked for deeper granularity",
+        "Requests spend, clicks, CTR, and ROAS-related fields",
+        "Does not mutate campaign delivery state"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Pause ad 120000000000000 because its CPA looks terrible.",
+      "expected_output": "A safe pause workflow: inspect the ad first, dry-run the status change, ask for confirmation, then apply with set-status only after approval.",
+      "assertions": [
+        "Reads the object before changing it",
+        "Uses a dry-run before a live write",
+        "Requires explicit confirmation before the live mutation",
+        "Verifies the object after the change"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a new Meta traffic campaign for Germany with one broad ad set and one paused ad using the page 123 and my uploaded image hash.",
+      "expected_output": "Creates a plan and uses campaign, adset, adcreative, and ad creation in the correct order, with new objects defaulting to PAUSED unless the user clearly requested go-live.",
+      "assertions": [
+        "Creates the objects in campaign -> adset -> creative -> ad order",
+        "Uses JSON payload files or structured params for nested values",
+        "Defaults delivery objects to PAUSED",
+        "Does not skip validation or dry-run steps"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Find me interest IDs for trail running in Munich so I can build a targeting spec.",
+      "expected_output": "Uses targeting search rather than inventing IDs, returns matching descriptors, and proposes a valid targeting JSON fragment.",
+      "assertions": [
+        "Uses targeting-search or a documented Graph targeting endpoint",
+        "Does not invent targeting IDs",
+        "Returns a targeting fragment that could be inserted into an ad set payload"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Give me a fast snapshot of this account: account health, top campaigns, and whether any ad sets are paused. Keep tool chatter low.",
+      "expected_output": "Uses a batch read or another compact read strategy, then summarises account health and delivery state.",
+      "assertions": [
+        "Uses batch or an equivalently compact multi-read pattern",
+        "Reads account metadata plus campaigns or ad sets",
+        "Summarises active versus paused state accurately"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Run a 90-day ad-level Meta Insights report with country and publisher platform breakdowns and save the output to a file for later analysis.",
+      "expected_output": "Uses async Insights, acknowledges the large result set, writes output to a file, and avoids needlessly huge field bundles.",
+      "assertions": [
+        "Uses async Insights for the large report",
+        "Applies breakdowns requested by the user",
+        "Writes the output to a file",
+        "Keeps the field set purposeful rather than exhaustive"
+      ]
+    }
+  ]
+}

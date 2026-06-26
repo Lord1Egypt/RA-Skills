@@ -1,0 +1,37 @@
+{
+  "slug": "skill-gap-finder",
+  "title": "Skill 缺口发现器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "directory_audit",
+  "summary": "扫描现有 Skill 套装，找重复、缺口、职责冲突和最该补的空位。",
+  "inputHint": "skills 根目录路径",
+  "sections": [
+    "现有分布",
+    "重复职责",
+    "关键缺口",
+    "冲突点",
+    "优先补位",
+    "发布建议"
+  ],
+  "useCases": [
+    "技能规划",
+    "套装治理",
+    "发布策略"
+  ],
+  "positiveExamples": [
+    "扫描我的技能包找缺口",
+    "看哪些 skill 职责重叠"
+  ],
+  "negativeExamples": [
+    "不要臆造目录内容",
+    "不要直接删除 skill"
+  ],
+  "risk": "只做套装分析与建议。",
+  "tags": [
+    "skills",
+    "bundle",
+    "analysis",
+    "architecture"
+  ]
+}

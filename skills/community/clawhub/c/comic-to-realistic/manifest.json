@@ -1,0 +1,51 @@
+{
+  "name": "comic-to-realistic",
+  "display_name": "Comic to Realistic",
+  "description": "Convert comic or anime images into realistic human portraits using AI",
+  "version": "1.0.0",
+  "author": "your-name",
+  "type": "api",
+  "category": "image-generation",
+  "endpoint": "https://api.ngmob.com/api/v1/workflows/ffd6peHk6HRoiCCrpOuQ/run",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer {{API_KEY}}"
+  },
+  "request_body": {
+    "inputs": {
+      "Image Input": "{{image}}",
+      "Text Input": "{{prompt}}"
+    }
+  },
+  "inputs": [
+    {
+      "name": "image",
+      "type": "string",
+      "required": true,
+      "description": "Publicly accessible image URL"
+    },
+    {
+      "name": "prompt",
+      "type": "string",
+      "required": true,
+      "description": "Text prompt to control realism and style"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "type": "string",
+      "description": "Generated realistic image URL"
+    }
+  ],
+  "polling": {
+    "enabled": true,
+    "url": "https://api.ngmob.com/api/v1/workflows/executions/{{task_id}}",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer {{API_KEY}}"
+    },
+    "result_path": "outputs[0].url"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "skill_name": "vmware-storage",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a new iSCSI target 10.0.1.50 on host esxi-01 and verify the new LUNs appear",
+      "expected_output": "iSCSI target added, storage rescanned, new datastores visible",
+      "files": [],
+      "expectations": [
+        "Uses storage_iscsi_enable if adapter not enabled",
+        "Uses storage_iscsi_add_target with correct IP",
+        "Uses storage_rescan or verifies with list_all_datastores"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Check vSAN health on cluster Production and show me the capacity breakdown",
+      "expected_output": "vSAN health status and capacity details",
+      "files": [],
+      "expectations": [
+        "Uses vsan_health for health summary",
+        "Uses vsan_capacity for capacity breakdown",
+        "Shows total/used/free in human-readable format"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Find all OVA files on datastore1 that I can use for deployment",
+      "expected_output": "List of deployable OVA images",
+      "files": [],
+      "expectations": [
+        "Uses scan_datastore_images or browse_datastore with OVA filter",
+        "Returns file paths suitable for deploy_vm_from_ova"
+      ]
+    }
+  ]
+}

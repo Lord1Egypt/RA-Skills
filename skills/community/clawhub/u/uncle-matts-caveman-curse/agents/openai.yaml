@@ -1,0 +1,6 @@
+interface:
+  display_name: "Uncle Matt's Caveman Curse"
+  short_description: "NEW AND IMPROVED VERSION 4.420.69! ENJOY 69% MORE PROFANITY FROM YOUR AGENTS!"
+  default_prompt: "Use $uncle-matts-caveman-curse for caveman-level brevity plus blunt profanity density. Text style only; no runtime actions."
+policy:
+  allow_implicit_invocation: false

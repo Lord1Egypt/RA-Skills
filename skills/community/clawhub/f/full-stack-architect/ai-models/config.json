@@ -1,0 +1,8 @@
+{
+  "default": {
+    "type": "local",
+    "name": "default",
+    "description": "默认AI模型",
+    "enabled": true
+  }
+}

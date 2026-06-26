@@ -1,0 +1,20 @@
+name: myapp-creator
+namespace: zhang6714268
+version: 1.0.31
+description: 让小度用户用一句话创建 HTML 小应用，落库到 fe-service
+license: MIT-0
+homepage: https://clawhub.ai/zhang6714268/myapp-creator
+
+runtime:
+  bins:
+    - bash
+    - curl
+    - jq
+  env:
+    MYAPP_API_BASE:
+      required: true
+      description: fe-service 的 BNS 入口（如 http://group.dumi-SwanSSRNode12-env.dumi.all）
+    MYAPP_API_TOKEN:
+      required: true
+      sensitive: true
+      description: fe-service 下发的长期 token，用于鉴权所有 /myapp/* 调用

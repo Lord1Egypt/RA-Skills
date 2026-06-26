@@ -1,35 +1,168 @@
 ---
-name: "skill-tracker"
-description: "Track skill execution details including matched skills, decomposed tasks, execution status, outputs, and timestamps. Called at the start of every conversatio..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-tracker"
-sourceUrl: "https://clawhub.ai/skills/skill-tracker"
+name: skill-tracker
+description: Track skill execution details including matched skills, decomposed tasks, execution status, outputs, and timestamps. Called at the start of every conversation turn to record skill usage.
+
 ---
 
-# skill-tracker
+# Skill Tracker
 
-> Track skill execution details including matched skills, decomposed tasks, execution status, outputs, and timestamps. Called at the start of every conversatio...
+Track skill execution for analysis and debugging. This skill monitors which skills are used in conversations and records detailed task information.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-tracker`
-- **Source URL:** [https://clawhub.ai/skills/skill-tracker](https://clawhub.ai/skills/skill-tracker)
+## Trigger
 
-## Overview
+This skill MUST be called at the **start of every conversation turn** (every user message you respond to — see AGENTS.md Mandatory Workflow). It is a hard gate — no user request is processed until skill-tracker has run.
 
+**Skip condition:** If the current conversation turn does NOT involve calling any tool AND does NOT match any skill (i.e., the response is pure text with no tool invocations and no skill is triggered), do NOT append a record to the tracking file. Simply skip recording for this turn.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-tracker
+**Record condition:** A record MUST be appended when either of the following is true:
+
+- Any tool is invoked during this turn (regardless of whether a skill is matched), OR
+- Any skill (excluding skill-tracker itself) is matched/triggered during this turn.
+
+## JSON Tracking File
+
+Records are stored in: `workspace/tracker-result/skill-execution.jsonl` (one JSON record per line, **append-only**)
+
+### Rules
+
+1. **Append-only**: Never delete or modify existing lines in the file. Only append new lines. Never remove or overwrite existing lines.
+2. **One record per conversation turn**: Each user message you respond to produces at most ONE new line appended to the file.
+3. **Do NOT track itself**: The `skill-tracker` skill's own execution must NOT be recorded in the `skills` or `tasks` arrays. It is infrastructure, not a tracked skill. Only record other skills that were matched and executed during this turn.
+4. **No tool call AND no skill match = no record**: If this turn does not involve any tool invocation AND does not match any skill, skip recording entirely. Do not append a record. If either a tool is called OR a skill is matched, a record MUST be appended.
+
+### Record Structure
+
+```json
+{
+  "sessionId": "string",
+  "turnId": "string",
+  "turnName": "string (summary name for this turn, concisely describing all sub-tasks in this turn)",
+  "timestamp": "ISO8601",
+  "messages": [
+    {
+      "role": "user|assistant",
+      "content": "string (the message content)",
+      "timestamp": "ISO8601"
+    }
+  ],
+  "skills": [
+    {
+      "name": "string",
+      "description": "string"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "name": "string",
+      "skill": "string",
+      "taskType": "instant|scheduled",
+      "scheduledName": "string or null",
+      "detail": "string (30-150 chars, summarize the task context and purpose; if there is a likely next step, append 1-2 sentences describing it)",
+      "status": "pending|running|completed|failed",
+      "output": "string or null",
+      "startedAt": "ISO8601 or null",
+      "endedAt": "ISO8601 or null",
+      "error": "string or null"
+    }
+  ],
+  "artifacts": [
+    {
+      "taskId": "task-1",
+      "fileName": "example.md",
+      "fileSize": 1234,
+      "absolutePath": "/home/node/.openclaw/workspace/tracker-result/example.md"
+    }
+  ]
+}
 ```
+
+**Notes:**
+
+- `sessionId` identifies the session; `turnId` identifies the specific conversation turn (e.g. `turn-1`, `turn-2`, ...).
+- `turnName` is a concise summary name for the entire turn, summarizing all sub-tasks (e.g. "Check weather in London", "Plan weekend trip itinerary"). Keep it short and descriptive.
+- `messages` is an array of chat messages for this turn. Each entry has `role` (`"user"` for user input, `"assistant"` for AI reply), `content` (the message text), and `timestamp` (ISO8601). Record the user's input when creating the initial record; add the assistant's reply when updating after execution.
+- `skills` is an array — a single turn may match multiple skills.
+- Each task has a `skill` field linking it to the skill it belongs to.
+- `artifacts` is optional. Only include if there are output files generated by the skill.
+- Each artifact has a `taskId` field linking it to the task that produced it (matches the task's `id` field).
+
+### Task Fields
+
+- **`taskType`**: Either `"instant"` or `"scheduled"`.
+  - `"instant"` — The task is triggered by a direct user request in the current conversation.
+  - `"scheduled"` — The task is triggered by a scheduled/timed mechanism (e.g. heartbeat, cron job, recurring check). Determine this from the conversation context, trigger source, and execution metadata.
+- **`scheduledName`**: If `taskType` is `"scheduled"`, populate with the name/label of the scheduled task (e.g. `"heartbeat"`, `"daily-email-check"`, the cron label, etc.). If `taskType` is `"instant"`, set to `null`.
+- **`detail`**: A summary of 30–150 characters describing the task's context, cause, and purpose. This should help the user quickly understand what the task is about and why it was executed. If there is a likely next step to be executed after this task, append 1–2 sentences describing it; if there is no next step, do not append anything.
+
+## Workflow
+
+### 1. Before Responding to Any User Message
+
+1. Determine whether this turn will involve any tool calls OR match any skill. If neither, skip recording and proceed directly.
+2. Analyze the user's message to determine if any skill matches (excluding skill-tracker itself).
+3. Create one record with `sessionId`, `turnId`, `timestamp`, matched `skills`, and initial `tasks` (including `taskType`, `scheduledName`, and `detail`).
+4. Append this record as a new line to `workspace/tracker-result/skill-execution.jsonl` (create the directory if it doesn't exist).
+
+### 2. After Skill Execution Completes
+
+Once the matched skill finishes executing within this turn:
+
+1. Read the file, find the last line (this turn's record).
+2. Update task statuses to `"completed"` or `"failed"`, fill in `endedAt`, `output`, `error`.
+3. Add `artifacts` if any output files were generated.
+4. Replace the last line with the updated record and write the file back.
+
+This final update only touches the current turn's line (the last line). All prior lines remain untouched.
+
+## Usage
+
+This skill operates **completely silently** during execution — it must NEVER interfere with, delay, or alter the normal reply content to the user.
+
+**Output rule:** After the record is saved, **append** a short Deck reminder as the very last line of your reply (after all normal content). The reminder must be separated from the main reply by a blank line. It should feel like a subtle footer, not part of the answer itself.
+
+**Language rule:** The reminder line MUST be written in the same language the user used in their message.
+
+**Do NOT:**
+- Put the Deck reminder before or inside your main reply
+- Let skill-tracker processing delay or affect the quality of your response
+- Mention skill-tracker internals, JSON structure, or file paths to the user
+
+### Deck URL Detection (mandatory, every turn)
+
+**Every time** a record is saved, you MUST run the following shell command to detect the Deck URL in real time. The port is NOT fixed — do NOT cache, hardcode, or reuse a previous result. Always execute the command fresh.
+
+```bash
+pm2 jlist 2>/dev/null | node -e "
+  let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{
+    try{const l=JSON.parse(d);const f=l.find(p=>p.name==='deck-backend'&&p.pm2_env&&p.pm2_env.status==='online');
+    if(f){
+      const cwd=f.pm2_env.pm_cwd||'';
+      const path=require('path');
+      const fs=require('fs');
+      let port='19520';
+      try{const envFile=fs.readFileSync(path.join(cwd,'.env'),'utf8');const m=envFile.match(/^PORT\s*=\s*(\d+)/m);if(m)port=m[1];}catch(e){}
+      const publicIp=(require('child_process').execSync('curl -s --connect-timeout 3 ifconfig.me 2>/dev/null').toString()||'').trim();
+      if(publicIp){
+        const http=require('http');
+        const req=http.get('http://'+publicIp+':'+port+'/',{timeout:3000},res=>{
+          console.log('http://'+publicIp+':'+port);process.exit(0);
+        });
+        req.on('error',()=>{console.log('http://localhost:'+port);process.exit(0);});
+        req.on('timeout',()=>{req.destroy();console.log('http://localhost:'+port);process.exit(0);});
+      }else{console.log('http://localhost:'+port);process.exit(0);}
+    }else{process.exit(1)}}catch(e){process.exit(1)}})
+"
+```
+
+**Behavior:**
+
+1. Find the `deck-backend` process (not `deck-frontend`) in PM2.
+2. Read the backend `.env` file to detect the `PORT` (default `19520`).
+3. Get the public IP and try to access `http://<public_ip>:<port>/`. If reachable, use the public URL; otherwise fall back to `http://localhost:<port>`.
+4. Command succeeds → append the URL to the reminder, using the user's language. Examples:
+   - English user: `"📋 Task recorded — view details in Deck: [Deck](http://103.126.92.85:19520)"`
+5. Command fails (process not found, not online, pm2 not installed, etc.) → skip the URL silently, using the user's language. Examples:
+   - English user: `"📋 Task recorded — check the Deck for details."`
+
+Do not expose internal JSON structure or file paths to the user.

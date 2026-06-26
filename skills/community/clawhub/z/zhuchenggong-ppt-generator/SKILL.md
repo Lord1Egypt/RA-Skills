@@ -1,35 +1,45 @@
----
-name: "PPT自动生成"
-description: "根据用户提供的主题或大纲，自动生成适用于分享、介绍、课件等场景的PPT文件并保存到本地。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhuchenggong-ppt-generator"
-sourceUrl: "https://clawhub.ai/skills/zhuchenggong-ppt-generator"
----
+# ppt-generator - PPT自动生成技能
 
-# PPT自动生成
+## 功能
+根据用户提供的主题或大纲，自动生成PPT
 
-> 根据用户提供的主题或大纲，自动生成适用于分享、介绍、课件等场景的PPT文件并保存到本地。
+## 适用场景
+- 经验分享PPT
+- 产品介绍PPT
+- 课程课件PPT
+- 任何需要快速生成PPT的场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhuchenggong-ppt-generator`
-- **Source URL:** [https://clawhub.ai/skills/zhuchenggong-ppt-generator](https://clawhub.ai/skills/zhuchenggong-ppt-generator)
+## 限制
+- 需要用户登录通义千问账号才能使用PPT功能
+- 沙箱浏览器可能无法使用，需用户本地浏览器
 
-## Overview
+## 工作流程
 
+### 方式一：通义千问PPT
+1. 用 browser 打开 https://tongyi.aliyun.com/qianwen/
+2. **检查登录状态**：
+   - 有"我的空间"按钮 → 已登录
+   - 有"立即登录"按钮 → 未登录
+3. **如果未登录**：
+   - 点击"立即登录"
+   - 截图发给用户让其扫码
+   - 等待用户确认登录完成
+4. 点击左下角"更多"按钮
+4. 点击"PPT"选项
+5. 在输入框输入PPT主题或大纲
+6. 等待生成（30秒-1分钟）
+7. 点击"下载"按钮，选择格式（PPT/PDF/长图）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhuchenggong-ppt-generator
-```
+### 方式二：Kimi PPT
+1. 用 browser 打开 https://kimi.com/slides
+2. 检查登录状态
+3. 输入PPT主题
+
+### 方式三：用户本地生成（未登录时）
+1. 告知用户需要手动登录
+2. 提供PPT大纲内容
+3. 让用户自行生成
+
+## 输出
+- 生成的PPT文件保存到本地
+- 告知用户文件位置

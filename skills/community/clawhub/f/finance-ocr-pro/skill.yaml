@@ -1,0 +1,60 @@
+name: finance-ocr-pro
+version: 1.0.7
+author: RizMoon
+description: >
+  Extract structured Markdown, HTML, DOCX, and Excel from scanned documents,
+  especially financial and complex chart-heavy files. Sends rendered page images
+  and OCR prompts to a configured OpenAI-compatible VLM endpoint. HTML report
+  assets are bundled locally; no runtime CDN downloads are performed. DOCX
+  output includes improved native Word equation restoration for recognized
+  LaTeX formulas.
+license: MIT
+
+permissions:
+  - network
+  - filesystem
+  - shell
+
+config:
+  API_KEY:
+    type: string
+    required: true
+    description: "API key for the OpenAI-compatible VLM endpoint that performs OCR"
+    secret: true
+  BASE_URL:
+    type: string
+    required: true
+    description: "Base URL of the VLM endpoint (e.g. https://api.openai.com/v1). Page images are transmitted here during OCR"
+  VLM_MODEL:
+    type: string
+    required: true
+    description: "Vision-capable model identifier (e.g. gpt-4o). Must support image inputs"
+
+entryPoint:
+  type: natural
+  prompt: |
+    Use this skill when the user asks to OCR, transcribe, extract, or convert
+    a document's contents. This skill is especially strong for financial
+    documents and other complex files with dense tables, charts, graphs, 
+    footnotes, formulas, and multi-part layouts. It produces Markdown, HTML,
+    DOCX with improved native Word equation output for recognized LaTeX
+    formulas, and Excel. Before starting, announce the default
+    mode, model, thread count, result path, and that page images will be
+    transmitted to BASE_URL. Also tell the user that this skill supports
+    multi-thread OCR, but higher thread counts should only be used when the
+    API endpoint, rate limits, and subscription plan support parallel OCR
+    requests. First resolve the interpreter path: on macOS/Linux use
+    `.venv/bin/python` if present, otherwise `python3`; on Windows use
+    `.venv/Scripts/python.exe` if present, otherwise `python`. Then proceed
+    unless the user changes defaults. Prefer
+    `<python> scripts/ocrctl.py --json start ...` for long jobs and
+    `<python> scripts/ocr_main.py ...` only for very small inline jobs.
+
+triggers:
+  keywords:
+    - "ocr"
+    - "transcribe"
+    - "extract"
+    - "convert to markdown"
+    - "convert to docx"
+    - "convert to excel"

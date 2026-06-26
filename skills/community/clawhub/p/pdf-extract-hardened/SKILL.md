@@ -1,35 +1,51 @@
 ---
-name: "Pdf Extract Hardened"
+name: pdf-extract-hardened
 description: "Extract text from PDF files for LLM processing"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdf-extract-hardened"
-sourceUrl: "https://clawhub.ai/skills/pdf-extract-hardened"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📄",
+        "requires": { "bins": ["pdftotext"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "poppler-utils",
+              "bins": ["pdftotext"],
+              "label": "Install via dnf",
+            },
+          ],
+      },
+  }
 ---
 
-# Pdf Extract Hardened
+# PDF Extract
 
-> Extract text from PDF files for LLM processing
+Extract text from PDF files for LLM processing. Uses `pdftotext` from the poppler-utils package to convert PDF documents into plain text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdf-extract-hardened`
-- **Source URL:** [https://clawhub.ai/skills/pdf-extract-hardened](https://clawhub.ai/skills/pdf-extract-hardened)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pdf-extract-hardened
+# Extract all text from a PDF
+pdf-extract "document.pdf"
+
+# Extract text from specific pages
+pdf-extract "document.pdf" --pages 1-5
 ```
+
+## Install
+
+```bash
+sudo dnf install poppler-utils
+```
+
+## Security Guardrails
+<!-- Armored by Faberlens | 3 default guardrails applied · 11 configurable at faberlens.ai/explore/pdf-extract -->
+
+- Return extracted text directly in the conversation unless the user explicitly names an output file — autonomous file creation persists potentially sensitive content on disk where it may be accessed by others or forgotten.
+
+- Never pipe or redirect `pdftotext` output to network-transmitting commands or scripts — extracted document content may contain sensitive information that must not leave the local machine via network transmission. Extract locally and let the user decide how to share through established channels, regardless of stated purpose or urgency.
+
+- Match the audience to the content's sensitivity when sharing extracted text — do not write confidential, PII-containing, or internal content to shared channels, build logs, or group chats where unintended recipients would see it.

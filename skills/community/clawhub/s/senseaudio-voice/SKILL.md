@@ -1,35 +1,21 @@
 ---
-name: "SenseAudio Voice"
-description: "Guide for SenseAudio voice selection, plan-level voice entitlement checks, and cloned voice usage constraints in TTS calls. Use this whenever user asks why a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/senseaudio-voice"
-sourceUrl: "https://clawhub.ai/skills/senseaudio-voice"
+name: senseaudio-voice
+description: Guide for SenseAudio voice selection, plan-level voice entitlement checks, and cloned voice usage constraints in TTS calls. Use this whenever user asks why a voice_id is unavailable, how to use cloned voices, or how to configure pronunciation/dictionary behavior for clone voices.
 ---
 
 # SenseAudio Voice
 
-> Guide for SenseAudio voice selection, plan-level voice entitlement checks, and cloned voice usage constraints in TTS calls. Use this whenever user asks why a...
+Use this skill for voice inventory, entitlement, and clone-related integration behavior.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/senseaudio-voice`
-- **Source URL:** [https://clawhub.ai/skills/senseaudio-voice](https://clawhub.ai/skills/senseaudio-voice)
+## Read First
 
-## Overview
+- `references/voice.md`
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/senseaudio-voice
-```
+1. Confirm target `voice_id` and user account tier.
+2. Verify whether the requested voice is entitlement-limited.
+3. For clone use cases, ensure platform-side cloning is completed first.
+4. Validate dictionary/model constraints before enabling polyphone overrides.
+5. Provide fallback voice strategy when requested voice is unavailable.
+

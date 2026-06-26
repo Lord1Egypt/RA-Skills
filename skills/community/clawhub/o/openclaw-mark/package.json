@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-mark",
+  "version": "1.0.1",
+  "description": "Facebook browser automation skill for posting, reading comments, generating intelligent replies, and tracking comment threads. Designed for brand engagement and high-frequency community operations.",
+  "main": "SKILL.md",
+  "keywords": [
+    "facebook",
+    "automation",
+    "social-media",
+    "marketing",
+    "engagement"
+  ],
+  "author": "Ray Luan",
+  "license": "MIT"
+}

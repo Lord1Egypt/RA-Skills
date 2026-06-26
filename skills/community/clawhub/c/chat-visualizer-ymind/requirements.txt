@@ -1,0 +1,8 @@
+# YMind chat-visualizer-ymind — Python dependencies (requires Python 3.10+)
+#
+# Minimal (paste text only): no install needed — render-html.py is stdlib only.
+# Full (auto-fetch URLs + screenshot):
+#   pip install requests playwright && playwright install chromium
+
+requests>=2.28      # fetch-chat.py only
+playwright>=1.40    # fetch-chat.py (Gemini/Claude) + render-html.py (screenshot)

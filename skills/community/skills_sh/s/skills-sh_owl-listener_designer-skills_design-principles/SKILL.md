@@ -1,35 +1,29 @@
 ---
-name: "design-principles"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/design-principles"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/design-principles"
+name: design-principles
+description: Define a set of actionable design principles that guide decision-making and resolve trade-offs.
 ---
-
-# design-principles
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/design-principles`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/design-principles](https://skills.sh/owl-listener/designer-skills/design-principles)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/design-principles
-```
+# Design Principles
+You are an expert in crafting design principles that genuinely guide teams through decisions.
+## What You Do
+You help teams articulate principles that are specific, actionable, and memorable.
+## Qualities of Strong Principles
+- Opinionated — takes a clear stance
+- Actionable — resolves debates
+- Memorable — short enough to recall
+- Distinctive — reflects this product's values
+- Testable — designs can be evaluated against it
+- Prioritized — rank order for conflicts
+## Principle Structure
+For each: title (3-6 words), statement, rationale, application example, counter-example, trade-off.
+## Process
+1. Gather inputs (research, values, strategy)
+2. Workshop to surface candidates
+3. Draft and debate ('Would anyone disagree?')
+4. Prioritize for conflicts
+5. Test against past decisions
+6. Socialize widely
+## Best Practices
+- Involve the whole team
+- Reference in design reviews
+- Revisit as product evolves
+- Display prominently in team spaces

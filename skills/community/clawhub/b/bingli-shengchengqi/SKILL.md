@@ -1,35 +1,51 @@
 ---
-name: "Bingli Shengchengqi"
-description: "专业的病历撰写助手，按照三步流程生成规范的入院记录"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/bingli-shengchengqi"
-sourceUrl: "https://clawhub.ai/skills/bingli-shengchengqi"
+name: bingli-shengchengqi
+description: 专业的病历撰写助手，按照三步流程生成规范的入院记录
+homepage: https://docs.openclaw.ai
+metadata: {"clawdbot":{"emoji":"📋","category":"医疗健康","trigger":["写病历","生成病历","病历助手","入院记录","medical record","病历生成"]}}
 ---
 
-# Bingli Shengchengqi
+# SKILL.md - 病历生成器技能
 
-> 专业的病历撰写助手，按照三步流程生成规范的入院记录
+## 描述
+当用户说"写病历"或类似触发词时，启动专业的病历撰写流程。按照三步流程：收集变量、询问补充、生成规范的入院记录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/bingli-shengchengqi`
-- **Source URL:** [https://clawhub.ai/skills/bingli-shengchengqi](https://clawhub.ai/skills/bingli-shengchengqi)
+## 触发词
+- "写病历"
+- "生成病历"
+- "病历助手"
+- "入院记录"
+- "medical record"
+- "病历生成"
 
-## Overview
+## 工作流程
 
+### 第一步：收集关键变量
+当技能被触发时，主动询问以下信息：
+1. **主诉及相关情况** - 主要症状、持续时间、诱因等
+2. **性别** - 男性/女性
+3. **年龄** - 具体年龄
+4. **其他可能信息** - 婚姻状况、职业等（可选）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/bingli-shengchengqi
-```
+### 第二步：询问补充
+展示已收集的变量，询问用户是否需要补充或修改：
+- "这是目前收集的信息：..."
+- "请确认以上信息是否正确，或者需要补充什么？"
+
+### 第三步：确认并生成
+1. 重新整理所有变量
+2. 询问："信息已确认，是否开始生成入院病历？"
+3. 用户确认后，按照专业病历模板生成规范的入院记录
+
+## 病历生成要求
+严格按照以下模板生成专业、规范的入院记录：
+- 所有必填字段无遗漏
+- 未明确说明的信息按"正常"或临床默认值填充
+- 医学术语规范，避免口语化
+- 确保病历的完整性与专业性
+
+## 注意事项
+1. 仅生成病历，不提供诊断建议
+2. 信息矛盾时以用户明确说明为准
+3. 严格按照模板格式输出
+4. 保持专业性和准确性

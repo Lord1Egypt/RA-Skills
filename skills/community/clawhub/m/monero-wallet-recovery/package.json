@@ -1,0 +1,6 @@
+{
+  "name": "monero-wallet-recovery",
+  "version": "1.0.0",
+  "description": "Step-by-step guide to safely restore Monero wallets from seed phrases and keys",
+  "main": "SKILL.md"
+}

@@ -1,0 +1,6 @@
+# Python dependencies for trading calendar sync
+# Install with: pip install -r requirements.txt
+
+pandas-market-calendars>=4.1.0
+exchange-calendars>=4.2.0
+chinese-calendar>=2.0.0

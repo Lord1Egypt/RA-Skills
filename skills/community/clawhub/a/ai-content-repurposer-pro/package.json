@@ -1,0 +1,42 @@
+{
+  "name": "ai-content-repurposer",
+  "version": "1.0.0",
+  "description": "Transform long-form content into multiple formats: YouTube→TikTok/Shorts, Blog→Twitter/LinkedIn, Podcast→Transcripts/Summaries",
+  "main": "src/converter.js",
+  "bin": {
+    "ai-content-repurposer": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "content",
+    "repurposing",
+    "youtube",
+    "tiktok",
+    "twitter",
+    "linkedin",
+    "ai",
+    "transcription",
+    "summarization"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/ai-content-repurposer"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/ai-content-repurposer/issues"
+  },
+  "homepage": "https://clawhub.ai/skills/ai-content-repurposer"
+}

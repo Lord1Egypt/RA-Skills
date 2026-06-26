@@ -1,0 +1,25 @@
+# ─── E2E Test: OpenClaw Adapter ────────────────────────────────────────
+#
+# Minimal pipeline that spawns a real OpenClaw agent.
+# Validates that the adapter correctly invokes openclaw CLI.
+#
+# Requires: openclaw CLI installed, gateway running
+# Run: squid run skills/squid-pipeline/examples/e2e/e2e-openclaw.yaml -v
+
+name: e2e-openclaw
+description: End-to-end test for OpenClaw adapter
+agent: openclaw
+
+steps:
+  - id: hello
+    type: spawn
+    description: Ask OpenClaw agent to return structured JSON
+    spawn:
+      task: 'Reply with exactly this JSON and nothing else: {"status": "ok", "agent": "openclaw", "test": true}'
+      agentId: main
+      timeout: 120
+
+  - id: verify
+    type: transform
+    description: Verify the response
+    transform: $hello.json

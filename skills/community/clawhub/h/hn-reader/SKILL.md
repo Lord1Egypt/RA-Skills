@@ -1,35 +1,53 @@
----
-name: "HN Reader"
-description: "Monitors and fetches HackerNews stories via official API, supporting top, new, best, Ask, Show, Jobs categories and keyword searches."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hn-reader"
-sourceUrl: "https://clawhub.ai/skills/hn-reader"
----
+# HackerNews Skill
 
-# HN Reader
+Monitora e busca stories do HackerNews via API oficial.
 
-> Monitors and fetches HackerNews stories via official API, supporting top, new, best, Ask, Show, Jobs categories and keyword searches.
+## Gatilhos
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hn-reader`
-- **Source URL:** [https://clawhub.ai/skills/hn-reader](https://clawhub.ai/skills/hn-reader)
+Ative a skill usando palavras-chave:
+- `"hackernews"`, `"hn"` — listar top stories
+- `"top stories"`, `"front page"` — top stories
+- `"new"`, `"latest"`, `"novas"` — stories recentes  
+- `"ask hn"`, `"askstories"` — Ask HN
+- `"show hn"`, `"showstories"` — Show HN
+- `"jobs"`, `"vagas"` — Jobs
+- `"best"`, `"melhores"` — Melhores stories
+- `"buscar no hn"`, `"pesquisar hn"` — buscar por termo
 
-## Overview
+## Como Usar
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/hn-reader
+# Listar top stories (padrão: 10)
+node index.js top
+node index.js top 20
+
+# Stories recentes
+node index.js new
+node index.js new 15
+
+# Melhores stories
+node index.js best
+
+# Ask HN
+node index.js ask
+node index.js show
+
+# Jobs
+node index.js jobs
+
+# Ver detalhes de uma story por ID
+node index.js item 12345678
+
+# Ver perfil de usuário
+node index.js user pg
+
+# Buscar stories por termo
+node index.js search rust
+node index.js search "machine learning"
 ```
+
+##API
+
+- **URL Base:** `https://hacker-news.firebaseio.com/v0/`
+- **Rate Limit:** Nenhum (API pública)
+- **Autenticação:** Não requerida

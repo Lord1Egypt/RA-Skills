@@ -1,35 +1,75 @@
 ---
-name: "教师教学能力动态评估Skill"
-description: "中国中小学教师教学能力动态评估系统。基于学生学业数据（来自 homework-grading-assessment skill）生成同年级班级间学业对比图及教师教学能力评估图。触发场景：(1)生成同年级不同班级学业情况动态对比图 (2)生成单科教师教学能力评估与同科教师横向对比 (3)按角色分级管理教师数据查看权..."
-category: "research"
-source: "ClawHub"
-tags: [education, huimai, teacher]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huimai-teacher-capacity"
-sourceUrl: "https://clawhub.ai/skills/huimai-teacher-capacity"
+name: teacher-capacity-evaluation
+description: 中国中小学教师教学能力动态评估系统。基于学生学业数据（来自 homework-grading-assessment skill）生成同年级班级间学业对比图及教师教学能力评估图。触发场景：(1)生成同年级不同班级学业情况动态对比图 (2)生成单科教师教学能力评估与同科教师横向对比 (3)按角色分级管理教师数据查看权限 (4)追溯分析教师教学效果趋势。
 ---
 
-# 教师教学能力动态评估Skill
+# 教师教学能力动态评估
 
-> 中国中小学教师教学能力动态评估系统。基于学生学业数据（来自 homework-grading-assessment skill）生成同年级班级间学业对比图及教师教学能力评估图。触发场景：(1)生成同年级不同班级学业情况动态对比图 (2)生成单科教师教学能力评估与同科教师横向对比 (3)按角色分级管理教师数据查看权...
+## 核心功能
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huimai-teacher-capacity`
-- **Source URL:** [https://clawhub.ai/skills/huimai-teacher-capacity](https://clawhub.ai/skills/huimai-teacher-capacity)
+### 1. 教师教学效果评估
 
-## Overview
+基于 `homework-grading-assessment` 输出的学生知识点掌握数据，评估教师教学效果：
 
+- **班级维度**: 所教班级各知识点掌握率的**提升幅度**（学期初 → 当前）
+- **时间维度**: 历次测验成绩变化趋势（稳定上升 / 波动 / 下降）
+- **均衡维度**: 班级内部学生差距变化（标准差缩小趋势 → 教学均衡性好）
+- **综合评分**: 多维度加权得出教学效果得分（0-100）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huimai-teacher-capacity
-```
+### 2. 同年级班级间学业对比
+
+- **学业情况动态图**:
+  - 折线图：各班各科平均分/掌握率随时间变化
+  - 箱线图：各班成绩分布对比（中位数、四分位距、极值）
+  - 进度条图：各班知识点完成度对比
+- **对比图交互**: 可选定任意两个或多个班级叠加对比，支持环比（与上次测验比）和同比（与上月/上学期比）
+
+### 3. 同科教师教学对比
+
+- **单科教师教学效果对比图**:
+  - 柱状图：同年级同科教师教学综合评分排序
+  - 雷达图：教学能力的多个维度（知识点覆盖度、学生进步度、均衡性、作业反馈时效）
+  - 热力图：各教师在各知识点上的"班级掌握率"对比
+- **个人成长曲线**: 单名教师历次评估的分数变化趋势
+
+### 4. 分层授权管理
+
+| 角色 | 数据可见范围 |
+|------|-------------|
+| 单科教师 | 自己教学评分、同科同年级教师对比数据（匿名或实名由学校配置） |
+| 年级组长 | 本年级各班各科教师数据、年级整体教师评价 |
+| 教导主任/教务 | 全校教师评估数据、配置对比实名/匿名、分配查看权限 |
+| 校长 | 全校教师总览、定向深入查看 |
+| 系统管理员 | 权限配置、数据导入导出、系统设置 |
+
+### 5. 报告的组成
+
+- **个人报告**: 教师姓名、所教班级、各维度评分、教学建议（可改进方向、推荐教研活动）
+- **年级报告**: 年级整体教学质量总览、各班/各科排布、关注建议（需重点关注班级或教师）
+- **校级报告**: 全校教学趋势、学科强弱项、资源配置建议
+
+## 数据依赖
+
+本 skill **依赖** `homework-grading-assessment` skill 的输出数据，主要是：
+- student KP mastery data
+- class-level aggregated scores
+- historical trend data
+
+## 参考文件
+
+见 [references/data-model.md](references/data-model.md) — 教师、评估模型、对比维度的数据结构。
+见 [references/permission-model.md](references/permission-model.md) — 教师数据分级查看权限。
+见 [references/chart-spec.md](references/chart-spec.md) — 教师评估图表规格。
+见 [references/textbook-version-mapping.md](references/textbook-version-mapping.md) — 知识点-教材版本映射方案，教师评估依赖的知识点数据源于此映射体系。
+
+---
+
+## 授权说明
+
+**版权与知识产权**: © 2026 Huimai Intelligence. All Rights Reserved.
+
+本技能文件（含所有附属参考文档）为**设计说明与产品预览**，仅限个人教师免费查阅和使用其中的教育理念与评估方法论。
+
+**商业使用许可**: 任何学校、教育机构或企业如需部署、集成、定制本系统，或进行任何形式的商业使用，须与惠迈智能（Huimai Intelligence）签订书面商业许可协议。
+
+本文件发布于 ClawHub 平台，发布时间戳作为原创性证明，受《中华人民共和国著作权法》及相关国际版权条约保护。未经授权复制、分发、修改或商用将追究法律责任。

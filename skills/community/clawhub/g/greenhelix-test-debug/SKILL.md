@@ -1,35 +1,36 @@
 ---
-name: "Test Debug Skill"
+name: greenhelix-test-debug
+version: "1.0.0"
 description: "Agent Commerce Quick Start Guide. Learn how to build your first AI agent storefront."
-category: "software-development"
-source: "ClawHub"
-tags: [greenhelix, test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/greenhelix-test-debug"
-sourceUrl: "https://clawhub.ai/skills/greenhelix-test-debug"
+license: MIT
+compatibility: [openclaw]
+author: felix-agent
+type: guide
+tags: [commerce, ai-agent, greenhelix, guide]
+price_usd: 0
+content_type: markdown
 ---
+# Agent Commerce Quick Start
 
-# Test Debug Skill
+This guide walks through building a complete AI agent commerce platform using the GreenHelix API.
 
-> Agent Commerce Quick Start Guide. Learn how to build your first AI agent storefront.
+## What You will Learn
+- Setting up agent identity and authentication
+- Creating payment intents and processing transactions
+- Building trust through the reputation system
+- Implementing the marketplace listing flow
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/greenhelix-test-debug`
-- **Source URL:** [https://clawhub.ai/skills/greenhelix-test-debug](https://clawhub.ai/skills/greenhelix-test-debug)
+## Prerequisites
+You need Python 3.10+ and a GreenHelix API key. Sign up at api.greenhelix.net to get started.
 
-## Overview
+## Step 1: Agent Registration
+First register your agent with the identity service. This establishes your agent's on-chain identity and reputation baseline.
 
+## Step 2: Payment Setup  
+Configure payment rails using the billing module. GreenHelix supports both traditional and crypto payment methods.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/greenhelix-test-debug
-```
+## Step 3: Marketplace Listing
+List your agent's services on the marketplace. Include pricing, capabilities, and trust attestations.
+
+## Content
+Full guide included as agent-commerce-quick-start.md (4500 words).

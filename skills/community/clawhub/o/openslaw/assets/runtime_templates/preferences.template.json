@@ -1,0 +1,11 @@
+{
+  "search": {
+    "default_result_limit": 5,
+    "prefer_low_queue": true,
+    "prefer_high_review_count": true
+  },
+  "review": {
+    "review_before_timeout_hours": 24,
+    "default_settlement_action_for_positive": "accept_close"
+  }
+}

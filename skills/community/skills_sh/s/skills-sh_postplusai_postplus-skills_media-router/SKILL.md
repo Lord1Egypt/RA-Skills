@@ -1,35 +1,87 @@
 ---
-name: "media-router"
-description: "Indexed by skills.sh from postplusai/postplus-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "postplusai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/postplusai/postplus-skills/media-router"
-sourceUrl: "https://skills.sh/postplusai/postplus-skills/media-router"
+name: media-router
+description: Route audio, video, transcript, subtitle, and edit-prep requests into the right media-understanding workflow before execution. Use this when the user wants transcription, subtitle generation, beat mapping, B-roll planning, or edit-ready outputs and the first question is which skill and model chain should run.
+metadata:
+  postplus:
+    familyId: routing-contracts
+    familyName: Routing & Contracts
 ---
 
-# media-router
+# Media Router
 
-> Indexed by skills.sh from postplusai/postplus-skills
+## Use When
+- The user has audio, video, transcript, subtitle, A-roll, or B-roll material.
+- The first decision is whether to transcribe, package subtitles, add semantic
+  understanding, or build an edit-ready plan.
+- The output quality target is rough, subtitle-ready, or edit-ready.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** postplusai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/postplusai/postplus-skills/media-router`
-- **Source URL:** [https://skills.sh/postplusai/postplus-skills/media-router](https://skills.sh/postplusai/postplus-skills/media-router)
+## Do Not Use When
+- Do not treat every media request as plain transcription.
+- Do not execute downstream collection or editing work in this router.
+- Do not choose a costly model chain when rough output is enough.
+- Do not route image, video, audio, or workflow generation here; use
+  `generation-router`.
 
-## Overview
+## Core Rule
+Route by job intent, not by input file type alone.
 
+Choose from five dimensions:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/postplusai/postplus-skills/media-router
-```
+- `inputType`: audio, video, transcript, or transcript+assets
+- `goal`: transcript, subtitles, semantic-analysis, beats, broll-map, or edit-plan
+- `quality`: rough, subtitle-ready, or edit-ready
+- `scale`: single or batch
+- `costMode`: cheap-first or quality-first
+
+## Default Routing Logic
+- Audio to transcript -> `audio-transcription`.
+- Video to transcript or subtitles -> `video-transcription`.
+- Existing transcript to subtitle files -> `subtitle-packager`.
+- Transcript plus assets to cut logic or B-roll plan -> `editing-decision-engine`.
+- Video to edit-ready plan -> transcription first, optional subtitle packaging,
+  optional semantic video analysis, then `editing-decision-engine`.
+- Analyze first, then generate -> this router handles the understanding step,
+  then hands back to `generation-router`.
+
+## Quality Thresholds
+- `rough`: quick review, search, logging, or candidate beat spotting. Prefer
+  cheaper transcription and fewer enrichments.
+- `subtitle-ready`: captions, SRT/VTT, and reliable sentence or word timing.
+  Timestamps are mandatory.
+- `edit-ready`: A-roll/B-roll decisions, cutaway placement, and beat-level
+  planning. Use timestamped transcript plus semantic understanding when visual
+  proof matters.
+
+## Output Shape
+The artifact contains:
+
+- `route` and `why`
+- `primarySkill`
+- `supportingSkills`
+- `modelPlan`
+- `outputArtifacts`
+- `needsTimestamps`
+- `executionMode`
+
+## Stop Conditions
+- Stop when required user intent, source evidence, or owned input artifacts are
+  missing and guessing would change the result.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
+
+## Handoff
+- Hand the route JSON to the named `primarySkill`.
+- Preserve expected artifacts so downstream skills know whether to produce
+  `transcript.json`, `timed-transcript.json`, subtitles, beat maps, or edit plans.
+
+## Public Command Boundary
+
+- Choose the smallest matching command or workflow from the user input and run
+  it directly.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
+- This public skill is instruction-driven. Produce the artifact described by the workflow directly from the available evidence.
+- Do not call private provider/runtime paths or unpublished local tools.
+- If the CLI returns a quote-confirmation challenge, run `postplus quote confirm --json --challenge-file <challenge.json>` and retry with the returned token.

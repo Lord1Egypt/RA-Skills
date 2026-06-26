@@ -1,0 +1,27 @@
+{
+  "name": "wechat-post",
+  "version": "2.1.2",
+  "description": "微信公众号/朋友圈营销内容智能体 - GPT Image-2智能配图",
+  "main": "SKILL.md",
+  "scripts": {
+    "publish": "npx openclaw skill publish"
+  },
+  "keywords": [
+    "wechat",
+    "朋友圈",
+    "营销",
+    "海报",
+    "GPT-Image-2",
+    "KIE",
+    "AI配图"
+  ],
+  "author": "jeffli2002",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "gpt-image-2-prompt-index.md",
+    "references/",
+    "scripts/",
+    "LICENSE"
+  ]
+}

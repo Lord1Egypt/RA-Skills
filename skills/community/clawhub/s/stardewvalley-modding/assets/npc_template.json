@@ -1,0 +1,38 @@
+{
+    "Format": "2.3.0",
+    "Changes": [
+        {
+            "LogName": "NPC数据",
+            "Action": "EditData",
+            "Target": "Data/NPCs",
+            "Entries": {
+                "{{npc_name}}": {
+                    "DisplayName": "{{DisplayName}}",
+                    "BirthSeason": "{{birth_season}}",
+                    "BirthDay": {{birth_day}},
+                    "Age": "Adult",
+                    "Gender": "{{gender}}",
+                    "CanBeRomanced": true,
+                    "HomeRegion": "Other"
+                }
+            }
+        },
+        {
+            "LogName": "对话",
+            "Action": "EditData",
+            "Target": "Characters/Dialogue/{{npc_name}}",
+            "Entries": {
+                "Introduction": "{{intro}}",
+                "Mon": "{{monday_dialogue}}"
+            }
+        },
+        {
+            "LogName": "礼物喜好",
+            "Action": "EditData",
+            "Target": "Data/NPCGiftTastes",
+            "Entries": {
+                "{{npc_name}}": "{{gift_tastes}}"
+            }
+        }
+    ]
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://credara.xyz/schema/agent/v1.json",
+  "title": "CAP-1 Agent Manifest",
+  "description": "Credara Agent Protocol v1 — agent identity, trust clearance, and benchmark record",
+  "type": "object",
+  "required": ["$schema", "protocol", "agentId", "displayName", "identity", "clearance", "benchmarks", "issuedBy", "issuedAt"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://credara.xyz/schema/agent/v1.json"
+    },
+    "protocol": {
+      "type": "string",
+      "const": "CAP-1"
+    },
+    "agentId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": ["string", "null"]
+    },
+    "registeredAt": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "identity": {
+      "type": "object",
+      "required": ["nftContract", "chain", "soulbound"],
+      "properties": {
+        "nftContract": { "type": "string" },
+        "tokenId": { "type": ["integer", "null"] },
+        "chain": { "type": "string", "default": "eip155:8453" },
+        "soulbound": { "type": "boolean", "const": true },
+        "verifyUrl": { "type": ["string", "null"], "format": "uri" }
+      }
+    },
+    "clearance": {
+      "type": "object",
+      "required": ["level", "label", "algorithm"],
+      "properties": {
+        "level": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "label": { "type": "string", "enum": ["unverified", "supervised", "trusted", "autonomous"] },
+        "algorithm": { "type": "string", "const": "credara-delta-v1" },
+        "updatedAt": { "type": ["string", "null"], "format": "date-time" },
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "level", "label"],
+            "properties": {
+              "id": { "type": "string" },
+              "level": { "type": "integer", "minimum": 1, "maximum": 3 },
+              "label": { "type": "string", "enum": ["supervised", "trusted", "autonomous"] },
+              "delta": { "type": "number", "minimum": 0, "maximum": 1 },
+              "score": { "type": "number", "minimum": 0, "maximum": 1 },
+              "benchmarkRuns": { "type": "integer", "minimum": 0 },
+              "credentialId": { "type": ["string", "null"] },
+              "verifyUrl": { "type": ["string", "null"], "format": "uri" }
+            }
+          }
+        }
+      }
+    },
+    "benchmarks": {
+      "type": "object",
+      "required": ["totalRuns", "avgDelta"],
+      "properties": {
+        "totalRuns": { "type": "integer", "minimum": 0 },
+        "avgDelta": { "type": "number" },
+        "lastRunAt": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "x402": { "type": "boolean" },
+        "wallet": { "type": ["string", "null"] },
+        "chain": { "type": "string" },
+        "usdc": { "type": "boolean" }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "endpoint"],
+        "properties": {
+          "name": { "type": "string" },
+          "endpoint": { "type": "string" },
+          "version": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "issuedBy": { "type": "string", "format": "uri" },
+    "issuedAt": { "type": "string", "format": "date-time" }
+  }
+}

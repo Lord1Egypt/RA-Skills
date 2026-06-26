@@ -1,0 +1,19 @@
+{
+  "slug": "dua-organizer-skill",
+  "name": "Dua Organizer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "dua-organizer",
+    "faith",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Faith & Lifestyle",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-15",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

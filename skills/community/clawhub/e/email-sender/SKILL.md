@@ -1,35 +1,15 @@
----
-name: "Email Sender"
-description: "Send emails with optional file attachments using a Gmail account via SMTP by specifying recipient, subject, body, and an optional attachment path."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-sender"
-sourceUrl: "https://clawhub.ai/skills/email-sender"
----
+# OpenClaw Email Skill
 
-# Email Sender
+## Description
+Send emails (with optional file attachments) from OpenClaw using SMTP. This skill uses a Gmail account with an App Password.
 
-> Send emails with optional file attachments using a Gmail account via SMTP by specifying recipient, subject, body, and an optional attachment path.
+## Usage
+- **When to use**: User asks to email a report, log, or any file.
+- **Parameters**:
+  - `to` (string, required): Recipient email address.
+  - `subject` (string, required): Email subject.
+  - `body` (string, required): Plain‑text body.
+  - `attachment_path` (string, optional): Absolute path to a file to attach.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-sender`
-- **Source URL:** [https://clawhub.ai/skills/email-sender](https://clawhub.ai/skills/email-sender)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-sender
-```
+## Tools
+The skill provides a function `send_email` that can be called via the OpenClaw function tool.

@@ -1,0 +1,722 @@
+[
+  {
+    "prompt": "best ai customer support software",
+    "category": "saas",
+    "subcategory": "support",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "intercom",
+      "zendesk",
+      "freshdesk"
+    ],
+    "notes": "Commercial SaaS shortlist query"
+  },
+  {
+    "prompt": "best ai crm for startups",
+    "category": "saas",
+    "subcategory": "crm",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "attio",
+      "salesforce"
+    ],
+    "notes": "Startup software selection query"
+  },
+  {
+    "prompt": "best ai automation platform for small teams",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Strong ops-buying intent"
+  },
+  {
+    "prompt": "affordable ai workflow software",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Price-sensitive SaaS search"
+  },
+  {
+    "prompt": "best ai tools for operations teams",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "asana"
+    ],
+    "notes": "Broad operations software query"
+  },
+  {
+    "prompt": "best ai software for startups",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "intercom"
+    ],
+    "notes": "Wide top-of-funnel SaaS query"
+  },
+  {
+    "prompt": "ai software stack for startups",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "zapier"
+    ],
+    "notes": "Stack-building research intent"
+  },
+  {
+    "prompt": "best ai productivity suite for teams",
+    "category": "saas",
+    "subcategory": "productivity",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "clickup",
+      "asana"
+    ],
+    "notes": "Team productivity angle"
+  },
+  {
+    "prompt": "best ai task automation software",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Automation intent"
+  },
+  {
+    "prompt": "best ai back office software",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "airtable",
+      "notion",
+      "zapier"
+    ],
+    "notes": "Operational tooling query"
+  },
+  {
+    "prompt": "best ai operations software for startups",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "airtable",
+      "zapier"
+    ],
+    "notes": "Startup ops buying intent"
+  },
+  {
+    "prompt": "best affordable ai software for small business",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "cost",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "zapier",
+      "zoho"
+    ],
+    "notes": "Budget-conscious buyers"
+  },
+  {
+    "prompt": "best ai software for remote teams",
+    "category": "saas",
+    "subcategory": "collaboration",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "slack",
+      "notion",
+      "clickup"
+    ],
+    "notes": "Remote work angle"
+  },
+  {
+    "prompt": "best ai software for lean teams",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "airtable",
+      "zapier"
+    ],
+    "notes": "Lean-team positioning opportunity"
+  },
+  {
+    "prompt": "best ai software for internal ops",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "airtable"
+    ],
+    "notes": "Internal efficiency use case"
+  },
+  {
+    "prompt": "best ai workflow tool for founders",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Founder/operator persona"
+  },
+  {
+    "prompt": "best ai software to automate repetitive work",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "uibakery"
+    ],
+    "notes": "Pain-led prompt"
+  },
+  {
+    "prompt": "best ai tools for business process automation",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "BPA search intent"
+  },
+  {
+    "prompt": "ai software for startup operations",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "airtable",
+      "zapier"
+    ],
+    "notes": "Ops-focused SaaS term"
+  },
+  {
+    "prompt": "best ai workflow assistant for businesses",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "notion"
+    ],
+    "notes": "Assistant framing"
+  },
+  {
+    "prompt": "best ai platform for team workflows",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Workflow platform shortlist"
+  },
+  {
+    "prompt": "best no code ai automation software",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "No-code audience"
+  },
+  {
+    "prompt": "best simple ai software for small teams",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "clickup",
+      "zapier"
+    ],
+    "notes": "Simplicity-led search"
+  },
+  {
+    "prompt": "best ai software for service businesses",
+    "category": "saas",
+    "subcategory": "service",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "intercom",
+      "zendesk"
+    ],
+    "notes": "Service-business angle"
+  },
+  {
+    "prompt": "best ai operations platform for smb",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "hubspot"
+    ],
+    "notes": "SMB buyer intent"
+  },
+  {
+    "prompt": "best ai platform for startup teams",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "hubspot"
+    ],
+    "notes": "Startup team category term"
+  },
+  {
+    "prompt": "best team ai assistant software",
+    "category": "saas",
+    "subcategory": "assistant",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Assistant framing"
+  },
+  {
+    "prompt": "best ai assistant for small teams",
+    "category": "saas",
+    "subcategory": "assistant",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "High-signal team assistant query"
+  },
+  {
+    "prompt": "cheapest ai software for startups",
+    "category": "saas",
+    "subcategory": "cost",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "notion ai",
+      "zapier"
+    ],
+    "notes": "Cost-sensitive query"
+  },
+  {
+    "prompt": "ai saas tools for founders",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "zapier"
+    ],
+    "notes": "Founder listicle intent"
+  },
+  {
+    "prompt": "best business ai tools 2026",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Annual roundup query"
+  },
+  {
+    "prompt": "best ai growth tools for startups",
+    "category": "saas",
+    "subcategory": "growth",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "hubspot",
+      "clearbit",
+      "apollo"
+    ],
+    "notes": "Growth tooling angle"
+  },
+  {
+    "prompt": "best ai software for startup teams 2026",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "hubspot",
+      "zapier"
+    ],
+    "notes": "Time-bound discovery query"
+  },
+  {
+    "prompt": "best ai tools for founders 2026",
+    "category": "saas",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Founder roundup term"
+  },
+  {
+    "prompt": "best ai software to save startup time",
+    "category": "saas",
+    "subcategory": "productivity",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "notion",
+      "clickup"
+    ],
+    "notes": "Pain-oriented search"
+  },
+  {
+    "prompt": "best ai automation software without coding",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Low-friction buyer intent"
+  },
+  {
+    "prompt": "best ai software for internal tools",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "retool",
+      "airtable",
+      "n8n"
+    ],
+    "notes": "Internal tools angle"
+  },
+  {
+    "prompt": "best ai ops stack for startups",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "notion",
+      "zapier",
+      "airtable"
+    ],
+    "notes": "Stack framing"
+  },
+  {
+    "prompt": "best ai software for small ops teams",
+    "category": "saas",
+    "subcategory": "operations",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "notion",
+      "airtable"
+    ],
+    "notes": "Ops niche term"
+  },
+  {
+    "prompt": "best ai software for startup workflows",
+    "category": "saas",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Workflow-led prompt"
+  }
+]

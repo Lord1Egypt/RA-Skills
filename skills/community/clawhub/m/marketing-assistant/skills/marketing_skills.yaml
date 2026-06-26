@@ -1,0 +1,119 @@
+---
+skills:
+- id: M01_topic_planning
+  name: 选题策划
+  purpose: 根据主题、产品、活动、热点和目标人群生成选题、传播角度、标题和内容矩阵。
+  inputs:
+  - topic
+  - product_info
+  - audience
+  - campaign_goal
+  - material_library
+  outputs:
+  - topic_list
+  - angle_matrix
+  - title_options
+  - content_calendar
+  human_review: true
+  audit_log: true
+- id: M02_poster_copy_generate
+  name: 海报文案生成
+  purpose: 生成海报主标题、副标题、核心卖点、行动号召和设计提示。
+  inputs:
+  - theme
+  - selling_points
+  - audience
+  - brand_tone
+  outputs:
+  - poster_headlines
+  - poster_copy
+  - cta
+  - design_notes
+  human_review: true
+  audit_log: true
+- id: M03_wechat_article_draft
+  name: 公众号初稿生成
+  purpose: 生成公众号标题、文章结构、正文初稿、摘要和配图建议。
+  inputs:
+  - topic
+  - outline
+  - materials
+  - brand_tone
+  outputs:
+  - article_titles
+  - article_outline
+  - article_draft
+  - summary
+  - image_suggestions
+  human_review: true
+  audit_log: true
+- id: M04_short_video_script
+  name: 短视频脚本生成
+  purpose: 生成短视频口播、分镜、字幕、镜头建议和拍摄物料清单。
+  inputs:
+  - topic
+  - duration
+  - platform
+  - materials
+  outputs:
+  - script
+  - storyboard
+  - subtitles
+  - shot_list
+  - material_list
+  human_review: true
+  audit_log: true
+- id: M05_campaign_plan_generate
+  name: 活动方案生成
+  purpose: 生成活动目标、流程、执行节奏、物料清单、预算提示和分工建议。
+  inputs:
+  - campaign_goal
+  - target_audience
+  - budget_range
+  - constraints
+  outputs:
+  - campaign_plan
+  - task_table
+  - material_list
+  - risk_notes
+  human_review: true
+  audit_log: true
+- id: M06_multi_platform_publish_pack
+  name: 多平台发布包生成
+  purpose: 按平台生成标题、正文、标签、封面建议、发布时间和差异化口径。
+  inputs:
+  - content_draft
+  - platforms
+  - publish_goal
+  outputs:
+  - publish_pack
+  - platform_variants
+  - tag_list
+  - schedule_suggestion
+  human_review: true
+  audit_log: true
+- id: M07_material_tagging
+  name: 素材整理与标签
+  purpose: 对图片、案例、视频和产品资料进行分类、标签化和可复用摘要。
+  inputs:
+  - attachments
+  - material_library
+  outputs:
+  - tagged_materials
+  - reusable_summary
+  - missing_materials
+  human_review: true
+  audit_log: true
+- id: M08_marketing_data_review
+  name: 营销数据复盘
+  purpose: 根据阅读、转发、互动、线索等数据输出复盘、归因和优化建议。
+  inputs:
+  - channel_data
+  - campaign_goal
+  - content_records
+  outputs:
+  - review_report
+  - insight_list
+  - next_actions
+  human_review: true
+  audit_log: true

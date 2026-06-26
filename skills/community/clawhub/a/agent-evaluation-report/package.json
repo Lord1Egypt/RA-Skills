@@ -1,0 +1,18 @@
+{
+  "name": "agent-evaluation-report",
+  "version": "1.0.0",
+  "description": "智能体评测报告生成器 - 根据测试数据自动生成标准化的AI智能体系统测试报告",
+  "author": "zhanju.zhang",
+  "license": "MIT",
+  "keywords": [
+    "test-report",
+    "evaluation",
+    "ai-testing",
+    "agent-testing",
+    "report-generator"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,86 @@
+Semantic Prospect — AI-Powered Lead Discovery Engine
+Published by Simply Semantics[](https://www.simplysemantics.com)
+
+================================================================================
+OVERVIEW
+================================================================================
+
+Semantic Prospect is an AI-powered, fully AI Agent–enabled SaaS component that discovers, qualifies, organizes, and activates high-quality business opportunities from forums, Reddit, communities, public discussions, and AI-accessible web sources.
+
+It uses deep semantic intelligence to identify real buyer intent — turning online conversations into prioritized, enriched leads ready for outreach or automation.
+
+Perfect for SaaS companies, consultants, agencies, sales teams, course creators, coaches, and especially AI builders who want low-cost, high-volume lead pipelines integrated into bots, agents, and products. No complex setup required.
+
+================================================================================
+KEY CAPABILITIES
+================================================================================
+
+* Zero-Configuration Free Tier — Works out of the box with Brave Search and LLM using platform-provided keys
+* Semantic AI Intent Detection & Scoring — Prioritizes leads by contextual understanding and real buying signals
+* Multiple Search Strategies — Brave Search API for real-time web results, LLM Web Search for AI-powered forum discovery
+* Automated Qualification & Enrichment — Ranked, de-duplicated records with context notes and contact hints where available
+* Custom Targeting & Rules — Filter by industry, topic, keywords, location, engagement, or your ICP criteria
+* Flexible Delivery — CSV exports, API integration, or direct handoff to AI agents
+* Bring Your Own Key — Add your own Brave or LLM API key for unlimited searches and up to 10 results per query
+* Agent-First Design — MCP-compatible endpoint for autonomous workflows and high-volume usage
+* Usage Tracking — Clear weekly/monthly quotas with remaining count indicators
+
+================================================================================
+USE CASES
+================================================================================
+
+- SaaS Companies: Surface users discussing pain points your tool solves
+- Consultants & Agencies: Discover clients actively seeking your expertise
+- B2B Sales Teams: Build targeted prospect lists from real conversations
+- Course Creators & Coaches: Find learners expressing interest in your topics
+- AI Builders & Bots: Feed qualified leads into autonomous agents for nurturing and conversion
+- Market Research: Capture real-time opportunity signals and trends
+
+================================================================================
+HOW IT WORKS (Quick Start)
+================================================================================
+
+1. Define your targets — Specify sources, keywords, industries, or communities
+2. Set qualification rules — Customize intent signals, scoring, and filters
+3. AI scans & analyzes — Semantic processing finds and qualifies prospects
+4. Receive prioritized lists — Enriched, sorted leads with context
+5. Activate & monetize — Export, integrate via API/webhook, or let agents engage
+
+Contact us for a demo, custom setup, and quick start tailored to your needs.
+
+================================================================================
+PRICING
+================================================================================
+
+Free tier (no credit card required):
+  - Requires your Semantic Prospect API key (generated at signup for authentication)
+  - 10 free searches per week (Brave Search + LLM combined)
+  - 5 free LLM queries (3 results per query)
+  - 50 leads per month
+  - No third-party search API keys needed — platform provides its own
+
+Unlimited usage:
+  - Add your own Brave Search API key for unlimited Brave searches
+  - Add your own LLM API key (Perplexity, xAI) for unlimited queries with up to 10 results each
+  - Pro and Team tiers available — contact for pricing and volume plans
+
+================================================================================
+PRIVACY & DATA HANDLING
+================================================================================
+
+* All leads are sourced from publicly accessible web content only
+* No private data, login-walled content, or PII databases are accessed
+* Lead data is stored in your account and never shared with other users or third parties
+* The platform never reads, collects, or transmits your environment variables
+* Your API key is used solely for request authentication
+* Users are responsible for complying with each source community's terms of service
+
+================================================================================
+CONTACT & SUPPORT
+================================================================================
+
+Website:  https://www.simplysemantics.com
+Product:  https://www.simplysemantics.com/semantic-prospect.html
+Email:    info@simplysemantics.com
+
+License:  MIT (for any open-source components)

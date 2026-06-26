@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "enabled": true,
+  "level": "info",
+  "levels": ["debug", "info", "warn", "error"],
+  "transports": {
+    "file": {
+      "enabled": true,
+      "directory": "logs",
+      "filenamePattern": "douyin-reply-{date}.log",
+      "maxFileSizeMB": 10,
+      "maxFiles": 30,
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "console": {
+      "enabled": true,
+      "colorize": true
+    },
+    "database": {
+      "enabled": true,
+      "path": "data/operations.db",
+      "table": "logs"
+    }
+  },
+  "format": {
+    "timestamp": "YYYY-MM-DD HH:mm:ss",
+    "includeAccountId": true,
+    "includeVideoId": true,
+    "includeCommentId": true
+  },
+  "retention": {
+    "enabled": true,
+    "days": 90,
+    "archivePath": "logs/archive"
+  },
+  "auditLog": {
+    "enabled": true,
+    "events": [
+      "account_login",
+      "account_logout",
+      "monitor_start",
+      "monitor_stop",
+      "reply_sent",
+      "reply_failed",
+      "sensitive_detected",
+      "rate_limit_triggered",
+      "error_occurred"
+    ]
+  },
+  "lastUpdated": null
+}

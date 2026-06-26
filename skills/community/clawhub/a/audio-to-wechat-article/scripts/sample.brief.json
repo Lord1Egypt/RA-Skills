@@ -1,0 +1,11 @@
+{
+  "source_path": "/Users/meizi/.openclaw/workspace/skills/audio-to-wechat-article/scripts/sample.txt",
+  "mode_guess": "case-or-practical",
+  "paragraph_count": 2,
+  "top_points": [
+    "所以关键不是转写本身，而是提炼观点、案例和标题。",
+    "很多人以为把录音转文字就够了，但真正值钱的是把语音材料压成公众号可读的文章结构。"
+  ],
+  "first_paragraph": "很多人以为把录音转文字就够了，但真正值钱的是把语音材料压成公众号可读的文章结构。",
+  "last_paragraph": "所以关键不是转写本身，而是提炼观点、案例和标题。"
+}

@@ -1,35 +1,65 @@
----
-name: "Partnership Priority Evaluator"
-description: "Evaluate new revenue channels by scoring technical difficulty, market demand, competition barriers, and revenue potential to guide prioritization decisions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/partnership-priority-evaluator"
-sourceUrl: "https://clawhub.ai/skills/partnership-priority-evaluator"
+# Partnership Priority Evaluator - 合作优先级评估器
+
+4 维度评分法 (技术门槛/市场需求/竞争壁垒/收益潜力)，快速评估新收入渠道可行性。阈值≥4.0 才推荐执行。
+
 ---
 
-# Partnership Priority Evaluator
+## 触发条件
 
-> Evaluate new revenue channels by scoring technical difficulty, market demand, competition barriers, and revenue potential to guide prioritization decisions.
+- 用户提到 "渠道评估" 或 "优先级评估"
+- 用户提到 "ROI 评估" 或 "是否值得"
+- 用户提供新渠道要求分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/partnership-priority-evaluator`
-- **Source URL:** [https://clawhub.ai/skills/partnership-priority-evaluator](https://clawhub.ai/skills/partnership-priority-evaluator)
+---
 
-## Overview
+## 核心指令
 
+### 1. 4 维度评分
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/partnership-priority-evaluator
+每个维度 1-5 分：
+- **技术门槛**: 实现难度
+- **市场需求**: 用户痛点强度
+- **竞争壁垒**: 差异化程度
+- **收益潜力**: 预期收入
+
+### 2. 综合评分
+
 ```
+综合评分 = (技术 + 市场 + 竞争 + 收益) / 4
+```
+
+### 3. 决策建议
+
+- **≥4.0**: ✅ 推荐执行
+- **3.0-3.9**: 🟡 谨慎评估
+- **<3.0**: ❌ 建议放弃
+
+---
+
+## 输出格式
+
+```markdown
+## {渠道名} 评估报告
+
+### 4 维度评分
+- 技术门槛：{N}/5
+- 市场需求：{N}/5
+- 竞争壁垒：{N}/5
+- 收益潜力：{N}/5
+
+### 综合评分：{N.N}/5
+
+### 决策建议：{✅/🟡/❌} {建议}
+```
+
+---
+
+## 版本信息
+
+- **版本**: 1.0.0
+- **定价**: ¥420 ($59)
+- **分类**: Business/Strategy
+
+---
+
+_完整方法见 references/framework.md_

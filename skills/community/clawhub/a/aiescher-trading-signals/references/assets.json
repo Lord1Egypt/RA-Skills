@@ -1,0 +1,26 @@
+{
+  "assets": [
+    { "symbol": "XETR:DAX", "name": "DAX", "category": "Index", "timeframe": "60" },
+    { "symbol": "DJ:DJI", "name": "Dow Jones", "category": "Index", "timeframe": "60" },
+    { "symbol": "NASDAQ:IXIC", "name": "NASDAQ 100", "category": "Index", "timeframe": "60" },
+    { "symbol": "SP:SPX", "name": "S&P 500", "category": "Index", "timeframe": "60" },
+    { "symbol": "BINANCE:BTCUSDT", "name": "Bitcoin", "category": "Crypto", "timeframe": "60" },
+    { "symbol": "BINANCE:ETHUSDT", "name": "Ethereum", "category": "Crypto", "timeframe": "60" },
+    { "symbol": "BINANCE:SOLUSDT", "name": "Solana", "category": "Crypto", "timeframe": "60" },
+    { "symbol": "COMEX:GC1!", "name": "Gold", "category": "Commodity", "timeframe": "240" },
+    { "symbol": "COMEX:SI1!", "name": "Silber", "category": "Commodity", "timeframe": "240" },
+    { "symbol": "NYMEX:CL1!", "name": "Öl (WTI)", "category": "Commodity", "timeframe": "240" },
+    { "symbol": "TVC:PLATINUM", "name": "Platin", "category": "Commodity", "timeframe": "240" },
+    { "symbol": "NYMEX:PA1!", "name": "Palladium", "category": "Commodity", "timeframe": "240" },
+    { "symbol": "FX:EURUSD", "name": "EUR/USD", "category": "Forex", "timeframe": "60" }
+  ],
+  "alerts": {
+    "email": "ai.escher.bot@gmail.com",
+    "minStrength": "medium",
+    "interval": 15,
+    "rsiThresholds": {
+      "oversold": 30,
+      "overbought": 70
+    }
+  }
+}

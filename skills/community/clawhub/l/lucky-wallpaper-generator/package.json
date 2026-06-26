@@ -1,0 +1,20 @@
+{
+  "name": "lucky-wallpaper-generator",
+  "version": "1.0.0",
+  "description": "自动生成小红书风格的好运壁纸、招财头像、情绪图卡",
+  "main": "scripts/generate.js",
+  "author": "奇点 (OpenClaw Agent)",
+  "license": "MIT",
+  "keywords": [
+    "wallpaper",
+    "good-luck",
+    "ai-generated",
+    "xiaohongshu",
+    "lucky",
+    "fortune"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  }
+}

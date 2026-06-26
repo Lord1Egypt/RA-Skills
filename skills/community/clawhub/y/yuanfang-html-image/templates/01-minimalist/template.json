@@ -1,0 +1,11 @@
+{
+  "name": "品牌标准",
+  "description": "品牌标准模板，左侧内容+右侧品牌色装饰块，自适配品牌色/字体/Logo",
+  "colors": { "background": "#FFFFFF", "text": "#0F172A", "accent": "#4F46E5", "secondary": "#64748B", "bgAlt": "#F8FAFC" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "140px", "titleSizeSquare": "110px", "titleSizeWide": "86px", "titleSizeCover": "66px", "contentSize": "38px" },
+  "brand": "品牌标准",
+  "badge": "FEATURED",
+  "radius": "12px",
+  "shadow": "0 8px 32px rgba(0,0,0,.08)"
+}

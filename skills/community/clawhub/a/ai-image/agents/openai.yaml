@@ -1,0 +1,4 @@
+interface:
+  display_name: "ai-image"
+  short_description: "Access the world's leading models in one place to produce images"
+  default_prompt: "Use $iai-image to create images of {subject}."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "MoneyClaw"
+  short_description: "Inspect wallet readiness, create bounded payment tasks, and continue user-confirmed payment steps"
+  default_prompt: "Use $moneyclaw only when the user explicitly asks to use their own MoneyClaw account. Start by checking wallet readiness and whether account-level agent auto-approval is enabled. Create a bounded payment task for the exact merchant and amount. Do not retrieve execution details or continue checkout until the user asks to continue the exact payment step."
+
+policy:
+  allow_implicit_invocation: false

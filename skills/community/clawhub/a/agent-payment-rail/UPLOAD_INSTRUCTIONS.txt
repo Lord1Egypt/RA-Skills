@@ -1,0 +1,51 @@
+═══════════════════════════════════════════════════════════════
+        ClawHub 上传说明 / ClawHub Upload Instructions
+═══════════════════════════════════════════════════════════════
+
+📂 文件夹内容 / Folder Contents
+─────────────────────────────────────────────────────────────
+✓ skill.md    - 中英双语 Skill 定义
+✓ readme.md   - 中英双语项目说明
+
+⚠️  注意：上传时请移除此说明文件（UPLOAD_INSTRUCTIONS.txt）
+
+
+🌐 上传地址 / Upload URL
+─────────────────────────────────────────────────────────────
+https://clawhub.ai/upload
+
+
+📝 填写信息 / Information to Fill
+─────────────────────────────────────────────────────────────
+Skill 名称 / Name:        agent-payment-rail
+版本 / Version:           1.0.0
+分类 / Category:          Payment / 支付
+标签 / Tags:              payment, stripe, paypal, agent, transaction, billing
+
+
+✅ 上传前检查 / Pre-Upload Checklist
+─────────────────────────────────────────────────────────────
+□ 仅包含 skill.md 和 readme.md 两个文件
+□ 文件使用 UTF-8 编码
+□ 中英双语内容完整
+□ 所有链接可访问
+□ 移除 UPLOAD_INSTRUCTIONS.txt
+
+
+🚀 上传步骤 / Upload Steps
+─────────────────────────────────────────────────────────────
+1. 删除此说明文件
+2. 访问 https://clawhub.ai/upload
+3. 登录你的 ClawHub 账号
+4. 选择 skill.md 和 readme.md 上传
+5. 填写上述信息
+6. 预览确认
+7. 提交发布
+
+
+📧 问题反馈 / Issue Reporting
+─────────────────────────────────────────────────────────────
+如遇问题，请访问:
+https://github.com/ZhenRobotics/openclaw-agent-payment-rail/issues
+
+═══════════════════════════════════════════════════════════════

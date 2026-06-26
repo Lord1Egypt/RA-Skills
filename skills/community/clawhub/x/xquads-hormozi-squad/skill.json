@@ -1,0 +1,39 @@
+{
+  "name": "xquads-hormozi-squad",
+  "version": "1.0.0",
+  "description": "Squad de 16 agentes implementando os frameworks de Alex Hormozi para negócios",
+  "openclaw": {
+    "homepage": "https://github.com/synkra/xquads",
+    "emoji": "💰"
+  },
+  "agents": [
+    "hormozi-chief",
+    "hormozi-offers",
+    "hormozi-leads",
+    "hormozi-pricing",
+    "hormozi-closer",
+    "hormozi-ads",
+    "hormozi-content",
+    "hormozi-hooks",
+    "hormozi-launch",
+    "hormozi-retention",
+    "hormozi-scale",
+    "hormozi-models",
+    "hormozi-audit",
+    "hormozi-copy",
+    "hormozi-workshop",
+    "hormozi-advisor"
+  ],
+  "tasks": [
+    "create-offer",
+    "generate-leads",
+    "set-pricing",
+    "close-sale",
+    "create-hooks",
+    "plan-launch",
+    "audit-business",
+    "design-workshop",
+    "diagnose",
+    "review"
+  ]
+}

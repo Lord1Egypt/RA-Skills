@@ -1,0 +1,36 @@
+{
+  "name": "openclaw-skill-paragraph",
+  "version": "1.2.0",
+  "description": "OpenClaw skill for Paragraph.com - Web3-native blogging platform",
+  "type": "module",
+  "main": "skill.js",
+  "scripts": {
+    "test": "node test.js",
+    "lint": "echo 'No lint configured'"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "paragraph",
+    "web3",
+    "blogging",
+    "nft",
+    "tokens",
+    "publishing",
+    "content",
+    "decentralized",
+    "onchain",
+    "social",
+    "creator-economy",
+    "content-automation"
+  ],
+  "author": "Phil (OpenClaw)",
+  "license": "ISC",
+  "engines": {
+    "node": ">=19"
+  },
+  "openclaw": {
+    "skill": true,
+    "requiresEnv": ["PARAGRAPH_API_KEY", "PARAGRAPH_PUBLICATION_SLUG"]
+  }
+}

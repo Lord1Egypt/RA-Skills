@@ -1,0 +1,41 @@
+# OpenClaw Skill 元数据 - 忆流
+
+name: yiliu
+description: 忆流 - 随时捕捉、自动整理、按需浮现的笔记知识库
+version: 1.0.0
+author: Terry
+license: MIT
+
+tags:
+  - note
+  - knowledge
+  - memory
+  - search
+  - 笔记
+  - 知识库
+
+triggers:
+  - 记
+  - 记录
+  - 搜
+  - 搜索
+  - 找
+  - 历史
+  - 版本
+  - 编辑
+  - 修改
+  - 导出
+  - 备份
+
+use_when: |
+  用户想要记录笔记、搜索内容、查看历史或导出数据时
+
+config:
+  data_path:
+    type: string
+    default: ./data
+    description: 数据存储路径
+  vector_model:
+    type: string
+    default: all-MiniLM-L6-v2
+    description: 向量模型名称

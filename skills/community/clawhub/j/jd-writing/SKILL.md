@@ -1,35 +1,173 @@
 ---
-name: "Jd Writing"
-description: "Use when writing or revising a Chinese-language job description for any company, product, industry, or seniority level. Triggers include 写一份 JD、改 JD、把内部岗位说明改..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jd-writing"
-sourceUrl: "https://clawhub.ai/skills/jd-writing"
+name: jd-writing
+description: Use when writing or revising a Chinese-language job description for any company, product, industry, or seniority level. Triggers include 写一份 JD、改 JD、把内部岗位说明改成对外招聘 JD、岗位名称太黑话、JD 像内部文档候选人看不懂、JD 与简历筛选/面试评价口径不一致、根据投递质量调整 JD 等。
 ---
 
-# Jd Writing
-
-> Use when writing or revising a Chinese-language job description for any company, product, industry, or seniority level. Triggers include 写一份 JD、改 JD、把内部岗位说明改...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jd-writing`
-- **Source URL:** [https://clawhub.ai/skills/jd-writing](https://clawhub.ai/skills/jd-writing)
+# JD 写作
 
 ## Overview
 
+**把 JD 当作"岗位的产品页"来写。**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/jd-writing
+它必须帮候选人在 30 秒内回答四个问题：
+
+1. 这家组织 / 业务在做什么？
+2. 这个岗位在行业里叫什么？
+3. 我加入后要解决什么问题？
+4. 我是否适合投递？
+
+本 Skill 适用于任意公司、产品、业务线和岗位类型，不绑定具体公司。用户提供的公司或产品材料是本次任务的**上下文**，不是 Skill 的固定规则。
+
+## When to Use
+
+- 用户要求"写 JD / 改 JD / 把内部岗位说明改成招聘 JD"。
+- 用户抱怨"投递候选人质量不对 / 候选人看不懂业务 / JD 像内部说明"。
+- 用户要求"JD 与简历筛选、面试评价口径一致"。
+- 用户根据面试或入职反馈要求修改岗位标准。
+
+如果任务覆盖 JD + 筛选 + 面评的完整流程，先加载 [[recruiting-skillset]]。
+
+## Workflow
+
+### 1. 先收集岗位上下文
+
+| 上下文 | 需要确认 | 常见错误 |
+| --- | --- | --- |
+| 组织与业务定位 | 公司 / 团队 / 产品对外如何描述，目标用户或客户是谁 | 只按内部理解写，定位偏窄或偏离 |
+| 岗位层级 | 实习、校招、1-3年、资深、专家、负责人 | 要求过高或过低 |
+| 岗位本质 | 这个人真正要解决什么核心问题 | 变成关键词或职责堆砌 |
+| 用人标准 | 必备能力、风险点、简历硬标准、面试重点 | JD 无法指导筛选和面试 |
+| 候选人市场 | 候选人会搜什么岗位名、熟悉什么能力标签 | 候选人看不懂 / 搜不到 / 误解 |
+| 交付形态 | 外发 / 内部说明 / 猎头 / 校招 / 社招 | 语气和颗粒度不匹配 |
+
+存在官网、产品手册、招聘页、官方介绍时，必须优先使用官方口径。除非用户明确要求，不要把一个通用业务写窄成单一行业、客户类型或内部模块。
+
+### 2. 将内部岗位名转换成行业通用岗位名
+
+岗位名称要用候选人在招聘平台会搜索、能快速理解的名称。详见 [title-conversion.md](title-conversion.md)。
+
+新概念或小众词可以出现在职责或加分项里，但必须用通俗语言解释；不要直接放进主标题，除非目标候选人群明确会用该词搜索。
+
+### 3. 从候选人视角写 JD
+
+JD 默认结构 **岗位职责 / 任职要求 / 加分项**，可选 **我们不太适合这样的候选人**：
+
+```markdown
+# [行业通用岗位名称]
+
+## 岗位职责
+1. 用 1-2 条说明组织 / 产品 / 业务做什么、岗位解决什么问题、为什么有价值。
+2. 再按真实工作链路写具体职责。
+3. 每条说明"做什么 + 为什么重要"。
+
+## 任职要求
+1. 写可被简历或面试验证的必备能力。
+2. 根据岗位需要体现问题定义、主动性、评估意识、交付意识、AI Native 工作方式。
+
+## 加分项
+1. 具体领域、工具、系统、行业或项目经验。
+
+## 我们不太适合这样的候选人（可选）
+1. 专业、克制地写反向筛选项，帮助候选人自我判断。
+
+## 面试重点（内部使用，外发可删除）
+明确简历筛选和面试必须验证什么。
 ```
+
+**不要**把"岗位简介 / 岗位信息"作为必备独立章节。业务背景、产品价值放进岗位职责开头，让 JD 贴近招聘平台常见格式。若用户未说明，默认输出**候选人外发版**。
+
+### 4. 将用人标准写成可验证要求
+
+不要只写"熟悉 X、了解 Y"，要写成能被简历筛选和面试验证的要求。完整能力 → JD 表达 → 面试验证映射见 [verifiable-requirements.md](verifiable-requirements.md)。
+
+### 5. 根据岗位类型突出重点
+
+不同岗位类型有不同侧重点（技术研发 / 算法数据 / 产品经理 / 产品市场 / 解决方案 / 研究战略）。详见 [role-type-playbooks.md](role-type-playbooks.md)。
+
+不要把所有能力机械塞进每一份 JD。
+
+### 6. 对齐业务定位
+
+如果用户没提供官方口径，使用可复用业务定位模板（技术产品 / SaaS / AI 产品 / 行业解决方案 / 内容研究）作为起点。详见 [positioning-templates.md](positioning-templates.md)。
+
+## Quality Rules
+
+必须做到：
+
+- 写给候选人，不是写给内部管理者。
+- 先讲组织 / 产品 / 业务场景，再讲工具和技术。
+- 每个 JD 只有一个清晰岗位定位。
+- 任职要求能被简历和面试验证。
+- 让优秀候选人看到挑战、影响力和成长空间。
+- 包含专业、克制的反向筛选项（可选）。
+- 表述准确，不夸大产品成熟度、收入、客户、融资、团队规模或岗位权限。
+- 针对岗位类型调整语气：技术岗重问题和系统，市场岗重价值和场景，管理岗重目标和协作。
+
+禁止：
+
+- 使用未解释的内部名称、项目代号、模块名或组织黑话。
+- 有行业通用岗位名时使用小众或自造岗位名。
+- 没有证据就把通用产品 / 平台写窄成单一行业。
+- 堆技术关键词但不解释工作场景。
+- 不同岗位复用完全相同的任职要求。
+- 把内部招聘红线写得过于生硬，影响候选人投递意愿。
+- 把尚未确定的信息写成事实。
+
+## Self-Check
+
+交付 JD 前逐项检查：
+
+- [ ] 岗位名称行业通用、候选人可搜索？
+- [ ] 候选人 30 秒内能理解组织 / 产品 / 业务和岗位？
+- [ ] 删除了内部项目名、模块名和未解释黑话？
+- [ ] 业务定位对齐官方材料？
+- [ ] 没把通用业务误写成单一行业或单一客户？
+- [ ] 包含核心三段：岗位职责、任职要求、加分项？
+- [ ] 岗位职责开头已承接业务背景 / 岗位价值，并按真实工作链路排序？
+- [ ] 任职要求能被 [[recruiting-resume-screening]] 和 [[interview-evaluation]] 验证？
+- [ ] 根据岗位需要体现主动性、问题拆解、结果意识、评估意识、交付意识、AI Native？
+- [ ] 反向筛选项专业、克制、清晰？
+- [ ] 没有写入未经确认的事实？
+
+## Common Pitfalls
+
+| 反模式 | 后果 | 修复 |
+| --- | --- | --- |
+| 把内部模块名 / 项目代号当岗位主标题 | 候选人搜不到、看不懂 | 用行业通用岗位名，新概念在职责中解释 |
+| 单设"岗位简介"章节复述业务 | 结构与招聘平台不符 | 业务背景放进岗位职责开头 |
+| 任职要求只写"熟悉 X、了解 Y" | 简历筛选和面试无法验证 | 写成可观察的行为 / 产出 |
+| 不同岗位复用相同任职要求 | 失去辨识度 | 按岗位类型重写能力重点 |
+| 反向筛选写得像最后通牒 | 影响投递意愿 | 用克制、专业语气描述适配条件 |
+| 把未确定信息（融资、客户数、团队规模）写成事实 | 法律和信誉风险 | 改写为"目前""阶段性""规划中" |
+
+## Feedback Loop
+
+| 反馈 | 更新方式 |
+| --- | --- |
+| 岗位名不符合行业叫法 | 更新 [title-conversion.md](title-conversion.md) |
+| 候选人看不懂业务 | 优化 [positioning-templates.md](positioning-templates.md) 并补"黑话禁用清单" |
+| 定位写窄 | 增加官方材料对齐检查 |
+| JD 像内部说明 | 强化候选人外发版结构 |
+| 投递候选人质量差 | 调整任职要求、反向筛选、能力信号 |
+| 面试暴露 JD 假设错误 | 更新岗位能力模型和验证标准 |
+| 某岗位类型有特殊写法 | 补充 [role-type-playbooks.md](role-type-playbooks.md) |
+
+每次重要 JD 完成后主动向用户确认：
+
+1. 岗位名称是否能吸引目标候选人？
+2. 业务介绍是否准确？是否写窄或写偏？
+3. 任职要求是否过高 / 过低 / 权重不对？
+4. 哪些要求应作为简历筛选硬标准？
+5. 哪些能力应留到面试验证？
+6. 投递候选人质量是否符合预期？
+
+用户指出可复用问题时，立即更新本 Skill 并在 [EVOLUTION.md](EVOLUTION.md) 记录。
+
+## See Also
+
+- [title-conversion.md](title-conversion.md) — 内部岗位名 → 行业通用岗位名映射。
+- [verifiable-requirements.md](verifiable-requirements.md) — 能力 → JD 表达 → 面试验证。
+- [role-type-playbooks.md](role-type-playbooks.md) — 六类岗位的写作侧重点。
+- [positioning-templates.md](positioning-templates.md) — 业务定位可复用模板。
+- [EVOLUTION.md](EVOLUTION.md) — 本 Skill 演化日志。
+- 总控流程：[[recruiting-skillset]]。

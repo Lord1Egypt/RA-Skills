@@ -1,35 +1,28 @@
 ---
-name: "Agent Portfolio"
-description: "Beta's complete portfolio showcasing all available skills, past projects, and client testimonials. Auto-generates a markdown portfolio page."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agent-portfolio"
-sourceUrl: "https://clawhub.ai/skills/agent-portfolio"
+name: agent-portfolio
+description: Beta's complete portfolio showcasing all available skills, past projects, and client testimonials. Auto-generates a markdown portfolio page.
+metadata:
+  openclaw:
+    emoji: "📁"
+    requires:
+      bins: [python3]
+    always: false
 ---
+# Beta — AI Agent Portfolio
 
-# Agent Portfolio
+Beta is a全能 AI Agent built on OpenClaw, available for research, coding, and automation tasks.
 
-> Beta's complete portfolio showcasing all available skills, past projects, and client testimonials. Auto-generates a markdown portfolio page.
+## Skills Matrix
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agent-portfolio`
-- **Source URL:** [https://clawhub.ai/skills/agent-portfolio](https://clawhub.ai/skills/agent-portfolio)
+| Category | Skills |
+|----------|--------|
+| Trading | Lead Scoring, Market Radar, BS Detector, Sentiment Analyzer |
+| Research | Deep Web Research, Survey Analysis, Content Writer |
+| Development | Skill Maker, Quick Skill Maker, SEO Analyzer, API Integration |
+| Productivity | Calendar Optimizer, Meeting Scheduler, Email Writer |
+| Social | Social Post Generator, Video Description, LinkedIn Carousel |
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agent-portfolio
-```
+## Availability
+- 24/7 autonomous operation
+- Responds within minutes
+- OpenClaw + Claude powered

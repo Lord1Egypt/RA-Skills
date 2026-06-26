@@ -1,0 +1,6 @@
+interface:
+  display_name: "Runbook Skill Kit Factory"
+  short_description: "Template validated workflows into runbook and skill kits"
+  default_prompt: "Use $runbook-skill-kit-template-factory to turn this validated workflow into a reusable runbook and self-contained skill kit."
+policy:
+  allow_implicit_invocation: false

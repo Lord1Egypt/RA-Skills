@@ -1,0 +1,23 @@
+{
+  "name": "@openclaw-skill/poststash",
+  "version": "1.0.0",
+  "description": "Schedule posts and threads to Threads and X via PostStash",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "openclaw": {
+    "type": "skill",
+    "tools": [
+      "poststash.schedule_to_threads",
+      "poststash.schedule_to_x",
+      "poststash.schedule_thread",
+      "poststash.get_post",
+      "poststash.list_posts"
+    ]
+  },
+  "keywords": ["openclaw", "poststash", "threads", "twitter", "x", "social-media", "scheduling"],
+  "license": "MIT"
+}

@@ -1,0 +1,155 @@
+{
+  // Reference for visualizationSettings by visualization type.
+  // All properties are optional unless noted. Only visualization-specific
+  // differences are shown; shared patterns (legend, tooltip, zoom,
+  // unitsOverrides, coloring, thresholds) apply to most chart types.
+
+  // ── Shared patterns (apply to most visualizations) ──
+  // legend:    { "position": "auto", "showLegend": true, "textTruncationMode": "end", "ratio": "auto" }
+  // tooltip:   { "variant": "single", "seriesDisplayMode": "single-line" }
+  // zoom:      { "isActive": true, "zoom": {"enabled": true}, "pan": {"enabled": true}, "zoomX": {"enabled": true} }
+  // coloring:  { "colorRules": [], "thresholdRules": [] }
+  // unitsOverrides: [{ "identifier": "field", "unitCategory": "time", "baseUnit": "microsecond", "displayUnit": null, "decimals": null, "suffix": "", "delimiter": false, "added": <timestamp> }]
+
+  // ── Time-series charts (lineChart, areaChart, barChart, bandChart) ──
+  "lineChart": {
+    "visualizationSettings": {
+      "dataMapping": { "time": null, "displayedFields": [], "series": [], "interval": null },
+      "axes": {
+        "xAxis": { "label": "", "showLabel": false, "displayTimeFrame": "auto" },
+        "yAxis": { "label": "", "min": {"mode": "auto"}, "max": {"mode": "auto"}, "scale": "linear", "showLabel": false },
+        "rightYAxis": { "label": "", "min": {"mode": "auto"}, "max": {"mode": "auto"}, "scale": "linear", "showLabel": false }
+      },
+      "valueSettings": { "valueRepresentation": "absolute" },
+      "seriesOverrides": [],
+      "seriesConfig": { "curve": "linear", "pointsDisplay": "auto", "gapPolicy": "gap" },
+      "colorModeType": { "colorPalette": "categorical", "seriesCustomColors": [] }
+    }
+  },
+  // areaChart, barChart: same structure as lineChart
+  // bandChart: adds dataMapping.min and dataMapping.max for upper/lower band fields
+
+  // ── Categorical charts (categoricalBarChart, pieChart, donutChart) ──
+  "categoricalBarChart": {
+    "visualizationSettings": {
+      "categoryAxis": { "label": {"label": "", "showLabel": true}, "tickLayout": "horizontal" },
+      "numericAxis": { "label": {"showLabel": true, "label": ""}, "scale": "linear" },
+      "dataMapping": { "displayedFields": [], "values": [] },
+      "valueBoundaries": { "max": {"mode": "auto"}, "min": {"mode": "auto"} },
+      "valueSettings": { "valueRepresentation": "absolute" },
+      "layout": { "groupMode": "stacked", "position": "horizontal" },
+      "colorModeType": { "colorCategoryMode": "multi-color", "colorPalette": "categorical", "customCategoryColors": {} }
+    }
+  },
+  "pieChart": {
+    "visualizationSettings": {
+      "dataMapping": { "value": "", "displayedFields": [] },
+      "labels": { "showLabels": true },
+      "valueSettings": { "valueRepresentation": "absolute" },
+      "groupingSettings": { "groupingStrategy": "absolute", "limit": 0, "label": "" }
+    }
+  },
+  // donutChart: same as pieChart plus "totalLabel" in labels and "showTotals" in valueSettings
+
+  // ── Single value / gauge / meter ──
+  "singleValue": {
+    "visualizationSettings": {
+      "alignment": "center",
+      "colorThresholdTarget": "value",
+      "dataMapping": { "record": null, "timeseries": null, "value": null, "label": null },
+      "icon": "AnalyticsIcon",
+      "showIcon": false,
+      "label": { "label": "", "mode": "custom" },
+      "sparkline": { "color": "#3f8cff", "isVisible": true, "lineType": "linear", "variant": "line", "gapPolicy": "connect" },
+      "trend": { "isVisible": null, "valueRepresentation": "relative", "trendType": "auto" },
+      "valueBoundaries": { "min": {"mode": "auto"}, "max": {"mode": "auto"} }
+    }
+  },
+  "meterBar": {
+    "visualizationSettings": {
+      "valueBoundaries": { "min": {"mode": "auto"}, "max": {"mode": "auto"} },
+      "icon": { "showIcon": true, "icon": "MeterbarIcon" },
+      "label": { "showLabel": true, "label": "" },
+      "dataMapping": { "value": null, "maxDataField": null, "minDataField": null }
+    }
+  },
+  // gauge: same structure as meterBar (different default icon)
+
+  // ── Table / raw / recordView ──
+  "table": {
+    "visualizationSettings": {
+      "table": {
+        "colorThresholdTarget": "value",
+        "columnOrder": [],
+        "hiddenColumns": [],
+        "rowDensity": "condensed",
+        "sortBy": [],
+        "columnWidthStrategy": "content",
+        "enableSparklines": false,
+        "linewrapEnabled": false
+      }
+    }
+  },
+
+  // ── Distribution / status ──
+  "histogram": {
+    "visualizationSettings": {
+      "axes": {
+        "xAxis": { "label": "", "showLabel": false, "scale": "linear" },
+        "yAxis": { "label": "Frequency", "showLabel": true, "scale": "linear" }
+      },
+      "dataMapping": { "displayedFields": [], "value": "", "range": "" }
+    }
+  },
+  "honeycomb": {
+    "visualizationSettings": {
+      "shape": "hexagon",
+      "valueBoundaries": { "min": {"mode": "auto"}, "max": {"mode": "auto"} },
+      "dataMapping": { "dimension": null, "displayedFields": [] },
+      "labels": { "showLabels": false }
+    }
+  },
+
+  // ── Geographic maps ──
+  // Shared: mapView { "defaultZoom": "data", "longitude": 0, "latitude": 0, "zoom": 0 }
+  // Shared: regions { "showRegions": false, "regions": [] }
+  "choropleth": {
+    "visualizationSettings": {
+      "dataMapping": { "countryCode": null, "dimension": null, "displayedFields": [] }
+    }
+  },
+  "dotMap": {
+    "visualizationSettings": {
+      "dataMapping": { "bearingValue": null, "dimension": null, "latitude": null, "longitude": null, "displayedFields": [] },
+      "mapShape": { "bearing": 0, "shape": "pin", "shapeSize": 32, "shapeStyle": "shape" }
+    }
+  },
+  "connectionMap": {
+    "visualizationSettings": {
+      "dataMapping": { "latitudeList": null, "longitudeList": null, "dimension": null, "displayedFields": [] },
+      "mapLine": { "curve": "smooth", "directionIndicator": "start", "line": "solid", "thickness": 2 }
+    }
+  },
+  "bubbleMap": {
+    "visualizationSettings": {
+      "dataMapping": { "latitude": null, "longitude": null, "radius": null, "dimension": null, "displayedFields": [] },
+      "mapRadius": { "sizeInterpolation": "zoom", "scale": "linear", "radius": 12, "radiusRange": [10, 100] }
+    }
+  },
+
+  // ── Matrix / correlation ──
+  "heatmap": {
+    "visualizationSettings": {
+      "dataMapping": { "xAxis": null, "yAxis": null, "bucketValue": null },
+      "axes": {
+        "xAxis": { "label": "", "showLabel": false, "position": "bottom" },
+        "yAxis": { "label": "", "showLabel": false, "position": "left" }
+      }
+    }
+  },
+  "scatterplot": {
+    "visualizationSettings": {
+      "dataMapping": { "xAxis": null, "yAxis": null, "displayedFields": [] }
+    }
+  }
+}

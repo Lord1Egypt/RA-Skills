@@ -1,0 +1,21 @@
+{
+  "name": "trade-dashboard",
+  "version": "1.0.0",
+  "description": "B2B外贸数据看板技能 - 全链路可视化 + ROI追踪 + 自进化",
+  "main": "SKILL.md",
+  "keywords": [
+    "coze-skill",
+    "b2b",
+    "dashboard",
+    "analytics",
+    "foreign-trade"
+  ],
+  "author": "cloud-travel-skills",
+  "license": "MIT",
+  "clawhub": {
+    "category": "analytics",
+    "tags": ["外贸", "数据看板", "ROI", "可视化"],
+    "platform": "coze",
+    "compatibility": "Coze/Caw通用"
+  }
+}

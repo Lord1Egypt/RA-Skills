@@ -1,0 +1,27 @@
+{
+  "name": "hita-mind-and-knowledge",
+  "version": "1.0.0",
+  "description": "hita 开发的 AI Agent 记忆与知识管理系统，包含 Mind Module 和 Knowledge Manager 两个互补模块",
+  "main": "hita-mind-module/index.js",
+  "scripts": {
+    "mind": "node hita-mind-module/index.js",
+    "knowledge": "node hita-knowledge-manager/index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "ai-agent",
+    "memory",
+    "knowledge-base",
+    "knowledge-management"
+  ],
+  "author": "hita",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

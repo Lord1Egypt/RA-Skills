@@ -1,0 +1,1 @@
+As applications continue to develop, the ontology provides a stable concept layer for structured retrieval and constraint-aware planning. The framework supports reuse by aligning domain terms, relations, and evaluation targets.

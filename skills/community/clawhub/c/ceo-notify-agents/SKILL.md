@@ -1,35 +1,36 @@
 ---
-name: "Ceo Notify Agents"
-description: "Automation skill for Ceo Notify Agents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ceo-notify-agents"
-sourceUrl: "https://clawhub.ai/skills/ceo-notify-agents"
----
+name: ceo-notify-agents
+description: CEO向其他Agent发送通知（通过共享记忆文件）
+triggers:
+  - "通知 {targetAgents} {message}"
+  - "告诉 {targetAgents} {message}"
+  - "提醒 {targetAgents} {message}"
+  - "给 {targetAgents} 发消息 {message}"
+  - "请通知 {targetAgents} {message}"
+  - "通知一下 {targetAgents} {message}"
+  - "让 {targetAgents} 知道 {message}"
+requires: []
+actions:
+  - name: write_notification
+    tool: exec
+    params:
+      command: |
+        #!/bin/bash
+        TARGETS="{{targetAgents}}"
+        MESSAGE="{{message}}"
+        NOTIFICATION_DIR="/Users/anran/Documents/openclaw/shared_memory/notifications"
+        TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
-# Ceo Notify Agents
+        mkdir -p "$NOTIFICATION_DIR"
 
-> Automation skill for Ceo Notify Agents.
+        IFS=',' read -ra AGENTS <<< "$TARGETS"
+        for raw in "${AGENTS[@]}"; do
+          agent=$(echo "$raw" | xargs)
+          echo "$TIMESTAMP: $MESSAGE" >> "$NOTIFICATION_DIR/${agent}.log"
+        done
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ceo-notify-agents`
-- **Source URL:** [https://clawhub.ai/skills/ceo-notify-agents](https://clawhub.ai/skills/ceo-notify-agents)
+        echo "$TIMESTAMP: 通知 $TARGETS - $MESSAGE" >> "$NOTIFICATION_DIR/all.log"
 
-## Overview
+        /Users/anran/.npm-global/bin/openclaw memory index --agent main
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ceo-notify-agents
-```
+        echo "通知已写入共享记忆，目标Agent下次对话时将看到。"

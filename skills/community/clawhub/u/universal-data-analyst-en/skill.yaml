@@ -1,0 +1,235 @@
+name: universal-data-analyst
+description: |
+  Universal Data Analysis Expert. Performs open-ended analysis planning based on
+  data ontology — no hardcoded keyword rules. Every run uses an LLM to reason
+  about data type, problem type, and analysis method.
+
+  Workflow:
+  1. Load data with data_loader
+  2. Use the quick-reference card for data ontology identification ("what existence is this?")
+  3. Run data quality diagnostics with data_validator (mandatory — results go into the report)
+  4. Combine user intent with LLM to select domain-recognized analysis methods
+  5. Generate analysis script
+  6. Execute analysis script
+  7. Generate comprehensive report (HTML + MD + charts)
+
+  Supports both economic and non-economic data; automatically adapts the analysis framework.
+
+version: 2.0.0
+author: Claude
+
+triggers:
+  - type: file_upload
+    description: Triggered when the user uploads a CSV/Excel/Parquet or other data file
+
+  - type: keyword
+    description: Data analysis requests
+    patterns:
+      - "analyze.*data"
+      - "help me look at this data"
+      - "how to analyze.*data"
+      - "explore.*dataset"
+      - "interpret.*data"
+
+capabilities:
+  - data_loading
+  - data_profiling
+  - data_validation
+  - analysis_planning
+  - script_generation
+  - statistical_analysis
+  - multi_file_join
+  - autonomous_mode
+  - quality_driven_strategy
+
+dependencies:
+  # All dependencies are bundled in this skill's layers/ directory
+  - layers/data_loader.py
+  - layers/data_validator.py
+  - report_generator.py
+
+configuration:
+  # Data quality validation is a mandatory step
+  auto_validate: true
+  # Generate step-by-step analysis scripts (rather than a monolithic script)
+  step_by_step: true
+  # Output format: html / markdown / both
+  output_format: both
+  # Autonomous mode: infer ontology without calling an external LLM
+  autonomous_mode: true
+
+prompts:
+  # Layer 1: Data ontology identification
+  ontology_prompt: |
+    You are a data ontology expert. Analyze the following data's fundamental characteristics
+    and answer the question "What existence is this data about?"
+
+    Data Profile:
+    {data_profile}
+
+    Please answer the following questions:
+    1. Entity Type Identification:
+       - Is this transaction/event-type, state/stock-type, relationship/network-type,
+         feature/attribute-type, or time-series/trajectory-type?
+       - What is your reasoning?
+
+    2. Data Generation Mechanism:
+       - How was this data generated? (observation / experiment / simulation / measurement / reporting)
+       - What latent biases or limitations does this imply?
+
+    3. Core Dimension Identification:
+       - What key dimensions can be used for grouping, comparison, or tracing?
+       - Is there a time dimension? Geographic dimension? Categorical dimension?
+
+    4. Preliminary Data Quality Assessment:
+       - Based on sample size, time span, and field completeness, what type of analysis
+         is this data suited for?
+       - What are the obvious limitations?
+
+    5. Economic Type Determination:
+       - Does this data involve economic behavior (price, cost, revenue, profit, transactions)?
+       - If yes, what economic type does it preliminarily belong to?
+       - If no, what domain does this data belong to?
+
+    Output Format:
+    - Output in a structured way, with clear conclusions for each question
+    - Provide 3-5 keyword tags describing this data
+    - Provide preliminary analysis recommendations: what type of question is this data
+      best suited to answer?
+
+  # Layer 2 + Layer 3: Analysis planning
+  analysis_planning_prompt: |
+    You are a cross-domain data analysis expert. Based on the data ontology and user intent,
+    plan a complete analysis approach.
+
+    ## Data Ontology (Identified)
+    {ontology_result}
+
+    ## User Intent
+    {user_intent}
+
+    ## Data Sample (First 10 rows)
+    {data_sample}
+
+    ## Field Details
+    {column_details}
+
+    Please complete the following reasoning and output an analysis plan:
+
+    ### Step 1: Problem Type Determination
+    What type of question does the user want to answer?
+    - Descriptive (What is it?): Status description, distribution characteristics, trends
+    - Diagnostic (Why?): Attribution analysis, root cause identification, difference explanation
+    - Predictive (What will happen?): Trend forecasting, risk warning, capacity planning
+    - Prescriptive (What should be done?): Optimization recommendations, strategy selection, resource allocation
+    - Causal (Is there an effect?): Causal inference, effect evaluation, mechanism validation
+
+    Reasoning basis: User's question keywords + degree of data support
+
+    ### Step 2: Domain Method Matching
+    Based on data type and problem type, what are the domain-recognized analysis methods?
+
+    If involving economic types:
+    - Retail economy → Value chain analysis, ABC-XYZ, RFM
+    - Subscription economy → LTV/Cohort, retention curves, revenue waterfall
+    - Attention economy → Funnel analysis, AARRR, network effects
+    - Labor market → Skill premium, experience elasticity, supply-demand analysis
+
+    If non-economic data:
+    - Scientific measurement → Uncertainty analysis, hypothesis testing, experimental design
+    - Social network → Centrality analysis, community detection, diffusion models
+    - Spatiotemporal data → Spatial autocorrelation, hotspot analysis, geographically weighted regression
+    - Text data → Topic modeling, sentiment analysis, semantic network
+
+    ### Step 3: Analysis Path Design
+    Design specific analysis steps:
+    1. Opening analysis (basic analysis applied to all data)
+    2. Core analysis (in-depth analysis targeting the user's question)
+    3. Validation analysis (robustness checks, sensitivity analysis)
+    4. Visualization plan (how to present key findings)
+
+    ### Step 4: Script Planning
+    Plan the Python analysis scripts to be generated:
+    - What analysis modules are needed?
+    - What are the inputs, processing, and outputs for each module?
+    - What are the dependencies between modules?
+
+    Output Format:
+    1. Problem type determination conclusion
+    2. Recommended analysis framework and rationale
+    3. Step-by-step analysis path (specific code logic for each step)
+    4. List of generated script files and their function descriptions
+    5. Expected output: what analysis results will the user see?
+
+  # Script generation prompt
+  script_generation_prompt: |
+    You are a Python data analysis expert. Based on the analysis plan, generate executable
+    analysis scripts.
+
+    ## Analysis Plan
+    {analysis_plan}
+
+    ## Data Loading Path
+    {file_path}
+
+    ## Generation Requirements
+    1. Use the standard data_loader.py and data_validator.py
+    2. Scripts must include complete error handling
+    3. All analysis results should be saved to variables for later report generation
+    4. Key charts should be generated with matplotlib/seaborn and saved
+    5. Scripts should have clear comments explaining the purpose of each analysis step
+
+    Output Format:
+    Output the complete Python script code directly, using the following structure:
+    ```python
+    # Script function description
+    # Input: xxx
+    # Output: xxx
+
+    import sys
+    import os
+    from pathlib import Path
+
+    # Load this skill's layers modules using relative paths
+    SCRIPT_DIR = Path(__file__).parent
+    sys.path.insert(0, str(SCRIPT_DIR))
+    sys.path.insert(0, str(SCRIPT_DIR / 'layers'))
+
+    from data_loader import DataLoader
+    from data_validator import DataValidator
+
+    # Output directory
+    OUTPUT_DIR = SCRIPT_DIR / 'output'
+    CHARTS_DIR = OUTPUT_DIR / 'charts'
+    CHARTS_DIR.mkdir(exist_ok=True, parents=True)
+    ...
+    ```
+
+  # Report generation prompt
+  report_generation_prompt: |
+    You are an expert in writing data analysis reports. Based on the analysis results,
+    generate a professional data interpretation report.
+
+    ## Data Ontology
+    {ontology_result}
+
+    ## Analysis Plan
+    {analysis_plan}
+
+    ## Analysis Results (Key Findings)
+    {analysis_results}
+
+    ## Generation Requirements
+    1. Report structure:
+       - Executive Summary (3-5 core findings)
+       - Data Profile (data source, scale, quality)
+       - Methodology Description (why these methods were chosen)
+       - Detailed Findings (organized by theme, each finding supported by data)
+       - Limitations (what the data cannot answer)
+       - Recommendations/Next Steps (if needed)
+
+    2. Use Markdown format
+    3. All numerical conclusions must be supported by specific figures
+    4. Avoid over-interpretation; distinguish between "data shows" and "may imply"
+
+    Output Format: Complete Markdown report

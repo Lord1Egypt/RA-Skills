@@ -1,0 +1,16 @@
+{
+  "type": "skill",
+  "name": "category-name",
+  "lastUpdated": "{{ISO_TIMESTAMP}}",
+  "totalExecutions": 0,
+  "successCount": 0,
+  "failureCount": 0,
+  "experiences": [
+  ],
+  "patterns": {
+    "commonMistakes": [
+    ],
+    "bestPractices": [
+    ]
+  }
+}

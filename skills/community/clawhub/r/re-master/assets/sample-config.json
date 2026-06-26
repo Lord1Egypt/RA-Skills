@@ -1,0 +1,21 @@
+{
+  "accounts": [
+    { "id": "inv1", "name": "Admin", "monthly": 15000, "upfront": 0 },
+    { "id": "inv2", "name": "Partner A", "monthly": 10000, "upfront": 0 },
+    { "id": "inv3", "name": "Partner B", "monthly": 12000, "upfront": 0 }
+  ],
+  "my_cash": { "entries": [ { "amount": 250000, "note": "Initial Buffer" } ] },
+  "units": [
+    {
+      "id": "u1",
+      "name": "Luxury Tower A",
+      "price": 2500000,
+      "fees": 70000,
+      "signing_date": "2026-06-01",
+      "milestone_count": 8,
+      "first_pct": 10,
+      "inst_pct": 5,
+      "months_between": 6
+    }
+  ]
+}

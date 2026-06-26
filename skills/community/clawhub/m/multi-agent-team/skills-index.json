@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "name": "trae-multi-agent",
+  "description": "多角色智能体调度器 - 基于任务类型自动调度到架构师、产品经理、测试专家或 Solo Coder。全面支持 Spring Boot 3、Java 21、AI 辅助设计及现代云原生测试架构。",
+  "author": "Claw Team",
+  "license": "MIT",
+  "enabled": true,
+  "global": true,
+  "autoInvoke": true,
+  "keywords": [
+    "架构师",
+    "产品经理",
+    "测试专家",
+    "Solo Coder",
+    "多角色",
+    "智能调度",
+    "共识机制",
+    "Spring Boot 3",
+    "Java 21",
+    "Code Review",
+    "AI",
+    "自动化测试"
+  ],
+  "triggers": {
+    "automatic": {
+      "enabled": true,
+      "patterns": [
+        "设计.*架构",
+        "系统架构",
+        "技术选型",
+        "定义.*需求",
+        "产品需求",
+        "PRD",
+        "测试.*策略",
+        "测试用例",
+        "实现.*功能",
+        "开发.*功能",
+        "编写.*代码",
+        "代码审查",
+        "Code Review"
+      ]
+    },
+    "manual": {
+      "enabled": true,
+      "command": "python3 scripts/trae_agent_dispatch.py"
+    }
+  },
+  "roles": {
+    "architect": {
+      "name": "架构师",
+      "description": "设计系统性、前瞻性、可落地、可验证的架构。专注于 Spring Boot 3/Java 21 最佳实践、云原生架构及安全合规。负责生成和维护项目代码map，确保架构一致性。",
+      "keywords": ["架构", "设计", "选型", "审查", "性能", "瓶颈", "模块", "接口", "部署", "Spring Boot", "微服务", "code map", "代码map", "项目结构"],
+      "priority": 1
+    },
+    "product_manager": {
+      "name": "产品经理",
+      "description": "定义用户价值清晰、需求明确、可落地、可验收的产品。采用数据驱动决策及 AI 辅助设计。",
+      "keywords": ["需求", "PRD", "用户故事", "竞品", "市场", "调研", "验收", "UAT", "体验", "数据驱动", "AI"],
+      "priority": 2
+    },
+    "test_expert": {
+      "name": "测试专家",
+      "description": "确保全面、深入、自动化、可量化的质量保障。推广测试金字塔、契约测试及混沌工程。",
+      "keywords": ["测试", "质量", "验收", "自动化", "性能测试", "缺陷", "评审", "门禁", "Testcontainers", "混沌工程"],
+      "priority": 3
+    },
+    "solo_coder": {
+      "name": "Solo Coder",
+      "description": "编写完整、高质量、可维护、可测试的代码。严格遵循 Java 21/Spring Boot 3 现代编码规范。",
+      "keywords": ["实现", "开发", "代码", "修复", "优化", "重构", "单元测试", "文档", "Java 21", "Clean Code"],
+      "priority": 4
+    }
+  },
+  "features": {
+    "intelligentDispatch": {
+      "enabled": true,
+      "description": "根据任务关键词自动识别并调度到最合适的角色"
+    },
+    "multiAgentConsensus": {
+      "enabled": true,
+      "description": "复杂任务自动组织多角色共识评审"
+    },
+    "contextAwareness": {
+      "enabled": true,
+      "description": "根据项目阶段和历史上下文选择角色"
+    },
+    "fullLifecycle": {
+      "enabled": true,
+      "description": "支持完整项目生命周期的 8 阶段流程"
+    },
+    "codeMapGeneration": {
+      "enabled": true,
+      "description": "自动生成项目代码结构映射，帮助架构师和开发者了解项目整体结构"
+    },
+    "projectUnderstanding": {
+      "enabled": true,
+      "description": "快速读取项目文档和代码，为各角色生成项目理解文档，作为工作初始化上下文"
+    }
+  },
+  "dependencies": {
+    "python3": ">=3.8",
+    "scripts": [
+      "clawskills/trae/scripts/trae_agent_dispatch.py",
+      "clawskills/trae/scripts/code_map_generator.py",
+      "clawskills/trae/scripts/project_understanding.py"
+    ]
+  },
+  "installation": {
+    "path": "~/.trae/skills/trae-multi-agent",
+    "files": [
+      "SKILL.md",
+      "skills-index.json"
+    ],
+    "postInstall": "重启 Trae 以加载新技能"
+  }
+}

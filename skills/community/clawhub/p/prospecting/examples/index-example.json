@@ -1,0 +1,55 @@
+{
+  "batch_id": "kirkland-wa-2026-05-19",
+  "source_customer": "Eastside European Auto Service and Repair",
+  "generated": "2026-05-19",
+  "search_areas": ["Kirkland WA", "Bellevue WA", "Redmond WA", "Bothell WA"],
+  "product": "Spray Booth / Paint Booth",
+  "chain_strategy": "Chain stores included — call local first to identify procurement decision chain, then escalate to regional/corporate",
+  "prospects": {
+    "P001": {
+      "name": "Kirkland Autobody Repair",
+      "city": "Kirkland WA",
+      "priority": "High",
+      "tier": "Mid-high-Independent",
+      "status": "Pending",
+      "tags": ["auto body", "independent", "family-owned", "Kirkland"],
+      "file": "P001.json"
+    },
+    "P002": {
+      "name": "Bel-Kirk Body Shop Inc",
+      "city": "Kirkland WA",
+      "priority": "High",
+      "tier": "Mid-high-Independent",
+      "status": "Pending",
+      "tags": ["auto body", "collision", "fleet accounts", "Kirkland"],
+      "file": "P002.json"
+    },
+    "P013": {
+      "name": "Crash Champions Collision Repair Kirkland",
+      "city": "Kirkland WA",
+      "priority": "High",
+      "tier": "Chain-Mid-high",
+      "status": "Pending",
+      "tags": ["collision", "chain", "Crash Champions"],
+      "file": "P013.json"
+    },
+    "P016": {
+      "name": "Crash Champions LUXE | EV Certified Repair Willows",
+      "city": "Redmond WA",
+      "priority": "High",
+      "tier": "Chain-Premium",
+      "status": "Pending",
+      "tags": ["collision", "chain", "LUXE premium", "EV certified"],
+      "file": "P016.json"
+    },
+    "P021": {
+      "name": "Caliber Collision Bellevue",
+      "city": "Bellevue WA",
+      "priority": "High",
+      "tier": "Chain-Mid-high",
+      "status": "Pending",
+      "tags": ["collision", "chain", "Caliber Collision"],
+      "file": "P021.json"
+    }
+  }
+}

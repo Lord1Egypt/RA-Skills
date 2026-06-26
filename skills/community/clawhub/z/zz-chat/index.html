@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>爪爪</title>
+<style>
+html{font-size:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.header .logo{font-size:18px;font-weight:600;color:#fff}
+.header .badge{margin-left:auto;background:#e94560;color:#fff;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:500}
+.home{padding:16px;max-width:500px;margin:0 auto}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:10px;transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn-oc{background:linear-gradient(135deg,#0f3460,#1a5276);color:#4fc3f7;border:1px solid rgba(79,195,247,.3)}
+.btn-add{background:linear-gradient(135deg,#0f3460,#16213e);color:#4fc3f7;border:1px solid rgba(79,195,247,.3)}
+.friend-list{margin-top:8px}
+.friend-item{display:flex;align-items:center;padding:12px;background:#111;border-radius:12px;margin-bottom:8px;cursor:pointer;transition:background .2s}
+.friend-item:hover{background:#1a1a2e}
+.friend-item .icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;margin-right:12px}
+.friend-item .info{flex:1}
+.friend-item .name{font-weight:500}
+.friend-item .del{background:none;border:none;color:#e94560;font-size:18px;cursor:pointer;padding:4px 8px}
+.pending-list{margin-top:12px}
+.pending-item{display:flex;align-items:center;padding:10px 12px;background:#1a1a2e;border-radius:10px;margin-bottom:6px;font-size:13px}
+.pending-item .accept{background:#81c784;color:#000;border:none;padding:4px 12px;border-radius:8px;font-size:12px;cursor:pointer;margin-left:auto}
+.section-title{font-size:12px;color:#8892b0;margin:16px 0 8px;text-transform:uppercase;letter-spacing:1px}
+.qr-section{background:linear-gradient(135deg,#16213e,#0f3460);border-radius:16px;padding:24px;text-align:center;margin:20px 0}
+.qr-section img{border-radius:8px;background:#fff;padding:8px}
+.qr-label{margin-top:12px;font-size:13px;color:#8892b0}
+.qr-by{margin-top:8px;font-size:11px;color:#556;font-style:italic}
+.chat{display:none;height:100vh;flex-direction:column}
+.chat.active{display:flex}
+.chat-header{padding:12px 16px;background:#111;display:flex;align-items:center;gap:10px;border-bottom:1px solid #222}
+.chat-header .back{background:none;border:none;color:#4fc3f7;font-size:16px;cursor:pointer}
+.chat-header .title{font-weight:500;flex:1}
+.chat-header .p2p-status{font-size:10px;padding:2px 8px;border-radius:8px}
+.chat-header .p2p-status.on{background:#81c78433;color:#81c784}
+.chat-header .p2p-status.off{background:#e9456033;color:#e94560}
+.chat-header .p2p-status.connecting{background:#ffb74d33;color:#ffb74d}
+.messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:78%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}
+.msg.sent{align-self:flex-end;background:linear-gradient(135deg,#0f3460,#16213e);color:#e0e0e0;border-bottom-right-radius:4px}
+.msg.recv{align-self:flex-start;background:#1a1a2e;color:#e0e0e0;border-bottom-left-radius:4px}
+.msg img{max-width:100%;border-radius:8px;margin-top:4px}
+.chat-input{padding:10px 12px;background:#111;display:flex;gap:8px;align-items:center;border-top:1px solid #222}
+.chat-input input{flex:1;background:#1a1a2e;border:1px solid #333;border-radius:20px;padding:10px 16px;color:#e0e0e0;font-size:14px;outline:none}
+.chat-input input:focus{border-color:#4fc3f7}
+.chat-input button{width:40px;height:40px;border-radius:50%;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-input .send{background:#e94560;color:#fff}
+.chat-input .img-btn{background:#0f3460;color:#4fc3f7}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center}
+.modal.active{display:flex}
+.modal-box{background:#1a1a2e;border-radius:16px;padding:24px;width:90%;max-width:360px}
+.modal-box h3{margin-bottom:16px;color:#fff}
+.modal-box input{width:100%;background:#111;border:1px solid #333;border-radius:10px;padding:12px;color:#e0e0e0;font-size:15px;outline:none;margin-bottom:16px}
+.modal-box input:focus{border-color:#4fc3f7}
+.modal-btns{display:flex;gap:10px}
+.modal-btns button{flex:1;padding:10px;border-radius:10px;border:none;font-size:14px;cursor:pointer}
+.modal-btns .ok{background:#e94560;color:#fff}
+.modal-btns .cancel{background:#333;color:#aaa}
+</style>
+</head>
+<body>
+
+<div id="homeView">
+  <div class="header">
+    <span>🦞</span>
+    <span class="logo">爪爪</span>
+    <span class="badge" id="myBadge">--</span>
+  </div>
+  <div class="home">
+    <button class="btn btn-oc" onclick="openOC()">🤖 OpenClaw 聊天机器人</button>
+    <button class="btn btn-add" onclick="showAdd()">➕ 添加朋友</button>
+    <div class="section-title">好友</div>
+    <div class="friend-list" id="friends"></div>
+    <div class="qr-section">
+      <div id="qrBox"></div>
+      <div class="qr-label">扫码连接设备。消息仅存在本地</div>
+      <div class="qr-by">by：秋风悠扬</div>
+    </div>
+  </div>
+</div>
+
+<div id="chatView" class="chat">
+  <div class="chat-header">
+    <button class="back" onclick="backHome()">← 返回</button>
+    <span class="title" id="chatTitle">--</span>
+    <span class="p2p-status off" id="p2pStatus">未连接</span>
+  </div>
+  <div class="messages" id="msgs"></div>
+  <div class="chat-input">
+    <input type="file" id="imgInput" accept="image/*" style="display:none" onchange="sendImg(event)">
+    <button class="img-btn" onclick="document.getElementById('imgInput').click()">📷</button>
+    <input id="msgInput" placeholder="输入消息…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<div class="modal" id="addModal">
+  <div class="modal-box">
+    <h3>添加朋友</h3>
+    <p style="font-size:13px;color:#8892b0;margin-bottom:12px">输入对方编号，发送好友请求。<br>对方也添加你后，自动成为好友。</p>
+    <input id="friendInput" placeholder="输入对方编号（如 47）" onkeydown="if(event.key==='Enter')sendFriendReq()">
+    <div class="modal-btns">
+      <button class="cancel" onclick="hideAdd()">取消</button>
+      <button class="ok" onclick="sendFriendReq()">发送请求</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── 配置 ─────────────────────────────────────────────
+const API = new URLSearchParams(location.search).get('api') || 'https://ai0000.cn/zz/';
+const ICE_SERVERS = [{ urls: 'stun:stun.cloudflare.com:3478' }, { urls: 'stun:stun.l.google.com:19302' }];
+const POLL_MS = 2000;
+
+let myId = null;
+let friends = [];       // 已确认的好友列表
+let pending = [];       // 未使用
+let curFriend = null;
+let localMsgs = {};
+const peers = {};
+let signalTimers = {};
+let pollTimer = null;
+
+const $ = id => document.getElementById(id);
+function genId() { return 'uuid-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8); }
+
+// ─── 初始化 ───────────────────────────────────────────
+async function init() {
+  const p = new URLSearchParams(location.search);
+  const bridge = p.get('bridge');
+  myId = localStorage.getItem('zz_id');
+  if (bridge && /^\d+$/.test(bridge)) { myId = bridge; localStorage.setItem('zz_id', myId); history.replaceState(null, '', location.pathname); }
+  if (!myId) { myId = String(Math.floor(Math.random()*990)+10); localStorage.setItem('zz_id', myId); }
+  $('myBadge').textContent = `我的编号 ${myId}`;
+  friends = JSON.parse(localStorage.getItem('zz_friends')||'[]');
+  localMsgs = JSON.parse(localStorage.getItem('zz_local')||'{}');
+  renderFriends();
+  genQR();
+  // ★ 开始轮询好友请求
+  startPolling();
+}
+
+// ─── OpenClaw ─────────────────────────────────────────
+function openOC() { window.location.href = 'chat.html?id=' + myId; }
+
+// ─── QR码 ─────────────────────────────────────────────
+function genQR() {
+  const url = `${location.origin}${location.pathname}?bridge=${myId}`;
+  const box = $('qrBox'); box.innerHTML = '';
+  const img = new Image();
+  img.style.cssText = 'border-radius:8px;background:#fff;padding:8px;width:160px;height:160px';
+  img.src = `https://quickchart.io/qr?text=${encodeURIComponent(url)}&size=160&_=${Date.now()}`;
+  img.onerror = () => { img.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(url)}`; };
+  box.appendChild(img);
+}
+
+// ─── 好友请求（REST）──────────────────────────────────
+async function sendFriendReq() {
+  const targetId = $('friendInput').value.trim();
+  if (!targetId || !/^\d+$/.test(targetId)) return alert('请输入有效编号');
+  if (targetId === myId) return alert('不能添加自己');
+  if (friends.includes(targetId)) { alert('已经是好友了'); unhideFriend(targetId); renderFriends(); hideAdd(); return; }
+  unhideFriend(targetId);
+
+  try {
+    // 1. 写入对方信箱
+    await fetch(API + 'friend?uid=' + targetId, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from: myId, to: targetId, ts: Date.now() }),
+    });
+    // 2. 即时检查互认：对方信箱里有没有我的请求
+    const resp = await fetch(API + 'friend?uid=' + targetId);
+    const list = await resp.json();
+    const mutual = Array.isArray(list) && list.some(r => r.from === myId && !r.msg_id && !r.content);
+    if (mutual) {
+      friends.push(targetId);
+      localStorage.setItem('zz_friends', JSON.stringify(friends));
+      renderFriends();
+      connectToPeer(targetId);
+      alert(`✅ 与 #${targetId} 互认成功！已添加为好友。`);
+    } else {
+      alert('请求已发送！等对方也添加你后自动成为好友。');
+    }
+  } catch { alert('发送失败，请检查网络'); }
+  hideAdd();
+}
+
+// ─── 轮询（仅聊天降级）──────────────────────────────────
+let lastChatTs = {};
+function startPolling() {
+  // pollChatMessages(); // 死轮询已停
+  // setInterval(pollChatMessages, 3000); // 死轮询已停
+}
+
+// 轮询降级聊天消息（P2P 不通时）
+async function pollChatMessages() {
+  for (const fid of friends) {
+    if (peers[fid] && peers[fid].connected) continue; // P2P 通了就不轮询
+    try {
+      const resp = await fetch(API + 'chat?uid=' + myId);
+      const list = await resp.json();
+      if (!Array.isArray(list)) continue;
+      for (const msg of list) {
+        if (msg.from !== fid || !msg.content) continue;
+        if (msg.ts <= (lastChatTs[fid] || 0)) continue;
+        lastChatTs[fid] = msg.ts;
+        const isDup = getMsgs(fid).some(m => m.dir === 'recv' && m.content === msg.content && Date.now() - m.ts < 10000);
+        if (!isDup) {
+          addMsg(fid, 'recv', msg.content, msg.isImage);
+          if (curFriend === fid) renderMsgs();
+        }
+      }
+    } catch {}
+  }
+}
+
+// ─── UI ───────────────────────────────────────────────
+function renderFriends() {
+  const el = $('friends');
+  el.innerHTML = '';
+  const colors = ['#e94560','#4fc3f7','#81c784','#ffb74d','#ba68c8','#4dd0e1'];
+  friends.forEach((f, i) => {
+    const p2p = peers[f] && peers[f].connected;
+    const div = document.createElement('div');
+    div.className = 'friend-item';
+    div.innerHTML = `
+      <div class="icon" style="background:${colors[i%colors.length]}20;color:${colors[i%colors.length]}">${f}</div>
+      <div class="info"><div class="name">朋友 #${f}${p2p ? ' <span style="color:#81c784;font-size:10px">P2P</span>' : ''}</div></div>
+      <button class="del" onclick="event.stopPropagation();delFriend(${i})">✕</button>
+    `;
+    div.onclick = () => openChat(f);
+    el.appendChild(div);
+  });
+}
+
+function showAdd() { $('addModal').classList.add('active'); $('friendInput').value = ''; $('friendInput').focus(); }
+function hideAdd() { $('addModal').classList.remove('active'); }
+function delFriend(idx) {
+  // 红X = 关闭窗口（隐藏好友），不是删除
+  // 要重新出现，通过添加朋友窗口输入编号
+  const uid = friends[idx];
+  closePeer(uid);
+  // 从列表隐藏（移除localStorage，但不从friends数组删除，因为对方可能还在)
+  const hidden = JSON.parse(localStorage.getItem('zz_hidden') || '[]');
+  if (!hidden.includes(uid)) hidden.push(uid);
+  localStorage.setItem('zz_hidden', JSON.stringify(hidden));
+  friends.splice(idx, 1);
+  localStorage.setItem('zz_friends', JSON.stringify(friends));
+  renderFriends();
+}
+
+// 取消隐藏（重新添加时调用）
+function unhideFriend(uid) {
+  const hidden = JSON.parse(localStorage.getItem('zz_hidden') || '[]');
+  const i = hidden.indexOf(uid);
+  if (i !== -1) { hidden.splice(i, 1); localStorage.setItem('zz_hidden', JSON.stringify(hidden)); }
+}
+
+// ─── 聊天 ─────────────────────────────────────────────
+function openChat(fid) {
+  curFriend = fid;
+  $('chatTitle').textContent = `朋友 #${fid}`;
+  $('homeView').style.display = 'none';
+  $('chatView').classList.add('active');
+  updateP2PStatus();
+  renderMsgs();
+  scrollBottom();
+  $('msgInput').focus();
+  if (!peers[fid] || !peers[fid].connected) connectToPeer(fid);
+}
+function backHome() { curFriend = null; $('chatView').classList.remove('active'); $('homeView').style.display = ''; renderFriends(); }
+function getMsgs(fid) { return localMsgs[fid] || []; }
+function addMsg(fid, dir, content, isImage) {
+  if (!localMsgs[fid]) localMsgs[fid] = [];
+  localMsgs[fid].push({ dir, content, isImage, ts: Date.now() });
+  if (localMsgs[fid].length > 500) localMsgs[fid] = localMsgs[fid].slice(-500);
+  localStorage.setItem('zz_local', JSON.stringify(localMsgs));
+}
+function renderMsgs() {
+  if (!curFriend) return;
+  const el = $('msgs'); el.innerHTML = '';
+  getMsgs(curFriend).forEach(m => {
+    const div = document.createElement('div');
+    div.className = `msg ${m.dir === 'sent' ? 'sent' : 'recv'}`;
+    if (m.isImage) div.innerHTML = `<img src="${m.content}" loading="lazy">`;
+    else div.textContent = m.content;
+    el.appendChild(div);
+  });
+  scrollBottom();
+}
+function scrollBottom() { const el = $('msgs'); el.scrollTop = el.scrollHeight; }
+
+function updateP2PStatus() {
+  if (!curFriend) return;
+  const el = $('p2pStatus');
+  const p = peers[curFriend];
+  if (p && p.connected) { el.textContent = 'P2P 已连接'; el.className = 'p2p-status on'; }
+  else { el.textContent = '未连接'; el.className = 'p2p-status off'; }
+}
+
+// ─── 发送 ─────────────────────────────────────────────
+async function sendMsg() {
+  const input = $('msgInput');
+  const text = input.value.trim();
+  if (!text || !curFriend) return;
+  input.value = '';
+  addMsg(curFriend, 'sent', text); renderMsgs();
+  const msg = { msg_id: genId(), from: myId, to: curFriend, content: text, ts: Date.now() };
+  await sendToFriend(curFriend, msg);
+}
+
+async function sendImg(e) {
+  const file = e.target.files[0]; if (!file || !curFriend) return; e.target.value = '';
+  const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d'), img = new Image();
+  await new Promise((r,j) => { img.onload=r; img.onerror=j; img.src=URL.createObjectURL(file); });
+  let w=img.width, h=img.height; const max=800;
+  if(w>max||h>max){if(w>h){h*=max/w;w=max}else{w*=max/h;h=max}}
+  canvas.width=w; canvas.height=h; ctx.drawImage(img,0,0,w,h);
+  let q=0.7, dataUrl; do{dataUrl=canvas.toDataURL('image/jpeg',q);q-=.1}while(dataUrl.length>200000&&q>.1);
+  addMsg(curFriend,'sent',dataUrl,true); renderMsgs();
+  const msg = { msg_id:genId(), from:myId, to:curFriend, content:dataUrl, isImage:true, ts:Date.now() };
+  await sendToFriend(curFriend, msg);
+}
+
+async function sendToFriend(uid, msg) {
+  if (peers[uid] && peers[uid].connected && peers[uid].dc) {
+    try { peers[uid].dc.send(JSON.stringify(msg)); return; } catch {}
+  }
+  // P2P 不通就走 Worker REST 降级（走 /chat，不污染好友请求信箱）
+  try {
+    await fetch(API + 'chat?uid=' + uid, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(msg),
+    });
+  } catch { addMsg(uid, 'recv', '⚠️ 发送失败'); if (curFriend === uid) renderMsgs(); }
+}
+
+// ─── WebRTC P2P ───────────────────────────────────────
+function connectToPeer(uid) {
+  if (peers[uid] && peers[uid].connected) return;
+  closePeer(uid);
+  if (Number(myId) < Number(uid)) {
+    console.log(`[P2P] Impolite 发起者 ${myId} → ${uid}`);
+    createOffer(uid);
+  } else {
+    console.log(`[P2P] Polite 监听者 ${myId} > ${uid}`);
+    listenForOffer(uid);
+  }
+  updateP2PStatus();
+}
+
+function createOffer(uid) {
+  const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+  const peer = { pc, dc: null, connected: false, iceCandidates: [] };
+  peers[uid] = peer;
+  pc.onconnectionstatechange = () => {
+    if (pc.connectionState === 'connected') { peer.connected = true; renderFriends(); updateP2PStatus(); }
+    else if (['failed','closed'].includes(pc.connectionState)) { peer.connected = false; renderFriends(); updateP2PStatus(); }
+  };
+  pc.onicecandidate = (e) => {
+    if (e.candidate) {
+      peer.iceCandidates.push(e.candidate.toJSON());
+      clearTimeout(peer._iceTimer);
+      peer._iceTimer = setTimeout(() => {
+        fetch(API+'signal?uid='+uid, { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({type:'ice',from:myId,to:uid,candidates:peer.iceCandidates,ts:Date.now()})
+        }).catch(()=>{});
+      }, 500);
+    }
+  };
+  const dc = pc.createDataChannel('chat');
+  peer.dc = dc;
+  setupDataChannel(dc, uid);
+  pc.createOffer().then(async (offer) => {
+    await pc.setLocalDescription(offer);
+    await fetch(API+'signal?uid='+uid, { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({type:'offer',from:myId,to:uid,sdp:offer.sdp,ts:Date.now()})
+    });
+    console.log(`[P2P] offer → uid=${uid}`);
+  });
+  pollMyMailbox(uid);
+}
+
+function listenForOffer(uid) {
+  if (signalTimers[uid]) clearInterval(signalTimers[uid]);
+  signalTimers[uid] = setInterval(async () => {
+    return; // 死轮询已停
+    try {
+      const resp = await fetch(API+'signal?uid='+myId);
+      const list = await resp.json();
+      if (!Array.isArray(list)) return;
+      const offer = list.find(d => d.type === 'offer' && d.from === uid);
+      if (offer) {
+        console.log(`[P2P] offer ← uid=${myId}`);
+        clearInterval(signalTimers[uid]); delete signalTimers[uid];
+        acceptOffer(uid, offer.sdp);
+      }
+    } catch {}
+  }, 1000);
+  setTimeout(() => { if (signalTimers[uid]) { clearInterval(signalTimers[uid]); delete signalTimers[uid]; } }, 60000);
+}
+
+function acceptOffer(uid, sdp) {
+  if (peers[uid] && peers[uid].connected) return;
+  closePeer(uid);
+  const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+  const peer = { pc, dc: null, connected: false, iceCandidates: [] };
+  peers[uid] = peer;
+  pc.onconnectionstatechange = () => {
+    if (pc.connectionState === 'connected') { peer.connected = true; renderFriends(); updateP2PStatus(); }
+    else if (['failed','closed'].includes(pc.connectionState)) { peer.connected = false; renderFriends(); updateP2PStatus(); }
+  };
+  pc.ondatachannel = (e) => { peer.dc = e.channel; setupDataChannel(e.channel, uid); };
+  pc.onicecandidate = (e) => {
+    if (e.candidate) {
+      peer.iceCandidates.push(e.candidate.toJSON());
+      clearTimeout(peer._iceTimer);
+      peer._iceTimer = setTimeout(() => {
+        fetch(API+'signal?uid='+uid, { method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({type:'ice',from:myId,to:uid,candidates:peer.iceCandidates,ts:Date.now()})
+        }).catch(()=>{});
+      }, 500);
+    }
+  };
+  pc.setRemoteDescription({type:'offer',sdp}).then(() => pc.createAnswer()).then(async (answer) => {
+    await pc.setLocalDescription(answer);
+    await fetch(API+'signal?uid='+uid, { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({type:'answer',from:myId,to:uid,sdp:answer.sdp,ts:Date.now()})
+    });
+    console.log(`[P2P] answer → uid=${uid}`);
+  });
+  pollMyMailbox(uid);
+}
+
+function pollMyMailbox(uid) {
+  if (signalTimers[uid]) clearInterval(signalTimers[uid]);
+  signalTimers[uid] = setInterval(async () => {
+    return; // 死轮询已停
+    try {
+      const resp = await fetch(API+'signal?uid='+myId);
+      const list = await resp.json();
+      if (!Array.isArray(list)) return;
+      const peer = peers[uid]; if (!peer) return;
+
+      for (const d of list) {
+        if (d.from !== uid) continue;
+        if (d.type === 'answer' && peer.pc.signalingState === 'have-local-offer') {
+          await peer.pc.setRemoteDescription({type:'answer',sdp:d.sdp});
+          console.log(`[P2P] answer ← uid=${myId}`);
+        }
+        if (d.type === 'ice' && d.candidates) {
+          for (const c of d.candidates) try { await peer.pc.addIceCandidate(new RTCIceCandidate(c)); } catch {}
+        }
+      }
+    } catch {}
+  }, 1000);
+  setTimeout(() => { if (signalTimers[uid]) { clearInterval(signalTimers[uid]); delete signalTimers[uid]; } }, 30000);
+}
+
+function setupDataChannel(dc, uid) {
+  dc.onopen = () => { peers[uid].connected = true; renderFriends(); updateP2PStatus(); };
+  dc.onclose = () => { peers[uid].connected = false; renderFriends(); updateP2PStatus(); };
+  dc.onmessage = (e) => {
+    try {
+      const data = JSON.parse(e.data);
+      if (data.content && !getMsgs(uid).some(m => m.dir==='recv' && m.content===data.content && Date.now()-m.ts<10000)) {
+        addMsg(uid, 'recv', data.content, data.isImage);
+        if (curFriend === uid) renderMsgs();
+      }
+    } catch {}
+  };
+}
+
+function closePeer(uid) {
+  if (signalTimers[uid]) { clearInterval(signalTimers[uid]); delete signalTimers[uid]; }
+  if (peers[uid]) {
+    if (peers[uid].dc) try { peers[uid].dc.close(); } catch {}
+    if (peers[uid].pc) try { peers[uid].pc.close(); } catch {}
+    delete peers[uid];
+  }
+}
+
+// ─── 启动 ─────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

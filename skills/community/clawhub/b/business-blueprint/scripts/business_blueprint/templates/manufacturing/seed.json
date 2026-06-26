@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "meta": {},
+  "context": {
+    "goals": [],
+    "scope": [],
+    "assumptions": [],
+    "constraints": [],
+    "sourceRefs": [],
+    "clarifyRequests": [],
+    "clarifications": []
+  },
+  "library": {
+    "capabilities": [],
+    "actors": [],
+    "flowSteps": [],
+    "systems": []
+  },
+  "relations": [],
+  "views": [],
+  "editor": {
+    "fieldLocks": {},
+    "theme": "enterprise-default"
+  },
+  "artifacts": {},
+  "industryHints": {
+    "title": "制造行业蓝图关注点",
+    "description": "生成制造行业业务蓝图时，请确保覆盖以下关键领域，不要遗漏：",
+    "checklist": [
+      "生产计划：排程、产能规划、生产调度、工单管理",
+      "质量管理：来料检验、过程检验、成品检验、追溯",
+      "仓储管理：入库、出库、库存、库位、盘点",
+      "供应链：供应商协同、采购、物流、交付",
+      "设备管理：维护保养、故障预警、备件管理",
+      "工艺管理：BOM、工艺路线、配方管理",
+      "成本管理：标准成本、实际成本、差异分析",
+      "安全管理：EHS、隐患排查、应急响应",
+      "数字化工厂：MES、IoT、数字孪生、能耗监控"
+    ]
+  }
+}

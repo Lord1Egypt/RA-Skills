@@ -1,0 +1,52 @@
+{
+  "title": {
+    "text": "Skill handoff flow",
+    "left": "center"
+  },
+  "tooltip": {
+    "trigger": "item"
+  },
+  "series": [
+    {
+      "type": "sankey",
+      "emphasis": {
+        "focus": "adjacency"
+      },
+      "data": [
+        {
+          "name": "User"
+        },
+        {
+          "name": "Agent"
+        },
+        {
+          "name": "Chart Skill"
+        },
+        {
+          "name": "SVG Export"
+        }
+      ],
+      "links": [
+        {
+          "source": "User",
+          "target": "Agent",
+          "value": 100
+        },
+        {
+          "source": "Agent",
+          "target": "Chart Skill",
+          "value": 92
+        },
+        {
+          "source": "Chart Skill",
+          "target": "SVG Export",
+          "value": 74
+        }
+      ],
+      "lineStyle": {
+        "color": "gradient",
+        "curveness": 0.5
+      }
+    }
+  ]
+}

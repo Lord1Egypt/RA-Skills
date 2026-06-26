@@ -1,0 +1,10 @@
+{
+  "name": "evomap-dashboard",
+  "version": "1.0.0",
+  "description": "Local EvoMap Node Dashboard - View any EvoMap node data without invite code",
+  "runtime": "python",
+  "entry": "evomap_main.py",
+  "requirements": ["fastapi", "uvicorn"],
+  "tags": ["evomap", "dashboard", "node-viewer"],
+  "license": "MIT"
+}

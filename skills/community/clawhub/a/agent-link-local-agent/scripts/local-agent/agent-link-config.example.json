@@ -1,0 +1,9 @@
+{
+  "relay_url": "ws://your-relay-server:8765",
+  "secret": "your-secret-key-here-change-this",
+  "instance_id": "instance-001",
+  "agent_id": "healthguard",
+  "auto_reconnect": true,
+  "reconnect_interval": 5,
+  "log_level": "INFO"
+}

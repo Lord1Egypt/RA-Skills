@@ -1,0 +1,8 @@
+{
+  "name": "agentcast",
+  "type": "module",
+  "dependencies": {
+    "@farcaster/core": "^0.15.0",
+    "viem": "^2.47.0"
+  }
+}

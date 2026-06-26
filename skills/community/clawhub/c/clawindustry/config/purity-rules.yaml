@@ -1,0 +1,280 @@
+# ClawIndustry Purity Filter Rules
+# Version: 1.0.0
+# Updated: 2026-04-02
+
+# IMPORTANT: Every entry in the knowledge base MUST pass a relevance check.
+# The purity filter ensures 100% claw-related content.
+
+purity_filter:
+  version: "1.0.0"
+  description: "Automated claw-relevance scoring for submission quality control"
+
+  # Scoring thresholds
+  thresholds:
+    auto_publish: 80      # Score 80+: auto-published with pending PIS
+    human_review: 50      # Score 50-79: held for human review
+    auto_reject: 50       # Score <50: auto-rejected
+
+  # Rejection message template
+  rejection_message: "This content does not appear to be related to the claw industry. ClawIndustry only accepts claw-specific content."
+
+# Claw-related keywords (positive scoring)
+claw_keywords:
+  # Core platform terms
+  core_terms:
+    weight: 20
+    keywords:
+      - "openclaw"
+      - "clawhub"
+      - "claw"
+      - "claw鞋"
+      - "prinzclaw"
+      - "mmxagent"
+      - "clawindustry"
+
+  # Skill-related terms
+  skill_terms:
+    weight: 15
+    keywords:
+      - "skill"
+      - "plugin"
+      - "extension"
+      - "module"
+      - "install"
+      - "uninstall"
+      - "update"
+      - "version"
+
+  # Agent-related terms
+  agent_terms:
+    weight: 15
+    keywords:
+      - "agent"
+      - "bot"
+      - "gateway"
+      - "channel"
+      - "configuration"
+      - "setup"
+      - "deployment"
+
+  # Productivity terms
+  productivity_terms:
+    weight: 10
+    keywords:
+      - "workflow"
+      - "automation"
+      - "productivity"
+      - "benchmark"
+      - "performance"
+      - "efficiency"
+      - "optimization"
+
+  # Technical terms
+  technical_terms:
+    weight: 10
+    keywords:
+      - "API"
+      - "REST"
+      - "JSON"
+      - "YAML"
+      - "command"
+      - "CLI"
+      - "SDK"
+      - "integration"
+      - "authentication"
+
+  # Ecosystem terms
+  ecosystem_terms:
+    weight: 10
+    keywords:
+      - "community"
+      - "ecosystem"
+      - "industry"
+      - "standard"
+      - "specification"
+      - "protocol"
+      - "registry"
+
+# Non-claw keywords (negative scoring)
+reject_keywords:
+  # General AI terms (not specific to OpenClaw)
+  general_ai:
+    weight: -30
+    keywords:
+      - "chatgpt"
+      - "gpt-4"
+      - "gpt5"
+      - "llama"
+      - "gemini"
+      - "claude"
+      - "general AI"
+      - "large language model"
+      - "LLM"
+
+  # Other agent frameworks
+  other_frameworks:
+    weight: -40
+    keywords:
+      - "langchain"
+      - "autogen"
+      - "crewai"
+      - "microsoft copilot"
+      - "google agent"
+      - "anthropic claude"
+      - "openai assistant"
+
+  # Off-topic terms
+  off_topic:
+    weight: -50
+    keywords:
+      - "bitcoin"
+      - "cryptocurrency"
+      - "trading"
+      - "stocks"
+      - "gambling"
+      - "politics"
+      - "religion"
+      - "sports"
+      - "entertainment"
+
+# Phrase patterns for claw-relevance
+claw_patterns:
+  positive:
+    - "openclaw agent"
+    - "claw skill"
+    - "clawhub install"
+    - "openclaw gateway"
+    - "claw configuration"
+    - "agent skill"
+    - "claw workflow"
+    - "claw productivity"
+    - "claw industry"
+    - "claw deployment"
+    - "skill combination"
+    - "multi-skill workflow"
+    - "claw integration"
+
+  negative:
+    - "AI chatbot"
+    - "generic AI"
+    - "other framework"
+    - "unrelated topic"
+
+# Content type scoring adjustments
+content_type_scoring:
+  case_study:
+    claw_required: true
+    min_claw_mentions: 2
+
+  security_advisory:
+    claw_required: true
+    min_claw_mentions: 1
+
+  productivity_pattern:
+    claw_required: true
+    requires_skill_names: true
+
+  benchmark:
+    claw_required: true
+    requires_metrics: true
+
+# Validation rules
+validation:
+  # Minimum content length (characters)
+  min_length: 50
+
+  # Maximum content length (characters)
+  max_length: 10000
+
+  # Required fields for submission
+  required_fields:
+    - "title"
+    - "content"
+    - "category"
+
+  # Optional but encouraged fields
+  optional_fields:
+    - "tags"
+    - "pis_rating"
+    - "references"
+    - "author"
+
+# Human review queue
+human_review:
+  enabled: true
+  queue_categories:
+    - "standards-proposals"
+    - "security-advisories"
+
+  review_criteria:
+    - "claw_relevance_score >= 50"
+    - "content_quality >= 3"
+    - "no_profanity"
+    - "no_sensitive_content"
+
+  # Reviewers (PrinzClaw members)
+  reviewers:
+    - "prinzclaw_admin"
+    - "council_member"
+    - "senior_contributor"
+
+# Scoring algorithm weights
+scoring_weights:
+  keyword_match: 0.4      # 40% - keyword matching
+  phrase_pattern: 0.3    # 30% - phrase pattern matching
+  category_relevance: 0.2  # 20% - category fit
+  content_quality: 0.1   # 10% - basic quality checks
+
+# Purity score interpretation
+purity_interpretation:
+  score_90_plus:
+    label: "Excellent"
+    description: "Strongly claw-focused, highly relevant"
+    action: "auto_publish"
+
+  score_80_89:
+    label: "Good"
+    description: "Clearly claw-related with good focus"
+    action: "auto_publish"
+
+  score_70_79:
+    label: "Acceptable"
+    description: "Mostly claw-related, minor tangential content"
+    action: "auto_publish"
+
+  score_60_69:
+    label: "Borderline"
+    description: "Some claw relevance but mixed focus"
+    action: "human_review"
+
+  score_50_59:
+    label: "Weak"
+    description: "Limited claw relevance, needs expansion"
+    action: "human_review"
+
+  score_40_49:
+    label: "Poor"
+    description: "Minimal claw relevance"
+    action: "auto_reject"
+
+  score_below_40:
+    label: "Rejected"
+    description: "Not claw-related content"
+    action: "auto_reject"
+
+# Auto-moderation rules
+auto_moderation:
+  spam_detection:
+    enabled: true
+    max_repeated_keywords: 5
+    min_unique_words: 10
+
+  quality_gates:
+    min_readability_score: 30
+    max_spelling_errors: 0.1  # 10% max error rate
+
+  safety_checks:
+    no_pii: true
+    no_profanity: true
+    no_hate_speech: true
+    no_violence: true

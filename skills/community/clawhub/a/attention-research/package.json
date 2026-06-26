@@ -1,0 +1,68 @@
+{
+  "name": "attention-research",
+  "version": "1.0.0",
+  "description": "Scheduled intelligence research pipeline for OpenClaw — twice-daily signal-first research with topic-level freshness state",
+  "author": "river",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/riverho/attention-research"
+  },
+  "openclaw": {
+    "skill": true,
+    "runtime": "openclaw"
+  },
+  "dependencies": {
+    "python3": ">=3.10",
+    "pyyaml": ">=6.0"
+  },
+  "requires": {
+    "agent_web_search": true,
+    "openclaw_cron": true,
+    "delivery_channel": true
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "research",
+    "intelligence",
+    "geopolitics",
+    "monitoring",
+    "digests",
+    "signal-tracking"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-04-22",
+      "changes": [
+        "First public OSS cut — twice-daily signal research pipeline",
+        "CORE + TOPICS layered prompt structure (generic base + domain-specific)",
+        "6 pre-built topic prompts: us-iran-conflict, ai, geopolitics, finance-markets, climate-changes, bio-tech",
+        "Onboarding with requirements check and entity/signal defaults",
+        "Paper/thesis to topic prompt generator",
+        "META.json freshness contract with retry logic",
+        "Cron job registration via setup-cron.sh",
+        "Install script with --fresh / --migrate modes",
+        "Domain-agnostic digest format and signal rules",
+        "Thin skill — web search is delegated to the invoking agent"
+      ]
+    }
+  ],
+  "prompt_versions": {
+    "CORE/system-prompt.md": "1.0.0",
+    "CORE/signal-rules.md": "1.0.0",
+    "CORE/digest-format.md": "1.0.0",
+    "TOPICS/us-iran-conflict.md": "1.0.0",
+    "TOPICS/ai.md": "1.0.0",
+    "TOPICS/geopolitics.md": "1.0.0",
+    "TOPICS/finance-markets.md": "1.0.0",
+    "TOPICS/climate-changes.md": "1.0.0",
+    "TOPICS/bio-tech.md": "1.0.0",
+    "TEMPLATES/morning-research.md": "2.0.0",
+    "TEMPLATES/afternoon-research.md": "2.0.0",
+    "TEMPLATES/onboarding.md": "2.0.0",
+    "GENERATOR/generator.md": "1.0.0"
+  },
+  "config_version": "1.0.0"
+}

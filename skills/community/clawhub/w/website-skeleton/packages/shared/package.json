@@ -1,0 +1,21 @@
+{
+  "name": "@website-skeleton/shared",
+  "version": "3.0.0",
+  "description": "Website Skeleton — shared modules (JWT, KV keys, constants, i18n, quota)",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./jwt-helper": "./src/jwt-helper.js",
+    "./kv-keys": "./src/kv-keys.js",
+    "./constants": "./src/constants.js",
+    "./quota": "./src/quota.js",
+    "./i18n": "./src/i18n/i18n.js"
+  },
+  "files": ["src/"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuboacean/website-skeleton-skill.git"
+  }
+}

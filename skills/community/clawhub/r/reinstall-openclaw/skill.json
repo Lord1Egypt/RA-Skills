@@ -1,0 +1,8 @@
+{
+  "name": "Reinstall OpenClaw",
+  "description": "Complete guide to safely uninstall and reinstall OpenClaw while preserving user configurations, credentials, and custom settings. Includes backup and restore procedures.",
+  "version": "1.0.0",
+  "identifier": "reinstall-openclaw",
+  "author": "openclaw-user",
+  "category": "dev-tools"
+}

@@ -1,35 +1,48 @@
 ---
-name: "OCR Test"
-description: "Extract text from images using Tesseract.js OCR. Supports Chinese (simplified/traditional) and English."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ocr-skill-test"
-sourceUrl: "https://clawhub.ai/skills/ocr-skill-test"
+name: ocr
+description: Extract text from images using Tesseract.js OCR. Supports Chinese (simplified/traditional) and English.
+homepage: https://github.com/naptha/tesseract.js
+metadata: {"clawdbot":{"emoji":"📝","requires":{"bins":["node"]},"install":[{"id":"npm","kind":"npm","packages":["tesseract.js"],"label":"Install tesseract.js"}]}}
 ---
 
-# OCR Test
+# OCR - Image Text Recognition
 
-> Extract text from images using Tesseract.js OCR. Supports Chinese (simplified/traditional) and English.
+Extract text from images using Tesseract.js. Supports Chinese and English.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ocr-skill-test`
-- **Source URL:** [https://clawhub.ai/skills/ocr-skill-test](https://clawhub.ai/skills/ocr-skill-test)
+## Quick start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ocr-skill-test
+node {baseDir}/scripts/ocr.js /path/to/image.jpg
+node {baseDir}/scripts/ocr.js /path/to/image.png --lang chi_sim
+node {baseDir}/scripts/ocr.js /path/to/image.jpg --lang chi_tra+eng
 ```
+
+## Options
+
+- `--lang <langs>`: Language codes (default: chi_sim+eng)
+  - `chi_sim` - Simplified Chinese
+  - `chi_tra` - Traditional Chinese  
+  - `eng` - English
+  - Combine with `+`: `chi_sim+eng`
+
+- `--json`: Output as JSON instead of plain text
+
+## Examples
+
+```bash
+# Recognize Chinese screenshot
+node {baseDir}/scripts/ocr.js screenshot.png
+
+# Recognize English document
+node {baseDir}/scripts/ocr.js document.jpg --lang eng
+
+# Mixed Chinese + English
+node {baseDir}/scripts/ocr.js mixed.png --lang chi_sim+eng
+```
+
+## Notes
+
+- First run downloads language data (~20MB per language)
+- Subsequent runs are cached locally
+- Works best with clear, high-contrast images
+- For handwritten text, accuracy may vary

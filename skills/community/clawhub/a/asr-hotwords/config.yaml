@@ -1,0 +1,12 @@
+# 对话提取配置
+extract:
+  # 要提取的 agent 列表
+  # ["*"] = 全部，或指定 ["main", "claude"]
+  agents: ["*"]
+  # 单条消息最大字符数（超出截断）
+  max_content_len: 300
+  # 最低词频阈值
+  min_freq: 3
+
+# 输出目录
+output_dir: "output"

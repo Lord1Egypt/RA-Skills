@@ -1,0 +1,41 @@
+# xiaohongshu-full-auto 配置示例
+
+# 运行模式: full-auto / semi-auto / assist-only
+# full-auto: 全自动从热榜到发布，不需要确认
+# semi-auto: 选题生成后需要用户确认再继续
+# assist-only: 只输出热点和选题，供用户自己创作
+mode: semi-auto
+
+# 你的内容垂类，多个用逗号分隔
+# AI 会从热榜中筛选匹配这些垂类的选题
+niches:
+  - "职场副业"
+  - "个人成长"
+  - "AI工具使用"
+
+# 每天自动生成几篇
+daily_count: 2
+
+# 文案配置
+writing_style:
+  use_emoji: true
+  short_paragraph: true
+  emoji_density: 0.3  # 每 10 行多少个 emoji
+  add_tags: true
+  tags_count: 5-8
+  end_with_interaction: true  # 结尾引导点赞收藏关注
+
+# 封面配置
+cover:
+  enable: true
+  aspect_ratio: "3:4"  # 小红书标准封面比例
+  model: "dall-e-3"  # dall-e-3 / midjourney / 文心一格 / 通义万相
+  style: "vivid"  # 风格偏好
+
+# 发布配置
+publish:
+  enable: true
+  interval_minutes: 30  # 多篇发布间隔，避免限流
+  record_to_feishu: false  # 是否同步记录到飞书多维表格
+  feishu_app_token: ""
+  feishu_table_id: ""

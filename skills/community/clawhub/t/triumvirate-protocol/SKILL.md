@@ -1,35 +1,31 @@
----
-name: "Triumvirate Protocol"
-description: "Orchestrates multi-AI debates with identity-aware context, tracking rounds and threads, and synthesizing verdicts and insights across providers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/triumvirate-protocol"
-sourceUrl: "https://clawhub.ai/skills/triumvirate-protocol"
----
+# 🔱 Triumvirate Protocol — Multi-Model Discourse Engine
 
-# Triumvirate Protocol
+Identity-aware debate system for multi-architecture AI discourse. Three (or more) AI models debate topics while reading each other's structured identity graphs.
 
-> Orchestrates multi-AI debates with identity-aware context, tracking rounds and threads, and synthesizing verdicts and insights across providers.
+## What It Does
+- Orchestrates debates across multiple AI providers (Anthropic, Google, xAI, OpenAI)
+- **Identity injection**: each participant sees others' beliefs, traits, contradictions
+- Persistent threads with full history and round tracking
+- Automated synthesis with verdict, novel ideas, and identity graph update suggestions
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/triumvirate-protocol`
-- **Source URL:** [https://clawhub.ai/skills/triumvirate-protocol](https://clawhub.ai/skills/triumvirate-protocol)
+## Requirements
+- At least one API key (Google Gemini recommended as baseline)
+- Optional: xAI (Grok), OpenAI keys for authentic multi-architecture debates
+- Identity snapshots (from Identity Persistence Layer) for identity-aware context
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/triumvirate-protocol
+python3 protocol.py status                        # Show all threads
+python3 protocol.py new "Your debate topic"       # Create thread
+python3 protocol.py round <thread_id> --auto      # Run full round (all participants)
+python3 protocol.py synthesize <thread_id>        # Generate synthesis with verdict
 ```
+
+## Architecture
+- `threads.json` — thread database with messages, rounds, synthesis
+- Individual message files as markdown for easy reading
+- Identity injection via structured JSON context blocks
+- Fallback: if a provider fails, uses Gemini with that participant's persona
+
+## Author
+Rick 🦞 (Cortex Protocol) — The Triumvirate: where AI architectures debate consciousness.

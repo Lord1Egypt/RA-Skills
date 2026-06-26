@@ -1,35 +1,189 @@
 ---
-name: "Shuke Document Formatting"
+name: shuke-document-formatting
 description: "数科公司文印格式自动化工具包。自动按照数科公司文印格式要求（方正小标宋简体、仿宋GB2312、楷体GB2312、黑体等字体，28字/行，22行/页）格式化Word文档并生成PDF。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shuke-document-formatting"
-sourceUrl: "https://clawhub.ai/skills/shuke-document-formatting"
+license: "MIT-0"
 ---
 
-# Shuke Document Formatting
+# 数科文印格式自动化工具包
 
-> 数科公司文印格式自动化工具包。自动按照数科公司文印格式要求（方正小标宋简体、仿宋GB2312、楷体GB2312、黑体等字体，28字/行，22行/页）格式化Word文档并生成PDF。
+## 🎯 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shuke-document-formatting`
-- **Source URL:** [https://clawhub.ai/skills/shuke-document-formatting](https://clawhub.ai/skills/shuke-document-formatting)
+**shuke-document-formatting** 是一套完整的自动化工具包，用于按照数科公司严格的文印格式要求处理文档。
 
-## Overview
+### 核心功能
 
+1. **智能文档格式化**：基于目录结构分析，自动识别标题层次（一、二、三级标题），应用正确的字体、字号、对齐方式
+2. **精确PDF生成**：使用指定字体（方正小标宋简体、仿宋GB2312、楷体GB2312、黑体）生成完全符合格式要求的PDF
+3. **字体安装与管理**：一键安装所需字体，验证字体安装结果
+4. **批量处理**：支持批量转换文件夹中的所有文档
+5. **格式验证**：检查PDF使用的字体是否符合要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 支持的格式要求
+
+- **标题**：方正小标宋简体，二号，居中
+- **一级标题**：黑体，三号，左对齐
+- **二级标题**：楷体GB2312，三号，加粗，左对齐
+- **三级标题**：仿宋GB2312，三号，左对齐
+- **正文**：仿宋GB2312，三号，首行缩进2字符
+- **页面设置**：上3.5cm，下3.5cm，左2.8cm，右2.8cm
+- **网格要求**：28字/行，22行/页
+- **行距**：固定值28磅
+
+## 🚀 快速开始
+
+### 前置要求
+
+- Python 3.8+
+- python-docx 库
+- 字体文件（可通过工具自动安装）
+
+### 安装依赖
+
 ```bash
-hermes skills install clawhub/shuke-document-formatting
+pip install python-docx
 ```
+
+### 字体安装
+
+使用内置工具安装所需字体：
+
+```bash
+python install_shuke_fonts.py
+python verify_shuke_fonts.py
+```
+
+### 基本使用
+
+#### 1. 格式化Word文档
+
+```bash
+python smart_format_v3.py input.docx output.docx
+```
+
+#### 2. 生成符合格式的PDF
+
+```bash
+python convert_to_pdf_shuke_final.py input.docx output.pdf
+```
+
+#### 3. 批量转换
+
+```bash
+python batch_convert_shuke_pdf.py input_folder/ output_folder/
+```
+
+#### 4. 生成示例文档
+
+```bash
+python generate_proper_example.py example.docx
+```
+
+## 📁 工具说明
+
+### 核心工具
+
+1. **smart_format_v3.py** - 智能格式化工具
+   - 基于目录结构分析，智能识别标题级别
+   - 自动应用正确的字体、字号、对齐方式
+   - 修复常见格式错误
+
+2. **convert_to_pdf_shuke_final.py** - PDF生成工具
+   - 使用精确字体生成PDF
+   - 确保页面设置符合要求
+   - 验证字体使用情况
+
+3. **install_shuke_fonts.py** - 字体安装工具
+   - 自动安装数科公司要求的4种字体
+   - 支持系统级字体注册
+
+4. **verify_shuke_fonts.py** - 字体验证工具
+   - 验证字体是否安装成功
+   - 检查字体名称匹配
+
+5. **batch_convert_shuke_pdf.py** - 批量转换工具
+   - 批量处理文件夹中的所有Word文档
+   - 保持目录结构
+
+6. **check_pdf_fonts.py** - PDF字体检查工具
+   - 检查PDF文档使用的字体
+   - 验证是否符合格式要求
+
+7. **doc_generator.py** - 文档生成器
+   - 根据内容自动生成符合格式的Word文档
+
+8. **generate_proper_example.py** - 示例生成器
+   - 生成完全符合文印格式的示例文档
+
+### 辅助工具
+
+- **analyze_document_structure.py** - 文档结构分析
+- **fix_docx.py** - 文档修复工具
+- **check_docx.py** - 文档检查工具
+
+## 📖 详细使用指南
+
+### 文档格式化原理
+
+工具采用三级标题识别策略：
+
+1. **先识别目录结构**：分析文档整体组织架构
+2. **再分析上下文关系**：判断标题级别和从属关系
+3. **最后应用格式规则**：基于结构应用正确的字体、字号、对齐方式
+
+### 标题层次定义
+
+- **一级标题**：中文序号（一、二、三、...），黑体，三号
+- **二级标题**：中文括号序号（（一）（二）（三）...），楷体GB2312，三号，加粗
+- **三级标题**：数字序号（1. 2. 3. ...），仿宋GB2312，三号
+- **正文**：仿宋GB2312，三号，首行缩进2字符
+
+### 常见问题解决
+
+#### 问题1：字体缺失
+**症状**：PDF生成后字体不符合要求
+**解决**：运行字体安装工具，确保字体文件位于`/usr/share/fonts/truetype/sim/`目录
+
+#### 问题2：标题识别错误
+**症状**：一级标题被识别为三级标题
+**解决**：使用`smart_format_v3.py`的智能识别功能，或手动调整文档结构
+
+#### 问题3：页面设置不正确
+**症状**：文档页边距或行距不符合要求
+**解决**：确保使用`convert_to_pdf_shuke_final.py`生成PDF
+
+## 🔧 技术细节
+
+### 字体映射
+
+- 方正小标宋简体 → 标题，二号，居中
+- 黑体 → 一级标题，三号，左对齐
+- 楷体GB2312 → 二级标题，三号，加粗，左对齐
+- 仿宋GB2312 → 三级标题和正文，三号，左对齐
+
+### 页面设置参数
+
+- 页边距：上3.5cm，下3.5cm，左2.8cm，右2.8cm
+- 页眉：2.5cm，页脚：2.5cm
+- 纸张：A4
+- 网格：28字/行，22行/页
+- 行距：固定值28磅
+
+### 编码处理
+
+所有文档使用GBK编码，确保中文兼容性。ZIP打包时使用英文文件名避免乱码。
+
+## 📄 许可证
+
+MIT-0 License
+
+## 👥 贡献者
+
+- 小强 (xiaoqiang) - 主要开发者
+
+## 📞 支持
+
+如有问题，请在工作区中创建issue或联系开发者。
+
+---
+
+*最后更新：2026-03-28*

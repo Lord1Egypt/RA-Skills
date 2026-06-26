@@ -1,0 +1,268 @@
+{
+  "date": "2026-05-25",
+  "sources": [
+    "华尔街见闻",
+    "雪球",
+    "21财经",
+    "格隆汇",
+    "第一财经"
+  ],
+  "total_items": 50,
+  "data": {
+    "华尔街见闻": [
+      {
+        "rank": 1,
+        "title": "什么情况下，本轮AI大行情会结束？",
+        "link": "https://wallstreetcn.com/articles/3773004",
+        "hot": "13.7万",
+        "platform": "华尔街见闻"
+      },
+      {
+        "rank": 2,
+        "title": "本周重磅日程：美联储最爱通胀指标、中国PMI、长鑫科技上会、拼多多小米财报",
+        "link": "https://wallstreetcn.com/articles/3772885",
+        "hot": "12.8万",
+        "platform": "华尔街见闻"
+      },
+      {
+        "rank": 3,
+        "title": "美伊协议罗生门：霍尔木兹海峡如何管？高浓缩铀弃不弃？",
+        "link": "https://wallstreetcn.com/articles/3772996",
+        "hot": "9.8万",
+        "platform": "华尔街见闻"
+      },
+      {
+        "rank": 4,
+        "title": "梁文锋与DeepSeek的十万亿美元棋盘",
+        "link": "https://wallstreetcn.com/articles/3772995",
+        "hot": "8.1万",
+        "platform": "华尔街见闻"
+      },
+      {
+        "rank": 5,
+        "title": "如何把握本轮鱼尾行情？",
+        "link": "https://wallstreetcn.com/articles/3773001",
+        "hot": "7.6万",
+        "platform": "华尔街见闻"
+      }
+    ],
+    "雪球": [
+      {
+        "rank": 1,
+        "title": "AI算力风口之下，铜迎来新一轮超级周期",
+        "link": "http://xueqiu.com/1641200866/390619325",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 2,
+        "title": "算力租赁洞察：行业最近发生了什么？算力租赁投资框架拆解",
+        "link": "http://xueqiu.com/3576712780/390638817",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 3,
+        "title": "谈腾讯的价值、估值",
+        "link": "http://xueqiu.com/7123126150/390628550",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 4,
+        "title": "MLCC 产业链调查：原理、供应链、材料与 A 股映射",
+        "link": "http://xueqiu.com/7949850919/390603837",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 5,
+        "title": "白酒四轮至暗时刻复盘：这一次，历史会重演吗？",
+        "link": "http://xueqiu.com/3960680297/390615278",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 6,
+        "title": "国产算力 vs 海外算力，朋友圈的不同",
+        "link": "http://xueqiu.com/5672579962/390550073",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 7,
+        "title": "锂电池本周行业更新5-23",
+        "link": "http://xueqiu.com/5243796549/390583139",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 8,
+        "title": "淡季更淡：茅台带来的幻觉与价格促销的失灵",
+        "link": "http://xueqiu.com/8276920975/390585836",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 9,
+        "title": "东方甄选净利润预期差多大",
+        "link": "http://xueqiu.com/9405564107/390554049",
+        "hot": "",
+        "platform": "雪球"
+      },
+      {
+        "rank": 10,
+        "title": "2026年供需矛盾最突出的大宗商品",
+        "link": "http://xueqiu.com/6087293231/390470658",
+        "hot": "",
+        "platform": "雪球"
+      }
+    ],
+    "21财经": [
+      {
+        "rank": 1,
+        "title": "一个月连开5店，霸王茶姬爆红韩国",
+        "link": "https://m.21jingji.com/article/20260525/herald/4441a1f37ce2483949ddd860eec0e9be.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 2,
+        "title": "从访华热看中国的合作力",
+        "link": "https://m.21jingji.com/article/20260525/herald/df023c1f334888da1e43e7998bf75eaf.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 3,
+        "title": "华为提出的韬定律是什么？跟摩尔定律有什么不同？",
+        "link": "https://m.21jingji.com/article/20260525/herald/1573642c437a5e4e76a15fc1c40f0a35.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 4,
+        "title": "A股午评：科创50指数半日涨超3%",
+        "link": "https://m.21jingji.com/article/20260525/herald/3fc4679d4924b2403adf27db6d594f5f.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 5,
+        "title": "腾讯、字节因短视频猪食论起争执？抖音副总裁辟谣",
+        "link": "https://m.21jingji.com/article/20260525/herald/f2febc6288151e85d756659e9864b297.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 6,
+        "title": "北京市网络市场监管联席会议召开 集中约谈17家重点平台企业",
+        "link": "https://m.21jingji.com/article/20260525/herald/4319580a84f8f9500de8eb412098c1f9.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 7,
+        "title": "Temu成访问量第二大电商网站；萝卜快跑覆盖27城",
+        "link": "https://m.21jingji.com/article/20260525/herald/9c0f49f14986203f5ad0d0e33ad2cee4.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 8,
+        "title": "中国芯片的华为定律：6年研发381款芯片、2031年等效1.4nm",
+        "link": "https://m.21jingji.com/article/20260525/herald/3a91c65b3c03ee61272a76371bde697d.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 9,
+        "title": "净息差逐步企稳的背后，银行存款成本降了多少？",
+        "link": "https://m.21jingji.com/article/20260525/herald/25a24d119e2dc486fafa1ec73b0476af.html",
+        "hot": "",
+        "platform": "21财经"
+      },
+      {
+        "rank": 10,
+        "title": "一人公司兴起，灵活办公市场最核心增量赛道来了",
+        "link": "https://m.21jingji.com/article/20260525/herald/94482b4ef29ea744145a01d91bc676ac.html",
+        "hot": "",
+        "platform": "21财经"
+      }
+    ],
+    "格隆汇": [
+      {
+        "rank": 1,
+        "title": "市场资金在切换，这个方向或迎来大反攻？",
+        "link": "https://www.gelonghui.com/p/4892658",
+        "hot": "",
+        "platform": "格隆汇"
+      },
+      {
+        "rank": 2,
+        "title": "特朗普炒股，吃相有多难看？",
+        "link": "https://www.gelonghui.com/p/4892995",
+        "hot": "",
+        "platform": "格隆汇"
+      },
+      {
+        "rank": 3,
+        "title": "20倍大牛股，失速了",
+        "link": "https://www.gelonghui.com/p/4892689",
+        "hot": "",
+        "platform": "格隆汇"
+      },
+      {
+        "rank": 4,
+        "title": "特朗普称基本谈成！伊朗泼冷水，国际油价走向何方？",
+        "link": "https://www.gelonghui.com/p/4892188",
+        "hot": "",
+        "platform": "格隆汇"
+      },
+      {
+        "rank": 5,
+        "title": "早报（05.25）：美伊再传大消息！油价暴跌，金银拉涨；八国发表联合声明",
+        "link": "https://www.gelonghui.com/p/4893059",
+        "hot": "",
+        "platform": "格隆汇"
+      }
+    ],
+    "第一财经": [
+      {
+        "rank": 1,
+        "title": "探秘宝石世界：LECOLE珠宝艺术嘉年华",
+        "link": "https://www.yicai.com/news/103168083.html",
+        "hot": "",
+        "platform": "第一财经"
+      },
+      {
+        "rank": 2,
+        "title": "平安产险龙泉：积极共建低空经济保险生态",
+        "link": "https://www.yicai.com/news/103197216.html",
+        "hot": "",
+        "platform": "第一财经"
+      },
+      {
+        "rank": 3,
+        "title": "收盘：沪指跌1.02%，人形机器人板块多股涨停",
+        "link": "https://www.yicai.com/news/103184356.html",
+        "hot": "",
+        "platform": "第一财经"
+      },
+      {
+        "rank": 4,
+        "title": "山西矿难已致82人死亡！涉事煤矿曾获评安全生产二级达标",
+        "link": "https://www.yicai.com/news/103197706.html",
+        "hot": "",
+        "platform": "第一财经"
+      },
+      {
+        "rank": 5,
+        "title": "违规泡药拖累杨梅价格跳水，殃及整个产业靠什么破局",
+        "link": "https://www.yicai.com/news/103191639.html",
+        "hot": "",
+        "platform": "第一财经"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Invoice Compliance Checker",
+  "slug": "invoice-compliance-checker",
+  "version": "1.0.0",
+  "description": "Checks invoices for compliance with regulatory requirements and internal policies.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "template",
+    "framework",
+    "invoice"
+  ],
+  "trigger_keywords": [
+    "invoice compliance checker",
+    "invoice compliance checker",
+    "invoice",
+    "compliance",
+    "checker"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

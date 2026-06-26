@@ -1,0 +1,20 @@
+{
+  "name": "paperclip-resilience",
+  "version": "1.0.0",
+  "description": "Production resilience patterns for Paperclip agents running under OpenClaw.",
+  "type": "commonjs",
+  "main": "src/spawn-with-fallback.js",
+  "scripts": {
+    "test": "node tests/test-spawn-with-fallback.js && node tests/test-security.js",
+    "test:security": "node tests/test-security.js",
+    "test:security:quick": "node tests/test-security-quick.js",
+    "setup": "node scripts/setup.js"
+  },
+  "keywords": [
+    "paperclip",
+    "openclaw",
+    "resilience",
+    "skill"
+  ],
+  "license": "MIT"
+}

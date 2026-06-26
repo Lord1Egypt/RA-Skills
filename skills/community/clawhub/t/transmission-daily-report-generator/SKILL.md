@@ -1,35 +1,225 @@
 ---
-name: "传输单边故障日报报表生成器"
-description: "生成传输单边故障日报报表，按考核周期统计，包含原始清单"
-category: "other"
-source: "ClawHub"
-tags: [assessment-period, excel, fault, report, statistics, transmission]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/transmission-daily-report-generator"
-sourceUrl: "https://clawhub.ai/skills/transmission-daily-report-generator"
+name: daily-report-generator
+description: 生成传输单边故障日报报表，按考核周期统计，包含原始清单
+metadata: {"clawdbot":{"emoji":"📊","requires":{"bins":["python3"],"packages":["pandas","openpyxl"]}}}
 ---
 
-# 传输单边故障日报报表生成器
+# 日报报表生成器
 
-> 生成传输单边故障日报报表，按考核周期统计，包含原始清单
+生成传输单边故障日报报表，按考核周期统计，每个考核周期一个 sheet，最后保留原始清单。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/transmission-daily-report-generator`
-- **Source URL:** [https://clawhub.ai/skills/transmission-daily-report-generator](https://clawhub.ai/skills/transmission-daily-report-generator)
+## 功能特点
 
-## Overview
+- **按考核周期统计**：每个考核周期（如 2026年2月 = 1月27日-2月26日）一个独立 sheet
+- **全年累计报表**：第一个 sheet 为全年累计报表，格式与考核周期一致
+- **完整统计指标**：汇聚骨干单边、重要接入环单边、一般接入环单边的工单数量、平均时长、超时数量、及时率
+- **风险评分过滤**："一般接入环单边（有业务）"自动剔除风险评分为0的记录
+- **原始清单保留**：最后一个 sheet 包含所有原始数据，方便查证
+- **自动格式化**：表格样式、冻结窗格、自动调整列宽
 
+## 考核周期规则
 
-## Installation
-To install this skill, run the following command in your terminal:
+考核周期：上个月27日 - 本月26日
+
+- 2026年1月：2025-12-27 ~ 2026-01-26
+- 2026年2月：2026-01-27 ~ 2026-02-26
+- 2026年3月：2026-02-27 ~ 2026-03-26
+- 以此类推...
+
+## 使用方法
+
+### 基本使用
+
 ```bash
-hermes skills install clawhub/transmission-daily-report-generator
+cd /Users/ahs/.openclaw/workspace/传输单边故障
+python3 scripts/generate_assessment_period_report.py
 ```
+
+### 指定输入文件
+
+```bash
+python3 scripts/generate_assessment_period_report.py \
+  --input /path/to/结果D_最终数据.xlsx \
+  --output /path/to/output/
+```
+
+### 指定考核周期范围
+
+```bash
+python3 scripts/generate_assessment_period_report.py \
+  --start-year 2026 \
+  --start-month 1 \
+  --end-year 2026 \
+  --end-month 3
+```
+
+## 输出文件
+
+生成的 Excel 文件包含以下 sheet：
+
+1. **全年累计** - 所有数据的累计统计
+2. **2026年1月（12月27日-1月26日）** - 该考核周期的统计数据
+3. **2026年2月（1月27日-2月26日）** - 该考核周期的统计数据
+4. **原始清单** - 所有原始数据（34列）
+
+## 统计指标
+
+每个考核周期 sheet 包含以下指标：
+
+### 汇聚骨干单边
+- 工单数量
+- 平均时长（小时）
+- 超时数量
+- 及时率（%）
+
+### 重要接入环单边
+- 工单数量
+- 平均时长（小时）
+- 超时数量
+- 及时率（%）
+
+### 汇聚骨干和重要接入单边
+- 工单数量
+- 平均时长（小时）
+- 超时数量
+- 及时率（%）
+
+### 一般接入环单边（有业务）
+- 工单数量
+- 平均时长（小时）
+- 超时数量
+- 及时率（%）
+
+## 超时标准
+
+- 汇聚骨干单边：4 小时
+- 重要接入环单边：12 小时
+- 一般接入环单边：24 小时
+
+## 输入数据要求
+
+输入文件应为 Excel 格式（.xlsx），包含以下字段：
+
+- 告警发生时间（datetime）
+- 告警清除时间（datetime）
+- 持续时长（小时）（numeric）
+- 故障类型（string）
+- 重要环（string）
+- 所属片区（string）
+- 网元名称（string）
+- 告警标题（string）
+- 所属传输系统（string）
+- 督办类型（string）
+- 管控记录（string）
+- 风险评分（numeric）
+- 其他字段...
+
+## 依赖项
+
+- Python 3.6+
+- pandas
+- openpyxl
+
+安装依赖：
+```bash
+pip3 install pandas openpyxl
+```
+
+## 文件结构
+
+```
+daily-report-generator/
+├── SKILL.md                          # 本文件
+├── scripts/
+│   └── generate_assessment_period_report.py  # 主脚本
+└── references/
+    └── example_output.xlsx          # 示例输出文件（可选）
+```
+
+## 触发条件
+
+当用户提到以下内容时，应使用此技能：
+
+- "生成日报报表"
+- "按考核周期统计"
+- "传输单边故障报表"
+- "日报统计"
+- "考核周期报表"
+
+## 注意事项
+
+1. **数据时间范围**：脚本会自动根据数据的时间范围确定需要统计的考核周期
+2. **空考核周期**：如果某个考核周期没有数据，会跳过该周期
+3. **Sheet 名称限制**：Excel sheet 名称限制在 31 个字符以内，脚本会自动截取
+4. **原始清单**：原始清单包含所有 34 列数据，确保完整性
+5. **风险评分过滤**："一般接入环单边（有业务）"会自动剔除风险评分为0的记录，确保统计的是有业务影响的故障
+
+## 示例输出
+
+```
+正在生成按考核周期统计的日报报表...
+数据时间范围: 2026-01-01 09:36:28 ~ 2026-02-26 23:26:22
+
+生成全年累计报表...
+  ✅ 全年累计报表已生成（885 条数据）
+
+共 3 个考核周期:
+  - 2025年12月（11月27日-12月26日）
+  - 2026年1月（12月27日-1月26日）
+  - 2026年2月（1月27日-2月26日）
+
+处理考核周期: 2025年12月（11月27日-12月26日）
+  ⚠️  该考核周期无数据
+
+处理考核周期: 2026年1月（12月27日-1月26日）
+  数据量: 493 条
+  ✅ 已生成报表
+
+处理考核周期: 2026年2月（1月27日-2月26日）
+  数据量: 392 条
+  ✅ 已生成报表
+
+添加原始清单...
+  ✅ 原始清单已添加（885 条记录）
+
+✅ 报表已保存: /path/to/日报报表_按考核周期_20260429_085611.xlsx
+  共 4 个 sheet:
+    - 全年累计
+    - 2026年1月（12月27日-1月26日）
+    - 2026年2月（1月27日-2月26日）
+    - 原始清单
+```
+
+## 故障排查
+
+### 问题：找不到输入文件
+
+**解决方案**：确保输入文件路径正确，文件存在且可读。
+
+### 问题：数据时间范围异常
+
+**解决方案**：检查输入数据中的"告警发生时间"字段是否为有效的 datetime 格式。
+
+### 问题：考核周期计算错误
+
+**解决方案**：考核周期规则为"上个月27日 - 本月26日"，确保理解正确。
+
+### 问题：Excel 文件打不开
+
+**解决方案**：确保文件没有被其他程序占用，尝试重新生成。
+
+## 扩展功能
+
+如需扩展功能，可以考虑：
+
+1. **自定义考核周期**：支持用户自定义考核周期的起止日期
+2. **多数据源合并**：支持从多个 Excel 文件读取数据并合并
+3. **图表生成**：在报表中添加可视化图表
+4. **邮件发送**：自动将报表发送到指定邮箱
+5. **定时任务**：设置定时任务自动生成报表
+
+## 相关技能
+
+- `data-analysis` - 数据分析相关技能
+- `excel-automation` - Excel 自动化相关技能
+- `report-generator` - 报表生成相关技能

@@ -1,0 +1,10 @@
+name: affiliate-video-campaign-operator
+version: 0.1.8
+description: Review affiliate video campaign plans, disclosures, claims, creative notes, and platform captions before a human decides what to create or publish.
+entrypoint: SKILL.md
+tags:
+  - affiliate
+  - video
+  - compliance
+  - disclosure
+  - review

@@ -1,0 +1,42 @@
+{
+  "name": "claw-roundtable-skill",
+  "version": "3.0.13",
+  "description": "通用多 Agent 圆桌讨论引擎：异构模型路由、MMR 意图解析、收敛控制和 170+ 专家库",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "triggers": [
+    "RoundTable",
+    "roundtable",
+    "圆桌会议"
+  ],
+  "keywords": [
+    "roundtable",
+    "multi-agent",
+    "discussion",
+    "deep-analysis",
+    "decision-making",
+    "heterogeneous-routing",
+    "MMR"
+  ],
+  "main": "__init__.py",
+  "files": [
+    "__init__.py",
+    "roundtable_engine.py",
+    "model_selector.py",
+    "prompts/",
+    "SKILL.md",
+    "README.md",
+    "clawhub.json"
+  ],
+  "scripts": {
+    "test": "python3 -c \"import roundtable_engine; import model_selector; print('✅ modules loaded')\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krislu1221/Claw-roundtable-skill"
+  },
+  "homepage": "https://clawhub.com/skills/roundtable-skill",
+  "bugs": {
+    "url": "https://github.com/Krislu1221/Claw-roundtable-skill/issues"
+  }
+}

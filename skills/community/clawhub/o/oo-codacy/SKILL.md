@@ -1,35 +1,85 @@
 ---
-name: "Codacy"
-description: "Codacy (codacy.com). Use this skill for ANY Codacy request — searching and reading data. Whenever a task involves Codacy, use this skill instead of calling t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oo-codacy"
-sourceUrl: "https://clawhub.ai/skills/oo-codacy"
+name: oo-codacy
+description: "Codacy (codacy.com). Use this skill for ANY Codacy request — searching and reading data. Whenever a task involves Codacy, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Codacy"
+  author: "OOMOL"
+  version: "1.0.1"
+  services: ["codacy"]
+  icon: "https://static.oomol.com/logo/third-party/codacy.png"
 ---
 
 # Codacy
 
-> Codacy (codacy.com). Use this skill for ANY Codacy request — searching and reading data. Whenever a task involves Codacy, use this skill instead of calling t...
+Operate **Codacy** through your OOMOL-connected account. This skill calls the `codacy` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oo-codacy`
-- **Source URL:** [https://clawhub.ai/skills/oo-codacy](https://clawhub.ai/skills/oo-codacy)
+## Running an action
 
-## Overview
+Assume the user has already installed the oo CLI, signed in, and connected Codacy. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
 
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/oo-codacy
+oo connector schema "codacy" --action "<action_name>"
 ```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "codacy" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `get_current_user` — Retrieve the Codacy user associated with the connected API token.
+- `get_repository_analysis` — Retrieve one Codacy repository analysis summary.
+- `get_tool_pattern` — Retrieve one code pattern for a Codacy analysis tool.
+- `list_languages` — List programming languages supported by Codacy analysis tools.
+- `list_repository_analyses` — List repository analysis summaries for a Codacy organization on a Git provider.
+- `list_tool_patterns` — List code patterns available for a Codacy analysis tool.
+- `list_tools` — List Codacy code analysis tools.
+- `list_user_organizations` — List Codacy organizations accessible to the connected API token, optionally scoped to one Git provider.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Codacy state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Codacy is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/app-connections?provider=codacy
+  ```
+
+- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+## Resources
+
+- Codacy homepage: https://www.codacy.com

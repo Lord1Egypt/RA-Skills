@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "event_kind": "failure_recovery",
+  "now": "2026-04-20T12:00:00+00:00",
+  "last_thread_activity": "2026-04-20T09:00:00+00:00",
+  "last_user_action": "2026-04-20T10:30:00+00:00",
+  "last_agent_action": "2026-04-20T11:20:00+00:00",
+  "thread_runs_today": 0,
+  "user_runs_today": 0,
+  "related_failures": 2,
+  "host": "Hermes",
+  "symptom": "skill loader repeats an outdated documentation assumption",
+  "constraint": "keep returned advice isolated from permanent memory",
+  "desired_outcome": "medium-budget check for current official skill behavior"
+}

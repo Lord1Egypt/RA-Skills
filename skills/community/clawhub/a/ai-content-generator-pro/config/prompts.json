@@ -1,0 +1,25 @@
+{
+  "blog": {
+    "professional": "Write a professional blog post about {topic} with the following requirements:\n- Target audience: {audience}\n- Key points to cover: {points}\n- Include data and statistics where relevant\n- Add actionable insights\n- Structure with clear headings\n- Optimize for SEO with keywords: {keywords}\n- End with a strong call to action",
+    "casual": "Write a casual, engaging blog post about {topic} that feels like a conversation with the reader. Requirements:\n- Use friendly, approachable language\n- Include personal anecdotes or examples\n- Ask questions to engage readers\n- Use subheadings for readability\n- Keep paragraphs short\n- Add humor where appropriate\n- End with an invitation to comment or share",
+    "educational": "Create an educational blog post about {topic} that teaches readers something valuable. Requirements:\n- Start with a clear learning objective\n- Break down complex concepts into simple terms\n- Use examples and analogies\n- Include step-by-step instructions if applicable\n- Add visual description suggestions\n- Provide additional resources\n- End with a knowledge check or quiz questions"
+  },
+  "social": {
+    "twitter": "Create {count} engaging tweets about {topic} for Twitter. Requirements:\n- Max 280 characters each\n- Include relevant hashtags: {hashtags}\n- Add emojis for visual appeal\n- Vary between questions, statements, and calls to action\n- Thread tweets if needed for longer content\n- Mention relevant accounts if appropriate",
+    "linkedin": "Write a professional LinkedIn post about {topic}. Requirements:\n- Start with an engaging hook\n- Share insights or lessons learned\n- Use professional but approachable tone\n- Include relevant hashtags\n- Add a call to action for engagement\n- Keep paragraphs concise\n- End with a question to spark discussion",
+    "instagram": "Create an Instagram caption about {topic}. Requirements:\n- Engaging opening line\n- Tell a story or share value\n- Use relevant emojis throughout\n- Include 5-10 relevant hashtags\n- Add a clear call to action\n- Suggest image ideas in brackets\n- Keep it authentic and relatable"
+  },
+  "email": {
+    "newsletter": "Write a newsletter email about {topic}. Requirements:\n- Engaging subject line (max 50 chars)\n- Friendly greeting\n- Value-packed content\n- Clear sections with headings\n- Personal touch\n- Call to action\n- Professional signature\n- Unsubscribe reminder",
+    "promotional": "Create a promotional email for {product/service} about {topic}. Requirements:\n- Attention-grabbing subject line\n- Sense of urgency or exclusivity\n- Clear benefits and features\n- Social proof or testimonials\n- Strong call to action\n- Limited-time offer\n- Professional design suggestions"
+  },
+  "product": {
+    "standard": "Write a product description for {product} with these features: {features}. Requirements:\n- Compelling title\n- Benefit-focused description\n- Key features list\n- Technical specifications\n- Use cases\n- Target audience\n- SEO optimization\n- Call to purchase"
+  },
+  "ad": {
+    "search": "Create search ad copy for {product/service} targeting {keywords}. Requirements:\n- Multiple headline variations\n- Description lines\n- Display path\n- Call to action\n- Keyword insertion\n- Ad extensions suggestions\n- Landing page recommendations"
+  },
+  "script": {
+    "youtube": "Write a YouTube video script about {topic}. Requirements:\n- Hook in first 15 seconds\n- Clear introduction\n- Main content with timestamps\n- Visual cues and B-roll suggestions\n- Call to action\n- End screen elements\n- SEO optimized title and description"
+  }
+}

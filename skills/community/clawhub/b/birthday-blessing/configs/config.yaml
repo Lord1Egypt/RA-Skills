@@ -1,0 +1,9 @@
+# 配置文件
+crypto:
+  sm4_key: "WoDb5xjzDmsYPV875mvYqg=="
+
+payment:
+  pay_to: "8f18fb4ccac281a40fb0cf96ec7c2aa8202604081312250020002552zmV8kH3UJyhYdJjFXghUiYLL4FuyrNtvEwiagAzFyufPIN3ePZVMwfMkzyhJD2FuoPrQ118i"
+
+service:
+  amount: 1

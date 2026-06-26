@@ -1,35 +1,130 @@
 ---
-name: "anti-render"
-description: "Indexed by skills.sh from lionad-morotar/anti-render-skill"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "lionad-morotar"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/lionad-morotar/anti-render-skill/anti-render"
-sourceUrl: "https://skills.sh/lionad-morotar/anti-render-skill/anti-render"
+name: anti-render
+description: 智能识别图像内容并生成"理想承诺 vs 残酷现实"风格的视觉对比。触发词："anti-render"、"理想vs现实"、"对比图"、"渲染vs真实"。适用于任何领域：建筑、人像、产品、食物、旅游、游戏、健身、家居、科技等。
+disable-model-invocation: true
 ---
 
-# anti-render
+# Anti-Render 理想vs现实视觉对比生成器
 
-> Indexed by skills.sh from lionad-morotar/anti-render-skill
+## 核心理念
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** lionad-morotar
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/lionad-morotar/anti-render-skill/anti-render`
-- **Source URL:** [https://skills.sh/lionad-morotar/anti-render-skill/anti-render](https://skills.sh/lionad-morotar/anti-render-skill/anti-render)
+通过并置(juxtaposition)手法，揭示任何领域中"承诺与交付之间巨大落差"的普遍困境。左侧呈现理想化的完美渲染，右侧揭示真实的日常面貌。
 
-## Overview
+## 执行流程
 
+1. **接收图像** → 分析内容，识别所属领域为 `$domain`，计算图片宽高比为 `$ratio`
+2. **状态判断** → 确定当前状态（破败/普通/理想）
+3. **意图识别** → 根据用户指令确定输出模式
+4. **参数映射** → 将通用五维度映射到领域专属表达
+5. **构建提示词** → 构建基于领域专属表达的提示词
+6. **生成图像** → 生成目标图像
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/lionad-morotar/anti-render-skill/anti-render
+works well with skills: `image-to-prompt`, `prompt-to-image`
+
+## 工作模式
+
+### 1. 图像状态识别
+
+用户上传图片后，分析其当前状态：
+
+| 状态 | 特征 | 输出目标 |
+|------|------|----------|
+| **破败** | 质量问题、使用痕迹、维护不良 | 生成理想化渲染图（即 step 2.1） |
+| **理想** | 用户上传了营销图片、广告图片等精修后照片 | 生成轻微破败渲染图片（即 step 2.2） |
+| **普通/正常** | 无明显破损、日常使用状态 | 生成理想化渲染和轻微破败的对比图（即 step 2.3） |
+
+如状态模糊，无法判断意图，主动询问用户期望方向
+
+### 2. 三种输出模式
+
+2.1 **理想化渲染 (Ideal)**
+- 目标：输出对应领域的宣传级别完美呈现
+- 特征：高饱和度、完美光影、无瑕疵、精心构图
+
+2.2 **真实面貌 (Reality)**
+- 目标：输出对应领域日常的真实状态（非破败）
+- 特征：自然光线（“死亡打光”）、真实质感、日常氛围、未经修饰
+
+2.3 **对比图 (Comparison)**
+- 目标：输出理想化渲染和真实面貌并置的对比图
+- 排列：根据原图宽高比自动选择左右或上下排列
+
+## 领域识别与适配
+
+### 领域检测
+
+基于图像内容关键词匹配：
+
 ```
+建筑领域: 建筑外观、城市景观、室内空间、建筑效果图、楼盘、住宅、商业空间
+人像领域: 人像写真、Cosplay、自拍、证件照、活动拍摄、肖像
+产品领域: 电商产品、商品展示、包装设计、电子产品、服饰
+食物领域: 美食摄影、菜品展示、烘焙、饮品、餐厅菜单
+旅游领域: 风景照、景点打卡、酒店房间、度假胜地
+游戏领域: 游戏截图、游戏宣传、UI界面、角色设计
+健身领域: 健身照、运动场景、瑜伽、健身房
+家居领域: 室内装修、家具展示、样板间、智能家居
+科技领域: 产品发布会、概念设计、VR/AR、智能汽车
+```
+
+### 核心对比维度（通用框架）
+
+所有领域共享以下五个核心对比维度：
+
+#### 1. 光影 (Lighting)
+| 理想侧 | 现实侧 |
+|--------|--------|
+| 精心计算的完美光照 | 自然/现场实际光线 |
+| 黄金时刻或柔和补光 | 硬光、顶光或平淡漫射光 |
+| 明暗层次丰富、无死黑/过曝 | 曝光妥协、阴影浓重 |
+| 方向性明确、立体感强 | 低对比度、缺乏层次 |
+
+#### 2. 材质 (Material)
+| 理想侧 | 现实侧 |
+|--------|--------|
+| 完美无瑕的表面 | 真实使用痕迹 |
+| 色彩饱和、质感强化 | 褪色、污渍、磨损 |
+| 无灰尘、无水痕、无瑕疵 | 自然老化、环境痕迹 |
+| CG般的精确反射/折射 | 混浊、不完美的反射 |
+
+#### 3. 色彩 (Color)
+| 理想侧 | 现实侧 |
+|--------|--------|
+| 高饱和度、鲜艳夺目 | 低饱和度、略显平淡 |
+| 色温精准、统一协调 | 色温偏移、白平衡未校正 |
+| 后期精修的色彩增强 | 相机原生色彩还原 |
+| 广告级别的视觉吸引力 | 日常感、朴素感 |
+
+#### 4. 氛围 (Atmosphere)
+| 理想侧 | 现实侧 |
+|--------|--------|
+| 充满活力、生机勃勃 | 冷清、平凡或略显尴尬 |
+| 精心布置的场景元素 | 杂乱的现场环境 |
+| 梦幻、理想化的背景 | 真实、暴露现场的环境 |
+| 情绪饱满、引人入胜 | 纪实感、冷峻客观 |
+
+#### 5. 构图/细节 (Composition)
+| 理想侧 | 现实侧 |
+|--------|--------|
+| 完美的透视与比例 | 自然的镜头畸变 |
+| 瑕疵移除、穿帮修复 | 保留所有现场细节 |
+| 精心安排的元素布局 | 随机、不规则的真实分布 |
+| 后期添加的特效/光效 | 无后期加持的原始状态 |
+
+## 对比图技术规范
+
+### 排列规则
+如生成对比图，需根据原图宽高比 `$ratio` 判断新的排列规则：
+- **原图横向**（宽 > 高）：对比图上下排列，水平分割线
+- **原图纵向**（高 > 宽）：对比图左右排列，垂直分割线
+
+### 分割线规范
+- 位置：画面正中
+- 宽度：2-5像素
+- 颜色：纯白或极浅灰
+- 边缘：锐利清晰，无羽化
+
+### 内容规则
+- 对比图左或上（根据排列规则）：理想化渲染
+- 对比图右或下（根据排列规则）：普通现实主义（默认）或破败状态（用户明确要求强烈对比效果）
+- **默认不要添加标题文字**，保持画面纯净，让视觉对比本身说话

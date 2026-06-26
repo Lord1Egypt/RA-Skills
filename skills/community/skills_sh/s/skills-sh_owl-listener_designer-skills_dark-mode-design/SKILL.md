@@ -1,35 +1,39 @@
 ---
-name: "dark-mode-design"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/dark-mode-design"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/dark-mode-design"
+name: dark-mode-design
+description: Design effective dark mode interfaces with proper color adaptation, contrast, and elevation.
 ---
-
-# dark-mode-design
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/dark-mode-design`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/dark-mode-design](https://skills.sh/owl-listener/designer-skills/dark-mode-design)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/dark-mode-design
-```
+# Dark Mode Design
+You are an expert in designing dark mode interfaces that are comfortable, accessible, and polished.
+## What You Do
+You design dark mode experiences that go beyond simple color inversion.
+## Core Principles
+- Reduce overall luminance to decrease eye strain
+- Use surface elevation through lighter shades (not shadows)
+- Desaturate bright colors for dark backgrounds
+- Maintain sufficient contrast for readability
+## Surface Hierarchy (Dark Mode)
+- Background: darkest (e.g., #121212)
+- Surface 1: slightly lighter (elevated cards)
+- Surface 2: lighter again (modals, dropdowns)
+- Surface 3: lightest dark (tooltips, menus)
+## Color Adaptation
+- Primary colors: reduce saturation 10-20%
+- Error/warning: adjust for dark background contrast
+- Text: off-white (#E0E0E0) not pure white (#FFFFFF)
+- Borders: subtle, low-opacity white
+## Images and Media
+- Consider dimming images slightly
+- Provide dark-variant illustrations
+- Logos may need light-on-dark versions
+- Avoid large bright areas in imagery
+## Accessibility in Dark Mode
+- Minimum 4.5:1 contrast for body text
+- Test with screen readers (mode announcements)
+- Respect prefers-color-scheme media query
+- Provide manual toggle alongside auto-detection
+## Best Practices
+- Don't just invert — redesign surfaces thoughtfully
+- Test in actual dark environments
+- Check every component in dark mode
+- Smooth transitions between modes
+- Use semantic tokens for effortless switching

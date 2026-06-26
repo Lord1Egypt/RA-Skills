@@ -1,0 +1,98 @@
+{
+  "id": "auto-improver-pro",
+  "name": "自动改进专家",
+  "version": "v1.0.0",
+  "status": "published",
+  "category": "evolution",
+  "funnel_layer": "layer1_core",
+  "description": "技能自动改进引擎 - 分析技能使用数据，识别改进点，生成优化方案",
+  "target_users": [
+    {
+      "user_type": "技能开发者",
+      "pain_point": "技能迭代依赖人工分析，效率低",
+      "value_proposition": "自动化技能分析和优化建议生成"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "技能名称",
+      "type": "string",
+      "description": "需要改进的技能名称",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "优化方案",
+      "type": "markdown",
+      "description": "技能优化方案报告",
+      "format": "结构化 Markdown 文档"
+    }
+  ],
+  "triggers": [
+    "技能版本升级前",
+    "技能表现评估",
+    "识别技能短板"
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "action": "使用数据收集",
+      "output": "技能使用统计"
+    },
+    {
+      "step": 2,
+      "action": "六维评估分析",
+      "output": "维度得分分析"
+    },
+    {
+      "step": 3,
+      "action": "短板识别",
+      "output": "改进优先级列表"
+    },
+    {
+      "step": 4,
+      "action": "优化方案生成",
+      "output": "详细优化方案"
+    }
+  ],
+  "scoring": {
+    "T": 0.65,
+    "C": 0.65,
+    "O": 0.65,
+    "E": 0.70,
+    "M": 0.45,
+    "U": 0.65,
+    "average": 0.62
+  },
+  "evidence": [
+    {
+      "dimension": "E",
+      "evidence": "核心功能已是进化，支持自动化分析",
+      "source": "SKILL.md"
+    },
+    {
+      "dimension": "M",
+      "evidence": "已在 ClawHub 上架",
+      "source": "ClawHub 上架链接"
+    }
+  ],
+  "examples": [
+    {
+      "name": "技能表现评估",
+      "input": "评估 first-principle-analyzer 的表现",
+      "output": "六维评估报告 + 优化建议",
+      "description": "技能评估案例"
+    }
+  ],
+  "dependencies": [
+    "skill-evolver"
+  ],
+  "pricing_hint": {
+    "model": "freemium",
+    "price_hint": "免费基础版 + $99.9 专业版"
+  },
+  "published_at": "2026-04-02T06:20:00Z",
+  "updated_at": "2026-04-02T06:20:00Z",
+  "changelog": "CHANGELOG.md"
+}

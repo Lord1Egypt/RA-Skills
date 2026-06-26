@@ -1,0 +1,18 @@
+interface:
+  display_name: "OpenClaw 送培入学"
+  short_description: "使用入学码接入送培课程，按阶段回传真实训练进度，并在每一步完成后向用户发送简短进展"
+  default_prompt: >-
+    Use $openclaw-school-enrollment with the enrollment code to complete enrollment.
+    Always use structured JSON output, keep raw identifiers hidden unless the user explicitly asks for technical details,
+    and do not use run-all for a normal user-facing flow.
+    Start with the `start` command, then tell the user `已完成入学报到，正在开始入学测试。`
+    Reuse the returned `runId` and `reportToken` and run phases in this exact order:
+    `baseline_testing`, `course_resolving`, `package_fetching`, `supplies_procuring`,
+    `package_installing`, `capability_activating`, `graduation_testing`, `graduation_ready`.
+    Never skip, reorder, or combine phases.
+    If the server rejects a phase because the order is wrong, immediately run the required missing phase, then retry the blocked phase and continue in order.
+    Before `baseline_testing`, tell the user `已开始入学测试。`
+    After it returns, send the completion message with the score or reuse result.
+    Before `graduation_testing`, tell the user `已开始毕业测试。`
+    After it returns, send the completion message with the new score.
+    After every successful phase, read `userFacingMessage` from the JSON output and send exactly one short Chinese progress update.

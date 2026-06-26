@@ -1,0 +1,45 @@
+{
+  "_comment": "PUT .../asset-group/{assetGroupId}/assets；campaignId 必填。YOUTUBE_VIDEO 默认追加（≤15/资产组）；替换全部视频时设 replaceFieldTypes: [\"YOUTUBE_VIDEO\"]",
+  "account": "6326027735",
+  "campaignId": "12345678901",
+  "assetGroupId": "98765432101",
+  "assetsToLink": [
+    {
+      "fieldType": "HEADLINE",
+      "text": "Extra headline from CLI"
+    }
+  ],
+  "assetGroupAssetResourceNamesToRemove": [],
+  "replaceFieldTypes": [],
+  "_examples": {
+    "appendYoutubeVideos": {
+      "assetsToLink": [
+        {
+          "fieldType": "YOUTUBE_VIDEO",
+          "youtubeVideoId": "dQw4w9WgXcQ",
+          "assetName": "Promo1"
+        },
+        {
+          "fieldType": "YOUTUBE_VIDEO",
+          "youtubeVideoId": "https://youtu.be/jNQXAC9IVRw",
+          "assetName": "Promo2"
+        }
+      ]
+    },
+    "replaceAllYoutubeVideos": {
+      "replaceFieldTypes": ["YOUTUBE_VIDEO"],
+      "assetsToLink": [
+        {
+          "fieldType": "YOUTUBE_VIDEO",
+          "youtubeVideoId": "9bZkp7q19f0",
+          "assetName": "NewPromo"
+        }
+      ]
+    },
+    "unlinkYoutube": {
+      "assetGroupAssetResourceNamesToRemove": [
+        "customers/6326027735/assetGroupAssets/98765432101~7~12345"
+      ]
+    }
+  }
+}

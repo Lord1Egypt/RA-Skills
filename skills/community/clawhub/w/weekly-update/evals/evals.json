@@ -1,0 +1,24 @@
+{
+  "evals": [
+    {
+      "prompt": "Generate my weekly update.",
+      "expected_behavior": "Should automatically call sessions_list to get this week's sessions, then sessions_history for each, extract project activity from the transcripts, and generate a full weekly update without requiring any manual input from the user"
+    },
+    {
+      "prompt": "Generate my weekly update. Here's what I did this week:\n- Nimbus: pushed the new landing page, fixed the mobile nav bug, started working on pricing page\n- Helios: had a call with the client, they want changes to the dashboard, haven't started yet\n- Personal: read half of The Mom Test, started a draft blog post about pricing",
+      "expected_behavior": "Structured weekly update with landing page and nav bug under 'What got done' for Nimbus, Helios dashboard and blog post under 'In Progress', concrete next actions for each project, and a genuine one-sentence closing thought. No inflated language."
+    },
+    {
+      "prompt": "Summarize my week:\nMonday: fixed the CSV export validation bug in Databridge, got stuck on the schema edge case\nTue-Wed: deep work on Patchwork ticket queue, shipped the Linear integration, started on the Slack notifier\nThursday: calls all day, nothing shipped\nFriday: wrote the project README, published the first version to the registry",
+      "expected_behavior": "CSV export bug fix, Linear integration, README, and registry publish in 'What got done'; schema edge case and Slack notifier in 'In Progress'; Thursday calls correctly omitted or minimized; closing thought reflects the week's real theme"
+    },
+    {
+      "prompt": "Weekly update time. Projects: Arcline (API refactor mostly done, need to write tests), Vektora (changelog parser shipped, started on release notes generator), nothing else significant.",
+      "expected_behavior": "Changelog parser in 'What got done', API refactor and release notes generator in 'In Progress' (since tests aren't done), specific next actions, concise builder tone throughout"
+    },
+    {
+      "prompt": "generate my weekly update — honestly kind of a slow week. Fixed a few small bugs in the API, had some good thinking time about the architecture but didn't write anything down, reviewed two PRs.",
+      "expected_behavior": "Honest, short output that doesn't inflate a slow week. Bug fixes in 'What got done', architecture thinking correctly omitted or flagged as not captured, PR reviews noted only if significant. Closing thought acknowledges the slower pace authentically."
+    }
+  ]
+}

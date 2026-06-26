@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YMind — Memory Index</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22><defs><linearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22><stop offset=%220%25%22 stop-color=%22%2300F0FF%22/><stop offset=%22100%25%22 stop-color=%22%23BD00FF%22/></linearGradient></defs><path fill=%22url(%23g)%22 d=%22M198.1,62.59a76,76,0,0,0-140.2,0A71.71,71.71,0,0,0,16,127.8C15.9,166,48,199,86.14,200A72.09,72.09,0,0,0,120,192.47V232a8,8,0,0,0,16,0V192.47A72.17,72.17,0,0,0,168,200l1.82,0C208,199,240.11,166,240,127.8A71.71,71.71,0,0,0,198.1,62.59Z%22/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <script>
+    const INDEX_DATA = {{SESSIONS_JSON}};
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --aura-base: #030508;
+            --aura-surface: #0B0F19;
+            --aura-highlight: #1A2133;
+            --aura-cyan: #00F0FF;
+            --aura-purple: #BD00FF;
+            --aura-gold: #FFE600;
+            --aura-red: #FF4D4D;
+            --aura-orange: #FF9500;
+            --aura-green: #00E87A;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 50% 30%, #13161c 0%, #080a10 60%, #030508 100%);
+            color: #9ca3af;
+            min-height: 100vh;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+
+        /* ── Aurora Background ── */
+        .ambient-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .ambient-blob {
+            position: absolute; border-radius: 50%;
+            filter: blur(80px); mix-blend-mode: screen;
+            will-change: transform, opacity;
+        }
+        .ambient-blob.violet {
+            top: -10%; left: -5%; width: 55%; height: 55%; opacity: 0.18;
+            background: radial-gradient(circle, rgba(112,0,255,0.55) 0%, rgba(112,0,255,0.08) 60%, transparent 80%);
+            animation: aurora-drift-1 14s ease-in-out infinite;
+        }
+        .ambient-blob.cyan {
+            bottom: -10%; right: -5%; width: 50%; height: 50%; opacity: 0.15;
+            background: radial-gradient(circle, rgba(0,240,255,0.45) 0%, rgba(0,240,255,0.06) 60%, transparent 80%);
+            animation: aurora-drift-2 18s ease-in-out infinite;
+        }
+        .ambient-blob.pink {
+            top: 30%; right: 5%; width: 45%; height: 45%; opacity: 0.12;
+            background: radial-gradient(circle, rgba(255,0,128,0.35) 0%, rgba(255,0,128,0.05) 60%, transparent 80%);
+            animation: aurora-drift-3 16s ease-in-out infinite;
+        }
+        .ambient-blob.deep-cyan {
+            bottom: 20%; left: 10%; width: 40%; height: 40%; opacity: 0.1;
+            background: radial-gradient(circle, rgba(0,200,255,0.35) 0%, rgba(0,200,255,0.05) 60%, transparent 80%);
+            animation: aurora-drift-4 12s ease-in-out infinite;
+        }
+        @keyframes aurora-drift-1 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            25% { transform: translate(5%,8%) scale(1.1); }
+            50% { transform: translate(-3%,15%) scale(0.95); }
+            75% { transform: translate(8%,5%) scale(1.05); }
+        }
+        @keyframes aurora-drift-2 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            30% { transform: translate(-8%,-5%) scale(1.15); }
+            60% { transform: translate(5%,-10%) scale(0.9); }
+            80% { transform: translate(-3%,-3%) scale(1.05); }
+        }
+        @keyframes aurora-drift-3 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            20% { transform: translate(-10%,5%) scale(1.1); }
+            50% { transform: translate(5%,-8%) scale(0.95); }
+            70% { transform: translate(-5%,10%) scale(1.08); }
+        }
+        @keyframes aurora-drift-4 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            35% { transform: translate(8%,-5%) scale(1.1); }
+            65% { transform: translate(-5%,8%) scale(0.95); }
+        }
+
+        /* ── Layout ── */
+        .page-wrap {
+            position: relative; z-index: 10;
+            max-width: 860px; margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        /* ── Header ── */
+        .header {
+            display: flex; flex-direction: column; align-items: flex-start;
+            margin-bottom: 48px; gap: 16px;
+        }
+        .logo-row {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--aura-cyan), var(--aura-purple));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: #fff; font-weight: 800;
+            box-shadow: 0 0 20px rgba(0,240,255,0.3);
+            flex-shrink: 0;
+        }
+        .logo-wordmark {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px; font-weight: 600;
+            background: linear-gradient(90deg, var(--aura-cyan), var(--aura-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px; font-weight: 400;
+            color: #fff; line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .header-title em {
+            font-style: italic;
+            background: linear-gradient(90deg, var(--aura-cyan) 0%, var(--aura-purple) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-subtitle {
+            font-size: 13px; color: #6b7280; font-weight: 300; letter-spacing: 0.02em;
+        }
+
+        /* ── Stats strip ── */
+        .stats-strip {
+            display: flex; gap: 2px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px; padding: 2px;
+            margin-bottom: 40px; width: fit-content;
+        }
+        .stat-pill {
+            padding: 8px 18px; border-radius: 10px;
+            font-size: 12px; font-weight: 400; color: #6b7280;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .stat-pill .val { font-weight: 600; color: #e5e7eb; font-size: 14px; }
+        .stat-pill.active {
+            background: rgba(0,240,255,0.07);
+            border: 1px solid rgba(0,240,255,0.12);
+            color: #9ca3af;
+        }
+        .stat-pill.active .val { color: var(--aura-cyan); }
+
+        /* ── Provider filter tabs ── */
+        .filter-row {
+            display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
+        }
+        .filter-tab {
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.03em;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03);
+            color: #6b7280; cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            user-select: none;
+        }
+        .filter-tab:hover { color: #e5e7eb; border-color: rgba(255,255,255,0.2); }
+        .filter-tab.active {
+            color: #fff;
+            border-color: var(--provider-color, var(--aura-cyan));
+            background: rgba(var(--provider-rgb, 0,240,255), 0.1);
+            box-shadow: 0 0 12px rgba(var(--provider-rgb, 0,240,255), 0.15);
+        }
+
+        /* ── Timeline ── */
+        .timeline { position: relative; }
+
+        /* vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute; left: 14px; top: 6px; bottom: 6px;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(0,240,255,0.3) 8%,
+                rgba(189,0,255,0.2) 50%,
+                rgba(0,240,255,0.15) 92%,
+                transparent 100%
+            );
+        }
+
+        /* ── Date group ── */
+        .date-group { margin-bottom: 36px; }
+        .date-label {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 16px; padding-left: 0;
+        }
+        .date-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--aura-cyan);
+            box-shadow: 0 0 8px var(--aura-cyan);
+            flex-shrink: 0; margin-left: 11px;
+            position: relative; z-index: 1;
+        }
+        .date-text {
+            font-size: 11px; font-weight: 600;
+            color: var(--aura-cyan); letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .date-count {
+            font-size: 10px; color: #4b5563; font-weight: 400;
+        }
+
+        /* ── Cards grid ── */
+        .cards-grid {
+            display: grid; gap: 12px;
+            grid-template-columns: 1fr;
+            padding-left: 36px;
+        }
+
+        /* ── Session card ── */
+        .session-card {
+            display: flex; gap: 16px;
+            background: rgba(11,15,25,0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            position: relative; overflow: hidden;
+        }
+        .session-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg,
+                rgba(var(--card-rgb, 0,240,255), 0.04) 0%,
+                transparent 60%);
+            opacity: 0; transition: opacity 0.25s;
+            pointer-events: none;
+        }
+        .session-card:hover {
+            border-color: rgba(var(--card-rgb, 0,240,255), 0.3);
+            box-shadow: 0 0 24px rgba(var(--card-rgb, 0,240,255), 0.08),
+                        0 8px 32px rgba(0,0,0,0.4);
+            transform: translateY(-2px);
+        }
+        .session-card:hover::before { opacity: 1; }
+
+        /* Thumbnail */
+        .card-thumb {
+            width: 120px; min-width: 120px; height: 78px;
+            border-radius: 8px; overflow: hidden;
+            background: var(--aura-highlight);
+            position: relative; flex-shrink: 0;
+        }
+        .card-thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .session-card:hover .card-thumb img { transform: scale(1.04); }
+        .card-thumb-placeholder {
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 30% 40%,
+                rgba(var(--card-rgb, 0,240,255), 0.15) 0%,
+                rgba(var(--card-rgb2, 189,0,255), 0.08) 50%,
+                transparent 80%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .card-thumb-placeholder svg { opacity: 0.3; }
+
+        /* Card body */
+        .card-body {
+            flex: 1; min-width: 0;
+            display: flex; flex-direction: column; justify-content: space-between;
+            gap: 8px;
+        }
+        .card-top { display: flex; flex-direction: column; gap: 6px; }
+        .card-title {
+            font-size: 14px; font-weight: 500; color: #e5e7eb;
+            line-height: 1.4;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .card-title.untitled { color: #4b5563; font-style: italic; }
+
+        .card-meta {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+        }
+        .provider-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 2px 8px; border-radius: 20px;
+            font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+            border: 1px solid rgba(var(--card-rgb, 0,240,255), 0.3);
+            background: rgba(var(--card-rgb, 0,240,255), 0.08);
+            color: rgb(var(--card-rgb, 0,240,255));
+            text-transform: uppercase;
+        }
+        .provider-dot {
+            width: 4px; height: 4px; border-radius: 50%;
+            background: rgb(var(--card-rgb, 0,240,255));
+        }
+        .card-time {
+            font-size: 10px; color: #4b5563; font-weight: 400;
+        }
+
+        .card-footer {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .open-btn {
+            font-size: 10px; font-weight: 600;
+            color: rgba(var(--card-rgb, 0,240,255), 0.7);
+            letter-spacing: 0.05em;
+            display: flex; align-items: center; gap: 4px;
+            transition: color 0.2s;
+        }
+        .session-card:hover .open-btn {
+            color: rgb(var(--card-rgb, 0,240,255));
+        }
+        .open-arrow {
+            transition: transform 0.2s ease;
+        }
+        .session-card:hover .open-arrow { transform: translateX(3px); }
+
+        .source-link {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 10px; font-weight: 500; letter-spacing: 0.03em;
+            color: #4b5563;
+            padding: 3px 8px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            user-select: none;
+        }
+        .source-link:hover {
+            color: #9ca3af;
+            border-color: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* ── Empty state ── */
+        .empty-state {
+            text-align: center; padding: 60px 24px;
+            color: #374151; font-size: 13px;
+        }
+        .empty-state .emoji { font-size: 32px; margin-bottom: 12px; }
+
+        /* ── Hidden (filter) ── */
+        .session-card.hidden { display: none; }
+        .date-group.all-hidden { display: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 560px) {
+            .card-thumb { width: 80px; min-width: 80px; height: 56px; }
+            .header-title { font-size: 28px; }
+            .stats-strip { flex-direction: column; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ambient-bg">
+    <div class="ambient-blob violet"></div>
+    <div class="ambient-blob cyan"></div>
+    <div class="ambient-blob pink"></div>
+    <div class="ambient-blob deep-cyan"></div>
+</div>
+
+<div class="page-wrap">
+
+    <header class="header">
+        <div class="logo-row">
+            <div class="logo-icon">Y</div>
+            <span class="logo-wordmark">YMind</span>
+        </div>
+        <h1 class="header-title">Memory <em>Timeline</em></h1>
+        <p class="header-subtitle" id="subtitle">Extracting minds from conversations</p>
+    </header>
+
+    <div class="stats-strip" id="statsStrip"></div>
+
+    <div class="filter-row" id="filterRow"></div>
+
+    <div class="timeline" id="timeline"></div>
+
+</div>
+
+<script>
+// ── Language ──
+const isZh = navigator.language.startsWith('zh');
+document.documentElement.lang = isZh ? 'zh-CN' : 'en';
+const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const LOCALE = isZh ? 'zh-CN' : 'en-US';
+const i18n = {
+    subtitle:    isZh ? s => `最近更新：${s}` : s => `Last updated ${s}`,
+    records:     isZh ? n => `${n} 条记录`    : n => `${n} sessions`,
+    daySpan:     isZh ? n => `${n} 天跨度`    : n => `${n} days`,
+    topProvider: isZh ? l => `最多 ${l}`      : l => `Most: ${l}`,
+    filterAll:   isZh ? 'All'                 : 'All',
+    untitled:    isZh ? '— 未命名对话 —'      : '— Untitled —',
+    openGraph:   isZh ? '打开思维图'           : 'Open graph',
+    sourceLink:  isZh ? '原始对话'             : 'Source',
+    empty:       isZh ? '还没有分析记录'       : 'No sessions yet',
+    countSuffix: isZh ? n => `${n} 条`        : n => `${n}`,
+};
+
+// ── Provider config ──
+const PROVIDERS = {
+    chatgpt:  { label: 'ChatGPT',  rgb: '16,163,127',   hex: '#10a37f' },
+    gemini:   { label: 'Gemini',   rgb: '66,133,244',   hex: '#4285F4' },
+    chat:     { label: 'DeepSeek', rgb: '77,107,254',   hex: '#4D6BFE' },
+    deepseek: { label: 'DeepSeek', rgb: '77,107,254',   hex: '#4D6BFE' },
+    paste:    { label: 'Paste',    rgb: '156,163,175',  hex: '#9ca3af' },
+    claude:   { label: 'Claude',   rgb: '230,140,90',   hex: '#E68C5A' },
+};
+const DEFAULT_P = { label: 'Chat', rgb: '0,240,255', hex: '#00F0FF' };
+
+function getProvider(key) {
+    return PROVIDERS[key?.toLowerCase()] ?? DEFAULT_P;
+}
+
+// ── Date helpers ──
+function parseDate(str) {
+    // Handle both "2026-03-19T13:30:55Z" and "2026-03-20T20:36:15" (no Z)
+    return new Date(str.endsWith('Z') || str.includes('+') ? str : str + 'Z');
+}
+function formatDateGroup(d) {
+    return d.toLocaleDateString(LOCALE, {
+        year: 'numeric', month: 'long', day: 'numeric', timeZone: TZ
+    });
+}
+function formatTime(d) {
+    return d.toLocaleTimeString(LOCALE, {
+        hour: '2-digit', minute: '2-digit', timeZone: TZ
+    });
+}
+
+// ── Build stats strip ──
+function buildStats(runs) {
+    const total = runs.length;
+    const providerCounts = {};
+    runs.forEach(r => {
+        const p = r.provider ?? 'unknown';
+        providerCounts[p] = (providerCounts[p] ?? 0) + 1;
+    });
+    const topProvider = Object.entries(providerCounts).sort((a,b) => b[1]-a[1])[0];
+
+    // Date range
+    const dates = runs.map(r => parseDate(r.created_at)).sort((a,b) => a-b);
+    const first = dates[0], last = dates[dates.length-1];
+    const daysDiff = Math.round((last - first) / 86400000) + 1;
+
+    return `
+        <div class="stat-pill active">${i18n.records(`<span class="val">${total}</span>`)}</div>
+        <div class="stat-pill">${i18n.daySpan(`<span class="val">${daysDiff}</span>`)}</div>
+        <div class="stat-pill">${i18n.topProvider(`<span class="val">${getProvider(topProvider?.[0]).label}</span>`)}</div>
+    `;
+}
+
+// ── Build filter tabs ──
+function buildFilters(runs, onFilter) {
+    const providers = [...new Set(runs.map(r => r.provider ?? 'unknown'))];
+    const strip = document.getElementById('filterRow');
+
+    const allTab = document.createElement('button');
+    allTab.className = 'filter-tab active';
+    allTab.textContent = i18n.filterAll;
+    allTab.style.setProperty('--provider-color', 'var(--aura-cyan)');
+    allTab.style.setProperty('--provider-rgb', '0,240,255');
+    allTab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        allTab.classList.add('active');
+        onFilter(null);
+    });
+    strip.appendChild(allTab);
+
+    providers.forEach(p => {
+        const prov = getProvider(p);
+        const tab = document.createElement('button');
+        tab.className = 'filter-tab';
+        tab.textContent = prov.label;
+        tab.style.setProperty('--provider-color', prov.hex);
+        tab.style.setProperty('--provider-rgb', prov.rgb);
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            onFilter(p);
+        });
+        strip.appendChild(tab);
+    });
+}
+
+// ── Build card ──
+function buildCard(run) {
+    const prov = getProvider(run.provider);
+    const date = parseDate(run.created_at);
+    const thumbSrc = `./${run.run_dir}/graph.png`;
+    const graphHref = `./${run.run_dir}/graph.html`;
+    const title = run.title ?? '';
+    const hasTitle = title.trim().length > 0;
+
+    const card = document.createElement('div');
+    card.className = 'session-card';
+    card.dataset.provider = run.provider ?? '';
+    card.style.setProperty('--card-rgb', prov.rgb);
+    card.style.setProperty('--card-rgb2', '189,0,255');
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+        if (!e.target.closest('.source-link')) window.open(graphHref, '_blank');
+    });
+
+    card.innerHTML = `
+        <div class="card-thumb">
+            <img
+                src="${thumbSrc}"
+                alt="${hasTitle ? title : 'Graph'}"
+                loading="lazy"
+                onerror="this.style.display='none'; this.parentElement.querySelector('.card-thumb-placeholder').style.display='flex';"
+            />
+            <div class="card-thumb-placeholder" style="display:none;">
+                <svg width="28" height="28" viewBox="0 0 256 256" fill="none">
+                    <defs>
+                        <linearGradient id="g${run.run_dir}" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#00F0FF"/>
+                            <stop offset="100%" stop-color="#BD00FF"/>
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#g${run.run_dir})" d="M198.1,62.59a76,76,0,0,0-140.2,0A71.71,71.71,0,0,0,16,127.8C15.9,166,48,199,86.14,200A72.09,72.09,0,0,0,120,192.47V232a8,8,0,0,0,16,0V192.47A72.17,72.17,0,0,0,168,200l1.82,0C208,199,240.11,166,240,127.8A71.71,71.71,0,0,0,198.1,62.59Z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-top">
+                <div class="card-title ${hasTitle ? '' : 'untitled'}">${hasTitle ? title : i18n.untitled}</div>
+                <div class="card-meta">
+                    <span class="provider-badge">
+                        <span class="provider-dot"></span>
+                        ${prov.label}
+                    </span>
+                    <span class="card-time">${formatTime(date)}</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="open-btn">
+                    ${i18n.openGraph}
+                    <svg class="open-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                ${run.url ? `<a class="source-link" href="${run.url}" target="_blank" rel="noopener" title="${run.url}" onclick="event.stopPropagation();">
+                    <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                        <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M7 1h4m0 0v4m0-4L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    ${i18n.sourceLink}
+                </a>` : ''}
+            </div>
+        </div>
+    `;
+    return card;
+}
+
+// ── Build timeline ──
+function buildTimeline(runs) {
+    const timeline = document.getElementById('timeline');
+    timeline.innerHTML = '';
+
+    if (!runs || runs.length === 0) {
+        timeline.innerHTML = `<div class="empty-state">
+            <div class="emoji">🌀</div>
+            ${i18n.empty}
+        </div>`;
+        return;
+    }
+
+    // Sort newest first
+    const sorted = [...runs].sort((a, b) =>
+        parseDate(b.created_at) - parseDate(a.created_at)
+    );
+
+    // Group by date
+    const groups = {};
+    sorted.forEach(run => {
+        const key = formatDateGroup(parseDate(run.created_at));
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(run);
+    });
+
+    Object.entries(groups).forEach(([dateStr, groupRuns]) => {
+        const group = document.createElement('div');
+        group.className = 'date-group';
+
+        const label = document.createElement('div');
+        label.className = 'date-label';
+        label.innerHTML = `
+            <div class="date-dot"></div>
+            <span class="date-text">${dateStr}</span>
+            <span class="date-count">${i18n.countSuffix(groupRuns.length)}</span>
+        `;
+        group.appendChild(label);
+
+        const grid = document.createElement('div');
+        grid.className = 'cards-grid';
+        groupRuns.forEach(run => grid.appendChild(buildCard(run)));
+        group.appendChild(grid);
+
+        timeline.appendChild(group);
+    });
+}
+
+// ── Filter logic ──
+function applyFilter(providerKey) {
+    document.querySelectorAll('.session-card').forEach(card => {
+        const match = !providerKey || card.dataset.provider === providerKey;
+        card.classList.toggle('hidden', !match);
+    });
+    // Hide empty date groups
+    document.querySelectorAll('.date-group').forEach(group => {
+        const visibleCards = group.querySelectorAll('.session-card:not(.hidden)');
+        group.classList.toggle('all-hidden', visibleCards.length === 0);
+    });
+}
+
+// ── Init ──
+(function init() {
+    const runs = INDEX_DATA.runs ?? [];
+
+    // Stats
+    document.getElementById('statsStrip').innerHTML = buildStats(runs);
+
+    // Subtitle
+    const last = runs.length > 0
+        ? formatDateGroup(parseDate(runs[0].created_at))
+        : null;
+    if (last) {
+        document.getElementById('subtitle').textContent = i18n.subtitle(last);
+    }
+
+    // Timeline
+    buildTimeline(runs);
+
+    // Filters
+    buildFilters(runs, (p) => applyFilter(p));
+})();
+</script>
+
+</body>
+</html>

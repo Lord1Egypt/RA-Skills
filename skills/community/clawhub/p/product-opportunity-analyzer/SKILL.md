@@ -1,35 +1,127 @@
 ---
-name: "Product Opportunity Analyzer"
-description: "从电商评论中发掘产品机会。自动抓取商品1-3星评论，使用Map-Reduce策略提取痛点，生成产品洞察报告。当用户发送亚马逊商品链接时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-opportunity-analyzer"
-sourceUrl: "https://clawhub.ai/skills/product-opportunity-analyzer"
+name: product-opportunity-analyzer
+description: 从电商评论中发掘产品机会。自动抓取商品1-3星评论，使用Map-Reduce策略提取痛点，生成产品洞察报告。当用户发送亚马逊商品链接时触发此技能。
 ---
 
-# Product Opportunity Analyzer
+# 产品机会分析 Skill
 
-> 从电商评论中发掘产品机会。自动抓取商品1-3星评论，使用Map-Reduce策略提取痛点，生成产品洞察报告。当用户发送亚马逊商品链接时触发此技能。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-opportunity-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/product-opportunity-analyzer](https://clawhub.ai/skills/product-opportunity-analyzer)
+当用户发送亚马逊商品链接（URL）时自动触发。
 
-## Overview
+## 工作流程
 
+### Step 1: 获取评论数据
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. 调用 `brightdata_amazon_product_reviews` 工具获取评论
+   - 参数：`url` 使用 `encodeURIComponent("<商品URL>")` 编码
+   - 参数：`num_of_reviews` 设置为 30（每批数量）
+   - 筛选1-3星评论（通过工具参数或后处理过滤）
+2. 使用 Map-Reduce 策略分批提取，每次30条，直到获取所有评论
+3. 保存原始评论数据
+
+### Step 2: 痛点提取（Map阶段）
+
+将评论数据分批处理，每批30条，使用以下 Prompt 提取痛点：
+
+```markdown
+# Role
+你是一个电商评论数据标注员。
+
+# Task
+阅读以下亚马逊1-3星评论，提取出与【产品本身】相关的痛点和机会。
+
+# Rules
+1. 忽略物流、包装、客服问题。
+2. 只提取真实存在的缺陷或明确的需求。
+3. 必须严格按照JSON数组格式输出，不要输出任何解释性废话。
+
+# Output Format
+[
+  {
+    "tag": "痛点/机会/预期偏差",
+    "module": "如：电池/材质/安装/尺寸",
+    "point": "简练概括问题（15字以内）",
+    "quote": "截取评论中最核心的一句原话"
+  }
+]
+
+# Input Data
+[评论内容]
+```
+
+### Step 3: 汇总分析（Reduce阶段）
+
+将所有提取的痛点数据合并，使用以下 Prompt 进行宏观汇总：
+
+```markdown
+# Role
+你是一位拥有10年经验的资深亚马逊产品经理兼竞品分析专家。
+
+# Task
+我已经让助手从上千条1-3星评论中提取了结构化的痛点数据。以下是提取出的JSON数组。请你基于这些精炼的数据，输出一份具备高落地性的《产品痛点与机会洞察报告》。
+
+# Analysis Dimensions(分析维度)
+在阅读评论时，请用以下几个维度进行过滤和分类：
+1. 产品改造点：
+   * 材质与做工：异味、掉漆、易碎、手感差等。
+   * 功能缺陷：无法正常工作、按键失灵、效率低下等。
+   * 设计缺陷：反人类设计、不符合人体工学、安装困难等。
+   * 耐用性：用几次就坏、电池衰减快等。
+2. 产品机会点：
+   * 痛点延伸：客户为了解决该产品的问题，不得不搭配其他东西一起用（发现互补品机会）。
+   * 场景错位：客户把产品用在了意想不到的场景，但现有产品不支持（发现细分场景机会）。
+   * 缺失功能："要是它能具备XX功能就好了"、"我以为它可以XX"（发现迭代机会）。
+3. 预期管理偏差：
+   * Listing误导：买家以为是A，收到发现是B（属于优化详情页的机会，而非改产品）。
+
+# Constraints & Rules (规则与约束)
+* 禁止关注非产品因素：忽略所有关于FBA物流延迟、包装破损（除非影响产品本身）、客服态度的吐槽。
+* 基于事实，拒绝脑补：每一个洞察都必须在输出时附带原评论的缩写或原话作为证据支撑。
+* 优先级排序：按"出现频率"和"严重程度（如导致产品完全无法使用）"对问题进行排序，高频+致命问题排最前。
+
+# Output Format
+请严格按照以下Markdown格式输出报告：
+## 🚨 一、 核心改造点（必须修复的痛点）
+优先级 | 痛点模块 | 痛点描述 | 原始证据（引用原话） | 改造建议
+--- | --- | --- | --- | ---
+P0 (高频/致命) | 例如：电池 | 续航虚标，实际只能用半小时 | "买来除草，用了20分钟就没电了" | 更换大容量电芯，或在Listing写明真实续航
+P1 | … | … | … | …
+
+## 💡 二、 隐藏机会点（差异化竞争切入点）
+机会类型 | 用户真实诉求 | 原始证据（引用原话） | 落地建议（如何变成卖点）
+--- | --- | --- | ---
+新增功能 | 例如：希望便携 | "要是能折叠放车里就好了" | 开发折叠版本，主打户外车载场景
+细分场景 | … | … | …
+互补产品 | … | … | …
+
+## 🛡️ 三、 预期管理偏差（详情页优化建议）
+* 误导点1：[描述]
+* 原话证据：[引用]
+* 优化建议：[在A+页面或主图如何修改]
+
+## 🎯 四、 专家结论与行动指南
+如果我现在要微调这款产品并重新推向市场，请给我最核心的3条行动建议（1条关于改产品，1条关于做差异化，1条关于改Listing）。
+
+# Input Data
+[new data]
+```
+
+### Step 4: 发送报告
+
+将最终报告发送给用户。
+
+## 技术要点
+
+- 使用 Bright Data 的 `brightdata_amazon_product_reviews` 工具（自动处理反爬、验证码）
+- URL 编码：`encodeURIComponent("商品URL")`
+- 筛选条件：1-3星评论
+- 分批处理：每次30条
+- Map-Reduce：分而治之提取 + 聚合汇总分析
+
+## 配套脚本
+
+如需本地运行批量处理，可使用 `scripts/review_scraper.py`：
 ```bash
-hermes skills install clawhub/product-opportunity-analyzer
+python scripts/review_scraper.py <商品URL> <API_KEY>
 ```

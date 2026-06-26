@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "description": "AI 执行师技能 - 工具配置",
+  "image_tools": [
+    {
+      "id": "jimeng",
+      "name": "即梦",
+      "enabled": true,
+      "url": "https://jimeng.jianying.com/",
+      "strengths": ["海报", "创意图", "营销图", "社交媒体配图"],
+      "weaknesses": ["产品精修", "细节控制"],
+      "script": "../../jimeng/scripts/jimeng_auto.py",
+      "default_params": {"aspect_ratio": "1:1", "style": "default"}
+    },
+    {
+      "id": "liblib",
+      "name": "LiblibAI",
+      "enabled": true,
+      "url": "https://www.liblib.art/",
+      "strengths": ["产品精修", "ControlNet", "多模型选择", "细节调整"],
+      "weaknesses": ["创意发散", "海报设计"],
+      "script": "../../liblib/scripts/liblib_auto.py",
+      "default_params": {"aspect_ratio": "1:1", "model": "通用商业摄影模型", "steps": 30, "cfg_scale": 7},
+      "controlnet": {"enabled": true, "types": ["canny", "depth", "pose", "openpose", "tile", "inpaint"]}
+    }
+  ],
+  "video_tools": [
+    {"id": "jimeng_video", "name": "即梦视频", "enabled": false, "url": "https://jimeng.jianying.com/"},
+    {"id": "kling", "name": "可灵", "enabled": false, "url": "https://kling.kuaishou.com/"},
+    {"id": "hailuo", "name": "海螺", "enabled": false, "url": "https://hailuoai.com/"}
+  ],
+  "future_tools": [],
+  "tool_selection_rules": {
+    "default": "jimeng",
+    "by_product_type": {"服装": "liblib", "食品": "jimeng", "数码": "jimeng", "美妆": "liblib", "家居": "jimeng"},
+    "by_scenario": {"主图": "liblib", "详情页": "liblib", "海报": "jimeng", "社交媒体": "jimeng"}
+  },
+  "fallback_strategy": {"enabled": true, "order": ["jimeng", "liblib"]}
+}

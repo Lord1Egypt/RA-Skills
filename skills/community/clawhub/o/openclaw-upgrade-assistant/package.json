@@ -1,0 +1,27 @@
+{
+  "name": "openclaw-upgrade-assistant",
+  "version": "1.1.0",
+  "description": "OpenClaw 更新影响分析器 - 自动分析官方更新对配置的影响并备份",
+  "main": "index.js",
+  "scripts": {
+    "analyze": "node index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "update",
+    "checker",
+    "backup",
+    "analysis"
+  ],
+  "author": "潜助 🤖",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^2.6.9",
+    "semver": "^7.5.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

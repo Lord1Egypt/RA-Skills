@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qwen Image Gen"
+  short_description: "Generate images with qwen-image models"
+  default_prompt: "Use qwen-image-gen to create an image from a prompt."

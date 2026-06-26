@@ -1,0 +1,13 @@
+{
+  "name": "soyoung-clinic-tools",
+  "version": "2.2.2",
+  "description": "新氧青春诊所工具集，包含预约、项目查询百科、医生信息及医生排班查询等能力 | Soyoung clinic tools OpenClaw skill for the Soyoung (soyoung) clinic chain: appointment booking, store lookup, doctor info, schedules, project knowledge and pricing. Keywords: Soyoung, soyoung, clinic, appointment, doctor, schedule, medical aesthetic.",
+  "summary": "新氧青春诊所工具集，包含预约、项目查询百科、医生信息及医生排班查询等能力 | Soyoung clinic tools OpenClaw skill for the Soyoung (soyoung) clinic chain: appointment booking, store lookup, doctor info, schedules, project knowledge and pricing. Keywords: Soyoung, soyoung, clinic, appointment, doctor, schedule, medical aesthetic.",
+  "license": "MIT",
+  "keywords": ["Soyoung", "soyoung", "clinic", "appointment", "project", "doctor", "schedule", "新氧", "诊所", "医美", "sy"],
+  "scripts": {
+    "sync": "bash scripts/sync-version.sh",
+    "build": "bash scripts/build-zip.sh",
+    "publish": "bash scripts/publish.sh"
+  }
+}

@@ -1,35 +1,56 @@
----
-name: "Skill Bss"
-description: "Record and manage daily work tasks, progress, issues, solutions, and generate summaries for personal or team use."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-bss"
-sourceUrl: "https://clawhub.ai/skills/skill-bss"
----
+\# 每日工作记录技能
 
-# Skill Bss
-
-> Record and manage daily work tasks, progress, issues, solutions, and generate summaries for personal or team use.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-bss`
-- **Source URL:** [https://clawhub.ai/skills/skill-bss](https://clawhub.ai/skills/skill-bss)
-
-## Overview
+用于记录日常工作内容、任务进度、问题总结，支持快速归档和查询。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-bss
-```
+
+\## 作者
+
+wjp
+
+
+
+\## 描述
+
+本技能用于个人日常工作记录，可记录每日完成事项、遇到的问题、解决方案以及后续优化方向。适用于个人工作梳理、团队协作同步、周报生成等场景。使用简单，无需依赖，直接存放文本记录即可。
+
+
+
+\## 适用场景
+
+\- 个人日常工作记录
+
+\- 任务跟踪与总结
+
+\- 问题与解决方案沉淀
+
+\- 快速生成工作周报
+
+
+
+\## 使用方式
+
+1\. 将每日工作内容写入 txt 文档
+
+2\. 统一存放于技能目录
+
+3\. 支持随时查阅、修改、更新内容
+
+
+
+\## 版本
+
+1.0.0
+
+
+
+\## 分类
+
+other
+
+
+
+\## 标签
+
+工作记录,日常任务,内容管理,个人技能
+

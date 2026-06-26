@@ -1,35 +1,45 @@
 ---
-name: "Dxf Text Extractor"
-description: "提取并清理建筑结构 CAD DXF 文件中的文本，自动将探索者(TSSD)等特殊钢筋符号映射为标准规范（如 HRB400）。当用户上传 DXF 文件，或要求“提取DXF文字”、“解析结构图纸”、“读取CAD文本”、“处理结构说明”时触发使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dxf-text-extractor"
-sourceUrl: "https://clawhub.ai/skills/dxf-text-extractor"
+name: dxf-text-extractor
+version: 1.0.0
+description: 提取并清理建筑结构 CAD DXF 文件中的文本，自动将探索者(TSSD)等特殊钢筋符号映射为标准规范（如 HRB400）。当用户上传 DXF 文件，或要求“提取DXF文字”、“解析结构图纸”、“读取CAD文本”、“处理结构说明”时触发使用。
+metadata:
+  author: 造价工程师
+  version: 1.0.0
 ---
 
-# Dxf Text Extractor
+# DXF 结构文本提取器 (DXF Text Extractor)
 
-> 提取并清理建筑结构 CAD DXF 文件中的文本，自动将探索者(TSSD)等特殊钢筋符号映射为标准规范（如 HRB400）。当用户上传 DXF 文件，或要求“提取DXF文字”、“解析结构图纸”、“读取CAD文本”、“处理结构说明”时触发使用。
+## 执行指令 (Instructions)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dxf-text-extractor`
-- **Source URL:** [https://clawhub.ai/skills/dxf-text-extractor](https://clawhub.ai/skills/dxf-text-extractor)
+### 第一步：验证输入文件
+确保用户提供了有效的 `.dxf` 文件。如果用户提供的是 `.dwg` 文件，请委婉地提示其先通过 AutoCAD 或第三方批量转换工具将其另存为 `.dxf` 格式，因为本 Skill 仅严格处理 DXF 文件，不处理包含加密或代理图元的 DWG 源文件。
 
-## Overview
+### 第二步：运行环境检查
+在运行脚本前，确认后台环境中已正确安装 `ezdxf` Python 依赖库。如未安装，请静默执行 `pip install ezdxf`。
 
+### 第三步：执行提取脚本
+运行自带的 Python 脚本来解析 DXF 文件，提取所有的单行文字（`TEXT`）和多行文字（`MTEXT`）图元。该脚本会自动剥离所有几何线段（如 LINE、POLYLINE），并对天正/探索者（TSSD）字体的特殊钢筋符号（如 `%%132`）进行国标化转换。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dxf-text-extractor
-```
+请执行以下命令行指令：
+`python scripts/extract_text.py [文件绝对路径.dxf]`
+
+### 第四步：格式化输出结果
+脚本会将提取出的无序文本输出为干净的 Markdown 列表结构。请直接将此输出结果完整返回给用户，**切勿进行任何大模型的主观总结、缩减或数据遗漏**。必须确保《结构设计总说明》的各项参数以及梁板柱的构件标识保持绝对完整，以便下游模块进行清单组价及特征匹配。
+
+## 使用示例 (Examples)
+
+**用户输入：** "请帮我提取这张二层梁平法施工图 DXF 里的标注文字。"
+**执行动作：**
+1. 确认收到图纸文件。
+2. 运行脚本：`python scripts/extract_text.py 2F_梁平法施工图.dxf`。
+3. 输出包含诸如 `- 梁混凝土强度等级: C30` 以及 `- KL1(3) 300x500` 等完整结构信息的 Markdown 列表。
+
+## 常见报错处理 (Troubleshooting)
+
+**报错信息：** `ezdxf.lldxf.validator.DXFStructureError`
+**可能原因：** 上传的图纸文件已损坏，或为二进制格式，并非有效的 ASCII 编码 DXF 文件。
+**解决方案：** 提示用户在 AutoCAD 中打开原图，执行 `SAVEAS` (另存为) 命令，并明确在文件类型下拉菜单中选择 "AutoCAD 2013/LT2013 DXF (*.dxf)" 格式后重新上传。
+
+**报错信息：** 脚本运行成功，但输出结果中仍存在 `%%130`、`\U+00A2` 等无法识别的乱码符号。
+**可能原因：** 图纸中包含了当前脚本内部字典尚未覆盖的设计院自定义字体映射。
+**解决方案：** 询问用户该符号在图纸说明中代表的具体钢筋级别（如 HPB300），并建议用户将该映射关系手动补充到 `scripts/extract_text.py` 脚本头部的 `REBAR_SYMBOL_MAP` 字典常量中，以沉淀项目经验。

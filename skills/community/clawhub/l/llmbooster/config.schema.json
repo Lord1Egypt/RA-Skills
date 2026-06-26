@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LLMBooster Configuration",
+  "description": "Configuration schema for the LLMBooster OpenClaw skill",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the LLMBooster skill is active"
+    },
+    "thinkingDepth": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4,
+      "default": 4,
+      "description": "Number of thinking steps to execute (1-4): Plan, Draft, Self-Critique, Refine"
+    },
+    "maxRetries": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 3,
+      "description": "Maximum retry attempts per thinking step on failure"
+    }
+  },
+  "additionalProperties": false
+}

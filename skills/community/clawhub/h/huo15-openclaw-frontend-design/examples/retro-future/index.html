@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RETRO-FUTURE · 火一五前端设计技能 v2.0 示例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: oklch(0.13 0.04 280);
+    --ink: oklch(0.96 0.04 110);
+    --neon-c: oklch(0.85 0.18 195);
+    --neon-m: oklch(0.72 0.25 5);
+    --rule: oklch(0.35 0.1 280);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"VT323",monospace;font-size:22px;line-height:1.4;min-height:100vh;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 2px,oklch(0 0 0 / .12) 2px,oklch(0 0 0 / .12) 3px);mix-blend-mode:overlay;z-index:9}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 60%,oklch(0 0 0 / .55) 100%);z-index:10}
+  main{position:relative;max-width:1100px;margin:0 auto;padding:48px 32px 96px;z-index:1}
+  .head{display:flex;justify-content:space-between;align-items:center;border:2px solid var(--neon-c);padding:8px 16px;font-family:"Major Mono Display",monospace;font-size:14px;letter-spacing:.1em;color:var(--neon-c);text-shadow:0 0 6px currentColor}
+  .blink{color:var(--neon-m);animation:blink 1s steps(2) infinite;text-shadow:0 0 8px currentColor}
+  @keyframes blink{50%{opacity:0}}
+  h1{font-family:"Major Mono Display",monospace;font-size:clamp(48px,9vw,128px);line-height:1.05;letter-spacing:.02em;text-transform:uppercase;margin:80px 0 24px;color:var(--ink);text-shadow:0 0 14px var(--neon-m),0 0 28px oklch(0.72 0.25 5 / .5)}
+  h1 span{color:var(--neon-c);text-shadow:0 0 14px var(--neon-c),0 0 28px oklch(0.85 0.18 195 / .55)}
+  .lede{font-size:24px;max-width:48ch;color:var(--ink);margin-bottom:48px}
+  .ascii{font-family:"VT323",monospace;color:var(--neon-c);text-shadow:0 0 8px currentColor;white-space:pre;font-size:16px;line-height:1.1;margin:32px 0}
+  .menu{border:2px solid var(--neon-m);padding:16px 24px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px;font-size:22px}
+  .menu a{color:var(--ink);text-decoration:none;display:flex;justify-content:space-between;padding:6px 0}
+  .menu a::before{content:"> ";color:var(--neon-m)}
+  .menu a:hover{color:var(--neon-c);text-shadow:0 0 6px currentColor}
+  .menu a span{color:var(--neon-m)}
+  footer{margin-top:64px;border-top:1px dashed var(--rule);padding-top:16px;display:flex;justify-content:space-between;font-family:"Major Mono Display",monospace;font-size:13px;letter-spacing:.1em;color:var(--neon-c)}
+  @media (max-width:720px){.menu{grid-template-columns:1fr}main{padding:32px 20px 64px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="head"><span>HUO15 // SYS-2026</span><span class="blink">█ READY</span></div>
+  <h1>NEW <span>WAVE</span><br>1986 → 2026</h1>
+  <p class="lede">RETRO-FUTURE 流派示例 — 等宽字 + 80s 霓虹（青 / 洋红，**避开紫渐变红线**）+ CRT 扫描线 + 终端式 menu。差异点：所有发光来自硬色双层 text-shadow，不用任何 backdrop-blur。</p>
+<pre class="ascii">    ╔═══ HUO15 ═══╗
+    ║  ▓▒░ 26 ░▒▓ ║
+    ╚═════════════╝</pre>
+  <nav class="menu">
+    <a href="#">START_NEW_GAME<span>[F1]</span></a>
+    <a href="#">LOAD_PROJECT<span>[F2]</span></a>
+    <a href="#">SETTINGS<span>[F3]</span></a>
+    <a href="#">EXIT<span>[ESC]</span></a>
+  </nav>
+  <footer><span>© 2026 HUO15 // ALL SYSTEMS NOMINAL</span><span>RETRO-FUTURE · v2.0</span></footer>
+</main>
+</body>
+</html>

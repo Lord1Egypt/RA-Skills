@@ -1,35 +1,33 @@
 ---
-name: "Pipeworx nvd"
-description: "NVD MCP — wraps the NIST National Vulnerability Database API (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-nvd"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-nvd"
+name: pipeworx-nvd
+description: NVD MCP — wraps the NIST National Vulnerability Database API (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/nvd
 ---
 
-# Pipeworx nvd
+# pipeworx-nvd
 
-> NVD MCP — wraps the NIST National Vulnerability Database API (free, no auth)
+NVD MCP — wraps the NIST National Vulnerability Database API (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-nvd`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-nvd](https://clawhub.ai/skills/pipeworx-nvd)
+## Tools
 
-## Overview
+- `search_cves`
+- `get_cve`
+- `recent_cves`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-nvd
+```json
+{
+  "mcpServers": {
+    "pipeworx-nvd": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/nvd/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/nvd](https://pipeworx.io/packs/nvd)

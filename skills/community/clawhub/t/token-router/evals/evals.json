@@ -1,0 +1,56 @@
+{
+  "skill_name": "token-router",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我是个独立开发者，每天用AI写代码、做翻译、写文档，一个月API费花了200多刀，太贵了。有没有什么办法省钱？哪些任务可以用便宜模型？",
+      "expected_output": "应该触发技能，给出成本优先策略推荐，分析不同任务类型的模型推荐，包含具体模型名和成本对比",
+      "files": [],
+      "expectations": [
+        "输出包含L0-L3分级推荐",
+        "提到具体的便宜模型名（如DeepSeek-V4 Flash、Gemini Flash）",
+        "包含成本节省百分比估算",
+        "给出日常任务的模型分配建议",
+        "不需要用户填写问卷就能给出推荐"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我审查一下这个支付回调接口的代码，看看有没有安全漏洞。代码在 payment_callback.py 里。",
+      "expected_output": "应该触发安全规则强制升级，推荐L2+模型，说明升级理由",
+      "files": [],
+      "expectations": [
+        "识别出安全审计场景",
+        "触发强制升级到至少L2",
+        "明确说明'安全审计/漏洞分析'触发升级",
+        "推荐Claude Sonnet或Opus等强模型",
+        "不推荐用轻量模型处理安全相关任务"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我想在Hermes Agent里配一个3层级联路由，预算每月10刀以内，主要做邮件分类、日报生成和代码review，怎么配？",
+      "expected_output": "应该推荐混合路由方案，给出Hermes专属配置，包含具体模型和预估成本",
+      "files": [],
+      "expectations": [
+        "识别Hermes Agent平台",
+        "给出3层级联的具体模型分配",
+        "包含Hermes config.yaml配置示例或指向config-templates.md",
+        "邮件分类走L0，日报走L1，代码review走L2",
+        "预估月成本在$3-10范围内"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我把这段中文翻译成英文：'本产品适用于工业级应用场景，支持-40°C至85°C工作温度范围，防护等级IP67。'",
+      "expected_output": "应该推荐轻量模型处理翻译任务，给出简洁模式输出",
+      "files": [],
+      "expectations": [
+        "复杂度评分较低（L0-L1）",
+        "推荐轻量模型（如DeepSeek-V4 Flash或Claude Haiku）",
+        "使用简洁模式输出",
+        "不推荐旗舰模型处理简单翻译"
+      ]
+    }
+  ]
+}

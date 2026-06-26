@@ -1,0 +1,10 @@
+node_modules/
+config.json
+wallet.json
+state.json
+*.jsonl
+controller.yaml
+signals/
+strategies/
+archive/
+*Zone.Identifier

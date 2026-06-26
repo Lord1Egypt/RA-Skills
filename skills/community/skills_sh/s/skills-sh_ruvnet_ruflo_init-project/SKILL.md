@@ -1,35 +1,9 @@
 ---
-name: "init-project"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/init-project"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/init-project"
+name: init-project
+description: Initialize a new Ruflo project with MCP tools, hooks, and agent configuration
+argument-hint: "[--preset standard|minimal|full]"
+allowed-tools: Bash(npx *) Read Write Edit
 ---
+Run `npx @claude-flow/cli@latest init --wizard` to set up the project interactively, or `npx @claude-flow/cli@latest init --preset standard` for defaults.
 
-# init-project
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/init-project`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/init-project](https://skills.sh/ruvnet/ruflo/init-project)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/init-project
-```
+This creates CLAUDE.md, .claude/settings.json, and .claude-flow/ config with MCP server registration for the `ruflo` MCP tools.

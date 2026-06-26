@@ -1,0 +1,10 @@
+# md2wechat-skill Python 依赖
+# 安装命令：pip install -r requirements.txt
+
+wechatpy>=1.8.18
+markdown>=3.4
+beautifulsoup4>=4.12
+requests>=2.28
+python-dotenv>=1.0
+Pillow>=9.0
+cryptography>=40.0

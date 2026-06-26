@@ -1,0 +1,16 @@
+﻿{
+  "environment_name": "sit",
+  "runner": "postman",
+  "base_url": "https://example.test",
+  "auth_type": "bearer",
+  "auth_source": {
+    "mode": "env",
+    "token_env": "API_TOKEN"
+  },
+  "default_headers": {
+    "Content-Type": "application/json"
+  },
+  "variables": {},
+  "timeout_ms": 10000,
+  "report_dir": "./reports"
+}

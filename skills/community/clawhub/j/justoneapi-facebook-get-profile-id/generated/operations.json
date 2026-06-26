@@ -1,0 +1,52 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/facebook/get-profile-id/v1 for Facebook Get Profile ID through JustOneAPI with url.",
+  "displayName": "Facebook Get Profile ID",
+  "endpointPath": "get-profile-id",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Retrieve the unique Facebook profile ID from a given profile URL.",
+      "method": "GET",
+      "operationId": "getProfileIdV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User security token for API access authentication.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The path part of the Facebook profile URL. Do not include `https://www.facebook.com`. Example: `/people/To-Bite/pfbid021XLeDjjZjsoWse1H43VEgb3i1uCLTpBvXSvrnL2n118YPtMF5AZkBrZobhWWdHTHl/`",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/facebook/get-profile-id/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Get Profile ID",
+      "tags": [
+        "Facebook"
+      ]
+    }
+  ],
+  "platformKey": "facebook",
+  "primaryTag": "Facebook",
+  "skillName": "justoneapi_facebook_get_profile_id",
+  "skillType": "interface",
+  "slug": "justoneapi-facebook-get-profile-id",
+  "sourceTitle": "OpenAPI definition"
+}

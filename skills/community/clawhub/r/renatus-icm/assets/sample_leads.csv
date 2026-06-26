@@ -1,0 +1,4 @@
+name,phone,email,dateCreated
+"Jane Smith","+1 555-555-5555","jane.smith@example.com","Mar 1, 2026 10:00 AM (MST)"
+"John Doe","+1 555-123-4567","john.doe@example.com","Mar 2, 2026 2:30 PM (PST)"
+"Bob Wilson","","bob.wilson@example.com","Mar 3, 2026 9:15 AM (CST)"

@@ -1,0 +1,30 @@
+{
+  "layers": [
+    {
+      "id": "global-forecast-budget",
+      "metric": "forecast_7d_total_cost",
+      "threshold": 250,
+      "action": "degrade",
+      "routeToModel": "o3-mini",
+      "message": "7-day forecast exceeded budget. Degrade non-critical traffic to o3-mini."
+    },
+    {
+      "id": "project-proj-a-cap",
+      "metric": "dimension_cost",
+      "dimension": "project",
+      "key": "proj-a",
+      "threshold": 80,
+      "action": "switch_model",
+      "routeToModel": "gpt-4.1-mini",
+      "message": "Project proj-a exceeded cap. Switch default model to gpt-4.1-mini."
+    },
+    {
+      "id": "anomaly-circuit-breaker",
+      "metric": "anomaly_count",
+      "threshold": 2,
+      "action": "stop_calls",
+      "stopReason": "anomaly_spike",
+      "message": "Multiple anomalies detected. Stop high-risk calls and require manual approval."
+    }
+  ]
+}

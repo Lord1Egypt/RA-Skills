@@ -1,0 +1,30 @@
+{
+  "name": "feishu-mention",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Feishu @Mention Resolver (v2.0) - Auto-resolves @mentions to OpenIDs using OpenClaw configuration. Supports bot discovery, aliases, and group members.",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "example": "node assets/example_usage.js"
+  },
+  "keywords": [
+    "feishu",
+    "lark",
+    "mention",
+    "@mention",
+    "openclaw",
+    "skill",
+    "bot",
+    "account-id"
+  ],
+  "author": "OpenClaw AI Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  }
+}

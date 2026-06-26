@@ -1,0 +1,28 @@
+{
+    "protectedKeys":  6,
+    "version":  "v3.2",
+    "filesCleaned":  3,
+    "agent":  "myagent",
+    "abnormalKeys":  0,
+    "candidates":  0,
+    "staleKeys":  0,
+    "logFile":  "C:\\Users\\me\\.openclaw\\workspace-myworkspace\\memory\\2026-06-06-subagent-archive-v3.md",
+    "openclawCompatibility":  {
+                                  "fixDmScope":  {
+                                                     "IsPresent":  false
+                                                 },
+                                  "noFixMissing":  {
+                                                       "IsPresent":  false
+                                                   },
+                                  "activeKey":  [
+
+                                                ],
+                                  "fixMissing":  {
+                                                     "IsPresent":  true
+                                                 }
+                              },
+    "mode":  "dry-run",
+    "dashboardParents":  1,
+    "workspace":  "C:\\Users\\me\\.openclaw\\workspace-myworkspace",
+    "freedMB":  1.76
+}

@@ -1,0 +1,12 @@
+{
+  "databaseId": 9202,
+  "workflowName": "Deploy",
+  "event": "push",
+  "conclusion": "failure",
+  "headBranch": "main",
+  "createdAt": "2026-03-05T09:00:00Z",
+  "url": "https://github.com/acme/web/actions/runs/9202",
+  "repository": {
+    "nameWithOwner": "acme/web"
+  }
+}

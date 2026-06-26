@@ -1,0 +1,2 @@
+SKILL.md
+scripts/sync_discord_identity.py

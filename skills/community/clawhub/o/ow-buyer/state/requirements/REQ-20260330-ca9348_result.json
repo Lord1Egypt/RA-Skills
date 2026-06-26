@@ -1,0 +1,183 @@
+{
+  "req_id": "REQ-20260330-ca9348",
+  "total_bids": 4,
+  "evaluated_at": "2026-03-30T12:11:05.225758",
+  "top3": [
+    {
+      "bid_id": "BID-20260330-001",
+      "supplier": "红酒坊精品酒行",
+      "price": 2800,
+      "price_score": 44.642857142857146,
+      "auth_score": 11.0,
+      "delivery_days": 3,
+      "delivery_score": 10.0,
+      "reputation_score": 17.7,
+      "total_score": 83.34,
+      "auth_docs": [
+        "企业营业执照",
+        "幽灵庄园代理权证明",
+        "原厂授权书"
+      ],
+      "reputation": {
+        "total_transactions": 50,
+        "success_rate": 0.95,
+        "disputes": 0,
+        "complaints": 0,
+        "platform_verified": true,
+        "rating": 4.8,
+        "reviews_url": "https://example.com/reviews/winecellar"
+      }
+    },
+    {
+      "bid_id": "BID-20260330-002",
+      "supplier": "醇香酒业旗舰店",
+      "price": 3200,
+      "price_score": 39.0625,
+      "auth_score": 14.0,
+      "delivery_days": 5,
+      "delivery_score": 6.0,
+      "reputation_score": 14.4,
+      "total_score": 73.46,
+      "auth_docs": [
+        "企业营业执照",
+        "产品代理权证明",
+        "产品质检报告",
+        "进口报关单"
+      ],
+      "reputation": {
+        "total_transactions": 20,
+        "success_rate": 0.9,
+        "disputes": 1,
+        "complaints": 0,
+        "platform_verified": true,
+        "rating": 4.5
+      }
+    },
+    {
+      "bid_id": "BID-20260330-004",
+      "supplier": "欧洲酒庄直邮",
+      "price": 3500,
+      "price_score": 35.714285714285715,
+      "auth_score": 17.0,
+      "delivery_days": 14,
+      "delivery_score": 2.142857142857143,
+      "reputation_score": 17.880000000000003,
+      "total_score": 72.74,
+      "auth_docs": [
+        "欧盟商业注册证书",
+        "幽灵庄园官方代理证书",
+        "庄园主亲笔签名授权",
+        "原产地认证证书",
+        "海关进口完税证明"
+      ],
+      "reputation": {
+        "total_transactions": 100,
+        "success_rate": 0.98,
+        "disputes": 0,
+        "complaints": 0,
+        "platform_verified": true,
+        "rating": 4.9
+      }
+    }
+  ],
+  "all_results": [
+    {
+      "bid_id": "BID-20260330-001",
+      "supplier": "红酒坊精品酒行",
+      "price": 2800,
+      "price_score": 44.642857142857146,
+      "auth_score": 11.0,
+      "delivery_days": 3,
+      "delivery_score": 10.0,
+      "reputation_score": 17.7,
+      "total_score": 83.34,
+      "auth_docs": [
+        "企业营业执照",
+        "幽灵庄园代理权证明",
+        "原厂授权书"
+      ],
+      "reputation": {
+        "total_transactions": 50,
+        "success_rate": 0.95,
+        "disputes": 0,
+        "complaints": 0,
+        "platform_verified": true,
+        "rating": 4.8,
+        "reviews_url": "https://example.com/reviews/winecellar"
+      }
+    },
+    {
+      "bid_id": "BID-20260330-002",
+      "supplier": "醇香酒业旗舰店",
+      "price": 3200,
+      "price_score": 39.0625,
+      "auth_score": 14.0,
+      "delivery_days": 5,
+      "delivery_score": 6.0,
+      "reputation_score": 14.4,
+      "total_score": 73.46,
+      "auth_docs": [
+        "企业营业执照",
+        "产品代理权证明",
+        "产品质检报告",
+        "进口报关单"
+      ],
+      "reputation": {
+        "total_transactions": 20,
+        "success_rate": 0.9,
+        "disputes": 1,
+        "complaints": 0,
+        "platform_verified": true,
+        "rating": 4.5
+      }
+    },
+    {
+      "bid_id": "BID-20260330-004",
+      "supplier": "欧洲酒庄直邮",
+      "price": 3500,
+      "price_score": 35.714285714285715,
+      "auth_score": 17.0,
+      "delivery_days": 14,
+      "delivery_score": 2.142857142857143,
+      "reputation_score": 17.880000000000003,
+      "total_score": 72.74,
+      "auth_docs": [
+        "欧盟商业注册证书",
+        "幽灵庄园官方代理证书",
+        "庄园主亲笔签名授权",
+        "原产地认证证书",
+        "海关进口完税证明"
+      ],
+      "reputation": {
+        "total_transactions": 100,
+        "success_rate": 0.98,
+        "disputes": 0,
+        "complaints": 0,
+        "platform_verified": true,
+        "rating": 4.9
+      }
+    },
+    {
+      "bid_id": "BID-20260330-003",
+      "supplier": "名酒折扣店",
+      "price": 2500,
+      "price_score": 50.0,
+      "auth_score": 4.0,
+      "delivery_days": 7,
+      "delivery_score": 4.285714285714286,
+      "reputation_score": 6.800000000000001,
+      "total_score": 65.09,
+      "auth_docs": [
+        "个体工商户营业执照"
+      ],
+      "reputation": {
+        "total_transactions": 5,
+        "success_rate": 0.8,
+        "disputes": 0,
+        "complaints": 0,
+        "platform_verified": false,
+        "rating": 4.0
+      }
+    }
+  ]
+}

@@ -1,35 +1,61 @@
 ---
-name: "Simple Concise Responder"
-description: "Generate simple, easy-to-understand, and concise responses. Use when the user asks for brief, clear, to-the-point answers without unnecessary elaboration. Tr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/simple-concise-responder"
-sourceUrl: "https://clawhub.ai/skills/simple-concise-responder"
+name: simple-concise-responder
+version: 1.0.0
+description: Generate simple, easy-to-understand, and concise responses. Use when the user asks for brief, clear, to-the-point answers without unnecessary elaboration. Triggers on phrases like '简单易懂', '精辟', '简洁', '简单说', '一句话', '概括' or when brevity is explicitly requested.
 ---
 
-# Simple Concise Responder
+# 简单精辟回答
 
-> Generate simple, easy-to-understand, and concise responses. Use when the user asks for brief, clear, to-the-point answers without unnecessary elaboration. Tr...
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/simple-concise-responder`
-- **Source URL:** [https://clawhub.ai/skills/simple-concise-responder](https://clawhub.ai/skills/simple-concise-responder)
+**三句话原则**：
+1. **是什么** - 直接给出答案
+2. **为什么** - 一句话解释原因（可选）
+3. **怎么做** - 一句话给出行动建议（可选）
 
-## Overview
+## 回答结构
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/simple-concise-responder
+### 1. 先给结论
 ```
+❌ 不好："关于这个问题，我们需要从多个角度来分析..."
+✅ 好："答案是：XXX"
+```
+
+### 2. 控制长度
+- 简单问题：1-2句话
+- 一般问题：3-5句话
+- 复杂问题：分段，每段不超过3句话
+
+### 3. 去掉冗余
+删除这些词：
+- "首先/其次/最后"
+- "需要注意的是"
+- "简单来说"
+- "实际上"
+- 重复的形容词
+
+## 示例对比
+
+**用户问**：什么是区块链？
+
+❌ 冗长版：
+> 区块链是一种分布式账本技术，它通过密码学原理将数据区块按照时间顺序相连，形成一个不可篡改的链条。这种技术具有去中心化、透明性、安全性等特点，在金融、供应链、医疗等领域有广泛应用...
+
+✅ 精辟版：
+> **区块链** = 多人共同记账的公共账本，记上的账无法篡改。
+> 
+> 用途：数字货币、合同存证等需要信任的场景。
+
+## 执行检查清单
+
+回答前检查：
+- [ ] 能否用一句话概括？
+- [ ] 有没有废话可以删？
+- [ ] 用户能一眼看懂吗？
+
+## 特殊情况
+
+- **技术问题**：给类比，不用术语
+- **选择问题**：直接说选哪个，再简单说原因
+- **操作问题**：步骤不超过3步，用序号
+- **复杂问题**：分点，每点一行

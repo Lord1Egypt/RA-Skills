@@ -1,0 +1,12 @@
+{
+  "name": "family-finance-manager",
+  "version": "0.1.0",
+  "description": "家庭财务健康管家 - 全面家庭财务管理工具",
+  "keywords": ["family-finance", "financial-planning", "budget", "savings", "insurance", "investment"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "language": ["en", "zh"],
+  "tags": ["finance", "family", "budget", "savings", "insurance"],
+  "createdAt": "2026-04-05",
+  "updatedAt": "2026-04-05"
+}

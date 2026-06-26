@@ -1,0 +1,37 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "B站视频搜索接口",
+    "description": "通过指定关键词在B站搜索相关视频。",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000"
+    }
+  ],
+  "paths": {
+    "/api/search_bilibili": {
+      "get": {
+        "summary": "搜索B站视频",
+        "operationId": "searchBilibili",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "需要搜索的精准关键词",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功返回相关视频标题列表"
+          }
+        }
+      }
+    }
+  }
+}

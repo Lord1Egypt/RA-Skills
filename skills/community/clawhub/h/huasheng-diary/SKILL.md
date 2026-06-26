@@ -1,35 +1,53 @@
 ---
-name: "花生日记返利助手"
-description: "花生日记社交电商返利工具，以淘宝/天猫为核心，提供优惠券查找、返利查询和邀请制分级返利管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/huasheng-diary"
-sourceUrl: "https://clawhub.ai/skills/huasheng-diary"
+name: 花生日记返利助手
+description: 花生日记社交电商返利工具，以淘宝/天猫为核心，提供优惠券查找、返利查询和邀请制分级返利管理。
+version: 0.1.0
 ---
 
 # 花生日记返利助手
 
-> 花生日记社交电商返利工具，以淘宝/天猫为核心，提供优惠券查找、返利查询和邀请制分级返利管理。
+花生日记社交电商返利工具。以淘宝和天猫为核心电商平台，提供隐藏优惠券查找、商品返利查询、推广素材生成和邀请制分级返利管理，帮助用户实现自购省钱和分享赚佣金。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/huasheng-diary`
-- **Source URL:** [https://clawhub.ai/skills/huasheng-diary](https://clawhub.ai/skills/huasheng-diary)
+## 触发词
 
-## Overview
+花生日记、花生返利、huasheng、花生优惠券、花生日记佣金、花生省钱、peanut diary
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/huasheng-diary
+### 核心功能
+
+- **淘宝优惠券查找**：深度对接淘宝联盟，查找隐藏优惠券和高佣商品
+- **返利查询与追踪**：查询商品返利比例，追踪订单佣金结算状态
+- **推广素材生成**：自动生成商品推广文案和图片，适配朋友圈和社群
+- **团队管理**：查看邀请关系和团队佣金数据
+
+### 平台特色
+
+| 特色 | 说明 |
+|------|------|
+| 淘系深耕 | 淘宝/天猫返利比例在同类平台中较高 |
+| 邀请制 | 通过邀请码注册，形成推广层级 |
+| 超级会员 | 升级超级会员可获更高佣金比例 |
+| 运营商 | 最高等级，享受团队佣金分成 |
+
+### 使用场景
+
+1. **淘宝购物**：下单前查询隐藏优惠券和返利
+2. **社群运营**：每日生成高佣商品推荐清单
+3. **团队拓展**：邀请新用户，管理推广团队
+4. **佣金管理**：查看和提现佣金收益
+
+## 输出格式
+
+```
+🥜 花生日记返利查询
+
+商品：[商品名称]
+平台：淘宝/天猫
+售价：¥[价格]
+优惠券：满[X]减[Y]
+券后价：¥[金额]
+返利比例：[X]%
+预计返利：¥[金额]
+到手价：¥[最终价格]
 ```

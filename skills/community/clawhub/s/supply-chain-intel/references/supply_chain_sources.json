@@ -1,0 +1,38 @@
+{
+  "data_sources": [
+    {"name": "Drewry Container Freight Index", "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index-assessed-by-drewry", "type": "freight_rates", "coverage": "8 major routes (Shanghai-LA, Shanghai-Rotterdam, etc)"},
+    {"name": "Freightos Baltic Index", "url": "https://fbx.freightos.com/", "type": "freight_rates", "coverage": "Air, ocean, trucking spot rates"},
+    {"name": "UNCTAD Maritime Review", "url": "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport", "type": "maritime", "coverage": "Global shipping capacity, port throughput"},
+    {"name": "Port of Los Angeles / Long Beach TEU Dashboard", "url": "https://www.portoflosangeles.org/business/statistics/container-statistics", "type": "port_throughput", "coverage": "US West Coast import volumes"},
+    {"name": "China Ports Association", "url": "http://www.chinaports.org/", "type": "port_throughput", "coverage": "Top 20 Chinese ports TEU data"},
+    {"name": "US Census Bureau Trade Data", "url": "https://www.census.gov/foreign-trade/statistics/", "type": "trade_flows", "coverage": "US imports/exports by country/commodity"},
+    {"name": "UN Comtrade Database", "url": "https://comtradeplus.un.org/", "type": "trade_flows", "coverage": "Global bilateral trade, 6-digit HS codes"},
+    {"name": "IHS Markit / S&P Global PMI", "url": "https://www.spglobal.com/marketintelligence/en/mi/products/pmi.html", "type": "manufacturing", "coverage": "50+ countries, supplier delivery times"},
+    {"name": "Bloomberg Supply Chain Intelligence", "url": "https://www.bloomberg.com/professional/product/supply-chain/", "type": "risk", "coverage": "Supplier mapping, disruption alerts"},
+    {"name": "Resilinc Supply Chain Risk Monitor", "url": "https://www.resilinc.com/", "type": "risk", "coverage": "Factory/port disruptions, geopolitical events"},
+    {"name": "Flexport Ocean Timeliness Indicator", "url": "https://www.flexport.com/oti/", "type": "transit_times", "coverage": "Asia-US/Europe transit days"},
+    {"name": "Container xChange Container Availability Index", "url": "https://www.container-xchange.com/", "type": "equipment", "coverage": "Container surplus/shortage by port"},
+    {"name": "World Bank Logistics Performance Index", "url": "https://lpi.worldbank.org/", "type": "infrastructure", "coverage": "160 countries, 6 dimensions"},
+    {"name": "Gartner Supply Chain Top 25", "url": "https://www.gartner.com/en/supply-chain/top25", "type": "benchmarking", "coverage": "Corporate supply chain maturity ranking"}
+  ],
+  "key_commodities": [
+    {"commodity": "Semiconductors", "key_players": ["TSMC", "Samsung", "Intel", "Micron", "SK Hynix"], "bottlenecks": ["EUV lithography", "advanced packaging", "rare earths"], "geographic_risk": "Taiwan Strait, US-China tech war"},
+    {"commodity": "Lithium-ion batteries", "key_players": ["CATL", "LG Energy Solution", "Panasonic", "BYD", "SK On"], "bottlenecks": ["Lithium/cobalt/nickel mining", "refining capacity", "gigafactory ramp"], "geographic_risk": "DRC (cobalt), Chile/Argentina (lithium), China (processing)"},
+    {"commodity": "Pharmaceutical APIs", "key_players": ["Pfizer", "Novartis", "Teva", "Dr. Reddy's", "Sun Pharma"], "bottlenecks": ["China/India dependence", "regulatory inspections", "single-source suppliers"], "geographic_risk": "India API export restrictions"},
+    {"commodity": "Agricultural commodities", "key_players": ["Cargill", "ADM", "Bunge", "Louis Dreyfus", "COFCO"], "bottlenecks": ["Weather (drought/floods)", "Black Sea shipping", "fertilizer supply"], "geographic_risk": "Ukraine war, El Niño, Suez/Panama canal disruptions"},
+    {"commodity": "Rare earths", "key_players": ["China Northern Rare Earth", "Lynas Rare Earths", "MP Materials"], "bottlenecks": ["Separation technology", "environmental permits", "magnet manufacturing"], "geographic_risk": "China export controls"}
+  ],
+  "supply_chain_risk_factors": [
+    {"risk": "Geopolitical", "examples": ["Trade wars", "Sanctions", "Port blockades", "Strait closures"], "impact": "Route diversion, cost spikes, lead time explosion"},
+    {"risk": "Climate/Weather", "examples": ["Drought (Panama Canal)", "Floods (Thai factories)", "Hurricanes (US Gulf)", "Extreme heat (port operations)"], "impact": "Capacity reduction, infrastructure damage, worker safety"},
+    {"risk": "Labor", "examples": ["Port strikes (ILWU)", "Trucker protests", "Factory labor disputes"], "impact": "Throughput slowdown, backlog accumulation"},
+    {"risk": "Regulatory", "examples": ["CBAM (EU carbon border)", "UFLPA (Xinjiang forced labor)", "Dodd-Frank conflict minerals"], "impact": "Documentation burden, compliance cost, shipment holds"},
+    {"risk": "Cyber", "examples": ["Maersk NotPetya", "Colonial Pipeline", "JBS ransomware"], "impact": "System downtime, data loss, ransom payments"}
+  ],
+  "logistics_modes": [
+    {"mode": "Air freight", "speed": "1-5 days", "cost_per_kg": "$3-10", "capacity_constraint": "Belly space (passenger flights), dedicated freighters"},
+    {"mode": "Ocean (container)", "speed": "20-40 days", "cost_per_teu": "$1,500-10,000", "capacity_constraint": "Vessel size, port congestion, canal transit slots"},
+    {"mode": "Rail (intermodal)", "speed": "15-25 days", "cost_per_container": "$3,000-8,000", "capacity_constraint": "Railcar availability, border crossings"},
+    {"mode": "Trucking", "speed": "2-7 days", "cost_per_mile": "$2-4", "capacity_constraint": "Driver shortage, hours-of-service rules"}
+  ]
+}

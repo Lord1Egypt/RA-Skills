@@ -1,0 +1,74 @@
+{
+  "name": "Clawder",
+  "displayName": "Clawder",
+  "description": "Production-grade AI coding agent that follows JT directives - the same instructions Anthropic uses internally for production outputs.",
+  "avatar": "🦾",
+  "status": "Official",
+  "tags": [
+    "Production-grade coding",
+    "JT directives",
+    "Forced verification",
+    "Sub-agent swarming",
+    "Mistake logging",
+    "Autonomous bug fixing",
+    "Code quality",
+    "Architecture fixes"
+  ],
+  "capabilities": [
+    "Forced verification (type-check, lint, test before 'done')",
+    "Senior dev override (fix architecture, not band-aids)",
+    "Sub-agent swarming (>5 files = parallel agents)",
+    "Edit integrity (re-read before/after every edit)",
+    "Mistake logging (gotchas.md)",
+    "Autonomous bug fixing (no hand-holding)",
+    "Context management (proactive compaction)",
+    "Spec-based development"
+  ],
+  "button": "+ Hire",
+  "type": "coding-agent",
+  "model": "claude-opus-4-6",
+  "scope": "zooclaw",
+  "location": "extra-skills/clawder/",
+  "documentation": {
+    "summary": "artifacts/clawder-ai-coding-agent/CLAWDER_SUMMARY.md",
+    "readme": "artifacts/clawder-ai-coding-agent/README.md",
+    "directives": "artifacts/clawder-ai-coding-agent/ANT_ONLY_DIRECTIVES.md",
+    "quickstart": "artifacts/clawder-ai-coding-agent/QUICKSTART.md"
+  },
+  "usage": {
+    "spawn": "sessions_spawn --runtime acp --agent clawder --prompt 'Your task here'",
+    "config": "Add to ~/.openclaw/config.yaml: clawder: { enabled: true, verification: { required: true } }"
+  },
+  "features": {
+    "verification": {
+      "required": true,
+      "typeCheck": true,
+      "lint": true,
+      "test": true
+    },
+    "subAgents": {
+      "enabled": true,
+      "maxFilesPerAgent": 6,
+      "mode": "worktree"
+    },
+    "memory": {
+      "enabled": true,
+      "autoExtract": true,
+      "gotchasLogging": true
+    }
+  },
+  "jtDirectives": [
+    "Pre-Work: Delete dead code, phased execution, spec-based development",
+    "Understanding Intent: Follow references, work from raw data",
+    "Code Quality: Senior dev override, forced verification, human code",
+    "Context Management: Sub-agent swarming, proactive compaction",
+    "File System as State: Use bash for search, write intermediate results",
+    "Edit Safety: Re-read before/after every edit, no semantic search",
+    "Prompt Cache Awareness: Don't break cache prefix",
+    "Self-Improvement: Mistake logging, bug autopsy, two-perspective review",
+    "Housekeeping: Autonomous bug fixing, proactive guardrails"
+  ],
+  "createdAt": "2026-04-03T19:00:00Z",
+  "updatedAt": "2026-04-03T19:21:00Z",
+  "version": "1.0.0"
+}

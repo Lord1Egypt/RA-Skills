@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_app_check_setting",
+		"description": "Perform integrity and validity verification on the overall configuration of the current application's [draft state]. Used for final check before publishing the application.\n\n【Usage Scenarios】\n- This verification must be executed before calling the publishing tool\n- Only checks the draft version, does not affect the published version\n- This operation does not modify any data or configuration\n\n【Verification scope includes but is not limited to】\n- Data table structure validity\n- Field configuration integrity\n- Workflow configuration validity\n- Expression syntax correctness\n- Script dependency check\n- Dashboard reference integrity\n- API / website module dependency relationships\n\n【Return result explanation】\n- If there are errors, an error list will be returned (including module, type, error reason)\n- If verification passes, a verification success identifier is returned\n\n⚠️ Mandatory rule: This tool must be called for verification before publishing the application.",
+		"parameters": {
+			"type": "object",
+			"properties": {}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "eval_name": "forward-spec-feature-level",
+  "configuration": "without_skill",
+  "expectations": [
+    {"text": "Spec contains structured behavioral scenarios (precondition / input / expected behavior / postcondition / error cases)", "passed": false, "evidence": "Uses a traditional design doc format (overview / architecture analysis / detailed design / code change plan) — no structured behavioral scenarios"},
+    {"text": "Spec covers error paths (e.g., fallback strategy when the summarization LLM call fails)", "passed": true, "evidence": "The risk & fallback section covers summarization failure and timeout scenarios"},
+    {"text": "Spec includes concrete input→output examples", "passed": true, "evidence": "Includes a before/after example of message replacement"},
+    {"text": "Spec researches existing code and references real module/function names", "passed": true, "evidence": "References real function names and file paths"},
+    {"text": "Spec marks uncertain open questions with [TBD] tags", "passed": false, "evidence": "No [TBD] markers used — all content is presented with false certainty"},
+    {"text": "Spec does not write any files to the project source directory", "passed": true, "evidence": "Output saved only to the workspace outputs directory"},
+    {"text": "Spec is behavior-oriented, not implementation-oriented (describes what, not how)", "passed": false, "evidence": "Contains heavy implementation details: pseudocode, code change plan, config JSON, Go struct definitions"}
+  ]
+}

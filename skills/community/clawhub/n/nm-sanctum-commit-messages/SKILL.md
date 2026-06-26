@@ -1,35 +1,81 @@
 ---
-name: "Nm Sanctum Commit Messages"
-description: "Generate conventional commit messages from staged changes with correct type/scope"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/nm-sanctum-commit-messages"
-sourceUrl: "https://clawhub.ai/skills/nm-sanctum-commit-messages"
+name: commit-messages
+description: Generates conventional commit messages from staged changes
+version: 1.9.8
+triggers:
+  - git
+  - commit
+  - conventional-commits
+  - committing and needing a well-formatted message
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e"}}
+source: claude-night-market
+source_plugin: sanctum
 ---
 
-# Nm Sanctum Commit Messages
-
-> Generate conventional commit messages from staged changes with correct type/scope
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/nm-sanctum-commit-messages`
-- **Source URL:** [https://clawhub.ai/skills/nm-sanctum-commit-messages](https://clawhub.ai/skills/nm-sanctum-commit-messages)
-
-## Overview
+> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/nm-sanctum-commit-messages
-```
+# Conventional Commit Workflow
+
+## When To Use
+
+- Generating conventional commit messages from staged changes
+
+## When NOT To Use
+
+- Full PR preparation: use sanctum:pr-prep
+- Amending existing commits: use git directly
+
+## Steps
+
+1. **Gather context** (run in parallel):
+   - `git status -sb`
+   - `git diff --cached --stat`
+   - `git diff --cached`
+   - `git log --oneline -5`
+   - When sem is available (see `leyline:sem-integration`):
+     `sem diff --staged --json` for entity-level changes
+
+   If nothing is staged, tell the user and stop.
+
+   When sem output is available, use entity names
+   (function, class, method) in the commit subject and
+   body instead of parsing raw diff hunks. For example,
+   "add function validate_webhook_url" instead of
+   "add validation logic to notify.py".
+
+2. **Classify**: Pick type (`feat`, `fix`, `docs`, `refactor`,
+   `test`, `chore`, `style`, `perf`, `ci`) and optional scope.
+
+3. **Draft the message**:
+   - **Subject**: `<type>(<scope>): <imperative summary>` (50 chars max)
+   - **Body**: What and why, wrapped at 72 chars
+   - **Footer**: BREAKING CHANGE or issue refs
+
+4. **Slop check**: reject these words and replace with plain
+   alternatives:
+
+   | Reject | Use instead |
+   |--------|-------------|
+   | leverage, utilize | use |
+   | seamless | smooth |
+   | comprehensive | complete |
+   | robust | solid |
+   | facilitate | enable |
+   | streamline | simplify |
+   | optimize | improve |
+   | delve | explore |
+   | multifaceted | varied |
+   | pivotal | key |
+   | intricate | detailed |
+
+   Also reject: "it's worth noting", "at its core",
+   "in essence", "a testament to"
+
+5. **Write** to `./commit_msg.txt` and preview.
+
+## Rules
+
+- NEVER use `git commit --no-verify` or `-n`
+- Write for humans, not to impress
+- If pre-commit hooks fail, fix the issues

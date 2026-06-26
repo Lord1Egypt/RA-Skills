@@ -1,35 +1,36 @@
 ---
-name: "Meta-Cognition Coach"
-description: "Meta-cognition coaching assistant - help students develop thinking-about-thinking skills, reflection habits, and learning strategy awareness"
-category: "research"
-source: "ClawHub"
-tags: [education, learning, metacognition, reflection, study]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meta-cognition-coach"
-sourceUrl: "https://clawhub.ai/skills/meta-cognition-coach"
+name: meta-cognition-coach
+description: Meta-cognition coaching assistant - help students develop thinking-about-thinking skills, reflection habits, and learning strategy awareness
 ---
 
 # Meta-Cognition Coach
 
-> Meta-cognition coaching assistant - help students develop thinking-about-thinking skills, reflection habits, and learning strategy awareness
+Help students develop meta-cognitive skills for better learning.
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meta-cognition-coach`
-- **Source URL:** [https://clawhub.ai/skills/meta-cognition-coach](https://clawhub.ai/skills/meta-cognition-coach)
+## Features
+- Learning reflection prompts
+- Strategy awareness exercises
+- Thinking process analysis
+- Self-monitoring guidance
 
-## Overview
+## Input
+- Learning task description
+- Current approach/strategy
+- Reflection on process
 
+## Output
+- Meta-cognitive prompts
+- Strategy suggestions
+- Reflection frameworks
+- Self-assessment guides
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Constraints
+- ❌ No direct answers
+- ❌ No task completion
+- ❌ No performance evaluation
+
+## Usage
 ```bash
-hermes skills install clawhub/meta-cognition-coach
+python3 scripts/main.py reflect --task "数学作业" --approach "直接做题遇到困难"
+python3 scripts/main.py strategy --subject "物理" --difficulty "概念理解困难"
 ```

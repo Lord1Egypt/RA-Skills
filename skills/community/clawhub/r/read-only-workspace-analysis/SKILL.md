@@ -1,35 +1,27 @@
 ---
-name: "Read Only Workspace Analysis"
-description: "Summarize what is open, what changed, and what is due soon from a Campus Copilot snapshot."
-category: "other"
-source: "ClawHub"
-tags: [campus-copilot, read-only]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/read-only-workspace-analysis"
-sourceUrl: "https://clawhub.ai/skills/read-only-workspace-analysis"
+name: read-only-workspace-analysis
+description: Summarize what is open, what changed, and what is due soon from a Campus Copilot snapshot.
 ---
 
-# Read Only Workspace Analysis
+# Read-Only Workspace Analysis
 
-> Summarize what is open, what changed, and what is due soon from a Campus Copilot snapshot.
+Use this skill when you have a Campus Copilot snapshot and want to answer:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/read-only-workspace-analysis`
-- **Source URL:** [https://clawhub.ai/skills/read-only-workspace-analysis](https://clawhub.ai/skills/read-only-workspace-analysis)
+- what is open
+- what changed
+- what is due soon
+- which site is carrying the current workload
 
-## Overview
+Always stay on the imported snapshot or thin-BFF contract. Do not reopen live browser automation unless the task explicitly requires live validation.
 
+Useful companions:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/read-only-workspace-analysis
-```
+- `examples/workspace-snapshot.sample.json`
+- `examples/openclaw-readonly.md`
+- `examples/cli-usage.md`
+
+Good fit:
+
+- Codex or Claude-style summary workflows
+- OpenClaw-style local consumers that need a plain-language starting brief
+- builder verification of the decision layer without touching the live browser lane

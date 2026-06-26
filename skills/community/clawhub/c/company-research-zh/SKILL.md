@@ -1,35 +1,54 @@
 ---
-name: "Company Research Zh"
-description: "企业调研 / 尽职调查 / 竞品分析 / company research / due diligence。快速生成目标公司全面分析报告，覆盖商业模式、竞争格局、SWOT分析、市场规模、管理层评估等模块。适用于投资经理做投前调研、战略分析师进行竞争对手分析、BD人员准备商务拜访、财务顾问执行供应商背调、产业研究员..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/company-research-zh"
-sourceUrl: "https://clawhub.ai/skills/company-research-zh"
+name: company-research-zh
+description: >
+  企业调研 / 尽职调查 / 竞品分析 / company research / due diligence。快速生成目标公司全面分析报告，覆盖商业模式、竞争格局、SWOT分析、市场规模、管理层评估等模块。适用于投资经理做投前调研、战略分析师进行竞争对手分析、BD人员准备商务拜访、财务顾问执行供应商背调、产业研究员撰写行业报告。支持输出尽调报告、行研简报、竞争对手分析表等多种格式。用户常搜：企业背景调查怎么做、竞品信息如何收集、投资尽调清单、公司财务分析模板、行业竞争格局分析。
+
+tags: [企业调研, 尽职调查, 竞品分析, 商业模式分析, SWOT分析, 投前调研, 背景调查, company-research, due-diligence, competitive-analysis, 战略分析, BD拜访, 行业研究, financial-due-diligence]
 ---
 
-# Company Research Zh
+# 企业调研与尽职调查报告生成
 
-> 企业调研 / 尽职调查 / 竞品分析 / company research / due diligence。快速生成目标公司全面分析报告，覆盖商业模式、竞争格局、SWOT分析、市场规模、管理层评估等模块。适用于投资经理做投前调研、战略分析师进行竞争对手分析、BD人员准备商务拜访、财务顾问执行供应商背调、产业研究员...
+全面分析目标企业的商业模式、竞争格局、市场地位与风险因素，快速生成专业级调研报告，适用于投资决策、战略规划、商务拓展等场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/company-research-zh`
-- **Source URL:** [https://clawhub.ai/skills/company-research-zh](https://clawhub.ai/skills/company-research-zh)
+## Tools Required
+- create_docx
+- create_xlsx
+- create_chart
 
-## Overview
+## Usage
+- "帮我做一份关于【某公司】的竞品分析报告，重点看它的商业模式和市场份额"
+- "我们下周要拜访一家新能源头部企业，帮我准备一份BD前的企业背调简报"
+- "投委会要开了，帮我整理一份目标公司的尽调摘要，包括SWOT和主要风险点"
 
+## Examples
+输入：帮我分析比亚迪的商业模式和竞争优势，生成一份投前调研报告
+输出：
+**比亚迪投前调研报告**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/company-research-zh
-```
+**一、公司概览**
+比亚迪股份有限公司（SZ:002594/HK:1211），总部深圳，业务横跨新能源汽车、动力电池、半导体及轨道交通，2023年营收超6000亿元，新能源车全球销量第一。
+
+**二、商业模式分析**
+- 垂直整合模式：自研自产电池、电机、电控"三电"核心部件，成本管控能力行业领先
+- 多品牌矩阵：王朝系列（汉/唐）、海洋系列、腾势、仰望覆盖10万至百万价格带
+- To B延伸：电池外供（大众、丰田等）及储能业务形成第二增长曲线
+
+**三、竞争格局（Porter五力）**
+| 维度 | 评级 | 说明 |
+|------|------|------|
+| 行业竞争 | 高 | 特斯拉、理想、华为系持续施压 |
+| 供应商议价 | 低 | 自供关键零部件，依赖度低 |
+| 买方议价 | 中 | 价格战压缩利润空间 |
+| 替代品威胁 | 中 | 燃油车替代加速，插混竞争激烈 |
+| 新进入者 | 中 | 小米等跨界入局 |
+
+**四、SWOT分析**
+- 优势：垂直整合、规模效应、品牌口碑
+- 劣势：高端品牌溢价能力仍弱于BBA
+- 机会：海外市场（东南亚/欧洲）扩张
+- 威胁：地缘政治风险、欧盟关税壁垒
+
+**五、主要风险提示**
+1. 价格战持续导致毛利率承压
+2. 海外市场政策不确定性
+3. 产能利用率波动风险

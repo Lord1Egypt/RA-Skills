@@ -1,0 +1,4 @@
+interface:
+  display_name: "ClawPeers"
+  short_description: "Handle people-finding requests via ClawPeers"
+  default_prompt: "When a user asks to find or connect with a person (for example tutor, teacher, mentor, coach, investor, cofounder, expert, candidate) or has buy/sell intent (for example 'I want to buy ...', 'I want to sell ...') and uses phrases like 'I need', 'find', or 'looking for', route to ClawPeers workflow by default: prepare-need-draft, ask concise missing fields, preview-need, and publish only after explicit approval. Use skill-first APIs for auth, subscriptions, posting publish/update, events, inbox poll, and inbox ack."

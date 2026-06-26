@@ -1,35 +1,73 @@
 ---
-name: "StyleBuddy"
-description: "OpenClaw首个生活场景Skill - 你的AI穿搭闺蜜。拍照录入衣橱、智能推荐搭配、逛街种草咨询，还有衣橱分析帮你科学购物。支持多模态识别，无需关键词，像跟闺蜜聊天一样自然。"
-category: "other"
-source: "ClawHub"
-tags: [fashion, outfit, wardrobe]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/stylebuddy"
-sourceUrl: "https://clawhub.ai/skills/stylebuddy"
+name: stylebuddy
+description: OpenClaw首个生活场景Skill - 你的AI穿搭闺蜜。拍照录入衣橱、智能推荐搭配、逛街种草咨询，还有衣橱分析帮你科学购物。支持多模态识别，无需关键词，像跟闺蜜聊天一样自然。
 ---
 
-# StyleBuddy
+# StyleBuddy - AI穿搭闺蜜 🌸
 
-> OpenClaw首个生活场景Skill - 你的AI穿搭闺蜜。拍照录入衣橱、智能推荐搭配、逛街种草咨询，还有衣橱分析帮你科学购物。支持多模态识别，无需关键词，像跟闺蜜聊天一样自然。
+> OpenClaw 生态首个生活场景 Skill
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/stylebuddy`
-- **Source URL:** [https://clawhub.ai/skills/stylebuddy](https://clawhub.ai/skills/stylebuddy)
+你的专属 AI 穿搭顾问，像闺蜜一样懂你的风格。无论是日常穿搭、衣橱管理还是逛街种草，一句话搞定。
 
-## Overview
+## ✨ 核心能力
 
+### 1. 衣橱智能管理
+📸 **拍照录入** — 拍下衣服自动识别类型、颜色、季节  
+📂 **自动分类** — 上衣/下装/外套/鞋子智能归档  
+👁️ **视觉识别** — 支持多模态模型识别，降级时本地分析，最差也能手动录入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/stylebuddy
+### 2. 每日穿搭推荐
+🌤️ **场景感知** — "今天约会穿什么？""明天有雨怎么搭？"  
+🎨 **风格匹配** — 根据你的用户画像（身材/风格/偏好）智能推荐  
+👗 **成套搭配** — 上衣+下装+鞋子+配饰一键生成
+
+### 3. 逛街种草咨询
+📱 **实时参谋** — 看中一件衣服？拍照发给 StyleBuddy  
+💡 **搭配建议** — "这件和我衣橱里的米色风衣能搭吗？"  
+🛍️ **购买决策** — 基于现有衣橱，给出买或不买的建议
+
+### 4. 衣橱分析洞察
+📊 **配置分析** — 了解你的衣橱构成（颜色分布、季节占比、风格偏向）  
+🎯 **购物指南** — "缺一件黑色基础款打底衫""夏季单品太多，建议补充秋季"  
+💰 **理性消费** — 避免重复购买，优化衣橱性价比
+
+## 🚀 使用示例
+
+像聊天一样自然，无需记指令：
+
 ```
+今天穿什么？                    → 根据天气和场合推荐搭配
+录入这件衬衫                   → 拍照/上传图片，自动识别录入
+这件衣服适合我吗？            → 种草咨询，给出搭配建议
+帮我分析衣橱                   → 生成衣橱报告和购物建议
+明天要见客户，帮我搭配一下    → 场景化推荐
+```
+
+## 🏗️ 技术亮点
+
+### 架构设计
+- **OpenClaw 原生集成** — 语义理解为主，关键词辅助路由，无需记忆复杂指令
+- **智能降级策略** — 多模态识别 → 本地分析 → 手动输入，三级优雅降级
+- **用户画像系统** — 记录身材数据、风格偏好，越用越懂你
+
+### 兼容性
+- ✅ 支持 Kimi、Claude、GPT 等多模型基座
+- ✅ 自动检测视觉能力，无 Vision 也能用
+- ✅ 纯文本模型通过本地 PIL 分析图片基础信息
+
+## 📦 版本信息
+
+**v0.4.3** (2026-03-17) — 安全合规版本
+- 更新 SKILL.md 描述，准确说明语义+关键词混合路由策略
+- 移除开发脚本 (download_images.sh)，避免安全误报
+- 生成脚本改为相对路径，适配不同用户环境
+
+**v0.4.0** (2026-03-15) — 架构重构版本  
+- 优化意图识别，语义理解为主，关键词辅助匹配
+- 新增三级降级策略  
+- 修复 3 个核心 Bug，测试通过率 88.9%
+
+---
+
+*"我有一个穿搭闺蜜，她叫 StyleBuddy"*  
+*— 让穿搭更简单，让每天更自信 💃*

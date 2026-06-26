@@ -1,0 +1,13 @@
+{
+  "name": "pulsemindx",
+  "version": "0.1.0",
+  "author": "Enas Alsheikh Hamza",
+
+  "description": "A multi-agent system for data analysis, admin tasks, reports, and decision support.",
+  "keywords": ["analysis", "admin", "reports", "decision support"],
+  "license": "MIT-0",
+  "type": "skill",
+  "requires": {
+    "clawhub": ">=1.0.0"
+  }
+}

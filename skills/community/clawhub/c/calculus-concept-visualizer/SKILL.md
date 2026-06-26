@@ -1,35 +1,122 @@
 ---
-name: "Calculus Concept Visualizer"
-description: "基于多表征理论和动态可视化的微积分概念理解助手，专门解决ε-δ定义、导数本质、积分思想等核心难点的理解困难。 通过 GeoGebra 交互演示、认知诊断、即时检测，实现从具体直观到抽象形式化的渐进式学习。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calculus-concept-visualizer"
-sourceUrl: "https://clawhub.ai/skills/calculus-concept-visualizer"
+name: calculus-concept-visualizer
+version: 1.0.0
+description: |
+  基于多表征理论和动态可视化的微积分概念理解助手，专门解决ε-δ定义、导数本质、积分思想等核心难点的理解困难。
+  通过 GeoGebra 交互演示、认知诊断、即时检测，实现从具体直观到抽象形式化的渐进式学习。
+author: 代国兴
+slug: daigxok/calculus-concept-visualizer
+tags:
+  - calculus
+  - visualization
+  - education
+  - geogebra
+  - interactive
+  - 高等数学
+  - 考研数学
+allowed-tools:
+  - Bash
+  - Python
+  - FileWrite
+requires-env:
+  - OPENCLAW_SKILLS_PATH
 ---
 
-# Calculus Concept Visualizer
+# Calculus Concept Visualizer - 微积分概念可视化助手
 
-> 基于多表征理论和动态可视化的微积分概念理解助手，专门解决ε-δ定义、导数本质、积分思想等核心难点的理解困难。 通过 GeoGebra 交互演示、认知诊断、即时检测，实现从具体直观到抽象形式化的渐进式学习。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calculus-concept-visualizer`
-- **Source URL:** [https://clawhub.ai/skills/calculus-concept-visualizer](https://clawhub.ai/skills/calculus-concept-visualizer)
+本 Skill 针对高等数学学习中的**抽象概念理解困难**，提供以下解决方案：
 
-## Overview
+### 1. 多表征转换教学
+- **视觉表征**: GeoGebra 动态交互演示
+- **代数表征**: 渐进式符号形式化
+- **数值表征**: 计算表格与趋势观察
+- **语言表征**: 自然语言与数学语言的精确对应
 
+### 2. 动态可视化生成
+- ε-δ 极限定义的**双向滑块交互**（你挑战ε，我寻找δ）
+- 割线→切线的**演变动画**（揭示导数本质）
+- 黎曼和的**动态构建**（理解积分思想）
+- 泰勒展开的**逐步逼近**（可视化误差控制）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/calculus-concept-visualizer
+### 3. 认知冲突与诊断
+- **常见误区库**: 预置 20+ 种概念误解模式
+- **即时诊断**: 分析学生回答识别潜在错误
+- **针对性干预**: 生成反驳示例打破错误直觉
+
+### 4. 支架式学习路径
 ```
+直观感知 → 数值探索 → 几何理解 → 代数形式化 → 即时检测
+```
+
+## 使用方法
+
+### 基础概念可视化
+```
+请帮我理解极限的ε-δ定义
+请可视化导数的几何意义
+请演示定积分的黎曼和构造
+```
+
+### 针对性诊断教学
+```
+我学生总是认为"极限就是代入"，怎么纠正？
+请针对"左右极限混淆"设计干预方案
+生成一道检测学生是否理解"任意ε存在δ"逻辑的测试题
+```
+
+### 交互式探索
+```
+生成可交互的 GeoGebra 演示：拖动ε观察δ的变化
+展示连续但不可导的函数例子（Weierstrass函数）
+对比不同阶泰勒展开的逼近效果
+```
+
+## 技术实现
+
+### 工具调用
+- `generate_geogebra`: 生成动态数学演示
+- `plot_interactive`: Python matplotlib 交互图表
+- `diagnose_misconception`: 认知诊断分析
+- `generate_quiz`: 即时检测题生成
+
+### 输出格式
+每个概念解释包含：
+1. **分层文本解释**（配合可视化指令）
+2. **GeoGebra 配置代码**（可直接嵌入）
+3. **Python 可视化脚本**（备用静态/动态图）
+4. **交互指令**（明确学生操作步骤）
+5. **3道渐进检测题**（识别→应用→迁移）
+
+## 适用场景
+
+- **课前预习**: 建立直观认知基础
+- **课堂演示**: 动态展示抽象概念
+- **课后复习**: 针对性诊断与强化
+- **考研辅导**: 深度理解命题逻辑
+- **错题分析**: 定位概念理解偏差
+
+## 教学原理
+
+基于**APOS理论**（Action-Process-Object-Schema）设计：
+- **Action**: 通过交互操作体验数学过程
+- **Process**: 内化动态变化的心智模型
+- **Object**: 将过程封装为可操作的数学对象
+- **Schema**: 构建概念网络与关联
+
+## 作者信息
+
+- **作者**: 代国兴
+- **机构**: 高等数学智慧课程研究团队
+- **邮箱**: daigx@example.edu.cn
+- **GitHub**: https://github.com/daigxok
+- **ClawHub**: https://clawhub.ai/daigxok
+
+## 版本历史
+
+- v1.0.0 (2026-04-08): 初始发布，支持极限、导数、积分核心概念
+
+## 许可证
+
+MIT License - 开放教育资源，欢迎教学使用与改进

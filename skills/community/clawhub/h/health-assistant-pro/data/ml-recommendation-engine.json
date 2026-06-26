@@ -1,0 +1,427 @@
+{
+  "mlConfig": {
+    "version": "1.0.0",
+    "modelType": "rule_based_hybrid",
+    "lastTrained": "2026-03-27"
+  },
+
+  "featureWeights": {
+    "evidenceLevel": 0.25,
+    "indicatorMatch": 0.30,
+    "safetyProfile": 0.20,
+    "costEffectiveness": 0.10,
+    "userPreference": 0.10,
+    "ageRelevance": 0.05
+  },
+
+  "healthIndicators": {
+    "cardiovascular": {
+      "ldl": {
+        "high": {
+          "threshold": 3.4,
+          "unit": "mmol/L",
+          "severity": {
+            "mild": {"min": 3.4, "max": 4.1},
+            "moderate": {"min": 4.1, "max": 4.9},
+            "high": {"min": 4.9, "max": 999}
+          },
+          "supplements": [
+            {"id": "omega-3", "score": 0.9, "dose": "2000-4000mg EPA+DHA"},
+            {"id": "berberine", "score": 0.85, "dose": "500mg 3x/day"},
+            {"id": "red-yeast-rice", "score": 0.75, "dose": "1200-2400mg"},
+            {"id": "plant-sterols", "score": 0.8, "dose": "2000mg"},
+            {"id": "niacin", "score": 0.7, "dose": "500-2000mg"}
+          ]
+        }
+      },
+      "hdl": {
+        "low": {
+          "threshold": 1.0,
+          "unit": "mmol/L",
+          "severity": {
+            "mild": {"min": 0, "max": 1.0},
+            "moderate": {"min": 0, "max": 0.9}
+          },
+          "supplements": [
+            {"id": "omega-3", "score": 0.7},
+            {"id": "niacin", "score": 0.8},
+            {"id": "exercise", "score": 0.9}
+          ]
+        }
+      },
+      "triglycerides": {
+        "high": {
+          "threshold": 1.7,
+          "unit": "mmol/L",
+          "supplements": [
+            {"id": "omega-3", "score": 0.95, "dose": "2000-4000mg"},
+            {"id": "niacin", "score": 0.8},
+            {"id": "berberine", "score": 0.75}
+          ]
+        }
+      },
+      "homocysteine": {
+        "high": {
+          "threshold": 15,
+          "unit": "μmol/L",
+          "supplements": [
+            {"id": "b-complex", "score": 0.95},
+            {"id": "b6", "score": 0.9},
+            {"id": "b12", "score": 0.9},
+            {"id": "folate", "score": 0.9},
+            {"id": "tmg", "score": 0.85}
+          ]
+        }
+      },
+      "lipoprotein_a": {
+        "high": {
+          "threshold": 300,
+          "unit": "mg/L",
+          "supplements": [
+            {"id": "omega-3", "score": 0.8},
+            {"id": "niacin", "score": 0.85},
+            {"id": "coq10", "score": 0.7}
+          ]
+        }
+      }
+    },
+
+    "metabolic": {
+      "fasting_glucose": {
+        "high": {
+          "threshold": 6.1,
+          "unit": "mmol/L",
+          "supplements": [
+            {"id": "berberine", "score": 0.9, "dose": "500mg 3x/day"},
+            {"id": "chromium", "score": 0.8, "dose": "200-1000mcg"},
+            {"id": "alpha-lipoic-acid", "score": 0.85, "dose": "300-600mg"},
+            {"id": "cinnamon", "score": 0.7, "dose": "1000-2000mg"}
+          ]
+        }
+      },
+      "hba1c": {
+        "high": {
+          "threshold": 6.0,
+          "unit": "%",
+          "supplements": [
+            {"id": "berberine", "score": 0.85},
+            {"id": "chromium", "score": 0.75}
+          ]
+        }
+      },
+      "uric_acid": {
+        "high": {
+          "threshold": 428,
+          "unit": "μmol/L",
+          "supplements": [
+            {"id": "vitamin-c", "score": 0.8, "dose": "500-1000mg"},
+            {"id": "cherry-extract", "score": 0.85},
+            {"id": "celery-seed", "score": 0.7}
+          ]
+        }
+      }
+    },
+
+    "liver": {
+      "alt": {
+        "high": {
+          "threshold": 50,
+          "unit": "U/L",
+          "supplements": [
+            {"id": "milk-thistle", "score": 0.9},
+            {"id": "nac", "score": 0.85},
+            {"id": "phosphatidylcholine", "score": 0.75}
+          ]
+        }
+      },
+      "bilirubin_total": {
+        "high": {
+          "threshold": 23,
+          "unit": "μmol/L",
+          "supplements": [
+            {"id": "milk-thistle", "score": 0.8},
+            {"id": "same", "score": 0.75}
+          ]
+        }
+      }
+    },
+
+    "vitamins_minerals": {
+      "vitamin_d": {
+        "low": {
+          "threshold": 30,
+          "unit": "ng/mL",
+          "supplements": [
+            {"id": "vit-d3", "score": 0.95, "dose": "5000-10000IU"}
+          ]
+        },
+        "optimal": {
+          "threshold": 40,
+          "unit": "ng/mL",
+          "supplements": [
+            {"id": "vit-d3", "score": 0.9, "dose": "2000-4000IU"}
+          ]
+        }
+      },
+      "vitamin_b12": {
+        "low": {
+          "threshold": 200,
+          "unit": "pg/mL",
+          "supplements": [
+            {"id": "b12", "score": 0.95, "form": "methylcobalamin"}
+          ]
+        }
+      },
+      "ferritin": {
+        "low": {
+          "threshold": 30,
+          "unit": "ng/mL",
+          "supplements": [
+            {"id": "iron", "score": 0.9, "form": "bisglycinate"}
+          ]
+        }
+      },
+      "magnesium_symptoms": {
+        "present": {
+          "symptoms": ["cramps", "fatigue", "poor_sleep", "anxiety"],
+          "supplements": [
+            {"id": "magnesium", "score": 0.95, "form": "bisglycinate"}
+          ]
+        }
+      }
+    }
+  },
+
+  "personalizationFactors": {
+    "age": {
+      "18-30": {
+        "priorities": ["energy", "athletic_performance"],
+        "avoid": [],
+        "adjust_doses": {}
+      },
+      "30-40": {
+        "priorities": ["energy", "preventive_health"],
+        "add": ["coq10", "antioxidants"],
+        "adjust_doses": {}
+      },
+      "40-50": {
+        "priorities": ["cardiovascular", "cognitive", "joint_health"],
+        "add": ["coq10", "omega-3", "magnesium"],
+        "adjust_doses": {"vit-d3": "3000-5000IU", "coq10": "ubiquinol"}
+      },
+      "50-60": {
+        "priorities": ["cardiovascular", "bone_health", "cognitive"],
+        "add": ["vit-d3-k2", "calcium", "b12", "omega-3"],
+        "adjust_doses": {"vit-d3": "3000-5000IU", "b12": "1000mcg"}
+      },
+      "60+": {
+        "priorities": ["cardiovascular", "bone_health", "cognitive", "immunity"],
+        "add": ["vit-d3-k2", "calcium", "b12", "omega-3", "protein"],
+        "adjust_doses": {
+          "vit-d3": "4000-6000IU",
+          "b12": "1000-2000mcg",
+          "protein": "1.0-1.2g/kg"
+        }
+      }
+    },
+
+    "gender": {
+      "male": {
+        "priorities": ["cardiovascular", "prostate_health"],
+        "add_after_50": ["saw-palmetto", "lycopene"],
+        "monitor": ["psa"]
+      },
+      "female": {
+        "priorities": ["bone_health", "iron_status"],
+        "pre_menopause": ["iron_monitoring"],
+        "menopause": ["black-cohosh", "red-clover", "calcium", "vit-d3"],
+        "monitor": ["ferritin", "bone_density"]
+      }
+    },
+
+    "lifestyle": {
+      "sedentary": {
+        "priorities": ["cardiovascular", "weight_management"],
+        "recommend": ["omega-3", "vit-d3", "berberine_if_prediabetic"]
+      },
+      "active": {
+        "priorities": ["recovery", "joint_health"],
+        "add": ["omega-3", "magnesium", "creatine_optional"]
+      },
+      "athlete": {
+        "priorities": ["performance", "recovery"],
+        "add": ["creatine", "beta-alanine", "protein", "omega-3"]
+      },
+      "shift_worker": {
+        "priorities": ["sleep", "circadian_rhythm"],
+        "add": ["melatonin", "magnesium"]
+      },
+      "high_stress": {
+        "priorities": ["stress_management", "sleep"],
+        "add": ["magnesium", "ashwagandha", "b-complex"]
+      }
+    },
+
+    "dietary_restrictions": {
+      "vegetarian": {
+        "monitor": ["b12", "iron", "zinc", "omega-3"],
+        "supplement": ["b12", "algae_omega-3"]
+      },
+      "vegan": {
+        "monitor": ["b12", "iron", "zinc", "omega-3", "calcium", "iodine"],
+        "supplement": ["b12", "algae_omega-3", "vit-d3_check_source"]
+      },
+      "keto": {
+        "monitor": ["electrolytes"],
+        "supplement": ["magnesium", "potassium", "sodium"]
+      }
+    }
+  },
+
+  "interactionMatrix": {
+    "synergistic": [
+      {
+        "combo": ["vit-d3", "vit-k2", "magnesium"],
+        "benefit": "钙吸收和骨骼健康最佳组合",
+        "notes": "D3消耗镁，K2帮助钙定向骨骼"
+      },
+      {
+        "combo": ["omega-3", "curcumin"],
+        "benefit": "协同抗炎",
+        "notes": "双重抗炎通路"
+      },
+      {
+        "combo": ["b6", "b12", "folate"],
+        "benefit": "同型半胱氨酸代谢",
+        "notes": "必须三者同时存在"
+      },
+      {
+        "combo": ["vit-c", "iron"],
+        "benefit": "提高铁吸收2-3倍",
+        "notes": "维生素C帮助铁吸收"
+      },
+      {
+        "combo": ["coq10", "omega-3"],
+        "benefit": "心血管保护叠加",
+        "notes": "不同作用机制"
+      }
+    ],
+    "antagonistic": [
+      {
+        "combo": ["calcium", "iron"],
+        "issue": "钙抑制铁吸收",
+        "solution": "间隔2小时服用"
+      },
+      {
+        "combo": ["zinc", "copper"],
+        "issue": "长期高锌导致铜缺乏",
+        "solution": "锌:铜 = 10:1，长期补锌需加铜"
+      },
+      {
+        "combo": ["magnesium", "calcium"],
+        "issue": "竞争吸收",
+        "solution": "分开服用或镁睡前、钙随餐"
+      },
+      {
+        "combo": ["fiber", "medications"],
+        "issue": "纤维可能影响药物吸收",
+        "solution": "间隔2小时"
+      }
+    ],
+    "drugInteractions": [
+      {
+        "supplement": "omega-3",
+        "drug": "warfarin",
+        "risk": "增加出血风险",
+        "action": "监测INR，可能需调整剂量"
+      },
+      {
+        "supplement": "vit-k2",
+        "drug": "warfarin",
+        "risk": "降低抗凝效果",
+        "action": "避免使用或固定剂量并监测INR"
+      },
+      {
+        "supplement": "st-johns-wort",
+        "drugs": ["ssris", "birth_control", "warfarin", "cyclosporine"],
+        "risk": "CYP3A4诱导，降低药物浓度",
+        "action": "避免使用"
+      },
+      {
+        "supplement": "curcumin",
+        "drug": "blood_thinners",
+        "risk": "轻度抗血小板作用",
+        "action": "手术前2周停用"
+      },
+      {
+        "supplement": "coq10",
+        "drug": "warfarin",
+        "risk": "可能降低抗凝效果",
+        "action": "监测INR"
+      }
+    ]
+  },
+
+  "scoringAlgorithm": {
+    "formula": "total_score = (evidence * 0.25) + (indicator_match * 0.30) + (safety * 0.20) + (cost_effectiveness * 0.10) + (user_preference * 0.10) + (age_relevance * 0.05)",
+    "evidenceScoring": {
+      "5": "Strong evidence (multiple RCTs, meta-analyses)",
+      "4": "Good evidence (RCTs, systematic reviews)",
+      "3": "Moderate evidence (some RCTs, observational)",
+      "2": "Preliminary evidence (few studies, animal data)",
+      "1": "Traditional use, insufficient evidence"
+    },
+    "safetyScoring": {
+      "1.0": "Excellent safety profile, no known issues",
+      "0.8": "Good safety, minor side effects possible",
+      "0.6": "Moderate safety, contraindications exist",
+      "0.4": "Caution needed, significant interactions",
+      "0.2": "High risk, use only under supervision"
+    }
+  },
+
+  "recommendationWorkflow": [
+    {
+      "step": 1,
+      "action": "analyze_health_profile",
+      "inputs": ["latest_health_report", "user_profile"],
+      "outputs": ["abnormal_indicators", "risk_factors"]
+    },
+    {
+      "step": 2,
+      "action": "check_current_supplements",
+      "inputs": ["user_current_supplements"],
+      "outputs": ["appropriateness_score", "interaction_warnings"]
+    },
+    {
+      "step": 3,
+      "action": "map_indicators_to_supplements",
+      "inputs": ["abnormal_indicators", "supplement_database"],
+      "outputs": ["candidate_supplements", "priority_scores"]
+    },
+    {
+      "step": 4,
+      "action": "apply_personalization",
+      "inputs": ["user_profile", "candidate_supplements"],
+      "outputs": ["personalized_recommendations"]
+    },
+    {
+      "step": 5,
+      "action": "optimize_timing",
+      "inputs": ["personalized_recommendations", "user_meal_pattern"],
+      "outputs": ["daily_schedule"]
+    },
+    {
+      "step": 6,
+      "action": "suggest_brands",
+      "inputs": ["personalized_recommendations", "brand_database", "user_budget"],
+      "outputs": ["brand_recommendations", "price_comparison"]
+    },
+    {
+      "step": 7,
+      "action": "set_follow_up",
+      "inputs": ["recommendations", "indicator_improvement_timeline"],
+      "outputs": ["review_date", "retest_schedule"]
+    }
+  ]
+}

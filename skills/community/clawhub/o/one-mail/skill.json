@@ -1,0 +1,26 @@
+{
+  "name": "one-mail",
+  "version": "1.3.0",
+  "description": "统一邮箱管理工具，支持 Gmail、Outlook 和网易邮箱（163/126）",
+  "author": "Huang Baixun ([@huangbaixun](https://github.com/huangbaixun))",
+  "created": "2026-03-07",
+  "category": "productivity",
+  "tags": ["email", "gmail", "outlook", "163", "126", "netease", "mail", "productivity", "cli", "imap", "smtp"],
+  "dependencies": {
+    "required": ["bash", "jq", "curl", "python3"],
+    "optional": ["gog"]
+  },
+  "platforms": ["macos", "linux"],
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "fetch": "bash scripts/fetch.sh",
+    "read": "bash scripts/read.sh",
+    "send": "bash scripts/send.sh",
+    "accounts": "bash scripts/accounts.sh"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huangbaixun/one-mail"
+  }
+}

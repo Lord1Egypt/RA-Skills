@@ -1,0 +1,9 @@
+{
+  "name": "api-hunter",
+  "version": "1.0.0",
+  "description": "全自動 API 服務商獵人 - 搜尋免費 API",
+  "author": "terryyehai",
+  "homepage": "https://github.com/terryyehai",
+  "keywords": ["api", "hunter", "free", "automation"],
+  "license": "MIT"
+}

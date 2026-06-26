@@ -1,0 +1,106 @@
+Extracted from test case:
+Position FEN: x
+Perft depth: 3
+
+Now follow stepwise algorithm:
+Search position is x
+Depth remaining is 3
+
+Step 1:
+Log perft from search position to depth remaining:
+"""
+move_a: 100
+move_b: 45
+move_c: 50
+"""
+
+Step 2:
+Set Stockfish state and log perft:
+position fen x
+go perft 3
+
+Logged perft with Stockfish:
+"""
+move_a: 100
+move_b: 50
+move_c: 50
+"""
+
+Step 3:
+Mismatch with move_b (got 45, expected 50).
+Search position becomes x with move_b played.
+Depth remaining becomes 3 - 1 = 2
+
+Step 4:
+Remaining depth isn't 0 so go jump to step 1.
+
+Step 1:
+Log perft from search position to depth remaining:
+"""
+move_d: 20
+move_e: 20
+move_f: 5
+"""
+
+Step 2:
+Set Stockfish state and log perft:
+position fen x moves move_b
+go perft 2
+
+Logged perft with Stockfish:
+"""
+move_d: 20
+move_e: 19
+move_f: 11
+"""
+
+Step 3:
+Choose mismatch with move_f (got 5, expected 11).
+Search position becomes x with move_b and move_f played
+Depth remaining becomes 2 - 1 = 1
+
+Step 4:
+Remaining depth isn't 0 so go jump to step 1.
+
+
+Step 1:
+Log perft from search position to depth remaining:
+"""
+move_g: 1
+move_h: 1
+move_i: 1
+move_j: 1
+move_k: 1
+"""
+
+Step 2:
+Set Stockfish state and log perft:
+position fen x moves move_b, move_f
+go perft 1
+
+Logged perft with Stockfish:
+"""
+move_g: 1
+move_h: 1
+move_i: 1
+move_j: 1
+move_k: 1
+move_l: 1
+move_m: 1
+move_n: 1
+move_o: 1
+move_p: 1
+move_q: 1
+"""
+
+Step 3:
+Choose mismatch with move_l (got 0, expected 1).
+Search position becomes x with move_b, move_f and move_l played
+Depth remaining becomes 1 - 1 = 0
+
+Step 4:
+Remaining depth is 0 so stop.
+
+Now I can report the sequence
+move_b, move_f, move_l
+to lead to the anomaly.

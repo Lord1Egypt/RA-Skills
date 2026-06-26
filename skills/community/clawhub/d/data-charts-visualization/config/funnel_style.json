@@ -1,0 +1,54 @@
+{
+  "chartType": "funnel",
+  "common": {
+    "title": {
+      "main": {
+        "show": true,
+        "align": "center",
+        "fontSize": 24,
+        "color": "#1f2937",
+        "bold": true
+      },
+      "subtitle": {
+        "show": true,
+        "fontSize": 14,
+        "color": "#6b7280"
+      }
+    },
+    "canvas": {
+      "backgroundColor": "#ffffff",
+      "palette": [
+        "#2563eb",
+        "#14b8a6",
+        "#f59e0b",
+        "#ef4444",
+        "#8b5cf6"
+      ],
+      "plotArea": {
+        "left": "12%",
+        "right": "12%",
+        "top": "21%",
+        "bottom": "15%"
+      }
+    },
+    "legend": {
+      "show": true,
+      "position": "bottom-center",
+      "orient": "horizontal",
+      "fontSize": 12,
+      "color": "#4b5563"
+    }
+  },
+  "specific": {
+    "sort": "descending",
+    "gap": 2,
+    "minSize": "12%",
+    "maxSize": "88%",
+    "itemOpacity": 0.92,
+    "labelPosition": "inside",
+    "showLabel": true,
+    "labelFormatter": "{b}: {d}%",
+    "labelFontSize": 12,
+    "labelColor": "#334155"
+  }
+}

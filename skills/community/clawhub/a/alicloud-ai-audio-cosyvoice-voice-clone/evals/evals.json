@@ -1,0 +1,39 @@
+{
+  "skill_name": "alicloud-ai-audio-cosyvoice-voice-clone",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "用阿里云百炼的 CosyVoice 给我做一个声音复刻。参考音频是 https://example.com/female-host.wav，目标模型用 cosyvoice-v3.5-plus，前缀就叫 host01。请给我可复用的请求 JSON，并说明后续合成时 voice_id 要怎么用。",
+      "expected_output": "Produces a clone enrollment request for cosyvoice-v3.5-plus and explains that the returned voice_id must be reused in later TTS calls with the same target_model.",
+      "files": [],
+      "expectations": [
+        "The output uses model \"voice-enrollment\".",
+        "The output sets target_model to cosyvoice-v3.5-plus.",
+        "The output includes prefix and reference audio URL.",
+        "The output explains that voice_id is reused in later synthesis requests."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我要给客服机器人做英文音色克隆，音频地址是 https://example.com/agent-en.wav，语言提示 en，前缀 agent7。帮我准备最小可用的 CosyVoice clone 请求，并提醒我有哪些区域限制。",
+      "expected_output": "Produces a minimal English clone request and notes that cosyvoice-v3.5-plus/flash clone capabilities are limited to China mainland deployment mode.",
+      "files": [],
+      "expectations": [
+        "The request contains language_hints with en.",
+        "The request includes a public URL field for the enrollment sample.",
+        "The answer mentions China mainland deployment restrictions for v3.5 clone/design."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我生成一个 CosyVoice 声音复刻模板，我要控制 max_prompt_audio_length=12 和 enable_preprocess=true，模型还是 cosyvoice-v3.5-plus，样本地址 https://example.com/news.wav，前缀 news9。",
+      "expected_output": "Produces a clone request including the optional preprocessing fields supported by cosyvoice-v3.5-plus.",
+      "files": [],
+      "expectations": [
+        "The request includes max_prompt_audio_length set to 12.",
+        "The request includes enable_preprocess set to true.",
+        "The request keeps target_model as cosyvoice-v3.5-plus."
+      ]
+    }
+  ]
+}

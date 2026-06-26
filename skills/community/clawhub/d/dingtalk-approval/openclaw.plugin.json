@@ -1,0 +1,40 @@
+{
+  "id": "dingtalk-approval",
+  "name": "DingTalk Approval Tools",
+  "description": "钉钉 OA 审批处理插件 - 支持查询待办、查看详情和执行审批操作",
+  "version": "2.3.2",
+  "kind": "plugin",
+  "main": "index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "dingtalkUserId": {
+        "type": "string",
+        "description": "钉钉用户 ID（用于执行审批操作）"
+      },
+      "appKey": {
+        "type": "string",
+        "description": "钉钉开放平台应用 AppKey"
+      },
+      "appSecret": {
+        "type": "string",
+        "description": "钉钉开放平台应用 AppSecret"
+      }
+    },
+    "required": ["dingtalkUserId", "appKey", "appSecret"],
+    "additionalProperties": false
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dingtalk",
+    "approval",
+    "oa",
+    "审批",
+    "钉钉"
+  ],
+  "author": "Yang",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/whauff/dingtalk-approval"
+}

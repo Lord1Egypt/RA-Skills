@@ -1,0 +1,13 @@
+{
+  "prompt": "一只毛茸茸的橘猫坐在窗边，真实摄影风格，阳光柔和，无文字，无水印",
+  "base_url": "https://your-api.example.com/v1",
+  "api_key": "sk-xxxx",
+  "model": "gpt-image-2",
+  "size": "1024x1024",
+  "task_name": "orange-cat-window",
+  "timeout_ms": 300000,
+  "output_dir": "/tmp/generated-images",
+  "response_format": "b64_json",
+  "n": 1,
+  "return_base64": false
+}

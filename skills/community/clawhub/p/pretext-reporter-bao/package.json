@@ -1,0 +1,45 @@
+{
+  "name": "pretext-reporter-bao",
+  "version": "0.1.0",
+  "description": "文本测量和Canvas布局报告工具 - 基于Pretext库，支持多语言文本测量、行布局计算、可视化报告生成",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node test.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "text-layout",
+    "pretext",
+    "canvas",
+    "measure",
+    "i18n",
+    "typescript"
+  ],
+  "author": "Bao",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "pretext"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baojun-billion/pretext-reporter-bao.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baojun-billion/pretext-reporter-bao/issues"
+  },
+  "homepage": "https://github.com/baojun-billion/pretext-reporter-bao#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/douyin-xingtu/gw/api/gsearch/search_for_author_square/v1 for Douyin Creator Marketplace (Xingtu) Creator Search through JustOneAPI.",
+  "displayName": "Douyin Creator Marketplace (Xingtu) Creator Search",
+  "endpointPath": "gw/api/gsearch/search_for_author_square",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Douyin Creator Marketplace (Xingtu) creator Search data, including filters, returning profile, and audience, for discovery, comparison, and shortlist building.",
+      "method": "GET",
+      "operationId": "gwApiGsearchSearchForAuthorSquareV1",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "",
+          "description": "Search keyword.",
+          "enumValues": [],
+          "location": "query",
+          "name": "keyword",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": 1,
+          "description": "Page number for pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": "NICKNAME",
+          "description": "Search criteria type.\n\nAvailable Values:\n- `NICKNAME`: By Nickname\n- `CONTENT`: By Content",
+          "enumValues": [
+            "NICKNAME",
+            "CONTENT"
+          ],
+          "location": "query",
+          "name": "searchType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Follower range (e.g., 10-100).",
+          "enumValues": [],
+          "location": "query",
+          "name": "followerRange",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL price type.\n\nAvailable Values:\n- `视频1_20s`: Video 1-20s\n- `视频21_60s`: Video 21-60s\n- `视频60s以上`: Video > 60s\n- `定制短剧单集`: Mini-drama episode\n- `千次自然播放量`: CPM naturally\n- `短直种草视频`: Short-live seeding video\n- `短直预热视频`: Short-live warm-up video\n- `短直明星种草`: Celebrity short-live seeding\n- `短直明星预热`: Celebrity short-live warm-up\n- `明星视频`: Celebrity video\n- `合集视频`: Collection video\n- `抖音短视频共创_主投稿达人`: Douyin short video co-creation - main creator\n- `抖音短视频共创_参与达人`: Douyin short video co-creation - participant",
+          "enumValues": [
+            "视频1_20s",
+            "视频21_60s",
+            "视频60s以上",
+            "定制短剧单集",
+            "千次自然播放量",
+            "短直种草视频",
+            "短直预热视频",
+            "短直明星种草",
+            "短直明星预热",
+            "明星视频",
+            "合集视频",
+            "抖音短视频共创_主投稿达人",
+            "抖音短视频共创_参与达人"
+          ],
+          "location": "query",
+          "name": "kolPriceType",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "KOL price range (e.g., 10000-50000).",
+          "enumValues": [],
+          "location": "query",
+          "name": "kolPriceRange",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Content tag filter.",
+          "enumValues": [],
+          "location": "query",
+          "name": "contentTag",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/douyin-xingtu/gw/api/gsearch/search_for_author_square/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Creator Search",
+      "tags": [
+        "Douyin Creator Marketplace (Xingtu)"
+      ]
+    }
+  ],
+  "platformKey": "douyin-xingtu",
+  "primaryTag": "Douyin Creator Marketplace (Xingtu)",
+  "skillName": "justoneapi_douyin_xingtu_gw_api_gsearch_search_for_author_square",
+  "skillType": "interface",
+  "slug": "justoneapi-douyin-xingtu-gw-api-gsearch-search-for-author-square",
+  "sourceTitle": "OpenAPI definition"
+}

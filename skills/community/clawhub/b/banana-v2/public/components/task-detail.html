@@ -1,0 +1,354 @@
+<!-- 任务详情组件 -->
+<div class="win-task-detail" id="win-task-detail-content">
+    <div class="task-detail-loading" style="text-align:center;padding:40px;">
+        <div class="win-spinner"></div>
+        <p style="margin-top:12px;color:var(--text-secondary,#6b7280);" data-i18n="taskDetail.loading">加载中...</p>
+    </div>
+</div>
+
+<script>
+(function() {
+    const taskId = window._winTaskId;
+    if (!taskId) {
+        $('#win-task-detail-content').html('<p style="text-align:center;padding:40px;color:#dc2626;" data-i18n="taskDetail.invalidId">任务ID无效</p>');
+        return;
+    }
+    
+    // 从后端获取任务数据
+    $.get(`/api/work/${taskId}`, function(res) {
+        if (!res.success || !res.data) {
+            $('#win-task-detail-content').html('<p style="text-align:center;padding:40px;color:#dc2626;" data-i18n="taskDetail.notFound">任务不存在</p>');
+            return;
+        }
+        
+        const work = res.data;
+        const date = new Date(work.date);
+        const dateStr = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+        
+        let statusText = '';
+        let statusClass = '';
+        if (work.state === 1) {
+            statusText = t('taskDetail.generating');
+            statusClass = 'status-pending';
+        } else if (work.state === 99) {
+            statusText = t('taskDetail.failed');
+            statusClass = 'status-failed';
+        } else if (work.state === 10) {
+            statusText = t('taskDetail.completed');
+            statusClass = 'status-completed';
+        } else {
+            statusText = t('taskDetail.unknownStatus');
+            statusClass = 'status-unknown';
+        }
+        
+        // 获取图片URL
+        let imageUrl = '';
+        if (work.response_data) {
+            try {
+                const responseData = JSON.parse(work.response_data);
+                imageUrl = responseData.image_url || '';
+            } catch (e) {}
+        }
+        
+        // 构建信息
+        const infoItems = [];
+        infoItems.push(work.ratio || '1:1');
+        infoItems.push(work.quality || '2K');
+        if (work.cut > 1) infoItems.push(`${work.cut}${t('params.grid')}`);
+        const infoText = infoItems.join(' · ');
+        
+        const content = `
+            <div class="task-detail-header ${statusClass}">
+                <div class="task-detail-status">${statusText}</div>
+                <div class="task-detail-date">${dateStr}</div>
+            </div>
+            <div class="task-detail-body">
+                <div class="task-detail-section">
+                    <h4 data-i18n="taskDetail.prompt">${t('taskDetail.prompt')}</h4>
+                    <div class="task-detail-prompt">${work.prompt || t('taskDetail.none')}</div>
+                </div>
+                ${work.error ? `
+                <div class="task-detail-section">
+                    <h4 style="color:#dc2626;" data-i18n="taskDetail.errorMsg">${t('taskDetail.errorMsg')}</h4>
+                    <div class="task-detail-prompt" style="background:#fef2f2;color:#991b1b;">${work.error}</div>
+                </div>
+                ` : ''}
+                <div class="task-detail-grid">
+                    <div class="task-detail-item">
+                        <span class="label" data-i18n="taskDetail.model">${t('taskDetail.model')}</span>
+                        <span class="value">${work.model || 'nano-banana-pro'}</span>
+                    </div>
+                    <div class="task-detail-item">
+                        <span class="label" data-i18n="taskDetail.ratio">${t('taskDetail.ratio')}</span>
+                        <span class="value">${work.ratio || '1:1'}</span>
+                    </div>
+                    <div class="task-detail-item">
+                        <span class="label" data-i18n="taskDetail.resolution">${t('taskDetail.resolution')}</span>
+                        <span class="value">${work.quality || '2K'}</span>
+                    </div>
+                    <div class="task-detail-item">
+                        <span class="label" data-i18n="taskDetail.cut">${t('taskDetail.cut')}</span>
+                        <span class="value">${work.cut > 1 ? work.cut + t('params.grid') : t('taskDetail.noCut')}</span>
+                    </div>
+                </div>
+                ${work.path ? `
+                <div class="task-detail-section">
+                    <h4 data-i18n="taskDetail.saveLocation">${t('taskDetail.saveLocation')}</h4>
+                    <div class="task-detail-path" onclick="openFolder('${work.path}')">
+                        <span>📁 ${work.path}</span>
+                        <button class="copy-btn" onclick="event.stopPropagation(); navigator.clipboard.writeText('${work.path}'); alert('${t('taskDetail.copied')}');">${t('taskDetail.copy')}</button>
+                    </div>
+                </div>
+                ` : ''}
+                ${imageUrl ? `
+                <div class="task-detail-section">
+                    <h4 data-i18n="taskDetail.originalLink">${t('taskDetail.originalLink')}</h4>
+                    <div class="task-detail-link" onclick="navigator.clipboard.writeText('${imageUrl}'); alert('${t('taskDetail.copied')}');">
+                        ${imageUrl.substring(0, 60)}${imageUrl.length > 60 ? '...' : ''}
+                    </div>
+                </div>
+                ` : ''}
+                <div class="task-detail-section">
+                    <h4 data-i18n="taskDetail.taskId">${t('taskDetail.taskId')}</h4>
+                    <div class="task-detail-taskid">
+                        <span>${work.task_id}</span>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('${work.task_id}'); alert('${t('taskDetail.copied')}');">${t('taskDetail.copy')}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-detail-footer">
+                ${work.state === 1 || work.state === 99 ? `<button class="win-btn win-btn-secondary" id="task-retry-btn">${t('taskDetail.fetchImage')}</button>` : ''}
+                <button class="win-btn win-btn-primary" id="task-delete-btn" style="background:#dc2626;">${t('taskDetail.delete')}</button>
+            </div>
+        `;
+        
+        $('#win-task-detail-content').html(content);
+        
+        // 重试按钮
+        $('#task-retry-btn').on('click', function() {
+            const $btn = $(this);
+            $btn.prop('disabled', true).text(t('taskDetail.fetching'));
+            
+            // 从 localStorage 获取 API Key
+            const apiKey = localStorage.getItem('banana_api_key') || '';
+            
+            $.ajax({
+                url: `/api/poll/${taskId}`,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ api_key: apiKey }),
+                success: function(result) {
+                    if (result.success) {
+                        if (result.status === 'completed') {
+                            alert(t('taskDetail.fetchSuccess'));
+                            winClose('task-detail');
+                            // 刷新列表
+                            if (window.loadWorks) window.loadWorks();
+                        } else if (result.status === 'pending') {
+                            alert(t('taskDetail.stillProcessing'));
+                        } else if (result.status === 'failed') {
+                            alert(t('taskDetail.generateFailed') + ': ' + (result.msg || t('taskDetail.unknownError')));
+                        }
+                    } else {
+                        alert(t('taskDetail.fetchFailed') + ': ' + (result.msg || t('taskDetail.unknownError')));
+                    }
+                },
+                error: function(xhr) {
+                    alert(t('taskDetail.networkError') + ': ' + (xhr.responseJSON?.error || xhr.statusText));
+                },
+                complete: function() {
+                    $btn.prop('disabled', false).text(t('taskDetail.fetchImage'));
+                }
+            });
+        });
+        
+        // 删除按钮
+        $('#task-delete-btn').on('click', function() {
+            if (!confirm(t('taskDetail.confirmDelete'))) return;
+            
+            const $btn = $(this);
+            $btn.prop('disabled', true).text(t('taskDetail.deleting'));
+            
+            $.post(`/api/admin/delete/${taskId}`, function(res) {
+                if (res.success) {
+                    winClose('task-detail');
+                    if (window.loadWorks) window.loadWorks();
+                } else {
+                    alert(t('taskDetail.deleteFailed') + ': ' + res.error);
+                }
+            }).fail(function() {
+                alert(t('taskDetail.networkError'));
+            });
+        });
+        
+    }).fail(function(xhr) {
+        $('#win-task-detail-content').html(`<p style="text-align:center;padding:40px;color:#dc2626;">${t('taskDetail.loadFailed')}: ${xhr.statusText}</p>`);
+    });
+    
+    // 打开文件夹函数
+    window.openFolder = function(folderPath) {
+        $.ajax({
+            url: '/api/open-folder',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ path: folderPath })
+        });
+    };
+})();
+</script>
+
+<style>
+.task-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.task-detail-header.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.task-detail-header.status-failed {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.task-detail-header.status-completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.task-detail-status {
+    font-weight: 600;
+}
+
+.task-detail-date {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.task-detail-body {
+    font-size: 14px;
+}
+
+.task-detail-section {
+    margin-bottom: 16px;
+}
+
+.task-detail-section h4 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: var(--text-secondary, #6b7280);
+    font-weight: 500;
+}
+
+.task-detail-prompt {
+    background: var(--bg-hover, #f3f4f6);
+    padding: 12px;
+    border-radius: 8px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.task-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.task-detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--bg-hover, #f3f4f6);
+    border-radius: 6px;
+}
+
+.task-detail-item .label {
+    color: var(--text-secondary, #6b7280);
+}
+
+.task-detail-item .value {
+    font-weight: 500;
+}
+
+.task-detail-path {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--bg-hover, #f3f4f6);
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.task-detail-path:hover {
+    background: var(--bg-active, #e5e7eb);
+}
+
+.task-detail-path span {
+    flex: 1;
+    font-size: 13px;
+    word-break: break-all;
+}
+
+.task-detail-link {
+    background: var(--bg-hover, #f3f4f6);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    word-break: break-all;
+    cursor: pointer;
+    color: var(--primary-color, #3b82f6);
+}
+
+.task-detail-link:hover {
+    text-decoration: underline;
+}
+
+.task-detail-taskid {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-hover, #f3f4f6);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.task-detail-taskid span {
+    flex: 1;
+}
+
+.copy-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-primary, #fff);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    background: var(--bg-hover, #f3f4f6);
+}
+
+.task-detail-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+</style>

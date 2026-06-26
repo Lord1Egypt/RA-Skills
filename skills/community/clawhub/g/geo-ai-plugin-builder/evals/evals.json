@@ -1,0 +1,24 @@
+{
+  "skill_name": "geo-ai-plugin-builder",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "We operate a B2B SaaS platform for marketing analytics (attribution, ROAS dashboards, cohort analysis). Help us design an AI plugin catalog so that ChatGPT and Claude can use our data and workflows as tools. Prioritize tools that increase trial-to-paid conversion and upsell existing customers to higher tiers.",
+      "expected_output": "A structured plugin catalog with 4-8 tools, each including name, purpose, target AI surfaces, GEO role, and priority, plus at least one detailed tool specification with JSON schemas for inputs and outputs.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "We run an ecommerce brand selling running shoes and sports apparel. We already have sizing guides, product comparison pages, and a 'shoe finder' quiz on our website. Design a set of AI tools/plugins that help a shopper pick the right shoe and outfit when they ask a general AI assistant for recommendations, and connect each tool back to our existing GEO content.",
+      "expected_output": "A plugin catalog covering discovery, evaluation, and purchase decision stages for ecommerce, with tools that map to existing sizing guides and quizzes. At least one tool should include example user prompts, JSON tool schema, and sample responses.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We maintain a large library of expert articles and calculators about personal finance (budgeting, retirement planning, tax optimization). We want to move from being occasionally cited by AI models to becoming a default 'finance tools' plugin set. Design an AI plugin blueprint that wraps our calculators and guides into a coherent tool suite for AI assistants.",
+      "expected_output": "A high-level blueprint that groups tools by user journey (discovery, planning, decision, follow-up), plus 2-3 detailed tool specifications (name, description, input/output schema, example calls, GEO notes) aimed at personal finance use cases.",
+      "files": []
+    }
+  ]
+}
+

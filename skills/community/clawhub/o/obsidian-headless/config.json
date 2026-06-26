@@ -1,0 +1,18 @@
+{
+  "name": "obsidian-headless",
+  "version": "1.0.0",
+  "description": "在无显示器/无 GUI 环境下通过自然语言指令管理 Obsidian 笔记仓库",
+  "author": "mann",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imakid/obsidian-headless"
+  },
+  "keywords": [
+    "obsidian",
+    "cli",
+    "openclaw",
+    "headless",
+    "notes"
+  ]
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: "WeRead Obsidian"
+  short_description: "Sync WeRead notes by title and write polished reflections back into Obsidian."
+  brand_color: "#2F6B5F"
+  default_prompt: "Use $weread-obsidian to sync a WeRead book by title or polish my reading reflections and save them back into Obsidian."
+
+policy:
+  allow_implicit_invocation: true

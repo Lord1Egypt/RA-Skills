@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/yanhuijiang/Desktop/skill打包/**)",
+      "Bash(zip -r xfyun-image-understanding.zip xfyun-image-understanding/)"
+    ]
+  }
+}

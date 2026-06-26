@@ -1,0 +1,12 @@
+{
+  "skill_name": "instagram-poster",
+  "version": "1.0.0",
+  "description": "AI-powered Instagram post generator that creates captions, hashtags, and image prompts from a topic.",
+  "input_format": "string (user topic or instruction)",
+  "output_format": {
+    "caption": "string",
+    "hashtags": "string",
+    "image_prompt": "string",
+    "status": "ready_to_post"
+  }
+}

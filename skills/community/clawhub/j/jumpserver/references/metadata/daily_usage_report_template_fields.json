@@ -1,0 +1,1018 @@
+{
+  "template_id": "bastion-daily-usage-template",
+  "template_path": "template/bastion-daily-usage-template.html",
+  "template_type": "html",
+  "placeholder_pattern": "{{field}}",
+  "field_count": 46,
+  "fields": [
+    {
+      "field": "license_company",
+      "section": "header",
+      "component": "license_info",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py license-detail",
+          "output_field": "corporation"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "许可证归属公司"
+    },
+    {
+      "field": "license_asset_total",
+      "section": "header",
+      "component": "license_info",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py license-detail",
+          "output_field": "asset_count"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "许可证允许纳管的资产总量"
+    },
+    {
+      "field": "license_asset_remaining",
+      "section": "header",
+      "component": "license_info",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py license-detail",
+          "output_field": "asset_count - current_asset_count"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "许可证剩余可用资产数"
+    },
+    {
+      "field": "daily_summary",
+      "section": "header",
+      "component": "executive_summary",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability suspicious-operation-summary",
+          "capability_id": "suspicious-operation-summary"
+        }
+      ],
+      "depends_on_fields": [
+        "login_total",
+        "login_failed",
+        "session_total",
+        "command_total",
+        "file_transfer_total",
+        "risk_event_total"
+      ],
+      "description": "头部今日小结文本"
+    },
+    {
+      "field": "report_date",
+      "section": "header",
+      "component": "report_context",
+      "value_type": "datetime_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "runtime",
+      "sources": [
+        {
+          "entrypoint": "report runtime context",
+          "output_field": "report_date"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "报告日期"
+    },
+    {
+      "field": "date_from",
+      "section": "header",
+      "component": "report_context",
+      "value_type": "datetime_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "runtime",
+      "sources": [
+        {
+          "entrypoint": "report runtime context",
+          "output_field": "date_from"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "统计开始时间"
+    },
+    {
+      "field": "date_to",
+      "section": "header",
+      "component": "report_context",
+      "value_type": "datetime_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "runtime",
+      "sources": [
+        {
+          "entrypoint": "report runtime context",
+          "output_field": "date_to"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "统计结束时间"
+    },
+    {
+      "field": "generated_at",
+      "section": "header",
+      "component": "report_context",
+      "value_type": "datetime_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "runtime",
+      "sources": [
+        {
+          "entrypoint": "report runtime context",
+          "output_field": "generated_at"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "报告生成时间"
+    },
+    {
+      "field": "login_total",
+      "section": "login",
+      "component": "login_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login",
+          "output_field": "login_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "当日登录总数"
+    },
+    {
+      "field": "login_success",
+      "section": "login",
+      "component": "login_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login",
+          "output_field": "login_success"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "当日成功登录数"
+    },
+    {
+      "field": "login_failed",
+      "section": "login",
+      "component": "login_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login",
+          "output_field": "login_failed"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability failed-login-statistics",
+          "capability_id": "failed-login-statistics"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "当日失败登录数"
+    },
+    {
+      "field": "unique_login_city_count",
+      "section": "login",
+      "component": "login_source_summary",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login",
+          "output_field": "unique_login_city_count"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "登录来源城市去重数量"
+    },
+    {
+      "field": "top_login_ip_summary",
+      "section": "login",
+      "component": "login_source_summary",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login",
+          "output_field": "top_login_ip_summary"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "登录来源 IP 摘要"
+    },
+    {
+      "field": "login_top10_rows",
+      "section": "login",
+      "component": "login_detail_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "direct_cli",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login",
+          "output_field": "rows_html"
+        }
+      ],
+      "depends_on_fields": [],
+      "table_columns": [
+        "登录用户名",
+        "来源城市",
+        "来源 IP",
+        "状态"
+      ],
+      "description": "当日登录会话明细 Top 10 表格 tbody 行 HTML"
+    },
+    {
+      "field": "login_failed_rows",
+      "section": "login",
+      "component": "login_failure_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability failed-login-statistics",
+          "capability_id": "failed-login-statistics"
+        }
+      ],
+      "depends_on_fields": [
+        "login_failed",
+        "top_login_ip_summary"
+      ],
+      "table_columns": [
+        "登录用户名",
+        "来源城市",
+        "来源 IP",
+        "是否常用IP",
+        "原因描述",
+        "状态"
+      ],
+      "description": "失败登录明细表格 tbody 行 HTML，包含常用 IP 研判列"
+    },
+    {
+      "field": "session_total",
+      "section": "session",
+      "component": "session_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query",
+          "output_field": "session_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "当日会话总数"
+    },
+    {
+      "field": "session_total_duration",
+      "section": "session",
+      "component": "session_metrics",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query"
+        }
+      ],
+      "depends_on_fields": [
+        "session_total"
+      ],
+      "description": "当日会话总时长"
+    },
+    {
+      "field": "avg_session_duration",
+      "section": "session",
+      "component": "session_metrics",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query",
+          "output_field": "avg_session_duration"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "平均会话时长"
+    },
+    {
+      "field": "longest_session",
+      "section": "session",
+      "component": "session_metrics",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability session-duration-ranking",
+          "capability_id": "session-duration-ranking",
+          "output_field": "longest_session"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "最长会话摘要"
+    },
+    {
+      "field": "protocol_distribution_rows",
+      "section": "session",
+      "component": "protocol_distribution_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability protocol-usage-distribution",
+          "capability_id": "protocol-usage-distribution",
+          "output_field": "rows_html"
+        }
+      ],
+      "depends_on_fields": [],
+      "table_columns": [
+        "协议",
+        "次数",
+        "占比"
+      ],
+      "description": "协议维度占比表格 tbody 行 HTML"
+    },
+    {
+      "field": "component_distribution_rows",
+      "section": "session",
+      "component": "component_distribution_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query"
+        }
+      ],
+      "depends_on_fields": [
+        "session_total"
+      ],
+      "table_columns": [
+        "组件",
+        "次数",
+        "占比"
+      ],
+      "description": "组件维度占比表格 tbody 行 HTML"
+    },
+    {
+      "field": "session_user_top10_rows",
+      "section": "session",
+      "component": "session_user_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability recent-active-users-ranking",
+          "capability_id": "recent-active-users-ranking"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query"
+        }
+      ],
+      "depends_on_fields": [
+        "session_total"
+      ],
+      "table_columns": [
+        "用户",
+        "会话数",
+        "占比"
+      ],
+      "description": "用户维度占比 Top 10 表格 tbody 行 HTML"
+    },
+    {
+      "field": "session_asset_top10_rows",
+      "section": "session",
+      "component": "session_asset_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability recent-active-assets-ranking",
+          "capability_id": "recent-active-assets-ranking",
+          "output_field": "rows_html"
+        }
+      ],
+      "depends_on_fields": [],
+      "table_columns": [
+        "资产名",
+        "次数"
+      ],
+      "description": "访问最多资产 Top 10 表格 tbody 行 HTML"
+    },
+    {
+      "field": "session_duration_top10_rows",
+      "section": "session",
+      "component": "session_duration_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability session-duration-ranking",
+          "capability_id": "session-duration-ranking",
+          "output_field": "rows_html"
+        }
+      ],
+      "depends_on_fields": [],
+      "table_columns": [
+        "用户名",
+        "资产名",
+        "时长"
+      ],
+      "description": "会话时长 Top 10 表格 tbody 行 HTML"
+    },
+    {
+      "field": "session_failed_rows",
+      "section": "session",
+      "component": "session_failure_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability session-record-query",
+          "capability_id": "session-record-query"
+        }
+      ],
+      "depends_on_fields": [
+        "session_total"
+      ],
+      "table_columns": [
+        "用户",
+        "资产",
+        "协议",
+        "失败原因",
+        "状态"
+      ],
+      "description": "会话失败明细表格 tbody 行 HTML"
+    },
+    {
+      "field": "command_total",
+      "section": "command",
+      "component": "command_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query",
+          "output_field": "command_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "命令记录总数"
+    },
+    {
+      "field": "high_risk_command_total",
+      "section": "command",
+      "component": "command_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit",
+          "output_field": "high_risk_command_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "高风险命令总数"
+    },
+    {
+      "field": "top_command_users",
+      "section": "command",
+      "component": "command_actor_summary",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query",
+          "output_field": "top_command_users"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "主要操作用户摘要"
+    },
+    {
+      "field": "top_command_assets",
+      "section": "command",
+      "component": "command_actor_summary",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query",
+          "output_field": "top_command_assets"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "主要操作资产摘要"
+    },
+    {
+      "field": "command_summary",
+      "section": "command",
+      "component": "command_analysis",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit"
+        }
+      ],
+      "depends_on_fields": [
+        "command_total",
+        "high_risk_command_total",
+        "top_command_users",
+        "top_command_assets"
+      ],
+      "description": "高危命令分析摘要文本"
+    },
+    {
+      "field": "command_risk_rows",
+      "section": "command",
+      "component": "command_risk_table",
+      "value_type": "html_rows",
+      "render_contract": "tbody_rows",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit",
+          "output_field": "rows_html"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query"
+        }
+      ],
+      "depends_on_fields": [],
+      "table_columns": [
+        "用户",
+        "资产",
+        "账号",
+        "操作命令",
+        "开始时间",
+        "结束时间",
+        "风险等级"
+      ],
+      "description": "高危命令执行明细表格 tbody 行 HTML"
+    },
+    {
+      "field": "command_compliance_analysis",
+      "section": "command",
+      "component": "command_compliance",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit"
+        }
+      ],
+      "depends_on_fields": [
+        "command_total",
+        "high_risk_command_total",
+        "command_risk_rows",
+        "top_command_users",
+        "top_command_assets"
+      ],
+      "description": "基于高危命令执行结果生成的运维规范判断文本"
+    },
+    {
+      "field": "risk_event_total",
+      "section": "risk",
+      "component": "risk_overview",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability suspicious-operation-summary",
+          "capability_id": "suspicious-operation-summary",
+          "output_field": "risk_event_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "风险或异常事件总数"
+    },
+    {
+      "field": "risk_level",
+      "section": "risk",
+      "component": "risk_overview",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability suspicious-operation-summary",
+          "capability_id": "suspicious-operation-summary"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability failed-login-statistics",
+          "capability_id": "failed-login-statistics"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query"
+        }
+      ],
+      "depends_on_fields": [
+        "risk_event_total",
+        "login_failed",
+        "high_risk_command_total",
+        "file_transfer_total"
+      ],
+      "description": "当日综合风险等级"
+    },
+    {
+      "field": "risk_summary",
+      "section": "risk",
+      "component": "risk_overview",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability suspicious-operation-summary",
+          "capability_id": "suspicious-operation-summary"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability failed-login-statistics",
+          "capability_id": "failed-login-statistics"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query"
+        }
+      ],
+      "depends_on_fields": [
+        "risk_level",
+        "risk_event_total",
+        "login_failed",
+        "high_risk_command_total",
+        "file_transfer_total"
+      ],
+      "description": "当日风险总览与审计判断文本"
+    },
+    {
+      "field": "risk_login_analysis",
+      "section": "risk",
+      "component": "risk_login_analysis",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability failed-login-statistics",
+          "capability_id": "failed-login-statistics"
+        }
+      ],
+      "depends_on_fields": [
+        "login_failed",
+        "login_failed_rows",
+        "top_login_ip_summary",
+        "unique_login_city_count"
+      ],
+      "description": "异常登录分析文本"
+    },
+    {
+      "field": "risk_command_analysis",
+      "section": "risk",
+      "component": "risk_command_analysis",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability command-record-query",
+          "capability_id": "command-record-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit"
+        }
+      ],
+      "depends_on_fields": [
+        "high_risk_command_total",
+        "command_risk_rows",
+        "top_command_users",
+        "top_command_assets"
+      ],
+      "description": "高危命令风险分析文本"
+    },
+    {
+      "field": "risk_transfer_analysis",
+      "section": "risk",
+      "component": "risk_transfer_analysis",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability file-transfer-heavy-ranking",
+          "capability_id": "file-transfer-heavy-ranking"
+        }
+      ],
+      "depends_on_fields": [
+        "file_transfer_total",
+        "file_upload_total",
+        "file_download_total",
+        "file_transfer_users",
+        "file_transfer_assets"
+      ],
+      "description": "传输风险分析文本"
+    },
+    {
+      "field": "risk_action",
+      "section": "risk",
+      "component": "risk_action_plan",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-list --audit-type login"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability high-risk-command-audit",
+          "capability_id": "high-risk-command-audit"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability suspicious-operation-summary",
+          "capability_id": "suspicious-operation-summary"
+        }
+      ],
+      "depends_on_fields": [
+        "risk_level",
+        "risk_summary",
+        "risk_login_analysis",
+        "risk_command_analysis",
+        "risk_transfer_analysis"
+      ],
+      "description": "风险处置建议文本，合并原 risk_action_1~3"
+    },
+    {
+      "field": "file_transfer_total",
+      "section": "file_transfer",
+      "component": "file_transfer_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query",
+          "output_field": "file_transfer_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "文件传输总数"
+    },
+    {
+      "field": "file_upload_total",
+      "section": "file_transfer",
+      "component": "file_transfer_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query",
+          "output_field": "file_upload_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "文件上传总数"
+    },
+    {
+      "field": "file_download_total",
+      "section": "file_transfer",
+      "component": "file_transfer_metrics",
+      "value_type": "number_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query",
+          "output_field": "file_download_total"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "文件下载总数"
+    },
+    {
+      "field": "file_transfer_users",
+      "section": "file_transfer",
+      "component": "file_transfer_actor_summary",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability file-transfer-heavy-ranking",
+          "capability_id": "file-transfer-heavy-ranking",
+          "output_field": "top_users_summary"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "主要涉及用户摘要"
+    },
+    {
+      "field": "file_transfer_assets",
+      "section": "file_transfer",
+      "component": "file_transfer_actor_summary",
+      "value_type": "string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "capability",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability file-transfer-heavy-ranking",
+          "capability_id": "file-transfer-heavy-ranking",
+          "output_field": "top_assets_summary"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "主要涉及资产摘要"
+    },
+    {
+      "field": "file_transfer_summary",
+      "section": "file_transfer",
+      "component": "file_transfer_analysis",
+      "value_type": "multiline_text",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "derived",
+      "sources": [
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_query.py audit-analyze --capability file-transfer-log-query",
+          "capability_id": "file-transfer-log-query"
+        },
+        {
+          "entrypoint": "python3 scripts/jumpserver_api/jms_diagnose.py inspect --capability file-transfer-heavy-ranking",
+          "capability_id": "file-transfer-heavy-ranking"
+        }
+      ],
+      "depends_on_fields": [
+        "file_transfer_total",
+        "file_upload_total",
+        "file_download_total",
+        "file_transfer_users",
+        "file_transfer_assets"
+      ],
+      "description": "文件传输结论文本"
+    },
+    {
+      "field": "current_date",
+      "section": "footer",
+      "component": "footer_date",
+      "value_type": "datetime_string",
+      "render_contract": "text",
+      "required": true,
+      "source_kind": "runtime",
+      "sources": [
+        {
+          "entrypoint": "report runtime context",
+          "output_field": "current_date"
+        }
+      ],
+      "depends_on_fields": [],
+      "description": "页脚右侧日期（年月日）"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "competitor-analyzer",
+  "description": "竞品分析自动化工具。输入竞品关键词或网站，自动抓取竞品公开信息（产品特点、价格、评价），生成结构化竞品分析报告，支持导出 JSON/Markdown 格式结果。SEO/运营/产品经理必备。",
+  "version": "1.0.0",
+  "author": "肥肥🐶",
+  "category": "商业分析",
+  "tags": ["竞品分析", "市场调研", "SEO", "竞争对手", "数据分析", "产品分析"],
+  "trigger": ["竞品分析", "竞争对手分析", "竞品调研", "competitor analysis", "市场分析", "竞品对比", "分析报告"],
+  "pricing": "¥200-500/月（个人版）| ¥999-2999/月（团队版）| ¥9999/次（企业定制）",
+  "homepage": "https://miaoda.feishu.cn/app/app_4jpczkukw8tkd/",
+  "requires": {
+    "tools": ["web_search", "web_crawl"],
+    "nodeVersion": ">=14.0.0"
+  },
+  "install": {
+    "command": "npm install",
+    "check": "node scripts/analyze.js --help"
+  },
+  "capabilities": {
+    "competitorCrawl": true,
+    "searchBasedAnalysis": true,
+    "structuredReport": true,
+    "jsonExport": true,
+    "markdownExport": true,
+    "multiCompetitor": true
+  }
+}

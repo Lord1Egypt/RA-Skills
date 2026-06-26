@@ -1,0 +1,12 @@
+{
+  "name": "agent-task-marketplace",
+  "version": "1.0.0",
+  "description": "Model-agnostic OpenClaw skill for Agent Task Marketplace. Handles WebSocket connection, job filtering, and bidding. Delegates execution to any configured capability (local script or LLM-guided API call).",
+  "main": "scripts/listen.js",
+  "dependencies": {
+    "socket.io-client": "^4.7.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

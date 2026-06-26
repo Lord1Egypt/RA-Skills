@@ -1,35 +1,31 @@
 ---
-name: "Eternal Network Diag"
-description: "Perform network diagnostics including ping, DNS resolution, TCP port checks, and traceroute for specified hosts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eternal-network-diag"
-sourceUrl: "https://clawhub.ai/skills/eternal-network-diag"
+name: network-diag
+description: Network diagnostics: ping, DNS, port check, traceroute
 ---
 
-# Eternal Network Diag
+# network-diag
 
-> Perform network diagnostics including ping, DNS resolution, TCP port checks, and traceroute for specified hosts.
+Run network diagnostics including ping, DNS resolution, port checks, and traceroute.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eternal-network-diag`
-- **Source URL:** [https://clawhub.ai/skills/eternal-network-diag](https://clawhub.ai/skills/eternal-network-diag)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/eternal-network-diag
+# Quick connectivity check
+python3 scripts/netdiag.py check google.com
+
+# Check if a port is open
+python3 scripts/netdiag.py port example.com 443
+
+# DNS resolution
+python3 scripts/netdiag.py dns example.com
+
+# Full diagnostic report
+python3 scripts/netdiag.py full example.com
 ```
+
+## Commands
+
+- `check <host>` — Ping-style connectivity check
+- `port <host> <port>` — Check if a TCP port is open
+- `dns <host>` — Resolve DNS for a hostname
+- `full <host>` — Run all diagnostics on a host

@@ -1,0 +1,27 @@
+{
+  "name": "book-of-answers-skill",
+  "display_name": "答案之书.skill",
+  "version": "1.0.0",
+  "description": "把问题轻轻放下，让电影、文学与音乐为你翻出一句带出处的回答。",
+  "language": "zh-CN",
+  "runtime": {
+    "type": "python3",
+    "entry_point": "main.py",
+    "callable": "handle_request"
+  },
+  "storage": {
+    "type": "sqlite",
+    "path": "data/book-of-answers-skill.sqlite3"
+  },
+  "data_sources": {
+    "books": "data/books.json"
+  },
+  "interaction_model": "interaction_model.json",
+  "intents": [
+    "LaunchIntent",
+    "AskAnswerIntent",
+    "SwitchBookIntent",
+    "DailyFortuneIntent",
+    "FallbackIntent"
+  ]
+}

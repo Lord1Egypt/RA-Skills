@@ -1,0 +1,17 @@
+{
+  "id": "s2-nomad-expansion-engine",
+  "pluginId": "s2-nomad-expansion-engine",
+  "version": "1.1.0",
+  "type": "native-code",
+  "entry": "handler.py",
+  "runtime": "python3",
+  "permissions": {
+    "network": ["localhost"],
+    "device": ["geolocation", "environmental_sensors"],
+    "tools": ["execute_nomad_expansion"]
+  },
+  "mcp_config": {
+    "auto_discovery": true,
+    "protocol_version": "2026.4.1"
+  }
+}

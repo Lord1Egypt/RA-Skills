@@ -1,0 +1,31 @@
+{
+  "product_name": "AquaGlow Vitamin C Face Serum",
+  "category": "Skincare",
+  "price": "$38",
+  "features": [
+    "30ml glass dropper bottle",
+    "15% L-ascorbic acid",
+    "Hyaluronic acid for deep hydration",
+    "Vitamin E antioxidant protection",
+    "Lightweight, non-greasy formula"
+  ],
+  "differentiators": [
+    "Clinical-grade 15% concentration (most serums use 5–10%)",
+    "Absorbs in under 10 seconds — works under makeup",
+    "Glass dropper preserves potency (no plastic degradation)"
+  ],
+  "audience": "Women 25–40 who want brighter, more even skin without a complicated routine",
+  "pain_point": "Dull, uneven skin tone that doesn't improve despite using moisturizer daily",
+  "tone": "Aspirational, clean, sensory — not clinical or medical",
+  "keywords": ["vitamin c face serum", "brightening serum", "vitamin c serum for glowing skin"],
+  "platform": "Shopify",
+  "constraints": [
+    "No medical claims (not FDA-evaluated)",
+    "Do not reference competitor brands"
+  ],
+  "certifications": [
+    "Vegan",
+    "Cruelty-free (Leaping Bunny certified)",
+    "Dermatologist-tested"
+  ]
+}

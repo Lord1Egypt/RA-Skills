@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candlestick Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>{{BASE_STYLES}}</style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <h1>{{TITLE}}</h1>
+      <div class="subtitle">{{SUBTITLE}}</div>
+    </div>
+    <div class="actions">
+      <button onclick="downloadPNG(this)">📥 Download PNG</button>
+      <button onclick="copyToClipboard(this)">📋 Copy Image</button>
+      <button onclick="saveToProject(this)">💾 Save Image</button>
+    </div>
+  </div>
+
+  <div id="chart-area">
+    <div id="kline-chart" style="width:100%;height:500px;"></div>
+  </div>
+
+  <script>{{BASE_EXPORT_JS}}</script>
+  <script>
+    // === DATA: [date, open, close, low, high, volume] ===
+    const rawData = [
+      ['2025-01-02', 94500, 96200, 93800, 96800, 12500],
+      ['2025-01-03', 96200, 95100, 94200, 97000, 11200],
+      ['2025-01-04', 95100, 97800, 94800, 98200, 15300],
+      // ... replace with real data
+    ];
+
+    const dates = rawData.map(d => d[0]);
+    const ohlc = rawData.map(d => [d[1], d[2], d[3], d[4]]);  // open, close, low, high
+    const volumes = rawData.map(d => d[5]);
+    const isUp = rawData.map(d => d[2] >= d[1]);
+
+    // Simple MA calculation
+    function calcMA(data, period) {
+      const result = [];
+      for (let i = 0; i < data.length; i++) {
+        if (i < period - 1) { result.push('-'); continue; }
+        let sum = 0;
+        for (let j = 0; j < period; j++) sum += data[i - j][1]; // close price
+        result.push((sum / period).toFixed(2));
+      }
+      return result;
+    }
+
+    window.CHART_INSTANCES = [];
+    const chart = echarts.init(document.getElementById('kline-chart'), 'dark');
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'cross' },
+      },
+      legend: { data: ['K', 'MA7', 'MA25'], top: 8 },
+      grid: [
+        { top: 50, left: 60, right: 30, height: '60%' },
+        { left: 60, right: 30, top: '76%', height: '16%' },
+      ],
+      xAxis: [
+        { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
+          axisLine: { lineStyle: { color: '#2d3148' } } },
+        { type: 'category', data: dates, gridIndex: 1, boundaryGap: true,
+          axisLine: { lineStyle: { color: '#2d3148' } } },
+      ],
+      yAxis: [
+        { scale: true, gridIndex: 0, splitLine: { lineStyle: { color: '#1e2236' } } },
+        { scale: true, gridIndex: 1, splitLine: { show: false },
+          axisLabel: { show: false }, axisTick: { show: false } },
+      ],
+      dataZoom: [
+        { type: 'inside', xAxisIndex: [0, 1], start: 0, end: 100 },
+        { type: 'slider', xAxisIndex: [0, 1], height: 20, bottom: 5 },
+      ],
+      series: [
+        {
+          name: 'K', type: 'candlestick', data: ohlc,
+          itemStyle: {
+            color: '#26a69a', color0: '#ef5350',
+            borderColor: '#26a69a', borderColor0: '#ef5350',
+          },
+        },
+        { name: 'MA7', type: 'line', data: calcMA(ohlc, 7), smooth: true,
+          lineStyle: { width: 1.5 }, symbol: 'none' },
+        { name: 'MA25', type: 'line', data: calcMA(ohlc, 25), smooth: true,
+          lineStyle: { width: 1.5 }, symbol: 'none' },
+        {
+          name: 'Volume', type: 'bar', xAxisIndex: 1, yAxisIndex: 1,
+          data: volumes.map((v, i) => ({
+            value: v,
+            itemStyle: { color: isUp[i] ? 'rgba(38,166,154,0.5)' : 'rgba(239,83,80,0.5)' },
+          })),
+        },
+      ],
+    });
+  
+    CHART_INSTANCES.push(chart);
+    </script>
+</body>
+</html>

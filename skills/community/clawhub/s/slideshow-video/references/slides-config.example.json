@@ -1,0 +1,114 @@
+{
+  "slides": [
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
+      "overlay": 118,
+      "text": [
+        {
+          "text": "I saved $5k in 6 months",
+          "size": 90,
+          "bold": true,
+          "y": 830,
+          "maxWidth": 920
+        },
+        {
+          "text": "doing this one thing",
+          "size": 70,
+          "y": 950,
+          "maxWidth": 900
+        }
+      ]
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1518186233392-c232efbf2373?auto=format&fit=crop&w=1200&q=80",
+      "overlay": 130,
+      "text": [
+        {
+          "text": "Most people spend before they save.",
+          "size": 72,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 900
+        },
+        {
+          "text": "Here's why that keeps them broke.",
+          "size": 54,
+          "y": 1010,
+          "maxWidth": 860
+        }
+      ]
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=1200&q=80",
+      "text": [
+        {
+          "text": "01. Pay yourself first",
+          "size": 76,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 920
+        },
+        {
+          "text": "Move 20% into savings on payday.",
+          "size": 52,
+          "y": 1000,
+          "maxWidth": 860
+        }
+      ]
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+      "text": [
+        {
+          "text": "02. Kill silent subscriptions",
+          "size": 72,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 920
+        },
+        {
+          "text": "Audit every recurring charge this week.",
+          "size": 52,
+          "y": 1000,
+          "maxWidth": 860
+        }
+      ]
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
+      "text": [
+        {
+          "text": "03. Spend by category, not impulse",
+          "size": 68,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 920
+        },
+        {
+          "text": "When the budget is gone, stop.",
+          "size": 52,
+          "y": 1000,
+          "maxWidth": 860
+        }
+      ]
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+      "text": [
+        {
+          "text": "Save this post",
+          "size": 84,
+          "bold": true,
+          "y": 860,
+          "maxWidth": 900
+        },
+        {
+          "text": "Follow for more money tips every week",
+          "size": 56,
+          "y": 990,
+          "maxWidth": 900
+        }
+      ]
+    }
+  ]
+}

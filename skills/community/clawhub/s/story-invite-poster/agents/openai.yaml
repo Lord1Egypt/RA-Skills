@@ -1,0 +1,4 @@
+interface:
+  display_name: "Story Invite Poster"
+  short_description: "Turn photos, memories, and event details into polished custom invitation posters"
+  default_prompt: "Use $story-invite-poster to turn our photos, memories, and event details into a custom invitation poster."

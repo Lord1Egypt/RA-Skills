@@ -1,0 +1,74 @@
+name: yunlv-contract-draft
+version: 1.1.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to draft or review foreign trade contracts, sales
+  agreements, or international commercial contracts. Use when generating Proforma
+  Invoice (PI), Sales Contract (SC), or Memorandum of Understanding (MOU). Use when
+  reviewing contract clauses for payment terms, delivery terms, or risk allocation.
+  Use when user mentions "合同起草", "外贸合同", "PI", "形式发票", "销售合同", "合同审核", "MOU", "保密协议",
+  "contract", "proforma invoice".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI TradeGPT API
+  url: https://api.yunlvai.com
+  purpose: 外贸合同内容生成与条款风险分析
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: compliance-risk
+tags:
+- 合同起草
+- 外贸合同
+- PI
+- 形式发票
+- 销售合同
+- 合同审核
+- MOU
+- 保密协议
+- 国际商法
+- Incoterms
+triggers:
+- 合同起草
+- 外贸合同
+- PI
+- 形式发票
+- 销售合同
+- 合同审核
+- MOU
+- 保密协议
+- NDA
+- contract
+- proforma invoice
+- Sales Contract
+- 国际合同
+pricing:
+  free:
+    features:
+    - 3份合同草稿
+    - 基础PI生成
+    - 标准条款
+  basic:
+    price: 299
+    currency: CNY
+    period: month
+    features:
+    - 无限合同起草
+    - 多类型合同
+    - 条款定制
+    - 风险标注
+    - 中英双语
+  pro:
+    price: 699
+    currency: CNY
+    period: month
+    features:
+    - 合同审核
+    - 谈判策略
+    - 多语言翻译
+    - 专家审阅通道

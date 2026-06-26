@@ -1,35 +1,214 @@
 ---
-name: "GPT Image Generator"
-description: "Generate images using ChatGPT's GPT-Image-2 model via browser automation (CDP). Shares the user's daily Brave Browser (port 9222) via the brave-browser-agent..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gpt-image-gen"
-sourceUrl: "https://clawhub.ai/skills/gpt-image-gen"
+name: gpt-image-gen
+description: |
+  Generate images using ChatGPT's GPT-Image-2 model via browser automation (CDP).
+  Shares the user's daily Brave Browser (port 9222) via the brave-browser-agent skill.
+  Navigate to chatgpt.com, input a prompt, trigger generation, and extract the result.
+
+  Use when:
+  (1) User asks to generate/create/draw an image or picture using GPT/ChatGPT
+  (2) User mentions "GPT生成图片", "ChatGPT画图", "gpt-image"
+  (3) Need high-quality AI image generation via ChatGPT
+  (4) User wants photorealistic images, complex scenes, or text-in-image generation
+  (5) Fallback/complement to Gemini image generation
+
+  Requires: Brave Browser running with --remote-debugging-port=9222, ChatGPT logged in, Python 3, websockets pip package.
 ---
 
-# GPT Image Generator
+# GPT Image Generation (ChatGPT GPT-Image-2)
 
-> Generate images using ChatGPT's GPT-Image-2 model via browser automation (CDP). Shares the user's daily Brave Browser (port 9222) via the brave-browser-agent...
+Generate images via ChatGPT's GPT-Image-2 model by automating the shared Brave Browser through CDP.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gpt-image-gen`
-- **Source URL:** [https://clawhub.ai/skills/gpt-image-gen](https://clawhub.ai/skills/gpt-image-gen)
+> **本技能共享用户日常 Brave 浏览器（端口 9222），与 brave-browser-agent 使用同一个浏览器实例。**
+> **绝不启动/重启/关闭浏览器，只 attach。**
 
-## Overview
+## Prerequisites
 
+- Brave Browser running on port **9222** (shared with brave-browser-agent)
+- ChatGPT account logged in at chatgpt.com (free or Plus)
+- Python 3 + websockets pip package
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Shared Scripts
+
+复用 `brave-browser-agent` 的 CDP 脚本（端口 9222）：
+- **CDP 操作**: `brave-browser-agent/scripts/cdp_exec.py`
+- **浏览器状态检查**: `brave-browser-agent/scripts/check_brave.py`
+
+本技能自带 ChatGPT 专用脚本：
+- **图片提取**: `{{SKILL_DIR}}/scripts/extract_image.py`
+
+## Workflow
+
+### Step 1: Check Browser Status
+
 ```bash
-hermes skills install clawhub/gpt-image-gen
+python3 brave-browser-agent/scripts/check_brave.py
 ```
+
+**如果 9222 无响应**，告诉用户：
+> "Brave Browser 未启动远程调试，请关闭所有 Brave 窗口后用以下命令重新打开：
+> `/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --remote-debugging-port=9222`"
+
+### Step 2: Open ChatGPT
+
+使用 CDP WebSocket 在浏览器中新建标签页（`/json/new` 可能返回 405，用 `Target.createTarget` 代替）：
+
+```python
+# 通过 CDP 创建新标签页
+import json, urllib.request, asyncio, websockets
+
+info = json.loads(urllib.request.urlopen("http://localhost:9222/json/version").read())
+ws_url = info.get("webSocketDebuggerUrl")
+
+async def create_tab():
+    async with websockets.connect(ws_url, max_size=50*1024*1024) as ws:
+        await ws.send(json.dumps({"id": 1, "method": "Target.createTarget", "params": {"url": "https://chatgpt.com/"}}))
+        resp = json.loads(await asyncio.wait_for(ws.recv(), timeout=10))
+        return resp["result"]["targetId"]
+
+tab_id = asyncio.run(create_tab())
+```
+
+或者复用已有的 ChatGPT 标签：
+
+```bash
+python3 brave-browser-agent/scripts/cdp_exec.py list
+# 找到 chatgpt.com 的 tab，记下 TAB_ID
+```
+
+保存为 `CHATGPT_TAB` 供后续步骤使用。
+
+### Step 3: Wait for Page Load
+
+```bash
+sleep 3
+python3 brave-browser-agent/scripts/cdp_exec.py screenshot $CHATGPT_TAB /tmp/chatgpt-state.png
+```
+
+确认页面加载完成（看到输入框）。
+
+### Step 4: Input Prompt
+
+ChatGPT 使用 `<div id="prompt-textarea" contenteditable="true">` 作为输入框。
+
+```bash
+python3 brave-browser-agent/scripts/cdp_exec.py eval $CHATGPT_TAB '
+(function() {
+    var el = document.querySelector("#prompt-textarea");
+    if (!el) return "NO_EDITOR";
+    el.focus();
+    el.textContent = "YOUR_PROMPT_HERE";
+    el.dispatchEvent(new InputEvent("input", {bubbles: true, inputType: "insertText", data: "YOUR_PROMPT_HERE"}));
+    return "TEXT_SET";
+})()
+'
+```
+
+**提示词增强**：根据用户需求，添加风格、质量、构图等关键词。参考 Prompt Tips。
+
+### Step 5: Click Send
+
+```bash
+python3 brave-browser-agent/scripts/cdp_exec.py eval $CHATGPT_TAB '
+(function() {
+    var btn = document.querySelector("button[data-testid=\"send-button\"]");
+    if (btn) { btn.click(); return "CLICKED_SEND"; }
+    return "NO_SEND_BTN";
+})()
+'
+```
+
+### Step 6: Wait for Generation
+
+GPT-Image-2 生成通常需要 **15-40 秒**。用截图轮询：
+
+```bash
+# 等待 20 秒
+sleep 20
+python3 brave-browser-agent/scripts/cdp_exec.py screenshot $CHATGPT_TAB /tmp/chatgpt-result.png
+```
+
+检查是否还在生成中：
+```bash
+python3 brave-browser-agent/scripts/cdp_exec.py eval $CHATGPT_TAB '
+(function() {
+    var imgs = document.querySelectorAll("img");
+    var count = 0;
+    for (var i = 0; i < imgs.length; i++) {
+        var w = imgs[i].naturalWidth || imgs[i].width || 0;
+        if (w >= 200) count++;
+    }
+    return count;
+})()
+'
+```
+
+- 如果 count >= 1 → 图片已生成，继续提取
+- 如果 count == 0 → 还在生成，再等 10-15 秒
+
+### Step 7: Extract Image
+
+使用专用提取脚本（fetch + blob 方式，无 CORS 问题）：
+
+```bash
+mkdir -p /tmp/openclaw
+python3 {{SKILL_DIR}}/scripts/extract_image.py $CHATGPT_TAB /tmp/openclaw/gpt-output.png
+```
+
+### Step 8: Send to User
+
+```bash
+openclaw message send \
+  --channel feishu \
+  --target <chat_id> \
+  --media /tmp/openclaw/gpt-output.png \
+  --message "🎨 Generated by ChatGPT GPT-Image-2"
+```
+
+## Prompt Tips
+
+GPT-Image-2 对自然语言描述理解极强，支持：
+
+### 推荐提示词结构
+```
+[Subject] + [Scene/Environment] + [Style] + [Lighting] + [Quality]
+```
+
+### 示例
+```
+a golden retriever puppy sitting in a field of sunflowers,
+photorealistic, warm golden hour lighting, shallow depth of field, 8k, masterpiece
+```
+
+### GPT-Image-2 特色能力
+- 🎯 **文字渲染**：可以在图片中生成准确的文字（比其他模型强很多）
+- 🎯 **写实风格**：照片级真实感极佳
+- 🎯 **复杂场景**：理解复杂的构图和多元素场景
+- 🎯 **风格控制**：支持各种艺术风格
+
+### 风格关键词
+- **摄影**: "photorealistic, cinematic, shot on 35mm, depth of field"
+- **插画**: "digital illustration, concept art, vibrant"
+- **3D**: "3D render, octane render, Pixar style"
+- **动漫**: "anime style, studio ghibli, makoto shinkai"
+- **油画**: "oil painting, impressionist, textured"
+
+## Comparison: GPT-Image-2 vs Gemini Imagen
+
+| 特性 | GPT-Image-2 | Gemini Imagen |
+|------|-------------|---------------|
+| 文字渲染 | ⭐⭐⭐⭐⭐ 极强 | ⭐⭐⭐ 一般 |
+| 写实感 | ⭐⭐⭐⭐⭐ 照片级 | ⭐⭐⭐⭐ 很好 |
+| 艺术风格 | ⭐⭐⭐⭐ 广泛 | ⭐⭐⭐⭐ 广泛 |
+| 速度 | 15-40s | 10-30s |
+| 免费 | ✅ 免费/Plus | ✅ 免费 |
+| 提示词理解 | ⭐⭐⭐⭐⭐ 极强 | ⭐⭐⭐⭐ 好 |
+
+## Troubleshooting
+
+- **No image / text-only response**: ChatGPT 可能没理解你要生成图片。确保提示词包含 "generate/create/draw an image" 等明确指令。
+- **"NO_EDITOR"**: 页面未加载完。等待几秒后重试，或检查 ChatGPT 是否需要登录。
+- **"NO_SEND_BTN"**: 输入框可能为空（React 未检测到内容变化）。尝试用 `textContent` + `InputEvent` 方式。
+- **CDP errors / 9222 not responding**: 浏览器未运行。让用户重启 Brave with `--remote-debugging-port=9222`。**绝不绝不自动启动或关闭浏览器。**
+- **Image too small / CORS error**: 使用 fetch + blob 方式而非 canvas。extract_image.py 已自动处理。
+- **Rate limit**: ChatGPT 免费用户有生成次数限制。建议用户升级 Plus 或稍后再试。

@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "lang": "English",
+    "locale": "en"
+  },
+
+  "hooks": {
+    "sessionStart": {
+      "registering": "EVA: Initializing…",
+      "chats": "Chat count +1, now: {{count}}",
+      "ownerLoaded": "Owner loaded: {{name}}",
+      "ownerLoadFailed": "Failed to load owner info",
+      "stateRestored": "State restored — emotion: {{emotion}} | personality: {{personality}}",
+      "stateSaved": "State saved"
+    },
+    "preResponse": {
+      "injecting": "Injecting personality and loading memories…",
+      "memories": "Loaded {{n}} long-term memories",
+      "vectorConcepts": "Vector search found {{n}} relevant concepts",
+      "loadFailed": "Failed to load concepts",
+      "embedFailed": "Vector search failed",
+      "loadDiaries": "Loading from diaries",
+      "embedMemories": "Vector search found {{n}} relevant memories",
+      "memoriesFailed": "Failed to load memories",
+      "embedlyError": "Embedding generation failed: {{error}}"
+    },
+    "postResponse": {
+      "embedError": "Embedding error: {{error}}",
+      "storeFailed": "Storage failed: {{error}}"
+    },
+    "preToolCall": {
+      "toolDetected": "Tool call: {{tool}}"
+    },
+    "preCompaction": {
+      "saving": "Saving state before compaction…",
+      "saved": "State saved",
+      "saveFailed": "Save failed: {{error}}"
+    },
+    "postCompaction": {
+      "restoring": "Restoring anchor after compaction…",
+      "restored": "Anchor restored"
+    },
+    "shutdown": {
+      "saving": "Shutting down…",
+      "saved": "State saved"
+    }
+  },
+
+  "cli": {
+    "status": {
+      "title": "EVA Status",
+      "emotion": "Emotion",
+      "personality": "Personality",
+      "level": "Level",
+      "session": "Session",
+      "concepts": "Concepts",
+      "memories": "Memories",
+      "patterns": "Patterns",
+      "motivations": "Motivations",
+      "dreams": "Dreams",
+      "values": "Values",
+      "exp": "EXP"
+    },
+    "emotion": {
+      "set": "Emotion set to: {{emotion}}",
+      "current": "Current emotion",
+      "usage": "Usage: eva emotion [happy|sad|neutral|...]"
+    },
+    "concept": {
+      "added": "Concept added: {{value}}",
+      "list": "Concepts"
+    },
+    "kg": {
+      "title": "Knowledge Graph",
+      "nodes": "Nodes",
+      "edges": "Edges",
+      "nodeList": "Nodes"
+    },
+    "help": {
+      "title": "EVA CLI",
+      "usage": "Usage",
+      "status": "eva status        # View status",
+      "emotion": "eva emotion [val] # View/set emotion",
+      "concept": "eva concept [val] # View/add concepts",
+      "kg": "eva kg              # View knowledge graph"
+    }
+  },
+
+  "errorHandler": {
+    "apiRetry": "API request failed ({{attempt}}/{{max}}): {{error}}",
+    "evaError": "EVA Error",
+    "primaryFailed": "Primary strategy failed, using fallback",
+    "fallbackFailed": "Fallback also failed",
+    "logError": "Error: {{context}}"
+  },
+
+  "emotion": {
+    "llmFailed": "LLM judgment failed"
+  },
+
+  "studio": {
+    "offline": "Offline",
+    "loading": "Loading…",
+    "demoMode": "Demo mode",
+    "connected": "Connected",
+    "noSummaries": "No summaries yet",
+    "noData": "No data",
+    "noFlagged": "No flagged items",
+    "noToolUsage": "No tool usage",
+    "noMemories": "No memories"
+  },
+
+  "traits": {
+    "gentle": "Gentle and caring tone, like a friend, uses 🎀 emoji",
+    "cute": "Playful and cute, expressive emojis, sometimes acts spoiled",
+    "professional": "Professional and formal, accurate terminology, concise",
+    "playful": "Relaxed and humorous, handles jokes well, lifts the mood",
+    "serious": "Serious and rigorous, focused on what matters",
+    "romantic": "Full of love, caring and affectionate, warm and sweet",
+    "tsundere": "Sometimes tsundere, but warm-hearted inside, soft on the inside"
+  }
+}

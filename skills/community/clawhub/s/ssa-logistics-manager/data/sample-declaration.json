@@ -1,0 +1,20 @@
+{
+  "invoiceNumber": "INV-20260326-001",
+  "customerName": "Global Trading Co.",
+  "date": "2026-03-26",
+  "items": [
+    {
+      "description": "HDMI Cable 2.1",
+      "quantity": 500,
+      "unitPrice": 8.50,
+      "total": 4250.00
+    },
+    {
+      "description": "USB-C Hub",
+      "quantity": 200,
+      "unitPrice": 12.00,
+      "total": 2400.00
+    }
+  ],
+  "totalAmount": 6650.00
+}

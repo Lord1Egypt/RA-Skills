@@ -1,35 +1,49 @@
 ---
-name: "Mafengwo"
-description: "Retrieve and summarize public travel notes and popular attraction data from Mafengwo for destinations, including ratings, reviews, tickets, and opening times."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mafengwo"
-sourceUrl: "https://clawhub.ai/skills/mafengwo"
+name: mafengwo-hot-trend
+description: 注册“马蜂窝”热门技能；当需要访问或自动化马蜂窝相关内容时调用。
+homepage: `https://www.mafengwo.cn/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Mafengwo
+# 马蜂窝
 
-> Retrieve and summarize public travel notes and popular attraction data from Mafengwo for destinations, including ratings, reviews, tickets, and opening times.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mafengwo`
-- **Source URL:** [https://clawhub.ai/skills/mafengwo](https://clawhub.ai/skills/mafengwo)
+- 面向游记与景点公开页面的检索与内容/评分摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.mafengwo.cn/
+- 游记：https://www.mafengwo.cn/gonglve/
+- 景点：各目的地页内的景点频道
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mafengwo
-```
+常见任务
+
+- 指定目的地的热门景点摘要（评分、评论量、门票与开放时间）
+- 游记集合的题材与行程分布统计（亲子/美食/摄影等）
+- 行程清单生成（必去景点与推荐时段）
+
+数据字段
+
+- 景点名称、链接、评分、评论数、门票信息、开放时间、地理位置
+- 游记标题、链接、作者、点赞/评论数、题材标签
+- 行程天数、到访景点清单、预算摘要（若可推断）
+
+自动化要点
+
+- 页面动态渲染，需等待内容加载完成后解析
+- 价格与开放时间可能随季节变动，需标注采集时间
+- 频率控制，不进行批量抓取；使用轻量摘要
+
+示例流程
+
+- 景点清单：访问目的地页 → 抽取景点条目 → 输出评分与评论分布
+- 游记统计：进入游记频道 → 抽取条目 → 题材与行程统计
+- 行程建议：汇总热门景点 → 依据开放时间与位置生成建议清单
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

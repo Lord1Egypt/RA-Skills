@@ -1,35 +1,165 @@
----
-name: "Change Safeguard"
-description: "确保对工作区文件、配置和脚本的改动经过全面影响分析、逐项修改和严格复验，防止遗漏或错误修改。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/change-safeguard"
-sourceUrl: "https://clawhub.ai/skills/change-safeguard"
+# change-safeguard Skill
+
+## Description
+
+**工作区文件变更操作的安全保险箱。**
+
+任何对工作区文件、配置、脚本的优化、修改、移动、删除操作，都必须走此技能流程。确保不遗漏、不误改。
+
 ---
 
-# Change Safeguard
+## When to Use
 
-> 确保对工作区文件、配置和脚本的改动经过全面影响分析、逐项修改和严格复验，防止遗漏或错误修改。
+**触发场景**：
+- 文件/目录移动、重命名 → 更新所有引用
+- 脚本路径/配置项修改 → 更新所有调用点
+- 批量替换关键词/函数名/变量名
+- 删除文件前 → 检查是否有引用
+- 优化修改后 → 验证影响范围
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/change-safeguard`
-- **Source URL:** [https://clawhub.ai/skills/change-safeguard](https://clawhub.ai/skills/change-safeguard)
+**不触发**：
+- 纯内容创作（不涉及已有文件引用）
+- 读取文件后直接输出（不修改其他文件）
 
-## Overview
+---
 
+## 核心原则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/change-safeguard
+| 原则 | 含义 |
+|------|------|
+| 🔍 **搜索 ≠ 修改** | 看到搜索结果不代表已执行，必须逐一编辑 |
+| ✅ **清零才算完成** | grep 旧字符串结果为空，才准说完成 |
+| 🔄 **改完必复验** | 最后一轮 grep 清零是不可跳过的强制步骤 |
+
+---
+
+## 5 步流程
+
 ```
+1️⃣ 影响分析  ── grep 找出所有旧引用
+2️⃣ 列清单    ── 逐个文件 + 具体位置 + 分类标记
+3️⃣ 执行      ── 按清单逐一编辑，改一个打一个勾
+4️⃣ 复验      ── 再次 grep 旧字符串，区分遗漏 vs 无需修改
+5️⃣ 完成      ── 旧引用清零 → 展示修改总结
+```
+
+任何步骤不可跳过，不可合并。
+
+---
+
+## 步骤详解
+
+### 步骤 1：影响分析
+
+全量搜索，覆盖所有常见文件类型：
+
+```bash
+grep -rn "旧字符串" /path/to/ \
+  --include="*.md" --include="*.py" --include="*.json" \
+  --include="*.yaml" --include="*.yml" --include="*.sh" \
+  --include="*.js" --include="*.ts" --include="*.toml" \
+  2>/dev/null
+```
+
+搜索结果**分类标记**：
+
+| 标记 | 含义 | 示例 |
+|------|------|------|
+| 📍 **需修改** | 路径/名称变了，必须更新 | `old/path/file.md` → `new/path/file.md` |
+| 🔒 **无需修改** | 静态引用，位置未变 | `README.md` 路径未变 |
+| ⚠️ **需确认** | 不确定是否需要改 | 注释、日志输出格式 |
+
+### 步骤 2：列出清单
+
+格式：
+
+```
+### 影响分析结果
+共 X 处引用：Y 处需修改，Z 处无需修改
+
+### 需修改清单
+| # | 文件 | 需修改内容 | 状态 |
+|---|------|-----------|------|
+| 1 | file.md | old → new | ⬜ |
+| 2 | script.py | 参数更新 | ⬜ |
+```
+
+列出后告知用户，等待确认后再执行。
+
+### 步骤 3：执行修改
+
+- 按清单逐一编辑，不跳跃
+- 每改一个打勾 `⬜` → `✅`
+- 不凭记忆修改，不跳过任何一项
+
+### 步骤 4：复验（强制）
+
+```bash
+# 复验旧字符串
+grep -rn "旧字符串" /path/to/ --include="*.md" --include="*.py" --include="*.json" ... 2>/dev/null
+
+# 验证新字符串
+grep -rn "新字符串" /path/to/ --include="*.md" --include="*.py" --include="*.json" ... 2>/dev/null
+```
+
+结果处理：
+
+| 复验结果 | 动作 |
+|----------|------|
+| 旧字符串 grep 结果为空 | ✅ 进入步骤 5 |
+| 有残留但无需修改（注释/日志） | 解释后 ✅ 进入步骤 5 |
+| 有残留是遗漏 | 回到步骤 3 补漏 |
+
+### 步骤 5：完成总结
+
+```
+### 修改总结
+共修改 X 个文件：
+
+| # | 文件 | 修改内容 |
+|---|------|----------|
+| 1 | file.md | 路径更新 |
+| 2 | script.py | 函数调用更新 |
+
+✅ 复验通过，旧引用已清零。
+```
+
+---
+
+## 禁止行为
+
+| 行为 | 说明 |
+|------|------|
+| ❌ 搜了≠改了 | 看到搜索结果就以为处理了 |
+| ❌ 改完不复验 | 编辑完直接说完成 |
+| ❌ 凭记忆列举 | 不用 grep 就列受影响文件 |
+| ❌ 漏掉文件类型 | 只搜 `.md` 忘了 `.py`、`.json` 等 |
+| ❌ 跳过影响分析 | 不列清单直接开始改 |
+| ❌ 跳过用户确认 | 不告知影响范围就执行 |
+
+---
+
+## 场景速查
+
+| 场景 | 关键搜索 | 注意事项 |
+|------|---------|---------|
+| 目录重构 | 旧路径 | 区分哪些文件要改、哪些不动 |
+| 函数重命名 | 旧函数名 | 包括定义和所有调用点 |
+| 删除文件 | 文件名 | 先清引用再删文件 |
+| 配置迁移 | 旧配置名 | 区分硬编码和变量引用 |
+
+---
+
+## 自检
+
+说"完成"前，自问：
+
+1. **grep 过旧字符串了吗？结果清零了吗？**
+2. **搜索了所有常见文件类型吗？**
+3. **区分了需要改和不需要改的引用吗？**
+
+任何一题回答"没有" → 不准说完成。
+
+---
+
+_全局技能，所有 Agent 必须遵循_

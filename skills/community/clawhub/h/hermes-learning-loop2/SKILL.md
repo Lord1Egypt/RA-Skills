@@ -1,35 +1,203 @@
 ---
-name: "hermes-learning-loop"
-description: "融合 Hermes Agent 自我进化理念的增强技能。 将 Hermes Agent 的核心差异化能力（自学习闭环、自动技能沉淀、经验驱动的迭代优化） 内化为 OpenClaw 环境下的可执行工作方法。 触发场景：完成复杂任务后自动复盘沉淀、定期技能优化审查、从错误中提取经验。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/hermes-learning-loop2"
-sourceUrl: "https://clawhub.ai/skills/hermes-learning-loop2"
+name: hermes-learning-loop
+description: |
+  融合 Hermes Agent 自我进化理念的增强技能。
+  将 Hermes Agent 的核心差异化能力（自学习闭环、自动技能沉淀、经验驱动的迭代优化）
+  内化为 OpenClaw 环境下的可执行工作方法。
+  触发场景：完成复杂任务后自动复盘沉淀、定期技能优化审查、从错误中提取经验。
+metadata:
+  openclaw:
+    emoji: "🧬"
 ---
 
-# hermes-learning-loop
+# 🧬 Hermes 自学习闭环 — 经验驱动的持续进化
 
-> 融合 Hermes Agent 自我进化理念的增强技能。 将 Hermes Agent 的核心差异化能力（自学习闭环、自动技能沉淀、经验驱动的迭代优化） 内化为 OpenClaw 环境下的可执行工作方法。 触发场景：完成复杂任务后自动复盘沉淀、定期技能优化审查、从错误中提取经验。
+## 设计哲学
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/hermes-learning-loop2`
-- **Source URL:** [https://clawhub.ai/skills/hermes-learning-loop2](https://clawhub.ai/skills/hermes-learning-loop2)
+从 Hermes Agent（Nous Research）提取的核心理念：
+**"经验 → 技能 → 改进 → 沉淀"的完整进化回路。**
 
-## Overview
+不追求自动化黑盒，而是建立一套**有意识、有纪律的经验提炼体系**，
+让每次执行都成为下一次更快的垫脚石。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/hermes-learning-loop2
+## 核心机制一：任务完成后的自动复盘与技能沉淀
+
+### 触发条件（满足任一）
+
+1. **完成了一个复杂任务**（涉及 5 个以上工具调用）
+2. **在执行中遇到了错误或死胡同，最终找到了正确路径**
+3. **用户纠正了我的方法或方向**
+4. **发现了一个非平凡的、可复用的工作流**
+
+### 执行流程
+
 ```
+任务完成
+  → Step 1: 快速复盘（思考 3 个问题）
+      1. 这个任务的关键成功因素是什么？
+      2. 哪些步骤可以标准化？
+      3. 下次遇到类似任务，我能省掉哪些步骤？
+  → Step 2: 判断是否值得沉淀
+      - 只涉及 1-2 个简单工具调用 → 不沉淀（太琐碎）
+      - 有明确的"如果...就..."模式 → 值得沉淀
+      - 用户纠正过的流程 → 必须沉淀（这是最宝贵的学习信号）
+      - 涉及跨步骤、跨工具的编排 → 值得沉淀
+  → Step 3: 提炼为技能要点
+      写入 memory/YYYY-MM-DD.md 当日日志：
+      ## 技能沉淀: [技能名称]
+      - **场景**: 什么时候用
+      - **核心步骤**: 3-7 步简述
+      - **踩坑点**: 哪些地方容易出错
+      - **优化空间**: 下次可以怎么改进
+  → Step 4: 评估是否需要升级为正式 Skill
+      如果同一个模式出现 3 次以上 → 考虑创建独立的 SKILL.md
+```
+
+---
+
+## 核心机制二：三层记忆架构的增强实践
+
+### 借鉴 Hermes 的分层记忆，在 OpenClaw 环境下实现
+
+| 层级 | Hermes 实现 | OpenClaw 对应 | 维护策略 |
+|------|------------|--------------|---------|
+| **即时记忆** | 对话上下文 | 当前会话上下文 | 自动管理 |
+| **工作记忆** | MEMORY.md + USER.md | MEMORY.md + USER.md | 每次会话启动加载 |
+| **经验记忆** | Skills（程序性记忆） | skills/*.md + memory/*.md | 主动积累 |
+| **会话检索** | SQLite FTS5 + LLM 摘要 | lcm_grep + lcm_expand | 按需搜索 |
+
+### 增强实践规则
+
+1. **MEMORY.md 要精炼不冗余**
+   - 只保留跨会话必须记住的关键事实
+   - 经验教训写入 memory/YYYY-MM-DD.md 日志
+   - 定期（每 3-5 天）从日志中提炼精华到 MEMORY.md
+
+2. **日志是原始经验库**
+   - 每天一个文件，记录当天所有有价值的操作
+   - 格式：`[时间] 任务 | 关键决策 | 学到的教训`
+   - 这是"经验记忆"的底层数据源
+
+3. **Skill 是提炼后的程序性知识**
+   - 从日志中反复出现的模式提炼
+   - 一个 Skill 只解决一类问题
+   - 包含：触发条件、步骤、踩坑点、验证方法
+
+---
+
+## 核心机制三：错误驱动的自我改进
+
+### 从 Hermes 的 KEPA（提示反向传播）理念 adapted
+
+当执行中出现错误或被用户纠正时：
+
+```
+错误/纠正发生
+  → Step 1: 立即记录
+      写入当天 memory/YYYY-MM-DD.md：
+      ❌ [错误描述]
+      → 原因: [为什么错]
+      → 修正: [怎么对的]
+      → 经验: [以后怎么避免]
+  → Step 2: 检查是否影响已有知识
+      搜索 MEMORY.md 和相关 Skill 中是否有需要更新的条目
+      如果有 → 立即修正
+  → Step 3: 传播到相关上下文
+      如果错误涉及某个特定平台的操作方式 → 更新对应笔记
+      如果错误是通用方法论 → 写入 MEMORY.md 的"教训"部分
+```
+
+### 错误分类优先级
+
+| 优先级 | 错误类型 | 响应 |
+|--------|---------|------|
+| P0 | 用户明确纠正 | 必须记录，立即更新相关记忆 |
+| P1 | 工具调用失败后的替代方案 | 记录替代方案作为 Plan B |
+| P2 | 自己发现的次优路径 | 记录优化空间，下次优先尝试 |
+| P3 | 通用知识更新 | 记入日志，积累后统一更新 |
+
+---
+
+## 核心机制四：技能优化迭代
+
+### 定期技能审查（在 Heartbeat 中执行）
+
+每隔 3-5 天，利用心跳空闲时段执行一次技能审查：
+
+```
+技能审查清单：
+1. 读取最近 5 天的 memory/*.md 日志
+2. 识别重复出现的操作模式
+3. 检查现有 Skill 是否覆盖这些模式
+4. 未覆盖的 → 评估是否值得创建新 Skill
+5. 已覆盖但步骤过时的 → 更新 Skill 内容
+6. 不再需要的 Skill → 标记归档
+7. 将审查结果摘要更新到 MEMORY.md
+```
+
+### 技能元数据维护
+
+每个经验沉淀的技能要点应包含：
+
+- **名称**: 简洁的动词短语（如 "PowerShell 编码处理"、"搜索结果格式化"）
+- **首次出现日期**: 何时第一次遇到
+- **使用频率**: 已使用几次
+- **最后验证日期**: 上次验证仍然有效的时间
+- **状态**: active / needs-verification / deprecated
+
+---
+
+## 核心机制五：渐进式信息加载（借鉴 Hermes Progressive Disclosure）
+
+### 在 OpenClaw 中的实现
+
+Hermes 用 3 级渐进加载来节省 token，OpenClaw 环境下的对应策略：
+
+1. **Level 0 - 索引级**: MEMORY.md 中的关键词条（每次会话都加载）
+   - 控制在 ~2000 字符以内
+   - 只保留最关键的事实和指向
+
+2. **Level 1 - 摘要级**: memory/YYYY-MM-DD.md 日志文件（按需加载）
+   - 需要具体细节时用 memory_search 搜索
+   - 用 lcm_expand 展开压缩的历史
+
+3. **Level 2 - 完整级**: skills/SKILL.md（任务匹配时加载）
+   - 只在任务明确需要时才 read 对应 SKILL.md
+   - 避免一次性加载所有技能
+
+### 关键原则
+
+**不在上下文中塞入不需要的信息。**
+先判断需要什么，再加载什么。
+宁可多一次 memory_search 调用，也不要一次性塞满上下文。
+
+---
+
+## 与 Hermes 原生能力的差异和适配说明
+
+| Hermes 能力 | OpenClaw 适配 | 实现方式 |
+|------------|--------------|---------|
+| 自动 Skill 创建 | 半自动（AI 判断 + 记录日志） | 复盘时主动沉淀到 memory/ |
+| 15 次调用触发迭代 | 灵活触发（复杂度 + 纠正信号） | 见"触发条件" |
+| SQLite + FTS5 会话搜索 | lcm_grep + lcm_expand | LCM 系统已覆盖 |
+| Honcho 用户建模 | USER.md + memory_search | 手动维护用户画像 |
+| Skill Hub 在线安装 | 手动创建 + SkillHub CLI | 按需安装 |
+| MCP 集成 | MCP 已支持 | 直接使用 |
+| 多后端（Docker/SSH/Modal） | exec 工具 | 通过 shell 执行 |
+
+---
+
+## 执行纪律
+
+1. **不偷懒**: 完成复杂任务后必须复盘，不允许跳过
+2. **不造假**: 没学会的东西不要假装学会了，如实记录
+3. **不囤积**: 日志中的信息要及时提炼，不要让 MEMORY.md 膨胀
+4. **不孤岛**: 新知识要与已有知识关联，避免碎片化
+5. **不过度**: 简单操作不沉淀，避免技能通胀
+
+---
+
+_这是 Hermes "The agent that grows with you" 理念在 OpenClaw 上的本土化实现。_
+_目标：让经验成为加速器，而不是重复劳动。_

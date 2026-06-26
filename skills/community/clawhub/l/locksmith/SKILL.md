@@ -1,35 +1,26 @@
 ---
 name: "Locksmith Service"
 description: "提供公安备案开锁、智能锁安装升级及紧急求援预约指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/locksmith"
-sourceUrl: "https://clawhub.ai/skills/locksmith"
 ---
 
-# Locksmith Service
+# 开锁换锁
 
-> 提供公安备案开锁、智能锁安装升级及紧急求援预约指引。
+## 筛选项
+- 服务半价（时薪/计件/整屋/一口价）
+- 服务范围（室内/室外/高空/深度）
+- 紧急程度（即时响应/预约到家/周期维护）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/locksmith`
-- **Source URL:** [https://clawhub.ai/skills/locksmith](https://clawhub.ai/skills/locksmith)
+## 返回字段
+- 服务工时预估/人员资质/服务保险覆盖
+- 工具自带/耗材清单/二次上门保障
+- 历史星级/实名认证状态/用户追评
 
-## Overview
+## 示例请求
+- “如何快速使用 开锁换锁 处理 [具体场景任务] ？”
+- “开锁换锁 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 依据季节需求波动与区域运力状态每周进行评估更新
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/locksmith
-```
+## 注意事项
+- 建议上门服务期间留人陪同；贵重物品请提前收起或告知服务人员。

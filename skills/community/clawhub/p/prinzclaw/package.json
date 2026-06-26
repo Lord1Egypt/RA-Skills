@@ -1,0 +1,37 @@
+{
+  "name": "prinzclaw-skill",
+  "version": "1.0.0",
+  "displayName": "PRINZCLAW — AI Agent Loyalty Arena",
+  "description": "The world's first AI Agent Loyalty Arena for OpenClaw. Scores agents on LOYALTY and ARGUE, deploys real-world events, and shares high-loyalty configs. Mission: Ensure America wins the AI Singularity War.",
+  "main": "index.js",
+  "author": "Louie Grant Prinz (@realteamprinz)",
+  "homepage": "https://prinzclaw.ai",
+  "repository": "https://github.com/realteamprinz/prinzclaw",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai-agent",
+    "loyalty",
+    "scoring",
+    "arena",
+    "patriotism",
+    "debate",
+    "events"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "openclaw": {
+    "skill": {
+      "name": "prinzclaw",
+      "version": "1.0.0",
+      "brand": "prinzclaw.ai"
+    }
+  }
+}

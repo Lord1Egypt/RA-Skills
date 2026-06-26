@@ -1,0 +1,10 @@
+# OpenClaw 技能统计与分类管理 - 依赖包
+
+# 标准库（无需安装）
+# - os, sys, typing, argparse, json, hashlib, datetime, logging, shutil
+
+# 注意：本技能主要使用 Python 标准库
+# 如 HTML 导出需要额外的模板引擎，可在此添加
+
+# jinja2>=3.0.0  # 如果使用 Jinja2 模板
+# beautifulsoup4>=4.10.0  # 如果需要 HTML 解析

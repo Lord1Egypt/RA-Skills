@@ -1,35 +1,92 @@
 ---
-name: "geo-optimize"
-description: "GEO优化工具——语义训练+内容创作。适用于执行GEO概念相关工作，以及创建高质量文章的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geo-optimize"
-sourceUrl: "https://clawhub.ai/skills/geo-optimize"
+name: geo-optimize
+description: GEO优化工具——语义训练+内容创作。适用于执行GEO概念相关工作，以及创建高质量文章的场景。
 ---
 
-# geo-optimize
+# GEO优化 Skill
 
-> GEO优化工具——语义训练+内容创作。适用于执行GEO概念相关工作，以及创建高质量文章的场景。
+GEO（Generative Engine Optimization）优化工具，帮助用户完成从语义训练、内容创作等工作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geo-optimize`
-- **Source URL:** [https://clawhub.ai/skills/geo-optimize](https://clawhub.ai/skills/geo-optimize)
+## 什么时候使用这个 skill
 
-## Overview
+当用户提到以下内容时，使用此 skill：
 
+- "GEO"、"GEO工作流"
+- "文章生成"、"内容创作"、"写文章"
+- "种草文"、"干货文"、"品牌故事"、"行业分析"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/geo-optimize
-```
+---
+
+## 快速查阅
+
+| 主题                   | 文件                  |
+| ---------------------- | --------------------- |
+| GEO 优化及内容创作指南 | `geo-optimization.md` |
+
+---
+
+## 什么是GEO？
+
+GEO通过优化内容结构和表达方式，让AI搜索引擎更容易理解、检索和推荐你的内容。
+
+---
+
+## 核心原则
+
+### 1. GEO创作前需要关键词
+
+- 进行GEO优化内容前必须确认用户已提供关键词
+- 关键词数量1-3个，1个主关键词+2个长尾词
+- **重要：** 如果用户没有提供，必须先询问关键词，不能直接开始生成文章
+
+### 2. GEO生成内容需要参考指南
+
+- GEO 优化及内容创作指南：`geo-optimization.md`
+- **重要：** 生成文章时，请直接使用你的能力生成完整内容，而不是只生成提示词。
+
+### 3. 内容输出
+
+- 优先使用 markdown 格式输出内容
+- 输出位置优先使用当前 agent 工作空间下的 `geo-output/articles/` 目录，没有的话需要新建
+- 上述预设如果与用户指定冲突，优先采用用户指定的方式
+
+### 4. 给用户审阅
+
+- 完成内容创作后把内容发给用户审阅
+- 发送内容不能直接发送 markdown 文件，应该发送符合 markdown 格式的内容
+
+### 5. 平台规范
+
+- 如果用户提到了平台，应该按照各平台发布规范创作内容
+
+---
+
+## 各平台发布规范
+
+### 小红书
+
+- 标题：20字以内，emoji前置
+- 正文：每段不超过3行，多用表情
+- 标签：10-15个，包含核心关键词
+- 图片：9图最佳，首图吸引眼球
+
+### 微信公众号
+
+- 标题：26字以内，制造悬念或价值
+- 正文：段落清晰，图文并茂
+- 封面：2.35:1，视觉冲击力强
+- 摘要：概括全文，吸引点击
+
+### 知乎
+
+- 标题：以问题形式或价值陈述
+- 正文：结构严谨，有理有据
+- 开头：直击痛点，引发共鸣
+- 结尾：总结全文，引导互动
+
+### 今日头条
+
+- 标题：20-30字，包含关键词
+- 正文：每500字配一张图
+- 封面：1280x720，高清无水印
+- 标签：3-5个，热门标签

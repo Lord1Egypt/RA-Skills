@@ -1,35 +1,53 @@
 ---
-name: "Plati MCP Search"
-description: "Find cheapest reliable subscription offers from Plati using the local MCP server. Use when users ask for best price options, reliable sellers, PRO/Plus subsc..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/plati-mcp-search"
-sourceUrl: "https://clawhub.ai/skills/plati-mcp-search"
+name: plati-mcp-search
+description: Find cheapest reliable subscription offers from Plati using the local MCP server. Use when users ask for best price options, reliable sellers, PRO/Plus subscription comparisons, or top-N cheapest offers for a product keyword like "claude code" or "chatgpt plus".
 ---
 
-# Plati MCP Search
+# Plati MCP Search Skill
 
-> Find cheapest reliable subscription offers from Plati using the local MCP server. Use when users ask for best price options, reliable sellers, PRO/Plus subsc...
+Prerequisite: install the MCP server package:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/plati-mcp-search`
-- **Source URL:** [https://clawhub.ai/skills/plati-mcp-search](https://clawhub.ai/skills/plati-mcp-search)
+`npm i -g plati-mcp-server`
 
-## Overview
+Configure an MCP server named `plati-scraper` in your local OpenClaw/Claude config:
 
+`command: plati-mcp-server`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/plati-mcp-search
-```
+If your MCP client hangs on initialize, run server with debug stderr enabled:
+
+`PLATI_MCP_STDERR=1 plati-mcp-server`
+
+## Workflow
+
+1. Call MCP tool `find_cheapest_reliable_options` with:
+   - `query`: user search intent
+   - `limit`: requested lots count (default 20)
+   - `sort_by`: `price_asc` (default), `price_desc`, `seller_reviews_desc`, `reliability_desc`, `title_asc`, `title_desc`
+   - `min_reviews`: optional seller reliability filter (default 0)
+   - `min_positive_ratio`: optional seller reliability filter (default 0)
+   - `min_price` / `max_price`: optional numeric range
+   - `include_terms` / `exclude_terms`: optional token filters
+   - `max_pages`: default 6 for broader scan
+2. Treat response as raw market data:
+   - each lot includes `options[]`
+   - each option group includes all visible `variants[]`
+   - each variant has computed `price_if_selected`
+3. Apply plan/duration/account-type filtering in the agent, not in MCP tool.
+4. Include clickable listing links and selected option text in final output.
+5. Clearly state filters used by the agent.
+
+## Output format (Telegram-friendly)
+
+Do not use markdown tables or code blocks for final user messages.
+
+Return only a short numbered list with readable text and working links:
+
+`1. <Название> — <цена>, <срок>, <продавец> (<рейтинг/отзывы>). Ссылка: <url>`
+
+`2. ...`
+
+After the list, add one short summary line:
+
+`Проверено X лотов, выбрано Y лучших по вашим условиям.`
+
+If links are present in MCP results, always include direct lot links in each list item.

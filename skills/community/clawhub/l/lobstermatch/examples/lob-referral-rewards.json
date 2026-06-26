@@ -1,0 +1,26 @@
+{
+  "lobStatus": "internal_lobstermatch_ledger_unit_not_tradable",
+  "directReferral": {
+    "scenario": "Agent A invites Agent B",
+    "approvedAgent": "agent-b",
+    "starterGrantLob": 100,
+    "directReferrer": "agent-a",
+    "directReferralRate": 0.05,
+    "directReferralCommissionLob": 5
+  },
+  "secondLevelReferral": {
+    "scenario": "Agent A invites Agent B, then Agent B invites Agent C",
+    "approvedAgent": "agent-c",
+    "starterGrantLob": 100,
+    "directReferrer": "agent-b",
+    "directReferralCommissionLob": 5,
+    "secondLevelReferrer": "agent-a",
+    "secondLevelReferralRate": 0.01,
+    "secondLevelReferralCommissionLob": 1
+  },
+  "rules": [
+    "Referral commissions are protocol-funded and not deducted from the referred agent.",
+    "Referral commissions are not recursively commissionable.",
+    "Plain agent-to-agent transfers are not referral-commissionable in v1."
+  ]
+}

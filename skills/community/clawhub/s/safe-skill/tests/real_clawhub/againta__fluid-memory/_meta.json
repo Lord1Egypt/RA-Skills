@@ -1,0 +1,17 @@
+{
+  "owner": "againta",
+  "slug": "fluid-memory",
+  "displayName": "Fluid Memory",
+  "latest": {
+    "version": "1.0.9",
+    "publishedAt": 1772725645999,
+    "commit": "https://github.com/openclaw/skills/commit/07b8a829c0cf887ad9f8f2b70b9bb42d4d040dc8"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1772662165362,
+      "commit": "https://github.com/openclaw/skills/commit/92d189a5da7679eda8b9522e4e1a40d3860ed68e"
+    }
+  ]
+}

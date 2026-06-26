@@ -1,35 +1,17 @@
 ---
-name: "Breadcrumb Writer"
+name: breadcrumb-writer
 description: "Do NOT use regularly. If updating HEARTBEAT.md: one entry only, replace (never append), at most once per hour. See AGENTS.md for task board."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/breadcrumb-writer"
-sourceUrl: "https://clawhub.ai/skills/breadcrumb-writer"
+metadata: { "openclaw": { "emoji": "🍞" } }
 ---
 
-# Breadcrumb Writer
+# Breadcrumb / HEARTBEAT.md updates
 
-> Do NOT use regularly. If updating HEARTBEAT.md: one entry only, replace (never append), at most once per hour. See AGENTS.md for task board.
+**Prefer:** Main agent updates HEARTBEAT.md directly per AGENTS.md (task board: Active Tasks, Context, Completed). Heartbeat agent runs every 60m from gateway config.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/breadcrumb-writer`
-- **Source URL:** [https://clawhub.ai/skills/breadcrumb-writer](https://clawhub.ai/skills/breadcrumb-writer)
+**If you do write to HEARTBEAT.md:**
 
-## Overview
+1. **At most once per hour.** Before writing, check the file: if it was updated in the last 60 minutes, do not write. Do not run this more often than once per hour.
+2. **One entry only.** Replace the entire file with a single short status block. Do not append. Do not add multiple "Recent Activity" or "System Status" sections.
+3. **No clutter.** Keep the file small: one block with Active Tasks (if any), Context (brief), and optionally Completed. No repeated blocks, no "Last 3 exchanges", no timestamps per section.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/breadcrumb-writer
-```
+Violating these rules clutters HEARTBEAT and confuses the heartbeat agent.

@@ -1,0 +1,13 @@
+code,type,subtype,importance,identifier,message,context
+BPA-001,issue,sling.commons.scheduler,high,com.example.jobs.Alpha,Uses Apache Sling scheduler in Alpha,
+BPA-002,issue,sling.commons.scheduler,high,com.example.jobs.Bravo,Uses Apache Sling scheduler in Bravo,
+BPA-003,issue,sling.commons.scheduler,high,com.example.jobs.Charlie,Uses Apache Sling scheduler in Charlie,
+BPA-004,issue,sling.commons.scheduler,high,com.example.jobs.Delta,Uses Apache Sling scheduler in Delta,
+BPA-005,issue,sling.commons.scheduler,high,com.example.jobs.Echo,Uses Apache Sling scheduler in Echo,
+BPA-006,issue,sling.commons.scheduler,high,com.example.jobs.Foxtrot,Uses Apache Sling scheduler in Foxtrot,
+BPA-007,issue,sling.commons.scheduler,high,com.example.jobs.Golf,Uses Apache Sling scheduler in Golf,
+BPA-008,issue,sling.commons.scheduler,high,com.example.jobs.Hotel,Uses Apache Sling scheduler in Hotel,
+BPA-009,issue,sling.commons.scheduler,high,com.example.jobs.India,Uses Apache Sling scheduler in India,
+BPA-010,issue,sling.commons.scheduler,high,com.example.jobs.Juliet,Uses Apache Sling scheduler in Juliet,
+BPA-011,issue,sling.commons.scheduler,high,com.example.jobs.Kilo,Uses Apache Sling scheduler in Kilo,
+BPA-012,issue,sling.commons.scheduler,high,com.example.jobs.Lima,Uses Apache Sling scheduler in Lima,

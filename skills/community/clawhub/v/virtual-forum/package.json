@@ -1,0 +1,20 @@
+{
+  "name": "virtual-forum",
+  "version": "5.0.3",
+  "description": "虚拟论坛 - 让蒸馏的人物Skill就特定话题展开结构化讨论",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo '请使用 API 调用 VirtualForum 类' && exit 1",
+    "test": "node test/run.js",
+    "lint": "eslint *.js v3/*.js 2>/dev/null || echo 'eslint未安装，运行: npm install eslint --save-dev'"
+  },
+  "keywords": ["virtual-forum", "debate", "ai-agent", "game-theory"],
+  "author": "erongcao",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}

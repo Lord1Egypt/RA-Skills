@@ -1,0 +1,33 @@
+{
+  "name": "MySearch",
+  "slug": "mysearch",
+  "description": "Default search skill for OpenClaw. Aggregates Tavily, Firecrawl, Exa, and optional X/social search behind one proxy-first path.",
+  "author": "skernelx",
+  "license": "MIT",
+  "requirements": {
+    "platform": "macOS/Linux",
+    "bins": [
+      "bash",
+      "python3"
+    ],
+    "env": [
+      "MYSEARCH_PROXY_BASE_URL",
+      "MYSEARCH_PROXY_API_KEY"
+    ],
+    "optional_env": [
+      "MYSEARCH_TAVILY_API_KEY",
+      "MYSEARCH_FIRECRAWL_API_KEY",
+      "MYSEARCH_EXA_API_KEY",
+      "MYSEARCH_XAI_API_KEY"
+    ]
+  },
+  "security": {
+    "disclosures": [
+      "MySearch sends queries and whichever provider or proxy credentials you configure to the provider or proxy base URLs you configure.",
+      "Prefer injecting env vars through OpenClaw skill config; copying a .env file into the installed skill folder is optional and intended for local debugging only.",
+      "The bundled installer copies only local files from this skill bundle and does not download remote code or modify other installed skills.",
+      "If you point MYSEARCH_PROXY_BASE_URL at an untrusted host, that host can see queries and any credentials routed through it."
+    ],
+    "install_requires_confirmation": true
+  }
+}

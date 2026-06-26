@@ -1,0 +1,16 @@
+{
+  "flomo": {
+    "email": "your-email@example.com",
+    "password": "your-password"
+  },
+  "obsidian": {
+    "vault_path": "/path/to/your/obsidian/vault/flomo",
+    "tag_prefix": "flomo/"
+  },
+  "sync": {
+    "download_dir": "./flomo_downloads",
+    "state_file": ".flomo_sync_state.json",
+    "keep_exports": 3,
+    "headless": true
+  }
+}

@@ -1,0 +1,132 @@
+name: proxyclaw
+displayName: ProxyClaw
+description: Residential proxy network for AI agents with anti-bot bypass
+icon: 🦞
+url: https://proxyclaw.ai
+repository: https://github.com/Iploop/proxyclaw
+author: IPLoop
+category: web-access
+tags:
+  - proxy
+  - web-scraping
+  - residential-proxy
+  - anti-bot
+  - ai-agents
+  - langchain
+  - data-collection
+
+# Smithery configuration
+smithery:
+  type: github-repo
+  tools:
+    - name: fetch_url
+      description: Fetch any URL through ProxyClaw's residential proxy network
+      parameters:
+        url:
+          type: string
+          description: The URL to fetch
+          required: true
+        country:
+          type: string
+          description: Country code for proxy location (e.g., 'US', 'GB', 'DE')
+          required: false
+        method:
+          type: string
+          description: HTTP method (GET, POST, PUT, DELETE)
+          required: false
+          default: GET
+        headers:
+          type: object
+          description: Optional HTTP headers
+          required: false
+        data:
+          type: object
+          description: Request body for POST/PUT requests
+          required: false
+
+    - name: scrape_page
+      description: Scrape a webpage with automatic retries and anti-bot bypass
+      parameters:
+        url:
+          type: string
+          description: The URL to scrape
+          required: true
+        country:
+          type: string
+          description: Country code for proxy location
+          required: false
+        retries:
+          type: integer
+          description: Number of retry attempts
+          required: false
+          default: 3
+        extract_links:
+          type: boolean
+          description: Whether to extract all links from the page
+          required: false
+          default: false
+
+    - name: get_session
+      description: Create a sticky proxy session for multiple requests with the same IP
+      parameters:
+        urls:
+          type: array
+          description: List of URLs to fetch in the same session
+          required: true
+        country:
+          type: string
+          description: Country code for proxy location
+          required: false
+
+# Installation instructions
+install:
+  python: pip install iploop-sdk
+  npm: npm install iploop
+
+# Environment variables
+env:
+  IPLOOP_API_KEY:
+    description: Your ProxyClaw API key from https://platform.proxyclaw.io
+    required: true
+
+# Usage examples
+examples:
+  - description: Fetch a URL through US proxy
+    code: |
+      from iploop import IPLoop
+      client = IPLoop(api_key="your_key", country="US")
+      result = client.fetch("https://example.com")
+
+  - description: Scrape with retries
+    code: |
+      from iploop import IPLoop
+      client = IPLoop(api_key="your_key")
+      result = client.smart_scrape("https://example.com", retries=3)
+
+# Pricing
+pricing:
+  model: payg
+  currency: USD
+  rates:
+    - range: 0-10TB
+      price: 0.35
+      unit: GB
+    - range: 10TB+
+      price: 0.25
+      unit: GB
+  free_tier: 0.5GB
+
+# Links
+links:
+  docs: https://docs.proxyclaw.ai
+  dashboard: https://platform.proxyclaw.io
+  signup: https://proxyclaw.ai
+  discord: https://discord.gg/clawd
+  support: support@iploop.io
+
+# Stats
+stats:
+  ips: 10M+
+  countries: 111
+  success_rate: 100%
+  tested_sites: 66

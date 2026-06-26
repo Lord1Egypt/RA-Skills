@@ -1,35 +1,23 @@
----
-name: "Building Rag Applications With Langchain"
-description: "Learn to build Retrieval-Augmented Generation (RAG) applications using LangChain with Python and FAISS vector stores for enhanced AI retrieval."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/building-rag-applications-with-langchain"
-sourceUrl: "https://clawhub.ai/skills/building-rag-applications-with-langchain"
----
+# Building RAG Applications with LangChain
 
-# Building Rag Applications With Langchain
+## Description
+Automatically generated AI learning skill from curated web and social media sources.
 
-> Learn to build Retrieval-Augmented Generation (RAG) applications using LangChain with Python and FAISS vector stores for enhanced AI retrieval.
+## Steps
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/building-rag-applications-with-langchain`
-- **Source URL:** [https://clawhub.ai/skills/building-rag-applications-with-langchain](https://clawhub.ai/skills/building-rag-applications-with-langchain)
+1. Learn how to build Retrieval-Augmented Generation applications. ```python
+2. from langchain.chains import RetrievalQA
+3. from langchain.vectorstores import FAISS
+4. qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever())
 
-## Overview
+## Code Examples
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/building-rag-applications-with-langchain
+```python
+from langchain.chains import RetrievalQA
+from langchain.vectorstores import FAISS
+qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever())
 ```
+
+## Dependencies
+- Python 3.8+
+- Relevant libraries (see code examples)

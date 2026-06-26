@@ -1,0 +1,12 @@
+{
+  "run_time": "2026-04-06T12:46:00+08:00",
+  "run_number": "v6_forced_1246",
+  "feishu_message_id": "om_x100b5207f93e4ca8b3db5d550f0fb7f",
+  "chat_id": "oc_7cc9126cec23d9879a7978ff23659823",
+  "source": "X keywords + WatcherGuru + Iran ceasefire search",
+  "web_search_status": "API_TOKEN_INVALID",
+  "posts_collected": 8,
+  "analysis_score_count": 10,
+  "analysis_high_signal_count": 8,
+  "report": "sent to feishu"
+}

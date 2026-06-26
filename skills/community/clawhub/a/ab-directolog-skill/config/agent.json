@@ -1,0 +1,16 @@
+{
+  "name": "directolog",
+  "description": "Yandex.Direct эксперт — управление кампаниями, аналитика, оптимизация",
+  "model": "minimax/MiniMax-M2",
+  "skills": ["ab-directolog-skill"],
+  "environment": {
+    "YANDEX_DIRECT_CLIENT_ID": "${YANDEX_DIRECT_CLIENT_ID}",
+    "YANDEX_DIRECT_CLIENT_SECRET": "${YANDEX_DIRECT_CLIENT_SECRET}",
+    "YANDEX_DIRECT_ACCESS_TOKEN": "${YANDEX_DIRECT_ACCESS_TOKEN}",
+    "YANDEX_DIRECT_REFRESH_TOKEN": "${YANDEX_DIRECT_REFRESH_TOKEN}"
+  },
+  "memory": {
+    "path": "./memory/direct-memory.md",
+    "autoSave": true
+  }
+}

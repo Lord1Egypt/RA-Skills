@@ -1,35 +1,40 @@
 ---
-name: "Crypto Wallet"
-description: "Multi-chain cryptocurrency wallet management. Check balances, send tokens, view transaction history across Ethereum, Solana, Bitcoin and more."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-wallet"
-sourceUrl: "https://clawhub.ai/skills/crypto-wallet"
+name: crypto-wallet
+description: Multi-chain cryptocurrency wallet management. Check balances, send tokens, view transaction history across Ethereum, Solana, Bitcoin and more.
+metadata: {"clawdbot":{"emoji":"💰","requires":{"bins":["curl","jq"]}}}
 ---
 
-# Crypto Wallet
+# Crypto Wallet 💰
 
-> Multi-chain cryptocurrency wallet management. Check balances, send tokens, view transaction history across Ethereum, Solana, Bitcoin and more.
+Manage cryptocurrency wallets across multiple blockchains.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-wallet`
-- **Source URL:** [https://clawhub.ai/skills/crypto-wallet](https://clawhub.ai/skills/crypto-wallet)
+## Supported Chains
 
-## Overview
+- Ethereum (ETH, ERC-20)
+- Solana (SOL, SPL tokens)
+- Bitcoin (BTC)
+- Polygon (MATIC)
+- Arbitrum
+- Base
 
+## Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crypto-wallet
+- Check wallet balances
+- View transaction history
+- Send tokens (with confirmation)
+- Token price lookup
+- Portfolio overview
+
+## Usage Examples
+
 ```
+"What's my ETH balance?"
+"Show my crypto portfolio"
+"Send 0.1 ETH to 0x..."
+```
+
+## Safety Rules
+
+1. **ALWAYS** confirm before sending transactions
+2. **NEVER** expose private keys
+3. **ALWAYS** verify recipient addresses

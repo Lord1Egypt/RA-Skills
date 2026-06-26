@@ -1,35 +1,27 @@
 ---
-name: "Ziwei Bazi Consulting"
-description: "Legacy compatibility alias for Ziwei + Bazi consultation workflows. Use when older prompts or automations still call `ziwei-bazi-consulting`; forward the wor..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ziwei-bazi-consulting"
-sourceUrl: "https://clawhub.ai/skills/ziwei-bazi-consulting"
+name: ziwei-bazi-consulting
+description: Legacy compatibility alias for Ziwei + Bazi consultation workflows. Use when older prompts or automations still call `ziwei-bazi-consulting`; forward the work to `destiny-fusion-pro` so users receive the newer dual-system, consultation-style report with unified calculation rules and optional chart output.
 ---
 
-# Ziwei Bazi Consulting
+# ziwei-bazi-consulting
 
-> Legacy compatibility alias for Ziwei + Bazi consultation workflows. Use when older prompts or automations still call `ziwei-bazi-consulting`; forward the wor...
+This skill is a **legacy compatibility alias**.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ziwei-bazi-consulting`
-- **Source URL:** [https://clawhub.ai/skills/ziwei-bazi-consulting](https://clawhub.ai/skills/ziwei-bazi-consulting)
+Use it when an older workflow still refers to `ziwei-bazi-consulting`, but execute the actual work via `destiny-fusion-pro`.
 
-## Overview
+## Recommended Forwarding Command
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ziwei-bazi-consulting
+python scripts/fortune_fusion.py \
+  --date 1990-10-21 \
+  --time 15:30 \
+  --gender female \
+  --year 2026 \
+  --format markdown
 ```
+
+## Guidance
+
+- Prefer `destiny-fusion-pro` for all new usage.
+- Keep this alias lightweight and compatibility-focused.
+- Match the newer calculation standard and report style when forwarding work.

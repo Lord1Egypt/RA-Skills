@@ -1,0 +1,76 @@
+{
+  "name": "notice-monitor",
+  "version": "1.0.1",
+  "description": "通用网站公告监控工具 - 支持任意政府公告/采购/招标网站自动化监控",
+  "author": "营销总监",
+  "license": "MIT",
+  "category": "automation",
+  "tags": ["monitor", "crawler", "notification", "automation", "procurement"],
+  "repository": "https://clawhub.com/skills/notice-monitor",
+  "homepage": "https://clawhub.com/skills/notice-monitor",
+  "bugs": "https://clawhub.com/skills/notice-monitor/issues",
+  
+  "requirements": {
+    "node": ">=14.0.0",
+    "openclaw": ">=1.0.0"
+  },
+  
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "yaml": "^2.3.0",
+    "commander": "^11.0.0"
+  },
+  
+  "entry": "src/monitor.js",
+  "cli": "src/cli.js",
+  
+  "config": {
+    "default": "configs/default.yaml",
+    "example": "configs/examples/"
+  },
+  
+  "usage": {
+    "install": "clawhub install notice-monitor",
+    "config": "cp ~/.openclaw/skills/notice-monitor/configs/default.yaml ~/.openclaw/workspace/notice-monitor-config.yaml",
+    "run": "openclaw skill run notice-monitor --config ~/.openclaw/workspace/notice-monitor-config.yaml",
+    "cron": "openclaw skill cron notice-monitor enable"
+  },
+  
+  "examples": [
+    {
+      "name": "黑龙江教育采购监控",
+      "config": "configs/examples/hlj-edu.yaml"
+    },
+    {
+      "name": "北京医疗招标监控",
+      "config": "configs/examples/beijing-medical.yaml"
+    },
+    {
+      "name": "上海 IT 项目监控",
+      "config": "configs/examples/shanghai-it.yaml"
+    }
+  ],
+  
+  "features": [
+    "多任务并行监控",
+    "自定义关键词过滤",
+    "多层级/多分类支持",
+    "自动去重",
+    "定时任务（Cron）",
+    "多通知渠道（DingTalk/微信/邮件/Webhook）",
+    "可定制报告模板"
+  ],
+  
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-20",
+      "changes": [
+        "初始版本发布",
+        "支持多任务配置",
+        "关键词过滤",
+        "自动去重机制",
+        "DingTalk 通知集成"
+      ]
+    }
+  }
+}

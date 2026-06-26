@@ -1,0 +1,13 @@
+{
+  "staticOSS": {
+    "endPoint": "oss-cn-chengdu.aliyuncs.com",
+    "bucket": "static-szxg",
+    "host": "https://static-szxg.oss-cn-chengdu.aliyuncs.com",
+    "bindHost": "https://static.thinkzoneai.com",
+    "expireTime": 6000000,
+    "uploadDir": "upload",
+    "base64Table": "123QRSTUabcdVWXYZHijKLAWDCABDstEFGuvwxyzGHIJklmnopqr234560178912",
+    "objectLifecycleExpireDays": 7,
+    "lifecycleRuleId": "keplerjai-oss-upload-expire"
+  }
+}

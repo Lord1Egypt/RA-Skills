@@ -1,0 +1,21 @@
+# ConcurrencyGuard -- lefthook configuration
+# Installed by: concurrencyguard hook install
+# Documentation: https://concurrencyguard.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    concurrencyguard-concurrency-scan:
+      run: |
+        CONCURRENCYGUARD_SKILL_DIR="${CONCURRENCYGUARD_SKILL_DIR:-$HOME/.openclaw/skills/concurrencyguard}"
+        if [[ -f "$CONCURRENCYGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CONCURRENCYGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$CONCURRENCYGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_concurrency_scan
+        else
+          echo "[ConcurrencyGuard] Skill not found at $CONCURRENCYGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Concurrency safety issues detected in staged files!
+        Run 'concurrencyguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

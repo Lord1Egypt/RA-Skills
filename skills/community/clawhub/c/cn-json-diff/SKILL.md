@@ -1,35 +1,67 @@
 ---
-name: "Cn Json Diff"
+slug: cn-json-diff
+name: JSON Diff
+version: "1.0.0"
 description: "Compare two JSON files and show differences. Support nested structures, arrays, and value changes. Pure Python standard library, no API key required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-json-diff"
-sourceUrl: "https://clawhub.ai/skills/cn-json-diff"
+keywords: json, diff, compare, difference, file
+license: MIT-0
+tags:
+  - tools
 ---
 
-# Cn Json Diff
+# JSON Diff
 
-> Compare two JSON files and show differences. Support nested structures, arrays, and value changes. Pure Python standard library, no API key required.
+Compare two JSON files and show the differences in a clear format.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-json-diff`
-- **Source URL:** [https://clawhub.ai/skills/cn-json-diff](https://clawhub.ai/skills/cn-json-diff)
+## Features
 
-## Overview
+- Compare JSON files of any complexity
+- Detect nested object differences
+- Identify array length changes
+- Show old vs new values for changed fields
+- Pure Python, no external dependencies
 
+## Input
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-json-diff
+Two JSON files passed as arguments.
+
+## Output
+
+List of all differences found, with paths and old/new values.
+
+## Usage
+
 ```
+python3 scripts/json_diff.py --file1 data1.json --file2 data2.json
+```
+
+## Example
+
+Input file1.json:
+```json
+{"name": "Alice", "age": 30, "city": "Beijing"}
+```
+
+Input file2.json:
+```json
+{"name": "Alice", "age": 31, "city": "Shanghai"}
+```
+
+Output:
+```
+differences:
+- age: 30 -> 31
+- city: Beijing -> Shanghai
+count: 2
+```
+
+## Exit Codes
+
+- 0: Comparison completed (with or without differences)
+- 1: File read error
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

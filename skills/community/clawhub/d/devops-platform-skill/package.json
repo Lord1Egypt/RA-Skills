@@ -1,0 +1,30 @@
+{
+  "name": "devops-platform-skill",
+  "version": "2.0.0",
+  "description": "DevOps效能平台工具，提供完整的DevOps平台API访问功能",
+  "main": "index.js",
+  "bin": {
+    "devops-platform": "./bin/devops-platform-enhanced.js",
+    "devops-platform-simple": "./bin/devops-platform-simple.js",
+    "devops-platform-enhanced": "./bin/devops-platform-enhanced.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/devops-platform-enhanced.js"
+  },
+  "keywords": [
+    "devops",
+    "platform",
+    "api",
+    "cli",
+    "cicd",
+    "deployment"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "commander": "^11.1.0",
+    "inquirer": "^9.3.8"
+  }
+}

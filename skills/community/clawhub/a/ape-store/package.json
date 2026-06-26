@@ -1,0 +1,18 @@
+{
+  "name": "openclaw-apestore-skill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ethers": "^6.16.0",
+    "form-data": "^4.0.5",
+    "node-fetch": "^2.7.0"
+  }
+}

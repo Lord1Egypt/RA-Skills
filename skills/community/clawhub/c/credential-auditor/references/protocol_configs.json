@@ -1,0 +1,27 @@
+{
+  "ssh": {
+    "default_port": 22,
+    "timeout": 10,
+    "max_threads": 5
+  },
+  "rdp": {
+    "default_port": 3389,
+    "timeout": 15,
+    "max_threads": 3
+  },
+  "ftp": {
+    "default_port": 21,
+    "timeout": 10,
+    "max_threads": 10
+  },
+  "http": {
+    "default_port": 80,
+    "timeout": 10,
+    "max_threads": 5
+  },
+  "https": {
+    "default_port": 443,
+    "timeout": 10,
+    "max_threads": 5
+  }
+}

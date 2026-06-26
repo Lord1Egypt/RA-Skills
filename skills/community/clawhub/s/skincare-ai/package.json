@@ -1,0 +1,18 @@
+﻿{
+  "name": "skincare-ai",
+  "version": "1.0.4",
+  "description": "AI护肤分析系统 - 安全修复版版",
+  "author": "OpenClaw助手",
+  "license": "MIT",
+  "main": "skill_ascii_fixed.py",
+  "dependencies": {
+    "python": ">=3.8",
+    "openclaw": ">=2026.3.0"
+  },
+  "permissions": ["filesystem"],
+  "security": {
+    "network_access": false,
+    "local_only": true,
+    "privacy_friendly": true
+  }
+}

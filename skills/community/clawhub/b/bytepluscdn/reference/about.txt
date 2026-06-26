@@ -1,0 +1,107 @@
+# BytePlus CDN Scripts Documentation
+
+This directory contains the core script files for the BytePlus CDN local command-line tool.
+
+---
+
+## 📁 File Description
+
+### 1. `cli.py` ⭐ Main Entry File
+**Purpose**: Command-line tool main program
+**Features**:
+- Provides a complete command-line interface for BytePlus CDN management
+- Supports interactive guide mode (when running without parameters)
+- Main commands:
+  - `add-domain`: Add CDN domain (supports two methods: direct origin configuration / bind existing policy template)
+    - `oss` / `cos` / `aws` / `tos` / `ip` / `domain`: Directly configure origin
+    - `template`: Add domain by binding a published distribution policy
+  - `create-template`: Create service template
+  - `refresh`: Refresh cache (file/directory)
+  - `preload`: Pre-warm cache
+  - `log-offline`: Offline log delivery
+  - `log-realtime`: Real-time log delivery
+
+**Usage Example**:
+```bash
+# Method 1: Directly configure origin
+python scripts/cli.py add-domain oss --domain your-domain.com --origin ...
+
+# Method 2: Bind existing policy template
+python scripts/cli.py add-domain template --domain your-domain.com --service-template-id tpl-s2Q4mq
+```
+
+---
+
+### 2. `cdn_client.py` ⭐ SDK Client Initializer
+**Purpose**: BytePlus CDN SDK client initialization
+**Features**:
+- Loads authentication information (`BYTEPLUS_AK`, `BYTEPLUS_SK`) from `.env` file or environment variables
+- Automatically initializes CDN service client (default region: `ap-singapore-1`)
+- If environment variables are not configured, will interactively ask user for input
+
+**Core Function**:
+- `init_cdn_client()`: Returns initialized CDN service object
+
+---
+
+### 3. `config.py` ⭐ Recommended Configuration Generator
+**Purpose**: Automatically generates CDN optimization configurations based on service type
+**Features**:
+- Provides recommended configurations for three preset service types:
+  - `web`: Web acceleration (includes query parameters, HTML optimization, Gzip compression)
+  - `download`: Download acceleration (ignores query parameters, Range shards, redirect follow)
+  - `video`: VOD acceleration (download acceleration + video seek)
+- Default cache policy: Do not cache `.php/.jsp/.asp/.aspx`, cache others for 30 days
+
+**Core Function**:
+- `get_recommended_config(service_type)`: Returns recommended configuration dictionary
+
+---
+
+### 4. `json_for_log.py` 🛠️ JSON Escape Tool
+**Purpose**: Convert JSON file to single-line escaped string
+**Features**:
+- Specifically designed for scenarios requiring escaped JSON credentials like GCP BigQuery
+- Resolves command-line parameter length and newline issues
+- Supports output to file or stdout
+
+**Usage Example**:
+```bash
+python scripts/json_for_log.py gcp-auth.json -o escaped.txt
+```
+
+---
+
+### 5. `__init__.py`
+**Purpose**: Python package initialization file
+- Makes the `scripts` directory a valid Python package
+
+---
+
+## 🔗 File Dependency Relationship
+
+```
+cli.py (main entry)
+├── cdn_client.py (SDK initialization)
+└── config.py (recommended configs)
+
+json_for_log.py (independent tool, used by log-realtime bigquery)
+```
+
+---
+
+## 📝 Configuration Instructions
+
+Need to create a `.env` file in the project root directory, configured as follows:
+```
+BYTEPLUS_AK=YourAccessKey
+BYTEPLUS_SK=YourSecretKey
+```
+
+If not configured, the program will interactively ask for input.
+
+---
+
+## 🎯 More Information
+
+For detailed command usage instructions, please refer to the `SKILL.md` file in the project root.

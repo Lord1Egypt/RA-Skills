@@ -1,0 +1,12 @@
+{
+  "databaseId": 5001,
+  "workflowName": "CI Build",
+  "event": "push",
+  "conclusion": "success",
+  "headBranch": "main",
+  "headSha": "abc5001",
+  "createdAt": "2026-03-01T00:00:00Z",
+  "updatedAt": "2026-03-01T00:08:00Z",
+  "url": "https://github.com/acme/api/actions/runs/5001",
+  "repository": "acme/api"
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dont Deal Triage"
+  short_description: "Fast red-or-yellow chest-pain triage for overworked developers."
+  default_prompt: "Use $dont-deal-triage to do a conservative red-or-yellow chest-pain triage and factor in local fatigue context when available."
+
+policy:
+  allow_implicit_invocation: true

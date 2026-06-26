@@ -1,0 +1,53 @@
+{
+  "paper": {
+    "paper_id": "",
+    "paper_title": "",
+    "paper_slug": "",
+    "venue": "",
+    "year": "",
+    "subfield": ""
+  },
+  "generation_context": {
+    "defense_context": "",
+    "target_audience": [],
+    "input_artifacts": [],
+    "missing_artifacts": [],
+    "risk_tolerance": "conservative"
+  },
+  "qa_items": [
+    {
+      "q_id": "Q001",
+      "question_cn": "这篇论文最核心的贡献是什么，和最接近的前作相比到底新在哪里？",
+      "question_en": "What is the core contribution, and what is truly new compared with the closest prior work?",
+      "audience": [
+        "advisor",
+        "reviewer",
+        "committee"
+      ],
+      "attack_axis": "novelty",
+      "likelihood": "high",
+      "severity": "high",
+      "priority": "P1",
+      "answer_readiness": "needs_evidence",
+      "why_they_may_ask": "答辩委员会通常首先测试贡献是否可被清晰防守。",
+      "expected_concern": "担心工作只是已有方法组合。",
+      "answer_short_cn": "待填：用一句话给出可防守贡献，并说明最接近前作和差异。",
+      "answer_long_cn": "待填。",
+      "evidence_refs": [],
+      "evidence_labels": [
+        "missing_evidence"
+      ],
+      "confidence": "low",
+      "what_not_to_overclaim": "不要声称解决了未测试设置或所有相关任务。",
+      "backup_slide": "Closest Prior Work vs This Paper",
+      "if_challenged_again": "把回答收窄到论文实际证明的设置和证据。",
+      "follow_up_experiment_or_code_check": "补充最接近前作在同一数据处理和调参预算下的复现实验。",
+      "visual_card_ids": [
+        "VC001"
+      ],
+      "visualization_hint": "用“贡献边界地图”展示：左侧是最接近前作，中间是本文新增机制，右侧是论文实际证据和不可过度声称的边界。"
+    }
+  ],
+  "evidence_gaps": [],
+  "dangerous_questions": []
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "auto-spec",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to add a 'conversation history summarization' feature to the chat assistant: when the number of conversation turns exceeds 10, automatically compress earlier history into a summary to reduce token usage. Write me a spec first.",
+      "expected_output": "A feature-level Forward Spec with behavioral contracts (happy path + error scenarios), constraints & boundaries, and dependencies — not written to any file",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Reverse-engineer a spec for internal/orchestrator/supervisor.go — I want to understand what this supervisor actually does.",
+      "expected_output": "A module-level Reverse Spec extracted from the code, with suspicious logic flagged using [NOTE] tags — not written to any file",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need a utility function that deduplicates a list of user-uploaded image URLs and validates their accessibility. Invalid URLs should be filtered out and logged. Write the spec first, then implement it.",
+      "expected_output": "A function-level Forward Spec, followed by an implementation that follows the spec",
+      "files": []
+    }
+  ]
+}

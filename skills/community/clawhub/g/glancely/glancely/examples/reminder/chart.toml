@@ -1,0 +1,17 @@
+# Reminder component — timeline with status badges + count overview
+[chart]
+type = "timeline"
+title = "Active Reminders"
+
+[chart.data]
+source = "rows"
+time_field = "due_date"
+title_field = "title"
+
+[chart.options]
+
+[overview]
+enabled = true
+card_type = "badge"
+label = "Pending"
+data_key = "summary.active"

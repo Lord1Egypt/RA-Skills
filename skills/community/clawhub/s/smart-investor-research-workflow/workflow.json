@@ -1,0 +1,78 @@
+{
+  "name": "smart-investor-research-workflow",
+  "version": "1.0.0",
+  "displayName": "智能投资研究工作流",
+  "description": "多源研报 + 市场情绪分析 + 投资组合风险计算 + PDF报告生成，端到端投资研究闭环",
+  "category": "AI",
+  "tags": ["投资研究", "行业分析", "投资组合", "PDF报告", "市场情绪"],
+  "skills": [
+    {
+      "name": "zcx-research-assistant",
+      "version": ">=1.0.2",
+      "role": "数据收集与结构化研究",
+      "input": "投资标的名称或行业主题",
+      "output": "SWOT分析/行业简报，含信息源引用"
+    },
+    {
+      "name": "zcx-sentiment-analyzer",
+      "version": ">=1.0.1",
+      "role": "市场情绪量化分析",
+      "input": "新闻关键词、社交媒体帖子",
+      "output": "多空信号、情绪评分(0-100)、关键词趋势"
+    },
+    {
+      "name": "zcx-portfolio-risk-manager",
+      "version": ">=1.0.3",
+      "role": "投资组合风险指标计算",
+      "input": "标的代码 + 模拟权重",
+      "output": "VaR、夏普比率、最大回撤、相关性矩阵、仓位建议"
+    },
+    {
+      "name": "zcx-pdf-report-generator",
+      "version": ">=1.0.0",
+      "role": "PDF报告渲染与导出",
+      "input": "Markdown格式汇总报告",
+      "output": "A4专业PDF（含中文字体、页眉页脚、页码）"
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "多源研究",
+      "skill": "zcx-research-assistant",
+      "instruction": "收集指定投资标的的多源公开信息，进行交叉验证，输出结构化SWOT或行业简报，并标注信息来源"
+    },
+    {
+      "step": 2,
+      "name": "情绪分析",
+      "skill": "zcx-sentiment-analyzer",
+      "instruction": "基于Step1研报中识别的关键词和新闻源，分析市场情绪，输出情绪评分(0-100)、多空信号和关键驱动因素"
+    },
+    {
+      "step": 3,
+      "name": "风险计算",
+      "skill": "zcx-portfolio-risk-manager",
+      "instruction": "基于Step1和Step2的研究结果，输入模拟仓位权重，计算VaR、夏普比、最大回撤、相关性矩阵，给出动态仓位调整建议"
+    },
+    {
+      "step": 4,
+      "name": "报告生成",
+      "skill": "zcx-pdf-report-generator",
+      "instruction": "将Step1-3输出的Markdown内容整合为结构化报告，转换为A4专业PDF（含中文字体、页眉页脚、页码），提供下载链接"
+    }
+  ],
+  "triggers": [
+    "投资研究",
+    "行业分析",
+    "投资尽调",
+    "市场调研",
+    "投资报告",
+    "portfolio research",
+    "investment analysis"
+  ],
+  "requirements": {
+    "system": "Linux (pdfkit依赖中文字体)",
+    "dependencies": ["zcx-research-assistant", "zcx-sentiment-analyzer", "zcx-portfolio-risk-manager", "zcx-pdf-report-generator"]
+  },
+  "disclaimer": "本工作流输出内容仅供研究参考，不构成投资建议。投资有风险，决策需自负。"
+}

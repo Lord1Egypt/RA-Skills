@@ -1,0 +1,25 @@
+{
+  "name": "trustloop",
+  "version": "1.0.1",
+  "displayName": "TrustLoop — AI Governance & Audit Layer",
+  "description": "Intercept, audit, and enforce kill-switch rules on every tool call your agent makes before execution. Full audit trail at app.trustloop.live.",
+  "author": "Soji Muyiwa (@SMJAI)",
+  "homepage": "https://trustloop.live",
+  "license": "MIT-0",
+  "requiredEnv": [
+    {
+      "name": "TRUSTLOOP_API_KEY",
+      "description": "Your TrustLoop API key. Get one free at app.trustloop.live",
+      "required": true,
+      "secret": true
+    }
+  ],
+  "externalConnections": [
+    {
+      "url": "https://api.trustloop.live/api/intercept",
+      "purpose": "Check tool call against governance rules and kill-switches before execution. Returns allowed:true or allowed:false.",
+      "dataTransmitted": "Tool name + arguments only (secrets auto-redacted by trustloop-check.js before transmission using pattern matching). No file contents, conversation history, system prompts, or credentials are ever sent."
+    }
+  ],
+  "tags": ["governance", "audit", "compliance", "security", "mcp"]
+}

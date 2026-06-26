@@ -1,0 +1,15 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-confluence-mcp": {
+      "baseUrl": "https://mcp.atlassian.com/v1/mcp/authv2",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://cf.mcp.atlassian.com/v1/token",
+        "clientIdEnv": "MAVERICK_CONFLUENCE_MCP_CLIENT_ID",
+        "clientAuthMethod": "none"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "multi-city-planner",
+  "version": "1.0.0",
+  "description": "多目的地行程规划与比价工具",
+  "main": "plan.js",
+  "scripts": {
+    "start": "node plan.js"
+  },
+  "keywords": ["multi-city", "flight", "travel", "planner"],
+  "author": "@DanshaNiusha",
+  "license": "MIT"
+}

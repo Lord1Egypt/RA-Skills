@@ -1,0 +1,10 @@
+{
+  "name": "暖调编辑",
+  "description": "暖白底色 + 底部色带 + 品牌色点缀，适合深度文章/新闻通讯",
+  "colors": { "background": "#F5F0EB", "text": "#0F172A", "accent": "#4F46E5", "secondary": "#64748B", "accentWarm": "#C4956A" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "132px", "titleSizeSquare": "104px", "titleSizeWide": "82px", "titleSizeCover": "64px", "contentSize": "36px" },
+  "brand": "暖调编辑",
+  "badge": "NEWS",
+  "radius": "12px"
+}

@@ -1,0 +1,63 @@
+{
+  "name": "openclaw-security-configurator",
+  "version": "1.0.0",
+  "description": "Enterprise-grade security configuration and monitoring for OpenClaw",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "./scripts/security-check.sh",
+    "start": "./scripts/token-monitor.sh start",
+    "stop": "./scripts/token-monitor.sh stop",
+    "check": "./scripts/token-monitor.sh check"
+  },
+  "keywords": [
+    "openclaw",
+    "security",
+    "monitoring",
+    "token",
+    "compliance",
+    "enterprise"
+  ],
+  "author": "发财 (OpenClaw Assistant)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-skills/security-configurator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-skills/security-configurator/issues"
+  },
+  "homepage": "https://clawhub.com/skills/openclaw-security-configurator",
+  "dependencies": {
+    "bash": ">=4.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "openclaw": ">=2026.3.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "docs/",
+    "package.json"
+  ],
+  "clawhub": {
+    "category": "security",
+    "tags": ["security", "monitoring", "compliance", "enterprise", "token", "alipay", "cost-optimization", "financial", "ai-routing"],
+    "price": {
+      "free": true,
+      "pro": 349,
+      "enterprise": 2099,
+      "currency": "CNY"
+    },
+    "compatibility": ["openclaw"],
+    "minOpenClawVersion": "2026.3.0",
+    "differentiation": {
+      "alipayIntegration": true,
+      "tokenOptimization": true,
+      "financialCompliance": true,
+      "smartModelRouting": true,
+      "chineseLocalization": true
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "clawtext-ingest",
+  "version": "1.3.0",
+  "description": "Multi-source data ingestion for ClawText memory layer",
+  "main": "src/index.js",
+  "bin": {
+    "clawtext-ingest": "bin/ingest.js",
+    "clawtext-ingest-discord": "bin/discord.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "test:discord": "node test-discord.mjs",
+    "test:discord-integration": "node test-discord-integration.mjs",
+    "test:discord-cli": "node test-discord-cli.mjs",
+    "lint": "eslint src/",
+    "prepack": "npm test"
+  },
+  "keywords": [
+    "openclaw",
+    "memory",
+    "ingestion",
+    "rag",
+    "clawtext"
+  ],
+  "author": "ragesaq",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.25.1",
+    "glob": "^10.3.10",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

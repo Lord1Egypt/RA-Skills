@@ -1,0 +1,222 @@
+{
+  "brand_name": "ByteNest",
+  "normalized_input": {
+    "brand_name": "ByteNest",
+    "brand_positioning": "AI workflow tooling for small teams",
+    "brand_tone": "direct technical practical",
+    "target_audience": [
+      "operators",
+      "founders",
+      "PMs"
+    ],
+    "use_cases": [],
+    "channels": [
+      "wechat",
+      "x",
+      "linkedin"
+    ],
+    "content_goals": [
+      "thought leadership",
+      "product awareness",
+      "inbound leads"
+    ],
+    "brand_dos": [
+      "technical clarity",
+      "use cases with data"
+    ],
+    "brand_donts": [
+      "hype language"
+    ],
+    "competitor_scope": [
+      "Notion public signals",
+      "Linear public signals"
+    ],
+    "kpis": [
+      "impressions",
+      "click_through",
+      "signups"
+    ],
+    "constraints": {
+      "budget": "low",
+      "language": "zh-CN",
+      "region": "global",
+      "compliance": "public+authorized-only"
+    }
+  },
+  "brand_brief": {
+    "brand_summary": {
+      "positioning": "AI workflow tooling for small teams",
+      "tone": "direct technical practical",
+      "audience": "operators, founders, PMs",
+      "goals": "thought leadership, product awareness, inbound leads"
+    },
+    "channels": [
+      "wechat",
+      "x",
+      "linkedin"
+    ],
+    "use_cases": [],
+    "dos": [
+      "technical clarity",
+      "use cases with data"
+    ],
+    "donts": [
+      "hype language"
+    ],
+    "competitor_scope": [
+      "Notion public signals",
+      "Linear public signals"
+    ],
+    "kpis": [
+      "impressions",
+      "click_through",
+      "signups"
+    ],
+    "constraints": {
+      "budget": "low",
+      "region": "global",
+      "compliance": "public+authorized-only"
+    },
+    "low_confidence": false
+  },
+  "content_strategy": {
+    "content_pillars": [
+      "brand story",
+      "product utility",
+      "social proof",
+      "platform-native education"
+    ],
+    "style_rules": [
+      "tone=direct technical practical",
+      "preserve brand constraints",
+      "prefer reusable post patterns"
+    ],
+    "channel_rules": {
+      "wechat": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ],
+      "x": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ],
+      "linkedin": [
+        "adapt to channel format",
+        "keep public/authorized-only data"
+      ]
+    },
+    "keywords": [
+      "AI workflow tooling for small teams",
+      "direct technical practical"
+    ]
+  },
+  "content_assets": {
+    "topics": [
+      "ByteNest origin story",
+      "ByteNest use case story"
+    ],
+    "titles": [
+      "ByteNest: a simple introduction"
+    ],
+    "posts": [
+      "Draft post placeholder"
+    ],
+    "scripts": [
+      "Draft short-form script placeholder"
+    ],
+    "comment_replies": [
+      "Reply template placeholder"
+    ],
+    "platform_variants": [
+      "xiaohongshu",
+      "weibo",
+      "douyin"
+    ]
+  },
+  "competitor_clusters": {
+    "themes": {
+      "notion": [
+        {
+          "theme": "notion",
+          "tone": "unknown"
+        }
+      ],
+      "linear": [
+        {
+          "theme": "linear",
+          "tone": "unknown"
+        }
+      ]
+    },
+    "theme_keys": [
+      "theme",
+      "format",
+      "tone",
+      "frequency",
+      "hook"
+    ]
+  },
+  "performance_score": {
+    "scores": {
+      "brand_consistency": 5,
+      "channel_fit": 5,
+      "clarity": 5,
+      "actionability": 5
+    },
+    "overall": 20,
+    "notes": "initial run for ByteNest"
+  },
+  "authorization": {
+    "has_boundary": false,
+    "reasons": [],
+    "authorization_request": "",
+    "human_assist": {},
+    "state": "running",
+    "decision": "allow",
+    "pause": false,
+    "fallback": "",
+    "resume_condition": "",
+    "allowed_scope": "public+authorized-only"
+  },
+  "browser": {
+    "requested_action": "read_public_content",
+    "normalized_action": "read_public_content",
+    "platform": "wechat",
+    "allowed_actions": [
+      "collect_public_signals",
+      "gather_authorized_data",
+      "open_public_page",
+      "prepare_draft_publication",
+      "read_public_content"
+    ],
+    "blocked_actions": [
+      "bypass_captcha",
+      "bypass_login",
+      "bypass_rate_limits",
+      "evade_platform_controls",
+      "stealth_scraping"
+    ],
+    "capability_plan": [
+      "navigate",
+      "state",
+      "get_text/get_html"
+    ],
+    "compliance": {
+      "compliant": true,
+      "decision": "allow",
+      "reasons": [],
+      "degrade_to": []
+    },
+    "notes": "browser capability and compliance are unified: execute only within compliant scope"
+  },
+  "iteration_plan": {
+    "changes_for_next_cycle": [
+      "Refine content pillars based on observed engagement",
+      "Add competitor examples from public/authorized sources",
+      "Tune platform variants for strongest channel"
+    ],
+    "human_approval_needed": false
+  },
+  "status": "ready_for_iteration",
+  "low_confidence": false
+}

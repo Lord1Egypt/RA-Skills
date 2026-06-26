@@ -1,0 +1,24 @@
+name: investment-workflow
+version: 1.2.0
+description: 投资工作流 - 场景驱动的投研全流程。覆盖 6 个用户场景（买股票/投行业/扫描推荐/行业看法/热点分析/开会讨论），融合降秩分析/追本分析/圆桌讨论/决策整合。
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - investment
+  - workflow
+  - research
+  - market-analysis
+  - industry-analysis
+
+features:
+  - 6 个核心场景（买股票/投行业/扫描推荐/行业看法/热点分析/开会讨论）
+  - 降秩分析（表象→机理→原理→公理）
+  - 秩序创造机器判定（飞轮/反脆弱/护城河）
+  - 圆桌讨论（多视角验证）
+  - 决策整合（概率计算 + 配置建议）
+
+requirements:
+  - data_layer v2.2.0
+  - mcp-aktools v0.1.15
+  - Python 3.8+

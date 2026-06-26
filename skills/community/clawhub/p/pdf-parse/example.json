@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/pdf/parse",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sample-pdfinvoice-with-image.pdf", "mode": "full", "pages": "1-3" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "meta": { "pages": 3, "scanned": false, "language": "en" },
+      "pages": [
+        {
+          "page": 1,
+          "text": "Annual Report 2026\nAcme Corporation",
+          "blocks": [
+            { "type": "heading", "text": "Annual Report 2026", "bbox": [0.1, 0.05, 0.9, 0.1] },
+            { "type": "paragraph", "text": "Acme Corporation", "bbox": [0.1, 0.12, 0.5, 0.15] }
+          ]
+        }
+      ],
+      "images": [
+        { "image_id": "img_1", "page": 1, "bbox": [0.6, 0.2, 0.9, 0.5], "format": "png" }
+      ]
+    }
+  }
+}

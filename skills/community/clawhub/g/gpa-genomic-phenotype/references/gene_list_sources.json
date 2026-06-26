@@ -1,0 +1,65 @@
+{
+  "version": "0.1",
+  "description": "External gene list sources for DGRA special_gene_lists auto-sync. Sources are queried at analysis time and merged with hardcoded core lists (which are immutable for safety).",
+  "sources": {
+    "orphanet": {
+      "enabled": true,
+      "url": "https://api.orphacode.org/",
+      "ttl_days": 7,
+      "note": "Orphanet REST API — no authentication required, rate-limited. Queries gene associations for specific rare disease phenotypes.",
+      "gene_phenotype_queries": [
+        {
+          "phenotype_orpha_id": "ORPHA:182212",
+          "list_name": "bone_marrow_failure",
+          "display_name": "Inherited bone marrow failure"
+        },
+        {
+          "phenotype_orpha_id": "ORPHA:82",
+          "list_name": "hemophilia",
+          "display_name": "Hemophilia"
+        },
+        {
+          "phenotype_orpha_id": "ORPHA:457243",
+          "list_name": "inherited_coagulation",
+          "display_name": "Inherited bleeding disorder"
+        },
+        {
+          "phenotype_orpha_id": "ORPHA:33069",
+          "list_name": "inherited_arrhythmia",
+          "display_name": "Long QT syndrome"
+        },
+        {
+          "phenotype_orpha_id": "ORPHA:154",
+          "list_name": "inherited_arrhythmia_brugada",
+          "display_name": "Brugada syndrome"
+        },
+        {
+          "phenotype_orpha_id": "ORPHA:871",
+          "list_name": "inherited_cardiomyopathy",
+          "display_name": "Hypertrophic cardiomyopathy"
+        },
+        {
+          "phenotype_orpha_id": "ORPHA:52427",
+          "list_name": "porphyria",
+          "display_name": "Acute hepatic porphyria"
+        }
+      ]
+    },
+    "omim": {
+      "enabled": false,
+      "api_key": null,
+      "ttl_days": 7,
+      "note": "OMIM GeneMap API — requires API key from https://omim.org/api. Set api_key to enable. Disabled by default.",
+      "mim_id_queries": []
+    }
+  },
+  "mapping_rules": {
+    "bone_marrow_failure": ["hematopoietic"],
+    "hemophilia": ["hematopoietic"],
+    "inherited_coagulation": ["hematopoietic", "cardiovascular"],
+    "inherited_arrhythmia": ["cardiovascular", "neurological"],
+    "inherited_arrhythmia_brugada": ["cardiovascular", "neurological"],
+    "inherited_cardiomyopathy": ["cardiovascular"],
+    "porphyria": ["hepatic", "hematopoietic"]
+  }
+}

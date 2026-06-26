@@ -1,0 +1,151 @@
+{
+  "version": "4.0.0",
+  "updated": "2026-04-17",
+  "description": "攻击检测中央库 - patterns.json - 所有检测规则从本文件读取",
+  "author": "OpenClaw Security Team",
+
+  "trigger_patterns": {
+    "description": "触发词/危险行为模式（命中后触发深度检测）",
+    "categories": {
+      "injection": {
+        "desc": "注入攻击类",
+        "patterns": [
+          "注入", "注入攻击", "sql注入", "注入指令", "绕过安全",
+          "执行SQL", "exec(", "eval(", "__import__", "os.system",
+          "subprocess", "忽略之前", "忽略所有", "忘记规则", "重新定义"
+        ]
+      },
+      "jailbreak": {
+        "desc": "越狱攻击类",
+        "patterns": [
+          "越狱", "jailbreak", "绕过", "解除限制", "忽略规则",
+          "忽略之前", "忽略所有", "忘记规则", "请扮演", "假装是",
+          "DAN", "no restriction", "test mode", "developer mode"
+        ]
+      },
+      "social": {
+        "desc": "社会工程攻击类",
+        "patterns": [
+          "钓鱼", "社会工程", "冒充", "欺骗", "紧急情况",
+          "钓鱼网站", "仿冒", "欺诈", "技术支持", "管理员",
+          "我是六哥", "朋友让我问", "点击这里", "立即执行",
+          "唯一机会", "错过就没有"
+        ]
+      },
+      "recursive": {
+        "desc": "递归攻击类",
+        "patterns": [
+          "递归", "无限循环", "死循环", "重复执行",
+          "while true", "for(;;)", "loop()", "100遍", "重复这句话"
+        ]
+      },
+      "emotional": {
+        "desc": "情感操纵类",
+        "patterns": [
+          "情感操纵", "道德绑架", "威胁", "紧急求助", "假装紧急",
+          "你不帮我", "必须回答", "可怜", "求求你", "愧疚",
+          "对你信任", "相信你", "这么信任"
+        ]
+      },
+      "credential": {
+        "desc": "凭证泄露类",
+        "patterns": [
+          "password=", "token=", "api_key=", "secret=",
+          "credential=", "密码", "密钥", "api密钥",
+          "朋友的项目密码", "账户详情"
+        ]
+      },
+      "path_traversal": {
+        "desc": "路径遍历类",
+        "patterns": [
+          "../", "..\\", "/etc/passwd", "c:\\windows",
+          "路径遍历", "敏感目录", "绕过路径"
+        ]
+      },
+      "roleplay": {
+        "desc": "角色扮演类",
+        "patterns": [
+          "你现在是", "请扮演", "你是DAN", "善良的AI",
+          "没有限制", "测试环境", "完全权限",
+          "在测试中", "开发者模式"
+        ]
+      },
+      "encoded": {
+        "desc": "编码逃逸类",
+        "patterns": [
+          "base64", "解码", "unicode", "编码",
+          "\\u00", "aWdub3Jl", "base64_decode"
+        ]
+      },
+      "context_poisoning": {
+        "desc": "上下文污染类",
+        "patterns": [
+          "之前的对话", "上次对话", "继续我们",
+          "你已经确认", "会话接续", "历史记录"
+        ]
+      },
+      "system_prompt": {
+        "desc": "系统提示词提取类",
+        "patterns": [
+          "系统提示词", "system prompt", "你的指令是",
+          "重复之前", "输出完整", "显示配置"
+        ]
+      },
+      "command_injection": {
+        "desc": "命令注入类",
+        "patterns": [
+          "rm -rf", "delete C:", "chmod 777", "format",
+          "del /", "rmdir", "shutdown", "net user",
+          "regedit", "reg delete"
+        ]
+      }
+    }
+  },
+
+  "dangerous_behaviors": {
+    "description": "危险行为定义（触发懒加载深度检测）",
+    "categories": {
+      "file_tamper": {
+        "desc": "文件篡改",
+        "behaviors": ["delete", "删除", "删", "modify", "覆盖", "inject", "rm", "del", "清除", "清空"]
+      },
+      "privilege_escalation": {
+        "desc": "权限提升",
+        "behaviors": ["sudo", "admin", "root", "chmod", "提权", "管理员"]
+      },
+      "privacy_leak": {
+        "desc": "隐私泄露",
+        "behaviors": ["密码", "token", "密钥", "隐私", "steal", "窃取"]
+      },
+      "system_execute": {
+        "desc": "系统执行",
+        "behaviors": ["exec", "run", "shell", "command", "执行"]
+      },
+      "system_alert": {
+        "desc": "系统警报（社工）",
+        "behaviors": ["入侵", "被黑", "中病毒", "异常", "检测到", "可疑", "紧急", "可疑文件"]
+      }
+    }
+  },
+
+  "confidence_rules": {
+    "description": "置信度计算规则",
+    "base": 0.6,
+    "head_match": 0.85,
+    "max_cap": 0.95,
+    "match_increment": 0.1,
+    "ignore_rule_keyword": 0.90,
+    "high_risk_bonus": 0.3,
+    "medium_risk_bonus": 0.2,
+    "condition_weight": 0.2
+  },
+
+  "builtin_keywords": {
+    "description": "内置关键词（按攻击类型分组）",
+    "injection": ["注入", "注入攻击", "sql注入", "绕过身份验证"],
+    "jailbreak": ["越狱", "jailbreak", "绕过", "解除限制", "忽略规则"],
+    "social": ["社会工程", "钓鱼", "欺骗", "冒充"],
+    "recursive": ["递归", "无限循环", "死循环"],
+    "emotional": ["情感操纵", "道德绑架", "紧急情况"]
+  }
+}

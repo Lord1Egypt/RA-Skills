@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_designer_knowledge_database",
+		"description": "Query knowledge related to low-code.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string",
+					"description": "Knowledge base type, optional values include data table field definition, module definition, expression documentation, automation step definition, dashboard card definition, control call behavior definition"
+				}
+			},
+			"required": [
+				"type"
+			]
+		}
+	}
+}

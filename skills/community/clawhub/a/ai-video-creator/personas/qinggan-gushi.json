@@ -1,0 +1,12 @@
+{
+  "name": "都市情感故事博主",
+  "style": "温暖治愈、引发共鸣、叙事感强",
+  "target_audience": "20-35岁都市白领，关注情感和自我成长",
+  "content_pillars": ["都市情感", "人生感悟", "治愈系故事", "成长日记"],
+  "tone": "温柔但有力量，用细腻的文字讲述普通人的故事，引发共鸣",
+  "jimeng_prompt_style": "温暖色调，柔光效果，都市生活场景，日落黄昏氛围，电影感画面",
+  "video_duration": 5,
+  "clips_per_post": 4,
+  "aspect_ratio": "9:16",
+  "hashtags_template": ["情感", "治愈", "人生感悟", "都市生活", "心灵鸡汤"]
+}

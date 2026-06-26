@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>{{PAGE_TITLE}}</title>
+    <style>{{CSS_CONTENT}}</style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ==================== 导航栏 ==================== -->
+        <nav class="navbar animate-in">
+            <div class="logo">{{HEADER_ICON}} {{HEADER_TITLE}}</div>
+            <div class="nav-meta">
+                <span>📅 {{DATA_DATE_LABEL}}：{{DATA_DATE_VALUE}}</span>
+            </div>
+        </nav>
+
+        <!-- ==================== Hero 区域 ==================== -->
+        <div class="hero animate-in delay-1">
+            <div class="hero-content">
+                <div class="hero-badge">📋 {{HEADER_TITLE}}</div>
+                <h1>{{COMPANY_NAME}}</h1>
+                <div class="meta">{{META_LABEL}}：{{GENERATE_TIME}}</div>
+            </div>
+            <div class="hero-graphic">
+                <svg width="200" height="180" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="78" r="44" fill="url(#gradCircle)" opacity="0.8"/>
+                    <circle cx="148" cy="115" r="24" fill="var(--teal)" opacity="0.45"/>
+                    <circle cx="48" cy="108" r="28" fill="var(--purple)" opacity="0.35"/>
+                    <rect x="112" y="28" width="32" height="32" rx="10" fill="var(--yellow)" opacity="0.55" transform="rotate(12 112 28)"/>
+                    <path d="M28 32 L46 22 L42 42 L28 32Z" fill="var(--skyL)" opacity="0.6"/>
+                    <defs>
+                        <radialGradient id="gradCircle" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="var(--skyL)"/>
+                            <stop offset="100%" stop-color="var(--blue)"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        {{WARNING_BOX}}
+
+        <!-- ==================== Section 1: 行业标签 ==================== -->
+        <div class="card animate-in delay-2">
+            <div class="card-title">
+                <span class="icon-circle green">🏷️</span> {{TAGS_SECTION_TITLE}}
+            </div>
+            <div class="tags-container">
+                {{TAGS_CONTENT}}
+            </div>
+        </div>
+
+        <!-- ==================== Section 1.5: 行业洞察及趋势 ==================== -->
+        <div class="card animate-in delay-2">
+            <div class="card-title">
+                <span class="icon-circle teal">🔮</span> {{INSIGHT_SECTION_TITLE}}
+            </div>
+            <div class="insight-grid">
+                <div class="insight-item">
+                    <div class="insight-icon">📊</div>
+                    <div class="insight-title">{{INSIGHT_LABEL_1}}</div>
+                    <div class="insight-text">{{INSIGHT_TEXT_1}}</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-icon">📈</div>
+                    <div class="insight-title">{{INSIGHT_LABEL_2}}</div>
+                    <div class="insight-text">{{INSIGHT_TEXT_2}}</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-icon">⚖️</div>
+                    <div class="insight-title">{{INSIGHT_LABEL_3}}</div>
+                    <div class="insight-text">{{INSIGHT_TEXT_3}}</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-icon">🔮</div>
+                    <div class="insight-title">{{INSIGHT_LABEL_4}}</div>
+                    <div class="insight-text">{{INSIGHT_TEXT_4}}</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-icon">🏭</div>
+                    <div class="insight-title">{{INSIGHT_LABEL_5}}</div>
+                    <div class="insight-text">{{INSIGHT_TEXT_5}}</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-title">{{INSIGHT_LABEL_6}}</div>
+                    <div class="insight-text">{{INSIGHT_TEXT_6}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Section 2: 公司简介 ==================== -->
+        <div class="card animate-in delay-2">
+            <div class="card-title">
+                <span class="icon-circle blue">📝</span> {{PROFILE_SECTION_TITLE}}
+            </div>
+            <div class="profile-section">
+                <div class="profile-title">{{PROFILE_SUBTITLE_1}}</div>
+                <div class="profile-text">{{PROFILE_CONTENT_1}}</div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-title">{{PROFILE_SUBTITLE_2}}</div>
+                <div class="profile-text">{{PROFILE_CONTENT_2}}</div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-title">{{PROFILE_SUBTITLE_3}}</div>
+                <div class="profile-text">{{PROFILE_CONTENT_3}}</div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-title">{{PROFILE_SUBTITLE_4}}</div>
+                <div class="profile-text">{{PROFILE_CONTENT_4}}</div>
+            </div>
+        </div>
+
+        <!-- ==================== 渐变分割线 ==================== -->
+        <div class="divider-gradient"></div>
+
+        <!-- ==================== Section 3: 核心高管 ==================== -->
+        <div class="card animate-in delay-3">
+            <div class="card-title">
+                <span class="icon-circle purple">👥</span> {{EXEC_SECTION_TITLE}}
+            </div>
+            <div class="exec-grid">
+                {{EXECUTIVES_CONTENT}}
+            </div>
+        </div>
+
+        <!-- ==================== Section 4: 基础工商信息 ==================== -->
+        <div class="card animate-in delay-3">
+            <div class="card-title">
+                <span class="icon-circle teal">📋</span> {{BASIC_SECTION_TITLE}}
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_1}}</span>
+                    <span class="info-value">{{BASIC_VALUE_1}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_2}}</span>
+                    <span class="info-value">{{BASIC_VALUE_2}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_3}}</span>
+                    <span class="info-value">{{BASIC_VALUE_3}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_4}}</span>
+                    <span class="info-value">{{BASIC_VALUE_4}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_5}}</span>
+                    <span class="info-value">{{BASIC_VALUE_5}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_6}}</span>
+                    <span class="info-value">{{BASIC_VALUE_6}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_7}}</span>
+                    <span class="info-value">{{BASIC_VALUE_7}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_8}}</span>
+                    <span class="info-value">{{BASIC_VALUE_8}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_9}}</span>
+                    <span class="info-value">{{BASIC_VALUE_9}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{BASIC_LABEL_10}}</span>
+                    <span class="info-value">{{BASIC_VALUE_10}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BASIC_LABEL_11}}</span>
+                    <span class="info-value">{{BASIC_VALUE_11}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BASIC_LABEL_12}}</span>
+                    <span class="info-value">{{BASIC_VALUE_12}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Section 5: 数字化应用系统 ==================== -->
+        <div class="card animate-in delay-4">
+            <div class="card-title">
+                <span class="icon-circle blue">💻</span> {{DIGITAL_SECTION_TITLE}}
+            </div>
+            <div class="digital-grid">
+                {{DIGITAL_SYSTEMS_CONTENT}}
+            </div>
+        </div>
+
+        <!-- ==================== Section 5.5: 财务数据（仅上市公司） ==================== -->
+        {{FINANCE_CARD}}
+
+        <!-- ==================== Section 6: 主营业务 ==================== -->
+        <div class="card animate-in delay-4">
+            <div class="card-title">
+                <span class="icon-circle yellow">🏢</span> {{BUSINESS_SECTION_TITLE}}
+            </div>
+            <div class="info-grid">
+                <div class="info-item full-width">
+                    <span class="info-label">{{BUSINESS_LABEL_1}}</span>
+                    <span class="info-value">{{BUSINESS_VALUE_1}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BUSINESS_LABEL_2}}</span>
+                    <span class="info-value">{{BUSINESS_VALUE_2}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BUSINESS_LABEL_3}}</span>
+                    <span class="info-value">{{BUSINESS_VALUE_3}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Section 7: 品牌与产品 ==================== -->
+        <div class="card animate-in delay-4">
+            <div class="card-title">
+                <span class="icon-circle purple">🏅</span> {{BRAND_SECTION_TITLE}}
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">{{BRAND_LABEL_1}}</span>
+                    <span class="info-value">{{BRAND_VALUE_1}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BRAND_LABEL_2}}</span>
+                    <span class="info-value">{{BRAND_VALUE_2}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BRAND_LABEL_3}}</span>
+                    <span class="info-value">{{BRAND_VALUE_3}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{BRAND_LABEL_4}}</span>
+                    <span class="info-value">{{BRAND_VALUE_4}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Section 8: 技术实力 ==================== -->
+        <div class="card animate-in delay-5">
+            <div class="card-title">
+                <span class="icon-circle teal">⚙️</span> {{TECH_SECTION_TITLE}}
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">{{TECH_LABEL_1}}</span>
+                    <span class="info-value">{{TECH_VALUE_1}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">{{TECH_LABEL_2}}</span>
+                    <span class="info-value">{{TECH_VALUE_2}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{TECH_LABEL_3}}</span>
+                    <span class="info-value">{{TECH_VALUE_3}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{TECH_LABEL_4}}</span>
+                    <span class="info-value">{{TECH_VALUE_4}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Section 9: 市场与客户 ==================== -->
+        <div class="card animate-in delay-5">
+            <div class="card-title">
+                <span class="icon-circle yellow">📈</span> {{MARKET_SECTION_TITLE}}
+            </div>
+            <div class="info-grid">
+                <div class="info-item full-width">
+                    <span class="info-label">{{MARKET_LABEL_1}}</span>
+                    <span class="info-value">{{MARKET_VALUE_1}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{MARKET_LABEL_2}}</span>
+                    <span class="info-value">{{MARKET_VALUE_2}}</span>
+                </div>
+                <div class="info-item full-width">
+                    <span class="info-label">{{MARKET_LABEL_3}}</span>
+                    <span class="info-value">{{MARKET_VALUE_3}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Section 10: 热门关联信息 ==================== -->
+        <div class="card animate-in delay-5">
+            <div class="card-title">
+                <span class="icon-circle purple">🔗</span> {{RELATED_SECTION_TITLE}}
+            </div>
+            <div class="info-grid">
+                <div class="related-item full-width">
+                    <div class="related-label">{{RELATED_LABEL_1}}</div>
+                    <div class="related-value">{{RELATED_VALUE_1}}</div>
+                </div>
+                <div class="related-item full-width">
+                    <div class="related-label">{{RELATED_LABEL_2}}</div>
+                    <div class="related-value">{{RELATED_VALUE_2}}</div>
+                </div>
+                <div class="related-item full-width">
+                    <div class="related-label">{{RELATED_LABEL_3}}</div>
+                    <div class="related-value">{{RELATED_VALUE_3}}</div>
+                </div>
+                <div class="related-item full-width">
+                    <div class="related-label">{{RELATED_LABEL_4}}</div>
+                    <div class="related-value">{{RELATED_VALUE_4}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Footer ==================== -->
+        <div class="footer animate-in delay-5">
+            {{FOOTER_CONTENT}}
+        </div>
+
+    </div>
+</body>
+</html>

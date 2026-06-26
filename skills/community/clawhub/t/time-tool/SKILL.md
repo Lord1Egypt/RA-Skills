@@ -1,35 +1,26 @@
 ---
-name: "Time Tool"
-description: "Measure execution time of commands. Use for performance benchmarking, script optimization, and timing analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/time-tool"
-sourceUrl: "https://clawhub.ai/skills/time-tool"
+name: time-tool
+description: Measure execution time of commands. Use for performance benchmarking, script optimization, and timing analysis.
 ---
+# Time - Command Execution Timer
 
-# Time Tool
+Measure how long a command takes to execute. Displays real time, CPU time, and system time for performance analysis and benchmarking.
 
-> Measure execution time of commands. Use for performance benchmarking, script optimization, and timing analysis.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/time-tool`
-- **Source URL:** [https://clawhub.ai/skills/time-tool](https://clawhub.ai/skills/time-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/time-tool
+time-tool <command> [args...]
+```
+
+## Output
+
+- `real`: Wall clock time elapsed
+- `user`: CPU time in user mode
+- `sys`: CPU time in kernel mode
+
+## Examples
+
+```bash
+time-tool sleep 2
+time-tool curl https://example.com
+time-tool python3 script.py
 ```

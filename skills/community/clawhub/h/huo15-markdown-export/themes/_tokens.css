@@ -1,0 +1,253 @@
+/* huo15-markdown-export — Design Tokens v0.4.0
+ * 全局 design tokens,所有支持 CSS variable 的主题都在此基础上 override 差异
+ * 读取顺序:render.js 在每个主题 CSS 前自动 prepend 本文件
+ * 命名规范见 themes/DESIGN.md §2.2
+ *
+ * 不要在主题 CSS 里 @import 本文件 — render.js 自动注入
+ * 例外:wechat / xiaohongshu 不注入(目标编辑器剥 var,需 hardcode)
+ */
+
+:root {
+  /* === 字体族(英文 + 中文,反 Type 3 嵌入)
+   *
+   * 反 Type 3 红线(macOS Headless Chromium PDF 渲染浅灰看不清的真根因):
+   *
+   * 不该用的字体(被嵌成 Type 3 路径字体或 Custom encoding):
+   * - 英文:-apple-system / system-ui / BlinkMacSystemFont / SF Pro / SF Mono
+   *   (Apple 系统字体在 Headless 下走 path 渲染)
+   * - 中文:Source Han Sans/Serif SC / Noto Sans/Serif CJK SC / PingFang SC
+   *   (Source Han / Noto CJK 装的是 OTF/CFF 格式,macOS Skia 嵌入时走 Type 3;
+   *   PingFang 是 Apple 受保护字体)
+   *
+   * 应该用的字体(真 TrueType,可正常嵌入 CID TrueType):
+   * - 英文衬线:PT Serif / Merriweather / Charter / Georgia / Times New Roman
+   * - 英文无衬线:Open Sans / Helvetica Neue / Helvetica / Arial / Lucida Grande
+   * - 英文等宽:Menlo / Monaco / Consolas / Courier New / Liberation Mono
+   * - 中文衬线:Songti SC(STSongti-SC,macOS 预装 ttc)/ STSong / SimSun
+   * - 中文无衬线:STHeiti / Hiragino Sans GB(macOS 预装 ttc)/ Microsoft YaHei(Win)
+   *
+   * Typora 官方主题(newsprint/github/night/gothic/pixyll)零用 -apple-system /
+   * PingFang SC,这套字体策略与之对齐。
+   */
+  --font-serif:    "PT Serif", "Merriweather", Charter, Georgia, "Times New Roman", "Songti SC", STSong, SimSun, "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  /* sans 中文也优先 Songti SC:Hiragino Sans GB / STHeiti 走 Type 3,而 Songti SC 是
+   * macOS 预装真 TrueType,嵌入 CID TrueType 正常。Typora github 主题同策略
+   * (英文 Open Sans + 中文 STSong 衬线作为 fallback)。
+   * 中文衬线 vs 无衬线视觉差异在 PDF 上可忽略,优先**清晰**。
+   */
+  --font-sans:     "Open Sans", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", "Songti SC", STSong, SimSun, "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  --font-mono:     Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", "Songti SC", monospace;
+  --font-display:  "Playfair Display", "Merriweather", "PT Serif", Georgia, "Songti SC", STSong, "Source Han Serif SC", serif;
+  --font-emoji:    "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji";
+
+  /* === 字号阶梯(Major Third 1.25,中文友好) === */
+  --fs-base:  16px;
+  --fs-xs:    0.75rem;    /* 12px */
+  --fs-sm:    0.875rem;   /* 14px */
+  --fs-md:    1rem;       /* 16px = base */
+  --fs-lg:    1.125rem;   /* 18px */
+  --fs-xl:    1.25rem;    /* 20px */
+  --fs-2xl:   1.5rem;     /* 24px */
+  --fs-3xl:   1.875rem;   /* 30px */
+  --fs-4xl:   2.25rem;    /* 36px */
+
+  /* 标题语义别名(各主题可单独 override) */
+  --fs-h1:    var(--fs-3xl);   /* 30px */
+  --fs-h2:    var(--fs-2xl);   /* 24px */
+  --fs-h3:    var(--fs-xl);    /* 20px */
+  --fs-h4:    var(--fs-lg);    /* 18px */
+  --fs-h5:    var(--fs-md);
+  --fs-h6:    var(--fs-sm);
+
+  /* === 行高(中文友好) === */
+  --lh-tight:   1.25;   /* 标题用,不要更紧 */
+  --lh-snug:    1.4;    /* 大标题 */
+  --lh-normal:  1.65;   /* 英文为主正文 */
+  --lh-cn:      1.75;   /* 中文正文底线 */
+  --lh-relax:   1.85;   /* 长文阅读最舒适 */
+  --lh-loose:   2;      /* 学术 / 书稿 慢阅读 */
+
+  /* === 留白(8pt grid,严格 8 倍数) === */
+  --space-0:    0;
+  --space-1:    8px;
+  --space-2:    16px;
+  --space-3:    24px;
+  --space-4:    32px;
+  --space-5:    40px;
+  --space-6:    48px;
+  --space-7:    64px;
+  --space-8:    96px;
+
+  /* === 容器宽(measure) === */
+  --measure-narrow:   640px;   /* 书稿 / 长文沉浸阅读 */
+  --measure-normal:   720px;   /* 报纸 / 个人博客 */
+  --measure-wide:     820px;   /* 商务报告 / 客户提案 */
+  --measure-full:     960px;   /* 技术文档 / GitHub */
+
+  /* === 语义色(浅色基础调色板) === */
+  --color-bg:        #ffffff;
+  --color-fg:        #1a1a1a;
+  --color-muted:     #6b6b6b;
+  --color-rule:      #d1d5da;
+  --color-rule-soft: #ececec;
+  --color-code-bg:   #f6f8fa;
+  --color-mark:      #fff2a8;
+
+  /* 主色 slot:每主题 override,默认黑(中性 fallback) */
+  --color-accent:       #1a1a1a;
+  --color-accent-soft:  rgba(0, 0, 0, 0.06);
+
+  /* === 主题 slot(每主题 override 这五个为常态) === */
+  --font-body:     var(--font-sans);
+  --font-heading:  var(--font-sans);
+  --measure:       var(--measure-normal);
+  --leading:       var(--lh-cn);
+
+  /* === 表格 / 引用 / 代码块 共享语义 === */
+  --quote-bar-color:   var(--color-rule);
+  --quote-bg:          var(--color-accent-soft);
+  --quote-fg:          var(--color-muted);
+  --table-th-bg:       var(--color-rule-soft);
+  --table-th-fg:       var(--color-fg);
+  --table-stripe-bg:   #fafafa;
+}
+
+/* === 基础 reset(所有支持 token 的主题共享) === */
+html, body {
+  background: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-fg);
+  font-size: var(--fs-base);
+  line-height: var(--leading);
+  margin: 0;
+  padding: var(--space-6) var(--space-3);
+}
+
+.markdown-body {
+  max-width: var(--measure);
+  margin: 0 auto;
+  word-wrap: break-word;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  margin: 1.6em 0 0.6em;
+}
+.markdown-body h1 { font-size: var(--fs-h1); margin-top: 0; line-height: var(--lh-tight); }
+.markdown-body h2 { font-size: var(--fs-h2); }
+.markdown-body h3 { font-size: var(--fs-h3); }
+.markdown-body h4 { font-size: var(--fs-h4); }
+.markdown-body h5 { font-size: var(--fs-h5); color: var(--color-muted); }
+.markdown-body h6 { font-size: var(--fs-h6); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.markdown-body p { margin: 0.8em 0; }
+
+.markdown-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.markdown-body a:hover { background: var(--color-accent-soft); }
+
+.markdown-body strong { font-weight: 700; }
+.markdown-body em { font-style: italic; }
+.markdown-body mark { background: var(--color-mark); padding: 0 2px; }
+
+.markdown-body blockquote {
+  margin: 1.4em 0;
+  padding: 0.6em 1.2em;
+  color: var(--quote-fg);
+  background: var(--quote-bg);
+  border-left: 3px solid var(--quote-bar-color);
+}
+.markdown-body blockquote p { margin: 0.4em 0; }
+
+.markdown-body ul, .markdown-body ol {
+  padding-left: 1.6em;
+  margin: 0.8em 0;
+}
+.markdown-body li { margin: 0.2em 0; }
+.markdown-body li > p { margin: 0.4em 0; }
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--color-rule);
+  margin: 2.4em 0;
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--color-code-bg);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+.markdown-body pre {
+  font-family: var(--font-mono);
+  background: var(--color-code-bg);
+  padding: var(--space-2);
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.88em;
+  line-height: 1.6;
+}
+.markdown-body pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 0.94em;
+}
+.markdown-body table th,
+.markdown-body table td {
+  border: 1px solid var(--color-rule);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+.markdown-body table th {
+  background: var(--table-th-bg);
+  color: var(--table-th-fg);
+  font-weight: 700;
+}
+.markdown-body table tr:nth-child(2n) { background: var(--table-stripe-bg); }
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.4em auto;
+}
+.markdown-body img + em {
+  display: block;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9em;
+  margin-top: -0.8em;
+  font-style: italic;
+}
+
+.markdown-body .footnotes {
+  font-size: 0.88em;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-rule);
+  margin-top: 3em;
+  padding-top: 1em;
+}
+
+.markdown-body .task-list-item { list-style: none; }
+.markdown-body .task-list-item input { margin-right: 0.5em; }
+
+.katex-display { overflow-x: auto; overflow-y: hidden; }
+.mermaid { text-align: center; margin: 1.4em 0; }

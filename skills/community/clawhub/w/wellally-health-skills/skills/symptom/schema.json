@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/symptom-record.json",
+  "title": "SymptomRecord",
+  "description": "Data structure definition for symptom records",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier"
+    },
+    "record_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Record date"
+    },
+    "symptom_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Symptom occurrence date"
+    },
+    "original_input": {
+      "type": "string",
+      "description": "User's original input"
+    },
+    "standardized": {
+      "type": "object",
+      "properties": {
+        "main_symptom": {
+          "type": "string",
+          "description": "Main symptom name (medical term)"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["Respiratory", "Cardiovascular", "Digestive", "Nervous", "Urinary", "Endocrine", "Musculoskeletal", "Systemic"],
+          "description": "Symptom category"
+        },
+        "body_part": {
+          "type": "string",
+          "description": "Body part"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["Mild", "Moderate", "Severe", "Critical"],
+          "description": "Severity level"
+        },
+        "severity_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Severity level (1-4)"
+        },
+        "characteristics": {
+          "type": "string",
+          "description": "Symptom characteristics"
+        },
+        "onset_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Onset time"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration"
+        }
+      }
+    },
+    "associated_symptoms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "present": {"type": "boolean"}
+        }
+      }
+    },
+    "triggers": {
+      "type": "object",
+      "properties": {
+        "possible_causes": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "aggravating_factors": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "relieving_factors": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "medical_assessment": {
+      "type": "object",
+      "properties": {
+        "urgency": {
+          "type": "string",
+          "enum": ["observation", "consult_soon", "clinic_visit", "emergency"],
+          "description": "Urgency level"
+        },
+        "urgency_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Urgency level"
+        },
+        "recommendation": {
+          "type": "string",
+          "description": "Recommended actions"
+        },
+        "advice": {
+          "type": "string",
+          "description": "Specific advice"
+        },
+        "red_flags": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Red flags"
+        }
+      }
+    }
+  }
+}

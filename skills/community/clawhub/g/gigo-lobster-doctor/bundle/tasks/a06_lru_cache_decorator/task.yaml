@@ -1,0 +1,42 @@
+id: a06
+track: A
+title_zh: 实现一个简单的 LRU 缓存装饰器
+category: feature
+difficulty: medium
+timeout_seconds: 360
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.8
+  target: tests/test_lru.py
+  fail_to_pass:
+  - test_cache_hit
+  - test_cache_evicts_oldest
+  - test_different_args
+  pass_to_pass:
+  - test_calls_once
+- type: state_hash
+  weight: 0.1
+  files:
+  - src/lru.py
+  forbidden_patterns:
+  - functools\.lru_cache
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A06_2e8b
+metadata:
+  estimated_minutes: 5
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Implement a concurrent LRU cache decorator

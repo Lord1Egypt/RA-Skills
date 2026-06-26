@@ -1,0 +1,10 @@
+MISSION: {{goal}}
+
+Step 1: Break down mission
+Step 2: Identify highest ROI actions
+Step 3: Execute immediately
+Step 4: Track progress
+Step 5: Optimize and repeat
+
+NEXT ACTION:
+{{next_action}}

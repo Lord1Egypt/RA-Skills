@@ -1,35 +1,56 @@
----
-name: "EchoDecks"
-description: "AI-powered flashcards and audio podcasts for active recall."
-category: "other"
-source: "ClawHub"
-tags: [public]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/echodecks"
-sourceUrl: "https://clawhub.ai/skills/echodecks"
----
+# EchoDecks Skill (v1)
 
-# EchoDecks
+Integrates with EchoDecks for flashcard management, study sessions, and AI generation.
 
-> AI-powered flashcards and audio podcasts for active recall.
+## Configuration
+This skill requires the `ECHODECKS_API_KEY` environment variable to be set.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/echodecks`
-- **Source URL:** [https://clawhub.ai/skills/echodecks](https://clawhub.ai/skills/echodecks)
+## Tools
 
-## Overview
+### `echodecks_get_decks`
+List all available decks or details for a specific deck.
+- `id` (optional): The ID of a specific deck to retrieve.
 
+### `echodecks_get_due_cards`
+Retrieve cards that are currently due for review.
+- `deck_id` (optional): Filter due cards by a specific deck ID.
 
-## Installation
-To install this skill, run the following command in your terminal:
+### `echodecks_submit_review`
+Submit a spaced repetition review for a card.
+- `card_id` (required): The ID of the card being reviewed.
+- `quality` (required): Integer rating (0-3).
+  - 0: Again (Failure/Forgot)
+  - 1: Hard
+  - 2: Good
+  - 3: Easy
+
+### `echodecks_generate_cards`
+Generate new flashcards from a topic or text content using AI.
+- `deck_id` (required): The target deck ID for the new cards.
+- `topic` (optional): A short topic string to generate from.
+- `text` (optional): Raw text content to generate from.
+**Note:** One of `topic` or `text` must be provided. Cost: 10 credits.
+
+### `echodecks_generate_podcast`
+Generate an audio podcast summary or conversation from a deck.
+- `deck_id` (required): The source deck ID.
+- `voice` (optional): Voice preference (default: "neutral").
+- `type` (optional): "summary" or "conversation" (default: "summary").
+**Note:** Cost: 50 credits.
+
+### `echodecks_get_podcasts`
+Retrieve existing podcasts for a deck.
+- `deck_id` (optional): Filter by deck ID.
+- `id` (optional): specific podcast ID.
+
+### `echodecks_get_user_stats`
+Get current user profile and study statistics.
+
+## Implementation Details
+
+All tools are wrappers around `skills/echodecks-v1/echodecks_client.py`.
+
 ```bash
-hermes skills install clawhub/echodecks
+# Example
+./skills/echodecks-v1/echodecks_client.py get-due --deck-id 123
 ```

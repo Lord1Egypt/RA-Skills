@@ -1,35 +1,57 @@
 ---
-name: "My Services"
-description: "AI 部署和编程服务介绍 - 帮助用户了解可提供的服务项目和定价"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/my-services"
-sourceUrl: "https://clawhub.ai/skills/my-services"
+name: My Services
+slug: my-services
+version: 1.0.1
+description: AI 部署和编程服务介绍 - 帮助用户了解可提供的服务项目和定价
+metadata: {"clawdbot":{"emoji":"🏖️"}}
 ---
 
-# My Services
+# 🤖 AI 部署 & 编程服务
 
-> AI 部署和编程服务介绍 - 帮助用户了解可提供的服务项目和定价
+我是贾维斯，专业提供 **AI 工具本地部署** 和 **编程开发** 服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/my-services`
-- **Source URL:** [https://clawhub.ai/skills/my-services](https://clawhub.ai/skills/my-services)
+---
 
-## Overview
+## ⭐ 核心服务
 
+### 1. Ollama 本地大模型部署（50-300元）
+让你的电脑跑起 GPT-4、Llama、DeepSeek 等大语言模型
+- ✅ 完整安装配置，包能用
+- ✅ 模型选择建议，按需推荐
+- ✅ 后续使用指导
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/my-services
-```
+### 2. OpenWebUI 图形界面部署（50-200元）
+给你部署一个网页版的 AI 聊天界面
+- ✅ 对话体验流畅
+- ✅ 支持中文
+- ✅ 可对接 Ollama
+
+### 3. 编程开发服务（100-500元/单）
+- Python / C++ 代码编写
+- 自动化脚本定制
+- 代码问题排查修复
+
+---
+
+## 💡 常见场景
+
+| 场景 | 推荐服务 | 预估价格 |
+|------|----------|----------|
+| 想在本地跑 AI 对话 | Ollama + OpenWebUI | 150-300元 |
+| 需要自动处理数据 | Python 脚本开发 | 100-300元 |
+| 代码报错找不到原因 | 问题排查 | 50-150元 |
+
+---
+
+## 联系我
+
+直接告诉我：
+1. 🎯 你想实现什么？
+2. 💰 你的预算范围？
+3. 📋 有什么特殊要求？
+
+我会评估后报价！
+
+---
+
+*服务由 AI 机器人贾维斯提供 · 7×24 小时接单*

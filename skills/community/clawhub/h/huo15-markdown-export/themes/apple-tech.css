@@ -1,0 +1,287 @@
+/* huo15-markdown-export — Apple Tech
+ * 流派:Apple 官网 / iOS Human Interface 文档审美
+ * 适合:科技产品发布稿 / 技术博客 / 产品 PRD / 行业洞察长文
+ * 关键差异化:大字 hero + 紧字距(-0.022em)+ 大留白 + 黑白为主 + 极少色 + 圆角 8px
+ *
+ * 灵感:apple.com / developer.apple.com / Apple Newsroom / iOS HIG 文档
+ * 设计哲学:**少即是多**。零装饰,留白替代分隔线;唯一色彩 #06c Apple Blue 仅在链接
+ *
+ * 字体策略(反 Type 3 红线):
+ * - 屏幕预览/HTML 用 -apple-system 链(Mac/iOS 原生 SF Pro,网页视觉 100% 苹果)
+ * - PDF 打印 @media print 切到 Helvetica Neue + Songti SC(可正常嵌入 CID TrueType)
+ * - 两套渲染分离,鱼和熊掌兼得
+ *
+ * v0.4.2 新增,作为默认主题(原默认 typora-newsprint)
+ */
+
+:root {
+  /* === 主题 token override === */
+  /* 屏幕渲染优先 SF Pro / PingFang(Mac/iOS 原生);PDF 在 @media print 切安全字体栈 */
+  --font-body:     -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Songti SC", STSong, "Microsoft YaHei", sans-serif;
+  --font-heading:  -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Songti SC", STSong, sans-serif;
+  --color-bg:      #ffffff;
+  --color-fg:      #1d1d1f;          /* Apple 近黑 */
+  --color-muted:   #6e6e73;          /* Apple secondary text */
+  --color-rule:    #d2d2d7;          /* Apple separator */
+  --color-rule-soft: #e8e8ed;
+  --color-accent:  #0066cc;          /* Apple Blue */
+  --color-accent-soft: rgba(0, 102, 204, 0.08);
+  --color-code-bg: #f5f5f7;          /* Apple light grey panel */
+  --color-mark:    #fff3cd;
+  --quote-bar-color: var(--color-rule);
+  --quote-bg:      #f5f5f7;
+  --quote-fg:      var(--color-muted);
+  --table-th-bg:   #f5f5f7;
+  --table-th-fg:   var(--color-fg);
+  --table-stripe-bg: #fafafa;
+  --measure:       720px;
+  --leading:       1.47;             /* Apple body 标准 */
+  --fs-base:       19px;             /* Apple 偏大 */
+  --fs-h1:         3rem;             /* 48px hero */
+  --fs-h2:         2rem;             /* 32px section */
+  --fs-h3:         1.4rem;           /* 22px subsection */
+  --fs-h4:         1.15rem;
+}
+
+/* === Apple Tech 特征 === */
+
+body { padding: 80px 32px 64px; }
+
+/* h1 hero:超大紧字距 + 0 装饰 */
+.markdown-body h1 {
+  font-weight: 700;
+  font-size: var(--fs-h1);
+  line-height: 1.08;
+  letter-spacing: -0.022em;          /* Apple 标志字距 */
+  margin: 0 0 0.6em;
+  padding: 0;
+  border: none;
+  color: var(--color-fg);
+}
+
+/* h2 section:大字 + 紧字距,零装饰 */
+.markdown-body h2 {
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+  letter-spacing: -0.020em;
+  margin: 2.5em 0 0.5em;
+  padding: 0;
+  border: none;
+  color: var(--color-fg);
+}
+
+/* h3 subsection */
+.markdown-body h3 {
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+  margin: 1.8em 0 0.4em;
+  color: var(--color-fg);
+}
+
+.markdown-body h4 {
+  font-weight: 600;
+  font-size: var(--fs-h4);
+  line-height: 1.3;
+  margin: 1.4em 0 0.4em;
+  color: var(--color-fg);
+}
+
+.markdown-body h5, .markdown-body h6 {
+  font-weight: 600;
+  font-size: 1em;
+  color: var(--color-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 1.2em 0 0.4em;
+}
+
+/* 正文:大字 + 1.47 行高(Apple body 标准)*/
+.markdown-body p {
+  margin: 0 0 1em;
+  color: var(--color-fg);
+}
+
+/* 链接:仅靠颜色 + hover 下划线(屏幕)*/
+.markdown-body a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.markdown-body a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* markdown-it-anchor 给 h1-h6 内嵌了 <a class="header-anchor">,
+ * 它继承 .markdown-body a 的 accent 蓝色 → h1/h2 全变蓝。
+ * 显式让 heading 内的 anchor 跟父标题同色(不染色)。
+ */
+.markdown-body h1 a,
+.markdown-body h2 a,
+.markdown-body h3 a,
+.markdown-body h4 a,
+.markdown-body h5 a,
+.markdown-body h6 a,
+.markdown-body h1 a:hover,
+.markdown-body h2 a:hover,
+.markdown-body h3 a:hover,
+.markdown-body h4 a:hover {
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+}
+
+/* strong:加粗不染色(60-30-10 法则,主色只在链接出现)*/
+.markdown-body strong {
+  font-weight: 600;
+  color: var(--color-fg);
+}
+.markdown-body em {
+  font-style: italic;
+  color: inherit;
+}
+
+/* 高亮 mark:暖黄,克制 */
+.markdown-body mark {
+  background: var(--color-mark);
+  color: inherit;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* 引用:浅灰底 + 圆角 + 无左竖条(反 AI Slop 红线 §7),
+ * Apple 风格 callout 是 panel 不是有边引用 */
+.markdown-body blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.4em;
+  background: var(--quote-bg);
+  border: none;
+  border-radius: 12px;
+  color: var(--color-muted);
+}
+.markdown-body blockquote p { margin: 0.3em 0; }
+
+/* 列表:紧凑、苹果点 */
+.markdown-body ul, .markdown-body ol {
+  margin: 1em 0;
+  padding-left: 1.4em;
+}
+.markdown-body li { margin: 0.4em 0; }
+.markdown-body li > p { margin: 0.4em 0; }
+
+/* 分隔:1px 极淡灰 + 大上下间距 */
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--color-rule);
+  margin: 3em 0;
+}
+
+/* 行内代码:灰底圆角小 + 等宽 + 不染色 */
+.markdown-body code {
+  font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.88em;
+  background: var(--color-code-bg);
+  color: var(--color-fg);
+  padding: 0.15em 0.45em;
+  border-radius: 5px;
+}
+/* 代码块:浅灰圆角 panel,Apple 文档标准 */
+.markdown-body pre {
+  font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: var(--color-code-bg);
+  color: var(--color-fg);
+  padding: 1.2em 1.4em;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.92em;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin: 1.4em 0;
+}
+.markdown-body pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* 表格:细线 + 浅灰表头,无竖框,圆角包裹 */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6em 0;
+  font-size: 0.95em;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.markdown-body table th,
+.markdown-body table td {
+  border: none;
+  border-bottom: 1px solid var(--color-rule);
+  padding: 0.7em 1em;
+  text-align: left;
+}
+.markdown-body table thead { border-top: 1px solid var(--color-rule); }
+.markdown-body table th {
+  background: var(--table-th-bg);
+  color: var(--color-fg);
+  font-weight: 600;
+}
+.markdown-body table tr:nth-child(2n) { background: var(--table-stripe-bg); }
+.markdown-body table tr:last-child td { border-bottom: none; }
+
+/* 图片:圆角 + 极淡阴影(Apple 标志卡片感)*/
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.6em auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.markdown-body img + em {
+  display: block;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9em;
+  margin: -0.6em 0 1.6em;
+  font-style: italic;
+}
+
+/* 脚注:小字灰色 */
+.markdown-body .footnotes {
+  font-size: 0.88em;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-rule);
+  margin-top: 3em;
+  padding-top: 1em;
+}
+
+/* mermaid 居中 */
+.mermaid {
+  text-align: center;
+  margin: 1.6em 0;
+}
+
+/* === @media print:PDF 输出时切到反 Type 3 安全字体栈 ===
+ * 屏幕用 -apple-system / SF Pro / PingFang 视觉 100% Apple,但 PDF 嵌入会走
+ * Type 3 路径字体 → 第三方 reader 浅灰。PDF 切到 Helvetica Neue + Songti SC
+ * (真 TrueType,嵌入 CID TrueType 正常)。
+ */
+@media print {
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Songti SC", STSong, SimSun, "Microsoft YaHei", sans-serif !important;
+  }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3,
+  .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Songti SC", STSong, SimSun, sans-serif !important;
+  }
+  .markdown-body code, .markdown-body pre {
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  }
+  /* 顶部 padding 在 PDF 减少 — 屏幕的 80px 在 A4 浪费 */
+  body { padding: 0; }
+}

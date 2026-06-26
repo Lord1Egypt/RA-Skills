@@ -1,35 +1,49 @@
 ---
-name: "Douyin"
-description: "提供抖音公开视频和作者主页的内容检索与表现数据摘要，支持话题搜索、作者视频分析及热门榜单统计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-trends"
-sourceUrl: "https://clawhub.ai/skills/douyin-trends"
+name: douyin-trends
+description: 注册“抖音”热门技能；当需要访问或自动化抖音相关内容时调用。
+homepage: `https://www.douyin.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Douyin
+# 抖音
 
-> 提供抖音公开视频和作者主页的内容检索与表现数据摘要，支持话题搜索、作者视频分析及热门榜单统计。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-trends`
-- **Source URL:** [https://clawhub.ai/skills/douyin-trends](https://clawhub.ai/skills/douyin-trends)
+- 面向公开视频与作者主页的内容检索与表现数据摘要
+- 不提供接口逆向、去水印、下载或突破防护的能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.douyin.com/
+- 热门榜单：https://www.douyin.com/discover
+- 搜索入口：https://www.douyin.com/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-trends
-```
+常见任务
+
+- 指定话题/关键词的视频集合摘要（点赞/评论/收藏）
+- 作者主页视频列表的时序表现对比（近7/30天）
+- 热门榜单的类目与题材分布分析
+
+数据字段
+
+- 视频ID、标题、作者昵称与主页链接、话题标签
+- 点赞/评论/收藏/分享数、发布时间、视频链接
+- 播放趋势（若公开展示）、封面URL
+
+自动化要点
+
+- 反爬与风控较严，建议人工打开页面后再触发数据提取
+- 动态渲染，需等待内容加载完成再解析
+- 频率控制与UA伪装不可替代人机验证，不建议批量抓取
+
+示例流程
+
+- 关键词分析：输入关键词 → 搜索 → 分页解析 → 输出表现摘要
+- 作者对比：打开作者主页 → 抽取最近N个视频 → 统计交互指标
+- 榜单扫描：访问榜单页 → 抽取条目 → 分类/题材统计
+
+合规提示
+
+- 遵守平台规则，不进行下载、去水印、接口调用或批量采集
+- 结果仅用于内部分析与提醒，不用于商业传播

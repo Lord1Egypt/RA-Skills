@@ -1,0 +1,146 @@
+{
+   "extensionDescription": {
+      "description": "Description of the extension.",
+      "message": "扩展程序的社区版本“我仍然不在乎Cookies” (无Avast)"
+   },
+   "extensionName": {
+      "description": "Name of the extension.",
+      "message": "我仍然不在乎cookies"
+   },
+   "generalIssueOption": {
+      "description": "The option text for a general issue",
+      "message": "一般性问题 (需要说明)"
+   },
+   "genericErrorBack": {
+      "description": "Back button after error",
+      "message": "返回"
+   },
+   "genericErrorTitle": {
+      "description": "Genereric error title",
+      "message": "出现了一些错误"
+   },
+   "genericErrorTryAgain": {
+      "description": "Try again later message",
+      "message": "请稍后再试"
+   },
+   "menuDisable": {
+      "description": "Menu option.",
+      "message": "在$HOSTNAME$上禁用扩展",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "menuEnable": {
+      "description": "Menu option.",
+      "message": "在$HOSTNAME$上启用扩展",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "menuIdle": {
+      "description": "Menu option visible when enabling/disabling doesn't work.",
+      "message": "扩展程序不适用于此网站"
+   },
+   "menuLoadingText": {
+      "description": "Loading messsage",
+      "message": "加载中…"
+   },
+   "menuReport": {
+      "description": "Menu option.",
+      "message": "报告cookie警告"
+   },
+   "menuSupport": {
+      "description": "Menu option.",
+      "message": "支持该项目"
+   },
+   "modalIssueDescription": {
+      "description": "Explanation of what a modal issue is",
+      "message": "选择此选项以表示此页面上与模态框相关的问题，例如“有一个弹出框阻止了交互”。"
+   },
+   "modalIssueOption": {
+      "description": "The option text for a modal issue",
+      "message": "模态框相关"
+   },
+   "optionStatusIndicators": {
+      "description": "Option text for enabling the status indicator",
+      "message": "状态指示器"
+   },
+   "optionsButton": {
+      "description": "Options text for SAVE button.",
+      "message": "保存设置"
+   },
+   "optionsTitle": {
+      "description": "Title for the options page.",
+      "message": "设置"
+   },
+   "optionsWhitelist": {
+      "description": "Options text for whitelist box.",
+      "message": "白名单网站列表，每行一个网站："
+   },
+   "reportAnon": {
+      "description": "Menu item to report anonymously",
+      "message": "匿名反馈"
+   },
+   "reportAnonCancel": {
+      "description": "Button to cCancel the report",
+      "message": "取消"
+   },
+   "reportAnonNotes": {
+      "description": "Notes for the report",
+      "message": "说明: "
+   },
+   "reportAnonSend": {
+      "description": "Button to send the report",
+      "message": "提交反馈"
+   },
+   "reportAnonTitle": {
+      "description": "Translation of 'report' it will be shown like 'Report example.com'",
+      "message": "反馈"
+   },
+   "reportConfirm": {
+      "description": "Ask for confirmation before reporting a website. Don't use quotes here.",
+      "message": "您想报告$HOSTNAME$上的cookie警告吗？",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "reportGithub": {
+      "description": "Menu item to report using Github",
+      "message": "前往 Github 反馈"
+   },
+   "reportNotesPlaceholder": {
+      "description": "Placeholder for the notes (\n) is a new line & keep it 4 lines",
+      "message": "如以下这些问题：\n视频播放无法正常工作\n滚动条损坏\n灰色覆盖层"
+   },
+   "reportSkippedMessage": {
+      "description": "Tells the user it cannot report a whitelisted domain.",
+      "message": "您已在此网站上禁用该扩展程序。请启用它并检查您是否在上报前看到cookie警告。"
+   },
+   "reportSkippedTitle": {
+      "description": "Tells the user it cannot report a whitelisted domain.",
+      "message": "插件在$HOSTNAME$上不可用。",
+      "placeholders": {
+         "hostname": {
+            "content": "$1",
+            "example": "example.com"
+         }
+      }
+   },
+   "scrollbarIssueDescription": {
+      "description": "Explanation of what a scrollbar issue is",
+      "message": "选择此选项以表示此页面上与滚动相关的问题，例如“网站没有显示滚动条”。"
+   },
+   "scrollbarIssueOption": {
+      "description": "The option text for a scrollbar issue",
+      "message": "滚动条相关"
+   }
+}

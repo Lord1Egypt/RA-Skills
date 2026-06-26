@@ -1,35 +1,37 @@
 ---
-name: "asiasea-bi"
-description: "飞书集成智能数据网关，支持企业异构系统动态映射与切换、基于自然语言时间语义推导的真实 API 数据穿透与可视化快照固化发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/asiasea-bi"
-sourceUrl: "https://clawhub.ai/skills/asiasea-bi"
+name: asiasea-bi
+description: 飞书集成智能数据网关，支持企业异构系统动态映射与切换、基于自然语言时间语义推导的真实 API 数据穿透与可视化快照固化发布。
+repository: asiasea-ai/bi
+triggers:
+  - 金灯塔BI 初始化
+  - 初始化
+  - 系统列表
+  - 切换系统
+  - 报表
+  - 数据看板
+  - BI
+  - 统计
+  - 趋势
+  - 度量
+  - 查询
+  - 发布
 ---
 
-# asiasea-bi
+# 🌌 金灯塔智能 BI Skill (Cognitive Data Agent)
 
-> 飞书集成智能数据网关，支持企业异构系统动态映射与切换、基于自然语言时间语义推导的真实 API 数据穿透与可视化快照固化发布。
+## 描述
+本 skill 是金灯塔数据中枢的 OpenClaw 认知代理适配版本。依托动态元数据路由机制，允许用户通过自然语言精确穿透企业各类异构微服务架构，实时提取核心业务度量快照，并将多维数据流一键投影并发布为可视化研报。**（异步定时调度路由由 OpenClaw 平台原生编排引擎接管）**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/asiasea-bi`
-- **Source URL:** [https://clawhub.ai/skills/asiasea-bi](https://clawhub.ai/skills/asiasea-bi)
+**代码仓库**: `asiasea-ai/bi`
 
-## Overview
+## 可用交互协议流
+- **安全握手与鉴权**: `初始化`
+- **域感知与上下文注入**: `切换系统 [目标业务域]` (如：`切换系统 核心业务节点A`)
+- **高阶语义数据查询 (强制收敛时间边界)**: 
+  - `查询本月的[核心业务指标]`
+  - `提取上一时间周期的[度量矩阵数据]及趋势演进`
+- **拓扑快照固化发布**:
+  - `把刚才的数据快照发布到系统`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/asiasea-bi
-```
+## 架构安全声明
+完全兼容 OpenClaw 的 `handle` 同步函数规范。底层映射真实零信任鉴权接口与业务元数据网络，具备启发式意图时间推导引擎，**100% 拒绝数据幻觉与异常兜底伪装**。系统生成的纯静态 DOM 快照严格落实凭证隔离，确保核心物理数据的绝对安全。

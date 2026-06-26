@@ -1,35 +1,14 @@
 ---
-name: "test-tui"
-description: "Indexed by skills.sh from openai/codex"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "openai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/openai/codex/test-tui"
-sourceUrl: "https://skills.sh/openai/codex/test-tui"
+name: test-tui
+description: Guide for testing Codex TUI interactively
 ---
 
-# test-tui
+You can start and use Codex TUI to verify changes. 
 
-> Indexed by skills.sh from openai/codex
+Important notes:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** openai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/openai/codex/test-tui`
-- **Source URL:** [https://skills.sh/openai/codex/test-tui](https://skills.sh/openai/codex/test-tui)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/openai/codex/test-tui
-```
+Start interactively.
+Always set RUST_LOG="trace" when starting the process.
+Pass `-c log_dir=<some_temp_dir>` argument to have logs written to a specific directory to help with debugging.
+When sending a test message programmatically, send text first, then send Enter in a separate write (do not send text + Enter in one burst).
+Use `just codex` target to run - `just codex -c ...`

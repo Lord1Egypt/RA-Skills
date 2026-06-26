@@ -1,0 +1,11 @@
+{
+  "name": "memory-index",
+  "version": "1.0.0",
+  "description": "为 OpenClaw 注入三层物理隔离的记忆海马体，Token消耗直降80%",
+  "author": "OpenClaw Community",
+  "keywords": [
+    "memory",
+    "token-saver",
+    "routing"
+  ]
+}

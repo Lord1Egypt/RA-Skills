@@ -1,0 +1,11 @@
+name: qmt-dev
+version: 1.0.0
+description: QMT平台开发专用技能。提供QMT API规范、核心函数机制、止损监控方式、实盘注意事项。适用于使用QMT平台的量化策略开发。
+author: Rick
+tags:
+  - QMT
+  - quantitative
+  - live-trading
+  - backtest
+commands: []
+dependencies: []

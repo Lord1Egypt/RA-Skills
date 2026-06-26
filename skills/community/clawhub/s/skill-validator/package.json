@@ -1,0 +1,44 @@
+{
+  "name": "@clawhub/skill-validator",
+  "version": "1.0.11",
+  "description": "技能检验工具：基于ClawHub技能格式规范的验证工具，确保技能符合最新发布要求",
+  "author": "柏然 <xiaoboren0@gmail.com> (https://github.com/puppetcat-fire)",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puppetcat-fire/openclaw-skills.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "validator",
+    "quality",
+    "format",
+    "validation",
+    "clawhub",
+    "compliance"
+  ],
+  "files": [
+    "SKILL.md",
+    "skill-validator.sh",
+    "skill-validator-fixed.sh",
+    "skill-validator-robust.sh",
+    "skill-validator-simple.sh",
+    "install.sh",
+    "package.json",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "skill": true,
+    "emoji": "🔍✅",
+    "requires": {
+      "bins": [
+        "bash",
+        "jq",
+        "find",
+        "grep",
+        "sed"
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!--
+  Layout: section
+  章节过渡页 — 章节间转场，承上启下
+  Agent 替换 {{...}} 占位符
+-->
+<section class="slide slide--section" data-slide="{{N}}">
+  <div class="section-content">
+    <span class="section-number">{{章节编号，如 01}}</span>
+    <h2 class="section-title">{{章节标题}}</h2>
+    <p class="section-desc">{{简短描述（可选）}}</p>
+  </div>
+</section>
+
+<style>
+.slide--section {
+  justify-content: center;
+  align-items: center;  /* 居中：章节过渡页内容视觉居中更协调 */
+}
+.slide--section .section-content {
+  max-width: 70%;
+}
+.slide--section .section-number {
+  display: block;
+  font-size: var(--font-size-title);
+  font-weight: 800;
+  color: var(--color-primary);
+  opacity: 0.2;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1;
+}
+.slide--section .section-title {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+.slide--section .section-desc {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+</style>

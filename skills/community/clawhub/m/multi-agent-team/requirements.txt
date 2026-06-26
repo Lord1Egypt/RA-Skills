@@ -1,0 +1,25 @@
+# Trae Multi-Agent Skill 依赖
+
+# 核心依赖
+python>=3.8
+
+# 标准库（无需额外安装）
+# - sqlite3 (数据库操作)
+# - json (数据处理)
+# - pathlib (路径处理)
+# - typing (类型注解)
+# - logging (日志记录)
+# - argparse (命令行参数)
+# - re (正则表达式)
+# - datetime (日期时间)
+
+# 开发依赖（可选）
+# pytest>=7.0.0          # 测试框架
+# pytest-cov>=3.0.0      # 测试覆盖率
+# black>=22.0.0          # 代码格式化
+# flake8>=4.0.0          # 代码检查
+# mypy>=0.950            # 类型检查
+
+# 注意：
+# 本技能主要使用 Python 标准库，无需安装额外的第三方包
+# 只需确保 Python 版本 >= 3.8 即可

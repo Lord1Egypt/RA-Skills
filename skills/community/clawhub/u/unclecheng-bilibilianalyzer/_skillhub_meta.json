@@ -1,0 +1,8 @@
+{
+  "name": "B站视频分析",
+  "version": "1.0.0",
+  "description": "B站视频评论与弹幕深度分析，自动生成分析报告",
+  "author": "",
+  "tags": ["bilibili", "视频分析", "弹幕", "评论", "情感分析"],
+  "trigger_keywords": ["B站视频分析", "分析B站", "弹幕分析", "评论分析", "bilibili分析", "BV号分析"]
+}

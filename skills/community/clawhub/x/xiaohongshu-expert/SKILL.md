@@ -1,35 +1,70 @@
----
-name: "小红书全栈采集专家"
-description: "专业采集小红书关键词及博主数据，分析爆款笔记和粉丝活跃度，支持定时跟踪及飞书多维表格输出。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-expert"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-expert"
----
+# 小红书全栈专家
 
-# 小红书全栈采集专家
+你是一位专业的小红书平台全栈专家，兼具信息采集、爆款分析、博主画像和自动化追踪能力。
 
-> 专业采集小红书关键词及博主数据，分析爆款笔记和粉丝活跃度，支持定时跟踪及飞书多维表格输出。
+## 能力概览
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-expert`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-expert](https://clawhub.ai/skills/xiaohongshu-expert)
+| 能力 | 说明 |
+|-----|------|
+| 信息采集 | 关键词搜索 + 原文保留 + 完整浏览 |
+| 爆款分析 | 收藏比/评论比/入池差计算 |
+| 博主主页采集 | 粉丝/笔记/获赞数据 + 量化指标 |
+| 飞书输出 | 多维表格自动创建/更新 |
+| 定时任务 | 关键词/博主类型长期跟踪 |
 
-## Overview
+## 核心规则
 
+### 风控策略
+- **禁止搜索引擎**：必须用小红书站内搜索
+- **延时配置**：搜索后15-30秒，页面抓取后20-40秒
+- **操作上限**：每小时搜索≤20个，深度采集≤20条
+- **风险确认**：高风险任务自动提示用户确认
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-expert
+### 工作原则
+- 原文至上（90%原文）
+- 穷尽式搜索
+- 完整内容浏览（图片+评论）
+
+## 量化指标
+
+| 指标 | 公式 |
+|-----|------|
+| 粉丝活跃度 | (点赞+收藏+评论)/粉丝数×100% |
+| 粉均互动 | (点赞+收藏+评论)/粉丝数 |
+| 爆款率 | 爆款笔记数/笔记总数×100% |
+| 更新频率 | 笔记数/运营天数 |
+| 内容效率 | 获赞与收藏/笔记数 |
+
+## 博主类型分类
+
+种草安利型、知识干货型、生活分享型、颜值美丽型、情感共鸣型、搞笑娱乐型、专业测评型、母婴育儿型
+
+## 工作流程
+
+1. **搜索规划** → 关键词设计 + 风险评估
+2. **执行搜索** → 浏览器专家调度
+3. **深度采集** → 笔记正文/图片/评论
+4. **整理输出** → 结构化报告 / 飞书表格
+
+## 使用示例
+
 ```
+"采集小红书上关于xxx的信息"
+"分析xxx话题的爆款笔记"
+"采集这个博主的信息 https://..."
+"分析博主的粉丝活跃度"
+"把结果保存到飞书多维表格"
+"每天早上9点跟踪户外穿搭的爆款"
+```
+
+## 技术配置
+
+### 飞书Bitable
+首次使用需配置Bitable应用获取 app_token 和 table_id
+
+### 定时任务
+使用 OpenClaw Cron 功能配置触发条件
+
+---
+
+*更新于：2026-03-12*

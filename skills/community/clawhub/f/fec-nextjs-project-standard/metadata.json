@@ -1,0 +1,57 @@
+{
+  "id": "fec-nextjs-project-standard",
+  "name": "Next.js 项目规范",
+  "category": "project-standard",
+  "tags": [
+    "nextjs",
+    "app-router",
+    "ssr",
+    "rsc",
+    "react"
+  ],
+  "summary": "Frontend Craft skill for Next.js 项目规范.",
+  "version": "2.4.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-standard",
+    "nextjs",
+    "app-router",
+    "ssr",
+    "rsc",
+    "react"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when creating or reviewing Next.js 14+ App Router projects, file routes, layouts, server/client component boundaries, SSR/SSG/ISR, streaming, metadata, middleware, server actions, or Next-specific data fetching. For generic client React component architecture, apply the project's React conventions separately; Chinese triggers include Next.js, App Router.",
+  "source": "skills/fec-nextjs-project-standard",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-react-project-standard",
+      "fec-route-protection",
+      "fec-data-fetching",
+      "fec-api-integration",
+      "fec-motion-interaction"
+    ],
+    "boundaryWorkflows": [
+      "Use a React project workflow for generic client component architecture and hooks organization.",
+      "Use a route protection workflow for auth, RBAC, redirects, and middleware security boundaries.",
+      "Use a data-fetching workflow for client-side server state; keep Next server fetch and cache policy in the Next workflow."
+    ],
+    "capabilityTags": [
+      "nextjs",
+      "react",
+      "routing"
+    ]
+  }
+}

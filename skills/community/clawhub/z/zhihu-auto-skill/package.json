@@ -1,0 +1,29 @@
+{
+  "name": "zhihu-automation-skill",
+  "version": "2.0.0",
+  "description": "Zhihu (知乎) Automation Skill — publish articles, thoughts, answer questions, interact, and extract data with dual-channel architecture (HTTP read + browser write)",
+  "homepage": "https://github.com/liuboacean/zhihu-automation-skill#readme",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.js",
+    "smoke-test": "node tests/smoke-test.js",
+    "cookie-check": "node tests/cookie-check.js",
+    "e2e-test": "ZHIHU_TEST_MODE=sandbox node tests/e2e-test.js",
+    "export-cookie": "node scripts/zhihu-export-cookie.js",
+    "hot-list": "node scripts/zhihu-extract.js --type hot-list",
+    "search": "node scripts/zhihu-extract.js --type search --query",
+    "publish-article": "node scripts/zhihu-publish.js article",
+    "publish-thought": "node scripts/zhihu-publish.js thought",
+    "answer": "node scripts/zhihu-answer.js",
+    "ask": "node scripts/zhihu-ask.js",
+    "interact": "node scripts/zhihu-interact.js"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0",
+    "playwright-extra": "^4.3.0",
+    "puppeteer-extra-plugin-stealth": "^2.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

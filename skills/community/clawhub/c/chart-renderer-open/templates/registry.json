@@ -1,0 +1,30 @@
+{
+  "heatmap": {
+    "css": "types/heatmap.css",
+    "js": "types/heatmap.js"
+  },
+  "layered": {
+    "css": "types/layered.css",
+    "js": "types/layered.js"
+  },
+  "direction": {
+    "css": "types/direction.css",
+    "js": "types/direction.js"
+  },
+  "line": {
+    "css": "types/chart.css",
+    "js": "types/chart.js"
+  },
+  "dualAxis": {
+    "css": "types/chart.css",
+    "js": "types/chart.js"
+  },
+  "table": {
+    "css": "types/table.css",
+    "js": "types/table.js"
+  },
+  "text": {
+    "css": "types/text.css",
+    "js": "types/text.js"
+  }
+}

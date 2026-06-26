@@ -1,0 +1,42 @@
+{
+  "weekdays": ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+
+  "note_title":      "Journal de santé GTR3",
+  "callout_title":   "Généré automatiquement",
+  "callout_body":    "Cette note a été créée automatiquement à partir des données Amazfit GTR3 via HCGateway.",
+
+  "summary_heading": "Résumé",
+  "col_metric":      "Métrique",
+  "col_value":       "Valeur",
+  "row_steps":       "Pas",
+  "row_distance":    "Distance",
+  "row_sleep_dur":   "Durée de sommeil",
+  "row_resting_hr":  "FC au repos",
+  "row_spo2":        "SpO2 (moy.)",
+
+  "sleep_heading":   "Sommeil",
+  "sleep_period":    "Période",
+  "sleep_duration":  "Durée",
+  "sleep_no_data":   "Aucune donnée de sommeil disponible pour cette date.",
+  "col_stage":       "Phase",
+  "col_minutes":     "Minutes",
+  "stage_deep":      "Profond",
+  "stage_rem":       "REM",
+  "stage_light":     "Léger",
+  "stage_awake":     "Éveillé",
+
+  "hr_heading":      "Fréquence cardiaque",
+  "hr_avg":          "Moy.",
+  "hr_resting":      "FC au repos",
+
+  "spo2_heading":    "SpO2",
+  "spo2_avg":        "Saturation moyenne en oxygène",
+
+  "nav_yesterday":   "Hier",
+  "nav_tomorrow":    "Demain",
+
+  "fm_weekday_key":  "jour",
+  "fm_source":       "HCGateway / Amazfit GTR3",
+  "tag_health":      "santé",
+  "tag_auto":        "auto-généré"
+}

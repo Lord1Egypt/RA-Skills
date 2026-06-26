@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "折扣规则：数量阶梯折扣 + 客户等级折扣 + 组合计算方式",
+    "updated_at": "2026-03-25T01:40:00+08:00",
+    "updated_by": "iron"
+  },
+  "quantity_tiers": [
+    {
+      "tier": "T1",
+      "label": "Sample/Trial",
+      "min_qty": 1,
+      "max_qty": 499,
+      "discount_pct": 0
+    },
+    {
+      "tier": "T2",
+      "label": "Small Order",
+      "min_qty": 500,
+      "max_qty": 999,
+      "discount_pct": 3
+    },
+    {
+      "tier": "T3",
+      "label": "Standard Order",
+      "min_qty": 1000,
+      "max_qty": 4999,
+      "discount_pct": 6
+    },
+    {
+      "tier": "T4",
+      "label": "Bulk Order",
+      "min_qty": 5000,
+      "max_qty": 9999,
+      "discount_pct": 10
+    },
+    {
+      "tier": "T5",
+      "label": "Volume Order",
+      "min_qty": 10000,
+      "max_qty": null,
+      "discount_pct": 15
+    }
+  ],
+  "customer_grade_discounts": {
+    "A": {
+      "label": "VIP / Key Account",
+      "discount_pct": 8,
+      "description": "年采购额 >$50K 或战略合作客户"
+    },
+    "B": {
+      "label": "Regular / Repeat",
+      "discount_pct": 5,
+      "description": "多次下单，稳定采购"
+    },
+    "C": {
+      "label": "New / Occasional",
+      "discount_pct": 2,
+      "description": "首单或偶发采购"
+    },
+    "D": {
+      "label": "Prospect / Sample",
+      "discount_pct": 0,
+      "description": "潜在客户，样品阶段"
+    }
+  },
+  "combination_rule": {
+    "method": "multiplicative",
+    "description": "数量折扣和客户等级折扣相乘计算。例如：数量折扣 10% + 客户等级折扣 8%，最终折扣 = 1 - (1-0.10)*(1-0.08) = 17.2%",
+    "max_combined_discount_pct": 25,
+    "notes": "组合折扣不得超过 25%，超过则截断到 25% 并触发人工审核"
+  },
+  "special_rules": [
+    {
+      "rule": "new_product_premium",
+      "description": "新品上市 6 个月内，数量折扣上限 T3（6%），不叠加客户等级折扣",
+      "applies_to_categories": ["DisplayPort"],
+      "active": false
+    },
+    {
+      "rule": "bundle_discount",
+      "description": "同一订单采购 3 个以上品类，额外 2% 折扣",
+      "extra_discount_pct": 2,
+      "min_categories": 3,
+      "active": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "chaoxing-auto-grade",
+  "version": "1.0.0",
+  "description": "超星（学习通）作业自动批改技能",
+  "main": "scripts/auto-grade.spec.js",
+  "scripts": {
+    "test": "playwright test scripts/auto-grade.spec.js --headed"
+  },
+  "keywords": [
+    "chaoxing",
+    "超星",
+    "学习通",
+    "auto-grade",
+    "playwright"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}

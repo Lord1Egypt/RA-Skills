@@ -1,0 +1,6 @@
+numpy>=1.23
+pandas>=1.5
+scipy>=1.10
+matplotlib>=3.6
+dimod>=0.12
+dwave-neal>=0.6,<0.7

@@ -1,0 +1,20 @@
+{
+  "name": "git-commit-helper",
+  "version": "1.0.0",
+  "description": "智能 Git Commit Message 生成器",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "message",
+    "generator",
+    "automation",
+    "developer-tools"
+  ],
+  "author": "oct1st85",
+  "license": "MIT",
+  "dependencies": {}
+}

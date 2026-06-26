@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "test_cases": [
+    {
+      "name": "GitHub Actions Python依赖冲突导致构建失败",
+      "input": {
+        "pipeline_log": "[2024-10-15 14:32:01] Run pip install -r requirements.txt\nCollecting numpy==1.24.0\n  Downloading numpy-1.24.0-cp310-cp310-manylinux_2_17_x86_64.whl (17.3 MB)\nCollecting pandas==2.1.0\n  Downloading pandas-2.1.0-cp310-cp310-manylinux_2_17_x86_64.whl (12.3 MB)\nERROR: Cannot install numpy==1.24.0 and pandas==2.1.0 because these package versions have conflicting dependencies.\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/",
+        "ci_platform": "github",
+        "repo_context": "data-pipeline/main"
+      },
+      "expected_output_contains": [
+        "CI/CD 故障诊断报告",
+        "依赖冲突",
+        "ResolutionImpossible",
+        "临时绕过",
+        "根本修复",
+        "poetry.lock / pip-tools",
+        "🟡",
+        "🟢"
+      ],
+      "validation_rules": [
+        "必须精确指出冲突包及版本范围",
+        "修复方案需区分临时pin版本与长期锁定策略",
+        "禁止输出未经确认的强制安装命令"
+      ]
+    },
+    {
+      "name": "GitLab CI Docker构建超时与缓存失效",
+      "input": {
+        "pipeline_log": "[Stage: build-docker] Step 12/18 : RUN npm run build\n> project@1.0.0 build\n> vue-cli-service build\n\\  Building for production...node:internal/modules/cjs/loader:1050\n  throw err;\n  ^\nError: Cannot find module 'webpack'\nRequire stack: ... /builds/frontend/node_modules/.cache/babel-loader\nFATAL: Job timeout exceeded after 1h 30m (3600s)",
+        "ci_platform": "gitlab",
+        "repo_context": "web-frontend/develop"
+      },
+      "expected_output_contains": [
+        "超时",
+        "模块缺失",
+        "缓存路径",
+        "回滚指令",
+        "预防 Checklist",
+        "Dry-Run"
+      ],
+      "validation_rules": [
+        "需分析超时与缓存失效的关联性",
+        "回滚指令必须包含 git revert / docker tag 占位",
+        "预防清单需包含缓存策略与超时阈值调整建议"
+      ]
+    }
+  ]
+}

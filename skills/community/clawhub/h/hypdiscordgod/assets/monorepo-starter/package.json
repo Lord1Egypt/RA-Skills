@@ -1,0 +1,14 @@
+{
+  "name": "discord-system-monorepo-starter",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:bot": "npm --workspace @starter/bot run dev",
+    "dev:api": "npm --workspace @starter/api run dev",
+    "dev:dashboard": "npm --workspace @starter/dashboard run dev",
+    "dev:worker": "npm --workspace @starter/worker run dev"
+  }
+}

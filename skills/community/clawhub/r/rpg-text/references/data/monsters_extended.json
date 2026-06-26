@@ -1,0 +1,119 @@
+{
+  "skeleton_knight": {
+    "level": 4,
+    "ac": 4,
+    "lifedice": "4d8",
+    "attacks": {
+      "sword": "1d8",
+      "shield_bash": "1d4"
+    },
+    "job": "fighter",
+    "treasure": "R",
+    "xp_value": 150,
+    "description": "穿着生锈盔甲的骷髅骑士，仍然保持着生前的战斗技巧"
+  },
+  "dire_wolf": {
+    "level": 2,
+    "ac": 7,
+    "lifedice": "3d8",
+    "attacks": {
+      "bite": "2d6"
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 45,
+    "description": "比普通狼大两倍的凶猛巨狼"
+  },
+  "giant_spider": {
+    "level": 3,
+    "ac": 6,
+    "lifedice": "4d8",
+    "attacks": {
+      "bite": ["2d8", "poison"],
+      "web": "restrains"
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 85,
+    "description": "体型如小马般的巨型蜘蛛"
+  },
+  "dark_elf": {
+    "level": 4,
+    "ac": 5,
+    "lifedice": "4d8",
+    "attacks": {
+      "rapier": "1d8",
+      "shortbow": "1d6"
+    },
+    "job": "wizard",
+    "treasure": "R",
+    "xp_value": 120,
+    "description": "黑暗精灵刺客，擅长隐匿和毒药"
+  },
+  "necromancer": {
+    "level": 5,
+    "ac": 7,
+    "lifedice": "5d8",
+    "attacks": {
+      "eldritch_blast": "2d10"
+    },
+    "job": "wizard",
+    "treasure": "R",
+    "xp_value": 200,
+    "spells": ["magic_missile", "hold_person"],
+    "description": "使用黑暗魔法的死灵法师"
+  },
+  "wyvern": {
+    "level": 6,
+    "ac": 3,
+    "lifedice": "7d10",
+    "attacks": {
+      "sting": ["2d8", "poison"],
+      "claw": "2d6",
+      "bite": "2d10"
+    },
+    "job": "fighter",
+    "treasure": "R",
+    "xp_value": 350,
+    "description": "双足飞龙致命的毒，有刺"
+  },
+  "goblin_scout": {
+    "level": 1,
+    "ac": 7,
+    "lifedice": "1d6",
+    "attacks": {
+      "shortbow": "1d6"
+    },
+    "job": "thief",
+    "treasure": "U",
+    "xp_value": 15,
+    "description": "哥布林斥候，擅长远程攻击和逃跑"
+  },
+  "hobgoblin": {
+    "level": 2,
+    "ac": 5,
+    "lifedice": "2d8",
+    "attacks": {
+      "spear": "1d8",
+      "shield": "1d4"
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 30,
+    "description": "更强大、更组织化的哥布林战士"
+  },
+  "demon": {
+    "level": 7,
+    "ac": 2,
+    "lifedice": "8d10",
+    "attacks": {
+      "claw": "2d8",
+      "bite": "2d10",
+      "tail": "1d12"
+    },
+    "job": "fighter",
+    "treasure": "R",
+    "xp_value": 500,
+    "description": "来自深渊的恶魔"
+  }
+}

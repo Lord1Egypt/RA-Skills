@@ -1,0 +1,24 @@
+{
+  "name": "trade-hunter",
+  "version": "1.0.0",
+  "description": "B2B外贸客户发现技能 - 全球企业数据采集 + BOI评分初筛",
+  "main": "SKILL.md",
+  "keywords": [
+    "coze-skill",
+    "b2b",
+    "lead-generation",
+    "foreign-trade",
+    "client-discovery"
+  ],
+  "author": "cloud-travel-skills",
+  "license": "MIT",
+  "clawhub": {
+    "category": "business",
+    "tags": ["外贸", "获客", "B2B", "客户发现"],
+    "platform": "coze",
+    "compatibility": "Coze/Caw通用"
+  },
+  "dependencies": {
+    "coze-api": ">=1.0.0"
+  }
+}

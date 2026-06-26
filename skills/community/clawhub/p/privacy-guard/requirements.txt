@@ -1,0 +1,3 @@
+pdfplumber
+python-docx
+openpyxl

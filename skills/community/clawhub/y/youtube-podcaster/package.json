@@ -1,0 +1,30 @@
+{
+  "name": "youtube-podcaster-studio",
+  "version": "2.0.0",
+  "description": "A secure, multi-step studio for converting YouTube videos into NotebookLM-style AI podcasts.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "podcast",
+    "gemini",
+    "ai",
+    "youtube",
+    "tts"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^1.45.0",
+    "archiver": "^7.0.1",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.1",
+    "fluent-ffmpeg": "^2.1.3",
+    "openai": "^6.29.0",
+    "youtube-transcript-plus": "^1.2.0"
+  }
+}

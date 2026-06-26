@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkyRoute — Global Traffic Monitor</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050a18;overflow:hidden;font-family:-apple-system,'PingFang SC',sans-serif;color:#fff}
+#globe{width:100vw;height:100vh}
+
+.header{position:fixed;top:0;left:0;right:0;z-index:10;padding:14px 20px;
+  background:linear-gradient(180deg,rgba(5,10,24,0.95)0%,transparent 100%);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;transition:background 0.5s}
+.header.alert-active{background:linear-gradient(180deg,rgba(180,20,20,0.92)0%,transparent 100%);
+  animation:headerFlash 2s infinite}
+@keyframes headerFlash{0%,100%{background:linear-gradient(180deg,rgba(180,20,20,0.92)0%,transparent 100%)}
+  50%{background:linear-gradient(180deg,rgba(120,10,10,0.92)0%,transparent 100%)}}
+.header h1{font-size:17px;font-weight:600}.aws{color:#FF9900}
+.ta{color:#38bdf8;font-size:12px;opacity:0.6}
+.live-dot{width:8px;height:8px;background:#f43f5e;border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(244,63,94,.7)}50%{box-shadow:0 0 0 6px rgba(244,63,94,0)}}
+.live-text{font-size:11px;color:#f43f5e;font-weight:600}
+.alert-badge{font-size:10px;color:#fff;background:#dc2626;border-radius:4px;padding:2px 8px;
+  font-weight:700;display:none;animation:headerFlash 1.5s infinite}
+
+.panel{position:fixed;z-index:10;background:rgba(15,23,42,0.88);
+  border:1px solid rgba(255,255,255,0.06);border-radius:10px;backdrop-filter:blur(12px)}
+.panel h3{font-size:10px;color:#475569;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+
+.stats{top:60px;right:16px;padding:14px;min-width:185px}
+.stat-row{display:flex;justify-content:space-between;padding:3px 0}
+.stat-label{font-size:11px;color:#94a3b8}.stat-value{font-size:13px;font-weight:700}
+.stat-sub{font-size:9px;color:#64748b;margin-left:4px;font-weight:400}
+
+.geo-panel{top:60px;left:16px;padding:14px;min-width:250px}
+.geo-row{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:11px}
+.geo-flag{width:18px;text-align:center;font-size:13px}.geo-name{color:#cbd5e1;flex:1;min-width:80px}
+.geo-bar-bg{width:70px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.geo-bar{height:100%;border-radius:2px;transition:width .5s}
+.geo-pct{color:#64748b;font-size:10px;width:32px;text-align:right}
+.geo-active{color:#4ade80;font-size:10px;width:20px;text-align:right}
+
+.cdn-panel{bottom:170px;left:16px;padding:14px;min-width:250px}
+.cdn-row{display:flex;align-items:center;gap:6px;padding:2px 0;font-size:11px}
+.cdn-name{color:#cbd5e1;flex:1}.cdn-val{font-size:10px;color:#94a3b8;width:50px;text-align:right}
+.cdn-hit{font-size:10px;font-weight:600;width:40px;text-align:right}
+
+.legend{bottom:16px;left:16px;padding:10px 14px}
+.legend-item{display:flex;align-items:center;gap:5px;padding:1px 0;font-size:10px;color:#94a3b8}
+.legend-color{width:16px;height:2px;border-radius:1px}
+
+.conn-log{bottom:16px;right:16px;padding:10px 14px;width:280px;max-height:140px;overflow:hidden}
+.log-entry{font-size:10px;padding:1px 0;color:#64748b;white-space:nowrap;overflow:hidden;
+  animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1}}
+
+.trend-panel{bottom:170px;right:16px;padding:12px 14px;width:280px}
+.sparkline{display:flex;align-items:end;gap:1px;height:30px}
+.spark-bar{width:4px;border-radius:1px 1px 0 0;transition:height 0.3s;min-height:1px}
+.trend-labels{display:flex;justify-content:space-between;margin-top:3px}
+.trend-labels span{font-size:9px;color:#475569}
+.trend-row{margin-bottom:8px}
+.trend-title{font-size:10px;color:#94a3b8;margin-bottom:3px;display:flex;justify-content:space-between}
+
+.update-time{font-size:10px;color:#475569;position:fixed;bottom:4px;left:50%;transform:translateX(-50%);z-index:10}
+
+@media(max-width:768px){
+  .stats{top:auto;bottom:160px;right:10px;left:10px;min-width:auto;
+    display:flex;flex-wrap:wrap;gap:0 16px;padding:10px}
+  .stats h3{width:100%}
+  .stat-row{width:calc(50% - 8px)}
+  .geo-panel{top:55px;left:10px;right:10px;min-width:auto}
+  .legend,.cdn-panel,.trend-panel{display:none}
+  .conn-log{bottom:10px;right:10px;left:10px;width:auto}
+}
+</style>
+</head>
+<body>
+<div class="header" id="header">
+  <h1>🌐 <span class="aws">AWS</span> Global Traffic Monitor</h1>
+  <span class="ta">your-domain.com</span>
+  <div class="alert-badge" id="alert-badge">⚠️ ALERT</div>
+  <div style="flex:1"></div>
+  <div class="live-dot"></div><span class="live-text">LIVE</span>
+  <span id="clock" style="font-size:11px;color:#475569"></span>
+</div>
+
+<div class="panel stats">
+  <h3>📊 实时概况</h3>
+  <div class="stat-row"><span class="stat-label">活跃连接</span><span class="stat-value" style="color:#4ade80" id="s-conn">0</span></div>
+  <div class="stat-row"><span class="stat-label">请求/秒</span><span class="stat-value" style="color:#38bdf8" id="s-rps">0</span></div>
+  <div class="stat-row"><span class="stat-label">平均延迟</span><span class="stat-value" style="color:#4ade80" id="s-lat">0ms</span></div>
+  <div class="stat-row"><span class="stat-label">P95 延迟</span><span class="stat-value" style="color:#38bdf8" id="s-p95">0ms</span></div>
+  <div class="stat-row"><span class="stat-label">P99 延迟</span><span class="stat-value" style="color:#94a3b8" id="s-p99">0ms</span></div>
+  <div class="stat-row"><span class="stat-label">错误率</span><span class="stat-value" style="color:#4ade80" id="s-err">0%</span></div>
+  <div class="stat-row"><span class="stat-label">在线学生</span><span class="stat-value" style="color:#e2e8f0" id="s-stu">0</span></div>
+  <div class="stat-row"><span class="stat-label">卡顿连接</span><span class="stat-value" style="color:#f87171" id="s-lag">0</span></div>
+  <div class="stat-row"><span class="stat-label">国家/地区</span><span class="stat-value" style="color:#e2e8f0" id="s-geo">0</span></div>
+</div>
+
+<div class="panel geo-panel">
+  <h3>🗺️ 流量地区分布</h3>
+  <div id="geo-rows"></div>
+</div>
+
+<div class="panel cdn-panel">
+  <h3>🌐 CloudFront 节点</h3>
+  <div id="cdn-rows"></div>
+</div>
+
+<div class="panel trend-panel">
+  <h3>📈 趋势 (最近30分钟)</h3>
+  <div class="trend-row">
+    <div class="trend-title"><span>RPS</span><span id="trend-rps-now">-</span></div>
+    <div class="sparkline" id="spark-rps"></div>
+    <div class="trend-labels"><span>-30m</span><span>now</span></div>
+  </div>
+  <div class="trend-row">
+    <div class="trend-title"><span>延迟 (ms)</span><span id="trend-lat-now">-</span></div>
+    <div class="sparkline" id="spark-lat"></div>
+    <div class="trend-labels"><span>-30m</span><span>now</span></div>
+  </div>
+</div>
+
+<div class="panel legend">
+  <h3>图例</h3>
+  <div class="legend-item"><div class="legend-color" style="background:#4ade80"></div>&lt;50ms 流畅</div>
+  <div class="legend-item"><div class="legend-color" style="background:#fbbf24"></div>50-150ms 一般</div>
+  <div class="legend-item"><div class="legend-color" style="background:#f87171"></div>&gt;150ms 卡顿</div>
+  <div class="legend-item"><div class="legend-color" style="background:#FF9900"></div>→ ALB us-west-2</div>
+  <div class="legend-item"><div class="legend-color" style="background:#a78bfa"></div>→ S3 课件下载</div>
+</div>
+
+<div class="panel conn-log">
+  <h3>📡 连接日志</h3>
+  <div id="log-entries"></div>
+</div>
+
+<div class="update-time" id="update-time">数据更新于 --:--:--</div>
+
+<div id="globe"></div>
+
+<script src="https://unpkg.com/globe.gl"></script>
+<script>
+fetch('https://unpkg.com/world-atlas@2/countries-110m.json')
+  .then(r=>r.json()).then(topo=>initGlobe(topo)).catch(()=>initGlobe(null));
+
+function initGlobe(TOPO){
+
+const ALB={lat:45.84,lng:-119.73};
+const S3={lat:44.5,lng:-120.5};
+
+const TRAFFIC_IDS=new Set(['840','344','702','158','764','392','410','356','826','036','276','076','784','458','360','608','704']);
+
+// ===== Fix #1 & #6: Full country names + flag emoji =====
+const CC_NAMES={
+  HK:'Hong Kong 🇭🇰',US:'United States 🇺🇸',SG:'Singapore 🇸🇬',TW:'Taiwan 🇹🇼',
+  TH:'Thailand 🇹🇭',JP:'Japan 🇯🇵',KR:'South Korea 🇰🇷',IN:'India 🇮🇳',
+  UK:'United Kingdom 🇬🇧',AU:'Australia 🇦🇺',MY:'Malaysia 🇲🇾',ID:'Indonesia 🇮🇩',
+  PH:'Philippines 🇵🇭',VN:'Vietnam 🇻🇳',AE:'UAE 🇦🇪',BR:'Brazil 🇧🇷',
+  DE:'Germany 🇩🇪',TC:'Tencent Cloud ☁️',CN:'China 🇨🇳',CA:'Canada 🇨🇦',RU:'Russia 🇷🇺'
+};
+const CC_FLAGS={
+  HK:'🇭🇰',US:'🇺🇸',SG:'🇸🇬',TW:'🇹🇼',TH:'🇹🇭',JP:'🇯🇵',KR:'🇰🇷',IN:'🇮🇳',
+  UK:'🇬🇧',AU:'🇦🇺',MY:'🇲🇾',ID:'🇮🇩',PH:'🇵🇭',VN:'🇻🇳',AE:'🇦🇪',BR:'🇧🇷',
+  DE:'🇩🇪',TC:'☁️',CN:'🇨🇳',CA:'🇨🇦',RU:'🇷🇺'
+};
+
+const REGIONS=[
+  {name:'Hong Kong',cc:'HK',lat:22.32,lng:114.17,weight:32.3,avgMs:24,reqs:3709},
+  {name:'US-West',cc:'US',lat:37.39,lng:-122.08,weight:13.2,avgMs:22,reqs:1516},
+  {name:'US-East',cc:'US',lat:40.71,lng:-74.01,weight:17.8,avgMs:25,reqs:2046},
+  {name:'Tencent Cloud',cc:'TC',lat:22.40,lng:114.10,weight:8.2,avgMs:43,reqs:944},
+  {name:'Singapore',cc:'SG',lat:1.35,lng:103.82,weight:3.1,avgMs:23,reqs:356},
+  {name:'Taiwan',cc:'TW',lat:25.03,lng:121.57,weight:1.6,avgMs:61,reqs:189},
+  {name:'Thailand',cc:'TH',lat:13.76,lng:100.50,weight:0.3,avgMs:30,reqs:29},
+  {name:'Japan',cc:'JP',lat:35.68,lng:139.69,weight:4.5,avgMs:35,reqs:520},
+  {name:'Korea',cc:'KR',lat:37.57,lng:126.98,weight:3.0,avgMs:38,reqs:345},
+  {name:'India',cc:'IN',lat:19.08,lng:72.88,weight:2.0,avgMs:85,reqs:230},
+  {name:'UK',cc:'UK',lat:51.51,lng:-0.13,weight:1.5,avgMs:95,reqs:172},
+  {name:'Australia',cc:'AU',lat:-33.87,lng:151.21,weight:0.8,avgMs:75,reqs:92},
+  {name:'Malaysia',cc:'MY',lat:3.14,lng:101.69,weight:1.2,avgMs:55,reqs:138},
+  {name:'Indonesia',cc:'ID',lat:-6.21,lng:106.85,weight:0.8,avgMs:65,reqs:92},
+  {name:'Philippines',cc:'PH',lat:14.60,lng:120.98,weight:0.5,avgMs:50,reqs:57},
+  {name:'Vietnam',cc:'VN',lat:21.03,lng:105.85,weight:0.4,avgMs:60,reqs:46},
+  {name:'UAE',cc:'AE',lat:25.20,lng:55.27,weight:0.3,avgMs:120,reqs:35},
+  {name:'Brazil',cc:'BR',lat:-23.55,lng:-46.63,weight:0.2,avgMs:140,reqs:23},
+  {name:'Germany',cc:'DE',lat:52.52,lng:13.41,weight:0.2,avgMs:100,reqs:23},
+];
+
+// ===== Fix #3: CloudFront edge nodes =====
+const CF_EDGES=[
+  {code:'HKG',name:'Hong Kong',lat:22.32,lng:114.17,hitRate:94.2,bandwidth:'2.8 Gbps',reqs:38200},
+  {code:'SFO',name:'San Francisco',lat:37.62,lng:-122.38,hitRate:91.5,bandwidth:'1.9 Gbps',reqs:22100},
+  {code:'IAD',name:'N. Virginia',lat:38.95,lng:-77.45,hitRate:89.8,bandwidth:'1.6 Gbps',reqs:18500},
+  {code:'SIN',name:'Singapore',lat:1.35,lng:103.99,hitRate:95.1,bandwidth:'0.8 Gbps',reqs:8900},
+  {code:'NRT',name:'Tokyo',lat:35.76,lng:140.39,hitRate:92.7,bandwidth:'0.6 Gbps',reqs:6200},
+  {code:'LHR',name:'London',lat:51.47,lng:-0.46,hitRate:88.3,bandwidth:'0.4 Gbps',reqs:3100},
+  {code:'ICN',name:'Seoul',lat:37.46,lng:126.44,hitRate:93.4,bandwidth:'0.5 Gbps',reqs:4500},
+  {code:'BOM',name:'Mumbai',lat:19.09,lng:72.87,hitRate:87.1,bandwidth:'0.3 Gbps',reqs:2800},
+];
+
+const countryLabels=[
+  {lat:22.3,lng:114.2,text:'🇭🇰 Hong Kong',color:'#38bdf8',size:1.1,altitude:0.012},
+  {lat:1.3,lng:103.8,text:'🇸🇬 Singapore',color:'#38bdf8',size:0.9,altitude:0.012},
+  {lat:23.7,lng:121,text:'🇹🇼 Taiwan',color:'#38bdf8',size:0.9,altitude:0.012},
+  {lat:36.2,lng:138.3,text:'🇯🇵 Japan',color:'#38bdf8',size:0.9,altitude:0.012},
+  {lat:35.9,lng:127.8,text:'🇰🇷 Korea',color:'#38bdf8',size:0.9,altitude:0.012},
+  {lat:15.9,lng:100.9,text:'🇹🇭 Thailand',color:'#38bdf8',size:0.9,altitude:0.012},
+  {lat:20.6,lng:79,text:'🇮🇳 India',color:'#38bdf8',size:0.9,altitude:0.012},
+  {lat:55.4,lng:-3.4,text:'🇬🇧 UK',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:-25.3,lng:133.8,text:'🇦🇺 Australia',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:51.2,lng:10.5,text:'🇩🇪 Germany',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:-14.2,lng:-51.9,text:'🇧🇷 Brazil',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:23.4,lng:53.8,text:'🇦🇪 UAE',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:4.2,lng:101.9,text:'🇲🇾 Malaysia',color:'#38bdf8',size:0.8,altitude:0.012},
+  {lat:-0.8,lng:113.9,text:'🇮🇩 Indonesia',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:12.9,lng:121.8,text:'🇵🇭 Philippines',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:14.1,lng:108.3,text:'🇻🇳 Vietnam',color:'#94a3b8',size:0.8,altitude:0.012},
+  {lat:39.8,lng:-98.5,text:'🇺🇸 United States',color:'#38bdf8',size:1.1,altitude:0.012},
+  {lat:35.9,lng:104.2,text:'🇨🇳 China',color:'#64748b',size:0.9,altitude:0.012},
+  {lat:61.5,lng:105.3,text:'🇷🇺 Russia',color:'#475569',size:0.8,altitude:0.012},
+  {lat:56.1,lng:-106.3,text:'🇨🇦 Canada',color:'#475569',size:0.8,altitude:0.012},
+  {lat:ALB.lat+3,lng:ALB.lng,text:'⚡ ALB Oregon (us-west-2)',color:'#FF9900',size:1.5,altitude:0.025},
+  {lat:S3.lat-3,lng:S3.lng,text:'📦 S3',color:'#a78bfa',size:1.1,altitude:0.025},
+];
+
+function topoFeatures(topo){
+  if(!topo)return[];
+  const obj=topo.objects[Object.keys(topo.objects)[0]];
+  const arcs=topo.arcs,sc=topo.transform?.scale||[1,1],tr=topo.transform?.translate||[0,0];
+  function decArc(i){const rev=i<0;const a=arcs[rev?~i:i];let cs=[],x=0,y=0;
+    for(const[dx,dy]of a){x+=dx;y+=dy;cs.push([x*sc[0]+tr[0],y*sc[1]+tr[1]])}return rev?cs.reverse():cs}
+  function decRing(r){let c=[];for(const i of r)c=c.concat(decArc(i));return c}
+  function decG(g){if(g.type==='Polygon')return{type:'Polygon',coordinates:g.arcs.map(decRing)};
+    if(g.type==='MultiPolygon')return{type:'MultiPolygon',coordinates:g.arcs.map(p=>p.map(decRing))};return g}
+  return obj.geometries.map(g=>({type:'Feature',properties:g.properties||{},id:String(g.id??''),geometry:decG(g)}));
+}
+const countries=topoFeatures(TOPO);
+
+const globe=Globe()
+  .backgroundColor('#050a18')
+  .showAtmosphere(true).atmosphereColor('#1e3a8a').atmosphereAltitude(0.18)
+  .polygonsData(countries)
+  .polygonCapColor(f=>TRAFFIC_IDS.has(f.id)?'rgba(30,80,200,0.75)':'rgba(15,30,80,0.4)')
+  .polygonSideColor(()=>'rgba(30,58,138,0.2)')
+  .polygonStrokeColor(()=>'rgba(100,160,255,0.35)')
+  .polygonAltitude(f=>TRAFFIC_IDS.has(f.id)?0.01:0.003)
+  .arcsData([]).arcColor(d=>d.color).arcStroke(d=>d.stroke)
+  .arcDashLength(0.5).arcDashGap(0.2).arcDashAnimateTime(d=>d.anim).arcAltitudeAutoScale(0.4)
+  .pointsData([{lat:ALB.lat,lng:ALB.lng,size:0.7,color:'#FF9900'},{lat:S3.lat,lng:S3.lng,size:0.4,color:'#a78bfa'}])
+  .pointAltitude(0.015).pointRadius('size').pointColor('color')
+  .ringsData([
+    {lat:ALB.lat,lng:ALB.lng,maxR:4,propagationSpeed:2,repeatPeriod:1000,color:t=>`rgba(255,153,0,${1-t})`},
+    {lat:S3.lat,lng:S3.lng,maxR:2,propagationSpeed:1.5,repeatPeriod:1500,color:t=>`rgba(167,139,250,${1-t})`}
+  ]).ringMaxRadius('maxR').ringPropagationSpeed('propagationSpeed').ringRepeatPeriod('repeatPeriod').ringColor('color')
+  .htmlElementsData(REGIONS.filter(r=>r.cc!=='TC').map(r=>({
+    lat:r.lat,lng:r.lng,name:r.name,cc:r.cc,sz:Math.max(4,Math.sqrt(r.weight)*3)
+  }))).htmlElement(d=>{
+    const el=document.createElement('div');
+    el.style.cssText=`width:${d.sz}px;height:${d.sz}px;border-radius:50%;background:rgba(56,189,248,0.6);box-shadow:0 0 ${d.sz}px rgba(56,189,248,0.4);pointer-events:none;animation:dotPulse 2s infinite`;
+    return el;
+  })
+  .labelsData(countryLabels).labelText('text').labelSize('size').labelColor('color')
+  .labelDotRadius(0).labelAltitude('altitude').labelResolution(2)
+  (document.getElementById('globe'));
+
+document.head.appendChild(Object.assign(document.createElement('style'),{
+  textContent:'@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}'
+}));
+
+// ===== Fix #9: Asia-Pacific centered initial view =====
+globe.pointOfView({lat:25,lng:110,altitude:2.2});
+
+// ===== Fix #10: Slower rotation, pause on hover =====
+globe.controls().autoRotate=true;
+globe.controls().autoRotateSpeed=0.1;
+globe.controls().enableDamping=true;
+
+const globeEl=document.getElementById('globe');
+globeEl.addEventListener('mouseenter',()=>{globe.controls().autoRotateSpeed=0});
+globeEl.addEventListener('mouseleave',()=>{globe.controls().autoRotateSpeed=0.1});
+
+// ===== Simulation =====
+const MAX_ARCS=80;
+let arcs=[],aid=0,arcCount1s=0;
+const totalW=REGIONS.reduce((s,r)=>s+r.weight,0);
+
+// ===== Fix #5: Trend data (30 min = 180 samples @ 10s) =====
+const TREND_LEN=180;
+let rpsHistory=[],latHistory=[];
+let rps10s=0,latSamples10s=[];
+
+// ===== Fix #2: Error rate & student count simulation =====
+let totalReqs=0,errorReqs=0;
+const simStudents=()=>Math.round(1200+Math.sin(Date.now()/60000)*300+Math.random()*100);
+
+function latColor(ms){
+  if(ms<50)return['rgba(74,222,128,0.9)','rgba(74,222,128,0.3)'];
+  if(ms<150)return['rgba(251,191,36,0.9)','rgba(251,191,36,0.3)'];
+  return['rgba(248,113,113,0.9)','rgba(248,113,113,0.3)'];
+}
+
+function addArc(){
+  if(arcs.length>=MAX_ARCS){arcs.splice(0,arcs.length-MAX_ARCS+10);globe.arcsData([...arcs])}
+
+  let r=Math.random()*totalW,reg=REGIONS[0];
+  for(const g of REGIONS){r-=g.weight;if(r<=0){reg=g;break}}
+  const isDl=Math.random()<0.15,tgt=isDl?S3:ALB;
+  const spike=Math.random()<0.06?150+Math.random()*200:0;
+  const ms=Math.round(reg.avgMs+(Math.random()-.5)*reg.avgMs*0.6+spike);
+  const col=isDl?['rgba(167,139,250,0.9)','rgba(124,58,237,0.35)']:latColor(ms);
+  const id=aid++;
+  arcCount1s++;rps10s++;
+  totalReqs++;
+  // Simulate 4xx/5xx: ~2.5% base, spikes to 8%
+  if(Math.random()<(spike>0?0.08:0.025))errorReqs++;
+  latSamples10s.push(ms);
+
+  const flag=CC_FLAGS[reg.cc]||'';
+  arcs.push({id,startLat:reg.lat+(Math.random()-.5)*3,startLng:reg.lng+(Math.random()-.5)*3,
+    endLat:tgt.lat,endLng:tgt.lng,color:col,
+    stroke:Math.max(0.2,Math.min(1.2,reg.weight/10)),
+    anim:800+ms*4,latency:ms,region:reg.name,flag,cc:reg.cc,isDl});
+  globe.arcsData([...arcs]);
+
+  const displayName=CC_NAMES[reg.cc]||reg.name;
+  const cls=ms<50?'style="color:#4ade80"':ms<150?'style="color:#fbbf24"':'style="color:#f87171"';
+  const svc=isDl?'<span style="color:#a78bfa">S3</span>':'<span style="color:#FF9900">ALB</span>';
+  addLog(`${flag} <span style="color:#e2e8f0">${displayName}</span> → ${svc} <span ${cls}>${ms}ms</span>`);
+
+  setTimeout(()=>{const i=arcs.findIndex(a=>a.id===id);if(i!==-1){arcs.splice(i,1);globe.arcsData([...arcs])}},2000+Math.random()*6000);
+}
+
+// Trend sampling every 10s
+setInterval(()=>{
+  rpsHistory.push(rps10s);if(rpsHistory.length>TREND_LEN)rpsHistory.shift();
+  const avgLat=latSamples10s.length?Math.round(latSamples10s.reduce((a,b)=>a+b,0)/latSamples10s.length):0;
+  latHistory.push(avgLat);if(latHistory.length>TREND_LEN)latHistory.shift();
+  rps10s=0;latSamples10s=[];
+},10000);
+
+const logContainer=document.getElementById('log-entries');
+function addLog(h){
+  const d=document.createElement('div');d.className='log-entry';
+  const n=new Date(),t=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')}`;
+  d.innerHTML=`<span style="color:#1e293b">${t}</span> ${h}`;
+  logContainer.insertBefore(d,logContainer.firstChild);
+  while(logContainer.children.length>10)logContainer.removeChild(logContainer.lastChild);
+}
+
+const elConn=document.getElementById('s-conn'),elRps=document.getElementById('s-rps'),
+  elLat=document.getElementById('s-lat'),elLag=document.getElementById('s-lag'),
+  elGeo=document.getElementById('s-geo'),elGeoRows=document.getElementById('geo-rows'),
+  elP95=document.getElementById('s-p95'),elP99=document.getElementById('s-p99'),
+  elErr=document.getElementById('s-err'),elStu=document.getElementById('s-stu'),
+  elHeader=document.getElementById('header'),elAlertBadge=document.getElementById('alert-badge');
+
+function percentile(arr,p){if(!arr.length)return 0;const s=[...arr].sort((a,b)=>a-b);const i=Math.ceil(p/100*s.length)-1;return s[Math.max(0,i)];}
+
+let prevGeoHtml='';
+function updateStats(){
+  const n=arcs.length;
+  elConn.textContent=n;
+  elRps.textContent=arcCount1s;
+  const lats=arcs.map(a=>a.latency);
+  const avg=n?Math.round(lats.reduce((s,v)=>s+v,0)/n):0;
+  elLat.textContent=avg+'ms';
+  elLat.style.color=avg<50?'#4ade80':avg<150?'#fbbf24':'#f87171';
+
+  // ===== Fix #2: P95, P99, error rate, students =====
+  const p95=percentile(lats,95),p99=percentile(lats,99);
+  elP95.textContent=p95+'ms';
+  elP95.style.color=p95<100?'#38bdf8':p95<200?'#fbbf24':'#f87171';
+  elP99.textContent=p99+'ms';
+  elP99.style.color=p99<150?'#94a3b8':p99<300?'#fbbf24':'#f87171';
+
+  const errRate=totalReqs>0?(errorReqs/totalReqs*100):0;
+  elErr.textContent=errRate.toFixed(1)+'%';
+  elErr.style.color=errRate<2?'#4ade80':errRate<5?'#fbbf24':'#f87171';
+
+  elStu.textContent=simStudents();
+
+  elLag.textContent=arcs.filter(a=>a.latency>150).length;
+  elGeo.textContent=new Set(arcs.map(a=>a.cc)).size;
+
+  // ===== Fix #4: Alert when latency >200ms or error >5% =====
+  const alertActive=avg>200||errRate>5;
+  elHeader.classList.toggle('alert-active',alertActive);
+  elAlertBadge.style.display=alertActive?'inline-block':'none';
+  if(alertActive){
+    const reasons=[];
+    if(avg>200)reasons.push(`延迟 ${avg}ms`);
+    if(errRate>5)reasons.push(`错误率 ${errRate.toFixed(1)}%`);
+    elAlertBadge.textContent='⚠️ '+reasons.join(' | ');
+  }
+
+  // Geo panel - use full names
+  const counts={};arcs.forEach(a=>{counts[a.cc]=(counts[a.cc]||0)+1});
+  // Aggregate by country (merge US-West/US-East)
+  const byCountry={};
+  REGIONS.forEach(r=>{
+    if(!byCountry[r.cc])byCountry[r.cc]={name:CC_NAMES[r.cc]||r.name,flag:CC_FLAGS[r.cc]||'',cc:r.cc,weight:0,avgMs:0,cnt:0};
+    byCountry[r.cc].weight+=r.weight;
+    byCountry[r.cc].avgMs+=r.avgMs*r.weight;
+    byCountry[r.cc].cnt+=r.weight;
+  });
+  Object.values(byCountry).forEach(c=>{c.avgMs=c.cnt?Math.round(c.avgMs/c.cnt):0});
+  const rows=Object.values(byCountry).sort((a,b)=>b.weight-a.weight).slice(0,10);
+  const maxPct=rows[0]?.weight||1;
+  const html=rows.map(r=>{
+    const barW=Math.round(r.weight/maxPct*100);
+    const barColor=r.avgMs<50?'#4ade80':r.avgMs<100?'#38bdf8':r.avgMs<150?'#fbbf24':'#f87171';
+    const active=counts[r.cc]||0;
+    return `<div class="geo-row"><span class="geo-flag">${r.flag}</span><span class="geo-name">${r.name}</span><div class="geo-bar-bg"><div class="geo-bar" style="width:${barW}%;background:${barColor}"></div></div><span class="geo-pct">${r.weight.toFixed(1)}%</span><span class="geo-active">${active>0?'●'+active:''}</span></div>`;
+  }).join('');
+  if(html!==prevGeoHtml){elGeoRows.innerHTML=html;prevGeoHtml=html}
+
+  // ===== Fix #2: Update timestamp =====
+  const now=new Date();
+  document.getElementById('update-time').textContent=`数据更新于 ${now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})}`;
+}
+
+// ===== Fix #3: CDN panel rendering =====
+function renderCDN(){
+  const cdnEl=document.getElementById('cdn-rows');
+  // Simulate slight fluctuation
+  const html=CF_EDGES.sort((a,b)=>b.reqs-a.reqs).map(e=>{
+    const hr=e.hitRate+(Math.random()-0.5)*2;
+    const hitColor=hr>92?'#4ade80':hr>85?'#fbbf24':'#f87171';
+    return `<div class="cdn-row"><span style="color:#475569;font-size:10px;width:30px">${e.code}</span><span class="cdn-name">${e.name}</span><span class="cdn-val">${e.bandwidth}</span><span class="cdn-hit" style="color:${hitColor}">${hr.toFixed(1)}%</span></div>`;
+  }).join('');
+  cdnEl.innerHTML=html;
+}
+renderCDN();setInterval(renderCDN,10000);
+
+// ===== Fix #5: Sparkline rendering =====
+function renderSparkline(containerId,data,maxVal,color){
+  const el=document.getElementById(containerId);
+  if(!data.length){el.innerHTML='<span style="font-size:9px;color:#475569">采集中...</span>';return}
+  const m=maxVal||Math.max(...data,1);
+  el.innerHTML=data.slice(-60).map(v=>{
+    const h=Math.max(1,Math.round(v/m*30));
+    return `<div class="spark-bar" style="height:${h}px;background:${color}"></div>`;
+  }).join('');
+}
+setInterval(()=>{
+  renderSparkline('spark-rps',rpsHistory,Math.max(...rpsHistory,10),'#38bdf8');
+  renderSparkline('spark-lat',latHistory,Math.max(...latHistory,200),'#fbbf24');
+  document.getElementById('trend-rps-now').textContent=rpsHistory.length?rpsHistory[rpsHistory.length-1]+'/10s':'-';
+  document.getElementById('trend-lat-now').textContent=latHistory.length?latHistory[latHistory.length-1]+'ms':'-';
+},10000);
+
+function tick(){setTimeout(()=>{addArc();tick()},150+Math.random()*400)}
+function burst(){setTimeout(()=>{const n=4+Math.floor(Math.random()*6);const reg=REGIONS[Math.floor(Math.random()*3)];
+  const flag=CC_FLAGS[reg.cc]||'';
+  for(let i=0;i<n;i++)setTimeout(addArc,i*60);
+  addLog(`<span style="color:#fbbf24">⚡ ${flag} ${CC_NAMES[reg.cc]||reg.name} 突发 ${n} 连接</span>`);burst()},6000+Math.random()*12000)}
+
+tick();burst();setInterval(updateStats,500);
+setInterval(()=>{const n=new Date();document.getElementById('clock').textContent=n.toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})},1000);
+for(let i=0;i<15;i++)setTimeout(addArc,i*100);
+
+} // end initGlobe
+</script>
+</body>
+</html>

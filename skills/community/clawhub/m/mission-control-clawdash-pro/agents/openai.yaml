@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mission Control - ClawDash Pro"
+  short_description: "Write publish-ready Mission Control setup instructions"
+  default_prompt: "Create a publish-ready instruction document for setting up Mission Control - ClawDash Pro dashboard after purchase."

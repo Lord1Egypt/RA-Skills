@@ -1,0 +1,26 @@
+{
+  "name": "openclaw-skill-plaud-note-taking",
+  "version": "0.1.0",
+  "description": "OpenClaw skill for Plaud note taking via Plaud MCP and CLI",
+  "license": "MIT-0",
+  "author": "Antonio Silveira",
+  "type": "module",
+  "bin": {
+    "plaud-export": "scripts/plaud-export.js"
+  },
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "openclaw",
+    "skill",
+    "plaud",
+    "mcp",
+    "transcription",
+    "meetings"
+  ]
+}

@@ -1,35 +1,85 @@
 ---
-name: "calorie1-detective-v3"
-description: "热量侦探 v2.0.0 - AI 食物卡路里计算器。通过 Kimi 视觉识别照片中的食物，自动计算卡路里、蛋白质、碳水、脂肪等营养数据。内置常见食物营养数据库。用于健康饮食管理、减肥健身追踪。再隐蔽的热量也逃不过我的眼睛！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/calorie1"
-sourceUrl: "https://clawhub.ai/skills/calorie1"
+name: calorie-detective-v2-0-0
+description: 热量侦探 v2.0.0 - AI 食物卡路里计算器。通过 Kimi 视觉识别照片中的食物，自动计算卡路里、蛋白质、碳水、脂肪等营养数据。内置常见食物营养数据库。用于健康饮食管理、减肥健身追踪。再隐蔽的热量也逃不过我的眼睛！
 ---
 
-# calorie1-detective-v3
+# 🔍 热量侦探 v3.0.0
 
-> 热量侦探 v2.0.0 - AI 食物卡路里计算器。通过 Kimi 视觉识别照片中的食物，自动计算卡路里、蛋白质、碳水、脂肪等营养数据。内置常见食物营养数据库。用于健康饮食管理、减肥健身追踪。再隐蔽的热量也逃不过我的眼睛！
+🕵️ **再隐蔽的热量也逃不过我的眼睛！**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/calorie1`
-- **Source URL:** [https://clawhub.ai/skills/calorie1](https://clawhub.ai/skills/calorie1)
+通过 Kimi 视觉识别技术，像侦探一样找出食物中隐藏的热量，自动计算卡路里和营养成分，帮助你更好地管理饮食健康。
 
-## Overview
+## ✨ 功能特性
 
+1. **📸 拍照识别** - 使用 Kimi 视觉 API 自动识别食物
+2. **🔥 卡路里计算** - 自动计算总卡路里和宏量营养素
+3. **📊 营养报告** - 生成详细的营养分析报告
+4. **💡 健康建议** - 提供饮食改进建议
+5. **🌐 中文优化** - 专为中餐优化，识别更准确
+6. **💾 本地数据库** - 内置 100+ 种常见食物营养数据
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/calorie1
+## 🍎 内置食物数据库
+
+已内置 100+ 种常见食物营养数据（每 100 克）：
+
+| 类别 | 食物举例 |
+|------|----------|
+| 🍚 主食 | 米饭、面条、馒头、面包、土豆 |
+| 🥚 蛋白质 | 鸡蛋、牛奶、鸡肉、猪肉、牛肉、鱼、虾 |
+| 🍎 水果 | 苹果、香蕉、橙子、葡萄、草莓 |
+| 🥬 蔬菜 | 青菜、番茄、黄瓜、胡萝卜、西兰花 |
+| 🍔 快餐 | 汉堡、薯条、炸鸡、披萨 |
+
+## 🔄 扩展开发
+
+### 添加新食物
+编辑 `src/calorie_calculator.py` 中的 `COMMON_FOODS` 字典：
+
+```python
+COMMON_FOODS = {
+    '你的食物': {'calories': 100, 'protein': 5, 'carbs': 15, 'fat': 3},
+    ...
+}
 ```
+
+## 📝 更新日志
+
+### v3.0.0 (2026-03-04) - 正式发布版
+- ✅ Kimi 视觉识别支持（moonshot-v1-8k-vision-preview）
+- ✅ 本地食物营养数据库（100+ 种食物）
+- ✅ 营养报告生成
+- ✅ 健康饮食建议
+- ✅ 中文食物识别优化
+- ✅ 品牌：热量侦探
+- ✅ 测试通过（避风塘炒虾、油焖大虾）
+
+### v2.0.0 (2026-03-03) - 重大更新
+- ✅ Kimi 视觉识别支持
+- ✅ 本地食物营养数据库
+- ✅ 营养报告生成
+
+### v1.0.0 (2026-03-03) - 正式发布版
+- ✅ 基础功能实现
+
+## ⚠️ 免责声明
+
+- 本工具提供的营养数据仅供参考，不构成医疗或营养建议
+- 实际食物营养含量可能因烹饪方式、食材来源等因素有所不同
+- 如有特殊饮食需求或健康问题，请咨询专业营养师或医生
+- 开发者不对使用本工具造成的任何损失承担责任
+
+## 📄 License
+
+MIT
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📧 联系方式
+
+如有问题或建议，请提交 Issue 或联系开发者。
+
+---
+
+**🕵️ 热量侦探，再隐蔽的热量也逃不过我的眼睛！** 🍽️

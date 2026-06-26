@@ -1,35 +1,457 @@
 ---
-name: "suhe"
-description: "Edit suhe's reference image with Tongyi Wanxiang (通义万相) and send selfies to messaging channels via OpenClaw"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/suhe"
-sourceUrl: "https://clawhub.ai/skills/suhe"
+name: suhe-selfie
+description: Edit suhe's reference image with Tongyi Wanxiang (通义万相) and send selfies to messaging channels via OpenClaw
+allowed-tools: Bash(npm:*) Bash(npx:*) Bash(openclaw:*) Bash(curl:*) Read Write WebFetch
 ---
 
-# suhe
+# suhe Selfie
 
-> Edit suhe's reference image with Tongyi Wanxiang (通义万相) and send selfies to messaging channels via OpenClaw
+Edit a fixed reference image using Alibaba's Tongyi Wanxiang model and distribute it across messaging platforms (WhatsApp, Telegram, Discord, Slack, etc.) via OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/suhe`
-- **Source URL:** [https://clawhub.ai/skills/suhe](https://clawhub.ai/skills/suhe)
+## Reference Image
 
-## Overview
+The skill uses a fixed reference image hosted on jsDelivr CDN:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/suhe
 ```
+http://pic.lilozkzy.top/reference/suhe-portrait.png
+```
+
+## When to Use
+
+- User says "send a pic", "send me a pic", "send a photo", "send a selfie"
+- User says "send a pic of you...", "send a selfie of you..."
+- User asks "what are you doing?", "how are you doing?", "where are you?"
+- User describes a context: "send a pic wearing...", "send a pic at..."
+- User wants suhe to appear in a specific outfit, location, or situation
+
+## Quick Reference
+
+### Required Environment Variables
+
+```bash
+DASHSCOPE_API_KEY=your_dashscope_key  # Get from https://dashscope.console.aliyun.com/
+OPENCLAW_GATEWAY_TOKEN=your_token     # From: openclaw doctor --generate-gateway-token
+```
+
+### Workflow
+
+1. **Get user prompt** for how to edit the image
+2. **Edit image** via DashScope Tongyi Wanxiang API with fixed reference
+3. **Extract image URL** from response
+4. **Send to OpenClaw** with target channel(s)
+
+## Step-by-Step Instructions
+
+### Step 1: Collect User Input
+
+Ask the user for:
+- **User context**: What should the person in the image be doing/wearing/where?
+- **Mode** (optional): `mirror` or `direct` selfie style
+- **Target channel(s)**: Where should it be sent? (e.g., `#general`, `@username`, channel ID)
+- **Platform** (optional): Which platform? (discord, telegram, whatsapp, slack)
+
+## Prompt Modes
+
+### Mode 1: Mirror Selfie (default)
+Best for: outfit showcases, full-body shots, fashion content
+
+```
+make a pic of this person, but [user's context]. the person is taking a mirror selfie
+```
+
+Example (with Chinese cultural context): "wearing a traditional qipao" →
+```
+make a pic of this person, but wearing a traditional qipao. the person is taking a mirror selfie
+```
+
+**Example**: "wearing a santa hat" →
+```
+make a pic of this person, but wearing a santa hat. the person is taking a mirror selfie
+```
+
+### Mode 2: Direct Selfie
+Best for: close-up portraits, location shots, emotional expressions
+
+```
+a close-up selfie taken by herself at [user's context], direct eye contact with the camera, looking straight into the lens, eyes centered and clearly visible, not a mirror selfie, phone held at arm's length, face fully visible
+```
+
+**Example**: "a cozy cafe with warm lighting" →
+```
+a close-up selfie taken by herself at a cozy cafe with warm lighting, direct eye contact with the camera, looking straight into the lens, eyes centered and clearly visible, not a mirror selfie, phone held at arm's length, face fully visible
+```
+
+### Mode Selection Logic
+
+| Keywords in Request | Auto-Select Mode |
+|---------------------|------------------|
+| outfit, wearing, clothes, dress, suit, fashion | `mirror` |
+| cafe, restaurant, beach, park, city, location | `direct` |
+| close-up, portrait, face, eyes, smile | `direct` |
+| full-body, mirror, reflection | `mirror` |
+
+### Step 2: Edit Image with Tongyi Wanxiang
+
+Use the DashScope API to edit the reference image:
+
+```bash
+REFERENCE_IMAGE="https://pic.lilozkzy.top/reference/suhe-portrait.png"
+
+# Mode 1: Mirror Selfie
+PROMPT="make a pic of this person, but <USER_CONTEXT>. the person is taking a mirror selfie"
+
+# Mode 2: Direct Selfie
+PROMPT="a close-up selfie taken by herself at <USER_CONTEXT>, direct eye contact with the camera, looking straight into the lens, eyes centered and clearly visible, not a mirror selfie, phone held at arm's length, face fully visible"
+
+# Build JSON payload for Tongyi Wanxiang Edit
+JSON_PAYLOAD=$(jq -n \
+  --arg prompt "$PROMPT" \
+  --arg ref_url "$REFERENCE_IMAGE" \
+  '{
+    model: "wanx-v1-edit",
+    input: {
+      prompt: $prompt,
+      reference_image_url: $ref_url
+    },
+    parameters: {
+      n: 1,
+      size: "1024*1024"
+    }
+  }')
+
+curl -X POST "https://dashscope.aliyuncs.com/api/v1/services/aigc/image-generation/generation" \
+  -H "Authorization: Bearer $DASHSCOPE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "$JSON_PAYLOAD"
+```
+
+**Response Format:**
+```json
+{
+  "output": {
+    "results": [
+      {
+        "url": "https://dashscope-result.oss-cn-shanghai.aliyuncs.com/..."
+      }
+    ]
+  },
+  "usage": {
+    "image_count": 1
+  },
+  "request_id": "..."
+}
+```
+
+### Step 3: Send Image via OpenClaw
+
+Use the OpenClaw messaging API to send the edited image:
+
+```bash
+openclaw message send \
+  --action send \
+  --channel "<TARGET_CHANNEL>" \
+  --message "<CAPTION_TEXT>" \
+  --media "<IMAGE_URL>"
+```
+
+**Alternative: Direct API call**
+```bash
+curl -X POST "http://localhost:18789/message" \
+  -H "Authorization: Bearer $OPENCLAW_GATEWAY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "send",
+    "channel": "<TARGET_CHANNEL>",
+    "message": "<CAPTION_TEXT>",
+    "media": "<IMAGE_URL>"
+  }'
+```
+
+## Complete Script Example
+
+```bash
+#!/bin/bash
+# tongyi-wanxiang-edit-send.sh
+
+# Check required environment variables
+if [ -z "$DASHSCOPE_API_KEY" ]; then
+  echo "Error: DASHSCOPE_API_KEY environment variable not set"
+  exit 1
+fi
+
+# Fixed reference image
+REFERENCE_IMAGE="https://pic.lilozkzy.top/reference/suhe-portrait.png"
+
+USER_CONTEXT="$1"
+CHANNEL="$2"
+MODE="${3:-auto}"  # mirror, direct, or auto
+CAPTION="${4:-Edited with Grok Imagine}"
+
+if [ -z "$USER_CONTEXT" ] || [ -z "$CHANNEL" ]; then
+  echo "Usage: $0 <user_context> <channel> [mode] [caption]"
+  echo "Modes: mirror, direct, auto (default)"
+  echo "Example: $0 'wearing a cowboy hat' '#general' mirror"
+  echo "Example: $0 'a cozy cafe' '#general' direct"
+  exit 1
+fi
+
+# Auto-detect mode based on keywords
+if [ "$MODE" == "auto" ]; then
+  if echo "$USER_CONTEXT" | grep -qiE "outfit|wearing|clothes|dress|suit|fashion|full-body|mirror"; then
+    MODE="mirror"
+  elif echo "$USER_CONTEXT" | grep -qiE "cafe|restaurant|beach|park|city|close-up|portrait|face|eyes|smile"; then
+    MODE="direct"
+  else
+    MODE="mirror"  # default
+  fi
+  echo "Auto-detected mode: $MODE"
+fi
+
+# Construct the prompt based on mode
+if [ "$MODE" == "direct" ]; then
+  EDIT_PROMPT="a close-up selfie taken by herself at $USER_CONTEXT, direct eye contact with the camera, looking straight into the lens, eyes centered and clearly visible, not a mirror selfie, phone held at arm's length, face fully visible"
+else
+  EDIT_PROMPT="make a pic of this person, but $USER_CONTEXT. the person is taking a mirror selfie"
+fi
+
+echo "Mode: $MODE"
+echo "Editing reference image with prompt: $EDIT_PROMPT"
+
+# Edit image using Tongyi Wanxiang Edit API
+JSON_PAYLOAD=$(jq -n \
+  --arg prompt "$EDIT_PROMPT" \
+  --arg ref_url "$REFERENCE_IMAGE" \
+  '{
+    model: "wanx-v1-edit",
+    input: {
+      prompt: $prompt,
+      reference_image_url: $ref_url
+    },
+    parameters: {
+      n: 1,
+      size: "1024*1024"
+    }
+  }')
+
+RESPONSE=$(curl -s -X POST "https://dashscope.aliyuncs.com/api/v1/services/aigc/image-generation/generation" \
+  -H "Authorization: Bearer $DASHSCOPE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "$JSON_PAYLOAD")
+
+# Extract image URL
+IMAGE_URL=$(echo "$RESPONSE" | jq -r '.output.results[0].url')
+
+if [ "$IMAGE_URL" == "null" ] || [ -z "$IMAGE_URL" ]; then
+  echo "Error: Failed to edit image"
+  echo "Response: $RESPONSE"
+  exit 1
+fi
+
+echo "Image edited: $IMAGE_URL"
+echo "Sending to channel: $CHANNEL"
+
+# Send via OpenClaw
+openclaw message send \
+  --action send \
+  --channel "$CHANNEL" \
+  --message "$CAPTION" \
+  --media "$IMAGE_URL"
+
+echo "Done!"
+```
+
+## Node.js/TypeScript Implementation
+
+```typescript
+import { fal } from "@fal-ai/client";
+import { exec } from "child_process";
+import { promisify } from "util";
+
+const execAsync = promisify(exec);
+
+const REFERENCE_IMAGE = "https://pic.lilozkzy.top/reference/suhe-portrait.png";
+
+interface GrokImagineResult {
+  images: Array<{
+    url: string;
+    content_type: string;
+    width: number;
+    height: number;
+  }>;
+  revised_prompt?: string;
+}
+
+type SelfieMode = "mirror" | "direct" | "auto";
+
+function detectMode(userContext: string): "mirror" | "direct" {
+  const mirrorKeywords = /outfit|wearing|clothes|dress|suit|fashion|full-body|mirror/i;
+  const directKeywords = /cafe|restaurant|beach|park|city|close-up|portrait|face|eyes|smile/i;
+
+  if (directKeywords.test(userContext)) return "direct";
+  if (mirrorKeywords.test(userContext)) return "mirror";
+  return "mirror"; // default
+}
+
+function buildPrompt(userContext: string, mode: "mirror" | "direct"): string {
+  if (mode === "direct") {
+    return `a close-up selfie taken by herself at ${userContext}, direct eye contact with the camera, looking straight into the lens, eyes centered and clearly visible, not a mirror selfie, phone held at arm's length, face fully visible`;
+  }
+  return `make a pic of this person, but ${userContext}. the person is taking a mirror selfie`;
+}
+
+async function editAndSend(
+  userContext: string,
+  channel: string,
+  mode: SelfieMode = "auto",
+  caption?: string
+): Promise<string> {
+  // Configure fal.ai client
+  fal.config({
+    credentials: process.env.FAL_KEY!
+  });
+
+  // Determine mode
+  const actualMode = mode === "auto" ? detectMode(userContext) : mode;
+  console.log(`Mode: ${actualMode}`);
+
+  // Construct the prompt
+  const editPrompt = buildPrompt(userContext, actualMode);
+
+  // Edit reference image with Grok Imagine
+  console.log(`Editing image: "${editPrompt}"`);
+
+  const result = await fal.subscribe("xai/grok-imagine-image/edit", {
+    input: {
+      image_url: REFERENCE_IMAGE,
+      prompt: editPrompt,
+      num_images: 1,
+      output_format: "jpeg"
+    }
+  }) as { data: GrokImagineResult };
+
+  const imageUrl = result.data.images[0].url;
+  console.log(`Edited image URL: ${imageUrl}`);
+
+  // Send via OpenClaw
+  const messageCaption = caption || `Edited with Grok Imagine`;
+
+  await execAsync(
+    `openclaw message send --action send --channel "${channel}" --message "${messageCaption}" --media "${imageUrl}"`
+  );
+
+  console.log(`Sent to ${channel}`);
+  return imageUrl;
+}
+
+// Usage Examples
+
+// Mirror mode (auto-detected from "wearing")
+editAndSend(
+  "wearing a cyberpunk outfit with neon lights",
+  "#art-gallery",
+  "auto",
+  "Check out this AI-edited art!"
+);
+// → Mode: mirror
+// → Prompt: "make a pic of this person, but wearing a cyberpunk outfit with neon lights. the person is taking a mirror selfie"
+
+// Direct mode (auto-detected from "cafe")
+editAndSend(
+  "a cozy cafe with warm lighting",
+  "#photography",
+  "auto"
+);
+// → Mode: direct
+// → Prompt: "a close-up selfie taken by herself at a cozy cafe with warm lighting, direct eye contact..."
+
+// Explicit mode override
+editAndSend("casual street style", "#fashion", "direct");
+```
+
+## Supported Platforms
+
+OpenClaw supports sending to:
+
+| Platform | Channel Format | Example |
+|----------|----------------|---------|
+| Discord | `#channel-name` or channel ID | `#general`, `123456789` |
+| Telegram | `@username` or chat ID | `@mychannel`, `-100123456` |
+| WhatsApp | Phone number (JID format) | `1234567890@s.whatsapp.net` |
+| Slack | `#channel-name` | `#random` |
+| Signal | Phone number | `+1234567890` |
+| MS Teams | Channel reference | (varies) |
+
+## Tongyi Wanxiang Edit Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `model` | string | "wanx-v1-edit" | Model to use: "wanx-v1" (generate) or "wanx-v1-edit" (edit) |
+| `input.prompt` | string | required | Edit instruction |
+| `input.reference_image_url` | string | optional | URL of reference image for editing |
+| `parameters.n` | 1-4 | 1 | Number of images to generate |
+| `parameters.size` | string | "1024*1024" | Image size format: "width*height" |
+
+## Setup Requirements
+
+### 1. Get DashScope API Key
+Visit [https://dashscope.console.aliyun.com/](https://dashscope.console.aliyun.com/) to create your API key.
+
+### 2. Configure Environment Variables
+```bash
+export DASHSCOPE_API_KEY=your_api_key_here
+```
+
+### 2. Install OpenClaw CLI
+```bash
+npm install -g openclaw
+```
+
+### 3. Configure OpenClaw Gateway
+```bash
+openclaw config set gateway.mode=local
+openclaw doctor --generate-gateway-token
+```
+
+### 4. Start OpenClaw Gateway
+```bash
+openclaw gateway start
+```
+
+## Error Handling
+
+- **DASHSCOPE_API_KEY missing**: Ensure the API key is set in environment
+- **Image edit failed**: Check prompt content and API quota at [DashScope Console](https://dashscope.console.aliyun.com/)
+- **OpenClaw send failed**: Verify gateway is running and channel exists
+- **Rate limits**: DashScope has rate limits; implement retry logic if needed
+
+## Pricing Information
+
+Tongyi Wanxiang offers:
+- Free tier for new users
+- Pay-as-you-go pricing for generation beyond free quota
+- Check [https://dashscope.console.aliyun.com/](https://dashscope.console.aliyun.com/) for current pricing
+
+## Tips
+
+1. **Mirror mode context examples** (outfit focus):
+   - "wearing a traditional qipao with golden embroidery"
+   - "in a hanfu with flowing sleeves"
+   - "wearing a modern cheongsam"
+   - "in traditional Chinese dress"
+
+2. **Direct mode context examples** (location/portrait focus):
+   - "a traditional tea house in Hangzhou"
+   - "West Lake in spring with cherry blossoms"
+   - "a quiet bamboo garden"
+   - "an ancient Chinese temple"
+
+3. **Mode selection**: Let auto-detect work, or explicitly specify for control
+4. **Batch sending**: Edit once, send to multiple channels
+5. **Scheduling**: Combine with OpenClaw scheduler for automated posts
+
+## Chinese Cultural Context
+
+For best results with Tongyi Wanxiang, consider using prompts with:
+- Traditional clothing keywords: qipao (旗袍), hanfu (汉服), cheongsam
+- Cultural settings: tea house (茶馆), garden (园林), temple (寺庙), West Lake (西湖)
+- Traditional elements: lantern (灯笼), fan (扇子), brush pen (毛笔), guqin (古琴)

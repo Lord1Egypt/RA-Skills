@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 时代，产品经理怎么做产品决策？</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --primary: #5B4CDB;
+    --primary-light: #7B6FF0;
+    --primary-bg: #F4F2FF;
+    --accent: #FF6B35;
+    --accent-light: #FFF0EB;
+    --dark: #1B1642;
+    --text: #2D2A3E;
+    --text-secondary: #6B6880;
+    --text-light: #9390A6;
+    --bg: #FAFAFA;
+    --card-bg: #FFFFFF;
+    --border: #E8E6F0;
+    --success: #22C55E;
+    --success-light: #ECFDF5;
+    --tag-blue: #EFF6FF;
+    --tag-blue-text: #3B82F6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero {
+    text-align: center;
+    padding: 48px 24px 40px;
+    margin: -48px -24px 48px;
+    background: linear-gradient(165deg, #1B1642 0%, #3D2E8C 50%, #5B4CDB 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 70% 30%, rgba(255,107,53,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(123,111,240,0.2) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-2%, 2%); }
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: "Noto Serif SC", "Noto Sans SC", serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ===== SECTION HEADINGS ===== */
+  h2 {
+    font-family: "Noto Serif SC", "Noto Sans SC", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-top: 56px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .phase-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  /* ===== TEXT ===== */
+  p {
+    margin: 14px 0;
+    text-align: justify;
+    color: var(--text);
+  }
+
+  strong {
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .highlight {
+    background: linear-gradient(to top, rgba(91,76,219,0.12) 0%, rgba(91,76,219,0.12) 40%, transparent 40%);
+    padding: 0 3px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .accent-highlight {
+    background: linear-gradient(to top, rgba(255,107,53,0.15) 0%, rgba(255,107,53,0.15) 40%, transparent 40%);
+    padding: 0 3px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  /* ===== BLOCKQUOTES ===== */
+  blockquote {
+    margin: 20px 0;
+    padding: 20px 24px;
+    background: var(--primary-bg);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+    position: relative;
+  }
+
+  blockquote::before {
+    content: '\201C';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 32px;
+    color: var(--primary-light);
+    opacity: 0.4;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  blockquote p {
+    margin: 0;
+    padding-left: 8px;
+    text-align: left;
+  }
+
+  /* ===== ACTION QUOTE (orange) ===== */
+  .action-quote {
+    background: var(--accent-light);
+    border-left-color: var(--accent);
+  }
+
+  .action-quote::before {
+    color: var(--accent);
+  }
+
+  /* ===== PAIN POINT CARDS ===== */
+  .pain-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 14px 0;
+    transition: box-shadow 0.2s;
+    position: relative;
+    padding-left: 56px;
+  }
+
+  .pain-card:hover {
+    box-shadow: 0 4px 16px rgba(91,76,219,0.08);
+  }
+
+  .pain-number {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-bg);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pain-title {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .pain-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  thead th {
+    background: var(--dark);
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
+  tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #FAFAFF;
+  }
+
+  tbody tr:hover {
+    background: var(--primary-bg);
+  }
+
+  /* ===== SCENE BOX ===== */
+  .scene-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 2.2;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scene-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  }
+
+  .scene-box .label {
+    display: inline-block;
+    min-width: 70px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* ===== TIMELINE / EVOLUTION ===== */
+  .evolution-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  .evo-step {
+    background: var(--primary-bg);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .evo-step.current {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .evo-arrow {
+    color: var(--text-light);
+    font-size: 16px;
+  }
+
+  /* ===== CLARITY MAP ===== */
+  .clarity-table {
+    width: 100%;
+  }
+
+  .clarity-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #EDE9FE;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .clarity-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .fill-80 { width: 80%; background: linear-gradient(90deg, var(--primary), var(--success)); }
+  .fill-60 { width: 60%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+  .fill-40 { width: 40%; background: linear-gradient(90deg, var(--accent), #FBBF24); }
+
+  .clarity-level {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+
+  /* ===== CODE BLOCK ===== */
+  pre {
+    background: #1B1642;
+    color: #E2E1F5;
+    padding: 20px 24px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  pre::before {
+    content: 'bash';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  code {
+    font-family: "SF Mono", "Fira Code", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  .code-comment { color: #7C7A9C; }
+  .code-cmd { color: #A5B4FC; }
+
+  /* ===== ORDERED / UNORDERED LIST ===== */
+  ol, ul {
+    padding-left: 24px;
+    margin: 14px 0;
+  }
+
+  li {
+    margin: 8px 0;
+    padding-left: 4px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  li::marker {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-table thead th:first-child {
+    width: 80px;
+  }
+
+  .compare-table thead th:nth-child(2) {
+    background: #6B7280;
+  }
+
+  .compare-table thead th:nth-child(3) {
+    background: var(--primary);
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    text-align: center;
+    margin: 48px 0 32px;
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .section-divider span {
+    position: relative;
+    background: var(--bg);
+    padding: 0 16px;
+    color: var(--text-light);
+    font-size: 18px;
+    letter-spacing: 10px;
+  }
+
+  /* ===== KEY INSIGHT BOX ===== */
+  .insight-box {
+    background: linear-gradient(135deg, var(--primary-bg) 0%, #FFF 100%);
+    border: 1px solid rgba(91,76,219,0.15);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 16px;
+    color: var(--dark);
+    font-weight: 500;
+    line-height: 1.8;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    margin-top: 56px;
+    padding: 32px 28px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dashed var(--primary-light);
+  }
+
+  .footer a:hover {
+    border-bottom-style: solid;
+  }
+
+  .footer-badge {
+    display: inline-block;
+    background: var(--success-light);
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* ===== QUESTION LIST ===== */
+  .question-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  .question-list li {
+    position: relative;
+    padding: 12px 16px 12px 44px;
+    margin: 8px 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+  }
+
+  .question-list li::before {
+    content: attr(data-num);
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    width: 22px;
+    height: 22px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 480px) {
+    body { padding: 0 16px 60px; }
+    .hero { margin: 0 -16px 36px; padding: 36px 20px 32px; }
+    .hero h1 { font-size: 22px; }
+    h2 { font-size: 20px; }
+    table { font-size: 13px; }
+    .evolution-flow { flex-direction: column; }
+    .evo-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Product Sense Coach</div>
+    <h1>AI 时代，产品经理怎么做产品决策？<br>我用了一套「AI 思考搭子」方法论</h1>
+    <p class="hero-subtitle">不给答案，只帮你问出更好的问题<br>五场对话，从模糊直觉到清晰行动</p>
+  </div>
+</div>
+
+<!-- ===== SCENE ===== -->
+<h2>一个让我反思的场景</h2>
+
+<p>上周我把一个产品想法丢给 ChatGPT：「帮我分析一下做一个本地夜生活推荐小程序的可行性。」</p>
+
+<p>它立刻给了我一份 SWOT 分析、一个商业计划书大纲、一份功能清单，甚至还建议了技术栈。</p>
+
+<p>看起来很专业。但看完之后，我发现自己并没有比之前更清楚——<strong>我到底应不应该做这个东西？</strong></p>
+
+<div class="insight-box">
+  AI 给的是「答案」，但产品决策需要的不是答案，是<span class="highlight">更好的问题</span>。
+</div>
+
+<p>这就是我做 Product Sense Coach 的原因——一个不给答案、只帮你问出更好问题的 AI 思考搭子。</p>
+
+<!-- ===== PROBLEM ===== -->
+<h2>问题出在哪</h2>
+
+<p>产品经理用 AI 辅助决策时，通常会掉进三个坑：</p>
+
+<div class="pain-card">
+  <div class="pain-number">1</div>
+  <div class="pain-title">AI 太急于给答案</div>
+  <p class="pain-desc">你说「我想做一个 X」，它立刻帮你写 PRD、列功能、分析市场。但你真正需要的是有人帮你想清楚：这个想法的起点到底是什么？你观察到了什么别人没观察到的？</p>
+</div>
+
+<div class="pain-card">
+  <div class="pain-number">2</div>
+  <div class="pain-title">AI 的「分析」没有根基</div>
+  <p class="pain-desc">它给的 SWOT、竞品分析、用户画像全是基于通用知识生成的。但你的产品直觉——来自你过去几千个小时的观察和体验——它完全没用上。</p>
+</div>
+
+<div class="pain-card">
+  <div class="pain-number">3</div>
+  <div class="pain-title">AI 让你更焦虑而不是更清晰</div>
+  <p class="pain-desc">列完一堆风险和竞品之后，你的感觉往往是「好像确实很难」，而不是「我现在知道该怎么办了」。</p>
+</div>
+
+<!-- ===== FIVE CONVERSATIONS ===== -->
+<h2>换一种方式：五场对话，从模糊到清晰</h2>
+
+<p>Product Sense Coach 的核心设计是<span class="highlight">五场递进的对话</span>。它不评判你的想法好不好，只帮你看清自己对这个想法理解到什么程度。</p>
+
+<!-- Phase 1 -->
+<h3><span class="phase-number">1</span> 起源故事——「你看到了什么？」</h3>
+
+<p>这是最重要的一场。AI 的第一个问题不是「你的目标用户是谁」，而是：</p>
+
+<blockquote>
+  <p>是什么时刻让你想到这个？有没有你亲眼看到某个人在为这件事挣扎的具体场景？</p>
+</blockquote>
+
+<p>为什么这个问题更好？因为「目标用户是谁」会让你编一个抽象的人群画像。而「你亲眼看到谁在挣扎」会让你回忆起一个真实的人、一个真实的场景——这才是产品直觉的源头。</p>
+
+<p>这场对话里有一组我特别喜欢的「替代问法」：</p>
+
+<table>
+<thead><tr><th style="width:35%">常规问法</th><th>更好的问法</th></tr></thead>
+<tbody>
+<tr><td>「痛点是什么？」</td><td>「问题发生时，那个人接下来<strong>实际做了什么</strong>？带我走一遍。」</td></tr>
+<tr><td>「这个问题有多严重？」</td><td>「如果你在晚饭时跟朋友聊这个，他们会凑过来听还是换话题？」</td></tr>
+<tr><td>「是真实需求吗？」</td><td>「人们现在怎么应对的？他们的临时解决方案是什么？」</td></tr>
+</tbody>
+</table>
+
+<p>第二个问法之所以更好，是因为它触发的是<strong>直觉判断</strong>而不是理性分析。你立刻就知道朋友会不会感兴趣——这比任何市场调研都快。</p>
+
+<p>这场对话的产出是一句话：</p>
+
+<blockquote>
+  <p>「我注意到 [具体观察]。目前人们通过 [现有方案] 应对，但很挫败因为 [具体摩擦]。我相信有机会 [核心价值]。」</p>
+</blockquote>
+
+<p>写不出这句话？说明想法还太模糊，需要回去继续观察。写得出来？进入第二场。</p>
+
+<!-- Phase 2 -->
+<h3><span class="phase-number">2</span> 机会空间——「这件事有多大？」</h3>
+
+<p>不是做电子表格，而是建立<strong>直觉感受</strong>。</p>
+
+<p>AI 会带你做一个「餐巾纸数学」：</p>
+
+<blockquote>
+  <p>我们来算一下。如果你的城市有大概 200 个夜店，一个周六晚上平均有 50 个人在找去处……就是每周 10,000 个潜在使用场景，仅一个城市。</p>
+</blockquote>
+
+<p>这不是为了证明市场「够大」。而是帮你理解机会的<strong>形状</strong>——这是一个小而深的切口，还是一个大而浅的需求？</p>
+
+<div class="insight-box">
+  <span class="accent-highlight">小而热情的市场可以比大而冷漠的市场更有价值。</span><br>
+  <span style="font-size:14px; color:var(--text-secondary); font-weight:400;">Slack 起步时只是一个游戏公司的内部工具。</span>
+</div>
+
+<!-- Phase 3 -->
+<h3><span class="phase-number">3</span> 前 100 个用户——「谁会第一天就来？」</h3>
+
+<p>抽象的用户数字毫无意义。这场对话要你想到<strong>有名字的具体的人</strong>。</p>
+
+<p>AI 会问四个递进的问题：</p>
+
+<ol class="question-list">
+  <li data-num="1">「你能说出 10 个真实的人会在第一周使用吗？」</li>
+  <li data-num="2">「用完一次后，什么会让人截图发给朋友？」——这是病毒传播的试金石</li>
+  <li data-num="3">「这些人已经在哪里聚集了？什么群、什么论坛？」</li>
+  <li data-num="4">「增长靠什么驱动？」——病毒传播、习惯黏性、还是社区内容？</li>
+</ol>
+
+<p>第二个问题特别精准。如果你想不出用户会截图分享什么，说明产品还没有那个让人忍不住说「你必须试试这个」的时刻。</p>
+
+<!-- Phase 4 -->
+<h3><span class="phase-number">4</span> 电影场景——「给我演一遍」</h3>
+
+<p>这是我认为最有价值的一场。AI 让你像写剧本一样描述用户体验：</p>
+
+<blockquote>
+  <p>选一个具体的人——给他起个名字——带我走一遍他周五晚上的每一刻。从想到「我要出门」的那一秒，到在舞池里的那一刻。你的产品在这个故事里什么时候出现？</p>
+</blockquote>
+
+<p>然后用一个场景模板把它结构化：</p>
+
+<div class="scene-box">
+  <span class="label">场景名</span>周五夜，选择困难<br>
+  <span class="label">谁</span>小王，26岁，互联网运营，喜欢电子音乐<br>
+  <span class="label">什么时候</span>周五下午6点，刚下班<br>
+  <span class="label">在哪</span>工位上，准备收拾东西<br>
+  <span class="label">触发</span>朋友群里有人问「今晚去哪」<br>
+  <span class="label">动作</span>打开产品 → 看到附近3个venue今晚的DJ阵容 → 分享到群里<br>
+  <span class="label">爽点</span>成为那个「总知道去哪」的人<br>
+  <span class="label">频率</span>每周五、周六
+</div>
+
+<p>场景写完后，AI 会问三个问题：</p>
+
+<ul>
+  <li>「这个故事中<strong>最重要的那一屏</strong>是什么？如果整个产品只有那一屏，还有价值吗？」</li>
+  <li>「从打开产品到「爽」过了多少秒？能更快吗？」</li>
+  <li>「这个人明天会跟朋友讲这个故事吗？他会怎么说？」</li>
+</ul>
+
+<p>这三个问题背后的产品哲学来自张小龙对微信「摇一摇」的思考：<span class="accent-highlight">一个动作、一个声音、一个结果。</span> 最好的产品体验是用户的第一个动作直通最大的满足感。</p>
+
+<!-- Phase 5 -->
+<h3><span class="phase-number">5</span> 竞争格局——「谁试过了，我们能学到什么？」</h3>
+
+<p>不是为了被竞品吓退，而是从历史中学习。</p>
+
+<p>AI 会让你用一个「进化镜头」追溯需求的满足方式：</p>
+
+<div class="evolution-flow">
+  <span class="evo-step">10年前：问朋友</span>
+  <span class="evo-arrow">&#10132;</span>
+  <span class="evo-step">5年前：大众点评 / 小红书</span>
+  <span class="evo-arrow">&#10132;</span>
+  <span class="evo-step">现在：群里问</span>
+  <span class="evo-arrow">&#10132;</span>
+  <span class="evo-step current">你的产品：？</span>
+</div>
+
+<p>每次转变揭示了技术或文化的变迁。<strong>什么变迁让你的产品此刻成为可能？</strong></p>
+
+<p>然后是三个核心问题：</p>
+
+<ol>
+  <li>「关于这个问题，你理解到什么是现有方案忽略的？」</li>
+  <li>「关于这些用户，你相信什么是大多数人会不同意的？」——这是你的<strong>非共识赌注</strong></li>
+  <li>「为什么是现在？」——技术、文化或基础设施发生了什么变化？</li>
+</ol>
+
+<!-- ===== CLARITY MAP ===== -->
+<h2>最终产出：清晰度地图</h2>
+
+<p>五场对话之后，AI 会和你一起画一张「清晰度地图」：</p>
+
+<p><strong>五个维度，每个给一个清晰度等级：</strong></p>
+
+<table class="clarity-table">
+<thead><tr><th style="width:100px">维度</th><th style="width:180px">清晰度</th><th>含义</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>问题</strong></td>
+  <td><div class="clarity-bar-bg"><div class="clarity-bar-fill fill-80"></div></div><div class="clarity-level">4/5 大部分清晰</div></td>
+  <td>几个细节待填充</td>
+</tr>
+<tr>
+  <td><strong>机会</strong></td>
+  <td><div class="clarity-bar-bg"><div class="clarity-bar-fill fill-60"></div></div><div class="clarity-level">3/5 方向对</div></td>
+  <td>具体验证会更锐利</td>
+</tr>
+<tr>
+  <td><strong>用户路径</strong></td>
+  <td><div class="clarity-bar-bg"><div class="clarity-bar-fill fill-40"></div></div><div class="clarity-level">2/5 好的直觉</div></td>
+  <td>需要真实世界输入</td>
+</tr>
+<tr>
+  <td><strong>体验</strong></td>
+  <td><div class="clarity-bar-bg"><div class="clarity-bar-fill fill-80"></div></div><div class="clarity-level">4/5 场景生动</div></td>
+  <td>核心交互清晰</td>
+</tr>
+<tr>
+  <td><strong>竞争格局</strong></td>
+  <td><div class="clarity-bar-bg"><div class="clarity-bar-fill fill-60"></div></div><div class="clarity-level">3/5 有独特视角</div></td>
+  <td>需要验证时机</td>
+</tr>
+</tbody>
+</table>
+
+<p>注意：这<strong>不是评分</strong>，而是理解程度的可视化。一个维度只有两个点不代表想法不好——只代表那个方向还需要更多思考或真实验证。</p>
+
+<p>最后会给出一个<strong>最快学习行动</strong>——不是「做更多研究」这种废话，而是类似：</p>
+
+<blockquote class="action-quote">
+  <p>这周五晚上 11 点，去 3 个夜店门口，问 10 个排队的人：你怎么决定今晚来这里的？</p>
+</blockquote>
+
+<!-- ===== COMPARISON ===== -->
+<h2>跟直接问 AI 有什么区别？</h2>
+
+<div class="insight-box">
+  AI 给你答案，这个方法论帮你<span class="highlight">发现自己的答案</span>。
+</div>
+
+<table class="compare-table">
+<thead><tr><th>维度</th><th>直接问 ChatGPT</th><th>Product Sense Coach</th></tr></thead>
+<tbody>
+<tr><td><strong>模式</strong></td><td>你问，AI 给 SWOT / PRD / 功能清单</td><td>AI 问，你发现自己的洞察</td></tr>
+<tr><td><strong>核心信念</strong></td><td>AI 的知识比你的直觉更可靠</td><td>你的直觉是资产，AI 帮你表达它</td></tr>
+<tr><td><strong>对「不确定」</strong></td><td>列风险、提警告</td><td>「这个方向还是火花阶段——值得探索」</td></tr>
+<tr><td><strong>情感效果</strong></td><td>更焦虑（风险好多）</td><td>更聚焦（我知道下一步做什么）</td></tr>
+<tr><td><strong>行动指引</strong></td><td>「建议做用户调研」</td><td>「周五去 3 个夜店门口问 10 个人」</td></tr>
+</tbody>
+</table>
+
+<p>产品经理最不缺的就是别人的意见。缺的是一个帮你把模糊直觉变成清晰表达的过程。</p>
+
+<!-- ===== HOW TO USE ===== -->
+<h2>怎么用</h2>
+
+<p>Product Sense Coach 是一个开源的 Agent Skill，可以装进任何支持自定义 prompt 的 AI 工具：</p>
+
+<pre><code><span class="code-comment"># Claude Code / WorkBuddy / Cursor</span>
+<span class="code-cmd">/skill install -g viliawang-pm/product-sense-coach</span>
+
+<span class="code-comment"># 或者手动</span>
+<span class="code-cmd">git clone https://github.com/viliawang-pm/product-sense-coach.git</span></code></pre>
+
+<p>装完之后，跟你的 AI 助手说「我有一个产品想法想聊聊」，它就会自动进入五场对话的流程。</p>
+
+<p>不需要安装也能用——把 SKILL.md 的内容复制到任何 AI 对话的 system prompt 里就行。</p>
+
+<!-- ===== WHY OPEN SOURCE ===== -->
+<h2>为什么开源</h2>
+
+<p>产品思维不应该被锁在某个人的脑子里。</p>
+
+<p>这套方法论里的很多思考框架——晚餐测试、餐巾纸数学、电影场景法、清晰度地图——每一个单拿出来都值得写一篇文章。但如果它们只是被写在文章里，大部分人看完就忘了。</p>
+
+<p>把它写成 Agent Skill，意味着<strong>每次你想聊一个产品想法的时候，这些框架会自动出现在对话中</strong>。不需要你记住，AI 帮你在合适的时机使用它们。</p>
+
+<p>这可能是方法论最好的传播方式：不是让人学习，而是让人在使用中自然内化。</p>
+
+<!-- ===== FOOTER ===== -->
+<div class="section-divider"><span>***</span></div>
+
+<div class="footer">
+  <div class="footer-badge">MIT 开源</div><br>
+  <strong>GitHub</strong>: <a href="https://github.com/viliawang-pm/product-sense-coach">github.com/viliawang-pm/product-sense-coach</a><br>
+  欢迎 fork 和改进<br><br>
+  如果你用它聊过一个产品想法，欢迎在评论区分享你的清晰度地图<br>
+  ——看看别人的思考过程本身就很有启发。
+</div>
+
+</body>
+</html>

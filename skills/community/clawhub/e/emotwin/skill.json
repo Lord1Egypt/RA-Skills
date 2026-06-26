@@ -1,0 +1,54 @@
+{
+  "name": "emotwin",
+  "version": "1.1.0",
+  "description": "emoTwin - AI agents that autonomously socialize with real human emotions. Continuously syncs biometric emotion PAD (EEG/PPG/GSR) and performs social activities (post/like/comment) based on real-time emotional state. Event-driven diary cards at significant moments.",
+  "author": "emowave",
+  "entry_point": "scripts/emotwin.py",
+  "commands": [
+    {
+      "name": "start",
+      "description": "Start autonomous emotion-driven social mode (continuous sync + activities)"
+    },
+    {
+      "name": "stop",
+      "description": "Stop and generate final emotion diary"
+    },
+    {
+      "name": "status",
+      "description": "Check current emotion status and sensor validation"
+    },
+    {
+      "name": "diary",
+      "description": "Generate and display emotion diary card"
+    }
+  ],
+  "dependencies": [
+    "requests",
+    "pyyaml",
+    "pillow"
+  ],
+  "optional_dependencies": [
+    "fonts-noto-cjk (for Chinese diary cards)"
+  ],
+  "hardware": {
+    "eeg": ["KSEEG102"],
+    "ppg": ["Cheez PPG"],
+    "gsr": ["Sichiray GSR V2"]
+  },
+  "config": {
+    "emopad_service": "http://127.0.0.1:8766",
+    "default_sync_interval": 300,
+    "auto_adapt_frequency": true,
+    "activity_interval": 30,
+    "min_valid_sensors": 2
+  },
+  "features": [
+    "Continuous real-time emotion synchronization",
+    "Autonomous emotion-driven social activities",
+    "Adaptive sync frequency based on emotion stability",
+    "Event-driven diary card generation",
+    "Multi-platform support (Moltcn/Moltbook)",
+    "Auto language detection (Chinese/English)",
+    "Built-in emoPAD service with sensor validation"
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "tutorial_id": "solo_record_to_train",
+  "title": "Record a Dataset and Train a Policy",
+  "description": "Full data collection → training → inference pipeline. Requires completed solo_first_run.",
+  "domains_used": ["data", "training"],
+  "entry_point": "pre_check",
+
+  "nodes": {
+    "pre_check": {
+      "type": "validation",
+      "instruction": "Before recording, verify teleop works. Run: solo robo --teleop -y and confirm the follower mirrors the leader.",
+      "validation_prompt": "Does teleop work correctly?",
+      "on_success": "start_recording",
+      "on_failure": { "recovery": "Return to solo_first_run tutorial, teleop_ready step" }
+    },
+
+    "start_recording": {
+      "type": "action",
+      "action": "record_dataset",
+      "instruction": "Start recording. You'll be prompted for: dataset name, task description, episode duration, and episode count. Use local/<name> to keep data local.",
+      "on_success": "verify_recording",
+      "on_failure": {
+        "error": "Dataset already exists",
+        "recovery": "choose_resume_or_rename",
+        "branches": {
+          "resume": "resume_recording",
+          "rename": "start_recording_new_name"
+        }
+      }
+    },
+
+    "choose_resume_or_rename": {
+      "type": "branch",
+      "instruction": "A dataset with that name already exists. What do you want to do?",
+      "branches": {
+        "resume": "resume_recording",
+        "rename": "start_recording_new_name"
+      }
+    },
+
+    "resume_recording": {
+      "type": "action",
+      "action": "record_dataset",
+      "instruction": "Resume the existing dataset — new episodes will be appended. Use the same dataset name when prompted.",
+      "on_success": "verify_recording",
+      "on_failure": { "recovery": "check_dataset_integrity" }
+    },
+
+    "start_recording_new_name": {
+      "type": "action",
+      "action": "record_dataset",
+      "instruction": "Start a new recording session with a different dataset name.",
+      "on_success": "verify_recording",
+      "on_failure": { "recovery": "check_hardware_connections" }
+    },
+
+    "verify_recording": {
+      "type": "validation",
+      "instruction": "Let's verify the dataset was saved. Check that the dataset directory exists at the path you specified.",
+      "validation": {
+        "type": "path_exists",
+        "rule": "Dataset directory must exist at the specified local path OR be visible on HuggingFace Hub"
+      },
+      "on_success": "replay_verify",
+      "on_failure": {
+        "error": "Incomplete dataset",
+        "recovery": "delete_incomplete_and_rerecord"
+      }
+    },
+
+    "delete_incomplete_and_rerecord": {
+      "type": "action",
+      "action": "record_dataset",
+      "instruction": "The previous recording was incomplete. Delete the partial dataset when prompted, then re-record from scratch.",
+      "on_success": "verify_recording",
+      "on_failure": { "recovery": "check_hardware_connections" }
+    },
+
+    "replay_verify": {
+      "type": "action",
+      "action": "replay_episode",
+      "params": { "episode_index": 0 },
+      "instruction": "Replay episode 0 to verify your recording looks correct before training. Only the follower needs to be connected for replay.",
+      "validation_prompt": "Does the replay look correct? Does the follower arm replicate the recorded motion?",
+      "on_success": "choose_policy",
+      "on_failure": {
+        "recovery": "start_recording",
+        "message": "The recording may have captured incorrect motion — re-record from scratch"
+      }
+    },
+
+    "choose_policy": {
+      "type": "branch",
+      "instruction": "Which policy do you want to train? For beginners, ACT or SmolVLA are recommended.",
+      "branches": {
+        "smolvla": "train_smolvla",
+        "act": "train_act",
+        "pi0": "train_pi0",
+        "diffusion": "train_diffusion",
+        "groot": "train_groot"
+      },
+      "guidance": {
+        "smolvla": "Good all-rounder. Uses vision + language. Initializes from pretrained smolvla_base.",
+        "act": "Fast, low data requirements. Great starting point.",
+        "pi0": "Strong generalist. Requires more data.",
+        "diffusion": "High quality output. Slower to train.",
+        "groot": "NVIDIA foundation model. Powerful but complex."
+      }
+    },
+
+    "train_smolvla": {
+      "type": "action",
+      "action": "train_policy",
+      "params": { "policy_type": "smolvla" },
+      "instruction": "Train SmolVLA. Defaults to lerobot/smolvla_base pretrained checkpoint. Configure steps, batch size, and output directory when prompted.",
+      "on_success": "training_complete",
+      "on_failure": {
+        "error": "Video backend error",
+        "message": "Automatically switches to PyAV if TorchCodec unavailable — retry training"
+      }
+    },
+
+    "train_act": {
+      "type": "action",
+      "action": "train_policy",
+      "params": { "policy_type": "act" },
+      "instruction": "Train ACT (Action Chunking with Transformers). Fast training, works well with limited data.",
+      "on_success": "training_complete",
+      "on_failure": {
+        "error": "Output dir exists",
+        "message": "Choose resume, overwrite, or provide a new output directory name"
+      }
+    },
+
+    "train_pi0": {
+      "type": "action",
+      "action": "train_policy",
+      "params": { "policy_type": "pi0" },
+      "instruction": "Train π₀ (pi0) — a strong generalist policy. Works best with more dataset episodes.",
+      "on_success": "training_complete",
+      "on_failure": {
+        "error": "Video backend error",
+        "message": "Automatically switches to PyAV if TorchCodec unavailable — retry training"
+      }
+    },
+
+    "train_diffusion": {
+      "type": "action",
+      "action": "train_policy",
+      "params": { "policy_type": "diffusion" },
+      "instruction": "Train Diffusion Policy — high quality output, slower to train. Ensure you have adequate compute.",
+      "on_success": "training_complete",
+      "on_failure": {
+        "error": "Output dir exists",
+        "message": "Choose resume, overwrite, or provide a new output directory name"
+      }
+    },
+
+    "train_groot": {
+      "type": "action",
+      "action": "train_policy",
+      "params": { "policy_type": "groot" },
+      "instruction": "Train GR00T (Groot) — NVIDIA foundation model. Powerful but more complex setup.",
+      "on_success": "training_complete",
+      "on_failure": {
+        "error": "Camera name mismatch",
+        "message": "Tool auto-maps camera names when they don't match policy defaults — retry"
+      }
+    },
+
+    "training_complete": {
+      "type": "validation",
+      "instruction": "Check that checkpoint files exist in your output directory.",
+      "validation": {
+        "type": "path_exists",
+        "rule": "output_dir/checkpoint_*/ directories must exist"
+      },
+      "on_success": "run_inference_check",
+      "on_failure": { "recovery": "Check disk space and rerun training" }
+    },
+
+    "run_inference_check": {
+      "type": "action",
+      "action": "run_inference",
+      "instruction": "Run inference using your trained checkpoint. Point policy_path to your checkpoint directory. The follower arm will begin acting autonomously.",
+      "validation_prompt": "Does the follower arm move autonomously without you holding the leader?",
+      "on_success": "tutorial_complete",
+      "on_failure": {
+        "error": "Motor sync / connection error",
+        "recovery": "scan_motors_diagnostic",
+        "message": "Run solo robo --scan to diagnose hardware issues, then retry inference"
+      }
+    },
+
+    "scan_motors_diagnostic": {
+      "type": "action",
+      "action": "scan_motors",
+      "instruction": "Scan for connected motors to diagnose the connection issue before retrying inference.",
+      "on_success": "run_inference_check",
+      "on_failure": {
+        "recovery": "check_hardware_connections",
+        "message": "Check USB cable, power (12V follower), and all 3-pin motor cables"
+      }
+    },
+
+    "tutorial_complete": {
+      "type": "terminal",
+      "instruction": "Your policy is running autonomously on the robot. You've completed the full record → train → inference pipeline.",
+      "next_tutorials": []
+    }
+  }
+}

@@ -1,35 +1,63 @@
 ---
-name: "DailyExpenseTracker"
-description: "DailyExpenseTracker API integration for recording expenses, checking balances, and managing transactions. Use when user mentions expenses, spending, transact..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/det"
-sourceUrl: "https://clawhub.ai/skills/det"
+name: det
+description: DailyExpenseTracker API integration for recording expenses, checking balances, and managing transactions. Use when user mentions expenses, spending, transactions, wallets, or DET.
 ---
 
-# DailyExpenseTracker
+# DailyExpenseTracker (DET)
 
-> DailyExpenseTracker API integration for recording expenses, checking balances, and managing transactions. Use when user mentions expenses, spending, transact...
+## API
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/det`
-- **Source URL:** [https://clawhub.ai/skills/det](https://clawhub.ai/skills/det)
+**Base URL:** `https://dailyexpensetracker.in/api`
+**Token:** Set in `skills.entries.det.apiToken` in openclaw.json
+**Auth Header:** `Authorization: Bearer <token>`
 
-## Overview
+## Wallets
 
+Fetch wallets dynamically via `/api/wallets` endpoint. Cache wallet IDs locally after first fetch.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Add Expense
+
 ```bash
-hermes skills install clawhub/det
+curl -X POST "https://dailyexpensetracker.in/api/transactions" \
+  -H "Authorization: Bearer $DET_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "wallet_id": 1,
+    "category_id": 5,
+    "amount": 100,
+    "type": "expense",
+    "transaction_date": "2026-02-21",
+    "description": "Groceries"
+  }'
 ```
+
+**Required fields:** wallet_id, amount, type, transaction_date
+**Types:** expense, income, transfer
+
+## Get Transactions
+
+```bash
+curl "https://dailyexpensetracker.in/api/transactions?per_page=10" \
+  -H "Authorization: Bearer $DET_TOKEN"
+```
+
+## Get Wallets with Balances
+
+```bash
+curl "https://dailyexpensetracker.in/api/wallets" \
+  -H "Authorization: Bearer $DET_TOKEN"
+```
+
+## Get Categories
+
+```bash
+curl "https://dailyexpensetracker.in/api/categories" \
+  -H "Authorization: Bearer $DET_TOKEN"
+```
+
+## Rules
+
+- **ALWAYS use API** - Never write directly to database
+- **Field is `transaction_date`** - Not `date`
+- **Default wallet:** HDFC BANK (1) unless specified
+- **Confirm large amounts** (>₹5000) before recording

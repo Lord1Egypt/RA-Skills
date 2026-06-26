@@ -1,0 +1,11 @@
+{
+  "serviceUrl": "https://quotedance.api.gapgap.cc",
+  "apiKey": "",
+  "rsshubUrl": "http://localhost:1200",
+  "defaults": {
+    "recentDays": 3,
+    "limit": 100,
+    "cacheTtlMinutes": 30,
+    "sourceCacheTtlMinutes": 15
+  }
+}

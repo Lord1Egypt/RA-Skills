@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-telegram-setup",
+  "version": "1.0.0",
+  "description": "10-minute Telegram Bot setup for OpenClaw",
+  "keywords": ["telegram", "openclaw", "bot", "messaging", "setup"],
+  "author": "OpenClaw CN Team"
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "recruiting-interview-kit",
+  "title": "招聘面试工具包",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "structured_brief",
+  "summary": "根据 JD 生成面试题、评分维度、红旗项与面试记录模板。",
+  "inputHint": "职位描述、级别、关键能力",
+  "sections": [
+    "岗位理解",
+    "面试题库",
+    "评分维度",
+    "红旗项",
+    "记录模板",
+    "候选人体验提醒"
+  ],
+  "useCases": [
+    "招聘准备",
+    "结构化面试",
+    "评分统一"
+  ],
+  "positiveExamples": [
+    "根据这个 JD 生成面试题和评分表",
+    "给我红旗项"
+  ],
+  "negativeExamples": [
+    "不要生成歧视性问题",
+    "不要替代最终录用决策"
+  ],
+  "risk": "适合结构化招聘准备。",
+  "tags": [
+    "recruiting",
+    "interview",
+    "hiring",
+    "scorecard"
+  ]
+}

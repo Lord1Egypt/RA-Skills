@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Tracker Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-card .label {
+      color: #6b7280;
+      font-size: 0.875em;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .value {
+      font-size: 2em;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    .stat-card .trend {
+      font-size: 0.875em;
+      margin-top: 8px;
+    }
+
+    .stat-card .trend.positive {
+      color: #10b981;
+    }
+
+    .stat-card .trend.negative {
+      color: #ef4444;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .chart-container {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-container h2 {
+      font-size: 1.25em;
+      margin-bottom: 20px;
+      color: #111827;
+    }
+
+    .chart-container canvas {
+      max-height: 300px;
+    }
+
+    .history-section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .history-section h2 {
+      font-size: 1.25em;
+      margin-bottom: 20px;
+      color: #111827;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th,
+    table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    table th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+
+    table tr:hover {
+      background: #f9fafb;
+    }
+
+    .suggestions-section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .suggestions-section h2 {
+      font-size: 1.25em;
+      margin-bottom: 20px;
+      color: #111827;
+    }
+
+    .suggestions-section ul {
+      list-style: none;
+    }
+
+    .suggestions-section li {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #f9fafb;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+
+    .suggestions-section li:hover {
+      background: #f3f4f6;
+    }
+
+    @media (max-width: 768px) {
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 1.8em;
+      }
+
+      table {
+        font-size: 0.875em;
+      }
+
+      table th,
+      table td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📊 Token Tracker Dashboard</h1>
+      <p>实时监控 Token 消耗，优化使用效率</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">今日消耗</div>
+        <div class="value" id="today-tokens">--</div>
+        <div class="trend" id="today-trend">--</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="label">记录次数</div>
+        <div class="value" id="today-count">--</div>
+        <div class="trend" id="today-trend">--</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="label">平均消耗</div>
+        <div class="value" id="today-average">--</div>
+        <div class="trend" id="today-trend">--</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="label">本周总计</div>
+        <div class="value" id="week-tokens">--</div>
+        <div class="trend" id="week-trend">--</div>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-container">
+        <h2>📈 7天趋势</h2>
+        <canvas id="trendChart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <h2>📊 模型分布</h2>
+        <canvas id="modelChart"></canvas>
+      </div>
+    </div>
+
+    <div class="history-section">
+      <h2>📜 最近记录</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>模型</th>
+            <th>Token</th>
+            <th>会话ID</th>
+          </tr>
+        </thead>
+        <tbody id="history-body">
+          <tr>
+            <td colspan="4" style="text-align: center; color: #6b7280;">加载中...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="suggestions-section">
+      <h2>💡 节省建议</h2>
+      <ul id="suggestions-list">
+        <li style="text-align: center; color: #6b7280;">加载中...</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // 获取统计数据
+    async function fetchStats() {
+      try {
+        const todayResponse = await fetch('/api/stats/today');
+        const weekResponse = await fetch('/api/stats/week');
+        const historyResponse = await fetch('/api/history?limit=10');
+        const suggestionsResponse = await fetch('/api/suggestions');
+
+        const todayStats = await todayResponse.json();
+        const weekStats = await weekResponse.json();
+        const history = await historyResponse.json();
+        const suggestions = await suggestionsResponse.json();
+
+        // 更新统计卡片
+        document.getElementById('today-tokens').textContent = todayStats.total.toLocaleString();
+        document.getElementById('today-count').textContent = todayStats.count;
+        document.getElementById('today-average').textContent = todayStats.average.toFixed(2);
+        document.getElementById('week-tokens').textContent = weekStats.total.toLocaleString();
+
+        // 更新趋势
+        document.getElementById('today-trend').textContent = `平均: ${todayStats.average.toFixed(2)} tokens/次`;
+        document.getElementById('week-trend').textContent = `记录: ${weekStats.count} 次`;
+
+        // 更新历史记录
+        const historyBody = document.getElementById('history-body');
+        historyBody.innerHTML = history.tokens.map(token => `
+          <tr>
+            <td>${token.date}</td>
+            <td>${token.model}</td>
+            <td>${token.tokens.toLocaleString()}</td>
+            <td style="font-size: 0.8em; color: #6b7280;">${token.sessionKey.slice(-8)}</td>
+          </tr>
+        `).join('');
+
+        // 更新建议
+        document.getElementById('suggestions-list').innerHTML = suggestions.map(suggestion => `
+          <li>${suggestion}</li>
+        `).join('');
+
+        // 绘制趋势图
+        drawTrendChart(history);
+
+        // 绘制模型分布图
+        drawModelChart(history);
+
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    }
+
+    // 绘制趋势图
+    function drawTrendChart(history) {
+      const ctx = document.getElementById('trendChart').getContext('2d');
+
+      // 计算最近7天数据
+      const days = 7;
+      const labels = [];
+      const data = [];
+
+      for (let i = days - 1; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+
+        labels.push(date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' }));
+
+        const dayTokens = history.tokens.filter((t: any) => t.date === dateStr);
+        const total = dayTokens.reduce((sum: number, t: any) => sum + t.tokens, 0);
+        data.push(total);
+      }
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Token 消耗',
+            data,
+            borderColor: '#667eea',
+            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value: number) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // 绘制模型分布图
+    function drawModelChart(history) {
+      const ctx = document.getElementById('modelChart').getContext('2d');
+
+      // 计算模型分布
+      const modelStats: { [key: string]: number } = {};
+
+      history.tokens.forEach((token: any) => {
+        modelStats[token.model] = (modelStats[token.model] || 0) + token.tokens;
+      });
+
+      const labels = Object.keys(modelStats);
+      const data = Object.values(modelStats);
+
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels,
+          datasets: [{
+            data,
+            backgroundColor: [
+              '#667eea',
+              '#764ba2',
+              '#f093fb',
+              '#f5576c',
+              '#4facfe',
+              '#00f2fe'
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+    }
+
+    // 初始化
+    fetchStats();
+
+    // 每30秒刷新一次数据
+    setInterval(fetchStats, 30000);
+  </script>
+</body>
+</html>

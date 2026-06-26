@@ -1,0 +1,37 @@
+{
+  "name": "africa-policy-query",
+  "version": "1.0.0",
+  "description": "非洲市场政策查询Skill - 提供非洲市场政策、法规、投资环境的智能查询和分析",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "africa",
+    "policy",
+    "market-analysis",
+    "investment"
+  ],
+  "author": "[请替换为您的名称]",
+  "license": "MIT",
+  "dependencies": {},
+  "clawhub": {
+    "category": "business-intelligence",
+    "tags": ["非洲", "政策查询", "市场分析", "投资环境", "deepseek-v4", "惠迈智能体", "多语言"],
+    "compatibility": {
+      "openclaw": ">=2026.4.0",
+      "deepseek": ">=v4.0.0",
+      "huimai-agents": "三层架构"
+    },
+    "features": [
+      "DeepSeek v4驱动",
+      "惠迈智能体协作",
+      "超前技术配置",
+      "非洲市场覆盖",
+      "多语言支持"
+    ]
+  }
+}

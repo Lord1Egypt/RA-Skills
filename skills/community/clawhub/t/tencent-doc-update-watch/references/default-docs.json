@@ -1,0 +1,20 @@
+{
+  "docs": [
+    {
+      "name": "Example Sheet",
+      "url": "https://docs.qq.com/sheet/DEXAMPLE_SHEET_001?tab=sample"
+    },
+    {
+      "name": "Example Doc",
+      "url": "https://docs.qq.com/doc/DEXAMPLE_DOC_001"
+    },
+    {
+      "name": "Example Streaming VC",
+      "url": "https://docs.qq.com/doc/DEXAMPLE_DOC_002"
+    },
+    {
+      "name": "Example AIO Canvas",
+      "url": "https://docs.qq.com/aio/DEXAMPLE_AIO_001"
+    }
+  ]
+}

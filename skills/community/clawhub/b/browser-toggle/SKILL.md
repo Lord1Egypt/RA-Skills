@@ -1,35 +1,44 @@
+# OpenClaw Browser Toggle Skill
+
+> 一键启用/禁用 OpenClaw 内置浏览器，无需手动修改配置文件
+
+**Name:** browser-toggle  
+**Version:** 1.0.0  
+**Author:** AI Assistant  
+**License:** MIT  
+**Description:** 一键启用/禁用 OpenClaw 内置浏览器
+
 ---
-name: "browser-toggle"
-description: "Enable or disable the OpenClaw built-in browser with one command, featuring auto backup, recovery, and cross-platform support."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, browser, openclaw, utility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/browser-toggle"
-sourceUrl: "https://clawhub.ai/skills/browser-toggle"
----
-
-# browser-toggle
-
-> Enable or disable the OpenClaw built-in browser with one command, featuring auto backup, recovery, and cross-platform support.
-
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/browser-toggle`
-- **Source URL:** [https://clawhub.ai/skills/browser-toggle](https://clawhub.ai/skills/browser-toggle)
-
-## Overview
-
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/browser-toggle
+bash setup.sh
 ```
+
+## Usage
+
+```bash
+openclaw-browser --enable
+openclaw-browser --disable
+openclaw-browser --status
+```
+
+## Features
+
+- ✅ 一键启用/禁用内置浏览器
+- ✅ 自动备份配置文件
+- ✅ 失败自动恢复
+- ✅ 支持可视化/无头模式
+- ✅ 跨平台支持
+
+## Requirements
+
+- Python 3.8+
+- OpenClaw 2026.2.26+
+- Chrome/Chromium
+
+## Links
+
+- GitHub: https://github.com/yoo-unison/browser-toggle
+- Release: https://github.com/yoo-unison/browser-toggle/releases/tag/v1.0.0

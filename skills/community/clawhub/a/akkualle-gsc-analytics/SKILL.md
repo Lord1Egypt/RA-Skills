@@ -1,35 +1,47 @@
 ---
-name: "Google Search Console Analytics"
-description: "Ruft Google Search Console Daten für akku-alle.de ab - Klicks, Impressionen, CTR, Rankings und Top-Keywords. Nutze das shell Tool um /root/.openclaw/skills/g..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/akkualle-gsc-analytics"
-sourceUrl: "https://clawhub.ai/skills/akkualle-gsc-analytics"
+name: gsc-search
+description: "Ruft Google Search Console Daten für akku-alle.de ab - Klicks, Impressionen, CTR, Rankings und Top-Keywords. Nutze das shell Tool um /root/.openclaw/skills/gsc-search/gsc-search auszuführen."
+metadata: {"requires":{"env":["GOOGLE_APPLICATION_CREDENTIALS"]},"emoji":"🔍","always":true}
+user-invocable: true
 ---
 
-# Google Search Console Analytics
+# Google Search Console Skill
 
-> Ruft Google Search Console Daten für akku-alle.de ab - Klicks, Impressionen, CTR, Rankings und Top-Keywords. Nutze das shell Tool um /root/.openclaw/skills/g...
+Ruft Search Console Daten für akku-alle.de ab.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/akkualle-gsc-analytics`
-- **Source URL:** [https://clawhub.ai/skills/akkualle-gsc-analytics](https://clawhub.ai/skills/akkualle-gsc-analytics)
+## Aufruf via Shell Tool
 
-## Overview
+**WICHTIG**: Rufe dieses Skill mit dem `shell` Tool auf:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/akkualle-gsc-analytics
+/root/.openclaw/skills/gsc-search/gsc-search
 ```
+
+Für nur Keywords/Suchanfragen:
+
+```bash
+/root/.openclaw/skills/gsc-search/gsc-search "queries"
+```
+
+## Beispiel-Ausgabe
+
+```
+## 🔍 Search Console Übersicht (02.02 - 09.02.2026)
+- **Klicks:** 106
+- **Impressionen:** 10,661
+- **CTR:** 0.99%
+- **Ø Position:** 6.9
+
+## 🔎 Top Suchanfragen
+| Query | Klicks | Impressionen | CTR | Pos |
+|-------|--------|--------------|-----|-----|
+| e scooter versicherung 2026 | 2 | 138 | 1.4% | 2.8 |
+```
+
+## Wann verwenden
+
+Nutze dieses Skill wenn der User fragt:
+- "Zeige mir die Search Console Daten"
+- "Für welche Keywords rankt akku-alle.de?"
+- "Wie sind die Google Rankings?"
+- "SEO Statistiken"

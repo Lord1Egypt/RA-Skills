@@ -1,0 +1,22 @@
+{
+  "name": "cryptofolio-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for crypto portfolio management",
+  "type": "module",
+  "bin": {
+    "cryptofolio": "./scripts/cryptofolio.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "crypto",
+    "portfolio",
+    "asset-management"
+  ],
+  "author": "christinaxu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christinaxu/cryptofolio-skill"
+  }
+}

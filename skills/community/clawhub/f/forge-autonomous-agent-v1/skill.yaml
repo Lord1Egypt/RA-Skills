@@ -1,0 +1,73 @@
+name: forge-autonomous-agent-v1
+version: 1.0.0
+license: MIT
+description: >
+  FORGE is a self-evolving autonomous AI developer. It researches deeply
+  using an autoresearch-style hypothesis loop, designs, builds, tests, and
+  ships software continuously. It mutates its own code via the Arena. It
+  operates through Telegram and OpenClaw simultaneously. It uses Chrome
+  DevTools Protocol for web operations. It connects to opencode, antigravity,
+  stitch, and other tools as parallel workers. It has a full MCP tool registry
+  with 28 tools. It can extend itself when users request new capabilities.
+  It displays a risk warning on first run. It does not stop.
+
+display_name: "FORGE"
+tagline: "Self-evolving autonomous AI developer"
+
+autostart: true
+autostart_greeting: false
+
+triggers:
+  - "forge start"
+  - "forge wake"
+  - "forge run"
+  - "ignite forge"
+  - "start forge"
+
+risk_prompt:  prompts/risk_warning.md
+setup_prompt: prompts/setup.md
+entry_point:  prompts/system.md
+state_file:   ~/.forge/state.json
+engine_check: ~/.forge/engine/.installed
+
+tools:
+  - shell
+  - file_read
+  - file_write
+  - browser_cdp
+  - git
+  - telegram_send
+  - web_search
+
+browser_cdp:
+  port: 9222
+  mode: research_and_automation
+  allowed_domains:
+    - github.com
+    - api.github.com
+    - raw.githubusercontent.com
+    - gist.github.com
+    - clawhub.dev
+    - api.clawhub.dev
+    - news.ycombinator.com
+    - npmjs.com
+    - pypi.org
+    - developer.mozilla.org
+    - stackoverflow.com
+    - arxiv.org
+    - aistudio.google.com
+    - accounts.google.com
+    - openai.com
+    - anthropic.com
+
+runtime:
+  loop: infinite
+  persist_state: true
+  resume_on_restart: true
+  daily_project_target: 5
+  self_mutation: true
+  mutation_strategy: fork_test_promote
+  parallel_forks_max: 3
+  rate_limit_pause_seconds: 60
+  report_to_openclaw: true
+  gateway: telegram_and_openclaw

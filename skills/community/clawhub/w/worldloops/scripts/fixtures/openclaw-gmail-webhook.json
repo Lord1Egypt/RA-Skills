@@ -1,0 +1,20 @@
+{
+  "account": "user@example.com",
+  "label": "INBOX",
+  "messages": [
+    {
+      "subject": "Follow-up on the proposal",
+      "from": "Sarah Chen <sarah@example.com>",
+      "snippet": "Just checking if you had a chance to review the proposal.",
+      "receivedAt": "2026-05-16T10:30:00.000Z",
+      "url": "https://mail.google.com/mail/u/0/#inbox/example"
+    },
+    {
+      "subject": "Meeting prep for tomorrow",
+      "from": "David Kim <david@example.com>",
+      "snippet": "Can you prepare the deck before tomorrow's meeting?",
+      "receivedAt": "2026-05-16T11:30:00.000Z"
+    }
+  ],
+  "count": 2
+}

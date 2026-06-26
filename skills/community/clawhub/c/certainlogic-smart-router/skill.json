@@ -1,0 +1,37 @@
+{
+  "name": "CertainLogic Smart Router",
+  "version": "1.0.4",
+  "description": "⚠️ DEPRECATED — Use smart-router-coding or smart-router-intents instead.",
+  "author": "CertainLogic <anton@certainlogic.ai>",
+  "license": "MIT",
+  "category": "ai-optimization",
+  "tags": [
+    "deprecated",
+    "model-routing"
+  ],
+  "entry": {
+    "cli": "scripts/smart_router.py"
+  },
+  "commands": [
+    {
+      "name": "route",
+      "description": "Classify query and recommend cheapest capable model tier",
+      "args": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "The query to route"
+        },
+        {
+          "name": "profile",
+          "type": "string",
+          "required": false,
+          "description": "Force profile (coding, research, marketing, general)"
+        }
+      ]
+    }
+  ],
+  "homepage": "https://certainlogic.ai/brain",
+  "repository": "https://github.com/CertainLogicAI/certainlogic-smart-router"
+}

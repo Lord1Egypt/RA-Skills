@@ -1,35 +1,211 @@
 ---
-name: "周易占卜 - ZhouYi Divin"
+name: zhouyi-divination
 description: "基于《周易》的完整占卜系统，支持铜钱起卦 + 八字排盘 + 综合解读"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhouyi-divin"
-sourceUrl: "https://clawhub.ai/skills/zhouyi-divin"
+homepage: ""
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "env": [] },
+        "category": "lifestyle",
+        "emoji": "🔮"
+      }
+  }
 ---
 
-# 周易占卜 - ZhouYi Divin
+# 🔮 周易占卜 - ZhouYi Divination
 
-> 基于《周易》的完整占卜系统，支持铜钱起卦 + 八字排盘 + 综合解读
+**基于《周易》的完整占卜系统**，支持铜钱法起卦、八字排盘、五行分析、大运推演，以及卦象与命理的综合解读。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhouyi-divin`
-- **Source URL:** [https://clawhub.ai/skills/zhouyi-divin](https://clawhub.ai/skills/zhouyi-divin)
+纯 Python 实现，无外部依赖，安全本地运行。
 
-## Overview
+---
 
+## 📖 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 模块 | 功能说明 |
+|------|----------|
+| **① 铜钱起卦** | 传统三枚铜钱摇卦法，模拟古代占卜仪式 |
+| **② 64 卦查询** | 完整卦名、卦辞、大象、爻辞数据库 |
+| **③ 本卦/变卦** | 自动识别动爻（老阴×、老阳○）并生成变卦 |
+| **④ 八字排盘** | 四柱（年月日时）干支自动计算 |
+| **⑤ 五行分析** | 五行分布统计、日主强弱判断 |
+| **⑥ 用神推断** | 根据身强身弱推荐用神 |
+| **⑦ 大运推演** | 每十年一大运，推算当前大运 |
+| **⑧ 综合解读** | 八字背景 + 卦象 + 问题关键词的智能分析 |
+
+---
+
+## 🎯 快速开始
+
+### **方式一：纯起卦（最简单）**
+
 ```bash
-hermes skills install clawhub/zhouyi-divin
+python scripts/divine.py --question "我今年的事业运势如何？"
 ```
+
+输出包含：
+- 六爻起卦过程
+- 本卦 + 变卦信息
+- 卦辞解读
+- Oracle 寄语
+
+---
+
+### **方式二：八字 + 起卦综合解读（推荐）**
+
+```bash
+python scripts/divine.py ^
+  --question "今年适合创业吗？" ^
+  --birth-year 1990 ^
+  --birth-month 5 ^
+  --birth-day 15 ^
+  --birth-hour 14 ^
+  --gender 男
+```
+
+输出包含：
+- ✅ 完整八字排盘
+- ✅ 五行分布图
+- ✅ 日主强弱分析
+- ✅ 用神建议
+- ✅ 当前大运
+- ✅ 卦象 + 八字综合解读
+
+---
+
+### **方式三：只排八字（不占卦）**
+
+```bash
+python scripts/divine.py --mode bazi ^
+  --birth-year 1990 ^
+  --birth-month 5 ^
+  --birth-day 15 ^
+  --birth-hour 14
+```
+
+---
+
+### **方式四：JSON 格式输出**
+
+```bash
+python scripts/divine.py --question "问题" --json
+```
+
+适合编程调用或保存结果。
+
+---
+
+### **方式五：交互模式**
+
+```bash
+python scripts/divine.py
+```
+
+按屏幕提示选择模式，逐步操作。
+
+---
+
+## 📋 参数说明
+
+| 参数 | 简称 | 说明 | 必填 |
+|------|------|------|------|
+| `--question` | `-q` | 你想问的问题 | 否 |
+| `--birth-year` | - | 出生年份 | 可选 |
+| `--birth-month` | - | 出生月份 (1-12) | 可选 |
+| `--birth-day` | - | 出生日期 (1-31) | 可选 |
+| `--birth-hour` | - | 出生时辰 (0-23) | 可选 |
+| `--gender` | - | 性别 (男/女) | 可选，默认"男" |
+| `--mode` | - | 模式 (hexagram/bazi/both) | 可选，默认"both" |
+| `--json` | - | JSON 格式输出 | 可选 |
+
+---
+
+## 📊 输出示例
+
+### **纯起卦输出**
+
+```
+==================================================
+📜 八字排盘报告
+==================================================
+
+👶 出生信息：1990 年 5 月 15 日 14:00
+
+🔮 四柱八字:
+   年柱：庚午
+   月柱：丙午
+   日柱：丁酉 ← 日主
+   时柱：丁未
+
+⚖️  五行分布:
+   金：██ (2)
+   木：  (0)
+   水：  (0)
+   火：█████ (5)
+   土：█ (1)
+
+💎 日主分析:
+   日元：丁 (火)
+   强弱指数：5/8
+   状态：🟢 身强
+   建议用神：土，金，水
+
+...
+
+═══════════════ 🎯 本卦信息 ═══════════════
+   卦名：山地剥 (第 23 卦)
+   卦象：上艮下坤
+   卦辞：不利有攸往
+
+...
+
+💭 Oracle 寄语:
+您的八字显示'丁'日主身强，精力充沛。当前山地剥提醒您 '不利有攸往'。
+建议发挥优势但注意收敛锋芒，配合流年运势把握机遇。
+```
+
+---
+
+## 📚 哲学参考
+
+本工具参考以下经典：
+- 《周易·系辞传》
+- 《周易正义》（孔颖达）
+- 《朱子本义》
+- 《三命通会》
+- 《渊海子平》
+
+---
+
+## ⚠️ 安全说明
+
+- ✅ **纯本地运行**：无任何外部 API 调用
+- ✅ **开源代码**：所有逻辑透明可见
+- ✅ **无敏感权限**：不访问网络、不读写敏感文件
+- ✅ **数据保密**：所有个人信息仅在内存中处理
+
+---
+
+## 💡 温馨提示
+
+> 《周易》的核心是"**观其德义**"，不是单纯的算命。
+> 
+> "**善为易者不占**" — 真正懂易经的人，重视的是其中的人生智慧，而不是依赖占卜结果。
+> 
+> 本工具仅供学习和娱乐，最终决策请结合自身实际情况～ 💕
+
+---
+
+## 🛠️ 技术栈
+
+| 项目 | 内容 |
+|------|------|
+| **语言** | Python 3.8+ |
+| **依赖** | 无第三方库 |
+| **平台** | Windows / Linux / macOS |
+| **编码** | UTF-8 |
+
+---
+
+*Created by 小艺 · 公司办公室行政 AI* 🌸

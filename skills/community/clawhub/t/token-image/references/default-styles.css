@@ -1,0 +1,186 @@
+/* === TYPOGRAPHY === */
+
+h1 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+}
+
+h3 {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  margin: 0;
+}
+
+h4 {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  margin: 0;
+}
+
+p {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* === UTILITY CLASSES === */
+
+.display {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-display);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+}
+
+.metadata {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0;
+}
+
+/* === LISTS === */
+
+ul, ol {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  margin: 0;
+  padding-left: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+ul { list-style-type: disc; }
+ol { list-style-type: decimal; }
+
+/* === CODE === */
+
+pre {
+  background-color: var(--color-surface);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin: 0;
+  overflow-x: auto;
+}
+
+pre code {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+code {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  color: var(--color-accent);
+  background-color: var(--color-surface);
+  padding: 0.15em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+/* === BLOCKQUOTE === */
+
+blockquote {
+  border-left: var(--spacing-xs) solid var(--color-border);
+  padding-left: var(--spacing-md);
+  margin: 0;
+  font-style: italic;
+}
+
+/* === STRONG / EMPHASIS === */
+
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+em {
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0;
+}
+
+
+/* === CARDS === */
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.card-label {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0;
+}
+
+.card-content {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* === GRID === */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: var(--spacing-md);
+  width: 100%;
+}

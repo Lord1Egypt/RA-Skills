@@ -1,0 +1,102 @@
+/* =========================================
+   HyperFrames 视频合成基础样式
+   注意：此文件的所有样式都是渲染环境必须的
+   ========================================= */
+
+/* 重置：确保 1920×1080 的合成尺寸在任何屏幕下都表现一致 */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: #000;
+  font-family: "Noto Serif SC", "Source Han Serif CN", serif;
+}
+
+/* 根容器撑满画布 */
+#composition {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+}
+
+/* =========================================
+   场景（.clip）基础样式
+   HyperFrames 依赖此 class 控制显隐
+   ========================================= */
+.clip {
+  position: absolute;
+  inset: 0;
+  opacity: 0; /* 默认逻辑隐藏，由渲染引擎或 GSAP 激活 */
+  display: block;
+}
+
+/* =========================================
+   双层图片布局
+   bg-fill：背景模糊层（全覆盖，裁切）
+   fg-main：主体图片层（保持比例，不裁切）
+
+   ⚠️ 核心规则：fg-main 严禁使用 translate 居中
+   必须使用 object-fit: contain 由浏览器原生居中
+   ========================================= */
+.bg-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(20px) brightness(0.4);
+  transform: scale(1.1); /* 补偿 blur 边缘虚化 */
+}
+
+.fg-main {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;       /* ← 保持比例，不裁切 */
+  transform-origin: center center; /* ← GSAP scale 的基准点 */
+}
+
+/* =========================================
+   字幕层
+   ========================================= */
+.overlay {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 120px;
+}
+
+.subtitle {
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 42px;
+  line-height: 1.6;
+  padding: 20px 48px;
+  border-radius: 12px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  max-width: 1400px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* =========================================
+   暗角遮罩（增强电影感）
+   ========================================= */
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}

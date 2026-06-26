@@ -1,0 +1,13 @@
+{
+  "version": "2.0.8",
+  "default_list_size": 20,
+  "max_list_size": 100,
+  "eligibility": {
+    "model_whitelist": ["sonnet-4.6", "opus-4.5", "opus-4.6", "opus-4.7"],
+    "min_turns": 1,
+    "min_tool_use_count": 1,
+    "min_reasoning_turns": 0,
+    "allow_non_cache_trace": true,
+    "include_cron_tasks": true
+  }
+}

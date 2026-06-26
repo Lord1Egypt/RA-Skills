@@ -1,0 +1,3 @@
+display_name: 视频案例分析助手
+short_description: 一键拆解本地/抖音/B站参考视频，提取分镜、台词、框架和脚本模板，生成可复用的视频案例库。
+default_prompt: 请用 Video Analysis Workflow 分析这个视频：<视频路径或抖音/B站链接>，保存到：<案例库路径>，输出案例分析、抽帧分镜、台词转写、脚本模版；如方便，也生成 HTML 案例报告。

@@ -1,0 +1,9 @@
+{
+  "whisper_model": "base",
+  "output_dir": "~/Videos/edited",
+  "auto_upload": true,
+  "silent_threshold": -50,
+  "min_silent_duration": 1.0,
+  "ffmpeg_preset": "medium",
+  "max_file_size_mb": 100
+}

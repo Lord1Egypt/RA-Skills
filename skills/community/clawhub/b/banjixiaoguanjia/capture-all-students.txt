@@ -1,0 +1,105 @@
+  /**
+   * 【关键】截图所有学生
+   * 截图策略：
+   * 1. 进入页面后默认显示第一个学生
+   * 2. 每个学生的截图：从当前学生顶部到下一个学生顶部
+   * 3. 最后一个学生截图到底部
+   * @param {Array} students - 学生列表
+   */
+  async captureAllStudents(students) {
+    console.log('\n=== 开始截图所有学生 ===');
+    console.log(`共 ${students.length} 个学生`);
+    console.log('截图策略: 当前学生顶部 → 下一个学生顶部\n');
+    
+    const screenshots = [];
+    
+    for (let i = 0; i < students.length; i++) {
+      const student = students[i];
+      const nextStudent = (i < students.length - 1) ? students[i + 1] : null;
+      
+      console.log(`\n[${i + 1}/${students.length}] 截图: ${student.name}`);
+      
+      // 滚动到该学生（第一个学生可能已经在视图中）
+      if (i > 0) {
+        await this.page.evaluate((name) => {
+          const elements = document.querySelectorAll('flt-semantics[aria-label]');
+          for (const el of elements) {
+            const label = el.getAttribute('aria-label');
+            if (label && label.startsWith(name + '\n')) {
+              el.scrollIntoView({ block: 'start', behavior: 'instant' });
+              break;
+            }
+          }
+        }, student.name);
+        
+        await this.page.waitForTimeout(1500);
+      }
+      
+      // 获取当前学生位置
+      const currentPos = await this.page.evaluate((name) => {
+        const elements = document.querySelectorAll('flt-semantics[aria-label]');
+        for (const el of elements) {
+          const label = el.getAttribute('aria-label');
+          if (label && label.startsWith(name + '\n')) {
+            const rect = el.getBoundingClientRect();
+            return { top: rect.top, bottom: rect.bottom };
+          }
+        }
+        return null;
+      }, student.name);
+      
+      if (!currentPos) {
+        console.log(`  ⚠️ 未找到学生 ${student.name}`);
+        continue;
+      }
+      
+      // 确定截图高度
+      let clip;
+      if (nextStudent) {
+        const nextPos = await this.page.evaluate((name) => {
+          const elements = document.querySelectorAll('flt-semantics[aria-label]');
+          for (const el of elements) {
+            const label = el.getAttribute('aria-label');
+            if (label && label.startsWith(name + '\n')) {
+              const rect = el.getBoundingClientRect();
+              return { top: rect.top };
+            }
+          }
+          return null;
+        }, nextStudent.name);
+        
+        if (nextPos) {
+          const height = nextPos.top - currentPos.top;
+          clip = {
+            x: 0,
+            y: Math.max(0, currentPos.top),
+            width: 929,
+            height: Math.max(100, height)
+          };
+          console.log(`  范围: ${student.name} → ${nextStudent.name} (${height.toFixed(0)}px)`);
+        }
+      }
+      
+      if (!clip) {
+        // 最后一个学生：截图到底部
+        clip = {
+          x: 0,
+          y: Math.max(0, currentPos.top),
+          width: 929,
+          height: 800
+        };
+        console.log(`  范围: ${student.name} → 底部 (800px)`);
+      }
+      
+      // 截图
+      const filename = `${student.name}.png`;
+      const filepath = path.join(this.outputDir, filename);
+      await this.page.screenshot({ path: filepath, clip: clip });
+      console.log(`  ✓ 已保存: ${filepath}`);
+      
+      screenshots.push({ student: student.name, filepath });
+    }
+    
+    console.log('\n=== 截图完成 ===');
+    return screenshots;
+  }

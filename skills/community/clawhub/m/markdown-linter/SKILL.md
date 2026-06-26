@@ -1,35 +1,39 @@
 ---
-name: "Markdown Linter"
-description: "Validates Markdown files in the workspace for broken local links, missing file references, and basic syntax issues. Use to maintain documentation integrity a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/markdown-linter"
-sourceUrl: "https://clawhub.ai/skills/markdown-linter"
+name: markdown-linter
+description: Validates Markdown files in the workspace for broken local links, missing file references, and basic syntax issues. Use to maintain documentation integrity and prevent broken references in MEMORY.md or SKILL.md files.
 ---
 
 # Markdown Linter
 
-> Validates Markdown files in the workspace for broken local links, missing file references, and basic syntax issues. Use to maintain documentation integrity a...
+A lightweight tool to validate Markdown files in the workspace. It focuses on ensuring internal consistency, particularly broken file links and missing references.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/markdown-linter`
-- **Source URL:** [https://clawhub.ai/skills/markdown-linter](https://clawhub.ai/skills/markdown-linter)
+## Capabilities
 
-## Overview
+- **Link Validation**: Checks `[link](path)` references to ensure the target file exists locally.
+- **Header Check**: Verifies that headers follow a logical hierarchy (e.g., H1 -> H2).
+- **Code Block Check**: Ensures code blocks have language identifiers where appropriate.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/markdown-linter
+```javascript
+const linter = require('./index');
+const results = await linter.scan('.'); // Scans current directory recursively
+console.log(JSON.stringify(results, null, 2));
+```
+
+## Output Format
+
+```json
+{
+  "totalFiles": 15,
+  "brokenLinks": [
+    {
+      "file": "docs/README.md",
+      "line": 10,
+      "link": "./missing-image.png",
+      "error": "File not found"
+    }
+  ],
+  "syntaxErrors": []
+}
 ```

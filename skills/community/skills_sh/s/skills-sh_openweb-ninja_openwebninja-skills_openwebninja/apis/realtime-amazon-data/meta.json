@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-amazon-data",
+  "portal_api_id": "realtime_amazon_data",
+  "rapidapi_host": "real-time-amazon-data.p.rapidapi.com",
+  "notes": "Page-based pagination. Results per page vary by endpoint.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_amazon_data.yaml",
+  "last_updated_yaml": "2026-03-22T21:29:25.884Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-amazon-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-amazon-data"
+}

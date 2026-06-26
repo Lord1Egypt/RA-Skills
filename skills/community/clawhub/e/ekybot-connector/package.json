@@ -1,0 +1,37 @@
+{
+  "name": "ekybot-connector",
+  "version": "6.0.1",
+  "description": "Bridge OpenClaw to Ekybot: remote agent control, @mention inter-agent routing, 4-layer memory system, multi-model agents, cron management, session monitoring, project tracking, budget guard, and Companion machine health — from web/mobile.",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "ws": "^8.14.2",
+    "dotenv": "^16.3.1",
+    "chalk": "^4.1.2"
+  },
+  "scripts": {
+    "start": "node scripts/start.js",
+    "stop": "node scripts/stop.js",
+    "health": "node scripts/health_check.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-agents",
+    "remote-control",
+    "inter-agent-mentions",
+    "mobile-dashboard",
+    "cost-monitoring",
+    "multi-agent",
+    "budget-guard",
+    "project-memory",
+    "multi-model",
+    "cron-management",
+    "session-monitoring",
+    "project-tracking",
+    "memory-system"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/regiomag/ekybot-connector.git"
+  }
+}

@@ -1,35 +1,126 @@
 ---
-name: "小红书内容自动化工作流"
-description: "小红书内容创作自动化工作流，从选题、撰写、排版到发布的一站式自动化方案，帮助你快速产出高质量小红书内容。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, chinese, content, social, writing, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-content-automation"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-content-automation"
+name: 小红书内容自动化工作流
+slug: xiaohongshu-content-automation
+description: 小红书内容创作自动化工作流，从选题、撰写、排版到发布的一站式自动化方案，帮助你快速产出高质量小红书内容。
+version: 1.0.0
+author: xiatian5
+tags: [xiaohongshu, content, automation, chinese, social, writing]
 ---
 
-# 小红书内容自动化工作流
+# 小红书内容自动化工作流 📝✨
 
-> 小红书内容创作自动化工作流，从选题、撰写、排版到发布的一站式自动化方案，帮助你快速产出高质量小红书内容。
+一站式小红书内容创作自动化工作流，从选题、撰写、排版到发布，帮助你快速产出高质量小红书内容。整合内容生成、标题优化、话题推荐、排版格式化全流程。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-content-automation`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-content-automation](https://clawhub.ai/skills/xiaohongshu-content-automation)
+## 触发词
 
-## Overview
+当用户说这些话时，调用这个技能：
+- "帮我写小红书文案"
+- "小红书内容自动化"
+- "生成小红书帖子"
+- "小红书选题推荐"
+- "优化小红书标题"
+- "自动发布小红书"
 
+## 功能特性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-content-automation
+| 功能 | 说明 |
+|------|------|
+| **智能选题** | 根据热点和关键词推荐热门选题方向 |
+| **内容生成** | 生成符合小红书风格的文案内容 |
+| **标题优化** | 提供多个标题选项，优化点击率 |
+| **话题推荐** | 自动推荐相关热门话题 |
+| **排版格式化** | 自动添加表情、分段、符合小红书风格 |
+| **发布准备** | 生成可直接复制粘贴的最终内容 |
+
+## 工作流程
+
+### 标准工作流
+
 ```
+1. 需求收集 → 主题/关键词/风格
+2. 选题推荐 → 给出3-5个选题方向供选择
+3. 内容生成 → 根据选题生成正文
+4. 标题优化 → 生成5个候选标题
+5. 话题推荐 → 推荐5-8个相关话题
+6. 排版输出 → 输出格式化好的最终内容
+```
+
+## 使用示例
+
+### 示例1：生成一篇健身内容
+
+**输入:** 主题 = "新手健身"，风格 = "干货"
+
+**输出:**
+```
+💪 新手健身入门 | 我花了一个月总结的5个经验
+
+很多新手刚开始健身都很迷茫，我整理了5个最实用的经验分享给大家！
+
+✅ 动作标准比重量更重要
+✅ 循序渐进，不要一开始就练太猛
+✅ 坚持比计划更重要
+✅ 一定要注意拉伸放松
+✅ 饮食配合效果翻倍
+
+收藏起来慢慢看，你健身多久了？评论区告诉我！
+
+#健身入门 #新手健身 #健身经验 #健身干货 #健身日常 #减脂健身 #健身计划
+```
+
+### 示例2：标题优化
+
+**输入:** 原文标题 = "我的护肤心得"
+
+**输出候选标题:**
+1. 🔥 护肤踩了无数坑之后，我总结了这5条心得
+2. 💆 混油痘肌护肤心得 | 坚持半年皮肤稳定了
+3. ✨ 我的3年护肤心得总结，新手直接抄作业
+4. 🎯 省钱版护肤心得 | 效果好才是真的好
+5. 🌸 日常护肤流程 | 我的晚间护肤心得分享
+
+## 内容风格指南
+
+小红书内容特点：
+- **开头吸引眼球** - 用表情+钩子式开头
+- **短句分段** - 短段落，多用换行
+- **表情点缀** - 适当使用emoji增加亲和力
+- **干货要点** - 使用✅、💡、❗等符号突出重点
+- **结尾互动** - 提问引导评论
+- **话题标签** - 5-8个相关话题，包含大中小流量词
+
+## 话题选择策略
+
+- **大流量词** (1-2个)：#护肤 #健身 #美食 #旅行
+- **中流量词** (2-3个)：#新手护肤 #健身入门 #家常菜
+- **长尾词** (2-3个)：#混油痘肌护肤 #学生党健身攻略
+
+## 依赖
+
+- 需要 `xiaohongshu-cn` 基础技能
+- 内容生成依赖大语言模型
+- 自动发布需要配合浏览器自动化 (`playwright-browser-automation`)
+
+## 最佳实践
+
+1. **明确受众** - 确定是给新手还是进阶用户
+2. **控制长度** - 小红书正文建议300-500字效果最佳
+3. **加入个人体验** - 小红书用户喜欢真实体验分享
+4. **Always 结尾提问** - 提问能提高互动率，增加流量
+
+## 更新日志
+
+### v1.0.0 (2026-03-30)
+- 初始发布
+- 完整的小红书内容创作工作流
+- 包含选题、生成、优化、推荐、排版全流程
+
+## 相关技能
+
+- [xiaohongshu-cn](https://clawhub.ai/skills/xiaohongshu-cn) - 小红书基础工具
+- [playwright-browser-automation](https://clawhub.ai/skills/playwright-browser-automation) - 浏览器自动化用于发布
+- [copywriting](https://clawhub.ai/skills/copywriting) - 文案写作技能
+
+---
+
+*如果你觉得这个技能有用，请给它点个星，谢谢！⭐*

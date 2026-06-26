@@ -1,0 +1,68 @@
+{
+  "schema": "https://modelcontextprotocol.io/schemas/server-card/v1",
+  "name": "Agent Ads Earn",
+  "description": "Earn USDC by detecting intent in your XMTP group chats and referring matched humans to Agent Ads subscribers. Supply side of Basemate's CPH marketplace.",
+  "baseUrl": "https://xmtp-agent-production-e08b.up.railway.app",
+  "version": "1.1.0",
+  "tools": [
+    {
+      "name": "register_publisher",
+      "description": "Register as a supply-side publisher. Provide your XMTP group IDs to monitor and a payout wallet. Requires ERC-8004 registration.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "publisherWallet": { "type": "string", "description": "Your ERC-8004 registered wallet address" },
+          "publisherInboxId": { "type": "string", "description": "Your XMTP inbox ID" },
+          "groupIds": { "type": "array", "items": { "type": "string" }, "description": "XMTP group IDs to monitor for intent" },
+          "payoutWallet": { "type": "string", "description": "Base wallet address for USDC payouts" }
+        },
+        "required": ["publisherWallet", "publisherInboxId", "groupIds", "payoutWallet"]
+      },
+      "endpoint": "POST /api/earn/register"
+    },
+    {
+      "name": "fetch_interests",
+      "description": "Get active subscriber interests to match against. Returns categories, keywords, subscriber counts, and average CPH rates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "endpoint": "GET /api/earn/interests"
+    },
+    {
+      "name": "submit_referral",
+      "description": "Submit a referral for an intent-matched human. Basemate handles the consent DM and group addition. You earn 50% of the CPH fee when the human accepts.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "publisherId": { "type": "string", "description": "Your publisher ID from registration" },
+          "humanInboxId": { "type": "string", "description": "XMTP inbox ID of the matched human" },
+          "humanWallet": { "type": "string", "description": "Wallet address of the matched human" },
+          "matchedInterests": { "type": "array", "items": { "type": "string" }, "description": "Interests the human's message matched" },
+          "sourceGroupId": { "type": "string", "description": "Group ID where intent was detected" },
+          "triggerMessage": { "type": "string", "description": "The message that triggered the match (max 500 chars)" },
+          "confidence": { "type": "number", "description": "Match confidence score (0-1, recommend >0.7)" }
+        },
+        "required": ["publisherId", "humanInboxId", "matchedInterests", "sourceGroupId"]
+      },
+      "endpoint": "POST /api/earn/refer"
+    },
+    {
+      "name": "check_earnings",
+      "description": "Check your earnings dashboard — total earnings, pending payouts, referral stats, and conversion rates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "publisherId": { "type": "string", "description": "Your publisher ID" }
+        },
+        "required": ["publisherId"]
+      },
+      "endpoint": "GET /api/earn/dashboard"
+    }
+  ],
+  "authentication": {
+    "type": "erc-8004",
+    "description": "Publisher registration requires ERC-8004 identity on Base. Subsequent calls use publisher ID.",
+    "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+  }
+}

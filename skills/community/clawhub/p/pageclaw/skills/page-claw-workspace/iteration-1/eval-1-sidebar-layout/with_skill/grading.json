@@ -1,0 +1,26 @@
+{
+  "eval_id": 1,
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": true,
+      "evidence": "design.md line 18: CSS signature includes '· layout: sticky sidebar left, scrollable main right'"
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": true,
+      "evidence": "design.md contains '#### Layout structure' heading"
+    },
+    {
+      "text": "index.html contains a sticky sidebar structure (position:sticky, flex/grid layout with sidebar + main)",
+      "passed": true,
+      "evidence": "index.html: 'position: sticky' found 1 time; flex container with aside + main structure present"
+    },
+    {
+      "text": "The HTML layout matches the layout descriptor of the chosen Q2 option",
+      "passed": true,
+      "evidence": "Q2 chose 'Terminal Scholar' with 'sticky sidebar left', HTML implements exactly this with position:sticky aside"
+    }
+  ]
+}

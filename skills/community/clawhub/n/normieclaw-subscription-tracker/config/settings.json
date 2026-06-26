@@ -1,0 +1,357 @@
+{
+  "version": "1.0.0",
+  "alerts": {
+    "days_before_renewal": [3, 7],
+    "monthly_summary_day": 1,
+    "annual_audit_month": 1,
+    "enable_price_change_alerts": true,
+    "enable_overlap_alerts": true,
+    "enable_ghost_alerts": true
+  },
+  "currency": "USD",
+  "categories": {
+    "streaming": {
+      "label": "Streaming Video",
+      "emoji": "🎬",
+      "budget_buddy_category": "streaming"
+    },
+    "music": {
+      "label": "Music",
+      "emoji": "🎵",
+      "budget_buddy_category": "streaming"
+    },
+    "ai_tools": {
+      "label": "AI Tools",
+      "emoji": "🤖",
+      "budget_buddy_category": "subscriptions_software"
+    },
+    "cloud_storage": {
+      "label": "Cloud Storage",
+      "emoji": "☁️",
+      "budget_buddy_category": "subscriptions_software"
+    },
+    "productivity": {
+      "label": "Productivity",
+      "emoji": "🔧",
+      "budget_buddy_category": "subscriptions_software"
+    },
+    "fitness": {
+      "label": "Fitness",
+      "emoji": "💪",
+      "budget_buddy_category": "fitness"
+    },
+    "news": {
+      "label": "News & Media",
+      "emoji": "📰",
+      "budget_buddy_category": "subscriptions_media"
+    },
+    "gaming": {
+      "label": "Gaming",
+      "emoji": "🎮",
+      "budget_buddy_category": "entertainment"
+    },
+    "vpn": {
+      "label": "VPN & Security",
+      "emoji": "🔒",
+      "budget_buddy_category": "subscriptions_software"
+    },
+    "design": {
+      "label": "Design",
+      "emoji": "🎨",
+      "budget_buddy_category": "subscriptions_software"
+    },
+    "education": {
+      "label": "Education & Learning",
+      "emoji": "📚",
+      "budget_buddy_category": "education"
+    },
+    "health": {
+      "label": "Health & Wellness",
+      "emoji": "🧘",
+      "budget_buddy_category": "health"
+    },
+    "email": {
+      "label": "Email",
+      "emoji": "📧",
+      "budget_buddy_category": "subscriptions_software"
+    },
+    "food_delivery": {
+      "label": "Food & Delivery",
+      "emoji": "🍕",
+      "budget_buddy_category": "dining"
+    },
+    "other": {
+      "label": "Other",
+      "emoji": "📦",
+      "budget_buddy_category": "miscellaneous"
+    }
+  },
+  "known_subscriptions": {
+    "netflix": {
+      "name": "Netflix",
+      "patterns": ["NETFLIX", "NFLX"],
+      "category": "streaming",
+      "cancel_url": "https://www.netflix.com/cancelplan",
+      "cancel_steps": "Account → Cancel Membership → Finish Cancellation",
+      "gotchas": "Will offer discounted plan. Viewing history saved 10 months."
+    },
+    "spotify": {
+      "name": "Spotify",
+      "patterns": ["SPOTIFY"],
+      "category": "music",
+      "cancel_url": "https://www.spotify.com/account/subscription/",
+      "cancel_steps": "Account → Subscription → Change plan → Cancel Premium",
+      "gotchas": "Keeps your playlists. Reverts to free tier with ads."
+    },
+    "hulu": {
+      "name": "Hulu",
+      "patterns": ["HULU"],
+      "category": "streaming",
+      "cancel_url": "https://secure.hulu.com/account",
+      "cancel_steps": "Account → Cancel → Continue to Cancel → Yes Cancel",
+      "gotchas": "May offer pause instead of cancel. Access until period ends."
+    },
+    "disney_plus": {
+      "name": "Disney+",
+      "patterns": ["DISNEY+", "DISNEYPLUS", "DIS*DISNEY"],
+      "category": "streaming",
+      "cancel_url": "https://www.disneyplus.com/account",
+      "cancel_steps": "Account → Subscription → Cancel Subscription",
+      "gotchas": "Check if part of a bundle (Hulu/ESPN+) first."
+    },
+    "hbo_max": {
+      "name": "Max (HBO)",
+      "patterns": ["HBO", "MAX.COM", "WARNERMEDIA"],
+      "category": "streaming",
+      "cancel_url": "https://www.max.com/account",
+      "cancel_steps": "Settings → Subscription → Manage → Cancel Subscription",
+      "gotchas": "May be bundled through cable provider — check there first."
+    },
+    "apple": {
+      "name": "Apple (iCloud/Apple One)",
+      "patterns": ["APPLE.COM/BILL", "APPLE.COM"],
+      "category": "cloud_storage",
+      "cancel_url": "https://support.apple.com/en-us/HT202039",
+      "cancel_steps": "Settings → [your name] → Subscriptions → select sub → Cancel",
+      "gotchas": "Apple.com/bill covers iCloud, Apple One, Apple TV+, Music, Arcade — check which."
+    },
+    "amazon_prime": {
+      "name": "Amazon Prime",
+      "patterns": ["AMZN PRIME", "AMAZON PRIME", "AMZN MKTP"],
+      "category": "streaming",
+      "cancel_url": "https://www.amazon.com/mc/pipelines/cancellation",
+      "cancel_steps": "Account → Prime Membership → Manage → End Membership",
+      "gotchas": "Offers partial refund if unused. Losing free shipping + Prime Video."
+    },
+    "youtube_premium": {
+      "name": "YouTube Premium",
+      "patterns": ["GOOGLE *YOUTUBE", "YOUTUBE PREMIUM"],
+      "category": "streaming",
+      "cancel_url": "https://www.youtube.com/paid_memberships",
+      "cancel_steps": "Settings → Purchases and memberships → Manage → Deactivate",
+      "gotchas": "Also cancels YouTube Music if bundled. Family plan cancels for everyone."
+    },
+    "chatgpt": {
+      "name": "ChatGPT Plus",
+      "patterns": ["OPENAI", "CHATGPT"],
+      "category": "ai_tools",
+      "cancel_url": "https://chat.openai.com/#settings/subscription",
+      "cancel_steps": "Settings → Subscription → Manage → Cancel plan",
+      "gotchas": "Reverts to free tier. Conversation history preserved."
+    },
+    "claude": {
+      "name": "Claude Pro",
+      "patterns": ["CLAUDE.AI", "ANTHROPIC"],
+      "category": "ai_tools",
+      "cancel_url": "https://claude.ai/settings/billing",
+      "cancel_steps": "Settings → Billing → Cancel subscription",
+      "gotchas": "Reverts to free tier with limited usage."
+    },
+    "microsoft_365": {
+      "name": "Microsoft 365",
+      "patterns": ["MSFT*MICROSOFT", "MICROSOFT*", "MICROSOFT 365"],
+      "category": "productivity",
+      "cancel_url": "https://account.microsoft.com/services/",
+      "cancel_steps": "Microsoft Account → Services & subscriptions → Cancel",
+      "gotchas": "Lose 1TB OneDrive storage. Download files first. Office apps revert to read-only."
+    },
+    "adobe_cc": {
+      "name": "Adobe Creative Cloud",
+      "patterns": ["ADOBE", "ADOBE *CREATIVE"],
+      "category": "design",
+      "cancel_url": "https://account.adobe.com/plans",
+      "cancel_steps": "Plans → Manage Plan → Cancel Plan → Choose reason → Confirm",
+      "gotchas": "Annual plans have 50% early termination fee on remaining months."
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "patterns": ["DROPBOX"],
+      "category": "cloud_storage",
+      "cancel_url": "https://www.dropbox.com/account/plan",
+      "cancel_steps": "Settings → Plan → Downgrade → Confirm",
+      "gotchas": "Files over 2GB free limit may become inaccessible. Download first."
+    },
+    "github": {
+      "name": "GitHub",
+      "patterns": ["GITHUB"],
+      "category": "productivity",
+      "cancel_url": "https://github.com/settings/billing",
+      "cancel_steps": "Settings → Billing → Plans → Downgrade",
+      "gotchas": "Private repos become limited. Actions minutes reduced."
+    },
+    "nordvpn": {
+      "name": "NordVPN",
+      "patterns": ["NORDVPN", "NORD VPN"],
+      "category": "vpn",
+      "cancel_url": "https://my.nordaccount.com/dashboard/nordvpn/",
+      "cancel_steps": "Dashboard → NordVPN → Auto-renewal → Cancel",
+      "gotchas": "30-day money-back guarantee on annual plans. Access continues until period ends."
+    },
+    "notion": {
+      "name": "Notion",
+      "patterns": ["NOTION"],
+      "category": "productivity",
+      "cancel_url": "https://www.notion.so/my-account",
+      "cancel_steps": "Settings → Plans → Downgrade to Free",
+      "gotchas": "Free tier has block limits. Export your workspace first if large."
+    },
+    "figma": {
+      "name": "Figma",
+      "patterns": ["FIGMA"],
+      "category": "design",
+      "cancel_url": "https://www.figma.com/settings",
+      "cancel_steps": "Settings → Account → Plan → Downgrade to Starter",
+      "gotchas": "Team files become view-only on free tier."
+    },
+    "zoom": {
+      "name": "Zoom",
+      "patterns": ["ZOOM.US", "ZOOM VIDEO"],
+      "category": "productivity",
+      "cancel_url": "https://zoom.us/account",
+      "cancel_steps": "Account → Plan Management → Cancel Plan",
+      "gotchas": "Reverts to 40-min meeting limit on free tier."
+    },
+    "duolingo": {
+      "name": "Duolingo Plus",
+      "patterns": ["DUOLINGO"],
+      "category": "education",
+      "cancel_url": "https://www.duolingo.com/settings/subscription",
+      "cancel_steps": "Settings → Subscription → Cancel",
+      "gotchas": "Streak and progress preserved on free tier."
+    },
+    "grammarly": {
+      "name": "Grammarly",
+      "patterns": ["GRAMMARLY"],
+      "category": "productivity",
+      "cancel_url": "https://account.grammarly.com/subscription",
+      "cancel_steps": "Account → Subscription → Cancel Subscription",
+      "gotchas": "Annual plan: no partial refunds. Free tier still catches basic errors."
+    },
+    "headspace": {
+      "name": "Headspace",
+      "patterns": ["HEADSPACE"],
+      "category": "health",
+      "cancel_url": "https://www.headspace.com/settings/subscription",
+      "cancel_steps": "Settings → Subscription → Cancel",
+      "gotchas": "Some free content remains. Cancel through App Store/Play Store if subscribed there."
+    },
+    "calm": {
+      "name": "Calm",
+      "patterns": ["CALM.COM", "CALM APP"],
+      "category": "health",
+      "cancel_url": "https://www.calm.com/account",
+      "cancel_steps": "Account → Subscription → Cancel Renewal",
+      "gotchas": "Lifetime deal sometimes available. Check if employer offers free access."
+    },
+    "paramount_plus": {
+      "name": "Paramount+",
+      "patterns": ["PARAMOUNT"],
+      "category": "streaming",
+      "cancel_url": "https://www.paramountplus.com/account/",
+      "cancel_steps": "Account → Subscription → Cancel",
+      "gotchas": "Sometimes bundled with Walmart+ — check there first."
+    },
+    "peacock": {
+      "name": "Peacock",
+      "patterns": ["PEACOCK", "PEACCK"],
+      "category": "streaming",
+      "cancel_url": "https://www.peacocktv.com/account/subscription",
+      "cancel_steps": "Account → Plan Details → Cancel Plan",
+      "gotchas": "Some content free with ads on free tier."
+    },
+    "crunchyroll": {
+      "name": "Crunchyroll",
+      "patterns": ["CRUNCHYROLL"],
+      "category": "streaming",
+      "cancel_url": "https://www.crunchyroll.com/account/subscription",
+      "cancel_steps": "Account → Premium Membership → Cancel",
+      "gotchas": "Free tier has ads but still has content access."
+    },
+    "linkedin_premium": {
+      "name": "LinkedIn Premium",
+      "patterns": ["LINKEDIN"],
+      "category": "productivity",
+      "cancel_url": "https://www.linkedin.com/mypreferences/d/manage-premium",
+      "cancel_steps": "Settings → Account → Subscriptions → Cancel premium",
+      "gotchas": "InMail credits expire. Profile badge removed. Will offer discount to stay."
+    },
+    "audible": {
+      "name": "Audible",
+      "patterns": ["AUDIBLE"],
+      "category": "education",
+      "cancel_url": "https://www.audible.com/account/overview",
+      "cancel_steps": "Account Details → Cancel membership → Continue",
+      "gotchas": "Keep purchased audiobooks forever. Unused credits lost. Will offer 3 months at $7.95."
+    },
+    "siriusxm": {
+      "name": "SiriusXM",
+      "patterns": ["SIRIUSXM", "SXM*"],
+      "category": "music",
+      "cancel_url": "https://www.siriusxm.com/manage-subscription",
+      "cancel_steps": "Must call 1-866-635-2349 or chat — no self-service cancel online",
+      "gotchas": "Notoriously hard to cancel. Be firm. Say 'cancel' not 'thinking about it'. They will offer discounts."
+    },
+    "planet_fitness": {
+      "name": "Planet Fitness",
+      "patterns": ["PLANET FITNESS", "PLT FTNS"],
+      "category": "fitness",
+      "cancel_url": null,
+      "cancel_steps": "Must cancel in person at home club OR send certified letter. Cannot cancel online or by phone.",
+      "gotchas": "Requires 30-day notice. Annual fee may still apply. In-person or certified mail only."
+    },
+    "peloton": {
+      "name": "Peloton",
+      "patterns": ["PELOTON"],
+      "category": "fitness",
+      "cancel_url": "https://members.onepeloton.com/settings/subscription",
+      "cancel_steps": "Settings → Subscriptions → Cancel Membership",
+      "gotchas": "App membership vs. All-Access membership are different. Hardware financing continues regardless."
+    },
+    "canva": {
+      "name": "Canva Pro",
+      "patterns": ["CANVA"],
+      "category": "design",
+      "cancel_url": "https://www.canva.com/settings/billing-and-plans",
+      "cancel_steps": "Settings → Billing & plans → Cancel plan",
+      "gotchas": "Lose access to premium templates and Brand Kit. Download designs first."
+    }
+  },
+  "overlap_groups": {
+    "streaming_video": ["netflix", "hulu", "disney_plus", "hbo_max", "amazon_prime", "youtube_premium", "paramount_plus", "peacock", "crunchyroll"],
+    "streaming_music": ["spotify", "youtube_premium", "siriusxm"],
+    "cloud_storage": ["apple", "dropbox", "microsoft_365"],
+    "ai_tools": ["chatgpt", "claude"],
+    "vpn": ["nordvpn"],
+    "password_manager": [],
+    "fitness": ["planet_fitness", "peloton"],
+    "meditation": ["headspace", "calm"],
+    "design": ["figma", "adobe_cc", "canva"],
+    "learning": ["duolingo"],
+    "productivity": ["notion", "microsoft_365", "grammarly"]
+  },
+  "merchant_prefixes_to_strip": [
+    "TST*", "SQ *", "SQ*", "GOOGLE *", "GOOGLE*", "MSFT*", "DIS*",
+    "AMZN ", "APPLE.COM/", "SXM*", "PEACCK*", "CKO*", "SP *",
+    "PP*", "PAYPAL *", "FS *", "WPY*", "IN *", "APL*", "BN*"
+  ]
+}

@@ -1,0 +1,3 @@
+# Iday Agent Cirebon Project
+
+This is a specialized digital agent developed for the Billions Network ecosystem. The primary goal of this agent is to facilitate community engagement and manage decentralized tasks effectively. It is designed to run on mobile environments like Termux to ensure accessibility for users in the Cirebon region and beyond. We aim to provide a stable and reliable node for the network.

@@ -1,0 +1,9 @@
+{
+  "ollamaUrl": "http://localhost:11434",
+  "model": "bge-m3",
+  "memoryDir": "../memory",
+  "vectorDir": "../memory/vector",
+  "memoryFile": "../MEMORY.md",
+  "distillDays": 7,
+  "maxTokens": 500
+}

@@ -1,0 +1,20 @@
+{
+  "news": [],
+  "schema": {
+    "headline": "string",
+    "source": "string",
+    "url": "string",
+    "published": "ISO8601",
+    "summary": "string",
+    "query_topic": "string",
+    "sentiment": "bullish | bearish | neutral | risk_event",
+    "event_type": "macroeconomic | geopolitical | corporate | commodity | currency | general",
+    "impact_level": "low | medium | high | market_moving",
+    "time_sensitivity": "immediate | short_term | long_term",
+    "sentiment_score": "float -1.0 to +1.0",
+    "affected_assets": ["ticker symbols"],
+    "agent_reaction": "string — what the agent did",
+    "market_reaction": "string — observed outcome",
+    "trade_result": "profit | loss | none"
+  }
+}

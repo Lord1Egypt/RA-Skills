@@ -1,0 +1,53 @@
+# Anomalib Industrial Anomaly Detector - Dependencies
+# Python >= 3.9 required
+
+# Core library
+anomalib>=2.3.0
+
+# Deep Learning Framework
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Image Processing
+opencv-python>=4.8.0
+pillow>=10.0.0
+scikit-image>=0.21.0
+imagecodecs>=2023.1.23
+
+# Numerical Computing
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# Model Components
+timm>=0.9.0
+kornia>=0.7.0
+einops>=0.7.0
+
+# Configuration & Utilities
+omegaconf>=2.3.0
+hydra-core>=1.3.0
+jsonargparse>=4.27.0
+rich>=13.0.0
+matplotlib>=3.7.0
+pandas>=2.0.0
+
+# Metrics
+torchmetrics>=1.0.0
+
+# Optional: CPU optimization
+# Already included in base install
+
+# Optional: CUDA 11.8 support
+# pip install "anomalib[cu118]"
+
+# Optional: CUDA 12.1 support  
+# pip install "anomalib[cu121]"
+
+# Optional: CUDA 13.0 support
+# pip install "anomalib[cu130]"
+
+# Optional: OpenVINO deployment
+# pip install "anomalib[openvino]"
+
+# Optional: Full installation
+# pip install "anomalib[full]"

@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": "todo_001",
+      "description": "Example: Follow up on project X",
+      "created_at": "2026-03-21T18:00:00+08:00",
+      "follow_up_time": "2026-03-22T10:00:00+08:00",
+      "priority": "high",
+      "status": "pending",
+      "context": "Example context for this todo item",
+      "reminded": false,
+      "completed_at": null,
+      "cancelled_at": null
+    }
+  ]
+}

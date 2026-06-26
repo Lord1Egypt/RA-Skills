@@ -1,0 +1,142 @@
+{
+  "name": "xiaohongshu-post",
+  "description": "在小红书创作者平台发布图文笔记，支持上传图片、填写标题和正文内容，并完成发布操作。",
+  "original_query": "帮我在小红书发布一篇图文笔记，标题为：春日旅行攻略，正文内容为：推荐三个小众旅行目的地，图片上传本地文件",
+  "original_res": "成功在小红书发布图文笔记，包括上传图片、填写标题和正文内容，并完成发布操作。返回笔记链接和发布状态。",
+  "parameters": [
+    {
+      "name": "image_path",
+      "type": "string",
+      "required": true,
+      "example": "file:///path/to/image.jpg",
+      "description": "要上传的图片路径（支持本地文件或URL）"
+    },
+    {
+      "name": "note_title",
+      "type": "string",
+      "required": true,
+      "example": "春日旅行攻略",
+      "description": "笔记标题内容，最多20字符"
+    },
+    {
+      "name": "note_content",
+      "type": "string",
+      "required": true,
+      "example": "推荐三个小众旅行目的地",
+      "description": "笔记正文内容，最多1000字符"
+    }
+  ],
+  "platform": "小红书",
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "chrome_navigate",
+      "tool_params": {
+        "url": "https://creator.xiaohongshu.com/publish/publish?source=official&target=image"
+      },
+      "description": "导航到小红书创作者发布页面，直接进入图文笔记发布界面",
+      "is_final_result": false
+    },
+    {
+      "step": 2,
+      "tool_name": "task_tool",
+      "tool_params": {
+        "description": "查找图片上传按钮",
+        "prompt": "当前页面：小红书创作者发布页面，页面已加载完成。\n\n执行任务：\n1. 调用 chrome_accessibility_snapshot() 获取页面元素树\n2. 分析元素树找到图片上传按钮或文件输入框（通常是button role或input type=file）\n3. 返回JSON格式：{\"uid\": \"元素uid\", \"selector\": \"input[type='file']\"}\n\n严格要求：\n- 只返回目标元素信息，不要返回完整元素树\n- 必须包含uid和selector字段",
+        "subagent_type": "general-purpose",
+        "model": "sonnet"
+      },
+      "purpose": "selector_finding",
+      "output": {
+        "upload_input_selector": "图片上传input元素的CSS选择器"
+      },
+      "description": "使用chrome_accessibility_snapshot查找图片上传按钮，返回uid和selector",
+      "is_final_result": false
+    },
+    {
+      "step": 3,
+      "tool_name": "chrome_input_upload_file",
+      "tool_params": {
+        "inputSelector": "{step_2.upload_input_selector}",
+        "sourceType": "url",
+        "url": "{image_path}",
+        "timeout": 10000
+      },
+      "description": "上传指定的图片文件到小红书发布页面",
+      "is_final_result": false
+    },
+    {
+      "step": 4,
+      "tool_name": "task_tool",
+      "tool_params": {
+        "description": "查找标题和正文输入框",
+        "prompt": "当前页面：小红书发布页面，图片已上传，页面已加载完成。\n\n执行任务：\n1. 调用 chrome_accessibility_snapshot() 获取页面元素树\n2. 分析元素树找到标题输入框（通常是input或textbox role）\n3. 找到正文编辑器（通常是contenteditable的div，textbox role）\n4. 返回JSON格式：{\"titleUid\": \"标题uid\", \"titleSelector\": \"标题选择器\", \"contentUid\": \"正文uid\", \"contentSelector\": \"正文选择器\"}\n\n严格要求：\n- 只返回目标元素信息，不要返回完整元素树\n- 每个元素都要包含uid和selector字段",
+        "subagent_type": "general-purpose",
+        "model": "sonnet"
+      },
+      "purpose": "selector_finding",
+      "output": {
+        "title_selector": "标题输入框的CSS选择器",
+        "content_selector": "正文编辑器的CSS选择器"
+      },
+      "description": "使用chrome_accessibility_snapshot查找标题和正文输入框",
+      "is_final_result": false
+    },
+    {
+      "step": 5,
+      "tool_name": "chrome_fill_or_select",
+      "tool_params": {
+        "selector": "{step_4.title_selector}",
+        "value": "{note_title}"
+      },
+      "description": "在标题输入框中填写笔记标题",
+      "is_final_result": false
+    },
+    {
+      "step": 6,
+      "tool_name": "chrome_fill_or_select",
+      "tool_params": {
+        "selector": "{step_4.content_selector}",
+        "value": "{note_content}"
+      },
+      "description": "在正文编辑区域填写笔记内容",
+      "is_final_result": false
+    },
+    {
+      "step": 7,
+      "tool_name": "task_tool",
+      "tool_params": {
+        "description": "查找发布按钮",
+        "prompt": "当前页面：小红书发布页面，已填写所有内容，页面已加载完成。\n\n执行任务：\n1. 调用 chrome_accessibility_snapshot() 获取页面元素树\n2. 分析元素树找到发布按钮（通常是button role，文本包含\"发布\"）\n3. 返回JSON格式：{\"uid\": \"按钮uid\", \"selector\": \"button.publish-btn\"}\n\n严格要求：\n- 只返回目标元素信息，不要返回完整元素树\n- 必须包含uid字段，用于后续chrome_click_element(uid=\"...\")",
+        "subagent_type": "general-purpose",
+        "model": "sonnet"
+      },
+      "purpose": "selector_finding",
+      "output": {
+        "publish_button_uid": "发布按钮的uid，由chrome_accessibility_snapshot返回"
+      },
+      "description": "使用chrome_accessibility_snapshot查找发布按钮",
+      "is_final_result": false
+    },
+    {
+      "step": 8,
+      "tool_name": "chrome_click_element",
+      "tool_params": {
+        "uid": "{step_7.publish_button_uid}"
+      },
+      "description": "点击发布按钮完成笔记发布",
+      "is_final_result": false
+    },
+    {
+      "step": 9,
+      "tool_name": "Skill",
+      "tool_params": {
+        "skill": "web-data-extractor",
+        "args": "提取当前页面的发布结果信息"
+      },
+      "purpose": "get_html_info",
+      "description": "收集发布结果数据",
+      "is_final_result": true
+    }
+  ]
+}

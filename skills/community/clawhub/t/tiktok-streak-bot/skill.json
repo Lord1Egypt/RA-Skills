@@ -1,0 +1,18 @@
+{
+  "name": "tiktok-streak",
+  "version": "0.1.0",
+  "description": "Browser-automated TikTok streak messaging skill using Playwright. Sends daily messages to configured usernames with state tracking, retry control, and optional content discovery via hashtags or keywords.",
+  "entry": "scripts/main.py",
+  "runtime": "python3.11",
+  "permissions": ["filesystem.read", "filesystem.write", "network.http"],
+  "schedule": {
+    "type": "cron",
+    "expression": "0 0 * * *"
+  },
+  "inputs": {
+    "config_path": "data/config.json",
+    "usernames_path": "data/usernames.json",
+    "cookies_path": "data/cookies.json",
+    "state_path": "data/state.json"
+  }
+}

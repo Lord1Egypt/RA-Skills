@@ -1,0 +1,6 @@
+# Auto-Claw 依赖
+
+requests>=2.31.0
+python-dotenv>=1.0.0
+hvac>=1.1.0  # HashiCorp Vault客户端
+pydantic>=2.0.0

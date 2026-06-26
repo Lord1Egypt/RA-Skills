@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Storage Tos"
-description: "Object storage operations for Volcengine TOS. Use when users need upload/download/sync, bucket policy checks, signed URLs, or storage troubleshooting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-storage-tos"
-sourceUrl: "https://clawhub.ai/skills/volcengine-storage-tos"
+name: volcengine-storage-tos
+description: Object storage operations for Volcengine TOS. Use when users need upload/download/sync, bucket policy checks, signed URLs, or storage troubleshooting.
 ---
 
-# Volcengine Storage Tos
+# volcengine-storage-tos
 
-> Object storage operations for Volcengine TOS. Use when users need upload/download/sync, bucket policy checks, signed URLs, or storage troubleshooting.
+Manage TOS buckets and objects with explicit path mapping and permission verification.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-storage-tos`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-storage-tos](https://clawhub.ai/skills/volcengine-storage-tos)
+## Execution Checklist
 
-## Overview
+1. Confirm bucket, region, and object paths.
+2. Validate auth and bucket policy.
+3. Execute upload/download/sync task.
+4. Return result manifest with object keys and URLs.
 
+## Safety Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-storage-tos
-```
+- Avoid destructive deletes without explicit confirmation inputs.
+- Preserve metadata and content type on uploads.
+- Provide checksum or size verification where possible.
+
+## References
+
+- `references/sources.md`

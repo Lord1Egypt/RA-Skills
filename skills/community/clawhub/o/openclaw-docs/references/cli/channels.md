@@ -1,0 +1,103 @@
+# channels
+
+Source: https://docs.openclaw.ai/cli/channels
+
+[Skip to main content](#content-area)OpenClaw home pageEnglishSearch...⌘KSearch...NavigationCLI commandschannelsGet startedInstallChannelsAgentsToolsModelsPlatformsGateway & OpsReferenceHelpCLI commands
+CLI ReferenceagentagentsapprovalsbrowserchannelsconfigurecrondashboarddirectorydnsdocsdoctorgatewayhealthhookslogsmemorymessagemodelsnodesonboardpairingpluginsresetSandbox CLIsecuritysessionssetupskillsstatussystemtuiuninstallupdatevoicecall
+RPC and API
+RPC AdaptersDevice Model Database
+Templates
+Default AGENTS.mdAGENTS.md TemplateBOOT.md TemplateBOOTSTRAP.md TemplateHEARTBEAT.md TemplateIDENTITYSOUL.md TemplateTOOLS.md TemplateUSER
+Technical reference
+Wizard ReferenceToken Use and CostsgrammY
+Concept internals
+TypeBoxMarkdown FormattingTyping IndicatorsUsage TrackingTimezones
+Project
+Credits
+Release notes
+Release ChecklistTests
+Experiments
+Onboarding and Config ProtocolCron Add HardeningTelegram Allowlist HardeningWorkspace Memory ResearchModel Config Exploration
+On this page
+- [openclaw channels](#openclaw-channels)
+- [Common commands](#common-commands)
+- [Add / remove accounts](#add-%2F-remove-accounts)
+- [Login / logout (interactive)](#login-%2F-logout-interactive)
+- [Troubleshooting](#troubleshooting)
+- [Capabilities probe](#capabilities-probe)
+- [Resolve names to IDs](#resolve-names-to-ids)
+
+​`openclaw channels`
+Manage chat channel accounts and their runtime status on the Gateway.
+Related docs:
+
+- Channel guides: [Channels](/channels/index)
+
+- Gateway configuration: [Configuration](/gateway/configuration)
+
+​Common commands
+Copy```
+openclaw channels list
+openclaw channels status
+openclaw channels capabilities
+openclaw channels capabilities --channel discord --target channel:123
+openclaw channels resolve --channel slack "#general" "@jane"
+openclaw channels logs --channel all
+
+```
+
+​Add / remove accounts
+Copy```
+openclaw channels add --channel telegram --token <bot-token>
+openclaw channels remove --channel telegram --delete
+
+```
+
+Tip: `openclaw channels add --help` shows per-channel flags (token, app token, signal-cli paths, etc).
+​Login / logout (interactive)
+Copy```
+openclaw channels login --channel whatsapp
+openclaw channels logout --channel whatsapp
+
+```
+
+​Troubleshooting
+
+- Run `openclaw status --deep` for a broad probe.
+
+- Use `openclaw doctor` for guided fixes.
+
+- `openclaw channels list` prints `Claude: HTTP 403 ... user:profile` → usage snapshot needs the `user:profile` scope. Use `--no-usage`, or provide a claude.ai session key (`CLAUDE_WEB_SESSION_KEY` / `CLAUDE_WEB_COOKIE`), or re-auth via Claude Code CLI.
+
+​Capabilities probe
+Fetch provider capability hints (intents/scopes where available) plus static feature support:
+Copy```
+openclaw channels capabilities
+openclaw channels capabilities --channel discord --target channel:123
+
+```
+
+Notes:
+
+- `--channel` is optional; omit it to list every channel (including extensions).
+
+- `--target` accepts `channel:<id>` or a raw numeric channel id and only applies to Discord.
+
+- Probes are provider-specific: Discord intents + optional channel permissions; Slack bot + user scopes; Telegram bot flags + webhook; Signal daemon version; MS Teams app token + Graph roles/scopes (annotated where known). Channels without probes report `Probe: unavailable`.
+
+​Resolve names to IDs
+Resolve channel/user names to IDs using the provider directory:
+Copy```
+openclaw channels resolve --channel slack "#general" "@jane"
+openclaw channels resolve --channel discord "My Server/#support" "@someone"
+openclaw channels resolve --channel matrix "Project Room"
+
+```
+
+Notes:
+
+- Use `--kind user|group|auto` to force the target type.
+
+- Resolution prefers active matches when multiple entries share the same name.
+
+browserconfigure⌘I

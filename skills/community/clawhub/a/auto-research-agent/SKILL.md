@@ -1,35 +1,175 @@
 ---
-name: "Auto Research Agent"
-description: "自主AI研究框架 - 基于Karpathy AutoRS理念。AI Agent自主实验→训练→评估→迭代→保留最优。固定时间预算，可比较结果，持续优化。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, autonomous, karpathy, machine-learning, research, training]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/auto-research-agent"
-sourceUrl: "https://clawhub.ai/skills/auto-research-agent"
+name: autonomous-research
+version: 1.0.0
+description: 自主AI研究框架 - 基于Karpathy AutoRS理念。AI Agent自主实验→训练→评估→迭代→保留最优。固定时间预算，可比较结果，持续优化。
+keywords: [autonomous-research,autoRS,AI研究,自动实验,自主学习,模型优化,训练迭代]
 ---
 
-# Auto Research Agent
+# Autonomous Research Framework
+自主AI研究框架
 
-> 自主AI研究框架 - 基于Karpathy AutoRS理念。AI Agent自主实验→训练→评估→迭代→保留最优。固定时间预算，可比较结果，持续优化。
+**灵感来源：** Karpathy AutoRS  
+**核心思想：** 给AI一个真实的研究环境，让它自主实验、评估、迭代
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/auto-research-agent`
-- **Source URL:** [https://clawhub.ai/skills/auto-research-agent](https://clawhub.ai/skills/auto-research-agent)
+---
 
-## Overview
+## 一、核心设计
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/auto-research-agent
+### 研究循环
 ```
+实验设计 → 代码修改 → 训练运行 → 评估指标 → 结果分析
+     ↑                                              ↓
+     ←←← 保留/丢弃 → 更新上下文 → 继续下一轮 ←←←
+```
+
+### 三文件架构
+| 文件 | 作用 | 修改权限 |
+|------|------|---------|
+| `prepare.py` | 数据准备、工具函数 | ❌ 不修改 |
+| `train.py` | 模型、优化器、训练循环 | ✅ Agent修改 |
+| `program.md` | Agent指令、实验目标 | ✅ 人类修改 |
+
+### 固定预算
+- **时间预算：** 每次实验固定时长（避免无限训练）
+- **评估指标：** 统一指标对比（val_loss, val_bpb 等）
+- **可比较性：** 相同预算下的结果可直接对比
+
+---
+
+## 二、使用方式
+
+### 启动自主研究
+```
+请按照 program.md 的指令开始新一轮实验。
+先查看当前 train.py 的状态，然后进行修改并运行。
+```
+
+### 研究循环
+1. **读取 program.md** — 了解当前研究目标
+2. **分析 train.py** — 理解当前实现
+3. **设计实验** — 提出假设、修改方案
+4. **运行训练** — 固定时间预算
+5. **评估结果** — 与基线对比
+6. **决定去留** — 保留提升、丢弃退步
+7. **记录学到的** — 更新记忆/日志
+
+### 每次实验记录
+```markdown
+## 实验 #[N] - [日期时间]
+
+### 假设
+[这次要改什么，为什么]
+
+### 修改
+[train.py 的改动点]
+
+### 结果
+- 评估指标: [数值]
+- vs 基线: [+/-%]
+
+### 决定
+[保留/丢弃] - [原因]
+```
+
+---
+
+## 三、program.md 模板
+
+```markdown
+# Research Program
+
+## 基线状态
+- 模型: [描述]
+- 优化器: [描述]  
+- 评估指标: val_bpb = [数值]
+
+## 研究目标
+[当前要解决的问题/优化方向]
+
+## 可修改范围
+- 模型架构（层数、hidden维度、attention头数）
+- 优化器（学习率、beta、权重衰减）
+- 训练参数（batch_size、seq_len）
+- 正则化（dropout、weight_decay）
+
+## 约束
+- 训练时间: 5分钟固定
+- 单GPU
+- 只修改 train.py
+
+## 当前重点
+[Agent根据历史结果自行判断下一个实验方向]
+```
+
+---
+
+## 四、评估指标指南
+
+| 指标 | 说明 | 越低/高越好？ |
+|------|------|-------------|
+| val_bpb | 验证集每字节比特数 | 越低越好 |
+| val_loss | 验证损失 | 越低越好 |
+| test_acc | 测试准确率 | 越高越好 |
+| perplexity | 语言模型困惑度 | 越低越好 |
+
+---
+
+## 五、实验策略
+
+### 探索策略
+1. **随机扰动** — 小随机变化，找到局部最优
+2. **梯度方向** — 根据失败经验调整
+3. **消融实验** — 去掉某部分看影响
+4. **历史回顾** — 查看过去100次实验的模式
+
+### 避免重复
+- 记录已尝试的（学习率、架构组合等）
+- 不重复已证明无效的实验
+- 相似实验至少改一个关键变量
+
+---
+
+## 六、日志格式
+
+### 实验日志 (experiments.md)
+```markdown
+# 实验日志
+
+## 实验记录
+
+| # | 时间 | 修改 | 指标 | vs基线 | 决定 |
+|---|------|------|------|--------|------|
+| 1 | 2026-04-17 | 初始基线 | 1.234 | - | 基线 |
+| 2 | 2026-04-17 | 学习率 1e-3→5e-4 | 1.189 | -3.6% | ✅保留 |
+| 3 | 2026-04-17 | 层数 8→12 | 1.201 | -2.7% | ❌丢弃 |
+
+## 关键发现
+- 学习率降低有效
+- 层数增加不一定好
+```
+
+---
+
+## 七、快速开始
+
+1. **查看 program.md** — 了解研究目标
+2. **查看 train.py** — 理解当前实现
+3. **设计第一个实验** — 改什么、为什么
+4. **运行训练** — `python train.py`
+5. **记录结果** — 更新实验日志
+6. **决定下一步** — 继续或回退
+
+---
+
+## 八、Agent 指令
+
+当用户要求开始自主研究时：
+1. 先读取 `program.md` 了解目标
+2. 分析 `train.py` 当前状态
+3. 提出修改假设
+4. 执行并记录
+5. 持续迭代
+
+---
+
+*基于 Karpathy AutoRS 理念构建 | OpenClaw Skill*

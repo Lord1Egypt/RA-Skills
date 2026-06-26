@@ -1,0 +1,13 @@
+Commercial Invoice
+Seller Name:,{{seller_name}}
+Seller Address:,{{seller_address}}
+Buyer Name:,{{buyer_name}}
+Buyer Address:,{{buyer_address}}
+Invoice No.:,{{invoice_no}}
+Date:,{{invoice_date}}
+Payment Terms:,{{payment_terms}}
+Incoterms:,{{incoterms}}
+
+Item Description,Quantity,Unit Price (USD),Total Price (USD)
+{{product_description}},{{quantity}},{{unit_price}},{{total_price}}
+Total Amount (USD):,{{total_amount_usd}}

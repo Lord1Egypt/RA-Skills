@@ -1,35 +1,130 @@
 ---
-name: "Windows System Monitor"
-description: "Windows 系统状态监控 - 检查 CPU、内存、磁盘、网络、进程等运行状态，发现问题及时通知"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/windows-system-monitor"
-sourceUrl: "https://clawhub.ai/skills/windows-system-monitor"
+name: windows-system-monitor
+description: Windows 系统状态监控 - 检查 CPU、内存、磁盘、网络、进程等运行状态，发现问题及时通知
+argument-hint: "[check|status|monitor] [--full|--quick|--report]"
+user-invocable: true
+disable-model-invocation: false
 ---
 
-# Windows System Monitor
+# Windows 系统监控技能
 
-> Windows 系统状态监控 - 检查 CPU、内存、磁盘、网络、进程等运行状态，发现问题及时通知
+**版本:** 1.0  
+**创建:** 2026-03-10  
+**作者:** SuperMike
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/windows-system-monitor`
-- **Source URL:** [https://clawhub.ai/skills/windows-system-monitor](https://clawhub.ai/skills/windows-system-monitor)
+---
 
-## Overview
+## 功能说明
 
+监控 Windows 系统运行状态，包括：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/windows-system-monitor
+1. **CPU 状态** - 使用率、核心数、频率
+2. **内存状态** - 使用率、可用内存
+3. **磁盘状态** - 各分区空间使用情况
+4. **网络状态** - 连接数、流量统计
+5. **进程监控** - 高占用进程检测
+6. **系统日志** - Windows 事件日志检查
+
+**触发语句:**
+- "检查系统状态"
+- "Windows 运行正常吗"
+- "监控系统性能"
+- "检查磁盘空间"
+
+---
+
+## 告警阈值
+
+| 指标 | 警告 | 严重 |
+|------|------|------|
+| CPU 使用率 | >85% | >95% |
+| 内存使用率 | >90% | >95% |
+| 磁盘使用率 | >90% | >95% |
+| CLOSE_WAIT 连接 | >50 | >100 |
+| 进程 CPU 100% | 持续 100% | - |
+
+---
+
+## 通知策略
+
+### 🔴 严重问题（立即飞书通知）
+- CPU/内存/磁盘使用率>95%
+- 系统关键错误
+- 磁盘空间严重不足
+
+### 🟡 警告信息（汇总通知）
+- CPU/内存/磁盘使用率>90%
+- 异常网络连接
+- 进程占用异常
+
+### ✅ 正常状态
+- 不主动通知
+- 定期检查记录日志
+
+---
+
+## 使用方式
+
+### 对话触发
 ```
+检查系统状态
+Windows 运行正常吗
+监控磁盘空间
+```
+
+### 命令行
+```bash
+# 完整检查
+python tools/windows_system_monitor.py
+
+# 查看报告
+cat reports/windows_system_check.json
+```
+
+---
+
+## 检查频率
+
+### 每日检查（Heartbeat）
+- 磁盘空间
+- 内存使用率
+- 系统运行时间
+
+### 每周检查
+- 完整系统检查
+- 进程分析
+- 网络连接检查
+
+### 每月检查
+- 系统日志分析
+- 性能趋势分析
+- 清理建议
+
+---
+
+## 安全说明
+
+**重要原则：**
+- ✅ 仅监控，不修改系统设置
+- ✅ 仅通知，不自动执行修复
+- ✅ 所有操作记录日志
+- ❌ 不修改注册表
+- ❌ 不修改系统配置
+- ❌ 不强制终止进程
+
+**通知方式：**
+- 飞书消息（主要）
+- 弹窗通知（紧急）
+- 日志记录（所有）
+
+---
+
+## 相关文件
+
+- 监控工具：`tools/windows_system_monitor.py`
+- 检查报告：`reports/windows_system_check.json`
+- 技能文档：`skills/windows-system-monitor/SKILL.md`
+
+---
+
+_本技能仅用于监控系统状态，不会修改任何系统设置。_

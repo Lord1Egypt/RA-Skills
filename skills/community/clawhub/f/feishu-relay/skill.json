@@ -1,0 +1,61 @@
+{
+  "name": "feishu-relay",
+  "version": "3.1.0",
+  "description": "Minimal Feishu (Lark) notification bridge. Core only: send messages, queue, retry. No system modifications by default. Safe mode.",
+  "author": "crayfish-ai",
+  "license": "MIT",
+  "homepage": "https://github.com/crayfish-ai/feishu-relay",
+  "issues": "https://github.com/crayfish-ai/feishu-relay/issues",
+  "entry": "run.sh",
+  "config": {
+    "appId": {
+      "type": "string",
+      "description": "Feishu App ID (cli_xxxxxxxx)",
+      "required": true,
+      "envVar": "FEISHU_APP_ID"
+    },
+    "appSecret": {
+      "type": "string",
+      "description": "Feishu App Secret",
+      "required": true,
+      "sensitive": true,
+      "envVar": "FEISHU_APP_SECRET"
+    },
+    "receiveId": {
+      "type": "string",
+      "description": "Target user/chat ID",
+      "required": true,
+      "envVar": "FEISHU_RECEIVE_ID"
+    },
+    "receiveIdType": {
+      "type": "string",
+      "description": "ID type: open_id, user_id, chat_id, email",
+      "default": "open_id",
+      "enum": ["open_id", "user_id", "chat_id", "email"],
+      "envVar": "FEISHU_RECEIVE_ID_TYPE"
+    }
+  },
+  "permissions": {
+    "description": "This skill requires network access to Feishu API and local file read/write for configuration only.",
+    "network": ["open.feishu.cn"],
+    "filesystem": ["skill directory", "config file"]
+  },
+  "capabilities": {
+    "core": ["send_message", "json_output", "retry"],
+    "opt_in": ["global_notify_link", "crontab", "systemd", "watchdog", "auto_discovery"]
+  },
+  "safety": {
+    "no_system_modification": true,
+    "no_root_required": true,
+    "no_auto_migration": true,
+    "no_env_injection": true
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md",
+    "advanced": "docs/advanced.md",
+    "production": "docs/production.md",
+    "security": "docs/security.md",
+    "uninstall": "docs/uninstall.md"
+  }
+}

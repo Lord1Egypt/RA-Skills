@@ -1,0 +1,35 @@
+{
+  "name": "finance-reporter",
+  "version": "1.0.0",
+  "description": "实时财经数据推送工具 - 支持全球股市、外汇、大宗商品、加密货币",
+  "main": "tools/finance_data.py",
+  "scripts": {
+    "test": "python3 tools/finance_data.py"
+  },
+  "keywords": [
+    "finance",
+    "stock",
+    "market",
+    "crypto",
+    "forex",
+    "commodity",
+    "dingtalk",
+    "cron"
+  ],
+  "author": "A哥",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/finance-reporter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/finance-reporter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/finance-reporter/issues"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "requests": "^2.28.0"
+  }
+}

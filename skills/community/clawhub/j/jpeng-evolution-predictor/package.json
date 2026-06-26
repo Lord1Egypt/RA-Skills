@@ -1,0 +1,11 @@
+{
+  "name": "evolution-predictor",
+  "version": "1.0.0",
+  "description": "Predict optimal next evolution actions based on history analysis",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const s = require('./index.js'); console.log('Exports:', Object.keys(s));\""
+  },
+  "keywords": ["evolution", "prediction", "stagnation", "innovation", "planning"],
+  "license": "MIT"
+}

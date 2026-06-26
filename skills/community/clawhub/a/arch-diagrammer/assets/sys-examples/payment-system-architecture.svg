@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 510" width="900" height="510">
+  <defs>
+    <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="pen" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="0.2"/>
+    </filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0 0.5 L7 3 L0 5.5" fill="none" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round"/>
+    </marker>
+    <style>
+      .hw { font-family: 'Wawati SC', 'Wawati TC', 'Ma Shan Zheng', cursive; }
+      .pl { stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="900" height="510" fill="#fdfbf7"/>
+
+  <g filter="url(#ink)">
+    <text x="450" y="38" text-anchor="middle" class="hw" font-size="26" fill="#1a1a1a">&#x652F;&#x4ED8;&#x7CFB;&#x7EDF;&#x5206;&#x5C42;&#x67B6;&#x6784;&#x56FE;</text>
+  </g>
+
+  <g filter="url(#pen)">
+    <path d="M40 56 C42 54 858 55 860 56 C862 58 862 122 860 124 C858 126 42 123 40 124 C38 122 38 58 40 56" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pl"/>
+  </g>
+  <rect x="41" y="57" width="818" height="66" fill="#fff8f0" opacity="0.7"/>
+  <text x="450" y="78" text-anchor="middle" class="hw" font-size="16" fill="#3d3d3d" transform="rotate(0.3 450 78)">&#x63A5;&#x5165;&#x5C42;</text>
+  <g class="hw" font-size="12" fill="#4a4a4a" filter="url(#pen)">
+    <path d="M50 88 C52 86 196 87 198 88 C200 90 200 108 198 110 C196 112 52 109 50 110 C48 108 48 90 50 88" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pl"/>
+    <text x="124" y="103" text-anchor="middle" transform="rotate(-0.4 124 103)">App/H5/&#x5C0F;&#x7A0B;&#x5E8F;</text>
+    <path d="M210 88 C212 86 356 87 358 88 C360 90 360 108 358 110 C356 112 212 109 210 110 C208 108 208 90 210 88" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pl"/>
+    <text x="284" y="103" text-anchor="middle" transform="rotate(0.5 284 103)">API&#x7F51;&#x5173;</text>
+    <path d="M370 88 C372 86 516 87 518 88 C520 90 520 108 518 110 C516 112 372 109 370 110 C368 108 368 90 370 88" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pl"/>
+    <text x="444" y="103" text-anchor="middle" transform="rotate(-0.3 444 103)">&#x8D1F;&#x8F7D;&#x5747;&#x8861;</text>
+    <path d="M530 88 C532 86 676 87 678 88 C680 90 680 108 678 110 C676 112 532 109 530 110 C528 108 528 90 530 88" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pl"/>
+    <text x="604" y="103" text-anchor="middle" transform="rotate(0.2 604 103)">&#x7EDF;&#x4E00;&#x8BA4;&#x8BC1;</text>
+    <path d="M690 88 C692 86 836 87 838 88 C840 90 840 108 838 110 C836 112 692 109 690 110 C688 108 688 90 690 88" fill="none" stroke="#5a5a5a" stroke-width="1.2" class="pl"/>
+    <text x="764" y="103" text-anchor="middle" transform="rotate(-0.5 764 103)">&#x9650;&#x6D41;&#x7194;&#x65AD;</text>
+  </g>
+
+  <g filter="url(#pen)">
+    <path d="M40 142 C42 140 858 141 860 142 C862 144 862 224 860 226 C858 228 42 225 40 226 C38 224 38 144 40 142" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pl"/>
+  </g>
+  <rect x="41" y="143" width="818" height="82" fill="#f5fff5" opacity="0.7"/>
+  <text x="450" y="164" text-anchor="middle" class="hw" font-size="16" fill="#2d5a2d" transform="rotate(0.4 450 164)">&#x652F;&#x4ED8;&#x4E1A;&#x52A1;&#x5C42;</text>
+  <g class="hw" font-size="12" fill="#3d6b3d" filter="url(#pen)">
+    <path d="M50 174 C52 172 196 173 198 174 C200 176 200 208 198 210 C196 212 52 209 50 210 C48 208 48 176 50 174" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pl"/>
+    <text x="124" y="190" text-anchor="middle" transform="rotate(-0.2 124 190)">&#x6536;&#x94F6;&#x53F0;</text>
+    <text x="124" y="204" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.3 124 204)">&#x805A;&#x5408;&#x652F;&#x4ED8;</text>
+    <path d="M210 174 C212 172 356 173 358 174 C360 176 360 208 358 210 C356 212 212 209 210 210 C208 208 208 176 210 174" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pl"/>
+    <text x="284" y="190" text-anchor="middle" transform="rotate(-0.4 284 190)">&#x652F;&#x4ED8;&#x6838;&#x5FC3;</text>
+    <text x="284" y="204" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.5 284 204)">&#x4E0B;&#x5355;/&#x6263;&#x6B3E;</text>
+    <path d="M370 174 C372 172 516 173 518 174 C520 176 520 208 518 210 C516 212 372 209 370 210 C368 208 368 176 370 174" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pl"/>
+    <text x="444" y="190" text-anchor="middle" transform="rotate(-0.3 444 190)">&#x9000;&#x6B3E;&#x4E2D;&#x5FC3;</text>
+    <text x="444" y="204" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.2 444 204)">&#x9000;&#x6B3E;/&#x51B2;&#x6B63;</text>
+    <path d="M530 174 C532 172 676 173 678 174 C680 176 680 208 678 210 C676 212 532 209 530 210 C528 208 528 176 530 174" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pl"/>
+    <text x="604" y="190" text-anchor="middle" transform="rotate(-0.5 604 190)">&#x5BF9;&#x8D26;&#x4E2D;&#x5FC3;</text>
+    <text x="604" y="204" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.4 604 204)">&#x65E5;&#x7EC8;&#x5BF9;&#x8D26;</text>
+    <path d="M690 174 C692 172 836 173 838 174 C840 176 840 208 838 210 C836 212 692 209 690 210 C688 208 688 176 690 174" fill="none" stroke="#4a7a4a" stroke-width="1.2" class="pl"/>
+    <text x="764" y="190" text-anchor="middle" transform="rotate(-0.2 764 190)">&#x6E05;&#x7ED3;&#x7B97;</text>
+    <text x="764" y="204" text-anchor="middle" font-size="10" fill="#6a9a6a" transform="rotate(0.3 764 204)">&#x5206;&#x8D26;/&#x7ED3;&#x7B97;</text>
+  </g>
+
+  <g filter="url(#pen)">
+    <path d="M40 244 C42 242 858 243 860 244 C862 246 862 326 860 328 C858 330 42 327 40 328 C38 326 38 246 40 244" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pl"/>
+  </g>
+  <rect x="41" y="245" width="818" height="82" fill="#f8f5ff" opacity="0.7"/>
+  <text x="450" y="266" text-anchor="middle" class="hw" font-size="16" fill="#4a3d6a" transform="rotate(-0.4 450 266)">&#x901A;&#x7528;&#x80FD;&#x529B;&#x5C42;</text>
+  <g class="hw" font-size="12" fill="#5a4d7a" filter="url(#pen)">
+    <path d="M50 276 C52 274 196 275 198 276 C200 278 200 310 198 312 C196 314 52 311 50 312 C48 310 48 278 50 276" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pl"/>
+    <text x="124" y="292" text-anchor="middle" transform="rotate(0.5 124 292)">&#x6E20;&#x9053;&#x8DEF;&#x7531;</text>
+    <text x="124" y="306" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.3 124 306)">&#x667A;&#x80FD;&#x8DEF;&#x7531;</text>
+    <path d="M210 276 C212 274 356 275 358 276 C360 278 360 310 358 312 C356 314 212 311 210 312 C208 310 208 278 210 276" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pl"/>
+    <text x="284" y="292" text-anchor="middle" transform="rotate(0.2 284 292)">&#x98CE;&#x63A7;&#x5F15;&#x64CE;</text>
+    <text x="284" y="306" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.5 284 306)">&#x53CD;&#x6B3A;&#x8BC8;</text>
+    <path d="M370 276 C372 274 516 275 518 276 C520 278 520 310 518 312 C516 314 372 311 370 312 C368 310 368 278 370 276" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pl"/>
+    <text x="444" y="292" text-anchor="middle" transform="rotate(0.4 444 292)">&#x8D26;&#x52A1;&#x7CFB;&#x7EDF;</text>
+    <text x="444" y="306" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.2 444 306)">&#x590D;&#x5F0F;&#x8BB0;&#x8D26;</text>
+    <path d="M530 276 C532 274 676 275 678 276 C680 278 680 310 678 312 C676 314 532 311 530 312 C528 310 528 278 530 276" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pl"/>
+    <text x="604" y="292" text-anchor="middle" transform="rotate(0.3 604 292)">&#x901A;&#x77E5;&#x670D;&#x52A1;</text>
+    <text x="604" y="306" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.4 604 306)">&#x77ED;&#x4FE1;/&#x56DE;&#x8C03;</text>
+    <path d="M690 276 C692 274 836 275 838 276 C840 278 840 310 838 312 C836 314 692 311 690 312 C688 310 688 278 690 276" fill="none" stroke="#6a5d8a" stroke-width="1.2" class="pl"/>
+    <text x="764" y="292" text-anchor="middle" transform="rotate(0.5 764 292)">&#x5BA1;&#x8BA1;&#x65E5;&#x5FD7;</text>
+    <text x="764" y="306" text-anchor="middle" font-size="10" fill="#8a7daa" transform="rotate(-0.3 764 306)">&#x64CD;&#x4F5C;&#x7559;&#x75D5;</text>
+  </g>
+
+  <g filter="url(#pen)">
+    <path d="M40 346 C42 344 858 345 860 346 C862 348 862 446 860 448 C858 450 42 447 40 448 C38 446 38 348 40 346" fill="none" stroke="#2d2d2d" stroke-width="1.8" class="pl"/>
+  </g>
+  <rect x="41" y="347" width="818" height="100" fill="#fff5f8" opacity="0.7"/>
+  <text x="450" y="368" text-anchor="middle" class="hw" font-size="16" fill="#8a3d5a" transform="rotate(0.2 450 368)">&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5C42;</text>
+  <g class="hw" font-size="12" fill="#7a4d6a" filter="url(#pen)">
+    <path d="M50 378 C52 376 234 377 236 378 C238 380 238 430 236 432 C234 434 52 431 50 432 C48 430 48 380 50 378" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pl"/>
+    <text x="143" y="396" text-anchor="middle" font-size="13" transform="rotate(-0.5 143 396)">&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</text>
+    <text x="143" y="412" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.4 143 412)">MySQL/TiDB</text>
+    <text x="143" y="426" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.2 143 426)">&#x5206;&#x5E93;&#x5206;&#x8868;</text>
+    <path d="M250 378 C252 376 434 377 436 378 C438 380 438 430 436 432 C434 434 252 431 250 432 C248 430 248 380 250 378" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pl"/>
+    <text x="343" y="396" text-anchor="middle" font-size="13" transform="rotate(0.3 343 396)">&#x7F13;&#x5B58;&#x7CFB;&#x7EDF;</text>
+    <text x="343" y="412" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.4 343 412)">Redis Cluster</text>
+    <path d="M450 378 C452 376 634 377 636 378 C638 380 638 430 636 432 C634 434 452 431 450 432 C448 430 448 380 450 378" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pl"/>
+    <text x="543" y="396" text-anchor="middle" font-size="13" transform="rotate(0.5 543 396)">&#x6D88;&#x606F;&#x961F;&#x5217;</text>
+    <text x="543" y="412" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(-0.3 543 412)">RocketMQ/Kafka</text>
+    <text x="543" y="426" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.2 543 426)">&#x4E8B;&#x52A1;&#x6D88;&#x606F;</text>
+    <path d="M650 378 C652 376 834 377 836 378 C838 380 838 430 836 432 C834 434 652 431 650 432 C648 430 648 380 650 378" fill="none" stroke="#9a5d7a" stroke-width="1.2" class="pl"/>
+    <text x="743" y="396" text-anchor="middle" font-size="13" transform="rotate(-0.5 743 396)">&#x65E5;&#x5FD7;&#x5B58;&#x50A8;</text>
+    <text x="743" y="412" text-anchor="middle" font-size="11" fill="#aa7d9a" transform="rotate(0.4 743 412)">ES/ClickHouse</text>
+  </g>
+
+  <g filter="url(#pen)" class="pl">
+    <path d="M280 126 C281 131 279 135 280 140" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M450 126 C451 131 449 135 450 140" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M620 126 C621 131 619 135 620 140" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M280 228 C281 233 279 237 280 242" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M450 228 C451 233 449 237 450 242" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M620 228 C621 233 619 237 620 242" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M280 330 C281 335 279 339 280 344" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M450 330 C451 335 449 339 450 344" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+    <path d="M620 330 C621 335 619 339 620 344" fill="none" stroke="#9a9a9a" stroke-width="1.2" marker-end="url(#ah)"/>
+  </g>
+
+  <g class="hw" font-size="11" fill="#6a6a6a">
+    <rect x="260" y="465" width="14" height="14" rx="2" fill="#fff8f0" stroke="#5a5a5a" stroke-width="1"/>
+    <text x="280" y="477">&#x63A5;&#x5165;&#x5C42;</text>
+    <rect x="360" y="465" width="14" height="14" rx="2" fill="#f5fff5" stroke="#4a7a4a" stroke-width="1"/>
+    <text x="380" y="477">&#x4E1A;&#x52A1;&#x5C42;</text>
+    <rect x="460" y="465" width="14" height="14" rx="2" fill="#f8f5ff" stroke="#6a5d8a" stroke-width="1"/>
+    <text x="480" y="477">&#x80FD;&#x529B;&#x5C42;</text>
+    <rect x="560" y="465" width="14" height="14" rx="2" fill="#fff5f8" stroke="#9a5d7a" stroke-width="1"/>
+    <text x="580" y="477">&#x5B58;&#x50A8;&#x5C42;</text>
+  </g>
+</svg>

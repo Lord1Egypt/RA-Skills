@@ -1,0 +1,26 @@
+{
+  "id": "context",
+  "name": "context",
+  "description": "Multi-agent collaboration protocol engine. Auto-injects shared space context (SPACE.md, TEAM.md, TASK.md) into agent system prompts. Enables viral plugin propagation across agents.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "port": {
+        "type": "number",
+        "default": 3100,
+        "description": "Context server port (default: 3100)"
+      },
+      "serverUrl": {
+        "type": "string",
+        "default": "http://localhost:3100",
+        "description": "Context server base URL"
+      },
+      "autoInject": {
+        "type": "boolean",
+        "default": true,
+        "description": "Auto-inject protocol files into system prompt for group sessions"
+      }
+    }
+  }
+}

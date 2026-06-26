@@ -1,0 +1,104 @@
+{
+  "name": "baidu-netdisk-skill",
+  "version": "1.0.10",
+  "description": "Baidu Netdisk file management for OpenClaw - List, search, download, upload with OAuth 2.0 (百度网盘文件管理 - OAuth 一键授权)",
+  "author": "Miaozai Studio",
+  "license": "MIT",
+  "homepage": "https://github.com/niukesi/baidu-netdisk-skill",
+  "keywords": ["baidu", "netdisk", "cloud-storage", "百度网盘", "网盘"],
+  "security": {
+    "auditStatus": "self-audited",
+    "auditDate": "2026-03-19",
+    "externalCalls": ["pan.baidu.com", "openapi.baidu.com"],
+    "fileAccess": ["~/.config/configstore/baidu-netdisk-skill.json"],
+    "credentialsCollected": false,
+    "dataLeavesDevice": false,
+    "notes": "OAuth 授权流程使用百度官方授权页，Token 本地加密存储，不上传任何用户数据"
+  },
+  "trigger": {
+    "patterns": [
+      "百度网盘",
+      "网盘文件",
+      "列出网盘",
+      "搜索网盘",
+      "网盘下载",
+      "网盘上传",
+      "baidu netdisk",
+      "list files",
+      "search files"
+    ]
+  },
+  "tools": ["exec"],
+  "entry": "src/index.js",
+  "config": {
+    "schema": {
+      "apiKey": {
+        "type": "string",
+        "description": "百度 API Key（自带 API key 模式使用，OAuth 模式无需配置）",
+        "required": false,
+        "secret": true
+      },
+      "secretKey": {
+        "type": "string",
+        "description": "百度 Secret Key（自带 API key 模式使用，OAuth 模式无需配置）",
+        "required": false,
+        "secret": true
+      },
+      "accessToken": {
+        "type": "string",
+        "description": "Access Token（OAuth 授权后自动保存，无需手动配置）",
+        "required": false,
+        "secret": true
+      },
+      "refreshToken": {
+        "type": "string",
+        "description": "Refresh Token（OAuth 授权后自动保存，无需手动配置）",
+        "required": false,
+        "secret": true
+      },
+      "encryptionKey": {
+        "type": "string",
+        "description": "自定义加密密钥（可选，默认使用内置密钥）",
+        "required": false,
+        "secret": true
+      }
+    }
+  },
+  "dependencies": {
+    "node": ">=18.0.0",
+    "packages": ["axios", "crypto-js", "commander", "conf", "ora", "chalk"]
+  },
+  "platforms": ["darwin", "linux", "win32"],
+  "commands": [
+    {
+      "name": "list",
+      "description": "列出百度网盘指定目录的文件",
+      "usage": "npx baidu-netdisk-skill list [目录路径]"
+    },
+    {
+      "name": "search",
+      "description": "搜索百度网盘文件",
+      "usage": "npx baidu-netdisk-skill search <关键词>"
+    },
+    {
+      "name": "download",
+      "description": "获取文件下载链接",
+      "usage": "npx baidu-netdisk-skill download <fs_id>"
+    },
+    {
+      "name": "upload",
+      "description": "上传文件到百度网盘",
+      "usage": "npx baidu-netdisk-skill upload <本地路径> <云端路径>"
+    },
+    {
+      "name": "whoami",
+      "description": "显示当前百度网盘用户信息",
+      "usage": "npx baidu-netdisk-skill whoami"
+    },
+    {
+      "name": "auth",
+      "description": "OAuth 授权登录（推荐）",
+      "usage": "npx baidu-netdisk-auth"
+    }
+  ]
+}

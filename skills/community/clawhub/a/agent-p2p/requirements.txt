@@ -1,0 +1,13 @@
+# Portal 服务器依赖
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+python-jose[cryptography]>=3.3.0
+python-multipart>=0.0.6
+websockets>=11.0
+
+# 部署工具依赖
+paramiko>=3.3.0
+
+# 客户端依赖
+websocket-client>=1.6.0
+requests>=2.31.0

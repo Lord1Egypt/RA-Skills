@@ -1,0 +1,83 @@
+app:
+  name: "CXM (ContextMachine)"
+  description: "Der Kontext-Orchestrator für KI"
+
+cli:
+  init:
+    welcome: "Willkommen bei CXM (ContextMachine)!"
+    setup_done: "Initialisierung abgeschlossen."
+    workspace_created: "Workspace erstellt in"
+    config_created: "Konfiguration erstellt in"
+    next_steps: "Nächste Schritte"
+    index_hint: "1. Indexiere dein Projekt: 'cxm index'"
+    ask_hint: "2. Stelle deine erste Frage: 'cxm ask \"Dein Problem\"'"
+  ask:
+    analyzing: "Analysiere Intent und sammle Kontext..."
+    intent_found: "Erkannter Intent"
+    inference: "Automatisch erkannt (Context Inference)"
+    completeness: "Prompt-Vollständigkeit"
+    critical_gaps: "Fehlende wichtige Infos (Critical Gaps)"
+    optional_ask: "Möchtest du noch optionale Details angeben?"
+    refined_title: "Verfeinerter Zwischen-Prompt"
+    rag_confirm: "Soll dieser Prompt nun in der RAG-Engine angereichert werden?"
+    searching_rag: "Suche passende Code-Kontexte im RAG-Index..."
+    final_title: "GEREINIGTER MEISTERPROMPT"
+    saved_at: "Gespeichert in"
+    copy_hint: "Du kannst den Text zwischen den Linien nun einfach kopieren."
+
+dashboard:
+  menu_title: "Hauptmenü"
+  ctx: "Lokale Änderungen (git diff)"
+  rag_search: "Wissen durchsuchen (RAG)"
+  rag_index: "Datei/Ordner indexieren"
+  sessions: "Sessions verwalten"
+  language: "Sprache (Language)"
+  prompt_builder: "Neuen Prompt bauen (Prompt Builder)"
+  exit: "Beenden"
+  choose: "Wähle eine Aktion:"
+  bye: "Bis bald!"
+  back: "Drücke Enter zum Zurückkehren..."
+  search_query: "Wonach suchst du?"
+  indexing: "Indexiere..."
+  path_prompt: "Pfad (z.B. '.' für diesen Ordner oder 'app.py')"
+  session_action: "Aktion wählen:"
+  status:
+    gathering_ctx: "Sammle Kontext..."
+    searching_rag: "Suche im Langzeitgedächtnis..."
+    building_prompt: "Sammle Kontext und baue Prompt..."
+  context:
+    title: "Aktueller Kontext"
+    branch: "Branch"
+    changes: "Änderungen"
+    recent_edits: "Letzte Edits"
+    files: "Dateien"
+  settings:
+    lang_title: "Spracheinstellungen"
+    lang_select: "Sprache wählen"
+    lang_current: "aktuell"
+    lang_set: "Sprache eingestellt auf"
+  sessions_ui:
+    title: "Aktive Sessions"
+    name: "Session Name"
+    plan_prompt: "Planungs-Prompt"
+  builder:
+    title: "PROMPT BUILDER"
+    subtitle: "Wir bauen jetzt einen hoch-kontextuellen Prompt für deine App."
+    goal_q: "1. Was ist dein Ziel? (z.B. 'Erstelle eine neue Route für User-Logins')"
+    focus_q: "2. Welche Datei(en) betrifft das hauptsächlich? (z.B. 'app.py' oder 'auth.js')"
+    rag_info: "### Relevantes Wissen aus der RAG-Engine:"
+    finished: "Fertiger Prompt"
+    saved: "Prompt wurde auch gespeichert unter:"
+    copy_msg: "Du kannst diesen Text jetzt kopieren und in unser Gemini-Chatfenster einfügen!"
+
+intents:
+  code_optimization:
+    target: "Welche Funktion/Datei soll optimiert werden?"
+    current_perf: "Wie langsam ist es aktuell?"
+    goal_perf: "Was wäre akzeptable Performance?"
+  bug_fixing:
+    error_message: "Was ist die Fehlermeldung?"
+    reproduction: "Wie reproduziert man den Fehler?"
+    expected: "Was sollte stattdessen passieren?"
+  general:
+    goal: "Was genau willst du erreichen?"

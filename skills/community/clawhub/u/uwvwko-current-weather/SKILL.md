@@ -1,35 +1,131 @@
 ---
-name: "current_weather"
-description: "获取用户当前位置和当前时间，通过浏览器访问天气网站查询天气信息。 支持查询今天、明天、后天等不同日期的天气情况。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/uwvwko-current-weather"
-sourceUrl: "https://clawhub.ai/skills/uwvwko-current-weather"
+name: current-weather
+description: |
+  获取用户当前位置和当前时间，通过浏览器访问天气网站查询天气信息。
+  支持查询今天、明天、后天等不同日期的天气情况。
+metadata: {"clawdbot":{"emoji":"🌤️","priority":50}}
 ---
 
-# current_weather
+# 查询天气
 
-> 获取用户当前位置和当前时间，通过浏览器访问天气网站查询天气信息。 支持查询今天、明天、后天等不同日期的天气情况。
+当用户询问天气相关问题时，使用本技能获取天气信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/uwvwko-current-weather`
-- **Source URL:** [https://clawhub.ai/skills/uwvwko-current-weather](https://clawhub.ai/skills/uwvwko-current-weather)
+## 触发条件
 
-## Overview
+用户询问以下问题时触发：
+- "今天天气怎么样"
+- "明天天气如何"
+- "后天会下雨吗"
+- "今天多少度"
+- "天气好不好"
+- 其他天气相关询问
 
+## 使用流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 步骤 1：获取当前时间和用户位置
+
+首先需要确定：
+1. **当前时间**：用户问的是"今天"、"明天"还是"后天"
+2. **用户位置**：用户所在的城市/地区
+
+获取位置的方式（按优先级）：
+1. 用户直接告知（如"北京天气"）
+2. 从对话历史中获取用户之前提供的城市
+3. 通过浏览器访问 ip138.com 或 ip-api.com 获取用户 IP 地址对应的城市
+
+### 步骤 2：访问天气网站查询
+
+使用浏览器打开天气网站，以下是推荐的网站：
+
+| 网站 | 网址 | 特点 |
+|------|------|------|
+| 中国天气网 | https://www.weather.com.cn | 国内天气准确 |
+| 墨迹天气 | https://www.moji.com | 界面美观 |
+| 中央气象台 | https://nmc.cn | 官方数据 |
+
+**查询方式**：
 ```bash
-hermes skills install clawhub/uwvwko-current-weather
+# 访问天气网站并搜索城市天气
+browser url="https://www.weather.com.cn/城市名称"
 ```
+
+例如查询北京天气：
+```bash
+browser url="https://www.weather.com.cn/101010100"
+```
+
+### 步骤 3：解析天气信息
+
+从页面中提取以下信息：
+- 温度（最高/最低）
+- 天气状况（晴、多云、雨、雪等）
+- 风力风向
+- 空气湿度
+- 空气质量（如果有）
+
+### 步骤 4：组织回复
+
+根据查询结果，用友好的方式回复用户：
+
+```
+📅 日期：[今天/明天/后天]
+🌍 城市：[城市名]
+🌡️ 温度：[最高温]°C / [最低温]°C
+🌤️ 天气：[天气状况]
+💨 风力：[风力等级]
+💧 湿度：[湿度]%
+```
+
+## 时间词转换
+
+| 用户说的时间 | 实际日期 |
+|-------------|---------|
+| 今天 | 今日 |
+| 明天 | 明日 |
+| 后天 | 后天 |
+| 大后天 | 第四天 |
+| 下周 | 具体日期需计算 |
+
+## 示例对话
+
+**用户**：明天天气怎么样？
+
+**回复流程**：
+1. 确定用户位置（假设是北京）
+2. 确定日期是明天
+3. 打开 https://www.weather.com.cn/101010100
+4. 提取明天天气预报
+5. 回复：
+   ```
+   🌤️ 明天北京天气预报
+   
+   🌡️ 温度：15°C / 8°C
+   🌤️ 天气：多云转晴
+   💨 风力：北风3-4级
+   💧 湿度：45%
+   
+   总体来说明天天气不错，适合外出～
+   ```
+
+## 注意事项
+
+1. **首次询问位置**：如果不知道用户在哪里，必须先询问用户所在城市
+2. **多日查询**：用户问"这一周天气"时，可以连续查询多天
+3. **特殊天气**：如台风、暴雨、寒潮等极端天气，需特别提醒用户
+4. **数据时效**：天气数据有时效性，尽量使用最新数据
+5. **备用网站**：如果主网站无法访问，尝试备用网站
+
+## 常用城市代码
+
+| 城市 | 天气网代码 |
+|------|-----------|
+| 北京 | 101010100 |
+| 上海 | 101020100 |
+| 广州 | 101280101 |
+| 深圳 | 101280601 |
+| 成都 | 101270101 |
+| 杭州 | 101210101 |
+| 南京 | 101190101 |
+| 武汉 | 101200101 |
+| 西安 | 101110101 |
+| 重庆 | 101040100 |

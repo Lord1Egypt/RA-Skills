@@ -1,0 +1,20 @@
+{
+  "name": "session-sync-detect",
+  "version": "0.1.0",
+  "description": "检测用户谈到当前 session 没有的事情，询问是否进行跨会话同步",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "session",
+    "memory",
+    "sync"
+  ],
+  "author": "郭泉 (Dr. Guo) 🎯",
+  "license": "MIT-0",
+  "openclaw": {
+    "type": "skill",
+    "apiVersion": "1.0.0"
+  }
+}

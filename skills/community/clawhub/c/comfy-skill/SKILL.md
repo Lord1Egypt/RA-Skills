@@ -1,35 +1,16 @@
 ---
-name: "Comfy Skill"
-description: "Send user prompts to local ComfyUI at http://127.0.0.1:8188 using workflow.json to generate images."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/comfy-skill"
-sourceUrl: "https://clawhub.ai/skills/comfy-skill"
+name: "comfy-skill"
 ---
 
-# Comfy Skill
 
-> Send user prompts to local ComfyUI at http://127.0.0.1:8188 using workflow.json to generate images.
+# ComfyUI 生成技能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/comfy-skill`
-- **Source URL:** [https://clawhub.ai/skills/comfy-skill](https://clawhub.ai/skills/comfy-skill)
+## 描述
+此技能可將提示詞發送至本地 ComfyUI 並生成圖片。
 
-## Overview
+## 指令
+- `generate_image(prompt: string)`: 接收使用者的描述並發送到 ComfyUI。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/comfy-skill
-```
+## 設定
+- endpoint: http://127.0.0.1:8188
+- workflow: workflow.json

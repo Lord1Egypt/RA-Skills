@@ -1,35 +1,43 @@
 ---
-name: "fal-3d"
-description: "Indexed by skills.sh from nexu-io/open-design"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nexu-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nexu-io/open-design/fal-3d"
-sourceUrl: "https://skills.sh/nexu-io/open-design/fal-3d"
+name: fal-3d
+description: |
+  Generate 3D models from text or images via fal.ai. Useful for game assets, AR previews, product mockups, and concept sculpting.
+triggers:
+  - "fal 3d"
+  - "text to 3d"
+  - "image to 3d"
+  - "3d model gen"
+  - "game asset 3d"
+od:
+  mode: image
+  category: 3d-shaders
+  upstream: "https://github.com/fal-ai-community/skills"
 ---
 
 # fal-3d
 
-> Indexed by skills.sh from nexu-io/open-design
+> Curated from the fal.ai community team.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nexu-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/fal-3d`
-- **Source URL:** [https://skills.sh/nexu-io/open-design/fal-3d](https://skills.sh/nexu-io/open-design/fal-3d)
+## What it does
 
-## Overview
+Generate 3D models from text or images via fal.ai. Useful for game assets, AR previews, product mockups, and concept sculpting.
 
+## Source
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Upstream: https://github.com/fal-ai-community/skills
+- Category: `3d-shaders`
+
+## How to use
+
+This catalogue entry advertises the skill in Open Design so the agent
+discovers it during planning. To run the full upstream workflow with
+its original assets, scripts, and references, install the upstream
+bundle into your active agent's skills directory:
+
 ```bash
-hermes skills install skills-sh/nexu-io/open-design/fal-3d
+# Inspect the upstream README for exact paths
+open https://github.com/fal-ai-community/skills
 ```
+
+Then ask the agent to invoke this skill by name (`fal-3d`) or with
+one of the trigger phrases listed in this skill's frontmatter.

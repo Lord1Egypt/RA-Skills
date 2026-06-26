@@ -1,35 +1,77 @@
 ---
-name: "Economies Of Scale"
+name: economies-of-scale
 description: "Analyze cost advantages from scale. Use for understanding cost structure and competitive positioning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/economies-of-scale"
-sourceUrl: "https://clawhub.ai/skills/economies-of-scale"
 ---
 
-# Economies Of Scale
+# Economies of Scale
 
-> Analyze cost advantages from scale. Use for understanding cost structure and competitive positioning.
+## Metadata
+- **Name**: economies-of-scale
+- **Description**: Scale advantage and cost curve analysis
+- **Triggers**: economies of scale, scale advantage, cost curve, experience curve
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/economies-of-scale`
-- **Source URL:** [https://clawhub.ai/skills/economies-of-scale](https://clawhub.ai/skills/economies-of-scale)
+## Instructions
 
-## Overview
+Analyze economies of scale for $ARGUMENTS.
 
+## Framework
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/economies-of-scale
+### Types of Scale Economies
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Purchasing** | Volume discounts | Bulk buying |
+| **Technical** | Fixed cost leverage | R&D spread |
+| **Financial** | Lower cost of capital | Cheaper debt |
+| **Managerial** | Specialization | Expert teams |
+| **Marketing** | Brand leverage | Ad spend efficiency |
+
+### Experience Curve
+
 ```
+Cost
+ │╲
+ │ ╲
+ │  ╲
+ │   ╲___
+ │      ╲___
+ │         ╲___
+ └───────────── Volume
+```
+
+## Output
+
+```
+## Economies of Scale: [Business/Product]
+
+### Cost Curve Analysis
+
+| Volume | Unit Cost | Savings | Source |
+|--------|-----------|---------|--------|
+| 100K | $10.00 | - | Baseline |
+| 500K | $7.50 | 25% | Purchasing |
+| 1M | $6.00 | 40% | Technical |
+| 5M | $4.50 | 55% | Full scale |
+
+### Scale Advantages
+
+1. **Purchasing Power**: [Analysis]
+2. **Fixed Cost Leverage**: [Analysis]
+3. **Network Effects**: [Analysis]
+
+### Competitive Implications
+
+- **Barrier to entry**: [Analysis]
+- **Cost leadership**: [Analysis]
+- **Minimum efficient scale**: [Analysis]
+
+### Recommendations
+
+1. [Recommendation 1]
+2. [Recommendation 2]
+```
+
+## Tips
+- Identify minimum efficient scale
+- Consider diseconomies of scale
+- Factor in flexibility trade-offs

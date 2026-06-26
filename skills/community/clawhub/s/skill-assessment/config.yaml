@@ -1,0 +1,129 @@
+# skill-assessment 配置文件
+
+# 权重配置 (总和应为 1.0)
+weights:
+  documentation: 0.30    # 文档完整性权重
+  code_quality: 0.40     # 代码规范性权重
+  config_friendly: 0.20  # 配置友好度权重
+  maintenance: 0.10      # 维护活跃度权重
+
+# 检查项配置
+checks:
+  # 文档检查
+  documentation:
+    require_skill_md: true          # 强制要求 SKILL.md 文件
+    required_sections:              # 必填章节
+      - name
+      - description
+      - triggers
+      - usage
+      - installation
+      - configuration
+    optional_sections:              # 可选章节（有则加分）
+      - troubleshooting
+      - faq
+      - changelog
+      - license
+  
+  # 代码检查
+  code_quality:
+    security_scan: true             # 安全检查
+    check_hardcoded_secrets: true   # 检查硬编码密钥
+    check_dangerous_permissions: true # 检查危险权限
+    check_injection_risks: true     # 检查注入风险
+    max_file_size_kb: 1024          # 最大文件大小（KB），超过则跳过
+  
+  # 配置检查
+  config_friendly:
+    require_default_config: false   # 不强制要求默认配置
+    check_env_var_support: true     # 检查环境变量支持
+    check_error_messages: true      # 检查错误提示清晰度
+  
+  # 维护检查
+  maintenance:
+    check_version_format: true      # 检查版本号格式
+    check_last_update: true         # 检查最后更新时间
+    recent_threshold_days: 90       # "近期更新"阈值（天）
+    active_threshold_days: 180      # "活跃维护"阈值（天）
+
+# 输出配置
+output:
+  format: "markdown"      # 输出格式: markdown, json, text
+  save_report: true       # 保存详细报告
+  report_dir: "./reports" # 报告保存目录
+  max_issues_to_show: 10  # 最多显示的问题数量
+  
+  # 报告模板
+  templates:
+    markdown: "./templates/report.md.j2"
+    summary: "./templates/summary.txt.j2"
+  
+  # 颜色输出
+  use_colors: true
+
+# 性能配置
+performance:
+  timeout_seconds: 30     # 单个检查超时时间
+  max_total_time: 120     # 总评估最长时间
+  parallel_checks: 2      # 并行检查数量
+
+# 路径排除规则
+exclude:
+  patterns:
+    - "*.log"
+    - "*.tmp"
+    - "*.bak"
+    - "*.swp"
+    - ".git/*"
+    - ".DS_Store"
+    - "node_modules/*"
+    - "__pycache__/*"
+    - "reports/*"         # 避免递归评估自己的报告
+  
+  # 按大小排除
+  max_file_size_kb: 5120  # 5MB，超过此大小的文件跳过
+
+# 评分阈值
+thresholds:
+  warning_score: 3.0      # 低于此分数显示警告
+  critical_score: 2.0     # 低于此分数显示严重警告
+  excellent_score: 4.5    # 优秀分数阈值
+  
+  # 星级转换
+  star_ratings:
+    - min: 4.5, stars: "★★★★★", label: "优秀"
+    - min: 4.0, stars: "★★★★☆", label: "良好"
+    - min: 3.5, stars: "★★★☆☆", label: "中等"
+    - min: 3.0, stars: "★★☆☆☆", label: "一般"
+    - min: 2.5, stars: "★☆☆☆☆", label: "较差"
+    - min: 0.0, stars: "☆☆☆☆☆", label: "不推荐"
+
+# 安全检查规则
+security:
+  # 危险模式检查
+  dangerous_patterns:
+    - pattern: "chmod.*777"
+      description: "过度权限设置"
+      severity: "high"
+    
+    - pattern: "rm.*-rf.*/|rm.*-rf.*\\$"
+      description: "危险删除操作"
+      severity: "critical"
+    
+    - pattern: "curl.*\\|.*sh|wget.*\\|.*sh"
+      description: "远程脚本执行"
+      severity: "high"
+    
+    - pattern: "(password|token|secret|key).*=.*['\"].{8,}['\"]"
+      description: "可能的硬编码密钥"
+      severity: "medium"
+  
+  # 允许的例外（正则表达式）
+  allowed_exceptions:
+    - "^#.*"        # 注释
+    - "example.*"   # 示例文件
+
+# 自定义检查规则
+custom_checks:
+  # 可以在这里添加自定义检查规则
+  # 格式: { "name": "检查名称", "pattern": "正则表达式", "description": "描述" }

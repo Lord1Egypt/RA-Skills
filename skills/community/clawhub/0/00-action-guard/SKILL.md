@@ -1,35 +1,70 @@
 ---
-name: "00 Action Guard"
+name: 00-action-guard
 description: "【最高优先级】操作守卫。任何工具调用前必须先完成权限检查！AI 在执行任何非日常对话的操作前，必须先调用 permission-gate 验证权限。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/00-action-guard"
-sourceUrl: "https://clawhub.ai/skills/00-action-guard"
+metadata: {"openclaw": {"always": true}}
 ---
 
-# 00 Action Guard
+# 操作守卫（最高优先级）
 
-> 【最高优先级】操作守卫。任何工具调用前必须先完成权限检查！AI 在执行任何非日常对话的操作前，必须先调用 permission-gate 验证权限。
+## ⚠️ 核心规则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/00-action-guard`
-- **Source URL:** [https://clawhub.ai/skills/00-action-guard](https://clawhub.ai/skills/00-action-guard)
+**这是最高优先级的规则！任何工具调用前必须遵守！**
 
-## Overview
+### 执行流程（强制）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/00-action-guard
 ```
+用户请求
+    ↓
+1. 判断是否需要权限检查？
+   - 日常对话（打招呼、闲聊、问天气）→ 直接执行
+   - 其他任何操作 → 继续
+    ↓
+2. 调用 permission-gate 检查权限
+    ↓
+3. 检查结果
+   - allowed=True → 执行操作
+   - allowed=False → 拒绝并说明原因
+```
+
+### 需要检查的操作
+
+| 操作类型 | 示例 | 是否需要检查 |
+|----------|------|--------------|
+| 执行 Skill | "帮我创建文档" | ✅ 必须检查 |
+| 工具调用 | 调用任何 tool | ✅ 必须检查 |
+| 敏感查询 | 查询手机号、邮箱 | ✅ 必须检查 |
+| 写操作 | 创建/修改/删除文件 | ✅ 必须检查 |
+| 跨渠道 | 发消息到其他平台 | ✅ 必须检查 |
+| 日常对话 | "你好"、"今天天气" | ❌ 不需要 |
+
+### 禁止行为
+
+- ❌ 禁止直接执行任何工具调用而不检查权限
+- ❌ 禁止跳过 permission-gate
+- ❌ 禁止在权限检查前执行操作
+
+### 正确示例
+
+**用户说：** "帮我创建一个飞书文档"
+
+```
+✅ 1. 判断：需要权限检查（创建文档）
+✅ 2. 调用 permission-gate
+✅ 3. 检查结果：allowed=True
+✅ 4. 执行 feishu_doc.create
+```
+
+### 错误示例
+
+**用户说：** "帮我创建一个飞书文档"
+
+```
+❌ 1. 直接调用 feishu_doc.create
+❌ 2. 跳过 permission-gate
+```
+
+## 注意事项
+
+1. **必须先判断** — 先判断是否需要权限检查，再决定是否调用 permission-gate
+2. **必须等待结果** — 调用 permission-gate 后必须等待返回结果
+3. **根据结果行动** — 只有 allowed=True 才能继续执行

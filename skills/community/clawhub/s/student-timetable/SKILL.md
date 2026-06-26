@@ -1,35 +1,32 @@
 ---
-name: "Student Timetable"
-description: "Student timetable manager for self or parent-managed child profiles. Includes init flow + profile registry under schedules/profiles/."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/student-timetable"
-sourceUrl: "https://clawhub.ai/skills/student-timetable"
+name: student-timetable
+description: Student timetable manager for self or parent-managed child profiles. Includes init flow + profile registry under schedules/profiles/.
 ---
 
-# Student Timetable
+# student-timetable
 
-> Student timetable manager for self or parent-managed child profiles. Includes init flow + profile registry under schedules/profiles/.
+Design
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/student-timetable`
-- **Source URL:** [https://clawhub.ai/skills/student-timetable](https://clawhub.ai/skills/student-timetable)
+- Supports two operating modes:
+  - Self profile: a student manages their own schedule.
+  - Child profiles: a parent/guardian manages one or more children.
+- Uses a profile registry + per-profile data files so queries are consistent across kids and reusable in other automations.
 
-## Overview
+Initialize
 
+- Run interactive setup:
+  - `node skills/student-timetable/cli.js init`
+- This writes/updates:
+  - `schedules/profiles/registry.json`
+  - `schedules/profiles/<profile_id>/*`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/student-timetable
-```
+Query
+
+- `node skills/student-timetable/cli.js today --profile <id|name|alias>`
+- `node skills/student-timetable/cli.js tomorrow --profile <id|name|alias>`
+- `node skills/student-timetable/cli.js this_week --profile <id|name|alias>`
+- `node skills/student-timetable/cli.js next_week --profile <id|name|alias>`
+
+Tool entry
+
+- `tool.js`

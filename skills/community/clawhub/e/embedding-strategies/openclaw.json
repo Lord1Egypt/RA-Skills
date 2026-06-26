@@ -1,0 +1,32 @@
+{
+  "workspace": {
+    "path": "C:\\Users\\Xiabi\\.openclaw\\workspace"
+  },
+  "model": {
+    "default": "aliyun-coding/qwen3.5-plus",
+    "aliases": {
+      "glm": "glm/glm-4.7-flash",
+      "qwen": "aliyun/qwen-plus",
+      "qwen-flash": "aliyun/qwen3.5-flash-2026-02-23"
+    }
+  },
+  "tts": {
+    "aliyun_api_key": "sk-1f3847debc3e492e81f64115b20c6d82",
+    "voice": "zh-CN-yunxi",
+    "sampleRate": 24000
+  },
+  "feishu": {
+    "app_id": "cli_a91d70683c789bc7",
+    "app_secret": "t0am3JU79N9TSEPgrk7GKbVLHmCdRGUe",
+    "tenant_access_token": "t-g104389ESC4OVVK42KF4HBXCE4AMJ6NELCLAYBEQ"
+  },
+  "gateway": {
+    "enabled": true,
+    "port": 8080
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true
+    }
+  }
+}

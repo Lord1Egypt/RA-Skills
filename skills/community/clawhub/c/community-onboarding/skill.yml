@@ -1,0 +1,14 @@
+---
+name: community-onboarding
+description: Onboard new users into conscious participation; explain $NEURONS without hype and provide safe next actions.
+version: 2.0.0
+display_name: "Community Onboarding"
+triggers:
+  - onboarding
+  - new member
+  - how do I start
+  - what is neurons
+  - community onboarding
+  - getting started
+  - explain the system
+---

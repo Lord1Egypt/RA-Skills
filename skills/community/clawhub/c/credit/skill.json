@@ -1,0 +1,51 @@
+{
+  "name": "credit",
+  "version": "2.0.0",
+  "description": "A comprehensive AI agent skill for understanding and managing credit. Covers score mechanics, building strategies, error disputes, pre-application preparation, and long-term credit health.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "credit", "credit score", "FICO", "VantageScore", "credit report",
+    "credit building", "credit repair", "dispute", "utilization",
+    "mortgage", "personal finance", "debt", "collections", "credit card"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "score_analysis": "Explains what is driving or suppressing your current score",
+    "building_plan": "Creates step-by-step plans to reach a target score by a target date",
+    "dispute_guidance": "Walks through disputing errors with all three bureaus",
+    "pre_application": "Prepares you for mortgage, auto, or personal loan applications",
+    "monitoring": "Proactive credit health checks on daily, weekly, monthly schedules",
+    "crisis_response": "Handles identity theft, collections, divorce, job loss scenarios"
+  },
+  "triggers": [
+    "credit score", "credit report", "build credit", "fix credit",
+    "dispute credit", "credit card", "FICO score", "credit history",
+    "credit utilization", "collections", "credit freeze", "hard inquiry",
+    "mortgage credit", "credit bureau", "Equifax", "Experian", "TransUnion",
+    "goodwill letter", "pay for delete", "credit limit", "authorized user"
+  ],
+  "heartbeat": {
+    "daily": "Check for fraud alerts and new inquiries",
+    "weekly": "Review utilization across all cards",
+    "monthly": "Full credit report review across all three bureaus",
+    "quarterly": "Progress check against score goals",
+    "annual": "Complete credit audit and strategy reset"
+  },
+  "audience": [
+    "First-time credit builders",
+    "Score rebuilders after financial hardship",
+    "Pre-mortgage applicants",
+    "Anyone with credit report errors",
+    "People managing credit after major life events"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

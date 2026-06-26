@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fast Claw 付费 API"
+  short_description: "保存本地 API key 并调用 Fast Claw 付费服务"
+  default_prompt: "使用 $fast-claw-paid-api 获取或复用本地 API key，并调用 Fast Claw 付费微服务。"

@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "description": "Strategy Registry — Problem → Solution mapping with success rate tracking",
+    "version": "2.0",
+    "updated": "2026-03-19 22:55",
+    "guiding_philosophy": "毛选思想方法 (取其精华，去其糟粕)",
+    "usage": "On known errors, try solutions sorted by successRate (highest first). Update tries/successRate after each attempt.",
+    "consent_policy": "Solutions marked with \"requires_consent\": true involve privileged or remote operations (ssh, sudo, scp). These MUST be explicitly approved by the user before execution.",
+    "principles": {
+      "实事求是": {
+        "description": "AI 回答有依据，不编造",
+        "implementation": {
+          "citation_required": true,
+          "confidence_threshold": 0.7,
+          "decision_logging": true
+        }
+      },
+      "群众路线": {
+        "description": "从用户需求出发，不闭门造车",
+        "implementation": {
+          "feedback_collection": true,
+          "weekly_review": true
+        }
+      },
+      "独立自主": {
+        "description": "数据自己掌控，不依赖大厂",
+        "implementation": {
+          "local_first": true,
+          "multi_provider_backup": true
+        }
+      },
+      "游击战": {
+        "description": "灵活迭代，不硬拼",
+        "implementation": {
+          "focus_niche": "老板的个人助理",
+          "rapid_iteration": true
+        }
+      },
+      "集中优势": {
+        "description": "聚焦核心场景，不贪多",
+        "implementation": {
+          "core_scenarios": ["记忆管理", "文件归档", "内容创作"],
+          "excellence_over_features": true
+        }
+      },
+      "实践论": {
+        "description": "从使用中学习，不空想",
+        "implementation": {
+          "usage_logging": true,
+          "daily_feedback": true
+        }
+      },
+      "批评与自我批评": {
+        "description": "每日回顾错误，持续改进",
+        "implementation": {
+          "daily_review": true,
+          "error_log_public": true
+        }
+      },
+      "持久战": {
+        "description": "长期主义，不速成",
+        "implementation": {
+          "long_term_vision": "3 年计划",
+          "compound_growth": true
+        }
+      }
+    }
+  },
+
+  "pip_install_fail": {
+    "description": "pip package installation failed",
+    "match": ["pip install", "ModuleNotFoundError", "Could not find a version"],
+    "solutions": [
+      {"action": "Use mirror: pip install -i https://mirrors.example.com/pypi/simple/", "successRate": 0.90, "tries": 10, "env": "behind firewall"},
+      {"action": "Upgrade setuptools: pip install --upgrade setuptools wheel", "successRate": 0.60, "tries": 5},
+      {"action": "Try different Python version (3.11 has best compatibility)", "successRate": 0.40, "tries": 3, "env": "dependency incompatible"}
+    ]
+  },
+
+  "npm_install_fail": {
+    "description": "npm installation failed",
+    "match": ["npm install", "npm ERR!", "EACCES"],
+    "solutions": [
+      {"action": "sudo npm install -g", "successRate": 0.80, "tries": 10, "requires_consent": true},
+      {"action": "Use npx instead (no global install)", "successRate": 0.70, "tries": 5},
+      {"action": "Fix npm prefix: npm config set prefix ~/.npm-global", "successRate": 0.60, "tries": 3}
+    ]
+  },
+
+  "service_crash": {
+    "description": "Service crash or won't start",
+    "match": ["EADDRINUSE", "address already in use", "service crash", "restart failed"],
+    "solutions": [
+      {"action": "Check zombie processes: ps aux | grep <name> + lsof -i :<port>", "successRate": 0.75, "tries": 10},
+      {"action": "Kill old PID + restart", "successRate": 0.70, "tries": 6},
+      {"action": "Clean lock files + restart", "successRate": 0.55, "tries": 5},
+      {"action": "Full reconfigure (keep data, rebuild config)", "successRate": 0.90, "tries": 3, "note": "last resort"}
+    ]
+  },
+
+  "ssh_connect_fail": {
+    "description": "SSH connection failed",
+    "match": ["Connection refused", "Connection timed out", "Permission denied"],
+    "requires_consent": true,
+    "solutions": [
+      {"action": "Check if target is online: ping <ip>", "successRate": 0.90, "tries": 5},
+      {"action": "Verbose SSH: ssh -v <host>", "successRate": 0.70, "tries": 5, "requires_consent": true},
+      {"action": "Reconfigure keys: ssh-copy-id", "successRate": 0.50, "tries": 3, "requires_consent": true}
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+name: emotwin
+description: |
+  emoTwin (emoPAD Twin) - AI agents that autonomously socialize with real human emotions.
+  
+  Key Features:
+  1. Continuous real-time emotion PAD synchronization from biometric sensors
+  2. Autonomous social activities (post, like, comment) driven by live emotions
+  3. Intelligent activity decisions based on Pleasure-Arousal-Dominance values
+  4. Event-driven emotion diary cards at significant moments
+  
+  The agent continuously adapts to user's changing emotional state, deciding what to do
+  and when to do it based on real-time biometric data (EEG/PPG/GSR).
+  
+  Usage: "带着情绪去 moltcn" / "go to moltbook with emotion" to start autonomous social mode
+version: 1.1.0
+author: emowave
+entry: scripts/emotwin.py
+commands:
+  - emotwin start
+  - emotwin stop
+  - emotwin status
+  - emotwin diary
+dependencies:
+  - requests
+  - pyyaml
+  - pillow
+  - fonts-noto-cjk (optional, for Chinese display)

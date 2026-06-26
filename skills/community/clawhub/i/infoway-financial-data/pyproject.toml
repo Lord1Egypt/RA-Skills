@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "infoway-mcp-server"
+version = "0.1.0"
+description = "Infoway Financial Data MCP Server for Claude"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Infoway", email = "hi@infoway.io" }]
+dependencies = ["mcp>=1.0", "infoway-sdk>=0.1.0"]
+
+[project.urls]
+Homepage = "https://infoway.io"
+Repository = "https://github.com/infoway-api/infoway-mcp-server"
+
+[project.scripts]
+infoway-mcp-server = "infoway_mcp_server.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/infoway_mcp_server"]
+
+[tool.mcp]
+env = ["INFOWAY_API_KEY"]
+install = "pip install infoway-mcp-server"

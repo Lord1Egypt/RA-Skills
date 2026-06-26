@@ -1,35 +1,93 @@
 ---
-name: "SBTI 人格测评"
-description: "SBTI（沙雕大型性格指标）人格测评工具。由B站UP主@蛆肉儿串儿创作，31道题，15维度，27种人格类型。 当用户提到：(1) SBTI测试、(2) 沙雕人格测试、(3) 帮我做SBTI测评、(4) 测测我是什么人格、(5) SBTI答题、(6) 指定人格类型答题。 不在用户仅提到"MBTI"、"人格测试"等模..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/silly-big-type"
-sourceUrl: "https://clawhub.ai/skills/silly-big-type"
+name: sbti
+description: >
+  SBTI（沙雕大型性格指标）人格测评工具。由B站UP主@蛆肉儿串儿创作，31道题，15维度，27种人格类型。
+  当用户提到：(1) SBTI测试、(2) 沙雕人格测试、(3) 帮我做SBTI测评、(4) 测测我是什么人格、(5) SBTI答题、(6) 指定人格类型答题。
+  不在用户仅提到"MBTI"、"人格测试"等模糊词时激活。
 ---
 
 # SBTI 人格测评
 
-> SBTI（沙雕大型性格指标）人格测评工具。由B站UP主@蛆肉儿串儿创作，31道题，15维度，27种人格类型。 当用户提到：(1) SBTI测试、(2) 沙雕人格测试、(3) 帮我做SBTI测评、(4) 测测我是什么人格、(5) SBTI答题、(6) 指定人格类型答题。 不在用户仅提到"MBTI"、"人格测试"等模...
+## 算法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/silly-big-type`
-- **Source URL:** [https://clawhub.ai/skills/silly-big-type](https://clawhub.ai/skills/silly-big-type)
+15维度，每维度2题（选项值1/2/3），维度得分=两题之和（2-6）。
+得分→等级：≤3=L, 4=M, ≥5=H。L=1, M=2, H=3。
+欧氏距离匹配27种人格，取最近者。
 
-## Overview
+隐藏彩蛋：Q31选[1]喝酒 + Q32选[1]爱喝 → 强制匹配 DRUNK（酒鬼）。
 
+## 维度定义
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/silly-big-type
+| 维度 | 名称 | 模型 |
+|------|------|------|
+| S1 | 自尊自信 | 自我模型 |
+| S2 | 自我清晰度 | 自我模型 |
+| S3 | 核心价值 | 自我模型 |
+| E1 | 依恋安全感 | 情感模型 |
+| E2 | 情感投入度 | 情感模型 |
+| E3 | 边界与依赖 | 情感模型 |
+| A1 | 世界观倾向 | 态度模型 |
+| A2 | 冒险精神 | 态度模型 |
+| A3 | 目标感 | 态度模型 |
+| Ac1 | 行动力 | 行动模型 |
+| Ac2 | 果断性 | 行动模型 |
+| Ac3 | 执行力 | 行动模型 |
+| So1 | 社交主动性 | 社交模型 |
+| So2 | 亲密需求 | 社交模型 |
+| So3 | 自我呈现 | 社交模型 |
+
+维度向量顺序：`[S1, S2, S3, E1, E2, E3, A1, A2, A3, Ac1, Ac2, Ac3, So1, So2, So3]`
+
+## 测评流程
+
+### 模式一：对话式测评（推荐）
+
+逐题或分组（5题一组）发送给用户，收集答案后计算结果。
+
+1. 读取 `references/questions.md` 获取完整题库
+2. 按组发送题目（每题包含题目+3个选项）
+3. 记录用户每题选择的选项值（1/2/3）
+4. 收集完30题后，运行 `scripts/calculate.py` 计算结果
+5. 读取 `references/types.md` 获取结果描述，输出给用户
+
+输出格式：
 ```
+🎉 你的SBTI人格是：[代码] [中文名]！
+[intro语]
+
+📊 十五维度评分：
+[5个模型的雷达图或列表]
+
+[result描述前300字]
+```
+
+### 模式二：快速查询
+
+用户问"怎么测出XXX人格"时：
+1. 读取 `references/types.md` 找到该类型的向量模式
+2. 读取 `references/questions.md` 
+3. 反推每维度需要的目标得分，给出答题建议
+
+答题策略：
+- 目标H（≥5）：该维度两题都选3
+- 目标M（=4）：该维度两题选3+1或1+3
+- 目标L（≤3）：该维度两题都选1
+
+### 模式三：反向查询
+
+用户提供自己的30题答案，运行 `scripts/calculate.py` 直接出结果。
+
+## 脚本使用
+
+```bash
+# 计算结果：传入30个答案值（逗号分隔，按Q1-Q30顺序）
+python3 scripts/calculate.py "3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1"
+
+# 输出：匹配的类型代码、名称、相似度、各维度等级
+```
+
+## 注意事项
+
+- Q22（Ac2果断性）是隐藏题："此题没有题目，请盲选"——直接发送选项让用户选
+- Q31/Q32 是酒鬼触发题，仅当用户提到或想触发隐藏类型时才询问
+- 评价结果仅供娱乐，提醒用户不要当真

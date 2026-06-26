@@ -1,0 +1,13 @@
+{
+  "slug": "resume-interview-generator",
+  "title": "简历面试题生成器",
+  "category": "work",
+  "summary": "基于候选人简历和岗位信息，生成结构化面试题、追问路径、评分标准与风险验证点。",
+  "keywords": ["简历分析", "面试题", "笔试题", "候选人评估"],
+  "user_needs": ["根据简历生成面试题", "给候选人出一套笔试题", "评估候选人简历真实性"],
+  "source_dir": "skills/work/简历出题skill/resume-interview-generator",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

@@ -1,35 +1,84 @@
 ---
-name: "Jasper ConfigGuard"
-description: "Safely apply OpenClaw config changes with backup, automatic rollback on failure, health checks, and commands for patching, restoring, listing, diffing, valid..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/jasper-configguard"
-sourceUrl: "https://clawhub.ai/skills/jasper-configguard"
+name: jasper-configguard
+version: 1.0.0
+description: Safe config changes for OpenClaw with automatic rollback. Backs up before patching, health-checks after restart, auto-rolls back on failure. Commands: patch, restore, list, diff, validate, doctor.
 ---
 
-# Jasper ConfigGuard
+# Jasper ConfigGuard v1.0.0
 
-> Safely apply OpenClaw config changes with backup, automatic rollback on failure, health checks, and commands for patching, restoring, listing, diffing, valid...
+Safe config changes for OpenClaw with automatic rollback. Never brick your gateway again.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/jasper-configguard`
-- **Source URL:** [https://clawhub.ai/skills/jasper-configguard](https://clawhub.ai/skills/jasper-configguard)
+## Setup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/jasper-configguard
+npm install -g jasper-configguard
+```
+
+## Usage
+
+### Apply a config change safely
+
+```bash
+jasper-configguard patch '{"gateway":{"bind":"tailnet"}}'
+```
+
+The tool will:
+1. Back up your current config
+2. Apply the patch (deep merge)
+3. Restart the gateway
+4. Wait for health check
+5. **Auto-rollback** if gateway fails
+
+### Preview changes
+
+```bash
+jasper-configguard patch --dry-run '{"agents":{"defaults":{"model":{"primary":"opus"}}}}'
+```
+
+### Restore from backup
+
+```bash
+jasper-configguard restore
+```
+
+### List backups
+
+```bash
+jasper-configguard list
+```
+
+### Check health
+
+```bash
+jasper-configguard doctor
+```
+
+## Agent Integration
+
+Use from your agent to safely modify OpenClaw config:
+
+```bash
+# Safe model switch
+jasper-configguard patch '{"agents":{"defaults":{"model":{"primary":"anthropic/claude-opus-4-5"}}}}'
+
+# Enable a plugin safely
+jasper-configguard patch '{"plugins":{"entries":{"my-plugin":{"enabled":true}}}}'
+
+# If something breaks, restore
+jasper-configguard restore
+```
+
+## API
+
+```javascript
+const { ConfigGuard } = require('jasper-configguard');
+const guard = new ConfigGuard();
+
+// Safe patch
+const result = await guard.patch({ gateway: { bind: 'tailnet' } });
+if (!result.success) console.log('Rolled back:', result.error);
+
+// Dry run
+const preview = guard.dryRun({ agents: { defaults: { model: { primary: 'opus' } } } });
+console.log(preview.diff);
 ```

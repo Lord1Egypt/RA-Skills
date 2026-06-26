@@ -1,0 +1,72 @@
+{
+  "baseUrl": "https://api.justoneapi.com",
+  "description": "Call GET /api/imdb/title-redux-overview-query/v1 for IMDb Redux Overview through JustOneAPI with id.",
+  "displayName": "IMDb Redux Overview",
+  "endpointPath": "title-redux-overview-query",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get IMDb title Redux Overview data, including key summary fields and linked metadata, for get a concise summary and overview of a movie or TV show's key attributes.",
+      "method": "GET",
+      "operationId": "titleReduxOverviewQuery",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "User's authentication token.",
+          "enumValues": [],
+          "location": "query",
+          "name": "token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique IMDb ID of the title (e.g., tt12037194).",
+          "enumValues": [],
+          "location": "query",
+          "name": "id",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": "en_US",
+          "description": "Language and country preferences.\n\nAvailable Values:\n- `en_US`: English (US)\n- `fr_CA`: French (Canada)\n- `fr_FR`: French (France)\n- `de_DE`: German (Germany)\n- `hi_IN`: Hindi (India)\n- `it_IT`: Italian (Italy)\n- `pt_BR`: Portuguese (Brazil)\n- `es_ES`: Spanish (Spain)\n- `es_US`: Spanish (US)\n- `es_MX`: Spanish (Mexico)",
+          "enumValues": [
+            "en_US",
+            "fr_CA",
+            "fr_FR",
+            "de_DE",
+            "hi_IN",
+            "it_IT",
+            "pt_BR",
+            "es_ES",
+            "es_US",
+            "es_MX"
+          ],
+          "location": "query",
+          "name": "languageCountry",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/imdb/title-redux-overview-query/v1",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        }
+      ],
+      "summary": "Redux Overview",
+      "tags": [
+        "IMDb"
+      ]
+    }
+  ],
+  "platformKey": "imdb",
+  "primaryTag": "IMDb",
+  "skillName": "justoneapi_imdb_title_redux_overview_query",
+  "skillType": "interface",
+  "slug": "justoneapi-imdb-title-redux-overview-query",
+  "sourceTitle": "OpenAPI definition"
+}

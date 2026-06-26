@@ -1,0 +1,12 @@
+{
+  "name": "prana-encapsulated-skill",
+  "private": true,
+  "type": "module",
+  "description": "Prana encapsulated skill — install deps for the Node runner: npm install",
+  "dependencies": {
+    "yaml": "^2.6.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

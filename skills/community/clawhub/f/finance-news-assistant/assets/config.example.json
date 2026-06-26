@@ -1,0 +1,9 @@
+{
+  "watchList": [
+    { "code": "001270", "name": "示例股票", "exchange": "SZ" }
+  ],
+  "notifyChannels": ["feishu"],
+  "feishuTarget": "ou_xxxxxxxxxxxxxxxxxxxxxxxx",
+  "pushTime": "08:00",
+  "enabled": true
+}

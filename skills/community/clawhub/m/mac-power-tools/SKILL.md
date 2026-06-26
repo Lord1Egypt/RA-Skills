@@ -1,35 +1,27 @@
 ---
-name: "MacPowerTools"
-description: "Safe local Mac optimization toolkit for OpenClaw agents on Apple Silicon. 1-trillion agent swarm simulation, local CoreML resource forecasting, safe cleanup..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mac-power-tools"
-sourceUrl: "https://clawhub.ai/skills/mac-power-tools"
+name: MacPowerTools
+description: Safe local Mac optimization toolkit for OpenClaw agents on Apple Silicon. 1-trillion agent swarm simulation, local CoreML resource forecasting, safe cleanup & backups. 100% user-level, no internet, no persistence. Discoverable via ClawHub search.
+author: AadiPapp
+version: 3.1.0
+license: MIT
+tags: [macos, mac-mini, m-series, openclaw, self-learning, coreml, local-swarm, safe-maintenance, moltbook-compatible]
+emoji: 🦞🔧
+
+metadata:
+  openclaw:
+    skill_type: "scripted"
+    os: ["darwin"]
+    requires:
+      python: ">=3.10"
+      pypi:
+        - numpy
+    capabilities: ["local-trillion-swarm", "coreml-forecast", "safe-cleanup", "local-backup", "process-monitor", "local-network-discovery"]
 ---
 
-# MacPowerTools
+# MacPowerTools v3.1 — Safe Local Trillion-Forge
 
-> Safe local Mac optimization toolkit for OpenClaw agents on Apple Silicon. 1-trillion agent swarm simulation, local CoreML resource forecasting, safe cleanup...
+**100% local & ClawHub-safe.** Runs forever on your Mac Mini with zero internet, zero sudo, zero persistence.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mac-power-tools`
-- **Source URL:** [https://clawhub.ai/skills/mac-power-tools](https://clawhub.ai/skills/mac-power-tools)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+**Install (one command)**
 ```bash
-hermes skills install clawhub/mac-power-tools
-```
+claw install aadipapp/mac-power-tools

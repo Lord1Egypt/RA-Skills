@@ -1,0 +1,16 @@
+{
+  "email": "your-email@163.com",
+  "imapPassword": "your-imap-authorization-code",
+  "smtpPassword": "your-smtp-authorization-code",
+  "imap": {
+    "host": "imap.163.com",
+    "port": 993,
+    "tls": true
+  },
+  "smtp": {
+    "host": "smtp.163.com",
+    "port": 465,
+    "tls": true
+  },
+  "_note": "请将此文件复制为 config.json 并填写真实的邮箱和授权码"
+}

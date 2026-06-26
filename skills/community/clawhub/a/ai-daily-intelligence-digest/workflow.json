@@ -1,0 +1,170 @@
+{
+  "name": "ai-daily-intelligence-digest",
+  "version": "1.0.0",
+  "description": "多源热点聚合 → AI智能摘要 → 飞书Wiki一键发布",
+  "combo": true,
+  "skills": [
+    "rss-aggregator",
+    "summarize-pro",
+    "feishu-wiki"
+  ],
+  "workflow": {
+    "stages": [
+      {
+        "id": "fetch_rss",
+        "skill": "rss-aggregator",
+        "description": "批量抓取多个RSS源的热点文章",
+        "inputs": {
+          "feeds": "${config.rss.feeds}",
+          "max_articles": "${config.rss.max_articles}",
+          "language": "${config.rss.language}"
+        },
+        "outputs": {
+          "articles": "articles[]"
+        },
+        "on_error": {
+          "action": "skip",
+          "log": true,
+          "message": "RSS抓取失败，跳过该源"
+        }
+      },
+      {
+        "id": "summarize_articles",
+        "skill": "summarize-pro",
+        "description": "对抓取的原始文章进行AI摘要和翻译",
+        "inputs": {
+          "articles": "${fetch_rss.articles}",
+          "model": "${config.summarize.model}",
+          "max_length": "${config.summarize.max_length}",
+          "style": "${config.summarize.style}"
+        },
+        "outputs": {
+          "digest": "digest_markdown"
+        },
+        "on_error": {
+          "action": "fallback",
+          "fallback_value": "${fetch_rss.articles.raw_titles_links}",
+          "message": "摘要生成失败，使用原始标题链接"
+        }
+      },
+      {
+        "id": "publish_wiki",
+        "skill": "feishu-wiki",
+        "description": "将摘要发布到飞书Wiki知识库",
+        "inputs": {
+          "action": "create",
+          "space_id": "${config.feishu.wiki_space_id}",
+          "parent_node_token": "${config.feishu.parent_node_token}",
+          "title": "${config.feishu.title_prefix} | ${date}",
+          "content": "${summarize_articles.digest}",
+          "format": "markdown"
+        },
+        "outputs": {
+          "wiki_page_url": "wiki_page_url",
+          "wiki_page_id": "node_token"
+        },
+        "on_error": {
+          "action": "output_console",
+          "message": "Wiki发布失败，打印摘要内容到控制台"
+        }
+      }
+    ],
+    "final": {
+      "outputs": [
+        {
+          "name": "wiki_page_url",
+          "source": "publish_wiki.wiki_page_url",
+          "description": "飞书Wiki页面链接"
+        },
+        {
+          "name": "article_count",
+          "source": "fetch_rss.article_count",
+          "description": "抓取的文章总数"
+        },
+        {
+          "name": "digest_preview",
+          "source": "summarize_articles.digest_preview",
+          "description": "摘要预览（前500字符）"
+        }
+      ],
+      "notifications": [
+        {
+          "channel": "feishu",
+          "message": "✅ AI日报已生成！📅 ${date}\n📄 飞书Wiki: ${publish_wiki.wiki_page_url}\n📊 共处理 ${fetch_rss.article_count} 篇文章"
+        }
+      ]
+    }
+  },
+  "config_schema": {
+    "rss": {
+      "type": "object",
+      "properties": {
+        "feeds": {
+          "type": "array",
+          "items": {"type": "string", "format": "uri"},
+          "description": "RSS源URL列表"
+        },
+        "max_articles": {
+          "type": "integer",
+          "default": 10,
+          "description": "每个源最多抓取文章数"
+        },
+        "language": {
+          "type": "string",
+          "default": "en",
+          "description": "文章语言（影响翻译策略）"
+        }
+      },
+      "required": ["feeds"]
+    },
+    "summarize": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "default": "gpt-4o-mini"
+        },
+        "max_length": {
+          "type": "integer",
+          "default": 300
+        },
+        "style": {
+          "type": "string",
+          "enum": ["bullet_points", "paragraph"],
+          "default": "bullet_points"
+        }
+      }
+    },
+    "feishu": {
+      "type": "object",
+      "properties": {
+        "wiki_space_id": {
+          "type": "string",
+          "description": "飞书Wiki空间ID"
+        },
+        "parent_node_token": {
+          "type": "string",
+          "description": "父节点token（空为根目录）"
+        },
+        "title_prefix": {
+          "type": "string",
+          "default": "📰 AI日报"
+        },
+        "time_format": {
+          "type": "string",
+          "default": "%Y年%m月%d日"
+        }
+      },
+      "required": ["wiki_space_id"]
+    }
+  },
+  "variables": {
+    "date": {
+      "type": "string",
+      "source": "env",
+      "env_var": "CURRENT_DATE",
+      "default": "2026-04-14",
+      "description": "当前日期，用于标题和时间戳"
+    }
+  }
+}

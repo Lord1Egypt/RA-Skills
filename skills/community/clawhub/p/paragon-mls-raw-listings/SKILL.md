@@ -1,35 +1,47 @@
 ---
-name: "Paragon MLS Raw Listings"
-description: "Fetch raw JSON listing payloads from Paragon MLS. Use when debugging parser behavior, inspecting source payloads, or doing custom downstream analysis on unpr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paragon-mls-raw-listings"
-sourceUrl: "https://clawhub.ai/skills/paragon-mls-raw-listings"
+name: paragon-mls-raw-listings
+description: "Fetch raw JSON listing payloads from Paragon MLS. Use when debugging parser behavior, inspecting source payloads, or doing custom downstream analysis on unprocessed listing data."
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
+    mcp:
+      paragon-mls:
+        command: node
+        args:
+          - /home/umbrel/.openclaw/workspace/deal-analyst/paragon-mls-mcp/dist/index.js
 ---
 
 # Paragon MLS Raw Listings
 
-> Fetch raw JSON listing payloads from Paragon MLS. Use when debugging parser behavior, inspecting source payloads, or doing custom downstream analysis on unpr...
+Use the `paragon-mls.raw_listings` MCP tool when you need the unprocessed Paragon payloads instead of the normalized parser output.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paragon-mls-raw-listings`
-- **Source URL:** [https://clawhub.ai/skills/paragon-mls-raw-listings](https://clawhub.ai/skills/paragon-mls-raw-listings)
+Prefer this skill for debugging, parser development, or custom downstream processing.
 
-## Overview
+## Typical use
 
+- inspect the original listing JSON when parsed fields look wrong
+- compare different MLS region payload structures
+- debug missing rent, tax, or square footage fields
+- build custom logic on top of the raw source payload
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example
+
 ```bash
-hermes skills install clawhub/paragon-mls-raw-listings
+mcporter call paragon-mls.raw_listings mlsNumbers="201918514,202012345" systemId="globalmls"
 ```
+
+## Inputs
+
+- `mlsNumbers` (required)
+- `systemId` (default: `globalmls`)
+
+## Output shape
+
+Returns raw JSON payloads for each MLS number requested.
+
+## Notes
+
+- This is the best fallback when the normalized tools are missing a field you care about.
+- Raw output is less stable across MLS regions than the parsed tools.

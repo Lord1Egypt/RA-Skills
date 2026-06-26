@@ -1,0 +1,38 @@
+{
+  "name": "Pet Sitter Intake Form Generator",
+  "tagline": "Generate branded PDF intake forms for pet sitting businesses",
+  "description": "Create professional, fillable PDF client intake forms with custom branding, 7 color themes, multi-pet support, and service-specific templates for boarding, walking, and drop-in visits. Perfect for pet sitters, dog walkers, and boarding facilities who want to streamline client onboarding with polished, consistent paperwork.",
+  "category": "productivity",
+  "tags": [
+    "pet-sitting",
+    "pdf",
+    "forms",
+    "intake",
+    "dog-walking",
+    "boarding",
+    "client-onboarding",
+    "small-business"
+  ],
+  "version": "5.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/basilanathan/pet-sitter-intake/issues",
+  "homepage": "https://github.com/basilanathan/pet-sitter-intake",
+  "repository": "https://github.com/basilanathan/pet-sitter-intake",
+  "author": {
+    "name": "basilanathan",
+    "url": "https://github.com/basilanathan"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": [
+    "reportlab>=4.0.0",
+    "pyyaml>=6.0"
+  ],
+  "screenshots": [
+    "screenshots/01-generated-form.png",
+    "screenshots/02-themes-comparison.png",
+    "screenshots/03-fillable-fields.png"
+  ]
+}

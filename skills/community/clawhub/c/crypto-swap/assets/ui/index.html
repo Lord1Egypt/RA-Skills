@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LightningEX - Instant Cryptocurrency Exchange</title>
+  <meta name="description" content="Lightning-fast crypto swaps with the best rates. Exchange 240+ cryptocurrencies securely.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Minimal layout adjustments for standalone widget */
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 20px 60px 20px;
+    }
+
+    /* Top Logo Bar */
+    .top-logo-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .top-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .top-logo-link:hover {
+      opacity: 0.8;
+    }
+
+    .top-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #00f5ff 0%, #b829dd 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+    }
+
+    .top-logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00f5ff 0%, #b829dd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .top-logo-highlight {
+      background: linear-gradient(90deg, #ffd700 0%, #ffaa00 50%, #ff6b00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero {
+      min-height: auto;
+      padding-top: 80px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    
+    .hero::before,
+    .hero::after {
+      display: none;
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .hero-text {
+        max-width: 100%;
+      }
+      
+      .hero-stats {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 16px 16px 60px 16px;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      /* Hide hero text section on mobile */
+      .hero-text {
+        display: none;
+      }
+
+      .exchange-widget {
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        border-radius: var(--radius-lg);
+      }
+
+      .container {
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Logo Bar -->
+  <div class="top-logo-bar">
+    <a href="https://www.lightningex.io" target="_blank" class="top-logo-link">
+      <div class="top-logo-icon">⚡</div>
+      <span class="top-logo-text">Lightning<span class="top-logo-highlight">EX</span></span>
+    </a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">Live Exchange</div>
+          <h1 class="hero-title">
+            Lightning Fast<br>
+            <span>Crypto Swaps</span>
+          </h1>
+          <p class="hero-subtitle">
+            Exchange 240+ cryptocurrencies instantly with the best rates. 
+            No registration required, secure and anonymous.
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-value">240+</div>
+              <div class="hero-stat-label">Supported Coins</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">&lt;2min</div>
+              <div class="hero-stat-label">Avg. Exchange Time</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">$200M+</div>
+              <div class="hero-stat-label">Volume Exchanged</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Exchange Widget -->
+        <div class="exchange-widget">
+          <div class="exchange-header">
+            <h3 class="exchange-title">Exchange Crypto</h3>
+            <div class="exchange-timer">Rate updates in <span id="rateTimer">20</span>s</div>
+          </div>
+          
+          <!-- Send Input -->
+          <div class="currency-input-group">
+            <div class="currency-input-label">You Send</div>
+            <div class="currency-input-row">
+              <input type="number" class="currency-input" id="sendAmount" placeholder="0.00" step="any" required>
+              <div class="currency-select" id="sendCurrencySelect">
+                <div class="currency-network" id="sendNetwork">BTC</div>
+                <div class="currency-main">
+                  <div class="currency-icon" id="sendIcon">₿</div>
+                  <span class="currency-code" id="sendCode">BTC</span>
+                  <svg class="currency-dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 8L1 3h10z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="currency-balance">Min: <span id="sendMin">0.001</span> <span id="sendMinCurrency">BTC</span> · Max: <span id="sendMax">420</span> <span id="sendMaxCurrency">BTC</span></div>
+          </div>
+          
+          <!-- Swap Button -->
+          <button class="swap-button" id="swapButton">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+            </svg>
+          </button>
+          
+          <!-- Receive Input -->
+          <div class="currency-input-group">
+            <div class="currency-input-label">You Receive</div>
+            <div class="currency-input-row">
+              <input type="text" class="currency-input" id="receiveAmount" placeholder="0.00" readonly>
+              <div class="currency-select" id="receiveCurrencySelect">
+                <div class="currency-network" id="receiveNetwork">ERC20</div>
+                <div class="currency-main">
+                  <div class="currency-icon" id="receiveIcon">Ξ</div>
+                  <span class="currency-code" id="receiveCode">ETH</span>
+                  <svg class="currency-dropdown-icon" width="12" height="12" viewBox="0 0 12 12">
+                    <path fill="currentColor" d="M6 8L1 3h10z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Exchange Rate Info -->
+          <div class="exchange-rate-info">
+            <div class="exchange-rate-row">
+              <span class="exchange-rate-label">Exchange Rate</span>
+              <span class="exchange-rate-value highlight" id="exchangeRate">-</span>
+            </div>
+            <div class="exchange-rate-row">
+              <span class="exchange-rate-label">Network Fee</span>
+              <span class="exchange-rate-value" id="networkFee">-</span>
+            </div>
+            <div class="exchange-rate-row">
+              <span class="exchange-rate-label">Processing Time</span>
+              <span class="exchange-rate-value" id="processingTime">2-5 minutes</span>
+            </div>
+          </div>
+          
+          <!-- Exchange Button -->
+          <button class="btn btn-primary btn-glow exchange-button" id="exchangeButton">
+            Exchange Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Currency Selection Modal -->
+  <div class="modal" id="currencyModal">
+    <div class="modal-content currency-modal-content">
+      <div class="modal-header">
+        <h3>Select Currency</h3>
+        <button class="modal-close" id="currencyModalClose">×</button>
+      </div>
+      <input type="text" class="input" id="currencySearch" placeholder="Search currency...">
+      <div class="currency-list" id="currencyList">
+        <!-- Currencies will be loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Modal -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content order-modal-content">
+      <div class="modal-header">
+        <h3>Exchange Order</h3>
+        <button class="modal-close" id="orderModalClose">×</button>
+      </div>
+      <div id="orderContent">
+        <!-- Order content will be loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 16px; font-size: 0.85rem; color: var(--text-muted); background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(10px); border-top: 1px solid rgba(0, 245, 255, 0.1); z-index: 100;">
+    Supported by <a href="https://www.lightningex.io" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">LightningEX</a>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/exchange.js"></script>
+</body>
+</html>

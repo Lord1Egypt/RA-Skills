@@ -1,0 +1,39 @@
+{
+  "runner": "fixture",
+  "trace_format_version": "normalized-v1",
+  "tool_calls": [],
+  "shell_commands": [
+    "python3 scripts/business_blueprint/cli.py --validate scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json",
+    "python3 scripts/business_blueprint/cli.py --export scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json"
+  ],
+  "failed_shell_commands": [],
+  "read_paths": [
+    "SKILL.md",
+    "references/blueprint-schema.md",
+    "references/entities-schema.md",
+    "references/systems-schema.md",
+    "references/route-eligibility.md"
+  ],
+  "write_paths": [
+    "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json",
+    "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.svg",
+    "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.viewer.html"
+  ],
+  "artifact_paths": [
+    "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.blueprint.json",
+    "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.svg",
+    "scripts/tests/fixtures/skill-evals/artifacts/implicit-meeting-notes/solution.viewer.html"
+  ],
+  "input_tokens": 14800,
+  "output_tokens": 3600,
+  "wall_ms": 48000,
+  "run_completed": true,
+  "skill_evidence": {
+    "skill_contract_read": true,
+    "blueprint_flow_observed": true,
+    "validate_observed": true,
+    "export_observed": true,
+    "projection_observed": false
+  },
+  "runner_warnings": []
+}

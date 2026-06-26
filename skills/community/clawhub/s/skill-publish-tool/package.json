@@ -1,0 +1,9 @@
+{
+  "name": "skill-publish-tool",
+  "version": "1.0.0",
+  "description": "\u81ea\u52a8\u66f4\u65b0 GitHub \u4ed3\u5e93\u5e76\u53d1\u5e03 Skill \u5230 ClawHub",
+  "license": "MIT",
+  "scripts": {
+    "publish": "python3 scripts/publish_skill.py"
+  }
+}

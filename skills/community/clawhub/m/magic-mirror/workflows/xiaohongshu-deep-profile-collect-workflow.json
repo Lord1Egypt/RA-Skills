@@ -1,0 +1,140 @@
+{
+  "name": "xiaohongshu-deep-profile-collect",
+  "description": "采集小红书个人主页的全量信息，包括基础资料（昵称/小红书号/IP属地/简介/学校/关注粉丝获赞数）、全部发布笔记、收藏笔记列表（全量XHR拦截）、点赞笔记列表（全量XHR拦截）。",
+  "original_query": "采集小红书个人主页的全量信息，包括基础资料、全部笔记、收藏列表、点赞列表",
+  "original_res": "成功采集基础资料、笔记21条、收藏209条（XHR拦截全量）、点赞58条（XHR拦截全量）。",
+  "parameters": [],
+  "platform": "小红书",
+  "created_from": "xiaohongshu-deep-profile-collect-log.json",
+  "created_at": "2026-03-19T15:10:00.000+08:00",
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://www.xiaohongshu.com/"
+      },
+      "description": "导航到小红书首页，用于从导航栏提取当前登录用户的个人主页URL",
+      "is_final_result": false
+    },
+    {
+      "step": 2,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 10000,
+        "jsScript": "() => { const links = document.querySelectorAll('a'); for (let a of links) { if (a.textContent.trim() === '我' && (a.getAttribute('href')||'').includes('/user/profile/')) { return JSON.stringify({profileUrl: 'https://www.xiaohongshu.com' + a.getAttribute('href')}); } } return JSON.stringify({profileUrl: null}); }"
+      },
+      "output": {
+        "profileUrl": "当前登录用户的个人主页完整URL",
+        "user_id": "从profileUrl中提取的用户ID（/user/profile/后面的部分）"
+      },
+      "description": "从首页导航栏找到'我'链接，提取个人主页URL和userId",
+      "is_final_result": false
+    },
+    {
+      "step": 3,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "{step_2.profileUrl}"
+      },
+      "description": "导航到个人主页（默认笔记tab），加载基础资料和笔记列表",
+      "is_final_result": false
+    },
+    {
+      "step": 4,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 120000,
+        "jsScript": "async () => { let prevCount = 0, sameCount = 0; for (let i = 0; i < 50; i++) { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); await new Promise(r => setTimeout(r, 1500)); const c = document.querySelectorAll('section.note-item').length; if (c === prevCount) { sameCount++; if (sameCount > 5) break; } else { sameCount = 0; } prevCount = c; } window.scrollTo({top: 0}); await new Promise(r => setTimeout(r, 500)); const notes = []; document.querySelectorAll('section.note-item').forEach(n => { notes.push(n.textContent.trim().substring(0,120)); }); const text = document.body.innerText; return JSON.stringify({noteCount: notes.length, notes: notes, fullText: text}); }"
+      },
+      "output": {
+        "noteCount": "笔记数量",
+        "notes": "笔记标题列表",
+        "fullText": "页面全文（含基础资料：昵称/小红书号/IP属地/简介/学校/关注粉丝获赞数）"
+      },
+      "description": "滚动加载全部笔记（智能停止：连续5轮无新增则停止），并提取基础资料和笔记列表",
+      "is_final_result": false
+    },
+    {
+      "step": 5,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "{step_2.profileUrl}?tab=fav&subTab=note"
+      },
+      "description": "导航到收藏tab（必须用URL参数，JS click tab不刷新数据）",
+      "is_final_result": false
+    },
+    {
+      "step": 6,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 5000,
+        "jsScript": "() => { window.__xhs_collected = []; window.__xhs_done = false; window.__xhs_api_count = 0; const origOpen = XMLHttpRequest.prototype.open; const origSend = XMLHttpRequest.prototype.send; XMLHttpRequest.prototype.open = function(method, url, ...rest) { this.__xhs_url = url; return origOpen.call(this, method, url, ...rest); }; XMLHttpRequest.prototype.send = function(...args) { if (this.__xhs_url && (this.__xhs_url.includes('note/collect/page') || this.__xhs_url.includes('note/like/page'))) { this.addEventListener('load', function() { try { const data = JSON.parse(this.responseText); if (data.data && data.data.notes) { window.__xhs_api_count++; data.data.notes.forEach(note => { window.__xhs_collected.push({note_id: note.note_id, display_title: note.display_title || '', type: note.type, user: note.user ? {nickname: note.user.nickname, user_id: note.user.user_id} : null, interact_info: note.interact_info ? {liked_count: note.interact_info.liked_count} : null}); }); if (!data.data.has_more) window.__xhs_done = true; } } catch(e) {} }); } return origSend.apply(this, args); }; return JSON.stringify({injected: true}); }"
+      },
+      "description": "注入XHR拦截器，监听收藏/点赞API响应（note/collect/page和note/like/page），自动收集所有笔记数据到window.__xhs_collected。小红书使用虚拟滚动，DOM只保留约28个元素，必须通过API拦截获取全量数据。",
+      "is_final_result": false
+    },
+    {
+      "step": 7,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 120000,
+        "jsScript": "async () => { for (let batch = 0; batch < 30; batch++) { for (let i = 0; i < 5; i++) { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); await new Promise(r => setTimeout(r, 1200)); } if (window.__xhs_done) break; } const seen = new Set(); const unique = []; window.__xhs_collected.forEach(n => { if (!seen.has(n.note_id)) { seen.add(n.note_id); unique.push(n); } }); return JSON.stringify({total: unique.length, notes: unique, apiCalls: window.__xhs_api_count}); }"
+      },
+      "output": {
+        "favorites_total": "收藏笔记总数",
+        "favorites_notes": "收藏笔记完整列表（含note_id/display_title/type/user/interact_info）"
+      },
+      "description": "持续滚动触发API加载，直到has_more=false。提取并去重全量收藏笔记数据。",
+      "is_final_result": false
+    },
+    {
+      "step": 8,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "{step_2.profileUrl}?tab=liked&subTab=note"
+      },
+      "description": "导航到点赞tab",
+      "is_final_result": false
+    },
+    {
+      "step": 9,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 5000,
+        "jsScript": "（同步骤6的XHR拦截器脚本，重新注入到点赞tab页面）"
+      },
+      "description": "在点赞tab重新注入XHR拦截器（每次导航后需要重新注入）。点赞API为/api/sns/web/v1/note/like/page。",
+      "is_final_result": false
+    },
+    {
+      "step": 10,
+      "tool_name": "mcp__chrome-server__chrome_execute_script",
+      "tool_params": {
+        "world": "MAIN",
+        "timeout": 120000,
+        "jsScript": "（同步骤7的滚动+提取脚本）"
+      },
+      "output": {
+        "liked_total": "点赞笔记总数",
+        "liked_notes": "点赞笔记完整列表"
+      },
+      "description": "持续滚动触发API加载，提取并去重全量点赞笔记数据。",
+      "is_final_result": true
+    },
+    {
+      "step": 11,
+      "tool_name": "mcp__chrome-server__chrome_close_tabs",
+      "tool_params": {
+        "tabIds": "all_opened_tabs"
+      },
+      "description": "关闭所有打开的标签页，清理资源",
+      "is_final_result": false
+    }
+  ]
+}

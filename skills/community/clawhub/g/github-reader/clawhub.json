@@ -1,0 +1,100 @@
+{
+  "name": "github-reader",
+  "version": "3.2.3",
+  "description": "深度解读 GitHub 项目，生成结构化分析报告（纯 GitHub REST API，无第三方依赖）",
+  "author": "Kris Lu",
+  "license": "MIT",
+  "tags": ["github", "analysis", "report", "github-reader", "code-analysis"],
+  "main": "github_reader_v3_secure.py",
+  "entry": "run",
+  "min_version": "2026.3.0",
+  "repository": "https://github.com/krislu1221/github-reader",
+  "homepage": "https://clawhub.ai/krislu1221/github-reader",
+  "skills": {
+    "category": "开发工具",
+    "subcategory": "代码分析",
+    "icon": "📦",
+    "color": "#4A90D9"
+  },
+  "config": {
+    "env": {
+      "GITVIEW_CACHE_DIR": {
+        "description": "缓存目录路径",
+        "default": "/tmp/gitview_cache",
+        "required": false
+      },
+      "GITVIEW_CACHE_TTL": {
+        "description": "缓存过期时间（小时）",
+        "default": "24",
+        "required": false
+      },
+      "GITVIEW_GITHUB_DELAY": {
+        "description": "GitHub API 调用间隔（秒）",
+        "default": "1.0",
+        "required": false
+      },
+      "GITVIEW_GITHUB_TIMEOUT": {
+        "description": "GitHub API 超时（秒）",
+        "default": "10",
+        "required": false
+      }
+    }
+  },
+  "features": [
+    "自动分析 GitHub 项目（纯 API，无第三方）",
+    "生成结构化分析报告",
+    "智能缓存（24 小时）",
+    "输入验证和安全防护",
+    "速率限制和超时控制",
+    "隐私透明 — 数据不经过第三方"
+  ],
+  "usage": {
+    "examples": [
+      "/github-read microsoft/BitNet",
+      "https://github.com/HKUDS/nanobot",
+      "分析 HKUDS/nanobot"
+    ],
+    "triggers": [
+      "/github-read {owner}/{repo}",
+      "github.com/{owner}/{repo}",
+      "分析 {owner}/{repo} / 解读 {owner}/{repo}"
+    ]
+  },
+  "security": {
+    "data_source": "仅 GitHub REST API (api.github.com)",
+    "third_party_services": "none",
+    "input_validation": true,
+    "url_sanitization": true,
+    "cache_validation": true,
+    "rate_limiting": true,
+    "timeout_control": true
+  },
+  "data_privacy": {
+    "data_leaves_device_to": ["api.github.com"],
+    "local_cache": "/tmp/gitview_cache (configurable)",
+    "note": "不向任何第三方分析服务发送数据"
+  },
+  "changelog": {
+    "3.2.0": [
+      "❌ 移除 Zread 集成 — 不再调用 zread.ai",
+      "❌ 移除 GitView 引用",
+      "✅ 纯 GitHub REST API — 无第三方依赖",
+      "✅ 收紧触发词 — 避免误触发",
+      "✅ 隐私声明 — 数据流向透明",
+      "✅ SECURITY.md — 声明与代码一一对应",
+      "🔧 修复 ClawHub 安全审计 16 个问题"
+    ],
+    "3.1.0": [
+      "🌐 国际化：完整中英双语支持",
+      "🔧 平台通用化",
+      "🔒 安全加固"
+    ],
+    "3.0.0": [
+      "🔒 安全加固：输入验证、SSRF 防护、缓存防投毒、路径防遍历",
+      "⚡ 性能优化：并发限制、速率限制、超时控制"
+    ],
+    "1.0.0": [
+      "🎉 初始版本发布"
+    ]
+  }
+}

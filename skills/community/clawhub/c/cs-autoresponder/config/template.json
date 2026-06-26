@@ -1,0 +1,47 @@
+{
+  "clientId": "example-client",
+  "name": "예시 고객사",
+  "channels": {
+    "instagram": {
+      "enabled": true,
+      "accountName": "example_account",
+      "checkIntervalSeconds": 60
+    },
+    "kakao": {
+      "enabled": false,
+      "apiKey": "YOUR_KAKAO_API_KEY",
+      "senderKey": "YOUR_SENDER_KEY"
+    },
+    "email": {
+      "enabled": false,
+      "address": "support@example.com",
+      "imapHost": "imap.gmail.com",
+      "imapPort": 993
+    }
+  },
+  "tone": "friendly",
+  "toneDescription": "친근하고 따뜻한 톤. 이모지 적당히 사용, 존댓말 기본",
+  "escalationTarget": {
+    "type": "discord",
+    "channelId": "YOUR_DISCORD_CHANNEL_ID",
+    "mention": "관리자"
+  },
+  "faqPath": "./config/faq-template.json",
+  "responseConfig": {
+    "matchThreshold": 0.6,
+    "maxResponseLength": 500,
+    "includeEmoji": true,
+    "signOff": "- MUFI 고객센터 🎧"
+  },
+  "escalationRules": {
+    "negativeKeywords": ["환불", "불만", "화남", "실망", "최악", "사기", "소비자원"],
+    "requestHumanKeywords": ["담당자", "사람", "사장님", "매니저"],
+    "consecutiveInquiryLimit": 3,
+    "lowScoreThreshold": 0.6
+  },
+  "logging": {
+    "enabled": true,
+    "logDir": "./logs",
+    "retentionDays": 90
+  }
+}

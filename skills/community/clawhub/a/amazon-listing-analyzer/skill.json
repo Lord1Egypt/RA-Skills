@@ -1,0 +1,18 @@
+{
+  "name": "Amazon Listing Analyzer",
+  "slug": "amazon-listing-analyzer",
+  "version": "1.0.0",
+  "description": "Amazon卖家Listing健康度诊断、关键词分析和竞品对标工具，不依赖实时API，输出结构化优化建议包。面向月销售额$5k-$200k的中阶卖家。",
+  "category": "ecommerce",
+  "tags": ["amazon", "listing", "keyword-analysis", "competitor-analysis", "ecommerce"],
+  "author": "Harry (Code Agent)",
+  "source": "local",
+  "entry": "handler.py",
+  "requirements": [],
+  "runtime": "python3",
+  "compatibility": {
+    "openclaw_version": ">=1.0.0"
+  },
+  "license": "MIT",
+  "readme": "SKILL.md"
+}

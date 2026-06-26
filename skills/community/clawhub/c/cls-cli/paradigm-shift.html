@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交互范式的三次跃迁</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f8f9fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1060px; width: 100%; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 15px;
+    color: #888;
+  }
+
+  /* 三列布局 */
+  .timeline {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+
+  /* 连接箭头 */
+  .arrow-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    opacity: 0;
+  }
+  .arrow-col:nth-of-type(2) { animation: fadeUp 0.4s ease 0.9s forwards; }
+  .arrow-col:nth-of-type(4) { animation: fadeUp 0.4s ease 1.5s forwards; }
+  .arrow-svg {
+    width: 36px;
+    height: 36px;
+  }
+  .arrow-svg path {
+    fill: none;
+    stroke: #c0c6d4;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* 卡片 */
+  .era-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 26px 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(24px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .era-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .era-1 { animation: fadeUp 0.5s ease 0.3s forwards; }
+  .era-1::before { background: linear-gradient(90deg, #7c8db5, #a3b1d0); }
+  .era-2 { animation: fadeUp 0.5s ease 0.9s forwards; }
+  .era-2::before { background: linear-gradient(90deg, #6a9fd8, #5bb8c9); }
+  .era-3 { animation: fadeUp 0.5s ease 1.5s forwards; }
+  .era-3::before { background: linear-gradient(90deg, #4a9a6e, #3dbf7a); }
+
+  /* 顶部标签 */
+  .era-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    width: fit-content;
+  }
+  .era-1 .era-badge { background: #f0f2f8; color: #6a7999; }
+  .era-2 .era-badge { background: #edf5fc; color: #4a87b5; }
+  .era-3 .era-badge { background: #ecfaf2; color: #3a8a5c; }
+
+  .era-icon {
+    font-size: 14px;
+  }
+
+  /* 时代名称 */
+  .era-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  /* 信息行 */
+  .info-block {
+    margin-bottom: 18px;
+  }
+  .info-block:last-of-type {
+    margin-bottom: 0;
+  }
+  .info-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .info-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+  }
+
+  /* 底部产品定义 - 突出 */
+  .product-def {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .product-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .product-text {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+  .era-1 .product-text { background: #f5f6fa; color: #5a6785; }
+  .era-2 .product-text { background: #f0f7fd; color: #3d7aaa; }
+  .era-3 .product-text { background: #f0faf4; color: #2d7a4e; }
+
+  /* 底部注脚 */
+  .footnote {
+    text-align: center;
+    margin-top: 44px;
+    font-size: 14px;
+    color: #999;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 2.2s forwards;
+  }
+  .footnote strong {
+    color: #3a8a5c;
+  }
+
+  /* 动画 */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>交互范式的三次跃迁</h1>
+    <p>从点击到命令，从命令到对话</p>
+  </div>
+
+  <div class="timeline">
+    <!-- 第一时代 -->
+    <div class="era-card era-1">
+      <div class="era-badge"><span class="era-icon">🖥</span> Era 1</div>
+      <div class="era-name">控制台时代</div>
+      <div class="info-block">
+        <div class="info-label">用户做什么</div>
+        <div class="info-text">人打开浏览器，在页面上<br>点击、填写、操作</div>
+      </div>
+      <div class="product-def">
+        <div class="product-label">产品是什么</div>
+        <div class="product-text">一套 Web 页面</div>
+      </div>
+    </div>
+
+    <!-- 箭头 -->
+    <div class="arrow-col">
+      <svg class="arrow-svg" viewBox="0 0 36 36">
+        <path d="M8 18h20M22 12l6 6-6 6"/>
+      </svg>
+    </div>
+
+    <!-- 第二时代 -->
+    <div class="era-card era-2">
+      <div class="era-badge"><span class="era-icon">⌨️</span> Era 2</div>
+      <div class="era-name">API / SDK 时代</div>
+      <div class="info-block">
+        <div class="info-label">用户做什么</div>
+        <div class="info-text">开发者写代码，通过<br>API 调用云服务</div>
+      </div>
+      <div class="product-def">
+        <div class="product-label">产品是什么</div>
+        <div class="product-text">一套 API + 文档</div>
+      </div>
+    </div>
+
+    <!-- 箭头 -->
+    <div class="arrow-col">
+      <svg class="arrow-svg" viewBox="0 0 36 36">
+        <path d="M8 18h20M22 12l6 6-6 6"/>
+      </svg>
+    </div>
+
+    <!-- 第三时代 -->
+    <div class="era-card era-3">
+      <div class="era-badge"><span class="era-icon">🤖</span> Era 3</div>
+      <div class="era-name">AI Agent 时代</div>
+      <div class="info-block">
+        <div class="info-label">用户做什么</div>
+        <div class="info-text">人说一句自然语言，<br>AI 自动完成所有操作</div>
+      </div>
+      <div class="product-def">
+        <div class="product-label">产品是什么</div>
+        <div class="product-text">AI 可调用的能力集</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    产品形态在变，核心不变 —— <strong>让用户更快拿到结果</strong>
+  </div>
+</div>
+</body>
+</html>

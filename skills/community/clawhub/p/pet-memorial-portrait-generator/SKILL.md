@@ -1,35 +1,34 @@
 ---
-name: "Pet Memorial Portrait Generator"
-description: "Create heartfelt pet memorial portraits and remembrance keepsakes for dogs, cats, and beloved animals who have passed. AI-generated pet memorial art, rainbow..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pet-memorial-portrait-generator"
-sourceUrl: "https://clawhub.ai/skills/pet-memorial-portrait-generator"
+name: pet-memorial-portrait-generator
+description: Create heartfelt pet memorial portraits and remembrance keepsakes for dogs, cats, and beloved animals who have passed. AI-generated pet memorial art, rainbow bridge portraits, angel pet paintings, and tribute photos perfect for memorial gifts, sympathy cards, keepsake prints, and honoring the memory of a cherished furry family member via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Pet Memorial Portrait Generator
 
-> Create heartfelt pet memorial portraits and remembrance keepsakes for dogs, cats, and beloved animals who have passed. AI-generated pet memorial art, rainbow...
+Create heartfelt pet memorial portraits and remembrance keepsakes for dogs, cats, and beloved animals who have passed. AI-generated pet memorial art, rainbow bridge portraits, angel pet paintings, and tribute photos perfect for memorial gifts, sympathy cards, keepsake prints, and honoring the memory of a cherished furry family member.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pet-memorial-portrait-generator`
-- **Source URL:** [https://clawhub.ai/skills/pet-memorial-portrait-generator](https://clawhub.ai/skills/pet-memorial-portrait-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pet-memorial-portrait-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create pet memorial portrait images.
+
+## Quick start
+```bash
+node petmemorialportraitgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/pet-memorial-portrait-generator
 ```

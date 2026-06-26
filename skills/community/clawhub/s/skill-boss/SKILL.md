@@ -1,35 +1,48 @@
 ---
-name: "Skillboss"
+name: skillboss
 description: "Multi-AI gateway. 50+ models: chat, image, video, TTS, music, search."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-boss"
-sourceUrl: "https://clawhub.ai/skills/skill-boss"
+allowed-tools: Bash, Read
+metadata: {"clawdbot":{"requires":{"bins":["node"],"env":["SKILLBOSS_API_KEY"]},"primaryEnv":"SKILLBOSS_API_KEY"}}
 ---
 
-# Skillboss
+# SkillBoss
 
-> Multi-AI gateway. 50+ models: chat, image, video, TTS, music, search.
+One API key, 50+ models across providers. Chat, image, video, TTS, STT, music, web search.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-boss`
-- **Source URL:** [https://clawhub.ai/skills/skill-boss](https://clawhub.ai/skills/skill-boss)
+## List Models
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/skill-boss
+node {baseDir}/scripts/run.mjs models
+node {baseDir}/scripts/run.mjs models image
+node {baseDir}/scripts/run.mjs models chat
 ```
+
+## Run a Model
+
+```bash
+node {baseDir}/scripts/run.mjs run bedrock/claude-4-5-sonnet "Explain quantum computing"
+node {baseDir}/scripts/run.mjs run mm/img "A sunset over mountains"
+node {baseDir}/scripts/run.mjs run minimax/speech-01-turbo "Hello world"
+```
+
+## Smart Mode
+
+```bash
+node {baseDir}/scripts/run.mjs tasks
+node {baseDir}/scripts/run.mjs task image "A sunset"
+node {baseDir}/scripts/run.mjs task chat "Hello"
+node {baseDir}/scripts/run.mjs task tts "Hello world"
+```
+
+## Save Media
+
+Image/video/audio results print a URL. Save with curl:
+
+```bash
+URL=$(node {baseDir}/scripts/run.mjs run mm/img "A sunset")
+curl -sL "$URL" -o sunset.png
+```
+
+Notes:
+- Get SKILLBOSS_API_KEY at https://www.skillboss.co
+- Use `models` to discover available models

@@ -1,0 +1,45 @@
+{
+  "skill_name": "document-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我需要生成一个销售报告的Word文档。标题是'2024年第一季度销售报告'，包含一个执行摘要段落，然后是一个表格显示各产品的销售数据（产品名称、销售额、增长率），最后添加一个总结段落。使用专业的格式，标题用蓝色，表格要有表头样式。",
+      "expected_output": "A professional Word document with a blue heading, executive summary paragraph, a formatted table with sales data, and a conclusion paragraph",
+      "files": [],
+      "assertions": [
+        {"name": "document_created", "description": "Word文档文件已成功创建"},
+        {"name": "has_blue_title", "description": "标题使用蓝色（检查配置或文档内容）"},
+        {"name": "has_table", "description": "包含销售数据表格"},
+        {"name": "has_three_sections", "description": "包含三个主要部分：执行摘要、表格、总结"},
+        {"name": "table_has_headers", "description": "表格有格式化的表头"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我创建一个Excel表格来跟踪项目进度。需要包含：任务名称、负责人、开始日期、结束日期、状态、完成百分比。第一行是表头，要加粗并且有背景色。添加一个公式列计算任务持续天数。设置合适的列宽，并且冻结第一行。",
+      "expected_output": "An Excel spreadsheet with project tracking columns, formatted header row, a formula column for duration calculation, appropriate column widths, and frozen first row",
+      "files": [],
+      "assertions": [
+        {"name": "excel_file_created", "description": "Excel文件已成功创建"},
+        {"name": "has_required_columns", "description": "包含所有必需的列（任务名称、负责人、日期、状态、完成百分比、持续天数）"},
+        {"name": "header_formatted", "description": "表头行有加粗和背景色"},
+        {"name": "has_formula_column", "description": "包含计算持续天数的公式列"},
+        {"name": "first_row_frozen", "description": "第一行已冻结（freeze_panes设置）"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "生成一个PDF格式的发票。发票号是INV-2024-0315，日期是今天，客户信息是'北京科技有限公司'。包含一个服务项目表格：咨询服务 10小时 @500元/小时，开发服务 20小时 @800元/小时。表格下方显示小计、税费（13%）和总计。底部添加付款条款说明。",
+      "expected_output": "A professional PDF invoice with invoice number, date, customer info, itemized services table with calculations, subtotal/tax/total, and payment terms",
+      "files": [],
+      "assertions": [
+        {"name": "pdf_file_created", "description": "PDF文件已成功创建"},
+        {"name": "has_invoice_number", "description": "包含正确的发票号 INV-2024-0315"},
+        {"name": "has_customer_info", "description": "包含客户信息'北京科技有限公司'"},
+        {"name": "has_services_table", "description": "包含服务项目表格（咨询和开发服务）"},
+        {"name": "calculations_correct", "description": "小计、税费（13%）和总计计算正确"},
+        {"name": "has_payment_terms", "description": "包含付款条款说明"}
+      ]
+    }
+  ]
+}

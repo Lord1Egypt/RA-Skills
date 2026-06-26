@@ -1,35 +1,17 @@
----
-name: "Devvit Publishing Auditor"
-description: "Audits Reddit Devvit apps for environment, config, compliance, and documentation to ensure readiness before server upload."
-category: "other"
-source: "ClawHub"
-tags: [devvit, reddit]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/devvit-publishing-auditor"
-sourceUrl: "https://clawhub.ai/skills/devvit-publishing-auditor"
----
-
 # Devvit Publishing Auditor
 
-> Audits Reddit Devvit apps for environment, config, compliance, and documentation to ensure readiness before server upload.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/devvit-publishing-auditor`
-- **Source URL:** [https://clawhub.ai/skills/devvit-publishing-auditor](https://clawhub.ai/skills/devvit-publishing-auditor)
+A specialized auditor for Reddit Devvit developers to verify app readiness before uploading to the Reddit servers. It ensures compliance with Devvit CLI v0.12.x and Reddit’s publishing standards.
 
 ## Overview
+This skill acts as a pre-flight checklist runner. It performs environment checks, dependency validation, configuration audits, and compliance scans for Web View games.
 
+## How to use
+1. Drop this folder/skill into your project.
+2. Ask your coding agent: "Run the Devvit Publishing Auditor."
+3. Follow the Go/No-Go report instructions.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/devvit-publishing-auditor
-```
+## Included Checks
+- **CLI/Env:** Version checks, Auth status, and Type integrity.
+- **Config:** `devvit.json` validation and permission mapping.
+- **Game Compliance:** Asset size limits, scroll-trap detection, and launch screen verification.
+- **Docs:** README and Privacy Policy requirements.

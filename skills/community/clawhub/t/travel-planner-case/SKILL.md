@@ -1,35 +1,102 @@
 ---
-name: "Travel planner case"
-description: "智能旅行攻略生成器。输入目的地城市后，自动搜索小红书、微博、B站、抖音等平台的热门景点推荐，生成带推荐指数排序的景点列表，细化游乐项目并按优先级排序（排除人多/踩坑项目），最终结合网络图片自动生成精美PPT攻略。用于：旅行规划、景点调研、出行攻略制作、行程优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/travel-planner-case"
-sourceUrl: "https://clawhub.ai/skills/travel-planner-case"
+name: travel-planner
+description: 智能旅行攻略生成器。输入目的地城市后，自动搜索小红书、微博、B站、抖音等平台的热门景点推荐，生成带推荐指数排序的景点列表，细化游乐项目并按优先级排序（排除人多/踩坑项目），最终结合网络图片自动生成精美PPT攻略。用于：旅行规划、景点调研、出行攻略制作、行程优化。
 ---
 
-# Travel planner case
+# Travel Planner - 智能旅行攻略生成器
 
-> 智能旅行攻略生成器。输入目的地城市后，自动搜索小红书、微博、B站、抖音等平台的热门景点推荐，生成带推荐指数排序的景点列表，细化游乐项目并按优先级排序（排除人多/踩坑项目），最终结合网络图片自动生成精美PPT攻略。用于：旅行规划、景点调研、出行攻略制作、行程优化。
+本 Skill 用于自动生成完整的旅行攻略 PPT，包括多平台热门景点搜索、推荐指数排序、游乐项目优先级排序、以及自动配图生成 PPT。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/travel-planner-case`
-- **Source URL:** [https://clawhub.ai/skills/travel-planner-case](https://clawhub.ai/skills/travel-planner-case)
+## 使用流程
 
-## Overview
+### 1. 接收用户输入
+- 目的城市名称（必填）
+- 旅行天数（可选，默认 3 天）
+- 出行人数（可选）
+- 预算级别（经济/舒适/豪华，可选）
 
+### 2. 多平台数据搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/travel-planner-case
+使用 `browser` 工具搜索以下平台：
+
+**小红书:**
 ```
+site:xiaohongshu.com "{城市名}" "攻略" OR "推荐" OR "必去"
+```
+
+**微博:**
+```
+site:weibo.com "{城市名}" "旅游" OR "景点" "推荐"
+```
+
+**B站:**
+```
+site:bilibili.com "{城市名}" "vlog" OR "攻略" OR "游记"
+```
+
+**抖音:**
+```
+site:douyin.com "{城市名}" "打卡" OR "网红景点"
+```
+
+### 3. 数据整理与分析
+
+从搜索结果中提取：
+- 景点名称
+- 推荐指数（根据出现频率、点赞数、评论热度综合评估 1-10 分）
+- 标签类别（自然风光/人文历史/美食街区/现代建筑/主题乐园等）
+- 游乐项目列表
+- 踩坑/避雷提醒（根据负面评论提取）
+
+### 4. 游乐项目优先级排序
+
+对每个景点的游乐项目进行排序：
+
+**高优先级（推荐体验）：**
+- 独特性强、当地特色
+- 口碑好、体验感佳
+- 性价比高
+
+**中优先级（可选体验）：**
+- 大众化项目
+- 时间充裕可体验
+- 评价中等
+
+**低优先级（不建议）：**
+- 排队时间过长（>2小时）
+- 差评集中、有明显坑点
+- 性价比低、商业化过重
+
+### 5. 生成 PPT
+
+使用 `powerpoint-pptx` skill 生成精美 PPT：
+
+**PPT 结构：**
+1. 封面页 - 城市名称 + 主题标语
+2. 行程概览 - 天数 + 每日主题
+3. 景点推荐（按推荐指数排序）
+   - 每个景点一页：名称、评分、标签、简介、精选图片
+4. 游乐项目优先级表
+5. 避雷指南（踩坑项目清单）
+6. 实用贴士
+7. 结束页
+
+**配图策略：**
+- 使用 `browser` 搜索景点图片
+- 每个景点配 2-3 张高质量图片
+- 使用 `image` attachment 或 URL 嵌入 PPT
+
+
+### 6. 输出结果
+
+向用户交付：
+- 生成的 PPT 文件路径
+- 行程亮点总结
+- 重要提醒（避雷点）
+
+## 关键约束
+
+1. **数据来源多样化** - 必须搜索至少 3 个平台
+2. **推荐指数客观** - 基于数据而非主观判断
+3. **避雷项目明确** - 明确标注不推荐的项目及原因
+4.

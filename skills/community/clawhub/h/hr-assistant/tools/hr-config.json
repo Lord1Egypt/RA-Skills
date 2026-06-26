@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "initializedAt": "2026-04-03T18:18:33.259400",
+  "storageType": "excel",
+  "basePath": "",
+  "organization": {
+    "filePath": "/Users/shixiaoqiang/Documents/AI 探索/AI 实验室/HR 小助手/skills/hr-assistant/tools/test_data/test_org_structure.xlsx",
+    "sheetName": "组织架构",
+    "columnMapping": {
+      "deptCode": "部门编码",
+      "deptName": "部门名称",
+      "parentCode": "上级部门",
+      "manager": "负责人"
+    },
+    "isBound": true
+  },
+  "employee": {
+    "filePath": "/tmp/test_format.xlsx",
+    "sheetName": "测试",
+    "columnMapping": {
+      "empNo": "工号",
+      "name": "姓名",
+      "deptCode": "部门"
+    },
+    "isBound": true
+  },
+  "salary": {
+    "filePath": "/Users/shixiaoqiang/Documents/AI 探索/AI 实验室/HR 小助手/skills/hr-assistant/tools/test_data/test_employees.xlsx",
+    "sheetName": "员工花名册",
+    "columnMapping": {
+      "empNo": "工号",
+      "baseSalary": "基本工资",
+      "positionAllowance": "岗位"
+    },
+    "isBound": true
+  },
+  "isFullyInitialized": true
+}

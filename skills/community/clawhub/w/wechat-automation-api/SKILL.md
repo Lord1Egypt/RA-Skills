@@ -1,35 +1,44 @@
 ---
-name: "Wechat Automation Api"
+name: "wechat-automation"
 description: "微信发信能力：控制本机发送微信文本或图片。触发词：给[某人]发微信、通知[某人]、把这个用微信发给[某人]、用微信发个图片"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-automation-api"
-sourceUrl: "https://clawhub.ai/skills/wechat-automation-api"
 ---
 
-# Wechat Automation Api
+# 微信自动发信 Skill
 
-> 微信发信能力：控制本机发送微信文本或图片。触发词：给[某人]发微信、通知[某人]、把这个用微信发给[某人]、用微信发个图片
+赋予智能体（如 OpenClaw）掌控 Windows 桌面微信直接向真实用户或群组发送消息的能力。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-automation-api`
-- **Source URL:** [https://clawhub.ai/skills/wechat-automation-api](https://clawhub.ai/skills/wechat-automation-api)
+## 应用场景
 
-## Overview
+- **信息推送**：当你作为智能体完成了某项长耗时的搜索、总结或生图任务后，可以将最终结果或报告链接直接通过微信发送给用户指定的联系人。
+- **定时催办/打卡通知**：结合智能体的定时任务机制，向目标群组发送通知。
+- **跨平台转发**：将抓取到的内容（特别如新闻图片、数据图表链接）作为微信信息直接转发。
 
+## 典型触发语句
 
-## Installation
-To install this skill, run the following command in your terminal:
+- “帮我给 **LAVA** 发个微信，就说**我今天晚点到**。”
+- “把刚才总结的**会议纪要**发到**工作群**里。”
+- “下载这个图片，用微信发给 **文件传输助手**。”
+- “帮我通知一下 **张三**，让他**明天带电脑**。”
+
+## 作为 Skill 调用的规范指令
+
+本 Skill 是一个独立的同步执行脚本，调用后会直接返回结果退出，不会常驻内存。请在命令行中使用以下语法调用：
+
+### 发送文本消息
+
 ```bash
-hermes skills install clawhub/wechat-automation-api
+python scripts/skill_cli.py --to "联系人或群组名称" --content "你要发送的具体文本"
 ```
+
+### 发送图片消息
+
+```bash
+python scripts/skill_cli.py --to "联系人或群组名称" --content "https://example.com/image.png" --action "sendpic"
+```
+
+## 注意事项与约束
+
+1. **必须精确匹配名称**：`--to` 参数指定的联系人或群组名称必须与微信内的备注或网名**完全一致**（区分大小写和空格），否则可能导致发送失败或发错人。
+2. **切勿前置判断工具界面**：不要试图使用视觉模型去理解或分析微信的页面，你只需无脑执行上述命令行命令即可，底层脚本已封装了所有的窗体防错与寻找操作。
+3. **识别执行结果**：执行后请读取 stdout，如果输出 `发送成功` 则代表到达终点；如果输出 `发送失败`，请**原封不动**把错误反馈给用户，不要擅自循环重试。
+4. **特殊字符支持**：内容中可以直接包含换行符（`\n`）或表情符号文本，脚本层会自动处理转义与输入，请放心传入。

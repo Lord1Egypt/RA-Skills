@@ -1,0 +1,120 @@
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Workspace浏览器3.0</title>
+        
+        <!-- Prism.js 语法高亮 - 使用浅色主题 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+        <!-- Marked.js for Markdown rendering -->
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <!-- 左侧边栏 -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <div class="header-left">
+                        <h1>Workspace浏览器3.0</h1>
+                    </div>
+                    <div class="header-right">
+                        <button class="sidebar-action-btn" id="refresh-btn">
+                            <span>↻</span>
+                            <span>刷新文件树</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 搜索区域 -->
+                <div class="sidebar-actions">
+                    <div class="search-container">
+                        <input 
+                            type="text" 
+                            id="file-search" 
+                            class="search-input" 
+                            placeholder="搜索文件/文件夹..."
+                            autocomplete="off"
+                        >
+                        <button class="clear-search-btn" id="clear-search" style="display: none;">
+                            ✕
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="tree-container" id="tree-container">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>加载文件树...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 主工作区 -->
+            <div class="main">
+                <div class="main-header">
+                    <div class="main-header-left">
+                        <div class="main-title" id="file-title">欢迎使用Workspace浏览器3.0</div>
+                        <div class="main-subtitle" id="file-subtitle">点击左侧文件查看内容</div>
+                        <div class="file-info" id="file-info"></div>
+                    </div>
+                    
+                    <div class="main-header-right">
+                        <div class="main-actions" id="file-actions" style="display: none;">
+                            <button class="main-action-btn primary" id="download-btn">下载文件</button>
+                            <button class="main-action-btn" id="copy-code-btn">复制代码</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab导航栏 -->
+                <div class="tab-bar" id="tab-bar" style="display: none;">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" id="source-tab" data-tab="source">
+                            源代码
+                        </button>
+                        <button class="tab-button" id="explanation-tab" data-tab="explanation">
+                            解释
+                        </button>
+                    </div>
+                    <!-- 修改解释按钮（类似Tab形态） -->
+                    <div class="tab-modify-container" id="tab-modify-container" style="display: none;">
+                        <button class="tab-modify-btn" id="tab-modify-btn" onclick="handleEditExplanation()">
+                            ✏️ 修改解释
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="content-area" id="content-area">
+                    <div class="empty-state" id="empty-state">
+                        <h2>准备就绪</h2>
+                        <p>点击左侧文件树中的文件开始浏览</p>
+                        <p style="margin-top: 20px; font-size: 14px; color: #A0AEC0;">
+                            ✅ 安全路径验证<br>
+                            ✅ 马卡龙色系基础<br>
+                            ✅ 500px侧边栏<br>
+                            ✅ 文件下载功能
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        
+        <script src="/static/js/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    </body>
+    </html>

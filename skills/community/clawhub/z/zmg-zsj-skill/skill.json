@@ -1,0 +1,294 @@
+{
+  "name": "zmg-zsj-skill",
+  "description": "Z-Sight APP core capabilities: live streaming, variety shows, short videos, trending topics, app navigation, content publishing, and more",
+  "version": "1.0.0",
+  "mcp": {
+    "transport": "http",
+    "url": "http://43.160.247.46:8090/mcp/call",
+    "sse_url": "http://43.160.247.46:8090/sse",
+    "auth": {
+      "type": "bearer",
+      "header": "Authorization",
+      "token_prefix": "",
+      "acquire_url": "http://43.160.247.46:3000"
+    }
+  },
+  "functions": [
+    {
+      "name": "search_hot",
+      "description": "Get platform trending search keywords",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "search_live",
+      "description": "Search live streams by keyword, returns matching live room list",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "description": "Search keyword"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        },
+        "required": ["keyword"]
+      }
+    },
+    {
+      "name": "search_variety",
+      "description": "Search variety shows by keyword, returns matching variety show list",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "description": "Search keyword"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        },
+        "required": ["keyword"]
+      }
+    },
+    {
+      "name": "get_hot_live_list",
+      "description": "Get current hot live stream list",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "watch_live_channel",
+      "description": "Watch TV channel live stream. Triggered when user wants to watch Zhejiang TV, Qianjiang, News channel, etc.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Channel name, e.g. Zhejiang TV, Qianjiang, Economy & Life, Education, Minsheng, News, Kids, Zhejiang International, Haoyigou, Zhijiang Documentary"
+          }
+        },
+        "required": ["channel"]
+      }
+    },
+    {
+      "name": "get_live_detail",
+      "description": "Get live detail page URL by live ID. Triggered when user wants to watch a specific live room",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "live_id": {
+            "type": "string",
+            "description": "Live stream ID"
+          }
+        },
+        "required": ["live_id"]
+      }
+    },
+    {
+      "name": "get_variety_list",
+      "description": "Get trending variety show list",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "get_short_video_list",
+      "description": "Get trending short video list with pagination",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "open_app_page",
+      "description": "Open Z-Sight APP to a specific page via schema protocol",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+            "description": "APP schema URL, e.g. zsj://live/detail?liveId=xxx"
+          }
+        },
+        "required": ["schema"]
+      }
+    },
+    {
+      "name": "publish_post",
+      "description": "Publish a text & image post. Requires user authorization (QR code scan). Returns 401 if unauthorized; guide user to visit https://zmg-mcp.cztv.com to authorize",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Post text content"
+          },
+          "img_array": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "pic": { "type": "string", "description": "Image URL" },
+                "height": { "type": "integer", "description": "Image height" },
+                "wide": { "type": "integer", "description": "Image width" }
+              }
+            },
+            "description": "Image list"
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description"
+          }
+        },
+        "required": ["title"]
+      }
+    },
+    {
+      "name": "publish_short_video",
+      "description": "Publish a short video. Requires user authorization (QR code scan). Returns 401 if unauthorized; guide user to visit https://zmg-mcp.cztv.com to authorize",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Video title"
+          },
+          "video_url": {
+            "type": "string",
+            "description": "Video file URL"
+          },
+          "cover_img": {
+            "type": "string",
+            "description": "Cover image URL"
+          },
+          "width": {
+            "type": "integer",
+            "description": "Video width"
+          },
+          "height": {
+            "type": "integer",
+            "description": "Video height"
+          },
+          "play_time": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Video duration, format: [\"HH\",\"MM\",\"SS\"], e.g. [\"00\",\"01\",\"30\"]"
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags"
+          },
+          "description": {
+            "type": "string",
+            "description": "Video description"
+          }
+        },
+        "required": ["title", "video_url"]
+      }
+    },
+    {
+      "name": "get_message_list",
+      "description": "Get message center list, supports mentions, comments/replies, and likes",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "msg_type": {
+            "type": "string",
+            "description": "Message type: mention (mentions), comment (comments/replies), like (likes)"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        },
+        "required": ["msg_type"]
+      }
+    },
+    {
+      "name": "get_user_content_list",
+      "description": "Get user short video list. User identity is auto-detected from auth token; do NOT pass uid, accessUuid, or other user identifiers.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "get_user_post_list",
+      "description": "Get user post (text & image) list. User identity is auto-detected from auth token; do NOT pass uid, accessUuid, or other user identifiers.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "get_user_audio_list",
+      "description": "Get user audio list (e.g. KTV recordings). User identity is auto-detected from auth token; do NOT pass uid, accessUuid, or other user identifiers.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "Page number, starting from 1",
+            "default": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "delete_article",
+      "description": "Delete a user article (short video, post, or audio). Requires article ID obtained from get_user_content_list, get_user_post_list, or get_user_audio_list",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "article_id": {
+            "type": "string",
+            "description": "Article ID, obtained from the id field of get_user_content_list/get_user_post_list/get_user_audio_list response"
+          }
+        },
+        "required": ["article_id"]
+      }
+    }
+  ]
+}

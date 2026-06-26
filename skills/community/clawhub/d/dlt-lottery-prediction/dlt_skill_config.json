@@ -1,0 +1,102 @@
+{
+  "skill_name": "大乐透预测 v2.1",
+  "version": "2.1",
+  "description": "大乐透（DLT）智能预测 - 四大模型融合架构",
+  "author": "J.A.R.V.I.S.",
+  "date": "2026-04-06",
+  "architecture": {
+    "core_models": [
+      {
+        "name": "LightGBM Ranker (LTR)",
+        "type": "learning_to_rank",
+        "zone": "前区+后区",
+        "description": "LambdaRank排序模型，学习号码相对优势关系",
+        "status": "active"
+      },
+      {
+        "name": "StackingMetaLearner",
+        "type": "meta_ensemble",
+        "zone": "前区+后区",
+        "description": "逻辑回归融合LTR/频率/贝叶斯三策略",
+        "status": "active"
+      },
+      {
+        "name": "Isotonic Calibrator",
+        "type": "calibration",
+        "zone": "前区+后区",
+        "description": "概率校准，使输出更可靠",
+        "status": "active"
+      }
+    ],
+    "neural_models": [
+      {
+        "name": "TabNet",
+        "type": "deep_learning",
+        "framework": "PyTorch",
+        "description": "带注意力机制的深度神经网络，自动特征选择",
+        "status": "active",
+        "features": "9维手工特征 + 序列注意力"
+      },
+      {
+        "name": "LSTM",
+        "type": "sequence_model",
+        "framework": "PyTorch",
+        "description": "双层双向LSTM，捕捉彩票号码时序依赖",
+        "status": "active",
+        "features": "滑动窗口序列 + 注意力池化"
+      },
+      {
+        "name": "Transformer",
+        "type": "attention_model",
+        "framework": "PyTorch",
+        "description": "4头自注意力 + 2层Transformer编码器",
+        "status": "active",
+        "features": "位置编码 + 全局注意力"
+      }
+    ],
+    "ensemble_strategy": "动态权重融合（验证集学习 + 等权fallback）"
+  },
+  "model_files": {
+    "lightgbm": [
+      "front_ranker_.pkl",
+      "back_ranker_.pkl"
+    ],
+    "calibrators": [
+      "front_calibrators_.pkl",
+      "back_calibrators_.pkl"
+    ],
+    "stacking": [
+      "stacker_.pkl"
+    ],
+    "neural": [
+      "tabnet_front.pt",
+      "tabnet_back.pt",
+      "lstm_front.pt",
+      "lstm_back.pt",
+      "transformer_front.pt",
+      "transformer_back.pt",
+      "lgb_front.pkl",
+      "lgb_back.pkl"
+    ]
+  },
+  "model_persistence": {
+    "status": "enabled",
+    "note": "v2.1新增: StackingMetaLearner和神经网络模型持久化"
+  },
+  "data_source": {
+    "path": "D:\\cp\\DLT历史数据_适配模型版.xlsx",
+    "wsl_path": "/mnt/d/cp/DLT历史数据_适配模型版.xlsx",
+    "total_records": 2853,
+    "note": "文件倒序排列（最新在前），自动检测并反转"
+  },
+  "performance": {
+    "前区准确率（Top5/35）": "8-15%",
+    "后区准确率（Top2/12）": "15-25%",
+    "训练时间": "<30秒",
+    "预测时间": "<1秒"
+  },
+  "history": [
+    {"date": "2026-04-05", "version": "2.0", "note": "StackingMetaLearner实现"},
+    {"date": "2026-04-06", "version": "2.1", "note": "模型持久化 + TabNet/LSTM/Transformer神经网络集成"}
+  ]
+}

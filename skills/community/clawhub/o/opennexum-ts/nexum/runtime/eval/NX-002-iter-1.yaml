@@ -1,0 +1,28 @@
+verdict: fail
+system_errors: []
+strategy_results:
+  - strategy_type: unit
+    criteria_results:
+      - id: C1
+        result: pass
+        evidence: "packages/spawn/src/spawn.ts:40-54 构造 `openclaw sessions spawn` 参数时包含 `--runtime acp`、`--agent <agentId>`、`--mode <mode>`、`--label <label>`；packages/spawn/src/__tests__/spawn.test.ts:42-107 使用 mock execa 断言调用命令为 `openclaw`，参数数组精确等于 `sessions spawn --runtime acp --agent codex --mode run --cwd <projectDir> --label nx-002-codex --task-file <prompt>`。"
+        detail: null
+        score: null
+      - id: C2
+        result: pass
+        evidence: "packages/spawn/src/status.ts:28-47 调用 `openclaw sessions list --json`，按 session key 查找并返回解析后的状态；packages/spawn/src/__tests__/spawn.test.ts:117-155 通过 mock execa 分别验证 `session-done -> done`、`session-running -> running`、缺失 session -> `unknown`，且断言调用参数为 `[\"sessions\", \"list\", \"--json\"]`。"
+        detail: null
+        score: null
+      - id: C3
+        result: pass
+        evidence: "packages/spawn/src/status.ts:50-75 在轮询中计算 `deadline`，当 `Date.now() >= deadline` 时抛出 `TimeoutError`，不会无限等待；packages/spawn/src/__tests__/spawn.test.ts:159-175 让 mock execa 始终返回 `running`，并断言 `pollUntilDone(\"session-running\", { timeoutMs: 30, intervalMs: 5 })` 以 `TimeoutError` 拒绝。"
+        detail: null
+        score: null
+      - id: C4
+        result: fail
+        evidence: "根目录 package.json:5-7 的 `pnpm build` / `pnpm test` 只过滤 `@nexum/core` 和 `@nexum/prompts`；pnpm-workspace.yaml:1-2 说明 `packages/*` 都在 workspace 中，`@nexum/spawn` 并未被排除。实际运行根目录 `pnpm build` 与 `pnpm test` 时，输出都显示 `Packages in scope: @nexum/core, @nexum/prompts`，没有任何 `@nexum/spawn` 的 build/test 记录。"
+        detail: "文件: package.json:5-7, pnpm-workspace.yaml:1-2。期望行为: 按合约执行 `pnpm build` 和 `pnpm test` 时，应实际覆盖本次交付的 `@nexum/spawn`，并证明其构建和测试全部通过。实际行为: 根级脚本直接把 `@nexum/spawn` 排除在 turbo 过滤范围之外，导致命令虽返回成功，但没有验证本次交付物。"
+        score: null
+feedback: |
+  1. 修改根目录 `package.json` 的 `build` 和 `test` 脚本，把 `@nexum/spawn` 纳入 turbo 过滤范围，确保合约要求的 `pnpm build` / `pnpm test` 真正覆盖本次交付。
+  2. 修复后重新在仓库根目录执行 `pnpm build` 与 `pnpm test`，并确认输出中实际出现 `@nexum/spawn` 的 build/test 记录。

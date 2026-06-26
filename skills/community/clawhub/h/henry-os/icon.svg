@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#2563eb"/>
+  
+  <!-- Henry OS Logo - Stylized H with dot -->
+  <!-- Left vertical bar of H -->
+  <rect x="140" y="120" width="60" height="272" rx="12" fill="white"/>
+  
+  <!-- Right vertical bar of H -->
+  <rect x="312" y="120" width="60" height="272" rx="12" fill="white"/>
+  
+  <!-- Horizontal bar of H -->
+  <rect x="140" y="226" width="232" height="60" rx="12" fill="white"/>
+  
+  <!-- Dot above (head/eye) -->
+  <circle cx="256" cy="80" r="32" fill="#60a5fa"/>
+  
+  <!-- Subtle inner shadow/glow effect -->
+  <circle cx="256" cy="80" r="20" fill="#93c5fd"/>
+</svg>

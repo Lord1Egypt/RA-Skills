@@ -1,0 +1,23 @@
+{
+  "skill_name": "google-ai-search-optimization",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit https://example.com/blog/best-crm-tips for Google AI Overviews readiness and tell me what to fix first.",
+      "expected_output": "A prioritized AI Search/SEO audit that gathers page evidence, focuses on helpful non-commodity content and technical eligibility, and avoids promising AI Overview inclusion.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Should we create llms.txt and hundreds of question pages for every AI Mode fan-out query in our niche?",
+      "expected_output": "A tactic review that rejects llms.txt as unnecessary for Google AI Search, warns against scaled content abuse, and recommends people-first content improvements instead.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Review this ecommerce category plan for AI search: product feeds, schema, buying guides, and AI-written summaries.",
+      "expected_output": "A structured review covering Merchant Center/product data, useful content, structured data as supporting SEO rather than a magic AI requirement, and AI content quality/policy constraints.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenCard Background Composition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      background: #080a0f;
+      color: #f7f8fb;
+    }
+    .frame {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-image:
+        linear-gradient(90deg, rgba(7,10,14,0.72) 0%, rgba(7,10,14,0.44) 34%, rgba(7,10,14,0.10) 60%, rgba(7,10,14,0.08) 100%),
+        linear-gradient(180deg, rgba(7,10,14,0.14) 0%, rgba(7,10,14,0.04) 45%, rgba(7,10,14,0.18) 100%),
+        url('{{background_image}}');
+      background-size: cover;
+      background-position: 62% center;
+      filter: saturate(0.96) contrast(1.02) brightness(0.92);
+    }
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: .05;
+      background-image: radial-gradient(rgba(255,255,255,.16) 0.45px, transparent 0.72px);
+      background-size: 8px 8px;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .content {
+      position: absolute;
+      inset: clamp(28px, 5.2vw, 56px) clamp(30px, 5vw, 54px) clamp(24px, 5vw, 42px) clamp(34px, 5.4vw, 56px);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(16px, 2vw, 24px);
+    }
+    .left, .right {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .eyebrow, .label, .stat-label, .token-unit {
+      font-size: clamp(11px, 0.95vw, 13px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.7);
+      font-weight: 650;
+    }
+    .eyebrow { margin-bottom: 16px; }
+    .name {
+      margin: 0;
+      font-size: clamp(56px, 5.9vw, 78px);
+      line-height: .92;
+      letter-spacing: -0.075em;
+      font-weight: 760;
+      color: #fff;
+    }
+    .subtitle {
+      margin-top: 16px;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+      font-weight: 560;
+      color: rgba(255,255,255,.85);
+      max-width: 560px;
+    }
+    .focus {
+      margin-top: clamp(48px, 9vh, 92px);
+      max-width: 620px;
+    }
+    .focus-text {
+      margin-top: 16px;
+      font-size: clamp(38px, 4.2vw, 56px);
+      line-height: .98;
+      letter-spacing: -0.07em;
+      font-weight: 760;
+      color: #fff;
+      text-wrap: balance;
+    }
+    .review {
+      margin-top: clamp(28px, 5vh, 48px);
+      max-width: 560px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(255,255,255,0.12);
+    }
+    .review-text {
+      font-size: clamp(15px, 1.4vw, 19px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      font-weight: 520;
+      color: rgba(255,255,255,.7);
+    }
+    .footer-left {
+      margin-top: auto;
+      position: relative;
+      max-width: 640px;
+    }
+    .footer-right::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+    }
+    .brand {
+      font-size: clamp(28px, 2.8vw, 34px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 760;
+      color: #fff;
+    }
+    .tag {
+      align-self: flex-end;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(15,19,25,0.20);
+      color: rgba(255,255,255,.9);
+      font-size: clamp(13px, 1.1vw, 16px);
+      font-weight: 650;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .stats {
+      margin-top: clamp(40px, 8vh, 84px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .stat {
+      min-height: clamp(150px, 20vh, 174px);
+      padding: 18px 18px 16px 18px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(14,18,24,0.28), rgba(12,15,20,0.14));
+      border: 1px solid rgba(255,255,255,0.065);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.035), 0 8px 24px rgba(0,0,0,0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: grid;
+      grid-template-rows: 20px 1fr auto;
+      overflow: hidden;
+    }
+    .stat.hero {
+      background:
+        radial-gradient(220px 120px at 12% 18%, rgba(122,31,36,0.08), transparent 72%),
+        linear-gradient(180deg, rgba(14,18,24,0.30), rgba(12,15,20,0.16));
+    }
+    .stat-main { display: flex; align-items: center; padding-top: 8px; }
+    .stat-value {
+      font-size: clamp(44px, 4.4vw, 58px);
+      line-height: .92;
+      letter-spacing: -0.07em;
+      font-weight: 780;
+      color: #fff;
+      word-break: break-word;
+    }
+    .stat-foot { min-height: 38px; display: flex; align-items: flex-end; }
+    .chip-section {
+      margin-top: clamp(18px, 3vh, 28px);
+    }
+    .chip-section-label {
+      font-size: clamp(11px, 0.95vw, 13px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.7);
+      font-weight: 650;
+      margin-bottom: 12px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,.9);
+      font-size: clamp(13px, 1.05vw, 15px);
+      font-weight: 620;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      white-space: nowrap;
+    }
+    .footer-right { margin-top: auto; padding-top: 22px; text-align: right; position: relative; overflow: visible; }
+    .footer-meta-label {
+      font-size: clamp(11px, 0.95vw, 13px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.7);
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+    .born-date {
+      font-size: clamp(22px, 2vw, 26px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 680;
+      color: #fff;
+    }
+    .date {
+      margin-top: 12px;
+      font-size: clamp(16px, 1.45vw, 20px);
+      line-height: 1.15;
+      color: rgba(255,255,255,.7);
+      font-weight: 520;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="noise"></div>
+    <div class="content">
+      <section class="left">
+        <div class="eyebrow">OpenCard User Profile</div>
+        <h1 class="name">{{display_name}}</h1>
+        <div class="subtitle">{{role_title}}</div>
+
+        <div class="focus">
+          <div class="label">Recent Focus</div>
+          <div class="focus-text">{{recent_focus}}</div>
+        </div>
+
+        <div class="review">
+          <div class="review-text">{{openclaw_review}}</div>
+        </div>
+
+        <div class="footer-left">
+          <div class="brand">OpenCard</div>
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="tag">OpenCard Profile</div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Default Model</div>
+            <div class="stat-main"><div class="stat-value">{{default_model}}</div></div>
+            <div class="stat-foot"></div>
+          </div>
+          <div class="stat hero">
+            <div class="stat-label">30D Tokens</div>
+            <div class="stat-main"><div class="stat-value">{{token_30d_short}}</div></div>
+            <div class="stat-foot"><div class="token-unit">TOKENS</div></div>
+          </div>
+        </div>
+
+        <div class="chip-section">
+          <div class="chip-section-label">Skills ({{skills_count}})</div>
+          <div class="chips">{{skill_chips}}</div>
+        </div>
+
+        <div class="chip-section">
+          <div class="chip-section-label">Platforms</div>
+          <div class="chips">{{platform_chips}}</div>
+        </div>
+
+        <div class="footer-right">
+          <div class="footer-meta-label">{{born_label}}</div>
+          <div class="born-date">{{born_date}}</div>
+          <div class="date">Generated on {{generated_at}}</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

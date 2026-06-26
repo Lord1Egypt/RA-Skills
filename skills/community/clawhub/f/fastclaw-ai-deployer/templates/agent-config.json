@@ -1,0 +1,8 @@
+{
+  "name": "我的助手",
+  "description": "一个高效、简洁的 AI 助手",
+  "model": "openrouter:google/gemini-3.1-flash-lite-preview",
+  "temperature": 0.7,
+  "maxTokens": 4096,
+  "systemPrompt": "你是一个高效、简洁的 AI 助手。直接回答问题，不废话。遇到不确定的问题直接说'我不确定'。"
+}

@@ -1,35 +1,71 @@
 ---
-name: "search-tools"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/search-tools"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/search-tools"
+name: search-tools
+description: Search Tool Hierarchy
 ---
 
-# search-tools
+# Search Tool Hierarchy
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When searching code, use this decision tree:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/search-tools`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/search-tools](https://skills.sh/parcadei/continuous-claude-v3/search-tools)
+## Decision Tree
 
-## Overview
+```
+Need CONCEPTUAL/SEMANTIC search?
+  (how does X work, find patterns, understand architecture)
+  → Use LEANN (/leann-search) - embedding-based semantic search
+  → PreToolUse hook auto-redirects semantic Grep queries
 
+Need to understand code STRUCTURE?
+  (find function calls, class usages, refactor patterns)
+  → Use AST-grep (/ast-grep-find)
 
-## Installation
-To install this skill, run the following command in your terminal:
+Need to find TEXT in code?
+  → Use Morph (/morph-search) - 20x faster
+  → If no Morph API key: fall back to Grep tool
+
+Simple one-off search?
+  → Use built-in Grep tool directly
+```
+
+## Tool Comparison
+
+| Tool | Best For | Requires |
+|------|----------|----------|
+| **LEANN** | Semantic search: "how does caching work", "error handling patterns", conceptual queries | Index built |
+| **AST-grep** | Structural patterns: "find all calls to `foo()`", refactoring, find usages by type | MCP server |
+| **Morph** | Fast text search: "find files mentioning error", grep across codebase | API key |
+| **Grep** | Literal patterns, class/function names, regex | Nothing (built-in) |
+
+## Examples
+
+**LEANN** (semantic/conceptual):
+- "how does authentication work"
+- "find error handling patterns"
+- "where is rate limiting implemented"
+
+**AST-grep** (structural):
+- "Find all functions that return a Promise"
+- "Find all React components using useState"
+- "Refactor all imports of X to Y"
+
+**Morph** (text search):
+- "Find all files mentioning 'authentication'"
+- "Search for TODO comments"
+
+**Grep** (literal):
+- `class ProviderAdapter`
+- `def __init__`
+- Regex patterns
+
+## LEANN Commands
+
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/search-tools
+# Search with semantic query
+leann search opc-dev "how does blackboard communication work" --top-k 5
+
+# List available indexes
+leann list
+
+# Rebuild index (when code changes)
+leann build opc-dev --docs dir1 dir2 --no-recompute --no-compact --force
 ```

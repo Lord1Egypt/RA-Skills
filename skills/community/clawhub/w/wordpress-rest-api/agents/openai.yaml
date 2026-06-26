@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress REST API"
+  short_description: "Inspect WordPress REST routes, auth, and endpoint behavior"
+  default_prompt: "Use $wordpress-rest-api to inspect a WordPress site's live REST routes, choose the right auth model, and work against the correct endpoint."

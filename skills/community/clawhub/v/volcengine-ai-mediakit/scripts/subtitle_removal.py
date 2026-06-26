@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+"""
+subtitle_removal.py — 硬字幕擦除
+
+用法:
+  python <SKILL_DIR>/scripts/subtitle_removal.py '<json_args>'
+  python <SKILL_DIR>/scripts/subtitle_removal.py @params.json
+
+json_args 字段见 references/17-subtitle-removal.md
+"""
+import sys, os, json
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from vod_common import init_and_parse, build_media_input, out, bail
+
+def main():
+    client, sp, args = init_and_parse()
+
+    t     = args.get("type", "Vid")
+    video = args.get("video")
+    if not video:
+        bail("subtitle_removal: video 不能为空")
+
+    params = {
+        "Input": build_media_input(t, video, sp),
+        "Operation": {
+            "Type": "Task",
+            "Task": {
+                "Type": "Erase",
+                "Erase": {
+                    "Mode":   "Auto",
+                    "NewVid": True,
+                    "Auto":   {"Type": "Subtitle"},
+                },
+            },
+        },
+    }
+    out(client.submit_media(params, "subtitlesRemoval", sp))
+
+if __name__ == "__main__":
+    main()

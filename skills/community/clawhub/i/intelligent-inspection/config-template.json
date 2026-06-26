@@ -1,0 +1,18 @@
+{
+  "camera": {
+    "url": "",
+    "accessToken": "",
+    "deviceSerial": "",
+    "channelNo": "1",
+    "projectId": "intelligent-inspection"
+  },
+  "inspection": {
+    "customPrompt": "",
+    "defaultPrompt": "请分析这张图片中的工作场所情况。检查是否有异常情况、安全隐患或员工离岗。如果发现任何问题，请详细描述；如果没有问题，请回复\"正常\"。"
+  },
+  "alerts": {
+    "enabled": true,
+    "channel": "feishu",
+    "recipient": ""
+  }
+}

@@ -1,35 +1,138 @@
 ---
-name: "Superpowers Receiving Code Review"
-description: "Use when receiving code review feedback - requires technical verification before implementing suggestions, with reasoned pushback when feedback is technicall..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-receiving-code-review"
-sourceUrl: "https://clawhub.ai/skills/openclaw-receiving-code-review"
+name: superpowers-receiving-code-review
+description: Use when receiving code review feedback - requires technical verification before implementing suggestions, with reasoned pushback when feedback is technically questionable; no performative agreement
 ---
 
 # Superpowers Receiving Code Review
 
-> Use when receiving code review feedback - requires technical verification before implementing suggestions, with reasoned pushback when feedback is technicall...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-receiving-code-review`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-receiving-code-review](https://clawhub.ai/skills/openclaw-receiving-code-review)
+代码审查需要技术评估，不是情感表演。
 
-## Overview
+**核心原则：** 实现前验证。有疑问先问。技术正确性 > 社交舒适度。
 
+## 响应模式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-receiving-code-review
 ```
+收到代码审查反馈时：
+
+1. 读：完整反馈，不要立刻反应
+2. 理解：用自己话复述要求（或提问）
+3. 验证：对照代码库现实检查
+4. 评估：对本代码库在技术上是合理的吗？
+5. 响应：技术确认或合理反驳
+6. 实现：一次一个，测试每个
+```
+
+## 禁止的回应
+
+**永远不要：**
+- "你说得对！"（明确违反准则）
+- "好观点！" / "优秀的反馈！"（表演性的）
+- "我现在来实现"（验证前不要行动）
+
+**改为：**
+- 复述技术要求
+- 提问澄清
+- 有技术理由地反驳
+- 直接开始工作（行动 > 言语）
+
+## 处理不清晰的反馈
+
+```
+如果任何项不清晰：
+  停止——暂不实现任何内容
+  提问澄清
+
+原因：项可能相关。 partial 理解 = 错误实现。
+```
+
+## 来源特定处理
+
+### 来自主人
+- **可信** — 理解后实现
+- **范围不清也问**
+- **不要表演性同意**
+- **直接行动**或技术确认
+
+### 来自外部审查者
+
+```
+实现前检查：
+  1. 技术上对本代码库正确吗？
+  2. 破坏现有功能吗？
+  3. 当前实现的原因是什么？
+  4. 在所有平台/版本上工作吗？
+  5. 审查者理解完整上下文吗？
+
+如果建议看起来不对：
+  用技术理由反驳
+
+如果无法轻易验证：
+  说出来："没有 X 我无法验证。应该 [调查/提问/继续]？"
+```
+
+## YAGNI 检查"专业"功能
+
+```
+如果审查者建议"正确实现"某功能：
+  grep 代码库找实际用法
+
+  如果未使用："此端点没有被调用。YAGNI 移除？"
+  如果使用了：那就正确实现
+```
+
+## 实现顺序
+
+```
+多项目反馈：
+  1. 先澄清任何不清晰的项
+  2. 然后按此顺序实现：
+     - 阻塞问题（破坏、安全）
+     - 简单修复（typo、import）
+     - 复杂修复（重构、逻辑）
+  3. 每个单独测试
+  4. 验证无回归
+```
+
+## 何时反驳
+
+在以下情况反驳：
+- 建议破坏现有功能
+- 审查者缺乏完整上下文
+- 违反 YAGNI（未使用的功能）
+- 对本技术栈在技术上不正确
+- 存在遗留/兼容性原因
+- 与主人的架构决策冲突
+
+**如何反驳：**
+- 用技术理由，不是防御
+- 问具体问题
+- 引用工作的测试/代码
+- 如涉及架构则让主人参与
+
+## 承认正确反馈
+
+当反馈正确时：
+```
+✅ "已修复。[简要描述变更。]"
+✅ "好发现——[具体问题]。已在 [位置] 修复。"
+
+❌ "你说得太对了！"
+❌ "好观点！"
+❌ "谢谢纠正！"
+```
+
+**为什么不说谢谢：** 行动说话。直接修。代码本身表明听到了反馈。
+
+## 常见错误
+
+| 错误 | 修复 |
+|------|------|
+| 表演性同意 | 陈述要求或直接行动 |
+| 未验证就实现 | 先对照代码库检查 |
+| 不测试就批量实现 | 一次一个，每个测试 |
+| 假设审查者对 | 检查是否破坏东西 |
+| 回避反驳 | 技术正确性 > 舒适度 |
+| partial 实现 | 澄清所有项后再实现 |
+| 无法验证仍继续 | 说明限制，询问方向 |

@@ -1,0 +1,33 @@
+{
+  "name": "ccf-events",
+  "version": "1.0.0",
+  "description": "CCF 活动信息查询工具 - 使用 Puppeteer 进行浏览器自动化",
+  "main": "index.js",
+  "scripts": {
+    "setup:puppeteer": "node scripts/ensure_puppeteer.js --install",
+    "setup:puppeteer:auto": "node scripts/ensure_puppeteer.js --auto",
+    "check:puppeteer": "node scripts/ensure_puppeteer.js",
+    "fix:puppeteer": "node scripts/ensure_puppeteer.js --fix",
+    "verify:puppeteer": "node scripts/ensure_puppeteer.js --verify",
+    "puppeteer:info": "node scripts/ensure_puppeteer.js --json",
+    "puppeteer:version": "node scripts/ensure_puppeteer.js --version"
+  },
+  "keywords": [
+    "ccf",
+    "puppeteer",
+    "automation",
+    "events",
+    "crawler"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "dependencies": {
+    "puppeteer": "^24.15.0"
+  },
+  "devDependencies": {},
+  "private": true
+}

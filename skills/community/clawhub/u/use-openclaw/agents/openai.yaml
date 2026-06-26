@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use OpenClaw"
+  short_description: "Guide common OpenClaw setup, usage, and troubleshooting"
+  default_prompt: "Use $use-openclaw to show me how to complete this task in OpenClaw."

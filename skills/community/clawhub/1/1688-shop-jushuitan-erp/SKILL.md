@@ -1,35 +1,150 @@
 ---
-name: "1688 Shop Jushuitan Erp"
-description: "连接和分析聚水潭 ERP 数据。适用于商家提供聚水潭 app_key/app_secret/access_token 后保存本地连接资料，并按自然语言编排店铺授权、商品、库存、订单、采购、日报、补货提醒等经营分析场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/1688-shop-jushuitan-erp"
-sourceUrl: "https://clawhub.ai/skills/1688-shop-jushuitan-erp"
+name: 1688-shop-jushuitan-erp
+description: 连接和分析聚水潭 ERP 数据。适用于商家提供聚水潭 app_key/app_secret/access_token 后保存本地连接资料，并按自然语言编排店铺授权、商品、库存、订单、采购、日报、补货提醒等经营分析场景。
 ---
 
-# 1688 Shop Jushuitan Erp
+# 聚水潭 ERP 连接与分析
 
-> 连接和分析聚水潭 ERP 数据。适用于商家提供聚水潭 app_key/app_secret/access_token 后保存本地连接资料，并按自然语言编排店铺授权、商品、库存、订单、采购、日报、补货提醒等经营分析场景。
+## 定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/1688-shop-jushuitan-erp`
-- **Source URL:** [https://clawhub.ai/skills/1688-shop-jushuitan-erp](https://clawhub.ai/skills/1688-shop-jushuitan-erp)
+这是一个“聚水潭 ERP 能力编排”skill。核心职责：
 
-## Overview
+- 帮用户把聚水潭开放平台授权资料保存成可复用连接配置。
+- 从商家自然语言识别他想完成的经营场景。
+- 把 ERP 数据整理成商家能直接理解的分析、提醒、报表或下一步动作。
+- 给出可复用场景和规则，让用户自己继续编排能力。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/1688-shop-jushuitan-erp
+## 凭证处理
+
+聚水潭常用授权资料包括：
+
+- `app_key`
+- `app_secret`
+- `access_token`
+- `refresh_token`（若用户提供）
+- 环境：`prod` 或 `dev`
+
+规则：
+
+- 只有用户明确要求保存时，才保存凭证。
+- 不在回复里复述完整密钥、token 或签名。
+- 不把凭证写进项目仓库、Markdown 文档、截图或日志。
+- 保存方式：使用文件写入工具（如 `create_file` 或 `file_replace`），在当前 skill 根目录下创建或更新 `profiles.json` 文件。文件路径为 `<skill_root>/profiles.json`，skill 根目录即本 `SKILL.md` 所在的目录。
+- `profiles.json` 格式示例：
+  ```json
+  {
+    "default": {
+      "app_key": "用户提供的 app_key",
+      "app_secret": "用户提供的 app_secret",
+      "access_token": "用户提供的 access_token",
+      "refresh_token": "",
+      "env": "prod",
+      "updated_at": "2026-06-01T21:00:00.000Z"
+    }
+  }
+  ```
+- profile 名称默认为 `default`，用户可指定其他名称。如果文件已存在，读取后合并新 profile 写入，不覆盖其他已有 profile。
+- 如果当前环境不支持文件写入，先说明限制，再让用户选择临时会话使用或改用环境变量。
+
+用户说"保存我的 AK""接入聚水潭""以后直接查我的 ERP"时，先判断他是否提供了完整授权资料。缺什么就简短询问缺口。收集齐全后，直接用文件写入工具保存 `profiles.json`，不要求用户手动运行脚本。
+
+## 首次接入指引
+
+当用户还没有聚水潭连接资料时，按这 4 步引导：
+
+1. 获取 `app_key`、`app_secret`、`access_token`
+   - 让用户联系聚水潭或在开放平台完成申请审核后获取。
+   - 可跳转：[聚水潭开放平台](https://openweb.jushuitan.com/)。
+   - 若用户已经拿到资料，直接进入保存 profile。
+2. 创建应用
+   - 让用户前往开放平台应用管理创建应用，按业务选择应用类型并提交审核。
+   - 可跳转：[应用管理](https://openweb.jushuitan.com/management/apps)。
+3. 添加应用 IP 白名单
+   - 需要知道当前调用方的公网出口 IP。
+   - agent 可以直接运行 `scripts/jst_erp.mjs public-ip` 获取并告诉用户。
+   - 如果无法联网，告诉用户在浏览器访问 `https://api.ipify.org` 获取公网 IP。
+4. 开启 API 权限
+   - 让用户在应用详情里的 API 接口权限页面申请需要的接口权限。
+   - 可跳转：[应用管理](https://openweb.jushuitan.com/management/apps)。
+   - 先申请当前场景需要的基础、商品、库存等接口，不建议笼统申请全部接口。
+5. 用户数据授权确认
+   - 凭证保存成功后，必须向用户展示数据授权确认，说明本 skill 会访问的数据范围。
+   - 确认文案：`同意并授权牛顿获取聚水潭账号中的店铺、商品、库存信息，用于经营分析、报表生成、异常提醒相关服务`
+   - 用户明确表示同意（如"同意""好的""确认""可以"等肯定意图）后，使用文件写入工具在 skill 根目录创建或更新 `consent.json`。
+   - 如果用户拒绝或未回应，不保存同意记录，不执行后续数据查询操作，并告知用户需要授权后才能使用。
+   - `consent.json` 格式：
+     ```json
+     {
+       "consented": true,
+       "consented_at": "2026-06-02T21:00:00.000Z",
+       "consent_text": "同意并授权牛顿获取聚水潭账号中的店铺、商品、库存信息，用于经营分析、报表生成、异常提醒相关服务",
+       "profile": "default"
+     }
+     ```
+   - `profile` 字段对应用户保存的 profile 名称。
+   - 如果用户有多个 profile，每个 profile 首次使用时都需要单独确认授权。
+
+## 工作流
+
+1. 识别用户说的是哪类经营场景：连接配置、店铺授权、商品、库存、订单、采购、售后、日报、提醒、经营复盘。
+2. 把问题翻译成需要的数据和口径，但先用商家语言表达，不先讲接口。
+3. 若需要真实数据，确认已有 profile 或用户提供了授权资料。
+4. 读取 `consent.json` 确认用户已完成数据授权确认。如果文件不存在或 `consented` 不为 `true`，先引导用户完成数据授权确认（展示确认文案、等待同意、保存记录），再继续后续步骤。
+5. 读取场景手册：`references/scenarios.md`；需要真实调用时再读取 `references/api-map.md`。
+6. 产出业务结果，同时说明时间范围、数据口径和缺失条件。
+
+不要为了一个简单问题拉取全量数据。先确认用户真正要决策什么，再取最小必要数据。
+
+## 能力编排
+
+常见能力不是固定按钮，而是按用户问题临时编排。优先使用用户会说的话：
+
+- “我的店铺授权快到期了吗？”
+- “哪些商品资料不完整、没启用、没同步？”
+- “今天哪些 SKU 库存紧张？”
+- “哪些货还能卖几天？”
+- “哪些商品该补货、补多少？”
+- “最近订单、退款、售后有没有异常？”
+- “每天早上给我一份经营日报。”
+- “帮我把这个判断变成一个可复用规则。”
+
+输出时把“已知数据”和“推导建议”分开。对缺少权限、缺少字段或样本不足的地方直接标注，不补想象。
+
+## 场景入口
+
+用户可以这样调用：
+
+```text
+$jushuitan-erp 保存我的聚水潭连接，profile 叫 default
+$jushuitan-erp 查我有哪些店铺，授权什么时候到期
+$jushuitan-erp 看最近 7 天库存变化，按 SKU 汇总
+$jushuitan-erp 当库存接近安全库存线 30% 时提醒我补货
+$jushuitan-erp 当可售天数低于 7 天时提醒我补货
+$jushuitan-erp 帮我设计一个每天 9 点的库存日报
 ```
+
+安全库存预警只是一个场景。常见说法优先理解为：
+
+- `安全库存` / `库存预警线`：静态低库存阈值，通常对应聚水潭 `min_qty`。
+- `补货点` / `订货点`：触发采购或补货动作的库存线，可由安全库存、销量和采购提前期推导。
+- `库存水位` / `安全库存余量`：相对阈值的百分比表达。
+- `可售天数` / `库存覆盖天数`：按销量速度估算还能卖几天。
+
+当用户说“接近安全库存线 30%”“安全库存余量 30%”时，默认可按以下口径解释：
+
+```text
+可用参考库存 = qty - order_lock + virtual_qty + purchase_qty + in_qty + return_qty
+安全库存余量率 = (可用参考库存 - min_qty) / min_qty
+触发提醒 = min_qty 有值，且安全库存余量率 <= 用户阈值
+```
+
+如果 `min_qty` 为空，要求用户提供销量、提前期或安全库存口径，不直接下补货结论。
+
+## 本地资料
+
+如果当前工作区存在以下文件，优先读取：
+
+- `skills/jushuitan-erp/references/scenarios.md`
+- `skills/jushuitan-erp/references/api-map.md`
+- `consent.json`：用户数据授权确认记录。每次执行数据查询前必须读取此文件，确认 `consented` 为 `true` 后才能继续。文件不存在或 `consented` 不为 `true` 时，必须先完成数据授权确认流程。

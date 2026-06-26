@@ -1,35 +1,36 @@
 ---
-name: "OpenClaw Policy Check"
+name: openclaw-policy-check
 description: "Scan repositories for risky security patterns before execution. Use when users ask for a quick preflight security check, policy enforcement scan, suspicious code triage, or detection of unsafe commands, secret leakage, and dangerous shell behavior."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-policy-check"
-sourceUrl: "https://clawhub.ai/skills/openclaw-policy-check"
 ---
 
 # OpenClaw Policy Check
 
-> Scan repositories for risky security patterns before execution. Use when users ask for a quick preflight security check, policy enforcement scan, suspicious code triage, or detection of unsafe commands, secret leakage, and dangerous shell behavior.
+Run a lightweight policy scan to catch common high-risk patterns in code and scripts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-policy-check`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-policy-check](https://clawhub.ai/skills/openclaw-policy-check)
+## Inputs
 
-## Overview
+- `target_path` (required): file or directory to scan.
+- `fail_on` (optional): severity threshold for non-zero exit. One of `critical`, `high`, `medium`, `low`.
+- `json_output` (optional): print raw JSON output.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Run `scripts/policy_check.py` on the target path.
+2. Review severity counts and top findings.
+3. If findings exist, prioritize `critical` and `high` items first.
+4. Suggest concrete fixes for each flagged pattern.
+
+## Commands
+
 ```bash
-hermes skills install clawhub/openclaw-policy-check
+python3 scripts/policy_check.py "<target_path>"
+python3 scripts/policy_check.py "<target_path>" --json
+python3 scripts/policy_check.py "<target_path>" --fail-on high
 ```
+
+## Response Contract
+
+- Always include total findings and severity breakdown.
+- Include top findings with `file:line`, rule id, and reason.
+- If no findings exist, explicitly state that no policy violations were detected.
+- Keep remediation guidance concrete and brief.

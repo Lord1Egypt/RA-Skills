@@ -1,0 +1,27 @@
+{
+  "name": "capability-evolver",
+  "version": "2.0.0",
+  "description": "A fully local machine learning engine that makes your OpenClaw agent smart over time — without ever calling home, revealing your machine ID, or exposing any security holes. Tracks fix outcomes with a feedback loop, clusters errors with semantic embeddings, and learns which strategies work using a k-NN predictor. Every evolution is auditable. No telemetry, no fingerprinting, no network calls.",
+  "main": "index.js",
+  "keywords": [
+    "ai",
+    "evolution",
+    "meta-learning",
+    "self-improvement",
+    "automation",
+    "agent",
+    "local"
+  ],
+  "author": "Joe Che (https://mastermindshq.business)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "run": "node index.js run",
+    "solidify": "node index.js solidify",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "private": false
+}

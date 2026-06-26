@@ -1,0 +1,14 @@
+[
+  {
+    "name": "sample-eng",
+    "returncode": 0,
+    "stderr": "",
+    "chars": 32
+  },
+  {
+    "name": "sample-mixed",
+    "returncode": 0,
+    "stderr": "",
+    "chars": 44
+  }
+]

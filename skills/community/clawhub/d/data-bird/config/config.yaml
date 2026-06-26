@@ -1,0 +1,27 @@
+# Data Bird 配置
+max_rows: 10000
+max_file_mb: 10
+
+# 报告输出目录。空或不设则默认 <工作区>/databird/output/
+# 工作区 = OPENCLAW_WORKSPACE 或 ~/.openclaw/workspace
+output_reports_dir: ""
+
+# PDF 正文使用的中文字体文件（相对本 skill 根目录）。生成 PDF 时优先注册并强制使用该字体。
+# 可被环境变量 CLAW_BI_PDF_FONT（或 DATA_BIRD_PDF_FONT）或任务 options.pdf_chinese_font 覆盖。
+pdf_chinese_font: fonts/SourceHanSansSC-Regular.otf
+# 注意：以下套餐字段仅用于本地默认体验/展示；真正的 Pro 授权在 py_api 服务端校验。
+# 即使用户手动把本地 skill 改成 pro，也不会让服务端用户自动获得 Pro 能力。
+plan: free
+daily_limit: 5
+report_style: consulting
+min_chart_count: 5
+max_chart_count: 5
+max_report_chars: 1000
+enable_mysql: false
+pricing_url: "https://your-domain.com/data-bird/pricing"
+upgrade_url: "https://your-domain.com/data-bird/upgrade?from=data-bird-free"
+contact_url: "https://your-domain.com/data-bird/contact"
+
+chart_types:
+  - line
+  - bar

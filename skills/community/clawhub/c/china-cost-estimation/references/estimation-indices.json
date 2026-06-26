@@ -1,0 +1,310 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-03-29",
+    "description": "建设工程投资估算指标参考值",
+    "scope": "全国通用，需根据地区、时间调整"
+  },
+  "building_construction": {
+    "description": "房屋建筑工程估算指标",
+    "categories": [
+      {
+        "code": "A01",
+        "name": "多层住宅",
+        "structure": "砖混/框架",
+        "decoration": "普通",
+        "unit_cost_low": 2800,
+        "unit_cost_mid": 3200,
+        "unit_cost_high": 3500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "一般室外配套"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"],
+        "adjustment_factors": {
+          "region": {"一线城市": 1.2, "二线城市": 1.0, "三四线城市": 0.85},
+          "decoration": {"毛坯": 0.85, "普通": 1.0, "精装": 1.25, "豪装": 1.6}
+        }
+      },
+      {
+        "code": "A02",
+        "name": "高层住宅",
+        "structure": "框架-剪力墙",
+        "decoration": "普通",
+        "unit_cost_low": 3500,
+        "unit_cost_mid": 4000,
+        "unit_cost_high": 4500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "电梯", "一般室外配套"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"],
+        "adjustment_factors": {
+          "height": {"≤18层": 1.0, "19-33层": 1.1, "≥34层": 1.2},
+          "decoration": {"毛坯": 0.85, "普通": 1.0, "精装": 1.25, "豪装": 1.6}
+        }
+      },
+      {
+        "code": "A03",
+        "name": "商业建筑",
+        "structure": "框架",
+        "decoration": "中档",
+        "unit_cost_low": 4000,
+        "unit_cost_mid": 4800,
+        "unit_cost_high": 5500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "中央空调", "电梯", "消防", "智能化"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"]
+      },
+      {
+        "code": "A04",
+        "name": "办公建筑",
+        "structure": "框架-剪力墙",
+        "decoration": "中档",
+        "unit_cost_low": 3800,
+        "unit_cost_mid": 4500,
+        "unit_cost_high": 5000,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "中央空调", "电梯", "消防", "智能化"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"]
+      },
+      {
+        "code": "A05",
+        "name": "教育建筑-幼儿园",
+        "structure": "框架",
+        "decoration": "普通",
+        "unit_cost_low": 3200,
+        "unit_cost_mid": 3800,
+        "unit_cost_high": 4500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "室外配套", "游乐设施"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"]
+      },
+      {
+        "code": "A06",
+        "name": "教育建筑-中小学",
+        "structure": "框架",
+        "decoration": "普通",
+        "unit_cost_low": 3000,
+        "unit_cost_mid": 3500,
+        "unit_cost_high": 4000,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "室外配套", "运动场"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"]
+      },
+      {
+        "code": "A07",
+        "name": "教育建筑-大学",
+        "structure": "框架",
+        "decoration": "普通",
+        "unit_cost_low": 3500,
+        "unit_cost_mid": 4200,
+        "unit_cost_high": 5000,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "室外配套", "实验室设备基础"],
+        "excluded": ["土地费用", "建设期利息", "流动资金", "教学设备"]
+      },
+      {
+        "code": "A08",
+        "name": "医疗建筑-综合医院",
+        "structure": "框架-剪力墙",
+        "decoration": "中档",
+        "unit_cost_low": 5000,
+        "unit_cost_mid": 6500,
+        "unit_cost_high": 7500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "净化工程", "医疗气体", "物流系统", "智能化"],
+        "excluded": ["土地费用", "建设期利息", "流动资金", "医疗设备"]
+      },
+      {
+        "code": "A09",
+        "name": "医疗建筑-专科医院",
+        "structure": "框架-剪力墙",
+        "decoration": "中档",
+        "unit_cost_low": 5500,
+        "unit_cost_mid": 7000,
+        "unit_cost_high": 8500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "净化工程", "医疗气体", "物流系统", "智能化"],
+        "excluded": ["土地费用", "建设期利息", "流动资金", "医疗设备"]
+      },
+      {
+        "code": "A10",
+        "name": "工业厂房-轻钢",
+        "structure": "门式刚架",
+        "decoration": "简装",
+        "unit_cost_low": 1800,
+        "unit_cost_mid": 2200,
+        "unit_cost_high": 2800,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "钢结构", "装饰工程", "安装工程", "一般室外配套"],
+        "excluded": ["土地费用", "建设期利息", "流动资金", "生产设备"]
+      },
+      {
+        "code": "A11",
+        "name": "工业厂房-混凝土",
+        "structure": "排架/框架",
+        "decoration": "简装",
+        "unit_cost_low": 2200,
+        "unit_cost_mid": 2800,
+        "unit_cost_high": 3500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "一般室外配套"],
+        "excluded": ["土地费用", "建设期利息", "流动资金", "生产设备"]
+      },
+      {
+        "code": "A12",
+        "name": "仓储物流",
+        "structure": "轻钢/框架",
+        "decoration": "简装",
+        "unit_cost_low": 2000,
+        "unit_cost_mid": 2500,
+        "unit_cost_high": 3200,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "装饰工程", "安装工程", "消防", "一般室外配套"],
+        "excluded": ["土地费用", "建设期利息", "流动资金", "货架系统"]
+      },
+      {
+        "code": "A13",
+        "name": "地下车库",
+        "structure": "框架",
+        "decoration": "简装",
+        "unit_cost_low": 3500,
+        "unit_cost_mid": 4000,
+        "unit_cost_high": 4500,
+        "unit": "元/㎡",
+        "calculation_base": "建筑面积",
+        "included": ["土建工程", "基坑支护", "装饰工程", "安装工程", "消防", "通风", "智能化"],
+        "excluded": ["土地费用", "建设期利息", "流动资金"]
+      }
+    ]
+  },
+  "municipal_engineering": {
+    "description": "市政工程估算指标",
+    "categories": [
+      {
+        "code": "M01",
+        "name": "城市主干道",
+        "unit_cost_low": 800,
+        "unit_cost_mid": 1000,
+        "unit_cost_high": 1200,
+        "unit": "元/㎡",
+        "calculation_base": "道路面积",
+        "included": ["路基工程", "路面工程", "排水工程", "交通设施", "照明", "绿化"],
+        "specifications": "红线宽度40-60m，双向6-8车道"
+      },
+      {
+        "code": "M02",
+        "name": "城市次干道",
+        "unit_cost_low": 600,
+        "unit_cost_mid": 750,
+        "unit_cost_high": 900,
+        "unit": "元/㎡",
+        "calculation_base": "道路面积",
+        "included": ["路基工程", "路面工程", "排水工程", "交通设施", "照明", "绿化"],
+        "specifications": "红线宽度30-40m，双向4-6车道"
+      },
+      {
+        "code": "M03",
+        "name": "城市支路",
+        "unit_cost_low": 400,
+        "unit_cost_mid": 500,
+        "unit_cost_high": 600,
+        "unit": "元/㎡",
+        "calculation_base": "道路面积",
+        "included": ["路基工程", "路面工程", "排水工程", "交通设施", "照明"],
+        "specifications": "红线宽度15-30m，双向2-4车道"
+      },
+      {
+        "code": "M04",
+        "name": "雨水管道-DN400-600",
+        "unit_cost_low": 2500,
+        "unit_cost_mid": 3500,
+        "unit_cost_high": 4500,
+        "unit": "元/m",
+        "calculation_base": "管道长度",
+        "included": ["沟槽开挖", "管道敷设", "检查井", "回填", "路面恢复"]
+      },
+      {
+        "code": "M05",
+        "name": "雨水管道-DN800-1200",
+        "unit_cost_low": 4500,
+        "unit_cost_mid": 6000,
+        "unit_cost_high": 8000,
+        "unit": "元/m",
+        "calculation_base": "管道长度",
+        "included": ["沟槽开挖", "管道敷设", "检查井", "回填", "路面恢复"]
+      },
+      {
+        "code": "M06",
+        "name": "污水管道-DN400-600",
+        "unit_cost_low": 3000,
+        "unit_cost_mid": 4000,
+        "unit_cost_high": 5500,
+        "unit": "元/m",
+        "calculation_base": "管道长度",
+        "included": ["沟槽开挖", "管道敷设", "检查井", "回填", "路面恢复", "闭水试验"]
+      },
+      {
+        "code": "M07",
+        "name": "给水管道-DN200-400",
+        "unit_cost_low": 3500,
+        "unit_cost_mid": 4500,
+        "unit_cost_high": 6000,
+        "unit": "元/m",
+        "calculation_base": "管道长度",
+        "included": ["沟槽开挖", "管道敷设", "阀门井", "回填", "路面恢复", "试压消毒"]
+      },
+      {
+        "code": "M08",
+        "name": "绿化工程-普通",
+        "unit_cost_low": 200,
+        "unit_cost_mid": 280,
+        "unit_cost_high": 350,
+        "unit": "元/㎡",
+        "calculation_base": "绿化面积",
+        "included": ["土方工程", "乔木", "灌木", "地被", "草坪", "养护"]
+      },
+      {
+        "code": "M09",
+        "name": "绿化工程-中档",
+        "unit_cost_low": 350,
+        "unit_cost_mid": 450,
+        "unit_cost_high": 600,
+        "unit": "元/㎡",
+        "calculation_base": "绿化面积",
+        "included": ["土方工程", "土壤改良", "乔木", "灌木", "地被", "草坪", "养护"]
+      },
+      {
+        "code": "M10",
+        "name": "人行道",
+        "unit_cost_low": 150,
+        "unit_cost_mid": 220,
+        "unit_cost_high": 300,
+        "unit": "元/㎡",
+        "calculation_base": "铺装面积",
+        "included": ["基层", "面层", "路缘石", "树池"]
+      }
+    ]
+  },
+  "cost_proportions": {
+    "description": "造价构成比例参考",
+    "building_construction": {
+      "labor_cost": {"proportion_min": 15, "proportion_max": 25, "description": "人工费占比"},
+      "material_cost": {"proportion_min": 50, "proportion_max": 65, "description": "材料费占比"},
+      "equipment_cost": {"proportion_min": 3, "proportion_max": 8, "description": "机械费占比"},
+      "management_cost": {"proportion_min": 4, "proportion_max": 8, "description": "企业管理费占比"},
+      "profit": {"proportion_min": 3, "proportion_max": 6, "description": "利润占比"},
+      "fees": {"proportion_min": 3, "proportion_max": 5, "description": "规费占比"},
+      "tax": {"proportion": 9, "description": "税金占比（按税前造价）"}
+    }
+  }
+}

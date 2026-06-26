@@ -1,35 +1,39 @@
 ---
-name: "what-context-needed"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/what-context-needed"
-sourceUrl: "https://skills.sh/github/awesome-copilot/what-context-needed"
+name: what-context-needed
+description: 'Ask Copilot what files it needs to see before answering a question'
 ---
 
-# what-context-needed
+# What Context Do You Need?
 
-> Indexed by skills.sh from github/awesome-copilot
+Before answering my question, tell me what files you need to see.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/what-context-needed`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/what-context-needed](https://skills.sh/github/awesome-copilot/what-context-needed)
+## My Question
 
-## Overview
+{{question}}
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/what-context-needed
+1. Based on my question, list the files you would need to examine
+2. Explain why each file is relevant
+3. Note any files you've already seen in this conversation
+4. Identify what you're uncertain about
+
+## Output Format
+
+```markdown
+## Files I Need
+
+### Must See (required for accurate answer)
+- `path/to/file.ts` — [why needed]
+
+### Should See (helpful for complete answer)
+- `path/to/file.ts` — [why helpful]
+
+### Already Have
+- `path/to/file.ts` — [from earlier in conversation]
+
+### Uncertainties
+- [What I'm not sure about without seeing the code]
 ```
+
+After I provide these files, I'll ask my question again.

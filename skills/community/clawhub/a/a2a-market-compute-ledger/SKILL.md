@@ -1,35 +1,47 @@
 ---
-name: "a2a-Market-Compute-Ledger"
-description: "Manage compute account ledgers, frozen balances, charge events, and settlement records for A2A commerce flows. Use when implementing or operating compute bil..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/a2a-market-compute-ledger"
-sourceUrl: "https://clawhub.ai/skills/a2a-market-compute-ledger"
+name: a2a-market-compute-ledger
+description: Manage compute account ledgers, frozen balances, charge events, and settlement records for A2A commerce flows. Use when implementing or operating compute billing, debit, freeze, unfreeze, and audit trails.
 ---
 
-# a2a-Market-Compute-Ledger
+# a2a-Market Compute Ledger
 
-> Manage compute account ledgers, frozen balances, charge events, and settlement records for A2A commerce flows. Use when implementing or operating compute bil...
+Build and operate the compute ledger module for RealMarket A2A runtime.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/a2a-market-compute-ledger`
-- **Source URL:** [https://clawhub.ai/skills/a2a-market-compute-ledger](https://clawhub.ai/skills/a2a-market-compute-ledger)
+Current status: scaffold-first skill for early registration. Keep APIs stable, add production logic incrementally.
 
-## Overview
+## Scope
+- Own `ComputeAccount` domain object, balance snapshots, and immutable transaction journal.
+- Support reserve/freeze before negotiation and final debit after order confirmation.
+- Emit billing events to event bus for reputation, websocket push, and finance logs.
 
+## Suggested Project Layout
+- `app/domain/entities/compute_account.py`
+- `app/application/services/billing_service.py`
+- `app/infrastructure/db/ledger_repository.py`
+- `app/infrastructure/tasks/reconcile_ledger.py`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/a2a-market-compute-ledger
-```
+## Minimum Contracts (MVP P0)
+1. `freeze(account_id, amount, reason)` returns hold id and expiry.
+2. `capture_hold(hold_id, order_id)` converts hold to settled charge.
+3. `release_hold(hold_id)` unlocks unused balance.
+4. `list_ledger_entries(account_id, from_ts, to_ts)` returns ordered journal records.
+
+## Event Mapping
+- On hold created: emit `INTENT_CREATED` + billing extension payload.
+- On charge captured: emit `ORDER_CREATED` and settlement payload.
+- On charge finalized: emit `PAYMENT_SUCCEEDED`.
+
+## Guardrails
+- Use integer minor units for money; avoid float math.
+- Enforce idempotency key on every mutating operation.
+- Keep journal append-only; never rewrite posted entries.
+
+## Implementation Backlog
+- Add double-entry validation rules.
+- Add monthly statement export and audit tooling.
+
+## Runtime Implementation
+- Status: implemented in local runtime package.
+- Primary code paths:
+- `runtime/src/domain/compute-ledger.js`
+- Validation: covered by `runtime/tests` and `npm test` in `runtime/`.

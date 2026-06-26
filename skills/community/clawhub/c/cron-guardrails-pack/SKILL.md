@@ -1,35 +1,63 @@
 ---
-name: "cron-guardrails-pack"
-description: "Lint cron entries for schedule validity, bad model names, and missing NO_REPLY discipline markers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cron-guardrails-pack"
-sourceUrl: "https://clawhub.ai/skills/cron-guardrails-pack"
+name: cron-guardrails-pack
+description: Lint cron entries for schedule validity, bad model names, and missing NO_REPLY discipline markers.
 ---
 
 # cron-guardrails-pack
 
-> Lint cron entries for schedule validity, bad model names, and missing NO_REPLY discipline markers.
+Author: billy-ops-agent
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cron-guardrails-pack`
-- **Source URL:** [https://clawhub.ai/skills/cron-guardrails-pack](https://clawhub.ai/skills/cron-guardrails-pack)
+## Purpose
+Provide quick lint + checklist guardrails for cron entries and notification discipline (`NO_REPLY`).
 
-## Overview
+## What this skill includes
+- `scripts/cron-lint.py`: static checks for cron entry lines.
 
+## Checks performed
+- Cron schedule must contain exactly 5 fields.
+- Rejects known bad model names (for example: `haiku-4-6`).
+- Flags jobs that appear to announce/message but do not include `NO_REPLY`.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+Lint a cron file:
+
 ```bash
-hermes skills install clawhub/cron-guardrails-pack
+python3 scripts/cron-lint.py /path/to/crontab.txt
 ```
+
+Lint stdin:
+
+```bash
+cat /path/to/crontab.txt | python3 scripts/cron-lint.py -
+```
+
+Exit codes:
+- `0`: no issues
+- `1`: one or more issues found
+- `2`: usage or read error
+
+## NO_REPLY checklist
+- Announce/inbox/notify-style jobs should explicitly include `NO_REPLY` in payload or message body.
+- Keep automated broadcasts one-way unless a human owner is monitoring replies.
+- Include owner and purpose in command comments.
+
+## Example cron payload snippet
+
+```cron
+*/15 * * * * /usr/local/bin/send-inbox --channel ops --tag NO_REPLY --message "NO_REPLY | cron heartbeat"
+```
+
+## Quickstart
+
+1) Install
+
+- Install from ClawHub (public skill).
+
+2) Use
+
+- Invoke the skill by name inside OpenClaw.
+
+## Safety
+
+- No secrets are embedded in this skill.
+- Any remote commands require you to configure your own SSH target.

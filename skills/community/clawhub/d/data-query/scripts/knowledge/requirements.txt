@@ -1,0 +1,15 @@
+# data-query 技能知识库生成脚本依赖
+# 根据数据库类型安装对应的驱动
+
+# MySQL 支持
+pymysql>=1.0.0
+
+# 达梦数据库支持（二选一）
+# 方案1: dmPython - 性能最好，需要安装达梦数据库客户端
+dmPython>=2.5.0; sys_platform != "darwin"  # macOS 不支持
+
+# 方案2: pyodbc - 跨平台兼容性好，需要安装 ODBC 驱动
+pyodbc>=4.0.0
+
+# Oracle 支持
+oracledb>=1.0.0

@@ -1,0 +1,39 @@
+{
+  "name": "@moltx/moltx-skills",
+  "version": "1.3.12",
+  "description": "MoltX skill pack — task lifecycle orchestration on Base.",
+  "type": "module",
+  "main": "runtime/dist/cli.js",
+  "bin": {
+    "moltx-runtime": "runtime/dist/cli.js"
+  },
+  "openclaw": {
+    "extensions": [
+      "./runtime/dist/cli.js"
+    ],
+    "compat": {
+      "pluginApi": ">=1.0.0"
+    }
+  },
+  "scripts": {
+    "test": "node --import tsx --test runtime/test/**/*.test.ts",
+    "build": "rm -rf runtime/dist && tsc -p runtime/tsconfig.json && cp -R runtime/src/contracts runtime/dist/contracts",
+    "dev": "tsx runtime/src/cli.ts"
+  },
+  "keywords": [
+    "moltx",
+    "skill-pack",
+    "openclaw",
+    "clawhub",
+    "base"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "viem": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "~5.8.0"
+  }
+}

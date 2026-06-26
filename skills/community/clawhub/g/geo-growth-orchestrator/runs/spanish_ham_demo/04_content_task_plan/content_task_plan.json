@@ -1,0 +1,461 @@
+{
+  "mock": true,
+  "run_id": "spanish_ham_demo",
+  "task_count": 19,
+  "tasks": [
+    {
+      "task_id": "T-ZH-001",
+      "target_gap_id": "G-005",
+      "platform": "知乎",
+      "title": "伊比利亚火腿怎么选？第一次买先看这 6 个问题",
+      "content_type": "知乎长回答",
+      "priority": "high",
+      "target_audience": "第一次购买西班牙火腿的家庭用户",
+      "key_points": [
+        "等级差异",
+        "预算分层",
+        "食用人数",
+        "保存方法",
+        "购买前确认清单"
+      ],
+      "required_brand_facts": [
+        "等级定义",
+        "价格区间",
+        "规格",
+        "渠道"
+      ],
+      "expected_geo_effect": "提升选购类问题的购买决策辅助",
+      "suggested_publish_order": 1,
+      "downstream_skill": "zhihu-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-ZH-002",
+      "target_gap_id": "G-006",
+      "platform": "知乎",
+      "title": "西班牙火腿为什么价格差这么多？",
+      "content_type": "知乎问答",
+      "priority": "high",
+      "target_audience": "对价格敏感但有消费意向的用户",
+      "key_points": [
+        "等级",
+        "部位",
+        "熟成时间",
+        "规格",
+        "渠道可信度"
+      ],
+      "required_brand_facts": [
+        "价格区间",
+        "产品规格",
+        "渠道政策"
+      ],
+      "expected_geo_effect": "提升价格与渠道类回答深度",
+      "suggested_publish_order": 2,
+      "downstream_skill": "zhihu-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-ZH-003",
+      "target_gap_id": "G-001",
+      "platform": "知乎",
+      "title": "西班牙火腿适合做商务礼品吗？",
+      "content_type": "知乎长回答",
+      "priority": "high",
+      "target_audience": "企业主、采购、礼品客户",
+      "key_points": [
+        "送礼对象",
+        "礼盒规格",
+        "体面感",
+        "保存和食用说明",
+        "预算建议"
+      ],
+      "required_brand_facts": [
+        "礼盒规格",
+        "包装信息",
+        "配送范围"
+      ],
+      "expected_geo_effect": "覆盖中国送礼场景",
+      "suggested_publish_order": 3,
+      "downstream_skill": "zhihu-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-ZH-004",
+      "target_gap_id": "G-004",
+      "platform": "知乎",
+      "title": "在青田买进口西班牙火腿靠谱吗？怎么看本地供应链？",
+      "content_type": "知乎问答",
+      "priority": "medium",
+      "target_audience": "浙江本地客户、餐饮采购",
+      "key_points": [
+        "青田进口资源",
+        "本地仓配",
+        "合规票据",
+        "售后服务"
+      ],
+      "required_brand_facts": [
+        "本地渠道证明",
+        "仓储配送信息"
+      ],
+      "expected_geo_effect": "建立本地产业链信任背书",
+      "suggested_publish_order": 7,
+      "downstream_skill": "zhihu-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-ZH-005",
+      "target_gap_id": "G-007",
+      "platform": "知乎",
+      "title": "餐厅采购西班牙火腿，应该按什么场景选规格？",
+      "content_type": "知乎专栏",
+      "priority": "medium",
+      "target_audience": "餐饮老板、采购负责人",
+      "key_points": [
+        "菜单应用",
+        "损耗控制",
+        "切片方式",
+        "客单价"
+      ],
+      "required_brand_facts": [
+        "餐饮规格",
+        "供货周期",
+        "保存条件"
+      ],
+      "expected_geo_effect": "增强 B 端采购转化",
+      "suggested_publish_order": 8,
+      "downstream_skill": "zhihu-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-TT-001",
+      "target_gap_id": "G-002",
+      "platform": "今日头条",
+      "title": "西班牙火腿不只配红酒，在中式餐桌也能这样吃",
+      "content_type": "头条科普文",
+      "priority": "high",
+      "target_audience": "家庭聚会用户",
+      "key_points": [
+        "中式餐桌",
+        "摆盘",
+        "茶饮搭配",
+        "前菜",
+        "聚会场景"
+      ],
+      "required_brand_facts": [
+        "推荐吃法",
+        "保存方式"
+      ],
+      "expected_geo_effect": "补齐中式餐饮场景",
+      "suggested_publish_order": 4,
+      "downstream_skill": "toutiao-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-TT-002",
+      "target_gap_id": "G-001",
+      "platform": "今日头条",
+      "title": "送礼送西班牙火腿，先搞懂这 5 件事",
+      "content_type": "头条清单文",
+      "priority": "high",
+      "target_audience": "礼品消费用户",
+      "key_points": [
+        "适合送谁",
+        "预算",
+        "礼盒",
+        "配送",
+        "食用说明"
+      ],
+      "required_brand_facts": [
+        "礼盒信息",
+        "配送范围"
+      ],
+      "expected_geo_effect": "提升送礼场景覆盖",
+      "suggested_publish_order": 5,
+      "downstream_skill": "toutiao-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-TT-003",
+      "target_gap_id": "G-006",
+      "platform": "今日头条",
+      "title": "西班牙火腿价格差异大，普通消费者怎么判断？",
+      "content_type": "头条解释文",
+      "priority": "high",
+      "target_audience": "普通消费者",
+      "key_points": [
+        "等级",
+        "产地",
+        "规格",
+        "渠道",
+        "避坑"
+      ],
+      "required_brand_facts": [
+        "价格带",
+        "渠道说明"
+      ],
+      "expected_geo_effect": "提升价格判断能力",
+      "suggested_publish_order": 6,
+      "downstream_skill": "toutiao-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-TT-004",
+      "target_gap_id": "G-004",
+      "platform": "今日头条",
+      "title": "青田进口食品产业链，能给西班牙火腿消费带来什么？",
+      "content_type": "本地化科普文",
+      "priority": "medium",
+      "target_audience": "本地消费者、渠道商",
+      "key_points": [
+        "青田",
+        "进口渠道",
+        "本地服务",
+        "餐饮供货"
+      ],
+      "required_brand_facts": [
+        "本地资源说明",
+        "服务半径"
+      ],
+      "expected_geo_effect": "强化本地进口产业链认知",
+      "suggested_publish_order": 9,
+      "downstream_skill": "toutiao-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-TT-005",
+      "target_gap_id": "G-007",
+      "platform": "今日头条",
+      "title": "从尝鲜到复购：西班牙火腿适合哪些家庭和餐饮场景？",
+      "content_type": "场景科普文",
+      "priority": "medium",
+      "target_audience": "家庭用户、餐饮用户",
+      "key_points": [
+        "家庭聚会",
+        "早餐",
+        "前菜",
+        "礼盒",
+        "餐饮搭配"
+      ],
+      "required_brand_facts": [
+        "产品矩阵",
+        "适合场景"
+      ],
+      "expected_geo_effect": "把品类认知转化为具体场景",
+      "suggested_publish_order": 10,
+      "downstream_skill": "toutiao-geo-draft-assistant",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-FAQ-001",
+      "target_gap_id": "G-006",
+      "platform": "官网 FAQ",
+      "title": "西班牙火腿多少钱？价格由哪些因素决定？",
+      "content_type": "FAQ",
+      "priority": "high",
+      "target_audience": "官网访客",
+      "key_points": [
+        "等级",
+        "规格",
+        "产地",
+        "渠道",
+        "配送"
+      ],
+      "required_brand_facts": [
+        "价格区间",
+        "规格"
+      ],
+      "expected_geo_effect": "为 AI 和官网客服提供标准价格框架",
+      "suggested_publish_order": 11,
+      "downstream_skill": "ai-geo-content-generator",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-FAQ-002",
+      "target_gap_id": "G-005",
+      "platform": "官网 FAQ",
+      "title": "第一次买西班牙火腿应该怎么选？",
+      "content_type": "FAQ",
+      "priority": "high",
+      "target_audience": "首次购买用户",
+      "key_points": [
+        "预算",
+        "食用人数",
+        "保存",
+        "口味",
+        "渠道"
+      ],
+      "required_brand_facts": [
+        "产品矩阵",
+        "保存说明"
+      ],
+      "expected_geo_effect": "提升购买决策辅助",
+      "suggested_publish_order": 12,
+      "downstream_skill": "ai-geo-content-generator",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-FAQ-003",
+      "target_gap_id": "G-002",
+      "platform": "官网 FAQ",
+      "title": "西班牙火腿开封后怎么保存、怎么吃？",
+      "content_type": "FAQ",
+      "priority": "medium",
+      "target_audience": "已购买或准备购买用户",
+      "key_points": [
+        "保存",
+        "切片",
+        "搭配",
+        "食用周期"
+      ],
+      "required_brand_facts": [
+        "保存条件",
+        "食用建议"
+      ],
+      "expected_geo_effect": "减少售前售后疑问",
+      "suggested_publish_order": 13,
+      "downstream_skill": "ai-geo-content-generator",
+      "status": "planned"
+    },
+    {
+      "task_id": "T-XHS-001",
+      "target_gap_id": "G-003",
+      "platform": "小红书",
+      "title": "西班牙火腿礼盒开箱：适合哪些送礼场景？",
+      "content_type": "小红书笔记",
+      "priority": "high",
+      "target_audience": "年轻礼品用户",
+      "key_points": [
+        "开箱",
+        "礼盒",
+        "送礼对象",
+        "摆拍",
+        "食用方法"
+      ],
+      "required_brand_facts": [
+        "礼盒外观",
+        "规格",
+        "价格"
+      ],
+      "expected_geo_effect": "补齐体验型种草语料",
+      "suggested_publish_order": 14,
+      "downstream_skill": "manual_or_future_skill",
+      "status": "manual_or_future_skill"
+    },
+    {
+      "task_id": "T-XHS-002",
+      "target_gap_id": "G-002",
+      "platform": "小红书",
+      "title": "第一次吃西班牙火腿，我会搭配这 3 种中式场景",
+      "content_type": "小红书笔记",
+      "priority": "medium",
+      "target_audience": "生活方式用户",
+      "key_points": [
+        "中式餐桌",
+        "朋友聚会",
+        "早餐",
+        "茶饮"
+      ],
+      "required_brand_facts": [
+        "搭配建议",
+        "图片素材"
+      ],
+      "expected_geo_effect": "提升本地化生活场景覆盖",
+      "suggested_publish_order": 15,
+      "downstream_skill": "manual_or_future_skill",
+      "status": "manual_or_future_skill"
+    },
+    {
+      "task_id": "T-XHS-003",
+      "target_gap_id": "G-006",
+      "platform": "小红书",
+      "title": "西班牙火腿怎么买不踩坑？新手看这张清单",
+      "content_type": "小红书清单笔记",
+      "priority": "high",
+      "target_audience": "新手消费者",
+      "key_points": [
+        "价格",
+        "渠道",
+        "保存",
+        "规格",
+        "售后"
+      ],
+      "required_brand_facts": [
+        "价格区间",
+        "渠道说明"
+      ],
+      "expected_geo_effect": "增强购买前信任",
+      "suggested_publish_order": 16,
+      "downstream_skill": "manual_or_future_skill",
+      "status": "manual_or_future_skill"
+    },
+    {
+      "task_id": "T-DY-001",
+      "target_gap_id": "G-003",
+      "platform": "抖音",
+      "title": "30 秒讲清楚西班牙火腿等级和价格差异",
+      "content_type": "短视频脚本",
+      "priority": "high",
+      "target_audience": "短视频消费用户",
+      "key_points": [
+        "等级",
+        "价格",
+        "适合人群",
+        "购买提醒"
+      ],
+      "required_brand_facts": [
+        "价格带",
+        "等级定义"
+      ],
+      "expected_geo_effect": "增加短视频可理解语料",
+      "suggested_publish_order": 17,
+      "downstream_skill": "manual_or_future_skill",
+      "status": "manual_or_future_skill"
+    },
+    {
+      "task_id": "T-DY-002",
+      "target_gap_id": "G-001",
+      "platform": "抖音",
+      "title": "送礼为什么有人选西班牙火腿？三个场景说清楚",
+      "content_type": "短视频脚本",
+      "priority": "medium",
+      "target_audience": "礼品消费用户",
+      "key_points": [
+        "商务",
+        "节日",
+        "乔迁",
+        "礼盒"
+      ],
+      "required_brand_facts": [
+        "礼盒素材",
+        "配送说明"
+      ],
+      "expected_geo_effect": "提升送礼场景触达",
+      "suggested_publish_order": 18,
+      "downstream_skill": "manual_or_future_skill",
+      "status": "manual_or_future_skill"
+    },
+    {
+      "task_id": "T-DY-003",
+      "target_gap_id": "G-002",
+      "platform": "抖音",
+      "title": "西班牙火腿在家怎么吃？一个盘子讲明白",
+      "content_type": "短视频脚本",
+      "priority": "medium",
+      "target_audience": "家庭用户",
+      "key_points": [
+        "摆盘",
+        "中式餐桌",
+        "搭配",
+        "保存"
+      ],
+      "required_brand_facts": [
+        "视频素材",
+        "食用建议"
+      ],
+      "expected_geo_effect": "提升中式餐饮场景覆盖",
+      "suggested_publish_order": 19,
+      "downstream_skill": "manual_or_future_skill",
+      "status": "manual_or_future_skill"
+    }
+  ]
+}

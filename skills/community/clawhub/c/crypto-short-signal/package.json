@@ -1,0 +1,24 @@
+{
+  "name": "crypto-short-signal",
+  "version": "2.0.0",
+  "description": "加密货币做空信号生成器 - 提前 7 天知道哪些币要暴跌 30%+",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "deploy": "openclaw skill deploy ./"
+  },
+  "keywords": [
+    "crypto",
+    "short-signal",
+    "token-unlock",
+    "skillpay"
+  ],
+  "author": "Denny Huang",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

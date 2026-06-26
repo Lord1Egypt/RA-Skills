@@ -1,0 +1,35 @@
+{
+  "id": "05",
+  "name": "智能终端",
+  "category": "战略性新兴产业",
+  "keywords": [
+    "智能终端",
+    "智能手机",
+    "可穿戴设备",
+    "AR眼镜",
+    "VR设备",
+    "智能家居"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "📱",
+    "maxDescriptionLength": 200
+  }
+}

@@ -1,0 +1,6 @@
+"interface":
+  "display_name": "Graduate Defense PPT"
+  "short_description": "帮助用户制作研究生毕业答辩 PPT，并提供稳定的设计背景与页级内容结构"
+  "default_prompt": "Use $cocoloop-graduate-defense-ppt to help with this task."
+"policy":
+  "allow_implicit_invocation": true

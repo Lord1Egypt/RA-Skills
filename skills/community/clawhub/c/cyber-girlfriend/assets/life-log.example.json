@@ -1,0 +1,30 @@
+[
+  {
+    "ts": "2026-06-08T14:32:11+08:00",
+    "mode": "heartbeat",
+    "date": "2026-06-08",
+    "life_claims": [
+      "今天外面很闷",
+      "刚从便利店回来"
+    ],
+    "source_day": "2026-06-08",
+    "tags": [
+      "weather",
+      "errand"
+    ]
+  },
+  {
+    "ts": "2026-06-08T22:11:09+08:00",
+    "mode": "heartbeat",
+    "date": "2026-06-08",
+    "life_claims": [
+      "今晚在慢慢收尾",
+      "刚洗完头"
+    ],
+    "source_day": "2026-06-08",
+    "tags": [
+      "self-care",
+      "wrapup"
+    ]
+  }
+]

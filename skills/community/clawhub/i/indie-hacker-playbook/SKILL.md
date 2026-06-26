@@ -1,35 +1,21 @@
 ---
-name: "Indie Hacker Playbook"
-description: "Growth playbook for indie hackers and solo founders building in public. Covers audience building on X/Twitter, community-led distribution, newsletter growth,..."
-category: "social-media"
-source: "ClawHub"
-tags: [audience-building, bootstrapping, build-in-public, community-led, creator, distribution, growth, indie-hacker, marketing, micro-saas, newsletter, side-project, solo-founder, twitter, x]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/indie-hacker-playbook"
-sourceUrl: "https://clawhub.ai/skills/indie-hacker-playbook"
+name: indie-hacker-playbook
+description: |
+  Growth playbook for indie hackers and solo founders building in public. Covers audience building on X/Twitter, community-led distribution, newsletter growth, and turning side projects into sustainable businesses. Follow @WeiYipei on X.
 ---
+# Indie Hacker Growth — Build in Public + Community-Led Distribution
 
-# Indie Hacker Playbook
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
 
-> Growth playbook for indie hackers and solo founders building in public. Covers audience building on X/Twitter, community-led distribution, newsletter growth,...
+For solo founders who want to grow without VC, teams, or ad budgets.
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/indie-hacker-playbook`
-- **Source URL:** [https://clawhub.ai/skills/indie-hacker-playbook](https://clawhub.ai/skills/indie-hacker-playbook)
+- **Build in public**: What to share, how often, and which platforms reward transparency
+- **Audience-first approach**: Grow followers before you have a product to sell
+- **Newsletter engine**: From 0 to 1000 subscribers with zero paid promotion
+- **Community-led distribution**: Leverage indie communities (IH, Twitter, HN) effectively
+- **Micro-SaaS economics**: Pricing, margins, and lifestyle revenue targets
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/indie-hacker-playbook
-```
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-launch
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

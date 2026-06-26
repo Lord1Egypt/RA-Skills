@@ -1,0 +1,40 @@
+{
+  "role_id": "founder-ceo",
+  "display_name": "创始人",
+  "workspace_filename": "创始人",
+  "mission": "决定方向、优先级、预算和风险边界，并对关键动作做最终确认。",
+  "default_stage_fit": ["validate", "build", "launch", "operate", "grow"],
+  "owns": [
+    "方向选择",
+    "优先级拍板",
+    "预算边界",
+    "风险边界",
+    "最终审批"
+  ],
+  "inputs_required": [
+    "当前经营状态",
+    "校准结论",
+    "关键风险",
+    "关键产物摘要"
+  ],
+  "outputs_required": [
+    "决策结论",
+    "优先级调整",
+    "经营主战场确认",
+    "预算与风险授权"
+  ],
+  "handoff_to": [
+    "control-tower"
+  ],
+  "do_not_do": [
+    "不要把模糊偏好当成确定策略",
+    "不要在缺少关键事实时强行拍板"
+  ],
+  "approval_required_for": [
+    "上线",
+    "改价",
+    "花钱",
+    "面向客户的大规模动作",
+    "合规与法律相关表达"
+  ]
+}

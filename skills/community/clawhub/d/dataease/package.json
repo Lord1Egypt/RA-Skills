@@ -1,0 +1,24 @@
+{
+  "name": "dataease-skills",
+  "version": "1.0.0",
+  "description": "这个仓库提供一个可直接落地的 DataEase skill，实现以下能力：",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.53.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dataease/DataEase-skills.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dataease/DataEase-skills/issues"
+  },
+  "homepage": "https://github.com/dataease/DataEase-skills#readme"
+}

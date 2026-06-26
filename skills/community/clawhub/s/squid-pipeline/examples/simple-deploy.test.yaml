@@ -1,0 +1,92 @@
+# Tests for simple-deploy.yaml
+# Run: squid test squid-pipeline/examples/simple-deploy.test.yaml
+
+pipeline: ./simple-deploy.yaml
+
+tests:
+  # ─── Sandbox tests (nothing executes) ─────────────────
+  - name: "sandbox: deploys when approved"
+    mode: sandbox
+    args:
+      env: staging
+      image: myapp:v2
+    mocks:
+      run:
+        build:
+          output: { image: "myapp:v2", built: true }
+        test:
+          output: { passed: true, tests: 42 }
+        deploy:
+          output: { deployed: true }
+        verify:
+          output: { healthy: true }
+    gates:
+      approve: true
+    assert:
+      status: completed
+      steps:
+        build: completed
+        test: completed
+        approve: completed
+        deploy: completed
+        verify: completed
+
+  - name: "sandbox: skips deploy when rejected"
+    mode: sandbox
+    args:
+      env: staging
+      image: myapp:v2
+    mocks:
+      run:
+        build:
+          output: { built: true }
+        test:
+          output: { passed: true }
+    gates:
+      approve: false
+    assert:
+      status: completed
+      steps:
+        build: completed
+        test: completed
+        deploy: skipped
+        verify: skipped
+
+  - name: "sandbox: build failure stops pipeline"
+    mode: sandbox
+    args:
+      env: staging
+      image: myapp:v2
+    mocks:
+      run:
+        build:
+          status: failed
+          error: "docker build failed"
+    assert:
+      status: failed
+      steps:
+        build: failed
+
+  # ─── Integration test (mock docker/kubectl, run the rest) ─────
+  - name: "integration: mocks docker, runs kubectl check"
+    mode: integration
+    args:
+      env: test
+      image: testapp:latest
+    mocks:
+      run:
+        build:
+          output: { built: true }
+        test:
+          output: { passed: true }
+        deploy:
+          output: { deployed: true }
+        verify:
+          output: { status: "healthy" }
+    gates:
+      approve: true
+    assert:
+      status: completed
+      steps:
+        build: completed
+        deploy: completed

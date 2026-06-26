@@ -1,0 +1,5 @@
+{
+  "name": "ai_news_reporter",
+  "version": "1.0.0",
+  "description": "基于飞书原始新闻表生成 AI 日报、signal 和早报导读"
+}

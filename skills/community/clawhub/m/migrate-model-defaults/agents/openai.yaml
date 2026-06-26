@@ -1,0 +1,4 @@
+interface:
+  display_name: "Migrate Model Defaults"
+  short_description: "Find and update default-like model refs"
+  default_prompt: "Use $migrate-model-defaults to classify hardcoded model defaults before updating them."

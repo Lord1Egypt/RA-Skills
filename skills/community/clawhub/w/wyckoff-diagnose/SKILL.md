@@ -1,35 +1,119 @@
 ---
-name: "Wyckoff Diagnose"
-description: "Wyckoff 2.0 诊股系统。输入任意A股代码，输出完整分析报告（Phase状态、Volume Profile关键价位，综合评分、评级、操作建议）。支持右侧趋势🅡和左侧积累🅁双视角诊断。当用户要求"诊股"、"分析股票"、"帮我看看XXX"、"这个股怎么样"、"诊断"时触发。支持输入6位股票代码。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wyckoff-diagnose"
-sourceUrl: "https://clawhub.ai/skills/wyckoff-diagnose"
+name: wyckoff-diagnose
+version: 1.2.0
+description: Wyckoff 2.0 诊股系统。输入任意A股代码，输出完整分析报告（Phase状态、Volume Profile关键价位，综合评分、评级、操作建议）。支持右侧趋势🅡和左侧积累🅁双视角诊断。当用户要求"诊股"、"分析股票"、"帮我看看XXX"、"这个股怎么样"、"诊断"时触发。支持输入6位股票代码。
 ---
 
-# Wyckoff Diagnose
+# Wyckoff 诊股系统
 
-> Wyckoff 2.0 诊股系统。输入任意A股代码，输出完整分析报告（Phase状态、Volume Profile关键价位，综合评分、评级、操作建议）。支持右侧趋势🅡和左侧积累🅁双视角诊断。当用户要求"诊股"、"分析股票"、"帮我看看XXX"、"这个股怎么样"、"诊断"时触发。支持输入6位股票代码。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wyckoff-diagnose`
-- **Source URL:** [https://clawhub.ai/skills/wyckoff-diagnose](https://clawhub.ai/skills/wyckoff-diagnose)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wyckoff-diagnose
 ```
+第一步：拉取日线数据
+  → efinance stock.get_quote_history(code, klt=101, fqt=1)
+  → 至少需要60根日线，不足则返回"数据不足"
+
+第二步：计算 Volume Profile
+  → calculate_vp(df) → VPOC / VAH / VAL / HVN / LVN
+  → 将价格切成50个层级，统计每层成交量
+
+第三步：识别 Wyckoff Phase
+  → detect_phase(df) → Phase A~E + 方向（积累/派发/测试/趋势）
+  → 基于均线关系 + 价格在区间位置 + 成交量比率判断
+
+第四步：综合评分
+  → score_stock(df) → 评分(0~100) + 评级(S/A/B/C/D) + 红绿信号
+
+第五步：输出报告
+  → 评级 + Phase状态 + 关键价位 + 评分 + 红绿信号 + 操作建议
+```
+
+## 核心脚本
+
+- `scripts/diagnose.py` — 诊股主脚本，输出完整报告
+- `scripts/wyckoff_engine.py` — 核心算法
+
+## 关键价位说明
+
+| 术语 | 含义 | 交易意义 |
+|------|------|---------|
+| VPOC | 成交量最大的价格 | 重心，看多者需站上才确认 |
+| VAH | 价值区上沿（68%） | 短期阻力 |
+| VAL | 价值区下沿（68%） | 短期支撑 |
+| HVN | 高成交量节点 | 磁铁区，价格常被吸引回去 |
+| LVN | 低成交量节点 | 拒绝区，通常是支撑/阻力 |
+
+## Phase 判断规则
+
+```
+Phase E（趋势）：均线多头 + 价格在区间上方 → 持有/追涨
+Phase A（停止）：量能突然放大 + 价格波动减小 → 趋势尾声
+Phase B（横盘）：区间震荡 + 量能萎缩 → 积累/派发
+Phase C（测试）：价格测试边界（Spring/Upthrust）→ 等待确认
+Phase D（突破）：放量突破区间边界 → 入场信号
+```
+
+## 评级说明
+
+| 评级 | 含义 | 操作建议 |
+|------|------|---------|
+| 🅢 S | 强烈推荐（≥75分） | 重点关注，回调买入 |
+| 🄰 A | 重点关注（60~74分） | 满足买入条件，可以关注 |
+| 🄱 B | 观察（40~59分） | 信号不明确，等待确认 |
+| 🄲 C | 不建议（<40分） | 存在风险，不宜买入 |
+| 🄳 D | 回避 | 风险过高，建议回避 |
+
+## 双视角诊断
+
+诊股系统同时支持**右侧趋势**和**左侧积累**两种视角分析：
+
+### 右侧趋势（默认）
+**逻辑：** 等趋势确认了才买，核心是"突破跟进"
+- Phase E 上涨趋势 / Phase D 向上突破 + 价格在 VPOC 上方 → 🅢🄰
+- Phase C Spring 测试后价格收回 VPOC → 待确认
+- 价格在 VPOC/VAL 下方 → 🔴 回避
+
+### 左侧积累
+**逻辑：** 主力悄悄收集、价格还在低位，提前埋伏等拉升
+- Phase B 积累区间 + 价格在区间低位 → 🅢🄰 重点关注
+- 价格紧贴 LVN 支撑 / 在 VAL 下方低位 → ✅ 加分
+- 缩量止跌（5日均量 < 20日均量）→ ✅ 主力在吸筹
+- Phase E 下跌趋势 / 放量下跌 → 🔴 不抄底
+
+### 调用方式
+
+```bash
+# 默认：同时输出双视角报告
+python scripts/diagnose.py 000001
+
+# 仅右侧趋势
+python scripts/diagnose.py 000001 --side right
+
+# 仅左侧积累
+python scripts/diagnose.py 000001 --side left
+
+# 批量（文件）
+python scripts/diagnose.py -f stocks.txt --side both
+```
+
+---
+
+## 评分维度
+
+| 维度 | 加分项 | 扣分项 |
+|------|--------|--------|
+| Phase | Phase B积累/D突破/E上涨趋势 | Phase B派发/C upthrust/E下跌 |
+| 价格位置 | 在VPOC上方/VAH上方 | 在VPOC下方/VAL下方 |
+| 成交量 | 近5日均量>60日均量×1.5（机构信号） | 缩量 |
+| 支撑 | 下方有LVN（<5%距离） | 无有效支撑 |
+
+## 常见问题
+
+**Q：Phase 显示 unknown 是怎么回事？**
+A：价格/成交量关系刚好落在边界条件上（极少发生），代表行情处于横盘过渡状态，不是数据问题。
+
+**Q：评级和评分是什么关系？**
+A：评分是0~100的数值，评级是评分映射的S/A/B/C/D档位。60分以上才是🄰推荐级别。
+
+**Q：Phase B accumulation 为什么只给🄱而不直接买入？**
+A：Phase B只是机构在收集，还未发动。真正的买入信号需要等待Phase C的Spring确认——价格短暂跌破支撑后快速收回并站上VPOC。

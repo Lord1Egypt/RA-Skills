@@ -1,0 +1,11 @@
+{
+  "mcp": {
+    "memos": {
+      "type": "remote",
+      "url": "{{MCP_URL}}",
+      "headers": [
+        "Authorization: Bearer {{PAT_TOKEN}}"
+      ]
+    }
+  }
+}

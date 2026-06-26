@@ -1,0 +1,62 @@
+{
+  "services": {
+    "mongod": {
+      "name": "MongoDB",
+      "enabled": true,
+      "type": "systemd"
+    },
+    "mysql": {
+      "name": "MySQL",
+      "enabled": true,
+      "type": "systemd"
+    },
+    "postgresql": {
+      "name": "PostgreSQL",
+      "enabled": true,
+      "type": "systemd"
+    },
+    "docker": {
+      "name": "Docker",
+      "enabled": true,
+      "type": "systemd"
+    },
+    "nginx": {
+      "name": "Nginx",
+      "enabled": true,
+      "type": "systemd"
+    },
+    "openclaw": {
+      "name": "OpenClaw",
+      "enabled": true,
+      "type": "process",
+      "pattern": "clawdbot-gateway"
+    }
+  },
+  "alerts": {
+    "disk": {
+      "warning": 70,
+      "critical": 85
+    },
+    "memory": {
+      "warning": 70,
+      "critical": 85
+    },
+    "cpu": {
+      "warning": 1,
+      "critical": 2,
+      "mode": "multiplier"
+    }
+  },
+  "monitor": {
+    "disk": true,
+    "memory": true,
+    "swap": true,
+    "cpu": true,
+    "uptime": true,
+    "network": true,
+    "disk_io": true,
+    "docker": true,
+    "services": true,
+    "top_processes": 5
+  }
+}

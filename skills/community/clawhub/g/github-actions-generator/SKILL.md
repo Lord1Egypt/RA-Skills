@@ -1,35 +1,27 @@
 ---
-name: "GitHub Actions Generator"
-description: "生成 GitHub Actions 工作流，支持 CI/CD、测试、部署等多种场景。"
-category: "productivity"
-source: "ClawHub"
-tags: [actions, automation, cd, ci, github]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-actions-generator"
-sourceUrl: "https://clawhub.ai/skills/github-actions-generator"
+name: github-actions-generator
+description: 生成 GitHub Actions 工作流，支持 CI/CD、测试、部署等多种场景。
+metadata: {"clawdbot":{"emoji":"⚡","requires":{},"primaryEnv":""}}
 ---
 
 # GitHub Actions Generator
 
-> 生成 GitHub Actions 工作流，支持 CI/CD、测试、部署等多种场景。
+自动生成 GitHub Actions 工作流文件。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-actions-generator`
-- **Source URL:** [https://clawhub.ai/skills/github-actions-generator](https://clawhub.ai/skills/github-actions-generator)
+## 支持的场景
 
-## Overview
+- ✅ Node.js CI/CD
+- ✅ Python CI/CD
+- ✅ Go CI/CD
+- ✅ Docker 构建推送
+- ✅ 自动发布 Release
+- ✅ Dependabot 自动更新
+- ✅ 定时任务
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/github-actions-generator
+github-actions-generator ci --lang node
+github-actions-generator deploy --target vercel
+github-actions-generator docker --registry ghcr
 ```

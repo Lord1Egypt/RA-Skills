@@ -1,0 +1,1 @@
+"""Easy-xiaohongshu shared package."""

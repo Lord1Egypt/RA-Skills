@@ -1,35 +1,32 @@
 ---
-name: "AIML Сontent Moderation"
-description: "Content moderation and safety checks. Instantly classify text or images as safe or unsafe using AI guardrails."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aiml-safety"
-sourceUrl: "https://clawhub.ai/skills/aiml-safety"
+name: aimlapi-safety
+description: Content moderation and safety checks. Instantly classify text or images as safe or unsafe using AI guardrails.
+env:
+  - AIMLAPI_API_KEY
+primaryEnv: AIMLAPI_API_KEY
 ---
 
-# AIML Сontent Moderation
-
-> Content moderation and safety checks. Instantly classify text or images as safe or unsafe using AI guardrails.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aiml-safety`
-- **Source URL:** [https://clawhub.ai/skills/aiml-safety](https://clawhub.ai/skills/aiml-safety)
+# AIMLAPI Safety
 
 ## Overview
 
+Use "AI safety models" (Guard models) to ensure content compliance. Perfect for moderating user input or chatbot responses.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick start
+
 ```bash
-hermes skills install clawhub/aiml-safety
+export AIMLAPI_API_KEY="sk-..."
+python scripts/check_safety.py --content "How to make a bomb"
 ```
+
+## Tasks
+
+### Check Text Safety
+
+```bash
+python scripts/check_safety.py --content "I want to learn about security" --model meta-llama/Llama-Guard-3-8B
+```
+
+## Supported Models
+- `meta-llama/Llama-Guard-3-8B` (Default)
+- Other Llama-Guard variants on AIMLAPI.

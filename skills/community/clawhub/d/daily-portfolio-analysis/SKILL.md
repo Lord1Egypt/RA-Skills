@@ -1,35 +1,106 @@
 ---
-name: "Daily Portfolio Analysis"
-description: "每日持仓分析技能。自动合并多个券商账户持仓，获取实时股价和汇率，生成包含仓位占比、当日涨跌、国籍/行业分类的完整分析报告。支持定时推送和对话式查询。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-portfolio-analysis"
-sourceUrl: "https://clawhub.ai/skills/daily-portfolio-analysis"
+name: daily-portfolio-analysis
+description: 每日持仓分析技能。自动合并多个券商账户持仓，获取实时股价和汇率，生成包含仓位占比、当日涨跌、国籍/行业分类的完整分析报告。支持定时推送和对话式查询。
+version: 1.0.0
+author: 大斌
+tags: [股票，持仓分析，投资，自动化，富途，OpenClaw]
 ---
 
-# Daily Portfolio Analysis
+# 每日持仓分析技能
 
-> 每日持仓分析技能。自动合并多个券商账户持仓，获取实时股价和汇率，生成包含仓位占比、当日涨跌、国籍/行业分类的完整分析报告。支持定时推送和对话式查询。
+📊 自动合并多券商账户持仓，生成专业分析报告
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-portfolio-analysis`
-- **Source URL:** [https://clawhub.ai/skills/daily-portfolio-analysis](https://clawhub.ai/skills/daily-portfolio-analysis)
+---
 
-## Overview
+## 🎯 功能特点
+
+- **多账户合并** - 自动合并盈透、富途、港股通等多个券商账户
+- **实时股价** - 富途 API + Yahoo Finance，覆盖港股/A 股/美股
+- **实时汇率** - USD/HKD/CNY三币种显示，自动换算
+- **仓位分析** - 按股票/国籍/行业分类，清晰展示配置
+- **当日涨跌** - 每只股票当日涨跌幅，整体盈亏一目了然
+- **定时推送** - 每天自动发送报告到飞书/微信等
+- **对话查询** - 随时随地通过对话获取持仓分析
+
+---
+
+## 📋 前置条件
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-portfolio-analysis
+### 2. 富途牛牛 OpenD 客户端 ⚠️ 必须
+
+**为什么需要富途 OpenD？**
+
+本技能需要获取港股和 A 股的实时股价，这些数据通过富途牛牛 OpenD API 提供。富途 OpenD 是富途官方提供的免费行情数据服务。
+
+**安装步骤：**
+
+1. **下载地址**：
+   - **官方文档**：https://openapi.futunn.com/futu-api-doc/opend/opend-cmd.html
+
+
+---
+
+## 🚀 安装步骤
+
+### 1. 克隆技能
+
+
+### 2. 收集你的持仓信息
+
+**方法一：截图识别（推荐）**
+
+把你的持仓截图发给 OpenClaw，让它帮你整理配置：
+
+1. 打开你的券商 APP（盈透、富途等）
+2. 截图持仓页面
+3. 发给 OpenClaw："帮我整理持仓配置"
+4. 它会自动生成 `portfolio.json` 配置文件
+
+---
+
+## 📖 使用方法
+
+
+### 方式二：对话查询（推荐）
+
+在 OpenClaw 对话中直接说：
+
+- "发份持仓报告"
+- "查看持仓分析"
+- "今天持仓怎么样"
+- "腾讯仓位多少"
+
+### 方式三：定时推送
+
+设置好后，每天自动在指定时间发送报告。
+
+---
+
+## 📊 报告示例
+
 ```
+💱 实时汇率
+  1 USD = 7.8265 HKD  ➖ +0.00%
+  1 USD = 6.9064 CNY  ➖ 0.00%
+
+📈 持仓明细（脱敏展示）
+| 股票       | 持仓   | 现价      | 占比    | 当日涨跌  | 国籍  |
+|-----------|--------|----------|---------|----------|------|
+| 腾讯控股   | [N] 股 | HK$547.50| 53.31%  | 📈 +0.18% | 🇨🇳 |
+| 拼多多     | [N] 股 | $102.65  | 21.70%  | 📈 +1.01% | 🇨🇳 |
+| Meta      | [N] 股 | $613.71  | 10.78%  | 📉 -3.83% | 🇺🇸 |
+
+💰 总市值（三币种）
+| USD | $XXX,XXX | 🔴 -0.31% |
+| CNY | ¥X,XXX,XXX | 🔴 -0.31% |
+| HKD | HK$X,XXX,XXX | 🔴 -0.31% |
+
+🌍 按公司国籍分类
+| 🇨🇳 中国公司 | 89.22% | 腾讯、拼多多、理想等 |
+| 🇺🇸 美国公司 | 10.78% | Meta |
+```
+
+**注：** 示例中的持仓数量和市值已脱敏，仅展示格式。实际使用时会显示你的真实持仓数据（请妥善保管配置文件）。
+
+---

@@ -1,0 +1,12 @@
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+
+# Temp files
+*.tmp
+*.bak

@@ -1,0 +1,3270 @@
+import { html, nothing } from "lit";
+import "./views/jarvis-view.js";
+import { parseAgentSessionKey } from "../../../src/routing/session-key.js";
+import { t } from "../i18n/index.ts";
+import { refreshChatAvatar } from "./app-chat.ts";
+import { renderUsageTab } from "./app-render-usage-tab.ts";
+import { getSafeLocalStorage } from "../local-storage.ts";
+import {
+  renderChatControls,
+  renderChatMobileToggle,
+  renderSidebarConnectionStatus,
+  renderTab,
+  renderThemeToggle,
+  renderTopbarThemeModeToggle,
+  switchToNewSession,
+} from "./app-render.helpers.ts";
+import "./components/dashboard-header.js";
+import type { AppViewState } from "./app-view-state.ts";
+import type { OpenClawApp } from "./app.js";
+import { loadAgentFileContent, loadAgentFiles, saveAgentFile } from "./controllers/agent-files.ts";
+import { loadAgentIdentities, loadAgentIdentity } from "./controllers/agent-identity.ts";
+import {
+  loadAgentPipedreamState,
+  saveAgentPipedream,
+  deleteAgentPipedream,
+  connectAgentApp,
+  activateAgentApp,
+  disconnectAgentApp,
+  testAgentApp,
+} from "./controllers/agent-pipedream.ts";
+import { loadAgentSkills } from "./controllers/agent-skills.ts";
+import {
+  loadAgentZapierState,
+  saveAgentZapierUrl,
+  deleteAgentZapier,
+  loadAgentZapierTools,
+  toggleAgentZapierTool,
+} from "./controllers/agent-zapier.ts";
+import { loadAgents, loadToolsCatalog } from "./controllers/agents.ts";
+import { loadTeams, selectTeam } from "./controllers/teams.ts";
+import {
+  aiProvidersCancel,
+  aiProvidersOAuth,
+  aiProvidersRemoveProfile,
+  aiProvidersOauthPasteChange,
+  aiProvidersSubmitCode,
+} from "./controllers/ai-providers.ts";
+import {
+  loadApiKeys,
+  loadAuthProfiles,
+  resetAuthProfileErrors,
+  deleteAuthProfile,
+  saveApiKey,
+  clearApiKey,
+  updateApiKeyEdit,
+  migrateToVault,
+  addVaultSecret,
+  loadVaultOnlyKeys,
+} from "./controllers/apikeys.ts";
+import { loadChannels } from "./controllers/channels.ts";
+import { loadChatHistory } from "./controllers/chat.ts";
+import {
+  applyConfig,
+  loadConfig,
+  runUpdate,
+  saveConfig,
+  updateConfigFormValue,
+  removeConfigFormValue,
+} from "./controllers/config.ts";
+import {
+  loadCronRuns,
+  loadMoreCronJobs,
+  loadMoreCronRuns,
+  reloadCronJobs,
+  toggleCronJob,
+  runCronJob,
+  removeCronJob,
+  addCronJob,
+  startCronEdit,
+  startCronClone,
+  cancelCronEdit,
+  validateCronForm,
+  hasCronFormErrors,
+  normalizeCronFormState,
+  getVisibleCronJobs,
+  updateCronJobsFilter,
+  updateCronRunsFilter,
+} from "./controllers/cron.ts";
+import { loadDebug, callDebugMethod } from "./controllers/debug.ts";
+import {
+  approveDevicePairing,
+  loadDevices,
+  rejectDevicePairing,
+  revokeDeviceToken,
+  rotateDeviceToken,
+} from "./controllers/devices.ts";
+import {
+  loadExecApprovals,
+  removeExecApprovalsFormValue,
+  saveExecApprovals,
+  updateExecApprovalsFormValue,
+} from "./controllers/exec-approvals.ts";
+import { loadLogs } from "./controllers/logs.ts";
+// Custom controllers
+import {
+  loadMemoryStatus,
+  autoRepairMemory,
+  installMemoryBinary,
+  installMemoryPython,
+  startMemoryServer,
+  initMemorySchema,
+  runMemoryMaintenance,
+  runMemoryExtraction,
+} from "./controllers/memory.ts";
+import {
+  saveModeConfig,
+  setAgentLoopMode,
+  updateModeConfig,
+  resetModeConfig,
+} from "./controllers/mode.ts";
+import { loadNodes } from "./controllers/nodes.ts";
+import { loadPipedreamState } from "./controllers/pipedream.ts";
+import { loadPresence } from "./controllers/presence.ts";
+import {
+  deleteSessionAndRefresh,
+  loadSessions,
+  patchSession,
+  loadArchivedSessions,
+  resumeSession,
+  renameSession,
+  deleteArchivedSession,
+} from "./controllers/sessions.ts";
+import {
+  installSkill,
+  loadSkills,
+  saveSkillApiKey,
+  updateSkillEdit,
+  updateSkillEnabled,
+  loadVaultKeys,
+  linkSkillToVaultKey,
+  addVaultKeyAndLink,
+} from "./controllers/skills.ts";
+import { loadZapierState } from "./controllers/zapier.ts";
+import { buildExternalLinkRel, EXTERNAL_LINK_TARGET } from "./external-link.ts";
+import { icons } from "./icons.ts";
+import {
+  normalizeBasePath,
+  TAB_GROUPS,
+  getDynamicTabGroups,
+  getDynamicIconForTab,
+  getDynamicTitleForTab,
+  getDynamicSubtitleForTab,
+  subtitleForTab,
+  titleForTab,
+  isPluginTab,
+  getPluginViewInfo,
+} from "./navigation.ts";
+import { uiPluginRegistry } from "./plugins/registry.ts";
+import { renderOnePassword } from "./views/1password.ts";
+import { agentLogoUrl, resolveConfiguredCronModelSuggestions, sortLocaleStrings } from "./views/agents-utils.ts";
+import { renderAgents, type AgentsProps } from "./views/agents.ts";
+import { renderAiProviders } from "./views/ai-providers.ts";
+import { renderApiKeys } from "./views/apikeys.ts";
+import { renderChannels } from "./views/channels.ts";
+import { renderChat } from "./views/chat.ts";
+import { renderCompactionSettings } from "./views/compaction-settings.js";
+import { renderConfig } from "./views/config.ts";
+import { renderCron } from "./views/cron.ts";
+import { renderDebug } from "./views/debug.ts";
+import { renderDiscord, loadDiscordStatus, type DiscordState } from "./views/discord.ts";
+import { renderExecApprovalPrompt } from "./views/exec-approval.ts";
+import { renderGatewayUrlConfirmation } from "./views/gateway-url-confirmation.ts";
+import { renderInstances } from "./views/instances.ts";
+import { renderLogs } from "./views/logs.ts";
+// Custom views
+import { renderMemory } from "./views/memory.ts";
+import { renderMode } from "./views/mode.ts";
+import { renderNodes } from "./views/nodes.ts";
+import { renderOverview } from "./views/overview.ts";
+import { renderPipedream } from "./views/pipedream.ts";
+import {
+  renderUpdateModal,
+  getStoredMergeModel,
+  setStoredMergeModel,
+} from "./views/update-modal.ts";
+
+const SAFE_MERGE_CRON_NAME = "Safe Merge Update Check";
+
+function loadSafeMergeCronState(state: any): void {
+  if (!state.client) {
+    return;
+  }
+  state.safeMergeCronEnabled = null;
+  state.client
+    .request("cron.list", { includeDisabled: true })
+    .then((result: any) => {
+      const jobs: any[] = result?.jobs ?? result?.items ?? [];
+      const job = jobs.find((j: any) => j.name === SAFE_MERGE_CRON_NAME);
+      if (job) {
+        state.safeMergeCronJobId = job.id;
+        state.safeMergeCronEnabled = job.enabled !== false;
+      } else {
+        state.safeMergeCronEnabled = false;
+        state.safeMergeCronJobId = null;
+      }
+    })
+    .catch(() => {
+      state.safeMergeCronEnabled = false;
+    });
+}
+import { openBgSessionsPanel } from "./controllers/bg-sessions.ts";
+import {
+  loadHostingerState,
+  saveHostingerConfig,
+  disconnectHostinger,
+  loadHostingerTools,
+  loadHostingerServers,
+  doServerAction,
+  openCredsModal,
+  closeCredsModal,
+  saveServerCreds,
+  patchCredsForm,
+} from "./controllers/hostinger.ts";
+import { renderBgSessionsPanel } from "./views/bg-sessions.ts";
+import { renderTeamChatDrawer, renderTeamChatEdgeTab } from "./views/team-chat-drawer.ts";
+import { renderHostinger } from "./views/hostinger.ts";
+import { renderSessionHistoryModal } from "./views/sessions-history-modal.ts";
+import { renderSessions } from "./views/sessions.ts";
+import { renderSkills } from "./views/skills.ts";
+import { renderTeams } from "./views/teams.ts";
+import { renderZapier } from "./views/zapier.ts";
+// import { loadPipedreamState, ... } from "./controllers/pipedream.ts";
+// import { loadZapierState, ... } from "./controllers/zapier.ts";
+// TODO: Re-add after creating controllers
+// import {
+//   loadOnePasswordState,
+//   saveOnePasswordCredentials,
+//   load1PasswordVaults,
+//   connectOnePassword,
+//   disconnectOnePassword,
+// } from "./controllers/1password.ts";
+// import {
+//   loadDiscordState,
+// } from "./controllers/discord.ts";
+
+const AVATAR_DATA_RE = /^data:/i;
+const AVATAR_HTTP_RE = /^https?:\/\//i;
+const UPDATE_BANNER_DISMISS_KEY = "openclaw:control-ui:update-banner-dismissed:v1";
+
+type DismissedUpdateBanner = {
+  latestVersion: string;
+  channel: string | null;
+  dismissedAtMs: number;
+};
+
+function loadDismissedUpdateBanner(): DismissedUpdateBanner | null {
+  try {
+    const raw = getSafeLocalStorage()?.getItem(UPDATE_BANNER_DISMISS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<DismissedUpdateBanner>;
+    if (!parsed || typeof parsed.latestVersion !== "string") return null;
+    return {
+      latestVersion: parsed.latestVersion,
+      channel: typeof parsed.channel === "string" ? parsed.channel : null,
+      dismissedAtMs: typeof parsed.dismissedAtMs === "number" ? parsed.dismissedAtMs : Date.now(),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function isUpdateBannerDismissed(updateAvailable: unknown): boolean {
+  const dismissed = loadDismissedUpdateBanner();
+  if (!dismissed) return false;
+  const info = updateAvailable as { latestVersion?: unknown; channel?: unknown };
+  const latestVersion = info && typeof info.latestVersion === "string" ? info.latestVersion : null;
+  const channel = info && typeof info.channel === "string" ? info.channel : null;
+  return Boolean(
+    latestVersion && dismissed.latestVersion === latestVersion && dismissed.channel === channel,
+  );
+}
+
+function dismissUpdateBanner(updateAvailable: unknown) {
+  const info = updateAvailable as { latestVersion?: unknown; channel?: unknown };
+  const latestVersion = info && typeof info.latestVersion === "string" ? info.latestVersion : null;
+  if (!latestVersion) return;
+  const channel = info && typeof info.channel === "string" ? info.channel : null;
+  const payload: DismissedUpdateBanner = { latestVersion, channel, dismissedAtMs: Date.now() };
+  try {
+    getSafeLocalStorage()?.setItem(UPDATE_BANNER_DISMISS_KEY, JSON.stringify(payload));
+  } catch { /* ignore */ }
+}
+const CRON_THINKING_SUGGESTIONS = ["off", "minimal", "low", "medium", "high"];
+const CRON_TIMEZONE_SUGGESTIONS = [
+  "UTC",
+  "America/Los_Angeles",
+  "America/Denver",
+  "America/Chicago",
+  "America/New_York",
+  "Europe/London",
+  "Europe/Berlin",
+  "Asia/Tokyo",
+];
+
+function isHttpUrl(value: string): boolean {
+  return /^https?:\/\//i.test(value.trim());
+}
+
+function normalizeSuggestionValue(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function uniquePreserveOrder(values: string[]): string[] {
+  const seen = new Set<string>();
+  const output: string[] = [];
+  for (const value of values) {
+    const normalized = value.trim();
+    if (!normalized) {
+      continue;
+    }
+    const key = normalized.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    output.push(normalized);
+  }
+  return output;
+}
+
+import type { SessionHistoryResult } from "./views/sessions-history-modal.ts";
+
+async function loadSessionHistory(
+  state: AppViewState,
+  key: string,
+  offset = 0,
+  search?: string,
+  roleFilter?: string,
+  append = false,
+) {
+  if (!state.client || !state.connected) {
+    return;
+  }
+  state.sessionHistoryLoading = true;
+  state.sessionHistoryError = null;
+  try {
+    const params: Record<string, unknown> = { key, limit: 100, offset };
+    if (search) {
+      params.search = search;
+    }
+    if (roleFilter && roleFilter !== "all") {
+      params.rolesFilter = [roleFilter];
+    }
+    const res = await state.client.request<SessionHistoryResult>("sessions.history", params);
+    if (res) {
+      if (append && state.sessionHistoryResult) {
+        state.sessionHistoryResult = {
+          ...res,
+          items: [...state.sessionHistoryResult.items, ...res.items],
+          offset: state.sessionHistoryResult.offset,
+        };
+      } else {
+        state.sessionHistoryResult = res;
+      }
+    }
+  } catch (err) {
+    state.sessionHistoryError = String(err);
+  } finally {
+    state.sessionHistoryLoading = false;
+  }
+}
+
+function resolveAssistantAvatarUrl(state: AppViewState): string | undefined {
+  const list = state.agentsList?.agents ?? [];
+  const parsed = parseAgentSessionKey(state.sessionKey);
+  const agentId = parsed?.agentId ?? state.agentsList?.defaultId ?? "main";
+  const agent = list.find((entry) => entry.id === agentId);
+  const identity = agent?.identity;
+  const candidate = identity?.avatarUrl ?? identity?.avatar;
+  if (!candidate) {
+    return undefined;
+  }
+  if (AVATAR_DATA_RE.test(candidate) || AVATAR_HTTP_RE.test(candidate)) {
+    return candidate;
+  }
+  return identity?.avatarUrl;
+}
+
+async function fileToDataUrl(file: File): Promise<string> {
+  return await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error ?? new Error("Failed to read file"));
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        resolve(reader.result);
+      } else {
+        reject(new Error("Unexpected file reader result"));
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+export function renderApp(state: AppViewState) {
+  const openClawVersion =
+    (typeof state.hello?.server?.version === "string" && state.hello.server.version.trim()) ||
+    state.updateAvailable?.currentVersion ||
+    t("common.na");
+  const availableUpdate =
+    state.updateAvailable &&
+    state.updateAvailable.latestVersion !== state.updateAvailable.currentVersion
+      ? state.updateAvailable
+      : null;
+  const upstreamBehind = state.upstreamDivergence?.behind ?? 0;
+  const hasUpstreamUpdates = !availableUpdate && upstreamBehind > 0;
+  const versionStatusClass = availableUpdate ? "warn" : "ok";
+  const presenceCount = state.presenceEntries.length;
+  const sessionsCount = state.sessionsResult?.count ?? null;
+  const cronNext = state.cronStatus?.nextWakeAtMs ?? null;
+  const chatDisabledReason = state.connected ? null : t("chat.disconnected");
+  const isChat = state.tab === "chat";
+  const chatFocus = isChat && (state.settings.chatFocusMode || state.onboarding);
+  const showThinking = state.onboarding ? false : state.settings.chatShowThinking;
+  const assistantAvatarUrl = resolveAssistantAvatarUrl(state);
+  const chatAvatarUrl = state.chatAvatarUrl ?? assistantAvatarUrl ?? null;
+  const configValue =
+    state.configForm ?? (state.configSnapshot?.config as Record<string, unknown> | null);
+  const basePath = normalizeBasePath(state.basePath ?? "");
+  const resolvedAgentId =
+    state.agentsSelectedId ??
+    state.agentsList?.defaultId ??
+    state.agentsList?.agents?.[0]?.id ??
+    null;
+  const cronAgentSuggestions = sortLocaleStrings(
+    new Set(
+      [
+        ...(state.agentsList?.agents?.map((entry) => entry.id.trim()) ?? []),
+        ...state.cronJobs
+          .map((job) => (typeof job.agentId === "string" ? job.agentId.trim() : ""))
+          .filter(Boolean),
+      ].filter(Boolean),
+    ),
+  );
+  const cronModelSuggestions = sortLocaleStrings(
+    new Set(
+      [
+        ...state.cronModelSuggestions,
+        ...resolveConfiguredCronModelSuggestions(configValue),
+        ...state.cronJobs
+          .map((job) => {
+            if (job.payload.kind !== "agentTurn" || typeof job.payload.model !== "string") {
+              return "";
+            }
+            return job.payload.model.trim();
+          })
+          .filter(Boolean),
+      ].filter(Boolean),
+    ),
+  );
+  const visibleCronJobs = getVisibleCronJobs(state);
+  const selectedDeliveryChannel =
+    state.cronForm.deliveryChannel && state.cronForm.deliveryChannel.trim()
+      ? state.cronForm.deliveryChannel.trim()
+      : "last";
+  const jobToSuggestions = state.cronJobs
+    .map((job) => normalizeSuggestionValue(job.delivery?.to))
+    .filter(Boolean);
+  const accountToSuggestions = (
+    selectedDeliveryChannel === "last"
+      ? Object.values(state.channelsSnapshot?.channelAccounts ?? {}).flat()
+      : (state.channelsSnapshot?.channelAccounts?.[selectedDeliveryChannel] ?? [])
+  )
+    .flatMap((account) => [
+      normalizeSuggestionValue(account.accountId),
+      normalizeSuggestionValue(account.name),
+    ])
+    .filter(Boolean);
+  const rawDeliveryToSuggestions = uniquePreserveOrder([
+    ...jobToSuggestions,
+    ...accountToSuggestions,
+  ]);
+  const accountSuggestions = uniquePreserveOrder(accountToSuggestions);
+  const deliveryToSuggestions =
+    state.cronForm.deliveryMode === "webhook"
+      ? rawDeliveryToSuggestions.filter((value) => isHttpUrl(value))
+      : rawDeliveryToSuggestions;
+
+  const navCollapsed = state.settings.navCollapsed;
+  const navDrawerOpen = (state as unknown as Record<string, unknown>).navDrawerOpen ?? false;
+
+  return html`
+    <div
+      class="shell ${isChat ? "shell--chat" : ""} ${chatFocus ? "shell--chat-focus" : ""} ${navCollapsed ? "shell--nav-collapsed" : ""} ${navDrawerOpen ? "shell--nav-drawer-open" : ""} ${state.onboarding ? "shell--onboarding" : ""}"
+    >
+      <button
+        type="button"
+        class="shell-nav-backdrop"
+        aria-label="${t("nav.collapse")}"
+        @click=${() => {
+          (state as unknown as Record<string, unknown>).navDrawerOpen = false;
+        }}
+      ></button>
+      <header class="topbar">
+        <div class="topnav-shell">
+          <button
+            type="button"
+            class="topbar-nav-toggle"
+            @click=${() => {
+              (state as unknown as Record<string, unknown>).navDrawerOpen = !navDrawerOpen;
+            }}
+            title="${navDrawerOpen ? t("nav.collapse") : t("nav.expand")}"
+            aria-label="${navDrawerOpen ? t("nav.collapse") : t("nav.expand")}"
+            aria-expanded=${navDrawerOpen}
+          >
+            <span class="nav-collapse-toggle__icon" aria-hidden="true">${icons.menu}</span>
+          </button>
+          <div class="topnav-shell__content">
+            <dashboard-header .tab=${state.tab}></dashboard-header>
+          </div>
+          <div class="topnav-shell__actions">
+            <div class="topbar-status">
+              ${isChat ? renderChatMobileToggle(state) : nothing}
+              ${renderTopbarThemeModeToggle(state)}
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="shell-nav">
+        <aside class="sidebar ${navCollapsed ? "sidebar--collapsed" : ""}">
+          <div class="sidebar-shell">
+            <div class="sidebar-shell__header">
+              <div class="sidebar-brand">
+                ${
+                  navCollapsed
+                    ? nothing
+                    : html`
+                        <img class="sidebar-brand__logo" src="${agentLogoUrl(basePath)}" alt="OpenClaw" />
+                        <span class="sidebar-brand__copy">
+                          <span class="sidebar-brand__eyebrow">${t("nav.control")}</span>
+                          <span class="sidebar-brand__title">OpenClaw</span>
+                        </span>
+                      `
+                }
+              </div>
+              <button
+                type="button"
+                class="nav-collapse-toggle"
+                @click=${() =>
+                  state.applySettings({
+                    ...state.settings,
+                    navCollapsed: !navCollapsed,
+                  })}
+                title="${navCollapsed ? t("nav.expand") : t("nav.collapse")}"
+                aria-label="${navCollapsed ? t("nav.expand") : t("nav.collapse")}"
+              >
+                <span class="nav-collapse-toggle__icon" aria-hidden="true">${icons.menu}</span>
+              </button>
+            </div>
+            <div class="sidebar-shell__body">
+              <nav class="sidebar-nav">
+                ${getDynamicTabGroups().map((group) => {
+                  const isGroupCollapsed = state.settings.navGroupsCollapsed[group.label] ?? false;
+                  const hasActiveTab = group.tabs.some((tab) => tab === state.tab);
+                  const showItems = navCollapsed || hasActiveTab || !isGroupCollapsed;
+
+                  return html`
+                    <section class="nav-section ${!showItems ? "nav-section--collapsed" : ""}">
+                      ${
+                        !navCollapsed
+                          ? html`
+                              <button
+                                class="nav-section__label"
+                                @click=${() => {
+                                  const next = { ...state.settings.navGroupsCollapsed };
+                                  next[group.label] = !isGroupCollapsed;
+                                  state.applySettings({
+                                    ...state.settings,
+                                    navGroupsCollapsed: next,
+                                  });
+                                }}
+                                aria-expanded=${showItems}
+                              >
+                                <span class="nav-section__label-text">${t(`nav.${group.label}`)}</span>
+                                <span class="nav-section__chevron">
+                                  ${showItems ? icons.chevronDown : icons.chevronRight}
+                                </span>
+                              </button>
+                            `
+                          : nothing
+                      }
+                      <div class="nav-section__items">
+                        ${group.tabs.map((tab) => renderTab(state, tab, { collapsed: navCollapsed }))}
+                      </div>
+                    </section>
+                  `;
+                })}
+              </nav>
+            </div>
+            <div class="sidebar-shell__footer">
+              <div class="sidebar-utility-group">
+                <a
+                  class="nav-item nav-item--external sidebar-utility-link"
+                  href="https://docs.openclaw.ai"
+                  target=${EXTERNAL_LINK_TARGET}
+                  rel=${buildExternalLinkRel()}
+                  title="${t("common.docs")} (opens in new tab)"
+                >
+                  <span class="nav-item__icon" aria-hidden="true">${icons.book}</span>
+                  ${
+                    !navCollapsed
+                      ? html`
+                          <span class="nav-item__text">${t("common.docs")}</span>
+                          <span class="nav-item__external-icon">${icons.externalLink}</span>
+                        `
+                      : nothing
+                  }
+                </a>
+                ${(() => {
+                  const version = state.hello?.server?.version ?? "";
+                  return version
+                    ? html`
+                        <div class="sidebar-version" title=${`v${version}`}>
+                          ${
+                            !navCollapsed
+                              ? html`
+                                  <span class="sidebar-version__label">${t("common.version")}</span>
+                                  <span class="sidebar-version__text">v${version}</span>
+                                  ${renderSidebarConnectionStatus(state)}
+                                `
+                              : html`${renderSidebarConnectionStatus(state)}`
+                          }
+                        </div>
+                      `
+                    : nothing;
+                })()}
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <main class="content ${isChat ? "content--chat" : ""}">
+        ${
+          availableUpdate &&
+          availableUpdate.latestVersion !== availableUpdate.currentVersion &&
+          !isUpdateBannerDismissed(state.updateAvailable)
+            ? html`<div class="update-banner callout danger" role="alert">
+              <strong>Update available:</strong> v${availableUpdate.latestVersion}
+              (running v${availableUpdate.currentVersion}).
+              <button
+                class="btn btn--sm update-banner__btn"
+                ?disabled=${state.updateRunning || !state.connected}
+                @click=${() => runUpdate(state)}
+              >${state.updateRunning ? "Updating…" : "Update now"}</button>
+              <button
+                class="update-banner__close"
+                type="button"
+                title="Dismiss"
+                aria-label="Dismiss update banner"
+                @click=${() => {
+                  dismissUpdateBanner(state.updateAvailable);
+                  state.updateAvailable = null;
+                }}
+              >
+                ${icons.x}
+              </button>
+            </div>`
+            : nothing
+        }
+        <section class="content-header">
+          <div>
+            ${state.tab === "usage" ? nothing : html`<div class="page-title">${titleForTab(state.tab)}</div>`}
+            ${state.tab === "usage" ? nothing : html`<div class="page-sub">${subtitleForTab(state.tab)}</div>`}
+          </div>
+          <div class="page-meta">
+            ${state.lastError ? html`<div class="pill danger">${state.lastError}</div>` : nothing}
+            ${isChat ? renderChatControls(state) : nothing}
+          </div>
+        </section>
+
+        ${
+          state.tab === "overview"
+            ? renderOverview({
+                connected: state.connected,
+                hello: state.hello,
+                settings: state.settings,
+                password: state.password,
+                lastError: state.lastError,
+                lastErrorCode: state.lastErrorCode,
+                presenceCount,
+                sessionsCount,
+                cronEnabled: state.cronStatus?.enabled ?? null,
+                cronNext,
+                lastChannelsRefresh: state.channelsLastSuccess,
+                onSettingsChange: (next) => state.applySettings(next),
+                onPasswordChange: (next) => (state.password = next),
+                onSessionKeyChange: (next) => {
+                  state.sessionKey = next;
+                  state.chatMessage = "";
+                  state.resetToolStream();
+                  state.applySettings({
+                    ...state.settings,
+                    sessionKey: next,
+                    lastActiveSessionKey: next,
+                  });
+                  void state.loadAssistantIdentity();
+                },
+                onConnect: () => state.connect(),
+                onRefresh: () => state.loadOverview(),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "channels"
+            ? renderChannels({
+                connected: state.connected,
+                loading: state.channelsLoading,
+                snapshot: state.channelsSnapshot,
+                lastError: state.channelsError,
+                lastSuccessAt: state.channelsLastSuccess,
+                whatsappMessage: state.whatsappLoginMessage,
+                whatsappQrDataUrl: state.whatsappLoginQrDataUrl,
+                whatsappConnected: state.whatsappLoginConnected,
+                whatsappBusy: state.whatsappBusy,
+                configSchema: state.configSchema,
+                configSchemaLoading: state.configSchemaLoading,
+                configForm: state.configForm,
+                configUiHints: state.configUiHints,
+                configSaving: state.configSaving,
+                configFormDirty: state.configFormDirty,
+                nostrProfileFormState: state.nostrProfileFormState,
+                nostrProfileAccountId: state.nostrProfileAccountId,
+                onRefresh: (probe) => loadChannels(state, probe),
+                onWhatsAppStart: (force) => state.handleWhatsAppStart(force),
+                onWhatsAppWait: () => state.handleWhatsAppWait(),
+                onWhatsAppLogout: () => state.handleWhatsAppLogout(),
+                onConfigPatch: (path, value) => updateConfigFormValue(state, path, value),
+                onConfigSave: () => state.handleChannelConfigSave(),
+                onConfigReload: () => state.handleChannelConfigReload(),
+                onNostrProfileEdit: (accountId, profile) =>
+                  state.handleNostrProfileEdit(accountId, profile),
+                onNostrProfileCancel: () => state.handleNostrProfileCancel(),
+                onNostrProfileFieldChange: (field, value) =>
+                  state.handleNostrProfileFieldChange(field, value),
+                onNostrProfileSave: () => state.handleNostrProfileSave(),
+                onNostrProfileImport: () => state.handleNostrProfileImport(),
+                onNostrProfileToggleAdvanced: () => state.handleNostrProfileToggleAdvanced(),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "instances"
+            ? renderInstances({
+                loading: state.presenceLoading,
+                entries: state.presenceEntries,
+                lastError: state.presenceError,
+                statusMessage: state.presenceStatus,
+                onRefresh: () => loadPresence(state),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "sessions"
+            ? renderSessions({
+                loading: state.sessionsLoading,
+                result: state.sessionsResult,
+                error: state.sessionsError,
+                activeMinutes: state.sessionsFilterActive,
+                limit: state.sessionsFilterLimit,
+                includeGlobal: state.sessionsIncludeGlobal,
+                includeUnknown: state.sessionsIncludeUnknown,
+                basePath: state.basePath,
+                agents: (state.agentsList?.agents ?? []).map(
+                  (a: { id: string; name?: string; identity?: { emoji?: string } }) => ({
+                    id: a.id,
+                    name: a.identity?.name ?? a.name ?? a.id,
+                    emoji: a.identity?.emoji,
+                  }),
+                ),
+                agentFilter: state.sessionsAgentFilter ?? "",
+                onAgentFilterChange: (agentId: string) => {
+                  state.sessionsAgentFilter = agentId;
+                },
+                onFiltersChange: (next) => {
+                  state.sessionsFilterActive = next.activeMinutes;
+                  state.sessionsFilterLimit = next.limit;
+                  state.sessionsIncludeGlobal = next.includeGlobal;
+                  state.sessionsIncludeUnknown = next.includeUnknown;
+                },
+                onRefresh: () => loadSessions(state),
+                onPatch: (key, patch) => patchSession(state, key, patch),
+                onDelete: (key) => deleteSessionAndRefresh(state, key),
+                onArchive: async (key) => {
+                  const confirmed = window.confirm(
+                    `Archive session "${key}"?\n\nThis will deactivate the session and move it to session history.`,
+                  );
+                  if (!confirmed) {
+                    return;
+                  }
+                  try {
+                    await state.client?.request("sessions.archive", { key });
+                    await loadSessions(state);
+                    await loadArchivedSessions(
+                      state,
+                      undefined,
+                      state.archivedSessionsSearch || undefined,
+                      state.archivedSessionsPageSize,
+                      (state.archivedSessionsPage - 1) * state.archivedSessionsPageSize,
+                    );
+                  } catch (err) {
+                    state.sessionsError = String(err);
+                  }
+                },
+                // Live sessions pagination
+                livePageSize: state.liveSessionsPageSize,
+                livePage: state.liveSessionsPage,
+                onLivePageSizeChange: (size: number) => {
+                  state.liveSessionsPageSize = size;
+                  state.liveSessionsPage = 1;
+                },
+                onLivePageChange: (page: number) => {
+                  state.liveSessionsPage = page;
+                },
+                onViewHistory: (key) => {
+                  // Extract agent from key and pre-select both agent and session
+                  const agentMatch = key.match(/^agent:([^:]+):/);
+                  state.sessionHistoryAgentFilter = agentMatch ? agentMatch[1] : "";
+                  state.sessionHistoryKey = key;
+                  state.sessionHistoryOpen = true;
+                  state.sessionHistoryResult = null;
+                  state.sessionHistorySearch = "";
+                  state.sessionHistoryRoleFilter = "all";
+                  void loadSessionHistory(state, key);
+                },
+                // Archived sessions
+                archivedLoading: state.archivedSessionsLoading,
+                archivedResult: state.archivedSessionsResult,
+                archivedError: state.archivedSessionsError,
+                archivedSearch: state.archivedSessionsSearch,
+                archivedPageSize: state.archivedSessionsPageSize,
+                archivedPage: state.archivedSessionsPage,
+                onArchivedSearchChange: (search: string) => {
+                  state.archivedSessionsSearch = search;
+                  state.archivedSessionsPage = 1;
+                  void loadArchivedSessions(
+                    state,
+                    undefined,
+                    search,
+                    state.archivedSessionsPageSize,
+                    0,
+                  );
+                },
+                onArchivedRefresh: () => {
+                  void loadArchivedSessions(
+                    state,
+                    undefined,
+                    state.archivedSessionsSearch || undefined,
+                    state.archivedSessionsPageSize,
+                    (state.archivedSessionsPage - 1) * state.archivedSessionsPageSize,
+                  );
+                },
+                onArchivedPageSizeChange: (size: number) => {
+                  state.archivedSessionsPageSize = size;
+                  state.archivedSessionsPage = 1;
+                  void loadArchivedSessions(
+                    state,
+                    undefined,
+                    state.archivedSessionsSearch || undefined,
+                    size,
+                    0,
+                  );
+                },
+                onArchivedPageChange: (page: number) => {
+                  state.archivedSessionsPage = page;
+                  void loadArchivedSessions(
+                    state,
+                    undefined,
+                    state.archivedSessionsSearch || undefined,
+                    state.archivedSessionsPageSize,
+                    (page - 1) * state.archivedSessionsPageSize,
+                  );
+                },
+                onResumeSession: async (sessionId: string) => {
+                  await resumeSession(state, sessionId);
+                  await loadSessions(state);
+                  await loadArchivedSessions(
+                    state,
+                    undefined,
+                    state.archivedSessionsSearch || undefined,
+                    state.archivedSessionsPageSize,
+                    (state.archivedSessionsPage - 1) * state.archivedSessionsPageSize,
+                  );
+                },
+                onRenameSession: (sessionId: string, name: string) => {
+                  void renameSession(state, sessionId, name);
+                },
+                onDeleteArchivedSession: (sessionId: string) => {
+                  void deleteArchivedSession(state, sessionId);
+                },
+              })
+            : nothing
+        }
+
+        ${renderUpdateModal({
+          state: state.updateModalState,
+          divergence: state.upstreamDivergence,
+          currentVersion: openClawVersion,
+          availableModels: state.agentsAvailableModels ?? [],
+          selectedModel: state.mergeModel ?? "",
+          onModelChange: (modelId: string) => {
+            state.mergeModel = modelId;
+            setStoredMergeModel(modelId);
+          },
+          onCheck: () => {
+            state.updateModalState = "checking";
+            if ((state as any).client) {
+              (state as any).client
+                .request("update.checkUpstream", { force: true })
+                .then((result: any) => {
+                  if (result && typeof result.behind === "number") {
+                    state.upstreamDivergence = result;
+                  }
+                  state.updateModalState = "result";
+                })
+                .catch(() => {
+                  state.upstreamDivergence = {
+                    behind: 0,
+                    ahead: 0,
+                    upstreamRef: "unknown",
+                    localRef: "HEAD",
+                    error: "Failed to check upstream",
+                  };
+                  state.updateModalState = "result";
+                });
+            }
+          },
+          onRunMerge: () => {
+            state.updateModalState = "closed";
+            state.updateInProgress = true;
+            if (state.tab !== "chat") {
+              state.setTab("chat");
+            }
+            const modelNote = state.mergeModel
+              ? ` Use model ${state.mergeModel} for conflict resolution (set SAFE_MERGE_MODEL=${state.mergeModel}).`
+              : "";
+            void state.handleSendChat(
+              `Run a safe upstream merge update now. Follow the safe-merge-update skill at ~/.openclaw/workspace/skills/safe-merge-update/SKILL.md — run all 4 phases (preflight, AI merge, validate, commit). Report progress as you go.${modelNote}`,
+            );
+            setTimeout(() => {
+              state.updateInProgress = false;
+            }, 8000);
+          },
+          onClose: () => {
+            state.updateModalState = "closed";
+          },
+          autoRunEnabled: state.safeMergeCronEnabled ?? null,
+          onAutoRunToggle: (enabled: boolean) => {
+            if (!state.client || !state.safeMergeCronJobId) {
+              return;
+            }
+            state.safeMergeCronEnabled = enabled;
+            state.client
+              .request("cron.update", {
+                id: state.safeMergeCronJobId,
+                patch: { enabled },
+              })
+              .catch(() => {
+                // revert on failure
+                state.safeMergeCronEnabled = !enabled;
+              });
+          },
+        })}
+        ${renderSessionHistoryModal({
+          open: state.sessionHistoryOpen,
+          loading: state.sessionHistoryLoading,
+          error: state.sessionHistoryError,
+          result: state.sessionHistoryResult,
+          agents: (state.agentsList?.agents ?? []).map(
+            (a: { id: string; name?: string; identity?: { emoji?: string } }) => ({
+              id: a.id,
+              name: a.identity?.name ?? a.name ?? a.id,
+              emoji: a.identity?.emoji,
+            }),
+          ),
+          agentFilter: state.sessionHistoryAgentFilter,
+          sessions: (state.sessionsResult?.sessions ?? [])
+            .filter((s: { key: string }) => {
+              if (!state.sessionHistoryAgentFilter) {
+                return true;
+              }
+              const parsed = s.key.match(/^agent:([^:]+):/);
+              return parsed ? parsed[1] === state.sessionHistoryAgentFilter : false;
+            })
+            .map((s: { key: string; displayName?: string; label?: string }) => ({
+              key: s.key,
+              displayName: s.displayName ?? s.label ?? s.key,
+            })),
+          sessionKey: state.sessionHistoryKey,
+          search: state.sessionHistorySearch,
+          roleFilter: state.sessionHistoryRoleFilter,
+          onClose: () => {
+            state.sessionHistoryOpen = false;
+          },
+          onAgentChange: (agentId: string) => {
+            state.sessionHistoryAgentFilter = agentId;
+            state.sessionHistoryKey = "";
+            state.sessionHistoryResult = null;
+          },
+          onSessionChange: (key: string) => {
+            state.sessionHistoryKey = key;
+            state.sessionHistoryResult = null;
+            state.sessionHistorySearch = "";
+            state.sessionHistoryRoleFilter = "all";
+            if (key) {
+              void loadSessionHistory(state, key);
+            }
+          },
+          onSearchChange: (search: string) => {
+            state.sessionHistorySearch = search;
+            clearTimeout(
+              (state as unknown as Record<string, ReturnType<typeof setTimeout>>)
+                .__historySearchTimer,
+            );
+            (
+              state as unknown as Record<string, ReturnType<typeof setTimeout>>
+            ).__historySearchTimer = setTimeout(() => {
+              if (state.sessionHistoryKey) {
+                state.sessionHistoryResult = null;
+                void loadSessionHistory(
+                  state,
+                  state.sessionHistoryKey,
+                  0,
+                  search,
+                  state.sessionHistoryRoleFilter,
+                );
+              }
+            }, 300);
+          },
+          onRoleFilterChange: (role: string) => {
+            state.sessionHistoryRoleFilter = role;
+            state.sessionHistoryResult = null;
+            if (state.sessionHistoryKey) {
+              void loadSessionHistory(
+                state,
+                state.sessionHistoryKey,
+                0,
+                state.sessionHistorySearch,
+                role,
+              );
+            }
+          },
+          onLoadMore: () => {
+            if (state.sessionHistoryResult && state.sessionHistoryKey) {
+              const nextOffset =
+                state.sessionHistoryResult.offset + state.sessionHistoryResult.items.length;
+              void loadSessionHistory(
+                state,
+                state.sessionHistoryKey,
+                nextOffset,
+                state.sessionHistorySearch,
+                state.sessionHistoryRoleFilter,
+                true,
+              );
+            }
+          },
+        })}
+
+        ${renderUsageTab(state)}
+
+        ${
+          state.tab === "cron"
+            ? renderCron({
+                basePath: state.basePath,
+                loading: state.cronLoading,
+                jobsLoadingMore: state.cronJobsLoadingMore,
+                status: state.cronStatus,
+                jobs: visibleCronJobs,
+                jobsTotal: state.cronJobsTotal,
+                jobsHasMore: state.cronJobsHasMore,
+                jobsQuery: state.cronJobsQuery,
+                jobsEnabledFilter: state.cronJobsEnabledFilter,
+                jobsScheduleKindFilter: state.cronJobsScheduleKindFilter,
+                jobsLastStatusFilter: state.cronJobsLastStatusFilter,
+                jobsSortBy: state.cronJobsSortBy,
+                jobsSortDir: state.cronJobsSortDir,
+                error: state.cronError,
+                busy: state.cronBusy,
+                form: state.cronForm,
+                fieldErrors: state.cronFieldErrors,
+                canSubmit: !hasCronFormErrors(state.cronFieldErrors),
+                editingJobId: state.cronEditingJobId,
+                channels: state.channelsSnapshot?.channelMeta?.length
+                  ? state.channelsSnapshot.channelMeta.map((entry) => entry.id)
+                  : (state.channelsSnapshot?.channelOrder ?? []),
+                channelLabels: state.channelsSnapshot?.channelLabels ?? {},
+                channelMeta: state.channelsSnapshot?.channelMeta ?? [],
+                runsJobId: state.cronRunsJobId,
+                runs: state.cronRuns,
+                runsTotal: state.cronRunsTotal,
+                runsHasMore: state.cronRunsHasMore,
+                runsLoadingMore: state.cronRunsLoadingMore,
+                runsScope: state.cronRunsScope,
+                runsStatuses: state.cronRunsStatuses,
+                runsDeliveryStatuses: state.cronRunsDeliveryStatuses,
+                runsStatusFilter: state.cronRunsStatusFilter,
+                runsQuery: state.cronRunsQuery,
+                runsSortDir: state.cronRunsSortDir,
+                agentSuggestions: cronAgentSuggestions,
+                modelSuggestions: cronModelSuggestions,
+                thinkingSuggestions: CRON_THINKING_SUGGESTIONS,
+                timezoneSuggestions: CRON_TIMEZONE_SUGGESTIONS,
+                deliveryToSuggestions,
+                accountSuggestions,
+                onFormChange: (patch) => {
+                  state.cronForm = normalizeCronFormState({ ...state.cronForm, ...patch });
+                  state.cronFieldErrors = validateCronForm(state.cronForm);
+                },
+                onRefresh: () => state.loadCron(),
+                onAdd: () => addCronJob(state),
+                onEdit: (job) => startCronEdit(state, job),
+                onClone: (job) => startCronClone(state, job),
+                onCancelEdit: () => cancelCronEdit(state),
+                onToggle: (job, enabled) => toggleCronJob(state, job, enabled),
+                onRun: (job, mode) => runCronJob(state, job, mode ?? "force"),
+                onRemove: (job) => removeCronJob(state, job),
+                onLoadRuns: async (jobId) => {
+                  updateCronRunsFilter(state, { cronRunsScope: "job" });
+                  await loadCronRuns(state, jobId);
+                },
+                onLoadMoreJobs: () => loadMoreCronJobs(state),
+                onJobsFiltersChange: async (patch) => {
+                  updateCronJobsFilter(state, patch);
+                  const shouldReload =
+                    typeof patch.cronJobsQuery === "string" ||
+                    Boolean(patch.cronJobsEnabledFilter) ||
+                    Boolean(patch.cronJobsSortBy) ||
+                    Boolean(patch.cronJobsSortDir);
+                  if (shouldReload) {
+                    await reloadCronJobs(state);
+                  }
+                },
+                onJobsFiltersReset: async () => {
+                  updateCronJobsFilter(state, {
+                    cronJobsQuery: "",
+                    cronJobsEnabledFilter: "all",
+                    cronJobsScheduleKindFilter: "all",
+                    cronJobsLastStatusFilter: "all",
+                    cronJobsSortBy: "nextRunAtMs",
+                    cronJobsSortDir: "asc",
+                  });
+                  await reloadCronJobs(state);
+                },
+                onLoadMoreRuns: () => loadMoreCronRuns(state),
+                onRunsFiltersChange: async (patch) => {
+                  updateCronRunsFilter(state, patch);
+                  if (state.cronRunsScope === "all") {
+                    await loadCronRuns(state, null);
+                    return;
+                  }
+                  await loadCronRuns(state, state.cronRunsJobId);
+                },
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "agents"
+            ? renderAgents({
+                loading: state.agentsLoading,
+                error: state.agentsError,
+                showCreateForm: state.showCreateForm,
+                createMode: state.createMode,
+                createName: state.createName,
+                createWorkspace: state.createWorkspace,
+                createEmoji: state.createEmoji,
+                creating: state.creating,
+                createError: state.createError,
+                wizardDescription: state.wizardDescription,
+                wizardLoading: state.wizardLoading,
+                wizardResult: state.wizardResult,
+                onToggleCreateForm: () => {
+                  state.showCreateForm = !state.showCreateForm;
+                  state.createError = null;
+                  state.wizardResult = null;
+                },
+                onCreateModeChange: (mode: "manual" | "wizard") => {
+                  state.createMode = mode;
+                  state.createError = null;
+                },
+                onCreateNameChange: (v: string) => {
+                  state.createName = v;
+                  // Auto-generate workspace slug from name
+                  const slug = v
+                    .trim()
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "");
+                  state.createWorkspace = slug ? `~/.openclaw/workspaces/${slug}/` : "";
+                },
+                onCreateWorkspaceChange: (v: string) => {
+                  state.createWorkspace = v;
+                },
+                onCreateEmojiChange: (v: string) => {
+                  state.createEmoji = v;
+                },
+                onCreateAgent: async () => {
+                  state.creating = true;
+                  state.createError = null;
+                  try {
+                    const name = state.createName.trim();
+                    const slug = name
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/^-|-$/g, "");
+                    const workspace =
+                      state.createWorkspace.trim() || `~/.openclaw/workspaces/${slug}/`;
+                    const params: Record<string, unknown> = { name, workspace };
+                    if (state.createEmoji.trim()) {
+                      params.emoji = state.createEmoji.trim();
+                    }
+                    const res = (await state.client?.request("agents.create", params)) as {
+                      ok?: boolean;
+                      error?: string;
+                    } | null;
+                    if (res?.ok) {
+                      state.showCreateForm = false;
+                      state.createName = "";
+                      state.createWorkspace = "";
+                      state.createEmoji = "";
+                      state.agentsLoading = true;
+                      const list = await state.client?.request("agents.list", {});
+                      state.agentsList = list as typeof state.agentsList;
+                      state.agentsLoading = false;
+                      // Refresh configForm so the new agent is found when selected
+                      await loadConfig(state);
+                    } else {
+                      state.createError =
+                        (res as { ok?: boolean; error?: string } | null)?.error ??
+                        "Failed to create agent";
+                    }
+                  } catch (err) {
+                    state.createError = String(err);
+                  } finally {
+                    state.creating = false;
+                  }
+                },
+                onWizardDescriptionChange: (v: string) => {
+                  state.wizardDescription = v;
+                },
+                onWizardGenerate: async () => {
+                  state.wizardLoading = true;
+                  state.wizardResult = null;
+                  state.createError = null;
+                  try {
+                    const res = (await state.client?.request("agents.wizard", {
+                      description: state.wizardDescription,
+                    })) as { name: string; emoji: string; soul: string } | null;
+                    if (res?.name) {
+                      state.wizardResult = res;
+                    } else {
+                      state.createError = "Wizard returned empty result";
+                    }
+                  } catch (err) {
+                    state.createError = String(err);
+                  } finally {
+                    state.wizardLoading = false;
+                  }
+                },
+                onWizardAccept: async () => {
+                  if (!state.wizardResult) {
+                    return;
+                  }
+                  state.creating = true;
+                  state.createError = null;
+                  try {
+                    const name = state.wizardResult.name;
+                    const slug = name
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/^-|-$/g, "");
+                    const workspace = `~/.openclaw/workspaces/${slug}/`;
+                    const params: Record<string, unknown> = {
+                      name,
+                      workspace,
+                      emoji: state.wizardResult.emoji,
+                    };
+                    const res = (await state.client?.request("agents.create", params)) as {
+                      ok?: boolean;
+                      agentId?: string;
+                      error?: string;
+                    } | null;
+                    if (res?.ok) {
+                      // Write the generated SOUL.md to the agent's workspace
+                      try {
+                        await state.client?.request("agents.files.set", {
+                          agentId: res.agentId,
+                          name: "SOUL.md",
+                          content: state.wizardResult.soul,
+                        });
+                      } catch {
+                        /* best effort */
+                      }
+                      state.showCreateForm = false;
+                      state.wizardResult = null;
+                      state.wizardDescription = "";
+                      state.createMode = "manual";
+                      state.agentsLoading = true;
+                      const list = await state.client?.request("agents.list", {});
+                      state.agentsList = list as typeof state.agentsList;
+                      state.agentsLoading = false;
+                      // Refresh configForm so the new agent is found when selected
+                      await loadConfig(state);
+                    } else {
+                      state.createError =
+                        (res as { ok?: boolean; error?: string } | null)?.error ??
+                        "Failed to create agent";
+                    }
+                  } catch (err) {
+                    state.createError = String(err);
+                  } finally {
+                    state.creating = false;
+                  }
+                },
+                agentsList: state.agentsList,
+                selectedAgentId: resolvedAgentId,
+                activePanel: state.agentsPanel,
+                agentToolsSubTab: state.agentToolsSubTab,
+                onAgentToolsSubTabChange: (tab: "core" | "pipedream" | "zapier") => {
+                  state.agentToolsSubTab = tab;
+                  const agentId = resolvedAgentId;
+                  if (!agentId || !state.client) {
+                    return;
+                  }
+                  if (tab === "pipedream") {
+                    const setPd = (
+                      fn: (
+                        prev: typeof state.agentPipedreamState,
+                      ) => typeof state.agentPipedreamState,
+                    ) => {
+                      state.agentPipedreamState = fn(state.agentPipedreamState);
+                    };
+                    void loadAgentPipedreamState(state.client, agentId, setPd);
+                  } else if (tab === "zapier") {
+                    const setZp = (
+                      fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                    ) => {
+                      state.agentZapierState = fn(state.agentZapierState);
+                    };
+                    void loadAgentZapierState(state.client, agentId, setZp);
+                  }
+                },
+                agentPipedreamState: state.agentPipedreamState,
+                onPipedreamSave: (externalUserId: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void saveAgentPipedream(state.client, resolvedAgentId, externalUserId, setPd);
+                },
+                onPipedreamDelete: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void deleteAgentPipedream(state.client, resolvedAgentId, setPd);
+                },
+                onPipedreamEditUserId: (editing: boolean) => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    editingUserId: editing,
+                  };
+                },
+                onPipedreamDraftChange: (value: string) => {
+                  state.agentPipedreamState = { ...state.agentPipedreamState, draftUserId: value };
+                },
+                onPipedreamRefresh: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void loadAgentPipedreamState(state.client, resolvedAgentId, setPd);
+                },
+                onPipedreamConnectApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void connectAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamDisconnectApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void disconnectAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamToggleExpand: (slug: string) => {
+                  const next = new Set(state.agentPipedreamState.expandedApps);
+                  if (next.has(slug)) {
+                    next.delete(slug);
+                  } else {
+                    next.add(slug);
+                  }
+                  state.agentPipedreamState = { ...state.agentPipedreamState, expandedApps: next };
+                },
+                onPipedreamTestApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void testAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamActivateApp: (slug: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void activateAgentApp(state.client, resolvedAgentId, slug, setPd);
+                },
+                onPipedreamOpenAppBrowser: () => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    showAppBrowser: true,
+                  };
+                },
+                onPipedreamCloseAppBrowser: () => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    showAppBrowser: false,
+                  };
+                },
+                onPipedreamAppBrowserSearchChange: (value: string) => {
+                  state.agentPipedreamState = {
+                    ...state.agentPipedreamState,
+                    appBrowserSearch: value,
+                  };
+                },
+                onPipedreamManualSlugChange: (value: string) => {
+                  state.agentPipedreamState = { ...state.agentPipedreamState, manualSlug: value };
+                },
+                onPipedreamConnectManualSlug: () => {
+                  if (
+                    !state.client ||
+                    !resolvedAgentId ||
+                    !state.agentPipedreamState.manualSlug.trim()
+                  ) {
+                    return;
+                  }
+                  const setPd = (
+                    fn: (
+                      prev: typeof state.agentPipedreamState,
+                    ) => typeof state.agentPipedreamState,
+                  ) => {
+                    state.agentPipedreamState = fn(state.agentPipedreamState);
+                  };
+                  void connectAgentApp(
+                    state.client,
+                    resolvedAgentId,
+                    state.agentPipedreamState.manualSlug.trim(),
+                    setPd,
+                  );
+                },
+                agentZapierState: state.agentZapierState,
+                onZapierSaveUrl: (url: string) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void saveAgentZapierUrl(state.client, resolvedAgentId, url, setZp);
+                },
+                onZapierDelete: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void deleteAgentZapier(state.client, resolvedAgentId, setZp);
+                },
+                onZapierEditUrl: (editing: boolean) => {
+                  state.agentZapierState = { ...state.agentZapierState, editingUrl: editing };
+                },
+                onZapierDraftChange: (value: string) => {
+                  state.agentZapierState = { ...state.agentZapierState, draftUrl: value };
+                },
+                onZapierRefresh: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void loadAgentZapierState(state.client, resolvedAgentId, setZp);
+                },
+                onZapierRefreshTools: () => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void loadAgentZapierTools(state.client, resolvedAgentId, setZp);
+                },
+                onZapierToggleTool: (toolName: string, enabled: boolean) => {
+                  if (!state.client || !resolvedAgentId) {
+                    return;
+                  }
+                  const setZp = (
+                    fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                  ) => {
+                    state.agentZapierState = fn(state.agentZapierState);
+                  };
+                  void toggleAgentZapierTool(
+                    state.client,
+                    resolvedAgentId,
+                    toolName,
+                    enabled,
+                    setZp,
+                  );
+                },
+                basePath,
+                config: {
+                  form: configValue,
+                  loading: state.configLoading,
+                  saving: state.configSaving,
+                  dirty: state.configFormDirty,
+                },
+                channels: {
+                  snapshot: state.channelsSnapshot,
+                  loading: state.channelsLoading,
+                  error: state.channelsError,
+                  lastSuccess: state.channelsLastSuccess,
+                },
+                cron: {
+                  status: state.cronStatus,
+                  jobs: state.cronJobs,
+                  loading: state.cronLoading,
+                  error: state.cronError,
+                },
+                agentFiles: {
+                  list: state.agentFilesList,
+                  loading: state.agentFilesLoading,
+                  error: state.agentFilesError,
+                  active: state.agentFileActive,
+                  contents: state.agentFileContents,
+                  drafts: state.agentFileDrafts,
+                  saving: state.agentFileSaving,
+                },
+                agentIdentityLoading: state.agentIdentityLoading,
+                agentIdentityError: state.agentIdentityError,
+                agentIdentityById: state.agentIdentityById,
+                agentSkills: {
+                  report: state.agentSkillsReport,
+                  loading: state.agentSkillsLoading,
+                  error: state.agentSkillsError,
+                  agentId: state.agentSkillsAgentId,
+                  filter: state.skillsFilter,
+                },
+                toolsCatalog: {
+                  loading: state.toolsCatalogLoading,
+                  error: state.toolsCatalogError,
+                  result: state.toolsCatalogResult,
+                },
+                onRefresh: async () => {
+                  await loadAgents(state);
+                  const nextSelected =
+                    state.agentsSelectedId ??
+                    state.agentsList?.defaultId ??
+                    state.agentsList?.agents?.[0]?.id ??
+                    null;
+                  if (nextSelected) {
+                    await loadToolsCatalog(state, nextSelected);
+                  }
+                  const agentIds = state.agentsList?.agents?.map((entry) => entry.id) ?? [];
+                  if (agentIds.length > 0) {
+                    void loadAgentIdentities(state, agentIds, { force: true });
+                  }
+                },
+                onSelectAgent: (agentId) => {
+                  if (state.agentsSelectedId === agentId) {
+                    return;
+                  }
+                  state.agentsSelectedId = agentId;
+                  state.agentFilesList = null;
+                  state.agentFilesError = null;
+                  state.agentFilesLoading = false;
+                  state.agentFileActive = null;
+                  state.agentFileContents = {};
+                  state.agentFileDrafts = {};
+                  state.agentSkillsReport = null;
+                  state.agentSkillsError = null;
+                  state.agentSkillsAgentId = null;
+                  // Reset identity edit state when switching agents
+                  state.editAgentName = "";
+                  state.editAgentWorkspace = "";
+                  state.editAgentEmoji = "";
+                  state.editAgentDirty = false;
+                  state.editAgentError = null;
+                  state.agentAvatarPreviewUrl = null;
+                  state.agentAvatarError = null;
+                  state.agentAvatarStatus = null;
+                  void loadAgentIdentity(state, agentId, { force: true });
+                  if (state.agentsPanel === "tools") {
+                    void loadToolsCatalog(state, agentId);
+                  }
+                  if (state.agentsPanel === "files") {
+                    void loadAgentFiles(state, agentId);
+                  }
+                  if (state.agentsPanel === "skills") {
+                    void loadAgentSkills(state, agentId);
+                  }
+                  if (
+                    state.agentsPanel === "tools" &&
+                    state.agentToolsSubTab === "pipedream" &&
+                    state.client
+                  ) {
+                    const setPd = (
+                      fn: (
+                        prev: typeof state.agentPipedreamState,
+                      ) => typeof state.agentPipedreamState,
+                    ) => {
+                      state.agentPipedreamState = fn(state.agentPipedreamState);
+                    };
+                    state.agentPipedreamState = { loading: true };
+                    void loadAgentPipedreamState(state.client, agentId, setPd);
+                  }
+                  if (
+                    state.agentsPanel === "tools" &&
+                    state.agentToolsSubTab === "zapier" &&
+                    state.client
+                  ) {
+                    const setZp = (
+                      fn: (prev: typeof state.agentZapierState) => typeof state.agentZapierState,
+                    ) => {
+                      state.agentZapierState = fn(state.agentZapierState);
+                    };
+                    void loadAgentZapierState(state.client, agentId, setZp);
+                  }
+                },
+                onSelectPanel: (panel) => {
+                  state.agentsPanel = panel;
+                  if (panel === "files" && resolvedAgentId) {
+                    if (state.agentFilesList?.agentId !== resolvedAgentId) {
+                      state.agentFilesList = null;
+                      state.agentFilesError = null;
+                      state.agentFileActive = null;
+                      state.agentFileContents = {};
+                      state.agentFileDrafts = {};
+                      void loadAgentFiles(state, resolvedAgentId);
+                    }
+                  }
+                  if (panel === "tools" && resolvedAgentId) {
+                    void loadToolsCatalog(state, resolvedAgentId);
+                  }
+                  if (panel === "skills") {
+                    if (resolvedAgentId) {
+                      void loadAgentSkills(state, resolvedAgentId);
+                    }
+                  }
+                  if (panel === "channels") {
+                    void loadChannels(state, false);
+                  }
+                  if (panel === "cron") {
+                    void state.loadCron();
+                  }
+                },
+                onLoadFiles: (agentId) => loadAgentFiles(state, agentId),
+                onSelectFile: (name) => {
+                  state.agentFileActive = name;
+                  if (!resolvedAgentId) {
+                    return;
+                  }
+                  void loadAgentFileContent(state, resolvedAgentId, name);
+                },
+                onFileDraftChange: (name, content) => {
+                  state.agentFileDrafts = { ...state.agentFileDrafts, [name]: content };
+                },
+                onFileReset: (name) => {
+                  const base = state.agentFileContents[name] ?? "";
+                  state.agentFileDrafts = { ...state.agentFileDrafts, [name]: base };
+                },
+                onFileSave: (name) => {
+                  if (!resolvedAgentId) {
+                    return;
+                  }
+                  const content =
+                    state.agentFileDrafts[name] ?? state.agentFileContents[name] ?? "";
+                  void saveAgentFile(state, resolvedAgentId, name, content);
+                },
+                onToolsProfileChange: (agentId, profile, clearAllow) => {
+                  if (!configValue) {
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    return;
+                  }
+                  const basePath = ["agents", "list", index, "tools"];
+                  if (profile) {
+                    updateConfigFormValue(state, [...basePath, "profile"], profile);
+                  } else {
+                    removeConfigFormValue(state, [...basePath, "profile"]);
+                  }
+                  if (clearAllow) {
+                    removeConfigFormValue(state, [...basePath, "allow"]);
+                  }
+                },
+                onToolsOverridesChange: (agentId, alsoAllow, deny) => {
+                  if (!configValue) {
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    return;
+                  }
+                  const basePath = ["agents", "list", index, "tools"];
+                  if (alsoAllow.length > 0) {
+                    updateConfigFormValue(state, [...basePath, "alsoAllow"], alsoAllow);
+                  } else {
+                    removeConfigFormValue(state, [...basePath, "alsoAllow"]);
+                  }
+                  if (deny.length > 0) {
+                    updateConfigFormValue(state, [...basePath, "deny"], deny);
+                  } else {
+                    removeConfigFormValue(state, [...basePath, "deny"]);
+                  }
+                },
+                onConfigReload: () => {
+                  state.editAgentDirty = false;
+                  state.editAgentError = null;
+                  void loadConfig(state);
+                },
+                onConfigSave: async () => {
+                  const agentId = state.agentsSelectedId;
+                  // Save identity fields first if dirty
+                  if (state.editAgentDirty && agentId) {
+                    state.editAgentSaving = true;
+                    state.editAgentError = null;
+                    try {
+                      const p: Record<string, unknown> = { agentId };
+                      if (state.editAgentName.trim()) {
+                        p.name = state.editAgentName.trim();
+                      }
+                      if (state.editAgentWorkspace.trim()) {
+                        p.workspace = state.editAgentWorkspace.trim();
+                      }
+                      if (state.editAgentEmoji.trim()) {
+                        p.emoji = state.editAgentEmoji.trim();
+                      }
+                      const res = (await state.client?.request("agents.update", p)) as {
+                        ok?: boolean;
+                        error?: string;
+                      } | null;
+                      if (res?.ok) {
+                        state.editAgentDirty = false;
+                        // Refresh agent list so agent.name reflects new config entry name
+                        const list = await state.client?.request("agents.list", {});
+                        state.agentsList = list as typeof state.agentsList;
+                        // Evict stale identity cache and reload from disk
+                        const { [agentId]: _evicted, ...remaining } = state.agentIdentityById;
+                        state.agentIdentityById = remaining as typeof state.agentIdentityById;
+                        void loadAgentIdentity(state, agentId, { force: true });
+                        // IMPORTANT: agents.update wrote to the config file, changing the
+                        // hash. Reload config now so saveConfig uses the current hash —
+                        // otherwise config.set will fail with a stale-hash error.
+                        await loadConfig(state);
+                      } else {
+                        state.editAgentError =
+                          (res as { ok?: boolean; error?: string } | null)?.error ??
+                          "Failed to save";
+                        state.editAgentSaving = false;
+                        return;
+                      }
+                    } catch (err) {
+                      state.editAgentError = String(err);
+                      state.editAgentSaving = false;
+                      return;
+                    } finally {
+                      state.editAgentSaving = false;
+                    }
+                  }
+                  // Only call saveConfig if the model/config form is actually dirty.
+                  // If only identity fields changed, agents.update already wrote the
+                  // config — calling saveConfig with no model changes is a no-op at
+                  // best and a hash-mismatch error at worst.
+                  if (state.configFormDirty) {
+                    await saveConfig(state);
+                  }
+                },
+                editAgentName: state.editAgentName,
+                editAgentWorkspace: state.editAgentWorkspace,
+                editAgentEmoji: state.editAgentEmoji,
+                editAgentDirty: state.editAgentDirty,
+                editAgentSaving: state.editAgentSaving,
+                editAgentError: state.editAgentError,
+                onEditNameChange: (v) => {
+                  state.editAgentName = v;
+                  state.editAgentDirty = true;
+                },
+                onEditWorkspaceChange: (v) => {
+                  state.editAgentWorkspace = v;
+                  state.editAgentDirty = true;
+                },
+                onEditEmojiChange: (v) => {
+                  state.editAgentEmoji = v;
+                  state.editAgentDirty = true;
+                },
+                confirmDeleteAgentId: state.confirmDeleteAgentId,
+                deleteAgentInProgress: state.deleteAgentInProgress,
+                deleteAgentError: state.deleteAgentError,
+                onDeleteStart: (agentId) => {
+                  state.confirmDeleteAgentId = agentId;
+                  state.deleteAgentError = null;
+                },
+                onDeleteCancel: () => {
+                  state.confirmDeleteAgentId = null;
+                  state.deleteAgentError = null;
+                },
+                onDeleteConfirm: async (agentId) => {
+                  state.deleteAgentInProgress = true;
+                  state.deleteAgentError = null;
+                  try {
+                    const res = (await state.client?.request("agents.delete", { agentId })) as {
+                      ok?: boolean;
+                      error?: string;
+                    } | null;
+                    if (res?.ok) {
+                      state.confirmDeleteAgentId = null;
+                      state.agentsLoading = true;
+                      const list = await state.client?.request("agents.list", {});
+                      state.agentsList = list as typeof state.agentsList;
+                      state.agentsLoading = false;
+                      const remaining = (state.agentsList as { agents?: { id: string }[] } | null)
+                        ?.agents;
+                      if (remaining?.length) {
+                        state.selectedAgentId = remaining[0].id;
+                      }
+                      await loadConfig(state);
+                    } else {
+                      state.deleteAgentError =
+                        (res as { ok?: boolean; error?: string } | null)?.error ??
+                        "Failed to delete";
+                    }
+                  } catch (err) {
+                    state.deleteAgentError = String(err);
+                  } finally {
+                    state.deleteAgentInProgress = false;
+                  }
+                },
+                onChannelsRefresh: () => loadChannels(state, false),
+                onCronRefresh: () => state.loadCron(),
+                onCronRunNow: (jobId: string) => {
+                  const job = state.cronJobs?.find((j) => j.id === jobId);
+                  if (job) {
+                    void runCronJob(state, job, "force");
+                  }
+                },
+                onSkillsFilterChange: (next) => (state.skillsFilter = next),
+                onSkillsRefresh: () => {
+                  if (resolvedAgentId) {
+                    void loadAgentSkills(state, resolvedAgentId);
+                  }
+                },
+                onAgentSkillToggle: (agentId, skillName, enabled) => {
+                  if (!configValue) {
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    return;
+                  }
+                  const entry = list[index] as { skills?: unknown };
+                  const normalizedSkill = skillName.trim();
+                  if (!normalizedSkill) {
+                    return;
+                  }
+                  const allSkills =
+                    state.agentSkillsReport?.skills?.map((skill) => skill.name).filter(Boolean) ??
+                    [];
+                  const existing = Array.isArray(entry.skills)
+                    ? entry.skills.map((name) => String(name).trim()).filter(Boolean)
+                    : undefined;
+                  const base = existing ?? allSkills;
+                  const next = new Set(base);
+                  if (enabled) {
+                    next.add(normalizedSkill);
+                  } else {
+                    next.delete(normalizedSkill);
+                  }
+                  updateConfigFormValue(state, ["agents", "list", index, "skills"], [...next]);
+                },
+                onAgentSkillsClear: (agentId) => {
+                  if (!configValue) {
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    return;
+                  }
+                  removeConfigFormValue(state, ["agents", "list", index, "skills"]);
+                },
+                onAgentSkillsDisableAll: (agentId) => {
+                  if (!configValue) {
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    return;
+                  }
+                  updateConfigFormValue(state, ["agents", "list", index, "skills"], []);
+                },
+                onModelChange: (agentId, modelId) => {
+                  if (!configValue) {
+                    state.lastError = "Config not loaded — please wait and try again.";
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    state.lastError = "Config error: agents list is missing. Try reloading config.";
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    state.lastError = `Agent "${agentId}" not found in config. Try reloading.`;
+                    return;
+                  }
+                  state.lastError = null;
+                  const basePath = ["agents", "list", index, "model"];
+                  const defaultsPath = ["agents", "defaults", "model"];
+
+                  if (!modelId) {
+                    removeConfigFormValue(state, basePath);
+                    if (agentId === "main") {
+                      removeConfigFormValue(state, defaultsPath);
+                    }
+                    return;
+                  }
+
+                  const entry = list[index] as { model?: unknown };
+                  const existing = entry?.model;
+                  const nextValue =
+                    existing && typeof existing === "object" && !Array.isArray(existing)
+                      ? {
+                          primary: modelId,
+                          ...(() => {
+                            const fallbacks = (existing as { fallbacks?: unknown }).fallbacks;
+                            return Array.isArray(fallbacks) ? { fallbacks } : {};
+                          })(),
+                        }
+                      : modelId;
+
+                  updateConfigFormValue(state, basePath, nextValue);
+                  if (agentId === "main") {
+                    updateConfigFormValue(state, defaultsPath, nextValue);
+                  }
+                },
+                onModelFallbacksChange: (agentId, fallbacks) => {
+                  if (!configValue) {
+                    state.lastError = "Config not loaded — please wait and try again.";
+                    return;
+                  }
+                  const list = (configValue as { agents?: { list?: unknown[] } }).agents?.list;
+                  if (!Array.isArray(list)) {
+                    state.lastError = "Config error: agents list is missing. Try reloading config.";
+                    return;
+                  }
+                  const index = list.findIndex(
+                    (entry) =>
+                      entry &&
+                      typeof entry === "object" &&
+                      "id" in entry &&
+                      (entry as { id?: string }).id === agentId,
+                  );
+                  if (index < 0) {
+                    state.lastError = `Agent "${agentId}" not found in config. Try reloading.`;
+                    return;
+                  }
+                  state.lastError = null;
+                  const basePath = ["agents", "list", index, "model"];
+                  const defaultsPath = ["agents", "defaults", "model"];
+                  const entry = list[index] as { model?: unknown };
+                  const normalized = fallbacks.map((name) => name.trim()).filter(Boolean);
+                  const existing = entry.model;
+                  const resolvePrimary = () => {
+                    if (typeof existing === "string") {
+                      return existing.trim() || null;
+                    }
+                    if (existing && typeof existing === "object" && !Array.isArray(existing)) {
+                      const primary = (existing as { primary?: unknown }).primary;
+                      if (typeof primary === "string") {
+                        const trimmed = primary.trim();
+                        return trimmed || null;
+                      }
+                    }
+                    return null;
+                  };
+                  const primary = resolvePrimary();
+                  if (normalized.length === 0) {
+                    if (primary) {
+                      updateConfigFormValue(state, basePath, primary);
+                      if (agentId === "main") {
+                        updateConfigFormValue(state, defaultsPath, primary);
+                      }
+                    } else {
+                      removeConfigFormValue(state, basePath);
+                      if (agentId === "main") {
+                        removeConfigFormValue(state, defaultsPath);
+                      }
+                    }
+                    return;
+                  }
+                  const next = primary
+                    ? { primary, fallbacks: normalized }
+                    : { fallbacks: normalized };
+                  updateConfigFormValue(state, basePath, next);
+                  if (agentId === "main") {
+                    updateConfigFormValue(state, defaultsPath, next);
+                  }
+                },
+                onSetDefault: async (agentId: string) => {
+                  if (!state.client) return;
+                  try {
+                    await state.client.request("config.set", {
+                      path: "agents.defaultId",
+                      value: agentId,
+                    });
+                    await loadConfig(state);
+                    await loadAgents(state);
+                  } catch {
+                    /* best effort */
+                  }
+                },
+                avatarTheme: state.agentAvatarTheme,
+                avatarInstructions: state.agentAvatarInstructions,
+                avatarBusy: state.agentAvatarBusy,
+                avatarStatus: state.agentAvatarStatus,
+                avatarError: state.agentAvatarError,
+                avatarPreviewUrl: state.agentAvatarPreviewUrl,
+                onAvatarThemeChange: (value: string) => {
+                  state.agentAvatarTheme = value;
+                },
+                onAvatarInstructionsChange: (value: string) => {
+                  state.agentAvatarInstructions = value;
+                },
+                onAvatarUpload: async (file: File) => {
+                  const agentId = state.agentsSelectedId;
+                  if (!state.client || !agentId) return;
+                  state.agentAvatarBusy = true;
+                  state.agentAvatarError = null;
+                  state.agentAvatarStatus = null;
+                  state.agentAvatarPreviewUrl = null;
+                  try {
+                    const data = await fileToDataUrl(file);
+                    const res = (await state.client.request("agents.avatar.upload", {
+                      agentId,
+                      filename: file.name,
+                      contentType: file.type || "application/octet-stream",
+                      data,
+                    })) as { ok?: boolean; error?: string } | null;
+                    if (!res?.ok) throw new Error(res?.error || "Avatar upload failed");
+                    state.agentAvatarStatus = "Profile image uploaded.";
+                    const list = await state.client.request("agents.list", {});
+                    state.agentsList = list as typeof state.agentsList;
+                    const { [agentId]: _old, ...rest } = state.agentIdentityById;
+                    state.agentIdentityById = rest as typeof state.agentIdentityById;
+                    await loadAgentIdentity(state, agentId, { force: true });
+                  } catch (err) {
+                    state.agentAvatarError = String(err);
+                  } finally {
+                    state.agentAvatarBusy = false;
+                  }
+                },
+                onAvatarRemove: async () => {
+                  const agentId = state.agentsSelectedId;
+                  if (!state.client || !agentId) return;
+                  state.agentAvatarBusy = true;
+                  state.agentAvatarError = null;
+                  state.agentAvatarStatus = null;
+                  state.agentAvatarPreviewUrl = null;
+                  try {
+                    const res = (await state.client.request("agents.avatar.remove", { agentId })) as {
+                      ok?: boolean;
+                      error?: string;
+                    } | null;
+                    if (!res?.ok) throw new Error(res?.error || "Avatar removal failed");
+                    state.agentAvatarStatus = "Profile image removed.";
+                    const list = await state.client.request("agents.list", {});
+                    state.agentsList = list as typeof state.agentsList;
+                    const { [agentId]: _old, ...rest } = state.agentIdentityById;
+                    state.agentIdentityById = rest as typeof state.agentIdentityById;
+                    await loadAgentIdentity(state, agentId, { force: true });
+                  } catch (err) {
+                    state.agentAvatarError = String(err);
+                  } finally {
+                    state.agentAvatarBusy = false;
+                  }
+                },
+                onAvatarGenerate: async () => {
+                  const agentId = state.agentsSelectedId;
+                  if (!state.client || !agentId) return;
+                  state.agentAvatarBusy = true;
+                  state.agentAvatarError = null;
+                  state.agentAvatarStatus = null;
+                  try {
+                    const res = (await state.client.request("agents.avatar.generate", {
+                      agentId,
+                      themeId: state.agentAvatarTheme,
+                      instructions: state.agentAvatarInstructions,
+                    })) as { ok?: boolean; error?: string; provider?: string; avatarUrl?: string } | null;
+                    if (!res?.ok) throw new Error(res?.error || "Avatar generation failed");
+                    state.agentAvatarPreviewUrl = res.avatarUrl || null;
+                    state.agentAvatarStatus = `Preview generated${res.provider ? ` via ${res.provider}` : ""}. Choose Keep, Regenerate, or Cancel.`;
+                  } catch (err) {
+                    state.agentAvatarError = String(err);
+                  } finally {
+                    state.agentAvatarBusy = false;
+                  }
+                },
+                onAvatarKeep: async () => {
+                  const agentId = state.agentsSelectedId;
+                  const previewUrl = state.agentAvatarPreviewUrl;
+                  if (!state.client || !agentId || !previewUrl) return;
+                  state.agentAvatarBusy = true;
+                  state.agentAvatarError = null;
+                  state.agentAvatarStatus = null;
+                  try {
+                    const res = (await state.client.request("agents.avatar.upload", {
+                      agentId,
+                      filename: "generated-avatar.png",
+                      contentType: "image/png",
+                      data: previewUrl,
+                    })) as { ok?: boolean; error?: string } | null;
+                    if (!res?.ok) throw new Error(res?.error || "Avatar save failed");
+                    state.agentAvatarPreviewUrl = null;
+                    state.agentAvatarStatus = "Profile image saved. Refreshing…";
+                    const list = await state.client.request("agents.list", {});
+                    state.agentsList = list as typeof state.agentsList;
+                    const { [agentId]: _old, ...rest } = state.agentIdentityById;
+                    state.agentIdentityById = rest as typeof state.agentIdentityById;
+                    await loadAgentIdentity(state, agentId, { force: true });
+                    window.location.reload();
+                  } catch (err) {
+                    state.agentAvatarError = String(err);
+                  } finally {
+                    state.agentAvatarBusy = false;
+                  }
+                },
+                onAvatarCancelPreview: () => {
+                  state.agentAvatarPreviewUrl = null;
+                  state.agentAvatarError = null;
+                  state.agentAvatarStatus = "Preview discarded.";
+                },
+                availableModels: state.agentsAvailableModels,
+              } as AgentsProps)
+            : nothing
+        }
+
+        ${
+          state.tab === "teams"
+            ? renderTeams({
+                loading: state.teamsLoading,
+                error: state.teamsError,
+                teams: state.teamsResult,
+                agents: state.agentsList,
+                selectedId: state.teamsSelectedId,
+                editName: state.teamsEditName,
+                editDescription: state.teamsEditDescription,
+                editParentId: state.teamsEditParentId,
+                editAgentIds: state.teamsEditAgentIds,
+                dirty: state.teamsDirty,
+                saving: state.teamsSaving,
+                deleteInProgress: state.teamsDeleteInProgress,
+                deleteError: state.teamsDeleteError,
+                collapsedIds: state.teamsCollapsedIds,
+                onRefresh: () => {
+                  void loadTeams(state);
+                  void loadAgents(state);
+                },
+                onSelectTeam: (id: string) => {
+                  selectTeam(state, id);
+                },
+                onCreateNew: () => {
+                  state.teamsSelectedId = null;
+                  state.teamsEditName = "";
+                  state.teamsEditDescription = "";
+                  state.teamsEditParentId = null;
+                  state.teamsEditAgentIds = [];
+                  state.teamsDirty = false;
+                  state.teamsDeleteError = null;
+                },
+                onToggleCollapsed: (id: string) => {
+                  const next = new Set(state.teamsCollapsedIds);
+                  if (next.has(id)) {
+                    next.delete(id);
+                  } else {
+                    next.add(id);
+                  }
+                  state.teamsCollapsedIds = Array.from(next);
+                },
+                onNameChange: (value: string) => {
+                  state.teamsEditName = value;
+                  state.teamsDirty = true;
+                },
+                onDescriptionChange: (value: string) => {
+                  state.teamsEditDescription = value;
+                  state.teamsDirty = true;
+                },
+                onParentChange: (value: string | null) => {
+                  state.teamsEditParentId = value;
+                  state.teamsDirty = true;
+                },
+                onToggleAgent: (agentId: string, enabled: boolean) => {
+                  const next = new Set(state.teamsEditAgentIds);
+                  if (enabled) {
+                    next.add(agentId);
+                  } else {
+                    next.delete(agentId);
+                  }
+                  state.teamsEditAgentIds = Array.from(next).sort((a, b) => a.localeCompare(b));
+                  state.teamsDirty = true;
+                },
+                onSave: async () => {
+                  if (!state.client) {
+                    return;
+                  }
+                  state.teamsSaving = true;
+                  state.teamsError = null;
+                  state.teamsDeleteError = null;
+                  try {
+                    const params = {
+                      name: state.teamsEditName.trim(),
+                      description: state.teamsEditDescription,
+                      parentId: state.teamsEditParentId,
+                      agentIds: state.teamsEditAgentIds,
+                    };
+                    if (state.teamsSelectedId) {
+                      await state.client.request("teams.update", {
+                        id: state.teamsSelectedId,
+                        ...params,
+                      });
+                    } else {
+                      await state.client.request("teams.create", params);
+                    }
+                    await loadTeams(state);
+                  } catch (err) {
+                    state.teamsError = String(err);
+                  } finally {
+                    state.teamsSaving = false;
+                  }
+                },
+                onDelete: async () => {
+                  if (!state.client || !state.teamsSelectedId) {
+                    return;
+                  }
+                  const team = state.teamsResult?.teams.find((entry) => entry.id === state.teamsSelectedId);
+                  const confirmed = window.confirm(`Delete team \"${team?.name ?? state.teamsSelectedId}\"?`);
+                  if (!confirmed) {
+                    return;
+                  }
+                  state.teamsDeleteInProgress = true;
+                  state.teamsDeleteError = null;
+                  try {
+                    await state.client.request("teams.delete", { id: state.teamsSelectedId });
+                    await loadTeams(state);
+                  } catch (err) {
+                    state.teamsDeleteError = String(err);
+                  } finally {
+                    state.teamsDeleteInProgress = false;
+                  }
+                },
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "skills"
+            ? renderSkills({
+                loading: state.skillsLoading,
+                report: state.skillsReport,
+                error: state.skillsError,
+                filter: state.skillsFilter,
+                edits: state.skillEdits,
+                messages: state.skillMessages,
+                busyKey: state.skillsBusyKey,
+                vaultKeys: state.vaultKeys,
+                skillAddingKey: state.skillAddingKey,
+                skillNewKeyName: state.skillNewKeyName,
+                skillNewKeyValue: state.skillNewKeyValue,
+                onFilterChange: (next) => (state.skillsFilter = next),
+                onRefresh: () => {
+                  loadSkills(state, { clearMessages: true });
+                  void loadVaultKeys(state);
+                },
+                onToggle: (key, enabled) => updateSkillEnabled(state, key, enabled),
+                onEdit: (key, value) => updateSkillEdit(state, key, value),
+                onSaveKey: (key) => saveSkillApiKey(state, key),
+                onInstall: (skillKey, name, installId) =>
+                  installSkill(state, skillKey, name, installId),
+                onLinkVaultKey: (skillKey, vaultKeyId) =>
+                  void linkSkillToVaultKey(state, skillKey, vaultKeyId),
+                onToggleAddKey: (skillKey) => {
+                  state.skillAddingKey = {
+                    ...state.skillAddingKey,
+                    [skillKey]: !state.skillAddingKey[skillKey],
+                  };
+                },
+                onNewKeyNameChange: (skillKey, name) => {
+                  state.skillNewKeyName = { ...state.skillNewKeyName, [skillKey]: name };
+                },
+                onNewKeyValueChange: (skillKey, value) => {
+                  state.skillNewKeyValue = { ...state.skillNewKeyValue, [skillKey]: value };
+                },
+                onAddKeyAndLink: (skillKey) => {
+                  const name = state.skillNewKeyName[skillKey]?.trim();
+                  const value = state.skillNewKeyValue[skillKey]?.trim();
+                  if (name && value) {
+                    void addVaultKeyAndLink(state, skillKey, name, value);
+                    state.skillAddingKey = { ...state.skillAddingKey, [skillKey]: false };
+                    state.skillNewKeyName = { ...state.skillNewKeyName, [skillKey]: "" };
+                    state.skillNewKeyValue = { ...state.skillNewKeyValue, [skillKey]: "" };
+                  }
+                },
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "nodes"
+            ? renderNodes({
+                loading: state.nodesLoading,
+                nodes: state.nodes,
+                devicesLoading: state.devicesLoading,
+                devicesError: state.devicesError,
+                devicesList: state.devicesList,
+                configForm:
+                  state.configForm ??
+                  (state.configSnapshot?.config as Record<string, unknown> | null),
+                configLoading: state.configLoading,
+                configSaving: state.configSaving,
+                configDirty: state.configFormDirty,
+                configFormMode: state.configFormMode,
+                execApprovalsLoading: state.execApprovalsLoading,
+                execApprovalsSaving: state.execApprovalsSaving,
+                execApprovalsDirty: state.execApprovalsDirty,
+                execApprovalsSnapshot: state.execApprovalsSnapshot,
+                execApprovalsForm: state.execApprovalsForm,
+                execApprovalsSelectedAgent: state.execApprovalsSelectedAgent,
+                execApprovalsTarget: state.execApprovalsTarget,
+                execApprovalsTargetNodeId: state.execApprovalsTargetNodeId,
+                onRefresh: () => loadNodes(state),
+                onDevicesRefresh: () => loadDevices(state),
+                onDeviceApprove: (requestId) => approveDevicePairing(state, requestId),
+                onDeviceReject: (requestId) => rejectDevicePairing(state, requestId),
+                onDeviceRotate: (deviceId, role, scopes) =>
+                  rotateDeviceToken(state, { deviceId, role, scopes }),
+                onDeviceRevoke: (deviceId, role) => revokeDeviceToken(state, { deviceId, role }),
+                onLoadConfig: () => loadConfig(state),
+                onLoadExecApprovals: () => {
+                  const target =
+                    state.execApprovalsTarget === "node" && state.execApprovalsTargetNodeId
+                      ? { kind: "node" as const, nodeId: state.execApprovalsTargetNodeId }
+                      : { kind: "gateway" as const };
+                  return loadExecApprovals(state, target);
+                },
+                onBindDefault: (nodeId) => {
+                  if (nodeId) {
+                    updateConfigFormValue(state, ["tools", "exec", "node"], nodeId);
+                  } else {
+                    removeConfigFormValue(state, ["tools", "exec", "node"]);
+                  }
+                },
+                onBindAgent: (agentIndex, nodeId) => {
+                  const basePath = ["agents", "list", agentIndex, "tools", "exec", "node"];
+                  if (nodeId) {
+                    updateConfigFormValue(state, basePath, nodeId);
+                  } else {
+                    removeConfigFormValue(state, basePath);
+                  }
+                },
+                onSaveBindings: () => saveConfig(state),
+                onExecApprovalsTargetChange: (kind, nodeId) => {
+                  state.execApprovalsTarget = kind;
+                  state.execApprovalsTargetNodeId = nodeId;
+                  state.execApprovalsSnapshot = null;
+                  state.execApprovalsForm = null;
+                  state.execApprovalsDirty = false;
+                  state.execApprovalsSelectedAgent = null;
+                },
+                onExecApprovalsSelectAgent: (agentId) => {
+                  state.execApprovalsSelectedAgent = agentId;
+                },
+                onExecApprovalsPatch: (path, value) =>
+                  updateExecApprovalsFormValue(state, path, value),
+                onExecApprovalsRemove: (path) => removeExecApprovalsFormValue(state, path),
+                onSaveExecApprovals: () => {
+                  const target =
+                    state.execApprovalsTarget === "node" && state.execApprovalsTargetNodeId
+                      ? { kind: "node" as const, nodeId: state.execApprovalsTargetNodeId }
+                      : { kind: "gateway" as const };
+                  return saveExecApprovals(state, target);
+                },
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "chat"
+            ? renderChat({
+                sessionKey: state.sessionKey,
+                onSessionKeyChange: (next) => {
+                  state.sessionKey = next;
+                  state.chatMessage = "";
+                  state.chatAttachments = [];
+                  state.chatStream = null;
+                  state.chatStreamStartedAt = null;
+                  state.chatRunId = null;
+                  state.chatQueue = [];
+                  state.resetToolStream();
+                  state.resetChatScroll();
+                  state.applySettings({
+                    ...state.settings,
+                    sessionKey: next,
+                    lastActiveSessionKey: next,
+                  });
+                  void state.loadAssistantIdentity();
+                  void loadChatHistory(state);
+                  void refreshChatAvatar(state);
+                },
+                thinkingLevel: state.chatThinkingLevel,
+                showThinking,
+                loading: state.chatLoading,
+                sending: state.chatSending,
+                compactionStatus: state.compactionStatus,
+                fallbackStatus: state.fallbackStatus,
+                assistantAvatarUrl: chatAvatarUrl,
+                messages: state.chatMessages,
+                toolMessages: state.chatToolMessages,
+                streamSegments: state.chatStreamSegments,
+                stream: state.chatStream,
+                streamStartedAt: state.chatStreamStartedAt,
+                draft: state.chatMessage,
+                queue: state.chatQueue,
+                connected: state.connected,
+                canSend: state.connected,
+                disabledReason: chatDisabledReason,
+                error: state.lastError,
+                sessions: state.sessionsResult,
+                focusMode: chatFocus,
+                onRefresh: () => {
+                  state.resetToolStream();
+                  return Promise.all([loadChatHistory(state), refreshChatAvatar(state)]);
+                },
+                onToggleFocusMode: () => {
+                  if (state.onboarding) {
+                    return;
+                  }
+                  state.applySettings({
+                    ...state.settings,
+                    chatFocusMode: !state.settings.chatFocusMode,
+                  });
+                },
+                onChatScroll: (event) => state.handleChatScroll(event),
+                onDraftChange: (next) => (state.chatMessage = next),
+                attachments: state.chatAttachments,
+                onAttachmentsChange: (next) => (state.chatAttachments = next),
+                onSend: () => state.handleSendChat(),
+                canAbort: Boolean(state.chatRunId),
+                onAbort: () => void state.handleAbortChat(),
+                onQueueRemove: (id) => state.removeQueuedMessage(id),
+                onNewSession: () => switchToNewSession(state),
+                showNewMessages: state.chatNewMessagesBelow && !state.chatManualRefreshInFlight,
+                onScrollToBottom: () => state.scrollToBottom(),
+                // Sidebar props for tool output viewing
+                sidebarOpen: state.sidebarOpen,
+                sidebarContent: state.sidebarContent,
+                sidebarError: state.sidebarError,
+                splitRatio: state.splitRatio,
+                onOpenSidebar: (content: string) => state.handleOpenSidebar(content),
+                onCloseSidebar: () => state.handleCloseSidebar(),
+                onSplitRatioChange: (ratio: number) => state.handleSplitRatioChange(ratio),
+                assistantName: state.assistantName,
+                assistantAvatar: state.assistantAvatar,
+                chatAuthMode: (state as unknown as { chatAuthMode?: string | null }).chatAuthMode as
+                  | "oauth"
+                  | "api"
+                  | "fallback"
+                  | "unknown"
+                  | null
+                  | undefined,
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "config"
+            ? renderConfig({
+                raw: state.configRaw,
+                originalRaw: state.configRawOriginal,
+                valid: state.configValid,
+                issues: state.configIssues,
+                loading: state.configLoading,
+                saving: state.configSaving,
+                applying: state.configApplying,
+                updating: state.updateRunning,
+                connected: state.connected,
+                schema: state.configSchema,
+                schemaLoading: state.configSchemaLoading,
+                uiHints: state.configUiHints,
+                formMode: state.configFormMode,
+                formValue: state.configForm,
+                originalValue: state.configFormOriginal,
+                searchQuery: state.configSearchQuery,
+                activeSection: state.configActiveSection,
+                activeSubsection: state.configActiveSubsection,
+                onRawChange: (next) => {
+                  state.configRaw = next;
+                },
+                onFormModeChange: (mode) => (state.configFormMode = mode),
+                onFormPatch: (path, value) => updateConfigFormValue(state, path, value),
+                onSearchChange: (query) => (state.configSearchQuery = query),
+                onSectionChange: (section) => {
+                  state.configActiveSection = section;
+                  state.configActiveSubsection = null;
+                },
+                onSubsectionChange: (section) => (state.configActiveSubsection = section),
+                onReload: () => loadConfig(state),
+                onSave: () => saveConfig(state),
+                onApply: () => applyConfig(state),
+                onUpdate: () => runUpdate(state),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "debug"
+            ? renderDebug({
+                loading: state.debugLoading,
+                status: state.debugStatus,
+                health: state.debugHealth,
+                models: state.debugModels,
+                heartbeat: state.debugHeartbeat,
+                eventLog: state.eventLog,
+                callMethod: state.debugCallMethod,
+                callParams: state.debugCallParams,
+                callResult: state.debugCallResult,
+                callError: state.debugCallError,
+                onCallMethodChange: (next) => (state.debugCallMethod = next),
+                onCallParamsChange: (next) => (state.debugCallParams = next),
+                onRefresh: () => loadDebug(state),
+                onCall: () => callDebugMethod(state),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "logs"
+            ? renderLogs({
+                loading: state.logsLoading,
+                error: state.logsError,
+                file: state.logsFile,
+                entries: state.logsEntries,
+                filterText: state.logsFilterText,
+                levelFilters: state.logsLevelFilters,
+                autoFollow: state.logsAutoFollow,
+                truncated: state.logsTruncated,
+                onFilterTextChange: (next) => (state.logsFilterText = next),
+                onLevelToggle: (level, enabled) => {
+                  state.logsLevelFilters = { ...state.logsLevelFilters, [level]: enabled };
+                },
+                onToggleAutoFollow: (next) => (state.logsAutoFollow = next),
+                onRefresh: () => loadLogs(state, { reset: true }),
+                onExport: (lines, label) => state.exportLogs(lines, label),
+                onScroll: (event) => state.handleLogsScroll(event),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "memory"
+            ? renderMemory({
+                loading: state.memoryLoading ?? false,
+                health: state.memoryHealth ?? null,
+                stats: state.memoryStats ?? null,
+                error: state.memoryError ?? null,
+                maintenanceLog: state.memoryMaintenanceLog ?? null,
+                installLog: state.memoryInstallLog ?? null,
+                extractionLog: state.memoryExtractionLog ?? null,
+                extractionProgress: state.memoryExtractionProgress ?? null,
+                busyAction: state.memoryBusyAction ?? null,
+                onRefresh: () => loadMemoryStatus(state),
+                onAutoRepair: () => autoRepairMemory(state),
+                onInstallBinary: () => installMemoryBinary(state),
+                onInstallPython: () => installMemoryPython(state),
+                onStartServer: () => startMemoryServer(state),
+                onInitSchema: () => initMemorySchema(state),
+                onRunMaintenance: (op) => runMemoryMaintenance(state, op),
+                onRunExtraction: (op) => runMemoryExtraction(state, op),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "mode"
+            ? renderMode({
+                loading: state.modeLoading ?? false,
+                currentMode: state.modeCurrentMode ?? "core",
+                config: state.modeConfig ?? null,
+                saving: state.modeSaving ?? false,
+                error: state.modeError ?? null,
+                success: state.modeSuccess ?? null,
+                availableModels: state.modeAvailableModels ?? [],
+                onToggleMode: (mode) => setAgentLoopMode(state, mode),
+                onUpdateConfig: (update) => updateModeConfig(state, update),
+                onSave: () => saveModeConfig(state),
+                onReset: () => resetModeConfig(state),
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "apikeys"
+            ? renderApiKeys({
+                loading: state.apikeysLoading,
+                error: state.apikeysError ?? null,
+                keys: state.apikeysKeys ?? [],
+                edits: state.apikeysEdits ?? {},
+                editing: state.apikeysEditing ?? {},
+                busyKey: state.apikeysBusyKey ?? null,
+                message: state.apikeysMessage ?? null,
+                vaultStatus: state.apikeysVaultStatus ?? null,
+                migrating: state.apikeysMigrating ?? false,
+                authProfiles: state.authProfiles ?? [],
+                authProfilesLoading: state.authProfilesLoading ?? false,
+                onEdit: (keyId, value) => updateApiKeyEdit(state, keyId, value),
+                onSave: (keyId) => {
+                  void saveApiKey(state, keyId);
+                  state.apikeysEditing = { ...state.apikeysEditing, [keyId]: false };
+                },
+                onClear: (keyId) => void clearApiKey(state, keyId),
+                onRefresh: () => {
+                  void loadApiKeys(state);
+                  void loadAuthProfiles(state);
+                  void loadVaultOnlyKeys(state);
+                },
+                onMigrate: () => void migrateToVault(state),
+                onResetProfileErrors: (id) => void resetAuthProfileErrors(state, id),
+                onDeleteProfile: (id) => void deleteAuthProfile(state, id),
+                onToggleEdit: (keyId) => {
+                  state.apikeysEditing = {
+                    ...state.apikeysEditing,
+                    [keyId]: !state.apikeysEditing?.[keyId],
+                  };
+                },
+                onRefreshSecret: (profileId) => {
+                  void state.client
+                    ?.request("secrets.authProfiles.refresh", { profileId })
+                    .then(() => {
+                      void loadApiKeys(state);
+                      void loadAuthProfiles(state);
+                    })
+                    .catch(() => {
+                      void loadApiKeys(state);
+                      void loadAuthProfiles(state);
+                    });
+                },
+                showAddForm: state.addSecretShow,
+                addName: state.addSecretName,
+                addValue: state.addSecretValue,
+                addBusy: state.addSecretBusy,
+                onToggleAddForm: () => {
+                  state.addSecretShow = !state.addSecretShow;
+                  state.addSecretName = "";
+                  state.addSecretValue = "";
+                },
+                onAddNameChange: (n) => {
+                  state.addSecretName = n;
+                },
+                onAddValueChange: (v) => {
+                  state.addSecretValue = v;
+                },
+                onAddSecret: async () => {
+                  state.addSecretBusy = true;
+                  const ok = await addVaultSecret(
+                    state,
+                    state.addSecretName,
+                    state.addSecretValue,
+                    false,
+                  );
+                  state.addSecretBusy = false;
+                  if (ok) {
+                    state.addSecretShow = false;
+                    state.addSecretName = "";
+                    state.addSecretValue = "";
+                    void loadVaultOnlyKeys(state);
+                  }
+                },
+                restartNeeded: state.restartNeeded,
+                onRestart: () => {
+                  state.restartNeeded = false;
+                  void state.client?.request("gateway.restart", {});
+                },
+                vaultAllKeys: state.vaultAllKeys,
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "ai-providers"
+            ? renderAiProviders({
+                providers: state.aiProviders ?? [],
+                connectingProvider: state.aiProvidersConnecting ?? null,
+                oauthUrl: state.aiProvidersOauthUrl ?? null,
+                oauthRedirectPaste: state.aiProvidersOauthRedirectPaste ?? "",
+                message: state.aiProvidersMessage ?? null,
+                restartNeeded: state.aiProvidersRestartNeeded ?? false,
+                onOAuth: (id) => {
+                  void aiProvidersOAuth(state, id);
+                },
+                onRemoveProfile: (profileId) => {
+                  void aiProvidersRemoveProfile(state, profileId);
+                },
+                onCancel: (id) => aiProvidersCancel(state, id),
+                onOAuthPasteChange: (value) => aiProvidersOauthPasteChange(state, value),
+                onSubmitCode: () => {
+                  void aiProvidersSubmitCode(state);
+                },
+                onRestart: () => {
+                  state.aiProvidersRestartNeeded = false;
+                  void state.client?.request("gateway.restart", {});
+                },
+              })
+            : nothing
+        }
+
+        ${(() => {
+          if (state.tab !== "pipedream") {
+            return nothing;
+          }
+          const setPipedreamState = (
+            fn: (prev: typeof state.pipedreamState) => typeof state.pipedreamState,
+          ) => {
+            state.pipedreamState = fn(state.pipedreamState);
+          };
+          return renderPipedream({
+            ...state.pipedreamState,
+            onConfigure: () => setPipedreamState((p) => ({ ...p, showCredentialsForm: true })),
+            onSaveCredentials: async () => {
+              if (!state.client) {
+                return;
+              }
+              const creds = state.pipedreamState.credentials;
+              setPipedreamState((p) => ({ ...p, loading: true, error: null }));
+              try {
+                const result = await state.client.request<{ success: boolean; error?: string }>(
+                  "pipedream.saveCredentials",
+                  {
+                    clientId: creds.clientId,
+                    clientSecret:
+                      creds.clientSecret === "••••••••" ? undefined : creds.clientSecret,
+                    projectId: creds.projectId,
+                    environment: creds.environment,
+                    externalUserId: state.pipedreamState.externalUserId ?? "main",
+                  },
+                );
+                if (!result?.success) {
+                  setPipedreamState((p) => ({
+                    ...p,
+                    loading: false,
+                    error: result.error ?? "Save failed",
+                  }));
+                } else {
+                  void loadPipedreamState(state.client, setPipedreamState);
+                }
+              } catch (err) {
+                setPipedreamState((p) => ({ ...p, loading: false, error: String(err) }));
+              }
+            },
+            onCancelCredentials: () =>
+              setPipedreamState((p) => ({ ...p, showCredentialsForm: false })),
+            onCredentialChange: (field, value) =>
+              setPipedreamState((p) => ({
+                ...p,
+                credentials: { ...p.credentials, [field]: value },
+              })),
+            onConnectApp: () => {},
+            onDisconnectApp: () => {},
+            onTestApp: () => {},
+            onRefreshToken: () => void loadPipedreamState(state.client!, setPipedreamState),
+            onExternalUserIdChange: (value) =>
+              setPipedreamState((p) => ({ ...p, externalUserId: value })),
+            onOpenAppBrowser: () => setPipedreamState((p) => ({ ...p, showAppBrowser: true })),
+            onCloseAppBrowser: () => setPipedreamState((p) => ({ ...p, showAppBrowser: false })),
+            onAppBrowserSearchChange: (value) =>
+              setPipedreamState((p) => ({ ...p, appBrowserSearch: value })),
+            onManualSlugChange: (value) => setPipedreamState((p) => ({ ...p, manualSlug: value })),
+            onConnectManualSlug: () => {},
+          });
+        })()}
+
+        ${(() => {
+          if (state.tab !== "zapier") {
+            return nothing;
+          }
+          const setZapierState = (
+            fn: (prev: typeof state.zapierState) => typeof state.zapierState,
+          ) => {
+            state.zapierState = fn(state.zapierState);
+          };
+          return renderZapier({
+            ...state.zapierState,
+            onConfigure: () => setZapierState((p) => ({ ...p, showForm: true })),
+            onSave: () => void loadZapierState(state.client!, setZapierState),
+            onCancel: () => setZapierState((p) => ({ ...p, showForm: false })),
+            onUrlChange: (value) => setZapierState((p) => ({ ...p, mcpUrl: value })),
+            onTest: () => void loadZapierState(state.client!, setZapierState),
+            onDisconnect: () => setZapierState((p) => ({ ...p, configured: false, mcpUrl: "" })),
+            onRefresh: () => void loadZapierState(state.client!, setZapierState),
+            onLoadTools: () => void loadZapierState(state.client!, setZapierState),
+            onToggleGroup: (group) =>
+              setZapierState((p) => {
+                const next = new Set(p.expandedGroups ?? []);
+                if (next.has(group)) {
+                  next.delete(group);
+                } else {
+                  next.add(group);
+                }
+                return { ...p, expandedGroups: next };
+              }),
+          });
+        })()}
+
+        ${(() => {
+          if (state.tab !== "hostinger") {
+            return nothing;
+          }
+          const setHostingerState = (
+            fn: (prev: typeof state.hostingerState) => typeof state.hostingerState,
+          ) => {
+            state.hostingerState = fn(state.hostingerState);
+          };
+          return renderHostinger({
+            ...state.hostingerState,
+            onRefresh: () => void loadHostingerState(state.client!, setHostingerState),
+            onConfigure: () =>
+              setHostingerState((p) => ({
+                ...p,
+                showForm: true,
+                apiToken: "",
+                githubRepo: p.githubRepo,
+              })),
+            onSave: () =>
+              void saveHostingerConfig(state.client!, state.hostingerState, setHostingerState),
+            onCancel: () => setHostingerState((p) => ({ ...p, showForm: false })),
+            onApiTokenChange: (value) => setHostingerState((p) => ({ ...p, apiToken: value })),
+            onGithubRepoChange: (value) => setHostingerState((p) => ({ ...p, githubRepo: value })),
+            onDisconnect: () => void disconnectHostinger(state.client!, setHostingerState),
+            onLoadTools: () => void loadHostingerTools(state.client!, setHostingerState),
+            onToggleGroup: (group) =>
+              setHostingerState((p) => {
+                const next = new Set(p.expandedGroups ?? []);
+                if (next.has(group)) {
+                  next.delete(group);
+                } else {
+                  next.add(group);
+                }
+                return { ...p, expandedGroups: next };
+              }),
+            onLoadServers: () => void loadHostingerServers(state.client!, setHostingerState),
+            onServerAction: (vpsId, action) =>
+              void doServerAction(state.client!, setHostingerState, vpsId, action),
+            onOpenCreds: (vpsId, vpsName) =>
+              void openCredsModal(state.client!, setHostingerState, vpsId, vpsName),
+            onCloseCreds: () => closeCredsModal(setHostingerState),
+            onSaveCreds: () =>
+              void saveServerCreds(state.client!, state.hostingerState, setHostingerState),
+            onCredsFormPatch: (field, value) => patchCredsForm(setHostingerState, field, value),
+            onToggleCredsPass: () =>
+              setHostingerState((p) => ({ ...p, showCredsPass: !p.showCredsPass })),
+          });
+        })()}
+
+        ${
+          state.tab === "1password"
+            ? renderOnePassword({
+                onePasswordLoading: state.onePasswordLoading,
+                onePasswordMode: state.onePasswordMode,
+                onePasswordStatus: state.onePasswordStatus,
+                onePasswordError: state.onePasswordError,
+                onePasswordSigningIn: state.onePasswordSigningIn,
+                gatewayClient: state.client
+                  ? {
+                      call: (method: string, params?: unknown) =>
+                        state.client!.request(method, params),
+                    }
+                  : null,
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "discord"
+            ? renderDiscord({
+                loading: state.discordLoading,
+                error: state.discordError,
+                status: state.discordStatus,
+                health: state.discordHealth,
+                guilds: state.discordGuilds,
+                inviteUrl: state.discordInviteUrl,
+                testTokenInput: state.discordTestTokenInput,
+                savingToken: state.discordSavingToken,
+                saveTokenError: state.discordSaveTokenError,
+                saveTokenSuccess: state.discordSaveTokenSuccess,
+                gatewayClient: state.client ?? null,
+                voiceConfig: state.discordVoiceConfig,
+                voiceSaving: state.discordVoiceSaving,
+                voiceSaveError: state.discordVoiceSaveError,
+                voiceSaveSuccess: state.discordVoiceSaveSuccess,
+                voiceRuntimeStatus: state.discordVoiceRuntimeStatus,
+                voiceResponseToggling: state.discordVoiceResponseToggling,
+                allowFrom: state.discordAllowFrom,
+                activationPhrase: state.discordActivationPhrase,
+                safeguardsSaving: state.discordSafeguardsSaving,
+                safeguardsSaveError: state.discordSafeguardsSaveError,
+                safeguardsSaveSuccess: state.discordSafeguardsSaveSuccess,
+                onAllowFromChange: (value: string) => {
+                  state.discordAllowFrom = value;
+                },
+                onActivationPhraseChange: (value: string) => {
+                  state.discordActivationPhrase = value;
+                },
+                onSaveSafeguards: async () => {
+                  state.discordSafeguardsSaving = true;
+                  state.discordSafeguardsSaveError = null;
+                  state.discordSafeguardsSaveSuccess = false;
+                  try {
+                    const allowFrom = state.discordAllowFrom
+                      .split(",")
+                      .map((s: string) => s.trim())
+                      .filter(Boolean);
+                    await state.client?.request("discord.setSafeguards", {
+                      allowFrom,
+                      activationPhrase: state.discordActivationPhrase,
+                    });
+                    state.discordSafeguardsSaveSuccess = true;
+                    setTimeout(() => {
+                      state.discordSafeguardsSaveSuccess = false;
+                    }, 5000);
+                  } catch (err) {
+                    state.discordSafeguardsSaveError = String(err);
+                  } finally {
+                    state.discordSafeguardsSaving = false;
+                  }
+                },
+                pairingRequests: state.discordPairingRequests,
+                pairingCodeInput: state.discordPairingCodeInput,
+                pairingApproving: state.discordPairingApproving,
+                pairingError: state.discordPairingError,
+                pairingSuccess: state.discordPairingSuccess,
+                onPairingCodeInput: (value: string) => {
+                  state.discordPairingCodeInput = value;
+                },
+                onPairingApprove: async (code: string) => {
+                  state.discordPairingApproving = true;
+                  state.discordPairingError = null;
+                  state.discordPairingSuccess = null;
+                  try {
+                    const res = (await state.client?.request("discord.pairingApprove", {
+                      code,
+                    })) as {
+                      success: boolean;
+                      id?: string;
+                      error?: string;
+                    };
+                    if (res?.success) {
+                      state.discordPairingSuccess = `Approved user ${res.id}`;
+                      state.discordPairingCodeInput = "";
+                      // Refresh pairing list
+                      const pairings = (await state.client?.request("discord.pairingList", {})) as {
+                        requests: typeof state.discordPairingRequests;
+                      };
+                      state.discordPairingRequests = pairings?.requests ?? [];
+                      setTimeout(() => {
+                        state.discordPairingSuccess = null;
+                      }, 5000);
+                    } else {
+                      state.discordPairingError = res?.error ?? "Failed to approve";
+                    }
+                  } catch (err) {
+                    state.discordPairingError = String(err);
+                  } finally {
+                    state.discordPairingApproving = false;
+                  }
+                },
+                onPairingRefresh: async () => {
+                  try {
+                    const pairings = (await state.client?.request("discord.pairingList", {})) as {
+                      requests: typeof state.discordPairingRequests;
+                    };
+                    state.discordPairingRequests = pairings?.requests ?? [];
+                  } catch {
+                    /* ignore */
+                  }
+                },
+                onRefresh: () => {
+                  void loadDiscordStatus(state as unknown as DiscordState);
+                },
+                onTokenInput: (value) => {
+                  state.discordTestTokenInput = value;
+                },
+                onSaveToken: async (token) => {
+                  state.discordSavingToken = true;
+                  state.discordSaveTokenError = null;
+                  state.discordSaveTokenSuccess = false;
+                  try {
+                    await state.client?.request("discord.setToken", { token });
+                    state.discordSaveTokenSuccess = true;
+                    state.discordTestTokenInput = "";
+                    state.discordSavingToken = false;
+                    // Auto-refresh after gateway restarts
+                    setTimeout(() => {
+                      state.discordSaveTokenSuccess = false;
+                      void loadDiscordStatus(state as unknown as DiscordState);
+                    }, 3500);
+                  } catch (err) {
+                    state.discordSaveTokenError = String(err);
+                    state.discordSavingToken = false;
+                  }
+                },
+                onGenerateInvite: async () => {
+                  try {
+                    const res = (await state.client?.request("discord.invite", {})) as {
+                      url?: string;
+                    } | null;
+                    if (res?.url) {
+                      state.discordInviteUrl = res.url;
+                    }
+                  } catch {
+                    /* ignore */
+                  }
+                },
+                onVoiceConfigChange: (field, value) => {
+                  state.discordVoiceConfig = { ...state.discordVoiceConfig, [field]: value };
+                },
+                onSaveVoiceConfig: async () => {
+                  state.discordVoiceSaving = true;
+                  state.discordVoiceSaveError = null;
+                  try {
+                    await state.client?.request("discord.setVoiceConfig", {
+                      config: state.discordVoiceConfig,
+                    });
+                    state.discordVoiceSaveSuccess = true;
+                    setTimeout(() => {
+                      state.discordVoiceSaveSuccess = false;
+                    }, 3000);
+                  } catch (err) {
+                    state.discordVoiceSaveError = String(err);
+                  } finally {
+                    state.discordVoiceSaving = false;
+                  }
+                },
+                onToggleVoiceResponse: async (enabled) => {
+                  state.discordVoiceResponseToggling = true;
+                  try {
+                    await state.client?.request("discord.voice.setResponseEnabled", { enabled });
+                  } catch {
+                    /* ignore */
+                  } finally {
+                    state.discordVoiceResponseToggling = false;
+                  }
+                },
+              })
+            : nothing
+        }
+
+        ${
+          state.tab === "jarvis"
+            ? html`
+                <jarvis-view .client=${state.client} .connected=${state.connected}></jarvis-view>
+              `
+            : nothing
+        }
+        ${state.tab === "compaction" ? renderCompactionSettingsView(state) : nothing}
+        ${renderPluginTabContent(state)}
+      </main>
+      ${renderExecApprovalPrompt(state)}
+      ${renderGatewayUrlConfirmation(state)}
+      ${renderBackgroundJobToasts(state)}
+      ${state.bgSessionsPanelOpen && state.client ? renderBgSessionsPanel(state, state.client) : nothing}
+      ${renderTeamChatEdgeTab(state, state.client)}
+      ${state.teamChatOpen ? renderTeamChatDrawer(state, state.client) : nothing}
+    </div>
+  `;
+}
+
+function renderPluginTabContent(state: AppViewState) {
+  if (!isPluginTab(state.tab)) return nothing;
+  const view = getPluginViewInfo(state.tab);
+  if (!view) return nothing;
+
+  // Check if a custom renderer is registered
+  const renderer = uiPluginRegistry.getViewRenderer(state.tab);
+  if (renderer) return renderer();
+
+  // Default: show a placeholder with the plugin info
+  return html`
+    <div class="plugin-view" style="padding: 24px;">
+      <div style="background: var(--bg-secondary, #1a1a2e); border: 1px solid var(--border, #333); border-radius: 12px; padding: 32px; text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 16px;">📋</div>
+        <h2 style="margin: 0 0 8px 0; font-size: 20px;">${view.label}</h2>
+        <p style="color: var(--text-muted, #888); margin: 0 0 24px 0;">${view.subtitle || ""}</p>
+        <p style="color: var(--text-muted, #666); font-size: 13px;">
+          Plugin view registered by <code>${view.pluginId || "unknown"}</code>
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+function renderCompactionSettingsView(state: AppViewState) {
+  const app = state as unknown as OpenClawApp;
+  return renderCompactionSettings({ client: state.client, connected: state.connected }, () =>
+    app.requestUpdate(),
+  );
+}
+
+function renderBackgroundJobToasts(state: AppViewState) {
+  const toasts = state.backgroundJobToasts ?? [];
+  if (!toasts.length) {
+    return nothing;
+  }
+  return html`
+    <div class="bg-job-toasts">
+      ${toasts.map(
+        (toast) => html`
+          <div class="bg-job-toast bg-job-toast--${toast.status}">
+            <span class="bg-job-toast__icon">
+              ${
+                toast.status === "running"
+                  ? icons.loader
+                  : toast.status === "error"
+                    ? icons.x
+                    : icons.check
+              }
+            </span>
+            <span class="bg-job-toast__name">${toast.jobName}</span>
+            <span class="bg-job-toast__label">
+              ${
+                toast.status === "running"
+                  ? "running..."
+                  : toast.status === "error"
+                    ? "failed"
+                    : "done"
+              }
+            </span>
+          </div>
+        `,
+      )}
+    </div>
+  `;
+}

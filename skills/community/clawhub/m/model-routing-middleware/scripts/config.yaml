@@ -1,0 +1,162 @@
+# Model Routing Middleware — Configuration
+# Customize this file for your own model setup.
+# Replace model names, endpoints, and costs with your infrastructure.
+
+# ============================================================
+# Model Definitions
+# ============================================================
+models:
+  # Example: Local fast model
+  fast-local:
+    provider: ollama
+    endpoint: http://127.0.0.1:11434
+    model_id: YOUR_FAST_MODEL:latest
+    context_limit: 131072
+    supports_think: false
+    cost_per_token:
+      input: 0.0
+      output: 0.0
+    description: "Fast local model for simple tasks"
+    status: available
+
+  # Example: Local code-specialized model
+  code-local:
+    provider: ollama
+    endpoint: http://127.0.0.1:11434
+    model_id: YOUR_CODE_MODEL:latest
+    context_limit: 131072
+    supports_think: true
+    cost_per_token:
+      input: 0.0
+      output: 0.0
+    description: "Code-specialized model for programming tasks"
+    status: available
+
+  # Example: Local reasoning model
+  reasoning-local:
+    provider: ollama
+    endpoint: http://127.0.0.1:11434
+    model_id: YOUR_REASONING_MODEL:latest
+    context_limit: 131072
+    supports_think: true
+    cost_per_token:
+      input: 0.0
+      output: 0.0
+    description: "Reasoning model for analysis and planning"
+    status: available
+
+  # Example: Cloud large-context model
+  cloud-large:
+    provider: openai
+    endpoint: https://api.openai.com/v1
+    model_id: gpt-4o
+    context_limit: 128000
+    supports_think: true
+    cost_per_token:
+      input: 0.0025        # per 1K tokens
+      output: 0.01
+    description: "Cloud model with large context window"
+    status: available
+
+  # Example: Cloud fast model
+  cloud-fast:
+    provider: openai
+    endpoint: https://api.openai.com/v1
+    model_id: gpt-4o-mini
+    context_limit: 128000
+    supports_think: false
+    cost_per_token:
+      input: 0.00015
+      output: 0.0006
+    description: "Fast cloud model for quick tasks"
+    status: available
+
+# ============================================================
+# Routing Rules — task_type → (model, think_mode)
+# ============================================================
+routing:
+  coding:
+    model: code-local
+    think: true
+    priority: 1
+
+  reasoning:
+    model: reasoning-local
+    think: true
+    priority: 2
+
+  chat:
+    model: fast-local
+    think: false
+    priority: 3
+
+  summarize:
+    model: fast-local
+    think: false
+    priority: 3
+
+  research:
+    model: reasoning-local
+    think: true
+    priority: 2
+
+  tools:
+    model: fast-local
+    think: false
+    priority: 3
+
+  vision:
+    model: cloud-large
+    think: false
+    priority: 1
+
+  default:
+    model: fast-local
+    think: false
+    priority: 10
+
+# ============================================================
+# Context Management Thresholds
+# ============================================================
+context:
+  large_context_threshold: 120000
+  summarize_threshold: 0.55
+  prune_threshold: 0.75
+  preserve_recent_count: 10
+  preserve_types:
+    - user_preferences
+    - active_tasks
+    - persistent_identity
+  discard_types:
+    - repetitive_chat
+    - stale_tool_logs
+    - transient_telemetry
+
+# ============================================================
+# Escalation Configuration
+# ============================================================
+escalation:
+  confidence_threshold: 0.7
+  max_retries: 2
+  low_confidence_keywords:
+    - "i don't know"
+    - "i am not sure"
+    - "i cannot determine"
+    - "insufficient information"
+    - "unclear"
+    - "cannot provide"
+    - "not confident"
+  escalation_chain:
+    - fast-local
+    - reasoning-local
+    - cloud-large
+
+# ============================================================
+# Logging
+# ============================================================
+logging:
+  enabled: true
+  path: routing.log
+  level: INFO
+  include_prompt_preview: true
+  prompt_preview_length: 200

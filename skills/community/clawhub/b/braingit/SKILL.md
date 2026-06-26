@@ -1,35 +1,47 @@
 ---
-name: "Braingit"
-description: "Automate committing Markdown-only changes in a git repo with safe staging, ideal for note snapshots without affecting code or binaries."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/braingit"
-sourceUrl: "https://clawhub.ai/skills/braingit"
+name: braingit
+description: Markdown-only git snapshot commits (stage+commit *.md only). Article: https://github.com/gleb-urvanov/braingit/blob/master/braingit-article.md
 ---
 
 # Braingit
 
-> Automate committing Markdown-only changes in a git repo with safe staging, ideal for note snapshots without affecting code or binaries.
+Commit Markdown-only deltas in a git repository (typically a notes/workspace repo) using a deterministic script.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/braingit`
-- **Source URL:** [https://clawhub.ai/skills/braingit](https://clawhub.ai/skills/braingit)
+Article: https://github.com/gleb-urvanov/braingit/blob/master/braingit-article.md
 
-## Overview
+## Quick start
 
+### Commit Markdown changes (default: `*.md`)
+From inside the target git repo:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/braingit
+./scripts/commit_md_changes.sh "md: snapshot"
 ```
+
+Or specify a repo path:
+
+```bash
+BRAINGIT_REPO=/path/to/repo ./scripts/commit_md_changes.sh "md: snapshot"
+```
+
+### Change what files are included
+
+```bash
+BRAINGIT_PATTERN='*.md' ./scripts/commit_md_changes.sh
+```
+
+## Behavior
+- Reads `git status --porcelain -z`
+- Stages **only** matching files (default `*.md`)
+- Commits only if something is staged
+- Exits `0` when there is nothing to do
+
+## Scripts
+- `scripts/commit_md_changes.sh`
+  - Env:
+    - `BRAINGIT_REPO` (default: cwd)
+    - `BRAINGIT_PATTERN` (default: `*.md`)
+    - `BRAINGIT_DRY_RUN=1`
+
+## References
+- `references/protocol.md` — conventions + an OpenClaw cron example

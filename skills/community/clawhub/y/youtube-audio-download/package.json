@@ -1,0 +1,14 @@
+{
+  "name": "youtube-audio-download",
+  "version": "1.0.0",
+  "description": "Download YouTube video audio and convert to MP3. Supports age-restricted videos with cookies.",
+  "main": "index.js",
+  "openclaw": {
+    "plugin": "openclaw.plugin.json"
+  },
+  "keywords": [
+    "openclaw",
+    "skill"
+  ],
+  "license": "MIT"
+}

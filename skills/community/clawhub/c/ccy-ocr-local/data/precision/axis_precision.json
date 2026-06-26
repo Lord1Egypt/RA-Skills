@@ -1,0 +1,13 @@
+{
+  "model_name": "axis",
+  "config_path": "data/config/axis.config",
+  "optimization": {
+    "lstm_model": true,
+    "lstm_layers": 3,
+    "lstm_hidden_size": 256,
+    "lstm_dropout": 0.1,
+    "lstm_learning_rate": 0.001,
+    "lstm_batch_size": 32,
+    "lstm_epochs": 100
+  }
+}

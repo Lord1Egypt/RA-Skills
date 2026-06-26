@@ -1,0 +1,80 @@
+name: amazon-aplus-generator
+slug: amazon-aplus-generator
+version: 1.0.0
+type: openclaw-skill
+
+description:
+  zh: 亚马逊A+内容智能生成工具，支持模块方案推荐、场景化文案创作和多语言本地化，5分钟生成Premium A+内容
+  en: Amazon A+ content intelligent generation tool with module recommendations, contextual copywriting, and multilingual localization
+
+emoji: "🎨"
+homepage: https://cloudtrip.ai
+publisher: 云旅智能体超市
+
+category: ecommerce-ai
+tags:
+  - amazon
+  - aplus-content
+  - ecommerce
+  - copywriting
+  - localization
+  - premium-aplus
+
+triggers:
+  - type: keyword
+    patterns:
+      - a+内容
+      - a+生成
+      - amazon a+
+      - 亚马逊内容
+      - product description
+  - type: category
+    categories:
+      - ecommerce
+      - amazon-seller
+
+progressive_layers:
+  - layer: basic-generation
+    description: 输入产品类目和卖点，生成基础A+模块方案
+  - layer: scenario-copywriting
+    description: 基于场景化文案框架，生成打动用户的描述
+  - layer: multilingual-localization
+    description: 支持德语、日语、法语、西语、意语等多语言文化适配
+  - layer: premium-modules
+    description: Premium A+专属模块：可交互轮播、对比图表、问答摘要
+
+metadata:
+  language: zh-CN
+  supported_markets:
+    - DE
+    - JP
+    - FR
+    - ES
+    - IT
+    - US
+    - UK
+  product_categories:
+    - apparel
+    - electronics
+    - home
+    - beauty
+    - pet-supplies
+    - food
+
+pricing:
+  tier: free
+  features:
+    basic-tier:
+      - name: 基础A+模块推荐
+        included: true
+      - name: 场景化文案生成
+        included: true
+      - name: 单语言输出
+        included: true
+    premium-tier:
+      - name: 多语言本地化
+        included: false
+      - name: Premium A+模块
+        included: false
+      - name: 合规自检报告
+        included: false

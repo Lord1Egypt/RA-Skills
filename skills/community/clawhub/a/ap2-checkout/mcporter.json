@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/steipete/mcporter/main/mcporter.schema.json",
+  "mcpServers": {
+    "ap2-buyer": {
+      "description": "AP2 buyer: session config, mandates, trusted-surface approval",
+      "baseUrl": "http://127.0.0.1:8100/mcp"
+    },
+    "ap2-merchant": {
+      "description": "AP2 mock merchant (SuperShoe)",
+      "baseUrl": "http://127.0.0.1:8101/mcp"
+    },
+    "ap2-cp": {
+      "description": "AP2 mock credentials provider (card + x402)",
+      "baseUrl": "http://127.0.0.1:8102/mcp"
+    },
+    "ap2-mpp": {
+      "description": "AP2 mock merchant payment processor",
+      "baseUrl": "http://127.0.0.1:8103/mcp"
+    }
+  },
+  "imports": []
+}

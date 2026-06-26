@@ -1,35 +1,25 @@
 ---
-name: "dependency-check"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/dependency-check"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/dependency-check"
+name: dependency-check
+description: Scan project dependencies for known vulnerabilities and CVEs
+argument-hint: "[--path PATH]"
+allowed-tools: Bash(npx * npm *) mcp__claude-flow__memory_store Read
 ---
+Check dependencies for CVEs and outdated packages:
 
-# dependency-check
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/dependency-check`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/dependency-check](https://skills.sh/ruvnet/ruflo/dependency-check)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/dependency-check
+npx @claude-flow/cli@latest security cve --check
+npx @claude-flow/cli@latest security audit --include-dev
+npm audit --json
 ```
+
+| Severity | Action |
+|----------|--------|
+| critical | Block deployment, fix immediately |
+| high | Fix before next release |
+| moderate | Schedule fix within sprint |
+| low | Track in backlog |
+
+Auto-fix: `npx @claude-flow/cli@latest security cve --fix`
+
+For continuous monitoring, dispatch via MCP:
+`mcp__claude-flow__hooks_worker-dispatch({ trigger: "audit" })`

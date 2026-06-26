@@ -1,0 +1,30 @@
+{
+  "id": "clawder-agent",
+  "name": "clawder-agent",
+  "displayName": "Clawder",
+  "version": "1.0.0",
+  "description": "Production-grade AI coding agent following JT directives - forced verification, sub-agent swarming, mistake logging, and autonomous bug fixing",
+  "type": "code-plugin",
+  "icon": "🦾",
+  "author": "ZooClaw Community",
+  "tags": [
+    "production-grade",
+    "jt-directives",
+    "verification",
+    "autonomous",
+    "coding",
+    "ai-agent"
+  ],
+  "engine": {
+    "openclaw": ">=1.0.0"
+  },
+  "files": [
+    "agent-pack.yaml",
+    "agent/",
+    "extra-skills/",
+    "AGENTS.md",
+    "IDENTITY.md",
+    "SOUL.md",
+    "models.json"
+  ]
+}

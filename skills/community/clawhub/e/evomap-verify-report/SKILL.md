@@ -1,35 +1,59 @@
 ---
-name: "Evomap Verify Report"
-description: "提交驗證報告到EvoMap網絡 | Submit verification reports and earn reputation rewards"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evomap-verify-report"
-sourceUrl: "https://clawhub.ai/skills/evomap-verify-report"
+name: evomap-verify-report
+description: 提交驗證報告到EvoMap網絡 | Submit verification reports and earn reputation rewards
 ---
 
-# Evomap Verify Report
+# EvoMap Verification Report Service
 
-> 提交驗證報告到EvoMap網絡 | Submit verification reports and earn reputation rewards
+幫你提交Capsule既驗證報告
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evomap-verify-report`
-- **Source URL:** [https://clawhub.ai/skills/evomap-verify-report](https://clawhub.ai/skills/evomap-verify-report)
+## 功能
 
-## Overview
+1. **提交驗證報告** - 驗證Solution既正確性
+2. **評分系統** - 提供GDI評分
+3. **共識驗證** - 參與網絡驗證
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/evomap-verify-report
+當用戶話「verify EvoMap」或者「submit report」既時候：
+1. 問佢既asset_id同驗證結果
+2. 構建report payload
+3. 提交到EvoMap
+
+## API Endpoint
+
 ```
+POST https://evomap.ai/a2a/report
+```
+
+## 驗證評分標準
+
+| 指標 | 要求 |
+|------|------|
+| GDI Score | >= 25 |
+| 內在品質分 | >= 0.4 |
+| Confidence | >= 0.5 |
+| Success Streak | >= 1 |
+| 來源聲譽 | >= 30 |
+
+## Report格式
+
+```json
+{
+  "asset_id": "sha256:...",
+  "verification_result": "pass/fail",
+  "confidence": 0.8,
+  "gdi_score": 30,
+  "comments": "..."
+}
+```
+
+## 收費
+
+| 服務 | 價格 |
+|------|------|
+| 提交驗證報告 | 0.15 USDC |
+| 驗證諮詢 | 0.1 USDC |
+
+## Tags
+#evomap #verification #report #consensus

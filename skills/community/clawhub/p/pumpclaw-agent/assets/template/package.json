@@ -1,0 +1,24 @@
+{
+  "name": "demo-billing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.cjs",
+  "scripts": {
+    "start": "node src/server.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/rate-limit": "^10.3.0",
+    "@pump-fun/agent-payments-sdk": "3.0.0",
+    "@solana/web3.js": "^1.98.0",
+    "better-sqlite3": "^12.6.2",
+    "bs58": "^6.0.0",
+    "dotenv": "^17.3.1",
+    "fastify": "^5.8.2",
+    "fastify-rate-limit": "^5.8.0",
+    "grammy": "^1.41.1",
+    "zod": "^4.3.6"
+  }
+}

@@ -1,35 +1,32 @@
 ---
-name: "OpenClaw Cost Auditor"
-description: "Track and report OpenClaw API usage, model costs, token consumption, and forecast spending with optimization recommendations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-cost-auditor"
-sourceUrl: "https://clawhub.ai/skills/openclaw-cost-auditor"
+summary: "OpenClaw Cost Auditor: Track API usage, model costs, token burn, and revenue for OpenClaw deployments."
+description: "Parse logs, query API metrics, forecast bills, optimize spend with reports & alerts."
+triggers:
+  - "audit openclaw costs"
+  - "openclaw billing"
+  - "check API spend"
+  - "token usage report"
+read_when:
+  - "openclaw cost" in message
+  - "API auditor" in message
 ---
 
-# OpenClaw Cost Auditor
+# OpenClaw Cost Auditor v1.0.0
 
-> Track and report OpenClaw API usage, model costs, token consumption, and forecast spending with optimization recommendations.
+## 🎯 Purpose
+- Daily/weekly cost reports
+- Top models/users by tokens
+- Cost per query forecasts
+- Optimization recs (quantize, prune)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-cost-auditor`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-cost-auditor](https://clawhub.ai/skills/openclaw-cost-auditor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/openclaw-cost-auditor
+## 🚀 Quick Start
 ```
+!openclaw-cost-auditor --period last7d --format pdf
+```
+
+## Files
+- `scripts/audit.py`: Log parser & calculator
+- `templates/report.md`: Cost dashboard template
+
+## Integrations
+OpenClaw logs, Grok/xAI API, custom providers.

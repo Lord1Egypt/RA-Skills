@@ -1,0 +1,49 @@
+{
+  "skill_name": "speech-recognition",
+  "evals": [
+    {
+      "id": 0,
+      "name": "speechanalyzer-live-transcription",
+      "prompt": "I'm building an iOS 26 meeting recorder with live transcript text and word highlighting during playback. Sketch the SpeechAnalyzer implementation shape, including model setup, audio input, result handling, and cleanup.",
+      "expected_output": "An iOS 26 SpeechAnalyzer plan that uses current SpeechTranscriber APIs, installs assets, converts live audio buffers, handles volatile/final results, and explicitly finishes the analyzer session.",
+      "files": [],
+      "assertions": [
+        "Uses SpeechAnalyzer with SpeechTranscriber and a documented preset such as .timeIndexedProgressiveTranscription, not .offlineTranscription.",
+        "Checks SpeechTranscriber.isAvailable and supportedLocale(equivalentTo:) before starting transcription.",
+        "Installs or verifies model assets with AssetInventory.assetInstallationRequest(supporting:) before analysis.",
+        "Converts AVAudioEngine microphone buffers to SpeechAnalyzer.bestAvailableAudioFormat(compatibleWith:) before yielding AnalyzerInput.",
+        "Handles volatile results separately from finalized results so live text is replaced rather than duplicated.",
+        "Explicitly finalizes or cancels the analyzer session after input ends."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "sfspeechrecognizer-live-review",
+      "prompt": "Review this iOS live dictation plan: request only NSSpeechRecognitionUsageDescription, start AVAudioEngine immediately, use SFSpeechRecognizer forever in one recognition task, force requiresOnDeviceRecognition for every locale, and ignore availability changes. Give corrected guidance and focused Swift snippets.",
+      "expected_output": "A correction-focused SFSpeechRecognizer review that covers speech and microphone authorization, live audio setup, availability changes, on-device checks, task cleanup, and recognition duration limits.",
+      "files": [],
+      "assertions": [
+        "Requires both NSSpeechRecognitionUsageDescription and NSMicrophoneUsageDescription for live microphone transcription.",
+        "Requests speech recognition authorization and microphone record permission before activating the audio session or starting AVAudioEngine.",
+        "Uses SFSpeechRecognizerDelegate or availability handling for recognition service changes.",
+        "Checks supportsOnDeviceRecognition before setting requiresOnDeviceRecognition and gives a fallback when unsupported.",
+        "Accounts for SFSpeechRecognizer recognition duration/service limits instead of running one unbounded task.",
+        "Stops AVAudioEngine, removes the input tap, ends audio, and cancels or clears the recognition task during cleanup."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "speech-boundary-routing",
+      "prompt": "A notes feature records a spoken note, transcribes it, detects the text language and sentiment, translates a summary to Spanish, plays back the recording with captions, and optionally uses Apple Intelligence to summarize it. Which parts belong in the speech-recognition skill and which should be handed to sibling skills?",
+      "expected_output": "A boundary-aware routing answer that keeps speech-to-text and microphone capture in Speech, and routes text analysis, translation, playback UI, and generative summarization to the correct sibling skills.",
+      "files": [],
+      "assertions": [
+        "Keeps microphone capture, speech authorization, SpeechAnalyzer or SFSpeechRecognizer transcription, and transcript result handling in the speech-recognition scope.",
+        "Routes language detection, sentiment, text embeddings, and translation to the natural-language skill after transcription exists.",
+        "Routes playback UI, captions during media playback, or AVPlayer/AVKit concerns to the avkit skill.",
+        "Routes Apple Intelligence or Foundation Models summarization to the apple-on-device-ai skill.",
+        "Does not present NaturalLanguage as a speech-to-text framework or Speech as a general text-analysis framework."
+      ]
+    }
+  ]
+}

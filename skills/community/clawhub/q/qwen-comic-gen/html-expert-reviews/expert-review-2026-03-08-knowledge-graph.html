@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识组织统一图谱 - 专家点评</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --purple: #9b59b6;
+            --bg: #ffffff;
+            --text: #2c3e50;
+            --border: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .rating-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .rating-item {
+            text-align: center;
+        }
+        
+        .rating-score {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .rating-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            font-size: 24px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin: 30px 0 15px;
+        }
+        
+        .insight-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .insight-card::before {
+            content: "💡";
+            margin-right: 10px;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .status-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .status-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .status-card.done {
+            border-color: var(--success);
+            background: #f0fff4;
+        }
+        
+        .status-card.pending {
+            border-color: var(--warning);
+            background: #fffaf0;
+        }
+        
+        .status-card.missing {
+            border-color: var(--accent);
+            background: #fff5f5;
+        }
+        
+        .status-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .status-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .status-desc {
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+        
+        .file-tree {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: "Consolas", monospace;
+            font-size: 13px;
+            line-height: 2;
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        .file-tree .folder {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .file-tree .file {
+            color: #3498db;
+            padding-left: 20px;
+        }
+        
+        .file-tree .markdown {
+            color: #27ae60;
+        }
+        
+        .file-tree .html {
+            color: #e74c3c;
+        }
+        
+        .file-tree .script {
+            color: #9b59b6;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 14px;
+        }
+        
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .link-diagram {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            overflow-x: auto;
+        }
+        
+        .mermaid {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .action-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .action-box h3 {
+            color: white;
+            border: none;
+            margin-top: 0;
+        }
+        
+        .checklist {
+            list-style: none;
+            counter-reset: checklist-counter;
+        }
+        
+        .checklist li {
+            counter-increment: checklist-counter;
+            padding: 12px 0 12px 40px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .checklist li::before {
+            content: counter(checklist-counter);
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 28px;
+            height: 28px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .checklist li.done::before {
+            background: var(--success);
+            content: "✓";
+        }
+        
+        .quote {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #7f8c8d;
+            background: #fff5f5;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Consolas", monospace;
+            font-size: 13px;
+            color: #e74c3c;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .toc a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .comparison-card.before {
+            border-color: var(--accent);
+            background: #fff5f5;
+        }
+        
+        .comparison-card.after {
+            border-color: var(--success);
+            background: #f0fff4;
+        }
+        
+        .comparison-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .comparison-card.before .comparison-title {
+            color: var(--accent);
+        }
+        
+        .comparison-card.after .comparison-title {
+            color: var(--success);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗺️ 知识组织统一图谱 - 专家点评</h1>
+        <div class="meta">
+            生成时间：2026-03-08 11:37 | 分析师：Claw | 版本：v1.0
+        </div>
+    </header>
+
+    <!-- 专家评分 -->
+    <div class="rating-box">
+        <div class="rating-item">
+            <span class="rating-score">40%</span>
+            <span class="rating-label">组织完整度</span>
+        </div>
+        <div class="rating-item">
+            <span class="rating-score">35%</span>
+            <span class="rating-label">双向链接</span>
+        </div>
+        <div class="rating-item">
+            <span class="rating-score">60%</span>
+            <span class="rating-label">规则清晰度</span>
+        </div>
+        <div class="rating-item">
+            <span class="rating-score">25%</span>
+            <span class="rating-label">执行率</span>
+        </div>
+    </div>
+
+    <!-- 核心观点 -->
+    <h2>🎯 核心观点</h2>
+    <div class="insight-card">
+        <strong>结论先行：</strong>知识文件分散是表象，根因是缺少统一索引和双向链接机制。MEMORY.md 记录了规则，但未形成知识网络；projects/ 为空，skills/ 孤立，HTML 点评散落根目录。需建立三层架构：索引层（MEMORY.md）→ 项目层（projects/）→ 资源层（skills/ + html-expert-reviews/），用双向链接打通。
+    </div>
+
+    <!-- 现状分析 -->
+    <h2>📋 现状分析</h2>
+    
+    <div class="status-grid">
+        <div class="status-card done">
+            <div class="status-icon">✅</div>
+            <div class="status-title">MEMORY.md 长期记忆</div>
+            <div class="status-desc">记录规则、偏好、历史（~570 行）</div>
+        </div>
+        
+        <div class="status-card missing">
+            <div class="status-icon">❌</div>
+            <div class="status-title">projects/ 项目卡片</div>
+            <div class="status-desc">文件夹存在但为空（0 个项目）</div>
+        </div>
+        
+        <div class="status-card pending">
+            <div class="status-icon">📁</div>
+            <div class="status-title">skills/ 技能库</div>
+            <div class="status-desc">15 个本地技能 + 1 个 clawhub 下载</div>
+        </div>
+        
+        <div class="status-card done">
+            <div class="status-icon">✅</div>
+            <div class="status-title">html-expert-reviews/</div>
+            <div class="status-desc">刚创建，7 个 HTML 已归档</div>
+        </div>
+        
+        <div class="status-card pending">
+            <div class="status-icon">📄</div>
+            <div class="status-title">tasks/active-tasks.md</div>
+            <div class="status-desc">6 个任务（2P0 + 4P1），刚关闭 OAuth</div>
+        </div>
+        
+        <div class="status-card missing">
+            <div class="status-icon">❌</div>
+            <div class="status-title">双向链接索引</div>
+            <div class="status-desc">文件间无互相引用</div>
+        </div>
+    </div>
+
+    <!-- 当前文件结构 -->
+    <h2>📁 当前文件结构</h2>
+    <div class="file-tree">
+<span class="folder">workspace/</span>
+├── <span class="file markdown">MEMORY.md</span> (570 行，长期记忆)
+├── <span class="file markdown">USER.md</span> (用户画像)
+├── <span class="file markdown">SOUL.md</span> (AI 人设)
+├── <span class="file markdown">IDENTITY.md</span> (身份定义)
+├── <span class="file markdown">HEARTBEAT.md</span> (心跳任务)
+├── <span class="file markdown">worklog.txt</span> (日常工作日志)
+├── <span class="file markdown">workreport.txt</span> (正式周报)
+│
+├── <span class="folder">tasks/</span>
+│   ├── <span class="file markdown">active-tasks.md</span> (当前任务列表)
+│   └── <span class="folder">projects/</span> ⚠️ <strong>空文件夹</strong>
+│
+├── <span class="folder">skills/</span> (15 个本地技能)
+│   ├── cron-task-manager/
+│   ├── doubao-expert-review/
+│   ├── feishu-document-generation/
+│   ├── project-progress-sync/
+│   └── ... (11 个更多)
+│
+├── <span class="folder">html-expert-reviews/</span> ✅ <strong>新建</strong>
+│   ├── expert-review-2026-03-08-knowledge-graph.html
+│   ├── expert-review-2026-03-08-projects-memory-link.html
+│   ├── expert-review-user-profile-2026-03-08.html
+│   ├── expert-review-2026-03-08-project-knowledge.html
+│   ├── expert-review-2026-03-07-*.html (3 个)
+│   └── README.md
+│
+├── <span class="folder">scripts/</span>
+│   ├── hourly-priority-reminder.ps1
+│   ├── generate-workreport.ps1
+│   └── fetch-doubao-*.ps1 (3 个)
+│
+└── <span class="folder">clawhub skills/</span>
+    └── nano-banana-pro/ (图像生成技能)
+    </div>
+
+    <!-- 知识架构 -->
+    <h2>🏗️ 理想知识架构（三层模型）</h2>
+    <div class="mermaid">
+graph TB
+    subgraph 索引层
+        A[MEMORY.md<br/>长期记忆索引]
+        B[USER.md<br/>用户画像]
+        C[HEARTBEAT.md<br/>定期任务]
+    end
+    
+    subgraph 项目层
+        D[projects/豆包自动化.md]
+        E[projects/地理知识库.md]
+        F[projects/周报系统.md]
+        G[projects/任务管理.md]
+    end
+    
+    subgraph 资源层
+        H[skills/15 个技能]
+        I[html-expert-reviews/7 个 HTML]
+        J[scripts/5 个脚本]
+        K[tasks/active-tasks.md]
+        L[worklog.txt]
+    end
+    
+    A -->|引用 | D
+    A -->|引用 | E
+    A -->|引用 | F
+    A -->|引用 | G
+    
+    D -->|关联 | H
+    D -->|关联 | I
+    D -->|关联 | J
+    
+    E -->|关联 | H
+    E -->|关联 | I
+    
+    F -->|关联 | J
+    F -->|关联 | L
+    
+    G -->|关联 | K
+    G -->|关联 | C
+    
+    D -.->|反向链接 | A
+    E -.->|反向链接 | A
+    F -.->|反向链接 | A
+    G -.->|反向链接 | A
+    
+    style A fill:#3498db,color:#fff
+    style D fill:#27ae60,color:#fff
+    style H fill:#e74c3c,color:#fff
+    </div>
+
+    <!-- 深度洞察 -->
+    <h2>💡 深度洞察</h2>
+    
+    <div class="insight-card">
+        <h3>洞察 1：文件分散 vs 知识孤岛</h3>
+        <p><strong>问题：</strong>7 个 HTML 点评散落在根目录（已解决），15 个 skills 孤立无引用，projects/ 为空无内容。</p>
+        <p><strong>根因：</strong>缺少统一索引 + 缺少项目卡片 + 缺少双向链接</p>
+        <p><strong>影响：</strong>
+        <ul>
+            <li>查找效率低：不知道某个知识在哪</li>
+            <li>知识孤立：技能/项目/点评无关联</li>
+            <li>难以维护：更新一个地方，其他地方不知道</li>
+        </ul>
+        </p>
+    </div>
+    
+    <div class="insight-card">
+        <h3>洞察 2：MEMORY.md 角色错位</h3>
+        <p><strong>当前角色：</strong>记录规则 + 历史 + 偏好（大杂烩）</p>
+        <p><strong>应有角色：</strong>知识网络索引（类似图书馆目录）</p>
+        <p><strong>差距：</strong></p>
+        <ul>
+            <li>❌ 记录了"项目知识归档规则"（527-570 行），但未引用具体项目</li>
+            <li>❌ 提到了 tasks/projects/（436 行），但文件夹为空</li>
+            <li>❌ 记录了技能信息（176-190 行），但未链接到 skills/文件夹</li>
+        </ul>
+        <p><strong>建议：</strong>MEMORY.md 应该是"索引中的索引"，只记录关键链接，详细内容放到项目卡片</p>
+    </div>
+    
+    <div class="insight-card">
+        <h3>洞察 3：项目卡片缺失的连锁反应</h3>
+        <p><strong>问题：</strong>projects/ 为空导致：</p>
+        <ol>
+            <li>MEMORY.md 规则无法执行（无归档目标）</li>
+            <li>每小时播报缺少项目维度（只能读 active-tasks.md）</li>
+            <li>技能与业务场景脱节（不知道哪个技能用于哪个项目）</li>
+            <li>HTML 点评与项目分离（点评散落在 html-expert-reviews/）</li>
+        </ol>
+        <p><strong>解决方案：</strong>创建 3-5 个核心项目卡片，作为知识组织的中枢</p>
+    </div>
+
+    <!-- 对比分析 -->
+    <h2>📊 对比分析：当前 vs 理想</h2>
+    
+    <div class="comparison-grid">
+        <div class="comparison-card before">
+            <div class="comparison-title">❌ 当前状态（分散）</div>
+            <ul>
+                <li>MEMORY.md 记录规则但无引用</li>
+                <li>projects/ 为空（0 项目卡片）</li>
+                <li>skills/ 孤立（15 个技能无主）</li>
+                <li>HTML 点评散落根目录（已归档）</li>
+                <li>文件间无互相引用</li>
+                <li>知识查找靠记忆</li>
+            </ul>
+        </div>
+        
+        <div class="comparison-card after">
+            <div class="comparison-title">✅ 理想状态（网络）</div>
+            <ul>
+                <li>MEMORY.md 索引项目卡片</li>
+                <li>projects/ 包含 5-10 个项目</li>
+                <li>skills/ 关联到具体项目</li>
+                <li>HTML 点评关联到项目卡片</li>
+                <li>双向链接（A→B→A）</li>
+                <li>知识查找靠索引</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 知识图谱可视化 -->
+    <h2>🗺️ 知识图谱（当前状态）</h2>
+    <div class="mermaid">
+graph LR
+    A[MEMORY.md]
+    B[USER.md]
+    C[tasks/active-tasks.md]
+    D[worklog.txt]
+    E[skills/ 15 个]
+    F[html-expert-reviews/ 7 个]
+    G[projects/ ⚠️ 空]
+    H[scripts/ 5 个]
+    
+    A -.->|提到但未链接 | G
+    A -.->|记录规则 | D
+    C -->|读取 | D
+    H -->|支持 | C
+    
+    style G fill:#e74c3c,color:#fff
+    style E fill:#f39c12,color:#fff
+    style F fill:#3498db,color:#fff
+    style A fill:#27ae60,color:#fff
+    </div>
+    
+    <p class="quote">
+        <strong>图例说明：</strong>实线 = 实际引用，虚线 = 提到但未链接，红色 = 缺失/空，橙色 = 孤立，蓝色 = 已归档，绿色 = 索引核心
+    </p>
+
+    <!-- 关键问题 -->
+    <h2>⚠️ 关键问题</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>问题</th>
+                <th>影响范围</th>
+                <th>严重程度</th>
+                <th>修复难度</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>projects/ 为空</td>
+                <td>知识归档、项目追踪、技能关联</td>
+                <td>🔴 高</td>
+                <td>🟢 低（10 分钟）</td>
+            </tr>
+            <tr>
+                <td>MEMORY.md 无双向链接</td>
+                <td>知识查找、索引效率</td>
+                <td>🟡 中</td>
+                <td>🟡 中（30 分钟）</td>
+            </tr>
+            <tr>
+                <td>skills/ 孤立无引用</td>
+                <td>技能发现、复用</td>
+                <td>🟡 中</td>
+                <td>🟢 低（15 分钟）</td>
+            </tr>
+            <tr>
+                <td>HTML 点评未关联项目</td>
+                <td>知识沉淀、回顾</td>
+                <td>🟢 低</td>
+                <td>🟢 低（10 分钟）</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 规范动作 -->
+    <div class="action-box">
+        <h3>🎯 规范动作：创建统一知识图谱（30 分钟）</h3>
+        
+        <h4>步骤 1：创建项目卡片模板（5 分钟）</h4>
+        <p><strong>文件：</strong><code>tasks/projects/项目卡片模板.md</code></p>
+        <p><strong>内容结构：</strong></p>
+        <pre style="background:#f8f9fa;padding:15px;border-radius:8px;overflow-x:auto;">
+# 项目名称
+
+**创建时间：** YYYY-MM-DD
+**状态：** 规划中/进行中/已完成
+**优先级：** P0/P1/P2/P3
+
+## 🎯 项目目标
+一句话描述项目价值
+
+## 📊 当前阶段
+- 阶段 1：xxx（已完成）
+- 阶段 2：xxx（进行中）
+- 阶段 3：xxx（待办）
+
+## 🔗 关联资源
+- **技能：** [[../../skills/skill-name/]]
+- **脚本：** [[../../scripts/script-name.ps1]]
+- **点评：** [[../../html-expert-reviews/expert-review-*.html]]
+- **日志：** [[../../worklog.txt]]
+
+## 📚 项目知识库
+### 业务规则
+- [日期] 规则描述
+
+### 技术决策
+- [日期] 决策描述
+
+### 风险与问题
+- [日期] 问题描述
+
+## ✅ 任务清单
+- [ ] 任务 1
+- [ ] 任务 2
+        </pre>
+        
+        <h4>步骤 2：创建 3 个核心项目卡片（15 分钟）</h4>
+        <p><strong>项目 1：</strong><code>tasks/projects/豆包会话自动化.md</code></p>
+        <p><strong>项目 2：</strong><code>tasks/projects/地理知识库.md</code></p>
+        <p><strong>项目 3：</strong><code>tasks/projects/周报系统.md</code></p>
+        
+        <h4>步骤 3：更新 MEMORY.md 添加反向链接（5 分钟）</h4>
+        <p>在 MEMORY.md 相关章节添加：</p>
+        <pre style="background:#f8f9fa;padding:15px;border-radius:8px;">
+详见：[[tasks/projects/豆包会话自动化.md]]
+详见：[[tasks/projects/地理知识库.md]]
+详见：[[tasks/projects/周报系统.md]]
+        </pre>
+        
+        <h4>步骤 4：更新 skills/README.md（5 分钟）</h4>
+        <p>创建 <code>skills/README.md</code>，列出所有技能并关联到项目</p>
+    </div>
+
+    <!-- 行动建议 -->
+    <h2>🚀 行动建议</h2>
+    <ul class="checklist">
+        <li>创建 html-expert-reviews/ 文件夹（✅ 已完成）</li>
+        <li>关闭飞书 OAuth 任务（✅ 已完成）</li>
+        <li>创建 tasks/projects/项目卡片模板.md</li>
+        <li>创建 3 个核心项目卡片（豆包/地理/周报）</li>
+        <li>更新 MEMORY.md 添加项目链接</li>
+        <li>创建 skills/README.md 关联技能到项目</li>
+        <li>在 HTML 点评中添加项目关联（可选）</li>
+        <li>测试双向链接（点击链接能跳转）</li>
+    </ul>
+
+    <!-- 下一步 -->
+    <h2>📈 下一步</h2>
+    <div class="insight-card">
+        <strong>立即行动（现在）：</strong>
+        <ol>
+            <li>确认项目卡片模板结构（回复"确认"或提出修改）</li>
+            <li>我创建 3 个核心项目卡片（15 分钟）</li>
+            <li>更新 MEMORY.md 添加双向链接（5 分钟）</li>
+        </ol>
+        
+        <strong>今天完成：</strong>
+        <ul>
+            <li>创建 skills/README.md</li>
+            <li>在 active-tasks.md 中引用项目卡片</li>
+            <li>测试每小时播报读取项目卡片</li>
+        </ul>
+        
+        <strong>本周完成：</strong>
+        <ul>
+            <li>为所有项目创建卡片（目标：5-10 个）</li>
+            <li>将所有 HTML 点评关联到项目</li>
+            <li>建立知识更新流程（聊天→识别→归档）</li>
+        </ul>
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>

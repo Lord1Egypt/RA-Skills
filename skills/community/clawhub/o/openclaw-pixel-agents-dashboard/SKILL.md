@@ -1,35 +1,42 @@
 ---
-name: "Openclaw Pixel Agents Dashboard"
-description: "Real-time pixel art ops dashboard for OpenClaw deployments. Visualizes agent activity as character sprites in a shared office with live activity bubbles, har..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/openclaw-pixel-agents-dashboard"
-sourceUrl: "https://clawhub.ai/skills/openclaw-pixel-agents-dashboard"
+name: pixel-agents
+description: Real-time pixel art ops dashboard for OpenClaw deployments. Visualizes agent activity as character sprites in a shared office with live activity bubbles, hardware monitoring, service controls, and task spawning.
 ---
 
-# Openclaw Pixel Agents Dashboard
+# Pixel Agents Dashboard
 
-> Real-time pixel art ops dashboard for OpenClaw deployments. Visualizes agent activity as character sprites in a shared office with live activity bubbles, har...
+Real-time pixel art ops dashboard that visualizes OpenClaw agent activity as character sprites in a shared office.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/openclaw-pixel-agents-dashboard`
-- **Source URL:** [https://clawhub.ai/skills/openclaw-pixel-agents-dashboard](https://clawhub.ai/skills/openclaw-pixel-agents-dashboard)
+## Setup (First Time)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/openclaw-pixel-agents-dashboard
+npm install
+bash skill/scripts/setup.sh
+npm run build
+npm start
 ```
+
+The setup script auto-discovers your agents, detects your gateway, and generates the config.
+
+Or just run `npm start` — if no config exists, the setup wizard opens in your browser.
+
+## Configuration
+
+See `dashboard.config.example.json` for all options:
+
+| Field | Description |
+|-------|-------------|
+| `server.port` | Dashboard port (default: 5070) |
+| `gateway.url` | OpenClaw gateway URL |
+| `gateway.token` | Gateway auth token (use `${ENV_VAR}`) |
+| `agents[]` | Agent definitions (id, name, emoji, palette) |
+| `features.*` | Toggle interactive elements on/off |
+| `remoteAgents[]` | SSH targets for remote agent monitoring |
+
+## Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| Port in use | Change `server.port` or set `PIXEL_AGENTS_PORT` env var |
+| No agents shown | Check `openclaw.agentsDir` path |
+| Gateway errors | Verify `gateway.url` and `gateway.token` |

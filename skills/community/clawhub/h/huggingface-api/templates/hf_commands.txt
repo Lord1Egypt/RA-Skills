@@ -1,0 +1,157 @@
+# Hugging Face CLI Command Templates
+# Replace <bracketed> values with real names/paths.
+# HF_TOKEN is read from environment — export it before running authenticated commands.
+
+# ─────────────────────────────────────────────
+# AUTHENTICATION
+# ─────────────────────────────────────────────
+
+export HF_TOKEN=hf_YOUR_TOKEN_HERE
+
+# Login (writes token to ~/.cache/huggingface/token)
+huggingface-cli login --token $HF_TOKEN
+
+# Check current user
+huggingface-cli whoami
+
+# Logout
+huggingface-cli logout
+
+# ─────────────────────────────────────────────
+# DOWNLOADING MODELS
+# ─────────────────────────────────────────────
+
+# Full model repo (cached in HF_HUB_CACHE)
+huggingface-cli download <org/model>
+
+# Full model to a specific local directory
+huggingface-cli download <org/model> --local-dir ./models/<model-name>
+
+# Single file
+huggingface-cli download <org/model> config.json
+
+# Safetensors only (skip .bin weights)
+huggingface-cli download <org/model> --include "*.safetensors" --exclude "*.bin"
+
+# Specific branch / commit SHA
+huggingface-cli download <org/model> --revision <branch-or-sha>
+
+# Gated model (Llama, Gemma, etc.) — must accept terms on huggingface.co first
+huggingface-cli download meta-llama/Llama-3-8B --local-dir ./llama3
+
+# ─────────────────────────────────────────────
+# DOWNLOADING DATASETS
+# ─────────────────────────────────────────────
+
+huggingface-cli download <org/dataset> --repo-type dataset
+huggingface-cli download <org/dataset> --repo-type dataset --local-dir ./data/<name>
+huggingface-cli download <org/dataset> train.parquet --repo-type dataset
+
+# ─────────────────────────────────────────────
+# UPLOADING FILES & FOLDERS
+# ─────────────────────────────────────────────
+
+# Upload single file to repo root
+huggingface-cli upload <org/repo> <local_file.ext> <remote_file.ext>
+
+# Upload folder to repo root
+huggingface-cli upload <org/repo> ./<local_folder> .
+
+# Upload folder to a subdirectory in repo
+huggingface-cli upload <org/repo> ./<local_folder> checkpoints/epoch1
+
+# Upload with commit message
+huggingface-cli upload <org/repo> ./<folder> . --commit-message "Add fp16 weights v2"
+
+# Upload and open a Pull Request instead of committing directly
+huggingface-cli upload <org/repo> ./<folder> . --create-pr
+
+# Upload only specific files
+huggingface-cli upload <org/repo> ./<folder> . --include "*.json" --include "*.safetensors"
+
+# Upload dataset
+huggingface-cli upload <org/dataset> ./data . --repo-type dataset
+
+# Upload Space app
+huggingface-cli upload <org/space> ./app . --repo-type space
+
+# Large model upload (multi-part, resumable — use for repos > 50 GB)
+huggingface-cli upload-large-folder <org/model> --repo-type model ./<large_folder>
+
+# ─────────────────────────────────────────────
+# REPOSITORY MANAGEMENT
+# ─────────────────────────────────────────────
+
+# Create repos
+huggingface-cli repo create <my-model>     --type model
+huggingface-cli repo create <my-dataset>   --type dataset   --private
+huggingface-cli repo create <my-space>     --type space
+
+# Create if not already exists
+huggingface-cli repo create <my-model> --type model --exist-ok
+
+# Repo info
+huggingface-cli repo info <org/repo>
+
+# Delete repo (prompts for confirmation)
+huggingface-cli repo delete <org/repo>
+
+# Delete without prompt (CI)
+huggingface-cli repo delete <org/repo> --yes
+
+# ─────────────────────────────────────────────
+# TAGS
+# ─────────────────────────────────────────────
+
+huggingface-cli tag create <org/repo> v1.0 --message "Initial release"
+huggingface-cli tag list   <org/repo>
+huggingface-cli tag delete <org/repo> v0.9 --yes
+
+# ─────────────────────────────────────────────
+# CACHE MANAGEMENT
+# ─────────────────────────────────────────────
+
+# Show all cached models/datasets and sizes
+huggingface-cli scan-cache
+
+# Verbose — show individual revision details
+huggingface-cli scan-cache --verbose
+
+# Interactively delete revisions
+huggingface-cli delete-cache
+
+# Use custom cache dir
+huggingface-cli scan-cache --dir /mnt/data/hf_cache
+
+# ─────────────────────────────────────────────
+# ENVIRONMENT / DEBUG
+# ─────────────────────────────────────────────
+
+# Print all HF environment info (version, token status, cache dir)
+huggingface-cli env
+
+# Print library version
+huggingface-cli version
+
+# ─────────────────────────────────────────────
+# USEFUL ENVIRONMENT VARIABLES
+# ─────────────────────────────────────────────
+
+export HF_TOKEN=hf_...                       # Auth token
+export HF_HOME=/mnt/data/huggingface         # Move cache to another disk
+export HF_HUB_CACHE=/mnt/data/hf_cache      # Override model cache dir
+export HF_HUB_OFFLINE=1                      # Disable network; use cache only
+export HF_HUB_ENABLE_HF_TRANSFER=1          # Enable fast Rust downloader
+export HF_HUB_DISABLE_PROGRESS_BARS=1       # Clean logs in CI
+export HF_ENDPOINT=https://hf-mirror.internal  # Enterprise/mirror endpoint
+
+# ─────────────────────────────────────────────
+# HELPER SCRIPT COMMANDS (scripts/hf_helper.py)
+# ─────────────────────────────────────────────
+
+python scripts/hf_helper.py whoami
+python scripts/hf_helper.py info   <org/repo>  [--type model|dataset|space]
+python scripts/hf_helper.py files  <org/repo>  [--revision main]
+python scripts/hf_helper.py search "<query>"   [--type model] [--limit 10]
+python scripts/hf_helper.py cache
+python scripts/hf_helper.py spaces <org>       [--limit 20]

@@ -1,35 +1,101 @@
 ---
-name: "Cmd Helper"
-description: "命令快捷助手 - 通过 /c 触发命令菜单，快速执行常用操作（新建会话、切换模型、查看状态等）。当用户输入 /c、/cmd 或类似命令时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cmd-helper"
-sourceUrl: "https://clawhub.ai/skills/cmd-helper"
+name: cmd-helper
+description: 命令快捷助手 - 通过 /c 触发命令菜单，快速执行常用操作（新建会话、切换模型、查看状态等）。当用户输入 /c、/cmd 或类似命令时使用。
 ---
 
-# Cmd Helper
+# 命令快捷助手
 
-> 命令快捷助手 - 通过 /c 触发命令菜单，快速执行常用操作（新建会话、切换模型、查看状态等）。当用户输入 /c、/cmd 或类似命令时使用。
+当用户输入 `/c` 或 `/cmd` 时，显示命令菜单并引导执行。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cmd-helper`
-- **Source URL:** [https://clawhub.ai/skills/cmd-helper](https://clawhub.ai/skills/cmd-helper)
+## 命令菜单
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cmd-helper
 ```
+╔══════════════════════════════════════════╗
+║          🦞 命令快捷菜单                   ║
+╠══════════════════════════════════════════╣
+║  1️⃣  new    - 开启新会话                  ║
+║  2️⃣  rst    - 重置当前会话                ║
+║  3️⃣  model  - 切换AI模型                 ║
+║  4️⃣  status - 查看会话状态                ║
+║  5️⃣  help   - 查看帮助                   ║
+║                                          ║
+║  0️⃣  exit   - 退出命令模式               ║
+╚══════════════════════════════════════════╝
+
+请输入序号执行（如 1），输入 0 退出命令模式
+```
+
+## 执行流程
+
+1. **用户输入 `/c`** → 显示菜单
+2. **用户输入序号** → 执行对应操作
+3. **输入 0** → 退出命令模式，恢复普通聊天
+
+## 切换模型子菜单
+
+当用户选择 `/model` 或输入 `3` 时，显示可用模型列表：
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║                    🤖 可用模型列表                             ║
+║                      当前使用：MiniMax-M2.5                   ║
+╠══════════════════════════════════════════════════════════════╣
+║  1️⃣  qwen3.5-plus                                           ║
+║      📝 文本 · 🖼️ 图片 · ❌ 无推理 · 📚 1M 上下文             ║
+║      • 阿里旗舰模型，综合能力强，支持多模态                    ║
+║                                                              ║
+║  2️⃣  qwen3-max-2026-01-23                                    ║
+║      📝 文本 · ❌ 无推理 · 📚 262K 上下文                     ║
+║      • 最新Qwen3大模型，适合复杂推理                          ║
+║                                                              ║
+║  3️⃣  qwen3-coder-next                                       ║
+║      📝 文本 · ❌ 无推理 · 📚 262K 上下文                     ║
+║      • 编程专用，下一代代码模型                              ║
+║                                                              ║
+║  4️⃣  qwen3-coder-plus                                       ║
+║      📝 文本 · ❌ 无推理 · 📚 1M 上下文                       ║
+║      • 编程专用，超大上下文，适合大型项目                     ║
+║                                                              ║
+║  5️⃣  MiniMax-M2.5  ⭐ (默认)                                  ║
+║      📝 文本 · ❌ 无推理 · 📚 197K 上下文                      ║
+║      • 平衡型，综合能力强                                     ║
+║                                                              ║
+║  6️⃣  glm-5                                                   ║
+║      📝 文本 · ❌ 无推理 · 📚 203K 上下文                     ║
+║      • 智谱最新模型                                          ║
+║                                                              ║
+║  7️⃣  glm-4.7                                                 ║
+║      📝 文本 · ❌ 无推理 · 📚 203K 上下文                      ║
+║      • 智谱成熟模型                                          ║
+║                                                              ║
+║  8️⃣  kimi-k2.5                                               ║
+║      📝 文本 · 🖼️ 图片 · ❌ 无推理 · 📚 262K 上下文           ║
+║      • 月之暗面KIMI多模态模型                                 ║
+║                                                              ║
+║  0️⃣  exit   - 返回主菜单                                      ║
+╚══════════════════════════════════════════════════════════════╝
+
+请输入序号切换模型（如输入 5 切换到 MiniMax-M2.5）
+```
+
+## 字段说明
+
+- 📝 文本：支持文本输入
+- 🖼️ 图片：支持图片输入
+- ❌ 无推理：不支持深度思考模式
+- 📚 上下文：上下文窗口大小
+- ⭐ 默认：当前使用的模型
+
+## 实现说明
+
+由于 OpenClaw 不支持直接在会话中执行 slash 命令，实际切换需要：
+
+1. **新建会话** - 使用 sessions_spawn 启动新会话
+2. **切换模型** - 使用 gateway config.patch 修改默认模型
+3. **查看状态** - 使用 session_status 工具获取
+
+## 注意事项
+
+- 仅在用户明确输入 `/c` 相关触发词时激活
+- 执行结果需要用户确认
+- 当前模型信息从 session_status 获取

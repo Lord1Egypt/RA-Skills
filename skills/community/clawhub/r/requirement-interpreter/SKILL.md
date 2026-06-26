@@ -1,35 +1,93 @@
 ---
-name: "智能需求解读器"
-description: "智能需求解读技能，通过多级分类和案例匹配帮助用户准确表达需求，并提供标准化交付物清单"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/requirement-interpreter"
-sourceUrl: "https://clawhub.ai/skills/requirement-interpreter"
+name: requirement-interpreter
+description: 智能需求解读技能，通过多级分类和案例匹配帮助用户准确表达需求，并提供标准化交付物清单
 ---
 
 # 智能需求解读器
 
-> 智能需求解读技能，通过多级分类和案例匹配帮助用户准确表达需求，并提供标准化交付物清单
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/requirement-interpreter`
-- **Source URL:** [https://clawhub.ai/skills/requirement-interpreter](https://clawhub.ai/skills/requirement-interpreter)
+帮助用户与AI进行高效、准确的沟通，显著提升需求理解质量和实施效果。
 
-## Overview
+**新增功能**: 提供标准化交付物清单，确保需求落地结果规范、可直接使用。
 
+## 需求类型体系
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/requirement-interpreter
-```
+### 一级分类（6大类）
+1. **技术开发** - 软件、系统、应用开发
+2. **内容创作** - 文案、设计、视频创作
+3. **数据分析** - 统计、报表、可视化
+4. **业务流程** - 工作流、审批、自动化
+5. **问题解决** - 故障排查、性能优化
+6. **咨询服务** - 方案、选型、评估
+
+### 二级分类（25+子类）
+涵盖Web开发、移动应用、营销文案、数据可视化、审批流程、故障排查等细分场景。
+
+## 触发场景
+
+- 需求描述模糊、缺少关键信息
+- 涉及特定行业专业知识
+- 复杂度高，需要分步引导
+- 需求紧急，需要快速精准理解
+
+## 核心组件
+
+| 组件 | 功能 |
+|------|------|
+| `optimized_classifier.py` | 智能分类引擎，6大类型25+子类 |
+| `optimized_interpreter.py` | 个性化解读器，案例匹配+访谈 |
+| `case_library.json` | 行业案例库，最佳实践 |
+| `structured_interview.py` | 结构化访谈框架 |
+| `delivery_standards.py` | 交付物标准化模块 |
+
+## 使用示例
+
+用户输入: "请帮我设计一个蛋糕促销海报"
+
+处理结果:
+- 类型: 内容创作 > 营销海报设计
+- 行业: 餐饮
+- 相似案例: 蛋糕促销海报设计
+- 访谈问题: 营销目标、受众特征、视觉风格
+- 最佳实践: 暖色调、诱人图片、突出优惠
+- **交付物清单**: 设计源文件、印刷文件、数字文件、矢量文件等
+
+## 交付物标准化
+
+### 支持的需求类型
+
+| 需求类型 | 交付标准 | 包含文件类型 |
+|----------|----------|--------------|
+| 网站设计 | 网站设计交付标准 | HTML/CSS/JS、设计稿、图标资源 |
+| 移动应用 | 移动应用交付标准 | 安装包、设计稿、源码、接口文档 |
+| 电商系统 | 电商项目交付标准 | 前端/后端代码、数据库、UI设计、部署文档 |
+| 营销海报 | 营销海报交付标准 | PSD/AI源文件、印刷PDF、数字图片、SVG矢量 |
+| 视频制作 | 视频制作交付标准 | MP4/MOV成片、工程文件、分镜脚本、字幕 |
+| 数据分析 | 数据分析交付标准 | 分析报告、数据文件、可视化图表、代码 |
+| 业务流程 | 业务流程交付标准 | 流程图、需求文档、原型、自动化脚本 |
+| 咨询服务 | 咨询服务交付标准 | 咨询报告、执行方案、预算清单、演示PPT |
+
+### 交付物分类
+
+- **代码文件**: HTML, CSS, JS, Python, SQL 等
+- **设计文件**: Figma, Sketch, PSD, AI, SVG 等
+- **文档资料**: PDF, Word, Markdown 等
+- **资源素材**: PNG, JPG, SVG 等
+- **分析报告**: PDF, PPT, Excel 等
+- **数据文件**: CSV, SQL, JSON 等
+
+## 效果指标
+
+| 指标 | 目标 |
+|------|------|
+| 一级分类准确率 | >95% |
+| 二级分类准确率 | >85% |
+| 相似案例推荐准确率 | >90% |
+| 交付物标准覆盖率 | >90% |
+
+## 资源
+
+- `references/requirement_patterns.md` - 需求模式库
+- `assets/templates/` - 需求模板
+- `assets/checklists/` - 完整性检查清单

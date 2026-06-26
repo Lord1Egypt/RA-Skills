@@ -1,35 +1,27 @@
 ---
-name: "recipe-create-vacation-responder"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-vacation-responder"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-vacation-responder"
+name: recipe-create-vacation-responder
+description: "Enable a Gmail out-of-office auto-reply with a custom message and date range."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# recipe-create-vacation-responder
+# Set Up a Gmail Vacation Responder
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-vacation-responder`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-vacation-responder](https://skills.sh/googleworkspace/cli/recipe-create-vacation-responder)
+Enable a Gmail out-of-office auto-reply with a custom message and date range.
 
-## Overview
+## Steps
 
+1. Enable vacation responder: `gws gmail users settings updateVacation --params '{"userId": "me"}' --json '{"enableAutoReply": true, "responseSubject": "Out of Office", "responseBodyPlainText": "I am out of the office until Jan 20. For urgent matters, contact backup@company.com.", "restrictToContacts": false, "restrictToDomain": false}'`
+2. Verify settings: `gws gmail users settings getVacation --params '{"userId": "me"}'`
+3. Disable when back: `gws gmail users settings updateVacation --params '{"userId": "me"}' --json '{"enableAutoReply": false}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-vacation-responder
-```
